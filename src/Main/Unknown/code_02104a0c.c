@@ -52,7 +52,7 @@ void func_02105214(void) {
         case 2:
             data_0217c724 = 0xb;
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             data_0217c724 = 0x20;
             break;
         case 5:

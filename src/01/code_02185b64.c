@@ -55,7 +55,8 @@ u32 func_ov001_02185d74(MissionGateObject *c, Unk02185d74 *d, u8 *e, u8 *f) {
     u32 a = *e;
     u32 b = *f;
 
-    if ((d->mUnk_48 & 0x200) != 0 || (data_021759c0->mMode == 4 ? IsKartEliminated(d->mUnk_74) : 0) != FALSE) {
+    if ((d->mUnk_48 & 0x200) != 0 ||
+        (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated(d->mUnk_74) : 0) != FALSE) {
         return 0;
     }
     if (a == 1) {
@@ -113,7 +114,7 @@ void UpdateMissionGate(void *a, MissionGateObject *b) {
 
     switch (b->mState) {
         case 0:
-            pos = data_021759c0->mMode == 4 ? func_ov001_02181820() : 0;
+            pos = data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181820() : 0;
             if (pos >= b->mUnk_000.mCourseMapRow->mUnk_28 - 1) {
                 b->mUnk_000.mFlags &= ~1;
                 b->mState = 1;

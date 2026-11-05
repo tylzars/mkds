@@ -366,9 +366,9 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
     Unk02188950_a0 *a;
     Kart *c;
 
-    if (data_021759c0->mMode == 4 ? IsWinnerDecided() : 0) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
         if (func_ov001_021871f8(d, 1) != 0) {
-            if (data_021759c0->mMode == 4 ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
                 func_ov001_02183850(d);
             } else {
                 func_ov001_02183f0c(d);
@@ -425,7 +425,7 @@ void func_ov001_021831f0(Unk0218fa78 *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_ov001_02181b8c(o);
             }
             func_ov001_021870e4(a, o, data_ov001_021a79a8, data_ov001_021a79bc, data_ov001_021a79d0);
@@ -444,7 +444,7 @@ void func_ov001_02183158(Unk0218fa78 *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_ov001_02181b8c(o);
             }
             func_ov001_021870e4(a, o, data_ov001_021a7950, data_ov001_021a7968, data_ov001_021a7980);

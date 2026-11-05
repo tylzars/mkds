@@ -156,7 +156,7 @@ void func_020e7760(void) {
         case 2:
             data_0217b8b0 = 0;
             break;
-        case 4: {
+        case MODE_MISSION_RUN: {
             BOOL b;
 
             b = FALSE;

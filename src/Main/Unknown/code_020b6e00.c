@@ -138,7 +138,7 @@ void func_020b8624(void) {
                              FindSceneFileWrapper("race_start_battle_m_o.NCLR"));
             }
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[4].mNclr, FindSceneFileWrapper("race_mr_m_o.NCLR"));
             LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[5].mNclr, FindSceneFileWrapper("race_goal_mr_m_o.NCLR"));
             break;
@@ -159,7 +159,7 @@ void func_020b8624(void) {
                               FindSceneFileWrapper("race_start_battle_m_o.NCGR"));
             }
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[4].mNcgr, FindSceneFileWrapper("race_mr_m_o.NCGR"));
             LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[5].mNcgr, FindSceneFileWrapper("race_goal_mr_m_o.NCGR"));
             break;
@@ -246,7 +246,7 @@ void func_020b8624(void) {
                               data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mData, 0, 0);
             }
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             a5 = NULL;
             LoadNcerData(&a5, FindSceneFileWrapper("race_mr_m.NCER"));
             for (i = 0; i < 0x16; i++) {
@@ -992,7 +992,7 @@ void func_020b6e00(u16 *a, void *b) {
                 break;
         }
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         CopyRaceTransferMapMrSO(a, b);
     }
 }

@@ -4,6 +4,7 @@
 #include "Main/Unknown/code_020c0000.h"
 #include "Main/Unknown/code_020d0ee8.h"
 #include "Main/Unknown/code_020d0f78.h"
+#include "Main/Unknown/code_021000d0.h"
 
 #pragma optimize_for_size on
 
@@ -38,5 +39,5 @@ void *GetCupPictureNscrData(void) {
 #pragma thumb off
 
 s32 func_020d0e3c(void) {
-    return func_020c0c2c(&data_0217b4a0, 0x1af);
+    return func_020c0c2c(&data_0217b4a0, MAP_OBJECT_KIND_FIREBALL2);
 }

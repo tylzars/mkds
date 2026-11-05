@@ -165,11 +165,11 @@ void InitRace(void) {
         case 2:
             InitStandings();
             break;
-        case 4:
-            if (data_021759c0->mMode == 4) {
+        case MODE_MISSION_RUN:
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_ov001_021819f4();
             }
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 InitStandings();
             }
             break;
@@ -276,11 +276,11 @@ void UpdateRace(void) {
         case 2:
             func_020a08ec();
             break;
-        case 4:
-            if (data_021759c0->mMode == 4) {
+        case MODE_MISSION_RUN:
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_ov001_02181860();
             }
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_020a08ec();
             }
             break;
@@ -686,14 +686,14 @@ s32 func_020617a8(u32 *a) {
 }
 
 s32 func_02061788(void) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         return 0x2e;
     }
     return 0x1f;
 }
 
 u16 func_02061768(void) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         return 0x2d;
     }
     return 0x1e;

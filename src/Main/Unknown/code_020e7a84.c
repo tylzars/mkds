@@ -167,7 +167,7 @@ void func_020e9d10(void) {
     if (data_021759c0->mMode == 2) {
         return;
     }
-    if (data_021759c0->mMode != 4 && gRaceProgress->mUnk_000[data_0217b888].mStatus == 1 &&
+    if (data_021759c0->mMode != MODE_MISSION_RUN && gRaceProgress->mUnk_000[data_0217b888].mStatus == 1 &&
         (data_0217b8c8->mUnk_48 & 0x800) == 0) {
         Vec3 v;
         data_0217ba2c.mUnk_18 = 2;

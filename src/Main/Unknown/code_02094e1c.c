@@ -15,6 +15,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/code_0209bf70.h"
 #include "Main/Unknown/code_02077bc0.h"
+#include "Main/Unknown/code_021000d0.h"
 
 void func_020954e4(u32 arg0) {
     u32 value0 = arg0;
@@ -24,7 +25,7 @@ void func_020954e4(u32 arg0) {
     value2 = value0;
     value1 = (u32) * (const u32 *) ((value2) + (156));
     value12 = (u32) &CreateParkedMapObjects;
-    value0 = 0x13bu;
+    value0 = MAP_OBJECT_KIND_TERESA;
     value1 = (u32) * (const s16 *) ((value1) + (42));
     CreateParkedMapObjects(value0, value1, (void *) value2);
 }

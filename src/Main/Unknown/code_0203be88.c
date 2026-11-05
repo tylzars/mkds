@@ -40,10 +40,10 @@ void func_0203c1a8(Vec3 *a, u32 b) {
         return;
     }
     if (v != 0) {
-        if (data_021759c0->mMode == 4) {
+        if (data_021759c0->mMode == MODE_MISSION_RUN) {
             func_ov001_021816fc();
         }
-        if (data_021759c0->mMode != 4) {
+        if (data_021759c0->mMode != MODE_MISSION_RUN) {
             return;
         }
         func_0203e788(b, 0);

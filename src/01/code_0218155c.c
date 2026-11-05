@@ -75,7 +75,7 @@ void func_ov001_02181aa0(void) {
     Unk021a9b90 *p;
     u32 n;
 
-    if ((data_021759c0->mMode == 4 ? IsWinnerDecided() : 0) != FALSE) {
+    if ((data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) != FALSE) {
         return;
     }
     p = data_ov001_021a9b90;
@@ -142,8 +142,8 @@ void func_ov001_02181860(void) {
         o->mUnk_28 = c->mPos;
         o->mUnk_40 = c->mHeadingAngle;
     }
-    if (data_021759c0->mMode == 4 ? IsWinnerDecided() : 0) {
-        if (data_021759c0->mMode == 4 ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
+        if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
             if (GetBalloonOrShineCount((u16) data_021759c0->mEntryIndex)) {
                 data_ov001_021a9b90->mUnk_00 += 1;
                 if (data_ov001_021a9b90->mUnk_00 > 0xf) {
@@ -256,7 +256,7 @@ void func_ov001_0218175c(s32 b) {
 }
 
 void func_ov001_0218173c(void) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_02181678((u32) (5));
     }
     return;
@@ -279,7 +279,7 @@ BOOL func_ov001_021816b4(void) {
     Balloon *e;
     s32 i;
 
-    list = func_02100138(0x6c);
+    list = func_02100138(MAP_OBJECT_KIND_BALLOON);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (e = list->mUnk_00[i]) != NULL; i++) {
             if ((e->mUnk_00.mFlags & 0x100) == 0) {

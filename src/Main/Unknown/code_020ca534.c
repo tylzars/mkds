@@ -15,6 +15,7 @@
 #include "Main/Unknown/code_020c0b84.h"
 #include "Main/Unknown/code_020c0ba8.h"
 #include "Main/Unknown/code_020c0d9c.h"
+#include "Main/Unknown/code_021000d0.h"
 
 void func_020ca568(void) {
     s32 i;
@@ -44,5 +45,5 @@ void func_020ca54c(Unk020c06c4 *a) {
 }
 
 s32 func_020ca534(void) {
-    return func_020c0c2c(&data_0217b430, 0x1ac);
+    return func_020c0c2c(&data_0217b430, MAP_OBJECT_KIND_CRAB);
 }

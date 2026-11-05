@@ -7,6 +7,7 @@
 #include "Main/Unknown/code_020b2a4c.h"
 #include "Main/Unknown/code_020b2ec0.h"
 #include "Main/Unknown/code_020b33d8.h"
+#include "Main/Unknown/unk_021759c0.h"
 
 #pragma thumb on
 #pragma optimize_for_size on
@@ -19,8 +20,8 @@ u32 func_020b29c4(void) {
     if (IsRaceStartSequenceDone() != 0 && GetRaceStartSequenceFrames() > 0xf0 && func_020b2a4c() == 0 &&
         (func_020b252c() != 2 || IsWinnerDecided() == FALSE)) {
         d = 1;
-        if (func_020b252c() == 4) {
-            if ((func_020b252c() == 4 ? IsWinnerDecided() : 0) != FALSE) {
+        if (func_020b252c() == MODE_MISSION_RUN) {
+            if ((func_020b252c() == MODE_MISSION_RUN ? IsWinnerDecided() : 0) != FALSE) {
                 d = 0;
             }
         }

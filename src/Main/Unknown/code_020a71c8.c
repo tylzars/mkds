@@ -439,7 +439,7 @@ void func_020a71c8(void) {
             }
         }
     }
-    l = func_02100138(0x70);
+    l = func_02100138(MAP_OBJECT_KIND_SHINE_BALLOON);
     if (l != NULL) {
         for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
             if ((o->mFlags & 0x100) == 0) {

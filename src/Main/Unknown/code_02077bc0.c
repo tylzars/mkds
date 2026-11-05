@@ -157,7 +157,7 @@ void InitKarts(u32 a) {
     func_0208c284();
     func_020845cc(a);
     data_0217ad24 = 0;
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         if (gCourseMap->mKind2ShapeCountInMode4 != 0) {
             data_0217ad24 = 1;
         }
@@ -451,10 +451,10 @@ BOOL func_0207a2a8(s32 *a) {
 s32 func_0207a218(void) {
     BOOL r = TRUE;
     s32 m = data_021759c0->mMode;
-    if (m == 4) {
+    if (m == MODE_MISSION_RUN) {
         Kart *p = &gKarts[data_021759c0->mEntryIndex];
         if (p->mState != 0 || (p->mUnk_48 & 0x2000840) != 0 || (p->mUnk_44 & 0x10) == 0 ||
-            (m != 4 ? 0 : func_ov001_021816b4()) != 0) {
+            (m != MODE_MISSION_RUN ? 0 : func_ov001_021816b4()) != 0) {
             r = FALSE;
         }
     }
@@ -837,7 +837,7 @@ u32 func_020799a0(s32 e) {
     if (e != data_021759c0->mEntryIndex && e != data_021759c0->mUnk_063) {
         d = 0;
     }
-    if (d == 0 && data_021759c0->mMode != 4) {
+    if (d == 0 && data_021759c0->mMode != MODE_MISSION_RUN) {
         c = 0;
     }
     if (c == 0 && func_02062eb0() == 0) {

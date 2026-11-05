@@ -206,7 +206,7 @@ void func_020946b8(void) {
     Teresa *o;
     s32 i;
 
-    l = func_02100138(0x13b);
+    l = func_02100138(MAP_OBJECT_KIND_TERESA);
     if (l == NULL) {
         return;
     }
@@ -245,7 +245,7 @@ void func_02094000(Vec3 *a) {
     s32 d;
     s32 f;
 
-    o = UnparkFirstParkedMapObject(func_02100138(0x13b));
+    o = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_TERESA));
     if (o == NULL) {
         return;
     }

@@ -39,14 +39,14 @@ void func_020b2574(void) {
     if (gChoisesS->mUnk_014 == 0 && gChoisesS->mUnk_018 == 0 && func_020b32ec() == 0) {
         if (func_020b2bc8() != 0) {
             if (func_020b2b70() != 0) {
-                if (func_020b252c() == 4 && func_020b2b5c() != 0 && func_020b2f58() != 0) {
+                if (func_020b252c() == MODE_MISSION_RUN && func_020b2b5c() != 0 && func_020b2f58() != 0) {
                     if (func_020b2b24(func_020b2b54(), 1) != 0 || func_020b2a74(func_020b2b54()) != 0) {
                         gChoisesS->mUnk_024 = 10;
                         gChoisesS->mUnk_028 = gChoisesS->mUnk_024;
                         gChoisesS->mUnk_00c = 1;
                         func_020b3278();
                     }
-                } else if (func_020b252c() == 4 && func_020b2ecc() != 0) {
+                } else if (func_020b252c() == MODE_MISSION_RUN && func_020b2ecc() != 0) {
                     if (func_020b2b24(func_020b2b54(), 1) != 0 || func_020b2a74(func_020b2b54()) != 0) {
                         gChoisesS->mUnk_024 = 6;
                         gChoisesS->mUnk_028 = gChoisesS->mUnk_024;
@@ -54,7 +54,7 @@ void func_020b2574(void) {
                         func_020b3278();
                         func_020b2a60(1);
                     }
-                } else if (func_020b252c() == 4 && func_020b2b5c() != 0) {
+                } else if (func_020b252c() == MODE_MISSION_RUN && func_020b2b5c() != 0) {
                     if (func_020b2b24(func_020b2b54(), 1) != 0 || func_020b2a74(func_020b2b54()) != 0) {
                         gChoisesS->mUnk_024 = 6;
                         gChoisesS->mUnk_028 = gChoisesS->mUnk_024;

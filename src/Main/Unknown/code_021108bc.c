@@ -124,7 +124,7 @@ s32 func_02110e58(void) {
                 a = b;
             }
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             a = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
             break;
         case 2:

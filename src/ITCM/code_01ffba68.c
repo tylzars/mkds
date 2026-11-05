@@ -366,7 +366,7 @@ void func_01ffc558(Kart *p) {
     enum { K0 } k;
 
     d = data_021759c0;
-    if (d->mMode != 4) {
+    if (d->mMode != MODE_MISSION_RUN) {
         return;
     }
     if (!(d->mUnk_044 & 1)) {

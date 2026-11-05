@@ -57,7 +57,7 @@ s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s3
     row = q->mRows[param_3];
     acc = 0;
     t = 0;
-    if (data_021759c0->mMode != 4) {
+    if (data_021759c0->mMode != MODE_MISSION_RUN) {
         for (i = 0; i < 0xe; i++) {
             t += (u16) (gItemKinds[(s32) i].mUnk_90 *
                         (gItemPools[(s32) i].mReservedCount - gItemPools[(s32) i].mUnk_18));

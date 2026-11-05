@@ -49,7 +49,7 @@ void StartKartState2(Kart *p, int a, int b) {
     p->mUnk_366 = a;
     p->mUnk_4c |= 0x20;
     func_020efea4(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     if (b != 0) {
@@ -125,7 +125,7 @@ void StartKartState6(Kart *p) {
     p->mUnk_340 = p->mPos.y;
     p->mUnk_348 = 0;
     func_020eff40(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     if (!(p->mUnk_48 & 0x840)) {
@@ -284,7 +284,7 @@ void StartKartState3(Kart *p) {
         func_0210af40(p, p->mUnk_3cc, 2);
     }
     func_020efea4(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
 }
@@ -401,7 +401,7 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
     v = data_02154f7c;
     func_020397a8(&v, a, &p->mUnk_31c);
     func_020eff40(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     if (!(p->mUnk_7c & 0x400)) {
@@ -525,7 +525,7 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
     }
     func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     func_020eff40(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     if (p->mKartModelsEntry->mUnk_058 == 0) {
@@ -615,7 +615,7 @@ void func_0206a624(Kart *p) {
     func_0206bcb0(p, 2, 1);
     func_0210f9ac(p);
     func_020eff40(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     p->mScaleFactor.x = 0x1000;

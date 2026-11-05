@@ -77,14 +77,14 @@ s32 func_020adc04(void) {
 #pragma thumb off
 
 s32 func_020adbe4(void) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         return data_021759c0->mMissionTableRow;
     }
     return -1;
 }
 
 s32 func_020adbc4(void) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         return data_021759c0->mMissionTableColumn;
     }
     return -1;

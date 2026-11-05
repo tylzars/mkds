@@ -145,7 +145,7 @@ void func_0207b44c(Kart *a) {
     if (m == 2) {
         return;
     }
-    if (m == 4) {
+    if (m == MODE_MISSION_RUN) {
         return;
     }
     if (m != 2 && data_021759c0->mUnk_1c == 1) {

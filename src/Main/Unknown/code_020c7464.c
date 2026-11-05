@@ -920,7 +920,7 @@ void func_020c7c38(Unk020c06c4 *a) {
 }
 
 s32 func_020c7c1c(void) {
-    return func_020c0c2c(&data_0217b410, 0x1a3);
+    return func_020c0c2c(&data_0217b410, MAP_OBJECT_KIND_MOVE_TREE);
 }
 
 void func_020c7c08(void) {
@@ -953,7 +953,7 @@ void func_020c7b28(Unk020c06c4 *a) {
 }
 
 s32 func_020c7b0c(void) {
-    return func_020c0c2c(&data_0217b40c, 0x19d);
+    return func_020c0c2c(&data_0217b40c, MAP_OBJECT_KIND_SMAN);
 }
 
 void func_020c7af8(void) {

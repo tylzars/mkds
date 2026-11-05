@@ -83,9 +83,9 @@ void func_020c5ce0(void) {
     data_0217b3f0->mUnk_08 = 0;
     data_0217b3f0->mUnk_0c = 0;
     data_0217b3f0->mUnk_10 = 0;
-    if (data_021759c0->mMode == 4) {
-        if (func_0205fd78(data_021759c0->mMode == 4 ? data_021759c0->mMissionTableRow : -1,
-                          data_021759c0->mMode == 4 ? data_021759c0->mMissionTableColumn : -1,
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (func_0205fd78(data_021759c0->mMode == MODE_MISSION_RUN ? data_021759c0->mMissionTableRow : -1,
+                          data_021759c0->mMode == MODE_MISSION_RUN ? data_021759c0->mMissionTableColumn : -1,
                           &data_0217b3f0->mUnk_14) == 0) {
             data_0217b3f0->mUnk_14 = 9;
         }
@@ -121,7 +121,7 @@ void func_020c5940(void) {
     if (func_020b1d0c() == 0) {
         return;
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         if ((IsKartEnded((u16) data_021759c0->mEntryIndex) != 0 ? gRaceProgress->mUnk_4e0 : 6) != 0 &&
             func_0207a218() == 0 && n == 0) {
             return;
@@ -161,7 +161,7 @@ void func_020c5940(void) {
                 data_0217b3f0->mUnk_00 = 1;
             }
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0 ? gRaceProgress->mUnk_4e0 : 6) {
                 data_0217b3f0->mUnk_18 = 9;
             } else {
@@ -224,7 +224,7 @@ void func_020c5804(Unk020c06c4 *a) {
             k = a->mUnk_400;
             a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             func_020c541c(a);
             break;
     }
@@ -496,8 +496,8 @@ void InitRaceStartGp(void) {
     if (data_021759c0->mMode == 0) {
         s = func_02025d8c(data_021759c0->mCourseId);
         w.mUnk_08 = func_020b4b10();
-    } else if (data_021759c0->mMode == 4) {
-        s = (data_021759c0->mMode == 4 ? data_021759c0->mMissionTableRow : s) + 0x55;
+    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
+        s = (data_021759c0->mMode == MODE_MISSION_RUN ? data_021759c0->mMissionTableRow : s) + 0x55;
         w.mUnk_08 = func_020b4b54();
     }
     func_02024340(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));

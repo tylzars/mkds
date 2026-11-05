@@ -54,7 +54,7 @@ void func_0208be00(Unk020888b4 *p, s32 a) {
     p->mUnk_154 = 0;
     func_0207e594(p, q, p->mUnk_154);
     func_0207d814(&p->mUnk_e8, p);
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         p->mUnk_e8.mUnk_2c = 1;
         p->mUnk_e8.mUnk_30 = 4;
     } else {

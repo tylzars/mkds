@@ -49,7 +49,7 @@ void CreateItemKinds(void) {
         case 2:
             gItemKinds[8].mLimit = 8;
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             for (j = 0; j < 0xe; j++) {
                 gItemKinds[j].mLimit = gItemKinds[j].mUnk_08;
             }

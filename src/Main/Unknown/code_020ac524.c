@@ -152,7 +152,7 @@ void *func_020ac63c(void) {
 void func_020ac5e4(Kart *a) {
     ShineBalloonObject *o;
 
-    o = UnparkFirstParkedMapObject(func_02100138(0x70));
+    o = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_SHINE_BALLOON));
     if (o == NULL) {
         return;
     }

@@ -52,7 +52,7 @@ void func_0208b934(void *a) {
     *(u32 *) &data_0217b050 = (u32) func_0208b484;
     if (GetCurrentSceneNumber() == 2) {
         d = data_021759c0;
-        if (d->mMode == 4) {
+        if (d->mMode == MODE_MISSION_RUN) {
             *(u32 *) &data_0217b050 = (u32) func_0208b458;
             c = data_0217aa10->mUnk_a4;
             e = 0x96;
@@ -80,7 +80,7 @@ void func_0208b934(void *a) {
     if (GetCurrentSceneNumber() != 2) {
         return;
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         t = NULL;
         data_0217b03c = func_02018d94((void *(*) (u32)) func_0208bd04, 0x32, 0xc8, 3, 0xe, 0x1e);
         func_02048590(data_usa_02166168, c, &t);

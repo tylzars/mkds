@@ -190,7 +190,7 @@ s32 func_020676fc(Kart *a) {
     func_02083f6c(0, a);
     if ((a->mUnk_48 & 0x10000) == 0) {
         b = a->mSurfaceVariant;
-        if (data_021759c0->mMode == 2 || data_021759c0->mMode == 4) {
+        if (data_021759c0->mMode == 2 || data_021759c0->mMode == MODE_MISSION_RUN) {
             func_020705fc(a, b);
         } else {
             a->mUnk_48 = a->mUnk_48 | 0x10000;
@@ -327,7 +327,7 @@ void func_02066fe0(Kart *a) {
                 }
             } else if (p->mUnk_1c == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) {
                 a->mUnk_7c = a->mUnk_7c | 0x200000;
-            } else if (p->mMode == 4) {
+            } else if (p->mMode == MODE_MISSION_RUN) {
                 a->mUnk_7c = a->mUnk_7c | 0x200000;
                 a->mUnk_48 = a->mUnk_48 | 0x2000;
             }

@@ -17,6 +17,7 @@
 #include "Main/Unknown/code_020da000.h"
 #include "Main/Unknown/code_020f4000.h"
 #include "Main/Unknown/code_020fd000.h"
+#include "Main/Unknown/code_021000d0.h"
 
 void func_ov001_02187e48(Unk02188950 *a, s32 b) {
     s32 v;
@@ -48,7 +49,7 @@ void *func_ov001_02187e00(u16 a) {
 void *func_ov001_02187dd4(void) {
     void *p;
 
-    p = FindParkedMapObject(0x191);
+    p = FindParkedMapObject(MAP_OBJECT_KIND_KURIBO);
     if (p != NULL) {
         func_020da628(p);
         return func_020fd338(p, 0);

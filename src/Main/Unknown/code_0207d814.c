@@ -62,7 +62,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
     Vec3 *t;
     Unk02175620_bc *r;
 
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_0207e668(p);
     }
     s = &p->mUnk_08.mUnk_00;

@@ -399,7 +399,7 @@ void EliminateKart(u16 a) {
     func_020a19f8(a);
     if (data_021759c0->mMode == 2) {
         func_02068b5c(GetKart(a));
-    } else if (data_021759c0->mMode == 4) {
+    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
         c = GetKart(a);
         c->mUnk_48 |= 0x2000;
         c->mUnk_7c |= 8;
@@ -448,7 +448,7 @@ found:
             func_0212ecc0(&data_0217d068, 0, 0x4a);
         }
         gStandings->mEndTimer = 0x5a;
-    } else if (data_021759c0->mMode == 4) {
+    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
         v1 = data_021759c0->mEntryIndex;
         if (gStandings->mWinnerTeamId == v1) {
             func_0203e74c((u16) v1);
@@ -591,7 +591,7 @@ void func_020a12b8(void) {
                 }
             }
         }
-    } else if (data_021759c0->mMode == 4) {
+    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
         for (i = 7; i >= 0; i--) {
             k = func_020a12b8_inline(i);
             if (k != data_021759c0->mEntryIndex && gStandings->mWinnerTeamId < 0) {
@@ -891,7 +891,8 @@ void func_020a08ec(void) {
                     e->mUnk_44 = (u16) i;
                     e->mUnk_20 = FALSE;
                     if (e->mBalloonOrShineCount <= 1) {
-                        if ((data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) || data_021759c0->mMode == 4) {
+                        if ((data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) ||
+                            data_021759c0->mMode == MODE_MISSION_RUN) {
                             o->mUnk_7c |= 0x20000000;
                             o->mUnk_48 &= ~0x2000000;
                         }
@@ -913,7 +914,8 @@ void func_020a08ec(void) {
                 if (e->mUnk_00 == FALSE && b != FALSE && (o->mUnk_4c & 0x400000) == 0) {
                     e->mUnk_00 = TRUE;
                     if (e->mBalloonOrShineCount <= 1) {
-                        if ((data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) || data_021759c0->mMode == 4) {
+                        if ((data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) ||
+                            data_021759c0->mMode == MODE_MISSION_RUN) {
                             o->mUnk_7c |= 0x20000000;
                         }
                     }

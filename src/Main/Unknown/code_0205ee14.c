@@ -535,7 +535,7 @@ void func_0205eeb0(void) {
             case 3:
                 func_0205f700();
                 break;
-            case 4:
+            case MODE_MISSION_RUN:
                 func_0203b230();
                 break;
             case 2:

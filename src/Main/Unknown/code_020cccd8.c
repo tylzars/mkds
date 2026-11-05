@@ -27,6 +27,7 @@
 #include "Main/Unknown/code_02095000.h"
 #include "Main/Unknown/code_020931ac.h"
 #include "Main/Unknown/code_02092194.h"
+#include "Main/Unknown/code_021000d0.h"
 
 void func_020ce694(void) {
     u32 value0;
@@ -64,7 +65,7 @@ void func_020ce564(Unk020c06c4 *a) {
 }
 
 s32 func_020ce548(void) {
-    return func_020c0c2c(&data_0217b47c, 0x19f);
+    return func_020c0c2c(&data_0217b47c, MAP_OBJECT_KIND_BASABASA);
 }
 
 void func_020ce534(void) {
@@ -196,7 +197,7 @@ void func_020ce118(Unk020c06c4 *a) {
 }
 
 s32 func_020ce100(void) {
-    return func_020c0c2c(&data_0217b470, 0x1a4);
+    return func_020c0c2c(&data_0217b470, MAP_OBJECT_KIND_MKD_EF_BURNER);
 }
 
 void func_020ce0ec(void) {
@@ -281,7 +282,7 @@ void func_020cddfc(Unk020c06c4 *a) {
 }
 
 s32 func_020cdde4(void) {
-    return func_020c0c2c(&data_0217b468, 0x1b0);
+    return func_020c0c2c(&data_0217b468, MAP_OBJECT_KIND_IRON_BALL);
 }
 
 void func_020cddd0(void) {
@@ -321,7 +322,7 @@ void func_020cdcac(Unk020c06c4 *a) {
 }
 
 s32 func_020cdc90(void) {
-    return func_020c0c2c(&data_0217b464, 0x191);
+    return func_020c0c2c(&data_0217b464, MAP_OBJECT_KIND_KURIBO);
 }
 
 void func_020cdc7c(void) {
@@ -484,7 +485,7 @@ void func_020cd710(Unk020c06c4 *a) {
 }
 
 s32 func_020cd6f4(void) {
-    return func_020c0c2c(&data_0217b454, 0x1b2);
+    return func_020c0c2c(&data_0217b454, MAP_OBJECT_KIND_SANBO);
 }
 
 void func_020cd6e0(void) {
@@ -606,7 +607,7 @@ void func_020cd30c(Unk020c06c4 *a) {
 }
 
 s32 func_020cd2f0(void) {
-    return func_020c0c2c(&data_0217b448, 0x1a9);
+    return func_020c0c2c(&data_0217b448, MAP_OBJECT_KIND_FLIPPER);
 }
 
 void func_020cd2dc(void) {
@@ -697,7 +698,7 @@ void func_020ccf88(Unk020c06c4 *a) {
 }
 
 s32 func_020ccf6c(void) {
-    return func_020c0c2c(&data_0217b444, 0x1a2);
+    return func_020c0c2c(&data_0217b444, MAP_OBJECT_KIND_NS_KILLER2);
 }
 
 void func_020ccf58(void) {

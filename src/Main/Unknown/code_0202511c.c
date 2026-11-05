@@ -160,7 +160,7 @@ u32 func_0202511c(s32 a, void *c) {
                     q = data_021759c0->mMode;
                     r = func_0202553c(data_021759c0->mCourseId, b);
                     f = TRUE;
-                    if (q == 4) {
+                    if (q == MODE_MISSION_RUN) {
                         p = &data_021759c0->mUnk_28_view;
                         s = FALSE;
                         if (p->mUnk_06 == 4) {

@@ -60,7 +60,7 @@ void func_0203fed4(void) {
                             case 2:
                                 func_020a12b8();
                                 break;
-                            case 4:
+                            case MODE_MISSION_RUN:
                                 func_0203eb38();
                                 break;
                             case 5:
@@ -90,7 +90,7 @@ void func_0203fed4(void) {
         }
         if (t != 0) {
             switch (data_021759c0->mMode) {
-                case 4:
+                case MODE_MISSION_RUN:
                     func_0203e788((u16) data_021759c0->mEntryIndex, 1);
                     g = data_0217d084.mUnk_04 == 2 || data_0217d084.mUnk_04 == 3;
                     if (g) {

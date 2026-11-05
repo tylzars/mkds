@@ -35,6 +35,7 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_0203c5f8.h"
+#include "Main/Unknown/code_021000d0.h"
 
 void func_020d0e28(void) {
     u32 value0;
@@ -258,7 +259,7 @@ void func_020d029c(Unk020d029c *a, s32 b, s32 d, TimeDigits *e, s32 f) {
 }
 
 s32 func_020d0280(void) {
-    return func_020c0c2c(&data_0217b498, 0x1b5);
+    return func_020c0c2c(&data_0217b498, MAP_OBJECT_KIND_BERRY);
 }
 
 void func_020d026c(void) {
@@ -298,7 +299,7 @@ void func_020d0134(void *a) {
 }
 
 s32 func_020d011c(void) {
-    return func_020c0c2c(&data_0217b494, 0x1b4);
+    return func_020c0c2c(&data_0217b494, MAP_OBJECT_KIND_CREAM);
 }
 
 void func_020d0108(void) {

@@ -45,7 +45,7 @@ BOOL func_02040bc0(void) {
         return r;
     }
     switch (data_021759c0->mMode) {
-        case 4:
+        case MODE_MISSION_RUN:
             g = FALSE;
             switch (gRaceProgress->mUnk_000[(u16) i].mStatus) {
                 case 1:
@@ -127,7 +127,7 @@ s16 func_020408f0(s32 a) {
         case 0:
             func_02040a8c(&b, a);
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             h = (u8 *) g + 0x28;
             t = func_0207a6b0();
             b.mUnk_00 =
@@ -267,7 +267,7 @@ void InitRaceProgress(void) {
     gRaceProgress->mTimeCountsDown = FALSE;
     gRaceProgress->mTimeLimitFrameCount = 0;
     switch (data_021759c0->mMode) {
-        case 4:
+        case MODE_MISSION_RUN:
             if (data_021759c0->mUnk_2f == 6) {
                 gRaceProgress->mTimeCountsDown = FALSE;
             } else {
@@ -301,7 +301,7 @@ void InitRaceProgress(void) {
                 case 1:
                     s = 0x34a8f71;
                     break;
-                case 4:
+                case MODE_MISSION_RUN:
                     s = 0x158b76f;
                     break;
                 case 5:

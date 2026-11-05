@@ -209,7 +209,7 @@ void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     u32 n;
     u16 w;
 
-    p = UnparkFirstParkedMapObject(func_02100138(0x19f));
+    p = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_BASABASA));
     if (p == NULL) {
         return;
     }

@@ -245,7 +245,7 @@ void func_020688a0(Kart *a) {
             case 6:
             default:
                 if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-                    if (data_021759c0->mMode == 4) {
+                    if (data_021759c0->mMode == MODE_MISSION_RUN) {
                         func_020a16d0(a->mIndex);
                     }
                     a->mUnk_7c = a->mUnk_7c | 0x20000;
@@ -253,7 +253,7 @@ void func_020688a0(Kart *a) {
                 }
                 break;
         }
-        if (data_021759c0->mMode == 4) {
+        if (data_021759c0->mMode == MODE_MISSION_RUN) {
             func_020a12b8();
         }
     }
@@ -261,7 +261,7 @@ void func_020688a0(Kart *a) {
     if ((c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
         return;
     }
-    if (data_021759c0->mMode == 2 || data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == 2 || data_021759c0->mMode == MODE_MISSION_RUN) {
         d = 1;
         if ((c & 0x10000) != 0) {
             d = 0;
@@ -322,7 +322,7 @@ void func_02068640(Kart *a, s32 b) {
     func_02068494(a, 0, b);
     h = a->mUnk_7c;
     if ((h & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-        if (data_021759c0->mMode == 2 || data_021759c0->mMode == 4) {
+        if (data_021759c0->mMode == 2 || data_021759c0->mMode == MODE_MISSION_RUN) {
             i = 1;
             if ((h & 0x10000) != 0) {
                 i = 0;

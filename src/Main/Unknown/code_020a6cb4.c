@@ -19,9 +19,9 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 void func_020a7148(MapObject *a) {
-    if (func_020d3bf8(0x6a) == 0) {
-        CreateParkedMapObjects(0x6a, 0x14, a);
-        CreateParkedMapObjects(0x70, data_021759c0->mKartCount, a);
+    if (func_020d3bf8(MAP_OBJECT_KIND_SHINE16) == 0) {
+        CreateParkedMapObjects(MAP_OBJECT_KIND_SHINE16, 0x14, a);
+        CreateParkedMapObjects(MAP_OBJECT_KIND_SHINE_BALLOON, data_021759c0->mKartCount, a);
         func_020a233c(func_020a72c8);
         SetStandingsKartEliminatedCallback(func_020a7270);
         SetStandingsEndCallback(func_020a71c8);

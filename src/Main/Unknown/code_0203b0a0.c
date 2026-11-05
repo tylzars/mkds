@@ -132,8 +132,8 @@ u32 func_0203b230(void) {
     s32 b;
     s32 t;
     BOOL v1;
-    a = (data_021759c0->mMode == 4) ? data_021759c0->mMissionTableRow : -1;
-    b = (data_021759c0->mMode == 4) ? data_021759c0->mMissionTableColumn : -1;
+    a = (data_021759c0->mMode == MODE_MISSION_RUN) ? data_021759c0->mMissionTableRow : -1;
+    b = (data_021759c0->mMode == MODE_MISSION_RUN) ? data_021759c0->mMissionTableColumn : -1;
     t = IsKartEnded((u16) data_021759c0->mEntryIndex);
     t = (t != 0) ? gRaceProgress->mUnk_4e0 : 6;
     if (t != 0) {

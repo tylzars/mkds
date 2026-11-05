@@ -80,7 +80,7 @@ void func_0203c2e4(u16 a) {
             case 2:
                 func_020a12b8();
                 break;
-            case 4:
+            case MODE_MISSION_RUN:
                 func_0203eb38();
                 break;
             case 5:

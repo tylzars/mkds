@@ -90,7 +90,7 @@ void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
         case 1:
             GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             if (data_021759c0->mKartCount <= 1) {
                 GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);
             } else {

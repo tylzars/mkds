@@ -630,7 +630,7 @@ BOOL func_020888b4(Unk020888b4 *p, s32 a, s32 b) {
     s32 d;
     BOOL x;
 
-    l = func_02100138(0x6a);
+    l = func_02100138(MAP_OBJECT_KIND_SHINE16);
     n = func_021000c8(l);
     m = 0;
     r = NULL;

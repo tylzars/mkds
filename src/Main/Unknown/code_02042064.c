@@ -723,7 +723,7 @@ void CountCourseMapKind2ShapesInMode4(void) {
     u8 count;
     u16 i;
     count = 0;
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         for (i = 0; i < gCourseMap->mShapeCount; i++) {
             if (GetCourseMapShape(i)->mKind == 2) {
                 count++;
@@ -777,7 +777,7 @@ s32 func_02042170(void *a, ...) {
         if (data_021759c0->mMode == 2 && gCourseMap->mFirstKind7EntryInMode2 == NULL && e->mKind == 7) {
             gCourseMap->mFirstKind7EntryInMode2 = e;
         }
-        if (data_021759c0->mMode == 4 && gCourseMap->mFirstKind8EntryInMode4 == NULL && e->mKind == 8) {
+        if (data_021759c0->mMode == MODE_MISSION_RUN && gCourseMap->mFirstKind8EntryInMode4 == NULL && e->mKind == 8) {
             gCourseMap->mFirstKind8EntryInMode4 = e;
         }
     }
@@ -794,7 +794,7 @@ void CreateCourseMap(void *a) {
     u16 j;
 
     switch (data_021759c0->mMode) {
-        case 4:
+        case MODE_MISSION_RUN:
             if (data_021759c0->mUnk_00c == 6) {
                 header = FindCourseFile("/course_map.nkm");
             } else {

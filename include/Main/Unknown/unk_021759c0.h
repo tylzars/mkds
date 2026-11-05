@@ -43,6 +43,10 @@ typedef struct KartEntry {
     /* 08 */ Unk021759c0_70 mPlayer;
 } KartEntry;
 
+// Values of the mMode member of Unk021759c0 and of Unk021759c0_1e8 (the other values stay literals).
+// Mission run: the mission row and column are read only while the mode has this value (code_02045874.c:372-373).
+#define MODE_MISSION_RUN 4
+
 // The 0x68 bytes at 0x1e8 of the object behind data_021759c0.
 typedef struct Unk021759c0_1e8 {
     /* 00 */ s32 mCourseId;

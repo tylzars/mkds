@@ -363,7 +363,7 @@ void func_02044940(void) {
             }
             r = n;
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             r = 2;
             break;
     }
@@ -468,7 +468,7 @@ void func_020446e0(void) {
                 data_021759c0->mNextHeader.mUnk_0c = 4;
             }
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             break;
         default:
             data_021759c0->mNextHeader.mUnk_0c = 0;

@@ -74,7 +74,7 @@ void func_02046594(void) {
     switch (data_021759c0->mNextHeader.mMode) {
         case 0:
         case 1:
-        case 4:
+        case MODE_MISSION_RUN:
         case 5:
             f = TRUE;
             break;
@@ -286,7 +286,7 @@ void func_02045ed0(void) {
             }
             data_021759c0->mNextHeader.mUnk_63 = r;
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             func_0205db50();
             if (data_021759c0->mNextHeader.mMissionTableColumn == 9) {
                 data_021759c0->mNextHeader.mUnk_0c = 3;
@@ -368,9 +368,9 @@ void func_02045a2c(s32 a) {
                 break;
             }
         }
-        if (data_021759c0->mMode == 4) {
-            if ((data_021759c0->mMode == 4 ? data_021759c0->mMissionTableRow : -1) == 6 &&
-                (data_021759c0->mMode == 4 ? data_021759c0->mMissionTableColumn : -1) == 9) {
+        if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if ((data_021759c0->mMode == MODE_MISSION_RUN ? data_021759c0->mMissionTableRow : -1) == 6 &&
+                (data_021759c0->mMode == MODE_MISSION_RUN ? data_021759c0->mMissionTableColumn : -1) == 9) {
                 if (i == 0) {
                     x = 7;
                     y = 0x15;

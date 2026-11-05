@@ -105,7 +105,7 @@ void func_02044380(Unk02029930_f8 *a, u32 b, u32 c) {
     data_021759c0->mNextHeader.mMissionFileRow = *a;
     data_021759c0->mNextHeader.mMissionTableRow = b;
     data_021759c0->mNextHeader.mMissionTableColumn = c;
-    data_021759c0->mNextHeader.mMode = 4;
+    data_021759c0->mNextHeader.mMode = MODE_MISSION_RUN;
     data_021759c0->mNextHeader.mCourseId = a->mCourseId;
     data_021759c0->mNextHeader.mUnk_57 = (a->mUnk_1c & 0x10) != 0 ? 1 : 0;
     data_021759c0->mNextHeader.mUseTeams = 0;

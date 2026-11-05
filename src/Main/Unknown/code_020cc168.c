@@ -19,14 +19,14 @@
 #include "01/code_021804e0.h"
 
 s32 func_020cc5b8(void) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         return data_021759c0->mMissionTableRow;
     }
     return -1;
 }
 
 s32 func_020cc598(void) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         return data_021759c0->mMissionTableColumn;
     }
     return -1;
@@ -83,7 +83,7 @@ void func_020cc3e8(void) {
     func_02029930()->mUnk_e4 = func_020cc604();
     func_02029930()->mUnk_e8 = func_020cc5ec();
     func_02029930()->mUnk_ec = func_020cc5d8();
-    if (GetCurrentMode() == 4) {
+    if (GetCurrentMode() == MODE_MISSION_RUN) {
         func_02029930()->mMissionTableRow = func_020cc5b8();
         func_02029930()->mMissionTableColumn = func_020cc598();
     }

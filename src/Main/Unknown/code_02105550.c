@@ -640,7 +640,7 @@ void func_021074ac(s32 e) {
                     break;
             }
             func_0210f5d4(v);
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 u8 *w = (u8 *) data_021759c0 + 0x28;
                 switch (data_021759c0->mUnk_2f) {
                     case 1:
@@ -801,7 +801,7 @@ void func_02107010(void) {
         func_0210d614(&data_0217d070, func_02111144(), NULL);
         data_0217c7b0 = 0;
         v = 0xffff;
-        if (data_021759c0->mMode == 4) {
+        if (data_021759c0->mMode == MODE_MISSION_RUN) {
             switch (data_021759c0->mUnk_2e) {
                 case 9:
                     v = 0x20e;

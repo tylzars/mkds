@@ -113,7 +113,7 @@ void func_020be3e4(void) {
     if (data_021759c0->mMode == 1) {
         return;
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         return;
     }
     if (data_021759c0->mMode == 2) {
@@ -662,7 +662,7 @@ void func_020bc958(void) {
     if (data_021759c0->mMode == 2) {
         return;
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         switch (data_021759c0->mUnk_2f) {
             case 2:
             case 4:
@@ -729,7 +729,7 @@ void func_020bc208(Unk020d029c *a) {
     if (data_021759c0->mUnk_00c == 1) {
         return;
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         switch (data_021759c0->mUnk_2f) {
             case 2:
             case 4:
@@ -856,7 +856,7 @@ void func_020bc11c(void) {
             data_0217b3d0->mUnk_1c = TRUE;
         }
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         if (data_021759c0->mUnk_2f != 6) {
             data_0217b3d0->mUnk_1c = TRUE;
         }

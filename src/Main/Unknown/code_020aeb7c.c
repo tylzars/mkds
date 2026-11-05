@@ -363,7 +363,7 @@ void func_020aeb7c(void) {
                 }
             }
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             if (func_0203c174() != FALSE) {
                 if (gRaceHud->mUnk_83c == FALSE) {
                     gRaceHud->mUnk_83c = TRUE;
@@ -416,15 +416,15 @@ void func_020aeb7c(void) {
     if (gRaceHud->mUnk_90c != FALSE) {
         return;
     }
-    if (data_021759c0->mMode == 4) {
-        v = (data_021759c0->mMode == 4 ? data_021759c0->mMissionTableColumn : -1) == 9;
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+        v = (data_021759c0->mMode == MODE_MISSION_RUN ? data_021759c0->mMissionTableColumn : -1) == 9;
     } else {
         v = 0;
     }
     if (v == 0) {
         return;
     }
-    if (data_021759c0->mMode != 4) {
+    if (data_021759c0->mMode != MODE_MISSION_RUN) {
         v = 0;
     } else {
         v = func_020a128c();
@@ -432,7 +432,7 @@ void func_020aeb7c(void) {
     if (v == 0) {
         return;
     }
-    if (data_021759c0->mMode != 4) {
+    if (data_021759c0->mMode != MODE_MISSION_RUN) {
         v = 0;
     } else {
         v = IsKartEliminated(func_020b4d9c());

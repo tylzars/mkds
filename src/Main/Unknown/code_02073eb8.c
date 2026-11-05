@@ -87,7 +87,7 @@ void SetupCameraBehindKart(void) {
 
     q = GetKart(data_021759c0->mEntryIndex);
     SetupCamera(gChaseCamera);
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         if (data_021759c0->mUnk_044 & 0x20) {
             (gChaseCamera)->mFollowDirectionSign = -0x1000;
         }
@@ -741,7 +741,7 @@ void UpdateCameraAngleEntry(Camera *p) {
     Vec3Add(&p->mPos, &n, &p->mLookAt);
     p->mLookAt.y = p->mLookAt.y - o->mHopHeight;
     p->mPos.y = p->mPos.y - o->mHopHeight;
-    if (data_021759c0->mMode != 4 && data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_MISSION_RUN && data_021759c0->mMode != 2) {
         if (func_01ffdee4(&p->mPos, (u32 *) &p->mPrevPos, 0, data_usa_021656c0 >> 1, 2, -2, &w, NULL, NULL, NULL, NULL,
                           NULL, NULL, NULL) != 0) {
             o = GetKart(p->mFollowedKartIndex);

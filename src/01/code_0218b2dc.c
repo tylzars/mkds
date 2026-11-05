@@ -42,6 +42,7 @@
 #include "01/unk_021a9000.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_020f9c6c.h"
+#include "Main/Unknown/code_021000d0.h"
 
 Unk021a7b64 data_ov001_021a7b64 = {
     0, 0x30c, func_ov001_0218b72c, func_ov001_0218b310, func_ov001_0218b2f4, 0, 0, func_ov001_0218b2dc, {0, 0, 0, 0, 0},
@@ -137,7 +138,7 @@ void func_ov001_0218b770(Unk02188950 *a) {
 }
 
 void func_ov001_0218b72c(Unk02188950 *a) {
-    CreateParkedMapObjects((u32) 0x191, 0x32, a);
+    CreateParkedMapObjects((u32) MAP_OBJECT_KIND_KURIBO, 0x32, a);
     a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) 0xf, (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cc6c[15];
@@ -182,9 +183,9 @@ void func_ov001_0218b5d8(Unk0218d87c *a) {
 void UpdateKuriking(u32 a, Unk02188950 *b) {
     s32 var;
 
-    if (data_021759c0->mMode == 4 ? IsWinnerDecided() : 0) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
         if (func_ov001_021871f8(b, 1)) {
-            if (data_021759c0->mMode == 4 ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
                 func_ov001_0218b9b4(b);
             } else {
                 func_ov001_0218b8f8(b);
@@ -247,7 +248,7 @@ void InitKuriking(Unk0218d87c *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_ov001_02181b8c(obj);
             }
             func_ov001_021870e4(a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"), ("kuriking.prm"));

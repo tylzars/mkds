@@ -159,7 +159,7 @@ void func_0203d078(void) {
             case 2:
                 func_020a12b8();
                 break;
-            case 4:
+            case MODE_MISSION_RUN:
                 func_0203eb38();
                 break;
             case 5:
@@ -233,7 +233,7 @@ void func_0203cd14(void) {
             func_0207a828(func_0203cd14_inline(v));
             func_020b3f64();
             func_02110cc8(0);
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_020a0dbc();
             }
             p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + v1);
@@ -248,7 +248,7 @@ void func_0203cd14(void) {
             func_020688a0(GetKart(v));
             func_0207a828((u16) v);
             func_02110cc8(0);
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_020a0dbc();
             }
             p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + v1);
@@ -307,7 +307,7 @@ void UpdateRaceProgress(void) {
                         case 2:
                             func_020a12b8();
                             break;
-                        case 4:
+                        case MODE_MISSION_RUN:
                             func_0203eb38();
                             break;
                         case 5:
@@ -355,7 +355,7 @@ void UpdateRaceProgress(void) {
             func_0203d21c();
         }
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_0203cd14();
     }
     if (data_021759c0->mMode == 1) {

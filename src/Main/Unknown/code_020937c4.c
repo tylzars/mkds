@@ -227,7 +227,7 @@ void func_02093884(void) {
 void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
     Unk020937c4 *o;
 
-    o = UnparkFirstParkedMapObject(func_02100138(0x1a2));
+    o = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_NS_KILLER2));
     if (o == NULL) {
         return;
     }

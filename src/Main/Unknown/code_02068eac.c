@@ -83,8 +83,8 @@ BOOL func_0206a24c(Kart *p) {
     p->mUnk_394 = 0xb33;
     func_020eff40(&(gKartItems)[p->mIndex]);
     v = data_021759c0->mMode;
-    if (v == 4) {
-        if (v == 4) {
+    if (v == MODE_MISSION_RUN) {
+        if (v == MODE_MISSION_RUN) {
             func_ov001_0218173c();
         }
     }

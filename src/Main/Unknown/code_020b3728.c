@@ -65,7 +65,7 @@ void func_020b3cd8(void) {
     if (d->mMode == 1) {
         return;
     }
-    if (d->mMode == 4) {
+    if (d->mMode == MODE_MISSION_RUN) {
         return;
     }
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
@@ -230,7 +230,7 @@ void func_020b3728(void) {
                 f = TRUE;
                 if (d->mUnk_00c == 1) {
                     f = FALSE;
-                } else if (d->mMode == 4) {
+                } else if (d->mMode == MODE_MISSION_RUN) {
                     switch (d->mUnk_2f) {
                         case 2:
                         case 4:
@@ -269,7 +269,7 @@ void func_020b3728(void) {
                 case 2:
                     func_02089ef4((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
                     break;
-                case 4:
+                case MODE_MISSION_RUN:
                     if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mUnk_4e0 : 6) != 0) {
                         func_02089ef4(7);
                     }
@@ -291,7 +291,7 @@ void func_020b3728(void) {
     }
     d = data_021759c0;
     switch (d->mMode) {
-        case 4:
+        case MODE_MISSION_RUN:
             if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mUnk_4e0 : 6) == 0) {
                 func_02089ef4(6);
             }

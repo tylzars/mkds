@@ -349,10 +349,10 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
             p->mUnk_0f4 = 0;
             p->mUnk_11c = TRUE;
             switch (p->mUnk_000.mKind) {
-                case 0x1b4:
+                case MAP_OBJECT_KIND_CREAM:
                     func_020d26ec(k, 0x156);
                     break;
-                case 0x1b5:
+                case MAP_OBJECT_KIND_BERRY:
                     func_020d26ec(k, 0x155);
                     break;
                 case 0x1a8:

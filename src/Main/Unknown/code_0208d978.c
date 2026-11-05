@@ -104,7 +104,7 @@ void func_0208e570(void *a) {
     Unk0216618c *x;
     Unk0216618c *y;
 
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         a = data_0217aa10->mUnk_a4;
     }
     data_0217b080 = HeapAlloc(a, 0x60);
@@ -121,7 +121,7 @@ void func_0208e570(void *a) {
         x->mUnk_00 = 3;
         y->mUnk_00 = 1;
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         x->mUnk_00 = 0x14;
     }
     func_0208e2c8(&data_021661e4, 1);

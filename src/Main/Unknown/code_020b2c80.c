@@ -26,7 +26,7 @@ u32 func_020b2d04(void) {
         return 3;
     }
     if (func_020b2a4c() != 0) {
-        if (func_020b252c() == 4) {
+        if (func_020b252c() == MODE_MISSION_RUN) {
             if (func_020b2d54() == 0) {
                 return 2;
             }

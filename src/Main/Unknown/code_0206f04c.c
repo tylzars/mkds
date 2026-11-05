@@ -74,7 +74,7 @@ void func_0206ff50(Kart *p, u32 a) {
         }
         b = (u16) ((func_020d59f8(0x8000) & 0xe0) >> 5);
         h = data_021759c0->mMode;
-        if (h == 2 || h == 4) {
+        if (h == 2 || h == MODE_MISSION_RUN) {
             func_020705fc(p, b);
             return;
         }

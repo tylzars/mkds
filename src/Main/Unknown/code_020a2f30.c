@@ -420,7 +420,7 @@ void func_020a305c(void) {
     Unk02100094 *v1;
     Balloon *e;
 
-    v1 = func_02100138(0x6c);
+    v1 = func_02100138(MAP_OBJECT_KIND_BALLOON);
     if (v1 == NULL) {
         return;
     }
@@ -441,7 +441,7 @@ void func_020a305c(void) {
 Balloon *func_020a2fe4(u16 a, Vec3 *b) {
     Balloon *o;
 
-    o = UnparkFirstParkedMapObject(func_02100138(0x6c));
+    o = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_BALLOON));
     if (o == NULL) {
         return NULL;
     }

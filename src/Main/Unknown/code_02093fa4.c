@@ -3,6 +3,7 @@
 #include "Main/Unknown/code_020d7d80.h"
 #include "Main/Unknown/code_020d7da8.h"
 #include "Main/Unknown/unk_0217c000.h"
+#include "Main/Unknown/code_021000d0.h"
 
 void InitNsKiller1(u32 arg0) {
     u32 value0 = arg0;
@@ -16,7 +17,7 @@ void InitNsKiller1(u32 arg0) {
     func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, (s32) value2);
     value0 = (value4) + (0xacu);
     func_020d7d80((Unk020e0144 *) value0);
-    value0 = 0x1a2u;
+    value0 = MAP_OBJECT_KIND_NS_KILLER2;
     value2 = value4;
     value1 = 0x14u;
     CreateParkedMapObjects(value0, value1, (void *) value2);

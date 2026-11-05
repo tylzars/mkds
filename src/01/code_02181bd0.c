@@ -133,9 +133,9 @@ void func_ov001_02182bdc(void) {
         o->mUnk_0a0 = 0x10;
         o->mUnk_0ac = 0x1e;
         v = NULL;
-        if (data_021759c0->mMode == 4) {
+        if (data_021759c0->mMode == MODE_MISSION_RUN) {
             n = 0;
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 n = func_ov001_02181b54();
             }
             v = func_ov001_02181b68(n);
@@ -156,7 +156,7 @@ void func_ov001_02182bdc(void) {
 }
 
 void func_ov001_02182bbc(u32 a) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_02181660(a);
     }
 }
@@ -184,11 +184,12 @@ void func_ov001_02182a3c(s32 a) {
                         r = ((u64) (u32) (rng->mUnk_00 >> 32) * 0x10000) >> 32;
                         p->mUnk_0b0 = 0x1000;
                         p->mUnk_0a0 = 0;
-                        p->mUnk_0e8 = (Vec3 *) ((data_021759c0->mMode == 4
-                                                     ? (u32) func_ov001_02181b68(
-                                                           data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0)
-                                                     : 0) +
-                                                4);
+                        p->mUnk_0e8 =
+                            (Vec3 *) ((data_021759c0->mMode == MODE_MISSION_RUN
+                                           ? (u32) func_ov001_02181b68(
+                                                 data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0)
+                                           : 0) +
+                                      4);
                         p->mUnk_000.mPos.x = p->mUnk_0e8->x;
                         p->mUnk_000.mPos.y = p->mUnk_0e8->y;
                         p->mUnk_000.mPos.z = p->mUnk_0e8->z;
@@ -230,7 +231,7 @@ void func_ov001_021829ac(s32 a) {
                     if ((p->mUnk_000.mFlags & 0x100) == 0) {
                         ParkMapObject(&p->mUnk_000);
                     }
-                    if (data_021759c0->mMode == 4) {
+                    if (data_021759c0->mMode == MODE_MISSION_RUN) {
                         func_ov001_0218155c(1);
                     }
                 }
@@ -305,13 +306,13 @@ void func_ov001_021827f0(void) {
 }
 
 void func_ov001_021827a4(void) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_021816a8(func_ov001_02182e84);
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218169c(func_ov001_02182d30);
     }
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_02181690(func_ov001_02182bdc);
     }
 }
@@ -326,7 +327,7 @@ u8 func_ov001_0218274c(Unk02181c3c *c, Unk0218274c *d, u8 *e, u8 *f) {
     if (a == 1) {
         if (c->mUnk_0f8 != 3 && c->mUnk_0f8 != 5 && c->mUnk_0f8 != 6) {
             ParkMapObject(&c->mUnk_000);
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_ov001_021815d0(1);
             }
         }
@@ -592,7 +593,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
                 b->mUnk_0b0 = 0x1000;
                 b->mUnk_0a0 = 0;
                 b->mUnk_000.mFlags |= data_ov001_021a6574;
-                if (data_021759c0->mMode == 4) {
+                if (data_021759c0->mMode == MODE_MISSION_RUN) {
                     func_ov001_02181630(1);
                 }
             } else {

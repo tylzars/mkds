@@ -17,6 +17,28 @@ typedef struct MapObjectKindRow {
 
 extern MapObjectKindRow data_0216b288[];
 
+// Kind numbers (the mKind member of MapObjectKindRow) of rows whose class the tree names: the Init function in the
+// row's descriptor (CreateCream and CreateBerry, the model loaders, for the last two rows) carries the class name. The
+// other rows of the table stay literals.
+#define MAP_OBJECT_KIND_SHINE16 0x6a
+#define MAP_OBJECT_KIND_BALLOON 0x6c
+#define MAP_OBJECT_KIND_SHINE_BALLOON 0x70
+#define MAP_OBJECT_KIND_TERESA 0x13b
+#define MAP_OBJECT_KIND_KURIBO 0x191
+#define MAP_OBJECT_KIND_SMAN 0x19d
+#define MAP_OBJECT_KIND_BASABASA 0x19f
+#define MAP_OBJECT_KIND_NS_KILLER2 0x1a2
+#define MAP_OBJECT_KIND_MOVE_TREE 0x1a3
+#define MAP_OBJECT_KIND_MKD_EF_BURNER 0x1a4
+#define MAP_OBJECT_KIND_FLIPPER 0x1a9
+#define MAP_OBJECT_KIND_CRAB 0x1ac
+#define MAP_OBJECT_KIND_FIREBALL2 0x1af
+// The class IronBall also has kind 0x1b3 (Init and Draw only), which stays a literal.
+#define MAP_OBJECT_KIND_IRON_BALL 0x1b0
+#define MAP_OBJECT_KIND_SANBO 0x1b2
+#define MAP_OBJECT_KIND_CREAM 0x1b4
+#define MAP_OBJECT_KIND_BERRY 0x1b5
+
 // Object behind MapObjectKindRow.mUnk_04.
 typedef struct Unk021000d0 {
     /* 00 */ u16 mObjectCount;

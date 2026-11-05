@@ -457,7 +457,7 @@ void func_0208f0f8(void *a) {
         n = 6;
     }
     m = data_021663e4 * n;
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         a = data_0217aa10->mUnk_a4;
     }
     data_0217b08c = HeapAlloc(a, 0x38);

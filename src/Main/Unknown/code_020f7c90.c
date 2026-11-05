@@ -53,7 +53,7 @@ void CreateItemSlotTables(void) {
     switch (data_021759c0->mMode) {
         case 0:
         case 1:
-        case 4:
+        case MODE_MISSION_RUN:
             p = LoadItemSlotTableData(&data_0217bc6c, p + 1);
             p = LoadItemSlotTableData(&data_0217bc64, p);
             p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);

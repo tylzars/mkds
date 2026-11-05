@@ -44,7 +44,7 @@ void InitChoisesS(void) {
     gChoisesS->mUnk_014 = 0;
     gChoisesS->mUnk_010 = FALSE;
     gChoisesS->mUnk_01c = 0;
-    if (func_020b252c() == 4) {
+    if (func_020b252c() == MODE_MISSION_RUN) {
         gChoisesS->mUnk_020 = func_020adb34();
     } else {
         gChoisesS->mUnk_020 = FALSE;
@@ -108,7 +108,7 @@ void InitChoisesS(void) {
             func_020b31b8(1, 9);
             func_020b31b8(2, 7);
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             func_020b31b8(0, 0);
             func_020b31b8(0, 3);
             func_020b31b8(0, 6);
@@ -167,7 +167,7 @@ void InitChoisesS(void) {
         switch (func_020b252c()) {
             case 2:
             case 3:
-            case 4:
+            case MODE_MISSION_RUN:
                 gChoisesS->mUnk_178 = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[2].mValueCount));
                 break;
         }

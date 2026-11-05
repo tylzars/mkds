@@ -589,7 +589,7 @@ void ParkShine16Objects(void) {
     MapObject *o;
     Unk020e6fd4 *l;
 
-    l = func_02100138(0x6a);
+    l = func_02100138(MAP_OBJECT_KIND_SHINE16);
     if (l == NULL) {
         return;
     }
@@ -603,7 +603,7 @@ void ParkShine16Objects(void) {
 void func_020a5744(Vec3 *a, s32 b, s32 c) {
     Shine16 *p;
 
-    p = UnparkFirstParkedMapObject(func_02100138(0x6a));
+    p = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_SHINE16));
     if (p == NULL) {
         return;
     }
@@ -643,7 +643,7 @@ void func_020a5608(Kart *a, Kart *b) {
     u16 c;
     s32 n;
 
-    p = UnparkFirstParkedMapObject(func_02100138(0x6a));
+    p = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_SHINE16));
     if (p == NULL) {
         return;
     }
@@ -944,13 +944,13 @@ void InitKartBalloons(Unk020a3fa8 *a) {
     s32 w;
     s32 v;
 
-    if (func_020d3bf8(0x6c) == 0) {
+    if (func_020d3bf8(MAP_OBJECT_KIND_BALLOON) == 0) {
         d = data_021759c0;
         n = d->mKartCount;
         if (d->mMode == 2) {
-            CreateParkedMapObjects(0x6c, 0x20, a);
+            CreateParkedMapObjects(MAP_OBJECT_KIND_BALLOON, 0x20, a);
         } else {
-            CreateParkedMapObjects(0x6c, 4, a);
+            CreateParkedMapObjects(MAP_OBJECT_KIND_BALLOON, 4, a);
         }
         for (i = 0; i < n; i++) {
             p = &a->mKartBalloons[i];
@@ -1218,7 +1218,7 @@ u32 func_020a3f48(void) {
     if (k == 2 && d->mUnk_18 == 0) {
         return func_0209bf8c();
     }
-    if (k != 4) {
+    if (k != MODE_MISSION_RUN) {
         return 0;
     }
     return func_0209bf8c();

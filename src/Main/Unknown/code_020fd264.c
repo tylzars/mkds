@@ -55,6 +55,7 @@
 #include "Main/Unknown/code_020fe3d8.h"
 #include "Main/Unknown/code_02077bc0.h"
 #include "code_021471bc.h"
+#include "Main/Unknown/code_021000d0.h"
 
 void func_020fe3d8(Unk020fdae8 *a) {
     u32 v1;
@@ -546,7 +547,7 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
         v1->mUnk_00.mFlags &= ~8;
         v1->mUnk_00.mUnk_66 = 0x1f;
         v1->mUnk_00.mFlags &= ~4;
-        if (v1->mUnk_00.mKind != 0x191) {
+        if (v1->mUnk_00.mKind != MAP_OBJECT_KIND_KURIBO) {
             v1->mUnk_00.mFlags &= ~1;
         }
     }

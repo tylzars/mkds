@@ -144,7 +144,7 @@ void func_0208a460(void *a) {
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[4], &gWinStems, 4);
         data_0217b034->mUnk_000[5] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[5], &gLoseStems, 5);
-    } else if (data_021759c0->mMode == 4) {
+    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
         data_0217b034->mUnk_000[6] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[6], &gCompleteStems, 6);
         data_0217b034->mUnk_000[7] = HeapAlloc(a, 0x14);

@@ -155,7 +155,7 @@ void InitRaceScene(void) {
     }
     func_02047b6c(8);
     x = data_021759c0->mUnk_57;
-    if (x == 0 && data_021759c0->mMode == 4) {
+    if (x == 0 && data_021759c0->mMode == MODE_MISSION_RUN) {
         if ((data_021759c0->mUnk_044 & 0x10) != 0) {
             x = 1;
         }
@@ -211,7 +211,7 @@ void func_0203aacc(void) {
     if (p->mUnk_00c == 6) {
         t = 0x18;
         if (p->mMode != 0) {
-            if (p->mMode == 4) {
+            if (p->mMode == MODE_MISSION_RUN) {
                 t = 0x1a;
             }
         } else {
@@ -263,7 +263,7 @@ u32 func_0203a908(u32 a) {
     u32 r;
     s32 t = 0x18;
     if (data_021759c0->mMode != 0) {
-        if (data_021759c0->mMode == 4) {
+        if (data_021759c0->mMode == MODE_MISSION_RUN) {
             t = 0x1a;
         }
     } else {
@@ -410,7 +410,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                         r = 0xa;
                     }
                     break;
-                case 4:
+                case MODE_MISSION_RUN:
                     r = 0;
                     break;
                 case 2:

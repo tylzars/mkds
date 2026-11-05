@@ -104,7 +104,7 @@ void func_02077998(void) {
     *(u32 *) 0x4000580 = 0xbfff0000;
     gCameraEntryChanged = 1;
     i = gEntryCameraUpdateRan = 0;
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         i = data_021759c0->mUnk_036;
         i = (u16) i;
     } else {

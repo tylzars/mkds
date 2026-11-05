@@ -36,10 +36,10 @@ u32 func_02105504(void) {
 u32 func_021054d0(void) {
     u32 r = 0;
     s32 a = data_021759c0->mMode;
-    if (a != 4) {
+    if (a != MODE_MISSION_RUN) {
         return r;
     }
-    a = a == 4 ? data_021759c0->mMissionTableColumn : -1;
+    a = a == MODE_MISSION_RUN ? data_021759c0->mMissionTableColumn : -1;
     if (a == 9) {
         r = 1;
     }

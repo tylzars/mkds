@@ -395,7 +395,7 @@ void func_020adff0(u32 a, u16 *b, u32 c) {
             n = func_020adc7c(p, &x[1]);
         }
     } else {
-        if (func_020ae0e4() == 0 || func_020ae0e4() == 4) {
+        if (func_020ae0e4() == 0 || func_020ae0e4() == MODE_MISSION_RUN) {
             p = (u16 *) func_020ae178(func_020ae0c8(a), c);
             n = 20;
         } else {

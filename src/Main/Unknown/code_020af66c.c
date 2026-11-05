@@ -184,7 +184,7 @@ void func_020b0b8c(void) {
     v = data_021759c0->mMode;
     if (v == 0 && gRaceHud->mUnk_84c != 0) {
         reg_G2_BG3OFS = 0x01ff0000 & (func_020ae4c0(1, -64, 0, func_020c5db0(), 20) << 16);
-    } else if (v == 4 && gRaceHud->mUnk_84c != 0) {
+    } else if (v == MODE_MISSION_RUN && gRaceHud->mUnk_84c != 0) {
         MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x3000);
         MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
     }
@@ -240,7 +240,7 @@ void func_020b0b8c(void) {
         case 1:
         case 2:
         case 3:
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
             }
             func_0214a428((u32 *) 0x04001020, gRaceHud->mUnk_858[0].mUnk_00, gRaceHud->mUnk_858[0].mUnk_10,
@@ -411,7 +411,7 @@ void func_020b03bc(void) {
                 gRaceHud->mUnk_854 = 0x64;
                 break;
         }
-    } else if (data_021759c0->mMode == 4) {
+    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
         switch (data_021759c0->mCourseId) {
             case 0x30:
             case 0x31:
@@ -440,7 +440,7 @@ void func_020b03bc(void) {
     }
     gRaceHud->mUnk_908 = 0;
     gRaceHud->mUnk_90c = FALSE;
-    gRaceHud->mUnk_910 = data_021759c0->mMode == 4 ? func_020adc04() : 0;
+    gRaceHud->mUnk_910 = data_021759c0->mMode == MODE_MISSION_RUN ? func_020adc04() : 0;
     MI_DmaFill32(3, gRaceHud->mUnk_004, 0xc0, 0x400);
     MI_DmaFill32(3, gRaceHud->mUnk_408, 0xc0, 0x400);
     LoadNclrData(&gRaceHud->mNclrs[0], FindSceneFileWrapper("race_m_b.NCLR"));
@@ -483,7 +483,7 @@ void func_020b03bc(void) {
     }
     func_020b36a4();
     func_020b3adc();
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         data_0217b488->mUnk_10 = 0;
     }
 }
@@ -516,7 +516,7 @@ void InitMap2D(void) {
     s32 i;
     s32 k;
 
-    v1 = data_021759c0->mMode != 4;
+    v1 = data_021759c0->mMode != MODE_MISSION_RUN;
     if (data_021759c0->mUnk_00c == 3) {
         return;
     }
@@ -772,9 +772,9 @@ void func_020af66c(void) {
         func_020d1298();
     }
     v = data_021759c0->mMode;
-    if ((v == 2   ? gRaceProgress->mRaceDone
-         : v == 4 ? func_0203c174()
-                  : (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
+    if ((v == 2                  ? gRaceProgress->mRaceDone
+         : v == MODE_MISSION_RUN ? func_0203c174()
+                                 : (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
         func_020bab54();
         func_020bc958();
         func_020d2090();

@@ -118,7 +118,7 @@ static inline s32 func_0203df74_c_inline(CourseMapRoute *r, u16 c, s32 v) {
 }
 
 static inline void func_0203e550_inline(s32 a) {
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_0203e788(a, 0);
     }
 }
@@ -157,7 +157,7 @@ void func_0203e550(RaceProgressKart *a) {
         func_020b1a34();
     }
     f = FALSE;
-    if (data_021759c0->mMode != 4) {
+    if (data_021759c0->mMode != MODE_MISSION_RUN) {
         f = TRUE;
     } else {
         switch (data_021759c0->mUnk_2f) {
@@ -175,7 +175,7 @@ void func_0203e550(RaceProgressKart *a) {
         return;
     }
     a->mHighestLap = func_02044618();
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         s = &data_021759c0->mUnk_28_view;
         g = TRUE;
         t = func_0207a6b0();
@@ -424,7 +424,7 @@ void UpdateRaceProgressKarts(void) {
                     case 2:
                         func_020a12b8();
                         break;
-                    case 4:
+                    case MODE_MISSION_RUN:
                         func_0203eb38();
                         break;
                     case 5:
@@ -439,7 +439,7 @@ void UpdateRaceProgressKarts(void) {
         }
         if ((s->mFlags & 8) != 0) {
             s->mFlags &= ~8;
-            if (data_021759c0->mMode != 4) {
+            if (data_021759c0->mMode != MODE_MISSION_RUN) {
                 func_0207a828(s->mUnk_3c_4);
                 if ((s->mFlags & 1) != 0) {
                     func_02110cc8(0);
@@ -479,7 +479,7 @@ void CreateRaceProgress(void *a) {
     gRaceProgress->mRankPointFile = FindMainRaceOrMainEffectFile(data_usa_021647b8);
     gRaceProgress->mRankTimeGpFile = FindMainRaceOrMainEffectFile(data_usa_021647c8);
     func_0203d8fc(gRaceProgress->mRankTimeGpFile);
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_0205e2cc(a);
     }
     InitRaceProgress();
@@ -500,7 +500,7 @@ void func_0203d568(void) {
         case 3:
             func_0203d568_b_inline();
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             func_0205e2b8();
             break;
         case 2:

@@ -431,8 +431,8 @@ void func_020ba520(void) {
     data_0217b3c8 = q;
     v = data_021759c0->mMode;
     switch (v) {
-        case 4:
-            data_0217b3c8->mUnk_00 = v == 4 ? func_ov001_02181820() : 0;
+        case MODE_MISSION_RUN:
+            data_0217b3c8->mUnk_00 = v == MODE_MISSION_RUN ? func_ov001_02181820() : 0;
             data_0217b3c8->mUnk_04 = data_021759c0->mUnk_37;
             break;
         case 2:
@@ -470,8 +470,8 @@ void func_020ba3ec(void) {
 
     v = data_021759c0->mMode;
     switch (v) {
-        case 4:
-            data_0217b3c8->mUnk_00 = v == 4 ? func_ov001_02181820() : 0;
+        case MODE_MISSION_RUN:
+            data_0217b3c8->mUnk_00 = v == MODE_MISSION_RUN ? func_ov001_02181820() : 0;
             break;
         case 2:
             if (data_021759c0->mUnk_18 == 0) {
@@ -520,7 +520,7 @@ void func_020b9dfc(Unk020d029c *p) {
         return;
     }
     switch (data_021759c0->mMode) {
-        case 4:
+        case MODE_MISSION_RUN:
             func_020b9994(p);
             return;
         case 2:

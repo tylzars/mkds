@@ -165,7 +165,7 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
     ItemObject *q;
     s32 i;
 
-    if (data_021759c0->mMode == 4) {
+    if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218175c(c->mUnk_000.mKind);
     }
     c->mUnk_000.mFlags |= data_021594d8;

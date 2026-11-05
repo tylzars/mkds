@@ -71,7 +71,7 @@ void func_0206cdd4(Kart *p) {
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_0207a6b0()->mUnk_04++;
             // placeholder: the same test twice gives the original's two loads and compares
-            if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_ov001_0218171c();
             }
         }
@@ -216,7 +216,7 @@ recheck:
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     func_0207a6b0()->mUnk_04++;
                     // placeholder: the same test twice gives the original's two loads and compares
-                    if (data_021759c0->mMode == 4 && data_021759c0->mMode == 4) {
+                    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
                         func_ov001_0218171c();
                     }
                 }

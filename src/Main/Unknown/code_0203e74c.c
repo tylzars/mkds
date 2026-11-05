@@ -130,7 +130,7 @@ s32 func_0203ef58(void) {
                 o = data_021759c0;
             }
             break;
-        case 4:
+        case MODE_MISSION_RUN:
             r = FALSE;
             if (o->mUnk_2f == 6 && gRaceProgress->mUnk_000[0].mFinishedCount != 0) {
                 r = TRUE;
@@ -280,7 +280,7 @@ void func_0203eb38(void) {
             }
             if (g != 0) {
                 u32 k = (u32) (p->mUnk_3c << 24) >> 28;
-                if (data_021759c0->mMode == 4) {
+                if (data_021759c0->mMode == MODE_MISSION_RUN) {
                     func_0203e788(k, 0);
                 }
             } else {
@@ -321,11 +321,11 @@ void FinishRaceProgressKart(RaceProgressKart *a, s32 b) {
         a->mFinishTimeMs = 0x5b8d80;
     }
     m = data_021759c0->mMode;
-    if (m == 0 || m == 4) {
+    if (m == 0 || m == MODE_MISSION_RUN) {
         if ((a->mFlags & 1) != 0) {
             a->mScore = func_020408f0((u32) (a->mUnk_3c << 24) >> 28);
             d = a->mScore;
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 data_0217aa1c->mUnk_140 = d;
             } else {
                 data_0217aa1c->mUnk_140 += d;
@@ -372,13 +372,13 @@ void func_0203e788(s32 a, s32 b) {
         if (b == 0) {
             e->mFlags |= 0x10;
             gRaceProgress->mFramesSinceFinish = 0;
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_020a12b8();
             }
         } else {
             e->mFlags |= 0x20;
             gRaceProgress->mUnk_4fc = 0;
-            if (data_021759c0->mMode == 4) {
+            if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 ((void (*)(s32)) func_020a16d0)(a);
             }
         }
@@ -391,7 +391,7 @@ void func_0203e788(s32 a, s32 b) {
         case 2:
             func_020a12b8();
             return;
-        case 4:
+        case MODE_MISSION_RUN:
             func_0203eb38();
             return;
         case 5:
@@ -406,7 +406,7 @@ void func_0203e788(s32 a, s32 b) {
 }
 
 void func_0203e74c(u16 param_1) {
-    if (data_021759c0->mMode != 4) {
+    if (data_021759c0->mMode != MODE_MISSION_RUN) {
         return;
     }
     func_0203e788(param_1, 0);
