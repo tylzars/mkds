@@ -9,11 +9,10 @@
 #pragma thumb on
 
 void func_020acff4(void) {
-    int v1;
+    Unk020ad344 *v1;
     func_020ad028();
-    v1 = *(s32 *) &data_0217b340;
-    func_02124c30((void *) (*(u32 *) (v1 + 0x6c)), (void *) (*(u32 *) (v1 + 0xa8)), (void *) (*(u32 *) (v1 + 0x74)),
-                  (void *) (v1 + 0x4b4), (void *) (*(u32 *) (v1 + 0x68)));
+    v1 = data_0217b340;
+    func_02124c30(v1->mUnk_6c, v1->mUnk_a8, v1->mUnk_74, &v1->mUnk_4b4, v1->mUnk_68);
 }
 
 #pragma thumb off

@@ -853,10 +853,10 @@ u32 func_020799a0(s32 e) {
 
 #pragma thumb on
 
-void func_02079988(int a, u32 b) {
+void func_02079988(Unk0206bcb0_590 *a, u32 b) {
     u16 v1;
     v1 = (int) b % 3;
-    *(u16 *) (a + 0x68) = v1;
+    a->mUnk_068 = v1;
 }
 
 #pragma thumb off
@@ -891,7 +891,7 @@ void InitKartModels(void *a, u32 b) {
         func_02079a14(e);
         d[i].mUnk_000 = data_021759c0->mCurrentEntries[i].mCharacterIndex;
         e->mUnk_004 = data_021759c0->mCurrentEntries[i].mKartIndex;
-        func_02079988((s32) e, e->mUnk_004);
+        func_02079988(e, e->mUnk_004);
         e->mUnk_020 = HeapAlloc(a, 0xe0);
         MemCopy(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);
         func_0208aea8(i, (u16) e->mUnk_004, (u16) d[i].mUnk_000);
@@ -1262,21 +1262,21 @@ void func_02078f78(Unk020136f0 *a) {
     func_02012cbc(a);
 }
 
-void func_02078f18(void *a, int b) {
+void func_02078f18(void *a, Unk0217ad08_058 *b) {
     u32 v1;
-    func_02079a3c((u32 *) ((u32 *) (u32) b));
-    *(u32 *) (b + 0xb0) = (u32) data_021759d0->mUnk_00;
-    *(u32 *) (b + 0xb4) = 0;
+    func_02079a3c((u32 *) b);
+    b->mUnk_b0 = (u32) data_021759d0->mUnk_00;
+    b->mUnk_b4 = 0;
     v1 = ((u32) HeapAlloc(a, (u32) 0x6c));
-    *(u32 *) (b + 0x10) = v1;
+    b->mUnk_10 = (struct Unk02084b2c *) v1;
     v1 = ((u32) HeapAlloc(a, (u32) 0x6c));
-    *(u32 *) (b + 0x14) = v1;
+    b->mUnk_14 = (struct Unk02084b2c *) v1;
     v1 = ((u32) HeapAlloc(a, (u32) 0x6c));
-    *(u32 *) (b + 0x18) = v1;
+    b->mUnk_18 = (struct Unk02084b2c *) v1;
     v1 = ((u32) HeapAlloc(a, (u32) 0x74));
-    *(u32 *) (b + 0x1c) = v1;
+    b->mUnk_1c = (struct Unk0207adf8 *) v1;
     v1 = ((u32) HeapAlloc(a, (u32) 0x38));
-    *(u32 *) (b + 8) = v1;
+    b->mUnk_08 = (Unk0217ad08_058_08 *) v1;
 }
 
 void func_02078ee0(Unk0217ad08_024 *a, int b) {
@@ -1410,7 +1410,7 @@ void func_02078b48(void *param_1) {
     func_02077a28(param_1);
     LoadKartModelMenuFile(param_1, data_usa_02165724, (void **) &data_0217ad08->mUnk_1c8);
     for (i = 0; i < 2; i = (u16) (i + 1)) {
-        func_02078f18(param_1, (s32) &data_0217ad08->mUnk_058[i]);
+        func_02078f18(param_1, &data_0217ad08->mUnk_058[i]);
     }
     func_02078ee0(&data_0217ad08->mUnk_024, 1);
     func_02047b6c(9);

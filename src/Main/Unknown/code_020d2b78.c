@@ -11,6 +11,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_020d2d94.h"
+#include "Main/Unknown/code_020d94dc.h"
 
 #pragma thumb on
 
@@ -116,37 +117,37 @@ u32 func_020d2c20(void) {
 }
 
 u32 func_020d2be8(void) {
-    int v1;
+    Unk020d9cf4 *v1;
     if (data_0217b4d8 != NULL) {
         return data_0217b4d8->mUnk_04;
     }
-    v1 = *(s32 *) &data_0217b4e4;
-    if ((v1 != 0) && (*(s32 *) (v1 + 0x170) != 0)) {
-        return *(u32 *) (v1 + 0x174);
+    v1 = data_0217b4e4;
+    if ((v1 != NULL) && (v1->mUnk_170 != 0)) {
+        return (u32) v1->mUnk_174;
     }
     return 0;
 }
 
 u32 func_020d2bb0(void) {
-    int v1;
+    Unk020d9cf4 *v1;
     if (data_0217b4d8 != NULL) {
         return data_0217b4d8->mUnk_08;
     }
-    v1 = *(s32 *) &data_0217b4e4;
-    if ((v1 != 0) && (*(s32 *) (v1 + 0x170) != 0)) {
-        return *(u32 *) (v1 + 0x178);
+    v1 = data_0217b4e4;
+    if ((v1 != NULL) && (v1->mUnk_170 != 0)) {
+        return (u32) v1->mUnk_178;
     }
     return 0;
 }
 
 u32 func_020d2b78(void) {
-    int v1;
+    Unk020d9cf4 *v1;
     if (data_0217b4d8 != NULL) {
         return data_0217b4d8->mUnk_0c;
     }
-    v1 = *(s32 *) &data_0217b4e4;
-    if ((v1 != 0) && (*(s32 *) (v1 + 0x170) != 0)) {
-        return *(u32 *) (v1 + 0x17c);
+    v1 = data_0217b4e4;
+    if ((v1 != NULL) && (v1->mUnk_170 != 0)) {
+        return (u32) v1->mUnk_17c;
     }
     return 0;
 }

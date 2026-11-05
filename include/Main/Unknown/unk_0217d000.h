@@ -78,24 +78,17 @@ typedef struct Unk0217d354 {
     /* 28 */ s32 mUnk_28;
 } Unk0217d354;
 
-// Object behind data_0217d350 members 0x10 and 0x20.
-typedef struct Unk0217d350_10 {
-    /* 00 */ u8 mUnk_00[8];
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u8 mUnk_0c;
-} Unk0217d350_10;
-
 // Object behind data_0217d350.
 typedef struct Unk0217d350 {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ struct Unk02021dc8 *mUnk_04;
     /* 08 */ Unk0201ea30 *mUnk_08;
     /* 0c */ void *mUnk_0c;
-    /* 10 */ Unk0217d350_10 *mUnk_10;
+    /* 10 */ struct Nscr *mUnk_10;
     /* 14 */ Unk02124b1c *mUnk_14;
     /* 18 */ Unk0201ea30 *mUnk_18;
     /* 1c */ void *mUnk_1c;
-    /* 20 */ Unk0217d350_10 *mUnk_20;
+    /* 20 */ struct Nscr *mUnk_20;
     /* 24 */ Unk02124b1c *mUnk_24;
     /* 28 */ struct Ncgr *mUnk_28;
     /* 2c */ struct Unk02021dc8 *mUnk_2c;
@@ -287,22 +280,17 @@ typedef struct SelectCup {
     /* 6c */ s32 mResult;
 } SelectCup;
 
-// Object behind gSelectRaceRule, and the object its mUnk_20 member points to.
-typedef struct Unk0217d368_20 {
-    /* 00 */ u8 mUnk_00[0x0c];
-    /* 0c */ u16 mUnk_0c;
-} Unk0217d368_20;
-
+// Object behind gSelectRaceRule.
 typedef struct SelectRaceRule {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
     /* 04 */ Unk0201ea30 *mBncl;
     /* 08 */ Unk0201ea30 *mBnbl;
     /* 0c */ void *mBnll;
-    /* 10 */ void *mUnk_10;
+    /* 10 */ struct Nclr *mUnk_10;
     /* 14 */ Unk02124b1c *mUnk_14;
     /* 18 */ void *mUnk_18;
     /* 1c */ void *mUnk_1c;
-    /* 20 */ Unk0217d368_20 *mUnk_20;
+    /* 20 */ struct Nscr *mUnk_20;
     /* 24 */ void *mUnk_24;
     /* 28 */ void *mHeap;
     /* 2c */ s32 mMode;

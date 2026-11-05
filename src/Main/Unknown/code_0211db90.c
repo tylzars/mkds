@@ -53,7 +53,7 @@ void LocateAndQueueSelectRaceRule(void) {
         v1 = FindSceneFile(data_0216dc08);
         LocateNcgr(&v3, v1);
         v1 = FindSceneFile(data_0216dbdc);
-        LocateNscr((Nscr **) &gSelectRaceRule->mUnk_20, v1);
+        LocateNscr(&gSelectRaceRule->mUnk_20, v1);
         v1 = FindSceneFile(data_0216dbe0);
         gSelectRaceRule->mBncl = v1;
         v1 = FindSceneFile(data_0216dc00);
@@ -64,7 +64,7 @@ void LocateAndQueueSelectRaceRule(void) {
         v1 = FindSceneFile(data_0216dbe4);
         LocateNcgr(&v3, v1);
         v1 = FindSceneFile(data_0216dbf0);
-        LocateNscr((Nscr **) &gSelectRaceRule->mUnk_20, v1);
+        LocateNscr(&gSelectRaceRule->mUnk_20, v1);
         v1 = FindSceneFile(data_0216dbf4);
         gSelectRaceRule->mBncl = v1;
         v1 = FindSceneFile(data_0216dbd4);
@@ -81,15 +81,13 @@ void LocateAndQueueSelectRaceRule(void) {
     v1 = FindSceneFile(data_0216dc04);
     LocateNcer(&gSelectRaceRule->mUnk_00, v1);
     v1 = FindSceneFile(data_0216dbec);
-    LocateNclr((Nclr **) &gSelectRaceRule->mUnk_10, v1);
+    LocateNclr(&gSelectRaceRule->mUnk_10, v1);
     CallQueueAppend((u32) 0x14, (u32) 0, v3->mData, v3->mDataSize);
-    CallQueueAppend((u32) 0x1b, (u32) 0, (void *) &gSelectRaceRule->mUnk_20->mUnk_0c,
-                    (*(u32 *) ((s32) gSelectRaceRule->mUnk_20 + 8)));
+    CallQueueAppend((u32) 0x1b, (u32) 0, gSelectRaceRule->mUnk_20->mData, gSelectRaceRule->mUnk_20->mDataSize);
     CallQueueAppend((u32) 0x1b, (u32) (((u32) 0x00000800u)), gSelectRaceRule->mUnk_24, (u32) (((u32) 0x00000800u)));
     CallQueueAppend((u32) 0x1f, (u32) 0, v4->mData, (u32) 0x80);
     CallQueueAppend((u32) 0x23, (u32) 0, v2->mData, v2->mDataSize);
-    CallQueueAppend(0x1e, 0, (void *) (*(u32 *) (gSelectRaceRule->mUnk_10 + 0xc)),
-                    (*(u32 *) (gSelectRaceRule->mUnk_10 + 8)));
+    CallQueueAppend(0x1e, 0, gSelectRaceRule->mUnk_10->mData, gSelectRaceRule->mUnk_10->mDataSize);
 }
 
 #pragma thumb off

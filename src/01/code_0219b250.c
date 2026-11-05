@@ -23,11 +23,11 @@
 #include "Main/Unknown/code_020ea514.h"
 
 void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, u16 p6) {
-    u8 *r = func_0209bfa8(p0, p1, p2, p3, p4);
-    *(u32 *) (r + 0x24) = p5;
-    *(u32 *) (r + 0x28) = p6;
-    *(u32 *) (r + 0x38) = 0x270f000;
-    *(u32 *) (r + 0x3c) = 0xfd8f1000;
+    Unk0209bf70 *r = func_0209bfa8(p0, p1, p2, p3, p4);
+    r->mUnk_24 = p5;
+    r->mUnk_28 = p6;
+    r->mUnk_38 = 0x270f000;
+    r->mUnk_3c = 0xfd8f1000;
     return r;
 }
 

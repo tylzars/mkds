@@ -23,16 +23,16 @@ u8 func_02091828(Unk020912a0 *a, Kart *b, u8 *c, u8 *d) {
     return r;
 }
 
-u8 func_020917d0(int a, u32 b, u8 *c, u8 *d) {
+u8 func_020917d0(Unk020912a0 *a, u32 b, u8 *c, u8 *d) {
     u8 v1;
     v1 = *d;
     if (*c == 1) {
-        *(u32 *) (a + 0xb8) = ((u32) 0x0000f333u);
-        *(u32 *) (a + 0xbc) = 0x8000;
-        *(u32 *) (a + 0xb0) = 0;
-        *(u32 *) (a + 0xb4) = 0;
-        *(u16 *) (a + 2) = *(u16 *) (a + 2) | (*(u16 *) &data_02156458);
-        *(u32 *) (a + 200) = 1;
+        a->mUnk_b8 = 0xf333;
+        a->mUnk_bc = 0x8000;
+        a->mUnk_b0 = 0;
+        a->mUnk_b4 = 0;
+        a->mUnk_00.mFlags = a->mUnk_00.mFlags | *(u16 *) &data_02156458;
+        a->mUnk_c8 = 1;
     }
     return v1;
 }

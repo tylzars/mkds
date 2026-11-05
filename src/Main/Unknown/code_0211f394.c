@@ -22,22 +22,22 @@
 
 void func_0211f61c(void) {
     void *v1;
-    int v2;
-    int v3[1];
-    v2 = 0;
-    v3[0] = 0;
+    Ncgr *v2;
+    Nclr *v3[1];
+    v2 = NULL;
+    v3[0] = NULL;
     v1 = FindSceneFile(data_0216e128);
     LocateNcer(&data_0217d380->mUnk_00, v1);
     v1 = FindSceneFile(data_0216e134);
-    LocateNcgr2((Ncgr **) (&v2), v1);
+    LocateNcgr2(&v2, v1);
     v1 = FindSceneFile(data_0216e130);
-    LocateNclr((Nclr **) v3, v1);
+    LocateNclr(v3, v1);
     v1 = FindSceneFile(data_0216e124);
     data_0217d380->mUnk_04 = v1;
     v1 = FindSceneFile(data_0216e12c);
     data_0217d380->mUnk_0c = v1;
-    CallQueueAppend((u32) 0x23, (u32) 0, (void *) (*(u32 *) (v2 + 0x14)), (u32) (*(u32 *) (v2 + 0x10)));
-    CallQueueAppend((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v3[0] + 0xc)), (u32) (*(u32 *) (v3[0] + 8)));
+    CallQueueAppend((u32) 0x23, (u32) 0, v2->mData, v2->mDataSize);
+    CallQueueAppend((u32) 0x1e, (u32) 0, v3[0]->mData, v3[0]->mDataSize);
 }
 
 #pragma thumb off

@@ -144,15 +144,15 @@ void AdvanceSelectReturnState1(void) {
 #pragma thumb on
 
 void AdvanceSelectReturnState2(void) {
-    int v1;
-    v1 = *(s32 *) &gSelectReturn;
-    if (*(s32 *) (v1 + 0x814) != 0) {
-        *(u32 *) (v1 + 8) = 3;
+    SelectReturn *v1;
+    v1 = gSelectReturn;
+    if (v1->mState3Requested != 0) {
+        v1->mNextState = 3;
         func_02128624(0);
         return;
     }
-    if (*(s32 *) (v1 + 0x818) != 0) {
-        *(u32 *) (v1 + 8) = 4;
+    if (v1->mState4Requested != 0) {
+        v1->mNextState = 4;
     }
 }
 
@@ -704,20 +704,19 @@ void func_02127a84(void) {
 #pragma thumb on
 
 void func_02127a38(void) {
-    int *v1;
+    Unk0217d3f4 *v1;
     int v2;
-    v1 = (s32 *) &data_0217d3f4;
-    v2 = *(s32 *) &data_0217d3f4;
-    if (*(s32 *) (0x28 + v2) != 0) {
-        *(u32 *) (v2 + 8) = 0;
-        *(u32 *) (*v1 + 0x28) = 0;
+    v1 = data_0217d3f4;
+    if (v1->mUnk_28 != 0) {
+        v1->mUnk_08 = 0;
+        data_0217d3f4->mUnk_28 = 0;
         return;
     }
-    *(s32 *) (v2 + 0xc) = *(s32 *) (v2 + 0xc) + 1;
-    v2 = *(s32 *) (*v1 + 0xc);
+    v1->mUnk_0c = v1->mUnk_0c + 1;
+    v2 = data_0217d3f4->mUnk_0c;
     if (15 <= v2) {
-        *(u32 *) (*v1 + 0x1c) = 1;
-        *(u32 *) (*v1 + 0xc) = 0xf;
+        data_0217d3f4->mUnk_1c = 1;
+        data_0217d3f4->mUnk_0c = 0xf;
         return;
     }
     if (5 <= v2) {

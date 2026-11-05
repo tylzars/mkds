@@ -233,19 +233,17 @@ void AdvanceOptionEmbremSelectState3(void) {
 }
 
 void AdvanceOptionEmbremSelectState4(void) {
-    int *v1;
-    int v2;
-    v1 = (s32 *) &gOptionEmbremSelect;
+    OptionEmbremSelect *v1;
     gOptionEmbremSelect->mStateFrames = gOptionEmbremSelect->mStateFrames + 1;
-    v2 = *v1;
-    if (10 <= *(s32 *) (v2 + 0x14)) {
-        *(u32 *) (v2 + 4) = 5;
-        *(u32 *) (*v1 + 0x14) = 0;
+    v1 = gOptionEmbremSelect;
+    if (10 <= v1->mStateFrames) {
+        v1->mNextState = 5;
+        gOptionEmbremSelect->mStateFrames = 0;
         func_021282c8();
         return;
     }
-    if (5 <= *(s32 *) (v2 + 0x14)) {
-        *(u32 *) (v2 + 0x24) = 1;
+    if (5 <= v1->mStateFrames) {
+        v1->mUnk_24 = 1;
     }
     return;
 }

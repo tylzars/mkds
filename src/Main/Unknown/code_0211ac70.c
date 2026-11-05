@@ -106,15 +106,13 @@ void func_0211d9dc(void) {
     }
     for (i = 0; i < 5; i++) {
         func_0211db30(&buf, i);
-        func_020b44a4(&gSelectRaceRule->mUnk_20->mUnk_0c, buf.mUnk_00, buf.mUnk_04, buf.mUnk_08, buf.mUnk_0c,
-                      buf.mUnk_10);
+        func_020b44a4(gSelectRaceRule->mUnk_20->mData, buf.mUnk_00, buf.mUnk_04, buf.mUnk_08, buf.mUnk_0c, buf.mUnk_10);
     }
     if (gSelectRaceRule->mUnk_7c == 0) {
         func_0211db30(&buf, gSelectRaceRule->mUnk_60);
-        func_020b44a4(&gSelectRaceRule->mUnk_20->mUnk_0c, buf.mUnk_00, buf.mUnk_04, buf.mUnk_08, buf.mUnk_0c,
-                      buf.mUnk_12);
+        func_020b44a4(gSelectRaceRule->mUnk_20->mData, buf.mUnk_00, buf.mUnk_04, buf.mUnk_08, buf.mUnk_0c, buf.mUnk_12);
     }
-    CallQueueAppend(0x1b, 0, &gSelectRaceRule->mUnk_20->mUnk_0c, 0x600);
+    CallQueueAppend(0x1b, 0, gSelectRaceRule->mUnk_20->mData, 0x600);
 }
 
 void func_0211d910(s16 a) {

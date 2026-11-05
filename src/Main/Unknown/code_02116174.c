@@ -20,15 +20,14 @@
 #pragma thumb on
 
 void func_02116888(void) {
-    int *v1;
     void *v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6[2];
-    v4 = 0;
-    v5 = 0;
-    v6[0] = 0;
+    Nclr *v3;
+    Ncgr *v4;
+    Nclr *v5;
+    Nscr *v6[2];
+    v4 = NULL;
+    v5 = NULL;
+    v6[0] = NULL;
     v2 = FindSceneFile(gRecordVSMNcgrName);
     LocateNcgr2((Ncgr **) data_0217d350, v2);
     v2 = FindSceneFile(gRecordVSMNcerName);
@@ -50,26 +49,25 @@ void func_02116888(void) {
     v2 = FindSceneFile(data_0216d3fc);
     data_0217d350->mUnk_34 = v2;
     v2 = FindSceneFile(data_0216d3f8);
-    v1 = (&(*(s32 *) &data_0217d350));
     data_0217d350->mUnk_38 = v2;
-    v2 = HeapAlloc((void *) (*(u32 *) (*v1 + 0x50)), (u32) (((u32) 0x00000800u)));
+    v2 = HeapAlloc(data_0217d350->mUnk_50, (u32) (((u32) 0x00000800u)));
     data_0217d350->mUnk_4c = v2;
     v2 = FindSceneFile(data_0216d3f4);
-    LocateNcgr((Ncgr **) (&v4), v2);
+    LocateNcgr(&v4, v2);
     v2 = FindSceneFile(data_0216d400);
-    LocateNscr((Nscr **) v6, v2);
+    LocateNscr(v6, v2);
     v2 = FindSceneFile(data_0216d404);
-    LocateNclr((Nclr **) (&v5), v2);
+    LocateNclr(&v5, v2);
     v2 = FindSceneFile(gRecordVSM02NscrName);
-    LocateNscr((Nscr **) &data_0217d350->mUnk_10, v2);
+    LocateNscr(&data_0217d350->mUnk_10, v2);
     v2 = FindSceneFile(gRecordVSM03NscrName);
-    LocateNscr((Nscr **) &data_0217d350->mUnk_20, v2);
-    v3 = ((u32) func_02077f00());
-    CallQueueAppend((u32) 0x17, (u32) 0, (void *) (*(u32 *) (v4 + 0x14)), (u32) (*(u32 *) (v4 + 0x10)));
-    CallQueueAppend((u32) 0x1b, (u32) 0, (void *) (v6[0] + 0xc), (u32) (*(u32 *) (v6[0] + 8)));
+    LocateNscr(&data_0217d350->mUnk_20, v2);
+    v3 = func_02077f00();
+    CallQueueAppend((u32) 0x17, (u32) 0, v4->mData, v4->mDataSize);
+    CallQueueAppend((u32) 0x1b, (u32) 0, v6[0]->mData, v6[0]->mDataSize);
     CallQueueAppend((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d350->mUnk_4c, (u32) (((u32) 0x00000800u)));
-    CallQueueAppend((u32) 0x1f, (u32) 0, (void *) (*(u32 *) (v5 + 0xc)), (u32) 0x40);
-    CallQueueAppend((u32) 0xe, (u32) 0x40, (void *) (*(u32 *) (v3 + 0xc)), (u32) 0x20);
+    CallQueueAppend((u32) 0x1f, (u32) 0, v5->mData, (u32) 0x40);
+    CallQueueAppend((u32) 0xe, (u32) 0x40, v3->mData, (u32) 0x20);
 }
 
 #pragma thumb off
@@ -159,10 +157,10 @@ void func_021162cc(void) {
     v = func_02116870();
     if (func_02114158(v + data_0217d350->mUnk_80, buf3)) {
         data_0217d350->mUnk_40 = 1;
-        CallQueueAppend(9, 0, &data_0217d350->mUnk_20->mUnk_0c, data_0217d350->mUnk_20->mUnk_08);
+        CallQueueAppend(9, 0, data_0217d350->mUnk_20->mData, data_0217d350->mUnk_20->mDataSize);
     } else {
         data_0217d350->mUnk_40 = 0;
-        CallQueueAppend(9, 0, &data_0217d350->mUnk_10->mUnk_0c, data_0217d350->mUnk_10->mUnk_08);
+        CallQueueAppend(9, 0, data_0217d350->mUnk_10->mData, data_0217d350->mUnk_10->mDataSize);
     }
     switch (data_0217d350->mUnk_40) {
         case 0:

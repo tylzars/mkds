@@ -248,24 +248,24 @@ s32 func_02114158(u16 a, void *b) {
 
 void func_02113f34(void) {
     void *v1;
-    int v2;
-    int v3;
-    int v4;
-    int v5;
-    int v6;
-    int v7;
-    int v8;
-    v4 = 0;
-    v5 = 0;
-    v6 = 0;
-    v7 = 0;
-    v8 = 0;
+    Nclr *v2;
+    u16 *v3;
+    Nclr *v4;
+    Ncgr *v5;
+    Nscr *v6;
+    Nclr *v7;
+    Nclr *v8;
+    v4 = NULL;
+    v5 = NULL;
+    v6 = NULL;
+    v7 = NULL;
+    v8 = NULL;
     v1 = FindSceneFile(gRecordVSMNcgrName);
     LocateNcgr2(&gRecordVS->mRecordVSMNcgr, v1);
     v1 = FindSceneFile(gRecordVSMNcerName);
     LocateNcer(&gRecordVS->mRecordVSMNcer, v1);
     v1 = FindSceneFile(gRecordVSMONclrName);
-    LocateNclr((Nclr **) (&v4), v1);
+    LocateNclr(&v4, v1);
     v1 = FindSceneFile(gRecordVSMBnclName);
     gRecordVS->mRecordVSMBncl = v1;
     v1 = FindSceneFile(gRecordVSMBnllName);
@@ -279,36 +279,36 @@ void func_02113f34(void) {
     v1 = FindSceneFile(gRecordVSSNcerName);
     LocateNcer(&gRecordVS->mRecordVSSNcer, v1);
     v1 = FindSceneFile(gRecordVSSONclrName);
-    LocateNclr((Nclr **) (&v8), v1);
+    LocateNclr(&v8, v1);
     v1 = FindSceneFile(gRecordVSSBnclName);
     gRecordVS->mRecordVSSBncl = v1;
     v1 = FindSceneFile(gRecordVSSBnblName);
     gRecordVS->mRecordVSSBnbl = v1;
     v1 = FindSceneFile(gRecordVSSBnllName);
     gRecordVS->mRecordVSSBnll = v1;
-    v2 = ((u32) func_02077f00());
+    v2 = func_02077f00();
     v1 = FindSceneFile(gRecordVSMBNcgrName);
-    LocateNcgr((Ncgr **) (&v5), v1);
+    LocateNcgr(&v5, v1);
     v1 = FindSceneFile(gRecordVSMNscrName);
-    LocateNscr((Nscr **) (&v6), v1);
+    LocateNscr(&v6, v1);
     v1 = FindSceneFile(gRecordVSM02NscrName);
     LocateNscr(&gRecordVS->mRecordVSM02Nscr, v1);
     v1 = FindSceneFile(gRecordVSM03NscrName);
     LocateNscr(&gRecordVS->mRecordVSM03Nscr, v1);
     v1 = FindSceneFile(gRecordVSMBNclrName);
-    LocateNclr((Nclr **) (&v7), v1);
-    v3 = *(s32 *) (v4 + 0xc);
+    LocateNclr(&v7, v1);
+    v3 = v4->mData;
     CallQueueAppend((u32) 0x13, (u32) 0, (void *) (gRecordVS->mRecordVSMNcgr->mData),
                     (u32) (gRecordVS->mRecordVSMNcgr->mDataSize));
-    CallQueueAppend((u32) 0xe, (u32) 0, (void *) (*(u32 *) (v4 + 0xc)), (u32) (((u32) 0x000001a0u)));
-    CallQueueAppend((u32) 0xe, (u32) 0x1c0, (void *) (v3 + 0x1c0), (u32) 0x40);
+    CallQueueAppend((u32) 0xe, (u32) 0, v4->mData, (u32) (((u32) 0x000001a0u)));
+    CallQueueAppend((u32) 0xe, (u32) 0x1c0, v3 + 0xe0, (u32) 0x40);
     CallQueueAppend((u32) 0x23, (u32) 0, (void *) (gRecordVS->mRecordVSSNcgr->mData),
                     (u32) (gRecordVS->mRecordVSSNcgr->mDataSize));
-    CallQueueAppend((u32) 0x1e, (u32) 0, (void *) (*(u32 *) (v8 + 0xc)), (u32) (*(u32 *) (v8 + 8)));
-    CallQueueAppend((u32) 4, (u32) 0, (void *) (*(u32 *) (v5 + 0x14)), (u32) (*(u32 *) (v5 + 0x10)));
-    CallQueueAppend((u32) 8, (u32) 0, (void *) (v6 + 0xc), (u32) (*(u32 *) (v6 + 8)));
-    CallQueueAppend((u32) 0xf, (u32) 0, (void *) (*(u32 *) (v7 + 0xc)), (u32) 0x40);
-    CallQueueAppend((u32) 0xe, (u32) 0x40, (void *) (*(u32 *) (v2 + 0xc)), (u32) 0x20);
+    CallQueueAppend((u32) 0x1e, (u32) 0, v8->mData, v8->mDataSize);
+    CallQueueAppend((u32) 4, (u32) 0, v5->mData, v5->mDataSize);
+    CallQueueAppend((u32) 8, (u32) 0, v6->mData, v6->mDataSize);
+    CallQueueAppend((u32) 0xf, (u32) 0, v7->mData, (u32) 0x40);
+    CallQueueAppend((u32) 0xe, (u32) 0x40, v2->mData, (u32) 0x20);
 }
 
 #pragma thumb off

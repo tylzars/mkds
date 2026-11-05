@@ -148,7 +148,7 @@ u32 func_ov000_0218ed74(GpConnection *b, int c) {
     int v1;
     int v2;
     GpiConnection *a;
-    int v3;
+    GpiProfile *v3;
     if ((b == NULL) || (a = b->mGpiConnection, a == NULL)) {
         return 2;
     }
@@ -159,17 +159,17 @@ u32 func_ov000_0218ed74(GpConnection *b, int c) {
         GpiSetErrorMessage(b, data_ov000_021b23e8);
         return 2;
     }
-    v1 = GpiFindProfile(b, c, (GpiProfile **) &v3);
+    v1 = GpiFindProfile(b, c, &v3);
     if (v1 == 0) {
         return 0;
     }
-    *(s32 *) (v3 + 0x14) = *(s32 *) (v3 + 0x14) + -1;
-    if ((a->mUnk_100 == 0) && (*(s32 *) (v3 + 0x14) <= 0)) {
-        func_ov000_021a3668((void *) (*(u32 *) (v3 + 0x10)));
-        *(u32 *) (v3 + 0x10) = 0;
-        v2 = GpiIsProfileEmpty((GpiProfile *) v3);
+    v3->mUnk_14 = v3->mUnk_14 + -1;
+    if ((a->mUnk_100 == 0) && (v3->mUnk_14 <= 0)) {
+        func_ov000_021a3668(v3->mUnk_10);
+        v3->mUnk_10 = NULL;
+        v2 = GpiIsProfileEmpty(v3);
         if (v2 != 0) {
-            GpiRemoveProfile(b, (GpiProfile *) v3);
+            GpiRemoveProfile(b, v3);
         }
     }
     return 0;
@@ -259,15 +259,15 @@ u32 GpGetBuddyIndex(GpConnection *a, u32 b, s32 *c) {
 
 u32 GpIsBuddy(GpConnection *a, u32 b) {
     int v1;
-    int v2[1];
+    GpiProfile *v2[1];
     if ((a == NULL) || (a->mGpiConnection == NULL)) {
         return 0;
     }
     if (a->mGpiConnection->mUnk_108 != 0) {
         return 0;
     }
-    v1 = GpiFindProfile(a, b, (GpiProfile **) v2);
-    if ((v1 != 0) && (*(s32 *) (v2[0] + 8) != 0)) {
+    v1 = GpiFindProfile(a, b, v2);
+    if ((v1 != 0) && (v2[0]->mBuddyStatus != NULL)) {
         return 1;
     }
     return 0;
