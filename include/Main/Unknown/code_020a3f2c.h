@@ -18,17 +18,26 @@ typedef struct Unk0209bfa8 {
 // UpdateShine16: the shared MapObject part, then words up to 0xe8. UpdateShine16 switches on the word at 0xe0 (0 to 6).
 typedef struct Shine16 {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ s32 mUnk_a0;
-    /* a4 */ s32 mUnk_a4;
+    // Height of the shine above the followed kart's position: 0 at spawn and pickup, then grows by the shine's vertical
+    // speed each frame.
+    /* a0 */ s32 mHeightAboveKart;
+    // y at which a falling shine bounces (the spawn point's y + 0x14000); 0 for a shine that starts resting. Only the
+    // fall state reads it.
+    /* a4 */ s32 mFloorY;
     /* a8 */ s32 mUnk_a8;
     /* ac */ u8 mUnk_ac[4];
-    /* b0 */ s32 mUnk_b0;
+    // Frame index of the shine's .nsbtp animation, stepped every few frames and wrapped at the animation's frame count;
+    // the draw passes it to the frame setter.
+    /* b0 */ s32 mNsbtpFrameIndex;
     /* b4 */ s32 mUnk_b4;
     /* b8 */ s32 mUnk_b8;
     /* bc */ s32 mUnk_bc;
-    /* c0 */ s32 mUnk_c0;
+    // Set to 0x19 when a kart takes the shine (a second pickup is refused while it is above 0), counted down while the
+    // shine follows the kart; at 0 the shine shrinks away. 0 at spawn.
+    /* c0 */ s32 mPickupTimer;
     /* c4 */ s32 mUnk_c4;
-    /* c8 */ u16 mUnk_c8;
+    // Index of the kart the shine follows in states 2 and 3: the kart that took it, or the kart it was released from.
+    /* c8 */ u16 mKartIndex;
     /* ca */ u16 mUnk_ca;
     /* cc */ Vec3 mUnk_cc;
     /* d8 */ s32 mUnk_d8;
@@ -44,7 +53,7 @@ typedef struct Shine16 {
 
 u32 func_020a3f2c(void);
 u32 func_020a3f48(void);
-void func_020a49d4(Unk020a3fa8 *a);
+void InitKartBalloons(Unk020a3fa8 *a);
 void func_020a4b70(u16 a, Vec3 *b);
 void func_020a4c20(void);
 void func_020a4c58(u16 a);

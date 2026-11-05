@@ -120,7 +120,7 @@ s32 func_0203ef58(void) {
                     f = TRUE;
                 }
                 if (f != FALSE) {
-                    if (func_020a1084(i) == FALSE) {
+                    if (IsKartEliminated(i) == FALSE) {
                         r = FALSE;
                         break;
                     }

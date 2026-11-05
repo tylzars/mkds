@@ -441,7 +441,7 @@ void func_020ba520(void) {
                     break;
                 case 1:
                 default:
-                    data_0217b3c8->mUnk_00_h[0] = func_020a1154(func_020b4d9c());
+                    data_0217b3c8->mUnk_00_h[0] = GetBalloonOrShineCount(func_020b4d9c());
                     break;
             }
             break;
@@ -483,7 +483,7 @@ void func_020ba3ec(void) {
                 }
                 data_0217b3c8->mUnk_00_h[1] = func_020a10d4(func_020b4d9c());
             } else {
-                data_0217b3c8->mUnk_00_h[0] = func_020a1154(func_020b4d9c());
+                data_0217b3c8->mUnk_00_h[0] = GetBalloonOrShineCount(func_020b4d9c());
             }
             break;
         case 1:

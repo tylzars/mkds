@@ -2,8 +2,8 @@
 #include "Main/Unknown/code_020d22c0.h"
 
 void func_020a2f0c(Balloon *p, u16 a) {
-    p->mUnk_a4 = -1;
-    p->mUnk_f4 = 1;
-    p->mUnk_f8 = NULL;
+    p->mKartIndex = -1;
+    p->mDrawCount = 1;
+    p->mDrawList = NULL;
     func_020d2398(&p->mUnk_00);
 }

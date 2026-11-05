@@ -626,7 +626,7 @@ void func_ov001_0218e298(Unk02188950 *a, Kart *b) {
     func_02068a10(b);
     func_ov001_021888a4(a, 0, 0x32000);
     a->mUnk_0a8 = 1;
-    if (!(data_021759c0->mMode == 4 ? func_020a126c() : 0)) {
+    if (!(data_021759c0->mMode == 4 ? IsWinnerDecided() : 0)) {
         func_02061874();
     }
 }
@@ -649,15 +649,15 @@ void func_ov001_0218e208(Unk0218d87c *a) {
             }
         }
     }
-    func_020a2314((void (*)(void)) func_ov001_0218e58c);
+    SetStandingsEndCallback((void (*)(void)) func_ov001_0218e58c);
 }
 
 void func_ov001_0218df20(u32 a, Unk02188950 *b) {
     Kart *p;
 
-    if (data_021759c0->mMode == 4 ? func_020a126c() : 0) {
+    if (data_021759c0->mMode == 4 ? IsWinnerDecided() : 0) {
         if (func_ov001_021871f8(b, 5) != 0) {
-            if (data_021759c0->mMode == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
+            if (data_021759c0->mMode == 4 ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
                 func_ov001_0218e710(b);
             } else if (data_021759c0->mMode == 4 ? func_020a128c() : 0) {
                 func_ov001_0218e5c4(b);

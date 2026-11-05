@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-void func_020a1218(short a);
-unsigned int func_020a1238(void);
-u16 func_020a1250(int arg0);
+void AddShineCount(short a);
+unsigned int GetShineCount(void);
+u16 GetKartStandingRankIndex(int arg0);

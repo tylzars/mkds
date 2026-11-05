@@ -406,7 +406,7 @@ u32 func_020a7338(void) {
 }
 
 BOOL func_020a72c8(u16 a, u16 b) {
-    if (func_020a1154(a) != 0) {
+    if (GetBalloonOrShineCount(a) != 0) {
         func_020a10f0(a, -1);
         if (b >= 8) {
             b = a;
@@ -418,7 +418,7 @@ BOOL func_020a72c8(u16 a, u16 b) {
 }
 
 void func_020a7270(u16 a) {
-    if (func_020a1154(a) == 0) {
+    if (GetBalloonOrShineCount(a) == 0) {
         return;
     }
     func_020a10f0(a, -1);

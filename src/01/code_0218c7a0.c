@@ -210,21 +210,21 @@ void func_ov001_0218cf94(Unk0218d87c *a) {
             }
         }
     }
-    func_020a2314((void (*)(void)) func_ov001_0218d280);
+    SetStandingsEndCallback((void (*)(void)) func_ov001_0218d280);
 }
 
 void func_ov001_0218cedc(u32 a, Unk02188950 *b) {
     int r;
 
     if (data_021759c0->mMode == 4) {
-        r = func_020a126c();
+        r = IsWinnerDecided();
     } else {
         r = 0;
     }
     if (r != 0) {
         if (func_ov001_021871f8(b, 1) != 0) {
             if (data_021759c0->mMode == 4) {
-                r = func_020a1084((u16) data_021759c0->mEntryIndex);
+                r = IsKartEliminated((u16) data_021759c0->mEntryIndex);
             } else {
                 r = 0;
             }

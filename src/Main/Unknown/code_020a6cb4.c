@@ -22,8 +22,8 @@ void func_020a7148(MapObject *a) {
         func_020ac588(0x6a, 0x14, a);
         func_020ac588(0x70, data_021759c0->mKartCount, a);
         func_020a233c(func_020a72c8);
-        func_020a2328(func_020a7270);
-        func_020a2314(func_020a71c8);
+        SetStandingsKartEliminatedCallback(func_020a7270);
+        SetStandingsEndCallback(func_020a71c8);
         return;
     }
     func_020d2398(a);
@@ -121,7 +121,7 @@ void func_020a6e70(Unk02100094 *a) {
         e->mUnk_a4 = TRUE;
         if (e->mUnk_00.mCourseMapRow->mUnk_28 != 0) {
             n = data_021759c0->mKartCount;
-            v = func_020a1238();
+            v = GetShineCount();
             if (v + func_020a119c() < n + 1) {
                 func_020a5744(&e->mUnk_00.mPos, j, func_02062ec4());
                 e->mUnk_a0 = TRUE;
@@ -134,11 +134,11 @@ void func_020a6d8c(Unk02100094 *a, Unk020a6cb4 *b) {
     s32 n;
     s32 v;
 
-    if (func_020a1238() >= 3) {
+    if (GetShineCount() >= 3) {
         return;
     }
     n = data_021759c0->mKartCount;
-    v = func_020a1238();
+    v = GetShineCount();
     if (v + func_020a119c() >= n + 1) {
         return;
     }
@@ -147,7 +147,7 @@ void func_020a6d8c(Unk02100094 *a, Unk020a6cb4 *b) {
         return;
     }
     b->mUnk_a8 = 0;
-    while (func_020a1238() < 3 && (n = data_021759c0->mKartCount, v = func_020a1238(), v + func_020a119c() < n + 1)) {
+    while (GetShineCount() < 3 && (n = data_021759c0->mKartCount, v = GetShineCount(), v + func_020a119c() < n + 1)) {
         if (func_020a6f94(a) == FALSE) {
             return;
         }

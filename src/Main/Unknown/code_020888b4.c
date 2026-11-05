@@ -505,7 +505,7 @@ void func_02088d34(Unk020888b4 *p) {
         func_020a228c(p->mIndex);
         return;
     }
-    a = func_020a1154(p->mIndex);
+    a = GetBalloonOrShineCount(p->mIndex);
     b = func_020a10d4(p->mIndex);
     if (a >= p->mUnk_c0) {
         return;

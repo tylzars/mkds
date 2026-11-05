@@ -20,7 +20,7 @@
 #include "Main/Unknown/code_020681f0.h"
 
 static inline s32 func_0203ca38_inline(u32 i) {
-    return func_020a1250(i) + 1;
+    return GetKartStandingRankIndex(i) + 1;
 }
 
 void func_0203d21c(void) {
@@ -139,7 +139,7 @@ void func_0203d078(void) {
         return;
     }
     for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
-        if (func_020a1084(i) != FALSE) {
+        if (IsKartEliminated(i) != FALSE) {
             RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
             if (p->mStatus == 0) {
                 if (func_020a100c(i) != 0) {

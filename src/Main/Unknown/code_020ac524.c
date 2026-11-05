@@ -85,7 +85,7 @@ void DrawShineBalloon(void *a, ShineBalloonObject *b) {
 void UpdateShineBalloon(void *a, ShineBalloonObject *b) {
     switch (b->mState) {
         case 0:
-            if (func_020a1154(b->mUnk_ac->mIndex) == 0) {
+            if (GetBalloonOrShineCount(b->mUnk_ac->mIndex) == 0) {
                 return;
             }
             b->mTimer = 0x1e;
@@ -111,7 +111,7 @@ void UpdateShineBalloon(void *a, ShineBalloonObject *b) {
             b->mUnk_00.mPos = b->mUnk_ac->mPos;
             break;
         case 2:
-            if (func_020a1154(b->mUnk_ac->mIndex) == 0) {
+            if (GetBalloonOrShineCount(b->mUnk_ac->mIndex) == 0) {
                 b->mTimer = 0x1e;
                 b->mUnk_a4 = 8;
                 b->mState = 3;

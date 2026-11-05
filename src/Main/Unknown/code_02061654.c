@@ -163,14 +163,14 @@ void InitRace(void) {
     func_02047b6c(3);
     switch (data_021759c0->mMode) {
         case 2:
-            func_020a0e00();
+            InitStandings();
             break;
         case 4:
             if (data_021759c0->mMode == 4) {
                 func_ov001_021819f4();
             }
             if (data_021759c0->mMode == 4) {
-                func_020a0e00();
+                InitStandings();
             }
             break;
     }

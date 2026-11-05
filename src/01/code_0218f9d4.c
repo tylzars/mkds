@@ -1264,7 +1264,7 @@ void func_ov001_0218fcc4(Unk0218fa78 *a) {
 }
 
 void func_ov001_0218fc4c(u32 a, Unk02188950 *b) {
-    if ((data_021759c0->mMode == 4 ? func_020a126c() : 0) == 0 && func_ov001_021871f8(b, 1)) {
+    if ((data_021759c0->mMode == 4 ? IsWinnerDecided() : 0) == 0 && func_ov001_021871f8(b, 1)) {
         if (func_ov001_02188220(
                 (data_021759c0->mMode == 4
                      ? func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0) + 2))
@@ -1293,14 +1293,14 @@ void func_ov001_0218fbe0(Unk0218fa78 *a) {
             func_ov001_02188200(obj, func_ov001_02192878);
         }
     }
-    func_020a2314((void (*)(void)) func_ov001_02190df0);
+    SetStandingsEndCallback((void (*)(void)) func_ov001_02190df0);
 }
 
 void func_ov001_0218fb24(u32 a, Unk02188950 *b) {
     s32 value;
 
     if ((data_021759c0->mMode == 4 ? func_020a128c() : 0) && func_ov001_021871f8(b, 3)) {
-        if (data_021759c0->mMode == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
+        if (data_021759c0->mMode == 4 ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
             func_ov001_02190df8(b);
         } else {
             func_ov001_02190eb0(b);

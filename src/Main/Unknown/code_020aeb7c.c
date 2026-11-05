@@ -434,7 +434,7 @@ void func_020aeb7c(void) {
     if (data_021759c0->mMode != 4) {
         v = 0;
     } else {
-        v = func_020a1084(func_020b4d9c());
+        v = IsKartEliminated(func_020b4d9c());
     }
     if (v != 0) {
         data_0217b488->mUnk_10 = 0;

@@ -359,16 +359,16 @@ void func_ov001_02183450(Unk0218fa78 *a) {
             func_ov001_02188da4(o, func_ov001_02183b9c);
         }
     }
-    func_020a2314((void (*)(void)) func_ov001_02183848);
+    SetStandingsEndCallback((void (*)(void)) func_ov001_02183848);
 }
 
 void func_ov001_021832cc(u32 b, Unk02188950 *d) {
     Unk02188950_a0 *a;
     Kart *c;
 
-    if (data_021759c0->mMode == 4 ? func_020a126c() : 0) {
+    if (data_021759c0->mMode == 4 ? IsWinnerDecided() : 0) {
         if (func_ov001_021871f8(d, 1) != 0) {
-            if (data_021759c0->mMode == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
+            if (data_021759c0->mMode == 4 ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
                 func_ov001_02183850(d);
             } else {
                 func_ov001_02183f0c(d);

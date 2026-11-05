@@ -29,7 +29,7 @@ struct Nscr;
 struct Ncgr;
 struct Nclr;
 struct Unk02022aa8;
-struct Unk020a3fa8_a4;
+struct KartBalloons;
 
 // Element of 0x14 bytes of the table behind data_0217b704.
 typedef struct Unk020de84c_14 {
@@ -290,54 +290,85 @@ typedef struct Unk0217b034 {
 extern Unk0217b034 *data_0217b034;
 extern u32 data_0217b0d8;
 extern void *gChandelier;
-// 0x70-byte entries of Unk0217b1fc, one per index 0 to 7.
-typedef struct Unk0217b1fc_000 {
+// One kart's entry of Standings (0x70 bytes, indexed by kart index): its count, rank, side id, elimination status and
+// last position, and the hit tracking of the kart (those members keep their address names). Slots past the kart count
+// are unused: status 2, count -1.
+typedef struct KartStanding {
     /* 00 */ BOOL mUnk_00;
     /* 04 */ BOOL mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ Vec3 mUnk_0c;
+    // 0 in play, 1 just eliminated (the update calls the kart handler once and sets 2), 2 eliminated and handled;
+    // unused slots start at 2. Only compared, never switched on.
+    /* 08 */ s32 mEliminationStatus;
+    // Copy of the kart's position, refreshed every update while the kart's count is above 0 and no winner is decided.
+    /* 0c */ Vec3 mPos;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ BOOL mUnk_20;
     /* 24 */ s32 mUnk_24[8];
     /* 44 */ u16 mUnk_44;
-    /* 46 */ u16 mUnk_46;
-    /* 48 */ u16 mUnk_48;
+    // Id of the side the kart plays for: the entry's team index 0 gives 1, 1 gives 3, any other value gives the kart's
+    // own index; an unused slot gets the kart count. The winner test compares it between the karts still in play.
+    /* 46 */ u16 mTeamId;
+    // Position in the order by count, 0 = first. Starts as the kart's own index; a count step swaps it with neighbours
+    // (karts still in play stay ahead of eliminated ones).
+    /* 48 */ u16 mRankIndex;
     /* 4a */ u8 mUnk_4a[2];
-    /* 4c */ s32 mUnk_4c;
+    // The kart's count: balloons held where the balloon object exists (mode 2 with Unk021759c0::mUnk_18 == 0, and mode
+    // 4), shines held in the shine mode (mode 2 with mUnk_18 == 1). -1 for an unused slot and for a kart eliminated in
+    // mode 2; 0 at the start; changed in steps of +1 / -1. The rank order is sorted by it.
+    /* 4c */ s32 mBalloonOrShineCount;
     /* 50 */ u16 mUnk_50;
     /* 52 */ u8 mUnk_52[0x12];
     /* 64 */ s32 mUnk_64;
     /* 68 */ s32 mUnk_68;
     /* 6c */ s32 mUnk_6c;
-} Unk0217b1fc_000;
+} KartStanding;
 
-// Object behind data_0217b1fc: eight 0x70-byte entries, then callbacks at 0x380 to 0x39c (set by func_020a2300 to
-// func_020a2364) and the pointer at 0x3bc (func_020a238c / func_020a2378), whose 0x38-byte entries are read like
-// Unk020a3fa8_a4.
-typedef struct Unk0217b1fc {
-    /* 000 */ Unk0217b1fc_000 mUnk_000[8];
+// Per-kart table of the modes that play with kart counts (modes 2 and 4): the one object behind gStandings, made by
+// InitStandings from InitRace and stepped every frame by the race update. It ranks the karts by count (mKarts), keeps
+// who is eliminated, the winning side, the end timer and its callbacks. The name is a partial word: it covers the
+// ranking and winner part, but the kart-to-kart hit tracking, the four hit callbacks that act on a hit, a time-limit
+// step and a random course point are in the same object too (those members keep their address names). 0x3c0 bytes, the
+// allocation size.
+typedef struct Standings {
+    // One KartStanding per kart index; the entries past the kart count are unused slots.
+    /* 000 */ KartStanding mKarts[8];
     /* 380 */ s32 (*mUnk_380)(s32, s32);
     /* 384 */ void (*mUnk_384)(s32, s32);
     /* 388 */ s32 (*mUnk_388)(u16, u16);
-    /* 38c */ void (*mUnk_38c)(u16);
-    /* 390 */ void (*mUnk_390)(void);
+    // Called with the kart index at the start of an elimination. Set by the balloon object (releases the kart's
+    // balloons) and by the shine mode (drops the kart's shines).
+    /* 38c */ void (*mKartEliminatedCallback)(u16);
+    // Called when mEndTimer runs out and by the mode 4 end step. Set by the balloon object, the shine mode and the
+    // overlay 1 objects.
+    /* 390 */ void (*mEndCallback)(void);
     /* 394 */ u8 mUnk_394[8];
     /* 39c */ void (*mUnk_39c)(s32, s32);
-    /* 3a0 */ u16 mUnk_3a0;
+    // Number of Shine16 objects placed and not yet finished: AddShineCount changes it (+1 placed, -1 finished); the
+    // spawner stops placing at 3. Parking every shine at once, as the shine mode's end callback does, does not
+    // subtract.
+    /* 3a0 */ u16 mShineCount;
     /* 3a2 */ u16 mUnk_3a2;
     /* 3a4 */ u16 mUnk_3a4;
     /* 3a6 */ u8 mUnk_3a6[2];
-    /* 3a8 */ s32 mUnk_3a8;
+    // Frames left before mEndCallback runs once a winner is decided: mode 2 stores 0x5a and counts it down; at 0 it
+    // becomes -1 and the callback runs. A value below 0 means the end is reached. Mode 4 stores 0 and ends through the
+    // race-progress end step, which sets -1 and runs the callback.
+    /* 3a8 */ s32 mEndTimer;
     /* 3ac */ s32 mUnk_3ac;
     /* 3b0 */ s32 mUnk_3b0;
-    /* 3b4 */ s32 mUnk_3b4;
+    // Side id (KartStanding::mTeamId) of the winning side, -1 until a winner is decided. Set once every kart still in
+    // play has the id of the rank 0 kart. In mode 4 the ids are kart indices (it is compared with the local entry
+    // index).
+    /* 3b4 */ s32 mWinnerTeamId;
     /* 3b8 */ u16 mUnk_3b8;
     /* 3ba */ u8 mUnk_3ba[2];
-    /* 3bc */ struct Unk020a3fa8_a4 *mUnk_3bc;
-} Unk0217b1fc;
+    // Pointer to entry 0 of the kind 0x69 object's KartBalloons array; set once by InitKartBalloons.
+    /* 3bc */ struct KartBalloons *mKartBalloons;
+} Standings;
 
-extern Unk0217b1fc *data_0217b1fc;
+// The Standings object, allocated by InitStandings in modes 2 and 4.
+extern Standings *gStandings;
 extern void *gBalloon;
 extern Vec3 data_0217b208;
 extern Vec3 data_0217b214;

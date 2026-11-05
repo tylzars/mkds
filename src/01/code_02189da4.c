@@ -131,21 +131,21 @@ void func_ov001_0218a120(Unk0218d87c *a) {
             }
         }
     }
-    func_020a2314((void (*)(void)) func_ov001_0218a2d4);
+    SetStandingsEndCallback((void (*)(void)) func_ov001_0218a2d4);
 }
 
 void func_ov001_0218a074(u32 a, Unk02188950 *b) {
     int active;
 
     if (data_021759c0->mMode == 4) {
-        active = func_020a126c();
+        active = IsWinnerDecided();
     } else {
         active = 0;
     }
     if (active != 0) {
         if (func_ov001_021871f8(b, 1) != 0) {
             if (data_021759c0->mMode == 4) {
-                active = func_020a1084((u16) data_021759c0->mEntryIndex);
+                active = IsKartEliminated((u16) data_021759c0->mEntryIndex);
             } else {
                 active = 0;
             }

@@ -176,15 +176,15 @@ void func_ov001_0218b5d8(Unk0218d87c *a) {
             }
         }
     }
-    func_020a2314((void (*)(void)) func_ov001_0218b8f0);
+    SetStandingsEndCallback((void (*)(void)) func_ov001_0218b8f0);
 }
 
 void UpdateKuriking(u32 a, Unk02188950 *b) {
     s32 var;
 
-    if (data_021759c0->mMode == 4 ? func_020a126c() : 0) {
+    if (data_021759c0->mMode == 4 ? IsWinnerDecided() : 0) {
         if (func_ov001_021871f8(b, 1)) {
-            if (data_021759c0->mMode == 4 ? func_020a1084((u16) data_021759c0->mEntryIndex) : 0) {
+            if (data_021759c0->mMode == 4 ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
                 func_ov001_0218b9b4(b);
             } else {
                 func_ov001_0218b8f8(b);
