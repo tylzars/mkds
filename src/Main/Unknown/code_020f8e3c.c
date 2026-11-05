@@ -40,6 +40,6 @@ u32 func_020f8e3c(u32 arg0, u32 arg1) {
     if (compareLeft1 == compareRight1) {
         return value0;
     }
-    value0 = (u32) func_020719bc((Unk0210bfbc *) value0, value1);
+    value0 = (u32) func_020719bc((SoundSource *) value0, value1);
     return value0;
 }

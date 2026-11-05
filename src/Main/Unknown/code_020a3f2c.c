@@ -90,10 +90,10 @@ void InitShine16(u32 arg0) {
     value0 = (u32) * (const u32 *) ((value4) + (148));
     value2 = (value4) + (4u);
     value1 = 0xbu;
-    func_02109110((Unk0210bfbc *) value0, value1, (Vec3 *) value2);
+    InitSoundSource((SoundSource *) value0, value1, (Vec3 *) value2);
     value0 = (u32) * (const u32 *) ((value4) + (148));
-    func_0210bae8((Unk0210bfbc *) value0);
-    value0 = (u32) &data_0217ca6c;
+    func_0210bae8((SoundSource *) value0);
+    value0 = (u32) &gSoundFalloffs;
     value0 = (u32) * (const u32 *) ((value0) + (428));
     *(u32 *) ((value4) + (112)) = value0;
 }
@@ -136,7 +136,7 @@ u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
         c = func_020a1180();
         n = GetBalloonOrShineCount(o->mIndex);
         func_0210b98c(p->mUnk_00.mUnk_94, func_02024974(0, r, c, n));
-        p->mUnk_e4 = func_0208b7bc(0x7d, &p->mUnk_00.mPos);
+        p->mUnk_e4 = StartEffect(0x7d, &p->mUnk_00.mPos);
         p->mUnk_e8 = 0xe;
     }
     return v2;
@@ -358,7 +358,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                     }
                 }
                 if (p->mUnk_a8 <= 0) {
-                    func_02081f10(func_0208b7bc(0x7c, &v->mPos), v->mIndex, 0x16);
+                    func_02081f10(StartEffect(0x7c, &v->mPos), v->mIndex, 0x16);
                 }
             } else {
                 p->mUnk_a8 += 0x19a;
@@ -743,8 +743,8 @@ BOOL func_020a5268(u16 a, u16 b) {
             if (GetBalloonOrShineCount(b) >= 2 && func_020a2204(b) != 0) {
                 e->mState = 4;
             }
-            func_02081f10(func_0208b7bc(0x7a, &o->mPos), o->mIndex, 0x20);
-            func_02081f10(func_0208b7bc(0x7b, &o->mPos), o->mIndex, 0x20);
+            func_02081f10(StartEffect(0x7a, &o->mPos), o->mIndex, 0x20);
+            func_02081f10(StartEffect(0x7b, &o->mPos), o->mIndex, 0x20);
             func_020d26ec(GetKart(b), 0x14f);
             if (GetBalloonOrShineCount(a) == 0) {
                 func_020a16d0(a);

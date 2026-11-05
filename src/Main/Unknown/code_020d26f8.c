@@ -19,9 +19,9 @@ u32 func_020d26f8(MapObject *a, Kart *b) {
         return 0;
     }
     if (a->mUnk_94 != NULL) {
-        func_021090c4(&a->mUnk_94->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&a->mUnk_94->mSoundSource, 0xe8, 0x7f, 0);
     } else {
-        func_020719bc(&b->mUnk_00, 0xe8);
+        func_020719bc(&b->mSoundSource, 0xe8);
     }
     return 1;
 }

@@ -118,5 +118,7 @@ void func_02084384(Kart *p);
 void func_020843d8(Kart *p);
 void func_0208442c(Kart *p);
 void func_02084478(Kart *p);
-void func_020845cc(u32 a);
-Unk0217ae84 *func_020846a8(int arg0);
+// Allocates the KartEffects records for a Karts and clears them.
+void InitKartEffects(u32 a);
+// Returns the KartEffects record of Kart number n.
+KartEffects *GetKartEffects(int arg0);

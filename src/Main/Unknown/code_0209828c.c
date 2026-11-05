@@ -60,7 +60,7 @@ void func_02098f18(Unk020e0144 *a, s32 b) {
     p->mUnk_c4 = b;
     p->mUnk_c8 = -0x5000;
     p->mUnk_cc = 0;
-    p->mUnk_d0 = func_0208b7bc(0x33, &p->mUnk_00.mPos);
+    p->mUnk_d0 = StartEffect(0x33, &p->mUnk_00.mPos);
 }
 
 void InitPakkun(Pakkun *p) {
@@ -337,9 +337,9 @@ void UpdatePakkun(void *a, Pakkun *p) {
             if ((p->mUnk_0a4 >> 12) == 10) {
                 func_02098f18(&p->mUnk_0b8[p->mUnk_1b8], p->mUnk_1fc + 0x46000);
                 if ((p->mUnk_000.mUnk_78 & 4) == 0) {
-                    if (p->mUnk_000.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+                    if (p->mUnk_000.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                         t = 2;
-                    } else if (p->mUnk_000.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+                    } else if (p->mUnk_000.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                         t = 3;
                     } else {
                         t = 4;

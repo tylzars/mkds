@@ -141,7 +141,7 @@ void func_0208b870(Unk02012f58 *a) {
     }
 }
 
-void *func_0208b7bc(u32 a, const Vec3 *b) {
+void *StartEffect(u32 a, const Vec3 *b) {
     s32 e;
     Vec3 v;
     Unk0201ca6c *q;

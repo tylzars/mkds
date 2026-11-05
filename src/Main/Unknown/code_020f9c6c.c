@@ -117,7 +117,7 @@ void func_020fcac0(Unk020fc2e8 *a) {
 
 void func_020fc94c(Unk020fc2e8 *p) {
     func_0210b850(&p->mUnk_300);
-    p->mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a67c;
+    p->mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a67c;
     p->mUnk_160 = 0;
     p->mUnk_000.mUnk_0c4 = p->mUnk_000.mPos;
     func_020f9c40((s32) p);
@@ -282,7 +282,7 @@ void func_020fc268(Unk020fc2e8 *param_1) {
     if (param_1->mUnk_270 == 1) {
         return;
     }
-    func_02109078(&param_1->mUnk_000.mUnk_00, param_1->mUnk_270, 0x7f, 0);
+    StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
 }
 
 static inline Vec3 *func_020fbd98_inline(Unk020fc2e8 *p) {
@@ -310,7 +310,7 @@ void func_020fbd98(Unk020fc2e8 *param_1) {
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
         if (param_1->mUnk_270 != 1) {
-            func_02109078(&param_1->mUnk_000.mUnk_00, param_1->mUnk_270, 0x7f, 0);
+            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
         }
     }
     param_1->mUnk_000.mVelocity.y -= (s32) (((s64) * (s32 *) param_1->mUnk_12c * 0x66) >> 12);
@@ -416,7 +416,7 @@ void func_020fbc18(Unk020fc2e8 *param_1) {
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
         if (param_1->mUnk_270 != 1) {
-            func_02109078(&param_1->mUnk_000.mUnk_00, param_1->mUnk_270, 0x7f, 0);
+            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
         }
     }
     if ((s64) param_1->mUnk_238.x * param_1->mUnk_238.x + (s64) param_1->mUnk_238.z * param_1->mUnk_238.z <
@@ -443,7 +443,7 @@ void func_020fbae0(Unk020fc2e8 *param_1) {
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
         if (param_1->mUnk_270 != 1) {
-            func_02109078(&param_1->mUnk_000.mUnk_00, param_1->mUnk_270, 0x7f, 0);
+            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
         }
     }
     if (param_1->mUnk_000.mFlags & 1) {
@@ -495,7 +495,7 @@ void func_020fb7f8(Unk020fc2e8 *param_1) {
     if (!(param_1->mUnk_000.mFlags & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
         if (param_1->mUnk_270 != 1) {
-            func_02109078(&param_1->mUnk_000.mUnk_00, param_1->mUnk_270, 0x7f, 0);
+            StartSoundWhileRequested(&param_1->mUnk_000.mSoundSource, param_1->mUnk_270, 0x7f, 0);
         }
     }
     func_020fc654(param_1);

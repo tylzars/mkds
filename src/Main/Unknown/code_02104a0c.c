@@ -204,7 +204,7 @@ s32 func_02104c68(Unk020eda5c *p0, Unk02104c68 *p1) {
     }
     if ((p0->mUnk_00c->mFlags & 0x10) != 0) {
         func_020f3150(&p1->mUnk_000, p0, 0, 1, 0x4000, 0x3000, 0x59a);
-        func_021090c4(&p1->mUnk_000.mUnk_000.mUnk_00, 0xda, 0x7f, 0);
+        StartSound(&p1->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
         p1->mUnk_130 = 1;
         return p1->mUnk_130;
     } else {
@@ -263,7 +263,7 @@ void func_02104a0c(Unk02104c68 *p) {
             if (p->mUnk_130 != 0) {
                 p->mUnk_000.mUnk_000.mVelocity.y <<= 1;
             }
-            func_02109060(&p->mUnk_000.mUnk_000.mUnk_00, 0xda);
+            StopSound(&p->mUnk_000.mUnk_000.mSoundSource, 0xda);
             func_020f6a6c(&p->mUnk_000.mUnk_000, &buf);
         }
     }

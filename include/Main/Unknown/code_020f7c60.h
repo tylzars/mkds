@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0210bfbc Unk0210bfbc;
+typedef struct SoundSource SoundSource;
 
-void *func_020f7c60(Unk0210bfbc *arg0, u32 arg1);
+void *func_020f7c60(SoundSource *arg0, u32 arg1);

@@ -215,7 +215,7 @@ void UpdateFlipper(void *a, Flipper *p) {
     p->mUnk_ebc = p->mUnk_ebc - (p->mUnk_ebc > 0);
     switch (p->mState) {
         case 0:
-            p->mUnk_ed0 = func_0208b7bc(0x5f, &p->mUnk_00.mPos);
+            p->mUnk_ed0 = StartEffect(0x5f, &p->mUnk_00.mPos);
             p->mState = 1;
             break;
         case 1:

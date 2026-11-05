@@ -7,23 +7,30 @@
 typedef struct Unk0212c400 Unk0212c400;
 typedef struct HeapStack HeapStack;
 
-// 0x24-byte entries of the array at data_0217ca6c; func_02109468 fills the first one.
-typedef struct Unk0217ca6c {
-    /* 00 */ s32 mUnk_00;
+// Volume curve of one kind of sound source. The volume is the maximum up to the inner distance, falls to a mid volume
+// at the mid distance and to 0 at the outer distance. SoundSource.mFalloffIndex picks the element of gSoundFalloffs.
+// 0x24-byte entries of the array at gSoundFalloffs; func_02109468 fills the first one.
+typedef struct SoundFalloff {
+    // Distance beyond which the sound is silent.
+    /* 00 */ s32 mOuterDistance;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
+    // Distance up to which the sound has its maximum volume.
+    /* 0c */ s32 mInnerDistance;
+    // Highest volume of the curve.
+    /* 10 */ s32 mMaxVolume;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
-} Unk0217ca6c;
+} SoundFalloff;
 
-extern Unk0217ca6c data_0217ca6c[];
+// Volume curves by sound source number (SoundSource.mFalloffIndex); filled by func_02109468.
+extern SoundFalloff gSoundFalloffs[];
 extern s32 data_0217caec[];
 extern s32 data_0217caec[];
-extern Unk0217ca6c data_0217c8f8;
+// Volume curve of the Karts other than the selected entry whose sound source number is 0.
+extern SoundFalloff gOtherKartSoundFalloff;
 
 // Objects whose layout isn't known yet.
 extern Unk0212c400 *data_0217c778;

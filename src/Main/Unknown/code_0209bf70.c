@@ -368,9 +368,9 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
                 }
                 Vec3AddScaled(k->mRadius, &v3, &k->mUnk_1b8, &v3);
                 if (k->mIndex == data_021759c0->mEntryIndex) {
-                    func_0208b7bc(0x74, &v3);
+                    StartEffect(0x74, &v3);
                 } else {
-                    func_0208b7bc(0x75, &v3);
+                    StartEffect(0x75, &v3);
                 }
             }
         }
@@ -683,9 +683,9 @@ BOOL func_0209bfe0(s32 a) {
         p->mUnk_0f4 = 0;
         p->mUnk_11c = TRUE;
         if ((p->mUnk_000.mUnk_78 & 4) == 0) {
-            if (p->mUnk_000.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+            if (p->mUnk_000.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                 k = 2;
-            } else if (p->mUnk_000.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+            } else if (p->mUnk_000.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                 k = 3;
             } else {
                 k = 4;

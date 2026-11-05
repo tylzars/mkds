@@ -102,9 +102,9 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
         case 3:
             func_020937c4(&p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[2], p->mUnk_00.mAngle);
             if ((p->mUnk_00.mFlags & 0x12) == 0) {
-                func_0208b7bc(0x4b, &p->mUnk_00.mPos);
-                func_0208b7bc(0x4c, &p->mUnk_00.mPos);
-                func_0208b7bc(0x4d, &p->mUnk_00.mPos);
+                StartEffect(0x4b, &p->mUnk_00.mPos);
+                StartEffect(0x4c, &p->mUnk_00.mPos);
+                StartEffect(0x4d, &p->mUnk_00.mPos);
             }
             p->mUnk_a0 = 0x4b;
             p->mState = 0;
@@ -125,7 +125,7 @@ void InitNsKiller2(NsKiller2 *p) {
     ParkMapObject(&p->mUnk_00);
     p->mUnk_a8 = func_020d286c(&p->mUnk_00);
     func_0210b850(p->mUnk_a8);
-    p->mUnk_00.mUnk_94->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
+    p->mUnk_00.mUnk_94->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
 }
 
 u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d) {

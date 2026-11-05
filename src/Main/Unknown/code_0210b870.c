@@ -25,12 +25,12 @@ void func_0210ba78(void *p0, s32 b) {
 
     p = p0;
     c = *(s32 *) data_0217ccac;
-    func_021090c4(&p->mUnk_00, b + c, (0x7f - (c >> 1)) & 0xff, 0);
+    StartSound(&p->mSoundSource, b + c, (0x7f - (c >> 1)) & 0xff, 0);
     *(u32 *) data_0217ccac = *(u32 *) (u32) data_0217ccac + 0xa;
 }
 
 void func_0210ba38(struct Unk020e71a0_94 *p, s32 b) {
-    func_0210ddf4(&data_0217d29c, p->mUnk_00.mUnk_40 + 0x15f90, (void (*)(void *, int)) func_0210bad4, p, b);
+    func_0210ddf4(&data_0217d29c, p->mSoundSource.mUnk_40 + 0x15f90, (void (*)(void *, int)) func_0210bad4, p, b);
 }
 
 void func_0210b98c(struct Unk020e71a0_94 *p, s32 b) {
@@ -60,7 +60,7 @@ void func_0210b98c(struct Unk020e71a0_94 *p, s32 b) {
             c = 0x19;
             break;
     }
-    func_0210ddf4(&data_0217d29c, p->mUnk_00.mUnk_40 + c, func_0210ba78, p, b);
+    func_0210ddf4(&data_0217d29c, p->mSoundSource.mUnk_40 + c, func_0210ba78, p, b);
 }
 
 void func_0210b924(void *p, s32 b) {
@@ -87,7 +87,7 @@ int func_0210b8bc(void *p, s32 b) {
     if (c > 0x1e) {
         c = 0x1e;
     }
-    return (s32) func_021090c4(p, 0x1ce, ((c * 2) + 0x3c) & 0xff, c - 0xa);
+    return (s32) StartSound(p, 0x1ce, ((c * 2) + 0x3c) & 0xff, c - 0xa);
 }
 
 void func_0210b874(struct Unk020e71a0_94 *p, s32 b) {
@@ -95,7 +95,7 @@ void func_0210b874(struct Unk020e71a0_94 *p, s32 b) {
     Unk0212c400 **v;
 
     c = (b >> 12) + 5;
-    v = (Unk0212c400 **) func_02109078(&p->mUnk_00, 0x1cd, 0x7f, (s16) c);
+    v = (Unk0212c400 **) StartSoundWhileRequested(&p->mSoundSource, 0x1cd, 0x7f, (s16) c);
     if (v != NULL) {
         func_0212c4c4(v, 0xffff, c);
     }

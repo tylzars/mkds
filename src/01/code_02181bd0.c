@@ -48,7 +48,7 @@ void func_ov001_02182f1c(Unk02181c3c *p0, Kart *p1) {
     p0->mUnk_0b0 = 0x99a;
     p0->mUnk_0a0 = 0x1f;
     p0->mUnk_000.mFlags = p0->mUnk_000.mFlags | data_ov001_021a6574;
-    p0->mUnk_0fc = func_0208b7bc(0x3f5, &p0->mUnk_000.mPos);
+    p0->mUnk_0fc = StartEffect(0x3f5, &p0->mUnk_000.mPos);
     p0->mUnk_100 = 0xd;
 }
 
@@ -504,7 +504,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             if (b->mUnk_0ac-- <= 0) {
                 ParkMapObject((void *) ((u32) b));
             } else if (b->mUnk_0ac == 3) {
-                func_02081f10(func_0208b7bc(0x3f4, &e->mPos), e->mIndex, 0x18);
+                func_02081f10(StartEffect(0x3f4, &e->mPos), e->mIndex, 0x18);
             }
             if (b->mUnk_0fc != NULL) {
                 func_0208b5b0(b->mUnk_0fc, &b->mUnk_000.mPos);

@@ -9,7 +9,7 @@ u32 func_020815dc(u32 arg0) {
     u32 value3;
     u32 compareLeft0;
     u32 compareRight0;
-    value2 = (u32) &data_0217ae84;
+    value2 = (u32) &gKartEffects;
     value1 = 0x58u;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value3 = (value0) * (value1) + (value2);
@@ -35,7 +35,7 @@ void func_020815a0(u32 arg0) {
     u32 value4;
     u32 compareLeft0;
     u32 compareRight0;
-    value2 = (u32) &data_0217ae84;
+    value2 = (u32) &gKartEffects;
     value1 = 0x58u;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value4 = (value0) * (value1) + (value2);

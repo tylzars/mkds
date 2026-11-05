@@ -81,7 +81,10 @@ typedef struct KartPhysicalParam {
     /* 68 */ s32 mSurfaceSpeedLimitFactors[12];
 } KartPhysicalParam;
 
-typedef struct Unk0206cdd4_B {
+// Event counters of the selected entry's Kart (seven words; the one at 0 is a flag set to 1). Every writer tests that
+// the Kart is the selected entry. Read by the rank score of the grand prix and the goal tests of mission run. What each
+// counter counts is not named.
+typedef struct EntryKartCounters {
     /* 0 */ s32 mUnk_00;
     /* 4 */ s32 mUnk_04;
     /* 8 */ s32 mUnk_08;
@@ -89,7 +92,7 @@ typedef struct Unk0206cdd4_B {
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
-} Unk0206cdd4_B;
+} EntryKartCounters;
 
 struct Kart;
 
@@ -196,7 +199,8 @@ typedef struct Unk0206bcb0_A {
 #define KART_44_NEAR_KART 0x20
 
 typedef struct Kart {
-    /* 00 */ Unk0210bfbc mUnk_00;
+    // Sound source of the Kart (the sounds started on it).
+    /* 00 */ SoundSource mSoundSource;
     /* 44 */ vu32 mUnk_44;
     /* 48 */ vu32 mUnk_48;
     /* 4c */ vu32 mUnk_4c;

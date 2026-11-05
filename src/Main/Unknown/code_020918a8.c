@@ -49,9 +49,9 @@ static inline void func_020919e8_inline_3(Unk020919e8 *p, s32 n) {
     if (p->mUnk_00.mUnk_78 & 4) {
         return;
     }
-    if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
         v = 2;
-    } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
         v = 3;
     } else {
         v = 4;

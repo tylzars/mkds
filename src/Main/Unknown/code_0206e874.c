@@ -221,7 +221,7 @@ void func_0206e874(Kart *p) {
                                     if (e == p->mUnk_438[j] || p->mUnk_444[j] != 0) {
                                         continue;
                                     }
-                                    func_020d2668(e, &p->mUnk_00, v2, m);
+                                    func_020d2668(e, &p->mSoundSource, v2, m);
                                     p->mUnk_444[j] = 1;
                                     break;
                                 }

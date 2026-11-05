@@ -132,7 +132,7 @@ void func_020e01f0(void *a0, Unk020e005c *a1) {
         if ((a1->mUnk_078 & 4) != 0) {
             return;
         }
-        k = a1->mUnk_070 == data_0217ca6c[2].mUnk_20 ? 2 : (a1->mUnk_070 == data_0217ca6c[3].mUnk_20 ? 3 : 4);
+        k = a1->mUnk_070 == gSoundFalloffs[2].mUnk_20 ? 2 : (a1->mUnk_070 == gSoundFalloffs[3].mUnk_20 ? 3 : 4);
         buf.mUnk_00 = 0x17e;
         buf.mUnk_04 = &a1->mUnk_004;
         buf.mUnk_08 = k;

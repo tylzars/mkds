@@ -60,9 +60,9 @@ void func_020e5bd4(u32 a, Unk020e43a8 *p) {
 
     *(u16 *) &p->mUnk_a0.mUnk_18 = *(u16 *) &p->mUnk_a0.mUnk_18 + 1;
     if ((*(u16 *) &p->mUnk_a0.mUnk_18 & 0x1f) == 0 && (p->mUnk_00.mUnk_78 & 4) == 0) {
-        if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+        if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
             n = 2;
-        } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+        } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
             n = 3;
         } else {
             n = 4;

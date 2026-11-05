@@ -51,7 +51,7 @@ void func_020ff25c(Unk020ff438 *a) {
     if (a->mUnk_13c == 0) {
         return;
     }
-    func_021090c4(&a->mUnk_000.mUnk_000.mUnk_00, 0xda, 0x7f, 0);
+    StartSound(&a->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
 }
 
 #pragma thumb on

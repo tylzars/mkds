@@ -54,9 +54,9 @@ void func_0209905c(void *a, Unk0209905c *p) {
                 p->mUnk_c4 = 0;
                 p->mUnk_c8 = 0x5800;
                 if ((p->mUnk_00.mUnk_78 & 4) == 0) {
-                    if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+                    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                         t = 2;
-                    } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+                    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                         t = 3;
                     } else {
                         t = 4;

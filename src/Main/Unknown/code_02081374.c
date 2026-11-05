@@ -9,7 +9,7 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 void func_0208155c(s32 a, s32 b) {
-    Unk0201ca6c *p = data_0217ae84[a].mUnk_2c;
+    Unk0201ca6c *p = gKartEffects[a].mUnk_2c;
 
     if (p == NULL) {
         return;
@@ -22,11 +22,11 @@ void func_020813ec(s32 a, Vec3 *b) {
     Vec3 v;
     Vec3 w;
     Kart *q = GetKart(a);
-    Unk0217ae84 *e = &data_0217ae84[a];
+    KartEffects *e = &gKartEffects[a];
     Unk0201ca6c *p;
 
     if ((q->mUnk_4c & 0x8000) && e->mUnk_28 == NULL && q->mVelocityLength > 0x1000) {
-        p = func_0208b7bc(0x53, q->mPosSource);
+        p = StartEffect(0x53, q->mPosSource);
         p->mUnk_94 = q;
         p->mUnk_90 = func_02081374;
         e->mUnk_28 = p;
@@ -49,7 +49,7 @@ void func_020813ec(s32 a, Vec3 *b) {
 
 void func_02081374(Unk0201ca6c *p, s32 a) {
     Kart *q;
-    Unk0217ae84 *e;
+    KartEffects *e;
 
     if (a != 0) {
         return;
@@ -60,7 +60,7 @@ void func_02081374(Unk0201ca6c *p, s32 a) {
             return;
         }
     }
-    e = &data_0217ae84[q->mIndex];
+    e = &gKartEffects[q->mIndex];
     if (p == e->mUnk_28) {
         p->mUnk_24.mUnk_00_0 = 1;
         e->mUnk_28 = NULL;

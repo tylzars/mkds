@@ -403,7 +403,7 @@ void func_02068440(Kart *a, s32 b) {
     }
     c = func_0208c5b8(a->mIndex);
     func_0208c884(c, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
-    func_021090c4(&a->mUnk_00, 0xd2, 0x7f, 0);
+    StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
 }
 
 void func_020681f0(Kart *a) {
@@ -437,7 +437,7 @@ void func_020681f0(Kart *a) {
                 if (a->mUnk_2fc == 2) {
                     b = func_0208c5b8(a->mIndex);
                     func_0208c884(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
-                    func_021090c4(&a->mUnk_00, 0xd2, 0x7f, 0);
+                    StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
                 }
             }
         } else if ((u16) (e & 0x10) != 0) {
@@ -451,7 +451,7 @@ void func_020681f0(Kart *a) {
                     if (a->mUnk_2fc == 2) {
                         b = func_0208c5b8(a->mIndex);
                         func_0208c884(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
-                        func_021090c4(&a->mUnk_00, 0xd2, 0x7f, 0);
+                        StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
                     }
                 }
             } else {

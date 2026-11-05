@@ -333,12 +333,12 @@ void func_01ff9c40(Kart *p) {
 
 void func_01ff9b70(Kart *p) {
     Unk0208c5b8 *a;
-    Unk0217ae84 *b;
+    KartEffects *b;
     u32 f;
 
     if (p->mUnk_4c & 0x8000) {
         a = func_0208c5b8(p->mIndex);
-        b = func_020846a8(p->mIndex);
+        b = GetKartEffects(p->mIndex);
         func_0208cb8c(a, p);
         func_0208d4c4(a, p);
         func_0208c930(a, b->mUnk_4c, b->mUnk_34);

@@ -56,9 +56,9 @@ typedef struct Unk0218b928_local {
 } Unk0218b928_local;
 void func_ov001_0218b928(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_0208b7bc(0x418, &a->mUnk_000.mPos);
-    func_0208b7bc(0x417, &a->mUnk_000.mPos);
-    func_0208b7bc(0x416, &a->mUnk_000.mPos);
+    StartEffect(0x418, &a->mUnk_000.mPos);
+    StartEffect(0x417, &a->mUnk_000.mPos);
+    StartEffect(0x416, &a->mUnk_000.mPos);
     {
         Unk0218b928_local local = {0x225, 0, 0xf, 0};
 
@@ -140,7 +140,7 @@ void func_ov001_0218b770(Unk02188950 *a) {
 void func_ov001_0218b72c(Unk02188950 *a) {
     CreateParkedMapObjects((u32) MAP_OBJECT_KIND_KURIBO, 0x32, a);
     a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) 0xf, (&a->mUnk_000.mPos));
+    InitSoundSource((SoundSource *) (a->mUnk_000.mUnk_94), (u32) 0xf, (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cc6c[15];
 }
 

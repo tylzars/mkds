@@ -75,7 +75,7 @@ void func_0208d6b0(Unk0208c5b8 *p) {
     }
     p->mUnk_3c = 0;
     for (i = 0; i < 2; i++) {
-        p->mUnk_00[i] = func_0208b7bc(p->mUnk_4c, &data_02155fcc);
+        p->mUnk_00[i] = StartEffect(p->mUnk_4c, &data_02155fcc);
         p->mUnk_00[i]->mUnk_72 = 0x7fff;
         p->mUnk_00[i]->mUnk_80_8 = 0x1c;
         p->mUnk_00[i]->mUnk_6c = 0x1000;
@@ -98,7 +98,7 @@ void func_0208d650(Unk0208c5b8 *p) {
 
 void func_0208d4c4(Unk0208c5b8 *p, Kart *q) {
     u16 i;
-    Unk0217ae84 *e;
+    KartEffects *e;
     Vec3 a;
     Vec3 b;
     Vec3 c;
@@ -107,7 +107,7 @@ void func_0208d4c4(Unk0208c5b8 *p, Kart *q) {
     if (p->mUnk_3c == 0) {
         return;
     }
-    e = func_020846a8(q->mIndex);
+    e = GetKartEffects(q->mIndex);
     for (i = 0; i < 2; i++) {
         a.x = (s32) (((s64) q->mEffectVelocity.x * 0xb33) >> 12);
         a.y = (s32) (((s64) q->mEffectVelocity.y * 0xb33) >> 12);
@@ -133,8 +133,8 @@ void func_0208d46c(Unk0208c5b8 *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i] = func_0208b7bc(p->mUnk_50, &data_02155fcc);
-        p->mUnk_18[i] = func_0208b7bc(p->mUnk_54, &data_02155fcc);
+        p->mUnk_10[i] = StartEffect(p->mUnk_50, &data_02155fcc);
+        p->mUnk_18[i] = StartEffect(p->mUnk_54, &data_02155fcc);
     }
 }
 
@@ -142,7 +142,7 @@ void func_0208d428(Unk0208c5b8 *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i] = func_0208b7bc(p->mUnk_50, &data_02155fcc);
+        p->mUnk_10[i] = StartEffect(p->mUnk_50, &data_02155fcc);
     }
 }
 
@@ -371,7 +371,7 @@ void func_0208ccf0(Unk0208c5b8 *p) {
 }
 
 void func_0208cb8c(Unk0208c5b8 *p, Kart *q) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
     if (p->mUnk_34 != FALSE) {
         p->mUnk_30++;
@@ -406,7 +406,7 @@ void func_0208cb8c(Unk0208c5b8 *p, Kart *q) {
     if (p->mUnk_38 == 0) {
         return;
     }
-    e = func_020846a8(q->mIndex);
+    e = GetKartEffects(q->mIndex);
     p->mUnk_84(p, e->mUnk_4c, e->mUnk_34);
     if ((q->mUnk_44 & 0x10) == 0) {
         p->mUnk_6c(p);
@@ -434,8 +434,8 @@ void func_0208cacc(Unk0208c5b8 *p, int v1) {
     p->mUnk_40 = 0;
     p->mUnk_48 = 0;
     for (i = 0; i < 2; i++) {
-        p->mUnk_20[i] = func_0208b7bc(p->mUnk_58, &data_02155fcc);
-        p->mUnk_28[i] = func_0208b7bc(p->mUnk_5c, &data_02155fcc);
+        p->mUnk_20[i] = StartEffect(p->mUnk_58, &data_02155fcc);
+        p->mUnk_28[i] = StartEffect(p->mUnk_5c, &data_02155fcc);
     }
     p->mUnk_40 = 1;
 }
@@ -497,7 +497,7 @@ void func_0208c884(Unk0208c5b8 *p, int v1) {
     p->mUnk_44 = FALSE;
     p->mUnk_4a = 0;
     for (i = 0; i < 2; i++) {
-        p->mUnk_08[i] = func_0208b7bc(0x7e, &data_02155fcc);
+        p->mUnk_08[i] = StartEffect(0x7e, &data_02155fcc);
     }
     p->mUnk_44 = TRUE;
 }

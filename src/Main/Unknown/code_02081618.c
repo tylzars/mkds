@@ -28,32 +28,32 @@
 #include "code_02147288.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-Unk0217ae84 *func_020846a8(int arg0) {
+KartEffects *GetKartEffects(int arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_0217ae84;
+    value2 = (u32) &gKartEffects;
     value1 = 0x58u;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value0 = (value1) * (value0) + (value2);
-    return (Unk0217ae84 *) value0;
+    return (KartEffects *) value0;
 }
 
-void func_020845cc(u32 a) {
-    Unk0217ae84 *e;
+void InitKartEffects(u32 a) {
+    KartEffects *e;
     u16 i;
     u16 j;
 
     i = 0;
-    data_0217ae84 = HeapAlloc(GetHeap(func_020364e8()), a * 0x58);
+    gKartEffects = HeapAlloc(GetHeap(func_020364e8()), a * 0x58);
     data_0217ae70 = a;
     for (; i < a; i++) {
-        e = &data_0217ae84[i];
-        e->mUnk_0c = NULL;
+        e = &gKartEffects[i];
+        e->mCurrentEffect = NULL;
         e->mUnk_28 = NULL;
         e->mUnk_2c = NULL;
         e->mUnk_30 = NULL;
-        e->mUnk_00 = -1;
+        e->mCurrentEffectId = -1;
         e->mUnk_20 = e->mUnk_24 = 0;
         for (j = 0; j < 2; j++) {
             e->mUnk_10[j].mUnk_00 = e->mUnk_10[j].mUnk_04 = 0;
@@ -65,12 +65,12 @@ void func_020845cc(u32 a) {
 
 void func_02084478(Kart *p) {
     u16 i;
-    Unk0217ae84 *e;
+    KartEffects *e;
     Vec3 q;
     Vec3 w;
     Vec3 v;
 
-    e = &data_0217ae84[p->mIndex];
+    e = &gKartEffects[p->mIndex];
     p->mUnk_174 = *p->mPosSource;
     for (i = 0; i < 2; i++) {
         v = p->mKartModelsEntry->mUnk_020->mUnk_14[i + 2];
@@ -91,13 +91,13 @@ void func_02084478(Kart *p) {
 }
 
 void func_0208442c(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
-    if (e->mUnk_0c != NULL) {
-        e->mUnk_0c->mUnk_98_8 = 1;
-        e->mUnk_0c = NULL;
-        e->mUnk_00 = -1;
+    e = &gKartEffects[p->mIndex];
+    if (e->mCurrentEffect != NULL) {
+        e->mCurrentEffect->mUnk_98_8 = 1;
+        e->mCurrentEffect = NULL;
+        e->mCurrentEffectId = -1;
     }
     func_02083928(p, 0);
 }
@@ -113,61 +113,61 @@ void func_02084384(Kart *p) {
 }
 
 void func_02084334(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
-    if (e->mUnk_0c != NULL) {
-        e->mUnk_0c->mUnk_98_8 = 1;
-        e->mUnk_0c = NULL;
-        e->mUnk_00 = -1;
+    e = &gKartEffects[p->mIndex];
+    if (e->mCurrentEffect != NULL) {
+        e->mCurrentEffect->mUnk_98_8 = 1;
+        e->mCurrentEffect = NULL;
+        e->mCurrentEffectId = -1;
     }
     func_02083de8(2, p);
 }
 
 void func_020842ac(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
-    if (e->mUnk_0c != NULL) {
-        e->mUnk_0c->mUnk_98_8 = 1;
-        e->mUnk_0c = NULL;
-        e->mUnk_00 = -1;
+    e = &gKartEffects[p->mIndex];
+    if (e->mCurrentEffect != NULL) {
+        e->mCurrentEffect->mUnk_98_8 = 1;
+        e->mCurrentEffect = NULL;
+        e->mCurrentEffectId = -1;
     }
     data_02155968.mUnk_18(&data_02155968.mUnk_00[data_0217ae8c[p->mIndex]], data_02155968.mUnk_1c, p);
 }
 
 void func_02084224(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
-    if (e->mUnk_0c != NULL) {
-        e->mUnk_0c->mUnk_98_8 = 1;
-        e->mUnk_0c = NULL;
-        e->mUnk_00 = -1;
+    e = &gKartEffects[p->mIndex];
+    if (e->mCurrentEffect != NULL) {
+        e->mCurrentEffect->mUnk_98_8 = 1;
+        e->mCurrentEffect = NULL;
+        e->mCurrentEffectId = -1;
     }
     data_02155988.mUnk_18(&data_02155988.mUnk_00[data_0217ae8c[p->mIndex]], data_02155988.mUnk_1c, p);
 }
 
 void func_0208419c(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
-    if (e->mUnk_0c != NULL) {
-        e->mUnk_0c->mUnk_98_8 = 1;
-        e->mUnk_0c = NULL;
-        e->mUnk_00 = -1;
+    e = &gKartEffects[p->mIndex];
+    if (e->mCurrentEffect != NULL) {
+        e->mCurrentEffect->mUnk_98_8 = 1;
+        e->mCurrentEffect = NULL;
+        e->mCurrentEffectId = -1;
     }
     data_021559a8.mUnk_18(&data_021559a8.mUnk_00[data_0217ae8c[p->mIndex]], data_021559a8.mUnk_1c, p);
 }
 
 void func_02084114(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
-    if (e->mUnk_0c != NULL) {
-        e->mUnk_0c->mUnk_98_8 = 1;
-        e->mUnk_0c = NULL;
-        e->mUnk_00 = -1;
+    e = &gKartEffects[p->mIndex];
+    if (e->mCurrentEffect != NULL) {
+        e->mCurrentEffect->mUnk_98_8 = 1;
+        e->mCurrentEffect = NULL;
+        e->mCurrentEffectId = -1;
     }
     data_021559c8.mUnk_18(&data_021559c8.mUnk_00[data_0217ae8c[p->mIndex]], data_021559c8.mUnk_1c, p);
 }
@@ -187,7 +187,7 @@ void func_02084034(u32 a, Kart *p) {
     if (data_0217ae80 != NULL) {
         data_0217ae80->mUnk_24.mUnk_00_0 = 1;
     }
-    o = func_0208b7bc(data_021557f8[a], &data_02155a14);
+    o = StartEffect(data_021557f8[a], &data_02155a14);
     o->mUnk_98 = 0;
     o->mUnk_94 = p;
     o->mUnk_90 = func_02083680;
@@ -195,20 +195,20 @@ void func_02084034(u32 a, Kart *p) {
 }
 
 void func_02083f6c(s32 a, Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
     if (p->mUnk_4c & 0x8000) {
         data_02155830[a](p);
         return;
     }
-    e = &data_0217ae84[p->mIndex];
-    if (e->mUnk_0c != NULL) {
-        e->mUnk_0c->mUnk_98_8 = 1;
-        e->mUnk_0c = NULL;
-        e->mUnk_00 = -1;
+    e = &gKartEffects[p->mIndex];
+    if (e->mCurrentEffect != NULL) {
+        e->mCurrentEffect->mUnk_98_8 = 1;
+        e->mCurrentEffect = NULL;
+        e->mCurrentEffectId = -1;
     }
     func_02083928(p, 0);
-    e = &data_0217ae84[p->mIndex];
+    e = &gKartEffects[p->mIndex];
     if (e->mUnk_20 != 0) {
         e->mUnk_20->mUnk_98_8 = 1;
         e->mUnk_20 = 0;
@@ -220,13 +220,13 @@ void func_02083f6c(s32 a, Kart *p) {
 }
 
 void func_02083ec4(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
     if (p->mUnk_4c & 0x8000) {
         func_02083a24(&data_02155968.mUnk_00[data_0217ae8c[p->mIndex]], 1, p);
         return;
     }
-    e = &data_0217ae84[p->mIndex];
+    e = &gKartEffects[p->mIndex];
     if (e->mUnk_20 != 0) {
         e->mUnk_20->mUnk_98_8 = 1;
         e->mUnk_20 = 0;
@@ -240,7 +240,7 @@ void func_02083ec4(Kart *p) {
 void func_02083de8(s32 a, Kart *p) {
     Unk02155908 *t;
     Unk02155908_00 *n;
-    Unk0217ae84 *e;
+    KartEffects *e;
     u16 i;
     u16 j;
 
@@ -249,7 +249,7 @@ void func_02083de8(s32 a, Kart *p) {
     if (t->mUnk_18(n, t->mUnk_1c, p) == 0) {
         return;
     }
-    e = &data_0217ae84[p->mIndex];
+    e = &gKartEffects[p->mIndex];
     for (i = 0; i < n->mUnk_00; i++) {
         for (j = 0; j < 2; j++) {
             if (e->mUnk_10[i].mUnk_00_a[j] != 0) {
@@ -260,19 +260,19 @@ void func_02083de8(s32 a, Kart *p) {
 }
 
 BOOL func_02083d4c(Unk02155908_00 *a, s32 b, Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
     Unk0201ca6c *o;
 
-    e = &data_0217ae84[p->mIndex];
-    if (a->mUnk_04[0] == e->mUnk_00) {
+    e = &gKartEffects[p->mIndex];
+    if (a->mUnk_04[0] == e->mCurrentEffectId) {
         return FALSE;
     }
-    if (e->mUnk_0c != NULL) {
-        e->mUnk_0c->mUnk_98_8 = 1;
+    if (e->mCurrentEffect != NULL) {
+        e->mCurrentEffect->mUnk_98_8 = 1;
     }
-    o = func_0208b7bc(a->mUnk_04[0], &data_02155a14);
-    e->mUnk_0c = o;
-    e->mUnk_00 = a->mUnk_04[0];
+    o = StartEffect(a->mUnk_04[0], &data_02155a14);
+    e->mCurrentEffect = o;
+    e->mCurrentEffectId = a->mUnk_04[0];
     o->mUnk_94 = p;
     o->mUnk_98_0 = b;
     o->mUnk_90 = func_02083484;
@@ -280,7 +280,7 @@ BOOL func_02083d4c(Unk02155908_00 *a, s32 b, Kart *p) {
 }
 
 s32 func_02083c18(Unk02155908_00 *a, s32 b, Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
     Unk0201ca6c *o;
     s32 r;
     u16 i;
@@ -288,7 +288,7 @@ s32 func_02083c18(Unk02155908_00 *a, s32 b, Kart *p) {
 
     r = i = 0;
     for (; i < a->mUnk_00; i++) {
-        e = &data_0217ae84[p->mIndex];
+        e = &gKartEffects[p->mIndex];
         j = 0;
         if (a->mUnk_04[i] != e->mUnk_04[i]) {
             if (e->mUnk_10[i].mUnk_00 != 0) {
@@ -299,8 +299,8 @@ s32 func_02083c18(Unk02155908_00 *a, s32 b, Kart *p) {
             }
             e->mUnk_04[i] = a->mUnk_04[i];
             do {
-                o = func_0208b7bc(e->mUnk_04[i], &data_02155a14);
-                data_0217ae84[p->mIndex].mUnk_10[i].mUnk_00_a[j] = o;
+                o = StartEffect(e->mUnk_04[i], &data_02155a14);
+                gKartEffects[p->mIndex].mUnk_10[i].mUnk_00_a[j] = o;
                 o->mUnk_94 = p;
                 o->mUnk_98_24 = j;
                 j++;
@@ -313,7 +313,7 @@ s32 func_02083c18(Unk02155908_00 *a, s32 b, Kart *p) {
 }
 
 s32 func_02083ae0(Unk02155908_00 *a, s32 b, Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
     Unk0201ca6c *o;
     s32 r;
     u16 i;
@@ -321,7 +321,7 @@ s32 func_02083ae0(Unk02155908_00 *a, s32 b, Kart *p) {
 
     r = i = 0;
     for (; i < a->mUnk_00; i++) {
-        e = &data_0217ae84[p->mIndex];
+        e = &gKartEffects[p->mIndex];
         j = 0;
         if (a->mUnk_04[i] != e->mUnk_04[i]) {
             if (e->mUnk_10[i].mUnk_00 != 0) {
@@ -332,8 +332,8 @@ s32 func_02083ae0(Unk02155908_00 *a, s32 b, Kart *p) {
             }
             e->mUnk_04[i] = a->mUnk_04[i];
             do {
-                o = func_0208b7bc(e->mUnk_04[i], &data_02155a14);
-                data_0217ae84[p->mIndex].mUnk_10[i].mUnk_00_a[j] = o;
+                o = StartEffect(e->mUnk_04[i], &data_02155a14);
+                gKartEffects[p->mIndex].mUnk_10[i].mUnk_00_a[j] = o;
                 o->mUnk_94 = p;
                 o->mUnk_98_24 = j;
                 j++;
@@ -347,17 +347,17 @@ s32 func_02083ae0(Unk02155908_00 *a, s32 b, Kart *p) {
 }
 
 BOOL func_02083a24(Unk02155908_00 *a, s32 b, Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
     Unk0201ca6c *o;
     u16 i;
 
-    e = &data_0217ae84[p->mIndex];
+    e = &gKartEffects[p->mIndex];
     if (e->mUnk_20 != 0 || e->mUnk_24 != 0) {
         return FALSE;
     }
     for (i = 0; i < 2; i++) {
-        o = func_0208b7bc(a->mUnk_04[0], &data_02155a14);
-        data_0217ae84[p->mIndex].mUnk_20_a[i] = o;
+        o = StartEffect(a->mUnk_04[0], &data_02155a14);
+        gKartEffects[p->mIndex].mUnk_20_a[i] = o;
         o->mUnk_94 = p;
         o->mUnk_98_24 = i;
         o->mUnk_98_0 = (u8) b;
@@ -367,22 +367,22 @@ BOOL func_02083a24(Unk02155908_00 *a, s32 b, Kart *p) {
 }
 
 void func_020839d8(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
-    if (e->mUnk_0c != NULL) {
-        e->mUnk_0c->mUnk_98_8 = 1;
-        e->mUnk_0c = NULL;
-        e->mUnk_00 = -1;
+    e = &gKartEffects[p->mIndex];
+    if (e->mCurrentEffect != NULL) {
+        e->mCurrentEffect->mUnk_98_8 = 1;
+        e->mCurrentEffect = NULL;
+        e->mCurrentEffectId = -1;
     }
     func_02083928(p, 0);
 }
 
 void func_02083928(Kart *p, s32 a) {
     u16 i;
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
+    e = &gKartEffects[p->mIndex];
     for (i = 0; i < 2; i++) {
         if (e->mUnk_10[i].mUnk_00 != 0 || e->mUnk_10[i].mUnk_04 != 0) {
             if (a == 0) {
@@ -399,9 +399,9 @@ void func_02083928(Kart *p, s32 a) {
 }
 
 void func_020838dc(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
+    e = &gKartEffects[p->mIndex];
     if (e->mUnk_20 != 0) {
         e->mUnk_20->mUnk_98_8 = 1;
         e->mUnk_20 = 0;
@@ -413,16 +413,16 @@ void func_020838dc(Kart *p) {
 }
 
 void func_02083834(Kart *p) {
-    Unk0217ae84 *e;
+    KartEffects *e;
 
-    e = &data_0217ae84[p->mIndex];
-    if (e->mUnk_0c != NULL) {
-        func_0208b710(e->mUnk_0c);
-        e->mUnk_0c = NULL;
-        e->mUnk_00 = -1;
+    e = &gKartEffects[p->mIndex];
+    if (e->mCurrentEffect != NULL) {
+        func_0208b710(e->mCurrentEffect);
+        e->mCurrentEffect = NULL;
+        e->mCurrentEffectId = -1;
     }
     func_02083928(p, 1);
-    e = &data_0217ae84[p->mIndex];
+    e = &gKartEffects[p->mIndex];
     if (e->mUnk_20 != 0) {
         func_0208b710(e->mUnk_20);
         e->mUnk_20 = 0;
@@ -523,7 +523,7 @@ void func_0208335c(Unk0201ca6c *p, s32 a) {
     s32 x;
     Kart *q;
     u32 n;
-    Unk0217ae84 *e;
+    KartEffects *e;
     u32 m;
     u32 r;
     u32 f;
@@ -532,7 +532,7 @@ void func_0208335c(Unk0201ca6c *p, s32 a) {
         return;
     }
     q = p->mUnk_94;
-    e = &data_0217ae84[q->mIndex];
+    e = &gKartEffects[q->mIndex];
     n = p->mUnk_98_b.mUnk_02;
     m = p->mUnk_98_b.mUnk_01;
     r = p->mUnk_98_b.mUnk_03;
@@ -564,7 +564,7 @@ void func_020831bc(Unk0201ca6c *p, s32 a) {
     Vec3 v;
     Kart *q;
     u32 n;
-    Unk0217ae84 *e;
+    KartEffects *e;
     u32 m;
     u32 r;
     s32 k;
@@ -574,7 +574,7 @@ void func_020831bc(Unk0201ca6c *p, s32 a) {
         return;
     }
     q = p->mUnk_94;
-    e = &data_0217ae84[q->mIndex];
+    e = &gKartEffects[q->mIndex];
     v = q->mEffectVelocity;
     n = p->mUnk_98_b.mUnk_02;
     m = p->mUnk_98_b.mUnk_01;
@@ -613,7 +613,7 @@ void func_02082fec(Unk0201ca6c *p, s32 a) {
     u32 m;
     Kart *q;
     u32 n;
-    Unk0217ae84 *e;
+    KartEffects *e;
     u32 f;
     u32 r;
     s32 k;
@@ -623,7 +623,7 @@ void func_02082fec(Unk0201ca6c *p, s32 a) {
         return;
     }
     q = p->mUnk_94;
-    e = &data_0217ae84[q->mIndex];
+    e = &gKartEffects[q->mIndex];
     v = q->mEffectVelocity;
     g = 1;
     f = 1;
@@ -784,24 +784,24 @@ void func_02082aec(void) {
             Unk0201ca6c *p;
 
             if (data_021759c0->mUnk_00c == 0) {
-                p = func_0208b7bc(0x24, &data_02155a14);
+                p = StartEffect(0x24, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_02082750;
-                p = func_0208b7bc(0x27, &data_02155a14);
+                p = StartEffect(0x27, &data_02155a14);
                 data_0217ae88 = p;
                 p->mUnk_90 = func_02082a10;
             } else if (func_02062ec4() != 0) {
-                p = func_0208b7bc(0x3d, &data_02155a14);
+                p = StartEffect(0x3d, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_020824d0;
-                p = func_0208b7bc(0x3f, &data_02155a14);
+                p = StartEffect(0x3f, &data_02155a14);
                 data_0217ae88 = p;
                 p->mUnk_90 = func_0208266c;
             } else {
-                p = func_0208b7bc(0x3c, &data_02155a14);
+                p = StartEffect(0x3c, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_020824d0;
-                p = func_0208b7bc(0x3f, &data_02155a14);
+                p = StartEffect(0x3f, &data_02155a14);
                 data_0217ae88 = p;
                 p->mUnk_90 = func_0208266c;
             }
@@ -811,18 +811,18 @@ void func_02082aec(void) {
             Unk0201ca6c *p;
 
             if (func_02062ec4() != 0) {
-                p = func_0208b7bc(0x3e, &data_02155a14);
+                p = StartEffect(0x3e, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_02082034;
             } else if (data_021759c0->mUnk_00c == 0) {
-                p = func_0208b7bc(0x29, &data_02155a14);
+                p = StartEffect(0x29, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_020821cc;
-                p = func_0208b7bc(0x25, &data_02155a14);
+                p = StartEffect(0x25, &data_02155a14);
                 data_0217ae88 = p;
                 p->mUnk_90 = func_02082368;
             } else {
-                p = func_0208b7bc(0x29, &data_02155a14);
+                p = StartEffect(0x29, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_02082034;
             }
@@ -1062,7 +1062,7 @@ void func_02081f30(void) {
         case 0x25:
             if (data_0217ae78 != NULL) {
                 func_0208b710(data_0217ae78);
-                p = func_0208b7bc(0x3c, &data_02155a14);
+                p = StartEffect(0x3c, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_020824d0;
             }
@@ -1070,7 +1070,7 @@ void func_02081f30(void) {
                 return;
             }
             func_0208b710(data_0217ae88);
-            p = func_0208b7bc(0x3f, &data_02155a14);
+            p = StartEffect(0x3f, &data_02155a14);
             data_0217ae88 = p;
             p->mUnk_90 = func_0208266c;
             break;
@@ -1244,7 +1244,7 @@ void func_02081a40(s32 a) {
         if (e->mUnk_00[i] != NULL) {
             func_0208b710(e->mUnk_00[i]);
         }
-        e->mUnk_00[i] = func_0208b7bc(data_02165978[i], &GetKart(a)->mUnk_1d8);
+        e->mUnk_00[i] = StartEffect(data_02165978[i], &GetKart(a)->mUnk_1d8);
         i = i + 1;
     } while (i < 3);
 }
@@ -1314,16 +1314,16 @@ void func_02081768(s32 a) {
 }
 
 void func_02081724(s32 a) {
-    Unk0217ae84 *e = &data_0217ae84[a];
+    KartEffects *e = &gKartEffects[a];
 
     if (e->mUnk_2c != NULL) {
         func_0208b710(e->mUnk_2c);
     }
-    e->mUnk_2c = func_0208b7bc(0x63, &data_02155a14);
+    e->mUnk_2c = StartEffect(0x63, &data_02155a14);
 }
 
 void func_02081618(s32 a, Vec3 *b) {
-    Unk0217ae84 *e = &data_0217ae84[a];
+    KartEffects *e = &gKartEffects[a];
     Unk0201ca6c *p = e->mUnk_2c;
     Kart *q;
     Vec3 *s;

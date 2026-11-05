@@ -16,6 +16,9 @@ typedef struct Unk02109468 {
 
 void func_0210a53c(Kart *a);
 void func_02109468(void);
-s32 func_021092b0(Unk0210bcf4 *p);
+// Returns the volume of a source from the distance in the mUnk_10 member of p and the forward distance in its mUnk_08
+// member, by the SoundFalloff of the source: the maximum up to the inner distance, falling to 0 at the outer distance.
+// Writes nothing.
+s32 ComputeSoundVolume(Unk0210bcf4 *p);
 s32 func_0210920c(Unk0210bcf4 *p);
 u32 func_02109184(Unk0210bcf4 *p);

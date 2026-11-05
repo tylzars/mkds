@@ -11,7 +11,8 @@ struct CourseMapRow;
 
 // Object behind MapObject.mUnk_94, passed to func_0210cfbc (which reads its halfword at 0x34).
 typedef struct Unk020e71a0_94 {
-    /* 00 */ Unk0210bfbc mUnk_00;
+    // Sound source of the map object (the sounds started on it).
+    /* 00 */ SoundSource mSoundSource;
     /* 44 */ Unk0210b7ec mUnk_44;
     /* 54 */ u8 mUnk_54[0xc];
 } Unk020e71a0_94;

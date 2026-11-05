@@ -106,8 +106,8 @@ void ReleaseItemObject(ItemObject *param_1) {
         param_1->mUnk_da = func_020d5344(param_1->mUnk_da);
     }
     if ((param_1->mFlags & 0x400000) != 0) {
-        func_02109054(&param_1->mUnk_00);
-        param_1->mUnk_00.mUnk_30 = NULL;
+        func_02109054(&param_1->mSoundSource);
+        param_1->mSoundSource.mUnk_30 = NULL;
         param_1->mFlags &= ~0x400000;
     }
     param_1->mFlags |= 4;

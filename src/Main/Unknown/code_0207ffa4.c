@@ -40,7 +40,7 @@ void func_02081060(Kart *p) {
     if (data_0217ae94[p->mIndex] != NULL) {
         return;
     }
-    data_0217ae94[p->mIndex] = func_0208b7bc(0x80, &data_02155a14);
+    data_0217ae94[p->mIndex] = StartEffect(0x80, &data_02155a14);
     e = data_0217ae94[p->mIndex];
     e->mUnk_98_24 = p->mIndex;
     e->mUnk_94 = 0;
@@ -73,7 +73,7 @@ void func_02080f44(Kart *p) {
     if (data_0217ae74[p->mIndex] != NULL) {
         return;
     }
-    data_0217ae74[p->mIndex] = func_0208b7bc(0x7f, &data_02155a14);
+    data_0217ae74[p->mIndex] = StartEffect(0x7f, &data_02155a14);
     e = data_0217ae74[p->mIndex];
     e->mUnk_98_24 = p->mIndex;
     e->mUnk_94 = (void *) 1;

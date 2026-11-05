@@ -69,7 +69,7 @@ void func_0206cdd4(Kart *p) {
         p->mUnk_48 |= 0x80000;
         p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-            func_0207a6b0()->mUnk_04++;
+            GetEntryKartCounters()->mUnk_04++;
             // placeholder: the same test twice gives the original's two loads and compares
             if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_ov001_0218171c();
@@ -131,7 +131,7 @@ void func_0206cc60(Kart *p, int arg) {
     if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
         return;
     }
-    func_02109078(&p->mUnk_00, 0xd1, 0x7f, 0);
+    StartSoundWhileRequested(&p->mSoundSource, 0xd1, 0x7f, 0);
 }
 
 void func_0206c5e4(Kart *p) {
@@ -214,7 +214,7 @@ recheck:
                 p->mUnk_48 |= 0x80000;
                 p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-                    func_0207a6b0()->mUnk_04++;
+                    GetEntryKartCounters()->mUnk_04++;
                     // placeholder: the same test twice gives the original's two loads and compares
                     if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
                         func_ov001_0218171c();

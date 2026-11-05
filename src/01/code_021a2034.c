@@ -45,7 +45,7 @@ void func_ov001_021a2284(void *p0, Unk021a2048 *p1) {
         b->mUnk_00 = (s64) b->mUnk_08 * (s64) b->mUnk_00 + b->mUnk_10;
         p1->mUnk_a0 = (u16) (((s64) (b->mUnk_00 >> 32) * 0x46) >> 32) + 0x46;
         if (!(p1->mUnk_02 & 0x12)) {
-            func_0208b7bc(0x435, &p1->mUnk_04);
+            StartEffect(0x435, &p1->mUnk_04);
         }
     }
 }
@@ -70,33 +70,33 @@ void func_ov001_021a2048(void *p0, Unk021a2048 *p1) {
             p1->mUnk_a0 = 1;
             switch (p1->mUnk_9c->mUnk_28) {
                 case 0:
-                    func_0208b7bc(0x400, &v);
-                    func_0208b7bc(0x3ff, &v);
-                    func_0208b7bc(0x402, &v);
-                    func_0208b7bc(0x403, &v);
-                    func_0208b7bc(0x404, &v);
-                    func_0208b7bc(0x405, &v);
-                    func_0208b7bc(0x406, &v);
-                    func_0208b7bc(0x407, &v);
-                    func_0208b7bc(0x408, &v);
-                    func_0208b7bc(0x409, &v);
-                    func_0208b7bc(0x40a, &v);
-                    func_0208b7bc(0x40b, &v);
-                    p1->mUnk_a4 = func_0208b7bc(0x42f, &g->mPos);
+                    StartEffect(0x400, &v);
+                    StartEffect(0x3ff, &v);
+                    StartEffect(0x402, &v);
+                    StartEffect(0x403, &v);
+                    StartEffect(0x404, &v);
+                    StartEffect(0x405, &v);
+                    StartEffect(0x406, &v);
+                    StartEffect(0x407, &v);
+                    StartEffect(0x408, &v);
+                    StartEffect(0x409, &v);
+                    StartEffect(0x40a, &v);
+                    StartEffect(0x40b, &v);
+                    p1->mUnk_a4 = StartEffect(0x42f, &g->mPos);
                     break;
                 case 1:
                     break;
                 case 2:
-                    func_0208b7bc(0x43c, &v);
-                    func_0208b7bc(0x439, &v);
-                    func_0208b7bc(0x43a, &v);
-                    func_0208b7bc(0x43b, &v);
-                    func_0208b7bc(0x438, &v);
-                    func_0208b7bc(0x43d, &v);
-                    func_0208b7bc(0x43e, &v);
-                    func_0208b7bc(0x43f, &v);
+                    StartEffect(0x43c, &v);
+                    StartEffect(0x439, &v);
+                    StartEffect(0x43a, &v);
+                    StartEffect(0x43b, &v);
+                    StartEffect(0x438, &v);
+                    StartEffect(0x43d, &v);
+                    StartEffect(0x43e, &v);
+                    StartEffect(0x43f, &v);
                     ComputePointAheadOfCamera(p1, g, &v);
-                    p1->mUnk_a4 = func_0208b7bc(0x437, &v);
+                    p1->mUnk_a4 = StartEffect(0x437, &v);
                     break;
             }
             break;

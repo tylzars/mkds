@@ -10,11 +10,11 @@
 
 void func_0210a5a8(Kart *a, Unk0210a5a8 *b) {
     if (a->mUnk_7c & KART_7C_ENTRY_KIND_2) {
-        a->mUnk_00.mUnk_2c = (void (*)(void *, void *, u32)) func_0210ab44;
+        a->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) func_0210ab44;
     } else {
-        a->mUnk_00.mUnk_2c = (void (*)(void *, void *, u32)) func_0210aa14;
+        a->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) func_0210aa14;
     }
-    a->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a76c;
+    a->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a76c;
     if (GetCurrentSceneNumber() == 2 || a->mIndex != data_021759c0->mEntryIndex) {
         b->mUnk_3c = func_0210a63c;
     } else {

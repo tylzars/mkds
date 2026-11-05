@@ -15,8 +15,8 @@
 
 #pragma opt_loop_invariants off
 
-void func_0210cc3c(Unk0210bfbc *p) {
-    Unk0210bf24 *a;
+void func_0210cc3c(SoundSource *p) {
+    PlayingSound *a;
     u32 v;
     u32 f;
 
@@ -49,7 +49,7 @@ void func_0210cc3c(Unk0210bfbc *p) {
         }
         p->mUnk_34 &= ~4;
     }
-    a = p->mUnk_0c.mHead;
+    a = p->mPlayingSounds.mHead;
     while (a != NULL) {
         f = (a->mUnk_19 & 8) != 0;
         a->mUnk_19 &= ~8;
@@ -57,12 +57,12 @@ void func_0210cc3c(Unk0210bfbc *p) {
             if (a->mUnk_19 & 4) {
                 if (f == 0) {
                     v = (u32) a;
-                    a = ListGetNext(&p->mUnk_0c, a);
+                    a = ListGetNext(&p->mPlayingSounds, a);
                     func_0212c6f0((Unk0212c400 **) v, 0);
-                    ((Unk0210bf24 *) v)->mUnk_19 &= ~4;
-                    ((Unk0210bf24 *) v)->mUnk_19 &= ~8;
-                    ((Unk0210bf24 *) v)->mUnk_19 &= ~2;
-                    func_0210bc54(&p->mUnk_0c, (u8 *) v);
+                    ((PlayingSound *) v)->mUnk_19 &= ~4;
+                    ((PlayingSound *) v)->mUnk_19 &= ~8;
+                    ((PlayingSound *) v)->mUnk_19 &= ~2;
+                    func_0210bc54(&p->mPlayingSounds, (u8 *) v);
                     v = 1;
                     continue;
                 }
@@ -74,22 +74,22 @@ void func_0210cc3c(Unk0210bfbc *p) {
             }
         } else if ((a->mUnk_19 & 2) == 0) {
             v = (u32) a;
-            a = ListGetNext(&p->mUnk_0c, a);
+            a = ListGetNext(&p->mPlayingSounds, a);
             func_0212c6f0((Unk0212c400 **) v, 0);
-            ((Unk0210bf24 *) v)->mUnk_19 &= ~4;
-            ((Unk0210bf24 *) v)->mUnk_19 &= ~8;
-            ((Unk0210bf24 *) v)->mUnk_19 &= ~2;
-            func_0210bc54(&p->mUnk_0c, (u8 *) v);
+            ((PlayingSound *) v)->mUnk_19 &= ~4;
+            ((PlayingSound *) v)->mUnk_19 &= ~8;
+            ((PlayingSound *) v)->mUnk_19 &= ~2;
+            func_0210bc54(&p->mPlayingSounds, (u8 *) v);
             v = 1;
             continue;
         }
-        a = ListGetNext(&p->mUnk_0c, a);
+        a = ListGetNext(&p->mPlayingSounds, a);
     }
     if (v == 0) {
         return;
     }
     v = 3;
-    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
         if (a->mUnk_19 & 2) {
             v = 0;
             break;
@@ -121,12 +121,12 @@ static inline s32 func_0210ca4c_inline(u32 k, u8 a, u16 b) {
     return 0;
 }
 
-u32 func_0210ca4c(Unk0210bfbc *p) {
+u32 func_0210ca4c(SoundSource *p) {
     Unk0210bcf4 st;
     s32 n;
-    Unk0210bf24 *a;
+    PlayingSound *a;
 
-    n = p->mUnk_28;
+    n = p->mOwnerPosSource;
     st.mUnk_00 = p;
     st.mUnk_04 = n;
     st.mUnk_20 = NULL;
@@ -147,16 +147,16 @@ u32 func_0210ca4c(Unk0210bfbc *p) {
         func_0210c0bc(p);
         return 0;
     }
-    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
         n = -1;
         if (a->mUnk_19 & 2) {
-            n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mUnk_16);
+            n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mSoundId);
             p->mUnk_2c(p, a, n);
             a->mUnk_19 &= ~2;
         }
         if (a->mUnk_00 != NULL) {
             if (n == -1) {
-                n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mUnk_16);
+                n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mSoundId);
             }
             func_0212c678((Unk0212c400 **) a, st.mUnk_14);
             func_0212c5f4((Unk0212c400 **) a, n);
@@ -167,9 +167,9 @@ u32 func_0210ca4c(Unk0210bfbc *p) {
     return 1;
 }
 
-Unk0210bf24 *func_0210c86c(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
-    Unk0210bf24 *v;
-    Unk0210bf24 *w;
+PlayingSound *StartSoundEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
+    PlayingSound *v;
+    PlayingSound *w;
     LinkedList *u;
     u32 f;
 
@@ -180,17 +180,17 @@ Unk0210bf24 *func_0210c86c(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
     if ((a->mUnk_34 & 1) == 0) {
         return v;
     }
-    for (w = a->mUnk_0c.mHead; w != NULL; w = ListGetNext(&a->mUnk_0c, w)) {
-        f = (w->mUnk_16 == c) && (w->mUnk_18 == b);
+    for (w = a->mPlayingSounds.mHead; w != NULL; w = ListGetNext(&a->mPlayingSounds, w)) {
+        f = (w->mSoundId == c) && (w->mUnk_18 == b);
         if (f) {
-            func_0210c450(a, w, 0);
+            StopPlayingSound(a, w, 0);
             func_0210e328(w);
             func_0210bce0(&w->mUnk_08);
             w->mUnk_18 = 0;
-            w->mUnk_16 = 0;
+            w->mSoundId = 0;
             w->mUnk_19 = 0;
             w->mUnk_14 = 0;
-            w->mUnk_1a = 0x7f;
+            w->mVolume = 0x7f;
             v = w;
             break;
         }
@@ -201,23 +201,23 @@ Unk0210bf24 *func_0210c86c(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
         u = v->mUnk_10;
         if (u != NULL) {
             func_0210bc54(u, (u8 *) v);
-            func_0210bfbc((Unk0210bfbc *) (u - 1));
+            func_0210bfbc((SoundSource *) (u - 1));
         }
         func_0210cfe8(v);
     }
     func_0210e328(v);
     func_0210bce0(&v->mUnk_08);
     v->mUnk_18 = 0;
-    v->mUnk_16 = 0;
+    v->mSoundId = 0;
     v->mUnk_19 = 0;
     v->mUnk_14 = 0;
-    v->mUnk_1a = 0x7f;
+    v->mVolume = 0x7f;
     v->mUnk_18 = b;
-    v->mUnk_16 = c;
+    v->mSoundId = c;
     v->mUnk_19 |= 2;
-    v->mUnk_1a = d;
+    v->mVolume = d;
     v->mUnk_14 = e;
-    func_0210bc8c(&a->mUnk_0c, v);
+    func_0210bc8c(&a->mPlayingSounds, v);
     if (a->mUnk_18 != 0) {
         if (a->mUnk_18 != 3) {
             func_0210bc54(&data_0217d048[a->mUnk_18], (u8 *) a);
@@ -229,9 +229,9 @@ Unk0210bf24 *func_0210c86c(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
     return v;
 }
 
-Unk0210bf24 *func_0210c610(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
-    Unk0210bf24 *v;
-    Unk0210bf24 *w;
+PlayingSound *StartSoundWhileRequestedEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
+    PlayingSound *v;
+    PlayingSound *w;
     LinkedList *u;
     u32 f;
 
@@ -242,13 +242,13 @@ Unk0210bf24 *func_0210c610(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
     if ((a->mUnk_34 & 1) == 0) {
         return v;
     }
-    for (w = a->mUnk_0c.mHead; w != NULL; w = ListGetNext(&a->mUnk_0c, w)) {
+    for (w = a->mPlayingSounds.mHead; w != NULL; w = ListGetNext(&a->mPlayingSounds, w)) {
         if (w->mUnk_19 & 4) {
-            f = (w->mUnk_16 == c) && (w->mUnk_18 == b);
+            f = (w->mSoundId == c) && (w->mUnk_18 == b);
             if (f) {
                 if (w->mUnk_00 != NULL) {
                     w->mUnk_19 |= 8;
-                    w->mUnk_1a = d;
+                    w->mVolume = d;
                     w->mUnk_14 = e;
                     if (a->mUnk_18 == 3) {
                         func_0210bc8c(data_0217d054, a);
@@ -256,14 +256,14 @@ Unk0210bf24 *func_0210c610(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
                     }
                     return w;
                 }
-                func_0210c450(a, w, 0);
+                StopPlayingSound(a, w, 0);
                 func_0210e328(w);
                 func_0210bce0(&w->mUnk_08);
                 w->mUnk_18 = 0;
-                w->mUnk_16 = 0;
+                w->mSoundId = 0;
                 w->mUnk_19 = 0;
                 w->mUnk_14 = 0;
-                w->mUnk_1a = 0x7f;
+                w->mVolume = 0x7f;
                 v = w;
                 break;
             }
@@ -275,25 +275,25 @@ Unk0210bf24 *func_0210c610(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
         u = v->mUnk_10;
         if (u != NULL) {
             func_0210bc54(u, (u8 *) v);
-            func_0210bfbc((Unk0210bfbc *) (u - 1));
+            func_0210bfbc((SoundSource *) (u - 1));
         }
         func_0210cfe8(v);
     }
     func_0210e328(v);
     func_0210bce0(&v->mUnk_08);
     v->mUnk_18 = 0;
-    v->mUnk_16 = 0;
+    v->mSoundId = 0;
     v->mUnk_19 = 0;
     v->mUnk_14 = 0;
-    v->mUnk_1a = 0x7f;
+    v->mVolume = 0x7f;
     v->mUnk_18 = b;
-    v->mUnk_16 = c;
+    v->mSoundId = c;
     v->mUnk_19 |= 2;
-    v->mUnk_1a = d;
+    v->mVolume = d;
     v->mUnk_14 = e;
     v->mUnk_19 |= 4;
     v->mUnk_19 |= 8;
-    func_0210bc8c(&a->mUnk_0c, v);
+    func_0210bc8c(&a->mPlayingSounds, v);
     if (a->mUnk_18 != 0) {
         if (a->mUnk_18 != 3) {
             func_0210bc54(&data_0217d048[a->mUnk_18], (u8 *) a);
@@ -305,30 +305,30 @@ Unk0210bf24 *func_0210c610(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
     return v;
 }
 
-static inline u32 func_0210c558_inline(Unk0210bf24 *p, u32 b, u32 c) {
-    return p->mUnk_16 == c && p->mUnk_18 == b;
+static inline u32 func_0210c558_inline(PlayingSound *p, u32 b, u32 c) {
+    return p->mSoundId == c && p->mUnk_18 == b;
 }
 
-void func_0210c558(Unk0210bfbc *a, u32 b, u32 c, u32 d) {
-    Unk0210bf24 *v;
+void StopSoundEx(SoundSource *a, u32 b, u32 c, u32 d) {
+    PlayingSound *v;
     u32 f;
 
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
-    v = a->mUnk_0c.mHead;
+    v = a->mPlayingSounds.mHead;
     while (v != NULL) {
         f = (v->mUnk_00 != NULL) && func_0210c558_inline(v, b, c);
         if (f) {
-            func_0210c450(a, v, d);
+            StopPlayingSound(a, v, d);
             return;
         }
-        v = ListGetNext(&a->mUnk_0c, v);
+        v = ListGetNext(&a->mPlayingSounds, v);
     }
 }
 
-void func_0210c450(Unk0210bfbc *p, Unk0210bf24 *b, u32 c) {
-    Unk0210bf24 *a;
+void StopPlayingSound(SoundSource *p, PlayingSound *b, u32 c) {
+    PlayingSound *a;
     void *n;
     u32 v;
     u32 f;
@@ -337,9 +337,9 @@ void func_0210c450(Unk0210bfbc *p, Unk0210bf24 *b, u32 c) {
     b->mUnk_19 &= ~4;
     b->mUnk_19 &= ~8;
     b->mUnk_19 &= ~2;
-    func_0210bc54(&p->mUnk_0c, (u8 *) b);
+    func_0210bc54(&p->mPlayingSounds, (u8 *) b);
     v = 3;
-    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;
@@ -361,50 +361,50 @@ void func_0210c450(Unk0210bfbc *p, Unk0210bf24 *b, u32 c) {
     }
 }
 
-void func_0210c3a8(Unk0210bfbc *p) {
-    Unk0210bf24 *a;
+void func_0210c3a8(SoundSource *p) {
+    PlayingSound *a;
 
-    for (a = p->mUnk_0c.mHead; a != NULL; a = p->mUnk_0c.mHead) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
         func_0212c6f0((Unk0212c400 **) a, 0);
         a->mUnk_19 &= ~4;
         a->mUnk_19 &= ~8;
         a->mUnk_19 &= ~2;
-        func_0210bc54(&p->mUnk_0c, (u8 *) a);
+        func_0210bc54(&p->mPlayingSounds, (u8 *) a);
     }
     if (p->mUnk_18 != 3) {
         func_0210bc54(&data_0217d048[p->mUnk_18], (u8 *) p);
         p->mUnk_18 = 3;
     }
-    func_0210c1b0(p);
+    ReleaseSoundSource(p);
 }
 
-void func_0210c238(Unk0210bfbc *p, u32 b) {
-    Unk0210bf24 *a;
-    Unk0210bf24 *c;
+void func_0210c238(SoundSource *p, u32 b) {
+    PlayingSound *a;
+    PlayingSound *c;
     u32 v;
     u8 f;
 
     v = 0;
-    a = p->mUnk_0c.mHead;
+    a = p->mPlayingSounds.mHead;
     while (a != NULL) {
         if (a->mUnk_19 & 4) {
             c = a;
-            a = ListGetNext(&p->mUnk_0c, a);
+            a = ListGetNext(&p->mPlayingSounds, a);
             func_0212c6f0((Unk0212c400 **) c, b);
             c->mUnk_19 &= ~4;
             c->mUnk_19 &= ~8;
             c->mUnk_19 &= ~2;
-            func_0210bc54(&p->mUnk_0c, (u8 *) c);
+            func_0210bc54(&p->mPlayingSounds, (u8 *) c);
             v = 1;
             continue;
         }
-        a = ListGetNext(&p->mUnk_0c, a);
+        a = ListGetNext(&p->mPlayingSounds, a);
     }
     if (v == 0) {
         return;
     }
     v = 3;
-    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;
@@ -426,12 +426,12 @@ void func_0210c238(Unk0210bfbc *p, u32 b) {
     }
 }
 
-void func_0210c1b0(Unk0210bfbc *p) {
+void ReleaseSoundSource(SoundSource *p) {
     void *a;
 
     func_0210c238(p, 0);
-    for (a = p->mUnk_0c.mHead; a != NULL; a = p->mUnk_0c.mHead) {
-        func_0210bc54(&p->mUnk_0c, (u8 *) a);
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
+        func_0210bc54(&p->mPlayingSounds, (u8 *) a);
     }
     if (p->mUnk_18 != 3) {
         func_0210bc54(&data_0217d048[p->mUnk_18], (u8 *) p);

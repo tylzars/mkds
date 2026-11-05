@@ -15,29 +15,29 @@
 #include "Main/Unknown/code_0210d0b4.h"
 #include "code_0201750c.h"
 
-void func_0210c134(Unk0210bfbc *a, u32 b) {
+void func_0210c134(SoundSource *a, u32 b) {
     void *v1;
     void *v2;
-    ListInit(&a->mUnk_0c, 8);
+    ListInit(&a->mPlayingSounds, 8);
     v1 = (void *) func_0210d0b4;
     a->mUnk_38 = 1;
     v2 = (void *) func_0210d078;
     a->mUnk_2c = v1;
     a->mUnk_30 = v2;
     a->mUnk_34 = 0;
-    a->mUnk_28 = b;
+    a->mOwnerPosSource = b;
     a->mUnk_18 = 3;
     func_0210bce0((u32 *) a->mUnk_1c);
     func_0210bce0((u32 *) a);
     func_0210bc8c(&data_0217d028, a);
 }
 
-void func_0210c0bc(Unk0210bfbc *p) {
+void func_0210c0bc(SoundSource *p) {
     void *a;
 
     func_0210c238(p, 0);
-    for (a = p->mUnk_0c.mHead; a != NULL; a = p->mUnk_0c.mHead) {
-        func_0210bc54(&p->mUnk_0c, (u8 *) a);
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = p->mPlayingSounds.mHead) {
+        func_0210bc54(&p->mPlayingSounds, (u8 *) a);
     }
     if (p->mUnk_18 != 3) {
         func_0210bc54(&data_0217d048[p->mUnk_18], (u8 *) p);
@@ -45,20 +45,20 @@ void func_0210c0bc(Unk0210bfbc *p) {
     }
 }
 
-void func_0210c084(Unk0210bf24 *p, u32 b) {
+void func_0210c084(PlayingSound *p, u32 b) {
     func_0212c6f0((Unk0212c400 **) p, b);
     p->mUnk_19 &= ~4;
     p->mUnk_19 &= ~8;
     p->mUnk_19 &= ~2;
 }
 
-void func_0210bfbc(Unk0210bfbc *p) {
-    Unk0210bf24 *a;
+void func_0210bfbc(SoundSource *p) {
+    PlayingSound *a;
     u32 v;
     u8 f;
 
     v = 3;
-    for (a = p->mUnk_0c.mHead; a != NULL; a = ListGetNext(&p->mUnk_0c, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;
@@ -81,7 +81,7 @@ void func_0210bfbc(Unk0210bfbc *p) {
 }
 
 void func_0210bf24(u32 a, u32 b, u32 c, u32 d) {
-    Unk0210bf24 *v;
+    PlayingSound *v;
     LinkedList *w;
 
     if (data_0217d084.mUnk_10 == 0) {
@@ -92,7 +92,7 @@ void func_0210bf24(u32 a, u32 b, u32 c, u32 d) {
     w = v->mUnk_10;
     if (w != NULL) {
         func_0210bc54(w, (u8 *) v);
-        func_0210bfbc((Unk0210bfbc *) (w - 1));
+        func_0210bfbc((SoundSource *) (w - 1));
     }
     func_0210cfe8(v);
     func_0210bcf4(a, b, c, (u32) v, d);
@@ -121,7 +121,7 @@ u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e) {
     if (data_0217d084.mUnk_04 == 0) {
         return v;
     }
-    if (((Unk0210bf24 *) d)->mUnk_00 == NULL) {
+    if (((PlayingSound *) d)->mUnk_00 == NULL) {
         v = 1;
         ok = v;
     } else {
@@ -151,8 +151,8 @@ u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e) {
         st.mUnk_18 = data_0217d01c(&st);
     }
     if (st.mUnk_14 <= 0) {
-        if (((Unk0210bf24 *) d)->mUnk_00 == NULL) {
-            return (u32) ((Unk0210bf24 *) d)->mUnk_00;
+        if (((PlayingSound *) d)->mUnk_00 == NULL) {
+            return (u32) ((PlayingSound *) d)->mUnk_00;
         }
         return func_0212c6f0((Unk0212c400 **) d, 0);
     }

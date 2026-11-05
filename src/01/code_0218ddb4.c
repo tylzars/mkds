@@ -511,8 +511,8 @@ void func_ov001_0218e710(Unk02188950 *p) {
 void func_ov001_0218e690(Unk02188950 *p) {
     func_ov001_02187218(p, 8, NULL);
     func_ov001_02188d64(p, p->mPrm->mUnk_070, p->mPrm->mUnk_074);
-    func_0208b7bc(0x3fe, &p->mUnk_000.mPos);
-    func_0208b7bc(0x3fd, &p->mUnk_000.mPos);
+    StartEffect(0x3fe, &p->mUnk_000.mPos);
+    StartEffect(0x3fd, &p->mUnk_000.mPos);
     if (data_0217d20c != 7) {
         data_0217d21c = data_0217d20c;
     }
@@ -587,7 +587,7 @@ void func_ov001_0218e4ac(Unk02188950 *a) {
 
 void func_ov001_0218e474(Unk02188950 *a) {
     a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xe), (&a->mUnk_000.mPos));
+    InitSoundSource((SoundSource *) (a->mUnk_000.mUnk_94), (u32) (0xe), (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cc6c[6];
 }
 

@@ -206,7 +206,7 @@ void func_ov001_02187614(Unk02188950 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 
         if (a->mUnk_0bc[b].mUnk_14 != NULL) {
             func_0208b6b0(&a->mUnk_0bc[b].mUnk_14);
         }
-        a->mUnk_0bc[b].mUnk_14 = func_0208b7bc(f, &pos);
+        a->mUnk_0bc[b].mUnk_14 = StartEffect(f, &pos);
     }
 }
 

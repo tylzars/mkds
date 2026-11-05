@@ -1343,7 +1343,7 @@ extern s32 data_0217ad2c;
 extern s32 data_0217ad30;
 struct Unk0201ca6c;
 
-// Two objects returned by func_0208b7bc.
+// Two objects returned by StartEffect.
 typedef struct Unk0217ae84_10 {
     union {
         struct {
@@ -1354,12 +1354,15 @@ typedef struct Unk0217ae84_10 {
     };
 } Unk0217ae84_10;
 
-// 0x58-byte entries of the table behind data_0217ae84; the pointers at 0x0c and
-// 0x20 to 0x30 hold objects returned by func_0208b7bc.
-typedef struct Unk0217ae84 {
-    /* 00 */ s32 mUnk_00;
+// Effect objects of one Kart: the current effect with its id, and further effect objects with the points they are
+// placed at. One record per Kart in gKartEffects, indexed by Kart.mIndex. 0x58-byte entries of the table behind
+// gKartEffects; the pointers at 0x0c and 0x20 to 0x30 hold objects returned by StartEffect.
+typedef struct KartEffects {
+    // Id of the effect in mCurrentEffect, -1 when there is none.
+    /* 00 */ s32 mCurrentEffectId;
     /* 04 */ s32 mUnk_04[2];
-    /* 0c */ struct Unk0201ca6c *mUnk_0c;
+    // The effect object of this Kart started by func_02083d4c, whose id is mCurrentEffectId (NULL when none).
+    /* 0c */ struct Unk0201ca6c *mCurrentEffect;
     /* 10 */ Unk0217ae84_10 mUnk_10[2];
     union {
         struct {
@@ -1373,9 +1376,10 @@ typedef struct Unk0217ae84 {
     /* 30 */ struct Unk0201ca6c *mUnk_30;
     /* 34 */ Vec3 mUnk_34[2];
     /* 4c */ Vec3s16 mUnk_4c[2];
-} Unk0217ae84;
+} KartEffects;
 
-extern Unk0217ae84 *data_0217ae84;
+// Per-Kart effect records, allocated for every Kart by InitKartEffects and indexed by Kart.mIndex.
+extern KartEffects *gKartEffects;
 extern struct Unk0208fd8c_08 *data_0217ae34;
 extern struct Unk0208fd8c_08 *data_0217ae38;
 struct Unk02080b1c;
@@ -1593,8 +1597,9 @@ typedef struct Unk0217aa1c {
 extern Unk0217aa1c *data_0217aa1c;
 extern struct Kart *gKarts;
 extern LinkedList data_0217aeb0;
-struct Unk0206cdd4_B;
-extern struct Unk0206cdd4_B *data_usa_0217acfc;
+// The event counters of the selected entry's Kart, allocated by InitKarts.
+struct EntryKartCounters;
+extern struct EntryKartCounters *gEntryKartCounters;
 
 // The Camera (mKind 2) that starts at CourseMap.mSecondChainStartEntry; NULL when only the first chain camera exists.
 // While its entry is of kind 4 it is not stepped itself: it copies the field of view, mPos and mLookAt of

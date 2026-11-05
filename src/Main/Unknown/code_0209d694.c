@@ -236,8 +236,8 @@ void func_0209d694(Vec3 *a, Vec3 *b) {
     p->mUnk_00.mUnk_10.z = ((s64) b->z * 0x2000) >> 12;
     p->mUnk_a4 = 0;
     p->mUnk_b8 = 0;
-    p->mUnk_bc = func_0208b7bc(0x35, &p->mUnk_00.mPos);
-    p->mUnk_c0 = func_0208b7bc(0x34, &p->mUnk_00.mPos);
+    p->mUnk_bc = StartEffect(0x35, &p->mUnk_00.mPos);
+    p->mUnk_c0 = StartEffect(0x34, &p->mUnk_00.mPos);
     p->mUnk_bc->mUnk_70 = 0x15;
     p->mUnk_c0->mUnk_70 = 0x15;
     p->mUnk_bc->mUnk_80 = 3;

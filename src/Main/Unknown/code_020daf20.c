@@ -241,9 +241,9 @@ void UpdateDossun(void *a, Dossun *p) {
         if (p->mState == 5) {
             e = q->mUnk_1c;
             if (func_020d4ddc(&p->mUnk_00) == FALSE) {
-                if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+                if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                     n = 2;
-                } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+                } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                     n = 3;
                 } else {
                     n = 4;
@@ -256,8 +256,8 @@ void UpdateDossun(void *a, Dossun *p) {
             }
             func_02073fb0(p->mUnk_00.mUnk_78 & ~0xc000001f, 0x1000);
             if ((p->mUnk_00.mUnk_78 & 3) == 0) {
-                func_0208b7bc(0x59, &e->mUnk_00);
-                func_0208b7bc(0x5a, &e->mUnk_00);
+                StartEffect(0x59, &e->mUnk_00);
+                StartEffect(0x5a, &e->mUnk_00);
             }
             p->mUnk_b0 = TRUE;
         }
@@ -480,9 +480,9 @@ void UpdateKuribo(void *a, Kuribo *p) {
     p->mUnk_f0++;
     if (p->mUnk_f0 == 0x14 || p->mUnk_f0 == 0x28) {
         if ((p->mUnk_00.mUnk_78 & 4) == 0) {
-            if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+            if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                 n = 2;
-            } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+            } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                 n = 3;
             } else {
                 n = 4;

@@ -138,8 +138,8 @@ void UpdateSman(void *a, Sman *b) {
                 b->mState = 2;
                 t = 2;
                 if ((b->mUnk_00.mUnk_78 & 4) == 0) {
-                    if (b->mUnk_00.mUnk_70 != data_0217ca6c[2].mUnk_20) {
-                        if (b->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+                    if (b->mUnk_00.mUnk_70 != gSoundFalloffs[2].mUnk_20) {
+                        if (b->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;

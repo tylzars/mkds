@@ -86,7 +86,7 @@ s32 CollideKartWithMapObjectResponse14(Kart *a, s32 *b) {
 s32 CollideKartWithMapObjectResponse11(Kart *a, s32 *b, s32 c) {
     if (func_0206a24c(a) != FALSE && a->mUnk_44c != (struct MapObject *) c &&
         (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-        func_0207a6b0()->mUnk_14++;
+        GetEntryKartCounters()->mUnk_14++;
     }
     *b = 0;
     return 0;
@@ -132,13 +132,13 @@ s32 ApplyKartSurfaceKind6(Kart *a) {
 
 s32 ApplyKartSurfaceKind7(Kart *a) {
     Unk02165518 b;
-    Unk0210bf24 *c;
+    PlayingSound *c;
 
     if (a->mSurfaceGroup != 8 || (a->mUnk_44 & 0x80000000) != 0) {
         func_0206d020(a, 0, 0x3c);
         b = data_02165518;
         if (a->mSurfaceVariant > 0 && (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-            c = func_021090c4(&a->mUnk_00, b.mUnk_00[a->mSurfaceVariant - 1], 0x7f, 0);
+            c = StartSound(&a->mSoundSource, b.mUnk_00[a->mSurfaceVariant - 1], 0x7f, 0);
             if (c != NULL) {
                 c->mUnk_19 = c->mUnk_19 | 0x10;
             }
@@ -153,7 +153,7 @@ s32 ApplyKartSurfaceKind7(Kart *a) {
 s32 ApplyKartSurfaceKind12(Kart *a) {
     if (a->mSurfaceGroup != 8 || (a->mUnk_44 & 0x80000000) != 0) {
         if (data_021759c0->mCourseId == 0xc || data_021759c0->mCourseId == 0x28) {
-            func_021090c4(&a->mUnk_00, 0x15e, 0x7f, 0);
+            StartSound(&a->mSoundSource, 0x15e, 0x7f, 0);
         }
     }
     a->mUnk_48 = a->mUnk_48 | 0x10000000;
@@ -165,13 +165,13 @@ s32 ApplyKartSurfaceKind12(Kart *a) {
 
 s32 ApplyKartSurfaceKind18(Kart *a) {
     Unk02165518 b;
-    Unk0210bf24 *c;
+    PlayingSound *c;
 
     if (a->mSurfaceGroup != 8 || (a->mUnk_44 & 0x80000000) != 0) {
         func_0206d020(a, 0, 0x3c);
         b = data_02165518;
         if (a->mSurfaceVariant > 0 && (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-            c = func_021090c4(&a->mUnk_00, b.mUnk_00[a->mSurfaceVariant - 1], 0x7f, 0);
+            c = StartSound(&a->mSoundSource, b.mUnk_00[a->mSurfaceVariant - 1], 0x7f, 0);
             if (c != NULL) {
                 c->mUnk_19 = c->mUnk_19 | 0x10;
             }
@@ -206,12 +206,12 @@ s32 ApplyKartSurfaceKind17(Kart *a) {
 }
 
 s32 ApplyKartSurfaceKind19(Kart *a) {
-    Unk0210bf24 *b;
+    PlayingSound *b;
 
     if (a->mSurfaceGroup != 0xb || (a->mUnk_44 & 0x80000000) != 0) {
         func_0206d020(a, 0, 0x3c);
         if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-            b = func_021090c4(&a->mUnk_00, 0x1b9, 0x7f, 0);
+            b = StartSound(&a->mSoundSource, 0x1b9, 0x7f, 0);
             if (b != NULL) {
                 b->mUnk_19 = b->mUnk_19 | 0x10;
             }

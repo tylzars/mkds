@@ -135,11 +135,11 @@ void func_0206ff50(Kart *p, u32 a) {
         if (p->mKartModelsEntry->mUnk_058 == 0) {
             e = data_usa_02165560;
             for (f = 0; f < 3; f++) {
-                func_02081f10(func_0208b7bc(e.mUnk_00[f], &p->mPos), p->mIndex, 0x14);
+                func_02081f10(StartEffect(e.mUnk_00[f], &p->mPos), p->mIndex, 0x14);
             }
         }
         func_020815dc(p->mIndex);
-        func_021090c4(&p->mUnk_00, 0xfd, 0x7f, 0);
+        StartSound(&p->mSoundSource, 0xfd, 0x7f, 0);
     }
     func_020f00f0(&(gKartItems)[p->mIndex]);
     if (a & 0x400) {
@@ -168,7 +168,7 @@ void func_0206ff50(Kart *p, u32 a) {
         g.y = p->mPos.y - GetHeightAboveWaterOrEfct(p->mPos.y);
         func_0208d978(&g, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0);
         p->mUnk_4c |= 0x4000000;
-        func_021090c4(&p->mUnk_00, b, 0x7f, 0);
+        StartSound(&p->mSoundSource, b, 0x7f, 0);
         p->mGravity = 0;
     }
     func_0210af40(p, p->mUnk_3cc, 0);
@@ -275,9 +275,9 @@ void func_0206f914(Kart *p) {
                 }
                 p->mUnk_48 |= 0x8000;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-                    func_0207a6b0()->mUnk_00 = 1;
+                    GetEntryKartCounters()->mUnk_00 = 1;
                 } else {
-                    func_021090c4(&p->mUnk_00, 0xa1, 0x7f, 0);
+                    StartSound(&p->mSoundSource, 0xa1, 0x7f, 0);
                 }
             }
         } else if (p->mUnk_48 & 2) {
@@ -321,9 +321,9 @@ void func_0206f914(Kart *p) {
                 }
                 p->mUnk_48 |= 0x8000;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-                    func_0207a6b0()->mUnk_00 = 1;
+                    GetEntryKartCounters()->mUnk_00 = 1;
                 } else {
-                    func_021090c4(&p->mUnk_00, 0xa1, 0x7f, 0);
+                    StartSound(&p->mSoundSource, 0xa1, 0x7f, 0);
                 }
             }
         }
@@ -538,7 +538,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
             }
         }
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && p->mVelocityLength > 0x3000 && f == 2) {
-            func_0207a6b0()->mUnk_10++;
+            GetEntryKartCounters()->mUnk_10++;
         }
         p->mTurnAngle = 0;
     } else if (e == 4) {

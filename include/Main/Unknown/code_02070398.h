@@ -27,7 +27,7 @@ void func_02071914(void *p, int a);
 void func_02071958(Kart *p, s32 b);
 void func_02071980(void *p, int b);
 void func_020719a8(u32 arg0, u32 arg1);
-Unk0210bf24 *func_020719bc(Unk0210bfbc *p, u32 a);
+PlayingSound *func_020719bc(SoundSource *p, u32 a);
 void func_020719d0(Kart *p);
 void func_02071c18(Kart *p);
 void func_02071ddc(Unk0206ceb4 *p0);

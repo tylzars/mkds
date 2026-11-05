@@ -7,7 +7,7 @@ typedef struct Vec3s16 Vec3s16;
 typedef struct Kart Kart;
 
 // 0x88 bytes, from the table behind data_0217b078. The pointer pairs at 0x00 to 0x28 hold objects returned by
-// func_0208b7bc.
+// StartEffect.
 typedef struct Unk0208c5b8 {
     /* 00 */ Unk0201ca6c *mUnk_00[2];
     /* 08 */ Unk0201ca6c *mUnk_08[2];

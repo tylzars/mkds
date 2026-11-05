@@ -104,7 +104,8 @@ s32 func_0207a4fc(void);
 s32 func_0207a538(void);
 BOOL func_0207a574(void);
 void func_0207a5f0(s32 a);
-Unk0206cdd4_B *func_0207a6b0(void);
+// Returns the event counters of the selected entry's Kart.
+EntryKartCounters *GetEntryKartCounters(void);
 void func_0207a6c0(Kart *a);
 void func_0207a70c(s32 a);
 u32 func_0207a7fc(s32 a);

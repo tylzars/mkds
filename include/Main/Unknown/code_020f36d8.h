@@ -64,7 +64,8 @@ extern Unk020f3fa8 data_0217bb88;
 // embed it as their first member and run from 0x12c (kinds 4, 6 and 13) to 0x31c bytes. One is also embedded in
 // Unk0217b4f0 at 0x18c.
 typedef struct ItemObject {
-    /* 00 */ Unk0210bfbc mUnk_00;
+    // Sound source of the item object (the sounds started on it).
+    /* 00 */ SoundSource mSoundSource;
     // Kind number of the object's pool; ResetItemObject writes it each time the object is set up or handed out.
     /* 44 */ s32 mKind;
     /* 48 */ s32 mUnk_48;

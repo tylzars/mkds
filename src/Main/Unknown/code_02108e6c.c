@@ -21,7 +21,7 @@
 
 void func_02108edc(s32 a, s32 b) {
     u32 c;
-    Unk0210bf24 *p;
+    PlayingSound *p;
 
     if (a == b) {
         if (data_0217c76c[0] != 0xff) {

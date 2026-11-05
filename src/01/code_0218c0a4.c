@@ -150,8 +150,8 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
             func_ov001_02187b94(func_ov001_02187dd4(), &pos, &vel, a->mPrm->mUnk_1b0);
         }
         angle += a->mPrm->mUnk_1a4;
-        func_0208b7bc(0x3f7, &pos);
-        func_0208b7bc(0x3f6, &pos);
+        StartEffect(0x3f7, &pos);
+        StartEffect(0x3f6, &pos);
     }
     func_020d2774(&a->mUnk_000, (u32) (0x222));
 }

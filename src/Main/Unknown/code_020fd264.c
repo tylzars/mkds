@@ -91,7 +91,7 @@ s32 func_020fe268(Unk020eda5c *a, Unk020fdae8 *e) {
     } else {
         func_020f3150(&e->mUnk_000, a, 3, 1, 0x6000, 0x5000, 0x59a);
     }
-    func_021090c4(&e->mUnk_000.mUnk_000.mUnk_00, 0xda, 0x7f, 0);
+    StartSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
     e->mUnk_130 = 1;
     return e->mUnk_130;
 }
@@ -120,7 +120,7 @@ void func_020fe16c(Unk020fdae8 *e) {
     if (e->mUnk_130 != 0) {
         e->mUnk_000.mUnk_000.mVelocity.y *= 2;
     }
-    func_02109060(&e->mUnk_000.mUnk_000.mUnk_00, 0xda);
+    StopSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda);
     func_020f6a6c(&e->mUnk_000.mUnk_000, &v);
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
         e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020fdae8;
@@ -377,7 +377,7 @@ void func_020fd9d8(Unk020fdae8 *e) {
     if (e->mUnk_130 == 0) {
         return;
     }
-    func_021090c4(&e->mUnk_000.mUnk_000.mUnk_00, 0xda, 0x7f, 0);
+    StartSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
 }
 
 void func_020fd938(Unk020fdae8 *e, Vec3 *a, Unk020e6488 *b) {

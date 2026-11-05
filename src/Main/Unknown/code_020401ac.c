@@ -82,7 +82,7 @@ BOOL func_02040bc0(void) {
 }
 
 void func_02040a8c(Unk0217561c_500 *a, s32 b) {
-    Unk0206cdd4_B *t = func_0207a6b0();
+    EntryKartCounters *t = GetEntryKartCounters();
     RaceProgress *d = gRaceProgress;
     RaceProgressKart *e = &d->mKarts[b];
     RankTimeGp *r = d->mRankTimeGpFile;
@@ -112,7 +112,7 @@ void func_02040a8c(Unk0217561c_500 *a, s32 b) {
 
 s16 func_020408f0(s32 a) {
     Unk0217561c_500 b;
-    Unk0206cdd4_B *t;
+    EntryKartCounters *t;
     Unk021759c0 *g;
     RaceProgress *d = gRaceProgress;
     Unk0217561c_500 *o = &d->mUnk_500;
@@ -129,7 +129,7 @@ s16 func_020408f0(s32 a) {
             break;
         case MODE_MISSION_RUN:
             h = (u8 *) g + 0x28;
-            t = func_0207a6b0();
+            t = GetEntryKartCounters();
             b.mUnk_00 =
                 DivFixed12(*(s16 *) (h + 4) * (*(u16 *) (h + 2) - d->mUnk_000[0].mElapsedFrames) << 12, 0x3e8000) >> 12;
             b.mUnk_04 = 0;

@@ -109,8 +109,9 @@ void func_020e3414(Unk020e1e98 *a) {
         return;
     }
     if ((a->mUnk_000.mUnk_78 & 0x4) == 0) {
-        v = a->mUnk_000.mUnk_70 == data_0217ca6c[2].mUnk_20 ? 2
-                                                            : (a->mUnk_000.mUnk_70 == data_0217ca6c[3].mUnk_20 ? 3 : 4);
+        v = a->mUnk_000.mUnk_70 == gSoundFalloffs[2].mUnk_20
+                ? 2
+                : (a->mUnk_000.mUnk_70 == gSoundFalloffs[3].mUnk_20 ? 3 : 4);
         buf.mUnk_00 = 0x128;
         buf.mUnk_04 = &a->mUnk_000.mPos;
         buf.mUnk_08 = v;
@@ -130,7 +131,7 @@ void func_020e33c0(Unk020e1e98 *a) {
             return;
         }
     }
-    func_0208b7bc(0x30, &a->mUnk_000.mCourseMapRow->mUnk_00);
+    StartEffect(0x30, &a->mUnk_000.mCourseMapRow->mUnk_00);
 }
 
 void func_020e337c(Unk020e1e98 *a) {

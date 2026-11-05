@@ -415,7 +415,7 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
 
 void func_ov001_02183294(Unk02188950 *a) {
     a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xc), (&a->mUnk_000.mPos));
+    InitSoundSource((SoundSource *) (a->mUnk_000.mUnk_94), (u32) (0xc), (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cbec[20];
 }
 

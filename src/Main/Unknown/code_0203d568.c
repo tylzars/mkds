@@ -127,7 +127,7 @@ void func_0203e550(RaceProgressKart *a) {
     BOOL f;
     BOOL g;
     Unk021759c0_28 *s;
-    Unk0206cdd4_B *t;
+    EntryKartCounters *t;
 
     if (a->mLap < 0x7fffffff) {
         a->mLap = a->mLap + 1;
@@ -178,7 +178,7 @@ void func_0203e550(RaceProgressKart *a) {
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         s = &data_021759c0->mUnk_28_view;
         g = TRUE;
-        t = func_0207a6b0();
+        t = GetEntryKartCounters();
         switch (s->mUnk_07) {
             case 4:
                 if (s->mUnk_0f > (u32) t->mUnk_04) {

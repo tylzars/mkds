@@ -18,7 +18,8 @@ Unk0201ca6c *func_0208b60c(s32 a, Vec3 *b);
 void func_0208b6b0(void **p0);
 void func_0208b6d0(Unk0201ca6c **a);
 void func_0208b710(Unk0201ca6c *a);
-void *func_0208b7bc(u32 a, const Vec3 *b);
+// Starts effect a at the position b and returns the effect object (NULL when none is made).
+void *StartEffect(u32 a, const Vec3 *b);
 void func_0208b870(Unk02012f58 *a);
 void func_0208b8c8(void);
 void func_0208b934(void *a);

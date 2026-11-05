@@ -137,11 +137,11 @@ void func_0207ad88(Unk0207adf8 *a, u32 b, u32 c) {
 void InitKarts(u32 a) {
     u16 i;
     void *h = GetHeap(func_020364e8());
-    Unk0206cdd4_B *q;
+    EntryKartCounters *q;
     gKarts = HeapAlloc(h, a * 0x5a8);
     gKartCount = a;
     q = HeapAlloc(h, 0x1c);
-    data_usa_0217acfc = q;
+    gEntryKartCounters = q;
     data_0217ad10 = 0;
     data_0217ad20 = 0;
     data_usa_021658c0 = -1;
@@ -155,7 +155,7 @@ void InitKarts(u32 a) {
     data_usa_021658bc = data_021759c0->mMode == MODE_BATTLE ? 1 : 2;
     func_02073630();
     func_0208c284();
-    func_020845cc(a);
+    InitKartEffects(a);
     data_0217ad24 = 0;
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         if (gCourseMap->mKind2ShapeCountInMode4 != 0) {
@@ -309,7 +309,7 @@ void func_0207a73c(u32 p0) {
 
 void func_0207a70c(s32 a) {
     if (a == data_021759c0->mEntryIndex) {
-        data_usa_0217acfc->mUnk_08++;
+        gEntryKartCounters->mUnk_08++;
     }
 }
 
@@ -321,12 +321,12 @@ void func_0207a6c0(Kart *a) {
         return;
     }
     if (!(a->mUnk_48 & 0x20000000)) {
-        data_usa_0217acfc->mUnk_0c++;
+        gEntryKartCounters->mUnk_0c++;
     }
 }
 
-Unk0206cdd4_B *func_0207a6b0(void) {
-    return data_usa_0217acfc;
+EntryKartCounters *GetEntryKartCounters(void) {
+    return gEntryKartCounters;
 }
 
 u32 func_0207a68c(int arg0) {

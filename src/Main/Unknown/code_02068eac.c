@@ -100,7 +100,7 @@ void func_02069f6c(Kart *p) {
     s = &p->mUnk_538;
     if (s->mUnk_0e <= 0) {
         if (s->mUnk_0c == 0) {
-            func_021090c4(&p->mUnk_00, 0xed, 0x7f, 0);
+            StartSound(&p->mSoundSource, 0xed, 0x7f, 0);
         }
         s->mUnk_0c++;
         if (s->mUnk_0c >= 0x19) {
@@ -231,7 +231,7 @@ void func_02069c38(Kart *p) {
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             func_0208c4e8(func_0208c5b8(p->mIndex));
         } else {
-            func_021090c4(&p->mUnk_00, 0xf9, 0x7f, 0);
+            StartSound(&p->mSoundSource, 0xf9, 0x7f, 0);
         }
         func_0210fa40(0, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
     }
@@ -353,7 +353,7 @@ void func_0206988c(Kart *p) {
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             func_0208c4e8(func_0208c5b8(p->mIndex));
         } else {
-            func_021090c4(&p->mUnk_00, 0xf9, 0x7f, 0);
+            StartSound(&p->mSoundSource, 0xf9, 0x7f, 0);
         }
         func_0210fa40(0, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
     }
@@ -395,7 +395,7 @@ void func_020695c4(Kart *p) {
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             func_0208c4e8(func_0208c5b8(p->mIndex));
         } else {
-            func_021090c4(&p->mUnk_00, 0xf9, 0x7f, 0);
+            StartSound(&p->mSoundSource, 0xf9, 0x7f, 0);
         }
         func_0210fa40(0, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) ? 1 : 0);
     }
@@ -432,7 +432,7 @@ void func_020695c4(Kart *p) {
     if (p->mKartModelsEntry->mUnk_058 == 0) {
         v = data_usa_02165560;
         for (i = 0; i < 3; i++) {
-            func_02081f10(func_0208b7bc(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
+            func_02081f10(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
         }
     }
     func_02081724(p->mIndex);
@@ -484,11 +484,11 @@ void func_0206938c(Kart *p) {
         if (p->mKartModelsEntry->mUnk_058 == 0) {
             v = data_usa_02165560;
             for (i = 0; i < 3; i++) {
-                func_02081f10(func_0208b7bc(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
+                func_02081f10(StartEffect(v.mUnk_00[i], &p->mPos), p->mIndex, 0x14);
             }
         }
         func_020815dc(p->mIndex);
-        func_021090c4(&p->mUnk_00, 0xfd, 0x7f, 0);
+        StartSound(&p->mSoundSource, 0xfd, 0x7f, 0);
         return;
     }
     p->mUnk_4c8 += 0x52;
@@ -606,7 +606,7 @@ void func_02069068(Kart *p) {
     func_02081000(p);
     func_0210a53c(p);
     if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
-        func_021090c4(&p->mUnk_00, 0xa4, 0x7f, 0);
+        StartSound(&p->mSoundSource, 0xa4, 0x7f, 0);
     }
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x40000;
@@ -648,7 +648,7 @@ s32 func_02068ec0(Kart *p, s32 a) {
             p->mUnk_2ca = func_020d5344(p->mUnk_2ca);
         }
         if (data_021759c0->mMode == MODE_BATTLE && a == 0) {
-            func_021090c4(&p->mUnk_00, 0xd3, 0x7f, 0);
+            StartSound(&p->mSoundSource, 0xd3, 0x7f, 0);
             if (data_021759c0->mUnk_18 == 0 && (data_0217c780 & 1)) {
                 h = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {

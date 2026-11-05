@@ -364,8 +364,8 @@ u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
                         func_0208b498(0x31, &param_1->mUnk_000.mPos, param_2->mUnk_074, 0x1000);
                         func_0208b498(0x32, &param_1->mUnk_000.mPos, param_2->mUnk_074, 0x1000);
                     } else {
-                        func_0208b7bc(0x31, &param_1->mUnk_000.mPos);
-                        func_0208b7bc(0x32, &param_1->mUnk_000.mPos);
+                        StartEffect(0x31, &param_1->mUnk_000.mPos);
+                        StartEffect(0x32, &param_1->mUnk_000.mPos);
                     }
                 }
             }
@@ -386,8 +386,8 @@ u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
         param_1->mUnk_000.mUnk_80.mNextState = 1;
         param_1->mUnk_000.mUnk_80.mNextStateRequested = 1;
         if ((param_1->mUnk_000.mUnk_78 & 3) == 0) {
-            func_0208b7bc(0x31, &param_1->mUnk_000.mPos);
-            func_0208b7bc(0x32, &param_1->mUnk_000.mPos);
+            StartEffect(0x31, &param_1->mUnk_000.mPos);
+            StartEffect(0x32, &param_1->mUnk_000.mPos);
         }
     }
     return *param_4;

@@ -5,5 +5,5 @@
 
 void func_0210a644(Kart *a) {
     a->mUnk_450.mUnk_34 = data_0217c814.mUnk_00;
-    a->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a724;
+    a->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a724;
 }

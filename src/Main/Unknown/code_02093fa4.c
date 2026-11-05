@@ -21,7 +21,7 @@ void InitNsKiller1(u32 arg0) {
     value2 = value4;
     value1 = 0x14u;
     CreateParkedMapObjects(value0, value1, (void *) value2);
-    value0 = (u32) &data_0217ca6c;
+    value0 = (u32) &gSoundFalloffs;
     value0 = (u32) * (const u32 *) ((value0) + (356));
     *(u32 *) ((value4) + (112)) = value0;
 }

@@ -73,7 +73,7 @@ BOOL func_0206de18(Kart *p, Kart *q, const Vec3 *v) {
     c = func_0206dbf8_inline(q);
     if (c != 0) {
         StartKartState4(q, v, 1);
-        func_021090c4(&q->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&q->mSoundSource, 0xe8, 0x7f, 0);
         if (q->mUnk_7c & 0x200) {
             q->mUnk_514->mUnk_2c ^= 0x80;
         }
@@ -127,7 +127,7 @@ BOOL func_0206dbf8(Kart *p, Kart *q) {
             a.z = -a.z;
         }
         StartKartState5(q, &a, 1);
-        func_021090c4(&q->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&q->mSoundSource, 0xe8, 0x7f, 0);
         if (q->mUnk_7c & 0x200) {
             q->mUnk_514->mUnk_2c ^= 0x80;
         }
@@ -371,9 +371,9 @@ void func_0206d18c(Kart *p) {
         case 2:
             r = func_0206bcb0(p, 1, r);
             if (r != 0 && p->mKartModelsEntry->mUnk_058 == 0) {
-                func_0208b7bc(0xc, &p->mPos);
-                func_0208b7bc(0xd, &p->mPos);
-                func_0208b7bc(0xe, &p->mPos);
+                StartEffect(0xc, &p->mPos);
+                StartEffect(0xd, &p->mPos);
+                StartEffect(0xe, &p->mPos);
             }
             break;
         case 3:
@@ -437,7 +437,7 @@ void func_0206d18c(Kart *p) {
             return;
         }
         e->mUnk_128 |= (u8) (1 << p->mIndex);
-        func_021090c4(&p->mUnk_00, 0xe9, 0x7f, 0);
+        StartSound(&p->mSoundSource, 0xe9, 0x7f, 0);
         return;
     }
     i = (u16) ((e->mUnk_78 & 0x8000) == 0 ? (u16) (e->mUnk_78 & ~0xff00) : 8);
@@ -517,8 +517,8 @@ void func_0206d020(Kart *p, int a, int b) {
         if (a != 3) {
             return;
         }
-        func_021090c4(&p->mUnk_00, 0xa2, 0x7f, 0);
+        StartSound(&p->mSoundSource, 0xa2, 0x7f, 0);
         return;
     }
-    func_021090c4(&p->mUnk_00, 0x9f, 0x7f, 0);
+    StartSound(&p->mSoundSource, 0x9f, 0x7f, 0);
 }

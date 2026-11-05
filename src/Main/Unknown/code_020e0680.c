@@ -511,7 +511,7 @@ void func_020e1f54(Unk020e1e98 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
     a->mUnk_15c = c->mUnk_2c;
     a->mUnk_158 = func_020d286c(&a->mUnk_000);
     func_0210b850(a->mUnk_158);
-    a->mUnk_000.mUnk_94->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6ec;
+    a->mUnk_000.mUnk_94->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6ec;
     a->mUnk_160 = c->mUnk_30;
 }
 

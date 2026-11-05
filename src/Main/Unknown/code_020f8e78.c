@@ -39,7 +39,7 @@ void func_020f91fc(void *b, s32 c) {
     if (c == 1) {
         return;
     }
-    if ((s32) (p->mUnk_d4 & ~0xc000001f) >= data_0217ca6c[1].mUnk_20) {
+    if ((s32) (p->mUnk_d4 & ~0xc000001f) >= gSoundFalloffs[1].mUnk_20) {
         return;
     }
     if (c == 1) {
@@ -86,7 +86,7 @@ void func_020f9114(void *b) {
     enum { K0 } a = p->mKind;
 
     func_02109038(p, (u32) gItemKinds[a].mUnk_a0, &p->mPos);
-    func_0210cf9c(&p->mUnk_00, 1);
+    func_0210cf9c(&p->mSoundSource, 1);
     p->mFlags |= 0x400000;
 }
 
@@ -95,15 +95,15 @@ void func_020f90dc(ItemObject *a) {
     if ((p->mFlags & 0x400000) == 0) {
         return;
     }
-    func_02109054(&p->mUnk_00);
-    p->mUnk_00.mUnk_30 = NULL;
+    func_02109054(&p->mSoundSource);
+    p->mSoundSource.mUnk_30 = NULL;
     p->mFlags &= ~0x400000;
 }
 
 void func_020f90bc(ItemObject *a) {
     ItemObject *p = a;
 
-    p->mUnk_00.mUnk_40 = p->mUnk_d4 & ~0xc000001f;
+    p->mSoundSource.mUnk_40 = p->mUnk_d4 & ~0xc000001f;
     func_020d4e28(p, &p->mPos, p->mUnk_d4);
 }
 
@@ -153,7 +153,7 @@ void func_020f8e78(void *b) {
     if ((p->mFlags & 0x400000) == 0) {
         k = p->mKind;
         func_02109038(p, (u32) gItemKinds[k].mUnk_a0, &p->mPos);
-        func_0210cf9c(&p->mUnk_00, 1);
+        func_0210cf9c(&p->mSoundSource, 1);
         p->mFlags |= 0x400000;
     }
     k = p->mKind;

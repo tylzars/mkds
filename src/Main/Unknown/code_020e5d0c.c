@@ -152,9 +152,9 @@ void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
     v = (u16) (((s64) (s32) a->mUnk_fc * gPairsByAngle[(a->mUnk_100 >> 4) * 2]) >> 12);
     if ((t < 0x58f0 && a->mUnk_100 >= 0x58f0) || (t < 0xd8f0 && a->mUnk_100 >= 0xd8f0)) {
         if ((a->mUnk_78 & 4) == 0) {
-            if (a->mUnk_70 == data_0217ca6c[2].mUnk_20) {
+            if (a->mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                 n = 2;
-            } else if (a->mUnk_70 == data_0217ca6c[3].mUnk_20) {
+            } else if (a->mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                 n = 3;
             } else {
                 n = 4;

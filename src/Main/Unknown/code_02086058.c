@@ -59,16 +59,16 @@ void func_02086a04(void) {
         data_0217aed0->mUnk_0a4[(u16) (data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_084[p->mIndex])] = e;
         if (p->mIndex != data_021759c0->mEntryIndex) {
             a = TRUE;
-            if (e > data_0217ca6c[0].mUnk_20) {
+            if (e > gSoundFalloffs[0].mUnk_20) {
                 a = FALSE;
             }
-            if (p->mUnk_00.mUnk_34 & 1) {
+            if (p->mSoundSource.mUnk_34 & 1) {
                 b = TRUE;
             } else {
                 b = FALSE;
             }
             if ((a != FALSE && b == FALSE) || (a == FALSE && b != FALSE)) {
-                func_0210cfbc(&p->mUnk_00, 2, 1);
+                func_0210cfbc(&p->mSoundSource, 2, 1);
             }
             if (d < 0) {
                 s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = TRUE;

@@ -50,7 +50,7 @@ u32 func_020675b4(Kart *a);
 // mSurfaceSpeedLimitFactors.
 s32 ApplyKartSurfaceKind10(Kart *a);
 // Surface kind 19 (entry 19 of gKartSurfaceFunctions): unless mSurfaceGroup is already 0xb and bit 0x80000000 of
-// mUnk_44 is clear it runs func_0206d020 and, for the selected kart, calls func_021090c4 with 0x1b9; otherwise it sets
+// mUnk_44 is clear it runs func_0206d020 and, for the selected kart, calls StartSound with 0x1b9; otherwise it sets
 // mUnk_238 to 0x3c. Then it sets bits 0x40000001 of mUnk_48, runs func_020839d8 and returns surface group 0xb.
 s32 ApplyKartSurfaceKind19(Kart *a);
 // Surface kind 17 (entry 17 of gKartSurfaceFunctions): passes the entry that data_02154aa4 gives for mSurfaceVariant to
@@ -66,10 +66,10 @@ s32 ApplyKartSurfaceKind18(Kart *a);
 // Surface kind 12 (entry 12 of gKartSurfaceFunctions): sets bit 0x10000000 of mUnk_48, sets mVerticalSpeed from
 // data_021655b0 and mUnk_4c4 from data_0216559c by mSurfaceVariant, runs func_020839d8 and returns surface group 8; on
 // course 0xc or 0x28, when mSurfaceGroup was not already 8 or bit 0x80000000 of mUnk_44 is set, it first calls
-// func_021090c4 with 0x15e.
+// StartSound with 0x15e.
 s32 ApplyKartSurfaceKind12(Kart *a);
 // Surface kind 7 (entry 7 of gKartSurfaceFunctions): unless mSurfaceGroup is already 8 and bit 0x80000000 of mUnk_44 is
-// clear it runs func_0206d020 and, for the selected kart with mSurfaceVariant above 0, calls func_021090c4 with the id
+// clear it runs func_0206d020 and, for the selected kart with mSurfaceVariant above 0, calls StartSound with the id
 // that data_02165518 gives for mSurfaceVariant minus 1; otherwise it sets mUnk_238 to 0x3c. Then it runs func_020839d8
 // and returns surface group 8.
 s32 ApplyKartSurfaceKind7(Kart *a);
@@ -95,7 +95,8 @@ s32 ApplyKartSurfaceKind20(Kart *p);
 s32 func_02067ad4(Kart *p);
 // Collision response 11 of data_0217ac18 (indexed by the value func_020d6be0 returns for the kart and the map object):
 // when func_0206a24c holds for the kart, mUnk_44c of the kart is not the object and the kart is the selected kart,
-// increments the counter of the record func_0207a6b0 returns. Stores 0 through the second parameter and returns 0.
+// increments the counter of the record GetEntryKartCounters returns. Stores 0 through the second parameter and returns
+// 0.
 s32 CollideKartWithMapObjectResponse11(Kart *a, s32 *b, s32 c);
 // Collision response 14 of data_0217ac18 (indexed by the value func_020d6be0 returns for the kart and the map object):
 // stores 0xc through the second parameter, clears bits of mUnk_48 with the mask 0xdfe77fdf, zeroes mUnk_238, the

@@ -21,17 +21,17 @@ static inline void func_020a826c_inline(Unk020a826c_a0 *q) {
     s32 v;
 
     if (q->mUnk_00.mUnk_08 == 2) {
-        v = data_0217ca6c[2].mUnk_20;
+        v = gSoundFalloffs[2].mUnk_20;
     } else if (q->mUnk_00.mUnk_08 == 3) {
-        v = data_0217ca6c[3].mUnk_20;
+        v = gSoundFalloffs[3].mUnk_20;
     } else if (q->mUnk_00.mUnk_08 == 4) {
-        v = data_0217ca6c[4].mUnk_20;
+        v = gSoundFalloffs[4].mUnk_20;
     } else if (q->mUnk_00.mUnk_08 == 5) {
-        v = data_0217ca6c[5].mUnk_20;
+        v = gSoundFalloffs[5].mUnk_20;
     } else if (q->mUnk_00.mUnk_08 == 6) {
-        v = data_0217ca6c[6].mUnk_20;
+        v = gSoundFalloffs[6].mUnk_20;
     } else if (q->mUnk_00.mUnk_08 == 8) {
-        v = data_0217ca6c[8].mUnk_20;
+        v = gSoundFalloffs[8].mUnk_20;
     } else {
         v = 0;
     }

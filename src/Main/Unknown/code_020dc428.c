@@ -127,9 +127,9 @@ void UpdateWanwan(void *a, Wanwan *p) {
             w.z = 0;
             if (p->mUnk_fc != 0) {
                 if (!(p->mUnk_00.mUnk_78 & 4)) {
-                    if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+                    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                         y = 2;
-                    } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+                    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                         y = 3;
                     } else {
                         y = 4;
@@ -147,9 +147,9 @@ void UpdateWanwan(void *a, Wanwan *p) {
             k = TRUE;
             if (p->mUnk_fc != 0) {
                 if (!(p->mUnk_00.mUnk_78 & 4)) {
-                    if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+                    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                         y = 2;
-                    } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+                    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                         y = 3;
                     } else {
                         y = 4;
@@ -390,9 +390,9 @@ void EnterWanwanState1(Wanwan *p) {
     if (p->mUnk_00.mUnk_78 & 4) {
         return;
     }
-    if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
         k = 2;
-    } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
         k = 3;
     } else {
         k = 4;

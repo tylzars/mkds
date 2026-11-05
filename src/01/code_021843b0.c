@@ -65,20 +65,20 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                 Vec3AddScaled(e->mRadius, &b, &e->mUnk_1b8, &b);
                 if (d->mUnk_000.mKind == 0x1f5) {
                     d->mUnk_000.mUnk_78 |= data_ov001_021a657c;
-                    func_02109060(&d->mUnk_000.mUnk_94->mUnk_00, 0x214);
+                    StopSound(&d->mUnk_000.mUnk_94->mSoundSource, 0x214);
                     func_020d2774(&d->mUnk_000, (u32) (0x211));
-                    func_0208b7bc(0x3e9, &b);
-                    func_0208b7bc(0x3e8, &b);
-                    func_0208b7bc(0x3ea, &b);
+                    StartEffect(0x3e9, &b);
+                    StartEffect(0x3e8, &b);
+                    StartEffect(0x3ea, &b);
                     func_ov001_02187518(d, 0x99a, 0, 0x75c, 0x3f3, 0);
                     func_ov001_02187518(d, -0x99a, 0, 0x75c, 0x3f3, 0);
                 } else if (d->mUnk_000.mKind == 0x1f6) {
                     d->mUnk_000.mUnk_78 |= data_ov001_021a657c;
-                    func_02109060(&d->mUnk_000.mUnk_94->mUnk_00, 0x245);
+                    StopSound(&d->mUnk_000.mUnk_94->mSoundSource, 0x245);
                     func_020d2774(&d->mUnk_000, (u32) (0x23f));
-                    func_0208b7bc(0x3fa, &b);
-                    func_0208b7bc(0x3fb, &b);
-                    func_0208b7bc(0x3fc, &b);
+                    StartEffect(0x3fa, &b);
+                    StartEffect(0x3fb, &b);
+                    StartEffect(0x3fc, &b);
                     func_ov001_02187518(d, -0x11ec, 0, 0x1800, 0x445, 0);
                     func_ov001_02187518(d, 0x11ec, 0, 0x1800, 0x445, 0);
                 }
@@ -134,20 +134,20 @@ void func_ov001_021843b0(Unk02188950 *a, Kart *b) {
             Vec3AddScaled(b->mRadius, &vec2, &b->mUnk_1b8, &vec2);
             if (a->mUnk_000.mKind == 0x1f5) {
                 a->mUnk_000.mUnk_78 |= data_ov001_021a657c;
-                func_02109060(&a->mUnk_000.mUnk_94->mUnk_00, 0x214);
+                StopSound(&a->mUnk_000.mUnk_94->mSoundSource, 0x214);
                 func_020d2774(&a->mUnk_000, (u32) (0x211));
-                func_0208b7bc(0x3e9, &vec2);
-                func_0208b7bc(0x3e8, &vec2);
-                func_0208b7bc(0x3ea, &vec2);
+                StartEffect(0x3e9, &vec2);
+                StartEffect(0x3e8, &vec2);
+                StartEffect(0x3ea, &vec2);
                 func_ov001_02187518(a, 0x99a, 0, 0x75c, 0x3f3, 0);
                 func_ov001_02187518(a, -0x99a, 0, 0x75c, 0x3f3, 0);
             } else if (a->mUnk_000.mKind == 0x1f6) {
                 a->mUnk_000.mUnk_78 |= data_ov001_021a657c;
-                func_02109060(&a->mUnk_000.mUnk_94->mUnk_00, 0x245);
+                StopSound(&a->mUnk_000.mUnk_94->mSoundSource, 0x245);
                 func_020d2774(&a->mUnk_000, (u32) (0x23f));
-                func_0208b7bc(0x3fa, &vec2);
-                func_0208b7bc(0x3fb, &vec2);
-                func_0208b7bc(0x3fc, &vec2);
+                StartEffect(0x3fa, &vec2);
+                StartEffect(0x3fb, &vec2);
+                StartEffect(0x3fc, &vec2);
                 func_ov001_02187518(a, -0x11ec, 0, 0x1800, 0x445, 0);
                 func_ov001_02187518(a, 0x11ec, 0, 0x1800, 0x445, 0);
             }

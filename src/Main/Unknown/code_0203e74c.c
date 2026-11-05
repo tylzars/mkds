@@ -231,7 +231,7 @@ void func_0203ecf0(void) {
 void func_0203eb38(void) {
     u16 i;
     RaceProgressKart *p;
-    Unk0206cdd4_B *q;
+    EntryKartCounters *q;
     s32 s;
     BOOL f;
     u32 g;
@@ -265,7 +265,7 @@ void func_0203eb38(void) {
             ComputeRaceTime(&t->mUnk_02, &t->mUnk_03, &t->mUnk_00, 0, h);
             g = 1;
             r = (u8 *) &data_021759c0->mUnk_028;
-            q = func_0207a6b0();
+            q = GetEntryKartCounters();
             switch (r[7]) {
                 case 4:
                     if (r[0xf] > (u32) q->mUnk_04) {

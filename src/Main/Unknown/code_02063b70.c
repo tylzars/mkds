@@ -19,7 +19,7 @@
 #include "Main/Unknown/unk_0215d000.h"
 
 void func_02064180(Kart *a) {
-    a->mUnk_00.mUnk_40 = func_02086080(a->mIndex);
+    a->mSoundSource.mUnk_40 = func_02086080(a->mIndex);
     func_0210b7ec(&a->mUnk_518, func_02086080(a->mIndex));
 }
 

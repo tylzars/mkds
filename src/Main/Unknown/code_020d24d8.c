@@ -20,7 +20,7 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_02024000.h"
 
-void func_020d2668(MapObject *b, Unk0210bfbc *c, s32 d, s32 e) {
+void func_020d2668(MapObject *b, SoundSource *c, s32 d, s32 e) {
     s32 a;
     a = b->mKindData->mUnk_24;
     if (a == -1) {
@@ -30,7 +30,7 @@ void func_020d2668(MapObject *b, Unk0210bfbc *c, s32 d, s32 e) {
         return;
     }
     if (b->mUnk_94 != NULL) {
-        func_02024a28(&b->mUnk_94->mUnk_00, a, e, d);
+        func_02024a28(&b->mUnk_94->mSoundSource, a, e, d);
     } else {
         func_02024a28(c, a, e, d);
     }
@@ -40,7 +40,7 @@ void func_020d2600(s32 c, Vec3 *d, s32 e) {
     s32 a;
     Unk0210b7a8 b;
     a = func_020d4ef4(d);
-    if (a >= (e == 2 ? data_0217ca6c[2].mUnk_20 : data_0217ca6c[4].mUnk_20)) {
+    if (a >= (e == 2 ? gSoundFalloffs[2].mUnk_20 : gSoundFalloffs[4].mUnk_20)) {
         return;
     }
     b.mUnk_00 = c;

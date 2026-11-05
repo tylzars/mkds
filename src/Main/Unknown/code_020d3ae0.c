@@ -127,19 +127,19 @@ void func_020d4e28(ItemObject *p, Vec3 *v, u32 a) {
     s32 d;
 
     if (a & 4) {
-        if (p->mUnk_00.mUnk_34 & 1) {
-            func_0210cfbc(&p->mUnk_00, 2, 1);
+        if (p->mSoundSource.mUnk_34 & 1) {
+            func_0210cfbc(&p->mSoundSource, 2, 1);
         }
         return;
     }
     d = data_0217b4f8.mUnk_08.y - v->y;
     if (d > -0x12c000 && d < data_0217b4f4) {
-        if (!(p->mUnk_00.mUnk_34 & 1)) {
-            func_0210cfbc(&p->mUnk_00, 2, 1);
+        if (!(p->mSoundSource.mUnk_34 & 1)) {
+            func_0210cfbc(&p->mSoundSource, 2, 1);
         }
     } else {
-        if (p->mUnk_00.mUnk_34 & 1) {
-            func_0210cfbc(&p->mUnk_00, 2, 1);
+        if (p->mSoundSource.mUnk_34 & 1) {
+            func_0210cfbc(&p->mSoundSource, 2, 1);
         }
     }
 }

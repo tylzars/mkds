@@ -68,7 +68,7 @@
 
 void func_ov001_02192890(Unk02188950 *a) {
     a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xc), (&a->mUnk_000.mPos));
+    InitSoundSource((SoundSource *) (a->mUnk_000.mUnk_94), (u32) (0xc), (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cbec[0x14];
 }
 
@@ -1242,9 +1242,9 @@ void func_ov001_0218fd20(Unk02188950 *a, Unk0218fd20 *b) {
                                (u16) ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0) + 1))
                          : 0),
                     &vec);
-        func_0208b7bc(0x3eb, &b->mUnk_50);
-        func_0208b7bc(0x3ec, &b->mUnk_50);
-        func_0208b7bc(0x3ed, &b->mUnk_50);
+        StartEffect(0x3eb, &b->mUnk_50);
+        StartEffect(0x3ec, &b->mUnk_50);
+        StartEffect(0x3ed, &b->mUnk_50);
         a->mUnk_000.mUnk_78 |= data_ov001_021a65c4;
         func_ov001_0219006c(data_021759c0->mMode == MODE_MISSION_RUN
                                 ? func_ov001_02181b68((

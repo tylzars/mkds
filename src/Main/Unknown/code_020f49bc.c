@@ -335,7 +335,7 @@ void func_020f6220(void *a0, s32 b) {
         return;
     }
     func_0210b7ec(&a->mUnk_16c, a->mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f);
-    func_02109078(&a->mUnk_000.mUnk_000.mUnk_00, 0xd7, 0x7f, 0);
+    StartSoundWhileRequested(&a->mUnk_000.mUnk_000.mSoundSource, 0xd7, 0x7f, 0);
 }
 
 BOOL func_020f6150(Unk020eda5c *a, Unk020f6150 *b) {
@@ -344,7 +344,7 @@ BOOL func_020f6150(Unk020eda5c *a, Unk020f6150 *b) {
     v = data_021759c0->mMode == MODE_BATTLE;
     func_020f9114(b);
     func_0210b850(&b->mUnk_16c);
-    b->mUnk_000.mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
+    b->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     if (a->mUnk_00c->mFlags & 0x20) {
         func_020f2b94(b, a, v != FALSE ? 2 : 4, 0, 0, 0x5000);
         return FALSE;
@@ -384,7 +384,7 @@ void *func_020f6038(void *a, Unk020f6150 *b, void *c) {
 void func_020f5ffc(Unk020f6150 *a) {
     func_020f8e78(a);
     func_0210b850(&a->mUnk_16c);
-    a->mUnk_000.mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
+    a->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_020f1ea4(a, 9, a->mUnk_168, 0);
 }
 
@@ -396,7 +396,7 @@ void func_020f5fb8(void *a0, s32 b) {
         return;
     }
     func_0210b7ec(&a->mUnk_258, a->mUnk_000.mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f);
-    func_02109078(&a->mUnk_000.mUnk_000.mUnk_000.mUnk_00, 0xd8, 0x7f, 0);
+    StartSoundWhileRequested(&a->mUnk_000.mUnk_000.mUnk_000.mSoundSource, 0xd8, 0x7f, 0);
 }
 
 void func_020f5f7c(Unk020f5d6c *a, Vec3 *b, Vec3 *c) {
@@ -413,7 +413,7 @@ s32 func_020f5d6c(Unk020eda5c *a, Unk020f5d6c *b) {
 
     func_020f9114(b);
     func_0210b850(&b->mUnk_258);
-    b->mUnk_000.mUnk_000.mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
+    b->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&b->mUnk_23c, (UnkFunc *const *) data_0216c648, 7, b);
     if (a->mUnk_00c->mFlags & 0x20) {
         b->mUnk_254 = 0;
@@ -752,7 +752,7 @@ void func_020f53d0(Unk020f5d6c *a) {
 
     func_020f8e78(a);
     func_0210b850(&a->mUnk_258);
-    a->mUnk_000.mUnk_000.mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
+    a->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&a->mUnk_23c, (UnkFunc *const *) data_0216c648, 7, a);
     if (a->mUnk_254 != 0) {
         if (a->mUnk_000.mUnk_21c.mUnk_00 != NULL) {
@@ -825,7 +825,7 @@ s32 func_020f5240(Unk020eda5c *a, Unk020f5240 *b) {
     o = a->mUnk_00c;
     if (o->mFlags & 0x10) {
         func_020f3150(&b->mUnk_000, a, 0, 1, 0x4000, 0x3000, 0x59a);
-        func_021090c4(&b->mUnk_000.mUnk_000.mUnk_00, 0xda, 0x7f, 0);
+        StartSound(&b->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
         b->mUnk_130 = 1;
         return b->mUnk_130;
     }
@@ -835,7 +835,7 @@ s32 func_020f5240(Unk020eda5c *a, Unk020f5240 *b) {
 }
 
 // Calls func_020f2df0 with one of two pairs of numbers, and when the 0x74 bits allow it
-// doubles the 0x60 word and runs func_02109060 and func_020f6a6c.
+// doubles the 0x60 word and runs StopSound and func_020f6a6c.
 void func_020f518c(Unk020f5240 *a) {
     u32 v;
     u32 n;
@@ -855,7 +855,7 @@ void func_020f518c(Unk020f5240 *a) {
     if (a->mUnk_130 != 0) {
         a->mUnk_000.mUnk_000.mVelocity.y = a->mUnk_000.mUnk_000.mVelocity.y * 2;
     }
-    func_02109060(&a->mUnk_000.mUnk_000.mUnk_00, 0xda);
+    StopSound(&a->mUnk_000.mUnk_000.mSoundSource, 0xda);
     func_020f6a6c(&a->mUnk_000.mUnk_000, &v);
 }
 
@@ -877,7 +877,7 @@ void *func_020f5108(void *a, Unk020f5240 *b, void *c) {
     return p;
 }
 
-// Runs func_020f8e78 and func_020f2d98, then func_021090c4 when the two 0x74/0x130 tests pass.
+// Runs func_020f8e78 and func_020f2d98, then StartSound when the two 0x74/0x130 tests pass.
 void func_020f50b4(Unk020f5240 *a) {
     func_020f8e78(a);
     func_020f2d98(&a->mUnk_000, 0);
@@ -887,7 +887,7 @@ void func_020f50b4(Unk020f5240 *a) {
     if (a->mUnk_130 == 0) {
         return;
     }
-    func_021090c4(&a->mUnk_000.mUnk_000.mUnk_00, 0xda, 0x7f, 0);
+    StartSound(&a->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
 }
 
 // Runs func_02069db8 on the 0x1fc word of b's 0x04 object, marks b, sets the 0x204 word of
@@ -936,7 +936,7 @@ void func_020f4f44(Unk020f5008 *a) {
     if ((a->mUnk_000.mUnk_000.mFlags & 3) != 0) {
         return;
     }
-    func_02109060(&a->mUnk_000.mUnk_000.mUnk_00, 0xda);
+    StopSound(&a->mUnk_000.mUnk_000.mSoundSource, 0xda);
     func_020f6a6c(&a->mUnk_000.mUnk_000, &n);
     if ((a->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
         a->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020f4fd0;

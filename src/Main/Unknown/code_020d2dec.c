@@ -244,7 +244,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
             } else {
                 object->mFlags |= data_021568dc;
             }
-            object->mUnk_70 = data_0217ca6c[2].mUnk_20;
+            object->mUnk_70 = gSoundFalloffs[2].mUnk_20;
             if (courseRow != NULL) {
                 if (a->mInitObject != NULL) {
                     a->mInitObject(object, courseRow, data_0216b288[i].mUnk_08);

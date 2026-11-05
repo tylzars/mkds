@@ -3,7 +3,7 @@
 #include "types.h"
 
 typedef struct Kart Kart;
-typedef struct Unk0210bfbc Unk0210bfbc;
+typedef struct SoundSource SoundSource;
 
 // Ten words at 0x40 of an Unk02024eec, built on the stack by func_020719d0.
 typedef struct Unk02024eec_40 {
@@ -61,7 +61,7 @@ typedef struct Unk02024eec Unk02024eec;
 
 s32 func_02024974(s32 a, s32 b, u32 c, u32 d);
 void func_020249b8(Kart *a, s32 b, s32 c);
-void func_02024a28(Unk0210bfbc *p, u16 a, s32 b, s32 c);
+void func_02024a28(SoundSource *p, u16 a, s32 b, s32 c);
 void func_02024a88(Kart *a);
 s32 func_02024eec(Unk02024eec *a, s32 b, s32 c);
 void func_02024fc0(u32 arg0, u32 arg1);

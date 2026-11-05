@@ -271,7 +271,7 @@ void func_02110350(Unk020e71a0_94 *a) {
     } else if (v > 0x7f) {
         v = 0x7f;
     }
-    func_02109078(&a->mUnk_00, 0x231, (0x7f - v) & 0xff, 0);
+    StartSoundWhileRequested(&a->mSoundSource, 0x231, (0x7f - v) & 0xff, 0);
 }
 
 u32 func_02110324(void) {
@@ -661,7 +661,7 @@ void func_0210f9f0(void *a0, int b) {
     Kart *a = a0;
     u32 v = data_0217d1f0;
     data_0217d1f0 = v + 1;
-    func_021090c4(&a->mUnk_00, v + 0xea, 0x7f, 0);
+    StartSound(&a->mSoundSource, v + 0xea, 0x7f, 0);
 }
 
 void func_0210f9ac(Kart *a) {

@@ -222,9 +222,9 @@ void EnterMkdEfBubbleState0(MkdEfBubbleObject *a) {
     a->mUnk_00.mFlags &= ~8;
     a->mUnk_00.mUnk_66 = 0x1f;
     if ((a->mUnk_00.mUnk_78 & 4) == 0) {
-        if (a->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+        if (a->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
             n = 2;
-        } else if (a->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+        } else if (a->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
             n = 3;
         } else {
             n = 4;
@@ -237,10 +237,10 @@ void EnterMkdEfBubbleState0(MkdEfBubbleObject *a) {
     }
     a->mUnk_e4 = 0;
     if (a->mUnk_e8 == NULL) {
-        a->mUnk_e8 = func_0208b7bc(0x45, &a->mUnk_00.mPos);
+        a->mUnk_e8 = StartEffect(0x45, &a->mUnk_00.mPos);
     }
     if (a->mUnk_ec == NULL) {
-        a->mUnk_ec = func_0208b7bc(0x46, &a->mUnk_00.mPos);
+        a->mUnk_ec = StartEffect(0x46, &a->mUnk_00.mPos);
     }
     if (a->mUnk_e8 == NULL || a->mUnk_ec == NULL) {
         v = TRUE;

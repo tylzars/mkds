@@ -18,6 +18,6 @@ void func_020f8ddc(void *a) {
     if ((u32) p->mKind > 1) {
         return;
     }
-    func_0208b7bc(0x441, &p->mPos);
-    func_0208b7bc(0x440, &p->mPos);
+    StartEffect(0x441, &p->mPos);
+    StartEffect(0x440, &p->mPos);
 }

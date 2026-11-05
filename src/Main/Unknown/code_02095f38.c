@@ -67,9 +67,9 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                 p->mUnk_108 = p->mUnk_108 | m;
                 if (data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind != 2) {
                     if ((p->mUnk_00.mUnk_78 & 4) == 0) {
-                        if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+                        if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
-                        } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+                        } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;
@@ -109,8 +109,8 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                         v.x = (p->mUnk_00.mPos.x + a->mPos.x) >> 1;
                         v.y = (p->mUnk_00.mPos.y + a->mPos.y) >> 1;
                         v.z = (p->mUnk_00.mPos.z + a->mPos.z) >> 1;
-                        func_0208b7bc(0x442, &v);
-                        func_0208b7bc(0x443, &v);
+                        StartEffect(0x442, &v);
+                        StartEffect(0x443, &v);
                         if (data_021759c0->mMode == MODE_MISSION_RUN) {
                             func_ov001_0218175c(p->mUnk_00.mKind);
                         }
@@ -150,9 +150,9 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                     p->mUnk_100 = 0x100;
                     p->mUnk_00.mUnk_78 = p->mUnk_00.mUnk_78 | data_021564bc;
                     if ((p->mUnk_00.mUnk_78 & 4) == 0) {
-                        if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+                        if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
-                        } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+                        } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;
@@ -402,9 +402,9 @@ static inline void func_02095fec_inline_2(CoverPooHole *p, s32 n) {
     if (p->mUnk_00.mUnk_78 & 4) {
         return;
     }
-    if (p->mUnk_00.mUnk_70 == data_0217ca6c[2].mUnk_20) {
+    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
         v = 2;
-    } else if (p->mUnk_00.mUnk_70 == data_0217ca6c[3].mUnk_20) {
+    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
         v = 3;
     } else {
         v = 4;

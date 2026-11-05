@@ -288,11 +288,11 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (p->mState == 5) {
             goto l1;
         }
-        func_021090c4(&p->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&p->mSoundSource, 0xe8, 0x7f, 0);
         StartKartState5(p, &q->mUnk_98, 0);
     l1:
         if (((p->mUnk_514->mUnk_30 & 0x80) != 0) != ((f & 0x80) != 0)) {
-            func_021090c4(&p->mUnk_00, 0xe8, 0x7f, 0);
+            StartSound(&p->mSoundSource, 0xe8, 0x7f, 0);
         }
     } else if (((p->mUnk_514->mUnk_30 & 0x20) != 0) != ((f & 0x20) != 0)) {
         if (p->mUnk_7c & 0x200) {
@@ -305,7 +305,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         StartKartState4(p, &q->mUnk_98, 0);
     l2:
         if (((p->mUnk_514->mUnk_30 & 0x80) != 0) != ((f & 0x80) != 0)) {
-            func_021090c4(&p->mUnk_00, 0xe8, 0x7f, 0);
+            StartSound(&p->mSoundSource, 0xe8, 0x7f, 0);
         }
     }
     if (((p->mUnk_514->mUnk_30 & 0x40000) != 0) != ((f & 0x40000) != 0)) {
@@ -350,7 +350,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             goto l3;
         }
         func_020653d0_inline(o, o2, &t);
-        func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&o->mSoundSource, 0xe8, 0x7f, 0);
         StartKartState5(o, &t, 0);
     l3:
         e = 1;
@@ -369,7 +369,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             goto l4;
         }
         func_020653d0_inline(o, o2, &t);
-        func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&o->mSoundSource, 0xe8, 0x7f, 0);
         StartKartState5(o, &t, 0);
     l4:
         e = 1;
@@ -388,7 +388,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             goto l5;
         }
         func_020653d0_inline(o, o2, &t);
-        func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&o->mSoundSource, 0xe8, 0x7f, 0);
         StartKartState5(o, &t, 0);
     l5:
         e = 1;
@@ -407,7 +407,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             goto l6;
         }
         func_020653d0_inline(o, o2, &t);
-        func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&o->mSoundSource, 0xe8, 0x7f, 0);
         StartKartState5(o, &t, 0);
     l6:
         e = 1;
@@ -432,7 +432,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
-        func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&o->mSoundSource, 0xe8, 0x7f, 0);
         StartKartState4(o, &t, 0);
     l7:
     }
@@ -453,7 +453,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
-        func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&o->mSoundSource, 0xe8, 0x7f, 0);
         StartKartState4(o, &t, 0);
     l8:
     }
@@ -474,7 +474,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
-        func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&o->mSoundSource, 0xe8, 0x7f, 0);
         StartKartState4(o, &t, 0);
     l9:
     }
@@ -495,7 +495,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
-        func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
+        StartSound(&o->mSoundSource, 0xe8, 0x7f, 0);
         StartKartState4(o, &t, 0);
     l10:
     }

@@ -72,24 +72,24 @@ void func_0210b610(void) {
     data_0217ccb4 = (s32) (d >> 12) >> 12;
 }
 
-void func_0210b564(Unk0210bfbc *a, int b, u32 c, u32 d, u32 e) {
+void func_0210b564(SoundSource *a, int b, u32 c, u32 d, u32 e) {
     int v1;
     if ((a->mUnk_34 & 1) == 0) {
         return;
     }
     if (b == 2) {
         if (((u32) 0x00009c40u) < e) {
-            func_021090c4(a, 0x70, 0x7f, 0);
+            StartSound(a, 0x70, 0x7f, 0);
             return;
         }
         if (e != 0) {
-            func_021090c4(a, 0x6f, 0x7f, 0);
+            StartSound(a, 0x6f, 0x7f, 0);
             return;
         }
     }
     v1 = func_0210bb74(b, c, d);
     if (v1 != 0xffff) {
-        func_021090c4(a, v1, 0x7f, 0);
+        StartSound(a, v1, 0x7f, 0);
         return;
     }
 }
@@ -109,9 +109,9 @@ void func_0210b4e0(Kart *a, s32 b, s32 c, s32 d) {
             break;
     }
     if (b != 0) {
-        func_02109078(&a->mUnk_00, func_0210bb74(1, c, d), 0x5f, -0x345);
+        StartSoundWhileRequested(&a->mSoundSource, func_0210bb74(1, c, d), 0x5f, -0x345);
     }
-    func_02109078(&a->mUnk_00, e, 0x7f, 0);
+    StartSoundWhileRequested(&a->mSoundSource, e, 0x7f, 0);
 }
 
 void func_0210b2a8(Kart *a, s32 b, s32 c, s32 d, u32 e) {
@@ -126,7 +126,7 @@ void func_0210b2a8(Kart *a, s32 b, s32 c, s32 d, u32 e) {
     u32 m;
     u32 n;
 
-    if (!(a->mUnk_00.mUnk_34 & 1)) {
+    if (!(a->mSoundSource.mUnk_34 & 1)) {
         return;
     }
     if (a->mUnk_4c & 0x10000000) {
@@ -160,7 +160,7 @@ void func_0210b2a8(Kart *a, s32 b, s32 c, s32 d, u32 e) {
                 w += data_0217ccb4 >> 1;
             }
         }
-        func_02109078(&a->mUnk_00, 0x74, g & 0xff, (s16) (f - w));
+        StartSoundWhileRequested(&a->mSoundSource, 0x74, g & 0xff, (s16) (f - w));
     } else {
         i = func_0210bb74(b, c, d);
         if (i == 0xffff) {
@@ -178,12 +178,12 @@ void func_0210b2a8(Kart *a, s32 b, s32 c, s32 d, u32 e) {
                 if (k > func_02110590(m)) {
                     n = func_0211057c(m);
                     p->mUnk_2c++;
-                    func_021090c4(&a->mUnk_00, (u16) ((p->mUnk_2c & 1) + n), 0x7f, 0);
+                    StartSound(&a->mSoundSource, (u16) ((p->mUnk_2c & 1) + n), 0x7f, 0);
                     p->mUnk_28 = j;
                 }
                 break;
             default:
-                func_02109078(&a->mUnk_00, i, g & 0xff, f);
+                StartSoundWhileRequested(&a->mSoundSource, i, g & 0xff, f);
                 break;
         }
     }
@@ -192,7 +192,7 @@ void func_0210b2a8(Kart *a, s32 b, s32 c, s32 d, u32 e) {
 void func_0210b234(Kart *a, s32 b, s32 c, s32 d, s32 f) {
     u32 e;
 
-    if (!(a->mUnk_00.mUnk_34 & 1)) {
+    if (!(a->mSoundSource.mUnk_34 & 1)) {
         return;
     }
     e = func_0210bafc(b, c, d);
@@ -202,7 +202,7 @@ void func_0210b234(Kart *a, s32 b, s32 c, s32 d, s32 f) {
     if (data_021759c0->mCourseId == 0x1d) {
         e = 0x1b6;
     }
-    func_021090c4(&a->mUnk_00, e, 0x7f, 0);
+    StartSound(&a->mSoundSource, e, 0x7f, 0);
 }
 
 void func_0210b198(s32 a, s32 b, u32 c, s32 d, s32 e) {
@@ -223,14 +223,14 @@ void func_0210b198(s32 a, s32 b, u32 c, s32 d, s32 e) {
 }
 
 void func_0210b12c(Kart *a, s32 b, s16 d) {
-    Unk0210bf24 *p;
+    PlayingSound *p;
     s32 c;
 
     c = b + 0xc1;
     if (data_0217c814.mUnk_00 < 0x78) {
         return;
     }
-    p = func_0210c86c(&a->mUnk_00, 0, c, 0x7f, 0);
+    p = StartSoundEx(&a->mSoundSource, 0, c, 0x7f, 0);
     if (p == NULL) {
         return;
     }
@@ -249,7 +249,7 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
     s32 y;
 
     d = data_0217c814.mUnk_00;
-    if (!(a->mUnk_00.mUnk_34 & 1)) {
+    if (!(a->mSoundSource.mUnk_34 & 1)) {
         return;
     }
     p = &a->mUnk_450;
@@ -286,7 +286,7 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
             if (c != 3 && c != 5) {
                 return;
             }
-            func_0210c86c(&a->mUnk_00, 2, b * 0xe + (c + 1), 0x73, 0);
+            StartSoundEx(&a->mSoundSource, 2, b * 0xe + (c + 1), 0x73, 0);
         }
     } else {
         x = 0xf0;
@@ -301,7 +301,7 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
         if (d - p->mUnk_30 < y) {
             return;
         }
-        func_0210c86c(&a->mUnk_00, 2, b * 0xe + c, 0x7f, 0);
+        StartSoundEx(&a->mSoundSource, 2, b * 0xe + c, 0x7f, 0);
         p->mUnk_30 = d;
     }
 }
@@ -376,21 +376,21 @@ void func_0210ad58(Kart *a, s32 b) {
 
 void func_0210abf4(Kart *a, s32 b, s32 c, s32 d) {
     Unk0212c400 *h;
-    Unk0210bf24 *p;
-    Unk0210bf24 *q;
+    PlayingSound *p;
+    PlayingSound *q;
     BOOL e;
     u16 f;
     enum { K0 } k;
 
-    p = a->mUnk_00.mUnk_0c.mHead;
+    p = a->mSoundSource.mPlayingSounds.mHead;
     if (p != NULL) {
         do {
             if (p->mUnk_18 == 2) {
                 q = p;
-                p = ListGetNext(&a->mUnk_00.mUnk_0c, p);
-                func_0210c450(&a->mUnk_00, q, 0);
+                p = ListGetNext(&a->mSoundSource.mPlayingSounds, p);
+                StopPlayingSound(&a->mSoundSource, q, 0);
             } else {
-                p = ListGetNext(&a->mUnk_00.mUnk_0c, p);
+                p = ListGetNext(&a->mSoundSource.mPlayingSounds, p);
             }
         } while (p != NULL);
     }
@@ -403,7 +403,7 @@ void func_0210abf4(Kart *a, s32 b, s32 c, s32 d) {
     }
     k = 0xd;
     if (c != 0) {
-        func_0210c86c(&a->mUnk_00, 2, b * 0xe + k, 0x7f, 0);
+        StartSoundEx(&a->mSoundSource, 2, b * 0xe + k, 0x7f, 0);
         return;
     }
     if (func_02105504() == 0) {
@@ -439,15 +439,15 @@ void func_0210ab48(s32 a, s32 b) {
     func_0212c688(&h);
 }
 
-void func_0210ab44(Kart *a, Unk0210bf24 *b, s32 c) {}
+void func_0210ab44(Kart *a, PlayingSound *b, s32 c) {}
 
-void func_0210ab40(Kart *a, Unk0210bf24 *b, s32 c) {}
+void func_0210ab40(Kart *a, PlayingSound *b, s32 c) {}
 
 void func_0210ab30(Kart *a) {
-    a->mUnk_00.mUnk_2c = (void (*)(void *, void *, u32)) func_0210ab40;
+    a->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) func_0210ab40;
 }
 
-void func_0210aa14(Kart *a, Unk0210bf24 *b, s32 c) {
+void func_0210aa14(Kart *a, PlayingSound *b, s32 c) {
     u32 d;
     u32 e;
     s32 f;
@@ -455,7 +455,7 @@ void func_0210aa14(Kart *a, Unk0210bf24 *b, s32 c) {
     u32 g;
 
     d = b->mUnk_18;
-    e = b->mUnk_16;
+    e = b->mSoundId;
     f = -1;
     if (a->mIndex == data_021759c0->mEntryIndex) {
         p = func_0212d580(d, e);
@@ -486,14 +486,14 @@ u32 func_0210aa0c(void) {
     return 0x0u;
 }
 
-void func_0210a880(Kart *a, Unk0210bf24 *b, s32 c) {
+void func_0210a880(Kart *a, PlayingSound *b, s32 c) {
     s32 d;
     u32 e;
     u32 f;
     BOOL g;
     s16 w;
 
-    e = b->mUnk_1a;
+    e = b->mVolume;
     d = c + a->mUnk_48c(&a->mUnk_518);
     if (b->mUnk_18 != 2) {
         f = a->mUnk_500;
@@ -525,7 +525,7 @@ void func_0210a880(Kart *a, Unk0210bf24 *b, s32 c) {
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + d);
 }
 
-void func_0210a77c(Kart *a, Unk0210bf24 *b) {
+void func_0210a77c(Kart *a, PlayingSound *b) {
     Vec3 *o;
     u32 c;
     s32 v;
@@ -534,7 +534,7 @@ void func_0210a77c(Kart *a, Unk0210bf24 *b) {
     s32 t;
 
     v = 0;
-    c = b->mUnk_1a;
+    c = b->mVolume;
     if (a->mUnk_44 == 0) {
         o = (Vec3 *) &a->mUnk_168.y;
     } else {
@@ -558,11 +558,11 @@ void func_0210a77c(Kart *a, Unk0210bf24 *b) {
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + v);
 }
 
-void func_0210a76c(Kart *a, Unk0210bf24 *b) {
+void func_0210a76c(Kart *a, PlayingSound *b) {
     func_0210a880(a, b, 0);
 }
 
-void func_0210a724(Kart *a, Unk0210bf24 *b) {
+void func_0210a724(Kart *a, PlayingSound *b) {
     u32 c;
     s32 v;
 
@@ -577,26 +577,26 @@ void func_0210a724(Kart *a, Unk0210bf24 *b) {
     func_0210a880(a, b, v);
 }
 
-void func_0210a6ec(Kart *a, Unk0210bf24 *b) {
+void func_0210a6ec(Kart *a, PlayingSound *b) {
     u32 c;
 
     c = a->mUnk_4c;
-    func_02105b28(&b->mUnk_00, b->mUnk_1a);
+    func_02105b28(&b->mUnk_00, b->mVolume);
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + c);
 }
 
-void func_0210a6b4(Kart *a, Unk0210bf24 *b) {
+void func_0210a6b4(Kart *a, PlayingSound *b) {
     u32 c;
 
     c = a->mUnk_4c;
-    func_02105b28(&b->mUnk_00, b->mUnk_1a);
+    func_02105b28(&b->mUnk_00, b->mVolume);
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + c);
 }
 
-void func_0210a67c(Kart *a, Unk0210bf24 *b) {
+void func_0210a67c(Kart *a, PlayingSound *b) {
     s32 c;
 
     c = (s32) a->mUnk_308;
-    func_02105b28(&b->mUnk_00, b->mUnk_1a);
+    func_02105b28(&b->mUnk_00, b->mVolume);
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + c);
 }

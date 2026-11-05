@@ -155,21 +155,21 @@ void func_020a269c(s32 a, u32 b) {
         if (b == 0) {
             Vec3 w0 = {0, 0, 0};
 
-            data_0217b200->mUnk_118 = func_0208b7bc(0, &w0);
+            data_0217b200->mUnk_118 = StartEffect(0, &w0);
             {
                 Vec3 w1 = {0, 0, 0};
 
-                data_0217b200->mUnk_11c = func_0208b7bc(4, &w1);
+                data_0217b200->mUnk_11c = StartEffect(4, &w1);
                 {
                     Vec3 w2 = {0, 0, 0};
 
-                    data_0217b200->mUnk_120 = func_0208b7bc(5, &w2);
+                    data_0217b200->mUnk_120 = StartEffect(5, &w2);
                 }
             }
         } else if (b == 1) {
             Vec3 w3 = {0, 0, 0};
 
-            data_0217b200->mUnk_118 = func_0208b7bc(0, &w3);
+            data_0217b200->mUnk_118 = StartEffect(0, &w3);
         }
     }
     func_020a29cc();

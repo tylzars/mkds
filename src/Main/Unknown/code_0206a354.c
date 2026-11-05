@@ -276,9 +276,9 @@ void StartKartState3(Kart *p) {
     QuaternionFromAxisAngle(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * 0x99a) >> 12);
     if (p->mKartModelsEntry->mUnk_058 == 0) {
-        func_0208b7bc(0xc, &p->mPos);
-        func_0208b7bc(0xd, &p->mPos);
-        func_0208b7bc(0xe, &p->mPos);
+        StartEffect(0xc, &p->mPos);
+        StartEffect(0xd, &p->mPos);
+        StartEffect(0xe, &p->mPos);
     }
     if (!(p->mUnk_48 & 0x840)) {
         func_0210af40(p, p->mUnk_3cc, 2);
@@ -420,9 +420,9 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
     }
     QuaternionFromAxisAngle(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     if (p->mKartModelsEntry->mUnk_058 == 0) {
-        func_0208b7bc(0xc, &p->mPos);
-        func_0208b7bc(0xd, &p->mPos);
-        func_0208b7bc(0xe, &p->mPos);
+        StartEffect(0xc, &p->mPos);
+        StartEffect(0xd, &p->mPos);
+        StartEffect(0xe, &p->mPos);
     }
     p->mUnk_4c |= 0x1;
     if (!(p->mUnk_48 & 0x840)) {
@@ -529,9 +529,9 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
         func_ov001_0218173c();
     }
     if (p->mKartModelsEntry->mUnk_058 == 0) {
-        func_0208b7bc(0xc, &p->mPos);
-        func_0208b7bc(0xd, &p->mPos);
-        func_0208b7bc(0xe, &p->mPos);
+        StartEffect(0xc, &p->mPos);
+        StartEffect(0xd, &p->mPos);
+        StartEffect(0xe, &p->mPos);
     }
     if (!(p->mUnk_48 & 0x840)) {
         func_0210af40(p, p->mUnk_3cc, 2);
@@ -635,7 +635,7 @@ void func_0206a354(Kart *p) {
 
     if (q->mUnk_02 <= 0) {
         if (q->mUnk_04 == 0) {
-            func_021090c4(&p->mUnk_00, 0xed, 0x7f, 0);
+            StartSound(&p->mSoundSource, 0xed, 0x7f, 0);
         }
         q->mUnk_04 = q->mUnk_04 + 1;
         if (q->mUnk_04 >= 0x19) {

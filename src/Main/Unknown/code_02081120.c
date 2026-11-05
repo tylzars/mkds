@@ -17,7 +17,7 @@ void func_020812d0(s32 a) {
     }
     i = 0;
     do {
-        p = func_0208b7bc(0x58, &data_02155a14);
+        p = StartEffect(0x58, &data_02155a14);
         p->mUnk_94 = q;
         p->mUnk_98_24 = i;
         i = i + 1;
@@ -38,13 +38,13 @@ void func_02081298(Unk0201ca6c *p, s32 a) {
 }
 
 void func_02081224(u32 a) {
-    Unk0217ae84 *e = &data_0217ae84[a];
+    KartEffects *e = &gKartEffects[a];
     Unk0201ca6c *p;
 
     if (e->mUnk_30 != NULL) {
         func_0208b710(e->mUnk_30);
     }
-    e->mUnk_30 = func_0208b7bc(0x5e, &data_02155a14);
+    e->mUnk_30 = StartEffect(0x5e, &data_02155a14);
     p = e->mUnk_30;
     p->mUnk_98_16 = 0;
     p->mUnk_98_8 = 0x78;
@@ -83,7 +83,7 @@ void func_02081120(Unk0201ca6c *p, s32 a) {
         p->mUnk_98_16 = j + 1;
     }
     if (v1 != 0) {
-        data_0217ae84[i].mUnk_30 = NULL;
+        gKartEffects[i].mUnk_30 = NULL;
         return;
     }
     p->mUnk_6c = (s16) GetKart(i)->mScale.z;

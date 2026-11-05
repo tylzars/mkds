@@ -51,18 +51,18 @@ u32 func_020250a8(void) {
 }
 
 void func_0202506c(Kart *a, Unk02024eec *b) {
-    Unk0210bf24 *p;
+    PlayingSound *p;
 
-    p = func_02109078(&a->mUnk_00, b->mUnk_00, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
+    p = StartSoundWhileRequested(&a->mSoundSource, b->mUnk_00, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
     if (p != NULL) {
         p->mUnk_19 |= 0x80;
     }
 }
 
 void func_02025030(Kart *a, Unk02024eec *b) {
-    Unk0210bf24 *p;
+    PlayingSound *p;
 
-    p = func_02109078(&a->mUnk_00, b->mUnk_58, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
+    p = StartSoundWhileRequested(&a->mSoundSource, b->mUnk_58, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
     if (p != NULL) {
         p->mUnk_19 |= 0x80;
     }
@@ -72,7 +72,7 @@ void func_02024fe8(Kart *a, Unk02024eec *b) {
     u32 v;
 
     v = func_0210bb74(3, a->mSurfaceKind, a->mSurfaceVariant);
-    func_02109078(&a->mUnk_00, v, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
+    StartSoundWhileRequested(&a->mSoundSource, v, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
 }
 
 void func_02024fc0(u32 arg0, u32 arg1) {
@@ -93,7 +93,7 @@ void func_02024fc0(u32 arg0, u32 arg1) {
     value3 = (value3 << 4);
     value1 = (u32) * (const u32 *) ((value1) + (92));
     value3 = ((u32) ((s32) value3 >> 16));
-    func_02109078((Unk0210bfbc *) value0, value1, value2, value3);
+    StartSoundWhileRequested((SoundSource *) value0, value1, value2, value3);
 }
 
 s32 func_02024eec(Unk02024eec *a, s32 b, s32 c) {
@@ -166,7 +166,7 @@ void func_02024a88(Kart *a) {
         }
         q->mUnk_14 = f;
         q->mUnk_04 = 0x46;
-        func_02109078(&a->mUnk_00, 0xfc, 0x7f, 0);
+        StartSoundWhileRequested(&a->mSoundSource, 0xfc, 0x7f, 0);
         return;
     }
     if ((s32) GetRaceUpdateFrames() < 5) {
@@ -249,7 +249,7 @@ void func_02024a88(Kart *a) {
     q->mUnk_14 = f;
 }
 
-void func_02024a28(Unk0210bfbc *p, u16 a, s32 b, s32 c) {
+void func_02024a28(SoundSource *p, u16 a, s32 b, s32 c) {
     u8 t;
     u8 v;
 
@@ -264,7 +264,7 @@ void func_02024a28(Unk0210bfbc *p, u16 a, s32 b, s32 c) {
     } else {
         v = 0x7f;
     }
-    func_0210c86c(p, 0, a, v, 0);
+    StartSoundEx(p, 0, a, v, 0);
 }
 
 void func_020249b8(Kart *a, s32 b, s32 c) {
@@ -285,7 +285,7 @@ void func_020249b8(Kart *a, s32 b, s32 c) {
     if (e > 0x7f) {
         e = 0x7f;
     }
-    func_02109078(&a->mUnk_00, c > 0 ? 0x150 : 0x151, e, d);
+    StartSoundWhileRequested(&a->mSoundSource, c > 0 ? 0x150 : 0x151, e, d);
 }
 
 s32 func_02024974(s32 a, s32 b, u32 c, u32 d) {

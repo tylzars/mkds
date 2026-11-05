@@ -145,7 +145,7 @@ void func_020f288c(Unk020f1d70 *a, Vec3 *b) {
         Vec3NormalizeAndGetLengthUnchecked(q, q);
     }
     Vec3CrossUnrounded(q, &a->mUnk_000.mUnk_f0, &a->mUnk_148);
-    func_021090c4(&a->mUnk_000.mUnk_00, 0xd5, 0x7f, 0);
+    StartSound(&a->mUnk_000.mSoundSource, 0xd5, 0x7f, 0);
 }
 
 void func_020f2768(Unk020f1d70 *a, Vec3 *b, Vec3 *c) {
@@ -170,7 +170,7 @@ void func_020f2768(Unk020f1d70 *a, Vec3 *b, Vec3 *c) {
     a->mUnk_13c = *p;
     Vec3CrossUnrounded(p, &a->mUnk_000.mUnk_f0, &a->mUnk_148);
     a->mUnk_000.mUnk_f0.y += 1;
-    func_021090c4(&a->mUnk_000.mUnk_00, 0xd5, 0x7f, 0);
+    StartSound(&a->mUnk_000.mSoundSource, 0xd5, 0x7f, 0);
 }
 
 void func_020f2228(Unk020f1d70 *a, s32 b) {
