@@ -183,7 +183,7 @@ void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c) {
             c->x = a->mUnk_000.mPos.x +
                    (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12) +
                    (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
-            c->y = a->mUnk_0bc[b].mOffset.y - func_020d3d48(0);
+            c->y = a->mUnk_0bc[b].mOffset.y - GetHeightAboveWaterOrEfct(0);
             c->z = a->mUnk_000.mPos.z +
                    (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
                    (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
@@ -264,7 +264,7 @@ void func_ov001_02187444(Unk02188950 *a, u32 b, int c) {
     for (i = 0; i < 5; i++) {
         if (a->mUnk_0bc[i].mUnk_14 == NULL) {
             a->mUnk_0bc[i].mOffset.x = a->mUnk_000.mPos.x;
-            a->mUnk_0bc[i].mOffset.y = -func_020d3d48(0);
+            a->mUnk_0bc[i].mOffset.y = -GetHeightAboveWaterOrEfct(0);
             a->mUnk_0bc[i].mOffset.z = a->mUnk_000.mPos.z;
             if (a->mUnk_0bc[i].mUnk_14 != NULL) {
                 func_0208b6b0(&a->mUnk_0bc[i].mUnk_14);

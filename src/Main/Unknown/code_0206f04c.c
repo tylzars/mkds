@@ -163,7 +163,7 @@ void func_0206ff50(Kart *p, u32 a) {
             p->mUnk_48 |= 0x1000000;
             b = 0x15d;
         }
-        g.y = p->mPos.y - func_020d3d48(p->mPos.y);
+        g.y = p->mPos.y - GetHeightAboveWaterOrEfct(p->mPos.y);
         func_0208d978(&g, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0);
         p->mUnk_4c |= 0x4000000;
         func_021090c4(&p->mUnk_00, b, 0x7f, 0);
@@ -178,7 +178,7 @@ void func_0206fe08(Kart *p) {
     s32 c;
     Vec3 d;
 
-    a = func_020d3d48(p->mPos.y);
+    a = GetHeightAboveWaterOrEfct(p->mPos.y);
     if (a < 0 && !(p->mUnk_4c & 0x4000000)) {
         b = FALSE;
         c = (s32) (((s64) p->mUnk_3f4 * p->mUnk_bc.z) >> 12);
@@ -188,7 +188,8 @@ void func_0206fe08(Kart *p) {
         }
         func_0207a6c0(p);
         p->mUnk_500 = -a;
-        if (func_020d3d48(p->mPos.y) <= -0xa000 && func_020d3d48(p->mPrevPos.y) > -0xa000 && p->mVelocity.y < -0x2000) {
+        if (GetHeightAboveWaterOrEfct(p->mPos.y) <= -0xa000 && GetHeightAboveWaterOrEfct(p->mPrevPos.y) > -0xa000 &&
+            p->mVelocity.y < -0x2000) {
             d = p->mPos;
             d.y = p->mPos.y - a;
             func_0208d978(&d, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0);

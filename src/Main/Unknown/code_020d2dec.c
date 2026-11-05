@@ -354,8 +354,8 @@ void InitMapObjects(void) {
     data_0217b4f0->mUnk_180 = 0;
     data_0217b4f0->mUnk_184 = 0;
     data_0217b4f0->mUnk_188 = 0;
-    data_0217b4e4 = NULL;
-    data_0217b4d8 = NULL;
+    gCourseWater = NULL;
+    gCourseWaterEfct = NULL;
     func_02103598();
     func_020d7df8();
     func_020e662c();
@@ -529,8 +529,8 @@ void func_020d2e24(void) {
     Unk020e6fd4 **p;
     n = data_0217b4f0->mUnk_128;
     p = data_0217b4f0->mUnk_008;
-    if (data_0217b4e4 != NULL) {
-        func_020d9900(data_0217b4e4);
+    if (gCourseWater != NULL) {
+        InitWaterModels(gCourseWater);
     }
     func_020e52bc();
     for (i = 0; i < n; p++, i++) {

@@ -23,7 +23,7 @@
 
 struct Unk020f41c4_B;
 struct Unk0217b4f0;
-struct Unk020d9cf4;
+struct Water;
 struct Unk0217b43c;
 struct Nscr;
 struct Ncgr;
@@ -135,12 +135,12 @@ typedef struct RaceMNumberPair {
     /* 24 */ s32 mOffsetX;
 } RaceMNumberPair;
 
-// Object behind data_0217b4d8: the words at 0x00 to 0x0c.
+// Same bytes as WaterEfct (gViewFrustum is declared with this type).
 typedef struct Unk0217b4d8 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
+    /* 00 */ s32 mHeight;
+    /* 04 */ u32 mNsbmdFile;
+    /* 08 */ u32 mNsbcaFile;
+    /* 0c */ u32 mNsbmaFile;
 } Unk0217b4d8;
 
 // Object at data_0217b4f8: six vectors between words at 0x00/0x04 and 0x50/0x54.
@@ -671,10 +671,15 @@ extern struct Unk0217b4a4 *gCupPicture;
 extern struct Unk0217b4b0 *data_0217b4b0;
 extern struct Unk020f41c4_B *data_0217b4b8;
 extern struct Unk020f41c4_B *data_0217b4bc;
-extern Unk0217b4d8 *data_0217b4d8;
+// The same pointer as gWaterEfct, stored by func_020d4970 (the last call of CreateWaterEfct) and set to NULL in
+// InitMapObjects; the water_efct getters and the level getter read this one.
+extern Unk0217b4d8 *gCourseWaterEfct;
 extern Vec3 *data_0217b4dc;
 extern s32 data_0217b4e0;
-extern struct Unk020d9cf4 *data_0217b4e4;
+// The same pointer as gWater, stored by func_020d4980 (the last call of each Create...Water) and set to NULL in
+// InitMapObjects before the objects are created, so NULL means the course has no water; the update, draw, getters and
+// camera read this one, while gWater (never cleared) is only the creators' variable.
+extern struct Water *gCourseWater;
 extern s32 data_0217b4ec;
 extern struct Unk0217b4f0 *data_0217b4f0;
 extern s32 data_0217b4f4;

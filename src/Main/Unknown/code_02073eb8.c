@@ -134,10 +134,10 @@ void func_02076528(Camera *a, Kart *b) {
         func_02076528_inline(&u, a->mFollowDirectionSign);
     }
     if (b->mUnk_7c & 0x20) {
-        if (func_020d3e18() == FALSE) {
+        if (IsWaterPresent() == FALSE) {
             return;
         }
-        t = func_020d3df4(a->mPos.y - 0x5000);
+        t = GetHeightAboveWater(a->mPos.y - 0x5000);
         if (t < 0) {
             a->mViewPosYOffset = -t;
         } else {
@@ -168,8 +168,8 @@ void func_02076528(Camera *a, Kart *b) {
     g = v;
     func_02075fe0(a, b, &u);
     func_020741a0(&a->mPos, &a->mUnk_0a8, a, b, &g, &u, (s32) (((s64) a->mCollisionOffsetLength * 0x3000) >> 12));
-    if (func_020d3e18() != FALSE) {
-        t = func_020d3df4(a->mPos.y - 0x5000);
+    if (IsWaterPresent() != FALSE) {
+        t = GetHeightAboveWater(a->mPos.y - 0x5000);
         if (t < 0) {
             a->mViewPosYOffset = -t;
         } else {

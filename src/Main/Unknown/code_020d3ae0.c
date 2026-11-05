@@ -367,11 +367,11 @@ void func_020d4990(Unk020e6fd4 *p) {
 #pragma thumb off
 
 void func_020d4980(void *p0) {
-    data_0217b4e4 = p0;
+    gCourseWater = p0;
 }
 
 void func_020d4970(void *p0) {
-    data_0217b4d8 = p0;
+    gCourseWaterEfct = p0;
 }
 
 void func_020d47e0(void) {
@@ -515,8 +515,8 @@ void UpdateMapObjects(void) {
     } else {
         func_020d47e0();
     }
-    if (data_0217b4e4 != NULL) {
-        func_020d9f8c(data_0217b4e4);
+    if (gCourseWater != NULL) {
+        UpdateWater(gCourseWater);
     }
 }
 
@@ -531,8 +531,8 @@ void DrawMapObjects(Unk020d4418 *p) {
 
     v = &p->mUnk_30;
     func_020d4d44(v);
-    if (data_0217b4e4 != NULL) {
-        func_020d9e60(data_0217b4e4, v);
+    if (gCourseWater != NULL) {
+        DrawWater(gCourseWater, v);
     }
     i = 0;
     n = data_0217b4f0->mUnk_12a;
@@ -757,20 +757,26 @@ BOOL func_020d3e34(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
     }
 }
 
-BOOL func_020d3e18(void) {
-    return data_0217b4e4 != NULL;
+// TRUE when the course has a water object (gCourseWater is not NULL); asked by the camera and the HUD gauge.
+BOOL IsWaterPresent(void) {
+    return gCourseWater != NULL;
 }
 
-s32 func_020d3df4(s32 a) {
-    return data_0217b4e4 != NULL ? a - data_0217b4e4->mUnk_04 : 0x270f000;
+// y minus mHeight of gCourseWater (negative below the water), 0x270f000 when the course has no water; asked by the
+// camera; it does not look at mUnk_170 or WaterEfct.
+s32 GetHeightAboveWater(s32 a) {
+    return gCourseWater != NULL ? a - gCourseWater->mHeight : 0x270f000;
 }
 
-s32 func_020d3dd8(void) {
-    return data_0217b4e4 != NULL ? data_0217b4e4->mUnk_30 : 0;
+// mHeightFactor of gCourseWater, 0 when the course has no water; asked by the HUD gauge.
+s32 GetWaterHeightFactor(void) {
+    return gCourseWater != NULL ? gCourseWater->mHeightFactor : 0;
 }
 
-u32 func_020d3dbc(void) {
-    return data_0217b4e4 != NULL ? data_0217b4e4->mUnk_2c : 0;
+// mHeightAngle of gCourseWater, 0 when the course has no water; the HUD gauge tests 0x4000 <= angle < 0xc000 (the
+// falling half).
+u32 GetWaterHeightAngle(void) {
+    return gCourseWater != NULL ? gCourseWater->mHeightAngle : 0;
 }
 
 u32 func_020d3d94(void) {
@@ -780,7 +786,7 @@ u32 func_020d3d94(void) {
     u32 compareRight0;
     u32 compareLeft1;
     u32 compareRight1;
-    value1 = (u32) &data_0217b4e4;
+    value1 = (u32) &gCourseWater;
     value0 = 0u;
     value1 = (u32) * (const u32 *) ((value1) + (0));
     compareLeft0 = value1;
@@ -797,18 +803,21 @@ u32 func_020d3d94(void) {
     return value0;
 }
 
-s32 func_020d3d48(s32 a) {
-    if (data_0217b4e4 != NULL && data_0217b4e4->mUnk_170 != 0) {
-        return a - data_0217b4e4->mUnk_04;
+// Y minus mHeight when the Water exists and mUnk_170 is non-zero (mini stage 3, beach), else y minus WaterEfct.mHeight,
+// else 0x270f000; Or = the second source when the first is not used; asked by the kart steps, the kart sound and the
+// overlay-1 objects.
+s32 GetHeightAboveWaterOrEfct(s32 a) {
+    if (gCourseWater != NULL && gCourseWater->mUnk_170 != 0) {
+        return a - gCourseWater->mHeight;
     }
-    return data_0217b4d8 != NULL ? a - data_0217b4d8->mUnk_00 : 0x270f000;
+    return gCourseWaterEfct != NULL ? a - gCourseWaterEfct->mHeight : 0x270f000;
 }
 
 s32 func_020d3d10(s32 b) {
     BOOL a;
     a = FALSE;
-    if (data_0217b4d8 != NULL) {
-        if (b - data_0217b4d8->mUnk_00 < -0x32000) {
+    if (gCourseWaterEfct != NULL) {
+        if (b - gCourseWaterEfct->mHeight < -0x32000) {
             a = TRUE;
         }
     }
