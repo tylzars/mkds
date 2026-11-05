@@ -5,7 +5,7 @@
 #include "code_02147cd8.h"
 
 u32 func_02073e88(void) {
-    return (u32) data_0217aca8;
+    return (u32) gCameraEntryChanged;
 }
 
 // Distance of the point a along the forward axis of the current camera.

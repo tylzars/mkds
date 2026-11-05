@@ -11,7 +11,7 @@
 #include "code_0214a748.h" // Unk0214ad4c
 #include "code_02012b30.h" // Unk02012f58
 #include "Main/Unknown/code_02006954.h"
-#include "Main/Unknown/code_0207b960.h" // Unk0207b960
+#include "Main/Unknown/code_0207b960.h" // PosCurve
 #include "Main/Unknown/code_0207adf8.h" // Unk0207adf8
 #include "Main/Unknown/code_020846c0.h" // Unk02084b2c
 #include "Main/Unknown/code_02087d0c.h" // Unk02087d0c
@@ -1005,7 +1005,7 @@ extern s32 data_0217aa64;
 struct Unk02077750;
 
 // The viewer of a race: position, look-at point, three axes, view matrix and frustum. One class, several instances:
-// data_0217ac94 follows the selected kart, data_0217acbc and data_usa_0217ac98 / data_usa_0217ac84 step through
+// gChaseCamera follows the selected kart, gEntryCamera and gFirstChainCamera / gSecondChainCamera step through
 // CourseMapCamera entries; data_0217aa6c points at the one used this frame.
 typedef struct Camera {
     /* 000 */ Vec3 mUp;
@@ -1099,8 +1099,8 @@ typedef struct Camera {
     /* 17c */ Vec3 mPosGoalCollisionOffset;
     // Kart.mUnk_120 (a row of the Kart's matrix) times mPosGoalKartOffsetScale; added to the position goal.
     /* 188 */ Vec3 mPosGoalKartOffset;
-    /* 194 */ Unk0207b960 mPosCurve;
-    /* 1d0 */ Unk0207b960 mUnk_1d0;
+    /* 194 */ PosCurve mPosCurve;
+    /* 1d0 */ PosCurve mUnk_1d0;
     /* 20c */ u16 mUnk_20c;
     /* 20e */ u16 mUnk_20e;
     // Index into gKarts the look-at is taken from (entry cameras; the chase camera is handed its Kart).
@@ -1113,23 +1113,36 @@ typedef struct Camera {
     /* 220 */ struct Unk02077750 *mUnk_220;
     /* 224 */ u16 mUnk_224;
     /* 226 */ u8 mUnk_226[0x2];
-    /* 228 */ BOOL mUnk_228;
-    /* 22c */ u16 mUnk_22c;
+    // TRUE from StartEntryCameraKind6Entry until mKind6EntryFrames reaches 300 (outside mode 2) or func_02075d08
+    // replaces the entry. While TRUE the entry is not replaced by the one picked from the Kart's position; in mode 2
+    // TryUpdateEntryCamera steps the entry by its kind on every call and only func_02075d08 clears it.
+    /* 228 */ BOOL mKind6EntryRunning;
+    // Counts the calls of TryUpdateEntryCamera outside mode 2 while mKind6EntryRunning is TRUE; at 300 it clears
+    // mKind6EntryRunning. Only SetupCamera zeroes it, so it carries over a restart.
+    /* 22c */ u16 mKind6EntryFrames;
     /* 22e */ u8 mUnk_22e[0x2];
-    /* 230 */ s32 mUnk_230;
-    /* 234 */ BOOL mUnk_234;
-    /* 238 */ BOOL mUnk_238;
+    // Set to 1 by func_02075d08(1), which only does so while the current entry is of kind 5 or 6, and to 0 by
+    // func_02075d08(0) and SetupCamera. While non-zero TryUpdateEntryCamera returns FALSE at once, so the chase camera
+    // is shown.
+    /* 230 */ s32 mEntryUpdateHold;
+    // Set to 1 once by func_02075cf0 and never cleared (SetupCamera zeroes it). While set TryUpdateEntryCamera returns
+    // FALSE at once, so the chase camera is shown.
+    /* 234 */ BOOL mEntryUpdateDisabled;
+    // Set to TRUE by StartEntryCameraKind8Entry and never cleared (SetupCamera zeroes it). While set, and after the
+    // mEntryUpdateHold and mEntryUpdateDisabled tests, TryUpdateEntryCamera runs UpdateCameraAngleEntry on the current
+    // entry and returns TRUE.
+    /* 238 */ BOOL mKind8EntryRunning;
     /* 23c */ u16 mCourseMapCameraFrames;
     /* 23e */ u8 mUnk_23e[0x2];
     /* 240 */ s32 mFovBlend;
     /* 244 */ s32 mLookAtBlend;
     // Non-zero while the position y is held at mHeldHeight (set by SetCameraHeightHold for kart state 6).
     /* 248 */ s32 mHeightHold;
-    // 0 none; 1 and 2 (data_usa_0217ac98 / data_usa_0217ac84 while the entry is kind 4) shift the window of mFrustumTop
-    // and mFrustumBottom up or down by 1.3 of its half height (RefreshCameraProjection).
+    // 0 none; 1 and 2 (gFirstChainCamera / gSecondChainCamera while the entry is kind 4) shift the window of
+    // mFrustumTop and mFrustumBottom up or down by 1.3 of its half height (RefreshCameraProjection).
     /* 24c */ s32 mFrustumShift;
-    // Which camera this instance is: 0 chase, 1 entry-stepped, 2 split-screen half, 3 battle entry run; tested by
-    // outside code (func_02061818).
+    // Which camera this instance is: 0 chase, 1 entry camera, 2 chain camera, 3 entry camera in mode 2 with a kind 7
+    // entry; tested by outside code (func_02061818).
     /* 250 */ s32 mKind;
     /* 254 */ s32 mUnk_254;
     /* 258 */ BOOL mUnk_258;
@@ -1171,10 +1184,18 @@ extern u32 data_0217ac10;
 extern void *data_0217ac14;
 extern void *data_0217ac18[15];
 extern void *data_0217ac54[15];
-extern struct Camera *data_0217ac94;
-extern s32 data_0217aca8;
-extern Camera *data_0217acb4;
-extern Camera *data_0217acbc;
+extern struct Camera *gChaseCamera;
+// Set to 1 at race set-up and when a camera entry is started or advanced; cleared once per UpdateRace call by
+// ClearCameraEntryFlags. UpdateRace calls func_020d50c4 when it is set.
+extern s32 gCameraEntryChanged;
+// The chain camera whose view matrix the last chain step returned; UpdateRace stores it as the camera in use. Not
+// written in races without chain cameras.
+extern Camera *gCurrentChainCamera;
+// The Camera that picks its CourseMapCamera entry from the position of the followed Kart (func_020411e4) and is stepped
+// by TryUpdateEntryCamera. mKind is 1, or 3 in mode 2 when CourseMap::mFirstKind7EntryInMode2 is set. The Kart code
+// starts its kind 6 and kind 8 entries (StartEntryCameraKind6Entry, StartEntryCameraKind8Entry). The chain cameras also
+// run entries but never pick by position.
+extern Camera *gEntryCamera;
 extern u8 data_0217acc0[];
 // 0x20-byte entries behind member 0x014 of Unk0217ad00.
 typedef struct Unk0217ad00_014 {
@@ -1510,7 +1531,9 @@ typedef struct Unk0217aa24 {
 extern Unk0217aa20 *data_0217aa20;
 extern Unk0217aa24 *data_0217aa24;
 extern u16 data_0217aa2c;
-extern s32 data_0217acac;
+// Set to 1 when TryUpdateEntryCamera is entered; cleared once per UpdateRace call by ClearCameraEntryFlags.
+// RefreshCameraProjection does not skip the chase camera's projection while it is 1.
+extern s32 gEntryCameraUpdateRan;
 
 // Ten bytes: bytes 6 to 9 are signed values read in rows of four.
 typedef struct Unk0217aa18 {
@@ -1569,8 +1592,14 @@ extern LinkedList data_0217aeb0;
 struct Unk0206cdd4_B;
 extern struct Unk0206cdd4_B *data_usa_0217acfc;
 
-extern Camera *data_usa_0217ac84;
-extern Camera *data_usa_0217ac98;
+// The Camera (mKind 2) that starts at CourseMap::mSecondChainStartEntry; NULL when only the first chain camera exists.
+// While its entry is of kind 4 it is not stepped itself: it copies the field of view, mPos and mLookAt of
+// gFirstChainCamera, and its entry advances together with the first one's. Its view is the one used on odd frames.
+extern Camera *gSecondChainCamera;
+// The Camera (mKind 2) that starts at CourseMap::mFirstChainStartEntry and follows mNextIndex through its entries; the
+// only chain camera when data_021759c0->mUnk_00c is 4. Created by CreateFirstChainCamera or CreateChainCameraPair. With
+// two chain cameras its view is the one used on even frames of gRace->mUpdateFrames.
+extern Camera *gFirstChainCamera;
 extern void *data_usa_0217aa68;
 extern s32 data_usa_0217ac7c;
 extern s32 data_usa_0217ac90;

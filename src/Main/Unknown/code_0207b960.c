@@ -815,28 +815,28 @@ void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
 }
 
-void SetupPosCurve(Unk0207b960 *a, struct CourseMapCamera *b) {
+void SetupPosCurve(PosCurve *a, struct CourseMapCamera *b) {
     CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mEntryGroupIndex];
     u16 i;
 
-    a->mUnk_30 = 0;
+    a->mParam = 0;
     a->mUnk_34 = 0;
     a->mUnk_38 = 0;
     if (e->mEntryCount < 4) {
         return;
     }
     for (i = 0; i < 4; i++) {
-        a->mUnk_00[i] = GetCourseMapGroupEntry(b->mEntryGroupIndex, i)->mUnk_00;
+        a->mPoints[i] = GetCourseMapGroupEntry(b->mEntryGroupIndex, i)->mUnk_00;
         a->mUnk_34 = i;
     }
 }
 
-void func_0207bd6c(Unk0207b960 *a, struct CourseMapCamera *b) {
+void func_0207bd6c(PosCurve *a, struct CourseMapCamera *b) {
     s16 j;
     s16 i;
     CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mEntryGroupIndex];
 
-    a->mUnk_30 = 0;
+    a->mParam = 0;
     a->mUnk_34 = 0;
     a->mUnk_38 = 0;
     if (e->mEntryCount < 4) {
@@ -846,37 +846,37 @@ void func_0207bd6c(Unk0207b960 *a, struct CourseMapCamera *b) {
     a->mUnk_34 = 2;
     j = 2;
     for (i = 0; i < 3; i++) {
-        a->mUnk_00[(u16) i] = GetCourseMapGroupEntry(b->mEntryGroupIndex, j)->mUnk_00;
+        a->mPoints[(u16) i] = GetCourseMapGroupEntry(b->mEntryGroupIndex, j)->mUnk_00;
         j--;
     }
-    a->mUnk_00[3] = GetCourseMapGroupEntry(b->mEntryGroupIndex, e->mEntryCount - 1)->mUnk_00;
+    a->mPoints[3] = GetCourseMapGroupEntry(b->mEntryGroupIndex, e->mEntryCount - 1)->mUnk_00;
 }
 
-void UpdatePosCurve(Vec3 *a, Unk0207b960 *b, struct CourseMapCamera *c, s32 d) {
+void UpdatePosCurve(Vec3 *a, PosCurve *b, struct CourseMapCamera *c, s32 d) {
     CourseMapEntryGroup *e;
     Unk02042044 *f;
     u16 i;
 
     e = &gCourseMap->mEntryGroups[c->mEntryGroupIndex];
-    b->mUnk_30 += d;
-    if (b->mUnk_30 > 0x1000) {
+    b->mParam += d;
+    if (b->mParam > 0x1000) {
         b->mUnk_34++;
         if (b->mUnk_34 >= e->mEntryCount) {
             b->mUnk_34 = e->mEntryCount;
-            b->mUnk_30 = 0x1000;
+            b->mParam = 0x1000;
         } else {
             f = GetCourseMapGroupEntry(c->mEntryGroupIndex, b->mUnk_34);
             for (i = 0; i < 3; i++) {
-                b->mUnk_00[i] = b->mUnk_00[i + 1];
+                b->mPoints[i] = b->mPoints[i + 1];
             }
-            b->mUnk_00[3] = f->mUnk_00;
-            b->mUnk_30 -= 0x1000;
+            b->mPoints[3] = f->mUnk_00;
+            b->mParam -= 0x1000;
         }
     }
     func_0207b960(a, b);
 }
 
-void func_0207b960(Vec3 *a, Unk0207b960 *b) {
+void func_0207b960(Vec3 *a, PosCurve *b) {
     s32 t;
     s32 t2;
     s32 t3;
@@ -888,7 +888,7 @@ void func_0207b960(Vec3 *a, Unk0207b960 *b) {
     Vec3 *v[4];
     s32 i;
 
-    t = b->mUnk_30;
+    t = b->mParam;
     u = 0x1000 - t;
     t2 = (s32) (((s64) t * t + 0x800) >> 12);
     t3 = (s32) (((s64) t2 * t + 0x800) >> 12);
@@ -901,7 +901,7 @@ void func_0207b960(Vec3 *a, Unk0207b960 *b) {
     c2 = (s32) (((s64) ((s32) (((s64) (t + (t2 - t3)) * 0x3000 + 0x800) >> 12) + 0x1000) * 0x2ab + 0x800) >> 12);
     c3 = (s32) (((s64) t3 * 0x2ab + 0x800) >> 12);
     for (i = 0; i < 4; i++) {
-        v[i] = &b->mUnk_00[i];
+        v[i] = &b->mPoints[i];
     }
     a->x = (s32) (((s64) v[0]->x * c0 + 0x800) >> 12) + (s32) (((s64) v[1]->x * c1 + 0x800) >> 12) +
            (s32) (((s64) v[2]->x * c2 + 0x800) >> 12) + (s32) (((s64) v[3]->x * c3 + 0x800) >> 12);

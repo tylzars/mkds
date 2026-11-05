@@ -753,32 +753,32 @@ s32 func_02042170(void *a, ...) {
     u16 i;
     Unk02175620_7c *e;
 
-    gCourseMap->mUnk_80 = ReadCourseMapSectionCount(&a);
-    if (gCourseMap->mUnk_80 == 0) {
-        gCourseMap->mUnk_7c = NULL;
+    gCourseMap->mCameraCount = ReadCourseMapSectionCount(&a);
+    if (gCourseMap->mCameraCount == 0) {
+        gCourseMap->mCameras = NULL;
         return 1;
     }
-    gCourseMap->mUnk_7c = a;
-    gCourseMap->mUnk_c4 = NULL;
-    gCourseMap->mUnk_c8 = NULL;
-    gCourseMap->mUnk_cc = NULL;
-    gCourseMap->mUnk_d0 = NULL;
-    for (i = 0; i < gCourseMap->mUnk_80; i++) {
-        e = gCourseMap->mUnk_7c + i;
-        if (gCourseMap->mUnk_c4 == NULL && e->mUnk_4a == 1) {
-            gCourseMap->mUnk_c4 = e;
+    gCourseMap->mCameras = a;
+    gCourseMap->mFirstChainStartEntry = NULL;
+    gCourseMap->mSecondChainStartEntry = NULL;
+    gCourseMap->mFirstKind6Entry = NULL;
+    gCourseMap->mFirstKind7EntryInMode2 = NULL;
+    for (i = 0; i < gCourseMap->mCameraCount; i++) {
+        e = gCourseMap->mCameras + i;
+        if (gCourseMap->mFirstChainStartEntry == NULL && e->mChainStart == 1) {
+            gCourseMap->mFirstChainStartEntry = e;
         }
-        if (gCourseMap->mUnk_c8 == NULL && e->mUnk_4a == 2) {
-            gCourseMap->mUnk_c8 = e;
+        if (gCourseMap->mSecondChainStartEntry == NULL && e->mChainStart == 2) {
+            gCourseMap->mSecondChainStartEntry = e;
         }
-        if (gCourseMap->mUnk_cc == NULL && e->mKind == 6) {
-            gCourseMap->mUnk_cc = e;
+        if (gCourseMap->mFirstKind6Entry == NULL && e->mKind == 6) {
+            gCourseMap->mFirstKind6Entry = e;
         }
-        if (data_021759c0->mMode == 2 && gCourseMap->mUnk_d0 == NULL && e->mKind == 7) {
-            gCourseMap->mUnk_d0 = e;
+        if (data_021759c0->mMode == 2 && gCourseMap->mFirstKind7EntryInMode2 == NULL && e->mKind == 7) {
+            gCourseMap->mFirstKind7EntryInMode2 = e;
         }
-        if (data_021759c0->mMode == 4 && gCourseMap->mUnk_d4 == NULL && e->mKind == 8) {
-            gCourseMap->mUnk_d4 = e;
+        if (data_021759c0->mMode == 4 && gCourseMap->mFirstKind8EntryInMode4 == NULL && e->mKind == 8) {
+            gCourseMap->mFirstKind8EntryInMode4 = e;
         }
     }
     return 1;

@@ -150,9 +150,9 @@ void InitRace(void) {
     func_020777ac(data_021759c0->mUnk_063);
     if (gRace->mUnk_28 != 0) {
         if (gRace->mUnk_2c != 0) {
-            func_020775e4();
+            CreateFirstChainCamera();
         } else {
-            func_0207767c();
+            CreateChainCameraPair();
         }
     }
     data_0217aa88 = GetChaseCamera();
@@ -285,12 +285,12 @@ void UpdateRace(void) {
             }
             break;
     }
-    func_02073e98();
+    ClearCameraEntryFlags();
     if (gRace->mUnk_28 != 0) {
         if (gRace->mUnk_2c != 0) {
-            v = func_0207564c();
+            v = UpdateFirstChainCamera();
         } else {
-            v = func_02075694();
+            v = UpdateChainCameraPair();
         }
         data_0217aa7c = v;
         data_0217aa6c = func_02074888();

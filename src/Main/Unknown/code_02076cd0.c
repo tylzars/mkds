@@ -102,8 +102,8 @@ void func_02077998(void) {
     u32 i;
 
     *(u32 *) 0x4000580 = 0xbfff0000;
-    data_0217aca8 = 1;
-    i = data_0217acac = 0;
+    gCameraEntryChanged = 1;
+    i = gEntryCameraUpdateRan = 0;
     if (data_021759c0->mMode == 4) {
         i = data_021759c0->mUnk_036;
         i = (u16) i;
@@ -124,10 +124,10 @@ void func_02077998(void) {
 void CreateChaseCamera(void) {
     Kart *a = GetKart(data_021759c0->mEntryIndex);
 
-    data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
+    gChaseCamera = HeapAlloc(GetHeap(func_020364e8()), 0x270);
     SetupCameraBehindKart();
-    GetKartForward(a, &data_0217ac94->mSavedKartForward);
-    RefreshCameraProjection(data_0217ac94);
+    GetKartForward(a, &gChaseCamera->mSavedKartForward);
+    RefreshCameraProjection(gChaseCamera);
 }
 
 void func_020777ac(u32 a) {
@@ -139,47 +139,47 @@ void func_020777ac(u32 a) {
     u16 j;
     s32 k;
 
-    data_0217acbc = HeapAlloc(h, 0x270);
-    SetupCamera(data_0217acbc);
-    data_0217acbc->mFollowedKartIndex = a;
-    data_0217acbc->mCourseMapCamera = NULL;
-    data_0217acbc->mFrustumShift = 0;
-    data_0217acbc->mKind = 1;
+    gEntryCamera = HeapAlloc(h, 0x270);
+    SetupCamera(gEntryCamera);
+    gEntryCamera->mFollowedKartIndex = a;
+    gEntryCamera->mCourseMapCamera = NULL;
+    gEntryCamera->mFrustumShift = 0;
+    gEntryCamera->mKind = 1;
     if (data_021759c0->mUnk_00c == 6) {
-        data_0217acbc->mCourseMapCamera = gCourseMap->mUnk_7c;
+        gEntryCamera->mCourseMapCamera = gCourseMap->mCameras;
     }
     if (data_021759c0->mMode == 2) {
-        data_0217acbc->mCourseMapCamera = gCourseMap->mUnk_d0;
-        if (data_0217acbc->mCourseMapCamera != NULL) {
+        gEntryCamera->mCourseMapCamera = gCourseMap->mFirstKind7EntryInMode2;
+        if (gEntryCamera->mCourseMapCamera != NULL) {
             n = 0;
             k = -1;
-            for (i = 0; i < gCourseMap->mUnk_80; i++) {
-                if (gCourseMap->mUnk_7c[i].mKind == 7) {
+            for (i = 0; i < gCourseMap->mCameraCount; i++) {
+                if (gCourseMap->mCameras[i].mKind == 7) {
                     n++;
                 }
             }
             data_usa_0217ac70 = n;
-            data_0217acbc->mUnk_21c = HeapAlloc(h, n * 0x88);
-            e = data_0217acbc->mCourseMapCamera;
+            gEntryCamera->mUnk_21c = HeapAlloc(h, n * 0x88);
+            e = gEntryCamera->mCourseMapCamera;
             m = 0;
             j = 0;
-            for (; m < gCourseMap->mUnk_80; m++) {
+            for (; m < gCourseMap->mCameraCount; m++) {
                 if (k != -1) {
-                    e = &gCourseMap->mUnk_7c[(u16) k];
-                    if (e == data_0217acbc->mCourseMapCamera) {
+                    e = &gCourseMap->mCameras[(u16) k];
+                    if (e == gEntryCamera->mCourseMapCamera) {
                         break;
                     }
                 }
                 if (e->mKind == 7) {
-                    func_02077750(&data_0217acbc->mUnk_21c[j], e);
+                    func_02077750(&gEntryCamera->mUnk_21c[j], e);
                     j++;
                     k = e->mNextIndex;
                 }
             }
-            data_0217acbc->mUnk_220 = data_0217acbc->mUnk_21c;
-            data_0217acbc->mUnk_224 = 0;
-            data_0217acbc->mKind = 3;
-            data_0217aca8 = 1;
+            gEntryCamera->mUnk_220 = gEntryCamera->mUnk_21c;
+            gEntryCamera->mUnk_224 = 0;
+            gEntryCamera->mKind = 3;
+            gCameraEntryChanged = 1;
         }
     }
 }
@@ -198,42 +198,42 @@ void func_02077750(Unk02077750 *a, CourseMapCamera *b) {
     }
 }
 
-void func_0207767c(void) {
+void CreateChainCameraPair(void) {
     void *h = GetHeap(func_020364e8());
 
-    data_usa_0217ac98 = HeapAlloc(h, 0x270);
-    data_usa_0217ac84 = HeapAlloc(h, 0x270);
-    SetupCamera(data_usa_0217ac98);
-    SetupCamera(data_usa_0217ac84);
-    data_usa_0217ac98->mCourseMapCamera = gCourseMap->mUnk_c4;
-    data_usa_0217ac84->mCourseMapCamera = gCourseMap->mUnk_c8;
-    data_usa_0217ac98->mKind = 2;
-    data_usa_0217ac84->mKind = 2;
-    if (data_usa_0217ac98->mCourseMapCamera == NULL) {
+    gFirstChainCamera = HeapAlloc(h, 0x270);
+    gSecondChainCamera = HeapAlloc(h, 0x270);
+    SetupCamera(gFirstChainCamera);
+    SetupCamera(gSecondChainCamera);
+    gFirstChainCamera->mCourseMapCamera = gCourseMap->mFirstChainStartEntry;
+    gSecondChainCamera->mCourseMapCamera = gCourseMap->mSecondChainStartEntry;
+    gFirstChainCamera->mKind = 2;
+    gSecondChainCamera->mKind = 2;
+    if (gFirstChainCamera->mCourseMapCamera == NULL) {
         gRaceProgress->mUnk_4d0 = 1;
         return;
     }
-    if ((s16) data_usa_0217ac98->mCourseMapCamera->mEntryGroupIndex != -1) {
-        SetupPosCurve(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
+    if ((s16) gFirstChainCamera->mCourseMapCamera->mEntryGroupIndex != -1) {
+        SetupPosCurve(&gFirstChainCamera->mPosCurve, gFirstChainCamera->mCourseMapCamera);
     }
-    if ((s16) data_usa_0217ac84->mCourseMapCamera->mEntryGroupIndex != -1) {
-        SetupPosCurve(&data_usa_0217ac84->mPosCurve, data_usa_0217ac84->mCourseMapCamera);
+    if ((s16) gSecondChainCamera->mCourseMapCamera->mEntryGroupIndex != -1) {
+        SetupPosCurve(&gSecondChainCamera->mPosCurve, gSecondChainCamera->mCourseMapCamera);
     }
 }
 
-void func_020775e4(void) {
-    data_usa_0217ac98 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
-    data_usa_0217ac84 = NULL;
-    SetupCamera(data_usa_0217ac98);
-    data_usa_0217ac98->mCourseMapCamera = gCourseMap->mUnk_c4;
-    data_usa_0217ac98->mKind = 2;
-    data_usa_0217ac98->mFrustumShift = 0;
-    if (data_usa_0217ac98->mCourseMapCamera == NULL) {
+void CreateFirstChainCamera(void) {
+    gFirstChainCamera = HeapAlloc(GetHeap(func_020364e8()), 0x270);
+    gSecondChainCamera = NULL;
+    SetupCamera(gFirstChainCamera);
+    gFirstChainCamera->mCourseMapCamera = gCourseMap->mFirstChainStartEntry;
+    gFirstChainCamera->mKind = 2;
+    gFirstChainCamera->mFrustumShift = 0;
+    if (gFirstChainCamera->mCourseMapCamera == NULL) {
         gRaceProgress->mUnk_4d0 = 1;
         return;
     }
-    if ((s16) data_usa_0217ac98->mCourseMapCamera->mEntryGroupIndex != -1) {
-        SetupPosCurve(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
+    if ((s16) gFirstChainCamera->mCourseMapCamera->mEntryGroupIndex != -1) {
+        SetupPosCurve(&gFirstChainCamera->mPosCurve, gFirstChainCamera->mCourseMapCamera);
     }
 }
 
@@ -307,11 +307,11 @@ void SetupCamera(Camera *p) {
     p->mFollowedKartIndex = 0;
     p->mLastCourseMapCameraIndex = -1;
     p->mCourseMapCameraFrames = 0;
-    p->mUnk_228 = FALSE;
-    p->mUnk_22c = 0;
-    p->mUnk_230 = 0;
-    p->mUnk_234 = FALSE;
-    p->mUnk_238 = FALSE;
+    p->mKind6EntryRunning = FALSE;
+    p->mKind6EntryFrames = 0;
+    p->mEntryUpdateHold = 0;
+    p->mEntryUpdateDisabled = FALSE;
+    p->mKind8EntryRunning = FALSE;
     p->mFrustumShift = 0;
     p->mKind = 0;
     p->mPosGoalKartOffset = c;
@@ -337,8 +337,8 @@ void RefreshCameraProjection(Camera *p) {
     s32 c;
     s32 d;
 
-    if (p == data_0217ac94) {
-        if (p->mHalfFovAngle == p->mHalfFovAngleGoal && data_0217acac == 0) {
+    if (p == gChaseCamera) {
+        if (p->mHalfFovAngle == p->mHalfFovAngleGoal && gEntryCameraUpdateRan == 0) {
             return;
         }
         if (func_020738f8(p->mHalfFovAngle - p->mHalfFovAngleGoal) < 10) {

@@ -234,7 +234,7 @@ void func_020688a0(Kart *a) {
         }
         switch (b) {
             case 0:
-                func_020757d8();
+                StartEntryCameraKind8Entry();
                 func_02068494(a, 1, 1);
                 break;
             case 1:
@@ -317,7 +317,7 @@ void func_02068640(Kart *a, s32 b) {
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
         *k = *k | 0x40;
     } else {
-        func_02075eb8();
+        StartEntryCameraKind6Entry();
     }
     func_02068494(a, 0, b);
     h = a->mUnk_7c;

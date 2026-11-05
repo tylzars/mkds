@@ -162,7 +162,7 @@ typedef struct {
     /* 0c */ s32 mUnk_0c;
 } Unk02175620_54_10;
 
-// 0x4c-byte entries of the table at CourseMap::mUnk_7c.
+// 0x4c-byte entries of the table at CourseMap::mCameras.
 typedef CourseMapCamera Unk02175620_7c;
 
 // 0x14-byte entries of the table at CourseMap::mUnk_8c.
@@ -253,8 +253,8 @@ typedef struct CourseMap {
     /* 74 */ CourseMapShape *mShapes;
     /* 78 */ u16 mShapeCount;
     /* 7a */ u8 mUnk_7a[0x2];
-    /* 7c */ Unk02175620_7c *mUnk_7c;
-    /* 80 */ u16 mUnk_80;
+    /* 7c */ Unk02175620_7c *mCameras;
+    /* 80 */ u16 mCameraCount;
     /* 82 */ u8 mUnk_82[0x2];
     /* 84 */ Unk02175620_84 *mUnk_84;
     /* 88 */ u16 mUnk_88;
@@ -279,11 +279,13 @@ typedef struct CourseMap {
     /* b8 */ Unk02175620_bc *mUnk_b8;
     /* bc */ Unk02175620_bc *mUnk_bc;
     /* c0 */ Unk02175620_bc *mUnk_c0;
-    /* c4 */ Unk02175620_7c *mUnk_c4;
-    /* c8 */ Unk02175620_7c *mUnk_c8;
-    /* cc */ Unk02175620_7c *mUnk_cc;
-    /* d0 */ Unk02175620_7c *mUnk_d0;
-    /* d4 */ Unk02175620_7c *mUnk_d4;
+    // The first entry whose mChainStart is 1.
+    /* c4 */ Unk02175620_7c *mFirstChainStartEntry;
+    /* c8 */ Unk02175620_7c *mSecondChainStartEntry;
+    /* cc */ Unk02175620_7c *mFirstKind6Entry;
+    /* d0 */ Unk02175620_7c *mFirstKind7EntryInMode2;
+    // The first entry of mKind 8, set only when the mode is 4; the loader does not set it to NULL first.
+    /* d4 */ Unk02175620_7c *mFirstKind8EntryInMode4;
     /* d8 */ struct Unk02175620_d8 *mKind3ShapeLists[8];
     /* f8 */ u16 *mRespawnIndexBySlot;
     /* fc */ u16 *mUnk_fc;

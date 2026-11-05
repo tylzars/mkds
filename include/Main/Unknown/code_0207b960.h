@@ -10,13 +10,14 @@ struct Unk0208fd8c;
 struct Unk020888b4;
 struct Unk0208fd8c_08;
 
-// Four vectors and words at 0x30, 0x34 and 0x38.
-typedef struct Unk0207b960 {
-    /* 00 */ Vec3 mUnk_00[4];
-    /* 30 */ s32 mUnk_30;
+// Four points, a parameter (0x1000 = one segment) and two words at 0x34 and 0x38. The camera position is blended from
+// the four points.
+typedef struct PosCurve {
+    /* 00 */ Vec3 mPoints[4];
+    /* 30 */ s32 mParam;
     /* 34 */ s32 mUnk_34;
     /* 38 */ s32 mUnk_38;
-} Unk0207b960;
+} PosCurve;
 
 struct Unk020888b4;
 
@@ -35,15 +36,15 @@ extern Unk0208fd8c_08 data_usa_021552f4[];
 extern Unk0208fd8c_08 data_usa_021553cc[];
 extern Unk0208fd8c_08 data_usa_021554a4[];
 
-void func_0207b960(Vec3 *a, Unk0207b960 *b);
+void func_0207b960(Vec3 *a, PosCurve *b);
 // Adds d to the curve parameter (0x1000 = one segment); past 0x1000 it shifts the four control points on to the next
 // point of the entry's group (clamped after the last) and writes the point on the curve to a. UpdateCameraPosCurve
 // calls it for groups of four or more points.
-void UpdatePosCurve(Vec3 *a, Unk0207b960 *b, struct CourseMapCamera *c, s32 d);
-void func_0207bd6c(Unk0207b960 *a, struct CourseMapCamera *b);
+void UpdatePosCurve(Vec3 *a, PosCurve *b, struct CourseMapCamera *c, s32 d);
+void func_0207bd6c(PosCurve *a, struct CourseMapCamera *b);
 // Restarts the curve a on the entry b: clears its parameter and counters and, when the entry's group has four or more
 // points, loads the first four as its control points (nothing is loaded for fewer).
-void SetupPosCurve(Unk0207b960 *a, struct CourseMapCamera *b);
+void SetupPosCurve(PosCurve *a, struct CourseMapCamera *b);
 void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b);
 s32 func_0207bfac(struct Unk0208fd8c *a);
 void func_0207bfd4(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b);

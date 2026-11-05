@@ -367,7 +367,7 @@ void func_02066fe0(Kart *a) {
              ((i = p->mKartCount) > 1 && (c = GetKartRank(a->mIndex), c == i)))) {
             func_02075cf0();
         } else {
-            func_02075eb8();
+            StartEntryCameraKind6Entry();
             func_02081f30();
         }
     } else if (data_021759c0->mMode == 3 || data_021759c0->mMode == 5) {

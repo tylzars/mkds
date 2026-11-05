@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_02073eb8.h"
-#include "Main/Unknown/code_0207b960.h" // Unk0207b960
+#include "Main/Unknown/code_0207b960.h" // PosCurve
 
 #include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffc000.h"
@@ -76,7 +76,7 @@ void func_02076bcc(Camera *a) {
     data_0217029c.mUnk_fc &= ~0xe8;
 }
 
-// Chase camera (data_0217ac94) only. Runs SetupCamera, then places the camera behind the selected Kart (as
+// Chase camera (gChaseCamera) only. Runs SetupCamera, then places the camera behind the selected Kart (as
 // ResetCameraBehind does) and points the look-at at the Kart.
 void SetupCameraBehindKart(void) {
     Kart *q;
@@ -86,13 +86,13 @@ void SetupCameraBehindKart(void) {
     s32 t;
 
     q = GetKart(data_021759c0->mEntryIndex);
-    SetupCamera(data_0217ac94);
+    SetupCamera(gChaseCamera);
     if (data_021759c0->mMode == 4) {
         if (data_021759c0->mUnk_044 & 0x20) {
-            (data_0217ac94)->mFollowDirectionSign = -0x1000;
+            (gChaseCamera)->mFollowDirectionSign = -0x1000;
         }
     }
-    p = data_0217ac94;
+    p = gChaseCamera;
     func_01ffccd0(&m, &q->mUnk_e0);
     t = (s32) (((s64) -data_usa_0217ac90 * p->mFollowDirectionSign + 0x800) >> 12);
     u.x = (s32) (((s64) m[2].x * t) >> 12);
@@ -103,10 +103,10 @@ void SetupCameraBehindKart(void) {
     p->mBaseUp = data_usa_02154fc4;
     p->mPrevPos = p->mPos;
     p->mKartMoveScale = 0x1000;
-    (data_0217ac94)->mHeightHold = 0;
+    (gChaseCamera)->mHeightHold = 0;
     func_020d4f94((Unk020d4f94 *) &p->mViewMatrix);
     func_020d50c4();
-    (data_0217ac94)->mLookAt.y = q->mPos.y + (data_0217ac94)->mLookAtHeight;
+    (gChaseCamera)->mLookAt.y = q->mPos.y + (gChaseCamera)->mLookAtHeight;
 }
 
 void UpdateChaseCamera(Camera *a, Kart *b) {
@@ -332,16 +332,16 @@ void UpdateChaseCameraPosGoalYOffset(Camera *a, Kart *b, Vec3 *c) {
     a->mPosGoalYOffset = a->mPosGoalYOffset + (s32) (((s64) j * f + 0x800) >> 12);
 }
 
-void func_02075eb8(void) {
-    Camera *p = data_0217acbc;
+void StartEntryCameraKind6Entry(void) {
+    Camera *p = gEntryCamera;
     CourseMapCamera *q;
     Unk020f41c4_B *r;
 
-    q = gCourseMap->mUnk_cc;
+    q = gCourseMap->mFirstKind6Entry;
     if (q == NULL) {
         return;
     }
-    p->mUnk_228 = TRUE;
+    p->mKind6EntryRunning = TRUE;
     p->mCourseMapCamera = q;
     p->mFovBlend = 0;
     p->mHalfFovPairFirst = q->mHalfFovPairFirst;
@@ -357,12 +357,12 @@ void func_02075eb8(void) {
         r = &gRaceProgress->mLocalRandom;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     }
-    data_0217aca8 = 1;
+    gCameraEntryChanged = 1;
 }
 
 void func_02075d08(s32 a) {
     CourseMapCamera *q;
-    Camera *p = data_0217acbc;
+    Camera *p = gEntryCamera;
     Unk020f41c4_B *r;
     Vec3 v;
     s32 s;
@@ -373,20 +373,20 @@ void func_02075d08(s32 a) {
     if (a != 0 && p->mCourseMapCamera->mKind != 5 && p->mCourseMapCamera->mKind != 6) {
         return;
     }
-    p->mUnk_230 = a;
+    p->mEntryUpdateHold = a;
     if (a == 0) {
         return;
     }
-    if (p->mUnk_228 == FALSE) {
+    if (p->mKind6EntryRunning == FALSE) {
         return;
     }
-    p->mUnk_228 = FALSE;
+    p->mKind6EntryRunning = FALSE;
     func_0207a948(&v, p->mFollowedKartIndex);
     s = func_020411e4(&v);
     if (s < 0) {
         return;
     }
-    q = &gCourseMap->mUnk_7c[(u16) s];
+    q = &gCourseMap->mCameras[(u16) s];
     p->mCourseMapCamera = q;
     p->mFovBlend = 0;
     p->mHalfFovPairFirst = q->mHalfFovPairFirst;
@@ -402,13 +402,13 @@ void func_02075d08(s32 a) {
         r = &gRaceProgress->mLocalRandom;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     }
-    data_0217aca8 = 1;
+    gCameraEntryChanged = 1;
 }
 
 u32 func_02075cf0(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217acbc;
+    value0 = (u32) &gEntryCamera;
     value1 = 1u;
     value0 = (u32) * (const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (564)) = value1;
@@ -428,29 +428,29 @@ BOOL TryUpdateEntryCamera(Camera *p) {
     s32 i;
 
     p->mPrevPos = p->mPos;
-    data_0217acac = 1;
+    gEntryCameraUpdateRan = 1;
     if (data_021759c0->mUnk_00c == 6) {
         func_02074b00(p);
         return TRUE;
     }
-    if (p->mUnk_230 != 0 || p->mUnk_234 != FALSE) {
+    if (p->mEntryUpdateHold != 0 || p->mEntryUpdateDisabled != FALSE) {
         return FALSE;
     }
     p->mPrevPos = p->mPos;
-    if (p->mUnk_238 != FALSE) {
+    if (p->mKind8EntryRunning != FALSE) {
         UpdateCameraAngleEntry(p);
         return TRUE;
     }
     func_0207a948(&v, p->mFollowedKartIndex);
     i = func_020411e4(&v);
-    if (p->mUnk_228 != FALSE) {
+    if (p->mKind6EntryRunning != FALSE) {
         if (data_021759c0->mMode == 2) {
             UpdateCameraByEntryKind(p);
             return TRUE;
         }
-        p->mUnk_22c = p->mUnk_22c + 1;
-        if (p->mUnk_22c >= 300) {
-            p->mUnk_228 = FALSE;
+        p->mKind6EntryFrames = p->mKind6EntryFrames + 1;
+        if (p->mKind6EntryFrames >= 300) {
+            p->mKind6EntryRunning = FALSE;
         }
     }
     if (i == -1) {
@@ -458,10 +458,10 @@ BOOL TryUpdateEntryCamera(Camera *p) {
     } else {
         Unk020f41c4_B *b;
 
-        q = gCourseMap->mUnk_7c + (u16) i;
+        q = gCourseMap->mCameras + (u16) i;
         if (i != p->mLastCourseMapCameraIndex) {
             p->mLastCourseMapCameraIndex = i;
-            if (p->mUnk_228 == FALSE) {
+            if (p->mKind6EntryRunning == FALSE) {
                 p->mCourseMapCamera = q;
                 p->mFovBlend = 0;
                 p->mHalfFovPairFirst = q->mHalfFovPairFirst;
@@ -477,7 +477,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
                     b = &gRaceProgress->mLocalRandom;
                     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
                 }
-                data_0217aca8 = 1;
+                gCameraEntryChanged = 1;
             }
         }
         UpdateCameraByEntryKind(p);
@@ -542,18 +542,18 @@ void UpdateCameraByEntryKind(Camera *p) {
     }
 }
 
-void func_020757d8(void) {
+void StartEntryCameraKind8Entry(void) {
     Camera *p;
     CourseMapCamera *q;
     Unk020f41c4_B *b;
 
-    p = data_0217acbc;
-    q = gCourseMap->mUnk_d4;
+    p = gEntryCamera;
+    q = gCourseMap->mFirstKind8EntryInMode4;
 
     if (q == NULL) {
         return;
     }
-    p->mUnk_238 = TRUE;
+    p->mKind8EntryRunning = TRUE;
     p->mCourseMapCamera = q;
     p->mFovBlend = 0;
     p->mHalfFovPairFirst = q->mHalfFovPairFirst;
@@ -569,7 +569,7 @@ void func_020757d8(void) {
         b = &gRaceProgress->mLocalRandom;
         b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     }
-    data_0217aca8 = 1;
+    gCameraEntryChanged = 1;
 }
 
 static inline void func_02075424_inline(Camera *p) {
@@ -578,7 +578,7 @@ static inline void func_02075424_inline(Camera *p) {
     if (p->mCourseMapCamera->mNextIndex == -1) {
         q = NULL;
     } else {
-        q = gCourseMap->mUnk_7c + (u16) p->mCourseMapCamera->mNextIndex;
+        q = gCourseMap->mCameras + (u16) p->mCourseMapCamera->mNextIndex;
     }
     if (q == NULL) {
         gRaceProgress->mUnk_4d0 = 1;
@@ -594,43 +594,43 @@ static inline void func_02075424_inline(Camera *p) {
     if (data_021759c0->mUnk_00c == 5) {
         func_0208e808(q->mShakeKind != 0);
     }
-    data_0217aca8 = 1;
+    gCameraEntryChanged = 1;
 }
 
-Unk02012f58 *func_02075694(void) {
-    if (data_usa_0217ac84->mCourseMapCamera != NULL) {
-        if (data_usa_0217ac84->mCourseMapCamera->mKind == 4) {
-            data_usa_0217ac98->mFrustumShift = 1;
-            data_usa_0217ac84->mFrustumShift = 2;
+Unk02012f58 *UpdateChainCameraPair(void) {
+    if (gSecondChainCamera->mCourseMapCamera != NULL) {
+        if (gSecondChainCamera->mCourseMapCamera->mKind == 4) {
+            gFirstChainCamera->mFrustumShift = 1;
+            gSecondChainCamera->mFrustumShift = 2;
         } else {
-            data_usa_0217ac84->mFrustumShift = 0;
-            data_usa_0217ac98->mFrustumShift = data_usa_0217ac84->mFrustumShift;
+            gSecondChainCamera->mFrustumShift = 0;
+            gFirstChainCamera->mFrustumShift = gSecondChainCamera->mFrustumShift;
         }
     }
-    UpdateCameraEntry(data_usa_0217ac98);
-    if (data_usa_0217ac84->mFrustumShift == 2) {
-        data_usa_0217ac84->mHalfFovPairFirst = data_usa_0217ac98->mHalfFovPairFirst;
-        data_usa_0217ac84->mHalfFovPairSecond = data_usa_0217ac98->mHalfFovPairSecond;
-        data_usa_0217ac84->mPos = data_usa_0217ac98->mPos;
-        data_usa_0217ac84->mLookAt = data_usa_0217ac98->mLookAt;
+    UpdateCameraEntry(gFirstChainCamera);
+    if (gSecondChainCamera->mFrustumShift == 2) {
+        gSecondChainCamera->mHalfFovPairFirst = gFirstChainCamera->mHalfFovPairFirst;
+        gSecondChainCamera->mHalfFovPairSecond = gFirstChainCamera->mHalfFovPairSecond;
+        gSecondChainCamera->mPos = gFirstChainCamera->mPos;
+        gSecondChainCamera->mLookAt = gFirstChainCamera->mLookAt;
     } else {
-        UpdateCameraEntry(data_usa_0217ac84);
+        UpdateCameraEntry(gSecondChainCamera);
     }
     if (func_02061f7c() == 0) {
-        UpdateCameraView(data_usa_0217ac98);
-        data_0217acb4 = data_usa_0217ac98;
-        return &data_usa_0217ac98->mViewMatrix;
+        UpdateCameraView(gFirstChainCamera);
+        gCurrentChainCamera = gFirstChainCamera;
+        return &gFirstChainCamera->mViewMatrix;
     }
-    UpdateCameraView(data_usa_0217ac84);
-    data_0217acb4 = data_usa_0217ac84;
-    return &data_usa_0217ac84->mViewMatrix;
+    UpdateCameraView(gSecondChainCamera);
+    gCurrentChainCamera = gSecondChainCamera;
+    return &gSecondChainCamera->mViewMatrix;
 }
 
-Unk02012f58 *func_0207564c(void) {
-    UpdateCameraEntry(data_usa_0217ac98);
-    UpdateCameraView(data_usa_0217ac98);
-    data_0217acb4 = data_usa_0217ac98;
-    return &data_usa_0217ac98->mViewMatrix;
+Unk02012f58 *UpdateFirstChainCamera(void) {
+    UpdateCameraEntry(gFirstChainCamera);
+    UpdateCameraView(gFirstChainCamera);
+    gCurrentChainCamera = gFirstChainCamera;
+    return &gFirstChainCamera->mViewMatrix;
 }
 
 void UpdateCameraEntry(Camera *p) {
@@ -646,13 +646,13 @@ void UpdateCameraEntry(Camera *p) {
     if (p->mCourseMapCamera == NULL) {
         return;
     }
-    if (p != data_usa_0217ac98) {
+    if (p != gFirstChainCamera) {
         return;
     }
     if (p->mFrustumShift != 1) {
         return;
     }
-    func_02075424_inline(data_usa_0217ac84);
+    func_02075424_inline(gSecondChainCamera);
 }
 
 void UpdateCameraPosCurveLookAtKart(Camera *p) {
@@ -853,11 +853,11 @@ void UpdateCameraPosCurve(Camera *p, s32 a) {
     } else {
         m = func_02039860(&d, &d);
     }
-    p->mPosCurve.mUnk_30 += a;
-    if (p->mPosCurve.mUnk_30 >= 0x1000) {
-        p->mPosCurve.mUnk_30 = 0x1000;
+    p->mPosCurve.mParam += a;
+    if (p->mPosCurve.mParam >= 0x1000) {
+        p->mPosCurve.mParam = 0x1000;
     }
-    m = (s32) (((s64) p->mPosCurve.mUnk_30 * m) >> 12);
+    m = (s32) (((s64) p->mPosCurve.mParam * m) >> 12);
     s.x = (s32) (((s64) d.x * m) >> 12);
     s.y = (s32) (((s64) d.y * m) >> 12);
     s.z = (s32) (((s64) d.z * m) >> 12);
@@ -903,51 +903,51 @@ void UpdateCameraLookAtBlend(Camera *p) {
 }
 
 void *GetChaseCamera(void) {
-    return data_0217ac94;
+    return gChaseCamera;
 }
 
 Camera *func_02074898(void) {
-    return data_0217acbc;
+    return gEntryCamera;
 }
 
 Camera *func_02074888(void) {
-    return data_0217acb4;
+    return gCurrentChainCamera;
 }
 
-// Chase camera (data_0217ac94) only.
+// Chase camera (gChaseCamera) only.
 void SetCameraHalfFovAngleGoal(u32 p0) {
-    data_0217ac94->mHalfFovAngleGoal = p0;
+    gChaseCamera->mHalfFovAngleGoal = p0;
 }
 
-// Chase camera (data_0217ac94) only.
+// Chase camera (gChaseCamera) only.
 void ResetCameraHalfFovAngleGoal(void) {
     u32 value0;
     u32 value1;
     value1 = (u32) &data_0216569c;
-    value0 = (u32) &data_0217ac94;
+    value0 = (u32) &gChaseCamera;
     value1 = (u32) * (const u16 *) ((value1) + (0));
     value0 = (u32) * (const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (100)) = value1;
 }
 
-// Chase camera (data_0217ac94) only. Sets the angle goal to its default and the angle to default + 5, as SetupCamera
+// Chase camera (gChaseCamera) only. Sets the angle goal to its default and the angle to default + 5, as SetupCamera
 // does. The caller hands the leftover r0 (the Camera pointer) to a no-op function.
 void ResetCameraHalfFovAngle(void) {
     s32 t;
 
     t = data_0216569c;
-    data_0217ac94->mHalfFovAngleGoal = t;
-    data_0217ac94->mHalfFovAngle = t + 5;
+    gChaseCamera->mHalfFovAngleGoal = t;
+    gChaseCamera->mHalfFovAngle = t + 5;
 }
 
-// Chase camera (data_0217ac94) only.
+// Chase camera (gChaseCamera) only.
 void SetCameraHeightHold(s32 a) {
-    data_0217ac94->mHeightHold = a;
+    gChaseCamera->mHeightHold = a;
     if (a == 0) {
         return;
     }
-    data_0217ac94->mHeldHeight = data_0217ac94->mPos.y;
-    data_0217ac94->mHeldHeightEasing = FALSE;
+    gChaseCamera->mHeldHeight = gChaseCamera->mPos.y;
+    gChaseCamera->mHeldHeightEasing = FALSE;
 }
 
 void UpdateChaseCameraLookAt(Vec3 *a, Vec3 *b, s32 *c, Kart *d, s32 e, s32 f) {
@@ -1086,7 +1086,7 @@ void ResetCameraBehind(const Vec3 *a, void *b) {
     Vec3 v;
     s32 t;
 
-    p = data_0217ac94;
+    p = gChaseCamera;
     func_01ffccd0(m, b);
     t = (s32) (((s64) -data_usa_0217ac90 * p->mFollowDirectionSign + 0x800) >> 12);
     v.x = (s32) (((s64) m[2].x * t) >> 12);
@@ -1097,19 +1097,19 @@ void ResetCameraBehind(const Vec3 *a, void *b) {
     p->mBaseUp = data_usa_02154fc4;
     p->mPrevPos = p->mPos;
     p->mKartMoveScale = 0x1000;
-    data_0217ac94->mHeightHold = 0;
+    gChaseCamera->mHeightHold = 0;
     func_020d4f94((Unk020d4f94 *) &p->mViewMatrix);
     func_020d50c4();
 }
 
-// Chase camera (data_0217ac94) only.
+// Chase camera (gChaseCamera) only.
 void StartCameraWobble(s32 a, u32 b, s32 c) {
     Camera *p;
     s32 d;
     s32 t;
 
     d = 0x1000;
-    p = data_0217ac94;
+    p = gChaseCamera;
     if (b > 1000000) {
         return;
     }
