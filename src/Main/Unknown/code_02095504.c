@@ -39,9 +39,9 @@ u8 func_02095efc(MoveTree *a, Kart *b, u8 *c, u8 *d) {
 }
 
 void CreateMoveTree(void *a) {
-    gMoveTree = func_0209be84(a, gMoveTreeNsbmdName);
-    func_0209be50(gMoveTree, gMoveTreeNsbcaName);
-    func_0209b940(gMoveTree, 0x3f);
+    gMoveTree = CreateMapObjectModelAnimated(a, gMoveTreeNsbmdName);
+    CreateMapObjectModelNsbcaAnimation(gMoveTree, gMoveTreeNsbcaName);
+    SetMapObjectModelPolygonId(gMoveTree, 0x3f);
 }
 
 void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d) {
@@ -52,8 +52,8 @@ void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d) {
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     if ((s32) (p->mUnk_00.mUnk_78 & ~0xc000001f) < 0xc5c10) {
-        func_0209b77c(gMoveTree, p->mUnk_ac);
-        func_0209bb2c(a, gMoveTree, p);
+        SetMapObjectModelNsbcaFrameIndex(gMoveTree, p->mUnk_ac);
+        DrawMapObjectModel(a, gMoveTree, p);
     } else {
         func_0209ba58(a, gMoveTree, p);
     }
@@ -96,7 +96,7 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             if (p->mUnk_a4-- > 0) {
                 p->mUnk_b0 = 2;
                 p->mUnk_ac += p->mUnk_b0;
-                if (p->mUnk_ac >= func_0209b758(gMoveTree)) {
+                if (p->mUnk_ac >= GetMapObjectModelNsbcaFrameCount(gMoveTree)) {
                     p->mUnk_ac = 0;
                 }
                 return;
@@ -105,7 +105,7 @@ void UpdateMoveTree(void *a, MoveTree *p) {
                 return;
             }
             p->mUnk_ac += p->mUnk_b0;
-            if (p->mUnk_ac >= func_0209b758(gMoveTree)) {
+            if (p->mUnk_ac >= GetMapObjectModelNsbcaFrameCount(gMoveTree)) {
                 p->mUnk_ac = 0;
             }
             if (p->mUnk_ac != 0 && p->mUnk_ac != 0x1e) {
@@ -145,7 +145,7 @@ void UpdateMoveTree(void *a, MoveTree *p) {
                 p->mUnk_b0 = 1;
             }
             p->mUnk_ac += p->mUnk_b0;
-            if (p->mUnk_ac >= func_0209b758(gMoveTree)) {
+            if (p->mUnk_ac >= GetMapObjectModelNsbcaFrameCount(gMoveTree)) {
                 p->mUnk_ac = 0;
             }
             if (p->mUnk_ac != 0 && p->mUnk_ac != 0x1e) {
@@ -182,10 +182,10 @@ void func_020959bc(void) {
 }
 
 void CreateBakubakuAndBakuShadow(void *a) {
-    gBakubaku = func_0209be84(a, gBakubakuNsbmdName);
-    gBakuShadow = func_0209bd90(a, gBakuShadowNsbmdName);
-    func_0209b940(gBakubaku, 0x3f);
-    func_0209b940(gBakuShadow, 0x3f);
+    gBakubaku = CreateMapObjectModelAnimated(a, gBakubakuNsbmdName);
+    gBakuShadow = CreateMapObjectModelShadow(a, gBakuShadowNsbmdName);
+    SetMapObjectModelPolygonId(gBakubaku, 0x3f);
+    SetMapObjectModelPolygonId(gBakuShadow, 0x3f);
 }
 
 void DrawBakubaku(void *a, Bakubaku *p) {
@@ -203,11 +203,11 @@ void DrawBakubaku(void *a, Bakubaku *p) {
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mMatrix, 12);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    func_0209bb2c(a, gBakuShadow, p);
+    DrawMapObjectModel(a, gBakuShadow, p);
     i = (u16) (u32) AngleFromPair(-p->mUnk_00.mUnk_10.y, 0xc000) >> 4;
     Matrix3x3FromPairX(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
-    func_0209bb2c(a, gBakubaku, p);
+    DrawMapObjectModel(a, gBakubaku, p);
 }
 
 void func_020957ec(Unk020e6fd4 *p) {

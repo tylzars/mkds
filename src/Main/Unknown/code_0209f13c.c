@@ -95,7 +95,7 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
         }
     }
     n = b->mUnk_a0 + 1;
-    if (n >= func_0209b758(gChandelier)) {
+    if (n >= GetMapObjectModelNsbcaFrameCount(gChandelier)) {
         n = 0;
     }
     b->mUnk_a0 = n;
@@ -113,8 +113,9 @@ void *func_0209f2f8(void) {
 }
 
 void CreateRainStar(void *a) {
-    func_0209be1c(gRainStar = func_0209be84(a, gRainStarNsbmdName), gRainStarNsbtaName);
-    func_0209b940(gRainStar, 0x3f);
+    CreateMapObjectModelNsbtaAnimation(gRainStar = CreateMapObjectModelAnimated(a, gRainStarNsbmdName),
+                                       gRainStarNsbtaName);
+    SetMapObjectModelPolygonId(gRainStar, 0x3f);
 }
 
 void DrawRainStar(void *a, Unk0209f1c8 *b) {
@@ -134,14 +135,14 @@ void DrawRainStar(void *a, Unk0209f1c8 *b) {
         func_01ff9048(0x1a, m, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    func_0209b6c8(gRainStar, b->mUnk_a0);
-    func_0209bb2c(a, gRainStar, b);
+    SetMapObjectModelNsbtaFrameIndex(gRainStar, b->mUnk_a0);
+    DrawMapObjectModel(a, gRainStar, b);
 }
 
 void UpdateRainStar(void *a, Unk0209f1c8 *b) {
     u16 n;
 
-    n = func_0209b6ec(gRainStar);
+    n = GetMapObjectModelNsbtaFrameCount(gRainStar);
     b->mUnk_a0 += 1;
     if (b->mUnk_a0 >= n) {
         b->mUnk_a0 = 0;

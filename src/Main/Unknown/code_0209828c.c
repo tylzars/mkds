@@ -113,8 +113,8 @@ void InitPakkun(Pakkun *p) {
 }
 
 void CreatePakkunMouth(void *a) {
-    gPakkunMouth = func_0209be84(a, "PakkunMouth.nsbmd");
-    func_0209be50(gPakkunMouth, "PakkunMouth.nsbca");
+    gPakkunMouth = CreateMapObjectModelAnimated(a, "PakkunMouth.nsbmd");
+    CreateMapObjectModelNsbcaAnimation(gPakkunMouth, "PakkunMouth.nsbca");
     func_0209b9a4(gPakkunMouth, 0x1f);
 }
 
@@ -175,13 +175,13 @@ void DrawPakkunMouth(void *a, Pakkun *p) {
     g[2] = t;
     func_01ff9048(0x1b, g, 3);
     func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    func_0209b940(gPakkunMouth, p->mUnk_0a0);
-    func_0209b77c(gPakkunMouth, p->mUnk_0a4 >> 12);
-    func_0209bb2c(a, gPakkunMouth, p);
+    SetMapObjectModelPolygonId(gPakkunMouth, p->mUnk_0a0);
+    SetMapObjectModelNsbcaFrameIndex(gPakkunMouth, p->mUnk_0a4 >> 12);
+    DrawMapObjectModel(a, gPakkunMouth, p);
 }
 
 void CreatePakkunZHead(void *a) {
-    gPakkunZHead = func_0209bd08(a, "PakkunZHead.nsbmd");
+    gPakkunZHead = CreateMapObjectModelNsbmd(a, "PakkunZHead.nsbmd");
     func_0209b9a4(gPakkunZHead, 0x1e);
 }
 
@@ -206,13 +206,13 @@ void DrawPakkunZHead(void *a, Pakkun *p) {
     f[2] = t;
     func_01ff9048(0x1b, f, 3);
     func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    func_0209b940(gPakkunZHead, p->mUnk_0a0);
-    func_0209bb2c(a, gPakkunZHead, p);
+    SetMapObjectModelPolygonId(gPakkunZHead, p->mUnk_0a0);
+    DrawMapObjectModel(a, gPakkunZHead, p);
 }
 
 void CreatePakkunBody(void *a) {
-    gPakkunBody = func_0209bd08(a, "PakkunBody.nsbmd");
-    func_0209b940(gPakkunBody, 0x3f);
+    gPakkunBody = CreateMapObjectModelNsbmd(a, "PakkunBody.nsbmd");
+    SetMapObjectModelPolygonId(gPakkunBody, 0x3f);
     func_0209b9a4(gPakkunBody, 0x1f);
 }
 
@@ -237,7 +237,7 @@ void DrawPakkunBody(void *a, Pakkun *p) {
     v[2] = d;
     func_01ff9048(0x1b, v, 3);
     func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    func_0209bb2c(a, gPakkunBody, p);
+    DrawMapObjectModel(a, gPakkunBody, p);
 }
 
 void func_0209886c(void) {
@@ -248,10 +248,10 @@ void func_0209886c(void) {
         return;
     }
     for (i = 0; i < data_usa_0217b0dc->mUnk_04 && (o = (Pakkun *) data_usa_0217b0dc->mUnk_00[i]) != NULL; i++) {
-        if (func_0209b758(gPakkunMouth) - 1 > 0) {
-            f = 0.5f + (float) ((func_0209b758(gPakkunMouth) - 1) << 12);
+        if (GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1 > 0) {
+            f = 0.5f + (float) ((GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1) << 12);
         } else {
-            f = (float) ((func_0209b758(gPakkunMouth) - 1) << 12) - 0.5f;
+            f = (float) ((GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1) << 12) - 0.5f;
         }
         o->mUnk_0a4 = 0;
         o->mUnk_0a8 = 0x1000;

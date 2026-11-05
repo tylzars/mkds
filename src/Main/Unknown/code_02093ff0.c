@@ -33,8 +33,8 @@ u32 InitTeresa(u32 arg0) {
 }
 
 void CreateTeresa(Unk02094db4 *a) {
-    gTeresa = func_0209bc74(a, gTeresaNsbmdName, gTeresaNsbtpName);
-    func_0209b940(gTeresa, 0x3f);
+    gTeresa = CreateMapObjectModelNsbmdNsbtp(a, gTeresaNsbmdName, gTeresaNsbtpName);
+    SetMapObjectModelPolygonId(gTeresa, 0x3f);
     a->mUnk_1c = 1;
 }
 
@@ -50,7 +50,7 @@ void DrawTeresa(void *a, Teresa *b) {
         return;
     }
     GetKart((u16) data_021759c0->mEntryIndex);
-    func_0209b940(gTeresa, func_020d3c44());
+    SetMapObjectModelPolygonId(gTeresa, func_020d3c44());
     func_0209b688(gTeresa, b->mUnk_ae);
     func_0209b9a4(gTeresa, b->mUnk_ac);
     func_0209b8ac(gTeresa, func_0206183c());
@@ -65,7 +65,7 @@ void DrawTeresa(void *a, Teresa *b) {
         func_01ff9048(0x1b, v, 3);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    func_0209bb2c(a, gTeresa, b);
+    DrawMapObjectModel(a, gTeresa, b);
 }
 
 static inline void func_02094768_inline(Teresa *o) {

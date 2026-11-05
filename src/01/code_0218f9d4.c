@@ -1334,7 +1334,7 @@ void func_ov001_0218fa78(Unk0218fa78 *a) {
             }
             func_ov001_021870e4(a, obj, data_ov001_021a7e60, data_ov001_021a7e70, data_ov001_021a7e80);
             func_ov001_021870b0(a, obj, data_ov001_021a7e90);
-            func_ov001_0219b2e8(obj->mNsbmd, data_ov001_021a7ea0);
+            LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, data_ov001_021a7ea0);
             obj->mUnk_234 = 1;
             if (i == 0) {
                 obj->mUnk_000.mFlags |= data_ov001_021a65c0;

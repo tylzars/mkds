@@ -355,13 +355,13 @@ BOOL func_ov001_021871d0(Unk02188950 *a) {
 
 void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, const char *e) {
     if (a != NULL && c != NULL) {
-        b->mNsbmd = func_ov001_0219b478((Unk0219b478 *) (a), (char *) (c));
+        b->mNsbmd = LoadMapObjectModelAnimated((Unk0219b478 *) (a), (char *) (c));
         if (d != NULL) {
-            func_ov001_0219b3b4((Unk0219b250 *) (b->mNsbmd), (char *) (d));
+            LoadMapObjectModelNsbcaAnimation((Unk0219b250 *) (b->mNsbmd), (char *) (d));
         }
     }
     if (e != NULL) {
-        b->mPrm = func_ov001_0219b4d8((char *) (e));
+        b->mPrm = LoadMissionRunFile((char *) (e));
     }
     b->mAngle = (u16) (((s64) b->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
     b->mUnk_168 = 0x1f000;
@@ -379,8 +379,8 @@ void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, 
 
 void func_ov001_021870b0(void *a, Unk02188950 *b, const char *c) {
     if (a != NULL && c != NULL) {
-        b->mShadowNsbmd = func_ov001_0219b418((Unk0219b478 *) (a), (char *) (c));
-        func_0209b940(b->mShadowNsbmd, 0x3f);
+        b->mShadowNsbmd = LoadMapObjectModelShadow((Unk0219b478 *) (a), (char *) (c));
+        SetMapObjectModelPolygonId(b->mShadowNsbmd, 0x3f);
         data_ov001_021a9ba0 = 0;
     }
 }
@@ -694,9 +694,9 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     b->mUnk_000.mAngle = b->mAngle;
 
     if (b->mNsbmd != NULL) {
-        prev = func_0209b620(b->mNsbmd);
+        prev = GetMapObjectModelNsbcaFrameIndex(b->mNsbmd);
         func_ov001_0219b250(b->mNsbmd);
-        cur = func_0209b620(b->mNsbmd);
+        cur = GetMapObjectModelNsbcaFrameIndex(b->mNsbmd);
         if (b->mUnk_1d8 != 0) {
             if (prev < b->mUnk_1d8 && b->mUnk_1d8 <= cur) {
                 func_ov001_02188e94(b, &b->mUnk_1dc);
@@ -784,13 +784,13 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
             level = 0x1f;
         }
         if (level >= 0x1f) {
-            func_02012ffc((Unk0201290c *) b->mNsbmd->mUnk_10->mUnk_04, 1);
-            func_0209b940(b->mNsbmd, 3);
+            func_02012ffc((Unk0201290c *) b->mNsbmd->mAnimatedModel->mUnk_04, 1);
+            SetMapObjectModelPolygonId(b->mNsbmd, 3);
         } else if (b->mUnk_27c <= 1) {
-            func_02012ffc((Unk0201290c *) b->mNsbmd->mUnk_10->mUnk_04, 1);
-            func_0209b940(b->mNsbmd, 3);
+            func_02012ffc((Unk0201290c *) b->mNsbmd->mAnimatedModel->mUnk_04, 1);
+            SetMapObjectModelPolygonId(b->mNsbmd, 3);
         } else {
-            obj = b->mNsbmd->mUnk_10->mUnk_04;
+            obj = b->mNsbmd->mAnimatedModel->mUnk_04;
             func_02012ffc((Unk0201290c *) obj, 1);
             for (i = 0; i < obj->mUnk_18; i++) {
                 func_0209b904(b->mNsbmd, func_020d3c44(), i);
@@ -807,7 +807,7 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
         func_01ff9048(0x1b, &b->mUnk_000.mScale.x, 3);
         func_0209b9a4(b->mNsbmd, level);
         func_0209b7a0(b->mNsbmd, b->mUnk_000.mFlags & 0x400, 0);
-        func_0209bb2c(a, b->mNsbmd, b);
+        DrawMapObjectModel(a, b->mNsbmd, b);
     }
 }
 
@@ -873,9 +873,9 @@ void func_ov001_021861f4(void *d, Unk02188950 *e, s32 f) {
             u.z = 0x1333;
             func_01ff9048(0x1b, &u, 3);
         }
-        func_0209b940(e->mShadowNsbmd, 3);
+        SetMapObjectModelPolygonId(e->mShadowNsbmd, 3);
         func_0209b9a4(e->mShadowNsbmd, depth);
-        func_0209bb2c(d, e->mShadowNsbmd, e);
+        DrawMapObjectModel(d, e->mShadowNsbmd, e);
     }
 }
 

@@ -37,9 +37,9 @@ void InitShineBalloon(u32 arg0) {
 void CreateShineBalloon(void *a) {
     void *p;
 
-    p = func_0209bd08(a, "shine_balloon.nsbmd");
+    p = CreateMapObjectModelNsbmd(a, "shine_balloon.nsbmd");
     gShineBalloon = p;
-    func_0209b940(p, 0x3f);
+    SetMapObjectModelPolygonId(p, 0x3f);
 }
 
 void func_020ac9b0(void *a) {
@@ -79,7 +79,7 @@ void DrawShineBalloon(void *a, ShineBalloonObject *b) {
     v4.y = v5;
     v4.z = v5;
     func_01ff9048(0x1b, &v4, 3);
-    func_0209bb2c(a, gShineBalloon, b);
+    DrawMapObjectModel(a, gShineBalloon, b);
 }
 
 void UpdateShineBalloon(void *a, ShineBalloonObject *b) {

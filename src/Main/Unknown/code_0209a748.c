@@ -133,10 +133,10 @@ u8 func_0209b270(Crab *a, Kart *b, u8 *c, u8 *d) {
 }
 
 void CreateCrabAndCrabHand(void *a) {
-    gCrab = func_0209bc74(a, "crab.nsbmd", "crab.nsbtp");
-    gCrabHand = func_0209bc74(a, "crab_hand.nsbmd", "crab_hand.nsbtp");
-    func_0209b940(gCrab, 0x3f);
-    func_0209b940(gCrabHand, 0x3f);
+    gCrab = CreateMapObjectModelNsbmdNsbtp(a, "crab.nsbmd", "crab.nsbtp");
+    gCrabHand = CreateMapObjectModelNsbmdNsbtp(a, "crab_hand.nsbmd", "crab_hand.nsbtp");
+    SetMapObjectModelPolygonId(gCrab, 0x3f);
+    SetMapObjectModelPolygonId(gCrabHand, 0x3f);
 }
 
 u32 func_0209b1f8(u32 p0) {
@@ -159,13 +159,13 @@ void DrawCrab(void *a, Crab *b) {
     func_01ff9048(0x1b, &b->mUnk_000.mScale, 3);
     func_0209b688(gCrab, (u16) (b->mUnk_0a8 >> 12));
     func_0209bbd0(a, gCrab);
-    func_0209bb2c(a, gCrab, b);
+    DrawMapObjectModel(a, gCrab, b);
     Matrix3x3FromPairZ(f1, gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
                        gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, f1, 9);
     func_0209b688(gCrabHand, (u16) (b->mUnk_0ac >> 12));
     func_0209bbd0(a, gCrabHand);
-    func_0209bb2c(a, gCrabHand, b);
+    DrawMapObjectModel(a, gCrabHand, b);
 }
 
 void func_0209af98(Unk0209af98 *p) {

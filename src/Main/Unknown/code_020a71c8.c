@@ -96,10 +96,10 @@ u8 func_020a7f18(Sanbo *p, Kart *a, u8 *b, u8 *c) {
 }
 
 void CreateSanboHAndSanboB(void *a) {
-    gSanboH = func_0209bd08(a, gSanboHNsbmdName);
-    gSanboB = func_0209bd08(a, gSanboBNsbmdName);
-    func_0209b940(gSanboH, 0x3f);
-    func_0209b940(gSanboB, 0x3f);
+    gSanboH = CreateMapObjectModelNsbmd(a, gSanboHNsbmdName);
+    gSanboB = CreateMapObjectModelNsbmd(a, gSanboBNsbmdName);
+    SetMapObjectModelPolygonId(gSanboH, 0x3f);
+    SetMapObjectModelPolygonId(gSanboB, 0x3f);
 }
 
 u32 func_020a7eb0(u32 p0) {
@@ -146,10 +146,10 @@ void DrawSanbo(void *a, Sanbo *p) {
                 }
                 if (i == 3) {
                     func_0209bbd0(a, gSanboH);
-                    func_0209bb2c(a, gSanboH, p);
+                    DrawMapObjectModel(a, gSanboH, p);
                 } else {
                     func_0209bbd0(a, gSanboB);
-                    func_0209bb2c(a, gSanboB, p);
+                    DrawMapObjectModel(a, gSanboB, p);
                 }
             }
             break;
@@ -176,10 +176,10 @@ void DrawSanbo(void *a, Sanbo *p) {
                 }
                 if (i == 3) {
                     func_0209bbd0(a, gSanboH);
-                    func_0209bb2c(a, gSanboH, p);
+                    DrawMapObjectModel(a, gSanboH, p);
                 } else {
                     func_0209bbd0(a, gSanboB);
-                    func_0209bb2c(a, gSanboB, p);
+                    DrawMapObjectModel(a, gSanboB, p);
                 }
             }
             break;
@@ -201,10 +201,10 @@ void DrawSanbo(void *a, Sanbo *p) {
                 }
                 if (i == 3) {
                     func_0209bbd0(a, gSanboH);
-                    func_0209bb2c(a, gSanboH, p);
+                    DrawMapObjectModel(a, gSanboH, p);
                 } else {
                     func_0209bbd0(a, gSanboB);
-                    func_0209bb2c(a, gSanboB, p);
+                    DrawMapObjectModel(a, gSanboB, p);
                 }
             }
             break;

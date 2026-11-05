@@ -14,12 +14,12 @@
 #include "Main/Unknown/unk_02167000.h"
 
 void CreatePicture1AndPicture2(void *a) {
-    gPicture1 = func_0209be84(a, gPicture1NsbmdName);
-    func_0209be50(gPicture1, gPicture1NsbcaName);
-    gPicture2 = func_0209be84(a, gPicture2NsbmdName);
-    func_0209be50(gPicture2, gPicture2NsbcaName);
-    func_0209b940(gPicture1, 0x3f);
-    func_0209b940(gPicture2, 0x3f);
+    gPicture1 = CreateMapObjectModelAnimated(a, gPicture1NsbmdName);
+    CreateMapObjectModelNsbcaAnimation(gPicture1, gPicture1NsbcaName);
+    gPicture2 = CreateMapObjectModelAnimated(a, gPicture2NsbmdName);
+    CreateMapObjectModelNsbcaAnimation(gPicture2, gPicture2NsbcaName);
+    SetMapObjectModelPolygonId(gPicture1, 0x3f);
+    SetMapObjectModelPolygonId(gPicture2, 0x3f);
 }
 
 void DrawPicture(void *a, Unk0209ec80 *b) {
@@ -34,12 +34,12 @@ void DrawPicture(void *a, Unk0209ec80 *b) {
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     switch (b->mUnk_a4) {
         case 0:
-            func_0209b77c(gPicture1, b->mUnk_a0);
-            func_0209bb2c(a, gPicture1, b);
+            SetMapObjectModelNsbcaFrameIndex(gPicture1, b->mUnk_a0);
+            DrawMapObjectModel(a, gPicture1, b);
             break;
         case 1:
-            func_0209b77c(gPicture2, b->mUnk_a0);
-            func_0209bb2c(a, gPicture2, b);
+            SetMapObjectModelNsbcaFrameIndex(gPicture2, b->mUnk_a0);
+            DrawMapObjectModel(a, gPicture2, b);
             break;
     }
 }
@@ -62,7 +62,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
         case 2:
             if (b->mUnk_a4 == 0) {
                 n = b->mUnk_a0 + 1;
-                if (n >= func_0209b758(gPicture1)) {
+                if (n >= GetMapObjectModelNsbcaFrameCount(gPicture1)) {
                     n = 0;
                 }
                 b->mUnk_a0 = n;
@@ -115,7 +115,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                 }
             } else if (b->mUnk_a4 == 1) {
                 n = b->mUnk_a0 + 1;
-                if (n >= func_0209b758(gPicture2)) {
+                if (n >= GetMapObjectModelNsbcaFrameCount(gPicture2)) {
                     n = 0;
                 }
                 b->mUnk_a0 = n;
@@ -156,7 +156,7 @@ u32 func_0209ec44(void) {
 }
 
 void CreatePuddle(void *a) {
-    gPuddle = func_0209bd08(a, gPuddleNsbmdName);
+    gPuddle = CreateMapObjectModelNsbmd(a, gPuddleNsbmdName);
 }
 
 void func_0209ec00(void *a) {
@@ -181,5 +181,5 @@ void DrawPuddle(void *a, Unk0209ec80 *b) {
     func_01ff9048(0x1c, &v, 3);
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     func_01ff9048(0x1a, &b->mUnk_00.mMatrix, 9);
-    func_0209bb2c(a, gPuddle, b);
+    DrawMapObjectModel(a, gPuddle, b);
 }

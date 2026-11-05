@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Object at Unk0219b250::mUnk_1c and mUnk_20 (a 0x38-byte allocation).
+// Object at Unk0219b250::mNsbcaAnimation and mNsbtpAnimation (a 0x38-byte allocation).
 typedef struct Unk0219b250_Item {
     /* 00 */ u8 mUnk_00[2];
     /* 02 */ u16 mUnk_02;
@@ -20,7 +20,7 @@ typedef struct Unk0219b250_10_04 {
     /* 18 */ u8 mUnk_18;
 } Unk0219b250_10_04;
 
-// Object at Unk0219b250::mUnk_10 (a 0x6c-byte allocation).
+// Object at Unk0219b250::mAnimatedModel (a 0x6c-byte allocation).
 typedef struct Unk0219b250_10 {
     /* 00 */ u8 mUnk_00[0x4];
     /* 04 */ Unk0219b250_10_04 *mUnk_04;
@@ -28,20 +28,30 @@ typedef struct Unk0219b250_10 {
     /* 2c */ struct Unk02188950 *mUnk_2c;
 } Unk0219b250_10;
 
-// Object behind Unk02188950::mNsbmd: the 0x2c-byte allocation made by func_ov001_0219b478 and func_ov001_0219b418.
+// Object behind Unk02188950::mNsbmd: the 0x2c-byte allocation made by LoadMapObjectModelAnimated and
+// LoadMapObjectModelShadow.
 typedef struct Unk0219b250 {
-    /* 00 */ Vec3 mUnk_00;
-    /* 0c */ void *mUnk_0c;
-    /* 10 */ Unk0219b250_10 *mUnk_10;
-    /* 14 */ void *mUnk_14;
-    /* 18 */ void *mUnk_18;
-    /* 1c */ Unk0219b250_Item *mUnk_1c;
-    /* 20 */ Unk0219b250_Item *mUnk_20;
-    /* 24 */ void *mUnk_24;
-    /* 28 */ void *mUnk_28;
+    // Same as MapObjectModel.mScale (same offset).
+    /* 00 */ Vec3 mScale;
+    // No use by name in overlay code.
+    /* 0c */ void *mNsbmdModel;
+    // Same as MapObjectModel.mAnimatedModel (same offset).
+    /* 10 */ Unk0219b250_10 *mAnimatedModel;
+    // Same as MapObjectModel.mShadowModel (same offset).
+    /* 14 */ void *mShadowModel;
+    // Same as MapObjectModel.mNsbmdFile (same offset).
+    /* 18 */ void *mNsbmdFile;
+    // Same as MapObjectModel.mAnimations[0] (same offset).
+    /* 1c */ Unk0219b250_Item *mNsbcaAnimation;
+    // Same as MapObjectModel.mAnimations[1] (same offset).
+    /* 20 */ Unk0219b250_Item *mNsbtpAnimation;
+    // Same as MapObjectModel.mAnimations[2] (same offset).
+    /* 24 */ void *mNsbmaAnimation;
+    // Same as MapObjectModel.mAnimations[3] (same offset).
+    /* 28 */ void *mNsbtaAnimation;
 } Unk0219b250;
 
-// First argument of func_ov001_0219b478 and func_ov001_0219b418.
+// First argument of LoadMapObjectModelAnimated and LoadMapObjectModelShadow.
 typedef struct Unk0219b478 {
     /* 00 */ u8 mUnk_00[0x18];
     /* 18 */ u32 mUnk_18;
@@ -51,11 +61,11 @@ typedef struct Unk0219b478 {
 void func_ov001_0219b250(Unk0219b250 *p0);
 void func_ov001_0219b25c(Unk0219b250 *p0, void *p1);
 void func_ov001_0219b28c(Unk0219b250 *p0, void *p1);
-void func_ov001_0219b2e8(Unk0219b250 *p0, char *p1);
-void func_ov001_0219b31c(Unk0219b250 *p0, char *p1);
-void func_ov001_0219b380(Unk0219b250 *p0, char *p1);
-void func_ov001_0219b3b4(Unk0219b250 *p0, char *p1);
-Unk0219b250 *func_ov001_0219b418(Unk0219b478 *p0, char *p1);
-Unk0219b250 *func_ov001_0219b478(Unk0219b478 *p0, char *p1);
-void *func_ov001_0219b4d8(char *p0);
+void LoadMapObjectModelNsbtpAnimation(Unk0219b250 *p0, char *p1);
+void LoadMapObjectModelNsbtaAnimation(Unk0219b250 *p0, char *p1);
+void LoadMapObjectModelNsbmaAnimation(Unk0219b250 *p0, char *p1);
+void LoadMapObjectModelNsbcaAnimation(Unk0219b250 *p0, char *p1);
+Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, char *p1);
+Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, char *p1);
+void *LoadMissionRunFile(char *p0);
 void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, u16 p6);

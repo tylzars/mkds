@@ -28,10 +28,10 @@ void InitStopSign(Unk02188950 *a) {
 }
 
 void LoadStopSign(Unk0219b478 *a) {
-    gStopSign = func_ov001_0219b478(a, "StopSign.nsbmd");
-    func_0209b940(gStopSign, 0x3f);
+    gStopSign = LoadMapObjectModelAnimated(a, "StopSign.nsbmd");
+    SetMapObjectModelPolygonId(gStopSign, 0x3f);
     func_0209ba08(gStopSign, 2);
-    func_020849a0(gStopSign->mUnk_10, 0x294a);
+    func_020849a0(gStopSign->mAnimatedModel, 0x294a);
 }
 
 void DrawStopSign(void *a, StopSignObject *b) {
@@ -42,7 +42,7 @@ void DrawStopSign(void *a, StopSignObject *b) {
     b->mUnk_54 = b->mUnk_0c >> 4;
     func_01ff9048(0x19, b->mUnk_28, 0xc);
     func_01ff9048(0x1b, b->mUnk_1c, 3);
-    func_0209bb2c(a, gStopSign, b);
+    DrawMapObjectModel(a, gStopSign, b);
 }
 
 void func_ov001_02192d60(void) {

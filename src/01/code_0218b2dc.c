@@ -91,14 +91,14 @@ s32 func_ov001_0218b8d4(Unk02188950 *a) {
 
 s32 func_ov001_0218b850(Unk02188950 *a) {
     int v1;
-    v1 = func_0209b620(a->mNsbmd);
+    v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd);
     if (v1 == 0x4d) {
         func_ov001_02187af4(a);
         func_ov001_02187518(a, (u32) (((u32) 0xfffff99au)), (u32) 0, (u32) (((u32) 0xfffff99au)),
                             (u32) (((u32) 0x0000042bu)), (u32) 0);
         func_020d2774(&a->mUnk_000, (u32) (((u32) 0x0000021eu)));
     } else {
-        v1 = func_0209b620(a->mNsbmd);
+        v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd);
         if (v1 == 0x68) {
             func_ov001_02187af4(a);
             func_ov001_02187518(a, (u32) (((u32) 0xfffff99au)), (u32) 0, (u32) (((u32) 0xfffff99au)),
@@ -234,11 +234,11 @@ void UpdateKuriking(u32 a, Unk02188950 *b) {
     }
     b->mUnk_134 = var;
     var = b->mUnk_134;
-    if (var >= func_0209b710(b->mNsbmd) - 1) {
-        var = func_0209b710(b->mNsbmd) - 1;
+    if (var >= GetMapObjectModelNsbmaFrameCount(b->mNsbmd) - 1) {
+        var = GetMapObjectModelNsbmaFrameCount(b->mNsbmd) - 1;
     }
     b->mUnk_134 = var;
-    func_0209b734(b->mNsbmd, (u16) b->mUnk_134);
+    SetMapObjectModelNsbmaFrameIndex(b->mNsbmd, (u16) b->mUnk_134);
 }
 
 void InitKuriking(Unk0218d87c *a) {
@@ -252,9 +252,9 @@ void InitKuriking(Unk0218d87c *a) {
             }
             func_ov001_021870e4((void *) a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"), ("kuriking.prm"));
             func_ov001_021870b0((void *) a, obj, ("sh_circle.nsbmd"));
-            func_ov001_0219b31c(obj->mNsbmd, "kuriking.nsbta");
-            func_ov001_0219b2e8(obj->mNsbmd, "kuriking.nsbtp");
-            func_ov001_0219b380(obj->mNsbmd, "kuriking.nsbma");
+            LoadMapObjectModelNsbtaAnimation(obj->mNsbmd, "kuriking.nsbta");
+            LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, "kuriking.nsbtp");
+            LoadMapObjectModelNsbmaAnimation(obj->mNsbmd, "kuriking.nsbma");
             func_ov001_0218c728(obj);
             func_ov001_02188200(obj, func_ov001_0218b6f8);
         }

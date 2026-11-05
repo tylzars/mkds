@@ -63,14 +63,14 @@ static inline void func_020919e8_inline_3(Unk020919e8 *p, s32 n) {
 }
 
 void CreateKanoke64(void *a) {
-    gKanoke64 = func_0209be84(a, gKanoke64NsbmdName);
-    func_0209be50(gKanoke64, gKanoke64NsbcaName);
+    gKanoke64 = CreateMapObjectModelAnimated(a, gKanoke64NsbmdName);
+    CreateMapObjectModelNsbcaAnimation(gKanoke64, gKanoke64NsbcaName);
 }
 
 void DrawKanoke64(void *a, Unk020919e8 *p) {
     s32 w;
 
-    func_0209b77c(gKanoke64, p->mUnk_a0);
+    SetMapObjectModelNsbcaFrameIndex(gKanoke64, p->mUnk_a0);
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
     p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
@@ -78,7 +78,7 @@ void DrawKanoke64(void *a, Unk020919e8 *p) {
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mMatrix, 0xc);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    func_0209bb2c(a, gKanoke64, p);
+    DrawMapObjectModel(a, gKanoke64, p);
 }
 
 void func_02091fd8(Unk020e6fd4 *a) {
@@ -216,7 +216,7 @@ void UpdateKanoke64(void *a, Unk020919e8 *p) {
         }
     }
     n = p->mUnk_a0 + 1;
-    if (n >= func_0209b758(gKanoke64)) {
+    if (n >= GetMapObjectModelNsbcaFrameCount(gKanoke64)) {
         n = 0;
     }
     p->mUnk_a0 = n;
@@ -244,8 +244,8 @@ void func_020919a8(void) {
 }
 
 void CreateCow(void *a) {
-    gCow = func_0209bc74(a, gCowNsbmdName, gCowNsbtpName);
-    func_0209b940(gCow, 0x3f);
+    gCow = CreateMapObjectModelNsbmdNsbtp(a, gCowNsbmdName, gCowNsbtpName);
+    SetMapObjectModelPolygonId(gCow, 0x3f);
 }
 
 void func_02091954(void *a) {
@@ -260,7 +260,7 @@ void func_020918cc(void *a, Unk020919e8 *b) {
     func_01ff9048(0x19, func_020e6cbc(&b->mUnk_00.mPos), 0xc);
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     func_0209b688(gCow, b->mUnk_00.mCourseMapRow->mUnk_28);
-    func_0209bb2c(a, gCow, b);
+    DrawMapObjectModel(a, gCow, b);
 }
 
 void func_020918a8(void) {

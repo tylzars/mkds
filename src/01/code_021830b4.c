@@ -265,7 +265,7 @@ void func_ov001_02183848(void) {
 
 int func_ov001_02183780(Unk02188950 *a) {
     if (a->mUnk_000.mKind == 0x1f6) {
-        if (func_0209b620(a->mNsbmd) == 2 || func_0209b620(a->mNsbmd) == 3) {
+        if (GetMapObjectModelNsbcaFrameIndex(a->mNsbmd) == 2 || GetMapObjectModelNsbcaFrameIndex(a->mNsbmd) == 3) {
             func_ov001_02187af4(a);
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x428, 0);
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x429, 0);
@@ -281,7 +281,7 @@ int func_ov001_02183780(Unk02188950 *a) {
 
 int func_ov001_02183690(Unk02188950 *a) {
     if (a->mUnk_000.mKind == 0x1f6) {
-        if (func_0209b620(a->mNsbmd) == 2) {
+        if (GetMapObjectModelNsbcaFrameIndex(a->mNsbmd) == 2) {
             func_ov001_02187af4(a);
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x428, 0);
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x429, 0);
@@ -289,7 +289,8 @@ int func_ov001_02183690(Unk02188950 *a) {
             func_020d2774(&a->mUnk_000, (u32) (0x240));
         }
     } else if (a->mUnk_000.mKind == 0x1f5) {
-        if (func_0209b620(a->mNsbmd) == 0x2b || func_0209b620(a->mNsbmd) == 0x48) {
+        if (GetMapObjectModelNsbcaFrameIndex(a->mNsbmd) == 0x2b ||
+            GetMapObjectModelNsbcaFrameIndex(a->mNsbmd) == 0x48) {
             func_ov001_02187af4(a);
             func_ov001_02187518(a, 0, 0, 0, 0x410, 0);
         }
@@ -299,7 +300,7 @@ int func_ov001_02183690(Unk02188950 *a) {
 
 s32 func_ov001_021835e0(Unk02188950 *a) {
     int v1;
-    if ((a->mUnk_000.mKind == (0x000001f6u)) && (v1 = func_0209b620(a->mNsbmd), v1 == 2)) {
+    if ((a->mUnk_000.mKind == (0x000001f6u)) && (v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd), v1 == 2)) {
         func_ov001_02187af4(a);
         func_ov001_021872e0(a, (0x00001000u), 0, 0, 0, (0x00000666u), (0xfffff000u), (0x00000428u), 0);
         func_ov001_021872e0(a, (0x00001000u), 0, 0, 0, (0x00000666u), (0xfffff000u), (0x00000429u), 0);

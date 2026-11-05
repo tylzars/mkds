@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_02099020.h"
-#include "Main/Unknown/code_0209bc74.h" // Unk0209bc74
+#include "Main/Unknown/code_0209bc74.h" // MapObjectModel
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
@@ -42,7 +42,7 @@ typedef struct Unk020982d4 {
 } Unk020982d4;
 
 extern Unk020e6fd4 *data_usa_0217b0dc;
-extern Unk0209bc74 *gPakkunMouth;
+extern MapObjectModel *gPakkunMouth;
 extern void *gPakkunZHead;
 extern void *data_usa_0217b0e8;
 extern void *gPakkunBody;

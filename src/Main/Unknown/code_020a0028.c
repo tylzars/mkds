@@ -12,8 +12,8 @@
 #include "code_02146cbc.h"
 
 void CreateAirship(void *a) {
-    gAirship = func_0209be84(a, gAirshipNsbmdName);
-    func_0209b940(gAirship, 0x3f);
+    gAirship = CreateMapObjectModelAnimated(a, gAirshipNsbmdName);
+    SetMapObjectModelPolygonId(gAirship, 0x3f);
 }
 
 void DrawAirship(void *a, Airship *p) {
@@ -37,7 +37,7 @@ void DrawAirship(void *a, Airship *p) {
         func_01ff9048(0x1a, q, 9);
     }
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    func_0209bb2c(a, gAirship, p);
+    DrawMapObjectModel(a, gAirship, p);
 }
 
 void func_020a0064(Unk020a0064 *p) {

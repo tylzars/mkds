@@ -37,7 +37,7 @@
 #include "code_0212bcac.h"
 
 void CreateNsKiller1(void *a) {
-    gNsKiller1 = func_0209be84(a, gNsKiller1NsbmdName);
+    gNsKiller1 = CreateMapObjectModelAnimated(a, gNsKiller1NsbmdName);
 }
 
 void DrawNsKiller1(void *a, NsKiller1 *p) {
@@ -50,7 +50,7 @@ void DrawNsKiller1(void *a, NsKiller1 *p) {
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_00.mMatrix, 12);
-    func_0209bb2c(a, gNsKiller1, p);
+    DrawMapObjectModel(a, gNsKiller1, p);
 }
 
 void func_02093eac(Unk020e6fd4 *p) {
@@ -151,9 +151,9 @@ u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d) {
 }
 
 void CreateNsKiller2AndNsKiller2S(void *a) {
-    gNsKiller2 = func_0209be84(a, gNsKiller2NsbmdName);
-    gNsKiller2S = func_0209bd90(a, gNsKiller2SNsbmdName);
-    func_0209b940(gNsKiller2S, 0x3f);
+    gNsKiller2 = CreateMapObjectModelAnimated(a, gNsKiller2NsbmdName);
+    gNsKiller2S = CreateMapObjectModelShadow(a, gNsKiller2SNsbmdName);
+    SetMapObjectModelPolygonId(gNsKiller2S, 0x3f);
 }
 
 void DrawNsKiller2(void *a, NsKiller2 *p) {
@@ -171,8 +171,8 @@ void DrawNsKiller2(void *a, NsKiller2 *p) {
     Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    func_0209bb2c(a, gNsKiller2S, p);
-    func_0209bb2c(a, gNsKiller2, p);
+    DrawMapObjectModel(a, gNsKiller2S, p);
+    DrawMapObjectModel(a, gNsKiller2, p);
 }
 
 void UpdateNsKiller2(void *a, NsKiller2 *p) {

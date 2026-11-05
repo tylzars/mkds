@@ -45,9 +45,9 @@
 
 void CreateSmanTop(void *a) {
     void *p;
-    p = func_0209bd08(a, gSmanTopNsbmdName);
+    p = CreateMapObjectModelNsbmd(a, gSmanTopNsbmdName);
     gSmanTop = p;
-    func_0209b940(p, 0x3f);
+    SetMapObjectModelPolygonId(p, 0x3f);
 }
 
 void func_02091784(void *a) {
@@ -68,14 +68,14 @@ void DrawSmanTop(void *a, Sman *b) {
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     Matrix3x3FromPairZ(m, gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2], gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
-    func_0209bb2c(a, gSmanTop, b);
+    DrawMapObjectModel(a, gSmanTop, b);
 }
 
 void CreateSmanBottom(void *a) {
     void *p;
-    p = func_0209bd08(a, gSmanBottomNsbmdName);
+    p = CreateMapObjectModelNsbmd(a, gSmanBottomNsbmdName);
     gSmanBottom = p;
-    func_0209b940(p, 0x3f);
+    SetMapObjectModelPolygonId(p, 0x3f);
 }
 
 void func_02091654(void *a) {
@@ -95,7 +95,7 @@ void DrawSmanBottom(void *a, Sman *b) {
     d[1] = v;
     d[2] = v;
     func_01ff9048(0x1b, d, 3);
-    func_0209bb2c(a, gSmanBottom, b);
+    DrawMapObjectModel(a, gSmanBottom, b);
 }
 
 void func_0209151c(Unk0209151c *a) {

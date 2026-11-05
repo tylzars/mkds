@@ -41,9 +41,9 @@ u8 func_02093754(MkdEfBurner *a, Kart *b, u8 *c, u8 *d) {
 }
 
 void CreateMkdEfBurner(Unk02093708 *p) {
-    gMkdEfBurner = func_0209be84(p, gMkdEfBurnerNsbmdName);
-    func_0209be1c(gMkdEfBurner, gMkdEfBurnerNsbtaName);
-    func_0209b940(gMkdEfBurner, 0x3f);
+    gMkdEfBurner = CreateMapObjectModelAnimated(p, gMkdEfBurnerNsbmdName);
+    CreateMapObjectModelNsbtaAnimation(gMkdEfBurner, gMkdEfBurnerNsbtaName);
+    SetMapObjectModelPolygonId(gMkdEfBurner, 0x3f);
     p->mUnk_1c = 1;
 }
 
@@ -59,7 +59,7 @@ void DrawMkdEfBurner(void *a, MkdEfBurner *p) {
     if (p->mUnk_a8 <= 0) {
         return;
     }
-    func_0209b940(gMkdEfBurner, func_020d3c44());
+    SetMapObjectModelPolygonId(gMkdEfBurner, func_020d3c44());
     s0 = 0x1e;
     func_01ff9048(0x14, &s0, 1);
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 0xc);
@@ -72,8 +72,8 @@ void DrawMkdEfBurner(void *a, MkdEfBurner *p) {
     s10.z = s10.x;
     func_01ff9048(0x1b, &s10, 3);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    func_0209b6c8(gMkdEfBurner, p->mUnk_a4);
-    func_0209bb2c(a, gMkdEfBurner, p);
+    SetMapObjectModelNsbtaFrameIndex(gMkdEfBurner, p->mUnk_a4);
+    DrawMapObjectModel(a, gMkdEfBurner, p);
 }
 
 void func_02093484(Unk020e6fd4 *p) {
@@ -158,7 +158,7 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
             func_020d275c(&p->mUnk_00, 0x170);
             break;
     }
-    n = func_0209b6ec(gMkdEfBurner);
+    n = GetMapObjectModelNsbtaFrameCount(gMkdEfBurner);
     p->mUnk_a4++;
     if (p->mUnk_a4 >= n) {
         p->mUnk_a4 = 0;

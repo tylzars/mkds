@@ -175,9 +175,10 @@ void func_0209fc2c(void) {
     func_020e6c0c();
 }
 
-void CreateTownMonte(Unk0209bc74 *a) {
-    a->mUnk_14 = (void *) func_0209fc2c;
-    func_0209b940(gTownMonte = func_0209bc74(a, gTownMonteNsbmdName, gTownMonteNsbtpName), 0x3f);
+void CreateTownMonte(MapObjectModel *a) {
+    a->mShadowModel = (void *) func_0209fc2c;
+    SetMapObjectModelPolygonId(gTownMonte = CreateMapObjectModelNsbmdNsbtp(a, gTownMonteNsbmdName, gTownMonteNsbtpName),
+                               0x3f);
 }
 
 void DrawTownMonte(void *a, TownMonte *p) {
@@ -198,7 +199,7 @@ void DrawTownMonte(void *a, TownMonte *p) {
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209b688(gTownMonte, p->mUnk_a0);
     func_0209bbd0(a, gTownMonte);
-    func_0209bb2c(a, gTownMonte, p);
+    DrawMapObjectModel(a, gTownMonte, p);
 }
 
 void func_0209f800(Unk0209f800 *a) {
@@ -276,6 +277,7 @@ void *func_0209f698(void) {
 }
 
 void CreateChandelier(void *a) {
-    func_0209be50(gChandelier = func_0209be84(a, gChandelierNsbmdName), gChandelierNsbcaName);
-    func_0209b940(gChandelier, 0x3f);
+    CreateMapObjectModelNsbcaAnimation(gChandelier = CreateMapObjectModelAnimated(a, gChandelierNsbmdName),
+                                       gChandelierNsbcaName);
+    SetMapObjectModelPolygonId(gChandelier, 0x3f);
 }

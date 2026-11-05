@@ -68,8 +68,8 @@ u8 func_0209297c(Basabasa *a, Unk0209297c *b, void *c, u8 *d) {
 }
 
 void CreateBasabasa(void *a) {
-    gBasabasa = func_0209bc74(a, gBasabasaNsbmdName, gBasabasaNsbtpName);
-    func_0209b940(gBasabasa, 0x3f);
+    gBasabasa = CreateMapObjectModelNsbmdNsbtp(a, gBasabasaNsbmdName, gBasabasaNsbtpName);
+    SetMapObjectModelPolygonId(gBasabasa, 0x3f);
 }
 
 void func_02092928(void *a) {
@@ -93,7 +93,7 @@ void DrawBasabasa(void *a, Basabasa *b) {
     func_01ff9048(0x1a, m, 9);
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     func_0209b688(gBasabasa, b->mUnk_ac);
-    func_0209bb2c(a, gBasabasa, b);
+    DrawMapObjectModel(a, gBasabasa, b);
 }
 
 void UpdateBasabasa(void *a, Basabasa *b) {

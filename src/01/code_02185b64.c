@@ -66,12 +66,12 @@ u32 func_ov001_02185d74(MissionGateObject *c, Unk02185d74 *d, u8 *e, u8 *f) {
 }
 
 void LoadMissionGate(void *a) {
-    gMissionGate = func_ov001_0219b478(a, "MissionGate.nsbmd");
-    func_ov001_0219b2e8(gMissionGate, "MissionGate.nsbtp");
-    func_ov001_0219b380(gMissionGate, "MissionGate.nsbma");
-    func_0209b940(gMissionGate, 0x3f);
+    gMissionGate = LoadMapObjectModelAnimated(a, "MissionGate.nsbmd");
+    LoadMapObjectModelNsbtpAnimation(gMissionGate, "MissionGate.nsbtp");
+    LoadMapObjectModelNsbmaAnimation(gMissionGate, "MissionGate.nsbma");
+    SetMapObjectModelPolygonId(gMissionGate, 0x3f);
     func_0209ba08(gMissionGate, 2);
-    func_020849a0(gMissionGate->mUnk_10, 0x294a);
+    func_020849a0(gMissionGate->mAnimatedModel, 0x294a);
 }
 
 void func_ov001_02185d18(void) {}
@@ -87,8 +87,8 @@ void DrawMissionGate(void *a, MissionGateObject *b) {
     func_01ff9048((u32) (0x19), (void *) ((u32) &b->mUnk_000.mMatrix), 0xc);
     func_01ff9048((u32) (0x1b), (void *) ((u32) &b->mUnk_000.mScale), 3);
     func_0209b688((void *) (gMissionGate), (u16) b->mUnk_000.mCourseMapRow->mUnk_28);
-    func_0209b734(gMissionGate, b->mUnk_0a8);
-    func_0209bb2c(a, gMissionGate, b);
+    SetMapObjectModelNsbmaFrameIndex(gMissionGate, b->mUnk_0a8);
+    DrawMapObjectModel(a, gMissionGate, b);
 }
 
 void func_ov001_02185c4c(Unk02185c4c *a) {
@@ -120,10 +120,10 @@ void UpdateMissionGate(void *a, MissionGateObject *b) {
             }
             break;
         case 2:
-            pos = func_0209b710(gMissionGate);
+            pos = GetMapObjectModelNsbmaFrameCount(gMissionGate);
             b->mUnk_0a8++;
             if (b->mUnk_0a8 >= pos - 1) {
-                b->mUnk_0a8 = func_0209b710(gMissionGate) - 1;
+                b->mUnk_0a8 = GetMapObjectModelNsbmaFrameCount(gMissionGate) - 1;
                 b->mState = 1;
             }
             break;

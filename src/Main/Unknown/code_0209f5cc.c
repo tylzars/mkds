@@ -11,6 +11,6 @@ void DrawChandelier(void *a, int b) {
     v1 = func_020e6cbc((Vec3 *) (b + 4));
     func_01ff9048(0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
-    func_0209b77c((void *) (*(u32 *) &gChandelier), (u16) (*(u16 *) (b + 0xa0)));
-    func_0209bb2c(a, (void *) ((*&gChandelier)), (void *) b);
+    SetMapObjectModelNsbcaFrameIndex((void *) (*(u32 *) &gChandelier), (u16) (*(u16 *) (b + 0xa0)));
+    DrawMapObjectModel(a, (void *) ((*&gChandelier)), (void *) b);
 }

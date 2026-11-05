@@ -71,8 +71,8 @@ u32 func_020a9de4(Unk020a9224 *p, void *a, u8 *b, u8 *c) {
 }
 
 void CreateIronBall(void *a) {
-    gIronBall = func_0209bd08(a, gIronBallNsbmdName);
-    func_0209b940(gIronBall, 0x3f);
+    gIronBall = CreateMapObjectModelNsbmd(a, gIronBallNsbmdName);
+    SetMapObjectModelPolygonId(gIronBall, 0x3f);
 }
 
 void func_020a9d98(void *a) {
@@ -93,5 +93,5 @@ void DrawIronBall(void *a, IronBall *p) {
         func_01ff9048(0x1a, v1, 9);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    func_0209bb2c(a, gIronBall, p);
+    DrawMapObjectModel(a, gIronBall, p);
 }

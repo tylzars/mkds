@@ -108,9 +108,9 @@ u32 func_02097ed0(Flipper *p, Vec3 *a, s32 b, Vec3 *c) {
 }
 
 void CreateFlipper(void *a) {
-    gFlipper = func_0209be84(a, gFlipperNsbmdName);
-    func_0209bde8(gFlipper, gFlipperNsbtpName);
-    func_0209be1c(gFlipper, gFlipperNsbtaName);
+    gFlipper = CreateMapObjectModelAnimated(a, gFlipperNsbmdName);
+    CreateMapObjectModelNsbtpAnimation(gFlipper, gFlipperNsbtpName);
+    CreateMapObjectModelNsbtaAnimation(gFlipper, gFlipperNsbtaName);
 }
 
 void DrawFlipper(void *a, Flipper *p) {
@@ -127,13 +127,13 @@ void DrawFlipper(void *a, Flipper *p) {
     func_01ff9048(0x19, e, 0xc);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209b7a0(gFlipper, p->mUnk_a4, 0);
-    s = gFlipper->mUnk_1c[1];
+    s = gFlipper->mAnimations[1];
     s->mUnk_0c = p->mUnk_ec4 << 12;
     s->mUnk_1c[s->mUnk_1a]->mUnk_00 = s->mUnk_0c;
-    s = gFlipper->mUnk_1c[3];
+    s = gFlipper->mAnimations[3];
     s->mUnk_0c = p->mUnk_ec6 << 12;
     s->mUnk_1c[s->mUnk_1a]->mUnk_00 = s->mUnk_0c;
-    func_0209bb2c(a, gFlipper, p);
+    DrawMapObjectModel(a, gFlipper, p);
 }
 
 void func_020979c8(Unk020e6fd4 *a) {
@@ -297,7 +297,7 @@ void UpdateFlipper(void *a, Flipper *p) {
         }
         p->mUnk_ec4 = w;
         w = p->mUnk_ec6 + 1;
-        if (w >= func_0209b6ec(gFlipper)) {
+        if (w >= GetMapObjectModelNsbtaFrameCount(gFlipper)) {
             w = 1;
         }
         p->mUnk_ec6 = w;

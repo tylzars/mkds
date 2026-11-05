@@ -7,17 +7,19 @@
 #include "Main/Unknown/code_02087cfc.h"
 
 void func_ov001_0219b208(Unk0219b250 *a, s32 b, s32 c, s32 d) {
-    func_02087e90(a->mUnk_1c, b);
-    a->mUnk_1c->mUnk_08 = c;
-    func_02087cfc((void *) (a->mUnk_1c), (u32) ((u16) b), (u32) (d != 0 ? UNK_02087CFC_KIND_0 : UNK_02087CFC_KIND_1));
+    func_02087e90(a->mNsbcaAnimation, b);
+    a->mNsbcaAnimation->mUnk_08 = c;
+    func_02087cfc((void *) (a->mNsbcaAnimation), (u32) ((u16) b),
+                  (u32) (d != 0 ? UNK_02087CFC_KIND_0 : UNK_02087CFC_KIND_1));
 }
 
 void func_ov001_0219b1fc(Unk0219b250 *a) {
-    func_02087de0(a->mUnk_28);
+    func_02087de0(a->mNsbtaAnimation);
 }
 
 void func_ov001_0219b1c4(Unk0219b250 *a, s32 b, s32 c, s32 d) {
-    func_02087e90(a->mUnk_28, b);
-    a->mUnk_20->mUnk_08 = c;
-    func_02087cfc((void *) (a->mUnk_28), (u32) ((u16) b), (u32) (d != 0 ? UNK_02087CFC_KIND_0 : UNK_02087CFC_KIND_1));
+    func_02087e90(a->mNsbtaAnimation, b);
+    a->mNsbtpAnimation->mUnk_08 = c;
+    func_02087cfc((void *) (a->mNsbtaAnimation), (u32) ((u16) b),
+                  (u32) (d != 0 ? UNK_02087CFC_KIND_0 : UNK_02087CFC_KIND_1));
 }

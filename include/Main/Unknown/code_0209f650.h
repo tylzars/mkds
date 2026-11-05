@@ -36,7 +36,8 @@ void *func_0209f6b8(void);
 void UpdateTownMonte(void *a, TownMonte *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_0209f800(Unk0209f800 *a);
 void DrawTownMonte(void *a, TownMonte *p);
-void CreateTownMonte(Unk0209bc74 *a); /* also stores the hook func_0209fc2c in the record's +0x14 */
+// The parameter is the draw group, typed wrongly; +0x14 is the after-draw callback.
+void CreateTownMonte(MapObjectModel *a); /* also stores the hook func_0209fc2c in the record's +0x14 */
 void func_0209fc2c(void);
 void func_0209fc38(void);
 void func_0209fc78(MapObject *p);

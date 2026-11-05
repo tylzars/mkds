@@ -69,10 +69,10 @@ void InitSun(u32 arg0) {
 }
 
 void CreateSunAndSunLOD(void *a) {
-    gSun = func_0209be84(a, gSunNsbmdName);
-    func_0209be50(gSun, gSunNsbcaName);
-    gSunLOD = func_0209be84(a, gSunLODNsbmdName);
-    func_0209b940(gSun, func_020d3c2c());
+    gSun = CreateMapObjectModelAnimated(a, gSunNsbmdName);
+    CreateMapObjectModelNsbcaAnimation(gSun, gSunNsbcaName);
+    gSunLOD = CreateMapObjectModelAnimated(a, gSunLODNsbmdName);
+    SetMapObjectModelPolygonId(gSun, func_020d3c2c());
 }
 
 u32 func_0209d5e8(u32 p0) {
@@ -99,12 +99,12 @@ void DrawSun(void *a, Unk0209d3fc *b) {
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
     if (func_02061818() == 2) {
         func_0209bbd0(a, gSun);
-        func_0209b77c(gSun, b->mUnk_b2);
-        func_0209bb2c(a, gSun, b);
+        SetMapObjectModelNsbcaFrameIndex(gSun, b->mUnk_b2);
+        DrawMapObjectModel(a, gSun, b);
     } else if ((s32) (b->mUnk_00.mUnk_78 & 0x3fffffe0) < 0x3d0900) {
         func_0209bbd0(a, gSun);
-        func_0209b77c(gSun, b->mUnk_b2);
-        func_0209bb2c(a, gSun, b);
+        SetMapObjectModelNsbcaFrameIndex(gSun, b->mUnk_b2);
+        DrawMapObjectModel(a, gSun, b);
     } else {
         func_0209bbd0(a, gSunLOD);
         func_0209ba58(a, gSunLOD, b);
@@ -263,7 +263,7 @@ void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
         p->mUnk_0b4 = t;
     }
     p->mUnk_0b2 += p->mUnk_0b4 >> 12;
-    if (p->mUnk_0b2 >= func_0209b758(gSun)) {
+    if (p->mUnk_0b2 >= GetMapObjectModelNsbcaFrameCount(gSun)) {
         p->mUnk_0b2 = 0;
     }
 }
@@ -416,8 +416,8 @@ BOOL func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c) {
 }
 
 void CreateBound(void *a) {
-    gBound = func_0209be84(a, gBoundNsbmdName);
-    func_0209bde8(gBound, gBoundNsbtpName);
+    gBound = CreateMapObjectModelAnimated(a, gBoundNsbmdName);
+    CreateMapObjectModelNsbtpAnimation(gBound, gBoundNsbtpName);
 }
 
 void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p) {
@@ -441,16 +441,16 @@ void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p) {
     }
     func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
     func_0209b688(gBound, p->mUnk_0a0);
-    func_0209bb2c(a, gBound, p);
+    DrawMapObjectModel(a, gBound, p);
 }
 
 void CreateCream(void *a) {
-    gCream = func_0209be84(a, gCreamNsbmdName);
+    gCream = CreateMapObjectModelAnimated(a, gCreamNsbmdName);
     func_02103554(data_usa_02167328);
 }
 
 void CreateBerry(void *a) {
-    gBerry = func_0209be84(a, gBerryNsbmdName);
+    gBerry = CreateMapObjectModelAnimated(a, gBerryNsbmdName);
     func_02103554(gCreamEffectNsbmdName);
 }
 
@@ -474,7 +474,7 @@ void func_0209c678(Unk02100094 *a, Unk0209c220 *p) {
         func_01ff9048(0x1b, &v[1], 3);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    func_0209bb2c(a, gCream, p);
+    DrawMapObjectModel(a, gCream, p);
 }
 
 void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p) {
@@ -497,7 +497,7 @@ void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p) {
         func_01ff9048(0x1b, &v[1], 3);
     }
     func_01ff9048(0x1b, &p->mUnk_000.mScale, 3);
-    func_0209bb2c(a, gBerry, p);
+    DrawMapObjectModel(a, gBerry, p);
 }
 
 void func_0209c4f0(Unk02100094 *a) {

@@ -251,11 +251,11 @@ BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
 }
 
 void CreateCoverPooHole(void *a) {
-    gCover = func_0209bd08(a, "cover.nsbmd");
-    gPoo = func_0209bc74(a, "poo.nsbmd", "poo.nsbtp");
-    gHole = func_0209bd08(a, "hole.nsbmd");
-    func_0209b940(gPoo, 0x3f);
-    func_0209b940(gHole, 0x3f);
+    gCover = CreateMapObjectModelNsbmd(a, "cover.nsbmd");
+    gPoo = CreateMapObjectModelNsbmdNsbtp(a, "poo.nsbmd", "poo.nsbtp");
+    gHole = CreateMapObjectModelNsbmd(a, "hole.nsbmd");
+    SetMapObjectModelPolygonId(gPoo, 0x3f);
+    SetMapObjectModelPolygonId(gHole, 0x3f);
 }
 
 void DrawCoverPooHole(void *a, CoverPooHole *p) {
@@ -283,7 +283,7 @@ void DrawCoverPooHole(void *a, CoverPooHole *p) {
     func_01ff9048(0x1c, f0, 3);
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
     func_0209bbd0(a, gHole);
-    func_0209bb2c(a, gHole, p);
+    DrawMapObjectModel(a, gHole, p);
     w1 = 1;
     func_01ff9048(0x12, &w1, 1);
     switch (p->mState) {
@@ -315,7 +315,7 @@ void DrawCoverPooHole(void *a, CoverPooHole *p) {
         }
         func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
         func_0209bbd0(a, gPoo);
-        func_0209bb2c(a, gPoo, p);
+        DrawMapObjectModel(a, gPoo, p);
         w2 = 1;
         func_01ff9048(0x12, &w2, 1);
     }
@@ -351,7 +351,7 @@ void DrawCoverPooHole(void *a, CoverPooHole *p) {
         func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
     }
     func_0209bbd0(a, gCover);
-    func_0209bb2c(a, gCover, p);
+    DrawMapObjectModel(a, gCover, p);
 }
 
 void func_020968f4(Unk020968f4 *p) {

@@ -142,8 +142,8 @@ u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
 }
 
 void CreateShine16(void *a) {
-    gShine16 = func_0209bc74(a, gShine16NsbmdName, gShine16NsbtpName);
-    func_0209b940(gShine16, 0x3f);
+    gShine16 = CreateMapObjectModelNsbmdNsbtp(a, gShine16NsbmdName, gShine16NsbtpName);
+    SetMapObjectModelPolygonId(gShine16, 0x3f);
 }
 
 void func_020a6a90(void *a) {
@@ -171,7 +171,7 @@ void DrawShine16(void *a, Shine16 *p) {
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209b7a0(gShine16, p->mUnk_b8, 0);
     func_0209b688(gShine16, (u16) p->mUnk_b0);
-    func_0209bb2c(a, gShine16, p);
+    DrawMapObjectModel(a, gShine16, p);
 }
 
 u32 func_020a69a0(void) {

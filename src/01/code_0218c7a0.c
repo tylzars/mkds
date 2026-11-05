@@ -147,13 +147,13 @@ s32 func_ov001_0218d16c(Unk02188950 *a) {
 
 s32 func_ov001_0218d0fc(Unk02188950 *a) {
     int v1;
-    v1 = func_0209b620(a->mNsbmd);
+    v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd);
     if (v1 == 0x33) {
         func_ov001_02187af4(a);
         func_ov001_021875c0(a, (u32) (((u32) 0xfffff666u)), (u32) 0, (u32) (((u32) 0x00000400u)),
                             (u32) (((u32) 0x00000434u)), (u32) 0);
     } else {
-        v1 = func_0209b620(a->mNsbmd);
+        v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd);
         if (v1 == 0x66) {
             func_ov001_02187af4(a);
             func_ov001_021875c0(a, (u32) (((u32) 0x0000099au)), (u32) 0, (u32) (((u32) 0x00000400u)),
@@ -348,7 +348,7 @@ void func_ov001_0218cb14(Unk0218d87c *a) {
             }
             func_ov001_021870e4(a, obj, data_ov001_021a7d0c, data_ov001_021a7d1c, data_ov001_021a7d2c);
             func_ov001_021870b0(a, obj, data_ov001_021a7d3c);
-            func_ov001_0219b2e8(obj->mNsbmd, data_ov001_021a7d4c);
+            LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, data_ov001_021a7d4c);
             func_ov001_0218875c(obj, (s32) (obj->mPrm->mUnk_008), (s32) (obj->mPrm->mUnk_00c),
                                 (s32) (obj->mPrm->mUnk_00c));
             func_ov001_021888a4(obj, 0x5000, 0xc000);
@@ -366,9 +366,9 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     Unk02188950 *obj;
     Unk02188950 *src;
 
-    a = func_ov001_0219b4d8(data_ov001_021a7c80);
-    b = func_ov001_0219b4d8(data_ov001_021a7c94);
-    c = func_ov001_0219b4d8(data_ov001_021a7ca8);
+    a = LoadMissionRunFile(data_ov001_021a7c80);
+    b = LoadMissionRunFile(data_ov001_021a7c94);
+    c = LoadMissionRunFile(data_ov001_021a7ca8);
     if (data_021759c0->mMode == 4) {
         src = func_ov001_02181b68(data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0);
     } else {
