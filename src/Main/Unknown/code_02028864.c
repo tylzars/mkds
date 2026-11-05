@@ -102,7 +102,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             break;
     }
     if (func_020280dc() == 0) {
-        gSelectKart->mUnk_088 = func_02047a28(gKartSelectBmgName);
+        gSelectKart->mKartSelectMessages = func_02047a28(gKartSelectBmgName);
         gSelectKart->mUnk_098 = func_02056444(gSelectKart->mHeap);
     }
     g = gSelectKart;
@@ -121,7 +121,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     if (func_020280dc() == 0) {
         g = gSelectKart;
         if (g->mUnk_104 == FALSE) {
-            p = &g->mUnk_048;
+            p = &g->mSelectCharacterGpMParts;
             func_02025b20(p, gSelectCharacterGpMNcgrName2, gSelectCharacterGpMNcerName2, gSelectCharacterGpMONclrName2,
                           gSelectCharacterGpMBnclName2, NULL, NULL, func_02047a28);
             func_02025a50(0, gSelectKart->mHeap, p);
@@ -137,12 +137,12 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         }
     }
     if (func_020280dc() == 0) {
-        func_020258d4(1, &gSelectKart->mUnk_024, gSelectKartSBNcgrName, gSelectKartSBNclrName, gSelectKartSNscrName, 3,
+        func_020258d4(1, &gSelectKart->mSelectKartSBParts, gSelectKartSBNcgrName, gSelectKartSBNclrName, gSelectKartSNscrName, 3,
                       func_02047a28);
     }
     if (func_020280dc() == 0) {
         n = func_02148ca0();
-        p = &gSelectKart->mUnk_064;
+        p = &gSelectKart->mSelectKartSParts;
         func_02025b20(p, gSelectKartSNcgrName, gSelectKartSNcerName, gSelectKartSONclrName, gSelectKartSBnclName,
                       gSelectKartSBnllName, gSelectKartSBnblName, func_02047a28);
         func_02025a50(1, gSelectKart->mHeap, p);
@@ -150,7 +150,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             n -= func_02025a00(1, gSelectKart->mHeap, p, &data_usa_021537f4[i], n);
         }
         for (i = 0; i < 6; i++) {
-            w = GetBmgEntry(gSelectKart->mUnk_088, data_usa_021537f4[i].mUnk_08);
+            w = GetBmgEntry(gSelectKart->mKartSelectMessages, data_usa_021537f4[i].mUnk_08);
             n = data_usa_021537f4[i].mUnk_00;
             func_0212426c(1, n, p->mUnk_14, w, p->mUnk_0c, p->mUnk_18);
             func_02124094(n, 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);

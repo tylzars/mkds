@@ -715,10 +715,10 @@ void func_ov000_02181ff0(void) {
     *(vu32 *) 0x400101c = v & 0x1ff;
 }
 
-Unk021b0cd4 gWiFiVSSettingCallbacks = {InitWiFiVSSetting, func_ov000_02182f88, AdvanceWiFiVSSetting,
+WiFiStateCallbacks gWiFiVSSettingCallbacks = {InitWiFiVSSetting, func_ov000_02182f88, AdvanceWiFiVSSetting,
                                        func_ov000_02181ff0};
 
 void RegisterWiFiVSSettingCallbacks(void) {
-    Unk021b0cd4 callbacks = gWiFiVSSettingCallbacks;
+    WiFiStateCallbacks callbacks = gWiFiVSSettingCallbacks;
     SetWiFiStateCallbacks(&callbacks);
 }

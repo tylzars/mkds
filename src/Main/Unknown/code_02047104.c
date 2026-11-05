@@ -299,7 +299,7 @@ void func_02047e0c(void) {
 
 void func_02047db8(void) {
     Unk021759c8_8c8 *p;
-    Unk021759c8_00 *e;
+    ArchiveSlot *e;
 
     p = &data_021759c8->mUnk_8c8;
     e = &data_021759c8->mUnk_00[p->mUnk_8c];

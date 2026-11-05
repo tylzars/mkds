@@ -730,7 +730,7 @@ void func_ov000_02183330(void) {
 }
 
 void RegisterWiFiVSMatchingCallbacks(void) {
-    Unk021b0cd4 x = {InitWiFiVSMatching, func_ov000_02184354, AdvanceWiFiVSMatching, func_ov000_02183330};
+    WiFiStateCallbacks x = {InitWiFiVSMatching, func_ov000_02184354, AdvanceWiFiVSMatching, func_ov000_02183330};
 
     SetWiFiStateCallbacks(&x);
 }

@@ -71,6 +71,6 @@ void func_ov000_021848ec(void) {
 }
 
 void RegisterSelectCharacterCallbacks(void) {
-    Unk021b0cd4 callbacks = gSelectCharacterCallbacks;
+    WiFiStateCallbacks callbacks = gSelectCharacterCallbacks;
     SetWiFiStateCallbacks(&callbacks);
 }

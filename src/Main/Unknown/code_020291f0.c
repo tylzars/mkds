@@ -33,7 +33,7 @@ void func_02029330(void) {
         if (d->mUnk_104 != FALSE) {
             func_0202b554(a, b);
         } else {
-            p = &d->mUnk_048;
+            p = &d->mSelectCharacterGpMParts;
             p->mUnk_18[5].mUnk_00 = (a >= 10);
             func_02025c48(5, a / 10 % 10 + 10, p->mUnk_0c);
             func_02025c48(6, a % 10 + 10, p->mUnk_0c);

@@ -7,7 +7,7 @@
 #include "Main/Unknown/unk_02153000.h" // Unk021535b4
 #include "Main/Unknown/code_020b4000.h" // Ncgr, Nscr, Nclr
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
-#include "Main/Unknown/code_020b3f7c.h" // Unk020b3fb0
+#include "Main/Unknown/code_020b3f7c.h" // Bmg
 #include "Main/Unknown/code_0202f688.h"
 #include "Main/Unknown/code_0205ee14.h" // Unk0205fd2c
 
@@ -56,13 +56,14 @@ extern Unk02029930 *data_02174e1c;
 // 0x118-byte object that gSelectKart points to.
 typedef struct SelectKart {
     /* 000 */ u8 mUnk_000[0x24];
-    /* 024 */ Unk02174e50_24 mUnk_024;
+    // The 0x24-byte record of func_020258d4 starts here and runs into mUnk_040.
+    /* 024 */ Unk02174e50_24 mSelectKartSBParts;
     /* 040 */ u8 mUnk_040[8];
-    /* 048 */ Unk02174e50_24 mUnk_048;
-    /* 064 */ Unk02174e50_24 mUnk_064;
+    /* 048 */ Unk02174e50_24 mSelectCharacterGpMParts;
+    /* 064 */ Unk02174e50_24 mSelectKartSParts;
     /* 080 */ void *mUnk_080;
     /* 084 */ void *mUnk_084;
-    /* 088 */ void *mUnk_088;
+    /* 088 */ void *mKartSelectMessages;
     /* 08c */ void *mHeap;
     /* 090 */ s32 mStateFrames; /* counts only in states 3, 4 and 6 */
     /* 094 */ s32 mState;
@@ -231,8 +232,8 @@ typedef struct Unk02174e64 {
     /* 02c */ Unk02174e14_00 mUnk_02c[2];
     /* 064 */ u8 mUnk_064[0x1c];
     /* 080 */ s32 mUnk_080;
-    /* 084 */ Unk020b3fb0 *mUnk_084;
-    /* 088 */ Unk020b3fb0 *mUnk_088;
+    /* 084 */ Bmg *mUnk_084;
+    /* 088 */ Bmg *mUnk_088;
     /* 08c */ s32 mUnk_08c;
     /* 090 */ s32 mUnk_090;
     /* 094 */ s32 mUnk_094;
@@ -262,8 +263,8 @@ typedef struct Unk02174e40 {
     /* 048 */ void *mUnk_048[2];
     /* 050 */ Unk02174e14_00 mUnk_050[3];
     /* 0a4 */ s32 mUnk_0a4;
-    /* 0a8 */ Unk020b3fb0 *mUnk_0a8;
-    /* 0ac */ Unk020b3fb0 *mUnk_0ac;
+    /* 0a8 */ Bmg *mUnk_0a8;
+    /* 0ac */ Bmg *mUnk_0ac;
     /* 0b0 */ s32 mUnk_0b0;
     /* 0b4 */ s32 mUnk_0b4;
     /* 0b8 */ u8 mUnk_0b8[0x14];
@@ -351,8 +352,8 @@ typedef struct Unk02174e68 {
     /* 2c */ Unk02174e14_00 mUnk_2c[2];
     /* 64 */ u8 mUnk_64[0x1c];
     /* 80 */ s32 mUnk_80;
-    /* 84 */ Unk020b3fb0 *mUnk_84;
-    /* 88 */ Unk020b3fb0 *mUnk_88;
+    /* 84 */ Bmg *mUnk_84;
+    /* 88 */ Bmg *mUnk_88;
     /* 8c */ s32 mUnk_8c;
     /* 90 */ Unk02025ebc mUnk_90;
     /* a0 */ BOOL mUnk_a0;

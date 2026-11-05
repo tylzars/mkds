@@ -31,8 +31,8 @@ typedef struct Unk02174e58 {
     /* 24 */ Unk02174e58_24 mUnk_24[2];
     /* 5c */ void *mUnk_5c;
     /* 60 */ void *mUnk_60;
-    /* 64 */ Unk020b3fb0 *mUnk_64;
-    /* 68 */ Unk020b3fb0 *mUnk_68;
+    /* 64 */ Bmg *mUnk_64;
+    /* 68 */ Bmg *mUnk_68;
     /* 6c */ s32 mUnk_6c;
     /* 70 */ s32 mUnk_70;
     /* 74 */ s32 mUnk_74;

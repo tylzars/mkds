@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk021b0cd4 Unk021b0cd4;
+typedef struct WiFiStateCallbacks WiFiStateCallbacks;
 
 // Object behind data_ov000_021b4c68 (0x40 bytes).
 typedef struct Unk021b4c68 {
@@ -20,7 +20,7 @@ typedef struct Unk021b4c68 {
     /* 3c */ void *mCommonMessages;
 } Unk021b4c68;
 
-extern Unk021b0cd4 data_ov000_021b0a98;
+extern WiFiStateCallbacks data_ov000_021b0a98;
 extern Unk021b4c68 *data_ov000_021b4c68;
 
 void func_ov000_02180c04(void);

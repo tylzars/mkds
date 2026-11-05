@@ -22,8 +22,8 @@ typedef struct Unk02029dcc {
     /* 40 */ s32 mUnk_40;
     /* 44 */ s32 mUnk_44;
     /* 48 */ s32 mUnk_48;
-    /* 4c */ Unk020b3fb0 *mUnk_4c;
-    /* 50 */ Unk020b3fb0 *mUnk_50;
+    /* 4c */ Bmg *mUnk_4c;
+    /* 50 */ Bmg *mUnk_50;
     /* 54 */ s32 mUnk_54;
     /* 58 */ u32 mUnk_58;
     /* 5c */ s32 mUnk_5c;

@@ -87,6 +87,6 @@ void func_ov000_021857e0(void) {
 void func_ov000_021857dc(void) {}
 
 void func_ov000_021857b8(void) {
-    Unk021b0cd4 callbacks = data_ov000_021b0fd8;
+    WiFiStateCallbacks callbacks = data_ov000_021b0fd8;
     SetWiFiStateCallbacks(&callbacks);
 }

@@ -5,11 +5,11 @@
 #include "code_02021db0.h" // Unk02021e40
 
 // 16-byte element of the table at 0x7dc of an Unk0217b3c4.
-typedef struct Unk0217b3c4_7dc {
+typedef struct RaceNclrNcgr {
     /* 00 */ Nclr *mNclr;
     /* 04 */ Ncgr *mNcgr;
     /* 08 */ u8 mUnk_08[8];
-} Unk0217b3c4_7dc;
+} RaceNclrNcgr;
 
 // 0x88c bytes, allocated by func_020b8624; the pointer to it is held in data_0217b3c4.
 typedef struct Unk0217b3c4 {
@@ -24,7 +24,7 @@ typedef struct Unk0217b3c4 {
     /* 6ac */ Unk02021e40 *mRaceGoalTeamSNcerEntries[0x28];
     /* 74c */ Unk02021e40 *mRaceNewRecordTaSNcerEntries[0x21];
     /* 7d0 */ Unk02021e40 *mRaceStartBattleMNcerEntries[3];
-    /* 7dc */ Unk0217b3c4_7dc mNclrNcgrPairs[11];
+    /* 7dc */ RaceNclrNcgr mNclrNcgrPairs[11];
 } Unk0217b3c4;
 
 void func_020b8624(void);

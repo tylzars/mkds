@@ -394,7 +394,7 @@ u32 func_020b8610(void) {
     return value0;
 }
 
-Unk0217b3c4_7dc *GetRaceNclrNcgr(u32 a) {
+RaceNclrNcgr *GetRaceNclrNcgr(u32 a) {
     return &data_0217b3c4->mNclrNcgrPairs[a];
 }
 

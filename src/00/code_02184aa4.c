@@ -68,6 +68,6 @@ void func_ov000_02184ac8(void) {
 }
 
 void RegisterWiFiVSCourseSelectCallbacks(void) {
-    Unk021b0cd4 callbacks = gWiFiVSCourseSelectCallbacks;
+    WiFiStateCallbacks callbacks = gWiFiVSCourseSelectCallbacks;
     SetWiFiStateCallbacks(&callbacks);
 }

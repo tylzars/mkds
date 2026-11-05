@@ -16,7 +16,7 @@ void func_02028fac(void) {
     s32 i;
     s32 n;
     if (func_020280dc() == 0) {
-        p = &gSelectKart->mUnk_064;
+        p = &gSelectKart->mSelectKartSParts;
         n = func_02029000(p->mUnk_0c) + func_02028ff8(p->mUnk_14);
         for (i = 0; i < n; i++) {
             p->mUnk_18[i].mUnk_06 = func_02025ebc(&gSelectKart->mUnk_0ac[4]);
@@ -37,8 +37,8 @@ void func_02028f20(void) {
     Unk02174e50_24 *p;
     void *v;
     if (func_020280dc() == 0) {
-        v = GetBmgEntry(gSelectKart->mUnk_088, func_02025d98(gSelectKart->mKartIndex));
-        p = &gSelectKart->mUnk_064;
+        v = GetBmgEntry(gSelectKart->mKartSelectMessages, func_02025d98(gSelectKart->mKartIndex));
+        p = &gSelectKart->mSelectKartSParts;
         for (i = 8; i >= 7; i--) {
             func_0212426c(1, data_usa_021537f4[i].mUnk_00, p->mUnk_14, v, p->mUnk_0c, p->mUnk_18);
         }

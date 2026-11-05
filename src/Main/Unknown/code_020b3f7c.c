@@ -6,7 +6,7 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-void LocateBmgSections(Unk020b3fb0 *bmg) {
+void LocateBmgSections(Bmg *bmg) {
     u32 i;
     u32 p;
     u32 section;
@@ -15,8 +15,8 @@ void LocateBmgSections(Unk020b3fb0 *bmg) {
     p = (u32) &bmg->mFirstSection;
     for (i = 0; i < bmg->mSectionCount; i++) {
         section = p;
-        p = p + ((Unk020b3fb0_20 *) p)->mNextOffset;
-        tag = func_020ae1d0(((Unk020b3fb0_20 *) section)->mTag);
+        p = p + ((BmgSectionHeader *) p)->mNextOffset;
+        tag = func_020ae1d0(((BmgSectionHeader *) section)->mTag);
         switch (tag) {
             case 0x494e4631:
                 data_0217b360 = (Unk0217b340 *) section;
@@ -28,7 +28,7 @@ void LocateBmgSections(Unk020b3fb0 *bmg) {
     }
 }
 
-void *GetBmgEntry(Unk020b3fb0 *bmg, s32 index) {
+void *GetBmgEntry(Bmg *bmg, s32 index) {
     LocateBmgSections(bmg);
     return &data_0217b364->mBody[data_0217b360->mEntryOffsets[index % 0x10000]];
 }

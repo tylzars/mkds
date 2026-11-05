@@ -59,14 +59,14 @@ void InitWiFiTopMenu(void *heap) {
     }
     gWiFiTopMenu->mStateFrames = 0;
     gWiFiTopMenu->mUnk_18 = TRUE;
-    gWiFiTopMenu->mUnk_38 = FindSceneFile("wifi.bmg");
-    gWiFiTopMenu->mUnk_3c = func_02047a28("common.bmg");
+    gWiFiTopMenu->mWiFiMessages = FindSceneFile("wifi.bmg");
+    gWiFiTopMenu->mCommonMessages = func_02047a28("common.bmg");
     LocateAndQueueWiFiTopMenu();
     for (i = 0; i < 3; i++) {
-        func_02124a98(data_ov000_021b05c0[i], 1, gWiFiTopMenu->mUnk_20, gWiFiTopMenu->mUnk_2c);
+        func_02124a98(data_ov000_021b05c0[i], 1, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);
     }
     func_020ae6d4(func_ov000_021804f4(), func_ov000_021804e0());
-    func_02124ed0(heap, gWiFiTopMenu->mUnk_2c, NULL, &gWiFiTopMenu->mUnk_1c);
+    func_02124ed0(heap, gWiFiTopMenu->mWiFiTopMenuBncl, NULL, &gWiFiTopMenu->mUnk_1c);
     for (j = 0; j < 3; j++) {
         for (k = 0; k < data_ov000_021b05cc[j]; k++) {
             gWiFiTopMenu->mUnk_1c[data_ov000_021b05d8[j][k]].mUnk_04 = 0xdc;
@@ -84,17 +84,17 @@ void func_ov000_02181e8c(void) {
 void LocateAndQueueWiFiTopMenu(void) {
     void *v1;
     v1 = FindSceneFile(gWiFiTopMenuSBnclName);
-    gWiFiTopMenu->mUnk_2c = v1;
+    gWiFiTopMenu->mWiFiTopMenuBncl = v1;
     v1 = FindSceneFile(gWiFiTopMenuSBnblName);
-    gWiFiTopMenu->mUnk_30 = v1;
+    gWiFiTopMenu->mWiFiTopMenuBnbl = v1;
     v1 = FindSceneFile(gWiFiTopMenuSNcgrName);
-    LocateNcgr2(&gWiFiTopMenu->mUnk_24, v1);
+    LocateNcgr2(&gWiFiTopMenu->mWiFiTopMenuSNcgr, v1);
     v1 = FindSceneFile(gWiFiTopMenuSNcerName);
-    LocateNcer(&gWiFiTopMenu->mUnk_20, v1);
+    LocateNcer(&gWiFiTopMenu->mWiFiTopMenuSNcer, v1);
     v1 = FindSceneFile(gWiFiTopMenuSONclrName);
-    LocateNclr(&gWiFiTopMenu->mUnk_28, v1);
-    CallQueueAppend(0x23, 0, (void *) (gWiFiTopMenu->mUnk_24->mData), (u32) (gWiFiTopMenu->mUnk_24->mDataSize));
-    CallQueueAppend(0x1e, 0, (void *) (gWiFiTopMenu->mUnk_28->mData), (u32) (gWiFiTopMenu->mUnk_28->mDataSize));
+    LocateNclr(&gWiFiTopMenu->mWiFiTopMenuSONclr, v1);
+    CallQueueAppend(0x23, 0, (void *) (gWiFiTopMenu->mWiFiTopMenuSNcgr->mData), (u32) (gWiFiTopMenu->mWiFiTopMenuSNcgr->mDataSize));
+    CallQueueAppend(0x1e, 0, (void *) (gWiFiTopMenu->mWiFiTopMenuSONclr->mData), (u32) (gWiFiTopMenu->mWiFiTopMenuSONclr->mDataSize));
     return;
 }
 
@@ -160,7 +160,7 @@ void AdvanceWiFiTopMenuState3(void) {
         v1 = TRUE;
     }
     if (v1 != FALSE) {
-        v2 = RectTableFindContaining(gWiFiTopMenu->mUnk_30, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
+        v2 = RectTableFindContaining(gWiFiTopMenu->mWiFiTopMenuBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     v5 = data_02175628[i].mUnk_00 & 2;
     if ((u16) v5 == 0) {
@@ -289,7 +289,7 @@ void AdvanceWiFiTopMenuState5(void) {
             if (gWiFiTopMenu->mPendingWiFiState == 8 && func_ov000_02181df0() == 0) {
                 gWiFiTopMenu->mNextState = 8;
                 gWiFiTopMenu->mPendingWiFiState = -1;
-                func_021266e4(GetBmgEntry(gWiFiTopMenu->mUnk_38, 0x12));
+                func_021266e4(GetBmgEntry(gWiFiTopMenu->mWiFiMessages, 0x12));
                 gWiFiTopMenu->mStateFrames = 0;
                 func_021281c8(0xe);
                 return;
@@ -367,10 +367,10 @@ void func_ov000_021817e8(void) {
     for (; i < 3; i++) {
         if (i == gWiFiTopMenu->mIndex && gWiFiTopMenu->mUnk_18 != FALSE) {
             gWiFiTopMenu->mUnk_1c[*p].mUnk_00 = 1;
-            func_02124a20(*q, 0xe, gWiFiTopMenu->mUnk_20, gWiFiTopMenu->mUnk_2c);
+            func_02124a20(*q, 0xe, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);
         } else {
             gWiFiTopMenu->mUnk_1c[*p].mUnk_00 = v1;
-            func_02124a20(*q, 0xf, gWiFiTopMenu->mUnk_20, gWiFiTopMenu->mUnk_2c);
+            func_02124a20(*q, 0xf, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);
         }
         p++;
         q++;
@@ -411,7 +411,7 @@ void AdvanceWiFiTopMenu(void) {
     }
     func_ov000_021817e8();
     p = gWiFiTopMenu;
-    func_02124c30(p->mUnk_2c, p->mUnk_20, NULL, func_ov000_021804e0(), p->mUnk_1c);
+    func_02124c30(p->mWiFiTopMenuBncl, p->mWiFiTopMenuSNcer, NULL, func_ov000_021804e0(), p->mUnk_1c);
 }
 
 void func_ov000_02181738(void) {
@@ -420,6 +420,6 @@ void func_ov000_02181738(void) {
 }
 
 void RegisterWiFiTopMenuCallbacks(void) {
-    Unk021b0cd4 callbacks = gWiFiTopMenuCallbacks;
+    WiFiStateCallbacks callbacks = gWiFiTopMenuCallbacks;
     SetWiFiStateCallbacks(&callbacks);
 }

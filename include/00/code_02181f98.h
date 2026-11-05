@@ -2,12 +2,12 @@
 
 #include "types.h"
 
-typedef struct Unk021b0cd4 Unk021b0cd4;
+typedef struct WiFiStateCallbacks WiFiStateCallbacks;
 
 // Objects whose layout isn't known yet.
 extern u8 data_ov000_021b05f8[][2];
 
-extern Unk021b0cd4 gWiFiVSSettingCallbacks;
+extern WiFiStateCallbacks gWiFiVSSettingCallbacks;
 
 void RegisterWiFiVSSettingCallbacks(void);
 void AdvanceWiFiVSSetting(void);
@@ -212,12 +212,12 @@ typedef struct Unk0217d384_18e0 {
 } Unk0217d384_18e0;
 
 // 0x18-byte elements of the table at member 0x18ec of Unk0217d384.
-typedef struct Unk0217d384_18ec {
+typedef struct KartKey {
     /* 00 */ s32 mValue;
     /* 04 */ char mName[0x10];
     /* 14 */ u8 mId;
     /* 15 */ u8 pad_15[3];
-} Unk0217d384_18ec;
+} KartKey;
 
 // Object behind data_0217d384: 0x1f58 bytes allocated by func_021205ac.
 typedef struct Unk0217d384 {
@@ -229,7 +229,7 @@ typedef struct Unk0217d384 {
     /* 0b2c */ u8 mUnk_0b2c[0xdb4];
     /* 18e0 */ Unk0217d384_18e0 mUnk_18e0;
     /* 18e8 */ s32 mStartStatus;
-    /* 18ec */ Unk0217d384_18ec mKeys[4];
+    /* 18ec */ KartKey mKeys[4];
     /* 194c */ u8 mUnk_194c;
     /* 194d */ u8 mUnk_194d;
     /* 194e */ u8 mUnk_194e;

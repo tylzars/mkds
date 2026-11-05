@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk021b0cd4 Unk021b0cd4;
+typedef struct WiFiStateCallbacks WiFiStateCallbacks;
 
-extern Unk021b0cd4 gSelectKartCallbacks;
+extern WiFiStateCallbacks gSelectKartCallbacks;
 
 void RegisterSelectKartCallbacks(void);
 void func_ov000_02184a04(void);

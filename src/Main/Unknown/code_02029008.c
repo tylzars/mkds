@@ -21,7 +21,7 @@
 #pragma thumb on
 s32 func_020290fc(void) {
     s32 r = -1;
-    Unk02174e50_24 *p = &gSelectKart->mUnk_064;
+    Unk02174e50_24 *p = &gSelectKart->mSelectKartSParts;
     u16 t = func_020435bc();
     s32 x;
     s32 y;
@@ -73,7 +73,7 @@ void func_02029008(void) {
     SelectKart *d = gSelectKart;
     Unk02174e50_24 *p;
     if (d->mUnk_104 == FALSE) {
-        p = &d->mUnk_048;
+        p = &d->mSelectCharacterGpMParts;
         p->mUnk_18[1].mUnk_04 = func_02025ebc(&d->mUnk_0ac[0]);
         p->mUnk_18[2].mUnk_04 = p->mUnk_18[1].mUnk_04;
         p->mUnk_18[0].mUnk_06 = func_02025ebc(&gSelectKart->mUnk_0ac[1]);

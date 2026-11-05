@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk021b0cd4 Unk021b0cd4;
+typedef struct WiFiStateCallbacks WiFiStateCallbacks;
 
 // Object behind data_ov000_021b4c8c; mUnk_00 selects the handler run by func_ov000_021857e0.
 typedef struct Unk021b4c8c {
@@ -10,7 +10,7 @@ typedef struct Unk021b4c8c {
     /* 4 */ s32 mUnk_04;
 } Unk021b4c8c;
 
-extern Unk021b0cd4 data_ov000_021b0fd8;
+extern WiFiStateCallbacks data_ov000_021b0fd8;
 extern Unk021b4c8c *data_ov000_021b4c8c;
 
 void func_ov000_021857b8(void);

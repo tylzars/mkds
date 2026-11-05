@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020b3fb0 Unk020b3fb0;
+typedef struct Bmg Bmg;
 typedef struct Ncgr Ncgr;
 typedef struct Nscr Nscr;
 typedef struct Nclr Nclr;
@@ -36,7 +36,7 @@ typedef struct Unk021a99c0 {
     };
     /* 30 */ s32 mUnk_30;
     /* 34 */ s32 mUnk_34;
-    /* 38 */ Unk020b3fb0 *mUnk_38;
+    /* 38 */ Bmg *mUnk_38;
 } Unk021a99c0;
 
 extern Unk021a99c0 *data_usa_ov001_021a99c0;

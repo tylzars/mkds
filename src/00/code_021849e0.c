@@ -58,6 +58,6 @@ void func_ov000_02184a04(void) {
 }
 
 void RegisterSelectKartCallbacks(void) {
-    Unk021b0cd4 callbacks = gSelectKartCallbacks;
+    WiFiStateCallbacks callbacks = gSelectKartCallbacks;
     SetWiFiStateCallbacks(&callbacks);
 }

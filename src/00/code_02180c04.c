@@ -74,7 +74,7 @@ u32 func_ov000_02181674(void) {
 
 Unk021b4c68 *data_ov000_021b4c68;
 
-Unk021b0cd4 data_ov000_021b0a98 = {func_ov000_021816b0, func_ov000_021816a4, func_ov000_02180c3c,
+WiFiStateCallbacks data_ov000_021b0a98 = {func_ov000_021816b0, func_ov000_021816a4, func_ov000_02180c3c,
                                    (void (*)(void)) func_ov000_02180c28};
 
 static inline s32 func_ov000_02180e58_inline(void) {
@@ -449,6 +449,6 @@ u32 func_ov000_02180c28(void) {
 }
 
 void func_ov000_02180c04(void) {
-    Unk021b0cd4 callbacks = data_ov000_021b0a98;
+    WiFiStateCallbacks callbacks = data_ov000_021b0a98;
     SetWiFiStateCallbacks(&callbacks);
 }

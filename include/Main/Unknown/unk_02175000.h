@@ -175,12 +175,12 @@ typedef struct Unk021759c8_9b0 {
     };
 } Unk021759c8_9b0;
 
-// 0x70-byte entries from the start of Unk021759c8; mUnk_68 is nonzero while the entry is in use.
-typedef struct Unk021759c8_00 {
+// 0x70-byte entries from the start of Unk021759c8; mLoaded is nonzero while the entry is in use.
+typedef struct ArchiveSlot {
     /* 00 */ Unk020182c0 mArchive;
     /* 68 */ s32 mLoaded;
     /* 6c */ Unk02018344 *mData;
-} Unk021759c8_00;
+} ArchiveSlot;
 
 // The 0xa0 bytes at 0x8c8 of Unk021759c8.
 typedef struct Unk021759c8_8c8 {
@@ -197,7 +197,7 @@ typedef struct Unk021759c8_8c8 {
 
 typedef struct Unk021759c8 {
     union {
-        Unk021759c8_00 mUnk_00[20];
+        ArchiveSlot mUnk_00[20];
         struct {
             /* 00 */ u8 mUnk_00_pad[0xd8];
             /* d8 */ s32 mUnk_d8;

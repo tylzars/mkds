@@ -21,14 +21,14 @@ typedef struct WiFiTopMenu {
     /* 14 */ void *mHeap;
     /* 18 */ BOOL mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
-    /* 20 */ struct Unk02021dc8 *mUnk_20;
-    /* 24 */ struct Ncgr *mUnk_24;
-    /* 28 */ struct Nclr *mUnk_28;
-    /* 2c */ void *mUnk_2c;
-    /* 30 */ Unk0201ea30 *mUnk_30;
+    /* 20 */ struct Unk02021dc8 *mWiFiTopMenuSNcer;
+    /* 24 */ struct Ncgr *mWiFiTopMenuSNcgr;
+    /* 28 */ struct Nclr *mWiFiTopMenuSONclr;
+    /* 2c */ void *mWiFiTopMenuBncl;
+    /* 30 */ Unk0201ea30 *mWiFiTopMenuBnbl;
     /* 34 */ u8 pad_34[4];
-    /* 38 */ void *mUnk_38;
-    /* 3c */ void *mUnk_3c;
+    /* 38 */ void *mWiFiMessages;
+    /* 3c */ void *mCommonMessages;
 } WiFiTopMenu;
 
 #include "00/code_02180608.h"
@@ -44,7 +44,7 @@ extern const u8 data_ov000_021b05c4[];
 extern const u8 data_ov000_021b05c8[];
 // Objects whose layout isn't known yet.
 extern s32 data_ov000_021b05cc[];
-extern Unk021b0cd4 gWiFiTopMenuCallbacks;
+extern WiFiStateCallbacks gWiFiTopMenuCallbacks;
 extern WiFiTopMenu *gWiFiTopMenu;
 
 void RegisterWiFiTopMenuCallbacks(void);

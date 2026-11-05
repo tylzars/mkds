@@ -231,7 +231,7 @@ void func_02029aa0(Unk02029aa0 *a) {
             w = data_usa_02174e00->mUnk_5c;
             data_usa_02174e00->mUnk_5c = w + 1;
             if (w >= t) {
-                Unk020b3fb0 *q;
+                void *q;
                 u32 f;
                 if (!(u16) (data_02175628[v1].mUnk_00 & 1)) {
                     BOOL y;

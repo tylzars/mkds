@@ -69,8 +69,8 @@ int AdvanceSelectKart(void) {
     e = d->mKartIndex;
     x = 0;
     r = 0;
-    q = &d->mUnk_048;
-    p = &d->mUnk_064;
+    q = &d->mSelectCharacterGpMParts;
+    p = &d->mSelectKartSParts;
     t = func_020435bc();
     func_02025edc(&gSelectKart->mUnk_0ac[0]);
     func_02025edc(&gSelectKart->mUnk_0ac[1]);

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020b3f7c.h" // Unk020b3fb0
+#include "Main/Unknown/code_020b3f7c.h" // Bmg
 #include "code_0201ea58.h" // Unk0201ea30
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
 
@@ -40,7 +40,7 @@ typedef struct Unk02174e50 {
     /* 94 */ s32 mUnk_94;
     /* 98 */ s32 mUnk_98;
     /* 9c */ BOOL mUnk_9c;
-    /* a0 */ Unk020b3fb0 *mUnk_a0;
+    /* a0 */ Bmg *mUnk_a0;
     /* a4 */ void *mHeap;
 } Unk02174e50;
 
