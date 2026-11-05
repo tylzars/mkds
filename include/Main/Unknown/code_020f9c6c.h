@@ -104,7 +104,7 @@ void func_020f9c6c(ItemObject *param_1);
 void func_020f9ca8(void *param_1);
 s32 func_020f9ce8(ItemObject *param_1);
 s32 func_020f9dc8(ItemObject *param_1);
-void func_020f9f08(void *param_1, s32 param_2, s32 param_3);
+void func_020f9f08(ItemObject *param_1, s32 param_2, s32 param_3);
 void func_020f9fa8(ItemObject *param_1);
 void func_020fa030(ItemObject *param_1);
 s32 func_020fa0b8(void *param_1, s32 param_2, s32 param_3);

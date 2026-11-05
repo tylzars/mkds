@@ -82,7 +82,7 @@ void func_020e53ac(Unk020e516c *p, void *d, u32 e, u32 f) {
     func_01ff9144(&data_0217b818->mUnk_000[data_0217b818->mUnk_008], data_0217b818->mUnk_00c);
 }
 
-void func_020e5370(void *a, void *b, u32 c, u32 d) {
+void func_020e5370(Vec3 *a, Unk02012f58 *b, u32 c, u32 d) {
     gJgShadow->mUnk_06e = c < d ? c : d;
     func_0207aec8(gJgShadow, b, a);
 }

@@ -32,7 +32,7 @@ void func_0212583c(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, voi
     func_0212586c(a, b, c, d, e, f, g, h, i, 0, -1, 0);
 }
 
-void func_02125808(void *a, s32 b, s32 c, s32 d, s32 e, u32 f, u32 g, u32 h, void *i, s32 j, s8 k) {
+void func_02125808(Unk021243ac_20 *a, s32 b, s32 c, s32 d, s32 e, u32 f, u32 g, u32 h, void *i, s32 j, s8 k) {
     func_0212586c(a, b, c, d, e, f, g, h, i, j, k, 0);
 }
 

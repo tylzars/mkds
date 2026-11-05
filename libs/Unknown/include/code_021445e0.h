@@ -51,7 +51,7 @@ void func_02144814(Unk021450ec *p, u32 bit, const void *src);
 void func_02144920(Unk02144920 *a);
 void func_02144a50(Unk02144920 *a);
 void func_02144b64(Unk02144920 *a);
-int func_02144c6c(Unk021450ec *p, void *a, void *b);
+int func_02144c6c(Unk021450ec *p, void *a, Unk0214461c *b);
 int func_02145030(Unk021450ec *p);
 int func_021450ec(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag);
 int func_021453b4(Unk021450ec *p);

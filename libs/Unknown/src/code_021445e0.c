@@ -125,7 +125,7 @@ int func_02145030(Unk021450ec *p) {
 
 // Returns 1 when mUnk_81c is 5 and 3 when it is neither 1 nor 4; otherwise takes the next block into b, passes a to
 // func_02144814 and returns 0.
-int func_02144c6c(Unk021450ec *p, void *a, void *b) {
+int func_02144c6c(Unk021450ec *p, void *a, Unk0214461c *b) {
     int f2;
     int r;
     Unk02142988 *q;

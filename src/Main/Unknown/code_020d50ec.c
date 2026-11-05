@@ -573,7 +573,7 @@ u32 func_020d5344(s32 a) {
     return -1;
 }
 
-void func_020d5180(void *a, s32 b, s32 c) {
+void func_020d5180(Vec3 *a, s32 b, s32 c) {
     Vec3 *v = a;
     s32 hi;
     s32 lo;

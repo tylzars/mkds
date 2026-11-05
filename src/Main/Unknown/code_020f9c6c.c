@@ -1266,7 +1266,7 @@ void func_020f9fa8(ItemObject *param_1) {
     func_020d5148(param_1->mUnk_da, param_1->mUnk_e0);
 }
 
-void func_020f9f08(void *param_1, s32 param_2, s32 param_3) {
+void func_020f9f08(ItemObject *param_1, s32 param_2, s32 param_3) {
     ItemObject *p = param_1;
     enum { K0 } k;
     s32 m;

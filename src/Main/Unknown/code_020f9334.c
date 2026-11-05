@@ -117,7 +117,7 @@ void ReleaseItemObject(ItemObject *param_1) {
     }
 }
 
-void func_020f98a0(void *param_1, Vec3 *param_2, Vec3 *param_3, u16 *param_4, s32 param_5) {
+void func_020f98a0(ItemObject *param_1, Vec3 *param_2, Vec3 *param_3, u16 *param_4, s32 param_5) {
     ItemObject *a = param_1;
     a->mPrevPos = *param_2;
     if (param_4 != NULL) {
@@ -202,7 +202,7 @@ void func_020f95d4(ItemObject *param_1, ItemObject *param_2) {
     func_020f5614(param_2, b, param_1);
 }
 
-void func_020f944c(void *param_1, void *param_2) {
+void func_020f944c(ItemObject *param_1, MapObject *param_2) {
     Vec3 a;
     Vec3 t;
     s32 b;

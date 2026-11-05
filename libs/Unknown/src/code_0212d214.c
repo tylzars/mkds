@@ -352,7 +352,7 @@ u32 func_0212e490(s32 a, u32 b, HeapStack *c, u32 d, Unk02021968 **out) {
     return 0;
 }
 
-void *func_0212e3dc(u32 a, UnkFunc *f, void *p, u32 d, HeapStack *e) {
+void *func_0212e3dc(u32 a, UnkFunc *f, Unk0212d5f8 *p, u32 d, HeapStack *e) {
     u32 size;
     u8 *b;
 
@@ -732,7 +732,7 @@ void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, void *p, u32 flag) {
     }
 }
 
-u32 func_0212d6c4(Unk0212d5f8 *a, void *p, u32 flag) {
+u32 func_0212d6c4(Unk0212d5f8 *a, HeapStack *p, u32 flag) {
     s32 n;
 
     if (FS_SeekFile(&a->mUnk_34, 0, 0) == 0) {
@@ -1002,7 +1002,7 @@ void *func_0212d254(u32 a) {
     return t->mUnk_0c[a].mUnk_08;
 }
 
-u32 func_0212d238(u32 arg0, void *arg1) {
+u32 func_0212d238(u32 arg0, Unk02021968 *arg1) {
     u32 value0 = arg0;
     u32 value1 = (u32) arg1;
     u32 value2;

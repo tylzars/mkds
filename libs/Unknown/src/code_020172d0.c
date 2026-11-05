@@ -31,7 +31,7 @@ void ListPrepend(LinkedList *a, void *p) {
     a->mCount++;
 }
 
-void ListInsertBefore(LinkedList *a, void *p, void *q) {
+void ListInsertBefore(LinkedList *a, Unk0212c400 *p, Unk0212c400 *q) {
     u32 o;
     u8 *l;
     void *n;

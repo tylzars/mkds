@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+typedef struct Unk021450ec Unk021450ec;
+
 typedef struct Unk021425e8 Unk021425e8;
 typedef void (*Unk021425e8Func)(Unk021425e8 *);
 
@@ -190,7 +192,7 @@ void *func_021432ac(const Unk021432ac *a, u32 b);
 s32 func_021433b0(void);
 s32 func_0214349c(void);
 s32 func_02143520(void *a);
-s32 func_0214358c(u32 n, UnkFunc *f, void *p);
+s32 func_0214358c(u32 n, UnkFunc *f, Unk021450ec *p);
 s32 func_021435e8(Unk021425e8Func a);
 s32 func_02143634(Unk021425e8Func a, u32 b);
 s32 func_021436d0(Unk021425e8Func a, u32 b);
@@ -211,7 +213,7 @@ s32 func_02143ec0(Unk021425e8Func a);
 s32 func_02143f08(Unk021425e8Func a);
 s32 func_02143f50(Unk021425e8Func a);
 s32 func_02143fbc(Unk021425e8Func a);
-s32 func_02144048(UnkFunc *a, void *b, void *c, s32 d, u16 e, u16 f, u16 g);
+s32 func_02144048(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 g);
 s32 func_021441d0(Unk021425e8Func a, u32 b);
 s32 func_02144230(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u32 h, u32 i, u32 j, u32 k);
 s32 func_021443b0(Unk021425e8Func a);

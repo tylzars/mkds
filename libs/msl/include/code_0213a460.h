@@ -26,4 +26,4 @@ long strtol(const char *s, const char **end, int base);
 u32 strtoul(const char *s, const char **end, int base);
 double ScanDouble(int a, Unk02138618Func f, void *p, int *q, int *r);
 u64 ScanInt64(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s);
-u32 ScanInt32(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s);
+u32 ScanInt32(int a, int b, Unk02138618Func f, ScanStringSource *p, int *q, int *r, int *s);

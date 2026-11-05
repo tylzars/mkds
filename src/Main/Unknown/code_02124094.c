@@ -54,7 +54,7 @@ BOOL func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
     return FALSE;
 }
 
-void func_02124a98(u32 a, s32 b, void *c, void *d) {
+void func_02124a98(u32 a, s32 b, Unk02021dc8 *c, Unk0201ea30 *d) {
     Unk02124a68 *p;
     Unk0201ea30_08 *e;
     s32 i;
@@ -72,7 +72,7 @@ void func_02124a98(u32 a, s32 b, void *c, void *d) {
     }
 }
 
-u8 func_02124a68(u32 a, void *b, void *c) {
+u8 func_02124a68(u32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
     Unk02124a68 *p;
     Unk0201ea30_08 *e;
     e = (Unk0201ea30_08 *) ((Unk0201ea30 *) c + 1);
@@ -81,7 +81,7 @@ u8 func_02124a68(u32 a, void *b, void *c) {
     return (p->mUnk_04->mUnk_04 & 0xf000) >> 12;
 }
 
-void func_02124a20(s32 a, s32 b, void *c, void *d) {
+void func_02124a20(s32 a, s32 b, Unk02021dc8 *c, Unk0201ea30 *d) {
     Unk02124a68 *p;
     Unk0201ea30_08 *e;
     s32 i;
@@ -122,7 +122,7 @@ void func_021249a8(u32 a, u32 b, Unk02021dc8 *c, Unk0201ea30 *d) {
     }
 }
 
-u16 func_0212497c(u32 a, void *b, void *c) {
+u16 func_0212497c(u32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
     Unk02124a68 *p;
     Unk0201ea30_08 *e;
     e = (Unk0201ea30_08 *) ((Unk0201ea30 *) c + 1);
@@ -204,7 +204,7 @@ void func_0212481c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
     }
 }
 
-void func_02124748(u32 a, void *b, void *c, void *d, s32 e, u32 f, void *g, void *h) {
+void func_02124748(u32 a, Unk02021dc8 *b, void *c, Unk0201ea30 *d, s32 e, u32 f, Unk02021dc8 *g, Unk0201ea30 *h) {
     s32 i;
     Unk02124a68 *p;
     Unk02124a68 *q;
@@ -290,7 +290,8 @@ void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
     CallQueueAppend(k, w, z, 0x20);
 }
 
-s32 func_021243ac(void *a, s32 b, void *c, s32 d, s32 e, s32 f, void *g, void *h, void *i, s32 j) {
+s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021dc8 *g, Unk0201ea30 *h, Unk02124b1c *i,
+                  s32 j) {
     Unk02022eb0 buf[128];
     Unk0212428c *p;
     Unk021243ac *q;
@@ -439,15 +440,15 @@ void func_0212428c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk021
     }
 }
 
-void func_0212426c(s32 a, s32 b, void *c, void *d, void *e, void *f) {
+void func_0212426c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f) {
     func_0212428c(a, b, c, d, e, f, 0, -1);
 }
 
-void func_02124248(s32 a, s32 b, void *c, void *d, void *e, void *f, s8 g) {
+void func_02124248(s32 a, s32 b, void *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g) {
     func_0212428c(a, b, c, d, e, f, 0, g);
 }
 
-void func_02124224(s32 a, u32 b, void *c, void *d, void *e, void *f, s8 g) {
+void func_02124224(s32 a, u32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g) {
     func_0212428c(a, b, c, d, e, f, 1, g);
 }
 
@@ -481,7 +482,7 @@ BOOL func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
     return FALSE;
 }
 
-void func_02124140(u32 a, u32 b, void *c, void *d, void *e) {
+void func_02124140(u32 a, u32 b, void *c, Unk02124b1c *d, Unk0201ea30 *e) {
     Unk02124b1c *r;
     Unk02124b1c *s;
     s32 i;
@@ -500,7 +501,7 @@ void func_02124140(u32 a, u32 b, void *c, void *d, void *e) {
     }
 }
 
-void func_02124100(s32 a, u8 b, void *c, void *d, void *e) {
+void func_02124100(s32 a, u8 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e) {
     Unk02124b1c *r;
     Unk02124b1c *s;
     s32 i;
@@ -525,7 +526,7 @@ u8 func_021240d4(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
     return (q->mUnk_3c->mUnk_44->mUnk_04->mUnk_04 & 0xc00) >> 10;
 }
 
-void func_02124094(u32 a, u32 b, void *c, Unk02124b1c *d, Unk0201ea30 *e) {
+void func_02124094(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e) {
     Unk02124b1c *r;
     Unk02124b1c *s;
     s32 i;

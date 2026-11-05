@@ -772,7 +772,7 @@ void func_020ea8a8(Unk020ea670 *param_1, void *param_2, void *param_3, s32 param
     }
 }
 
-void func_020ea868(Unk020ea868 *param_1, void *param_2, void *param_3, u32 param_4) {
+void func_020ea868(Unk020ea868 *param_1, void *param_2, Vec3 *param_3, u32 param_4) {
     u16 v;
 
     v = param_1->mUnk_06e;

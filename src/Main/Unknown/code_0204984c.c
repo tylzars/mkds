@@ -503,7 +503,7 @@ void func_02049980(s32 a) {
     func_02049e38(a);
 }
 
-s32 func_0204984c(void *a, s32 b) {
+s32 func_0204984c(SceneNumbers *a, s32 b) {
     BOOL r;
     s32 v;
 

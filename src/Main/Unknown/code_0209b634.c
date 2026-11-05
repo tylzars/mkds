@@ -38,7 +38,7 @@ void func_0209bbd0(void *a, void *b) {
     func_020e6a18(o->mNsbmdModel);
 }
 
-void DrawMapObjectModel(void *a, void *b, void *d) {
+void DrawMapObjectModel(Unk02100094 *a, void *b, void *d) {
     MapObjectModel *o = b;
     MapObject *c = d;
 
@@ -200,7 +200,7 @@ void func_0209b7a0(void *a, s32 b, s32 c) {
 }
 
 // Sets the current frame of slot 0 in 20.12 fixed point (the track frame follows).
-void SetMapObjectModelNsbcaFrameIndex(void *a, u16 b) {
+void SetMapObjectModelNsbcaFrameIndex(MapObjectModel *a, u16 b) {
     MapObjectModel *o = a;
     Unk02087d0c *p = o->mAnimations[0];
 
@@ -209,7 +209,7 @@ void SetMapObjectModelNsbcaFrameIndex(void *a, u16 b) {
 }
 
 // Number of frames of the animation in slot 0 (its length, not the current frame).
-u16 GetMapObjectModelNsbcaFrameCount(void *a) {
+u16 GetMapObjectModelNsbcaFrameCount(MapObjectModel *a) {
     MapObjectModel *o = a;
 
     return (u16) ((u32) func_02087d0c(o->mAnimations[0]) >> 12);
@@ -232,7 +232,7 @@ s32 GetMapObjectModelNsbmaFrameCount(void *a) {
 }
 
 // Number of frames of the animation in slot 3 (its length, not the current frame).
-u16 GetMapObjectModelNsbtaFrameCount(void *a) {
+u16 GetMapObjectModelNsbtaFrameCount(MapObjectModel *a) {
     MapObjectModel *o = a;
 
     return (u16) ((u32) func_02087d0c(o->mAnimations[3]) >> 12);

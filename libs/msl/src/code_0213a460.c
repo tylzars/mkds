@@ -8,7 +8,7 @@
 
 // Reads values through f(p, 0, 0), at most b of them, in base a. st is the state: 1, 2, 4, 8 and 0x10 while
 // reading, 0x20 or 0x40 once it stops. *q gets the count used, *r 1 after a '-', *s 1 when the value does not fit.
-u32 ScanInt32(int a, int b, Unk02138618Func f, void *p, int *q, int *r, int *s) {
+u32 ScanInt32(int a, int b, Unk02138618Func f, ScanStringSource *p, int *q, int *r, int *s) {
     int st;
     int n;
     int k;

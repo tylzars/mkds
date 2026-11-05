@@ -89,7 +89,7 @@ void func_0211df38(void) {
 
 #pragma thumb on
 
-void func_0211ded0(u32 a, void *b, void *c, u32 d, u16 e, s32 f) {
+void func_0211ded0(u32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, s32 f) {
     Unk0217d370 *p;
     u8 *dst;
     u32 v0 = 14;
@@ -149,7 +149,7 @@ void func_0211de34(void) {
 
 #pragma thumb on
 
-void func_0211de00(u32 a, void *b, void *c, u32 d, u32 e) {
+void func_0211de00(u32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u32 e) {
     func_02124748(data_0215ced4[a], data_0217d36c->mUnk_04, data_0217d36c->mUnk_00, data_0217d36c->mUnk_08, e, d, b, c);
 }
 

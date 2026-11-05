@@ -641,7 +641,7 @@ void func_020476ac(void) {
 
 #pragma thumb on
 
-void func_02047634(void *a, s32 b, s32 c, u32 d, u32 e) {
+void func_02047634(Unk02017f24 *a, s32 b, s32 c, u32 d, u32 e) {
     Unk021759c8_9b0 *p = &data_021759c8->mUnk_9b0[b];
     p->mUnk_00 = a;
     p->mUnk_04 = NULL;

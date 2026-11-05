@@ -11,7 +11,7 @@
 #include "Main/Unknown/code_02109054.h"
 #include "code_02147cd8.h"
 
-void func_020f2b94(void *a0, void *b0, s32 c, s32 d, s32 e, s32 f) {
+void func_020f2b94(void *a0, Unk020eda5c *b0, s32 c, s32 d, s32 e, s32 f) {
     Unk020f1d70 *a;
     Unk020eda5c *b;
     s32 n;

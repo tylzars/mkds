@@ -1241,7 +1241,7 @@ void func_02079014(void *a, Unk020136f0 *b, Unk020136f0 *c) {
 
 #pragma thumb on
 
-void *func_02079008(void *a, void *b) {
+void *func_02079008(void *a, Unk020136f0 *b) {
     return func_0207afa8(a, b, 3);
 }
 

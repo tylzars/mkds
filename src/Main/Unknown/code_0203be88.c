@@ -34,7 +34,7 @@
 #include "01/code_0218155c.h"
 #include "Main/Unknown/code_0203e74c.h"
 
-void func_0203c1a8(void *a, u32 b) {
+void func_0203c1a8(Vec3 *a, u32 b) {
     s32 v;
     if (func_0204176c(a, &v) == 0) {
         return;

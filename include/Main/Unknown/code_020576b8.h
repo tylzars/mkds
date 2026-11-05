@@ -2,5 +2,7 @@
 
 #include "types.h"
 
-void func_020576b8(void *a, s32 b);
-void func_02057710(void *a, s32 b);
+typedef struct Unk0217aa08_24 Unk0217aa08_24;
+
+void func_020576b8(Unk0217aa08_24 *a, s32 b);
+void func_02057710(Unk0217aa08_24 *a, s32 b);

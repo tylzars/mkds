@@ -29,7 +29,7 @@ static inline s32 func_02060004_inline(s32 a, s32 b, Unk02056bc0 *c) {
     return r;
 }
 
-void func_02060c0c(void *a) {
+void func_02060c0c(Unk0217d384_19f0 *a) {
     MemCopy(a, (u8 *) data_0217aa08->mUnk_20 + 0x874, 0x2d0);
 }
 

@@ -41,6 +41,8 @@ typedef struct Unk0212c700 {
 
 #include "code_0212c7a0.h" // Unk0212c7a0
 
+typedef struct Unk02021968 Unk02021968;
+
 extern LinkedList data_0217d444;
 extern LinkedList data_0217d450;
 
@@ -54,7 +56,7 @@ void func_0212bf14(Unk0212c7a0 *e, Unk0212c400 *p);
 void func_0212bf70(Unk0212c400 *p);
 HeapStack *func_0212bfbc(u32 a, Unk0212c400 *b);
 void func_0212c018(Unk0212c400 *p, u32 b);
-void func_0212c078(Unk0212c400 *a, void *b, u32 c, void *d);
+void func_0212c078(Unk0212c400 *a, void *b, u32 c, Unk02021968 *d);
 void func_0212c0d4(void *a);
 Unk0212c400 *func_0212c0e0(Unk0212c400 **a, s32 b, s32 c);
 void func_0212c19c(void);

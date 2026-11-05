@@ -33,7 +33,7 @@ void func_021052fc(Unk021052fc *p) {
     }
 }
 
-void func_021052f0(Unk021052fc *p0, void *p1, void *p2) {
+void func_021052f0(Unk021052fc *p0, void *p1, Unk020ff438 *p2) {
     p0->mUnk_100 = p1;
     p0->mUnk_104 = p2;
 }

@@ -51,7 +51,7 @@ u32 func_0210bc00(u32 arg0, u32 arg1, void *arg2) {
     return value0;
 }
 
-u32 func_0210bbec(u32 arg0, u32 arg1, void *arg2) {
+u32 func_0210bbec(u32 arg0, u32 arg1, Unk0216c860 *arg2) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2 = (u32) arg2;

@@ -72,7 +72,7 @@ u64 func_02152584(const void *a) {
     return 0;
 }
 
-u32 func_02152520(void *a, void *b) {
+u32 func_02152520(Unk02152500 *a, void *b) {
     Unk02152500 *p = a;
     Unk02152490 *q = b;
     u64 r;

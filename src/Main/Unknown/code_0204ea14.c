@@ -24,7 +24,7 @@ u32 func_0204ea3c(void) {
     return v3;
 }
 
-void func_0204ea14(void *a) {
+void func_0204ea14(Bmg *a) {
     void **v1;
     void *v2;
     void *v3;

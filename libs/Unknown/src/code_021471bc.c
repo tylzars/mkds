@@ -84,7 +84,7 @@ asm void Matrix4x3FromPairX(s32 *a, s32 b, s32 c) {
 // Not compiled code: it stores separate values with `stmia r0!`, which the 1.2 compiler builds in Thumb code only for
 // block moves (docs/compiler.md, ldm/stm). It also builds 0x1000 with `movs; lsls`, which 1.2 never does in Thumb code
 // (docs/compiler.md, Thumb constants).
-asm void Matrix4x3FromPairY(void *a, s32 b, s32 c) {
+asm void Matrix4x3FromPairY(Unk02012f58 *a, s32 b, s32 c) {
     str r1, [r0, #24]
     mov r3, #0
     stmia r0!, {r2, r3}

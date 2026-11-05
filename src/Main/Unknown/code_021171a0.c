@@ -110,7 +110,7 @@ void func_02117218(void) {
 
 #pragma thumb on
 
-void func_021171a0(s32 a, void *b, void *c, u32 d, u16 e, s32 f) {
+void func_021171a0(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, s32 f) {
     int n;
 
     n = 0x12;

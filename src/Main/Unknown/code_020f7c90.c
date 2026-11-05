@@ -132,7 +132,7 @@ void CreateItemSlotTables(void) {
 
 #pragma thumb off
 
-u8 func_020f7ea8(void *a, void *b) {
+u8 func_020f7ea8(ItemObject *a, ItemObject *b) {
     ItemObject *p = a;
     ItemObject *q = b;
 

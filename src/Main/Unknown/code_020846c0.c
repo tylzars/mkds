@@ -181,7 +181,7 @@ Unk0201290c *func_02084e28(void *a, Unk020136f0 *b) {
     return o->mUnk_04;
 }
 
-Unk0201290c *func_02084d3c(void *a, Unk020136f0 *b, Unk020136f0 *c) {
+Unk0201290c *func_02084d3c(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
     Unk02084b2c *o = a;
 
     u32 v1;
@@ -314,7 +314,7 @@ void func_02084a88(void *a, u8 b, u8 c) {
     func_02013468(p, 0, b);
 }
 
-void func_020849f8(void *a, void *b, u32 *c) {
+void func_020849f8(void *a, Unk02012f58 *b, u32 *c) {
     s32 v0 = 30;
     u32 v[3];
 

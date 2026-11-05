@@ -20,7 +20,7 @@ typedef struct Unk0212ef48 {
 #include "code_0212c7f0.h" // Unk0212c7f0
 
 u32 func_0212ee54(void *arg0);
-void func_0212ee8c(LinkedList *a, void *b);
+void func_0212ee8c(LinkedList *a, Unk0212c7f0 *b);
 void func_0212ef00(Unk0212c7f0 *a);
 void func_0212ef48(Unk0212c7f0 *a);
 void func_0212efb8(Unk0212c7f0 *a);

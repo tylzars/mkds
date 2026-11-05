@@ -7,7 +7,7 @@
 
 #pragma thumb on
 
-void func_02057710(void *a, s32 b) {
+void func_02057710(Unk0217aa08_24 *a, s32 b) {
     s32 c = b * 0xb00;
     u32 *v;
     v = data_021759d4->mUnk_60;
@@ -18,7 +18,7 @@ void func_02057710(void *a, s32 b) {
     }
 }
 
-void func_020576b8(void *a, s32 b) {
+void func_020576b8(Unk0217aa08_24 *a, s32 b) {
     s32 c = b * 0xb00;
     if (data_021759d4->mUnk_0c != 0) {
         data_021759d4->mUnk_68 = a;

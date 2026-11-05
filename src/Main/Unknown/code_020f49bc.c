@@ -172,7 +172,7 @@ void func_020f6830(ItemObject *a, Vec3 *b, Vec3 *c) {
     a->mUnk_100 = a->mUnk_100 >> 1;
 }
 
-void func_020f6630(void *a0, s32 b, Vec3 *c, Vec3 *d, Vec3 *e) {
+void func_020f6630(ItemObject *a0, s32 b, Vec3 *c, Vec3 *d, Vec3 *e) {
     ItemObject *a;
     Vec3 v;
     Vec3 *p;
@@ -683,7 +683,7 @@ void func_020f56d0(Unk020f5d6c *a) {
 
 // Runs func_0210a598 with the 0x3bc word of the 0x1fc object when the 0x78 high bits of the
 // third parameter match that object's 0x74 halfword and the 0x74/0x78/0xdc tests pass.
-void func_020f5614(void *a0, s32 b, void *c0) {
+void func_020f5614(void *a0, s32 b, ItemObject *c0) {
     Unk020f5d6c *a;
     ItemObject *c;
     KartItems *o;

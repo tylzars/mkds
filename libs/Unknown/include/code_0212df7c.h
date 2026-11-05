@@ -58,7 +58,7 @@ Unk02021968 *func_0212e1ec(u32 a, HeapStack *b, u32 c);
 void *func_0212e268(u32 a, HeapStack *b, u32 c);
 void *func_0212e2e4(u32 a, HeapStack *b, u32 c);
 void *func_0212e360(u32 a, HeapStack *b, u32 c);
-void *func_0212e3dc(u32 a, UnkFunc *f, void *p, u32 d, HeapStack *e);
+void *func_0212e3dc(u32 a, UnkFunc *f, Unk0212d5f8 *p, u32 d, HeapStack *e);
 u32 func_0212e490(s32 a, u32 b, HeapStack *c, u32 d, Unk02021968 **out);
 u32 func_0212e538(s32 a, u32 b, HeapStack *c, u32 d, Unk02021968 **out);
 u32 func_0212e698(s32 a, u32 b, HeapStack *c, u32 d, Unk0212f788 **out);

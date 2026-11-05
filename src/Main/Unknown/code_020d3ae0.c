@@ -180,7 +180,7 @@ void func_020d4d44(Unk02012f58 *p) {
     func_020d7bec(p);
 }
 
-void func_020d4c28(Unk020e6fd4 *p, void *a) {
+void func_020d4c28(Unk020e6fd4 *p, Unk02012f58 *a) {
     s32 i;
     MapObject *e;
     UnkFunc *f;
@@ -368,7 +368,7 @@ void func_020d4990(Unk020e6fd4 *p) {
 }
 #pragma thumb off
 
-void func_020d4980(void *p0) {
+void func_020d4980(Water *p0) {
     gCourseWater = p0;
 }
 

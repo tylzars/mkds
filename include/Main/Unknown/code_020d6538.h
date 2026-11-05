@@ -60,7 +60,7 @@ Unk0217b654 *func_020d6794(void);
 Unk0217b650 *func_020d67f0(void);
 Unk0217b650 *func_020d6850(void);
 Unk02156adc *func_020d68b0(void);
-s32 func_020d6910(s32 a, void *b);
+s32 func_020d6910(s32 a, MapObject *b);
 s32 func_020d6968(s32 a, MapObject *b);
 s32 func_020d69e4(s32 a, MapObject *b);
 s32 func_020d6a54(ItemObject *a, MapObject *b, s32 *c);

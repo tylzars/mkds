@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+typedef struct Unk0217aa08_20_04 Unk0217aa08_20_04;
+
 typedef struct Unk02056bc0 Unk02056bc0;
 
 // The word at 0 points to rows of 13 bytes from 6.
@@ -17,8 +19,8 @@ typedef struct Unk0205fd2c {
 extern u32 data_usa_021653e0;
 extern u8 data_usa_0215494c[];
 
-u32 func_0205ee14(u32 a, void *b);
-void func_0205ee74(u32 a, void *b);
+u32 func_0205ee14(u32 a, Unk0217aa08_20_04 *b);
+void func_0205ee74(u32 a, Unk0217aa08_20_04 *b);
 void func_0205eeb0(void);
 void func_0205ef70(void);
 void func_0205f218(void);

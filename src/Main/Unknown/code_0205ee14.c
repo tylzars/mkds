@@ -555,11 +555,11 @@ void func_0205eeb0(void) {
     }
 }
 
-void func_0205ee74(u32 a, void *b) {
+void func_0205ee74(u32 a, Unk0217aa08_20_04 *b) {
     MemCopy(b, &data_0217aa08->mUnk_20->mUnk_04[a], 0x24);
 }
 
-u32 func_0205ee14(u32 a, void *b) {
+u32 func_0205ee14(u32 a, Unk0217aa08_20_04 *b) {
     if (b != NULL) {
         MemCopy(&data_0217aa08->mUnk_20->mUnk_04[a], b, 0x24);
     }

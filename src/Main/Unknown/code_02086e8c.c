@@ -341,7 +341,7 @@ void func_020871a4(Unk02086098 *a, u32 b) {
 
 #pragma thumb on
 
-void func_020870ec(void *a, u16 b) {
+void func_020870ec(Unk02086098 *a, u16 b) {
     u8 *p;
     s32 c;
     u32 i;

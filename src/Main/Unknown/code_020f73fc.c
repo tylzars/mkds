@@ -18,7 +18,7 @@
 #include "Main/Unknown/code_020f9c40.h"
 #include "code_02147cd8.h"
 
-void func_020f77f8(void *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
+void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
     ItemObject *p = a;
     Vec3 v;
     Vec3 v2;

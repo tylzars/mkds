@@ -65,7 +65,7 @@ void func_02047468(const void *a, u32 b);
 void func_02047498(const void *a, s32 b);
 void func_020474e4(void);
 void func_02047544(Unk02017f24 *a, Unk02017f24 *b, Unk02017f24 *c);
-void func_02047634(void *a, s32 b, s32 c, u32 d, u32 e);
+void func_02047634(Unk02017f24 *a, s32 b, s32 c, u32 d, u32 e);
 void func_020476ac(void);
 void func_020476ec(void);
 void func_02047728(void);

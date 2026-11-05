@@ -12,7 +12,7 @@
 
 #pragma thumb on
 
-void func_02152458(Unk02152500 *a, const void *b, char *c) {
+void func_02152458(Unk02152500 *a, Unk02152490 *b, char *c) {
     func_02152808(b, a->mUnk_24, c);
 }
 

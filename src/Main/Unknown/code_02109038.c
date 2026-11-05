@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_02109038.h"
 #include "Main/Unknown/code_0210bcf4.h"
 
-void func_02109038(void *arg0, u32 arg1, void *arg2) {
+void func_02109038(void *arg0, u32 arg1, Vec3 *arg2) {
     u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value2 = (u32) arg2;

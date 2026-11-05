@@ -5,6 +5,8 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_020ed5c0.h"
 
+typedef struct Unk020eda5c Unk020eda5c;
+
 // Element of gItemPools[0], [1] and [5] up to 0x168: the word and the three vectors from 0x12c and the words
 // and halfword from 0x154 that the functions of this file read after the shared part.
 typedef struct Unk020f1d70 {
@@ -31,4 +33,4 @@ void func_020f2768(Unk020f1d70 *a, Vec3 *b, Vec3 *c);
 void func_020f288c(Unk020f1d70 *a, Vec3 *b);
 void func_020f29e8(u32 a);
 void func_020f2a6c(Vec3 *a, Vec3 *b, Vec3 *c);
-void func_020f2b94(void *a0, void *b0, s32 c, s32 d, s32 e, s32 f);
+void func_020f2b94(void *a0, Unk020eda5c *b0, s32 c, s32 d, s32 e, s32 f);

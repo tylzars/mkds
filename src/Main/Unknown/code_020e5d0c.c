@@ -88,7 +88,7 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
     }
 }
 
-void func_020e64b8(void *p, void *a, void *b, s32 c) {
+void func_020e64b8(Unk020e6488 *p, void *a, void *b, s32 c) {
     ((Unk020e6488 *) p)->mUnk_24 = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
     func_02084e28(((Unk020e6488 *) p)->mUnk_24, a);
     if (b != NULL) {

@@ -143,7 +143,7 @@ s32 func_021441d0(Unk021425e8Func a, u32 b) {
     return r;
 }
 
-s32 func_02144048(UnkFunc *a, void *b, void *c, s32 d, u16 e, u16 f, u16 g) {
+s32 func_02144048(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 g) {
     u16 v;
     u32 w;
     Unk02142988 *q;
@@ -591,7 +591,7 @@ s32 func_021435e8(Unk021425e8Func a) {
     return 0;
 }
 
-s32 func_0214358c(u32 n, UnkFunc *f, void *arg) {
+s32 func_0214358c(u32 n, UnkFunc *f, Unk021450ec *arg) {
     u32 s;
     s32 r;
     Unk02142aa8 *p;

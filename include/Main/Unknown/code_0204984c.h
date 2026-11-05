@@ -2,7 +2,9 @@
 
 #include "types.h"
 
-s32 func_0204984c(void *a, s32 b);
+typedef struct SceneNumbers SceneNumbers;
+
+s32 func_0204984c(SceneNumbers *a, s32 b);
 void func_02049980(s32 a);
 u32 func_0204998c(void);
 BOOL func_02049aa4(void);

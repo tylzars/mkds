@@ -24,7 +24,7 @@ void func_02116e70(void) {
     LoadNclrData(v4, v1);
 }
 
-void func_02116dd4(void *a, void *b, void *c, u32 d, u16 e, u32 f) {
+void func_02116dd4(void *a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, u32 f) {
     Unk0217d354 *v1;
     Unk0217d354 *v2;
     void *v3;

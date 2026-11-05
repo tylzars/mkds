@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_0205ee14.h"
 
 #pragma thumb on
-s32 func_02025da4(void *a, u32 b, s32 c) {
+s32 func_02025da4(Unk0205fd2c *a, u32 b, s32 c) {
     s32 n = 1;
     s32 i;
     s32 j;

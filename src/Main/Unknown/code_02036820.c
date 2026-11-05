@@ -46,7 +46,7 @@ void HeapFree(void *a, void *b) {
     }
 }
 
-void HeapDestroy(void *a) {
+void HeapDestroy(Unk02017584 *a) {
     Unk02017584 *h = a;
     Unk020176c0 *p;
     switch (h->mTag) {

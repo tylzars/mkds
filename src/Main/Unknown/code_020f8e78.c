@@ -52,7 +52,7 @@ void func_020f91fc(void *b, s32 c) {
     func_0210b7a8(&a);
 }
 
-BOOL func_020f91e0(void *a) {
+BOOL func_020f91e0(ItemObject *a) {
     ItemObject *p = a;
 
     return p->mUnk_68.z >= 0xccd;
@@ -90,7 +90,7 @@ void func_020f9114(void *b) {
     p->mFlags |= 0x400000;
 }
 
-void func_020f90dc(void *a) {
+void func_020f90dc(ItemObject *a) {
     ItemObject *p = a;
     if ((p->mFlags & 0x400000) == 0) {
         return;
@@ -100,14 +100,14 @@ void func_020f90dc(void *a) {
     p->mFlags &= ~0x400000;
 }
 
-void func_020f90bc(void *a) {
+void func_020f90bc(ItemObject *a) {
     ItemObject *p = a;
 
     p->mUnk_00.mUnk_40 = p->mUnk_d4 & ~0xc000001f;
     func_020d4e28(p, &p->mPos, p->mUnk_d4);
 }
 
-void func_020f9054(void *a, s32 b, void *c, s32 d) {
+void func_020f9054(ItemObject *a, s32 b, void *c, s32 d) {
     ItemObject *p = a;
     void *(*f)(void *, void *, s32);
 

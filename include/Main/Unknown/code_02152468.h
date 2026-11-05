@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-void func_02152468(void *a, u32 b);
+typedef struct Unk02152490 Unk02152490;
+
+void func_02152468(Unk02152490 *a, u32 b);

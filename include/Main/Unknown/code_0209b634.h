@@ -5,14 +5,16 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
+typedef struct Unk02100094 Unk02100094;
+
 u16 func_0209b634(void *a);
 void func_0209b688(void *a, u16 b);
 void SetMapObjectModelNsbtaFrameIndex(void *a, s32 b);
-u16 GetMapObjectModelNsbtaFrameCount(void *a);
+u16 GetMapObjectModelNsbtaFrameCount(MapObjectModel *a);
 s32 GetMapObjectModelNsbmaFrameCount(void *a);
 void SetMapObjectModelNsbmaFrameIndex(void *a, u32 b);
-u16 GetMapObjectModelNsbcaFrameCount(void *a);
-void SetMapObjectModelNsbcaFrameIndex(void *a, u16 b);
+u16 GetMapObjectModelNsbcaFrameCount(MapObjectModel *a);
+void SetMapObjectModelNsbcaFrameIndex(MapObjectModel *a, u16 b);
 void func_0209b7a0(void *a, s32 b, s32 c);
 void func_0209b8ac(void *a, u32 b);
 void func_0209b904(void *a, u32 b, u16 c);
@@ -21,6 +23,6 @@ void func_0209b9a4(void *a, u16 b);
 void func_0209ba08(void *a, u32 b);
 void func_0209ba58(void *a, void *b, void *c);
 void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, int d);
-void DrawMapObjectModel(void *a, void *b, void *d);
+void DrawMapObjectModel(Unk02100094 *a, void *b, void *d);
 void func_0209bbd0(void *a, void *b);
 void *UnparkFirstParkedMapObject(void *b);

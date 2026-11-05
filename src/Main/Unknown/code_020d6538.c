@@ -508,7 +508,7 @@ s32 func_020d6968(s32 a, MapObject *b) {
     return v != 0 ? 1 : 0;
 }
 
-s32 func_020d6910(s32 a, void *b) {
+s32 func_020d6910(s32 a, MapObject *b) {
     MapObject *p = b;
     s32 r = p->mKind;
     s32 n = 0;

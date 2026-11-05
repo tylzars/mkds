@@ -84,7 +84,7 @@ void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e);
 BOOL func_020d5a68(void *a, u32 b, Unk020e04b0 *c);
 u16 func_020d59f8(u32 a);
 void func_020d58c0(void);
-void func_020d5180(void *a, s32 b, s32 c);
+void func_020d5180(Vec3 *a, s32 b, s32 c);
 void func_020d5148(s16 a, s32 b);
 void func_020d5114(s16 a);
 void func_020d50ec(s16 a);

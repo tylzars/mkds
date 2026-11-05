@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+typedef struct Vec3 Vec3;
+
 typedef struct SceneNumbers SceneNumbers;
 
 // Object func_0203bf04 reads: the first 0x30 bytes and the 0xdcc bytes from 0x30.
@@ -48,4 +50,4 @@ void func_0203c088(void);
 void func_0203c094(void);
 u32 func_0203c0bc(void);
 BOOL func_0203c174(void);
-void func_0203c1a8(void *a, u32 b);
+void func_0203c1a8(Vec3 *a, u32 b);

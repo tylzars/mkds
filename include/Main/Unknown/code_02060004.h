@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+typedef struct Unk0217d384_19f0 Unk0217d384_19f0;
+
 void func_02060004(s32 a);
 s32 func_02060268(s32 a);
 s32 func_02060468(u8 a, void *b);
@@ -32,4 +34,4 @@ BOOL func_020600d0(s32 a, s32 b, void *c);
 s32 func_020600b4(s32 a);
 void func_02060510(u8 a, u8 b);
 void func_02060b68(void);
-void func_02060c0c(void *a);
+void func_02060c0c(Unk0217d384_19f0 *a);

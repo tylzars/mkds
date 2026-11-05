@@ -70,7 +70,7 @@ void func_020ea670(Unk020ea670 *param_1, s32 param_2);
 void func_020ea740(Unk020ea670 *param_1, s32 param_2);
 void func_020ea7cc(Unk020ea670 *param_1, s32 param_2);
 void func_020ea84c(void);
-void func_020ea868(Unk020ea868 *param_1, void *param_2, void *param_3, u32 param_4);
+void func_020ea868(Unk020ea868 *param_1, void *param_2, Vec3 *param_3, u32 param_4);
 void func_020ea8a8(Unk020ea670 *param_1, void *param_2, void *param_3, s32 param_4);
 void func_020ea94c(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, s32 param_5, Vec3 *param_6);
 void func_020eaa14(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, s32 param_5, Vec3 *param_6);

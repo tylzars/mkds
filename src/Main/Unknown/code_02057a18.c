@@ -14,7 +14,7 @@ void func_02057c60(void *a) {
     }
 }
 
-void func_02057c14(void *a) {
+void func_02057c14(Unk0217aa08_04 *a) {
     u32 *v1;
     v1 = data_021759d4->mUnk_60;
     if (data_021759d4->mUnk_0c != 0) {
@@ -31,7 +31,7 @@ void func_02057bcc(void *a) {
     }
 }
 
-void func_02057b84(void *a) {
+void func_02057b84(Unk0217aa08_08 *a) {
     u32 *v1;
     v1 = data_021759d4->mUnk_60;
     if (data_021759d4->mUnk_0c != 0) {
@@ -48,7 +48,7 @@ void func_02057b40(void *a) {
     }
 }
 
-void func_02057af4(void *a) {
+void func_02057af4(Unk0217aa08_0c *a) {
     u32 *v1;
     v1 = data_021759d4->mUnk_60;
     if (data_021759d4->mUnk_0c != 0) {
@@ -65,7 +65,7 @@ void func_02057aac(void *a) {
     }
 }
 
-void func_02057a60(void *a) {
+void func_02057a60(Unk0217aa08_10 *a) {
     u32 *v1;
     v1 = data_021759d4->mUnk_60;
     if (data_021759d4->mUnk_0c != 0) {

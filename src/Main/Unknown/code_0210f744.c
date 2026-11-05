@@ -669,7 +669,7 @@ void func_0210f9ac(Kart *a) {
     func_0210ddf4(&data_0217d28c, func_02086080(a->mIndex), func_0210f9f0, a, 0);
 }
 
-void func_0210f8b0(void *a, s32 b, s32 c) {
+void func_0210f8b0(Unk0217d060 *a, s32 b, s32 c) {
     u8 i;
     s32 j;
     func_0210ef34();

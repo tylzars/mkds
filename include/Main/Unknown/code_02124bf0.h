@@ -20,5 +20,5 @@ typedef struct Unk02124c70 {
 
 void func_02124ed0(void *a, Unk0201ea30 *b, Unk0201ea30 *c, Unk02124b1c **d);
 u32 func_02124c70(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124c70 *e, Unk02124b1c *f, s32 g);
-void func_02124c30(void *a, void *b, void *c, void *d, void *e);
-void func_02124bf0(void *a, void *b, void *c, void *d, void *e);
+void func_02124c30(Unk0201ea30 *a, Unk02021dc8 *b, Unk0201ea30 *c, void *d, Unk02124b1c *e);
+void func_02124bf0(Unk0201ea30 *a, void *b, void *c, void *d, void *e);

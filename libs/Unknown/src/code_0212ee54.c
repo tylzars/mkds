@@ -109,7 +109,7 @@ void func_0212ef00(Unk0212c7f0 *a) {
 }
 
 // Unlinks every element of the list whose mUnk_08 is b and passes it to func_0212ee54.
-void func_0212ee8c(LinkedList *a, void *b) {
+void func_0212ee8c(LinkedList *a, Unk0212c7f0 *b) {
     u32 v;
     Unk0212ee8c *p;
     Unk0212ee8c *next;
