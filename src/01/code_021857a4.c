@@ -43,7 +43,7 @@ void func_ov001_02185b1c(void) {
 void func_ov001_02185af0(void) {
     switch (AdvanceMissionRunLVsel()) {
         case 1:
-            func_020ccc74(0x13, 0x1f);
+            func_020ccc74(SCREEN_MISSION_RUN_MSSEL, 0x1f);
             break;
         case 2:
             func_020ccc74(0, 0x1f);
@@ -79,7 +79,7 @@ void func_ov001_02185a5c(void) {
             func_020ccc74(0x1d, 0x1f);
             break;
         case 2:
-            func_020ccc74(0x12, 0x1f);
+            func_020ccc74(SCREEN_MISSION_RUN_LVSEL, 0x1f);
             break;
     }
 }
@@ -136,7 +136,7 @@ void func_ov001_02185954(void) {
             func_020ccc74(0x16, 0x1f);
             break;
         case 2:
-            func_020ccc74(0x14, 0x1f);
+            func_020ccc74(SCREEN_TIME_ATTACK_TOP_MENU, 0x1f);
             break;
     }
 }
@@ -213,7 +213,7 @@ void func_ov001_021857ec(void) {
             if (func_0211e130()) {
                 func_020ccc74(0x1d, 0x1f);
             } else {
-                func_020ccc74(0x1a, 0x1f);
+                func_020ccc74(SCREEN_SELECT_GHOST, 0x1f);
             }
             break;
         case 2:

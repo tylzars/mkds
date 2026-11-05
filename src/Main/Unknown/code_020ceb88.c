@@ -16,7 +16,7 @@ void func_020ceb88(void) {
                 func_02029930()->mCourseId = 0x2c;
                 func_020ccc74(0x1d, 0x1f);
             } else {
-                func_020ccc74(0x11, 0x1f);
+                func_020ccc74(SCREEN_SELECT_BATTLE_STAGE, 0x1f);
             }
             break;
         case 2:

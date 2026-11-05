@@ -35,6 +35,7 @@
 #include "Main/Unknown/code_02056000.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02047104.h"
+#include "Main/Unknown/code_020ccc74.h"
 
 MissionRunMSsel *gMissionRunMSsel;
 
@@ -182,7 +183,7 @@ void func_ov001_021a0b3c(void) {
             func_02124a20(data_ov001_021a6e7c[i][1], 5, gMissionRunMSsel->mMissionRunMSselSNcer,
                           gMissionRunMSsel->mMissionRunMSselSBncl);
             if (gMissionRunMSsel->mUnk_a0 != 0) {
-                if (func_020cccb4() == 0x12) {
+                if (func_020cccb4() == SCREEN_MISSION_RUN_LVSEL) {
                     gMissionRunMSsel->mIndex = 8;
                 }
                 if (gMissionRunMSsel->mUnk_a4 == FALSE) {

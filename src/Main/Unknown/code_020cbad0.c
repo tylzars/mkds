@@ -207,7 +207,7 @@ void func_020cbb10(void) {
                     func_020ccc74(0xb, 0x1f);
                     break;
                 case 2:
-                    func_020ccc74(0x11, 0x1f);
+                    func_020ccc74(SCREEN_SELECT_BATTLE_STAGE, 0x1f);
                     break;
                 case 1:
                     func_020ccc74(0x17, 0x1f);
@@ -219,9 +219,9 @@ void func_020cbb10(void) {
         case 3:
             func_020cc3e8();
             if (func_020cc0f8() != 0 || func_020cc0e4() != 0) {
-                func_020ccc74(0x12, 0x1f);
+                func_020ccc74(SCREEN_MISSION_RUN_LVSEL, 0x1f);
             } else {
-                func_020ccc74(0x13, 0x1f);
+                func_020ccc74(SCREEN_MISSION_RUN_MSSEL, 0x1f);
             }
             func_020cbabc(0);
             func_020cc10c(1);
@@ -232,7 +232,7 @@ void func_020cbb10(void) {
         case 5:
             func_020cc3e8();
             func_02029930()->mUnk_c8 = 1;
-            func_020ccc74(0x14, 0x1f);
+            func_020ccc74(SCREEN_TIME_ATTACK_TOP_MENU, 0x1f);
             func_020cbabc(0);
             func_020cc10c(1);
             break;

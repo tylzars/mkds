@@ -14,6 +14,7 @@
 #include "code_02148950.h"
 #include "01/unk_021a9000.h"
 #include "01/unk_021ca000.h"
+#include "Main/Unknown/code_020ccc74.h"
 
 MissionRunLVsel *gMissionRunLVsel;
 
@@ -229,7 +230,7 @@ void func_ov001_0219f2a4(void) {
 void func_ov001_0219f260(void) {
     gMissionRunLVsel->mNextState = 1;
     gMissionRunLVsel->mStateFrames = 0;
-    if (func_020cccb4() == 0x13) {
+    if (func_020cccb4() == SCREEN_MISSION_RUN_MSSEL) {
         gMissionRunLVsel->mUnk_48 = -256;
     } else {
         gMissionRunLVsel->mUnk_48 = 0x100;

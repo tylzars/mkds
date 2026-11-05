@@ -28,6 +28,7 @@
 #include "Main/Unknown/code_0211e4e8.h"
 #include "Main/Unknown/code_02032000.h"
 #include "Main/Unknown/code_02028864.h"
+#include "Main/Unknown/code_020ccc74.h"
 
 #pragma thumb on
 #pragma optimize_for_size on
@@ -38,7 +39,7 @@ void func_020cb6c0(void) {
     p = data_0217b43c;
     if (p->mUnk_00c != p->mUnk_008) {
         switch (p->mUnk_00c) {
-            case 4:
+            case SCREEN_SELECT_ENGINE:
                 InitSelectEngine(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
                 break;
             case 5:
@@ -114,21 +115,21 @@ void func_020cb6c0(void) {
                 p = data_0217b43c;
                 func_02032654(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;
-            case 17:
+            case SCREEN_SELECT_BATTLE_STAGE:
                 v = (func_02029930()->mUnk_e4 == 0) ? UNK_020CB6C0_1 : UNK_020CB6C0_0;
                 p = data_0217b43c;
                 InitSelectBattleStage(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;
-            case 18:
+            case SCREEN_MISSION_RUN_LVSEL:
                 InitMissionRunLVsel(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
                 break;
-            case 19:
+            case SCREEN_MISSION_RUN_MSSEL:
                 InitMissionRunMSsel(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
                 break;
-            case 20:
+            case SCREEN_TIME_ATTACK_TOP_MENU:
                 InitTimeAttackTopMenu(func_020cb99c(), p->mUnk_108, (s32) p->mUnk_50c);
                 break;
-            case 26:
+            case SCREEN_SELECT_GHOST:
                 InitSelectGhost(func_020cb99c(), (u32) p->mUnk_108, (u32) p->mUnk_50c);
                 break;
             case 12:
@@ -146,7 +147,7 @@ void func_020cb6c0(void) {
             case 13:
             case 14:
             case 16:
-            case 17:
+            case SCREEN_SELECT_BATTLE_STAGE:
                 data_0217b43c->mUnk_958 = FALSE;
                 data_0217b43c->mUnk_95c = FALSE;
                 break;
@@ -164,7 +165,7 @@ void func_020cb6c0(void) {
 void func_020cb618(void) {
     if (data_0217b43c->mUnk_00c != data_0217b43c->mUnk_008) {
         switch (data_0217b43c->mUnk_008) {
-            case 4:
+            case SCREEN_SELECT_ENGINE:
                 ReleaseSelectEngine();
                 break;
             case 5:
@@ -194,19 +195,19 @@ void func_020cb618(void) {
             case 14:
                 func_0203223c();
                 break;
-            case 17:
+            case SCREEN_SELECT_BATTLE_STAGE:
                 ReleaseSelectBattleStage();
                 break;
-            case 18:
+            case SCREEN_MISSION_RUN_LVSEL:
                 ReleaseMissionRunLVsel();
                 break;
-            case 19:
+            case SCREEN_MISSION_RUN_MSSEL:
                 ReleaseMissionRunMSsel();
                 break;
-            case 20:
+            case SCREEN_TIME_ATTACK_TOP_MENU:
                 ReleaseTimeAttackTopMenu();
                 break;
-            case 26:
+            case SCREEN_SELECT_GHOST:
                 func_ov001_0219baf4();
                 break;
             case 12:

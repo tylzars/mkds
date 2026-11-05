@@ -135,7 +135,7 @@ void func_ov001_0218556c(void) {
             func_020ccc74(6, 0x1f);
             break;
         case 2:
-            func_020ccc74(4, 0x1f);
+            func_020ccc74(SCREEN_SELECT_ENGINE, 0x1f);
             break;
     }
 }

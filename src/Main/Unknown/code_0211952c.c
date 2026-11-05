@@ -42,6 +42,7 @@
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02029440.h"
 #include "Main/Unknown/code_02047104.h"
+#include "Main/Unknown/code_020ccc74.h"
 
 #pragma thumb on
 
@@ -84,7 +85,7 @@ void func_02119c20(void) {
     gSelectCup->mNextState = 0;
     gSelectCup->mStateFrames = 0;
     if (*(vu16 *) 0x027ffc40 != 2) {
-        if (func_020cccb4() != 0x1a) {
+        if (func_020cccb4() != SCREEN_SELECT_GHOST) {
             w = gSelectCup->mSelectCupCourseTaOrVsMBncl->mUnk_06;
             gSelectCup->mBg0Offset = -0xc0;
             gSelectCup->mSelectCupCourseTaOrVsMTable[0].mUnk_06 = -0xc0;
@@ -100,7 +101,7 @@ void func_02119c20(void) {
             gSelectCup->mSelectCupCourseTaOrVsMTable[w + 4].mUnk_06 = -0xc0;
             gSelectCup->mSelectCupCourseTaOrVsMTable[w + 5].mUnk_06 = -0xc0;
         }
-        if (func_020cccb4() != 0x1a) {
+        if (func_020cccb4() != SCREEN_SELECT_GHOST) {
             v = -0x20;
         } else {
             v = -0xe0;
@@ -333,7 +334,7 @@ void AdvanceSelectCupState1(void) {
     if (*(vu16 *) 0x027ffc40 != 2) {
         func_020ae4c0(1, 0x100, 0, gSelectCup->mStateFrames, 10);
         v = func_020ae4c0(1, -0xc0, 0, gSelectCup->mStateFrames, 10);
-        if (func_020cccb4() != 0x1a) {
+        if (func_020cccb4() != SCREEN_SELECT_GHOST) {
             w = gSelectCup->mSelectCupCourseTaOrVsMBncl->mUnk_06;
             gSelectCup->mBg0Offset = v;
             gSelectCup->mSelectCupCourseTaOrVsMTable[0].mUnk_06 = v;
@@ -349,7 +350,7 @@ void AdvanceSelectCupState1(void) {
             gSelectCup->mSelectCupCourseTaOrVsMTable[w + 4].mUnk_06 = v;
             gSelectCup->mSelectCupCourseTaOrVsMTable[w + 5].mUnk_06 = v;
         }
-        if (func_020cccb4() == 0x1a) {
+        if (func_020cccb4() == SCREEN_SELECT_GHOST) {
             w = gSelectCup->mSelectCupMBncl->mUnk_06;
             gSelectCup->mBg3Offset = v - 0x20;
             gSelectCup->mSelectCupMTable[0x14].mUnk_06 = v - 0x20;
