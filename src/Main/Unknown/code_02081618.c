@@ -183,7 +183,7 @@ void func_02084034(u32 a, Kart *p) {
     if (func_02061818() != 0) {
         return;
     }
-    func_020748a8();
+    GetChaseCamera();
     if (data_0217ae80 != NULL) {
         data_0217ae80->mUnk_24.mUnk_00_0 = 1;
     }
@@ -445,7 +445,7 @@ void func_02083680(Unk0201ca6c *p, s32 a) {
     if (a != 0) {
         return;
     }
-    g = func_020748a8();
+    g = GetChaseCamera();
     q = p->mUnk_94;
     if (func_02061818() != 0 || (p->mUnk_24.mUnk_00_1 != 0 && (p->mUnk_98 = p->mUnk_98 + 1, p->mUnk_98 > 5))) {
         p->mUnk_24.mUnk_00_0 = 1;
@@ -839,7 +839,7 @@ void func_02082a10(Unk0201ca6c *p, s32 a) {
     if (a != 0) {
         return;
     }
-    g = func_020748a8();
+    g = GetChaseCamera();
     v = g->mForward;
     v.y = 0;
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
@@ -869,7 +869,7 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
     if (a != 0) {
         return;
     }
-    g = func_020748a8();
+    g = GetChaseCamera();
     q = GetKart(data_021759c0->mEntryIndex);
     v = g->mForward;
     v.y = 0;
@@ -969,7 +969,7 @@ void func_02082368(Unk0201ca6c *p, s32 a) {
     if (a != 0) {
         return;
     }
-    g = func_020748a8();
+    g = GetChaseCamera();
     q = GetKart(data_021759c0->mEntryIndex);
     v = g->mForward;
     v.y = 0;
@@ -999,7 +999,7 @@ void func_020821cc(Unk0201ca6c *p, s32 a) {
     if (a != 0) {
         return;
     }
-    g = func_020748a8();
+    g = GetChaseCamera();
     q = GetKart(data_021759c0->mEntryIndex);
     v = g->mForward;
     t = (s32) (((s64) q->mVelocityLength * data_0217ae9c + 0x800) >> 12);

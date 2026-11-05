@@ -1032,7 +1032,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
     for (i = 0; i < n; i++) {
         Kart *p;
         KartBalloons *e = &c->mKartBalloons[i];
-        func_020748a8();
+        GetChaseCamera();
         p = GetKart((u16) i);
         v.x = p->mPos.x;
         v.y = p->mPos.y + func_020a23a0(p) - 0xf666;

@@ -1053,7 +1053,7 @@ typedef struct Camera {
     /* 0dc */ s32 mFollowDistance;
     /* 0e0 */ s32 mUnk_0e0;
     // Amount the look-at is lowered: +0x1000 per call up to 0xa000 while the Kart has bit 0x10000 of mUnk_48, else
-    // decays; subtracted from the look-at goal y (func_020745d4).
+    // decays; subtracted from the look-at goal y (UpdateChaseCameraLookAt).
     /* 0e4 */ s32 mLookAtLowering;
     /* 0e8 */ s32 mFollowDistanceScale;
     /* 0ec */ s32 mUnk_0ec;
@@ -1090,7 +1090,7 @@ typedef struct Camera {
     // toward it.
     /* 170 */ s32 mCollisionOffsetLengthGoal;
     // Eased mCollisionOffsetLengthGoal; times 3 it shortens the follow distance and raises the position goal
-    // (func_020741a0).
+    // (UpdateChaseCameraPos).
     /* 174 */ s32 mCollisionOffsetLength;
     // Added to the eye height of the view only, not to the look-at.
     /* 178 */ s32 mViewPosYOffset;

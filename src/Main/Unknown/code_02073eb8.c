@@ -109,7 +109,7 @@ void SetupCameraBehindKart(void) {
     (data_0217ac94)->mLookAt.y = q->mPos.y + (data_0217ac94)->mLookAtHeight;
 }
 
-void func_02076528(Camera *a, Kart *b) {
+void UpdateChaseCamera(Camera *a, Kart *b) {
     Vec3 v = b->mPos;
     Vec3 g;
     Vec3 w;
@@ -164,11 +164,12 @@ void func_02076528(Camera *a, Kart *b) {
     }
     w.y = 0;
     GetKartUp(b, &z);
-    func_020745d4(&a->mLookAt, &a->mUnk_0b4, &a->mLookAtLowering, b, s, a->mLookAtHeight);
+    UpdateChaseCameraLookAt(&a->mLookAt, &a->mUnk_0b4, &a->mLookAtLowering, b, s, a->mLookAtHeight);
     v.y = v.y - s;
     g = v;
-    func_02075fe0(a, b, &u);
-    func_020741a0(&a->mPos, &a->mUnk_0a8, a, b, &g, &u, (s32) (((s64) a->mCollisionOffsetLength * 0x3000) >> 12));
+    UpdateChaseCameraPosGoalYOffset(a, b, &u);
+    UpdateChaseCameraPos(&a->mPos, &a->mUnk_0a8, a, b, &g, &u,
+                         (s32) (((s64) a->mCollisionOffsetLength * 0x3000) >> 12));
     if (IsWaterPresent() != FALSE) {
         t = GetHeightAboveWater(a->mPos.y - 0x5000);
         if (t < 0) {
@@ -177,7 +178,7 @@ void func_02076528(Camera *a, Kart *b) {
             a->mViewPosYOffset = 0;
         }
     }
-    func_020760ec(a, b, &u);
+    UpdateChaseCameraCollision(a, b, &u);
     p = &b->mUnk_120;
     t = 0;
     if (b->mUnk_44 & 8) {
@@ -218,7 +219,7 @@ void func_02076528(Camera *a, Kart *b) {
     UpdateCameraWobble(a);
 }
 
-void func_020760ec(Camera *a, Kart *b, Vec3 *c) {
+void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c) {
     Vec3 v = data_usa_02154fdc;
     Vec3 w;
     Vec3 x;
@@ -302,7 +303,7 @@ void func_020760ec(Camera *a, Kart *b, Vec3 *c) {
         (s32) (((s64) (a->mCollisionOffsetLengthGoal - a->mCollisionOffsetLength) * 0x11f + 0x800) >> 12);
 }
 
-void func_02075fe0(Camera *a, Kart *b, Vec3 *c) {
+void UpdateChaseCameraPosGoalYOffset(Camera *a, Kart *b, Vec3 *c) {
     s32 e = -0x2d000;
     s32 j;
     s32 g = 0;
@@ -347,7 +348,7 @@ void func_02075eb8(void) {
     p->mHalfFovPairSecond = q->mHalfFovPairSecond;
     p->mShakeKind = q->mShakeKind;
     if ((s16) q->mEntryGroupIndex != -1) {
-        func_0207be40(&p->mPosCurve, q);
+        SetupPosCurve(&p->mPosCurve, q);
         if (data_021759c0->mMode == 2) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
@@ -392,7 +393,7 @@ void func_02075d08(s32 a) {
     p->mHalfFovPairSecond = q->mHalfFovPairSecond;
     p->mShakeKind = q->mShakeKind;
     if ((s16) q->mEntryGroupIndex != -1) {
-        func_0207be40(&p->mPosCurve, q);
+        SetupPosCurve(&p->mPosCurve, q);
         if (data_021759c0->mMode == 2) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
@@ -420,7 +421,7 @@ static inline void func_02074b00_inline(Vec3 *v, const Vec3 *u, s32 s) {
     v->z = (s32) (((s64) u->z * s) >> 12);
 }
 
-BOOL func_02075a94(Camera *p) {
+BOOL TryUpdateEntryCamera(Camera *p) {
     BOOL r = TRUE;
     CourseMapCamera *q;
     Vec3 v;
@@ -437,14 +438,14 @@ BOOL func_02075a94(Camera *p) {
     }
     p->mPrevPos = p->mPos;
     if (p->mUnk_238 != FALSE) {
-        func_02074e6c(p);
+        UpdateCameraAngleEntry(p);
         return TRUE;
     }
     func_0207a948(&v, p->mFollowedKartIndex);
     i = func_020411e4(&v);
     if (p->mUnk_228 != FALSE) {
         if (data_021759c0->mMode == 2) {
-            func_02075900(p);
+            UpdateCameraByEntryKind(p);
             return TRUE;
         }
         p->mUnk_22c = p->mUnk_22c + 1;
@@ -467,7 +468,7 @@ BOOL func_02075a94(Camera *p) {
                 p->mHalfFovPairSecond = q->mHalfFovPairSecond;
                 p->mShakeKind = q->mShakeKind;
                 if ((s16) q->mEntryGroupIndex != -1) {
-                    func_0207be40(&p->mPosCurve, q);
+                    SetupPosCurve(&p->mPosCurve, q);
                     if (data_021759c0->mMode == 2) {
                         func_0207bd6c(&p->mUnk_1d0, q);
                     }
@@ -479,12 +480,12 @@ BOOL func_02075a94(Camera *p) {
                 data_0217aca8 = 1;
             }
         }
-        func_02075900(p);
+        UpdateCameraByEntryKind(p);
     }
     return r;
 }
 
-void func_02075900(Camera *p) {
+void UpdateCameraByEntryKind(Camera *p) {
     CourseMapCamera *a;
     s32 b;
     switch (p->mCourseMapCamera->mKind) {
@@ -501,19 +502,19 @@ void func_02075900(Camera *p) {
             UpdateCameraView(p);
             break;
         case 1:
-            func_02075390(p);
+            UpdateCameraPosCurveLookAtKart(p);
             break;
         case 5:
         case 6:
-            func_02074e6c(p);
+            UpdateCameraAngleEntry(p);
             break;
         case 2:
             p->mPos = p->mCourseMapCamera->mUnk_00;
-            func_020748b8(p);
+            UpdateCameraLookAtBlend(p);
             UpdateCameraViewWithWorldUp(p);
             break;
         case 3:
-            func_02074978(p);
+            UpdateCameraPosCurveLookAtBlend(p);
             break;
     }
     a = p->mCourseMapCamera;
@@ -559,7 +560,7 @@ void func_020757d8(void) {
     p->mHalfFovPairSecond = q->mHalfFovPairSecond;
     p->mShakeKind = q->mShakeKind;
     if ((s16) q->mEntryGroupIndex != -1) {
-        func_0207be40(&p->mPosCurve, q);
+        SetupPosCurve(&p->mPosCurve, q);
         if (data_021759c0->mMode == 2) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
@@ -588,7 +589,7 @@ static inline void func_02075424_inline(Camera *p) {
     p->mLookAtBlend = 0;
     p->mFovBlend = 0;
     if ((s16) q->mEntryGroupIndex != -1) {
-        func_0207be40(&p->mPosCurve, q);
+        SetupPosCurve(&p->mPosCurve, q);
     }
     if (data_021759c0->mUnk_00c == 5) {
         func_0208e808(q->mShakeKind != 0);
@@ -606,14 +607,14 @@ Unk02012f58 *func_02075694(void) {
             data_usa_0217ac98->mFrustumShift = data_usa_0217ac84->mFrustumShift;
         }
     }
-    func_02075424(data_usa_0217ac98);
+    UpdateCameraEntry(data_usa_0217ac98);
     if (data_usa_0217ac84->mFrustumShift == 2) {
         data_usa_0217ac84->mHalfFovPairFirst = data_usa_0217ac98->mHalfFovPairFirst;
         data_usa_0217ac84->mHalfFovPairSecond = data_usa_0217ac98->mHalfFovPairSecond;
         data_usa_0217ac84->mPos = data_usa_0217ac98->mPos;
         data_usa_0217ac84->mLookAt = data_usa_0217ac98->mLookAt;
     } else {
-        func_02075424(data_usa_0217ac84);
+        UpdateCameraEntry(data_usa_0217ac84);
     }
     if (func_02061f7c() == 0) {
         UpdateCameraView(data_usa_0217ac98);
@@ -626,17 +627,17 @@ Unk02012f58 *func_02075694(void) {
 }
 
 Unk02012f58 *func_0207564c(void) {
-    func_02075424(data_usa_0217ac98);
+    UpdateCameraEntry(data_usa_0217ac98);
     UpdateCameraView(data_usa_0217ac98);
     data_0217acb4 = data_usa_0217ac98;
     return &data_usa_0217ac98->mViewMatrix;
 }
 
-void func_02075424(Camera *p) {
+void UpdateCameraEntry(Camera *p) {
     if (p->mCourseMapCamera == NULL) {
         return;
     }
-    func_02075900(p);
+    UpdateCameraByEntryKind(p);
     p->mCourseMapCameraFrames = p->mCourseMapCameraFrames + 1;
     if (p->mCourseMapCameraFrames != p->mCourseMapCamera->mFrameCount) {
         return;
@@ -654,8 +655,8 @@ void func_02075424(Camera *p) {
     func_02075424_inline(data_usa_0217ac84);
 }
 
-void func_02075390(Camera *p) {
-    func_020749a4(p, p->mCourseMapCamera->mPosCurvePerFrame);
+void UpdateCameraPosCurveLookAtKart(Camera *p) {
+    UpdateCameraPosCurve(p, p->mCourseMapCamera->mPosCurvePerFrame);
     if (data_021759c0->mUnk_00c == 5) {
         p->mFollowedKartIndex = (p->mCourseMapCamera->mUnk_24.z >> 12) - 1;
         func_0207a948(&p->mLookAt, p->mFollowedKartIndex);
@@ -667,7 +668,7 @@ void func_02075390(Camera *p) {
     UpdateCameraView(p);
 }
 
-void func_02074e6c(Camera *p) {
+void UpdateCameraAngleEntry(Camera *p) {
     CourseMapCamera *q = p->mCourseMapCamera;
     Kart *o;
     Vec3 *v;
@@ -826,7 +827,7 @@ void func_02074b00(Camera *p) {
     }
 }
 
-void func_020749a4(Camera *p, s32 a) {
+void UpdateCameraPosCurve(Camera *p, s32 a) {
     CourseMapCamera *q = p->mCourseMapCamera;
     u16 n = gCourseMap->mEntryGroups[q->mEntryGroupIndex].mEntryCount;
     Unk02042044 *e0;
@@ -837,7 +838,7 @@ void func_020749a4(Camera *p, s32 a) {
     s32 m;
 
     if (n >= 4) {
-        func_0207bc9c(&p->mPos, &p->mPosCurve, q, a);
+        UpdatePosCurve(&p->mPos, &p->mPosCurve, q, a);
         return;
     }
     if (n < 2) {
@@ -863,13 +864,13 @@ void func_020749a4(Camera *p, s32 a) {
     Vec3Add(&v, &s, &p->mPos);
 }
 
-void func_02074978(Camera *p) {
-    func_020749a4(p, p->mCourseMapCamera->mPosCurvePerFrame);
-    func_020748b8(p);
+void UpdateCameraPosCurveLookAtBlend(Camera *p) {
+    UpdateCameraPosCurve(p, p->mCourseMapCamera->mPosCurvePerFrame);
+    UpdateCameraLookAtBlend(p);
     UpdateCameraViewWithWorldUp(p);
 }
 
-void func_020748b8(Camera *p) {
+void UpdateCameraLookAtBlend(Camera *p) {
     CourseMapCamera *q = p->mCourseMapCamera;
     s32 a, b, c;
     s32 d, e, f;
@@ -901,7 +902,7 @@ void func_020748b8(Camera *p) {
     }
 }
 
-void *func_020748a8(void) {
+void *GetChaseCamera(void) {
     return data_0217ac94;
 }
 
@@ -949,7 +950,7 @@ void SetCameraHeightHold(s32 a) {
     data_0217ac94->mHeldHeightEasing = FALSE;
 }
 
-void func_020745d4(Vec3 *a, Vec3 *b, s32 *c, Kart *d, s32 e, s32 f) {
+void UpdateChaseCameraLookAt(Vec3 *a, Vec3 *b, s32 *c, Kart *d, s32 e, s32 f) {
     Vec3 v4;
     Vec3 v10;
     Vec3 v1;
@@ -989,7 +990,7 @@ void func_020745d4(Vec3 *a, Vec3 *b, s32 *c, Kart *d, s32 e, s32 f) {
     a->y = t + (s32) (((s64) (v4.y - t) * 0xccd + 0x800) >> 12);
 }
 
-void func_020741a0(Vec3 *a, Vec3 *b, Camera *c, Kart *d, Vec3 *e, const Vec3 *f, s32 g) {
+void UpdateChaseCameraPos(Vec3 *a, Vec3 *b, Camera *c, Kart *d, Vec3 *e, const Vec3 *f, s32 g) {
     Vec3 v4;
     Vec3 v10;
     Vec3 v1;

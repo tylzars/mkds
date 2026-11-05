@@ -146,7 +146,7 @@ void InitRace(void) {
     func_0208aa30(a);
     func_02085e04();
     InitKarts(data_021759c0->mKartCount);
-    func_02077944();
+    CreateChaseCamera();
     func_020777ac(data_021759c0->mUnk_063);
     if (gRace->mUnk_28 != 0) {
         if (gRace->mUnk_2c != 0) {
@@ -155,7 +155,7 @@ void InitRace(void) {
             func_0207767c();
         }
     }
-    data_0217aa88 = func_020748a8();
+    data_0217aa88 = GetChaseCamera();
     data_0217aa5c = func_02074898();
     data_0217aa6c = data_0217aa88;
     data_0217aa7c = &data_0217aa88->mViewMatrix;
@@ -295,9 +295,9 @@ void UpdateRace(void) {
         data_0217aa7c = v;
         data_0217aa6c = func_02074888();
     } else if (func_0203c5e4() != 0) {
-        func_02076528(data_0217aa88, GetKart(data_021759c0->mUnk_063));
+        UpdateChaseCamera(data_0217aa88, GetKart(data_021759c0->mUnk_063));
         UpdateCameraView(data_0217aa88);
-        if (func_02075a94(data_0217aa5c) != 0) {
+        if (TryUpdateEntryCamera(data_0217aa5c) != 0) {
             data_0217aa6c = data_0217aa5c;
             data_0217aa7c = &data_0217aa5c->mViewMatrix;
         } else {
@@ -305,7 +305,7 @@ void UpdateRace(void) {
             data_0217aa7c = &data_0217aa88->mViewMatrix;
         }
     } else {
-        func_02076528(data_0217aa88, GetKart(data_021759c0->mEntryIndex));
+        UpdateChaseCamera(data_0217aa88, GetKart(data_021759c0->mEntryIndex));
         UpdateCameraView(data_0217aa88);
         data_0217aa6c = data_0217aa88;
         data_0217aa7c = &data_0217aa88->mViewMatrix;

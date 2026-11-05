@@ -30,7 +30,9 @@ typedef struct Unk021a2300 {
 
 void *func_ov001_021a2034(void);
 void func_ov001_021a2048(void *p0, Unk021a2048 *p1);
-void func_ov001_021a2218(Unk021a2048 *o, Camera *g, Vec3 *out);
+// Writes into out the point 0x58000 (88.0) ahead of the camera g along its forward x and z, at the height of
+// o->mUnk_04.y.
+void ComputePointAheadOfCamera(Unk021a2048 *o, Camera *g, Vec3 *out);
 void *func_ov001_021a226c(void);
 void func_ov001_021a2284(void *p0, Unk021a2048 *p1);
 void func_ov001_021a2300(Unk021a2300 *p);

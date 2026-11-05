@@ -815,7 +815,7 @@ void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
 }
 
-void func_0207be40(Unk0207b960 *a, struct CourseMapCamera *b) {
+void SetupPosCurve(Unk0207b960 *a, struct CourseMapCamera *b) {
     CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mEntryGroupIndex];
     u16 i;
 
@@ -852,7 +852,7 @@ void func_0207bd6c(Unk0207b960 *a, struct CourseMapCamera *b) {
     a->mUnk_00[3] = GetCourseMapGroupEntry(b->mEntryGroupIndex, e->mEntryCount - 1)->mUnk_00;
 }
 
-void func_0207bc9c(Vec3 *a, Unk0207b960 *b, struct CourseMapCamera *c, s32 d) {
+void UpdatePosCurve(Vec3 *a, Unk0207b960 *b, struct CourseMapCamera *c, s32 d) {
     CourseMapEntryGroup *e;
     Unk02042044 *f;
     u16 i;

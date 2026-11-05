@@ -54,7 +54,7 @@ void *func_ov001_021a226c(void) {
     return (void *) func_0209bf48(func_ov001_021a2300, func_ov001_021a2284, NULL);
 }
 
-void func_ov001_021a2218(Unk021a2048 *o, Camera *g, Vec3 *out) {
+void ComputePointAheadOfCamera(Unk021a2048 *o, Camera *g, Vec3 *out) {
     out->x = g->mPos.x + (s32) (((s64) g->mForward.x * 0x58000) >> 12);
     out->y = o->mUnk_04.y;
     out->z = g->mPos.z + (s32) (((s64) g->mForward.z * 0x58000) >> 12);
@@ -95,7 +95,7 @@ void func_ov001_021a2048(void *p0, Unk021a2048 *p1) {
                     func_0208b7bc(0x43d, &v);
                     func_0208b7bc(0x43e, &v);
                     func_0208b7bc(0x43f, &v);
-                    func_ov001_021a2218(p1, g, &v);
+                    ComputePointAheadOfCamera(p1, g, &v);
                     p1->mUnk_a4 = func_0208b7bc(0x437, &v);
                     break;
             }
@@ -108,7 +108,7 @@ void func_ov001_021a2048(void *p0, Unk021a2048 *p1) {
                 case 1:
                     break;
                 case 2:
-                    func_ov001_021a2218(p1, g, &v);
+                    ComputePointAheadOfCamera(p1, g, &v);
                     func_0208b5b0(p1->mUnk_a4, &v);
                     break;
             }

@@ -121,7 +121,7 @@ void func_02077998(void) {
     }
 }
 
-void func_02077944(void) {
+void CreateChaseCamera(void) {
     Kart *a = GetKart(data_021759c0->mEntryIndex);
 
     data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
@@ -193,7 +193,7 @@ void func_02077750(Unk02077750 *a, CourseMapCamera *b) {
     a->mUnk_80 = 0;
     a->mUnk_84 = 0;
     if (v1->mEntryCount >= 4) {
-        func_0207be40(&a->mUnk_04, b);
+        SetupPosCurve(&a->mUnk_04, b);
         func_0207bd6c(&a->mUnk_40, b);
     }
 }
@@ -214,10 +214,10 @@ void func_0207767c(void) {
         return;
     }
     if ((s16) data_usa_0217ac98->mCourseMapCamera->mEntryGroupIndex != -1) {
-        func_0207be40(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
+        SetupPosCurve(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
     }
     if ((s16) data_usa_0217ac84->mCourseMapCamera->mEntryGroupIndex != -1) {
-        func_0207be40(&data_usa_0217ac84->mPosCurve, data_usa_0217ac84->mCourseMapCamera);
+        SetupPosCurve(&data_usa_0217ac84->mPosCurve, data_usa_0217ac84->mCourseMapCamera);
     }
 }
 
@@ -233,7 +233,7 @@ void func_020775e4(void) {
         return;
     }
     if ((s16) data_usa_0217ac98->mCourseMapCamera->mEntryGroupIndex != -1) {
-        func_0207be40(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
+        SetupPosCurve(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
     }
 }
 

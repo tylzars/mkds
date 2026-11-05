@@ -39,7 +39,7 @@ void func_0210298c(Unk02102674 *p) {
     s32 f;
 
     q = p->mUnk_12c;
-    s = func_020748a8();
+    s = GetChaseCamera();
     a2 = p->mUnk_000.mAgeFrames;
     if (a2 == 0x3f) {
         func_021031f4(p);

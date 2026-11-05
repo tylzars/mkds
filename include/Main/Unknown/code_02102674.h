@@ -35,7 +35,7 @@ typedef struct Unk02102674 {
     /* 1a0 */ u8 mUnk_1a0[0x14];
 } Unk02102674;
 
-// Object returned by func_020748a8 and passed to the vector helpers by func_0210298c.
+// Object returned by GetChaseCamera and passed to the vector helpers by func_0210298c.
 typedef struct Unk020748a8 {
     /* 000 */ Vec3 mUp;
     /* 00c */ Vec3 mSide;

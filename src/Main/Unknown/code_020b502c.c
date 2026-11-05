@@ -136,7 +136,7 @@ u16 func_020b6368(void) {
             if (func_020b4df8() == 2) {
                 p = GetCurrentCamera();
             } else {
-                p = func_020748a8();
+                p = GetChaseCamera();
             }
             a = AngleFromPair(p->mViewMatrix[8], p->mViewMatrix[2]);
             r = (0x14000 - a) % 0x10000;

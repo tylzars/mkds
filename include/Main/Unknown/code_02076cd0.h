@@ -32,7 +32,9 @@ void func_020775e4(void);
 void func_0207767c(void);
 void func_02077750(Unk02077750 *a, CourseMapCamera *b);
 void func_020777ac(u32 a);
-void func_02077944(void);
+// Allocates the chase camera (data_0217ac94), sets it up behind the selected Kart (SetupCameraBehindKart), keeps that
+// Kart's forward vector in mSavedKartForward and refreshes the projection.
+void CreateChaseCamera(void);
 void func_02077998(void);
 void func_02077a28(void *a);
 u16 func_02077a4c(void);
