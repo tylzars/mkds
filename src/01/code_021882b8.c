@@ -24,7 +24,7 @@ void func_ov001_021882b8(void) {
             obj = data_021759c0->mMode == 4 ? func_ov001_02181b68(i) : 0;
             table = func_02100138(0x1ff);
             func_ov001_02188e88(obj);
-            obj->mUnk_2c0 = 0;
+            obj->mUnk_2c0 = FALSE;
             obj->mUnk_2b8 = 3;
             obj->mSpeed = obj->mUnk_178 = obj->mUnk_17c = 0;
             obj->mAngleState = 0;

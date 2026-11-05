@@ -374,7 +374,7 @@ void func_020695c4(Kart *p) {
     s = &p->mUnk_538;
     s->mUnk_1e = 0;
     s->mUnk_20 = 0;
-    s->mUnk_24 = 0;
+    s->mUnk_24 = FALSE;
     func_0209086c(&s->mUnk_2c, p->mIndex);
     p->mUnk_4c |= 0x10000000;
     k = data_021759c0->mKartCount;
@@ -453,8 +453,8 @@ void func_0206938c(Kart *p) {
     if (!(p->mUnk_7c & 0x400)) {
         if (func_0209081c(&s->mUnk_2c) != 0) {
             u = &p->mUnk_538;
-            if ((p->mUnk_4c & 0x10000000) && u->mUnk_24 == 0) {
-                u->mUnk_24 = 1;
+            if ((p->mUnk_4c & 0x10000000) && u->mUnk_24 == FALSE) {
+                u->mUnk_24 = TRUE;
                 if (p->mUnk_7c & 0x200) {
                     p->mUnk_514->mUnk_2c ^= 0x200000;
                 }
@@ -462,7 +462,7 @@ void func_0206938c(Kart *p) {
         }
     }
     func_02087b78((Unk02087d0c *) &p->mKartModelsEntry->mUnk_098);
-    if (s->mUnk_24 != 0) {
+    if (s->mUnk_24 != FALSE) {
         p->mUnk_4c8 -= 0x52;
         if (p->mUnk_4c8 > 0x1000) {
             return;
@@ -490,7 +490,7 @@ void func_0206938c(Kart *p) {
     if (p->mUnk_4c8 > 0x1666) {
         p->mUnk_4c8 = 0x1666;
     }
-    if (s->mUnk_24 != 0) {
+    if (s->mUnk_24 != FALSE) {
         return;
     }
     r = FALSE;
@@ -508,7 +508,7 @@ void func_0206938c(Kart *p) {
     if (s->mUnk_1e <= 0x1e0 && t == FALSE) {
         return;
     }
-    s->mUnk_24 = 1;
+    s->mUnk_24 = TRUE;
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x200000;
     }

@@ -162,7 +162,7 @@ void func_020b3b58(void) {
 void func_020b3b08(void) {
     data_0217b35c = HeapAlloc(GetHeap(func_020364e8()), 0x10);
     data_0217b35c->mUnk_00 = 0;
-    data_0217b35c->mUnk_04 = 0;
+    data_0217b35c->mUnk_04 = FALSE;
     data_0217b35c->mUnk_08 = 0;
     data_0217b35c->mUnk_0c = FALSE;
 }
@@ -278,7 +278,7 @@ void func_020b3728(void) {
             }
         }
     }
-    if (data_0217b35c->mUnk_04 == 0) {
+    if (data_0217b35c->mUnk_04 == FALSE) {
         return;
     }
     a = data_0217b35c->mUnk_08;
@@ -300,5 +300,5 @@ void func_020b3728(void) {
         case 5:
             break;
     }
-    data_0217b35c->mUnk_04 = 0;
+    data_0217b35c->mUnk_04 = FALSE;
 }

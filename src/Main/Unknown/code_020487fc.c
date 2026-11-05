@@ -157,7 +157,7 @@ static inline s32 func_020487fc_inline10(void) {
 
 static inline s32 func_020487fc_inline11(void) {
     BOOL r = FALSE;
-    if (data_0217d384 != NULL && data_0217d384->mHeapCreated != 0) {
+    if (data_0217d384 != NULL && data_0217d384->mHeapCreated != FALSE) {
         r = TRUE;
     }
     return r;

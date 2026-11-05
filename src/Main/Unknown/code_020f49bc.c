@@ -116,7 +116,7 @@ void func_020f68b0(Unk020f41c4_A *a) {
         if (func_020e04b0(a->mUnk_104, &a->mUnk_108, &a->mUnk_f0) != FALSE) {
             func_020f65c4(a);
         }
-        if (a->mUnk_104->mUnk_00->mUnk_130 != 0) {
+        if (a->mUnk_104->mUnk_00->mUnk_130 != FALSE) {
             if (a->mUnk_f0.y < 0xff4) {
                 a->mUnk_74 |= 0x80;
             }
@@ -254,7 +254,7 @@ void func_020f63cc(Unk020f41c4_A *a) {
         }
         if (a->mUnk_fc & 0x214300) {
             a->mUnk_74 |= 0x20;
-            func_020f92e8((u32) p, (u32) &v3);
+            func_020f92e8(p, &v3);
             if (func_020f9290(a, &v3) != FALSE) {
                 return;
             }
@@ -281,7 +281,7 @@ void func_020f63cc(Unk020f41c4_A *a) {
 }
 
 void func_020f6388(Unk020f41c4_A *a, Vec3 *b, Vec3 *c) {
-    func_020f92e8((u32) &a->mUnk_5c, (u32) c);
+    func_020f92e8(&a->mUnk_5c, c);
     if (a->mUnk_74 & 0x1000000) {
         return;
     }
@@ -902,14 +902,14 @@ void func_020f504c(Unk020eda5c *a, Unk020f40dc *b) {
 }
 
 void func_020f5040(Unk020f5008 *p0) {
-    p0->mUnk_134 = 0x1;
+    p0->mUnk_134 = TRUE;
 }
 
 #pragma thumb off
 
 // Runs func_020ed5c0 with the last two parameters swapped when the 0x134 word is set.
 void func_020f5008(Unk020f5008 *a, void *b, void *c) {
-    if (a->mUnk_134 == 0) {
+    if (a->mUnk_134 == FALSE) {
         return;
     }
     func_020ed5c0(&a->mUnk_000.mUnk_000, c, b);
@@ -954,14 +954,14 @@ Unk020f5008 *func_020f4ee8(void) {
         p->mUnk_000.mUnk_000.mUnk_120 = NULL;
     }
     func_020f9c40((s32) p);
-    p->mUnk_134 = 0;
+    p->mUnk_134 = FALSE;
     p->mUnk_130 = 0;
     return p;
 }
 
 // Stores the two Vec3s in the object and sets the word at 0x80.
 void func_020f4e78(Unk020f5008 *a, Vec3 *b, Vec3 *c) {
-    a->mUnk_134 = 1;
+    a->mUnk_134 = TRUE;
     func_0208ad74(&a->mUnk_000.mUnk_000.mUnk_7c, 1);
     if (b != NULL) {
         a->mUnk_000.mUnk_000.mUnk_f0 = *b;

@@ -7,7 +7,7 @@
 
 void DeleteSocket(Gt2Socket *a) {
     if (a->mRunningCallbackCount != 0) {
-        a->mDeletePending = 1;
+        a->mDeletePending = TRUE;
         return;
     }
     func_ov000_0218e53c(a->mDescriptor);

@@ -65,10 +65,10 @@ typedef struct Emblem {
     /* 10a0 */ s32 mUnk_10a0;
     /* 10a4 */ s32 mUnk_10a4;
     /* 10a8 */ s32 mUnk_10a8;
-    /* 10ac */ s32 mUnk_10ac;
-    /* 10b0 */ s32 mUnk_10b0;
+    /* 10ac */ BOOL mUnk_10ac;
+    /* 10b0 */ BOOL mUnk_10b0;
     /* 10b4 */ s32 mUnk_10b4;
-    /* 10b8 */ s32 mUnk_10b8;
+    /* 10b8 */ BOOL mUnk_10b8;
     /* 10bc */ s32 mUnk_10bc;
 } Emblem;
 

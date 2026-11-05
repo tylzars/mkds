@@ -15,8 +15,8 @@ typedef struct Unk020f1d70 {
     /* 148 */ Vec3 mUnk_148;
     /* 154 */ s32 mUnk_154;
     /* 158 */ s32 mUnk_158;
-    /* 15c */ s32 mUnk_15c;
-    /* 160 */ s32 mUnk_160;
+    /* 15c */ BOOL mUnk_15c;
+    /* 160 */ BOOL mUnk_160;
     /* 164 */ u16 mUnk_164;
     /* 166 */ u8 mUnk_166[2];
 } Unk020f1d70;

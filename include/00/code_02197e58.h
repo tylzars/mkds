@@ -20,8 +20,8 @@ typedef struct Gt2Socket {
     /* 0a */ u8 mUnk_0a[2];
     /* 0c */ void *mConnections;
     /* 10 */ void *mConnectionsToFree;
-    /* 14 */ s32 mDeletePending;
-    /* 18 */ s32 mUnk_18;
+    /* 14 */ BOOL mDeletePending;
+    /* 18 */ BOOL mUnk_18;
     /* 1c */ s32 mRunningCallbackCount;
     /* 20 */ void (*mIncomingConnectionCallback)(struct Gt2Socket *a, struct Gt2Connection *b, int c, int d, int e,
                                                  int f, int g);
@@ -51,8 +51,8 @@ typedef struct Gt2Connection {
     /* 06 */ u8 mUnk_06[2];
     /* 08 */ Gt2Socket *mSocket;
     /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
+    /* 10 */ BOOL mUnk_10;
+    /* 14 */ BOOL mUnk_14;
     /* 18 */ s32 mResult;
     /* 1c */ u32 mCreateTime;
     /* 20 */ u32 mTimeSinceCreateLimit;

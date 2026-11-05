@@ -28,7 +28,7 @@ void func_021031ac(Unk02102674 *p) {
     p->mUnk_138 = -1;
     p->mUnk_000.mUnk_d8 = 0x1f;
     p->mUnk_19c = 0;
-    p->mUnk_160 = 0;
+    p->mUnk_160 = FALSE;
 }
 
 BOOL func_0210300c(Unk02102674 *p) {
@@ -77,7 +77,7 @@ BOOL func_0210300c(Unk02102674 *p) {
         f = FALSE;
     }
     p->mUnk_194 = f;
-    if (e->mUnk_02 > 0 && p->mUnk_138 != 0 && p->mUnk_138 != 0xe && p->mUnk_198 != 0) {
+    if (e->mUnk_02 > 0 && p->mUnk_138 != 0 && p->mUnk_138 != 0xe && p->mUnk_198 != FALSE) {
         func_020f8e3c((u32) p->mUnk_12c, 0xf1);
     }
     return FALSE;

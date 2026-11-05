@@ -49,7 +49,7 @@ u32 GpiOpenSockets(GpConnection *p, Unk021919ac_node *n) {
     s32 r;
 
     o = p->mGpiConnection;
-    if (o->mFirewall == 0) {
+    if (o->mFirewall == FALSE) {
         o->mListenSocket = func_ov000_0218e554(2, 1, 0);
         if (o->mListenSocket == -1) {
             GpiSetError(p, 5, data_ov000_021b2dbc);
@@ -141,16 +141,16 @@ u32 GpiStartConnect(GpConnection *p, const char *a, const char *b, const char *c
     }
     switch (h) {
         case 1:
-            o->mFirewall = 1;
+            o->mFirewall = TRUE;
             break;
         case 0:
-            o->mFirewall = 0;
+            o->mFirewall = FALSE;
             break;
         default:
             GpiSetErrorMessage(p, data_ov000_021b2da8);
             return 2;
     }
-    o->mFirewall = 1;
+    o->mFirewall = TRUE;
     GpiCopyString(o->mNick, a, 0x1f);
     GpiCopyString((char *) o->mUniquenick, b, 0x15);
     GpiCopyString(o->mEmail, c, 0x33);
@@ -250,7 +250,7 @@ u32 GpiWriteLogin(GpConnection *p, Unk021919ac_q *q) {
     }
     GpiAppendBufferString(p, &o->mOutputBuffer, data_ov000_021b2d74);
     GpiAppendBufferString(p, &o->mOutputBuffer, a);
-    if (o->mFirewall == 1) {
+    if (o->mFirewall == TRUE) {
         GpiAppendBufferString(p, &o->mOutputBuffer, data_ov000_021b2d80);
     }
     GpiAppendBufferString(p, &o->mOutputBuffer, data_ov000_021b2d8c);
@@ -507,7 +507,7 @@ u32 func_ov000_02191180(GpConnection *a, GpiProfile *b) {
     GpiConnection *c;
 
     c = a->mGpiConnection;
-    if (b->mBuddyStatus != NULL && c->mUnk_104 == 0) {
+    if (b->mBuddyStatus != NULL && c->mUnk_104 == FALSE) {
         func_ov000_021a3668(b->mBuddyStatus->mUnk_08);
         b->mBuddyStatus->mUnk_08 = NULL;
         func_ov000_021a3668(b->mBuddyStatus->mUnk_0c);
@@ -520,7 +520,7 @@ u32 func_ov000_02191180(GpConnection *a, GpiProfile *b) {
     func_ov000_021a3668(b->mUnk_18);
     b->mUnk_18 = NULL;
     b->mUnk_14 = 0;
-    if (b->mUnk_0c == 0 || (c->mUnk_104 == 1 && b->mBuddyStatus == NULL)) {
+    if (b->mUnk_0c == 0 || (c->mUnk_104 == TRUE && b->mBuddyStatus == NULL)) {
         GpiRemoveProfile(a, b);
         return 0;
     }

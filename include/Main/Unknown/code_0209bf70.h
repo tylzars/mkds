@@ -48,7 +48,7 @@ typedef struct Unk0209c220 {
     /* 0f0 */ s32 mUnk_0f0;
     /* 0f4 */ s32 mUnk_0f4;
     /* 0f8 */ Unk020e0144 mUnk_0f8;
-    /* 11c */ s32 mUnk_11c;
+    /* 11c */ BOOL mUnk_11c;
     /* 120 */ s32 mUnk_120[8];
 } Unk0209c220;
 

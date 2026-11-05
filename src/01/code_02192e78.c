@@ -79,15 +79,15 @@ void InitOptionStates(void *heap, s16 a) {
     gOptionStates->mUnk_28 = func_021250b0(heap);
     func_ov001_021930ac();
     func_0212abdc(heap, func_ov001_0219e920());
-    arg.mUnk_00 = 1;
+    arg.mUnk_00 = TRUE;
     arg.mUnk_04 = func_020b403c(1);
     arg.mUnk_08 = 0;
     arg.mUnk_0c = 1;
     arg.mUnk_10 = 0;
-    arg.mUnk_14 = 0;
+    arg.mUnk_14 = FALSE;
     arg.mUnk_18 = 0;
-    arg.mUnk_1c = 1;
-    arg.mUnk_20 = 1;
+    arg.mUnk_1c = TRUE;
+    arg.mUnk_20 = TRUE;
     arg.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(heap, &arg);
@@ -108,7 +108,7 @@ void InitOptionStates(void *heap, s16 a) {
             break;
         case 3:
             gOptionStates->mPrevState = 6;
-            if (data_0217b488->mUnk_18 == 0) {
+            if (data_0217b488->mUnk_18 == FALSE) {
                 gOptionStates->mState = 2;
                 RegisterOptionHensyuMenuCallbacks();
             } else {

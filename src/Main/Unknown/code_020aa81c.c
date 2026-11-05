@@ -511,7 +511,7 @@ void func_020ab72c(void) {
 
 void func_020ab714(void) {
     func_020ab72c();
-    data_0217b2d8.mUnk_24 = 1;
+    data_0217b2d8.mUnk_24 = TRUE;
 }
 
 #pragma thumb off
@@ -531,7 +531,7 @@ void func_020ab660(u16 a, volatile Unk0214e334_b b) {
     } else {
         data_0217b2d8.mUnk_00 = 0;
     }
-    if (data_0217b2d8.mUnk_24 != 0) {
+    if (data_0217b2d8.mUnk_24 != FALSE) {
         if (b.mUnk_06 != 0) {
             b.mUnk_00 = data_0217b2d8.mUnk_0c[0];
             b.mUnk_02 = data_0217b2d8.mUnk_0c[1];

@@ -41,19 +41,19 @@ s32 InitSelectReturn(void *heap, s32 b) {
     if (*(vu16 *) 0x27ffc40 != 2) {
         InitSelectReturnDisplay();
         b = func_021286a0(b);
-        gSelectReturn->mDisplayBitOn = 1;
+        gSelectReturn->mDisplayBitOn = TRUE;
     } else {
-        gSelectReturn->mDisplayBitOn = 0;
+        gSelectReturn->mDisplayBitOn = FALSE;
         t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
         t &= ~4;
         *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (t << 8);
     }
-    gSelectReturn->mEnabled = 1;
+    gSelectReturn->mEnabled = TRUE;
     gSelectReturn->mState = 0;
     gSelectReturn->mNextState = 0;
     gSelectReturn->mStateFrames = 0;
-    gSelectReturn->mState1Requested = 0;
-    gSelectReturn->mState4Requested = 0;
+    gSelectReturn->mState1Requested = FALSE;
+    gSelectReturn->mState4Requested = FALSE;
     gSelectReturn->mBg2Offset = -0x28;
     gSelectReturn->mUnk_824 = 0xe;
     return b;
@@ -121,7 +121,7 @@ void func_02128624(s32 a) {
 }
 
 void AdvanceSelectReturnState0(void) {
-    if (gSelectReturn->mState1Requested != 0) {
+    if (gSelectReturn->mState1Requested != FALSE) {
         gSelectReturn->mNextState = 1;
         gSelectReturn->mStateFrames = 0;
         func_02128624(1);
@@ -136,7 +136,7 @@ void AdvanceSelectReturnState1(void) {
     if (p->mStateFrames >= 10) {
         p->mNextState = 2;
         gSelectReturn->mStateFrames = 0;
-        gSelectReturn->mState1Requested = 0;
+        gSelectReturn->mState1Requested = FALSE;
     }
 }
 #pragma thumb off
@@ -146,12 +146,12 @@ void AdvanceSelectReturnState1(void) {
 void AdvanceSelectReturnState2(void) {
     SelectReturn *v1;
     v1 = gSelectReturn;
-    if (v1->mState3Requested != 0) {
+    if (v1->mState3Requested != FALSE) {
         v1->mNextState = 3;
         func_02128624(0);
         return;
     }
-    if (v1->mState4Requested != 0) {
+    if (v1->mState4Requested != FALSE) {
         v1->mNextState = 4;
     }
 }
@@ -166,7 +166,7 @@ void AdvanceSelectReturnState3(void) {
     gSelectReturn->mStateFrames++;
     p = gSelectReturn;
     if (p->mStateFrames >= 9) {
-        if (p->mState4Requested != 0) {
+        if (p->mState4Requested != FALSE) {
             p->mNextState = 4;
             func_02128624(0);
         } else {
@@ -174,7 +174,7 @@ void AdvanceSelectReturnState3(void) {
             func_02128624(1);
         }
         gSelectReturn->mStateFrames = 0;
-        gSelectReturn->mState3Requested = 0;
+        gSelectReturn->mState3Requested = FALSE;
     }
 }
 
@@ -186,14 +186,14 @@ void AdvanceSelectReturnState4(void) {
     if (p->mStateFrames >= 10) {
         p->mNextState = 0;
         gSelectReturn->mStateFrames = 0;
-        gSelectReturn->mState4Requested = 0;
+        gSelectReturn->mState4Requested = FALSE;
     }
 }
 
 void AdvanceSelectReturn(void) {
     SelectReturn *p;
     p = gSelectReturn;
-    if (p->mEnabled != 0) {
+    if (p->mEnabled != FALSE) {
         p->mState = p->mNextState;
         switch (gSelectReturn->mState) {
             case 0:
@@ -219,8 +219,8 @@ void WriteSelectReturnRegisters(void) {
     SelectReturn *p;
     u32 t;
     p = gSelectReturn;
-    if (p->mEnabled != 0) {
-        if (p->mDisplayBitOn != 0) {
+    if (p->mEnabled != FALSE) {
+        if (p->mDisplayBitOn != FALSE) {
             if (((*(vu32 *) 0x4001000 & 0x1f00) >> 8 & 4) == 0) {
                 t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
                 *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((t | 4) << 8);
@@ -237,22 +237,22 @@ void WriteSelectReturnRegisters(void) {
 
 void func_02128374(void) {
     if (IsSelectReturnState2NoState3Or4Request() != 0) {
-        gSelectReturn->mState1Requested = 0;
+        gSelectReturn->mState1Requested = FALSE;
     } else {
-        gSelectReturn->mState1Requested = 1;
+        gSelectReturn->mState1Requested = TRUE;
     }
-    gSelectReturn->mState3Requested = 0;
-    gSelectReturn->mState4Requested = 0;
+    gSelectReturn->mState3Requested = FALSE;
+    gSelectReturn->mState4Requested = FALSE;
 }
 
 void func_02128310(s32 a) {
     s32 v;
-    gSelectReturn->mState1Requested = 0;
-    gSelectReturn->mState3Requested = 1;
+    gSelectReturn->mState1Requested = FALSE;
+    gSelectReturn->mState3Requested = TRUE;
     if (a != 0) {
-        gSelectReturn->mState4Requested = 1;
+        gSelectReturn->mState4Requested = TRUE;
     } else {
-        gSelectReturn->mState4Requested = 0;
+        gSelectReturn->mState4Requested = FALSE;
     }
     v = gSelectReturn->mUnk_824;
     if (v != -1) {
@@ -262,12 +262,12 @@ void func_02128310(s32 a) {
 
 void func_021282c8(void) {
     if (IsSelectReturnState0NoState1Request() != 0) {
-        gSelectReturn->mState4Requested = 0;
+        gSelectReturn->mState4Requested = FALSE;
     } else {
-        gSelectReturn->mState4Requested = 1;
+        gSelectReturn->mState4Requested = TRUE;
     }
-    gSelectReturn->mState1Requested = 0;
-    gSelectReturn->mState3Requested = 0;
+    gSelectReturn->mState1Requested = FALSE;
+    gSelectReturn->mState3Requested = FALSE;
 }
 
 s32 IsSelectReturnState2NoState3Or4Request(void) {
@@ -277,11 +277,11 @@ s32 IsSelectReturnState2NoState3Or4Request(void) {
     r = FALSE;
     t = FALSE;
     p = gSelectReturn;
-    if (p->mState == 2 && p->mState4Requested == 0) {
+    if (p->mState == 2 && p->mState4Requested == FALSE) {
         t = TRUE;
     }
     if (t != FALSE) {
-        if (p->mState3Requested == 0) {
+        if (p->mState3Requested == FALSE) {
             r = TRUE;
         }
     }
@@ -293,7 +293,7 @@ s32 IsSelectReturnState0NoState1Request(void) {
     SelectReturn *p;
     r = FALSE;
     p = gSelectReturn;
-    if (p->mState == 0 && p->mState1Requested == 0) {
+    if (p->mState == 0 && p->mState1Requested == FALSE) {
         r = TRUE;
     }
     return r;
@@ -349,7 +349,7 @@ void ClearSelectReturnDisplayBitOn(void) {
 #pragma thumb on
 void SetSelectReturnDisplayBitOn(void) {
     if (*(vu16 *) 0x27ffc40 != 2) {
-        gSelectReturn->mDisplayBitOn = 1;
+        gSelectReturn->mDisplayBitOn = TRUE;
     }
 }
 #pragma thumb off

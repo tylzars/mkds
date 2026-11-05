@@ -14,7 +14,7 @@ void func_020cef1c(void) {
     data_0217b488->mUnk_14 = 0;
     data_0217b488->mUnk_1c = 0;
     data_0217b488->mUnk_54 = 0;
-    data_0217b488->mUnk_58 = 0;
+    data_0217b488->mUnk_58 = FALSE;
     data_0217b488->mUnk_70 = 0;
 }
 

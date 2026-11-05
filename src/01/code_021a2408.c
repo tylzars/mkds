@@ -150,7 +150,7 @@ void func_ov001_021a2408(void) {
             break;
     }
 
-    if (gEmblem->mUnk_10b8 != 0) {
+    if (gEmblem->mUnk_10b8 != FALSE) {
         if (func_ov001_021a639c() == 0) {
             if (func_ov001_021a637c() == 0) {
                 func_021108ac(0);
@@ -170,7 +170,7 @@ void func_ov001_021a2408(void) {
                 func_021108ac(5);
             }
         }
-        gEmblem->mUnk_10b8 = 0;
+        gEmblem->mUnk_10b8 = FALSE;
     }
     func_020ca9e4();
     func_020ae5f0(gEmblem->mUnk_0000, gEmblem->mUnk_0404);

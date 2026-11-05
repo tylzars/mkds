@@ -797,7 +797,7 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
         }
         if (a->mUnk_000.mUnk_fc & 0x214300) {
             a->mUnk_000.mUnk_74 |= 0x20;
-            func_020f92e8((u32) p, (u32) &v);
+            func_020f92e8(p, &v);
             if (func_020f9290(a, &v) != FALSE) {
                 return;
             }
@@ -819,7 +819,7 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
 }
 
 void func_020f2dac(Unk020f41c4_A *a, Vec3 *b, Vec3 *c) {
-    func_020f92e8((u32) &a->mUnk_5c, (u32) c);
+    func_020f92e8(&a->mUnk_5c, c);
     if (a->mUnk_74 & 0x1000000) {
         return;
     }

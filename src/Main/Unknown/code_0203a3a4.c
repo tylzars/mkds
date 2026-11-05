@@ -166,7 +166,7 @@ void func_0203abdc(void) {
             f = FALSE;
             q = data_0217d384;
             if (q != NULL) {
-                if (q->mHeapCreated != 0) {
+                if (q->mHeapCreated != FALSE) {
                     f = TRUE;
                 }
             }
@@ -194,7 +194,7 @@ void func_0203aacc(void) {
         f = FALSE;
         q = data_0217d384;
         if (q != NULL) {
-            if (q->mHeapCreated != 0) {
+            if (q->mHeapCreated != FALSE) {
                 f = TRUE;
             }
         }

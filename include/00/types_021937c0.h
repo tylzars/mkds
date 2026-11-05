@@ -50,7 +50,7 @@ typedef struct GpiPeer {
     /* 14 */ s32 mUnk_14;
     /* 18 */ void *mUnk_18;
     /* 1c */ u32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
+    /* 20 */ BOOL mUnk_20;
     /* 24 */ u8 mUnk_24[4];
     /* 28 */ u8 mOutputBuffer[8];
     /* 30 */ s32 mOutputBufferLength;

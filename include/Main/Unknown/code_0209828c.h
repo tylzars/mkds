@@ -26,7 +26,7 @@ typedef struct Pakkun {
     /* 1d8 */ s32 mUnk_1d8;
     /* 1dc */ s32 mUnk_1dc;
     /* 1e0 */ s32 mUnk_1e0;
-    /* 1e4 */ s32 mUnk_1e4;
+    /* 1e4 */ BOOL mUnk_1e4;
     /* 1e8 */ s32 mUnk_1e8;
     /* 1ec */ s32 mUnk_1ec;
     /* 1f0 */ s32 mUnk_1f0;
@@ -38,7 +38,7 @@ typedef struct Pakkun {
 // Object returned by func_0209bef0 and func_0209bf1c here: a word at 0x1c is set to 1.
 typedef struct Unk020982d4 {
     /* 00 */ u8 mUnk_00[0x1c];
-    /* 1c */ s32 mUnk_1c;
+    /* 1c */ BOOL mUnk_1c;
 } Unk020982d4;
 
 extern Unk020e6fd4 *data_usa_0217b0dc;

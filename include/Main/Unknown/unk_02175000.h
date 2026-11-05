@@ -332,7 +332,7 @@ typedef struct Unk02175ec0_440s {
 // Object at data_02175ec0.
 typedef struct Unk02175ec0 {
     /* 0000 */ u32 mUnk_0000;
-    /* 0004 */ s32 mUnk_0004;
+    /* 0004 */ BOOL mUnk_0004;
     /* 0008 */ BOOL mUnk_0008;
     /* 000c */ s32 mUnk_000c;
     /* 0010 */ void (*mUnk_0010)(s32 a);

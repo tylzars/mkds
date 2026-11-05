@@ -18,7 +18,7 @@ typedef struct Unk02102674 {
     /* 154 */ s32 mUnk_154;
     /* 158 */ s32 mUnk_158;
     /* 15c */ s32 mUnk_15c;
-    /* 160 */ s32 mUnk_160;
+    /* 160 */ BOOL mUnk_160;
     /* 164 */ s32 mUnk_164;
     /* 168 */ s32 mUnk_168;
     /* 16c */ s32 mUnk_16c;
@@ -30,7 +30,7 @@ typedef struct Unk02102674 {
     /* 184 */ Vec3 mUnk_184;
     /* 190 */ u8 mUnk_190[0x4];
     /* 194 */ s32 mUnk_194;
-    /* 198 */ s32 mUnk_198;
+    /* 198 */ BOOL mUnk_198;
     /* 19c */ s32 mUnk_19c;
     /* 1a0 */ u8 mUnk_1a0[0x14];
 } Unk02102674;

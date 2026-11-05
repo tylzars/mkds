@@ -308,7 +308,7 @@ void func_0207729c(Unk02061808 *p) {
     p->mUnk_228 = FALSE;
     p->mUnk_22c = 0;
     p->mUnk_230 = 0;
-    p->mUnk_234 = 0;
+    p->mUnk_234 = FALSE;
     p->mUnk_238 = FALSE;
     p->mUnk_24c = 0;
     p->mUnk_250 = 0;

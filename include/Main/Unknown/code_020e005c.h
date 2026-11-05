@@ -79,7 +79,7 @@ typedef struct Unk020e005c {
     /* 114 */ Vec3 mUnk_114;
     /* 120 */ s32 mUnk_120;
     /* 124 */ Vec3 mUnk_124;
-    /* 130 */ s32 mUnk_130;
+    /* 130 */ BOOL mUnk_130;
     /* 134 */ s32 mUnk_134;
     /* 138 */ s32 mUnk_138;
     /* 13c */ s32 mUnk_13c;

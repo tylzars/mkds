@@ -315,9 +315,9 @@ void func_ov001_02187218(Unk02188950 *a, int b, s32 (*c)(Unk02188950 *)) {
     a->mUnk_150 = b;
     a->mUnk_0b0 = 0;
     a->mUnk_0b4 = a->mUnk_0b4 > 0 ? a->mUnk_0b4 - 1 : 0;
-    a->mUnk_2bc = 0;
-    a->mUnk_2c0 = 1;
-    if (a->mUnk_2c4 == 0) {
+    a->mUnk_2bc = FALSE;
+    a->mUnk_2c0 = TRUE;
+    if (a->mUnk_2c4 == FALSE) {
         a->mUnk_1d8 = 0;
         a->mUnk_1d4 = NULL;
         a->mUnk_1dc = NULL;
@@ -336,7 +336,7 @@ void func_ov001_02187218(Unk02188950 *a, int b, s32 (*c)(Unk02188950 *)) {
 }
 
 void func_ov001_0218720c(Unk02188950 *a) {
-    a->mUnk_2c0 = 0;
+    a->mUnk_2c0 = FALSE;
 }
 
 u32 func_ov001_021871f8(Unk02188950 *a, int b) {
@@ -372,8 +372,8 @@ void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, 
         b->mUnk_000.mScale.z = b->mPrm->mUnk_004;
     }
     b->mUnk_238 = b->mUnk_000.mPos;
-    b->mUnk_2bc = 0;
-    b->mUnk_2c0 = 1;
+    b->mUnk_2bc = FALSE;
+    b->mUnk_2c0 = TRUE;
     b->mUnk_148 = b->mUnk_000.mCourseMapRow->mUnk_26;
 }
 
@@ -604,7 +604,7 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         b->mUnk_2a0 = func_ov001_02187074(b->mUnk_2ac, b->mUnk_2b4, b->mUnk_2a0);
     }
 
-    if (b->mUnk_2c0 != 0) {
+    if (b->mUnk_2c0 != FALSE) {
         b->mVelocity.y -= b->mPrm->mUnk_01c;
     }
     if (-b->mPrm->mUnk_018 < *(s32 *) &b->mVelocity && *(s32 *) &b->mVelocity < b->mPrm->mUnk_018 &&
@@ -657,10 +657,10 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     if (b->mUnk_2c8 & 0x1e34ef) {
         if (b->mVelocity.y > 0) {
             b->mUnk_2c8 &= ~0x1e34ef;
-        } else if (b->mUnk_2bc != 0) {
+        } else if (b->mUnk_2bc != FALSE) {
             b->mVelocity.y = (s32) (((s64) b->mVelocity.y * -b->mPrm->mUnk_020) >> 12);
             if (b->mVelocity.y < b->mPrm->mUnk_018) {
-                b->mUnk_2bc = 0;
+                b->mUnk_2bc = FALSE;
                 b->mVelocity.y = 0;
             }
         } else {

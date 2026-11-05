@@ -11,7 +11,7 @@
 BOOL func_ov000_021986ac(Gt2Connection *a, u32 b) {
     if (a->mUnk_0c < 5) {
         BOOL r = FALSE;
-        if (a->mUnk_10 != 0) {
+        if (a->mUnk_10 != FALSE) {
             if (a->mTimeSinceCreateLimit != 0 && b - a->mCreateTime > a->mTimeSinceCreateLimit) {
                 r = TRUE;
             }

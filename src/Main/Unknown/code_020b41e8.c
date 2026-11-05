@@ -79,7 +79,7 @@ static inline u16 *func_020b41e8_inline(u16 *p, s32 r, s32 k) {
     return p + (r + k % 4) * 16 + k / 4 * 512;
 }
 
-void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
+void func_020b41e8(s32 a, s32 b, u16 *c, s32 d, s32 e) {
     Unk021759c0 *p = data_021759c0;
     Nclr *o1;
     Ncgr *o2;
@@ -115,15 +115,15 @@ void func_020b41e8(s32 a, s32 b, s32 c, s32 d, s32 e) {
     }
     s = o2->mData;
     for (j = 0; j < 16; j++) {
-        MemCopyHalfwords(s + (n * 25 + j) * 16, func_020b41e8_inline((u16 *) c, d + e * 32, j), 0x20);
+        MemCopyHalfwords(s + (n * 25 + j) * 16, func_020b41e8_inline(c, d + e * 32, j), 0x20);
     }
     s3 = o2->mData;
     for (y = 0; y < 4; y++) {
-        MemCopyHalfwords(s3 + (n * 25 + 16 + y) * 16, (u16 *) c + (d + 4 + e * 32) * 16 + y * 512, 0x20);
+        MemCopyHalfwords(s3 + (n * 25 + 16 + y) * 16, c + (d + 4 + e * 32) * 16 + y * 512, 0x20);
     }
     q = o2->mData;
     for (w = 0; w < 4; w++) {
-        MemCopyHalfwords(q + (n * 25 + 20 + w) * 16, func_020b41e8_inline((u16 *) c, d + (e + 4) * 32, w), 0x20);
+        MemCopyHalfwords(q + (n * 25 + 20 + w) * 16, func_020b41e8_inline(c, d + (e + 4) * 32, w), 0x20);
     }
-    MemCopyHalfwords(o2->mData + (n * 25 + 24) * 16, (u16 *) c + (d + 4 + (e + 4) * 32) * 16, 0x20);
+    MemCopyHalfwords(o2->mData + (n * 25 + 24) * 16, c + (d + 4 + (e + 4) * 32) * 16, 0x20);
 }

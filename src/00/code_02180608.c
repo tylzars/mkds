@@ -93,15 +93,15 @@ void InitWiFiStates(void *heap, s32 b) {
     func_02029a70(heap);
     gWiFiStates->mUnk_2c = func_02125028(heap);
     func_0212abdc(heap, func_ov000_021804f4());
-    c.mUnk_00 = 1;
+    c.mUnk_00 = TRUE;
     c.mUnk_04 = func_020b403c(1);
     c.mUnk_08 = 0;
     c.mUnk_0c = 0;
     c.mUnk_10 = 0;
-    c.mUnk_14 = 0;
+    c.mUnk_14 = FALSE;
     c.mUnk_18 = 0;
-    c.mUnk_1c = 1;
-    c.mUnk_20 = 1;
+    c.mUnk_1c = TRUE;
+    c.mUnk_20 = TRUE;
     c.mUnk_24 = 1;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(heap, &c);
@@ -114,9 +114,9 @@ void InitWiFiStates(void *heap, s32 b) {
     gWiFiStates->mStateHeap = CreateExpHeapFromMaxFree(heap);
     ClearWiFiStateCallbacks();
     gWiFiStates->mUnk_18 = -1;
-    if (data_0217b488->mUnk_58 != 0) {
+    if (data_0217b488->mUnk_58 != FALSE) {
         b = 0;
-        data_0217b488->mUnk_58 = 0;
+        data_0217b488->mUnk_58 = FALSE;
     }
     switch (b) {
         case 0:

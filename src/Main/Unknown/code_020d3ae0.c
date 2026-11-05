@@ -60,7 +60,7 @@ Unk0217b4f8 *func_020d50e0(void) {
 
 void func_020d50c4(void) {
     data_0217b4f8.mUnk_50 = TRUE;
-    data_0217b4f8.mUnk_54 = 0;
+    data_0217b4f8.mUnk_54 = FALSE;
 }
 
 u32 func_020d50b4(void) {
@@ -90,9 +90,9 @@ void func_020d4f94(Unk020d4f94 *p) {
     Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_44, buf, &data_0217b4f8.mUnk_44);
     if (data_0217b4f8.mUnk_50 != FALSE) {
         data_0217b4f8.mUnk_50 = FALSE;
-        data_0217b4f8.mUnk_54 = 1;
+        data_0217b4f8.mUnk_54 = TRUE;
     } else {
-        data_0217b4f8.mUnk_54 = 0;
+        data_0217b4f8.mUnk_54 = FALSE;
     }
 }
 
@@ -224,7 +224,7 @@ void func_020d4c28(Unk020e6fd4 *p, void *a) {
 
 void func_020d4bf0(void) {
     data_0217b4f8.mUnk_50 = TRUE;
-    data_0217b4f8.mUnk_54 = 0;
+    data_0217b4f8.mUnk_54 = FALSE;
     if (data_021759c0->mUnk_00c == 2) {
         *(u32 *) &data_0217b4f4 = ((u32) 0x00258000u);
         return;

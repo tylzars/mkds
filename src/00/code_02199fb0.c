@@ -7,14 +7,14 @@
 u32 func_ov000_02199fb0(Gt2Connection *a, u32 d, u32 e) {
     s32 b = a->mUnk_0c;
     if (b < 5) {
-        if (a->mUnk_10 != 0) {
+        if (a->mUnk_10 != FALSE) {
             func_ov000_02198514(a);
             if (Gt2SetResultAndCallResultCallback(a, d, NULL, 0) == FALSE) {
                 return 0;
             }
         } else {
             if (b == 4) {
-                a->mUnk_14 = 1;
+                a->mUnk_14 = TRUE;
             }
             func_ov000_02198514(a);
         }

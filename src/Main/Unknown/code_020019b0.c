@@ -68,14 +68,14 @@ void func_02001ba0(void *a) {
     data_usa_ov001_021a99c0->mUnk_2c_0 = 0;
     data_usa_ov001_021a99c0->mUnk_30 = 0;
     data_usa_ov001_021a99c0->mUnk_38 = func_02047a28(data_usa_ov001_021a7720);
-    v1.mUnk_00 = 1;
+    v1.mUnk_00 = TRUE;
     v1.mUnk_04 = func_020b403c(1);
     v1.mUnk_08 = 0;
     v1.mUnk_10 = 0;
-    v1.mUnk_14 = 0;
+    v1.mUnk_14 = FALSE;
     v1.mUnk_18 = 0;
-    v1.mUnk_1c = 0;
-    v1.mUnk_20 = 0;
+    v1.mUnk_1c = FALSE;
+    v1.mUnk_20 = FALSE;
     v1.mUnk_24 = 0;
     v1.mUnk_0c = 1;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();

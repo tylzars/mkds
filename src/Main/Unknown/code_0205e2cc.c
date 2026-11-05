@@ -243,7 +243,7 @@ void func_0205e5c4(s32 a) {
     } else {
         d = 0;
         if (data_0217d384 != NULL) {
-            if (data_0217d384->mHeapCreated != 0) {
+            if (data_0217d384->mHeapCreated != FALSE) {
                 d = 1;
             }
         }

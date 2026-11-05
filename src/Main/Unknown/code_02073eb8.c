@@ -423,7 +423,7 @@ BOOL func_02075a94(Unk02061808 *p) {
         func_02074b00(p);
         return TRUE;
     }
-    if (p->mUnk_230 != 0 || p->mUnk_234 != 0) {
+    if (p->mUnk_230 != 0 || p->mUnk_234 != FALSE) {
         return FALSE;
     }
     p->mUnk_134 = p->mUnk_024;

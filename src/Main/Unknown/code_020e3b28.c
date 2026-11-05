@@ -172,10 +172,10 @@ void func_020e3ef4(Unk020e3ef4 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
     a->mUnk_100 = (s32) (((s64) c->mUnk_04 * a->mUnk_000.mScale.x) >> 12);
     a->mUnk_104 = (s32) (((s64) c->mUnk_08 * a->mUnk_000.mScale.y) >> 12) >> 1;
     if (c->mUnk_00 != 0) {
-        a->mUnk_110 = 0;
+        a->mUnk_110 = FALSE;
         a->mUnk_114.x = 1;
     } else {
-        a->mUnk_110 = 1;
+        a->mUnk_110 = TRUE;
         a->mUnk_114.x = 0;
     }
     a->mUnk_114.z = 0;

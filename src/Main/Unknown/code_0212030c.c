@@ -61,7 +61,7 @@ void func_021205ac(void *a) {
 void func_0212055c(void *a) {
     data_0217d384->mHeapBuffer = HeapAllocAligned(a, 0x3e800, 0x20);
     data_0217d384->mHeap = ExpHeapCreate(data_0217d384->mHeapBuffer, 0x3e800, 1);
-    data_0217d384->mHeapCreated = 1;
+    data_0217d384->mHeapCreated = TRUE;
     func_ov000_021a3744(func_0211fffc, func_0211ffb0);
 }
 
@@ -72,7 +72,7 @@ void func_02120514(void) {
         ExpHeapDestroy(data_0217d384->mHeap);
         HeapFree(GetHeap(func_020364e8()), data_0217d384->mHeapBuffer);
     }
-    data_0217d384->mHeapCreated = 0;
+    data_0217d384->mHeapCreated = FALSE;
     p = &data_0217d384->mUnk_0008;
     p->mNextState = 0;
     p->mNextStateRequested = 1;

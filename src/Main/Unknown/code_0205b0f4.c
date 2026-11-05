@@ -388,7 +388,7 @@ void func_0205c470(void) {
     data_0217aa14->mUnk_73d = 0;
     data_0217aa14->mUnk_73b = 0;
     data_0217aa14->mUnk_73e = 0;
-    data_0217aa14->mUnk_72c = 0;
+    data_0217aa14->mUnk_72c = FALSE;
     data_0217aa14->mUnk_738 = 0;
     data_0217aa14->mUnk_758 = 2;
     MemFill(data_0217aa14->mUnk_754, 0, 0x6c);

@@ -124,7 +124,7 @@ s32 func_ov000_02194590(GpConnection *a, GpiPeer *b) {
                 return 3;
             }
             b->mState = 0x69;
-            b->mUnk_20 = 0;
+            b->mUnk_20 = FALSE;
             break;
         default:
             AssertionFailed(data_ov000_021b3440, data_ov000_021b333c, NULL, 0x9f);
@@ -199,7 +199,7 @@ s32 GpiPeerUpdateWaiting(GpConnection *a, GpiPeer *b) {
             b->mState = 0x6a;
             return 0;
         }
-        b->mUnk_20 = 0;
+        b->mUnk_20 = FALSE;
     }
     return 0;
 }

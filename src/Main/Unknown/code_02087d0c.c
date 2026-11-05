@@ -52,7 +52,7 @@ void func_0208823c(u32 a, void *b, void *c, u32 d, void *e, void *f) {
     p->mUnk_18 = d;
     p->mUnk_1a = 0;
     p->mUnk_28 = a;
-    p->mUnk_2c = 0;
+    p->mUnk_2c = FALSE;
     p->mUnk_30 = 0x19a;
     p->mUnk_34 = NULL;
 }
@@ -117,7 +117,7 @@ void func_02087f84(void *b, s32 a) {
     if (p->mUnk_1c[a] == NULL) {
         return;
     }
-    p->mUnk_2c = 0;
+    p->mUnk_2c = FALSE;
     if (p->mUnk_34 != NULL) {
         func_020109d8(p->mUnk_14, p->mUnk_34);
         p->mUnk_34 = NULL;
@@ -140,7 +140,7 @@ void func_02087e90(void *b, u16 a) {
     if (p->mUnk_1a == a) {
         return;
     }
-    p->mUnk_2c = 1;
+    p->mUnk_2c = TRUE;
     if (p->mUnk_34 != NULL) {
         func_020109d8(p->mUnk_14, p->mUnk_34);
         p->mUnk_34 = NULL;
@@ -157,11 +157,11 @@ void func_02087e90(void *b, u16 a) {
 void func_02087de0(void *a) {
     Unk02087d0c *p = a;
 
-    if (p->mUnk_2c != 0) {
+    if (p->mUnk_2c != FALSE) {
         p->mUnk_1c[p->mUnk_1a]->mUnk_04 += p->mUnk_30;
         p->mUnk_34->mUnk_04 -= p->mUnk_30;
         if (p->mUnk_1c[p->mUnk_1a]->mUnk_04 >= 0x1000) {
-            p->mUnk_2c = 0;
+            p->mUnk_2c = FALSE;
             p->mUnk_1c[p->mUnk_1a]->mUnk_04 = 0x1000;
             func_020109d8(p->mUnk_14, p->mUnk_34);
             p->mUnk_34 = NULL;
@@ -172,13 +172,13 @@ void func_02087de0(void *a) {
 }
 
 void func_02087d44(Unk02087d0c *p) {
-    if (p->mUnk_2c == 0) {
+    if (p->mUnk_2c == FALSE) {
         return;
     }
     p->mUnk_1c[p->mUnk_1a]->mUnk_04 += p->mUnk_30;
     p->mUnk_34->mUnk_04 -= p->mUnk_30;
     if (p->mUnk_1c[p->mUnk_1a]->mUnk_04 >= 0x1000) {
-        p->mUnk_2c = 0;
+        p->mUnk_2c = FALSE;
         p->mUnk_1c[p->mUnk_1a]->mUnk_04 = 0x1000;
         func_020109d8(p->mUnk_14, p->mUnk_34);
         p->mUnk_34 = NULL;

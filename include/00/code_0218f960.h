@@ -19,9 +19,9 @@ typedef struct Unk0218f960_428 {
 typedef struct GpiConnection {
     /* 000 */ char mErrorMessage[0x100];
     /* 100 */ s32 mUnk_100;
-    /* 104 */ s32 mUnk_104;
+    /* 104 */ BOOL mUnk_104;
     /* 108 */ u32 mUnk_108;
-    /* 10c */ s32 mFirewall;
+    /* 10c */ BOOL mFirewall;
     /* 110 */ char mNick[0x1f];
     /* 12f */ s8 mUniquenick[0x15];
     /* 144 */ char mEmail[0x33];
@@ -47,7 +47,7 @@ typedef struct GpiConnection {
     /* 218 */ char mStatusString[0x100];
     /* 318 */ char mLocationString[0x100];
     /* 418 */ u32 mErrorNumber;
-    /* 41c */ s32 mFatal;
+    /* 41c */ BOOL mFatal;
     /* 420 */ s32 mUnk_420;
     /* 424 */ GpiOperation *mOperationList;
     /* 428 */ Unk0218f960_428 mProfileList;

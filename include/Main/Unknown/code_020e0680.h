@@ -158,7 +158,7 @@ typedef struct Unk020e3ef4 {
     /* 100 */ s32 mUnk_100;
     /* 104 */ s32 mUnk_104;
     /* 108 */ u8 mUnk_108[0x8];
-    /* 110 */ s32 mUnk_110;
+    /* 110 */ BOOL mUnk_110;
     /* 114 */ Vec3 mUnk_114;
     /* 120 */ s32 mUnk_120;
     /* 124 */ Vec3 mUnk_124;

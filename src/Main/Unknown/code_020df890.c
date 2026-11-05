@@ -105,7 +105,7 @@ void func_020dfd64(Unk020e005c *a, CourseMapRow *b) {
     a->mUnk_124.x = 0;
     a->mUnk_124.y = 0;
     a->mUnk_124.z = 0;
-    a->mUnk_130 = 0;
+    a->mUnk_130 = FALSE;
     a->mUnk_100 = (s32) (((s64) a->mUnk_01c * 0x190000) >> 12);
     a->mUnk_104 = (s32) (((s64) a->mUnk_020 * 0x64000) >> 12) >> 1;
     a->mUnk_108 = (s32) (((s64) a->mUnk_024 * 0xaf000) >> 12);

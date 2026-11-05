@@ -147,7 +147,7 @@ typedef struct Unk0217b4f8 {
     /* 38 */ Vec3 mUnk_38;
     /* 44 */ Vec3 mUnk_44;
     /* 50 */ BOOL mUnk_50;
-    /* 54 */ s32 mUnk_54;
+    /* 54 */ BOOL mUnk_54;
 } Unk0217b4f8;
 
 // Object behind gEmblemChoises, 0x6c bytes (InitEmblemChoises allocates it); func_020ca9e4 calls the function at 0x0c.
@@ -413,7 +413,7 @@ typedef struct Unk0217b2d8 {
     /* 1c */ s32 mUnk_1c;
     /* 20 */ u16 mUnk_20;
     /* 22 */ u16 mUnk_22;
-    /* 24 */ s32 mUnk_24;
+    /* 24 */ BOOL mUnk_24;
 } Unk0217b2d8;
 
 extern Unk0217b2d8 data_0217b2d8;

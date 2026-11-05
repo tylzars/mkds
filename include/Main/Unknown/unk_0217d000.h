@@ -506,16 +506,16 @@ typedef struct Unk0217d3f4 {
 
 // Object behind gSelectReturn: 0x828 bytes allocated by InitSelectReturn.
 typedef struct SelectReturn {
-    /* 000 */ s32 mEnabled; /* only ever set to 1 by InitSelectReturn; the off path does not run in this build */
+    /* 000 */ BOOL mEnabled; /* only ever set to 1 by InitSelectReturn; the off path does not run in this build */
     /* 004 */ s32 mState;
     /* 008 */ s32 mNextState;
     /* 00c */ s32 mStateFrames; /* counts only in states 1, 3, 4 */
     /* 010 */ u16 mUnk_10[0x400];
-    /* 810 */ s32 mState1Requested;
-    /* 814 */ s32 mState3Requested;
-    /* 818 */ s32 mState4Requested;
+    /* 810 */ BOOL mState1Requested;
+    /* 814 */ BOOL mState3Requested;
+    /* 818 */ BOOL mState4Requested;
     /* 81c */ s32 mBg2Offset;
-    /* 820 */ s32 mDisplayBitOn;
+    /* 820 */ BOOL mDisplayBitOn;
     /* 824 */ s32 mUnk_824;
 } SelectReturn;
 

@@ -216,7 +216,7 @@ void func_02062a0c(void) {
     data_0217aa54->mUnk_18 = 0;
     data_0217aa54->mUnk_1c = 0;
     data_0217aa54->mUnk_30 = FALSE;
-    data_0217aa54->mUnk_34 = 0;
+    data_0217aa54->mUnk_34 = FALSE;
     data_0217aa54->mUnk_3c = 0;
     v = data_021653f0;
     data_0217aa54->mUnk_40 = v.x;
@@ -341,7 +341,7 @@ void func_02062464(void) {
     func_0207aa7c();
     func_0208677c();
     if (data_021759c0->mMode == 5) {
-        if (data_0217aa54->mUnk_34 == 0) {
+        if (data_0217aa54->mUnk_34 == FALSE) {
             if (data_0217aa54->mUnk_30 == FALSE) {
                 data_0217aa54->mUnk_04++;
                 if ((u32) data_0217aa54->mUnk_04 >= 128) {
@@ -460,7 +460,7 @@ void func_02062004(void) {
     func_0203d568();
     f = FALSE;
     p = data_0217d384;
-    if (p != NULL && p->mHeapCreated != 0) {
+    if (p != NULL && p->mHeapCreated != FALSE) {
         f = TRUE;
     }
     if (f != FALSE) {

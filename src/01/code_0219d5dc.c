@@ -190,7 +190,7 @@ void AdvanceOptionEmbremSelectState3(void) {
             gOptionEmbremSelect->mNextState = 4;
             gOptionEmbremSelect->mNextOptionState = 6;
             gOptionEmbremSelect->mUnk_08 = 0;
-            data_0217b488->mUnk_18 = 1;
+            data_0217b488->mUnk_18 = TRUE;
             func_02105ac0(5);
         } else if (result == 1) {
             gOptionEmbremSelect->mUnk_08 = 1;

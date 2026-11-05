@@ -718,10 +718,10 @@ void func_021031f4(Unk02102674 *p) {
         } while (j < n);
     }
     if (a < 0 || p->mUnk_130[a] == 0) {
-        p->mUnk_198 = 0;
+        p->mUnk_198 = FALSE;
         return;
     }
-    p->mUnk_198 = 1;
+    p->mUnk_198 = TRUE;
     p->mUnk_12c = GetKart(a);
     func_020f8e3c((u32) p->mUnk_12c, 0xf3);
 }

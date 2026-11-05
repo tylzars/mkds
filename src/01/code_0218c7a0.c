@@ -202,7 +202,7 @@ void func_ov001_0218cf94(Unk0218d87c *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
-            p->mUnk_2c4 = 1;
+            p->mUnk_2c4 = TRUE;
             if (func_02062ec4() != 0) {
                 func_ov001_0218d188(p);
             } else {

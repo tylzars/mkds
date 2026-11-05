@@ -333,7 +333,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
             p->mUnk_000.mUnk_10.y = 0;
             p->mUnk_000.mUnk_10.z = 0;
         }
-        if (data_021759c0->mCurrentEntries[k->mIndex].mUnk_08.mKind != 2 && p->mUnk_11c == 0) {
+        if (data_021759c0->mCurrentEntries[k->mIndex].mUnk_08.mKind != 2 && p->mUnk_11c == FALSE) {
             p->mUnk_0b8 = 0x8000;
             p->mUnk_0c4 = 0x1000;
             p->mUnk_0c8 = 0x400;
@@ -346,7 +346,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
             p->mUnk_0ec = -0x29;
             p->mUnk_0f0 = 0x1000;
             p->mUnk_0f4 = 0;
-            p->mUnk_11c = 1;
+            p->mUnk_11c = TRUE;
             switch (p->mUnk_000.mKind) {
                 case 0x1b4:
                     func_020d26ec(k, 0x156);
@@ -384,7 +384,7 @@ u8 func_0209c964(Unk0209c220 *p, void *a, u8 *b, u8 *c) {
     u32 d;
 
     d = *c;
-    if (*b == 2 && p->mUnk_11c == 0) {
+    if (*b == 2 && p->mUnk_11c == FALSE) {
         p->mUnk_0b8 = 0x8000;
         p->mUnk_0c4 = 0x1000;
         p->mUnk_0c8 = 0x200;
@@ -397,14 +397,14 @@ u8 func_0209c964(Unk0209c220 *p, void *a, u8 *b, u8 *c) {
         p->mUnk_0ec = -0x14;
         p->mUnk_0f0 = 0x1000;
         p->mUnk_0f4 = 0;
-        p->mUnk_11c = 1;
+        p->mUnk_11c = TRUE;
         p->mUnk_000.mUnk_78 |= data_usa_021565d0;
     }
     return d;
 }
 
 BOOL func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c) {
-    if ((p->mUnk_000.mFlags & 0x800) == 0 && p->mUnk_11c == 1) {
+    if ((p->mUnk_000.mFlags & 0x800) == 0 && p->mUnk_11c == TRUE) {
         p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0],
                                     ((s64) p->mUnk_000.mUnk_58.x * p->mUnk_0bc) >> 12, p->mUnk_000.mUnk_58.y, 0, b, c);
     } else {
@@ -430,7 +430,7 @@ void func_0209c7a8(Unk02100094 *a, Unk0209c220 *p) {
     p->mUnk_000.mMatrix.mUnk_00[3].y = p->mUnk_000.mPos.y >> 4;
     p->mUnk_000.mMatrix.mUnk_00[3].z = p->mUnk_000.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mMatrix, 0xc);
-    if (p->mUnk_11c == 1) {
+    if (p->mUnk_11c == TRUE) {
         x = p->mUnk_0bc;
         y = p->mUnk_0dc;
         v[1] = x;
@@ -464,7 +464,7 @@ void func_0209c678(Unk02100094 *a, Unk0209c220 *p) {
     p->mUnk_000.mMatrix.mUnk_00[3].y = p->mUnk_000.mPos.y >> 4;
     p->mUnk_000.mMatrix.mUnk_00[3].z = p->mUnk_000.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mMatrix, 0xc);
-    if (p->mUnk_11c == 1) {
+    if (p->mUnk_11c == TRUE) {
         x = p->mUnk_0bc;
         y = p->mUnk_0dc;
         v[1] = x;
@@ -487,7 +487,7 @@ void func_0209c5b8(Unk02100094 *a, Unk0209c220 *p) {
     p->mUnk_000.mMatrix.mUnk_00[3].y = p->mUnk_000.mPos.y >> 4;
     p->mUnk_000.mMatrix.mUnk_00[3].z = p->mUnk_000.mPos.z >> 4;
     func_01ff9048(0x19, &p->mUnk_000.mMatrix, 0xc);
-    if (p->mUnk_11c == 1) {
+    if (p->mUnk_11c == TRUE) {
         x = p->mUnk_0bc;
         y = p->mUnk_0dc;
         v[1] = x;
@@ -545,7 +545,7 @@ void func_0209c220(Unk02100094 *a, Unk0209c220 *p) {
         p->mUnk_000.mUnk_10.z = 0;
         p->mUnk_0a0 = 0;
     }
-    if (p->mUnk_11c == 1) {
+    if (p->mUnk_11c == TRUE) {
         p->mUnk_0b8 += p->mUnk_0d0;
         t = func_0209c4bc(p->mUnk_0c8, func_0209c4d8(p->mUnk_0b8));
         p->mUnk_0c0 = p->mUnk_0c4 + t - p->mUnk_0bc;
@@ -607,7 +607,7 @@ void func_0209c220(Unk02100094 *a, Unk0209c220 *p) {
             p->mUnk_0f0 = t;
         }
         if (p->mUnk_0c8 == 0 && p->mUnk_0e8 == 0) {
-            p->mUnk_11c = 0;
+            p->mUnk_11c = FALSE;
             p->mUnk_000.mScale.x = p->mUnk_0b4;
         } else {
             p->mUnk_000.mScale.x = ((s64) p->mUnk_0b4 * p->mUnk_0bc) >> 12;
@@ -666,7 +666,7 @@ BOOL func_0209bfe0(s32 a) {
     s32 k;
 
     p = func_0209bc5c(func_02100138(0x1a8), a);
-    if (p->mUnk_11c == 0) {
+    if (p->mUnk_11c == FALSE) {
         p->mUnk_0b8 = 0x8000;
         p->mUnk_0c4 = 0x1000;
         p->mUnk_0c8 = 0x400;
@@ -679,7 +679,7 @@ BOOL func_0209bfe0(s32 a) {
         p->mUnk_0ec = -0x29;
         p->mUnk_0f0 = 0x1000;
         p->mUnk_0f4 = 0;
-        p->mUnk_11c = 1;
+        p->mUnk_11c = TRUE;
         if ((p->mUnk_000.mUnk_78 & 4) == 0) {
             if (p->mUnk_000.mUnk_70 == data_0217ca6c[2].mUnk_20) {
                 k = 2;

@@ -76,7 +76,7 @@ typedef struct Unk021ba734 {
 typedef struct Unk021ba1b0 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u8 mUnk_04[0x20];
-    /* 24 */ s32 mUnk_24;
+    /* 24 */ BOOL mUnk_24;
     /* 28 */ s32 mUnk_28;
     /* 2c */ u8 mUnk_2c[0x10];
 } Unk021ba1b0;

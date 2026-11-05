@@ -132,7 +132,7 @@ s32 func_ov003_021b91f0(Unk021ba734 *a) {
 s32 func_ov003_021b91a4(Unk021ba1b0 *a) {
     a->mUnk_00 = func_ov003_021b7c30(data_ov003_021d6870);
     func_ov003_021b7d90(a->mUnk_04, data_ov003_021d6870, a->mUnk_00);
-    a->mUnk_24 = 1;
+    a->mUnk_24 = TRUE;
     a->mUnk_28 = func_ov003_021b7c30(data_ov003_021d6868);
     if ((u32) a->mUnk_28 > 0xd) {
         return -1;

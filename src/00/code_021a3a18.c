@@ -52,12 +52,12 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const char *d, const char
     o->mUnk_0a4 = 0;
     o->mUnk_0d4 = 0;
     o->mUnk_0bc = f;
-    o->mUnk_0c4 = 0;
+    o->mUnk_0c4 = FALSE;
     o->mUnk_0c8 = g;
     o->mUnk_104 = 0;
     o->mUnk_108 = 0;
     o->mUnk_0a8 = NULL;
-    o->mUnk_0b4 = 0;
+    o->mUnk_0b4 = FALSE;
     do {
         o->mUnk_084[r] = (s32) rand() % 0xff;
         r++;
@@ -128,7 +128,7 @@ void func_ov000_021a4940(Unk021a4a08 *a) {
     s32 e;
 
     c = 8;
-    if (a->mUnk_0c4 != 0 && func_ov000_0218e668(a->mUnk_000) != 0) {
+    if (a->mUnk_0c4 != FALSE && func_ov000_0218e668(a->mUnk_000) != 0) {
         d = 0;
         do {
             e = func_ov000_0218e438(a->mUnk_000, data_ov000_021b5e50, 0xff, d, b, &c);
@@ -155,7 +155,7 @@ void func_ov000_021a4868(Unk021a4a08 *a) {
             }
             func_ov000_021a3a18((Unk021a3a18 *) a, 3);
             a->mUnk_0b8 = a->mUnk_0b8 + 1;
-        } else if (a->mUnk_0b4 != 0 && b - a->mUnk_0ac > 10000) {
+        } else if (a->mUnk_0b4 != FALSE && b - a->mUnk_0ac > 10000) {
             func_ov000_021a3a18((Unk021a3a18 *) a, 1);
         } else if (b - a->mUnk_0ac > 60000 || a->mUnk_0ac == 0 || b < a->mUnk_0ac) {
             func_ov000_021a3a18((Unk021a3a18 *) a, 0);
@@ -174,11 +174,11 @@ void func_ov000_021a4818(Unk021a4a08 *a) {
     if (a->mUnk_0bc != 0) {
         v1 = func_ov000_0218e8c4();
         if ((u32) (v1 - a->mUnk_0ac) < ((u32) 0x00002710u)) {
-            a->mUnk_0b4 = 1;
+            a->mUnk_0b4 = TRUE;
             return;
         }
         func_ov000_021a3a18((Unk021a3a18 *) a, 1);
-        a->mUnk_0b4 = 0;
+        a->mUnk_0b4 = FALSE;
     }
     return;
 }
@@ -190,12 +190,12 @@ void func_ov000_021a47ac(Unk021a4a08 *a) {
     if (a->mUnk_0bc != 0) {
         func_ov000_021a3a18((Unk021a3a18 *) a, 2);
     }
-    if (a->mUnk_000 != -1 && a->mUnk_0c4 != 0) {
+    if (a->mUnk_000 != -1 && a->mUnk_0c4 != FALSE) {
         func_ov000_0218e53c(a->mUnk_000);
     }
     a->mUnk_000 = -1;
     a->mUnk_0ac = 0;
-    if (a->mUnk_0c4 != 0) {
+    if (a->mUnk_0c4 != FALSE) {
         func_ov000_0218e8b4();
     }
     if (a != &data_ov000_021b4278) {

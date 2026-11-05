@@ -65,8 +65,8 @@ void func_020fe3d8(Unk020fdae8 *a) {
     a->mUnk_178 = 8;
     a->mUnk_17c = v1;
     a->mUnk_180 = 0;
-    a->mUnk_16c = 0;
-    a->mUnk_1a0 = 1;
+    a->mUnk_16c = FALSE;
+    a->mUnk_1a0 = TRUE;
     a->mUnk_198 = NULL;
 }
 
@@ -189,7 +189,7 @@ void func_020fdf64(Unk020fdae8 *e) {
         return;
     }
     if (t == 0x16) {
-        e->mUnk_16c = 1;
+        e->mUnk_16c = TRUE;
     } else if (t == 0x2a) {
         func_020f9c40((s32) e);
     }
@@ -378,7 +378,7 @@ void func_020fd9d8(Unk020fdae8 *e) {
 }
 
 void func_020fd938(Unk020fdae8 *e, Vec3 *a, Unk020e6488 *b) {
-    if (e->mUnk_1a0 == 0) {
+    if (e->mUnk_1a0 == FALSE) {
         return;
     }
     if (e->mUnk_192 != 2) {
@@ -474,7 +474,7 @@ void func_020fd754(void *a) {
         e->mUnk_000.mUnk_000.mUnk_120 = NULL;
     }
     func_020f9c40((s32) e);
-    e->mUnk_1a0 = 0;
+    e->mUnk_1a0 = FALSE;
     func_02046bcc(&e->mUnk_184, 3);
     e->mUnk_174 = 0;
 }
@@ -489,7 +489,7 @@ void func_020fd684(void *c, Vec3 *d, Vec3 *f) {
     a = d;
     b = f;
     if (e->mUnk_198 == NULL) {
-        e->mUnk_1a0 = 1;
+        e->mUnk_1a0 = TRUE;
         func_0208ad74(e->mUnk_000.mUnk_000.mUnk_7c.mUnk_00, 1);
     }
     if (a != NULL) {
@@ -521,7 +521,7 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
     e->mUnk_000.mUnk_000.mUnk_78 |= data_02159f28;
     if (v1 == NULL) {
         func_020f9ca8(e);
-        e->mUnk_1a0 = 1;
+        e->mUnk_1a0 = TRUE;
     }
     func_020f9114(e);
     func_02046be8(&e->mUnk_184, (UnkFunc *const *) data_0216c714, 4, e);
@@ -531,7 +531,7 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
     e->mUnk_178 = 8;
     e->mUnk_17c = 0x5f592e1;
     e->mUnk_180 = 0;
-    e->mUnk_16c = 0;
+    e->mUnk_16c = FALSE;
     e->mUnk_134 = 0xccd;
     e->mUnk_170 = a;
     e->mUnk_130 = 1;
@@ -587,7 +587,7 @@ void *func_020fd428(void) {
         e->mUnk_000.mUnk_000.mUnk_120 = NULL;
     }
     func_020f9c40((s32) e);
-    e->mUnk_1a0 = 0;
+    e->mUnk_1a0 = FALSE;
     func_02046bcc(&e->mUnk_184, 3);
     e->mUnk_174 = 0;
     return e;
@@ -606,7 +606,7 @@ void *func_020fd338(void *b, s32 a) {
             e->mUnk_000.mUnk_000.mUnk_120 = NULL;
         }
         func_020f9c40((s32) e);
-        e->mUnk_1a0 = 0;
+        e->mUnk_1a0 = FALSE;
         func_02046bcc(&e->mUnk_184, 3);
         e->mUnk_174 = 0;
     }

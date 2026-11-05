@@ -133,7 +133,7 @@ void InitEmblem(void) {
     func_ov001_02184f9c(func_ov001_02185160(gEmblem->mEmblemSLld, 25), -32, -20, 32, 20);
     func_ov001_02184f9c(func_ov001_02185160(gEmblem->mEmblemSLld, 26), -32, -20, 32, 20);
     func_ov001_02184f9c(func_ov001_02185160(gEmblem->mEmblemTemplateSLld, 1), -52, -15, 52, 15);
-    gEmblem->mUnk_10ac = 1;
-    gEmblem->mUnk_10b0 = 0;
+    gEmblem->mUnk_10ac = TRUE;
+    gEmblem->mUnk_10b0 = FALSE;
     gEmblem->mUnk_10bc = 6;
 }

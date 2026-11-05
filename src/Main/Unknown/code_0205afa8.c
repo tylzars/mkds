@@ -18,7 +18,7 @@ s32 func_0205afa8(void) {
     a = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
     b = func_0205d27c(a);
     c = func_0203c240(a) & 0x7ffff;
-    if (func_0203c880(a) != 0 && data_0217561c->mUnk_000[a].mUnk_14 != 1 && data_0217aa14->mUnk_72c == 0) {
+    if (func_0203c880(a) != 0 && data_0217561c->mUnk_000[a].mUnk_14 != 1 && data_0217aa14->mUnk_72c == FALSE) {
         c = 0x7ffff;
     }
     if (c == 0) {
@@ -30,7 +30,7 @@ s32 func_0205afa8(void) {
         d = 6 - func_0203c8c0(a);
     }
     e = (d << 19) & 0x380000;
-    if (func_0203c880(a) == 0 && data_0217aa14->mUnk_72c == 0) {
+    if (func_0203c880(a) == 0 && data_0217aa14->mUnk_72c == FALSE) {
         d = 1;
     } else {
         d = 0;

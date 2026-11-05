@@ -61,7 +61,7 @@ u32 func_02124c70(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, Unk0201ea30 *d, Unk0212
         v28[0] = ((v10 >> 1) + func_0201ebe8(l20[2], v10)) << 12;
         v28[1] = ((v14 >> 1) + func_0201eba0(t->mUnk_00_2, v14)) << 12;
     }
-    if (f->mUnk_08 != 0) {
+    if (f->mUnk_08 != FALSE) {
         if (a >= c->mUnk_06) {
             v28[0] = f->mUnk_0c << 12;
             v28[1] = f->mUnk_0e << 12;

@@ -37,7 +37,7 @@ void func_020e0584(Unk020e005c *a, Vec3 *b, Vec3 *c, Unk020e04b0 *d) {
     d->mUnk_04.x = func_02039828(&e, &a->mUnk_028);
     d->mUnk_04.y = g;
     d->mUnk_04.z = f;
-    if (c != NULL && a->mUnk_130 != 0) {
+    if (c != NULL && a->mUnk_130 != FALSE) {
         f = func_02039828(c, &a->mUnk_040);
         g = func_02039828(c, &a->mUnk_034);
         d->mUnk_10.x = func_02039828(c, &a->mUnk_028);
@@ -67,7 +67,7 @@ BOOL func_020e04b0(Unk020e04b0 *a, Vec3 *b, Vec3 *c) {
     if (d != NULL) {
         Vec3MultiplyMatrix3x3(&a->mUnk_04, &d->mUnk_028.x, b);
         Vec3Add(&d->mUnk_004, b, b);
-        if (d->mUnk_130 != 0) {
+        if (d->mUnk_130 != FALSE) {
             Vec3MultiplyMatrix3x3(&a->mUnk_10, &d->mUnk_028.x, c);
             if (c->y < d->mUnk_120) {
                 return TRUE;

@@ -101,7 +101,7 @@ BOOL func_ov000_021a943c(Unk021a998c *a);
 BOOL func_ov000_021a9494(Unk021a998c *a);
 void func_ov000_021a9534(Unk021a998c *a);
 BOOL func_ov000_021a95a0(Unk021a998c *a);
-u32 func_ov000_021a9610(u32 a);
+u32 func_ov000_021a9610(Unk021a998c *a);
 void func_ov000_021a9640(Unk021a998c *a);
 void func_ov000_021a9868(Unk021a998c *a);
 void func_ov000_021a998c(Unk021a998c *a);

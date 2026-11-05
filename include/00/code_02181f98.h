@@ -103,15 +103,15 @@ typedef struct Unk0217b488 {
     /* 00c */ s32 mUnk_0c;
     /* 010 */ s32 mUnk_10;
     /* 014 */ s32 mUnk_14;
-    /* 018 */ s32 mUnk_18;
+    /* 018 */ BOOL mUnk_18;
     /* 01c */ s32 mUnk_1c;
     /* 020 */ Unk0217b488_20 mUnk_20[4];
     /* 050 */ s32 mUnk_50;
     /* 054 */ u8 mUnk_54;
     /* 055 */ u8 mUnk_55[0x3];
-    /* 058 */ s32 mUnk_58;
+    /* 058 */ BOOL mUnk_58;
     /* 05c */ s32 mUnk_5c[4];
-    /* 06c */ s32 mUnk_6c;
+    /* 06c */ BOOL mUnk_6c;
     /* 070 */ s32 mUnk_70;
     /* 074 */ s32 mUnk_74;
     /* 078 */ s32 mUnk_78;
@@ -262,7 +262,7 @@ typedef struct Unk0217d384 {
     /* 1d00 */ Unk0217d384_1d00 mUnk_1d00[4];
     /* 1e10 */ Unk0217d384_1d00 mUnk_1e10[4];
     /* 1f20 */ Unk0217d384_1f20 mUnk_1f20;
-    /* 1f30 */ s32 mHeapCreated;
+    /* 1f30 */ BOOL mHeapCreated;
     /* 1f34 */ BOOL mUnk_1f34;
     /* 1f38 */ BOOL mUnk_1f38;
     /* 1f3c */ s32 mUnk_1f3c;

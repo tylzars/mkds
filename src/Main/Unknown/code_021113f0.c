@@ -776,14 +776,14 @@ void func_021115b0(void *a, s16 b) {
     data_0217d344->mUnk_32 = 0;
     func_021250b0(a);
     func_0212abdc(a, func_02111318());
-    v.mUnk_00 = 1;
+    v.mUnk_00 = TRUE;
     v.mUnk_04 = func_020b403c(1);
     v.mUnk_08 = 0;
     v.mUnk_0c = 1;
     v.mUnk_10 = 0;
-    v.mUnk_14 = 0;
-    v.mUnk_1c = 1;
-    v.mUnk_20 = 1;
+    v.mUnk_14 = FALSE;
+    v.mUnk_1c = TRUE;
+    v.mUnk_20 = TRUE;
     v.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v);

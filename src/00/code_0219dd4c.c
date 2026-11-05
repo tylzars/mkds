@@ -364,7 +364,7 @@ void func_ov000_021a1ef4(s32 param_1) {
         func_ov000_021a49a0(data_ov000_021b566c->mUnk_10);
         p = data_ov000_021b566c;
         q = p->mUnk_10;
-        if ((q->mUnk_0b4 == 0 && (p->mUnk_15 == 0 || p->mUnk_15 == 1) &&
+        if ((q->mUnk_0b4 == FALSE && (p->mUnk_15 == 0 || p->mUnk_15 == 1) &&
              (p->mUnk_198 == 1 || p->mUnk_198 == 2 || p->mUnk_198 == 3 || p->mUnk_198 == 4 || p->mUnk_198 == 6 ||
               p->mUnk_198 == 11)) ||
             (p->mUnk_15 == 2 && p->mUnk_198 == 11)) {
@@ -1575,7 +1575,7 @@ s32 func_ov000_021a0064(s32 a, u32 b, s32 c) {
                 data_ov000_021b566c->mUnk_14 == data_ov000_021b566c->mUnk_16 ||
                 (data_ov000_021b566c->mUnk_17 != 0 && data_ov000_021b566c->mUnk_20 == data_ov000_021b566c->mUnk_1e8)) {
                 r = 3;
-                if (data_ov000_021b566c->mUnk_15 == 0 && data_ov000_021b566c->mUnk_10->mUnk_0b4 == 0 &&
+                if (data_ov000_021b566c->mUnk_15 == 0 && data_ov000_021b566c->mUnk_10->mUnk_0b4 == FALSE &&
                     data_ov000_021b566c->mUnk_17 != 0 &&
                     data_ov000_021b566c->mUnk_20 == data_ov000_021b566c->mUnk_1e8) {
                     func_ov000_021a4818(data_ov000_021b566c->mUnk_10);

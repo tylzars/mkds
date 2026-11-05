@@ -102,7 +102,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                         gEmblem->mUnk_108c = func_ov001_021a4a10;
                         func_ov001_021a5d00((void *) (gEmblem->mEmblemSLld), (s32) (a));
                         func_0212ecc0(&data_0217d068, 0, 0x1f3);
-                        gEmblem->mUnk_10b0 = 1;
+                        gEmblem->mUnk_10b0 = TRUE;
                     }
                     gEmblem->mUnk_1094 = 3;
                     return;
@@ -126,8 +126,8 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                         gEmblem->mUnk_108c = func_ov001_021a4878;
                         func_ov001_021a5d00((void *) (gEmblem->mEmblemSLld), (s32) (a));
                         func_0212ecc0(&data_0217d068, 0, 0xc);
-                        gEmblem->mUnk_10b0 = 1;
-                        gEmblem->mUnk_10ac = 0;
+                        gEmblem->mUnk_10b0 = TRUE;
+                        gEmblem->mUnk_10ac = FALSE;
                     }
                     gEmblem->mUnk_1094 = 3;
                     return;
@@ -136,7 +136,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                         gEmblem->mUnk_108c = func_ov001_021a4b28;
                         func_ov001_021a5c28((void *) (gEmblem->mEmblemSLld), (s32) (a));
                         func_0212ecc0(&data_0217d068, 0, 4);
-                        gEmblem->mUnk_10b0 = 1;
+                        gEmblem->mUnk_10b0 = TRUE;
                     }
                     gEmblem->mUnk_1094 = 3;
                     return;
@@ -149,7 +149,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                         gEmblem->mUnk_108c = func_ov001_021a4914;
                         func_ov001_021a5a40((void *) (gEmblem->mEmblemTemplateSLld), 1);
                         func_0212ecc0(&data_0217d068, 0, 0xe);
-                        gEmblem->mUnk_10b0 = 1;
+                        gEmblem->mUnk_10b0 = TRUE;
                     }
                     gEmblem->mUnk_1094 = 3;
                     return;
@@ -206,7 +206,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                     gEmblem->mUnk_108c = func_ov001_021a4844;
                     func_ov001_021a5d00((void *) (gEmblem->mEmblemCameraSLld), (s32) (a));
                     func_0212ecc0(&data_0217d068, 0, 0xc);
-                    gEmblem->mUnk_10ac = 1;
+                    gEmblem->mUnk_10ac = TRUE;
                 }
                 gEmblem->mUnk_1094 = 3;
             }

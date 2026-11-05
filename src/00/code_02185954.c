@@ -91,14 +91,14 @@ BOOL func_ov000_021868d0(Http *a, const char *b) {
     p = strstr(a->mUnk_028, data_ov000_021b1268);
     if (p != NULL) {
         a->mHost = a->mUnk_028 + 7;
-        a->mUseHttps = 0;
+        a->mUseHttps = FALSE;
     } else {
         p = strstr(a->mUnk_028, data_ov000_021b1270);
         if (p == NULL) {
             return FALSE;
         }
         a->mHost = p + 8;
-        a->mUseHttps = 1;
+        a->mUseHttps = TRUE;
     }
     p = strstr(a->mHost, data_ov000_021b127c);
     if (p == NULL) {

@@ -287,7 +287,7 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
                 p->mUnk_000.mUnk_000.mUnk_74 |= 0x100;
             }
         }
-        if ((p->mUnk_000.mUnk_000.mUnk_fc & 0x214300) != 0 && p->mUnk_000.mUnk_15c != 0) {
+        if ((p->mUnk_000.mUnk_000.mUnk_fc & 0x214300) != 0 && p->mUnk_000.mUnk_15c != FALSE) {
             s = Vec3Dot(&v40, r);
             v28.x = (s32) (((u64) ((s64) v40.x * s)) >> 12);
             v28.y = (s32) (((u64) ((s64) v40.y * s)) >> 12);

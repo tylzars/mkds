@@ -25,9 +25,9 @@ u32 GpiInitialize(GpConnection *a, s32 b, s32 c) {
     p.mGpiConnection->mErrorMessage[0] = 0;
     p.mGpiConnection->mErrorNumber = 0;
     p.mGpiConnection->mUnk_100 = 1;
-    p.mGpiConnection->mUnk_104 = 0;
+    p.mGpiConnection->mUnk_104 = FALSE;
     p.mGpiConnection->mUnk_108 = 0;
-    p.mGpiConnection->mFirewall = 0;
+    p.mGpiConnection->mFirewall = FALSE;
     p.mGpiConnection->mProductId = b;
     p.mGpiConnection->mNamespaceId = c;
     if (GpiInitProfileList(&p) == FALSE) {

@@ -93,7 +93,7 @@ u32 GpiResetConnection(GpConnection *a) {
     o->mProfileId = 0;
     o->mSesskey = 0;
     o->mSearchCount = 0;
-    o->mFatal = 0;
+    o->mFatal = FALSE;
     o->mPeerList = NULL;
     o->mStatus = -1;
     o->mStatusString[0] = 0;
@@ -251,7 +251,7 @@ int GpiUpdateConnection(void *a, int b) {
     }
     x = GpiCallQueuedCallbacks(p, b);
     if (x == 0) {
-        if (o->mFatal != 0) {
+        if (o->mFatal != FALSE) {
             GpiCloseConnection(p, 0);
         }
         x = r;

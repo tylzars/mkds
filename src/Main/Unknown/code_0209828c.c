@@ -71,7 +71,7 @@ void InitPakkun(Pakkun *p) {
     s32 i;
     p->mUnk_1d8 =
         (u32) (((s64) p->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 32 << 4) >> 16;
-    p->mUnk_1e4 = 1;
+    p->mUnk_1e4 = TRUE;
     p->mUnk_1e8 = 0x1000;
     p->mUnk_1ec = 0;
     p->mUnk_1f0 = 0x1000;
@@ -306,7 +306,7 @@ void UpdatePakkun(void *a, Pakkun *p) {
                 p->mTimer = 0;
                 if (p->mUnk_1e8 >= 0xffc) {
                     p->mUnk_1e8 = 0x1000;
-                    p->mUnk_1e4 = 0;
+                    p->mUnk_1e4 = FALSE;
                     p->mUnk_1f4 = 0x7b;
                     p->mState = 4;
                 }
@@ -328,7 +328,7 @@ void UpdatePakkun(void *a, Pakkun *p) {
             p->mUnk_1f4 = p->mUnk_1f4 - 8;
             if (p->mUnk_1f0 <= 0x1000) {
                 p->mUnk_1f0 = 0x1000;
-                p->mUnk_1e4 = 1;
+                p->mUnk_1e4 = TRUE;
             }
             p->mUnk_0a4 = p->mUnk_0a4 + p->mUnk_0a8;
             if (p->mUnk_0a4 >= p->mUnk_0b0) {
@@ -364,7 +364,7 @@ void UpdatePakkun(void *a, Pakkun *p) {
             }
             break;
     }
-    if (p->mUnk_1e4 != 0) {
+    if (p->mUnk_1e4 != FALSE) {
         p->mUnk_1e8 = p->mUnk_1e8 + p->mUnk_1ec;
         p->mUnk_1ec = p->mUnk_1ec + 4;
         if (p->mUnk_1e8 >= 0x1000) {
@@ -378,7 +378,7 @@ void UpdatePakkun(void *a, Pakkun *p) {
 
 void *func_02098374(void) {
     data_usa_0217b0f4 = (Unk020982d4 *) func_0209bf1c(CreatePakkunMouth, DrawPakkunMouth, NULL);
-    data_usa_0217b0f4->mUnk_1c = 1;
+    data_usa_0217b0f4->mUnk_1c = TRUE;
     func_020d49d8(&data_usa_0217b0f4);
     return data_usa_0217b0f4;
 }
@@ -391,7 +391,7 @@ void *func_02098328(void) {
 
 void *func_020982d4(void) {
     data_usa_0217b0f0 = (Unk020982d4 *) func_0209bef0(CreatePakkunZHead, DrawPakkunZHead, func_02098b1c);
-    data_usa_0217b0f0->mUnk_1c = 1;
+    data_usa_0217b0f0->mUnk_1c = TRUE;
     func_020d49d8(&data_usa_0217b0f0);
     return data_usa_0217b0f0;
 }

@@ -16,7 +16,7 @@ typedef struct Unk020fdae8 {
     /* 134 */ s32 mUnk_134;
     /* 138 */ struct Unk0208e490 *mUnk_138;
     /* 13c */ u8 mUnk_13c[0x30];
-    /* 16c */ s32 mUnk_16c;
+    /* 16c */ BOOL mUnk_16c;
     /* 170 */ s32 mUnk_170;
     /* 174 */ s32 mUnk_174;
     /* 178 */ u16 mUnk_178;
@@ -31,7 +31,7 @@ typedef struct Unk020fdae8 {
     /* 196 */ u16 mUnk_196;
     /* 198 */ Unk021052fc *mUnk_198;
     /* 19c */ s32 mUnk_19c;
-    /* 1a0 */ s32 mUnk_1a0;
+    /* 1a0 */ BOOL mUnk_1a0;
 } Unk020fdae8;
 
 void func_020fd83c(Unk020fdae8 *e);

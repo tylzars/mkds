@@ -63,13 +63,13 @@ void func_020f2b94(void *a0, void *b0, s32 c, s32 d, s32 e, s32 f) {
     }
     if (c < 0) {
         a->mUnk_154 = 0;
-        a->mUnk_15c = 0;
+        a->mUnk_15c = FALSE;
     } else {
         a->mUnk_154 = c;
-        a->mUnk_15c = 1;
+        a->mUnk_15c = TRUE;
     }
     a->mUnk_000.mUnk_124 = (void (*)(Unk020f41c4_A *, Vec3 *, Vec3 *)) func_020f1f98;
-    a->mUnk_160 = 1;
+    a->mUnk_160 = TRUE;
     a->mUnk_158 = e;
     a->mUnk_164 = 4;
 }
@@ -131,7 +131,7 @@ void func_020f288c(Unk020f1d70 *a, Vec3 *b) {
     a->mUnk_13c.x -= v.x;
     p->y -= v.y;
     p->z -= v.z;
-    if (a->mUnk_160 != 0) {
+    if (a->mUnk_160 != FALSE) {
         Vec3Sub((const Vec3 *) p, &v, p);
     }
     if ((s64) p->x * p->x + (s64) p->y * p->y + (s64) p->z * p->z >= 0x10) {
@@ -161,7 +161,7 @@ void func_020f2768(Unk020f1d70 *a, Vec3 *b, Vec3 *c) {
     a->mUnk_130.x -= v.x;
     p->y -= v.y;
     p->z -= v.z;
-    if (a->mUnk_160 != 0) {
+    if (a->mUnk_160 != FALSE) {
         Vec3Sub((const Vec3 *) p, &v, p);
     }
     if ((s64) p->x * p->x + (s64) p->y * p->y + (s64) p->z * p->z >= 0x10) {
@@ -236,7 +236,7 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
                 func_020f2768(a, &v3, NULL);
             }
             a->mUnk_000.mUnk_78 &= ~0x4000;
-            if (a->mUnk_15c != 0) {
+            if (a->mUnk_15c != FALSE) {
                 a->mUnk_000.mUnk_74 |= 0x20;
                 a->mUnk_154 -= 1;
             }
@@ -409,13 +409,13 @@ void func_020f1ea4(void *a0, s32 b, s32 c, s32 d) {
     a->mUnk_148.y = 0;
     if (b < 0) {
         a->mUnk_154 = 0;
-        a->mUnk_15c = 0;
+        a->mUnk_15c = FALSE;
     } else {
         a->mUnk_154 = b;
-        a->mUnk_15c = 1;
+        a->mUnk_15c = TRUE;
     }
     a->mUnk_000.mUnk_124 = (void (*)(Unk020f41c4_A *, Vec3 *, Vec3 *)) func_020f1f98;
-    a->mUnk_160 = 1;
+    a->mUnk_160 = TRUE;
     a->mUnk_158 = d;
 }
 

@@ -71,7 +71,7 @@ s32 func_0212b0b8(void) {
         p = data_0217d408;
         if (p->mUnk_0004 != 0) {
             if ((u32) (p->mUnk_0000 - 4) <= 1) {
-                data_0217b488->mUnk_58 = 1;
+                data_0217b488->mUnk_58 = TRUE;
                 data_0217d408->mUnk_0010 = 1;
             } else if (p->mUnk_0000 == 6) {
                 data_0217b488->mUnk_1c = 1;

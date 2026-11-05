@@ -100,11 +100,11 @@ typedef struct Unk021a4a08 {
     /* 0a8 */ Unk021a4a08Funca8 mUnk_0a8;
     /* 0ac */ u32 mUnk_0ac;
     /* 0b0 */ u32 mUnk_0b0;
-    /* 0b4 */ s32 mUnk_0b4;
+    /* 0b4 */ BOOL mUnk_0b4;
     /* 0b8 */ s32 mUnk_0b8;
     /* 0bc */ s32 mUnk_0bc;
     /* 0c0 */ s32 mUnk_0c0;
-    /* 0c4 */ s32 mUnk_0c4;
+    /* 0c4 */ BOOL mUnk_0c4;
     /* 0c8 */ s32 mUnk_0c8;
     /* 0cc */ Unk021a4654 mUnk_0cc;
     /* 0d4 */ s32 mUnk_0d4;

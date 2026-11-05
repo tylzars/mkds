@@ -119,7 +119,7 @@ typedef struct Unk0206ceb4 {
     /* 1e */ s16 mUnk_1e;
     /* 20 */ s16 mUnk_20;
     /* 22 */ u8 mUnk_22[2];
-    /* 24 */ s32 mUnk_24;
+    /* 24 */ BOOL mUnk_24;
     /* 28 */ s16 mUnk_28;
     /* 2a */ u8 mUnk_2a[2];
     /* 2c */ Unk020905a8 mUnk_2c;

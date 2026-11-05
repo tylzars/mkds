@@ -698,7 +698,7 @@ void func_02071ddc(Unk0206ceb4 *p0) {
     p0->mUnk_1c = 0;
     p0->mUnk_1e = 0;
     p0->mUnk_20 = 0;
-    p0->mUnk_24 = 0;
+    p0->mUnk_24 = FALSE;
     p0->mUnk_28 = 0;
 }
 

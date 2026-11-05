@@ -469,9 +469,9 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                         u2->mUnk_00 = 0;
                         GpiCopyString((char *) u2->mUnk_04, (const char *) p->mUnk_05c, 0x33);
                         if ((s8) w1[0] == 0x30) {
-                            u2->mUnk_38 = 0;
+                            u2->mUnk_38 = FALSE;
                         } else {
-                            u2->mUnk_38 = 1;
+                            u2->mUnk_38 = TRUE;
                         }
                         r = GpiQueueCallback(a, c2, u2, (GpiOperation *) b, 0);
                         if (r != 0) {

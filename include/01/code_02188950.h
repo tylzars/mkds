@@ -294,9 +294,9 @@ typedef struct Unk02188950 {
     /* 2b0 */ s32 mUnk_2b0;
     /* 2b4 */ s32 mUnk_2b4;
     /* 2b8 */ s32 mUnk_2b8;
-    /* 2bc */ s32 mUnk_2bc;
-    /* 2c0 */ s32 mUnk_2c0;
-    /* 2c4 */ s32 mUnk_2c4;
+    /* 2bc */ BOOL mUnk_2bc;
+    /* 2c0 */ BOOL mUnk_2c0;
+    /* 2c4 */ BOOL mUnk_2c4;
     /* 2c8 */ u32 mUnk_2c8;
     /* 2cc */ u8 mUnk_2cc[0x4];
     /* 2d0 */ s32 mTimer;

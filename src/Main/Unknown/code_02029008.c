@@ -26,25 +26,25 @@ s32 func_020290fc(void) {
     s32 x;
     s32 y;
     s32 z;
-    if (gSelectKart->mUnk_108 != 0) {
+    if (gSelectKart->mUnk_108 != FALSE) {
         if (func_020291f0(t) != 0) {
             x = func_0202874c(t);
             y = func_02028724(t);
             z = func_020291c4(x, y, p->mUnk_10);
             if (z != gSelectKart->mUnk_110) {
-                gSelectKart->mUnk_108 = 0;
+                gSelectKart->mUnk_108 = FALSE;
                 gSelectKart->mUnk_10c = 0;
             } else {
                 gSelectKart->mUnk_10c++;
                 r = z;
             }
         } else {
-            gSelectKart->mUnk_108 = 0;
+            gSelectKart->mUnk_108 = FALSE;
             gSelectKart->mUnk_10c = 0;
         }
     } else if (func_02028774(t) != 0) {
         r = func_020291c4(func_0202874c(t), func_02028724(t), p->mUnk_10);
-        gSelectKart->mUnk_108 = 1;
+        gSelectKart->mUnk_108 = TRUE;
         gSelectKart->mUnk_10c = 0;
     }
     return r;

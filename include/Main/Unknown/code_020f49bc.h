@@ -8,7 +8,7 @@
 typedef struct Unk020f5008 {
     /* 000 */ Unk020f2df0 mUnk_000;
     /* 130 */ s32 mUnk_130;
-    /* 134 */ s32 mUnk_134;
+    /* 134 */ BOOL mUnk_134;
 } Unk020f5008;
 
 typedef struct Unk020f5008 Unk020f5008;

@@ -24,7 +24,7 @@ void func_02125de0(void *a, void *b) {
     data_0217d3ec->mUnk_00 = FALSE;
     data_0217d3ec->mUnk_04 = FALSE;
     data_0217d3ec->mUnk_08 = FALSE;
-    if (((Unk02125de0Arg *) b)->mUnk_00 != 0) {
+    if (((Unk02125de0Arg *) b)->mUnk_00 != FALSE) {
         t.mUnk_00 = (u32) ((Unk02125de0Arg *) b)->mUnk_04;
         t.mUnk_04 = ((Unk02125de0Arg *) b)->mUnk_08;
         t.mUnk_08 = ((Unk02125de0Arg *) b)->mUnk_0c;
@@ -33,15 +33,15 @@ void func_02125de0(void *a, void *b) {
         data_0217d3ec->mUnk_00 = TRUE;
         data_0217d3ec->mUnk_810 = InitTxtSystem(a, &t);
     }
-    if (((Unk02125de0Arg *) b)->mUnk_14 != 0) {
+    if (((Unk02125de0Arg *) b)->mUnk_14 != FALSE) {
         data_0217d3ec->mUnk_04 = TRUE;
         data_0217d3ec->mUnk_810 = func_02128058(a, ((Unk02125de0Arg *) b)->mUnk_18, data_0217d3ec->mUnk_810);
     }
-    if (((Unk02125de0Arg *) b)->mUnk_1c != 0) {
+    if (((Unk02125de0Arg *) b)->mUnk_1c != FALSE) {
         data_0217d3ec->mUnk_08 = TRUE;
         data_0217d3ec->mUnk_810 = InitSelectReturn(a, data_0217d3ec->mUnk_810);
     }
-    if (((Unk02125de0Arg *) b)->mUnk_20 != 0) {
+    if (((Unk02125de0Arg *) b)->mUnk_20 != FALSE) {
         data_0217d3ec->mBackScreenKind = ((Unk02125de0Arg *) b)->mUnk_24;
         func_02125ba4();
         data_0217d3ec->mUnk_810 = func_02125960(data_0217d3ec->mUnk_810);

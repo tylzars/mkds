@@ -38,7 +38,7 @@ typedef struct Http {
     /* 028 */ char mUnk_028[0x80];
     /* 0a8 */ char *mHost;
     /* 0ac */ char *mPath;
-    /* 0b0 */ s32 mUseHttps;
+    /* 0b0 */ BOOL mUseHttps;
     /* 0b4 */ u8 mUnk_0b4[0x868];
     /* 91c */ void *mLowReceiveBuffer;
     /* 920 */ void *mLowSendBuffer;

@@ -87,7 +87,7 @@ typedef struct Unk02194cac_102 {
 typedef struct Unk02194cac_3c {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s8 mUnk_04[0x34];
-    /* 38 */ s32 mUnk_38;
+    /* 38 */ BOOL mUnk_38;
 } Unk02194cac_3c;
 
 typedef struct Unk02194cac_44 {

@@ -88,7 +88,7 @@ u32 CreateConnection(Gt2Socket *a, Gt2Connection **b, u32 c, u32 d) {
 void func_ov000_0219a220(Gt2Connection *a) {
     s32 b;
     s32 c;
-    if (a->mUnk_14 == 0 && a->mUnk_24 == 0) {
+    if (a->mUnk_14 == FALSE && a->mUnk_24 == 0) {
         if (a->mUnk_0c == 7) {
             b = DarrayGetCount(a->mSocket->mConnectionsToFree);
             for (c = 0; c < b; c++) {
@@ -143,7 +143,7 @@ u32 func_ov000_0219a0d0(Gt2Connection **a, u32 *b) {
     if (c->mUnk_0c != 7 && func_ov000_02198584(c, d) == 0) {
         return 0;
     }
-    if (c->mUnk_0c == 7 && c->mUnk_14 == 0 && c->mUnk_24 == 0) {
+    if (c->mUnk_0c == 7 && c->mUnk_14 == FALSE && c->mUnk_24 == 0) {
         func_ov000_0219a220(c);
     }
     return 1;

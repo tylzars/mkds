@@ -55,7 +55,7 @@ void AdvanceWiFiVSCourseSelectState(void) {
         if ((u32) data_0217b488->mUnk_1c <= 2) {
             func_02045ed0();
             func_020612b0();
-            data_0217b488->mUnk_6c = 1;
+            data_0217b488->mUnk_6c = TRUE;
         }
         func_02029758();
         func_ov000_021806b8(2);

@@ -106,7 +106,7 @@ void func_0212a604(void) {
         for (j = 0; j < 2; j++) {
             for (k = 0; k < 4; k++) {
                 Unk02124b1c *p = &gKeyboard->mUnk_74[i][j][data_0215d0f8[i][k]];
-                p->mUnk_08 = 1;
+                p->mUnk_08 = TRUE;
                 p->mUnk_0c = 0;
                 p->mUnk_0e = 0;
             }

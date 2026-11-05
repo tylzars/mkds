@@ -347,8 +347,8 @@ void func_02066fe0(Kart *a) {
         }
     }
     f = &a->mUnk_538;
-    if ((a->mUnk_4c & 0x10000000) != 0 && f->mUnk_24 == 0) {
-        f->mUnk_24 = 1;
+    if ((a->mUnk_4c & 0x10000000) != 0 && f->mUnk_24 == FALSE) {
+        f->mUnk_24 = TRUE;
         if ((a->mUnk_7c & 0x200) != 0) {
             a->mUnk_514->mUnk_2c ^= 0x200000;
         }

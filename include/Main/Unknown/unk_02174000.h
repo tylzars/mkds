@@ -76,7 +76,7 @@ typedef struct SelectKart {
     /* 0fc */ s32 mMode;
     /* 100 */ s32 mResult;
     /* 104 */ BOOL mUnk_104;
-    /* 108 */ s32 mUnk_108;
+    /* 108 */ BOOL mUnk_108;
     /* 10c */ s32 mUnk_10c;
     /* 110 */ s32 mUnk_110;
     /* 114 */ u16 mUnk_114;
@@ -157,7 +157,7 @@ typedef struct Unk02174e3c {
     /* 1ac */ s32 mUnk_1ac[4];
     /* 1bc */ s32 mUnk_1bc[8];
     /* 1dc */ s32 mUnk_1dc[8];
-    /* 1fc */ s32 mUnk_1fc;
+    /* 1fc */ BOOL mUnk_1fc;
     /* 200 */ s32 mUnk_200;
     /* 204 */ s32 mUnk_204;
     /* 208 */ s32 mUnk_208;
@@ -334,7 +334,7 @@ typedef struct Unk02174e48 {
     /* 660 */ s32 mUnk_660;
     /* 664 */ s32 mUnk_664;
     /* 668 */ s32 mUnk_668;
-    /* 66c */ s32 mUnk_66c;
+    /* 66c */ BOOL mUnk_66c;
     /* 670 */ s32 mUnk_670;
 } Unk02174e48;
 

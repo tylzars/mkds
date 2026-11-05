@@ -125,7 +125,7 @@ void func_02120150(void) {
 
     d = data_0217d384;
     if (d != NULL) {
-        if (d->mHeapCreated != 0) {
+        if (d->mHeapCreated != FALSE) {
             a = TRUE;
         }
     }

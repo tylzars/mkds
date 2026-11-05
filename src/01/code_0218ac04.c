@@ -26,7 +26,7 @@ void func_ov001_0218acb4(Unk02188950 *a) {
     func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_1c8), (s32) (a->mPrm->mUnk_1cc));
     SetVelocity(a, &v);
     func_ov001_02188e24(a, a->mPrm->mUnk_1d8, func_ov001_0218ad68);
-    a->mUnk_2c0 = 0;
+    a->mUnk_2c0 = FALSE;
 }
 
 void func_ov001_0218ac04(Unk02188950 *a) {

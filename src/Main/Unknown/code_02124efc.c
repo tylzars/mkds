@@ -11,7 +11,7 @@ void func_02124efc(Unk02124b1c *p, s32 n) {
         p->mUnk_00 = 1;
         p->mUnk_04 = 0;
         p->mUnk_06 = 0;
-        p->mUnk_08 = 0;
+        p->mUnk_08 = FALSE;
         p->mUnk_0c = 0;
         p->mUnk_0e = 0;
         p->mUnk_10 = 0;

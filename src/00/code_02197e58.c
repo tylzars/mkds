@@ -73,7 +73,7 @@ BOOL func_ov000_02198448(Gt2Socket *socket) {
     socket->mRunningCallbackCount++;
     socket->mUnk_24(socket);
     socket->mRunningCallbackCount--;
-    if (socket->mDeletePending != 0 && socket->mRunningCallbackCount == 0) {
+    if (socket->mDeletePending != FALSE && socket->mRunningCallbackCount == 0) {
         DeleteSocket(socket);
         return FALSE;
     }
@@ -99,7 +99,7 @@ BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d
     a->mIncomingConnectionCallback(a, b, c, d, e, f, g);
     a->mRunningCallbackCount--;
     b->mUnk_24--;
-    if (a->mDeletePending != 0 && a->mRunningCallbackCount == 0) {
+    if (a->mDeletePending != FALSE && a->mRunningCallbackCount == 0) {
         DeleteSocket(a);
         return FALSE;
     }
@@ -126,7 +126,7 @@ BOOL Gt2SetResultAndCallResultCallback(Gt2Connection *connection, int b, void *c
     connection->mCallbacks.mResultCallback(connection, b, c, d);
     connection->mUnk_24--;
     connection->mSocket->mRunningCallbackCount--;
-    if (connection->mSocket->mDeletePending != 0 && connection->mSocket->mRunningCallbackCount == 0) {
+    if (connection->mSocket->mDeletePending != FALSE && connection->mSocket->mRunningCallbackCount == 0) {
         DeleteSocket(connection->mSocket);
         return FALSE;
     }
@@ -152,7 +152,7 @@ BOOL Gt2CallDataCallback(Gt2Connection *connection, void *b, int c, int d) {
     connection->mCallbacks.mDataCallback(connection, b, c, d);
     connection->mUnk_24--;
     connection->mSocket->mRunningCallbackCount--;
-    if (connection->mSocket->mDeletePending != 0 && connection->mSocket->mRunningCallbackCount == 0) {
+    if (connection->mSocket->mDeletePending != FALSE && connection->mSocket->mRunningCallbackCount == 0) {
         DeleteSocket(connection->mSocket);
         return FALSE;
     }
@@ -174,7 +174,7 @@ BOOL func_ov000_021981d0(Gt2Connection *connection, void *b) {
     connection->mCallbacks.mUnk_08(connection, b);
     connection->mUnk_24--;
     connection->mSocket->mRunningCallbackCount--;
-    if (connection->mSocket->mDeletePending != 0 && connection->mSocket->mRunningCallbackCount == 0) {
+    if (connection->mSocket->mDeletePending != FALSE && connection->mSocket->mRunningCallbackCount == 0) {
         DeleteSocket(connection->mSocket);
         return FALSE;
     }
@@ -196,7 +196,7 @@ BOOL Gt2CallElapsedTimeCallback(Gt2Connection *connection, s32 b) {
     connection->mCallbacks.mElapsedTimeCallback(connection, b);
     connection->mUnk_24--;
     connection->mSocket->mRunningCallbackCount--;
-    if (connection->mSocket->mDeletePending != 0 && connection->mSocket->mRunningCallbackCount == 0) {
+    if (connection->mSocket->mDeletePending != FALSE && connection->mSocket->mRunningCallbackCount == 0) {
         DeleteSocket(connection->mSocket);
         return FALSE;
     }
@@ -224,7 +224,7 @@ BOOL func_ov000_02198098(Gt2Connection *connection, s32 b, s32 c, void *d, s32 e
     f->mUnk_00(connection, b, c, d, e);
     connection->mUnk_24--;
     connection->mSocket->mRunningCallbackCount--;
-    if (connection->mSocket->mDeletePending != 0 && connection->mSocket->mRunningCallbackCount == 0) {
+    if (connection->mSocket->mDeletePending != FALSE && connection->mSocket->mRunningCallbackCount == 0) {
         DeleteSocket(connection->mSocket);
         return FALSE;
     }
@@ -252,7 +252,7 @@ BOOL func_ov000_02197fe8(Gt2Connection *connection, s32 b, void *c, s32 d, s32 e
     f->mUnk_00(connection, b, c, d, e);
     connection->mUnk_24--;
     connection->mSocket->mRunningCallbackCount--;
-    if (connection->mSocket->mDeletePending != 0 && connection->mSocket->mRunningCallbackCount == 0) {
+    if (connection->mSocket->mDeletePending != FALSE && connection->mSocket->mRunningCallbackCount == 0) {
         DeleteSocket(connection->mSocket);
         return FALSE;
     }
@@ -288,7 +288,7 @@ u32 func_ov000_02197f28(Gt2Socket *socket, Gt2Connection *b, u32 f, u32 g, u32 h
     if (b != NULL) {
         b->mUnk_24--;
     }
-    if (socket->mDeletePending != 0 && socket->mRunningCallbackCount == 0) {
+    if (socket->mDeletePending != FALSE && socket->mRunningCallbackCount == 0) {
         DeleteSocket(socket);
         return 0;
     }
@@ -313,7 +313,7 @@ BOOL CallUnmatchedDataCallback(Gt2Socket *a, s32 b, s32 c, void *d, s32 e, s32 *
     a->mRunningCallbackCount++;
     *f = a->mUnmatchedDataCallback(a, b, c, d, e);
     a->mRunningCallbackCount--;
-    if (a->mDeletePending != 0 && a->mRunningCallbackCount == 0) {
+    if (a->mDeletePending != FALSE && a->mRunningCallbackCount == 0) {
         DeleteSocket(a);
         return FALSE;
     }

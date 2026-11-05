@@ -192,7 +192,7 @@ void AdvanceOptionHensyuMenuState3(void) {
                     p->mNextOptionState = 3;
                 } else {
                     p->mNextOptionState = 6;
-                    data_0217b488->mUnk_18 = 0;
+                    data_0217b488->mUnk_18 = FALSE;
                 }
                 break;
         }

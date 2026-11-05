@@ -269,9 +269,9 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
     Unk0200fb08 timer;
     done = FALSE;
     result = -1;
-    if (request->mUnk_24 == 0) {
+    if (request->mUnk_24 == FALSE) {
         flags = 0x80000;
-    } else if (request->mUnk_24 == 1) {
+    } else if (request->mUnk_24 == TRUE) {
         flags = 0xc0000;
     }
     MemFill(&data_ov003_021d8a4c, 0, 0x60);

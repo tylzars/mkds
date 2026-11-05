@@ -46,7 +46,7 @@ void GpiQueueErrorCallback(GpConnection *a, s32 result, s32 fatal) {
         AssertionFailed(data_ov000_021b2ab8, data_ov000_021b2a58, NULL, 0x25);
     }
     if (fatal == 1) {
-        iconnection->mFatal = 1;
+        iconnection->mFatal = TRUE;
     }
     e = iconnection->mCallbacks[0];
     if (e.mCallback != NULL) {
