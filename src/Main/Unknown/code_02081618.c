@@ -1198,7 +1198,7 @@ void func_02081b64(Unk0201ca6c *p, Kart *q, s32 a, s32 b) {
     p->mUnk_28.x = v.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = v.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = v.z + p->mUnk_20->mUnk_00->mUnk_04.z;
-    func_02063b10(q, &w);
+    GetKartForward(q, &w);
     w.x = -w.x;
     w.y = -w.y;
     w.z = -w.z;

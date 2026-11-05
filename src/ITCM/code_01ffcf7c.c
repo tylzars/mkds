@@ -307,7 +307,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
             r = TRUE;
             Vec3Sub(&o->mPos, &v2, &v9);
             v9.y = 0;
-            func_02063b30(o, &v8);
+            GetKartUp(o, &v8);
             d = Vec3Dot(&v8, &v3);
             v10.x = v3.x - (s32) (((s64) v8.x * d) >> 12);
             v10.y = v3.y - (s32) (((s64) v8.y * d) >> 12);
@@ -323,7 +323,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         if (e > 0x1000) {
             e = 0x1000;
         }
-        func_02063b30(q, &v6);
+        GetKartUp(q, &v6);
         d = Vec3Dot(&v6, a);
         v7.x = a->x - (s32) (((s64) v6.x * d) >> 12);
         v7.y = a->y - (s32) (((s64) v6.y * d) >> 12);

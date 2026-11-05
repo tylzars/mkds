@@ -120,7 +120,7 @@ void func_02064f50(Kart *a) {
     } else {
         a->mUnk_44 = a->mUnk_44 & ~0x80000;
     }
-    func_01ffc064(&a->mUnk_1b8, &a->mPos, 0x400, a);
+    ComputeKartPointAlongUp(&a->mUnk_1b8, &a->mPos, 0x400, a);
     func_01ffa4b4(a, &d);
     func_02064d60(a, &d);
     a->mUnk_244 = d;
@@ -143,7 +143,7 @@ void func_02064f50(Kart *a) {
     f.z = (s64) f.z * c >> 12;
     Vec3Add(&b->mUnk_00, &f, &b->mUnk_00);
     if ((a->mUnk_514->mUnk_44 & 1) != 0) {
-        func_01ffc064(&g, &b->mUnk_00, 0x400, a);
+        ComputeKartPointAlongUp(&g, &b->mUnk_00, 0x400, a);
         k = &a->mUnk_12c;
         h.x = (s64) k->x * -0x7000 >> 12;
         h.y = (s64) k->y * -0x7000 >> 12;
@@ -204,7 +204,7 @@ void func_02064d60(Kart *a, Vec3 *b) {
 }
 
 void func_02064d44(Kart *a) {
-    func_01ffc064(&a->mUnk_1c4, &a->mPrevPos, 0x400, a);
+    ComputeKartPointAlongUp(&a->mUnk_1c4, &a->mPrevPos, 0x400, a);
 }
 
 void InitKart(Kart *a, void (**b)(Kart *)) {

@@ -509,7 +509,9 @@ void func_01ffc090(Kart *p, s32 a) {
     p->mUnk_236 += (u16) p->mUnk_3f0;
 }
 
-void func_01ffc064(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
+// Writes base + (mRadius + extra) * up to the out vector, where up is row 1 of the matrix at 0x120 (the vector
+// GetKartUp returns), and nothing else.
+void ComputeKartPointAlongUp(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
     Vec3AddScaled(p->mRadius + c, &p->mUnk_12c, b, a);
 }
 
@@ -580,7 +582,7 @@ void func_01ffbd9c(Kart *p) {
     if (p->mUnk_44 & 0x10) {
         func_020397a8(&p->mUnk_120, &p->mUnk_244, &p->mUnk_278);
     } else {
-        func_02063b10(p, &p->mUnk_278);
+        GetKartForward(p, &p->mUnk_278);
     }
     p->mVelocityLengthRatio = DivFixed12Result();
     if (p->mVelocityLengthRatio > 0x1000) {

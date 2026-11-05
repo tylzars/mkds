@@ -529,7 +529,7 @@ void func_0207ebfc(Unk020888b4 *p) {
         Vec3Sub(&p->mUnk_44, &q->mPos, &v0);
         p->mUnk_90 = 4;
         q2 = p->mKart;
-        func_02063b30(q2, &v3);
+        GetKartUp(q2, &v3);
         n = Vec3Dot(&v3, &v0);
         v4.x = v0.x - (s32) (((s64) v3.x * n) >> 12);
         v4.y = v0.y - (s32) (((s64) v3.y * n) >> 12);

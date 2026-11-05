@@ -291,8 +291,8 @@ recheck:
     p->mUnk_302 = 0;
     p->mUnk_300 = p->mUnk_302;
     p->mUnk_30c = 0;
-    func_02063b10(p, &p->mUnk_290);
-    func_02063b30(p, &p->mUnk_284);
+    GetKartForward(p, &p->mUnk_290);
+    GetKartUp(p, &p->mUnk_284);
     if (p->mUnk_208->mUnk_00 != FALSE) {
         p->mUnk_208->mUnk_00 = FALSE;
     }

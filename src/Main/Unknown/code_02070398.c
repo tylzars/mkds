@@ -256,7 +256,7 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
         func_01ffd190(&v, p->mUnk_236, &p->mUnk_e0_m);
     }
     func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
-    func_02063b10(p, &p->mUnk_278);
+    GetKartForward(p, &p->mUnk_278);
     p->mUnk_50 = p->mUnk_278;
     p->mUnk_68 = p->mUnk_50;
     p->mPrevPos = p->mPos;
@@ -357,7 +357,7 @@ void func_020727d4(Kart *p) {
     p->mUnk_236 = (u32) (c.y * 0xb6) >> 12;
     func_01ffd190(&data_02154f7c, p->mUnk_236, &p->mUnk_e0_m);
     func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
-    func_02063b10(p, &b);
+    GetKartForward(p, &b);
     ResetKartAndSetPos(p, &a, &b, NULL);
     if (data_021759c0->mMode == 5) {
         q = &p->mUnk_1d8;

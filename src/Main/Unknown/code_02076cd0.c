@@ -125,7 +125,7 @@ void func_02077944(void) {
 
     data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
     SetupCameraBehindKart();
-    func_02063b10(a, &data_0217ac94->mSavedKartForward);
+    GetKartForward(a, &data_0217ac94->mSavedKartForward);
     RefreshCameraProjection(data_0217ac94);
 }
 

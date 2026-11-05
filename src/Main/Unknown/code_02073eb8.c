@@ -130,7 +130,7 @@ void func_02076528(Camera *a, Kart *b) {
         u = a->mSavedKartForward;
         func_02076528_inline(&u, a->mFollowDirectionSign);
     } else {
-        func_02063b10(b, &u);
+        GetKartForward(b, &u);
         func_02076528_inline(&u, a->mFollowDirectionSign);
     }
     if (b->mUnk_7c & 0x20) {
@@ -162,7 +162,7 @@ void func_02076528(Camera *a, Kart *b) {
             a->mFollowDistanceScale + (s32) (((s64) (0x1000 - a->mFollowDistanceScale) * 0x19a + 0x800) >> 12);
     }
     w.y = 0;
-    func_02063b30(b, &z);
+    GetKartUp(b, &z);
     func_020745d4(&a->mLookAt, &a->mUnk_0b4, &a->mLookAtLowering, b, s, a->mLookAtHeight);
     v.y = v.y - s;
     g = v;
@@ -192,7 +192,7 @@ void func_02076528(Camera *a, Kart *b) {
     a->mPosGoalKartOffset.y = (s32) (((s64) p->y * n) >> 12);
     a->mPosGoalKartOffset.z = (s32) (((s64) p->z * n) >> 12);
     if (b->mUnk_48 & 0x40000000) {
-        func_02063b30(b, &q);
+        GetKartUp(b, &q);
     } else {
         q = data_usa_02154fc4;
     }
@@ -1009,7 +1009,7 @@ void func_020741a0(Vec3 *a, Vec3 *b, Camera *c, Kart *d, Vec3 *e, const Vec3 *f,
 
     v1 = *f;
     h = c->mFollowDistance - g;
-    func_02063b30(d, &v10);
+    GetKartUp(d, &v10);
     if (h < 500) {
         h = 500;
     }

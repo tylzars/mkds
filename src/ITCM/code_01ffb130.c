@@ -127,7 +127,7 @@ void func_01ffb130(Kart *p) {
         func_01ffb9cc(p);
     }
     if (p->mUnk_44 & 0x10) {
-        func_02063b10(p, &v2);
+        GetKartForward(p, &v2);
         if (!(p->mUnk_48 & 6) && p->mUnk_244.y > 0 && (v2.y > 0 ? v2.y : -v2.y) > 0xcd && p->mUnk_38c <= 0) {
             p->mForwardSpeed += (s32) (((s64) -v2.y * 0x19a) >> 12);
         }
@@ -223,7 +223,7 @@ void func_01ffb130(Kart *p) {
     if (p->mUnk_7c & 0x8000000) {
         return;
     }
-    func_01ffc064(&p->mUnk_1d8, p->mUnk_510, p->mPhysicalParam->mUnk_04, p);
+    ComputeKartPointAlongUp(&p->mUnk_1d8, p->mUnk_510, p->mPhysicalParam->mUnk_04, p);
     func_0206d18c(p);
     CollideKartWithKarts(p);
     func_0206d578(p);

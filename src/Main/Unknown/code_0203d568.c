@@ -330,7 +330,7 @@ void UpdateRaceProgressKarts(void) {
                 e->mUnk_4c[k] = 0;
             }
             func_0207a948(&v, i);
-            func_02063b10(GetKart(i), &w);
+            GetKartForward(GetKart(i), &w);
             UpdateRaceProgressKart(&v, e);
             f = FALSE;
             if (func_0207a7fc(e->mUnk_3c_4) == 0) {

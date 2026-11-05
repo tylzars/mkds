@@ -511,8 +511,8 @@ void func_02071944(void *p, int arg);
 BOOL func_0206bcb0(Kart *p, int a, int b);
 BOOL func_0206be54(Kart *p, int a);
 void func_0206c5e4(Kart *p);
-void func_02063b10(const Kart *p, Vec3 *out);
-void func_02063b30(const Kart *p, Vec3 *out);
+void GetKartForward(const Kart *p, Vec3 *out);
+void GetKartUp(const Kart *p, Vec3 *out);
 
 #include "Main/Unknown/code_0207ae58.h"
 #include "Main/Unknown/code_02079c0c.h"

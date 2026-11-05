@@ -1134,7 +1134,7 @@ typedef struct Camera {
     /* 254 */ s32 mUnk_254;
     /* 258 */ BOOL mUnk_258;
     /* 25c */ BOOL mUnk_25c;
-    // func_02063b10 (row 2 of the Kart's matrix, taken as its heading) of the selected Kart at creation; used instead
+    // GetKartForward (row 2 of the Kart's matrix, taken as its heading) of the selected Kart at creation; used instead
     // of the live vector for a Kart with bit 0x20000000 of mUnk_4c. SetupCamera zeroes it.
     /* 260 */ Vec3 mSavedKartForward;
     /* 26c */ s16 mSideDistanceSign;

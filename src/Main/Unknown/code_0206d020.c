@@ -297,7 +297,7 @@ void func_0206d578(Kart *p) {
 
     d = 0;
     v1 = FALSE;
-    func_01ffc064(&p->mUnk_1f0, p->mUnk_510, 0x400, p);
+    ComputeKartPointAlongUp(&p->mUnk_1f0, p->mUnk_510, 0x400, p);
     Vec3AddScaled((s32) (((s64) p->mRadius * -0x4000) >> 12), &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
     if (p->mIndex == func_02061f90() && !(p->mUnk_4c & 0x10002000)) {
         if (p->mVelocityLength > 0x4000 && p->mState == 0) {

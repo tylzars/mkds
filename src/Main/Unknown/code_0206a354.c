@@ -115,7 +115,7 @@ void StartKartState6(Kart *p) {
     p->mUnk_360 = 0xfa0;
     p->mUnk_35c = 0;
     func_02063b50((u32) p, (u32) &p->mUnk_31c);
-    func_02063b10(p, &p->mUnk_328);
+    GetKartForward(p, &p->mUnk_328);
     p->mUnk_334 = 0;
     p->mUnk_338 = 0;
     p->mUnk_33c = 0;
@@ -268,7 +268,7 @@ void StartKartState3(Kart *p) {
     p->mUnk_318 = 0;
     p->mForwardSpeed = p->mForwardSpeed + 0x800;
     func_02063b50((u32) p, (u32) &p->mUnk_31c);
-    func_02063b10(p, &v);
+    GetKartForward(p, &v);
     Vec3AddScaled(0x2e2, &v, &p->mUnk_31c, &p->mUnk_31c);
     func_02039860(&p->mUnk_31c, &p->mUnk_31c);
     func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);

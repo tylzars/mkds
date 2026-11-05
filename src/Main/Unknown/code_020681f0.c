@@ -297,7 +297,7 @@ void func_02068640(Kart *a, s32 b) {
         a->mUnk_236 = (u32) (d.y * 0xb6) >> 12;
         func_01ffd190(&data_02154f7c, a->mUnk_236, &a->mUnk_e0_m);
         func_01ffcd84(&a->mUnk_120, &a->mUnk_e0_m);
-        func_02063b10(a, &e);
+        GetKartForward(a, &e);
         ResetKartAndSetPos(a, &c, &e, NULL);
         f = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mUnk_1b8;
         if (a->mUnk_2c8 == -1) {

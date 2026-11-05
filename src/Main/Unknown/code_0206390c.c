@@ -10,7 +10,10 @@
 #include "code_02147288.h"
 #include "code_02147cd8.h"
 
-void func_02063b30(const Kart *a, Vec3 *b) {
+// Copies row 1 of the matrix at 0x120 (mUnk_120_m), the kart's up direction, to the out vector. The camera takes it as
+// its up while bit 0x40000000 of mUnk_48 is set and the world up (0, 0x1000, 0) otherwise; the steering code removes
+// this component from vectors. The kart has two more matrices (0x150 and 0x184), built from this one for drawing.
+void GetKartUp(const Kart *a, Vec3 *b) {
     const Unk02012f58 *c;
 
     c = (const Unk02012f58 *) ((u8 *) a + 0x120);
@@ -19,7 +22,10 @@ void func_02063b30(const Kart *a, Vec3 *b) {
     b->z = c->mUnk_00[1].z;
 }
 
-void func_02063b10(const Kart *a, Vec3 *b) {
+// Copies row 2 of the matrix at 0x120 (mUnk_120_m), the kart's forward direction, to the out vector. The camera follows
+// it, and its mSavedKartForward holds a copy taken when the camera is set up. The kart has two more matrices (0x150 and
+// 0x184), built from this one for drawing.
+void GetKartForward(const Kart *a, Vec3 *b) {
     const Unk02012f58 *c;
 
     c = (const Unk02012f58 *) ((u8 *) a + 0x120);

@@ -10,7 +10,7 @@ void UpdateKartSpeedLimit(Kart *p);
 void UpdateKartSpeedLimitGoal(Kart *p);
 void func_01ffbfe4(Kart *p);
 void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p);
-void func_01ffc064(Vec3 *a, const Vec3 *b, s32 c, Kart *p);
+void ComputeKartPointAlongUp(Vec3 *a, const Vec3 *b, s32 c, Kart *p);
 void func_01ffc090(Kart *p, s32 a);
 s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e);
 s32 func_01ffc27c(Kart *p, s32 a);
