@@ -17,7 +17,9 @@ extern u8 data_021547f0[];
 extern u8 data_02154818[];
 extern const Vec3 data_02154f70;
 extern u8 data_02154904[];
-extern u32 data_0215490c[];
+// The 16 scene functions, indexed by scene number; the names are in gSceneNames
+// (data_usa_021541a8).
+extern u32 gSceneFuncs[];
 extern const Vec3 data_02154f94;
 extern const s16 data_usa_02154a48[];
 extern const s32 data_02154b64[8];

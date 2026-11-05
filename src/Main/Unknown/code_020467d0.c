@@ -67,9 +67,9 @@ u32 func_02046ad0(u32 p0) {
 }
 
 s32 func_02046a88(void *a) {
-    Unk021a9034 b = data_02164838;
+    SceneCallbacks b = data_02164838;
 
-    func_020487fc(a, &b);
+    RunScene(a, &b);
     return 0;
 }
 

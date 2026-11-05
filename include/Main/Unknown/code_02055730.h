@@ -1,13 +1,15 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_020487fc.h" // Unk020487fc
+#include "Main/Unknown/code_020487fc.h" // SceneNumbers
 
 s32 func_02055730(u16 a);
 s32 func_0205579c(s32 a, s32 b);
 s32 func_02055808(s32 a);
 void func_020559ec(const void *a, s32 b, s32 c);
-s32 func_02055a4c(Unk020487fc *a);
+// Scene function of gSceneFuncs[8] (scene 'Record' in gSceneNames): copies the callbacks and calls
+// RunScene. Returns 0.
+s32 RunRecordScene(SceneNumbers *a);
 void func_02055a94(void);
 BOOL func_02055afc(void);
 BOOL func_02055b1c(void);

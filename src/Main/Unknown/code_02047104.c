@@ -48,7 +48,7 @@ void func_020483a0(char *a) {
     } else {
         b = data_usa_0216510c;
     }
-    StringFormatBounded(a, 0x80, data_usa_02165110, data_usa_021541a8[10].mUnk_00, b, data_usa_02165124);
+    StringFormatBounded(a, 0x80, data_usa_02165110, gSceneNames[10].mUnk_00, b, data_usa_02165124);
 }
 
 void func_02048350(char *a) {
@@ -61,7 +61,7 @@ void func_02048350(char *a) {
         b = data_usa_021650e4;
     }
     c = func_02048474();
-    StringFormatBounded(a, 0x80, data_usa_021650e8, data_usa_021541a8[10].mUnk_00, b, c, data_usa_02165100);
+    StringFormatBounded(a, 0x80, data_usa_021650e8, gSceneNames[10].mUnk_00, b, c, data_usa_02165100);
 }
 
 #pragma thumb off
@@ -142,14 +142,14 @@ void func_02048050(int a, int b) {
                     if (data_021759c0->mUnk_00c == 6) {
                         StringFormatBounded((char *) c, 0x80, data_usa_02165058);
                     } else {
-                        func_020483e4((u32) c, (u8 *) data_usa_021541a8[b].mUnk_00);
+                        func_020483e4((u32) c, (u8 *) gSceneNames[b].mUnk_00);
                     }
                     break;
                 default:
-                    func_020483e4((u32) c, (u8 *) data_usa_021541a8[b].mUnk_00);
+                    func_020483e4((u32) c, (u8 *) gSceneNames[b].mUnk_00);
                     break;
             }
-            g = data_usa_021541a8[b].mUnk_04;
+            g = gSceneNames[b].mUnk_04;
             break;
         case 9:
             switch (b) {
@@ -171,19 +171,19 @@ void func_02048050(int a, int b) {
                     if (data_021759c0->mUnk_00c == 6) {
                         func_02048324((u32) c);
                     } else {
-                        func_0204840c((u32) c, (u8 *) data_usa_021541a8[b].mUnk_00);
+                        func_0204840c((u32) c, (u8 *) gSceneNames[b].mUnk_00);
                     }
                     break;
                 default:
-                    func_0204840c((u32) c, (u8 *) data_usa_021541a8[b].mUnk_00);
+                    func_0204840c((u32) c, (u8 *) gSceneNames[b].mUnk_00);
                     break;
             }
             break;
         case 11:
-            func_020482f0((u32) c, data_usa_021541a8[b].mUnk_00, data_021759c0->mMode);
+            func_020482f0((u32) c, gSceneNames[b].mUnk_00, data_021759c0->mMode);
             break;
         case 12:
-            func_020482ac((s32) c, (u8 *) data_usa_021541a8[b].mUnk_00, data_021759c0->mMode);
+            func_020482ac((s32) c, (u8 *) gSceneNames[b].mUnk_00, data_021759c0->mMode);
             break;
         case 2:
         case 15:
@@ -483,7 +483,7 @@ void *FindSceneFile(const char *path) {
     if (file == 0 && data_021759c8->mUnk_458 != 0) {
         file = FindArchiveFile(gArchiveNames[9], path);
     }
-    if (func_0205e0a0() == 2) {
+    if (GetCurrentSceneNumber() == 2) {
         if (file == 0 && data_021759c8->mUnk_538 != 0) {
             file = FindArchiveFile(gArchiveNames[11], path);
         }
@@ -509,7 +509,7 @@ void *FindCourseFile(const char *path) {
 
 void *func_02047950(const char *path) {
     int v1;
-    v1 = func_0205e0a0();
+    v1 = GetCurrentSceneNumber();
     if (v1 == 3) {
         return FindKartModelFile(path);
     }
@@ -520,7 +520,7 @@ void *FindKartModelFile(const char *path) {
     int v1;
     int file;
     file = 0;
-    v1 = func_0205e0a0();
+    v1 = GetCurrentSceneNumber();
     if (((v1 == 1) || (v1 == 3)) || (v1 == 0xc)) {
         file = FindArchiveFile(gArchiveNames[10], path);
     } else {
@@ -548,7 +548,7 @@ void *LoadKartModelFile(const char *path) {
     u32 archiveName;
 
     file = NULL;
-    b = func_0205e0a0();
+    b = GetCurrentSceneNumber();
     if (b == 1 || b == 3 || b == 0xc) {
         archiveName = gArchiveNames[10];
         if (path[0] == '/') {
@@ -605,7 +605,7 @@ void func_02047728(void) {
     func_02047cf0(7);
     func_02047cf0(8);
     func_02047b6c((u16) 0);
-    v1 = func_0205e0a0();
+    v1 = GetCurrentSceneNumber();
     if (v1 == 2) {
         func_02048050(3, 2);
     }
@@ -616,7 +616,7 @@ void func_020476ec(void) {
     int v1;
     func_02047cf0(0xd);
     func_02047b6c((u16) 0);
-    v1 = func_0205e0a0();
+    v1 = GetCurrentSceneNumber();
     if (v1 == 2) {
         func_02048050(5, 2);
         func_02048050(0xb, 2);
@@ -627,7 +627,7 @@ void func_020476ec(void) {
 
 void func_020476ac(void) {
     u32 v1;
-    v1 = func_0205e0a0();
+    v1 = GetCurrentSceneNumber();
     func_02047cf0(10);
     func_02047b6c((u16) 0);
     func_02048050(1, v1);

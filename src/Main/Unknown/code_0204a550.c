@@ -106,7 +106,7 @@ BOOL func_0204a620(Unk02175650 *a) {
     return ((u32) a->mUnk_04 << 1) > 0xd1b;
 }
 
-void func_0204a5f8(void) {
+void InitEmblemScene(void) {
     GetHeap(func_020364e8());
     func_020399a8();
     func_02043c14();
@@ -121,7 +121,7 @@ void func_0204a5e8(void) {
     func_ov001_021a23c0();
 }
 
-void func_0204a598(Unk0204a598 *a) {
+void UpdateEmblemScene(Unk0204a598 *a) {
     s32 r;
 
     r = func_ov001_021a23c8();
@@ -137,9 +137,9 @@ void func_0204a598(Unk0204a598 *a) {
     }
 }
 
-s32 func_0204a550(void *a) {
-    Unk021a9034 b = data_02165190;
+s32 RunEmblemScene(void *a) {
+    SceneCallbacks b = gEmblemSceneCallbacks;
 
-    func_020487fc(a, &b);
+    RunScene(a, &b);
     return 0;
 }

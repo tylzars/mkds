@@ -73,9 +73,9 @@ void func_02057d58(void *a) {
     func_02001a74(a);
 }
 
-s32 func_02057d10(Unk020487fc *a) {
-    Unk021a9034 b = data_02165280;
+s32 RunLogoScene(SceneNumbers *a) {
+    SceneCallbacks b = data_02165280;
 
-    func_020487fc(a, &b);
+    RunScene(a, &b);
     return 0;
 }

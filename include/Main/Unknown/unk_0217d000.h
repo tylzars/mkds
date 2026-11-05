@@ -534,7 +534,7 @@ typedef struct Unk0217d3fc_00 {
     /* 402 */ u16 mUnk_402;
 } Unk0217d3fc_00;
 
-// Object behind data_0217d3fc: 0x808 bytes allocated by func_02128958.
+// Object behind data_0217d3fc: 0x808 bytes allocated by InitKeyboardScene.
 typedef struct Unk0217d3fc {
     /* 000 */ Unk0217d3fc_00 mUnk_00;
     /* 404 */ Unk0217d3fc_00 mUnk_404;

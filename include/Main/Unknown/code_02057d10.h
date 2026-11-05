@@ -2,9 +2,11 @@
 
 #include "types.h"
 
-typedef struct Unk020487fc Unk020487fc;
+typedef struct SceneNumbers SceneNumbers;
 
-s32 func_02057d10(Unk020487fc *a);
+// Scene function of gSceneFuncs[9] (scene 'Logo' in gSceneNames): copies the callbacks and calls
+// RunScene. Returns 0.
+s32 RunLogoScene(SceneNumbers *a);
 void func_02057d58(void *a);
 void func_02057d64(void);
 void func_02057d70(void);

@@ -321,10 +321,10 @@ void func_02055a94(void) {
     data_0217aa04->mUnk_08 |= 8;
 }
 
-s32 func_02055a4c(Unk020487fc *a) {
-    Unk021a9034 b = data_0216524c;
+s32 RunRecordScene(SceneNumbers *a) {
+    SceneCallbacks b = gRecordSceneCallbacks;
 
-    func_020487fc(a, &b);
+    RunScene(a, &b);
     return 0;
 }
 

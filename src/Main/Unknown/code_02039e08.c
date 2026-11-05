@@ -40,7 +40,7 @@
 #include "01/code_0219e0a8.h"
 #include "code_020176c0.h"
 
-void func_0203a0dc(Unk0203a0dc *a, u32 b) {
+void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
     Unk021759c0 *q;
     u32 c;
     if (func_02049b6c() == 0) {
@@ -177,8 +177,8 @@ void func_0203a050(void) {
     func_02046e24();
 }
 
-u32 func_02039f9c(Unk020487fc *a) {
-    Unk021a9034 b = data_usa_02164734;
+u32 RunRaceScene(SceneNumbers *a) {
+    SceneCallbacks b = gRaceSceneCallbacks;
     func_02044940();
     if (data_021759c0->mMode == 5) {
         b.mUnk_1c = 1;
@@ -195,15 +195,15 @@ u32 func_02039f9c(Unk020487fc *a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02043f28(1);
     }
-    func_020487fc(a, &b);
+    RunScene(a, &b);
     return 0;
 }
 
-void func_02039f90(void) {
+void InitMenuScene(void) {
     func_020cbb10();
 }
 
-void func_02039f5c(void) {
+void ReleaseMenuScene(void) {
     func_020cb9b8();
     data_021759d0->mUnk_50 &= ~1;
     func_0204465c();
@@ -213,14 +213,14 @@ void func_02039f50(void) {
     func_020cc36c();
 }
 
-void func_02039f34(void) {
+void UpdateMenuScene(void) {
     func_020cb51c();
     func_020cb4c0();
 }
 
-u32 func_02039eec(Unk020487fc *a) {
-    Unk021a9034 b = data_usa_021646f8;
-    func_020487fc(a, &b);
+u32 RunMenuScene(SceneNumbers *a) {
+    SceneCallbacks b = gMenuSceneCallbacks;
+    RunScene(a, &b);
     return 0;
 }
 

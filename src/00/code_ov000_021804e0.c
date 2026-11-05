@@ -11,14 +11,14 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036820.h"
 
-void func_ov000_021805cc(s16 *a) {
+void InitWiFiMenuScene(s16 *a) {
     void *b;
     b = GetHeap(func_020364e8());
     data_ov000_021b4c60 = HeapAlloc(b, 0x808);
     InitWiFiStates(b, *a);
 }
 
-void func_ov000_021805b4(void) {
+void ReleaseWiFiMenuScene(void) {
     func_ov000_02180814();
     data_ov000_021b4c60 = NULL;
 }
@@ -29,7 +29,7 @@ void func_ov000_0218058c(void) {
     func_020ae5f0(data_ov000_021b4c60, data_ov000_021b4c60 + 0x404);
 }
 
-void func_ov000_02180534(Unk020487fc *a) {
+void UpdateWiFiMenuScene(SceneNumbers *a) {
     func_020ae6ac(data_ov000_021b4c60, data_ov000_021b4c60 + 0x404);
     AdvanceWiFiStates();
     func_020ae630(data_ov000_021b4c60, data_ov000_021b4c60 + 0x404);
@@ -38,15 +38,15 @@ void func_ov000_02180534(Unk020487fc *a) {
             if (func_ov000_021806c4() == 0) {
                 data_021759d0->mUnk_20 = 0;
             }
-            a->mUnk_04 = func_ov000_021806c4();
+            a->mNextScene = func_ov000_021806c4();
         }
     }
 }
 
-s32 func_ov000_02180500(Unk020487fc *a) {
-    Unk021a9034 b = {
-        func_ov000_021805cc, func_ov000_02180534, func_ov000_021805b4, func_ov000_0218058c, 0, 0, 10, 10, 0};
-    func_020487fc(a, &b);
+s32 RunWiFiMenuScene(SceneNumbers *a) {
+    SceneCallbacks b = {
+        InitWiFiMenuScene, UpdateWiFiMenuScene, ReleaseWiFiMenuScene, func_ov000_0218058c, 0, 0, 10, 10, 0};
+    RunScene(a, &b);
     return 0;
 }
 

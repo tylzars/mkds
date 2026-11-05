@@ -23,7 +23,7 @@ typedef struct {
 
 extern Names02164e04 gArchiveNames;
 extern Obj021759a8 *data_021759a8;
-int func_0205e0a0(void);
+int GetCurrentSceneNumber(void);
 int StringFormatBounded(char *dst, int len, const char *fmt, ...);
 int func_02048504(const char *path, int arg);
 
@@ -32,7 +32,7 @@ int LoadKartModelFile(const char *path) {
     char buf[0x80];
     const char *name;
     int result = 0;
-    int mode = func_0205e0a0();
+    int mode = GetCurrentSceneNumber();
     if (mode == 1 || mode == 3 || mode == 12) {
         name = gArchiveNames.mUnk_28;
         if (path[0] == '/') {

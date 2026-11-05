@@ -332,7 +332,7 @@ Reused variables and own locals:
 
 Inline getters and helpers:
 - An inlined getter `if (p == 0) return 0; return p->f;` used in several loops can rotate the loop's registers
-  (func_020487fc). `u32 r = 0; if (p != 0) r = p->f; return r;` fixes the registers but puts `mov rX, #0` above the
+  (RunScene). `u32 r = 0; if (p != 0) r = p->f; return r;` fixes the registers but puts `mov rX, #0` above the
   compare; `p == 0 ? 0 : p->f` gave `moveq` before `ldrne` (func_020401ac).
 - Statement order inside a small inline can decide a whole loop's registers: `v1 = a->x - b->x; v2 = a->z - b->z;
   return (s64) v1 * v1 + (s64) v2 * v2;` matched UpdateKanoke64; z first did not.
@@ -728,7 +728,7 @@ Expression shapes:
 - The else arm placed first, with the last test branching to the then arm: `if (!A || !B || C != D) { else-body } else {
   then-body }` (func_02007698).
 - `movcc #0` then `movcs #1` where `c = (b < K) ? 0 : 1` gives `movcs` first: write `if (b < K) { c = 0; } else { c = 1;
-  }` (func_0203a0dc).
+  }` (UpdateRaceScene).
 - Switch case bodies placed in a different order: write the case bodies in the order of the original's branch targets
   (func_0204dd24).
 - A compare tree where the original has a jump table, or a table over a different range: add empty case labels. The

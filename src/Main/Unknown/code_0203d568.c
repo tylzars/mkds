@@ -44,8 +44,8 @@ static inline s32 func_0203d568_inline(Unk0217aa00 *p) {
 static inline void func_0203d568_b_inline(void) {
     u16 i;
 
-    if (data_021759c0->mUnk_00c == 0 && func_0205e090() != 10 &&
-        (func_0205e090() != 6 || data_0217b488->mUnk_74 != 2) && func_0203d568_inline(data_0217aa00) != 0) {
+    if (data_021759c0->mUnk_00c == 0 && GetNextSceneNumber() != 10 &&
+        (GetNextSceneNumber() != 6 || data_0217b488->mUnk_74 != 2) && func_0203d568_inline(data_0217aa00) != 0) {
         for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
             if (data_021759c0->mCurrentEntries[i].mUnk_08.mKind == 0 &&
                 (data_0217aa00->mUnk_15f6 & (1 << data_0217aa00->mUnk_1e8c[i])) == 0) {

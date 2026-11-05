@@ -1546,15 +1546,15 @@ func_02039c98 kind:function(arm,size=0x24) addr:0x02039c98
 func_02039cbc kind:function(arm,size=0x144) addr:0x02039cbc
 func_02039e00 kind:function(arm,size=0x8) addr:0x02039e00
 func_02039e08 kind:function(arm,size=0xe4) addr:0x02039e08
-func_02039eec kind:function(arm,size=0x48) addr:0x02039eec
-func_02039f34 kind:function(arm,size=0x1c) addr:0x02039f34
+RunMenuScene kind:function(arm,size=0x48) addr:0x02039eec
+UpdateMenuScene kind:function(arm,size=0x1c) addr:0x02039f34
 func_02039f50 kind:function(arm,size=0xc) addr:0x02039f50
-func_02039f5c kind:function(arm,size=0x34) addr:0x02039f5c
-func_02039f90 kind:function(arm,size=0xc) addr:0x02039f90
-func_02039f9c kind:function(arm,size=0xb4) addr:0x02039f9c
+ReleaseMenuScene kind:function(arm,size=0x34) addr:0x02039f5c
+InitMenuScene kind:function(arm,size=0xc) addr:0x02039f90
+RunRaceScene kind:function(arm,size=0xb4) addr:0x02039f9c
 func_0203a050 kind:function(arm,size=0xc) addr:0x0203a050
 func_0203a05c kind:function(arm,size=0x80) addr:0x0203a05c
-func_0203a0dc kind:function(arm,size=0x2c8) addr:0x0203a0dc
+UpdateRaceScene kind:function(arm,size=0x2c8) addr:0x0203a0dc
 func_0203a3a4 kind:function(arm,size=0x14) addr:0x0203a3a4
 func_0203a3b8 kind:function(arm,size=0x14) addr:0x0203a3b8
 func_0203a3cc kind:function(arm,size=0x60) addr:0x0203a3cc
@@ -1572,7 +1572,7 @@ func_0203a908 kind:function(arm,size=0xe4) addr:0x0203a908
 func_0203a9ec kind:function(arm,size=0xbc) addr:0x0203a9ec
 func_0203aaa8 kind:function(arm,size=0x24) addr:0x0203aaa8
 func_0203aacc kind:function(arm,size=0x110) addr:0x0203aacc
-func_0203abdc kind:function(arm,size=0x17c) addr:0x0203abdc
+InitRaceScene kind:function(arm,size=0x17c) addr:0x0203abdc
 func_0203ad58 kind:function(arm,size=0x28c) addr:0x0203ad58
 func_0203afe4 kind:function(arm,size=0x34) addr:0x0203afe4
 func_0203b018 kind:function(arm,size=0x58) addr:0x0203b018
@@ -1605,7 +1605,7 @@ func_0203bedc kind:function(thumb,size=0x26) addr:0x0203bedc
 func_0203bf04 kind:function(arm,size=0xc0) addr:0x0203bf04
 func_0203bfc4 kind:function(arm,size=0x28) addr:0x0203bfc4
 func_0203bfec kind:function(arm,size=0x2c) addr:0x0203bfec
-func_0203c018 kind:function(arm,size=0x48) addr:0x0203c018
+RunTitleScene kind:function(arm,size=0x48) addr:0x0203c018
 func_0203c060 kind:function(arm,size=0x1c) addr:0x0203c060
 func_0203c07c kind:function(arm,size=0xc) addr:0x0203c07c
 func_0203c088 kind:function(arm,size=0xc) addr:0x0203c088
@@ -1856,7 +1856,7 @@ func_02048684 kind:function(thumb,size=0x4e) addr:0x02048684
 func_020486d4 kind:function(thumb,size=0xcc) addr:0x020486d4
 func_020487a0 kind:function(thumb,size=0x40) addr:0x020487a0
 func_020487e0 kind:function(thumb,size=0x1c) addr:0x020487e0
-func_020487fc kind:function(arm,size=0xff4) addr:0x020487fc
+RunScene kind:function(arm,size=0xff4) addr:0x020487fc
 func_020497f0 kind:function(arm,size=0x18) addr:0x020497f0
 func_02049808 kind:function(arm,size=0x18) addr:0x02049808
 func_02049820 kind:function(arm,size=0x18) addr:0x02049820
@@ -1877,14 +1877,14 @@ func_0204a428 kind:function(arm,size=0xb0) addr:0x0204a428
 func_0204a4d8 kind:function(arm,size=0xc) addr:0x0204a4d8
 func_0204a4e4 kind:function(arm,size=0x24) addr:0x0204a4e4
 func_0204a508 kind:function(arm,size=0x24) addr:0x0204a508
-func_0204a52c kind:function(arm,size=0x14) addr:0x0204a52c
+GetSceneFrames kind:function(arm,size=0x14) addr:0x0204a52c
 func_0204a540 kind:function(arm,size=0x8) addr:0x0204a540
 func_0204a548 kind:function(arm,size=0x8) addr:0x0204a548
-func_0204a550 kind:function(arm,size=0x48) addr:0x0204a550
-func_0204a598 kind:function(arm,size=0x50) addr:0x0204a598
+RunEmblemScene kind:function(arm,size=0x48) addr:0x0204a550
+UpdateEmblemScene kind:function(arm,size=0x50) addr:0x0204a598
 func_0204a5e8 kind:function(arm,size=0xc) addr:0x0204a5e8
 func_0204a5f4 kind:function(arm,size=0x4) addr:0x0204a5f4
-func_0204a5f8 kind:function(arm,size=0x28) addr:0x0204a5f8
+InitEmblemScene kind:function(arm,size=0x28) addr:0x0204a5f8
 func_0204a620 kind:function(arm,size=0x30) addr:0x0204a620
 func_0204a650 kind:function(arm,size=0x14) addr:0x0204a650
 func_0204a664 kind:function(arm,size=0x134) addr:0x0204a664
@@ -1907,7 +1907,7 @@ func_0204acd0 kind:function(arm,size=0x54) addr:0x0204acd0
 func_0204ad24 kind:function(arm,size=0x20) addr:0x0204ad24
 func_0204ad44 kind:function(arm,size=0x22c) addr:0x0204ad44
 func_0204af70 kind:function(arm,size=0x60) addr:0x0204af70
-func_0204afd0 kind:function(arm,size=0x48) addr:0x0204afd0
+RunWLMenuScene kind:function(arm,size=0x48) addr:0x0204afd0
 func_0204b018 kind:function(arm,size=0xc) addr:0x0204b018
 func_0204b024 kind:function(arm,size=0xc) addr:0x0204b024
 func_0204b030 kind:function(arm,size=0xc) addr:0x0204b030
@@ -2128,7 +2128,7 @@ func_02055730 kind:function(arm,size=0x6c) addr:0x02055730
 func_0205579c kind:function(arm,size=0x6c) addr:0x0205579c
 func_02055808 kind:function(arm,size=0x1e4) addr:0x02055808
 func_020559ec kind:function(arm,size=0x60) addr:0x020559ec
-func_02055a4c kind:function(arm,size=0x48) addr:0x02055a4c
+RunRecordScene kind:function(arm,size=0x48) addr:0x02055a4c
 func_02055a94 kind:function(arm,size=0x68) addr:0x02055a94
 func_02055afc kind:function(arm,size=0x20) addr:0x02055afc
 func_02055b1c kind:function(arm,size=0xb8) addr:0x02055b1c
@@ -2233,7 +2233,7 @@ func_02057c14 kind:function(thumb,size=0x4c) addr:0x02057c14
 func_02057c60 kind:function(thumb,size=0x44) addr:0x02057c60
 func_02057ca4 kind:function(thumb,size=0x58) addr:0x02057ca4
 func_02057cfc kind:function(thumb,size=0x14) addr:0x02057cfc
-func_02057d10 kind:function(arm,size=0x48) addr:0x02057d10
+RunLogoScene kind:function(arm,size=0x48) addr:0x02057d10
 func_02057d58 kind:function(arm,size=0xc) addr:0x02057d58
 func_02057d64 kind:function(arm,size=0xc) addr:0x02057d64
 func_02057d70 kind:function(arm,size=0xc) addr:0x02057d70
@@ -2316,7 +2316,7 @@ func_02059878 kind:function(thumb,size=0xa8) addr:0x02059878
 func_02059920 kind:function(thumb,size=0x34) addr:0x02059920
 func_02059954 kind:function(thumb,size=0x1d4) addr:0x02059954
 func_02059b28 kind:function(thumb,size=0x50) addr:0x02059b28
-func_02059b78 kind:function(arm,size=0x48) addr:0x02059b78
+RunResultScene kind:function(arm,size=0x48) addr:0x02059b78
 func_02059bc0 kind:function(arm,size=0xc) addr:0x02059bc0
 func_02059bcc kind:function(arm,size=0xc) addr:0x02059bcc
 func_02059bd8 kind:function(arm,size=0xc) addr:0x02059bd8
@@ -2409,17 +2409,17 @@ func_0205db28 kind:function(arm,size=0x28) addr:0x0205db28
 func_0205db50 kind:function(arm,size=0x104) addr:0x0205db50
 func_0205dc54 kind:function(arm,size=0x28) addr:0x0205dc54
 func_0205dc7c kind:function(arm,size=0x8) addr:0x0205dc7c
-func_0205dc84 kind:function(arm,size=0xb4) addr:0x0205dc84
-func_0205dd38 kind:function(arm,size=0x1a8) addr:0x0205dd38
+RunScenesForever kind:function(arm,size=0xb4) addr:0x0205dc84
+RunScenes kind:function(arm,size=0x1a8) addr:0x0205dd38
 func_0205dee0 kind:function(arm,size=0x1b0) addr:0x0205dee0
-func_0205e090 kind:function(arm,size=0x10) addr:0x0205e090
-func_0205e0a0 kind:function(arm,size=0x10) addr:0x0205e0a0
+GetNextSceneNumber kind:function(arm,size=0x10) addr:0x0205e090
+GetCurrentSceneNumber kind:function(arm,size=0x10) addr:0x0205e0a0
 func_0205e0b0 kind:function(arm,size=0xd0) addr:0x0205e0b0
 func_0205e180 kind:function(arm,size=0x44) addr:0x0205e180
 func_0205e1c4 kind:function(arm,size=0xf4) addr:0x0205e1c4
 func_0205e2b8 kind:function(arm,size=0x14) addr:0x0205e2b8
 func_0205e2cc kind:function(arm,size=0x218) addr:0x0205e2cc
-func_0205e4e4 kind:function(thumb,size=0x34) addr:0x0205e4e4
+RunGhostScene kind:function(thumb,size=0x34) addr:0x0205e4e4
 func_0205e518 kind:function(thumb,size=0x8) addr:0x0205e518
 func_0205e520 kind:function(thumb,size=0x8) addr:0x0205e520
 func_0205e528 kind:function(thumb,size=0x8) addr:0x0205e528
@@ -6215,10 +6215,10 @@ func_0211127c kind:function(arm,size=0x80) addr:0x0211127c
 func_021112fc kind:function(arm,size=0x10) addr:0x021112fc
 func_0211130c kind:function(thumb,size=0xc) addr:0x0211130c
 func_02111318 kind:function(thumb,size=0xc) addr:0x02111318
-func_02111324 kind:function(thumb,size=0x44) addr:0x02111324
+UpdateRecordScene kind:function(thumb,size=0x44) addr:0x02111324
 func_02111368 kind:function(thumb,size=0x24) addr:0x02111368
-func_0211138c kind:function(thumb,size=0x20) addr:0x0211138c
-func_021113ac kind:function(thumb,size=0x44) addr:0x021113ac
+ReleaseRecordScene kind:function(thumb,size=0x20) addr:0x0211138c
+InitRecordScene kind:function(thumb,size=0x44) addr:0x021113ac
 func_021113f0 kind:function(thumb,size=0xc) addr:0x021113f0
 func_021113fc kind:function(thumb,size=0xc) addr:0x021113fc
 func_02111408 kind:function(thumb,size=0x10) addr:0x02111408
@@ -6796,11 +6796,11 @@ func_021287c0 kind:function(thumb,size=0xc) addr:0x021287c0
 InitSelectReturn kind:function(thumb,size=0xb8) addr:0x021287cc
 func_02128884 kind:function(thumb,size=0x14) addr:0x02128884
 func_02128898 kind:function(thumb,size=0xc) addr:0x02128898
-func_021288a4 kind:function(thumb,size=0x34) addr:0x021288a4
-func_021288d8 kind:function(thumb,size=0x44) addr:0x021288d8
+RunKeyboardScene kind:function(thumb,size=0x34) addr:0x021288a4
+UpdateKeyboardScene kind:function(thumb,size=0x44) addr:0x021288d8
 func_0212891c kind:function(thumb,size=0x24) addr:0x0212891c
-func_02128940 kind:function(thumb,size=0x18) addr:0x02128940
-func_02128958 kind:function(thumb,size=0x34) addr:0x02128958
+ReleaseKeyboardScene kind:function(thumb,size=0x18) addr:0x02128940
+InitKeyboardScene kind:function(thumb,size=0x34) addr:0x02128958
 func_0212898c kind:function(thumb,size=0x10) addr:0x0212898c
 func_0212899c kind:function(thumb,size=0x44) addr:0x0212899c
 func_021289e0 kind:function(thumb,size=0x12c) addr:0x021289e0
@@ -7879,7 +7879,7 @@ data_usa_021540d4 kind:data(any) addr:0x021540d4
 data_021540ec kind:data(any) addr:0x021540ec
 data_usa_02154108 kind:data(any) addr:0x02154108
 data_02154128 kind:data(any) addr:0x02154128
-data_usa_021541a8 kind:data(any) addr:0x021541a8
+gSceneNames kind:data(any) addr:0x021541a8
 data_usa_021541ac kind:data(any) addr:0x021541ac
 data_usa_02154228 kind:data(any) addr:0x02154228
 data_usa_0215422c kind:data(any) addr:0x0215422c
@@ -7907,7 +7907,7 @@ data_usa_02154890 kind:data(any) addr:0x02154890
 data_usa_021548b8 kind:data(any) addr:0x021548b8
 data_021548e0 kind:data(any) addr:0x021548e0
 data_02154904 kind:data(any) addr:0x02154904
-data_0215490c kind:data(any) addr:0x0215490c
+gSceneFuncs kind:data(any) addr:0x0215490c
 data_usa_0215494c kind:data(any) addr:0x0215494c
 data_02154970 kind:data(any) addr:0x02154970
 data_02154980 kind:data(any) addr:0x02154980
@@ -9315,9 +9315,9 @@ data_usa_021646c0 kind:data(any) addr:0x021646c0
 data_usa_021646d0 kind:data(any) addr:0x021646d0
 data_021646e0 kind:data(any) addr:0x021646e0
 data_usa_021646ec kind:data(any) addr:0x021646ec
-data_usa_021646f8 kind:data(any) addr:0x021646f8
+gMenuSceneCallbacks kind:data(any) addr:0x021646f8
 data_usa_02164718 kind:data(any) addr:0x02164718
-data_usa_02164734 kind:data(any) addr:0x02164734
+gRaceSceneCallbacks kind:data(any) addr:0x02164734
 data_usa_02164754 kind:data(any) addr:0x02164754
 data_02164770 kind:data(any) addr:0x02164770
 data_usa_0216478c kind:data(any) addr:0x0216478c
@@ -9512,7 +9512,7 @@ data_usa_02165168 kind:data(any) addr:0x02165168
 data_usa_0216516c kind:data(any) addr:0x0216516c
 data_usa_02165170 kind:data(any) addr:0x02165170
 data_usa_02165174 kind:data(any) addr:0x02165174
-data_02165190 kind:data(any) addr:0x02165190
+gEmblemSceneCallbacks kind:data(any) addr:0x02165190
 data_usa_021651b0 kind:data(any) addr:0x021651b0
 data_usa_021651d0 kind:data(any) addr:0x021651d0
 data_021651d4 kind:data(any) addr:0x021651d4
@@ -9525,14 +9525,14 @@ data_usa_02165208 kind:data(any) addr:0x02165208
 data_usa_02165228 kind:data(any) addr:0x02165228
 data_usa_0216522c kind:data(any) addr:0x0216522c
 data_0216523c kind:data(any) addr:0x0216523c
-data_0216524c kind:data(any) addr:0x0216524c
+gRecordSceneCallbacks kind:data(any) addr:0x0216524c
 data_0216526c kind:data(any) addr:0x0216526c
 data_02165280 kind:data(any) addr:0x02165280
 data_021652a0 kind:data(any) addr:0x021652a0
 data_021652b0 kind:data(any) addr:0x021652b0
 data_02165368 kind:data(any) addr:0x02165368
 data_02165388 kind:data(any) addr:0x02165388
-data_021653b8 kind:data(any) addr:0x021653b8
+gSceneNumbers kind:data(any) addr:0x021653b8
 data_021653c0 kind:data(any) addr:0x021653c0
 data_usa_021653e0 kind:data(any) addr:0x021653e0
 data_021653e4 kind:data(any) addr:0x021653e4
@@ -10972,7 +10972,7 @@ data_0216e874 kind:data(any) addr:0x0216e854
 @1972 kind:data(any) addr:0x0216e86c local
 @1973 kind:data(any) addr:0x0216e888 local
 @1974 kind:data(any) addr:0x0216e8a4 local
-data_0216e8e0 kind:data(any) addr:0x0216e8c0
+gKeyboardSceneCallbacks kind:data(any) addr:0x0216e8c0
 @1160 kind:data(any) addr:0x0216e8e0 local
 @1162 kind:data(any) addr:0x0216e8e8 local
 @1164 kind:data(any) addr:0x0216e8f0 local

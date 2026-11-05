@@ -270,10 +270,10 @@ void func_ov001_0218050c(Unk0218052c *p0) {
     func_ov001_0218052c(p0);
 }
 
-int func_ov001_021804e0(void *p0) {
-    Unk021a9034 v = {
+int RunTestScene(void *p0) {
+    SceneCallbacks v = {
         func_ov001_02180524, func_ov001_0218050c, func_ov001_0218051c, func_ov001_02180514, 0, 0, 0x1e, 0x1e, 0};
 
-    func_020487fc(p0, &v);
+    RunScene(p0, &v);
     return 0;
 }

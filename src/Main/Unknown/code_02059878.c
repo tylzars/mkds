@@ -13,10 +13,10 @@
 
 #pragma opt_rebuildconditionals off
 
-s32 func_02059b78(Unk020487fc *a) {
-    Unk021a9034 b = data_02165368;
+s32 RunResultScene(SceneNumbers *a) {
+    SceneCallbacks b = data_02165368;
 
-    func_020487fc(a, &b);
+    RunScene(a, &b);
     return 0;
 }
 

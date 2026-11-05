@@ -20,7 +20,7 @@ const Unk0215a680 data_0215a680 = {{0, 0, 0, 0xf000, 0, 0, 0, 0, 2, 0, 0, 0, 0, 
 u32 func_02105504(void) {
     u32 r = 0;
     u32 f;
-    if (func_0205e0a0() == 2) {
+    if (GetCurrentSceneNumber() == 2) {
         s32 a = data_021759c0->mUnk_00c;
         f = 1;
         if (a != 0 && a != 2) {

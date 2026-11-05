@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020487fc Unk020487fc;
+typedef struct SceneNumbers SceneNumbers;
 
 // Object func_0203bf04 reads: the first 0x30 bytes and the 0xdcc bytes from 0x30.
 typedef struct Unk0203bf04_a {
@@ -39,7 +39,9 @@ u8 *func_0203bedc(void *a);
 void func_0203bf04(Unk0203bf04_a *a, Unk0203bf04_b *b);
 void func_0203bfc4(Unk0203bfc4 *a);
 void func_0203bfec(s32 *a);
-u32 func_0203c018(Unk020487fc *a);
+// Scene function of gSceneFuncs[0] (scene 'Title' in gSceneNames): copies the callbacks and calls
+// RunScene. Returns 0.
+u32 RunTitleScene(SceneNumbers *a);
 void func_0203c060(s32 a);
 void func_0203c07c(void);
 void func_0203c088(void);

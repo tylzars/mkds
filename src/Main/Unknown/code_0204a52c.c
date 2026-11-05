@@ -9,6 +9,6 @@ u32 func_0204a540(void) {
     return 0x0u;
 }
 
-u32 func_0204a52c(void) {
-    return ((u32) data_021759cc->mUnk_0e4);
+u32 GetSceneFrames(void) {
+    return ((u32) data_021759cc->mSceneFrames);
 }

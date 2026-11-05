@@ -126,7 +126,7 @@ void func_0203ad58(void *a) {
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 2;
 }
 
-void func_0203abdc(void) {
+void InitRaceScene(void) {
     void *p;
     s32 x;
     Unk0217d384 *q;

@@ -1,10 +1,10 @@
 func_ov000_021804e0 kind:function(thumb,size=0x14) addr:0x021804c0
 func_ov000_021804f4 kind:function(thumb,size=0xc) addr:0x021804d4
-func_ov000_02180500 kind:function(thumb,size=0x34) addr:0x021804e0
-func_ov000_02180534 kind:function(thumb,size=0x58) addr:0x02180514
+RunWiFiMenuScene kind:function(thumb,size=0x34) addr:0x021804e0
+UpdateWiFiMenuScene kind:function(thumb,size=0x58) addr:0x02180514
 func_ov000_0218058c kind:function(thumb,size=0x28) addr:0x0218056c
-func_ov000_021805b4 kind:function(thumb,size=0x18) addr:0x02180594
-func_ov000_021805cc kind:function(thumb,size=0x34) addr:0x021805ac
+ReleaseWiFiMenuScene kind:function(thumb,size=0x18) addr:0x02180594
+InitWiFiMenuScene kind:function(thumb,size=0x34) addr:0x021805ac
 func_ov000_02180600 kind:function(thumb,size=0x8) addr:0x021805e0
 func_ov000_02180608 kind:function(thumb,size=0x30) addr:0x021805e8
 func_ov000_02180638 kind:function(thumb,size=0xc) addr:0x02180618

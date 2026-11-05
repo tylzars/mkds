@@ -17,7 +17,9 @@ typedef struct Unk02180774 {
     /* 70 */ u8 mUnk_70[0x6c];
 } Unk02180774;
 
-int func_ov001_021804e0(void *p0);
+// Scene function of gSceneFuncs[5] (scene 'Test' in gSceneNames): copies the callbacks and calls
+// RunScene. Returns 0.
+int RunTestScene(void *p0);
 void func_ov001_0218050c(Unk0218052c *p0);
 void func_ov001_02180514(void);
 void func_ov001_0218051c(void);

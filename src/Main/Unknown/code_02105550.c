@@ -463,14 +463,14 @@ void func_021074ac(s32 e) {
     Unk0210e524 buf;
     Unk021073ec s;
 
-    if (*(vu16 *) 0x027ffc40 == 2 && func_0205e0a0() == 6) {
+    if (*(vu16 *) 0x027ffc40 == 2 && GetCurrentSceneNumber() == 6) {
         return;
     }
     func_0210bc14();
-    a = func_0205e0a0();
+    a = GetCurrentSceneNumber();
     v = 0x69;
     b = FALSE;
-    if (func_0205e0a0() == 2) {
+    if (GetCurrentSceneNumber() == 2) {
         d = data_021759c0->mUnk_00c == 0 || data_021759c0->mUnk_00c == 2;
         if (d != 0) {
             b = TRUE;
@@ -741,7 +741,7 @@ void func_021074ac(s32 e) {
         return;
     }
     data_0217c798[0] = HeapStackSave(data_0217d130);
-    if (func_0205e0a0() != 1) {
+    if (GetCurrentSceneNumber() != 1) {
         return;
     }
     if (data_0217b488->mUnk_08 == 3) {
@@ -777,7 +777,7 @@ void func_02107010(void) {
     s32 j;
 
     if (*(u16 *) 0x27ffc40 == 2) {
-        if (func_0205e0a0() == 6) {
+        if (GetCurrentSceneNumber() == 6) {
             return;
         }
     }
@@ -789,7 +789,7 @@ void func_02107010(void) {
     data_0217c7f0.mUnk_0c = 0x7f;
     data_0217c7f0.mUnk_10 = 0x7f;
     data_0217c7f0.mUnk_08 = 0;
-    if (func_0205e0a0() == 2) {
+    if (GetCurrentSceneNumber() == 2) {
         c = data_021759c0->mUnk_00c == 0 || data_021759c0->mUnk_00c == 2;
         if (c != 0) {
             b = 1;
@@ -851,7 +851,7 @@ void func_02107010(void) {
             data_0217c814.mUnk_14 = func_02044618();
         }
     } else {
-        if (func_0205e0a0() == 2) {
+        if (GetCurrentSceneNumber() == 2) {
             if (data_021759c0->mUnk_00c - 3 <= 1) {
                 func_0210d9a0(&data_0217d084, 2);
                 data_0217c780 = 2;
@@ -996,7 +996,7 @@ void func_02106ab8(void) {
     Unk0212c400 **p;
 
     b = FALSE;
-    if (func_0205e0a0() == 2) {
+    if (GetCurrentSceneNumber() == 2) {
         if (data_021759c0->mUnk_00c == 1) {
             return;
         }
@@ -1053,7 +1053,7 @@ void func_0210689c(u32 a) {
     Unk0217c854 **q;
 
     b = FALSE;
-    if (func_0205e0a0() == 2) {
+    if (GetCurrentSceneNumber() == 2) {
         c = data_021759c0->mUnk_00c == 0 || data_021759c0->mUnk_00c == 2;
         if (c != FALSE) {
             b = TRUE;
@@ -1351,7 +1351,7 @@ void func_021060dc(void) {
             }
         }
     }
-    if (func_0205e0a0() == 2) {
+    if (GetCurrentSceneNumber() == 2) {
         switch (data_021759c0->mUnk_00c) {
             case 0:
             case 2:
@@ -1362,15 +1362,15 @@ void func_021060dc(void) {
                 func_021062a8();
                 break;
         }
-    } else if (func_0205e0a0() == 9) {
+    } else if (GetCurrentSceneNumber() == 9) {
         if (data_0217c814.mUnk_04 == 0x5d) {
             func_0212c6f0(&data_0217d07c, 0x1b);
         }
-    } else if (func_0205e0a0() == 1 || func_0205e0a0() == 0xc) {
+    } else if (GetCurrentSceneNumber() == 1 || GetCurrentSceneNumber() == 0xc) {
         if (*(vu16 *) 0x027ffc40 != 2) {
             func_02110754();
         }
-    } else if (func_0205e0a0() == 3) {
+    } else if (GetCurrentSceneNumber() == 3) {
         func_02110874();
     }
     if (data_0217d060 != NULL && data_0217d060->mUnk_00.mUnk_00 == 0 && data_0217d060->mUnk_0c != NULL) {
@@ -1385,7 +1385,7 @@ void func_02105fcc(void) {
     s32 j;
     u8 *q;
 
-    if (*(vu16 *) 0x027ffc40 == 2 && func_0205e0a0() == 6) {
+    if (*(vu16 *) 0x027ffc40 == 2 && GetCurrentSceneNumber() == 6) {
         return;
     }
     data_0217c7f0.mUnk_0c = 0;
@@ -1411,7 +1411,7 @@ void func_02105ec0(void) {
     u8 *q;
     Unk0217c7c4 *p;
 
-    if (*(vu16 *) 0x027ffc40 == 2 && func_0205e0a0() == 6) {
+    if (*(vu16 *) 0x027ffc40 == 2 && GetCurrentSceneNumber() == 6) {
         return;
     }
     data_0217c7f0.mUnk_0c = 0;

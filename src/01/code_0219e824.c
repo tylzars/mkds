@@ -20,19 +20,19 @@
 u8 *data_ov001_021ca404;
 u8 *data_ov001_021ca408;
 
-static Unk021a9034 data_ov001_021a9064 = {
-    func_ov001_0219e9e0, func_ov001_0219e960, func_ov001_0219e9c8, func_ov001_0219e9a4, 0, 0, 10, 10, 0};
-static Unk021a9034 data_ov001_021a9084 = {
-    func_ov001_0219ea8c, func_ov001_0219ea48, func_ov001_0219ea74, func_ov001_0219ea6c, 0, 0, 30, 1, 0};
+static SceneCallbacks gOptionSceneCallbacks = {
+    InitOptionScene, UpdateOptionScene, ReleaseOptionScene, func_ov001_0219e9a4, 0, 0, 10, 10, 0};
+static SceneCallbacks gEndingSceneCallbacks = {
+    InitEndingScene, UpdateEndingScene, func_ov001_0219ea74, func_ov001_0219ea6c, 0, 0, 30, 1, 0};
 
-int func_ov001_0219ea14(void *a) {
-    Unk021a9034 local = data_ov001_021a9084;
+int RunEndingScene(void *a) {
+    SceneCallbacks local = gEndingSceneCallbacks;
 
-    func_020487fc(a, &local);
+    RunScene(a, &local);
     return 0;
 }
 
-void func_ov001_0219e9e0(s16 *a) {
+void InitOptionScene(s16 *a) {
     void *heap;
 
     heap = (void *) GetHeap(func_020364e8());
@@ -40,7 +40,7 @@ void func_ov001_0219e9e0(s16 *a) {
     InitOptionStates((void *) (heap), (s16) (*a));
 }
 
-void func_ov001_0219e9c8(void) {
+void ReleaseOptionScene(void) {
     func_ov001_02192f8c();
     data_ov001_021ca408 = NULL;
 }
@@ -50,7 +50,7 @@ void func_ov001_0219e9a4(void) {
     func_020ae5f0(data_ov001_021ca408, data_ov001_021ca408 + 0x404);
 }
 
-void func_ov001_0219e960(s16 *a) {
+void UpdateOptionScene(s16 *a) {
     func_020ae6ac(data_ov001_021ca408, data_ov001_021ca408 + 0x404);
     AdvanceOptionStates();
     func_020ae630(data_ov001_021ca408, data_ov001_021ca408 + 0x404);
@@ -59,10 +59,10 @@ void func_ov001_0219e960(s16 *a) {
     }
 }
 
-int func_ov001_0219e92c(void *a) {
-    Unk021a9034 local = data_ov001_021a9064;
+int RunOptionScene(void *a) {
+    SceneCallbacks local = gOptionSceneCallbacks;
 
-    func_020487fc(a, &local);
+    RunScene(a, &local);
     return 0;
 }
 
@@ -104,11 +104,11 @@ void func_ov001_0219e858(s16 *a) {
     }
 }
 
-int func_ov001_0219e824(void *a) {
-    Unk021a9034 callbacks = {
+int RunNicknameScene(void *a) {
+    SceneCallbacks callbacks = {
         func_ov001_0219e8d8, func_ov001_0219e858, func_ov001_0219e8c0, func_ov001_0219e89c, 0, 0, 10, 10, 0,
     };
 
-    func_020487fc(a, &callbacks);
+    RunScene(a, &callbacks);
     return 0;
 }

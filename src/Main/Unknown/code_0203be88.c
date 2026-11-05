@@ -99,9 +99,9 @@ void func_0203c060(s32 a) {
     func_020ada2c(a);
 }
 
-u32 func_0203c018(Unk020487fc *a) {
-    Unk021a9034 b = data_usa_02164798;
-    func_020487fc(a, &b);
+u32 RunTitleScene(SceneNumbers *a) {
+    SceneCallbacks b = data_usa_02164798;
+    RunScene(a, &b);
     return 0;
 }
 

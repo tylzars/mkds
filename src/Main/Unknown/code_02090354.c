@@ -247,7 +247,7 @@ static inline BOOL func_02090cf8_inline(s32 a, s32 b) {
 u32 func_020911a8(void) {
     u32 r;
     r = 0;
-    if (func_0205e0a0() == 10) {
+    if (GetCurrentSceneNumber() == 10) {
         r = func_02090ff4();
         func_02056d40();
         func_02057d9c();

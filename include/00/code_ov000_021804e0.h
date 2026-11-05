@@ -2,14 +2,18 @@
 
 #include "types.h"
 
-typedef struct Unk020487fc Unk020487fc;
+typedef struct SceneNumbers SceneNumbers;
 
 extern u8 *data_ov000_021b4c60;
 
 void *func_ov000_021804e0(void);
 void *func_ov000_021804f4(void);
-s32 func_ov000_02180500(Unk020487fc *a);
-void func_ov000_02180534(Unk020487fc *a);
+// Scene function of gSceneFuncs[12] (scene 'WiFiMenu' in gSceneNames): copies the callbacks and
+// calls RunScene. Returns 0.
+s32 RunWiFiMenuScene(SceneNumbers *a);
+void UpdateWiFiMenuScene(SceneNumbers *a);
 void func_ov000_0218058c(void);
-void func_ov000_021805b4(void);
-void func_ov000_021805cc(s16 *a);
+// Calls the current state's release callback, clears the state callbacks, destroys the heap of
+// func_0202bb60 and clears gWiFiStates and the list block.
+void ReleaseWiFiMenuScene(void);
+void InitWiFiMenuScene(s16 *a);

@@ -49,7 +49,7 @@ void func_0208b934(void *a) {
     Vec3 *q;
 
     *(u32 *) &data_0217b050 = (u32) func_0208b484;
-    if (func_0205e0a0() == 2) {
+    if (GetCurrentSceneNumber() == 2) {
         d = data_021759c0;
         if (d->mMode == 4) {
             *(u32 *) &data_0217b050 = (u32) func_0208b458;
@@ -76,7 +76,7 @@ void func_0208b934(void *a) {
     data_0217b03c = NULL;
     data_0217b054 = NULL;
     data_0217b048 = NULL;
-    if (func_0205e0a0() != 2) {
+    if (GetCurrentSceneNumber() != 2) {
         return;
     }
     if (data_021759c0->mMode == 4) {

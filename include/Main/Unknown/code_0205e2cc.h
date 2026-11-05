@@ -13,7 +13,9 @@ typedef struct Unk0205ec14 {
 } Unk0205ec14;
 
 void func_0205e2cc(void *a);
-s32 func_0205e4e4(Unk020487fc *a);
+// Scene function of gSceneFuncs[13] (scene 'Ghost' in gSceneNames): copies the callbacks and calls
+// RunScene. Returns 0.
+s32 RunGhostScene(SceneNumbers *a);
 void func_0205e518(u32 a);
 void func_0205e520(void);
 void func_0205e528(void);

@@ -109,7 +109,7 @@ extern const u16 data_02154970[8];
 extern const u16 data_02154980[8];
 
 // Builds the race world and gRace. Not part of it: the screen and 3D engine set-up (func_02062860, called before), the
-// net and the HUD, which are in the scene slot func_0203abdc.
+// net and the HUD, which are in the scene slot InitRaceScene.
 void InitRace(void) {
     void *a;
     u16 b;
@@ -262,7 +262,7 @@ void func_02062860(void) {
 
 // Advances the race one frame. Skipped while func_02049b6c or func_0204359c refuse (the draw is not), and in kind 6 for
 // the first 0x708 frames (neither update nor draw). The HUD step and the end-of-race state are in the scene slot
-// func_0203a0dc, which calls this; the exit loop also runs it with a == NULL.
+// UpdateRaceScene, which calls this; the exit loop also runs it with a == NULL.
 void UpdateRace(void) {
     void *v;
 

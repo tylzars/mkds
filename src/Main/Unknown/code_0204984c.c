@@ -112,8 +112,8 @@ static inline void func_02049c3c_inline2(CallbackEntry *p, void (*f)(void *)) {
     p->mArg = NULL;
 }
 
-static inline void func_02049e38_inline(Unk020487fc *a) {
-    if (a == 0 || func_0204a340(a->mUnk_02, a->mUnk_04)) {
+static inline void func_02049e38_inline(SceneNumbers *a) {
+    if (a == 0 || func_0204a340(a->mScene, a->mNextScene)) {
         func_0204ac10();
     }
 }
@@ -122,14 +122,14 @@ s16 func_0204a508(void) {
     if (data_021759cc->mUnk_10c == 6) {
         return -1;
     }
-    return data_021759cc->mUnk_0ec.mUnk_18;
+    return data_021759cc->mSceneCallbacks.mUnk_18;
 }
 
 u32 func_0204a4e4(void) {
     if (data_021759cc->mUnk_10c == 6) {
         return -1;
     }
-    return data_021759cc->mUnk_0ec.mUnk_1a;
+    return data_021759cc->mSceneCallbacks.mUnk_1a;
 }
 
 void func_0204a4d8(void) {
@@ -428,14 +428,14 @@ void func_02049d8c(void *a) {
         func_02037850();
         func_020373ec();
     } while (d == FALSE);
-    if (data_021759cc->mUnk_0ec.mUnk_10 != NULL) {
-        data_021759cc->mUnk_0ec.mUnk_10();
+    if (data_021759cc->mSceneCallbacks.mUnk_10 != NULL) {
+        data_021759cc->mSceneCallbacks.mUnk_10();
     }
 }
 
 void func_02049d54(void) {
-    if (data_021759cc->mUnk_0ec.mUnk_14 != NULL) {
-        data_021759cc->mUnk_0ec.mUnk_14();
+    if (data_021759cc->mSceneCallbacks.mUnk_14 != NULL) {
+        data_021759cc->mSceneCallbacks.mUnk_14();
     }
 }
 
@@ -470,9 +470,9 @@ u32 func_02049b6c(void) {
 
 BOOL func_02049aa4(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0204984c_inline2() ||
-        (func_0205e0a0() == 12 && func_ov000_02180600() == FALSE) ||
-        (func_0205e0a0() != 12 && data_0217d384->mUnk_0008.mState != 0) || func_0205e0a0() == 13 ||
-        func_0205e0a0() == 6) {
+        (GetCurrentSceneNumber() == 12 && func_ov000_02180600() == FALSE) ||
+        (GetCurrentSceneNumber() != 12 && data_0217d384->mUnk_0008.mState != 0) || GetCurrentSceneNumber() == 13 ||
+        GetCurrentSceneNumber() == 6) {
         return FALSE;
     }
     return TRUE;
@@ -481,12 +481,12 @@ BOOL func_02049aa4(void) {
 u32 func_0204998c(void) {
     s32 v;
 
-    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0204984c_inline2() || func_0205e0a0() == 6 ||
-        func_0205e0a0() == 13 || (func_0205e0a0() == 12 && func_ov000_02180608() == FALSE) ||
-        (func_0205e0a0() != 12 && data_0217d384->mUnk_0008.mState != 0)) {
+    if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0204984c_inline2() || GetCurrentSceneNumber() == 6 ||
+        GetCurrentSceneNumber() == 13 || (GetCurrentSceneNumber() == 12 && func_ov000_02180608() == FALSE) ||
+        (GetCurrentSceneNumber() != 12 && data_0217d384->mUnk_0008.mState != 0)) {
         return 1;
     }
-    switch (func_0205e0a0()) {
+    switch (GetCurrentSceneNumber()) {
         case 9:
         case 15:
             return 1;

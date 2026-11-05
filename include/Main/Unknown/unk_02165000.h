@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_02175000.h" // Unk021a9034
+#include "Main/Unknown/unk_02175000.h" // SceneCallbacks
 #include "Main/Unknown/code_02086058.h"
 
 extern const char gArchiveColonFormat[];
@@ -39,10 +39,10 @@ extern const s32 data_02165510[2];
 extern const Vec3 data_02165524;
 extern const Vec3 data_0216553c;
 extern const Vec3 data_02165548;
-extern const Unk021a9034 data_0216524c;
-extern const Unk021a9034 data_02164838;
-extern const Unk021a9034 data_02165190;
-extern const Unk021a9034 data_02165280;
+extern const SceneCallbacks gRecordSceneCallbacks;
+extern const SceneCallbacks data_02164838;
+extern const SceneCallbacks gEmblemSceneCallbacks;
+extern const SceneCallbacks data_02165280;
 extern Unk021652a0 data_021652a0;
 extern u16 data_usa_02165228;
 extern Unk021652a0 data_usa_0216522c;
@@ -50,8 +50,8 @@ extern UnkFunc *const data_021652b0[];
 extern UnkFunc *const data_02165388[];
 struct Kart;
 extern void (*const gKartStateFunctions[])(struct Kart *);
-extern const Unk021a9034 data_02165368;
-extern const Unk021a9034 data_usa_021651b0;
+extern const SceneCallbacks data_02165368;
+extern const SceneCallbacks data_usa_021651b0;
 extern const char data_02165074[];
 extern const char data_02165080[];
 extern u8 data_02165098[];
@@ -76,8 +76,8 @@ extern const char gCommonPFaceanimNsbtpFormat[];
 extern const char gKartModelMenuPrefix[];
 extern const char gKartModelSlashPrefix[];
 
-extern s16 data_021653b8[];
-extern const Unk021a9034 data_021653c0;
+extern s16 gSceneNumbers[];
+extern const SceneCallbacks data_021653c0;
 extern u16 data_0216569c;
 extern u16 data_usa_021656a0;
 extern s32 data_usa_021656b4;

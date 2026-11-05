@@ -1,4 +1,4 @@
-func_ov001_021804e0 kind:function(thumb,size=0x2c) addr:0x021804c0
+RunTestScene kind:function(thumb,size=0x2c) addr:0x021804c0
 func_ov001_0218050c kind:function(thumb,size=0x8) addr:0x021804ec
 func_ov001_02180514 kind:function(thumb,size=0x8) addr:0x021804f4
 func_ov001_0218051c kind:function(thumb,size=0x8) addr:0x021804fc
@@ -984,23 +984,23 @@ func_ov001_0219e5d4 kind:function(thumb,size=0x8c) addr:0x0219e5b4
 func_ov001_0219e660 kind:function(thumb,size=0x80) addr:0x0219e640
 func_ov001_0219e6e0 kind:function(thumb,size=0xc) addr:0x0219e6c0
 func_ov001_0219e6ec kind:function(thumb,size=0x138) addr:0x0219e6cc
-func_ov001_0219e824 kind:function(thumb,size=0x34) addr:0x0219e804
+RunNicknameScene kind:function(thumb,size=0x34) addr:0x0219e804
 func_ov001_0219e858 kind:function(thumb,size=0x44) addr:0x0219e838
 func_ov001_0219e89c kind:function(thumb,size=0x24) addr:0x0219e87c
 func_ov001_0219e8c0 kind:function(thumb,size=0x18) addr:0x0219e8a0
 func_ov001_0219e8d8 kind:function(thumb,size=0x34) addr:0x0219e8b8
 func_ov001_0219e90c kind:function(thumb,size=0x14) addr:0x0219e8ec
 func_ov001_0219e920 kind:function(thumb,size=0xc) addr:0x0219e900
-func_ov001_0219e92c kind:function(thumb,size=0x34) addr:0x0219e90c
-func_ov001_0219e960 kind:function(thumb,size=0x44) addr:0x0219e940
+RunOptionScene kind:function(thumb,size=0x34) addr:0x0219e90c
+UpdateOptionScene kind:function(thumb,size=0x44) addr:0x0219e940
 func_ov001_0219e9a4 kind:function(thumb,size=0x24) addr:0x0219e984
-func_ov001_0219e9c8 kind:function(thumb,size=0x18) addr:0x0219e9a8
-func_ov001_0219e9e0 kind:function(thumb,size=0x34) addr:0x0219e9c0
-func_ov001_0219ea14 kind:function(thumb,size=0x34) addr:0x0219e9f4
-func_ov001_0219ea48 kind:function(thumb,size=0x24) addr:0x0219ea28
+ReleaseOptionScene kind:function(thumb,size=0x18) addr:0x0219e9a8
+InitOptionScene kind:function(thumb,size=0x34) addr:0x0219e9c0
+RunEndingScene kind:function(thumb,size=0x34) addr:0x0219e9f4
+UpdateEndingScene kind:function(thumb,size=0x24) addr:0x0219ea28
 func_ov001_0219ea6c kind:function(thumb,size=0x8) addr:0x0219ea4c
 func_ov001_0219ea74 kind:function(thumb,size=0x18) addr:0x0219ea54
-func_ov001_0219ea8c kind:function(thumb,size=0x28) addr:0x0219ea6c
+InitEndingScene kind:function(thumb,size=0x28) addr:0x0219ea6c
 WriteMissionRunLVselBg0Offset kind:function(thumb,size=0x20) addr:0x0219ea94
 AdvanceMissionRunLVsel kind:function(thumb,size=0x8c) addr:0x0219eab4
 AdvanceMissionRunLVselState5 kind:function(thumb,size=0x9c) addr:0x0219eb40
@@ -1622,8 +1622,8 @@ gOptionEmbremSelectSONclrName kind:data(any) addr:0x021a8d94
 @4295 kind:data(any) addr:0x021a8ff0 local
 @4378 kind:data(any) addr:0x021a9008 local
 @5334 kind:data(any) addr:0x021a9014 local
-data_ov001_021a9064 kind:data(any) addr:0x021a9034 local
-data_ov001_021a9084 kind:data(any) addr:0x021a9054 local
+gOptionSceneCallbacks kind:data(any) addr:0x021a9034 local
+gEndingSceneCallbacks kind:data(any) addr:0x021a9054 local
 data_ov001_021a90a4 kind:data(any) addr:0x021a9074
 data_ov001_021a90a8 kind:data(any) addr:0x021a9078
 data_usa_ov001_021a907c kind:data(any) addr:0x021a907c

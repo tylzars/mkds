@@ -139,8 +139,8 @@ static inline BOOL func_020487fc_inline12(void) {
     return func_020487fc_inline() != 0 && data_0217aa00->mUnk_0004 != 13;
 }
 
-static inline void func_020487fc_inline9(const Unk021a9034 *b) {
-    int v = func_0205e0a0();
+static inline void func_020487fc_inline9(const SceneCallbacks *b) {
+    int v = GetCurrentSceneNumber();
     if (v == 1 || v == 10) {
         func_02037498(!func_020487fc_inline12() || !func_020487fc_inline6());
     } else {
@@ -180,7 +180,7 @@ static inline s32 func_020487fc_inline14(void) {
     return 1;
 }
 
-void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
+void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     u32 v;
     u32 t;
     s32 n;
@@ -189,9 +189,9 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     s32 w;
 
     v = 0;
-    data_021759cc->mUnk_0e4 = v;
+    data_021759cc->mSceneFrames = v;
     data_021759cc->mUnk_0e8 = v;
-    data_021759cc->mUnk_0ec = *b;
+    data_021759cc->mSceneCallbacks = *b;
     data_021759cc->mUnk_10c = 6;
     data_021759cc->mUnk_120 = 0;
     data_021759cc->mUnk_118 = -1;
@@ -205,11 +205,11 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     IrqRestore(t);
     data_021759cc->mUnk_10c = 0;
     func_02047b6c(0);
-    func_02047ba0(a->mUnk_02);
+    func_02047ba0(a->mScene);
     func_02047b6c(9);
     GetHeap(func_020364e8());
     CallQueueInit(HeapAlloc(GetHeap(func_020364e8()), 0x800), 0x80);
-    if (func_0204a428(a->mUnk_02, &n)) {
+    if (func_0204a428(a->mScene, &n)) {
         func_0204acd0(n);
     }
     func_021074ac(0);
@@ -221,8 +221,8 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     func_02043b48();
     func_02146b04(func_0204a540);
     data_021759d0->mUnk_78 = 0;
-    if (b->mUnk_00 != NULL) {
-        b->mUnk_00(a);
+    if (b->mInit != NULL) {
+        b->mInit(a);
     }
     func_02047274();
     data_021755a0->mUnk_b8 = func_0204a4d8;
@@ -239,7 +239,7 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
         r = func_0204984c(a, data_021759cc->mUnk_10c != 4);
         CallQueueDrain();
         if (r) {
-            a->mUnk_04 = data_021759cc->mUnk_120;
+            a->mNextScene = data_021759cc->mUnk_120;
             goto end;
         }
         func_0212034c();
@@ -252,8 +252,8 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     do {
         func_02037a40();
         func_020487fc_inline7();
-        if (b->mUnk_04 != NULL) {
-            b->mUnk_04(a, data_021759cc->mUnk_0e4);
+        if (b->mUpdate != NULL) {
+            b->mUpdate(a, data_021759cc->mSceneFrames);
         }
         func_0210823c();
         v = func_020487fc_inline8();
@@ -261,27 +261,27 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
         r = func_0204984c(a, data_021759cc->mUnk_10c != 4);
         CallQueueDrain();
         if (r) {
-            a->mUnk_04 = data_021759cc->mUnk_120;
+            a->mNextScene = data_021759cc->mUnk_120;
             goto end;
         }
         if (b->mUnk_0c != NULL) {
-            b->mUnk_0c(a, data_021759cc->mUnk_0e4);
+            b->mUnk_0c(a, data_021759cc->mSceneFrames);
         }
         func_0212034c();
         if (!func_020487fc_inline6()) {
-            data_021759cc->mUnk_0e4++;
+            data_021759cc->mSceneFrames++;
         }
         data_021759cc->mUnk_0e8++;
         func_020373ec();
-    } while (a->mUnk_04 == -1 && v == 0);
+    } while (a->mNextScene == -1 && v == 0);
     data_021759cc->mUnk_10c = 3;
     func_02105fcc();
     if (data_021759d0->mUnk_1c_0) {
-        if (a == NULL || func_0204a340(a->mUnk_02, a->mUnk_04)) {
+        if (a == NULL || func_0204a340(a->mScene, a->mNextScene)) {
             func_0204ac10();
         }
     }
-    if ((v != 0 || func_0205e090() == 0) && ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
+    if ((v != 0 || GetNextSceneNumber() == 0) && ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_02049e38(0);
     }
     if (data_021759d0->mUnk_20 == 4) {
@@ -292,8 +292,8 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     do {
         func_02037a40();
         func_020487fc_inline7();
-        if (b->mUnk_04 != NULL) {
-            b->mUnk_04(0, data_021759cc->mUnk_0e4);
+        if (b->mUpdate != NULL) {
+            b->mUpdate(0, data_021759cc->mSceneFrames);
         }
         func_0210823c();
         func_020487fc_inline8();
@@ -301,18 +301,18 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
         func_0204984c(a, data_021759cc->mUnk_10c != 4);
         CallQueueDrain();
         if (b->mUnk_0c != NULL) {
-            b->mUnk_0c(0, data_021759cc->mUnk_0e4);
+            b->mUnk_0c(0, data_021759cc->mSceneFrames);
         }
         func_0212034c();
         if (!func_020487fc_inline6()) {
-            data_021759cc->mUnk_0e4++;
+            data_021759cc->mSceneFrames++;
         }
         data_021759cc->mUnk_0e8++;
         func_020373ec();
     } while (!func_02036d08());
 end:
     func_02043ae0();
-    if (func_020487fc_inline13() && (v != 0 || func_0205e090() == 0)) {
+    if (func_020487fc_inline13() && (v != 0 || GetNextSceneNumber() == 0)) {
         data_021759cc->mUnk_10c = 4;
         data_021759d0->mUnk_20 = 0;
         c = FALSE;
@@ -340,8 +340,8 @@ end:
     }
     func_020546d8();
     func_02055340();
-    if (b->mUnk_08 != NULL) {
-        b->mUnk_08(a);
+    if (b->mRelease != NULL) {
+        b->mRelease(a);
     }
     func_02146b04(func_0204a548);
     if (data_021755a0 != NULL) {
@@ -351,12 +351,12 @@ end:
     ClearFontAndPlayerCharacterTables();
     func_02039a1c();
     func_02105ec0();
-    if (data_021759d0->mUnk_1c_1 && func_0204a340(a->mUnk_02, a->mUnk_04)) {
+    if (data_021759d0->mUnk_1c_1 && func_0204a340(a->mScene, a->mNextScene)) {
         func_0204aba8();
     }
     func_02047b88();
     if (v != 0) {
-        a->mUnk_04 = 0;
+        a->mNextScene = 0;
     } else {
         w = data_021759cc->mUnk_118;
         if (w != -1) {
@@ -364,15 +364,15 @@ end:
                 case 4:
                 case 5:
                 case 6:
-                    a->mUnk_04 = data_021759cc->mUnk_120;
+                    a->mNextScene = data_021759cc->mUnk_120;
                     break;
                 default:
-                    a->mUnk_04 = 0;
+                    a->mNextScene = 0;
                     break;
             }
         }
     }
     func_0204ad24();
-    data_021759cc->mUnk_0e4 = 0;
+    data_021759cc->mSceneFrames = 0;
     data_021759cc->mUnk_10c = 6;
 }

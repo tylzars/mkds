@@ -18,7 +18,7 @@
 #include "Main/Unknown/code_0212a000.h"
 
 #pragma thumb on
-void func_02128958(s16 *a) {
+void InitKeyboardScene(s16 *a) {
     void *h;
     h = GetHeap(func_020364e8());
     data_0217d3fc = HeapAlloc(h, 0x808);
@@ -27,7 +27,7 @@ void func_02128958(s16 *a) {
 #pragma thumb off
 
 #pragma thumb on
-void func_02128940(void) {
+void ReleaseKeyboardScene(void) {
     u32 value0;
     u32 value1;
     func_0212a1c4();
@@ -37,7 +37,8 @@ void func_02128940(void) {
 }
 #pragma thumb off
 
-Unk021a9034 data_0216e8e0 = {func_02128958, func_021288d8, func_02128940, func_0212891c, 0, 0, 10, 10, 0};
+SceneCallbacks gKeyboardSceneCallbacks = {
+    InitKeyboardScene, UpdateKeyboardScene, ReleaseKeyboardScene, func_0212891c, 0, 0, 10, 10, 0};
 
 #pragma thumb on
 void func_0212891c(void) {
@@ -45,7 +46,7 @@ void func_0212891c(void) {
     func_020ae5f0(data_0217d3fc, &data_0217d3fc->mUnk_404);
 }
 
-void func_021288d8(s16 *a) {
+void UpdateKeyboardScene(s16 *a) {
     func_020ae6ac(data_0217d3fc, &data_0217d3fc->mUnk_404);
     func_021289e0();
     func_020ae630(data_0217d3fc, &data_0217d3fc->mUnk_404);
@@ -56,9 +57,9 @@ void func_021288d8(s16 *a) {
     }
 }
 
-s32 func_021288a4(void *a) {
-    Unk021a9034 v = data_0216e8e0;
-    func_020487fc(a, &v);
+s32 RunKeyboardScene(void *a) {
+    SceneCallbacks v = gKeyboardSceneCallbacks;
+    RunScene(a, &v);
     return 0;
 }
 #pragma thumb off

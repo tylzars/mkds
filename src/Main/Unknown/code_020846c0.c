@@ -103,7 +103,7 @@ void func_02084fb0(Unk02084b2c *a, Unk0201290c *b, u32 c) {
     u32 i;
     Unk0201290c *p;
 
-    if (c != 0 && func_0205e0a0() == 2) {
+    if (c != 0 && GetCurrentSceneNumber() == 2) {
         a->mUnk_54 = data_021759c0->mUnk_57;
     } else {
         a->mUnk_54 = 0;

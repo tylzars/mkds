@@ -85,7 +85,7 @@ void func_02050080(void) {
         data_0217aa00->mUnk_1e8c[n] = 0xffff;
         data_0217aa00->mUnk_1e9c[n] = 0xffff;
     }
-    if (func_0205e0a0() == 2) {
+    if (GetCurrentSceneNumber() == 2) {
         func_020431e4();
     } else {
         func_02043410();

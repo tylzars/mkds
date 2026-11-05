@@ -92,16 +92,16 @@ void func_0205e0b0(void) {
     data_0217aa20->mUnk_0c = h;
 }
 
-int func_0205e0a0(void) {
+int GetCurrentSceneNumber(void) {
     u32 value0;
-    value0 = (u32) &data_021653b8;
+    value0 = (u32) &gSceneNumbers;
     value0 = (u32) * (const s16 *) ((value0) + (2));
     return value0;
 }
 
-u32 func_0205e090(void) {
+u32 GetNextSceneNumber(void) {
     u32 value0;
-    value0 = (u32) &data_021653b8;
+    value0 = (u32) &gSceneNumbers;
     value0 = (u32) * (const s16 *) ((value0) + (4));
     return value0;
 }

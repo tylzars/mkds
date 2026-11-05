@@ -201,7 +201,7 @@ void func_0212ad28(s32 a, s32 b) {
             func_0212ae2c();
         }
         func_0212ae80();
-        if (func_0205e0a0() == 2) {
+        if (GetCurrentSceneNumber() == 2) {
             if (func_020b19a0() == 0) {
                 *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x200;
                 *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffffe0ff;
@@ -235,7 +235,7 @@ void func_0212abdc(void *a, void *b) {
     for (i = 0; i < 5; i++) {
         data_0217d404->mUnk_000[i] = 0;
     }
-    switch (func_0205e0a0()) {
+    switch (GetCurrentSceneNumber()) {
         case 1:
             if ((u32) (data_021759d0->mUnk_20 - 1) <= 1) {
                 data_0217d404->mUnk_000[0] = 1;

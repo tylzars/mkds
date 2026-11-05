@@ -88,7 +88,7 @@ void func_02053ab0(void) {
     u32 v1;
     s32 r;
 
-    func_0204a52c();
+    GetSceneFrames();
     p = data_0217aa00->mUnk_15c4;
     if (data_0217aa00->mUnk_0004 == 8) {
         p->mUnk_05 = data_0217aa00->mUnk_15f7;

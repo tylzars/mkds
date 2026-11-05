@@ -65,7 +65,7 @@ void func_02109468(void) {
     static Unk02109468 s0 = {800, 500, 47, 150, 127};
     static Unk02109468 s1 = {800, 500, 47, 150, 95};
 
-    if (func_0205e0a0() == 2 && data_021759c0->mUnk_00c == 2) {
+    if (GetCurrentSceneNumber() == 2 && data_021759c0->mUnk_00c == 2) {
         f = TRUE;
     } else {
         f = FALSE;

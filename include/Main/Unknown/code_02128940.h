@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-void func_02128940(void);
+// Slot mRelease: calls the state's undo functions and clears the globals; frees nothing itself (the
+// scene heap goes with the scene).
+void ReleaseKeyboardScene(void);

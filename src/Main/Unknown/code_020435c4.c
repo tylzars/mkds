@@ -355,7 +355,7 @@ void func_02043648(void) {
         o = m;
         f = (data_02175624->mUnk_04 & 1) ? 1 : 0;
         q = FALSE;
-        c = (func_0205e0a0() != 2 || (data_02175624->mUnk_04 & 2)) ? 1 : 0;
+        c = (GetCurrentSceneNumber() != 2 || (data_02175624->mUnk_04 & 2)) ? 1 : 0;
         p = &data_02175628[i];
         w = data_02175624->mUnk_04;
         if (!(w & 8)) {

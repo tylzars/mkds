@@ -294,10 +294,10 @@ void func_0205e518(u32 a) {
     func_0202df34(a);
 }
 
-s32 func_0205e4e4(Unk020487fc *a) {
-    Unk021a9034 b = data_021653c0;
+s32 RunGhostScene(SceneNumbers *a) {
+    SceneCallbacks b = data_021653c0;
 
-    func_020487fc(a, &b);
+    RunScene(a, &b);
     return 0;
 }
 

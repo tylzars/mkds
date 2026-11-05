@@ -12,7 +12,7 @@
 
 void *data_ov001_021ca40c;
 
-void func_ov001_0219ea8c(void) {
+void InitEndingScene(void) {
     void *heap = GetHeap(func_020364e8());
 
     data_ov001_021ca40c = HeapAlloc(heap, 4);
@@ -29,7 +29,7 @@ void func_ov001_0219ea6c(void) {
     func_ov001_0219e0d4();
 }
 
-void func_ov001_0219ea48(int a) {
+void UpdateEndingScene(int a) {
     u16 v1;
     int v2;
     func_ov001_0219e118();

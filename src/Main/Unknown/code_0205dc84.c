@@ -94,19 +94,19 @@ static inline BOOL func_0205dd38_inline(void) {
     return FALSE;
 }
 
-s32 func_0205dd38(s16 *a) {
+s32 RunScenes(s16 *a) {
     Unk02036590 q;
     void *h;
     func_0205e0b0();
     while (func_0205dd38_inline()) {
         data_0217aa20->mUnk_04 = 3;
-        data_021653b8[0] = data_021653b8[1];
-        data_021653b8[1] = *a;
-        data_021653b8[2] = -1;
-        func_02036590(&q, data_0215490c[*a]);
-        func_020364f8(&q, (u32) data_021653b8);
-        if (data_021653b8[2] != -1) {
-            *a = data_021653b8[2];
+        gSceneNumbers[0] = gSceneNumbers[1];
+        gSceneNumbers[1] = *a;
+        gSceneNumbers[2] = -1;
+        func_02036590(&q, gSceneFuncs[*a]);
+        func_020364f8(&q, (u32) gSceneNumbers);
+        if (gSceneNumbers[2] != -1) {
+            *a = gSceneNumbers[2];
         } else {
             *a = 9;
         }
@@ -142,7 +142,7 @@ s32 func_0205dd38(s16 *a) {
     return 0;
 }
 
-void func_0205dc84(void) {
+void RunScenesForever(void) {
     Unk02036590 q;
     data_0217aa20->mUnk_08 = 9;
     data_0217aa20->mUnk_00 = 0;
@@ -153,7 +153,7 @@ void func_0205dc84(void) {
     }
     do {
         data_0217aa20->mUnk_04 = 3;
-        func_02036590(&q, (u32) func_0205dd38);
+        func_02036590(&q, (u32) RunScenes);
         func_020364f8(&q, (u32) &data_0217aa20->mUnk_08);
         data_0217aa20->mUnk_00 = data_0217aa20->mUnk_04;
     } while (1);

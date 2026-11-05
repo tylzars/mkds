@@ -37,7 +37,7 @@ u32 func_0204359c(void) {
 }
 
 void func_02043544(u32 a) {
-    if (func_0205e0a0() == 2 && a != 0) {
+    if (GetCurrentSceneNumber() == 2 && a != 0) {
         data_02175624->mUnk_04 |= 2;
     } else {
         data_02175624->mUnk_04 &= ~2;

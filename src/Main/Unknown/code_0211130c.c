@@ -17,7 +17,7 @@
 
 #pragma thumb on
 
-void func_021113ac(s16 *a) {
+void InitRecordScene(s16 *a) {
     void *p;
     p = GetHeap(func_020364e8());
     data_0217d33c = HeapAlloc(p, 0x404);
@@ -28,7 +28,7 @@ void func_021113ac(s16 *a) {
 #pragma thumb off
 
 #pragma thumb on
-void func_0211138c(void) {
+void ReleaseRecordScene(void) {
     u32 value0;
     u32 value1;
     func_02111584();
@@ -55,7 +55,7 @@ void func_02111368(void) {
 
 #pragma thumb on
 
-void func_02111324(Unk02111324 *a) {
+void UpdateRecordScene(Unk02111324 *a) {
     func_020ae6ac(data_0217d33c, data_0217d340);
     func_021114cc();
     func_020ae630(data_0217d33c, data_0217d340);
