@@ -110,7 +110,7 @@ void func_0208b934(void *a) {
                 Vec3Sub(&data_usa_02155f78[j], &w, &v);
                 q = &data_0217b048->mUnk_00[j];
                 if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-                    func_02039860(&v, q);
+                    Vec3NormalizeAndGetLengthUnchecked(&v, q);
                 }
             }
             data_0217b048->mUnk_60 = 1;

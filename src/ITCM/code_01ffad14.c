@@ -93,7 +93,7 @@ void ScaleKartVelocityAndSetCappedLengthAndDirection(Kart *p, s32 a) {
     if ((s64) p->mVelocity.x * p->mVelocity.x + (s64) p->mVelocity.y * p->mVelocity.y +
             (s64) p->mVelocity.z * p->mVelocity.z >=
         0x10) {
-        r = func_02039860(&p->mVelocity, &p->mVelocityDirection);
+        r = Vec3NormalizeAndGetLengthUnchecked(&p->mVelocity, &p->mVelocityDirection);
     }
     p->mVelocityLength = r;
     if (p->mVelocityLength > 0xd000) {
@@ -112,7 +112,7 @@ void func_01ffad14(Kart *p, Vec3 *a) {
 
     r = func_01ffd0e8(&v, &data_02154f7c, a);
     func_01ffd0e8(&w, &p->mUnk_244, a);
-    func_01ffcebc(&w, q, q);
+    QuaternionMultiply(&w, q, q);
     if (r != 0) {
         if ((v.w < 0 && q->w > 0) || (v.w > 0 && q->w < 0)) {
             q->x = -v.x;
@@ -128,5 +128,5 @@ void func_01ffad14(Kart *p, Vec3 *a) {
             p->mUnk_48 = p->mUnk_48 & ~0x80000000;
         }
     }
-    func_01ffcf7c(q, q);
+    QuaternionNormalize(q, q);
 }

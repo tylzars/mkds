@@ -131,7 +131,7 @@ void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
         d = (s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z - a->mUnk_2c;
         e = d < 0 ? 0 : (s32) (d >> 12);
         if (e != 0) {
-            func_02039860(&t, &u);
+            Vec3NormalizeAndGetLengthUnchecked(&t, &u);
             w = a->mUnk_28;
             u.x = (s32) (((s64) u.x * w) >> 12);
             u.y = (s32) (((s64) u.y * w) >> 12);
@@ -159,7 +159,7 @@ void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
         d = (s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z - a->mUnk_2c;
         e = d < 0 ? 0 : (s32) (d >> 12);
         if (e != 0) {
-            func_02039860(&t, &u);
+            Vec3NormalizeAndGetLengthUnchecked(&t, &u);
             w = a->mUnk_28;
             u.x = (s32) (((s64) u.x * w) >> 12);
             u.y = (s32) (((s64) u.y * w) >> 12);

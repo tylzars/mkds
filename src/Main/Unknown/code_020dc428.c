@@ -88,7 +88,7 @@ void func_020dd6c8(void *a, Wanwan *p, void *b, u32 c) {
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
     func_020ea8a8(gWanwan, &p->mUnk_00.mMatrix, &p->mUnk_00.mScale, c);
-    func_01ffccd0(&s, &p->mUnk_d4);
+    Matrix3x3FromQuaternion(&s, &p->mUnk_d4);
     s.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     s.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     s.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
@@ -220,7 +220,7 @@ void UpdateWanwan(void *a, Wanwan *p) {
     }
     func_020d759c(&p->mUnk_b4, &m, &p->mUnk_b4, p->mUnk_ec);
     func_020d73f0(&p->mUnk_b4, &p->mUnk_b4);
-    func_01ffccd0(&p->mUnk_00.mMatrix, &p->mUnk_b4);
+    Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_b4);
     if (p->mUnk_00.mPos.y >= 0) {
         return;
     }

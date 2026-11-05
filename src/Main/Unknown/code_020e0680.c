@@ -127,7 +127,7 @@ void func_020e2ccc(Unk020e20a8 *a) {
     }
     if (b < 8) {
         func_020f3678((u32) gKartItems[b].mUnk_1f0.mUnk_00, (u32) &a->mUnk_02c);
-        a->mUnk_03c = func_02039828(&a->mUnk_02c, (Vec3 *) func_020e6b14()) < 0;
+        a->mUnk_03c = Vec3DotUnrounded(&a->mUnk_02c, (Vec3 *) func_020e6b14()) < 0;
     } else {
         a->mUnk_03c = FALSE;
     }
@@ -148,7 +148,7 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     s32 y;
 
     if (a->mUnk_03c != FALSE) {
-        t = func_02039828(&b->mUnk_000.mMatrix.mUnk_00[2], &a->mUnk_02c);
+        t = Vec3DotUnrounded(&b->mUnk_000.mMatrix.mUnk_00[2], &a->mUnk_02c);
         v = b->mUnk_000.mCourseMapRow->mUnk_2e;
         w = b->mUnk_0d8.mUnk_1c->mUnk_12;
         if (v == 0) {
@@ -305,7 +305,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
         func_020d79b0(p, b->mUnk_000.mAngle, &m);
     }
     func_020d759c(&b->mUnk_0a4, &m, &b->mUnk_0a4, b->mUnk_152);
-    func_01ffccd0(&b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_0a4);
+    Matrix3x3FromQuaternion(&b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_0a4);
     b->mUnk_10c += 0x600;
     if (b->mUnk_000.mUnk_78 & 8) {
         func_0210b7ec(b->mUnk_158, b->mUnk_000.mUnk_78 & 0x3FFFFFE0);
@@ -324,15 +324,15 @@ void func_020e24d0(Unk020e1e98 *a, Vec3 *b) {
 
     c = a->mUnk_000.mPos;
     Vec3Sub(&c, b, &c);
-    d = func_02039828(&a->mUnk_000.mMatrix.mUnk_00[0], &c);
-    e = func_02039828(&a->mUnk_000.mMatrix.mUnk_00[2], &c);
+    d = Vec3DotUnrounded(&a->mUnk_000.mMatrix.mUnk_00[0], &c);
+    e = Vec3DotUnrounded(&a->mUnk_000.mMatrix.mUnk_00[2], &c);
     c.x = (d > 0 ? a->mUnk_000.mMatrix.mUnk_00[0].x : -a->mUnk_000.mMatrix.mUnk_00[0].x) * 2;
     c.x += e > 0 ? a->mUnk_000.mMatrix.mUnk_00[2].x : -a->mUnk_000.mMatrix.mUnk_00[2].x;
     c.z = (d > 0 ? a->mUnk_000.mMatrix.mUnk_00[0].z : -a->mUnk_000.mMatrix.mUnk_00[0].z) * 2;
     c.z += e > 0 ? a->mUnk_000.mMatrix.mUnk_00[2].z : -a->mUnk_000.mMatrix.mUnk_00[2].z;
     c.y = ((a->mUnk_114.y - 0x14000) >> 4) + 0x2000;
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 0x10) {
-        func_02039860(&c, &c);
+        Vec3NormalizeAndGetLengthUnchecked(&c, &c);
     }
     func_020d7b88(&c, &a->mUnk_0c4);
     a->mUnk_152 = 0x384;
@@ -526,7 +526,7 @@ void func_020e1e98(Unk020e1e98 *a) {
         (u16) (((s64) func_02148538(a->mUnk_000.mUnk_10.x, a->mUnk_000.mUnk_10.z) * 0x28be60db9391 + 0x80000000000) >>
                44),
         &a->mUnk_0a4);
-    func_01ffccd0(&a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_0a4);
+    Matrix3x3FromQuaternion(&a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_0a4);
     a->mUnk_0fe = 0;
     a->mUnk_152 = a->mUnk_150;
     a->mUnk_10c = 0;
@@ -795,7 +795,7 @@ BOOL func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020
 
     n = 0;
     Vec3Sub(b, &a->mUnk_0f4, &v);
-    f6 = func_02039828(&v, &a->mUnk_028);
+    f6 = Vec3DotUnrounded(&v, &a->mUnk_028);
     if (f6 > 0) {
         if (f6 > a->mUnk_100 + c) {
             return FALSE;
@@ -815,7 +815,7 @@ BOOL func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020
             n |= 0x500;
         }
     }
-    f5 = func_02039828(&v, &a->mUnk_034);
+    f5 = Vec3DotUnrounded(&v, &a->mUnk_034);
     if (f5 > 0) {
         if (f5 > a->mUnk_104 + c) {
             return FALSE;
@@ -835,7 +835,7 @@ BOOL func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020
             n |= 0x50;
         }
     }
-    f4 = func_02039828(&v, &a->mUnk_040);
+    f4 = Vec3DotUnrounded(&v, &a->mUnk_040);
     if (f4 > 0) {
         if (f4 > a->mUnk_108 + c) {
             return FALSE;
@@ -1121,8 +1121,8 @@ BOOL func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020
 
     fl = 0;
     Vec3Sub(b, &a->mUnk_0f4, &v);
-    x = func_02039828(&v, &a->mUnk_028);
-    y = func_02039828(&v, &a->mUnk_040);
+    x = Vec3DotUnrounded(&v, &a->mUnk_028);
+    y = Vec3DotUnrounded(&v, &a->mUnk_040);
     sq = (s64) x * x + (s64) y * y;
     t = a->mUnk_100 + c;
     if ((s64) t * t < sq) {
@@ -1133,7 +1133,7 @@ BOOL func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020
     } else {
         fl |= data_021588ec;
     }
-    n = func_02039828(&v, &a->mUnk_034);
+    n = Vec3DotUnrounded(&v, &a->mUnk_034);
     if (n > 0) {
         if (n > a->mUnk_104 + c) {
             return FALSE;
@@ -1229,12 +1229,12 @@ void func_020e0680(Unk020e005c *a, Vec3 *b, Vec3 *c, Vec3 *d, u16 *e) {
         d->y = -a->mUnk_010.y;
         d->z = -a->mUnk_010.z;
         Vec3Sub(b, &a->mUnk_004, &f);
-        Vec3AddScaled(func_02039828(&f, &a->mUnk_028), &a->mUnk_0a0, d, d);
-        Vec3AddScaled(func_02039828(&f, &a->mUnk_034), &a->mUnk_0ac, d, d);
-        Vec3AddScaled(func_02039828(&f, &a->mUnk_040), &a->mUnk_0b8, d, d);
+        Vec3AddScaled(Vec3DotUnrounded(&f, &a->mUnk_028), &a->mUnk_0a0, d, d);
+        Vec3AddScaled(Vec3DotUnrounded(&f, &a->mUnk_034), &a->mUnk_0ac, d, d);
+        Vec3AddScaled(Vec3DotUnrounded(&f, &a->mUnk_040), &a->mUnk_0b8, d, d);
         Vec3Sub(&f, d, d);
     }
     if (e != NULL) {
-        *e = func_02039828(&a->mUnk_124, c);
+        *e = Vec3DotUnrounded(&a->mUnk_124, c);
     }
 }

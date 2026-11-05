@@ -482,7 +482,7 @@ void func_020b5290(void) {
             func_0207a91c(&target, func_020b4d9c());
             data_0217b3c0->mUnk_8c = 300;
             Vec3Sub(&target, &data_0217b3c0->mUnk_90, &dir);
-            func_02039860(&dir, &dir);
+            Vec3NormalizeAndGetLengthUnchecked(&dir, &dir);
             Vec3AddScaled(0xa000, &dir, &data_0217b3c0->mUnk_90, &data_0217b3c0->mUnk_90);
             if (func_020b5250(target.x - data_0217b3c0->mUnk_90.x) *
                         func_020b5250(target.x - data_0217b3c0->mUnk_90.x) +

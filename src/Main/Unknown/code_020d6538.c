@@ -337,7 +337,7 @@ void Vec3RotateAroundY(Vec3 *a, s32 b, Vec3 *c) {
     Vec3MultiplyMatrix3x3(a, m, c);
 }
 
-void func_020d6df0(Vec3 *a, s32 *b) {
+void Matrix3x3FromVec3Degrees(Vec3 *a, s32 *b) {
     s32 m[9];
     s32 i;
     s32 j;
@@ -576,17 +576,18 @@ void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {
         v0.x = (s32) (((s64) b->mUnk_00.mUnk_10.z * (s64) b->mUnk_118) >> 12);
         v0.z = -(s32) (((s64) b->mUnk_00.mUnk_10.x * (s64) b->mUnk_118) >> 12);
         v0.y = 0;
-        func_020397a8(&v0, &v2, &v1);
+        Vec3CrossUnrounded(&v0, &v2, &v1);
         Vec3Add(&v2, &v1, &v2);
-        func_02039860(&v2, &b->mUnk_00.mMatrix.mUnk_00[0]);
-        func_020397a8(&v0, &v3, &v1);
+        Vec3NormalizeAndGetLengthUnchecked(&v2, &b->mUnk_00.mMatrix.mUnk_00[0]);
+        Vec3CrossUnrounded(&v0, &v3, &v1);
         Vec3Add(&v3, &v1, &v3);
         r = Vec3Dot(&b->mUnk_00.mMatrix.mUnk_00[0], &v3);
         v3.x = v3.x - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].x * (s64) r) >> 12);
         v3.y = v3.y - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].y * (s64) r) >> 12);
         v3.z = v3.z - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].z * (s64) r) >> 12);
-        func_02039860(&v3, &b->mUnk_00.mMatrix.mUnk_00[1]);
-        func_020397a8(&b->mUnk_00.mMatrix.mUnk_00[0], &b->mUnk_00.mMatrix.mUnk_00[1], &b->mUnk_00.mMatrix.mUnk_00[2]);
+        Vec3NormalizeAndGetLengthUnchecked(&v3, &b->mUnk_00.mMatrix.mUnk_00[1]);
+        Vec3CrossUnrounded(&b->mUnk_00.mMatrix.mUnk_00[0], &b->mUnk_00.mMatrix.mUnk_00[1],
+                           &b->mUnk_00.mMatrix.mUnk_00[2]);
     }
     b->mUnk_00.mMatrix.mUnk_00[3].x = b->mUnk_00.mPos.x >> 4;
     b->mUnk_00.mMatrix.mUnk_00[3].y = b->mUnk_00.mPos.y >> 4;

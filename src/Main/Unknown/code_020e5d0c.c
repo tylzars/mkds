@@ -167,7 +167,7 @@ void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
         }
     }
     func_020d7734(a->mUnk_a0, v, buf);
-    func_01ffccd0(&a->mUnk_28, buf);
+    Matrix3x3FromQuaternion(&a->mUnk_28, buf);
     Vec3AddScaled(-a->mUnk_f8, &a->mUnk_28.mUnk_0c, &a->mUnk_bc, &a->mUnk_04);
     a->mUnk_ec.x = a->mUnk_04.x >> 4;
     a->mUnk_ec.y = a->mUnk_04.y >> 4;
@@ -184,7 +184,7 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
     s64 sq;
 
     Vec3Sub(b, &a->mUnk_04, &v);
-    r = func_02039828(&v, &a->mUnk_28.mUnk_18);
+    r = Vec3DotUnrounded(&v, &a->mUnk_28.mUnk_18);
     if (r > 0) {
         t = a->mUnk_108 + c - r;
         if (t < 0) {
@@ -218,7 +218,7 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
         }
         sq = (s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z;
         if (sq >= 16) {
-            func_02039860(&v, &v);
+            Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }
         out->x = (s32) (((s64) v.x * d) >> 12);
         out->y = (s32) (((s64) v.y * d) >> 12);

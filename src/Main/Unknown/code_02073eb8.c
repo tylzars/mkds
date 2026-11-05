@@ -43,7 +43,7 @@ static inline s32 func_020760ec_inline(Vec3 *v, Vec3 *n) {
     if ((s64) v->x * v->x + (s64) v->y * v->y + (s64) v->z * v->z < 0x10) {
         return 0;
     }
-    return func_02039860(v, n);
+    return Vec3NormalizeAndGetLengthUnchecked(v, n);
 }
 
 static inline void func_02076528_inline(Vec3 *v, s32 k) {
@@ -93,7 +93,7 @@ void SetupCameraBehindKart(void) {
         }
     }
     p = gChaseCamera;
-    func_01ffccd0(&m, &q->mUnk_e0);
+    Matrix3x3FromQuaternion(&m, &q->mUnk_e0);
     t = (s32) (((s64) -data_usa_0217ac90 * p->mFollowDirectionSign + 0x800) >> 12);
     u.x = (s32) (((s64) m[2].x * t) >> 12);
     u.y = (s32) (((s64) m[2].y * t) >> 12);
@@ -244,18 +244,18 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c) {
                 y.z = -y.z;
                 k = func_020760ec_inline(&v, &z);
                 if (k != 0) {
-                    if (func_02039828(&z, &x) < 0xf5c) {
-                        if (func_02039828(&z, c) > 0xb5c) {
+                    if (Vec3DotUnrounded(&z, &x) < 0xf5c) {
+                        if (Vec3DotUnrounded(&z, c) > 0xb5c) {
                             a->mUnk_254 = 1;
                         }
                     }
                 }
             }
             a->mUnk_258 = TRUE;
-            k = func_02039828(&y, &x);
+            k = Vec3DotUnrounded(&y, &x);
             m = TRUE;
             l = a->mUnk_254;
-            if (l == 1 || (l == 3 && k < -0xd9a && func_02039828(&y, c) < 0)) {
+            if (l == 1 || (l == 3 && k < -0xd9a && Vec3DotUnrounded(&y, c) < 0)) {
                 if (x.y < -0xe66) {
                     a->mUnk_254 = 3;
                     m = FALSE;
@@ -264,7 +264,7 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c) {
                     a->mCollisionOffsetLengthGoal = Vec3Length(&v);
                     a->mUnk_254 = 1;
                 }
-            } else if (func_02039828(c, &x) > 0) {
+            } else if (Vec3DotUnrounded(c, &x) > 0) {
                 a->mUnk_254 = 0;
             } else {
                 a->mUnk_25c = TRUE;
@@ -714,8 +714,8 @@ void UpdateCameraAngleEntry(Camera *p) {
     c = b;
     d = b;
     func_02074b00_inline(&n, &d, -q->mUnk_18.z);
-    func_020397a8(&data_usa_02154fc4, &a, &f);
-    func_020397a8(&c, &f, &g);
+    Vec3CrossUnrounded(&data_usa_02154fc4, &a, &f);
+    Vec3CrossUnrounded(&c, &f, &g);
     Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m2, &g, gPairsByAngle[(i >> 4) * 2],
                                            gPairsByAngle[(i >> 4) * 2 + 1]);
     Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m3, &f, gPairsByAngle[(j >> 4) * 2],
@@ -773,7 +773,7 @@ void func_02074b00(Camera *p) {
     c = o->mUnk_138;
     c.y = 0;
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 0x10) {
-        func_02039860(&c, &c);
+        Vec3NormalizeAndGetLengthUnchecked(&c, &c);
     }
     func_02074b00_inline(&c, &c, q->mUnk_00.x);
     Vec3Add(&a, &c, &a);
@@ -793,7 +793,7 @@ void func_02074b00(Camera *p) {
     UpdateCameraView(p);
     Vec3Sub(&a, &b, &d);
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z >= 0x10) {
-        func_02039860(&d, &d);
+        Vec3NormalizeAndGetLengthUnchecked(&d, &d);
     }
     Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m, &data_usa_02154fc4,
                                            gPairsByAngle[(data_usa_021656a0 >> 4) * 2],
@@ -851,7 +851,7 @@ void UpdateCameraPosCurve(Camera *p, s32 a) {
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < 0x10) {
         m = 0;
     } else {
-        m = func_02039860(&d, &d);
+        m = Vec3NormalizeAndGetLengthUnchecked(&d, &d);
     }
     p->mPosCurve.mParam += a;
     if (p->mPosCurve.mParam >= 0x1000) {
@@ -1054,7 +1054,7 @@ void UpdateChaseCameraPos(Vec3 *a, Vec3 *b, Camera *c, Kart *d, Vec3 *e, const V
     k = 0;
     v58.y = 0;
     if ((s64) v58.x * v58.x + (s64) v58.y * v58.y + (s64) v58.z * v58.z >= 16) {
-        k = func_02039860(&v58, &v58);
+        k = Vec3NormalizeAndGetLengthUnchecked(&v58, &v58);
     }
     Vec3AddScaled((s32) (((s64) k * 0x11f) >> 12), &v58, a, a);
     a->y = a->y + ((s32) (((s64) j * 0x11f) >> 9) + g * 2);
@@ -1070,7 +1070,7 @@ void UpdateChaseCameraPos(Vec3 *a, Vec3 *b, Camera *c, Kart *d, Vec3 *e, const V
     v34 = v28;
     k = 0;
     if ((s64) v34.x * v34.x + (s64) v34.y * v34.y + (s64) v34.z * v34.z >= 16) {
-        k = func_02039860(&v34, &v34);
+        k = Vec3NormalizeAndGetLengthUnchecked(&v34, &v34);
     }
     if (k == 0) {
         return;
@@ -1086,7 +1086,7 @@ void ResetCameraBehind(const Vec3 *a, void *b) {
     s32 t;
 
     p = gChaseCamera;
-    func_01ffccd0(m, b);
+    Matrix3x3FromQuaternion(m, b);
     t = (s32) (((s64) -data_usa_0217ac90 * p->mFollowDirectionSign + 0x800) >> 12);
     v.x = (s32) (((s64) m[2].x * t) >> 12);
     v.y = (s32) (((s64) m[2].y * t) >> 12);

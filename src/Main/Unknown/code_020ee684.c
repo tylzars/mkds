@@ -902,7 +902,7 @@ void func_020ef8c4(Unk020eda5c *a) {
     b->mUnk_94.mUnk_00[2].x = -p->mUnk_09c.x;
     b->mUnk_94.mUnk_00[2].y = -p->mUnk_09c.y;
     b->mUnk_94.mUnk_00[2].z = -p->mUnk_09c.z;
-    func_020397a8(&b->mUnk_94.mUnk_00[1], &b->mUnk_94.mUnk_00[2], &b->mUnk_94.mUnk_00[0]);
+    Vec3CrossUnrounded(&b->mUnk_94.mUnk_00[1], &b->mUnk_94.mUnk_00[2], &b->mUnk_94.mUnk_00[0]);
 }
 
 void func_020ef65c(Unk020eda5c *a, Vec3 *v, Vec3 *w) {
@@ -924,7 +924,7 @@ void func_020ef65c(Unk020eda5c *a, Vec3 *v, Vec3 *w) {
     Vec3AddScaled(0x333, &t, q, q);
     sq = (s64) q->x * q->x + (s64) q->y * q->y + (s64) q->z * q->z;
     if (sq >= 0x10) {
-        func_02039860(q, &t);
+        Vec3NormalizeAndGetLengthUnchecked(q, &t);
     }
     p->mUnk_09c.x = -t.x;
     p->mUnk_09c.y = -t.y;
@@ -997,13 +997,13 @@ void func_020ef350(Unk020eda5c *a) {
         Vec3Add(&v, &a->mUnk_02c.mUnk_18, &v);
         sq = (s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z;
         if (sq >= 0x10) {
-            func_02039860(&v, &v);
+            Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }
         b->mUnk_94.mUnk_00[2].x = -v.x;
         b->mUnk_94.mUnk_00[2].y = -v.y;
         b->mUnk_94.mUnk_00[2].z = -v.z;
         b->mUnk_94.mUnk_00[1] = a->mUnk_02c.mUnk_0c;
-        func_020397a8(&b->mUnk_94.mUnk_00[1], &b->mUnk_94.mUnk_00[2], &b->mUnk_94.mUnk_00[0]);
+        Vec3CrossUnrounded(&b->mUnk_94.mUnk_00[1], &b->mUnk_94.mUnk_00[2], &b->mUnk_94.mUnk_00[0]);
     }
     k = b->mKind;
     if (gItemKinds[k].mUnk_20 != NULL) {
@@ -1123,7 +1123,7 @@ void func_020eecdc(Unk020eda5c *a) {
         if (i > 1) {
             x -= (i - 1) << 13;
         }
-        d = x - func_02039828(&v4c, v);
+        d = x - Vec3DotUnrounded(&v4c, v);
         if (d > 0) {
             Vec3AddScaled(d, v, t, t);
         }
@@ -1140,7 +1140,7 @@ void func_020eecdc(Unk020eda5c *a) {
         Vec3Sub(t, w, &v4c);
         if ((s64) v4c.x * v4c.x + (s64) v4c.y * v4c.y + (s64) v4c.z * v4c.z >= (s64) f * f) {
             if ((s64) v4c.x * v4c.x + (s64) v4c.y * v4c.y + (s64) v4c.z * v4c.z >= 0x10) {
-                func_02039860(&v4c, &v4c);
+                Vec3NormalizeAndGetLengthUnchecked(&v4c, &v4c);
             }
             Vec3AddScaled(f, &v4c, w, t);
             if (p->mUnk_0cc[i] > 0) {

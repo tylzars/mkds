@@ -22,7 +22,7 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                 a.x = e->mVelocity.x;
                 a.z = e->mVelocity.z;
                 if ((s64) a.z * a.z + ((s64) a.x * a.x + (s64) a.y * a.y) >= 0x10) {
-                    func_02039860(&a, &a);
+                    Vec3NormalizeAndGetLengthUnchecked(&a, &a);
                 }
                 scale = d->mPrm->mUnk_1e0;
                 a.x = (s32) (((s64) a.x * scale) >> 12);
@@ -41,7 +41,7 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
 
                 Vec3Sub(&d->mUnk_000.mPos, &e->mUnk_1b8, &b);
                 if ((s64) b.z * b.z + ((s64) b.x * b.x + (s64) b.y * b.y) >= 0x10) {
-                    func_02039860(&b, &b);
+                    Vec3NormalizeAndGetLengthUnchecked(&b, &b);
                 }
                 Vec3AddScaled(e->mRadius, &b, &e->mUnk_1b8, &b);
                 if (d->mUnk_000.mKind == 0x1f5) {
@@ -71,7 +71,7 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
             c.x = e->mVelocity.x;
             c.z = e->mVelocity.z;
             if ((s64) c.z * c.z + ((s64) c.x * c.x + (s64) c.y * c.y) >= 0x10) {
-                func_02039860(&c, &c);
+                Vec3NormalizeAndGetLengthUnchecked(&c, &c);
             }
             scale = d->mPrm->mUnk_1c8;
             c.x = (s32) (((s64) c.x * scale) >> 12);

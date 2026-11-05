@@ -1531,7 +1531,7 @@ void func_020787f4(s32 param_1, s32 param_2) {
     func_02011034();
     a = data_usa_02165708;
     if ((s64) a.z * a.z + ((s64) a.x * a.x + (s64) a.y * a.y) >= 0x10) {
-        func_02039860(&a, &a);
+        Vec3NormalizeAndGetLengthUnchecked(&a, &a);
     }
     func_02010fac(0, (s16) a.x, (s16) a.y, (s16) a.z);
     func_02010f98(0, (u16) (data_usa_021656d8 | (data_usa_021656d8 << 5) | (data_usa_021656d8 << 10)));

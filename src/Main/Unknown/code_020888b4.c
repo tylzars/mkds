@@ -450,7 +450,7 @@ void func_02088e44(Unk020888b4 *p) {
     Vec3Sub(&p->mUnk_b0->mPos, &p->mKart->mPos, &v);
     if (Vec3Dot(&v, &p->mKart->mUnk_138) > 0) {
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-            func_02039860(&v, &v);
+            Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }
         p->mUnk_bc = Vec3Dot(&v, &p->mKart->mUnk_138);
         c = 1;
@@ -473,7 +473,7 @@ void func_02088e44(Unk020888b4 *p) {
             z = data_02155eb0;
             Vec3Cross(&p->mUnk_28.mUnk_08, &z, &e);
             Vec3Sub(&u, &t, &w);
-            d = func_02039828(&w, &e);
+            d = Vec3DotUnrounded(&w, &e);
             c = p->mUnk_28.mUnk_00->mUnk_24;
             if (func_020738f8(d) >= c) {
                 p->mUnk_5c = &p->mUnk_44;
@@ -578,7 +578,7 @@ void func_02088a0c(Unk020888b4 *p) {
                 Vec3Sub(&r->mPos, &p->mKart->mPos, &v);
                 if (Vec3Dot(&v, &p->mKart->mUnk_138) > 0) {
                     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-                        func_02039860(&v, &v);
+                        Vec3NormalizeAndGetLengthUnchecked(&v, &v);
                     }
                     p->mUnk_d8 = Vec3Dot(&v, &p->mKart->mUnk_138);
                     n = TRUE;
@@ -590,7 +590,7 @@ void func_02088a0c(Unk020888b4 *p) {
                     z = data_02155eb0;
                     Vec3Cross(&p->mUnk_28.mUnk_08, &z, &e);
                     Vec3Sub(&u, &t, &w);
-                    m = func_02039828(&w, &e);
+                    m = Vec3DotUnrounded(&w, &e);
                     x = p->mUnk_28.mUnk_00->mUnk_24;
                     if (func_020738f8(m) >= x) {
                         p->mUnk_5c = &p->mUnk_44;

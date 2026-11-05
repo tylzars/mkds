@@ -57,7 +57,7 @@ u8 func_0209297c(Basabasa *a, Unk0209297c *b, void *c, u8 *d) {
             a->mUnk_00.mUnk_10.y = (s32) (((s64) a->mUnk_00.mMatrix.mUnk_00[2].y * 0x1333) >> 12);
             a->mUnk_00.mUnk_10.z = (s32) (((s64) a->mUnk_00.mMatrix.mUnk_00[2].z * 0x1333) >> 12);
         } else {
-            func_02039860(&u, &u);
+            Vec3NormalizeAndGetLengthUnchecked(&u, &u);
             a->mUnk_00.mUnk_10.x = (s32) (((s64) u.x * 0x1333) >> 12);
             a->mUnk_00.mUnk_10.y = (s32) (((s64) u.y * 0x1333) >> 12);
             a->mUnk_00.mUnk_10.z = (s32) (((s64) u.z * 0x1333) >> 12);

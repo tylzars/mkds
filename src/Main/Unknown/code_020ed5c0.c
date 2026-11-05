@@ -47,7 +47,7 @@ BOOL func_020ee528(Unk020eda5c *a) {
     a->mUnk_068 = p->mVelocityLength;
     a->mUnk_078 = (s32) (((s64) p->mPhysicalParam->mUnk_08 * p->mScale.z + 0x800) >> 12);
     a->mUnk_07c = p->mHopHeight;
-    a->mUnk_080 = func_02039828(&a->mUnk_02c.mUnk_18, &a->mUnk_05c) > 0;
+    a->mUnk_080 = Vec3DotUnrounded(&a->mUnk_02c.mUnk_18, &a->mUnk_05c) > 0;
     Vec3Sub(&a->mUnk_050, &p->mPrevPos, &a->mUnk_06c);
     v.x = (s32) (((s64) p->mScaleFactor.x * p->mScaleBase.x) >> 12);
     v.y = (s32) (((s64) p->mScaleFactor.y * p->mScaleBase.y) >> 12);
@@ -314,7 +314,7 @@ s32 func_020edc9c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
         v.y = 0;
     }
     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-        func_02039860(&v, d);
+        Vec3NormalizeAndGetLengthUnchecked(&v, d);
     }
     return r;
 }
@@ -341,7 +341,7 @@ s32 func_020edb8c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
         v.y = 0;
     }
     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-        func_02039860(&v, d);
+        Vec3NormalizeAndGetLengthUnchecked(&v, d);
     }
     return a;
 }
@@ -388,14 +388,14 @@ void func_020eda5c(Unk020eda5c *p, ItemObject *q) {
 void *func_020ed98c(ItemObject *p, Vec3 *v) {
     if (p->mUnk_f0.y < 0xfae || (p->mFlags & 0x80) != 0) {
         p->mUnk_94.mUnk_00[2] = *v;
-        func_020397a8(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
+        Vec3CrossUnrounded(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
         if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x +
                 (s64) p->mUnk_94.mUnk_00[0].y * p->mUnk_94.mUnk_00[0].y +
                 (s64) p->mUnk_94.mUnk_00[0].z * p->mUnk_94.mUnk_00[0].z >=
             0x10) {
-            func_02039860(&p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[0]);
+            Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[0]);
         }
-        func_020397a8(&p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[1]);
+        Vec3CrossUnrounded(&p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[1]);
         {
             Vec3 *d0;
 
@@ -445,14 +445,14 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
         }
         if (q->mUnk_f0.y < 0xfae || (q->mFlags & 0x80) != 0) {
             q->mUnk_94.mUnk_00[2] = *v;
-            func_020397a8(&q->mUnk_f0, &q->mUnk_94.mUnk_00[2], &q->mUnk_94.mUnk_00[0]);
+            Vec3CrossUnrounded(&q->mUnk_f0, &q->mUnk_94.mUnk_00[2], &q->mUnk_94.mUnk_00[0]);
             if ((s64) q->mUnk_94.mUnk_00[0].x * q->mUnk_94.mUnk_00[0].x +
                     (s64) q->mUnk_94.mUnk_00[0].y * q->mUnk_94.mUnk_00[0].y +
                     (s64) q->mUnk_94.mUnk_00[0].z * q->mUnk_94.mUnk_00[0].z >=
                 0x10) {
-                func_02039860(&q->mUnk_94.mUnk_00[0], &q->mUnk_94.mUnk_00[0]);
+                Vec3NormalizeAndGetLengthUnchecked(&q->mUnk_94.mUnk_00[0], &q->mUnk_94.mUnk_00[0]);
             }
-            func_020397a8(&q->mUnk_94.mUnk_00[2], &q->mUnk_94.mUnk_00[0], &q->mUnk_94.mUnk_00[1]);
+            Vec3CrossUnrounded(&q->mUnk_94.mUnk_00[2], &q->mUnk_94.mUnk_00[0], &q->mUnk_94.mUnk_00[1]);
             {
                 Vec3 *d0;
 
@@ -504,14 +504,14 @@ void func_020ed5c0(ItemObject *p, Unk020e6488 *q, Vec3 *v) {
     func_020e6a18(q);
     if (p->mUnk_f0.y < 0xfae || (p->mFlags & 0x80) != 0) {
         p->mUnk_94.mUnk_00[2] = *v;
-        func_020397a8(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
+        Vec3CrossUnrounded(&p->mUnk_f0, &p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0]);
         if ((s64) p->mUnk_94.mUnk_00[0].x * p->mUnk_94.mUnk_00[0].x +
                 (s64) p->mUnk_94.mUnk_00[0].y * p->mUnk_94.mUnk_00[0].y +
                 (s64) p->mUnk_94.mUnk_00[0].z * p->mUnk_94.mUnk_00[0].z >=
             0x10) {
-            func_02039860(&p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[0]);
+            Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[0]);
         }
-        func_020397a8(&p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[1]);
+        Vec3CrossUnrounded(&p->mUnk_94.mUnk_00[2], &p->mUnk_94.mUnk_00[0], &p->mUnk_94.mUnk_00[1]);
         {
             Vec3 *d0;
 

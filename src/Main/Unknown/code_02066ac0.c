@@ -49,7 +49,7 @@
 #include "Main/Unknown/code_02077bc0.h"
 #include "code_021471bc.h"
 
-s32 func_02067bf4(Kart *a, s32 *b) {
+s32 CollideKartWithMapObjectResponse13(Kart *a, s32 *b) {
     *b = 0xc;
     a->mUnk_48 &= 0xdfe77fdf;
     a->mUnk_238 = 0;
@@ -65,7 +65,7 @@ s32 func_02067bf4(Kart *a, s32 *b) {
     return 5;
 }
 
-s32 func_02067b60(Kart *a, s32 *b) {
+s32 CollideKartWithMapObjectResponse14(Kart *a, s32 *b) {
     *b = 0xc;
     a->mUnk_48 &= 0xdfe77fdf;
     a->mUnk_238 = 0;
@@ -83,7 +83,7 @@ s32 func_02067b60(Kart *a, s32 *b) {
     return 5;
 }
 
-s32 func_02067b0c(Kart *a, s32 *b, s32 c) {
+s32 CollideKartWithMapObjectResponse11(Kart *a, s32 *b, s32 c) {
     if (func_0206a24c(a) != FALSE && a->mUnk_44c != (struct MapObject *) c &&
         (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         func_0207a6b0()->mUnk_14++;
@@ -97,40 +97,40 @@ s32 func_02067ad4(Kart *p) {
     return 0;
 }
 
-s32 func_02067a9c(Kart *p) {
+s32 ApplyKartSurfaceKind20(Kart *p) {
     func_02083f6c((u16) data_usa_02154ac4[p->mSurfaceVariant], p);
     return 0;
 }
 
-s32 func_02067a64(Kart *p) {
+s32 ApplyKartSurfaceKind1(Kart *p) {
     func_02083f6c((u16) data_usa_02154ae4[p->mSurfaceVariant], p);
     return 5;
 }
 
-s32 func_02067a2c(Kart *p) {
+s32 ApplyKartSurfaceKind2(Kart *p) {
     func_0207a6c0(p);
     func_02083f6c((u16) data_usa_02154b24[p->mSurfaceVariant], p);
     return 2;
 }
 
-s32 func_020679f4(Kart *a) {
+s32 ApplyKartSurfaceKind3(Kart *a) {
     func_0207a6c0(a);
     func_02083f6c((u16) data_02154b44[a->mSurfaceVariant], a);
     return 3;
 }
 
-s32 func_020679bc(Kart *a) {
+s32 ApplyKartSurfaceKind5(Kart *a) {
     func_0207a6c0(a);
     func_02083f6c((u16) data_02154bc4[a->mSurfaceVariant], a);
     return 4;
 }
 
-s32 func_02067984(Kart *a) {
+s32 ApplyKartSurfaceKind6(Kart *a) {
     func_02083f6c((u16) data_02154a64[a->mSurfaceVariant], a);
     return 6;
 }
 
-s32 func_020678d4(Kart *a) {
+s32 ApplyKartSurfaceKind7(Kart *a) {
     Unk02165518 b;
     Unk0210bf24 *c;
 
@@ -150,7 +150,7 @@ s32 func_020678d4(Kart *a) {
     return 8;
 }
 
-s32 func_02067834(Kart *a) {
+s32 ApplyKartSurfaceKind12(Kart *a) {
     if (a->mSurfaceGroup != 8 || (a->mUnk_44 & 0x80000000) != 0) {
         if (data_021759c0->mCourseId == 0xc || data_021759c0->mCourseId == 0x28) {
             func_021090c4(&a->mUnk_00, 0x15e, 0x7f, 0);
@@ -163,7 +163,7 @@ s32 func_02067834(Kart *a) {
     return 8;
 }
 
-s32 func_02067778(Kart *a) {
+s32 ApplyKartSurfaceKind18(Kart *a) {
     Unk02165518 b;
     Unk0210bf24 *c;
 
@@ -184,7 +184,7 @@ s32 func_02067778(Kart *a) {
     return 8;
 }
 
-s32 func_020676fc(Kart *a) {
+s32 ApplyKartSurfaceKind15(Kart *a) {
     u16 b;
 
     func_02083f6c(0, a);
@@ -200,12 +200,12 @@ s32 func_020676fc(Kart *a) {
     return 9;
 }
 
-s32 func_020676c4(Kart *a) {
+s32 ApplyKartSurfaceKind17(Kart *a) {
     func_02083f6c((u16) data_02154aa4[a->mSurfaceVariant], a);
     return 0xa;
 }
 
-s32 func_02067630(Kart *a) {
+s32 ApplyKartSurfaceKind19(Kart *a) {
     Unk0210bf24 *b;
 
     if (a->mSurfaceGroup != 0xb || (a->mUnk_44 & 0x80000000) != 0) {
@@ -224,7 +224,7 @@ s32 func_02067630(Kart *a) {
     return 0xb;
 }
 
-s32 func_020675f8(Kart *a) {
+s32 ApplyKartSurfaceKind10(Kart *a) {
     func_02083f6c((u16) data_02154b04[a->mSurfaceVariant], a);
     return 0;
 }

@@ -125,7 +125,7 @@ void func_01ffb130(Kart *p) {
             p->mPos.y -= 0x19a;
         }
     } else {
-        func_01ffb9cc(p);
+        ApplyKartGravity(p);
     }
     if (p->mUnk_44 & 0x10) {
         GetKartForward(p, &v2);
@@ -149,7 +149,7 @@ void func_01ffb130(Kart *p) {
         v3.z = p->mUnk_50.z - (s32) (((s64) p->mUnk_244.z * d) >> 12);
         p->mUnk_d4 = Vec3Length(&v3);
     } else {
-        d = func_02039828(&p->mUnk_278, &p->mUnk_244);
+        d = Vec3DotUnrounded(&p->mUnk_278, &p->mUnk_244);
         p->mUnk_50 = p->mUnk_278;
         if (p->mUnk_3e8 > 0) {
             p->mUnk_d4 = 0x1000;
@@ -195,7 +195,7 @@ void func_01ffb130(Kart *p) {
     func_01ff9c40(p);
     ScaleKartVelocityAndSetCappedLengthAndDirection(p, b);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        func_0207a74c(func_02039828(&p->mVelocity, &p->mUnk_50));
+        func_0207a74c(Vec3DotUnrounded(&p->mVelocity, &p->mUnk_50));
         if ((p->mUnk_44 & 0x1000000) && p->mUnk_4d4 != 0) {
             p->mUnk_4d4 = (s32) (((s64) p->mUnk_4d4 * 0xfae) >> 12);
             if (p->mUnk_4d4 < 0xcd) {

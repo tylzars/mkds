@@ -51,7 +51,7 @@ void func_ov001_02183ff4(Unk02188950 *a) {
     sp.y = 0;
     sp.z = a->mUnk_000.mPos.z;
     if ((s64) sp.z * sp.z + ((s64) sp.x * sp.x + (s64) sp.y * sp.y) >= 16) {
-        func_02039860(&sp, &sp);
+        Vec3NormalizeAndGetLengthUnchecked(&sp, &sp);
     }
     scale = a->mPrm->mUnk_204;
     sp.x = (s64) sp.x * scale >> 12;

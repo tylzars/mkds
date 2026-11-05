@@ -69,14 +69,14 @@ s32 func_020f7184(ItemObject *a, s32 b, s32 c) {
     if (a->mUnk_f0.y != 0) {
         Vec3 *w = &a->mUnk_f0;
 
-        r = func_02039828(v, w);
+        r = Vec3DotUnrounded(v, w);
         if (r < 0x3000) {
             Vec3AddScaled(0x3000 - r, w, v, v);
         }
     }
     a->mFlags |= 0x80001;
     func_020f9c40((s32) a);
-    r = func_02039828(v, (Vec3 *) func_020e6b28());
+    r = Vec3DotUnrounded(v, (Vec3 *) func_020e6b28());
     if (r > 1) {
         a->mUnk_108.x = 1;
     } else {
@@ -180,7 +180,7 @@ void func_020f6f10(ItemObject *a, s32 b, s32 c) {
 void func_020f6e58(ItemObject *a) {
     Vec3 v;
 
-    func_020397a8(&a->mUnk_f0, (Vec3 *) func_020e6b14(), &v);
+    Vec3CrossUnrounded(&a->mUnk_f0, (Vec3 *) func_020e6b14(), &v);
     Vec3AddScaled(a->mUnk_108.x != 0 ? a->mUnk_108.y : -a->mUnk_108.y, &v, &a->mUnk_f0, &a->mUnk_f0);
     a->mFlags |= 0x80;
     a->mVelocity.y -= 0x400;
@@ -207,7 +207,7 @@ void func_020f6be8(ItemObject *b, Vec3 *c, Vec3 *e, Vec3 *f) {
     v.z -= (s32) (((s64) f->z * dot) >> 12);
     d = (s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z;
     if (d >= 0x10) {
-        func_02039860(&v, &v);
+        Vec3NormalizeAndGetLengthUnchecked(&v, &v);
     }
     if (b->mFlags & 0x8000) {
         Vec3AddScaled(0x666, &a, &b->mVelocity, &b->mVelocity);

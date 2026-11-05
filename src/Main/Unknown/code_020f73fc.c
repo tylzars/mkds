@@ -43,9 +43,9 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
                 break;
             }
             p->mFlags |= 0x4000000;
-            if (func_02039828(&p->mVelocity, &v) <= 0) {
+            if (Vec3DotUnrounded(&p->mVelocity, &v) <= 0) {
                 if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-                    func_02039860(&v, &v);
+                    Vec3NormalizeAndGetLengthUnchecked(&v, &v);
                 }
                 p->mUnk_124(p, d, &v);
                 if (p->mFlags & 0x8000) {
@@ -71,7 +71,7 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
                 break;
             }
             if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-                func_02039860(&v, &v);
+                Vec3NormalizeAndGetLengthUnchecked(&v, &v);
             }
             m = p->mUnk_e0;
             p->mPos.x = c->x + (s32) (((s64) m * v.x) >> 12);
@@ -83,7 +83,7 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             }
             n = 0;
             if ((s64) d->x * d->x + (s64) d->y * d->y + (s64) d->z * d->z >= 0x10) {
-                n = func_02039860(d, &v2);
+                n = Vec3NormalizeAndGetLengthUnchecked(d, &v2);
             }
             if (n != 0) {
                 func_020f6be8(p, c, d, &v2);
@@ -93,7 +93,7 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
                     v2.y = 0;
                 }
                 if ((s64) v2.x * v2.x + (s64) v2.y * v2.y + (s64) v2.z * v2.z >= 0x10) {
-                    func_02039860(&v2, &v2);
+                    Vec3NormalizeAndGetLengthUnchecked(&v2, &v2);
                 }
                 w.x = (s32) (((s64) v2.x * 0x1800) >> 12);
                 w.y = (s32) (((s64) v2.y * 0x1800) >> 12);

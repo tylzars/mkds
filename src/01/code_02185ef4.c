@@ -648,7 +648,7 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     }
     if (b->mUnk_2b8 != 2 && (b->mUnk_2c8 & 0x214300)) {
         if ((s64) v5c.x * v5c.x + (s64) v5c.y * v5c.y + (s64) v5c.z * v5c.z >= 0x10) {
-            func_02039860(&v5c, &dir);
+            Vec3NormalizeAndGetLengthUnchecked(&v5c, &dir);
         }
         dir.y = 0;
         Vec3AddScaled(b->mPrm->mUnk_030, &dir, &b->mVelocity, &b->mVelocity);
@@ -920,7 +920,7 @@ s32 func_ov001_02185fb0(Unk02188950 *a, Unk02185fb0_1 *b, u8 *c, u8 *d) {
         v.y = 0;
         v.z = a->mUnk_000.mPos.z - b->mUnk_88;
         if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
-            func_02039860(&v, &v);
+            Vec3NormalizeAndGetLengthUnchecked(&v, &v);
             k = -a->mPrm->mUnk_024;
             a->mUnk_000.mUnk_10.x = (s32) (((s64) v.x * k) >> 12);
             a->mUnk_000.mUnk_10.y = (s32) (((s64) v.y * k) >> 12);
@@ -948,7 +948,7 @@ s32 func_ov001_02185f04(Unk02188950 *a, Unk02185f04_1 *b, u8 *c, u8 *d) {
     v.y = 0;
     v.z = a->mUnk_000.mPos.z - b->mUnk_58;
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
-        func_02039860(&v, &v);
+        Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         Vec3AddScaled(a->mPrm->mUnk_02c, &v, &a->mVelocity, &a->mVelocity);
     }
     fn = a->mUnk_2dc;

@@ -236,7 +236,7 @@ BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
     }
     if (p->mState == 4 || (p->mState == 5 && p->mUnk_a0 > 0x7800)) {
         if ((s64) s.x * s.x + (s64) s.y * s.y + (s64) s.z * s.z >= 0x10) {
-            func_02039860(&s, &s);
+            Vec3NormalizeAndGetLengthUnchecked(&s, &s);
         }
         d = p->mUnk_00.mUnk_58.x + b - d;
         c->x = (s32) (((s64) s.x * d) >> 12);

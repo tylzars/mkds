@@ -60,59 +60,59 @@ void func_02073630(void) {
     for (; i < 15; i++, a++, b++) {
         switch (i) {
             case 0:
-                *a = func_02067f88;
+                *a = CollideKartWithMapObjectResponse0;
                 *b = func_020681e0;
                 break;
             case 2:
-                *a = func_02067f78;
+                *a = CollideKartWithMapObjectResponse2;
                 *b = func_020681e0;
                 break;
             case 3:
-                *a = func_02067ec4;
+                *a = CollideKartWithMapObjectResponse3;
                 *b = func_020681e0;
                 break;
             case 4:
-                *a = func_02067e10;
+                *a = CollideKartWithMapObjectResponse4;
                 *b = func_020681e0;
                 break;
             case 5:
-                *a = func_02067d0c;
+                *a = CollideKartWithMapObjectResponse5;
                 *b = func_020681e0;
                 break;
             case 6:
-                *a = func_02067d88;
+                *a = CollideKartWithMapObjectResponse6;
                 *b = func_020681e0;
                 break;
             case 7:
-                *a = func_02067cb0;
+                *a = CollideKartWithMapObjectResponse7;
                 *b = func_020681e0;
                 break;
             case 9:
-                *a = func_02067c90;
+                *a = CollideKartWithMapObjectResponse9;
                 *b = func_02068094;
                 break;
             case 8:
-                *a = func_02067ca0;
+                *a = CollideKartWithMapObjectResponse8;
                 *b = func_020680e0;
                 break;
             case 10:
-                *a = func_02067c80;
+                *a = CollideKartWithMapObjectResponse10;
                 *b = func_02067f94;
                 break;
             case 11:
-                *a = func_02067b0c;
+                *a = CollideKartWithMapObjectResponse11;
                 *b = func_020681e0;
                 break;
             case 12:
-                *a = func_02067c70;
+                *a = CollideKartWithMapObjectResponse12;
                 *b = func_020681e0;
                 break;
             case 13:
-                *a = func_02067bf4;
+                *a = CollideKartWithMapObjectResponse13;
                 *b = func_020681e0;
                 break;
             case 14:
-                *a = func_02067b60;
+                *a = CollideKartWithMapObjectResponse14;
                 *b = func_020681e0;
                 break;
             default:

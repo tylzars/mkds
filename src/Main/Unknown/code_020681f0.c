@@ -296,7 +296,7 @@ void func_02068640(Kart *a, s32 b) {
     if ((a->mUnk_7c & 0x20) != 0) {
         GetCourseMapKartStartPlacement(&c, &d, a->mIndex);
         a->mHeadingAngle = (u32) (d.y * 0xb6) >> 12;
-        func_01ffd190(&data_02154f7c, a->mHeadingAngle, &a->mUnk_e0_m);
+        QuaternionFromAxisAngle(&data_02154f7c, a->mHeadingAngle, &a->mUnk_e0_m);
         func_01ffcd84(&a->mUnk_120, &a->mUnk_e0_m);
         GetKartForward(a, &e);
         ResetKartAndSetPos(a, &c, &e, NULL);

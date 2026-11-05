@@ -216,7 +216,7 @@ typedef struct Kart {
     // mScaleYFactor. Zero at the start placement (func_020727d4) and where the kart is moved to a far corner
     // (func_02068b98, func_02068640).
     /* bc */ Vec3 mScale;
-    // Negative step added by func_01ffb9cc to mVerticalSpeed, by func_01ff9c40 to mHopSpeed while hopping and to a
+    // Negative step added by ApplyKartGravity to mVerticalSpeed, by func_01ff9c40 to mHopSpeed while hopping and to a
     // speed of the mode-5 record; -0x2b9 at reset, 0 after the water-height branch of func_0206ff50.
     /* c8 */ s32 mGravity;
     // The value mSpeedLimit follows: it falls by x0xf37/0x1000 per step but never below it and rises to it at once.

@@ -140,7 +140,7 @@ void func_020dbf7c(Wanwan *p) {
                          44),
                   &p->mUnk_d4);
     func_020d7938(&p->mUnk_c4, &p->mUnk_d4, &p->mUnk_b4);
-    func_01ffccd0(&p->mUnk_00.mMatrix, &p->mUnk_b4);
+    Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_b4);
     p->mUnk_e4 = 0;
     if (p->mUnk_fc == 0) {
         func_020de184((Unk020de000 *) p->mUnk_1d8);

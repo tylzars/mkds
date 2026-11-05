@@ -25,7 +25,7 @@
 
 BOOL func_020f9290(void *a, Vec3 *b) {
     ItemObject *p = a;
-    if ((p->mFlags & 0x2000000) != 0 && func_02039828(b, &p->mUnk_108) < 0 && (p->mFlags & 8) == 0) {
+    if ((p->mFlags & 0x2000000) != 0 && Vec3DotUnrounded(b, &p->mUnk_108) < 0 && (p->mFlags & 8) == 0) {
         func_020f6fc4(p, 1);
         return TRUE;
     }

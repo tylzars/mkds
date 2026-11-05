@@ -1,6 +1,6 @@
 #include "Main/Unknown/code_02067f78.h"
 
-u32 func_02067f88(u32 arg0, u32 arg1) {
+u32 CollideKartWithMapObjectResponse0(u32 arg0, u32 arg1) {
     u32 value0;
     u32 value1 = arg1;
     value0 = 0u;
@@ -8,7 +8,7 @@ u32 func_02067f88(u32 arg0, u32 arg1) {
     return value0;
 }
 
-u32 func_02067f78(u32 arg0, u32 arg1) {
+u32 CollideKartWithMapObjectResponse2(u32 arg0, u32 arg1) {
     u32 value0;
     u32 value1 = arg1;
     value0 = 2u;

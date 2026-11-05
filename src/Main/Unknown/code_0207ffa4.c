@@ -125,7 +125,7 @@ s32 func_02080dbc(Unk0208001c *p, Vec3 *a) {
 
     if (p->mUnk_08.x != 0 || p->mUnk_08.y != 0 || p->mUnk_08.z != 0) {
         Vec3Sub(a, t, &v);
-        if (func_02039828(&p->mUnk_08, &v) > 0) {
+        if (Vec3DotUnrounded(&p->mUnk_08, &v) > 0) {
             r = TRUE;
         }
     }
@@ -137,7 +137,7 @@ void func_02080d34(Unk02080d34 *p, u16 a) {
     p->mUnk_00.mUnk_04 = p->mUnk_00.mUnk_00->mUnk_0c;
     p->mUnk_00.mUnk_08 = data_021557ec;
     Vec3Sub(p->mUnk_00.mUnk_00->mUnk_18, p->mUnk_00.mUnk_04->mUnk_18, &p->mUnk_00.mUnk_08);
-    func_02039860(&p->mUnk_00.mUnk_08, &p->mUnk_00.mUnk_08);
+    Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_00.mUnk_08, &p->mUnk_00.mUnk_08);
     p->mUnk_00.mUnk_14 = NULL;
     p->mUnk_00.mUnk_18 = FALSE;
     p->mUnk_1c = a;
@@ -151,7 +151,7 @@ void func_02080cd0(Unk0208001c *p, Unk02175620_bc *a) {
     p->mUnk_18 = FALSE;
     p->mUnk_08 = data_021557ec;
     Vec3Sub(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
-    func_02039860(&p->mUnk_08, &p->mUnk_08);
+    Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_08, &p->mUnk_08);
 }
 
 s16 func_02080cc0(Unk0208001c *p) {
@@ -182,7 +182,7 @@ s32 func_02080bf4(Unk02080b1c *p, Vec3 *a) {
     r = FALSE;
     if (p->mUnk_08.x != 0 || p->mUnk_08.y != 0 || p->mUnk_08.z != 0) {
         Vec3Sub(a, w, &v);
-        if (func_02039828(&p->mUnk_08, &v) > 0) {
+        if (Vec3DotUnrounded(&p->mUnk_08, &v) > 0) {
             r = TRUE;
         }
     }
@@ -211,14 +211,14 @@ void func_02080b1c(Unk02080b1c *p) {
     p->mUnk_04 = p->mUnk_00;
     p->mUnk_00 = p->mUnk_00->mUnk_00[i];
     Vec3Sub(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
-    func_02039860(&p->mUnk_08, &p->mUnk_08);
+    Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_08, &p->mUnk_08);
 }
 
 void func_02080adc(Unk0208001c *p, Unk02175620_bc *a) {
     p->mUnk_04 = p->mUnk_00;
     p->mUnk_00 = a;
     Vec3Sub(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
-    func_02039860(&p->mUnk_08, &p->mUnk_08);
+    Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_08, &p->mUnk_08);
 }
 
 void func_02080ac0(Unk0208001c *p) {
@@ -260,9 +260,9 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
         if (v2[j] != NULL) {
             Vec3Sub(v2[j]->mUnk_20, a, &w);
             if ((s64) w.x * w.x + (s64) w.y * w.y + (s64) w.z * w.z >= 0x10) {
-                func_02039860(&w, &w);
+                Vec3NormalizeAndGetLengthUnchecked(&w, &w);
             }
-            d = func_02039828(&w, b);
+            d = Vec3DotUnrounded(&w, b);
             if (d >= m) {
                 r = v2[j];
                 m = d;
@@ -333,7 +333,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
             k = 0;
             Vec3Sub(&d->mPos, &GetKart(c)->mPos, &v);
             if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-                func_02039860(&v, &v);
+                Vec3NormalizeAndGetLengthUnchecked(&v, &v);
             }
             for (i = 0; i < p->mUnk_00->mUnk_2c; i++) {
                 if (p->mUnk_04 == ((const Unk0208001c *) p)->mUnk_00->mUnk_00[i]) {
@@ -341,9 +341,9 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                 }
                 Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &GetKart(c)->mPos, &w);
                 if ((s64) w.x * w.x + (s64) w.y * w.y + (s64) w.z * w.z >= 0x10) {
-                    func_02039860(&w, &w);
+                    Vec3NormalizeAndGetLengthUnchecked(&w, &w);
                 }
-                t = func_02039828(&w, b);
+                t = Vec3DotUnrounded(&w, b);
                 if (t >= -0x800) {
                     u = Vec3Dot(&v, &w);
                     if (u > m0 || k == 0) {
@@ -367,7 +367,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
             o = GetKart(c);
             Vec3Sub(&GetKart(e)->mPos, &o->mPos, &x);
             if ((s64) x.x * x.x + (s64) x.y * x.y + (s64) x.z * x.z >= 0x10) {
-                func_02039860(&x, &x);
+                Vec3NormalizeAndGetLengthUnchecked(&x, &x);
             }
             for (i = 0; i < p->mUnk_00->mUnk_2c; i++) {
                 if (p->mUnk_04 == ((const Unk0208001c *) p)->mUnk_00->mUnk_00[i]) {
@@ -375,9 +375,9 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                 }
                 Vec3Sub(p->mUnk_00->mUnk_00[i]->mUnk_20, &GetKart(c)->mPos, &y);
                 if ((s64) y.x * y.x + (s64) y.y * y.y + (s64) y.z * y.z >= 0x10) {
-                    func_02039860(&y, &y);
+                    Vec3NormalizeAndGetLengthUnchecked(&y, &y);
                 }
-                t = func_02039828(&y, b);
+                t = Vec3DotUnrounded(&y, b);
                 if (t >= -0x800) {
                     if (v3 == FALSE) {
                         u = Vec3Dot(&x, &y);
@@ -415,10 +415,10 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                     for (h = 0; h < 2; h++) {
                         Vec3Sub(v4[h]->mUnk_20, p->mUnk_00->mUnk_20, &z[h]);
                         if ((s64) z[h].x * z[h].x + (s64) z[h].y * z[h].y + (s64) z[h].z * z[h].z >= 0x10) {
-                            func_02039860(&z[h], &z[h]);
+                            Vec3NormalizeAndGetLengthUnchecked(&z[h], &z[h]);
                         }
                     }
-                    if (func_02039828(&z[0], b) < func_02039828(&z[1], b)) {
+                    if (Vec3DotUnrounded(&z[0], b) < Vec3DotUnrounded(&z[1], b)) {
                         l = 1;
                     }
                 }
@@ -434,12 +434,12 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
                             if (!(q->mUnk_2e & (1 << j)) && ((const Unk0208001c *) p)->mUnk_00 != q->mUnk_00[j]) {
                                 Vec3Sub(q->mUnk_00[j]->mUnk_20, q->mUnk_20, &s);
                                 if ((s64) s.x * (s64) s.x + (s64) s.y * (s64) s.y + (s64) s.z * (s64) s.z >= 0x10) {
-                                    func_02039860(&s, &s);
+                                    Vec3NormalizeAndGetLengthUnchecked(&s, &s);
                                 }
                                 break;
                             }
                         }
-                        t = func_02039828(&s, b);
+                        t = Vec3DotUnrounded(&s, b);
                         if (t >= -0x800) {
                             v2[n] = p->mUnk_00->mUnk_00[i];
                             n++;
@@ -482,7 +482,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
     Vec3Sub(p->mUnk_00->mUnk_20, p->mUnk_04->mUnk_20, &p->mUnk_08);
     if ((s64) p->mUnk_08.x * p->mUnk_08.x + (s64) p->mUnk_08.y * p->mUnk_08.y + (s64) p->mUnk_08.z * p->mUnk_08.z >=
         0x10) {
-        func_02039860(&p->mUnk_08, &p->mUnk_08);
+        Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_08, &p->mUnk_08);
     }
 }
 
@@ -503,7 +503,7 @@ void func_0208001c(Unk0208001c *p, Unk02175620_bc *a) {
     Vec3Sub(p->mUnk_00->mUnk_20, p->mUnk_04->mUnk_20, &p->mUnk_08);
     if ((s64) p->mUnk_08.x * p->mUnk_08.x + (s64) p->mUnk_08.y * p->mUnk_08.y + (s64) p->mUnk_08.z * p->mUnk_08.z >=
         0x10) {
-        func_02039860(&p->mUnk_08, &p->mUnk_08);
+        Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_08, &p->mUnk_08);
     }
 }
 
@@ -512,7 +512,7 @@ void func_0207ffa4(Unk02080b1c *a, u32 b, Unk02080b1c_00 *c) {
     a->mUnk_04 = c;
     a->mUnk_00 = a->mUnk_04->mUnk_00[0];
     Vec3Sub(a->mUnk_00->mUnk_18, a->mUnk_04->mUnk_18, &a->mUnk_08);
-    func_02039860(&a->mUnk_08, &a->mUnk_08);
+    Vec3NormalizeAndGetLengthUnchecked(&a->mUnk_08, &a->mUnk_08);
     a->mUnk_14 = 0;
     a->mUnk_18 = 0;
     a->mUnk_1c = b;

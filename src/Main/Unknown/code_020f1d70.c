@@ -92,7 +92,7 @@ void func_020f2a6c(Vec3 *a, Vec3 *b, Vec3 *c) {
     c->y = -(n + c->y);
     c->y = DivFixed12(c->y, b->y);
     if ((s64) c->x * c->x + (s64) c->y * c->y + (s64) c->z * c->z >= 0x10) {
-        func_02039860(c, c);
+        Vec3NormalizeAndGetLengthUnchecked(c, c);
     }
 }
 
@@ -108,11 +108,11 @@ void func_020f29e8(Unk020f5d6c *a) {
             (s64) b->mUnk_000.mVelocity.y * b->mUnk_000.mVelocity.y +
             (s64) b->mUnk_000.mVelocity.z * b->mUnk_000.mVelocity.z >=
         0x10) {
-        n = func_02039860(&b->mUnk_000.mVelocity, &b->mUnk_130);
+        n = Vec3NormalizeAndGetLengthUnchecked(&b->mUnk_000.mVelocity, &b->mUnk_130);
     }
     b->mUnk_12c = n;
     func_020f2a6c(&b->mUnk_130, p, &b->mUnk_13c);
-    func_020397a8(&b->mUnk_13c, p, &b->mUnk_148);
+    Vec3CrossUnrounded(&b->mUnk_13c, p, &b->mUnk_148);
     b->mUnk_000.mUnk_124 = (void (*)(ItemObject *, Vec3 *, Vec3 *)) func_020f1f98;
 }
 
@@ -135,16 +135,16 @@ void func_020f288c(Unk020f1d70 *a, Vec3 *b) {
         Vec3Sub(p, &v, p);
     }
     if ((s64) p->x * p->x + (s64) p->y * p->y + (s64) p->z * p->z >= 0x10) {
-        func_02039860(p, p);
+        Vec3NormalizeAndGetLengthUnchecked(p, p);
     }
     n = p->z;
     q->x = p->x;
     q->y = 0;
     q->z = n;
     if ((s64) q->x * q->x + (s64) q->y * q->y + (s64) q->z * q->z >= 0x10) {
-        func_02039860(q, q);
+        Vec3NormalizeAndGetLengthUnchecked(q, q);
     }
-    func_020397a8(q, &a->mUnk_000.mUnk_f0, &a->mUnk_148);
+    Vec3CrossUnrounded(q, &a->mUnk_000.mUnk_f0, &a->mUnk_148);
     func_021090c4(&a->mUnk_000.mUnk_00, 0xd5, 0x7f, 0);
 }
 
@@ -165,10 +165,10 @@ void func_020f2768(Unk020f1d70 *a, Vec3 *b, Vec3 *c) {
         Vec3Sub(p, &v, p);
     }
     if ((s64) p->x * p->x + (s64) p->y * p->y + (s64) p->z * p->z >= 0x10) {
-        func_02039860(p, p);
+        Vec3NormalizeAndGetLengthUnchecked(p, p);
     }
     a->mUnk_13c = *p;
-    func_020397a8(p, &a->mUnk_000.mUnk_f0, &a->mUnk_148);
+    Vec3CrossUnrounded(p, &a->mUnk_000.mUnk_f0, &a->mUnk_148);
     a->mUnk_000.mUnk_f0.y += 1;
     func_021090c4(&a->mUnk_000.mUnk_00, 0xd5, 0x7f, 0);
 }
@@ -214,13 +214,13 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
                     if ((s64) a->mUnk_13c.x * a->mUnk_13c.x + (s64) a->mUnk_13c.y * a->mUnk_13c.y +
                             (s64) a->mUnk_13c.z * a->mUnk_13c.z >=
                         0x10) {
-                        func_02039860(&a->mUnk_13c, &a->mUnk_13c);
+                        Vec3NormalizeAndGetLengthUnchecked(&a->mUnk_13c, &a->mUnk_13c);
                     }
                     *r = a->mUnk_13c;
                 } else {
                     func_020f2a6c(r, &v2, &a->mUnk_13c);
                 }
-                func_020397a8(&a->mUnk_13c, &v2, &a->mUnk_148);
+                Vec3CrossUnrounded(&a->mUnk_13c, &v2, &a->mUnk_148);
             }
         }
         if (a->mUnk_000.mUnk_fc & 0x214300) {
@@ -393,7 +393,7 @@ void func_020f1ea4(void *a0, s32 b, s32 c, s32 d) {
             (s64) a->mUnk_000.mVelocity.y * a->mUnk_000.mVelocity.y +
             (s64) a->mUnk_000.mVelocity.z * a->mUnk_000.mVelocity.z >=
         0x10) {
-        n = func_02039860(&a->mUnk_000.mVelocity, &a->mUnk_130);
+        n = Vec3NormalizeAndGetLengthUnchecked(&a->mUnk_000.mVelocity, &a->mUnk_130);
     }
     a->mUnk_12c = n;
     if (c != 0) {
@@ -442,10 +442,10 @@ void func_020f1d70(void *a0, const Vec3 *b) {
     if ((s64) a->mUnk_13c.x * a->mUnk_13c.x + (s64) a->mUnk_13c.y * a->mUnk_13c.y +
             (s64) a->mUnk_13c.z * a->mUnk_13c.z >=
         0x10) {
-        func_02039860(&a->mUnk_13c, &a->mUnk_13c);
+        Vec3NormalizeAndGetLengthUnchecked(&a->mUnk_13c, &a->mUnk_13c);
     }
     s = a->mUnk_12c;
     a->mUnk_000.mVelocity.x = (s32) (((s64) a->mUnk_13c.x * s) >> 12);
     a->mUnk_000.mVelocity.z = (s32) (((s64) a->mUnk_13c.z * s) >> 12);
-    func_020397a8(b, p, &a->mUnk_148);
+    Vec3CrossUnrounded(b, p, &a->mUnk_148);
 }

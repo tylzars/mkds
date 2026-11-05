@@ -126,7 +126,7 @@ void DrawFireball2(void *a, Fireball2 *b) {
     Camera *q;
 
     q = GetCurrentCamera();
-    c = func_02039828(&b->mUnk_00.mMatrix.mUnk_00[0], &q->mForward);
+    c = Vec3DotUnrounded(&b->mUnk_00.mMatrix.mUnk_00[0], &q->mForward);
     for (i = 0; i < b->mUnk_a0; i++) {
         if (c >= 0) {
             f = 1;
@@ -250,7 +250,7 @@ void UpdateFireball2(void *a, Fireball2 *b) {
         p = GetKart((u16) data_021759c0->mEntryIndex);
         if (func_0209df84_inline(p, b, n - 0xf000) != FALSE) {
             Vec3Sub(&p->mPos, &b->mUnk_00.mPos, &v);
-            d = func_02039828(&v, &b->mUnk_00.mMatrix.mUnk_00[2]);
+            d = Vec3DotUnrounded(&v, &b->mUnk_00.mMatrix.mUnk_00[2]);
             if ((b->mUnk_19e4 < 0 && d > 0) || (b->mUnk_19e4 > 0 && d < 0)) {
                 func_02108e38();
                 h = func_02108e6c(7);

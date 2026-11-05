@@ -389,17 +389,17 @@ void UpdateCameraViewWithWorldUp(Camera *p) {
     a = data_usa_02154fc4;
     Vec3Sub(&p->mLookAt, &p->mPos, &b);
     if ((s64) b.x * b.x + (s64) b.y * b.y + (s64) b.z * b.z >= 0x10) {
-        func_02039860(&b, &b);
+        Vec3NormalizeAndGetLengthUnchecked(&b, &b);
     }
     p->mForward = b;
-    func_020397a8(&a, &b, &c);
-    func_020397a8(&b, &c, &p->mUp);
+    Vec3CrossUnrounded(&a, &b, &c);
+    Vec3CrossUnrounded(&b, &c, &p->mUp);
     if (p->mUp.x == 0 && p->mUp.y == 0 && p->mUp.z == 0) {
         p->mUp.x = 0x1000;
         p->mUp.y = 0x1000;
         p->mUp.z = 0x1000;
         if ((s64) p->mUp.x * p->mUp.x + (s64) p->mUp.y * p->mUp.y + (s64) p->mUp.z * p->mUp.z >= 0x10) {
-            func_02039860(&p->mUp, &p->mUp);
+            Vec3NormalizeAndGetLengthUnchecked(&p->mUp, &p->mUp);
         }
     }
     *(u32 *) 0x4000440 = 2;
@@ -425,17 +425,17 @@ void UpdateCameraView(Camera *p) {
     d.y += p->mWobbleOffset;
     Vec3Sub(&d, &c, &a);
     if ((s64) a.x * a.x + (s64) a.y * a.y + (s64) a.z * a.z >= 0x10) {
-        func_02039860(&a, &a);
+        Vec3NormalizeAndGetLengthUnchecked(&a, &a);
     }
     p->mForward = a;
-    func_020397a8(&b, &a, &p->mSide);
-    func_020397a8(&a, &p->mSide, &p->mUp);
+    Vec3CrossUnrounded(&b, &a, &p->mSide);
+    Vec3CrossUnrounded(&a, &p->mSide, &p->mUp);
     if (p->mUp.x == 0 && p->mUp.y == 0 && p->mUp.z == 0) {
         p->mUp.x = 0x1000;
         p->mUp.y = 0x1000;
         p->mUp.z = 0x1000;
         if ((s64) p->mUp.x * p->mUp.x + (s64) p->mUp.y * p->mUp.y + (s64) p->mUp.z * p->mUp.z >= 0x10) {
-            func_02039860(&p->mUp, &p->mUp);
+            Vec3NormalizeAndGetLengthUnchecked(&p->mUp, &p->mUp);
         }
     }
     if (p->mShakeKind != 0) {

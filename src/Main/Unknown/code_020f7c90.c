@@ -146,9 +146,9 @@ void func_020f7c90(ItemObject *a, Vec3 *b, Vec3 *c) {
 
     if (a->mFlags & 0x2000000) {
         if ((s64) c->x * c->x + (s64) c->y * c->y + (s64) c->z * c->z >= 0x10) {
-            func_02039860(c, c);
+            Vec3NormalizeAndGetLengthUnchecked(c, c);
         }
-        if (func_02039828(c, &a->mUnk_108) > 0x800) {
+        if (Vec3DotUnrounded(c, &a->mUnk_108) > 0x800) {
             a->mVelocity.z = (s32) (((s64) c->z * 0x14cd) >> 12);
             a->mVelocity.x = (s32) (((s64) c->x * 0x14cd) >> 12);
         }
@@ -162,7 +162,7 @@ void func_020f7c90(ItemObject *a, Vec3 *b, Vec3 *c) {
     if (a->mFlags & 0x2000000) {
         return;
     }
-    if (func_02039828(&a->mVelocity, c) >= 0) {
+    if (Vec3DotUnrounded(&a->mVelocity, c) >= 0) {
         return;
     }
     q = &gRaceProgress->mRandom;

@@ -394,18 +394,18 @@ void func_020e9658(void) {
     } else {
         data_0217bab8.mUnk_00[2] = ((Unk02012f58 *) func_020e6b38())->mUnk_00[2];
     }
-    func_020397a8(&data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2], &data_0217bab8.mUnk_00[2]);
+    Vec3CrossUnrounded(&data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2], &data_0217bab8.mUnk_00[2]);
     sq = (s64) data_0217bab8.mUnk_00[2].x * data_0217bab8.mUnk_00[2].x +
          (s64) data_0217bab8.mUnk_00[2].y * data_0217bab8.mUnk_00[2].y +
          (s64) data_0217bab8.mUnk_00[2].z * data_0217bab8.mUnk_00[2].z;
     r = 0;
     if (sq >= 0x10) {
-        r = func_02039860(&data_0217bab8.mUnk_00[2], &data_0217bab8.mUnk_00[2]);
+        r = Vec3NormalizeAndGetLengthUnchecked(&data_0217bab8.mUnk_00[2], &data_0217bab8.mUnk_00[2]);
     }
     if (r != 0) {
         data_0217bab8.mUnk_00[0] = data_0217bab8.mUnk_00[2];
     }
-    func_020397a8(&data_0217bab8.mUnk_00[0], &data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2]);
+    Vec3CrossUnrounded(&data_0217bab8.mUnk_00[0], &data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2]);
     Matrix3x3Transpose(&data_0217bab8, &data_0217ba58);
     Vec3MultiplyMatrix3x3(&data_0217bab8.mUnk_00[3], (const s32 *) &data_0217ba58, &data_0217ba7c);
     data_0217ba58.mUnk_00[3].x = -data_0217ba58.mUnk_00[3].x;
@@ -538,7 +538,7 @@ void func_020e8ac8(void) {
                 if (w <= 0) {
                     w = -w;
                 }
-                if (func_02039828(&v, &data_0217bab8.mUnk_00[0]) > 0) {
+                if (Vec3DotUnrounded(&v, &data_0217bab8.mUnk_00[0]) > 0) {
                     data_0217b8b8 = (s32) (((s64) w << 11) >> 12);
                 } else {
                     data_0217b8b8 = -(s32) (((s64) w << 11) >> 12);
@@ -585,13 +585,13 @@ void func_020e8ac8(void) {
             }
             Vec3Sub(&data_0217b9c0, &data_0217b930, &t);
             t.y += data_0217b8ec;
-            u.x = func_02039828(&t, &data_0217bab8.mUnk_00[0]);
-            u.z = func_02039828(&t, &data_0217bad0);
+            u.x = Vec3DotUnrounded(&t, &data_0217bab8.mUnk_00[0]);
+            u.z = Vec3DotUnrounded(&t, &data_0217bad0);
             data_0217b924.x = (s32) (((s64) data_0217b908 * u.x) >> 12);
             data_0217b924.z +=
                 (s32) (((s64) data_021593bc.z * u.z) >> 12) - (s32) (((s64) data_021593b0.z * data_0217b924.z) >> 12);
-            v.x = func_02039828(&data_0217b9b4, &data_0217bab8.mUnk_00[0]);
-            v.z = func_02039828(&data_0217b9b4, &data_0217bad0);
+            v.x = Vec3DotUnrounded(&data_0217b9b4, &data_0217bab8.mUnk_00[0]);
+            v.z = Vec3DotUnrounded(&data_0217b9b4, &data_0217bad0);
             data_0217b924.x -= v.x;
             data_0217b924.z -= v.z;
             if (data_0217b8f0 != 0 || data_0217b8bc != 0) {

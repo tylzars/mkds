@@ -206,7 +206,7 @@ void func_ov001_02189ed8(Unk02188950 *a, Kart *b) {
         v.y = 0;
         v.z = a->mUnk_000.mPos.z - b->mUnk_50.z;
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-            func_02039860(&v, &v);
+            Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }
         scale = a->mPrm->mUnk_16c;
         v.x = (s64) v.x * scale >> 12;

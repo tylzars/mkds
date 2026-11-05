@@ -14,7 +14,7 @@ int GetCameraForwardDistance(u32 a) {
     u8 v2[12];
     v1 = GetCurrentCamera();
     Vec3Sub((const Vec3 *) a, &v1->mPos, (Vec3 *) (v2));
-    return func_02039828(&v1->mForward, (const Vec3 *) v2);
+    return Vec3DotUnrounded(&v1->mForward, (const Vec3 *) v2);
 }
 
 // Distance of the point a along mSide of the current camera, times mSideDistanceSign (-1 in mirror mode).
@@ -24,6 +24,6 @@ int GetCameraSideDistance(u32 a) {
     u8 v3[12];
     v1 = GetCurrentCamera();
     Vec3Sub((const Vec3 *) a, &v1->mPos, (Vec3 *) (v3));
-    v2 = ((u32) func_02039828(&v1->mSide, (const Vec3 *) v3));
+    v2 = ((u32) Vec3DotUnrounded(&v1->mSide, (const Vec3 *) v3));
     return v1->mSideDistanceSign * v2;
 }

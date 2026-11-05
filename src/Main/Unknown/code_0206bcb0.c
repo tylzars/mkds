@@ -245,10 +245,11 @@ recheck:
         v.x = p->mUnk_138.x - (s32) (((s64) p->mUnk_284.x * dot) >> 12);
         v.y = q->y - (s32) (((s64) p->mUnk_284.y * dot) >> 12);
         v.z = q->z - (s32) (((s64) p->mUnk_284.z * dot) >> 12);
-        if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16 ? func_02039860(&v, &v) : 0) {
-            func_020397a8(&p->mUnk_290, &v, &w);
+        if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16 ? Vec3NormalizeAndGetLengthUnchecked(&v, &v)
+                                                                      : 0) {
+            Vec3CrossUnrounded(&p->mUnk_290, &v, &w);
             len = Vec3Length(&w);
-            ang = func_02148538(len, func_02039828(&p->mUnk_290, &v));
+            ang = func_02148538(len, Vec3DotUnrounded(&p->mUnk_290, &v));
             turn = (s16) (((s64) ang * 0x28be60db9391LL + 0x80000000LL) >> 44);
         }
         if (p->mForwardSpeed < 0) {

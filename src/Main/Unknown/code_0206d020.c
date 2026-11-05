@@ -228,7 +228,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     v9.z = s.z - (s32) (((s64) d.z * v3) >> 12);
     v4 = 0;
     if ((s64) v9.x * v9.x + (s64) v9.y * v9.y + (s64) v9.z * v9.z >= 16) {
-        v4 = func_02039860(&v9, &n);
+        v4 = Vec3NormalizeAndGetLengthUnchecked(&v9, &n);
     }
     if (v4 <= 0) {
         return;
@@ -307,7 +307,7 @@ void func_0206d578(Kart *p) {
                 if (q->mVelocityLength >= 0x2000 && (data_0217b5bc[i] & 0x800) && q != p && !(q->mUnk_7c & 0x402000)) {
                     Vec3Sub(&q->mPos, &p->mPos, &v);
                     d = Vec3Length(&v);
-                    if (func_02039828(&q->mUnk_50, &v) > (s32) (((s64) d * 0xe7f) >> 12)) {
+                    if (Vec3DotUnrounded(&q->mUnk_50, &v) > (s32) (((s64) d * 0xe7f) >> 12)) {
                         v1 = TRUE;
                         p->mUnk_538.mUnk_08++;
                         break;

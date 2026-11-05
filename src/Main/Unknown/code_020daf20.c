@@ -288,7 +288,7 @@ u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c) {
             Vec3Sub(&a->mUnk_1b8, &p->mUnk_00.mPos, &s0);
             Vec3Sub(&q->mUnk_20->mUnk_00, &p->mUnk_00.mPos, &s1);
             s1.y += p->mUnk_f8;
-            if (func_02039828(&s0, &s1) > 0) {
+            if (Vec3DotUnrounded(&s0, &s1) > 0) {
                 func_020d8620(q);
             }
             if (p->mState < 4) {
@@ -450,7 +450,7 @@ void DrawKuribo(void *a, Kuribo *p, void *c, u16 d) {
     Unk020e6488 *q;
     if (p->mUnk_cc.mUnk_08 == 0xffff) {
         func_020d7938(&p->mUnk_a4, &data_0217b660, &t);
-        func_01ffccd0(&p->mUnk_00.mMatrix, &t);
+        Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &t);
     } else {
         func_020e6d34(func_020d88fc(&p->mUnk_cc), &p->mUnk_00.mMatrix);
     }

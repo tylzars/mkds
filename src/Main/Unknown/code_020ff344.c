@@ -128,34 +128,37 @@ void func_020ff6d8(Unk020ff438 *e, Unk02012f58 *out) {
                 (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].y * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].y +
                 (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].z * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].z >=
             0x10) {
-            func_02039860(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1]);
+            Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
+                                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1]);
         }
         if (c * c > d * d) {
             e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x = (s32) (e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x - a);
             e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].z -= b;
-            func_020397a8(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2],
-                          &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
+            Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2],
+                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
             if ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x +
                     (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].y * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].y +
                     (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z >=
                 0x10) {
-                func_02039860(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
+                Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0],
+                                                   &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
             }
-            func_020397a8(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
-                          &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
+            Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
+                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
         } else {
             e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x -= a;
             e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z -= b;
-            func_020397a8(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
-                          &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
+            Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
+                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
             if ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x +
                     (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].y * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].y +
                     (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].z * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].z >=
                 0x10) {
-                func_02039860(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
+                Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2],
+                                                   &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
             }
-            func_020397a8(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2],
-                          &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
+            Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2],
+                               &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
         }
     }
     v = e->mUnk_000.mUnk_000.mUnk_d0;
@@ -235,7 +238,7 @@ s32 func_020ff3c4(Unk020ff438 *e) {
 
     v = data_0217bc4c;
     if ((s64) v->x * v->x + (s64) v->y * v->y + (s64) v->z * v->z >= 0x10) {
-        func_02039860(v, &e->mUnk_130);
+        Vec3NormalizeAndGetLengthUnchecked(v, &e->mUnk_130);
     }
     e->mUnk_140->mUnk_b0 = 2;
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
@@ -249,10 +252,11 @@ void func_020ff344(Unk020ff438 *e) {
             (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].y * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].y +
             (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z >=
         0x10) {
-        func_02039860(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
+        Vec3NormalizeAndGetLengthUnchecked(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0],
+                                           &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0]);
     }
-    func_020397a8(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
-                  &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
+    Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
+                       &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
     Matrix3x3Multiply((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
                       (s32 *) &e->mUnk_000.mUnk_000.mUnk_94);
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {

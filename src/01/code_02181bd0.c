@@ -540,7 +540,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             if (func_020d2c2c(&pos, &b->mUnk_000.mUnk_10, b->mUnk_000.mUnk_58.x, b->mUnk_000.mUnk_64, 2, &delta) != 0) {
                 Vec3Add(&b->mUnk_000.mPos, &delta, &b->mUnk_000.mPos);
                 if ((s64) delta.x * delta.x + (s64) delta.y * delta.y + (s64) delta.z * delta.z >= 0x10) {
-                    func_02039860(&delta, &b->mUnk_000.mUnk_10);
+                    Vec3NormalizeAndGetLengthUnchecked(&delta, &b->mUnk_000.mUnk_10);
                 }
                 b->mUnk_000.mUnk_10.x = ((s64) b->mUnk_000.mUnk_10.x * 0x1400) >> 12;
                 b->mUnk_000.mUnk_10.y = ((s64) b->mUnk_000.mUnk_10.y * 0x1400) >> 12;
@@ -555,7 +555,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
                             (s64) b->mUnk_000.mUnk_10.y * b->mUnk_000.mUnk_10.y +
                             (s64) b->mUnk_000.mUnk_10.z * b->mUnk_000.mUnk_10.z >=
                         0x10) {
-                        func_02039860(&b->mUnk_000.mUnk_10, &b->mUnk_000.mUnk_10);
+                        Vec3NormalizeAndGetLengthUnchecked(&b->mUnk_000.mUnk_10, &b->mUnk_000.mUnk_10);
                     }
                     b->mUnk_000.mUnk_10.x = ((s64) b->mUnk_000.mUnk_10.x * 0x1400) >> 12;
                     b->mUnk_000.mUnk_10.y = ((s64) b->mUnk_000.mUnk_10.y * 0x1400) >> 12;

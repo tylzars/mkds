@@ -497,7 +497,7 @@ Expression shapes:
   reverse register order.
 - Product order: `a*b + c*d` evaluates the right-hand product first; reverse the terms to swap. In a sum of
   products `A + B + C` the ROM's first product is the source's second term, so write the natural
-  `x*x + y*y + z*z` (UpdateFireball2 with 64-bit products; func_02039860 as statements `w = x*x; w += y*y; ...`;
+  `x*x + y*y + z*z` (UpdateFireball2 with 64-bit products; Vec3NormalizeAndGetLengthUnchecked as statements `w = x*x; w += y*y; ...`;
   func_0206988c with 32-bit `mul`/`mla` and the differences as locals in x, y, z order). Statements and one
   expression give different registers.
 - When one of several identical expansions (six square sums) schedules differently in the ROM, its expression was

@@ -301,7 +301,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         v5.x = v1.x - (s32) (((s64) u->x * d) >> 12);
         v5.y = v1.y - (s32) (((s64) u->y * d) >> 12);
         v5.z = v1.z - (s32) (((s64) u->z * d) >> 12);
-        if (func_02039828(&q->mUnk_138, &v5) > -0x333) {
+        if (Vec3DotUnrounded(&q->mUnk_138, &v5) > -0x333) {
             func_0208c1d0(&v2, &v3, p);
             o = p->mKart;
             r = TRUE;
@@ -312,8 +312,8 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
             v10.x = v3.x - (s32) (((s64) v8.x * d) >> 12);
             v10.y = v3.y - (s32) (((s64) v8.y * d) >> 12);
             v10.z = v3.z - (s32) (((s64) v8.z * d) >> 12);
-            func_020397a8(&v9, &v10, &v11);
-            g = func_02039828(&v8, &v11) > 0 ? 1 : -1;
+            Vec3CrossUnrounded(&v9, &v10, &v11);
+            g = Vec3DotUnrounded(&v8, &v11) > 0 ? 1 : -1;
             q->mHeadingAngle += g * 200;
             goto end;
         }
@@ -328,8 +328,8 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         v7.x = a->x - (s32) (((s64) v6.x * d) >> 12);
         v7.y = a->y - (s32) (((s64) v6.y * d) >> 12);
         v7.z = a->z - (s32) (((s64) v6.z * d) >> 12);
-        func_020397a8(b, &v7, &v4);
-        q->mHeadingAngle += (g = func_02039828(&v6, &v4) > 0 ? 1 : -1) *
+        Vec3CrossUnrounded(b, &v7, &v4);
+        q->mHeadingAngle += (g = Vec3DotUnrounded(&v6, &v4) > 0 ? 1 : -1) *
                             ((s32) (((s64) ((s32) (((s64) p->mUnk_70 * 0xB60B60B60BLL + 0x80000000LL) >> 32)) *
                                      (s32) (((s64) e * 0xa4) >> 12)) >>
                                     12) >>
@@ -357,7 +357,7 @@ end:
     }
 }
 
-void func_01ffd190(const Vec3 *a, s32 b, Vec4 *c) {
+void QuaternionFromAxisAngle(const Vec3 *a, s32 b, Vec4 *c) {
     s32 i = (s32) ((u32) (b << 15) >> 16) >> 4;
     s32 s = gPairsByAngle[i * 2];
     c->x = ((s64) a->x * s + 0x800) >> 12;
@@ -384,7 +384,7 @@ s32 func_01ffd0e8(Vec4 *a, const Vec3 *b, const Vec3 *c) {
     return k;
 }
 
-void func_01ffcf7c(const Vec4 *a, Vec4 *b) {
+void QuaternionNormalize(const Vec4 *a, Vec4 *b) {
     s64 w;
     s32 r;
     s64 q;

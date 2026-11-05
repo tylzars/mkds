@@ -510,7 +510,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                             (s64) p->mUnk_00.mUnk_10.y * p->mUnk_00.mUnk_10.y +
                             (s64) p->mUnk_00.mUnk_10.z * p->mUnk_00.mUnk_10.z >=
                         0x10) {
-                        func_02039860(&p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_10);
+                        Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_10);
                     }
                     p->mUnk_00.mUnk_10.x = ((s64) p->mUnk_00.mUnk_10.x * 0x1000) >> 12;
                     p->mUnk_00.mUnk_10.y = ((s64) p->mUnk_00.mUnk_10.y * 0x1000) >> 12;
@@ -530,7 +530,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                                 (s64) p->mUnk_00.mUnk_10.y * p->mUnk_00.mUnk_10.y +
                                 (s64) p->mUnk_00.mUnk_10.z * p->mUnk_00.mUnk_10.z >=
                             0x10) {
-                            func_02039860(&p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_10);
+                            Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_00.mUnk_10, &p->mUnk_00.mUnk_10);
                         }
                         p->mUnk_00.mUnk_10.x = ((s64) p->mUnk_00.mUnk_10.x * 0x1000) >> 12;
                         p->mUnk_00.mUnk_10.y = ((s64) p->mUnk_00.mUnk_10.y * 0x1000) >> 12;

@@ -48,7 +48,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
                 b >>= 1;
             }
             Vec3Sub(&v->mUnk_98, p, &t);
-            t.y = func_02039828(&a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0, &t) >> 12;
+            t.y = Vec3DotUnrounded(&a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0, &t) >> 12;
             if (t.y * t.y > 0xbd1) {
                 if ((s64) t.x * t.x + (s64) t.z * t.z < (s64) 0xe1000000u) {
                     r = TRUE;
@@ -57,7 +57,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
             n = 0;
             t.y = 0;
             if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
-                n = func_02039860(&t, &t);
+                n = Vec3NormalizeAndGetLengthUnchecked(&t, &t);
             }
             t.x = (s32) (((s64) t.x * b) >> 12);
             t.y = (s32) (((s64) t.y * b) >> 12);
@@ -174,18 +174,18 @@ int func_020f1258(Unk020f5d6c *a, int i, s32 c, u32 b) {
     if (d > 0x27100 || (c != 0 && d > c)) {
         return 0;
     }
-    dot = func_02039828(&a->mUnk_000.mUnk_000.mUnk_000.mVelocity, &v);
+    dot = Vec3DotUnrounded(&a->mUnk_000.mUnk_000.mUnk_000.mVelocity, &v);
     if (dot < 0) {
         return 0;
     }
-    vv = func_02039828(&v, &v) >> 12;
-    ww = func_02039828(&a->mUnk_000.mUnk_000.mUnk_000.mVelocity, &a->mUnk_000.mUnk_000.mUnk_000.mVelocity);
+    vv = Vec3DotUnrounded(&v, &v) >> 12;
+    ww = Vec3DotUnrounded(&a->mUnk_000.mUnk_000.mUnk_000.mVelocity, &a->mUnk_000.mUnk_000.mUnk_000.mVelocity);
     t2 = (s64) ww * vv;
     t1 = (s64) dot * (dot >> 12);
     if ((s32) (t1 >> 12) < (s32) (((s64) (s32) (t2 >> 12) * 0x400) >> 12)) {
         return 0;
     }
-    dot = func_02039828(&a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0, &v);
+    dot = Vec3DotUnrounded(&a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0, &v);
     if ((dot >> 12) * (dot >> 12) > 0x9c4) {
         return 0;
     }

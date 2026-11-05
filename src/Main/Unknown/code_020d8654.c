@@ -103,7 +103,7 @@ Vec3 *func_020d8654(CourseMapRow *a) {
         v.y = 0;
         v.x = t;
         v.y = 0;
-        func_02039860(&v, &p[i]);
+        Vec3NormalizeAndGetLengthUnchecked(&v, &p[i]);
     }
     return p;
 }

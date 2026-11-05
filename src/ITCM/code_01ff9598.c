@@ -133,7 +133,7 @@ BOOL func_01ffa1f8(Kart *p) {
 }
 
 void func_01ffa11c(Kart *p, const Vec3 *a) {
-    s32 d = func_02039828(&p->mUnk_244, a);
+    s32 d = Vec3DotUnrounded(&p->mUnk_244, a);
     s32 m;
 
     if (p->mUnk_48 & 1) {
@@ -191,9 +191,9 @@ void func_01ff9f60(Kart *p, Vec3 *a) {
     } else {
         func_01ffad14(p, a);
     }
-    func_01ffce48(&p->mUnk_f0_q, &p->mUnk_100_q, &p->mUnk_f0_q, p->mUnk_3a8);
-    func_01ffd190(&data_02154f7c, (u16) (p->mHeadingAngle + p->mHeadingAngleOffset), &p->mUnk_e0_m);
-    func_01ffcebc(&p->mUnk_f0_q, &p->mUnk_e0_m, &p->mUnk_110_q);
+    QuaternionBlend(&p->mUnk_f0_q, &p->mUnk_100_q, &p->mUnk_f0_q, p->mUnk_3a8);
+    QuaternionFromAxisAngle(&data_02154f7c, (u16) (p->mHeadingAngle + p->mHeadingAngleOffset), &p->mUnk_e0_m);
+    QuaternionMultiply(&p->mUnk_f0_q, &p->mUnk_e0_m, &p->mUnk_110_q);
     if (p->mUnk_44 & 2) {
         if (p->mHopSpeed > 0) {
             p->mHopTiltAngle = 0x9c4 - (u16) ((s64) p->mHopHeight * 500 >> 12);
@@ -203,12 +203,12 @@ void func_01ff9f60(Kart *p, Vec3 *a) {
         } else {
             p->mHopTiltAngle = 0;
         }
-        func_01ffd190(&data_02154f88, (u16) -p->mHopTiltAngle, &v);
-        func_01ffcebc(&p->mUnk_110_q, &v, &p->mUnk_110_q);
+        QuaternionFromAxisAngle(&data_02154f88, (u16) -p->mHopTiltAngle, &v);
+        QuaternionMultiply(&p->mUnk_110_q, &v, &p->mUnk_110_q);
     } else {
         p->mHopTiltAngle = 0;
     }
-    func_01ffcf7c(&p->mUnk_110_q, &p->mUnk_110_q);
+    QuaternionNormalize(&p->mUnk_110_q, &p->mUnk_110_q);
 }
 
 // Runs only on a step with a ground hit (non-zero normal).

@@ -109,7 +109,7 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
         n[3].x = tc[tr.mUnk_0c].x;
         n[3].y = tc[tr.mUnk_0c].y;
         n[3].z = tc[tr.mUnk_0c].z;
-        dt = func_02039828(&ua, &n[3]);
+        dt = Vec3DotUnrounded(&ua, &n[3]);
         if (dt < -r) {
             continue;
         }
@@ -120,21 +120,21 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
         n[1].x = tc[tr.mUnk_08].x;
         n[1].y = tc[tr.mUnk_08].y;
         n[1].z = tc[tr.mUnk_08].z;
-        d1 = func_02039828(&ua, &n[1]);
+        d1 = Vec3DotUnrounded(&ua, &n[1]);
         if (d1 >= r) {
             continue;
         }
         n[2].x = tc[tr.mUnk_0a].x;
         n[2].y = tc[tr.mUnk_0a].y;
         n[2].z = tc[tr.mUnk_0a].z;
-        d2 = func_02039828(&ua, &n[2]);
+        d2 = Vec3DotUnrounded(&ua, &n[2]);
         if (d2 >= r) {
             continue;
         }
         n[0].x = tc[tr.mUnk_06].x;
         n[0].y = tc[tr.mUnk_06].y;
         n[0].z = tc[tr.mUnk_06].z;
-        d0 = func_02039828(&ua, &n[0]);
+        d0 = Vec3DotUnrounded(&ua, &n[0]);
         pe = r - d0;
         if (pe >= 0 && pe <= 0x1e000) {
             at = tr.mUnk_0e;
@@ -175,22 +175,22 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
                     continue;
                 }
                 Vec3Sub(&pb, &vt, &ub);
-                if (func_02039828(&ub, &n[0]) < 0) {
+                if (Vec3DotUnrounded(&ub, &n[0]) < 0) {
                     continue;
                 }
-                if (func_02039828(&ub, &n[1]) > 0) {
+                if (Vec3DotUnrounded(&ub, &n[1]) > 0) {
                     continue;
                 }
             }
             if (d2 > d3) {
-                dt = func_02039828(&n[1], &n[2]);
+                dt = Vec3DotUnrounded(&n[1], &n[2]);
                 if ((s32) (((s64) dt * d1) >> 12) > d2) {
                     goto ld;
                 } else {
                     goto lg;
                 }
             } else {
-                dt = func_02039828(&n[1], &n[3]);
+                dt = Vec3DotUnrounded(&n[1], &n[3]);
                 if ((s32) (((s64) dt * d1) >> 12) > d3) {
                     goto ld;
                 } else {
@@ -206,22 +206,22 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
                     continue;
                 }
                 Vec3Sub(&pb, &vt, &ub);
-                if (func_02039828(&ub, &n[0]) < 0) {
+                if (Vec3DotUnrounded(&ub, &n[0]) < 0) {
                     continue;
                 }
-                if (func_02039828(&ub, &n[2]) > 0) {
+                if (Vec3DotUnrounded(&ub, &n[2]) > 0) {
                     continue;
                 }
             }
             if (d3 > d1) {
-                dt = func_02039828(&n[2], &n[3]);
+                dt = Vec3DotUnrounded(&n[2], &n[3]);
                 if ((s32) (((s64) dt * d2) >> 12) > d3) {
                     goto le;
                 } else {
                     goto lh;
                 }
             } else {
-                dt = func_02039828(&n[2], &n[1]);
+                dt = Vec3DotUnrounded(&n[2], &n[1]);
                 if ((s32) (((s64) dt * d2) >> 12) > d1) {
                     goto le;
                 } else {
@@ -237,22 +237,22 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
                     continue;
                 }
                 Vec3Sub(&pb, &vt, &ub);
-                if (func_02039828(&ub, &n[0]) < 0) {
+                if (Vec3DotUnrounded(&ub, &n[0]) < 0) {
                     continue;
                 }
-                if (func_02039828(&ub, &n[3]) > tr.mUnk_00) {
+                if (Vec3DotUnrounded(&ub, &n[3]) > tr.mUnk_00) {
                     continue;
                 }
             }
             if (d1 > d2) {
-                dt = func_02039828(&n[3], &n[1]);
+                dt = Vec3DotUnrounded(&n[3], &n[1]);
                 if ((s32) (((s64) dt * d3) >> 12) > d1) {
                     goto lf;
                 } else {
                     goto li;
                 }
             } else {
-                dt = func_02039828(&n[3], &n[2]);
+                dt = Vec3DotUnrounded(&n[3], &n[2]);
                 if ((s32) (((s64) dt * d3) >> 12) > d2) {
                     goto lf;
                 } else {
@@ -317,17 +317,17 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
         lm:
             if (d0 < 0 && b != NULL) {
                 Vec3Sub(&pb, &vt, &ub);
-                if (func_02039828(&ub, &n[0]) < 0) {
+                if (Vec3DotUnrounded(&ub, &n[0]) < 0) {
                     if (fl & 0x20) {
                         continue;
                     }
-                    if (func_02039828(&ub, &n[1]) > 0) {
+                    if (Vec3DotUnrounded(&ub, &n[1]) > 0) {
                         continue;
                     }
-                    if (func_02039828(&ub, &n[2]) > 0) {
+                    if (Vec3DotUnrounded(&ub, &n[2]) > 0) {
                         continue;
                     }
-                    if (func_02039828(&ub, &n[3]) > tr.mUnk_00) {
+                    if (Vec3DotUnrounded(&ub, &n[3]) > tr.mUnk_00) {
                         continue;
                     }
                 }
@@ -339,7 +339,7 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
             bt |= (at & 2) << 0x17;
             if (b != NULL) {
                 Vec3Sub(&pb, &vt, &ub);
-                dt = func_02039828(&ub, &n[0]);
+                dt = Vec3DotUnrounded(&ub, &n[0]);
                 if (dt < 0) {
                     if (v && (bt & 0x214300) && c != 0) {
                         ua.x = (s32) (((s64) pe * n[0].x) >> 2);
@@ -363,7 +363,7 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
                     }
                 }
                 Vec3Sub(&pa, &pb, &ub);
-                if (func_02039828(&ub, &n[0]) > 0x333) {
+                if (Vec3DotUnrounded(&ub, &n[0]) > 0x333) {
                     if (v && (bt & 0x214300) && c != 0) {
                         ua.x = (s32) (((s64) pe * n[0].x) >> 2);
                         ua.z = (s32) (((s64) pe * n[0].z) >> 2);
@@ -596,9 +596,9 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
                 cc.x = cc.x - (s32) (((s64) cd.x * ((Vec3 *) c)->x) >> 12);
                 cc.z = cc.z - (s32) (((s64) cd.z * ((Vec3 *) c)->z) >> 12);
                 Vec3Add((Vec3 *) &wa.mUnk_00, (Vec3 *) &wa.mUnk_0c, &ua);
-                if (func_02039828(&cc, &ua) >= 0) {
+                if (Vec3DotUnrounded(&cc, &ua) >= 0) {
                     if ((s64) cc.x * cc.x + (s64) cc.y * cc.y + (s64) cc.z * cc.z >= 16) {
-                        func_02039860(&cc, &cc);
+                        Vec3NormalizeAndGetLengthUnchecked(&cc, &cc);
                     }
                     cc.x = ((s64) cc.x * (r >> 5)) >> 12;
                     cc.y = ((s64) cc.y * (r >> 5)) >> 12;

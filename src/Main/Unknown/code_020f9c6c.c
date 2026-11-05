@@ -216,19 +216,19 @@ void func_020fc2e8(Unk020fc2e8 *p, Vec3 *v, s32 v1, Vec3 *v2) {
 
     if (v2 != NULL) {
         if ((s64) v->x * v->x + (s64) v->y * v->y + (s64) v->z * v->z >= 0x10) {
-            func_02039860(v, &p->mUnk_000.mUnk_94.mUnk_00[2]);
+            Vec3NormalizeAndGetLengthUnchecked(v, &p->mUnk_000.mUnk_94.mUnk_00[2]);
         }
         v5->x = (s32) (((s64) v5->x * 0xccd) >> 12);
         v5->y = (s32) (((s64) v5->y * 0xccd) >> 12);
         v5->z = (s32) (((s64) v5->z * 0xccd) >> 12);
         Vec3AddScaled(0x3000, v5, v2, &buf);
-        func_020397a8(&buf, &p->mUnk_000.mUnk_94.mUnk_00[2], &buf);
+        Vec3CrossUnrounded(&buf, &p->mUnk_000.mUnk_94.mUnk_00[2], &buf);
         if ((s64) buf.x * buf.x + (s64) buf.y * buf.y + (s64) buf.z * buf.z >= 0x10) {
-            func_02039860(&buf, &p->mUnk_000.mUnk_94.mUnk_00[0]);
+            Vec3NormalizeAndGetLengthUnchecked(&buf, &p->mUnk_000.mUnk_94.mUnk_00[0]);
         }
     } else {
         if ((s64) v->x * v->x + (s64) v->y * v->y + (s64) v->z * v->z >= 0x10) {
-            func_02039860(v, &buf);
+            Vec3NormalizeAndGetLengthUnchecked(v, &buf);
         }
         if (buf.x * buf.x + buf.z * buf.z < 0x112510) {
             return;
@@ -245,12 +245,12 @@ void func_020fc2e8(Unk020fc2e8 *p, Vec3 *v, s32 v1, Vec3 *v2) {
         v3.x = (s32) (((s64) v5->x * 0x3000) >> 12);
         v3.z = (s32) (((s64) v5->z * 0x3000) >> 12);
         buf = v3;
-        func_020397a8(&buf, &p->mUnk_000.mUnk_94.mUnk_00[2], &p->mUnk_000.mUnk_94.mUnk_00[0]);
+        Vec3CrossUnrounded(&buf, &p->mUnk_000.mUnk_94.mUnk_00[2], &p->mUnk_000.mUnk_94.mUnk_00[0]);
         if ((s64) p->mUnk_000.mUnk_94.mUnk_00[0].x * p->mUnk_000.mUnk_94.mUnk_00[0].x +
                 (s64) p->mUnk_000.mUnk_94.mUnk_00[0].y * p->mUnk_000.mUnk_94.mUnk_00[0].y +
                 (s64) p->mUnk_000.mUnk_94.mUnk_00[0].z * p->mUnk_000.mUnk_94.mUnk_00[0].z >=
             0x10) {
-            ok = func_02039860(&p->mUnk_000.mUnk_94.mUnk_00[0], &p->mUnk_000.mUnk_94.mUnk_00[0]);
+            ok = Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_000.mUnk_94.mUnk_00[0], &p->mUnk_000.mUnk_94.mUnk_00[0]);
         } else {
             ok = 0;
         }
@@ -261,7 +261,8 @@ void func_020fc2e8(Unk020fc2e8 *p, Vec3 *v, s32 v1, Vec3 *v2) {
             p->mUnk_000.mUnk_94.mUnk_00[0] = t;
         }
     }
-    func_020397a8(&p->mUnk_000.mUnk_94.mUnk_00[2], &p->mUnk_000.mUnk_94.mUnk_00[0], &p->mUnk_000.mUnk_94.mUnk_00[1]);
+    Vec3CrossUnrounded(&p->mUnk_000.mUnk_94.mUnk_00[2], &p->mUnk_000.mUnk_94.mUnk_00[0],
+                       &p->mUnk_000.mUnk_94.mUnk_00[1]);
     *v4 = *v;
 }
 
@@ -504,7 +505,7 @@ void func_020fb7f8(Unk020fc2e8 *param_1) {
             v.x = param_1->mUnk_250.x * 2;
             v.y = param_1->mUnk_250.y * 2;
             v.z = param_1->mUnk_250.z * 2;
-            func_020397a8(q, &v, &v);
+            Vec3CrossUnrounded(q, &v, &v);
             Vec3AddScaled((s32) (((s64) (param_1->mUnk_25c - 0x10000) * 0xccd) >> 12), q, &v, &v);
         } else {
             v.x = (s32) (((s64) param_1->mUnk_250.z * 0x2000) >> 12);
@@ -677,7 +678,7 @@ void *func_020fb208(void *param_1, Unk020fc2e8 *param_2, void *param_3) {
     void *t;
 
     if (param_2 != NULL && param_3 != NULL) {
-        func_020ff1b8(func_02039828(&param_2->mUnk_000.mVelocity, (Vec3 *) &param_2->mUnk_130) < 0 ? 1 : 0,
+        func_020ff1b8(Vec3DotUnrounded(&param_2->mUnk_000.mVelocity, (Vec3 *) &param_2->mUnk_130) < 0 ? 1 : 0,
                       &param_2->mUnk_000.mVelocity.y);
     }
     t = func_020fecdc(param_1, param_2, param_3);
@@ -727,10 +728,10 @@ void func_020fb038(Unk020fc2e8 *param_1) {
             (s64) param_1->mUnk_000.mVelocity.y * param_1->mUnk_000.mVelocity.y +
             (s64) param_1->mUnk_000.mVelocity.z * param_1->mUnk_000.mVelocity.z >=
         0x10) {
-        func_02039860(&param_1->mUnk_000.mVelocity, &s.mUnk_00);
+        Vec3NormalizeAndGetLengthUnchecked(&param_1->mUnk_000.mVelocity, &s.mUnk_00);
     }
     func_020d7b88(&s.mUnk_00, &s.mUnk_0c);
-    func_01ffccd0(&param_1->mUnk_000.mUnk_94, &s.mUnk_0c);
+    Matrix3x3FromQuaternion(&param_1->mUnk_000.mUnk_94, &s.mUnk_0c);
 }
 
 void func_020faed0(Unk020fc2e8 *param_1, s32 param_2, s32 param_3) {
@@ -1006,8 +1007,8 @@ static inline s32 func_020fa4c8_inline(ItemObject *e, Kart *a) {
         b.y = 0;
         Vec3Sub(&e->mPos, &a->mUnk_1d8, &c);
         c.y = 0;
-        d1 = func_02039828(&b, &b);
-        d2 = func_02039828(&c, &c);
+        d1 = Vec3DotUnrounded(&b, &b);
+        d2 = Vec3DotUnrounded(&c, &c);
         if (d1 - 0x1000 > d2) {
             return 1;
         }

@@ -27,7 +27,13 @@ void func_01ffca50(Kart *p);
 void func_01ffcac0(Kart *p);
 void func_01ffcb58(Kart *p);
 void func_01ffcc50(Kart *p);
-void func_01ffccd0(void *param_1, void *param_2);
+// Writes nine words (a 3x3 rotation matrix with 12 fractional bits) to its first argument from the quaternion at its
+// second argument (w in the fourth component); which of the nine words is a row or a column is not claimed.
+void Matrix3x3FromQuaternion(void *param_1, void *param_2);
 void func_01ffcd84(void *a, const Vec4 *b);
-void func_01ffce48(Vec4 *a, const Vec4 *b, Vec4 *c, s32 d);
-void func_01ffcebc(const Vec4 *a, const Vec4 *b, Vec4 *c);
+// Writes to c the linear blend of the quaternions a and b with weight d out of 0x1000 (0x1000 gives b); the result is
+// not normalized.
+void QuaternionBlend(Vec4 *a, const Vec4 *b, Vec4 *c, s32 d);
+// Writes to c the Hamilton product of the quaternions a and b (x, y, z, w with 12 fractional bits, w the scalar part);
+// c may be a or b.
+void QuaternionMultiply(const Vec4 *a, const Vec4 *b, Vec4 *c);

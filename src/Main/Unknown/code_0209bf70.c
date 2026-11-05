@@ -318,7 +318,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
                 p->mUnk_000.mUnk_10.y = ((s64) q->y * 0xc000) >> 12;
                 p->mUnk_000.mUnk_10.z = ((s64) q->z * 0xc000) >> 12;
             } else {
-                func_02039860(&v1, &v1);
+                Vec3NormalizeAndGetLengthUnchecked(&v1, &v1);
                 p->mUnk_000.mUnk_10.x = ((s64) v1.x * 0xc000) >> 12;
                 p->mUnk_000.mUnk_10.y = ((s64) v1.y * 0xc000) >> 12;
                 p->mUnk_000.mUnk_10.z = ((s64) v1.z * 0xc000) >> 12;
@@ -364,7 +364,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
                               (u16) (((u64) func_0209c9fc_inline(&gRaceProgress->mLocalRandom) * 3) >> 32) + 1);
                 Vec3Sub(&p->mUnk_000.mPos, &k->mUnk_1b8, &v3);
                 if (!((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z < 0x10)) {
-                    func_02039860(&v3, &v3);
+                    Vec3NormalizeAndGetLengthUnchecked(&v3, &v3);
                 }
                 Vec3AddScaled(k->mRadius, &v3, &k->mUnk_1b8, &v3);
                 if (k->mIndex == data_021759c0->mEntryIndex) {

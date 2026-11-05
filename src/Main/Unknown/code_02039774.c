@@ -111,7 +111,7 @@ void func_020399a8(void) {
     }
 }
 
-s32 func_02039860(const Vec3 *v, Vec3 *v1) {
+s32 Vec3NormalizeAndGetLengthUnchecked(const Vec3 *v, Vec3 *v1) {
     s64 w;
     s32 r;
     s64 q;
@@ -137,11 +137,11 @@ s32 func_02039860(const Vec3 *v, Vec3 *v1) {
     return (r + 1) >> 1;
 }
 
-s32 func_02039828(const Vec3 *a, const Vec3 *b) {
+s32 Vec3DotUnrounded(const Vec3 *a, const Vec3 *b) {
     return (s32) (((s64) a->x * b->x + (s64) a->y * b->y + (s64) a->z * b->z) >> 12);
 }
 
-void func_020397a8(const Vec3 *a, const Vec3 *b, Vec3 *v1) {
+void Vec3CrossUnrounded(const Vec3 *a, const Vec3 *b, Vec3 *v1) {
     s64 x;
     s64 y;
     s64 z;

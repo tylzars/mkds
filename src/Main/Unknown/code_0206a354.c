@@ -175,14 +175,14 @@ void AdvanceKartState6(Kart *p) {
         Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m, &p->mUnk_328, gPairsByAngle[(i >> 4) * 2],
                                                gPairsByAngle[(i >> 4) * 2 + 1]);
         Vec3MultiplyMatrix3x3(&p->mUnk_31c, m.mUnk_00, &a);
-        func_01ffd190(&a, p->mUnk_314, &p->mUnk_34c);
+        QuaternionFromAxisAngle(&a, p->mUnk_314, &p->mUnk_34c);
     } else {
         Vec4 q;
 
         q = data_usa_0216556c;
-        func_01ffce48(&p->mUnk_34c, &q, &p->mUnk_34c, 0x266);
+        QuaternionBlend(&p->mUnk_34c, &q, &p->mUnk_34c, 0x266);
     }
-    func_01ffcf7c(&p->mUnk_34c, &p->mUnk_34c);
+    QuaternionNormalize(&p->mUnk_34c, &p->mUnk_34c);
     if (!(p->mUnk_4c & 0x80000000)) {
         if ((u32) p->mUnk_348 > 2 && (p->mUnk_340 >= p->mPos.y || (p->mUnk_44 & 0x10))) {
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -272,8 +272,8 @@ void StartKartState3(Kart *p) {
     func_02063b50(p, &p->mUnk_31c);
     GetKartForward(p, &v);
     Vec3AddScaled(0x2e2, &v, &p->mUnk_31c, &p->mUnk_31c);
-    func_02039860(&p->mUnk_31c, &p->mUnk_31c);
-    func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
+    Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_31c, &p->mUnk_31c);
+    QuaternionFromAxisAngle(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * 0x99a) >> 12);
     if (p->mKartModelsEntry->mUnk_058 == 0) {
         func_0208b7bc(0xc, &p->mPos);
@@ -313,8 +313,8 @@ void AdvanceKartState3(Kart *p) {
             p->mUnk_314 = p->mUnk_314 + p->mUnk_360;
         }
         p->mUnk_360 = p->mUnk_360 - 0xa;
-        func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
-        func_01ffcf7c(&p->mUnk_34c, &p->mUnk_34c);
+        QuaternionFromAxisAngle(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
+        QuaternionNormalize(&p->mUnk_34c, &p->mUnk_34c);
         return;
     }
     n = p->mUnk_35c;
@@ -399,7 +399,7 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
     p->mUnk_370 = 0;
     p->mUnk_35c = 0;
     v = data_02154f7c;
-    func_020397a8(&v, a, &p->mUnk_31c);
+    Vec3CrossUnrounded(&v, a, &p->mUnk_31c);
     func_020eff40(&(gKartItems)[p->mIndex]);
     if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
@@ -411,14 +411,14 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
         p->mUnk_2d8.x += x;
         p->mUnk_2d8.z += z;
         p->mVerticalSpeed += y;
-        r = func_02039828(&p->mUnk_50, a);
+        r = Vec3DotUnrounded(&p->mUnk_50, a);
         if (r <= 0) {
             p->mForwardSpeed = 0;
         } else {
             p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * r) >> 12) >> 2;
         }
     }
-    func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
+    QuaternionFromAxisAngle(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     if (p->mKartModelsEntry->mUnk_058 == 0) {
         func_0208b7bc(0xc, &p->mPos);
         func_0208b7bc(0xd, &p->mPos);
@@ -455,8 +455,8 @@ void AdvanceKartState4(Kart *p) {
             p->mUnk_314 = p->mUnk_314 + p->mUnk_360;
         }
         p->mUnk_360 = p->mUnk_360 - (p->mUnk_360 > 0 ? data_usa_021654d0 : -data_usa_021654d0);
-        func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
-        func_01ffcf7c(&p->mUnk_34c, &p->mUnk_34c);
+        QuaternionFromAxisAngle(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
+        QuaternionNormalize(&p->mUnk_34c, &p->mUnk_34c);
         return;
     }
     n = p->mUnk_35c;
@@ -494,7 +494,7 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
     v = *a;
     v.y = 0;
     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16) {
-        r = func_02039860(&v, &v);
+        r = Vec3NormalizeAndGetLengthUnchecked(&v, &v);
     } else {
         r = 0;
     }
@@ -508,7 +508,7 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
     p->mUnk_370 = 0;
     p->mUnk_35c = 0;
     w = data_02154f7c;
-    func_020397a8(&w, &v, &p->mUnk_31c);
+    Vec3CrossUnrounded(&w, &v, &p->mUnk_31c);
     if (!(p->mUnk_7c & 0x400)) {
         x = (s32) (((s64) v.x << 14) >> 12);
         y = (s32) (((s64) v.y << 14) >> 12);
@@ -516,14 +516,14 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
         p->mUnk_2d8.x += x;
         p->mUnk_2d8.z += z;
         p->mVerticalSpeed += y;
-        r = func_02039828(&p->mUnk_50, &v);
+        r = Vec3DotUnrounded(&p->mUnk_50, &v);
         if (r <= 0) {
             p->mForwardSpeed = 0;
         } else {
             p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * r) >> 12) >> 2;
         }
     }
-    func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
+    QuaternionFromAxisAngle(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     func_020eff40(&(gKartItems)[p->mIndex]);
     if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
@@ -569,8 +569,8 @@ void AdvanceKartState5(Kart *p) {
             p->mUnk_314 = p->mUnk_314 + p->mUnk_360;
         }
         p->mUnk_360 = p->mUnk_360 - (p->mUnk_360 > 0 ? data_usa_021654d0 : -data_usa_021654d0);
-        func_01ffd190(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
-        func_01ffcf7c(&p->mUnk_34c, &p->mUnk_34c);
+        QuaternionFromAxisAngle(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
+        QuaternionNormalize(&p->mUnk_34c, &p->mUnk_34c);
         return;
     }
     n = p->mUnk_35c;

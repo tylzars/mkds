@@ -11,7 +11,7 @@ void func_020d2450(void *a) {
                        NULL);
     if (v1 != 0) {
         func_020d7b88((Vec3 *) v2, ((u32 *) (void *) v3));
-        func_01ffccd0(((s32 *) (a + 0x28)), v3);
+        Matrix3x3FromQuaternion(((s32 *) (a + 0x28)), v3);
         return;
     }
 }

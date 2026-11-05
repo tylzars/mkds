@@ -110,7 +110,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         ResetKartAndSetPos(p, &v, 0, 0);
         p->mHeadingAngle = s;
         v3 = data_02165530;
-        func_01ffd190(&v3, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
+        QuaternionFromAxisAngle(&v3, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
         *(Vec4 *) &p->mUnk_108.z = *(Vec4 *) &p->mUnk_e0;
         if (p->mUnk_7c & 0x400) {
             r = p->mUnk_514;
@@ -176,8 +176,8 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 if (i < 3 && i < n / 2) {
                     func_01ffc090(p, func_01ffc27c(p, 0));
                 }
-                func_01ffd190(&data_02154f7c, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
-                func_01ffcebc((Vec4 *) &p->mUnk_f0, (Vec4 *) &p->mUnk_e0, (Vec4 *) &p->mUnk_108.z);
+                QuaternionFromAxisAngle(&data_02154f7c, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
+                QuaternionMultiply((Vec4 *) &p->mUnk_f0, (Vec4 *) &p->mUnk_e0, (Vec4 *) &p->mUnk_108.z);
                 func_01ffcd84(&p->mUnk_120, (Vec4 *) &p->mUnk_108.z);
                 r = p->mUnk_514;
                 r->mUnk_5c = r->mUnk_5c + (s32) (((s64) (r->mUnk_40 - r->mUnk_5c) * 0x333 + 0x800) >> 12);
@@ -430,7 +430,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
         Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
-            func_02039860(&t, &t);
+            Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
         StartKartState4(o, &t, 0);
@@ -451,7 +451,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
         Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
-            func_02039860(&t, &t);
+            Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
         StartKartState4(o, &t, 0);
@@ -472,7 +472,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
         Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
-            func_02039860(&t, &t);
+            Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
         StartKartState4(o, &t, 0);
@@ -493,7 +493,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
         Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
-            func_02039860(&t, &t);
+            Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
         func_021090c4(&o->mUnk_00, 0xe8, 0x7f, 0);
         StartKartState4(o, &t, 0);

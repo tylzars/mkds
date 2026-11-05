@@ -50,24 +50,24 @@ void func_020e6df0(Unk02012f58 *p) {
             (s64) data_0217b85c->mUnk_00[0].y * data_0217b85c->mUnk_00[0].y +
             (s64) data_0217b85c->mUnk_00[0].z * data_0217b85c->mUnk_00[0].z >=
         0x10) {
-        func_02039860(&data_0217b85c->mUnk_00[0], &data_0217b85c->mUnk_00[0]);
+        Vec3NormalizeAndGetLengthUnchecked(&data_0217b85c->mUnk_00[0], &data_0217b85c->mUnk_00[0]);
     }
-    func_020397a8(&data_0217b85c->mUnk_00[2], &data_0217b85c->mUnk_00[0], &data_0217b85c->mUnk_00[1]);
+    Vec3CrossUnrounded(&data_0217b85c->mUnk_00[2], &data_0217b85c->mUnk_00[0], &data_0217b85c->mUnk_00[1]);
     *data_0217b854 = *p;
 }
 
 s32 func_020e6d88(Vec3 *v) {
     data_0217b84c->mUnk_00[1] = *v;
     data_0217b84c->mUnk_00[2] = data_0217b860->mUnk_00[2];
-    func_020397a8(&data_0217b84c->mUnk_00[1], &data_0217b84c->mUnk_00[2], &data_0217b84c->mUnk_00[0]);
-    return func_02039860(&data_0217b84c->mUnk_00[0], &data_0217b84c->mUnk_00[0]);
+    Vec3CrossUnrounded(&data_0217b84c->mUnk_00[1], &data_0217b84c->mUnk_00[2], &data_0217b84c->mUnk_00[0]);
+    return Vec3NormalizeAndGetLengthUnchecked(&data_0217b84c->mUnk_00[0], &data_0217b84c->mUnk_00[0]);
 }
 
 s32 func_020e6d34(Vec3 *v, Unk02012f58 *h) {
     h->mUnk_00[1] = *v;
     h->mUnk_00[2] = data_0217b860->mUnk_00[2];
-    func_020397a8(&h->mUnk_00[1], &h->mUnk_00[2], &h->mUnk_00[0]);
-    return func_02039860(&h->mUnk_00[0], &h->mUnk_00[0]);
+    Vec3CrossUnrounded(&h->mUnk_00[1], &h->mUnk_00[2], &h->mUnk_00[0]);
+    return Vec3NormalizeAndGetLengthUnchecked(&h->mUnk_00[0], &h->mUnk_00[0]);
 }
 
 Unk02012f58 *func_020e6cf8(Vec3 *a) {

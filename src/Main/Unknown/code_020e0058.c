@@ -32,15 +32,15 @@ void func_020e0584(Unk020e005c *a, Vec3 *b, Vec3 *c, Unk020e04b0 *d) {
     s32 g;
 
     Vec3Sub(b, &a->mUnk_004, &e);
-    f = func_02039828(&e, &a->mUnk_040);
-    g = func_02039828(&e, &a->mUnk_034);
-    d->mUnk_04.x = func_02039828(&e, &a->mUnk_028);
+    f = Vec3DotUnrounded(&e, &a->mUnk_040);
+    g = Vec3DotUnrounded(&e, &a->mUnk_034);
+    d->mUnk_04.x = Vec3DotUnrounded(&e, &a->mUnk_028);
     d->mUnk_04.y = g;
     d->mUnk_04.z = f;
     if (c != NULL && a->mUnk_130 != FALSE) {
-        f = func_02039828(c, &a->mUnk_040);
-        g = func_02039828(c, &a->mUnk_034);
-        d->mUnk_10.x = func_02039828(c, &a->mUnk_028);
+        f = Vec3DotUnrounded(c, &a->mUnk_040);
+        g = Vec3DotUnrounded(c, &a->mUnk_034);
+        d->mUnk_10.x = Vec3DotUnrounded(c, &a->mUnk_028);
         d->mUnk_10.y = g;
         d->mUnk_10.z = f;
     } else {

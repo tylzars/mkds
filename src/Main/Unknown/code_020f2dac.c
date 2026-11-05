@@ -650,7 +650,7 @@ void func_020f357c(void) {
     for (i = 0; i < n; i++, e++) {
         Vec3Sub(e->mUnk_00[0]->mUnk_18, e->mUnk_18, &v);
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
-            func_02039860(&v, &v);
+            Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }
         e->mUnk_21 = v.x >> 6;
         e->mUnk_22 = v.y >> 6;
@@ -674,7 +674,7 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
     s32 dy;
     s32 dz;
 
-    n = func_02039828(&a->mUnk_06c, &a->mUnk_02c.mUnk_18);
+    n = Vec3DotUnrounded(&a->mUnk_06c, &a->mUnk_02c.mUnk_18);
     m = (a->mUnk_010->mUnk_48 & 1) != 0;
     n = (s32) (((s64) n * 0x1ec) >> 12);
     if (n < 0x666) {

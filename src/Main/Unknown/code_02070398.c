@@ -162,7 +162,7 @@ void func_02072eb8(Kart *p) {
     if (data_021759c0->mMode != MODE_TIME_ATTACK) {
         x = data_usa_02154d4c[p->mIndex][0];
         y = data_usa_02154d50[p->mIndex][0];
-        func_020397a8(&data_02154f7c, &b, &d);
+        Vec3CrossUnrounded(&data_02154f7c, &b, &d);
         Vec3AddScaled((s32) (((s64) data_usa_02165504 * x) >> 12), &d, &a, &a);
         Vec3AddScaled((s32) (((s64) data_usa_02165504 * y) >> 12), &b, &a, &a);
         if (c.x != 0 && y != 0) {
@@ -255,7 +255,7 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
     if (b != NULL) {
         p->mHeadingAngle = (s32) (((s64) func_02148538(b->x, b->z) * 0x28be60dLL) >> 12) >> 12;
         v = data_02165524;
-        func_01ffd190(&v, p->mHeadingAngle, &p->mUnk_e0_m);
+        QuaternionFromAxisAngle(&v, p->mHeadingAngle, &p->mUnk_e0_m);
     }
     func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
     GetKartForward(p, &p->mUnk_278);
@@ -357,7 +357,7 @@ void func_020727d4(Kart *p) {
     }
     GetCourseMapKartStartPlacement(&a, &c, p->mIndex);
     p->mHeadingAngle = (u32) (c.y * 0xb6) >> 12;
-    func_01ffd190(&data_02154f7c, p->mHeadingAngle, &p->mUnk_e0_m);
+    QuaternionFromAxisAngle(&data_02154f7c, p->mHeadingAngle, &p->mUnk_e0_m);
     func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
     GetKartForward(p, &b);
     ResetKartAndSetPos(p, &a, &b, NULL);
@@ -1185,7 +1185,7 @@ static inline s32 func_020708a4_inline(Vec3 *v, Vec3 *n) {
     if ((s64) v->x * v->x + (s64) v->y * v->y + (s64) v->z * v->z < 0x10) {
         return 0;
     }
-    return func_02039860(v, n);
+    return Vec3NormalizeAndGetLengthUnchecked(v, n);
 }
 
 void func_020708a4(Kart *p) {
@@ -1287,15 +1287,15 @@ void func_020708a4(Kart *p) {
     }
 
     data_0217566a[p->mEntryIndex].mBitMask = 0xe04;
-    func_020397a8(&data_02154f7c, &e, &f);
+    Vec3CrossUnrounded(&data_02154f7c, &e, &f);
     Vec3Sub(&p->mPos, &a, &g);
     g.y = 0;
-    Vec3AddScaled(func_02039828(&f, &g), &f, &a, &a);
-    func_02039828(&f, &g);
+    Vec3AddScaled(Vec3DotUnrounded(&f, &g), &f, &a, &a);
+    Vec3DotUnrounded(&f, &g);
     Vec3Sub(&a, &p->mPos, &c);
     d = func_020708a4_inline(&c, &c);
 
-    if (func_02039828(&c, &e) <= 0) {
+    if (Vec3DotUnrounded(&c, &e) <= 0) {
         func_02055c5c();
         p->mUnk_48 &= ~0x10000;
         func_01ffa11c(p, &p->mUnk_244);
@@ -1314,9 +1314,9 @@ void func_020708a4(Kart *p) {
         func_020708a4_inline(&h, &h);
         p->mHeadingAngle = (s32) (((s64) func_02148538(h.x, h.z) * 0x28be60d) >> 12) >> 12;
         q = data_02165524;
-        func_01ffd190(&q, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
-        func_020397a8(&data_02154f7c, &p->mUnk_50, &l);
-        func_020397a8(&p->mUnk_50, &l, &n);
+        QuaternionFromAxisAngle(&q, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
+        Vec3CrossUnrounded(&data_02154f7c, &p->mUnk_50, &l);
+        Vec3CrossUnrounded(&p->mUnk_50, &l, &n);
         if (p->mUnk_234 > -5000) {
             p->mUnk_234 -= 300;
             if (p->mUnk_234 < -5000) {
@@ -1378,7 +1378,7 @@ void func_020705fc(Kart *p, u32 b) {
     p->mUnk_68 = p->mUnk_50;
     p->mHeadingAngle = (s32) (((s64) func_02148538(e.x, e.z) * 0x28be60dLL) >> 12) >> 12;
     w = data_02165524;
-    func_01ffd190(&w, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
+    QuaternionFromAxisAngle(&w, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         SetupCameraBehindKart();
         if (data_0217c780 & 1) {
@@ -1415,7 +1415,7 @@ void func_02070484(Kart *p, Vec4 *q) {
     if (p->mVelocityLength < 0x1000) {
         return;
     }
-    if (func_02039828(&p->mUnk_12c, &data_02154f7c) <= 0) {
+    if (Vec3DotUnrounded(&p->mUnk_12c, &data_02154f7c) <= 0) {
         return;
     }
     p->mUnk_234 = p->mUnk_234 + p->mUnk_3e8;
@@ -1435,7 +1435,7 @@ void func_02070484(Kart *p, Vec4 *q) {
     if (p->mUnk_44 & 2) {
         return;
     }
-    d = func_02039828(&p->mVelocityDirection, &p->mUnk_138);
+    d = Vec3DotUnrounded(&p->mVelocityDirection, &p->mUnk_138);
     if (d <= 0) {
         d = -d;
     }

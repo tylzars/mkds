@@ -175,7 +175,7 @@ void func_020da820(Kuribo *p, Vec3 *a) {
     }
     Vec3Sub(&p->mUnk_cc.mUnk_1c->mUnk_00, &p->mUnk_cc.mUnk_20->mUnk_00, &s);
     if ((s64) s.x * s.x + (s64) s.y * s.y + (s64) s.z * s.z >= 0x10) {
-        func_02039860(&s, &s);
+        Vec3NormalizeAndGetLengthUnchecked(&s, &s);
     }
     {
         Vec3 t = {0, 0, 0};
@@ -187,7 +187,7 @@ void func_020da820(Kuribo *p, Vec3 *a) {
         s.z = t.z - (s32) (((s64) s.z * d) >> 12);
     }
     if ((s64) s.x * s.x + (s64) s.y * s.y + (s64) s.z * s.z >= 0x10) {
-        func_02039860(&s, &s);
+        Vec3NormalizeAndGetLengthUnchecked(&s, &s);
     }
     r = StartItemObjectOrZero(3, 8, &p->mUnk_00.mPos, &data_021581f8);
     if (r == NULL) {

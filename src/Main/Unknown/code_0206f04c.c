@@ -351,10 +351,10 @@ void func_0206f824(Kart *p, Vec3 *a, s32 b) {
     }
     if (b == 0) {
         Vec3Sub(c, &p->mPos, &g);
-        func_020397a8(a, &g, &f);
-        func_020397a8(&f, a, &g);
+        Vec3CrossUnrounded(a, &g, &f);
+        Vec3CrossUnrounded(&f, a, &g);
         if (!((s64) g.x * g.x + (s64) g.y * g.y + (s64) g.z * g.z < 0x10)) {
-            func_02039860(&g, &p->mUnk_268);
+            Vec3NormalizeAndGetLengthUnchecked(&g, &p->mUnk_268);
         }
     }
     p->mUnk_44 |= 0x100000;
@@ -443,7 +443,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     Vec3 n;
 
     j = FALSE;
-    i = func_02039828(&p->mUnk_05c, a) + 0x1000;
+    i = Vec3DotUnrounded(&p->mUnk_05c, a) + 0x1000;
     if (i > 0x1000) {
         i = 0x1000;
     } else if (i < 0x29) {
@@ -459,11 +459,11 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     k = (s32) (((s64) c * i) >> 12);
     p->mUnk_2e4.z = p->mUnk_2e4.z - (s32) (((s64) a->z * g) >> 12);
     p->mUnk_38c = k;
-    if (func_02039828(&p->mUnk_1fc, a) < -0x800) {
+    if (Vec3DotUnrounded(&p->mUnk_1fc, a) < -0x800) {
         p->mUnk_1fc = data_02154f94;
     }
     if (b == 0) {
-        h = func_02039828(&p->mUnk_138, a);
+        h = Vec3DotUnrounded(&p->mUnk_138, a);
         j = TRUE;
         g = Vec3Dot(a, &p->mVelocity);
         m.x = (s32) (((s64) a->x * g) >> 12);
@@ -530,8 +530,8 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
             k = 0x1000 - i;
             if (p->mVelocityLength > 0x1800 && k > 0x19a) {
                 l = (s16) (((s32) (((s64) p->mVelocityLength * k) >> 12) >> 12) * 30);
-                func_020397a8(&p->mUnk_05c, a, &o);
-                if (func_02039828(&o, &p->mUnk_12c) < 0) {
+                Vec3CrossUnrounded(&p->mUnk_05c, a, &o);
+                if (Vec3DotUnrounded(&o, &p->mUnk_12c) < 0) {
                     l = (s16) (l * (s16) -1);
                 }
                 p->mHeadingAnglePerFrame = l;

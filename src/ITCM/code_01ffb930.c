@@ -12,7 +12,7 @@ void func_01ffb9e0(Kart *p) {
     p->mForwardSpeed = (s64) p->mForwardSpeed * 0xe66 >> 12;
 }
 
-void func_01ffb9cc(Kart *p) {
+void ApplyKartGravity(Kart *p) {
     p->mVerticalSpeed = p->mVerticalSpeed + p->mGravity;
 }
 

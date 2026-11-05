@@ -147,7 +147,7 @@ void func_020e5990(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
 void func_020e595c(u32 a, Unk020e43a8 *p) {
     func_02046b40(&p->mUnk_00.mUnk_80);
     func_020d77e0(&p->mUnk_a0.mUnk_0c.y, p->mUnk_00.mAngle, &p->mUnk_a0);
-    func_01ffccd0(&p->mUnk_00.mMatrix, &p->mUnk_a0);
+    Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_a0);
 }
 
 void func_020e5950(Unk020e5950 *p0) {

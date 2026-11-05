@@ -8,7 +8,7 @@ static inline s32 func_02073904_inline(Vec3 *v, Vec3 *n) {
     if ((s64) v->x * v->x + (s64) v->y * v->y + (s64) v->z * v->z < 0x10) {
         return 0;
     }
-    return func_02039860(v, n);
+    return Vec3NormalizeAndGetLengthUnchecked(v, n);
 }
 
 void UpdateCameraShake(Unk02073904 *p) {

@@ -156,7 +156,7 @@ void func_02064f50(Kart *a) {
     }
     b->mUnk_10 = b->mUnk_00;
     b->mUnk_10.y = b->mUnk_10.y + b->mUnk_60;
-    func_01ffce48(&b->mUnk_4c, &a->mUnk_110_q, &b->mUnk_4c, 0x333);
+    QuaternionBlend(&b->mUnk_4c, &a->mUnk_110_q, &b->mUnk_4c, 0x333);
 }
 
 void func_02064d60(Kart *a, Vec3 *b) {
@@ -173,7 +173,7 @@ void func_02064d60(Kart *a, Vec3 *b) {
     } else {
         func_01ffad14(a, b);
     }
-    func_01ffce48(&a->mUnk_f0_q, &a->mUnk_100_q, &a->mUnk_f0_q, a->mUnk_3a8);
+    QuaternionBlend(&a->mUnk_f0_q, &a->mUnk_100_q, &a->mUnk_f0_q, a->mUnk_3a8);
     e = a->mHeadingAngle - c->mUnk_0e;
     if ((e > 0 ? e : -e) > 0x7fff) {
         if (e > 0) {
@@ -183,8 +183,8 @@ void func_02064d60(Kart *a, Vec3 *b) {
         }
     }
     c->mUnk_0e = c->mUnk_0e + (s32) ((s64) e * 0x19a >> 12);
-    func_01ffd190(&data_02154f7c, (u16) (a->mHeadingAngle + a->mHeadingAngleOffset), &a->mUnk_e0_m);
-    func_01ffcebc(&a->mUnk_f0_q, &a->mUnk_e0_m, &a->mUnk_110_q);
+    QuaternionFromAxisAngle(&data_02154f7c, (u16) (a->mHeadingAngle + a->mHeadingAngleOffset), &a->mUnk_e0_m);
+    QuaternionMultiply(&a->mUnk_f0_q, &a->mUnk_e0_m, &a->mUnk_110_q);
     if ((a->mUnk_44 & 2) != 0) {
         if (a->mHopSpeed > 0) {
             f = (u16) ((s64) a->mHopHeight * 0x1f4 >> 12);
@@ -195,12 +195,12 @@ void func_02064d60(Kart *a, Vec3 *b) {
         } else {
             a->mHopTiltAngle = 0;
         }
-        func_01ffd190(&data_02154f88, (u16) -a->mHopTiltAngle, &d);
-        func_01ffcebc(&a->mUnk_110_q, &d, &a->mUnk_110_q);
+        QuaternionFromAxisAngle(&data_02154f88, (u16) -a->mHopTiltAngle, &d);
+        QuaternionMultiply(&a->mUnk_110_q, &d, &a->mUnk_110_q);
     } else {
         a->mHopTiltAngle = 0;
     }
-    func_01ffcf7c(&a->mUnk_110_q, &a->mUnk_110_q);
+    QuaternionNormalize(&a->mUnk_110_q, &a->mUnk_110_q);
 }
 
 void func_02064d44(Kart *a) {

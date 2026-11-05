@@ -36,7 +36,7 @@
 #include "Main/Unknown/code_0203c8dc.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_01ffcebc(const Vec4 *a, const Vec4 *b, Vec4 *c) {
+void QuaternionMultiply(const Vec4 *a, const Vec4 *b, Vec4 *c) {
     Vec4 t;
 
     t.x = (a->w * b->x + a->x * b->w + (a->y * b->z - a->z * b->y)) >> 12;
@@ -46,7 +46,7 @@ void func_01ffcebc(const Vec4 *a, const Vec4 *b, Vec4 *c) {
     *c = t;
 }
 
-void func_01ffce48(Vec4 *a, const Vec4 *b, Vec4 *c, s32 d) {
+void QuaternionBlend(Vec4 *a, const Vec4 *b, Vec4 *c, s32 d) {
     c->x = a->x + ((d * (b->x - a->x)) >> 12);
     c->y = a->y + ((d * (b->y - a->y)) >> 12);
     c->z = a->z + ((d * (b->z - a->z)) >> 12);
@@ -96,7 +96,7 @@ void func_01ffcd84(void *a, const Vec4 *b) {
     o[11] = 0;
 }
 
-void func_01ffccd0(void *a, void *b) {
+void Matrix3x3FromQuaternion(void *a, void *b) {
     s32 *o = a;
     const Vec4 *q = b;
     s32 w;
@@ -582,7 +582,7 @@ void UpdateKartSpeedLimit(Kart *p) {
 void func_01ffbd9c(Kart *p) {
     DivFixed12Start(p->mVelocityLength, p->mSpeedLimit);
     if (p->mUnk_44 & 0x10) {
-        func_020397a8(&p->mUnk_120, &p->mUnk_244, &p->mUnk_278);
+        Vec3CrossUnrounded(&p->mUnk_120, &p->mUnk_244, &p->mUnk_278);
     } else {
         GetKartForward(p, &p->mUnk_278);
     }

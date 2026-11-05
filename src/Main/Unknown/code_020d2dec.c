@@ -198,7 +198,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
             }
             if (courseRow != NULL) {
                 object->mAngle = (u16) (((s64) courseRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
-                func_020d6df0(&courseRow->mUnk_0c, (s32 *) &object->mMatrix);
+                Matrix3x3FromVec3Degrees(&courseRow->mUnk_0c, (s32 *) &object->mMatrix);
             } else if (source != NULL) {
                 object->mAngle = source->mAngle;
                 object->mMatrix = source->mMatrix;

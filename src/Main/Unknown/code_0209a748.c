@@ -119,7 +119,7 @@ u8 func_0209b270(Crab *a, Kart *b, u8 *c, u8 *d) {
             if ((s64) b->mUnk_05c.x * b->mUnk_05c.x + (s64) b->mUnk_05c.y * b->mUnk_05c.y +
                     (s64) b->mUnk_05c.z * b->mUnk_05c.z >=
                 0x10) {
-                func_02039860(&b->mUnk_05c, &v);
+                Vec3NormalizeAndGetLengthUnchecked(&b->mUnk_05c, &v);
                 func_0209b388(a, &b->mUnk_50, &v, NULL);
             } else {
                 func_0209b388(a, NULL, NULL, NULL);
@@ -283,7 +283,7 @@ void UpdateCrab(void *a, Crab *b) {
                     (s64) b->mUnk_000.mMatrix.mUnk_00[1].y * b->mUnk_000.mMatrix.mUnk_00[1].y +
                     (s64) b->mUnk_000.mMatrix.mUnk_00[1].z * b->mUnk_000.mMatrix.mUnk_00[1].z >=
                 0x10) {
-                func_02039860(&b->mUnk_000.mMatrix.mUnk_00[1], &b->mUnk_000.mMatrix.mUnk_00[1]);
+                Vec3NormalizeAndGetLengthUnchecked(&b->mUnk_000.mMatrix.mUnk_00[1], &b->mUnk_000.mMatrix.mUnk_00[1]);
             }
             break;
         case 2:

@@ -79,7 +79,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
             if (((s32(*)(Kart *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0 || (p->mUnk_44 & 0x4000000)) {
                 n = 0;
                 if ((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z >= 0x10) {
-                    n = func_02039860(&v3, &v6);
+                    n = Vec3NormalizeAndGetLengthUnchecked(&v3, &v6);
                 }
                 if (n != 0) {
                     k = 0x802;
@@ -154,7 +154,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                     if (((s32(*)(Kart *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0) {
                         n = 0;
                         if ((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z >= 0x10) {
-                            n = func_02039860(&v3, &v7);
+                            n = Vec3NormalizeAndGetLengthUnchecked(&v3, &v7);
                         }
                         if (n != 0) {
                             k = 0x802;

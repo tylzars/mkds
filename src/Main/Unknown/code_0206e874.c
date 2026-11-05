@@ -33,7 +33,7 @@ static inline s32 func_0206e874_inline(Vec3 *v, Vec3 *n) {
     if ((s64) v->x * v->x + (s64) v->y * v->y + (s64) v->z * v->z < 0x10) {
         return 0;
     }
-    return func_02039860(v, n);
+    return Vec3NormalizeAndGetLengthUnchecked(v, n);
 }
 
 void func_0206edac(Kart *p, Vec3 *a) {
@@ -93,7 +93,7 @@ void func_0206edac(Kart *p, Vec3 *a) {
     if (p->mAirborneFrames <= 0x14) {
         return;
     }
-    s = func_02039828(&p->mUnk_138, a);
+    s = Vec3DotUnrounded(&p->mUnk_138, a);
     if (s >= 0) {
         return;
     }
@@ -158,7 +158,7 @@ void func_0206e874(Kart *p) {
                             if (r & 8) {
                                 func_0206f04c(p, &v, (p->mUnk_44 & 0x40) ? 1 : 0, 0x1000, -1, -1, v2);
                             } else if (r & 2) {
-                                s = func_02039828(&p->mUnk_50, &v) + 0x1000;
+                                s = Vec3DotUnrounded(&p->mUnk_50, &v) + 0x1000;
                                 if (s > 0x1000) {
                                     s = 0x1000;
                                 } else if (s < 0x29) {
@@ -180,13 +180,13 @@ void func_0206e874(Kart *p) {
                                         w.y = ((s64) v.y * s) >> 12;
                                         w.z = ((s64) v.z * s) >> 12;
                                     }
-                                    if (func_02039828(&v, &w) < 0) {
+                                    if (Vec3DotUnrounded(&v, &w) < 0) {
                                         m = 0;
                                     }
                                 }
                                 p->mUnk_39c = Vec3Length(&w);
                                 if (p->mUnk_39c > 0x1000 && m != 0) {
-                                    p->mUnk_3a0 = func_02039828(&p->mUnk_50, &w);
+                                    p->mUnk_3a0 = Vec3DotUnrounded(&p->mUnk_50, &w);
                                     s = Vec3Dot(&p->mUnk_50, &w);
                                     v6 = w.y - (s32) (((s64) p->mUnk_50.y * s) >> 12);
                                     v7 = w.z - (s32) (((s64) p->mUnk_50.z * s) >> 12);

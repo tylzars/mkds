@@ -80,7 +80,7 @@ BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
         if (dx * dx + dz * dz > (f ? 0x9c40 : 0x27100)) {
             return FALSE;
         }
-        n = func_02039828(&p0->mUnk_000.mUnk_f0, &v) >> 12;
+        n = Vec3DotUnrounded(&p0->mUnk_000.mUnk_f0, &v) >> 12;
         if (n * n > 0x9c4) {
             return FALSE;
         }
