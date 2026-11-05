@@ -210,8 +210,13 @@ typedef struct RecordVS {
     /* 68 */ s16 mIndex;
     /* 6a */ s16 mUnk_6a;
     /* 6c */ s32 mUnk_6c;
-    /* 70 */ s32 mUnk_70;
-    /* 74 */ s16 mUnk_74;
+    // Counts 7 down to 0 after mIndex changed: func_021136f8 sets 7 when mIndex differs from mShownIndex,
+    // rebuilds the page text through func_02113a3c at 7 and moves the objects while it runs; func_02113790 tells
+    // whether it is non-zero.
+    /* 70 */ s32 mIndexChangeTimer;
+    // mIndex the page text was last built for: func_02113a3c builds the text of the record mShownIndex, and
+    // func_021136f8 starts mIndexChangeTimer when mIndex differs from it.
+    /* 74 */ s16 mShownIndex;
     /* 76 */ u8 mUnk_76[2];
     /* 78 */ struct Unk021141c8 *mUnk_78;
     /* 7c */ void *mUnk_7c;
@@ -284,8 +289,13 @@ typedef struct SelectCup {
     /* 50 */ s16 mIndex; /* 0..3 position among the four cups of the page: the cup is data_0215cbec[row][mIndex] */
     /* 52 */ u8 mUnk_52[2];
     /* 54 */ BOOL mUnk_54;
-    /* 58 */ s32 mUnk_58;
-    /* 5c */ s16 mUnk_5c;
+    // Counts 7 down to 0 after mIndex changed: func_02119d78 sets 7 when mIndex differs from mShownIndex,
+    // rebuilds the page through func_02119e88 at 7 and moves the objects while it runs; func_02119dfc tells whether it
+    // is non-zero.
+    /* 58 */ s32 mIndexChangeTimer;
+    // mIndex the page was last built for: func_02119d78 copies mIndex here when func_02119e88 rebuilds the page,
+    // and starts mIndexChangeTimer when mIndex differs from it.
+    /* 5c */ s16 mShownIndex;
     /* 5e */ u8 mUnk_5e[2];
     // Set when the cup picture was asked for; the step queues its data once it is ready.
     /* 60 */ BOOL mCupPicturePending;
@@ -322,12 +332,12 @@ typedef struct SelectRaceRule {
     /* 5a */ u8 mUnk_5a[0x02];
     // Offset stored negated into the sub engine's BG3 offset register.
     /* 5c */ s32 mBg3Offset;
-    // Row (0 to 4) the highlight is on; the value of rows 0 to 3 is mUnk_68[row] and that of row 4 is mUnk_78.
+    // Row (0 to 4) the highlight is on; the value of row n is mRowValues[n].
     /* 60 */ s32 mRow;
     // Row at the start of the step, to see whether it changed.
     /* 64 */ s32 mPrevRow;
-    /* 68 */ s32 mUnk_68[4];
-    /* 78 */ s32 mUnk_78;
+    // Value of each row, 0 up to the row's count minus 1; stepped up and down with wrap.
+    /* 68 */ s32 mRowValues[5];
     // Non-zero while the highlight is on the button below the rows instead of on a row.
     /* 7c */ s32 mOnButton;
     // mOnButton at the start of the step.

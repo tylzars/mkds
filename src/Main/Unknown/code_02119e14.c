@@ -191,7 +191,7 @@ s32 AdvanceSelectRaceRule(void) {
     if (data_021759d0->mUnk_20 == 2) {
         func_02116d24();
     }
-    switch (gSelectRaceRule->mUnk_78) {
+    switch (gSelectRaceRule->mRowValues[4]) {
         case 0:
             func_0202b6f0(0);
             break;
@@ -214,7 +214,7 @@ s32 AdvanceSelectRaceRule(void) {
     }
     p = gSelectRaceRule;
     if (p->mState == 8) {
-        if (p->mResult == 1 && (p->mMode == 3 || p->mUnk_68[2] == 1)) {
+        if (p->mResult == 1 && (p->mMode == 3 || p->mRowValues[2] == 1)) {
             if (p->mStateFrames >= 10 && IsSelectReturnState0NoState1Request() != 0) {
                 return gSelectRaceRule->mResult;
             }

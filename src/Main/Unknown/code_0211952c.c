@@ -47,7 +47,7 @@
 #pragma thumb on
 
 u32 func_02119dfc(void) {
-    if (gSelectCup->mUnk_58 != 0) {
+    if (gSelectCup->mIndexChangeTimer != 0) {
         return 1;
     }
     return 0;
@@ -61,18 +61,18 @@ void func_02119d78(void) {
     s16 r;
 
     if (func_02119dfc() != 0) {
-        if (gSelectCup->mUnk_58 == 7) {
-            gSelectCup->mUnk_5c = gSelectCup->mIndex;
+        if (gSelectCup->mIndexChangeTimer == 7) {
+            gSelectCup->mShownIndex = gSelectCup->mIndex;
             func_02119e88();
         } else if (*(vu16 *) 0x027ffc40 != 2) {
             w = gSelectCup->mSelectCupCourseTaOrVsMBncl->mUnk_06;
-            r = func_02116d10(7 - gSelectCup->mUnk_58, 1);
+            r = func_02116d10(7 - gSelectCup->mIndexChangeTimer, 1);
             gSelectCup->mSelectCupCourseTaOrVsMTable[w].mUnk_06 = r;
             gSelectCup->mSelectCupCourseTaOrVsMTable[w + 1].mUnk_06 = r;
         }
-        gSelectCup->mUnk_58--;
-    } else if (gSelectCup->mIndex != gSelectCup->mUnk_5c) {
-        gSelectCup->mUnk_58 = 7;
+        gSelectCup->mIndexChangeTimer--;
+    } else if (gSelectCup->mIndex != gSelectCup->mShownIndex) {
+        gSelectCup->mIndexChangeTimer = 7;
     }
 }
 
@@ -239,9 +239,9 @@ void InitSelectCup(void *b, void *c, void *d, s32 e) {
     gSelectCup->mState = 0;
     gSelectCup->mIndex = data_0215cb7c[func_020296e4()];
     gSelectCup->mUnk_54 = TRUE;
-    gSelectCup->mUnk_58 = 0;
+    gSelectCup->mIndexChangeTimer = 0;
     gSelectCup->mMode = e;
-    gSelectCup->mUnk_5c = gSelectCup->mIndex;
+    gSelectCup->mShownIndex = gSelectCup->mIndex;
     gSelectCup->mCupPicturePending = FALSE;
     gSelectCup->mUnk_64 = c;
     gSelectCup->mUnk_68 = d;
