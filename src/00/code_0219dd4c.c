@@ -139,7 +139,11 @@ u32 func_ov000_021a2768(u32 param_1) {
     return r;
 }
 
-void func_ov000_021a260c(u32 param_1, const void *param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6) {
+// Mode 0 start: keeps the filter text in data_ov000_021b5674 when one is given (the old copy is freed first; allocation
+// failure reports error 11), SetupMatching with mode 0, stores the second callback pair, mState 2, creates the search
+// object at mUnk_e4 and starts the query. Only caller StartWiFiMatchingWithFilter; the filter comes from
+// RegisterKartKeysAndStart (code_02120610.c:436).
+void StartMatchingWithFilter(u32 param_1, const void *param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6) {
     char v1[0x100];
     s32 n;
     if (data_ov000_021b5674 != NULL) {
@@ -157,7 +161,7 @@ void func_ov000_021a260c(u32 param_1, const void *param_2, u32 param_3, u32 para
         MemCopy(param_2, data_ov000_021b5674, n);
         *((u8 *) data_ov000_021b5674 + n - 1) = 0;
     }
-    ((void (*)(u32, u32, u32, u32)) func_ov000_021a10b0)(0, param_1, param_3, param_4);
+    ((void (*)(u32, u32, u32, u32)) SetupMatching)(0, param_1, param_3, param_4);
     gWiFiMatching->mUnk_45c = param_5;
     gWiFiMatching->mUnk_460 = param_6;
     gWiFiMatching->mState = 2;
@@ -178,11 +182,16 @@ void func_ov000_021a260c(u32 param_1, const void *param_2, u32 param_3, u32 para
     func_ov000_0219e8b8(0);
 }
 
-void func_ov000_021a2468(const void *param_1, s32 param_2, s32 param_3, s32 param_4, void *param_5, u32 param_6,
-                         u32 param_7, u32 param_8) {
+// Mode 1 start: copies the given u8 list (param_2 entries) to mUnk_2ec, SetupMatching with mode 1, stores the second
+// callback pair; reports error 7 when the list is empty or too short for the wanted count (code_0219dd4c.c:200),
+// else mState 4, creates the search object and starts. The one caller passes NULL, so the list is the one
+// StartWiFiMatchingWithBuddies builds: buddy entry indices in random order (code_0219b580.c:330-344). Weak:
+// that content rests on that single branch.
+void StartMatchingWithBuddies(const void *param_1, s32 param_2, s32 param_3, s32 param_4, void *param_5, u32 param_6,
+                              u32 param_7, u32 param_8) {
     char v1[12];
     u8 v2[0x24];
-    ((void (*)(u32, u32, u32, u32)) func_ov000_021a10b0)(1, param_3, (u32) param_5, param_6);
+    ((void (*)(u32, u32, u32, u32)) SetupMatching)(1, param_3, (u32) param_5, param_6);
     gWiFiMatching->mUnk_19e = param_4 != 0 ? 1 : 0;
     gWiFiMatching->mUnk_45c = param_7;
     gWiFiMatching->mUnk_460 = param_8;
@@ -269,7 +278,7 @@ void UpdateMatching(s32 param_1) {
             }
             p = gWiFiMatching;
             if (p->mUnk_1b0 != 0) {
-                n = (u32) (p->mUnk_0d * 3000) + 3000;
+                n = (u32) (p->mLastParticipantPos * 3000) + 3000;
                 if ((func_0200f5ac() - p->mUnk_1b4) * 64 / 0x82ea >= n) {
                     if (func_ov000_0219fee4(func_ov000_0219fdc8(p->mParticipantProfileIds[0], 0)) != 0) {
                         return;
@@ -282,7 +291,7 @@ void UpdateMatching(s32 param_1) {
         case 5:
             if ((s32) p->mUnk_e8 > 0) {
                 if (p->mState == 3) {
-                    n = (u32) (p->mUnk_0d * 3000) + 3000;
+                    n = (u32) (p->mLastParticipantPos * 3000) + 3000;
                 } else if (p->mUnk_e8 == 1) {
                     n = 1000;
                 } else {
@@ -325,7 +334,8 @@ void UpdateMatching(s32 param_1) {
                 if ((p->mMode == 0 && func_ov000_021a350c() - gWiFiMatching->mUnk_444 > 6000) ||
                     func_ov000_021a350c() - gWiFiMatching->mUnk_444 > 19000) {
                     func_ov000_021a1ac0();
-                    if (func_ov000_0219f9bc(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mUnk_0d + 1]) == 0) {
+                    if (func_ov000_0219f9bc(
+                            gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mLastParticipantPos + 1]) == 0) {
                         return;
                     }
                 }
@@ -340,7 +350,7 @@ void UpdateMatching(s32 param_1) {
                         func_ov000_021a1ac0();
                         p = gWiFiMatching;
                         if (p->mMode == 2) {
-                            if (func_ov000_0219f9bc(p->mParticipantProfileIds[p->mUnk_0d]) == 0) {
+                            if (func_ov000_0219f9bc(p->mParticipantProfileIds[p->mLastParticipantPos]) == 0) {
                                 return;
                             }
                         } else {
@@ -442,13 +452,13 @@ void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 par
         func_ov000_021a1a38(6, -87100);
         return;
     }
-    if (param_3 != gWiFiMatching->mUnk_1f8[gWiFiMatching->mUnk_0d] ||
-        param_4 != gWiFiMatching->mUnk_278[gWiFiMatching->mUnk_0d]) {
-        j = gWiFiMatching->mUnk_0d;
+    if (param_3 != gWiFiMatching->mUnk_1f8[gWiFiMatching->mLastParticipantPos] ||
+        param_4 != gWiFiMatching->mUnk_278[gWiFiMatching->mLastParticipantPos]) {
+        j = gWiFiMatching->mLastParticipantPos;
         if (*param_6 != 0 &&
             (p = *(WiFiMatching **) &gWiFiMatching, p->mParticipantProfileIds[j] == strtoul(param_6, NULL, 10))) {
             gWiFiMatching->mUnk_1f8[j] = param_3;
-            gWiFiMatching->mUnk_278[gWiFiMatching->mUnk_0d] = param_4;
+            gWiFiMatching->mUnk_278[gWiFiMatching->mLastParticipantPos] = param_4;
         } else {
             func_ov000_02198a74((Gt2Connection *) param_2, data_ov000_021b41c8, -1);
             return;
@@ -462,7 +472,7 @@ void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 par
     }
     func_ov000_021a1ac0();
     p = gWiFiMatching;
-    if (p->mUnk_0d == 0) {
+    if (p->mLastParticipantPos == 0) {
         t = param_5 >> 1;
         if (t >= 0xffff) {
             t = 0xffff;
@@ -472,16 +482,21 @@ void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 par
     q = func_ov000_0219b958(i);
     e = func_ov000_0219b8f0(i);
     *q = param_2;
-    gWiFiMatching->mUnk_0d++;
+    gWiFiMatching->mLastParticipantPos++;
     e->mUnk_00 = i;
-    e->mUnk_01 = gWiFiMatching->mParticipantIndices[gWiFiMatching->mUnk_0d - 1];
+    e->mUnk_01 = gWiFiMatching->mParticipantIndices[gWiFiMatching->mLastParticipantPos - 1];
     e->mUnk_02 = 0;
     e->mUnk_04 = 0;
     func_ov000_021988a4(param_2, e);
     func_ov000_0219f544(2);
 }
 
-void func_ov000_021a1b2c(Unk0219887c *param_1, s32 param_2) {
+// Slot 0 of the record (Gt2SetResultAndCallResultCallback, code_02197e58.c:126): result of a Gt2 connect, handled
+// only while the matching object is in mState 7 or 12; result 5 is ignored, 6 retries the connect up to 5 times
+// (mUnk_0c counter), 2 goes to func_ov000_0219f9bc and other errors to func_ov000_0219e3e4, 0 appends the joining peer
+// (mLastParticipantPos++) and goes on in func_ov000_0219f544. Weak: handles the matching connects only; the result
+// numbers have no library name here.
+void WiFiGt2ResultCallback(Unk0219887c *param_1, s32 param_2) {
     WiFiMatching *p;
     s32 i;
     void **q;
@@ -503,7 +518,7 @@ void func_ov000_021a1b2c(Unk0219887c *param_1, s32 param_2) {
             p = gWiFiMatching;
             if (p->mUnk_0c > 5) {
                 p->mUnk_0c = 0;
-                func_ov000_0219f9bc(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mUnk_0d + 1]);
+                func_ov000_0219f9bc(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mLastParticipantPos + 1]);
                 return;
             }
             StringFormatBounded(v1, 12, data_ov000_021b40b8, p->mUnk_1e8);
@@ -518,7 +533,8 @@ void func_ov000_021a1b2c(Unk0219887c *param_1, s32 param_2) {
             return;
         }
         if (param_2 == 2) {
-            if (func_ov000_0219f9bc(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mUnk_0d + 1]) == 0) {
+            if (func_ov000_0219f9bc(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mLastParticipantPos + 1]) ==
+                0) {
                 return;
             }
             return;
@@ -533,11 +549,11 @@ void func_ov000_021a1b2c(Unk0219887c *param_1, s32 param_2) {
     q = func_ov000_0219b958(i);
     e = func_ov000_0219b8f0(i);
     *q = param_1;
-    gWiFiMatching->mUnk_0d++;
+    gWiFiMatching->mLastParticipantPos++;
     e->mUnk_00 = i;
     e->mUnk_02 = 0;
     e->mUnk_04 = 0;
-    e->mUnk_01 = gWiFiMatching->mParticipantIndices[gWiFiMatching->mUnk_0d];
+    e->mUnk_01 = gWiFiMatching->mParticipantIndices[gWiFiMatching->mLastParticipantPos];
     func_ov000_021988a4(param_1, e);
     if (gWiFiMatching->mState == 12) {
         func_ov000_0219f544(0);
@@ -617,7 +633,7 @@ void func_ov000_021a18e0(s32 a, s32 b, u8 *c) {
                 p = gWiFiMatching;
                 if (p->mMode == 0 || p->mMode == 1) {
                     p = gWiFiMatching;
-                    p->mUnk_16 = p->mUnk_0d;
+                    p->mUnk_16 = p->mLastParticipantPos;
                 }
                 gWiFiMatching->mState = 9;
             }
@@ -634,7 +650,7 @@ void func_ov000_021a18e0(s32 a, s32 b, u8 *c) {
                 }
                 v = func_ov000_0219e8fc(0);
                 if (gWiFiMatching->mUnk_1c8 == v) {
-                    for (i = 1; i <= gWiFiMatching->mUnk_0d; i++) {
+                    for (i = 1; i <= gWiFiMatching->mLastParticipantPos; i++) {
                         func_ov000_0219ef68(gWiFiMatching->mParticipantIndices[i], 4);
                     }
                     gWiFiMatching->mState = 17;
@@ -674,7 +690,7 @@ u32 func_ov000_021a17bc(s32 a, s32 b, s32 c) {
         gWiFiMatching->mUnk_194 = 0;
     }
     p = gWiFiMatching;
-    if (p->mUnk_0d != 0) {
+    if (p->mLastParticipantPos != 0) {
         if (p->mUnk_1a0 == 0) {
             p->mUnk_1a0 = 3;
             func_ov000_021988e8(*gWiFiMatching->mConnectionSocket);
@@ -764,7 +780,7 @@ u32 func_ov000_021a1620(s32 b, s32 c) {
 
 u8 func_ov000_021a160c(void) {
     if (gWiFiMatching != NULL) {
-        return gWiFiMatching->mUnk_0d;
+        return gWiFiMatching->mLastParticipantPos;
     }
     return 0;
 }
@@ -802,7 +818,7 @@ u32 func_ov000_021a158c(void **output) {
         return 0;
     }
     *output = gWiFiMatching->mParticipantIndices;
-    return gWiFiMatching->mUnk_0d + 1;
+    return gWiFiMatching->mLastParticipantPos + 1;
 }
 
 u32 func_ov000_021a1514(void **a) {
@@ -843,7 +859,7 @@ u32 func_ov000_021a1488(void) {
     }
     StringFormatBounded(name, 0xc, data_ov000_021b40b8, gWiFiMatching->mUnk_16 + 1);
     func_ov000_021a363c(data_ov000_021b41a8, name, buffer, 0x2f);
-    StringFormatBounded(name, 0xc, data_ov000_021b40b8, gWiFiMatching->mUnk_0d + 1);
+    StringFormatBounded(name, 0xc, data_ov000_021b40b8, gWiFiMatching->mLastParticipantPos + 1);
     func_ov000_021a360c(data_ov000_021b41ac, name, buffer, 0x2f);
     StringFormatBounded(name, 0xc, data_ov000_021b40b8, 3);
     func_ov000_021a360c(data_ov000_021b4118, name, buffer, 0x2f);
@@ -896,7 +912,7 @@ void func_ov000_021a1140(s32 a) {
     gWiFiMatching->mUnk_1e0 = 0;
     func_0214d018_inline(&gWiFiMatching->mUnk_3b4, 0x98);
     if (a == 2) {
-        gWiFiMatching->mUnk_14 = gWiFiMatching->mUnk_0d;
+        gWiFiMatching->mUnk_14 = gWiFiMatching->mLastParticipantPos;
         if (gWiFiMatching->mMode == 3) {
             gWiFiMatching->mState = 1;
             return;
@@ -906,7 +922,7 @@ void func_ov000_021a1140(s32 a) {
             return;
         }
     } else {
-        gWiFiMatching->mUnk_0d = 0;
+        gWiFiMatching->mLastParticipantPos = 0;
         gWiFiMatching->mUnk_0e = 0;
         gWiFiMatching->mUnk_14 = 0;
         gWiFiMatching->mUnk_17 = 0;
@@ -953,7 +969,10 @@ void func_ov000_021a1140(s32 a) {
     }
 }
 
-void func_ov000_021a10b0(u8 a, u8 b, UnkFunc *c, u32 d) {
+// (Re)configures the search for a start: resets (func_ov000_021a1140), stores the mode (mMode), the second value
+// (mUnk_16) and the result callback pair, clears two per-search entries and registers the five query-report keys 0x32
+// to 0x36 (func_ov000_021a4b84); called again for each new search by both starts (through casts, no C prototype).
+void SetupMatching(u8 a, u8 b, UnkFunc *c, u32 d) {
     WiFiMatching **v1;
     func_ov000_021a1140(0);
     v1 = &gWiFiMatching;
@@ -1318,7 +1337,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             gWiFiMatching->mUnk_1aa = (e + e[0])[2];
             if (gWiFiMatching->mMode == 1) {
                 if (func_ov000_0219f4c4(e + 1, e[0]) != 0) {
-                    if (gWiFiMatching->mUnk_0d != 0) {
+                    if (gWiFiMatching->mLastParticipantPos != 0) {
                         func_ov000_0219ff0c(b, e);
                     }
                 } else {
@@ -1332,7 +1351,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
                 }
             }
             if (gWiFiMatching->mMode == 0) {
-                if (gWiFiMatching->mUnk_0d != 0) {
+                if (gWiFiMatching->mLastParticipantPos != 0) {
                     func_ov000_0219ff0c(b, e);
                     if (func_ov000_0219fee4(func_ov000_0219f8b0()) != 0) {
                         return 0;
@@ -1395,7 +1414,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             if (b != o->mUnk_20) {
                 break;
             }
-            if (o->mMode == 2 && o->mUnk_0d == 1 && o->mParticipantProfileIds[1] == b) {
+            if (o->mMode == 2 && o->mLastParticipantPos == 1 && o->mParticipantProfileIds[1] == b) {
                 func_ov000_021988e8(*o->mConnectionSocket);
             }
             if (func_ov000_0219f9bc(b) == 0) {
@@ -1417,7 +1436,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             }
             gWiFiMatching->mUnk_3b4 = 0xff;
             p = gWiFiMatching;
-            n = &p->mParticipantProfileIds[p->mUnk_0d + 1];
+            n = &p->mParticipantProfileIds[p->mLastParticipantPos + 1];
             if (b != *n) {
                 *n = b;
             }
@@ -1453,7 +1472,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             u = e[1];
             v = e[2];
             w = &o->mParticipantProfileIds[u];
-            if (x == *w && u == o->mUnk_0d - 1) {
+            if (x == *w && u == o->mLastParticipantPos - 1) {
                 if (func_ov000_0219fee4(func_ov000_021a0ae8(9, b, o->mUnk_24[0], o->mUnk_a4[0], &z, 1)) == 0) {
                     break;
                 }
@@ -1490,7 +1509,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
                 gWiFiMatching->mUnk_1f0 = 0;
             }
             p = gWiFiMatching;
-            if (p->mUnk_0d != 0) {
+            if (p->mLastParticipantPos != 0) {
                 func_ov000_021988e8(*p->mConnectionSocket);
                 break;
             }
@@ -1759,12 +1778,12 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
             0) {
             continue;
         }
-        for (k = 1; k <= gWiFiMatching->mUnk_0d; k++) {
+        for (k = 1; k <= gWiFiMatching->mLastParticipantPos; k++) {
             if (n == gWiFiMatching->mParticipantProfileIds[k]) {
                 break;
             }
         }
-        if (k <= gWiFiMatching->mUnk_0d) {
+        if (k <= gWiFiMatching->mLastParticipantPos) {
             continue;
         }
         r = GpGetBuddyIndex(gWiFiMatching->mGpConnection, n, &q);
@@ -1833,15 +1852,15 @@ u32 func_ov000_0219f9bc(u32 a) {
         gWiFiMatching->mUnk_20 = 0;
         func_ov000_021a4818(gWiFiMatching->mUnk_10);
     }
-    if (gWiFiMatching->mUnk_0d < 0x1f) {
-        gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mUnk_0d + 1] = 0;
+    if (gWiFiMatching->mLastParticipantPos < 0x1f) {
+        gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mLastParticipantPos + 1] = 0;
     }
     gWiFiMatching->mUnk_3b4 = 0xff;
     if (gWiFiMatching->mUnk_194 != 0) {
         func_ov000_0219ac50(gWiFiMatching->mUnk_194);
         gWiFiMatching->mUnk_194 = 0;
     }
-    gWiFiMatching->mUnk_14 = gWiFiMatching->mUnk_0d;
+    gWiFiMatching->mUnk_14 = gWiFiMatching->mLastParticipantPos;
     gWiFiMatching->mUnk_1ec = 0;
     if (b == 0) {
         if (gWiFiMatching->mMode != 3) {
@@ -1859,12 +1878,12 @@ u32 func_ov000_0219f9bc(u32 a) {
         gWiFiMatching->mUnk_1cc = 0;
         gWiFiMatching->mUnk_1a8 = 0;
         func_ov000_0219f124(a);
-        for (i = 1; i <= gWiFiMatching->mUnk_0d; i++) {
+        for (i = 1; i <= gWiFiMatching->mLastParticipantPos; i++) {
             if (func_ov000_0219edb0(gWiFiMatching->mParticipantProfileIds[i], 0xd) == 0) {
                 return 0;
             }
         }
-        if (gWiFiMatching->mUnk_0d == 0) {
+        if (gWiFiMatching->mLastParticipantPos == 0) {
             func_ov000_0219f23c(2);
         }
     }
@@ -1876,19 +1895,19 @@ u32 func_ov000_0219f938(u32 a) {
 
     b = 1;
     if (gWiFiMatching->mMode == 3) {
-        if (gWiFiMatching->mUnk_0d != 0) {
+        if (gWiFiMatching->mLastParticipantPos != 0) {
             func_ov000_0219f0f4();
         }
         func_ov000_021a1a38(6, -80430);
         return 0;
     }
-    gWiFiMatching->mUnk_14 = gWiFiMatching->mUnk_0d;
+    gWiFiMatching->mUnk_14 = gWiFiMatching->mLastParticipantPos;
     gWiFiMatching->mUnk_1f0 = 0;
     if (gWiFiMatching->mUnk_194 != 0) {
         func_ov000_0219ac50(gWiFiMatching->mUnk_194);
         gWiFiMatching->mUnk_194 = 0;
     }
-    if (gWiFiMatching->mUnk_0d != 0) {
+    if (gWiFiMatching->mLastParticipantPos != 0) {
         func_ov000_0219f214();
     } else {
         gWiFiMatching->mState = 4;
@@ -1901,7 +1920,7 @@ u32 func_ov000_0219f8b0(void) {
     s32 i;
     u32 r;
 
-    for (i = 1; i <= gWiFiMatching->mUnk_0d; i++) {
+    for (i = 1; i <= gWiFiMatching->mLastParticipantPos; i++) {
         r = func_ov000_021a0ae8(10, gWiFiMatching->mParticipantProfileIds[i], gWiFiMatching->mUnk_24[i],
                                 gWiFiMatching->mUnk_a4[i], gWiFiMatching->mUnk_330, gWiFiMatching->mUnk_330[0] + 1);
         if (r != 0) {
@@ -1928,7 +1947,7 @@ void func_ov000_0219f544(s32 a) {
     switch (a) {
         case 0:
             p = gWiFiMatching;
-            if (p->mUnk_19c < p->mUnk_0d - 1) {
+            if (p->mUnk_19c < p->mLastParticipantPos - 1) {
                 p->mState = 13;
                 p = gWiFiMatching;
                 v[0] = p->mParticipantProfileIds[p->mUnk_19c + 1];
@@ -1951,10 +1970,10 @@ void func_ov000_0219f544(s32 a) {
                 }
                 gWiFiMatching->mUnk_19c = 0;
                 p = gWiFiMatching;
-                if (p->mMode == 2 || p->mUnk_0d == p->mUnk_16) {
+                if (p->mMode == 2 || p->mLastParticipantPos == p->mUnk_16) {
                     if (p->mMode == 2) {
                         p = gWiFiMatching;
-                        p->mUnk_1f4 = p->mParticipantProfileIds[p->mUnk_0d];
+                        p->mUnk_1f4 = p->mParticipantProfileIds[p->mLastParticipantPos];
                     } else {
                         p->mUnk_1f4 = 0;
                         p = gWiFiMatching;
@@ -1962,13 +1981,13 @@ void func_ov000_0219f544(s32 a) {
                     }
                     gWiFiMatching->mState = 16;
                     gWiFiMatching->mUnk_1c8 = 0;
-                    for (n = 1; n <= gWiFiMatching->mUnk_0d; n++) {
+                    for (n = 1; n <= gWiFiMatching->mLastParticipantPos; n++) {
                         func_ov000_0219ef68(gWiFiMatching->mParticipantIndices[n], 2);
                     }
                 } else {
                     v[0] = 0;
-                    v[1] = p->mUnk_0d;
-                    v[2] = p->mParticipantIndices[p->mUnk_0d];
+                    v[1] = p->mLastParticipantPos;
+                    v[2] = p->mParticipantIndices[p->mLastParticipantPos];
                     if (p->mMode == 0) {
                         p->mUnk_e8 = 2;
                         gWiFiMatching->mUnk_ec = func_0200f5ac();
@@ -1984,7 +2003,7 @@ void func_ov000_0219f544(s32 a) {
                 break;
             }
             p = gWiFiMatching;
-            n = p->mUnk_0d;
+            n = p->mLastParticipantPos;
             if (func_ov000_0219fee4(
                     func_ov000_021a0ae8(8, p->mParticipantProfileIds[n], p->mUnk_24[n], p->mUnk_a4[n], v, w)) != 0) {
                 return;
@@ -1995,7 +2014,7 @@ void func_ov000_0219f544(s32 a) {
             gWiFiMatching->mState = 1;
             p = gWiFiMatching;
             if (p->mMode == 3) {
-                p->mUnk_1f4 = p->mParticipantProfileIds[p->mUnk_0d];
+                p->mUnk_1f4 = p->mParticipantProfileIds[p->mLastParticipantPos];
             }
             f = 1;
             break;
@@ -2007,10 +2026,10 @@ void func_ov000_0219f544(s32 a) {
                 gWiFiMatching->mUnk_20 = gWiFiMatching->mUnk_1e8;
             }
             p = gWiFiMatching;
-            if (p->mUnk_0d > 1) {
-                if (func_ov000_0219fee4(func_ov000_021a0ae8(9, p->mParticipantProfileIds[0], p->mUnk_24[0],
-                                                            p->mUnk_a4[0], &p->mParticipantProfileIds[p->mUnk_0d - 1],
-                                                            1)) != 0) {
+            if (p->mLastParticipantPos > 1) {
+                if (func_ov000_0219fee4(
+                        func_ov000_021a0ae8(9, p->mParticipantProfileIds[0], p->mUnk_24[0], p->mUnk_a4[0],
+                                            &p->mParticipantProfileIds[p->mLastParticipantPos - 1], 1)) != 0) {
                     return;
                 }
             }
@@ -2101,7 +2120,7 @@ void func_ov000_0219f3cc(void) {
     if (s == 3) {
         p->mUnk_1a1 = 1;
         p = gWiFiMatching;
-        if (p->mUnk_0d != 0) {
+        if (p->mLastParticipantPos != 0) {
             func_ov000_021988e8(*p->mConnectionSocket);
         } else {
             if (func_ov000_0219fee4(func_ov000_0219fb14(p->mParticipantProfileIds[0])) != 0) {
@@ -2127,7 +2146,7 @@ void func_ov000_0219f3cc(void) {
         gWiFiMatching->mUnk_194 = 0;
     }
     p = gWiFiMatching;
-    if (p->mUnk_0d != 0) {
+    if (p->mLastParticipantPos != 0) {
         p->mUnk_1a1 = 1;
         func_ov000_021988e8(*gWiFiMatching->mConnectionSocket);
     }
@@ -2169,7 +2188,7 @@ u32 func_ov000_0219f2e4(void) {
     v = 0;
     p = gWiFiMatching;
     if (p->mUnk_17 != 0 && p->mUnk_20 != 0 && p->mUnk_20 != p->mUnk_1e8) {
-        n = p->mUnk_0d + 1;
+        n = p->mLastParticipantPos + 1;
         r = func_ov000_021a0ae8(12, p->mUnk_20, p->mUnk_24[n], p->mUnk_a4[n], &v, 1);
         gWiFiMatching->mUnk_17 = 0;
         gWiFiMatching->mUnk_20 = 0;
@@ -2246,14 +2265,14 @@ u32 func_ov000_0219f184(void) {
 u32 func_ov000_0219f124(u32 a) {
     void **r;
     gWiFiMatching->mUnk_1f4 = a;
-    r = func_ov000_0219b8fc(a, gWiFiMatching->mUnk_0d + 1);
+    r = func_ov000_0219b8fc(a, gWiFiMatching->mLastParticipantPos + 1);
     if (r != NULL) {
         gWiFiMatching->mUnk_1a0 = 2;
         func_ov000_02198908(*r);
         gWiFiMatching->mUnk_1a0 = 0;
         return 1;
     }
-    func_ov000_021a1754(a, gWiFiMatching->mUnk_0d + 1);
+    func_ov000_021a1754(a, gWiFiMatching->mLastParticipantPos + 1);
     return 0;
 }
 
@@ -2276,7 +2295,7 @@ u32 func_ov000_0219f00c(u32 a) {
     k = 0;
     n = 1;
     p = gWiFiMatching;
-    for (; n <= p->mUnk_0d; n++) {
+    for (; n <= p->mLastParticipantPos; n++) {
         b = 1 << gWiFiMatching->mParticipantIndices[n];
         if ((a & b) != 0) {
             e[k] = p->mParticipantProfileIds[n];
@@ -2310,12 +2329,12 @@ void func_ov000_0219ef68(s32 a, u16 b) {
     switch (b) {
         case 2:
             p = gWiFiMatching;
-            if (a == p->mParticipantIndices[p->mUnk_0d]) {
+            if (a == p->mParticipantIndices[p->mLastParticipantPos]) {
                 v1[0] = 1;
             } else {
                 v1[0] = 0;
             }
-            for (n = 1; n <= p->mUnk_0d; n++) {
+            for (n = 1; n <= p->mLastParticipantPos; n++) {
                 if (a == p->mParticipantIndices[n]) {
                     v1[1] = n;
                     v1[2] = a;
@@ -2329,7 +2348,7 @@ void func_ov000_0219ef68(s32 a, u16 b) {
             v1[1] = p->mUnk_1a6 >> 8;
             break;
     }
-    func_ov000_021a3310(b, a, v1, 4);
+    StartPeerMessageSend(b, a, v1, 4);
     gWiFiMatching->mUnk_1d0 = func_ov000_021a350c();
 }
 
@@ -2364,7 +2383,7 @@ u32 func_ov000_0219ee14(void) {
                         return 0;
                     }
                     p = gWiFiMatching;
-                    if (p->mUnk_0d != 0) {
+                    if (p->mLastParticipantPos != 0) {
                         p->mUnk_1a3[0] = 0;
                         gWiFiMatching->mUnk_1d0 = func_ov000_021a350c();
                     } else {
@@ -2373,7 +2392,7 @@ u32 func_ov000_0219ee14(void) {
                         }
                     }
                 } else {
-                    for (n = 1; n <= p->mUnk_0d; n++, p = gWiFiMatching) {
+                    for (n = 1; n <= p->mLastParticipantPos; n++, p = gWiFiMatching) {
                         p = gWiFiMatching;
                         b = p->mParticipantIndices[n];
                         if ((p->mUnk_1c8 & (1 << b)) == 0) {
@@ -2447,7 +2466,7 @@ BOOL func_ov000_0219ec44(u32 a, s32 b, u32 c) {
                 m = func_ov000_0219e8fc(1);
                 p = gWiFiMatching;
                 if (p->mUnk_1cc == m) {
-                    for (n = 1; n <= p->mUnk_0d; n++, p = gWiFiMatching) {
+                    for (n = 1; n <= p->mLastParticipantPos; n++, p = gWiFiMatching) {
                         if (func_ov000_0219edb0(p->mParticipantProfileIds[n], 15) == 0) {
                             return FALSE;
                         }
@@ -2496,14 +2515,14 @@ u32 func_ov000_0219eaf4(void) {
                         return 0;
                     }
                     p = gWiFiMatching;
-                    if (p->mUnk_0d != 0) {
+                    if (p->mLastParticipantPos != 0) {
                         p->mUnk_1a3[1] = 0;
                         gWiFiMatching->mUnk_1d8 = func_ov000_021a350c();
                     } else {
                         func_ov000_0219f23c(2);
                     }
                 } else {
-                    for (n = 1; n <= p->mUnk_0d; n++, p = gWiFiMatching) {
+                    for (n = 1; n <= p->mLastParticipantPos; n++, p = gWiFiMatching) {
                         if ((gWiFiMatching->mUnk_1cc & (1 << gWiFiMatching->mParticipantIndices[n])) == 0) {
                             if (func_ov000_0219edb0(p->mParticipantProfileIds[n], 13) == 0) {
                                 return 0;
@@ -2594,7 +2613,7 @@ s32 func_ov000_0219e948(u32 a, s32 b) {
     } else {
         b = 0;
     }
-    for (; b <= gWiFiMatching->mUnk_0d; b++) {
+    for (; b <= gWiFiMatching->mLastParticipantPos; b++) {
         if (a == gWiFiMatching->mParticipantProfileIds[b]) {
             return gWiFiMatching->mParticipantIndices[b];
         }
@@ -2609,7 +2628,7 @@ u32 func_ov000_0219e8fc(s32 a) {
     if (a != 0) {
         return gWiFiMatching->mParticipantMask & ~1;
     }
-    for (i = 1; i <= gWiFiMatching->mUnk_0d; i++) {
+    for (i = 1; i <= gWiFiMatching->mLastParticipantPos; i++) {
         r |= 1 << gWiFiMatching->mParticipantIndices[i];
     }
     return r;
@@ -2654,8 +2673,8 @@ void func_ov000_0219e668(void) {
         q = data_ov000_021b5670;
         if (q->mUnk_08 == a) {
             if (q->mUnk_0c == a) {
-                gWiFiMatching->mUnk_16 = gWiFiMatching->mUnk_0d;
-                gWiFiMatching->mUnk_19c = gWiFiMatching->mUnk_0d - 1;
+                gWiFiMatching->mUnk_16 = gWiFiMatching->mLastParticipantPos;
+                gWiFiMatching->mUnk_19c = gWiFiMatching->mLastParticipantPos - 1;
                 func_ov000_0219f544(0);
                 return;
             }
@@ -2682,7 +2701,7 @@ void func_ov000_0219e668(void) {
             func_ov000_0219f23c(1);
             return;
         }
-        for (n = 1; n <= (p = gWiFiMatching)->mUnk_0d; n++) {
+        for (n = 1; n <= (p = gWiFiMatching)->mLastParticipantPos; n++) {
             if ((data_ov000_021b5670->mUnk_08 & (1 << p->mParticipantIndices[n])) == 0) {
                 p = gWiFiMatching;
                 if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mParticipantProfileIds[n], p->mUnk_24[n],
@@ -2693,7 +2712,7 @@ void func_ov000_0219e668(void) {
         }
         data_ov000_021b5670->mUnk_02++;
     } else if (p->mState == 3 || p->mState == 4) {
-        if (p->mUnk_0d < q->mUnk_01 - 1) {
+        if (p->mLastParticipantPos < q->mUnk_01 - 1) {
             return;
         }
         if (q->mUnk_02 != 0 || func_ov000_021a350c() - q->mUnk_10 < q->mUnk_04) {
@@ -2713,7 +2732,7 @@ void func_ov000_0219e668(void) {
         }
         p = gWiFiMatching;
         p->mState = 0x13;
-        for (n = 1; n <= gWiFiMatching->mUnk_0d; n++) {
+        for (n = 1; n <= gWiFiMatching->mLastParticipantPos; n++) {
             p = gWiFiMatching;
             if (func_ov000_0219fee4(func_ov000_021a0ae8(0x11, p->mParticipantProfileIds[n], p->mUnk_24[n],
                                                         p->mUnk_a4[n], NULL, 0)) != 0) {
@@ -2995,7 +3014,7 @@ void func_ov000_0219e138(u32 a, s32 b, s32 c) {
                         f = gWiFiMatching;
                         if (f->mMode == 1 && e == f->mParticipantProfileIds[0]) {
                             if (func_ov000_0219dfe4(0) != FALSE) {
-                                if (gWiFiMatching->mUnk_0d != 0) {
+                                if (gWiFiMatching->mLastParticipantPos != 0) {
                                     if (func_ov000_0219fee4(func_ov000_0219f8b0()) != 0) {
                                         return;
                                     }
@@ -3046,7 +3065,7 @@ BOOL func_ov000_0219dfe4(s32 a) {
         if (gWiFiMatching->mMode == 0) {
             g = SbServerGetInt((SbServer *) f, data_ov000_021b40c4, 0);
             d = FALSE;
-            for (h = 1; h <= gWiFiMatching->mUnk_0d; h++) {
+            for (h = 1; h <= gWiFiMatching->mLastParticipantPos; h++) {
                 if (g == gWiFiMatching->mParticipantProfileIds[h]) {
                     func_ov000_0218b4d4((struct Unk0218b668 *) gWiFiMatching->mUnk_e4, f);
                     e--;

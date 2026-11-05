@@ -100,7 +100,12 @@ BOOL func_ov000_021a33e4(u32 a, s32 b) {
     return FALSE;
 }
 
-BOOL func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
+// Starts a send of kind a (1 = data) to peer b: refuses (FALSE) while an error is pending or func_ov000_021a33e4 says
+// no (peer not usable, kind 1 to a non-participant, already sending, or less send room than the header needs); marks
+// the peer sending, stores the buffer and size, writes the 8-byte header and the first chunk (when the socket has no
+// room for the chunk it returns TRUE after the header); UpdateWiFiMessageLayer sends the later chunks; calls
+// mSendCallback when the whole message went out at once (kind 1 only).
+BOOL StartPeerMessageSend(u16 a, u32 b, u8 *c, s32 d) {
     WiFiPeerMessage *e = func_ov000_021a2fdc(b);
     Unk021a31e8 t;
     s32 n;
@@ -116,7 +121,7 @@ BOOL func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
     e->mSendSize = d;
     func_ov000_021a321c(&t, a, d);
     func_ov000_021a2f98(b, &t, 8, 1);
-    n = gWiFiMessageLayer->mUnk_610;
+    n = gWiFiMessageLayer->mSendChunkSize;
     if (d <= n) {
         n = d;
     }
@@ -144,7 +149,7 @@ BOOL func_ov000_021a32a0(u32 a, void *b, s32 c) {
     if (func_ov000_0219bac8(a) == 0) {
         return FALSE;
     }
-    if (c > gWiFiMessageLayer->mUnk_610) {
+    if (c > gWiFiMessageLayer->mSendChunkSize) {
         return FALSE;
     }
     func_ov000_021a2f98(a, b, c, 0);
@@ -154,7 +159,9 @@ BOOL func_ov000_021a32a0(u32 a, void *b, s32 c) {
     return TRUE;
 }
 
-BOOL func_ov000_021a3264(u32 a, void *b, s32 c) {
+// Gives peer a the buffer b of capacity c to receive into and sets mReceiveState to 1 with both received counters 0;
+// refuses (FALSE) while a body is being received into the old buffer (state 2).
+BOOL SetPeerReceiveBuffer(u32 a, void *b, s32 c) {
     WiFiPeerMessage *e = func_ov000_021a2fdc(a);
     if (func_ov000_021a2fb4(a) == 2) {
         return FALSE;

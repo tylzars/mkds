@@ -30,7 +30,7 @@ void func_02123a48(u32 a) {
             MemFill(gWiFiSession->mReceiveBuffers, 0, 0x110);
             for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
                 if (i != func_ov000_0219bb50()) {
-                    func_ov000_021a3264(i, &gWiFiSession->mPlayerRecords[i], 0x244);
+                    SetPeerReceiveBuffer(i, &gWiFiSession->mPlayerRecords[i], 0x244);
                     func_02029930()->mUnk_00[i].mUnk_08 = 3;
                 } else {
                     gWiFiSession->mPlayerRecords[i].mUnk_238 = data_0217aa08->mUnk_00->mUnk_34[4];
@@ -72,7 +72,7 @@ void func_02123a48(u32 a) {
         case 2:
             for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
                 if (i != func_ov000_0219bb50() && (gWiFiSession->mKartMask & (1 << i)) != 0) {
-                    func_ov000_021a3264(i, &gWiFiSession->mReceiveBuffers[i], 0x44);
+                    SetPeerReceiveBuffer(i, &gWiFiSession->mReceiveBuffers[i], 0x44);
                 }
                 func_02029930()->mCourseId = 0;
                 gWiFiSession->mUnk_1e10[i].mPickedCourseId = 0;
@@ -96,7 +96,7 @@ void func_02123a48(u32 a) {
         case 3:
             for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
                 if (i != func_ov000_0219bb50() && (gWiFiSession->mKartMask & (1 << i)) != 0) {
-                    func_ov000_021a3264(i, &gWiFiSession->mReceiveBuffers[i], 0x44);
+                    SetPeerReceiveBuffer(i, &gWiFiSession->mReceiveBuffers[i], 0x44);
                 }
                 gWiFiSession->mStepFrames = 0;
                 gWiFiSession->mSendRecordMask = 0;
@@ -495,7 +495,7 @@ void func_02122bf0(void) {
     }
     for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
         if (i != func_ov000_0219bb50() && (gWiFiSession->mKartMask & (1 << i)) != 0) {
-            if (func_ov000_021a3264(i, gWiFiSession->mUnk_001c[i], 0x80) == FALSE) {
+            if (SetPeerReceiveBuffer(i, gWiFiSession->mUnk_001c[i], 0x80) == FALSE) {
                 return;
             }
         }

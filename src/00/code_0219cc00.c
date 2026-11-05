@@ -141,7 +141,7 @@ void func_ov000_0219cc94(GpConnection *a, Unk0219c400 *b, u32 c) {
 
 void func_ov000_0219cc30(u32 a, u32 b, u32 c) {
     char s[0x40];
-    func_ov000_0219cb00();
+    RemovePendingStatsRequest();
     if (c == 0 || a != 0) {
         ReportBuddySyncError(6, -72200);
         return;
@@ -152,7 +152,7 @@ void func_ov000_0219cc30(u32 a, u32 b, u32 c) {
 }
 
 void func_ov000_0219cc00(u32 a, u32 b, u32 c, u32 d) {
-    func_ov000_0219cb30();
+    AddPendingStatsRequest();
     func_ov000_02197558((u32) (0), (u32) (a), (u32) (b), (u32) (0), (u32) (c), (u32) &func_ov000_0219cb64, (u32) (d));
     return;
 }

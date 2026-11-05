@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void func_ov000_021a10b0(u8 a, u8 b, UnkFunc *c, u32 d);
+void SetupMatching(u8 a, u8 b, UnkFunc *c, u32 d);
 void func_ov000_021a1140(s32 a);
 u32 func_ov000_021a141c(void);
 void func_ov000_021a1430(void);

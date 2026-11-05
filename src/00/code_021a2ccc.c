@@ -69,11 +69,11 @@ s32 func_ov000_021a31d4(s32 value) {
     }
 }
 
-// Per login (called by InitWiFiConnection): stores gWiFiMessageLayer, zeroes the struct and sets mUnk_610.
+// Per login (called by InitWiFiConnection): stores gWiFiMessageLayer, zeroes the struct and sets mSendChunkSize.
 void InitWiFiMessageLayer(WiFiMessageLayer *state) {
     gWiFiMessageLayer = state;
     MemFill(state, 0, sizeof(WiFiMessageLayer));
-    gWiFiMessageLayer->mUnk_610 = 0x5b9;
+    gWiFiMessageLayer->mSendChunkSize = 0x5b9;
 }
 
 void func_ov000_021a317c(Unk0219887c *a, void *b, s32 c, u32 d) {
@@ -111,7 +111,7 @@ void UpdateWiFiMessageLayer(void) {
             if (d != func_ov000_0219bb50() && func_ov000_021a2fc8(d) == 1) {
                 e = func_ov000_021a2fdc(d);
                 m = e->mSendSize - e->mSentSize;
-                k = gWiFiMessageLayer->mUnk_610;
+                k = gWiFiMessageLayer->mSendChunkSize;
                 if (m <= k) {
                     k = m;
                 }

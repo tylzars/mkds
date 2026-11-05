@@ -21,7 +21,7 @@ typedef struct WiFiConnection {
     /* 00 */ void *mSocket;
     // Slot 0 of a Gt2ConnectionCallbacks record made of mResultCallback, mDataCallback, mUnk_0c, mElapsedTimeCallback
     // (its address is handed to the matching object and from there to the Gt2 connect call): result of a Gt2 connect,
-    // func_ov000_021a1b2c (retries up to 5 times).
+    // WiFiGt2ResultCallback (retries up to 5 times).
     /* 04 */ void (*mResultCallback)();
     // Slot 1 of the record at mResultCallback: data received from a peer, forwarded to the net layer
     // (func_ov000_021a317c).
@@ -33,7 +33,11 @@ typedef struct WiFiConnection {
     /* 10 */ void (*mElapsedTimeCallback)();
     // Passed to CreateSocket as the send buffer size (0 selects 0x2000).
     /* 14 */ u32 mSendBufferSize;
-    /* 18 */ u32 mUnk_18;
+    // Pair of mSendBufferSize: both come from InitWiFiConnection's parameters (0 selects 0x2000) and go to
+    // CreateSocket, which stores this one at Gt2Socket.mUnk_3c; the library gives it to the second InitBuffer of each
+    // connection (code_0219a0d0.c:48), the buffer that holds reliable messages arriving ahead of the next expected
+    // sequence number (code_02199614.c:51, code_0219981c.c:38).
+    /* 18 */ u32 mReceiveBufferSize;
     // The GP connection object: GpInitialize in state 1, closed by ReleaseWiFiConnection; the buddy object keeps a
     // pointer to it.
     /* 1c */ GpConnection mGpConnection;

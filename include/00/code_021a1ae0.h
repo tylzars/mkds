@@ -40,13 +40,13 @@ typedef struct Unk021a1e40 {
 } Unk021a1e40;
 
 void func_ov000_021a1ae0(u32 param_1, u32 param_2, const char *param_3);
-void func_ov000_021a1b2c(Unk0219887c *param_1, s32 param_2);
+void WiFiGt2ResultCallback(Unk0219887c *param_1, s32 param_2);
 void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 param_4, s32 param_5, char *param_6);
 u32 func_ov000_021a1e40(u32 param_1, u32 param_2, u16 param_3, u8 *param_4, u32 param_5);
 void UpdateMatching(s32 param_1);
-void func_ov000_021a2468(const void *param_1, s32 param_2, s32 param_3, s32 param_4, void *param_5, u32 param_6,
-                         u32 param_7, u32 param_8);
-void func_ov000_021a260c(u32 param_1, const void *param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6);
+void StartMatchingWithBuddies(const void *param_1, s32 param_2, s32 param_3, s32 param_4, void *param_5, u32 param_6,
+                              u32 param_7, u32 param_8);
+void StartMatchingWithFilter(u32 param_1, const void *param_2, u32 param_3, u32 param_4, u32 param_5, u32 param_6);
 u32 func_ov000_021a2768(u32 param_1);
 void InitMatching(WiFiMatching *param_1, GpConnection *param_2, void **param_3, void *param_4, void *param_5,
                   void *param_6, void *param_7, u32 param_8);

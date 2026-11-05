@@ -167,7 +167,7 @@ u32 func_0211f91c(void) {
             if (StartWiFiBuddySync(NULL, func_0211f77c, NULL, func_0211f6cc, NULL, func_0211f6e8, NULL) == 0) {
                 gWiFiSession->mUnk_1f20.mStep = 7;
             }
-            func_ov000_0219d934((void *) func_0211f6b0, NULL);
+            SetBuddyChangedCallback((void *) func_0211f6b0, NULL);
             gWiFiSession->mUnk_1f20.mStep = 4;
             break;
         case 6:

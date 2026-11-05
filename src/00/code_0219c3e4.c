@@ -44,13 +44,13 @@
 #include "00/code_0219b580.h"
 
 void func_ov000_0219ca84(void) {
-    func_ov000_0219c67c(func_ov000_0219c80c, NULL);
+    StartWiFiLoginRequest(WiFiLoginRequestCallback, NULL);
     gWiFiLogin->mState = 1;
     gWiFiLogin->mConnectPending = FALSE;
 }
 
 // One step per connection frame in state 2 (UpdateWiFiConnection returns first when an error is pending); mState 1 runs
-// func_ov000_0219c524, 2 to 4 pump GpUpdate and time the GP connect out (60 s), 5 does nothing.
+// UpdateWiFiLoginRequest, 2 to 4 pump GpUpdate and time the GP connect out (60 s), 5 does nothing.
 void UpdateWiFiLogin(void) {
     WiFiLogin *p;
     if (gWiFiLogin == NULL || func_ov000_0219c39c() != 0) {
@@ -59,7 +59,7 @@ void UpdateWiFiLogin(void) {
     p = gWiFiLogin;
     switch (p->mState) {
         case 1:
-            func_ov000_0219c524();
+            UpdateWiFiLoginRequest();
             break;
         case 2:
         case 3:
@@ -86,7 +86,7 @@ Unk02152500 *func_ov000_0219c9c4(void) {
     return NULL;
 }
 
-// Records the (kind, code) pair, calls mResultCallback with the kind and resets the machine (func_ov000_0219c93c); does
+// Records the (kind, code) pair, calls mResultCallback with the kind and resets the machine (ResetWiFiLogin); does
 // nothing when the object is NULL or the kind is 0. Same extent as ReportBuddySyncError (which closes the stats link).
 void ReportWiFiLoginError(s32 a, s32 b) {
     if (gWiFiLogin != NULL && a != 0) {
@@ -94,7 +94,7 @@ void ReportWiFiLoginError(s32 a, s32 b) {
         if (gWiFiLogin->mResultCallback != NULL) {
             gWiFiLogin->mResultCallback(a, 0, gWiFiLogin->mResultCallbackArg);
         }
-        func_ov000_0219c93c();
+        ResetWiFiLogin();
     }
 }
 
@@ -110,14 +110,19 @@ void ReleaseWiFiLogin(void) {
     *(s32 *) &gWiFiLogin = 0;
 }
 
-void func_ov000_0219c93c(void) {
+// Writes the start values back (mState 0, mConnectPending FALSE) when the object exists; called by
+// ReportWiFiLoginError. Keeps the Http and the strings (ReleaseWiFiLogin frees the Http).
+void ResetWiFiLogin(void) {
     if (gWiFiLogin != NULL) {
         gWiFiLogin->mState = 0;
         gWiFiLogin->mConnectPending = FALSE;
     }
 }
 
-s32 func_ov000_0219c8dc(s32 a) {
+// Maps a GP result code 1 to 4 to (kind 0xb or 6, code -61001, -61002, -61010, -61020) and passes it to
+// ReportWiFiLoginError (login offset 0xee48 = 61000), returning the result; 0 returns 0 at once. Results above 4 have
+// no case.
+s32 ReportWiFiLoginGpResult(s32 a) {
     s32 x;
     s32 y;
     if (a == 0) {
@@ -145,11 +150,15 @@ s32 func_ov000_0219c8dc(s32 a) {
     return a;
 }
 
-void func_ov000_0219c824(GpConnection *a, Unk0219c400 *b, u32 c) {
+// Callback of the GP connect, given by StartWiFiLoginGpConnect: clears mConnectPending; on success in mState 2 checks
+// the saved record's profile id, then (func_ov000_0219ba20, func_ov000_021a2768 with the profile id) sets mState 5 and
+// reports success through mResultCallback (id mismatch: error 6); in mState 3 calls func_ov000_0218eff8 with the
+// profile id and func_ov000_0219c400 as its callback; a GP error goes to ReportWiFiLoginGpResult.
+void WiFiLoginGpConnectCallback(GpConnection *a, Unk0219c400 *b, u32 c) {
     gWiFiLogin->mConnectPending = FALSE;
     if (b->mUnk_00 == 0) {
         if (gWiFiLogin->mState == 2) {
-            if (func_ov000_0219c8dc(func_ov000_0219d558(1, data_ov000_021b4064, NULL)) == 0) {
+            if (ReportWiFiLoginGpResult(func_ov000_0219d558(1, data_ov000_021b4064, NULL)) == 0) {
                 if (gWiFiLogin->mUnk_20->mUnk_1c == b->mUnk_04) {
                     if (func_ov000_0219ba20() == 0 && func_ov000_021a2768(b->mUnk_04) == 0) {
                         gWiFiLogin->mState = 5;
@@ -160,20 +169,27 @@ void func_ov000_0219c824(GpConnection *a, Unk0219c400 *b, u32 c) {
                 }
             }
         } else if (gWiFiLogin->mState == 3) {
-            if (func_ov000_0219c8dc(func_ov000_0218eff8(a, b->mUnk_04, 0, 0, func_ov000_0219c400, 0)) != 0) {
+            if (ReportWiFiLoginGpResult(func_ov000_0218eff8(a, b->mUnk_04, 0, 0, func_ov000_0219c400, 0)) != 0) {
                 return;
             }
         }
     } else {
-        func_ov000_0219c8dc(b->mUnk_00);
+        ReportWiFiLoginGpResult(b->mUnk_00);
     }
 }
 
-void func_ov000_0219c80c(char *a, char *b) {
-    func_ov000_0219c79c(a, b, func_ov000_0219c824, 2);
+// The stored done callback of StartWiFiLoginRequest: called through data_ov000_021b5660 with (auth token, second
+// string, arg) when the reply is in hand (code_0219c3e4.c:263) and after the profile check (:314); ignores arg and
+// starts the GP connect with state 2 (StartWiFiLoginGpConnect with WiFiLoginGpConnectCallback).
+void WiFiLoginRequestCallback(char *a, char *b) {
+    StartWiFiLoginGpConnect(a, b, WiFiLoginGpConnectCallback, 2);
 }
 
-void func_ov000_0219c79c(char *a, char *b, void (*c)(), s32 d) {
+// Copies the token and the second string, sets mConnectStartTime and mConnectPending, starts the GP connect
+// (func_ov000_0218f15c) with callback c, reporting a failed start through ReportWiFiLoginGpResult, and only when it
+// started sets mState to d (2 from WiFiLoginRequestCallback, 3 from UpdateWiFiLoginRequest); UpdateWiFiLogin then pumps
+// GpUpdate and times the connect out.
+void StartWiFiLoginGpConnect(char *a, char *b, void (*c)(), s32 d) {
     WiFiLogin *v1;
     u32 v2;
     u64 v3;
@@ -185,13 +201,17 @@ void func_ov000_0219c79c(char *a, char *b, void (*c)(), s32 d) {
     v4->mConnectStartTime = v3;
     v4->mConnectPending = TRUE;
     v1 = gWiFiLogin;
-    v2 = func_ov000_0219c8dc(func_ov000_0218f15c(v1->mGpConnection, v1->mAuthToken, v1->mUnk_14c, 1, 0, c, 0));
+    v2 = ReportWiFiLoginGpResult(func_ov000_0218f15c(v1->mGpConnection, v1->mAuthToken, v1->mUnk_14c, 1, 0, c, 0));
     if (v2 == 0) {
         gWiFiLogin->mState = d;
     }
 }
 
-void func_ov000_0219c67c(void (*a)(), void *b) {
+// Stores the done callback and its argument in two globals (data_ov000_021b5660 / data_ov000_021b5658), formats the
+// login id text (from the saved record's id, or from a 12-byte id it takes or makes), allocates the Http (0x1a60),
+// records the start time and issues the request; UpdateWiFiLoginRequest polls the reply. Called by func_ov000_0219ca84
+// and by the profile check func_ov000_0219c400, which restarts the request.
+void StartWiFiLoginRequest(void (*a)(), void *b) {
     Unk02186560 s;
     void *h;
     u64 t;
@@ -218,11 +238,15 @@ void func_ov000_0219c67c(void (*a)(), void *b) {
     h = func_ov000_021a3718(0, 0x1a60, 4);
     gWiFiLogin->mHttp = h;
     t = func_0200f5ac();
-    *(u64 *) &gWiFiLogin->mUnk_2c = t;
+    gWiFiLogin->mRequestStartTime = t;
     func_ov000_02186560(&s, h);
 }
 
-void func_ov000_0219c524(void) {
+// State 1 step of UpdateWiFiLogin (every frame while mState is 1): when the reply is done (status 0x14) copies the
+// token and the second string, frees the Http and goes on through the stored callback (when func_021526bc accepts the
+// saved record) or StartWiFiLoginGpConnect with state 3; while the request runs, reports error 2 after 10 s, otherwise
+// closes it and issues it again.
+void UpdateWiFiLoginRequest(void) {
     Unk02186560 s;
     Unk0218635c x;
     Unk0218635c y;
@@ -236,10 +260,10 @@ void func_ov000_0219c524(void) {
         if (func_021526bc(gWiFiLogin->mUnk_20) != 0) {
             data_ov000_021b5660(gWiFiLogin->mAuthToken, gWiFiLogin->mUnk_14c, data_ov000_021b5658);
         } else {
-            func_ov000_0219c79c(gWiFiLogin->mAuthToken, gWiFiLogin->mUnk_14c, func_ov000_0219c824, 3);
+            StartWiFiLoginGpConnect(gWiFiLogin->mAuthToken, gWiFiLogin->mUnk_14c, WiFiLoginGpConnectCallback, 3);
         }
     } else if (func_ov000_021863cc() != 0) {
-        if ((((u64) func_0200f5ac() - *(u64 *) &gWiFiLogin->mUnk_2c) << 6) / 0x82ea > 0x2710) {
+        if ((((u64) func_0200f5ac() - gWiFiLogin->mRequestStartTime) << 6) / 0x82ea > 0x2710) {
             func_ov000_0218635c(&y.mUnk_000);
             func_ov000_02186430();
             func_ov000_021a3704(0, (u32) gWiFiLogin->mHttp, 0);
@@ -268,15 +292,15 @@ void func_ov000_0219c400(GpConnection *a, Unk0219c400 *b, u32 f) {
     if (p->mState == 3) {
         if (b->mUnk_8e[0] == 0) {
             func_02152808(&p->mUnk_20->mUnk_04, p->mUnk_0c, c);
-            if (func_ov000_0219c8dc(func_ov000_0218efa8(a, 0x705, (const s8 *) c)) == 0) {
+            if (ReportWiFiLoginGpResult(func_ov000_0218efa8(a, 0x705, (const s8 *) c)) == 0) {
                 gWiFiLogin->mState = 4;
-                if (func_ov000_0219c8dc(func_ov000_0218eff8(a, b->mUnk_04, 0, 0, func_ov000_0219c400, 0)) != 0) {
+                if (ReportWiFiLoginGpResult(func_ov000_0218eff8(a, b->mUnk_04, 0, 0, func_ov000_0219c400, 0)) != 0) {
                     return;
                 }
             }
         } else {
             GpDisconnect(a);
-            func_ov000_0219c67c(func_ov000_0219c80c, NULL);
+            StartWiFiLoginRequest(WiFiLoginRequestCallback, NULL);
             gWiFiLogin->mState = 1;
         }
     } else if (p->mState == 4) {
@@ -287,14 +311,16 @@ void func_ov000_0219c400(GpConnection *a, Unk0219c400 *b, u32 f) {
             GpDisconnect(a);
             data_ov000_021b5660(gWiFiLogin->mAuthToken, gWiFiLogin->mUnk_14c, data_ov000_021b5658);
         } else {
-            if (func_ov000_0219c8dc(func_ov000_0218eff8(a, b->mUnk_04, 0, 0, func_ov000_0219c400, 0)) != 0) {
+            if (ReportWiFiLoginGpResult(func_ov000_0218eff8(a, b->mUnk_04, 0, 0, func_ov000_0219c400, 0)) != 0) {
                 return;
             }
         }
     }
 }
 
-u32 func_ov000_0219c3e4(void) {
+// 1 only in mState 5 (set on success by WiFiLoginGpConnectCallback), 0 when the object is NULL; the buddy sync gates on
+// it (code_0219cfc0.c:18) and RemoveBuddyEntry tests it (code_0219d948.c:80).
+u32 IsWiFiLoginDone(void) {
     if ((gWiFiLogin != NULL) && (gWiFiLogin->mState == 5)) {
         return 1;
     }

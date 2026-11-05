@@ -55,7 +55,9 @@ void WiFiGpMessageCallback(u32 a, Unk0219b4b4 *b, u32 g) {
     }
 }
 
-void func_ov000_0219b4a4(Unk0219887c *a, void *b, s32 c, u32 d) {
+// Slot 1 of the Gt2ConnectionCallbacks record (the library's Gt2CallDataCallback, code_02197e58.c:152): the body
+// only forwards (connection, data, size, flag) to func_ov000_021a317c, the receive side of the message layer.
+void WiFiGt2DataCallback(Unk0219887c *a, void *b, s32 c, u32 d) {
     func_ov000_021a317c(a, b, c, d);
 }
 
@@ -105,7 +107,7 @@ void func_ov000_0219b27c(Unk0219887c *a, u32 b) {
         }
         e = func_ov000_0219b868(h);
         data_ov000_021b54d0[g[0]] = NULL;
-        gWiFiConnection->mMatching.mUnk_0d--;
+        gWiFiConnection->mMatching.mLastParticipantPos--;
         gWiFiConnection->mMatching.mUnk_14--;
     }
     if (gWiFiConnection->mUnk_2d == 0 && gWiFiConnection->mState == 6 && i == 0) {
@@ -125,10 +127,10 @@ void func_ov000_0219b27c(Unk0219887c *a, u32 b) {
     if (gWiFiConnection->mMatching.mMode == 2) {
         if (gWiFiConnection->mUnk_2d == 0) {
             func_ov000_021a1488();
-        } else if (gWiFiConnection->mMatching.mUnk_0d == 0) {
+        } else if (gWiFiConnection->mMatching.mLastParticipantPos == 0) {
             func_ov000_0219d558(1, data_ov000_021b4054, NULL);
         }
-    } else if (gWiFiConnection->mMatching.mUnk_0d == 0) {
+    } else if (gWiFiConnection->mMatching.mLastParticipantPos == 0) {
         func_ov000_0219d558(1, data_ov000_021b4054, NULL);
     }
     if (gWiFiConnection->mMatching.mMode == 0 || gWiFiConnection->mMatching.mMode == 1) {
@@ -147,7 +149,7 @@ void func_ov000_0219b27c(Unk0219887c *a, u32 b) {
         gWiFiConnection->mUnk_7c(c, b, f, h, k, *m);
     }
     if (gWiFiConnection->mUnk_2d != 0 || gWiFiConnection->mMatching.mMode != 2) {
-        if (gWiFiConnection->mMatching.mUnk_0d == 0) {
+        if (gWiFiConnection->mMatching.mLastParticipantPos == 0) {
             func_ov000_0219b110();
             func_ov000_021a1a10();
             SetWiFiConnectionState(3);
@@ -155,7 +157,9 @@ void func_ov000_0219b27c(Unk0219887c *a, u32 b) {
     }
 }
 
-void func_ov000_0219b274(Unk0219887c *a, u32 b) {
+// Slot 3 of the record (Gt2CallElapsedTimeCallback, code_02197e58.c:196): the body only forwards (connection,
+// elapsed time) to func_ov000_021a314c, which calls the layer's mUnk_60c with the time and the peer index.
+void WiFiGt2ElapsedTimeCallback(Unk0219887c *a, u32 b) {
     func_ov000_021a314c(a, b);
 }
 

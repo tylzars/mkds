@@ -65,12 +65,12 @@ void InitWiFiConnection(void *a, void *b, s32 c, const char *d, const char *e, s
     gWiFiConnection = a;
     func_ov000_0219c3b0();
     gWiFiConnection->mSocket = NULL;
-    gWiFiConnection->mResultCallback = func_ov000_021a1b2c;
-    gWiFiConnection->mDataCallback = func_ov000_0219b4a4;
+    gWiFiConnection->mResultCallback = WiFiGt2ResultCallback;
+    gWiFiConnection->mDataCallback = WiFiGt2DataCallback;
     gWiFiConnection->mUnk_0c = (s32(*)()) func_ov000_0219b27c;
-    gWiFiConnection->mElapsedTimeCallback = func_ov000_0219b274;
+    gWiFiConnection->mElapsedTimeCallback = WiFiGt2ElapsedTimeCallback;
     gWiFiConnection->mSendBufferSize = f == 0 ? 0x2000 : f;
-    gWiFiConnection->mUnk_18 = g == 0 ? 0x2000 : g;
+    gWiFiConnection->mReceiveBufferSize = g == 0 ? 0x2000 : g;
     gWiFiConnection->mGpConnection.mGpiConnection = NULL;
     gWiFiConnection->mUnk_20 = b;
     gWiFiConnection->mState = 0;
@@ -297,19 +297,20 @@ BOOL StartWiFiBuddySync(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32
 }
 
 // Connection-level start: only in state 3 and with no error pending; clears the peer tables, stores the callback pair,
-// sets state 5 and calls func_ov000_021a260c.
+// sets state 5 and calls StartMatchingWithFilter.
 void StartWiFiMatchingWithFilter(u32 a, void *b, void *c, void *d, void *e, u32 f) {
     if (func_ov000_0219c39c() == 0 && gWiFiConnection->mState == 3) {
         func_ov000_0219b964();
         gWiFiConnection->mMatchingCallback = (void (*)(u32, u32, void *)) c;
         gWiFiConnection->mMatchingCallbackArg = d;
         SetWiFiConnectionState(5);
-        func_ov000_021a260c((u8) (a - 1), b, (u32) WiFiMatchingCallback, 0, (u32) e, f);
+        StartMatchingWithFilter((u8) (a - 1), b, (u32) WiFiMatchingCallback, 0, (u32) e, f);
     }
 }
 
-// Connection-level start: only in state 3; stores the callback pair, sets state 5 and calls func_ov000_021a2468 with
-// the given list, or with a list of all buddy entries in random order when it is NULL (the one caller passes NULL).
+// Connection-level start: only in state 3; stores the callback pair, sets state 5 and calls StartMatchingWithBuddies
+// with the given list, or with a list of all buddy entries in random order when it is NULL (the one caller passes
+// NULL).
 void StartWiFiMatchingWithBuddies(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, u32 h) {
     u8 s[0x40];
     u8 t[0x40];
@@ -322,7 +323,7 @@ void StartWiFiMatchingWithBuddies(void *a, u32 b, u32 c, u32 d, void *e, void *f
         gWiFiConnection->mMatchingCallbackArg = f;
         SetWiFiConnectionState(5);
         if (a != NULL) {
-            func_ov000_021a2468(a, b, (u8) (c - 1), d, WiFiMatchingCallback, 0, g, h);
+            StartMatchingWithBuddies(a, b, (u8) (c - 1), d, WiFiMatchingCallback, 0, g, h);
             return;
         }
         i = 0;
@@ -344,7 +345,7 @@ void StartWiFiMatchingWithBuddies(void *a, u32 b, u32 c, u32 d, void *e, void *f
                 s[n] = i;
             }
         }
-        func_ov000_021a2468(s, b, (u8) (c - 1), d, WiFiMatchingCallback, 0, g, h);
+        StartMatchingWithBuddies(s, b, (u8) (c - 1), d, WiFiMatchingCallback, 0, g, h);
     }
 }
 
@@ -354,7 +355,7 @@ s32 func_ov000_0219bbfc(void) {
         ((p = gWiFiConnection)->mState != 5 && p->mState != 6)) {
         return -1;
     }
-    if (p->mMatching.mUnk_0d == 0) {
+    if (p->mMatching.mLastParticipantPos == 0) {
         func_ov000_0219d558(1, data_ov000_021b4054, NULL);
         func_ov000_0219b110();
         SetWiFiConnectionState(3);
@@ -436,7 +437,7 @@ s32 func_ov000_0219ba20(void) {
     v = (u16) (func_ov000_021a3448(0x4000) + 0xc000);
     p = gWiFiConnection;
     r = func_ov000_02198ac4((Gt2Socket **) gWiFiConnection, (const char *) Gt2FormatAddress(0, v, 0),
-                            p->mSendBufferSize, p->mUnk_18, (u32) func_ov000_0219b240);
+                            p->mSendBufferSize, p->mReceiveBufferSize, (u32) func_ov000_0219b240);
     if (ReportWiFiSocketResult(r) != 0) {
         return r;
     }
@@ -685,15 +686,15 @@ void WiFiMatchingCallback(u32 a, u32 b, u32 c, u32 d, u32 e) {
         }
     } else if (a == 0) {
         SetWiFiConnectionState(6);
-        for (f = 0; f <= gWiFiConnection->mMatching.mUnk_0d; f++) {
+        for (f = 0; f <= gWiFiConnection->mMatching.mLastParticipantPos; f++) {
             if (gWiFiConnection->mProfileId == gWiFiConnection->mMatching.mParticipantProfileIds[f]) {
                 gWiFiConnection->mOwnIndex = gWiFiConnection->mMatching.mParticipantIndices[f];
                 break;
             }
         }
     }
-    gWiFiConnection->mMatching.mParticipantMask =
-        func_ov000_0219b844(gWiFiConnection->mMatching.mParticipantIndices, gWiFiConnection->mMatching.mUnk_0d + 1);
+    gWiFiConnection->mMatching.mParticipantMask = func_ov000_0219b844(
+        gWiFiConnection->mMatching.mParticipantIndices, gWiFiConnection->mMatching.mLastParticipantPos + 1);
     func_ov000_021a15b0();
     h = gWiFiConnection;
     if (h->mMatching.mMode == 2 || h->mMatching.mMode == 3) {

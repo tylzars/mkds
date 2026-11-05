@@ -15,13 +15,19 @@ typedef struct WiFiMatching {
     // connect calls (code_0219dd4c.c:453, :509, code_0219dabc.c:50).
     /* 008 */ u32 mConnectionCallbacks;
     /* 00c */ u8 mUnk_0c;
-    /* 00d */ u8 mUnk_0d;
+    // Position (0-based) of the last participant in mParticipantProfileIds / mParticipantIndices: the list holds
+    // mLastParticipantPos + 1 entries (code_0219dd4c.c:819) and the loops over the other participants run from 1 to
+    // it (:651). ++ when a peer joins (code_0219dd4c.c:484, :550), -- when one leaves
+    // (code_0219b1f8.c:110), 0 in the reset (code_0219dd4c.c:923); the next free slot is mLastParticipantPos +
+    // 1 (:1854). Weak: it is equally the count of other participants (the 3000 ms steps at :281 scale with it; 0 means
+    // nobody else).
+    /* 00d */ u8 mLastParticipantPos;
     /* 00e */ u8 mUnk_0e;
     /* 00f */ u8 mUnk_0f;
     /* 010 */ struct Unk021a4a08 *mUnk_10;
     /* 014 */ u8 mUnk_14;
-    // Set by func_ov000_021a10b0: 0 filter search (func_ov000_021a260c), 1 buddy list (func_ov000_021a2468); the
-    // connection code also tests 2 and 3 (modes 2 and 3 have no writer: func_ov000_021a10b0 has two BL callers, both
+    // Set by SetupMatching: 0 filter search (StartMatchingWithFilter), 1 buddy list (StartMatchingWithBuddies); the
+    // connection code also tests 2 and 3 (modes 2 and 3 have no writer: SetupMatching has two BL callers, both
     // the starts), so those branches are not reached; cleared by the reset (code_0219dd4c.c:939).
     /* 015 */ volatile u8 mMode;
     /* 016 */ u8 mUnk_16;
@@ -106,7 +112,7 @@ typedef struct WiFiMatching {
     /* 43c */ u32 mUnk_43c;
     /* 440 */ u32 mUnk_440;
     /* 444 */ u64 mUnk_444;
-    // Set by func_ov000_021a10b0 (WiFiMatchingCallback from both starts), declared UnkFunc *. Called with (error kind
+    // Set by SetupMatching (WiFiMatchingCallback from both starts), declared UnkFunc *. Called with (error kind
     // or 0, 0 or 1, ..., mResultCallbackArg) from ReportMatchingError's address func_ov000_021a1a38
     // (code_0219dd4c.c:581) and three more sites (:2031, :2156, :2194).
     /* 44c */ UnkFunc *mResultCallback;

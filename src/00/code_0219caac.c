@@ -1,7 +1,9 @@
 #include "00/code_0219caac.h"
 #include "code_0214d018.h"
 
-u32 func_ov000_0219caf4(void) {
+// Returns mPendingStatsRequestCount of gWiFiBuddySync (no NULL test); UpdateBuddySync reports an error when requests
+// are pending but the stats link is gone (code_0219d128.c:84).
+u32 GetPendingStatsRequestCount(void) {
     return gWiFiBuddySync->mPendingStatsRequestCount;
 }
 

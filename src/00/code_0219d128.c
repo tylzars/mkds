@@ -30,7 +30,9 @@
 #include "00/code_0219742c.h"
 #include "code_02152a24.h"
 
-void func_ov000_0219d934(void *first, void *second) {
+// Stores the callback and its argument in mBuddyChangedCallback / mBuddyChangedCallbackArg of gWiFiBuddySync when the
+// object exists.
+void SetBuddyChangedCallback(void *first, void *second) {
     if (gWiFiBuddySync != NULL) {
         gWiFiBuddySync->mBuddyChangedCallback = first;
         gWiFiBuddySync->mBuddyChangedCallbackArg = second;
@@ -79,7 +81,7 @@ void UpdateBuddySync(void) {
     if (func_ov000_0219c39c() != 0) {
         return;
     }
-    if (func_ov000_0219caf4() != 0 && func_ov000_0219746c() == FALSE) {
+    if (GetPendingStatsRequestCount() != 0 && func_ov000_0219746c() == FALSE) {
         ReportBuddySyncError(6, -0x1194a);
         return;
     }
@@ -134,7 +136,7 @@ void StartBuddySync(s32 a, const char *b, void (*c)(s32, u8, void *), void *d, v
         }
         func_ov000_02197a9c((const char *) func_ov000_021975f4(NULL), b, l);
         func_ov000_02197594(0, a, (s32) l, func_ov000_0219cc30, 0);
-        func_ov000_0219cb30();
+        AddPendingStatsRequest();
     } else {
         gWiFiBuddySync->mCompletedParts++;
     }

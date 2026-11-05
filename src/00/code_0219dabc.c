@@ -72,7 +72,8 @@ void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
         if (f == 1 || (f == 2 && ((Unk0219db18 *) d)->mUnk_01 >= 1)) {
             ((Unk0219db18 *) d)->mUnk_08 = 0;
             if (func_ov000_0219dabc() != 0) {
-                if (func_ov000_0219f938(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mUnk_0d]) != 0) {
+                if (func_ov000_0219f938(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mLastParticipantPos]) !=
+                    0) {
                     return;
                 }
             }
@@ -91,7 +92,8 @@ void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
             gWiFiMatching->mUnk_174[0] = 0;
             gWiFiMatching->mUnk_178 = 0;
             gWiFiMatching->mUnk_17c = 0;
-            if (func_ov000_0219f9bc(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mUnk_0d + 1]) != 0) {
+            if (func_ov000_0219f9bc(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mLastParticipantPos + 1]) !=
+                0) {
                 return;
             }
         }

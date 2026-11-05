@@ -5,4 +5,4 @@
 #include "03/code_021b94b8.h"
 
 void InitWiFiLogin(WiFiLogin *a, Unk02152500 *b, GpConnection *c, u32 d, u32 e, void (*f)(), void *g);
-u32 func_ov000_0219caf4(void);
+u32 GetPendingStatsRequestCount(void);

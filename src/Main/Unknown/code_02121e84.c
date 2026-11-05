@@ -104,7 +104,7 @@ void ReceiveWiFiSessionMessage(u32 a, void *b, u32 c) {
             break;
         case 1:
             gWiFiSession->mReceivedMask |= 1 << a;
-            func_ov000_021a3264(a, &gWiFiSession->mReceiveBuffers[a], 0x44);
+            SetPeerReceiveBuffer(a, &gWiFiSession->mReceiveBuffers[a], 0x44);
             break;
         case 2:
             if (gWiFiSession->mStep == 1) {

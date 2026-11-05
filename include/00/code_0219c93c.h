@@ -14,7 +14,7 @@ typedef struct WiFiLogin {
     /* 00 */ GpConnection *mGpConnection;
     // 0 idle, 1 waiting for the HTTP reply, 2 GP connect for a known profile (success: id check, socket, done), 3 GP
     // connect then 4 profile name check (func_ov000_0219c400), 5 done. Written only by the machine; 0 is
-    // func_ov000_0219c93c.
+    // ResetWiFiLogin.
     /* 04 */ s32 mState;
     // Game id 0x4d6 (InitWiFiConnection's fourth parameter): given to GpInitialize, which stores it as
     // GpiConnection.mProductId (code_0218f848.c:31) and writes it after '\productid\' (code_02190ff8.c:260).
@@ -28,13 +28,15 @@ typedef struct WiFiLogin {
     /* 1c */ void *mResultCallbackArg;
     /* 20 */ Unk02152500 *mUnk_20;
     /* 24 */ u8 pad_24[4];
-    // Http (0x1a60 bytes; declared void *) of the running request: made by func_ov000_0219c67c, freed when the reply or
-    // an error ends the request and by ReleaseWiFiLogin.
+    // Http (0x1a60 bytes; declared void *) of the running request: made by StartWiFiLoginRequest, freed when the reply
+    // or an error ends the request and by ReleaseWiFiLogin.
     /* 28 */ void *mHttp;
-    /* 2c */ u32 mUnk_2c;
-    /* 30 */ u32 mUnk_30;
-    // TRUE from func_ov000_0219c79c until the GP connect callback or an error; UpdateWiFiLogin times the connect out
-    // while it is TRUE.
+    // u64 tick reading (func_0200f5ac) taken when the HTTP request started (code_0219c3e4.c:243);
+    // UpdateWiFiLoginRequest reports error 2 when (ticks << 6) / 0x82ea, the milliseconds since then, exceeds 10000
+    // (:268).
+    /* 2c */ u64 mRequestStartTime;
+    // TRUE from StartWiFiLoginGpConnect until the GP connect callback or an error; UpdateWiFiLogin times the connect
+    // out while it is TRUE.
     /* 34 */ BOOL mConnectPending;
     // func_0200f5ac reading when the GP connect started; (ticks << 6) / 0x82ea is ms, limit 60000 ms (UpdateWiFiLogin).
     /* 38 */ u64 mConnectStartTime;
@@ -55,4 +57,4 @@ typedef struct WiFiLogin {
 // Points at WiFiConnection.mLogin: set by InitWiFiLogin (once per login), set to 0 by ReleaseWiFiLogin.
 extern WiFiLogin *gWiFiLogin;
 
-void func_ov000_0219c93c(void);
+void ResetWiFiLogin(void);
