@@ -499,7 +499,7 @@ u16 func_02044618(void) {
     p = data_021759c0;
     if (p->mMode != 2) {
         if (p->mUnk_064 <= 0) {
-            r = gCourseMap->mUnk_018->mUnk_02;
+            r = gCourseMap->mSettings->mUnk_02;
         } else {
             r = (u16) p->mUnk_064;
         }

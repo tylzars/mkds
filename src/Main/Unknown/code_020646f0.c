@@ -34,7 +34,7 @@ void func_020646f0(Kart *a, s32 b) {
     Vec3 *n;
 
     if (b == 0) {
-        func_02041bb0(&a->mPos, &d, a->mIndex);
+        GetCourseMapKartStartPlacement(&a->mPos, &d, a->mIndex);
         if (data_021759c0->mUnk_00c == 5) {
             a->mPos = data_0216549c[a->mIndex];
         }

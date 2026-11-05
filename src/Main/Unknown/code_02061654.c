@@ -375,7 +375,7 @@ void func_02062284(void) {
         reg_G3X_FOG_COLOR = data_0217aa28 | (data_0217aa68 << 16);
     } else if (data_0217aa54->mUnk_20 != data_0217aa54->mUnk_24) {
         if (data_0217aa54->mUnk_20 == 0) {
-            if (gCourseMap->mUnk_018->mUnk_05 != 0) {
+            if (gCourseMap->mSettings->mFogEnabled != 0) {
                 func_0214a7ec(1, 0, data_0217aa80, data_0217aa48);
                 reg_G3X_FOG_COLOR = data_0217aa38 | (data_0217aa50 << 16);
                 func_0214a748(data_0217aabc);
@@ -508,8 +508,8 @@ void func_02061c28(void) {
     data_0217aa2c = 0;
     data_0217aa54->mUnk_24 = 0;
     data_0217aa54->mUnk_20 = data_0217aa54->mUnk_24;
-    if (gCourseMap->mUnk_018->mUnk_05 != 0) {
-        m = gCourseMap->mUnk_018->mUnk_06;
+    if (gCourseMap->mSettings->mFogEnabled != 0) {
+        m = gCourseMap->mSettings->mFogTableMode;
         if (m == 0) {
             for (i = 0; i < 8; i++) {
                 data_0217aabc[i] = ((i * 4) << 2) | ((i * 16 + 4) << 8) | ((i * 16 + 8) << 16) | ((i * 16 + 12) << 24);
@@ -537,15 +537,15 @@ void func_02061c28(void) {
                 data_0217aabc[i] = a[i * 4] | (a[i * 4 + 1] << 8) | (a[i * 4 + 2] << 16) | (a[i * 4 + 3] << 24);
             }
         }
-        data_0217aa38 = gCourseMap->mUnk_018->mUnk_14 & 0x7fff;
-        data_0217aa50 = ((u32) gCourseMap->mUnk_018->mUnk_14 >> 15) & 31;
-        data_0217aa80 = gCourseMap->mUnk_018->mUnk_07;
-        data_0217aa48 = gCourseMap->mUnk_018->mUnk_10 / 512;
+        data_0217aa38 = gCourseMap->mSettings->mUnk_14 & 0x7fff;
+        data_0217aa50 = ((u32) gCourseMap->mSettings->mUnk_14 >> 15) & 31;
+        data_0217aa80 = gCourseMap->mSettings->mUnk_07;
+        data_0217aa48 = gCourseMap->mSettings->mFogOffset / 512;
         data_0217aa40 = data_0217aa38 & 31;
         data_0217aa34 = (data_0217aa38 >> 5) & 31;
         data_0217aa3c = (data_0217aa38 >> 10) & 31;
     }
-    if (gCourseMap->mUnk_018->mUnk_05 != 0) {
+    if (gCourseMap->mSettings->mFogEnabled != 0) {
         func_0214a7ec(1, 0, data_0217aa80, data_0217aa48);
         *(u32 *) 0x04000358 = data_0217aa38 | (data_0217aa50 << 16);
         func_0214a748(data_0217aabc);
@@ -562,7 +562,7 @@ void func_02061944(s32 a, s32 b) {
     u16 i;
     s32 e;
 
-    if (gCourseMap->mUnk_018->mUnk_05 != 0 && b == 0) {
+    if (gCourseMap->mSettings->mFogEnabled != 0 && b == 0) {
         t = (s32) (((s64) 57 * (a << 12) + 0x800) >> 12);
         data_0217aa78 = t;
         u = 4096 - t;

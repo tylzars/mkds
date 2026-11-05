@@ -69,12 +69,12 @@ static inline u16 func_0203df74_inline(u16 a) {
     u16 i;
     u16 v1;
     u16 v2;
-    Unk02175620_4c *r;
+    CourseMapRoute *r;
 
-    for (i = 0; i < gCourseMap->mUnk_50; i++) {
-        r = &gCourseMap->mUnk_4c[i];
-        v1 = r->mUnk_00;
-        v2 = v1 + r->mUnk_02;
+    for (i = 0; i < gCourseMap->mCheckpointRouteCount; i++) {
+        r = &gCourseMap->mCheckpointRoutes[i];
+        v1 = r->mFirstEntry;
+        v2 = v1 + r->mEntryCount;
         if (a >= v1 && a < v2) {
             return i;
         }
@@ -87,12 +87,12 @@ static inline s16 func_0203df74_b_inline(Unk0217561c_14 *b, s32 *v, Vec3 *a) {
     u16 k;
     u16 lo;
     u16 hi;
-    Unk02175620_4c *r;
+    CourseMapRoute *r;
 
-    for (i = 0; i < gCourseMap->mUnk_50; i++) {
-        r = &gCourseMap->mUnk_4c[i];
-        lo = r->mUnk_00;
-        hi = lo + r->mUnk_02;
+    for (i = 0; i < gCourseMap->mCheckpointRouteCount; i++) {
+        r = &gCourseMap->mCheckpointRoutes[i];
+        lo = r->mFirstEntry;
+        hi = lo + r->mEntryCount;
         for (k = lo; k < hi; k++) {
             if (func_0203fa60(b, v, a, i, k) != 0) {
                 return k;
@@ -102,15 +102,15 @@ static inline s16 func_0203df74_b_inline(Unk0217561c_14 *b, s32 *v, Vec3 *a) {
     return -1;
 }
 
-static inline s32 func_0203df74_c_inline(Unk02175620_4c *r, u16 c, s32 v) {
+static inline s32 func_0203df74_c_inline(CourseMapRoute *r, u16 c, s32 v) {
     s32 x;
     s32 t;
 
-    t = (c - r->mUnk_00) << 12;
-    if (r->mUnk_02 == 0) {
+    t = (c - r->mFirstEntry) << 12;
+    if (r->mEntryCount == 0) {
         x = 0;
     } else {
-        x = DivFixed12(t + v, r->mUnk_02 << 12);
+        x = DivFixed12(t + v, r->mEntryCount << 12);
     }
     t = x + (r->mUnk_0a << 12);
     return (s32) (((s64) t * data_0217561c->mUnk_4e4 + 0x800) >> 12);
@@ -218,21 +218,21 @@ void func_0203e4c4(u32 a, u32 b) {
 void func_0203e370(Unk0217561c_14 *a, s32 b) {
     s16 c;
 
-    c = gCourseMap->mUnk_44[a->mUnk_32].mUnk_20;
+    c = gCourseMap->mCheckpoints[a->mUnk_32].mNumber;
     if (c != -1) {
         a->mUnk_36 = c;
         if (a->mUnk_34 + 1 >= c) {
             a->mUnk_34 = c;
         }
     }
-    if (b == 0 && a->mUnk_34 >= gCourseMap->mUnk_98 - 1) {
+    if (b == 0 && a->mUnk_34 >= gCourseMap->mNumberedCheckpointCount - 1) {
         func_0203e550(a);
-    } else if (a->mUnk_32 == 0 && b == gCourseMap->mUnk_9a) {
+    } else if (a->mUnk_32 == 0 && b == gCourseMap->mLastCheckpoint) {
         if (a->mUnk_24 > -100) {
             a->mUnk_24 = a->mUnk_24 - 1;
         }
-        a->mUnk_36 = gCourseMap->mUnk_98 - 1;
-        a->mUnk_34 = gCourseMap->mUnk_98 - 1;
+        a->mUnk_36 = gCourseMap->mNumberedCheckpointCount - 1;
+        a->mUnk_34 = gCourseMap->mNumberedCheckpointCount - 1;
     }
     a->mUnk_32 = b;
     a->mUnk_38 = func_0203df74_inline(b);
@@ -245,7 +245,7 @@ void func_0203df74(Vec3 *a, Unk0217561c_14 *b) {
     s16 p;
     s32 w;
     s32 k;
-    Unk02175620_4c *r;
+    CourseMapRoute *r;
 
     c = b->mUnk_32;
     d = b->mUnk_38;
@@ -274,12 +274,12 @@ void func_0203df74(Vec3 *a, Unk0217561c_14 *b) {
         }
         d = func_0203df74_inline(p);
     }
-    r = &gCourseMap->mUnk_4c[d];
+    r = &gCourseMap->mCheckpointRoutes[d];
     w = func_0203df74_c_inline(r, p, v);
     k = 0;
     if (p != -1) {
-        if (gCourseMap->mUnk_98 >= 1) {
-            k = data_0217561c->mUnk_4d4[gCourseMap->mUnk_98 - 1];
+        if (gCourseMap->mNumberedCheckpointCount >= 1) {
+            k = data_0217561c->mUnk_4d4[gCourseMap->mNumberedCheckpointCount - 1];
         }
         if (w <= data_0217561c->mUnk_4d4[b->mUnk_34 + 1]) {
             func_0203e370(b, p);
@@ -332,7 +332,7 @@ void func_0203d9d4(void) {
             func_0203df74(&v, e);
             f = FALSE;
             if (func_0207a7fc(e->mUnk_3c_4) == 0) {
-                o = &gCourseMap->mUnk_44[e->mUnk_32].mUnk_10;
+                o = &gCourseMap->mCheckpoints[e->mUnk_32].mUnk_10;
                 t.mUnk_00 = w.x;
                 t.mUnk_04 = w.z;
                 if (func_02040d68(&t, o) < -1394) {
@@ -473,7 +473,7 @@ void func_0203d8fc(Unk0217561c_4c8 *a) {
 
 void func_0203d848(void *a) {
     data_0217561c = HeapAlloc(a, 0x524);
-    data_0217561c->mUnk_4d4 = HeapAlloc(a, (gCourseMap->mUnk_98 + 1) << 2);
+    data_0217561c->mUnk_4d4 = HeapAlloc(a, (gCourseMap->mNumberedCheckpointCount + 1) << 2);
     data_0217561c->mUnk_4dc = FindMainRaceOrMainEffectFile(data_usa_021647b8);
     data_0217561c->mUnk_4c8 = FindMainRaceOrMainEffectFile(data_usa_021647c8);
     func_0203d8fc(data_0217561c->mUnk_4c8);

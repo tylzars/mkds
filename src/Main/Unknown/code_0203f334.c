@@ -113,7 +113,7 @@ void func_0203fed4(void) {
     func_0203f5f0((u8 *) c + 2, (u8 *) c + 3, c, t, p->mUnk_000[0].mUnk_00);
 }
 
-BOOL func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 *c) {
+BOOL func_0203fde0(const Vec3 *a, const CourseMapCheckpoint *b, const CourseMapCheckpoint *c) {
     volatile UnkPair020b502c p;
     s32 d;
 
@@ -134,14 +134,14 @@ BOOL func_0203fde0(const Vec3 *a, const Unk02175620_44 *b, const Unk02175620_44 
 }
 
 s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
-    Unk02175620_44 *q;
-    Unk02175620_44 *r;
+    CourseMapCheckpoint *q;
+    CourseMapCheckpoint *r;
     UnkPair020b502c l[3];
     s64 x;
     s64 y;
 
-    q = &gCourseMap->mUnk_44[b];
-    r = &gCourseMap->mUnk_44[c];
+    q = &gCourseMap->mCheckpoints[b];
+    r = &gCourseMap->mCheckpoints[c];
     if (func_0203fde0(a, q, r) == FALSE) {
         return -0x1000;
     }
@@ -167,25 +167,25 @@ BOOL func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     s16 t;
     s32 j;
     s8 k;
-    Unk02175620_4c *p;
+    CourseMapRoute *p;
     s32 f;
 
     w = e >> 5;
     m = 1 << (e & 0x1f);
     r = FALSE;
-    t = gCourseMap->mUnk_44[e].mUnk_1c;
+    t = gCourseMap->mCheckpoints[e].mUnk_1c;
     f = a->mUnk_4c[w];
     if ((f & m) != 0) {
         return FALSE;
     }
     if (t != -1) {
-        p = &gCourseMap->mUnk_4c[d];
+        p = &gCourseMap->mCheckpointRoutes[d];
         for (j = 0; j < 3; j++) {
             k = (p->mUnk_04)[j];
             if (k != -1) {
-                *b = func_0203fcac(c, e, gCourseMap->mUnk_4c[(u16) k].mUnk_00);
+                *b = func_0203fcac(c, e, gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry);
                 if (*b >= -2 && *b <= 0x1002) {
-                    if ((gCourseMap->mUnk_44[e].mUnk_23 & 1) != 0) {
+                    if ((gCourseMap->mCheckpoints[e].mUnk_23 & 1) != 0) {
                         if (data_021759c0->mMode == 5) {
                             *b = 0x1000 - (func_ov000_0219bb50() + 1) * 0x190;
                         } else {
@@ -200,7 +200,7 @@ BOOL func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     } else {
         *b = func_0203fcac(c, e, e + 1);
         if (*b >= -2 && *b <= 0x1002) {
-            if ((gCourseMap->mUnk_44[e].mUnk_23 & 1) != 0) {
+            if ((gCourseMap->mCheckpoints[e].mUnk_23 & 1) != 0) {
                 *b = 0x1000 - ((u32) (a->mUnk_3c << 28) >> 28) * 0x190;
             }
             if (*b < 0) {
@@ -221,9 +221,9 @@ s16 func_0203f91c(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s8 k;
     s32 j;
     s16 r;
-    Unk02175620_4c *p;
+    CourseMapRoute *p;
 
-    t = gCourseMap->mUnk_44[e].mUnk_1c;
+    t = gCourseMap->mCheckpoints[e].mUnk_1c;
     if (func_0203fa60(a, b, c, d, e) != 0) {
         return e;
     }
@@ -231,12 +231,12 @@ s16 func_0203f91c(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         return -1;
     }
     if (t != -1) {
-        p = &gCourseMap->mUnk_4c[d];
+        p = &gCourseMap->mCheckpointRoutes[d];
         r = -1;
         for (j = 0; j < 3; j++) {
             k = (p->mUnk_04)[j];
             if (k != -1) {
-                r = func_0203f91c(a, b, c, (u16) k, gCourseMap->mUnk_4c[(u16) k].mUnk_00, f - 1);
+                r = func_0203f91c(a, b, c, (u16) k, gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry, f - 1);
                 if (r != -1) {
                     return r;
                 }
@@ -252,9 +252,9 @@ s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s8 k;
     s32 j;
     s16 r;
-    Unk02175620_4c *p;
+    CourseMapRoute *p;
 
-    t = gCourseMap->mUnk_44[e].mUnk_1e;
+    t = gCourseMap->mCheckpoints[e].mUnk_1e;
     if (func_0203fa60(a, b, c, d, e) != 0) {
         return e;
     }
@@ -262,13 +262,13 @@ s16 func_0203f7c0(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         return -1;
     }
     if (t != -1) {
-        p = &gCourseMap->mUnk_4c[d];
+        p = &gCourseMap->mCheckpointRoutes[d];
         r = -1;
         for (j = 0; j < 3; j++) {
             k = (&p->mUnk_07)[j];
             if (k != -1) {
                 r = func_0203f7c0(a, b, c, (u16) k,
-                                  gCourseMap->mUnk_4c[(u16) k].mUnk_00 + gCourseMap->mUnk_4c[(u16) k].mUnk_02 - 1,
+                                  gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry + gCourseMap->mCheckpointRoutes[(u16) k].mEntryCount - 1,
                                   f - 1);
                 if (r != -1) {
                     return r;
@@ -379,7 +379,7 @@ void func_0203f334(Unk0217561c_14 *a, s32 b) {
     u16 k;
     s16 t;
 
-    t = gCourseMap->mUnk_44->mUnk_1c;
+    t = gCourseMap->mCheckpoints->mUnk_1c;
     e = a->mUnk_0c;
     i = 0;
     if (a->mUnk_24 <= 1) {

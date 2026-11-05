@@ -130,7 +130,7 @@ void func_020e7760(void) {
     data_0217b8f0 = a;
     data_0217b8bc = a;
     data_0217b894 = 0;
-    if (gCourseMap->mUnk_018->mUnk_04 != 0) {
+    if (gCourseMap->mSettings->mUnk_04 != 0) {
         a = FALSE;
     }
     data_0217b8f8 = a;

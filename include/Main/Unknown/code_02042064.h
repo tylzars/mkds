@@ -3,10 +3,10 @@
 #include "types.h"
 
 // Header of the file returned by FindCourseFile in CreateCourseMap: a word array at 0x08 holds offsets from 0x06's
-// value.
-typedef struct {
+// value. The halfword at 4 is the format version (copied to CourseMap::mVersion).
+typedef struct CourseMapHeader {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ u16 mUnk_04;
+    /* 04 */ u16 mVersion;
     /* 06 */ u16 mBaseOffset;
     /* 08 */ s32 mSectionOffsets[1];
 } CourseMapHeader;
@@ -29,7 +29,7 @@ void CreateCourseMap(void *a);
 
 typedef struct Unk020f41c4_B Unk020f41c4_B;
 
-typedef struct Unk02175620_4c Unk02175620_4c;
+typedef struct CourseMapRoute CourseMapRoute;
 typedef struct Unk02175620_a0 Unk02175620_a0;
 typedef struct Unk020f371c Unk020f371c;
 
@@ -43,22 +43,22 @@ s32 func_02042410(void *a, ...);
 s32 func_02042498(void *a, ...);
 s32 func_02042520(void *a, ...);
 s32 func_02042558(void *a, ...);
-s32 func_02042590(void *a, ...);
-s32 func_02042628(void *a, ...);
+s32 LoadCourseMapCheckpointRoutesData(void *a, ...);
+s32 LoadCourseMapCheckpointsData(void *a, ...);
 s32 func_020426ac(void *a, ...);
 s32 func_02042708(void *a, ...);
 void func_0204274c(void);
 s32 func_020427ac(void *a, ...);
-void func_020427d4(Unk020f41c4_B *a);
-s32 func_02042894(void *a, ...);
-s32 func_02042990(void *a, ...);
-u32 func_020429b8(u32 arg0);
+void ShuffleCourseMapRespawnSlots(Unk020f41c4_B *a);
+s32 LoadCourseMapRespawnsData(void *a, ...);
+s32 LoadCourseMapStartPlacementsData(void *a, ...);
+u32 LoadCourseMapSettingsData(u32 arg0);
 void func_020429c8(void *a);
 void func_02042a10(void *a);
 void func_02042c3c(void *a);
-void func_02042d34(Unk02175620_a0 *a, Unk02175620_4c *b, u16 c);
+void func_02042d34(Unk02175620_a0 *a, CourseMapRoute *b, u16 c);
 void func_02042e0c(void *a);
-void func_02042ec0(Unk020f371c *a, Unk02175620_4c *b, u16 c);
+void func_02042ec0(Unk020f371c *a, CourseMapRoute *b, u16 c);
 unsigned int func_02042fc4(unsigned int p0);
 void func_02042fd8(void *a);
 void func_02043038(void);

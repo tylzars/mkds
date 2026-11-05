@@ -103,9 +103,9 @@ BOOL func_01ffa1f8(Kart *p) {
             p->mUnk_48 = p->mUnk_48 | 0x800;
             i = p->mIndex;
             if (data_021759c0->mMode == 2) {
-                r = func_02041170(0);
+                r = GetCourseMapRespawnSlot(0);
             } else {
-                r = func_02041170(data_0217561c->mUnk_000[i].mUnk_46);
+                r = GetCourseMapRespawnSlot(data_0217561c->mUnk_000[i].mUnk_46);
             }
             p->mUnk_3c4 = r;
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {

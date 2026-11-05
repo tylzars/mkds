@@ -10,9 +10,11 @@
 #include "code_02147288.h"
 #include "code_02147cd8.h"
 
-void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
-    Unk02175620_34 *q = NULL;
-    Unk02175620_34 *p;
+// Position of the start placement with key c (the only one when there are not several) moved by d along the negated
+// first and e along the negated third axis of its rotation, and the rotation angles in b.
+void GetCourseMapStartPlacementWithOffsets(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
+    CourseMapPlacement *q = NULL;
+    CourseMapPlacement *p;
     s32 i;
     u16 x;
     u16 y;
@@ -28,19 +30,19 @@ void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     s32 y2;
     s32 z2;
 
-    if (gCourseMap->mUnk_018->mUnk_04 != 0) {
+    if (gCourseMap->mSettings->mUnk_04 != 0) {
         d = 0x1000 - d;
     }
-    if (gCourseMap->mUnk_020 > 1) {
-        for (i = 0; i < gCourseMap->mUnk_020; i++) {
-            p = &((Unk02175620_34 *) gCourseMap->mUnk_01c)[i];
+    if (gCourseMap->mStartPlacementCount > 1) {
+        for (i = 0; i < gCourseMap->mStartPlacementCount; i++) {
+            p = &((CourseMapPlacement *) gCourseMap->mStartPlacements)[i];
             if (c == (s16) p->mUnk_1a) {
                 q = p;
                 break;
             }
         }
     } else {
-        q = (Unk02175620_34 *) gCourseMap->mUnk_01c;
+        q = (CourseMapPlacement *) gCourseMap->mStartPlacements;
     }
     x = (u16) ((q->mUnk_0c.x >> 12) * 0xb6);
     y = (u16) ((q->mUnk_0c.y >> 12) * 0xb6);
@@ -56,15 +58,17 @@ void func_02041dc8(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
     x2 = -r.mUnk_00[2].x;
     y2 = -r.mUnk_00[2].y;
     z2 = -r.mUnk_00[2].z;
-    a->x = q->mUnk_00.x + (s32) (((s64) x0 * d + 0x800) >> 12) + (s32) (((s64) x2 * e + 0x800) >> 12);
-    a->y = q->mUnk_00.y + (s32) (((s64) y0 * d + 0x800) >> 12) + (s32) (((s64) y2 * e + 0x800) >> 12);
-    a->z = q->mUnk_00.z + (s32) (((s64) z0 * d + 0x800) >> 12) + (s32) (((s64) z2 * e + 0x800) >> 12);
+    a->x = q->mPos.x + (s32) (((s64) x0 * d + 0x800) >> 12) + (s32) (((s64) x2 * e + 0x800) >> 12);
+    a->y = q->mPos.y + (s32) (((s64) y0 * d + 0x800) >> 12) + (s32) (((s64) y2 * e + 0x800) >> 12);
+    a->z = q->mPos.z + (s32) (((s64) z0 * d + 0x800) >> 12) + (s32) (((s64) z2 * e + 0x800) >> 12);
     b->x = q->mUnk_0c.x;
     b->y = q->mUnk_0c.y;
     b->z = q->mUnk_0c.z;
 }
 
-void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
+// Position and rotation of the start spot of kart c by mode: a staggered grid by rank in a race, by key
+// (kart + mUnk_4f8) % 8 in battle.
+void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
     u16 i = (u16) (data_021759c0->mKartCount - 1);
     s32 j = (u16) (func_0205d27c(c) - 1);
     s32 k;
@@ -74,21 +78,21 @@ void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
     s32 d;
 
     if (data_021759c0->mUnk_00c == 6) {
-        func_02041dc8(a, b, 0, 0, 0);
+        GetCourseMapStartPlacementWithOffsets(a, b, 0, 0, 0);
         return;
     }
     switch (data_021759c0->mMode) {
         case 2:
-            func_02041dc8(a, b, (u16) ((j + data_0217561c->mUnk_4f8) % 8), 0, 0);
+            GetCourseMapStartPlacementWithOffsets(a, b, (u16) ((j + data_0217561c->mUnk_4f8) % 8), 0, 0);
             break;
         case 1:
-            func_02041dc8(a, b, 0, 0x800, 0);
+            GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);
             break;
         case 4:
             if (data_021759c0->mKartCount <= 1) {
-                func_02041dc8(a, b, 0, 0x800, 0);
+                GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);
             } else {
-                func_02041dc8(a, b, c, (1 - c * 2) * 0x14000 + 0x800, 0);
+                GetCourseMapStartPlacementWithOffsets(a, b, c, (1 - c * 2) * 0x14000 + 0x800, 0);
             }
             break;
         default:
@@ -114,7 +118,7 @@ void func_02041bb0(Vec3 *a, Vec3 *b, s32 c) {
             if (j >= k) {
                 t = 1;
             }
-            func_02041dc8(a, b, 0, d, j * 0x19000 + t * 0x14000);
+            GetCourseMapStartPlacementWithOffsets(a, b, 0, d, j * 0x19000 + t * 0x14000);
             break;
     }
 }
@@ -344,28 +348,30 @@ s32 func_020411e4(Vec3 *a) {
     return r;
 }
 
-u16 func_02041170(u32 a) {
+// Mode 2: returns mNextRespawnSlot and advances it modulo mRespawnCount (the argument is ignored); otherwise returns
+// mCheckpoints[a].mRespawnSlot, a = the kart's current entry.
+u16 GetCourseMapRespawnSlot(u32 a) {
     u16 r;
     CourseMap *p;
 
     if (data_021759c0->mMode == 2) {
         p = gCourseMap;
-        r = p->mUnk_100;
-        p->mUnk_100 = (r + 1) % p->mUnk_028;
+        r = p->mNextRespawnSlot;
+        p->mNextRespawnSlot = (r + 1) % p->mRespawnCount;
     } else {
-        r = gCourseMap->mUnk_44[a].mUnk_22;
+        r = gCourseMap->mCheckpoints[a].mRespawnSlot;
     }
     return r;
 }
 
 void *func_020410a4(u32 a, Vec3 *b, Vec3 *c) {
-    Unk02175620_24 *e;
+    CourseMapRespawn *e;
     s32 i;
 
-    if (gCourseMap->mUnk_44 == NULL && gCourseMap->mUnk_024 == NULL) {
+    if (gCourseMap->mCheckpoints == NULL && gCourseMap->mRespawns == NULL) {
         e = NULL;
     } else {
-        e = &gCourseMap->mUnk_024[gCourseMap->mUnk_f8[a]];
+        e = &gCourseMap->mRespawns[gCourseMap->mRespawnIndexBySlot[a]];
     }
     if (e == NULL) {
         b->x = 0;
@@ -376,9 +382,9 @@ void *func_020410a4(u32 a, Vec3 *b, Vec3 *c) {
         c->z = 0;
         i = -1;
     } else {
-        b->x = e->mUnk_00.x;
-        b->y = e->mUnk_00.y;
-        b->z = e->mUnk_00.z;
+        b->x = e->mPos.x;
+        b->y = e->mPos.y;
+        b->z = e->mPos.z;
         c->x = e->mUnk_0c.x;
         c->y = e->mUnk_0c.y;
         c->z = e->mUnk_0c.z;
@@ -391,13 +397,13 @@ void *func_020410a4(u32 a, Vec3 *b, Vec3 *c) {
 }
 
 Unk02175620_bc *func_02040fd8(u32 a, Vec3 *b, Vec3 *c) {
-    Unk02175620_24 *e;
+    CourseMapRespawn *e;
     s32 i;
 
-    if (gCourseMap->mUnk_44 == NULL && gCourseMap->mUnk_024 == NULL) {
+    if (gCourseMap->mCheckpoints == NULL && gCourseMap->mRespawns == NULL) {
         e = NULL;
     } else {
-        e = &gCourseMap->mUnk_024[gCourseMap->mUnk_f8[a]];
+        e = &gCourseMap->mRespawns[gCourseMap->mRespawnIndexBySlot[a]];
     }
     if (e == NULL) {
         b->x = 0;
@@ -408,9 +414,9 @@ Unk02175620_bc *func_02040fd8(u32 a, Vec3 *b, Vec3 *c) {
         c->z = 0;
         i = -1;
     } else {
-        b->x = e->mUnk_00.x;
-        b->y = e->mUnk_00.y;
-        b->z = e->mUnk_00.z;
+        b->x = e->mPos.x;
+        b->y = e->mPos.y;
+        b->z = e->mPos.z;
         c->x = e->mUnk_0c.x;
         c->y = e->mUnk_0c.y;
         c->z = e->mUnk_0c.z;
@@ -423,12 +429,12 @@ Unk02175620_bc *func_02040fd8(u32 a, Vec3 *b, Vec3 *c) {
 }
 
 struct Unk020f371c *func_02040f78(u32 a) {
-    Unk02175620_24 *e;
+    CourseMapRespawn *e;
 
-    if (gCourseMap->mUnk_44 == NULL && gCourseMap->mUnk_024 == NULL) {
+    if (gCourseMap->mCheckpoints == NULL && gCourseMap->mRespawns == NULL) {
         e = NULL;
     } else {
-        e = &gCourseMap->mUnk_024[gCourseMap->mUnk_f8[a]];
+        e = &gCourseMap->mRespawns[gCourseMap->mRespawnIndexBySlot[a]];
     }
     if (e == NULL) {
         return NULL;

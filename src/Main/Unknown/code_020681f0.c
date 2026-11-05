@@ -293,7 +293,7 @@ void func_02068640(Kart *a, s32 b) {
     a->mUnk_48 = a->mUnk_48 | 0x2000;
     a->mUnk_7c = a->mUnk_7c & 0xffbf1fff;
     if ((a->mUnk_7c & 0x20) != 0) {
-        func_02041bb0(&c, &d, a->mIndex);
+        GetCourseMapKartStartPlacement(&c, &d, a->mIndex);
         a->mUnk_236 = (u32) (d.y * 0xb6) >> 12;
         func_01ffd190(&data_02154f7c, a->mUnk_236, &a->mUnk_e0_m);
         func_01ffcd84(&a->mUnk_120, &a->mUnk_e0_m);

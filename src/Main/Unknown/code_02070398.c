@@ -136,9 +136,9 @@ void func_02072eb8(Kart *p) {
     if (p->mUnk_3c4 == -1) {
         i = p->mIndex;
         if (data_021759c0->mMode == 2) {
-            i = func_02041170(0);
+            i = GetCourseMapRespawnSlot(0);
         } else {
-            i = func_02041170(data_0217561c->mUnk_000[i].mUnk_46);
+            i = GetCourseMapRespawnSlot(data_0217561c->mUnk_000[i].mUnk_46);
         }
         p->mUnk_3c4 = i;
     }
@@ -351,7 +351,7 @@ void func_020727d4(Kart *p) {
     if (!(p->mUnk_7c & 0x20)) {
         return;
     }
-    func_02041bb0(&a, &c, p->mIndex);
+    GetCourseMapKartStartPlacement(&a, &c, p->mIndex);
     p->mUnk_236 = (u32) (c.y * 0xb6) >> 12;
     func_01ffd190(&data_02154f7c, p->mUnk_236, &p->mUnk_e0_m);
     func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
@@ -1206,9 +1206,9 @@ void func_020708a4(Kart *p) {
 
     b = data_02154f94;
     i = *gCourseMap->mUnk_fc;
-    a.x = gCourseMap->mUnk_34[i].mUnk_00.x;
-    a.y = gCourseMap->mUnk_34[i].mUnk_00.y;
-    a.z = gCourseMap->mUnk_34[i].mUnk_00.z;
+    a.x = gCourseMap->mUnk_34[i].mPos.x;
+    a.y = gCourseMap->mUnk_34[i].mPos.y;
+    a.z = gCourseMap->mUnk_34[i].mPos.z;
     b.x = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.x;
     b.y = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.y;
     b.z = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.z;
@@ -1355,9 +1355,9 @@ void func_020705fc(Kart *p, u32 b) {
     func_020710b0(p, 1);
     p->mUnk_260 = 0x3000;
     i = gCourseMap->mUnk_fc[b];
-    a.x = gCourseMap->mUnk_34[i].mUnk_00.x;
-    a.y = gCourseMap->mUnk_34[i].mUnk_00.y;
-    a.z = gCourseMap->mUnk_34[i].mUnk_00.z;
+    a.x = gCourseMap->mUnk_34[i].mPos.x;
+    a.y = gCourseMap->mUnk_34[i].mPos.y;
+    a.z = gCourseMap->mUnk_34[i].mPos.z;
     k = (u16) (((s64) gCourseMap->mUnk_34[gCourseMap->mUnk_fc[b]].mUnk_0c.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >>
         4;
     Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);

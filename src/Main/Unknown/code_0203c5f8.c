@@ -74,7 +74,7 @@ u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d) {
     BOOL k;
     Unk0217aa1c_144_00 *p;
     i = 1;
-    if (gCourseMap->mUnk_018->mUnk_02 >= 1) {
+    if (gCourseMap->mSettings->mUnk_02 >= 1) {
         v1 = a * 0x8c;
         do {
             q = (Unk0217aa1c_144_00 *) ((u8 *) &data_0217561c->mUnk_14[0].mUnk_0c[0] + v1) + (i - 1);
@@ -102,7 +102,7 @@ u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d) {
                 }
             }
             i++;
-        } while (i <= gCourseMap->mUnk_018->mUnk_02);
+        } while (i <= gCourseMap->mSettings->mUnk_02);
     }
     *b = v2.mUnk_02;
     *c = v2.mUnk_03;

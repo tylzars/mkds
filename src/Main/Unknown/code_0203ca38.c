@@ -318,7 +318,7 @@ void func_0203ca38(void) {
             }
         }
     }
-    if (gCourseMap->mUnk_44 != NULL) {
+    if (gCourseMap->mCheckpoints != NULL) {
         func_0203d9d4();
     } else {
         BOOL t = FALSE;

@@ -261,7 +261,7 @@ void func_0207729c(Unk02061808 *p) {
     p->mUnk_06c = 0x1555;
     p->mUnk_070 = 0x400;
     p->mUnk_08c = 0x640000;
-    p->mUnk_074 = gCourseMap->mUnk_018->mUnk_24;
+    p->mUnk_074 = gCourseMap->mSettings->mUnk_24;
     if (p->mUnk_074 < 0x1000) {
         p->mUnk_074 = 0x640000;
     }

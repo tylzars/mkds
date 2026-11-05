@@ -93,7 +93,7 @@ void func_020d24d8(MapObject *b, s32 c) {
         b->mUnk_6c = 0x270f000;
         return;
     }
-    a = gCourseMap->mUnk_018->mUnk_20;
+    a = gCourseMap->mSettings->mUnk_20;
     if (a == 0) {
         return;
     }

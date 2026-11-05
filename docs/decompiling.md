@@ -1042,10 +1042,10 @@ Link order and linking:
   func_020de6a8 matches only with the unsigned product.
 - Random scaling `((x >> 32) * m) >> 32`: the product's signedness decides which register the zero high word and
   the loaded word get. When they swap, flip it: unsigned in UpdatePakkun, signed in func_ov001_0218c0a4. A `u16 n`
-  converted to `s64` is sign-extended (`asrs rX, n, #31`), `(u32) n` zero-extended (func_020427d4).
+  converted to `s64` is sign-extended (`asrs rX, n, #31`), `(u32) n` zero-extended (ShuffleCourseMapRespawnSlots).
 - The random helper joins one `u32` and narrows once: `u32 t; if (n == 0) { t = 0; } else { step; if (n == 0) { t =
   x >> 32; } else { t = ((s64) (x >> 32) * (u32) n) >> 32; } } return t;` in a helper returning `u16`
-  (func_020427d4). Helpers called only with constant ranges fold the tests away.
+  (ShuffleCourseMapRespawnSlots). Helpers called only with constant ranges fold the tests away.
 - `x >> 48` of the state against a `mov #0; lsr; lsl #16; orr` sequence in the ROM: write
   `((x >> 32) * 0x10000) >> 32` (func_0209219c). `x >> 32 >> 29` as `lsl #3; orr ... lsr #29` is
   `((s64) (x >> 32) * 8) >> 32` (func_020401ac).

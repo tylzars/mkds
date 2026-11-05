@@ -650,7 +650,7 @@ void func_020af99c(void) {
     if (v == 5 || v == 6) {
         return;
     }
-    w = gCourseMap->mUnk_018->mUnk_14 & 0x7fff;
+    w = gCourseMap->mSettings->mUnk_14 & 0x7fff;
     *(vu16 *) 0x05000000 = w;
     data_0217b350->mNclrs[0]->mData[0] = w;
     func_0200ee74(data_0217b350->mNclrs[0]->mData, data_0217b350->mNclrs[0]->mDataSize);
