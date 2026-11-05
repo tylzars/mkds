@@ -1208,9 +1208,13 @@ typedef struct Unk0217ad00_014 {
 struct Unk0206bcb0_590;
 
 typedef struct Unk0217ad00 {
-    /* 000 */ struct Unk0206bcb0_590 *mUnk_000;
+    // Array of the per-kart model entries (0xb4 bytes each), allocated by InitKartModels with mKartCount elements;
+    // Kart.mKartModelsEntry points into it.
+    /* 000 */ struct Unk0206bcb0_590 *mKartModelsEntries;
     /* 004 */ u8 *mUnk_004;
-    /* 008 */ u16 mUnk_008;
+    // Number of elements of mKartModelsEntries, copied from data_021759c0->mKartCount; the loop bound over the
+    // entries.
+    /* 008 */ u16 mKartCount;
     /* 00a */ u8 mUnk_00a[2];
     /* 00c */ s32 mUnk_00c;
     /* 010 */ u16 *mUnk_010;

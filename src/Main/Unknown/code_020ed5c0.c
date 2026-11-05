@@ -45,13 +45,13 @@ BOOL func_020ee528(Unk020eda5c *a) {
     a->mUnk_050 = p->mUnk_98;
     a->mUnk_05c = p->mVelocity;
     a->mUnk_068 = p->mVelocityLength;
-    a->mUnk_078 = (s32) (((s64) p->mPhysicalParam->mUnk_08 * p->mUnk_bc.z + 0x800) >> 12);
-    a->mUnk_07c = p->mUnk_2bc;
+    a->mUnk_078 = (s32) (((s64) p->mPhysicalParam->mUnk_08 * p->mScale.z + 0x800) >> 12);
+    a->mUnk_07c = p->mHopHeight;
     a->mUnk_080 = func_02039828(&a->mUnk_02c.mUnk_18, &a->mUnk_05c) > 0;
     Vec3Sub(&a->mUnk_050, &p->mPrevPos, &a->mUnk_06c);
-    v.x = (s32) (((s64) p->mUnk_41c.x * p->mUnk_428.x) >> 12);
-    v.y = (s32) (((s64) p->mUnk_41c.y * p->mUnk_428.y) >> 12);
-    v.z = (s32) (((s64) p->mUnk_41c.z * p->mUnk_428.z) >> 12);
+    v.x = (s32) (((s64) p->mScaleFactor.x * p->mScaleBase.x) >> 12);
+    v.y = (s32) (((s64) p->mScaleFactor.y * p->mScaleBase.y) >> 12);
+    v.z = (s32) (((s64) p->mScaleFactor.z * p->mScaleBase.z) >> 12);
     s = (a->mUnk_084.x == v.x && a->mUnk_084.y == v.y && a->mUnk_084.z == v.z) ? 1 : 0;
     if (s == 0) {
         a->mUnk_084 = v;

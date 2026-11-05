@@ -86,7 +86,7 @@ void DrawBalloon(void *p, Balloon *a) {
     Balloon *e;
 
     if (a->mKartIndex >= 0) {
-        if (GetKart(a->mKartIndex)->mUnk_384 == 0) {
+        if (GetKart(a->mKartIndex)->mVisible == 0) {
             return;
         }
     }

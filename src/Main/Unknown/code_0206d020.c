@@ -252,7 +252,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     v7 = m.z - (s32) (((s64) q->mUnk_244.z * v3) >> 12);
     q->mUnk_2d8.x += v6;
     q->mUnk_2d8.z += v7;
-    q->mUnk_260 += v8;
+    q->mVerticalSpeed += v8;
     v2 = (s32) (((s64) v2 * 0xaab + 0x800) >> 12);
     if (v2 > 0x1000) {
         v2 = 0x1000;

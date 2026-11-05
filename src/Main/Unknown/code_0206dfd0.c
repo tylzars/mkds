@@ -199,9 +199,9 @@ void CollideKartWithKarts(Kart *p) {
                         func_021090c4(&p->mUnk_00, 0x80, 0x7f, 0);
                     }
                     if (p->mVelocityLength > q->mVelocityLength) {
-                        q->mUnk_3d2 = 0x14;
+                        q->mKartCollisionTimer = 0x14;
                     } else {
-                        p->mUnk_3d2 = 0x14;
+                        p->mKartCollisionTimer = 0x14;
                     }
                     func_02071318(p, 2);
                     func_02071318(q, 2);

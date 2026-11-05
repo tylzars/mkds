@@ -71,10 +71,10 @@ BOOL func_0206a24c(Kart *p) {
     }
     s->mUnk_0c = 0;
     s->mUnk_0e = 0x258;
-    p->mUnk_41c.x = 0x1000;
-    p->mUnk_41c.y = 0x1000;
-    p->mUnk_41c.z = 0x1000;
-    p->mUnk_3a4 = 0;
+    p->mScaleFactor.x = 0x1000;
+    p->mScaleFactor.y = 0x1000;
+    p->mScaleFactor.z = 0x1000;
+    p->mTireSpinAngle = 0;
     p->mUnk_4c |= 0x10000;
     p->mUnk_48 |= 0x4000000;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -105,14 +105,14 @@ void func_02069f6c(Kart *p) {
         s->mUnk_0c++;
         if (s->mUnk_0c >= 0x19) {
             p->mUnk_398 = 0x1000;
-            p->mUnk_434 = 0x1000;
-            p->mUnk_41c.x = 0x1000;
-            p->mUnk_41c.y = 0x1000;
-            p->mUnk_41c.z = 0x1000;
-            p->mUnk_bc.x = (s32) (((s64) p->mUnk_428.x * p->mUnk_41c.x) >> 12);
-            p->mUnk_bc.y = (s32) (((s64) p->mUnk_428.y * p->mUnk_41c.y) >> 12);
-            p->mUnk_bc.z = (s32) (((s64) p->mUnk_428.z * p->mUnk_41c.z) >> 12);
-            p->mUnk_bc.y = (s32) (((s64) p->mUnk_434 * p->mUnk_bc.y) >> 12);
+            p->mScaleYFactor = 0x1000;
+            p->mScaleFactor.x = 0x1000;
+            p->mScaleFactor.y = 0x1000;
+            p->mScaleFactor.z = 0x1000;
+            p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
+            p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
+            p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
+            p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
             if (s->mUnk_0c > 0x19) {
                 p->mUnk_4c &= ~0x10000;
                 if (!(p->mUnk_4c & 0x10080)) {
@@ -125,14 +125,14 @@ void func_02069f6c(Kart *p) {
         }
         p->mUnk_398 = 0x1000;
         p->mUnk_4c |= 0x100;
-        p->mUnk_41c.x = data_usa_02154de4[s->mUnk_0c];
-        p->mUnk_41c.y = data_usa_02154e48[s->mUnk_0c];
-        p->mUnk_41c.z = data_usa_02154eac[s->mUnk_0c];
-        p->mUnk_434 = 0x1000;
-        p->mUnk_bc.x = (s32) (((s64) p->mUnk_428.x * p->mUnk_41c.x) >> 12);
-        p->mUnk_bc.y = (s32) (((s64) p->mUnk_428.y * p->mUnk_41c.y) >> 12);
-        p->mUnk_bc.z = (s32) (((s64) p->mUnk_428.z * p->mUnk_41c.z) >> 12);
-        p->mUnk_bc.y = (s32) (((s64) p->mUnk_434 * p->mUnk_bc.y) >> 12);
+        p->mScaleFactor.x = data_usa_02154de4[s->mUnk_0c];
+        p->mScaleFactor.y = data_usa_02154e48[s->mUnk_0c];
+        p->mScaleFactor.z = data_usa_02154eac[s->mUnk_0c];
+        p->mScaleYFactor = 0x1000;
+        p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
+        p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
+        p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
+        p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
         return;
     }
     s->mUnk_0e--;
@@ -145,39 +145,39 @@ void func_02069f6c(Kart *p) {
     if (p->mUnk_48 & 0x4000000) {
         p->mForwardSpeed = 0;
     }
-    if ((float) p->mUnk_434 > 0.3f / 4096.0f) {
-        p->mUnk_434 -= 0x4cd;
-        if ((float) p->mUnk_434 < 0.3f / 4096.0f) {
-            p->mUnk_434 = 0x4cd;
+    if ((float) p->mScaleYFactor > 0.3f / 4096.0f) {
+        p->mScaleYFactor -= 0x4cd;
+        if ((float) p->mScaleYFactor < 0.3f / 4096.0f) {
+            p->mScaleYFactor = 0x4cd;
         }
     }
-    p->mUnk_bc.x = (s32) (((s64) p->mUnk_428.x * p->mUnk_41c.x) >> 12);
-    p->mUnk_bc.y = (s32) (((s64) p->mUnk_428.y * p->mUnk_41c.y) >> 12);
-    p->mUnk_bc.z = (s32) (((s64) p->mUnk_428.z * p->mUnk_41c.z) >> 12);
-    p->mUnk_bc.y = (s32) (((s64) p->mUnk_434 * p->mUnk_bc.y) >> 12);
+    p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
+    p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
+    p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
+    p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
 }
 
 void func_02069ea8(Kart *p) {
     p->mUnk_398 = 0x1000;
-    p->mUnk_434 = 0x1000;
-    p->mUnk_bc.y = 0x1000;
+    p->mScaleYFactor = 0x1000;
+    p->mScale.y = 0x1000;
     p->mUnk_4c &= ~0x10000;
     if (p->mUnk_4c & 0x80) {
         p->mUnk_4c &= ~0x80;
-        p->mUnk_428.x = 0x1000;
-        p->mUnk_428.y = 0x1000;
-        p->mUnk_428.z = 0x1000;
+        p->mScaleBase.x = 0x1000;
+        p->mScaleBase.y = 0x1000;
+        p->mScaleBase.z = 0x1000;
         if (p->mIndex == data_021759c0->mEntryIndex) {
             func_0210fa74(0);
         }
         func_0210a664(p);
     }
-    p->mUnk_bc.x = 0x1000;
-    p->mUnk_bc.y = 0x1000;
-    p->mUnk_bc.z = 0x1000;
-    p->mUnk_41c.x = 0x1000;
-    p->mUnk_41c.y = 0x1000;
-    p->mUnk_41c.z = 0x1000;
+    p->mScale.x = 0x1000;
+    p->mScale.y = 0x1000;
+    p->mScale.z = 0x1000;
+    p->mScaleFactor.x = 0x1000;
+    p->mScaleFactor.y = 0x1000;
+    p->mScaleFactor.z = 0x1000;
     if (!(p->mUnk_4c & 0x10080)) {
         p->mUnk_394 = 0x1000;
     }

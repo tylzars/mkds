@@ -62,20 +62,20 @@ void func_020641f0(Kart *a) {
             Matrix4x3FromPairY(&g, gPairsByAngle[i], gPairsByAngle[i + 1]);
             Matrix4x3Multiply(p, &g, p);
         }
-        p->mUnk_00[3].x = p->mUnk_00[3].x + a->mUnk_508->x;
-        p->mUnk_00[3].y = p->mUnk_00[3].y + a->mUnk_508->y;
-        p->mUnk_00[3].z = p->mUnk_00[3].z + a->mUnk_508->z;
+        p->mUnk_00[3].x = p->mUnk_00[3].x + a->mPosSource->x;
+        p->mUnk_00[3].y = p->mUnk_00[3].y + a->mPosSource->y;
+        p->mUnk_00[3].z = p->mUnk_00[3].z + a->mPosSource->z;
     } else if ((n & 0x20) != 0) {
         i = (a->mUnk_364 >> 4) * 2;
         Matrix4x3FromPairY(&h, gPairsByAngle[i], gPairsByAngle[i + 1]);
         Matrix4x3Multiply(&h, &a->mUnk_120_m, &a->mUnk_150_m);
-        q = a->mUnk_508;
+        q = a->mPosSource;
         a->mUnk_174.x = q->x;
         a->mUnk_174.y = q->y;
         a->mUnk_174.z = q->z;
     } else {
         a->mUnk_150_m = a->mUnk_120_m;
-        q = a->mUnk_508;
+        q = a->mPosSource;
         a->mUnk_174.x = q->x;
         a->mUnk_174.y = q->y;
         a->mUnk_174.z = q->z;
@@ -97,7 +97,7 @@ void func_020641f0(Kart *a) {
         l = (s64) j * 0xce4 >> 12;
         k = a->mVelocityLengthRatio;
         if (a->mUnk_4d4 > k) {
-            a->mUnk_3a4 = a->mUnk_3a4 + (u16) ((s64) a->mUnk_4d4 * 0x7d0 >> 12);
+            a->mTireSpinAngle = a->mTireSpinAngle + (u16) ((s64) a->mUnk_4d4 * 0x7d0 >> 12);
         } else {
             k = (s64) k * 0xfa0 >> 12;
             if (func_020738f8(func_0207a7ec()) < 0x29) {
@@ -111,7 +111,7 @@ void func_020641f0(Kart *a) {
             if (k > 0xfa0) {
                 k = 0xfa0;
             }
-            a->mUnk_3a4 = a->mUnk_3a4 + (u16) k;
+            a->mTireSpinAngle = a->mTireSpinAngle + (u16) k;
         }
         a->mUnk_4cc = l;
     }

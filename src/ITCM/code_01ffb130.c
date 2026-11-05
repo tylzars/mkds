@@ -135,8 +135,8 @@ void func_01ffb130(Kart *p) {
     }
     if ((p->mUnk_44 & 0x10) || (p->mUnk_4c & 0x10000000)) {
         Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m1, &p->mUnk_244,
-                                               gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2],
-                                               gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2 + 1]);
+                                               gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2],
+                                               gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2 + 1]);
         if (p->mUnk_48 & 1) {
             Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m2, &p->mUnk_120, gPairsByAngle[0xba],
                                                    gPairsByAngle[0xbb]);
@@ -185,7 +185,7 @@ void func_01ffb130(Kart *p) {
     }
     p->mVelocity = v1;
     Vec3Add(&p->mVelocity, &p->mUnk_374, &p->mVelocity);
-    p->mVelocity.y += p->mUnk_260;
+    p->mVelocity.y += p->mVerticalSpeed;
     Vec3AddScaled(p->mUnk_274, &p->mUnk_268, &p->mVelocity, &p->mVelocity);
     if (!(p->mUnk_44 & 0x10) && p->mAirborneFrames > 5 && p->mVelocity.y < -0x6000) {
         p->mVelocity.y = -0x6000;

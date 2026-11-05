@@ -101,7 +101,7 @@ void func_02080e9c(Kart *p) {
 }
 
 void func_02080e88(Unk0206c1ac *p, Kart *q) {
-    p->mUnk_6c = (s16) q->mUnk_bc.z;
+    p->mUnk_6c = (s16) q->mScale.z;
 }
 
 s32 func_02080e2c(Unk0208001c *p, Vec3 *a) {

@@ -314,7 +314,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
             v10.z = v3.z - (s32) (((s64) v8.z * d) >> 12);
             func_020397a8(&v9, &v10, &v11);
             g = func_02039828(&v8, &v11) > 0 ? 1 : -1;
-            q->mUnk_236 += g * 200;
+            q->mHeadingAngle += g * 200;
             goto end;
         }
     }
@@ -329,18 +329,18 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
         v7.y = a->y - (s32) (((s64) v6.y * d) >> 12);
         v7.z = a->z - (s32) (((s64) v6.z * d) >> 12);
         func_020397a8(b, &v7, &v4);
-        q->mUnk_236 += (g = func_02039828(&v6, &v4) > 0 ? 1 : -1) *
-                       ((s32) (((s64) ((s32) (((s64) p->mUnk_70 * 0xB60B60B60BLL + 0x80000000LL) >> 32)) *
-                                (s32) (((s64) e * 0xa4) >> 12)) >>
-                               12) >>
-                        12);
+        q->mHeadingAngle += (g = func_02039828(&v6, &v4) > 0 ? 1 : -1) *
+                            ((s32) (((s64) ((s32) (((s64) p->mUnk_70 * 0xB60B60B60BLL + 0x80000000LL) >> 32)) *
+                                     (s32) (((s64) e * 0xa4) >> 12)) >>
+                                    12) >>
+                             12);
         r = TRUE;
     }
     if ((q->mUnk_4c & 0x8000000) && p->mUnk_70 < 0x46000 && (q->mUnk_44 & 0x10) && !(q->mUnk_48 & 0x8020) &&
         q->mVelocityLength > 0x3000 && p->mUnk_90 != 2 && p->mUnk_a8 == 0) {
         p->mUnk_c8 += 0x44c;
         p->mUnk_ca = ((s64) gPairsByAngle[(p->mUnk_c8 >> 4) * 2] * 0xfa + 0x800) >> 12;
-        q->mUnk_236 += (s16) p->mUnk_ca * p->mUnk_cc;
+        q->mHeadingAngle += (s16) p->mUnk_ca * p->mUnk_cc;
         r = TRUE;
     } else {
         p->mUnk_ca = 0;

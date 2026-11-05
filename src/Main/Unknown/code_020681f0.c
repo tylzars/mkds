@@ -126,16 +126,16 @@ void func_02068b98(Kart *a) {
         a->mPos.x = 0x1000000;
         a->mPos.y = 0xff000000;
         a->mPos.z = 0x1000000;
-        a->mUnk_bc = data_02154f94;
+        a->mScale = data_02154f94;
     } else {
         g = 0x18 - c;
-        a->mUnk_41c.x = data_usa_02154de4[g];
-        a->mUnk_41c.y = data_usa_02154e48[g];
-        a->mUnk_41c.z = data_usa_02154eac[g];
-        a->mUnk_bc.x = (s32) ((s64) a->mUnk_428.x * a->mUnk_41c.x >> 12);
-        a->mUnk_bc.y = (s32) ((s64) a->mUnk_428.y * a->mUnk_41c.y >> 12);
-        a->mUnk_bc.z = (s32) ((s64) a->mUnk_428.z * a->mUnk_41c.z >> 12);
-        a->mUnk_bc.y = (s32) ((s64) a->mUnk_434 * a->mUnk_bc.y >> 12);
+        a->mScaleFactor.x = data_usa_02154de4[g];
+        a->mScaleFactor.y = data_usa_02154e48[g];
+        a->mScaleFactor.z = data_usa_02154eac[g];
+        a->mScale.x = (s32) ((s64) a->mScaleBase.x * a->mScaleFactor.x >> 12);
+        a->mScale.y = (s32) ((s64) a->mScaleBase.y * a->mScaleFactor.y >> 12);
+        a->mScale.z = (s32) ((s64) a->mScaleBase.z * a->mScaleFactor.z >> 12);
+        a->mScale.y = (s32) ((s64) a->mScaleYFactor * a->mScale.y >> 12);
         a->mUnk_3c8 = a->mUnk_3c8 + 1;
     }
 }
@@ -295,8 +295,8 @@ void func_02068640(Kart *a, s32 b) {
     a->mUnk_7c = a->mUnk_7c & 0xffbf1fff;
     if ((a->mUnk_7c & 0x20) != 0) {
         GetCourseMapKartStartPlacement(&c, &d, a->mIndex);
-        a->mUnk_236 = (u32) (d.y * 0xb6) >> 12;
-        func_01ffd190(&data_02154f7c, a->mUnk_236, &a->mUnk_e0_m);
+        a->mHeadingAngle = (u32) (d.y * 0xb6) >> 12;
+        func_01ffd190(&data_02154f7c, a->mHeadingAngle, &a->mUnk_e0_m);
         func_01ffcd84(&a->mUnk_120, &a->mUnk_e0_m);
         GetKartForward(a, &e);
         ResetKartAndSetPos(a, &c, &e, NULL);
@@ -310,7 +310,7 @@ void func_02068640(Kart *a, s32 b) {
         }
         a->mUnk_7c = a->mUnk_7c | 0x80;
         a->mUnk_7c = a->mUnk_7c & ~0x60;
-        a->mUnk_bc = data_02154f94;
+        a->mScale = data_02154f94;
     }
     k = &a->mUnk_7c;
     a->mUnk_7c = a->mUnk_7c & ~0x80;

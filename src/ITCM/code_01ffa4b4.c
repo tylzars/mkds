@@ -141,8 +141,8 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                     p->mUnk_4c &= ~0x40000000;
                 }
                 func_01ffa11c(p, a);
-                if (p->mUnk_260 < 0) {
-                    p->mUnk_260 = (p->mUnk_48 & 1) ? -0x2b9 : -0xd9d;
+                if (p->mVerticalSpeed < 0) {
+                    p->mVerticalSpeed = (p->mUnk_48 & 1) ? -0x2b9 : -0xd9d;
                 }
                 func_0206edac(p, a);
                 if (f & 0x80000000) {

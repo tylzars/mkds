@@ -588,9 +588,9 @@ void func_ov001_0218e474(Unk02188950 *a) {
 }
 
 void func_ov001_0218e38c(Unk02188950 *a, Kart *b) {
-    a->mUnk_000.mUnk_10.x = ((s64) -a->mPrm->mUnk_024 * gPairsByAngle[(b->mUnk_236 >> 4) * 2]) >> 12;
+    a->mUnk_000.mUnk_10.x = ((s64) -a->mPrm->mUnk_024 * gPairsByAngle[(b->mHeadingAngle >> 4) * 2]) >> 12;
     a->mUnk_000.mUnk_10.y = 0;
-    a->mUnk_000.mUnk_10.z = ((s64) -a->mPrm->mUnk_024 * gPairsByAngle[(b->mUnk_236 >> 4) * 2 + 1]) >> 12;
+    a->mUnk_000.mUnk_10.z = ((s64) -a->mPrm->mUnk_024 * gPairsByAngle[(b->mHeadingAngle >> 4) * 2 + 1]) >> 12;
     func_ov001_021829ac(a->mPrm->mUnk_190);
     func_ov001_0218ead0(a);
     a->mUnk_2d8 = 0;

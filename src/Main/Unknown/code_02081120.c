@@ -67,7 +67,7 @@ void func_02081120(Unk0201ca6c *p, s32 a) {
     i = p->mUnk_98_24;
     j = p->mUnk_98_16;
     v1 = 0;
-    v = GetKart(i)->mUnk_508;
+    v = GetKart(i)->mPosSource;
     x = v->x;
     y = v->y;
     z = v->z;
@@ -86,5 +86,5 @@ void func_02081120(Unk0201ca6c *p, s32 a) {
         data_0217ae84[i].mUnk_30 = NULL;
         return;
     }
-    p->mUnk_6c = (s16) GetKart(i)->mUnk_bc.z;
+    p->mUnk_6c = (s16) GetKart(i)->mScale.z;
 }

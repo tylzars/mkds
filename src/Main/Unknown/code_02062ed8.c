@@ -81,16 +81,16 @@ void func_020636f8(Kart *a) {
     d = (Unk020636f8_B *) ((u8 *) c + 8);
     b = a->mUnk_514;
     d->mUnk_00 = a->mPos.x >> 10;
-    d->mUnk_02 = (a->mPos.y - a->mUnk_2bc) >> 10;
+    d->mUnk_02 = (a->mPos.y - a->mHopHeight) >> 10;
     d->mUnk_04 = a->mPos.z >> 10;
     d->mUnk_06 = a->mForwardSpeed >> 2;
-    d->mUnk_0a = a->mUnk_236;
+    d->mUnk_0a = a->mHeadingAngle;
     d->mUnk_10 = a->mUnk_44;
     d->mUnk_10 = d->mUnk_10 | (((b->mUnk_98.x >> 6) & 0xff) << 24 | ((b->mUnk_98.y >> 6) & 0xff) << 16 |
                                ((b->mUnk_98.z >> 6) & 0xff) << 8);
     d->mUnk_14 = a->mUnk_48;
     d->mUnk_0c = b->mUnk_2c;
-    d->mUnk_08 = a->mUnk_388;
+    d->mUnk_08 = a->mTurnAngle;
 }
 
 // Also sets the matrix and the per-course flags (CreateCourseModels would be the verb for just finding and building).

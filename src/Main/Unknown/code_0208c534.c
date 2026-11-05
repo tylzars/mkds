@@ -108,9 +108,9 @@ void func_0208d4c4(Unk0208c5b8 *p, Kart *q) {
     }
     e = func_020846a8(q->mIndex);
     for (i = 0; i < 2; i++) {
-        a.x = (s32) (((s64) q->mUnk_3b0.x * 0xb33) >> 12);
-        a.y = (s32) (((s64) q->mUnk_3b0.y * 0xb33) >> 12);
-        a.z = (s32) (((s64) q->mUnk_3b0.z * 0xb33) >> 12);
+        a.x = (s32) (((s64) q->mEffectVelocity.x * 0xb33) >> 12);
+        a.y = (s32) (((s64) q->mEffectVelocity.y * 0xb33) >> 12);
+        a.z = (s32) (((s64) q->mEffectVelocity.z * 0xb33) >> 12);
         p->mUnk_00[i]->mUnk_40 = a;
         b.x = -a.x;
         b.y = -a.y;

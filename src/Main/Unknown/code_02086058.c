@@ -45,12 +45,12 @@ void func_02086a04(void) {
         p = GetKart(i);
         k = p->mRadius * 3;
         s = p->mKartModelsEntry;
-        Vec3Sub(p->mUnk_508, &q->mUnk_08, &v30);
+        Vec3Sub(p->mPosSource, &q->mUnk_08, &v30);
         d = Vec3Dot(&v30, &q->mUnk_14);
         data_0217aed0->mUnk_104[i] = d + k;
         data_0217aed0->mUnk_074[p->mIndex] = data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_034[p->mIndex];
         data_0217aed0->mUnk_054[data_0217aed0->mUnk_074[p->mIndex]] = d;
-        Vec3Sub(p->mUnk_508, &q->mUnk_08, &v24);
+        Vec3Sub(p->mPosSource, &q->mUnk_08, &v24);
         v24.x = v24.x >> 12;
         v24.y = v24.y >> 12;
         v24.z = v24.z >> 12;
@@ -150,7 +150,7 @@ void func_0208677c(void) {
     while (i < data_0217aed0->mUnk_020) {
         p = data_0217aed0->mUnk_0c4[i];
         m = GetKart(p->mUnk_0c);
-        w = m->mUnk_508;
+        w = m->mPosSource;
         v = *w;
         x = data_0217aed0->mUnk_104[p->mUnk_0c];
         r = 0x1000;

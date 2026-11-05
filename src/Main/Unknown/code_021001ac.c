@@ -347,7 +347,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
         *v = q->mUnk_98;
         Vec3Sub(v, &p->mUnk_184, &p->mUnk_190);
         p->mUnk_184 = *v;
-        v->y -= q->mUnk_2bc;
+        v->y -= q->mHopHeight;
     }
     Vec3Add(v, (Vec3 *) &p->mUnk_16c, v);
     w = g + 3;
@@ -359,7 +359,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
         c = 0x400;
     }
     if (a != 0) {
-        n = (s32) (((s64) * (s32 *) q->mPhysicalParam * q->mUnk_bc.z + 0x800) >> 12);
+        n = (s32) (((s64) * (s32 *) q->mPhysicalParam * q->mScale.z + 0x800) >> 12);
         v->x += (s32) (((s64) -n * w[0]) >> 12);
         v->z += (s32) (((s64) -n * w[2]) >> 12);
     }
@@ -389,7 +389,7 @@ void func_021018a0(Unk02101c84 *p) {
     p->mUnk_184 = p->mUnk_168->mUnk_98;
     p->mUnk_190 = p->mUnk_168->mVelocity;
     *(Vec3 *) &p->mUnk_16c =
-        (Vec3){0, (s32) (((s64) * (s32 *) p->mUnk_168->mPhysicalParam * p->mUnk_168->mUnk_bc.z + 0x800) >> 12), 0};
+        (Vec3){0, (s32) (((s64) * (s32 *) p->mUnk_168->mPhysicalParam * p->mUnk_168->mScale.z + 0x800) >> 12), 0};
     p->mUnk_17c = 0;
     p->mUnk_000.mUnk_d8 = 0x1f;
     if (p->mUnk_168->mUnk_48 & 1) {

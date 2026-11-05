@@ -206,7 +206,7 @@ static inline const s32 func_01ffc090_inline(void) {
 void func_01ffca50(Kart *p) {
     p->mUnk_48 &= ~0x18;
     p->mRadius = (s32) (((s64) p->mUnk_4c8 * (s32) (((s64) p->mPhysicalParam->mRadius * p->mUnk_394) >> 12)) >> 12);
-    p->mUnk_1d4 = (s32) (((s64) p->mPhysicalParam->mUnk_04 * p->mUnk_bc.z) >> 12);
+    p->mUnk_1d4 = (s32) (((s64) p->mPhysicalParam->mUnk_04 * p->mScale.z) >> 12);
     p->mUnk_3ec = 0;
 }
 
@@ -252,15 +252,15 @@ void func_01ffc920(Kart *p) {
 }
 
 void func_01ffc8cc(Kart *p) {
-    if (p->mUnk_3d2 <= 0) {
+    if (p->mKartCollisionTimer <= 0) {
         return;
     }
-    p->mUnk_3d2 = p->mUnk_3d2 - 1;
-    if (p->mUnk_3d2 > 0) {
+    p->mKartCollisionTimer = p->mKartCollisionTimer - 1;
+    if (p->mKartCollisionTimer > 0) {
         return;
     }
     func_0210b12c(p, p->mUnk_3cc, p->mUnk_3d0);
-    p->mUnk_3d2 = 0;
+    p->mKartCollisionTimer = 0;
 }
 
 void func_01ffc6c0(Kart *p) {
@@ -413,7 +413,7 @@ s32 func_01ffc27c(Kart *p, s32 a) {
         if (p->mUnk_7c & 2) {
             t = t << 1;
         }
-        p->mUnk_236 = p->mUnk_236 - t;
+        p->mHeadingAngle = p->mHeadingAngle - t;
         k = p->mEntryIndex;
         w = data_02175628[k].mBits;
         if ((u16) (w & 0x20)) {
@@ -508,7 +508,7 @@ void func_01ffc090(Kart *p, s32 a) {
     } else {
         p->mUnk_3f0 = p->mUnk_3f0 + (s32) (((s64) (p->mUnk_3ec - p->mUnk_3f0) * func_01ffc090_inline() + 0x800) >> 12);
     }
-    p->mUnk_236 += (u16) p->mUnk_3f0;
+    p->mHeadingAngle += (u16) p->mUnk_3f0;
 }
 
 // Writes base + (mRadius + extra) * up to the out vector, where up is row 1 of the matrix at 0x120 (the vector
@@ -663,26 +663,26 @@ void func_01ffba68(Kart *p) {
     if ((g & 0x8000) && (g & 0x10)) {
         p->mUnk_44 &= ~0x8000;
     }
-    if (p->mUnk_386 != 0) {
-        p->mUnk_386 = (s32) (((s64) p->mUnk_386 * 0xe66) >> 12);
-        if ((p->mUnk_386 <= 0 ? -p->mUnk_386 : p->mUnk_386) < 0x14) {
-            p->mUnk_386 = 0;
+    if (p->mHeadingAnglePerFrame != 0) {
+        p->mHeadingAnglePerFrame = (s32) (((s64) p->mHeadingAnglePerFrame * 0xe66) >> 12);
+        if ((p->mHeadingAnglePerFrame <= 0 ? -p->mHeadingAnglePerFrame : p->mHeadingAnglePerFrame) < 0x14) {
+            p->mHeadingAnglePerFrame = 0;
         }
-        p->mUnk_236 += (u16) p->mUnk_386;
+        p->mHeadingAngle += (u16) p->mHeadingAnglePerFrame;
     }
     g = p->mUnk_44;
     if (!(g & 0x10) || !d || (g & 0x8008002)) {
         return;
     }
-    if (p->mUnk_388 > 0) {
-        p->mUnk_388 = p->mUnk_388 - p->mPhysicalParam->mUnk_34;
-        if (p->mUnk_388 < 0) {
-            p->mUnk_388 = 0;
+    if (p->mTurnAngle > 0) {
+        p->mTurnAngle = p->mTurnAngle - p->mPhysicalParam->mUnk_34;
+        if (p->mTurnAngle < 0) {
+            p->mTurnAngle = 0;
         }
-    } else if (p->mUnk_388 < 0) {
-        p->mUnk_388 = p->mUnk_388 + p->mPhysicalParam->mUnk_34;
-        if (p->mUnk_388 > 0) {
-            p->mUnk_388 = 0;
+    } else if (p->mTurnAngle < 0) {
+        p->mTurnAngle = p->mTurnAngle + p->mPhysicalParam->mUnk_34;
+        if (p->mTurnAngle > 0) {
+            p->mTurnAngle = 0;
         }
     }
 }

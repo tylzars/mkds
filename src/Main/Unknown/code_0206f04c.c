@@ -169,7 +169,7 @@ void func_0206ff50(Kart *p, u32 a) {
         func_0208d978(&g, (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0);
         p->mUnk_4c |= 0x4000000;
         func_021090c4(&p->mUnk_00, b, 0x7f, 0);
-        p->mUnk_c8 = 0;
+        p->mGravity = 0;
     }
     func_0210af40(p, p->mUnk_3cc, 0);
 }
@@ -183,7 +183,7 @@ void func_0206fe08(Kart *p) {
     a = GetHeightAboveWaterOrEfct(p->mPos.y);
     if (a < 0 && !(p->mUnk_4c & 0x4000000)) {
         b = FALSE;
-        c = (s32) (((s64) p->mUnk_3f4 * p->mUnk_bc.z) >> 12);
+        c = (s32) (((s64) p->mUnk_3f4 * p->mScale.z) >> 12);
         p->mUnk_dc = (s32) (((s64) c * a) >> 12) + 0x1000;
         if (p->mUnk_dc < p->mPhysicalParam->mSurfaceSpeedLimitFactors[4]) {
             p->mUnk_dc = p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
@@ -370,7 +370,7 @@ void func_0206f694(Kart *p, u32 a, Vec3 *b, s32 c) {
 
     if (a & 0x40000000) {
         p->mUnk_44 |= 0x40000;
-        p->mUnk_236 += c;
+        p->mHeadingAngle += c;
     } else if (a & 0x1e34ef) {
         p->mUnk_1fc.y = 0;
     }
@@ -381,7 +381,7 @@ void func_0206f694(Kart *p, u32 a, Vec3 *b, s32 c) {
         } else {
             Vec3AddScaled(0x199, &d, &p->mUnk_1fc, &p->mUnk_1fc);
         }
-        p->mUnk_260 = p->mUnk_260 + p->mUnk_1fc.y;
+        p->mVerticalSpeed = p->mVerticalSpeed + p->mUnk_1fc.y;
         p->mUnk_1fc.y = 0;
     } else {
         e = data_usa_02165554;
@@ -410,8 +410,8 @@ void func_0206f574(Kart *p, u32 a, Vec3 *b) {
     func_0206f04c(p, b, (p->mUnk_44 & 0x80) != 0, c, (s32) (e & 0x1f00) >> 8, ((e & 0xe0) << 11) >> 16, 2);
     p->mUnk_44 |= 0x80;
     p->mUnk_250 = *b;
-    if (p->mState == 6 && b->y < -0x800 && p->mUnk_260 > 0) {
-        p->mUnk_260 = -p->mUnk_260;
+    if (p->mState == 6 && b->y < -0x800 && p->mVerticalSpeed > 0) {
+        p->mVerticalSpeed = -p->mVerticalSpeed;
     }
     d = b->y;
     if (d <= 0) {
@@ -473,13 +473,13 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         p->mUnk_302 = 0;
         p->mUnk_300 = p->mUnk_302;
         p->mUnk_30c = 0;
-        p->mUnk_386 = 0;
+        p->mHeadingAnglePerFrame = 0;
         if (p->mVelocityLength > 0x1800) {
             if (!(p->mUnk_48 & 0x20) && (m.x != 0 || m.y != 0 || m.z != 0) && c != 0x1000) {
                 func_020eaa14(&m, a, 0, 0x4cd, 0, &m);
                 p->mUnk_2d8.x = m.x;
                 p->mUnk_2d8.z = m.z;
-                p->mUnk_260 = p->mUnk_260 + m.y;
+                p->mVerticalSpeed = p->mVerticalSpeed + m.y;
             }
             if (p->mUnk_4da <= 0) {
                 if (d >= 0) {
@@ -498,7 +498,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                             g = 0x4cd;
                         }
                         Vec3AddScaled(-p->mRadius, a, &p->mPos, &n);
-                        Vec3AddScaled((s32) (((s64) p->mUnk_bc.y * (g << 4) + 0x800) >> 12), &p->mUnk_12c, &n, &n);
+                        Vec3AddScaled((s32) (((s64) p->mScale.y * (g << 4) + 0x800) >> 12), &p->mUnk_12c, &n, &n);
                         func_0208b748(0x3b, &n, p, func_0206c488);
                     }
                 }
@@ -521,10 +521,10 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
             }
             if (p->mVelocityLength > 0x2000 && c != 0x1000) {
                 l = (s16) ((p->mVelocityLength >> 12) * 100);
-                if ((u16) p->mUnk_388 > 0x7fff) {
+                if ((u16) p->mTurnAngle > 0x7fff) {
                     l = (s16) (l * (s16) -1);
                 }
-                p->mUnk_386 = l;
+                p->mHeadingAnglePerFrame = l;
             }
         } else if (p->mVelocityLength > 0x2000 && c != 0x1000) {
             k = 0x1000 - i;
@@ -534,18 +534,18 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                 if (func_02039828(&o, &p->mUnk_12c) < 0) {
                     l = (s16) (l * (s16) -1);
                 }
-                p->mUnk_386 = l;
+                p->mHeadingAnglePerFrame = l;
             }
         }
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && p->mVelocityLength > 0x3000 && f == 2) {
             func_0207a6b0()->mUnk_10++;
         }
-        p->mUnk_388 = 0;
+        p->mTurnAngle = 0;
     } else if (e == 4) {
         func_020813ec(p->mIndex, a);
     }
     if (p->mState != 0) {
-        p->mUnk_386 = 0;
+        p->mHeadingAnglePerFrame = 0;
     }
     return j;
 }

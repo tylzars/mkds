@@ -68,8 +68,8 @@ void func_020646f0(Kart *a, s32 b) {
         Vec3Add(&a->mPos, &e, &a->mPos);
     }
     a->mPos.y = a->mPos.y - 0x1000;
-    a->mUnk_236 = (u32) (d.y * 0xb6) >> 12;
-    func_01ffd190(&data_02154a3c, a->mUnk_236, &a->mUnk_e0_m);
+    a->mHeadingAngle = (u32) (d.y * 0xb6) >> 12;
+    func_01ffd190(&data_02154a3c, a->mHeadingAngle, &a->mUnk_e0_m);
     a->mUnk_110_q = a->mUnk_e0_m;
     func_01ffcd84(&a->mUnk_120, &a->mUnk_110_q);
     a->mUnk_150_m = a->mUnk_120_m;

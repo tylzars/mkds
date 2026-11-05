@@ -26,7 +26,7 @@ void func_020813ec(s32 a, Vec3 *b) {
     Unk0201ca6c *p;
 
     if ((q->mUnk_4c & 0x8000) && e->mUnk_28 == NULL && q->mVelocityLength > 0x1000) {
-        p = func_0208b7bc(0x53, q->mUnk_508);
+        p = func_0208b7bc(0x53, q->mPosSource);
         p->mUnk_94 = q;
         p->mUnk_90 = func_02081374;
         e->mUnk_28 = p;
@@ -34,11 +34,11 @@ void func_020813ec(s32 a, Vec3 *b) {
     if (e->mUnk_28 == NULL) {
         return;
     }
-    v.x = (s32) (((s64) q->mUnk_3b0.x * 0xccd) >> 12);
-    v.y = (s32) (((s64) q->mUnk_3b0.y * 0xccd) >> 12);
-    v.z = (s32) (((s64) q->mUnk_3b0.z * 0xccd) >> 12);
+    v.x = (s32) (((s64) q->mEffectVelocity.x * 0xccd) >> 12);
+    v.y = (s32) (((s64) q->mEffectVelocity.y * 0xccd) >> 12);
+    v.z = (s32) (((s64) q->mEffectVelocity.z * 0xccd) >> 12);
     e->mUnk_28->mUnk_40 = v;
-    Vec3AddScaled(-q->mRadius, b, q->mUnk_508, &w);
+    Vec3AddScaled(-q->mRadius, b, q->mPosSource, &w);
     func_0208b5b0(e->mUnk_28, &w);
     h.x = b->x;
     h.y = b->y;

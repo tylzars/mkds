@@ -71,14 +71,14 @@ void func_02084478(Kart *p) {
     Vec3 v;
 
     e = &data_0217ae84[p->mIndex];
-    p->mUnk_174 = *p->mUnk_508;
+    p->mUnk_174 = *p->mPosSource;
     for (i = 0; i < 2; i++) {
         v = p->mKartModelsEntry->mUnk_020->mUnk_14[i + 2];
         v.y = 0;
         v.x = v.x + data_02155800[i];
-        q.x = (s32) (((s64) v.x * p->mUnk_bc.x) >> 12);
-        q.y = (s32) (((s64) v.y * p->mUnk_bc.y) >> 12);
-        q.z = (s32) (((s64) v.z * p->mUnk_bc.z) >> 12);
+        q.x = (s32) (((s64) v.x * p->mScale.x) >> 12);
+        q.y = (s32) (((s64) v.y * p->mScale.y) >> 12);
+        q.z = (s32) (((s64) v.z * p->mScale.z) >> 12);
         Vec3MultiplyMatrix4x3(&q, &p->mUnk_150_m, &e->mUnk_34[i]);
         e->mUnk_34[i].x = e->mUnk_34[i].x >> 4;
         e->mUnk_34[i].y = e->mUnk_34[i].y >> 4;
@@ -484,7 +484,7 @@ void func_02083484(Unk0201ca6c *p, s32 a) {
         return;
     }
     q = p->mUnk_94;
-    v = q->mUnk_3b0;
+    v = q->mEffectVelocity;
     k = data_0216596c[p->mUnk_98_b.mUnk_00];
     n = p->mUnk_98_b.mUnk_02;
     m = p->mUnk_98_b.mUnk_01;
@@ -506,7 +506,7 @@ void func_02083484(Unk0201ca6c *p, s32 a) {
         }
     }
     p->mUnk_98_b.mUnk_02 = n;
-    Vec3Add(q->mUnk_508, &w, &x);
+    Vec3Add(q->mPosSource, &w, &x);
     x.x = x.x >> 4;
     x.y = x.y >> 4;
     x.z = x.z >> 4;
@@ -575,7 +575,7 @@ void func_020831bc(Unk0201ca6c *p, s32 a) {
     }
     q = p->mUnk_94;
     e = &data_0217ae84[q->mIndex];
-    v = q->mUnk_3b0;
+    v = q->mEffectVelocity;
     n = p->mUnk_98_b.mUnk_02;
     m = p->mUnk_98_b.mUnk_01;
     r = p->mUnk_98_b.mUnk_03;
@@ -624,7 +624,7 @@ void func_02082fec(Unk0201ca6c *p, s32 a) {
     }
     q = p->mUnk_94;
     e = &data_0217ae84[q->mIndex];
-    v = q->mUnk_3b0;
+    v = q->mEffectVelocity;
     g = 1;
     f = 1;
     n = p->mUnk_98_b.mUnk_02;
@@ -898,7 +898,7 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
     p->mUnk_50 = h;
     s = data_02165954 + k;
     Vec3AddScaled(data_02165938 + (s32) (((s64) s * (s64) t + 0x800) >> 12), &v, &g->mViewPos, &u);
-    u.y = GetKart(data_021759c0->mEntryIndex)->mUnk_508->y >> 4;
+    u.y = GetKart(data_021759c0->mEntryIndex)->mPosSource->y >> 4;
     u.y = u.y - (s32) (((s64) data_02165934 * t + 0x800) >> 12);
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
@@ -977,7 +977,7 @@ void func_02082368(Unk0201ca6c *p, s32 a) {
         func_02039860(&v, &v);
     }
     Vec3AddScaled(0x5800, &v, &g->mViewPos, &u);
-    u.y = GetKart(data_021759c0->mEntryIndex)->mUnk_508->y >> 4;
+    u.y = GetKart(data_021759c0->mEntryIndex)->mPosSource->y >> 4;
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = u.z + p->mUnk_20->mUnk_00->mUnk_04.z;
@@ -1016,7 +1016,7 @@ void func_020821cc(Unk0201ca6c *p, s32 a) {
     }
     k = k * 3;
     Vec3AddScaled((s32) (((s64) k * (s64) t + 0x800) >> 12) + 0x5800, &v, &g->mViewPos, &u);
-    u.y = GetKart(data_021759c0->mEntryIndex)->mUnk_508->y >> 4;
+    u.y = GetKart(data_021759c0->mEntryIndex)->mPosSource->y >> 4;
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = u.z + p->mUnk_20->mUnk_00->mUnk_04.z;
@@ -1109,7 +1109,7 @@ void func_02081e5c(Unk0201ca6c *p, s32 a) {
     i = p->mUnk_98_24;
     j = p->mUnk_98_16;
     q = GetKart(i);
-    v = q->mUnk_508;
+    v = q->mPosSource;
     x = v->x;
     y = v->y;
     z = v->z;
@@ -1147,14 +1147,14 @@ void func_02081d78(Unk0201ca6c *p, s32 a) {
     i = p->mUnk_98_24;
     j = p->mUnk_98_16;
     q = GetKart(i);
-    v = q->mUnk_508;
+    v = q->mPosSource;
     x = v->x;
     y = v->y;
     z = v->z;
     p->mUnk_28.x = (x >> 4) + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = (y >> 4) + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = (z >> 4) + p->mUnk_20->mUnk_00->mUnk_04.z;
-    p->mUnk_40 = q->mUnk_3b0;
+    p->mUnk_40 = q->mEffectVelocity;
     if (j >= p->mUnk_98_8) {
         if (j == p->mUnk_98_8) {
             p->mUnk_24.mUnk_00_0 = 1;
@@ -1170,11 +1170,11 @@ void func_02081ca0(Unk0201ca6c *p, Kart *q, void *a) {
 
     if (a == NULL) {
         func_02081b64(p, q, 0x733, 0xb33);
-        p->mUnk_5c = (s16) (((s64) q->mUnk_bc.z * 0xb33 + 0x800) >> 12);
+        p->mUnk_5c = (s16) (((s64) q->mScale.z * 0xb33 + 0x800) >> 12);
     } else {
         r = 1;
         func_02081b64(p, q, 0x99a, 0xe66);
-        p->mUnk_6c = (s16) q->mUnk_bc.z;
+        p->mUnk_6c = (s16) q->mScale.z;
         f = q->mUnk_7c;
         if (!(f & 1)) {
             if (f & 0x402000) {
@@ -1189,13 +1189,13 @@ void func_02081b64(Unk0201ca6c *p, Kart *q, s32 a, s32 b) {
     Vec3 v;
     Vec3 w;
     Vec3s16 h;
-    Vec3 *s = q->mUnk_508;
+    Vec3 *s = q->mPosSource;
 
     v.x = s->x >> 4;
     v.y = s->y >> 4;
     v.z = s->z >> 4;
-    Vec3AddScaled((s32) (((s64) q->mUnk_bc.z * b + 0x800) >> 12), &q->mUnk_138, &v, &v);
-    Vec3AddScaled((s32) (((s64) q->mUnk_bc.y * a + 0x800) >> 12), &q->mUnk_12c, &v, &v);
+    Vec3AddScaled((s32) (((s64) q->mScale.z * b + 0x800) >> 12), &q->mUnk_138, &v, &v);
+    Vec3AddScaled((s32) (((s64) q->mScale.y * a + 0x800) >> 12), &q->mUnk_12c, &v, &v);
     p->mUnk_28.x = v.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = v.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = v.z + p->mUnk_20->mUnk_00->mUnk_04.z;
@@ -1270,16 +1270,16 @@ void func_0208181c(s32 a) {
     i = 0;
     do {
         if (e->mUnk_00[i] != NULL) {
-            Vec3AddScaled((s32) (((s64) q->mUnk_bc.y * data_02155854[q->mKartModelsEntry->mUnk_000] + 0x800) >> 12),
+            Vec3AddScaled((s32) (((s64) q->mScale.y * data_02155854[q->mKartModelsEntry->mUnk_000] + 0x800) >> 12),
                           &q->mUnk_12c, &q->mPos, &v);
             func_0208b5b0(e->mUnk_00[i], &v);
-            w.x = (s32) (((s64) q->mUnk_3b0.x * 0xc00) >> 12);
-            w.y = (s32) (((s64) q->mUnk_3b0.y * 0xc00) >> 12);
-            w.z = (s32) (((s64) q->mUnk_3b0.z * 0xc00) >> 12);
+            w.x = (s32) (((s64) q->mEffectVelocity.x * 0xc00) >> 12);
+            w.y = (s32) (((s64) q->mEffectVelocity.y * 0xc00) >> 12);
+            w.z = (s32) (((s64) q->mEffectVelocity.z * 0xc00) >> 12);
             e->mUnk_00[i]->mUnk_40 = w;
             e->mUnk_00[i]->mUnk_68 = y;
             e->mUnk_00[i]->mUnk_64 = x;
-            e->mUnk_00[i]->mUnk_5c = (s16) (((s64) q->mUnk_bc.z * 0x614 + 0x800) >> 12);
+            e->mUnk_00[i]->mUnk_5c = (s16) (((s64) q->mScale.z * 0x614 + 0x800) >> 12);
         }
         i = i + 1;
     } while (i < 3);
@@ -1336,7 +1336,7 @@ void func_02081618(s32 a, Vec3 *b) {
     p->mUnk_28.y = b->y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = b->z + p->mUnk_20->mUnk_00->mUnk_04.z;
     q = GetKart(a);
-    s = &q->mUnk_3b0;
+    s = &q->mEffectVelocity;
     v.x = (s32) (((s64) s->x * 0xe66) >> 12);
     v.y = (s32) (((s64) s->y * 0xe66) >> 12);
     v.z = (s32) (((s64) s->z * 0xe66) >> 12);

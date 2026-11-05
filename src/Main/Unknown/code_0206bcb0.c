@@ -87,27 +87,27 @@ void func_0206cdd4(Kart *p) {
 
 void func_0206cc60(Kart *p, int arg) {
     if (p->mTurnDirection > 0) {
-        if (p->mUnk_388 > 11000) {
-            p->mUnk_388 = p->mUnk_388 - 200;
-            if (p->mUnk_388 < 11000) {
-                p->mUnk_388 = 11000;
+        if (p->mTurnAngle > 11000) {
+            p->mTurnAngle = p->mTurnAngle - 200;
+            if (p->mTurnAngle < 11000) {
+                p->mTurnAngle = 11000;
             }
-        } else if (p->mUnk_388 < 11000) {
-            p->mUnk_388 += 375;
-            if (p->mUnk_388 > 11000) {
-                p->mUnk_388 = 11000;
+        } else if (p->mTurnAngle < 11000) {
+            p->mTurnAngle += 375;
+            if (p->mTurnAngle > 11000) {
+                p->mTurnAngle = 11000;
             }
         }
     } else {
-        if (p->mUnk_388 < -11000) {
-            p->mUnk_388 = p->mUnk_388 + 200;
-            if (p->mUnk_388 > -11000) {
-                p->mUnk_388 = -11000;
+        if (p->mTurnAngle < -11000) {
+            p->mTurnAngle = p->mTurnAngle + 200;
+            if (p->mTurnAngle > -11000) {
+                p->mTurnAngle = -11000;
             }
-        } else if (p->mUnk_388 > -11000) {
-            p->mUnk_388 -= 375;
-            if (p->mUnk_388 < -11000) {
-                p->mUnk_388 = -11000;
+        } else if (p->mTurnAngle > -11000) {
+            p->mTurnAngle -= 375;
+            if (p->mTurnAngle < -11000) {
+                p->mTurnAngle = -11000;
             }
         }
     }
@@ -254,11 +254,11 @@ recheck:
         if (p->mForwardSpeed < 0) {
             g = -g;
         }
-        p->mUnk_388 += (s16) (turn * g);
-        if (p->mUnk_388 > 0x2af8) {
-            p->mUnk_388 = 0x2af8;
-        } else if (p->mUnk_388 < -0x2af8) {
-            p->mUnk_388 = -0x2af8;
+        p->mTurnAngle += (s16) (turn * g);
+        if (p->mTurnAngle > 0x2af8) {
+            p->mTurnAngle = 0x2af8;
+        } else if (p->mTurnAngle < -0x2af8) {
+            p->mTurnAngle = -0x2af8;
         }
         if (!(p->mUnk_44 & 8)) {
             return;
@@ -284,9 +284,9 @@ recheck:
     }
     p->mUnk_44 |= 0x806;
     p->mUnk_44 &= 0xffff7ff7;
-    p->mUnk_2b8 = 0x1405;
-    p->mUnk_260 += 0x21a2;
-    p->mUnk_2bc = 0;
+    p->mHopSpeed = 0x1405;
+    p->mVerticalSpeed += 0x21a2;
+    p->mHopHeight = 0;
     p->mTurnDirection = 0;
     p->mUnk_38a = 0;
     p->mUnk_2fc = 0;
@@ -336,7 +336,7 @@ int func_0206c494(Kart *p) {
             p->mUnk_48 |= 0x100;
             if (p->mTurnDirection != 0) {
                 p->mUnk_44 |= 0x8000000;
-                p->mUnk_236 += delta;
+                p->mHeadingAngle += delta;
                 func_0206cc60(p, 1);
             }
         }
@@ -353,7 +353,7 @@ void func_0206c488(Unk0206c1ac *obj, Kart *p) {
 }
 
 void func_0206c450(Unk0206c1ac *obj, Kart *p) {
-    obj->mUnk_40 = p->mUnk_3b0;
+    obj->mUnk_40 = p->mEffectVelocity;
     func_02080e88(obj, p);
 }
 
@@ -370,7 +370,7 @@ BOOL func_0206c354(Kart *p, const Vec3 *a, int flag) {
             n = 4;
         }
         Vec3AddScaled(-p->mRadius, a, &p->mPos, &tmp);
-        Vec3AddScaled((s32) (((s64) p->mUnk_bc.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
+        Vec3AddScaled((s32) (((s64) p->mScale.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
         for (; i < n; i++) {
             func_0208b748(list[i], &tmp, p, func_0206c450);
         }
@@ -380,7 +380,7 @@ BOOL func_0206c354(Kart *p, const Vec3 *a, int flag) {
 }
 
 void func_0206c2b4(Unk0206c1ac *obj, Kart *p) {
-    Vec3 v = p->mUnk_3b0;
+    Vec3 v = p->mEffectVelocity;
 
     v.y = 0;
     v.x = (s32) (((s64) v.x * 0xe66) >> 12);

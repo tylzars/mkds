@@ -62,13 +62,13 @@ void func_020651fc(Kart *a) {
             a->mUnk_7c = a->mUnk_7c & ~0x80;
             return;
         }
-        a->mUnk_41c.x = data_usa_02154de4[c];
-        a->mUnk_41c.y = data_usa_02154e48[c];
-        a->mUnk_41c.z = data_usa_02154eac[c];
-        a->mUnk_bc.x = (s64) a->mUnk_428.x * a->mUnk_41c.x >> 12;
-        a->mUnk_bc.y = (s64) a->mUnk_428.y * a->mUnk_41c.y >> 12;
-        a->mUnk_bc.z = (s64) a->mUnk_428.z * a->mUnk_41c.z >> 12;
-        a->mUnk_bc.y = (s64) a->mUnk_434 * a->mUnk_bc.y >> 12;
+        a->mScaleFactor.x = data_usa_02154de4[c];
+        a->mScaleFactor.y = data_usa_02154e48[c];
+        a->mScaleFactor.z = data_usa_02154eac[c];
+        a->mScale.x = (s64) a->mScaleBase.x * a->mScaleFactor.x >> 12;
+        a->mScale.y = (s64) a->mScaleBase.y * a->mScaleFactor.y >> 12;
+        a->mScale.z = (s64) a->mScaleBase.z * a->mScaleFactor.z >> 12;
+        a->mScale.y = (s64) a->mScaleYFactor * a->mScale.y >> 12;
         return;
     }
     b = a->mUnk_514;
@@ -84,7 +84,7 @@ void func_020651fc(Kart *a) {
     func_01ffc6c0(a);
     func_01ff9d18(a);
     b = a->mUnk_514;
-    b->mUnk_64 = b->mUnk_64 + a->mUnk_c8;
+    b->mUnk_64 = b->mUnk_64 + a->mGravity;
     b->mUnk_60 = b->mUnk_60 + b->mUnk_64;
     if (b->mUnk_60 < 0) {
         b->mUnk_60 = 0;
@@ -94,7 +94,7 @@ void func_020651fc(Kart *a) {
         a->mUnk_230 = func_01ffb0cc;
     }
     if ((a->mUnk_514->mUnk_44 & 1) != 0) {
-        a->mUnk_260 = 0;
+        a->mVerticalSpeed = 0;
     }
     func_01ffb130(a);
 }
@@ -174,7 +174,7 @@ void func_02064d60(Kart *a, Vec3 *b) {
         func_01ffad14(a, b);
     }
     func_01ffce48(&a->mUnk_f0_q, &a->mUnk_100_q, &a->mUnk_f0_q, a->mUnk_3a8);
-    e = a->mUnk_236 - c->mUnk_0e;
+    e = a->mHeadingAngle - c->mUnk_0e;
     if ((e > 0 ? e : -e) > 0x7fff) {
         if (e > 0) {
             e = -(0xffff - e);
@@ -183,22 +183,22 @@ void func_02064d60(Kart *a, Vec3 *b) {
         }
     }
     c->mUnk_0e = c->mUnk_0e + (s32) ((s64) e * 0x19a >> 12);
-    func_01ffd190(&data_02154f7c, (u16) (a->mUnk_236 + a->mUnk_4de), &a->mUnk_e0_m);
+    func_01ffd190(&data_02154f7c, (u16) (a->mHeadingAngle + a->mHeadingAngleOffset), &a->mUnk_e0_m);
     func_01ffcebc(&a->mUnk_f0_q, &a->mUnk_e0_m, &a->mUnk_110_q);
     if ((a->mUnk_44 & 2) != 0) {
-        if (a->mUnk_2b8 > 0) {
-            f = (u16) ((s64) a->mUnk_2bc * 0x1f4 >> 12);
-            a->mUnk_2c0 = 0x9c4 - f;
-            if (a->mUnk_2c0 > 0x6a4) {
-                a->mUnk_2c0 = 0x352;
+        if (a->mHopSpeed > 0) {
+            f = (u16) ((s64) a->mHopHeight * 0x1f4 >> 12);
+            a->mHopTiltAngle = 0x9c4 - f;
+            if (a->mHopTiltAngle > 0x6a4) {
+                a->mHopTiltAngle = 0x352;
             }
         } else {
-            a->mUnk_2c0 = 0;
+            a->mHopTiltAngle = 0;
         }
-        func_01ffd190(&data_02154f88, (u16) -a->mUnk_2c0, &d);
+        func_01ffd190(&data_02154f88, (u16) -a->mHopTiltAngle, &d);
         func_01ffcebc(&a->mUnk_110_q, &d, &a->mUnk_110_q);
     } else {
-        a->mUnk_2c0 = 0;
+        a->mHopTiltAngle = 0;
     }
     func_01ffcf7c(&a->mUnk_110_q, &a->mUnk_110_q);
 }
@@ -247,7 +247,7 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     if (a->mUnk_20c_fn[1] != 0) {
         a->mUnk_20c_fn[1](a);
     }
-    a->mUnk_508 = &a->mPos;
+    a->mPosSource = &a->mPos;
     a->mUnk_50c = &a->mUnk_110_q;
     a->mUnk_510 = &a->mPos;
     if (a->mUnk_20c_fn[0] != 0) {
@@ -260,20 +260,20 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     }
     if (data_021759c0->mMode == 5) {
         if (c != 0) {
-            a->mUnk_508 = &a->mUnk_514->mUnk_10;
+            a->mPosSource = &a->mUnk_514->mUnk_10;
             a->mUnk_50c = &a->mUnk_514->mUnk_4c;
             a->mUnk_510 = &a->mUnk_514->mUnk_00;
         } else {
-            a->mUnk_508 = &a->mPos;
+            a->mPosSource = &a->mPos;
             a->mUnk_50c = &a->mUnk_110_q;
             a->mUnk_510 = &a->mPos;
         }
     } else {
-        a->mUnk_508 = &a->mPos;
+        a->mPosSource = &a->mPos;
         a->mUnk_50c = &a->mUnk_110_q;
         a->mUnk_510 = &a->mPos;
     }
-    a->mUnk_534 = a->mUnk_508;
+    a->mUnk_534 = a->mPosSource;
     func_020646f0(a, 0);
     if (func_02062ec4() != 0 && data_021759c0->mUnk_00c != 5) {
         a->mUnk_20c_fn[3] = func_020649e8;

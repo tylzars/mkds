@@ -78,7 +78,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     v.y = a->mUnk_02 << 10;
     v.z = a->mUnk_04 << 10;
     p->mForwardSpeed = a->mUnk_06 << 2;
-    p->mUnk_236 = a->mUnk_0a;
+    p->mHeadingAngle = a->mUnk_0a;
     q->mUnk_44 = a->mUnk_14;
     q->mUnk_48 = a->mUnk_10;
     x = q->mUnk_48 >> 24;
@@ -89,7 +89,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     q->mUnk_98.z = (s16) (((x & 0x80) ? 0xc000 : 0) | (x << 6));
     q->mUnk_48 = q->mUnk_48 & 0xff;
     q->mUnk_40 = a->mUnk_08;
-    p->mUnk_388 = a->mUnk_08;
+    p->mTurnAngle = a->mUnk_08;
     if (b) {
         p->mUnk_44 |= 0x10;
     } else {
@@ -106,11 +106,11 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         p->mUnk_44 &= ~8;
     }
     if (((p->mUnk_514->mUnk_30 & 0x10000) != 0) != ((f & 0x10000) != 0)) {
-        s = p->mUnk_236;
+        s = p->mHeadingAngle;
         ResetKartAndSetPos(p, &v, 0, 0);
-        p->mUnk_236 = s;
+        p->mHeadingAngle = s;
         v3 = data_02165530;
-        func_01ffd190(&v3, p->mUnk_236, (Vec4 *) &p->mUnk_e0);
+        func_01ffd190(&v3, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
         *(Vec4 *) &p->mUnk_108.z = *(Vec4 *) &p->mUnk_e0;
         if (p->mUnk_7c & 0x400) {
             r = p->mUnk_514;
@@ -176,15 +176,15 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 if (i < 3 && i < n / 2) {
                     func_01ffc090(p, func_01ffc27c(p, 0));
                 }
-                func_01ffd190(&data_02154f7c, p->mUnk_236, (Vec4 *) &p->mUnk_e0);
+                func_01ffd190(&data_02154f7c, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
                 func_01ffcebc((Vec4 *) &p->mUnk_f0, (Vec4 *) &p->mUnk_e0, (Vec4 *) &p->mUnk_108.z);
                 func_01ffcd84(&p->mUnk_120, (Vec4 *) &p->mUnk_108.z);
                 r = p->mUnk_514;
                 r->mUnk_5c = r->mUnk_5c + (s32) (((s64) (r->mUnk_40 - r->mUnk_5c) * 0x333 + 0x800) >> 12);
-                p->mUnk_388 = r->mUnk_5c;
+                p->mTurnAngle = r->mUnk_5c;
                 Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m1, &p->mUnk_12c,
-                                                       gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2],
-                                                       gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2 + 1]);
+                                                       gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2],
+                                                       gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2 + 1]);
                 if (p->mUnk_48 & 1) {
                     Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m2, &p->mUnk_120, gPairsByAngle[0xba],
                                                            gPairsByAngle[0xbb]);
@@ -199,7 +199,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 Vec3Add(&v, &p->mUnk_2d8, &v);
                 Vec3Add(&p->mVelocity, &p->mUnk_2d8, &p->mVelocity);
                 if (p->mUnk_514->mUnk_44 & 1) {
-                    p->mUnk_260 = 0;
+                    p->mVerticalSpeed = 0;
                 }
                 k = (p->mUnk_44 & 0x10) ? 0xee1 : 0xfae;
                 p->mUnk_2d8.x = (s32) (((s64) p->mUnk_2d8.x * k) >> 12);
@@ -230,7 +230,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         r = ((volatile Kart *) p)->mUnk_514;
         r->mUnk_64 = 0x1405;
         r->mUnk_60 = 0;
-        p->mUnk_260 += 0x21a2;
+        p->mVerticalSpeed += 0x21a2;
     }
     if (((p->mUnk_514->mUnk_30 & 0x20000) != 0) != ((f & 0x20000) != 0)) {
         StartKartState6(p);

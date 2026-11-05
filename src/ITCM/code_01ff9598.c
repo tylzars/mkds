@@ -192,21 +192,21 @@ void func_01ff9f60(Kart *p, Vec3 *a) {
         func_01ffad14(p, a);
     }
     func_01ffce48(&p->mUnk_f0_q, &p->mUnk_100_q, &p->mUnk_f0_q, p->mUnk_3a8);
-    func_01ffd190(&data_02154f7c, (u16) (p->mUnk_236 + p->mUnk_4de), &p->mUnk_e0_m);
+    func_01ffd190(&data_02154f7c, (u16) (p->mHeadingAngle + p->mHeadingAngleOffset), &p->mUnk_e0_m);
     func_01ffcebc(&p->mUnk_f0_q, &p->mUnk_e0_m, &p->mUnk_110_q);
     if (p->mUnk_44 & 2) {
-        if (p->mUnk_2b8 > 0) {
-            p->mUnk_2c0 = 0x9c4 - (u16) ((s64) p->mUnk_2bc * 500 >> 12);
-            if (p->mUnk_2c0 > 0x6a4) {
-                p->mUnk_2c0 = 0x352;
+        if (p->mHopSpeed > 0) {
+            p->mHopTiltAngle = 0x9c4 - (u16) ((s64) p->mHopHeight * 500 >> 12);
+            if (p->mHopTiltAngle > 0x6a4) {
+                p->mHopTiltAngle = 0x352;
             }
         } else {
-            p->mUnk_2c0 = 0;
+            p->mHopTiltAngle = 0;
         }
-        func_01ffd190(&data_02154f88, (u16) -p->mUnk_2c0, &v);
+        func_01ffd190(&data_02154f88, (u16) -p->mHopTiltAngle, &v);
         func_01ffcebc(&p->mUnk_110_q, &v, &p->mUnk_110_q);
     } else {
-        p->mUnk_2c0 = 0;
+        p->mHopTiltAngle = 0;
     }
     func_01ffcf7c(&p->mUnk_110_q, &p->mUnk_110_q);
 }
@@ -322,11 +322,11 @@ void func_01ff9c40(Kart *p) {
     if (!(p->mUnk_44 & 4)) {
         return;
     }
-    p->mUnk_2b8 = p->mUnk_2b8 + p->mUnk_c8;
-    p->mUnk_2bc = p->mUnk_2bc + p->mUnk_2b8;
-    if (p->mUnk_2bc < 0) {
-        p->mUnk_2bc = 0;
-        p->mUnk_2b8 = 0;
+    p->mHopSpeed = p->mHopSpeed + p->mGravity;
+    p->mHopHeight = p->mHopHeight + p->mHopSpeed;
+    if (p->mHopHeight < 0) {
+        p->mHopHeight = 0;
+        p->mHopSpeed = 0;
         p->mUnk_44 = p->mUnk_44 & ~0x804;
     }
 }
@@ -346,16 +346,16 @@ void func_01ff9b70(Kart *p) {
     } else {
         func_0208c534(func_0208c5b8(p->mIndex));
     }
-    p->mUnk_3b0 = p->mVelocity;
+    p->mEffectVelocity = p->mVelocity;
     f = p->mUnk_44;
     if (f & 0x10) {
         if (!(f & 0x1000)) {
-            p->mUnk_3b0.y = p->mUnk_3b0.y - p->mUnk_260;
+            p->mEffectVelocity.y = p->mEffectVelocity.y - p->mVerticalSpeed;
         }
     }
-    p->mUnk_3b0.x = p->mUnk_3b0.x >> 4;
-    p->mUnk_3b0.y = p->mUnk_3b0.y >> 4;
-    p->mUnk_3b0.z = p->mUnk_3b0.z >> 4;
+    p->mEffectVelocity.x = p->mEffectVelocity.x >> 4;
+    p->mEffectVelocity.y = p->mEffectVelocity.y >> 4;
+    p->mEffectVelocity.z = p->mEffectVelocity.z >> 4;
 }
 
 void func_01ff9a94(Unk01ff9940 *a) {

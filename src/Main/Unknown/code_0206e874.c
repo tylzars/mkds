@@ -78,9 +78,9 @@ void func_0206edac(Kart *p, Vec3 *a) {
             if (n <= 0) {
                 n = -n;
             }
-            p->mUnk_260 = ((s64) n * 0x99a) >> 12;
-            if (p->mUnk_260 > m) {
-                p->mUnk_260 = m;
+            p->mVerticalSpeed = ((s64) n * 0x99a) >> 12;
+            if (p->mVerticalSpeed > m) {
+                p->mVerticalSpeed = m;
             }
             f = p->mUnk_7c;
             if ((f & 0x10) && p->mKartModelsEntry->mUnk_058 == 0) {
@@ -193,7 +193,7 @@ void func_0206e874(Kart *p) {
                                     v5 = w.x - (s32) (((s64) p->mUnk_50.x * s) >> 12);
                                     p->mUnk_2d8.x += v5;
                                     p->mUnk_2d8.z += v7;
-                                    p->mUnk_260 += v6;
+                                    p->mVerticalSpeed += v6;
                                 }
                             }
                         }

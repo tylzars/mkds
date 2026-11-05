@@ -155,7 +155,7 @@ void func_020e9d10(void) {
         }
         if (data_0217b9ec.mUnk_00e != 4 && (data_0217b9ec.mUnk_00e != 5 || data_0217b890 != 4)) {
             data_0217b954 = data_0217b8c8->mPos;
-            data_0217b954.y -= data_0217b8c8->mUnk_2bc;
+            data_0217b954.y -= data_0217b8c8->mHopHeight;
         }
         func_020e9658();
         func_020e8ac8();
@@ -172,7 +172,7 @@ void func_020e9d10(void) {
         Vec3 v;
         data_0217ba2c.mUnk_18 = 2;
         data_0217b954 = data_0217b8c8->mPos;
-        data_0217b954.y -= data_0217b8c8->mUnk_2bc;
+        data_0217b954.y -= data_0217b8c8->mHopHeight;
         func_020e9658();
         v = data_0217b990;
         v.x += data_0217b88c;
@@ -196,7 +196,7 @@ void func_020e9d10(void) {
             Vec3 v;
             data_0217b87c = n;
             data_0217b954 = data_0217b8c8->mPos;
-            data_0217b954.y -= data_0217b8c8->mUnk_2bc;
+            data_0217b954.y -= data_0217b8c8->mHopHeight;
             func_020e9658();
             v = data_0217b978;
             v.x += data_0217b88c;
@@ -236,7 +236,7 @@ void func_020e9d10(void) {
             return;
         }
         data_0217b954 = data_0217b8c8->mPos;
-        data_0217b954.y -= data_0217b8c8->mUnk_2bc;
+        data_0217b954.y -= data_0217b8c8->mHopHeight;
         func_020e9658();
         func_02046bcc(&data_0217b9ec, 1);
         return;
@@ -383,7 +383,7 @@ void func_020e9658(void) {
     data_0217ba88 = data_0217ba58;
     Vec3Sub(&data_0217b954, &data_0217bab8.mUnk_00[3], &data_0217b9b4);
     data_0217bab8.mUnk_00[3] = data_0217b954;
-    data_0217bab8.mUnk_00[3].y = data_0217bab8.mUnk_00[3].y + (data_0217b8c8->mVelocity.y - data_0217b8c8->mUnk_2b8);
+    data_0217bab8.mUnk_00[3].y = data_0217bab8.mUnk_00[3].y + (data_0217b8c8->mVelocity.y - data_0217b8c8->mHopSpeed);
     data_0217bab8.mUnk_00[1] = data_02159494;
 
     if (func_0203c5e4() != 0) {

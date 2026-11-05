@@ -63,7 +63,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
             t.y = (s32) (((s64) t.y * b) >> 12);
             t.z = (s32) (((s64) t.z * b) >> 12);
             if (a->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x8000000) {
-                if (n < (s32) (((s64) v->mPhysicalParam->mRadius * v->mUnk_bc.z + 0x800) >> 12)) {
+                if (n < (s32) (((s64) v->mPhysicalParam->mRadius * v->mScale.z + 0x800) >> 12)) {
                     a->mUnk_238 = a->mUnk_238 + 1;
                     if (a->mUnk_238 > 0x5a) {
                         func_020f7070(a, 1);

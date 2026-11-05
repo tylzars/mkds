@@ -212,8 +212,13 @@ typedef struct Kart {
     /* 98 */ Vec3 mUnk_98;
     /* a4 */ Vec3 mVelocity;
     /* b0 */ Vec3 mVelocityDirection;
-    /* bc */ Vec3 mUnk_bc;
-    /* c8 */ s32 mUnk_c8;
+    // Size scale of the kart (x, y, z; 0x1000 = 1.0): mScaleBase times mScaleFactor per axis, y also times
+    // mScaleYFactor. Zero at the start placement (func_020727d4) and where the kart is moved to a far corner
+    // (func_02068b98, func_02068640).
+    /* bc */ Vec3 mScale;
+    // Negative step added by func_01ffb9cc to mVerticalSpeed, by func_01ff9c40 to mHopSpeed while hopping and to a
+    // speed of the mode-5 record; -0x2b9 at reset, 0 after the water-height branch of func_0206ff50.
+    /* c8 */ s32 mGravity;
     // The value mSpeedLimit follows: it falls by x0xf37/0x1000 per step but never below it and rises to it at once.
     // Written by the step, by the companion objects (their own choice) and at set-up; read by the companion objects as
     // the kart's limit.
@@ -288,7 +293,10 @@ typedef struct Kart {
     };
     /* 230 */ void (*mUnk_230)(struct Kart *);
     /* 234 */ s16 mUnk_234;
-    /* 236 */ u16 mUnk_236;
+    // Angle about world up that orients the kart (0x10000 per turn): set from a direction vector or a start rotation,
+    // turned by the step functions and by mHeadingAnglePerFrame; mHeadingAngleOffset is added on top when the
+    // orientation is built.
+    /* 236 */ u16 mHeadingAngle;
     /* 238 */ s16 mUnk_238;
     /* 23a */ s16 mUnk_23a;
     /* 23c */ s16 mUnk_23c;
@@ -297,7 +305,9 @@ typedef struct Kart {
     /* 244 */ Vec3 mUnk_244;
     /* 250 */ Vec3 mUnk_250;
     /* 25c */ s32 mUnk_25c;
-    /* 260 */ s32 mUnk_260;
+    // Vertical speed added to mVelocity.y after mVelocity is rebuilt each step, so it persists; mGravity is added to
+    // it, it is reset to -0x2b9 or -0xd9d on a ground hit while negative, and a hop start adds a kick.
+    /* 260 */ s32 mVerticalSpeed;
     /* 264 */ u8 mUnk_264[4];
     /* 268 */ Vec3 mUnk_268;
     /* 274 */ s32 mUnk_274;
@@ -314,9 +324,15 @@ typedef struct Kart {
     /* 2b2 */ u16 mNearKartMask;
     /* 2b4 */ u16 mPrevNearKartMask;
     /* 2b6 */ u8 mUnk_2b6[2];
-    /* 2b8 */ s32 mUnk_2b8;
-    /* 2bc */ s32 mUnk_2bc;
-    /* 2c0 */ u16 mUnk_2c0;
+    // Vertical speed of the hop arc: 0x1405 at the start (func_0206c5e4), mGravity added each step by func_01ff9c40,
+    // integrated into mHopHeight, 0 once the height is below 0.
+    /* 2b8 */ s32 mHopSpeed;
+    // Height of the hop arc, integrated from mHopSpeed; 0 at the start and when it would go below 0. The camera, its
+    // look-at and the replay record subtract it from mPos.y.
+    /* 2bc */ s32 mHopHeight;
+    // Angle about the x axis that tilts the kart while mHopSpeed > 0 and bit 2 of mUnk_44 is set (0x9c4 minus
+    // mHopHeight * 500 / 0x1000, 0x352 when that exceeds 0x6a4); 0 otherwise. 0x10000 per turn.
+    /* 2c0 */ u16 mHopTiltAngle;
     /* 2c2 */ u8 mUnk_2c2[2];
     // Sign 1 / -1 / 0 of a turn, latched when it starts (from mUnk_48 bits 0x10 / 8, or from the entry's input bits
     // 0x10 / 0x20) and cleared when it ends; read only as a sign.
@@ -365,9 +381,15 @@ typedef struct Kart {
     // Calls of UpdateKartAirborne since the floor-hit bit (mUnk_44 & 0x10) was last set; not every step (skipped below
     // y = 0).
     /* 380 */ u32 mAirborneFrames;
-    /* 384 */ u16 mUnk_384;
-    /* 386 */ s16 mUnk_386;
-    /* 388 */ s16 mUnk_388;
+    // Draw gate of the kart: 0xffff while it is drawn, 0 when DrawKart skips it (hidden states, or the off phase of
+    // the blink); other draw code skips its drawing while it is 0; 0 at reset for an entry of kind 2.
+    /* 384 */ u16 mVisible;
+    // Angle added to mHeadingAngle each step, first multiplied by 0xe66 / 0x1000 and cut to 0 below 0x14; set in
+    // func_0206f04c, 0 at reset.
+    /* 386 */ s16 mHeadingAnglePerFrame;
+    // Angle that follows mTurnDirection: eased toward 11000 or -11000, changed by the turn input and cut back to 0 on
+    // the ground; it is the angle of the rotation of mUnk_278 about mUnk_244 in func_01ffb130.
+    /* 388 */ s16 mTurnAngle;
     /* 38a */ s16 mUnk_38a;
     /* 38c */ s32 mUnk_38c;
     /* 390 */ u8 mUnk_390[4];
@@ -375,12 +397,16 @@ typedef struct Kart {
     /* 398 */ s32 mUnk_398;
     /* 39c */ s32 mUnk_39c;
     /* 3a0 */ s32 mUnk_3a0;
-    /* 3a4 */ u16 mUnk_3a4;
+    // Angle of the tire object about the x axis (0x10000 per turn), advanced each step in func_020641f0 from the speed
+    // ratio and used by DrawKart; 0 at reset.
+    /* 3a4 */ u16 mTireSpinAngle;
     /* 3a6 */ u8 mUnk_3a6[2];
     /* 3a8 */ s32 mUnk_3a8;
     /* 3ac */ u16 mUnk_3ac;
     /* 3ae */ u8 mUnk_3ae[2];
-    /* 3b0 */ Vec3 mUnk_3b0;
+    // mVelocity, minus mVerticalSpeed on a floor hit, shifted right by 4 each step (func_01ff9b70); copied or scaled
+    // into the velocity (mUnk_40) of effect objects.
+    /* 3b0 */ Vec3 mEffectVelocity;
     /* 3bc */ u16 mUnk_3bc;
     /* 3be */ u16 mUnk_3be;
     /* 3c0 */ s16 mUnk_3c0;
@@ -390,7 +416,9 @@ typedef struct Kart {
     /* 3ca */ u8 mUnk_3ca[2];
     /* 3cc */ s32 mUnk_3cc;
     /* 3d0 */ s16 mUnk_3d0;
-    /* 3d2 */ s16 mUnk_3d2;
+    // Countdown of 0x14 set on the slower kart of a kart-kart contact in CollideKartWithKarts and counted down by
+    // func_01ffc8cc, which calls func_0210b12c at 0 (what that call does is unknown).
+    /* 3d2 */ s16 mKartCollisionTimer;
     /* 3d4 */ s16 mUnk_3d4;
     /* 3d6 */ u8 mUnk_3d6[2];
     /* 3d8 */ s32 mUnk_3d8;
@@ -418,9 +446,14 @@ typedef struct Kart {
     /* 410 */ s32 mUnk_410;
     /* 414 */ s32 mUnk_414;
     /* 418 */ s32 mUnk_418;
-    /* 41c */ Vec3 mUnk_41c;
-    /* 428 */ Vec3 mUnk_428;
-    /* 434 */ s32 mUnk_434;
+    // Part of mScale looked up in three tables (x, y, z) of 25 entries (0x800 up to 0x1000) by a step counter, forwards
+    // or backwards; 0x1000 when no step runs.
+    /* 41c */ Vec3 mScaleFactor;
+    // Part of mScale held at 0x1000, eased down to 0x800 while the countdown of func_0206a354 runs and set back to
+    // 0x1000 at its end; mScaleFactor is the table-driven part.
+    /* 428 */ Vec3 mScaleBase;
+    // Factor of mScale.y only: 0x1000 normally, lowered by 0x4cd per call to a floor of 0x4cd in func_02069f6c.
+    /* 434 */ s32 mScaleYFactor;
     /* 438 */ struct MapObject *mUnk_438[2];
     /* 440 */ u16 mUnk_440[2];
     /* 444 */ s32 mUnk_444[2];
@@ -441,8 +474,12 @@ typedef struct Kart {
     /* 4d8 */ s16 mUnk_4d8;
     /* 4da */ s16 mUnk_4da;
     /* 4dc */ s16 mUnk_4dc;
-    /* 4de */ s16 mUnk_4de;
-    /* 4e0 */ s16 mUnk_4e0;
+    // Angle added to mHeadingAngle when the orientation is built, never to mHeadingAngle itself; func_020713a0 swings
+    // it back and forth and sets it to 0 at the end.
+    /* 4de */ s16 mHeadingAngleOffset;
+    // Angle added to mHeadingAngleOffset each step by func_020713a0; changed by 0x3c per call toward the swing
+    // direction and clamped to 0x17c, later 0xd2; 0 at reset.
+    /* 4e0 */ s16 mHeadingAngleOffsetPerFrame;
     /* 4e2 */ s16 mUnk_4e2;
     /* 4e4 */ u16 mUnk_4e4;
     /* 4e6 */ u8 mUnk_4e6[2];
@@ -454,7 +491,9 @@ typedef struct Kart {
     /* 500 */ u32 mUnk_500;
     /* 504 */ u16 mUnk_504;
     /* 506 */ u16 mUnk_506;
-    /* 508 */ Vec3 *mUnk_508;
+    // Points to mPos, or for a kind-3 entry in mode 5 to a Vec3 of the received record (mUnk_514); set in InitKart.
+    // Draw, culling, effect placement and the position getter read the position through it.
+    /* 508 */ Vec3 *mPosSource;
     /* 50c */ Vec4 *mUnk_50c;
     /* 510 */ Vec3 *mUnk_510;
     /* 514 */ Unk0206bcb0_514 *mUnk_514;

@@ -510,7 +510,7 @@ void func_0209086c(Unk020905a8 *a, u32 b) {
     func_0207ffa4(&a->mUnk_00, b, (Unk02080b1c_00 *) gKartItems[b].mUnk_1f0.mUnk_00);
     a->mUnk_26 = 0;
     a->mUnk_28 = 0;
-    p->mUnk_388 = 0;
+    p->mTurnAngle = 0;
     func_0206cdd4(p);
 }
 
@@ -567,15 +567,15 @@ void func_02090638(Unk020905a8 *a) {
     } else {
         s = 0x52;
     }
-    w = p->mUnk_236 + (s16) (((s64) v * 0xb6 + 0x800) >> 12);
+    w = p->mHeadingAngle + (s16) (((s64) v * 0xb6 + 0x800) >> 12);
     b = *(volatile s32 *) &p->mEntryIndex;
     m = data_0217562a[b].mBits;
     if ((u16) (m & 0x20) != 0) {
-        p->mUnk_236 = p->mUnk_236 + 0xa0;
+        p->mHeadingAngle = p->mHeadingAngle + 0xa0;
     } else if ((u16) (m & 0x10) != 0) {
-        p->mUnk_236 = p->mUnk_236 - 0xa0;
+        p->mHeadingAngle = p->mHeadingAngle - 0xa0;
     }
-    d = w - p->mUnk_236;
+    d = w - p->mHeadingAngle;
     e = d;
     e = (e < 0) ? -e : e;
     if (e > 0x7fff) {
@@ -585,7 +585,7 @@ void func_02090638(Unk020905a8 *a) {
             d = d + 0xffff;
         }
     }
-    p->mUnk_236 = p->mUnk_236 + (s32) (((s64) d * s) >> 12);
+    p->mHeadingAngle = p->mHeadingAngle + (s32) (((s64) d * s) >> 12);
 }
 
 s32 func_020905a8(Unk020905a8 *a) {

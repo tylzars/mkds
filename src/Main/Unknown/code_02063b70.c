@@ -65,28 +65,28 @@ void DrawKart(Kart *a) {
             g = func_02063b70(a);
         }
         func_0208155c(a->mIndex, g);
-        a->mUnk_384 = 0;
+        a->mVisible = 0;
         return;
     }
     if ((d & 0x404004) != 0) {
-        a->mUnk_384 = ~a->mUnk_384;
-        if (a->mUnk_384 == 0) {
+        a->mVisible = ~a->mVisible;
+        if (a->mVisible == 0) {
             return;
         }
     } else {
-        a->mUnk_384 = 0xffff;
+        a->mVisible = 0xffff;
     }
     func_02063cc4_inline(0x14, 0x1e);
     if (b != 0) {
-        func_02063cc4_inline3(&a->mUnk_144, a->mUnk_508);
+        func_02063cc4_inline3(&a->mUnk_144, a->mPosSource);
         func_01ff9048(0x19, &a->mUnk_120, 0xc);
-        func_01ff9048(0x1b, &a->mUnk_bc, 3);
+        func_01ff9048(0x1b, &a->mScale, 3);
         func_02063cc4_inline2(0x1b, a->mUnk_414, a->mUnk_404, a->mUnk_418);
         func_0207ae58(e->mUnk_01c);
         func_02063cc4_inline(0x14, 0x1e);
     }
     func_01ff9048(0x19, a->mUnk_1b4, 0xc);
-    func_01ff9048(0x1b, &a->mUnk_bc, 3);
+    func_01ff9048(0x1b, &a->mScale, 3);
     func_02063cc4_inline(0x13, 0x1d);
     func_02063cc4_inline2(0x1b, a->mUnk_414, a->mUnk_404, a->mUnk_418);
     if (b == 0) {
@@ -103,7 +103,7 @@ void DrawKart(Kart *a) {
             h = a->mKartModelsEntry->mUnk_020->mUnk_10;
             func_02063cc4_inline(0x14, 0x1c);
             func_01ff9048(0x1c, &f->mUnk_18, 3);
-            w = (a->mUnk_3a4 >> 4) * 2;
+            w = (a->mTireSpinAngle >> 4) * 2;
             Matrix3x3FromPairX(j, gPairsByAngle[w], gPairsByAngle[w + 1]);
             func_01ff9048(0x1a, j, 9);
             func_020849d0(e->mUnk_010[2]);
@@ -156,14 +156,14 @@ s32 func_02063b70(Kart *a) {
     if (d != FALSE) {
         t = a->mRadius + 0x5000;
         g = *a->mUnk_1b4;
-        Vec3AddScaled(t, &a->mUnk_12c, a->mUnk_508, &h);
+        Vec3AddScaled(t, &a->mUnk_12c, a->mPosSource, &h);
         g.mUnk_00[3].x = h.x >> 4;
         g.mUnk_00[3].y = h.y >> 4;
         g.mUnk_00[3].z = h.z >> 4;
         k = a->mUnk_4c8;
-        i.x = (s64) a->mUnk_bc.x * k >> 12;
-        i.y = (s64) a->mUnk_bc.y * k >> 12;
-        i.z = (s64) a->mUnk_bc.z * k >> 12;
+        i.x = (s64) a->mScale.x * k >> 12;
+        i.y = (s64) a->mScale.y * k >> 12;
+        i.z = (s64) a->mScale.z * k >> 12;
         f = 0x1e;
         func_01ff9048(0x14, &f, 1);
         func_01ff9048(0x19, &g, 0xc);

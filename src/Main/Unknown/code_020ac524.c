@@ -55,7 +55,7 @@ void DrawShineBalloon(void *a, ShineBalloonObject *b) {
     s32 t;
     s32 v5;
 
-    if (b->mUnk_ac->mUnk_384 == 0) {
+    if (b->mUnk_ac->mVisible == 0) {
         return;
     }
     s0 = 0x1e;

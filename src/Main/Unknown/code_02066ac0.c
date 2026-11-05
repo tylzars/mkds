@@ -157,7 +157,7 @@ s32 func_02067834(Kart *a) {
         }
     }
     a->mUnk_48 = a->mUnk_48 | 0x10000000;
-    a->mUnk_260 = data_021655b0[a->mSurfaceVariant];
+    a->mVerticalSpeed = data_021655b0[a->mSurfaceVariant];
     a->mUnk_4c4 = data_0216559c[a->mSurfaceVariant];
     func_020839d8(a);
     return 8;
@@ -481,7 +481,7 @@ void func_02066ac0(Kart *a) {
                 }
                 e = a->mUnk_514;
                 e->mUnk_5c = e->mUnk_5c + (s32) ((s64) (e->mUnk_40 - e->mUnk_5c) * 0x333 + 0x800 >> 12);
-                a->mUnk_388 = e->mUnk_5c;
+                a->mTurnAngle = e->mUnk_5c;
             } else {
                 if (i > 0x19) {
                     i = 0x19;
@@ -494,7 +494,7 @@ void func_02066ac0(Kart *a) {
     } else {
         e = a->mUnk_514;
         e->mUnk_5c = e->mUnk_5c + (s32) ((s64) (e->mUnk_40 - e->mUnk_5c) * 0x333 + 0x800 >> 12);
-        a->mUnk_388 = e->mUnk_5c;
+        a->mTurnAngle = e->mUnk_5c;
     }
     e = a->mUnk_514;
     m = ListGetNext(&e->mUnk_80, NULL);

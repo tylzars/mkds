@@ -123,7 +123,7 @@ void UpdateChaseCamera(Camera *a, Kart *b) {
     s32 n;
     Vec3 *p;
 
-    s = (s32) (((s64) b->mUnk_2bc * 0xcd0) >> 12);
+    s = (s32) (((s64) b->mHopHeight * 0xcd0) >> 12);
     if (a->mUnk_258 == FALSE) {
         a->mPrevPos = a->mPos;
     }
@@ -707,8 +707,8 @@ void UpdateCameraAngleEntry(Camera *p) {
     j = (u16) ((s32) (((s64) q->mUnk_18.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     k = (u16) ((s32) (((s64) q->mUnk_24.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     l = (u16) ((s32) (((s64) q->mUnk_24.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m0, &o->mUnk_120, gPairsByAngle[(o->mUnk_2c0 >> 4) * 2],
-                                           gPairsByAngle[(o->mUnk_2c0 >> 4) * 2 + 1]);
+    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m0, &o->mUnk_120, gPairsByAngle[(o->mHopTiltAngle >> 4) * 2],
+                                           gPairsByAngle[(o->mHopTiltAngle >> 4) * 2 + 1]);
     Vec3MultiplyMatrix3x3(&a, m0, &a);
     b = a;
     c = b;
@@ -739,8 +739,8 @@ void UpdateCameraAngleEntry(Camera *p) {
     Matrix3x3Multiply(m6, m5, m7);
     Vec3MultiplyMatrix3x3(&n, m7, &n);
     Vec3Add(&p->mPos, &n, &p->mLookAt);
-    p->mLookAt.y = p->mLookAt.y - o->mUnk_2bc;
-    p->mPos.y = p->mPos.y - o->mUnk_2bc;
+    p->mLookAt.y = p->mLookAt.y - o->mHopHeight;
+    p->mPos.y = p->mPos.y - o->mHopHeight;
     if (data_021759c0->mMode != 4 && data_021759c0->mMode != 2) {
         if (func_01ffdee4(&p->mPos, (u32 *) &p->mPrevPos, 0, data_usa_021656c0 >> 1, 2, -2, &w, NULL, NULL, NULL, NULL,
                           NULL, NULL, NULL) != 0) {
