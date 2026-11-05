@@ -799,8 +799,8 @@ u16 func_02142eac(void) {
     u32 buf[3];
 
     if (data_0216f06c == 0x10000) {
-        func_0214e0f4();
-        if (func_0214df78(buf) == 0) {
+        RTC_Init();
+        if (RTC_GetTime(buf) == 0) {
             data_0216f06c = (u16) (buf[2] + (buf[1] << 8));
         }
     }

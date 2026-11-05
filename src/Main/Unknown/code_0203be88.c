@@ -107,7 +107,7 @@ u32 RunTitleScene(SceneNumbers *a) {
 }
 
 void func_0203bfec(s32 *a) {
-    if (func_0214e038((u32 *) a) != 0) {
+    if (RTC_GetDate((u32 *) a) != 0) {
         a[0] = 5;
         a[1] = 1;
         a[2] = 1;
@@ -115,7 +115,7 @@ void func_0203bfec(s32 *a) {
 }
 
 void func_0203bfc4(Unk0203bfc4 *a) {
-    if (func_0214df78((u32 *) a) != 0) {
+    if (RTC_GetTime((u32 *) a) != 0) {
         a->mUnk_00 = 0;
         a->mUnk_04 = 0;
         a->mUnk_08 = 0;

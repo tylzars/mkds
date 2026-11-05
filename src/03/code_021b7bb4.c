@@ -1186,7 +1186,7 @@ u16 func_ov003_021b7bb4(void) {
     if (data_ov003_021d7c48 == 0) {
         a = 0;
         func_ov003_021b7d84(b, 0, 12);
-        if (func_0214df78(b) == 0) {
+        if (RTC_GetTime(b) == 0) {
             a += b[0] << 10;
             a += b[1] << 3;
             a += b[2];

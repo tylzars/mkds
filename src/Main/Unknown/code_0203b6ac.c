@@ -103,7 +103,7 @@ void func_0203b6ac(u8 *a) {
     u32 h;
     u32 l;
 
-    if (func_0214df78(t) != 0) {
+    if (RTC_GetTime(t) != 0) {
         t[0] = 0;
         t[1] = 0;
         t[2] = 0;

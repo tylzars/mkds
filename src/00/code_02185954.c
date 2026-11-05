@@ -569,7 +569,7 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     char *n;
     func_0200fe58(g.mUnk_02);
     func_0200fddc(&y);
-    if (func_0214e038(o) != 0 || func_0214df78(p) != 0) {
+    if (RTC_GetDate(o) != 0 || RTC_GetTime(p) != 0) {
         return 5;
     }
     h = IrqDisable();

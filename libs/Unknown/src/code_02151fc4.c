@@ -78,11 +78,11 @@ u32 func_02151fc4(Unk021510a4 *a) {
     s64 g;
     u32 h;
     func_02151910(a);
-    func_0214e0f4();
-    if (func_0214e038(e) != 0) {
+    RTC_Init();
+    if (RTC_GetDate(e) != 0) {
         return 0;
     }
-    if (func_0214df78(f) != 0) {
+    if (RTC_GetTime(f) != 0) {
         return 0;
     }
     g = func_02152244(e, f);

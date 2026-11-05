@@ -428,7 +428,7 @@ Pointer locals and addresses:
   base isn't loaded again (func_0203e788). An address the ROM computes before a test's branch: assign it in the
   block of that test (func_0206938c).
 - A global's address load is reused only along single-predecessor blocks; the block after an `if` loads it again. A
-  second address load early in the ROM means the access sits below the preceding `if` (func_0214d9e8). Two
+  second address load early in the ROM means the access sits below the preceding `if` (ReceiveClockReply). Two
   statements that share global addresses in the ROM have no branch between them: set the flag first (`b = 0;
   if (a == 0) { b = 1; }`, then both statements; func_0205d6d0).
 - An extra copy `ldr r0, [..]; adds r5, r0, #0; adds r5, #8` means the plain loaded value is used a second time

@@ -87,7 +87,7 @@ void func_ov003_021c2398(void) {
     func_02148904();
     FS_Init(-1);
     TP_Init();
-    func_0214e0f4();
+    RTC_Init();
     GX_DispOff();
     *(u32 *) 0x4001000 &= 0xfffeffff;
     func_ov003_021d3408();
