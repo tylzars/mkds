@@ -329,7 +329,7 @@ void UpdateRaceProgressKarts(void) {
             for (k = 0; k < 16; k++) {
                 e->mUnk_4c[k] = 0;
             }
-            func_0207a948(&v, i);
+            GetKartPos(&v, i);
             GetKartForward(GetKart(i), &w);
             UpdateRaceProgressKart(&v, e);
             f = FALSE;

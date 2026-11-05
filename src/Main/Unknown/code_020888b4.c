@@ -273,7 +273,7 @@ void func_02089494(Unk020888b4 *p) {
     s = &p->mUnk_28;
     g = &q->mUnk_138;
     e = s->mUnk_14;
-    func_0207a948(&v, p->mIndex);
+    GetKartPos(&v, p->mIndex);
     if (q->mUnk_48 & 0x3840) {
         return;
     }

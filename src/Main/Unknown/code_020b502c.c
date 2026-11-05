@@ -163,7 +163,7 @@ void func_020b6078(s32 idx, UnkPair020b502c *out) {
     UnkPair020b502c a = data_0217b3c0->mUnk_2c;
     Vec3 v;
 
-    func_0207a948(&v, (u8) idx);
+    GetKartPos(&v, (u8) idx);
     switch (func_020b4e5c()) {
         case 0xb:
         case 0x14:
@@ -239,7 +239,7 @@ void func_020b5dcc(s32 idx, UnkPair020b502c *out, s32 v1) {
     s32 dx;
     s32 dy;
 
-    func_0207a948(&v, (u8) idx);
+    GetKartPos(&v, (u8) idx);
     px = func_020b502c(0x200000, func_020b57b4(v.x - o.mUnk_00, data_0217b3c0->mUnk_5c));
     py = func_020b502c(0x200000, func_020b57b4(v.z - o.mUnk_04, data_0217b3c0->mUnk_64));
     if (func_020b523c() != 0) {

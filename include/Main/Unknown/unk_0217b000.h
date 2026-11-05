@@ -612,8 +612,8 @@ typedef struct RaceHud {
     // reference times (data_021759c0->mUnk_3ec); the draw picks one of two sprites by it. Which sprite is plus or minus
     // is not named.
     /* 8e8 */ s32 mTimeDifferenceSign;
-    // The difference as seven digits (SplitTimeDigits), written by func_020b1a34, read through func_020b19b4 by the
-    // draw.
+    // The difference as seven digits (SplitTimeDigits), written by func_020b1a34, read through GetRaceHudTimeDifference
+    // by the draw.
     /* 8ec */ TimeDigits mTimeDifferenceDigits;
     /* 908 */ s32 mUnk_908;
     /* 90c */ BOOL mUnk_90c;

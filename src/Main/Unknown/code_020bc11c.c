@@ -799,7 +799,7 @@ void func_020bc208(Unk020d029c *a) {
         s32 q14[2];
         s32 b[10] = {0x57, 0x61, 0x6a, 0x72, 0x7c, 0x85, 0x8e, 0x98, 0xa1, 0xaa};
 
-        func_020b19b4(&p, &r);
+        GetRaceHudTimeDifference(&p, &r);
         c = GetRaceTaMNcerEntry(*p != 0 ? UNK_020B843C_ARG_0 : UNK_020B843C_ARG_1);
         q5[0] = b[0] << 12;
         q5[1] = 0x58000;

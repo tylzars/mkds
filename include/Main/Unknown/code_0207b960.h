@@ -36,7 +36,9 @@ extern Unk0208fd8c_08 data_usa_021552f4[];
 extern Unk0208fd8c_08 data_usa_021553cc[];
 extern Unk0208fd8c_08 data_usa_021554a4[];
 
-void func_0207b960(Vec3 *a, PosCurve *b);
+// Writes to a the point of the curve b at parameter mParam (0 to 0x1000): the four control points of mPoints weighted
+// by the uniform cubic B-spline basis.
+void ComputePosCurvePoint(Vec3 *a, PosCurve *b);
 // Adds d to the curve parameter (0x1000 = one segment); past 0x1000 it shifts the four control points on to the next
 // point of the entry's group (clamped after the last) and writes the point on the curve to a. UpdateCameraPosCurve
 // calls it for groups of four or more points.

@@ -330,7 +330,7 @@ s32 Vec3NormalizeXZAndGetLengthOrZero(Vec3 *a, Vec3 *b) {
     return (r + 1) >> 1;
 }
 
-void func_020d6f20(Vec3 *a, s32 b, Vec3 *c) {
+void Vec3RotateAroundY(Vec3 *a, s32 b, Vec3 *c) {
     s32 m[9];
     s32 i = b >> 4;
     Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);

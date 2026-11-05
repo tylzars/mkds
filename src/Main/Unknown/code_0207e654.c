@@ -230,7 +230,7 @@ void func_0207f8f8(Unk020888b4 *p) {
         t = &a->mUnk_138;
     }
     s = q->mUnk_14;
-    func_0207a948(&v, p->mIndex);
+    GetKartPos(&v, p->mIndex);
     func_0207f6f0(p, q, a, s, &v, t);
     if (a->mState == 0) {
         func_0204360c(p->mKart->mEntryIndex, 1);

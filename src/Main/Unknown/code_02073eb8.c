@@ -381,7 +381,7 @@ void func_02075d08(s32 a) {
         return;
     }
     p->mKind6EntryRunning = FALSE;
-    func_0207a948(&v, p->mFollowedKartIndex);
+    GetKartPos(&v, p->mFollowedKartIndex);
     s = func_020411e4(&v);
     if (s < 0) {
         return;
@@ -441,7 +441,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
         UpdateCameraAngleEntry(p);
         return TRUE;
     }
-    func_0207a948(&v, p->mFollowedKartIndex);
+    GetKartPos(&v, p->mFollowedKartIndex);
     i = func_020411e4(&v);
     if (p->mKind6EntryRunning != FALSE) {
         if (data_021759c0->mMode == MODE_BATTLE) {
@@ -493,10 +493,10 @@ void UpdateCameraByEntryKind(Camera *p) {
             p->mPos = p->mCourseMapCamera->mUnk_00;
             if (data_021759c0->mUnk_00c == 5) {
                 p->mFollowedKartIndex = (p->mCourseMapCamera->mUnk_24.z >> 12) - 1;
-                func_0207a948(&p->mLookAt, p->mFollowedKartIndex);
+                GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
                 p->mLookAt.y = p->mLookAt.y + p->mCourseMapCamera->mUnk_18.y;
             } else {
-                func_0207a948(&p->mLookAt, p->mFollowedKartIndex);
+                GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
                 p->mLookAt.y = p->mLookAt.y + 0x6000;
             }
             UpdateCameraView(p);
@@ -659,10 +659,10 @@ void UpdateCameraPosCurveLookAtKart(Camera *p) {
     UpdateCameraPosCurve(p, p->mCourseMapCamera->mPosCurvePerFrame);
     if (data_021759c0->mUnk_00c == 5) {
         p->mFollowedKartIndex = (p->mCourseMapCamera->mUnk_24.z >> 12) - 1;
-        func_0207a948(&p->mLookAt, p->mFollowedKartIndex);
+        GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
         p->mLookAt.y = p->mLookAt.y + p->mCourseMapCamera->mUnk_18.y;
     } else {
-        func_0207a948(&p->mLookAt, p->mFollowedKartIndex);
+        GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
         p->mLookAt.y = p->mLookAt.y + 0x6000;
     }
     UpdateCameraView(p);
@@ -695,10 +695,10 @@ void UpdateCameraAngleEntry(Camera *p) {
 
     if (data_021759c0->mUnk_00c == 5) {
         p->mFollowedKartIndex = (q->mUnk_24.z >> 12) - 1;
-        func_0207a948(&p->mLookAt, p->mFollowedKartIndex);
+        GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
         p->mLookAt.y = p->mLookAt.y + p->mCourseMapCamera->mUnk_18.y;
     } else {
-        func_0207a948(&p->mLookAt, p->mFollowedKartIndex);
+        GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
         p->mLookAt.y = p->mLookAt.y + 0x6000;
     }
     o = GetKart(p->mFollowedKartIndex);

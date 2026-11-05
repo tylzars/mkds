@@ -234,7 +234,7 @@ void func_020c97c0(void) {
                     } else {
                         data_0217b428->mUnk_040[i] = 0;
                     }
-                    func_0207a8c4(&data_0217b428->mUnk_0a0[i], i);
+                    GetKartScale(&data_0217b428->mUnk_0a0[i], i);
                     if (GetKart(i)->mState != 0) {
                         data_0217b428->mUnk_110[i]++;
                         data_0217b428->mUnk_100[i] = (data_0217b428->mUnk_110[i] << 12) % 0x10000;
@@ -250,14 +250,14 @@ void func_020c97c0(void) {
         case 3:
             data_0217b428->mUnk_190->mUnk_04 = 0;
             for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-                func_0207a948(&v, i & 0xff);
+                GetKartPos(&v, i & 0xff);
                 func_020b5dcc(i, &data_0217b428->mUnk_060[i], a);
                 x = data_0217b428->mUnk_060[i].mUnk_00;
                 y = data_0217b428->mUnk_060[i].mUnk_04;
                 if (x > -0x10 && x < 0x110 && y > -0x10 && y < 0xd0 && func_0207a84c(i) == 0) {
                     data_0217b428->mUnk_000[i] = 1;
                     data_0217b428->mUnk_040[i] = func_020b4dc4(i);
-                    func_0207a8c4(&data_0217b428->mUnk_0a0[i], i);
+                    GetKartScale(&data_0217b428->mUnk_0a0[i], i);
                     if (GetKart(i)->mState != 0) {
                         data_0217b428->mUnk_110[i]++;
                         data_0217b428->mUnk_100[i] = (data_0217b428->mUnk_110[i] << 12) % 0x10000;

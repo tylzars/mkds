@@ -73,7 +73,7 @@ void func_0207e4a4(struct Unk020888b4 *p) {
         t = &q->mUnk_138;
     }
     r = s->mUnk_14;
-    func_0207a948(&a, p->mIndex);
+    GetKartPos(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == 0) {
         func_0204360c(p->mKart->mEntryIndex, 1);
@@ -109,7 +109,7 @@ void func_0207e35c(struct Unk020888b4 *p) {
         t = &q->mUnk_138;
     }
     r = s->mUnk_14;
-    func_0207a948(&a, p->mIndex);
+    GetKartPos(&a, p->mIndex);
     func_0207f6f0(p, s, q, r, &a, t);
     if (q->mState == 0) {
         func_0204360c(p->mKart->mEntryIndex, 1);

@@ -435,8 +435,8 @@ void func_020eb498(Unk020ebef8 *param_1, Unk020eb498 *param_2) {
         param_1->mUnk_0f4.x = -param_1->mUnk_000.mMatrix.mUnk_00[2].x;
         param_1->mUnk_0f4.z = -param_1->mUnk_000.mMatrix.mUnk_00[2].z;
     }
-    func_020d6f20(&param_1->mUnk_0f4, 0x0aab, &param_1->mUnk_100);
-    func_020d6f20(&param_1->mUnk_0f4, 0xf555, &param_1->mUnk_0f4);
+    Vec3RotateAroundY(&param_1->mUnk_0f4, 0x0aab, &param_1->mUnk_100);
+    Vec3RotateAroundY(&param_1->mUnk_0f4, 0xf555, &param_1->mUnk_0f4);
     param_1->mUnk_0f4.x = (s32) (((s64) param_1->mUnk_0f4.x * 0x800) >> 12);
     param_1->mUnk_0f4.y = (s32) (((s64) param_1->mUnk_0f4.y * 0x800) >> 12);
     param_1->mUnk_0f4.z = (s32) (((s64) param_1->mUnk_0f4.z * 0x800) >> 12);

@@ -223,7 +223,7 @@ Kart *GetKart(s32 a) {
     return &gKarts[a];
 }
 
-void func_0207a948(Vec3 *a, s32 b) {
+void GetKartPos(Vec3 *a, s32 b) {
     *a = *gKarts[b].mPosSource;
 }
 
@@ -235,7 +235,7 @@ void GetKartPrevPos(Vec3 *a, s32 b) {
     *a = gKarts[b].mPrevPos;
 }
 
-void func_0207a8c4(Vec3 *a, s32 b) {
+void GetKartScale(Vec3 *a, s32 b) {
     *a = gKarts[b].mScale;
 }
 

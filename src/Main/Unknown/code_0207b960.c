@@ -873,10 +873,10 @@ void UpdatePosCurve(Vec3 *a, PosCurve *b, struct CourseMapCamera *c, s32 d) {
             b->mParam -= 0x1000;
         }
     }
-    func_0207b960(a, b);
+    ComputePosCurvePoint(a, b);
 }
 
-void func_0207b960(Vec3 *a, PosCurve *b) {
+void ComputePosCurvePoint(Vec3 *a, PosCurve *b) {
     s32 t;
     s32 t2;
     s32 t3;

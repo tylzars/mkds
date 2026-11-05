@@ -109,8 +109,11 @@ void func_0207a6c0(Kart *a);
 void func_0207a70c(s32 a);
 u32 func_0207a7fc(s32 a);
 s32 func_0207a84c(s32 a);
-void func_0207a8c4(Vec3 *a, s32 b);
+// Copies mScale of Kart b to a.
+void GetKartScale(Vec3 *a, s32 b);
 void func_0207a91c(Vec3 *dst, u8 idx);
-void func_0207a948(Vec3 *dst, s32 idx);
+// Copies the position of Kart idx to dst, read through mPosSource (which points to mPos, or for a kind-3 entry in mode
+// 5 to a Vec3 of the received record).
+void GetKartPos(Vec3 *dst, s32 idx);
 void func_0207a990(void);
 void func_0207aa7c(void);

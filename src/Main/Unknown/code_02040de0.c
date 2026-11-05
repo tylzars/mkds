@@ -456,7 +456,7 @@ s32 func_02040de0(s32 a, u32 b) {
     BOOL f = FALSE;
 
     n = gCourseMap->mKind3ShapeLists[b];
-    func_0207a948(&v, a);
+    GetKartPos(&v, a);
     for (; f == FALSE && n != NULL; n = n->mUnk_04) {
         p = n->mUnk_00;
         t = 0;

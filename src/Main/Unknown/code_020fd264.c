@@ -225,7 +225,7 @@ void func_020fde18(Unk020fdae8 *e) {
         return;
     }
     if (e->mUnk_17c < 8) {
-        func_0207a948(&v, e->mUnk_178);
+        GetKartPos(&v, e->mUnk_178);
         x = (e->mUnk_000.mUnk_000.mPos.x - v.x) >> 12;
         y = (e->mUnk_000.mUnk_000.mPos.y - v.y) >> 12;
         z = (e->mUnk_000.mUnk_000.mPos.z - v.z) >> 12;

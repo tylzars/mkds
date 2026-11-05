@@ -360,8 +360,8 @@ void func_0206988c(Kart *p) {
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         return;
     }
-    func_0207a948(&a, (u16) data_021759c0->mEntryIndex);
-    func_0207a948(&b, p->mIndex);
+    GetKartPos(&a, (u16) data_021759c0->mEntryIndex);
+    GetKartPos(&b, p->mIndex);
     d = (a.x - b.x) >> 12;
     e = (a.y - b.y) >> 12;
     f = (a.z - b.z) >> 12;

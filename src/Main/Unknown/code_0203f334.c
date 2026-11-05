@@ -387,7 +387,7 @@ void func_0203f334(RaceProgressKart *a, s32 b) {
     if (a->mLap <= 1) {
         return;
     }
-    func_0207a948(&u, (u32) (a->mUnk_3c << 24) >> 28);
+    GetKartPos(&u, (u32) (a->mUnk_3c << 24) >> 28);
     GetKartPrevPos(&v, (u32) (a->mUnk_3c << 24) >> 28);
     Vec3Sub(&u, &v, &w);
     w.x = (s64) w.x * -240 >> 12;
