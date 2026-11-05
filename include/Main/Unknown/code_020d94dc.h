@@ -99,33 +99,6 @@ typedef struct Unk020d9de0 {
     /* 00 */ s32 mUnk_00[0x10];
 } Unk020d9de0;
 
-// Object allocated by func_020da414; 0x40 bytes.
-typedef struct Unk020da414 {
-    /* 00 */ s32 mUnk_00[0x10];
-} Unk020da414;
-
-// Object of at least 0x108 bytes.
-typedef struct Unk020da494 {
-    /* 00 */ MapObject mUnk_00;
-    /* a0 */ s32 mUnk_a0;
-    /* a4 */ Unk020d7b88 mUnk_a4;
-    /* b4 */ Unk020d7b88 mUnk_b4;
-    /* c4 */ s32 mUnk_c4;
-    /* c8 */ s32 mUnk_c8;
-    /* cc */ Unk020e0144 mUnk_cc;
-    /* f0 */ u16 mUnk_f0;
-    /* f2 */ u8 mUnk_f2[2];
-    /* f4 */ s32 mUnk_f4;
-    /* f8 */ u16 mUnk_f8;
-    /* fa */ u8 mUnk_fa[2];
-    /* fc */ s32 mUnk_fc;
-    /* 100 */ u16 mUnk_100;
-    /* 102 */ s16 mUnk_102;
-    /* 104 */ s32 mUnk_104;
-} Unk020da494;
-
-void func_020da494(Unk020da494 *a, CourseMapRow *b);
-Unk020da414 *func_020da414(void);
 void func_020da384(Unk020da384 *a, void *b, UnkFunc *c);
 void func_020d9f8c(Unk020d9cf4 *a);
 void func_020d9e60(Unk020d9cf4 *a, struct Unk02012f58 *b);

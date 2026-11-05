@@ -5,6 +5,7 @@
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020d94dc.h"
+#include "Main/Unknown/code_020da414.h"
 #include "Main/Unknown/code_020e005c.h"
 #include "Main/Unknown/code_020e6b58.h"
 #include "Main/Unknown/code_020f9c6c.h"
