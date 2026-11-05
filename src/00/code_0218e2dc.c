@@ -47,8 +47,8 @@ u32 func_ov000_0218e8c4(void) {
 void func_ov000_0218e8bc(u32 arg0) {
     u32 value0 = arg0;
     u32 value3;
-    value3 = (u32) &func_0200dc3c;
-    func_0200dc3c(value0);
+    value3 = (u32) &OS_Sleep;
+    OS_Sleep(value0);
     return;
 }
 

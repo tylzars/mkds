@@ -36,13 +36,13 @@ int printf(const char *fmt, ...) {
         return -1;
     }
     if (ThreadLockTry(data_0217eadc[3]) == 0) {
-        data_0217ea94[3] = data_0216ff5c.mListHead->mUnk_6c;
+        data_0217ea94[3] = data_0216ff5c.mListHead->mId;
         data_0217eab8[3] = 1;
-    } else if (data_0217ea94[3] == data_0216ff5c.mListHead->mUnk_6c) {
+    } else if (data_0217ea94[3] == data_0216ff5c.mListHead->mId) {
         data_0217eab8[3]++;
     } else {
         ThreadLockWait(data_0217eadc[3]);
-        data_0217ea94[3] = data_0216ff5c.mListHead->mUnk_6c;
+        data_0217ea94[3] = data_0216ff5c.mListHead->mId;
         data_0217eab8[3] = 1;
     }
     r = FormatWithPutFunc(FormatPutFwrite, &data_0216eb7c[1], fmt, (char *) (((int) &fmt & ~3) + 4));
@@ -344,17 +344,17 @@ u32 fwrite(const char *a, u32 b, u32 c, FILE *d) {
     }
     p = data_0217eadc[i];
     if (ThreadLockTry(p) == 0) {
-        data_0217ea94[i] = data_0216ff5c.mListHead->mUnk_6c;
+        data_0217ea94[i] = data_0216ff5c.mListHead->mId;
         data_0217eab8[i] = 1;
     } else {
         u32 v;
 
         v = data_0217ea94[i];
-        if (v == data_0216ff5c.mListHead->mUnk_6c) {
+        if (v == data_0216ff5c.mListHead->mId) {
             data_0217eab8[i]++;
         } else {
             ThreadLockWait(p);
-            data_0217ea94[i] = data_0216ff5c.mListHead->mUnk_6c;
+            data_0217ea94[i] = data_0216ff5c.mListHead->mId;
             data_0217eab8[i] = 1;
         }
     }

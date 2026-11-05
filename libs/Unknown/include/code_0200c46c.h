@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-void func_0200c46c(u32 a);
+// Calls PxiSendFifoWord(13, a, 0) and, while it returns nonzero, WaitByLoop(1) and the call again.
+void SendTag13WordUntilAccepted(u32 a);

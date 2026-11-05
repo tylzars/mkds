@@ -30,7 +30,9 @@ typedef struct Thread {
     /* 48 */ u8 mUnk_48[0x1c]; // its address goes to the functions called by ThreadSaveContext and ThreadLoadContext
     /* 64 */ u32 mUnk_64;
     /* 68 */ struct Thread *mListNext;
-    /* 6c */ u32 mUnk_6c;
+    // The AllocThreadId result that ThreadInit stores (0 for the first thread); the game tests it against 0 and the
+    // C library code keeps a copy of the first thread's value in data_0217ea94 and compares it later.
+    /* 6c */ u32 mId;
     /* 70 */ u32 mSortKey;
     /* 74 */ u32 mUnk_74;
     /* 78 */ ThreadQueue *mWaitQueue;
@@ -43,8 +45,12 @@ typedef struct Thread {
     /* 98 */ u32 mUnk_98;
     /* 9c */ ThreadQueue mEndQueue;
     /* a4 */ u8 mUnk_a4[0xc];
-    /* b0 */ Unk0200fb08 *mUnk_b0;
-    /* b4 */ void (*mUnk_b4)(void *);
+    // Address of the alarm of the OS_Sleep call the thread is in, 0 otherwise; ThreadInit and WakeSleepingThread
+    // set it to 0, OS_Sleep sets it, CancelThreadSleepAlarm cancels it.
+    /* b0 */ Unk0200fb08 *mSleepAlarm;
+    // The function OS_SetThreadDestructor stores; RunExitCallbackThenEndThread clears it and calls it with the exit
+    // argument.
+    /* b4 */ void (*mExitCallback)(void *);
 } Thread;
 
 // Object at data_0216ff5c; ThreadSystemInit stores the address of mCurrentThread in data_0216ff54.
@@ -59,12 +65,22 @@ typedef struct ThreadSystem {
 void (*ThreadSetSwitchCallback(void (*arg0)(Thread *, Thread *)))(Thread *, Thread *);
 
 u32 ThreadSystemIsInit(void);
-void func_0200db5c(Thread *t, void (*f)(void *));
+// Stores f in t->mExitCallback (two instructions). ThreadInit calls it with 0; RunExitCallbackThenEndThread reads the
+// member.
+void OS_SetThreadDestructor(Thread *t, void (*f)(void *));
 u32 ThreadSwitchEnable(void);
 u32 ThreadSwitchDisable(void);
-void func_0200dbd4(void *a);
-void func_0200dc1c(Thread **arg0);
-void func_0200dc3c(u32 n);
+// Entry function of the thread that ThreadSystemInit creates last (sort key 0x20): calls IrqEnable, then OS_Halt in
+// an endless loop.
+void ThreadHaltLoop(void *a);
+// The alarm callback of OS_Sleep: takes the thread pointer from *p, sets *p and the thread's mSleepAlarm to 0 and
+// calls ThreadSetRunnable on the thread.
+void WakeSleepingThread(Thread **arg0);
+// Creates an alarm on the stack (OS_CreateAlarm), calls IrqDisable, stores the alarm address in the current thread's
+// mSleepAlarm and starts it (OS_SetAlarm) for n * 0x82ea >> 6 ticks with WakeSleepingThread as the callback and the
+// address of a local copy of the thread pointer as its argument. Calls ThreadWait(0) until that local is 0, then
+// IrqRestore.
+void OS_Sleep(u32 n);
 u32 ThreadGetSortKey(Thread *t);
 s32 ThreadSetSortKey(Thread *t, u32 v);
 void ThreadMoveCurrentAfterEqualSortKeys(void);
@@ -75,12 +91,20 @@ void ThreadQueueSetAllRunnable(ThreadQueue *q);
 void ThreadWait(ThreadQueue *q);
 s32 ThreadHasEnded(Thread *t);
 void ThreadWaitForEnd(Thread *t);
-void func_0200e0c0(Thread *arg0);
+// Calls OS_CancelAlarm(t->mSleepAlarm) when the member is not 0; does not clear it. Its only caller is ThreadEnd.
+void CancelThreadSleepAlarm(Thread *arg0);
 void ThreadEnd(Thread *t);
 void ThreadEndCurrent(void);
-void func_0200e1ac(void *a);
-void func_0200e1f0(Thread *t, void *a);
-void func_0200e260(void);
+// Takes the current thread, calls its mExitCallback with a when it is not 0 (clearing the member first, and calling
+// IrqDisable after), then calls ThreadEndCurrent.
+void RunExitCallbackThenEndThread(void *a);
+// When the word data_0216ff44 (nothing writes it) is not 0: ThreadInitContext(t, RunExitCallbackThenEndThread, that
+// word), stores a at +4 of t, sets bit 0x80 of the first word of t, sets the member at +0x64 to 1 and calls
+// ThreadLoadContext(t). Otherwise calls RunExitCallbackThenEndThread(a). Its only caller is OS_ExitThread.
+void ThreadEndWithArg(Thread *t, void *a);
+// Calls IrqDisable and then ThreadEndWithArg(current thread, 0). ThreadInit stores it in the member at +0x3c of every
+// new thread, so a thread function that returns ends here; func_0200b08c also calls it.
+void OS_ExitThread(void);
 void ThreadInit(Thread *t, void (*f)(void *), void *a, u8 *p, u32 n, u32 v);
 void ThreadSystemInit(void);
 void ThreadListRemove(Thread *t);
@@ -88,4 +112,5 @@ void ThreadListInsert(Thread *t);
 ThreadLock *ThreadLockListRemoveFront(ThreadLockList *q);
 Thread *ThreadQueueRemoveFront(ThreadQueue *q);
 void ThreadQueueInsert(ThreadQueue *q, Thread *t);
-u32 func_0200e670(void);
+// Adds 1 to gThreadIdCount and returns the new value. ThreadInit stores it in the thread's mId.
+u32 AllocThreadId(void);

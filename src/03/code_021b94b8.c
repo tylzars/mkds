@@ -354,7 +354,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
 }
 
 void func_ov003_021ba1a8(u32 msec) {
-    func_0200dc3c(msec);
+    OS_Sleep(msec);
 }
 
 int func_ov003_021ba18c(int state) {

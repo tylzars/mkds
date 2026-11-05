@@ -28,13 +28,13 @@ void exit(int a) {
 
 void ExitTail(int a) {
     if (ThreadLockTry(data_0217eadc[0]) == 0) {
-        data_0217ea94[0] = data_0216ff5c.mListHead->mUnk_6c;
+        data_0217ea94[0] = data_0216ff5c.mListHead->mId;
         data_0217eab8[0] = 1;
-    } else if (data_0217ea94[0] == data_0216ff5c.mListHead->mUnk_6c) {
+    } else if (data_0217ea94[0] == data_0216ff5c.mListHead->mId) {
         data_0217eab8[0]++;
     } else {
         ThreadLockWait(data_0217eadc[0]);
-        data_0217ea94[0] = data_0216ff5c.mListHead->mUnk_6c;
+        data_0217ea94[0] = data_0216ff5c.mListHead->mId;
         data_0217eab8[0] = 1;
     }
     while (gExitFunctionCount > 0) {

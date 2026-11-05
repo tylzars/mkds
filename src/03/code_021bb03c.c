@@ -131,7 +131,7 @@ s32 func_ov003_021be418(u32 param_0) {
         return -2;
     }
     do {
-        func_0200dc3c(10);
+        OS_Sleep(10);
         while ((c = func_ov003_021be528()) != 0) {
             if (c == 4 || c == 5) {
             } else if (c == 6) {
@@ -152,7 +152,7 @@ u32 func_ov003_021be3b8(void) {
 
     if (func_ov003_021be7b8() != 0) {
         do {
-            func_0200dc3c(10);
+            OS_Sleep(10);
             while ((b = func_ov003_021be528()) != 0) {
                 switch (b) {
                     case 4:
@@ -202,7 +202,7 @@ s32 func_ov003_021be264(void) {
             b = -8;
             break;
         }
-        func_0200dc3c(10);
+        OS_Sleep(10);
         while ((d = func_ov003_021be528()) != 0) {
             switch (d) {
                 case 12:
@@ -249,7 +249,7 @@ void func_ov003_021be1fc(void) {
     if (data_ov003_021d8bf0 != 0) {
         if (func_ov003_021be820() != 0) {
             do {
-                func_0200dc3c(10);
+                OS_Sleep(10);
                 while ((b = func_ov003_021be528()) != 0) {
                     switch (b) {
                         case 4:
@@ -403,7 +403,7 @@ s32 func_ov003_021bdd3c(void) {
         c = TRUE;
         a = 0;
         do {
-            func_0200dc3c(10);
+            OS_Sleep(10);
             if (func_ov003_021bb354() >= data_ov003_021d68b8 || data_ov003_021d8be0 != 0) {
                 break;
             }
@@ -989,7 +989,7 @@ s32 func_ov003_021bcf1c(void) {
     c = FALSE;
     data_ov003_021d8bec = 1;
     while (c == FALSE && data_ov003_021d8be0 == 0) {
-        func_0200dc3c(500);
+        OS_Sleep(500);
         switch (data_ov003_021d8bec) {
             case 1:
                 a = func_ov003_021bdd3c();
@@ -1918,9 +1918,9 @@ s32 func_ov003_021bb0b0(void) {
         a = data_ov003_021d8c08;
         data_ov003_021d8be0 = 1;
         while (data_ov003_021d8c08 >= 1 && data_ov003_021d8c08 <= 5) {
-            func_0200dc3c(100);
+            OS_Sleep(100);
         }
-        func_0200dc3c(500);
+        OS_Sleep(500);
         if (ThreadHasEnded(&data_ov003_021d8d08) == 0) {
             do {
                 ThreadSetRunnable(&data_ov003_021d8d08);

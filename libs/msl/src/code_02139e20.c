@@ -13,13 +13,13 @@ int raise(int a) {
         return -1;
     }
     if (ThreadLockTry(data_0217eadc[7]) == 0) {
-        data_0217ea94[7] = data_0216ff5c.mListHead->mUnk_6c;
+        data_0217ea94[7] = data_0216ff5c.mListHead->mId;
         data_0217eab8[7] = 1;
-    } else if (data_0217ea94[7] == data_0216ff5c.mListHead->mUnk_6c) {
+    } else if (data_0217ea94[7] == data_0216ff5c.mListHead->mId) {
         data_0217eab8[7]++;
     } else {
         ThreadLockWait(data_0217eadc[7]);
-        data_0217ea94[7] = data_0216ff5c.mListHead->mUnk_6c;
+        data_0217ea94[7] = data_0216ff5c.mListHead->mId;
         data_0217eab8[7] = 1;
     }
     f = gRaiseHandlers[a - 1];

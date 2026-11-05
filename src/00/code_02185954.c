@@ -273,7 +273,7 @@ s32 func_ov000_02186560(Unk02186560 *a, Http *b) {
 void func_ov000_021864e0(void) {
     ThreadLockInit(&data_ov000_021b4c90->mUnk_3bc);
     data_ov000_021b4c90->mUnk_3d4 = FALSE;
-    if (data_ov000_021b4c90->mUnk_2fc.mUnk_6c == 0 || ThreadHasEnded(&data_ov000_021b4c90->mUnk_2fc) != 0) {
+    if (data_ov000_021b4c90->mUnk_2fc.mId == 0 || ThreadHasEnded(&data_ov000_021b4c90->mUnk_2fc) != 0) {
         ThreadInit(&data_ov000_021b4c90->mUnk_2fc, func_ov000_021860ac, &data_ov000_021b4c90,
                    data_ov000_021b4c90->mUnk_3e0 + 0x1000, 0x1000, 0x10);
         ThreadSetRunnable(&data_ov000_021b4c90->mUnk_2fc);
@@ -288,7 +288,7 @@ void func_ov000_02186474(void) {
         if (data_ov000_021b4c90->mUnk_2f8 != NULL) {
             func_ov000_02187274((Unk02186d7c *) data_ov000_021b4c90->mUnk_2f8);
         }
-        if (data_ov000_021b4c90->mUnk_2fc.mUnk_6c != 0) {
+        if (data_ov000_021b4c90->mUnk_2fc.mId != 0) {
             ThreadWaitForEnd(&data_ov000_021b4c90->mUnk_2fc);
         }
     }
@@ -305,7 +305,7 @@ void func_ov000_02186430(void) {
 }
 
 void func_ov000_02186404(void) {
-    if (data_ov000_021b4c90->mUnk_2fc.mUnk_6c != 0) {
+    if (data_ov000_021b4c90->mUnk_2fc.mId != 0) {
         ThreadWaitForEnd(&data_ov000_021b4c90->mUnk_2fc);
     }
 }
@@ -373,7 +373,7 @@ void func_ov000_021860ac(void *param_1) {
     Unk02185984 *i;
     while (1) {
         i = data_ov000_021b4c90;
-        if (i->mUnk_2f8->mThread.mUnk_6c != 0) {
+        if (i->mUnk_2f8->mThread.mId != 0) {
             ThreadWaitForEnd(&i->mUnk_2f8->mThread);
         }
         if (data_ov000_021b4c90->mUnk_2f8->mResult != 8) {
@@ -429,7 +429,7 @@ void func_ov000_021860ac(void *param_1) {
                 return;
             }
             ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
-            func_0200dc3c(5000);
+            OS_Sleep(5000);
             h = ((OS_GetTick() - g) * 64) / 0x82ea;
         }
         ReleaseHttp(data_ov000_021b4c90->mUnk_2f8);

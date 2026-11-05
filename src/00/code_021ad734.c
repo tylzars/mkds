@@ -76,7 +76,7 @@ void func_ov000_021b04d4(void) {
     if (data_ov000_021b6390 == 0) {
         ThreadMoveCurrentAfterEqualSortKeys();
     } else {
-        func_0200dc3c(data_ov000_021b6390);
+        OS_Sleep(data_ov000_021b6390);
     }
 }
 
@@ -456,7 +456,7 @@ u8 *func_ov000_021afc20(u32 a) {
     for (b = 0; b < 8; b++) {
         func_ov000_021afc5c(a);
         for (c = 0; c < 0x14; c++) {
-            func_0200dc3c(100);
+            OS_Sleep(100);
             d = func_ov000_021afd00(a);
             if (d != NULL) {
                 return d;
@@ -1995,7 +1995,7 @@ void func_ov000_021adb00(void) {
     data_ov000_021b6384();
     if (data_ov000_021b63b4 != 0) {
         func_ov000_021afc5c(data_ov000_021b63b4);
-        func_0200dc3c(100);
+        OS_Sleep(100);
         func_ov000_021afc5c(data_ov000_021b63b4);
         a = OS_GetTick() >> 16;
         while (data_ov000_021b6388() != 0 && (s32) (OS_GetTick() >> 16) - a < 0x17) {
@@ -2003,7 +2003,7 @@ void func_ov000_021adb00(void) {
                 func_ov000_021b04f8(4);
                 return;
             }
-            func_0200dc3c(100);
+            OS_Sleep(100);
         }
     }
 }
@@ -2032,7 +2032,7 @@ void func_ov000_021ad898(void) {
     a = 1;
     data_ov000_021b637c = 1;
     while (1) {
-        func_0200dc3c(1000);
+        OS_Sleep(1000);
         if (data_ov000_021b63b0 != 0) {
             break;
         }

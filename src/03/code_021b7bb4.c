@@ -1038,7 +1038,7 @@ s32 func_ov003_021b7df4(u32 a, u32 b, u32 c) {
         return -1;
     }
     while (data_ov000_021b63b4 == 0) {
-        func_0200dc3c(100);
+        OS_Sleep(100);
     }
     return 0;
 }

@@ -163,7 +163,7 @@ void OS_Init(void) {
     InitVramLocks();
     ThreadSystemInit();
     OS_InitReset();
-    func_0200c7f4();
+    CTRDG_Init();
     CARD_Init();
     PM_Init();
 }

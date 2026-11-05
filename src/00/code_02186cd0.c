@@ -29,7 +29,7 @@ void func_ov000_02187fb8(void) {
             func_ov000_02187274(gHttp);
         }
         func_ov000_02186474();
-        if (data_ov000_021b4cb0->mUnk_11c.mUnk_6c != 0) {
+        if (data_ov000_021b4cb0->mUnk_11c.mId != 0) {
             ThreadWaitForEnd(&data_ov000_021b4cb0->mUnk_11c);
         }
         data_ov000_021b4cb0->mUnk_04 = 0xfffffff9;
@@ -453,7 +453,7 @@ void func_ov000_021874ec(void) {
         }
         strncpy(t, s, strlen(s));
         ReleaseHttp((Http *) gHttp);
-        func_0200dc3c(v);
+        OS_Sleep(v);
     }
 end:
     if (p1 != NULL) {
@@ -534,7 +534,7 @@ void func_ov000_021872bc(Unk02186d7c *p) {
     } else {
         data_ov000_021b4ca8 = 0;
     }
-    if (p->mThread.mUnk_6c == 0 || ThreadHasEnded(&p->mThread) != 0) {
+    if (p->mThread.mId == 0 || ThreadHasEnded(&p->mThread) != 0) {
         ThreadInit(&p->mThread, func_ov000_02186d7c, p, p->mUnk_1a60, 0x1000, n - 1);
         ThreadSetRunnable(&p->mThread);
     }
@@ -545,7 +545,7 @@ void func_ov000_02187274(Unk02186d7c *p) {
         ThreadLockWait(&p->mUnk_a28);
         p->mUnk_a40 = TRUE;
         ThreadLockUnlock(&p->mUnk_a28);
-        if (p->mThread.mUnk_6c != 0) {
+        if (p->mThread.mId != 0) {
             ThreadWaitForEnd(&p->mThread);
         }
     }
@@ -558,7 +558,7 @@ u32 func_ov000_02187230(Unk02186d7c *a) {
         return 0;
     }
     ThreadLockUnlock(&a->mUnk_a28);
-    func_0200dc3c((u32) 10);
+    OS_Sleep((u32) 10);
     return 1;
 }
 

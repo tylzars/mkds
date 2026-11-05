@@ -19,31 +19,31 @@
 
 #pragma thumb on
 
-Unk0216fe04 data_0216fe04;
-s32 data_0216fe0c;
-s32 data_0216fe08;
-Unk0216fe20 data_0216fe20;
-s32 (*data_0216fe10)(void);
+Unk0216fe04 gCartridgeState;
+s32 gCartridgeInitStarted;
+s32 gHeaderCopyStarted;
+Unk0216fe20 gCartridgeHeaderCopy;
+s32 (*gCartridgeRemovalCallback)(void);
 s32 data_0216fe14;
 s32 data_0216fe18;
 s32 data_0216fe1c;
 
-void func_0200c7f4(void) {
-    if (data_0216fe0c == 0) {
-        data_0216fe0c = 1;
-        func_0200c620();
+void CTRDG_Init(void) {
+    if (gCartridgeInitStarted == 0) {
+        gCartridgeInitStarted = 1;
+        InitCartridgeState();
         PxiInit();
         while (PxiCallbackBitIsSet(13, 1) == 0) {
         }
-        PxiCallbackSet(13, (UnkFunc *) func_0200c690);
-        func_0200c6b8();
+        PxiCallbackSet(13, (UnkFunc *) ReceiveCartridgeHeaderReply);
+        InitCartridgeHeaderCopy();
         PxiCallbackSet(13, 0);
-        PxiCallbackSet(13, (UnkFunc *) func_0200c65c);
-        data_0216fe10 = 0;
+        PxiCallbackSet(13, (UnkFunc *) ReceiveCartridgeRemovalMessage);
+        gCartridgeRemovalCallback = 0;
     }
 }
 
-void func_0200c6b8(void) {
+void InitCartridgeHeaderCopy(void) {
     u32 v;
     u16 w;
     Unk0200c4a4 a;
@@ -53,37 +53,37 @@ void func_0200c6b8(void) {
     Unk027ffc30 *s;
     Unk0216fe20 *d;
 
-    if (data_0216fe08 != 0) {
+    if (gHeaderCopyStarted != 0) {
         return;
     }
-    data_0216fe08 = 1;
+    gHeaderCopyStarted = 1;
     if ((*(u16 *) 0x04000300 & 1) == 0) {
         return;
     }
     v = InterruptEnableWrite(0x40000);
     w = reg_OS_IME;
     reg_OS_IME = 1;
-    func_0200c4c0(data_0216fe04.mUnk_02, &a);
+    LockCartridgeAndDisableIrq(gCartridgeState.mLockId, &a);
     c = (*(u16 *) 0x04000204 & 0x8000) >> 15;
-    func_0200c534(&b);
+    SaveAndSetExMemControlBits(&b);
     *(u16 *) 0x04000204 = *(u16 *) 0x04000204 & ~0x8000;
-    DC_InvalidateRange(((u8 *) &data_0216fe20 + 0x80), 0x40);
-    MI_DmaCopy16(1, (const void *) 0x08000080, ((u8 *) &data_0216fe20 + 0x80), 0x40);
+    DC_InvalidateRange(((u8 *) &gCartridgeHeaderCopy + 0x80), 0x40);
+    MI_DmaCopy16(1, (const void *) 0x08000080, ((u8 *) &gCartridgeHeaderCopy + 0x80), 0x40);
     *(u16 *) 0x04000204 = (*(u16 *) 0x04000204 & ~0x8000) | (c << 15);
-    func_0200c508(&b);
-    func_0200c4a4(data_0216fe04.mUnk_02, &a);
-    d = &data_0216fe20;
+    RestoreExMemControlBits(&b);
+    UnlockCartridgeAndRestoreIrq(gCartridgeState.mLockId, &a);
+    d = &gCartridgeHeaderCopy;
     s = (Unk027ffc30 *) 0x027ffc30;
-    s->mUnk_00 = data_0216fe20.mUnk_80.mUnk_3e;
+    s->mIdHalfword = gCartridgeHeaderCopy.mHeaderTailCopy.mUnk_3e;
     for (i = 0; i < 3; i++) {
-        ((u8 *) 0x027ffc32)[i] = d->mUnk_80.mUnk_35[i];
+        ((u8 *) 0x027ffc32)[i] = d->mHeaderTailCopy.mUnk_35[i];
     }
-    s->mUnk_06 = d->mUnk_80.mUnk_30;
-    s->mUnk_08 = d->mUnk_80.mUnk_2c;
-    MemCopyWords((void *) 0xffff0020, data_0216fe20.mUnk_04, 0x9c);
+    s->mUnk_06 = d->mHeaderTailCopy.mUnk_30;
+    s->mIdWord = d->mHeaderTailCopy.mUnk_2c;
+    MemCopyWords((void *) 0xffff0020, gCartridgeHeaderCopy.mUnk_04, 0x9c);
     DC_FlushAll();
-    func_0200c46c(((((u32) &data_0216fe20 - 0x02000000) >> 5) << 6) | 1);
-    while (data_0216fe04.mUnk_00 != 1) {
+    SendTag13WordUntilAccepted(((((u32) &gCartridgeHeaderCopy - 0x02000000) >> 5) << 6) | 1);
+    while (gCartridgeState.mReplyReceived != 1) {
         WaitByLoop(1);
     }
     reg_OS_IME;
@@ -91,24 +91,24 @@ void func_0200c6b8(void) {
     InterruptEnableWrite(v);
 }
 
-void func_0200c690(u32 a, u32 b) {
+void ReceiveCartridgeHeaderReply(u32 a, u32 b) {
     if ((b & 0x3f) == 1) {
-        data_0216fe04.mUnk_00 = 1;
+        gCartridgeState.mReplyReceived = 1;
     } else {
         IrqDisableLoopForever();
     }
 }
 
-void func_0200c65c(u32 a, u32 b) {
+void ReceiveCartridgeRemovalMessage(u32 a, u32 b) {
     s32 r;
 
     if ((b & 0x3f) == 0x11) {
         r = 0;
-        if (data_0216fe10 != 0) {
-            r = data_0216fe10();
+        if (gCartridgeRemovalCallback != 0) {
+            r = gCartridgeRemovalCallback();
         }
         if (r != 0) {
-            func_0200c648();
+            CTRDG_TerminateForPulledOut();
             return;
         }
     } else {
@@ -116,20 +116,20 @@ void func_0200c65c(u32 a, u32 b) {
     }
 }
 
-void func_0200c648(void) {
-    func_0200c46c(2);
+void CTRDG_TerminateForPulledOut(void) {
+    SendTag13WordUntilAccepted(2);
     IrqDisableLoopForever();
 }
 
-void func_0200c620(void) {
+void InitCartridgeState(void) {
     u32 v;
 
     v = 0;
-    CpuSet(&v, &data_0216fe04, 0x05000001);
-    data_0216fe04.mUnk_02 = IdAlloc();
+    CpuSet(&v, &gCartridgeState, 0x05000001);
+    gCartridgeState.mLockId = IdAlloc();
 }
 
-s32 func_0200c568(void) {
+s32 CTRDG_IsExisting(void) {
     s32 ret;
     Unk0200c4a4 a;
     Unk0200c4a4 b;
@@ -139,32 +139,33 @@ s32 func_0200c568(void) {
     s = (Unk027ffc30 *) 0x027ffc30;
     c = (Unk08000000 *) 0x08000000;
     ret = 1;
-    if (s->mUnk_00 == 0xffff) {
+    if (s->mIdHalfword == 0xffff) {
         return 0;
     }
     if (s->mUnk_05_1 == 1) {
         return 0;
     }
-    func_0200c4c0(data_0216fe04.mUnk_02, &a);
-    func_0200c534(&b);
-    if ((c->mUnk_b2 == 0x96 && s->mUnk_00 != c->mUnk_be) || (c->mUnk_b2 != 0x96 && s->mUnk_00 != *(u16 *) 0x0801fffe) ||
-        (s->mUnk_08 != c->mUnk_ac && s->mUnk_05_0)) {
+    LockCartridgeAndDisableIrq(gCartridgeState.mLockId, &a);
+    SaveAndSetExMemControlBits(&b);
+    if ((c->mIdSelector == 0x96 && s->mIdHalfword != c->mIdHalfword) ||
+        (c->mIdSelector != 0x96 && s->mIdHalfword != *(u16 *) 0x0801fffe) ||
+        (s->mIdWord != c->mIdWord && s->mUnk_05_0)) {
         s->mUnk_05_1 = 1;
         ret = 0;
     }
-    func_0200c508(&b);
-    func_0200c4a4(data_0216fe04.mUnk_02, &a);
+    RestoreExMemControlBits(&b);
+    UnlockCartridgeAndRestoreIrq(gCartridgeState.mLockId, &a);
     return ret;
 }
 
-void func_0200c534(Unk0200c4a4 *p) {
+void SaveAndSetExMemControlBits(Unk0200c4a4 *p) {
     p->mUnk_00 = (reg_MI_EXMEMCNT & 0xc) >> 2;
     p->mUnk_04 = (reg_MI_EXMEMCNT & 0x10) >> 4;
     reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0xc) | 0xc;
     reg_MI_EXMEMCNT &= ~0x10;
 }
 
-void func_0200c508(Unk0200c4a4 *p) {
+void RestoreExMemControlBits(Unk0200c4a4 *p) {
     u32 a;
     u32 b;
 
@@ -174,7 +175,7 @@ void func_0200c508(Unk0200c4a4 *p) {
     reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0x10) | (b << 4);
 }
 
-void func_0200c4c0(u32 a, Unk0200c4a4 *p) {
+void LockCartridgeAndDisableIrq(u32 a, Unk0200c4a4 *p) {
     for (;;) {
         p->mUnk_04 = IrqDisable();
         p->mUnk_00 = SwapLockGetHolderId((SwapLockSlot *) 0x027fffe8) & 0x40;
@@ -189,7 +190,7 @@ void func_0200c4c0(u32 a, Unk0200c4a4 *p) {
     }
 }
 
-void func_0200c4a4(u32 a, Unk0200c4a4 *p) {
+void UnlockCartridgeAndRestoreIrq(u32 a, Unk0200c4a4 *p) {
     if (p->mUnk_00 == 0) {
         OS_UnLockCartridge(a);
     }

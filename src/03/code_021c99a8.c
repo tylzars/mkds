@@ -113,7 +113,7 @@ void func_ov003_021c9b88(void) {
 }
 
 void func_ov003_021c9b68(void) {
-    func_0200dc3c(0xa);
+    OS_Sleep(0xa);
     func_ov003_021c99a8();
     func_ov003_021c9b38();
     func_ov003_021c9b34();

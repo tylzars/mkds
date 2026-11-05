@@ -78,7 +78,7 @@ void func_0200b08c(void *param_1) {
         }
         IrqRestore(v3);
     }
-    func_0200e260();
+    OS_ExitThread();
 }
 
 void func_0200b02c(Unk0200aeec_head *a, u32 b) {

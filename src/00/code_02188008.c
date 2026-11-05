@@ -211,7 +211,7 @@ void func_ov000_02188068(void) {
 }
 
 void func_ov000_02188008(void) {
-    if (data_ov000_021b4cb0->mUnk_11c.mUnk_6c == 0 || ThreadHasEnded(&data_ov000_021b4cb0->mUnk_11c) != 0) {
+    if (data_ov000_021b4cb0->mUnk_11c.mId == 0 || ThreadHasEnded(&data_ov000_021b4cb0->mUnk_11c) != 0) {
         ThreadInit(&data_ov000_021b4cb0->mUnk_11c, (void (*)(void *)) func_ov000_021874ec, data_ov000_021b4cb0,
                    data_ov000_021b4cb0->mUnk_1200, 0x1000, 0x10);
         ThreadSetRunnable(&data_ov000_021b4cb0->mUnk_11c);

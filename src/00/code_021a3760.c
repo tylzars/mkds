@@ -129,7 +129,7 @@ void func_ov000_021a37dc(void) {
     if (data_ov000_021b5df4 != NULL) {
         v1 = func_ov000_02188720();
         while (v1 == 0) {
-            func_0200dc3c(10);
+            OS_Sleep(10);
             v1 = func_ov000_02188720();
         }
         *(s32 *) &data_ov000_021b5df4 = 0;

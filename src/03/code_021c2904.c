@@ -38,7 +38,7 @@ void func_ov003_021c29d8(void) {
     if (func_ov003_021bb168(0xf, 0x40, func_ov003_021c2904, func_ov003_021c28f8, func_ov003_021c28f0, 0x800) != 1) {
         IrqDisableLoopForever();
     }
-    func_0200dc3c(0xa);
+    OS_Sleep(0xa);
 }
 
 void func_ov003_021c29b8(void) {

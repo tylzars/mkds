@@ -348,7 +348,7 @@ void PM_GoSleepMode(u32 a, u32 b, u32 c) {
         }
     }
     if ((a & 0x10) != 0) {
-        if (func_0200c568() == 0) {
+        if (CTRDG_IsExisting() == 0) {
             a &= ~0x10;
         }
     }

@@ -19,7 +19,7 @@ void func_02057e8c(void *a) {
                 f();
             }
         }
-        func_0200dc3c(2);
+        OS_Sleep(2);
     }
 }
 

@@ -15,10 +15,10 @@
 #include "00/code_02188720.h"
 #include "code_0200e6ec.h"
 
-u32 func_0200e670(void) {
+u32 AllocThreadId(void) {
     u32 value0;
     u32 value1;
-    value1 = (u32) &data_0216ff4c;
+    value1 = (u32) &gThreadIdCount;
     value0 = (u32) * (const u32 *) ((value1) + (0));
     value0 = (value0) + (1u);
     *(u32 *) ((value1) + (0)) = value0;
@@ -143,7 +143,7 @@ void ThreadSystemInit(void) {
     data_0216ff58 = 1;
     data_0216ff54 = &data_0216ff5c.mCurrentThread;
     data_0217002c.mSortKey = 0x10;
-    data_0217002c.mUnk_6c = 0;
+    data_0217002c.mId = 0;
     data_0217002c.mUnk_64 = 1;
     data_0217002c.mListNext = 0;
     data_0217002c.mUnk_74 = 0;
@@ -167,7 +167,7 @@ void ThreadSystemInit(void) {
     data_0216ff5c.mUnk_02 = 0;
     *(ThreadSystem **) 0x027fffa0 = &data_0216ff5c;
     ThreadSetSwitchCallback(0);
-    ThreadInit(&data_0216ff6c, func_0200dbd4, 0, (u8 *) &data_021701b4, 0xc8, 0x1f);
+    ThreadInit(&data_0216ff6c, ThreadHaltLoop, 0, (u8 *) &data_021701b4, 0xc8, 0x1f);
     data_0216ff6c.mSortKey = 0x20;
     data_0216ff6c.mUnk_64 = 1;
 }
@@ -179,9 +179,9 @@ void ThreadInit(Thread *t, void (*f)(void *), void *a, u8 *p, u32 n, u32 v) {
     volatile u32 z;
 
     s = IrqDisable();
-    k = func_0200e670();
+    k = AllocThreadId();
     t->mSortKey = v;
-    t->mUnk_6c = k;
+    t->mId = k;
     t->mUnk_64 = 0;
     t->mUnk_74 = 0;
     ThreadListInsert(t);
@@ -195,42 +195,42 @@ void ThreadInit(Thread *t, void (*f)(void *), void *a, u8 *p, u32 n, u32 v) {
     t->mEndQueue.mHead = t->mEndQueue.mTail;
     ThreadInitContext(t, f, (u32) p - 4);
     t->mUnk_04 = a;
-    t->mUnk_3c = func_0200e260;
+    t->mUnk_3c = OS_ExitThread;
     z = 0;
     MemFillWords(z, l + 4, n - 8);
-    func_0200db5c(t, 0);
+    OS_SetThreadDestructor(t, 0);
     t->mWaitQueue = 0;
     t->mQueueNext = 0;
     t->mQueuePrev = t->mQueueNext;
-    t->mUnk_b0 = 0;
+    t->mSleepAlarm = 0;
     IrqRestore(s);
 }
 
-void func_0200e260(void) {
+void OS_ExitThread(void) {
     IrqDisable();
-    func_0200e1f0(data_0216ff5c.mCurrentThread, 0);
+    ThreadEndWithArg(data_0216ff5c.mCurrentThread, 0);
 }
 
-void func_0200e1f0(Thread *t, void *a) {
+void ThreadEndWithArg(Thread *t, void *a) {
     if (data_0216ff44 != 0) {
-        ThreadInitContext(t, func_0200e1ac, data_0216ff44);
+        ThreadInitContext(t, RunExitCallbackThenEndThread, data_0216ff44);
         t->mUnk_04 = a;
         t->mUnk_00 = t->mUnk_00 | 0x80;
         t->mUnk_64 = 1;
         ThreadLoadContext(t);
     } else {
-        func_0200e1ac(a);
+        RunExitCallbackThenEndThread(a);
     }
 }
 
-void func_0200e1ac(void *a) {
+void RunExitCallbackThenEndThread(void *a) {
     Thread *t;
     void (*f)(void *);
 
     t = *data_0216ff54;
-    f = t->mUnk_b4;
+    f = t->mExitCallback;
     if (f != 0) {
-        t->mUnk_b4 = 0;
+        t->mExitCallback = 0;
         f(a);
         IrqDisable();
     }
@@ -260,7 +260,7 @@ void ThreadEnd(Thread *t) {
     }
     ThreadSwitchDisable();
     ThreadUnlockAll(t);
-    func_0200e0c0(t);
+    CancelThreadSleepAlarm(t);
     ThreadListRemove(t);
     t->mUnk_64 = 2;
     ThreadQueueSetAllRunnable(&t->mEndQueue);
@@ -269,7 +269,7 @@ void ThreadEnd(Thread *t) {
     ThreadSwitch();
 }
 
-void func_0200e0c0(Thread *arg0) {
+void CancelThreadSleepAlarm(Thread *arg0) {
     u32 value0 = (u32) arg0;
     u32 compareLeft0;
     u32 compareRight0;
@@ -464,7 +464,7 @@ u32 ThreadGetSortKey(Thread *t) {
     return t->mSortKey;
 }
 
-void func_0200dc3c(u32 n) {
+void OS_Sleep(u32 n) {
     Thread *t;
     Unk0200fb08 a;
     u32 s;
@@ -472,15 +472,15 @@ void func_0200dc3c(u32 n) {
     OS_CreateAlarm(&a);
     t = *data_0216ff54;
     s = IrqDisable();
-    t->mUnk_b0 = &a;
-    OS_SetAlarm(&a, n * 0x82ea >> 6, (void (*)(void *)) func_0200dc1c, &t);
+    t->mSleepAlarm = &a;
+    OS_SetAlarm(&a, n * 0x82ea >> 6, (void (*)(void *)) WakeSleepingThread, &t);
     while (t != 0) {
         ThreadWait(0);
     }
     IrqRestore(s);
 }
 
-void func_0200dc1c(Thread **arg0) {
+void WakeSleepingThread(Thread **arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
@@ -509,7 +509,7 @@ void (*ThreadSetSwitchCallback(void (*arg0)(Thread *, Thread *)))(Thread *, Thre
     return (void (*)(Thread *, Thread *)) value0;
 }
 
-void func_0200dbd4(void *a) {
+void ThreadHaltLoop(void *a) {
     IrqEnable();
     for (;;) {
         OS_Halt();
@@ -543,8 +543,8 @@ u32 ThreadSwitchEnable(void) {
     return r;
 }
 
-void func_0200db5c(Thread *t, void (*f)(void *)) {
-    t->mUnk_b4 = f;
+void OS_SetThreadDestructor(Thread *t, void (*f)(void *)) {
+    t->mExitCallback = f;
 }
 
 u32 ThreadSystemIsInit(void) {

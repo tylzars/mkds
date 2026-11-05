@@ -361,7 +361,7 @@ s32 func_ov000_021a8b20(void *a, s32 b, s64 c) {
         if (h != FALSE && c <= 0) {
             break;
         }
-        func_0200dc3c(1);
+        OS_Sleep(1);
         c -= 0x20b;
     }
     return e;
@@ -566,7 +566,7 @@ s32 func_ov000_021a8830(void) {
     if (data_ov000_021b63b4 == 0) {
         if ((data_ov000_021b5fa0 & 3) == 1) {
             if (ProcessorModeGet() != 0x12) {
-                func_0200dc3c(10);
+                OS_Sleep(10);
             }
         }
     } else if (data_ov000_021b5f9c == 0) {
@@ -585,7 +585,7 @@ s32 func_ov000_021a87bc(void) {
     b = -0x1a;
     if (a == b) {
         do {
-            func_0200dc3c(100);
+            OS_Sleep(100);
         } while (func_ov000_021a86e8() == b);
     }
     a = func_ov000_021a70b0();
@@ -1253,7 +1253,7 @@ s32 func_ov000_021a7af0(Unk021a7064 *param_1) {
             i = NULL;
             break;
         }
-        func_0200dc3c(10);
+        OS_Sleep(10);
     }
     if (b->mUnk_73 == 4) {
         if (i == NULL) {

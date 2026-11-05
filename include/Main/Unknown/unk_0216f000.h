@@ -58,7 +58,8 @@ extern Unk02143a78 data_0216fdc0;
 
 extern u32 data_0216ff44;
 extern u32 data_0216ff48;
-extern u32 data_0216ff4c;
+// The number AllocThreadId last returned.
+extern u32 gThreadIdCount;
 extern void (*data_0216ff50)(Thread *, Thread *);
 extern Thread **data_0216ff54;
 extern u32 data_0216ff58;

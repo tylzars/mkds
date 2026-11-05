@@ -130,7 +130,7 @@ void func_ov003_021ca3ec(void) {
 }
 
 void func_ov003_021ca3cc(void) {
-    func_0200dc3c(0xa);
+    OS_Sleep(0xa);
     func_ov003_021ca20c();
     func_ov003_021ca39c();
     func_ov003_021ca398();
