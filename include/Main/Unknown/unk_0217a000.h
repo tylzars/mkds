@@ -778,7 +778,7 @@ typedef struct Unk0217aa10_08 {
 
 struct Unk02017584;
 
-// Object behind data_0217aa10; func_0212034c reads the word at 0. The objects at 0x2c and 0x58 are passed to
+// Object behind data_0217aa10; UpdateWiFiSession reads the word at 0. The objects at 0x2c and 0x58 are passed to
 // FS_StartOverlay and FS_InitFile, the pointer at 0xa4 to ExpHeapDestroy.
 typedef struct Unk0217aa10 {
     /* 00 */ s32 mUnk_00;

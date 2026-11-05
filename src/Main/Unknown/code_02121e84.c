@@ -16,50 +16,52 @@
 #pragma opt_arithtransformation off
 
 void func_02122728(void) {
-    func_02122684();
+    PackWiFiSessionIndices();
 }
 
-void func_02122684(void) {
+// Gives each index in mKartMask the next running number in mPackedIndices (others -1) and tells func_0205d0e8 the old
+// and new number.
+void PackWiFiSessionIndices(void) {
     u8 i;
     s8 a = 0;
     u8 t;
     for (i = 0; i < 4; i++) {
-        if (i < data_0217d384->mStartKartCount) {
-            if ((data_0217d384->mKartMask & (1 << i)) == 0) {
-                data_0217d384->mUnk_1f4e[i] = -1;
+        if (i < gWiFiSession->mStartKartCount) {
+            if ((gWiFiSession->mKartMask & (1 << i)) == 0) {
+                gWiFiSession->mPackedIndices[i] = -1;
             } else {
-                t = data_0217d384->mUnk_1f4e[i];
-                data_0217d384->mUnk_1f4e[i] = a;
+                t = gWiFiSession->mPackedIndices[i];
+                gWiFiSession->mPackedIndices[i] = a;
                 a++;
-                func_0205d0e8(t, data_0217d384->mUnk_1f4e[i]);
+                func_0205d0e8(t, gWiFiSession->mPackedIndices[i]);
             }
         } else {
-            data_0217d384->mUnk_1f4e[i] = -1;
+            gWiFiSession->mPackedIndices[i] = -1;
         }
     }
 }
 
-BOOL func_021225ac(u32 a) {
+BOOL UpdateWiFiSessionStepTimeout(u32 a) {
     s32 n;
     s32 s;
-    n = data_0217d384->mStepFrames;
-    data_0217d384->mStepFrames = n + 1;
+    n = gWiFiSession->mStepFrames;
+    gWiFiSession->mStepFrames = n + 1;
     if (n > a) {
-        data_0217d384->mStepFrames = 0;
-        s = data_0217d384->mStep;
+        gWiFiSession->mStepFrames = 0;
+        s = gWiFiSession->mStep;
         if (s == 0 || s == 1 || s == 2) {
-            data_0217d384->mUnk_194e = 1;
+            gWiFiSession->mUnk_194e = 1;
             func_ov000_021a2ccc();
             func_ov000_0219bbfc();
-            data_0217d384->mStep = 11;
+            gWiFiSession->mStep = 11;
         } else {
             if (s == 9 || s == 10) {
                 return TRUE;
             }
-            data_0217d384->mUnk_19ad = 1;
+            gWiFiSession->mUnk_19ad = 1;
             func_ov000_021a2ccc();
             func_ov000_0219bbfc();
-            data_0217d384->mStep = 11;
+            gWiFiSession->mStep = 11;
         }
         return TRUE;
     }
@@ -79,126 +81,128 @@ static inline BOOL func_02121f4c_inline(const Unk0217d384_1d00 *p, u32 a, u32 c,
     return FALSE;
 }
 
-void func_02121f4c(u32 a, void *b, u32 c) {
+// Receive callback of the net layer: validates the header, checks the kind against the step, copies the message into
+// the own array and sets mReceivedMask.
+void ReceiveWiFiSessionMessage(u32 a, void *b, u32 c) {
     Unk0217d384_1d00 *p;
     u8 n;
     p = b;
-    if (data_0217d384->mStep >= 5 && (data_0217d384->mKartMask & (1 << a)) == 0) {
+    if (gWiFiSession->mStep >= 5 && (gWiFiSession->mKartMask & (1 << a)) == 0) {
         return;
     }
-    data_0217d384->mSinceCallbackFrames[a] = 0;
+    gWiFiSession->mSinceCallbackFrames[a] = 0;
     n = func_ov000_0219bb50();
     if (func_02121f4c_inline(p, a, c, n) == FALSE) {
         return;
     }
-    if (func_021217e8(p->mKind) == FALSE) {
+    if (IsWiFiSessionMessageKindAllowed(p->mKind) == FALSE) {
         return;
     }
     switch (p->mKind) {
         case 0:
-            data_0217d384->mUnk_19aa |= 1 << a;
+            gWiFiSession->mSendRecordMask |= 1 << a;
             break;
         case 1:
-            data_0217d384->mUnk_19ab |= 1 << a;
-            func_ov000_021a3264(a, &data_0217d384->mUnk_1d00[a], 0x44);
+            gWiFiSession->mReceivedMask |= 1 << a;
+            func_ov000_021a3264(a, &gWiFiSession->mReceiveBuffers[a], 0x44);
             break;
         case 2:
-            if (data_0217d384->mStep == 1) {
-                data_0217d384->mUnk_19ab |= 1 << a;
+            if (gWiFiSession->mStep == 1) {
+                gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
         case 8:
-            if (data_0217d384->mStep != 3) {
+            if (gWiFiSession->mStep != 3) {
                 return;
             }
             if (p->mUnk_40 == 0) {
                 return;
             }
-            MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-            data_0217d384->mUnk_19ab |= 1 << a;
+            MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+            gWiFiSession->mReceivedMask |= 1 << a;
             break;
         case 9:
-            if (data_0217d384->mStep == 3) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab |= 1 << a;
-            } else if (data_0217d384->mStep == 4) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab |= 1 << a;
+            if (gWiFiSession->mStep == 3) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << a;
+            } else if (gWiFiSession->mStep == 4) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
         case 3:
-            if (data_0217d384->mStep == 1) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab = 0xff;
-            } else if (data_0217d384->mStep == 5) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+            if (gWiFiSession->mStep == 1) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask = 0xff;
+            } else if (gWiFiSession->mStep == 5) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 if (p->mCharacterIndex == -1) {
                     return;
                 }
                 if (p->mKartIndex == -1) {
                     return;
                 }
-                data_0217d384->mUnk_19ab |= 1 << a;
-            } else if (data_0217d384->mStep == 4) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab = 0xff;
+                gWiFiSession->mReceivedMask |= 1 << a;
+            } else if (gWiFiSession->mStep == 4) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask = 0xff;
             }
             break;
         case 4:
-            if (data_0217d384->mStep == 5) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab |= 1 << a;
-            } else if (data_0217d384->mStep == 6) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab |= 1 << a;
+            if (gWiFiSession->mStep == 5) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << a;
+            } else if (gWiFiSession->mStep == 6) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
         case 5:
-            if (data_0217d384->mStep == 6) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab = 0xff;
-            } else if (data_0217d384->mStep == 7) {
+            if (gWiFiSession->mStep == 6) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask = 0xff;
+            } else if (gWiFiSession->mStep == 7) {
                 if (p->mPickedCourseId == 0) {
                     return;
                 }
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab |= 1 << a;
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
         case 6:
-            if (data_0217d384->mStep == 7) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab |= 1 << a;
-            } else if (data_0217d384->mStep == 8) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab |= 1 << a;
+            if (gWiFiSession->mStep == 7) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << a;
+            } else if (gWiFiSession->mStep == 8) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
         case 7:
-            if (data_0217d384->mStep == 8) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
-                data_0217d384->mUnk_19ab |= 1 << a;
-            } else if (data_0217d384->mStep == 9) {
-                MemCopy(&data_0217d384->mUnk_1d00[a], &data_0217d384->mUnk_1e10[a], 0x44);
+            if (gWiFiSession->mStep == 8) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                gWiFiSession->mReceivedMask |= 1 << a;
+            } else if (gWiFiSession->mStep == 9) {
+                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 func_0212145c(a);
-                data_0217d384->mUnk_19ab |= 1 << a;
+                gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
     }
 }
 
 void func_02121f1c(s32 a) {
-    data_0217d384->mUnk_1e10[func_ov000_0219bb50()].mCharacterIndex = a;
+    gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mCharacterIndex = a;
 }
 
 void func_02121ee4(void) {
-    data_0217d384->mUnk_1e10[func_ov000_0219bb50()].mCharacterIndex = -1;
+    gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mCharacterIndex = -1;
 }
 
 void func_02121eb4(s32 a) {
-    data_0217d384->mUnk_1e10[func_ov000_0219bb50()].mKartIndex = a;
+    gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mKartIndex = a;
 }
 
 void func_02121e84(s32 a) {
-    data_0217d384->mUnk_1e10[func_ov000_0219bb50()].mPickedCourseId = a;
+    gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mPickedCourseId = a;
 }

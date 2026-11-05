@@ -458,7 +458,7 @@ void func_02062078(void) {
 }
 
 void func_02062004(void) {
-    Unk0217d384 *p;
+    WiFiSession *p;
     BOOL f;
 
     func_020d2d94();
@@ -466,7 +466,7 @@ void func_02062004(void) {
     func_020848fc();
     func_0203d568();
     f = FALSE;
-    p = data_0217d384;
+    p = gWiFiSession;
     if (p != NULL && p->mHeapCreated != FALSE) {
         f = TRUE;
     }

@@ -44,12 +44,12 @@ void AdvanceWiFiVSCourseSelectState(void) {
     u8 b;
 
     a = AdvanceWiFiVSCourseSelect();
-    if (func_ov000_021806c4() == -1 && (a == 1 || a == 2)) {
+    if (GetWiFiNextScene() == -1 && (a == 1 || a == 2)) {
         if (func_02122ae4() != 0) {
             RequestWiFiState(7);
             return;
         }
-        b = data_0217d384->mKartCount;
+        b = gWiFiSession->mKartCount;
         func_02029930()->mKartCount = b;
         func_020297bc();
         if ((u32) data_0217b488->mUnk_1c <= 2) {
@@ -58,7 +58,7 @@ void AdvanceWiFiVSCourseSelectState(void) {
             data_0217b488->mUnk_6c = TRUE;
         }
         func_02029758();
-        func_ov000_021806b8(2);
+        SetWiFiNextScene(2);
         func_02122728();
     }
 }

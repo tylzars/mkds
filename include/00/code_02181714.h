@@ -20,7 +20,8 @@ typedef struct WiFiTopMenu {
     /* 10 */ s32 mPendingWiFiState;
     /* 14 */ void *mHeap;
     /* 18 */ BOOL mUnk_18;
-    /* 1c */ Unk02124b1c *mUnk_1c;
+    // Table of cells built from the Bncl / Bnll by func_02124ed0.
+    /* 1c */ Unk02124b1c *mWiFiTopMenuTable;
     /* 20 */ struct Unk02021dc8 *mWiFiTopMenuSNcer;
     /* 24 */ struct Ncgr *mWiFiTopMenuSNcgr;
     /* 28 */ struct Nclr *mWiFiTopMenuSONclr;

@@ -22,7 +22,8 @@ void AdvanceWiFiVSSetting(void);
 typedef struct WiFiVSSetting {
     /* 0000 */ s32 mState;
     /* 0004 */ s32 mNextState;
-    /* 0008 */ s32 mUnk_08;
+    // Highlighted row of the 3 rows (0 and 2 are buttons, 1 the setting selector); up/down wrap, touch sets it.
+    /* 0008 */ s32 mRow;
     /* 000c */ s32 mSettingIndex;
     /* 0010 */ s32 mStateFrames;
     /* 0014 */ s16 mUnk_14[3][2];
@@ -36,7 +37,8 @@ typedef struct WiFiVSSetting {
     /* 0034 */ BOOL mUnk_34;
     /* 0038 */ u8 mNscrCopy[0x1000];
     /* 1038 */ void *mHeap;
-    /* 103c */ Unk02124b1c *mUnk_103c;
+    // Table of cells built from the Bncl / Bnll by func_02124ed0.
+    /* 103c */ Unk02124b1c *mWiFiVSSettingTable;
     /* 1040 */ Unk02021dc8 *mWiFiVSSettingSNcer;
     /* 1044 */ Ncgr *mWiFiVSSettingSNcgr;
     /* 1048 */ Nclr *mWiFiVSSettingSONclr;
@@ -58,8 +60,10 @@ typedef struct WiFiVSMatching {
     /* 0018 */ s16 mUnk_18[4];
     /* 0020 */ s32 mPendingWiFiState;
     /* 0024 */ s32 mUnk_24[3];
-    /* 0030 */ s32 mUnk_30;
-    /* 0034 */ u8 mUnk_34[3];
+    // mKartCount - 1: participants other than the own index.
+    /* 0030 */ s32 mOtherCount;
+    // Session indices of those participants (u8[3]); they index mPlayerRecords through the getters.
+    /* 0034 */ u8 mOtherIndices[3];
     /* 0037 */ u8 pad_37;
     /* 0038 */ s32 mUnk_38;
     /* 003c */ BOOL mUnk_3c;
@@ -72,7 +76,8 @@ typedef struct WiFiVSMatching {
     /* 0094 */ s32 mUnk_94[5][3];
     /* 00d0 */ void *mUnk_d0;
     /* 00d4 */ u8 mUnk_d4[0x1000];
-    /* 10d4 */ Unk02124b1c *mUnk_10d4;
+    // Table of cells built from the Bncl / Bnll by func_02124ed0.
+    /* 10d4 */ Unk02124b1c *mWiFiVSMatchingTable;
     /* 10d8 */ u8 mUnk_10d8[3][0x200];
     /* 16d8 */ s32 mUnk_16d8[3];
     /* 16e4 */ struct Unk02021dc8 *mWiFiVSMatchingSNcer;
@@ -133,7 +138,7 @@ typedef struct Unk0217b488 {
     /* 12c */ s32 mUnk_12c;
 } Unk0217b488;
 
-// Object at member 0x8 of Unk0217d384.
+// Object at member 0x8 of WiFiSession.
 typedef struct Unk0217d384_08 {
     /* 00 */ void *mUnk_00;
     /* 04 */ s32 mStateFrames;
@@ -144,18 +149,18 @@ typedef struct Unk0217d384_08 {
     /* 12 */ u16 mNextStateRequested;
 } Unk0217d384_08;
 
-// 0xc-byte elements of the table at member 0x19f0 of Unk0217d384.
+// 0xc-byte elements of the table at member 0x19f0 of WiFiSession.
 typedef struct Unk0217d384_19f0 {
     /* 00 */ u8 mUnk_00[0xc];
 } Unk0217d384_19f0;
 
-// 0x10-byte object at member 0x1f20 of Unk0217d384.
+// 0x10-byte object at member 0x1f20 of WiFiSession.
 typedef struct Unk0217d384_1f20 {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ s32 mStep;
 } Unk0217d384_1f20;
 
-// 0x44-byte elements of the tables at members 0x1d00 and 0x1e10 of Unk0217d384.
+// 0x44-byte elements of the tables at members 0x1d00 and 0x1e10 of WiFiSession.
 typedef struct Unk0217d384_1d00 {
     /* 00 */ s32 mKind;
     /* 04 */ s32 mSize;
@@ -173,7 +178,7 @@ typedef struct Unk0217d384_1d00 {
     /* 40 */ s32 mUnk_40;
 } Unk0217d384_1d00;
 
-// 0x244-byte elements of the table at member 0x21c of Unk0217d384.
+// 0x244-byte elements of the table at member 0x21c of WiFiSession.
 typedef struct Unk0217d384_021c {
     /* 000 */ s32 mKind;
     /* 004 */ s32 mSize;
@@ -196,14 +201,14 @@ typedef struct Unk0217d384_021c {
     /* 240 */ s32 mSeed;
 } Unk0217d384_021c;
 
-// 0x18-byte object at member 0x1954 of Unk0217d384: three 64-bit values (x = x * [8] + [0x10] in func_02121af4).
+// 0x18-byte object at member 0x1954 of WiFiSession: three 64-bit values (x = x * [8] + [0x10] in TallyPickedCourse).
 typedef struct Unk0217d384_1954 {
     /* 00 */ u64 mValue;
     /* 08 */ u64 mMultiplier;
     /* 10 */ u64 mIncrement;
 } Unk0217d384_1954;
 
-// 8-byte object at member 0x18e0 of Unk0217d384.
+// 8-byte object at member 0x18e0 of WiFiSession.
 typedef struct Unk0217d384_18e0 {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;
@@ -211,7 +216,7 @@ typedef struct Unk0217d384_18e0 {
     /* 04 */ s32 mUnk_04;
 } Unk0217d384_18e0;
 
-// 0x18-byte elements of the table at member 0x18ec of Unk0217d384.
+// 0x18-byte elements of the table at member 0x18ec of WiFiSession.
 typedef struct KartKey {
     /* 00 */ s32 mValue;
     /* 04 */ char mName[0x10];
@@ -219,13 +224,20 @@ typedef struct KartKey {
     /* 15 */ u8 pad_15[3];
 } KartKey;
 
-// Object behind data_0217d384: 0x1f58 bytes allocated by func_021205ac.
-typedef struct Unk0217d384 {
+// Online session object behind gWiFiSession: 0x1f58 bytes allocated once at boot (InitWiFiSession; not created when
+// 0x027ffc40 is 2) and never freed. mUnk_0008 is its state machine, 7 states each with an (enter, update) pair in
+// data_0216e21c: 0 off, 1 login, 2 logged in and idle, 3 partner search with the registered keys, 4 message exchange
+// (mStep 0..12), 5 running match (set by the race), 6 never requested. mState != 0 means a session is running; its own
+// heap exists only while the WiFi scene group runs. Holds the saved buddy list, the per-index records and picks, and
+// the roster (mKartMask, mKartCount) read by the matching screens and the race.
+typedef struct WiFiSession {
     /* 0000 */ void *mHeap;
     /* 0004 */ void *mHeapBuffer;
     /* 0008 */ Unk0217d384_08 mUnk_0008;
     /* 001c */ u8 mUnk_001c[4][0x80];
-    /* 021c */ Unk0217d384_021c mUnk_021c[4];
+    // One 0x244-byte record per index: a 12-byte message header, then the player's name (0x14 bytes) and emblem
+    // (0x200), elo, region and seed. The own element is sent (kind 1), the others are received into.
+    /* 021c */ Unk0217d384_021c mPlayerRecords[4];
     /* 0b2c */ u8 mUnk_0b2c[0xdb4];
     /* 18e0 */ Unk0217d384_18e0 mUnk_18e0;
     /* 18e8 */ s32 mStartStatus;
@@ -246,8 +258,11 @@ typedef struct Unk0217d384 {
     /* 1994 */ u8 mUnk_1994[0x5];
     /* 1999 */ u8 mUnk_1999;
     /* 199a */ u8 mUnk_199a[0x10];
-    /* 19aa */ u8 mUnk_19aa;
-    /* 19ab */ u8 mUnk_19ab;
+    // Bit i: index i asked for our record (kind 0 message); the send step sends the record and clears the bit.
+    /* 19aa */ u8 mSendRecordMask;
+    // Bit i: the message of the current step has arrived from index i (kinds 3 and 5 set 0xff); zeroed at every step
+    // change.
+    /* 19ab */ u8 mReceivedMask;
     /* 19ac */ u8 mUnk_19ac;
     /* 19ad */ u8 mUnk_19ad;
     /* 19ae */ u8 mUnk_19ae[2];
@@ -256,10 +271,16 @@ typedef struct Unk0217d384 {
     /* 19d4 */ s32 mUnk_19d4;
     /* 19d8 */ u8 mUnk_19d8[0x14];
     /* 19ec */ u32 mUnk_19ec;
-    /* 19f0 */ Unk0217d384_19f0 mUnk_19f0[0x3c];
-    /* 1cc0 */ u8 mUnk_1cc0[0x3c];
+    // 0x3c saved buddy entries (12 bytes each), loaded from the save at login and written back; their GP status is
+    // polled one per frame.
+    /* 19f0 */ Unk0217d384_19f0 mBuddies[0x3c];
+    // One status byte per mBuddies entry (poll or the buddy status callback). Meaning of the values not decoded.
+    /* 1cc0 */ u8 mBuddyStatuses[0x3c];
     /* 1cfc */ BOOL mUnk_1cfc;
-    /* 1d00 */ Unk0217d384_1d00 mUnk_1d00[4];
+    // 0x44-byte buffers the net layer receives the kind 0..9 messages into (posted at code_02122b14.c:75, :99 and re-
+    // posted by the receive callback). The 0x244 profile records (mPlayerRecords) and mUnk_001c (0x80 bytes,
+    // code_02122b14.c:498) are also posted as receive buffers.
+    /* 1d00 */ Unk0217d384_1d00 mReceiveBuffers[4];
     /* 1e10 */ Unk0217d384_1d00 mUnk_1e10[4];
     /* 1f20 */ Unk0217d384_1f20 mUnk_1f20;
     /* 1f30 */ BOOL mHeapCreated;
@@ -271,14 +292,16 @@ typedef struct Unk0217d384 {
     /* 1f48 */ s32 mUnk_1f48;
     /* 1f4c */ u8 mUnk_1f4c;
     /* 1f4d */ u8 mUnk_1f4d;
-    /* 1f4e */ s8 mUnk_1f4e[4];
+    // Per index: its place among the indices set in mKartMask (-1 if absent); ResetWiFiSession zeroes it to 0.
+    /* 1f4e */ s8 mPackedIndices[4];
     /* 1f52 */ u8 mKartCount;
     /* 1f53 */ u8 mStartKartCount;
     /* 1f54 */ u8 mKartCountCopy;
     /* 1f55 */ u8 mKartMask;
     /* 1f56 */ u8 mKartRemoveMask;
-    /* 1f57 */ u8 mUnk_1f57;
-} Unk0217d384;
+    // Next mBuddies entry UpdateBuddyStatuses polls (wraps at 0x3c).
+    /* 1f57 */ u8 mBuddyPollIndex;
+} WiFiSession;
 
 extern u8 data_ov000_021b060c[3][9];
 extern s32 data_ov000_021b0628[3][4];

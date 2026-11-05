@@ -81,7 +81,7 @@ void func_0205e0b0(void) {
             m = 1;
             func_02059ea4(0);
             func_02059e1c();
-            func_0212055c(h);
+            CreateWiFiSessionHeap(h);
             break;
     }
     if (m == 2) {

@@ -117,8 +117,8 @@ void func_ov000_021a3030(void) {
                 func_ov000_021a2f98(d, (u32) (e->mUnk_00 + e->mUnk_0c), k, 1);
                 e->mUnk_0c += k;
                 if (e->mUnk_0c == e->mUnk_14) {
-                    if (data_ov000_021b5dd0->mUnk_600 != NULL) {
-                        data_ov000_021b5dd0->mUnk_600(e->mUnk_14, d);
+                    if (data_ov000_021b5dd0->mSendCallback != NULL) {
+                        data_ov000_021b5dd0->mSendCallback(e->mUnk_14, d);
                     }
                     e->mUnk_1c = 0;
                     e->mUnk_00 = NULL;
@@ -214,8 +214,8 @@ void func_ov000_021a2e7c(Unk0219887c *a, const void *b, int c) {
     v2 = &data_ov000_021b5dd0->mUnk_000[v1];
     if ((v2->mUnk_04 != NULL) && (v2->mUnk_08 >= c)) {
         MemCopy(b, v2->mUnk_04, c);
-        if (data_ov000_021b5dd0->mUnk_604 != NULL) {
-            data_ov000_021b5dd0->mUnk_604(v1, v2->mUnk_04, c);
+        if (data_ov000_021b5dd0->mReceiveCallback != NULL) {
+            data_ov000_021b5dd0->mReceiveCallback(v1, v2->mUnk_04, c);
         }
         if ((data_ov000_021b5dd0->mUnk_608 != NULL) && (v2->mUnk_2c != 0)) {
             v3 = func_0200f5ac();
@@ -268,8 +268,8 @@ void func_ov000_021a2d68(int a, void *b, s32 c) {
         e->mUnk_1d = 1;
         e->mUnk_10 = 0;
         e->mUnk_18 = 0;
-        if (data_ov000_021b5dd0->mUnk_604 != NULL) {
-            data_ov000_021b5dd0->mUnk_604(a, e->mUnk_04, n);
+        if (data_ov000_021b5dd0->mReceiveCallback != NULL) {
+            data_ov000_021b5dd0->mReceiveCallback(a, e->mUnk_04, n);
         }
     }
     if (data_ov000_021b5dd0->mUnk_608 != NULL && e->mUnk_2c != 0) {

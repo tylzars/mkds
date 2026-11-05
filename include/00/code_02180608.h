@@ -17,7 +17,8 @@ typedef struct WiFiStates {
     /* 0c */ s32 mNextState;
     /* 10 */ u32 mPrevState;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ s16 mUnk_18;
+    // Scene number the WiFi screens ask for (-1 = none); UpdateWiFiMenuScene copies it to SceneNumbers.mNextScene.
+    /* 18 */ s16 mNextScene;
     /* 1a */ u8 pad_1a[2];
     /* 1c */ WiFiStateCallbacks mCallbacks;
     /* 2c */ void *mUnk_2c;
@@ -35,8 +36,8 @@ void SetWiFiVSSettingIndex(unsigned int settingIndex);
 unsigned int GetWiFiVSSettingIndex(void);
 u32 LookupWiFiVSSettingMessageIndex(u32 settingIndex);
 u32 func_ov000_021806a0(void);
-void func_ov000_021806b8(unsigned int p0);
-unsigned int func_ov000_021806c4(void);
+void SetWiFiNextScene(unsigned int p0);
+unsigned int GetWiFiNextScene(void);
 s32 GetWiFiPrevState(void);
 void RequestWiFiState(s32 nextState);
 void SetWiFiStateCallbacks(const WiFiStateCallbacks *callbacks);

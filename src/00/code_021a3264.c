@@ -126,8 +126,8 @@ BOOL func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
     func_ov000_021a2f98(b, (u32) c, n, 1);
     e->mUnk_0c += n;
     if (e->mUnk_0c == e->mUnk_14) {
-        if (data_ov000_021b5dd0->mUnk_600 != NULL && a == 1) {
-            data_ov000_021b5dd0->mUnk_600(e->mUnk_14, b);
+        if (data_ov000_021b5dd0->mSendCallback != NULL && a == 1) {
+            data_ov000_021b5dd0->mSendCallback(e->mUnk_14, b);
         }
         e->mUnk_1c = 0;
         e->mUnk_00 = NULL;
@@ -148,8 +148,8 @@ BOOL func_ov000_021a32a0(u32 a, void *b, s32 c) {
         return FALSE;
     }
     func_ov000_021a2f98(a, (u32) b, c, 0);
-    if (data_ov000_021b5dd0->mUnk_600 != NULL) {
-        data_ov000_021b5dd0->mUnk_600(c, a);
+    if (data_ov000_021b5dd0->mSendCallback != NULL) {
+        data_ov000_021b5dd0->mSendCallback(c, a);
     }
     return TRUE;
 }

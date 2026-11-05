@@ -129,7 +129,7 @@ void func_0203ad58(void *a) {
 void InitRaceScene(void) {
     void *p;
     s32 x;
-    Unk0217d384 *q;
+    WiFiSession *q;
     BOOL f;
     p = GetHeap(func_020364e8());
     func_02059dc8();
@@ -164,7 +164,7 @@ void InitRaceScene(void) {
     if (data_021759c0->mMode != 2) {
         if (data_021759c0->mMode == 5) {
             f = FALSE;
-            q = data_0217d384;
+            q = gWiFiSession;
             if (q != NULL) {
                 if (q->mHeapCreated != FALSE) {
                     f = TRUE;
@@ -173,7 +173,7 @@ void InitRaceScene(void) {
             if (f != FALSE) {
                 Unk0217d384_08 *p;
                 q->mUnk_1f38 = TRUE;
-                p = &data_0217d384->mUnk_0008;
+                p = &gWiFiSession->mUnk_0008;
                 p->mNextState = 5;
                 p->mNextStateRequested = 1;
             }
@@ -187,12 +187,12 @@ void InitRaceScene(void) {
 
 void func_0203aacc(void) {
     Unk021759c0 *p;
-    Unk0217d384 *q;
+    WiFiSession *q;
     s32 t;
     BOOL f;
     if (data_021759c0->mMode == 5) {
         f = FALSE;
-        q = data_0217d384;
+        q = gWiFiSession;
         if (q != NULL) {
             if (q->mHeapCreated != FALSE) {
                 f = TRUE;
@@ -201,7 +201,7 @@ void func_0203aacc(void) {
         if (f != FALSE) {
             Unk0217d384_08 *p;
             q->mUnk_1f38 = FALSE;
-            p = &data_0217d384->mUnk_0008;
+            p = &gWiFiSession->mUnk_0008;
             p->mNextState = 4;
             p->mNextStateRequested = 1;
         }

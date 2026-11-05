@@ -17,7 +17,8 @@ typedef struct WiFiAikotobaCheck {
     /* 26 */ u8 pad_26[2];
     /* 28 */ s32 mUnk_28;
     /* 2c */ void *mUnk_2c;
-    /* 30 */ Unk02124b1c *mUnk_30;
+    // Table of cells built from the Bncl / Bnll by func_02124ed0.
+    /* 30 */ Unk02124b1c *mWiFiAikotobaCheckTable;
     /* 34 */ struct Unk02021dc8 *mWiFiAikotobaCheckMNcer;
     /* 38 */ struct Ncgr *mWiFiAikotobaCheckMNcgr;
     /* 3c */ struct Nclr *mWiFiAikotobaCheckMONclr;

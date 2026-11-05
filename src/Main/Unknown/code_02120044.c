@@ -25,7 +25,7 @@ u32 func_021202f0(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_0217d384;
+    value2 = (u32) &gWiFiSession;
     value1 = 0x244u;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value2 = (value2) + (0x440u);
@@ -34,22 +34,22 @@ u32 func_021202f0(u32 arg0) {
 }
 
 u32 func_021202cc(u32 a) {
-    return data_0217d384->mUnk_021c[a].mRegion;
+    return gWiFiSession->mPlayerRecords[a].mRegion;
 }
 
 void *func_021202b0(u32 a) {
-    return &data_0217d384->mUnk_021c[a].mUnk_00c;
+    return &gWiFiSession->mPlayerRecords[a].mUnk_00c;
 }
 
 void *func_02120294(u32 a) {
-    return &data_0217d384->mUnk_021c[a].mUnk_020;
+    return &gWiFiSession->mPlayerRecords[a].mUnk_020;
 }
 
 u8 func_02120278(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_0217d384;
+    value2 = (u32) &gWiFiSession;
     value1 = 0x244u;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -61,7 +61,7 @@ u32 func_0212025c(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_0217d384;
+    value2 = (u32) &gWiFiSession;
     value1 = 0x244u;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -73,7 +73,7 @@ u32 func_02120240(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_0217d384;
+    value2 = (u32) &gWiFiSession;
     value1 = 0x244u;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -85,7 +85,7 @@ int func_02120220(int arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_0217d384;
+    value2 = (u32) &gWiFiSession;
     value1 = 0x244u;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -99,7 +99,7 @@ void func_02120200(int arg0, s16 arg1) {
     u32 value1 = (u32) arg1;
     u32 value2;
     u32 value3;
-    value3 = (u32) &data_0217d384;
+    value3 = (u32) &gWiFiSession;
     value2 = 0x244u;
     value3 = (u32) * (const u32 *) ((value3) + (0));
     value2 = (value0) * (value2) + (value3);
@@ -111,7 +111,7 @@ u8 func_021201e4(int arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_0217d384;
+    value2 = (u32) &gWiFiSession;
     value1 = 0x244u;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -120,10 +120,10 @@ u8 func_021201e4(int arg0) {
 }
 
 void func_02120150(void) {
-    Unk0217d384 *d;
+    WiFiSession *d;
     BOOL a = FALSE;
 
-    d = data_0217d384;
+    d = gWiFiSession;
     if (d != NULL) {
         if (d->mHeapCreated != FALSE) {
             a = TRUE;
@@ -133,10 +133,10 @@ void func_02120150(void) {
         return;
     }
     d->mUnk_1f3c++;
-    if (data_0217d384->mUnk_0008.mState != 5) {
+    if (gWiFiSession->mUnk_0008.mState != 5) {
         return;
     }
-    if (data_0217d384->mUnk_1f38 == FALSE) {
+    if (gWiFiSession->mUnk_1f38 == FALSE) {
         return;
     }
     func_0205ccec();
@@ -152,7 +152,7 @@ void func_021200fc(void) {
     if (func_0211f91c() == 0) {
         return;
     }
-    p = &data_0217d384->mUnk_0008;
+    p = &gWiFiSession->mUnk_0008;
     p->mNextState = 2;
     p->mNextStateRequested = 1;
 }
@@ -167,7 +167,7 @@ void func_021200a8(void) {
     if (func_02120d14() == FALSE) {
         return;
     }
-    p = &data_0217d384->mUnk_0008;
+    p = &gWiFiSession->mUnk_0008;
     p->mNextState = 4;
     p->mNextStateRequested = 1;
 }

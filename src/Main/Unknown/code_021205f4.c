@@ -2,5 +2,5 @@
 #include "00/code_021832d8.h"
 
 u32 func_021205f4(void) {
-    return ((0x0u) - (((u32) data_0217d384->mUnk_1f48)));
+    return ((0x0u) - (((u32) gWiFiSession->mUnk_1f48)));
 }

@@ -45,7 +45,7 @@ void InitWiFiVSMatching(void *a);
 #include "code_02016468.h"
 
 extern Unk0217b488 *data_0217b488;
-extern Unk0217d384 *data_0217d384;
+extern WiFiSession *gWiFiSession;
 extern u8 data_ov000_021b0658[2];
 extern u8 data_ov000_021b065c[3];
 extern u8 data_ov000_021b0660[3];

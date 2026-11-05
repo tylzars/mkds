@@ -9,7 +9,7 @@ u32 func_02122ae4(void) {
     u32 compareRight0;
     u32 compareLeft1;
     u32 compareRight1;
-    value1 = (u32) &data_0217d384;
+    value1 = (u32) &gWiFiSession;
     value0 = 0u;
     value1 = (u32) * (const u32 *) ((value1) + (0));
     value1 = (value1) + (0x1000u);

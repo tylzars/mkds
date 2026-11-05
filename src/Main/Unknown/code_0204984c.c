@@ -75,7 +75,7 @@ static inline s32 func_0204984c_inline5(void) {
 
 static inline s32 func_0204984c_inline6(void) {
     BOOL r = FALSE;
-    if (data_0217d384 != NULL && data_0217d384->mHeapCreated != FALSE) {
+    if (gWiFiSession != NULL && gWiFiSession->mHeapCreated != FALSE) {
         r = TRUE;
     }
     return r;
@@ -343,7 +343,7 @@ void func_02049f60(void) {
             f = e;
         } else {
             e = TRUE;
-            f = data_0217d384->mUnk_0008.mState == 0;
+            f = gWiFiSession->mUnk_0008.mState == 0;
         }
         if (f != 0 && ((*(vu16 *) 0x027fffa8 & 0x8000) >> 15)) {
             func_0214f83c(12, 0, 0);
@@ -471,7 +471,7 @@ u32 func_02049b6c(void) {
 BOOL func_02049aa4(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0204984c_inline2() ||
         (GetCurrentSceneNumber() == 12 && func_ov000_02180600() == FALSE) ||
-        (GetCurrentSceneNumber() != 12 && data_0217d384->mUnk_0008.mState != 0) || GetCurrentSceneNumber() == 13 ||
+        (GetCurrentSceneNumber() != 12 && gWiFiSession->mUnk_0008.mState != 0) || GetCurrentSceneNumber() == 13 ||
         GetCurrentSceneNumber() == 6) {
         return FALSE;
     }
@@ -483,7 +483,7 @@ u32 func_0204998c(void) {
 
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || func_0204984c_inline2() || GetCurrentSceneNumber() == 6 ||
         GetCurrentSceneNumber() == 13 || (GetCurrentSceneNumber() == 12 && func_ov000_02180608() == FALSE) ||
-        (GetCurrentSceneNumber() != 12 && data_0217d384->mUnk_0008.mState != 0)) {
+        (GetCurrentSceneNumber() != 12 && gWiFiSession->mUnk_0008.mState != 0)) {
         return 1;
     }
     switch (GetCurrentSceneNumber()) {

@@ -46,9 +46,9 @@ void func_020612b0(void) {
     u32 b;
     u32 c;
 
-    data_0217d384->mKartCountCopy = data_0217d384->mKartCount;
+    gWiFiSession->mKartCountCopy = gWiFiSession->mKartCount;
     a = data_0217aa08->mUnk_00;
-    b = a->mUnk_34[5] + (u8) (data_0217d384->mKartCountCopy - 1);
+    b = a->mUnk_34[5] + (u8) (gWiFiSession->mKartCountCopy - 1);
     c = data_021653e4 + 3;
     if (b > c) {
         b = c;

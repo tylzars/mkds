@@ -25,8 +25,10 @@ typedef struct Unk021a2d68 {
 
 typedef struct Unk021b5dd0 {
     /* 000 */ Unk021a2d68 mUnk_000[32];
-    /* 600 */ void (*mUnk_600)(s32 a, u32 b);
-    /* 604 */ void (*mUnk_604)(u32 a, u8 *b, s32 c);
+    // Called after a send was queued or finished, with (size, index).
+    /* 600 */ void (*mSendCallback)(s32 a, u32 b);
+    // Called with (index, buffer, size) when a received message is complete.
+    /* 604 */ void (*mReceiveCallback)(u32 a, u8 *b, s32 c);
     /* 608 */ void (*mUnk_608)(u32 a);
     /* 60c */ void (*mUnk_60c)(u32 a, u32 b);
     /* 610 */ u16 mUnk_610;

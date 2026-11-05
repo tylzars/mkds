@@ -20,18 +20,18 @@
 #pragma opt_arithtransformation off
 
 void func_02121dec(u32 a) {
-    data_0217d384->mUnk_1e10[func_ov000_0219bb50()].mUnk_40 = a != 0 ? 1 : 2;
+    gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mUnk_40 = a != 0 ? 1 : 2;
 }
 
 s32 func_02121d94(void) {
     if (func_02029930()->mCourseId == 0) {
-        return data_0217d384->mUnk_1e10[func_ov000_0219bb50()].mPickedCourseId;
+        return gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mPickedCourseId;
     }
     return func_02029930()->mCourseId;
 }
 
 BOOL func_02121d48(void) {
-    if (data_0217d384->mStep >= 5) {
+    if (gWiFiSession->mStep >= 5) {
         if (func_02120644() == 0) {
             return TRUE;
         }
@@ -41,7 +41,7 @@ BOOL func_02121d48(void) {
 
 s32 func_02121d0c(void) {
     BOOL r = TRUE;
-    Unk0217d384 *d = data_0217d384;
+    WiFiSession *d = gWiFiSession;
     s32 v = d->mStep;
 
     if (v < 7) {
@@ -54,7 +54,7 @@ s32 func_02121d0c(void) {
 
 s32 func_02121cd0(void) {
     BOOL r = TRUE;
-    Unk0217d384 *d = data_0217d384;
+    WiFiSession *d = gWiFiSession;
     s32 v = d->mStep;
 
     if (v < 10) {
@@ -68,14 +68,14 @@ s32 func_02121cd0(void) {
 s32 func_02121c78(void) {
     s32 v;
 
-    v = data_0217d384->mStep;
+    v = gWiFiSession->mStep;
     if (v >= 5) {
-        if (data_0217d384->mKartCount > 1) {
+        if (gWiFiSession->mKartCount > 1) {
             return 1;
         }
         return 2;
     }
-    if (data_0217d384->mUnk_19ad == 1) {
+    if (gWiFiSession->mUnk_19ad == 1) {
         if (v == 0xc) {
             return 2;
         }
@@ -86,19 +86,21 @@ s32 func_02121c78(void) {
     return 0;
 }
 
-void func_02121af4(void) {
+// Counts the course picks of the indices in mKartMask and stores the most picked in the race setup's mCourseId; ties
+// are settled with the object's own LCG (mUnk_1954).
+void TallyPickedCourse(void) {
     u8 i;
     u8 mx = 0;
     u8 n = 0;
     u32 c[4] = {0, 0, 0, 0};
     u8 b[0x37] = {0};
     u8 j;
-    Unk0217d384 *d;
+    WiFiSession *d;
     Unk0217d384_1954 *r;
     u32 v;
     u32 w;
 
-    d = data_0217d384;
+    d = gWiFiSession;
     for (i = 0; i < d->mStartKartCount; i++) {
         if (d->mKartMask & (1 << i)) {
             b[d->mUnk_1e10[i].mPickedCourseId]++;
@@ -131,33 +133,33 @@ void func_021219cc(void) {
     BOOL z = FALSE;
     u8 i;
 
-    for (i = 0; i < data_0217d384->mStartKartCount; i++) {
-        if (data_0217d384->mKartMask & (1 << i)) {
+    for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
+        if (gWiFiSession->mKartMask & (1 << i)) {
             if (i == func_ov000_0219bb50()) {
                 s8 x;
 
-                x = data_0217d384->mUnk_1f4e[i];
+                x = gWiFiSession->mPackedIndices[i];
                 func_02029930()->mUnk_00[x].mUnk_08 = z;
             } else {
                 s8 x;
 
-                x = data_0217d384->mUnk_1f4e[i];
+                x = gWiFiSession->mPackedIndices[i];
                 func_02029930()->mUnk_00[x].mUnk_08 = 3;
             }
             {
-                Unk0217d384 *d;
+                WiFiSession *d;
                 s8 x;
 
-                d = data_0217d384;
-                x = d->mUnk_1f4e[i];
+                d = gWiFiSession;
+                x = d->mPackedIndices[i];
                 func_02029930()->mUnk_00[x].mCharacterIndex = d->mUnk_1e10[i].mCharacterIndex;
             }
             {
-                Unk0217d384 *d;
+                WiFiSession *d;
                 s8 x;
 
-                d = data_0217d384;
-                x = d->mUnk_1f4e[i];
+                d = gWiFiSession;
+                x = d->mPackedIndices[i];
                 func_02029930()->mUnk_00[x].mKartIndex = d->mUnk_1e10[i].mKartIndex;
             }
         }
@@ -177,55 +179,55 @@ BOOL func_02121990(Unk02121990 *a, u32 b, u32 c, u32 d) {
     return FALSE;
 }
 
-BOOL func_021217e8(u32 a) {
+BOOL IsWiFiSessionMessageKindAllowed(u32 a) {
     switch (a) {
         case 0:
-            if (data_0217d384->mStep == 0 || data_0217d384->mStep == 1) {
+            if (gWiFiSession->mStep == 0 || gWiFiSession->mStep == 1) {
                 return TRUE;
             }
             break;
         case 1:
-            if (data_0217d384->mStep == 0) {
+            if (gWiFiSession->mStep == 0) {
                 return TRUE;
             }
             break;
         case 2:
-            if (data_0217d384->mStep == 0 || data_0217d384->mStep == 1) {
+            if (gWiFiSession->mStep == 0 || gWiFiSession->mStep == 1) {
                 return TRUE;
             }
             break;
         case 8:
-            if ((u32) (data_0217d384->mStep - 3) <= 1) {
+            if ((u32) (gWiFiSession->mStep - 3) <= 1) {
                 return TRUE;
             }
             break;
         case 9:
-            if ((u32) (data_0217d384->mStep - 3) <= 2) {
+            if ((u32) (gWiFiSession->mStep - 3) <= 2) {
                 return TRUE;
             }
             break;
         case 3:
-            if (data_0217d384->mStep == 1 || (u32) (data_0217d384->mStep - 4) <= 2) {
+            if (gWiFiSession->mStep == 1 || (u32) (gWiFiSession->mStep - 4) <= 2) {
                 return TRUE;
             }
             break;
         case 4:
-            if ((u32) (data_0217d384->mStep - 5) <= 1) {
+            if ((u32) (gWiFiSession->mStep - 5) <= 1) {
                 return TRUE;
             }
             break;
         case 5:
-            if ((u32) (data_0217d384->mStep - 6) <= 1) {
+            if ((u32) (gWiFiSession->mStep - 6) <= 1) {
                 return TRUE;
             }
             break;
         case 6:
-            if ((u32) (data_0217d384->mStep - 7) <= 1) {
+            if ((u32) (gWiFiSession->mStep - 7) <= 1) {
                 return TRUE;
             }
             break;
         case 7:
-            if ((u32) (data_0217d384->mStep - 8) <= 1) {
+            if ((u32) (gWiFiSession->mStep - 8) <= 1) {
                 return TRUE;
             }
             break;
@@ -237,32 +239,32 @@ u8 func_021216a8(void) {
     u8 i;
     u8 x;
 
-    x = data_0217d384->mUnk_19ac;
+    x = gWiFiSession->mUnk_19ac;
     if (x < 2) {
-        data_0217d384->mUnk_19ac = x + 1;
-        return data_0217d384->mStartKartCount;
+        gWiFiSession->mUnk_19ac = x + 1;
+        return gWiFiSession->mStartKartCount;
     }
-    for (i = data_0217d384->mUnk_1999; i < data_0217d384->mStartKartCount; i++) {
+    for (i = gWiFiSession->mUnk_1999; i < gWiFiSession->mStartKartCount; i++) {
         if (i != func_ov000_0219bb50()) {
-            if (data_0217d384->mKartMask & (1 << i)) {
+            if (gWiFiSession->mKartMask & (1 << i)) {
                 break;
             }
         }
     }
-    if (data_0217d384->mUnk_1999 >= data_0217d384->mStartKartCount) {
-        for (i = 0; i < data_0217d384->mUnk_1999; i++) {
+    if (gWiFiSession->mUnk_1999 >= gWiFiSession->mStartKartCount) {
+        for (i = 0; i < gWiFiSession->mUnk_1999; i++) {
             if (i != func_ov000_0219bb50()) {
-                if (data_0217d384->mKartMask & (1 << i)) {
+                if (gWiFiSession->mKartMask & (1 << i)) {
                     break;
                 }
             }
         }
-        if (i >= data_0217d384->mUnk_1999) {
-            return data_0217d384->mStartKartCount;
+        if (i >= gWiFiSession->mUnk_1999) {
+            return gWiFiSession->mStartKartCount;
         }
     }
-    data_0217d384->mUnk_1999 = i + 1;
-    data_0217d384->mUnk_19ac = 0;
+    gWiFiSession->mUnk_1999 = i + 1;
+    gWiFiSession->mUnk_19ac = 0;
     return i;
 }
 
@@ -275,11 +277,11 @@ BOOL func_02121580(void) {
     u8 c;
     u8 m;
 
-    for (i = 0; i < data_0217d384->mStartKartCount; i++) {
+    for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
         if (i != func_ov000_0219bb50()) {
-            if (data_0217d384->mKartMask & (1 << i)) {
+            if (gWiFiSession->mKartMask & (1 << i)) {
                 b++;
-                if ((data_0217d384->mUnk_19ab & (1 << i)) == 0) {
+                if ((gWiFiSession->mReceivedMask & (1 << i)) == 0) {
                     break;
                 }
                 a++;
@@ -287,15 +289,15 @@ BOOL func_02121580(void) {
         }
     }
     if (b == 0) {
-        data_0217d384->mUnk_19ad = 1;
+        gWiFiSession->mUnk_19ad = 1;
         func_ov000_021a2ccc();
         func_ov000_0219bbfc();
-        data_0217d384->mStep = 0xb;
+        gWiFiSession->mStep = 0xb;
         return FALSE;
     }
     c = 0;
-    n = data_0217d384->mStartKartCount;
-    m = data_0217d384->mKartMask;
+    n = gWiFiSession->mStartKartCount;
+    m = gWiFiSession->mKartMask;
     for (j = 0; j < n; j++) {
         if (m & (1 << j)) {
             c++;
@@ -309,25 +311,25 @@ void func_0212145c(u32 a) {
     u8 f = 0;
     u8 k;
 
-    for (i = 0; i < data_0217d384->mStartKartCount; i++) {
-        if ((k = func_ov000_0219bb50(), data_0217d384->mUnk_1e10[k].mKartIndices[i]) !=
-                data_0217d384->mUnk_1d00[a].mKartIndices[i] ||
-            (k = func_ov000_0219bb50(), data_0217d384->mUnk_1e10[k].mCharacterIndices[i]) !=
-                data_0217d384->mUnk_1d00[a].mCharacterIndices[i]) {
+    for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
+        if ((k = func_ov000_0219bb50(), gWiFiSession->mUnk_1e10[k].mKartIndices[i]) !=
+                gWiFiSession->mReceiveBuffers[a].mKartIndices[i] ||
+            (k = func_ov000_0219bb50(), gWiFiSession->mUnk_1e10[k].mCharacterIndices[i]) !=
+                gWiFiSession->mReceiveBuffers[a].mCharacterIndices[i]) {
             f = 1;
         }
     }
     k = func_ov000_0219bb50();
-    if (data_0217d384->mUnk_1d00[a].mTalliedCourseId != data_0217d384->mUnk_1e10[k].mTalliedCourseId) {
+    if (gWiFiSession->mReceiveBuffers[a].mTalliedCourseId != gWiFiSession->mUnk_1e10[k].mTalliedCourseId) {
         f = 1;
     }
     if (f == 0) {
         return;
     }
-    data_0217d384->mUnk_19ad = 1;
+    gWiFiSession->mUnk_19ad = 1;
     func_ov000_021a2ccc();
     func_ov000_0219bbfc();
-    data_0217d384->mStep = 0xb;
+    gWiFiSession->mStep = 0xb;
 }
 
 BOOL func_02121434(void) {
@@ -339,7 +341,7 @@ u8 func_02121418(void) {
 }
 
 BOOL func_021213f4(void) {
-    return data_0217d384->mUnk_194d != 0;
+    return gWiFiSession->mUnk_194d != 0;
 }
 
 u32 func_021213e8(void) {
@@ -348,7 +350,7 @@ u32 func_021213e8(void) {
 
 BOOL func_021213a0(void) {
     if (func_ov000_021a2c64() != 0) {
-        if (data_0217d384->mUnk_0008.mState == 3) {
+        if (gWiFiSession->mUnk_0008.mState == 3) {
             return TRUE;
         }
     }
@@ -356,45 +358,45 @@ BOOL func_021213a0(void) {
 }
 
 BOOL func_0212137c(void) {
-    return data_0217d384->mStartStatus == 2;
+    return gWiFiSession->mStartStatus == 2;
 }
 
 void func_02121190(u32 kartType, s32 b, s32 c) {
     Unk0217d384_08 *p;
 
     func_ov000_0219bbfc();
-    MemFill(&data_0217d384->mKeys[0], 0, 0x18);
-    MemFill(&data_0217d384->mKeys[1], 0, 0x18);
-    MemFill(&data_0217d384->mKeys[2], 0, 0x18);
-    MemFill(&data_0217d384->mKeys[3], 0, 0x18);
-    data_0217d384->mUnk_194e = 0;
-    data_0217d384->mUnk_194c = 0;
-    data_0217d384->mUnk_194d = 0;
-    data_0217d384->mKartCount = 0;
-    data_0217d384->mStartKartCount = 0;
-    data_0217d384->mKartCountCopy = 0;
-    data_0217d384->mKartMask = 0;
-    data_0217d384->mKartRemoveMask = 0;
-    MemFill(&data_0217d384->mStep, 0, 0x60);
-    data_0217d384->mKeys[1].mValue = kartType;
-    data_0217d384->mUnk_194c = 4;
+    MemFill(&gWiFiSession->mKeys[0], 0, 0x18);
+    MemFill(&gWiFiSession->mKeys[1], 0, 0x18);
+    MemFill(&gWiFiSession->mKeys[2], 0, 0x18);
+    MemFill(&gWiFiSession->mKeys[3], 0, 0x18);
+    gWiFiSession->mUnk_194e = 0;
+    gWiFiSession->mUnk_194c = 0;
+    gWiFiSession->mUnk_194d = 0;
+    gWiFiSession->mKartCount = 0;
+    gWiFiSession->mStartKartCount = 0;
+    gWiFiSession->mKartCountCopy = 0;
+    gWiFiSession->mKartMask = 0;
+    gWiFiSession->mKartRemoveMask = 0;
+    MemFill(&gWiFiSession->mStep, 0, 0x60);
+    gWiFiSession->mKeys[1].mValue = kartType;
+    gWiFiSession->mUnk_194c = 4;
     if (b == 0) {
-        data_0217d384->mUnk_18e0.mUnk_00 = 1;
-        data_0217d384->mUnk_18e0.mUnk_01 = 2;
-        data_0217d384->mUnk_18e0.mUnk_04 = 1;
+        gWiFiSession->mUnk_18e0.mUnk_00 = 1;
+        gWiFiSession->mUnk_18e0.mUnk_01 = 2;
+        gWiFiSession->mUnk_18e0.mUnk_04 = 1;
     } else {
-        data_0217d384->mUnk_18e0.mUnk_00 = 1;
-        data_0217d384->mUnk_18e0.mUnk_01 = 2;
-        data_0217d384->mUnk_18e0.mUnk_04 = 0xea60;
+        gWiFiSession->mUnk_18e0.mUnk_00 = 1;
+        gWiFiSession->mUnk_18e0.mUnk_01 = 2;
+        gWiFiSession->mUnk_18e0.mUnk_04 = 0xea60;
     }
-    func_ov000_021a299c(0, &data_0217d384->mUnk_18e0, 0);
-    p = &data_0217d384->mUnk_0008;
+    func_ov000_021a299c(0, &gWiFiSession->mUnk_18e0, 0);
+    p = &gWiFiSession->mUnk_0008;
     p->mNextState = 3;
     p->mNextStateRequested = 1;
 }
 
 s32 func_0212111c(void) {
-    if ((data_0217d384->mUnk_194e != 0 && func_ov000_0219bb68() <= 1) || data_0217d384->mUnk_1f44 == 7) {
+    if ((gWiFiSession->mUnk_194e != 0 && func_ov000_0219bb68() <= 1) || gWiFiSession->mUnk_1f44 == 7) {
         return -1;
     }
     return func_02121d48() != FALSE;
@@ -405,61 +407,61 @@ void RegisterKartKeysAndStart(void) {
     s32 eloLow;
 
     func_02120610();
-    MemFill(data_0217d384->mUnk_021c, 0, 0x910);
-    func_02056464((Unk0217aa00_45c *) &data_0217d384->mUnk_021c[0].mUnk_00c);
-    data_0217d384->mKeys[0].mValue = data_0217d384->mUnk_021c[0].mRegion;
-    data_0217d384->mKeys[3].mValue = data_0217d384->mUnk_021c[0].mElo;
-    __memcpy(data_0217d384->mKeys[2].mName, "kart_filter", 12);
-    data_0217d384->mKeys[2].mId =
-        func_ov000_021a2ad0(data_0217d384->mKeys[2].mId, data_0217d384->mKeys[2].mName, "ds_mario_kart_product");
-    __memcpy(data_0217d384->mKeys[1].mName, "kart_type", 10);
-    data_0217d384->mKeys[1].mId =
-        func_ov000_021a2b9c(data_0217d384->mKeys[1].mId, data_0217d384->mKeys[1].mName, &data_0217d384->mKeys[1]);
-    __memcpy(data_0217d384->mKeys[3].mName, "kart_elo", 9);
-    data_0217d384->mKeys[3].mId =
-        func_ov000_021a2b9c(data_0217d384->mKeys[3].mId, data_0217d384->mKeys[3].mName, &data_0217d384->mKeys[3]);
-    __memcpy(data_0217d384->mKeys[0].mName, "kart_region", 12);
-    data_0217d384->mKeys[0].mId =
-        func_ov000_021a2b9c(data_0217d384->mKeys[0].mId, data_0217d384->mKeys[0].mName, &data_0217d384->mKeys[0]);
-    eloLow = data_0217d384->mUnk_021c[0].mElo - 0x3e8;
+    MemFill(gWiFiSession->mPlayerRecords, 0, 0x910);
+    func_02056464((Unk0217aa00_45c *) &gWiFiSession->mPlayerRecords[0].mUnk_00c);
+    gWiFiSession->mKeys[0].mValue = gWiFiSession->mPlayerRecords[0].mRegion;
+    gWiFiSession->mKeys[3].mValue = gWiFiSession->mPlayerRecords[0].mElo;
+    __memcpy(gWiFiSession->mKeys[2].mName, "kart_filter", 12);
+    gWiFiSession->mKeys[2].mId =
+        func_ov000_021a2ad0(gWiFiSession->mKeys[2].mId, gWiFiSession->mKeys[2].mName, "ds_mario_kart_product");
+    __memcpy(gWiFiSession->mKeys[1].mName, "kart_type", 10);
+    gWiFiSession->mKeys[1].mId =
+        func_ov000_021a2b9c(gWiFiSession->mKeys[1].mId, gWiFiSession->mKeys[1].mName, &gWiFiSession->mKeys[1]);
+    __memcpy(gWiFiSession->mKeys[3].mName, "kart_elo", 9);
+    gWiFiSession->mKeys[3].mId =
+        func_ov000_021a2b9c(gWiFiSession->mKeys[3].mId, gWiFiSession->mKeys[3].mName, &gWiFiSession->mKeys[3]);
+    __memcpy(gWiFiSession->mKeys[0].mName, "kart_region", 12);
+    gWiFiSession->mKeys[0].mId =
+        func_ov000_021a2b9c(gWiFiSession->mKeys[0].mId, gWiFiSession->mKeys[0].mName, &gWiFiSession->mKeys[0]);
+    eloLow = gWiFiSession->mPlayerRecords[0].mElo - 0x3e8;
     if (eloLow <= 0) {
         eloLow = 0;
     }
-    eloHigh = data_0217d384->mUnk_021c[0].mElo + 0x3e8;
+    eloHigh = gWiFiSession->mPlayerRecords[0].mElo + 0x3e8;
     if (eloHigh > 0x2710) {
         eloHigh = 0x2710;
     }
     MemFill(gKartFilterString, 0, 0x64);
-    if (data_0217d384->mKeys[1].mValue == 1) {
+    if (gWiFiSession->mKeys[1].mValue == 1) {
         sprintf(gKartFilterString, "%s = '%s' and %s > %d and %s < %d", "kart_filter", "ds_mario_kart_product",
                 "kart_elo", eloLow, "kart_elo", eloHigh);
     } else {
         sprintf(gKartFilterString, "%s = '%s'", "kart_filter", "ds_mario_kart_product");
     }
-    switch (data_0217d384->mKeys[1].mValue) {
+    switch (gWiFiSession->mKeys[1].mValue) {
         case 3:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
+            func_ov000_0219bd90(gWiFiSession->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
                                 ComputeRegionEval, 0);
             break;
         case 4:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
+            func_ov000_0219bd90(gWiFiSession->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
                                 ComputeRegionEloEval, 0);
             break;
         case 0:
-            func_ov000_0219bc78(NULL, 0, data_0217d384->mUnk_194c, 1, KartKeysStartCallback, NULL, 0, 0);
+            func_ov000_0219bc78(NULL, 0, gWiFiSession->mUnk_194c, 1, KartKeysStartCallback, NULL, 0, 0);
             break;
         case 1:
-            func_ov000_0219bd90(data_0217d384->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
-                                ComputeEloEval, 0);
+            func_ov000_0219bd90(gWiFiSession->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL, ComputeEloEval,
+                                0);
             break;
     }
-    data_0217d384->mStartStatus = 1;
+    gWiFiSession->mStartStatus = 1;
 }
 
 BOOL func_02120d14(void) {
     s32 v;
 
-    v = data_0217d384->mStartStatus;
+    v = gWiFiSession->mStartStatus;
     switch (v) {
         case 1:
             break;
@@ -475,19 +477,19 @@ s32 ComputeEloEval(u32 a) {
     s32 kartType;
     s32 kartRegion;
     s32 z;
-    Unk0217d384 *d;
+    WiFiSession *d;
 
-    kartType = func_ov000_021a2a88(a, data_0217d384->mKeys[1].mName, 5);
-    kartRegion = func_ov000_021a2a88(a, data_0217d384->mKeys[0].mName, 3);
-    z = func_ov000_021a2a88(a, data_0217d384->mKeys[3].mName, -1);
+    kartType = func_ov000_021a2a88(a, gWiFiSession->mKeys[1].mName, 5);
+    kartRegion = func_ov000_021a2a88(a, gWiFiSession->mKeys[0].mName, 3);
+    z = func_ov000_021a2a88(a, gWiFiSession->mKeys[3].mName, -1);
     if (kartType == 5 || kartRegion == 3 || z < 0) {
         return 0;
     }
-    d = data_0217d384;
-    if (d->mUnk_021c[0].mElo > z) {
-        z = d->mUnk_021c[0].mElo - z;
+    d = gWiFiSession;
+    if (d->mPlayerRecords[0].mElo > z) {
+        z = d->mPlayerRecords[0].mElo - z;
     } else {
-        z = z - d->mUnk_021c[0].mElo;
+        z = z - d->mPlayerRecords[0].mElo;
     }
     if (z < 0x3e8) {
         if (kartType == 1) {
@@ -504,13 +506,13 @@ BOOL ComputeRegionEval(u32 a) {
     s32 kartType;
     s32 kartRegion;
 
-    kartType = func_ov000_021a2a88(a, data_0217d384->mKeys[1].mName, 5);
-    kartRegion = func_ov000_021a2a88(a, data_0217d384->mKeys[0].mName, 3);
+    kartType = func_ov000_021a2a88(a, gWiFiSession->mKeys[1].mName, 5);
+    kartRegion = func_ov000_021a2a88(a, gWiFiSession->mKeys[0].mName, 3);
     if (kartType == 5 || kartRegion == 3) {
         return FALSE;
     }
     if (kartType == 3) {
-        if (data_0217d384->mUnk_021c[0].mRegion == kartRegion) {
+        if (gWiFiSession->mPlayerRecords[0].mRegion == kartRegion) {
             return TRUE;
         }
     }
@@ -521,26 +523,26 @@ s32 ComputeRegionEloEval(u32 a) {
     s32 kartType;
     s32 kartRegion;
     s32 z;
-    Unk0217d384 *d;
+    WiFiSession *d;
 
-    kartType = func_ov000_021a2a88(a, data_0217d384->mKeys[1].mName, 5);
-    kartRegion = func_ov000_021a2a88(a, data_0217d384->mKeys[0].mName, 3);
-    z = func_ov000_021a2a88(a, data_0217d384->mKeys[3].mName, -1);
+    kartType = func_ov000_021a2a88(a, gWiFiSession->mKeys[1].mName, 5);
+    kartRegion = func_ov000_021a2a88(a, gWiFiSession->mKeys[0].mName, 3);
+    z = func_ov000_021a2a88(a, gWiFiSession->mKeys[3].mName, -1);
     if (kartType == 5 || kartRegion == 3 || z < 0) {
         return 0;
     }
     if (kartType == 4) {
-        return (kartRegion != data_0217d384->mUnk_021c[0].mRegion ? 2 : 1) * 0x7d0;
+        return (kartRegion != gWiFiSession->mPlayerRecords[0].mRegion ? 2 : 1) * 0x7d0;
     }
     if (kartType == 1) {
-        d = data_0217d384;
-        if (d->mUnk_021c[0].mElo > z) {
-            z = d->mUnk_021c[0].mElo - z;
+        d = gWiFiSession;
+        if (d->mPlayerRecords[0].mElo > z) {
+            z = d->mPlayerRecords[0].mElo - z;
         } else {
-            z = z - d->mUnk_021c[0].mElo;
+            z = z - d->mPlayerRecords[0].mElo;
         }
         if (z < 0x3e8) {
-            if (kartRegion != d->mUnk_021c[0].mRegion) {
+            if (kartRegion != d->mPlayerRecords[0].mRegion) {
                 return 0x7d0 - z;
             }
             return 0x3e8 - z;
@@ -550,74 +552,74 @@ s32 ComputeRegionEloEval(u32 a) {
 }
 
 void KartKeysStartCallback(u32 a, s32 b) {
-    Unk0217d384 *d;
+    WiFiSession *d;
     u8 i;
 
     if (a == 0) {
         if (b != 0) {
-            data_0217d384->mStartStatus = 2;
+            gWiFiSession->mStartStatus = 2;
             return;
         }
-        data_0217d384->mKartMask = 0;
-        data_0217d384->mKartCount = func_ov000_0219bb68();
-        data_0217d384->mStartKartCount = data_0217d384->mKartCount;
-        d = data_0217d384;
+        gWiFiSession->mKartMask = 0;
+        gWiFiSession->mKartCount = func_ov000_0219bb68();
+        gWiFiSession->mStartKartCount = gWiFiSession->mKartCount;
+        d = gWiFiSession;
         i = 0;
         while (i < d->mStartKartCount) {
             d->mKartMask |= 1 << i;
-            d = data_0217d384;
+            d = gWiFiSession;
             i++;
         }
-        MemFill(d->mUnk_021c, 0, 0x910);
-        func_02056464((Unk0217aa00_45c *) &data_0217d384->mUnk_021c[func_ov000_0219bb50()].mUnk_00c);
+        MemFill(d->mPlayerRecords, 0, 0x910);
+        func_02056464((Unk0217aa00_45c *) &gWiFiSession->mPlayerRecords[func_ov000_0219bb50()].mUnk_00c);
         func_02123a48(0);
-        data_0217d384->mStartStatus = 3;
+        gWiFiSession->mStartStatus = 3;
     } else {
-        data_0217d384->mStartStatus = 4;
+        gWiFiSession->mStartStatus = 4;
     }
 }
 
 void func_021208e8(s32 a) {
-    data_0217d384->mUnk_1f40 = a;
-    if (data_0217d384->mUnk_1f40 != 2) {
+    gWiFiSession->mUnk_1f40 = a;
+    if (gWiFiSession->mUnk_1f40 != 2) {
         return;
     }
     func_ov000_021a2ccc();
     func_ov000_0219bbfc();
 }
 
-void func_02120714(void) {
-    MemFill(data_0217d384->mUnk_001c, 0, 0x200);
-    MemFill(data_0217d384->mUnk_021c, 0, 0x910);
-    MemFill(data_0217d384->mUnk_0b2c, 0, 0xe24);
-    MemFill(&data_0217d384->mStep, 0, 0x60);
-    MemFill(data_0217d384->mUnk_19b0, 0, 0x350);
-    MemFill(data_0217d384->mUnk_1d00, 0, 0x110);
-    MemFill(data_0217d384->mUnk_1e10, 0, 0x110);
-    MemFill(&data_0217d384->mUnk_1f20, 0, 0x10);
-    data_0217d384->mUnk_1f34 = FALSE;
-    data_0217d384->mUnk_1f38 = FALSE;
-    data_0217d384->mUnk_1f3c = 0;
-    data_0217d384->mUnk_1f40 = 0;
-    data_0217d384->mUnk_1f44 = 0;
-    data_0217d384->mUnk_1f48 = 0;
-    data_0217d384->mUnk_1f4c = 0;
-    data_0217d384->mUnk_1f4d = 0;
-    MemFill(data_0217d384->mUnk_1f4e, 0, 4);
-    data_0217d384->mKartCount = 0;
-    data_0217d384->mStartKartCount = 0;
-    data_0217d384->mKartCountCopy = 0;
-    data_0217d384->mKartMask = 0;
-    data_0217d384->mKartRemoveMask = 0;
-    data_0217d384->mUnk_1f57 = 0;
+void ResetWiFiSession(void) {
+    MemFill(gWiFiSession->mUnk_001c, 0, 0x200);
+    MemFill(gWiFiSession->mPlayerRecords, 0, 0x910);
+    MemFill(gWiFiSession->mUnk_0b2c, 0, 0xe24);
+    MemFill(&gWiFiSession->mStep, 0, 0x60);
+    MemFill(gWiFiSession->mUnk_19b0, 0, 0x350);
+    MemFill(gWiFiSession->mReceiveBuffers, 0, 0x110);
+    MemFill(gWiFiSession->mUnk_1e10, 0, 0x110);
+    MemFill(&gWiFiSession->mUnk_1f20, 0, 0x10);
+    gWiFiSession->mUnk_1f34 = FALSE;
+    gWiFiSession->mUnk_1f38 = FALSE;
+    gWiFiSession->mUnk_1f3c = 0;
+    gWiFiSession->mUnk_1f40 = 0;
+    gWiFiSession->mUnk_1f44 = 0;
+    gWiFiSession->mUnk_1f48 = 0;
+    gWiFiSession->mUnk_1f4c = 0;
+    gWiFiSession->mUnk_1f4d = 0;
+    MemFill(gWiFiSession->mPackedIndices, 0, 4);
+    gWiFiSession->mKartCount = 0;
+    gWiFiSession->mStartKartCount = 0;
+    gWiFiSession->mKartCountCopy = 0;
+    gWiFiSession->mKartMask = 0;
+    gWiFiSession->mKartRemoveMask = 0;
+    gWiFiSession->mBuddyPollIndex = 0;
 }
 
 u32 func_02120644(void) {
-    Unk0217d384 *d;
+    WiFiSession *d;
     Unk0217d384_08 *p;
     s32 v;
 
-    d = data_0217d384;
+    d = gWiFiSession;
     if (d->mUnk_0008.mState != 0) {
         v = d->mUnk_1f44;
         if (v == 6 || v == 3 || v == 4 || v == 0xb) {
@@ -625,7 +627,7 @@ u32 func_02120644(void) {
         }
         if (d->mUnk_1f40 == 2) {
             if (func_ov000_0219bb68() <= 1) {
-                p = &data_0217d384->mUnk_0008;
+                p = &gWiFiSession->mUnk_0008;
                 p->mNextState = 2;
                 p->mNextStateRequested = 1;
                 return 2;
@@ -641,7 +643,7 @@ u32 func_02120644(void) {
 }
 
 void func_02120610(void) {
-    data_0217d384->mUnk_1f44 = 0;
-    data_0217d384->mUnk_1f40 = 0;
-    data_0217d384->mUnk_1f48 = 0;
+    gWiFiSession->mUnk_1f44 = 0;
+    gWiFiSession->mUnk_1f40 = 0;
+    gWiFiSession->mUnk_1f48 = 0;
 }

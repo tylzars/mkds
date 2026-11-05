@@ -48,32 +48,35 @@ u32 func_021205e8(void) {
 }
 
 #pragma thumb on
-void func_021205ac(void *a) {
+void InitWiFiSession(void *a) {
     Unk0217d384_08 *p;
 
-    data_0217d384 = HeapAllocAligned(a, 0x1f58, 0x20);
-    func_02046be8(&data_0217d384->mUnk_0008, data_0216e21c, 8, NULL);
-    p = &data_0217d384->mUnk_0008;
+    gWiFiSession = HeapAllocAligned(a, 0x1f58, 0x20);
+    func_02046be8(&gWiFiSession->mUnk_0008, data_0216e21c, 8, NULL);
+    p = &gWiFiSession->mUnk_0008;
     p->mNextState = 0;
     p->mNextStateRequested = 1;
 }
 
-void func_0212055c(void *a) {
-    data_0217d384->mHeapBuffer = HeapAllocAligned(a, 0x3e800, 0x20);
-    data_0217d384->mHeap = ExpHeapCreate(data_0217d384->mHeapBuffer, 0x3e800, 1);
-    data_0217d384->mHeapCreated = TRUE;
-    func_ov000_021a3744(func_0211fffc, func_0211ffb0);
+// Creates the 0x3e800-byte exp heap and registers WiFiSessionHeapAlloc / Free with the net layer (the heap is used only
+// through them).
+void CreateWiFiSessionHeap(void *a) {
+    gWiFiSession->mHeapBuffer = HeapAllocAligned(a, 0x3e800, 0x20);
+    gWiFiSession->mHeap = ExpHeapCreate(gWiFiSession->mHeapBuffer, 0x3e800, 1);
+    gWiFiSession->mHeapCreated = TRUE;
+    func_ov000_021a3744(WiFiSessionHeapAlloc, WiFiSessionHeapFree);
 }
 
-void func_02120514(void) {
+// Destroys the heap and frees its buffer (mHeap is left set), clears mHeapCreated and requests state 0.
+void DeleteWiFiSessionHeap(void) {
     Unk0217d384_08 *p;
 
-    if (data_0217d384->mHeap != NULL) {
-        ExpHeapDestroy(data_0217d384->mHeap);
-        HeapFree(GetHeap(func_020364e8()), data_0217d384->mHeapBuffer);
+    if (gWiFiSession->mHeap != NULL) {
+        ExpHeapDestroy(gWiFiSession->mHeap);
+        HeapFree(GetHeap(func_020364e8()), gWiFiSession->mHeapBuffer);
     }
-    data_0217d384->mHeapCreated = FALSE;
-    p = &data_0217d384->mUnk_0008;
+    gWiFiSession->mHeapCreated = FALSE;
+    p = &gWiFiSession->mUnk_0008;
     p->mNextState = 0;
     p->mNextStateRequested = 1;
 }
@@ -82,29 +85,30 @@ void func_02120514(void) {
 void func_021204d0(void) {
     Unk0217d384_08 *p;
 
-    func_02120714();
-    data_0217d384->mUnk_1f34 = TRUE;
-    p = &data_0217d384->mUnk_0008;
+    ResetWiFiSession();
+    gWiFiSession->mUnk_1f34 = TRUE;
+    p = &gWiFiSession->mUnk_0008;
     p->mNextState = 0;
     p->mNextStateRequested = 1;
 }
 
-void func_02120404(void) {
+// Polls one buddy entry's status per call and counts the entries with status 4 into mUnk_194d.
+void UpdateBuddyStatuses(void) {
     u8 n = 0;
-    Unk0217d384 *d;
-    Unk0217d384 *p;
+    WiFiSession *d;
+    WiFiSession *p;
     u8 i;
 
-    if (data_0217d384->mUnk_1f57 >= 0x3c) {
-        data_0217d384->mUnk_1f57 = 0;
+    if (gWiFiSession->mBuddyPollIndex >= 0x3c) {
+        gWiFiSession->mBuddyPollIndex = 0;
     }
-    d = data_0217d384;
-    d->mUnk_1cc0[d->mUnk_1f57] = func_ov000_0219daa8(&d->mUnk_19f0[d->mUnk_1f57], NULL);
-    data_0217d384->mUnk_1f57++;
-    p = data_0217d384;
+    d = gWiFiSession;
+    d->mBuddyStatuses[d->mBuddyPollIndex] = func_ov000_0219daa8(&d->mBuddies[d->mBuddyPollIndex], NULL);
+    gWiFiSession->mBuddyPollIndex++;
+    p = gWiFiSession;
     i = 0;
     do {
-        switch (p->mUnk_1cc0[i]) {
+        switch (p->mBuddyStatuses[i]) {
             case 2:
                 break;
             case 4:
@@ -116,8 +120,8 @@ void func_02120404(void) {
     p->mUnk_194d = n;
 }
 
-void func_0212034c(void) {
-    if (data_0217d384 == NULL) {
+void UpdateWiFiSession(void) {
+    if (gWiFiSession == NULL) {
         return;
     }
     if (data_0217aa10->mUnk_00 != 0) {
@@ -125,24 +129,25 @@ void func_0212034c(void) {
     }
     func_ov000_0219bf10();
     if (func_ov000_0219c3cc(NULL) != 0) {
-        data_0217d384->mUnk_1f44 = func_ov000_0219c3cc(&data_0217d384->mUnk_1f48);
+        gWiFiSession->mUnk_1f44 = func_ov000_0219c3cc(&gWiFiSession->mUnk_1f48);
         func_ov000_0219c3b0();
     }
-    if (data_0217d384->mUnk_0008.mState != 0) {
-        func_02120404();
+    if (gWiFiSession->mUnk_0008.mState != 0) {
+        UpdateBuddyStatuses();
     }
-    func_02046b40(&data_0217d384->mUnk_0008);
+    func_02046b40(&gWiFiSession->mUnk_0008);
 }
 
 s32 func_02120340(u32 a, void *b, s32 c, u32 (*d)(void)) {
     return func_ov000_021a32a0(a, b, c);
 }
 
-void *func_0212030c(u32 a) {
-    Unk0217d384 *d = data_0217d384;
+// Returns the name+emblem part of the index's record, or NULL if the index is not in mKartMask.
+void *GetWiFiSessionPlayerRecordData(u32 a) {
+    WiFiSession *d = gWiFiSession;
 
     if (d->mKartMask & (1 << a)) {
-        return &d->mUnk_021c[a].mUnk_00c;
+        return &d->mPlayerRecords[a].mUnk_00c;
     }
     return NULL;
 }

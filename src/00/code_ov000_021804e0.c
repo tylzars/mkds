@@ -34,11 +34,11 @@ void UpdateWiFiMenuScene(SceneNumbers *a) {
     AdvanceWiFiStates();
     func_020ae630(data_ov000_021b4c60, data_ov000_021b4c60 + 0x404);
     if (a != NULL) {
-        if (func_ov000_021806c4() != -1) {
-            if (func_ov000_021806c4() == 0) {
+        if (GetWiFiNextScene() != -1) {
+            if (GetWiFiNextScene() == 0) {
                 data_021759d0->mUnk_20 = 0;
             }
-            a->mNextScene = func_ov000_021806c4();
+            a->mNextScene = GetWiFiNextScene();
         }
     }
 }

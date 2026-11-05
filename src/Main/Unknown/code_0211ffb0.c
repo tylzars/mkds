@@ -5,23 +5,24 @@
 #include "00/code_021832d8.h"
 #include "code_0200fc8c.h"
 
-void *func_0211fffc(u32 a, u32 b, s32 c) {
+// Allocator registered with the net layer; the first argument is unused; interrupts off.
+void *WiFiSessionHeapAlloc(u32 a, u32 b, s32 c) {
     u32 v;
     void *p;
 
     v = IrqDisable();
-    p = HeapAllocAligned(data_0217d384->mHeap, b, c);
+    p = HeapAllocAligned(gWiFiSession->mHeap, b, c);
     IrqRestore(v);
     return p;
 }
 
-void func_0211ffb0(u32 a, void *b) {
+void WiFiSessionHeapFree(u32 a, void *b) {
     u32 v;
 
     if (b == NULL) {
         return;
     }
     v = IrqDisable();
-    HeapFree(data_0217d384->mHeap, b);
+    HeapFree(gWiFiSession->mHeap, b);
     IrqRestore(v);
 }

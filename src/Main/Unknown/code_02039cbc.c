@@ -39,7 +39,7 @@ void func_02039cbc(void) {
     func_0204af70(a);
     func_020545e8(a);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_021205ac(a);
+        InitWiFiSession(a);
     }
     func_02046a3c(a);
     func_02057524(a);

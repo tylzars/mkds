@@ -113,7 +113,7 @@ void InitWiFiStates(void *heap, s32 b) {
     func_020476ac();
     gWiFiStates->mStateHeap = CreateExpHeapFromMaxFree(heap);
     ClearWiFiStateCallbacks();
-    gWiFiStates->mUnk_18 = -1;
+    gWiFiStates->mNextScene = -1;
     if (data_0217b488->mUnk_58 != FALSE) {
         b = 0;
         data_0217b488->mUnk_58 = FALSE;
@@ -139,7 +139,7 @@ void InitWiFiStates(void *heap, s32 b) {
                     RegisterWiFiTopMenuCallbacks();
                     break;
                 case 1:
-                    q = &data_0217d384->mUnk_0008;
+                    q = &gWiFiSession->mUnk_0008;
                     q->mNextState = 2;
                     q->mNextStateRequested = 1;
                     gWiFiStates->mState = 2;
@@ -275,12 +275,12 @@ s32 GetWiFiPrevState(void) {
     return gWiFiStates->mPrevState;
 }
 
-u32 func_ov000_021806c4(void) {
-    return ((u32) gWiFiStates->mUnk_18);
+u32 GetWiFiNextScene(void) {
+    return ((u32) gWiFiStates->mNextScene);
 }
 
-void func_ov000_021806b8(u32 p0) {
-    gWiFiStates->mUnk_18 = (u16) p0;
+void SetWiFiNextScene(u32 p0) {
+    gWiFiStates->mNextScene = (u16) p0;
 }
 
 u32 func_ov000_021806a0(void) {
@@ -325,7 +325,7 @@ BOOL func_ov000_02180608(void) {
     if (gWiFiStates != NULL && gWiFiStates->mState == 0) {
         valid = FALSE;
     }
-    if (data_0217d384->mUnk_0008.mState == 0 && valid != FALSE) {
+    if (gWiFiSession->mUnk_0008.mState == 0 && valid != FALSE) {
         return TRUE;
     }
     return FALSE;

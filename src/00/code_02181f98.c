@@ -50,7 +50,7 @@ void InitWiFiVSSetting(void *heap) {
     gWiFiVSSetting->mHeap = heap;
     gWiFiVSSetting->mState = 0;
     gWiFiVSSetting->mNextState = 0;
-    gWiFiVSSetting->mUnk_08 = 1;
+    gWiFiVSSetting->mRow = 1;
     gWiFiVSSetting->mPendingWiFiState = -1;
     gWiFiVSSetting->mStateFrames = 0;
     gWiFiVSSetting->mUnk_24 = TRUE;
@@ -63,7 +63,7 @@ void InitWiFiVSSetting(void *heap) {
     }
     func_020ae6d4(func_ov000_021804f4(), func_ov000_021804e0());
     func_02124ed0(heap, gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingBnll,
-                  &gWiFiVSSetting->mUnk_103c);
+                  &gWiFiVSSetting->mWiFiVSSettingTable);
     gWiFiVSSetting->mWiFiMessages = FindSceneFile("wifi.bmg");
     gWiFiVSSetting->mCommonMessages = func_02047a28("common.bmg");
     {
@@ -75,9 +75,9 @@ void InitWiFiVSSetting(void *heap) {
         for (i = 0; i < 1; i++) {
             v -= func_021243ac(heap, a[i], gWiFiVSSetting->mWiFiVSSettingBnll, b[i][0], b[i][1],
                                data_ov000_021b060c[i][11], gWiFiVSSetting->mWiFiVSSettingSNcer,
-                               gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mUnk_103c, v);
+                               gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingTable, v);
             func_0212426c(1, a[i], gWiFiVSSetting->mWiFiVSSettingBnll, GetBmgEntry(gWiFiVSSetting->mWiFiMessages, c[i]),
-                          gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mUnk_103c);
+                          gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingTable);
         }
         {
             u8 d[3][2] = {{0x80, 0x10}, {0xa0, 0x10}, {0x32, 0x10}};
@@ -95,7 +95,7 @@ void InitWiFiVSSetting(void *heap) {
                 }
                 v -= func_021243ac(heap, data_ov000_021b05e8[i], gWiFiVSSetting->mWiFiVSSettingBnll, d[i][0], d[i][1],
                                    data_ov000_021b060c[i][1], gWiFiVSSetting->mWiFiVSSettingSNcer,
-                                   gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mUnk_103c, v);
+                                   gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingTable, v);
                 if (i == 2) {
                     t = GetBmgEntry(gWiFiVSSetting->mCommonMessages, data_ov000_021b0628[i][k]);
                 } else if (i == 1) {
@@ -105,7 +105,7 @@ void InitWiFiVSSetting(void *heap) {
                     t = GetBmgEntry(gWiFiVSSetting->mWiFiMessages, data_ov000_021b0628[i][k]);
                 }
                 func_0212426c(1, data_ov000_021b05e8[i], gWiFiVSSetting->mWiFiVSSettingBnll, t,
-                              gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mUnk_103c);
+                              gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingTable);
             }
         }
     }
@@ -243,7 +243,7 @@ void AdvanceWiFiVSSettingState3(void) {
 }
 
 void AdvanceWiFiVSSettingState4(void) {
-    s32 v1 = gWiFiVSSetting->mUnk_08;
+    s32 v1 = gWiFiVSSetting->mRow;
     s32 prevSettingIndex = gWiFiVSSetting->mSettingIndex;
     Unk02175628Index i = UNK_02175628_INDEX_8;
     BOOL v3 = FALSE;
@@ -288,64 +288,64 @@ void AdvanceWiFiVSSettingState4(void) {
     goto end;
 next:
     v8 = e->mUnk_00 & 1;
-    if (((u16) v8 != 0 && gWiFiVSSetting->mUnk_08 == 2) || v4 == 2) {
+    if (((u16) v8 != 0 && gWiFiVSSetting->mRow == 2) || v4 == 2) {
         gWiFiVSSetting->mNextState = 5;
-        if (gWiFiVSSetting->mUnk_08 == 2) {
+        if (gWiFiVSSetting->mRow == 2) {
             gWiFiVSSetting->mUnk_24 = FALSE;
         }
         gWiFiVSSetting->mPendingWiFiState = 3;
-        gWiFiVSSetting->mUnk_08 = 2;
+        gWiFiVSSetting->mRow = 2;
         data_0217b488->mUnk_54 = data_ov000_021b05ec[gWiFiVSSetting->mSettingIndex];
         if ((u16) (data_0217562a[i].mBits & 0x100) != 0) {
             func_ov000_02180638(1);
         }
         SetWiFiVSSettingIndex(gWiFiVSSetting->mSettingIndex);
         func_02105ac0(5);
-    } else if (((u16) v8 != 0 && gWiFiVSSetting->mUnk_08 == 0) || v4 == 0) {
+    } else if (((u16) v8 != 0 && gWiFiVSSetting->mRow == 0) || v4 == 0) {
         gWiFiVSSetting->mNextState = 5;
-        if (gWiFiVSSetting->mUnk_08 == 0) {
+        if (gWiFiVSSetting->mRow == 0) {
             gWiFiVSSetting->mUnk_24 = FALSE;
         }
         gWiFiVSSetting->mPendingWiFiState = 14;
-        gWiFiVSSetting->mUnk_08 = 0;
+        gWiFiVSSetting->mRow = 0;
         data_0217b488->mUnk_50 = 0;
         func_02125fc0();
         func_02105ac0(5);
         data_0217b488->mUnk_54 = data_ov000_021b05ec[gWiFiVSSetting->mSettingIndex];
         func_0211fe44();
     } else if (v4 == 1) {
-        gWiFiVSSetting->mUnk_08 = 1;
+        gWiFiVSSetting->mRow = 1;
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
         func_02105ac0(1);
     } else if (func_020ae408(8, 0x40) != 0) {
-        gWiFiVSSetting->mUnk_08 = gWiFiVSSetting->mUnk_08 - 1;
-        if (gWiFiVSSetting->mUnk_08 < 0) {
-            gWiFiVSSetting->mUnk_08 = 2;
+        gWiFiVSSetting->mRow = gWiFiVSSetting->mRow - 1;
+        if (gWiFiVSSetting->mRow < 0) {
+            gWiFiVSSetting->mRow = 2;
         }
         func_02105ac0(0);
-    } else if (func_020ae408(8, 0x80) != 0 || (gWiFiVSSetting->mUnk_08 == 1 && (u16) (e->mUnk_00 & 1) != 0)) {
-        gWiFiVSSetting->mUnk_08 = gWiFiVSSetting->mUnk_08 + 1;
-        if (gWiFiVSSetting->mUnk_08 > 2) {
-            gWiFiVSSetting->mUnk_08 = 0;
+    } else if (func_020ae408(8, 0x80) != 0 || (gWiFiVSSetting->mRow == 1 && (u16) (e->mUnk_00 & 1) != 0)) {
+        gWiFiVSSetting->mRow = gWiFiVSSetting->mRow + 1;
+        if (gWiFiVSSetting->mRow > 2) {
+            gWiFiVSSetting->mRow = 0;
         }
         func_02105ac0(0);
-    } else if (gWiFiVSSetting->mUnk_08 == 1 && func_020ae408(8, 0x20) != 0) {
+    } else if (gWiFiVSSetting->mRow == 1 && func_020ae408(8, 0x20) != 0) {
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex - 1;
         gWiFiVSSetting->mIndexDecrementTimer = 6;
         func_02105ac0(1);
-    } else if (gWiFiVSSetting->mUnk_08 == 1 && func_020ae408(8, 0x10) != 0) {
+    } else if (gWiFiVSSetting->mRow == 1 && func_020ae408(8, 0x10) != 0) {
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
         if (func_020ae408(8, 0x10) != 0) {
             gWiFiVSSetting->mIndexIncrementTimer = 6;
         }
         func_02105ac0(1);
     } else if (v4 == 3) {
-        gWiFiVSSetting->mUnk_08 = 1;
+        gWiFiVSSetting->mRow = 1;
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex - 1;
         gWiFiVSSetting->mIndexDecrementTimer = 6;
         func_02105ac0(1);
     } else if (v4 == 4) {
-        gWiFiVSSetting->mUnk_08 = 1;
+        gWiFiVSSetting->mRow = 1;
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
         gWiFiVSSetting->mIndexIncrementTimer = 6;
         func_02105ac0(1);
@@ -361,9 +361,9 @@ end:
         messageIndex = LookupWiFiVSSettingMessageIndex(gWiFiVSSetting->mSettingIndex);
         func_0212426c(1, data_ov000_021b05e8[1], gWiFiVSSetting->mWiFiVSSettingBnll,
                       GetBmgEntry(gWiFiVSSetting->mWiFiMessages, messageIndex), gWiFiVSSetting->mWiFiVSSettingBncl,
-                      gWiFiVSSetting->mUnk_103c);
+                      gWiFiVSSetting->mWiFiVSSettingTable);
     }
-    if (gWiFiVSSetting->mUnk_08 == 2 && v1 != 2) {
+    if (gWiFiVSSetting->mRow == 2 && v1 != 2) {
         func_0212b7fc();
     }
 }
@@ -391,8 +391,8 @@ void AdvanceWiFiVSSettingState6(void) {
     s16 u;
     s32 i;
 
-    if (func_ov000_021806c4() == -1 && gWiFiVSSetting->mPendingWiFiState == 14 && func_ov000_021832f0() != FALSE) {
-        func_ov000_021806b8(8);
+    if (GetWiFiNextScene() == -1 && gWiFiVSSetting->mPendingWiFiState == 14 && func_ov000_021832f0() != FALSE) {
+        SetWiFiNextScene(8);
     }
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
     if (gWiFiVSSetting->mStateFrames <= 10) {
@@ -418,7 +418,7 @@ void AdvanceWiFiVSSettingState6(void) {
     if (gWiFiVSSetting->mStateFrames >= 10 && gWiFiVSSetting->mStateFrames >= 13 && func_02125f88() != 0 &&
         ((gWiFiVSSetting->mUnk_28 != FALSE && IsSelectReturnState0NoState1Request() != 0) ||
          IsSelectReturnState2NoState3Or4Request() != 0) &&
-        func_ov000_021806c4() == -1) {
+        GetWiFiNextScene() == -1) {
         if (gWiFiVSSetting->mPendingWiFiState == 14 && func_ov000_021832f0() == FALSE) {
             gWiFiVSSetting->mNextState = 7;
             gWiFiVSSetting->mPendingWiFiState = -1;
@@ -464,7 +464,7 @@ void AdvanceWiFiVSSettingState7(void) {
     if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         gWiFiVSSetting->mNextState = 2;
         func_ov000_02182de8();
-        gWiFiVSSetting->mUnk_08 = 1;
+        gWiFiVSSetting->mRow = 1;
         return;
     }
     if (func_02125fa4() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
@@ -503,7 +503,7 @@ void AdvanceWiFiVSSettingState8(void) {
     if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         gWiFiVSSetting->mNextState = 2;
         func_ov000_02182de8();
-        gWiFiVSSetting->mUnk_08 = 1;
+        gWiFiVSSetting->mRow = 1;
         return;
     }
     if (func_02125fa4() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
@@ -543,7 +543,7 @@ void AdvanceWiFiVSSettingState9(void) {
         }
         gWiFiVSSetting->mNextState = 2;
         func_ov000_02182de8();
-        gWiFiVSSetting->mUnk_08 = 1;
+        gWiFiVSSetting->mRow = 1;
     }
 }
 
@@ -586,22 +586,22 @@ void func_ov000_02182270(void) {
     v = gWiFiVSSetting->mWiFiVSSettingBncl->mUnk_06;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov000_021b0600[i]; j++) {
-            gWiFiVSSetting->mUnk_103c[data_ov000_021b060c[i][j]].mUnk_04 = gWiFiVSSetting->mUnk_14[i][0];
-            gWiFiVSSetting->mUnk_103c[data_ov000_021b060c[i][j]].mUnk_06 = gWiFiVSSetting->mUnk_14[i][1];
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mUnk_04 = gWiFiVSSetting->mUnk_14[i][0];
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mUnk_06 = gWiFiVSSetting->mUnk_14[i][1];
         }
     }
     for (i = 0; i < 3; i++) {
-        (gWiFiVSSetting->mUnk_103c + v)[data_ov000_021b05e8[i]].mUnk_04 = gWiFiVSSetting->mUnk_14[i][0];
-        (gWiFiVSSetting->mUnk_103c + v)[data_ov000_021b05e8[i]].mUnk_06 = gWiFiVSSetting->mUnk_14[i][1];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mUnk_04 = gWiFiVSSetting->mUnk_14[i][0];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mUnk_06 = gWiFiVSSetting->mUnk_14[i][1];
     }
     for (k = 0; k < 3; k++) {
-        (gWiFiVSSetting->mUnk_103c + v)[1].mUnk_04 = gWiFiVSSetting->mUnk_14[1][0];
-        (gWiFiVSSetting->mUnk_103c + v)[1].mUnk_06 = gWiFiVSSetting->mUnk_14[1][1];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mUnk_04 = gWiFiVSSetting->mUnk_14[1][0];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mUnk_06 = gWiFiVSSetting->mUnk_14[1][1];
     }
     for (i = 0; i < 3; i++) {
-        gWiFiVSSetting->mUnk_103c[data_ov000_021b05f8[i][0]].mUnk_04 -=
+        gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[i][0]].mUnk_04 -=
             func_020adc64(6 - gWiFiVSSetting->mIndexDecrementTimer);
-        gWiFiVSSetting->mUnk_103c[data_ov000_021b05f8[i][1]].mUnk_04 +=
+        gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[i][1]].mUnk_04 +=
             func_020adc64(6 - gWiFiVSSetting->mIndexIncrementTimer);
     }
 }
@@ -611,14 +611,14 @@ void func_ov000_021821e0(void) {
     BOOL z = FALSE;
 
     for (i = 0; i < 3; i++) {
-        if (i == gWiFiVSSetting->mUnk_08 && gWiFiVSSetting->mUnk_24 != FALSE) {
-            gWiFiVSSetting->mUnk_103c[data_ov000_021b060c[i][1]].mUnk_00 = 1;
-            func_02124100(data_ov000_021b05e8[i], 14, gWiFiVSSetting->mWiFiVSSettingBnll, gWiFiVSSetting->mUnk_103c,
-                          gWiFiVSSetting->mWiFiVSSettingBncl);
+        if (i == gWiFiVSSetting->mRow && gWiFiVSSetting->mUnk_24 != FALSE) {
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][1]].mUnk_00 = 1;
+            func_02124100(data_ov000_021b05e8[i], 14, gWiFiVSSetting->mWiFiVSSettingBnll,
+                          gWiFiVSSetting->mWiFiVSSettingTable, gWiFiVSSetting->mWiFiVSSettingBncl);
         } else {
-            gWiFiVSSetting->mUnk_103c[data_ov000_021b060c[i][1]].mUnk_00 = z;
-            func_02124100(data_ov000_021b05e8[i], 15, gWiFiVSSetting->mWiFiVSSettingBnll, gWiFiVSSetting->mUnk_103c,
-                          gWiFiVSSetting->mWiFiVSSettingBncl);
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][1]].mUnk_00 = z;
+            func_02124100(data_ov000_021b05e8[i], 15, gWiFiVSSetting->mWiFiVSSettingBnll,
+                          gWiFiVSSetting->mWiFiVSSettingTable, gWiFiVSSetting->mWiFiVSSettingBncl);
         }
     }
 }
@@ -629,18 +629,18 @@ void func_ov000_02182150(void) {
     BOOL y = FALSE;
 
     for (i = 0; i < 2; i++) {
-        if (gWiFiVSSetting->mUnk_08 == 1) {
+        if (gWiFiVSSetting->mRow == 1) {
             if ((&gWiFiVSSetting->mIndexDecrementTimer)[i] > 0) {
-                gWiFiVSSetting->mUnk_103c[data_ov000_021b05f8[0][i]].mUnk_00 = 1;
-                gWiFiVSSetting->mUnk_103c[data_ov000_021b05f8[1][i]].mUnk_00 = 1;
+                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[0][i]].mUnk_00 = 1;
+                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[1][i]].mUnk_00 = 1;
                 (&gWiFiVSSetting->mIndexDecrementTimer)[i]--;
             } else {
-                gWiFiVSSetting->mUnk_103c[data_ov000_021b05f8[0][i]].mUnk_00 = y;
-                gWiFiVSSetting->mUnk_103c[data_ov000_021b05f8[1][i]].mUnk_00 = 1;
+                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[0][i]].mUnk_00 = y;
+                gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[1][i]].mUnk_00 = 1;
             }
         } else {
-            gWiFiVSSetting->mUnk_103c[data_ov000_021b05f8[0][i]].mUnk_00 = z;
-            gWiFiVSSetting->mUnk_103c[data_ov000_021b05f8[1][i]].mUnk_00 = z;
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[0][i]].mUnk_00 = z;
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[1][i]].mUnk_00 = z;
         }
     }
 }
@@ -690,7 +690,7 @@ void AdvanceWiFiVSSetting(void) {
     func_ov000_021821e0();
     func_ov000_02182150();
     func_02124c30(gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingSNcer,
-                  gWiFiVSSetting->mWiFiVSSettingBnll, func_ov000_021804e0(), gWiFiVSSetting->mUnk_103c);
+                  gWiFiVSSetting->mWiFiVSSettingBnll, func_ov000_021804e0(), gWiFiVSSetting->mWiFiVSSettingTable);
 }
 
 void func_ov000_02181ff0(void) {
@@ -716,7 +716,7 @@ void func_ov000_02181ff0(void) {
 }
 
 WiFiStateCallbacks gWiFiVSSettingCallbacks = {InitWiFiVSSetting, func_ov000_02182f88, AdvanceWiFiVSSetting,
-                                       func_ov000_02181ff0};
+                                              func_ov000_02181ff0};
 
 void RegisterWiFiVSSettingCallbacks(void) {
     WiFiStateCallbacks callbacks = gWiFiVSSettingCallbacks;

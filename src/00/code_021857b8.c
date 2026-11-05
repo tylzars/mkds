@@ -44,7 +44,7 @@ void func_ov000_0218583c(void) {
         if (data_0217b488->mUnk_6c != FALSE) {
             p = data_0217aa08->mUnk_00;
             a = p->mUnk_34[5];
-            b = data_0217d384->mKartCountCopy - 1;
+            b = gWiFiSession->mKartCountCopy - 1;
             if (b > 0) {
                 if (a < b) {
                     a = 0;

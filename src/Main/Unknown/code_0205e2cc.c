@@ -169,7 +169,7 @@ void func_0205e67c(void) {
     for (j = 0; j < 4; j++) {
         d[j] = -1;
         if (j != func_ov000_0219bb50()) {
-            e = func_0212030c(j & 0xff);
+            e = GetWiFiSessionPlayerRecordData(j & 0xff);
             if (e != NULL) {
                 t = func_02060c68(e, 0);
                 if (t != -1) {
@@ -205,7 +205,7 @@ void func_0205e67c(void) {
                 if (t >= v1 && t < v2) {
                     x = t % 5;
                     *q = *q | (1 << x);
-                    MemCopy((u8 *) func_0212030c(k & 0xff) + 0x14, r->mUnk_008[x], 0x200);
+                    MemCopy((u8 *) GetWiFiSessionPlayerRecordData(k & 0xff) + 0x14, r->mUnk_008[x], 0x200);
                 }
             }
             func_02057710(r, i);
@@ -242,8 +242,8 @@ void func_0205e5c4(s32 a) {
         f = func_0205e900;
     } else {
         d = 0;
-        if (data_0217d384 != NULL) {
-            if (data_0217d384->mHeapCreated != FALSE) {
+        if (gWiFiSession != NULL) {
+            if (gWiFiSession->mHeapCreated != FALSE) {
                 d = 1;
             }
         }

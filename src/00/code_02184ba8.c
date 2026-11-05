@@ -56,12 +56,12 @@ void InitWiFiAikotoba(void *a) {
     }
     c = func_ov000_021804f4();
     func_020ae6d4(c, func_ov000_021804e0());
-    func_02124ed0(a, gWiFiAikotoba->mWiFiAikotobaBncl, NULL, &gWiFiAikotoba->mUnk_1c);
+    func_02124ed0(a, gWiFiAikotoba->mWiFiAikotobaBncl, NULL, &gWiFiAikotoba->mWiFiAikotobaTable);
     gWiFiAikotoba->mWiFiMessages = FindSceneFile(data_ov000_021b0ee8);
     gWiFiAikotoba->mCommonMessages = func_02047a28(data_ov000_021b0ef4);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov000_021b06c8[i]; j++) {
-            gWiFiAikotoba->mUnk_1c[data_ov000_021b06d0[i][j]].mUnk_04 = 0xfa;
+            gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06d0[i][j]].mUnk_04 = 0xfa;
         }
     }
     func_021281c8(0xe);
@@ -83,8 +83,10 @@ void func_ov000_021851a0(void) {
     LocateNcer(&gWiFiAikotoba->mWiFiAikotobaSNcer, v1);
     v1 = FindSceneFile(data_ov000_021b0ed0);
     LocateNclr(&gWiFiAikotoba->mWiFiAikotobaSONclr, v1);
-    func_0214bea4((const void *) gWiFiAikotoba->mWiFiAikotobaSNcgr->mData, 0, (u32) (gWiFiAikotoba->mWiFiAikotobaSNcgr->mDataSize));
-    func_0214c028((const void *) gWiFiAikotoba->mWiFiAikotobaSONclr->mData, 0, (u32) (gWiFiAikotoba->mWiFiAikotobaSONclr->mDataSize));
+    func_0214bea4((const void *) gWiFiAikotoba->mWiFiAikotobaSNcgr->mData, 0,
+                  (u32) (gWiFiAikotoba->mWiFiAikotobaSNcgr->mDataSize));
+    func_0214c028((const void *) gWiFiAikotoba->mWiFiAikotobaSONclr->mData, 0,
+                  (u32) (gWiFiAikotoba->mWiFiAikotobaSONclr->mDataSize));
     return;
 }
 
@@ -116,9 +118,9 @@ void AdvanceWiFiAikotobaState1(void) {
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov000_021b06c8[i]; j++) {
             if (i == 1) {
-                gWiFiAikotoba->mUnk_1c[data_ov000_021b06d0[i][j]].mUnk_04 = a;
+                gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06d0[i][j]].mUnk_04 = a;
             } else {
-                gWiFiAikotoba->mUnk_1c[data_ov000_021b06d0[i][j]].mUnk_04 = -a;
+                gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06d0[i][j]].mUnk_04 = -a;
             }
         }
     }
@@ -158,7 +160,8 @@ void AdvanceWiFiAikotobaState3(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        a = RectTableFindContaining(gWiFiAikotoba->mWiFiAikotobaBnbl, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+        a = RectTableFindContaining(gWiFiAikotoba->mWiFiAikotobaBnbl, data_02175628[i].mUnk_48,
+                                    data_02175628[i].mUnk_4a);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         b = FALSE;
@@ -240,8 +243,8 @@ void AdvanceWiFiAikotobaState5(void) {
     s32 b;
     void *c;
 
-    if (func_ov000_021806c4() == -1 && func_ov000_02185184() == 0 && gWiFiAikotoba->mUnk_10 == 11) {
-        func_ov000_021806b8(0xe);
+    if (GetWiFiNextScene() == -1 && func_ov000_02185184() == 0 && gWiFiAikotoba->mUnk_10 == 11) {
+        SetWiFiNextScene(0xe);
     }
     gWiFiAikotoba->mUnk_0c = gWiFiAikotoba->mUnk_0c + 1;
     if (gWiFiAikotoba->mUnk_0c <= 10) {
@@ -252,9 +255,9 @@ void AdvanceWiFiAikotobaState5(void) {
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov000_021b06c8[i]; j++) {
             if (i == 1) {
-                gWiFiAikotoba->mUnk_1c[data_ov000_021b06d0[i][j]].mUnk_04 = a;
+                gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06d0[i][j]].mUnk_04 = a;
             } else {
-                gWiFiAikotoba->mUnk_1c[data_ov000_021b06d0[i][j]].mUnk_04 = -a;
+                gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06d0[i][j]].mUnk_04 = -a;
             }
         }
     }
@@ -267,7 +270,7 @@ void AdvanceWiFiAikotobaState5(void) {
             gWiFiAikotoba->mUnk_0c = 0;
             return;
         }
-        if (func_ov000_021806c4() == -1) {
+        if (GetWiFiNextScene() == -1) {
             RequestWiFiState(gWiFiAikotoba->mUnk_10);
         }
     }
@@ -293,8 +296,8 @@ void AdvanceWiFiAikotobaState7(void) {
     if (func_02125f88() != 0) {
         if (func_02125f60() == 0) {
             gWiFiAikotoba->mUnk_10 = 0xe;
-            if (func_ov000_021806c4() == -1) {
-                func_ov000_021806b8(8);
+            if (GetWiFiNextScene() == -1) {
+                SetWiFiNextScene(8);
             }
             data_0217b488->mUnk_50 = 1;
             return;
@@ -313,11 +316,13 @@ void func_ov000_02184c74(void) {
 
     for (i = 0; i < 2; i++) {
         if (i == gWiFiAikotoba->mUnk_08 && gWiFiAikotoba->mUnk_14 != FALSE) {
-            gWiFiAikotoba->mUnk_1c[data_ov000_021b06c4[i]].mUnk_00 = 1;
-            func_02124a20(data_ov000_021b06bc[i], 0xe, gWiFiAikotoba->mWiFiAikotobaSNcer, gWiFiAikotoba->mWiFiAikotobaBncl);
+            gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06c4[i]].mUnk_00 = 1;
+            func_02124a20(data_ov000_021b06bc[i], 0xe, gWiFiAikotoba->mWiFiAikotobaSNcer,
+                          gWiFiAikotoba->mWiFiAikotobaBncl);
         } else {
-            gWiFiAikotoba->mUnk_1c[data_ov000_021b06c4[i]].mUnk_00 = 0;
-            func_02124a20(data_ov000_021b06bc[i], 0xf, gWiFiAikotoba->mWiFiAikotobaSNcer, gWiFiAikotoba->mWiFiAikotobaBncl);
+            gWiFiAikotoba->mWiFiAikotobaTable[data_ov000_021b06c4[i]].mUnk_00 = 0;
+            func_02124a20(data_ov000_021b06bc[i], 0xf, gWiFiAikotoba->mWiFiAikotobaSNcer,
+                          gWiFiAikotoba->mWiFiAikotobaBncl);
         }
     }
 }
@@ -354,7 +359,7 @@ void AdvanceWiFiAikotoba(void) {
     }
     func_ov000_02184c74();
     p = gWiFiAikotoba;
-    func_02124c30(p->mWiFiAikotobaBncl, p->mWiFiAikotobaSNcer, NULL, func_ov000_021804e0(), p->mUnk_1c);
+    func_02124c30(p->mWiFiAikotobaBncl, p->mWiFiAikotobaSNcer, NULL, func_ov000_021804e0(), p->mWiFiAikotobaTable);
 }
 
 void func_ov000_02184bcc(void) {

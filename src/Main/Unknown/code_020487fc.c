@@ -157,7 +157,7 @@ static inline s32 func_020487fc_inline10(void) {
 
 static inline s32 func_020487fc_inline11(void) {
     BOOL r = FALSE;
-    if (data_0217d384 != NULL && data_0217d384->mHeapCreated != FALSE) {
+    if (gWiFiSession != NULL && gWiFiSession->mHeapCreated != FALSE) {
         r = TRUE;
     }
     return r;
@@ -165,7 +165,7 @@ static inline s32 func_020487fc_inline11(void) {
 
 static inline BOOL func_020487fc_inline13(void) {
     if (func_020487fc_inline11()) {
-        if (data_0217d384->mUnk_0008.mState != 0) {
+        if (gWiFiSession->mUnk_0008.mState != 0) {
             return FALSE;
         }
         return TRUE;
@@ -242,7 +242,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
             a->mNextScene = data_021759cc->mUnk_120;
             goto end;
         }
-        func_0212034c();
+        UpdateWiFiSession();
         data_021759cc->mUnk_0e8++;
         func_020373ec();
     } while (func_02054754() != 1);
@@ -267,7 +267,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         if (b->mUnk_0c != NULL) {
             b->mUnk_0c(a, data_021759cc->mSceneFrames);
         }
-        func_0212034c();
+        UpdateWiFiSession();
         if (!func_020487fc_inline6()) {
             data_021759cc->mSceneFrames++;
         }
@@ -303,7 +303,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         if (b->mUnk_0c != NULL) {
             b->mUnk_0c(0, data_021759cc->mSceneFrames);
         }
-        func_0212034c();
+        UpdateWiFiSession();
         if (!func_020487fc_inline6()) {
             data_021759cc->mSceneFrames++;
         }
@@ -329,7 +329,7 @@ end:
             }
             func_0204984c(a, data_021759cc->mUnk_10c != 4);
             CallQueueDrain();
-            func_0212034c();
+            UpdateWiFiSession();
             func_020373ec();
         } while (!c);
     }

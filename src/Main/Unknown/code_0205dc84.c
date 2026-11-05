@@ -136,7 +136,7 @@ s32 RunScenes(s16 *a) {
             func_02054330();
             break;
         case 1:
-            func_02120514();
+            DeleteWiFiSessionHeap();
             break;
     }
     return 0;

@@ -4,7 +4,7 @@
 u32 func_0211f6b0(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217d384;
+    value0 = (u32) &gWiFiSession;
     value1 = 1u;
     value0 = (u32) * (const u32 *) ((value0) + (0));
     value0 = (value0) + (0x1000u);
