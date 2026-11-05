@@ -64,11 +64,11 @@ u32 func_020295f8(void) {
 }
 
 u32 func_020295e4(void) {
-    return ((u32) * (const u8 *) ((u8 *) (u32) (((u32) data_02174e1c)) + 0 + (0x10cu)));
+    return ((u32) data_02174e1c->mUnk_10c);
 }
 
 u32 func_020295d0(void) {
-    return ((u32) * (const u8 *) ((u8 *) (u32) (((u32) data_02174e1c)) + 0 + (0x10du)));
+    return ((u32) data_02174e1c->mUnk_10d);
 }
 
 void func_020295c0(u32 p0) {
@@ -164,11 +164,11 @@ void func_02029468(u32 p0) {
 }
 
 void func_02029454(u32 p0) {
-    *(u8 *) ((u8 *) (u32) (((u32) data_02174e1c)) + 0 + (0x10cu)) = (u8) p0;
+    data_02174e1c->mUnk_10c = (u8) p0;
 }
 
 void func_02029440(u32 p0) {
-    *(u8 *) ((u8 *) (u32) (((u32) data_02174e1c)) + 0 + (0x10du)) = (u8) p0;
+    data_02174e1c->mUnk_10d = (u8) p0;
 }
 
 #pragma thumb off

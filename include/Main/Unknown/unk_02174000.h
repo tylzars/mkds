@@ -47,6 +47,8 @@ typedef struct Unk02029930 {
     /* 104 */ u16 mMissionFileRowIndex;
     /* 106 */ u8 mUnk_106[2];
     /* 108 */ s32 mUnk_108;
+    /* 10c */ u8 mUnk_10c;
+    /* 10d */ u8 mUnk_10d;
 } Unk02029930;
 
 extern Unk02029930 *data_02174e1c;
