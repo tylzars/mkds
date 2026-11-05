@@ -3,7 +3,7 @@
 #include "types.h"
 
 // Header of the file returned by FindCourseFile in CreateCourseMap: a word array at 0x08 holds offsets from 0x06's
-// value. The halfword at 4 is the format version (copied to CourseMap::mVersion).
+// value. The halfword at 4 is the format version (copied to CourseMap.mVersion).
 typedef struct CourseMapHeader {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ u16 mVersion;

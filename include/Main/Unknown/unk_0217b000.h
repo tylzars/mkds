@@ -313,7 +313,7 @@ typedef struct KartStanding {
     // (karts still in play stay ahead of eliminated ones).
     /* 48 */ u16 mRankIndex;
     /* 4a */ u8 mUnk_4a[2];
-    // The kart's count: balloons held where the balloon object exists (mode 2 with Unk021759c0::mUnk_18 == 0, and mode
+    // The kart's count: balloons held where the balloon object exists (mode 2 with Unk021759c0.mUnk_18 == 0, and mode
     // 4), shines held in the shine mode (mode 2 with mUnk_18 == 1). -1 for an unused slot and for a kart eliminated in
     // mode 2; 0 at the start; changed in steps of +1 / -1. The rank order is sorted by it.
     /* 4c */ s32 mBalloonOrShineCount;
@@ -356,7 +356,7 @@ typedef struct Standings {
     /* 3a8 */ s32 mEndTimer;
     /* 3ac */ s32 mUnk_3ac;
     /* 3b0 */ s32 mUnk_3b0;
-    // Side id (KartStanding::mTeamId) of the winning side, -1 until a winner is decided. Set once every kart still in
+    // Side id (KartStanding.mTeamId) of the winning side, -1 until a winner is decided. Set once every kart still in
     // play has the id of the rank 0 kart. In mode 4 the ids are kart indices (it is compared with the local entry
     // index).
     /* 3b4 */ s32 mWinnerTeamId;

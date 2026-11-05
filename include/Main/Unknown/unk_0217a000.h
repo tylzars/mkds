@@ -1192,7 +1192,7 @@ extern s32 gCameraEntryChanged;
 // written in races without chain cameras.
 extern Camera *gCurrentChainCamera;
 // The Camera that picks its CourseMapCamera entry from the position of the followed Kart (func_020411e4) and is stepped
-// by TryUpdateEntryCamera. mKind is 1, or 3 in mode 2 when CourseMap::mFirstKind7EntryInMode2 is set. The Kart code
+// by TryUpdateEntryCamera. mKind is 1, or 3 in mode 2 when CourseMap.mFirstKind7EntryInMode2 is set. The Kart code
 // starts its kind 6 and kind 8 entries (StartEntryCameraKind6Entry, StartEntryCameraKind8Entry). The chain cameras also
 // run entries but never pick by position.
 extern Camera *gEntryCamera;
@@ -1596,11 +1596,11 @@ extern LinkedList data_0217aeb0;
 struct Unk0206cdd4_B;
 extern struct Unk0206cdd4_B *data_usa_0217acfc;
 
-// The Camera (mKind 2) that starts at CourseMap::mSecondChainStartEntry; NULL when only the first chain camera exists.
+// The Camera (mKind 2) that starts at CourseMap.mSecondChainStartEntry; NULL when only the first chain camera exists.
 // While its entry is of kind 4 it is not stepped itself: it copies the field of view, mPos and mLookAt of
 // gFirstChainCamera, and its entry advances together with the first one's. Its view is the one used on odd frames.
 extern Camera *gSecondChainCamera;
-// The Camera (mKind 2) that starts at CourseMap::mFirstChainStartEntry and follows mNextIndex through its entries; the
+// The Camera (mKind 2) that starts at CourseMap.mFirstChainStartEntry and follows mNextIndex through its entries; the
 // only chain camera when data_021759c0->mUnk_00c is 4. Created by CreateFirstChainCamera or CreateChainCameraPair. With
 // two chain cameras its view is the one used on even frames of gRace->mUpdateFrames.
 extern Camera *gFirstChainCamera;

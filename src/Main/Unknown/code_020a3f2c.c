@@ -933,7 +933,7 @@ void func_020a4b70(u16 a, Vec3 *b) {
 }
 
 // Init of the kind 0x69 object: creates and parks the kind 0x6c balloon objects (0x20 in mode 2, else 4), fills the
-// frame indices, offsets and start timer, sets Standings::mKartBalloons and registers the callbacks in Standings (four
+// frame indices, offsets and start timer, sets Standings.mKartBalloons and registers the callbacks in Standings (four
 // hit callbacks, the kart-eliminated and the end callback). If kind 0x6c already exists it parks itself instead.
 void InitKartBalloons(Unk020a3fa8 *a) {
     Unk021759c0 *d;

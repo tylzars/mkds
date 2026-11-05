@@ -17,7 +17,7 @@ typedef struct MapObjectKindRow {
 
 extern MapObjectKindRow data_0216b288[];
 
-// Object behind MapObjectKindRow::mUnk_04.
+// Object behind MapObjectKindRow.mUnk_04.
 typedef struct Unk021000d0 {
     /* 00 */ u16 mObjectCount;
     /* 02 */ u8 mUnk_02[2];

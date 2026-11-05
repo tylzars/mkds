@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Object at Unk021a5a58_2c::mUnk_2c.
+// Object at Unk021a5a58_2c.mUnk_2c.
 typedef struct Unk021a5a58_2c_2c {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
@@ -10,7 +10,7 @@ typedef struct Unk021a5a58_2c_2c {
     /* 08 */ s16 mUnk_08[4];
 } Unk021a5a58_2c_2c;
 
-// Object at Unk021a5a58::mUnk_2c.
+// Object at Unk021a5a58.mUnk_2c.
 typedef struct Unk021a5a58_2c {
     /* 00 */ u8 mUnk_00[0x8];
     /* 08 */ BOOL mUnk_08;

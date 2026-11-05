@@ -18,7 +18,7 @@ typedef struct Unk021852f8 {
     /* 02 */ Unk021852f8_02 mUnk_02[1];
 } Unk021852f8;
 
-// Group of 0x20 bytes at Unk0218516c::mUnk_000.
+// Group of 0x20 bytes at Unk0218516c.mUnk_000.
 typedef struct Unk0218516c_000 {
     /* 00 */ u8 mUnk_00[0x6];
     /* 06 */ s16 mUnk_06;

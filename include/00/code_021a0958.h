@@ -21,7 +21,7 @@ typedef struct Unk021a0a40 {
     /* 10 */ u32 mUnk_10;
 } Unk021a0a40;
 
-// The twelve bytes at WiFiMatching::mUnk_18c.
+// The twelve bytes at WiFiMatching.mUnk_18c.
 typedef struct Unk021a0c30 {
     /* 00 */ u8 mUnk_00;
     /* 02 */ u16 mUnk_02;

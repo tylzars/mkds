@@ -9,7 +9,7 @@ typedef struct Camera Camera;
 
 typedef struct Camera Camera;
 
-// The 0x4c-byte entries of the table at CourseMap::mCameras: a position at 0x00, two vectors at 0x18 and 0x24 (look-at
+// The 0x4c-byte entries of the table at CourseMap.mCameras: a position at 0x00, two vectors at 0x18 and 0x24 (look-at
 // ends in some kinds, angles or a kart index in others), blend steps, a kind (mKind), a duration (mFrameCount), the
 // next entry (mNextIndex).
 typedef struct CourseMapCamera {
@@ -37,7 +37,7 @@ typedef struct CourseMapCamera {
     /* 46 */ u16 mFrameCount;
     /* 48 */ s16 mNextIndex;
     // 0 on most entries; 1 marks the entry where the first chain camera starts, 2 the entry where the second starts.
-    // The loader keeps the first entry with each value (CourseMap::mFirstChainStartEntry, mSecondChainStartEntry).
+    // The loader keeps the first entry with each value (CourseMap.mFirstChainStartEntry, mSecondChainStartEntry).
     /* 4a */ u8 mChainStart;
     /* 4b */ u8 mShakeKind;
 } CourseMapCamera;
@@ -104,7 +104,7 @@ Unk02012f58 *UpdateFirstChainCamera(void);
 // It updates the view of the first on even frames and of the second on odd frames, stores that camera in
 // gCurrentChainCamera and returns its view matrix. UpdateRace calls it when data_021759c0->mUnk_00c is 3 or 5.
 Unk02012f58 *UpdateChainCameraPair(void);
-// As StartEntryCameraKind6Entry for CourseMap::mFirstKind8EntryInMode4, setting mKind8EntryRunning.
+// As StartEntryCameraKind6Entry for CourseMap.mFirstKind8EntryInMode4, setting mKind8EntryRunning.
 void StartEntryCameraKind8Entry(void);
 // Runs the Camera's current entry by its mKind: 0 puts the camera at the entry position and looks at the followed Kart,
 // 1 UpdateCameraPosCurveLookAtKart, 2 puts the camera at the entry position with a blended look-at
@@ -121,7 +121,7 @@ void UpdateCameraByEntryKind(Camera *p);
 BOOL TryUpdateEntryCamera(Camera *p);
 u32 func_02075cf0(void);
 void func_02075d08(s32 a);
-// Does nothing when CourseMap::mFirstKind6Entry is NULL. Otherwise sets mKind6EntryRunning and makes that entry the
+// Does nothing when CourseMap.mFirstKind6Entry is NULL. Otherwise sets mKind6EntryRunning and makes that entry the
 // current entry of gEntryCamera (fresh mFovBlend, field of view pair and mShakeKind), sets up its mPosCurve (and
 // mUnk_1d0 in mode 2), advances the local random once when the entry Kart has ended and sets gCameraEntryChanged.
 void StartEntryCameraKind6Entry(void);

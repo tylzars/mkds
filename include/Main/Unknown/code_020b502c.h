@@ -14,14 +14,14 @@ typedef struct {
     /* 10 */ s32 mUnk_10;
 } Unk020b57e4;
 
-// One entry of the table at CourseMap::mEntryGroups.
+// One entry of the table at CourseMap.mEntryGroups.
 typedef struct CourseMapEntryGroup {
     /* 00 */ u8 mUnk_00[1];
     /* 01 */ u8 mUnk_01;
     /* 02 */ u16 mEntryCount;
 } CourseMapEntryGroup;
 
-// The one 0x28-byte record behind CourseMap::mSettings: per-course values read by unrelated consumers: fog
+// The one 0x28-byte record behind CourseMap.mSettings: per-course values read by unrelated consumers: fog
 // (mFogEnabled, mFogTableMode, mFogOffset; the fog colour and the shift stay unnamed), four colours (mColors), a
 // halfword that is the lap count outside mode 2 and the battle time in seconds in mode 2, start and limit values. Role
 // word Settings is weak: a record of per-course parameters, no single consumer.
@@ -45,7 +45,7 @@ typedef struct CourseMapSettings {
     /* 24 */ s32 mUnk_24;
 } CourseMapSettings;
 
-// 0x48-byte entries of the table at CourseMap::mShapes (GetCourseMapShape returns one).
+// 0x48-byte entries of the table at CourseMap.mShapes (GetCourseMapShape returns one).
 typedef struct CourseMapShape {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ Vec3 mUnk_0c;
@@ -61,14 +61,14 @@ typedef struct CourseMapShape {
     /* 45 */ u8 mUnk_45[3];
 } CourseMapShape;
 
-// 0x18-byte entries of the table at CourseMap::mUnk_84 (func_020a0f0c returns one).
+// 0x18-byte entries of the table at CourseMap.mUnk_84 (func_020a0f0c returns one).
 typedef struct {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ u8 mUnk_10[8];
 } Unk02175620_84;
 
-// 0x30-byte entries of the table at CourseMap::mUnk_bc (func_02080908 searches it).
+// 0x30-byte entries of the table at CourseMap.mUnk_bc (func_02080908 searches it).
 typedef struct Unk02175620_bc {
     /* 00 */ struct Unk02175620_bc *mUnk_00[3];
     /* 0c */ struct Unk02175620_bc *mUnk_0c;
@@ -86,8 +86,8 @@ typedef struct Unk02175620_bc {
 struct CourseMapRow;
 
 // 0x1c-byte records: position at 0x00, rotation angles in degrees at 0x0c, node index at 0x18, key halfword at 0x1a.
-// Used by CourseMap::mStartPlacements (record chosen by key, GetCourseMapStartPlacementWithOffsets) and by
-// CourseMap::mUnk_34 (looked up by key through mUnk_fc; func_020705fc puts a kart at one in modes 2 and 4). The name
+// Used by CourseMap.mStartPlacements (record chosen by key, GetCourseMapStartPlacementWithOffsets) and by
+// CourseMap.mUnk_34 (looked up by key through mUnk_fc; func_020705fc puts a kart at one in modes 2 and 4). The name
 // only says where a kart is put.
 typedef struct CourseMapPlacement {
     /* 00 */ Vec3 mPos;
@@ -96,8 +96,8 @@ typedef struct CourseMapPlacement {
     /* 1a */ u16 mUnk_1a;
 } CourseMapPlacement;
 
-// 0x20-byte entries of CourseMap::mRespawns, read through mRespawnIndexBySlot: position at 0x00, rotation angles in
-// degrees at 0x0c, node index at 0x18, index into the table CourseMap::mUnk_ac at 0x1a, slot at 0x1c. Where a kart is
+// 0x20-byte entries of CourseMap.mRespawns, read through mRespawnIndexBySlot: position at 0x00, rotation angles in
+// degrees at 0x0c, node index at 0x18, index into the table CourseMap.mUnk_ac at 0x1a, slot at 0x1c. Where a kart is
 // put back after it falls (kart y < 0) or is flagged by the surface; the slot comes from the checkpoint the kart is in
 // (mRespawnSlot) or, in mode 2, from a counter. Role word Respawn is not spelled in the tree; read from the callers
 // (weak).
@@ -114,7 +114,7 @@ typedef struct CourseMapRespawn {
 // The same two words as UnkPair020b502c.
 typedef Unk0217b498_0c Unk02040d24;
 
-// 0x24-byte entries of CourseMap::mCheckpoints: a gate across the course: two x/z end points (0x00..0x0c), a 2-D
+// 0x24-byte entries of CourseMap.mCheckpoints: a gate across the course: two x/z end points (0x00..0x0c), a 2-D
 // direction at 0x10, a word at 0x18 that is summed along the routes (func_02043078), neighbour links at 0x1c and 0x1e,
 // mNumber, mRespawnSlot, a flag byte at 0x23. The race progress code tests the kart's x/z against these lines, keeps
 // the entry the kart is in and counts a lap when it reaches entry 0 after all numbered ones. Role word Checkpoint is
@@ -135,7 +135,7 @@ typedef struct CourseMapCheckpoint {
 } CourseMapCheckpoint;
 
 // 0x0c-byte run of consecutive entries of a table: first entry, count, up to three forward links at 0x04 and three back
-// links at 0x07 to other runs, stage index at 0x0a. Used by CourseMap::mCheckpointRoutes (the entries are checkpoints)
+// links at 0x07 to other runs, stage index at 0x0a. Used by CourseMap.mCheckpointRoutes (the entries are checkpoints)
 // and by mUnk_5c and mUnk_6c (the entries are nodes of two other tables, built by func_02042ec0 and func_02042d34).
 // Route is weak: a run with branches; not a tree word.
 typedef struct CourseMapRoute {
@@ -148,7 +148,7 @@ typedef struct CourseMapRoute {
     /* 0b */ u8 mUnk_0b;
 } CourseMapRoute;
 
-// 0x14-byte entries of the table at CourseMap::mUnk_54.
+// 0x14-byte entries of the table at CourseMap.mUnk_54.
 typedef struct {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ s32 mUnk_0c;
@@ -156,16 +156,16 @@ typedef struct {
     /* 11 */ u8 mUnk_11[3];
 } Unk02175620_54;
 
-// 0x10-byte entries of the same table (used while CourseMap::mVersion is below 0x21).
+// 0x10-byte entries of the same table (used while CourseMap.mVersion is below 0x21).
 typedef struct {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ s32 mUnk_0c;
 } Unk02175620_54_10;
 
-// 0x4c-byte entries of the table at CourseMap::mCameras.
+// 0x4c-byte entries of the table at CourseMap.mCameras.
 typedef CourseMapCamera Unk02175620_7c;
 
-// 0x14-byte entries of the table at CourseMap::mUnk_8c.
+// 0x14-byte entries of the table at CourseMap.mUnk_8c.
 typedef struct {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
@@ -173,13 +173,13 @@ typedef struct {
     /* 0c */ u8 mUnk_0c[8];
 } Unk02175620_8c;
 
-// 8-byte entries of the table at CourseMap::mUnk_94.
+// 8-byte entries of the table at CourseMap.mUnk_94.
 typedef struct {
     /* 00 */ CourseMapEntryGroup *mUnk_00;
     /* 04 */ void *mUnk_04;
 } Unk02175620_94;
 
-// 0x28-byte nodes of the table at CourseMap::mUnk_a0: two lists of node pointers.
+// 0x28-byte nodes of the table at CourseMap.mUnk_a0: two lists of node pointers.
 typedef struct Unk02175620_a0 {
     /* 00 */ struct Unk02175620_a0 *mUnk_00[3];
     /* 0c */ struct Unk02175620_a0 *mUnk_0c[3];
@@ -190,7 +190,7 @@ typedef struct Unk02175620_a0 {
     /* 26 */ u16 mUnk_26;
 } Unk02175620_a0;
 
-// Node of the lists at CourseMap::mKind3ShapeLists: an entry of the table at mShapes and the next node.
+// Node of the lists at CourseMap.mKind3ShapeLists: an entry of the table at mShapes and the next node.
 typedef struct Unk02175620_d8 {
     /* 00 */ CourseMapShape *mUnk_00;
     /* 04 */ struct Unk02175620_d8 *mUnk_04;

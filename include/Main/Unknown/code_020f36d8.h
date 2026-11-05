@@ -151,7 +151,7 @@ typedef struct RaceProgressKart {
     /* 4c */ s32 mUnk_4c[0x10];
 } RaceProgressKart;
 
-// Second view of the per-kart entries (array at RaceProgress::mUnk_000): its offset X is RaceProgressKart's X - 0x14.
+// Second view of the per-kart entries (array at RaceProgress.mUnk_000): its offset X is RaceProgressKart's X - 0x14.
 // Entry 0 also holds the clock header at 0x00..0x13.
 typedef struct Unk0217561c_000 {
     /* 00 */ s32 mElapsedFrames;
@@ -173,9 +173,9 @@ typedef struct Unk0217561c_000 {
     // Only karts removed while not ended.
     /* 10 */ u16 mRemovedCount;
     /* 12 */ u8 mUnk_12[0x2];
-    // Same bytes as RaceProgressKart::mStatus.
+    // Same bytes as RaceProgressKart.mStatus.
     /* 14 */ s32 mStatus;
-    // Same bytes as RaceProgressKart::mLapFrames.
+    // Same bytes as RaceProgressKart.mLapFrames.
     /* 18 */ s32 mLapFrames;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ u16 mUnk_20;
@@ -186,10 +186,10 @@ typedef struct Unk0217561c_000 {
     /* 36 */ u8 mUnk_36;
     /* 37 */ u8 mUnk_37;
     /* 38 */ s32 mLap;
-    // Same bytes as RaceProgressKart::mFirstPlaceFrames.
+    // Same bytes as RaceProgressKart.mFirstPlaceFrames.
     /* 3c */ s32 mFirstPlaceFrames;
     /* 40 */ s32 mUnk_40;
-    // Same bytes as RaceProgressKart::mFlags.
+    // Same bytes as RaceProgressKart.mFlags.
     /* 44 */ u16 mFlags;
     /* 46 */ u16 mCheckpoint;
     /* 48 */ u16 mUnk_48;
@@ -224,7 +224,7 @@ typedef struct Unk0217561c_500 {
     /* 20 */ s32 mUnk_20;
 } Unk0217561c_500;
 
-// 8-byte entries from 0x1c of the object behind RaceProgress::mUnk_4c8.
+// 8-byte entries from 0x1c of the object behind RaceProgress.mUnk_4c8.
 typedef struct RankTimeGpEntry {
     /* 00 */ u8 mCourseId;
     /* 01 */ u8 mUnk_01;
@@ -233,7 +233,7 @@ typedef struct RankTimeGpEntry {
     /* 06 */ u16 mUnk_06;
 } RankTimeGpEntry;
 
-// Object behind RaceProgress::mRankTimeGpFile: header 0x1c bytes (score weights read by func_02040a8c: halfwords
+// Object behind RaceProgress.mRankTimeGpFile: header 0x1c bytes (score weights read by func_02040a8c: halfwords
 // 0x0a..0x1a), then mEntryCount entries of 8 bytes.
 typedef struct RankTimeGp {
     /* 00 */ u8 mUnk_00[0x8];
@@ -250,7 +250,7 @@ typedef struct RankTimeGp {
     /* 1c */ RankTimeGpEntry mUnk_1c[1];
 } RankTimeGp;
 
-// A row of the file behind RaceProgress::mRankPointFile: points for rank 1..8, first row of the file skipped.
+// A row of the file behind RaceProgress.mRankPointFile: points for rank 1..8, first row of the file skipped.
 typedef struct RankPointRow {
     /* 00 */ u8 mPoints[8];
 } RankPointRow;

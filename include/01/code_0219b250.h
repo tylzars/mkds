@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Object at Unk0219b250::mNsbcaAnimation and mNsbtpAnimation (a 0x38-byte allocation).
+// Object at Unk0219b250.mNsbcaAnimation and mNsbtpAnimation (a 0x38-byte allocation).
 typedef struct Unk0219b250_Item {
     /* 00 */ u8 mUnk_00[2];
     /* 02 */ u16 mUnk_02;
@@ -14,13 +14,13 @@ typedef struct Unk0219b250_Item {
     /* 1c */ s32 **mUnk_1c;
 } Unk0219b250_Item;
 
-// Object at Unk0219b250_10::mUnk_04.
+// Object at Unk0219b250_10.mUnk_04.
 typedef struct Unk0219b250_10_04 {
     /* 00 */ u8 mUnk_00[0x18];
     /* 18 */ u8 mUnk_18;
 } Unk0219b250_10_04;
 
-// Object at Unk0219b250::mAnimatedModel (a 0x6c-byte allocation).
+// Object at Unk0219b250.mAnimatedModel (a 0x6c-byte allocation).
 typedef struct Unk0219b250_10 {
     /* 00 */ u8 mUnk_00[0x4];
     /* 04 */ Unk0219b250_10_04 *mUnk_04;
@@ -28,7 +28,7 @@ typedef struct Unk0219b250_10 {
     /* 2c */ struct Unk02188950 *mUnk_2c;
 } Unk0219b250_10;
 
-// Object behind Unk02188950::mNsbmd: the 0x2c-byte allocation made by LoadMapObjectModelAnimated and
+// Object behind Unk02188950.mNsbmd: the 0x2c-byte allocation made by LoadMapObjectModelAnimated and
 // LoadMapObjectModelShadow.
 typedef struct Unk0219b250 {
     // Overlay view of MapObjectModel.mScale.

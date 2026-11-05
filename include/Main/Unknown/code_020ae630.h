@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Element of 8 bytes of Unk020ae630::mUnk_00.
+// Element of 8 bytes of Unk020ae630.mUnk_00.
 typedef struct Unk020ae630_00 {
     /* 00 */ union {
         u32 mUnk_00;

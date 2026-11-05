@@ -59,14 +59,14 @@ typedef struct MissionRunLVsel {
     /* 58 */ s32 mResult; /* 1 = level chosen, 2 = Back; also read by ReleaseMissionRunLVsel for the sound */
 } MissionRunLVsel;
 
-// Object behind MissionRunMSsel::mUnk_1c.
+// Object behind MissionRunMSsel.mUnk_1c.
 typedef struct Unk021ca414_1c {
     /* 00 */ u8 mUnk_00[0x8];
     /* 08 */ u32 mUnk_08;
     /* 0c */ u8 *mUnk_0c;
 } Unk021ca414_1c;
 
-// 0x2c-byte element of the table behind MissionRunMSsel::mUnk_50.
+// 0x2c-byte element of the table behind MissionRunMSsel.mUnk_50.
 typedef struct Unk021ca414_50 {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ u16 mUnk_0c;

@@ -5,7 +5,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 
-// The balloons of one kart (0x38 bytes, one per kart index in the kind 0x69 object; Standings::mKartBalloons points at
+// The balloons of one kart (0x38 bytes, one per kart index in the kind 0x69 object; Standings.mKartBalloons points at
 // the first): the list of its Balloon objects with the state that makes, inflates and holds them.
 typedef struct KartBalloons {
     // Frames left before the next balloon is made (state 0); 30 after a balloon is finished with none left to make, 0
@@ -17,7 +17,7 @@ typedef struct KartBalloons {
     /* 0c */ s32 mUnk_0c;
     // The kart's balloons in order; the one being inflated is at the index equal to the kart's count.
     /* 10 */ Balloon *mBalloons[8];
-    // Frame index every balloon of this kart is created with (Balloon::mNsbtpFrameIndex): the course row's word when it
+    // Frame index every balloon of this kart is created with (Balloon.mNsbtpFrameIndex): the course row's word when it
     // is non-zero, else team index 0 gives 1, team index 1 gives 3, any other value the kart index. Never stepped.
     /* 30 */ u16 mBalloonNsbtpFrameIndex;
     /* 32 */ u8 mUnk_32[0x2];

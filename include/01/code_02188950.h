@@ -191,7 +191,7 @@ typedef struct Unk02188950_bc {
     /* 14 */ void *mUnk_14;
 } Unk02188950_bc;
 
-// Object behind Unk02188950::mUnk_300.
+// Object behind Unk02188950.mUnk_300.
 typedef struct Unk02188950_300 {
     /* 00 */ u8 mUnk_00[0x54];
     /* 54 */ s32 mUnk_54;

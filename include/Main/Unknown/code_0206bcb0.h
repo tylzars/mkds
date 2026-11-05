@@ -93,7 +93,7 @@ typedef struct Unk0206cdd4_B {
 
 struct Kart;
 
-// 16-byte entry of the table at Unk0217d26c::mUnk_04: func_0210dd44 calls mUnk_04 with the words at 8 and 0xc.
+// 16-byte entry of the table at Unk0217d26c.mUnk_04: func_0210dd44 calls mUnk_04 with the words at 8 and 0xc.
 typedef struct Unk0210ddf4 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ void (*mUnk_04)(void *, s32);
@@ -181,7 +181,7 @@ typedef struct Unk0206bcb0_A {
     /* 34 */ u32 mUnk_34;
 } Unk0206bcb0_A;
 
-// Bits of Kart::mUnk_7c.
+// Bits of Kart.mUnk_7c.
 // Set once at set-up (func_02071e28) when mIndex == data_021759c0->mEntryIndex, i.e. the selected entry.
 #define KART_7C_INDEX_IS_SELECTED_ENTRY 0x1
 // Set at set-up when the entry's mKind is 2. Bit 0x2 and this bit are also tested together as 6 / 0x402004 (left
@@ -190,7 +190,7 @@ typedef struct Unk0206bcb0_A {
 // Set at set-up when mKartModelsEntry->mUnk_008 != NULL (a snapshot taken then).
 #define KART_7C_MODELS_ENTRY_008_SET 0x10
 
-// Bits of Kart::mUnk_44.
+// Bits of Kart.mUnk_44.
 // Set on both Karts of a pair when the near test passed; cleared at the start of the next step (inside the literal
 // 0x57ffffdf).
 #define KART_44_NEAR_KART 0x20

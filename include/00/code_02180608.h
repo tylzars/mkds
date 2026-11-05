@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Four callbacks of a WiFi state: mInit gets WiFiStates::mStateHeap, mAdvance runs every frame.
+// Four callbacks of a WiFi state: mInit gets WiFiStates.mStateHeap, mAdvance runs every frame.
 typedef struct WiFiStateCallbacks {
     /* 00 */ void (*mInit)(void *);
     /* 04 */ void (*mUnk_04)(void);

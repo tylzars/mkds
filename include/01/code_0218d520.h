@@ -4,7 +4,7 @@
 #include "01/code_02188950.h"
 #include "01/code_0219b250.h"
 
-// Object behind Unk02188950::mUnk_0a4.
+// Object behind Unk02188950.mUnk_0a4.
 typedef struct Unk0218dabc {
     /* 000 */ u8 mUnk_000[0x4];
     /* 004 */ s32 mUnk_004;

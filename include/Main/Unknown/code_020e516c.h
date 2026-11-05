@@ -12,7 +12,7 @@ typedef struct Unk020e5348 {
 
 extern Unk020e5348 *gJgShadow;
 
-// Object behind Unk020e52bc::mUnk_004: byte offsets at 0x08 and 0x0c, a word at 0x1c.
+// Object behind Unk020e52bc.mUnk_004: byte offsets at 0x08 and 0x0c, a word at 0x1c.
 typedef struct Unk020e52bc_4 {
     /* 000 */ u8 mUnk_000[8];
     /* 008 */ u32 mUnk_008;
@@ -21,14 +21,14 @@ typedef struct Unk020e52bc_4 {
     /* 01c */ u32 mUnk_01c;
 } Unk020e52bc_4;
 
-// Object at Unk020e52bc_4::mUnk_008: a halfword at 0x0a, a table of byte offsets at 0x08.
+// Object at Unk020e52bc_4.mUnk_008: a halfword at 0x0a, a table of byte offsets at 0x08.
 typedef struct Unk020e52bc_8 {
     /* 000 */ u8 mUnk_000[0xa];
     /* 00a */ u16 mUnk_00a;
     /* 00c */ u8 mUnk_00c[4];
 } Unk020e52bc_8;
 
-// Object at Unk020e52bc_4::mUnk_00c: a halfword at 0x06, a table of byte offsets at 0x04.
+// Object at Unk020e52bc_4.mUnk_00c: a halfword at 0x06, a table of byte offsets at 0x04.
 typedef struct Unk020e52bc_c {
     /* 000 */ u8 mUnk_000[6];
     /* 006 */ u16 mUnk_006;

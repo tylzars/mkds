@@ -13,7 +13,7 @@ extern Unk02012f58 data_0217ba58;
 
 extern Unk02012f58 data_0217bab8;
 
-// Element at Unk02187d14::mUnk_00.
+// Element at Unk02187d14.mUnk_00.
 typedef struct Unk02187d14_00 {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;

@@ -9,7 +9,7 @@
 #include "Main/Unknown/code_0207ae58.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-// 0x88-byte object built from an entry of the table at CourseMap::mCameras: the entry, two PosCurve and two
+// 0x88-byte object built from an entry of the table at CourseMap.mCameras: the entry, two PosCurve and two
 // halfwords.
 typedef struct Unk02077750 {
     /* 00 */ CourseMapCamera *mUnk_00;
@@ -29,11 +29,11 @@ void UpdateCameraViewWithWorldUp(Camera *p);
 void RefreshCameraProjection(Camera *p);
 void SetupCamera(Camera *p);
 // Allocates gFirstChainCamera (0x270 bytes), sets gSecondChainCamera to NULL, runs SetupCamera, sets mKind 2, starts it
-// at CourseMap::mFirstChainStartEntry and sets up its mPosCurve when the entry has a group. With no entry it sets
+// at CourseMap.mFirstChainStartEntry and sets up its mPosCurve when the entry has a group. With no entry it sets
 // gRaceProgress->mUnk_4d0 to 1 and returns. InitRace calls it when data_021759c0->mUnk_00c is 4.
 void CreateFirstChainCamera(void);
 // Allocates gFirstChainCamera and gSecondChainCamera (0x270 bytes each), runs SetupCamera on both, sets mKind 2, starts
-// them at CourseMap::mFirstChainStartEntry and mSecondChainStartEntry and sets up their mPosCurve when the entries have
+// them at CourseMap.mFirstChainStartEntry and mSecondChainStartEntry and sets up their mPosCurve when the entries have
 // a group. With no first entry it sets gRaceProgress->mUnk_4d0 to 1 and returns. InitRace calls it when
 // data_021759c0->mUnk_00c is 3 or 5.
 void CreateChainCameraPair(void);

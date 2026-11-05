@@ -11,7 +11,7 @@
 #include "00/code_02181f98.h"
 #include "Main/Unknown/types_02180728.h" // Unk02180728
 
-// Four callbacks; the first receives OptionStates::mStateHeap.
+// Four callbacks; the first receives OptionStates.mStateHeap.
 typedef struct OptionStateCallbacks {
     /* 00 */ void (*mInit)(void *);
     /* 04 */ UnkFunc *mRelease;
