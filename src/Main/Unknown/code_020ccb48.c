@@ -9,6 +9,7 @@
 #include "Main/Unknown/code_020ade08.h"
 #include "Main/Unknown/code_020cae8c.h"
 #include "Main/Unknown/code_02029890.h"
+#include "Main/Unknown/unk_02174000.h"
 
 #pragma thumb on
 void func_020ccbb8(void) {
@@ -38,11 +39,11 @@ void func_020ccbb8(void) {
 
 void func_020ccb78(void) {
     u8 v1;
-    u32 *v2;
-    int v3;
-    v2 = (u32 *) ((u32) func_02029930());
-    v3 = ((u32) func_02029930());
-    func_020468b0(0, (u32) (*v2), (u32) (*(u32 *) (v3 + 4)), 0, (u32) 0xffffffff, 3);
+    Unk02029930 *v2;
+    Unk02029930 *v3;
+    v2 = func_02029930();
+    v3 = func_02029930();
+    func_020468b0(0, v2->mUnk_00[0].mCharacterIndex, v3->mUnk_00[0].mKartIndex, 0, (u32) 0xffffffff, 3);
     v1 = 1;
     do {
         func_020ccb48((u32) v1);

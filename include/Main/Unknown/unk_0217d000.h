@@ -576,7 +576,7 @@ typedef struct Keyboard {
     /* 9c */ Unk0201ea30 *mBncls[2];
     /* a4 */ Unk0201ea30 *mBnbls[2];
     /* ac */ void *mBnlls[2];
-    /* b4 */ void *mNscrs[2]; /* [0] flame02, [1] flame01 */
+    /* b4 */ struct Nscr *mNscrs[2]; /* [0] flame02, [1] flame01 */
     /* bc */ void *mUnk_bc;
     /* c0 */ void *mUnk_c0;
 } Keyboard;
