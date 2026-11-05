@@ -27,7 +27,6 @@ Unk021458b4 gRequestBlock;
 u32 gRomBaseOffset;
 Unk02146154 gRomReadState;
 
-// Loops: waits for bit 3 of mUnk_114 and calls mUnk_40.
 void WorkerTaskLoop(void *a) {
     Unk021458c4 *p;
     u32 s;
@@ -44,7 +43,6 @@ void WorkerTaskLoop(void *a) {
     }
 }
 
-// Sends command a until mUnk_00 does not hold 4 or b attempts are used; returns whether it holds 0.
 int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b) {
     u32 s;
     s32 v;
@@ -81,7 +79,6 @@ int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b) {
     return v == 0;
 }
 
-// Copies the part of the block that mUnk_08 of p holds from p to mUnk_20; returns whether mUnk_24 is not 0.
 int CopyFromRomPageBuffer(Unk02146154 *p) {
     Unk021458c4 *d;
     u32 a;
@@ -104,8 +101,6 @@ int CopyFromRomPageBuffer(Unk02146154 *p) {
     return d->mUnk_24 != 0;
 }
 
-// Waits for bit 31 of 0x040001a4 to clear, then writes 0xc0 and the eight bytes of a and b to 0x040001a1 and
-// 0x040001a8 to 0x040001af.
 void WriteRomCommandBytes(u32 a, u32 b) {
     while (reg_MI_MCCNT1 & 0x80000000) {
     }
@@ -120,8 +115,6 @@ void WriteRomCommandBytes(u32 a, u32 b) {
     *(vu8 *) 0x040001af = b;
 }
 
-// Passes the next block to StartCardDmaCopy, sends the command for mUnk_1c and stores mUnk_04 of gRomReadState at
-// 0x040001a4.
 void StartRomPageDma(void) {
     Unk021458c4 *d;
 
@@ -131,7 +124,6 @@ void StartRomPageDma(void) {
     reg_MI_MCCNT1 = gRomReadState.mUnk_04;
 }
 
-// Advances mUnk_1c, mUnk_20 and mUnk_24 by one block; calls mUnk_38 when nothing is left, else StartRomPageDma.
 void AdvanceRomDmaRead(void) {
     Unk021458c4 *p;
     UnkFunc *cb;
@@ -164,7 +156,6 @@ void AdvanceRomDmaRead(void) {
     }
 }
 
-// Returns 1 and sends the command for mUnk_1c when mUnk_20 and mUnk_24 pass the checks; returns 0 otherwise.
 int TryStartRomDmaRead(Unk02146154 *p) {
     u32 v;
     int t;
@@ -236,7 +227,6 @@ int TryStartRomDmaRead(Unk02146154 *p) {
     return r;
 }
 
-// Reads 0x200-byte blocks from the word at 0x04100010 into mUnk_20, or into the buffer of p when mUnk_20 is not usable.
 void ReadRomPagesByCpu(Unk02146154 *p) {
     Unk021458c4 *d;
     u32 *buf;
@@ -280,8 +270,6 @@ void ReadRomPagesByCpu(Unk02146154 *p) {
     }
 }
 
-// Calls the function at gRomReadState.mUnk_00 when CopyFromRomPageBuffer returns nonzero, then clears the word at
-// mUnk_00 and calls mUnk_38 with mUnk_3c.
 void RunRomRead(Unk021458c4 *a) {
     Unk021458c4 *p;
     Unk02146154 *q;
@@ -309,8 +297,6 @@ void RunRomRead(Unk021458c4 *a) {
     }
 }
 
-// Stores the arguments in mUnk_1c to mUnk_3c; when TryStartRomDmaRead returns 0 either starts RunRomRead on the object
-// at mUnk_44 (g not 0) or calls it.
 void StartRomRead(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     Unk021458c4 *p;
     Unk02146154 *q;
@@ -346,8 +332,6 @@ void StartRomRead(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     }
 }
 
-// When mUnk_114 is 0: sets it to 1, clears mUnk_1c to mUnk_24, sets mUnk_28 to -1, clears mUnk_38 and mUnk_3c and
-// gRomBaseOffset, then calls InitBackupAndRomAccess and CARD_InitPulledOutCallback.
 void CARD_Init(void) {
     Unk021458c4 *p;
 
@@ -374,8 +358,6 @@ UnkFunc *GetRomPageReader(void) {
     return (UnkFunc *) ReadRomPagesByCpu;
 }
 
-// Runs the transfer described by mUnk_1c to mUnk_34 in blocks of at most 0x100 bytes, then
-// calls mUnk_38 with mUnk_3c.
 void RunBackupTransfer(Unk021458c4 *p) {
     u32 a;
     u32 b;
@@ -440,8 +422,6 @@ void RunBackupTransfer(Unk021458c4 *p) {
     }
 }
 
-// Stores the arguments in mUnk_1c to mUnk_3c; starts RunBackupTransfer on the object at mUnk_44 and returns 1 when f is
-// not 0, else runs it and returns whether the word at mUnk_00 is 0.
 int StartBackupTransfer(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, u32 h, u32 i) {
     Unk021458c4 *p;
     u32 s;
@@ -521,8 +501,6 @@ int CARD_TryWaitBackupAsync(void) {
     return IsTransferIdle();
 }
 
-// Clears the words of gRequestBlock from mUnk_18 on and fills them for the value a; stores 3 in mUnk_00 when a is
-// not one of the known values.
 void SetupBackupSpec(s32 a) {
     Unk021458b4 *p;
     u32 m;
@@ -592,7 +570,6 @@ void SetupBackupSpec(s32 a) {
     }
 }
 
-// Stores f in mUnk_40 and starts the object at mUnk_44.
 void StartWorkerTask(UnkFunc *f) {
     Unk021458c4 *p;
 
@@ -604,7 +581,6 @@ void StartWorkerTask(UnkFunc *f) {
     ThreadSetRunnable(&p->mUnk_44);
 }
 
-// Waits until mUnk_08 is -3, then stores a and b in mUnk_08 and mUnk_18; counts mUnk_0c up.
 void LockAccessTarget(u32 a, u32 b) {
     Unk021458c4 *p;
     u32 s;
@@ -627,7 +603,6 @@ void LockAccessTarget(u32 a, u32 b) {
     IrqRestore(s);
 }
 
-// Counts mUnk_0c down; at 0 sets mUnk_08 to -3 and passes mUnk_10 to ThreadQueueSetAllRunnable.
 void UnlockAccessTarget(u32 a, u32 b) {
     Unk021458c4 *p;
     u32 s;
@@ -651,8 +626,6 @@ void UnlockAccessTarget(u32 a, u32 b) {
     IrqRestore(s);
 }
 
-// Sets up gAccessState and gRequestBlock and starts the object at mUnk_44 with WorkerTaskLoop and the 0x400 bytes
-// before gRomBaseOffset.
 void InitBackupAndRomAccess(void) {
     Unk021458c4 *p;
 

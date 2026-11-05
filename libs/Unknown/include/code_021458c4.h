@@ -95,7 +95,7 @@ void StartWorkerTask(UnkFunc *f);
 void SetupBackupSpec(s32 a);
 // Returns 1 when no transfer is running (value 4 of the flag word at +0x114 is clear), else 0.
 int CARD_TryWaitBackupAsync(void);
-// Calls WaitForTransferEnd. Called from code that runs only after the backup was identified. Has the same body as
+// Calls WaitForTransferEnd. Called by the save-data code after its backup requests. Has the same body as
 // CARD_WaitRomAsync, so only the callers tell the two apart.
 int CARD_WaitBackupAsync(void);
 // Takes the device type; calls IrqDisableLoopForever when it is 0. Waits until no transfer is running and marks one

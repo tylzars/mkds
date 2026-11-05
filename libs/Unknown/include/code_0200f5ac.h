@@ -6,7 +6,7 @@
 // off it adds one to the count part when IF bit 3 is set and the count's top bit is clear.
 u64 OS_GetTick(void);
 // Timer 0 interrupt handler: adds 1 to gTickOverflowCount; when the word at 0x02170230 is nonzero (nothing sets it in
-// this build) restarts timer 0 and clears the word; registers itself again for timer slot 0.
+// this game) restarts timer 0 and clears the word; registers itself again for timer slot 0.
 void TickOverflowCallback(void);
 // Returns gTickInitialized.
 u32 OS_IsTickAvailable(void);

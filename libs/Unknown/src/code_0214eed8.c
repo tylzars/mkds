@@ -204,8 +204,8 @@ void SetMicrophoneResult(u32 arg0) {
 }
 
 // clang-format off
-// Hand-written asm: waits while the first word of gMicrophoneCommand is 1. It keeps the address in ip, which the
-// compiler never picks for it.
+// Hand-written asm: waits while the first word of gMicrophoneCommand is 1. It keeps the address in ip, a register
+// compiled C would not use for it.
 asm void WaitMicrophoneIdle(void) {
     ldr ip, =gMicrophoneCommand
 wait_loop:

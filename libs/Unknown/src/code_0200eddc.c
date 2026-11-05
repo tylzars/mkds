@@ -26,8 +26,6 @@
 
 u32 gArena2Enabled;
 
-// On the first call fills the tables of OS_SetArenaLo and OS_SetArenaHi for indices 0 and 3 to 6 from
-// OS_GetInitArenaLo and OS_GetInitArenaHi, and clears index 2.
 void OS_InitArena(void) {
     if (data_021701b4 != 0) {
         return;
@@ -47,8 +45,6 @@ void OS_InitArena(void) {
     OS_SetArenaLo(6, OS_GetInitArenaLo(6));
 }
 
-// Fills index 2 of both tables, then unless gArena2Enabled is nonzero and the low two bits of OS_GetConsoleType() are
-// not 1, passes one constant each to OS_SetProtectionRegion1 and OS_SetProtectionRegion2.
 void OS_InitArenaEx(void) {
     OS_SetArenaHi(2, OS_GetInitArenaHi(2));
     OS_SetArenaLo(2, OS_GetInitArenaLo(2));
@@ -149,7 +145,6 @@ u32 OS_DisableMainExArena(void) {
     return value0;
 }
 
-// Calls fifteen functions in a fixed order.
 void OS_Init(void) {
     OS_InitArena();
     PxiInit();

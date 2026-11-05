@@ -9,9 +9,6 @@
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/unk_02180000.h"
 
-// Stores GX_ResetBankForTex() in gTextureLoadBankMask, and the halfwords at offset 6 * that value in
-// gTextureBlockTable, data_021616ce and data_021616d0, each shifted left by 12, in gTextureLoadFirstBase,
-// gTextureLoadSecondBase and gTextureLoadFirstSize.
 void GX_BeginLoadTex(void) {
     u32 i;
     u32 o;
@@ -24,11 +21,6 @@ void GX_BeginLoadTex(void) {
     gTextureLoadFirstSize = *(u16 *) (data_021616d0 + o) << 12;
 }
 
-// Copies c bytes from a to gTextureLoadFirstBase + b; or, when gTextureLoadSecondBase is not 0, to
-// gTextureLoadSecondBase + b - gTextureLoadFirstSize if b is at least gTextureLoadFirstSize. A copy that crosses
-// gTextureLoadFirstSize is split there: the first gTextureLoadFirstSize - b bytes go to gTextureLoadFirstBase + b, the
-// rest to gTextureLoadSecondBase. Each part uses MI_DmaCopy32Async when data_0216f074 is not -1 (the first part uses
-// MI_DmaCopy32 when it is longer than 0x30), else MemCopyWords.
 void GX_LoadTex(const void *a, u32 b, u32 c) {
     u8 *p;
     u32 q;

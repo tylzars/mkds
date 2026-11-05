@@ -64,7 +64,7 @@ typedef struct Unk0214eadc {
 // (index, buffer, count), calibration and its flag, and the error and busy bits.
 typedef struct TouchPanelState {
     // Called with (request number or 0x10 for a ring sample, result, ring index) when a request finishes or a sample
-    // arrives; 0 for none. Nothing sets it in this build.
+    // arrives; 0 for none. Nothing sets it in this game.
     /* 00 */ void (*mCallback)(u32, u8, u8);
     // The unconverted sample of the last single-sample request.
     /* 04 */ TouchSample mRawSample;

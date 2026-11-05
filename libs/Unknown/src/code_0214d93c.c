@@ -6,12 +6,10 @@
 
 u16 gClockInitialized;
 
-// Calls TrySendClockCommand with 0x11.
 s32 TrySendReadDateCommand(void) {
     return TrySendClockCommand(0x11);
 }
 
-// Calls TrySendClockCommand with 0x12.
 s32 TrySendReadTimeCommand(void) {
     return TrySendClockCommand(0x12);
 }
@@ -21,13 +19,10 @@ s32 func_0214e1b0(void) {
     return TrySendClockCommand(0x27);
 }
 
-// Returns whether PxiSendFifoWord(5, a << 8 & 0x7f00, 0) is not negative.
 s32 TrySendClockCommand(u32 a) {
     return PxiSendFifoWord(5, (a << 8) & 0x7f00, 0) >= 0;
 }
 
-// Runs once: clears the first word, mCallback, mEventCallback, mOutput and mSecondOutput, waits until
-// PxiCallbackBitIsSet(5, 1) is nonzero and passes 5 and ReceiveClockReply to PxiCallbackSet.
 void RTC_Init(void) {
     if (gClockInitialized != 0) {
         return;
@@ -44,8 +39,6 @@ void RTC_Init(void) {
     PxiCallbackSet(5, ReceiveClockReply);
 }
 
-// Returns 1 while mLocked is set; otherwise records a, b and c, clears mKind and mWriteReplyPending and returns 0 when
-// TrySendReadDateCommand returns nonzero, 3 when it returns 0.
 u32 RTC_GetDateAsync(u32 *a, UnkFunc *b, u32 c) {
     u32 s;
 
@@ -64,7 +57,6 @@ u32 RTC_GetDateAsync(u32 *a, UnkFunc *b, u32 c) {
     return TrySendReadDateCommand() != 0 ? 0 : 3;
 }
 
-// Runs RTC_GetDateAsync with SetClockResult, stores the result in mResult and waits when it is 0.
 u32 RTC_GetDate(u32 *a) {
     gClockRequest.mResult = RTC_GetDateAsync(a, SetClockResult, 0);
     if (gClockRequest.mResult == 0) {
@@ -73,7 +65,6 @@ u32 RTC_GetDate(u32 *a) {
     return gClockRequest.mResult;
 }
 
-// Like RTC_GetDateAsync, but sets mKind to 1 and calls TrySendReadTimeCommand.
 u32 RTC_GetTimeAsync(u32 *a, UnkFunc *b, u32 c) {
     u32 s;
 
@@ -92,7 +83,6 @@ u32 RTC_GetTimeAsync(u32 *a, UnkFunc *b, u32 c) {
     return TrySendReadTimeCommand() != 0 ? 0 : 3;
 }
 
-// Runs RTC_GetTimeAsync with SetClockResult, stores the result in mResult and waits when it is 0.
 u32 RTC_GetTime(u32 *a) {
     gClockRequest.mResult = RTC_GetTimeAsync(a, SetClockResult, 0);
     if (gClockRequest.mResult == 0) {
@@ -101,11 +91,6 @@ u32 RTC_GetTime(u32 *a) {
     return gClockRequest.mResult;
 }
 
-// With c set: clears mWriteReplyPending and mLocked and calls mCallback (cleared first) with 6 and mCallbackArg.
-// Otherwise, with bits 8-14 of b equal to 0x30, calls mEventCallback; with the low byte of b zero, fills the words at
-// mOutput (and mSecondOutput) from the fixed-address fields of ClockDateWord and ClockTimeWord selected by mKind, most
-// through DecimalNibblesToValue, or changes Unk027ffdea and calls func_0214e1b0; then, when mWriteReplyPending is 0,
-// clears mLocked and calls mCallback the same way with a value from 0 to 6.
 void ReceiveClockReply(u32 a, u32 b, s32 c) {
     u8 k;
     u32 x;
@@ -320,8 +305,8 @@ void SetClockResult(u32 arg0) {
 }
 
 // clang-format off
-// Hand-written asm: waits while the first word of gClockRequest is 1. It keeps the address in ip, which the
-// compiler never picks for it.
+// Hand-written asm: waits while the first word of gClockRequest is 1. It keeps the address in ip, a register
+// compiled C would not use for it.
 asm void WaitClockRequestDone(void) {
     ldr ip, =gClockRequest
 wait_loop:

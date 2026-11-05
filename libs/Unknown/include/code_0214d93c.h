@@ -15,11 +15,11 @@ typedef struct ClockRequest {
     /* 0c */ u32 *mSecondOutput;
     // Second argument of mCallback.
     /* 10 */ u32 mCallbackArg;
-    // Which request: 0 date, 1 time. The handler also knows 2 and 6 to 10; nothing in this build selects them.
+    // Which request: 0 date, 1 time. The handler also knows 2 and 6 to 10; nothing in this game selects them.
     /* 14 */ u32 mKind;
     // Set just before the handler sends command 0x27, cleared by the next reply; only kinds 9 and 10 set it.
     /* 18 */ u32 mWriteReplyPending;
-    // Called without arguments when command 0x30 arrives; nothing in this build sets it.
+    // Called without arguments when command 0x30 arrives; nothing in this game sets it.
     /* 1c */ UnkFunc *mEventCallback;
     // Result of the last waiting call (0 read, 1 busy, 3 not sent, 4 to 6 from the reply).
     /* 20 */ u32 mResult;
@@ -88,7 +88,7 @@ void SetClockResult(u32 arg0);
 // Receive handler of the clock channel. A transport error finishes the request with 6. Command 0x30 calls
 // mEventCallback. Otherwise a zero status byte fills the output words by mKind (0: the date word, 1: the time word,
 // each part decimal-nibble decoded except the weekday; the other kinds read more shared words and nothing in this
-// build selects them) and a nonzero byte maps 1, 2, 3 and anything else to 4, 5, 1 and 6. Then clears mLocked and calls
+// game selects them) and a nonzero byte maps 1, 2, 3 and anything else to 4, 5, 1 and 6. Then clears mLocked and calls
 // mCallback once with the result and mCallbackArg, unless a write reply is pending.
 void ReceiveClockReply(u32 a, u32 b, s32 c);
 // RTC_GetTimeAsync, then waits for the reply; returns the result.

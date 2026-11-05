@@ -202,8 +202,6 @@ void TP_RequestSamplingAsync(void) {
     }
 }
 
-// Waits for mBusyFlags bit 0x1 to clear; returns 1 when mErrorFlags bit 0x1 is set, otherwise copies mRawSample to out
-// and returns 0.
 u32 TP_WaitRawResult(TouchSample *out) {
     TP_WaitBusy(1);
     if (gTouchPanelState.mErrorFlags & 1) {
@@ -213,9 +211,6 @@ u32 TP_WaitRawResult(TouchSample *out) {
     return 0;
 }
 
-// Stores p, b and n (clearing mTouched of each entry), sends two words through PxiSendFifoWord and sets bit 2 of
-// mErrorFlags (calling mCallback with (1, 4, 0)) when either call returns a negative value, or bit 2 of mBusyFlags
-// otherwise.
 void TP_RequestAutoSamplingStartAsync(u32 a, u32 b, TouchSample *p, u32 n) {
     u32 i;
     u32 s;
@@ -253,8 +248,6 @@ void TP_RequestAutoSamplingStartAsync(u32 a, u32 b, TouchSample *p, u32 n) {
     }
 }
 
-// Sends one word through PxiSendFifoWord and sets bit 4 of mErrorFlags (calling mCallback with (2, 4, 0)) when the call
-// returns a negative value, or bit 4 of mBusyFlags otherwise.
 void TP_RequestAutoSamplingStopAsync(void) {
     u32 s;
     s32 ok;
@@ -282,8 +275,6 @@ u32 TP_GetLatestIndexInAuto(void) {
     return value0;
 }
 
-// Returns 1 when an argument is out of range or two paired values are equal; otherwise writes to the registers at
-// 0x04000280-0x0400029c twice and fills out from the words read back at 0x040002a0.
 u32 TP_CalcCalibrateParam(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u16 f, u16 g, u16 h) {
     s32 z;
     s32 w;
@@ -338,8 +329,6 @@ u32 TP_CalcCalibrateParam(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u
     return 0;
 }
 
-// Copies in to out when mCalibrated is 0; otherwise scales in->mX and in->mY with the words at mCalibration (by
-// 22 bits) and clamps them to 0xff and 0xbf; out is zeroed when in->mTouched is 0.
 void TP_GetCalibratedPoint(Unk0214e334 *out, const TouchSample *in) {
     TouchCalibration *c;
     s64 t;
@@ -374,13 +363,11 @@ void TP_GetCalibratedPoint(Unk0214e334 *out, const TouchSample *in) {
     }
 }
 
-// Waits until none of the bits a is set in mBusyFlags.
 void TP_WaitBusy(u32 a) {
     while (gTouchPanelState.mBusyFlags & a) {
     }
 }
 
-// Returns the bits a of mErrorFlags.
 u32 TP_CheckError(u32 a) {
     return gTouchPanelState.mErrorFlags & a;
 }

@@ -10,8 +10,6 @@ UnkFunc *data_021701c4;
 u32 data_021701c0;
 u8 data_021701c8[0x80];
 
-// Keeps the word at the fixed address as data_021701c4 when it is in range, else clears it; stores func_0200f36c there
-// and at mUnk_fdc of the fixed object unless data_021701c4 is set and bit 30 of OS_GetConsoleType() is set.
 void OS_InitException(void) {
     u32 v;
     Unk0200f4f0 *p;

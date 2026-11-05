@@ -2,7 +2,7 @@
 #include "code_0200ce60.h"
 
 // clang-format off
-// Hand-written asm: jumps to OS_UnlockCartridge through r1; the compiler always uses ip for a jump like this.
+// Hand-written asm: jumps to OS_UnlockCartridge through r1; compiled C would jump through ip.
 asm s32 OS_UnLockCartridge(u32 a) {
     ldr r1, =OS_UnlockCartridge
     bx r1

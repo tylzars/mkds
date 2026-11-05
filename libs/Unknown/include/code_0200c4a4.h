@@ -94,12 +94,11 @@ void RestoreExMemControlBits(Unk0200c4a4 *p);
 // Stores bits 2 and 3 of the halfword at 0x04000204 (as 0 to 3) in the first word of the record p and bit 4 in the
 // second word, then sets bits 2 and 3 and clears bit 4.
 void SaveAndSetExMemControlBits(Unk0200c4a4 *p);
-// Returns 0 when the halfword at 0x027ffc30 is 0xffff or bit 1 of the byte at 0x027ffc35 is set. Otherwise locks
-// (LockCartridgeAndDisableIrq with gCartridgeState.mLockId), runs SaveAndSetExMemControlBits and compares the record
-// with the window: when the byte at 0x080000b2 is 0x96 the halfword at 0x080000be, otherwise the halfword at
-// 0x0801fffe, must equal the halfword at 0x027ffc30; the word at 0x080000ac must equal the word at 0x027ffc38 when
-// bit 0 of the byte at 0x027ffc35 is set. On a difference it sets bit 1 of the byte at 0x027ffc35 and returns 0,
-// otherwise 1. Restores the bits and unlocks before it returns. Its only caller is PM_GoSleepMode.
+// Returns 0 when the halfword at 0x027ffc30 is 0xffff or bit 1 of the byte at 0x027ffc35 is set. Otherwise locks and
+// compares the record with the window: the halfword at 0x080000be (0x0801fffe when the byte at 0x080000b2 is not 0x96)
+// against the halfword at 0x027ffc30, and when bit 0 of the byte at 0x027ffc35 is set the word at 0x080000ac against
+// the word at 0x027ffc38. On a difference sets bit 1 of that byte and returns 0, otherwise 1. Its only caller is
+// PM_GoSleepMode.
 s32 CTRDG_IsExisting(void);
 // Zero-fills the 4 bytes of gCartridgeState (CpuSet, one word) and stores IdAlloc() in gCartridgeState.mLockId.
 void InitCartridgeState(void);
@@ -113,16 +112,10 @@ void ReceiveCartridgeRemovalMessage(u32 a, u32 b);
 // Tag 13 callback while InitCartridgeHeaderCopy waits: when the low 6 bits of the second argument are 1 sets
 // gCartridgeState.mReplyReceived to 1, otherwise calls IrqDisableLoopForever.
 void ReceiveCartridgeHeaderReply(u32 a, u32 b);
-// Runs once (gHeaderCopyStarted); returns when bit 0 of the halfword at 0x04000300 is 0. Sets the interrupt enable
-// register to 0x40000 (InterruptEnableWrite) and the master enable to 1, takes the lock with
-// LockCartridgeAndDisableIrq(gCartridgeState.mLockId), saves and clears bit 15 of the halfword at 0x04000204, runs
-// SaveAndSetExMemControlBits, invalidates 0x40 bytes at the copy plus 0x80 and copies 0x40 bytes from 0x08000080 into
-// them (MI_DmaCopy16, channel 1), puts bit 15 back, runs RestoreExMemControlBits and unlocks. Then writes the record
-// from the copy (the halfword at +0xbe to +0, the three bytes at +0xb5 to +2, the halfword at +0xb0 to +6, the word
-// at +0xac to +8), copies 0x9c bytes from 0xffff0020 to the copy plus 4 (MemCopyWords), calls DC_FlushAll and sends
-// the word ((address of the copy - 0x02000000) >> 5) << 6 | 1 with SendTag13WordUntilAccepted. Loops with
-// WaitByLoop(1) until gCartridgeState.mReplyReceived is 1, then puts the master enable and the interrupt enable
-// register back. Its only caller is CTRDG_Init.
+// Runs once (gHeaderCopyStarted); returns when bit 0 of the halfword at 0x04000300 is 0. Under the cartridge lock
+// copies the 0x40 bytes at 0x08000080 to the copy plus 0x80 (MI_DmaCopy16, channel 1), then fills the record from the
+// copy, copies 0x9c bytes from 0xffff0020 to the copy plus 4, flushes the cache, sends ((copy - the start of main RAM)
+// >> 5) << 6 | 1 on tag 13 and waits for mReplyReceived. Its only caller is CTRDG_Init.
 void InitCartridgeHeaderCopy(void);
 // Runs once (gCartridgeInitStarted). Calls InitCartridgeState and PxiInit, loops until PxiCallbackBitIsSet(13, 1) is
 // not 0, installs ReceiveCartridgeHeaderReply as the tag 13 callback, calls InitCartridgeHeaderCopy, removes the
