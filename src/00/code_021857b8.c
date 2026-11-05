@@ -40,7 +40,7 @@ void func_ov000_0218583c(void) {
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1700;
         reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
         reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
-        func_02148950(1, 0, 1);
+        GX_SetGraphicsMode(1, 0, 1);
         if (data_0217b488->mUnk_6c != FALSE) {
             p = data_0217aa08->mUnk_00;
             a = p->mUnk_34[5];

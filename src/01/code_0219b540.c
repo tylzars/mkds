@@ -376,7 +376,7 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
     func_021243ac(gSelectGhost->mHeap, 5, gSelectGhost->mSelectCupCourseTaMBnll, 0x50, 0xd, 5,
                   gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl,
                   gSelectGhost->mSelectCupCourseTaMTable, rem);
-    rem = func_02148ca0();
+    rem = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 5; i++) {
         rem -= func_021243ac(gSelectGhost->mHeap, data_ov001_021a6b54[i], gSelectGhost->mSelectGhostSBnll,
                              data_ov001_021a6b48[i], data_ov001_021a6b60[i], i, gSelectGhost->mSelectGhostSONcer,

@@ -71,7 +71,7 @@ void func_0203907c(void) {
 
 void func_02039044(void) {
     InterruptClearAndWait(1, 1);
-    func_021489c4();
+    GX_DispOn();
     *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 | 0x10000;
 }
 
@@ -570,46 +570,46 @@ void func_02037abc(void *a) {
     func_02037abc_inline(0, (void *) 0x05000000, 0x400);
     func_02037abc_inline(0, (void *) 0x05000400, 0x400);
     if (data_021755a0->mUnk_0e != 0) {
-        func_02149b20(data_021755a0->mUnk_0e);
+        GX_SetBankForBG(data_021755a0->mUnk_0e);
     }
     if (data_021755a0->mUnk_10 != 0) {
-        func_021499b4(data_021755a0->mUnk_10);
+        GX_SetBankForOBJ(data_021755a0->mUnk_10);
     }
     if (data_021755a0->mUnk_12 != 0) {
-        func_021498a0(data_021755a0->mUnk_12);
+        GX_SetBankForBGExtPltt(data_021755a0->mUnk_12);
     }
     if (data_021755a0->mUnk_14 != 0) {
-        func_021497e8(data_021755a0->mUnk_14);
+        GX_SetBankForOBJExtPltt(data_021755a0->mUnk_14);
     }
     if (data_021755a0->mUnk_16 != 0) {
-        func_021495e4(data_021755a0->mUnk_16);
+        GX_SetBankForTex(data_021755a0->mUnk_16);
     }
     if (data_021755a0->mUnk_18 != 0) {
-        func_021494f0(data_021755a0->mUnk_18);
+        GX_SetBankForTexPltt(data_021755a0->mUnk_18);
     }
     if (data_021755a0->mUnk_1a != 0) {
-        func_021493b0(data_021755a0->mUnk_1a);
+        GX_SetBankForClearImage(data_021755a0->mUnk_1a);
     }
     if (data_021755a0->mUnk_1c != 0) {
-        func_0214922c(data_021755a0->mUnk_1c);
+        GX_SetBankForSubBG(data_021755a0->mUnk_1c);
     }
     if (data_021755a0->mUnk_1e != 0) {
-        func_021491b0(data_021755a0->mUnk_1e);
+        GX_SetBankForSubOBJ(data_021755a0->mUnk_1e);
     }
     if (data_021755a0->mUnk_20 != 0) {
-        func_02149124(data_021755a0->mUnk_20);
+        GX_SetBankForSubBGExtPltt(data_021755a0->mUnk_20);
     }
     if (data_021755a0->mUnk_22 != 0) {
-        func_02149098(data_021755a0->mUnk_22);
+        GX_SetBankForSubOBJExtPltt(data_021755a0->mUnk_22);
     }
     if (data_021755a0->mUnk_24 != 0) {
         func_02039b94(data_021755a0->mUnk_24);
     }
     if (data_021755a0->mUnk_26 != 0) {
-        func_021492d8(data_021755a0->mUnk_26);
+        GX_SetBankForLCDC(data_021755a0->mUnk_26);
     }
     data_02175614.mUnk_00;
-    func_02148950(p->mUnk_06, p->mUnk_08, p->mUnk_0a);
+    GX_SetGraphicsMode(p->mUnk_06, p->mUnk_08, p->mUnk_0a);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (p->mUnk_02 << 8);
     GxsDispCntBits0To2Write(p->mUnk_0c);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (p->mUnk_04 << 8);

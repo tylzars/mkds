@@ -303,7 +303,7 @@ void func_0202fbc8(void *a, void *b, void *c) {
     data_02174e50->mUnk_4c = 0;
     data_02174e50->mUnk_90 = -0xc0;
     func_020258d4(1, data_02174e50, data_021634cc, data_021634ec, data_0216350c, 3, FindSceneFile);
-    v2 = func_02148ca0();
+    v2 = GX_GetSizeOfSubOBJ();
     q = &data_02174e50->mUnk_24;
     func_02025b20(q, data_02163530, data_02163558, data_02163580, data_021635a4, data_021635c8, data_021635ec,
                   FindSceneFile);

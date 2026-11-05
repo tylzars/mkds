@@ -870,7 +870,7 @@ void InitRecordVS(void *a) {
         r -= func_021243ac(a, data_0215c478[i], gRecordVS->mRecordVSMTransientBnll, data_0215c490[i], data_0215c460[i],
                            i + 3, gRecordVS->mRecordVSMNcer, gRecordVS->mRecordVSMTransientBncl, gRecordVS->mUnk_24, r);
     }
-    r = func_02148ca0();
+    r = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 5; i++) {
         r -= func_021243ac(a, data_0215c3bc[i], gRecordVS->mRecordVSSBnll, data_0215c3c8[i], data_0215c3d4[i],
                            data_0215c3ec[i], gRecordVS->mRecordVSSNcer, gRecordVS->mRecordVSSBncl, gRecordVS->mUnk_3c,

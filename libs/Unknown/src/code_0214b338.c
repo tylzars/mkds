@@ -11,7 +11,7 @@
 void func_0214b720(void) {
     s32 v;
 
-    v = func_0214903c();
+    v = GX_ResetBankForBGExtPltt();
     data_021802e0 = v;
     switch (v) {
         case 0:
@@ -47,7 +47,7 @@ void func_0214b63c(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    func_021498a0(data_021802e0);
+    GX_SetBankForBGExtPltt(data_021802e0);
     data_021802e0 = 0;
     data_021802dc = 0;
     data_021802d8 = 0;
@@ -56,7 +56,7 @@ void func_0214b63c(void) {
 void func_0214b5cc(void) {
     s32 v;
 
-    v = func_02149018();
+    v = GX_ResetBankForOBJExtPltt();
     data_021802d4 = v;
     if (v == 0) {
         return;
@@ -86,13 +86,13 @@ void func_0214b500(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    func_021497e8(data_021802d4);
+    GX_SetBankForOBJExtPltt(data_021802d4);
     data_021802d4 = 0;
     data_021802d0 = 0;
 }
 
 void func_0214b4dc(void) {
-    data_021802cc = func_02148f8c();
+    data_021802cc = GX_ResetBankForSubBGExtPltt();
 }
 
 void func_0214b468(const void *a, u32 b, u32 c) {
@@ -107,12 +107,12 @@ void func_0214b41c(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    func_02149124(data_021802cc);
+    GX_SetBankForSubBGExtPltt(data_021802cc);
     data_021802cc = 0;
 }
 
 void func_0214b3f8(void) {
-    data_021802e4 = func_02148f64();
+    data_021802e4 = GX_ResetBankForSubOBJExtPltt();
 }
 
 void func_0214b384(const void *a, u32 b, u32 c) {
@@ -127,6 +127,6 @@ void func_0214b338(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    func_02149098(data_021802e4);
+    GX_SetBankForSubOBJExtPltt(data_021802e4);
     data_021802e4 = 0;
 }

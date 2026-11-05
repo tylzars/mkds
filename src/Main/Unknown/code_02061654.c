@@ -119,7 +119,7 @@ void InitRace(void) {
     SetKartModelPathPrefix(0);
     gRace = HeapAlloc(a, 72);
     func_02062a0c();
-    b = func_02148d24();
+    b = GX_GetBankForTex();
     func_020161b4((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
     func_02016414(0x10000, 1);
     func_0208533c();
@@ -232,7 +232,7 @@ void func_02062a0c(void) {
 void func_020629a4(void) {
     u16 b;
 
-    b = func_02148d24();
+    b = GX_GetBankForTex();
     func_020161b4((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
     func_02016414(0x10000, 1);
     func_0208533c();

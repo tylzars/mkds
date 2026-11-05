@@ -142,7 +142,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
                       gSelectKartSNscrName, 3, func_02047a28);
     }
     if (func_020280dc() == 0) {
-        n = func_02148ca0();
+        n = GX_GetSizeOfSubOBJ();
         p = &gSelectKart->mSelectKartSParts;
         func_02025b20(p, gSelectKartSNcgrName, gSelectKartSNcerName, gSelectKartSONclrName, gSelectKartSBnclName,
                       gSelectKartSBnllName, gSelectKartSBnblName, func_02047a28);

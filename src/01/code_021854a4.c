@@ -10,7 +10,7 @@ void func_ov001_021854a4(void) {
     v1 = func_020cccc0();
     if (v1 != 0) {
         func_ov001_021854f4(0x19);
-        func_02148950((u16) (1), 0, 0);
+        GX_SetGraphicsMode((u16) (1), 0, 0);
         func_ov001_021854d8(0x16);
         GxsDispCntBits0To2Write(0);
     }

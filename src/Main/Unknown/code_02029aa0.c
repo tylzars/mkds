@@ -104,7 +104,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     func_02025854(0, &t1, data_usa_02162150, data_usa_02162164, data_usa_02162178, 1, FindSceneFile);
     LoadNscrData(&t1.mUnk_14[3], FindSceneFile(data_usa_0216218c));
     CallQueueAppend(0xb, 0, &t1.mUnk_14[3]->mData, t1.mUnk_14[3]->mDataSize);
-    n = func_02148cb8();
+    n = GX_GetSizeOfOBJ();
     q = &data_usa_02174e00->mUnk_00[0];
     func_02025abc(q, data_usa_021621a0, data_usa_021621b8, data_usa_021621d0, data_usa_021621e4, data_usa_021621f8,
                   NULL, FindSceneFile);
@@ -144,7 +144,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     func_02025b84(1, &w3);
     func_0212463c(u, w3.mUnk_08, w3.mUnk_00, w3.mUnk_04, w3.mUnk_0c, 0, 0x14, q->mUnk_08, q->mUnk_0c);
     func_02025854(1, &t2, data_usa_0216220c, data_usa_02162220, data_usa_02162234, 3, FindSceneFile);
-    m = func_02148ca0();
+    m = GX_GetSizeOfSubOBJ();
     r = &data_usa_02174e00->mUnk_00[1];
     func_02025abc(r, data_usa_02162248, data_usa_02162260, data_usa_02162278, data_usa_0216228c, data_usa_021622a0,
                   NULL, FindSceneFile);

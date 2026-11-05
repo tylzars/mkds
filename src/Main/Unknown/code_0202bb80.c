@@ -213,7 +213,7 @@ void func_0202c65c(void *a, void *b) {
         data_usa_02174e10 = data_usa_02153af0;
         data_usa_02174e18 = data_usa_02153aac;
     }
-    r = func_02148cb8();
+    r = GX_GetSizeOfOBJ();
     q = &data_02174e3c->mUnk_000;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         func_02025b20(q, data_usa_02162aac, data_usa_02162ad4, data_usa_02162afc, data_usa_02162b24, data_usa_02162b48,

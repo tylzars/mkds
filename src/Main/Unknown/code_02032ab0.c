@@ -225,7 +225,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
     MemCopyWordsToG2sBg3CntBits2To5Address(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
     func_0214c0f8(t->mUnk_10->mData, 0, 0x140);
     MemCopyHalfwordsToG2sBg3CntBits8To12Address(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
-    n = func_02148ca0();
+    n = GX_GetSizeOfSubOBJ();
     p = data_02174e60;
     q = &p->mUnk_048[1];
     func_02025abc(q, data_021641c4, data_021641e0, data_021641fc, data_02164214, data_0216422c, NULL, FindSceneFile);

@@ -17,7 +17,7 @@ void func_02039c7c(void) {
 void func_02039bd4(void) {
     switch (data_02175614.mUnk_00) {
         case 0:
-            func_021492d8(0x1f7);
+            GX_SetBankForLCDC(0x1f7);
             MemFillWordsByBlock_inline((void *) 0x6800000, 0x60000);
             MemFillWordsByBlock_inline((void *) 0x6880000, 0x24000);
             break;
@@ -25,11 +25,11 @@ void func_02039bd4(void) {
             break;
         case 1:
         case 3:
-            func_021492d8(0x1ff);
+            GX_SetBankForLCDC(0x1ff);
             MemFillWordsByBlock_inline((void *) 0x6800000, 0xa4000);
             break;
     }
-    func_02148dac();
+    GX_DisableBankForLCDC();
 }
 
 void func_02039b94(u32 a) {
@@ -39,31 +39,31 @@ void func_02039b94(u32 a) {
             break;
         case 1:
         case 3:
-            func_021492f8(a);
+            GX_SetBankForARM7(a);
             break;
     }
 }
 
 void func_02039b24(void) {
-    func_02148e6c();
-    func_02148e58();
-    func_02148e34();
-    func_02148e10();
-    func_02148dfc();
-    func_02148de8();
-    func_02148dd4();
-    func_02148d98();
-    func_02148d84();
-    func_02148d5c();
-    func_02148d34();
-    func_02148dac();
+    GX_DisableBankForBG();
+    GX_DisableBankForOBJ();
+    GX_DisableBankForBGExtPltt();
+    GX_DisableBankForOBJExtPltt();
+    GX_DisableBankForTex();
+    GX_DisableBankForTexPltt();
+    GX_DisableBankForClearImage();
+    GX_DisableBankForSubBG();
+    GX_DisableBankForSubOBJ();
+    GX_DisableBankForSubBGExtPltt();
+    GX_DisableBankForSubOBJExtPltt();
+    GX_DisableBankForLCDC();
     switch (data_02175614.mUnk_00) {
         case 0:
         case 2:
             break;
         case 1:
         case 3:
-            func_02148dc0();
+            GX_DisableBankForARM7();
             break;
     }
 }
@@ -89,9 +89,9 @@ void func_02039abc(u32 a, s32 b) {
 void func_02039a1c(void) {
     if (data_02175614.mUnk_00 != 0 && data_02175614.mUnk_00 != 3) {
         data_02175614.mUnk_00 = 2;
-        func_021492d8(8);
+        GX_SetBankForLCDC(8);
         MemFillWordsByBlock_inline((void *) 0x6860000, 0x20000);
-        func_02148dac();
+        GX_DisableBankForLCDC();
         if (func_0201e7a8(8, func_02039abc, 0) != 1) {
             IrqDisableLoopForever();
         }

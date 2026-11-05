@@ -171,7 +171,7 @@ void func_020ad344(void) {
     func_02124a98(2, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);
     func_02124a98(3, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);
     func_02124a98(4, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);
-    d = func_02148ca0();
+    d = GX_GetSizeOfSubOBJ();
     d -= func_021243ac((void *) func_020ada10(), 0, data_0217b340->mUnk_74, 0x55, 0xd, 0xd, data_0217b340->mUnk_a8,
                        data_0217b340->mUnk_6c, data_0217b340->mUnk_68, d);
     func_021243ac((void *) func_020ada10(), 1, data_0217b340->mUnk_74, 0x55, 0xd, 0xe, data_0217b340->mUnk_a8,

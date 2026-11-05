@@ -174,7 +174,7 @@ void func_02055f68(void) {
             func_02055fc8();
             break;
         case 2:
-            func_02148950(0xe, 0, 1);
+            GX_SetGraphicsMode(0xe, 0, 1);
             break;
     }
 }
@@ -183,21 +183,21 @@ void func_02055e54(void) {
     u32 x;
     u32 y;
 
-    func_02148fc8();
-    func_02148fb4();
+    GX_ResetBankForSubBG();
+    GX_ResetBankForSubOBJ();
     if (data_0217aa04->mUnk_08 & 1) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | 0x300;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1000;
-        func_021492d8(4);
-        func_021491b0(8);
+        GX_SetBankForLCDC(4);
+        GX_SetBankForSubOBJ(8);
         data_0217aa04->mUnk_08 &= ~1;
         x = 2;
         y = 1;
     } else {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | 0x300;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x400;
-        func_0214922c(4);
-        func_021492d8(8);
+        GX_SetBankForSubBG(4);
+        GX_SetBankForLCDC(8);
         data_0217aa04->mUnk_08 |= 1;
         x = 3;
         y = 0;

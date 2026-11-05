@@ -15,7 +15,7 @@ void func_ov000_02184670(void) {
     u32 q;
     s32 i;
 
-    n = func_02148ca0();
+    n = GX_GetSizeOfSubOBJ();
     {
         u8 b[3][2] = {{0x78, 0x10}, {0x78, 0x10}, {0x78, 0x10}};
         u8 *t1 = &b[0][0];

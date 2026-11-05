@@ -10,7 +10,7 @@
 void func_020ceb20(void) {
     if (func_020cccc0() != 0) {
         GxDispCntBits8To12Write2(0x1e);
-        func_02148950(1, 0, 0);
+        GX_SetGraphicsMode(1, 0, 0);
         GxsDispCntBits8To12Write2(0x1f);
         GxsDispCntBits0To2Write(0);
     }

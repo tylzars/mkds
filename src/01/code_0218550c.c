@@ -43,7 +43,7 @@ void func_ov001_02185740(u32 a, u32 b, u32 c, u32 d, u32 e) {
 void func_ov001_021856ec(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021856a8(0x19);
-        func_02148950(1, 0, 0);
+        GX_SetGraphicsMode(1, 0, 0);
         func_ov001_021857c0(0, 0);
         func_ov001_021857a4(0);
         func_ov001_02185778(0);
@@ -80,7 +80,7 @@ void func_ov001_0218568c(u32 a) {
 void func_ov001_02185658(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021856a8(0x19);
-        func_02148950(1, 0, 0);
+        GX_SetGraphicsMode(1, 0, 0);
         func_ov001_0218568c(0x1e);
         GxsDispCntBits0To2Write(0);
     }
@@ -101,7 +101,7 @@ void func_ov001_0218562c(void) {
 void func_ov001_021855f8(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021854f4(0x1b);
-        func_02148950(1, 0, 0);
+        GX_SetGraphicsMode(1, 0, 0);
         func_ov001_021854d8(0x16);
         GxsDispCntBits0To2Write(0);
     }
@@ -122,7 +122,7 @@ void func_ov001_021855cc(void) {
 void func_ov001_02185598(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021854f4(0xb);
-        func_02148950(1, 0, 1);
+        GX_SetGraphicsMode(1, 0, 1);
         func_ov001_021854d8(8);
         GxsDispCntBits0To2Write(0);
     }
@@ -143,7 +143,7 @@ void func_ov001_0218556c(void) {
 void func_ov001_02185538(void) {
     if (func_020cccc0() != 0) {
         func_ov001_021854f4(9);
-        func_02148950(1, 0, 1);
+        GX_SetGraphicsMode(1, 0, 1);
         func_ov001_021854d8(8);
         GxsDispCntBits0To2Write(0);
     }

@@ -43,7 +43,7 @@ void func_0202ba14(void) {
         a |= 2;
     }
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (a << 8);
-    func_02148950(1, 0, b);
+    GX_SetGraphicsMode(1, 0, b);
     if (data_02174e3c->mUnk_254 == 2) {
         *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffff1fff) | 0x6000;
         *(vu16 *) 0x4000048 = (u32) ((*(vu16 *) 0x4000048 & ~0x3f) | 0x1d) | 0x20;

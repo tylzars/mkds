@@ -563,7 +563,7 @@ void InitRecordTAtt(void *heap) {
                          gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
     rem -= func_021243ac(heap, 4, gRecordTAtt->mRecordTAttMBnll, 0x64, 0x10, 4, gRecordTAtt->mRecordTAttMNcer,
                          gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMTable, rem);
-    rem = func_02148ca0();
+    rem = GX_GetSizeOfSubOBJ();
     for (k = 1; k < 5; k++) {
         rem -= func_021243ac(heap, data_ov001_021a67d4[k], gRecordTAtt->mRecordTAttSBnll, data_ov001_021a67c8[k],
                              data_ov001_021a67e0[k], k, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl,

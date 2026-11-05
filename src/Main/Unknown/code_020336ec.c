@@ -159,7 +159,7 @@ void func_02033a0c(void *a) {
     u8 *p;
     u16 w[11];
 
-    r = func_02148cb8();
+    r = GX_GetSizeOfOBJ();
     t = &data_02174e60->mUnk_048[0];
     data_02174e60->mUnk_0cc = 1;
     data_02174e60->mUnk_0ce = 0xb;
@@ -191,7 +191,7 @@ void func_020338f8(void *a) {
     Unk02124b1c *c;
 
     t = &data_02174e60->mUnk_048[0];
-    r = func_02148cb8();
+    r = GX_GetSizeOfOBJ();
     n = 0;
     h = t->mUnk_0c->mUnk_06;
     data_02174e60->mUnk_0cc = 8;

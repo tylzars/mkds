@@ -427,7 +427,7 @@ void InitRecordGpx(void *heap) {
     gRecordGpx->mCommonMessages = func_02047a28("common.bmg");
     func_021243ac(heap, 0, gRecordGpx->mRecordGpxMBnll, 200, 16, 0, gRecordGpx->mRecordGpxMNcer,
                   gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMTable, 0x8000);
-    rem = func_02148ca0();
+    rem = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 4; i++) {
         rem -= func_021243ac(heap, data_ov001_021a6614[i], gRecordGpx->mRecordGpxSBnll, data_ov001_021a661c[i],
                              data_ov001_021a6624[i], i, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl,

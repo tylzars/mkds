@@ -46,7 +46,7 @@ static inline void func_0205dee0_inline(void *c, void *e) {
         reg_OS_IME;
         reg_OS_IME = 0;
         IrqDisable();
-        func_02148a58(0);
+        GX_VBlankIntr(0);
         func_ov000_021a397c(2);
         f = 1;
         d = data_021759d0->mUnk_04;

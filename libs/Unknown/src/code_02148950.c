@@ -12,10 +12,10 @@
 #include "Main/Unknown/code_02148d24.h"
 #include "code_0200fe74.h"
 
-u8 data_0216f070[4] = {1, 0, 0, 0};
+u8 gDispOn[4] = {1, 0, 0, 0};
 
 // Writes 0x80 to each byte of 0x4000240-0x4000246, 0x4000248 and 0x4000249 whose bit (0, 1, ... 8) is set in a.
-void func_02149dd8(u32 a) {
+void WriteVramControlDirect(u32 a) {
     if (a & 0x1) {
         *(vu8 *) 0x4000240 = 0x80;
     }
@@ -45,12 +45,12 @@ void func_02149dd8(u32 a) {
     }
 }
 
-// Clears the bits of a in the halfword at data_021802b0 after or-ing in the halfword at +2, stores a at +2, writes
+// Clears the bits of a in the halfword at gVramBankGroups after or-ing in the halfword at +2, stores a at +2, writes
 // the bytes at 0x4000240-0x4000246 for the value of a (0x81, 0x89, 0x91 or 0x99), then passes the halfword at +0 to
-// func_02149dd8.
-void func_02149b20(s32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[1]) & ~a;
-    ((u16 *) data_021802b0)[1] = a;
+// WriteVramControlDirect.
+void GX_SetBankForBG(s32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[1]) & ~a;
+    ((u16 *) gVramBankGroups)[1] = a;
     switch (a) {
         case 8:
             *(vu8 *) 0x4000243 = 0x81;
@@ -115,15 +115,15 @@ void func_02149b20(s32 a) {
             *(vu8 *) 0x4000246 = 0x81;
             break;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 2, stores a there, writes the bytes
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 2, stores a there, writes the bytes
 // 0x4000240, 0x4000241 and 0x4000244-0x4000246 for a = 1, 2, 3, 0x10, 0x20, 0x30, 0x40, 0x50, 0x60 and 0x70, then
-// passes halfword 0 to func_02149dd8.
-void func_021499b4(s32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[2]) & ~a;
-    ((u16 *) data_021802b0)[2] = a;
+// passes halfword 0 to WriteVramControlDirect.
+void GX_SetBankForOBJ(s32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[2]) & ~a;
+    ((u16 *) gVramBankGroups)[2] = a;
     switch (a) {
         case 0x40:
             *(vu8 *) 0x4000246 = 0x82;
@@ -155,15 +155,15 @@ void func_021499b4(s32 a) {
             *(vu8 *) 0x4000245 = 0x82;
             break;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 7, stores a there, sets bit 30 of the
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 7, stores a there, sets bit 30 of the
 // word at 0x4000000 and writes the bytes 0x4000244-0x4000246 for a = 0x10, 0x20, 0x40 and 0x60 (clears the bit for a
-// = 0), then passes halfword 0 to func_02149dd8.
-void func_021498a0(s32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[7]) & ~a;
-    ((u16 *) data_021802b0)[7] = a;
+// = 0), then passes halfword 0 to WriteVramControlDirect.
+void GX_SetBankForBGExtPltt(s32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[7]) & ~a;
+    ((u16 *) gVramBankGroups)[7] = a;
     switch (a) {
         case 0:
             *(vu32 *) 0x4000000 &= ~0x40000000;
@@ -183,15 +183,15 @@ void func_021498a0(s32 a) {
             *(vu32 *) 0x4000000 |= 0x40000000;
             break;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 8, stores a there, sets bit 31 of the
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 8, stores a there, sets bit 31 of the
 // word at 0x4000000 and writes 0x85 to 0x4000245 or 0x4000246 for a = 0x20 and 0x40 (clears the bit for a = 0), then
-// passes halfword 0 to func_02149dd8.
-void func_021497e8(u32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[8]) & ~a;
-    ((u16 *) data_021802b0)[8] = a;
+// passes halfword 0 to WriteVramControlDirect.
+void GX_SetBankForOBJExtPltt(u32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[8]) & ~a;
+    ((u16 *) gVramBankGroups)[8] = a;
     switch (a) {
         case 0x20:
             *(vu32 *) 0x4000000 |= 0x80000000;
@@ -205,15 +205,15 @@ void func_021497e8(u32 a) {
             *(vu32 *) 0x4000000 &= ~0x80000000;
             break;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 4, stores a there, clears bits 12-13
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 4, stores a there, clears bits 12-13
 // and sets bit 0 of the halfword at 0x4000060 (a mask of 0xcffe for a = 0) and writes the bytes 0x4000240-0x4000243
-// for a = 1 to 15, then passes halfword 0 to func_02149dd8.
-void func_021495e4(u32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[4]) & ~a;
-    ((u16 *) data_021802b0)[4] = a;
+// for a = 1 to 15, then passes halfword 0 to WriteVramControlDirect.
+void GX_SetBankForTex(u32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[4]) & ~a;
+    ((u16 *) gVramBankGroups)[4] = a;
     if (a == 0) {
         *(vu16 *) 0x4000060 &= 0xcffe;
     } else {
@@ -267,14 +267,14 @@ void func_021495e4(u32 a) {
                 break;
         }
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 5, stores a there, writes the bytes
-// 0x4000244-0x4000246 for a = 0x10, 0x20, 0x30, 0x40, 0x60 and 0x70, then passes halfword 0 to func_02149dd8.
-void func_021494f0(s32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[5]) & ~a;
-    ((u16 *) data_021802b0)[5] = a;
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 5, stores a there, writes the bytes
+// 0x4000244-0x4000246 for a = 0x10, 0x20, 0x30, 0x40, 0x60 and 0x70, then passes halfword 0 to WriteVramControlDirect.
+void GX_SetBankForTexPltt(s32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[5]) & ~a;
+    ((u16 *) gVramBankGroups)[5] = a;
     switch (a) {
         case 0:
             break;
@@ -294,15 +294,15 @@ void func_021494f0(s32 a) {
             *(vu8 *) 0x4000244 = 0x83;
             break;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 6, stores a there, writes the bytes
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 6, stores a there, writes the bytes
 // 0x4000240-0x4000243 for a = 1, 2, 3, 4, 8 and 12 and sets (clears for a = 0) bit 14 of the halfword at 0x4000060,
-// then passes halfword 0 to func_02149dd8.
-void func_021493b0(u32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[6]) & ~a;
-    ((u16 *) data_021802b0)[6] = a;
+// then passes halfword 0 to WriteVramControlDirect.
+void GX_SetBankForClearImage(u32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[6]) & ~a;
+    ((u16 *) gVramBankGroups)[6] = a;
     switch (a) {
         case 3:
             *(vu8 *) 0x4000240 = 0x93;
@@ -328,14 +328,14 @@ void func_021493b0(u32 a) {
             *(vu16 *) 0x4000060 |= 0x4000;
             break;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 3, stores a there, writes the bytes
-// 0x4000242 and 0x4000243 for a = 4, 8 and 12, then passes halfword 0 to func_02149dd8.
-void func_021492f8(s32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[3]) & ~a;
-    ((u16 *) data_021802b0)[3] = a;
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 3, stores a there, writes the bytes
+// 0x4000242 and 0x4000243 for a = 4, 8 and 12, then passes halfword 0 to WriteVramControlDirect.
+void GX_SetBankForARM7(s32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[3]) & ~a;
+    ((u16 *) gVramBankGroups)[3] = a;
     switch (a) {
         case 0:
             break;
@@ -350,21 +350,21 @@ void func_021492f8(s32 a) {
             *(vu8 *) 0x4000243 = 0x82;
             break;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Or-s a into halfword 0 of data_021802b0 and passes a to func_02149dd8.
-void func_021492d8(u32 a) {
-    ((u16 *) data_021802b0)[0] = ((u16 *) data_021802b0)[0] | a;
-    func_02149dd8(a);
+// Or-s a into halfword 0 of gVramBankGroups and passes a to WriteVramControlDirect.
+void GX_SetBankForLCDC(u32 a) {
+    ((u16 *) gVramBankGroups)[0] = ((u16 *) gVramBankGroups)[0] | a;
+    WriteVramControlDirect(a);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 9, stores a there, writes 0x84 to
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 9, stores a there, writes 0x84 to
 // 0x4000242 for a = 4 and 0x81 to 0x4000248 (and 0x4000249 for a = 0x180) for a = 0x80 and 0x180, then passes
-// halfword 0 to func_02149dd8.
-void func_0214922c(s32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[9]) & ~a;
-    ((u16 *) data_021802b0)[9] = a;
+// halfword 0 to WriteVramControlDirect.
+void GX_SetBankForSubBG(s32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[9]) & ~a;
+    ((u16 *) gVramBankGroups)[9] = a;
     switch (a) {
         case 0:
             break;
@@ -377,14 +377,14 @@ void func_0214922c(s32 a) {
             *(vu8 *) 0x4000248 = 0x81;
             break;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 10, stores a there, writes 0x84 to
-// 0x4000243 for a = 8 and 0x82 to 0x4000249 for a = 0x100, then passes halfword 0 to func_02149dd8.
-void func_021491b0(u32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[10]) & ~a;
-    ((u16 *) data_021802b0)[10] = a;
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 10, stores a there, writes 0x84 to
+// 0x4000243 for a = 8 and 0x82 to 0x4000249 for a = 0x100, then passes halfword 0 to WriteVramControlDirect.
+void GX_SetBankForSubOBJ(u32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[10]) & ~a;
+    ((u16 *) gVramBankGroups)[10] = a;
     if (a != 0) {
         switch (a) {
             case 0x100:
@@ -395,15 +395,15 @@ void func_021491b0(u32 a) {
                 break;
         }
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 11, stores a there, sets bit 30 of
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 11, stores a there, sets bit 30 of
 // the word at 0x4001000 and writes 0x82 to 0x4000248 for a = 0x80 (clears the bit for a = 0), then passes halfword 0
-// to func_02149dd8.
-void func_02149124(u32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[11]) & ~a;
-    ((u16 *) data_021802b0)[11] = a;
+// to WriteVramControlDirect.
+void GX_SetBankForSubBGExtPltt(u32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[11]) & ~a;
+    ((u16 *) gVramBankGroups)[11] = a;
     if (a != 0) {
         if (a == 0x80) {
             *(vu32 *) 0x4001000 |= 0x40000000;
@@ -412,15 +412,15 @@ void func_02149124(u32 a) {
     } else {
         *(vu32 *) 0x4001000 &= ~0x40000000;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Clears the bits of a in halfword 0 of data_021802b0 after or-ing in halfword 12, stores a there, sets bit 31 of
+// Clears the bits of a in halfword 0 of gVramBankGroups after or-ing in halfword 12, stores a there, sets bit 31 of
 // the word at 0x4001000 and writes 0x83 to 0x4000249 for a = 0x100 (clears the bit for a = 0), then passes halfword
-// 0 to func_02149dd8.
-void func_02149098(u32 a) {
-    ((u16 *) data_021802b0)[0] = (((u16 *) data_021802b0)[0] | ((u16 *) data_021802b0)[12]) & ~a;
-    ((u16 *) data_021802b0)[12] = a;
+// 0 to WriteVramControlDirect.
+void GX_SetBankForSubOBJExtPltt(u32 a) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[12]) & ~a;
+    ((u16 *) gVramBankGroups)[12] = a;
     if (a != 0) {
         if (a == 0x100) {
             *(vu32 *) 0x4001000 |= 0x80000000;
@@ -429,73 +429,73 @@ void func_02149098(u32 a) {
     } else {
         *(vu32 *) 0x4001000 &= ~0x80000000;
     }
-    func_02149dd8(((u16 *) data_021802b0)[0]);
+    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
 }
 
-// Reads the halfword at p and stores 0 there, or-s it into the halfword at data_021802b0, passes it to func_02149dd8
-// and returns it.
-u16 func_02149060(u16 *p) {
+// Reads the halfword at p and stores 0 there, or-s it into the halfword at gVramBankGroups, passes it to
+// WriteVramControlDirect and returns it.
+u16 SetVramBankGroupDirect(u16 *p) {
     u16 v;
 
     v = *p;
     *p = 0;
-    ((u16 *) data_021802b0)[0] = ((u16 *) data_021802b0)[0] | v;
-    func_02149dd8(v);
+    ((u16 *) gVramBankGroups)[0] = ((u16 *) gVramBankGroups)[0] | v;
+    WriteVramControlDirect(v);
     return v;
 }
 
-// Clears bit 30 of the word at 0x4000000, then returns func_02149060(&data_021802be).
-u16 func_0214903c(void) {
+// Clears bit 30 of the word at 0x4000000, then returns SetVramBankGroupDirect(&data_021802be).
+u16 GX_ResetBankForBGExtPltt(void) {
     *(vu32 *) 0x4000000 &= ~0x40000000;
-    return func_02149060(&data_021802be);
+    return SetVramBankGroupDirect(&data_021802be);
 }
 
-// Clears bit 31 of the word at 0x4000000, then returns func_02149060(&data_021802c0).
-u16 func_02149018(void) {
+// Clears bit 31 of the word at 0x4000000, then returns SetVramBankGroupDirect(&data_021802c0).
+u16 GX_ResetBankForOBJExtPltt(void) {
     *(vu32 *) 0x4000000 &= ~0x80000000;
-    return func_02149060(&data_021802c0);
+    return SetVramBankGroupDirect(&data_021802c0);
 }
 
-// Returns func_02149060(&data_021802b8).
-u16 func_02149004(void) {
-    return func_02149060(&data_021802b8);
+// Returns SetVramBankGroupDirect(&data_021802b8).
+u16 GX_ResetBankForTex(void) {
+    return SetVramBankGroupDirect(&data_021802b8);
 }
 
-// Returns func_02149060(&data_021802ba).
-u16 func_02148ff0(void) {
-    return func_02149060(&data_021802ba);
+// Returns SetVramBankGroupDirect(&data_021802ba).
+u16 GX_ResetBankForTexPltt(void) {
+    return SetVramBankGroupDirect(&data_021802ba);
 }
 
-// Returns func_02149060(&data_021802bc).
-u16 func_02148fdc(void) {
-    return func_02149060(&data_021802bc);
+// Returns SetVramBankGroupDirect(&data_021802bc).
+u16 GX_ResetBankForClearImage(void) {
+    return SetVramBankGroupDirect(&data_021802bc);
 }
 
-// Returns func_02149060(&data_021802c2).
-u16 func_02148fc8(void) {
-    return func_02149060(&data_021802c2);
+// Returns SetVramBankGroupDirect(&data_021802c2).
+u16 GX_ResetBankForSubBG(void) {
+    return SetVramBankGroupDirect(&data_021802c2);
 }
 
-// Returns func_02149060(&data_021802c4).
-u16 func_02148fb4(void) {
-    return func_02149060(&data_021802c4);
+// Returns SetVramBankGroupDirect(&data_021802c4).
+u16 GX_ResetBankForSubOBJ(void) {
+    return SetVramBankGroupDirect(&data_021802c4);
 }
 
-// Clears bit 30 of the word at 0x4001000, then returns func_02149060(&data_021802c6).
-u16 func_02148f8c(void) {
+// Clears bit 30 of the word at 0x4001000, then returns SetVramBankGroupDirect(&data_021802c6).
+u16 GX_ResetBankForSubBGExtPltt(void) {
     *(vu32 *) 0x4001000 &= ~0x40000000;
-    return func_02149060(&data_021802c6);
+    return SetVramBankGroupDirect(&data_021802c6);
 }
 
-// Clears bit 31 of the word at 0x4001000, then returns func_02149060(&data_021802c8).
-u16 func_02148f64(void) {
+// Clears bit 31 of the word at 0x4001000, then returns SetVramBankGroupDirect(&data_021802c8).
+u16 GX_ResetBankForSubOBJExtPltt(void) {
     *(vu32 *) 0x4001000 &= ~0x80000000;
-    return func_02149060(&data_021802c8);
+    return SetVramBankGroupDirect(&data_021802c8);
 }
 
 // Reads the halfword at p and stores 0 there, writes 0 to each byte of 0x4000240-0x4000246, 0x4000248 and 0x4000249
-// whose bit (0, 1, ... 8) is set in it, calls func_0200fe7c with it and data_021802a8, and returns it.
-u32 func_02148e80(u16 *p) {
+// whose bit (0, 1, ... 8) is set in it, calls func_0200fe7c with it and gVramLockId, and returns it.
+u32 ReleaseVramBankGroup(u16 *p) {
     u32 v;
 
     v = *p;
@@ -527,87 +527,87 @@ u32 func_02148e80(u16 *p) {
     if (v & 0x100) {
         *(vu8 *) 0x4000249 = 0;
     }
-    func_0200fe7c((u16) v, data_021802a8);
+    func_0200fe7c((u16) v, gVramLockId);
     return v;
 }
 
-// Returns func_02148e80(&data_021802b2).
-u32 func_02148e6c(void) {
-    return func_02148e80(&data_021802b2);
+// Returns ReleaseVramBankGroup(&data_021802b2).
+u32 GX_DisableBankForBG(void) {
+    return ReleaseVramBankGroup(&data_021802b2);
 }
 
-// Returns func_02148e80(&data_021802b4).
-u32 func_02148e58(void) {
-    return func_02148e80(&data_021802b4);
+// Returns ReleaseVramBankGroup(&data_021802b4).
+u32 GX_DisableBankForOBJ(void) {
+    return ReleaseVramBankGroup(&data_021802b4);
 }
 
-// Clears bit 30 of the word at 0x4000000, then returns func_02148e80(&data_021802be).
-u32 func_02148e34(void) {
+// Clears bit 30 of the word at 0x4000000, then returns ReleaseVramBankGroup(&data_021802be).
+u32 GX_DisableBankForBGExtPltt(void) {
     *(vu32 *) 0x4000000 &= ~0x40000000;
-    return func_02148e80(&data_021802be);
+    return ReleaseVramBankGroup(&data_021802be);
 }
 
-// Clears bit 31 of the word at 0x4000000, then returns func_02148e80(&data_021802c0).
-u32 func_02148e10(void) {
+// Clears bit 31 of the word at 0x4000000, then returns ReleaseVramBankGroup(&data_021802c0).
+u32 GX_DisableBankForOBJExtPltt(void) {
     *(vu32 *) 0x4000000 &= ~0x80000000;
-    return func_02148e80(&data_021802c0);
+    return ReleaseVramBankGroup(&data_021802c0);
 }
 
-// Returns func_02148e80(&data_021802b8).
-u32 func_02148dfc(void) {
-    return func_02148e80(&data_021802b8);
+// Returns ReleaseVramBankGroup(&data_021802b8).
+u32 GX_DisableBankForTex(void) {
+    return ReleaseVramBankGroup(&data_021802b8);
 }
 
-// Returns func_02148e80(&data_021802ba).
-u32 func_02148de8(void) {
-    return func_02148e80(&data_021802ba);
+// Returns ReleaseVramBankGroup(&data_021802ba).
+u32 GX_DisableBankForTexPltt(void) {
+    return ReleaseVramBankGroup(&data_021802ba);
 }
 
-// Returns func_02148e80(&data_021802bc).
-u32 func_02148dd4(void) {
-    return func_02148e80(&data_021802bc);
+// Returns ReleaseVramBankGroup(&data_021802bc).
+u32 GX_DisableBankForClearImage(void) {
+    return ReleaseVramBankGroup(&data_021802bc);
 }
 
-// Returns func_02148e80(&data_021802b6).
-u32 func_02148dc0(void) {
-    return func_02148e80(&data_021802b6);
+// Returns ReleaseVramBankGroup(&data_021802b6).
+u32 GX_DisableBankForARM7(void) {
+    return ReleaseVramBankGroup(&data_021802b6);
 }
 
-// Returns func_02148e80(data_021802b0).
-u32 func_02148dac(void) {
-    return func_02148e80((u16 *) data_021802b0);
+// Returns ReleaseVramBankGroup(gVramBankGroups).
+u32 GX_DisableBankForLCDC(void) {
+    return ReleaseVramBankGroup((u16 *) gVramBankGroups);
 }
 
-// Returns func_02148e80(&data_021802c2).
-u32 func_02148d98(void) {
-    return func_02148e80(&data_021802c2);
+// Returns ReleaseVramBankGroup(&data_021802c2).
+u32 GX_DisableBankForSubBG(void) {
+    return ReleaseVramBankGroup(&data_021802c2);
 }
 
-// Returns func_02148e80(&data_021802c4).
-u32 func_02148d84(void) {
-    return func_02148e80(&data_021802c4);
+// Returns ReleaseVramBankGroup(&data_021802c4).
+u32 GX_DisableBankForSubOBJ(void) {
+    return ReleaseVramBankGroup(&data_021802c4);
 }
 
-// Clears bit 30 of the word at 0x4001000, then returns func_02148e80(&data_021802c6).
-u32 func_02148d5c(void) {
+// Clears bit 30 of the word at 0x4001000, then returns ReleaseVramBankGroup(&data_021802c6).
+u32 GX_DisableBankForSubBGExtPltt(void) {
     *(vu32 *) 0x4001000 &= ~0x40000000;
-    return func_02148e80(&data_021802c6);
+    return ReleaseVramBankGroup(&data_021802c6);
 }
 
-// Clears bit 31 of the word at 0x4001000, then returns func_02148e80(&data_021802c8).
-u32 func_02148d34(void) {
+// Clears bit 31 of the word at 0x4001000, then returns ReleaseVramBankGroup(&data_021802c8).
+u32 GX_DisableBankForSubOBJExtPltt(void) {
     *(vu32 *) 0x4001000 &= ~0x80000000;
-    return func_02148e80(&data_021802c8);
+    return ReleaseVramBankGroup(&data_021802c8);
 }
 
-u32 func_02148d24(void) {
+u32 GX_GetBankForTex(void) {
     u32 value0;
-    value0 = (u32) &data_021802b0;
+    value0 = (u32) &gVramBankGroups;
     value0 = (u32) * (const u16 *) ((value0) + (8));
     return value0;
 }
 
-u32 func_02148cd0(u32 arg0) {
+u32 ComputeVramBankSize(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -688,42 +688,42 @@ u32 func_02148cd0(u32 arg0) {
     return value0;
 }
 
-u32 func_02148cb8(void) {
+u32 GX_GetSizeOfOBJ(void) {
     u32 value0;
     u32 value12;
-    value0 = (u32) &data_021802b0;
-    value12 = (u32) &func_02148cd0;
+    value0 = (u32) &gVramBankGroups;
+    value12 = (u32) &ComputeVramBankSize;
     value0 = (u32) * (const u16 *) ((value0) + (4));
-    value0 = (u32) func_02148cd0(value0);
+    value0 = (u32) ComputeVramBankSize(value0);
     return value0;
 }
 
-u32 func_02148ca0(void) {
+u32 GX_GetSizeOfSubOBJ(void) {
     u32 value0;
     u32 value12;
-    value0 = (u32) &data_021802b0;
-    value12 = (u32) &func_02148cd0;
+    value0 = (u32) &gVramBankGroups;
+    value12 = (u32) &ComputeVramBankSize;
     value0 = (u32) * (const u16 *) ((value0) + (20));
-    value0 = (u32) func_02148cd0(value0);
+    value0 = (u32) ComputeVramBankSize(value0);
     return value0;
 }
 
-// Zeroes the 13 halfwords at data_021802b0, the word at 0x4000240, the bytes at 0x4000244-0x4000246 and the halfword
+// Zeroes the 13 halfwords at gVramBankGroups, the word at 0x4000240, the bytes at 0x4000244-0x4000246 and the halfword
 // at 0x4000248.
-void func_02148c20(void) {
-    ((u16 *) data_021802b0)[0] = 0;
-    ((u16 *) data_021802b0)[1] = 0;
-    ((u16 *) data_021802b0)[2] = 0;
-    ((u16 *) data_021802b0)[3] = 0;
-    ((u16 *) data_021802b0)[4] = 0;
-    ((u16 *) data_021802b0)[5] = 0;
-    ((u16 *) data_021802b0)[6] = 0;
-    ((u16 *) data_021802b0)[7] = 0;
-    ((u16 *) data_021802b0)[8] = 0;
-    ((u16 *) data_021802b0)[9] = 0;
-    ((u16 *) data_021802b0)[10] = 0;
-    ((u16 *) data_021802b0)[11] = 0;
-    ((u16 *) data_021802b0)[12] = 0;
+void ClearVramBankState(void) {
+    ((u16 *) gVramBankGroups)[0] = 0;
+    ((u16 *) gVramBankGroups)[1] = 0;
+    ((u16 *) gVramBankGroups)[2] = 0;
+    ((u16 *) gVramBankGroups)[3] = 0;
+    ((u16 *) gVramBankGroups)[4] = 0;
+    ((u16 *) gVramBankGroups)[5] = 0;
+    ((u16 *) gVramBankGroups)[6] = 0;
+    ((u16 *) gVramBankGroups)[7] = 0;
+    ((u16 *) gVramBankGroups)[8] = 0;
+    ((u16 *) gVramBankGroups)[9] = 0;
+    ((u16 *) gVramBankGroups)[10] = 0;
+    ((u16 *) gVramBankGroups)[11] = 0;
+    ((u16 *) gVramBankGroups)[12] = 0;
     *(vu32 *) 0x4000240 = 0;
     *(vu8 *) 0x4000244 = 0;
     *(vu8 *) 0x4000245 = 0;
@@ -731,24 +731,24 @@ void func_02148c20(void) {
     *(vu16 *) 0x4000248 = 0;
 }
 
-// Updates the halfword at 0x4000304, calls func_02148c20, then calls IdAlloc until data_021802a8 is nonzero
+// Updates the halfword at 0x4000304, calls ClearVramBankState, then calls IdAlloc until gVramLockId is nonzero
 // (calling IrqDisableLoopForever when it returns -3). Zeroes 0x4000004 and 0x4000000, then passes 0 with the ranges
 // 0x4000008 (size 0x60) and 0x4001000 (size 0x70) to func_0214cc04 when data_0216f074[0] is not -1 and to
 // MemFillWords otherwise, with the halfword at 0x400006c zeroed in between. Finally stores 0x100 in the halfwords
 // at 0x4000020, 0x4000026, 0x4000030, 0x4000036 and the same offsets from 0x4001000.
-void func_02148a88(void) {
+void GX_Init(void) {
     s32 r;
 
     *(vu16 *) 0x4000304 |= 0x8000;
     *(vu16 *) 0x4000304 = (*(vu16 *) 0x4000304 & ~0x20e) | 0x20e;
     *(vu16 *) 0x4000304 |= 0x1;
-    func_02148c20();
-    while (*(vu16 *) &data_021802a8 == 0) {
+    ClearVramBankState();
+    while (*(vu16 *) &gVramLockId == 0) {
         r = IdAlloc();
         if (r == -3) {
             IrqDisableLoopForever();
         }
-        *(vu16 *) &data_021802a8 = r;
+        *(vu16 *) &gVramLockId = r;
     }
     *(vu16 *) 0x4000004 = 0;
     *(vu32 *) 0x4000000 = 0;
@@ -776,7 +776,7 @@ void func_02148a88(void) {
 }
 
 // Sets (a != 0) or clears bit 3 of the halfword at 0x4000004 and returns its previous value (0 or 8).
-u32 func_02148a58(s32 a) {
+u32 GX_VBlankIntr(s32 a) {
     u32 old;
 
     old = *(vu16 *) 0x4000004 & 0x8;
@@ -788,7 +788,7 @@ u32 func_02148a58(s32 a) {
     return old;
 }
 
-void func_02148a10(void) {
+void GX_DispOff(void) {
     u32 value0;
     u32 value1;
     u32 value2;
@@ -797,10 +797,10 @@ void func_02148a10(void) {
     u32 value14;
     value14 = 0x4000000u;
     value12 = (u32) * (const u32 *) ((value14) + (0));
-    value1 = (u32) &data_0216f070;
+    value1 = (u32) &gDispOn;
     value2 = (value12) & (0x30000u);
     value3 = 0u;
-    value0 = (u32) &data_021802ac;
+    value0 = (u32) &gSavedDispMode;
     value2 = (value2 >> 16);
     *(u16 *) ((value1) + (0)) = (u16) value3;
     *(u16 *) ((value0) + (0)) = (u16) value2;
@@ -808,13 +808,13 @@ void func_02148a10(void) {
     *(u32 *) ((value14) + (0)) = value0;
 }
 
-// Sets data_0216f070 to 1. When data_021802ac is 0, sets bit 16 of the word at 0x4000000; otherwise replaces bits
-// 16-17 of that word with data_021802ac.
-void func_021489c4(void) {
+// Sets gDispOn to 1. When gSavedDispMode is 0, sets bit 16 of the word at 0x4000000; otherwise replaces bits
+// 16-17 of that word with gSavedDispMode.
+void GX_DispOn(void) {
     u32 a;
 
-    *(u16 *) data_0216f070 = 1;
-    a = *(u16 *) data_021802ac;
+    *(u16 *) gDispOn = 1;
+    a = *(u16 *) gSavedDispMode;
     if (a != 0) {
         *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & ~0x30000) | (a << 16);
     } else {
@@ -822,20 +822,20 @@ void func_021489c4(void) {
     }
 }
 
-// Stores a in data_021802ac, then replaces the word at 0x4000000 by (word & 0xfff0fff0) | (a << 16) | b | (c << 3),
-// with a taken as 0 when data_0216f070 is 0. Clears data_0216f070 when data_021802ac is 0.
-void func_02148950(u16 a, u32 b, s32 c) {
+// Stores a in gSavedDispMode, then replaces the word at 0x4000000 by (word & 0xfff0fff0) | (a << 16) | b | (c << 3),
+// with a taken as 0 when gDispOn is 0. Clears gDispOn when gSavedDispMode is 0.
+void GX_SetGraphicsMode(u16 a, u32 b, s32 c) {
     u32 v;
     u32 x;
 
     x = *(vu32 *) 0x4000000;
-    v = *(u16 *) data_0216f070;
-    *(u16 *) data_021802ac = a;
+    v = *(u16 *) gDispOn;
+    *(u16 *) gSavedDispMode = a;
     if (v == 0) {
         a = 0;
     }
     *(vu32 *) 0x4000000 = ((x & 0xfff0fff0) | (a << 16) | b) | (c << 3);
-    if (*(u16 *) data_021802ac == 0) {
-        *(u16 *) data_0216f070 = 0;
+    if (*(u16 *) gSavedDispMode == 0) {
+        *(u16 *) gDispOn = 0;
     }
 }

@@ -15,12 +15,12 @@ void func_020ce8d0(void) {
         v1 = func_020ce778();
         if (v1 == 0) {
             GxDispCntBits8To12Write(0x19);
-            func_02148950((u16) 1, (u32) 0, 0);
+            GX_SetGraphicsMode((u16) 1, (u32) 0, 0);
             GxsDispCntBits8To12Write(0x16);
             GxsDispCntBits0To2Write((u32) 0);
         } else {
             GxDispCntBits8To12Write(0x18);
-            func_02148950((u16) 1, (u32) 0, 0);
+            GX_SetGraphicsMode((u16) 1, (u32) 0, 0);
             GxsDispCntBits8To12Write(0x12);
             GxsDispCntBits0To2Write((u32) 0);
         }

@@ -53,7 +53,7 @@ void func_ov001_021997dc(void) {
         }
     }
     {
-        s32 v2 = func_02148ca0();
+        s32 v2 = GX_GetSizeOfSubOBJ();
         void *v1;
         u8 b[3][2] = {{0x9b, 0x10}, {0xa0, 0x10}, {0x32, 0x10}};
         s32 d[3] = {0, 2, 4};

@@ -9,13 +9,13 @@
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/unk_02180000.h"
 
-// Stores func_02149004() in data_021802fc, and the halfwords at offset 6 * that value in data_021616cc, data_021616ce
-// and data_021616d0, each shifted left by 12, in data_021802ec, data_02180300 and data_02180304.
+// Stores GX_ResetBankForTex() in data_021802fc, and the halfwords at offset 6 * that value in data_021616cc,
+// data_021616ce and data_021616d0, each shifted left by 12, in data_021802ec, data_02180300 and data_02180304.
 void func_0214c6a8(void) {
     u32 i;
     u32 o;
 
-    i = func_02149004();
+    i = GX_ResetBankForTex();
     o = i * 6;
     data_021802fc = i;
     data_021802ec = *(u16 *) (data_021616cc + o) << 12;
@@ -69,7 +69,7 @@ void func_0214c4d4(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    func_021495e4(data_021802fc);
+    GX_SetBankForTex(data_021802fc);
     data_02180304 = 0;
     data_02180300 = 0;
     data_021802ec = 0;
@@ -77,7 +77,7 @@ void func_0214c4d4(void) {
 }
 
 void func_0214c48c(void) {
-    s32 v = func_02148ff0();
+    s32 v = GX_ResetBankForTexPltt();
     data_021802f4 = v;
     data_021802f0 = (u8 *) (data_021616bc[v >> 4] << 12);
 }
@@ -95,13 +95,13 @@ void func_0214c3c0(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    func_021494f0(data_021802f4);
+    GX_SetBankForTexPltt(data_021802f4);
     data_021802f4 = 0;
     data_021802f0 = 0;
 }
 
 void func_0214c2f8(void) {
-    u32 v = func_02148fdc();
+    u32 v = GX_ResetBankForClearImage();
     data_021802e8 = v;
     switch (v) {
         case 2:
@@ -143,7 +143,7 @@ void func_0214c1bc(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    func_021493b0(data_021802e8);
+    GX_SetBankForClearImage(data_021802e8);
     data_021802e8 = 0;
     data_021802f8 = 0;
 }

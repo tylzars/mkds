@@ -537,7 +537,7 @@ void InitMissionRunMSsel(void *a, void *b, void *c) {
     func_021243ac(gMissionRunMSsel->mHeap, 0, gMissionRunMSsel->mMissionRunMSselMBnll, 0xd2, 0x46, 0,
                   gMissionRunMSsel->mMissionRunMSselMNcer, gMissionRunMSsel->mMissionRunMSselMBncl,
                   gMissionRunMSsel->mMissionRunMSselMTable, 0x8000);
-    rem = func_02148ca0();
+    rem = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 9; i++) {
         rem -=
             func_021243ac(gMissionRunMSsel->mHeap, data_ov001_021a6e10[i][0], gMissionRunMSsel->mMissionRunMSselSBnll,

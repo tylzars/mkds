@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-u32 func_02148d24(void);
+// Returns the texture group's bank mask.
+u32 GX_GetBankForTex(void);

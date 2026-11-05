@@ -621,7 +621,7 @@ void InitMap2D(void) {
     if (func_020b64e8()) {
         MemCopyHalfwordsToG2sBg3CntBits8To12Address(nscrs[3]->mData, 0, nscrs[3]->mDataSize);
     }
-    func_02149124(0x80);
+    GX_SetBankForSubBGExtPltt(0x80);
     func_0214b4dc();
     func_0214b468(nclrs[2]->mData, 0x4000, 0x200);
     func_0214b468(nclrs[2]->mData, 0x6000, 0x200);
@@ -678,7 +678,7 @@ void func_020af99c(void) {
     MemCopyHalfwordsToG2sBg3CntBits8To12Address(func_020c3e14(2)->mData, 0, func_020c3e14(2)->mDataSize);
     func_0214c0f8(data_0217b34c + 0x100, 0, 0x200);
     func_020cfca4();
-    func_02149124(0x80);
+    GX_SetBankForSubBGExtPltt(0x80);
     func_0214b4dc();
     func_0214b468(data_0217b34c + 0x100, 0x4000, 0x200);
     func_0214b468(data_0217b34c + 0x100, 0x6000, 0x200);

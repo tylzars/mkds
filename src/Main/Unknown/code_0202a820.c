@@ -293,7 +293,7 @@ void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
     func_020258d4(0, gWiFiVSCourseSelect, gWiFiVSCourseSelectMBNcgrName, gWiFiVSCourseSelectMBNclrName,
                   gWiFiVSCourseSelectMNscrName, 0, FindSceneFile);
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
-    k = func_02148cb8();
+    k = GX_GetSizeOfOBJ();
     func_02025b20(p, gWiFiVSCourseSelectMNcgrName, gWiFiVSCourseSelectMNcerName, gWiFiVSCourseSelectMONclrName,
                   gWiFiVSCourseSelectMBnclName, gWiFiVSCourseSelectMBnllName, NULL, FindSceneFile);
     func_02025a50(0, gWiFiVSCourseSelect->mHeap, p);
@@ -316,7 +316,7 @@ void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
     func_020258d4(1, &gWiFiVSCourseSelect->mWiFiVSCourseSelectMBAndSBParts[1], gWiFiVSCourseSelectSBNcgrName,
                   gWiFiVSCourseSelectSBNclrName, gWiFiVSCourseSelectSNscrName, 3, FindSceneFile);
     t = &gWiFiVSCourseSelect->mWiFiVSCourseSelectSParts;
-    k = func_02148ca0();
+    k = GX_GetSizeOfSubOBJ();
     func_02025b20(t, gWiFiVSCourseSelectSNcgrName, gWiFiVSCourseSelectSNcerName, gWiFiVSCourseSelectSONclrName,
                   gWiFiVSCourseSelectSBnclName, gWiFiVSCourseSelectSBnllName, gWiFiVSCourseSelectSBnblName,
                   FindSceneFile);
@@ -456,7 +456,7 @@ void ReleaseWiFiVSCourseSelect(void) {
 void func_0202a820(void) {
     s32 t;
 
-    func_02148950(1, 0, 0);
+    GX_SetGraphicsMode(1, 0, 0);
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | 0x1a00;
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 2;
     *(vu32 *) 0x4000010 = (-func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[1]) << 16) & 0x1ff0000;

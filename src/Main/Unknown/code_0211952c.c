@@ -271,7 +271,7 @@ void InitSelectCup(void *b, void *c, void *d, s32 e) {
         func_021243ac(gSelectCup->mHeap, 5, gSelectCup->mSelectCupCourseTaOrVsMBnll, 0x50, 0xd, 5,
                       gSelectCup->mSelectCupCourseMNcer, gSelectCup->mSelectCupCourseTaOrVsMBncl,
                       gSelectCup->mSelectCupCourseTaOrVsMTable, x);
-        v = func_02148ca0();
+        v = GX_GetSizeOfSubOBJ();
         for (i = 0; i < 4; i++) {
             v -= func_021243ac(gSelectCup->mHeap, data_0215cab4[i], gSelectCup->mSelectCupMBnll, data_0215cabc[i],
                                data_0215cac4[i], data_0215caa4[i], gSelectCup->mSelectCupMNcer,

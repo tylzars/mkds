@@ -39,7 +39,7 @@ void func_02036778(void) {
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
     IrqEnable();
-    func_02148a58(1);
+    GX_VBlankIntr(1);
 }
 
 void func_020366bc(void) {
@@ -49,17 +49,17 @@ void func_020366bc(void) {
     func_0200f6f4();
     func_0200fb28();
     func_02148904();
-    func_02148a88();
+    GX_Init();
     func_02039c7c();
     func_02039bd4();
-    func_02148a10();
+    GX_DispOff();
     *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & ~0x10000;
     InterruptHandlerSet(1, func_020367c4);
     InterruptEnableSetBits(1);
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
     IrqEnable();
-    func_02148a58(1);
+    GX_VBlankIntr(1);
     FS_Init(-1);
     func_02039774();
     data_usa_02174e54 = func_02152b08(data_usa_02174e80);

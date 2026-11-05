@@ -285,7 +285,7 @@ void func_02115728(void *a) {
         v -= func_021243ac(a, data_0215c584[i], data_0217d350->mUnk_1c, data_0215c59c[i], data_0215c56c[i], i + 3,
                            data_0217d350->mUnk_04, data_0217d350->mUnk_18, data_0217d350->mUnk_24, v);
     }
-    w = func_02148ca0();
+    w = GX_GetSizeOfSubOBJ();
     for (i = 0, p = data_0215c50c; i < 5; i++) {
         w -= func_021243ac(a, data_0215c4b8[i], data_0217d350->mUnk_38, data_0215c4c4[i], data_0215c4dc[i], *p,
                            data_0217d350->mUnk_2c, data_0217d350->mUnk_30, data_0217d350->mUnk_3c, w);

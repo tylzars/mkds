@@ -37,7 +37,7 @@ void func_020cb3e4(void) {
     v1 = func_020cccc0();
     if (v1 != 0) {
         func_020cb4a8(0x18);
-        func_02148950((u16) 1, (u32) 0, 0);
+        GX_SetGraphicsMode((u16) 1, (u32) 0, 0);
         func_0214c090(data_0217b43c->mSinglePlaySelectModeMONclr->mData, 0, (u32) (((u32) 0x000001a0u)));
         func_0214c090(&data_0217b43c->mSinglePlaySelectModeMONclr->mData[0xe0], 0x1c0, (u32) 0x40);
         func_0214bf04(data_0217b43c->mSinglePlaySelectModeMNcgr->mData, 0,

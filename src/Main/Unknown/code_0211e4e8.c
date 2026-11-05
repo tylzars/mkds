@@ -270,7 +270,7 @@ void func_0211e958(void *a, void *b, void *c) {
                                data_0215cf14[i], data_0215cf04[i], data_0217d378->mUnk_00, data_0217d378->mUnk_04,
                                data_0217d378->mUnk_18, m);
         }
-        i = func_02148ca0();
+        i = GX_GetSizeOfSubOBJ();
         for (m = 0; m < 4; m++) {
             i -= func_021243ac(data_0217d378->mHeap, data_0215cf0c[m], data_0217d378->mUnk_14, data_0215cef4[m],
                                data_0215cf14[m], data_0215cf04[m], data_0217d378->mUnk_0c, data_0217d378->mUnk_10,

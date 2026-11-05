@@ -465,7 +465,7 @@ void func_0203154c(void *a, void *b, void *c) {
     data_02174e58->mUnk_64 = FindSceneFile(data_usa_021636f4);
     data_02174e58->mUnk_68 = func_02047a28(data_usa_02163700);
     data_02174e58->mUnk_6c = -1;
-    v = func_02148cb8();
+    v = GX_GetSizeOfOBJ();
     p = &data_02174e58->mUnk_24[0];
     func_02025b20(p, data_usa_0216370c, data_usa_0216372c, data_usa_0216374c, data_usa_0216376c, data_usa_02163788,
                   NULL, FindSceneFile);
@@ -482,7 +482,7 @@ void func_0203154c(void *a, void *b, void *c) {
     }
     func_02031b6c();
     func_020258d4(1, data_02174e58, data_usa_021637a4, data_usa_021637c4, data_usa_021637e4, 3, FindSceneFile);
-    r = func_02148ca0();
+    r = GX_GetSizeOfSubOBJ();
     q = &data_02174e58->mUnk_24[1];
     func_02025b20(q, data_usa_02163808, data_usa_02163830, data_usa_02163858, data_usa_02163880, data_usa_021638a4,
                   data_usa_021638c8, FindSceneFile);

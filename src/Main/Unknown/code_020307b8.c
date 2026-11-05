@@ -103,7 +103,7 @@ void func_020307b8(void *a, void *b, void *c) {
     data_02174e54->mUnk_20 = c;
     data_02174e54->mUnk_24 = FindSceneFile(data_0216362c);
     data_02174e54->mUnk_38 = -0xc0;
-    n = func_02148ca0();
+    n = GX_GetSizeOfSubOBJ();
     o = data_02174e54;
     LocateNcgr2(&o->mUnk_00, FindSceneFile(data_02163638));
     LocateNcer(&o->mUnk_08, FindSceneFile(data_02163654));

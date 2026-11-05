@@ -75,7 +75,7 @@ void func_ov003_021c2398(void) {
     u8 *p;
     u16 q = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 0;
-    func_02148a10();
+    GX_DispOff();
     *(u32 *) 0x4001000 &= 0xfffeffff;
     if (func_0200f6e4() == 0) {
         IrqDisableLoopForever();
@@ -83,12 +83,12 @@ void func_ov003_021c2398(void) {
     if (func_0200fb18() == 0) {
         IrqDisableLoopForever();
     }
-    func_02148a58(0);
+    GX_VBlankIntr(0);
     func_02148904();
     FS_Init(-1);
     func_0214eb88();
     func_0214e0f4();
-    func_02148a10();
+    GX_DispOff();
     *(u32 *) 0x4001000 &= 0xfffeffff;
     func_ov003_021d3408();
     func_ov003_021d28b0(data_ov003_021da174);
@@ -105,10 +105,10 @@ void func_ov003_021c2398(void) {
 void func_ov003_021c2188(void) {
     volatile u32 *p;
     volatile u16 *q;
-    func_02148a58(0);
-    func_02149b20(1);
-    func_021499b4(2);
-    func_02148950(1, 0, 0);
+    GX_VBlankIntr(0);
+    GX_SetBankForBG(1);
+    GX_SetBankForOBJ(2);
+    GX_SetGraphicsMode(1, 0, 0);
     p = (u32 *) 0x4000000;
     *p = *p & 0xffffe0ff;
     MasterBrightWrite((u16 *) 0x400006c, 0);
@@ -122,8 +122,8 @@ void func_ov003_021c2188(void) {
     *(u32 *) 0x4000018 = 0;
     *(u32 *) 0x400001c = 0;
     func_0214a3e8((u16 *) 0x4000050, 0x3f, 0x10);
-    func_0214922c(0x80);
-    func_021491b0(0x100);
+    GX_SetBankForSubBG(0x80);
+    GX_SetBankForSubOBJ(0x100);
     GxsDispCntBits0To2Write(0);
     p = (u32 *) 0x4001000;
     *p = *p & 0xffffe0ff;
@@ -152,13 +152,13 @@ void func_ov003_021c2188(void) {
     func_ov003_021d2fdc();
     func_ov003_021d31b0();
     func_ov003_021d1b3c();
-    func_021489c4();
+    GX_DispOn();
     *(u32 *) 0x4001000 = *(u32 *) 0x4001000 | 0x10000;
-    func_02148a58(1);
+    GX_VBlankIntr(1);
 }
 
 void func_ov003_021c2138(void) {
-    func_02148a10();
+    GX_DispOff();
     *((u32 *) 0x04001000u) = *((u32 *) 0x04001000u) & ((u32) 0xfffeffffu);
     func_ov003_021d326c();
     func_ov003_021d2d28();

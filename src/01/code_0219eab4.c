@@ -309,7 +309,7 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
     func_020ae6d4(gMissionRunLVsel->mUnk_50, gMissionRunLVsel->mUnk_54);
     func_02124ed0(gMissionRunLVsel->mHeap, gMissionRunLVsel->mMissionRunLVselS7Or6Bncl,
                   gMissionRunLVsel->mMissionRunLVselS7Or6Bnll, &gMissionRunLVsel->mMissionRunLVselS7Or6Table);
-    remaining = func_02148ca0();
+    remaining = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 7; i++) {
         remaining -=
             func_021243ac(gMissionRunLVsel->mHeap, data_ov001_021a6c60[i], gMissionRunLVsel->mMissionRunLVselS7Or6Bnll,

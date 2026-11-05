@@ -5,41 +5,41 @@
 #include "code_02148950.h"
 
 void func_ov003_021d3408(void) {
-    data_ov003_021da2f8[0] = func_02148e6c();
-    data_ov003_021da2f8[1] = func_02148e58();
-    data_ov003_021da2f8[2] = func_02148e34();
-    data_ov003_021da2f8[3] = func_02148e10();
-    data_ov003_021da2f8[4] = func_02148dfc();
-    data_ov003_021da2f8[5] = func_02148de8();
-    data_ov003_021da2f8[6] = func_02148dd4();
-    data_ov003_021da2f8[7] = func_02148d98();
-    data_ov003_021da2f8[8] = func_02148d84();
-    data_ov003_021da2f8[9] = func_02148d5c();
-    data_ov003_021da2f8[10] = func_02148d34();
-    data_ov003_021da2f8[11] = func_02148dc0();
-    data_ov003_021da2f8[12] = func_02148dac();
-    func_021492f8(data_ov003_021da2f8[11]);
+    data_ov003_021da2f8[0] = GX_DisableBankForBG();
+    data_ov003_021da2f8[1] = GX_DisableBankForOBJ();
+    data_ov003_021da2f8[2] = GX_DisableBankForBGExtPltt();
+    data_ov003_021da2f8[3] = GX_DisableBankForOBJExtPltt();
+    data_ov003_021da2f8[4] = GX_DisableBankForTex();
+    data_ov003_021da2f8[5] = GX_DisableBankForTexPltt();
+    data_ov003_021da2f8[6] = GX_DisableBankForClearImage();
+    data_ov003_021da2f8[7] = GX_DisableBankForSubBG();
+    data_ov003_021da2f8[8] = GX_DisableBankForSubOBJ();
+    data_ov003_021da2f8[9] = GX_DisableBankForSubBGExtPltt();
+    data_ov003_021da2f8[10] = GX_DisableBankForSubOBJExtPltt();
+    data_ov003_021da2f8[11] = GX_DisableBankForARM7();
+    data_ov003_021da2f8[12] = GX_DisableBankForLCDC();
+    GX_SetBankForARM7(data_ov003_021da2f8[11]);
     func_ov003_021d3298();
 }
 
 void func_ov003_021d332c(void) {
-    func_02148e6c();
-    func_02148e58();
-    func_02148d98();
-    func_02148d84();
+    GX_DisableBankForBG();
+    GX_DisableBankForOBJ();
+    GX_DisableBankForSubBG();
+    GX_DisableBankForSubOBJ();
     func_ov003_021d3298();
-    func_02149b20(data_ov003_021da2f8[0]);
-    func_021499b4(data_ov003_021da2f8[1]);
-    func_021498a0(data_ov003_021da2f8[2]);
-    func_021497e8(data_ov003_021da2f8[3]);
-    func_021495e4(data_ov003_021da2f8[4]);
-    func_021494f0(data_ov003_021da2f8[5]);
-    func_021493b0(data_ov003_021da2f8[6]);
-    func_0214922c(data_ov003_021da2f8[7]);
-    func_021491b0(data_ov003_021da2f8[8]);
-    func_02149124(data_ov003_021da2f8[9]);
-    func_02149098(data_ov003_021da2f8[10]);
-    func_021492d8(data_ov003_021da2f8[12]);
+    GX_SetBankForBG(data_ov003_021da2f8[0]);
+    GX_SetBankForOBJ(data_ov003_021da2f8[1]);
+    GX_SetBankForBGExtPltt(data_ov003_021da2f8[2]);
+    GX_SetBankForOBJExtPltt(data_ov003_021da2f8[3]);
+    GX_SetBankForTex(data_ov003_021da2f8[4]);
+    GX_SetBankForTexPltt(data_ov003_021da2f8[5]);
+    GX_SetBankForClearImage(data_ov003_021da2f8[6]);
+    GX_SetBankForSubBG(data_ov003_021da2f8[7]);
+    GX_SetBankForSubOBJ(data_ov003_021da2f8[8]);
+    GX_SetBankForSubBGExtPltt(data_ov003_021da2f8[9]);
+    GX_SetBankForSubOBJExtPltt(data_ov003_021da2f8[10]);
+    GX_SetBankForLCDC(data_ov003_021da2f8[12]);
     *(u16 *) 0x4000050 = 0;
     *(u16 *) 0x4001050 = 0;
     *(u32 *) 0x4000010 = 0;
@@ -61,12 +61,12 @@ void func_ov003_021d3298(void) {
     vu32 d;
     vu32 f;
 
-    func_021492d8(0x1f3);
+    GX_SetBankForLCDC(0x1f3);
     a = 0;
     MemFillWordsByBlock(a, (void *) 0x6800000, 0x40000);
     b = 0;
     MemFillWordsByBlock(b, (void *) 0x6880000, 0x24000);
-    func_02148dac();
+    GX_DisableBankForLCDC();
     c = 0x200;
     MemFillWordsByBlock(c, (void *) 0x7000000, 0x400);
     d = 0;

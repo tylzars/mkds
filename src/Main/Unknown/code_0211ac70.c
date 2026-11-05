@@ -1362,7 +1362,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     gSelectRaceRule->mUnk_18 = func_02047a28(data_0216de38);
     gSelectRaceRule->mUnk_1c = FindSceneFile(data_0216de44);
     n = gSelectRaceRule->mBncl->mUnk_06;
-    e = func_02148ca0();
+    e = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 5; i++) {
         for (j = 0; j < 2; j++) {
             if (!(i == 3 && j == 1)) {

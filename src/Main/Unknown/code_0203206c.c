@@ -182,7 +182,7 @@ void func_02032654(void *a, s32 b, void *c, void *d) {
                       FindSceneFile);
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        k = func_02148cb8();
+        k = GX_GetSizeOfOBJ();
         o = data_02174e5c;
         func_02025b20(o, data_02163b38, data_02163b58, data_02163b78, data_02163b94, data_02163bb0, NULL,
                       FindSceneFile);
