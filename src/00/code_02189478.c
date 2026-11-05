@@ -8,7 +8,7 @@
 u8 func_ov000_021894c0(void) {
     int v1;
     v1 = func_ov000_02188584(1);
-    v1 = func_ov000_021892f4((u8 *) ((u8 *) (u32) (v1 + 10)));
+    v1 = func_ov000_021892f4((u8 *) (v1 + 10));
     if (v1 == 1) {
         return 0x12;
     }

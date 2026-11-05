@@ -6,6 +6,6 @@ void func_0204a910(Unk02175650 *p0) {
     p0->mUnk_08 = (u32) 0x2u;
 }
 
-void func_0204a904(void *p0) {
-    *(u32 *) ((u8 *) (u32) p0 + 8) = (u32) 0x0u;
+void func_0204a904(Unk02175650 *p0) {
+    p0->mUnk_08 = (u32) 0x0u;
 }

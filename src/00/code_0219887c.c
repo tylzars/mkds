@@ -3,8 +3,8 @@
 #include "00/unk_021b3000.h"
 #include "code_02134398.h"
 
-u16 GetSocketPort(void *a) {
-    return *(u16 *) ((u8 *) a + 8);
+u16 GetSocketPort(Gt2Socket *a) {
+    return a->mPort;
 }
 
 int func_ov000_021988dc(Gt2Connection *a) {
@@ -15,8 +15,8 @@ u32 GetSocketDescriptor(u32 *a) {
     return *a;
 }
 
-void SetUnmatchedDataCallback(int a, u32 b) {
-    *(u32 *) (a + 0x30) = b;
+void SetUnmatchedDataCallback(Gt2Socket *a, UnkWordFunc *b) {
+    a->mUnmatchedDataCallback = b;
     return;
 }
 

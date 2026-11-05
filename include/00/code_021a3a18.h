@@ -95,8 +95,8 @@ typedef struct Unk021a4a08 {
     /* 094 */ Unk021a4a08Func94 mUnk_094;
     /* 098 */ Unk021a4a08Func98 mUnk_098;
     /* 09c */ Unk021a4a08Func9c mUnk_09c;
-    /* 0a0 */ u32 mUnk_0a0;
-    /* 0a4 */ u32 mUnk_0a4;
+    /* 0a0 */ UnkFunc *mUnk_0a0;
+    /* 0a4 */ UnkFunc *mUnk_0a4;
     /* 0a8 */ Unk021a4a08Funca8 mUnk_0a8;
     /* 0ac */ u32 mUnk_0ac;
     /* 0b0 */ u32 mUnk_0b0;
@@ -153,7 +153,7 @@ void func_ov000_021a4868(Unk021a4a08 *a);
 void func_ov000_021a4940(Unk021a4a08 *a);
 void func_ov000_021a49a0(Unk021a4a08 *a);
 void func_ov000_021a49cc(void *a, void (*b)(void *, u16));
-void func_ov000_021a49e0(void *a, UnkFunc *b);
-void func_ov000_021a49f4(void *a, UnkFunc *b);
+void func_ov000_021a49e0(Unk021a4a08 *a, UnkFunc *b);
+void func_ov000_021a49f4(Unk021a4a08 *a, UnkFunc *b);
 // Declared here until the code that defines it is decompiled.
 Unk021a8f84 *func_ov000_021a8f84(const char *a);

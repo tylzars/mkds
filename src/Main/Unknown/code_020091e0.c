@@ -10,7 +10,7 @@
 #pragma thumb on
 
 void func_0200991c(void *p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) (&data_0216fc40))) + 0) = (u32) p0;
+    data_0216fc40 = p0;
 }
 
 #pragma thumb off
@@ -342,12 +342,11 @@ u32 func_020091fc(Unk02007ec4 *a) {
 
 #pragma thumb on
 
-void func_020091e0(void *p0, u32 p1) {
-    *(u16 *) ((u8 *) (u32) p0 + 10) = (u16) 0x20u;
-    *(u16 *) ((u8 *) (u32) p0 + 12) = (u16) p1;
-    *(u16 *) ((u8 *) (u32) p0 + 14) = (u16) (((((p1) & (0xffff0000u))) >> 16));
-    *(u16 *) ((u8 *) (u32) p0 + 16) =
-        (u16) (((u32) * (const u16 *) ((u8 *) (u32) (((((p0) + (0x0u))) + (0x48u))) + 0)));
+void func_020091e0(u16 *p0, u32 p1) {
+    p0[5] = (u16) 0x20u;
+    p0[6] = (u16) p1;
+    p0[7] = (u16) (((((p1) & (0xffff0000u))) >> 16));
+    p0[8] = (u16) (((u32) p0[0x24]));
 }
 
 #pragma thumb off

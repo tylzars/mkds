@@ -45,7 +45,7 @@ void func_ov001_02180800(void) {
 
     if (data_ov001_021a99e4->mUnk_0008 != 0) {
         func_ov001_02180ca4();
-        func_ov001_02180c88((u32) mtx);
+        func_ov001_02180c88(mtx);
         switch (data_ov001_021a99e4->mUnk_0004) {
             case 0:
                 func_ov001_02180c6c((u32) 1);

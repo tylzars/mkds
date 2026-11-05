@@ -20,7 +20,6 @@ void func_ov003_021bf364(u32 c) {
     s32 n;
     s32 i;
     u8 *a;
-    s32 b;
 
     n = data_ov003_021d5ecc[c];
     data_ov003_021da108 = func_ov003_021d283c(0x1c, 4);
@@ -29,12 +28,10 @@ void func_ov003_021bf364(u32 c) {
     i = 0;
     if (n > 0) {
         a = data_ov003_021d5edc + c * 2;
-        b = i;
         do {
-            *(u32 *) ((u8 *) data_ov003_021da108 + b) = (u32) func_ov003_021d1be4(0, *a, 1);
-            func_ov003_021d1790(*(Unk021d1770 **) ((u8 *) data_ov003_021da108 + b), -1, 1);
+            data_ov003_021da108->mUnk_00[i] = (u32) func_ov003_021d1be4(0, *a, 1);
+            func_ov003_021d1790((Unk021d1770 *) data_ov003_021da108->mUnk_00[i], -1, 1);
             a++;
-            b += 4;
             i++;
         } while (i < n);
     }

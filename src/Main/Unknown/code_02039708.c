@@ -13,8 +13,7 @@ void func_02039728(Unk02175628 *p0) {
     p0->mRepeatIntervalLimit = (u16) 0x8u;
     p0->mUnk_12 = (u16) 0x0u;
     p0->mUnk_14 = (u16) 0x0u;
-    *(u32 *) ((u8 *) p0 + 24) = (u32) 0x0u;
-    *(u32 *) ((u8 *) p0 + 28) = (u32) 0x0u;
+    p0->mUnk_18 = 0;
     p0->mUnk_20 = (u32) 0x0u;
     p0->mUnk_24 = (u32) 0x0u;
 }

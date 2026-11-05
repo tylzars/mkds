@@ -556,7 +556,6 @@ void func_ov003_021c105c(Unk021d34e0 *param_1) {
 
 void func_ov003_021c0fd8(u32 a) {
     int v1;
-    int v2;
     func_ov003_021d34c8(0, a);
     v1 = 0;
     do {
@@ -570,19 +569,15 @@ void func_ov003_021c0fd8(u32 a) {
         v1 = v1 + 1;
     } while (v1 < 2);
     v1 = 0;
-    v2 = 0;
     do {
-        func_ov003_021d2f00((u32 *) (u32) (*(u32 *) ((u8 *) data_ov003_021da160 + v2 + 0x38)));
-        v2 = v2 + 4;
+        func_ov003_021d2f00((u32 *) data_ov003_021da160->mUnk_38[v1]);
         v1 = v1 + 1;
     } while (v1 < 2);
-    v2 = 0;
     v1 = 0;
     do {
-        func_ov003_021d2f00((u32 *) (u32) (*(u32 *) ((u8 *) data_ov003_021da160 + v1 + 0x10)));
-        v1 = v1 + 4;
-        v2 = v2 + 1;
-    } while (v2 < 10);
+        func_ov003_021d2f00((u32 *) data_ov003_021da160->mUnk_10[v1]);
+        v1 = v1 + 1;
+    } while (v1 < 10);
     func_ov003_021d2808(&data_ov003_021da160);
     return;
 }

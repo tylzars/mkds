@@ -133,7 +133,7 @@ void func_02008e10(u8 *a, u32 b, u32 c) {
     e->mUnk_4b8 = data_0216fc3c->mUnk_00;
     e->mUnk_4b5 = data_0216fc3c->mUnk_04_2;
     e->mUnk_58c = c;
-    func_020091e0(e->mUnk_4c0, e->mUnk_4b8);
+    func_020091e0((u16 *) e->mUnk_4c0, e->mUnk_4b8);
     if (data_0216fc3c->mUnk_04 == 2) {
         func_02008aa0(b);
     } else {

@@ -58,8 +58,8 @@ static inline void func_02043c14_inline(void) {
         p->mRequestedBits = 0;
         p->mUnk_44 = 0;
         p->mBitMask = 0x2fff;
-        func_0204a9e4((u32) &p->mUnk_28);
-        func_020470c4((u32) &p->mUnk_48);
+        func_0204a9e4((Unk02175650 *) &p->mUnk_28);
+        func_020470c4((Unk02175628_48 *) &p->mUnk_48);
     }
     data_02175628[8].mSourceKind = 5;
     data_02175628[9].mSourceKind = 6;
@@ -235,7 +235,7 @@ void func_02043d10(void *a) {
         func_0204aa04((u32) &data_02175628[i].mUnk_28, (u32) a);
     }
     for (; i < 10; i++) {
-        func_0204a9f8((u32) &data_02175628[i].mUnk_28);
+        func_0204a9f8((Unk02175650 *) &data_02175628[i].mUnk_28);
     }
     data_02175624 = HeapAlloc(a, 0x10);
     func_02043c14_inline();

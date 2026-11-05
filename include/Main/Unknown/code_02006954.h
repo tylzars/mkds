@@ -39,7 +39,7 @@ s32 func_02006fdc(s32 a);
 unsigned int func_02006ffc(void);
 void func_02007008(unsigned int p0);
 Unk02007014 *func_02007014(u32 a);
-void func_02007034(unsigned int p0);
+void func_02007034(Unk02007014 *p0);
 Unk02007014 *func_02007040(void);
 u32 func_0200704c(const Unk0216f3dc_9c *a);
 unsigned int func_020070b0(void);

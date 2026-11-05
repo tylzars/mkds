@@ -18,7 +18,7 @@ void func_ov003_021cca30(const void *b) {
 }
 
 void func_ov003_021cca10(void) {
-    func_ov003_021d34c0(1, *(u32 *) ((u8 *) data_ov003_021da25c + 0x0));
+    func_ov003_021d34c0(1, data_ov003_021da25c->mUnk_000);
     func_ov003_021d2808(&data_ov003_021da25c);
 }
 

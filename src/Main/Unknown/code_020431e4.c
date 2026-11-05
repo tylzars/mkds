@@ -58,8 +58,8 @@ void func_02043410(void) {
         p->mRequestedBits = 0;
         p->mUnk_44 = 0;
         p->mBitMask = 0x2fff;
-        func_0204a9e4((u32) &p->mUnk_28);
-        func_020470c4((u32) &p->mUnk_48);
+        func_0204a9e4((Unk02175650 *) &p->mUnk_28);
+        func_020470c4((Unk02175628_48 *) &p->mUnk_48);
     }
     z = data_0217aa00;
     if (func_020431e4_inline(z) != 0) {
@@ -92,8 +92,8 @@ void func_020431e4(void) {
         p->mRequestedBits = 0;
         p->mUnk_44 = 0;
         p->mBitMask = 0x2fff;
-        func_0204a9e4((u32) &p->mUnk_28);
-        func_020470c4((u32) &p->mUnk_48);
+        func_0204a9e4((Unk02175650 *) &p->mUnk_28);
+        func_020470c4((Unk02175628_48 *) &p->mUnk_48);
     }
     data_02175628[8].mSourceKind = 5;
     data_02175628[9].mSourceKind = 6;

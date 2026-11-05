@@ -86,19 +86,19 @@ s32 func_ov000_021a4a08(Unk021a4a08 **a, s32 b, s32 c, const char *d, const char
     return 3;
 }
 
-void func_ov000_021a49f4(void *a, UnkFunc *b) {
+void func_ov000_021a49f4(Unk021a4a08 *a, UnkFunc *b) {
     if (a == NULL) {
         a = data_ov000_021b426c;
     }
-    *(UnkFunc **) ((u8 *) a + 0xa0) = b;
+    a->mUnk_0a0 = b;
     return;
 }
 
-void func_ov000_021a49e0(void *a, UnkFunc *b) {
+void func_ov000_021a49e0(Unk021a4a08 *a, UnkFunc *b) {
     if (a == NULL) {
         a = data_ov000_021b426c;
     }
-    *(UnkFunc **) ((u8 *) a + 0xa4) = b;
+    a->mUnk_0a4 = b;
     return;
 }
 

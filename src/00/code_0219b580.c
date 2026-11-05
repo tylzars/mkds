@@ -430,7 +430,7 @@ s32 func_ov000_0219ba20(void) {
         return r;
     }
     func_ov000_02198a84(data_ov000_021b54c8->mUnk_00, func_ov000_021a1ca8);
-    SetUnmatchedDataCallback((s32) data_ov000_021b54c8->mUnk_00, (u32) func_ov000_021a1e40);
+    SetUnmatchedDataCallback(data_ov000_021b54c8->mUnk_00, (UnkWordFunc *) func_ov000_021a1e40);
     return r;
 }
 

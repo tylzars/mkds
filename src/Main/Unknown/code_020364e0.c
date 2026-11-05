@@ -30,6 +30,6 @@ void *func_020364e8(void) {
     return data_02174e70;
 }
 
-void *GetHeap(void *a) {
-    return *(void **) ((u8 *) a + 12);
+void *GetHeap(Unk02036590 *a) {
+    return a->mHeap;
 }

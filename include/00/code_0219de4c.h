@@ -10,7 +10,7 @@ typedef struct Unk021b566c {
     /* 00d */ u8 mUnk_0d;
     /* 00e */ u8 mUnk_0e;
     /* 00f */ u8 mUnk_0f;
-    /* 010 */ void *mUnk_10;
+    /* 010 */ struct Unk021a4a08 *mUnk_10;
     /* 014 */ u8 mUnk_14;
     /* 015 */ volatile u8 mUnk_15;
     /* 016 */ u8 mUnk_16;

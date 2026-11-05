@@ -66,8 +66,8 @@ Unk02007014 *func_02007040(void) {
     return data_0216f3d8;
 }
 
-void func_02007034(u32 p0) {
-    *(u32 *) ((u8 *) (u32) (((u32) (&data_0216f3d8))) + 0) = p0;
+void func_02007034(Unk02007014 *p0) {
+    data_0216f3d8 = p0;
 }
 
 #pragma thumb off
@@ -165,7 +165,7 @@ s32 func_02006e74(Unk02007014 *a, u32 b, const void *c, u8 *d, u32 e, u16 f) {
     u32 v2;
     v2 = IrqDisable();
     if (func_02007040() == NULL) {
-        func_02007034((u32) a);
+        func_02007034(a);
     } else {
         for (v1 = func_02007040(); v1->mUnk_28 != NULL; v1 = v1->mUnk_28) {
         }
@@ -201,7 +201,7 @@ Unk02007014 *func_02006df8(u32 a) {
         return NULL;
     }
     if (v1->mUnk_00 == a) {
-        func_02007034((u32) v1->mUnk_28);
+        func_02007034(v1->mUnk_28);
         IrqRestore(v3);
         return v1;
     }
@@ -383,7 +383,7 @@ void func_02006aac(s32 a, s32 b, void (*c)(Unk0216f3dc_9c *)) {
     }
     data_0216f3c8 = 1;
     func_02007008(0);
-    func_02007034(0);
+    func_02007034(NULL);
     v2 = func_020070b8();
     v2->mUnk_000.mUnk_00 = 0;
     v2->mUnk_000.mUnk_08 = 0;
@@ -416,7 +416,7 @@ void func_02006a10(void (*a)(Unk0216f3dc_9c *)) {
     }
     data_0216f3c8 = 1;
     func_02007008(-1);
-    func_02007034(0);
+    func_02007034(NULL);
     v2 = func_020070b8();
     v2->mUnk_000.mUnk_00 = 0;
     v2->mUnk_000.mUnk_08 = 0;
@@ -449,7 +449,7 @@ void func_02006974(void) {
     }
     data_0216f3c8 = 0;
     func_02007008(-1);
-    func_02007034(0);
+    func_02007034(NULL);
     v2 = func_020070b8();
     v2->mUnk_000.mUnk_00 = 0;
     v2->mUnk_000.mUnk_08 = 0;

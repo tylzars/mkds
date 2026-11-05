@@ -55,8 +55,7 @@ u32 func_0202a360(void) {
             break;
     }
     if (data_021759c0->mUseTeams != 0) {
-        v = v * 0x30;
-        r6 = *(s32 *) ((u8 *) data_021759c0 + v + 0x74);
+        r6 = data_021759c0->mCurrentEntries[v].mUnk_08.mTeamIndex;
         switch (data_021759c0->mUnk_1c) {
             case 1:
                 r4 = func_0202a360_inline(0)->mUnk_02;

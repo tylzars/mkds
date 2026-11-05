@@ -305,7 +305,7 @@ void func_0203e9a0(Unk0217561c_14 *a, s32 b) {
             func_0204a928(&data_02175628[c].mUnk_28);
             break;
         case 1:
-            func_0204a904(&data_02175628[c].mUnk_28);
+            func_0204a904((Unk02175650 *) &data_02175628[c].mUnk_28);
             break;
     }
     a->mUnk_30 |= 8;
