@@ -46,7 +46,7 @@ void func_020515b0(u32 a) {
 
 void func_02051528(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
-    if (a->mUnk_02 != 0 && a->mUnk_02 != 7) {
+    if (a->mResultCode != 0 && a->mResultCode != 7) {
         return;
     }
     if (func_02050650_inline() == 1) {
@@ -65,7 +65,7 @@ void func_020514c0(void) {
 
     data_0217aa00->mUnk_000c = 0x11;
     data_0217aa00->mUnk_0010 = 1;
-    r = func_02145030(data_0217aa00->mUnk_15bc);
+    r = WM_EndDataSharing(data_0217aa00->mUnk_15bc);
     data_0217aa00->mUnk_0010 = 0;
     if (r == 0) {
         return;
@@ -87,7 +87,7 @@ void func_02051400(Unk021425e8 *a) {
 
     data_0217aa00->mUnk_0010 = 0;
     data_0217aa00->mUnk_0454 &= ~1;
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         func_020533a0();
         return;
     }
@@ -108,7 +108,7 @@ void func_020513ac(void) {
 
 void func_02051364(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         func_020533a0();
     } else {
         func_02053fa8();
@@ -160,7 +160,7 @@ void func_02051230(void) {
 void func_02051108(Unk021425e8 *a) {
     u16 v;
 
-    switch (a->mUnk_02) {
+    switch (a->mResultCode) {
         case 0:
         case 7:
             data_0217aa00->mUnk_0010 = 0;
@@ -272,7 +272,7 @@ void func_02050ec0(void) {
 
 void func_02050e80(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         data_0217aa00->mUnk_0008 = 8;
         data_0217aa00->mUnk_0010 = 0;
     } else {
@@ -444,7 +444,7 @@ void func_0205081c(u32 a, Unk0205081c *b) {
 void func_02050764(Unk021425e8 *a) {
     Unk0205081c v1;
 
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         return;
     }
     if (a->mUnk_0c == 0) {

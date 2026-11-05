@@ -338,7 +338,7 @@ void func_0212a99c(void) {
         data_0217d404->mUnk_014[n] = 0;
         v = 0;
         if (data_0217aa00->mUnk_0004 != 0) {
-            v = func_021431d8();
+            v = WM_GetLinkLevel();
         }
         data_0217d404->mUnk_01c[n] = v;
     } else if (data_0217d404->mUnk_000[4] != 0) {

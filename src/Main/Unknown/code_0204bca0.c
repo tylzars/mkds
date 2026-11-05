@@ -860,7 +860,7 @@ void func_0204c28c(u32 a, u32 b, u32 c, u32 d) {
     v1->mUnk_0028 = 0;
     v1->mUnk_002c = 0xe;
     data_usa_02175e80 = 0;
-    if (func_0214358c(v2, func_0204cc94, NULL) != 0) {
+    if (WM_SetPortCallback(v2, func_0204cc94, NULL) != 0) {
         IrqDisableLoopForever();
     }
 }
@@ -983,7 +983,7 @@ void func_0204be0c(void) {
     data_02175ec0.mUnk_0004 = TRUE;
     if (data_02175ec0.mUnk_0000 == 0) {
         w = (Unk021762e0 *) &data_usa_021762e0;
-        func_02143520(w->mUnk_0340);
+        WM_ReadStatus(w->mUnk_0340);
         func_02007008(w->mUnk_04c4);
         func_02006ddc(1, (void (*)(Unk0216f3dc_9c *)) func_0204c320);
     } else {
@@ -1040,7 +1040,7 @@ void func_0204bcec(void) {
             func_0204ba8c();
         }
         func_02006974();
-        func_0214358c(data_02175ec0.mUnk_0030, NULL, NULL);
+        WM_SetPortCallback(data_02175ec0.mUnk_0030, NULL, NULL);
         data_usa_02175e84 = 0;
     }
     IrqRestore(s);

@@ -18,9 +18,10 @@ typedef struct Unk021da26c_1648 {
     /* 38 */ u8 mUnk_38[0xc];
 } Unk021da26c_1648;
 
-// Buffer func_02143520 fills; mUnk_00 is the value func_ov003_021cd118 waits for.
+// Buffer WM_ReadStatus fills; mUnk_00 is the value func_ov003_021cd118 waits for.
 typedef struct Unk021da26c_168c {
-    /* 00 */ u16 mUnk_00;
+    // Same bytes as the mState member of Unk02142988.
+    /* 00 */ u16 mState;
     /* 02 */ u8 mUnk_02[0x7ba];
 } Unk021da26c_168c;
 

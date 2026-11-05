@@ -211,7 +211,7 @@ void func_02058820(void) {
     u32 j;
     u32 n;
 
-    func_0214358c(14, (UnkFunc *) func_02059920, NULL);
+    WM_SetPortCallback(14, (UnkFunc *) func_02059920, NULL);
     if (func_02058820_inline() == 1) {
         func_020518c8(0);
     }
@@ -423,7 +423,7 @@ void func_020583c4(void) {
 void func_02058338(void) {
     u8 i;
 
-    func_0214358c(14, NULL, NULL);
+    WM_SetPortCallback(14, NULL, NULL);
     data_0217aa00->mUnk_043c = data_0217aa00->mUnk_045c[0].mUnk_228_4;
     if (*(u16 *) 0x027ffc40 == 2) {
         data_021759d0->mUnk_04 = data_0217aa00->mUnk_043c;

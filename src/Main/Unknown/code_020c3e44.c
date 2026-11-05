@@ -372,7 +372,7 @@ void func_020c525c(void) {
             data_0217b3ec->mUnk_10 = 0;
         }
     } else {
-        data_0217b3ec->mUnk_00 = data_0217aa00->mUnk_0004 == 0 ? 0 : func_021431d8();
+        data_0217b3ec->mUnk_00 = data_0217aa00->mUnk_0004 == 0 ? 0 : WM_GetLinkLevel();
     }
 }
 

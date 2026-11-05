@@ -188,7 +188,7 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
             IrqRestore(v1);
             return 1;
     }
-    switch (func_02142e78(data_ov000_021b5f50, (u16) data_ov000_021b5f50->mUnk_226c)) {
+    switch (WM_Init(data_ov000_021b5f50, (u16) data_ov000_021b5f50->mUnk_226c)) {
         case 3:
             func_ov000_021a57fc(0xb);
             IrqRestore(v1);
@@ -207,8 +207,8 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
         case 0:
             break;
     }
-    if (func_02143280() == 0) {
-        if (func_02142c24() != 0) {
+    if (WM_GetAllowedChannel() == 0) {
+        if (WM_Finish() != 0) {
             func_ov000_021a57fc(0xb);
             IrqRestore(v1);
             return 7;
@@ -216,7 +216,7 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
         IrqRestore(v1);
         return 5;
     }
-    if (func_021435e8(func_ov000_021a56e4) != 0) {
+    if (WM_SetIndCallback(func_ov000_021a56e4) != 0) {
         func_ov000_021a57fc(0xb);
         IrqRestore(v1);
         return 7;
@@ -519,11 +519,11 @@ s32 func_ov000_021a5c24(void) {
         func_ov000_021a57fc(0xd);
         data_ov000_021b5f50->mUnk_2280 = 9;
     } else {
-        p = func_0214259c();
+        p = GetStatusArea();
         DC_InvalidateRange(p, 2);
-        switch (p->mUnk_000) {
+        switch (p->mState) {
             case 0:
-                r = func_02142c24();
+                r = WM_Finish();
                 if (r == 0) {
                     func_ov000_021a57fc(1);
                     data_ov000_021b5f50->mUnk_2280 = 0;
@@ -651,7 +651,7 @@ void func_ov000_021a5948(const void *a, const u8 *b, u32 c) {
     data_ov000_021b5f50->mUnk_2288.mUnk_06 = (1 << func_ov000_021a58dc(0)) >> 1;
     v = data_ov000_021b5f50->mUnk_2268;
     if (v == 0) {
-        v = func_02143090();
+        v = WM_GetDispersionScanPeriod();
     }
     data_ov000_021b5f50->mUnk_2288.mUnk_08 = v;
     data_ov000_021b5f50->mUnk_2288.mUnk_10 = (data_ov000_021b5f50->mUnk_2264 & 0x300000) != 0x300000;
@@ -763,7 +763,7 @@ void func_ov000_021a574c(void) {
 }
 
 void func_ov000_021a56e4(Unk021425e8 *v1) {
-    if (v1->mUnk_02 == 8 && v1->mUnk_04 == 0x16 && v1->mUnk_06 == 0x25) {
+    if (v1->mResultCode == 8 && v1->mUnk_04 == 0x16 && v1->mUnk_06 == 0x25) {
         switch (data_ov000_021b5f50->mUnk_2260) {
             case 8:
                 func_ov000_021a57fc(0xc);
@@ -783,14 +783,14 @@ void func_ov000_021a54b0(Unk021425e8 *v1) {
     Unk021b5f50 *g;
     s32 r = 0x14;
 
-    switch (v1->mUnk_02) {
+    switch (v1->mResultCode) {
         case 0:
-            switch (v1->mUnk_00) {
+            switch (v1->mCommand) {
                 case 3:
                     r = WM_PowerOn(func_ov000_021a54b0);
                     break;
                 case 4:
-                    switch (func_02142c24()) {
+                    switch (WM_Finish()) {
                         case 0:
                             func_ov000_021a57fc(1);
                             func_ov000_021a58a4(0, NULL, 0, 0x663);
@@ -956,7 +956,7 @@ void func_ov000_021a52b0(Unk021a5088 *v1) {
 }
 
 void func_ov000_021a524c(Unk021425e8 *v1) {
-    switch (v1->mUnk_02) {
+    switch (v1->mResultCode) {
         case 0:
             func_ov000_021a57fc(3);
             func_ov000_021a58a4(0, 0, 0, 0x774);
@@ -1058,7 +1058,7 @@ void func_ov000_021a5088(Unk021a5088 *v1) {
 }
 
 void func_ov000_021a4fe0(Unk021425e8 *v1) {
-    switch (v1->mUnk_02) {
+    switch (v1->mResultCode) {
         case 0:
             if (data_ov000_021b5f50->mUnk_2260 == 0xc) {
                 func_ov000_021a57fc(0xa);
@@ -1084,7 +1084,7 @@ void func_ov000_021a4fe0(Unk021425e8 *v1) {
 }
 
 void func_ov000_021a4f10(Unk021425e8 *v1) {
-    switch (v1->mUnk_02) {
+    switch (v1->mResultCode) {
         case 0:
             switch (v1->mUnk_04) {
                 case 0xe:
@@ -1117,7 +1117,7 @@ void func_ov000_021a4f10(Unk021425e8 *v1) {
 void func_ov000_021a4e28(Unk021425e8 *v1) {
     s32 a;
 
-    switch (v1->mUnk_02) {
+    switch (v1->mResultCode) {
         case 0:
             if (data_ov000_021b5f50->mUnk_2260 == 0xc) {
                 func_ov000_021a57fc(0xa);
@@ -1162,7 +1162,7 @@ void func_ov000_021a4bc4(Unk021425e8 *v1) {
     s32 e;
     u16 f;
 
-    if (v1->mUnk_02 == 0) {
+    if (v1->mResultCode == 0) {
         data_ov000_021b5f50->mUnk_226b = 0;
         data_ov000_021b5f50->mUnk_2282 = 0;
         switch (data_ov000_021b5f50->mUnk_2260) {

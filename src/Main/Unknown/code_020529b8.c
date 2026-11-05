@@ -125,7 +125,7 @@ void func_02053ab0(void) {
     }
     p->mUnk_06_7 = data_021759c4->mUnk_30_3;
     p->mUnk_02 = func_02046c10();
-    r = func_02144c6c(data_0217aa00->mUnk_15bc, p, data_0217aa00->mUnk_15c0);
+    r = WM_StepDataSharing(data_0217aa00->mUnk_15bc, p, data_0217aa00->mUnk_15c0);
     if (r == 0) {
         if (data_0217aa00->mUnk_0004 == 8) {
             data_0217aa00->mUnk_15f7 = 0;
@@ -147,7 +147,7 @@ BOOL func_0205373c(void) {
     u16 v;
 
     q = &data_0217aa00->mUnk_15bc_view;
-    data_0217aa00->mUnk_1606 = data_0217aa00->mUnk_15bc->mUnk_000[data_0217aa00->mUnk_15bc->mUnk_808].mUnk_02;
+    data_0217aa00->mUnk_1606 = data_0217aa00->mUnk_15bc->mUnk_000[data_0217aa00->mUnk_15bc->mUnk_808].mArrivedMembers;
     data_0217aa00->mUnk_0454 &= ~0x10;
     switch (data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) {
         case 1:
@@ -188,7 +188,7 @@ BOOL func_0205373c(void) {
             break;
     }
     v1 = TRUE;
-    v2 = func_0214461c(data_0217aa00->mUnk_15bc, data_0217aa00->mUnk_15c0, 0);
+    v2 = WM_GetSharedDataAddress(data_0217aa00->mUnk_15bc, data_0217aa00->mUnk_15c0, 0);
     if (v2 != NULL) {
         m = v2[4];
         if (m != 0) {
@@ -214,7 +214,7 @@ BOOL func_0205373c(void) {
     if (v1 != FALSE) {
         for (i = 1; i < 8; i++) {
             if ((data_0217aa00->mUnk_15f6 & (1 << i)) != 0) {
-                v2 = func_0214461c(data_0217aa00->mUnk_15bc, data_0217aa00->mUnk_15c0, i);
+                v2 = WM_GetSharedDataAddress(data_0217aa00->mUnk_15bc, data_0217aa00->mUnk_15c0, i);
                 if (v2 != NULL) {
                     MemCopy(v2, &buf[i], 8);
                 } else {
@@ -246,16 +246,16 @@ void func_020536e0(void) {
 void func_02053664(Unk021425e8 *a) {
     s32 r;
 
-    r = func_0214358c(0xf, func_02050764, NULL);
+    r = WM_SetPortCallback(0xf, func_02050764, NULL);
     data_0217aa00->mUnk_0010 = 0;
     if (r != 0) {
         return;
     }
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         return;
     }
     if (data_0217aa00->mUnk_1d00 != 0) {
-        func_0214358c(1, func_0204ed04, NULL);
+        WM_SetPortCallback(1, func_0204ed04, NULL);
     }
     func_02053fa8();
 }
@@ -346,7 +346,7 @@ void func_020533a0(void) {
 
 void func_02053348(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         data_0217aa00->mUnk_0008 = 1;
         data_0217aa00->mUnk_0010 = 0;
     } else {
@@ -364,7 +364,7 @@ void func_020532dc(s32 a) {
 
 void func_0205329c(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         func_020533a0();
     }
 }
@@ -377,7 +377,7 @@ void func_02053094(u16 a) {
     data_0217aa00->mUnk_000c = 4;
     data_0217aa00->mUnk_0010 = 1;
     n = a;
-    r = func_02143280();
+    r = WM_GetAllowedChannel();
     if (r == 0) {
         data_0217aa00->mUnk_0010 = 0;
         data_0217aa00->mUnk_0008 = 3;
@@ -422,7 +422,7 @@ void func_02053094(u16 a) {
 void func_02053020(Unk021425e8 *a) {
     s16 *p;
 
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         func_020533a0();
         return;
     }
@@ -567,7 +567,7 @@ void func_02052bf8(void) {
 
 void func_02052bb8(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         func_020533a0();
     }
 }
@@ -589,7 +589,7 @@ void func_020529b8(Unk021425e8 *a) {
     u16 v;
     u32 n;
 
-    if (a->mUnk_02 == 0) {
+    if (a->mResultCode == 0) {
         switch (a->mUnk_08_0) {
             case 7:
                 func_02050d80(a->mUnk_10, &a->mUnk_0a[0], (Unk0217aa00_45c *) a->mUnk_14);

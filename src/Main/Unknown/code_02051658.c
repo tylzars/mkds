@@ -37,7 +37,7 @@ void func_020527c0(s32 a, s32 (*b)(), s32 (*c)()) {
     p->mUnk_0000 = 2;
     data_0217aa00->mUnk_000c = 7;
     data_0217aa00->mUnk_0010 = 1;
-    m = func_02143280();
+    m = WM_GetAllowedChannel();
     if (m == 0) {
         data_0217aa00->mUnk_0010 = 0;
         data_0217aa00->mUnk_0008 = 3;
@@ -73,7 +73,7 @@ void func_020527c0(s32 a, s32 (*b)(), s32 (*c)()) {
         q->mUnk_08[5] = s->mUnk_380[5];
         s->mUnk_38c = s->mUnk_38c - 1;
     }
-    q->mUnk_06 = func_02143090();
+    q->mUnk_06 = WM_GetDispersionScanPeriod();
     if (WM_StartScan(func_02051f00, q) != 2) {
         data_0217aa00->mUnk_0436 &= ~1;
         func_020533a0();
@@ -247,7 +247,7 @@ void func_02051f00(Unk021425e8 *a) {
     if (data_0217aa00->mUnk_000c != 7) {
         return;
     }
-    if (a->mUnk_02 == 0) {
+    if (a->mResultCode == 0) {
         switch (a->mUnk_08_0) {
             case 5:
                 DC_InvalidateRange(data_0217aa00->mUnk_0028, 0xc0);
@@ -343,7 +343,7 @@ void func_02051e98(void) {
 
 void func_02051e58(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
-    if (a->mUnk_02 == 0) {
+    if (a->mResultCode == 0) {
         return;
     }
     func_020533a0();
@@ -382,7 +382,7 @@ void func_02051ad4(Unk021425e8 *a) {
     Unk020f41c4_B *p;
 
     r = FALSE;
-    switch (a->mUnk_02) {
+    switch (a->mResultCode) {
         case 0:
             switch (a->mUnk_08_0) {
                 case 7:
@@ -474,7 +474,7 @@ void func_02051a24(void) {
 }
 
 void func_02051958(Unk021425e8 *a) {
-    switch (a->mUnk_02) {
+    switch (a->mResultCode) {
         case 0:
             switch (a->mUnk_04) {
                 case 0xa:
@@ -518,7 +518,7 @@ void func_020518c8(u32 a) {
 
 void func_02051894(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         data_0217aa00->mUnk_0008 = 2;
         data_0217aa00->mUnk_0010 = 0;
     }
@@ -541,7 +541,7 @@ void func_02051814(s32 a) {
 
 void func_020517d4(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
-    if (a->mUnk_02 == 0) {
+    if (a->mResultCode == 0) {
         return;
     }
     func_020533a0();
@@ -552,7 +552,7 @@ void func_02051734(void) {
 
     data_0217aa00->mUnk_000c = 0xe;
     data_0217aa00->mUnk_0010 = 1;
-    r = func_021450ec(data_0217aa00->mUnk_15bc, 0xc, 0xff, 8, 1);
+    r = WM_StartDataSharing(data_0217aa00->mUnk_15bc, 0xc, 0xff, 8, 1);
     data_0217aa00->mUnk_0010 = 0;
     if (r != 0) {
         data_0217aa00->mUnk_0008 = 2;

@@ -18,8 +18,8 @@ s32 WM_StartDCF(Unk021425e8Func a, void *b, u32 c) {
     if (r != 0) {
         return r;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_010, 4);
-    if (p->mUnk_004->mUnk_010 == 1) {
+    DC_InvalidateRange(&p->mStatusArea->mUnk_010, 4);
+    if (p->mStatusArea->mUnk_010 == 1) {
         return 3;
     }
     if (c < 0x10) {
@@ -47,8 +47,8 @@ s32 WM_SetDCFData(Unk021425e8Func a, const void *b, void *c, u32 d) {
     if (r != 0) {
         return r;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_010, 4);
-    if (p->mUnk_004->mUnk_010 == 0) {
+    DC_InvalidateRange(&p->mStatusArea->mUnk_010, 4);
+    if (p->mStatusArea->mUnk_010 == 0) {
         return 3;
     }
     if (d > 0x5e4) {
@@ -73,8 +73,8 @@ s32 WM_EndDCF(Unk021425e8Func a) {
     if (r != 0) {
         return r;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_010, 4);
-    if (p->mUnk_004->mUnk_010 == 0) {
+    DC_InvalidateRange(&p->mStatusArea->mUnk_010, 4);
+    if (p->mStatusArea->mUnk_010 == 0) {
         return 3;
     }
     SetCommandCallback(0x13, (u32) a);
@@ -95,25 +95,25 @@ s32 WM_StartMPEx(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u3
     if (r != 0) {
         return r;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_184, 2);
-    DC_InvalidateRange(&p->mUnk_004->mUnk_0c2, 2);
-    if (p->mUnk_004->mUnk_184 != 0) {
-        if (p->mUnk_004->mUnk_0c2 != 1) {
+    DC_InvalidateRange(&p->mStatusArea->mOwnMemberIndex, 2);
+    DC_InvalidateRange(&p->mStatusArea->mUnk_0c2, 2);
+    if (p->mStatusArea->mOwnMemberIndex != 0) {
+        if (p->mStatusArea->mUnk_0c2 != 1) {
             return 3;
         }
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
-    if (p->mUnk_004->mUnk_00c == 1) {
+    DC_InvalidateRange(&p->mStatusArea->mUnk_00c, 4);
+    if (p->mStatusArea->mUnk_00c == 1) {
         return 3;
     }
-    if (c < func_021433b0()) {
+    if (c < WM_GetMPReceiveBufferSize()) {
         return 6;
     }
     if ((c & 0x3f) != 0) {
         return 6;
     }
     w = e;
-    if (w < func_0214349c()) {
+    if (w < WM_GetMPSendBufferSize()) {
         return 6;
     }
     if ((w & 0x1f) != 0) {
@@ -151,18 +151,18 @@ s32 WM_SetMPDataToPortEx(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 
     s32 flag;
 
     w = 1;
-    q = GetWorkBuffer()->mUnk_004;
+    q = GetWorkBuffer()->mStatusArea;
     r = GetErrorUnlessStateIsOneOf(2, 9, 10);
     if (r != 0) {
         return r;
     }
     DC_InvalidateRange(&q->mUnk_18e, 2);
     v = q->mUnk_18e;
-    DC_InvalidateRange(&q->mUnk_184, 2);
-    flag = q->mUnk_184 == 0 ? w : 0;
+    DC_InvalidateRange(&q->mOwnMemberIndex, 2);
+    flag = q->mOwnMemberIndex == 0 ? w : 0;
     if (flag == 1) {
-        DC_InvalidateRange(&q->mUnk_17e, 2);
-        w = q->mUnk_17e;
+        DC_InvalidateRange(&q->mConnectedChildren, 2);
+        w = q->mConnectedChildren;
         DC_InvalidateRange(&q->mUnk_086, 2);
     }
     if (c == 0) {
@@ -198,8 +198,8 @@ s32 WM_EndMP(Unk021425e8Func a) {
     if (r != 0) {
         return r;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
-    if (p->mUnk_004->mUnk_00c == 0) {
+    DC_InvalidateRange(&p->mStatusArea->mUnk_00c, 4);
+    if (p->mStatusArea->mUnk_00c == 0) {
         return 3;
     }
     SetCommandCallback(0x10, (u32) a);
@@ -220,7 +220,7 @@ s32 WM_Enable(Unk021425e8Func a) {
     }
     SetCommandCallback(3, (u32) a);
     p = GetWorkBuffer();
-    r = SendCommandMessage(3, 3, p->mUnk_000, p->mUnk_004, p->mUnk_010);
+    r = SendCommandMessage(3, 3, p->mUnk_000, p->mStatusArea, p->mMessageArea);
     if (r == 0) {
         return 2;
     }
@@ -276,13 +276,13 @@ s32 WM_Initialize(void *a, Unk021425e8Func b, u32 c) {
     Unk02142aa8 *p;
     s32 r;
 
-    r = func_02142e78(a, c);
+    r = WM_Init(a, c);
     if (r != 0) {
         return r;
     }
     SetCommandCallback(0, (u32) b);
     p = GetWorkBuffer();
-    r = SendCommandMessage(0, 3, p->mUnk_000, p->mUnk_004, p->mUnk_010);
+    r = SendCommandMessage(0, 3, p->mUnk_000, p->mStatusArea, p->mMessageArea);
     if (r == 0) {
         return 2;
     }
@@ -415,7 +415,7 @@ s32 WM_StartScan(Unk021425e8Func a, Unk02143a78 *b) {
         return 6;
     }
     SetCommandCallback(0xa, (u32) a);
-    pk = (Unk02143a78_0c *) GetWorkBuffer()->mUnk_00c;
+    pk = (Unk02143a78_0c *) GetWorkBuffer()->mRequestArea;
     pk->mUnk_00 = 0xa;
     pk->mUnk_02 = b->mUnk_04;
     pk->mUnk_04 = b->mUnk_00;
@@ -464,7 +464,7 @@ s32 WM_StartScanEx(Unk021425e8Func a, Unk021438f0 *b) {
         }
     }
     SetCommandCallback(0x26, (u32) a);
-    pk = (Unk021438f0_0c *) GetWorkBuffer()->mUnk_00c;
+    pk = (Unk021438f0_0c *) GetWorkBuffer()->mRequestArea;
     pk->mUnk_00 = 0x26;
     pk->mUnk_02 = b->mUnk_06;
     pk->mUnk_04 = b->mUnk_00;
@@ -510,7 +510,7 @@ s32 WM_StartConnectEx(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e) {
     }
     DC_StoreRange(b, b[0] * 2);
     SetCommandCallback(0xc, (u32) a);
-    pk = (Unk021437d8 *) GetWorkBuffer()->mUnk_00c;
+    pk = (Unk021437d8 *) GetWorkBuffer()->mRequestArea;
     pk->mUnk_00 = 0xc;
     pk->mUnk_04 = b;
     if (c != 0) {
@@ -536,12 +536,12 @@ s32 WM_Disconnect(Unk021425e8Func a, u32 b) {
     if (r != 0) {
         return r;
     }
-    if (p->mUnk_004->mUnk_000 == 7 || p->mUnk_004->mUnk_000 == 9) {
+    if (p->mStatusArea->mState == 7 || p->mStatusArea->mState == 9) {
         if (b < 1 || b > 0xf) {
             return 6;
         }
-        DC_InvalidateRange(&p->mUnk_004->mUnk_17e, 2);
-        if ((p->mUnk_004->mUnk_17e & (1 << b)) == 0) {
+        DC_InvalidateRange(&p->mStatusArea->mConnectedChildren, 2);
+        if ((p->mStatusArea->mConnectedChildren & (1 << b)) == 0) {
             return 7;
         }
     } else if (b != 0) {
@@ -564,8 +564,8 @@ s32 WM_DisconnectChildren(Unk021425e8Func a, u32 b) {
     if (r != 0) {
         return r;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_17e, 2);
-    if ((p->mUnk_004->mUnk_17e & b & 0xfffe) == 0) {
+    DC_InvalidateRange(&p->mStatusArea->mConnectedChildren, 2);
+    if ((p->mStatusArea->mConnectedChildren & b & 0xfffe) == 0) {
         return 7;
     }
     SetCommandCallback(0xd, (u32) a);
@@ -576,7 +576,7 @@ s32 WM_DisconnectChildren(Unk021425e8Func a, u32 b) {
     return r;
 }
 
-s32 func_021435e8(Unk021425e8Func a) {
+s32 WM_SetIndCallback(Unk021425e8Func a) {
     u32 s;
     s32 r;
 
@@ -586,12 +586,12 @@ s32 func_021435e8(Unk021425e8Func a) {
         IrqRestore(s);
         return r;
     }
-    GetWorkBuffer()->mUnk_0c0 = a;
+    GetWorkBuffer()->mIndicationCallback = a;
     IrqRestore(s);
     return 0;
 }
 
-s32 func_0214358c(u32 n, UnkFunc *f, Unk021450ec *arg) {
+s32 WM_SetPortCallback(u32 n, UnkFunc *f, Unk021450ec *arg) {
     u32 s;
     s32 r;
     Unk02142aa8 *p;
@@ -603,13 +603,13 @@ s32 func_0214358c(u32 n, UnkFunc *f, Unk021450ec *arg) {
         return r;
     }
     p = GetWorkBuffer();
-    p->mUnk_0c4[n] = f;
-    p->mUnk_104[n] = arg;
+    p->mPortCallbacks[n] = f;
+    p->mPortCallbackArgs[n] = arg;
     IrqRestore(s);
     return 0;
 }
 
-s32 func_02143520(void *a) {
+s32 WM_ReadStatus(void *a) {
     Unk02142aa8 *p;
     s32 r;
 
@@ -621,27 +621,27 @@ s32 func_02143520(void *a) {
     if (a == 0) {
         return 6;
     }
-    DC_InvalidateRange(p->mUnk_004, 0x7bc);
-    MemCopyWordsByBlock(p->mUnk_004, a, 0x7bc);
+    DC_InvalidateRange(p->mStatusArea, 0x7bc);
+    MemCopyWordsByBlock(p->mStatusArea, a, 0x7bc);
     return 0;
 }
 
-s32 func_0214349c(void) {
+s32 WM_GetMPSendBufferSize(void) {
     Unk02142aa8 *p;
 
     p = GetWorkBuffer();
     if (GetErrorUnlessStateIsOneOf(2, 7, 8) != 0) {
         return 0;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
-    if (p->mUnk_004->mUnk_00c == 1) {
+    DC_InvalidateRange(&p->mStatusArea->mUnk_00c, 4);
+    if (p->mStatusArea->mUnk_00c == 1) {
         return 0;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_18e, 4);
-    return (p->mUnk_004->mUnk_18e + 0x1f) & ~0x1f;
+    DC_InvalidateRange(&p->mStatusArea->mUnk_18e, 4);
+    return (p->mStatusArea->mUnk_18e + 0x1f) & ~0x1f;
 }
 
-s32 func_021433b0(void) {
+s32 WM_GetMPReceiveBufferSize(void) {
     Unk02142aa8 *p;
     s32 f;
     u16 v;
@@ -650,26 +650,26 @@ s32 func_021433b0(void) {
     if (GetErrorUnlessStateIsOneOf(2, 7, 8) != 0) {
         return 0;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
-    if (p->mUnk_004->mUnk_00c == 1) {
+    DC_InvalidateRange(&p->mStatusArea->mUnk_00c, 4);
+    if (p->mStatusArea->mUnk_00c == 1) {
         return 0;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_184, 2);
-    if (p->mUnk_004->mUnk_184 == 0) {
+    DC_InvalidateRange(&p->mStatusArea->mOwnMemberIndex, 2);
+    if (p->mStatusArea->mOwnMemberIndex == 0) {
         f = 1;
     } else {
         f = 0;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_190, 2);
-    v = p->mUnk_004->mUnk_190;
+    DC_InvalidateRange(&p->mStatusArea->mUnk_190, 2);
+    v = p->mStatusArea->mUnk_190;
     if (f != 1) {
         return ((v + 0x51) & ~0x1f) << 1;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_0f4, 2);
-    return (((v + 0xc) * p->mUnk_004->mUnk_0f4 + 0x29) & ~0x1f) << 1;
+    DC_InvalidateRange(&p->mStatusArea->mUnk_0f4, 2);
+    return (((v + 0xc) * p->mStatusArea->mUnk_0f4 + 0x29) & ~0x1f) << 1;
 }
 
-void *func_021432ac(const Unk021432ac *a, u32 b) {
+void *WM_ReadMPData(const Unk021432ac *a, u32 b) {
     Unk02142aa8 *p;
     u32 ptrs[16];
     s32 i;
@@ -681,8 +681,8 @@ void *func_021432ac(const Unk021432ac *a, u32 b) {
     if (b < 1 || b > 0xf) {
         return 0;
     }
-    DC_InvalidateRange(&p->mUnk_004->mUnk_17e, 2);
-    if ((p->mUnk_004->mUnk_17e & (1 << b)) == 0) {
+    DC_InvalidateRange(&p->mStatusArea->mConnectedChildren, 2);
+    if ((p->mStatusArea->mConnectedChildren & (1 << b)) == 0) {
         return 0;
     }
     if (a->mUnk_04 == 0) {
@@ -700,37 +700,37 @@ void *func_021432ac(const Unk021432ac *a, u32 b) {
     return 0;
 }
 
-u16 func_02143280(void) {
+u16 WM_GetAllowedChannel(void) {
     if (GetErrorUnlessInitialized() != 0) {
         return 0x8000;
     }
     return *(u16 *) 0x27ffcfa;
 }
 
-u16 func_021431d8(void) {
+u16 WM_GetLinkLevel(void) {
     Unk02142aa8 *p;
 
     p = GetWorkBuffer();
     if (GetErrorUnlessInitialized() != 0) {
         return 0;
     }
-    DC_InvalidateRange(p->mUnk_004, 2);
-    switch (p->mUnk_004->mUnk_000) {
+    DC_InvalidateRange(p->mStatusArea, 2);
+    switch (p->mStatusArea->mState) {
         case 9:
-            DC_InvalidateRange(&p->mUnk_004->mUnk_17e, 2);
-            if (p->mUnk_004->mUnk_17e == 0) {
+            DC_InvalidateRange(&p->mStatusArea->mConnectedChildren, 2);
+            if (p->mStatusArea->mConnectedChildren == 0) {
                 return 0;
             }
         case 10:
         case 11:
-            DC_InvalidateRange(&p->mUnk_004->mUnk_0b8, 2);
-            return p->mUnk_004->mUnk_0b8;
+            DC_InvalidateRange(&p->mStatusArea->mUnk_0b8, 2);
+            return p->mStatusArea->mUnk_0b8;
         default:
             return 0;
     }
 }
 
-u16 func_02143134(void) {
+u16 WM_GetDispersionBeaconPeriod(void) {
     u8 buf[6];
     s32 i;
     u16 sum;
@@ -744,7 +744,7 @@ u16 func_02143134(void) {
     return sum % 20 + 200;
 }
 
-u16 func_02143090(void) {
+u16 WM_GetDispersionScanPeriod(void) {
     u8 buf[6];
     s32 i;
     u16 sum;
@@ -758,7 +758,7 @@ u16 func_02143090(void) {
     return sum % 10 + 30;
 }
 
-Unk02142f24 func_02142f24(const u16 *a) {
+Unk02142f24 WM_GetOtherElements(const u16 *a) {
     Unk02142f24 s;
     const u8 *p;
     s32 i;
@@ -795,7 +795,7 @@ Unk02142f24 func_02142f24(const u16 *a) {
     return s;
 }
 
-u16 func_02142eac(void) {
+u16 WM_GetNextTgid(void) {
     u32 buf[3];
 
     if (data_0216f06c == 0x10000) {

@@ -7,27 +7,46 @@ typedef struct Unk021450ec Unk021450ec;
 typedef struct Unk021425e8 Unk021425e8;
 typedef void (*Unk021425e8Func)(Unk021425e8 *);
 
-// func_02142c98 sets up the object that data_0217eed4 points to. SetCommandCallback stores a word at offset 0x18 + 4 *
-// n; func_0214358c stores a function and its argument at mUnk_0c4[n] and mUnk_104[n]. The tables mUnk_018, mUnk_0c4 and
-// mUnk_104 are indexed by the value in mUnk_00 of the object that func_021425e8 takes.
+// InitWorkBufferWithSize sets up the object that data_0217eed4 points to. SetCommandCallback stores a word at offset
+// 0x18 + 4 * n; WM_SetPortCallback stores a function and its argument at mPortCallbacks[n] and mPortCallbackArgs[n].
+// The tables mCommandCallbacks, mPortCallbacks and mPortCallbackArgs are indexed by the value in mCommand of the object
+// that ReceiveCommandReply takes.
 typedef struct Unk02142aa8 {
     /* 000 */ void *mUnk_000;
-    /* 004 */ struct Unk02142988 *mUnk_004;
+    // Pointer to the status area (0x7bc bytes are copied by WM_ReadStatus); set by InitWorkBufferWithSize 0x300 bytes
+    // after the first area. This code only reads it, after invalidating the cache lines.
+    /* 004 */ struct Unk02142988 *mStatusArea;
     /* 008 */ u32 mUnk_008;
-    /* 00c */ u16 *mUnk_00c;
-    /* 010 */ Unk021425e8 *mUnk_010;
+    // Pointer to the 0x100-byte request area, 0x800 bytes after the status area: the command functions write their
+    // parameter record into it, and SendCommandMessage stores it and, for a send with no words, copies it into the
+    // message.
+    /* 00c */ u16 *mRequestArea;
+    // Pointer to a 0x100-byte area of the message type, 0x100 bytes after the request area. Its address is the third
+    // word of commands 0 and 3. ReceiveCommandReply invalidates it on entry and exit and does not mark a received
+    // message as free when the message is this area.
+    /* 010 */ Unk021425e8 *mMessageArea;
     /* 014 */ u16 mUnk_014;
     /* 016 */ u16 mUnk_016;
-    /* 018 */ Unk021425e8Func mUnk_018[0x2a];
-    /* 0c0 */ Unk021425e8Func mUnk_0c0;
-    /* 0c4 */ UnkFunc *mUnk_0c4[16];
-    /* 104 */ void *mUnk_104[16];
+    // Table of 0x2a functions, one per command number: SetCommandCallback stores them, ReceiveCommandReply calls the
+    // one for the command number of a message.
+    /* 018 */ Unk021425e8Func mCommandCallbacks[0x2a];
+    // Function stored by WM_SetIndCallback; ReceiveCommandReply calls it for a message numbered 0x80.
+    /* 0c0 */ Unk021425e8Func mIndicationCallback;
+    // 16 functions, one per port, stored by WM_SetPortCallback; ReceiveCommandReply calls the one at the port of a
+    // message numbered 0x82 and calls each of them for replies to commands 8 and 12 whose halfword at +8 is 7 or 9.
+    /* 0c4 */ UnkFunc *mPortCallbacks[16];
+    // 16 words, one per port, stored by WM_SetPortCallback; copied to +0x1c of the message before the port function is
+    // called.
+    /* 104 */ void *mPortCallbackArgs[16];
 } Unk02142aa8;
 
-// 0x7bc bytes (func_02143520 copies them); the members are the ones the code reads. Pointed to by the word
+// 0x7bc bytes (WM_ReadStatus copies them); the members are the ones the code reads. Pointed to by the word
 // GetWorkBuffer returns at mUnk_004.
 typedef struct Unk02142988 {
-    /* 000 */ u16 mUnk_000;
+    // First halfword of the status area: the state number. GetErrorUnlessStateIsOneOf and GetErrorUnlessStateAtLeast2
+    // compare it, WM_GetLinkLevel switches on it (9, 10, 11) and the game's start-up code switches on it and waits for
+    // 2. This code never writes it. The same bytes as seen through both typedefs.
+    /* 000 */ u16 mState;
     /* 002 */ u8 mUnk_002[2];
     /* 004 */ void *mUnk_004;
     /* 008 */ u8 mUnk_008[4];
@@ -46,19 +65,31 @@ typedef struct Unk02142988 {
     /* 0c4 */ u8 mUnk_0c4[0x30];
     /* 0f4 */ u16 mUnk_0f4;
     /* 0f6 */ u8 mUnk_0f6[0x88];
-    /* 17e */ u16 mUnk_17e;
+    // Halfword at +0x17e of the status area: a bitmap in which bit n belongs to member number n. WM_Disconnect,
+    // WM_DisconnectChildren (with 0xfffe), WM_ReadMPData and WM_SetMPDataToPortEx test its bits and WM_GetLinkLevel
+    // returns 0 in state 9 when it is 0. This code never writes it.
+    /* 17e */ u16 mConnectedChildren;
     /* 180 */ u8 mUnk_180[4];
-    /* 184 */ u16 mUnk_184;
+    // Halfword at +0x184 of the status area: 0 selects the parent paths (WM_GetMPReceiveBufferSize,
+    // WM_StartDataSharing, WM_StepDataSharing), any other value is this station's bit position (1 << value) in the
+    // member masks. This code never writes it.
+    /* 184 */ u16 mOwnMemberIndex;
     /* 186 */ u8 mUnk_186[8];
     /* 18e */ u16 mUnk_18e;
     /* 190 */ u16 mUnk_190;
     /* 192 */ u8 mUnk_192[0x62a];
 } Unk02142988;
 
-// Object func_021425e8 takes; the members are the ones the code reads.
+// Object ReceiveCommandReply takes; the members are the ones the code reads.
 struct Unk021425e8 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
+    // First halfword of a message: the command number the message belongs to (below 0x2a), or 0x80, 0x81 or 0x82 for
+    // the notices that ReceiveCommandReply handles. In a ring message bit 15 set means the message is free:
+    // SendCommandMessage tests it and ReceiveCommandReply sets it after handling. ReceiveCommandReply rewrites 0x81 to
+    // 0xf.
+    /* 00 */ u16 mCommand;
+    // Halfword at +2 of a message: 0 means success, every other value is an error number (the game switches on it and
+    // passes it to its error reporter; the sharing functions store 5 in the object for any other value).
+    /* 02 */ u16 mResultCode;
     /* 04 */ u16 mUnk_04;
     /* 06 */ u16 mUnk_06;
     /* 08 */ union {
@@ -89,7 +120,7 @@ struct Unk021425e8 {
     } mUnk_38;
 };
 
-// 0x84 bytes; mUnk_00 counts the entries of mUnk_04 that func_02142f24 fills.
+// 0x84 bytes; mUnk_00 counts the entries of mUnk_04 that WM_GetOtherElements fills.
 typedef struct Unk02142f24 {
     /* 00 */ u8 mUnk_00;
     /* 04 */ struct {
@@ -99,7 +130,7 @@ typedef struct Unk02142f24 {
     } mUnk_04[16];
 } Unk02142f24;
 
-// Count at mUnk_04 and entry size at mUnk_06; the entries start at mUnk_0a and hold the value func_021432ac compares at
+// Count at mUnk_04 and entry size at mUnk_06; the entries start at mUnk_0a and hold the value WM_ReadMPData compares at
 // +4.
 typedef struct Unk021432ac {
     /* 00 */ u8 mUnk_00[4];
@@ -182,23 +213,55 @@ typedef struct Unk02143c30 {
     /* 36 */ u16 mUnk_36;
 } Unk02143c30;
 
-u16 func_02142eac(void);
-Unk02142f24 func_02142f24(const u16 *a);
-u16 func_02143090(void);
-u16 func_02143134(void);
-u16 func_021431d8(void);
-u16 func_02143280(void);
-void *func_021432ac(const Unk021432ac *a, u32 b);
-s32 func_021433b0(void);
-s32 func_0214349c(void);
-s32 func_02143520(void *a);
-s32 func_0214358c(u32 n, UnkFunc *f, Unk021450ec *p);
-s32 func_021435e8(Unk021425e8Func a);
-// In the comments below, w is the work buffer (GetWorkBuffer()); the status area is the pointer at +4 of w, the request
-// area the pointer at +0xc of w, and the callback table the words from +0x18 of w, one per command number. Needs state
-// 7 or 9. Returns 7 when the bitmap argument, the halfword at +0x17e of the status area and 0xfffe have no bit in
-// common. Stores the first argument as the callback for command 13 and sends command 13 with one word, the bitmap.
-// Returns the send result.
+// In the comments below, w is the work buffer (GetWorkBuffer()); the status area is the pointer at +4 of w, the
+// request area the pointer at +0xc of w, and the callback table the words from +0x18 of w, one per command number.
+// When data_0216f06c is 0x10000, calls RTC_Init and RTC_GetTime and, when that returns 0, stores the third word of the
+// time plus the second word shifted left by 8 (16 bit) in it. Adds 1 (16 bit), stores the sum in data_0216f06c and
+// returns it.
+u16 WM_GetNextTgid(void);
+// Returns a 0x84-byte record: a count byte, then 16 entries of two bytes and a pointer. The count is 0 when the
+// halfword at +0x3c of the argument is not 0; otherwise it is the halfword at +0x3e, at most 16. The entries are read
+// from +0x40 of the argument one after another: the first byte, the second byte (the length) and the address of the
+// bytes after those two; each entry takes its length plus 2 bytes. When the running total of those exceeds the halfword
+// at +0 of the argument times 2 minus 0x40 (as a byte), the count is set to 0.
+Unk02142f24 WM_GetOtherElements(const u16 *a);
+// Adds the six bytes of OS_GetMacAddress and the word at 0x027ffc3c (16 bit), multiplies by 13 (16 bit) and returns the
+// remainder after division by 10 plus 30.
+u16 WM_GetDispersionScanPeriod(void);
+// Adds the six bytes of OS_GetMacAddress and the word at 0x027ffc3c (16 bit), multiplies by 7 (16 bit) and returns the
+// remainder after division by 20 plus 200.
+u16 WM_GetDispersionBeaconPeriod(void);
+// Returns 0 when GetErrorUnlessInitialized is not 0. Invalidates the first halfword of the status area (the state) and
+// switches on it: for 9 it returns 0 when the halfword at +0x17e is 0, otherwise, and for 10 and 11, it returns the
+// halfword at +0xb8; any other state returns 0.
+u16 WM_GetLinkLevel(void);
+// Returns 0x8000 when GetErrorUnlessInitialized is not 0, otherwise the halfword at 0x027ffcfa.
+u16 WM_GetAllowedChannel(void);
+// Returns 0 when GetErrorUnlessInitialized is not 0, when the second argument is not 1 to 15, when that bit of the
+// halfword at +0x17e of the status area is clear or when the halfword at +4 of the first argument is 0. Otherwise walks
+// the records of the first argument: the first at +10, each next one the halfword at +6 bytes after the previous, at
+// most the halfword at +4 records; returns the record whose halfword at +4 equals the second argument, or 0.
+void *WM_ReadMPData(const Unk021432ac *a, u32 b);
+// Returns 0 when GetErrorUnlessStateIsOneOf(2, 7, 8) is not 0 or when the word at +0xc of the status area is 1. Reads
+// the halfword at +0x190 as v. When the halfword at +0x184 is not 0 returns ((v + 0x51) & ~0x1f) << 1; when it is 0
+// returns (((v + 0xc) * the halfword at +0xf4 + 0x29) & ~0x1f) << 1.
+s32 WM_GetMPReceiveBufferSize(void);
+// Returns 0 when GetErrorUnlessStateIsOneOf(2, 7, 8) is not 0 or when the word at +0xc of the status area is 1;
+// otherwise returns (the halfword at +0x18e + 0x1f) & ~0x1f.
+s32 WM_GetMPSendBufferSize(void);
+// Returns the result of GetErrorUnlessInitialized when it is not 0 and 6 when the argument is NULL. Invalidates the
+// 0x7bc bytes of the status area and copies them to the argument (MemCopyWordsByBlock). Returns 0.
+s32 WM_ReadStatus(void *a);
+// Disables interrupts, returns the result of GetErrorUnlessInitialized when it is not 0 (after restoring them). Stores
+// the second argument at the index given by the first argument (not range checked) in the table at +0xc4 of w and the
+// third argument at the same index in the table at +0x104, restores interrupts and returns 0.
+s32 WM_SetPortCallback(u32 n, UnkFunc *f, Unk021450ec *p);
+// Disables interrupts, returns the result of GetErrorUnlessInitialized when it is not 0 (after restoring them). Stores
+// the argument at +0xc0 of w, restores interrupts and returns 0.
+s32 WM_SetIndCallback(Unk021425e8Func a);
+// Needs state 7 or 9. Returns 7 when the bitmap argument, the halfword at +0x17e of the status area and 0xfffe have no
+// bit in common. Stores the first argument as the callback for command 13 and sends command 13 with one word, the
+// bitmap. Returns the send result.
 s32 WM_DisconnectChildren(Unk021425e8Func a, u32 b);
 // Needs state 7, 9, 8, 10 or 11. In state 7 or 9 returns 6 when the id is not 1 to 15 and 7 when bit id of the
 // halfword at +0x17e of the status area is clear; in the other states returns 6 when the id is not 0. Stores the
@@ -251,7 +314,7 @@ s32 WM_End(Unk021425e8Func a);
 // Returns GetErrorUnlessStateAtLeast2's result when it is not 0. Stores the argument as the callback for command 1
 // and sends command 1 with no words. Returns the send result.
 s32 WM_Reset(Unk021425e8Func a);
-// Calls func_02142e78 with the first and third argument (the set-up of the work buffer) and returns its result when
+// Calls WM_Init with the first and third argument (the set-up of the work buffer) and returns its result when
 // it is not 0. Stores the second argument as the callback for command 0 and sends command 0 with three words: the
 // pointers at +0 and +4 and the word at +0x10 of w. Returns the send result.
 s32 WM_Initialize(void *a, Unk021425e8Func b, u32 c);
@@ -279,10 +342,11 @@ s32 WM_EndMP(Unk021425e8Func a);
 s32 WM_SetMPDataToPortEx(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 g);
 s32 func_021441d0(Unk021425e8Func a, u32 b);
 // Needs state 7 or 8. Returns 3 when the halfword at +0x184 of the status area is not 0 and the halfword at +0xc2 is
-// not 1, or when the word at +0xc is 1. Returns 6 when the third argument is below the result of func_021433b0 or is
-// not a multiple of 0x40, or when the fifth argument is below the result of func_0214349c or is not a multiple of
-// 0x20. Stores the first argument as the callback for command 14 and sends command 14 with ten words: the second
-// argument, the third divided by 2, the fourth, the fifth and the six arguments after it. Returns the send result.
+// not 1, or when the word at +0xc is 1. Returns 6 when the third argument is below the result of
+// WM_GetMPReceiveBufferSize or is not a multiple of 0x40, or when the fifth argument is below the result of
+// WM_GetMPSendBufferSize or is not a multiple of 0x20. Stores the first argument as the callback for command 14 and
+// sends command 14 with ten words: the second argument, the third divided by 2, the fourth, the fifth and the six
+// arguments after it. Returns the send result.
 s32 WM_StartMPEx(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u32 h, u32 i, u32 j, u32 k);
 // Needs state 11. Returns 3 when the word at +0x10 of the status area is 0. Stores the argument as the callback for
 // command 19 and sends command 19 with no words. Returns the send result.

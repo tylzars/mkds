@@ -82,7 +82,7 @@ u32 func_ov003_021d1290(void) {
 void func_ov003_021d1218(void) {
     func_ov003_021d0128(data_ov003_021da2ac->mUnk_ac8);
     data_ov003_021da2ac->mUnk_a90 = 1;
-    data_ov003_021da2ac->mUnk_648 = func_02142eac();
+    data_ov003_021da2ac->mUnk_648 = WM_GetNextTgid();
     MemCopy(data_ov003_021da2ac->mUnk_aa0[1], data_ov003_021da2ac->mUnk_a50, 0x40);
     data_ov003_021da2ac->mUnk_a93 = 0;
     data_ov003_021da2ac->mUnk_204 = 0;

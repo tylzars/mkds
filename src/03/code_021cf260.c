@@ -338,7 +338,7 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
             }
             break;
         case 13:
-            switch (c->mUnk_00) {
+            switch (c->mCommand) {
                 case 1:
                 case 2:
                 case 9:

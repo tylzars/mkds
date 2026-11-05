@@ -144,9 +144,9 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
 }
 
 void func_ov000_021a6944(Unk021425e8 *a) {
-    if (a->mUnk_00 == 0x12) {
-        data_ov000_021b5f54.mUnk_24 = a->mUnk_02;
-        if (a->mUnk_02 == 0) {
+    if (a->mCommand == 0x12) {
+        data_ov000_021b5f54.mUnk_24 = a->mResultCode;
+        if (a->mResultCode == 0) {
             func_ov000_021a57a8();
         }
         ThreadQueueSetAllRunnable(&data_ov000_021b5f54.mUnk_04);

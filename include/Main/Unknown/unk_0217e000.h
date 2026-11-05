@@ -10,12 +10,12 @@ struct Unk02005210;
 struct Unk02142aa8;
 struct Unk021425e8;
 
-// The object that func_02142c98 sets up.
+// The object that InitWorkBufferWithSize sets up.
 extern struct Unk02142aa8 *data_0217eed4;
 extern u16 data_0217eed0;
 extern RingQueue data_0217eed8;
-// Word array that func_02142c98 gives data_0217eed8, an object func_021425e8 fills in before calling the function
-// pointers, and the ten 0x100-byte buffers func_02142c98 passes to RingQueueAppend.
+// Word array that InitWorkBufferWithSize gives data_0217eed8, an object ReceiveCommandReply fills in before calling the
+// function pointers, and the ten 0x100-byte buffers InitWorkBufferWithSize passes to RingQueueAppend.
 extern void *data_0217eef8[10];
 extern struct Unk021425e8 data_0217ef20;
 extern u8 data_0217ef60[10][0x100];

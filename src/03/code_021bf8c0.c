@@ -460,8 +460,8 @@ void func_ov003_021bf920(void) {
     i = 0;
     a = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 0;
-    if (func_02143280() != 0x8000) {
-        i = func_021431d8();
+    if (WM_GetAllowedChannel() != 0x8000) {
+        i = WM_GetLinkLevel();
     }
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = a;

@@ -7,8 +7,8 @@
 #pragma thumb on
 
 void func_0200b698(Unk021425e8 *a) {
-    if (a->mUnk_02 != 0) {
-        func_0200b820(0xb, a->mUnk_02);
+    if (a->mResultCode != 0) {
+        func_0200b820(0xb, a->mResultCode);
         return;
     }
     data_0216fde8->mUnk_5efc = 0;
@@ -70,7 +70,7 @@ void func_0200b43c(s32 a, Unk021425e8 *b) {
             }
             break;
         case 0xff:
-            t = b->mUnk_02;
+            t = b->mResultCode;
             if (data_0216fde8->mUnk_05e0 != NULL) {
                 switch (t) {
                     case 1:
@@ -91,7 +91,7 @@ void func_0200b43c(s32 a, Unk021425e8 *b) {
             }
             break;
         case 0x100:
-            t = b->mUnk_00;
+            t = b->mCommand;
             if (data_0216fde8->mUnk_05e0 != NULL) {
                 switch (t) {
                     case 0:

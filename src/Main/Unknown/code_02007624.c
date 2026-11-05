@@ -157,7 +157,7 @@ void func_020079c4(s32 a, Unk021425e8 *b) {
             }
             break;
         case 0xff:
-            switch (b->mUnk_02) {
+            switch (b->mResultCode) {
                 case 1:
                 case 4:
                 case 5:
@@ -173,7 +173,7 @@ void func_020079c4(s32 a, Unk021425e8 *b) {
             }
             break;
         case 0x100:
-            switch (b->mUnk_00) {
+            switch (b->mCommand) {
                 case 0:
                 case 7:
                 case 8:
@@ -327,7 +327,7 @@ void func_02007624(Unk021432ac *a) {
         }
     }
     for (i = 1; i <= 15; i++) {
-        v2 = func_021432ac(a, i);
+        v2 = WM_ReadMPData(a, i);
         if (v2 != NULL) {
             v1 = *(u16 *) v2;
             if (v1 != 0xffff && v1 != 0) {

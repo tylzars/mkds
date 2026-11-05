@@ -18,7 +18,7 @@
 #include "code_0200eddc.h"
 
 void func_ov003_021cd080(Unk021425e8 *a) {
-    if (a->mUnk_02 == 0 && *((u8 *) data_ov003_021da26c + 0x1e48) == 0 && a->mUnk_00 == 0x26) {
+    if (a->mResultCode == 0 && *((u8 *) data_ov003_021da26c + 0x1e48) == 0 && a->mCommand == 0x26) {
         switch (a->mUnk_08_0) {
             case 5:
                 func_ov003_021ccf30((Unk021ccf30 *) a);
@@ -76,7 +76,7 @@ void func_ov003_021ccf30(Unk021ccf30 *a) {
                 s32 k;
                 s32 n;
                 q->mUnk_28 = 1;
-                v2 = func_02142f24((const u16 *) p);
+                v2 = WM_GetOtherElements((const u16 *) p);
                 k = 0;
                 n = v2.mUnk_00;
                 for (; k < n; k++) {

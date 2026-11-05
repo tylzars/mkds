@@ -19,7 +19,7 @@ void func_ov003_021cd2a4(void) {
 
 void func_ov003_021cd27c(void) {
     if (data_ov003_021da26c != NULL) {
-        while (func_02143280() != 0x8000) {
+        while (WM_GetAllowedChannel() != 0x8000) {
         }
         func_ov003_021d2808(&data_ov003_021da26c);
     }
@@ -34,12 +34,12 @@ u32 func_ov003_021cd1c4(void) {
         return 0;
     }
     do {
-        func_02143520(&data_ov003_021da26c->mUnk_168c);
-    } while (data_ov003_021da26c->mUnk_168c.mUnk_00 != 2);
+        WM_ReadStatus(&data_ov003_021da26c->mUnk_168c);
+    } while (data_ov003_021da26c->mUnk_168c.mState != 2);
     p = data_ov003_021da26c;
     p->mUnk_1648 = data_ov003_021d6640;
     p->mUnk_1648.mUnk_00.mUnk_00 = p->mUnk_0f00;
-    data_ov003_021da26c->mUnk_1648.mUnk_00.mUnk_08 = func_02143090();
+    data_ov003_021da26c->mUnk_1648.mUnk_00.mUnk_08 = WM_GetDispersionScanPeriod();
     if (func_ov003_021cd190() != 0) {
         return 1;
     }
@@ -57,14 +57,14 @@ u32 func_ov003_021cd190(void) {
 
 u32 func_ov003_021cd118(void) {
     data_ov003_021da26c->mUnk_1e48 = 1;
-    func_02143520(&data_ov003_021da26c->mUnk_168c);
-    if (data_ov003_021da26c->mUnk_168c.mUnk_00 != 2) {
+    WM_ReadStatus(&data_ov003_021da26c->mUnk_168c);
+    if (data_ov003_021da26c->mUnk_168c.mState != 2) {
         if (WM_Reset(func_ov003_021cd080) != 2) {
             return 0;
         }
         do {
-            func_02143520(&data_ov003_021da26c->mUnk_168c);
-        } while (data_ov003_021da26c->mUnk_168c.mUnk_00 != 2);
+            WM_ReadStatus(&data_ov003_021da26c->mUnk_168c);
+        } while (data_ov003_021da26c->mUnk_168c.mState != 2);
     }
     if (WM_End(func_ov003_021cd080) != 2) {
         return 0;

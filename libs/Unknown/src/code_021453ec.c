@@ -123,7 +123,7 @@ int WM_MeasureChannel(Unk021425e8Func a, u16 b, u16 c, u16 d, u16 e) {
         return r;
     }
     SetCommandCallback(0x1e, (u32) a);
-    q = p->mUnk_00c;
+    q = p->mRequestArea;
     q[0] = 0x1e;
     q[1] = b;
     q[2] = c;

@@ -190,7 +190,7 @@ void func_0204fb40(s32 a) {
         q->mUnk_0c = (u16) (y * 0x10000 >> 32) | 0x8000;
     }
     q->mUnk_32 = data_0217aa00->mUnk_0088;
-    q->mUnk_18 = func_02143134();
+    q->mUnk_18 = WM_GetDispersionBeaconPeriod();
     q->mUnk_00 = data_0217aa00->mUnk_0044.mUnk_38;
     q->mUnk_04 = 0x1c;
     q->mUnk_10 = 7;
@@ -228,7 +228,7 @@ void func_0204f938(Unk0217aa08_14 *a) {
     y = x >> 32;
     q->mUnk_0c = (u16) (y * 0x10000 >> 32) | 0x8000;
     q->mUnk_32 = data_0217aa00->mUnk_0088;
-    q->mUnk_18 = func_02143134();
+    q->mUnk_18 = WM_GetDispersionBeaconPeriod();
     q->mUnk_00 = data_0217aa00->mUnk_0044.mUnk_38;
     q->mUnk_04 = 0x1c;
     q->mUnk_10 = 1;

@@ -28,12 +28,12 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
     d->mUnk_1b78 = (u32) (t >> 32);
     if (WM_Initialize(d, func_ov003_021ce7c0, 3) == 2) {
         do {
-            func_02143520(&data_ov003_021da280->mUnk_13b8);
-        } while (data_ov003_021da280->mUnk_13b8.mUnk_000 != 2);
+            WM_ReadStatus(&data_ov003_021da280->mUnk_13b8);
+        } while (data_ov003_021da280->mUnk_13b8.mState != 2);
         d = data_ov003_021da280;
         *(Unk021d66d0 *) &d->mUnk_1374 = data_ov003_021d66d0;
         d->mUnk_1374.mUnk_00 = d->mUnk_0f00;
-        data_ov003_021da280->mUnk_1374.mUnk_08 = func_02143090();
+        data_ov003_021da280->mUnk_1374.mUnk_08 = WM_GetDispersionScanPeriod();
         OS_GetOwnerInfo(&s);
         MemCopy(data_ov003_021d66c4, &data_ov003_021da280->mUnk_1374.mUnk_14[0], 8);
         data_ov003_021da280->mUnk_1374.mUnk_14[9] = 1;
@@ -60,14 +60,14 @@ u32 func_ov003_021ce848(void) {
     Unk021da280 *d;
 
     data_ov003_021da280->mUnk_1b80 = 1;
-    func_02143520(&data_ov003_021da280->mUnk_13b8);
-    if (data_ov003_021da280->mUnk_13b8.mUnk_000 != 2) {
+    WM_ReadStatus(&data_ov003_021da280->mUnk_13b8);
+    if (data_ov003_021da280->mUnk_13b8.mState != 2) {
         if (WM_Reset(func_ov003_021ce7c0) != 2) {
             return 0;
         }
         do {
-            func_02143520(&data_ov003_021da280->mUnk_13b8);
-        } while (data_ov003_021da280->mUnk_13b8.mUnk_000 != 2);
+            WM_ReadStatus(&data_ov003_021da280->mUnk_13b8);
+        } while (data_ov003_021da280->mUnk_13b8.mState != 2);
     }
     if (WM_End(func_ov003_021ce7c0) != 2) {
         return 0;
@@ -90,17 +90,17 @@ void func_ov003_021ce834(u32 a) {
 void func_ov003_021ce7c0(Unk021425e8 *a) {
     Unk021da280 *d;
 
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         return;
     }
     d = data_ov003_021da280;
     if (d->mUnk_1b80 != 0) {
-        if (a->mUnk_00 == 2) {
+        if (a->mCommand == 2) {
             d->mUnk_1b80 = 2;
         }
         return;
     }
-    if (a->mUnk_00 != 0x26) {
+    if (a->mCommand != 0x26) {
         return;
     }
     switch (a->mUnk_08_0) {

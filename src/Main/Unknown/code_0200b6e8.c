@@ -71,7 +71,7 @@ void func_0200c008(u8 *a) {
 }
 
 void func_0200bf90(Unk021425e8 *a) {
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(11, a);
         }
@@ -107,7 +107,7 @@ void func_0200bef8(void *a, u8 *b) {
     Unk0216fdec *p;
     data_0216fdec->mUnk_04 = a;
     data_0216fdec->mUnk_08 = b;
-    r = func_0214358c(1, func_0200bcd8, NULL);
+    r = WM_SetPortCallback(1, func_0200bcd8, NULL);
     if (r != 0) {
         p = data_0216fdec;
         if (p->mUnk_00 != NULL) {
@@ -134,10 +134,10 @@ void func_0200be44(Unk021425e8 *a) {
     Unk0200bd34 w;
     Unk0216fdec *p;
     u16 c;
-    u16 b = a->mUnk_02;
+    u16 b = a->mResultCode;
     if (b != 0) {
         if (b != 15 && b != 9 && b != 13) {
-            c = a->mUnk_00;
+            c = a->mCommand;
             p = data_0216fdec;
             if (p->mUnk_00 != NULL) {
                 v.mUnk_00 = c;
@@ -160,7 +160,7 @@ void func_0200be44(Unk021425e8 *a) {
                 break;
             case 11:
             default:
-                c = a->mUnk_00;
+                c = a->mCommand;
                 p = data_0216fdec;
                 if (p->mUnk_00 != NULL) {
                     w.mUnk_00 = c;
@@ -196,9 +196,9 @@ void func_0200bdb4(Unk021425e8 *a) {
     Unk0200bd34 v;
     u16 b;
     data_0216fdec->mUnk_1c = 0;
-    b = a->mUnk_02;
+    b = a->mResultCode;
     if (b != 0) {
-        u16 c = a->mUnk_00;
+        u16 c = a->mCommand;
         Unk0216fdec *p = data_0216fdec;
         if (p->mUnk_00 != NULL) {
             v.mUnk_00 = c;
@@ -227,9 +227,9 @@ void func_0200bd7c(void) {
 
 void func_0200bd34(Unk021425e8 *a) {
     Unk0200bd34 v;
-    u16 b = a->mUnk_02;
+    u16 b = a->mResultCode;
     if (b != 0) {
-        u16 c = a->mUnk_00;
+        u16 c = a->mCommand;
         Unk0216fdec *p = data_0216fdec;
         if (p->mUnk_00 != NULL) {
             v.mUnk_00 = c;
@@ -257,7 +257,7 @@ u32 func_0200bd0c(void) {
 }
 
 void func_0200bcd8(Unk021425e8 *a) {
-    if (a->mUnk_02 == 0) {
+    if (a->mResultCode == 0) {
         switch (a->mUnk_04) {
             case 7:
             case 9:
@@ -288,11 +288,11 @@ s32 func_0200bc78(u32 a, u16 b, u8 *c) {
 
 void func_0200bc1c(Unk021425e8 *a) {
     data_0216fdec->mUnk_20 = 0;
-    if (a->mUnk_02 == 0) {
+    if (a->mResultCode == 0) {
         if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(8, a);
         }
-    } else if (a->mUnk_02 == 9) {
+    } else if (a->mResultCode == 9) {
         if (data_0216fdec->mUnk_00 != NULL) {
             data_0216fdec->mUnk_00(0x29, a);
         }
@@ -307,7 +307,7 @@ void func_0200bc1c(Unk021425e8 *a) {
 }
 
 void func_0200bc0c(void) {
-    func_0214358c(1, NULL, NULL);
+    WM_SetPortCallback(1, NULL, NULL);
 }
 
 void func_0200bb98(Unk0216fde8 *a, void *b) {
@@ -457,8 +457,8 @@ void func_0200b934(void) {
 }
 
 void func_0200b894(Unk021425e8 *a) {
-    if (a->mUnk_02 != 0) {
-        func_0200b820(0xa, a->mUnk_02);
+    if (a->mResultCode != 0) {
+        func_0200b820(0xa, a->mResultCode);
         return;
     }
     switch (a->mUnk_08_0) {
@@ -557,7 +557,7 @@ void func_0200b794(u32 a, void *b, u32 c) {
 
 u32 func_0200b72c(void) {
     u16 a;
-    a = func_02143280();
+    a = WM_GetAllowedChannel();
     if (a == 0x8000 || a == 0) {
         return 0;
     }

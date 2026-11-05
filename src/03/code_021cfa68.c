@@ -47,8 +47,8 @@ BOOL func_ov003_021d0760(void) {
 }
 
 void func_ov003_021d0708(Unk021425e8 *v1) {
-    if (v1->mUnk_02 != 0) {
-        func_ov003_021d079c(v1->mUnk_02);
+    if (v1->mResultCode != 0) {
+        func_ov003_021d079c(v1->mResultCode);
         func_ov003_021d07b0(9);
         return;
     }
@@ -77,8 +77,8 @@ BOOL func_ov003_021d06b0(void) {
 }
 
 void func_ov003_021d0680(Unk021425e8 *event) {
-    if (event->mUnk_02 != 0) {
-        func_ov003_021d079c(event->mUnk_02);
+    if (event->mResultCode != 0) {
+        func_ov003_021d079c(event->mResultCode);
         func_ov003_021d07b0(9);
     } else {
         if (func_ov003_021d0630() == FALSE) {
@@ -108,8 +108,8 @@ void func_ov003_021d0530(Unk021425e8 *v1) {
     s32 r;
 
     v2 = 1 << v1->mUnk_10;
-    if (v1->mUnk_02 != 0) {
-        func_ov003_021d079c(v1->mUnk_02);
+    if (v1->mResultCode != 0) {
+        func_ov003_021d079c(v1->mResultCode);
         func_ov003_021d07b0(9);
         return;
     }
@@ -169,8 +169,8 @@ BOOL func_ov003_021d04a8(void) {
 void func_ov003_021d03c0(Unk021425e8 *v1) {
     s32 r;
 
-    if (v1->mUnk_02 != 0) {
-        func_ov003_021d079c(v1->mUnk_02);
+    if (v1->mResultCode != 0) {
+        func_ov003_021d079c(v1->mResultCode);
         func_ov003_021d07b0(9);
         return;
     }
@@ -191,7 +191,7 @@ void func_ov003_021d03c0(Unk021425e8 *v1) {
                     return;
                 }
             } else if (data_ov003_021da2a8->mUnk_44 == 4) {
-                r = func_021450ec(&data_ov003_021da2a8->mUnk_13e0, 0xd, 7, 0x44, 1);
+                r = WM_StartDataSharing(&data_ov003_021da2a8->mUnk_13e0, 0xd, 7, 0x44, 1);
                 if (r != 0) {
                     func_ov003_021d079c(r);
                     func_ov003_021d07b0(9);
@@ -218,7 +218,7 @@ BOOL func_ov003_021d0388(void) {
     s32 r;
 
     func_ov003_021d07b0(6);
-    r = func_021453c0(&data_ov003_021da2a8->mUnk_1e00, 0xd);
+    r = WM_StartKeySharing(&data_ov003_021da2a8->mUnk_1e00, 0xd);
     if (r != 2) {
         func_ov003_021d079c(r);
         return FALSE;
@@ -227,7 +227,7 @@ BOOL func_ov003_021d0388(void) {
 }
 
 BOOL func_ov003_021d0358(void) {
-    s32 result = func_021453b4(&data_ov003_021da2a8->mUnk_1e00);
+    s32 result = WM_EndKeySharing(&data_ov003_021da2a8->mUnk_1e00);
     if (result != 2) {
         func_ov003_021d079c(result);
         return FALSE;
@@ -247,8 +247,8 @@ BOOL func_ov003_021d032c(void) {
 }
 
 void func_ov003_021d02e8(Unk021425e8 *v1) {
-    if (v1->mUnk_02 != 0) {
-        func_ov003_021d079c(v1->mUnk_02);
+    if (v1->mResultCode != 0) {
+        func_ov003_021d079c(v1->mResultCode);
         func_ov003_021cfb80();
     } else if (func_ov003_021d02c0() == FALSE) {
         if (data_ov003_021da2a4 != NULL) {
@@ -268,8 +268,8 @@ BOOL func_ov003_021d02c0(void) {
 }
 
 void func_ov003_021d02a0(Unk021425e8 *event) {
-    if (event->mUnk_02 != 0) {
-        func_ov003_021d079c(event->mUnk_02);
+    if (event->mResultCode != 0) {
+        func_ov003_021d079c(event->mResultCode);
     } else {
         func_ov003_021d07b0(1);
     }
@@ -282,7 +282,7 @@ BOOL func_ov003_021d0258(void) {
         return FALSE;
     }
     func_ov003_021d07b0(3);
-    r = func_021453b4(&data_ov003_021da2a8->mUnk_1e00);
+    r = WM_EndKeySharing(&data_ov003_021da2a8->mUnk_1e00);
     if (r != 2) {
         func_ov003_021d079c(r);
         return FALSE;
@@ -302,8 +302,8 @@ BOOL func_ov003_021d022c(void) {
 }
 
 void func_ov003_021d0200(Unk021425e8 *event) {
-    if (event->mUnk_02 != 0) {
-        func_ov003_021d079c(event->mUnk_02);
+    if (event->mResultCode != 0) {
+        func_ov003_021d079c(event->mResultCode);
         func_ov003_021cfaa8();
     } else {
         if (func_ov003_021d01cc() == FALSE) {
@@ -326,8 +326,8 @@ BOOL func_ov003_021d01cc(void) {
 }
 
 void func_ov003_021d01ac(Unk021425e8 *event) {
-    if (event->mUnk_02 != 0) {
-        func_ov003_021d079c(event->mUnk_02);
+    if (event->mResultCode != 0) {
+        func_ov003_021d079c(event->mResultCode);
     } else {
         func_ov003_021d07b0(1);
     }
@@ -345,16 +345,16 @@ BOOL func_ov003_021d0180(void) {
 }
 
 void func_ov003_021d0158(Unk021425e8 *event) {
-    if (event->mUnk_02 != 0) {
+    if (event->mResultCode != 0) {
         func_ov003_021d07b0(9);
-        func_ov003_021d079c(event->mUnk_02);
+        func_ov003_021d079c(event->mResultCode);
     } else {
         func_ov003_021d07b0(1);
     }
 }
 
 void func_ov003_021d0134(Unk021425e8 *a) {
-    if (a->mUnk_02 != 0) {
+    if (a->mResultCode != 0) {
         func_ov003_021d07b0((u32) 10);
         return;
     }
@@ -401,7 +401,7 @@ BOOL func_ov003_021d0078(void) {
 }
 
 u32 func_ov003_021cfff8(u16 param_1) {
-    u16 r = func_02143280();
+    u16 r = WM_GetAllowedChannel();
     if (r == 0x8000) {
         func_ov003_021d079c(3);
         func_ov003_021d07b0(9);
@@ -426,8 +426,8 @@ void func_ov003_021cff50(Unk021425e8 *param_1) {
     u16 b;
     u32 r;
 
-    if (param_1->mUnk_02 != 0) {
-        func_ov003_021d079c(param_1->mUnk_02);
+    if (param_1->mResultCode != 0) {
+        func_ov003_021d079c(param_1->mResultCode);
         func_ov003_021d07b0(9);
         return;
     }
@@ -521,7 +521,7 @@ BOOL func_ov003_021cfde4(void) {
 }
 
 void func_ov003_021cfdc8(Unk021425e8 *event) {
-    if (event->mUnk_02 == 8) {
+    if (event->mResultCode == 8) {
         func_ov003_021d07b0(9);
         IrqDisableLoopForever();
     }
@@ -540,11 +540,11 @@ BOOL func_ov003_021cfd88(void) {
 }
 
 void func_ov003_021cfd44(Unk021425e8 *a) {
-    if (a->mUnk_02 != 0) {
-        func_ov003_021d079c(a->mUnk_02);
+    if (a->mResultCode != 0) {
+        func_ov003_021d079c(a->mResultCode);
         func_ov003_021d07b0(10);
     } else {
-        s32 r = func_021435e8(func_ov003_021cfdc8);
+        s32 r = WM_SetIndCallback(func_ov003_021cfdc8);
         if (r != 0) {
             func_ov003_021d079c(r);
             func_ov003_021d07b0(10);
@@ -570,7 +570,7 @@ BOOL func_ov003_021cfc4c(u32 a, u16 b, u16 c) {
     func_ov003_021d07b0(3);
     data_ov003_021da2a8->mUnk_0c = b;
     data_ov003_021da2a8->mUnk_32 = c;
-    data_ov003_021da2a8->mUnk_18 = func_02143134();
+    data_ov003_021da2a8->mUnk_18 = WM_GetDispersionBeaconPeriod();
     data_ov003_021da2a8->mUnk_34 = 0xd0;
     data_ov003_021da2a8->mUnk_36 = 0x44;
     data_ov003_021da2a8->mUnk_10 = 2;
@@ -593,11 +593,11 @@ void func_ov003_021cfc40(u32 a) {
 }
 
 u8 *func_ov003_021cfc1c(u32 a) {
-    return func_0214461c(&data_ov003_021da2a8->mUnk_13e0, &data_ov003_021da2a8->mUnk_1c00, a);
+    return WM_GetSharedDataAddress(&data_ov003_021da2a8->mUnk_13e0, &data_ov003_021da2a8->mUnk_1c00, a);
 }
 
 BOOL func_ov003_021cfb98(void *a) {
-    s32 r = func_02144c6c(&data_ov003_021da2a8->mUnk_13e0, a, &data_ov003_021da2a8->mUnk_1c00);
+    s32 r = WM_StepDataSharing(&data_ov003_021da2a8->mUnk_13e0, a, &data_ov003_021da2a8->mUnk_1c00);
     if (r == 7) {
         if (data_ov003_021da2a4 != NULL) {
             data_ov003_021da2a4(0x08000000, data_ov003_021d7a18);

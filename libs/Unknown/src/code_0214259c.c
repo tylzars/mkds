@@ -17,17 +17,17 @@ struct Unk02142aa8 *data_0217eed4;
 RingQueue data_0217eed8;
 void *data_0217eef8[10];
 
-s32 func_02142e78(void *buf, u32 n) {
+s32 WM_Init(void *buf, u32 n) {
     s32 r;
 
-    r = func_02142c98(buf, n, 0xf00);
+    r = InitWorkBufferWithSize(buf, n, 0xf00);
     if (r == 0) {
         data_0217eed4->mUnk_016 = 0;
     }
     return r;
 }
 
-s32 func_02142c98(void *buf, u32 n, u32 size) {
+s32 InitWorkBufferWithSize(void *buf, u32 n, u32 size) {
     s32 i;
     s32 j;
 
@@ -56,13 +56,13 @@ s32 func_02142c98(void *buf, u32 n, u32 size) {
     MI_DmaFill32(n, buf, 0, size);
     data_0217eed4 = buf;
     data_0217eed4->mUnk_000 = (u8 *) buf + 0x200;
-    data_0217eed4->mUnk_004 = (Unk02142988 *) ((u8 *) data_0217eed4->mUnk_000 + 0x300);
-    data_0217eed4->mUnk_00c = (u16 *) ((u8 *) data_0217eed4->mUnk_004 + 0x800);
-    data_0217eed4->mUnk_010 = (Unk021425e8 *) ((u8 *) data_0217eed4->mUnk_00c + 0x100);
+    data_0217eed4->mStatusArea = (Unk02142988 *) ((u8 *) data_0217eed4->mUnk_000 + 0x300);
+    data_0217eed4->mRequestArea = (u16 *) ((u8 *) data_0217eed4->mStatusArea + 0x800);
+    data_0217eed4->mMessageArea = (Unk021425e8 *) ((u8 *) data_0217eed4->mRequestArea + 0x100);
     func_021425cc();
     data_0217eed4->mUnk_014 = n;
     for (i = 0; i < 16; i++) {
-        func_0214358c((u16) i, 0, 0);
+        WM_SetPortCallback((u16) i, 0, 0);
     }
     RingQueueInit(&data_0217eed8, data_0217eef8, 10);
     for (j = 0; j < 10; j++) {
@@ -70,11 +70,11 @@ s32 func_02142c98(void *buf, u32 n, u32 size) {
         DC_StoreRange(data_0217ef60[j], 2);
         RingQueueAppend(&data_0217eed8, data_0217ef60[j], 1);
     }
-    PxiCallbackSet(0xa, func_021425e8);
+    PxiCallbackSet(0xa, ReceiveCommandReply);
     return 0;
 }
 
-s32 func_02142c24(void) {
+s32 WM_Finish(void) {
     s32 r;
 
     if (GetErrorUnlessInitialized() != 0) {
@@ -117,9 +117,9 @@ s32 SendCommandMessage(u32 a, u16 b, ...) {
         return 8;
     }
     if (b == 0) {
-        DC_StoreRange(data_0217eed4->mUnk_00c, 0x100);
+        DC_StoreRange(data_0217eed4->mRequestArea, 0x100);
         DC_InvalidateRange(p, 0x100);
-        MI_DmaCopy32(data_0217eed4->mUnk_014, data_0217eed4->mUnk_00c, p, 0x100);
+        MI_DmaCopy32(data_0217eed4->mUnk_014, data_0217eed4->mRequestArea, p, 0x100);
     }
     *(u16 *) p = a;
     ap = (u32 *) (((u32) &b & ~3) + 4);
@@ -157,8 +157,8 @@ s32 GetErrorUnlessStateAtLeast2(void) {
     if (r != 0) {
         return r;
     }
-    DC_InvalidateRange(data_0217eed4->mUnk_004, 2);
-    if (data_0217eed4->mUnk_004->mUnk_000 <= 1) {
+    DC_InvalidateRange(data_0217eed4->mStatusArea, 2);
+    if (data_0217eed4->mStatusArea->mState <= 1) {
         return 3;
     }
     return 0;
@@ -173,8 +173,8 @@ s32 GetErrorUnlessStateIsOneOf(s32 n, ...) {
     if (r != 0) {
         return r;
     }
-    DC_InvalidateRange(data_0217eed4->mUnk_004, 2);
-    v = data_0217eed4->mUnk_004->mUnk_000;
+    DC_InvalidateRange(data_0217eed4->mStatusArea, 2);
+    v = data_0217eed4->mStatusArea->mState;
     ap = (u32 *) (((u32) &n & ~3) + 4);
     r = 3;
     while (n != 0) {
@@ -187,7 +187,7 @@ s32 GetErrorUnlessStateIsOneOf(s32 n, ...) {
     return r;
 }
 
-void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
+void ReceiveCommandReply(u32 a, Unk021425e8 *m, s32 c) {
     Unk021425e8Func cb;
     u16 t;
     u16 k;
@@ -201,60 +201,60 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
     if (c != 0) {
         return;
     }
-    DC_InvalidateRange(data_0217eed4->mUnk_010, 0x100);
+    DC_InvalidateRange(data_0217eed4->mMessageArea, 0x100);
     if (data_0217eed4->mUnk_016 == 0) {
-        DC_InvalidateRange(data_0217eed4->mUnk_004, 0x800);
+        DC_InvalidateRange(data_0217eed4->mStatusArea, 0x800);
     }
-    if (m != data_0217eed4->mUnk_010) {
+    if (m != data_0217eed4->mMessageArea) {
         DC_InvalidateRange(m, 0x100);
     }
-    if (m->mUnk_00 >= 0x2a) {
-        if (m->mUnk_00 == 0x80) {
-            if (m->mUnk_02 == 0x13) {
+    if (m->mCommand >= 0x2a) {
+        if (m->mCommand == 0x80) {
+            if (m->mResultCode == 0x13) {
                 IrqDisableLoopForever();
             }
-            cb = data_0217eed4->mUnk_0c0;
+            cb = data_0217eed4->mIndicationCallback;
             if (cb != 0) {
                 cb(m);
             }
-        } else if (m->mUnk_00 == 0x82) {
-            if (data_0217eed4->mUnk_0c4[m->mUnk_06] != 0) {
-                m->mUnk_1c = data_0217eed4->mUnk_104[m->mUnk_06];
-                DC_InvalidateRange(m->mUnk_08, data_0217eed4->mUnk_004->mUnk_046);
-                data_0217eed4->mUnk_0c4[m->mUnk_06](m);
+        } else if (m->mCommand == 0x82) {
+            if (data_0217eed4->mPortCallbacks[m->mUnk_06] != 0) {
+                m->mUnk_1c = data_0217eed4->mPortCallbackArgs[m->mUnk_06];
+                DC_InvalidateRange(m->mUnk_08, data_0217eed4->mStatusArea->mUnk_046);
+                data_0217eed4->mPortCallbacks[m->mUnk_06](m);
             }
-        } else if (m->mUnk_00 == 0x81) {
-            m->mUnk_00 = 0xf;
+        } else if (m->mCommand == 0x81) {
+            m->mCommand = 0xf;
             cb = m->mUnk_1c;
             if (cb != 0) {
                 cb(m);
             }
         }
     } else {
-        if (m->mUnk_00 == 0xe) {
+        if (m->mCommand == 0xe) {
             if ((u16) (m->mUnk_04 + 0xfff5) <= 1) {
-                if (m->mUnk_02 == 0) {
-                    DC_InvalidateRange(m->mUnk_08, data_0217eed4->mUnk_004->mUnk_046);
+                if (m->mResultCode == 0) {
+                    DC_InvalidateRange(m->mUnk_08, data_0217eed4->mStatusArea->mUnk_046);
                 }
             }
         }
-        if (m->mUnk_00 == 2 && m->mUnk_02 == 0) {
-            cb = data_0217eed4->mUnk_018[m->mUnk_00];
-            func_02142c24();
+        if (m->mCommand == 2 && m->mResultCode == 0) {
+            cb = data_0217eed4->mCommandCallbacks[m->mCommand];
+            WM_Finish();
             if (cb == 0) {
                 return;
             }
             cb(m);
             return;
         }
-        cb = data_0217eed4->mUnk_018[m->mUnk_00];
+        cb = data_0217eed4->mCommandCallbacks[m->mCommand];
         if (cb != 0) {
             cb(m);
             if (data_0217eed0 == 0) {
                 return;
             }
         }
-        t = m->mUnk_00;
+        t = m->mCommand;
         if (t == 8 || t == 0xc) {
             if (t == 8) {
                 p5 = (u8 *) m + 0xa;
@@ -270,8 +270,8 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
                 p5 = (u8 *) m + 0xa;
             }
             if (k == 7 || k == 9) {
-                data_0217ef20.mUnk_00 = 0x82;
-                data_0217ef20.mUnk_02 = 0;
+                data_0217ef20.mCommand = 0x82;
+                data_0217ef20.mResultCode = 0;
                 data_0217ef20.mUnk_04 = k;
                 data_0217ef20.mUnk_08 = 0;
                 data_0217ef20.mUnk_0c = 0;
@@ -288,20 +288,20 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
                 }
                 for (i = 0; i < 16; i++) {
                     data_0217ef20.mUnk_06 = i;
-                    if (data_0217eed4->mUnk_0c4[i] != 0) {
-                        data_0217ef20.mUnk_1c = data_0217eed4->mUnk_104[i];
-                        data_0217eed4->mUnk_0c4[i](&data_0217ef20);
+                    if (data_0217eed4->mPortCallbacks[i] != 0) {
+                        data_0217ef20.mUnk_1c = data_0217eed4->mPortCallbackArgs[i];
+                        data_0217eed4->mPortCallbacks[i](&data_0217ef20);
                     }
                 }
             }
         }
     }
-    DC_InvalidateRange(data_0217eed4->mUnk_010, 0x100);
+    DC_InvalidateRange(data_0217eed4->mMessageArea, 0x100);
     func_021425cc();
-    if (m == data_0217eed4->mUnk_010) {
+    if (m == data_0217eed4->mMessageArea) {
         return;
     }
-    m->mUnk_00 |= 0x8000;
+    m->mCommand |= 0x8000;
     DC_StoreRange(m, 0x100);
 }
 
@@ -311,9 +311,9 @@ void func_021425cc(void) {
     }
 }
 
-Unk02142988 *func_0214259c(void) {
+Unk02142988 *GetStatusArea(void) {
     if (GetErrorUnlessInitialized() != 0) {
         return 0;
     }
-    return data_0217eed4->mUnk_004;
+    return data_0217eed4->mStatusArea;
 }

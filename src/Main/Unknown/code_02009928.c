@@ -72,7 +72,7 @@ u32 func_0200ada4(Unk02143a78 *a) {
     u16 i;
     u16 v2;
     u32 v1;
-    v1 = func_02143280();
+    v1 = WM_GetAllowedChannel();
     if (v1 == 0) {
         return 0;
     }
@@ -123,7 +123,7 @@ u32 func_0200ad4c(void) {
 
 void func_0200ad00(void) {
     u32 v1;
-    v1 = func_021435e8(func_0200a7b0);
+    v1 = WM_SetIndCallback(func_0200a7b0);
     func_02009928(0x80, v1);
     v1 = WM_SetLifeTime(func_0200a7b0, *(u16 *) &data_0216179c, *(u16 *) &data_02161794, *(u16 *) &data_02161790,
                         *(u16 *) &data_02161798);
@@ -139,16 +139,16 @@ void func_0200a7b0(Unk021425e8 *a) {
     u32 i;
     Unk0216fdac *p;
     u32 x;
-    switch (a->mUnk_00) {
+    switch (a->mCommand) {
         case 0:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 data_0216fda8->mUnk_51c(0x100, a);
                 return;
             }
             func_0200ad00();
             return;
         case 0x1d:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 data_0216fda8->mUnk_51c(0x100, a);
                 return;
             }
@@ -159,14 +159,14 @@ void func_0200a7b0(Unk021425e8 *a) {
             func_02009928(0x19, WM_SetBeaconIndication(func_0200a7b0, 1));
             return;
         case 0x19:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 data_0216fda8->mUnk_51c(0x100, a);
                 return;
             }
             func_02009928(8, StartParentWithArgument(func_0200a7b0, data_usa_021617a4));
             return;
         case 8:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 data_0216fda8->mUnk_51c(0x100, a);
                 return;
             }
@@ -242,12 +242,12 @@ void func_0200a7b0(Unk021425e8 *a) {
                 }
             }
             data_0216fda8->mUnk_50c = 0;
-            if (a->mUnk_02 == 0) {
+            if (a->mResultCode == 0) {
                 data_0216fda8->mUnk_51c(2, a);
                 data_0216fda8->mUnk_51c(0x19, NULL);
                 return;
             }
-            if (a->mUnk_02 == 10) {
+            if (a->mResultCode == 10) {
                 data_0216fda8->mUnk_51c(0x2a, a);
                 return;
             }
@@ -256,7 +256,7 @@ void func_0200a7b0(Unk021425e8 *a) {
             return;
         case 1:
             if (data_0216fdac->mUnk_1320 == 0) {
-                if (a->mUnk_02 != 0) {
+                if (a->mResultCode != 0) {
                     data_0216fda8->mUnk_526 = 0;
                     data_0216fda8->mUnk_51c(0x100, a);
                     return;
@@ -266,10 +266,10 @@ void func_0200a7b0(Unk021425e8 *a) {
                 func_02009928(2, WM_End(func_0200a7b0));
                 return;
             }
-            func_0214358c(1, NULL, NULL);
-            func_021435e8(NULL);
+            WM_SetPortCallback(1, NULL, NULL);
+            WM_SetIndCallback(NULL);
         case 2:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 data_0216fda8->mUnk_526 = 0;
                 data_0216fda8->mUnk_51c(0x100, a);
                 return;
@@ -279,7 +279,7 @@ void func_0200a7b0(Unk021425e8 *a) {
             data_0216fda8->mUnk_51c(0x11, a);
             return;
         case 13:
-            if (a->mUnk_02 == 0) {
+            if (a->mResultCode == 0) {
                 data_0216fda8->mUnk_52a &= ~a->mUnk_08_2;
             }
             return;
@@ -311,7 +311,7 @@ void func_0200a7b0(Unk021425e8 *a) {
 }
 
 void func_0200a77c(Unk021425e8 *a) {
-    if (a->mUnk_02 == 0) {
+    if (a->mResultCode == 0) {
         if (a->mUnk_04 == 7) {
         } else if (a->mUnk_04 == 9) {
         } else if (a->mUnk_04 == 0x15) {
@@ -329,9 +329,9 @@ void func_0200a1bc(Unk021425e8 *a) {
     u32 v2;
     u8 *v3;
     v1 = data_0216fda8;
-    switch (a->mUnk_00) {
+    switch (a->mCommand) {
         case 0:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 v1->mUnk_51c(0x100, a);
                 return;
             }
@@ -340,7 +340,7 @@ void func_0200a1bc(Unk021425e8 *a) {
                                                *(u16 *) &data_02161790, *(u16 *) &data_02161798));
             return;
         case 0x1d:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 v1->mUnk_51c(0x100, a);
                 return;
             }
@@ -362,7 +362,7 @@ void func_0200a1bc(Unk021425e8 *a) {
             func_02009928(0xa, WM_StartScan(func_0200a1bc, &data_0216fdc0));
             return;
         case 10:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 v1->mUnk_51c(0x100, a);
                 return;
             }
@@ -431,14 +431,14 @@ void func_0200a1bc(Unk021425e8 *a) {
                     return;
             }
         case 11:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 v1->mUnk_51c(0x100, a);
                 return;
             }
             func_02009928(0xc, WM_StartConnectEx(func_0200a1bc, v1->mUnk_520, NULL, 1, 0));
             return;
         case 12:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 v1->mUnk_5e0 = 0;
                 v1->mUnk_51c(0xb, a);
                 return;
@@ -452,7 +452,7 @@ void func_0200a1bc(Unk021425e8 *a) {
                     v1->mUnk_5e2 = a->mUnk_08_2;
                     v1->mUnk_51c(6, a);
                     v1->mUnk_52a = 1;
-                    if (func_0214358c(1, (UnkFunc *) func_0200a77c, NULL) != 0) {
+                    if (WM_SetPortCallback(1, (UnkFunc *) func_0200a77c, NULL) != 0) {
                         return;
                     }
                     func_02009928(0xe, WM_StartMPEx(func_0200a1bc, v1->mUnk_504, v1->mUnk_51a, (u32) v1->mUnk_040,
@@ -485,9 +485,9 @@ void func_0200a1bc(Unk021425e8 *a) {
             }
         case 15:
             v1->mUnk_50c = 0;
-            if (a->mUnk_02 == 0) {
+            if (a->mResultCode == 0) {
                 v1->mUnk_51c(8, a);
-            } else if (a->mUnk_02 == 9) {
+            } else if (a->mResultCode == 9) {
                 v1->mUnk_51c(0x29, a);
             } else {
                 v1->mUnk_51c(0x12, a);
@@ -495,7 +495,7 @@ void func_0200a1bc(Unk021425e8 *a) {
             v1->mUnk_51c(0x19, NULL);
             return;
         case 1:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 v1->mUnk_526 = 0;
                 v1->mUnk_51c(0x100, a);
                 return;
@@ -505,7 +505,7 @@ void func_0200a1bc(Unk021425e8 *a) {
             func_02009928(2, WM_End(func_0200a1bc));
             return;
         case 2:
-            if (a->mUnk_02 != 0) {
+            if (a->mResultCode != 0) {
                 v1->mUnk_526 = 0;
                 v1->mUnk_51c(0x100, a);
                 return;
@@ -562,7 +562,7 @@ s32 func_02009ff4(void *a, Unk02009ff4 *b, u32 c, u32 d, u32 e) {
     v1 = (Unk0216fda8 *) (((u32) a + 0x1f) & ~0x1f);
     v2 = (Unk0216fdac *) (((u32) v1 + 0x1e1f) & ~0x1f);
     if (d == 0x10000) {
-        d = func_02142eac();
+        d = WM_GetNextTgid();
     }
     v3 = IrqDisable();
     data_usa_0216fd80 = e;
@@ -658,11 +658,11 @@ s32 func_02009e70(void) {
         if (v != 2) {
             return 8;
         }
-        func_021435e8(data_0216fda8->mUnk_508);
+        WM_SetIndCallback(data_0216fda8->mUnk_508);
         data_0216fda8->mUnk_50d = 1;
         return 0;
     }
-    func_021435e8(data_0216fda8->mUnk_508);
+    WM_SetIndCallback(data_0216fda8->mUnk_508);
     data_0216fda8->mUnk_50d = 1;
     func_0200ad00();
     return 0;
