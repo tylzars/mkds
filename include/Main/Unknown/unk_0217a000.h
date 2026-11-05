@@ -1016,23 +1016,27 @@ typedef struct Camera {
     /* 024 */ Vec3 mPos;
     /* 030 */ Unk02012f58 mViewMatrix;
     // Half of the vertical field of view, 0x10000 per turn (top = near * tan). The chase camera eases it toward
-    // mHalfFovAngleGoal; entry cameras set the sin/cos pair mUnk_068/mUnk_06a directly.
+    // mHalfFovAngleGoal; entry cameras set the pair mHalfFovPairFirst / mHalfFovPairSecond (sin and cos of the angle)
+    // directly.
     /* 060 */ s32 mHalfFovAngle;
     // Default data_0216569c (0x157c, about 30 degrees).
     /* 064 */ s32 mHalfFovAngleGoal;
-    /* 068 */ s16 mUnk_068;
-    /* 06a */ s16 mUnk_06a;
+    // First and second element of the pair gPairsByAngle holds for mHalfFovAngle; mFrustumTop = mNear * first / second.
+    /* 068 */ s16 mHalfFovPairFirst;
+    /* 06a */ s16 mHalfFovPairSecond;
     /* 06c */ s32 mAspectRatio;
     /* 070 */ s32 mNear;
     // Far plane of the main projection (course settings value, default 0x640000); mUnk_08c is a second far value.
     /* 074 */ s32 mFar;
-    // The four extents handed to func_0214b048 (top, bottom, left, right), 20.12; shifted by the split-screen part
-    // (mUnk_24c) and a kind-6 entry offset, left and right swapped in mirror mode.
+    // The four extents handed to func_0214b048 (top, bottom, left, right), 20.12; shifted by mFrustumShift
+    // and a kind-6 entry offset, left and right swapped in mirror mode.
     /* 078 */ s32 mFrustumTop;
     /* 07c */ s32 mFrustumBottom;
     /* 080 */ s32 mFrustumLeft;
     /* 084 */ s32 mFrustumRight;
-    /* 088 */ s32 mUnk_088;
+    // Fraction of the Kart's last-frame movement (mPos - mPrevPos) added to the camera position while Kart bit 0x1000
+    // of mUnk_48 is set; 0x1000 when the camera is placed, times 0xe66/0x1000 per use.
+    /* 088 */ s32 mKartMoveScale;
     /* 08c */ s32 mUnk_08c;
     /* 090 */ Vec3 mViewLookAt;
     /* 09c */ Vec3 mViewPos;
@@ -1048,7 +1052,9 @@ typedef struct Camera {
     /* 0d8 */ s32 mUnk_0d8;
     /* 0dc */ s32 mFollowDistance;
     /* 0e0 */ s32 mUnk_0e0;
-    /* 0e4 */ s32 mUnk_0e4;
+    // Amount the look-at is lowered: +0x1000 per call up to 0xa000 while the Kart has bit 0x10000 of mUnk_48, else
+    // decays; subtracted from the look-at goal y (func_020745d4).
+    /* 0e4 */ s32 mLookAtLowering;
     /* 0e8 */ s32 mFollowDistanceScale;
     /* 0ec */ s32 mUnk_0ec;
     // 0x1000, or -0x1000 in mode 4 with flag 0x20 of data_021759c0->mUnk_044.
@@ -1057,7 +1063,9 @@ typedef struct Camera {
     /* 100 */ Vec3 mShakePosOffsetGoal;
     /* 10c */ Vec3 mShakeLookAtOffset;
     /* 118 */ Vec3 mShakePosOffset;
-    /* 124 */ Vec3 mUnk_124;
+    // Third look-at shake term: adds -mShakeLookAtOffset times a per-kind factor (1.25 / 2 / 2.75), halved each call;
+    // added to the look-at in UpdateCameraView.
+    /* 124 */ Vec3 mShakeLookAtCounterOffset;
     /* 130 */ u8 mShakeKind;
     /* 131 */ u8 mUnk_131[0x3];
     // mPos of the previous frame; the chase step keeps it while a collision push is active.
@@ -1073,14 +1081,24 @@ typedef struct Camera {
     /* 154 */ s32 mWobbleDecay;
     /* 158 */ s32 mWobbleOffset;
     /* 15c */ Vec3 mForward;
-    /* 168 */ s32 mUnk_168;
-    /* 16c */ s32 mUnk_16c;
-    /* 170 */ s32 mUnk_170;
-    /* 174 */ s32 mUnk_174;
+    // Added to the y of the position goal; eased toward a value taken from the Kart's heading y while Kart bit 0x10 of
+    // mUnk_44 or 0x10000 of mUnk_48 is set.
+    /* 168 */ s32 mPosGoalYOffset;
+    // Eased toward 0, or toward +-0x19000 (sign of Kart.mUnk_2c4) while Kart bit 8 of mUnk_44 is set.
+    /* 16c */ s32 mPosGoalKartOffsetScale;
+    // Length of the push-out vector while the push is in state 1 of mUnk_254, else 0; mCollisionOffsetLength eases
+    // toward it.
+    /* 170 */ s32 mCollisionOffsetLengthGoal;
+    // Eased mCollisionOffsetLengthGoal; times 3 it shortens the follow distance and raises the position goal
+    // (func_020741a0).
+    /* 174 */ s32 mCollisionOffsetLength;
     // Added to the eye height of the view only, not to the look-at.
     /* 178 */ s32 mViewPosYOffset;
-    /* 17c */ Vec3 mUnk_17c;
-    /* 188 */ Vec3 mUnk_188;
+    // The push-out vector of the collision test (func_01ffdee4) scaled by 3 to 8, kept and eased; added to the position
+    // goal.
+    /* 17c */ Vec3 mPosGoalCollisionOffset;
+    // Kart.mUnk_120 (a row of the Kart's matrix) times mPosGoalKartOffsetScale; added to the position goal.
+    /* 188 */ Vec3 mPosGoalKartOffset;
     /* 194 */ Unk0207b960 mPosCurve;
     /* 1d0 */ Unk0207b960 mUnk_1d0;
     /* 20c */ u16 mUnk_20c;
@@ -1107,15 +1125,19 @@ typedef struct Camera {
     /* 244 */ s32 mLookAtBlend;
     // Non-zero while the position y is held at mHeldHeight (set by SetCameraHeightHold for kart state 6).
     /* 248 */ s32 mHeightHold;
-    /* 24c */ s32 mUnk_24c;
+    // 0 none; 1 and 2 (data_usa_0217ac98 / data_usa_0217ac84 while the entry is kind 4) shift the window of mFrustumTop
+    // and mFrustumBottom up or down by 1.3 of its half height (RefreshCameraProjection).
+    /* 24c */ s32 mFrustumShift;
     // Which camera this instance is: 0 chase, 1 entry-stepped, 2 split-screen half, 3 battle entry run; tested by
     // outside code (func_02061818).
     /* 250 */ s32 mKind;
     /* 254 */ s32 mUnk_254;
     /* 258 */ BOOL mUnk_258;
     /* 25c */ BOOL mUnk_25c;
-    /* 260 */ Vec3 mUnk_260;
-    /* 26c */ s16 mUnk_26c;
+    // func_02063b10 (row 2 of the Kart's matrix, taken as its heading) of the selected Kart at creation; used instead
+    // of the live vector for a Kart with bit 0x20000000 of mUnk_4c. SetupCamera zeroes it.
+    /* 260 */ Vec3 mSavedKartForward;
+    /* 26c */ s16 mSideDistanceSign;
     /* 26e */ u8 mUnk_26e[0x2];
 } Camera;
 

@@ -81,9 +81,9 @@ void UpdateCameraShake(Unk02073904 *p) {
     g.x = (s32) (((s64) p->mShakeLookAtOffset.x * i) >> 12);
     g.y = (s32) (((s64) p->mShakeLookAtOffset.y * i) >> 12);
     g.z = (s32) (((s64) p->mShakeLookAtOffset.z * i) >> 12);
-    Vec3Add(&g, &p->mUnk_124, &p->mUnk_124);
+    Vec3Add(&g, &p->mShakeLookAtCounterOffset, &p->mShakeLookAtCounterOffset);
     s = data_usa_021656bc;
-    p->mUnk_124.x = (s32) (((s64) p->mUnk_124.x * s) >> 12);
-    p->mUnk_124.y = (s32) (((s64) p->mUnk_124.y * s) >> 12);
-    p->mUnk_124.z = (s32) (((s64) p->mUnk_124.z * s) >> 12);
+    p->mShakeLookAtCounterOffset.x = (s32) (((s64) p->mShakeLookAtCounterOffset.x * s) >> 12);
+    p->mShakeLookAtCounterOffset.y = (s32) (((s64) p->mShakeLookAtCounterOffset.y * s) >> 12);
+    p->mShakeLookAtCounterOffset.z = (s32) (((s64) p->mShakeLookAtCounterOffset.z * s) >> 12);
 }

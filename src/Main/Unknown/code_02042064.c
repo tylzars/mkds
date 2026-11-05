@@ -771,13 +771,13 @@ s32 func_02042170(void *a, ...) {
         if (gCourseMap->mUnk_c8 == NULL && e->mUnk_4a == 2) {
             gCourseMap->mUnk_c8 = e;
         }
-        if (gCourseMap->mUnk_cc == NULL && e->mUnk_3e == 6) {
+        if (gCourseMap->mUnk_cc == NULL && e->mKind == 6) {
             gCourseMap->mUnk_cc = e;
         }
-        if (data_021759c0->mMode == 2 && gCourseMap->mUnk_d0 == NULL && e->mUnk_3e == 7) {
+        if (data_021759c0->mMode == 2 && gCourseMap->mUnk_d0 == NULL && e->mKind == 7) {
             gCourseMap->mUnk_d0 = e;
         }
-        if (data_021759c0->mMode == 4 && gCourseMap->mUnk_d4 == NULL && e->mUnk_3e == 8) {
+        if (data_021759c0->mMode == 4 && gCourseMap->mUnk_d4 == NULL && e->mKind == 8) {
             gCourseMap->mUnk_d4 = e;
         }
     }

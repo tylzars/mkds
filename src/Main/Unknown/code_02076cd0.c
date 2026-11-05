@@ -124,8 +124,8 @@ void func_02077944(void) {
     Kart *a = GetKart(data_021759c0->mEntryIndex);
 
     data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
-    func_02076a5c();
-    func_02063b10(a, &data_0217ac94->mUnk_260);
+    SetupCameraBehindKart();
+    func_02063b10(a, &data_0217ac94->mSavedKartForward);
     RefreshCameraProjection(data_0217ac94);
 }
 
@@ -142,7 +142,7 @@ void func_020777ac(u32 a) {
     SetupCamera(data_0217acbc);
     data_0217acbc->mFollowedKartIndex = a;
     data_0217acbc->mCourseMapCamera = NULL;
-    data_0217acbc->mUnk_24c = 0;
+    data_0217acbc->mFrustumShift = 0;
     data_0217acbc->mKind = 1;
     if (data_021759c0->mUnk_00c == 6) {
         data_0217acbc->mCourseMapCamera = gCourseMap->mUnk_7c;
@@ -153,7 +153,7 @@ void func_020777ac(u32 a) {
             n = 0;
             k = -1;
             for (i = 0; i < gCourseMap->mUnk_80; i++) {
-                if (gCourseMap->mUnk_7c[i].mUnk_3e == 7) {
+                if (gCourseMap->mUnk_7c[i].mKind == 7) {
                     n++;
                 }
             }
@@ -169,10 +169,10 @@ void func_020777ac(u32 a) {
                         break;
                     }
                 }
-                if (e->mUnk_3e == 7) {
+                if (e->mKind == 7) {
                     func_02077750(&data_0217acbc->mUnk_21c[j], e);
                     j++;
-                    k = e->mUnk_48;
+                    k = e->mNextIndex;
                 }
             }
             data_0217acbc->mUnk_220 = data_0217acbc->mUnk_21c;
@@ -184,9 +184,9 @@ void func_020777ac(u32 a) {
 }
 
 void func_02077750(Unk02077750 *a, CourseMapCamera *b) {
-    CourseMapEntryGroup *v1 = &gCourseMap->mEntryGroups[b->mUnk_40];
+    CourseMapEntryGroup *v1 = &gCourseMap->mEntryGroups[b->mEntryGroupIndex];
 
-    a->mUnk_7c = b->mUnk_42;
+    a->mUnk_7c = b->mPosCurvePerFrame;
     a->mUnk_7e = 2;
     a->mUnk_00 = b;
     a->mUnk_80 = 0;
@@ -212,10 +212,10 @@ void func_0207767c(void) {
         data_0217561c->mUnk_4d0 = 1;
         return;
     }
-    if ((s16) data_usa_0217ac98->mCourseMapCamera->mUnk_40 != -1) {
+    if ((s16) data_usa_0217ac98->mCourseMapCamera->mEntryGroupIndex != -1) {
         func_0207be40(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
     }
-    if ((s16) data_usa_0217ac84->mCourseMapCamera->mUnk_40 != -1) {
+    if ((s16) data_usa_0217ac84->mCourseMapCamera->mEntryGroupIndex != -1) {
         func_0207be40(&data_usa_0217ac84->mPosCurve, data_usa_0217ac84->mCourseMapCamera);
     }
 }
@@ -226,19 +226,19 @@ void func_020775e4(void) {
     SetupCamera(data_usa_0217ac98);
     data_usa_0217ac98->mCourseMapCamera = gCourseMap->mUnk_c4;
     data_usa_0217ac98->mKind = 2;
-    data_usa_0217ac98->mUnk_24c = 0;
+    data_usa_0217ac98->mFrustumShift = 0;
     if (data_usa_0217ac98->mCourseMapCamera == NULL) {
         data_0217561c->mUnk_4d0 = 1;
         return;
     }
-    if ((s16) data_usa_0217ac98->mCourseMapCamera->mUnk_40 != -1) {
+    if ((s16) data_usa_0217ac98->mCourseMapCamera->mEntryGroupIndex != -1) {
         func_0207be40(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
     }
 }
 
 #pragma thumb off
 
-// Writes the default values of 76 members; re-run by func_02076a5c when a kart is placed.
+// Writes the default values of 76 members; re-run by SetupCameraBehindKart when a kart is placed.
 void SetupCamera(Camera *p) {
     Vec3 b;
     Vec3 a;
@@ -254,11 +254,11 @@ void SetupCamera(Camera *p) {
     p->mSide = data_usa_02154fd0;
     Matrix4x3Identity(&p->mViewMatrix);
     p->mForward = data_usa_02154fb8;
-    p->mUnk_168 = 0;
+    p->mPosGoalYOffset = 0;
     p->mHalfFovAngleGoal = data_0216569c;
     p->mHalfFovAngle = data_0216569c + 5;
-    p->mUnk_068 = gPairsByAngle[((u16) p->mHalfFovAngle >> 4) * 2];
-    p->mUnk_06a = gPairsByAngle[((u16) p->mHalfFovAngle >> 4) * 2 + 1];
+    p->mHalfFovPairFirst = gPairsByAngle[((u16) p->mHalfFovAngle >> 4) * 2];
+    p->mHalfFovPairSecond = gPairsByAngle[((u16) p->mHalfFovAngle >> 4) * 2 + 1];
     p->mAspectRatio = 0x1555;
     p->mNear = 0x400;
     p->mUnk_08c = 0x640000;
@@ -279,7 +279,7 @@ void SetupCamera(Camera *p) {
     p->mUnk_0d8 = 1;
     p->mFollowDistance = data_usa_0217ac90;
     p->mUnk_0e0 = p->mFollowDistance;
-    p->mUnk_0e4 = 0;
+    p->mLookAtLowering = 0;
     p->mFollowDistanceScale = 0x1000;
     p->mUnk_0ec = 0;
     p->mFollowDirectionSign = 0x1000;
@@ -288,13 +288,13 @@ void SetupCamera(Camera *p) {
     p->mShakeLookAtOffset = c;
     p->mShakePosOffset = c;
     p->mShakeKind = 0;
-    p->mUnk_124 = c;
+    p->mShakeLookAtCounterOffset = c;
     p->mFovBlend = 0;
     p->mLookAtBlend = 0;
     p->mHeightHold = 0;
-    p->mUnk_16c = 0;
-    p->mUnk_170 = 0;
-    p->mUnk_174 = 0;
+    p->mPosGoalKartOffsetScale = 0;
+    p->mCollisionOffsetLengthGoal = 0;
+    p->mCollisionOffsetLength = 0;
     p->mViewPosYOffset = 0;
     p->mWobbling = FALSE;
     p->mUnk_144 = 0;
@@ -311,23 +311,23 @@ void SetupCamera(Camera *p) {
     p->mUnk_230 = 0;
     p->mUnk_234 = FALSE;
     p->mUnk_238 = FALSE;
-    p->mUnk_24c = 0;
+    p->mFrustumShift = 0;
     p->mKind = 0;
-    p->mUnk_188 = c;
-    p->mUnk_17c = c;
+    p->mPosGoalKartOffset = c;
+    p->mPosGoalCollisionOffset = c;
     p->mUnk_254 = 3;
     p->mUnk_258 = FALSE;
     p->mUnk_25c = FALSE;
-    p->mUnk_260 = c;
+    p->mSavedKartForward = c;
     p->mUnk_0a8 = c;
     p->mUnk_0b4 = c;
-    p->mUnk_26c = data_021759c0->mUnk_57 ? -1 : 1;
+    p->mSideDistanceSign = data_021759c0->mUnk_57 ? -1 : 1;
     p->mUnk_21c = NULL;
     p->mUnk_220 = NULL;
     p->mUnk_20c = 0;
     p->mUnk_20e = 0;
     p->mUnk_224 = 0;
-    p->mUnk_088 = 0x1000;
+    p->mKartMoveScale = 0x1000;
 }
 
 void RefreshCameraProjection(Camera *p) {
@@ -344,12 +344,12 @@ void RefreshCameraProjection(Camera *p) {
             p->mHalfFovAngle = p->mHalfFovAngleGoal;
         }
     }
-    p->mFrustumTop = (s32) (((s64) p->mNear * DivFixed12(p->mUnk_068, p->mUnk_06a)) >> 12);
+    p->mFrustumTop = (s32) (((s64) p->mNear * DivFixed12(p->mHalfFovPairFirst, p->mHalfFovPairSecond)) >> 12);
     p->mFrustumBottom = -p->mFrustumTop;
     p->mFrustumLeft = (s32) (((s64) -p->mFrustumTop * p->mAspectRatio) >> 12);
     a = p->mFrustumTop;
     b = p->mFrustumBottom;
-    switch (p->mUnk_24c) {
+    switch (p->mFrustumShift) {
         case 1:
             a <<= 1;
             b = -a;
@@ -441,7 +441,7 @@ void UpdateCameraView(Camera *p) {
         UpdateCameraShake(p);
         Vec3Add(&c, &p->mShakePosOffset, &c);
         Vec3Add(&d, &p->mShakeLookAtOffset, &d);
-        Vec3Add(&p->mUnk_124, &d, &d);
+        Vec3Add(&p->mShakeLookAtCounterOffset, &d, &d);
     }
     p->mViewPos.x = c.x >> 4;
     p->mViewPos.y = c.y >> 4;

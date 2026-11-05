@@ -271,7 +271,7 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
     }
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         ResetCameraBehind(a, &p->mUnk_e0_m);
-        func_02089f9c(((u32(*)(void)) func_02074828)());
+        func_02089f9c(((u32(*)(void)) ResetCameraHalfFovAngle)());
         SetCameraHeightHold(0);
     }
 }
@@ -1376,7 +1376,7 @@ void func_020705fc(Kart *p, u32 b) {
     w = data_02165524;
     func_01ffd190(&w, p->mUnk_236, (Vec4 *) &p->mUnk_e0);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        func_02076a5c();
+        SetupCameraBehindKart();
         if (data_0217c780 & 1) {
             h = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {

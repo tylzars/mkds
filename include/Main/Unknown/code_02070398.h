@@ -48,5 +48,5 @@ void func_020732d8(Kart *p);
 void func_02073f90(void);
 void SetCameraHeightHold(s32 a);
 void func_02075d08(s32 a);
-void func_02076a5c(void);
+void SetupCameraBehindKart(void);
 void func_0207a2d4(s32 a);

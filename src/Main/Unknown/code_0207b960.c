@@ -814,7 +814,7 @@ void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0207be40(Unk0207b960 *a, struct CourseMapCamera *b) {
-    CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mUnk_40];
+    CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mEntryGroupIndex];
     u16 i;
 
     a->mUnk_30 = 0;
@@ -824,7 +824,7 @@ void func_0207be40(Unk0207b960 *a, struct CourseMapCamera *b) {
         return;
     }
     for (i = 0; i < 4; i++) {
-        a->mUnk_00[i] = GetCourseMapGroupEntry(b->mUnk_40, i)->mUnk_00;
+        a->mUnk_00[i] = GetCourseMapGroupEntry(b->mEntryGroupIndex, i)->mUnk_00;
         a->mUnk_34 = i;
     }
 }
@@ -832,7 +832,7 @@ void func_0207be40(Unk0207b960 *a, struct CourseMapCamera *b) {
 void func_0207bd6c(Unk0207b960 *a, struct CourseMapCamera *b) {
     s16 j;
     s16 i;
-    CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mUnk_40];
+    CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mEntryGroupIndex];
 
     a->mUnk_30 = 0;
     a->mUnk_34 = 0;
@@ -844,10 +844,10 @@ void func_0207bd6c(Unk0207b960 *a, struct CourseMapCamera *b) {
     a->mUnk_34 = 2;
     j = 2;
     for (i = 0; i < 3; i++) {
-        a->mUnk_00[(u16) i] = GetCourseMapGroupEntry(b->mUnk_40, j)->mUnk_00;
+        a->mUnk_00[(u16) i] = GetCourseMapGroupEntry(b->mEntryGroupIndex, j)->mUnk_00;
         j--;
     }
-    a->mUnk_00[3] = GetCourseMapGroupEntry(b->mUnk_40, e->mEntryCount - 1)->mUnk_00;
+    a->mUnk_00[3] = GetCourseMapGroupEntry(b->mEntryGroupIndex, e->mEntryCount - 1)->mUnk_00;
 }
 
 void func_0207bc9c(Vec3 *a, Unk0207b960 *b, struct CourseMapCamera *c, s32 d) {
@@ -855,7 +855,7 @@ void func_0207bc9c(Vec3 *a, Unk0207b960 *b, struct CourseMapCamera *c, s32 d) {
     Unk02042044 *f;
     u16 i;
 
-    e = &gCourseMap->mEntryGroups[c->mUnk_40];
+    e = &gCourseMap->mEntryGroups[c->mEntryGroupIndex];
     b->mUnk_30 += d;
     if (b->mUnk_30 > 0x1000) {
         b->mUnk_34++;
@@ -863,7 +863,7 @@ void func_0207bc9c(Vec3 *a, Unk0207b960 *b, struct CourseMapCamera *c, s32 d) {
             b->mUnk_34 = e->mEntryCount;
             b->mUnk_30 = 0x1000;
         } else {
-            f = GetCourseMapGroupEntry(c->mUnk_40, b->mUnk_34);
+            f = GetCourseMapGroupEntry(c->mEntryGroupIndex, b->mUnk_34);
             for (i = 0; i < 3; i++) {
                 b->mUnk_00[i] = b->mUnk_00[i + 1];
             }

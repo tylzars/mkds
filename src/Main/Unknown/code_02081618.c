@@ -1035,7 +1035,7 @@ void func_02082034(Unk0201ca6c *p, s32 a) {
     v = g->mForward;
     w = data_02155a14;
     if (func_0203c5e4() != 0) {
-        AngleFromPair(g->mUnk_068, g->mUnk_06a);
+        AngleFromPair(g->mHalfFovPairFirst, g->mHalfFovPairSecond);
         Vec3Sub(&g->mPos, &g->mPrevPos, &w);
         w.x = w.x >> 4;
         w.y = w.y >> 4;
