@@ -154,8 +154,8 @@ extern Unk021759c0 *data_021759c0;
 
 // Object behind data_021759c4; the members are the ones the code reads.
 typedef struct Unk021759c4 {
-    /* 00 */ Unk0214e334_b mUnk_00[5];
-    /* 28 */ Unk0214e334_b mUnk_28;
+    /* 00 */ TouchSample mUnk_00[5];
+    /* 28 */ TouchSample mUnk_28;
     /* 30 */ union {
         u32 mUnk_30;
         struct {

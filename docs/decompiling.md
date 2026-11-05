@@ -528,7 +528,7 @@ Expression shapes:
 - A final add that loads the local first: `p->m = d[0] + (s32) p->m;` with the same-type cast on the member; `+=` and
   plain `d[0] + p->m` did not match (the only spelling that matched; func_02101964).
 - Two differences computed before a wait loop and shifted after it: compute them into two locals before the loop
-  (func_0214e464).
+  (TP_CalcCalibrateParam).
 - A call result stored to a member before the call where the original stores after: put the call result in a local, then
   the stores in order (func_021243ac).
 - `(x & mask) | (m << k)` with the shift evaluated first: write `m * (1 << k)` as a constant multiply (func_021243ac).
@@ -822,7 +822,7 @@ Expression shapes:
 - A halfword stored through `lsl 8; asr 16; lsl 16; lsr 16` with the x/y chains in crossed registers: `x = m >> 4; ...`
   and `(u16) (s16) (x >> 8)` for the store (func_02011624).
 - A `-0x8000` compare constant that takes r0 before the final value: write `(s16) (x >> 7)` instead of `(s32) (x << 9)
-  >> 16` (func_0214e464).
+  >> 16` (TP_CalcCalibrateParam).
 - A `u16` argument converted right after its value's `if`, before the next test: assign it to a `u16` local at that
   point and pass the local (Thumb; func_ov000_021a4bc4).
 - `lsl/lsr #16` before a call whose callee passes that register on untouched: widen the parameter to `u32` and write
@@ -830,7 +830,7 @@ Expression shapes:
 - `(u8) i` converted again at a second identical call, where ours reuses it in a callee-saved register: `(s32) (u8) i`
   on exactly one of the two calls (hand-picked; the only spelling that matched; func_0202b100).
 - Stack `u16` arguments reloaded after a call while ours keeps one temporary across it: type the register parameters
-  `u16` too; `u32` compares share the conversion across the call (func_0214e464).
+  `u16` too; `u32` compares share the conversion across the call (TP_CalcCalibrateParam).
 - A stack parameter spilled while the original keeps it callee-saved, with callees taking `u32`: make the callee's
   parameter `s32`, so no conversion temporary is made and `f -= n2` writes `f` (func_021243ac).
 - A value passed where every other caller passes `&global`: pass the address (a real bug, not only codegen;

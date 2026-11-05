@@ -804,11 +804,11 @@ void func_020471b0(void *a) {
 void func_02047178(void) {
     Unk0214e334 v;
 
-    func_0214eb88();
-    if (func_0214eadc(&v) == 0) {
+    TP_Init();
+    if (TP_GetUserInfo(&v) == 0) {
         return;
     }
-    func_0214e994(&v);
+    TP_SetCalibrateParam(&v);
 }
 
 void func_02047104(void *a) {

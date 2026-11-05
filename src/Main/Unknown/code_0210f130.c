@@ -9,7 +9,7 @@
 u32 data_0217d1bc;
 
 void func_0210f1d4(void) {
-    func_0214f418();
+    MIC_Init();
     PM_Init();
     PM_SetAmp(1);
     data_0217d1bc = 1;
@@ -20,7 +20,7 @@ void func_0210f130(Unk0210f090 *p) {
     s32 i;
 
     if (data_0217d1bc == 0) {
-        func_0214f418();
+        MIC_Init();
         PM_Init();
         PM_SetAmp(1);
         data_0217d1bc = 1;

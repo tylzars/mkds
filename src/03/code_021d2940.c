@@ -10,9 +10,9 @@
 
 void func_ov003_021d2d28(void) {
     do {
-        func_0214e6e4();
-        func_0214e31c(4);
-    } while (func_0214e308(4) != 0);
+        TP_RequestAutoSamplingStopAsync();
+        TP_WaitBusy(4);
+    } while (TP_CheckError(4) != 0);
     func_ov003_021d2808(&data_ov003_021da2d4);
 }
 
@@ -61,17 +61,17 @@ void func_ov003_021d2b3c(void) {
         a = 0;
     }
     b = 0;
-    c = func_0214e6d4();
+    c = TP_GetLatestIndexInAuto();
     g = data_ov003_021da2d4;
     g->mUnk_2c = g->mUnk_28;
     g->mUnk_2e = g->mUnk_2a;
     i = 0;
     do {
-        Unk0214e334_b *e = &data_ov003_021da2d4->mUnk_00[c];
+        TouchSample *e = &data_ov003_021da2d4->mUnk_00[c];
 
-        if (e->mUnk_04 == 1 && e->mUnk_06 == 0) {
+        if (e->mTouched == 1 && e->mInvalidBits == 0) {
             b = 1;
-            func_0214e334((Unk0214e334 *) d, e);
+            TP_GetCalibratedPoint((Unk0214e334 *) d, e);
             func_ov003_021d2544(d[0], d[1], &data_ov003_021da2d4->mUnk_28);
             break;
         }

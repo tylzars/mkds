@@ -38,13 +38,13 @@ void func_ov003_021d2d50(void) {
     Unk0214e334 a;
 
     data_ov003_021da2d4 = func_ov003_021d283c(0x3a, 4);
-    if (func_0214eadc(&a) == 0) {
+    if (TP_GetUserInfo(&a) == 0) {
         IrqDisableLoopForever();
     }
-    func_0214e994(&a);
-    func_0214e788(0, 4, data_ov003_021da2d4->mUnk_00, 5);
-    func_0214e31c(2);
-    if (func_0214e308(2) != 0) {
+    TP_SetCalibrateParam(&a);
+    TP_RequestAutoSamplingStartAsync(0, 4, data_ov003_021da2d4->mUnk_00, 5);
+    TP_WaitBusy(2);
+    if (TP_CheckError(2) != 0) {
         IrqDisableLoopForever();
     }
     func_ov003_021d2d14();

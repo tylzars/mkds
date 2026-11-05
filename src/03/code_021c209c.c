@@ -86,7 +86,7 @@ void func_ov003_021c2398(void) {
     GX_VBlankIntr(0);
     func_02148904();
     FS_Init(-1);
-    func_0214eb88();
+    TP_Init();
     func_0214e0f4();
     GX_DispOff();
     *(u32 *) 0x4001000 &= 0xfffeffff;

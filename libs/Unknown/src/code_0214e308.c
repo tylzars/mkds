@@ -5,37 +5,37 @@
 #include "registers.h"
 #include "code_0214d5b8.h"
 
-u16 data_021803d4;
+u16 gTouchPanelInitialized;
 
-void func_0214ec18(u32 a, u32 b, u32 c) {
+void ReceiveTouchPanelReply(u32 a, u32 b, u32 c) {
     u16 x = b;
     u16 k = (x & 0x7f00) >> 8;
     u32 n;
     Unk0214ec18 w;
     Unk0214ec18 v;
-    Unk0214e334_b *e;
+    TouchSample *e;
 
     if (c != 0) {
-        data_021803d8.mUnk_34 |= 1 << k;
-        if (data_021803d8.mUnk_00 != 0) {
-            data_021803d8.mUnk_00(k, 4, 0);
+        gTouchPanelState.mErrorFlags |= 1 << k;
+        if (gTouchPanelState.mCallback != 0) {
+            gTouchPanelState.mCallback(k, 4, 0);
         }
         return;
     }
     if (k == 0x10) {
-        data_021803d8.mUnk_0c++;
-        if (data_021803d8.mUnk_0c >= data_021803d8.mUnk_14) {
-            data_021803d8.mUnk_0c = 0;
+        gTouchPanelState.mAutoSampleIndex++;
+        if (gTouchPanelState.mAutoSampleIndex >= gTouchPanelState.mAutoSampleBufferCount) {
+            gTouchPanelState.mAutoSampleIndex = 0;
         }
-        e = data_021803d8.mUnk_10 + data_021803d8.mUnk_0c;
+        e = gTouchPanelState.mAutoSampleBuffer + gTouchPanelState.mAutoSampleIndex;
         w.h[0] = *(u16 *) 0x27fffaa;
         w.h[1] = *(u16 *) 0x27fffac;
-        e->mUnk_00 = w.f.mUnk_00_0;
-        e->mUnk_02 = w.f.mUnk_00_12;
-        e->mUnk_04 = (u8) w.f.mUnk_00_24;
-        e->mUnk_06 = (u8) w.f.mUnk_00_25;
-        if (data_021803d8.mUnk_00 != 0) {
-            data_021803d8.mUnk_00(k, 0, data_021803d8.mUnk_0c);
+        e->mX = w.f.mUnk_00_0;
+        e->mY = w.f.mUnk_00_12;
+        e->mTouched = (u8) w.f.mUnk_00_24;
+        e->mInvalidBits = (u8) w.f.mUnk_00_25;
+        if (gTouchPanelState.mCallback != 0) {
+            gTouchPanelState.mCallback(k, 0, gTouchPanelState.mAutoSampleIndex);
         }
         return;
     }
@@ -48,22 +48,22 @@ void func_0214ec18(u32 a, u32 b, u32 c) {
                 case 0:
                     v.h[0] = *(u16 *) 0x27fffaa;
                     v.h[1] = *(u16 *) 0x27fffac;
-                    data_021803d8.mUnk_32 = 0;
-                    data_021803d8.mUnk_04.mUnk_00 = v.f.mUnk_00_0;
-                    data_021803d8.mUnk_04.mUnk_02 = v.f.mUnk_00_12;
-                    data_021803d8.mUnk_04.mUnk_04 = (u8) v.f.mUnk_00_24;
-                    data_021803d8.mUnk_04.mUnk_06 = (u8) v.f.mUnk_00_25;
+                    gTouchPanelState.mUnk_32 = 0;
+                    gTouchPanelState.mRawSample.mX = v.f.mUnk_00_0;
+                    gTouchPanelState.mRawSample.mY = v.f.mUnk_00_12;
+                    gTouchPanelState.mRawSample.mTouched = (u8) v.f.mUnk_00_24;
+                    gTouchPanelState.mRawSample.mInvalidBits = (u8) v.f.mUnk_00_25;
                     break;
                 case 1:
-                    data_021803d8.mUnk_32 = 2;
+                    gTouchPanelState.mUnk_32 = 2;
                     break;
                 case 2:
-                    data_021803d8.mUnk_32 = 0;
+                    gTouchPanelState.mUnk_32 = 0;
                     break;
             }
-            data_021803d8.mUnk_36 &= ~(1 << k);
-            if (data_021803d8.mUnk_00 != 0) {
-                data_021803d8.mUnk_00(k, 0, 0);
+            gTouchPanelState.mBusyFlags &= ~(1 << k);
+            if (gTouchPanelState.mCallback != 0) {
+                gTouchPanelState.mCallback(k, 0, 0);
             }
             return;
         case 4:
@@ -78,35 +78,35 @@ void func_0214ec18(u32 a, u32 b, u32 c) {
         default:
             goto fail;
     }
-    data_021803d8.mUnk_34 |= 1 << k;
-    data_021803d8.mUnk_36 &= ~(1 << k);
-    if (data_021803d8.mUnk_00 != 0) {
-        data_021803d8.mUnk_00(k, n, 0);
+    gTouchPanelState.mErrorFlags |= 1 << k;
+    gTouchPanelState.mBusyFlags &= ~(1 << k);
+    if (gTouchPanelState.mCallback != 0) {
+        gTouchPanelState.mCallback(k, n, 0);
     }
     return;
 fail:
     IrqDisableLoopForever();
 }
 
-void func_0214eb88(void) {
-    if (data_021803d4 != 0) {
+void TP_Init(void) {
+    if (gTouchPanelInitialized != 0) {
         return;
     }
-    data_021803d4 = 1;
+    gTouchPanelInitialized = 1;
     PxiInit();
-    data_021803d8.mUnk_32 = 0;
-    data_021803d8.mUnk_36 = 0;
-    data_021803d8.mUnk_0c = 0;
-    data_021803d8.mUnk_00 = 0;
-    data_021803d8.mUnk_10 = 0;
-    data_021803d8.mUnk_30 = 0;
-    data_021803d8.mUnk_34 = 0;
+    gTouchPanelState.mUnk_32 = 0;
+    gTouchPanelState.mBusyFlags = 0;
+    gTouchPanelState.mAutoSampleIndex = 0;
+    gTouchPanelState.mCallback = 0;
+    gTouchPanelState.mAutoSampleBuffer = 0;
+    gTouchPanelState.mCalibrated = 0;
+    gTouchPanelState.mErrorFlags = 0;
     while (!PxiCallbackBitIsSet(6, 1)) {
     }
-    PxiCallbackSet(6, func_0214ec18);
+    PxiCallbackSet(6, ReceiveTouchPanelReply);
 }
 
-u32 func_0214eadc(Unk0214e334 *p) {
+u32 TP_GetUserInfo(Unk0214e334 *p) {
     Unk0214eadc *s = (Unk0214eadc *) 0x27ffc80;
     u16 e;
     u16 f;
@@ -125,7 +125,7 @@ u32 func_0214eadc(Unk0214e334 *p) {
     f = s->mUnk_60;
     g = s->mUnk_62;
     h = s->mUnk_63;
-    if ((a == 0 && e == 0 && b == 0 && f == 0) || func_0214e464(p, a, b, c, d, e, f, g, h) != 0) {
+    if ((a == 0 && e == 0 && b == 0 && f == 0) || TP_CalcCalibrateParam(p, a, b, c, d, e, f, g, h) != 0) {
         p->mUnk_00 = 0;
         p->mUnk_02 = 0;
         p->mUnk_04 = 0;
@@ -135,14 +135,14 @@ u32 func_0214eadc(Unk0214e334 *p) {
     return 1;
 }
 
-void func_0214e994(Unk0214e334 *p) {
+void TP_SetCalibrateParam(Unk0214e334 *p) {
     u32 v;
     s16 a;
     s16 b;
     vu32 *den;
 
     if (p == 0) {
-        data_021803d8.mUnk_30 = 0;
+        gTouchPanelState.mCalibrated = 0;
         return;
     }
     v = IrqDisable();
@@ -153,15 +153,15 @@ void func_0214e994(Unk0214e334 *p) {
         den = (vu32 *) 0x4000298;
         den[0] = a;
         den[1] = 0;
-        data_021803d8.mUnk_18.mUnk_00 = p->mUnk_00;
-        data_021803d8.mUnk_18.mUnk_04 = p->mUnk_04;
+        gTouchPanelState.mCalibration.mUnk_00 = p->mUnk_00;
+        gTouchPanelState.mCalibration.mUnk_04 = p->mUnk_04;
         while (*(vu16 *) 0x4000280 & 0x8000) {
         }
-        data_021803d8.mUnk_18.mUnk_08 = *(vu32 *) 0x40002a0;
+        gTouchPanelState.mCalibration.mUnk_08 = *(vu32 *) 0x40002a0;
     } else {
-        data_021803d8.mUnk_18.mUnk_00 = 0;
-        data_021803d8.mUnk_18.mUnk_04 = 0;
-        data_021803d8.mUnk_18.mUnk_08 = 0;
+        gTouchPanelState.mCalibration.mUnk_00 = 0;
+        gTouchPanelState.mCalibration.mUnk_04 = 0;
+        gTouchPanelState.mCalibration.mUnk_08 = 0;
     }
     b = p->mUnk_06;
     if (b != 0) {
@@ -170,63 +170,64 @@ void func_0214e994(Unk0214e334 *p) {
         den = (vu32 *) 0x4000298;
         den[0] = b;
         den[1] = 0;
-        data_021803d8.mUnk_18.mUnk_0c = p->mUnk_02;
-        data_021803d8.mUnk_18.mUnk_10 = p->mUnk_06;
+        gTouchPanelState.mCalibration.mUnk_0c = p->mUnk_02;
+        gTouchPanelState.mCalibration.mUnk_10 = p->mUnk_06;
         while (*(vu16 *) 0x4000280 & 0x8000) {
         }
-        data_021803d8.mUnk_18.mUnk_14 = *(vu32 *) 0x40002a0;
+        gTouchPanelState.mCalibration.mUnk_14 = *(vu32 *) 0x40002a0;
     } else {
-        data_021803d8.mUnk_18.mUnk_0c = 0;
-        data_021803d8.mUnk_18.mUnk_10 = 0;
-        data_021803d8.mUnk_18.mUnk_14 = 0;
+        gTouchPanelState.mCalibration.mUnk_0c = 0;
+        gTouchPanelState.mCalibration.mUnk_10 = 0;
+        gTouchPanelState.mCalibration.mUnk_14 = 0;
     }
     IrqRestore(v);
-    data_021803d8.mUnk_30 = 1;
+    gTouchPanelState.mCalibrated = 1;
 }
 
-void func_0214e8f4(void) {
+void TP_RequestSamplingAsync(void) {
     u32 v = IrqDisable();
     s32 r = PxiSendFifoWord(6, 0x3000000, 0);
     u32 ok = r >= 0 ? 1 : 0;
 
     if (ok == 0) {
         IrqRestore(v);
-        data_021803d8.mUnk_34 |= 1;
-        if (data_021803d8.mUnk_00 != 0) {
-            data_021803d8.mUnk_00(0, 4, 0);
+        gTouchPanelState.mErrorFlags |= 1;
+        if (gTouchPanelState.mCallback != 0) {
+            gTouchPanelState.mCallback(0, 4, 0);
         }
     } else {
-        data_021803d8.mUnk_36 |= 1;
-        data_021803d8.mUnk_34 &= ~1;
+        gTouchPanelState.mBusyFlags |= 1;
+        gTouchPanelState.mErrorFlags &= ~1;
         IrqRestore(v);
     }
 }
 
-// Waits for mUnk_36 bit 0x1 to clear; returns 1 when mUnk_34 bit 0x1 is set, otherwise copies mUnk_04 to out and
-// returns 0.
-u32 func_0214e89c(Unk0214e334_b *out) {
-    func_0214e31c(1);
-    if (data_021803d8.mUnk_34 & 1) {
+// Waits for mBusyFlags bit 0x1 to clear; returns 1 when mErrorFlags bit 0x1 is set, otherwise copies mRawSample to out
+// and returns 0.
+u32 TP_WaitRawResult(TouchSample *out) {
+    TP_WaitBusy(1);
+    if (gTouchPanelState.mErrorFlags & 1) {
         return 1;
     }
-    *out = data_021803d8.mUnk_04;
+    *out = gTouchPanelState.mRawSample;
     return 0;
 }
 
-// Stores p, b and n (clearing mUnk_04 of each entry), sends two words through PxiSendFifoWord and sets bit 2 of mUnk_34
-// (calling mUnk_00 with (1, 4, 0)) when either call returns a negative value, or bit 2 of mUnk_36 otherwise.
-void func_0214e788(u32 a, u32 b, Unk0214e334_b *p, u32 n) {
+// Stores p, b and n (clearing mTouched of each entry), sends two words through PxiSendFifoWord and sets bit 2 of
+// mErrorFlags (calling mCallback with (1, 4, 0)) when either call returns a negative value, or bit 2 of mBusyFlags
+// otherwise.
+void TP_RequestAutoSamplingStartAsync(u32 a, u32 b, TouchSample *p, u32 n) {
     u32 i;
     u32 s;
     u8 ok;
     void (*f)(u32, u8, u8);
 
-    data_021803d8.mUnk_10 = p;
-    data_021803d8.mUnk_0c = 0;
-    data_021803d8.mUnk_0e = b;
-    data_021803d8.mUnk_14 = n;
+    gTouchPanelState.mAutoSampleBuffer = p;
+    gTouchPanelState.mAutoSampleIndex = 0;
+    gTouchPanelState.mUnk_0e = b;
+    gTouchPanelState.mAutoSampleBufferCount = n;
     for (i = 0; i < n; i++) {
-        data_021803d8.mUnk_10[i].mUnk_04 = 0;
+        gTouchPanelState.mAutoSampleBuffer[i].mTouched = 0;
     }
     s = IrqDisable();
     if (PxiSendFifoWord(6, (b & 0xff) | 0x2000100, 0) < 0) {
@@ -240,21 +241,21 @@ void func_0214e788(u32 a, u32 b, Unk0214e334_b *p, u32 n) {
     }
     if ((ok & 0xff) == 0) {
         IrqRestore(s);
-        data_021803d8.mUnk_34 |= 2;
-        f = data_021803d8.mUnk_00;
+        gTouchPanelState.mErrorFlags |= 2;
+        f = gTouchPanelState.mCallback;
         if (f != 0) {
             f(1, 4, 0);
         }
     } else {
-        data_021803d8.mUnk_36 |= 2;
-        data_021803d8.mUnk_34 &= ~2;
+        gTouchPanelState.mBusyFlags |= 2;
+        gTouchPanelState.mErrorFlags &= ~2;
         IrqRestore(s);
     }
 }
 
-// Sends one word through PxiSendFifoWord and sets bit 4 of mUnk_34 (calling mUnk_00 with (2, 4, 0)) when the call
-// returns a negative value, or bit 4 of mUnk_36 otherwise.
-void func_0214e6e4(void) {
+// Sends one word through PxiSendFifoWord and sets bit 4 of mErrorFlags (calling mCallback with (2, 4, 0)) when the call
+// returns a negative value, or bit 4 of mBusyFlags otherwise.
+void TP_RequestAutoSamplingStopAsync(void) {
     u32 s;
     s32 ok;
     void (*f)(u32, u8, u8);
@@ -263,28 +264,28 @@ void func_0214e6e4(void) {
     ok = PxiSendFifoWord(6, 0x3000200, 0) >= 0;
     if ((ok & 0xff) == 0) {
         IrqRestore(s);
-        data_021803d8.mUnk_34 |= 4;
-        f = data_021803d8.mUnk_00;
+        gTouchPanelState.mErrorFlags |= 4;
+        f = gTouchPanelState.mCallback;
         if (f != 0) {
             f(2, 4, 0);
         }
     } else {
-        data_021803d8.mUnk_36 |= 4;
-        data_021803d8.mUnk_34 &= ~4;
+        gTouchPanelState.mBusyFlags |= 4;
+        gTouchPanelState.mErrorFlags &= ~4;
         IrqRestore(s);
     }
 }
 
-u32 func_0214e6d4(void) {
+u32 TP_GetLatestIndexInAuto(void) {
     u32 value0;
-    value0 = (u32) &data_021803d8;
+    value0 = (u32) &gTouchPanelState;
     value0 = (u32) * (const u16 *) ((value0) + (12));
     return value0;
 }
 
 // Returns 1 when an argument is out of range or two paired values are equal; otherwise writes to the registers at
 // 0x04000280-0x0400029c twice and fills out from the words read back at 0x040002a0.
-u32 func_0214e464(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u16 f, u16 g, u16 h) {
+u32 TP_CalcCalibrateParam(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u16 f, u16 g, u16 h) {
     s32 z;
     s32 w;
     s32 q;
@@ -338,32 +339,32 @@ u32 func_0214e464(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u16 f, u1
     return 0;
 }
 
-// Copies in to out when mUnk_30 is 0; otherwise scales in->mUnk_00 and in->mUnk_02 with the words at mUnk_18 (by
-// 22 bits) and clamps them to 0xff and 0xbf; out is zeroed when in->mUnk_04 is 0.
-void func_0214e334(Unk0214e334 *out, const Unk0214e334_b *in) {
-    Unk0214e334_c *c;
+// Copies in to out when mCalibrated is 0; otherwise scales in->mX and in->mY with the words at mCalibration (by
+// 22 bits) and clamps them to 0xff and 0xbf; out is zeroed when in->mTouched is 0.
+void TP_GetCalibratedPoint(Unk0214e334 *out, const TouchSample *in) {
+    TouchCalibration *c;
     s64 t;
 
-    if (data_021803d8.mUnk_30 == 0) {
-        *(Unk0214e334_b *) out = *in;
+    if (gTouchPanelState.mCalibrated == 0) {
+        *(TouchSample *) out = *in;
         return;
     }
-    c = &data_021803d8.mUnk_18;
-    out->mUnk_04 = in->mUnk_04;
-    out->mUnk_06 = in->mUnk_06;
-    if (in->mUnk_04 == 0) {
+    c = &gTouchPanelState.mCalibration;
+    out->mUnk_04 = in->mTouched;
+    out->mUnk_06 = in->mInvalidBits;
+    if (in->mTouched == 0) {
         out->mUnk_00 = 0;
         out->mUnk_02 = 0;
         return;
     }
-    t = ((s64) (in->mUnk_00 * 4) - c->mUnk_00) * c->mUnk_08;
+    t = ((s64) (in->mX * 4) - c->mUnk_00) * c->mUnk_08;
     out->mUnk_00 = t >> 22;
     if (out->mUnk_00 < 0) {
         out->mUnk_00 = 0;
     } else if (out->mUnk_00 > 0xff) {
         out->mUnk_00 = 0xff;
     }
-    t = ((s64) (in->mUnk_02 * 4) - c->mUnk_0c) * c->mUnk_14;
+    t = ((s64) (in->mY * 4) - c->mUnk_0c) * c->mUnk_14;
     out->mUnk_02 = t >> 22;
     if (out->mUnk_02 < 0) {
         out->mUnk_02 = 0;
@@ -374,13 +375,13 @@ void func_0214e334(Unk0214e334 *out, const Unk0214e334_b *in) {
     }
 }
 
-// Waits until none of the bits a is set in mUnk_36.
-void func_0214e31c(u32 a) {
-    while (data_021803d8.mUnk_36 & a) {
+// Waits until none of the bits a is set in mBusyFlags.
+void TP_WaitBusy(u32 a) {
+    while (gTouchPanelState.mBusyFlags & a) {
     }
 }
 
-// Returns the bits a of mUnk_34.
-u32 func_0214e308(u32 a) {
-    return data_021803d8.mUnk_34 & a;
+// Returns the bits a of mErrorFlags.
+u32 TP_CheckError(u32 a) {
+    return gTouchPanelState.mErrorFlags & a;
 }

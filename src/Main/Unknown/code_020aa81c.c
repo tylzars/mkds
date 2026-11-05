@@ -518,7 +518,7 @@ void func_020ab714(void) {
 
 #pragma thumb on
 
-void func_020ab660(u16 a, volatile Unk0214e334_b b) {
+void func_020ab660(u16 a, volatile TouchSample b) {
     u32 t;
     u16 v;
 
@@ -532,14 +532,14 @@ void func_020ab660(u16 a, volatile Unk0214e334_b b) {
         data_0217b2d8.mUnk_00 = 0;
     }
     if (data_0217b2d8.mUnk_24 != FALSE) {
-        if (b.mUnk_06 != 0) {
-            b.mUnk_00 = data_0217b2d8.mUnk_0c[0];
-            b.mUnk_02 = data_0217b2d8.mUnk_0c[1];
-            b.mUnk_04 = data_0217b2d8.mUnk_0c[2];
-            b.mUnk_06 = data_0217b2d8.mUnk_0c[3];
-            b.mUnk_04 = 0;
+        if (b.mInvalidBits != 0) {
+            b.mX = data_0217b2d8.mUnk_0c[0];
+            b.mY = data_0217b2d8.mUnk_0c[1];
+            b.mTouched = data_0217b2d8.mUnk_0c[2];
+            b.mInvalidBits = data_0217b2d8.mUnk_0c[3];
+            b.mTouched = 0;
         }
-        v = b.mUnk_04;
+        v = b.mTouched;
         if (v != data_0217b2d8.mUnk_0c[2]) {
             data_0217b2d8.mUnk_1c = v != 0 ? 1 : 3;
             data_0217b2d8.mUnk_18 = 0;
@@ -550,14 +550,14 @@ void func_020ab660(u16 a, volatile Unk0214e334_b b) {
             data_0217b2d8.mUnk_1c = 0;
         }
         if (v != 0) {
-            data_0217b2d8.mUnk_14 = b.mUnk_00;
-            data_0217b2d8.mUnk_16 = b.mUnk_02;
+            data_0217b2d8.mUnk_14 = b.mX;
+            data_0217b2d8.mUnk_16 = b.mY;
         }
         data_0217b2d8.mUnk_20 = v;
-        data_0217b2d8.mUnk_0c[0] = b.mUnk_00;
-        data_0217b2d8.mUnk_0c[1] = b.mUnk_02;
-        data_0217b2d8.mUnk_0c[2] = b.mUnk_04;
-        data_0217b2d8.mUnk_0c[3] = b.mUnk_06;
+        data_0217b2d8.mUnk_0c[0] = b.mX;
+        data_0217b2d8.mUnk_0c[1] = b.mY;
+        data_0217b2d8.mUnk_0c[2] = b.mTouched;
+        data_0217b2d8.mUnk_0c[3] = b.mInvalidBits;
     }
 }
 
@@ -1207,7 +1207,7 @@ u32 func_020aab40(Unk0217b278 *a) {
     return r;
 }
 
-void func_020aa89c(u16 a, Unk0214e334_b b) {
+void func_020aa89c(u16 a, TouchSample b) {
     u16 h;
     u16 k;
     void (*fn)(Unk0217b278 *);
@@ -1304,17 +1304,17 @@ void func_020aa89c(u16 a, Unk0214e334_b b) {
 }
 
 void func_020aa81c(void) {
-    Unk0214e334_b a;
-    Unk0214e334_b b;
+    TouchSample a;
+    TouchSample b;
 
     if (func_020ab604() != 0) {
         do {
-            func_0214e8f4();
-        } while (func_0214e89c(&a) != 0);
-        func_0214e334((Unk0214e334 *) &b, &a);
+            TP_RequestSamplingAsync();
+        } while (TP_WaitRawResult(&a) != 0);
+        TP_GetCalibratedPoint((Unk0214e334 *) &b, &a);
     } else {
-        b.mUnk_04 = 0;
-        b.mUnk_06 = 3;
+        b.mTouched = 0;
+        b.mInvalidBits = 3;
     }
     func_020aa89c(((*(vu16 *) 0x4000130 | *(vu16 *) 0x27fffa8) ^ 0x2fff) & 0x2fff, b);
 }
