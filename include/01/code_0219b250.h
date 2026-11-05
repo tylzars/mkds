@@ -31,23 +31,23 @@ typedef struct Unk0219b250_10 {
 // Object behind Unk02188950::mNsbmd: the 0x2c-byte allocation made by LoadMapObjectModelAnimated and
 // LoadMapObjectModelShadow.
 typedef struct Unk0219b250 {
-    // Same as MapObjectModel.mScale (same offset).
+    // Overlay view of MapObjectModel.mScale.
     /* 00 */ Vec3 mScale;
-    // No use by name in overlay code.
+    // Not accessed through this view.
     /* 0c */ void *mNsbmdModel;
-    // Same as MapObjectModel.mAnimatedModel (same offset).
+    // Overlay view of MapObjectModel.mAnimatedModel.
     /* 10 */ Unk0219b250_10 *mAnimatedModel;
-    // Same as MapObjectModel.mShadowModel (same offset).
+    // Overlay view of MapObjectModel.mShadowModel.
     /* 14 */ void *mShadowModel;
-    // Same as MapObjectModel.mNsbmdFile (same offset).
+    // Overlay view of MapObjectModel.mNsbmdFile.
     /* 18 */ void *mNsbmdFile;
-    // Same as MapObjectModel.mAnimations[0] (same offset).
+    // Overlay view of MapObjectModel.mAnimations[0].
     /* 1c */ Unk0219b250_Item *mNsbcaAnimation;
-    // Same as MapObjectModel.mAnimations[1] (same offset).
+    // Overlay view of MapObjectModel.mAnimations[1].
     /* 20 */ Unk0219b250_Item *mNsbtpAnimation;
-    // Same as MapObjectModel.mAnimations[2] (same offset).
+    // Overlay view of MapObjectModel.mAnimations[2].
     /* 24 */ void *mNsbmaAnimation;
-    // Same as MapObjectModel.mAnimations[3] (same offset).
+    // Overlay view of MapObjectModel.mAnimations[3].
     /* 28 */ void *mNsbtaAnimation;
 } Unk0219b250;
 

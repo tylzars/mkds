@@ -72,8 +72,8 @@ typedef struct Water {
     // X of model C (the model of mModelCFile, letter C from ..._waterC): mCenterX + mModelCRadius * the first pair
     // value for mCircleAngle - mModelCAngleOffset; its y is mUnk_10 (copy of mHeight).
     /* 0c */ s32 mModelCX;
-    // y of model C: every write copies mHeight (code_020d94dc.c:68, :99, :185), the only reads are the translation y of
-    // model C in DrawWater (code_020d94dc.c:152, :157); it always equals mHeight.
+    // y of model C: every write copies mHeight (code_020d94dc.c:79, :110, :200), the only reads are the translation y
+    // of model C in DrawWater (code_020d94dc.c:165, :170); it is only ever set from mHeight.
     /* 10 */ s32 mModelCY;
     // Z of model C, as mModelCX with the second pair value.
     /* 14 */ s32 mModelCZ;
@@ -139,8 +139,8 @@ typedef struct Water {
     /* d4 */ Unk020d9cf4_68 mUnk_d4;
     /* 140 */ Unk02012f58 mUnk_140;
     /* 170 */ s32 mUnk_170;
-    // The file MapObj/water_efct.nsbmd as FindCourseFile returned it (a pointer to the whole file, not a built model:
-    // VOCABULARY Nsbmd member = built model object), loaded by InitWater; the getter returns it when mUnk_170 is
+    // The file MapObj/water_efct.nsbmd as FindCourseFile returned it (a pointer to the whole file, not a built model
+    // object), loaded by InitWater; the getter returns it when mUnk_170 is
     // non-zero and no WaterEfct exists.
     /* 174 */ void *mEfctNsbmdFile;
     // The file MapObj/water_efct.nsbca (whole file), loaded by InitWater; see mEfctNsbmdFile.

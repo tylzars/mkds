@@ -51,7 +51,7 @@ typedef struct WiFiConnection {
     // participant id equals mProfileId; read through func_ov000_0219bb50 (96 call sites).
     /* 2c */ u8 mOwnIndex;
     // 1 only while func_ov000_0219bbfc closes every peer connection of the socket (state 5 or 6, other participants
-    // present); read by func_ov000_0219b27c (code_0219b1f8.c:111, :126, :149) to tell this close from a peer leaving.
+    // present); read by func_ov000_0219b27c (code_0219b1f8.c:113, :128, :151) to tell this close from a peer leaving.
     // The matching object's own close-all does not set it.
     /* 2d */ u8 mUnk_2d;
     /* 2e */ u16 mUnk_2e;
@@ -63,11 +63,11 @@ typedef struct WiFiConnection {
     /* 34 */ char mUnk_34[0x20];
     // Points at the 0x100-byte game name buffer data_ov000_021b4e84 (InitWiFiConnection's fourth argument,
     // "mariokartds"). Its one read is StartWiFiLogin passing it to func_ov000_0218d6e4, which copies it to
-    // data_ov000_021b4d6c, the buffer GpiWriteLogin appends after '\gamename\' (code_02190ff8.c:261-262); the matching
+    // data_ov000_021b4d6c, the buffer GpiWriteLogin appends after '\gamename\' (code_02190ff8.c:262-263); the matching
     // object's mGameName is the same buffer and the stats host name starts with it (code_0219742c.c:49).
     /* 54 */ char *mGameName;
     // Points at the 0x100-byte buffer data_ov000_021b4f84 (InitWiFiConnection's fifth argument): mixed into the stats
-    // login hash ('%d%s', code_02196960.c:35), given to the matching object as mUnk_2e0. Never read through this
+    // login hash ('%d%s', code_02196960.c:36), given to the matching object as mUnk_2e0. Never read through this
     // member.
     /* 58 */ char *mUnk_58;
     // Set by StartWiFiLogin; WiFiLoginCallback calls it with (result, profile id, mLoginCallbackArg) on success and

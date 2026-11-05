@@ -265,7 +265,7 @@ typedef struct Kart {
     /* 1b4 */ Unk02012f58 *mUnk_1b4;
     /* 1b8 */ Vec3 mUnk_1b8;
     /* 1c4 */ Vec3 mUnk_1c4;
-    // Current radius: the record's radius times two scales (code_01ffba68.c:206), set from the record at creation.
+    // Current radius: the record's radius times two scales (code_01ffba68.c:208), set from the record at creation.
     /* 1d0 */ s32 mRadius;
     /* 1d4 */ s32 mUnk_1d4;
     /* 1d8 */ Vec3 mUnk_1d8;

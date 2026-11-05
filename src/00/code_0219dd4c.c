@@ -185,7 +185,7 @@ void StartMatchingWithFilter(u32 param_1, const void *param_2, u32 param_3, u32 
 // Mode 1 start: copies the given u8 list (param_2 entries) to mUnk_2ec, SetupMatching with mode 1, stores the second
 // callback pair; reports error 7 when the list is empty or too short for the wanted count (code_0219dd4c.c:200),
 // else mState 4, creates the search object and starts. The one caller passes NULL, so the list is the one
-// StartWiFiMatchingWithBuddies builds: buddy entry indices in random order (code_0219b580.c:330-344). Weak:
+// StartWiFiMatchingWithBuddies builds: buddy entry indices in random order (code_0219b580.c:331-345). Weak:
 // that content rests on that single branch.
 void StartMatchingWithBuddies(const void *param_1, s32 param_2, s32 param_3, s32 param_4, void *param_5, u32 param_6,
                               u32 param_7, u32 param_8) {

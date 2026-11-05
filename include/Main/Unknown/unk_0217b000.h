@@ -325,11 +325,10 @@ typedef struct KartStanding {
 } KartStanding;
 
 // Per-kart table of the modes that play with kart counts (modes 2 and 4): the one object behind gStandings, made by
-// InitStandings from InitRace and stepped every frame by the race update. It ranks the karts by count (mKarts), keeps
-// who is eliminated, the winning side, the end timer and its callbacks. The name is a partial word: it covers the
-// ranking and winner part, but the kart-to-kart hit tracking, the four hit callbacks that act on a hit, a time-limit
-// step and a random course point are in the same object too (those members keep their address names). 0x3c0 bytes, the
-// allocation size.
+// InitStandings from InitRace and stepped once per UpdateRace call. It ranks the karts by count (mKarts), keeps who is
+// eliminated, the winning side, the end timer and its callbacks. The name covers only the ranking and winner part: the
+// kart-to-kart hit tracking, the four hit callbacks that act on a hit, a time-limit step and a random course point are
+// in the same object too (those members keep their address names). 0x3c0 bytes, the allocation size.
 typedef struct Standings {
     // One KartStanding per kart index; the entries past the kart count are unused slots.
     /* 000 */ KartStanding mKarts[8];

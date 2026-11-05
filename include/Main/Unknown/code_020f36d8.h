@@ -62,7 +62,7 @@ extern Unk020f3fa8 data_0217bb88;
 
 // Element returned through gItemPools: the first 0x12c bytes that every pool object shares; the per-kind objects
 // embed it as their first member and run from 0x12c (kinds 4, 6 and 13) to 0x31c bytes. One is also embedded in
-// Unk0217b4f0 at 0x18c. No placement is clear yet.
+// Unk0217b4f0 at 0x18c.
 typedef struct ItemObject {
     /* 00 */ Unk0210bfbc mUnk_00;
     // Kind number of the object's pool; ResetItemObject writes it each time the object is set up or handed out.
@@ -110,7 +110,6 @@ typedef struct ItemObject {
 } ItemObject;
 
 // One 0x8c entry per kart (mKarts[kart index]). Unk0217561c_000 is a second view of the same bytes, 0x14 earlier.
-// Placement: Race.
 typedef struct RaceProgressKart {
     // 0 racing, 1 goal reached (battle: still alive at the end), 2 battle loser, 3 ended without the goal (time up, or
     // the race is over), 4 removed.
@@ -235,7 +234,7 @@ typedef struct RankTimeGpEntry {
 } RankTimeGpEntry;
 
 // Object behind RaceProgress::mRankTimeGpFile: header 0x1c bytes (score weights read by func_02040a8c: halfwords
-// 0x0a..0x1a), then mEntryCount entries of 8 bytes. Placement: Race.
+// 0x0a..0x1a), then mEntryCount entries of 8 bytes.
 typedef struct RankTimeGp {
     /* 00 */ u8 mUnk_00[0x8];
     /* 08 */ u16 mEntryCount;
@@ -252,7 +251,6 @@ typedef struct RankTimeGp {
 } RankTimeGp;
 
 // A row of the file behind RaceProgress::mRankPointFile: points for rank 1..8, first row of the file skipped.
-// Placement: Race.
 typedef struct RankPointRow {
     /* 00 */ u8 mPoints[8];
 } RankPointRow;
@@ -261,7 +259,7 @@ typedef struct RankPointRow {
 // UpdateRaceProgress). Per-kart progress and status (mKarts, 8 entries), the rank order (mKartAtRank), the race clock
 // in the header bytes (the second view Unk0217561c_000 gives its first 0x14 bytes), two loaded files (rankpoint.rpt,
 // ranktimeGP.rtt), three random generators (mRandom synced, mLocalRandom per console, a third with a fixed seed used in
-// mode 5) and race-done / time-limit flags. 17 files use only the generators. Placement: Race.
+// mode 5) and race-done / time-limit flags. 17 files use only the generators.
 typedef struct RaceProgress {
     union {
         struct {
@@ -311,7 +309,7 @@ typedef struct RaceProgress {
 } RaceProgress;
 
 // Entry of the table behind gItemKinds: one record per object kind (14, 0xa8 bytes each), a heap copy of the static
-// gItemKind records, indexed by the kind number. No placement is clear yet.
+// gItemKind records, indexed by the kind number.
 typedef struct ItemKind {
     /* 00 */ s32 mObjectSize;
     // Most objects of the kind that may be in use, copied to the pool; CreateItemKinds changes it in modes 2, 4 and 5.
@@ -450,7 +448,7 @@ extern ItemInfo data_02159918;
 
 // Entry of the table behind gItemPools: one pool per object kind (14), indexed by the kind number. The pool's objects
 // sit in one array: the first mActiveCount are started, up to mTakenCount are handed out, the rest are free. Item,
-// roulette, per-kind and HUD map code use it; no placement is clear yet.
+// roulette, per-kind and HUD map code use it.
 typedef struct ItemPool {
     /* 00 */ s32 mKind;
     /* 04 */ ItemObject **mObjects;

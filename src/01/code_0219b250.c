@@ -39,8 +39,8 @@ void *LoadMissionRunFile(char *p0) {
     return out;
 }
 
-// Overlay-1 counterpart of CreateMapObjectModelAnimated: the file comes from LoadMissionRunFile; also clears bit 15 of
-// the model's attribute word.
+// Overlay-1 counterpart of CreateMapObjectModelAnimated: the file comes from LoadMissionRunFile, and func_0209b8ac(o,
+// 0) is called where the main code calls func_020849a0 and func_020849b0.
 Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, char *p1) {
     Unk0219b250 *o = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x2c));
     if (p0 != NULL) {
@@ -54,8 +54,8 @@ Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, char *p1) {
     return o;
 }
 
-// Overlay-1 counterpart of CreateMapObjectModelShadow: the file comes from LoadMissionRunFile; also clears bit 15 of
-// the model's attribute word.
+// Overlay-1 counterpart of CreateMapObjectModelShadow: the file comes from LoadMissionRunFile; it also calls
+// func_0209b8ac(o, 0), which reads mNsbmdModel and mAnimatedModel, members this function does not set.
 Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, char *p1) {
     Unk0219b250 *o = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x2c));
     void *r = LoadMissionRunFile((p1));

@@ -44,7 +44,7 @@ typedef struct RecordTAtt {
     /* 54 */ s32 mNextState;
     /* 58 */ s32 mStateFrames; /* counted only in states 0, 1, 3-8, 11, 12, 13, 17 */
     /* 5c */ s32 mBg0Offset;
-    // X half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated (code_021956dc.c:1215)
+    // X half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated (code_021956dc.c:1212)
     /* 60 */ s32 mBg1OffsetX;
     // Y half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated
     /* 64 */ s32 mBg1OffsetY;

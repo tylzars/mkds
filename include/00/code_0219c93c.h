@@ -17,7 +17,7 @@ typedef struct WiFiLogin {
     // ResetWiFiLogin.
     /* 04 */ s32 mState;
     // Game id 0x4d6 (InitWiFiConnection's fourth parameter): given to GpInitialize, which stores it as
-    // GpiConnection.mProductId (code_0218f848.c:31) and writes it after '\productid\' (code_02190ff8.c:260).
+    // GpiConnection.mProductId (code_0218f848.c:31) and writes it after '\productid\' (code_02190ff8.c:261).
     /* 08 */ u32 mProductId;
     /* 0c */ u32 mUnk_0c;
     /* 10 */ u32 mUnk_10;
@@ -42,12 +42,12 @@ typedef struct WiFiLogin {
     /* 38 */ u64 mConnectStartTime;
     /* 40 */ Unk02152490 mUnk_40;
     // First string of the HTTP reply (0x100 buffer): given to the GP connect as its first credential, which
-    // GpiWriteLogin writes after '\authtoken\' (code_02190ff8.c:232-233); also passed to StartBuddySync (stats login).
-    // The reply's second string (mUnk_14c) is the password substitute the library hashes (code_02190ff8.c:205-210), not
+    // GpiWriteLogin writes after '\authtoken\' (code_02190ff8.c:233-234); also passed to StartBuddySync (stats login).
+    // The reply's second string (mUnk_14c) is the password substitute the library hashes (code_02190ff8.c:206-211), not
     // the library's '\challenge\' (a random string the library makes, :204, :229-230).
     /* 4c */ char mAuthToken[0x100];
     // Second string of the HTTP reply (0x100 buffer), the second GP connect credential: GpiStartConnect copies it to
-    // q->mUnk_1c2 and GpiWriteLogin hashes it where it would hash the password (code_02190ff8.c:205-210). Not the
+    // q->mUnk_1c2 and GpiWriteLogin hashes it where it would hash the password (code_02190ff8.c:206-211). Not the
     // library's \challenge\ value.
     /* 14c */ char mUnk_14c[0x100];
     /* 24c */ char mUnk_24c[9];

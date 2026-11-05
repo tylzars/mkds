@@ -30,8 +30,8 @@ typedef struct Unk0209bc74_14 {
 // object of the kind; 0x2c bytes, the allocation size. A creator builds exactly one of mNsbmdModel / mAnimatedModel /
 // mShadowModel and leaves the others 0; the draw tests each. Overlay 1 reaches the same bytes through Unk0219b250.
 typedef struct MapObjectModel {
-    // Three words (1.0 = 0x1000 each) sent to the geometry engine as the scale command (0x1b) by every draw; only the
-    // mirror setter changes them (it flips the sign of x and y).
+    // Three words (1.0 = 0x1000 each) set by the creators and sent to the geometry engine as the scale command (0x1b)
+    // by both draw functions; afterwards only the mirror setter writes them (it flips the sign of x and y).
     /* 00 */ Unk0209bc74_00 mScale;
     // Unk020e6488 built from an .nsbmd (and an optional .nsbtp) by CreateMapObjectModelNsbmd / NsbmdNsbtp; 0 in the
     // other bundles. The other models are built from an .nsbmd too.
