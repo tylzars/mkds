@@ -139,7 +139,7 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
             if (b->mUnk_a0 != 0) {
                 return;
             }
-            r = &data_0217561c->mUnk_498;
+            r = &gRaceProgress->mLocalRandom;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             b->mUnk_a8 = (u16) (((r->mUnk_00 >> 32) * 0x78) >> 32) + 0x3c;
             b->mUnk_ac = 1;

@@ -493,7 +493,7 @@ u32 func_0203a440(u32 a) {
 }
 
 u32 func_0203a42c(void) {
-    return (u32) data_0217561c->mUnk_4d0;
+    return (u32) gRaceProgress->mUnk_4d0;
 }
 
 u32 func_0203a3cc(u32 a) {

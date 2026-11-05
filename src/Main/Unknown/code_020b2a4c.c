@@ -7,5 +7,5 @@ void func_020b2a60(u32 p0) {
 }
 
 u32 func_020b2a4c(void) {
-    return ((u32) data_0217561c->mUnk_4cc);
+    return ((u32) gRaceProgress->mRaceDone);
 }

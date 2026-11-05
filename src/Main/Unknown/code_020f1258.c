@@ -152,9 +152,9 @@ int func_020f1258(int a0, int i, s32 c, u32 b) {
     x = (u16) (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
                    ? (u16) (a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
                    : 8);
-    n = func_0203c8dc(i);
+    n = GetKartRank(i);
     if (x < 8 && b != 0) {
-        t = func_0203c8dc(x);
+        t = GetKartRank(x);
         if (t <= n) {
             if (t != 1) {
                 return 0;

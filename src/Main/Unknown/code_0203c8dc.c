@@ -20,18 +20,18 @@ void func_0203c98c(void) {
     }
 }
 
-void func_0203c950(u8 *a, u8 *b, u16 *c) {
+void GetRaceClockTime(u8 *a, u8 *b, u16 *c) {
     Unk0217aa1c_144_00 *t;
 
-    t = &data_0217561c->mUnk_000[0].mUnk_08_view;
+    t = &gRaceProgress->mUnk_000[0].mUnk_08_view;
     *a = t->mUnk_02;
     *b = t->mUnk_03;
     *c = t->mUnk_00;
 }
 
-u32 func_0203c8dc(u32 param_1) {
+u32 GetKartRank(u32 param_1) {
     if (data_021759c0->mMode == 5) {
         return data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[param_1 & 0xff]].mUnk_86_1;
     }
-    return data_0217561c->mUnk_14[param_1].mUnk_3c_0;
+    return gRaceProgress->mKarts[param_1].mUnk_3c_0;
 }

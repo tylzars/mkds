@@ -20,8 +20,7 @@ u16 func_020b4d2c(void) {
     u16 a;
 
     a = func_0203c8c0((u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mEntryIndex));
-    if (func_0203c880((u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mEntryIndex)) ==
-        0) {
+    if (IsKartEnded((u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mEntryIndex)) == 0) {
         a = a - 1;
     }
     return a;

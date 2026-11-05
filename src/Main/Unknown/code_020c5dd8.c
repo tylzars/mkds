@@ -250,7 +250,7 @@ BOOL func_020c657c(s32 a) {
     u8 n1;
     u16 n2;
 
-    func_0203c7cc(func_020b4d9c(), &x, &y, &z);
+    GetKartFinishTime(func_020b4d9c(), &x, &y, &z);
     q = gRaceNewRecordTa->mRecords;
     t = y * 1000 + x * 60000 + z;
     k = 0;
@@ -301,7 +301,7 @@ BOOL func_020c6428(s32 a) {
     u16 n2;
 
     e = &gRaceNewRecordTa->mRecords[5];
-    gRaceNewRecordTa->mUnk_14 = func_0203c5f8(func_020b4d9c(), &x, &y, &z);
+    gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(func_020b4d9c(), &x, &y, &z);
     if (e->mUnk_18 != 0) {
         if (z + (y * 1000 + x * 60000) >= e->mUnk_00 + (e->mUnk_03 * 1000 + e->mUnk_02 * 60000)) {
             return FALSE;
@@ -343,7 +343,7 @@ void func_020c610c(void) {
     Unk02056bc0 *q;
     Unk02056bc0 *w;
 
-    if (data_0217561c->mUnk_4cc == 0) {
+    if (gRaceProgress->mRaceDone == 0) {
         return;
     }
     if (func_020b1a20() != 0) {
@@ -367,7 +367,7 @@ void func_020c610c(void) {
                     v1 = FALSE;
                 }
                 if (v1 != FALSE) {
-                    func_0203c7cc((u16) data_021759c0->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
+                    GetKartFinishTime((u16) data_021759c0->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
                     if (func_020adc24(&y, &x) != FALSE) {
                         r = TRUE;
                     }
@@ -386,7 +386,7 @@ void func_020c610c(void) {
             }
         }
     } else {
-        func_0203c7cc(func_020b4d9c(), &a, &b, &c);
+        GetKartFinishTime(func_020b4d9c(), &a, &b, &c);
         w = gRaceNewRecordTa->mRecords;
         t = b * 1000 + a * 60000 + c;
         for (j = 4; j >= 0; j--) {
@@ -400,7 +400,7 @@ void func_020c610c(void) {
     found:
         gRaceNewRecordTa->mUnk_08 = j;
         q = &gRaceNewRecordTa->mRecords[5];
-        gRaceNewRecordTa->mUnk_14 = func_0203c5f8(func_020b4d9c(), &d, &e, &f);
+        gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(func_020b4d9c(), &d, &e, &f);
         if (d == q->mUnk_02 && e == q->mUnk_03 && f == q->mUnk_00) {
             r = TRUE;
         } else {
@@ -437,7 +437,7 @@ void func_020c5f7c(void) {
             v1 = FALSE;
         }
         if (v1 != FALSE) {
-            func_0203c7cc((u16) data_021759c0->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
+            GetKartFinishTime((u16) data_021759c0->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
             if (func_020adc24(&y, &x) != FALSE) {
                 r = TRUE;
             }

@@ -51,12 +51,12 @@ void func_020bbbb4(void) {
     }
     if (func_020b1a20() != 0) {
         x = func_020b4d9c();
-        func_0203c778(x, func_020b4d2c(), &a, &b, &c);
+        GetKartLapTime(x, func_020b4d2c(), &a, &b, &c);
     } else {
-        if (data_021759c0->mMode != 2 && func_0203c880(func_020b4d9c()) != 0) {
-            func_0203c7cc(func_020b4d9c(), &a, &b, &c);
+        if (data_021759c0->mMode != 2 && IsKartEnded(func_020b4d9c()) != 0) {
+            GetKartFinishTime(func_020b4d9c(), &a, &b, &c);
         } else {
-            func_0203c950(&a, &b, &c);
+            GetRaceClockTime(&a, &b, &c);
         }
     }
     SplitTimeDigits(a, b, c, &data_0217b3d0->mUnk_00);
@@ -70,7 +70,7 @@ void func_020bbbb4(void) {
         return;
     }
     if (a == 0 && ((b == 5 && c == 0) || b < 5) && data_0217b3d0->mUnk_20[0] == 0) {
-        if (data_0217561c->mUnk_000[func_020b4d9c()].mUnk_14 != 2) {
+        if (gRaceProgress->mUnk_000[func_020b4d9c()].mStatus != 2) {
             func_02089ef4(2);
         }
         if ((data_0217c780 & 1) != 0) {
@@ -193,7 +193,7 @@ void func_020bb5ec(Unk020d029c *p) {
     if (data_021759c0->mUnk_00c == 1) {
         return;
     }
-    if (data_0217561c->mUnk_000[func_020b4d9c()].mUnk_14 == 3) {
+    if (gRaceProgress->mUnk_000[func_020b4d9c()].mStatus == 3) {
         return;
     }
     if (u != 0) {

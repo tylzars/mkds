@@ -577,7 +577,7 @@ typedef struct RaceHud {
     // Set once in func_020b03bc: 1 only in mode 1 with more than one kart; gates func_020b1a34 (the computation) and
     // the draw of the time difference.
     /* 8e4 */ s32 mUseTimeDifference;
-    // ComputeTimeDifference's return: non-zero when the entry's summed lap times (func_0203c778) are >= the summed
+    // ComputeTimeDifference's return: non-zero when the entry's summed lap times (GetKartLapTime) are >= the summed
     // reference times (data_021759c0->mUnk_3ec); the draw picks one of two sprites by it. Which sprite is plus or minus
     // is not named.
     /* 8e8 */ s32 mTimeDifferenceSign;

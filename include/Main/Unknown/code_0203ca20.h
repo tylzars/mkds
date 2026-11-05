@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-u32 func_0203ca20(void);
+// Called through a literal pool.
+u32 StartRaceClock(void);

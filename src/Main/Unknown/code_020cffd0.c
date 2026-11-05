@@ -120,10 +120,10 @@ void func_020d0a18(void) {
     if (data_021759c0->mMode != 0 && data_021759c0->mMode != 1) {
         return;
     }
-    func_0203c7cc(func_020b4d9c(), &a, &b, &c);
+    GetKartFinishTime(func_020b4d9c(), &a, &b, &c);
     SplitTimeDigits(a, b, c, &data_0217b49c->mUnk_00);
     for (i = 0; i < func_02044618(); i++) {
-        func_0203c778(func_020b4d9c(), i + 1, &a, &b, &c);
+        GetKartLapTime(func_020b4d9c(), i + 1, &a, &b, &c);
         SplitTimeDigits(a, b, c, &data_0217b49c->mUnk_1c[i]);
     }
     if (data_021759c0->mMode != 1) {

@@ -118,7 +118,7 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
     u16 acc[7];
     u16 b2[7];
     u32 lim;
-    Unk0217561c *m;
+    RaceProgress *m;
     u32 j;
     u16 k;
     u16 v;
@@ -136,15 +136,15 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
     lim = data_021759c0->mKartCount;
     s = c = 0;
     t = data_0215a154;
-    j = n = func_0203c8dc((u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8));
+    j = n = GetKartRank((u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8));
     if (p->mUnk_148 != FALSE) {
-        m = data_0217561c;
+        m = gRaceProgress;
         v1 = data_027e00c8;
         o = data_021759c0;
         do {
             if (n > 1) {
                 n = (u16) (n - 1);
-                k = (u16) m->mUnk_474[(u8) n - 1];
+                k = (u16) m->mKartAtRank[(u8) n - 1];
                 if (func_02101f7c_inline(v1, o, a, k) != 0) {
                     s = (u16) (s + *t);
                     b2[c] = k;
@@ -155,7 +155,7 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
             }
             if (j < lim) {
                 j = (u16) (j + 1);
-                k = (u16) m->mUnk_474[(u8) j - 1];
+                k = (u16) m->mKartAtRank[(u8) j - 1];
                 if (func_02101f7c_inline(v1, o, a, k) != 0) {
                     s = (u16) (s + *t);
                     b2[c] = k;
@@ -166,13 +166,13 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
             }
         } while (j < lim || n > 1);
     } else {
-        m = data_0217561c;
+        m = gRaceProgress;
         v2 = data_027e00c8;
         v3 = data_021759c0;
         do {
             if (j < lim) {
                 j = (u16) (j + 1);
-                k = (u16) m->mUnk_474[(u8) j - 1];
+                k = (u16) m->mKartAtRank[(u8) j - 1];
                 if (func_02101f7c_inline(v2, v3, a, k) != 0) {
                     s = (u16) (s + *t);
                     b2[c] = k;
@@ -183,7 +183,7 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
             }
             if (n > 1) {
                 n = (u16) (n - 1);
-                k = (u16) m->mUnk_474[(u8) n - 1];
+                k = (u16) m->mKartAtRank[(u8) n - 1];
                 if (func_02101f7c_inline(v2, v3, a, k) != 0) {
                     s = (u16) (s + *t);
                     b2[c] = k;
@@ -194,7 +194,7 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
             }
         } while (j < lim || n > 1);
     }
-    b = &m->mUnk_47c;
+    b = &m->mRandom;
     v = (u16) (s == 0 ? 0 : func_02101f7c_inline_2(b, s));
     for (i = 0; i < c; i++) {
         if (v < acc[i]) {
@@ -205,7 +205,7 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
 }
 
 void func_02101d90(Unk02101c84 *p, s32 a) {
-    Unk0217561c *m;
+    RaceProgress *m;
     Unk020f41c4_B *b;
     s32 end;
     s32 i;
@@ -220,8 +220,8 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
     s32 n;
     u8 *row;
 
-    m = data_0217561c;
-    b = &m->mUnk_47c;
+    m = gRaceProgress;
+    b = &m->mRandom;
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     o = data_021759c0;
     i = (u16) (((u64) (u32) (b->mUnk_00 >> 32) * 8) >> 32);

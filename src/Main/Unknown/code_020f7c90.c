@@ -165,7 +165,7 @@ void func_020f7c90(Unk020f41c4_A *a, Vec3 *b, Vec3 *c) {
     if (func_02039828(&a->mUnk_5c, c) >= 0) {
         return;
     }
-    q = &data_0217561c->mUnk_47c;
+    q = &gRaceProgress->mRandom;
     q->mUnk_00 = q->mUnk_08 * q->mUnk_00 + q->mUnk_10;
     i = (u16) ((((u64) (u32) (q->mUnk_00 >> 32) * 0x10000) >> 32)) >> 4;
     a->mUnk_108.z = gPairsByAngle[i * 2 + 1];

@@ -73,7 +73,7 @@ void func_020c7164(void) {
         gRaceNewRecordTa->mUnk_10 = func_020c6428(0);
         return;
     }
-    func_0203c7cc(func_020b4d9c(), &a, &b, &c);
+    GetKartFinishTime(func_020b4d9c(), &a, &b, &c);
     r = gRaceNewRecordTa->mRecords;
     t = b * 1000 + a * 60000 + c;
     for (j = 4; j >= 0; j--) {
@@ -87,7 +87,7 @@ void func_020c7164(void) {
 found:
     gRaceNewRecordTa->mUnk_08 = j;
     q = &gRaceNewRecordTa->mRecords[5];
-    gRaceNewRecordTa->mUnk_14 = func_0203c5f8(func_020b4d9c(), &d, &e, &f);
+    gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(func_020b4d9c(), &d, &e, &f);
     gRaceNewRecordTa->mUnk_10 = (d == q->mUnk_02 && e == q->mUnk_03 && f == q->mUnk_00) ? 1 : 0;
 }
 

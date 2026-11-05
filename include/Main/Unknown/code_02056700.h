@@ -10,7 +10,7 @@ typedef struct Unk02056a2c {
     /* 01 */ u8 mUnk_01;
 } Unk02056a2c;
 
-// Two bytes and a halfword that func_0203c7cc and func_0203c778 fill.
+// Two bytes and a halfword that GetKartFinishTime and GetKartLapTime fill.
 typedef struct Unk02056750_c {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;

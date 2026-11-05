@@ -248,7 +248,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
             }
         }
         if (f != FALSE) {
-            a->mUnk_14 = func_0203c8dc(b->mIndex);
+            a->mUnk_14 = GetKartRank(b->mIndex);
         } else {
             a->mUnk_14 = func_020854c0(b->mIndex);
         }
@@ -331,7 +331,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
     if (k[0] == 1) {
         if (data_021759c0->mMode == 0) {
             if (func_020853a4(m) >= 0x28f) {
-                if (func_0203c8dc(m) >= 4) {
+                if (GetKartRank(m) >= 4) {
                     for (i = 1; i < 4; i++) {
                         d = func_02085408(i);
                         if (d >= 0) {
@@ -354,7 +354,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
         }
     }
     e = k[1];
-    if (func_0203c880(m) != 0) {
+    if (IsKartEnded(m) != 0) {
         t = data_usa_021658f4;
     } else {
         t = data_usa_0217ae34;
@@ -367,12 +367,12 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
         if (d >= 0) {
             e = func_020853a4(b->mIndex);
             e -= func_020853a4((u16) d);
-            if (func_0203c880(b->mIndex) != 0) {
+            if (IsKartEnded(b->mIndex) != 0) {
                 t = data_usa_021658f4;
             } else {
                 t = data_usa_0217ae34;
             }
-            v = t[func_0203c8dc((s32) (u16) d)];
+            v = t[GetKartRank((s32) (u16) d)];
             if (e > (s32) (((s64) v * n) >> 12)) {
                 a->mUnk_10 = (s32) (((s64) a->mUnk_10 * 0xf85) >> 12);
                 a->mUnk_18 = 1;

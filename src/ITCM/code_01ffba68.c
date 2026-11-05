@@ -226,13 +226,13 @@ s32 func_01ffc92c(Kart *p) {
     Kart *o;
 
     b = FALSE;
-    a = func_0203c8dc(p->mIndex);
+    a = GetKartRank(p->mIndex);
     if (a != p->mUnk_3d8) {
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_0210689c((u8) (a - 1));
         }
         if (a < p->mUnk_3d8 && a < data_021759c0->mKartCount) {
-            c = data_0217561c->mUnk_474[(u8) (a + 1) - 1];
+            c = gRaceProgress->mKartAtRank[(u8) (a + 1) - 1];
             if (c >= 0) {
                 o = GetKart((u16) c);
                 if (!(o->mUnk_7c & 0x402004)) {

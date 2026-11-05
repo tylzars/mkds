@@ -252,26 +252,26 @@ void func_02094000(Vec3 *a) {
     o->mUnk_a0 = *a;
     if (func_02061818() == 0) {
         g = func_020748a8();
-        e = func_02094000_inline(&data_0217561c->mUnk_498, 0x30);
-        c = (u16) (func_02094000_inline(&data_0217561c->mUnk_498, 0) >> 20);
-        b = func_02094000_inline(&data_0217561c->mUnk_498, 0x5555);
+        e = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x30);
+        c = (u16) (func_02094000_inline(&gRaceProgress->mLocalRandom, 0) >> 20);
+        b = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x5555);
         k = AngleFromPair(g->mLookAt.z - g->mPos.z, g->mLookAt.x - g->mPos.x) + b - 0x2aaa;
-        func_02094000_inline_2(&o->mUnk_bc, func_02094000_inline(&data_0217561c->mUnk_498, 0x10000), k, c + 0x1000, 0,
-                               e + 0x60, 0);
+        func_02094000_inline_2(&o->mUnk_bc, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x10000), k, c + 0x1000,
+                               0, e + 0x60, 0);
     } else {
-        e = func_02094000_inline(&data_0217561c->mUnk_498, 0x30);
-        c = (u16) (func_02094000_inline(&data_0217561c->mUnk_498, 0) >> 20);
-        func_02094000_inline_2(&o->mUnk_bc, func_02094000_inline(&data_0217561c->mUnk_498, 0x10000),
-                               (u16) func_02094000_inline(&data_0217561c->mUnk_498, 0x10000), c + 0x1000, 0, e + 0x60,
-                               0);
+        e = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x30);
+        c = (u16) (func_02094000_inline(&gRaceProgress->mLocalRandom, 0) >> 20);
+        func_02094000_inline_2(&o->mUnk_bc, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x10000),
+                               (u16) func_02094000_inline(&gRaceProgress->mLocalRandom, 0x10000), c + 0x1000, 0,
+                               e + 0x60, 0);
     }
-    d = func_02094000_inline(&data_0217561c->mUnk_498, 0x80);
-    f = func_02094000_inline(&data_0217561c->mUnk_498, 0xa000);
-    func_02094000_inline_2(&o->mUnk_dc, 0, func_02094000_inline(&data_0217561c->mUnk_498, 0x19000) + 0x19000,
+    d = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x80);
+    f = func_02094000_inline(&gRaceProgress->mLocalRandom, 0xa000);
+    func_02094000_inline_2(&o->mUnk_dc, 0, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x19000) + 0x19000,
                            f + 0xa000, 0, d + 0x100, 0);
-    o->mUnk_10c = func_02094000_inline(&data_0217561c->mUnk_498, 0x3c000) + 0x3c000;
-    p = func_02094000_inline(&data_0217561c->mUnk_498, 0xc000) + 0xe000;
-    q = func_02094000_inline(&data_0217561c->mUnk_498, 0x200) + 0x400;
+    o->mUnk_10c = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x3c000) + 0x3c000;
+    p = func_02094000_inline(&gRaceProgress->mLocalRandom, 0xc000) + 0xe000;
+    q = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x200) + 0x400;
     o->mUnk_fc = 0;
     o->mUnk_100 = q;
     o->mUnk_104 = 0x2000;
@@ -281,8 +281,8 @@ void func_02094000(Vec3 *a) {
         o->mUnk_b8 = 0xffff;
         o->mState = 0;
     } else {
-        o->mUnk_b4 = (u16) func_02094000_inline(&data_0217561c->mUnk_498, 0x4b);
-        o->mUnk_b8 = (u16) func_02094000_inline(&data_0217561c->mUnk_498, 0x96) + 0x12c;
+        o->mUnk_b4 = (u16) func_02094000_inline(&gRaceProgress->mLocalRandom, 0x4b);
+        o->mUnk_b8 = (u16) func_02094000_inline(&gRaceProgress->mLocalRandom, 0x96) + 0x12c;
         o->mState = 1;
     }
     data_0217b0d8++;

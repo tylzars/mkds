@@ -46,7 +46,7 @@ BOOL func_02040bc0(void) {
     switch (data_021759c0->mMode) {
         case 4:
             g = FALSE;
-            switch (data_0217561c->mUnk_000[(u16) i].mUnk_14) {
+            switch (gRaceProgress->mUnk_000[(u16) i].mStatus) {
                 case 1:
                 case 2:
                 case 3:
@@ -54,19 +54,19 @@ BOOL func_02040bc0(void) {
                     break;
             }
             if (g == FALSE) {
-                if (data_0217561c->mUnk_4e0 != 0) {
+                if (gRaceProgress->mUnk_4e0 != 0) {
                     return r;
                 }
             }
             return TRUE;
         case 2:
-            if (data_0217561c->mUnk_4cc != 0) {
+            if (gRaceProgress->mRaceDone != 0) {
                 r = TRUE;
             }
             return r;
         default:
             g = FALSE;
-            switch (data_0217561c->mUnk_000[(u16) i].mUnk_14) {
+            switch (gRaceProgress->mUnk_000[(u16) i].mStatus) {
                 case 1:
                 case 2:
                 case 3:
@@ -82,19 +82,20 @@ BOOL func_02040bc0(void) {
 
 void func_02040a8c(Unk0217561c_500 *a, s32 b) {
     Unk0206cdd4_B *t = func_0207a6b0();
-    Unk0217561c *d = data_0217561c;
-    Unk0217561c_14 *e = &d->mUnk_14[b];
-    Unk0217561c_4c8 *r = d->mUnk_4c8;
+    RaceProgress *d = gRaceProgress;
+    RaceProgressKart *e = &d->mKarts[b];
+    RankTimeGp *r = d->mRankTimeGpFile;
 
-    if (d->mUnk_000[0].mUnk_0c == 0) {
+    if (d->mUnk_000[0].mRankTime == 0) {
         a->mUnk_00 = 0;
     } else {
-        a->mUnk_00 =
-            (DivFixed12(r->mUnk_0a * (d->mUnk_000[0].mUnk_0c - d->mUnk_000[0].mUnk_00), d->mUnk_000[0].mUnk_0c) +
-             0x800) >>
-            12;
+        a->mUnk_00 = (DivFixed12(r->mUnk_0a * (d->mUnk_000[0].mRankTime - d->mUnk_000[0].mElapsedFrames),
+                                 d->mUnk_000[0].mRankTime) +
+                      0x800) >>
+                     12;
     }
-    a->mUnk_04 = (r->mUnk_0c * DivFixed12(e->mUnk_28 << 12, data_0217561c->mUnk_000[0].mUnk_0c << 12)) >> 12;
+    a->mUnk_04 =
+        (r->mUnk_0c * DivFixed12(e->mFirstPlaceFrames << 12, gRaceProgress->mUnk_000[0].mRankTime << 12)) >> 12;
     if (t->mUnk_00 != 0) {
         a->mUnk_08 = r->mUnk_0e;
     } else {
@@ -112,12 +113,12 @@ s16 func_020408f0(s32 a) {
     Unk0217561c_500 b;
     Unk0206cdd4_B *t;
     Unk021759c0 *g;
-    Unk0217561c *d = data_0217561c;
+    RaceProgress *d = gRaceProgress;
     Unk0217561c_500 *o = &d->mUnk_500;
     s32 s;
     u8 *h;
 
-    if ((d->mUnk_000[a].mUnk_44 & 1) == 0) {
+    if ((d->mUnk_000[a].mFlags & 1) == 0) {
         return 0;
     }
     g = data_021759c0;
@@ -129,7 +130,7 @@ s16 func_020408f0(s32 a) {
             h = (u8 *) g + 0x28;
             t = func_0207a6b0();
             b.mUnk_00 =
-                DivFixed12(*(s16 *) (h + 4) * (*(u16 *) (h + 2) - d->mUnk_000[0].mUnk_00) << 12, 0x3e8000) >> 12;
+                DivFixed12(*(s16 *) (h + 4) * (*(u16 *) (h + 2) - d->mUnk_000[0].mElapsedFrames) << 12, 0x3e8000) >> 12;
             b.mUnk_04 = 0;
             b.mUnk_08 = 0;
             b.mUnk_0c = 0;
@@ -154,46 +155,46 @@ s16 func_020408f0(s32 a) {
     return (s16) s;
 }
 
-void func_02040750(Unk0217561c_14 *a, s32 b) {
+void InitRaceProgressKart(RaceProgressKart *a, s32 b) {
     s32 i;
     Unk0217aa1c_144_00 *p;
     CourseMapRoute *e;
     s32 m;
 
     if (gCourseMap->mCheckpoints == NULL) {
-        a->mUnk_38 = 0;
-        a->mUnk_32 = 0;
+        a->mRoute = 0;
+        a->mCheckpoint = 0;
     } else {
-        a->mUnk_38 = gCourseMap->mCheckpointRoutes->mUnk_07;
-        e = &gCourseMap->mCheckpointRoutes[a->mUnk_38];
-        m = gCourseMap->mCheckpointRoutes[a->mUnk_38].mFirstEntry;
-        a->mUnk_32 = m + e->mEntryCount - 1;
+        a->mRoute = gCourseMap->mCheckpointRoutes->mUnk_07;
+        e = &gCourseMap->mCheckpointRoutes[a->mRoute];
+        m = gCourseMap->mCheckpointRoutes[a->mRoute].mFirstEntry;
+        a->mCheckpoint = m + e->mEntryCount - 1;
     }
-    a->mUnk_04 = 0;
+    a->mLapFrames = 0;
     a->mUnk_08 = 0;
-    a->mUnk_2c = 0;
-    a->mUnk_3a = 1;
-    a->mUnk_24 = 0;
-    a->mUnk_00 = 0;
-    a->mUnk_30 = 0;
+    a->mFinishTimeMs = 0;
+    a->mHighestLap = 1;
+    a->mLap = 0;
+    a->mStatus = 0;
+    a->mFlags = 0;
     a->mUnk_34 = gCourseMap->mNumberedCheckpointCount - 1;
     a->mUnk_36 = gCourseMap->mNumberedCheckpointCount - 1;
     a->mUnk_3c = (a->mUnk_3c & ~0xf0) | (((u16) b & 0xf) << 4);
-    a->mUnk_44 = 0;
-    a->mUnk_48 = 0;
-    a->mUnk_3e = 0;
-    a->mUnk_28 = 0;
+    a->mRaceProgress = 0;
+    a->mLapProgress = 0;
+    a->mScore = 0;
+    a->mFirstPlaceFrames = 0;
     a->mUnk_40 = 0;
     a->mUnk_3c = a->mUnk_3c & ~0x300;
-    p = a->mUnk_0c;
+    p = a->mLapTimes;
     for (i = 0; i < 5; i++) {
-        func_0203f5f0(&p->mUnk_02, &p->mUnk_03, &p->mUnk_00, 0, data_0217561c->mUnk_000[0].mUnk_00);
+        ComputeRaceTime(&p->mUnk_02, &p->mUnk_03, &p->mUnk_00, 0, gRaceProgress->mUnk_000[0].mElapsedFrames);
         p++;
     }
-    func_0203f5f0(&a->mUnk_0c[5].mUnk_02, &a->mUnk_0c[5].mUnk_03, &a->mUnk_0c[5].mUnk_00, 0,
-                  data_0217561c->mUnk_000[0].mUnk_00);
+    ComputeRaceTime(&a->mLapTimes[5].mUnk_02, &a->mLapTimes[5].mUnk_03, &a->mLapTimes[5].mUnk_00, 0,
+                    gRaceProgress->mUnk_000[0].mElapsedFrames);
     if (b == data_021759c0->mEntryIndex) {
-        a->mUnk_30 = a->mUnk_30 | 1;
+        a->mFlags = a->mFlags | 1;
     }
     a->mUnk_3c = (a->mUnk_3c & ~0xf) | ((u16) (b + 1) & 0xf);
 }
@@ -203,12 +204,12 @@ static inline u32 func_020401ac_inline(Unk0217aa00 *p) {
 }
 
 static inline void func_020401ac_inline2(Unk0217561c_000 *q) {
-    q->mUnk_00 = 0;
-    q->mUnk_04 = 0;
+    q->mElapsedFrames = 0;
+    q->mClockEnabled = 0;
 }
 
 static inline void func_020401ac_inline3(Unk0217aa1c_144_00 *p, u32 e) {
-    func_0203f5f0(&p->mUnk_02, &p->mUnk_03, &p->mUnk_00, 0, e);
+    ComputeRaceTime(&p->mUnk_02, &p->mUnk_03, &p->mUnk_00, 0, e);
 }
 
 static inline void func_020401ac_inline4(Unk020f41c4_B *x, u32 s) {
@@ -226,7 +227,7 @@ static inline u32 func_020401ac_inline6(Unk020f41c4_B *x, u32 n) {
     return ((s64) (x->mUnk_00 >> 32) * n) >> 32;
 }
 
-void func_020401ac(void) {
+void InitRaceProgress(void) {
     BOOL f;
     s32 i;
     u32 s;
@@ -242,12 +243,12 @@ void func_020401ac(void) {
     CourseMapRoute *e;
     CourseMapCheckpoint *q;
 
-    func_020401ac_inline2(&data_0217561c->mUnk_000[0]);
-    func_020401ac_inline3(&data_0217561c->mUnk_000[0].mUnk_08_view, data_0217561c->mUnk_000[0].mUnk_00);
+    func_020401ac_inline2(&gRaceProgress->mUnk_000[0]);
+    func_020401ac_inline3(&gRaceProgress->mUnk_000[0].mUnk_08_view, gRaceProgress->mUnk_000[0].mElapsedFrames);
     f = FALSE;
-    data_0217561c->mUnk_000[0].mUnk_0e = 0;
-    data_0217561c->mUnk_000[0].mUnk_10 = 0;
-    data_0217561c->mUnk_4cc = 0;
+    gRaceProgress->mUnk_000[0].mFinishedCount = 0;
+    gRaceProgress->mUnk_000[0].mRemovedCount = 0;
+    gRaceProgress->mRaceDone = 0;
     switch (data_021759c0->mUnk_00c) {
         case 1:
         case 2:
@@ -260,29 +261,29 @@ void func_020401ac(void) {
             }
             break;
     }
-    data_0217561c->mUnk_4f0 = f;
-    data_0217561c->mUnk_4e0 = 6;
-    data_0217561c->mUnk_4ec = FALSE;
-    data_0217561c->mUnk_4f4 = 0;
+    gRaceProgress->mUnk_4f0 = f;
+    gRaceProgress->mUnk_4e0 = 6;
+    gRaceProgress->mTimeCountsDown = FALSE;
+    gRaceProgress->mTimeLimitFrameCount = 0;
     switch (data_021759c0->mMode) {
         case 4:
             if (data_021759c0->mUnk_2f == 6) {
-                data_0217561c->mUnk_4ec = FALSE;
+                gRaceProgress->mTimeCountsDown = FALSE;
             } else {
-                data_0217561c->mUnk_4ec = TRUE;
+                gRaceProgress->mTimeCountsDown = TRUE;
             }
-            data_0217561c->mUnk_4f4 = data_021759c0->mUnk_028;
+            gRaceProgress->mTimeLimitFrameCount = data_021759c0->mUnk_028;
             break;
         case 2:
             if (data_021759c0->mUnk_18 == 1) {
-                data_0217561c->mUnk_4ec = TRUE;
-                data_0217561c->mUnk_4f4 = gCourseMap->mSettings->mUnk_02 * 0x3c;
+                gRaceProgress->mTimeCountsDown = TRUE;
+                gRaceProgress->mTimeLimitFrameCount = gCourseMap->mSettings->mUnk_02 * 0x3c;
             }
             break;
     }
     for (i = 0; i < 8; i++) {
-        func_02040750(&data_0217561c->mUnk_14[i], i);
-        data_0217561c->mUnk_474[i] = -1;
+        InitRaceProgressKart(&gRaceProgress->mKarts[i], i);
+        gRaceProgress->mKartAtRank[i] = -1;
     }
     switch (data_021759c0->mUnk_00c) {
         case 2:
@@ -323,24 +324,24 @@ void func_020401ac(void) {
             }
             break;
     }
-    func_020401ac_inline4(&data_0217561c->mUnk_47c, s);
-    data_0217561c->mUnk_494 = s;
+    func_020401ac_inline4(&gRaceProgress->mRandom, s);
+    gRaceProgress->mSeed = s;
     data_021759c0->mNextHeader.mUnk_5c = s;
     a = func_0200f5ac();
     c = func_0200f5ac();
     d = func_0200f5ac();
-    func_020401ac_inline4(&data_0217561c->mUnk_498, a + ((c << 24) + (d << 8)));
-    func_020401ac_inline4(&data_0217561c->mUnk_4b0, 0xa094a2f);
+    func_020401ac_inline4(&gRaceProgress->mLocalRandom, a + ((c << 24) + (d << 8)));
+    func_020401ac_inline4(&gRaceProgress->mUnk_4b0, 0xa094a2f);
     if (data_021759c0->mMode == 2) {
-        ShuffleCourseMapRespawnSlots(&data_0217561c->mUnk_47c);
+        ShuffleCourseMapRespawnSlots(&gRaceProgress->mRandom);
     }
-    data_0217561c->mUnk_4d0 = 0;
-    data_0217561c->mUnk_4e4 = ReciprocalFixed12((gCourseMap->mUnk_9c + 1) << 12);
-    data_0217561c->mUnk_4e8 = ReciprocalFixed12(func_02044618() << 12);
+    gRaceProgress->mUnk_4d0 = 0;
+    gRaceProgress->mUnk_4e4 = ReciprocalFixed12((gCourseMap->mUnk_9c + 1) << 12);
+    gRaceProgress->mUnk_4e8 = ReciprocalFixed12(func_02044618() << 12);
     for (i = 0; i < gCourseMap->mNumberedCheckpointCount + 1; i++) {
         v1 = i % (gCourseMap->mNumberedCheckpointCount + 1);
         if (v1 == gCourseMap->mNumberedCheckpointCount) {
-            data_0217561c->mUnk_4d4[i] = 0x1000;
+            gRaceProgress->mCheckpointLapProgress[i] = 0x1000;
         } else {
             for (j = 0; j < gCourseMap->mCheckpointRouteCount; j++) {
                 e = &gCourseMap->mCheckpointRoutes[j];
@@ -350,15 +351,15 @@ void func_020401ac(void) {
                     if (q->mNumber == v1) {
                         v = func_020401ac_inline5((v2 - e->mFirstEntry) << 12, e->mEntryCount);
                         v += e->mUnk_0a << 12;
-                        data_0217561c->mUnk_4d4[i] = ((s64) v * data_0217561c->mUnk_4e4 + 0x800) >> 12;
+                        gRaceProgress->mCheckpointLapProgress[i] = ((s64) v * gRaceProgress->mUnk_4e4 + 0x800) >> 12;
                     }
                 }
             }
         }
     }
     if (data_021759c0->mMode != 2) {
-        data_0217561c->mUnk_4f8 = 0;
+        gRaceProgress->mStartPlacementOffset = 0;
         return;
     }
-    data_0217561c->mUnk_4f8 = func_020401ac_inline6(&data_0217561c->mUnk_47c, 8);
+    gRaceProgress->mStartPlacementOffset = func_020401ac_inline6(&gRaceProgress->mRandom, 8);
 }

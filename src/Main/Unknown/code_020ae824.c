@@ -55,9 +55,9 @@ void func_020ae824(void) {
         func_020d1198((Unk020d029c *) gRaceHud->mUnk_004);
     }
     v = data_021759c0->mMode;
-    if ((v == 2   ? data_0217561c->mUnk_4cc
+    if ((v == 2   ? gRaceProgress->mRaceDone
          : v == 4 ? func_0203c174()
-                  : (func_0203c880(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
+                  : (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
         func_020ba63c((Unk020d029c *) gRaceHud->mUnk_004);
         func_020bc208((Unk020d029c *) gRaceHud->mUnk_004);
         DrawRaceMNumberPair((Unk020d029c *) gRaceHud->mUnk_004);

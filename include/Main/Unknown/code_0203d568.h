@@ -2,20 +2,22 @@
 
 #include "types.h"
 
-typedef struct Unk0217561c_14 Unk0217561c_14;
-typedef struct Unk0217561c_4c8 Unk0217561c_4c8;
+typedef struct RaceProgressKart RaceProgressKart;
+typedef struct RankTimeGp RankTimeGp;
 
 void func_0203d568(void);
-void func_0203d848(void *a);
-void func_0203d8fc(Unk0217561c_4c8 *a);
-void func_0203d9d4(void);
-void func_0203df74(Vec3 *a, Unk0217561c_14 *b);
-void func_0203e370(Unk0217561c_14 *a, s32 b);
+// In mode 4 also creates the mission object.
+void CreateRaceProgress(void *a);
+void func_0203d8fc(RankTimeGp *a);
+// Updates every kart's progress, the rank order, the first place frames and the pending finishes, and consumes flag 8.
+void UpdateRaceProgressKarts(void);
+void UpdateRaceProgressKart(Vec3 *a, RaceProgressKart *b);
+void func_0203e370(RaceProgressKart *a, s32 b);
 void func_0203e4c4(u32 a, u32 b);
-void func_0203e550(Unk0217561c_14 *a);
+void func_0203e550(RaceProgressKart *a);
 
-BOOL func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e);
-void func_0203f334(Unk0217561c_14 *a, s32 b);
+BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e);
+void func_0203f334(RaceProgressKart *a, s32 b);
 void func_0203e788(s32 a, s32 b);
 s32 func_0203ef58(void);
 void func_0203eb38(void);

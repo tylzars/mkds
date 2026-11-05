@@ -253,7 +253,7 @@ void func_0207cd74(Unk0208fd8c *a, struct Unk020888b4 *b) {
     u16 n;
     u32 v;
 
-    k = func_0203c8dc(b->mIndex);
+    k = GetKartRank(b->mIndex);
     if (k == 1) {
         func_0204360c(b->mKart->mEntryIndex, 0x600);
         a->mUnk_18 = 1;
@@ -694,7 +694,7 @@ void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
 }
 
 void func_0207c270(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
-    if (func_0203c880(b->mIndex) != 0) {
+    if (IsKartEnded(b->mIndex) != 0) {
         return;
     }
     if ((data_027e00c8)[b->mIndex].mUnk_030.mUnk_00 == 0xe) {

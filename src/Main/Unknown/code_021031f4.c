@@ -160,7 +160,7 @@ void func_0210465c(Unk021035ac *p) {
     }
     p->mUnk_2c = p->mUnk_2c - 1;
     if ((p->mUnk_2c & 0xf) == 0) {
-        Unk020f41c4_B *a = &data_0217561c->mUnk_498;
+        Unk020f41c4_B *a = &gRaceProgress->mLocalRandom;
 
         a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
         p->mUnk_30 = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 6) >> 32);
@@ -339,7 +339,7 @@ u8 func_02104000(s32 a, s32 b) {
 }
 
 void func_02103db0(s32 v1, Unk021035ac_Pair param_2, s32 param_3) {
-    Unk0217561c *b;
+    RaceProgress *b;
     Unk020f41c4_B *a;
     Unk021035ac *e;
     s16(*q)[2];
@@ -350,9 +350,9 @@ void func_02103db0(s32 v1, Unk021035ac_Pair param_2, s32 param_3) {
     s16 f0;
     s16 f1;
 
-    b = data_0217561c;
+    b = gRaceProgress;
     e = &((Unk021035ac *) data_0217c654)[v1];
-    a = &b->mUnk_498;
+    a = &b->mLocalRandom;
     q = e->mUnk_10;
     a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
     t = (s32) (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x10000) >> 32) >> 4;
@@ -400,7 +400,7 @@ void func_02103900(s32 v1, s32 n, s32 v2) {
     s32 t10;
     Unk020f41c4_B *a;
 
-    a = &data_0217561c->mUnk_498;
+    a = &gRaceProgress->mLocalRandom;
     GetKart(v1);
     if (v1 != data_021759c0->mEntryIndex) {
         return;
@@ -675,7 +675,7 @@ void func_021031f4(Unk02102674 *p) {
     s32 a;
     s32 b2;
     s32 i;
-    Unk0217561c *q;
+    RaceProgress *q;
     Unk020f41c4_B *b;
     Kart *r;
     u16 j;
@@ -700,16 +700,16 @@ void func_021031f4(Unk02102674 *p) {
             if (r->mUnk_48 & 0x10000) {
                 continue;
             }
-            q = data_0217561c;
-            b = &q->mUnk_498;
+            q = gRaceProgress;
+            b = &q->mLocalRandom;
             b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
             p->mUnk_130[i] = (u16) (((b->mUnk_00 >> 32) * 4) >> 32) + 1;
         }
     } else {
         j = 1;
-        n = func_0203c8dc(b2);
+        n = GetKartRank(b2);
         do {
-            v = (u16) data_0217561c->mUnk_474[(u8) j - 1];
+            v = (u16) gRaceProgress->mKartAtRank[(u8) j - 1];
             r = GetKart(v);
             if ((r->mUnk_7c & 0x402020) == 0 && (r->mUnk_4c & 0x10000840) == 0 && (r->mUnk_48 & 0x10000) == 0) {
                 p->mUnk_130[v] = 4 - ((j - 1) >> 1);

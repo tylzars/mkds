@@ -216,7 +216,7 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
 }
 
 static inline u32 func_0205f700_inline(u16 i, u32 a) {
-    if (func_0203c8dc(i) > a) {
+    if (GetKartRank(i) > a) {
         return 0;
     }
     return 1;
@@ -241,14 +241,14 @@ void func_0205f700(void) {
     if (data_021759c0->mEntryIndex == -1) {
         return;
     }
-    if (data_0217561c->mUnk_000[(u16) data_021759c0->mEntryIndex].mUnk_14 == 4) {
+    if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
         return;
     }
-    if (data_0217561c->mUnk_4cc == 0) {
+    if (gRaceProgress->mRaceDone == 0) {
         return;
     }
     func_0203bfec(v2);
-    a = func_0203c8dc((u16) data_021759c0->mEntryIndex);
+    a = GetKartRank((u16) data_021759c0->mEntryIndex);
     if (data_021759c0->mUseTeams != 0) {
         c = data_021759c0->mCurrentEntries[(u16) data_021759c0->mEntryIndex].mUnk_08.mTeamIndex;
     }
@@ -274,7 +274,7 @@ void func_0205f700(void) {
                     case 1:
                         if (c == func_0205d480()) {
                             t = 0;
-                        } else if (data_0217561c->mUnk_000[i].mUnk_14 == 4) {
+                        } else if (gRaceProgress->mUnk_000[i].mStatus == 4) {
                             t = 2;
                         } else {
                             t = 1;
@@ -325,7 +325,7 @@ void func_0205f498(void) {
     if (data_021759c0->mEntryIndex == -1) {
         return;
     }
-    if (data_0217561c->mUnk_000[(u16) data_021759c0->mEntryIndex].mUnk_14 == 4) {
+    if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
         return;
     }
     if (func_020a128c() == 0) {
@@ -348,7 +348,7 @@ void func_0205f498(void) {
                 t = 0;
             }
         } else if (func_020a100c(i) != 0) {
-            if (data_0217561c->mUnk_000[i].mUnk_14 != 4) {
+            if (gRaceProgress->mUnk_000[i].mStatus != 4) {
                 t = 1;
             }
         }
@@ -392,14 +392,14 @@ void func_0205f218(void) {
     if (data_021759c0->mEntryIndex == -1) {
         return;
     }
-    if (data_0217561c->mUnk_000[(u16) data_021759c0->mEntryIndex].mUnk_14 == 4) {
+    if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
         return;
     }
     if (func_020a128c() == 0) {
         return;
     }
     func_0203bfec(v2);
-    func_0203c8dc((u16) data_021759c0->mEntryIndex);
+    GetKartRank((u16) data_021759c0->mEntryIndex);
     a = data_0217aa08->mUnk_00->mUnk_34[2];
     b = data_0217aa08->mUnk_00->mUnk_34[3];
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
@@ -416,7 +416,7 @@ void func_0205f218(void) {
                 t = 0;
             }
         } else if (func_020a100c(i) != 0) {
-            if (data_0217561c->mUnk_000[i].mUnk_14 != 4) {
+            if (gRaceProgress->mUnk_000[i].mStatus != 4) {
                 t = 1;
             }
         }
@@ -475,10 +475,10 @@ void func_0205ef70(void) {
     if (data_021759c0->mCourseNumber <= 3) {
         return;
     }
-    if (data_0217561c->mUnk_4cc == 0) {
+    if (gRaceProgress->mRaceDone == 0) {
         return;
     }
-    if (data_0217561c->mUnk_000[(u16) data_021759c0->mEntryIndex].mUnk_14 == 4) {
+    if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
         return;
     }
     func_0203bfec(v1);

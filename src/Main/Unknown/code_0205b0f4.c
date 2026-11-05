@@ -541,7 +541,7 @@ void func_0205be0c(void) {
             if ((d->mUnk_0fc & s) != 0) {
                 q = t == 0;
             }
-            if (q == 0 && (x & s) != 0 && func_0203c880(h) == 0) {
+            if (q == 0 && (x & s) != 0 && IsKartEnded(h) == 0) {
                 func_0203e4c4(h, (u & 0x7ffff) != 0x7ffff);
             }
         }
@@ -575,7 +575,7 @@ void func_0205be0c(void) {
                 u16 w;
 
                 w = (u16) data_0217aa18->mUnk_06[i];
-                c = data_0217561c->mUnk_000[w].mUnk_50_0;
+                c = gRaceProgress->mUnk_000[w].mUnk_50_0;
                 z = c;
                 for (p = 0; p < 4; p++) {
                     u32 e;
@@ -591,8 +591,8 @@ void func_0205be0c(void) {
 
                         o = data_0217aa18->mUnk_06[p];
                         o = (u16) o;
-                        v = data_0217561c->mUnk_000[o].mUnk_50_0;
-                        if (data_0217561c->mUnk_000[o].mUnk_14 != 4 && e != 0 && v > c) {
+                        v = gRaceProgress->mUnk_000[o].mUnk_50_0;
+                        if (gRaceProgress->mUnk_000[o].mStatus != 4 && e != 0 && v > c) {
                             z = z + 1;
                         }
                     }
@@ -626,7 +626,7 @@ void func_0205bc08(void) {
     }
     func_0205c234(v);
     func_0205be0c();
-    if (func_0203c880(*(u8 *) &data_0217aa18->mUnk_06[func_ov000_0219bb50()]) == 0 &&
+    if (IsKartEnded(*(u8 *) &data_0217aa18->mUnk_06[func_ov000_0219bb50()]) == 0 &&
         (data_0217aa14->mUnk_75c & 0x200) == 0) {
         if (data_0217562a[func_020435bc()].mBits == 0) {
             data_0217aa14->mUnk_738 = data_0217aa14->mUnk_738 + 1;
@@ -952,8 +952,8 @@ void func_0205b32c(void) {
             if (m == -1 || s == m) {
                 continue;
             }
-            x = func_0203c8dc((u16) s);
-            y = func_0203c8dc((u16) m);
+            x = GetKartRank((u16) s);
+            y = GetKartRank((u16) m);
             if (x > y) {
                 k = 0;
             }

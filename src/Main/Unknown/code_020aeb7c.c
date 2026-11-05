@@ -50,7 +50,7 @@ void func_020aeb7c(void) {
     }
     switch (data_021759c0->mMode) {
         case 0:
-            if (func_0203c880(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0) {
+            if (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0) {
                 if (data_021759c0->mUnk_00c == 0) {
                     if (gRaceHud->mUnk_83c != FALSE) {
                         gRaceHud->mUnk_82c = FALSE;
@@ -115,7 +115,7 @@ void func_020aeb7c(void) {
             }
             break;
         case 1:
-            if (data_0217561c->mUnk_4cc != 0 && gRaceHud->mUnk_8dc == 0) {
+            if (gRaceProgress->mRaceDone != 0 && gRaceHud->mUnk_8dc == 0) {
                 if (gRaceHud->mUnk_83c == FALSE) {
                     gRaceHud->mUnk_83c = TRUE;
                     gRaceHud->mUnk_840 = TRUE;
@@ -247,7 +247,7 @@ void func_020aeb7c(void) {
             break;
         case 3:
         case 5:
-            if (data_0217561c->mUnk_4cc != 0 && data_021759c0->mUnk_00c == 0) {
+            if (gRaceProgress->mRaceDone != 0 && data_021759c0->mUnk_00c == 0) {
                 if (gRaceHud->mUnk_838 == FALSE) {
                     gRaceHud->mUnk_82c = TRUE;
                     gRaceHud->mSubScreenState = 4;
@@ -260,7 +260,7 @@ void func_020aeb7c(void) {
                 } else {
                     gRaceHud->mUnk_82c = FALSE;
                 }
-            } else if (func_0203c880(func_020b4d9c()) != 0 && data_021759c0->mUnk_00c == 0) {
+            } else if (IsKartEnded(func_020b4d9c()) != 0 && data_021759c0->mUnk_00c == 0) {
                 if (gRaceHud->mUnk_83c == FALSE) {
                     gRaceHud->mUnk_82c = TRUE;
                     gRaceHud->mSubScreenState = 0;
@@ -367,8 +367,8 @@ void func_020aeb7c(void) {
                 if (gRaceHud->mUnk_83c == FALSE) {
                     gRaceHud->mUnk_83c = TRUE;
                     gRaceHud->mUnk_840 = TRUE;
-                    if (func_0203c880((u16) data_021759c0->mEntryIndex) != 0) {
-                        v = data_0217561c->mUnk_4e0;
+                    if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
+                        v = gRaceProgress->mUnk_4e0;
                     } else {
                         v = 6;
                     }
@@ -376,9 +376,9 @@ void func_020aeb7c(void) {
                         gRaceHud->mUnk_850 = 0xaf;
                     }
                 }
-            } else if (data_0217561c->mUnk_4cc != 0) {
-                if (func_0203c880((u16) data_021759c0->mEntryIndex) != 0) {
-                    v = data_0217561c->mUnk_4e0;
+            } else if (gRaceProgress->mRaceDone != 0) {
+                if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
+                    v = gRaceProgress->mUnk_4e0;
                 } else {
                     v = 6;
                 }

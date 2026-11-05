@@ -216,7 +216,7 @@ void func_020c97c0(void) {
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         data_0217b428->mUnk_000[i] = 0;
         data_0217b428->mUnk_130[i] = i;
-        v1[i] = func_0203c8dc(i & 0xff);
+        v1[i] = GetKartRank(i & 0xff);
     }
     switch (GetRaceHudSubScreenState()) {
         case 0:

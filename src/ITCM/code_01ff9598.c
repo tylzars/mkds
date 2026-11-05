@@ -105,7 +105,7 @@ BOOL func_01ffa1f8(Kart *p) {
             if (data_021759c0->mMode == 2) {
                 r = GetCourseMapRespawnSlot(0);
             } else {
-                r = GetCourseMapRespawnSlot(data_0217561c->mUnk_000[i].mUnk_46);
+                r = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[i].mCheckpoint);
             }
             p->mUnk_3c4 = r;
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {

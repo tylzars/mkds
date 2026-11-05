@@ -116,7 +116,7 @@ void func_020641f0(Kart *a) {
     c = a->mKartModelsEntry->mUnk_008;
     if (c != NULL && c->mUnk_18 != 0) {
         func_0207b734(a);
-        if (func_0203c880(a->mIndex) != 0) {
+        if (IsKartEnded(a->mIndex) != 0) {
             func_0207b354(a);
         }
         c = a->mKartModelsEntry->mUnk_008;

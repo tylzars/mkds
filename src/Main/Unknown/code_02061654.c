@@ -137,7 +137,7 @@ void InitRace(void) {
     InitCourseModels(a);
     func_020476ec();
     func_02047b6c(7);
-    func_0203d848(a);
+    CreateRaceProgress(a);
     func_0205cd24(a);
     func_02047b6c(2);
     InitCourseCollision();
@@ -342,7 +342,7 @@ void UpdateRace(void) {
         }
     }
     func_0208a218();
-    func_0203ca38();
+    UpdateRaceProgress();
     func_0207aa7c();
     func_0208677c();
     if (data_021759c0->mMode == 5) {
@@ -484,7 +484,7 @@ u32 func_02061fec(void) {
 
 void func_02061fcc(void) {
     gRace->mUnk_00 = 1;
-    func_0203ca20();
+    StartRaceClock();
 }
 
 u32 GetRaceUpdateFrames(void) {

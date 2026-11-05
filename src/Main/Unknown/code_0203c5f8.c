@@ -13,9 +13,9 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "code_0214d018.h"
 
-s32 func_0203c880(u32 param_1) {
+s32 IsKartEnded(u32 param_1) {
     BOOL f = FALSE;
-    switch (data_0217561c->mUnk_000[param_1].mUnk_14) {
+    switch (gRaceProgress->mUnk_000[param_1].mStatus) {
         case 1:
         case 2:
         case 3:
@@ -25,8 +25,8 @@ s32 func_0203c880(u32 param_1) {
     return f;
 }
 
-void func_0203c7cc(s32 a, u8 *b, u8 *c, u16 *d) {
-    Unk0217561c_14 *p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + a * 0x8c);
+void GetKartFinishTime(s32 a, u8 *b, u8 *c, u16 *d) {
+    RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + a * 0x8c);
     BOOL g = TRUE;
     if (data_021759c0->mMode == 2) {
         if (data_021759c0->mUnk_18 == 1) {
@@ -35,7 +35,7 @@ void func_0203c7cc(s32 a, u8 *b, u8 *c, u16 *d) {
     }
     if (g != FALSE) {
         BOOL h = FALSE;
-        switch (p->mUnk_00) {
+        switch (p->mStatus) {
             case 1:
             case 2:
             case 3:
@@ -43,7 +43,7 @@ void func_0203c7cc(s32 a, u8 *b, u8 *c, u16 *d) {
                 break;
         }
         if (h != FALSE) {
-            Unk0217aa1c_144_00 *t = &p->mUnk_0c[5];
+            Unk0217aa1c_144_00 *t = &p->mLapTimes[5];
             *b = t->mUnk_02;
             *c = t->mUnk_03;
             *d = t->mUnk_00;
@@ -55,16 +55,16 @@ void func_0203c7cc(s32 a, u8 *b, u8 *c, u16 *d) {
     *d = 0;
 }
 
-void func_0203c778(s32 a, u16 b, u8 *c, u8 *d, u16 *e) {
+void GetKartLapTime(s32 a, u16 b, u8 *c, u8 *d, u16 *e) {
     s32 k = b - 1;
-    Unk0217aa1c_144_00 *p = (Unk0217aa1c_144_00 *) ((u8 *) &data_0217561c->mUnk_14[0].mUnk_0c[0] + a * 0x8c);
+    Unk0217aa1c_144_00 *p = (Unk0217aa1c_144_00 *) ((u8 *) &gRaceProgress->mKarts[0].mLapTimes[0] + a * 0x8c);
     Unk0217aa1c_144_00 *q = &p[k];
     *c = q->mUnk_02;
     *d = q->mUnk_03;
     *e = q->mUnk_00;
 }
 
-u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d) {
+u16 GetKartBestLapTime(u16 a, u8 *b, u8 *c, u16 *d) {
     u16 r = 1;
     u16 i;
     BOOL f = TRUE;
@@ -77,7 +77,7 @@ u16 func_0203c5f8(u16 a, u8 *b, u8 *c, u16 *d) {
     if (gCourseMap->mSettings->mUnk_02 >= 1) {
         v1 = a * 0x8c;
         do {
-            q = (Unk0217aa1c_144_00 *) ((u8 *) &data_0217561c->mUnk_14[0].mUnk_0c[0] + v1) + (i - 1);
+            q = (Unk0217aa1c_144_00 *) ((u8 *) &gRaceProgress->mKarts[0].mLapTimes[0] + v1) + (i - 1);
             if (f != FALSE) {
                 f = FALSE;
                 r = i;

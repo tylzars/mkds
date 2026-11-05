@@ -359,7 +359,8 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
                     break;
             }
             if ((u16) (p->mUnk_000.mKind + 0xfe4c) <= 1) {
-                func_02103544(k->mIndex, (u16) (((u64) func_0209c9fc_inline(&data_0217561c->mUnk_498) * 3) >> 32) + 1);
+                func_02103544(k->mIndex,
+                              (u16) (((u64) func_0209c9fc_inline(&gRaceProgress->mLocalRandom) * 3) >> 32) + 1);
                 Vec3Sub(&p->mUnk_000.mPos, &k->mUnk_1b8, &v3);
                 if (!((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z < 0x10)) {
                     func_02039860(&v3, &v3);

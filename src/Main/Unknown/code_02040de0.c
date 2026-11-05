@@ -67,7 +67,7 @@ void GetCourseMapStartPlacementWithOffsets(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e
 }
 
 // Position and rotation of the start spot of kart c by mode: a staggered grid by rank in a race, by key
-// (kart + mUnk_4f8) % 8 in battle.
+// (kart + mStartPlacementOffset) % 8 in battle.
 void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
     u16 i = (u16) (data_021759c0->mKartCount - 1);
     s32 j = (u16) (func_0205d27c(c) - 1);
@@ -83,7 +83,7 @@ void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
     }
     switch (data_021759c0->mMode) {
         case 2:
-            GetCourseMapStartPlacementWithOffsets(a, b, (u16) ((j + data_0217561c->mUnk_4f8) % 8), 0, 0);
+            GetCourseMapStartPlacementWithOffsets(a, b, (u16) ((j + gRaceProgress->mStartPlacementOffset) % 8), 0, 0);
             break;
         case 1:
             GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);

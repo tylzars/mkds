@@ -448,7 +448,7 @@ void func_020ba520(void) {
         case 1:
             break;
         default:
-            data_0217b3c8->mUnk_00 = func_0203c8dc(func_020b4d9c()) - 1;
+            data_0217b3c8->mUnk_00 = GetKartRank(func_020b4d9c()) - 1;
             break;
     }
     data_0217b3c8->mUnk_08 = 1;
@@ -489,7 +489,7 @@ void func_020ba3ec(void) {
         case 1:
             break;
         default:
-            data_0217b3c8->mUnk_00 = func_0203c8dc(func_020b4d9c()) - 1;
+            data_0217b3c8->mUnk_00 = GetKartRank(func_020b4d9c()) - 1;
             break;
     }
 }
@@ -522,7 +522,7 @@ void func_020b9dfc(Unk020d029c *p) {
             func_020b9994(p);
             return;
         case 2:
-            if (func_0203c880(func_020b4d9c()) == 0) {
+            if (IsKartEnded(func_020b4d9c()) == 0) {
                 if (data_021759c0->mUnk_18 == 0) {
                     i = 0;
                     n = data_0217b3c8->mUnk_00_h[1];
@@ -563,7 +563,7 @@ void func_020b9dfc(Unk020d029c *p) {
                     p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, f, 0, 1);
                 }
             } else {
-                if (data_0217561c->mUnk_000[func_020b4d9c()].mUnk_14 != 2) {
+                if (gRaceProgress->mUnk_000[func_020b4d9c()].mStatus != 2) {
                     return;
                 }
                 if ((GetKart(func_020b4d9c())->mUnk_7c & 0x402000) == 0) {

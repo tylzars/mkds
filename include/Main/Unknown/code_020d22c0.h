@@ -3,7 +3,7 @@
 #include "types.h"
 
 // Three 64-bit words: x, a and c of x = x * a + c. func_020d22c0 and func_020d22d0 return one; Unk0217aa00 has one
-// at 0x1ee8 and Unk0217561c three.
+// at 0x1ee8 and RaceProgress three.
 typedef struct Unk020f41c4_B {
     /* 00 */ u64 mUnk_00;
     /* 08 */ u64 mUnk_08;

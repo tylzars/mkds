@@ -71,9 +71,9 @@ void func_02085e04(void) {
     data_0217aebc->mUnk_088 = m;
     data_0217aebc->mUnk_08c = z;
     if (data_021759c0->mMode == 1) {
-        data_0217aebc->mUnk_128 = &data_0217561c->mUnk_498;
+        data_0217aebc->mUnk_128 = &gRaceProgress->mLocalRandom;
     } else {
-        data_0217aebc->mUnk_128 = &data_0217561c->mUnk_47c;
+        data_0217aebc->mUnk_128 = &gRaceProgress->mRandom;
     }
     if (data_021759c0->mKartCount > 1 && data_021759c0->mKartCount - data_021759c0->mUnk_3d1 == 1) {
         data_0217aebc->mUnk_120 = 1;
@@ -425,7 +425,7 @@ void func_02085778(void) {
     func_0208552c();
     m = 1;
     for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
-        v = func_0203c8dc(i);
+        v = GetKartRank(i);
         if (data_021759c0->mCurrentEntries[i].mUnk_08.mKind != 1) {
             if (v == 1) {
                 data_0217aebc->mUnk_088 = i;
@@ -452,9 +452,9 @@ void func_0208552c(void) {
     m = 1;
     for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
         w = gCourseMap->mUnk_108;
-        x = func_0203c5c8(i);
+        x = GetKartRaceProgress(i);
         w = ((s64) x * w + 0x800) >> 12;
-        v = func_0203c8dc(i);
+        v = GetKartRank(i);
         data_0217aebc->mUnk_000[i] = w;
         if (v > 0) {
             q = v - 1;
@@ -570,7 +570,7 @@ s32 func_020853a4(u32 a) {
     s32 m;
     s32 v;
     m = gCourseMap->mUnk_108;
-    v = func_0203c5c8(a);
+    v = GetKartRaceProgress(a);
     return ((s64) v * m + 0x800) >> 12;
 }
 

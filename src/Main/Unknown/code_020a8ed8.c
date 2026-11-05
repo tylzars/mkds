@@ -348,7 +348,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
     r = GetCurrentCamera();
     switch (data_021759c0->mCourseId) {
         case 0x14:
-            if (func_0203c25c(data_021759c0->mEntryIndex) != FALSE || func_02062ec4() != 0) {
+            if (IsKartOnLastLap(data_021759c0->mEntryIndex) != FALSE || func_02062ec4() != 0) {
                 k = 0x898000;
             } else {
                 k = 0x834000;
@@ -379,7 +379,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             }
             break;
         case 0x19:
-            if (func_0203c25c(data_021759c0->mEntryIndex) != FALSE || func_02062ec4() != 0) {
+            if (IsKartOnLastLap(data_021759c0->mEntryIndex) != FALSE || func_02062ec4() != 0) {
                 m = 0x384000;
             } else {
                 m = 0x320000;

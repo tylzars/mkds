@@ -52,7 +52,7 @@ void func_0203c1a8(void *a, u32 b) {
 }
 
 BOOL func_0203c174(void) {
-    return data_0217561c->mUnk_4fa > data_021759c0->mUnk_038;
+    return gRaceProgress->mFramesSinceFinish > data_021759c0->mUnk_038;
 }
 
 u32 func_0203c0bc(void) {
@@ -61,7 +61,7 @@ u32 func_0203c0bc(void) {
     if (i == -1) {
         return 0;
     }
-    if (data_0217561c->mUnk_000[0].mUnk_0a >= 7) {
+    if (gRaceProgress->mUnk_000[0].mUnk_0a >= 7) {
         return 1;
     }
     if (func_0204a620((Unk02175650 *) &data_02175628[i].mUnk_28) != FALSE) {

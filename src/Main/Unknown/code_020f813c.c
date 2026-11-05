@@ -83,7 +83,7 @@ s32 func_020f8a04(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_
         }
         data_0217bc7c[j] = acc;
     }
-    b = &data_0217561c->mUnk_47c;
+    b = &gRaceProgress->mRandom;
     if (acc == 0) {
         x = 0;
     } else {
@@ -338,7 +338,7 @@ void func_020f830c(Unk020ee684 *param_1) {
                 n = data_0217bc54;
                 q = data_0217bce8;
             }
-            b = &data_0217561c->mUnk_498;
+            b = &gRaceProgress->mLocalRandom;
             i = func_020f830c_inline(b, n);
             if (param_1->mUnk_00c == q[i]) {
                 i = (u16) (i + 1);

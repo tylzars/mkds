@@ -498,7 +498,7 @@ void UpdateKuribo(void *a, Kuribo *p) {
         if (p->mUnk_f4 != 0) {
             p->mUnk_f0 = 0;
         } else {
-            r = &data_0217561c->mUnk_47c;
+            r = &gRaceProgress->mRandom;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             p->mUnk_f0 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x28) >> 32);
             p->mUnk_f4 = 1;

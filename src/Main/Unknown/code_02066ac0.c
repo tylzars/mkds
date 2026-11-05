@@ -290,7 +290,7 @@ void func_02066fe0(Kart *a) {
     a->mUnk_7c = a->mUnk_7c | 0x1000;
     if ((a->mUnk_7c & 0x400) == 0) {
         q = gCourseMap;
-        if ((q->mUnk_70 != 0 || q->mUnk_90 != 0) && func_0203c880(a->mIndex) != 0) {
+        if ((q->mUnk_70 != 0 || q->mUnk_90 != 0) && IsKartEnded(a->mIndex) != 0) {
             p = data_021759c0;
             i = a->mIndex;
             b = &p->mCurrentEntries[i].mUnk_08;
@@ -302,7 +302,7 @@ void func_02066fe0(Kart *a) {
                 c = a->mUnk_7c;
                 if ((c & 6) == 0 && (c & 8) == 0) {
                     data_02175664[a->mEntryIndex].mSourceKind = 3;
-                    if (data_0217561c->mUnk_000[a->mIndex].mUnk_14 == 1) {
+                    if (gRaceProgress->mUnk_000[a->mIndex].mStatus == 1) {
                         func_0208c260(a->mUnk_310, a->mIndex);
                         a->mUnk_7c = a->mUnk_7c | 2;
                         if ((a->mUnk_7c & 2) != 0) {
@@ -319,7 +319,7 @@ void func_02066fe0(Kart *a) {
                         a->mUnk_7c = a->mUnk_7c | 8;
                     }
                 }
-            } else if (p->mUnk_1c == 1 && data_0217561c->mUnk_000[a->mIndex].mUnk_14 != 1) {
+            } else if (p->mUnk_1c == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) {
                 a->mUnk_7c = a->mUnk_7c | 0x200000;
             } else if (p->mMode == 4) {
                 a->mUnk_7c = a->mUnk_7c | 0x200000;
@@ -357,15 +357,15 @@ void func_02066fe0(Kart *a) {
         func_020617d8();
         p = data_021759c0;
         if (p->mMode != 0 && p->mMode != 1 &&
-            ((p->mUnk_1c == 1 && data_0217561c->mUnk_000[a->mIndex].mUnk_14 != 1) ||
-             ((i = p->mKartCount) > 1 && (c = func_0203c8dc(a->mIndex), c == i)))) {
+            ((p->mUnk_1c == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) ||
+             ((i = p->mKartCount) > 1 && (c = GetKartRank(a->mIndex), c == i)))) {
             func_02075cf0();
         } else {
             func_02075eb8();
             func_02081f30();
         }
     } else if (data_021759c0->mMode == 3 || data_021759c0->mMode == 5) {
-        if (data_0217561c->mUnk_000[a->mIndex].mUnk_14 == 1) {
+        if (gRaceProgress->mUnk_000[a->mIndex].mStatus == 1) {
             e = 0;
             if (func_020617a8((u32 *) &e) != 0 && (u32) e > 0xb4) {
                 func_0212ecc0(&data_0217d068, 0, 0x45);
@@ -399,7 +399,7 @@ void func_02066fe0(Kart *a) {
         func_0210b198(a->mUnk_3cc, d, 0x6e, 7, -1);
         return;
     }
-    d = func_02110fb8(func_0203c8dc(a->mIndex));
+    d = func_02110fb8(GetKartRank(a->mIndex));
     if ((a->mUnk_48 & 0x840) != 0) {
         return;
     }

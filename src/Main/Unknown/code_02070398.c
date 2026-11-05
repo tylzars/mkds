@@ -138,7 +138,7 @@ void func_02072eb8(Kart *p) {
         if (data_021759c0->mMode == 2) {
             i = GetCourseMapRespawnSlot(0);
         } else {
-            i = GetCourseMapRespawnSlot(data_0217561c->mUnk_000[i].mUnk_46);
+            i = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[i].mCheckpoint);
         }
         p->mUnk_3c4 = i;
     }

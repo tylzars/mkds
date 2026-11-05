@@ -171,7 +171,7 @@ void func_0208677c(void) {
             p->mUnk_20 = -1;
         }
         if (p->mUnk_18 != FALSE) {
-            if (func_0203c598() - 0x3c > 0) {
+            if (GetRaceElapsedFrames() - 0x3c > 0) {
                 p->mUnk_18 = FALSE;
             }
         } else if (p->mUnk_20 != 0) {

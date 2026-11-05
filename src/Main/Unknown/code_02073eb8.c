@@ -351,8 +351,8 @@ void func_02075eb8(void) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
-    if (func_0203c880(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
-        r = &data_0217561c->mUnk_498;
+    if (IsKartEnded(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
+        r = &gRaceProgress->mLocalRandom;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     }
     data_0217aca8 = 1;
@@ -396,8 +396,8 @@ void func_02075d08(s32 a) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
-    if (func_0203c880(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
-        r = &data_0217561c->mUnk_498;
+    if (IsKartEnded(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
+        r = &gRaceProgress->mLocalRandom;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     }
     data_0217aca8 = 1;
@@ -471,8 +471,8 @@ BOOL func_02075a94(Camera *p) {
                         func_0207bd6c(&p->mUnk_1d0, q);
                     }
                 }
-                if (func_0203c880(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
-                    b = &data_0217561c->mUnk_498;
+                if (IsKartEnded(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
+                    b = &gRaceProgress->mLocalRandom;
                     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
                 }
                 data_0217aca8 = 1;
@@ -563,8 +563,8 @@ void func_020757d8(void) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
-    if (func_0203c880(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
-        b = &data_0217561c->mUnk_498;
+    if (IsKartEnded(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
+        b = &gRaceProgress->mLocalRandom;
         b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     }
     data_0217aca8 = 1;
@@ -579,7 +579,7 @@ static inline void func_02075424_inline(Camera *p) {
         q = gCourseMap->mUnk_7c + (u16) p->mCourseMapCamera->mNextIndex;
     }
     if (q == NULL) {
-        data_0217561c->mUnk_4d0 = 1;
+        gRaceProgress->mUnk_4d0 = 1;
         return;
     }
     p->mCourseMapCameraFrames = 0;

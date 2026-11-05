@@ -7,14 +7,15 @@
 
 // Declared here until the code that defines them is decompiled.
 void func_0203fed4(void);
-void func_0203d9d4(void);
+void UpdateRaceProgressKarts(void);
 void func_020688a0(Kart *a);
 void func_02068640(Kart *a, s32 b);
 BOOL func_0207a574(void);
 s32 func_0207a538(void);
 s32 func_0207a4fc(void);
 
-void func_0203ca38(void);
+// Steps the clock, sends the net finish requests, handles the mode 2 / 4 end and sets mRaceDone.
+void UpdateRaceProgress(void);
 void func_0203cd04(u16 a);
 void func_0203cd14(void);
 BOOL func_0203cfb4(void);

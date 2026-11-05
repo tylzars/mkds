@@ -170,7 +170,7 @@ void func_0210b2a8(Kart *a, s32 b, s32 c, s32 d, u32 e) {
             case 0xffd0:
             case 0xffd1:
                 m = i & 1;
-                j = func_0203c5ac(a->mIndex);
+                j = GetKartLapProgress(a->mIndex);
                 k = j - p->mUnk_28;
                 if (k < 0) {
                     k = -k;

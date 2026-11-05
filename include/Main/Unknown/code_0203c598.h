@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-s32 func_0203c598(void);
+s32 GetRaceElapsedFrames(void);

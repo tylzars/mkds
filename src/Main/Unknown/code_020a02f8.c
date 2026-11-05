@@ -554,7 +554,7 @@ void func_020a12b8(void) {
             }
             s = (u16) n;
             do {
-                r = &data_0217561c->mUnk_47c;
+                r = &gRaceProgress->mRandom;
                 if ((u16) n == 0) {
                     m = 0;
                 } else {
@@ -750,7 +750,7 @@ Unk02175620_84 *func_020a0f0c(void) {
     u16 v;
     s32 w;
 
-    a = &data_0217561c->mUnk_47c;
+    a = &gRaceProgress->mRandom;
     a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
     v = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 5) >> 32) + 1;
     w = data_0217b1fc->mUnk_3b8 + v;
@@ -965,11 +965,11 @@ void func_020a066c(Unk020a066c *p) {
             o->mUnk_b4 = o->mUnk_00.mPos.z;
             o->mUnk_b8 = FALSE;
         }
-        a = &data_0217561c->mUnk_498;
+        a = &gRaceProgress->mLocalRandom;
         a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
         o->mUnk_c8 = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x3c) >> 32) + 0x258;
         o->mUnk_a4 = 0x7f000;
-        a = &data_0217561c->mUnk_498;
+        a = &gRaceProgress->mLocalRandom;
         a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
         o->mUnk_c0 = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xf) >> 32);
     }
@@ -1036,7 +1036,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
                 s1.mUnk_08 = 4;
                 s1.mUnk_0c = func_020d4ef4(NULL);
                 func_0210b760(&s1, h);
-                r = &data_0217561c->mUnk_498;
+                r = &gRaceProgress->mLocalRandom;
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 p->mUnk_c8 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x3c) >> 32) + 0x78;
                 p->mUnk_a0 = 0x7f000;

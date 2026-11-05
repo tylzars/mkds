@@ -377,7 +377,7 @@ s32 func_0207a4fc(void) {
 
 void func_0207a32c(void) {
     s32 d[3];
-    u32 n = func_0203c8dc((u16) data_021759c0->mEntryIndex);
+    u32 n = GetKartRank((u16) data_021759c0->mEntryIndex);
     u16 i;
     u16 k;
     s32 j;

@@ -87,7 +87,7 @@ void func_02056750(s32 a, u16 b) {
     p->mUnk_08_2 = data_021759d0->mUnk_00;
     p->mUnk_08_4 = 0;
     p->mUnk_2f_0 = func_02056208();
-    func_0203c7cc(b, &v.mUnk_00, &v.mUnk_01, &v.mUnk_02);
+    GetKartFinishTime(b, &v.mUnk_00, &v.mUnk_01, &v.mUnk_02);
     p->mUnk_08_8 = v.mUnk_00;
     p->mUnk_08_15 = v.mUnk_01;
     p->mUnk_08_22 = v.mUnk_02;
@@ -96,7 +96,7 @@ void func_02056750(s32 a, u16 b) {
     MemFill(v1, 0, 0xf);
     for (i = 1; i <= (s32) func_02044618(); i++) {
         j = (i - 1) * 3;
-        func_0203c778(b, i, &v.mUnk_00, &v.mUnk_01, &v.mUnk_02);
+        GetKartLapTime(b, i, &v.mUnk_00, &v.mUnk_01, &v.mUnk_02);
         w = 0;
         w |= (v.mUnk_00 & 0x7f) << 17;
         w |= (v.mUnk_01 & 0x7f) << 10;

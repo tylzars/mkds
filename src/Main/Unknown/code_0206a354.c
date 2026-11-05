@@ -606,7 +606,7 @@ void func_0206a624(Kart *p) {
     if (p->mUnk_48 & 0x10040) {
         return;
     }
-    q->mUnk_02 = data_usa_02154a54[func_0203c8dc(p->mIndex) - 1];
+    q->mUnk_02 = data_usa_02154a54[GetKartRank(p->mIndex) - 1];
     q->mUnk_04 = 0;
     p->mUnk_394 = 0xb33;
     p->mUnk_4c |= 0x80;

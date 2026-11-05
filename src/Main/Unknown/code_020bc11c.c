@@ -123,7 +123,7 @@ void func_020be3e4(void) {
         data_0217b3d8->mUnk_040[i] = o->mUnk_030.mUnk_00 == 0x13 ? o->mUnk_014 : o->mUnk_030.mUnk_00;
         if (data_0217b3d8->mUnk_0f8 % 0x1c == 0) {
             data_0217b3d8->mUnk_060[i] = data_0217b3d8->mUnk_080[i];
-            data_0217b3d8->mUnk_080[i] = func_0203c8dc(i);
+            data_0217b3d8->mUnk_080[i] = GetKartRank(i);
         }
         v1 = t[data_0217b3d8->mUnk_060[i]];
         v2 = t[data_0217b3d8->mUnk_080[i]];
@@ -211,7 +211,7 @@ u32 func_020be15c(u16 a) {
         r = 0x24;
     } else if (data_021759c0->mMode == 2 && func_020a1084(a) != FALSE) {
         r = 0xc9;
-    } else if (data_021759c0->mMode != 2 && func_0203c880(a) != 0) {
+    } else if (data_021759c0->mMode != 2 && IsKartEnded(a) != 0) {
         r = 0x24;
     } else if ((d = data_0217b3d8)->mUnk_0fc[a].mUnk_00 != 0) {
         v = d->mUnk_0fc[a].mUnk_00 - 1;

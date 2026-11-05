@@ -106,7 +106,7 @@ void func_0208b190(void) {
         }
         data_0217b048->mUnk_48[m] = q;
     }
-    n = func_0208b190_inline(&data_0217561c->mUnk_498, 0x19);
+    n = func_0208b190_inline(&gRaceProgress->mLocalRandom, 0x19);
     data_0217b048->mUnk_60 = (u16) n + 0x14;
 }
 

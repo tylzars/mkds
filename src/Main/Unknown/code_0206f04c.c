@@ -85,7 +85,7 @@ void func_0206ff50(Kart *p, u32 a) {
         if (data_021759c0->mMode == 2) {
             c = GetCourseMapRespawnSlot(0);
         } else {
-            c = GetCourseMapRespawnSlot(data_0217561c->mUnk_000[k].mUnk_46);
+            c = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[k].mCheckpoint);
         }
         p->mUnk_3c4 = c;
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mCourseId == 0x1d && (data_0217c780 & 1)) {

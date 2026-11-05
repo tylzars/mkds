@@ -12,8 +12,8 @@
 #include "Main/Unknown/code_020b1de4.h"
 
 s32 func_020b2d54(void) {
-    if (func_0203c880((u16) func_020b2d90()) != 0) {
-        return data_0217561c->mUnk_4e0;
+    if (IsKartEnded((u16) func_020b2d90()) != 0) {
+        return gRaceProgress->mUnk_4e0;
     }
     return 6;
 }

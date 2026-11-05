@@ -166,7 +166,7 @@ void func_020e9d10(void) {
     if (data_021759c0->mMode == 2) {
         return;
     }
-    if (data_021759c0->mMode != 4 && data_0217561c->mUnk_000[data_0217b888].mUnk_14 == 1 &&
+    if (data_021759c0->mMode != 4 && gRaceProgress->mUnk_000[data_0217b888].mStatus == 1 &&
         (data_0217b8c8->mUnk_48 & 0x800) == 0) {
         Vec3 v;
         data_0217ba2c.mUnk_18 = 2;
@@ -186,7 +186,7 @@ void func_020e9d10(void) {
         func_02046bcc(&data_0217b9ec, 6);
         return;
     }
-    if (func_0203c880(data_0217b888) != 0) {
+    if (IsKartEnded(data_0217b888) != 0) {
         return;
     }
     if (data_0217b8b0 != 0) {
@@ -229,7 +229,7 @@ void func_020e9d10(void) {
     if (data_0217b8b0 == 0) {
         return;
     }
-    if ((data_0217561c->mUnk_000[data_0217b888].mUnk_44 & 4) != 0 && (f & 0x800) == 0) {
+    if ((gRaceProgress->mUnk_000[data_0217b888].mFlags & 4) != 0 && (f & 0x800) == 0) {
         data_0217b8c4++;
         if (data_0217b8c4 <= 0x3c) {
             return;
@@ -772,11 +772,11 @@ void func_020e84b0(void) {
         func_0212c6f0((Unk0212c400 **) q, 0);
         func_0210b760(&data_0217b9dc, (Unk0212c400 **) q);
     }
-    if (func_0203c880(data_0217b888) != 0 || (data_0217b8c8->mUnk_48 & 0x800) != 0) {
+    if (IsKartEnded(data_0217b888) != 0 || (data_0217b8c8->mUnk_48 & 0x800) != 0) {
         func_02046bcc(&data_0217b9ec, 5);
         return;
     }
-    if ((data_0217561c->mUnk_000[data_0217b888].mUnk_44 & 4) == 0) {
+    if ((gRaceProgress->mUnk_000[data_0217b888].mFlags & 4) == 0) {
         if (++data_0217b8c4 > 0x3c) {
             func_02046bcc(&data_0217b9ec, 5);
             return;

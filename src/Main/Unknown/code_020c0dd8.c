@@ -50,7 +50,7 @@ void func_020c1060(void) {
                 p = func_0205dc7c(i);
                 r = func_0205db28();
                 w = data_0217aa1c->mUnk_000[r][func_0205dc7c(p)].mUnk_05;
-                a[i] = w * 16 + c * 8 + 8 - func_0203c8dc(i);
+                a[i] = w * 16 + c * 8 + 8 - GetKartRank(i);
             } else {
                 v = x2;
                 if ((u32) data_021759c0->mCurrentEntries[i].mUnk_08.mKind <= 3 &&
@@ -62,7 +62,7 @@ void func_020c1060(void) {
                 r = func_0205db28();
                 s = &data_0217aa1c->mUnk_000[r][func_0205dc7c(p)];
                 w = s->mUnk_00;
-                a[i] = w * 16 + c * 8 + 8 - func_0203c8dc(i);
+                a[i] = w * 16 + c * 8 + 8 - GetKartRank(i);
                 p = func_0205dc7c(i);
                 r = func_0205db28();
                 s = &data_0217aa1c->mUnk_000[r][func_0205dc7c(p)];

@@ -148,7 +148,7 @@ void func_0207b44c(Kart *a) {
         return;
     }
     if (m != 2 && data_021759c0->mUnk_1c == 1) {
-        b = (u16) data_0217561c->mUnk_474[0];
+        b = (u16) gRaceProgress->mKartAtRank[0];
         if (data_021759c0->mUseTeams != 0) {
             if (func_0207b44c_inline(b) != func_0207b44c_inline(a->mIndex)) {
                 f = 2;
@@ -173,7 +173,7 @@ void func_0207b44c(Kart *a) {
             }
         }
     } else if (b > 1) {
-        f = ((s16 *) &data_usa_021551dc[(b - 2) * 4])[func_0203c8dc(a->mIndex) - 1];
+        f = ((s16 *) &data_usa_021551dc[(b - 2) * 4])[GetKartRank(a->mIndex) - 1];
     }
     if (f == 0) {
         Unk0206bcb0_590 *s = a->mKartModelsEntry;
@@ -184,7 +184,7 @@ void func_0207b44c(Kart *a) {
             a->mUnk_7c |= 0x10000;
         } else {
             q->mUnk_04 = TRUE;
-            r = &data_0217561c->mUnk_498;
+            r = &gRaceProgress->mLocalRandom;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             q->mUnk_10 = (u32) (((r->mUnk_00 >> 32) * 200) >> 32);
             q->mUnk_10 += 0x96;
@@ -224,7 +224,7 @@ void func_0207b354(Kart *p) {
     } else if (s->mUnk_008->mUnk_1a == 0) {
         func_02068a64(p, 2, 1);
     }
-    r = &data_0217561c->mUnk_498;
+    r = &gRaceProgress->mLocalRandom;
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     q->mUnk_10 = (u32) (((r->mUnk_00 >> 32) * 200) >> 32);
     q->mUnk_10 += 0x96;

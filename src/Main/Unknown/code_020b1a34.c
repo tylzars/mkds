@@ -78,7 +78,7 @@ void func_020b1a34(void) {
         t[0].mUnk_00 += a.mUnk_02;
         t[0].mUnk_04 += a.mUnk_03;
         t[0].mUnk_08 += a.mUnk_00;
-        func_0203c778(func_020b4d9c(), j, &b.mUnk_02, &b.mUnk_03, &b.mUnk_00);
+        GetKartLapTime(func_020b4d9c(), j, &b.mUnk_02, &b.mUnk_03, &b.mUnk_00);
         t[1].mUnk_00 += b.mUnk_02;
         t[1].mUnk_04 += b.mUnk_03;
         t[1].mUnk_08 += b.mUnk_00;

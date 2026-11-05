@@ -188,9 +188,9 @@ void func_020f41c4(Unk020f40dc *rec) {
     s32 y;
 
     if (data_021759c0->mMode == 1) {
-        st = &data_0217561c->mUnk_498;
+        st = &gRaceProgress->mLocalRandom;
     } else {
-        st = &data_0217561c->mUnk_47c;
+        st = &gRaceProgress->mRandom;
     }
     angle = (u16) func_020f41c4_inline(st, 0x10000);
     angle >>= 4;
@@ -690,8 +690,8 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
         }
     }
     if (a->mUnk_068 < 0x3000) {
-        v.z += func_020f3150_inline(&data_0217561c->mUnk_47c, 0xf6) - 0x7b;
-        v.x += func_020f3150_inline(&data_0217561c->mUnk_47c, 0xf6) - 0x7b;
+        v.z += func_020f3150_inline(&gRaceProgress->mRandom, 0xf6) - 0x7b;
+        v.x += func_020f3150_inline(&gRaceProgress->mRandom, 0xf6) - 0x7b;
     }
     v.x = (s32) (((s64) v.x * n) >> 12);
     v.y = (s32) (((s64) v.y * n) >> 12);

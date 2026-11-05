@@ -320,7 +320,7 @@ void func_020b0b8c(void) {
             break;
     }
     if (func_020b2e98() != 0) {
-        if (data_0217561c->mUnk_4cc == 0) {
+        if (gRaceProgress->mRaceDone == 0) {
             w = (reg_GX_DISPCNT & 0x1f00) >> 8;
             reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((w | 4) << 8);
             MemCopyHalfwordsToG2Bg2CntBits8To12Address(gRaceHud->mNscrs[0]->mData, 0, 0x600);
@@ -771,9 +771,9 @@ void func_020af66c(void) {
         func_020d1298();
     }
     v = data_021759c0->mMode;
-    if ((v == 2   ? data_0217561c->mUnk_4cc
+    if ((v == 2   ? gRaceProgress->mRaceDone
          : v == 4 ? func_0203c174()
-                  : (func_0203c880(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
+                  : (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
         func_020bab54();
         func_020bc958();
         func_020d2090();

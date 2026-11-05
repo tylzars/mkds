@@ -30,7 +30,7 @@ void func_020c1ef8(void) {
     s32 c;
     u16 i;
 
-    if (data_0217561c->mUnk_4cc == 0) {
+    if (gRaceProgress->mRaceDone == 0) {
         return;
     }
     gRaceGoalS->mUnk_00a4 = 1;
@@ -54,13 +54,13 @@ void func_020c1ef8(void) {
                 v = 1;
             }
             c = v != 0 ? 1 : x1;
-            a[i] = c * 8 + 8 - func_0203c8dc(i);
-            if (func_0203c8dc(i) == 1) {
+            a[i] = c * 8 + 8 - GetKartRank(i);
+            if (GetKartRank(i) == 1) {
                 a[i] += 0x20;
             }
             a[i] = a[i] * neg;
         } else {
-            a[i] = func_0203c8dc(i);
+            a[i] = GetKartRank(i);
         }
     }
     SortIndicesByKey(gRaceGoalS->mUnk_0040, a, data_021759c0->mKartCount);

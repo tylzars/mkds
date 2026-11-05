@@ -4,9 +4,9 @@
 #include "Main/Unknown/code_020a12b8.h"
 #include "Main/Unknown/code_020b1cdc.h"
 
-u16 func_0203c4d0(u8 a) {
+u16 LookupRankPoints(u8 a) {
     u16 r = 0;
-    Unk0217561c_4dc *t = data_0217561c->mUnk_4dc;
+    RankPointRow *t = gRaceProgress->mRankPointFile;
     if (t != NULL) {
         switch (data_021759c0->mMode) {
             case 0:
@@ -31,16 +31,16 @@ u16 func_0203c4d0(u8 a) {
                 r = 9 - data_021759c0->mKartCount;
                 break;
         }
-        r = (t + r + 1)->mUnk_00[a - 1];
+        r = (t + r + 1)->mPoints[a - 1];
     }
     return r;
 }
 
 void func_0203c2e4(u16 a) {
     u32 o;
-    Unk0217561c_14 *p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + a * 0x8c);
+    RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + a * 0x8c);
     BOOL f = FALSE;
-    switch (p->mUnk_00) {
+    switch (p->mStatus) {
         case 1:
         case 2:
         case 3:
@@ -51,10 +51,10 @@ void func_0203c2e4(u16 a) {
         u32 v;
         s32 i;
         o = p->mUnk_3c_0;
-        v = (u16) (data_021759c0->mKartCount - data_0217561c->mUnk_000[0].mUnk_10);
-        p->mUnk_3c_0 = data_021759c0->mKartCount - data_0217561c->mUnk_000[0].mUnk_10;
+        v = (u16) (data_021759c0->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount);
+        p->mUnk_3c_0 = data_021759c0->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount;
         for (i = 0; i < data_021759c0->mKartCount; i++) {
-            Unk0217561c_14 *q = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
+            RaceProgressKart *q = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
             if (i != a) {
                 u32 m = q->mUnk_3c_0;
                 if (m > o && m <= v) {
@@ -62,12 +62,12 @@ void func_0203c2e4(u16 a) {
                 }
             }
         }
-        data_0217561c->mUnk_000[0].mUnk_10++;
+        gRaceProgress->mUnk_000[0].mRemovedCount++;
     }
     if (data_021759c0->mMode == 2) {
         func_020a16d0(a);
     }
-    p->mUnk_00 = 4;
+    p->mStatus = 4;
     func_02069044(GetKart(a));
     func_020b1cdc(a, 1);
     if (func_0203ef58() != 0) {
@@ -90,10 +90,10 @@ void func_0203c2e4(u16 a) {
     }
 }
 
-BOOL func_0203c25c(u16 a) {
+BOOL IsKartOnLastLap(u16 a) {
     BOOL f = FALSE;
     BOOL r;
-    switch (data_0217561c->mUnk_000[a].mUnk_14) {
+    switch (gRaceProgress->mUnk_000[a].mStatus) {
         case 1:
         case 2:
         case 3:
@@ -102,7 +102,7 @@ BOOL func_0203c25c(u16 a) {
     }
     r = f == FALSE;
     if (r != FALSE) {
-        r = func_02044618() == data_0217561c->mUnk_000[a].mUnk_38;
+        r = func_02044618() == gRaceProgress->mUnk_000[a].mLap;
     }
     return r != FALSE;
 }

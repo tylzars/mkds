@@ -353,14 +353,14 @@ void func_0207f2e4(Unk020888b4 *p) {
     if (data_021759c0->mUnk_014 != 3) {
         return;
     }
-    a = func_0203c8dc(a);
+    a = GetKartRank(a);
     if (a <= 1) {
         return;
     }
-    b = data_0217561c->mUnk_474[(u8) (a - 1) - 1];
+    b = gRaceProgress->mKartAtRank[(u8) (a - 1) - 1];
     d = FALSE;
     if (b >= 0) {
-        b = data_0217561c->mUnk_474[(u8) (a - 1) - 1];
+        b = gRaceProgress->mKartAtRank[(u8) (a - 1) - 1];
         if (func_0207f554_inline(p->mIndex, (u16) b) != 0) {
             p->mUnk_b0 = GetKart(b);
             d = TRUE;
@@ -373,11 +373,11 @@ void func_0207f2e4(Unk020888b4 *p) {
     if (a >= data_021759c0->mKartCount) {
         return;
     }
-    c = data_0217561c->mUnk_474[(u8) (a + 1) - 1];
+    c = gRaceProgress->mKartAtRank[(u8) (a + 1) - 1];
     if (c < 0) {
         return;
     }
-    c = data_0217561c->mUnk_474[(u8) (a + 1) - 1];
+    c = gRaceProgress->mKartAtRank[(u8) (a + 1) - 1];
     if (func_0207f554_inline(p->mIndex, (u16) c) != 0) {
         p->mUnk_b0 = GetKart(c);
     }

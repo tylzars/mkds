@@ -40,11 +40,11 @@ static inline u16 func_020952dc_inline(u32 n) {
     u32 t;
     u32 m;
     if (n == 0x10000) {
-        r = &data_0217561c->mUnk_498;
+        r = &gRaceProgress->mLocalRandom;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         return (u16) ((r->mUnk_00 >> 32) * 0x10000 >> 32);
     }
-    r = &data_0217561c->mUnk_498;
+    r = &gRaceProgress->mLocalRandom;
     m = (u16) n;
     if (m == 0) {
         t = 0;
@@ -100,12 +100,12 @@ void func_02095228(Unk02095228 *a) {
         return;
     }
     for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
-        o->mUnk_a0 = (u16) func_02095228_inline(&data_0217561c->mUnk_498, 0xf);
+        o->mUnk_a0 = (u16) func_02095228_inline(&gRaceProgress->mLocalRandom, 0xf);
     }
 }
 
 Unk020f41c4_B *func_0209520c(void) {
-    return &data_0217561c->mUnk_498;
+    return &gRaceProgress->mLocalRandom;
 }
 
 u16 func_020951b4(Unk020f41c4_B *a) {

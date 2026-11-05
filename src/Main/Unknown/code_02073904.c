@@ -31,7 +31,7 @@ void UpdateCameraShake(Unk02073904 *p) {
         l = func_02073904_inline(&d, &d);
         if (l != 0) {
             k = data_usa_021656a8;
-            r = &data_0217561c->mUnk_498;
+            r = &gRaceProgress->mLocalRandom;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             s = (s32) (((s64) data_usa_021656ac * l) >> 12);
             h = (s16) (u16) (r->mUnk_00 >> 52);
@@ -40,7 +40,7 @@ void UpdateCameraShake(Unk02073904 *p) {
             a.x = (s32) (((s64) p->mSide.x * m) >> 12);
             a.y = (s32) (((s64) p->mSide.y * m) >> 12);
             a.z = (s32) (((s64) p->mSide.z * m) >> 12);
-            r = &data_0217561c->mUnk_498;
+            r = &gRaceProgress->mLocalRandom;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             h = (s16) (u16) (r->mUnk_00 >> 52);
             m = (s32) (((s64) s * ((h - 0x800) * 2)) >> 12);
@@ -48,14 +48,14 @@ void UpdateCameraShake(Unk02073904 *p) {
             b.y = (s32) (((s64) p->mUp.y * m) >> 12);
             b.z = (s32) (((s64) p->mUp.z * m) >> 12);
             Vec3Add(&a, &b, &p->mShakeLookAtOffsetGoal);
-            r = &data_0217561c->mUnk_498;
+            r = &gRaceProgress->mLocalRandom;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             h = (s16) (u16) (r->mUnk_00 >> 52);
             m = (s32) (((s64) k * ((h - 0x800) * 2)) >> 12);
             a.x = (s32) (((s64) p->mSide.x * m) >> 12);
             a.y = (s32) (((s64) p->mSide.y * m) >> 12);
             a.z = (s32) (((s64) p->mSide.z * m) >> 12);
-            r = &data_0217561c->mUnk_498;
+            r = &gRaceProgress->mLocalRandom;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             h = (s16) (u16) (r->mUnk_00 >> 52);
             m = (s32) (((s64) k * ((h - 0x800) * 2)) >> 12);

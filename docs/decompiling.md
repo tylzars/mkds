@@ -333,7 +333,7 @@ Reused variables and own locals:
 Inline getters and helpers:
 - An inlined getter `if (p == 0) return 0; return p->f;` used in several loops can rotate the loop's registers
   (RunScene). `u32 r = 0; if (p != 0) r = p->f; return r;` fixes the registers but puts `mov rX, #0` above the
-  compare; `p == 0 ? 0 : p->f` gave `moveq` before `ldrne` (func_020401ac).
+  compare; `p == 0 ? 0 : p->f` gave `moveq` before `ldrne` (InitRaceProgress).
 - Statement order inside a small inline can decide a whole loop's registers: `v1 = a->x - b->x; v2 = a->z - b->z;
   return (s64) v1 * v1 + (s64) v2 * v2;` matched UpdateKanoke64; z first did not.
 - Reused locals whose later values take registers in the wrong order, where swapping the first statements breaks the
@@ -680,7 +680,7 @@ Expression shapes:
   0: case 2: case 3: }`. Write `||` chains in the original's test order.
 - `switch` instead of an if chain stops predication of the arms. A two-case `switch` gives a `beq` chain with the
   case-0 block out of line, where if/else-if predicates. Blocks come out in the order the cases are written, so a
-  `cmp #2; beq; cmp #4; bne; body 4; body 2` chain is a `switch` with case 4 first (func_020401ac).
+  `cmp #2; beq; cmp #4; bne; body 4; body 2` chain is a `switch` with case 4 first (InitRaceProgress).
 - Explicit nested ifs setting a BOOL keep a branch that a ternary or selected `u8` would predicate.
 - `else { return x; }` keeps a branch where `if (!c) return x;` predicates. Conditional early returns
   (`bxeq/bxcs`): `if (x != 0) { x = 0; return TRUE; } return FALSE;`. Inverted forms predicate.
@@ -808,7 +808,7 @@ Expression shapes:
   promoted to `int`). The probe masks the call name, so check relocations (func_020a269c).
 - A 64-bit call result added to a 32-bit value widens the sum: `s = (a << 16) + func_0200f5ac();` builds a 64-bit add
   too early. Narrow the call: `(a << 16) + (u32) func_0200f5ac()` (InitWiFiVSCourseSelect). The opposite shows as `adds` with
-  the high word dropped: the sum is of `u64` locals and the result truncated (func_020401ac).
+  the high word dropped: the sum is of `u64` locals and the result truncated (InitRaceProgress).
 - Where the narrowing sits shows what was narrowed. `lsl #1` then `lsl #16; lsr #16` (ROM) against one `lsl #17;
   lsr #16`: `v1 = f(...) * 2; g(..., (u16) v1);` (func_02009828). `lsl #4; lsr #16` for a `u16` argument is how
   `x >> 12` is narrowed: pass `p->mUnk_0a4 >> 12`, not `(u32) x << 4 >> 16` (DrawPakkunMouth).
@@ -867,11 +867,11 @@ Expression shapes:
 - A call result that must be the left operand of a compare or add (`cmp r0, rX`, `add rD, r0, rX` where ours has
   the call on the right): the compiler puts the call on the right whatever the written order, and a local holding
   the call result keeps the written order. Write `r = f(b, c); if (r != d)` or `c = f(p->x); g(..., c + x, ...)`
-  (func_ov003_021b8160). Inside an `&&` chain use a comma expression `(c = func_0203c8dc(a->mUnk_74), c == i)`;
+  (func_ov003_021b8160). Inside an `&&` chain use a comma expression `(c = GetKartRank(a->mUnk_74), c == i)`;
   `(c = f()) == i` is still swapped (func_02066fe0).
 - The same holds for a heavier left operand: `mUnk_20 == v1` with `mUnk_20` an array element stays `cmp v1,
   mUnk_20`; the element through a pointer local (`q = &d->mUnk_44[v2]; if (q->mUnk_20 == v1)`) stays on the left
-  (func_020401ac). In a product, `(s64) X * b` becomes `b * X`; give X a local (`c = (s32) ((s64) *a * data >> 12);`,
+  (InitRaceProgress). In a product, `(s64) X * b` becomes `b * X`; give X a local (`c = (s32) ((s64) *a * data >> 12);`,
   func_01ffb930).
 - A call that must come before a comparison: `p->mUnk_14 = d->mUnk_100 == 1;` after `func_02029930()`; `? 1 : 0` or
   a temp is evaluated before the call (AdvanceSelectKart).
@@ -929,7 +929,7 @@ Expression shapes:
   `func_X_inline2`). An inline's arguments are evaluated right to left (the ROM loads `y` before `x`) and an
   argument expression is substituted into each use. Constant arguments fold tests and loops away, so one helper
   serves sites with different constants. A helper called from inside another helper puts its locals after the outer
-  level's. Number the helpers in order of use (func_020c8dbc, func_020401ac).
+  level's. Number the helpers in order of use (func_020c8dbc, InitRaceProgress).
 - A value the helper must see once: `if (data->mUnk_170[i] != 0) { helper(p, i, data->mUnk_170[i]); }` with the
   parameter in the helper and no repeated test inside (func_020c8dbc). A distance helper with `(const Vec3 *a, const
   Vec3 *b)` parameters keeps the reload of the fields for the next call, and a fill helper `(Vec3 *, x, y, z)` loads
@@ -1048,7 +1048,7 @@ Link order and linking:
   (ShuffleCourseMapRespawnSlots). Helpers called only with constant ranges fold the tests away.
 - `x >> 48` of the state against a `mov #0; lsr; lsl #16; orr` sequence in the ROM: write
   `((x >> 32) * 0x10000) >> 32` (func_0209219c). `x >> 32 >> 29` as `lsl #3; orr ... lsr #29` is
-  `((s64) (x >> 32) * 8) >> 32` (func_020401ac).
+  `((s64) (x >> 32) * 8) >> 32` (InitRaceProgress).
 - Name runtime helpers (`_fmul`, `_ll_ufrom_d`) in `symbols.txt`, or the callee check skips every caller. The
   soft-float and division runtime itself is hand-written assembly (1.13).
 - `smull` with the sum as the second operand, where `(s64) t * (a + b)` gives `t` second: put the sum in a local and

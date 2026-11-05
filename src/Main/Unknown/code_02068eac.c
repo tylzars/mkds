@@ -378,7 +378,7 @@ void func_020695c4(Kart *p) {
     func_0209086c(&s->mUnk_2c, p->mIndex);
     p->mUnk_4c |= 0x10000000;
     k = data_021759c0->mKartCount;
-    s->mUnk_28 = func_0203c8dc(p->mIndex) - w.mUnk_00[k - 1];
+    s->mUnk_28 = GetKartRank(p->mIndex) - w.mUnk_00[k - 1];
     if (s->mUnk_28 <= 0) {
         s->mUnk_28 = 1;
     }
@@ -496,9 +496,9 @@ void func_0206938c(Kart *p) {
     r = FALSE;
     t = FALSE;
     if (!(p->mUnk_7c & 0x400)) {
-        if (func_0203c8dc(p->mIndex) == 1) {
+        if (GetKartRank(p->mIndex) == 1) {
             r = TRUE;
-        } else if ((s32) func_0203c8dc(p->mIndex) <= s->mUnk_28) {
+        } else if ((s32) GetKartRank(p->mIndex) <= s->mUnk_28) {
             r = TRUE;
         }
         if (s->mUnk_1e > 0xb4 && r != FALSE) {
@@ -520,7 +520,7 @@ void func_0206924c(Kart *p, u32 a) {
     if (p->mUnk_7c & 0x400) {
         return;
     }
-    if (func_0203c880(p->mIndex) != 0) {
+    if (IsKartEnded(p->mIndex) != 0) {
         return;
     }
     w = p->mUnk_7c;

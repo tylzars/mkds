@@ -16,5 +16,5 @@ BOOL func_0203f2dc(u32 a) {
 }
 
 BOOL func_0203f2b4(u32 a) {
-    return data_0217561c->mUnk_000[a].mUnk_14 == 4;
+    return gRaceProgress->mUnk_000[a].mStatus == 4;
 }

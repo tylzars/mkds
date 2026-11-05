@@ -209,7 +209,7 @@ void func_0207767c(void) {
     data_usa_0217ac98->mKind = 2;
     data_usa_0217ac84->mKind = 2;
     if (data_usa_0217ac98->mCourseMapCamera == NULL) {
-        data_0217561c->mUnk_4d0 = 1;
+        gRaceProgress->mUnk_4d0 = 1;
         return;
     }
     if ((s16) data_usa_0217ac98->mCourseMapCamera->mEntryGroupIndex != -1) {
@@ -228,7 +228,7 @@ void func_020775e4(void) {
     data_usa_0217ac98->mKind = 2;
     data_usa_0217ac98->mFrustumShift = 0;
     if (data_usa_0217ac98->mCourseMapCamera == NULL) {
-        data_0217561c->mUnk_4d0 = 1;
+        gRaceProgress->mUnk_4d0 = 1;
         return;
     }
     if ((s16) data_usa_0217ac98->mCourseMapCamera->mEntryGroupIndex != -1) {
