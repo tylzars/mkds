@@ -20,7 +20,7 @@
 
 void func_020d159c(void) {
     func_0200ee74(&gEndingStaffRoll->mUnk_10, 0x400);
-    func_0214bfcc(&gEndingStaffRoll->mUnk_10, 0, 0x400);
+    GX_LoadOAM(&gEndingStaffRoll->mUnk_10, 0, 0x400);
     if (gEndingStaffRoll->mUnk_00 == 0x1a4) {
         func_02036fec(0x78, 1);
         return;
@@ -47,10 +47,10 @@ void InitEndingStaffRoll(void) {
     a = NULL;
     LoadNcerData(&a, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncer"));
     gEndingStaffRoll->mUnk_0c = (Unk020224e0_c *) func_02021f1c(a, 0);
-    func_0214c090(gEndingStaffRoll->mEndingStaffRollMO00Nclr->mData, 0,
-                  gEndingStaffRoll->mEndingStaffRollMO00Nclr->mDataSize);
-    func_0214bf04(gEndingStaffRoll->mEndingStaffRollM00Ncgr->mData, 0,
-                  gEndingStaffRoll->mEndingStaffRollM00Ncgr->mDataSize);
+    GX_LoadOBJPltt(gEndingStaffRoll->mEndingStaffRollMO00Nclr->mData, 0,
+                   gEndingStaffRoll->mEndingStaffRollMO00Nclr->mDataSize);
+    GX_LoadOBJ(gEndingStaffRoll->mEndingStaffRollM00Ncgr->mData, 0,
+               gEndingStaffRoll->mEndingStaffRollM00Ncgr->mDataSize);
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | 0x10;
 }
 

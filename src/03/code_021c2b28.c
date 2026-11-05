@@ -31,13 +31,13 @@ void func_ov003_021c2b28(void) {
     func_ov003_021d1cb0(1, func_ov003_021bf650(data_ov003_021d6ec8));
     func_ov003_021d1cb0(0, func_ov003_021bf650(data_ov003_021d6edc));
     func_ov003_021bf620(data_ov003_021d6ef0, MemCopyWordsToG2sBg1CntBits2To5Address);
-    func_ov003_021bf620(data_ov003_021d6f04, func_0214c0f8);
-    func_ov003_021bf620(data_ov003_021d6f18, func_0214bea4);
-    func_ov003_021bf620(data_ov003_021d6f30, func_0214c028);
+    func_ov003_021bf620(data_ov003_021d6f04, GXS_LoadBGPltt);
+    func_ov003_021bf620(data_ov003_021d6f18, GXS_LoadOBJ);
+    func_ov003_021bf620(data_ov003_021d6f30, GXS_LoadOBJPltt);
     func_ov003_021bf620(data_ov003_021d6f48, MemCopyWordsToG2Bg2CntBits2To5Address);
-    func_ov003_021bf620(data_ov003_021d6f60, func_0214c160);
-    func_ov003_021bf620(data_ov003_021d6f78, func_0214bf04);
-    func_ov003_021bf620(data_ov003_021d6f90, func_0214c090);
+    func_ov003_021bf620(data_ov003_021d6f60, GX_LoadBGPltt);
+    func_ov003_021bf620(data_ov003_021d6f78, GX_LoadOBJ);
+    func_ov003_021bf620(data_ov003_021d6f90, GX_LoadOBJPltt);
     switch (func_ov003_021c20c0()) {
         case 0:
             func_ov003_021bf620(data_ov003_021d6fa8, MemCopyHalfwordsToG2sBg1CntBits8To12Address);

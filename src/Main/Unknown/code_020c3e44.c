@@ -452,7 +452,7 @@ void func_020c4e48(void) {
     u32 p;
 
     func_0200ee74(&gRaceStartGp->mUnk_18, 0x400);
-    func_0214bfcc(&gRaceStartGp->mUnk_18, 0, 0x400);
+    GX_LoadOAM(&gRaceStartGp->mUnk_18, 0, 0x400);
     v = (*(vu16 *) 0x4000304 & 0x8000) >> 15;
     if (v != 0) {
         if (v == 1) {
@@ -503,8 +503,8 @@ void InitRaceStartGp(void) {
     func_02024340(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
     func_02024340(&w, 0, 8, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
     func_0200ee74(gRaceStartGp->mRaceStartGpMONcgr->mData, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
-    func_0214c090(gRaceStartGp->mRaceStartGpMONclr->mData, 0, gRaceStartGp->mRaceStartGpMONclr->mDataSize);
-    func_0214bf04(gRaceStartGp->mRaceStartGpMONcgr->mData, 0, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
+    GX_LoadOBJPltt(gRaceStartGp->mRaceStartGpMONclr->mData, 0, gRaceStartGp->mRaceStartGpMONclr->mDataSize);
+    GX_LoadOBJ(gRaceStartGp->mRaceStartGpMONcgr->mData, 0, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
 }
 
 u32 func_020c4bd8(void) {

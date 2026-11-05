@@ -180,18 +180,18 @@ void func_020ad344(void) {
                   data_0217b340->mUnk_6c, data_0217b340->mUnk_68);
     func_0212426c(1, 1, data_0217b340->mUnk_74, GetBmgEntry(FindSceneFileWrapper(data_02167fa8), 0),
                   data_0217b340->mUnk_6c, data_0217b340->mUnk_68);
-    func_0214b720();
-    func_0214b6a0(data_0217b340->mUnk_78->mData, 0x4000, data_0217b340->mUnk_78->mDataSize);
-    func_0214b6a0(data_0217b340->mUnk_78->mData, 0x6000, data_0217b340->mUnk_78->mDataSize);
-    func_0214b63c();
+    GX_BeginLoadBGExtPltt();
+    GX_LoadBGExtPltt(data_0217b340->mUnk_78->mData, 0x4000, data_0217b340->mUnk_78->mDataSize);
+    GX_LoadBGExtPltt(data_0217b340->mUnk_78->mData, 0x6000, data_0217b340->mUnk_78->mDataSize);
+    GX_EndLoadBGExtPltt();
     MemCopyWordsToG2Bg2CntBits2To5Address(data_0217b340->mUnk_7c->mData, 0, data_0217b340->mUnk_7c->mDataSize);
     MemCopyHalfwordsToG2Bg2CntBits8To12Address(data_0217b340->mUnk_88->mData, 0, 0x800);
     MemCopyHalfwordsToG2Bg3CntBits8To12Address(data_0217b340->mUnk_8c->mData, 0, 0x800);
-    func_0214c0f8(data_0217b340->mUnk_80->mData, 0, data_0217b340->mUnk_80->mDataSize);
+    GXS_LoadBGPltt(data_0217b340->mUnk_80->mData, 0, data_0217b340->mUnk_80->mDataSize);
     MemCopyWordsToG2sBg3CntBits2To5Address(data_0217b340->mUnk_84->mData, 0, data_0217b340->mUnk_84->mDataSize);
     MemCopyHalfwordsToG2sBg3CntBits8To12Address(data_0217b340->mUnk_90->mData, 0, 0x800);
-    func_0214c028(data_0217b340->mUnk_a0->mData, 0, data_0217b340->mUnk_a0->mDataSize);
-    func_0214bea4(data_0217b340->mUnk_a4->mData, 0, data_0217b340->mUnk_a4->mDataSize);
+    GXS_LoadOBJPltt(data_0217b340->mUnk_a0->mData, 0, data_0217b340->mUnk_a0->mDataSize);
+    GXS_LoadOBJ(data_0217b340->mUnk_a4->mData, 0, data_0217b340->mUnk_a4->mDataSize);
     func_020ad904(0x10);
     func_020ad8e0(0x10);
     func_020ad2f0(4, 8, 0, 0x10);

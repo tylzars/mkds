@@ -161,7 +161,7 @@ void func_02055fc8(void) {
         }
     }
     func_0200ee74(v1, 0x400);
-    func_0214bf64(v1, 0, 0x400);
+    GXS_LoadOAM(v1, 0, 0x400);
     VBlankIntrWait();
     data_0217aa04->mUnk_08 &= ~1;
     reg_GX_POWCNT = reg_GX_POWCNT | 0x8000;

@@ -97,10 +97,10 @@ void func_ov000_0218554c(void) {
     LocateNcer(&gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcer, v1);
     v1 = FindSceneFile(data_ov000_021b0fa0);
     LocateNclr(&gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr, v1);
-    func_0214bf04(gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr->mData, 0,
-                  (u32) gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr->mDataSize);
-    func_0214c090(gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr->mData, 0, (u32) 0x1a0);
-    func_0214c090(gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr->mData + 0xe0, 0x1c0, (u32) 0x40);
+    GX_LoadOBJ(gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr->mData, 0,
+               (u32) gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr->mDataSize);
+    GX_LoadOBJPltt(gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr->mData, 0, (u32) 0x1a0);
+    GX_LoadOBJPltt(gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr->mData + 0xe0, 0x1c0, (u32) 0x40);
 }
 
 void func_ov000_021854f8(void) {

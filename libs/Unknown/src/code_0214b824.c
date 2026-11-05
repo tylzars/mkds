@@ -15,7 +15,7 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-void func_0214c160(const void *a, u32 b, u32 c) {
+void GX_LoadBGPltt(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1 && c > 0x1c) {
         func_0214cb10(data_0216f074[0], a, (void *) (0x5000000 + b), c);
     } else {
@@ -23,7 +23,7 @@ void func_0214c160(const void *a, u32 b, u32 c) {
     }
 }
 
-void func_0214c0f8(const void *a, u32 b, u32 c) {
+void GXS_LoadBGPltt(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1 && c > 0x1c) {
         func_0214cb10(data_0216f074[0], a, (void *) (0x5000400 + b), c);
     } else {
@@ -31,7 +31,7 @@ void func_0214c0f8(const void *a, u32 b, u32 c) {
     }
 }
 
-void func_0214c090(const void *a, u32 b, u32 c) {
+void GX_LoadOBJPltt(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1 && c > 0x1c) {
         func_0214cb10(data_0216f074[0], a, (void *) (0x5000200 + b), c);
     } else {
@@ -39,7 +39,7 @@ void func_0214c090(const void *a, u32 b, u32 c) {
     }
 }
 
-void func_0214c028(const void *a, u32 b, u32 c) {
+void GXS_LoadOBJPltt(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1 && c > 0x1c) {
         func_0214cb10(data_0216f074[0], a, (void *) (0x5000600 + b), c);
     } else {
@@ -47,7 +47,7 @@ void func_0214c028(const void *a, u32 b, u32 c) {
     }
 }
 
-void func_0214bfcc(const void *a, u32 b, u32 c) {
+void GX_LoadOAM(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1 && c > 0x30) {
         func_0214cb88(data_0216f074[0], a, (void *) (0x7000000 + b), c);
     } else {
@@ -55,7 +55,7 @@ void func_0214bfcc(const void *a, u32 b, u32 c) {
     }
 }
 
-void func_0214bf64(const void *a, u32 b, u32 c) {
+void GXS_LoadOAM(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1 && c > 0x30) {
         func_0214cb88(data_0216f074[0], a, (void *) (0x7000400 + b), c);
     } else {
@@ -63,7 +63,7 @@ void func_0214bf64(const void *a, u32 b, u32 c) {
     }
 }
 
-void func_0214bf04(const void *a, u32 b, u32 c) {
+void GX_LoadOBJ(const void *a, u32 b, u32 c) {
     enum { K0 } d = 0x6400000;
 
     if (data_0216f074[0] != -1 && c > 0x30) {
@@ -73,7 +73,7 @@ void func_0214bf04(const void *a, u32 b, u32 c) {
     }
 }
 
-void func_0214bea4(const void *a, u32 b, u32 c) {
+void GXS_LoadOBJ(const void *a, u32 b, u32 c) {
     enum { K0 } d = 0x6600000;
 
     if (data_0216f074[0] != -1 && c > 0x30) {

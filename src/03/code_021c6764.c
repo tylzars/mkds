@@ -69,13 +69,13 @@ void func_ov003_021c6e38(void) {
 
 void func_ov003_021c6da4(void) {
     void *v2 = &data_ov003_021d72a4;
-    void *v3 = &func_0214c090;
+    void *v3 = &GX_LoadOBJPltt;
     u32 v4 = func_ov003_021bf620(v2, v3);
     void *v5 = &data_ov003_021d72b8;
     void *v6 = &MemCopyWordsToG2Bg2CntBits2To5Address;
     u32 v7 = func_ov003_021bf620(v5, v6);
     void *v8 = &data_ov003_021d72d0;
-    void *v9 = &func_0214c160;
+    void *v9 = &GX_LoadBGPltt;
     u32 v10 = func_ov003_021bf620(v8, v9);
     void *v11 = &data_ov003_021d72e8;
     void *v12 = &MemCopyHalfwordsToG2Bg2CntBits8To12Address;
@@ -260,7 +260,7 @@ void func_ov003_021c6a18(void) {
     func_ov003_021bf410();
     func_ov003_021d2f00((u32 *) (u32) data_ov003_021da1f8->mUnk_04);
     func_ov003_021d2168(0);
-    func_ov003_021bf620(&data_ov003_021d728c, &func_0214c090);
+    func_ov003_021bf620(&data_ov003_021d728c, &GX_LoadOBJPltt);
     func_ov003_021d272c(1, (u32) 1);
     func_ov003_021d272c(0, (u32) 0x15);
     func_ov003_021c20dc(&v1, v2);

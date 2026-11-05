@@ -1075,9 +1075,9 @@ void func_0207940c(Unk02084b2c *a, s32 b, void *c) {
         q = p + *(s32 *) (p + 8);
         t = q + 4 + *(u16 *) (q + 0xa);
         k = *(u16 *) (q + *(s32 *) (t + *(u16 *) t * i + 4) + 0x1c) << 4;
-        func_0214c48c();
-        func_0214c418(d, k, 0x10);
-        func_0214c3c0();
+        GX_BeginLoadTexPltt();
+        GX_LoadTexPltt(d, k, 0x10);
+        GX_EndLoadTexPltt();
     }
 }
 
@@ -1112,9 +1112,9 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
             e = q + *(s32 *) (t + *(u16 *) t * i + 4);
             data_usa_0217acec = e;
             k = *(u16 *) (e + 0x1c) << 4;
-            func_0214c48c();
-            func_0214c418(c, k, 0x20);
-            func_0214c3c0();
+            GX_BeginLoadTexPltt();
+            GX_LoadTexPltt(c, k, 0x20);
+            GX_EndLoadTexPltt();
         }
         if (a->mUnk_000 == 0xb) {
             p = (u8 *) a->mUnk_010[0]->mUnk_04;
@@ -1136,13 +1136,13 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
             e = q + *(s32 *) ((t = t + *(u16 *) (q + 0xa)) + *(u16 *) t * j + 4);
             f = q + *(s32 *) (t + *(u16 *) t * i + 4);
             g = (u8 *) (*(u16 *) (f + 0x1c) << 4);
-            func_0214c48c();
-            func_0214c418(c, (u32) g, 0x20);
-            func_0214c3c0();
+            GX_BeginLoadTexPltt();
+            GX_LoadTexPltt(c, (u32) g, 0x20);
+            GX_EndLoadTexPltt();
             g = (u8 *) (*(u16 *) (e + 0x1c) << 4);
-            func_0214c48c();
-            func_0214c418(h, (u32) g, m);
-            func_0214c3c0();
+            GX_BeginLoadTexPltt();
+            GX_LoadTexPltt(h, (u32) g, m);
+            GX_EndLoadTexPltt();
         }
     }
 }
@@ -1884,9 +1884,9 @@ void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3) {
     u = t + 4;
     w = u + *(u16 *) (t + 0xa);
     h = ((Unk0201290c_08 *) (t + *(u32 *) (w + *(u16 *) w * k + 4)))->mUnk_1c << 4;
-    func_0214c48c();
-    func_0214c418(param_3, h, 0x20);
-    func_0214c3c0();
+    GX_BeginLoadTexPltt();
+    GX_LoadTexPltt(param_3, h, 0x20);
+    GX_EndLoadTexPltt();
 }
 
 Unk0217ad00_014 *func_02077f7c(int param_1) {

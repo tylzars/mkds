@@ -442,12 +442,12 @@ void func_02086f24(u32 a, void *b, void *c) {
     f = *(u16 *) (e + 0x1c) << 4;
     func_0200ee74(b, 0x200);
     func_0200ee74(c, 0x20);
-    func_0214c6a8();
-    func_0214c544(b, d, 0x200);
-    func_0214c4d4();
-    func_0214c48c();
-    func_0214c418(c, f, 0x20);
-    func_0214c3c0();
+    GX_BeginLoadTex();
+    GX_LoadTex(b, d, 0x200);
+    GX_EndLoadTex();
+    GX_BeginLoadTexPltt();
+    GX_LoadTexPltt(c, f, 0x20);
+    GX_EndLoadTexPltt();
 }
 
 void func_02086e8c(Unk02086098 *a) {
@@ -456,15 +456,15 @@ void func_02086e8c(Unk02086098 *a) {
     v = a->mUnk_00 >> 26 & 7;
     d = (data_021619ec(a->mUnk_04, 0, 0) & 0xffff) << 3;
     a->mUnk_00 = a->mUnk_00 & 0xffff0000;
-    func_0214c6a8();
-    func_0214c544(a->mUnk_0c, d, a->mUnk_04);
-    func_0214c4d4();
+    GX_BeginLoadTex();
+    GX_LoadTex(a->mUnk_0c, d, a->mUnk_04);
+    GX_EndLoadTex();
     a->mUnk_00 = a->mUnk_00 | (d >> 3 & 0xffff);
     if (a->mUnk_08 != 0) {
         a->mUnk_18 = (data_021619f4(a->mUnk_08, v == 2, 0) & 0xffff) << 3;
-        func_0214c48c();
-        func_0214c418(a->mUnk_10, a->mUnk_18, a->mUnk_08);
-        func_0214c3c0();
+        GX_BeginLoadTexPltt();
+        GX_LoadTexPltt(a->mUnk_10, a->mUnk_18, a->mUnk_08);
+        GX_EndLoadTexPltt();
     }
     func_02087458(a);
 }

@@ -32,9 +32,9 @@ void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const ch
     LoadNclrData(&a->mUnk_00, FindSceneFile(c));
     func_0200ee58(a->mUnk_00->mData, a->mUnk_00->mDataSize);
     if (b != 0) {
-        func_0214c160(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
+        GX_LoadBGPltt(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
     } else {
-        func_0214c0f8(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
+        GXS_LoadBGPltt(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
     }
     LoadNcgrData2(&a->mUnk_04, FindSceneFile(d));
     func_0200ee58(a->mUnk_04->mData, a->mUnk_04->mDataSize);

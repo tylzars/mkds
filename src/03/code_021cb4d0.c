@@ -56,7 +56,7 @@ void func_ov003_021cb7fc(void) {
 void func_ov003_021cb758(void) {
     Unk021d7654 a = data_ov003_021d7654;
     func_ov003_021bf620(data_ov003_021d766c, MemCopyWordsToG2Bg2CntBits2To5Address);
-    func_ov003_021bf620(data_ov003_021d7684, func_0214c160);
+    func_ov003_021bf620(data_ov003_021d7684, GX_LoadBGPltt);
     func_ov003_021bf620(data_ov003_021d769c, MemCopyHalfwordsToG2Bg2CntBits8To12Address);
     data_ov003_021da244 = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
     *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;

@@ -38,16 +38,16 @@ void func_020cb3e4(void) {
     if (v1 != 0) {
         func_020cb4a8(0x18);
         GX_SetGraphicsMode((u16) 1, (u32) 0, 0);
-        func_0214c090(data_0217b43c->mSinglePlaySelectModeMONclr->mData, 0, (u32) (((u32) 0x000001a0u)));
-        func_0214c090(&data_0217b43c->mSinglePlaySelectModeMONclr->mData[0xe0], 0x1c0, (u32) 0x40);
-        func_0214bf04(data_0217b43c->mSinglePlaySelectModeMNcgr->mData, 0,
-                      (u32) (data_0217b43c->mSinglePlaySelectModeMNcgr->mDataSize));
+        GX_LoadOBJPltt(data_0217b43c->mSinglePlaySelectModeMONclr->mData, 0, (u32) (((u32) 0x000001a0u)));
+        GX_LoadOBJPltt(&data_0217b43c->mSinglePlaySelectModeMONclr->mData[0xe0], 0x1c0, (u32) 0x40);
+        GX_LoadOBJ(data_0217b43c->mSinglePlaySelectModeMNcgr->mData, 0,
+                   (u32) (data_0217b43c->mSinglePlaySelectModeMNcgr->mDataSize));
         func_020cb48c(0x16);
         GxsDispCntBits0To2Write((u32) 0);
-        func_0214c028(data_0217b43c->mSinglePlaySelectModeSONclr->mData, 0,
-                      (u32) (data_0217b43c->mSinglePlaySelectModeSONclr->mDataSize));
-        func_0214bea4(data_0217b43c->mSinglePlaySelectModeSNcgr->mData, 0,
-                      (u32) (data_0217b43c->mSinglePlaySelectModeSNcgr->mDataSize));
+        GXS_LoadOBJPltt(data_0217b43c->mSinglePlaySelectModeSONclr->mData, 0,
+                        (u32) (data_0217b43c->mSinglePlaySelectModeSONclr->mDataSize));
+        GXS_LoadOBJ(data_0217b43c->mSinglePlaySelectModeSNcgr->mData, 0,
+                    (u32) (data_0217b43c->mSinglePlaySelectModeSNcgr->mDataSize));
     }
 }
 

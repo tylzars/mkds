@@ -29,11 +29,11 @@ void func_ov001_021a4fa0(void) {
     reg_G2_BG2CNT = (reg_G2_BG2CNT & ~3) | 3;
     reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0x600;
     func_0200ee74(gEmblem->mEmblemMONclr->mData, gEmblem->mEmblemMONclr->mDataSize);
-    func_0214c090(gEmblem->mEmblemMONclr->mData, 0, gEmblem->mEmblemMONclr->mDataSize);
+    GX_LoadOBJPltt(gEmblem->mEmblemMONclr->mData, 0, gEmblem->mEmblemMONclr->mDataSize);
     func_0200ee74(gEmblem->mEmblemMONcgr->mData, gEmblem->mEmblemMONcgr->mDataSize);
-    func_0214bf04(gEmblem->mEmblemMONcgr->mData, 0, gEmblem->mEmblemMONcgr->mDataSize);
+    GX_LoadOBJ(gEmblem->mEmblemMONcgr->mData, 0, gEmblem->mEmblemMONcgr->mDataSize);
     func_0200ee74(gEmblem->mEmblemMBNclr->mData, gEmblem->mEmblemMBNclr->mDataSize);
-    func_0214c160(gEmblem->mEmblemMBNclr->mData, 0, gEmblem->mEmblemMBNclr->mDataSize);
+    GX_LoadBGPltt(gEmblem->mEmblemMBNclr->mData, 0, gEmblem->mEmblemMBNclr->mDataSize);
     func_0200ee74(gEmblem->mEmblemMBNcgr->mData, gEmblem->mEmblemMBNcgr->mDataSize);
     MemCopyWordsToG2Bg1CntBits2To5Address((gEmblem->mEmblemMBNcgr->mData), 0, gEmblem->mEmblemMBNcgr->mDataSize);
     func_0200ee74(gEmblem->mUnk_0a7c, 0x200);
@@ -61,11 +61,11 @@ void func_ov001_021a4d10(void) {
     reg_G2S_DB_BG2OFS = 0;
     func_0214a428((u32 *) 0x04001030, data_ov001_021a6fd8, 16, 16, -0x70, -0x40);
     func_0200ee74(gEmblem->mEmblemSONclr->mData, gEmblem->mEmblemSONclr->mDataSize);
-    func_0214c028(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
+    GXS_LoadOBJPltt(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
     func_0200ee74(gEmblem->mEmblemSONcgr->mData, gEmblem->mEmblemSONcgr->mDataSize);
-    func_0214bea4(gEmblem->mEmblemSONcgr->mData, 0, gEmblem->mEmblemSONcgr->mDataSize);
+    GXS_LoadOBJ(gEmblem->mEmblemSONcgr->mData, 0, gEmblem->mEmblemSONcgr->mDataSize);
     func_0200ee74(gEmblem->mEmblemSBNclr->mData, gEmblem->mEmblemSBNclr->mDataSize);
-    func_0214c0f8(gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
+    GXS_LoadBGPltt(gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
     func_0200ee74(gEmblem->mEmblemSBNcgr->mData, gEmblem->mEmblemSBNcgr->mDataSize);
     MemCopyWordsToG2sBg1CntBits2To5Address((gEmblem->mEmblemSBNcgr->mData), 0, gEmblem->mEmblemSBNcgr->mDataSize);
     func_0200ee74((const void *) func_ov001_02181174(), func_ov001_02181180());
@@ -100,11 +100,11 @@ void func_ov001_021a4ba0(void) {
     reg_G2S_DB_BG2OFS = 0;
     reg_G2S_DB_BG3OFS = 0;
     func_0200ee74(gEmblem->mEmblemSONclr->mData, gEmblem->mEmblemSONclr->mDataSize);
-    func_0214c028(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
+    GXS_LoadOBJPltt(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
     func_0200ee74(gEmblem->mEmblemCameraSONcgr->mData, gEmblem->mEmblemCameraSONcgr->mDataSize);
-    func_0214bea4(gEmblem->mEmblemCameraSONcgr->mData, 0, gEmblem->mEmblemCameraSONcgr->mDataSize);
+    GXS_LoadOBJ(gEmblem->mEmblemCameraSONcgr->mData, 0, gEmblem->mEmblemCameraSONcgr->mDataSize);
     func_0200ee74(gEmblem->mEmblemSBNclr->mData, gEmblem->mEmblemSBNclr->mDataSize);
-    func_0214c0f8(gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
+    GXS_LoadBGPltt(gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
     func_0200ee74(gEmblem->mEmblemCameraSBNcgr->mData, gEmblem->mEmblemCameraSBNcgr->mDataSize);
     MemCopyWordsToG2sBg1CntBits2To5Address((gEmblem->mEmblemCameraSBNcgr->mData), 0,
                                            gEmblem->mEmblemCameraSBNcgr->mDataSize);

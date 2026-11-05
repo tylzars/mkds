@@ -2175,7 +2175,7 @@ s32 func_02018950(Unk020184e4 *a, u32 (*b)(s32 a, s32 b)) {
     Unk020184e4_2c_00 *d;
     u32 t;
 
-    func_0214c6a8();
+    GX_BeginLoadTex();
     for (i = 0; i < a->mUnk_32; i++) {
         e = a->mUnk_2c + i;
         d = e->mUnk_00;
@@ -2183,11 +2183,11 @@ s32 func_02018950(Unk020184e4 *a, u32 (*b)(s32 a, s32 b)) {
             e->mUnk_04 = a->mUnk_2c[d->mUnk_04.mUnk_00_18].mUnk_04;
         } else {
             t = b(d->mUnk_08, d->mUnk_04.mUnk_00_0 == 5 ? 1 : 0);
-            func_0214c544((u8 *) e->mUnk_00 + 0x20, t, d->mUnk_08);
+            GX_LoadTex((u8 *) e->mUnk_00 + 0x20, t, d->mUnk_08);
             e->mUnk_04 = t;
         }
     }
-    func_0214c4d4();
+    GX_EndLoadTex();
     return 1;
 }
 
@@ -2197,18 +2197,18 @@ s32 func_0201889c(Unk020184e4 *a, u32 (*b)(s32 a, s32 b)) {
     Unk020184e4_2c_00 *d;
     u32 t;
 
-    func_0214c48c();
+    GX_BeginLoadTexPltt();
     for (i = 0; i < a->mUnk_32; i++) {
         e = a->mUnk_2c + i;
         d = e->mUnk_00;
         t = 0;
         if (d->mUnk_10 != 0) {
             t = b(d->mUnk_10, d->mUnk_04.mUnk_00_0 == 2 ? 1 : 0);
-            func_0214c418((u8 *) e->mUnk_00 + d->mUnk_0c, t, d->mUnk_10);
+            GX_LoadTexPltt((u8 *) e->mUnk_00 + d->mUnk_0c, t, d->mUnk_10);
         }
         e->mUnk_08 = t;
     }
-    func_0214c3c0();
+    GX_EndLoadTexPltt();
     return 1;
 }
 

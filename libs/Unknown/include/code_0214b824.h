@@ -18,11 +18,20 @@ void MemCopyHalfwordsToG2sBg1CntBits8To12Address(const void *a, u32 b, u32 c);
 void MemCopyHalfwordsToG2Bg1CntBits8To12Address(const void *a, u32 b, u32 c);
 void MemCopyHalfwordsToG2sBg0CntBits8To12Address(const void *a, u32 b, u32 c);
 void MemCopyHalfwordsToG2Bg0CntBits8To12Address(const void *a, u32 b, u32 c);
-void func_0214bea4(const void *a, u32 b, u32 c);
-void func_0214bf04(const void *a, u32 b, u32 c);
-void func_0214bf64(const void *a, u32 b, u32 c);
-void func_0214bfcc(const void *a, u32 b, u32 c);
-void func_0214c028(const void *a, u32 b, u32 c);
-void func_0214c090(const void *a, u32 b, u32 c);
-void func_0214c0f8(const void *a, u32 b, u32 c);
-void func_0214c160(const void *a, u32 b, u32 c);
+// Copies c bytes from a to sub OBJ character memory at 0x6600000 + b (a fixed address); same cut-over.
+void GXS_LoadOBJ(const void *a, u32 b, u32 c);
+// Copies c bytes from a to main OBJ character memory at 0x6400000 + b (a fixed address; no bank lookup); DMA for more
+// than 0x30 bytes, else MemCopyWords.
+void GX_LoadOBJ(const void *a, u32 b, u32 c);
+// Copies c bytes from a to the sub OAM at 0x7000400 + b; same cut-over.
+void GXS_LoadOAM(const void *a, u32 b, u32 c);
+// Copies c bytes from a to the main OAM at 0x7000000 + b; DMA for more than 0x30 bytes, else MemCopyWords.
+void GX_LoadOAM(const void *a, u32 b, u32 c);
+// Copies c bytes from a to the sub OBJ palette at 0x5000600 + b; same cut-over.
+void GXS_LoadOBJPltt(const void *a, u32 b, u32 c);
+// Copies c bytes from a to the main OBJ palette at 0x5000200 + b; same cut-over.
+void GX_LoadOBJPltt(const void *a, u32 b, u32 c);
+// Copies c bytes from a to the sub BG palette at 0x5000400 + b; same cut-over.
+void GXS_LoadBGPltt(const void *a, u32 b, u32 c);
+// Copies c bytes from a to the main BG palette at 0x5000000 + b; DMA for more than 0x1c bytes, else MemCopyHalfwords.
+void GX_LoadBGPltt(const void *a, u32 b, u32 c);

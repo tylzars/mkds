@@ -55,7 +55,7 @@ void func_ov003_021ca480(void) {
     void *v3 = &MemCopyWordsToG2Bg2CntBits2To5Address;
     u32 v4 = func_ov003_021bf620(v2, v3);
     void *v5 = &data_ov003_021d7550;
-    void *v6 = &func_0214c160;
+    void *v6 = &GX_LoadBGPltt;
     u32 v7 = func_ov003_021bf620(v5, v6);
     void *v8 = &data_ov003_021d7568;
     void *v9 = &MemCopyHalfwordsToG2Bg2CntBits8To12Address;

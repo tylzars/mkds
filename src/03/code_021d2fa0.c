@@ -112,6 +112,6 @@ void func_ov003_021d2fdc(void) {
 
 void func_ov003_021d2fa0(void) {
     func_0200ee74((u8 *) data_ov003_021da2f0, 0x800);
-    func_0214bfcc(data_ov003_021da2f0->mUnk_000[0], 0, 0x400);
-    func_0214bf64(data_ov003_021da2f0->mUnk_000[1], 0, 0x400);
+    GX_LoadOAM(data_ov003_021da2f0->mUnk_000[0], 0, 0x400);
+    GXS_LoadOAM(data_ov003_021da2f0->mUnk_000[1], 0, 0x400);
 }

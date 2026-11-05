@@ -9,42 +9,44 @@
 #include "Main/Unknown/unk_0216f000.h"
 #include "Main/Unknown/unk_02180000.h"
 
-// Stores GX_ResetBankForTex() in data_021802fc, and the halfwords at offset 6 * that value in data_021616cc,
-// data_021616ce and data_021616d0, each shifted left by 12, in data_021802ec, data_02180300 and data_02180304.
-void func_0214c6a8(void) {
+// Stores GX_ResetBankForTex() in gTextureLoadBankMask, and the halfwords at offset 6 * that value in
+// gTextureBlockTable, data_021616ce and data_021616d0, each shifted left by 12, in gTextureLoadFirstBase,
+// gTextureLoadSecondBase and gTextureLoadFirstSize.
+void GX_BeginLoadTex(void) {
     u32 i;
     u32 o;
 
     i = GX_ResetBankForTex();
     o = i * 6;
-    data_021802fc = i;
-    data_021802ec = *(u16 *) (data_021616cc + o) << 12;
-    data_02180300 = *(u16 *) (data_021616ce + o) << 12;
-    data_02180304 = *(u16 *) (data_021616d0 + o) << 12;
+    gTextureLoadBankMask = i;
+    gTextureLoadFirstBase = *(u16 *) (gTextureBlockTable + o) << 12;
+    gTextureLoadSecondBase = *(u16 *) (data_021616ce + o) << 12;
+    gTextureLoadFirstSize = *(u16 *) (data_021616d0 + o) << 12;
 }
 
-// Copies c bytes from a to data_021802ec + b; or, when data_02180300 is not 0, to data_02180300 + b - data_02180304 if
-// b is at least data_02180304. A copy that crosses data_02180304 is split there: the first data_02180304 - b bytes go
-// to data_021802ec + b, the rest to data_02180300. Each part uses func_0214c990 when data_0216f074 is not -1 (the first
-// part uses func_0214cb88 when it is longer than 0x30), else MemCopyWords.
-void func_0214c544(const void *a, u32 b, u32 c) {
+// Copies c bytes from a to gTextureLoadFirstBase + b; or, when gTextureLoadSecondBase is not 0, to
+// gTextureLoadSecondBase + b - gTextureLoadFirstSize if b is at least gTextureLoadFirstSize. A copy that crosses
+// gTextureLoadFirstSize is split there: the first gTextureLoadFirstSize - b bytes go to gTextureLoadFirstBase + b, the
+// rest to gTextureLoadSecondBase. Each part uses func_0214c990 when data_0216f074 is not -1 (the first part uses
+// func_0214cb88 when it is longer than 0x30), else MemCopyWords.
+void GX_LoadTex(const void *a, u32 b, u32 c) {
     u8 *p;
     u32 q;
     u32 n;
     u8 *dst;
 
-    p = (u8 *) data_02180300;
+    p = (u8 *) gTextureLoadSecondBase;
     if (p == 0) {
-        dst = (u8 *) data_021802ec + b;
+        dst = (u8 *) gTextureLoadFirstBase + b;
     } else {
-        q = data_02180304;
+        q = gTextureLoadFirstSize;
         if (b + c < q) {
-            dst = (u8 *) data_021802ec + b;
+            dst = (u8 *) gTextureLoadFirstBase + b;
         } else if (b >= q) {
             dst = p + b - q;
         } else {
             n = q - b;
-            dst = (u8 *) data_021802ec + b;
+            dst = (u8 *) gTextureLoadFirstBase + b;
             if (data_0216f074[0] != -1 && n > 0x30) {
                 func_0214cb88(data_0216f074[0], a, dst, n);
             } else {
@@ -65,25 +67,25 @@ void func_0214c544(const void *a, u32 b, u32 c) {
     }
 }
 
-void func_0214c4d4(void) {
+void GX_EndLoadTex(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    GX_SetBankForTex(data_021802fc);
-    data_02180304 = 0;
-    data_02180300 = 0;
-    data_021802ec = 0;
-    data_021802fc = 0;
+    GX_SetBankForTex(gTextureLoadBankMask);
+    gTextureLoadFirstSize = 0;
+    gTextureLoadSecondBase = 0;
+    gTextureLoadFirstBase = 0;
+    gTextureLoadBankMask = 0;
 }
 
-void func_0214c48c(void) {
+void GX_BeginLoadTexPltt(void) {
     s32 v = GX_ResetBankForTexPltt();
-    data_021802f4 = v;
-    data_021802f0 = (u8 *) (data_021616bc[v >> 4] << 12);
+    gTexturePaletteLoadBankMask = v;
+    gTexturePaletteLoadBase = (u8 *) (gTexturePaletteBaseTable[v >> 4] << 12);
 }
 
-void func_0214c418(const void *a, u32 b, u32 c) {
-    u8 *p = data_021802f0 + b;
+void GX_LoadTexPltt(const void *a, u32 b, u32 c) {
+    u8 *p = gTexturePaletteLoadBase + b;
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, p, c, 0, 0);
     } else {
@@ -91,38 +93,38 @@ void func_0214c418(const void *a, u32 b, u32 c) {
     }
 }
 
-void func_0214c3c0(void) {
+void GX_EndLoadTexPltt(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    GX_SetBankForTexPltt(data_021802f4);
-    data_021802f4 = 0;
-    data_021802f0 = 0;
+    GX_SetBankForTexPltt(gTexturePaletteLoadBankMask);
+    gTexturePaletteLoadBankMask = 0;
+    gTexturePaletteLoadBase = 0;
 }
 
-void func_0214c2f8(void) {
+void GX_BeginLoadClearImage(void) {
     u32 v = GX_ResetBankForClearImage();
-    data_021802e8 = v;
+    gClearImageLoadBankMask = v;
     switch (v) {
         case 2:
         case 3:
-            data_021802f8 = (u8 *) 0x6800000;
+            gClearImageLoadBase = (u8 *) 0x6800000;
             break;
         case 8:
         case 12:
-            data_021802f8 = (u8 *) 0x6840000;
+            gClearImageLoadBase = (u8 *) 0x6840000;
             break;
         case 1:
-            data_021802f8 = (u8 *) 0x67e0000;
+            gClearImageLoadBase = (u8 *) 0x67e0000;
             break;
         case 4:
-            data_021802f8 = (u8 *) 0x6820000;
+            gClearImageLoadBase = (u8 *) 0x6820000;
             break;
     }
 }
 
-void func_0214c288(const void *a, u32 b) {
-    u8 *p = data_021802f8;
+void GX_LoadClearImageColor(const void *a, u32 b) {
+    u8 *p = gClearImageLoadBase;
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, p, b, 0, 0);
     } else {
@@ -130,8 +132,8 @@ void func_0214c288(const void *a, u32 b) {
     }
 }
 
-void func_0214c214(const void *a, u32 b) {
-    u8 *p = data_021802f8 + 0x20000;
+void GX_LoadClearImageDepth(const void *a, u32 b) {
+    u8 *p = gClearImageLoadBase + 0x20000;
     if (data_0216f074[0] != -1) {
         func_0214c990(data_0216f074[0], a, p, b, 0, 0);
     } else {
@@ -139,11 +141,11 @@ void func_0214c214(const void *a, u32 b) {
     }
 }
 
-void func_0214c1bc(void) {
+void GX_EndLoadClearImage(void) {
     if (data_0216f074[0] != -1) {
         func_0214c920(data_0216f074[0]);
     }
-    GX_SetBankForClearImage(data_021802e8);
-    data_021802e8 = 0;
-    data_021802f8 = 0;
+    GX_SetBankForClearImage(gClearImageLoadBankMask);
+    gClearImageLoadBankMask = 0;
+    gClearImageLoadBase = 0;
 }

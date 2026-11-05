@@ -34,23 +34,38 @@ extern u16 data_021802c2;
 extern u16 data_021802c4;
 extern u16 data_021802c6;
 extern u16 data_021802c8;
-extern u32 data_021802cc;
-extern u32 data_021802d0;
-extern u32 data_021802d4;
-extern u32 data_021802d8;
-extern u32 data_021802dc;
-extern u32 data_021802e0;
-extern u32 data_021802e4;
+// The bank mask kept between the begin and end call of that load group; 0 when no load is open.
+extern u32 gSubBgExtPaletteLoadBankMask;
+// Address the OBJ extended palette load starts from; 0 when idle.
+extern u32 gObjExtPaletteLoadBase;
+// The bank mask kept between the begin and end call of that load group; 0 when no load is open.
+extern u32 gObjExtPaletteLoadBankMask;
+// Subtracted from the load offset: 0x4000 when only bank G is mapped, else 0.
+extern u32 gBgExtPaletteLoadBaseOffset;
+// Address the BG extended palette load starts from; set by the begin call, 0 when idle.
+extern u32 gBgExtPaletteLoadBase;
+// The bank mask kept between the begin and end call of that load group; 0 when no load is open.
+extern u32 gBgExtPaletteLoadBankMask;
+// The bank mask kept between the begin and end call of that load group; 0 when no load is open.
+extern u32 gSubObjExtPaletteLoadBankMask;
 
 // Display mode value (the bits at 16 and up of the main display word) kept while the display is off and by
 // GX_SetGraphicsMode; GX_DispOn writes it back.
 extern u8 gSavedDispMode[];
 
-extern u32 data_021802e8;
-extern u32 data_021802ec;
-extern u8 *data_021802f0;
-extern s32 data_021802f4;
-extern u8 *data_021802f8;
-extern u32 data_021802fc;
-extern u32 data_02180300;
-extern u32 data_02180304;
+// The bank mask kept between the begin and end call of that load group; 0 when no load is open.
+extern u32 gClearImageLoadBankMask;
+// Start of the first run of texture banks.
+extern u32 gTextureLoadFirstBase;
+// Address the texture palette load starts from, from gTexturePaletteBaseTable.
+extern u8 *gTexturePaletteLoadBase;
+// The bank mask kept between the begin and end call of that load group; 0 when no load is open.
+extern s32 gTexturePaletteLoadBankMask;
+// Address of the colour slot; the depth slot is 0x20000 above it. For a single bank it lies below that bank.
+extern u8 *gClearImageLoadBase;
+// The bank mask kept between the begin and end call of that load group; 0 when no load is open.
+extern u32 gTextureLoadBankMask;
+// Start of the second run (0 when the mask is one run).
+extern u32 gTextureLoadSecondBase;
+// Byte size of the first run.
+extern u32 gTextureLoadFirstSize;

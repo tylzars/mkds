@@ -222,8 +222,8 @@ s32 func_0212717c(s32 d) {
         MemCopyWordsToG2sBg0CntBits2To5Address(b->mData, d, b->mDataSize);
     }
     func_0200ee74(c->mData, 0x1c0);
-    func_0214c160(c->mData + 0xe0, 0x1c0, 0x40);
-    func_0214c0f8(c->mData + 0xe0, 0x1c0, 0x40);
+    GX_LoadBGPltt(c->mData + 0xe0, 0x1c0, 0x40);
+    GXS_LoadBGPltt(c->mData + 0xe0, 0x1c0, 0x40);
     gTxtSystem->mUnk_2244 = c->mData[0xee];
     gTxtSystem->mUnk_2246 = c->mData[0xdf];
     MemFillWordsByBlock_inline((void *) G2Bg2CntBits8To12Address(), 0x1000);

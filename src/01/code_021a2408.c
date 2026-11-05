@@ -73,7 +73,7 @@ void func_ov001_021a2408(void) {
             dst[0x91] = src[func_ov001_021a63b4() == 1 ? 2 : 1];
             dst[0x92] = src[func_ov001_021a63b4()];
             func_0200ee74(gEmblem->mEmblemSONclr->mData, gEmblem->mEmblemSONclr->mDataSize);
-            func_0214c028(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
+            GXS_LoadOBJPltt(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
             break;
         case 3:
             *(vu32 *) 0x4001010 = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
@@ -101,7 +101,7 @@ void func_ov001_021a2408(void) {
             dst[0x91] = src[func_ov001_021a63b4() == 1 ? 2 : 1];
             dst[0x92] = src[func_ov001_021a63b4()];
             func_0200ee74(gEmblem->mEmblemSONclr->mData, gEmblem->mEmblemSONclr->mDataSize);
-            func_0214c028(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
+            GXS_LoadOBJPltt(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
             break;
         case 8:
             *(vu32 *) 0x4001018 =
@@ -116,7 +116,7 @@ void func_ov001_021a2408(void) {
             dst[0x91] = src[func_ov001_021a63b4() == 1 ? 2 : 1];
             dst[0x92] = src[func_ov001_021a63b4()];
             func_0200ee74(gEmblem->mEmblemSONclr->mData, gEmblem->mEmblemSONclr->mDataSize);
-            func_0214c028(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
+            GXS_LoadOBJPltt(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
             break;
         case 12:
             func_0214a3e8((u16 *) 0x4001050, 0x3e, -16);

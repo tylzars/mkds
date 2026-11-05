@@ -49,8 +49,10 @@ extern u8 data_02161af8[];
 extern u8 data_02161afc[];
 extern u8 data_02161b00[];
 
-extern u16 data_021616bc[];
-extern u8 data_021616cc[];
+// Base address >> 12 of the first bank of each texture palette mask, indexed by mask >> 4 (8 halfwords).
+extern u16 gTexturePaletteBaseTable[];
+// 16 rows of 3 halfwords per texture bank mask: first run base >> 12, second run base >> 12, first run size >> 12.
+extern u8 gTextureBlockTable[];
 extern u8 data_021616ce[];
 extern u8 data_021616d0[];
 

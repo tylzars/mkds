@@ -100,7 +100,7 @@ s32 func_021286a0(s32 a) {
     func_0200ee74(gSelectReturn->mUnk_10, nscr->mDataSize);
     MemCopyHalfwordsToG2sBg2CntBits8To12Address(gSelectReturn->mUnk_10, 0, nscr->mDataSize);
     func_0200ee74(nclr->mData, 0x180);
-    func_0214c0f8(nclr->mData + 0xc0, 0x180, 0x40);
+    GXS_LoadBGPltt(nclr->mData + 0xc0, 0x180, 0x40);
     return a;
 }
 
@@ -492,7 +492,7 @@ s32 func_02127f14(s32 d) {
     data_0217d3f4->mUnk_82c = data_0217d3f4->mUnk_89c + (x + y);
     data_0217d3f4->mUnk_830 = data_0217d3f4->mUnk_89c + (y + (x + 3));
     func_0200ee74(c->mData, 0x1c0);
-    func_0214c0f8(c->mData + 0xe0, 0x1c0, 0x40);
+    GXS_LoadBGPltt(c->mData + 0xe0, 0x1c0, 0x40);
     return d;
 }
 

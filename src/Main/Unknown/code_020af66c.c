@@ -156,8 +156,8 @@ void func_020b0b8c(void) {
     if (gRaceHud->mUnk_840 != FALSE) {
         MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x3000);
         gRaceHud->mUnk_840 = FALSE;
-        func_0214c090(GetRaceNclrNcgr(1)->mNclr->mData, 0, GetRaceNclrNcgr(1)->mNclr->mDataSize);
-        func_0214bf04(GetRaceNclrNcgr(1)->mNcgr->mData, 0, 0x4000);
+        GX_LoadOBJPltt(GetRaceNclrNcgr(1)->mNclr->mData, 0, GetRaceNclrNcgr(1)->mNclr->mDataSize);
+        GX_LoadOBJ(GetRaceNclrNcgr(1)->mNcgr->mData, 0, 0x4000);
         gRaceHud->mUnk_848 = 1;
         gRaceHud->mUnk_844 = 1;
         reg_GX_DISPCNT &= ~0xe000;
@@ -170,7 +170,7 @@ void func_020b0b8c(void) {
                     reg_G2_BG3CNT = (reg_G2_BG3CNT & ~3) | 1;
                     reg_G2_BG3CNT &= ~0x40;
                     reg_G2_BG3CNT = (reg_G2_BG3CNT & 0x43) | 0x500;
-                    func_0214c160(gRaceHud->mNclrs[0]->mData, 0, gRaceHud->mNclrs[0]->mDataSize);
+                    GX_LoadBGPltt(gRaceHud->mNclrs[0]->mData, 0, gRaceHud->mNclrs[0]->mDataSize);
                     MemCopyWordsToG2Bg3CntBits2To5Address(gRaceHud->mNcgrs[0]->mData, 0,
                                                           gRaceHud->mNcgrs[0]->mDataSize);
                     MemCopyHalfwordsToG2Bg3CntBits8To12Address(gRaceHud->mNscrs[1]->mData, 0, 0x600);
@@ -189,9 +189,9 @@ void func_020b0b8c(void) {
         MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
     }
     func_0200ee74(gRaceHud->mUnk_004, 0x400);
-    func_0214bfcc(gRaceHud->mUnk_004, 0, 0x400);
+    GX_LoadOAM(gRaceHud->mUnk_004, 0, 0x400);
     func_0200ee74(gRaceHud->mUnk_408, 0x400);
-    func_0214bf64(gRaceHud->mUnk_408, 0, 0x400);
+    GXS_LoadOAM(gRaceHud->mUnk_408, 0, 0x400);
     if (gRaceHud->mUnk_82c != FALSE) {
         switch (gRaceHud->mSubScreenState) {
             case 0:
@@ -204,13 +204,13 @@ void func_020b0b8c(void) {
                 reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 3;
                 reg_G2S_DB_BG3CNT &= ~0x40;
                 reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x308;
-                func_0214c0f8(data_0217b34c, 0, 0x200);
+                GXS_LoadBGPltt(data_0217b34c, 0, 0x200);
                 break;
             case 1:
             case 2:
             case 3:
                 func_020b18b0();
-                func_0214c0f8(func_020b33c4()->mData, 0, 0x200);
+                GXS_LoadBGPltt(func_020b33c4()->mData, 0, 0x200);
                 break;
             case 4:
             case 5:
@@ -219,11 +219,11 @@ void func_020b0b8c(void) {
                 reg_G2S_DB_BG0CNT &= ~0x40;
                 reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x10c;
                 func_020b17a4();
-                func_0214c0f8(func_020c3e2c(0)->mUnk_00->mData, 0, func_020c3e2c(0)->mUnk_00->mDataSize);
+                GXS_LoadBGPltt(func_020c3e2c(0)->mUnk_00->mData, 0, func_020c3e2c(0)->mUnk_00->mDataSize);
                 MemCopyWordsToG2sBg1CntBits2To5Address(func_020c3e2c(0)->mUnk_04->mData, 0,
                                                        func_020c3e2c(0)->mUnk_04->mDataSize);
-                func_0214c028(GetRaceNclrNcgr(7)->mNclr->mData, 0, 0x80);
-                func_0214bea4(GetRaceNclrNcgr(7)->mNcgr->mData, 0, 0x4000);
+                GXS_LoadOBJPltt(GetRaceNclrNcgr(7)->mNclr->mData, 0, 0x80);
+                GXS_LoadOBJ(GetRaceNclrNcgr(7)->mNcgr->mData, 0, 0x4000);
                 MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x3000);
                 MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
                 break;
@@ -241,7 +241,7 @@ void func_020b0b8c(void) {
         case 2:
         case 3:
             if (data_021759c0->mMode == 4) {
-                func_0214c028(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
+                GXS_LoadOBJPltt(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
             }
             func_0214a428((u32 *) 0x04001020, gRaceHud->mUnk_858[0].mUnk_00, gRaceHud->mUnk_858[0].mUnk_10,
                           gRaceHud->mUnk_858[0].mUnk_14, gRaceHud->mUnk_858[0].mUnk_18, gRaceHud->mUnk_858[0].mUnk_1c);
@@ -291,9 +291,9 @@ void func_020b0b8c(void) {
                 MemCopyHalfwordsToG2sBg1CntBits8To12Address(func_020c3e14(3)->mData, 0, func_020c3e14(3)->mDataSize);
                 MemCopyHalfwordsToG2sBg2CntBits8To12Address(func_020c3e14(4)->mData, 0, func_020c3e14(4)->mDataSize);
                 MemCopyHalfwordsToG2sBg3CntBits8To12Address(func_020c3e14(5)->mData, 0, func_020c3e14(5)->mDataSize);
-                func_0214c028(GetRaceNclrNcgr(8)->mNclr->mData, 0, 0x20);
-                func_0214c028(GetRaceNclrNcgr(8)->mNclr->mData + 0xc0, 0x180, 0x80);
-                func_0214bea4(GetRaceNclrNcgr(8)->mNcgr->mData, 0, 0x4000);
+                GXS_LoadOBJPltt(GetRaceNclrNcgr(8)->mNclr->mData, 0, 0x20);
+                GXS_LoadOBJPltt(GetRaceNclrNcgr(8)->mNclr->mData + 0xc0, 0x180, 0x80);
+                GXS_LoadOBJ(GetRaceNclrNcgr(8)->mNcgr->mData, 0, 0x4000);
                 gRaceHud->mUnk_830 = FALSE;
             }
             if (w < 0x100) {
@@ -309,13 +309,13 @@ void func_020b0b8c(void) {
                 reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
                 reg_G2S_DB_BG1CNT &= ~0x40;
                 reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 8;
-                func_0214c0f8(gRaceHud->mNclrs[1]->mData, 0, 0x20);
+                GXS_LoadBGPltt(gRaceHud->mNclrs[1]->mData, 0, 0x20);
                 MemCopyWordsToG2sBg1CntBits2To5Address(gRaceHud->mNcgrs[1]->mData, 0, gRaceHud->mNcgrs[1]->mDataSize);
                 MemCopyHalfwordsToG2sBg1CntBits8To12Address(gRaceHud->mNscrs[2]->mData, 0,
                                                             gRaceHud->mNscrs[2]->mDataSize);
-                func_0214c028(GetRaceNclrNcgr(9)->mNclr->mData, 0, 0xa0);
-                func_0214c028(GetRaceNclrNcgr(9)->mNclr->mData + 0xb0, 0x160, 0xa0);
-                func_0214bea4(GetRaceNclrNcgr(9)->mNcgr->mData, 0, 0x4000);
+                GXS_LoadOBJPltt(GetRaceNclrNcgr(9)->mNclr->mData, 0, 0xa0);
+                GXS_LoadOBJPltt(GetRaceNclrNcgr(9)->mNclr->mData + 0xb0, 0x160, 0xa0);
+                GXS_LoadOBJ(GetRaceNclrNcgr(9)->mNcgr->mData, 0, 0x4000);
                 gRaceHud->mUnk_834 = FALSE;
             }
             break;
@@ -607,7 +607,7 @@ void InitMap2D(void) {
         reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 3;
         reg_G2S_DB_BG3CNT = reg_G2S_DB_BG3CNT & ~0x40;
         reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x308;
-        func_0214c0f8(nclrs[0]->mData, 0, nclrs[0]->mDataSize);
+        GXS_LoadBGPltt(nclrs[0]->mData, 0, nclrs[0]->mDataSize);
         MemCopyWordsToG2sBg2CntBits2To5Address(ncgrs[0]->mData, 0, ncgrs[0]->mDataSize);
         MemCopyWordsToG2sBg2CntBits2To5Address(ncgrs[1]->mData, 0x1800, ncgrs[1]->mDataSize);
         MemCopyHalfwordsToG2sBg2CntBits8To12Address(nscrs[0]->mData, 0, nscrs[0]->mDataSize);
@@ -615,17 +615,17 @@ void InitMap2D(void) {
     }
 
     func_020b18b0();
-    func_0214c0f8(nclrs[2]->mData, 0, 0x200);
+    GXS_LoadBGPltt(nclrs[2]->mData, 0, 0x200);
     MemCopyWordsToG2sBg3CntBits2To5Address(ncgrs[2]->mData, 0, ncgrs[2]->mDataSize);
     MemCopyHalfwordsToG2sBg2CntBits8To12Address(nscrs[2]->mData, 0, nscrs[2]->mDataSize);
     if (func_020b64e8()) {
         MemCopyHalfwordsToG2sBg3CntBits8To12Address(nscrs[3]->mData, 0, nscrs[3]->mDataSize);
     }
     GX_SetBankForSubBGExtPltt(0x80);
-    func_0214b4dc();
-    func_0214b468(nclrs[2]->mData, 0x4000, 0x200);
-    func_0214b468(nclrs[2]->mData, 0x6000, 0x200);
-    func_0214b41c();
+    GXS_BeginLoadBGExtPltt();
+    GXS_LoadBGExtPltt(nclrs[2]->mData, 0x4000, 0x200);
+    GXS_LoadBGExtPltt(nclrs[2]->mData, 0x6000, 0x200);
+    GXS_EndLoadBGExtPltt();
     for (i = 0; i < 0x100; i++) {
         if (v1) {
             data_0217b34c[i] = nclrs[0]->mData[i];
@@ -653,11 +653,11 @@ void func_020af99c(void) {
     *(vu16 *) 0x05000000 = w;
     gRaceHud->mNclrs[0]->mData[0] = w;
     func_0200ee74(gRaceHud->mNclrs[0]->mData, gRaceHud->mNclrs[0]->mDataSize);
-    func_0214c160(gRaceHud->mNclrs[0]->mData, 0, gRaceHud->mNclrs[0]->mDataSize);
+    GX_LoadBGPltt(gRaceHud->mNclrs[0]->mData, 0, gRaceHud->mNclrs[0]->mDataSize);
     MemCopyWordsToG2Bg2CntBits2To5Address(gRaceHud->mNcgrs[0]->mData, 0, gRaceHud->mNcgrs[0]->mDataSize);
     MemCopyHalfwordsToG2Bg2CntBits8To12Address(gRaceHud->mNscrs[0]->mData, 0, gRaceHud->mNscrs[0]->mDataSize);
-    func_0214c090(GetRaceNclrNcgr(0)->mNclr->mData, 0, GetRaceNclrNcgr(0)->mNclr->mDataSize);
-    func_0214bf04(GetRaceNclrNcgr(0)->mNcgr->mData, 0, 0x4000);
+    GX_LoadOBJPltt(GetRaceNclrNcgr(0)->mNclr->mData, 0, GetRaceNclrNcgr(0)->mNclr->mDataSize);
+    GX_LoadOBJ(GetRaceNclrNcgr(0)->mNcgr->mData, 0, 0x4000);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0xe000) | 0xe000;
     w = reg_G2_WININ;
     reg_G2_WININ = (u32) ((w & ~0x3f) | 0x1f) | 0x20;
@@ -670,20 +670,20 @@ void func_020af99c(void) {
     reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xf) | 0x20;
     reg_GXS_DB_DISPCNT &= ~0xe000;
     GxsDispCntBits0To2Write(5);
-    func_0214c028(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
-    func_0214bea4(GetRaceNclrNcgr(6)->mNcgr->mData, 0, 0x4000);
+    GXS_LoadOBJPltt(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
+    GXS_LoadOBJ(GetRaceNclrNcgr(6)->mNcgr->mData, 0, 0x4000);
     func_020b17a4();
     MemCopyHalfwordsToG2sBg1CntBits8To12Address(func_020c3e14(0)->mData, 0, func_020c3e14(0)->mDataSize);
     MemCopyHalfwordsToG2sBg2CntBits8To12Address(func_020c3e14(1)->mData, 0, func_020c3e14(1)->mDataSize);
     MemCopyHalfwordsToG2sBg3CntBits8To12Address(func_020c3e14(2)->mData, 0, func_020c3e14(2)->mDataSize);
-    func_0214c0f8(data_0217b34c + 0x100, 0, 0x200);
+    GXS_LoadBGPltt(data_0217b34c + 0x100, 0, 0x200);
     func_020cfca4();
     GX_SetBankForSubBGExtPltt(0x80);
-    func_0214b4dc();
-    func_0214b468(data_0217b34c + 0x100, 0x4000, 0x200);
-    func_0214b468(data_0217b34c + 0x100, 0x6000, 0x200);
-    func_0214b41c();
-    func_0214c0f8(func_020b33c4()->mData, 0, 0x200);
+    GXS_BeginLoadBGExtPltt();
+    GXS_LoadBGExtPltt(data_0217b34c + 0x100, 0x4000, 0x200);
+    GXS_LoadBGExtPltt(data_0217b34c + 0x100, 0x6000, 0x200);
+    GXS_EndLoadBGExtPltt();
+    GXS_LoadBGPltt(func_020b33c4()->mData, 0, 0x200);
     reg_G2S_DB_BG0OFS = 0;
     reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
     reg_G2S_DB_BG0CNT &= ~0x40;

@@ -20,27 +20,27 @@ s32 CallQueueIsEmpty(CallQueue *p) {
 }
 
 void func_0201691c(const void *a, u32 b, u32 c) {
-    func_0214c6a8();
-    func_0214c544(a, b, c);
-    func_0214c4d4();
+    GX_BeginLoadTex();
+    GX_LoadTex(a, b, c);
+    GX_EndLoadTex();
 }
 
 void func_020168ec(const void *a, u32 b, u32 c) {
-    func_0214c48c();
-    func_0214c418(a, b, c);
-    func_0214c3c0();
+    GX_BeginLoadTexPltt();
+    GX_LoadTexPltt(a, b, c);
+    GX_EndLoadTexPltt();
 }
 
 void func_020168bc(const void *a, u32 b, u32 c) {
-    func_0214c2f8();
-    func_0214c288(a, c);
-    func_0214c1bc();
+    GX_BeginLoadClearImage();
+    GX_LoadClearImageColor(a, c);
+    GX_EndLoadClearImage();
 }
 
 void func_0201688c(const void *a, u32 b, u32 c) {
-    func_0214c2f8();
-    func_0214c214(a, c);
-    func_0214c1bc();
+    GX_BeginLoadClearImage();
+    GX_LoadClearImageDepth(a, c);
+    GX_EndLoadClearImage();
 }
 
 void func_02016880(const void *a, u32 b, u32 c) {
@@ -98,24 +98,24 @@ void func_02016808(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214c090;
-    func_0214c090((const void *) value0, (int) value1, value2);
+    value12 = (u32) &GX_LoadOBJPltt;
+    GX_LoadOBJPltt((const void *) value0, (int) value1, value2);
 }
 
 void func_020167fc(const void *a, u32 b, u32 c) {
-    func_0214c160(a, b, c);
+    GX_LoadBGPltt(a, b, c);
 }
 
 void func_020167cc(const void *a, u32 b, u32 c) {
-    func_0214b5cc();
-    func_0214b558(a, b, c);
-    func_0214b500();
+    GX_BeginLoadOBJExtPltt();
+    GX_LoadOBJExtPltt(a, b, c);
+    GX_EndLoadOBJExtPltt();
 }
 
 void func_0201679c(const void *a, u32 b, u32 c) {
-    func_0214b720();
-    func_0214b6a0(a, b, c);
-    func_0214b63c();
+    GX_BeginLoadBGExtPltt();
+    GX_LoadBGExtPltt(a, b, c);
+    GX_EndLoadBGExtPltt();
 }
 
 void func_02016790(u32 arg0, u32 arg1, u32 arg2) {
@@ -123,8 +123,8 @@ void func_02016790(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214bfcc;
-    func_0214bfcc((const void *) value0, (int) value1, value2);
+    value12 = (u32) &GX_LoadOAM;
+    GX_LoadOAM((const void *) value0, (int) value1, value2);
 }
 
 void func_02016784(u32 arg0, u32 arg1, u32 arg2) {
@@ -132,8 +132,8 @@ void func_02016784(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214bf04;
-    func_0214bf04((const void *) value0, (int) value1, value2);
+    value12 = (u32) &GX_LoadOBJ;
+    GX_LoadOBJ((const void *) value0, (int) value1, value2);
 }
 
 void func_02016778(const void *a, u32 b, u32 c) {
@@ -211,8 +211,8 @@ void func_02016700(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214c028;
-    func_0214c028((const void *) value0, (int) value1, value2);
+    value12 = (u32) &GXS_LoadOBJPltt;
+    GXS_LoadOBJPltt((const void *) value0, (int) value1, value2);
 }
 
 void func_020166f4(u32 arg0, u32 arg1, u32 arg2) {
@@ -220,20 +220,20 @@ void func_020166f4(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214c0f8;
-    func_0214c0f8((const void *) value0, (int) value1, value2);
+    value12 = (u32) &GXS_LoadBGPltt;
+    GXS_LoadBGPltt((const void *) value0, (int) value1, value2);
 }
 
 void func_020166c4(const void *a, u32 b, u32 c) {
-    func_0214b3f8();
-    func_0214b384(a, b, c);
-    func_0214b338();
+    GXS_BeginLoadOBJExtPltt();
+    GXS_LoadOBJExtPltt(a, b, c);
+    GXS_EndLoadOBJExtPltt();
 }
 
 void func_02016694(const void *a, u32 b, u32 c) {
-    func_0214b4dc();
-    func_0214b468(a, b, c);
-    func_0214b41c();
+    GXS_BeginLoadBGExtPltt();
+    GXS_LoadBGExtPltt(a, b, c);
+    GXS_EndLoadBGExtPltt();
 }
 
 void func_02016688(u32 arg0, u32 arg1, u32 arg2) {
@@ -241,8 +241,8 @@ void func_02016688(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214bf64;
-    func_0214bf64((const void *) value0, (int) value1, value2);
+    value12 = (u32) &GXS_LoadOAM;
+    GXS_LoadOAM((const void *) value0, (int) value1, value2);
 }
 
 void func_0201667c(u32 arg0, u32 arg1, u32 arg2) {
@@ -250,8 +250,8 @@ void func_0201667c(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &func_0214bea4;
-    func_0214bea4((const void *) value0, (int) value1, value2);
+    value12 = (u32) &GXS_LoadOBJ;
+    GXS_LoadOBJ((const void *) value0, (int) value1, value2);
 }
 
 void CallQueueRunEntry(CallQueueEntry *p) {

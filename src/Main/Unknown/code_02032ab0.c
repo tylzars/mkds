@@ -193,7 +193,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
                   data_02153f8c[data_02174e60->mUnk_0dc][0], 3, FindSceneFile);
     LoadNscrData(&t->mUnk_14[2], FindSceneFile(data_02153f88[data_02174e60->mUnk_0dc][0]));
     MemCopyWordsToG2Bg3CntBits2To5Address(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
-    func_0214c160(t->mUnk_10->mData, 0, 0x140);
+    GX_LoadBGPltt(t->mUnk_10->mData, 0, 0x140);
     MemCopyHalfwordsToG2Bg2CntBits8To12Address(t->mUnk_14[2]->mData, 0, t->mUnk_14[2]->mDataSize);
     MemCopyHalfwordsToG2Bg3CntBits8To12Address(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
     s = &data_02174e60->mUnk_048[0];
@@ -223,15 +223,15 @@ void func_02032f94(void *a, s32 b, s32 c) {
     t = &data_02174e60->mUnk_000[1];
     func_02025884(t, data_02164178, data_02164190, data_021641a8, 3, FindSceneFile);
     MemCopyWordsToG2sBg3CntBits2To5Address(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
-    func_0214c0f8(t->mUnk_10->mData, 0, 0x140);
+    GXS_LoadBGPltt(t->mUnk_10->mData, 0, 0x140);
     MemCopyHalfwordsToG2sBg3CntBits8To12Address(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
     n = GX_GetSizeOfSubOBJ();
     p = data_02174e60;
     q = &p->mUnk_048[1];
     func_02025abc(q, data_021641c4, data_021641e0, data_021641fc, data_02164214, data_0216422c, NULL, FindSceneFile);
     func_02124ed0(a, q->mUnk_0c, q->mUnk_14, &q->mUnk_18);
-    func_0214bea4(((Ncgr *) p->mUnk_048[1].mUnk_00)->mData, 0, ((Ncgr *) p->mUnk_048[1].mUnk_00)->mDataSize);
-    func_0214c028(((Nclr *) q->mUnk_04)->mData, 0, ((Nclr *) q->mUnk_04)->mDataSize);
+    GXS_LoadOBJ(((Ncgr *) p->mUnk_048[1].mUnk_00)->mData, 0, ((Ncgr *) p->mUnk_048[1].mUnk_00)->mDataSize);
+    GXS_LoadOBJPltt(((Nclr *) q->mUnk_04)->mData, 0, ((Nclr *) q->mUnk_04)->mDataSize);
     for (i = 0; i < q->mUnk_14->mUnk_06; i++) {
         n -= func_02025a00(1, a, q, data_02153f00[i], n);
     }
