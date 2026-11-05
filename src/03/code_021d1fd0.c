@@ -134,12 +134,12 @@ void func_ov003_021d21f8(u32 c, u8 *d) {
         a = *(Unk021d1fd0 **) &data_ov003_021da2c4;
         if (d == &a->mUnk_794) {
             b = (data_ov003_021d67e0[0] * data_ov003_021d67e0[1]) << 5;
-            func_0200ee74(a->mUnk_718[0].mUnk_30, b);
+            DC_FlushRange(a->mUnk_718[0].mUnk_30, b);
             MemCopyWordsToG2Bg0CntBits2To5Address((*(Unk021d1fd0 **) &data_ov003_021da2c4)->mUnk_718[0].mUnk_30,
                                                   data_ov003_021d67dc[0] << 5, b);
         } else {
             b = (data_ov003_021d67e0[2] * data_ov003_021d67e0[3]) << 5;
-            func_0200ee74(a->mUnk_718[1].mUnk_30, b);
+            DC_FlushRange(a->mUnk_718[1].mUnk_30, b);
             MemCopyWordsToG2sBg0CntBits2To5Address((*(Unk021d1fd0 **) &data_ov003_021da2c4)->mUnk_718[1].mUnk_30,
                                                    data_ov003_021d67dc[1] << 5, b);
         }

@@ -156,7 +156,7 @@ void func_0204b7b8(void (*a)(u32 *, u32)) {
     data_021759d4->mUnk_10 = 0;
     switch (s) {
         case 0:
-            func_0200ee58(data_021759d4->mUnk_28, data_021759d4->mUnk_30);
+            DC_StoreRange(data_021759d4->mUnk_28, data_021759d4->mUnk_30);
             if (data_021759d4->mUnk_38 != 0) {
                 p = (u32 *) ((u8 *) data_021759d4->mUnk_28 + 8);
                 n = data_021759d4->mUnk_30 - 8;
@@ -265,7 +265,7 @@ u32 func_0204b714(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, u32 e, s32
     data_021759d4->mUnk_34 = e;
     data_021759d4->mUnk_38 = f;
     data_021759d4->mUnk_14 = d;
-    func_0200ee3c(b, n);
+    DC_InvalidateRange(b, n);
     func_02145e8c(a, (u32) b, n, (UnkFunc *) func_0204b7b8, c, 1, 6, 1, 0);
     return 1;
 }

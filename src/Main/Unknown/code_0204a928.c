@@ -26,5 +26,5 @@ void func_0204a928(void *arg0) {
     *(u32 *) ((value0) + (8)) = value1;
     value0 = (u32) * (const u32 *) ((value0) + (0));
     value1 = 0xdccu;
-    func_0200ee58((void *) value0, value1);
+    DC_StoreRange((void *) value0, value1);
 }

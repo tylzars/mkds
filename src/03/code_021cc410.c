@@ -42,7 +42,7 @@ void func_ov003_021cc83c(void) {
     func_ov003_021cc7b8();
     func_ov003_021bf86c(8);
     func_ov003_021bf5ec(2);
-    func_0200fddc(&b);
+    OS_GetOwnerInfo(&b);
     a[0] = 0;
     MemFillHalfwords(a[0], &a[1], 0x16);
     MemCopyHalfwords(b.mUnk_04, &a[1], b.mUnk_18 * 2);

@@ -142,7 +142,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             }
         }
         if (v11 != FALSE) {
-            func_0200ee74(v2, param_3);
+            DC_FlushRange(v2, param_3);
         }
     }
     return v11;

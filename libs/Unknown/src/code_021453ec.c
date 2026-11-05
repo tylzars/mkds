@@ -21,7 +21,7 @@ int func_02145708(u32 a, u32 b, void *c) {
         if (c == 0) {
             return 6;
         }
-        func_0200ee58(c, 0x50);
+        DC_StoreRange(c, 0x50);
     }
     func_02142c0c(0x14, a);
     r = func_02142ab8(0x14, 2, b, c);
@@ -45,7 +45,7 @@ int func_02145668(u32 a, u32 b, u32 c, void *d) {
         if (d == 0) {
             return 6;
         }
-        func_0200ee58(d, 0x50);
+        DC_StoreRange(d, 0x50);
     }
     func_02142c0c(0x27, a);
     r = func_02142ab8(0x27, 3, b, d, c);
@@ -69,7 +69,7 @@ int func_021455a0(Unk021425e8Func a, const void *b, u32 c, u32 d, u16 e, u8 f) {
         return 6;
     }
     MemCopyHalfwords(b, data_0217f960, c);
-    func_0200ee58(data_0217f960, c);
+    DC_StoreRange(data_0217f960, c);
     func_02142c0c(0x18, (u32) a);
     r = func_02142ab8(0x18, 5, data_0217f960, c, d, e, f);
     if (r == 0) {

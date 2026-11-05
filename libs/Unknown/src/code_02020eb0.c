@@ -177,7 +177,7 @@ u32 PxiCommandSendPending(u32 a) {
             PxiCommandReclaim(1);
         } while (data_021732e4 >= 8);
     }
-    func_0200ee74(data_021735a0, 0x1800);
+    DC_FlushRange(data_021735a0, 0x1800);
     if (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0) {
         if ((a & 1) == 0) {
             IrqRestore(s);

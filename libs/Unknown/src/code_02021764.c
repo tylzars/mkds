@@ -7,17 +7,17 @@
 Unk020217b4 *data_02174e00;
 
 u32 func_020218bc(void) {
-    func_0200ee3c(&data_02174e00->mUnk_004, 4);
+    DC_InvalidateRange(&data_02174e00->mUnk_004, 4);
     return data_02174e00->mUnk_004;
 }
 
 s16 func_02021868(s32 a, s32 b) {
-    func_0200ee3c(&data_02174e00->mUnk_020[a].mUnk_00[b], 2);
+    DC_InvalidateRange(&data_02174e00->mUnk_020[a].mUnk_00[b], 2);
     return data_02174e00->mUnk_020[a].mUnk_00[b];
 }
 
 u32 func_02021834(void) {
-    func_0200ee3c(data_02174e00, 4);
+    DC_InvalidateRange(data_02174e00, 4);
     return data_02174e00->mUnk_000;
 }
 
@@ -38,7 +38,7 @@ void func_020217b4(Unk020217b4 *p) {
     for (j = 0; j < 16; j++) {
         p->mUnk_260[j] = -1;
     }
-    func_0200ee74(p, 0x280);
+    DC_FlushRange(p, 0x280);
 }
 
 void func_02021784(void) {

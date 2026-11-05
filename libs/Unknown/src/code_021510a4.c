@@ -192,7 +192,7 @@ u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
                     } else {
                         e = 1;
                     }
-                    g = func_0200f5ac();
+                    g = OS_GetTick();
                     break;
                 case 4:
                 case 5:
@@ -221,7 +221,7 @@ u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
                     break;
                 case 4:
                 case 5:
-                    func_0200ee3c(&data_usa_021804a0, 1);
+                    DC_InvalidateRange(&data_usa_021804a0, 1);
                     if (a == 4) {
                         if (data_usa_021804a0 & 2) {
                             a = 3;
@@ -232,7 +232,7 @@ u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
                     if ((data_usa_021804a0 & 1) == 0) {
                         return 1;
                     }
-                    if ((data_usa_021804a0 & 0x20) != 0 || ((func_0200f5ac() - g) * 64) / 33514 > 4000) {
+                    if ((data_usa_021804a0 & 0x20) != 0 || ((OS_GetTick() - g) * 64) / 33514 > 4000) {
                         a = 6;
                     } else {
                         WaitByLoop(0x4000);
@@ -250,7 +250,7 @@ u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
 
 u32 func_0215122c(u32 a, u32 b, void *c) {
     u32 d;
-    func_0200ee3c(c, b);
+    DC_InvalidateRange(c, b);
     d = 4;
     while (PxiCallbackBitIsSet(d, 1) == 0) {
     }
@@ -262,7 +262,7 @@ u32 func_0215122c(u32 a, u32 b, void *c) {
         }
         WaitByLoop(0x40000);
     }
-    func_0200ee3c(c, b);
+    DC_InvalidateRange(c, b);
     return 1;
 }
 
@@ -272,7 +272,7 @@ void func_021511d8(u32 a, u16 b, void *c) {
     while (PxiCallbackBitIsSet(d, 1) == 0) {
     }
     PxiCallbackSet(4, (UnkFunc *) func_02151128);
-    func_0200ee58(c, b);
+    DC_StoreRange(c, b);
     d = 2;
     while (1) {
         if (func_02151288(d, a, b, (u32) c) == 1) {

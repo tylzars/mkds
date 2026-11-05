@@ -139,9 +139,9 @@ s32 func_ov000_021ad0a4(const char *a, u32 b, s32 c) {
     q[4] = 1;
     func_ov000_021adbf4((u8 *) &v.mUnk_04, q + 5 - (u8 *) &v.mUnk_04);
     e = 0;
-    g = func_0200f5ac() >> 16;
+    g = OS_GetTick() >> 16;
     f = -1;
-    while (data_ov000_021b6388() != 0 && e == 0 && (s32) ((u32) (func_0200f5ac() >> 16) - g) < 0xf) {
+    while (data_ov000_021b6388() != 0 && e == 0 && (s32) ((u32) (OS_GetTick() >> 16) - g) < 0xf) {
         if (func_ov000_021adbac() == 0) {
             func_ov000_021b04d4();
             continue;

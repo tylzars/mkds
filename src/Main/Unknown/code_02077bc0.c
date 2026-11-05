@@ -1070,7 +1070,7 @@ void func_0207940c(Unk02084b2c *a, s32 b, void *c) {
     if (b % 3 == 0) {
         p = (u8 *) a->mUnk_04;
         d = (u8 *) c + b / 3 * 0x20;
-        func_0200ee74(d, 0x10);
+        DC_FlushRange(d, 0x10);
         i = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155088);
         q = p + *(s32 *) (p + 8);
         t = q + 4 + *(u16 *) (q + 0xa);
@@ -1874,7 +1874,7 @@ void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3) {
     s32 k;
     s32 h;
     e = param_2->mUnk_010[0]->mUnk_04;
-    func_0200ee74(param_3, 0x20);
+    DC_FlushRange(param_3, 0x20);
     if (func_020799a0(param_1) != 0) {
         k = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02154ff8);
     } else {

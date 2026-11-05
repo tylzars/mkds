@@ -23,7 +23,7 @@ s32 func_0212d154(u8 *a, u32 b, u32 c, u32 d, u32 e, UnkFunc *f, void *g) {
     }
     v = 0;
     MemFillWords(v, a, b);
-    func_0200ee74(a, b);
+    DC_FlushRange(a, b);
     return func_0212ccd4(1, a, a + (b >> 1), b >> 1, c, 0, 0, 1, d, 0x7f, 0, 0x7f, e, f, g);
 }
 
@@ -92,8 +92,8 @@ s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i,
     x2c = 0;
     r = -1;
     p = &data_0217ddd0;
-    func_0200ee74(b, d);
-    func_0200ee74(c, d);
+    DC_FlushRange(b, d);
+    DC_FlushRange(c, d);
     q = e == 1;
     u = 0xffb0ff / i;
     if (n != 0) {
@@ -236,8 +236,8 @@ void func_0212cad8(void) {
     MemFillWords(v, p->mUnk_0c, p->mUnk_14);
     w = 0;
     MemFillWords(w, p->mUnk_10, p->mUnk_14);
-    func_0200ee74(p->mUnk_0c, p->mUnk_14);
-    func_0200ee74(p->mUnk_10, p->mUnk_14);
+    DC_FlushRange(p->mUnk_0c, p->mUnk_14);
+    DC_FlushRange(p->mUnk_10, p->mUnk_14);
     func_02020c2c(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);
 }
 
@@ -265,8 +265,8 @@ void func_0212c9d4(Unk0212ccd4 *p) {
             data_0217ddac = 0;
         }
     } else {
-        func_0200ee3c(a, n);
-        func_0200ee3c(b, n);
+        DC_InvalidateRange(a, n);
+        DC_InvalidateRange(b, n);
         p->mUnk_34(a, b, n, p->mUnk_08, p->mUnk_38);
     }
     p->mUnk_1c++;

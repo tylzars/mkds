@@ -133,13 +133,13 @@ s32 func_ov000_021a6470(Unk021b5f50 *a, u32 b) {
     data_ov000_021b5f50->mUnk_22f8 = 0;
     func_ov000_021a5930();
     func_ov000_021a6bdc();
-    if (func_0200f6e4() == 0) {
-        func_0200f6f4();
+    if (OS_IsTickAvailable() == 0) {
+        OS_InitTick();
     }
-    if (func_0200fb18() == 0) {
-        func_0200fb28();
+    if (OS_IsAlarmAvailable() == 0) {
+        OS_InitAlarm();
     }
-    func_0200fb08(&data_ov000_021b5f50->mUnk_22cc);
+    OS_CreateAlarm(&data_ov000_021b5f50->mUnk_22cc);
     IrqRestore(v1);
     return 0;
 }
@@ -315,7 +315,7 @@ s32 func_ov000_021a60a4(const void *a, const u8 *b, u32 c) {
             return 1;
         case 3:
             func_ov000_021a5948(a, b, c);
-            func_0200ee3c(data_ov000_021b5f50->mUnk_2288.mUnk_00, data_ov000_021b5f50->mUnk_2288.mUnk_04);
+            DC_InvalidateRange(data_ov000_021b5f50->mUnk_2288.mUnk_00, data_ov000_021b5f50->mUnk_2288.mUnk_04);
             data_ov000_021b5f50->mUnk_2284++;
             r = func_021438f0((Unk021425e8Func) func_ov000_021a52b0, &data_ov000_021b5f50->mUnk_2288);
             switch (r) {
@@ -520,7 +520,7 @@ s32 func_ov000_021a5c24(void) {
         data_ov000_021b5f50->mUnk_2280 = 9;
     } else {
         p = func_0214259c();
-        func_0200ee3c(p, 2);
+        DC_InvalidateRange(p, 2);
         switch (p->mUnk_000) {
             case 0:
                 r = func_02142c24();
@@ -724,13 +724,13 @@ void func_ov000_021a57fc(u32 a) {
 
     b = IrqDisable();
     if (data_ov000_021b5f50->mUnk_2260 == 9 && a != 9) {
-        func_0200f8b8(&data_ov000_021b5f50->mUnk_22cc);
+        OS_CancelAlarm(&data_ov000_021b5f50->mUnk_22cc);
     }
     if (data_ov000_021b5f50->mUnk_2260 != 0xb) {
         data_ov000_021b5f50->mUnk_2260 = a;
     }
     if (a == 9) {
-        func_0200f950(&data_ov000_021b5f50->mUnk_22cc, 0x22f5341, func_ov000_021a5794, NULL);
+        OS_SetAlarm(&data_ov000_021b5f50->mUnk_22cc, 0x22f5341, func_ov000_021a5794, NULL);
     }
     IrqRestore(b);
 }
@@ -739,9 +739,9 @@ void func_ov000_021a57a8(void) {
     u32 a;
 
     a = IrqDisable();
-    func_0200f8b8(&data_ov000_021b5f50->mUnk_22cc);
+    OS_CancelAlarm(&data_ov000_021b5f50->mUnk_22cc);
     if (data_ov000_021b5f50->mUnk_2260 == 9) {
-        func_0200f950(&data_ov000_021b5f50->mUnk_22cc, 0x22f5341, func_ov000_021a5794, NULL);
+        OS_SetAlarm(&data_ov000_021b5f50->mUnk_22cc, 0x22f5341, func_ov000_021a5794, NULL);
     }
     IrqRestore(a);
 }
@@ -899,7 +899,8 @@ void func_ov000_021a52b0(Unk021a5088 *v1) {
                 case 6:
                     data_ov000_021b5f50->mUnk_2280 = 7;
                     if (v1->mUnk_08 == 5) {
-                        func_0200ee3c(data_ov000_021b5f50->mUnk_2288.mUnk_00, data_ov000_021b5f50->mUnk_2288.mUnk_04);
+                        DC_InvalidateRange(data_ov000_021b5f50->mUnk_2288.mUnk_00,
+                                           data_ov000_021b5f50->mUnk_2288.mUnk_04);
                         for (b = 0; b < v1->mUnk_0e; b++) {
                             func_ov000_021a671c((Unk021a5e84 *) v1->mUnk_10[b], v1->mUnk_50[b]);
                             func_ov000_021a586c(7, 0, v1->mUnk_10[b], (u32) v1, 0x70b);
@@ -917,7 +918,7 @@ void func_ov000_021a52b0(Unk021a5088 *v1) {
                     }
                     data_ov000_021b5f50->mUnk_2288.mUnk_06 =
                         (1 << func_ov000_021a58dc(32 - func_ov000_021a4bbc(v1->mUnk_0a))) >> 1;
-                    func_0200ee3c(data_ov000_021b5f50->mUnk_2288.mUnk_00, data_ov000_021b5f50->mUnk_2288.mUnk_04);
+                    DC_InvalidateRange(data_ov000_021b5f50->mUnk_2288.mUnk_00, data_ov000_021b5f50->mUnk_2288.mUnk_04);
                     data_ov000_021b5f50->mUnk_2284++;
                     a = func_021438f0((Unk021425e8Func) func_ov000_021a52b0, &data_ov000_021b5f50->mUnk_2288);
                     break;
@@ -1097,7 +1098,7 @@ void func_ov000_021a4f10(Unk021425e8 *v1) {
                     return;
                 case 0xf:
                     func_ov000_021a6c08(((u16 *) v1->mUnk_08)[7] >> 8);
-                    func_0200ee3c(v1->mUnk_08, 0x620);
+                    DC_InvalidateRange(v1->mUnk_08, 0x620);
                     func_ov000_021a6bb4(v1->mUnk_08);
                     return;
                 default:

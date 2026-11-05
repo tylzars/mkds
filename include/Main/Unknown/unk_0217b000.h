@@ -469,7 +469,7 @@ extern u16 *data_0217b31c;
 extern u16 *data_0217b320;
 extern u16 *data_0217b324;
 // Object behind data_0217b334, 0x78 bytes, allocated in func_020abcf4. func_020aba9c passes the pointers at 0x00
-// and 0x04 to func_0200ee74 with the words at 0x08 and 0x0c.
+// and 0x04 to DC_FlushRange with the words at 0x08 and 0x0c.
 typedef struct Unk0217b334 {
     /* 00 */ void *mUnk_00;
     /* 04 */ void *mUnk_04;

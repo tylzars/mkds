@@ -52,7 +52,7 @@ s32 func_02142c98(void *buf, u32 n, u32 size) {
         data_0217eed0 = 0;
         return 4;
     }
-    func_0200ee3c(buf, size);
+    DC_InvalidateRange(buf, size);
     MI_DmaFill32(n, buf, 0, size);
     data_0217eed4 = buf;
     data_0217eed4->mUnk_000 = (u8 *) buf + 0x200;
@@ -67,7 +67,7 @@ s32 func_02142c98(void *buf, u32 n, u32 size) {
     RingQueueInit(&data_0217eed8, data_0217eef8, 10);
     for (j = 0; j < 10; j++) {
         *(u16 *) data_0217ef60[j] = 0x8000;
-        func_0200ee58(data_0217ef60[j], 2);
+        DC_StoreRange(data_0217ef60[j], 2);
         RingQueueAppend(&data_0217eed8, data_0217ef60[j], 1);
     }
     PxiCallbackSet(0xa, func_021425e8);
@@ -111,14 +111,14 @@ s32 func_02142ab8(u32 a, u16 b, ...) {
     if (RingQueueRemoveFront(&data_0217eed8, &p, 0) == 0) {
         return 8;
     }
-    func_0200ee3c(p, 2);
+    DC_InvalidateRange(p, 2);
     if ((*(u16 *) p & 0x8000) == 0) {
         RingQueuePrepend(&data_0217eed8, p, 1);
         return 8;
     }
     if (b == 0) {
-        func_0200ee58(data_0217eed4->mUnk_00c, 0x100);
-        func_0200ee3c(p, 0x100);
+        DC_StoreRange(data_0217eed4->mUnk_00c, 0x100);
+        DC_InvalidateRange(p, 0x100);
         MI_DmaCopy32(data_0217eed4->mUnk_014, data_0217eed4->mUnk_00c, p, 0x100);
     }
     *(u16 *) p = a;
@@ -127,7 +127,7 @@ s32 func_02142ab8(u32 a, u16 b, ...) {
         ap++;
         ((u32 *) ((u8 *) p + 4))[i] = ap[-1];
     }
-    func_0200ee58(p, 0x100);
+    DC_StoreRange(p, 0x100);
     r = PxiSendFifoWord(0xa, (u32) p, 0);
     RingQueueAppend(&data_0217eed8, p, 1);
     if (r < 0) {
@@ -157,7 +157,7 @@ s32 func_02142a30(void) {
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(data_0217eed4->mUnk_004, 2);
+    DC_InvalidateRange(data_0217eed4->mUnk_004, 2);
     if (data_0217eed4->mUnk_004->mUnk_000 <= 1) {
         return 3;
     }
@@ -173,7 +173,7 @@ s32 func_02142988(s32 n, ...) {
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(data_0217eed4->mUnk_004, 2);
+    DC_InvalidateRange(data_0217eed4->mUnk_004, 2);
     v = data_0217eed4->mUnk_004->mUnk_000;
     ap = (u32 *) (((u32) &n & ~3) + 4);
     r = 3;
@@ -201,12 +201,12 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
     if (c != 0) {
         return;
     }
-    func_0200ee3c(data_0217eed4->mUnk_010, 0x100);
+    DC_InvalidateRange(data_0217eed4->mUnk_010, 0x100);
     if (data_0217eed4->mUnk_016 == 0) {
-        func_0200ee3c(data_0217eed4->mUnk_004, 0x800);
+        DC_InvalidateRange(data_0217eed4->mUnk_004, 0x800);
     }
     if (m != data_0217eed4->mUnk_010) {
-        func_0200ee3c(m, 0x100);
+        DC_InvalidateRange(m, 0x100);
     }
     if (m->mUnk_00 >= 0x2a) {
         if (m->mUnk_00 == 0x80) {
@@ -220,7 +220,7 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
         } else if (m->mUnk_00 == 0x82) {
             if (data_0217eed4->mUnk_0c4[m->mUnk_06] != 0) {
                 m->mUnk_1c = data_0217eed4->mUnk_104[m->mUnk_06];
-                func_0200ee3c(m->mUnk_08, data_0217eed4->mUnk_004->mUnk_046);
+                DC_InvalidateRange(m->mUnk_08, data_0217eed4->mUnk_004->mUnk_046);
                 data_0217eed4->mUnk_0c4[m->mUnk_06](m);
             }
         } else if (m->mUnk_00 == 0x81) {
@@ -234,7 +234,7 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
         if (m->mUnk_00 == 0xe) {
             if ((u16) (m->mUnk_04 + 0xfff5) <= 1) {
                 if (m->mUnk_02 == 0) {
-                    func_0200ee3c(m->mUnk_08, data_0217eed4->mUnk_004->mUnk_046);
+                    DC_InvalidateRange(m->mUnk_08, data_0217eed4->mUnk_004->mUnk_046);
                 }
             }
         }
@@ -296,13 +296,13 @@ void func_021425e8(u32 a, Unk021425e8 *m, s32 c) {
             }
         }
     }
-    func_0200ee3c(data_0217eed4->mUnk_010, 0x100);
+    DC_InvalidateRange(data_0217eed4->mUnk_010, 0x100);
     func_021425cc();
     if (m == data_0217eed4->mUnk_010) {
         return;
     }
     m->mUnk_00 |= 0x8000;
-    func_0200ee58(m, 0x100);
+    DC_StoreRange(m, 0x100);
 }
 
 void func_021425cc(void) {

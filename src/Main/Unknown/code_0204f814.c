@@ -184,7 +184,7 @@ void func_0204fb40(s32 a) {
             h -= 0x12;
         }
         m = (h * 0x3c + t.mUnk_04) * 0x3c + t.mUnk_08;
-        x = func_0200f59c() | m << 16;
+        x = OS_GetTickLo() | m << 16;
         x = x * 0x5d588b656c078965ull + 0x269ec3;
         y = x >> 32;
         q->mUnk_0c = (u16) (y * 0x10000 >> 32) | 0x8000;
@@ -223,7 +223,7 @@ void func_0204f938(Unk0217aa08_14 *a) {
         h -= 0x12;
     }
     m = (h * 0x3c + t.mUnk_04) * 0x3c + t.mUnk_08;
-    x = func_0200f59c() | m << 16;
+    x = OS_GetTickLo() | m << 16;
     x = x * 0x5d588b656c078965ull + 0x269ec3;
     y = x >> 32;
     q->mUnk_0c = (u16) (y * 0x10000 >> 32) | 0x8000;

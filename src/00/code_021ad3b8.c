@@ -69,10 +69,10 @@ s32 func_ov000_021ad3b8(u32 a, s32 b) {
     s32 k;
 
     e = (b + 1) * 15;
-    c = func_0200f5ac() >> 16;
+    c = OS_GetTick() >> 16;
     d = 0;
     m = data_ov000_021b63d8;
-    while (data_ov000_021b6388() != 0 && d == 0 && (s32) ((u32) (func_0200f5ac() >> 16) - c) < e) {
+    while (data_ov000_021b6388() != 0 && d == 0 && (s32) ((u32) (OS_GetTick() >> 16) - c) < e) {
         if (func_ov000_021adbac() == 0) {
             func_ov000_021b04d4();
             continue;

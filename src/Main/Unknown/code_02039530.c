@@ -47,14 +47,14 @@ void func_02039530(u32 a, Unk02175628 *b) {
     c = b->mBits & 0x30c;
     if (b->mUnk_14 != 0 && c == 0x30c) {
         if (b->mUnk_00 & 0x30c) {
-            b->mUnk_18 = func_0200f5ac();
+            b->mUnk_18 = OS_GetTick();
             b->mUnk_12 = 0;
             return;
         }
         if (b->mUnk_12 != 0) {
             return;
         }
-        if ((u32) (func_0200f5ac() - b->mUnk_18) > 0x3fec4) {
+        if ((u32) (OS_GetTick() - b->mUnk_18) > 0x3fec4) {
             b->mUnk_12 = 1;
         }
         return;

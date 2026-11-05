@@ -190,8 +190,8 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
     }
     buffer = scan;
     if (func_ov003_021baaac(NULL, NULL, 0, 0x30bffe) != 0) {
-        func_0200fb08(&timer);
-        func_0200f950(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x13);
+        OS_CreateAlarm(&timer);
+        OS_SetAlarm(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x13);
         do {
             RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
             switch ((u32) msg) {
@@ -252,7 +252,7 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
             scan++;
         }
     cleanup:
-        func_0200f8b8(&timer);
+        OS_CancelAlarm(&timer);
         while (RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 0) == 1) {
         }
     }
@@ -290,8 +290,8 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
     func_ov000_021a6894();
     if (func_ov003_021baaac(NULL, request->mUnk_04, request->mUnk_00, 0x30bffe) != 0) {
         retries = 0;
-        func_0200fb08(&timer);
-        func_0200f950(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x12);
+        OS_CreateAlarm(&timer);
+        OS_SetAlarm(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x12);
         flags |= 0x30000;
         do {
             RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
@@ -303,7 +303,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
                     break;
                 case 5:
                     if (done == FALSE) {
-                        func_0200f8b8(&timer);
+                        OS_CancelAlarm(&timer);
                         if (func_ov003_021babc0(&data_ov003_021d8ac0, 1) != 1) {
                             running = FALSE;
                         } else {
@@ -345,7 +345,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
                     break;
             }
         } while (running != FALSE);
-        func_0200f8b8(&timer);
+        OS_CancelAlarm(&timer);
         while (RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 0) == 1) {
         }
     }

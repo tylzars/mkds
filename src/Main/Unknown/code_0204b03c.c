@@ -101,8 +101,8 @@ void func_0204b284(u8 *p, u32 n, u32 a) {
     e[3] = 0;
     c = func_0204b2cc(p, n);
     if (a == 0) {
-        e[0] = (func_0200f5ac() >> 16) & 0xff;
-        e[1] = (func_0200f5ac() >> 32) & 0xff;
+        e[0] = (OS_GetTick() >> 16) & 0xff;
+        e[1] = (OS_GetTick() >> 32) & 0xff;
     }
     e[2] = c >> 8;
     e[3] = c;
@@ -146,7 +146,7 @@ void func_0204b138(u32 *p, u32 n) {
     j = 0;
     l = 0;
     k = 0;
-    i = (func_0200f5ac() >> 16) % 0x1d;
+    i = (OS_GetTick() >> 16) % 0x1d;
     m = data_usa_02154694[i] + (data_usa_02154648[0] + (data_usa_021545d8[0] + data_usa_02154604[0]));
     i = func_0204b20c(m ^ *p, *p);
     e = (u32 *) ((u8 *) p + n);

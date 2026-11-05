@@ -9,11 +9,11 @@
 u16 data_02170280;
 u16 data_0217027c;
 
-void func_0200fe58(void *p) {
+void OS_GetMacAddress(void *p) {
     MemCopy((void *) 0x27ffcf4, p, 6);
 }
 
-void func_0200fddc(Unk0200fddc *p) {
+void OS_GetOwnerInfo(Unk0200fddc *p) {
     u8 *s;
 
     s = (u8 *) 0x27ffc80;
@@ -27,7 +27,7 @@ void func_0200fddc(Unk0200fddc *p) {
     MemCopyHalfwords(s + 0x1c, p->mUnk_1a, 0x34);
 }
 
-void func_0200fd74(void) {
+void OS_InitReset(void) {
     if (data_0217027c != 0) {
         return;
     }

@@ -49,7 +49,7 @@ void func_0204a798(Unk02175650 *a, u16 b) {
             }
             c->mUnk_00 = (u32) i * 2;
             a->mUnk_08 = 3;
-            func_0200ee58(a->mUnk_00, 0xdcc);
+            DC_StoreRange(a->mUnk_00, 0xdcc);
             return;
         }
         a->mUnk_04++;

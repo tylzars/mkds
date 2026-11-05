@@ -31,7 +31,7 @@ Unk021ab5e4 *func_ov000_021ab684(const u8 *a) {
     e = data_ov000_021b61f4;
     for (; i < 4; i++) {
         if (e->mUnk_5a != 0 && memcmp(e->mUnk_00, a, 0x20) == 0) {
-            e->mUnk_50 = func_0200f5ac() >> 16;
+            e->mUnk_50 = OS_GetTick() >> 16;
             return e;
         }
         e++;
@@ -46,7 +46,7 @@ Unk021ab5e4 *func_ov000_021ab63c(u32 a, u32 b) {
     e = data_ov000_021b61f4;
     for (; i < 4; i++) {
         if (e->mUnk_5a != 0 && e->mUnk_54 == a && e->mUnk_58 == b) {
-            e->mUnk_50 = func_0200f5ac() >> 16;
+            e->mUnk_50 = OS_GetTick() >> 16;
             return e;
         }
         e++;
@@ -61,7 +61,7 @@ Unk021ab5e4 *func_ov000_021ab5e4(const u8 *a) {
     u32 v2;
     u32 v3;
     Unk021ab5e4 *e;
-    t = func_0200f5ac() >> 16;
+    t = OS_GetTick() >> 16;
     v3 = 0;
     v1 = data_ov000_021b61f4;
     i = 0;

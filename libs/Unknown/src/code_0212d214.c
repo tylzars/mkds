@@ -370,7 +370,7 @@ void *func_0212e3dc(u32 a, UnkFunc *f, Unk0212d5f8 *p, u32 d, HeapStack *e) {
     if (func_0212d27c(a, b, size, 0) != size) {
         return 0;
     }
-    func_0200ee58(b, size);
+    DC_StoreRange(b, size);
     return b;
 }
 
@@ -452,7 +452,7 @@ Unk02021968 *func_0212e0b8(u32 a, HeapStack *b, u32 c) {
         }
         MemCopy(p->mUnk_3c, p->mUnk_3c + p->mUnk_38, n);
         MemFill(p->mUnk_3c, 0, n);
-        func_0200ee58(p, size);
+        DC_StoreRange(p, size);
         if (c != 0) {
             func_0212d238(a, p);
         }
@@ -533,7 +533,7 @@ u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, HeapStack *d) {
     if (func_0212d27c(c, buf, size, start) != size) {
         return 0;
     }
-    func_0200ee58(buf, size);
+    DC_StoreRange(buf, size);
     func_020219b0(a, b, buf);
     return 1;
 }

@@ -251,7 +251,7 @@ void func_0204e304(u32 a) {
             data_0217aa00->mUnk_0010 = 0;
             break;
         case 20:
-            data_0217aa00->mUnk_1692 = (func_0200f5ac() >> 10) % 40;
+            data_0217aa00->mUnk_1692 = (OS_GetTick() >> 10) % 40;
             data_0217aa00->mUnk_0010 = 0;
             break;
         case 7:

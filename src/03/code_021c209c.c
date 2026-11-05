@@ -77,10 +77,10 @@ void func_ov003_021c2398(void) {
     *(vu16 *) 0x4000208 = 0;
     GX_DispOff();
     *(u32 *) 0x4001000 &= 0xfffeffff;
-    if (func_0200f6e4() == 0) {
+    if (OS_IsTickAvailable() == 0) {
         IrqDisableLoopForever();
     }
-    if (func_0200fb18() == 0) {
+    if (OS_IsAlarmAvailable() == 0) {
         IrqDisableLoopForever();
     }
     GX_VBlankIntr(0);

@@ -277,7 +277,7 @@ typedef struct RaceProgress {
     /* 47c */ Unk020f41c4_B mRandom;
     // Written once, never read; mNextHeader.mUnk_5c holds the same value.
     /* 494 */ s32 mSeed;
-    // Random generator seeded from three func_0200f5ac calls, not from mSeed. Local means this console, not the local
+    // Random generator seeded from three OS_GetTick calls, not from mSeed. Local means this console, not the local
     // player (mFlags bit 1 is the local entry). Mode 1 uses it where the other modes use mRandom.
     /* 498 */ Unk020f41c4_B mLocalRandom;
     /* 4b0 */ Unk020f41c4_B mUnk_4b0;

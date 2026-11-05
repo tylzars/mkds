@@ -160,7 +160,7 @@ void func_02055fc8(void) {
             p->mUnk_04_h = (0x100 * j + k * 8) | 0xf000;
         }
     }
-    func_0200ee74(v1, 0x400);
+    DC_FlushRange(v1, 0x400);
     GXS_LoadOAM(v1, 0, 0x400);
     VBlankIntrWait();
     data_0217aa04->mUnk_08 &= ~1;

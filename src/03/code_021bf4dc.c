@@ -37,7 +37,7 @@ u32 func_ov003_021bf620(void *c, void *d) {
     void *b;
 
     b = func_ov003_021d14b8(func_ov003_021bf650(c), &a, 4);
-    func_0200ee74(b, a);
+    DC_FlushRange(b, a);
     ((void (*)(void *, u32, u32)) d)(b, 0, a);
     func_ov003_021d1490(b);
 }

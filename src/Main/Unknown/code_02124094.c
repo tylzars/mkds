@@ -171,7 +171,7 @@ void func_0212481c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
         x = ((u32) p->mUnk_04[j].mUnk_00 & 0xc000) >> 14;
         v = (&data_0215d024[y])[x * 4] << 5;
         buf = c->mUnk_14 + ((w & 0x3ff) << 5);
-        func_0200ee74(buf, v);
+        DC_FlushRange(buf, v);
         if (f == 0) {
             CallQueueAppend(0x13, u, buf, v);
         } else {
@@ -232,7 +232,7 @@ void func_02124748(u32 a, Unk02021dc8 *b, void *c, Unk0201ea30 *d, s32 e, u32 f,
         x = ((u32) p->mUnk_04[i].mUnk_00 & 0xc000) >> 14;
         v = (&data_0215d024[t])[x * 4] << 5;
         buf = ((Unk0212463c_c *) c)->mUnk_14 + ((r->mUnk_04 & 0x3ff) << 5);
-        func_0200ee74(buf, v);
+        DC_FlushRange(buf, v);
         if (e == 0) {
             CallQueueAppend(0x13, u, buf, v);
         } else {
@@ -273,7 +273,7 @@ void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
         x = ((u32) p->mUnk_04[j].mUnk_00 & 0xc000) >> 14;
         v = (&data_0215d024[y])[x * 4] << 5;
         buf = c->mUnk_14 + ((r->mUnk_04 & 0x3ff) << 5);
-        func_0200ee74(buf, v);
+        DC_FlushRange(buf, v);
         if (f == 0) {
             CallQueueAppend(0x13, u, buf, v);
         } else {
@@ -432,7 +432,7 @@ void func_0212428c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk021
     buf = q->mUnk_20.mUnk_10;
     u = q->mUnk_20.mUnk_18 << 5;
     v = q->mUnk_20.mUnk_14;
-    func_0200ee74(buf, v);
+    DC_FlushRange(buf, v);
     if (a == 0) {
         CallQueueAppend(0x13, u, buf, v);
     } else {
@@ -463,7 +463,7 @@ void func_021241c0(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e)
     buf = p->mUnk_20.mUnk_10;
     u = p->mUnk_20.mUnk_18 << 5;
     v = p->mUnk_20.mUnk_14;
-    func_0200ee74(buf, v);
+    DC_FlushRange(buf, v);
     if (a == 0) {
         CallQueueAppend(0x13, u, buf, v);
     } else {

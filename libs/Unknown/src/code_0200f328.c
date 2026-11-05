@@ -5,7 +5,7 @@
 // clang-format off
 // Reads a coprocessor 15 register and clears its low 12 bits.
 // Not compiled code: C has no way to read or write a coprocessor 15 register (mrc/mcr).
-asm u32 func_0200f328(void) {
+asm u32 OS_GetDTCMAddress(void) {
     mrc p15, 0, r0, c9, c1, 0
     ldr r1, =0xfffff000
     and r0, r0, r1
@@ -14,7 +14,7 @@ asm u32 func_0200f328(void) {
 
 // Sets bit 0 of coprocessor 15 register c1.
 // Not compiled code: C has no way to read or write a coprocessor 15 register (mrc/mcr).
-asm void func_0200f33c(void) {
+asm void OS_EnableProtectionUnit(void) {
     mrc p15, 0, r0, c1, c0, 0
     orr r0, r0, #0x1
     mcr p15, 0, r0, c1, c0, 0
@@ -23,7 +23,7 @@ asm void func_0200f33c(void) {
 
 // Clears bit 0 of coprocessor 15 register c1.
 // Not compiled code: C has no way to read or write a coprocessor 15 register (mrc/mcr).
-asm void func_0200f34c(void) {
+asm void OS_DisableProtectionUnit(void) {
     mrc p15, 0, r0, c1, c0, 0
     bic r0, r0, #0x1
     mcr p15, 0, r0, c1, c0, 0
@@ -32,14 +32,14 @@ asm void func_0200f34c(void) {
 
 // Writes r0 to a coprocessor 15 register.
 // Not compiled code: C has no way to read or write a coprocessor 15 register (mrc/mcr).
-asm void func_0200f35c(u32 a) {
+asm void OS_SetProtectionRegion1(u32 a) {
     mcr p15, 0, r0, c6, c1, 0
     bx lr
 }
 
 // Writes r0 to a coprocessor 15 register.
 // Not compiled code: C has no way to read or write a coprocessor 15 register (mrc/mcr).
-asm void func_0200f364(u32 a) {
+asm void OS_SetProtectionRegion2(u32 a) {
     mcr p15, 0, r0, c6, c2, 0
     bx lr
 }

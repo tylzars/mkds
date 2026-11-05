@@ -806,8 +806,8 @@ Expression shapes:
 - NitroSDK `u32` is `unsigned long`; a project's own `u32` may be `unsigned int`. These differ to the compiler.
 - `_ffltu` where the ROM calls `_fflt`: the converted value is signed (`s32 x` instead of `u32 x`, or a `u16` field
   promoted to `int`). The probe masks the call name, so check relocations (func_020a269c).
-- A 64-bit call result added to a 32-bit value widens the sum: `s = (a << 16) + func_0200f5ac();` builds a 64-bit add
-  too early. Narrow the call: `(a << 16) + (u32) func_0200f5ac()` (InitWiFiVSCourseSelect). The opposite shows as `adds` with
+- A 64-bit call result added to a 32-bit value widens the sum: `s = (a << 16) + OS_GetTick();` builds a 64-bit add
+  too early. Narrow the call: `(a << 16) + (u32) OS_GetTick()` (InitWiFiVSCourseSelect). The opposite shows as `adds` with
   the high word dropped: the sum is of `u64` locals and the result truncated (InitRaceProgress).
 - Where the narrowing sits shows what was narrowed. `lsl #1` then `lsl #16; lsr #16` (ROM) against one `lsl #17;
   lsr #16`: `v1 = f(...) * 2; g(..., (u16) v1);` (func_02009828). `lsl #4; lsr #16` for a `u16` argument is how

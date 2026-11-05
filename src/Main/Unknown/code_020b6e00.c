@@ -187,7 +187,7 @@ void func_020b8624(void) {
             s0.mUnk_04 = p;
             s0.mUnk_0c = 0;
             func_02024340(&s0, 0x80, 0x38, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x81));
-            func_0200ee74(data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData,
+            DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData,
                           data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mDataSize);
             a2 = NULL;
             LoadNcerData(&a2, FindSceneFileWrapper("race_ta_m.NCER"));
@@ -201,7 +201,7 @@ void func_020b8624(void) {
             s1.mUnk_04 = p;
             s1.mUnk_0c = 0;
             func_02024340(&s1, 0x80, 0x18, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x6d));
-            func_0200ee74(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData,
+            DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData,
                           data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mDataSize);
             func_020b46d0(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData, 0, 0, 0x20, 4,
                           data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mData, 0, 0);
@@ -238,7 +238,7 @@ void func_020b8624(void) {
                 s2.mUnk_08 = func_020b4b54();
                 func_02024340(&s2, 0, 0x19, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
                 func_02024340(&s2, 0, 0x18, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
-                func_0200ee74(data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData,
+                DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData,
                               data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mDataSize);
                 MemCopyHalfwords(data_0217b3c4->mNclrNcgrPairs[10].mNclr->mData,
                                  data_0217b3c4->mNclrNcgrPairs[0].mNclr->mData, 0x40);
@@ -282,7 +282,7 @@ void func_020b8624(void) {
         a8 = NULL;
         m = data_021759c0->mCurrentEntries[func_020b4d9c()].mPlayer.mTeamIndex == 0 ? 0x13 : 0x23;
         LoadNclrData(&a8, FindSceneFileWrapper("race_own_character_s_o.NCLR"));
-        func_0200ee74(data_0217b3c4->mNclrNcgrPairs[6].mNclr->mData, 0x200);
+        DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[6].mNclr->mData, 0x200);
         for (j = 0; j < 4; j++) {
             data_0217b3c4->mNclrNcgrPairs[6].mNclr->mData[j + 0xb3] = a8->mData[m + j];
         }

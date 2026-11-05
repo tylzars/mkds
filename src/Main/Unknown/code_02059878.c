@@ -125,7 +125,7 @@ void func_02059954(u8 *a) {
 
 void func_02059920(Unk02059920 *a) {
     if (a->mUnk_02 == 0 && a->mUnk_0c != NULL && a->mUnk_10 >= 4) {
-        func_0200ee58(a->mUnk_0c, a->mUnk_10);
+        DC_StoreRange(a->mUnk_0c, a->mUnk_10);
         switch (a->mUnk_04) {
             case 7:
             case 9:

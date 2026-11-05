@@ -47,7 +47,7 @@ u32 func_020501b0(u32 a) {
         data_0217aa00->mUnk_0436 &= ~1;
         if (e->mUnk_dc_0 != 0) {
             MemCopy(e, data_0217aa00->mUnk_0024, 0xc0);
-            func_0200ee58(data_0217aa00->mUnk_0024, 0xc0);
+            DC_StoreRange(data_0217aa00->mUnk_0024, 0xc0);
             q = data_0217aa00;
             *(Unk0217aa00_42c *) &q->mUnk_042c = e->mUnk_c0_42c;
             q->mUnk_043c = e->mUnk_dc_1;

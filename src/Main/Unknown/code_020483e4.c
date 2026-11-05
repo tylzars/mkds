@@ -131,7 +131,7 @@ void *func_02048504(const char *a, s32 b) {
     if (s != 0) {
         n = f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04;
         r = HeapAllocAligned(GetHeap(func_020364e8()), n, b);
-        func_0200ee58(r, n);
+        DC_StoreRange(r, n);
         if (r == NULL) {
             s = 0;
         } else {

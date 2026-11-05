@@ -270,7 +270,7 @@ void func_ov001_021a09a4(void) {
                 }
                 gMissionRunMSsel->mUnk_20[k] = r | ((bl << 10) | (g << 5));
             }
-            func_0200ee74(gMissionRunMSsel->mUnk_20, 0x20);
+            DC_FlushRange(gMissionRunMSsel->mUnk_20, 0x20);
             CallQueueAppend(0x1e, c2 << 5, gMissionRunMSsel->mUnk_20, 0x20);
         }
     }

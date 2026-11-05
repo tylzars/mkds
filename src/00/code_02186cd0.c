@@ -616,7 +616,7 @@ void func_ov000_02186d7c(void *l) {
         h = 0x50;
     }
     func_ov000_021ae290(0, h, g);
-    t0 = func_0200f5ac();
+    t0 = OS_GetTick();
     if (p->mUseHttps == 1) {
         func_0201000c(&v1);
         func_ov000_021a9c5c(&v1, 0x20);
@@ -646,7 +646,7 @@ void func_ov000_02186d7c(void *l) {
             goto fail;
         }
         func_ov000_021adb80();
-        t = func_0200f5ac();
+        t = OS_GetTick();
         if ((u64) d < (t - t0) * 64 / 0x82ea) {
             p->mResult = 4;
             goto fail;
@@ -737,7 +737,7 @@ void func_ov000_02186d7c(void *l) {
             ThreadLockUnlock(&p->mUnk_948);
             break;
         }
-        t = func_0200f5ac();
+        t = OS_GetTick();
         if ((u64) d < (t - t0) * 64 / 0x82ea) {
             p->mResult = 6;
             ThreadLockUnlock(&p->mUnk_948);

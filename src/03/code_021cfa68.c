@@ -378,7 +378,7 @@ BOOL func_ov003_021d0078(void) {
     u32 r;
     u32 t;
 
-    func_0200fe58(a);
+    OS_GetMacAddress(a);
     t = *(u32 *) 0x27ffc3c;
     t = a[0] + t + a[1] + a[2];
     data_ov003_021da2a8->mUnk_58 = t;

@@ -283,7 +283,7 @@ void func_0200e0c0(Thread *arg0) {
     if (compareLeft0 == compareRight0) {
         return;
     }
-    func_0200f8b8((Unk0200fb08 *) value0);
+    OS_CancelAlarm((Unk0200fb08 *) value0);
 }
 
 void ThreadWaitForEnd(Thread *t) {
@@ -469,11 +469,11 @@ void func_0200dc3c(u32 n) {
     Unk0200fb08 a;
     u32 s;
 
-    func_0200fb08(&a);
+    OS_CreateAlarm(&a);
     t = *data_0216ff54;
     s = IrqDisable();
     t->mUnk_b0 = &a;
-    func_0200f950(&a, n * 0x82ea >> 6, (void (*)(void *)) func_0200dc1c, &t);
+    OS_SetAlarm(&a, n * 0x82ea >> 6, (void (*)(void *)) func_0200dc1c, &t);
     while (t != 0) {
         ThreadWait(0);
     }

@@ -132,7 +132,7 @@ u32 func_0204b458(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, s32 e) {
         }
         func_0204b284((u8 *) b, n, 0);
         func_0204b138(p, m);
-        func_0200ee58(b, n);
+        DC_StoreRange(b, n);
         return func_0204b518();
     }
     func_02145e8c((u32) b, a, n, (UnkFunc *) func_0204b5dc, c, 1, 7, 10, 2);

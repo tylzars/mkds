@@ -73,7 +73,7 @@ void func_02152744(Unk02152490 *a) {
     u64 r;
     Unk02151ddc s;
 
-    t = func_0200f5ac();
+    t = OS_GetTick();
     func_02151ddc(&s);
     if (s.mUnk_10 != 0) {
         func_02152a8c(a, ((u32 *) &s)[0], ((u32 *) &s)[1]);

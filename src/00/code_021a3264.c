@@ -65,15 +65,15 @@ s32 func_ov000_021a3530(const char *a, char *b, const char *c, int d) {
 }
 
 u64 func_ov000_021a350c(void) {
-    return _ll_udiv(func_0200f5ac() << 6, 0x82ea);
+    return _ll_udiv(OS_GetTick() << 6, 0x82ea);
 }
 
 u32 func_ov000_021a3448(u32 a) {
     u64 s;
     u64 t;
     if (data_ov000_021b5dd4.mUnk_00 == 0 && data_ov000_021b5dd4.mUnk_08 == 0 && data_ov000_021b5dd4.mUnk_10 == 0) {
-        func_0200fe58(&s);
-        t = func_0200f5ac();
+        OS_GetMacAddress(&s);
+        t = OS_GetTick();
         s = ((s >> 24) & 0xffffff) | (t << 24);
         data_ov000_021b5dd4.mUnk_00 = s;
         data_ov000_021b5dd4.mUnk_08 = 0x5d588b656c078965;

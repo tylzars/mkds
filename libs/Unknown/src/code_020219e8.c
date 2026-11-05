@@ -21,7 +21,7 @@ void func_02021cd4(Unk02021968 *a, u32 b, Unk02021968 *c) {
         e = &a->mUnk_18[b];
         if (e == t) {
             n->mUnk_18[0].mUnk_00 = a->mUnk_18[b].mUnk_04;
-            func_0200ee58(a->mUnk_18[b].mUnk_00, 0x3c);
+            DC_StoreRange(a->mUnk_18[b].mUnk_00, 0x3c);
         } else {
             while (t != 0) {
                 x = t->mUnk_04;
@@ -31,7 +31,7 @@ void func_02021cd4(Unk02021968 *a, u32 b, Unk02021968 *c) {
                 t = x;
             }
             t->mUnk_04 = a->mUnk_18[b].mUnk_04;
-            func_0200ee58(t, 8);
+            DC_StoreRange(t, 8);
         }
     }
     h = c->mUnk_18[0].mUnk_00;
@@ -39,8 +39,8 @@ void func_02021cd4(Unk02021968 *a, u32 b, Unk02021968 *c) {
     a->mUnk_18[b].mUnk_04 = h;
     a->mUnk_18[b].mUnk_00 = c;
     SharedLockUnlock();
-    func_0200ee58(a, 0x3c);
-    func_0200ee58(c, 0x3c);
+    DC_StoreRange(a, 0x3c);
+    DC_StoreRange(c, 0x3c);
 }
 
 void func_02021c34(Unk02021968 *a) {
@@ -58,7 +58,7 @@ void func_02021c34(Unk02021968 *a) {
             t = n->mUnk_18[0].mUnk_00;
             if (e == t) {
                 n->mUnk_18[0].mUnk_00 = a->mUnk_18[i].mUnk_04;
-                func_0200ee58(n, 0x3c);
+                DC_StoreRange(n, 0x3c);
             } else {
                 while (t != 0) {
                     x = t->mUnk_04;
@@ -68,7 +68,7 @@ void func_02021c34(Unk02021968 *a) {
                     t = x;
                 }
                 t->mUnk_04 = a->mUnk_18[i].mUnk_04;
-                func_0200ee58(t, 8);
+                DC_StoreRange(t, 8);
             }
         }
         e++;
@@ -87,7 +87,7 @@ void func_02021be8(Unk02021968 *a) {
             n = p->mUnk_04;
             p->mUnk_00 = 0;
             p->mUnk_04 = 0;
-            func_0200ee58(p, 8);
+            DC_StoreRange(p, 8);
             p = n;
         } while (n != 0);
     }

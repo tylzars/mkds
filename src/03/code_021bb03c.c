@@ -190,8 +190,8 @@ s32 func_ov003_021be264(void) {
     if (func_ov003_021be708(p0, NULL, 0x30000) == 0) {
         return -2;
     }
-    func_0200fb08(&v1);
-    func_0200f950(&v1, 0x3fec42, (void (*)(void *)) func_ov003_021be4e0, (void *) 0x12);
+    OS_CreateAlarm(&v1);
+    OS_SetAlarm(&v1, 0x3fec42, (void (*)(void *)) func_ov003_021be4e0, (void *) 0x12);
     c = FALSE;
     do {
         if (func_ov003_021bb354() >= data_ov003_021d68b8) {
@@ -228,7 +228,7 @@ s32 func_ov003_021be264(void) {
             }
         }
     } while (a != 0);
-    func_0200f8b8(&v1);
+    OS_CancelAlarm(&v1);
     while (func_ov003_021be528() != 0) {
     }
     if (b > 0) {
@@ -398,8 +398,8 @@ s32 func_ov003_021bdd3c(void) {
             a = -2;
             goto end;
         }
-        func_0200fb08(&n);
-        func_0200f950(&n, 0xffb10, (void (*)(void *)) func_ov003_021be4e0, (void *) 0x13);
+        OS_CreateAlarm(&n);
+        OS_SetAlarm(&n, 0xffb10, (void (*)(void *)) func_ov003_021be4e0, (void *) 0x13);
         c = TRUE;
         a = 0;
         do {
@@ -416,8 +416,8 @@ s32 func_ov003_021bdd3c(void) {
                         d = func_ov003_021be96c((u8 *) data_ov003_021d8c2c, data_ov003_021d8c40);
                         if (d > a) {
                             a = d;
-                            func_0200f8b8(&n);
-                            func_0200f950(&n, 0xffb10, (void (*)(void *)) func_ov003_021be4e0, (void *) 0x13);
+                            OS_CancelAlarm(&n);
+                            OS_SetAlarm(&n, 0xffb10, (void (*)(void *)) func_ov003_021be4e0, (void *) 0x13);
                         }
                         break;
                     case 10:
@@ -447,7 +447,7 @@ s32 func_ov003_021bdd3c(void) {
                 }
             }
         } while (c != FALSE);
-        func_0200f8b8(&n);
+        OS_CancelAlarm(&n);
         while (func_ov003_021be528() != 0) {
         }
         if (data_ov003_021d8be0 != 0) {
@@ -742,7 +742,7 @@ s32 func_ov003_021bd894(u8 *p) {
 }
 
 u32 func_ov003_021bd884(void *p) {
-    func_0200fe58(p);
+    OS_GetMacAddress(p);
     return 0x1u;
 }
 
@@ -1822,7 +1822,7 @@ void func_ov003_021bb378(u8 *a, const u8 *b, u32 c) {
 }
 
 u32 func_ov003_021bb354(void) {
-    return _ll_udiv(func_0200f5ac() << 6, 0x82ea);
+    return _ll_udiv(OS_GetTick() << 6, 0x82ea);
 }
 
 void *func_ov003_021bb328(s32 a, s32 b) {

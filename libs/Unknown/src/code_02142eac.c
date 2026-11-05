@@ -18,7 +18,7 @@ s32 func_02144514(Unk021425e8Func a, void *b, u32 c) {
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_010, 4);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_010, 4);
     if (p->mUnk_004->mUnk_010 == 1) {
         return 3;
     }
@@ -28,7 +28,7 @@ s32 func_02144514(Unk021425e8Func a, void *b, u32 c) {
     if (b == 0) {
         return 6;
     }
-    func_0200ee58(b, c);
+    DC_StoreRange(b, c);
     func_02142c0c(0x11, (u32) a);
     r = func_02142ab8(0x11, 2, b, c);
     if (r == 0) {
@@ -47,14 +47,14 @@ s32 func_02144438(Unk021425e8Func a, const void *b, void *c, u32 d) {
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_010, 4);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_010, 4);
     if (p->mUnk_004->mUnk_010 == 0) {
         return 3;
     }
     if (d > 0x5e4) {
         return 6;
     }
-    func_0200ee58(c, d);
+    DC_StoreRange(c, d);
     func_02142c0c(0x12, (u32) a);
     MemCopy(b, w, 6);
     r = func_02142ab8(0x12, 4, w[0], w[1], c, d);
@@ -73,7 +73,7 @@ s32 func_021443b0(Unk021425e8Func a) {
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_010, 4);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_010, 4);
     if (p->mUnk_004->mUnk_010 == 0) {
         return 3;
     }
@@ -95,14 +95,14 @@ s32 func_02144230(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_184, 2);
-    func_0200ee3c(&p->mUnk_004->mUnk_0c2, 2);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_184, 2);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_0c2, 2);
     if (p->mUnk_004->mUnk_184 != 0) {
         if (p->mUnk_004->mUnk_0c2 != 1) {
             return 3;
         }
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_00c, 4);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
     if (p->mUnk_004->mUnk_00c == 1) {
         return 3;
     }
@@ -156,14 +156,14 @@ s32 func_02144048(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(&q->mUnk_18e, 2);
+    DC_InvalidateRange(&q->mUnk_18e, 2);
     v = q->mUnk_18e;
-    func_0200ee3c(&q->mUnk_184, 2);
+    DC_InvalidateRange(&q->mUnk_184, 2);
     flag = q->mUnk_184 == 0 ? w : 0;
     if (flag == 1) {
-        func_0200ee3c(&q->mUnk_17e, 2);
+        DC_InvalidateRange(&q->mUnk_17e, 2);
         w = q->mUnk_17e;
-        func_0200ee3c(&q->mUnk_086, 2);
+        DC_InvalidateRange(&q->mUnk_086, 2);
     }
     if (c == 0) {
         return 6;
@@ -171,7 +171,7 @@ s32 func_02144048(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 
     if (w == 0) {
         return 7;
     }
-    func_0200ee3c(&q->mUnk_050, 2);
+    DC_InvalidateRange(&q->mUnk_050, 2);
     if (c == q->mUnk_050) {
         return 6;
     }
@@ -181,7 +181,7 @@ s32 func_02144048(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 
     if (d == 0) {
         return 6;
     }
-    func_0200ee58(c, d);
+    DC_StoreRange(c, d);
     r = func_02142ab8(0xf, 7, c, d, e, f, g, a, b);
     if (r == 0) {
         return 2;
@@ -198,7 +198,7 @@ s32 func_02143fbc(Unk021425e8Func a) {
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_00c, 4);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
     if (p->mUnk_004->mUnk_00c == 0) {
         return 3;
     }
@@ -339,9 +339,9 @@ s32 func_02143c80(Unk021425e8Func a, Unk02143c30 *b) {
     }
     func_02143c30(b);
     func_02142c0c(7, (u32) a);
-    func_0200ee58(b, 0x40);
+    DC_StoreRange(b, 0x40);
     if (b->mUnk_04 != 0) {
-        func_0200ee58(b->mUnk_00, b->mUnk_04);
+        DC_StoreRange(b->mUnk_00, b->mUnk_04);
     }
     r = func_02142ab8(7, 1, b);
     if (r == 0) {
@@ -508,7 +508,7 @@ s32 func_021437d8(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e) {
     if (b == 0) {
         return 6;
     }
-    func_0200ee58(b, b[0] * 2);
+    DC_StoreRange(b, b[0] * 2);
     func_02142c0c(0xc, (u32) a);
     pk = (Unk021437d8 *) func_02142aa8()->mUnk_00c;
     pk->mUnk_00 = 0xc;
@@ -540,7 +540,7 @@ s32 func_021436d0(Unk021425e8Func a, u32 b) {
         if (b < 1 || b > 0xf) {
             return 6;
         }
-        func_0200ee3c(&p->mUnk_004->mUnk_17e, 2);
+        DC_InvalidateRange(&p->mUnk_004->mUnk_17e, 2);
         if ((p->mUnk_004->mUnk_17e & (1 << b)) == 0) {
             return 7;
         }
@@ -564,7 +564,7 @@ s32 func_02143634(Unk021425e8Func a, u32 b) {
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_17e, 2);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_17e, 2);
     if ((p->mUnk_004->mUnk_17e & b & 0xfffe) == 0) {
         return 7;
     }
@@ -621,7 +621,7 @@ s32 func_02143520(void *a) {
     if (a == 0) {
         return 6;
     }
-    func_0200ee3c(p->mUnk_004, 0x7bc);
+    DC_InvalidateRange(p->mUnk_004, 0x7bc);
     MemCopyWordsByBlock(p->mUnk_004, a, 0x7bc);
     return 0;
 }
@@ -633,11 +633,11 @@ s32 func_0214349c(void) {
     if (func_02142988(2, 7, 8) != 0) {
         return 0;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_00c, 4);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
     if (p->mUnk_004->mUnk_00c == 1) {
         return 0;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_18e, 4);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_18e, 4);
     return (p->mUnk_004->mUnk_18e + 0x1f) & ~0x1f;
 }
 
@@ -650,22 +650,22 @@ s32 func_021433b0(void) {
     if (func_02142988(2, 7, 8) != 0) {
         return 0;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_00c, 4);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_00c, 4);
     if (p->mUnk_004->mUnk_00c == 1) {
         return 0;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_184, 2);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_184, 2);
     if (p->mUnk_004->mUnk_184 == 0) {
         f = 1;
     } else {
         f = 0;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_190, 2);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_190, 2);
     v = p->mUnk_004->mUnk_190;
     if (f != 1) {
         return ((v + 0x51) & ~0x1f) << 1;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_0f4, 2);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_0f4, 2);
     return (((v + 0xc) * p->mUnk_004->mUnk_0f4 + 0x29) & ~0x1f) << 1;
 }
 
@@ -681,7 +681,7 @@ void *func_021432ac(const Unk021432ac *a, u32 b) {
     if (b < 1 || b > 0xf) {
         return 0;
     }
-    func_0200ee3c(&p->mUnk_004->mUnk_17e, 2);
+    DC_InvalidateRange(&p->mUnk_004->mUnk_17e, 2);
     if ((p->mUnk_004->mUnk_17e & (1 << b)) == 0) {
         return 0;
     }
@@ -714,16 +714,16 @@ u16 func_021431d8(void) {
     if (func_02142a8c() != 0) {
         return 0;
     }
-    func_0200ee3c(p->mUnk_004, 2);
+    DC_InvalidateRange(p->mUnk_004, 2);
     switch (p->mUnk_004->mUnk_000) {
         case 9:
-            func_0200ee3c(&p->mUnk_004->mUnk_17e, 2);
+            DC_InvalidateRange(&p->mUnk_004->mUnk_17e, 2);
             if (p->mUnk_004->mUnk_17e == 0) {
                 return 0;
             }
         case 10:
         case 11:
-            func_0200ee3c(&p->mUnk_004->mUnk_0b8, 2);
+            DC_InvalidateRange(&p->mUnk_004->mUnk_0b8, 2);
             return p->mUnk_004->mUnk_0b8;
         default:
             return 0;
@@ -735,7 +735,7 @@ u16 func_02143134(void) {
     s32 i;
     u16 sum;
 
-    func_0200fe58(buf);
+    OS_GetMacAddress(buf);
     for (i = 0, sum = 0; i < 6; i++) {
         sum = sum + buf[i];
     }
@@ -749,7 +749,7 @@ u16 func_02143090(void) {
     s32 i;
     u16 sum;
 
-    func_0200fe58(buf);
+    OS_GetMacAddress(buf);
     for (i = 0, sum = 0; i < 6; i++) {
         sum = sum + buf[i];
     }

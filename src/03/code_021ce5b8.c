@@ -23,7 +23,7 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
     data_ov003_021da280 = func_ov003_021d283c(0x1ba0, 0x20);
     data_ov003_021da280->mUnk_1370 = a;
     d = data_ov003_021da280;
-    t = func_0200f5ac();
+    t = OS_GetTick();
     d->mUnk_1b74 = (u32) t;
     d->mUnk_1b78 = (u32) (t >> 32);
     if (func_02143e10(d, func_ov003_021ce7c0, 3) == 2) {
@@ -34,7 +34,7 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
         *(Unk021d66d0 *) &d->mUnk_1374 = data_ov003_021d66d0;
         d->mUnk_1374.mUnk_00 = d->mUnk_0f00;
         data_ov003_021da280->mUnk_1374.mUnk_08 = func_02143090();
-        func_0200fddc(&s);
+        OS_GetOwnerInfo(&s);
         MemCopy(data_ov003_021d66c4, &data_ov003_021da280->mUnk_1374.mUnk_14[0], 8);
         data_ov003_021da280->mUnk_1374.mUnk_14[9] = 1;
         MemCopy(s.mUnk_04, &data_ov003_021da280->mUnk_1374.mUnk_14[0xc], s.mUnk_18 * 2);
@@ -133,7 +133,7 @@ void func_ov003_021ce6ac(Unk021ce5b8 *a) {
         Unk021da280 *d;
 
         e = a->mUnk_10[i];
-        func_0200ee3c(e, 0xc0);
+        DC_InvalidateRange(e, 0xc0);
         if (memcmp(e->mUnk_0c, data_ov003_021d66c4, 8) != 0) {
             continue;
         }
@@ -182,7 +182,7 @@ void func_ov003_021ce5b8(Unk021ce5b8 *a) {
         }
         return;
     }
-    func_0200ee3c(d->mUnk_0f00, 0x400);
+    DC_InvalidateRange(d->mUnk_0f00, 0x400);
     i = 0;
     n = a->mUnk_0e;
     if (n > 0) {

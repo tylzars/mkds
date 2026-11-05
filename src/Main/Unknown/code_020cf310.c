@@ -90,7 +90,7 @@ void func_020cf340(Unk020cf340 *a) {
             for (i = 0; i < 3; i++) {
                 a->mUnk_00[i + 0x40] = data_0217b490->mUnk_02.mUnk_01[v / 10][i];
             }
-            func_0200ee74(&a->mUnk_00[0x40], 6);
+            DC_FlushRange(&a->mUnk_00[0x40], 6);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&a->mUnk_00[0x40], 0x4080, 6);
             if (func_020b64e8() != 0) {
@@ -119,7 +119,7 @@ void func_020cf340(Unk020cf340 *a) {
                     }
                 }
             }
-            func_0200ee74(&a->mUnk_00[0x80], 0x34);
+            DC_FlushRange(&a->mUnk_00[0x80], 0x34);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&a->mUnk_00[0x80], 0x4100, 0x34);
             if (func_020b64e8() != 0) {
@@ -156,7 +156,7 @@ void func_020cf340(Unk020cf340 *a) {
                 a->mUnk_00[i + 0x78] = data_0217b490->mUnk_02.mUnk_00[*p];
                 p++;
             }
-            func_0200ee74(&a->mUnk_00[0x78], 0x28);
+            DC_FlushRange(&a->mUnk_00[0x78], 0x28);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&a->mUnk_00[0x78], 0x40f0, 0x28);
             if (func_020b64e8() != 0) {
@@ -185,7 +185,7 @@ void func_020cf340(Unk020cf340 *a) {
                     a->mUnk_00[j + 0x50] = data_0217b490->mUnk_02.mUnk_00[2];
                 }
             }
-            func_0200ee74(&a->mUnk_00[0x50], 0x10);
+            DC_FlushRange(&a->mUnk_00[0x50], 0x10);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&a->mUnk_00[0x50], 0x40a0, 0x10);
             if (func_020b64e8() != 0) {
@@ -233,7 +233,7 @@ void func_020cf340(Unk020cf340 *a) {
                     }
                 }
             }
-            func_0200ee74(&a->mUnk_00[0x54], 0x98);
+            DC_FlushRange(&a->mUnk_00[0x54], 0x98);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&a->mUnk_00[0x54], 0x40a8, 0x98);
             if (func_020b64e8() != 0) {
@@ -275,7 +275,7 @@ void func_020cf340(Unk020cf340 *a) {
                     a->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[4];
                 }
             }
-            func_0200ee74(&a->mUnk_00[0xe0], 0x2c);
+            DC_FlushRange(&a->mUnk_00[0xe0], 0x2c);
             GXS_BeginLoadBGExtPltt();
             GXS_LoadBGExtPltt(&a->mUnk_00[0xe0], 0x41c0, 0x2c);
             if (func_020b64e8() != 0) {

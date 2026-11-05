@@ -47,7 +47,7 @@ void func_020362dc(void *a) {
             data_02174e6c->mUnk_034[j + ((u32) i + 7) * 0x20] = v;
         }
     }
-    func_0200ee58(data_02174e6c->mUnk_034, 0x600);
+    DC_StoreRange(data_02174e6c->mUnk_034, 0x600);
     MemCopyHalfwordsToG2sBg3CntBits8To12Address(data_02174e6c->mUnk_034, 0, 0x600);
     func_02036264(data_02174e6c->mUnk_034, 0x600);
     for (i = 10; i < 14; i++) {
@@ -55,7 +55,7 @@ void func_020362dc(void *a) {
             data_02174e6c->mUnk_034[j + (u32) i * 0x20] = j + ((u32) i - 10) * 0x20 + 0x20;
         }
     }
-    func_0200ee58(data_02174e6c->mUnk_034, 0x600);
+    DC_StoreRange(data_02174e6c->mUnk_034, 0x600);
     MemCopyHalfwordsToG2sBg1CntBits8To12Address(data_02174e6c->mUnk_034, 0, 0x600);
     func_02036258();
     FrmHeapShrinkInParent(data_02174e6c->mHeap);
@@ -82,4 +82,3 @@ void func_02036278(void *a, u32 b, u32 c) {
 void func_02036264(void *a, u32 b) {
     func_02036278(a, 0, b);
 }
-

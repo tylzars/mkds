@@ -289,9 +289,9 @@ void func_0201000c(Unk0201000c *p) {
     d = b + 0x80;
     e = (u8 *) ((u32) d + 0x74);
     a = *(vu16 *) 0x4000006;
-    p->mUnk_00 = func_0200f59c() | (a << 16);
-    p->mUnk_04 = (*(u16 *) (e + 4) << 16) ^ (u32) data_02170254;
-    p->mUnk_08 = *(u32 *) (b + 0x3c) ^ ((data_02170254 >> 32) ^ *(u32 *) e);
+    p->mUnk_00 = OS_GetTickLo() | (a << 16);
+    p->mUnk_04 = (*(u16 *) (e + 4) << 16) ^ (u32) gTickOverflowCount;
+    p->mUnk_08 = *(u32 *) (b + 0x3c) ^ ((gTickOverflowCount >> 32) ^ *(u32 *) e);
     p->mUnk_08 = p->mUnk_08 ^ *(vu32 *) 0x4000600;
     p->mUnk_0c = *(u32 *) (b + 0x1e8);
     p->mUnk_10 = *(u32 *) (b + 0x1ec);

@@ -34,8 +34,8 @@ void func_0203bc64(u8 *b) {
     if (c != FALSE) {
         r = &data_0217aa00->mUnk_1ee8;
     } else {
-        t1 = func_0200f5ac();
-        t2 = func_0200f5ac();
+        t1 = OS_GetTick();
+        t2 = OS_GetTick();
         l.mUnk_00 = (u32) ((u32) t1 << 24) + (u32) (t2 >> 8);
         l.mUnk_08 = 0x5d588b656c078965;
         l.mUnk_10 = 0x269ec3;
@@ -127,8 +127,8 @@ void func_0203ba84(u8 *b) {
     if (c != FALSE) {
         r = &data_0217aa00->mUnk_1ee8;
     } else {
-        t1 = func_0200f5ac();
-        t2 = func_0200f5ac();
+        t1 = OS_GetTick();
+        t2 = OS_GetTick();
         l.mUnk_00 = (u32) ((u32) t1 << 24) + (u32) (t2 >> 8);
         l.mUnk_08 = 0x5d588b656c078965;
         l.mUnk_10 = 0x269ec3;

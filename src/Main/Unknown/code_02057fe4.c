@@ -303,7 +303,7 @@ BOOL func_020586ac(u8 a, u8 *b, u16 c, u8 d, u8 e) {
     } else {
         c = 0;
     }
-    func_0200ee58(q, c + 4);
+    DC_StoreRange(q, c + 4);
     data_0217aa00->mUnk_1608.mUnk_1a &= ~1;
     if (func_02050650(data_0217aa00->mUnk_1624, c + 4, e, NULL, &data_021652a0) == 0) {
         data_0217aa00->mUnk_1608.mUnk_1a |= 1;

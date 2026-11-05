@@ -451,7 +451,7 @@ void func_020c4e48(void) {
     u32 v;
     u32 p;
 
-    func_0200ee74(&gRaceStartGp->mUnk_18, 0x400);
+    DC_FlushRange(&gRaceStartGp->mUnk_18, 0x400);
     GX_LoadOAM(&gRaceStartGp->mUnk_18, 0, 0x400);
     v = (*(vu16 *) 0x4000304 & 0x8000) >> 15;
     if (v != 0) {
@@ -502,7 +502,7 @@ void InitRaceStartGp(void) {
     }
     func_02024340(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
     func_02024340(&w, 0, 8, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
-    func_0200ee74(gRaceStartGp->mRaceStartGpMONcgr->mData, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
+    DC_FlushRange(gRaceStartGp->mRaceStartGpMONcgr->mData, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
     GX_LoadOBJPltt(gRaceStartGp->mRaceStartGpMONclr->mData, 0, gRaceStartGp->mRaceStartGpMONclr->mDataSize);
     GX_LoadOBJ(gRaceStartGp->mRaceStartGpMONcgr->mData, 0, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
 }
@@ -539,7 +539,7 @@ void func_020c4ae8(void) {
     v[1] = 0x60000;
     p->mUnk_400 += func_020224e0((Unk020224e0_o *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400,
                                  (Unk020224e0_c *) c, NULL, v, 0, 1);
-    func_0200ee74(&gRaceStartGp->mUnk_18, 0x400);
+    DC_FlushRange(&gRaceStartGp->mUnk_18, 0x400);
     MI_DmaFill32(3, &gRaceStartGp->mUnk_18.mUnk_000.mUnk_00[gRaceStartGp->mUnk_18.mUnk_400], 0xc0,
                  (0x80 - gRaceStartGp->mUnk_18.mUnk_400) * 8);
 }

@@ -173,8 +173,8 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
         }
         *v4[0] = n << 3;
     }
-    func_0200ee74(v6, v7);
-    func_0200ee98();
+    DC_FlushRange(v6, v7);
+    DC_WaitWriteBufferEmpty();
     FS_CloseFile(&v1);
     data_02175ec0.mUnk_0020 = v6;
     data_02175ec0.mUnk_0024 = v7;
@@ -794,7 +794,7 @@ void func_0204c320(Unk0204c320 *a) {
                 return;
             }
             if (data_02175ec0.mUnk_000c != 2) {
-                func_0200ee74(data_02175ec0.mUnk_0020, data_02175ec0.mUnk_0024);
+                DC_FlushRange(data_02175ec0.mUnk_0020, data_02175ec0.mUnk_0024);
                 s->mUnk_b00 = func_0204d610(data_02175ec0.mUnk_0020);
                 data_02175ec0.mUnk_000c = 2;
                 if (data_02175ec0.mUnk_0010 == NULL) {
@@ -882,8 +882,8 @@ void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g) {
     v2 = &data_02175ec0;
     v2->mUnk_0000 = 1;
     v3 = (Unk02175ec0_440s *) ((u8 *) v2 + 0x440);
-    func_0200ee74(v3, 0x46f0);
-    func_0200ee98();
+    DC_FlushRange(v3, 0x46f0);
+    DC_WaitWriteBufferEmpty();
     v4 = (Unk0204c090 *) ((u8 *) v3 + 0xc0);
     v3->mUnk_46c0 = v4;
     if (v4 + 1 < (Unk0204c090 *) &v3->mUnk_46c0) {
@@ -909,8 +909,8 @@ void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g) {
     v3->mUnk_46e8 = 0;
     v3->mUnk_46e4 = 0;
     v3->mUnk_46ec = v2->mUnk_0028;
-    func_0200ee74(v3, 0x46f0);
-    func_0200ee98();
+    DC_FlushRange(v3, 0x46f0);
+    DC_WaitWriteBufferEmpty();
     func_02006aac(v2->mUnk_0028, v2->mUnk_002c, (void (*)(Unk0216f3dc_9c *)) func_0204c7e4);
     func_0204d6f4(f, g);
     v7 = v3->mUnk_46c0;
@@ -940,8 +940,8 @@ void func_0204bfac(u32 a, u32 b, u32 c, u32 d) {
     v2 = &data_02175ec0;
     v2->mUnk_0000 = 0;
     v3 = (Unk0204bfac *) ((u8 *) v2 + 0x440);
-    func_0200ee74(v3, 0xb0c);
-    func_0200ee98();
+    DC_FlushRange(v3, 0xb0c);
+    DC_WaitWriteBufferEmpty();
     for (i = 0; i < 16; i++) {
         v3->mUnk_000[i] = &v3->mUnk_0c0[i];
         v3->mUnk_040[i] = 0;
@@ -950,8 +950,8 @@ void func_0204bfac(u32 a, u32 b, u32 c, u32 d) {
     v3->mUnk_afc = NULL;
     v3->mUnk_b04 = 0;
     v3->mUnk_b08 = 0;
-    func_0200ee74(v3, 0xb0c);
-    func_0200ee98();
+    DC_FlushRange(v3, 0xb0c);
+    DC_WaitWriteBufferEmpty();
     func_02006a10((void (*)(Unk0216f3dc_9c *)) func_0204c320);
     v2->mUnk_000c = 1;
 }

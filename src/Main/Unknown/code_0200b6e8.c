@@ -277,8 +277,8 @@ void func_0200bcd8(Unk021425e8 *a) {
 
 s32 func_0200bc78(u32 a, u16 b, u8 *c) {
     s32 r;
-    func_0200ee74(c, 4);
-    func_0200ee98();
+    DC_FlushRange(c, 4);
+    DC_WaitWriteBufferEmpty();
     if (func_0200bd0c() == 0) {
         return 1;
     }
@@ -470,7 +470,7 @@ void func_0200b894(Unk021425e8 *a) {
             break;
         case 5:
             if (a->mUnk_38.mUnk_00[1] == data_0216fde8->mUnk_05e4) {
-                func_0200ee3c(data_0216fde8->mUnk_04c0, 0xc0);
+                DC_InvalidateRange(data_0216fde8->mUnk_04c0, 0xc0);
                 func_0200921c(func_0200b794, a->mUnk_12, (Unk02007ec4 *) data_0216fde8->mUnk_04c0);
                 func_02008f00(func_0200b794, 1);
             }

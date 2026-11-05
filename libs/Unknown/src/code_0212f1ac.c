@@ -57,7 +57,7 @@ void func_0212f638(s32 a) {
     }
 }
 
-// Calls mUnk_08, mUnk_04 and mUnk_10 of s (the first and last when not null), then func_0200ee74 on a and b.
+// Calls mUnk_08, mUnk_04 and mUnk_10 of s (the first and last when not null), then DC_FlushRange on a and b.
 void func_0212f5a0(void *a, void *b, u32 n, u32 d, Unk0212f1f8 *s) {
     if (s->mUnk_08 != 0) {
         s->mUnk_08(a, b, n, d, s->mUnk_0c);
@@ -66,8 +66,8 @@ void func_0212f5a0(void *a, void *b, u32 n, u32 d, Unk0212f1f8 *s) {
     if (s->mUnk_10 != 0) {
         s->mUnk_10(a, b, n, d, s->mUnk_14);
     }
-    func_0200ee74(a, n);
-    func_0200ee74(b, n);
+    DC_FlushRange(a, n);
+    DC_FlushRange(b, n);
 }
 
 // Does nothing.

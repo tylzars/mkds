@@ -168,7 +168,7 @@ void func_02058c10(void) {
 void func_02058ba4(void) {
     u64 v;
 
-    v = (u32) func_0200f5ac() << 8;
+    v = (u32) OS_GetTick() << 8;
     v = (u32) v & ~(u32) (v >> 32);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         v = v * 0x5d588b656c078965ull + 0x269ec3;

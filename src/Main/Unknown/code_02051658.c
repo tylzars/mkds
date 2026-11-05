@@ -250,9 +250,9 @@ void func_02051f00(Unk021425e8 *a) {
     if (a->mUnk_02 == 0) {
         switch (a->mUnk_08_0) {
             case 5:
-                func_0200ee3c(data_0217aa00->mUnk_0028, 0xc0);
+                DC_InvalidateRange(data_0217aa00->mUnk_0028, 0xc0);
                 MemCopy(data_0217aa00->mUnk_0028, &v1, 0xc0);
-                func_0200ee58(&v1, 0xc0);
+                DC_StoreRange(&v1, 0xc0);
                 if (data_0217aa00->mUnk_0004 == 0xd) {
                     v = a->mUnk_12;
                     if (func_020204c0(&v1) != 0) {

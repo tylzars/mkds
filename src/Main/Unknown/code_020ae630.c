@@ -45,7 +45,7 @@ void func_020ae630(void *c, void *d) {
 
     if (a != NULL) {
         n = a->mUnk_400;
-        func_0200ee74(a, 0x400);
+        DC_FlushRange(a, 0x400);
         for (i = 0; i < 0x80 - n; i++) {
             a->mUnk_00[n + i].mUnk_00 = (a->mUnk_00[n + i].mUnk_00 & 0xfe00ffff) | 0x1800000;
             a->mUnk_00[n + i].mUnk_00_0 = 0xe0;
@@ -53,7 +53,7 @@ void func_020ae630(void *c, void *d) {
     }
     if (b != NULL) {
         n = b->mUnk_400;
-        func_0200ee74(b, 0x400);
+        DC_FlushRange(b, 0x400);
         for (i = 0; i < 0x80 - n; i++) {
             b->mUnk_00[n + i].mUnk_00 = (b->mUnk_00[n + i].mUnk_00 & 0xfe00ffff) | 0x1800000;
             b->mUnk_00[n + i].mUnk_00_0 = 0xe0;

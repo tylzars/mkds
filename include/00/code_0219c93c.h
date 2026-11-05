@@ -31,14 +31,14 @@ typedef struct WiFiLogin {
     // Http (0x1a60 bytes; declared void *) of the running request: made by StartWiFiLoginRequest, freed when the reply
     // or an error ends the request and by ReleaseWiFiLogin.
     /* 28 */ void *mHttp;
-    // u64 tick reading (func_0200f5ac) taken when the HTTP request started (code_0219c3e4.c:243);
+    // u64 tick reading (OS_GetTick) taken when the HTTP request started (code_0219c3e4.c:243);
     // UpdateWiFiLoginRequest reports error 2 when (ticks << 6) / 0x82ea, the milliseconds since then, exceeds 10000
     // (:268).
     /* 2c */ u64 mRequestStartTime;
     // TRUE from StartWiFiLoginGpConnect until the GP connect callback or an error; UpdateWiFiLogin times the connect
     // out while it is TRUE.
     /* 34 */ BOOL mConnectPending;
-    // func_0200f5ac reading when the GP connect started; (ticks << 6) / 0x82ea is ms, limit 60000 ms (UpdateWiFiLogin).
+    // OS_GetTick reading when the GP connect started; (ticks << 6) / 0x82ea is ms, limit 60000 ms (UpdateWiFiLogin).
     /* 38 */ u64 mConnectStartTime;
     /* 40 */ Unk02152490 mUnk_40;
     // First string of the HTTP reply (0x100 buffer): given to the GP connect as its first credential, which

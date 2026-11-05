@@ -78,7 +78,7 @@ void func_ov003_021c3cc4(void) {
             MemCopy(e, f, 0x20);
         }
     }
-    func_0200ee74(a, 0x200);
+    DC_FlushRange(a, 0x200);
     GX_LoadBGPltt(a, 0, 0x200);
     func_ov003_021d1490(a);
     *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;

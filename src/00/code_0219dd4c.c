@@ -257,7 +257,7 @@ void UpdateMatching(s32 param_1) {
     switch (p->mState) {
         case 4:
             if (p->mUnk_1bc != 0) {
-                if ((func_0200f5ac() - p->mUnk_1c0) * 64 / 0x82ea > p->mUnk_1bc) {
+                if ((OS_GetTick() - p->mUnk_1c0) * 64 / 0x82ea > p->mUnk_1bc) {
                     p->mUnk_1bc = 0;
                     p = gWiFiMatching;
                     param_1 = p->mMode;
@@ -279,7 +279,7 @@ void UpdateMatching(s32 param_1) {
             p = gWiFiMatching;
             if (p->mUnk_1b0 != 0) {
                 n = (u32) (p->mLastParticipantPos * 3000) + 3000;
-                if ((func_0200f5ac() - p->mUnk_1b4) * 64 / 0x82ea >= n) {
+                if ((OS_GetTick() - p->mUnk_1b4) * 64 / 0x82ea >= n) {
                     if (func_ov000_0219fee4(func_ov000_0219fdc8(p->mParticipantProfileIds[0], 0)) != 0) {
                         return;
                     }
@@ -297,7 +297,7 @@ void UpdateMatching(s32 param_1) {
                 } else {
                     n = 3000;
                 }
-                if ((func_0200f5ac() - p->mUnk_ec) * 64 / 0x82ea > n) {
+                if ((OS_GetTick() - p->mUnk_ec) * 64 / 0x82ea > n) {
                     if (func_ov000_0219e594(func_ov000_021a0f20(p->mUnk_1ec)) != 0) {
                         return;
                     }
@@ -1385,11 +1385,11 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             if (b != o->mUnk_1ec) {
                 break;
             }
-            o->mUnk_1c0 = func_0200f5ac();
+            o->mUnk_1c0 = OS_GetTick();
             if ((o->mUnk_1f0 != 0 && o->mUnk_19f < 0x10) || o->mMode == 3) {
                 o->mUnk_1b0 = 1;
                 p = gWiFiMatching;
-                p->mUnk_1b4 = func_0200f5ac();
+                p->mUnk_1b4 = OS_GetTick();
                 if (p->mMode == 3) {
                     break;
                 }
@@ -1402,7 +1402,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             if (p->mMode == 0) {
                 p->mState = 3;
                 gWiFiMatching->mUnk_e8 = 1;
-                gWiFiMatching->mUnk_ec = func_0200f5ac();
+                gWiFiMatching->mUnk_ec = OS_GetTick();
             } else if (p->mMode == 1) {
                 func_ov000_0219fbec(1, 0);
             }
@@ -1699,7 +1699,7 @@ u32 func_ov000_0219fdc8(u32 a, s32 b) {
 
     if (b != 0) {
         gWiFiMatching->mUnk_1b0 = 1;
-        gWiFiMatching->mUnk_1b4 = func_0200f5ac();
+        gWiFiMatching->mUnk_1b4 = OS_GetTick();
         gWiFiMatching->mParticipantProfileIds[0] = a;
         return 0;
     }
@@ -1720,7 +1720,7 @@ u32 func_ov000_0219fdc8(u32 a, s32 b) {
         m = 3;
     }
     gWiFiMatching->mUnk_1bc = 6000;
-    gWiFiMatching->mUnk_1c0 = func_0200f5ac();
+    gWiFiMatching->mUnk_1c0 = OS_GetTick();
     gWiFiMatching->mUnk_1b0 = 0;
     v = gWiFiMatching->mUnk_1f0 != 0 ? 11 : 1;
     s[0] = gWiFiMatching->mMode;
@@ -1761,7 +1761,7 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
         }
         if (c != FALSE && gWiFiMatching->mUnk_19d == i) {
             gWiFiMatching->mUnk_1bc = 3000;
-            gWiFiMatching->mUnk_1c0 = func_0200f5ac();
+            gWiFiMatching->mUnk_1c0 = OS_GetTick();
             gWiFiMatching->mUnk_1b0 = 0;
             return 0;
         }
@@ -1813,7 +1813,7 @@ u32 func_ov000_0219fb48(void) {
     gWiFiMatching->mUnk_1ec = 0;
     gWiFiMatching->mUnk_19f = 0;
     p = gWiFiMatching;
-    p->mUnk_1c0 = func_0200f5ac();
+    p->mUnk_1c0 = OS_GetTick();
     if (p->mMode == 0) {
         p->mState = 3;
         if (func_ov000_0219e594(func_ov000_021a0f20(0)) != 0) {
@@ -1868,7 +1868,7 @@ u32 func_ov000_0219f9bc(u32 a) {
     } else if (gWiFiMatching->mMode == 0) {
         gWiFiMatching->mState = 3;
         gWiFiMatching->mUnk_e8 = 2;
-        gWiFiMatching->mUnk_ec = func_0200f5ac();
+        gWiFiMatching->mUnk_ec = OS_GetTick();
     } else if (gWiFiMatching->mMode == 1) {
         gWiFiMatching->mState = 4;
         func_ov000_0219fbec(1, 0);
@@ -1989,7 +1989,7 @@ void func_ov000_0219f544(s32 a) {
                     v[2] = p->mParticipantIndices[p->mLastParticipantPos];
                     if (p->mMode == 0) {
                         p->mUnk_e8 = 2;
-                        gWiFiMatching->mUnk_ec = func_0200f5ac();
+                        gWiFiMatching->mUnk_ec = OS_GetTick();
                     } else if (p->mMode == 1) {
                         func_ov000_0219fbec(1, 0);
                     }
@@ -2683,7 +2683,7 @@ void func_ov000_0219e668(void) {
             if (p->mMode == 0) {
                 p->mState = 3;
                 gWiFiMatching->mUnk_e8 = 2;
-                gWiFiMatching->mUnk_ec = func_0200f5ac();
+                gWiFiMatching->mUnk_ec = OS_GetTick();
                 return;
             }
             p->mState = 4;
@@ -2982,7 +2982,7 @@ void func_ov000_0219e138(u32 a, s32 b, s32 c) {
                         return;
                     }
                     gWiFiMatching->mUnk_e8 = 2;
-                    gWiFiMatching->mUnk_ec = func_0200f5ac();
+                    gWiFiMatching->mUnk_ec = OS_GetTick();
                     return;
                 case 3:
                     func_ov000_0219dfe4(1);
@@ -2995,7 +2995,7 @@ void func_ov000_0219e138(u32 a, s32 b, s32 c) {
                         return;
                     }
                     gWiFiMatching->mUnk_e8 = 2;
-                    gWiFiMatching->mUnk_ec = func_0200f5ac();
+                    gWiFiMatching->mUnk_ec = OS_GetTick();
                     return;
                 case 5:
                     if (func_ov000_0218b474(a) != 0) {
@@ -3037,7 +3037,7 @@ void func_ov000_0219e138(u32 a, s32 b, s32 c) {
                         return;
                     }
                     gWiFiMatching->mUnk_e8 = 2;
-                    gWiFiMatching->mUnk_ec = func_0200f5ac();
+                    gWiFiMatching->mUnk_ec = OS_GetTick();
                     return;
             }
             return;

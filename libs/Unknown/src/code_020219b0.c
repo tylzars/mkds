@@ -18,6 +18,6 @@ void func_020219b0(Unk02021968 *arg0, u32 arg1, void *arg2) {
     value0 = (value0) + ((value5 << 2));
     value1 = 4u;
     *(u32 *) ((value2) + (60)) = value4;
-    func_0200ee58((void *) value0, (int) value1);
+    DC_StoreRange((void *) value0, (int) value1);
     SharedLockUnlock();
 }

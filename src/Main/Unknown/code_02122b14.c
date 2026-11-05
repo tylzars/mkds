@@ -52,7 +52,7 @@ void func_02123a48(u32 a) {
             gWiFiSession->mReceivedMask = 0;
             func_ov000_021a323c(ReceiveWiFiSessionMessage);
             c = func_ov000_0219bb50();
-            gWiFiSession->mPlayerRecords[c].mSeed = func_0200f5ac();
+            gWiFiSession->mPlayerRecords[c].mSeed = OS_GetTick();
             PackWiFiSessionIndices();
             gWiFiSession->mStep = 0;
             func_02029454((u8) gWiFiSession->mPackedIndices[func_ov000_0219bb50()]);

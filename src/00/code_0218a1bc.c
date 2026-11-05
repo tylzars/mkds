@@ -12,7 +12,7 @@ u32 func_ov000_0218a1bc(Unk02188ec0 *v1) {
         }
         return 0xd;
     }
-    if ((func_0200f5ac() - v1->mUnk_cb0) * 64 / 0x1ff6210 >= 10) {
+    if ((OS_GetTick() - v1->mUnk_cb0) * 64 / 0x1ff6210 >= 10) {
         v1->mUnk_444[v1->mUnk_d13].mUnk_00 = 1;
         return 0xb;
     }

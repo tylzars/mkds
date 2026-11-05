@@ -450,7 +450,7 @@ void func_020adf00(u32 a) {
         }
     }
     func_020adfb0(&q, 0x20, 8, 1, 0x412, r);
-    func_0200ee74(func_0212b090(), 0x200);
+    DC_FlushRange(func_0212b090(), 0x200);
 }
 
 void func_020adec0(u16 *a, s32 b, s32 c, s32 d) {

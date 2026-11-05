@@ -93,7 +93,7 @@ void func_ov000_021b02fc(Unk021b5fa8 *a) {
         data_ov000_021b63e0[1] = 0x5d588b656c078965ULL;
         data_ov000_021b63e0[2] = 0x269ec3;
     } else {
-        data_ov000_021b63e0[0] = func_0200f5ac();
+        data_ov000_021b63e0[0] = OS_GetTick();
         data_ov000_021b63e0[1] = 0x5d588b656c078965ULL;
         data_ov000_021b63e0[2] = 0x269ec3;
     }
@@ -128,7 +128,7 @@ void func_ov000_021b02fc(Unk021b5fa8 *a) {
     data_ov000_021b6394 = 0;
     data_ov000_021b63e0[0] = _ll_mul(data_ov000_021b63e0[1], data_ov000_021b63e0[0]) + data_ov000_021b63e0[2];
     data_ov000_021b6374 = (_ll_mul(data_ov000_021b63e0[0] >> 32, 0xf88) >> 32) + 0x400;
-    func_0200fe58(data_ov000_021b63d0);
+    OS_GetMacAddress(data_ov000_021b63d0);
     data_ov000_021b6368 = 0;
     ThreadInit(&data_ov000_021b661c, (void (*)(void *)) func_ov000_021ae3a4, NULL, data_ov002_021b7ba0, 0x800,
                data_ov000_021b4c28);
@@ -418,7 +418,7 @@ u8 *func_ov000_021afd00(u32 a) {
     } else {
         for (d = 0; d < 8; d++) {
             if (a == data_ov000_021b6434[d].mUnk_00) {
-                e = func_0200f5ac() >> 16;
+                e = OS_GetTick() >> 16;
                 data_ov000_021b6434[d].mUnk_0a = e;
                 c = data_ov000_021b6434[d].mUnk_04;
                 break;
@@ -477,7 +477,7 @@ void func_ov000_021afb58(u8 *a, u32 b, u32 c) {
         func_ov000_021b0094(b) != FALSE) {
         return;
     }
-    d = func_0200f5ac() >> 16;
+    d = OS_GetTick() >> 16;
     for (g = 0; g < 8; g++) {
         if (b == data_ov000_021b6434[g].mUnk_00) {
             data_ov000_021b6434[g].mUnk_0a = d;
@@ -1009,7 +1009,7 @@ void func_ov000_021aeed8(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
 
 void func_ov000_021aee38(Unk021ae3f0 *param_1, Unk021ae87c *param_2, Unk021a998c *param_3) {
     param_3->mState = 3;
-    param_3->mStateStartTime = func_0200f5ac() >> 16;
+    param_3->mStateStartTime = OS_GetTick() >> 16;
     param_3->mUnk_14 = (u32) (((u16) ((param_1->mUnk_10 >> 8) | (param_1->mUnk_10 << 8)) << 16) |
                               (u16) ((param_1->mUnk_12 >> 8) | (param_1->mUnk_12 << 8)));
     param_3->mUnk_18 = (u16) ((param_2->mUnk_00 >> 8) | (param_2->mUnk_00 << 8));
@@ -1381,7 +1381,7 @@ Unk021ae3f0 *func_ov000_021ae51c(Unk021ae3f0 *r, u32 *s) {
         l->mUnk_00 = c;
         l->mUnk_06 = m;
         l->mUnk_08 = 0;
-        l->mUnk_2c = func_0200f5ac() >> 16;
+        l->mUnk_2c = OS_GetTick() >> 16;
         l->mUnk_30 = l->mUnk_34 + 0xe + b;
         MemCopy(r, l->mUnk_34 + 0xe, b);
     }
@@ -1628,7 +1628,7 @@ u32 func_ov000_021ae16c(Unk021a998c *b) {
     for (i = 0; i < 3; i++) {
         b->mUnk_28 = a;
         b->mState = 2;
-        b->mStateStartTime = func_0200f5ac() >> 16;
+        b->mStateStartTime = OS_GetTick() >> 16;
         func_ov000_021aefc0(b, 2, 24);
         s = IrqDisable();
         if (data_ov000_021b63b4 != 0) {
@@ -1705,8 +1705,8 @@ void func_ov000_021ae048(void) {
 
     s = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
     if (s != NULL) {
-        t = func_0200f5ac() >> 16;
-        while (data_ov000_021b6388() != 0 && s->mState != 0 && (s32) (func_0200f5ac() >> 16) - t < 0x27) {
+        t = OS_GetTick() >> 16;
+        while (data_ov000_021b6388() != 0 && s->mState != 0 && (s32) (OS_GetTick() >> 16) - t < 0x27) {
             func_ov000_021b04d4();
         }
     }
@@ -1858,25 +1858,25 @@ s32 func_ov000_021adcec(const u8 *a, u32 b, const u8 *c, s32 d, void *e) {
     f = 0;
     s->mUnk_34 = 0;
     g = FALSE;
-    j = func_0200f5ac() >> 16;
-    while (data_ov000_021b6388() != 0 && b != 0 && s->mState == 4 && (s32) ((u32) (func_0200f5ac() >> 16) - j) < 0x9f) {
+    j = OS_GetTick() >> 16;
+    while (data_ov000_021b6388() != 0 && b != 0 && s->mState == 4 && (s32) ((u32) (OS_GetTick() >> 16) - j) < 0x9f) {
         h = s->mUnk_28;
         func_ov000_021ade40(a, b, c, d, s, g);
-        k = func_0200f5ac() >> 16;
+        k = OS_GetTick() >> 16;
         do {
             func_ov000_021b04d4();
         } while (data_ov000_021b6388() != 0 && s->mState == 4 && s->mUnk_28 != s->mUnk_30 &&
-                 (s32) ((u32) (func_0200f5ac() >> 16) - k) < 0xf && (g == FALSE || s->mUnk_2c == 0));
+                 (s32) ((u32) (OS_GetTick() >> 16) - k) < 0xf && (g == FALSE || s->mUnk_2c == 0));
         i = s->mUnk_30 - h;
         f += i;
         if (i != 0) {
-            j = func_0200f5ac() >> 16;
+            j = OS_GetTick() >> 16;
         }
         s->mUnk_28 = s->mUnk_30;
         if (s->mState == 4 && s->mUnk_2c == 0 && i == 0) {
             if (g == FALSE) {
-                k = func_0200f5ac() >> 16;
-                while (data_ov000_021b6388() != 0 && (s32) ((u32) (func_0200f5ac() >> 16) - k) < 0xf) {
+                k = OS_GetTick() >> 16;
+                while (data_ov000_021b6388() != 0 && (s32) ((u32) (OS_GetTick() >> 16) - k) < 0xf) {
                     func_ov000_021b04d4();
                     if (s->mUnk_2c != 0) {
                         break;
@@ -1997,8 +1997,8 @@ void func_ov000_021adb00(void) {
         func_ov000_021afc5c(data_ov000_021b63b4);
         func_0200dc3c(100);
         func_ov000_021afc5c(data_ov000_021b63b4);
-        a = func_0200f5ac() >> 16;
-        while (data_ov000_021b6388() != 0 && (s32) (func_0200f5ac() >> 16) - a < 0x17) {
+        a = OS_GetTick() >> 16;
+        while (data_ov000_021b6388() != 0 && (s32) (OS_GetTick() >> 16) - a < 0x17) {
             if (data_ov000_021b6368 != 0) {
                 func_ov000_021b04f8(4);
                 return;
@@ -2036,7 +2036,7 @@ void func_ov000_021ad898(void) {
         if (data_ov000_021b63b0 != 0) {
             break;
         }
-        c = func_0200f5ac() >> 16;
+        c = OS_GetTick() >> 16;
         if (data_ov000_021b6388() != 0) {
             a--;
             if (a == 0) {

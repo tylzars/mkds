@@ -148,7 +148,7 @@ void LoadNclrData(Nclr **v1, void *a) {
             func_02021f8c((u32) *v1);
         }
     }
-    func_0200ee74((*v1)->mData, (*v1)->mDataSize);
+    DC_FlushRange((*v1)->mData, (*v1)->mDataSize);
 }
 
 void LocateNclr(Nclr **v1, void *a) {
@@ -173,7 +173,7 @@ void LoadNcgrData2(Ncgr **v1, void *a) {
             func_02021f7c((u32) *v1);
         }
     }
-    func_0200ee74((*v1)->mData, (*v1)->mDataSize);
+    DC_FlushRange((*v1)->mData, (*v1)->mDataSize);
 }
 
 void LocateNcgr2(Ncgr **v1, void *a) {
@@ -198,7 +198,7 @@ void LoadNcgrData(Ncgr **v1, void *a) {
             func_02021f6c((u32) *v1);
         }
     }
-    func_0200ee74((*v1)->mData, (*v1)->mDataSize);
+    DC_FlushRange((*v1)->mData, (*v1)->mDataSize);
 }
 
 void LocateNcgr(Ncgr **v1, void *a) {
@@ -263,7 +263,7 @@ void LoadNscrData(Nscr **v1, void *a) {
             func_02021f9c(a, (Unk02021fd0 **) v1);
         }
     }
-    func_0200ee74((*v1)->mData, (*v1)->mDataSize);
+    DC_FlushRange((*v1)->mData, (*v1)->mDataSize);
 }
 
 void LocateNscr(Nscr **v1, void *a) {

@@ -108,7 +108,7 @@ void func_0203b6ac(u8 *a) {
         t[1] = 0;
         t[2] = 0;
     }
-    r.mUnk_00 = (u32) ((t[0] * 60 + t[1]) * 60 + t[2] + func_0200f5ac());
+    r.mUnk_00 = (u32) ((t[0] * 60 + t[1]) * 60 + t[2] + OS_GetTick());
     r.mUnk_08 = 0x5d588b656c078965ULL;
     r.mUnk_10 = 0x269ec3;
     data_021759c0->mNextHeader.mMode = 0;

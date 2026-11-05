@@ -19,7 +19,7 @@
 #include "Main/Unknown/code_02037000.h"
 
 void func_020d159c(void) {
-    func_0200ee74(&gEndingStaffRoll->mUnk_10, 0x400);
+    DC_FlushRange(&gEndingStaffRoll->mUnk_10, 0x400);
     GX_LoadOAM(&gEndingStaffRoll->mUnk_10, 0, 0x400);
     if (gEndingStaffRoll->mUnk_00 == 0x1a4) {
         func_02036fec(0x78, 1);
@@ -99,7 +99,7 @@ void DrawEndingStaffRoll(void) {
             w += 2;
         }
     }
-    func_0200ee74(&gEndingStaffRoll->mUnk_10, 0x400);
+    DC_FlushRange(&gEndingStaffRoll->mUnk_10, 0x400);
     MI_DmaFill32(3, &gEndingStaffRoll->mUnk_10.mUnk_000[gEndingStaffRoll->mUnk_10.mUnk_400], 0xc0,
                  (0x80 - gEndingStaffRoll->mUnk_10.mUnk_400) << 3);
 }

@@ -456,7 +456,7 @@ void func_02050764(Unk021425e8 *a) {
     if (a->mUnk_10 > 0x18) {
         return;
     }
-    func_0200ee3c(a->mUnk_0c, a->mUnk_10);
+    DC_InvalidateRange(a->mUnk_0c, a->mUnk_10);
     MemCopy(a->mUnk_0c, &v1, a->mUnk_10);
     if (a->mUnk_04 == 7) {
         return;
@@ -489,12 +489,12 @@ BOOL func_02050650(void *a, s32 b, u16 c, void *d, Unk021652a0 *e) {
     if (n > e->mUnk_04) {
         n = e->mUnk_04;
     }
-    func_0200ee74(a, n);
+    DC_FlushRange(a, n);
     if (d == NULL) {
         d = a;
     } else {
         MemCopy(a, d, n);
-        func_0200ee74(d, n);
+        DC_FlushRange(d, n);
     }
     if (func_02144048(e->mUnk_00, NULL, d, n, c, e->mUnk_08, e->mUnk_0c) != 2) {
         return FALSE;

@@ -45,8 +45,8 @@ void FS_ClearOverlayImage(Unk020055f0 *p) {
     n = p->mUnk_08;
     a = n + p->mUnk_0c;
     b = p->mUnk_04;
-    func_0200eea4(b, a);
-    func_0200ee3c(b, a);
+    IC_InvalidateRange(b, a);
+    DC_InvalidateRange(b, a);
     MemFill(b + n, 0, a - n);
 }
 
@@ -207,7 +207,7 @@ void FS_StartOverlay(Unk020055f0 *rec) {
     if (rec->mUnk_1c.b[3] & 1) {
         func_02000934(rec->mUnk_04 + n);
     }
-    func_0200ee74(rec->mUnk_04, rec->mUnk_08);
+    DC_FlushRange(rec->mUnk_04, rec->mUnk_08);
     p = rec->mUnk_10;
     end = rec->mUnk_14;
     if (p >= end) {

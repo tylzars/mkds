@@ -78,7 +78,7 @@ void func_0204ed04(Unk0204ed04 *a) {
     u8 b[0x192];
     u32 v;
     if (a->mUnk_02 == 0 && a->mUnk_0c != NULL && a->mUnk_10 <= 0x192) {
-        func_0200ee3c(a->mUnk_0c, a->mUnk_10);
+        DC_InvalidateRange(a->mUnk_0c, a->mUnk_10);
         MemCopy(a->mUnk_0c, b, a->mUnk_10);
         if (a->mUnk_04 == 7) {
             return;

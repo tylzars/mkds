@@ -67,7 +67,7 @@ void func_0200c6b8(void) {
     c = (*(u16 *) 0x04000204 & 0x8000) >> 15;
     func_0200c534(&b);
     *(u16 *) 0x04000204 = *(u16 *) 0x04000204 & ~0x8000;
-    func_0200ee3c(((u8 *) &data_0216fe20 + 0x80), 0x40);
+    DC_InvalidateRange(((u8 *) &data_0216fe20 + 0x80), 0x40);
     MI_DmaCopy16(1, (const void *) 0x08000080, ((u8 *) &data_0216fe20 + 0x80), 0x40);
     *(u16 *) 0x04000204 = (*(u16 *) 0x04000204 & ~0x8000) | (c << 15);
     func_0200c508(&b);
@@ -81,7 +81,7 @@ void func_0200c6b8(void) {
     s->mUnk_06 = d->mUnk_80.mUnk_30;
     s->mUnk_08 = d->mUnk_80.mUnk_2c;
     MemCopyWords((void *) 0xffff0020, data_0216fe20.mUnk_04, 0x9c);
-    func_0200ee08();
+    DC_FlushAll();
     func_0200c46c(((((u32) &data_0216fe20 - 0x02000000) >> 5) << 6) | 1);
     while (data_0216fe04.mUnk_00 != 1) {
         WaitByLoop(1);

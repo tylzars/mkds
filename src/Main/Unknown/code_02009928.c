@@ -383,7 +383,7 @@ void func_0200a1bc(Unk021425e8 *a) {
                                 v2 = i * 0x180;
                                 ((Unk0216fda8_600 *) (v3 + v2))->mUnk_0c0.mUnk_36 = a->mUnk_36;
                                 ((Unk0216fda8_600 *) (v3 + (s32) v2))->mUnk_0c0.mUnk_38 = a->mUnk_38;
-                                func_0200ee3c((Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2), 0xc0);
+                                DC_InvalidateRange((Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2), 0xc0);
                                 MI_DmaCopy16(data_usa_0216fd80, v1->mUnk_440,
                                              (Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2), 0xc0);
                                 v1->mUnk_5ec = i;
@@ -398,7 +398,7 @@ void func_0200a1bc(Unk021425e8 *a) {
                         v2 = i * 0x180;
                         MemCopyHalfwords(a, v3 + v2 + 0xc0, 0xb8);
                         e = (Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2);
-                        func_0200ee3c(e, 0xc0);
+                        DC_InvalidateRange(e, 0xc0);
                         MI_DmaCopy16(data_usa_0216fd80, v1->mUnk_440, e, 0xc0);
                         v1->mUnk_5ec = i;
                     }
@@ -539,7 +539,7 @@ u32 func_0200a184(void) {
     u8 v1[6];
     u32 v2;
     s32 i;
-    func_0200fe58(v1);
+    OS_GetMacAddress(v1);
     i = 0;
     v2 = 0;
     for (; i < 6; i++) {

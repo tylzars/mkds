@@ -20,7 +20,7 @@ void func_ov003_021ce4d4(u32 a) {
     Unk021ce4d4 *o;
     u32 g;
     s32 i;
-    u64 t = func_0200f5ac();
+    u64 t = OS_GetTick();
     o = (Unk021ce4d4 *) data_ov003_021da280;
     if (t >= *(u64 *) o->mUnk_1b74 + 0x17f898) {
         g = 0;

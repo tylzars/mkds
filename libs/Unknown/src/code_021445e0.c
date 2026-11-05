@@ -37,7 +37,7 @@ int func_021450ec(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag) {
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(&q->mUnk_00c, 4);
+    DC_InvalidateRange(&q->mUnk_00c, 4);
     if (q->mUnk_00c == 0) {
         return 3;
     }
@@ -50,10 +50,10 @@ int func_021450ec(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag) {
     if (mask == 0) {
         return 6;
     }
-    func_0200ee3c(&q->mUnk_184, 2);
+    DC_InvalidateRange(&q->mUnk_184, 2);
     u5 = q->mUnk_184;
     if (u5 == 0) {
-        func_0200ee3c(&q->mUnk_086, 2);
+        DC_InvalidateRange(&q->mUnk_086, 2);
         w = q->mUnk_086;
     }
     MemFillWordsByBlock_inline(p, 0x820);
@@ -143,7 +143,7 @@ int func_02144c6c(Unk021450ec *p, void *a, Unk0214461c *b) {
     if (r != 0) {
         return r;
     }
-    func_0200ee3c(&q->mUnk_00c, 4);
+    DC_InvalidateRange(&q->mUnk_00c, 4);
     if (q->mUnk_00c == 0) {
         return 3;
     }
@@ -156,10 +156,10 @@ int func_02144c6c(Unk021450ec *p, void *a, Unk0214461c *b) {
     if (b == 0) {
         return 6;
     }
-    func_0200ee3c(&q->mUnk_184, 2);
+    DC_InvalidateRange(&q->mUnk_184, 2);
     u5 = q->mUnk_184;
     if (u5 == 0) {
-        func_0200ee3c(&q->mUnk_086, 2);
+        DC_InvalidateRange(&q->mUnk_086, 2);
         w = q->mUnk_086;
     }
     st = p->mUnk_81c;
@@ -265,7 +265,7 @@ void func_02144b64(Unk02144920 *a) {
     if (p != a->mUnk_20) {
         return;
     }
-    func_0200ee3c(&q->mUnk_184, 2);
+    DC_InvalidateRange(&q->mUnk_184, 2);
     x = a->mUnk_02;
     y = q->mUnk_184;
     if (x == 0) {
@@ -361,7 +361,7 @@ void func_02144920(Unk02144920 *a) {
         d = a->mUnk_0c;
         v = *d;
         n = a->mUnk_10;
-        func_0200ee3c(&q->mUnk_184, 2);
+        DC_InvalidateRange(&q->mUnk_184, 2);
         g = q->mUnk_184;
         if (n != p->mUnk_814) {
             if (n > 0x200) {
@@ -433,7 +433,7 @@ void func_02144688(Unk021450ec *p, u32 f) {
     q = func_02142aa8()->mUnk_004;
     s = IrqDisable();
     if (p->mUnk_000[p->mUnk_808].mUnk_00 == 0) {
-        func_0200ee3c(&q->mUnk_086, 2);
+        DC_InvalidateRange(&q->mUnk_086, 2);
         i = p->mUnk_808;
         w = q->mUnk_086;
         n1 = (i + 1) & 3;

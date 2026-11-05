@@ -71,7 +71,7 @@ void func_020ae824(void) {
         func_020c4f08((Unk020c06c4 *) gRaceHud->mUnk_004);
         func_020c5804((Unk020c06c4 *) gRaceHud->mUnk_004);
     }
-    func_0200ee74(gRaceHud->mUnk_004, 0x400);
+    DC_FlushRange(gRaceHud->mUnk_004, 0x400);
     MI_DmaFill32(3, gRaceHud->mUnk_004 + gRaceHud->mUnk_404 * 8, 0xc0, (0x80 - gRaceHud->mUnk_404) << 3);
     gRaceHud->mUnk_808 = 0;
     gRaceHud->mUnk_80a = 0;
@@ -80,7 +80,7 @@ void func_020ae824(void) {
         func_020bb5ec((Unk020d029c *) gRaceHud->mUnk_408);
     }
     func_020be2f4((Unk020d029c *) gRaceHud->mUnk_408);
-    func_0200ee74(gRaceHud->mUnk_408, 0x400);
+    DC_FlushRange(gRaceHud->mUnk_408, 0x400);
     MI_DmaFill32(3, gRaceHud->mUnk_408 + gRaceHud->mUnk_808 * 8, 0xc0, (0x80 - gRaceHud->mUnk_808) << 3);
     switch (gRaceHud->mSubScreenState) {
         case 0:

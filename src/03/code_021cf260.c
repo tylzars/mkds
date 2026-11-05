@@ -36,7 +36,7 @@ void func_ov003_021cf978(u32 a, u32 b) {
     Unk02009ff4 x;
     Unk021cf5ac z;
 
-    func_0200fddc(&s);
+    OS_GetOwnerInfo(&s);
     x.mUnk_00 = (x.mUnk_00 & ~0xf) | (s.mUnk_01 & 0xf);
     x.mUnk_01 = s.mUnk_18;
     MemCopy(s.mUnk_04, x.mUnk_02, s.mUnk_18 * 2);

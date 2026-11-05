@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Object at a fixed address in func_0200f4f0, which sets its word at 0xfdc.
+// Object at a fixed address in OS_InitException, which sets its word at 0xfdc.
 typedef struct Unk0200f4f0 {
     /* 000 */ u8 mUnk_000[0xfdc];
     /* fdc */ UnkFunc *mUnk_fdc;
@@ -10,4 +10,7 @@ typedef struct Unk0200f4f0 {
 
 void func_0200f3f4(u32 a);
 void func_0200f484(void);
-void func_0200f4f0(void);
+// Keeps the word at 0x027ffd9c as a saved handler when it lies in 0x02600000-0x027fffff (else clears it). Stores
+// func_0200f36c at 0x027ffd9c and at 0x027e3fdc unless a saved handler exists and bit 30 of func_0200e884() is set.
+// Clears the flag word OSi_UserExceptionHandler.
+void OS_InitException(void);

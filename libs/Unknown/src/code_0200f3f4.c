@@ -12,7 +12,7 @@ u8 data_021701c8[0x80];
 
 // Keeps the word at the fixed address as data_021701c4 when it is in range, else clears it; stores func_0200f36c there
 // and at mUnk_fdc of the fixed object unless data_021701c4 is set and bit 30 of func_0200e884() is set.
-void func_0200f4f0(void) {
+void OS_InitException(void) {
     u32 v;
     Unk0200f4f0 *p;
 
@@ -90,14 +90,14 @@ asm void func_0200f484(void) {
     ldr r1, =0x9f
     msr cpsr_fsxc, r1
     mov sp, r0
-    bl func_0200f33c
+    bl OS_EnableProtectionUnit
     ldr r1, =data_021701c0
     ldr r0, =data_021701bc
     ldr r1, [r1, #0x0]
     ldr r2, [r0, #0x0]
     ldr r0, =data_021701c8
     blx r2
-    bl func_0200f34c
+    bl OS_DisableProtectionUnit
     add sp, sp, #0x4
     ldmia sp!, {lr}
     bx lr

@@ -45,7 +45,7 @@ void func_02036108(void *a) {
             data_02174e6c->mUnk_034[j + (u32) i * 0x20] = v;
         }
     }
-    func_0200ee58(data_02174e6c->mUnk_034, 0x600);
+    DC_StoreRange(data_02174e6c->mUnk_034, 0x600);
     MemCopyHalfwordsToG2sBg3CntBits8To12Address(data_02174e6c->mUnk_034, 0, 0x600);
     func_02036264(data_02174e6c->mUnk_034, 0x600);
     for (i = 0x14; i < 0x16; i++) {
@@ -53,7 +53,7 @@ void func_02036108(void *a) {
             data_02174e6c->mUnk_034[j + (u32) i * 0x20] = j + (u32) (i - 0x14) * 0x20 + 0x20;
         }
     }
-    func_0200ee58(data_02174e6c->mUnk_034, 0x600);
+    DC_StoreRange(data_02174e6c->mUnk_034, 0x600);
     MemCopyHalfwordsToG2sBg1CntBits8To12Address(data_02174e6c->mUnk_034, 0, 0x600);
     if (func_02035e44() != 0) {
         func_02036258();

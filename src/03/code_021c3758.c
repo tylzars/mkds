@@ -18,7 +18,7 @@ void func_ov003_021c3758(void) {
     u64 g;
     s32 i;
     a = func_ov003_021d2288(0, 0);
-    func_0200fe58(b);
+    OS_GetMacAddress(b);
     swprintf(f, 0x14, data_ov003_021d7058, b[0], b[1], b[2], b[3], b[4], b[5]);
     func_ov003_021d2070(a, data_ov003_021d6338.mUnk_00, data_ov003_021d6338.mUnk_02, data_ov003_021d6338.mUnk_04,
                         data_ov003_021d6338.mUnk_06, 2, 0x480, f);

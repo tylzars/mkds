@@ -43,8 +43,8 @@ void func_0204af70(void *a) {
     u32 b;
     u32 c;
 
-    b = func_0200f168(4);
-    c = func_0200f17c(4);
+    b = OS_GetArenaLo(4);
+    c = OS_GetArenaHi(4);
     data_021759d0 = HeapAlloc(a, 0x7c);
     data_021759d0->mHeap = FrmHeapCreate((void *) b, c - b, 1);
     func_0204ad44();
@@ -57,7 +57,7 @@ void func_0204ad44(void) {
     Unk021759d0 *p;
     Unk020f41c4_B *q;
 
-    func_0200fddc(&v);
+    OS_GetOwnerInfo(&v);
     MemFill(data_021759d0->mUnk_2a, 0, 0x14);
     data_021759d0->mUnk_3e = v.mUnk_18;
     MemCopy(v.mUnk_04, data_021759d0->mUnk_2a, data_021759d0->mUnk_3e << 1);
@@ -99,8 +99,8 @@ void func_0204ad44(void) {
     } else {
         data_021759d0->mUnk_1c_2 = 0;
     }
-    t = func_0200f5ac();
-    u = func_0200f5ac();
+    t = OS_GetTick();
+    u = OS_GetTick();
     p = data_021759d0;
     q = &p->mUnk_60;
     q->mUnk_00 = (u32) ((t << 16) + u);

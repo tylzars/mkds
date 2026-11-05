@@ -30,21 +30,21 @@
 
 void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const char *e) {
     LoadNclrData(&a->mUnk_00, FindSceneFile(c));
-    func_0200ee58(a->mUnk_00->mData, a->mUnk_00->mDataSize);
+    DC_StoreRange(a->mUnk_00->mData, a->mUnk_00->mDataSize);
     if (b != 0) {
         GX_LoadBGPltt(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
     } else {
         GXS_LoadBGPltt(a->mUnk_00->mData, 0, a->mUnk_00->mDataSize);
     }
     LoadNcgrData2(&a->mUnk_04, FindSceneFile(d));
-    func_0200ee58(a->mUnk_04->mData, a->mUnk_04->mDataSize);
+    DC_StoreRange(a->mUnk_04->mData, a->mUnk_04->mDataSize);
     if (b != 0) {
         MemCopyWordsToG2Bg1CntBits2To5Address(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
     } else {
         MemCopyWordsToG2sBg1CntBits2To5Address(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
     }
     LoadNscrData(&a->mUnk_08, FindSceneFile(e));
-    func_0200ee58(a->mUnk_08->mData, a->mUnk_08->mDataSize);
+    DC_StoreRange(a->mUnk_08->mData, a->mUnk_08->mDataSize);
     if (b != 0) {
         MemCopyHalfwordsToG2Bg1CntBits8To12Address(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
     } else {

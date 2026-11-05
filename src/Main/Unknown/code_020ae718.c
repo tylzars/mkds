@@ -6,7 +6,7 @@
 
 void func_020ae718(void) {
     u64 v1;
-    v1 = func_0200f5ac();
+    v1 = OS_GetTick();
     *(u64 *) &data_0217b344 = v1;
 }
 

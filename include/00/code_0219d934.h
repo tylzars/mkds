@@ -21,7 +21,7 @@ typedef struct WiFiBuddySync {
     // GpUpdate calls since the last restart (func_ov000_0219d5bc, at login success); the list part starts after more
     // than 7.
     /* 08 */ u32 mPollCount;
-    // func_0200f5ac reading at the last GpUpdate; the next one is allowed after 300 ms.
+    // OS_GetTick reading at the last GpUpdate; the next one is allowed after 300 ms.
     /* 0c */ u64 mLastPollTime;
     // Capacity of the list at mBuddies (0x3c entries), not the number of entries in use (func_ov000_0219d9b0 counts
     // those).

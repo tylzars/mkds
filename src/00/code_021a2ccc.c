@@ -133,7 +133,7 @@ void UpdateWiFiMessageLayer(void) {
             if (func_ov000_0219bac8(d) != 0) {
                 e = func_ov000_021a2fdc(d);
                 if (gWiFiMessageLayer->mUnk_608 != NULL && e->mUnk_2c != 0) {
-                    t = func_0200f5ac();
+                    t = OS_GetTick();
                     if ((u32) _ll_udiv((t - e->mUnk_24) << 6, 0x82ea) > e->mUnk_2c) {
                         gWiFiMessageLayer->mUnk_608(d);
                         e->mUnk_24 = t;
@@ -222,7 +222,7 @@ void func_ov000_021a2e7c(Unk0219887c *a, const void *b, int c) {
             gWiFiMessageLayer->mReceiveCallback(v1, v2->mReceiveBuffer, c);
         }
         if ((gWiFiMessageLayer->mUnk_608 != NULL) && (v2->mUnk_2c != 0)) {
-            v3 = func_0200f5ac();
+            v3 = OS_GetTick();
             v2->mUnk_24 = v3;
         }
     }
@@ -277,7 +277,7 @@ void func_ov000_021a2d68(int a, void *b, s32 c) {
         }
     }
     if (gWiFiMessageLayer->mUnk_608 != NULL && e->mUnk_2c != 0) {
-        e->mUnk_24 = func_0200f5ac();
+        e->mUnk_24 = OS_GetTick();
     }
 }
 

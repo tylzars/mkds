@@ -38,9 +38,9 @@ void func_ov003_021d1358(Unk021da2ac *a, Unk021d1358 *b) {
     data_ov003_021da2ac->mUnk_ac8 = b->mUnk_14;
     data_ov003_021da2ac->mUnk_a92 = b->mUnk_18;
     data_ov003_021da2ac->mUnk_acc = 2;
-    func_0200f5ac();
+    OS_GetTick();
     func_02151804(data_ov003_021da2ac->mUnk_64c);
-    func_0200f5ac();
+    OS_GetTick();
     data_ov003_021da2ac->mUnk_aa0[1] = (u8 *) func_ov003_021cd4dc();
 }
 

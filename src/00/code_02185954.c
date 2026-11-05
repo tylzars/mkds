@@ -418,8 +418,8 @@ void func_ov000_021860ac(void *param_1) {
                     break;
             }
         }
-        g = func_0200f5ac();
-        h = ((func_0200f5ac() - g) * 64) / 0x82ea;
+        g = OS_GetTick();
+        h = ((OS_GetTick() - g) * 64) / 0x82ea;
         while (h < 5000) {
             ThreadLockWait(&data_ov000_021b4c90->mUnk_3bc);
             if (data_ov000_021b4c90->mUnk_3d4 == TRUE) {
@@ -430,7 +430,7 @@ void func_ov000_021860ac(void *param_1) {
             }
             ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
             func_0200dc3c(5000);
-            h = ((func_0200f5ac() - g) * 64) / 0x82ea;
+            h = ((OS_GetTick() - g) * 64) / 0x82ea;
         }
         ReleaseHttp(data_ov000_021b4c90->mUnk_2f8);
         ThreadLockWait(&data_ov000_021b4c90->mUnk_3bc);
@@ -567,8 +567,8 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     s32 k;
     s32 m;
     char *n;
-    func_0200fe58(g.mUnk_02);
-    func_0200fddc(&y);
+    OS_GetMacAddress(g.mUnk_02);
+    OS_GetOwnerInfo(&y);
     if (RTC_GetDate(o) != 0 || RTC_GetTime(p) != 0) {
         return 5;
     }

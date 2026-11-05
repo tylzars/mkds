@@ -92,7 +92,7 @@ static inline BOOL func_0205c98c_inline(void) {
     for (i = 0; i < 4; i++) {
         if (p->mUnk_014[i].mUnk_30 != FALSE) {
             MemCopy(&p->mUnk_014[i], q, 0x28);
-            *(u64 *) &q->mUnk_0c[2] = func_0200f5ac();
+            *(u64 *) &q->mUnk_0c[2] = OS_GetTick();
             if (func_0205c340(i, 0, 0x28) != 0) {
                 data_0217aa14->mUnk_014[i].mUnk_30 = FALSE;
             } else {
@@ -240,7 +240,7 @@ void func_0205c98c(void) {
                 r = p->mUnk_754;
                 q = &r->mUnk_04;
                 r->mUnk_04.mUnk_00_h = func_ov000_0219bb50();
-                *(u64 *) &q->mUnk_04 = func_0200f5ac();
+                *(u64 *) &q->mUnk_04 = OS_GetTick();
                 q->mUnk_0c[0] = 0;
                 q->mUnk_0c[1] = 0;
                 q->mUnk_0c[2] = 0;
@@ -330,7 +330,7 @@ void func_0205c6b0(void) {
     for (i = 0; i < 4; i++) {
         if (p->mUnk_014[i].mUnk_30 != FALSE) {
             MemCopy(&p->mUnk_014[i], q, 0x28);
-            *(u64 *) &q->mUnk_0c[2] = func_0200f5ac();
+            *(u64 *) &q->mUnk_0c[2] = OS_GetTick();
             if (func_0205c340(i, 0, 0x28) != 0) {
                 data_0217aa14->mUnk_014[i].mUnk_30 = FALSE;
             } else {
@@ -421,7 +421,7 @@ int func_0205c340(u8 a, u32 b, int c) {
         m->mUnk_00_4 = (u8) b;
         m->mUnk_01 = data_0217aa14->mUnk_758;
         m->mUnk_02_0 = data_0217aa14->mUnk_748;
-        func_0200ee58(m, r);
+        DC_StoreRange(m, r);
         r = func_02120340(a, m, r, func_0211ff74);
         if (r == 0) {
             data_0217aa14->mUnk_75c = data_0217aa14->mUnk_75c & ~4;
@@ -893,7 +893,7 @@ void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
             i = b->mUnk_00_0;
             v = func_ov000_0219bb50();
             if (m->mUnk_00 == v) {
-                m->mUnk_04[3] = func_0200f5ac();
+                m->mUnk_04[3] = OS_GetTick();
                 func_0205b824(m->mUnk_04, i);
                 return;
             }
@@ -902,7 +902,7 @@ void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
             }
             e = &data_0217aa14->mUnk_014[i];
             MemCopy(m, e, 0x28);
-            t = func_0200f5ac();
+            t = OS_GetTick();
             e->mUnk_0c = t;
             e->mUnk_10 = t >> 32;
             data_0217aa14->mUnk_014[i].mUnk_30 = TRUE;

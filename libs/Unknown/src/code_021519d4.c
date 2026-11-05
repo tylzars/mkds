@@ -47,10 +47,10 @@ u32 func_02151e20(Unk021510a4 *a) {
     if (g < 0) {
         return 0;
     }
-    if (func_0200f6e4() != 0) {
-        h += (u32) func_0200f5ac;
+    if (OS_IsTickAvailable() != 0) {
+        h += (u32) OS_GetTick;
     }
-    func_0200fe58(d);
+    OS_GetMacAddress(d);
     b = (u8) ((d[0] << 16 | d[1] << 8 | d[2]) != 0x9bf);
     c = d[5];
     c |= (d[3] << 16 | d[4] << 8);

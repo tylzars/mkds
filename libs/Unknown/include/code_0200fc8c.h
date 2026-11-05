@@ -7,7 +7,7 @@ u32 IrqDisable(void);
 u32 IrqRestore(u32 a);
 u32 ProcessorModeGet(void);
 
-// Filled by func_0200fddc from the bytes of a fixed-address block: mUnk_04 holds the 0x14 bytes at offset 0x06 of the
+// Filled by OS_GetOwnerInfo from the bytes of a fixed-address block: mUnk_04 holds the 0x14 bytes at offset 0x06 of the
 // block and mUnk_1a the 0x34 bytes at offset 0x1c.
 typedef struct Unk0200fddc {
     /* 00 */ u8 mUnk_00;
@@ -30,6 +30,12 @@ u32 func_0200fce0(u32 a);
 void func_0200fd04(void);
 void func_0200fd10(u32 a);
 void func_0200fd30(u32 a, u32 b);
-void func_0200fd74(void);
-void func_0200fddc(Unk0200fddc *p);
-void func_0200fe58(void *p);
+// Runs once: opens PXI tag 12, waits for the other processor and installs func_0200fd30, which stores 1 in the halfword
+// at 0x02170260 for command 0x10 and halts for any other command. Nothing else reads the halfword.
+void OS_InitReset(void);
+// Fills the record from the words at 0x027ffc80: bits 0-2 of the halfword at +0x64, the low 4 bits of byte +2, bytes +3
+// and +4, a 20-byte text from +6 with its length from byte +0x1a, a 52-byte text from +0x1c with its length from byte
+// +0x50. The game copies the first text with its length into its own buffers.
+void OS_GetOwnerInfo(Unk0200fddc *p);
+// Copies the 6 bytes at 0x027ffcf4 into the buffer (one game site prints them as six hex pairs joined by dashes).
+void OS_GetMacAddress(void *p);

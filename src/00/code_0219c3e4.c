@@ -68,7 +68,7 @@ void UpdateWiFiLogin(void) {
                 GpUpdate(p->mGpConnection);
             }
             if (gWiFiLogin->mConnectPending != FALSE) {
-                if ((((u64) func_0200f5ac() - gWiFiLogin->mConnectStartTime) << 6) / 0x82ea > 0xea60) {
+                if ((((u64) OS_GetTick() - gWiFiLogin->mConnectStartTime) << 6) / 0x82ea > 0xea60) {
                     ReportWiFiLoginError(6, -61070);
                     gWiFiLogin->mConnectPending = FALSE;
                 }
@@ -197,7 +197,7 @@ void StartWiFiLoginGpConnect(char *a, char *b, void (*c)(), s32 d) {
     strcpy(gWiFiLogin->mAuthToken, a);
     strcpy(gWiFiLogin->mUnk_14c, b);
     v4 = gWiFiLogin;
-    v3 = func_0200f5ac();
+    v3 = OS_GetTick();
     v4->mConnectStartTime = v3;
     v4->mConnectPending = TRUE;
     v1 = gWiFiLogin;
@@ -228,7 +228,7 @@ void StartWiFiLoginRequest(void (*a)(), void *b) {
                 func_02152744(&gWiFiLogin->mUnk_40);
             }
         } else {
-            func_02152a88(&gWiFiLogin->mUnk_40, (u32) (((s64) func_0200f5ac() * 0x5d588b656c078965 + 0x269ec3) >> 32));
+            func_02152a88(&gWiFiLogin->mUnk_40, (u32) (((s64) OS_GetTick() * 0x5d588b656c078965 + 0x269ec3) >> 32));
         }
         func_02152808(&gWiFiLogin->mUnk_40, gWiFiLogin->mUnk_0c, gWiFiLogin->mUnk_24c);
     }
@@ -237,7 +237,7 @@ void StartWiFiLoginRequest(void (*a)(), void *b) {
     s.mUnk_28 = (void (*)(const void *, void *, u32)) func_ov000_021a3704;
     h = func_ov000_021a3718(0, 0x1a60, 4);
     gWiFiLogin->mHttp = h;
-    t = func_0200f5ac();
+    t = OS_GetTick();
     gWiFiLogin->mRequestStartTime = t;
     func_ov000_02186560(&s, h);
 }
@@ -263,7 +263,7 @@ void UpdateWiFiLoginRequest(void) {
             StartWiFiLoginGpConnect(gWiFiLogin->mAuthToken, gWiFiLogin->mUnk_14c, WiFiLoginGpConnectCallback, 3);
         }
     } else if (func_ov000_021863cc() != 0) {
-        if ((((u64) func_0200f5ac() - gWiFiLogin->mRequestStartTime) << 6) / 0x82ea > 0x2710) {
+        if ((((u64) OS_GetTick() - gWiFiLogin->mRequestStartTime) << 6) / 0x82ea > 0x2710) {
             func_ov000_0218635c(&y.mUnk_000);
             func_ov000_02186430();
             func_ov000_021a3704(0, (u32) gWiFiLogin->mHttp, 0);

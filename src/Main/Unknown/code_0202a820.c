@@ -272,8 +272,8 @@ void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
     gWiFiVSCourseSelect->mUnk_080[1] = param_3;
     gWiFiVSCourseSelect->mCommonMessages = func_02047a28(gCommonBmgName3);
     gWiFiVSCourseSelect->mWiFiMessages = FindSceneFile(gWiFiBmgName);
-    a = func_0200f5ac();
-    s = (a << 16) + (u32) func_0200f5ac();
+    a = OS_GetTick();
+    s = (a << 16) + (u32) OS_GetTick();
     l = &gWiFiVSCourseSelect->mUnk_094;
     l->mUnk_00 = s;
     l->mUnk_08 = 0x5d588b656c078965;

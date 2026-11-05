@@ -318,8 +318,8 @@ void InitRaceProgress(void) {
                     if (v != 0) {
                         s = p->mUnk_1eb0;
                     } else {
-                        a = func_0200f5ac();
-                        s = (a << 16) + func_0200f5ac();
+                        a = OS_GetTick();
+                        s = (a << 16) + OS_GetTick();
                     }
                     break;
             }
@@ -328,9 +328,9 @@ void InitRaceProgress(void) {
     func_020401ac_inline4(&gRaceProgress->mRandom, s);
     gRaceProgress->mSeed = s;
     data_021759c0->mNextHeader.mUnk_5c = s;
-    a = func_0200f5ac();
-    c = func_0200f5ac();
-    d = func_0200f5ac();
+    a = OS_GetTick();
+    c = OS_GetTick();
+    d = OS_GetTick();
     func_020401ac_inline4(&gRaceProgress->mLocalRandom, a + ((c << 24) + (d << 8)));
     func_020401ac_inline4(&gRaceProgress->mUnk_4b0, 0xa094a2f);
     if (data_021759c0->mMode == 2) {

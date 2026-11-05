@@ -43,11 +43,11 @@ void func_02036778(void) {
 }
 
 void func_020366bc(void) {
-    func_0200ef10();
-    func_0200eec0();
+    OS_DisableMainExArena();
+    OS_Init();
     data_02174e78.mUnk_00 = 0;
-    func_0200f6f4();
-    func_0200fb28();
+    OS_InitTick();
+    OS_InitAlarm();
     func_02148904();
     GX_Init();
     func_02039c7c();
@@ -67,12 +67,12 @@ void func_020366bc(void) {
 }
 
 void func_02036678(void) {
-    func_0200f168(0);
-    func_0200f17c(0);
-    func_0200f168(3);
-    func_0200f17c(3);
-    func_0200f168(4);
-    func_0200f17c(4);
+    OS_GetArenaLo(0);
+    OS_GetArenaHi(0);
+    OS_GetArenaLo(3);
+    OS_GetArenaHi(3);
+    OS_GetArenaLo(4);
+    OS_GetArenaHi(4);
 }
 
 void func_020365f0(void) {
@@ -80,10 +80,10 @@ void func_020365f0(void) {
     func_020366bc();
     func_0203907c();
     data_02174e78.mUnk_04 = (u32) ARM9_TEXT_START;
-    data_02174e78.mUnk_08 = func_0200f168(0);
+    data_02174e78.mUnk_08 = OS_GetArenaLo(0);
     func_02036678();
-    a = func_0200f168(0);
-    data_02174e78.mHeap = func_02036c4c(a, func_0200f17c(0) - a);
+    a = OS_GetArenaLo(0);
+    data_02174e78.mHeap = func_02036c4c(a, OS_GetArenaHi(0) - a);
     func_02036590(&data_02174e88, 0);
     data_02174e78.mUnk_10 = data_usa_021646ec;
     func_020394cc();

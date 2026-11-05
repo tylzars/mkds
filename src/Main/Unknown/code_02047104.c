@@ -277,7 +277,7 @@ void func_02047e94(void) {
             return;
         }
     } while (ExpandCompressedContinue(b, (const u8 *) p->mUnk_88, r) != 0);
-    func_0200ee58(p->mUnk_84, n);
+    DC_StoreRange(p->mUnk_84, n);
     ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
 }
 
@@ -293,7 +293,7 @@ void func_02047e0c(void) {
         p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
     }
     ExpandCompressed(p->mUnk_80, p->mUnk_84);
-    func_0200ee58(p->mUnk_84, n);
+    DC_StoreRange(p->mUnk_84, n);
     ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
 }
 

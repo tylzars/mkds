@@ -7,7 +7,7 @@
 
 void func_020487e0(const void *a, void *b, u32 c) {
     ExpandCompressed(a, b);
-    func_0200ee58(b, c);
+    DC_StoreRange(b, c);
 }
 
 void func_020487a0(int a) {

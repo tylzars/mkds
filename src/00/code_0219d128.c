@@ -226,7 +226,7 @@ u32 FindBuddyEntryIndex(u32 a) {
 void func_ov000_0219d5bc(void) {
     if (gWiFiBuddySync != NULL) {
         gWiFiBuddySync->mPollCount = 0;
-        gWiFiBuddySync->mLastPollTime = func_0200f5ac();
+        gWiFiBuddySync->mLastPollTime = OS_GetTick();
     }
 }
 
@@ -266,10 +266,10 @@ void func_ov000_0219d4f8(void) {
 
 int func_ov000_0219d49c(void) {
     WiFiBuddySync *a = gWiFiBuddySync;
-    if ((func_0200f5ac() - a->mLastPollTime) * 64 / 0x82ea >= 300) {
+    if ((OS_GetTick() - a->mLastPollTime) * 64 / 0x82ea >= 300) {
         a->mPollCount = a->mPollCount + 1;
         GpUpdate(gWiFiBuddySync->mGpConnection);
-        gWiFiBuddySync->mLastPollTime = func_0200f5ac();
+        gWiFiBuddySync->mLastPollTime = OS_GetTick();
     }
     return 0;
 }

@@ -90,16 +90,16 @@ s32 func_021286a0(s32 a) {
     LocateNscr(&nscr, func_02047a28("select_return_s_bg_00.nscr"));
     LocateNclr(&nclr, func_02047a28("select_return_s_b_00.nclr"));
     a -= ncgr->mDataSize;
-    func_0200ee74(ncgr->mData, ncgr->mDataSize);
+    DC_FlushRange(ncgr->mData, ncgr->mDataSize);
     MemCopyWordsToG2sBg2CntBits2To5Address(ncgr->mData, a, ncgr->mDataSize);
     for (i = 0; i < 0x20; i++) {
         for (j = 0; j < 0x20; j++) {
             *(gSelectReturn->mUnk_10 + i * 0x20 + j) = (a >> 5) + *((u16 *) nscr->mData + i * 0x20 + j);
         }
     }
-    func_0200ee74(gSelectReturn->mUnk_10, nscr->mDataSize);
+    DC_FlushRange(gSelectReturn->mUnk_10, nscr->mDataSize);
     MemCopyHalfwordsToG2sBg2CntBits8To12Address(gSelectReturn->mUnk_10, 0, nscr->mDataSize);
-    func_0200ee74(nclr->mData, 0x180);
+    DC_FlushRange(nclr->mData, 0x180);
     GXS_LoadBGPltt(nclr->mData + 0xc0, 0x180, 0x40);
     return a;
 }
@@ -477,21 +477,21 @@ s32 func_02127f14(s32 d) {
     d = d - a->mDataSize;
     s = d >> 5;
     data_0217d3f4->mUnk_89c = s;
-    func_0200ee74(a->mData, a->mDataSize);
+    DC_FlushRange(a->mData, a->mDataSize);
     MemCopyWordsToG2sBg0CntBits2To5Address(a->mData, d, a->mDataSize);
     for (i = 0; i < 32; i++) {
         for (j = 0; j < 32; j++) {
             *(data_0217d3f4->mUnk_2c + i * 32 + j) = s + *((u16 *) b->mData + i * 32 + j);
         }
     }
-    func_0200ee74(data_0217d3f4->mUnk_2c, b->mDataSize);
+    DC_FlushRange(data_0217d3f4->mUnk_2c, b->mDataSize);
     MemCopyHalfwordsToG2sBg0CntBits8To12Address(data_0217d3f4->mUnk_2c, 0, b->mDataSize);
     e = &data_0215d0a0;
     y = e->mUnk_02 * 32;
     x = e->mUnk_00;
     data_0217d3f4->mUnk_82c = data_0217d3f4->mUnk_89c + (x + y);
     data_0217d3f4->mUnk_830 = data_0217d3f4->mUnk_89c + (y + (x + 3));
-    func_0200ee74(c->mData, 0x1c0);
+    DC_FlushRange(c->mData, 0x1c0);
     GXS_LoadBGPltt(c->mData + 0xe0, 0x1c0, 0x40);
     return d;
 }

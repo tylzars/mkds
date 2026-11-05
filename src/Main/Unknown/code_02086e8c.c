@@ -299,8 +299,8 @@ void func_02087228(Unk02086098 *a, u16 b) {
         v = data_02155a28[data_021759c0->mCurrentEntries[b].mPlayer.mTeamIndex];
     }
     *p = v;
-    func_0200ee74(p, a->mUnk_08);
-    func_0200ee74(q, a->mUnk_04);
+    DC_FlushRange(p, a->mUnk_08);
+    DC_FlushRange(q, a->mUnk_04);
     a->mUnk_10 = p;
     a->mUnk_0c = q;
 }
@@ -320,10 +320,10 @@ void func_020871c0(Unk02086098 *a, u32 b) {
     v2[1] = v1;
     v2[2] = 0;
     v2[3] = 0x1f;
-    func_0200ee74(v2, 8);
+    DC_FlushRange(v2, 8);
     MemFill(((u32 *) v3), (u8) 0, (u32) (a->mUnk_04));
     func_020adddc(b, v3, (u32) 1, (u32) 2);
-    func_0200ee74((const void *) v3, (0x00000100u));
+    DC_FlushRange((const void *) v3, (0x00000100u));
     a->mUnk_0c = (void *) v3;
     a->mUnk_10 = v2;
 }
@@ -334,7 +334,7 @@ void func_020871a4(Unk02086098 *a, u32 b) {
     v2 = a->mUnk_10;
     v1 = func_020873e4(b);
     v2[1] = v1;
-    func_0200ee74(v2, 8);
+    DC_FlushRange(v2, 8);
 }
 
 #pragma thumb off
@@ -378,7 +378,7 @@ void func_020870ec(Unk02086098 *a, u16 b) {
                 p[i] = v;
             }
         }
-        func_0200ee74(p, q->mUnk_04);
+        DC_FlushRange(p, q->mUnk_04);
         q->mUnk_0c = p;
     } else {
         q->mUnk_0c = NULL;
@@ -440,8 +440,8 @@ void func_02086f24(u32 a, void *b, void *c) {
     e = q + *(u32 *) (r + *(u16 *) (q + 0xa) + h * n + 4);
     d = (*(u32 *) (e + 0x14) & 0xffff) << 3;
     f = *(u16 *) (e + 0x1c) << 4;
-    func_0200ee74(b, 0x200);
-    func_0200ee74(c, 0x20);
+    DC_FlushRange(b, 0x200);
+    DC_FlushRange(c, 0x20);
     GX_BeginLoadTex();
     GX_LoadTex(b, d, 0x200);
     GX_EndLoadTex();

@@ -24,42 +24,42 @@
 #include "code_0200f328.h"
 #include "Main/Unknown/code_0200e000.h"
 
-u32 data_021701b8;
+u32 gArena2Enabled;
 
-// On the first call fills the tables of func_0200ef24 and func_0200ef38 for indices 0 and 3 to 6 from
-// func_0200ef4c and func_0200f038, and clears index 2.
-void func_0200f210(void) {
+// On the first call fills the tables of OS_SetArenaLo and OS_SetArenaHi for indices 0 and 3 to 6 from
+// OS_GetInitArenaLo and OS_GetInitArenaHi, and clears index 2.
+void OS_InitArena(void) {
     if (data_021701b4 != 0) {
         return;
     }
     data_021701b4 = 1;
-    func_0200ef38(0, func_0200f038(0));
-    func_0200ef24(0, func_0200ef4c(0));
-    func_0200ef24(2, 0);
-    func_0200ef38(2, 0);
-    func_0200ef38(3, func_0200f038(3));
-    func_0200ef24(3, func_0200ef4c(3));
-    func_0200ef38(4, func_0200f038(4));
-    func_0200ef24(4, func_0200ef4c(4));
-    func_0200ef38(5, func_0200f038(5));
-    func_0200ef24(5, func_0200ef4c(5));
-    func_0200ef38(6, func_0200f038(6));
-    func_0200ef24(6, func_0200ef4c(6));
+    OS_SetArenaHi(0, OS_GetInitArenaHi(0));
+    OS_SetArenaLo(0, OS_GetInitArenaLo(0));
+    OS_SetArenaLo(2, 0);
+    OS_SetArenaHi(2, 0);
+    OS_SetArenaHi(3, OS_GetInitArenaHi(3));
+    OS_SetArenaLo(3, OS_GetInitArenaLo(3));
+    OS_SetArenaHi(4, OS_GetInitArenaHi(4));
+    OS_SetArenaLo(4, OS_GetInitArenaLo(4));
+    OS_SetArenaHi(5, OS_GetInitArenaHi(5));
+    OS_SetArenaLo(5, OS_GetInitArenaLo(5));
+    OS_SetArenaHi(6, OS_GetInitArenaHi(6));
+    OS_SetArenaLo(6, OS_GetInitArenaLo(6));
 }
 
-// Fills index 2 of both tables, then unless data_021701b8 is nonzero and the low two bits of func_0200e884() are
-// not 1, passes one constant each to func_0200f35c and func_0200f364.
-void func_0200f190(void) {
-    func_0200ef38(2, func_0200f038(2));
-    func_0200ef24(2, func_0200ef4c(2));
-    if (data_021701b8 != 0 && (func_0200e884() & 3) != 1) {
+// Fills index 2 of both tables, then unless gArena2Enabled is nonzero and the low two bits of func_0200e884() are
+// not 1, passes one constant each to OS_SetProtectionRegion1 and OS_SetProtectionRegion2.
+void OS_InitArenaEx(void) {
+    OS_SetArenaHi(2, OS_GetInitArenaHi(2));
+    OS_SetArenaLo(2, OS_GetInitArenaLo(2));
+    if (gArena2Enabled != 0 && (func_0200e884() & 3) != 1) {
         return;
     }
-    func_0200f35c(0x200002b);
-    func_0200f364(0x23e0021);
+    OS_SetProtectionRegion1(0x200002b);
+    OS_SetProtectionRegion2(0x23e0021);
 }
 
-u32 func_0200f17c(int arg0) {
+u32 OS_GetArenaHi(int arg0) {
     u32 value0 = (u32) arg0;
     value0 = (value0 << 2);
     value0 = (value0) + (0x2700000u);
@@ -68,7 +68,7 @@ u32 func_0200f17c(int arg0) {
     return value0;
 }
 
-u32 func_0200f168(int arg0) {
+u32 OS_GetArenaLo(int arg0) {
     u32 value0 = (u32) arg0;
     value0 = (value0 << 2);
     value0 = (value0) + (0x2700000u);
@@ -77,7 +77,7 @@ u32 func_0200f168(int arg0) {
     return value0;
 }
 
-u32 func_0200f038(u32 i) {
+u32 OS_GetInitArenaHi(u32 i) {
     u32 a;
     s32 n;
     u32 c;
@@ -86,7 +86,7 @@ u32 func_0200f038(u32 i) {
         case 0:
             return 0x23e0000;
         case 2:
-            if (data_021701b8 == 0 || (func_0200e884() & 3) == 1) {
+            if (gArena2Enabled == 0 || (func_0200e884() & 3) == 1) {
                 return 0;
             }
             return 0x2700000;
@@ -111,12 +111,12 @@ u32 func_0200f038(u32 i) {
     return 0;
 }
 
-u32 func_0200ef4c(u32 i) {
+u32 OS_GetInitArenaLo(u32 i) {
     switch (i) {
         case 0:
             return 0x21da300;
         case 2:
-            if (data_021701b8 == 0 || (func_0200e884() & 3) == 1) {
+            if (gArena2Enabled == 0 || (func_0200e884() & 3) == 1) {
                 return 0;
             }
             return (u32) data_02400000;
@@ -132,37 +132,37 @@ u32 func_0200ef4c(u32 i) {
     return 0;
 }
 
-void func_0200ef38(u32 i, u32 v) {
+void OS_SetArenaHi(u32 i, u32 v) {
     ((vu32 *) 0x027ffdc4)[i] = v;
 }
 
-void func_0200ef24(u32 i, u32 v) {
+void OS_SetArenaLo(u32 i, u32 v) {
     ((vu32 *) 0x027ffda0)[i] = v;
 }
 
-u32 func_0200ef10(void) {
+u32 OS_DisableMainExArena(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_021701b8;
+    value0 = (u32) &gArena2Enabled;
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
     return value0;
 }
 
 // Calls fifteen functions in a fixed order.
-void func_0200eec0(void) {
-    func_0200f210();
+void OS_Init(void) {
+    OS_InitArena();
     PxiInit();
     func_0200d028();
-    func_0200f190();
+    OS_InitArenaEx();
     func_0200cd04();
     func_0200ca34();
-    func_0200f4f0();
+    OS_InitException();
     MI_Init();
-    func_0200fc1c();
+    OS_InitVAlarm();
     func_0200ffd8();
     ThreadSystemInit();
-    func_0200fd74();
+    OS_InitReset();
     func_0200c7f4();
     func_02146154();
     PM_Init();
@@ -170,7 +170,7 @@ void func_0200eec0(void) {
 
 // clang-format off
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void func_0200eddc(void) {
+asm void DC_StoreAll(void) {
     mov r1, #0x0
 loop_outer:
     mov r0, #0x0
@@ -187,7 +187,7 @@ loop_inner:
 }
 
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void func_0200ee08(void) {
+asm void DC_FlushAll(void) {
     mov ip, #0x0
     mov r1, #0x0
 loop_outer:
@@ -206,7 +206,7 @@ loop_inner:
 }
 
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void func_0200ee3c(void *p, u32 n) {
+asm void DC_InvalidateRange(void *p, u32 n) {
     add r1, r1, r0
     bic r0, r0, #0x1f
 loop:
@@ -218,7 +218,7 @@ loop:
 }
 
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void func_0200ee58(void *p, u32 n) {
+asm void DC_StoreRange(void *p, u32 n) {
     add r1, r1, r0
     bic r0, r0, #0x1f
 loop:
@@ -230,7 +230,7 @@ loop:
 }
 
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void func_0200ee74(const void *a, int b) {
+asm void DC_FlushRange(const void *a, int b) {
     mov ip, #0x0
     add r1, r1, r0
     bic r0, r0, #0x1f
@@ -244,14 +244,14 @@ loop:
 }
 
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void func_0200ee98(void) {
+asm void DC_WaitWriteBufferEmpty(void) {
     mov r0, #0x0
     mcr p15, 0, r0, c7, c10, 4
     bx lr
 }
 
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void func_0200eea4(void *p, u32 n) {
+asm void IC_InvalidateRange(void *p, u32 n) {
     add r1, r1, r0
     bic r0, r0, #0x1f
 loop:
