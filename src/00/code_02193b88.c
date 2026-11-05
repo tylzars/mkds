@@ -376,7 +376,7 @@ void GpiPeerRemoveAndWriteQueuedMessages(GpConnection *f, GpiPeer *g) {
         do {
             d = DarrayGetElement(g->mQueuedMessages, 0);
             if (d->mUnk_10 < 0x64) {
-                func_ov000_0218fbe0(f, g->mProfileId, d->mUnk_10, (const char *) (d->mBuffer + d->mUnk_14));
+                func_ov000_0218fbe0(f, g->mProfileId, d->mUnk_10, d->mBuffer + d->mUnk_14);
             }
             DarrayRemove(g->mQueuedMessages, 0);
         } while (DarrayGetCount(g->mQueuedMessages) != 0);

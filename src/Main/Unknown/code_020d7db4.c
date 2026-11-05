@@ -128,8 +128,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
     }
 }
 
-void func_020d7e44(u32 a, int m) {
-    Unk020d7e44 *b = (Unk020d7e44 *) m;
+void func_020d7e44(u32 a, CourseMapEntryGroup *b) {
     Unk020e0144_00 *p;
     s32 n;
     s32 i;
@@ -198,7 +197,7 @@ void func_020d7df8(void) {
 
 void func_020d7db4(Unk020e0144 *a, u16 b, int c) {
     a->mUnk_08 = b;
-    func_020d7e44(a->mUnk_08, (s32) &gCourseMap->mEntryGroups[a->mUnk_08]);
+    func_020d7e44(a->mUnk_08, &gCourseMap->mEntryGroups[a->mUnk_08]);
     a->mUnk_00 = &data_0217b670[a->mUnk_08];
     a->mUnk_04 = c;
     func_020d90a8(a, 0, 1);

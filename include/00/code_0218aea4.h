@@ -75,7 +75,7 @@ typedef struct Unk0218ce14 {
 void SbServerListInit(SbServerList *slist, const char *a, const char *b, const char *c, u32 d, s32 e, UnkFunc *callback,
                       void *g);
 
-unsigned int func_ov000_0218b570(unsigned int p0, unsigned int p1, unsigned int p2, unsigned int p3, unsigned int p4,
+unsigned int func_ov000_0218b570(Unk0218b668 *p0, unsigned int p1, unsigned int p2, unsigned int p3, unsigned int p4,
                                  unsigned int p5, unsigned int p6);
 
 #include "00/unk_021b4000.h"
@@ -144,9 +144,9 @@ void func_ov000_0218b434(u32 arg0);
 s32 func_ov000_0218b440(const char *const *first, const char *const *second);
 u32 func_ov000_0218b44c(Unk0218afac *entry, u32 modulus);
 u32 func_ov000_0218b458(Unk0218b668 *a);
-void func_ov000_0218b464(Unk0218b668 *p0, unsigned int p1, void *p2, unsigned int p3);
-u32 func_ov000_0218b474(u32 arg0);
-u32 func_ov000_0218b480(u32 arg0, u32 arg1);
+void func_ov000_0218b464(Unk0218b668 *p0, unsigned int p1, const char *p2, unsigned int p3);
+u32 func_ov000_0218b474(Unk0218b668 *arg0);
+u32 func_ov000_0218b480(Unk0218b668 *arg0, u32 arg1);
 void func_ov000_0218b48c(struct Unk0218b668 *p);
 void func_ov000_0218b4a4(struct Unk0218b668 *p);
 s32 func_ov000_0218b4bc(struct Unk0218b668 *p);
@@ -155,7 +155,8 @@ s32 func_ov000_0218b4f8(Unk0218b668 *a, u32 b, s32 c, u32 d);
 s32 func_ov000_0218b530(Unk0218b668 *a, u32 b, s32 c, u8 *d, s32 e);
 s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *f, u32 g, u32 h);
 void func_ov000_0218b64c(Unk0218b668 *p);
-Unk0218b668 *func_ov000_0218b668(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, s32 g, UnkFunc *h, u32 l);
+Unk0218b668 *func_ov000_0218b668(const char *a, const char *b, const char *c, u32 d, u32 e, u32 f, s32 g, UnkFunc *h,
+                                 u32 l);
 void func_ov000_0218b708(void *a, s32 b, SbServer *c, Unk0218b668 *d);
 void func_ov000_0218b780(SbServerList *a, s32 b, SbServer *c, Unk0218b668 *d);
 s32 func_ov000_0218b8e4(SbServerList *a);
@@ -205,6 +206,6 @@ void func_ov000_0218d278(SbServerList *p, u32 key);
 int func_ov000_0218d2a8(SbServerList *a, int b, int c);
 int func_ov000_0218d300(SbServerList *a, int b);
 void func_ov000_0218d340(SbServerList *p, u32 a);
-void func_ov000_0218d374(SbServerList *p, s32 a, u32 b, u32 c);
+void func_ov000_0218d374(SbServerList *p, s32 a, const char *b, u32 c);
 s32 func_ov000_0218d3d8(u32 *a, u32 *b);
 s32 func_ov000_0218d430(u32 *c, u32 *d);

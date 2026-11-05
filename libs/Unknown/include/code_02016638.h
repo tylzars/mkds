@@ -5,7 +5,7 @@
 // 16 bytes: an index into data_02152c54 and three words passed to the function it selects.
 typedef struct CallQueueEntry {
     /* 00 */ u32 mFuncIndex;
-    /* 04 */ u32 mSource;
+    /* 04 */ const void *mSource;
     /* 08 */ u32 mUnk_08;
     /* 0c */ u32 mSize;
 } CallQueueEntry;

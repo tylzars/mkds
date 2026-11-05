@@ -243,6 +243,6 @@ void CallQueueRunEntry(CallQueueEntry *p) {
     void (*f)(const void *, u32, u32);
 
     f = data_02152c54[p->mFuncIndex];
-    DC_FlushRange((const void *) p->mSource, p->mSize);
-    f((const void *) p->mSource, p->mUnk_08, p->mSize);
+    DC_FlushRange(p->mSource, p->mSize);
+    f(p->mSource, p->mUnk_08, p->mSize);
 }

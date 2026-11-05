@@ -68,7 +68,7 @@ u32 GpiCreateOperation(GpConnection *param_1, int param_2, int param_3, int *par
 
 // Entry of the list behind GpiPeer.mQueuedMessages.
 typedef struct Unk0219405c {
-    /* 00 */ u32 mBuffer;
+    /* 00 */ const char *mBuffer;
     /* 04 */ u8 mUnk_04[0xc];
     /* 10 */ s32 mUnk_10;
     /* 14 */ u32 mUnk_14;

@@ -137,7 +137,7 @@ void HashtableForEach(Hashtable *table, void (*fn)(void *, void *), void *d) {
     }
 }
 
-void *HashtableFindByFn(Hashtable *table, int fn, u32 c) {
+void *HashtableFindByFn(Hashtable *table, int fn, const void *c) {
     void *v1;
     int v3;
     if (fn == 0) {
@@ -146,7 +146,7 @@ void *HashtableFindByFn(Hashtable *table, int fn, u32 c) {
     v3 = 0;
     if (0 < table->mBucketCount) {
         do {
-            v1 = DarrayFindByFnReverse(table->mBuckets[v3], (UnkCompare *) fn, (void *) c);
+            v1 = DarrayFindByFnReverse(table->mBuckets[v3], (UnkCompare *) fn, c);
             if (v1 != NULL) {
                 return v1;
             }

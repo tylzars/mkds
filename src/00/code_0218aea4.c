@@ -56,8 +56,8 @@ s32 func_ov000_0218d430(u32 *c, u32 *d) {
     char *a;
     char *b;
     s32 result;
-    a = SbServerGetValue((SbServer *) *c, (const char *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
-    b = SbServerGetValue((SbServer *) *d, (const char *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    a = SbServerGetValue((SbServer *) *c, data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    b = SbServerGetValue((SbServer *) *d, data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
     result = strcmp(a, b);
     if (data_ov000_021b4d24->mUnk_49c == 0) {
         result = -result;
@@ -69,8 +69,8 @@ s32 func_ov000_0218d3d8(u32 *a, u32 *b) {
     char *x;
     char *y;
     s32 r;
-    x = SbServerGetValue((SbServer *) *a, (const char *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
-    y = SbServerGetValue((SbServer *) *b, (const char *) data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    x = SbServerGetValue((SbServer *) *a, data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
+    y = SbServerGetValue((SbServer *) *b, data_ov000_021b4d24->mUnk_498, data_ov000_021b2260);
     r = func_02142368(x, y);
     if (data_ov000_021b4d24->mUnk_49c == 0) {
         r = -r;
@@ -78,7 +78,7 @@ s32 func_ov000_0218d3d8(u32 *a, u32 *b) {
     return r;
 }
 
-void func_ov000_0218d374(SbServerList *p, s32 a, u32 b, u32 c) {
+void func_ov000_0218d374(SbServerList *p, s32 a, const char *b, u32 c) {
     s32 (*f)(u32 *, u32 *);
     switch (c) {
         case 0:
@@ -291,7 +291,7 @@ void SbServerListInit(SbServerList *slist, const char *a, const char *b, const c
             AssertionFailed(data_ov000_021b2290, data_ov000_021b2218, NULL, 0x132);
         }
         slist->mUnk_494 = g;
-        slist->mUnk_498 = (u32) data_ov000_021b2260;
+        slist->mUnk_498 = data_ov000_021b2260;
         slist->mUnk_4a0 = 0;
         slist->mUnk_4b0 = -1;
         slist->mInBuffer = NULL;
@@ -1502,7 +1502,8 @@ void func_ov000_0218b708(void *a, s32 b, SbServer *c, Unk0218b668 *d) {
     }
 }
 
-Unk0218b668 *func_ov000_0218b668(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, s32 g, UnkFunc *h, u32 l) {
+Unk0218b668 *func_ov000_0218b668(const char *a, const char *b, const char *c, u32 d, u32 e, u32 f, s32 g, UnkFunc *h,
+                                 u32 l) {
     Unk0218b668 *p;
     if (g == 0 && data_ov000_021b4d28 != 1) {
         return NULL;
@@ -1514,7 +1515,7 @@ Unk0218b668 *func_ov000_0218b668(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, s32 g
     p->mUnk_630 = h;
     p->mUnk_634 = l;
     p->mUnk_624 = 0;
-    SbServerListInit(&p->mUnk_04c, (const char *) a, (const char *) b, (const char *) c, d, g, func_ov000_0218b780, p);
+    SbServerListInit(&p->mUnk_04c, a, b, c, d, g, func_ov000_0218b780, p);
     func_ov000_0218acf4(&p->mUnk_000, e, f, g, func_ov000_0218b708, p);
     return p;
 }
@@ -1553,12 +1554,11 @@ s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *
     return r;
 }
 
-u32 func_ov000_0218b570(u32 p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6) {
+u32 func_ov000_0218b570(Unk0218b668 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6) {
     u32 v2 = p4;
     u32 v4 = p5;
     u32 v8 = p6;
-    u32 v10 =
-        func_ov000_0218b590((Unk0218b668 *) p0, (s32) p1, p2, (u8 *) p3, (s32) v2, (const char *) v4, (u32) 0x80u, v8);
+    u32 v10 = func_ov000_0218b590(p0, (s32) p1, p2, (u8 *) p3, (s32) v2, (const char *) v4, (u32) 0x80u, v8);
     return v10;
 }
 
@@ -1595,8 +1595,8 @@ void func_ov000_0218b48c(struct Unk0218b668 *p) {
     func_ov000_0218d1a0(&p->mUnk_04c);
 }
 
-u32 func_ov000_0218b480(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
+u32 func_ov000_0218b480(Unk0218b668 *arg0, u32 arg1) {
+    u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value3;
     value0 = (value0) + 76u;
@@ -1605,8 +1605,8 @@ u32 func_ov000_0218b480(u32 arg0, u32 arg1) {
     return value0;
 }
 
-u32 func_ov000_0218b474(u32 arg0) {
-    u32 value0 = arg0;
+u32 func_ov000_0218b474(Unk0218b668 *arg0) {
+    u32 value0 = (u32) arg0;
     u32 value3;
     value0 = (value0) + 76u;
     value3 = (u32) &func_ov000_0218d22c;
@@ -1614,8 +1614,8 @@ u32 func_ov000_0218b474(u32 arg0) {
     return value0;
 }
 
-void func_ov000_0218b464(Unk0218b668 *p0, u32 p1, void *p2, u32 p3) {
-    func_ov000_0218d374(&p0->mUnk_04c, (s32) p1, (u32) p2, p3);
+void func_ov000_0218b464(Unk0218b668 *p0, u32 p1, const char *p2, u32 p3) {
+    func_ov000_0218d374(&p0->mUnk_04c, (s32) p1, p2, p3);
 }
 
 u32 func_ov000_0218b458(Unk0218b668 *a) {

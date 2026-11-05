@@ -34,4 +34,4 @@ typedef struct Unk02161a90 {
 void func_020170e4(void);
 s32 func_02017138(u32 v);
 u32 func_02017190(u32 a, s32 b);
-void func_02017274(u32 a, u32 b, u32 c, int d);
+void func_02017274(u32 a, RangeEntry *b, u32 c, int d);

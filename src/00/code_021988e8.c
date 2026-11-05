@@ -23,7 +23,7 @@ void func_ov000_02198a74(Gt2Connection *a, void *b, u32 c) {
     func_ov000_02198748(a, b, c);
 }
 
-int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f, int g, int h) {
+int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f, Gt2ConnectionCallbacks *g, int h) {
     Gt2Connection *m;
     u32 i;
     u16 j;
@@ -42,7 +42,7 @@ int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f
         return l;
     }
     m->mTimeSinceCreateLimit = f;
-    n = func_ov000_021987c8(m, d, e, (Gt2ConnectionCallbacks *) g);
+    n = func_ov000_021987c8(m, d, e, g);
     if (n != 0) {
         func_ov000_0219a220(m);
         return n;

@@ -13,7 +13,7 @@ typedef struct WiFiMatching {
     /* 004 */ void **mConnectionSocket;
     // Address of the Gt2ConnectionCallbacks record at WiFiConnection.mResultCallback (declared u32): given to the Gt2
     // connect calls (code_0219dd4c.c:526, code_0219dabc.c:50).
-    /* 008 */ u32 mConnectionCallbacks;
+    /* 008 */ struct Gt2ConnectionCallbacks *mConnectionCallbacks;
     /* 00c */ u8 mUnk_0c;
     // Position (0-based) of the last participant in mParticipantProfileIds / mParticipantIndices: the list holds
     // mLastParticipantPos + 1 entries (code_0219dd4c.c:821) and the loops over the other participants run from 1 to
@@ -39,7 +39,7 @@ typedef struct WiFiMatching {
     /* 020 */ u32 mUnk_20;
     /* 024 */ u32 mUnk_24[32];
     /* 0a4 */ u16 mUnk_a4[32];
-    /* 0e4 */ void *mUnk_e4;
+    /* 0e4 */ struct Unk0218b668 *mUnk_e4;
     /* 0e8 */ u32 mUnk_e8;
     /* 0ec */ u64 mUnk_ec;
     // u32[32]: GP profile id of each participant by position (0..mUnk_0d); the connection finds its own position by
@@ -94,11 +94,11 @@ typedef struct WiFiMatching {
     // Declared u32 holding a char *: the game name buffer (the one WiFiConnection.mGameName points to), given to the
     // query-report init (which reports it under the key 'gamename', code_021a3a18.c:829-830) and twice to
     // func_ov000_0218b668 (the search object at mUnk_e4, code_0219dd4c.c:169, :208).
-    /* 2dc */ u32 mGameName;
+    /* 2dc */ const char *mGameName;
     // Declared u32 holding a char *: the key string data_ov000_021b4f84 (see WiFiConnection.mUnk_58), given after the
     // game name to the query-report init (it keys the answer to the master server's challenge packet,
     // code_021a3a18.c:420) and to func_ov000_0218b668 (code_0219dd4c.c:169, :208).
-    /* 2e0 */ u32 mUnk_2e0;
+    /* 2e0 */ const char *mUnk_2e0;
     /* 2e4 */ u8 *mUnk_2e4;
     /* 2e8 */ u32 mUnk_2e8;
     /* 2ec */ u8 mUnk_2ec[0x40];

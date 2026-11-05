@@ -17,7 +17,7 @@ typedef struct Hashtable {
 Hashtable *HashtableCreate(s32 elemSize, s32 nBuckets, s32 e, s32 (*hashFn)(void *, s32), s32 (*compFn)(void *, void *),
                            void (*h)(void *));
 
-void *HashtableFindByFn(Hashtable *table, int fn, u32 c);
+void *HashtableFindByFn(Hashtable *table, int fn, const void *c);
 void HashtableForEach(Hashtable *table, void (*fn)(void *, void *), void *d);
 void *HashtableFind(Hashtable *table, void *d);
 BOOL HashtableRemove(Hashtable *table, void *d);

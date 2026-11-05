@@ -116,7 +116,7 @@ typedef struct SbServerList {
     /* 48c */ UnkFunc *mUnk_48c;
     /* 490 */ UnkFunc *mUnk_490;
     /* 494 */ void *mUnk_494;
-    /* 498 */ u32 mUnk_498;
+    /* 498 */ const char *mUnk_498;
     /* 49c */ s32 mUnk_49c;
     /* 4a0 */ s32 mUnk_4a0;
     /* 4a4 */ u32 mUnk_4a4;

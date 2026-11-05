@@ -39,7 +39,7 @@ typedef struct Unk021a1e40 {
     /* 04 */ u32 mUnk_04;
 } Unk021a1e40;
 
-void func_ov000_021a1ae0(u32 param_1, u32 param_2, const char *param_3);
+void func_ov000_021a1ae0(GpConnection *param_1, u32 param_2, const char *param_3);
 void WiFiGt2ResultCallback(Unk0219887c *param_1, s32 param_2);
 void func_ov000_021a1ca8(u32 param_1, Unk0219887c *param_2, u32 param_3, u32 param_4, s32 param_5, char *param_6);
 u32 func_ov000_021a1e40(u32 param_1, u32 param_2, u16 param_3, u8 *param_4, u32 param_5);

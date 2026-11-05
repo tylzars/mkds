@@ -6,9 +6,9 @@
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/unk_02173000.h"
 
-void func_02017274(u32 a, u32 b, u32 c, int d) {
+void func_02017274(u32 a, RangeEntry *b, u32 c, int d) {
     data_02173250.mUnk_08 = a;
-    data_02173250.mUnk_0c = (RangeEntry *) b;
+    data_02173250.mUnk_0c = b;
     data_02173250.mUnk_10 = c;
     func_020170e4();
     if (d != 0) {

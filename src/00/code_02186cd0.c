@@ -598,7 +598,7 @@ void func_ov000_02186d7c(void *l) {
     a->mSendBufferSize = 0x5ea;
     a->mSendBuffer = p->mLowSendBuffer;
     func_ov000_021ae304(a);
-    g = func_ov000_021acef8((const char *) p->mHost);
+    g = func_ov000_021acef8(p->mHost);
     if (g == 0) {
         p->mResult = 2;
         return;

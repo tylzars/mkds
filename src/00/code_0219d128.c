@@ -165,11 +165,11 @@ void WiFiGpBuddyRequestCallback(GpConnection *a, u32 *b) {
     return;
 }
 
-u32 func_ov000_0219d6c4(u32 a, u32 *b, u32 c) {
+u32 func_ov000_0219d6c4(GpConnection *a, u32 *b, u32 c) {
     int v1;
     v1 = strcmp((const char *) (b[2]), data_ov000_021b4078);
     if (v1 == 0) {
-        func_ov000_0218eff8((GpConnection *) (a), *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cc94, 0);
+        func_ov000_0218eff8(a, *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cc94, 0);
         return 1;
     }
     return 0;

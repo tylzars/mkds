@@ -17,7 +17,7 @@ typedef struct Unk02186d7cBuf {
 // Object at p + 0x118 of an Unk02186d7c.
 typedef struct Unk02186d7c118 {
     /* 000 */ u8 pad_000[0x7d4];
-    /* 7d4 */ u32 mUnk_7d4;
+    /* 7d4 */ char *mUnk_7d4;
     /* 7d8 */ u8 pad_7d8[0xc];
     /* 7e4 */ u32 (*mUnk_7e4)(u32);
     /* 7e8 */ u8 pad_7e8[0x1c];
@@ -53,7 +53,7 @@ typedef struct Unk02186d7c {
     /* 004 */ Unk021873d4 mUnk_04;
     /* 024 */ s32 mResult;
     /* 028 */ u8 pad_028[0x80];
-    /* 0a8 */ u32 mHost;
+    /* 0a8 */ char *mHost;
     /* 0ac */ u8 pad_0ac[4];
     /* 0b0 */ s32 mUseHttps;
     /* 0b4 */ Unk02186d7cB4 mUnk_b4;

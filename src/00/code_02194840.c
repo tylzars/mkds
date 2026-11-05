@@ -14,7 +14,7 @@ BOOL GpiForEachProfileWhileNonZero(GpConnection *a, void *b, void *c) {
     d.mUnk_00 = a;
     d.mUnk_04 = b;
     d.mUnk_08 = c;
-    if (HashtableFindByFn(r->mProfileList.mTable, (s32) func_ov000_02194874, (u32) &d) == NULL) {
+    if (HashtableFindByFn(r->mProfileList.mTable, (s32) func_ov000_02194874, &d) == NULL) {
         return TRUE;
     }
     return FALSE;
