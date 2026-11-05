@@ -55,7 +55,7 @@ int func_ov000_0219d034(int a) {
             c = -20;
             break;
     }
-    func_ov000_0219d734(b, c - 0x11558);
+    ReportBuddySyncError(b, c - 0x11558);
     return a;
 }
 
@@ -91,6 +91,6 @@ int func_ov000_0219cfc0(int a) {
             c = -9;
             break;
     }
-    func_ov000_0219d734(b, c - 0x11940);
+    ReportBuddySyncError(b, c - 0x11940);
     return a;
 }

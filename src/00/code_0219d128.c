@@ -79,7 +79,7 @@ void UpdateBuddySync(void) {
         return;
     }
     if (func_ov000_0219caf4() != 0 && func_ov000_0219746c() == FALSE) {
-        func_ov000_0219d734(6, -0x1194a);
+        ReportBuddySyncError(6, -0x1194a);
         return;
     }
     if (gWiFiBuddySync->mGpConnection != NULL && gWiFiBuddySync->mGpConnection->mGpiConnection != NULL) {
@@ -98,7 +98,7 @@ void UpdateBuddySync(void) {
     }
     if (gWiFiBuddySync->mCompletedParts >= 2) {
         gWiFiBuddySync->mCompletedParts = 0;
-        func_ov000_0219d2c4();
+        FinishBuddySync();
     }
 }
 
@@ -139,7 +139,10 @@ void StartBuddySync(s32 a, const char *b, void (*c)(s32, u8, void *), void *d, v
     }
 }
 
-void func_ov000_0219d734(s32 a, s32 b) {
+// Records the (error kind, code) pair in the error store of the layer (func_ov000_0219c384), calls the result callback
+// with the code only while the sync runs (mState is 1) and closes the stats link. Not only the sync calls it: also the
+// connection's GP error mapper, the stats code and the matching code.
+void ReportBuddySyncError(s32 a, s32 b) {
     if (gWiFiBuddySync != NULL && a != 0) {
         func_ov000_0219c384(a, b);
         if (gWiFiBuddySync->mState != 0 && gWiFiBuddySync->mState != 2) {
@@ -324,7 +327,9 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
     }
 }
 
-void func_ov000_0219d2c4(void) {
+// The step UpdateBuddySync runs when both parts have ended: reports success (code 0) to the result callback and sets
+// the finished state (mState 2).
+void FinishBuddySync(void) {
     gWiFiBuddySync->mResultCallback(0, gWiFiBuddySync->mBuddiesChanged, gWiFiBuddySync->mResultCallbackArg);
     gWiFiBuddySync->mState = 2;
 }

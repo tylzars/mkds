@@ -143,7 +143,7 @@ void func_ov000_0219cc30(u32 a, u32 b, u32 c) {
     char s[0x40];
     func_ov000_0219cb00();
     if (c == 0 || a != 0) {
-        func_ov000_0219d734(6, -72200);
+        ReportBuddySyncError(6, -72200);
         return;
     }
     gWiFiBuddySync->mUnk_24 = b;

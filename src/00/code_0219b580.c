@@ -591,7 +591,7 @@ int func_ov000_0219b77c(int c) {
             b -= 0x16378;
             break;
     }
-    func_ov000_0219d734(a, b);
+    ReportBuddySyncError(a, b);
     return c;
 }
 

@@ -2821,7 +2821,7 @@ u32 func_ov000_0219e4e8(u32 a) {
             func_ov000_0219c990(b, c - 0xfa00);
             break;
         case 4:
-            func_ov000_0219d734(b, c - 0x12110);
+            ReportBuddySyncError(b, c - 0x12110);
             break;
         case 5:
             func_ov000_021a1a38(b, c - 0x14820);

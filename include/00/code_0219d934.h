@@ -36,7 +36,7 @@ typedef struct WiFiBuddySync {
     // func_ov000_0219ce48, so it can be 1 without a change.
     /* 1d */ u8 mBuddiesChanged;
     /* 1e */ u8 mUnk_1e;
-    // Parts of the sync that ended; at 2 UpdateBuddySync calls func_ov000_0219d2c4 (the finish step). Part 1 is the
+    // Parts of the sync that ended; at 2 UpdateBuddySync calls FinishBuddySync (the finish step). Part 1 is the
     // name part (only run when a name was given: the one caller passes NULL, so it is counted at once); part 2 is the
     // list part.
     /* 1f */ u8 mCompletedParts;
@@ -47,7 +47,7 @@ typedef struct WiFiBuddySync {
     /* 24 */ s32 mUnk_24;
     /* 28 */ char *mUnk_28;
     // Set by StartBuddySync (the owner passes WiFiBuddySyncCallback); called with (code, mBuddiesChanged, arg) by the
-    // finish step func_ov000_0219d2c4 (code 0) and the error reporter func_ov000_0219d734 (error).
+    // finish step FinishBuddySync (code 0) and the error reporter ReportBuddySyncError (error).
     /* 2c */ void (*mResultCallback)(s32, u8, void *);
     /* 30 */ void *mResultCallbackArg;
     // Called with (list index, status, status text, arg) from WiFiGpBuddyStatusCallback and from the change notifier

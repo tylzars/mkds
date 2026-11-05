@@ -15,7 +15,7 @@ void func_ov000_0219cb64(u32 a, u32 b, s32 c, u32 d, s32 e, u32 f, u32 g) {
                 t = 0;
             }
         } else {
-            func_ov000_0219d734(6, -72220);
+            ReportBuddySyncError(6, -72220);
         }
     }
     if ((t & 0x80000000) == 0) {
@@ -24,7 +24,7 @@ void func_ov000_0219cb64(u32 a, u32 b, s32 c, u32 d, s32 e, u32 f, u32 g) {
                 gWiFiBuddySync->mUnk_4c(1, (u32) (c - 2) <= 1 ? 1 : 0, g);
             }
         } else {
-            func_ov000_0219d734(6, -72220);
+            ReportBuddySyncError(6, -72220);
             if (gWiFiBuddySync->mUnk_4c != NULL) {
                 gWiFiBuddySync->mUnk_4c(0, 0, g);
             }
@@ -35,7 +35,7 @@ void func_ov000_0219cb64(u32 a, u32 b, s32 c, u32 d, s32 e, u32 f, u32 g) {
 void func_ov000_0219cb30(void) {
     WiFiBuddySync *p = gWiFiBuddySync;
     if (p->mPendingStatsRequestCount == -1) {
-        func_ov000_0219d734(0xb, -70009);
+        ReportBuddySyncError(0xb, -70009);
         return;
     }
     p->mPendingStatsRequestCount++;
@@ -44,7 +44,7 @@ void func_ov000_0219cb30(void) {
 void func_ov000_0219cb00(void) {
     WiFiBuddySync *p = gWiFiBuddySync;
     if (p->mPendingStatsRequestCount == 0) {
-        func_ov000_0219d734(0xb, -70009);
+        ReportBuddySyncError(0xb, -70009);
         return;
     }
     p->mPendingStatsRequestCount--;
