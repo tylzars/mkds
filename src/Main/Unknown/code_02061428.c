@@ -15,7 +15,7 @@ void func_02061470(void) {
         if (func_020573c8(i) != 0) {
             func_02057800(0, i, b);
             if (data_021759d4->mUnk_0c != 0) {
-                func_02145d38();
+                CARD_WaitBackupAsync();
             }
             if (data_021759d4->mUnk_04 != NULL) {
                 b->mUnk_08_0 = 0;

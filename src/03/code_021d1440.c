@@ -72,10 +72,10 @@ void func_ov003_021d15f4(void) {
 s32 func_ov003_021d15a4(Unk02003024 *a, u32 b) {
     switch (b) {
         case 9:
-            func_021457cc(data_ov003_021da2b0->mUnk_e4);
+            CARD_LockRom(data_ov003_021da2b0->mUnk_e4);
             return 0;
         case 10:
-            func_021457ac(data_ov003_021da2b0->mUnk_e4);
+            CARD_UnlockRom(data_ov003_021da2b0->mUnk_e4);
             return 0;
         case 1:
             return 4;
@@ -85,7 +85,7 @@ s32 func_ov003_021d15a4(Unk02003024 *a, u32 b) {
 }
 
 u32 func_ov003_021d1574(int a, u32 b, int c, u32 d) {
-    func_021461d8(0xffffffff, (c + *(s32 *) (a + 0x28)), b, d, (UnkFunc *) (&func_ov003_021d1568), (u32) (a), 1);
+    StartRomRead(0xffffffff, (c + *(s32 *) (a + 0x28)), b, d, (UnkFunc *) (&func_ov003_021d1568), (u32) (a), 1);
     return 6;
 }
 

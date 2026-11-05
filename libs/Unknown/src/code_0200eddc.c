@@ -164,7 +164,7 @@ void OS_Init(void) {
     ThreadSystemInit();
     OS_InitReset();
     func_0200c7f4();
-    func_02146154();
+    CARD_Init();
     PM_Init();
 }
 

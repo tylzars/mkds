@@ -24,27 +24,27 @@ void func_0205721c(u32 a) {
 void func_02057174(void) {
     func_02057c14(data_0217aa08->mUnk_04);
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
     func_02057b84(data_0217aa08->mUnk_08);
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
     func_02057af4(data_0217aa08->mUnk_0c);
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
     func_02057a60(data_0217aa08->mUnk_10);
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
     func_020577b4(data_0217aa08->mUnk_20);
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
     func_02057ca4(data_0217aa08->mUnk_00);
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
     func_02057504();
 }

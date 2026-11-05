@@ -111,7 +111,7 @@ void func_0204b9ac(void) {
     }
     data_021759d4->mUnk_0c = 1;
     func_0204b3a4();
-    func_02145d44(0x1202);
+    CARD_IdentifyBackup(0x1202);
     func_0204b3dc();
     data_021759d4->mUnk_00 = 0;
     data_021759d4->mUnk_04 = NULL;
@@ -151,7 +151,7 @@ void func_0204b7b8(void (*a)(u32 *, u32)) {
     u16 t;
     e = 0;
     f = TRUE;
-    s = func_021457ec();
+    s = CARD_GetResultCode();
     func_0204b3dc();
     data_021759d4->mUnk_10 = 0;
     switch (s) {
@@ -250,7 +250,7 @@ void func_0204b7b8(void (*a)(u32 *, u32)) {
 }
 
 u32 func_0204b714(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, u32 e, s32 f) {
-    if (data_021759d4->mUnk_0c == 0 || func_02145d2c() == 0) {
+    if (data_021759d4->mUnk_0c == 0 || CARD_TryWaitBackupAsync() == 0) {
         return 0;
     }
     if (func_0204b3a4() == 0) {
@@ -266,6 +266,6 @@ u32 func_0204b714(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, u32 e, s32
     data_021759d4->mUnk_38 = f;
     data_021759d4->mUnk_14 = d;
     DC_InvalidateRange(b, n);
-    func_02145e8c(a, (u32) b, n, (UnkFunc *) func_0204b7b8, c, 1, 6, 1, 0);
+    StartBackupTransfer(a, (u32) b, n, (UnkFunc *) func_0204b7b8, c, 1, 6, 1, 0);
     return 1;
 }

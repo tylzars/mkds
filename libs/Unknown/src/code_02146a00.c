@@ -2,7 +2,7 @@
 #include "code_0200db4c.h"
 #include "Main/Unknown/unk_0217f000.h"
 
-void func_02146a00(u32 arg0, u32 arg1, u32 arg2) {
+void ReceiveRequestReply(u32 arg0, u32 arg1, u32 arg2) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2 = arg2;
@@ -28,7 +28,7 @@ void func_02146a00(u32 arg0, u32 arg1, u32 arg2) {
     if (compareLeft1 == compareRight1) {
         return;
     }
-    value1 = (u32) &data_0217fa40;
+    value1 = (u32) &gAccessState;
     value0 = (u32) * (const u32 *) ((value1) + (276));
     value0 = (value0) & ~(0x20u);
     *(u32 *) ((value1) + (276)) = value0;

@@ -493,7 +493,7 @@ void func_0203d568(void) {
     if (func_0203d568_c_inline() != 0) {
         func_02057d9c();
         if (data_021759d4->mUnk_0c != 0) {
-            func_02145d38();
+            CARD_WaitBackupAsync();
         }
     }
     switch (data_021759c0->mMode) {

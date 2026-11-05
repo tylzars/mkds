@@ -5,44 +5,44 @@
 #include "code_02146a50.h"
 #include "code_0214d5b8.h"
 
-UnkWordFunc *data_021802a4;
-u32 data_021802a0;
+UnkWordFunc *gRemovalCallback;
+u32 gRemovalSeen;
 
-void func_02146b80(void) {
+void CARD_InitPulledOutCallback(void) {
     PxiInit();
-    PxiCallbackSet(14, func_02146b14);
-    data_021802a4 = 0;
+    PxiCallbackSet(14, ReceiveRemovalMessage);
+    gRemovalCallback = 0;
 }
 
-void func_02146b14(u32 a, u32 b) {
+void ReceiveRemovalMessage(u32 a, u32 b) {
     u32 r;
     UnkWordFunc *fn;
 
     if ((b & 0x3F) == 0x11) {
-        fn = data_021802a4;
-        data_021802a0 = 1;
+        fn = gRemovalCallback;
+        gRemovalSeen = 1;
         r = 1;
         if (fn != 0) {
             r = fn();
         }
         if (r != 0) {
-            func_02146ab4();
+            CARD_TerminateForPulledOut();
         }
     } else {
         IrqDisableLoopForever();
     }
 }
 
-void func_02146b04(void *arg0) {
+void CARD_SetPulledOutCallback(void *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
-    value1 = (u32) &data_021802a4;
+    value1 = (u32) &gRemovalCallback;
     *(u32 *) ((value1) + (0)) = value0;
 }
 
-u32 func_02146af4(void) {
+u32 CARD_IsPulledOut(void) {
     u32 value0;
-    value0 = (u32) &data_021802a0;
+    value0 = (u32) &gRemovalSeen;
     value0 = (u32) * (const u32 *) ((value0) + (0));
     return value0;
 }

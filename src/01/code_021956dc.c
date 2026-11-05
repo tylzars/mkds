@@ -954,7 +954,7 @@ void AdvanceRecordTAttState10(void) {
                 func_02060004(data_ov001_021a6900[gRecordTAtt->mIndex]);
                 func_02057d9c();
                 if (data_021759d4->mUnk_0c != 0) {
-                    func_02145d38();
+                    CARD_WaitBackupAsync();
                 }
             }
             gRecordTAtt->mUnk_74 = TRUE;

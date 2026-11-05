@@ -334,7 +334,7 @@ void FileFinishCardRead(Unk02003a6c *p) {
 }
 
 s32 FileStartCardRead(Unk02003a6c *p, void *buf, u32 off, u32 n) {
-    func_021461d8(data_0216f358, off, (u32) buf, n, FileFinishCardRead, (u32) p, 1);
+    StartRomRead(data_0216f358, off, (u32) buf, n, FileFinishCardRead, (u32) p, 1);
     return 6;
 }
 
@@ -345,10 +345,10 @@ s32 FileWriteFail(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
 s32 FileHandleRomLock(Unk02003024 *p, u32 cmd) {
     switch (cmd) {
         case 9:
-            func_021457cc(data_0216f354);
+            CARD_LockRom(data_0216f354);
             return 0;
         case 10:
-            func_021457ac(data_0216f354);
+            CARD_UnlockRom(data_0216f354);
             return 0;
         case 1:
             return 4;
@@ -374,7 +374,7 @@ void FileInitRomArchive(u32 arg) {
     data_0216f35c.mUnk_04 = 0;
     data_0216f364.mUnk_00 = 0;
     data_0216f364.mUnk_04 = 0;
-    func_02146154();
+    CARD_Init();
     FS_InitArchive(&data_0216f36c);
     FS_RegisterArchiveName(&data_0216f36c, data_02161764, 3);
     if (*(u16 *) 0x27ffc40 == 2) {

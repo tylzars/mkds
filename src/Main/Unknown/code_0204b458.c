@@ -14,7 +14,7 @@ void func_0204b5dc(void (*a)(u32 *, u32)) {
     BOOL f;
     u32 s;
     f = TRUE;
-    s = func_021457ec();
+    s = CARD_GetResultCode();
     func_0204b3dc();
     e = 0;
     data_021759d4->mUnk_10 = 0;
@@ -82,13 +82,13 @@ void func_0204b5dc(void (*a)(u32 *, u32)) {
 void func_0204b574(void) {
     BOOL r;
     r = FALSE;
-    if (func_021457ec() != 0) {
+    if (CARD_GetResultCode() != 0) {
         r = TRUE;
     }
     if (r == FALSE) {
         func_0204ba7c();
-        func_02145e8c((u32) data_021759d4->mUnk_40, data_021759d4->mUnk_44, data_021759d4->mUnk_48,
-                      (UnkFunc *) func_0204b5dc, data_021759d4->mUnk_54, 1, 7, 10, 2);
+        StartBackupTransfer((u32) data_021759d4->mUnk_40, data_021759d4->mUnk_44, data_021759d4->mUnk_48,
+                            (UnkFunc *) func_0204b5dc, data_021759d4->mUnk_54, 1, 7, 10, 2);
     } else {
         func_0204b3dc();
         data_021759d4->mUnk_10 = 0;
@@ -97,20 +97,20 @@ void func_0204b574(void) {
 }
 
 u32 func_0204b518(void) {
-    if (data_021759d4->mUnk_0c == 0 || func_02145d2c() == 0) {
+    if (data_021759d4->mUnk_0c == 0 || CARD_TryWaitBackupAsync() == 0) {
         return 0;
     }
     if (func_0204b3a4() == 0) {
         return 0;
     }
-    func_02145e8c(0, (u32) data_021759d4->mUnk_64, 1, (UnkFunc *) func_0204b574, NULL, 1, 6, 1, 0);
+    StartBackupTransfer(0, (u32) data_021759d4->mUnk_64, 1, (UnkFunc *) func_0204b574, NULL, 1, 6, 1, 0);
     return 1;
 }
 
 u32 func_0204b458(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, s32 e) {
     u32 *p;
     u32 m;
-    if (data_021759d4->mUnk_0c == 0 || func_02145d2c() == 0) {
+    if (data_021759d4->mUnk_0c == 0 || CARD_TryWaitBackupAsync() == 0) {
         return 0;
     }
     data_021759d4->mUnk_04 = NULL;
@@ -135,7 +135,7 @@ u32 func_0204b458(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, s32 e) {
         DC_StoreRange(b, n);
         return func_0204b518();
     }
-    func_02145e8c((u32) b, a, n, (UnkFunc *) func_0204b5dc, c, 1, 7, 10, 2);
+    StartBackupTransfer((u32) b, a, n, (UnkFunc *) func_0204b5dc, c, 1, 7, 10, 2);
     return 1;
 }
 

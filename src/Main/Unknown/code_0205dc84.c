@@ -66,7 +66,7 @@ void func_0205dee0(void) {
     a = GetHeap(func_020364e8());
     func_02057d9c();
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && data_0217aa20->mUnk_0c != NULL) {
         func_02108720();

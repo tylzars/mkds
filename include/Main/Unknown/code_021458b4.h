@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-u32 func_021458b4(void);
+// Returns the enable flag.
+u32 CARD_IsEnabled(void);

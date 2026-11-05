@@ -14,11 +14,11 @@ void func_02057504(void) {
 
 void func_020574c8(void) {
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
     func_02057ca4(data_0217aa08->mUnk_00);
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
     func_02057504();
 }

@@ -56,7 +56,7 @@ void func_020612b0(void) {
     data_0217aa08->mUnk_00->mUnk_34[5] = b;
     func_02057ca4(data_0217aa08->mUnk_00);
     if (data_021759d4->mUnk_0c != 0) {
-        func_02145d38();
+        CARD_WaitBackupAsync();
     }
 }
 

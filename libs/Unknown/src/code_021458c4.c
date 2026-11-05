@@ -23,16 +23,16 @@
 #include "registers.h"
 #include "code_02146af4.h"
 
-Unk021458b4 data_0217fa00;
-u32 data_02180060;
-Unk02146154 data_02180080;
+Unk021458b4 gRequestBlock;
+u32 gRomBaseOffset;
+Unk02146154 gRomReadState;
 
 // Loops: waits for bit 3 of mUnk_114 and calls mUnk_40.
-void func_021469a4(void *a) {
+void WorkerTaskLoop(void *a) {
     Unk021458c4 *p;
     u32 s;
 
-    p = &data_0217fa40;
+    p = &gAccessState;
     for (;;) {
         s = IrqDisable();
         while ((p->mUnk_114 & 8) == 0) {
@@ -45,7 +45,7 @@ void func_021469a4(void *a) {
 }
 
 // Sends command a until mUnk_00 does not hold 4 or b attempts are used; returns whether it holds 0.
-int func_02146868(Unk021458c4 *p, s32 a, s32 b) {
+int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b) {
     u32 s;
     s32 v;
     Unk021458b4 *q;
@@ -57,7 +57,7 @@ int func_02146868(Unk021458c4 *p, s32 a, s32 b) {
                 func_0200fd10(100);
             } while (PxiCallbackBitIsSet(11, 1) == 0);
         }
-        func_02146868(p, 0, 1);
+        SendRequestWithRetries(p, 0, 1);
     }
     DC_FlushRange(p->mUnk_00, 0x40);
     DC_WaitWriteBufferEmpty();
@@ -82,13 +82,13 @@ int func_02146868(Unk021458c4 *p, s32 a, s32 b) {
 }
 
 // Copies the part of the block that mUnk_08 of p holds from p to mUnk_20; returns whether mUnk_24 is not 0.
-int func_021467d0(Unk02146154 *p) {
+int CopyFromRomPageBuffer(Unk02146154 *p) {
     Unk021458c4 *d;
     u32 a;
     u32 n;
     u32 m;
 
-    d = &data_0217fa40;
+    d = &gAccessState;
     a = d->mUnk_1c & -0x200;
     if (a == p->mUnk_08) {
         m = d->mUnk_1c - a;
@@ -106,7 +106,7 @@ int func_021467d0(Unk02146154 *p) {
 
 // Waits for bit 31 of 0x040001a4 to clear, then writes 0xc0 and the eight bytes of a and b to 0x040001a1 and
 // 0x040001a8 to 0x040001af.
-void func_02146730(u32 a, u32 b) {
+void WriteRomCommandBytes(u32 a, u32 b) {
     while (reg_MI_MCCNT1 & 0x80000000) {
     }
     *(vu8 *) 0x040001a1 = 0xc0;
@@ -120,32 +120,32 @@ void func_02146730(u32 a, u32 b) {
     *(vu8 *) 0x040001af = b;
 }
 
-// Passes the next block to StartCardDmaCopy, sends the command for mUnk_1c and stores mUnk_04 of data_02180080 at
+// Passes the next block to StartCardDmaCopy, sends the command for mUnk_1c and stores mUnk_04 of gRomReadState at
 // 0x040001a4.
-void func_021466d8(void) {
+void StartRomPageDma(void) {
     Unk021458c4 *d;
 
-    d = (Unk021458c4 *) (u32) &data_0217fa40;
+    d = (Unk021458c4 *) (u32) &gAccessState;
     StartCardDmaCopy(d->mUnk_28, (void *) 0x04100010, (void *) d->mUnk_20, 0x200);
-    func_02146730((d->mUnk_1c >> 8) | 0xb7000000, d->mUnk_1c << 24);
-    reg_MI_MCCNT1 = data_02180080.mUnk_04;
+    WriteRomCommandBytes((d->mUnk_1c >> 8) | 0xb7000000, d->mUnk_1c << 24);
+    reg_MI_MCCNT1 = gRomReadState.mUnk_04;
 }
 
-// Advances mUnk_1c, mUnk_20 and mUnk_24 by one block; calls mUnk_38 when nothing is left, else func_021466d8.
-void func_02146600(void) {
+// Advances mUnk_1c, mUnk_20 and mUnk_24 by one block; calls mUnk_38 when nothing is left, else StartRomPageDma.
+void AdvanceRomDmaRead(void) {
     Unk021458c4 *p;
     UnkFunc *cb;
     u32 arg;
     u32 s;
 
-    MI_StopDma(data_0217fa40.mUnk_28);
-    data_0217fa40.mUnk_1c += 0x200;
-    data_0217fa40.mUnk_20 += 0x200;
-    data_0217fa40.mUnk_24 -= 0x200;
-    if (data_0217fa40.mUnk_24 == 0) {
+    MI_StopDma(gAccessState.mUnk_28);
+    gAccessState.mUnk_1c += 0x200;
+    gAccessState.mUnk_20 += 0x200;
+    gAccessState.mUnk_24 -= 0x200;
+    if (gAccessState.mUnk_24 == 0) {
         InterruptEnableClearBits(0x80000);
         InterruptFlagWrite(0x80000);
-        p = (Unk021458c4 *) (u32) &data_0217fa40;
+        p = (Unk021458c4 *) (u32) &gAccessState;
         p->mUnk_00->mUnk_00 = 0;
         cb = p->mUnk_38;
         arg = p->mUnk_3c;
@@ -160,12 +160,12 @@ void func_02146600(void) {
             cb(arg);
         }
     } else {
-        func_021466d8();
+        StartRomPageDma();
     }
 }
 
 // Returns 1 and sends the command for mUnk_1c when mUnk_20 and mUnk_24 pass the checks; returns 0 otherwise.
-int func_021464a4(Unk02146154 *p) {
+int TryStartRomDmaRead(Unk02146154 *p) {
     u32 v;
     int t;
     Unk021458c4 *d;
@@ -178,7 +178,7 @@ int func_021464a4(Unk02146154 *p) {
     u32 s;
     u32 rem;
 
-    d = &data_0217fa40;
+    d = &gAccessState;
     r = 0;
     b = 0;
     c = 0;
@@ -227,17 +227,17 @@ int func_021464a4(Unk02146154 *p) {
         }
         DC_InvalidateRange((void *) addr, len);
         DC_WaitWriteBufferEmpty();
-        InterruptHandlerSet(0x80000, func_02146600);
+        InterruptHandlerSet(0x80000, AdvanceRomDmaRead);
         InterruptFlagWrite(0x80000);
         InterruptEnableSetBits(0x80000);
         IrqRestore(s);
-        func_021466d8();
+        StartRomPageDma();
     }
     return r;
 }
 
 // Reads 0x200-byte blocks from the word at 0x04100010 into mUnk_20, or into the buffer of p when mUnk_20 is not usable.
-void func_021463a4(Unk02146154 *p) {
+void ReadRomPagesByCpu(Unk02146154 *p) {
     Unk021458c4 *d;
     u32 *buf;
     u32 *q;
@@ -246,7 +246,7 @@ void func_021463a4(Unk02146154 *p) {
     u32 s;
     u32 w;
 
-    d = &data_0217fa40;
+    d = &gAccessState;
     q = p->mUnk_20;
     for (;;) {
         a = d->mUnk_1c & -0x200;
@@ -254,7 +254,7 @@ void func_021463a4(Unk02146154 *p) {
             buf = q;
             p->mUnk_08 = a;
         }
-        func_02146730((a >> 8) | 0xb7000000, a << 24);
+        WriteRomCommandBytes((a >> 8) | 0xb7000000, a << 24);
         reg_MI_MCCNT1 = p->mUnk_04;
         n = 0;
         do {
@@ -268,32 +268,32 @@ void func_021463a4(Unk02146154 *p) {
             }
         } while (s & 0x80000000);
         if ((u32) buf == d->mUnk_20) {
-            data_0217fa40.mUnk_1c += 0x200;
-            data_0217fa40.mUnk_20 += 0x200;
-            data_0217fa40.mUnk_24 -= 0x200;
-            if (data_0217fa40.mUnk_24 == 0) {
+            gAccessState.mUnk_1c += 0x200;
+            gAccessState.mUnk_20 += 0x200;
+            gAccessState.mUnk_24 -= 0x200;
+            if (gAccessState.mUnk_24 == 0) {
                 return;
             }
-        } else if (func_021467d0(p) == 0) {
+        } else if (CopyFromRomPageBuffer(p) == 0) {
             return;
         }
     }
 }
 
-// Calls the function at data_02180080.mUnk_00 when func_021467d0 returns nonzero, then clears the word at mUnk_00 and
-// calls mUnk_38 with mUnk_3c.
-void func_02146300(Unk021458c4 *a) {
+// Calls the function at gRomReadState.mUnk_00 when CopyFromRomPageBuffer returns nonzero, then clears the word at
+// mUnk_00 and calls mUnk_38 with mUnk_3c.
+void RunRomRead(Unk021458c4 *a) {
     Unk021458c4 *p;
     Unk02146154 *q;
     UnkFunc *cb;
     u32 arg;
     u32 s;
 
-    q = &data_02180080;
-    if (func_021467d0(q) != 0) {
+    q = &gRomReadState;
+    if (CopyFromRomPageBuffer(q) != 0) {
         q->mUnk_00(q);
     }
-    p = (Unk021458c4 *) (u32) &data_0217fa40;
+    p = (Unk021458c4 *) (u32) &gAccessState;
     p->mUnk_00->mUnk_00 = 0;
     cb = p->mUnk_38;
     arg = p->mUnk_3c;
@@ -309,16 +309,16 @@ void func_02146300(Unk021458c4 *a) {
     }
 }
 
-// Stores the arguments in mUnk_1c to mUnk_3c; when func_021464a4 returns 0 either starts func_02146300 on the object at
-// mUnk_44 (g not 0) or calls it.
-void func_021461d8(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
+// Stores the arguments in mUnk_1c to mUnk_3c; when TryStartRomDmaRead returns 0 either starts RunRomRead on the object
+// at mUnk_44 (g not 0) or calls it.
+void StartRomRead(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     Unk021458c4 *p;
     Unk02146154 *q;
     u32 s;
 
-    p = (Unk021458c4 *) (u32) &data_0217fa40;
-    q = &data_02180080;
-    func_02145888();
+    p = (Unk021458c4 *) (u32) &gAccessState;
+    q = &gRomReadState;
+    CARD_CheckEnabled();
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
         ThreadWait(&p->mUnk_10c);
@@ -328,30 +328,30 @@ void func_021461d8(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     p->mUnk_3c = f;
     IrqRestore(s);
     p->mUnk_28 = a;
-    p->mUnk_1c = b + data_02180060;
+    p->mUnk_1c = b + gRomBaseOffset;
     p->mUnk_20 = c;
     p->mUnk_24 = d;
     if (a <= 3) {
         MI_StopDma(a);
     }
-    if (func_021464a4(q) != 0) {
+    if (TryStartRomDmaRead(q) != 0) {
         if (g == 0) {
-            func_02146148();
+            CARD_WaitRomAsync();
         }
     } else if (g != 0) {
-        func_02145b0c(func_02146300);
+        StartWorkerTask(RunRomRead);
     } else {
         p->mUnk_104 = data_0216ff5c.mCurrentThread;
-        func_02146300(p);
+        RunRomRead(p);
     }
 }
 
 // When mUnk_114 is 0: sets it to 1, clears mUnk_1c to mUnk_24, sets mUnk_28 to -1, clears mUnk_38 and mUnk_3c and
-// data_02180060, then calls func_021458c4 and func_02146b80.
-void func_02146154(void) {
+// gRomBaseOffset, then calls InitBackupAndRomAccess and CARD_InitPulledOutCallback.
+void CARD_Init(void) {
     Unk021458c4 *p;
 
-    p = &data_0217fa40;
+    p = &gAccessState;
     if (p->mUnk_114 != 0) {
         return;
     }
@@ -360,23 +360,23 @@ void func_02146154(void) {
     p->mUnk_28 = -1;
     p->mUnk_38 = 0;
     p->mUnk_3c = 0;
-    data_02180060 = 0;
-    func_021458c4();
-    data_02180080.mUnk_00 = func_0214613c();
-    func_02146b80();
+    gRomBaseOffset = 0;
+    InitBackupAndRomAccess();
+    gRomReadState.mUnk_00 = GetRomPageReader();
+    CARD_InitPulledOutCallback();
 }
 
-int func_02146148(void) {
-    return func_0214581c();
+int CARD_WaitRomAsync(void) {
+    return WaitForTransferEnd();
 }
 
-UnkFunc *func_0214613c(void) {
-    return (UnkFunc *) func_021463a4;
+UnkFunc *GetRomPageReader(void) {
+    return (UnkFunc *) ReadRomPagesByCpu;
 }
 
 // Runs the transfer described by mUnk_1c to mUnk_34 in blocks of at most 0x100 bytes, then
 // calls mUnk_38 with mUnk_3c.
-void func_02145f80(Unk021458c4 *p) {
+void RunBackupTransfer(Unk021458c4 *p) {
     u32 a;
     u32 b;
     u32 c;
@@ -412,11 +412,11 @@ void func_02145f80(Unk021458c4 *p) {
             p->mUnk_00->mUnk_0c = (s32) p->mUnk_120;
             p->mUnk_00->mUnk_10 = p->mUnk_20;
         }
-        if (func_02146868(p, a, c) == 0) {
+        if (SendRequestWithRetries(p, a, c) == 0) {
             break;
         }
         if (b == 2) {
-            if (func_02146868(p, 9, 1) == 0) {
+            if (SendRequestWithRetries(p, 9, 1) == 0) {
                 break;
             }
         } else if (b == 0) {
@@ -440,13 +440,13 @@ void func_02145f80(Unk021458c4 *p) {
     }
 }
 
-// Stores the arguments in mUnk_1c to mUnk_3c; starts func_02145f80 on the object at mUnk_44 and returns 1 when f is
+// Stores the arguments in mUnk_1c to mUnk_3c; starts RunBackupTransfer on the object at mUnk_44 and returns 1 when f is
 // not 0, else runs it and returns whether the word at mUnk_00 is 0.
-int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, u32 h, u32 i) {
+int StartBackupTransfer(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, u32 h, u32 i) {
     Unk021458c4 *p;
     u32 s;
 
-    p = (Unk021458c4 *) (u32) &data_0217fa40;
+    p = (Unk021458c4 *) (u32) &gAccessState;
     func_02000b44((u32) (BuildInfo + 0x24));
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
@@ -463,26 +463,26 @@ int func_02145e8c(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, u32 h,
     p->mUnk_30 = h;
     p->mUnk_34 = i;
     if (f != 0) {
-        func_02145b0c(func_02145f80);
+        StartWorkerTask(RunBackupTransfer);
         return 1;
     }
-    data_0217fa40.mUnk_104 = data_0216ff5c.mCurrentThread;
-    func_02145f80(p);
+    gAccessState.mUnk_104 = data_0216ff5c.mCurrentThread;
+    RunBackupTransfer(p);
     return p->mUnk_00->mUnk_00 == 0;
 }
 
-int func_02145d44(s32 a) {
+int CARD_IdentifyBackup(s32 a) {
     Unk021458c4 *p;
     UnkFunc *cb;
     u32 arg;
     u32 s;
 
-    p = &data_0217fa40;
+    p = &gAccessState;
     func_02000b44((u32) (BuildInfo + 0x24));
     if (a == 0) {
         IrqDisableLoopForever();
     }
-    func_02145888();
+    CARD_CheckEnabled();
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
         ThreadWait(&p->mUnk_10c);
@@ -491,13 +491,13 @@ int func_02145d44(s32 a) {
     p->mUnk_38 = 0;
     p->mUnk_3c = 0;
     IrqRestore(s);
-    func_02145b54(a);
-    data_0217fa40.mUnk_104 = data_0216ff5c.mCurrentThread;
-    func_02146868(p, 2, 1);
+    SetupBackupSpec(a);
+    gAccessState.mUnk_104 = data_0216ff5c.mCurrentThread;
+    SendRequestWithRetries(p, 2, 1);
     p->mUnk_00->mUnk_0c = 0;
     p->mUnk_00->mUnk_10 = (u32) p->mUnk_120;
     p->mUnk_00->mUnk_14 = 1;
-    func_02146868(p, 6, 1);
+    SendRequestWithRetries(p, 6, 1);
     cb = p->mUnk_38;
     arg = p->mUnk_3c;
     s = IrqDisable();
@@ -513,22 +513,22 @@ int func_02145d44(s32 a) {
     return p->mUnk_00->mUnk_00 == 0;
 }
 
-int func_02145d38(void) {
-    return func_0214581c();
+int CARD_WaitBackupAsync(void) {
+    return WaitForTransferEnd();
 }
 
-int func_02145d2c(void) {
-    return func_02145800();
+int CARD_TryWaitBackupAsync(void) {
+    return IsTransferIdle();
 }
 
-// Clears the words of data_0217fa00 from mUnk_18 on and fills them for the value a; stores 3 in mUnk_00 when a is
+// Clears the words of gRequestBlock from mUnk_18 on and fills them for the value a; stores 3 in mUnk_00 when a is
 // not one of the known values.
-void func_02145b54(s32 a) {
+void SetupBackupSpec(s32 a) {
     Unk021458b4 *p;
     u32 m;
     u32 x;
 
-    p = data_0217fa40.mUnk_00;
+    p = gAccessState.mUnk_00;
     MemFill(&p->mUnk_18, 0, 0x28);
     p->mUnk_04 = a;
     if (a == 0) {
@@ -587,16 +587,16 @@ void func_02145b54(s32 a) {
     fail:
         p->mUnk_04 = 0;
         p->mUnk_18 = 0;
-        data_0217fa40.mUnk_00->mUnk_00 = 3;
+        gAccessState.mUnk_00->mUnk_00 = 3;
         return;
     }
 }
 
 // Stores f in mUnk_40 and starts the object at mUnk_44.
-void func_02145b0c(UnkFunc *f) {
+void StartWorkerTask(UnkFunc *f) {
     Unk021458c4 *p;
 
-    p = (Unk021458c4 *) (u32) &data_0217fa40;
+    p = (Unk021458c4 *) (u32) &gAccessState;
     ThreadSetSortKey(&p->mUnk_44, p->mUnk_108);
     p->mUnk_104 = &p->mUnk_44;
     p->mUnk_40 = f;
@@ -605,11 +605,11 @@ void func_02145b0c(UnkFunc *f) {
 }
 
 // Waits until mUnk_08 is -3, then stores a and b in mUnk_08 and mUnk_18; counts mUnk_0c up.
-void func_02145a70(u32 a, u32 b) {
+void LockAccessTarget(u32 a, u32 b) {
     Unk021458c4 *p;
     u32 s;
 
-    p = (Unk021458c4 *) (u32) &data_0217fa40;
+    p = (Unk021458c4 *) (u32) &gAccessState;
     s = IrqDisable();
     if (p->mUnk_08 == a) {
         if (p->mUnk_18 != b) {
@@ -628,11 +628,11 @@ void func_02145a70(u32 a, u32 b) {
 }
 
 // Counts mUnk_0c down; at 0 sets mUnk_08 to -3 and passes mUnk_10 to ThreadQueueSetAllRunnable.
-void func_021459cc(u32 a, u32 b) {
+void UnlockAccessTarget(u32 a, u32 b) {
     Unk021458c4 *p;
     u32 s;
 
-    p = &data_0217fa40;
+    p = &gAccessState;
     s = IrqDisable();
     if (p->mUnk_08 != a || p->mUnk_0c == 0) {
         IrqDisableLoopForever();
@@ -651,18 +651,18 @@ void func_021459cc(u32 a, u32 b) {
     IrqRestore(s);
 }
 
-// Sets up data_0217fa40 and data_0217fa00 and starts the object at mUnk_44 with func_021469a4 and the 0x400 bytes
-// before data_02180060.
-void func_021458c4(void) {
+// Sets up gAccessState and gRequestBlock and starts the object at mUnk_44 with WorkerTaskLoop and the 0x400 bytes
+// before gRomBaseOffset.
+void InitBackupAndRomAccess(void) {
     Unk021458c4 *p;
 
-    p = &data_0217fa40;
+    p = &gAccessState;
     p->mUnk_08 = -3;
     p->mUnk_0c = 0;
     p->mUnk_18 = 0;
-    p->mUnk_00 = &data_0217fa00;
-    MemFillWordsByBlock_inline(&data_0217fa00, 0x40);
-    DC_FlushRange(&data_0217fa00, 0x40);
+    p->mUnk_00 = &gRequestBlock;
+    MemFillWordsByBlock_inline(&gRequestBlock, 0x40);
+    DC_FlushRange(&gRequestBlock, 0x40);
     if (*(u16 *) 0x027ffc40 != 2) {
         MemCopy((void *) 0x027ffe00, (void *) 0x027ffa80, 0x160);
     }
@@ -671,10 +671,10 @@ void func_021458c4(void) {
     p->mUnk_10c.mTail = 0;
     p->mUnk_10c.mHead = p->mUnk_10c.mTail;
     p->mUnk_108 = 4;
-    ThreadInit(&p->mUnk_44, func_021469a4, 0, (u8 *) &data_02180060, 0x400, p->mUnk_108);
+    ThreadInit(&p->mUnk_44, WorkerTaskLoop, 0, (u8 *) &gRomBaseOffset, 0x400, p->mUnk_108);
     ThreadSetRunnable(&p->mUnk_44);
-    PxiCallbackSet(11, func_02146a00);
+    PxiCallbackSet(11, ReceiveRequestReply);
     if (*(u16 *) 0x027ffc40 != 2) {
-        func_02145878(1);
+        CARD_Enable(1);
     }
 }

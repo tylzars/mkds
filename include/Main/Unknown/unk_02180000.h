@@ -14,8 +14,11 @@ extern u8 OV000_BSS_END[];
 extern u8 OV001_BSS_END[];
 extern u8 OV002_BSS_END[];
 
-extern u32 data_021802a0;
-extern UnkWordFunc *data_021802a4;
+// Set to 1 by ReceiveRemovalMessage; CARD_IsPulledOut returns it.
+extern u32 gRemovalSeen;
+// The hook set by CARD_SetPulledOutCallback, cleared by CARD_InitPulledOutCallback and called by
+// ReceiveRemovalMessage.
+extern UnkWordFunc *gRemovalCallback;
 // Id from IdAlloc, taken in GX_Init; ReleaseVramBankGroup hands it to the lock-table release.
 extern u16 gVramLockId;
 // 13 bank-mask halfwords: [0] banks that are directly accessible, then the banks given to the background, sprites,

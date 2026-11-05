@@ -93,7 +93,7 @@ static inline s32 func_020487fc_inline6(void) {
 
 static inline void func_020487fc_inline7(void) {
     u32 t;
-    if (func_02146af4()) {
+    if (CARD_IsPulledOut()) {
         if (func_02049820() == 1) {
             PM_ForceToPowerOff();
         }
@@ -219,7 +219,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     }
     LoadFontAndPlayerCharacterData();
     func_02043b48();
-    func_02146b04(func_0204a540);
+    CARD_SetPulledOutCallback(func_0204a540);
     data_021759d0->mUnk_78 = 0;
     if (b->mInit != NULL) {
         b->mInit(a);
@@ -343,7 +343,7 @@ end:
     if (b->mRelease != NULL) {
         b->mRelease(a);
     }
-    func_02146b04(func_0204a548);
+    CARD_SetPulledOutCallback(func_0204a548);
     if (data_021755a0 != NULL) {
         func_02037a94();
     }

@@ -56,7 +56,7 @@ void func_ov000_0218583c(void) {
             func_02056d40();
             func_02057d9c();
             if (data_021759d4->mUnk_0c != 0) {
-                func_02145d38();
+                CARD_WaitBackupAsync();
             }
         }
     }

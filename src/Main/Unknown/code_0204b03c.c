@@ -15,7 +15,7 @@ void func_0204b3dc(void) {
     s32 r;
     r = data_021759d4->mUnk_08;
     if (r != -3) {
-        func_0214578c(r);
+        CARD_UnlockBackup(r);
         IdFree((u16) data_021759d4->mUnk_08);
         data_021759d4->mUnk_08 = -3;
     }
@@ -28,7 +28,7 @@ u32 func_0204b3a4(void) {
     if (r == -3) {
         return 0;
     }
-    func_0214579c(r);
+    CARD_LockBackup(r);
     return 1;
 }
 

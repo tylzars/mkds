@@ -204,7 +204,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     if (func_0203b324()) {
         func_02057d9c();
         if (data_021759d4->mUnk_0c != 0) {
-            func_02145d38();
+            CARD_WaitBackupAsync();
         }
         data_usa_02174e00->mUnk_58 = func_020911a8();
     }

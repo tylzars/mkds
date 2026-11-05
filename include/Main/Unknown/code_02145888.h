@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-void func_02145888(void);
+// Returns when the enable flag is not 0, otherwise calls IrqDisableLoopForever.
+void CARD_CheckEnabled(void);
