@@ -20,7 +20,7 @@ void func_0204bb34(void *a) {
     Unk02175ec0 *g;
     Unk021762e0 *b;
     s32 i;
-    Unk021762e0_46c8 *r;
+    Unk0204c090 *r;
     u32 s;
     u32 s2;
     s32 v1;
@@ -42,27 +42,27 @@ void func_0204bb34(void *a) {
             } while (r == NULL);
         }
         IrqRestore(s);
-        if (r->mUnk_80 == 1) {
-            FS_OpenFileDirect(&r->mUnk_38, o, r->mUnk_90, r->mUnk_90 + r->mUnk_94, r->mUnk_8c);
+        if (r->mUnk_080 == 1) {
+            FS_OpenFileDirect(&r->mUnk_038, o, r->mUnk_090, r->mUnk_090 + r->mUnk_094, r->mUnk_08c);
             i = 0;
             v1 = 0;
-            q = r->mUnk_c0[0];
+            q = r->mUnk_0c0[0];
             for (; i < 2; i++) {
-                r->mUnk_a4[i] = v1;
-                FS_ReadFile(&r->mUnk_38, q, 0x400);
+                r->mUnk_0a4[i] = v1;
+                FS_ReadFile(&r->mUnk_038, q, 0x400);
                 v1 += 0x400;
                 q += 0x400;
             }
-            r->mUnk_98 = 0;
-            r->mUnk_a0 = 1;
-            r->mUnk_9c = 2;
+            r->mUnk_098 = 0;
+            r->mUnk_0a0 = 1;
+            r->mUnk_09c = 2;
             s2 = IrqDisable();
-            func_0204d18c(&data_usa_021762e0, (Unk0204c090 *) r, 1);
+            func_0204d18c(&data_usa_021762e0, r, 1);
             IrqRestore(s2);
         } else {
-            FS_CloseFile(&r->mUnk_38);
+            FS_CloseFile(&r->mUnk_038);
             s2 = IrqDisable();
-            func_0204d0bc(&data_usa_021762e0, (Unk0204c090 *) r);
+            func_0204d0bc(&data_usa_021762e0, r);
             IrqRestore(s2);
         }
     }
