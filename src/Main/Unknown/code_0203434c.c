@@ -293,7 +293,7 @@ s32 func_02034370(Unk02034370 *a) {
                 g = GetBmgEntry(data_02174e64->mUnk_084, 1);
                 func_0212513c(GetBmgEntry(data_02174e64->mUnk_088, v), e, h, 0x100);
                 func_02125ed0(0, -1);
-                func_02125fd4((u32) h, (u32) f, (u32) g, 1, 0, 1, 1, 0);
+                func_02125fd4(h, f, g, 1, 0, 1, 1, 0);
                 data_02174e64->mUnk_094 = 9;
             } else if (func_0202dd9c() == 10) {
                 func_02125fc0();

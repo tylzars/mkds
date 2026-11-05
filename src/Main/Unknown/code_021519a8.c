@@ -4,9 +4,9 @@
 
 #pragma thumb on
 
-u32 func_021519a8(u32 a) {
+u32 func_021519a8(void *a) {
     int v1;
-    v1 = func_0215122c((u32) ((*(u32 *) &data_0218049c)), (u32) (((u32) 0x00000300u)), (void *) a);
+    v1 = func_0215122c((u32) ((*(u32 *) &data_0218049c)), (u32) (((u32) 0x00000300u)), a);
     if (v1 != 0) {
         return 1;
     }

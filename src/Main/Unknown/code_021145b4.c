@@ -112,8 +112,7 @@ void func_02115e74(void) {
         data_0217d350->mUnk_3c[n + data_0215c4b8[i]].mUnk_04 = 0x100;
     }
     func_021162cc();
-    func_02126138((u32) GetBmgEntry(data_0217d350->mUnk_48, 4), (u32) GetBmgEntry(data_0217d350->mUnk_44, 6), 0, 1, 1,
-                  1);
+    func_02126138(GetBmgEntry(data_0217d350->mUnk_48, 4), GetBmgEntry(data_0217d350->mUnk_44, 6), 0, 1, 1, 1);
     for (i = 0; i < 2; i++) {
         data_0217d350->mUnk_3c[data_0215c4a8[i]].mUnk_00 = 0;
     }
@@ -178,8 +177,7 @@ void func_02115d08(void) {
     v = func_02116870();
     func_02114298((u16) (v + data_0217d350->mUnk_74), buf, 0x20);
     func_0212513c(buf, GetBmgEntry(data_0217d350->mUnk_48, 5), buf2, 0x200);
-    func_02125fd4((u32) buf2, (u32) GetBmgEntry(data_0217d350->mUnk_44, 0),
-                  (u32) GetBmgEntry(data_0217d350->mUnk_44, 1), 1, 0, 1, 1, 1);
+    func_02125fd4(buf2, GetBmgEntry(data_0217d350->mUnk_44, 0), GetBmgEntry(data_0217d350->mUnk_44, 1), 1, 0, 1, 1, 1);
 }
 
 void func_02115cec(void) {

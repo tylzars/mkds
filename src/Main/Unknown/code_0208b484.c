@@ -82,7 +82,7 @@ void func_0208b934(void *a) {
     if (data_021759c0->mMode == 4) {
         t = NULL;
         data_0217b03c = func_02018d94((void *(*) (u32)) func_0208bd04, 0x32, 0xc8, 3, 0xe, 0x1e);
-        func_02048590(data_usa_02166168, (u32) c, &t);
+        func_02048590(data_usa_02166168, c, &t);
         func_02018a1c(data_0217b03c, t);
         func_02018888(data_0217b03c);
         func_02018874(data_0217b03c);

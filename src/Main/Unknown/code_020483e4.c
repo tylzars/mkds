@@ -80,7 +80,7 @@ u32 func_0204863c(void *a, void *b, u32 c) {
     return r;
 }
 
-u32 func_02048590(char *a, u32 b, void **c) {
+u32 func_02048590(char *a, void *b, void **c) {
     u32 s;
     Unk02003024 *p;
     u32 n;
@@ -96,7 +96,7 @@ u32 func_02048590(char *a, u32 b, void **c) {
     s = FS_OpenFile(p, (const u8 *) a);
     if (s != 0) {
         n = p->mUnk_20.p.mUnk_08 - p->mUnk_20.p.mUnk_04;
-        t = HeapAlloc((void *) b, n);
+        t = HeapAlloc(b, n);
         *c = t;
         if (t == NULL) {
             s = 0;
@@ -104,7 +104,7 @@ u32 func_02048590(char *a, u32 b, void **c) {
         if (s != 0) {
             if (FS_ReadFile(p, t, n) < 0) {
                 s = 0;
-                HeapFree((void *) b, t);
+                HeapFree(b, t);
             }
         }
         FS_CloseFile(p);
@@ -193,17 +193,17 @@ u32 func_02048440(void) {
     return ((u32 *) &data_02164dc8)[v1];
 }
 
-void func_0204840c(u32 a, u8 *b) {
+void func_0204840c(char *a, u8 *b) {
     u32 v1;
     if (*b != 0) {
         v1 = func_02048474();
-        StringFormatBounded((char *) a, 0x80, data_02165148, b, v1, (u32) &data_0216515c);
+        StringFormatBounded(a, 0x80, data_02165148, b, v1, (u32) &data_0216515c);
     }
 }
 
-void func_020483e4(u32 a, u8 *b) {
+void func_020483e4(char *a, u8 *b) {
     if (*b != 0) {
-        StringFormatBounded((char *) a, 0x80, data_0216512c, b, (u32) &data_02165140);
+        StringFormatBounded(a, 0x80, data_0216512c, b, (u32) &data_02165140);
     }
 }
 

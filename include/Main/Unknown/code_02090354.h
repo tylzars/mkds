@@ -45,7 +45,7 @@ s32 func_0209081c(Unk020905a8 *a);
 void func_02090838(Unk020905a8 *a, Unk02080b1c_00 *b);
 void func_0209086c(Unk020905a8 *a, u32 b);
 BOOL func_020908d0(u32 a, void *b);
-void func_02090920(u32 a);
+void func_02090920(void *a);
 BOOL func_02090940(void);
 s32 func_020909cc(void);
 u32 func_02090b24(void);

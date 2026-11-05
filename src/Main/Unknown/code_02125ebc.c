@@ -673,24 +673,22 @@ void func_0212658c(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
 
 void func_02126570(void *p0, void *p1) {
     u32 v7 = ((0x1u) + (0x0u));
-    func_02126474((u32) p0, (u32) p1, (u32) 0x1u, v7, (u32) 0x1u, (u32) 0x0u, (u32) 0x0u);
+    func_02126474(p0, p1, (u32) 0x1u, v7, (u32) 0x1u, (u32) 0x0u, (u32) 0x0u);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02126474(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+void func_02126474(void *a, void *b, u32 c, u32 d, u32 e, u32 f, u32 g) {
     Unk0217d3f0_2098 *p;
 
     p = &gTxtSystem->mUnk_2098[0];
     p->mUnk_18(p, 0xf);
     p = &gTxtSystem->mUnk_2098[4];
     p->mUnk_18(p, 0xe);
-    func_0212583c(&gTxtSystem->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1,
-                  (void *) a);
-    func_021257d8(&gTxtSystem->mUnk_2178[4], 0, 0, data_0215d044[4][0] << 3, data_0215d044[4][1] << 3, 2, 0x480, 1,
-                  (void *) b);
+    func_0212583c(&gTxtSystem->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1, a);
+    func_021257d8(&gTxtSystem->mUnk_2178[4], 0, 0, data_0215d044[4][0] << 3, data_0215d044[4][1] << 3, 2, 0x480, 1, b);
     func_02127734();
     gTxtSystem->mUnk_2204[0] = 1;
     gTxtSystem->mUnk_2204[4] = 1;
@@ -707,10 +705,10 @@ void func_02126474(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
 }
 
 void func_02126454(void *a, void *b, void *c, s32 d) {
-    func_0212630c((u32) a, (u32) b, (u32) c, d, 1, 1, 1, 0, 0);
+    func_0212630c(a, b, c, d, 1, 1, 1, 0, 0);
 }
 
-void func_0212630c(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 i) {
+void func_0212630c(void *a, void *b, void *c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 i) {
     Unk0217d3f0_2098 *p;
 
     p = &gTxtSystem->mUnk_2098[0];
@@ -719,12 +717,9 @@ void func_0212630c(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 i
     p->mUnk_18(p, 0xe);
     p = &gTxtSystem->mUnk_2098[6];
     p->mUnk_18(p, 0xd);
-    func_0212583c(&gTxtSystem->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1,
-                  (void *) a);
-    func_021257d8(&gTxtSystem->mUnk_2178[5], 0, 0, data_0215d044[5][0] << 3, data_0215d044[5][1] << 3, 2, 0x480, 1,
-                  (void *) b);
-    func_021257d8(&gTxtSystem->mUnk_2178[6], 0, 0, data_0215d044[6][0] << 3, data_0215d044[6][1] << 3, 2, 0x480, 1,
-                  (void *) c);
+    func_0212583c(&gTxtSystem->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1, a);
+    func_021257d8(&gTxtSystem->mUnk_2178[5], 0, 0, data_0215d044[5][0] << 3, data_0215d044[5][1] << 3, 2, 0x480, 1, b);
+    func_021257d8(&gTxtSystem->mUnk_2178[6], 0, 0, data_0215d044[6][0] << 3, data_0215d044[6][1] << 3, 2, 0x480, 1, c);
     func_02127734();
     gTxtSystem->mUnk_2204[0] = 1;
     gTxtSystem->mUnk_2204[5] = 1;
@@ -746,20 +741,19 @@ void func_0212630c(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 i
 #pragma thumb on
 
 void func_021262f0(void *a) {
-    func_02126248((u32) a, (u32) 1, (u32) 1, (u32) 1, (u32) 0, (u32) 0);
+    func_02126248(a, (u32) 1, (u32) 1, (u32) 1, (u32) 0, (u32) 0);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02126248(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
+void func_02126248(void *a, u32 b, u32 c, u32 d, u32 e, u32 f) {
     Unk0217d3f0_2098 *p;
 
     p = &gTxtSystem->mUnk_2098[2];
     p->mUnk_18(p, 0xf);
-    func_0212583c(&gTxtSystem->mUnk_2178[2], 0, 0, data_0215d044[2][0] << 3, data_0215d044[2][1] << 3, 1, 0x480, 1,
-                  (void *) a);
+    func_0212583c(&gTxtSystem->mUnk_2178[2], 0, 0, data_0215d044[2][0] << 3, data_0215d044[2][1] << 3, 1, 0x480, 1, a);
     func_02127734();
     gTxtSystem->mUnk_2204[2] = 1;
     func_02126700();
@@ -779,24 +773,22 @@ void func_02126248(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
 
 void func_02126230(void *p0, void *p1) {
     u32 v6 = ((0x1u) + (0x0u));
-    func_02126138((u32) p0, (u32) p1, (u32) 0x1u, v6, (u32) 0x1u, (u32) 0x0u);
+    func_02126138(p0, p1, (u32) 0x1u, v6, (u32) 0x1u, (u32) 0x0u);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02126138(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
+void func_02126138(void *a, void *b, u32 c, u32 d, u32 e, u32 f) {
     Unk0217d3f0_2098 *p;
 
     p = &gTxtSystem->mUnk_2098[2];
     p->mUnk_18(p, 0xf);
     p = &gTxtSystem->mUnk_2098[4];
     p->mUnk_18(p, 0xe);
-    func_0212583c(&gTxtSystem->mUnk_2178[2], 0, 0, data_0215d044[2][0] << 3, data_0215d044[2][1] << 3, 1, 0x480, 1,
-                  (void *) a);
-    func_021257d8(&gTxtSystem->mUnk_2178[4], 0, 0, data_0215d044[4][0] << 3, data_0215d044[4][1] << 3, 2, 0x480, 1,
-                  (void *) b);
+    func_0212583c(&gTxtSystem->mUnk_2178[2], 0, 0, data_0215d044[2][0] << 3, data_0215d044[2][1] << 3, 1, 0x480, 1, a);
+    func_021257d8(&gTxtSystem->mUnk_2178[4], 0, 0, data_0215d044[4][0] << 3, data_0215d044[4][1] << 3, 2, 0x480, 1, b);
     func_02127734();
     gTxtSystem->mUnk_2204[2] = 1;
     gTxtSystem->mUnk_2204[4] = 1;
@@ -813,10 +805,10 @@ void func_02126138(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
 }
 
 void func_0212611c(void *a, void *b, void *c, s32 d) {
-    func_02125fd4((u32) a, (u32) b, (u32) c, d, 1, 1, 1, 0);
+    func_02125fd4(a, b, c, d, 1, 1, 1, 0);
 }
 
-void func_02125fd4(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
+void func_02125fd4(void *a, void *b, void *c, u32 d, u32 e, u32 f, u32 g, u32 h) {
     Unk0217d3f0_2098 *p;
 
     p = &gTxtSystem->mUnk_2098[2];
@@ -825,12 +817,9 @@ void func_02125fd4(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
     p->mUnk_18(p, 0xe);
     p = &gTxtSystem->mUnk_2098[6];
     p->mUnk_18(p, 0xd);
-    func_0212583c(&gTxtSystem->mUnk_2178[2], 0, 0, data_0215d044[2][0] << 3, data_0215d044[2][1] << 3, 1, 0x480, 1,
-                  (void *) a);
-    func_021257d8(&gTxtSystem->mUnk_2178[5], 0, 0, data_0215d044[5][0] << 3, data_0215d044[5][1] << 3, 2, 0x480, 1,
-                  (void *) b);
-    func_021257d8(&gTxtSystem->mUnk_2178[6], 0, 0, data_0215d044[6][0] << 3, data_0215d044[6][1] << 3, 2, 0x480, 1,
-                  (void *) c);
+    func_0212583c(&gTxtSystem->mUnk_2178[2], 0, 0, data_0215d044[2][0] << 3, data_0215d044[2][1] << 3, 1, 0x480, 1, a);
+    func_021257d8(&gTxtSystem->mUnk_2178[5], 0, 0, data_0215d044[5][0] << 3, data_0215d044[5][1] << 3, 2, 0x480, 1, b);
+    func_021257d8(&gTxtSystem->mUnk_2178[6], 0, 0, data_0215d044[6][0] << 3, data_0215d044[6][1] << 3, 2, 0x480, 1, c);
     func_02127734();
     gTxtSystem->mUnk_2204[2] = 1;
     gTxtSystem->mUnk_2204[5] = 1;

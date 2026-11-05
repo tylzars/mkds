@@ -233,5 +233,5 @@ void func_0210cf20(Unk0210bfbc *a, u32 b) {
     a->mUnk_18 = 3;
     func_0210bce0((u32 *) a->mUnk_1c);
     func_0210bce0((u32 *) a);
-    func_0210bc8c((int) &data_0217d028, (int) a);
+    func_0210bc8c(&data_0217d028, a);
 }

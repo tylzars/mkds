@@ -15,7 +15,7 @@ void func_020ae5f0(void *a, void *b) {
     }
 }
 
-u16 func_020ae5e4(u32 p0) {
+u16 func_020ae5e4(const void *p0) {
     return ((u32) * (const u16 *) ((u8 *) p0 + 0 + (0x402u)));
 }
 

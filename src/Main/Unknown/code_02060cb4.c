@@ -22,12 +22,12 @@
 void func_020613a0(void) {
     u8 i;
     u8 *a;
-    u8 b[0x80];
+    char b[0x80];
 
     i = 0;
     a = data_0217aa08->mUnk_40;
     for (; i < 0x20; i++) {
-        func_0203b070(i, (u32) b, 0x80);
+        func_0203b070(i, b, 0x80);
         func_0204863c(b, a + i * 0x230, 0x230);
     }
     func_02057504();

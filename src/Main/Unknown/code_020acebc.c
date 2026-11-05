@@ -28,6 +28,6 @@ u16 func_020acec4(u32 a, u32 b) {
     return func_020acee0(&data_02175628[a], b);
 }
 
-u32 func_020acebc(u32 p0) {
+u32 func_020acebc(const void *p0) {
     return ((u32) * (const u16 *) ((u8 *) p0 + 4));
 }

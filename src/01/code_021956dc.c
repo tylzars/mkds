@@ -404,7 +404,7 @@ void func_ov001_02196ecc(void) {
     func_0212513c(a, GetBmgEntry(p->mRecordMessages, 10), &buf[1], 0x200);
     a = GetBmgEntry(gRecordTAtt->mCommonMessages, 0);
     b = GetBmgEntry(gRecordTAtt->mCommonMessages, 1);
-    func_02125fd4((u32) &buf[1], (u32) a, (u32) b, 1, 0, 1, 1, 1);
+    func_02125fd4(&buf[1], a, b, 1, 0, 1, 1, 1);
 }
 
 void func_ov001_02196eb0(void) {
@@ -460,7 +460,7 @@ void func_ov001_02196dbc(void) {
         }
     }
     str[n] = 0;
-    func_02126248((u32) str, 0, 1, 0, 0, 0);
+    func_02126248(str, 0, 1, 0, 0, 0);
 }
 
 // Requests state 15: stores mNextState = 15 and zeroes mStateFrames; the next AdvanceRecordTAtt call copies it to

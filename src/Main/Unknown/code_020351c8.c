@@ -140,7 +140,7 @@ void func_02035b78(void) {
     w[10] = 0;
     func_0212513c(w, e, h, 0x100);
     func_02125ed0(0, -1);
-    func_02125fd4((u32) h, (u32) f, (u32) g, 1, 0, 1, 1, 0);
+    func_02125fd4(h, f, g, 1, 0, 1, 1, 0);
 }
 
 void func_02035b0c(void) {
@@ -534,12 +534,12 @@ void func_02035228(s32 a) {
 #pragma thumb on
 
 void func_020351c8(void) {
-    u32 v1;
-    u32 v2;
-    u32 v3;
-    v1 = ((s32) GetBmgEntry(data_02174e64->mUnk_088, 8));
-    v2 = ((s32) GetBmgEntry(data_02174e64->mUnk_084, 0));
-    v3 = ((s32) GetBmgEntry(data_02174e64->mUnk_084, 1));
+    void *v1;
+    void *v2;
+    void *v3;
+    v1 = GetBmgEntry(data_02174e64->mUnk_088, 8);
+    v2 = GetBmgEntry(data_02174e64->mUnk_084, 0);
+    v3 = GetBmgEntry(data_02174e64->mUnk_084, 1);
     func_02125ed0(0, (u32) 5);
     func_02125fd4(v1, v2, v3, (u32) 0, (u32) 0, (u32) 1, (u32) 1, (u32) 0);
 }

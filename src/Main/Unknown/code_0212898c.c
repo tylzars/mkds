@@ -731,9 +731,9 @@ void func_021291d4(void) {
     u16 buf2[0xfe];
     Keyboard *p;
     s32 n;
-    s32 a;
-    s32 b;
-    s32 c;
+    void *a;
+    void *b;
+    void *c;
     gKeyboard->mUnk_28++;
     gKeyboard->mUnk_84 = func_020ae4c0(1, 0, 0xc0, gKeyboard->mUnk_28, 0xf);
     gKeyboard->mUnk_86[1][1] = func_020ae4c0(1, data_0215d100[1][1], data_0215d108[1][1], gKeyboard->mUnk_28, 0xf);
@@ -748,18 +748,18 @@ void func_021291d4(void) {
         p = gKeyboard;
         if (p->mUnk_2c[2].mUnk_10 != 0) {
             if (p->mUnk_2c[2].mUnk_14 == 0xc) {
-                a = (s32) GetBmgEntry(p->mUnk_c0, 0x11);
-                b = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 0);
-                c = (s32) GetBmgEntry(p->mUnk_c0, 1);
+                a = GetBmgEntry(p->mUnk_c0, 0x11);
+                b = GetBmgEntry(gKeyboard->mUnk_c0, 0);
+                c = GetBmgEntry(p->mUnk_c0, 1);
                 func_02125fd4(a, b, c, 0, 0, 1, 1, 0);
             } else {
-                a = (s32) GetBmgEntry(p->mUnk_c0, 0xe);
+                a = GetBmgEntry(p->mUnk_c0, 0xe);
                 n = func_020adc7c(gKeyboard->mUnk_2c[1].mUnk_00, buf);
                 buf[n] = 0;
                 func_0212513c(buf, (u16 *) a, &buf2[1], 0x1f4);
-                b = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 0);
-                c = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 1);
-                func_02125fd4((u32) &buf2[1], b, c, 0, 0, 1, 1, 0);
+                b = GetBmgEntry(gKeyboard->mUnk_c0, 0);
+                c = GetBmgEntry(gKeyboard->mUnk_c0, 1);
+                func_02125fd4(&buf2[1], b, c, 0, 0, 1, 1, 0);
             }
             gKeyboard->mNextState = 9;
             gKeyboard->mUnk_28 = 0;
@@ -800,8 +800,8 @@ void func_0212913c(void) {
 void func_02128f7c(void) {
     Keyboard *p;
     s16 v;
-    s32 a;
-    s32 b;
+    void *a;
+    void *b;
     if (gKeyboard->mUnk_28 >= 0xf) {
         gKeyboard->mUnk_28 = 0xf;
     }
@@ -817,7 +817,7 @@ void func_02128f7c(void) {
             if (p->mUnk_2c[2].mUnk_14 == 0xc) {
                 func_02060cb4(&p->mUnk_2c[2], &p->mUnk_2c[1]);
                 func_0205edf8();
-                a = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 0x81);
+                a = GetBmgEntry(gKeyboard->mUnk_c0, 0x81);
                 func_02126248(a, 0, 1, 1, 0, 1);
                 gKeyboard->mNextState = 0xb;
             } else {
@@ -826,8 +826,8 @@ void func_02128f7c(void) {
                 MemCopy(&p->mUnk_2c[1], data_0217aa08->mUnk_00->mUnk_0c, 0x14);
                 func_02056d40();
                 func_02125ebc(0x21);
-                a = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 0x10);
-                b = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 4);
+                a = GetBmgEntry(gKeyboard->mUnk_c0, 0x10);
+                b = GetBmgEntry(gKeyboard->mUnk_c0, 4);
                 func_02126138(a, b, 0, 1, 1, 0);
                 gKeyboard->mNextState = 0xc;
             }
@@ -848,9 +848,9 @@ void func_02128f7c(void) {
 
 void func_02128ecc(void) {
     Keyboard *p;
-    s32 a;
+    void *a;
     s32 w;
-    s32 b;
+    void *b;
     if (func_02125f6c() != 0) {
         func_0212ecc0(&data_0217d068, 0, 0x22);
     }
@@ -863,8 +863,8 @@ void func_02128ecc(void) {
                 p->mNextState = 0xc;
                 gKeyboard->mUnk_28 = 0;
                 func_02125ebc(0x21);
-                a = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 9);
-                b = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 4);
+                a = GetBmgEntry(gKeyboard->mUnk_c0, 9);
+                b = GetBmgEntry(gKeyboard->mUnk_c0, 4);
                 func_02126138(a, b, 0, 1, 1, 0);
             }
         }
@@ -872,10 +872,10 @@ void func_02128ecc(void) {
 }
 
 void func_02128e08(void) {
-    s32 a;
+    void *a;
     s32 w;
-    s32 b;
-    s32 c;
+    void *b;
+    void *c;
     s32 v;
     if (func_02125f54() != 0) {
         func_02125fc0();
@@ -892,9 +892,9 @@ void func_02128e08(void) {
             if (v == 0xb) {
                 gKeyboard->mNextState = 0xd;
                 gKeyboard->mUnk_28 = 0;
-                a = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 0x13);
-                b = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 0);
-                c = (s32) GetBmgEntry(gKeyboard->mUnk_c0, 1);
+                a = GetBmgEntry(gKeyboard->mUnk_c0, 0x13);
+                b = GetBmgEntry(gKeyboard->mUnk_c0, 0);
+                c = GetBmgEntry(gKeyboard->mUnk_c0, 1);
                 func_02125fd4(a, b, c, 0, 0, 1, 1, 0);
             }
         }

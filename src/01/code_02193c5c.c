@@ -421,7 +421,7 @@ void InitRecordGpx(void *heap) {
     }
     LocateAndQueueRecordGpx();
     func_021172a8(heap);
-    func_0211dfb4((u32) heap);
+    func_0211dfb4(heap);
     p = func_02111318();
     func_020ae6d4(p, func_0211130c());
     func_02124ed0(heap, gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMBnll, &gRecordGpx->mRecordGpxMTable);

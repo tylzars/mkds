@@ -190,7 +190,7 @@ void func_0203b0f8(void *a) {
         f = 0;
     }
     if (f != 0) {
-        func_0204e928(a, t == 1, (u32) r);
+        func_0204e928(a, t == 1, r);
         func_0205982c(a);
     }
     func_02045590();

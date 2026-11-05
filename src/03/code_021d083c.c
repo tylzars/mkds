@@ -39,7 +39,7 @@ void func_ov003_021d1358(Unk021da2ac *a, Unk021d1358 *b) {
     data_ov003_021da2ac->mUnk_a92 = b->mUnk_18;
     data_ov003_021da2ac->mUnk_acc = 2;
     func_0200f5ac();
-    func_02151804((u32) data_ov003_021da2ac->mUnk_64c);
+    func_02151804(data_ov003_021da2ac->mUnk_64c);
     func_0200f5ac();
     data_ov003_021da2ac->mUnk_aa0[1] = (u8 *) func_ov003_021cd4dc();
 }

@@ -37,7 +37,7 @@ void func_0211e480(void *a) {
     data_0217d374->mUnk_08 = (u8 *) func_02061418((u32) a);
     func_02061358(data_0217d374->mUnk_08);
     func_02057d9c();
-    func_02090920((u32) a);
+    func_02090920(a);
 }
 
 void func_0211e474(void) {

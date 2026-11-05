@@ -24,12 +24,12 @@ u32 func_0204ea3c(void) {
     return v3;
 }
 
-void func_0204ea14(u32 a) {
+void func_0204ea14(void *a) {
     void **v1;
     void *v2;
     void *v3;
-    v2 = GetBmgEntry((void *) a, 0);
-    v3 = GetBmgEntry((void *) a, 1);
+    v2 = GetBmgEntry(a, 0);
+    v3 = GetBmgEntry(a, 1);
     v1 = data_0215472c;
     data_0215472c[1] = v2;
     v1[2] = v3;

@@ -19,4 +19,4 @@ u32 func_0210bafc(s32 a, s32 b, s32 c);
 u32 func_0210bb74(s32 a, s32 b, s32 c);
 void func_0210bc14(void);
 void func_0210bc54(LinkedList *a, void *b);
-u32 func_0210bc8c(int a, int b);
+u32 func_0210bc8c(void *a, void *b);

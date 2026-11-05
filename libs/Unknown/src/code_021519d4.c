@@ -103,7 +103,7 @@ s32 func_02151b38(u8 *a) {
         return -10001;
     }
     Crc16InitTable((u16 *) (a + 0x500), 0xa001);
-    if (func_02151804((u32) a) == 0) {
+    if (func_02151804(a) == 0) {
         return -10001;
     }
     MemFill(b, 0, 0x10);

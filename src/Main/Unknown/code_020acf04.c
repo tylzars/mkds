@@ -18,7 +18,7 @@ void func_020acf44(void) {
     Unk02124b1c *p;
 
     p = data_0217b340->mUnk_68;
-    w = func_020acbe8((u32) data_0217b340->mUnk_6c);
+    w = func_020acbe8(data_0217b340->mUnk_6c);
     if (func_020adaf8() < 10) {
         for (i = 0; i <= 14; i++) {
             p[i].mUnk_04 = func_020ae4c0(1, 0xf8, 0, func_020adaf8(), 10);

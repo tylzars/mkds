@@ -168,7 +168,7 @@ void func_0204419c(u32 a, u32 b) {
 
 void func_02044060(u32 a) {
     Unk0217aa08_14 *p;
-    u8 v1[0x80];
+    char v1[0x80];
 
     p = NULL;
     data_0217aa08->mUnk_14[1]->mUnk_08_0 = 0;
@@ -186,7 +186,7 @@ void func_02044060(u32 a) {
         data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     }
     if (func_0203b018(a, v1, 0x80) != FALSE) {
-        p = func_02056284((u32) v1);
+        p = func_02056284(v1);
     }
     if (p != NULL) {
         return;

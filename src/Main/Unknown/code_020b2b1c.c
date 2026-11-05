@@ -21,6 +21,6 @@ u16 func_020b2b24(s32 a, u32 b) {
     return func_020b2b40(&data_02175628[a], b);
 }
 
-u32 func_020b2b1c(u32 p0) {
+u32 func_020b2b1c(const void *p0) {
     return ((u32) * (const u16 *) ((u8 *) p0 + 4));
 }

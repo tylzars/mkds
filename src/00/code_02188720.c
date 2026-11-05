@@ -85,7 +85,7 @@ s32 func_ov000_02188c1c(Unk02188408Entry0xc0 *p) {
     if (s->mUnk_d0c_0 == 0 || s->mUnk_d0c_0 == 4) {
         f = p->mUnk_2c >> 4 & 1;
         if (f == 1) {
-            if (func_ov000_0218a658((u32) p->mUnk_0c) == 1) {
+            if (func_ov000_0218a658((const u8 *) p->mUnk_0c) == 1) {
                 return 6;
             }
         }
@@ -93,7 +93,7 @@ s32 func_ov000_02188c1c(Unk02188408Entry0xc0 *p) {
     if (s->mUnk_d0c_0 == 0 || s->mUnk_d0c_0 == 5) {
         f = p->mUnk_2c >> 4 & 1;
         if (f == 1) {
-            if (func_ov000_0218a6c8((u32) p->mUnk_0c) == 1) {
+            if (func_ov000_0218a6c8((const u8 *) p->mUnk_0c) == 1) {
                 return 7;
             }
         }
@@ -261,7 +261,7 @@ u32 func_ov000_02188868(Unk02188868 *p) {
     y->mUnk_08 = 0;
     q->mUnk_d0c_0 = p->mUnk_0a;
     q->mUnk_d0c_4 = p->mUnk_0b;
-    func_021519a8((u32) q);
+    func_021519a8(q);
     r = func_ov000_021a6470(data_ov000_021b4d04, 0x2300);
     if (r == 1 || r >= 4) {
         func_ov000_021885ec();

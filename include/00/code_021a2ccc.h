@@ -51,7 +51,7 @@ void func_ov000_021a2d68(int a, void *b, s32 c);
 void func_ov000_021a2dfc(int a, void *b, s32 c);
 void func_ov000_021a2e7c(Unk0219887c *a, const void *b, int c);
 void func_ov000_021a2eec(Unk0219887c *a, void *b, s32 c);
-void func_ov000_021a2f98(u32 a, u32 b, u32 c, u32 d);
+void func_ov000_021a2f98(u32 a, void *b, u32 c, u32 d);
 u8 func_ov000_021a2fb4(int a);
 u8 func_ov000_021a2fc8(int a);
 Unk021a2d68 *func_ov000_021a2fdc(int a);

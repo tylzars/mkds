@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_0204ea14(u32 a);
+void func_0204ea14(void *a);
 u32 func_0204ea3c(void);

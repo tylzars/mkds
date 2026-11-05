@@ -81,7 +81,7 @@ void func_02001770(void) {
     void *v1;
     func_02056e48();
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 126);
-    func_02126248((u32) v1, 1, 1, 1, 0, 1);
+    func_02126248(v1, 1, 1, 1, 0, 1);
     data_usa_ov001_021a99c0->mUnk_34 = 0;
 }
 
@@ -175,7 +175,7 @@ void func_0200148c(void) {
         return;
     }
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 126);
-    func_02126248((u32) v1, 1, 1, 1, 0, 1);
+    func_02126248(v1, 1, 1, 1, 0, 1);
     data_usa_ov001_021a99c0->mUnk_34 = 0;
 }
 

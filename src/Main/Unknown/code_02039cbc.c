@@ -58,7 +58,7 @@ void func_02039cbc(void) {
     func_0204ba2c(a);
     func_02057ed8(a);
     func_0205a140(a);
-    func_020cefa0((u32) a);
+    func_020cefa0(a);
     func_020471b0(a);
     func_0212b158(a);
     func_02057ed4();

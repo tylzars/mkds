@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_020acbe8(unsigned int p0);
+unsigned int func_020acbe8(const void *p0);

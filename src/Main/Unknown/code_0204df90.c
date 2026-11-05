@@ -18,7 +18,7 @@
 
 #pragma thumb on
 
-void func_0204e928(void *a, u32 b, u32 c) {
+void func_0204e928(void *a, u32 b, void *c) {
     u32 r;
     data_0217aa00->mUnk_1664 = a;
     r = func_0200baa8();

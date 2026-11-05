@@ -115,7 +115,7 @@ BOOL func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
     e->mUnk_0c = 0;
     e->mUnk_14 = d;
     func_ov000_021a321c(&t, a, d);
-    func_ov000_021a2f98(b, (u32) &t, 8, 1);
+    func_ov000_021a2f98(b, &t, 8, 1);
     n = data_ov000_021b5dd0->mUnk_610;
     if (d <= n) {
         n = d;
@@ -123,7 +123,7 @@ BOOL func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
     if (n > func_ov000_021a2d18(b)) {
         return TRUE;
     }
-    func_ov000_021a2f98(b, (u32) c, n, 1);
+    func_ov000_021a2f98(b, c, n, 1);
     e->mUnk_0c += n;
     if (e->mUnk_0c == e->mUnk_14) {
         if (data_ov000_021b5dd0->mSendCallback != NULL && a == 1) {
@@ -147,7 +147,7 @@ BOOL func_ov000_021a32a0(u32 a, void *b, s32 c) {
     if (c > data_ov000_021b5dd0->mUnk_610) {
         return FALSE;
     }
-    func_ov000_021a2f98(a, (u32) b, c, 0);
+    func_ov000_021a2f98(a, b, c, 0);
     if (data_ov000_021b5dd0->mSendCallback != NULL) {
         data_ov000_021b5dd0->mSendCallback(c, a);
     }

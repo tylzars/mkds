@@ -2,7 +2,7 @@
 
 #pragma thumb on
 
-u32 func_0215228c(u32 p0) {
+u32 func_0215228c(const void *p0) {
     return ((((u32) * (const u32 *) ((u8 *) p0 + 8))) +
             (((0x3cu) * (((((u32) * (const u32 *) ((u8 *) p0 + 4))) +
                           (((0x3cu) * (((u32) * (const u32 *) ((u8 *) p0 + 0))))))))));

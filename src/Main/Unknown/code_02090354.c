@@ -494,7 +494,7 @@ BOOL func_02090940(void) {
     return func_02090940_inline();
 }
 
-void func_02090920(u32 a) {
+void func_02090920(void *a) {
     func_02048590(data_02166548, a, (void **) &data_0217b0b0);
 }
 

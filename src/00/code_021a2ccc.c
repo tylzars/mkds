@@ -114,7 +114,7 @@ void func_ov000_021a3030(void) {
                 if (func_ov000_021a2d18(d) < k) {
                     continue;
                 }
-                func_ov000_021a2f98(d, (u32) (e->mUnk_00 + e->mUnk_0c), k, 1);
+                func_ov000_021a2f98(d, (e->mUnk_00 + e->mUnk_0c), k, 1);
                 e->mUnk_0c += k;
                 if (e->mUnk_0c == e->mUnk_14) {
                     if (data_ov000_021b5dd0->mSendCallback != NULL) {
@@ -169,10 +169,10 @@ u8 func_ov000_021a2fb4(int a) {
     return data_ov000_021b5dd0->mUnk_000[a].mUnk_1d;
 }
 
-void func_ov000_021a2f98(u32 a, u32 b, u32 c, u32 d) {
+void func_ov000_021a2f98(u32 a, void *b, u32 c, u32 d) {
     void *v1;
     v1 = func_ov000_0219b9d4(a);
-    func_ov000_02198914(v1, (u8 *) b, c, d);
+    func_ov000_02198914(v1, b, c, d);
     return;
 }
 

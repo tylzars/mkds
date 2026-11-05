@@ -37,4 +37,4 @@ void func_0204e4d8(void);
 void func_0204e568(void);
 void func_0204e65c(Unk0217aa00_1658 *a);
 void func_0204e6e8(u32 a, u32 b, Unk0204e4d8 *c);
-void func_0204e928(void *a, u32 b, u32 c);
+void func_0204e928(void *a, u32 b, void *c);

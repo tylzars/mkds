@@ -13,7 +13,7 @@ void func_020ad028(void) {
     s32 i;
 
     p = data_0217b340->mUnk_68;
-    w = func_020acbe8((u32) data_0217b340->mUnk_6c);
+    w = func_020acbe8(data_0217b340->mUnk_6c);
     for (i = 0; i <= 9; i++) {
         p[i].mUnk_00 = 1;
     }

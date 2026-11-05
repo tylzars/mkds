@@ -35,7 +35,7 @@ void *func_ov001_0219b4d8(char *p0) {
     char buf[0x100];
     void *out = NULL;
     snprintf(buf, 0x100, "data/MissionRun/%s", p0);
-    func_02048590(buf, (u32) GetHeap(func_020364e8()), &out);
+    func_02048590(buf, GetHeap(func_020364e8()), &out);
     return out;
 }
 

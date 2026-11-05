@@ -68,30 +68,30 @@ void func_02048350(char *a) {
 
 #pragma thumb on
 
-void func_02048324(u32 a) {
+void func_02048324(char *a) {
     u32 v1;
     v1 = func_02048474();
-    StringFormatBounded((char *) a, 0x80, data_021650bc, v1, (u32) &data_021650d8);
+    StringFormatBounded(a, 0x80, data_021650bc, v1, (u32) &data_021650d8);
 }
 
-void func_020482f0(u32 a, const char *b, int c) {
+void func_020482f0(char *a, const char *b, int c) {
     if (*b != 0) {
-        StringFormatBounded((char *) a, 0x80, data_021650a0, b, ((u32 *) &data_02164d28)[c], (u32) &data_021650b4);
+        StringFormatBounded(a, 0x80, data_021650a0, b, ((u32 *) &data_02164d28)[c], (u32) &data_021650b4);
     }
 }
 
-void func_020482ac(int a, u8 *b, int c) {
+void func_020482ac(char *a, u8 *b, int c) {
     u32 v1;
     if (*b != 0) {
         v1 = func_02048474();
-        StringFormatBounded((char *) a, 0x80, data_02165080, b, ((u32 *) &data_02164d28)[c], v1, (u32) &data_02165098);
+        StringFormatBounded(a, 0x80, data_02165080, b, ((u32 *) &data_02164d28)[c], v1, (u32) &data_02165098);
     }
 }
 
-void func_02048284(u32 a, u32 b) {
+void func_02048284(u32 a, char *b) {
     u32 v1;
     v1 = func_02048474();
-    StringFormatBounded((char *) b, 0x80, data_02165074, a, v1);
+    StringFormatBounded(b, 0x80, data_02165074, a, v1);
 }
 
 #pragma thumb off
@@ -142,11 +142,11 @@ void func_02048050(int a, int b) {
                     if (data_021759c0->mUnk_00c == 6) {
                         StringFormatBounded((char *) c, 0x80, data_usa_02165058);
                     } else {
-                        func_020483e4((u32) c, (u8 *) gSceneNames[b].mUnk_00);
+                        func_020483e4(c, (u8 *) gSceneNames[b].mUnk_00);
                     }
                     break;
                 default:
-                    func_020483e4((u32) c, (u8 *) gSceneNames[b].mUnk_00);
+                    func_020483e4(c, (u8 *) gSceneNames[b].mUnk_00);
                     break;
             }
             g = gSceneNames[b].mUnk_04;
@@ -169,26 +169,26 @@ void func_02048050(int a, int b) {
                     break;
                 case 2:
                     if (data_021759c0->mUnk_00c == 6) {
-                        func_02048324((u32) c);
+                        func_02048324(c);
                     } else {
-                        func_0204840c((u32) c, (u8 *) gSceneNames[b].mUnk_00);
+                        func_0204840c(c, (u8 *) gSceneNames[b].mUnk_00);
                     }
                     break;
                 default:
-                    func_0204840c((u32) c, (u8 *) gSceneNames[b].mUnk_00);
+                    func_0204840c(c, (u8 *) gSceneNames[b].mUnk_00);
                     break;
             }
             break;
         case 11:
-            func_020482f0((u32) c, gSceneNames[b].mUnk_00, data_021759c0->mMode);
+            func_020482f0(c, gSceneNames[b].mUnk_00, data_021759c0->mMode);
             break;
         case 12:
-            func_020482ac((s32) c, (u8 *) gSceneNames[b].mUnk_00, data_021759c0->mMode);
+            func_020482ac(c, (u8 *) gSceneNames[b].mUnk_00, data_021759c0->mMode);
             break;
         case 2:
         case 15:
         case 17:
-            func_02048284((u32) data_usa_021543e0[a].mUnk_00, (u32) c);
+            func_02048284((u32) data_usa_021543e0[a].mUnk_00, c);
             break;
         case 0:
         case 1:

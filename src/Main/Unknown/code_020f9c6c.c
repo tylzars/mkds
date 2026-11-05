@@ -407,7 +407,7 @@ void func_020fbc18(Unk020fc2e8 *param_1) {
     } else {
         param_1->mUnk_27c += 0xccd;
     }
-    func_020fcedc((u32) param_1, r, param_1->mUnk_27c, param_1->mUnk_284);
+    func_020fcedc(param_1, r, param_1->mUnk_27c, param_1->mUnk_284);
     if (!(param_1->mUnk_000.mUnk_74 & 1)) {
         func_0210b7ec(&param_1->mUnk_300, param_1->mUnk_000.mUnk_d4 & ~0xc000001f);
         if (param_1->mUnk_270 != 1) {

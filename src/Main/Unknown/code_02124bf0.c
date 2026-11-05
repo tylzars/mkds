@@ -76,7 +76,7 @@ u32 func_02124c70(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, Unk0201ea30 *d, Unk0212
         (v28[1] >> 12) - v14 > 0xc0) {
         return 0;
     }
-    r6 = func_020ae5e4((u32) e);
+    r6 = func_020ae5e4(e);
     if (f->mUnk_10 != 0) {
         v18 = f->mUnk_24;
         p = &e->mUnk_000[r6];

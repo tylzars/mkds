@@ -305,7 +305,7 @@ void func_02031960(void) {
                 data_02174e58->mUnk_78 = FALSE;
                 data_02174e58->mUnk_70 = 3;
                 data_02174e58->mUnk_9c = 0x78;
-                func_02126248((u32) GetBmgEntry(data_02174e58->mUnk_68, 0x79), 0, 1, 1, 0, 1);
+                func_02126248(GetBmgEntry(data_02174e58->mUnk_68, 0x79), 0, 1, 1, 0, 1);
                 func_02025f14(&data_02174e58->mUnk_a0[0], 2);
             } else if (data_02174e58->mUnk_7c != FALSE) {
                 data_02174e58->mUnk_7c = FALSE;
@@ -550,7 +550,7 @@ void func_02031280(void *a, void *b, void *c) {
     q->mUnk_18[0x10].mUnk_00 = q->mUnk_18[0x11].mUnk_00;
     v = GetBmgEntry(data_02174e58->mUnk_64, 10);
     if (data_02174e58->mUnk_84 != 0) {
-        func_02126248((u32) v, 0, 0, 1, 0, 1);
+        func_02126248(v, 0, 0, 1, 0, 1);
     } else {
         func_02126638(v, 0, 0, 1, 0, 0, 0);
     }

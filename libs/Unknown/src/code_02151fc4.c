@@ -18,7 +18,7 @@ s64 func_02152244(const u32 *a, const u32 *b) {
     if (c == -1) {
         return -1;
     }
-    d = func_0215228c((u32) b);
+    d = func_0215228c(b);
     return (s64) d + (s64) c * 0x15180;
 }
 

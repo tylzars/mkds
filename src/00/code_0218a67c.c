@@ -22,10 +22,10 @@ void func_ov000_0218a6f4(u8 *a, u8 *b, int c) {
     return;
 }
 
-u32 func_ov000_0218a6c8(u32 a) {
+u32 func_ov000_0218a6c8(const u8 *a) {
     int v1;
     u8 v2[24];
-    func_ov000_0218a5b0((const u8 *) (a), v2);
+    func_ov000_0218a5b0(a, v2);
     v1 = memcmp((const u8 *) ((u32) (v2)), data_ov000_021b2174, 8);
     if (v1 == 0) {
         return 1;

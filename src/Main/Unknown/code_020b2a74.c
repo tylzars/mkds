@@ -4,7 +4,7 @@
 
 #pragma optimize_for_size on
 u32 func_020b2aec(Unk020b2a94 *p) {
-    if (func_020b2b1c((u32) p) == 0 && p->mNoPairCount < 5) {
+    if (func_020b2b1c(p) == 0 && p->mNoPairCount < 5) {
         return 1;
     }
     return 0;

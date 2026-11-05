@@ -7,11 +7,11 @@
 #include "code_0212d214.h"
 #include "code_020172d0.h"
 
-u32 func_0210bc8c(int a, int b) {
+u32 func_0210bc8c(void *a, void *b) {
     BOOL i;
     Unk0210bc54 *p;
 
-    p = (Unk0210bc54 *) (b + ((LinkedList *) a)->mLinkOffset);
+    p = (Unk0210bc54 *) ((u8 *) b + ((LinkedList *) a)->mLinkOffset);
     if (p->mUnk_08 != 0) {
         i = FALSE;
     } else {
@@ -19,7 +19,7 @@ u32 func_0210bc8c(int a, int b) {
         p->mUnk_08 = (u32) a;
     }
     if (i != FALSE) {
-        ListAppend((LinkedList *) a, (void *) b);
+        ListAppend((LinkedList *) a, b);
     } else {
         return 0;
     }

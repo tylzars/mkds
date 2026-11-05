@@ -31,7 +31,7 @@ void func_020309d8(void) {
     s32 n;
 
     o = data_02174e54;
-    n = func_02030a18((u32) o->mUnk_0c) + func_02030a10((u32) o->mUnk_14);
+    n = func_02030a18(o->mUnk_0c) + func_02030a10(o->mUnk_14);
     for (i = 0; i < n; i++) {
         o->mUnk_18[i].mUnk_06 = data_02174e54->mUnk_38;
     }

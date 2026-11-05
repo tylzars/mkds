@@ -303,7 +303,7 @@ void AdvanceOptionTopMenuState7(void) {
         if (func_02125f60() == 0) {
             func_02057130();
             gOptionTopMenu->mNextState = 8;
-            func_02126248((u32) GetBmgEntry(gOptionTopMenu->mOptionMessages, 5), 1, 1, 1, 0, 1);
+            func_02126248(GetBmgEntry(gOptionTopMenu->mOptionMessages, 5), 1, 1, 1, 0, 1);
         } else {
             gOptionTopMenu->mNextState = 1;
         }
