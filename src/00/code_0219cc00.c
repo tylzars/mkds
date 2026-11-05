@@ -45,7 +45,7 @@ void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c) {
             }
             k = 0;
             for (i = 0; i < b->mUnk_04; i++) {
-                func_ov000_0219d034(GpGetBuddyIndex(a, b->mUnk_0c[i].mUnk_00, &n));
+                ReportBuddySyncGpResult(GpGetBuddyIndex(a, b->mUnk_0c[i].mUnk_00, &n));
                 if (n == ~k) {
                     AddBuddy(b->mUnk_0c[i].mUnk_00);
                 } else {
@@ -65,7 +65,7 @@ void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c) {
         }
     } else {
         if (b->mUnk_00 != 0) {
-            if (func_ov000_0219d034(b->mUnk_00) != 0) {
+            if (ReportBuddySyncGpResult(b->mUnk_00) != 0) {
                 return;
             }
         } else if (gWiFiBuddySync->mState == 1 || func_02152a1c(&gWiFiBuddySync->mBuddies[c]) == 0) {

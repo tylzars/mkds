@@ -3,7 +3,7 @@
 #include "types.h"
 #include "00/code_0218f960.h"
 
-typedef struct Unk021b566c Unk021b566c;
+typedef struct WiFiMatching WiFiMatching;
 
 // Five bytes at data_ov000_021b40bc; the first member of Unk021a0a40 starts with them.
 typedef struct Unk021b40bc {
@@ -21,7 +21,7 @@ typedef struct Unk021a0a40 {
     /* 10 */ u32 mUnk_10;
 } Unk021a0a40;
 
-// The twelve bytes at Unk021b566c::mUnk_18c.
+// The twelve bytes at WiFiMatching::mUnk_18c.
 typedef struct Unk021a0c30 {
     /* 00 */ u8 mUnk_00;
     /* 02 */ u16 mUnk_02;

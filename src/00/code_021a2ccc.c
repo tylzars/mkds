@@ -24,7 +24,7 @@ void func_ov000_021a3250(u32 (*arg0)(void)) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
-    value1 = (u32) &data_ov000_021b5dd0;
+    value1 = (u32) &gWiFiMessageLayer;
     value2 = (u32) * (const u32 *) ((value1) + 0u);
     value1 = 0x600u;
     *(u32 *) ((value2) + (value1)) = value0;
@@ -35,7 +35,7 @@ void func_ov000_021a323c(void (*arg0)(u32, void *, u32)) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
-    value1 = (u32) &data_ov000_021b5dd0;
+    value1 = (u32) &gWiFiMessageLayer;
     value2 = (u32) * (const u32 *) ((value1) + 0u);
     value1 = 0x604u;
     *(u32 *) ((value2) + (value1)) = value0;
@@ -69,14 +69,15 @@ s32 func_ov000_021a31d4(s32 value) {
     }
 }
 
-void func_ov000_021a31a4(Unk021b5dd0 *state) {
-    data_ov000_021b5dd0 = state;
-    MemFill(state, 0, sizeof(Unk021b5dd0));
-    data_ov000_021b5dd0->mUnk_610 = 0x5b9;
+// Per login (called by InitWiFiConnection): stores gWiFiMessageLayer, zeroes the struct and sets mUnk_610.
+void InitWiFiMessageLayer(WiFiMessageLayer *state) {
+    gWiFiMessageLayer = state;
+    MemFill(state, 0, sizeof(WiFiMessageLayer));
+    gWiFiMessageLayer->mUnk_610 = 0x5b9;
 }
 
 void func_ov000_021a317c(Unk0219887c *a, void *b, s32 c, u32 d) {
-    if (data_ov000_021b5dd0 != NULL) {
+    if (gWiFiMessageLayer != NULL) {
         if (d != 0) {
             func_ov000_021a2eec(a, b, c);
         } else {
@@ -86,52 +87,55 @@ void func_ov000_021a317c(Unk0219887c *a, void *b, s32 c, u32 d) {
 }
 
 void func_ov000_021a314c(Unk0219887c *a, u32 b) {
-    if (data_ov000_021b5dd0->mUnk_60c != NULL) {
-        data_ov000_021b5dd0->mUnk_60c(b, func_ov000_0219b9c4(a));
+    if (gWiFiMessageLayer->mUnk_60c != NULL) {
+        gWiFiMessageLayer->mUnk_60c(b, func_ov000_0219b9c4(a));
     }
 }
 
-void func_ov000_021a3030(void) {
+// One step per frame in connection state 6 (returns at once when the layer is NULL): for each participant (except the
+// own index) continues the chunked send and, when the elapsed time since the last receive exceeds the peer's limit,
+// calls the timeout callback func (mUnk_608; no writer in src).
+void UpdateWiFiMessageLayer(void) {
     u8 *l;
     s32 n;
     s32 i;
     u8 d;
-    Unk021a2d68 *e;
+    WiFiPeerMessage *e;
     s32 m;
     s32 k;
     u64 t;
-    if (data_ov000_021b5dd0 != NULL) {
+    if (gWiFiMessageLayer != NULL) {
         n = func_ov000_0219bb04(&l);
         for (i = 0; i < n; i++) {
             d = l[i];
             if (d != func_ov000_0219bb50() && func_ov000_021a2fc8(d) == 1) {
                 e = func_ov000_021a2fdc(d);
-                m = e->mUnk_14 - e->mUnk_0c;
-                k = data_ov000_021b5dd0->mUnk_610;
+                m = e->mSendSize - e->mSentSize;
+                k = gWiFiMessageLayer->mUnk_610;
                 if (m <= k) {
                     k = m;
                 }
                 if (func_ov000_021a2d18(d) < k) {
                     continue;
                 }
-                func_ov000_021a2f98(d, (e->mUnk_00 + e->mUnk_0c), k, 1);
-                e->mUnk_0c += k;
-                if (e->mUnk_0c == e->mUnk_14) {
-                    if (data_ov000_021b5dd0->mSendCallback != NULL) {
-                        data_ov000_021b5dd0->mSendCallback(e->mUnk_14, d);
+                func_ov000_021a2f98(d, (e->mSendBuffer + e->mSentSize), k, 1);
+                e->mSentSize += k;
+                if (e->mSentSize == e->mSendSize) {
+                    if (gWiFiMessageLayer->mSendCallback != NULL) {
+                        gWiFiMessageLayer->mSendCallback(e->mSendSize, d);
                     }
                     e->mUnk_1c = 0;
-                    e->mUnk_00 = NULL;
-                    e->mUnk_0c = 0;
-                    e->mUnk_14 = 0;
+                    e->mSendBuffer = NULL;
+                    e->mSentSize = 0;
+                    e->mSendSize = 0;
                 }
             }
             if (func_ov000_0219bac8(d) != 0) {
                 e = func_ov000_021a2fdc(d);
-                if (data_ov000_021b5dd0->mUnk_608 != NULL && e->mUnk_2c != 0) {
+                if (gWiFiMessageLayer->mUnk_608 != NULL && e->mUnk_2c != 0) {
                     t = func_0200f5ac();
                     if ((u32) _ll_udiv((t - e->mUnk_24) << 6, 0x82ea) > e->mUnk_2c) {
-                        data_ov000_021b5dd0->mUnk_608(d);
+                        gWiFiMessageLayer->mUnk_608(d);
                         e->mUnk_24 = t;
                     }
                 }
@@ -141,32 +145,32 @@ void func_ov000_021a3030(void) {
 }
 
 void func_ov000_021a2ff8(int a) {
-    if (data_ov000_021b5dd0 != NULL) {
-        data_ov000_021b5dd0->mUnk_000[a].mUnk_0c = 0;
-        data_ov000_021b5dd0->mUnk_000[a].mUnk_10 = 0;
-        data_ov000_021b5dd0->mUnk_000[a].mUnk_14 = 0;
-        data_ov000_021b5dd0->mUnk_000[a].mUnk_18 = 0;
-        data_ov000_021b5dd0->mUnk_000[a].mUnk_1c = 0;
-        data_ov000_021b5dd0->mUnk_000[a].mUnk_22 = 0;
+    if (gWiFiMessageLayer != NULL) {
+        gWiFiMessageLayer->mPeers[a].mSentSize = 0;
+        gWiFiMessageLayer->mPeers[a].mReceivedSize = 0;
+        gWiFiMessageLayer->mPeers[a].mSendSize = 0;
+        gWiFiMessageLayer->mPeers[a].mReceiveSize = 0;
+        gWiFiMessageLayer->mPeers[a].mUnk_1c = 0;
+        gWiFiMessageLayer->mPeers[a].mMessageKind = 0;
     }
     return;
 }
 
 void func_ov000_021a2fec(void) {
-    data_ov000_021b5dd0 = NULL;
+    gWiFiMessageLayer = NULL;
     return;
 }
 
-Unk021a2d68 *func_ov000_021a2fdc(int a) {
-    return &data_ov000_021b5dd0->mUnk_000[a];
+WiFiPeerMessage *func_ov000_021a2fdc(int a) {
+    return &gWiFiMessageLayer->mPeers[a];
 }
 
 u8 func_ov000_021a2fc8(int a) {
-    return data_ov000_021b5dd0->mUnk_000[a].mUnk_1c;
+    return gWiFiMessageLayer->mPeers[a].mUnk_1c;
 }
 
 u8 func_ov000_021a2fb4(int a) {
-    return data_ov000_021b5dd0->mUnk_000[a].mUnk_1d;
+    return gWiFiMessageLayer->mPeers[a].mReceiveState;
 }
 
 void func_ov000_021a2f98(u32 a, void *b, u32 c, u32 d) {
@@ -196,9 +200,9 @@ void func_ov000_021a2eec(Unk0219887c *a, void *b, s32 c) {
             func_ov000_021a2d38(v1, b, c);
             break;
         case 4:
-            data_ov000_021b5dd0->mUnk_000[v1].mUnk_1d = 1;
-            data_ov000_021b5dd0->mUnk_000[v1].mUnk_10 = 0;
-            data_ov000_021b5dd0->mUnk_000[v1].mUnk_18 = 0;
+            gWiFiMessageLayer->mPeers[v1].mReceiveState = 1;
+            gWiFiMessageLayer->mPeers[v1].mReceivedSize = 0;
+            gWiFiMessageLayer->mPeers[v1].mReceiveSize = 0;
             break;
         default:
             IrqDisableLoopForever();
@@ -208,16 +212,16 @@ void func_ov000_021a2eec(Unk0219887c *a, void *b, s32 c) {
 
 void func_ov000_021a2e7c(Unk0219887c *a, const void *b, int c) {
     int v1;
-    Unk021a2d68 *v2;
+    WiFiPeerMessage *v2;
     u64 v3;
     v1 = func_ov000_0219b9c4(a);
-    v2 = &data_ov000_021b5dd0->mUnk_000[v1];
-    if ((v2->mUnk_04 != NULL) && (v2->mUnk_08 >= c)) {
-        MemCopy(b, v2->mUnk_04, c);
-        if (data_ov000_021b5dd0->mReceiveCallback != NULL) {
-            data_ov000_021b5dd0->mReceiveCallback(v1, v2->mUnk_04, c);
+    v2 = &gWiFiMessageLayer->mPeers[v1];
+    if ((v2->mReceiveBuffer != NULL) && (v2->mReceiveBufferSize >= c)) {
+        MemCopy(b, v2->mReceiveBuffer, c);
+        if (gWiFiMessageLayer->mReceiveCallback != NULL) {
+            gWiFiMessageLayer->mReceiveCallback(v1, v2->mReceiveBuffer, c);
         }
-        if ((data_ov000_021b5dd0->mUnk_608 != NULL) && (v2->mUnk_2c != 0)) {
+        if ((gWiFiMessageLayer->mUnk_608 != NULL) && (v2->mUnk_2c != 0)) {
             v3 = func_0200f5ac();
             v2->mUnk_24 = v3;
         }
@@ -225,7 +229,7 @@ void func_ov000_021a2e7c(Unk0219887c *a, const void *b, int c) {
 }
 
 void func_ov000_021a2dfc(int a, void *b, s32 c) {
-    Unk021a2d68 *e = &data_ov000_021b5dd0->mUnk_000[a];
+    WiFiPeerMessage *e = &gWiFiMessageLayer->mPeers[a];
     u32 t[2];
     u16 n;
     e->mUnk_1e = func_ov000_021a2fb4(a);
@@ -236,55 +240,55 @@ void func_ov000_021a2dfc(int a, void *b, s32 c) {
                 return;
             }
             MemCopy(b, t, 8);
-            e->mUnk_18 = t[0];
-            e->mUnk_10 = 0;
-            if (e->mUnk_04 != NULL && e->mUnk_08 >= e->mUnk_18) {
-                e->mUnk_1d = 2;
+            e->mReceiveSize = t[0];
+            e->mReceivedSize = 0;
+            if (e->mReceiveBuffer != NULL && e->mReceiveBufferSize >= e->mReceiveSize) {
+                e->mReceiveState = 2;
             } else {
-                e->mUnk_1d = 4;
+                e->mReceiveState = 4;
             }
             break;
         case 2:
         case 3:
         case 4:
-            e->mUnk_1d = 3;
+            e->mReceiveState = 3;
             break;
     }
-    e->mUnk_22 = n;
+    e->mMessageKind = n;
 }
 
 void func_ov000_021a2d68(int a, void *b, s32 c) {
-    Unk021a2d68 *e = &data_ov000_021b5dd0->mUnk_000[a];
+    WiFiPeerMessage *e = &gWiFiMessageLayer->mPeers[a];
     s32 n;
     if (func_ov000_021a2fb4(a) == 2) {
-        if (e->mUnk_10 + c > e->mUnk_08) {
+        if (e->mReceivedSize + c > e->mReceiveBufferSize) {
             IrqDisableLoopForever();
         }
-        MemCopy(b, e->mUnk_04 + e->mUnk_10, c);
+        MemCopy(b, e->mReceiveBuffer + e->mReceivedSize, c);
     }
-    e->mUnk_10 += c;
-    n = e->mUnk_18;
-    if (e->mUnk_10 == n) {
-        e->mUnk_1d = 1;
-        e->mUnk_10 = 0;
-        e->mUnk_18 = 0;
-        if (data_ov000_021b5dd0->mReceiveCallback != NULL) {
-            data_ov000_021b5dd0->mReceiveCallback(a, e->mUnk_04, n);
+    e->mReceivedSize += c;
+    n = e->mReceiveSize;
+    if (e->mReceivedSize == n) {
+        e->mReceiveState = 1;
+        e->mReceivedSize = 0;
+        e->mReceiveSize = 0;
+        if (gWiFiMessageLayer->mReceiveCallback != NULL) {
+            gWiFiMessageLayer->mReceiveCallback(a, e->mReceiveBuffer, n);
         }
     }
-    if (data_ov000_021b5dd0->mUnk_608 != NULL && e->mUnk_2c != 0) {
+    if (gWiFiMessageLayer->mUnk_608 != NULL && e->mUnk_2c != 0) {
         e->mUnk_24 = func_0200f5ac();
     }
 }
 
 void func_ov000_021a2d38(u32 a, void *b, s32 c) {
-    Unk021a2d68 *e = func_ov000_021a2fdc(a);
-    e->mUnk_1d = e->mUnk_1e;
-    switch (e->mUnk_22) {
+    WiFiPeerMessage *e = func_ov000_021a2fdc(a);
+    e->mReceiveState = e->mUnk_1e;
+    switch (e->mMessageKind) {
         case 2:
         case 3:
         case 4:
-            func_ov000_021a18e0(a, e->mUnk_22, b);
+            func_ov000_021a18e0(a, e->mMessageKind, b);
             break;
     }
 }
@@ -298,10 +302,10 @@ s32 func_ov000_021a2d18(u32 a) {
 }
 
 BOOL func_ov000_021a2ccc(void) {
-    if (data_ov000_021b566c == NULL || data_ov000_021b566c->mUnk_1e8 == 0 || func_ov000_0219c39c() != 0) {
+    if (gWiFiMatching == NULL || gWiFiMatching->mUnk_1e8 == 0 || func_ov000_0219c39c() != 0) {
         return FALSE;
     }
-    if (func_ov000_021a2768(data_ov000_021b566c->mUnk_1e8) == 0) {
+    if (func_ov000_021a2768(gWiFiMatching->mUnk_1e8) == 0) {
         return TRUE;
     }
     return FALSE;

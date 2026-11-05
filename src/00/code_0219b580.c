@@ -79,25 +79,25 @@ void InitWiFiConnection(void *a, void *b, s32 c, const char *d, const char *e, s
     gWiFiConnection->mUnk_2d = 0;
     gWiFiConnection->mUnk_2e = 0;
     gWiFiConnection->mProfileId = 0;
-    gWiFiConnection->mUnk_54 = data_ov000_021b4e84;
+    gWiFiConnection->mGameName = data_ov000_021b4e84;
     gWiFiConnection->mUnk_58 = data_ov000_021b4f84;
     gWiFiConnection->mLoginCallback = NULL;
     gWiFiConnection->mLoginCallbackArg = 0;
     gWiFiConnection->mBuddySyncCallback = NULL;
     gWiFiConnection->mBuddySyncCallbackArg = NULL;
-    gWiFiConnection->mUnk_6c = NULL;
-    gWiFiConnection->mUnk_70 = NULL;
+    gWiFiConnection->mMatchingCallback = NULL;
+    gWiFiConnection->mMatchingCallbackArg = NULL;
     gWiFiConnection->mUnk_74 = NULL;
     gWiFiConnection->mUnk_78 = NULL;
     gWiFiConnection->mUnk_7c = NULL;
     gWiFiConnection->mUnk_80 = NULL;
     func_ov000_0219b964();
-    func_ov000_0219caac(&gWiFiConnection->mLogin, b, &gWiFiConnection->mGpConnection, c, ((Unk02152500 *) b)->mUnk_24,
-                        WiFiLoginCallback, NULL);
+    InitWiFiLogin(&gWiFiConnection->mLogin, b, &gWiFiConnection->mGpConnection, c, ((Unk02152500 *) b)->mUnk_24,
+                  WiFiLoginCallback, NULL);
     InitBuddySync(&gWiFiConnection->mBuddySync, &gWiFiConnection->mGpConnection, gWiFiConnection->mUnk_34, h, i);
-    func_ov000_021a2870(&gWiFiConnection->mUnk_33c, &gWiFiConnection->mGpConnection, &gWiFiConnection->mSocket,
-                        &gWiFiConnection->mResultCallback, data_ov000_021b4e84, data_ov000_021b4f84, h, i);
-    func_ov000_021a31a4(&gWiFiConnection->mUnk_7a0);
+    InitMatching(&gWiFiConnection->mMatching, &gWiFiConnection->mGpConnection, &gWiFiConnection->mSocket,
+                 &gWiFiConnection->mResultCallback, data_ov000_021b4e84, data_ov000_021b4f84, h, i);
+    InitWiFiMessageLayer(&gWiFiConnection->mMessageLayer);
     if (strlen(d) < 0x100) {
         n = strlen(d);
     } else {
@@ -118,14 +118,14 @@ void InitWiFiConnection(void *a, void *b, s32 c, const char *d, const char *e, s
 // gWiFiConnection. Called on failure, leave and logout paths.
 void ReleaseWiFiConnection(void) {
     if (gWiFiConnection != NULL) {
-        if (gWiFiConnection->mUnk_33c.mUnk_10 != NULL) {
-            func_ov000_021a47ac(gWiFiConnection->mUnk_33c.mUnk_10);
-            gWiFiConnection->mUnk_33c.mUnk_10 = NULL;
+        if (gWiFiConnection->mMatching.mUnk_10 != NULL) {
+            func_ov000_021a47ac(gWiFiConnection->mMatching.mUnk_10);
+            gWiFiConnection->mMatching.mUnk_10 = NULL;
         }
-        gWiFiConnection->mUnk_33c.mUnk_18 = 0;
-        if (gWiFiConnection->mUnk_33c.mUnk_e4 != NULL) {
-            func_ov000_0218b64c(gWiFiConnection->mUnk_33c.mUnk_e4);
-            gWiFiConnection->mUnk_33c.mUnk_e4 = NULL;
+        gWiFiConnection->mMatching.mUnk_18 = 0;
+        if (gWiFiConnection->mMatching.mUnk_e4 != NULL) {
+            func_ov000_0218b64c(gWiFiConnection->mMatching.mUnk_e4);
+            gWiFiConnection->mMatching.mUnk_e4 = NULL;
         }
         func_ov000_0219b110();
         GstatsClose();
@@ -138,7 +138,7 @@ void ReleaseWiFiConnection(void) {
             func_ov000_0218f2a0(&gWiFiConnection->mGpConnection);
             gWiFiConnection->mGpConnection.mGpiConnection = NULL;
         }
-        func_ov000_0219c954();
+        ReleaseWiFiLogin();
         func_ov000_0219d4f8();
         func_ov000_021a1430();
         func_ov000_021a2fec();
@@ -183,26 +183,26 @@ void UpdateWiFiConnection(void) {
         case 1:
             switch (func_ov000_0218d574()) {
                 case 1:
-                    if (func_ov000_0219b77c(
-                            GpInitialize(&gWiFiConnection->mGpConnection, gWiFiConnection->mLogin.mUnk_08, 0)) != 0) {
+                    if (ReportWiFiGpResult(GpInitialize(&gWiFiConnection->mGpConnection,
+                                                        gWiFiConnection->mLogin.mProductId, 0)) != 0) {
                         return;
                     }
-                    if (func_ov000_0219b77c(func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 0,
-                                                                (void (*)(void *, void *, u32)) WiFiGpErrorCallback,
-                                                                0)) != 0) {
+                    if (ReportWiFiGpResult(func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 0,
+                                                               (void (*)(void *, void *, u32)) WiFiGpErrorCallback,
+                                                               0)) != 0) {
                         return;
                     }
-                    if (func_ov000_0219b77c(func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 3,
-                                                                (void (*)(void *, void *, u32)) WiFiGpMessageCallback,
-                                                                0)) != 0) {
+                    if (ReportWiFiGpResult(func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 3,
+                                                               (void (*)(void *, void *, u32)) WiFiGpMessageCallback,
+                                                               0)) != 0) {
                         return;
                     }
-                    if (func_ov000_0219b77c(
+                    if (ReportWiFiGpResult(
                             func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 1,
                                                 (void (*)(void *, void *, u32)) WiFiGpBuddyRequestCallback, 0)) != 0) {
                         return;
                     }
-                    if (func_ov000_0219b77c(
+                    if (ReportWiFiGpResult(
                             func_ov000_0218f21c(&gWiFiConnection->mGpConnection, 2,
                                                 (void (*)(void *, void *, u32)) WiFiGpBuddyStatusCallback, 0)) != 0) {
                         return;
@@ -211,41 +211,41 @@ void UpdateWiFiConnection(void) {
                     func_ov000_0219ca84();
                     break;
                 case 2:
-                    func_ov000_0219c990(3, -20110);
+                    ReportWiFiLoginError(3, -20110);
                     return;
                 case 3:
-                    func_ov000_0219c990(4, -20101);
+                    ReportWiFiLoginError(4, -20101);
                     return;
             }
             break;
         case 2:
-            func_ov000_0219c9d8();
+            UpdateWiFiLogin();
             break;
         case 3:
         case 4:
             UpdateBuddySync();
-            func_ov000_021a1ef4(0);
+            UpdateMatching(0);
             break;
         case 5:
-            func_ov000_021a1ef4(1);
+            UpdateMatching(1);
             UpdateBuddySync();
             break;
         case 6:
-            func_ov000_021a3030();
+            UpdateWiFiMessageLayer();
             UpdateBuddySync();
-            if (gWiFiConnection->mUnk_33c.mUnk_15 == 2 || gWiFiConnection->mUnk_33c.mUnk_15 == 3) {
-                func_ov000_021a1ef4(1);
+            if (gWiFiConnection->mMatching.mMode == 2 || gWiFiConnection->mMatching.mMode == 3) {
+                UpdateMatching(1);
             } else if (gWiFiConnection->mSocket != NULL) {
-                func_ov000_021a1ef4(0);
+                UpdateMatching(0);
             }
             break;
     }
-    if (gWiFiConnection->mUnk_33c.mUnk_18 == 1) {
-        if (gWiFiConnection->mUnk_33c.mUnk_10 != NULL) {
-            func_ov000_021a47ac(gWiFiConnection->mUnk_33c.mUnk_10);
-            gWiFiConnection->mUnk_33c.mUnk_10 = NULL;
+    if (gWiFiConnection->mMatching.mUnk_18 == 1) {
+        if (gWiFiConnection->mMatching.mUnk_10 != NULL) {
+            func_ov000_021a47ac(gWiFiConnection->mMatching.mUnk_10);
+            gWiFiConnection->mMatching.mUnk_10 = NULL;
         }
-        gWiFiConnection->mUnk_33c.mUnk_18 = 0;
+        gWiFiConnection->mMatching.mUnk_18 = 0;
     }
 }
 
@@ -258,11 +258,11 @@ void StartWiFiLogin(u32 a, u32 b, void (*c)(s32 a), u32 d) {
             gWiFiConnection->mLogin.mUnk_10 = a;
             gWiFiConnection->mLogin.mUnk_14 = b;
             if (func_ov000_021a3810() != 4) {
-                func_ov000_0219c990(2, -60010);
+                ReportWiFiLoginError(2, -60010);
                 return;
             }
             SetWiFiConnectionState(1);
-            func_ov000_0218d6e4(gWiFiConnection->mUnk_54);
+            func_ov000_0218d6e4(gWiFiConnection->mGameName);
         }
     }
 }
@@ -290,23 +290,27 @@ BOOL StartWiFiBuddySync(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32
     gWiFiConnection->mBuddySyncCallback = b;
     gWiFiConnection->mBuddySyncCallbackArg = c;
     SetWiFiConnectionState(4);
-    StartBuddySync((s32) gWiFiConnection->mLogin.mUnk_4c, gWiFiConnection->mLogin.mUnk_14c,
+    StartBuddySync((s32) gWiFiConnection->mLogin.mAuthToken, gWiFiConnection->mLogin.mUnk_14c,
                    (void (*)(s32, u8, void *)) WiFiBuddySyncCallback, NULL, (void (*)(s32, u8, void *, void *)) d, e,
                    (void (*)(s32, s32, void *)) f, g);
     return TRUE;
 }
 
-void func_ov000_0219bd90(u32 a, void *b, void *c, void *d, void *e, u32 f) {
+// Connection-level start: only in state 3 and with no error pending; clears the peer tables, stores the callback pair,
+// sets state 5 and calls func_ov000_021a260c.
+void StartWiFiMatchingWithFilter(u32 a, void *b, void *c, void *d, void *e, u32 f) {
     if (func_ov000_0219c39c() == 0 && gWiFiConnection->mState == 3) {
         func_ov000_0219b964();
-        gWiFiConnection->mUnk_6c = (void (*)(u32, u32, void *)) c;
-        gWiFiConnection->mUnk_70 = d;
+        gWiFiConnection->mMatchingCallback = (void (*)(u32, u32, void *)) c;
+        gWiFiConnection->mMatchingCallbackArg = d;
         SetWiFiConnectionState(5);
-        func_ov000_021a260c((u8) (a - 1), b, (u32) func_ov000_0219b5a8, 0, (u32) e, f);
+        func_ov000_021a260c((u8) (a - 1), b, (u32) WiFiMatchingCallback, 0, (u32) e, f);
     }
 }
 
-void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, u32 h) {
+// Connection-level start: only in state 3; stores the callback pair, sets state 5 and calls func_ov000_021a2468 with
+// the given list, or with a list of all buddy entries in random order when it is NULL (the one caller passes NULL).
+void StartWiFiMatchingWithBuddies(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, u32 h) {
     u8 s[0x40];
     u8 t[0x40];
     u8 i;
@@ -314,11 +318,11 @@ void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, 
     u8 n;
     if (func_ov000_0219c39c() == 0 && gWiFiConnection->mState == 3) {
         func_ov000_0219b964();
-        gWiFiConnection->mUnk_6c = (void (*)(u32, u32, void *)) e;
-        gWiFiConnection->mUnk_70 = f;
+        gWiFiConnection->mMatchingCallback = (void (*)(u32, u32, void *)) e;
+        gWiFiConnection->mMatchingCallbackArg = f;
         SetWiFiConnectionState(5);
         if (a != NULL) {
-            func_ov000_021a2468(a, b, (u8) (c - 1), d, func_ov000_0219b5a8, 0, g, h);
+            func_ov000_021a2468(a, b, (u8) (c - 1), d, WiFiMatchingCallback, 0, g, h);
             return;
         }
         i = 0;
@@ -340,7 +344,7 @@ void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, 
                 s[n] = i;
             }
         }
-        func_ov000_021a2468(s, b, (u8) (c - 1), d, func_ov000_0219b5a8, 0, g, h);
+        func_ov000_021a2468(s, b, (u8) (c - 1), d, WiFiMatchingCallback, 0, g, h);
     }
 }
 
@@ -350,7 +354,7 @@ s32 func_ov000_0219bbfc(void) {
         ((p = gWiFiConnection)->mState != 5 && p->mState != 6)) {
         return -1;
     }
-    if (p->mUnk_33c.mUnk_0d == 0) {
+    if (p->mMatching.mUnk_0d == 0) {
         func_ov000_0219d558(1, data_ov000_021b4054, NULL);
         func_ov000_0219b110();
         SetWiFiConnectionState(3);
@@ -380,7 +384,7 @@ s32 func_ov000_0219bb68(void) {
     if (gWiFiConnection == NULL) {
         return 0;
     }
-    if (gWiFiConnection->mUnk_33c.mUnk_15 == 2 || gWiFiConnection->mUnk_33c.mUnk_15 == 3) {
+    if (gWiFiConnection->mMatching.mMode == 2 || gWiFiConnection->mMatching.mMode == 3) {
         return func_ov000_021a15f8() + 1;
     }
     return func_ov000_021a160c() + 1;
@@ -397,8 +401,8 @@ s32 func_ov000_0219bb04(u8 **a) {
     if (gWiFiConnection == NULL) {
         return 0;
     }
-    *a = gWiFiConnection->mUnk_33c.mUnk_2b8;
-    if (gWiFiConnection->mUnk_33c.mUnk_15 == 2 || gWiFiConnection->mUnk_33c.mUnk_15 == 3) {
+    *a = gWiFiConnection->mMatching.mParticipantIndices;
+    if (gWiFiConnection->mMatching.mMode == 2 || gWiFiConnection->mMatching.mMode == 3) {
         return func_ov000_021a1514((void **) a);
     }
     return func_ov000_021a158c((void **) a);
@@ -408,7 +412,7 @@ BOOL func_ov000_0219bac8(u32 a) {
     if (gWiFiConnection == NULL) {
         return FALSE;
     }
-    if ((gWiFiConnection->mUnk_33c.mUnk_2d8 & (1 << a)) != 0) {
+    if ((gWiFiConnection->mMatching.mParticipantMask & (1 << a)) != 0) {
         return func_ov000_0219b8bc(a);
     }
     return FALSE;
@@ -433,7 +437,7 @@ s32 func_ov000_0219ba20(void) {
     p = gWiFiConnection;
     r = func_ov000_02198ac4((Gt2Socket **) gWiFiConnection, (const char *) Gt2FormatAddress(0, v, 0),
                             p->mSendBufferSize, p->mUnk_18, (u32) func_ov000_0219b240);
-    if (func_ov000_0219b704(r) != 0) {
+    if (ReportWiFiSocketResult(r) != 0) {
         return r;
     }
     func_ov000_02198a84(gWiFiConnection->mSocket, func_ov000_021a1ca8);
@@ -489,14 +493,15 @@ void **func_ov000_0219b8fc(u32 a, s32 b) {
     u8 c;
 
     for (c = 0; c < b; c++) {
-        if (a == gWiFiConnection->mUnk_33c.mUnk_f4[c]) {
+        if (a == gWiFiConnection->mMatching.mParticipantProfileIds[c]) {
             break;
         }
     }
     if (c >= b) {
         return NULL;
     }
-    return func_ov000_0219b958(func_ov000_0219b9b4(func_ov000_0219b9d4(gWiFiConnection->mUnk_33c.mUnk_2b8[c])));
+    return func_ov000_0219b958(
+        func_ov000_0219b9b4(func_ov000_0219b9d4(gWiFiConnection->mMatching.mParticipantIndices[c])));
 }
 
 Unk021b5550 *func_ov000_0219b8f0(s32 index) {
@@ -546,7 +551,10 @@ u32 func_ov000_0219b844(const u8 *values, s32 count) {
     return mask;
 }
 
-int func_ov000_0219b77c(int c) {
+// Maps a GP result 1 to 4 to (kind 0xb or 6, code), subtracts an offset chosen by the connection state, reports it to
+// the login (states 1 and 2: ReportWiFiLoginError) or the matching object (state 5: func_ov000_021a1a38) and always to
+// the buddy object (ReportBuddySyncError); returns the code, 0 passes through.
+int ReportWiFiGpResult(int c) {
     s32 a;
     s32 b;
 
@@ -574,11 +582,11 @@ int func_ov000_0219b77c(int c) {
     switch (gWiFiConnection->mState) {
         case 1:
             b -= 0xee48;
-            func_ov000_0219c990(a, b);
+            ReportWiFiLoginError(a, b);
             break;
         case 2:
             b -= 0xee48;
-            func_ov000_0219c990(a, b);
+            ReportWiFiLoginError(a, b);
             break;
         case 5:
             b -= 0x13c68;
@@ -595,7 +603,9 @@ int func_ov000_0219b77c(int c) {
     return c;
 }
 
-u32 func_ov000_0219b704(u32 a) {
+// Maps a CreateSocket result (1 to 7; 2 and 5 mean no error and return 0) to (kind, code) and reports it through
+// ReportWiFiLoginError; returns the result.
+u32 ReportWiFiSocketResult(u32 a) {
     s32 b;
     s32 c;
 
@@ -631,7 +641,7 @@ u32 func_ov000_0219b704(u32 a) {
             break;
     }
     if (b != 0) {
-        func_ov000_0219c990(b, c - 0x105b8);
+        ReportWiFiLoginError(b, c - 0x105b8);
     }
     return a;
 }
@@ -660,40 +670,44 @@ void WiFiBuddySyncCallback(u32 a, u32 b) {
     return;
 }
 
-void func_ov000_0219b5a8(u32 a, u32 b, u32 c, u32 d, u32 e) {
+// Result callback of both starts (the matching object's mResultCallback): result 0 with flag 0 sets state 6 and finds
+// the own position / mOwnIndex among the participants; result 0 with a flag sets state 3 when no search is running;
+// every result rebuilds mParticipantMask and then calls mMatchingCallback (modes 0 and 1) or the unset mode 2/3
+// callback.
+void WiFiMatchingCallback(u32 a, u32 b, u32 c, u32 d, u32 e) {
     s32 f;
     WiFiConnection *h;
 
     if (a == 0 && b != 0) {
-        if (gWiFiConnection->mUnk_33c.mUnk_198 == 0) {
+        if (gWiFiConnection->mMatching.mState == 0) {
             func_ov000_021a1a10();
             SetWiFiConnectionState(3);
         }
     } else if (a == 0) {
         SetWiFiConnectionState(6);
-        for (f = 0; f <= gWiFiConnection->mUnk_33c.mUnk_0d; f++) {
-            if (gWiFiConnection->mProfileId == gWiFiConnection->mUnk_33c.mUnk_f4[f]) {
-                gWiFiConnection->mOwnIndex = gWiFiConnection->mUnk_33c.mUnk_2b8[f];
+        for (f = 0; f <= gWiFiConnection->mMatching.mUnk_0d; f++) {
+            if (gWiFiConnection->mProfileId == gWiFiConnection->mMatching.mParticipantProfileIds[f]) {
+                gWiFiConnection->mOwnIndex = gWiFiConnection->mMatching.mParticipantIndices[f];
                 break;
             }
         }
     }
-    gWiFiConnection->mUnk_33c.mUnk_2d8 =
-        func_ov000_0219b844(gWiFiConnection->mUnk_33c.mUnk_2b8, gWiFiConnection->mUnk_33c.mUnk_0d + 1);
+    gWiFiConnection->mMatching.mParticipantMask =
+        func_ov000_0219b844(gWiFiConnection->mMatching.mParticipantIndices, gWiFiConnection->mMatching.mUnk_0d + 1);
     func_ov000_021a15b0();
     h = gWiFiConnection;
-    if (h->mUnk_33c.mUnk_15 == 2 || h->mUnk_33c.mUnk_15 == 3) {
+    if (h->mMatching.mMode == 2 || h->mMatching.mMode == 3) {
         h = gWiFiConnection;
         h->mUnk_74(a, b, c, d, e, h->mUnk_78);
     } else {
-        h->mUnk_6c(a, b, h->mUnk_70);
+        h->mMatchingCallback(a, b, h->mMatchingCallbackArg);
     }
 }
 
-// GP callback slot 0 (error). Reports error kind 3 through func_ov000_0219b77c only when the GP error number is not
+// GP callback slot 0 (error). Reports error kind 3 through ReportWiFiGpResult only when the GP error number is not
 // 0x603 or 0x901.
 void WiFiGpErrorCallback(u32 a, int b) {
     if ((*(s32 *) (b + 4) != 0x603) && (*(s32 *) (b + 4) != 0x901)) {
-        func_ov000_0219b77c(3);
+        ReportWiFiGpResult(3);
     }
 }

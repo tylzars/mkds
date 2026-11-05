@@ -54,10 +54,16 @@ typedef struct WiFiBuddySync {
     // func_ov000_0219d504.
     /* 34 */ void (*mBuddyStatusCallback)(s32, u8, void *, void *);
     /* 38 */ void *mBuddyStatusCallbackArg;
-    /* 3c */ void (*mUnk_3c)(s32, s32, void *);
-    /* 40 */ void *mUnk_40;
-    /* 44 */ void *mUnk_44;
-    /* 48 */ void *mUnk_48;
+    // Set by StartBuddySync (seventh parameter; the owner passes func_0211f6e8). Called by func_ov000_0219d288 with
+    // (index of the entry cleared, index of the entry kept, arg) when two entries of the saved list hold the same
+    // profile id.
+    /* 3c */ void (*mEntryMergedCallback)(s32, s32, void *);
+    /* 40 */ void *mEntryMergedCallbackArg;
+    // Set by func_ov000_0219d934 (declared void *, called as void (*)(s32, void *)). Called by func_ov000_0219d504 with
+    // (list index, arg) after a GP reply set an entry's profile id, unless a sync is running (mState 1). The one caller
+    // passes func_0211f6b0 (a C body exists: src/Main/Unknown/code_0211f6b0.c).
+    /* 44 */ void *mBuddyChangedCallback;
+    /* 48 */ void *mBuddyChangedCallbackArg;
     /* 4c */ void (*mUnk_4c)(s32 a, s32 b, u32 c);
     /* 50 */ u32 mUnk_50;
 } WiFiBuddySync;

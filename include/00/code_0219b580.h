@@ -46,13 +46,25 @@ typedef struct WiFiConnection {
     // This player's index among the participants; set by Init (0) and on a successful match; read through
     // func_ov000_0219bb50 (96 call sites).
     /* 2c */ u8 mOwnIndex;
+    // 1 only while func_ov000_0219bbfc closes every peer connection of the socket (state 5 or 6, other participants
+    // present); read by func_ov000_0219b27c (code_0219b1f8.c:111, :126, :149) to tell this close from a peer leaving.
+    // The matching object's own close-all does not set it.
     /* 2d */ u8 mUnk_2d;
     /* 2e */ u16 mUnk_2e;
     // The GP profile id of the logged-in player, the same value as the library's own GpiConnection.mProfileId; set by
     // WiFiLoginCallback, compared with the participant ids of the matching object.
     /* 30 */ u32 mProfileId;
+    // 0x20-byte text given to StartWiFiBuddySync (the only caller passes NULL, so it is always empty); handed to
+    // InitBuddySync, used as the add-buddy reason text and, when not empty, in the stats request '\dwc_name\%s'.
     /* 34 */ char mUnk_34[0x20];
-    /* 54 */ char *mUnk_54;
+    // Points at the 0x100-byte game name buffer data_ov000_021b4e84 (InitWiFiConnection's fourth argument,
+    // "mariokartds"). Its one read is StartWiFiLogin passing it to func_ov000_0218d6e4, which copies it to
+    // data_ov000_021b4d6c, the buffer GpiWriteLogin appends after '\gamename\' (code_02190ff8.c:261-262); the matching
+    // object's mGameName is the same buffer and the stats host name starts with it (code_0219742c.c:49).
+    /* 54 */ char *mGameName;
+    // Points at the 0x100-byte buffer data_ov000_021b4f84 (InitWiFiConnection's fifth argument): mixed into the stats
+    // login hash ('%d%s', code_02196960.c:35), given to the matching object as mUnk_2e0. Never read through this
+    // member.
     /* 58 */ char *mUnk_58;
     // Set by StartWiFiLogin; WiFiLoginCallback calls it with (result, profile id, mLoginCallbackArg) on success and
     // on failure.
@@ -62,19 +74,22 @@ typedef struct WiFiConnection {
     // when the sync ends or fails.
     /* 64 */ void (*mBuddySyncCallback)();
     /* 68 */ void *mBuddySyncCallbackArg;
-    /* 6c */ void (*mUnk_6c)(u32 a, u32 b, void *c);
-    /* 70 */ void *mUnk_70;
+    // Set by StartWiFiMatchingWithFilter / WithBuddies; WiFiMatchingCallback calls it with (result, flag,
+    // mMatchingCallbackArg) for matching modes 0 and 1 (the pair at 0x74 / 0x78 is called for modes 2 and 3 and is
+    // never set).
+    /* 6c */ void (*mMatchingCallback)(u32 a, u32 b, void *c);
+    /* 70 */ void *mMatchingCallbackArg;
     /* 74 */ void (*mUnk_74)(u32 a, u32 b, u32 c, u32 d, u32 e, void *f);
     /* 78 */ void *mUnk_78;
     /* 7c */ void (*mUnk_7c)(s32 a, s32 b, s32 c, u32 d, u32 e, void *f);
     /* 80 */ void *mUnk_80;
-    // Login object (Unk021b565c, class still address-based): holds the GP connection pointer, the login state
+    // Login object (WiFiLogin, class still address-based): holds the GP connection pointer, the login state
     // (mUnk_04), the two credential strings given to the connect call (mUnk_4c, mUnk_14c) and the saved profile
     // record; stepped in state 2; its result callback is WiFiLoginCallback.
-    /* 84 */ Unk021b565c mLogin;
+    /* 84 */ WiFiLogin mLogin;
     /* 2e8 */ WiFiBuddySync mBuddySync;
-    /* 33c */ Unk021b566c mUnk_33c;
-    /* 7a0 */ Unk021b5dd0 mUnk_7a0;
+    /* 33c */ WiFiMatching mMatching;
+    /* 7a0 */ WiFiMessageLayer mMessageLayer;
 } WiFiConnection;
 
 typedef struct Unk0219887c Unk0219887c;
@@ -96,11 +111,11 @@ extern void *data_ov000_021b54d0[32];
 extern Unk021b5550 data_ov000_021b5550[32];
 
 void WiFiGpErrorCallback(u32 a, int b);
-void func_ov000_0219b5a8(u32 a, u32 b, u32 c, u32 d, u32 e);
+void WiFiMatchingCallback(u32 a, u32 b, u32 c, u32 d, u32 e);
 void WiFiBuddySyncCallback(u32 a, u32 b);
 void WiFiLoginCallback(int a, u32 b);
-u32 func_ov000_0219b704(u32 a);
-int func_ov000_0219b77c(int c);
+u32 ReportWiFiSocketResult(u32 a);
+int ReportWiFiGpResult(int c);
 u32 func_ov000_0219b844(const u8 *values, s32 count);
 u32 func_ov000_0219b868(u32 a);
 void SetWiFiConnectionState(s32 value);
@@ -121,8 +136,8 @@ u8 func_ov000_0219bb50(void);
 s32 func_ov000_0219bb68(void);
 s32 func_ov000_0219bbac(s32 a);
 s32 func_ov000_0219bbfc(void);
-void func_ov000_0219bc78(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, u32 h);
-void func_ov000_0219bd90(u32 a, void *b, void *c, void *d, void *e, u32 f);
+void StartWiFiMatchingWithBuddies(void *a, u32 b, u32 c, u32 d, void *e, void *f, u32 g, u32 h);
+void StartWiFiMatchingWithFilter(u32 a, void *b, void *c, void *d, void *e, u32 f);
 void StartWiFiLogin(u32 a, u32 b, void (*c)(s32 a), u32 d);
 void UpdateWiFiConnection(void);
 void func_ov000_0219c0c4(void);

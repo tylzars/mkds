@@ -31,7 +31,9 @@ u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
     return 1;
 }
 
-int func_ov000_0219d034(int a) {
+// Maps a GP result 1 to 4 to (kind, code - 0x11558) and calls ReportBuddySyncError; returns the result, 0 passes
+// through.
+int ReportBuddySyncGpResult(int a) {
     s32 b;
     s32 c;
     if (a == 0) {
@@ -59,7 +61,9 @@ int func_ov000_0219d034(int a) {
     return a;
 }
 
-int func_ov000_0219cfc0(int a) {
+// Maps a GstatsConnect result (1, 2, 3, 5, 7, else 11 / -9) to (kind, code - 0x11940) and calls ReportBuddySyncError;
+// returns the result.
+int ReportBuddySyncStatsResult(int a) {
     s32 b;
     s32 c;
     if (a == 0) {

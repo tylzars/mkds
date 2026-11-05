@@ -22,7 +22,7 @@ u32 func_ov000_021a2c64(void) {
     if (func_ov000_0219c39c() != 0) {
         return 0;
     }
-    if (data_ov000_021b566c == NULL || GetWiFiConnectionState() != 5 || data_ov000_021b566c->mUnk_1a1 != 0) {
+    if (gWiFiMatching == NULL || GetWiFiConnectionState() != 5 || gWiFiMatching->mUnk_1a1 != 0) {
         return 0;
     }
     return 1;
@@ -96,10 +96,10 @@ u32 func_ov000_021a2ad0(u32 a, char *b, void *c) {
 
 s32 func_ov000_021a2a88(u32 a, void *b, s32 c) {
     u32 r;
-    if (data_ov000_021b566c == NULL || func_ov000_0219c39c() != 0) {
+    if (gWiFiMatching == NULL || func_ov000_0219c39c() != 0) {
         return c;
     }
-    r = func_ov000_0218b480((u32) data_ov000_021b566c->mUnk_e4, a);
+    r = func_ov000_0218b480((u32) gWiFiMatching->mUnk_e4, a);
     if (r != 0) {
         c = SbServerGetInt((SbServer *) r, b, c);
     }
@@ -107,7 +107,7 @@ s32 func_ov000_021a2a88(u32 a, void *b, s32 c) {
 }
 
 u32 func_ov000_021a299c(u32 a, void *b, u32 c) {
-    Unk021b566c *p = data_ov000_021b566c;
+    WiFiMatching *p = gWiFiMatching;
     Unk021b5670 *q;
     if (p == NULL) {
         return 1;
@@ -117,7 +117,7 @@ u32 func_ov000_021a299c(u32 a, void *b, u32 c) {
     }
     switch (a) {
         case 0:
-            if (p->mUnk_198 == 0x13) {
+            if (p->mState == 0x13) {
                 return 1;
             }
             if (*(u8 *) b != 0 && ((u8 *) b)[1] <= 1) {

@@ -2,17 +2,28 @@
 
 #include "types.h"
 
-typedef struct Unk021b566c {
-    /* 000 */ struct GpConnection *mUnk_00;
-    /* 004 */ void **mUnk_04;
-    /* 008 */ u32 mUnk_08;
+// Matching object (the partner search), embedded in WiFiConnection at 0x33c (0x464 bytes = 0x7a0-0x33c), reached
+// through gWiFiMatching; not WiFiVSMatching (the VS lobby screen). 82 members, only the participant list, mode, state,
+// callbacks, socket and GP pointers and the game name are named. InitMatching sets it up per login; UpdateMatching
+// steps it (the state machine only when its parameter is 1); results go to mResultCallback = WiFiMatchingCallback.
+typedef struct WiFiMatching {
+    /* 000 */ struct GpConnection *mGpConnection;
+    // Address of WiFiConnection.mSocket (declared void **), so the object sees the socket made or cleared later; every
+    // use except the NULL tests dereferences it first.
+    /* 004 */ void **mConnectionSocket;
+    // Address of the Gt2ConnectionCallbacks record at WiFiConnection.mResultCallback (declared u32): given to the Gt2
+    // connect calls (code_0219dd4c.c:453, :509, code_0219dabc.c:50).
+    /* 008 */ u32 mConnectionCallbacks;
     /* 00c */ u8 mUnk_0c;
     /* 00d */ u8 mUnk_0d;
     /* 00e */ u8 mUnk_0e;
     /* 00f */ u8 mUnk_0f;
     /* 010 */ struct Unk021a4a08 *mUnk_10;
     /* 014 */ u8 mUnk_14;
-    /* 015 */ volatile u8 mUnk_15;
+    // Set by func_ov000_021a10b0: 0 filter search (func_ov000_021a260c), 1 buddy list (func_ov000_021a2468); the
+    // connection code also tests 2 and 3 (modes 2 and 3 have no writer: func_ov000_021a10b0 has two BL callers, both
+    // the starts), so those branches are not reached; cleared by the reset (code_0219dd4c.c:939).
+    /* 015 */ volatile u8 mMode;
     /* 016 */ u8 mUnk_16;
     /* 017 */ u8 mUnk_17;
     /* 018 */ u8 mUnk_18;
@@ -25,7 +36,9 @@ typedef struct Unk021b566c {
     /* 0e4 */ void *mUnk_e4;
     /* 0e8 */ u32 mUnk_e8;
     /* 0ec */ u64 mUnk_ec;
-    /* 0f4 */ u32 mUnk_f4[32];
+    // u32[32]: GP profile id of each participant by position (0..mUnk_0d); the connection finds its own position by
+    // comparing WiFiConnection.mProfileId.
+    /* 0f4 */ u32 mParticipantProfileIds[32];
     /* 174 */ u8 mUnk_174[2];
     /* 176 */ u16 mUnk_176;
     /* 178 */ u32 mUnk_178;
@@ -33,7 +46,9 @@ typedef struct Unk021b566c {
     /* 184 */ u64 mUnk_184;
     /* 18c */ u8 mUnk_18c[8];
     /* 194 */ u32 mUnk_194;
-    /* 198 */ s32 mUnk_198;
+    // UpdateMatching switches on it (cases 2, 3, 4, 5, 7, 11, 13) when its parameter is 1; the object writes it in 47
+    // places (values 0 to 0x13), the connection reads it (0 = no search running).
+    /* 198 */ s32 mState;
     /* 19c */ u8 mUnk_19c;
     /* 19d */ u8 mUnk_19d;
     /* 19e */ u8 mUnk_19e;
@@ -62,9 +77,21 @@ typedef struct Unk021b566c {
     /* 1f4 */ u32 mUnk_1f4;
     /* 1f8 */ u32 mUnk_1f8[32];
     /* 278 */ u16 mUnk_278[32];
-    /* 2b8 */ u8 mUnk_2b8[32];
-    /* 2d8 */ u32 mUnk_2d8;
-    /* 2dc */ u32 mUnk_2dc;
+    // u8[32] parallel to mParticipantProfileIds: the session index of each participant; the connection takes mOwnIndex
+    // from it at its own position.
+    /* 2b8 */ u8 mParticipantIndices[32];
+    // One bit per participant index (bit i = index i, like mKartMask): built by WiFiMatchingCallback from
+    // mParticipantIndices, a participant's bit is cleared when it leaves (code_0219dd4c.c:728-731), tested by
+    // func_ov000_0219bac8 (code_0219b580.c:411, the participant test the message layer uses) and func_ov000_0219b27c
+    // (code_0219b1f8.c:100). Needs the Mask line in VOCABULARY.
+    /* 2d8 */ u32 mParticipantMask;
+    // Declared u32 holding a char *: the game name buffer (same as WiFiConnection.mGameName), given to the query-report
+    // init (which reports it under the key 'gamename', code_021a3a18.c:828-829) and twice to func_ov000_0218b668 (the
+    // search object at mUnk_e4, code_0219dd4c.c:162, :197).
+    /* 2dc */ u32 mGameName;
+    // Declared u32 holding a char *: the key string data_ov000_021b4f84 (see WiFiConnection.mUnk_58), given after the
+    // game name to the query-report init (it keys the answer to the master server's challenge packet,
+    // code_021a3a18.c:419) and to func_ov000_0218b668 (code_0219dd4c.c:163, :198).
     /* 2e0 */ u32 mUnk_2e0;
     /* 2e4 */ u32 mUnk_2e4;
     /* 2e8 */ u32 mUnk_2e8;
@@ -79,14 +106,19 @@ typedef struct Unk021b566c {
     /* 43c */ u32 mUnk_43c;
     /* 440 */ u32 mUnk_440;
     /* 444 */ u64 mUnk_444;
-    /* 44c */ UnkFunc *mUnk_44c;
-    /* 450 */ u32 mUnk_450;
+    // Set by func_ov000_021a10b0 (WiFiMatchingCallback from both starts), declared UnkFunc *. Called with (error kind
+    // or 0, 0 or 1, ..., mResultCallbackArg) from ReportMatchingError's address func_ov000_021a1a38
+    // (code_0219dd4c.c:581) and three more sites (:2031, :2156, :2194).
+    /* 44c */ UnkFunc *mResultCallback;
+    /* 450 */ u32 mResultCallbackArg;
     /* 454 */ void (*mUnk_454)(u32 a, u32 b);
     /* 458 */ u32 mUnk_458;
     /* 45c */ u32 mUnk_45c;
     /* 460 */ u32 mUnk_460;
-} Unk021b566c;
+} WiFiMatching;
 
-extern Unk021b566c *data_ov000_021b566c;
+// Points at WiFiConnection.mMatching: set by InitMatching, set to NULL by func_ov000_021a1430 (code_0219dd4c.c:848; the
+// release path).
+extern WiFiMatching *gWiFiMatching;
 
 void func_ov000_0219de4c(void *value, u16 index);

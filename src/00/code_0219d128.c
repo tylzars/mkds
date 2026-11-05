@@ -32,8 +32,8 @@
 
 void func_ov000_0219d934(void *first, void *second) {
     if (gWiFiBuddySync != NULL) {
-        gWiFiBuddySync->mUnk_44 = first;
-        gWiFiBuddySync->mUnk_48 = second;
+        gWiFiBuddySync->mBuddyChangedCallback = first;
+        gWiFiBuddySync->mBuddyChangedCallbackArg = second;
     }
 }
 
@@ -59,10 +59,10 @@ void InitBuddySync(WiFiBuddySync *a, struct GpConnection *b, char *c, Unk0215249
     gWiFiBuddySync->mResultCallbackArg = NULL;
     gWiFiBuddySync->mBuddyStatusCallback = NULL;
     gWiFiBuddySync->mBuddyStatusCallbackArg = NULL;
-    gWiFiBuddySync->mUnk_3c = NULL;
-    gWiFiBuddySync->mUnk_40 = NULL;
-    gWiFiBuddySync->mUnk_44 = NULL;
-    gWiFiBuddySync->mUnk_48 = NULL;
+    gWiFiBuddySync->mEntryMergedCallback = NULL;
+    gWiFiBuddySync->mEntryMergedCallbackArg = NULL;
+    gWiFiBuddySync->mBuddyChangedCallback = NULL;
+    gWiFiBuddySync->mBuddyChangedCallbackArg = NULL;
     gWiFiBuddySync->mUnk_4c = NULL;
     gWiFiBuddySync->mUnk_50 = 0;
 }
@@ -84,7 +84,7 @@ void UpdateBuddySync(void) {
         return;
     }
     if (gWiFiBuddySync->mGpConnection != NULL && gWiFiBuddySync->mGpConnection->mGpiConnection != NULL) {
-        if (func_ov000_0219d034(func_ov000_0219d49c()) != 0) {
+        if (ReportBuddySyncGpResult(func_ov000_0219d49c()) != 0) {
             return;
         }
         if (gWiFiBuddySync->mBuddies != NULL && gWiFiBuddySync->mUnk_1e != 3 && gWiFiBuddySync->mPollCount > 7) {
@@ -113,8 +113,8 @@ void StartBuddySync(s32 a, const char *b, void (*c)(s32, u8, void *), void *d, v
     gWiFiBuddySync->mResultCallbackArg = d;
     gWiFiBuddySync->mBuddyStatusCallback = e;
     gWiFiBuddySync->mBuddyStatusCallbackArg = f;
-    gWiFiBuddySync->mUnk_3c = g;
-    gWiFiBuddySync->mUnk_40 = h;
+    gWiFiBuddySync->mEntryMergedCallback = g;
+    gWiFiBuddySync->mEntryMergedCallbackArg = h;
     i = 0;
     gWiFiBuddySync->mBuddiesChanged = 0;
     gWiFiBuddySync->mUnk_1e = 0;
@@ -128,7 +128,7 @@ void StartBuddySync(s32 a, const char *b, void (*c)(s32, u8, void *), void *d, v
                 break;
             }
             if (k != 2 || i == 4) {
-                func_ov000_0219cfc0(k);
+                ReportBuddySyncStatsResult(k);
                 return;
             }
         }
@@ -246,8 +246,8 @@ u32 func_ov000_0219d558(s32 a, void *b, void *c) {
 
 void func_ov000_0219d504(s32 a) {
     Unk0218ec44 b;
-    if (gWiFiBuddySync->mUnk_44 != NULL && gWiFiBuddySync->mState != 1) {
-        ((void (*)(s32, void *)) gWiFiBuddySync->mUnk_44)(a, gWiFiBuddySync->mUnk_48);
+    if (gWiFiBuddySync->mBuddyChangedCallback != NULL && gWiFiBuddySync->mState != 1) {
+        ((void (*)(s32, void *)) gWiFiBuddySync->mBuddyChangedCallback)(a, gWiFiBuddySync->mBuddyChangedCallbackArg);
     }
     if (gWiFiBuddySync->mBuddyStatusCallback != NULL) {
         WiFiBuddySync *c;
@@ -287,9 +287,9 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
     Unk0218ec44 f;
     s32 g;
     if (gWiFiBuddySync->mUnk_1e == 0) {
-        func_ov000_0219d034(GpGetBuddyCount(gWiFiBuddySync->mGpConnection, &c));
+        ReportBuddySyncGpResult(GpGetBuddyCount(gWiFiBuddySync->mGpConnection, &c));
         for (d = 0; d < c; d++) {
-            func_ov000_0219d034(GpGetBuddyStatus(gWiFiBuddySync->mGpConnection, d, &f));
+            ReportBuddySyncGpResult(GpGetBuddyStatus(gWiFiBuddySync->mGpConnection, d, &f));
             for (i = 0; i < b; i++) {
                 if (f.mUnk_000 == GetBuddyEntryProfileId(i)) {
                     if (func_02152a24((Unk02152490 *) a + i) == 0) {
@@ -301,7 +301,7 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
                 }
             }
             if (i == b) {
-                func_ov000_0219d034(func_ov000_0218eb44(gWiFiBuddySync->mGpConnection, f.mUnk_000));
+                ReportBuddySyncGpResult(func_ov000_0218eb44(gWiFiBuddySync->mGpConnection, f.mUnk_000));
                 c--;
                 d--;
             }
@@ -313,7 +313,7 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
         if (g != 0) {
             if (func_ov000_0219d210(a, gWiFiBuddySync->mSyncIndex, g) == FALSE &&
                 func_02152a24(&a[gWiFiBuddySync->mSyncIndex]) == 0) {
-                func_ov000_0219d034(GpGetBuddyIndex(gWiFiBuddySync->mGpConnection, g, &d));
+                ReportBuddySyncGpResult(GpGetBuddyIndex(gWiFiBuddySync->mGpConnection, g, &d));
                 if (d == -1) {
                     AddBuddy(g);
                 }
@@ -338,8 +338,8 @@ void FinishBuddySync(void) {
 void func_ov000_0219d288(Unk02152490 *a, s32 b, s32 c) {
     if (gWiFiBuddySync != NULL) {
         MemFill(&a[b], 0, 12);
-        if (gWiFiBuddySync->mUnk_3c != NULL) {
-            gWiFiBuddySync->mUnk_3c(b, c, gWiFiBuddySync->mUnk_40);
+        if (gWiFiBuddySync->mEntryMergedCallback != NULL) {
+            gWiFiBuddySync->mEntryMergedCallback(b, c, gWiFiBuddySync->mEntryMergedCallbackArg);
         }
     }
 }
@@ -413,6 +413,6 @@ s32 func_ov000_0219d14c(Unk02152490 *a, s32 b, s32 c) {
 u32 AddBuddy(u32 a) {
     u32 v1;
     v1 = GpWriteAddbuddy(gWiFiBuddySync->mGpConnection, (u32) (a), gWiFiBuddySync->mUnk_28);
-    func_ov000_0219d034(v1);
+    ReportBuddySyncGpResult(v1);
     return v1;
 }

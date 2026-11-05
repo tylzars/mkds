@@ -440,19 +440,19 @@ void RegisterKartKeysAndStart(void) {
     }
     switch (gWiFiSession->mKeys[1].mValue) {
         case 3:
-            func_ov000_0219bd90(gWiFiSession->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
-                                ComputeRegionEval, 0);
+            StartWiFiMatchingWithFilter(gWiFiSession->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
+                                        ComputeRegionEval, 0);
             break;
         case 4:
-            func_ov000_0219bd90(gWiFiSession->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
-                                ComputeRegionEloEval, 0);
+            StartWiFiMatchingWithFilter(gWiFiSession->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
+                                        ComputeRegionEloEval, 0);
             break;
         case 0:
-            func_ov000_0219bc78(NULL, 0, gWiFiSession->mUnk_194c, 1, KartKeysStartCallback, NULL, 0, 0);
+            StartWiFiMatchingWithBuddies(NULL, 0, gWiFiSession->mUnk_194c, 1, KartKeysStartCallback, NULL, 0, 0);
             break;
         case 1:
-            func_ov000_0219bd90(gWiFiSession->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL, ComputeEloEval,
-                                0);
+            StartWiFiMatchingWithFilter(gWiFiSession->mUnk_194c, gKartFilterString, KartKeysStartCallback, NULL,
+                                        ComputeEloEval, 0);
             break;
     }
     gWiFiSession->mStartStatus = 1;
