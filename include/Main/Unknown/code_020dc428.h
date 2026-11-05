@@ -44,14 +44,14 @@ extern const Unk020dd860 data_02158388;
 extern Unk020dd7a8 *data_0217b6d4;
 extern Unk020dd804 *data_0217b6d8;
 
-void func_020dc428(Wanwan *p);
+void EnterWanwanState5(Wanwan *p);
 void func_020dc444(Wanwan *p);
-void func_020dc608(Wanwan *p);
-void func_020dc788(Wanwan *p);
-void func_020dc7c0(Wanwan *p);
-void func_020dcc0c(Wanwan *p);
-void func_020dccc8(Wanwan *p);
-void func_020dd0d8(Wanwan *p);
+void UpdateWanwanState2(Wanwan *p);
+void EnterWanwanState2(Wanwan *p);
+void UpdateWanwanState1(Wanwan *p);
+void EnterWanwanState1(Wanwan *p);
+void UpdateWanwanState0(Wanwan *p);
+void EnterWanwanState0(Wanwan *p);
 u8 func_020dd1f4(Wanwan *p, void *a, u8 *b, u8 *c);
 u8 func_020dd230(Wanwan *p, void *a, u8 *b, u8 *c);
 void UpdateWanwan(void *a, Wanwan *p); /* skipped for objects with mFlags & 4 (parked pool objects) */

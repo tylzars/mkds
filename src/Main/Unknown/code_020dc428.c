@@ -247,7 +247,8 @@ u8 func_020dd1f4(Wanwan *p, void *a, u8 *b, u8 *c) {
     return *c;
 }
 
-void func_020dd0d8(Wanwan *p) {
+// Kind 0x196 only (kind 0x1a5 never reaches state 0).
+void EnterWanwanState0(Wanwan *p) {
     Vec3 *q;
 
     p->mUnk_e8 = 0x555;
@@ -270,7 +271,8 @@ static inline s64 func_020dccc8_inline(const Vec3 *v) {
     return (s64) v->x * v->x + (s64) v->z * v->z;
 }
 
-void func_020dccc8(Wanwan *p) {
+// Kind 0x196 only (kind 0x1a5 never reaches state 0).
+void UpdateWanwanState0(Wanwan *p) {
     Vec3 *q;
     Vec3 *c;
     Unk020f41c4_B *r;
@@ -375,7 +377,7 @@ void func_020dccc8(Wanwan *p) {
     }
 }
 
-void func_020dcc0c(Wanwan *p) {
+void EnterWanwanState1(Wanwan *p) {
     Unk0210b7a8 a;
     s32 k;
 
@@ -401,7 +403,7 @@ void func_020dcc0c(Wanwan *p) {
     func_0210b7a8(&a);
 }
 
-void func_020dc7c0(Wanwan *p) {
+void UpdateWanwanState1(Wanwan *p) {
     Vec3 a;
     Vec3 b;
     s32 t;
@@ -472,7 +474,7 @@ void func_020dc7c0(Wanwan *p) {
     }
 }
 
-void func_020dc788(Wanwan *p) {
+void EnterWanwanState2(Wanwan *p) {
     p->mUnk_e8 = 0xd000;
     p->mUnk_ec = 0x1c2;
     if (p->mUnk_fc == 0) {
@@ -481,7 +483,7 @@ void func_020dc788(Wanwan *p) {
     p->mUnk_00.mUnk_10.y = 0x8000;
 }
 
-void func_020dc608(Wanwan *p) {
+void UpdateWanwanState2(Wanwan *p) {
     const Vec3 *v;
 
     if (p->mUnk_fc != 0) {
@@ -524,7 +526,7 @@ void func_020dc608(Wanwan *p) {
     }
 }
 
-void func_020dc5dc(Wanwan *p) {
+void EnterWanwanState3(Wanwan *p) {
     p->mUnk_e8 = 0x555;
     p->mUnk_ec = 0x1c2;
     p->mUnk_1d8->mUnk_a8 = 0x599;
@@ -534,7 +536,7 @@ static inline s64 func_020dc474_inline(const Vec3 *v) {
     return (s64) v->x * v->x + (s64) v->z * v->z;
 }
 
-void func_020dc474(Wanwan *p) {
+void UpdateWanwanState3(Wanwan *p) {
     Vec3 a;
     s32 k;
 
@@ -558,7 +560,7 @@ void func_020dc474(Wanwan *p) {
     }
 }
 
-void func_020dc448(Wanwan *p) {
+void EnterWanwanState4(Wanwan *p) {
     p->mUnk_e8 = 0x555;
     p->mUnk_ec = 0x1c2;
     p->mUnk_1d8->mUnk_a8 = 0x599;
@@ -566,7 +568,7 @@ void func_020dc448(Wanwan *p) {
 
 void func_020dc444(Wanwan *p) {}
 
-void func_020dc428(Wanwan *p) {
+void EnterWanwanState5(Wanwan *p) {
     p->mUnk_e8 = 0x555;
     p->mUnk_ec = 0x1c2;
 }

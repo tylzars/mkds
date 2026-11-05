@@ -9,8 +9,8 @@ typedef struct {
     int mUnk_c4;
 } Obj020dac00;
 
-// PROBE: func_020dac00 main 0x020dac00
-void func_020dac00(Obj020dac00 *obj) {
+// PROBE: UpdateKuriboState2 main 0x020dac00
+void UpdateKuriboState2(Obj020dac00 *obj) {
     obj->mUnk_c4 = (int) (((long long) obj->mUnk_c4 * 0x1266) >> 12);
     if (obj->mUnk_c4 > 0x1800) {
         obj->mUnk_90 = 3;

@@ -111,18 +111,18 @@ u32 func_020ffdc0(u32 p0) {
     return p0;
 }
 
-void func_020ffda0(Dram *p) {
+void UpdateDramState0(Dram *p) {
     if (p->mUnk_00.mUnk_80.mStateFrames > p->mUnk_a4) {
         p->mUnk_00.mUnk_80.mNextState = 2;
         p->mUnk_00.mUnk_80.mNextStateRequested = 1;
     }
 }
 
-void func_020ffd94(Unk020ffd94 *p0) {
+void EnterDramState2(Unk020ffd94 *p0) {
     p0->mUnk_ac = 0x0u;
 }
 
-void func_020ffd40(Dram *p) {
+void UpdateDramState2(Dram *p) {
     p->mUnk_ac += p->mUnk_b0;
     p->mUnk_a6 += (s16) ((s32) (((s64) p->mUnk_ac * p->mUnk_a8) >> 12));
     if (p->mUnk_00.mUnk_80.mStateFrames > p->mUnk_a0) {
@@ -135,7 +135,7 @@ u32 func_020ffd3c(u32 p0) {
     return p0;
 }
 
-void func_020ffd04(Dram *p) {
+void UpdateDramState3(Dram *p) {
     p->mUnk_a6 += p->mUnk_a8;
     if (p->mUnk_a2 == 0) {
         return;
@@ -146,11 +146,11 @@ void func_020ffd04(Dram *p) {
     }
 }
 
-void func_020ffcf8(Unk020ffcf8 *p0) {
+void EnterDramState4(Unk020ffcf8 *p0) {
     p0->mUnk_ac = 0x1000u;
 }
 
-void func_020ffc98(Dram *p) {
+void UpdateDramState4(Dram *p) {
     s16 d;
 
     p->mUnk_ac -= p->mUnk_b0;
@@ -165,14 +165,16 @@ void func_020ffc98(Dram *p) {
     }
 }
 
-void func_020ffc4c(Dram *p) {
+void EnterDramState5(Dram *p) {
     s32 n;
 
     n = p->mUnk_a6;
     p->mUnk_bc = 0x1999 - n % 0x1999;
 }
 
-void func_020ffc08(u32 arg0) {
+// Raw stores of 1 at +0x90 and +0x92 are mNextState and mNextStateRequested (MapObject +0x80 + 0x10 / 0x12): it asks
+// for state 1.
+void UpdateDramState5(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;

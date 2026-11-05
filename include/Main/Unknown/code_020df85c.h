@@ -7,4 +7,4 @@ typedef struct Unk020df85c {
     /* 02 */ u16 mUnk_02;
 } Unk020df85c;
 
-void func_020df85c(Unk020df85c *p0);
+void EnterMkdEfBubbleState1(Unk020df85c *p0);

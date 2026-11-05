@@ -19,5 +19,5 @@ Unk020dfc44 *func_020dfc44(void);
 void DrawMkdEfBubble(void *a, MkdEfBubbleObject *b, void *c, s32 d);
 void func_020dfae4(void);
 void UpdateMkdEfBubble(void *a, MkdEfBubbleObject *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_020df938(MkdEfBubbleObject *a);
-void func_020df890(MkdEfBubbleObject *a);
+void EnterMkdEfBubbleState0(MkdEfBubbleObject *a);
+void UpdateMkdEfBubbleState0(MkdEfBubbleObject *a);

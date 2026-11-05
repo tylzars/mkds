@@ -63,7 +63,7 @@ static inline s64 func_020dc354_inline(const Vec3 *v) {
     return (s64) v->x * v->x + (s64) v->z * v->z;
 }
 
-void func_020dc354(Wanwan *p) {
+void UpdateWanwanState5(Wanwan *p) {
     p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x;
     p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z;
     func_020d84e4(&p->mUnk_1a0);
@@ -171,5 +171,9 @@ void func_020dbf7c(Wanwan *p) {
 
 Unk020d7b88 data_0216beec = {{0, 0, 0, 0x1000}};
 Unk0210b7a8 data_0216bedc = {0x12d, NULL, 2, 0};
-UnkFunc *data_0216befc[] = {func_020dd0d8, func_020dccc8, func_020dcc0c, func_020dc7c0, func_020dc788, func_020dc608,
-                            func_020dc5dc, func_020dc474, func_020dc448, func_020dc444, func_020dc428, func_020dc354};
+// Shared by kinds 0x196 and 0x1a5 (class Wanwan). Only kind 0x196 objects reach states 0, 1, 3 and 4;
+// a kind 0x1a5 object starts in state 5 and moves between states 2 and 5.
+// func_020dc444 is an empty (bx lr) handler, left unnamed.
+UnkFunc *data_0216befc[] = {EnterWanwanState0, UpdateWanwanState0, EnterWanwanState1, UpdateWanwanState1,
+                            EnterWanwanState2, UpdateWanwanState2, EnterWanwanState3, UpdateWanwanState3,
+                            EnterWanwanState4, func_020dc444,      EnterWanwanState5, UpdateWanwanState5};

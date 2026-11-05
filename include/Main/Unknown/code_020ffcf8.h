@@ -7,4 +7,4 @@ typedef struct Unk020ffcf8 {
     /* ac */ u32 mUnk_ac;
 } Unk020ffcf8;
 
-void func_020ffcf8(Unk020ffcf8 *p0);
+void EnterDramState4(Unk020ffcf8 *p0);

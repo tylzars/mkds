@@ -6,12 +6,12 @@
 #include "Main/Unknown/code_020d2000.h"
 #include "Main/Unknown/code_020df85c.h"
 
-void func_020df85c(Unk020df85c *p0) {
+void EnterMkdEfBubbleState1(Unk020df85c *p0) {
     p0->mUnk_02 |= data_0215877c;
     p0->mUnk_02 |= data_02158780;
 }
 
-void func_020df83c(MkdEfBubbleObject *a) {
+void UpdateMkdEfBubbleState1(MkdEfBubbleObject *a) {
     if (a->mUnk_00.mUnk_80.mStateFrames >= a->mUnk_a0) {
         a->mUnk_00.mUnk_80.mNextState = 0;
         a->mUnk_00.mUnk_80.mNextStateRequested = 1;

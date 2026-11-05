@@ -11,7 +11,7 @@ extern Unk0210b7a8 data_0216bedc;
 extern Unk020d7b88 data_0216beec;
 extern UnkFunc *data_0216befc[];
 
-void func_020dc354(Wanwan *p);
+void UpdateWanwanState5(Wanwan *p);
 void func_020dc1d8(Wanwan *p, CourseMapRow *a);
 void func_020dc11c(Wanwan *p, CourseMapRow *a);
 void func_020dbf7c(Wanwan *p);

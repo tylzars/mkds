@@ -4,4 +4,4 @@
 
 typedef struct Dram Dram;
 
-void func_020ffd40(Dram *p);
+void UpdateDramState2(Dram *p);

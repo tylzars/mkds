@@ -210,7 +210,7 @@ void UpdateMkdEfBubble(void *a, MkdEfBubbleObject *b) {
     func_0208b5b0(b->mUnk_ec, &b->mUnk_00.mPos);
 }
 
-void func_020df938(MkdEfBubbleObject *a) {
+void EnterMkdEfBubbleState0(MkdEfBubbleObject *a) {
     Unk0210b7a8 s;
     s32 n;
     BOOL v;
@@ -250,7 +250,7 @@ void func_020df938(MkdEfBubbleObject *a) {
     a->mUnk_f0 = v;
 }
 
-void func_020df890(MkdEfBubbleObject *a) {
+void UpdateMkdEfBubbleState0(MkdEfBubbleObject *a) {
     if (a->mUnk_00.mUnk_10.y < 0x1333) {
         if (a->mUnk_00.mUnk_10.y <= -0x1333) {
             a->mUnk_a8 = 0x8000;

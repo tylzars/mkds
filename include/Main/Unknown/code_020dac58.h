@@ -4,4 +4,4 @@
 
 typedef struct Kuribo Kuribo;
 
-void func_020dac58(Kuribo *p0);
+void EnterKuriboState2(Kuribo *p0);

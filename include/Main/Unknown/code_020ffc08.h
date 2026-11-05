@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ffc08(u32 arg0);
+void UpdateDramState5(u32 arg0);
