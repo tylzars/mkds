@@ -24,7 +24,7 @@ typedef struct WiFiAikotobaCheck {
     /* 3c */ struct Nclr *mWiFiAikotobaCheckMONclr;
     /* 40 */ Unk0201ea30 *mWiFiAikotobaCheckBncl;
     /* 44 */ u8 mUnk_44[4];
-    /* 48 */ void *mWiFiAikotobaCheckBnll;
+    /* 48 */ struct Unk0201ea30 *mWiFiAikotobaCheckBnll;
     /* 4c */ void *mWiFiMessages;
     /* 50 */ void *mCommonMessages;
 } WiFiAikotobaCheck;

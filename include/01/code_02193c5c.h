@@ -24,10 +24,10 @@ typedef struct OptionTopMenu {
     /* 24 */ struct Unk02021dc8 *mOptionTopMenuSNcer;
     /* 28 */ Ncgr *mOptionTopMenuSNcgr;
     /* 2c */ Nclr *mOptionTopMenuSONclr;
-    /* 30 */ void *mOptionTopMenuSBncl;
+    /* 30 */ struct Unk0201ea30 *mOptionTopMenuSBncl;
     /* 34 */ void *mOptionTopMenuSBnbl;
-    /* 38 */ void *mOptionMessages;
-    /* 3c */ void *mCommonMessages;
+    /* 38 */ struct Bmg *mOptionMessages;
+    /* 3c */ struct Bmg *mCommonMessages;
 } OptionTopMenu;
 
 // Five callbacks handed over as one block.
@@ -51,16 +51,16 @@ typedef struct RecordGpx {
     /* 14 */ Ncgr *mRecordGpxSNcgr;
     /* 18 */ struct Unk02021dc8 *mRecordGpxSNcer;
     /* 1c */ Unk0201ea30 *mRecordGpxSBncl;
-    /* 20 */ void *mRecordGpxSBnbl;
+    /* 20 */ struct Unk0201ea30 *mRecordGpxSBnbl;
     /* 24 */ Unk0201ea30 *mRecordGpxSBnll;
     /* 28 */ Ncgr *mRecordTrophyONcgr;
     /* 2c */ struct Unk02021dc8 *mRecordTrophyONcer;
     /* 30 */ Nclr *mRecordTrophySONclr;
     /* 34 */ void *mRecordTrophySOBncl;
     /* 38 */ void *mPlayerCharacterMNcgr;
-    /* 3c */ void *mPlayerCharacterMNcer;
+    /* 3c */ struct Unk02021dc8 *mPlayerCharacterMNcer;
     /* 40 */ Unk021a9bd8_40 *mPlayerCharacterMONclr;
-    /* 44 */ void *mPlayerCharacterMBncl;
+    /* 44 */ struct Unk0201ea30 *mPlayerCharacterMBncl;
     /* 48 */ Nscr *mRecordGpxSNscr;
     /* 4c */ void *mUnk_4c;
     /* 50 */ Unk02124b1c *mRecordGpxMTable;

@@ -69,8 +69,8 @@ typedef struct Unk0217d354 {
     /* 04 */ void *mUnk_04;
     /* 08 */ Unk0217d354_08 *mUnk_08;
     /* 0c */ void *mUnk_0c;
-    /* 10 */ void *mUnk_10;
-    /* 14 */ void *mUnk_14;
+    /* 10 */ struct Unk02021dc8 *mUnk_10;
+    /* 14 */ struct Unk0201ea30 *mUnk_14;
     /* 18 */ u32 mUnk_18;
     /* 1c */ u16 mUnk_1c;
     /* 20 */ s32 mUnk_20;
@@ -83,22 +83,22 @@ typedef struct Unk0217d350 {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ struct Unk02021dc8 *mUnk_04;
     /* 08 */ Unk0201ea30 *mUnk_08;
-    /* 0c */ void *mUnk_0c;
+    /* 0c */ struct Unk0201ea30 *mUnk_0c;
     /* 10 */ struct Nscr *mUnk_10;
     /* 14 */ Unk02124b1c *mUnk_14;
     /* 18 */ Unk0201ea30 *mUnk_18;
-    /* 1c */ void *mUnk_1c;
+    /* 1c */ struct Unk0201ea30 *mUnk_1c;
     /* 20 */ struct Nscr *mUnk_20;
     /* 24 */ Unk02124b1c *mUnk_24;
     /* 28 */ struct Ncgr *mUnk_28;
     /* 2c */ struct Unk02021dc8 *mUnk_2c;
     /* 30 */ Unk0201ea30 *mUnk_30;
-    /* 34 */ void *mUnk_34;
-    /* 38 */ void *mUnk_38;
+    /* 34 */ struct Unk0201ea30 *mUnk_34;
+    /* 38 */ struct Unk0201ea30 *mUnk_38;
     /* 3c */ Unk02124b1c *mUnk_3c;
     /* 40 */ s32 mUnk_40;
-    /* 44 */ void *mUnk_44;
-    /* 48 */ void *mUnk_48;
+    /* 44 */ struct Bmg *mUnk_44;
+    /* 48 */ struct Bmg *mUnk_48;
     /* 4c */ void *mUnk_4c;
     /* 50 */ void *mUnk_50;
     /* 54 */ s32 mUnk_54;
@@ -116,7 +116,7 @@ typedef struct Unk0217d350 {
     /* 80 */ s16 mUnk_80;
     /* 82 */ u8 mUnk_82[2];
     /* 84 */ u32 mUnk_84;
-    /* 88 */ void *mUnk_88;
+    /* 88 */ struct Unk021141c8 *mUnk_88;
     /* 8c */ void *mUnk_8c;
     /* 90 */ s32 mUnk_90[2];
     /* 98 */ BOOL mUnk_98;
@@ -136,7 +136,7 @@ typedef struct Unk0217d370 {
     /* 00 */ struct Ncgr *mUnk_00;
     /* 04 */ struct Unk02021dc8 *mUnk_04;
     /* 08 */ struct Nclr *mUnk_08;
-    /* 0c */ void *mUnk_0c;
+    /* 0c */ struct Unk0201ea30 *mUnk_0c;
 } Unk0217d370;
 
 // Object at data_0217d070 (0x14 bytes); func_0210d740 fills it. data_0217d07c names its member 0x0c.
@@ -175,21 +175,21 @@ typedef struct RecordVS {
     /* 00 */ struct Ncgr *mRecordVSMNcgr;
     /* 04 */ struct Unk02021dc8 *mRecordVSMNcer;
     /* 08 */ Unk0201ea30 *mRecordVSMBncl;
-    /* 0c */ void *mRecordVSMBnll;
+    /* 0c */ struct Unk0201ea30 *mRecordVSMBnll;
     /* 10 */ struct Nscr *mRecordVSM02Nscr;
     /* 14 */ Unk02124b1c *mUnk_14;
     /* 18 */ Unk0201ea30 *mRecordVSMTransientBncl;
-    /* 1c */ void *mRecordVSMTransientBnll;
+    /* 1c */ struct Unk0201ea30 *mRecordVSMTransientBnll;
     /* 20 */ struct Nscr *mRecordVSM03Nscr;
     /* 24 */ Unk02124b1c *mUnk_24;
     /* 28 */ struct Ncgr *mRecordVSSNcgr;
     /* 2c */ struct Unk02021dc8 *mRecordVSSNcer;
     /* 30 */ Unk0201ea30 *mRecordVSSBncl;
     /* 34 */ Unk0201ea30 *mRecordVSSBnbl;
-    /* 38 */ void *mRecordVSSBnll;
+    /* 38 */ struct Unk0201ea30 *mRecordVSSBnll;
     /* 3c */ Unk02124b1c *mUnk_3c;
     /* 40 */ s32 mUnk_40;
-    /* 44 */ void *mRecordMessages;
+    /* 44 */ struct Bmg *mRecordMessages;
     /* 48 */ void *mUnk_48;
     /* 4c */ s32 mState;
     /* 50 */ s32 mNextState;
@@ -208,7 +208,7 @@ typedef struct RecordVS {
     /* 70 */ s32 mUnk_70;
     /* 74 */ s16 mUnk_74;
     /* 76 */ u8 mUnk_76[2];
-    /* 78 */ void *mUnk_78;
+    /* 78 */ struct Unk021141c8 *mUnk_78;
     /* 7c */ void *mUnk_7c;
     /* 80 */ s32 mUnk_80[2];
     /* 88 */ BOOL mUnk_88;
@@ -220,15 +220,15 @@ typedef struct RecordVS {
 typedef struct Unk0217d360 {
     /* 00 */ struct Unk02021dc8 *mSelectCupMNcer;
     /* 04 */ Unk0201ea30 *mSelectCupMBncl;
-    /* 08 */ void *mSelectCupMBnll;
+    /* 08 */ struct Unk0201ea30 *mSelectCupMBnll;
     /* 0c */ struct Unk02021dc8 *mSelectCupSNcer;
-    /* 10 */ void *mSelectCupSBncl;
+    /* 10 */ struct Unk0201ea30 *mSelectCupSBncl;
     /* 14 */ Unk0201ea30 *mSelectCupSBnbl;
     /* 18 */ Unk02124b1c *mSelectCupMTable;
     /* 1c */ Unk02124b1c *mSelectCupSTable;
     /* 20 */ void *mUnk_20;
-    /* 24 */ void *mCommonMessages;
-    /* 28 */ void *mMenuMessages;
+    /* 24 */ struct Bmg *mCommonMessages;
+    /* 28 */ struct Bmg *mMenuMessages;
     /* 2c */ void *mHeap;
     /* 30 */ s32 mState;
     /* 34 */ s32 mNextState;
@@ -254,11 +254,11 @@ typedef struct Unk0217d360 {
 typedef struct SelectCup {
     /* 00 */ struct Unk02021dc8 *mSelectCupCourseMNcer;
     /* 04 */ Unk0201ea30 *mSelectCupCourseTaOrVsMBncl; /* ta_m file when mMode == 0, vs_m otherwise */
-    /* 08 */ void *mSelectCupCourseTaOrVsMBnll; /* ta_m file when mMode == 0, vs_m otherwise */
+    /* 08 */ struct Unk0201ea30 *mSelectCupCourseTaOrVsMBnll; /* ta_m file when mMode == 0, vs_m otherwise */
     /* 0c */ struct Unk02021dc8 *mSelectCupMNcer;
     /* 10 */ Unk0201ea30 *mSelectCupMBncl;
     /* 14 */ Unk0201ea30 *mSelectCupMBnbl;
-    /* 18 */ void *mSelectCupMBnll;
+    /* 18 */ struct Unk0201ea30 *mSelectCupMBnll;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; assigned only when *(vu16
     // *) 0x027ffc40 != 2
     /* 1c */ Unk02124b1c *mSelectCupCourseTaOrVsMTable;
@@ -266,7 +266,7 @@ typedef struct SelectCup {
     // *) 0x027ffc40 != 2
     /* 20 */ Unk02124b1c *mSelectCupMTable;
     /* 24 */ void *mUnk_24;
-    /* 28 */ void *mCommonMessages;
+    /* 28 */ struct Bmg *mCommonMessages;
     /* 2c */ void *mGhostMessages;
     /* 30 */ void *mHeap;
     /* 34 */ s32 mState;
@@ -293,11 +293,11 @@ typedef struct SelectRaceRule {
     /* 00 */ struct Unk02021dc8 *mNcer;
     /* 04 */ Unk0201ea30 *mBncl;
     /* 08 */ Unk0201ea30 *mBnbl;
-    /* 0c */ void *mBnll;
+    /* 0c */ struct Unk0201ea30 *mBnll;
     /* 10 */ struct Nclr *mNclr; /* the _o palette */
     /* 14 */ Unk02124b1c *mUnk_14;
-    /* 18 */ void *mUnk_18;
-    /* 1c */ void *mUnk_1c;
+    /* 18 */ struct Bmg *mUnk_18;
+    /* 1c */ struct Bmg *mUnk_1c;
     /* 20 */ struct Nscr *mNscr; /* multi_simple_s (mMode == 3) or s_menu, two files */
     /* 24 */ void *mUnk_24;
     /* 28 */ void *mHeap;
@@ -339,7 +339,7 @@ typedef struct Unk0217d380 {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
     /* 04 */ Unk0201ea30 *mUnk_04;
     /* 08 */ u8 mUnk_08[0x4];
-    /* 0c */ void *mUnk_0c;
+    /* 0c */ struct Unk0201ea30 *mUnk_0c;
     /* 10 */ Unk02124b1c *mUnk_10;
     /* 14 */ void *mUnk_14;
     /* 18 */ void *mUnk_18;
@@ -378,14 +378,14 @@ typedef struct Unk0217d374 {
 typedef struct Unk0217d378 {
     /* 00 */ struct Unk02021dc8 *mUnk_00;
     /* 04 */ Unk0201ea30 *mUnk_04;
-    /* 08 */ void *mUnk_08;
+    /* 08 */ struct Unk0201ea30 *mUnk_08;
     /* 0c */ struct Unk02021dc8 *mUnk_0c;
     /* 10 */ Unk0201ea30 *mUnk_10;
-    /* 14 */ void *mUnk_14;
+    /* 14 */ struct Unk0201ea30 *mUnk_14;
     /* 18 */ Unk02124b1c *mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
     /* 20 */ void *mUnk_20;
-    /* 24 */ void *mUnk_24;
+    /* 24 */ struct Bmg *mUnk_24;
     /* 28 */ void *mHeap;
     /* 2c */ s32 mUnk_2c;
     /* 30 */ s32 mUnk_30;
@@ -409,7 +409,7 @@ typedef struct Unk0217d34c {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02[2];
     /* 04 */ Unk0217d34c_04 *mUnk_04;
-    /* 08 */ void *mUnk_08;
+    /* 08 */ struct Unk0205ec14 *mUnk_08;
     /* 0c */ void *mUnk_0c;
 } Unk0217d34c;
 
@@ -586,7 +586,7 @@ typedef struct Keyboard {
     /* ac */ void *mBnlls[2];
     /* b4 */ struct Nscr *mNscrs[2]; /* [0] flame02, [1] flame01 */
     /* bc */ void *mUnk_bc;
-    /* c0 */ void *mUnk_c0;
+    /* c0 */ struct Bmg *mUnk_c0;
 } Keyboard;
 
 // Elements of 0x20 bytes at member 0x14 of Ncgr.

@@ -24,7 +24,7 @@ typedef struct Unk021a9be4 {
     /* 0c */ s16 mUnk_0c;
     /* 0e */ s16 mUnk_0e;
     /* 10 */ void *mUnk_10;
-    /* 14 */ void *mUnk_14;
+    /* 14 */ struct Bmg *mUnk_14;
 } Unk021a9be4;
 
 int func_ov001_0219853c(void);

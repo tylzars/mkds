@@ -10,7 +10,7 @@ typedef struct Unk02174e6c {
     /* 024 */ Unk02180728 mUnk_024;
     /* 034 */ u16 mUnk_034[0x300];
     /* 634 */ void *mUnk_634;
-    /* 638 */ void *mUnk_638;
+    /* 638 */ struct Bmg *mUnk_638;
     /* 63c */ u8 mUnk_63c[4];
     /* 640 */ s32 mUnk_640;
     /* 644 */ u8 mUnk_644[8];

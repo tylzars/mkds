@@ -166,7 +166,7 @@ typedef struct Unk02143a78_0c {
 
 // Taken by IsParentParameterInRange and WM_SetParentParameter.
 typedef struct Unk02143c30 {
-    /* 00 */ void *mUnk_00;
+    /* 00 */ struct Unk0217aa00_24_50 *mUnk_00;
     /* 04 */ u16 mUnk_04;
     /* 06 */ u8 mUnk_06[6];
     /* 0c */ u16 mUnk_0c;

@@ -16,7 +16,7 @@ typedef struct Unk0217b4b0 {
     /* 10 */ Nclr *mUnk_10;
     /* 14 */ void *mUnk_14;
     /* 18 */ u8 mUnk_18[8];
-    /* 20 */ void *mUnk_20;
+    /* 20 */ struct Bmg *mUnk_20;
     /* 24 */ Ncgr *mUnk_24;
     /* 28 */ Nclr *mUnk_28;
 } Unk0217b4b0;

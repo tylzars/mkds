@@ -19,7 +19,7 @@ typedef struct Unk02174e5c {
     /* 44 */ s32 mUnk_44;
     /* 48 */ s32 mUnk_48;
     /* 4c */ Unk02174e5c_4c *mUnk_4c;
-    /* 50 */ void *mUnk_50;
+    /* 50 */ struct Bmg *mUnk_50;
     /* 54 */ s32 mUnk_54;
     /* 58 */ s32 mUnk_58;
     /* 5c */ s32 mUnk_5c;

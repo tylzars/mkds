@@ -44,9 +44,9 @@ typedef struct WiFiVSSetting {
     /* 1048 */ Nclr *mWiFiVSSettingSONclr;
     /* 104c */ Unk0201ea30 *mWiFiVSSettingBncl;
     /* 1050 */ Unk0201ea30 *mWiFiVSSettingBnbl;
-    /* 1054 */ void *mWiFiVSSettingBnll;
-    /* 1058 */ void *mWiFiMessages;
-    /* 105c */ void *mCommonMessages;
+    /* 1054 */ struct Unk0201ea30 *mWiFiVSSettingBnll;
+    /* 1058 */ struct Bmg *mWiFiMessages;
+    /* 105c */ struct Bmg *mCommonMessages;
 } WiFiVSSetting;
 
 // Object behind gWiFiVSMatching; mState selects the handler run by AdvanceWiFiVSMatching.
@@ -85,8 +85,8 @@ typedef struct WiFiVSMatching {
     /* 16ec */ Nclr *mWiFiVSMatchingSONclr;
     /* 16f0 */ Unk0201ea30 *mWiFiVSMatchingBncl;
     /* 16f4 */ void *mWiFiVSMatchingBnbl;
-    /* 16f8 */ void *mWiFiVSMatchingBnll;
-    /* 16fc */ void *mWiFiMessages;
+    /* 16f8 */ struct Unk0201ea30 *mWiFiVSMatchingBnll;
+    /* 16fc */ struct Bmg *mWiFiMessages;
     /* 1700 */ void *mCommonMessages;
     /* 1704 */ u8 pad_1704[8];
 } WiFiVSMatching;

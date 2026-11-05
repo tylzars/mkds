@@ -32,7 +32,7 @@ typedef struct Unk02190da0Data {
 // Entry of the list whose head and tail are at 0x438 and 0x43c of the object.
 typedef struct GpiQueuedCallback {
     /* 00 */ GpiCallback mCallback;
-    /* 08 */ void *mArg;
+    /* 08 */ struct Unk02190da0Data *mArg;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ u32 mUnk_10;
     /* 14 */ struct GpiQueuedCallback *mNext;

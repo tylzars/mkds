@@ -24,11 +24,11 @@ typedef struct WiFiAikotoba {
     /* 20 */ struct Unk02021dc8 *mWiFiAikotobaSNcer;
     /* 24 */ struct Ncgr *mWiFiAikotobaSNcgr;
     /* 28 */ struct Nclr *mWiFiAikotobaSONclr;
-    /* 2c */ void *mWiFiAikotobaBncl;
+    /* 2c */ struct Unk0201ea30 *mWiFiAikotobaBncl;
     /* 30 */ void *mWiFiAikotobaBnbl;
     /* 34 */ u8 pad_34[4];
-    /* 38 */ void *mWiFiMessages;
-    /* 3c */ void *mCommonMessages;
+    /* 38 */ struct Bmg *mWiFiMessages;
+    /* 3c */ struct Bmg *mCommonMessages;
 } WiFiAikotoba;
 
 #include "00/code_02180608.h"

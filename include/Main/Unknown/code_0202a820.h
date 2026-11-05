@@ -11,8 +11,8 @@ typedef struct WiFiVSCourseSelect {
     /* 048 */ Unk02174e14_00 mWiFiVSCourseSelectMParts;
     /* 064 */ Unk02174e14_00 mWiFiVSCourseSelectSParts;
     /* 080 */ void *mUnk_080[2];
-    /* 088 */ void *mCommonMessages;
-    /* 08c */ void *mWiFiMessages;
+    /* 088 */ struct Bmg *mCommonMessages;
+    /* 08c */ struct Bmg *mWiFiMessages;
     /* 090 */ void *mHeap;
     /* 094 */ Unk020f41c4_B mUnk_094;
     /* 0ac */ s32 mState;

@@ -9,10 +9,10 @@
 typedef struct Unk02174e50_24 {
     /* 00 */ void *mUnk_00;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ void *mUnk_08;
-    /* 0c */ void *mUnk_0c;
+    /* 08 */ struct Unk02021dc8 *mUnk_08;
+    /* 0c */ struct Unk0201ea30 *mUnk_0c;
     /* 10 */ Unk0201ea30 *mUnk_10;
-    /* 14 */ void *mUnk_14;
+    /* 14 */ struct Unk0201ea30 *mUnk_14;
     /* 18 */ Unk02124b1c *mUnk_18;
 } Unk02174e50_24;
 

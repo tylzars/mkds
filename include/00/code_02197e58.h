@@ -18,7 +18,7 @@ typedef struct Gt2Socket {
     /* 04 */ u32 mAddress;
     /* 08 */ u16 mPort;
     /* 0a */ u8 mUnk_0a[2];
-    /* 0c */ void *mConnections;
+    /* 0c */ struct Hashtable *mConnections;
     /* 10 */ void *mConnectionsToFree;
     /* 14 */ BOOL mDeletePending;
     /* 18 */ BOOL mUnk_18;
@@ -61,7 +61,7 @@ typedef struct Gt2Connection {
     /* 38 */ Gt2Buffer mUnk_38;
     /* 44 */ Gt2Buffer mUnk_44;
     /* 50 */ Gt2Buffer mSendBuffer;
-    /* 5c */ void *mUnk_5c;
+    /* 5c */ struct Darray *mUnk_5c;
     /* 60 */ void *mUnk_60;
     /* 64 */ u16 mUnk_64;
     /* 66 */ u16 mUnk_66;

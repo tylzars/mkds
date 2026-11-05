@@ -25,7 +25,7 @@ typedef struct WiFiTopMenu {
     /* 20 */ struct Unk02021dc8 *mWiFiTopMenuSNcer;
     /* 24 */ struct Ncgr *mWiFiTopMenuSNcgr;
     /* 28 */ struct Nclr *mWiFiTopMenuSONclr;
-    /* 2c */ void *mWiFiTopMenuBncl;
+    /* 2c */ struct Unk0201ea30 *mWiFiTopMenuBncl;
     /* 30 */ Unk0201ea30 *mWiFiTopMenuBnbl;
     /* 34 */ u8 pad_34[4];
     /* 38 */ void *mWiFiMessages;

@@ -16,8 +16,8 @@ typedef struct Unk021b4c68 {
     /* 18 */ s32 mUnk_18;
     /* 1c */ void *mHeap;
     /* 20 */ u8 pad_20[0x18];
-    /* 38 */ void *mWiFiMessages;
-    /* 3c */ void *mCommonMessages;
+    /* 38 */ struct Bmg *mWiFiMessages;
+    /* 3c */ struct Bmg *mCommonMessages;
 } Unk021b4c68;
 
 extern WiFiStateCallbacks data_ov000_021b0a98;

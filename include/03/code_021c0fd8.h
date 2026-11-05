@@ -13,7 +13,7 @@ typedef struct Unk021da160 {
     /* 38 */ Unk021bf920 *mUnk_38[2];
     /* 40 */ Unk021d1770 *mUnk_40[2];
     /* 48 */ Unk021d1770 *mUnk_48[4];
-    /* 58 */ void *mUnk_58;
+    /* 58 */ struct Unk021d1770 *mUnk_58;
     /* 5c */ Unk021d34e0 *mUnk_5c;
     /* 60 */ u8 mUnk_60;
     /* 61 */ s8 mUnk_61;

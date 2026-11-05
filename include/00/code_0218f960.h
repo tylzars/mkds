@@ -10,7 +10,7 @@ struct GpConnection;
 
 // List at 0x428 of GpiConnection: the object and the number of entries added to it.
 typedef struct Unk0218f960_428 {
-    /* 00 */ void *mTable;
+    /* 00 */ struct Hashtable *mTable;
     /* 04 */ s32 mUnk_04;
 } Unk0218f960_428;
 

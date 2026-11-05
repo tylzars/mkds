@@ -26,19 +26,19 @@ typedef struct RecordTAtt {
     /* 14 */ Ncgr *mRecordTAttSNcgr;
     /* 18 */ struct Unk02021dc8 *mRecordTAttSNcer;
     /* 1c */ Unk0201ea30 *mRecordTAttSBncl;
-    /* 20 */ void *mRecordTAttSBnbl;
+    /* 20 */ struct Unk0201ea30 *mRecordTAttSBnbl;
     /* 24 */ Unk0201ea30 *mRecordTAttSBnll;
     /* 28 */ void *mUnk_28;
-    /* 2c */ void *mUnk_2c;
+    /* 2c */ struct Unk02021dc8 *mUnk_2c;
     /* 30 */ Nclr *mUnk_30;
-    /* 34 */ void *mUnk_34;
+    /* 34 */ struct Unk0201ea30 *mUnk_34;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
     /* 38 */ Unk02124b1c *mRecordTAttMTable;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
     /* 3c */ Unk02124b1c *mRecordTAttSTable;
-    /* 40 */ void *mCommonMessages;
+    /* 40 */ struct Bmg *mCommonMessages;
     /* 44 */ void *mGhostMessages;
-    /* 48 */ void *mRecordMessages;
+    /* 48 */ struct Bmg *mRecordMessages;
     /* 4c */ void *mUnk_4c;
     /* 50 */ s32 mState;
     /* 54 */ s32 mNextState;

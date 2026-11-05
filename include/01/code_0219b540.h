@@ -27,20 +27,20 @@ typedef struct Unk021a9bf4Block {
 typedef struct SelectGhost {
     /* 00 */ struct Unk02021dc8 *mSelectCupCourseMNcer;
     /* 04 */ Unk0201ea30 *mSelectCupCourseTaMBncl;
-    /* 08 */ void *mSelectCupCourseTaMBnll;
+    /* 08 */ struct Unk0201ea30 *mSelectCupCourseTaMBnll;
     /* 0c */ struct Unk02021dc8 *mSelectGhostSONcer;
     /* 10 */ Unk0201ea30 *mSelectGhostSBncl;
     /* 14 */ void *mSelectGhostSBnbl;
-    /* 18 */ void *mSelectGhostSBnll;
+    /* 18 */ struct Unk0201ea30 *mSelectGhostSBnll;
     /* 1c */ Nclr *mSelectGhostSONclr;
     /* 20 */ void *mPlayerCharacterMNcgr;
-    /* 24 */ void *mPlayerCharacterMNcer;
+    /* 24 */ struct Unk02021dc8 *mPlayerCharacterMNcer;
     /* 28 */ Unk021a9bf4Block *mPlayerCharacterMONclr;
-    /* 2c */ void *mPlayerCharacterMBncl;
+    /* 2c */ struct Unk0201ea30 *mPlayerCharacterMBncl;
     /* 30 */ Unk02124b1c *mSelectCupCourseTaMTable;
     /* 34 */ Unk02124b1c *mSelectGhostSTable;
-    /* 38 */ void *mCommonMessages;
-    /* 3c */ void *mMenuMessages;
+    /* 38 */ struct Bmg *mCommonMessages;
+    /* 3c */ struct Bmg *mMenuMessages;
     /* 40 */ void *mUnk_40;
     /* 44 */ void *mHeap;
     /* 48 */ s32 mState;

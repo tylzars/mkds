@@ -63,7 +63,7 @@ typedef struct SelectKart {
     /* 064 */ Unk02174e50_24 mSelectKartSParts;
     /* 080 */ void *mUnk_080;
     /* 084 */ void *mUnk_084;
-    /* 088 */ void *mKartSelectMessages;
+    /* 088 */ struct Bmg *mKartSelectMessages;
     /* 08c */ void *mHeap;
     /* 090 */ s32 mStateFrames; /* counts only in states 3, 4 and 6 */
     /* 094 */ s32 mState;
@@ -105,11 +105,11 @@ extern Unk02036590 data_02174e88;
 // 0x1c-byte part of Unk02174e14, at 0x00, 0x1c and 0x38; InitSelectCharacter has two on the stack, one filled by
 // func_02025b84. Unk02174e60 has four from 0x48.
 typedef struct Unk02174e14_00 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ void *mUnk_08;
+    /* 00 */ struct Unk0212463c_c *mUnk_00;
+    /* 04 */ struct Unk0212463c_d *mUnk_04;
+    /* 08 */ struct Unk02021dc8 *mUnk_08;
     /* 0c */ Unk0201ea30 *mUnk_0c;
-    /* 10 */ void *mUnk_10;
+    /* 10 */ struct Unk0201ea30 *mUnk_10;
     /* 14 */ Unk0201ea30 *mUnk_14;
     /* 18 */ Unk02124b1c *mUnk_18;
 } Unk02174e14_00;
@@ -190,7 +190,7 @@ typedef struct Unk02174e60 {
     /* 0b8 */ s32 mUnk_0b8[2];
     /* 0c0 */ Nclr *mUnk_0c0;
     /* 0c4 */ Nclr *mUnk_0c4;
-    /* 0c8 */ void *mUnk_0c8;
+    /* 0c8 */ struct Bmg *mUnk_0c8;
     /* 0cc */ u16 mUnk_0cc;
     /* 0ce */ u16 mUnk_0ce;
     /* 0d0 */ s32 mUnk_0d0;
@@ -308,7 +308,7 @@ typedef struct Unk02174e48 {
     /* 000 */ s32 mUnk_000;
     /* 004 */ u16 *mUnk_004;
     /* 008 */ Unk02124b1c *mUnk_008;
-    /* 00c */ void *mUnk_00c;
+    /* 00c */ struct Unk0201ea30 *mUnk_00c;
     /* 010 */ s32 mUnk_010;
     /* 014 */ s32 mUnk_014;
     /* 018 */ s32 mUnk_018;

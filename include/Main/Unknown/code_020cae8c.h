@@ -37,10 +37,10 @@ typedef struct Unk0217b43c {
     /* 938 */ s16 mUnk_938;
     /* 93a */ u8 mUnk_93a[2];
     /* 93c */ Unk02124b1c *mUnk_93c;
-    /* 940 */ void *mSinglePlaySelectModeMBncl;
+    /* 940 */ struct Unk0201ea30 *mSinglePlaySelectModeMBncl;
     /* 944 */ s32 mUnk_944;
     /* 948 */ Unk02124b1c *mUnk_948;
-    /* 94c */ void *mSinglePlaySelectModeSBncl;
+    /* 94c */ struct Unk0201ea30 *mSinglePlaySelectModeSBncl;
     /* 950 */ void *mSinglePlaySelectModeSBnbl;
     /* 954 */ u8 *mUnk_954;
     /* 958 */ BOOL mUnk_958;

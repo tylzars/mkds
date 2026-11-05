@@ -13,7 +13,7 @@ typedef struct SbServer {
     /* 10 */ u32 mUnk_10;
     /* 14 */ u8 mUnk_14;
     /* 15 */ u8 mUnk_15;
-    /* 18 */ void *mKeyValues;
+    /* 18 */ struct Hashtable *mKeyValues;
     /* 1c */ u32 mPing;
     /* 20 */ struct SbServer *mUnk_20;
 } SbServer;

@@ -6,16 +6,16 @@
 typedef struct RecordTopMenu {
     /* 0x00 */ struct Unk02021dc8 *mRecordTopMenuMNcer;
     /* 0x04 */ Unk0201ea30 *mRecordTopMenuMBncl;
-    /* 0x08 */ void *mRecordTopMenuMBnll;
+    /* 0x08 */ struct Unk0201ea30 *mRecordTopMenuMBnll;
     /* 0x0c */ struct Unk02021dc8 *mRecordTopMenuSNcer;
-    /* 0x10 */ void *mRecordTopMenuSBncl;
-    /* 0x14 */ void *mRecordTopMenuSBnbl;
+    /* 0x10 */ struct Unk0201ea30 *mRecordTopMenuSBncl;
+    /* 0x14 */ struct Unk0201ea30 *mRecordTopMenuSBnbl;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
     /* 0x18 */ Unk02124b1c *mRecordTopMenuMTable;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
     /* 0x1c */ Unk02124b1c *mRecordTopMenuSTable;
     /* 0x20 */ void *mUnk_20;
-    /* 0x24 */ void *mRecordMessages;
+    /* 0x24 */ struct Bmg *mRecordMessages;
     /* 0x28 */ void *mUnk_28;
     /* 0x2c */ void *mHeap;
     /* 0x30 */ s32 mState;

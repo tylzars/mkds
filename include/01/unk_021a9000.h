@@ -40,7 +40,7 @@ typedef struct OptionHensyuMenu {
     /* 20 */ struct Unk02021dc8 *mOptionHensyuMenuSNcer;
     /* 24 */ Ncgr *mOptionHensyuMenuSNcgr;
     /* 28 */ Nclr *mOptionHensyuMenuSONclr;
-    /* 2c */ void *mOptionHensyuMenuSBncl;
+    /* 2c */ struct Unk0201ea30 *mOptionHensyuMenuSBncl;
     /* 30 */ void *mOptionHensyuMenuSBnbl;
 } OptionHensyuMenu;
 
@@ -122,8 +122,8 @@ typedef struct SelectBattleStage {
     /* 106c */ Nscr *mSelectBattleStageMNscrs[3];
     /* 1078 */ void *mUnk_1078;
     /* 107c */ void *mUnk_107c;
-    /* 1080 */ void *mMenuMessages;
-    /* 1084 */ void *mCommonMessages;
+    /* 1080 */ struct Bmg *mMenuMessages;
+    /* 1084 */ struct Bmg *mCommonMessages;
 } SelectBattleStage;
 
 // Object that func_ov001_02180610 allocates and data_ov001_021a99e4 points to.
@@ -188,8 +188,8 @@ typedef struct OptionEmbremSelect {
     /* 40 */ Nclr *mOptionEmbremSelectSONclr;
     /* 44 */ Unk0201ea30 *mOptionEmbremSelectSBncl;
     /* 48 */ void *mOptionEmbremSelectSBnbl;
-    /* 4c */ void *mOptionEmbremSelectSBnll;
-    /* 50 */ void *mOptionMessages;
+    /* 4c */ struct Unk0201ea30 *mOptionEmbremSelectSBnll;
+    /* 50 */ struct Bmg *mOptionMessages;
     /* 54 */ void *mCommonMessages;
 } OptionEmbremSelect;
 
@@ -227,7 +227,7 @@ extern char data_ov001_021a94bc[];
 extern char data_ov001_021a94d0[];
 typedef struct TimeAttackTopMenu {
     /* 00 */ struct Unk02021dc8 *mTimeAttackTopMenuSNcer;
-    /* 04 */ void *mTimeAttackTopMenuSBncl;
+    /* 04 */ struct Unk0201ea30 *mTimeAttackTopMenuSBncl;
     /* 08 */ void *mTimeAttackTopMenuSBnbl;
     // one 0x40-byte record per cell of the Bncl member, built by func_02124ed0
     /* 0c */ Unk02124b1c *mTimeAttackTopMenuSTable;

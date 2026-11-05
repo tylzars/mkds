@@ -46,9 +46,9 @@ typedef struct OptionSelectMenu {
     /* 74 */ Unk0201ea30 *mOptionSelectMenuMBncl;
     /* 78 */ Unk0201ea30 *mOptionSelectMenuSBncl;
     /* 7c */ void *mOptionSelectMenuSBnbl;
-    /* 80 */ void *mOptionSelectMenuMBnll;
-    /* 84 */ void *mOptionSelectMenuSBnll;
-    /* 88 */ void *mOptionMessages;
+    /* 80 */ struct Unk0201ea30 *mOptionSelectMenuMBnll;
+    /* 84 */ struct Unk0201ea30 *mOptionSelectMenuSBnll;
+    /* 88 */ struct Bmg *mOptionMessages;
     /* 8c */ void *mCommonMessages;
 } OptionSelectMenu;
 

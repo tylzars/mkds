@@ -115,7 +115,7 @@ typedef struct Unk020219f0 {
 // mUnk_04, func_02021c34 and func_02021cd4 move entries between the chains of two objects.
 typedef struct Unk02021be8 {
     /* 00 */ void *mUnk_00;
-    /* 04 */ void *mUnk_04;
+    /* 04 */ struct Unk02021be8 *mUnk_04;
 } Unk02021be8;
 
 // Object with two tables of mUnk_38 words from 0x3c. func_02021968 and func_020219b0 read and write the first;
