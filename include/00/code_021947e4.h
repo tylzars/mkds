@@ -19,7 +19,7 @@ typedef struct GpiProfile {
     /* 00 */ u32 mProfileId;
     /* 04 */ u32 mUserId;
     /* 08 */ GpiBuddyStatus *mBuddyStatus;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ struct Unk02192e04 *mUnk_0c;
     /* 10 */ void *mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ void *mUnk_18;

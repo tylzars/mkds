@@ -137,9 +137,9 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
     func_0212463c(r, q->mUnk_08, q->mUnk_00, q->mUnk_04, q->mUnk_0c, a, c, s->mUnk_08, s->mUnk_0c);
     if (r == 0xc) {
         if (d == 1) {
-            u = (Nclr *) data_02174e60->mUnk_0c0;
+            u = data_02174e60->mUnk_0c0;
         } else {
-            u = (Nclr *) data_02174e60->mUnk_0c4;
+            u = data_02174e60->mUnk_0c4;
         }
         v = func_02124a68(c, s->mUnk_08, s->mUnk_0c);
         e = data_0217b488->mUnk_10c[b];

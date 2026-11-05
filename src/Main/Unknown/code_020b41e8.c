@@ -98,7 +98,7 @@ void func_020b41e8(s32 a, s32 b, u16 *c, s32 d, s32 e) {
     i = p->mUnk_00c == 1 ? p->mUnk_063 : p->mEntryIndex;
     n = p->mCurrentEntries[i].mCharacterIndex;
     if (n == 12) {
-        o1 = (Nclr *) func_020b4024(1);
+        o1 = func_020b4024(1);
     } else {
         o1 = func_020b4030(1);
     }

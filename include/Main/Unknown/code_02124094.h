@@ -38,7 +38,7 @@ typedef struct Unk02124a68 {
 // 0x24 bytes at member 0x20 of Unk021243ac (func_02125808 takes its address).
 typedef struct Unk021243ac_20 {
     /* 00 */ struct Unk021243ac *mUnk_00;
-    /* 04 */ void *mUnk_04;
+    /* 04 */ struct Unk02022aa8 *mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ void *mUnk_10;

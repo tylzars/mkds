@@ -242,7 +242,7 @@ void func_020e6854(Unk020e6488 *p, Vec3 *q, s32 c, u32 d) {
         func_01ff9048(0x2b, p->mUnk_20 + n, 1);
         func_01ff9048(0x2a, p->mUnk_1c + n, 1);
     }
-    func_01ff9144((const void *) p->mUnk_00, p->mUnk_04);
+    func_01ff9144(p->mUnk_00, p->mUnk_04);
 }
 
 void func_020e67c4(Unk020e6488 *p, Unk02012f58 *q, Vec3 *v, s32 a4, u16 a5) {

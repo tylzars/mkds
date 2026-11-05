@@ -188,8 +188,8 @@ typedef struct Unk02174e60 {
     /* 000 */ Unk02174e60_00 mUnk_000[2];
     /* 048 */ Unk02174e14_00 mUnk_048[4];
     /* 0b8 */ s32 mUnk_0b8[2];
-    /* 0c0 */ u32 mUnk_0c0;
-    /* 0c4 */ u32 mUnk_0c4;
+    /* 0c0 */ Nclr *mUnk_0c0;
+    /* 0c4 */ Nclr *mUnk_0c4;
     /* 0c8 */ void *mUnk_0c8;
     /* 0cc */ u16 mUnk_0cc;
     /* 0ce */ u16 mUnk_0ce;

@@ -47,6 +47,6 @@ void *func_020b4030(int param_1);
 #include "Main/Unknown/code_020b47d8.h"
 #include "Main/Unknown/code_020b4e70.h"
 void *func_020b403c(s32 index);
-u32 func_020b4024(u32 arg0);
+void *func_020b4024(u32 arg0);
 #include "Main/Unknown/code_020b4048.h"
 #include "Main/Unknown/code_020b4e0c.h"

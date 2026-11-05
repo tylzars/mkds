@@ -49,7 +49,7 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
     d = (Unk020e53ac *) &b->mUnk_000[((u32 *) &b->mUnk_000[b->mUnk_00a])[2]];
     c = (Unk020e52bc_c *) &a->mUnk_000[a->mUnk_00c];
     e = (Unk020e54e4 *) &c->mUnk_000[((u32 *) &c->mUnk_000[c->mUnk_006])[1]];
-    p->mUnk_00 = (u32) &e->mUnk_000[e->mUnk_008];
+    p->mUnk_00 = &e->mUnk_000[e->mUnk_008];
     p->mUnk_04 = e->mUnk_00c;
     p->mUnk_08 = param_1->mUnk_004->mUnk_01c;
     p->mUnk_0c = d->mUnk_004;

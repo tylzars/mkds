@@ -833,7 +833,7 @@ u32 func_ov000_0219222c(GpConnection *p, u32 a, s32 b, u32 c, u32 d, u32 e) {
             GpiSetErrorMessage(p, data_ov000_021b2f58);
             return 1;
         }
-        func_ov000_0219338c((Unk02192e04 *) x->mUnk_0c, (Unk0219338c *) m);
+        func_ov000_0219338c(x->mUnk_0c, (Unk0219338c *) m);
         m->mUnk_000 = 0;
         m->mUnk_004 = a;
         w.mCallback = (void (*)(void *, void *, u32)) d;

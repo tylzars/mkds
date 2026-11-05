@@ -23,13 +23,13 @@ void *func_020b4030(int arg0) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_020b4024(u32 arg0) {
+void *func_020b4024(u32 arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     value1 = (value0 << 2);
     value0 = (u32) &gPlayerCharacterShyguyNclr;
     value0 = (u32) * (const u32 *) ((value0) + (value1));
-    return (u32) value0;
+    return (void *) value0;
 }
 #pragma thumb off
 
