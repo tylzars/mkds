@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-void func_0214d594(void);
+// Called once from the start-up chain. Calls MI_SetWramBank(3) and MI_StopDma(0).
+void MI_Init(void);

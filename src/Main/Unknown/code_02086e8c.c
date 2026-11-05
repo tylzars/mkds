@@ -151,7 +151,7 @@ void func_020875b4(void) {
         }
     }
     *(u32 *) 0x4000440 = 0;
-    func_0214ad4c(0x60000, 0xfffa0000, 0xfff80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217aee0);
+    ComputeOrthoMatrix(0x60000, 0xfffa0000, 0xfff80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217aee0);
 }
 
 void func_02087508(Unk02086250 *a, u16 b, void *c) {

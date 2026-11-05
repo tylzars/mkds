@@ -8,7 +8,7 @@
 #include "registers.h"
 
 u16 data_021617bc[8] = {8, 9, 10, 11, 3, 4, 5, 6};
-Unk0216fee0 data_0216fee0[8];
+Unk0216fee0 gDmaTimerCallbacks[8];
 
 void InterruptHandlerSet(u32 m, UnkFunc *f) {
     s32 i;
@@ -18,9 +18,9 @@ void InterruptHandlerSet(u32 m, UnkFunc *f) {
         if (m & 1) {
             t = 0;
             if (i >= 8 && i <= 11) {
-                t = &data_0216fee0[i - 8];
+                t = &gDmaTimerCallbacks[i - 8];
             } else if (i >= 3 && i <= 6) {
-                t = &data_0216fee0[i + 1];
+                t = &gDmaTimerCallbacks[i + 1];
             } else {
                 data_027e0008[i] = f;
             }
@@ -42,10 +42,10 @@ UnkFunc *InterruptHandlerGet(u32 m) {
     for (i = 0; i < 22; i++, p++) {
         if (m & 1) {
             if (i >= 8 && i <= 11) {
-                return data_0216fee0[i - 8].mUnk_00;
+                return gDmaTimerCallbacks[i - 8].mUnk_00;
             }
             if (i >= 3 && i <= 6) {
-                return data_0216fee0[i + 1].mUnk_00;
+                return gDmaTimerCallbacks[i + 1].mUnk_00;
             }
             return *p;
         }
@@ -54,17 +54,17 @@ UnkFunc *InterruptHandlerGet(u32 m) {
     return 0;
 }
 
-void func_0200cb9c(u32 n, UnkFunc *f, u32 a) {
-    data_0216fee0[n].mUnk_00 = f;
-    data_0216fee0[n].mUnk_08 = a;
-    data_0216fee0[n].mUnk_04 = InterruptEnableSetBits(1 << (n + 8)) & (1 << (n + 8));
+void SetDmaDoneCallback(u32 n, UnkFunc *f, u32 a) {
+    gDmaTimerCallbacks[n].mUnk_00 = f;
+    gDmaTimerCallbacks[n].mUnk_08 = a;
+    gDmaTimerCallbacks[n].mUnk_04 = InterruptEnableSetBits(1 << (n + 8)) & (1 << (n + 8));
 }
 
 void func_0200cb50(u32 n, UnkFunc *f, u32 a) {
-    (data_0216fee0 + 4)[n].mUnk_00 = f;
-    (data_0216fee0 + 4)[n].mUnk_08 = a;
+    (gDmaTimerCallbacks + 4)[n].mUnk_00 = f;
+    (gDmaTimerCallbacks + 4)[n].mUnk_08 = a;
     InterruptEnableSetBits(1 << (n + 3));
-    (data_0216fee0 + 4)[n].mUnk_04 = 1;
+    (gDmaTimerCallbacks + 4)[n].mUnk_04 = 1;
 }
 
 u32 InterruptEnableWrite(u32 v) {
@@ -134,13 +134,13 @@ void func_0200c994(u32 n) {
     u32 m;
 
     m = 1 << data_021617bc[n];
-    f = data_0216fee0[n].mUnk_00;
-    data_0216fee0[n].mUnk_00 = 0;
+    f = gDmaTimerCallbacks[n].mUnk_00;
+    gDmaTimerCallbacks[n].mUnk_00 = 0;
     if (f != 0) {
-        f(data_0216fee0[n].mUnk_08);
+        f(gDmaTimerCallbacks[n].mUnk_08);
     }
     *(u32 *) ((u8 *) &data_027e0000 + 0x3ff8) |= m;
-    if (data_0216fee0[n].mUnk_04 != 0) {
+    if (gDmaTimerCallbacks[n].mUnk_04 != 0) {
         return;
     }
     InterruptEnableClearBits(m);

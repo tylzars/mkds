@@ -158,7 +158,7 @@ void func_0200eec0(void) {
     func_0200cd04();
     func_0200ca34();
     func_0200f4f0();
-    func_0214d594();
+    MI_Init();
     func_0200fc1c();
     func_0200ffd8();
     ThreadSystemInit();

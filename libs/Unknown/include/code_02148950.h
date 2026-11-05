@@ -15,7 +15,7 @@ void GX_DispOff(void);
 u32 GX_VBlankIntr(s32 a);
 // Start-up, called once: sets bits 15, 1, 2, 3, 9 and 0 of 0x4000304, calls ClearVramBankState, then calls IdAlloc
 // until gVramLockId is nonzero (halts in IrqDisableLoopForever when it returns -3), zeroes the registers 0x4000004,
-// 0x4000000, 0x4000008-0x4000067, 0x400006c and 0x4001000-0x400106f (through func_0214cc04 when data_0216f074[0] is not
+// 0x4000000, 0x4000008-0x4000067, 0x400006c and 0x4001000-0x400106f (through MI_DmaFill32 when data_0216f074[0] is not
 // -1, else MemFillWords) and stores 0x100 in the halfwords at offsets 0x20, 0x26, 0x30 and 0x36 of both display
 // register blocks.
 void GX_Init(void);

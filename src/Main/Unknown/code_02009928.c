@@ -384,8 +384,8 @@ void func_0200a1bc(Unk021425e8 *a) {
                                 ((Unk0216fda8_600 *) (v3 + v2))->mUnk_0c0.mUnk_36 = a->mUnk_36;
                                 ((Unk0216fda8_600 *) (v3 + (s32) v2))->mUnk_0c0.mUnk_38 = a->mUnk_38;
                                 func_0200ee3c((Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2), 0xc0);
-                                func_0214cb10(data_usa_0216fd80, v1->mUnk_440,
-                                              (Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2), 0xc0);
+                                MI_DmaCopy16(data_usa_0216fd80, v1->mUnk_440,
+                                             (Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2), 0xc0);
                                 v1->mUnk_5ec = i;
                                 goto done;
                             }
@@ -399,7 +399,7 @@ void func_0200a1bc(Unk021425e8 *a) {
                         MemCopyHalfwords(a, v3 + v2 + 0xc0, 0xb8);
                         e = (Unk0216fda8_600 *) ((u8 *) v1->mUnk_600 + v2);
                         func_0200ee3c(e, 0xc0);
-                        func_0214cb10(data_usa_0216fd80, v1->mUnk_440, e, 0xc0);
+                        MI_DmaCopy16(data_usa_0216fd80, v1->mUnk_440, e, 0xc0);
                         v1->mUnk_5ec = i;
                     }
                 done:

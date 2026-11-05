@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-void func_0214a730(const u16 *arg0);
+// Copies 32 halfwords (64 bytes) from the argument to 0x4000380.
+void G3X_SetToonTable(const u16 *arg0);

@@ -15,14 +15,14 @@ void ClearColorDepthWrite(u32 a, u32 b, u16 c, u32 d, s32 e) {
     *(vu16 *) 0x4000354 = c;
 }
 
-void func_0214a648(void) {
+void G3X_InitTable(void) {
     volatile u32 a;
     volatile u32 b;
     s32 i;
 
     if (data_0216f074[0] != -1) {
-        func_0214ca38(data_0216f074[0], (void *) 0x4000330, 0, 0x10, 0, 0);
-        func_0214cc04(data_0216f074[0], (void *) 0x4000360, 0, 0x60);
+        MI_DmaFill32Async(data_0216f074[0], (void *) 0x4000330, 0, 0x10, 0, 0);
+        MI_DmaFill32(data_0216f074[0], (void *) 0x4000360, 0, 0x60);
     } else {
         a = 0;
         MemFillWords(a, (void *) 0x4000330, 0x10);

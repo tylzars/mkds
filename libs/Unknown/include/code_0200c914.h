@@ -17,14 +17,18 @@ typedef struct Unk027e0000 {
 extern Unk027e0000 data_027e0000;
 extern UnkFunc *data_027e0008[22];
 
-// Entry of the table of 8 at data_0216fee0: a function pointer, a word, and the argument the function is called with.
+// Entry of the table of 8 at gDmaTimerCallbacks: a function pointer, a word, and the argument the function is called
+// with.
 typedef struct Unk0216fee0 {
     /* 00 */ UnkFunc *mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u32 mUnk_08;
 } Unk0216fee0;
 
-extern Unk0216fee0 data_0216fee0[8];
+// Eight interrupt callback slots of three words (function, keep-enabled word, argument). Slots 0-3: the done
+// interrupt of DMA channels 0-3 (interrupt-enable bits 8-11); slots 4-7: timers 0-3 (bits 3-6). The dispatcher
+// clears a slot's function before calling it, so each registration runs once.
+extern Unk0216fee0 gDmaTimerCallbacks[8];
 extern u16 data_021617bc[8];
 
 void func_0200c914(void);
@@ -43,6 +47,9 @@ u32 InterruptEnableClearBits(u32 m);
 u32 InterruptEnableSetBits(u32 m);
 u32 InterruptEnableWrite(u32 v);
 void func_0200cb50(u32 n, UnkFunc *f, u32 a);
-void func_0200cb9c(u32 n, UnkFunc *f, u32 a);
+// Stores the function and the argument in slot n of gDmaTimerCallbacks, sets interrupt-enable bit n + 8 and keeps
+// in the slot whether that bit was already set before. The dispatcher of the slot clears the function, calls it
+// with the argument and clears the bit again unless the slot says it was set before.
+void SetDmaDoneCallback(u32 n, UnkFunc *f, u32 a);
 UnkFunc *InterruptHandlerGet(u32 m);
 void InterruptHandlerSet(u32 m, UnkFunc *f);

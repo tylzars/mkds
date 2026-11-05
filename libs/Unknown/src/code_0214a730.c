@@ -1,7 +1,7 @@
 #include "code_0214a730.h"
 #include "code_0214cfe4.h"
 
-void func_0214a730(const u16 *arg0) {
+void G3X_SetToonTable(const u16 *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;

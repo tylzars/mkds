@@ -37,7 +37,7 @@ void GX_LoadBGExtPltt(const void *a, u32 b, u32 c) {
 
     d = gBgExtPaletteLoadBase + b - gBgExtPaletteLoadBaseOffset;
     if (data_0216f074[0] != -1) {
-        func_0214c990(data_0216f074[0], a, (void *) d, c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], a, (void *) d, c, 0, 0);
     } else {
         MemCopyWords(a, (void *) d, c);
     }
@@ -45,7 +45,7 @@ void GX_LoadBGExtPltt(const void *a, u32 b, u32 c) {
 
 void GX_EndLoadBGExtPltt(void) {
     if (data_0216f074[0] != -1) {
-        func_0214c920(data_0216f074[0]);
+        MI_WaitDma(data_0216f074[0]);
     }
     GX_SetBankForBGExtPltt(gBgExtPaletteLoadBankMask);
     gBgExtPaletteLoadBankMask = 0;
@@ -76,7 +76,7 @@ void GX_LoadOBJExtPltt(const void *a, u32 b, u32 c) {
 
     d = gObjExtPaletteLoadBase + b;
     if (data_0216f074[0] != -1) {
-        func_0214c990(data_0216f074[0], a, (void *) d, c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], a, (void *) d, c, 0, 0);
     } else {
         MemCopyWords(a, (void *) d, c);
     }
@@ -84,7 +84,7 @@ void GX_LoadOBJExtPltt(const void *a, u32 b, u32 c) {
 
 void GX_EndLoadOBJExtPltt(void) {
     if (data_0216f074[0] != -1) {
-        func_0214c920(data_0216f074[0]);
+        MI_WaitDma(data_0216f074[0]);
     }
     GX_SetBankForOBJExtPltt(gObjExtPaletteLoadBankMask);
     gObjExtPaletteLoadBankMask = 0;
@@ -97,7 +97,7 @@ void GXS_BeginLoadBGExtPltt(void) {
 
 void GXS_LoadBGExtPltt(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
-        func_0214c990(data_0216f074[0], a, (void *) (b + 0x6898000), c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], a, (void *) (b + 0x6898000), c, 0, 0);
     } else {
         MemCopyWords(a, (void *) (b + 0x6898000), c);
     }
@@ -105,7 +105,7 @@ void GXS_LoadBGExtPltt(const void *a, u32 b, u32 c) {
 
 void GXS_EndLoadBGExtPltt(void) {
     if (data_0216f074[0] != -1) {
-        func_0214c920(data_0216f074[0]);
+        MI_WaitDma(data_0216f074[0]);
     }
     GX_SetBankForSubBGExtPltt(gSubBgExtPaletteLoadBankMask);
     gSubBgExtPaletteLoadBankMask = 0;
@@ -117,7 +117,7 @@ void GXS_BeginLoadOBJExtPltt(void) {
 
 void GXS_LoadOBJExtPltt(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
-        func_0214c990(data_0216f074[0], a, (void *) (b + 0x68a0000), c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], a, (void *) (b + 0x68a0000), c, 0, 0);
     } else {
         MemCopyWords(a, (void *) (b + 0x68a0000), c);
     }
@@ -125,7 +125,7 @@ void GXS_LoadOBJExtPltt(const void *a, u32 b, u32 c) {
 
 void GXS_EndLoadOBJExtPltt(void) {
     if (data_0216f074[0] != -1) {
-        func_0214c920(data_0216f074[0]);
+        MI_WaitDma(data_0216f074[0]);
     }
     GX_SetBankForSubOBJExtPltt(gSubObjExtPaletteLoadBankMask);
     gSubObjExtPaletteLoadBankMask = 0;

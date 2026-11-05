@@ -187,7 +187,7 @@ void InitRace(void) {
     func_02047b6c(9);
     *(u16 *) 0x05000000 = 0xff00;
     reg_G3X_DISP3DCNT = reg_G3X_DISP3DCNT & 0xffffcffd;
-    func_0214a730(data_0217aadc);
+    G3X_SetToonTable(data_0217aadc);
     for (i = 0; i < 8; i++) {
         data_0217aadc[i] = data_02154970[i];
         data_0217aadc[i + 16] = data_02154980[i];
@@ -361,7 +361,7 @@ void UpdateRace(void) {
     gRace->mUnk_0c = gRace->mUpdateFrames & 7;
     gRace->mUnk_10 = gRace->mUpdateFrames & 1;
     gRace->mUnk_14 = (u32) gRace->mUpdateFrames % data_021759c0->mKartCount;
-    func_0214a730(&data_0217aadc[gRace->mUnk_18]);
+    G3X_SetToonTable(&data_0217aadc[gRace->mUnk_18]);
     gRace->mUnk_1c++;
     if ((u32) gRace->mUnk_1c > data_021653ec) {
         gRace->mUnk_1c = 0;
@@ -376,22 +376,22 @@ void UpdateRace(void) {
 // in the scene slot; the HUD draw is in the scene slot too.
 void DrawRace(void) {
     if (data_0217aa4c != 0) {
-        func_0214a7ec(1, 0, data_0217aa80, data_0217aa70);
-        func_0214a748(data_0217aa9c);
+        G3X_SetFog(1, 0, data_0217aa80, data_0217aa70);
+        G3X_SetFogTable(data_0217aa9c);
         reg_G3X_FOG_COLOR = data_0217aa28 | (data_0217aa68 << 16);
     } else if (gRace->mUnk_20 != gRace->mUnk_24) {
         if (gRace->mUnk_20 == 0) {
             if (gCourseMap->mSettings->mFogEnabled != 0) {
-                func_0214a7ec(1, 0, data_0217aa80, data_0217aa48);
+                G3X_SetFog(1, 0, data_0217aa80, data_0217aa48);
                 reg_G3X_FOG_COLOR = data_0217aa38 | (data_0217aa50 << 16);
-                func_0214a748(data_0217aabc);
+                G3X_SetFogTable(data_0217aabc);
             } else {
-                func_0214a7ec(0, 0, 5, 0);
+                G3X_SetFog(0, 0, 5, 0);
             }
         } else {
-            func_0214a7ec(1, 0, data_0217aa80, 0);
+            G3X_SetFog(1, 0, data_0217aa80, 0);
             reg_G3X_FOG_COLOR = data_0217aa30 | (data_0217aa60 << 16);
-            func_0214a748(data_0217aa9c);
+            G3X_SetFogTable(data_0217aa9c);
         }
     }
     gRace->mUnk_24 = gRace->mUnk_20;
@@ -553,11 +553,11 @@ void InitRaceFog(void) {
         data_0217aa3c = (data_0217aa38 >> 10) & 31;
     }
     if (gCourseMap->mSettings->mFogEnabled != 0) {
-        func_0214a7ec(1, 0, data_0217aa80, data_0217aa48);
+        G3X_SetFog(1, 0, data_0217aa80, data_0217aa48);
         *(u32 *) 0x04000358 = data_0217aa38 | (data_0217aa50 << 16);
-        func_0214a748(data_0217aabc);
+        G3X_SetFogTable(data_0217aabc);
     } else {
-        func_0214a7ec(0, 0, 5, 0);
+        G3X_SetFog(0, 0, 5, 0);
     }
 }
 

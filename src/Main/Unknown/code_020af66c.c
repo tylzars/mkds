@@ -441,8 +441,8 @@ void func_020b03bc(void) {
     gRaceHud->mUnk_908 = 0;
     gRaceHud->mUnk_90c = FALSE;
     gRaceHud->mUnk_910 = data_021759c0->mMode == 4 ? func_020adc04() : 0;
-    func_0214cc04(3, gRaceHud->mUnk_004, 0xc0, 0x400);
-    func_0214cc04(3, gRaceHud->mUnk_408, 0xc0, 0x400);
+    MI_DmaFill32(3, gRaceHud->mUnk_004, 0xc0, 0x400);
+    MI_DmaFill32(3, gRaceHud->mUnk_408, 0xc0, 0x400);
     LoadNclrData(&gRaceHud->mNclrs[0], FindSceneFileWrapper("race_m_b.NCLR"));
     LoadNcgrData(&gRaceHud->mNcgrs[0], FindSceneFileWrapper("race_m_b.NCGR"));
     LoadNscrData(&gRaceHud->mNscrs[0], FindSceneFileWrapper("race_m_pause.NSCR"));

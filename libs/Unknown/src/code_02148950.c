@@ -733,7 +733,7 @@ void ClearVramBankState(void) {
 
 // Updates the halfword at 0x4000304, calls ClearVramBankState, then calls IdAlloc until gVramLockId is nonzero
 // (calling IrqDisableLoopForever when it returns -3). Zeroes 0x4000004 and 0x4000000, then passes 0 with the ranges
-// 0x4000008 (size 0x60) and 0x4001000 (size 0x70) to func_0214cc04 when data_0216f074[0] is not -1 and to
+// 0x4000008 (size 0x60) and 0x4001000 (size 0x70) to MI_DmaFill32 when data_0216f074[0] is not -1 and to
 // MemFillWords otherwise, with the halfword at 0x400006c zeroed in between. Finally stores 0x100 in the halfwords
 // at 0x4000020, 0x4000026, 0x4000030, 0x4000036 and the same offsets from 0x4001000.
 void GX_Init(void) {
@@ -753,9 +753,9 @@ void GX_Init(void) {
     *(vu16 *) 0x4000004 = 0;
     *(vu32 *) 0x4000000 = 0;
     if (data_0216f074[0] != -1) {
-        func_0214cc04(data_0216f074[0], (void *) 0x4000008, 0, 0x60);
+        MI_DmaFill32(data_0216f074[0], (void *) 0x4000008, 0, 0x60);
         *(vu16 *) 0x400006c = 0;
-        func_0214cc04(data_0216f074[0], (void *) 0x4001000, 0, 0x70);
+        MI_DmaFill32(data_0216f074[0], (void *) 0x4001000, 0, 0x70);
     } else {
         volatile u32 z0 = 0;
         volatile u32 z1;

@@ -1028,7 +1028,7 @@ typedef struct Camera {
     /* 070 */ s32 mNear;
     // Far plane of the main projection (course settings value, default 0x640000); mUnk_08c is a second far value.
     /* 074 */ s32 mFar;
-    // The four extents handed to func_0214b048 (top, bottom, left, right), 20.12; shifted by mFrustumShift
+    // The four extents handed to ComputeFrustumMatrix (top, bottom, left, right), 20.12; shifted by mFrustumShift
     // and a kind-6 entry offset, left and right swapped in mirror mode.
     /* 078 */ s32 mFrustumTop;
     /* 07c */ s32 mFrustumBottom;

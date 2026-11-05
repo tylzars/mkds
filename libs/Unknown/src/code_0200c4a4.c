@@ -68,7 +68,7 @@ void func_0200c6b8(void) {
     func_0200c534(&b);
     *(u16 *) 0x04000204 = *(u16 *) 0x04000204 & ~0x8000;
     func_0200ee3c(((u8 *) &data_0216fe20 + 0x80), 0x40);
-    func_0214cb10(1, (const void *) 0x08000080, ((u8 *) &data_0216fe20 + 0x80), 0x40);
+    MI_DmaCopy16(1, (const void *) 0x08000080, ((u8 *) &data_0216fe20 + 0x80), 0x40);
     *(u16 *) 0x04000204 = (*(u16 *) 0x04000204 & ~0x8000) | (c << 15);
     func_0200c508(&b);
     func_0200c4a4(data_0216fe04.mUnk_02, &a);

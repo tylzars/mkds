@@ -38,7 +38,7 @@ void func_0208aa30(void *a) {
     func_0208a460(a);
     data_0217b034->mUnk_73c = 9;
     reg_G3_MTX_MODE = 0;
-    func_0214ad4c(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217b034->mUnk_744);
+    ComputeOrthoMatrix(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217b034->mUnk_744);
     p = &data_0217b034->mUnk_784;
     data_0217b034->mUnk_784.mUnk_00 = 0;
     p->mUnk_02 = 0;
@@ -257,8 +257,8 @@ void func_02089fa0(void) {
         Matrix3x3Identity(&b);
         for (i = 0; i < data_0217b034->mUnk_000[8]->mNsbmdCount; i++) {
             e = &data_0217b034->mUnk_000[8]->mNsbmds[i];
-            func_0214ad4c(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x1f6, 0,
-                          (Unk0214ad4c *) data_0217029c.mUnk_08);
+            ComputeOrthoMatrix(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x1f6, 0,
+                               (Unk0214ad4c *) data_0217029c.mUnk_08);
             data_0217029c.mUnk_fc &= ~0x50;
             func_02010fe4(&d);
             MemCopy9Words(&b, &data_0217029c.mUnk_bc);

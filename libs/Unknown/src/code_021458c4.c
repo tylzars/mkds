@@ -120,13 +120,13 @@ void func_02146730(u32 a, u32 b) {
     *(vu8 *) 0x040001af = b;
 }
 
-// Passes the next block to func_0214d3d8, sends the command for mUnk_1c and stores mUnk_04 of data_02180080 at
+// Passes the next block to StartCardDmaCopy, sends the command for mUnk_1c and stores mUnk_04 of data_02180080 at
 // 0x040001a4.
 void func_021466d8(void) {
     Unk021458c4 *d;
 
     d = (Unk021458c4 *) (u32) &data_0217fa40;
-    func_0214d3d8(d->mUnk_28, (void *) 0x04100010, (void *) d->mUnk_20, 0x200);
+    StartCardDmaCopy(d->mUnk_28, (void *) 0x04100010, (void *) d->mUnk_20, 0x200);
     func_02146730((d->mUnk_1c >> 8) | 0xb7000000, d->mUnk_1c << 24);
     reg_MI_MCCNT1 = data_02180080.mUnk_04;
 }
@@ -138,7 +138,7 @@ void func_02146600(void) {
     u32 arg;
     u32 s;
 
-    func_0214c89c(data_0217fa40.mUnk_28);
+    MI_StopDma(data_0217fa40.mUnk_28);
     data_0217fa40.mUnk_1c += 0x200;
     data_0217fa40.mUnk_20 += 0x200;
     data_0217fa40.mUnk_24 -= 0x200;
@@ -332,7 +332,7 @@ void func_021461d8(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     p->mUnk_20 = c;
     p->mUnk_24 = d;
     if (a <= 3) {
-        func_0214c89c(a);
+        MI_StopDma(a);
     }
     if (func_021464a4(q) != 0) {
         if (g == 0) {

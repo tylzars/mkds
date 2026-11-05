@@ -100,6 +100,6 @@ void DrawEndingStaffRoll(void) {
         }
     }
     func_0200ee74(&gEndingStaffRoll->mUnk_10, 0x400);
-    func_0214cc04(3, &gEndingStaffRoll->mUnk_10.mUnk_000[gEndingStaffRoll->mUnk_10.mUnk_400], 0xc0,
-                  (0x80 - gEndingStaffRoll->mUnk_10.mUnk_400) << 3);
+    MI_DmaFill32(3, &gEndingStaffRoll->mUnk_10.mUnk_000[gEndingStaffRoll->mUnk_10.mUnk_400], 0xc0,
+                 (0x80 - gEndingStaffRoll->mUnk_10.mUnk_400) << 3);
 }

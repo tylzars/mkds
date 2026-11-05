@@ -11,7 +11,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_0200fc8c.h"
 
-void func_01ffff38(u32 a, const void *b, void *c, u32 d) {
+void StartDmaTransfer(u32 a, const void *b, void *c, u32 d) {
     vu32 *e;
     u32 s = IrqDisable();
 
@@ -22,7 +22,7 @@ void func_01ffff38(u32 a, const void *b, void *c, u32 d) {
     IrqRestore(s);
 }
 
-void func_01fffec4(u32 a, const void *b, void *c, u32 d) {
+void StartDmaTransferAndChannel0Dummy(u32 a, const void *b, void *c, u32 d) {
     vu32 *r = (vu32 *) 0x40000b0;
     vu32 *e;
     u32 s = IrqDisable();
@@ -41,7 +41,7 @@ void func_01fffec4(u32 a, const void *b, void *c, u32 d) {
     IrqRestore(s);
 }
 
-void func_01fffe8c(u32 a, const void *b, void *c, u32 d) {
+void StartDmaTransferWithoutIrqDisable(u32 a, const void *b, void *c, u32 d) {
     u32 o = a * 12;
     vu32 *e = (vu32 *) ((u32) 0x40000b0 + o);
 
@@ -50,7 +50,7 @@ void func_01fffe8c(u32 a, const void *b, void *c, u32 d) {
     e[2] = d;
 }
 
-void func_01fffe2c(u32 a, const void *b, void *c, u32 d) {
+void StartDmaTransferAndChannel0DummyWithoutIrqDisable(u32 a, const void *b, void *c, u32 d) {
     vu32 *r = (vu32 *) 0x40000b0;
     vu32 *e;
 

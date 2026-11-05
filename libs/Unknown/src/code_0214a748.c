@@ -8,7 +8,7 @@
 #include "code_0214d018.h"
 #include "registers.h"
 
-void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk0214ad4c *i) {
+void ComputeFrustumMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk0214ad4c *i) {
     s64 x;
     s64 y;
     s64 z;
@@ -105,7 +105,7 @@ void func_0214b048(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     }
 }
 
-void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk0214ad4c *i) {
+void ComputeOrthoMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk0214ad4c *i) {
     s64 x;
     s64 y;
     s64 z;
@@ -198,7 +198,7 @@ void func_0214ad4c(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk02
     }
 }
 
-void func_0214abb4(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f58 *out) {
+void ComputeLookAtMatrix(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f58 *out) {
     Vec3 v0;
     Vec3 v1;
     Vec3 v2;
@@ -251,8 +251,8 @@ void func_0214abb4(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f
     }
 }
 
-void func_0214aa58(void) {
-    func_0214a99c();
+void G3X_Init(void) {
+    G3X_ClearFifo();
     reg_G3_END_VTXS = 0;
     while (reg_G3X_GXSTAT & 0x8000000) {
     }
@@ -266,38 +266,38 @@ void func_0214aa58(void) {
     reg_G3X_DISP3DCNT &= 0xcffb;
     reg_G3X_GXSTAT |= 0x8000;
     reg_G3X_GXSTAT = (reg_G3X_GXSTAT & ~0xc0000000) | 0x80000000;
-    func_0214a8ec();
+    G3X_InitMtxStack();
     reg_G3X_CLEAR_COLOR = 0;
     reg_G3X_CLEAR_DEPTH = 0x7fff;
     reg_G3X_CLRIMAGE_OFFSET = 0;
     reg_G3X_FOG_COLOR = 0;
     reg_G3X_FOG_OFFSET = 0;
     reg_G2_BG0CNT &= ~3;
-    func_0214a648();
+    G3X_InitTable();
     reg_G3_POLYGON_ATTR = 0x1f0080;
     reg_G3_TEXIMAGE_PARAM = 0;
     reg_G3_PLTT_BASE = 0;
 }
 
-void func_0214a9d0(void) {
+void G3X_Reset(void) {
     while (*(vu32 *) 0x4000600 & 0x8000000) {
     }
     *(vu32 *) 0x4000600 |= 0x8000;
     *(vu16 *) 0x4000060 |= 0x2000;
     *(vu16 *) 0x4000060 |= 0x1000;
-    func_0214a840();
+    G3X_ResetMtxStack();
     *(vu32 *) 0x40004a4 = 0x1f0080;
     *(vu32 *) 0x40004a8 = 0;
     *(vu32 *) 0x40004ac = 0;
 }
 
-void func_0214a99c(void) {
+void G3X_ClearFifo(void) {
     MemZero128WordsToOneAddress((void *) 0x4000400);
     while (*(vu32 *) 0x4000600 & 0x8000000) {
     }
 }
 
-void func_0214a8ec(void) {
+void G3X_InitMtxStack(void) {
     u32 a;
     u32 b;
 
@@ -318,7 +318,7 @@ void func_0214a8ec(void) {
     *(vu32 *) 0x4000454 = 0;
 }
 
-void func_0214a840(void) {
+void G3X_ResetMtxStack(void) {
     u32 a;
     u32 b;
 
@@ -338,7 +338,7 @@ void func_0214a840(void) {
     *(vu32 *) 0x4000454 = 0;
 }
 
-void func_0214a7ec(s32 a, u32 b, u32 c, u32 d) {
+void G3X_SetFog(s32 a, u32 b, u32 c, u32 d) {
     if (a != 0) {
         *(vu16 *) 0x400035c = d;
         *(vu16 *) 0x4000060 = (*(vu16 *) 0x4000060 & ~0x3f40) | ((c << 8) | (b << 6) | 0x80);
@@ -347,7 +347,7 @@ void func_0214a7ec(s32 a, u32 b, u32 c, u32 d) {
     }
 }
 
-s32 func_0214a7a4(void *a) {
+s32 G3X_GetClipMtx(void *a) {
     if (*(vu32 *) 0x4000600 & 0x8000000) {
         return -1;
     }
@@ -355,7 +355,7 @@ s32 func_0214a7a4(void *a) {
     return 0;
 }
 
-s32 func_0214a75c(void *a) {
+s32 G3X_GetVectorMtx(void *a) {
     if (*(vu32 *) 0x4000600 & 0x8000000) {
         return -1;
     }
@@ -363,6 +363,6 @@ s32 func_0214a75c(void *a) {
     return 0;
 }
 
-void func_0214a748(const void *a) {
+void G3X_SetFogTable(const void *a) {
     MemCopy8Words(a, (void *) 0x4000360);
 }

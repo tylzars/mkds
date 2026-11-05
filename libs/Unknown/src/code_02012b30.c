@@ -298,12 +298,12 @@ void func_02012f58(Unk02012f58 *a, void *b) {
     reg_G3_MTX_PUSH = 0;
     reg_G3_MTX_IDENTITY = 0;
     if (a != 0) {
-        while (func_0214a7a4(m) != 0) {
+        while (G3X_GetClipMtx(m) != 0) {
         }
         Matrix4x4ToMatrix4x3(m, a);
     }
     if (b != 0) {
-        while (func_0214a75c(b) != 0) {
+        while (G3X_GetVectorMtx(b) != 0) {
         }
     }
     reg_G3_MTX_POP = 1;
@@ -311,7 +311,7 @@ void func_02012f58(Unk02012f58 *a, void *b) {
 }
 
 void func_02012f24(void) {
-    func_0214aa58();
+    G3X_Init();
     func_02011074();
     reg_G3X_GXSTAT = (reg_G3X_GXSTAT & ~0xc0000000) | 0x80000000;
 }

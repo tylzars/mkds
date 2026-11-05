@@ -27,8 +27,8 @@ void GX_BeginLoadTex(void) {
 // Copies c bytes from a to gTextureLoadFirstBase + b; or, when gTextureLoadSecondBase is not 0, to
 // gTextureLoadSecondBase + b - gTextureLoadFirstSize if b is at least gTextureLoadFirstSize. A copy that crosses
 // gTextureLoadFirstSize is split there: the first gTextureLoadFirstSize - b bytes go to gTextureLoadFirstBase + b, the
-// rest to gTextureLoadSecondBase. Each part uses func_0214c990 when data_0216f074 is not -1 (the first part uses
-// func_0214cb88 when it is longer than 0x30), else MemCopyWords.
+// rest to gTextureLoadSecondBase. Each part uses MI_DmaCopy32Async when data_0216f074 is not -1 (the first part uses
+// MI_DmaCopy32 when it is longer than 0x30), else MemCopyWords.
 void GX_LoadTex(const void *a, u32 b, u32 c) {
     u8 *p;
     u32 q;
@@ -48,12 +48,12 @@ void GX_LoadTex(const void *a, u32 b, u32 c) {
             n = q - b;
             dst = (u8 *) gTextureLoadFirstBase + b;
             if (data_0216f074[0] != -1 && n > 0x30) {
-                func_0214cb88(data_0216f074[0], a, dst, n);
+                MI_DmaCopy32(data_0216f074[0], a, dst, n);
             } else {
                 MemCopyWords(a, dst, n);
             }
             if (data_0216f074[0] != -1) {
-                func_0214c990(data_0216f074[0], (const u8 *) a + n, p, c - n, 0, 0);
+                MI_DmaCopy32Async(data_0216f074[0], (const u8 *) a + n, p, c - n, 0, 0);
             } else {
                 MemCopyWords((const u8 *) a + n, p, c - n);
             }
@@ -61,7 +61,7 @@ void GX_LoadTex(const void *a, u32 b, u32 c) {
         }
     }
     if (data_0216f074[0] != -1) {
-        func_0214c990(data_0216f074[0], a, dst, c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], a, dst, c, 0, 0);
     } else {
         MemCopyWords(a, dst, c);
     }
@@ -69,7 +69,7 @@ void GX_LoadTex(const void *a, u32 b, u32 c) {
 
 void GX_EndLoadTex(void) {
     if (data_0216f074[0] != -1) {
-        func_0214c920(data_0216f074[0]);
+        MI_WaitDma(data_0216f074[0]);
     }
     GX_SetBankForTex(gTextureLoadBankMask);
     gTextureLoadFirstSize = 0;
@@ -87,7 +87,7 @@ void GX_BeginLoadTexPltt(void) {
 void GX_LoadTexPltt(const void *a, u32 b, u32 c) {
     u8 *p = gTexturePaletteLoadBase + b;
     if (data_0216f074[0] != -1) {
-        func_0214c990(data_0216f074[0], a, p, c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], a, p, c, 0, 0);
     } else {
         MemCopyWords(a, p, c);
     }
@@ -95,7 +95,7 @@ void GX_LoadTexPltt(const void *a, u32 b, u32 c) {
 
 void GX_EndLoadTexPltt(void) {
     if (data_0216f074[0] != -1) {
-        func_0214c920(data_0216f074[0]);
+        MI_WaitDma(data_0216f074[0]);
     }
     GX_SetBankForTexPltt(gTexturePaletteLoadBankMask);
     gTexturePaletteLoadBankMask = 0;
@@ -126,7 +126,7 @@ void GX_BeginLoadClearImage(void) {
 void GX_LoadClearImageColor(const void *a, u32 b) {
     u8 *p = gClearImageLoadBase;
     if (data_0216f074[0] != -1) {
-        func_0214c990(data_0216f074[0], a, p, b, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], a, p, b, 0, 0);
     } else {
         MemCopyWords(a, p, b);
     }
@@ -135,7 +135,7 @@ void GX_LoadClearImageColor(const void *a, u32 b) {
 void GX_LoadClearImageDepth(const void *a, u32 b) {
     u8 *p = gClearImageLoadBase + 0x20000;
     if (data_0216f074[0] != -1) {
-        func_0214c990(data_0216f074[0], a, p, b, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], a, p, b, 0, 0);
     } else {
         MemCopyWords(a, p, b);
     }
@@ -143,7 +143,7 @@ void GX_LoadClearImageDepth(const void *a, u32 b) {
 
 void GX_EndLoadClearImage(void) {
     if (data_0216f074[0] != -1) {
-        func_0214c920(data_0216f074[0]);
+        MI_WaitDma(data_0216f074[0]);
     }
     GX_SetBankForClearImage(gClearImageLoadBankMask);
     gClearImageLoadBankMask = 0;

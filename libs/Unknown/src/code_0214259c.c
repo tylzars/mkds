@@ -53,7 +53,7 @@ s32 func_02142c98(void *buf, u32 n, u32 size) {
         return 4;
     }
     func_0200ee3c(buf, size);
-    func_0214cc04(n, buf, 0, size);
+    MI_DmaFill32(n, buf, 0, size);
     data_0217eed4 = buf;
     data_0217eed4->mUnk_000 = (u8 *) buf + 0x200;
     data_0217eed4->mUnk_004 = (Unk02142988 *) ((u8 *) data_0217eed4->mUnk_000 + 0x300);
@@ -119,7 +119,7 @@ s32 func_02142ab8(u32 a, u16 b, ...) {
     if (b == 0) {
         func_0200ee58(data_0217eed4->mUnk_00c, 0x100);
         func_0200ee3c(p, 0x100);
-        func_0214cb88(data_0217eed4->mUnk_014, data_0217eed4->mUnk_00c, p, 0x100);
+        MI_DmaCopy32(data_0217eed4->mUnk_014, data_0217eed4->mUnk_00c, p, 0x100);
     }
     *(u16 *) p = a;
     ap = (u32 *) (((u32) &b & ~3) + 4);

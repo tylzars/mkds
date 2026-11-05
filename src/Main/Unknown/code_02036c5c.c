@@ -614,9 +614,9 @@ void func_02037abc(void *a) {
     GxsDispCntBits0To2Write(p->mUnk_0c);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (p->mUnk_04 << 8);
     if (p->mUnk_0a == 1) {
-        func_0214aa58();
-        func_0214a648();
-        func_0214a8ec();
+        G3X_Init();
+        G3X_InitTable();
+        G3X_InitMtxStack();
         reg_G3X_DISP3DCNT &= 0xffffcffd;
         reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 0x10;
         reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 4;
@@ -695,7 +695,7 @@ void func_02037a40(void) {
     t = func_0200f5ac();
     p->mUnk_bc = t;
     if (p->mUnk_0a == 1) {
-        func_0214a9d0();
+        G3X_Reset();
     }
     if (data_usa_02175584 != NULL) {
         data_usa_02175584(0);

@@ -32,8 +32,8 @@ void GxFifoSendWordsInPieces(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     data_02180308.mUnk_08 = b;
     data_02180308.mUnk_0c = c;
     data_02180308.mUnk_14 = arg;
-    func_0214c778(a, b, c, 0);
-    func_0214c920(a);
+    CheckDma0SourceOrLoopForever(a, b, c, 0);
+    MI_WaitDma(a);
     s = IrqDisable();
     data_02180308.mUnk_18 = (*(u32 *) 0x4000600 & 0xc0000000) >> 0x1e;
     data_02180308.mUnk_1c = InterruptHandlerGet(0x200000);
@@ -45,9 +45,9 @@ void GxFifoSendWordsInPieces(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
 }
 
 // Does nothing when data_02180308.mUnk_0c is 0. Otherwise takes n = min(mUnk_0c, 0x1d8), advances mUnk_08 by n and
-// lowers mUnk_0c by n, and calls func_01ffff38 with data_02180308.mUnk_04, the old mUnk_08, 0x4000400 and n >> 2 under
-// 0x84400000 (0xc4400000 and func_0200cb9c(mUnk_04, GxFifoSendWordsInPiecesDone, 0) first when mUnk_0c reached 0), then
-// InterruptFlagWrite(0x200000).
+// lowers mUnk_0c by n, and calls StartDmaTransfer with data_02180308.mUnk_04, the old mUnk_08, 0x4000400 and n >> 2
+// under 0x84400000 (0xc4400000 and SetDmaDoneCallback(mUnk_04, GxFifoSendWordsInPiecesDone, 0) first when mUnk_0c
+// reached 0), then InterruptFlagWrite(0x200000).
 void GxFifoSendNextPiece(void) {
     const u8 *p;
     u32 n;
@@ -63,12 +63,12 @@ void GxFifoSendNextPiece(void) {
     data_02180308.mUnk_0c = data_02180308.mUnk_0c - n;
     data_02180308.mUnk_08 = p + n;
     if (data_02180308.mUnk_0c == 0) {
-        func_0200cb9c(data_02180308.mUnk_04, GxFifoSendWordsInPiecesDone, 0);
-        func_01ffff38(data_02180308.mUnk_04, p, (void *) 0x4000400, 0xc4400000 | (n >> 2));
+        SetDmaDoneCallback(data_02180308.mUnk_04, GxFifoSendWordsInPiecesDone, 0);
+        StartDmaTransfer(data_02180308.mUnk_04, p, (void *) 0x4000400, 0xc4400000 | (n >> 2));
         InterruptFlagWrite(0x200000);
         return;
     }
-    func_01ffff38(data_02180308.mUnk_04, p, (void *) 0x4000400, 0x84400000 | (n >> 2));
+    StartDmaTransfer(data_02180308.mUnk_04, p, (void *) 0x4000400, 0x84400000 | (n >> 2));
     InterruptFlagWrite(0x200000);
 }
 
@@ -88,9 +88,9 @@ void GxFifoSendWordsInPiecesDone(void) {
 }
 
 // Runs f(arg) at once when c is 0. Otherwise waits until data_02180308.mUnk_00 is 0, sets mUnk_00 to 1, stores a, f and
-// arg at mUnk_04, mUnk_10 and mUnk_14, calls func_0214c7e8(a, 0x38000000), func_0214c778(a, b, c, 0) and
-// func_0214c920(a), and installs GxFifoSendWordsDone with func_0200cb9c(a, ..., 0) before calling func_01ffff38 with
-// 0x4000400 as destination.
+// arg at mUnk_04, mUnk_10 and mUnk_14, calls CheckDmaTimingConflictOrLoopForever(a, 0x38000000),
+// CheckDma0SourceOrLoopForever(a, b, c, 0) and MI_WaitDma(a), and installs GxFifoSendWordsDone with
+// SetDmaDoneCallback(a, ..., 0) before calling StartDmaTransfer with 0x4000400 as destination.
 void GxFifoSendWords(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     if (c == 0) {
         if (f != 0) {
@@ -104,11 +104,11 @@ void GxFifoSendWords(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     data_02180308.mUnk_04 = a;
     data_02180308.mUnk_10 = f;
     data_02180308.mUnk_14 = arg;
-    func_0214c7e8(a, 0x38000000);
-    func_0214c778(a, b, c, 0);
-    func_0214c920(a);
-    func_0200cb9c(a, GxFifoSendWordsDone, 0);
-    func_01ffff38(a, b, (void *) 0x4000400, 0xfc400000 | (c >> 2));
+    CheckDmaTimingConflictOrLoopForever(a, 0x38000000);
+    CheckDma0SourceOrLoopForever(a, b, c, 0);
+    MI_WaitDma(a);
+    SetDmaDoneCallback(a, GxFifoSendWordsDone, 0);
+    StartDmaTransfer(a, b, (void *) 0x4000400, 0xfc400000 | (c >> 2));
 }
 
 // Clears data_02180308.mUnk_00 and calls mUnk_10(mUnk_14) when mUnk_10 is not 0.
@@ -122,10 +122,7 @@ void GxFifoSendWordsDone(void) {
     }
 }
 
-// Does nothing when d is 0. Otherwise waits for bit 31 of the word at 0x40000b0 + (a * 3 + 2) * 4 to clear, stores c at
-// 0x40000e0 + a * 4, calls func_01fffe2c with that address as source, b as destination and (d >> 2) | 0x85000000,
-// and waits for the bit to clear again.
-void func_0214cc04(u32 a, void *b, u32 c, u32 d) {
+void MI_DmaFill32(u32 a, void *b, u32 c, u32 d) {
     u32 s;
 
     if (d == 0) {
@@ -135,44 +132,37 @@ void func_0214cc04(u32 a, void *b, u32 c, u32 d) {
     }
     s = IrqDisable();
     *(vu32 *) (0x4000000 + a * 4 + 0xe0) = c;
-    func_01fffe2c(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0x85000000);
+    StartDmaTransferAndChannel0DummyWithoutIrqDisable(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0x85000000);
     IrqRestore(s);
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
 }
 
-// Calls func_0214c778(a, b, d, 0). Does nothing more when d is 0. Otherwise waits for bit 31 of the word at
-// 0x40000b0 + (a * 3 + 2) * 4 to clear, calls func_01fffec4(a, b, c, (d >> 2) | 0x84000000) and waits for the bit to
-// clear.
-void func_0214cb88(u32 a, const void *b, void *c, u32 d) {
-    func_0214c778(a, b, d, 0);
+void MI_DmaCopy32(u32 a, const void *b, void *c, u32 d) {
+    CheckDma0SourceOrLoopForever(a, b, d, 0);
     if (d == 0) {
         return;
     }
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
-    func_01fffec4(a, b, c, (d >> 2) | 0x84000000);
+    StartDmaTransferAndChannel0Dummy(a, b, c, (d >> 2) | 0x84000000);
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
 }
 
-// Like func_0214cb88, but with (d >> 1) | 0x80000000.
-void func_0214cb10(u32 a, const void *b, void *c, u32 d) {
+void MI_DmaCopy16(u32 a, const void *b, void *c, u32 d) {
     if (d == 0) {
         return;
     }
-    func_0214c778(a, b, d, 0);
+    CheckDma0SourceOrLoopForever(a, b, d, 0);
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
-    func_01fffec4(a, b, c, (d >> 1) | 0x80000000);
+    StartDmaTransferAndChannel0Dummy(a, b, c, (d >> 1) | 0x80000000);
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
 }
 
-// Runs f(arg) at once when d is 0. Otherwise calls func_0214c920(a), stores c at 0x40000e0 + a * 4 and calls
-// func_01fffe8c with that address as source, b as destination and (d >> 2) | 0x85000000 (0xc5000000 and
-// func_0200cb9c(a, f, arg) first when f is not 0), all between IrqDisable and IrqRestore.
-void func_0214ca38(u32 a, void *b, u32 c, u32 d, UnkFunc *f, u32 arg) {
+void MI_DmaFill32Async(u32 a, void *b, u32 c, u32 d, UnkFunc *f, u32 arg) {
     u32 s;
 
     if (d == 0) {
@@ -181,43 +171,39 @@ void func_0214ca38(u32 a, void *b, u32 c, u32 d, UnkFunc *f, u32 arg) {
         }
         return;
     }
-    func_0214c920(a);
+    MI_WaitDma(a);
     if (f != 0) {
-        func_0200cb9c(a, f, arg);
+        SetDmaDoneCallback(a, f, arg);
         s = IrqDisable();
         *(vu32 *) (0x4000000 + a * 4 + 0xe0) = c;
-        func_01fffe8c(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0xc5000000);
+        StartDmaTransferWithoutIrqDisable(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0xc5000000);
         IrqRestore(s);
     } else {
         s = IrqDisable();
         *(vu32 *) (0x4000000 + a * 4 + 0xe0) = c;
-        func_01fffe8c(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0x85000000);
+        StartDmaTransferWithoutIrqDisable(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0x85000000);
         IrqRestore(s);
     }
 }
 
-// Calls func_0214c778(a, b, d, 0). When d is 0, runs f(arg) if f is not 0. Otherwise calls func_0214c920(a) and
-// func_01ffff38(a, b, c, (d >> 2) | 0x84000000) (0xc4000000 and func_0200cb9c(a, f, arg) first when f is not 0).
-void func_0214c990(u32 a, const void *b, void *c, u32 d, UnkFunc *f, u32 arg) {
-    func_0214c778(a, b, d, 0);
+void MI_DmaCopy32Async(u32 a, const void *b, void *c, u32 d, UnkFunc *f, u32 arg) {
+    CheckDma0SourceOrLoopForever(a, b, d, 0);
     if (d == 0) {
         if (f != 0) {
             f(arg);
         }
         return;
     }
-    func_0214c920(a);
+    MI_WaitDma(a);
     if (f != 0) {
-        func_0200cb9c(a, f, arg);
-        func_01ffff38(a, b, c, (d >> 2) | 0xc4000000);
+        SetDmaDoneCallback(a, f, arg);
+        StartDmaTransfer(a, b, c, (d >> 2) | 0xc4000000);
     } else {
-        func_01ffff38(a, b, c, (d >> 2) | 0x84000000);
+        StartDmaTransfer(a, b, c, (d >> 2) | 0x84000000);
     }
 }
 
-// Between IrqDisable and IrqRestore: waits for bit 31 of the word at 0x40000b0 + (a * 3 + 2) * 4 to clear, then
-// for a == 0 stores 0 at 0x40000b0 and 0x40000b4 and 0x81400001 at 0x40000b8.
-void func_0214c920(u32 a) {
+void MI_WaitDma(u32 a) {
     u32 s;
     vu32 *d;
 
@@ -233,10 +219,7 @@ void func_0214c920(u32 a) {
     IrqRestore(s);
 }
 
-// Between IrqDisable and IrqRestore: clears bits 9, 11, 12, 13 and then bit 15 of the halfword at
-// 0x40000b0 + a * 12 + 10, reads it twice, then for a == 0 stores 0 at 0x40000b0 and 0x40000b4 and 0x81400001 at
-// 0x40000b8.
-void func_0214c89c(u32 a) {
+void MI_StopDma(u32 a) {
     u32 s;
     vu32 *d;
 
@@ -254,11 +237,7 @@ void func_0214c89c(u32 a) {
     IrqRestore(s);
 }
 
-// For each of the three word groups at 0x40000b8 + i * 12 other than the one at index a: when bit 31 is set and the
-// bits under 0x38000000 differ from b and the pair is not (0x8000000, 0x10000000) either way, calls
-// IrqDisableLoopForever when those bits are one of 0x8000000, 0x10000000, 0x18000000, 0x20000000, 0x28000000,
-// 0x30000000 or 0x38000000.
-void func_0214c7e8(u32 a, u32 b) {
+void CheckDmaTimingConflictOrLoopForever(u32 a, u32 b) {
     s32 i;
     u32 *p;
     u32 v;
@@ -290,9 +269,7 @@ void func_0214c7e8(u32 a, u32 b) {
     }
 }
 
-// Does nothing when a is not 0. Otherwise calls IrqDisableLoopForever when the top byte of b, or of b + c (b - c when d
-// is 0x800000, b when d is any other nonzero value), is 0x04 or at least 0x08.
-void func_0214c778(u32 a, const void *b, u32 c, u32 d) {
+void CheckDma0SourceOrLoopForever(u32 a, const void *b, u32 c, u32 d) {
     u32 x;
     u32 y;
 

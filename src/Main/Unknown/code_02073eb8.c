@@ -60,8 +60,8 @@ void func_02076c50(Camera *a, s32 b) {
     } else {
         c = a->mFar;
     }
-    func_0214b048(a->mFrustumTop, a->mFrustumBottom, a->mFrustumLeft, a->mFrustumRight, a->mNear, c, 0x1000, 0,
-                  &data_usa_02170284);
+    ComputeFrustumMatrix(a->mFrustumTop, a->mFrustumBottom, a->mFrustumLeft, a->mFrustumRight, a->mNear, c, 0x1000, 0,
+                         &data_usa_02170284);
     data_0217029c.mUnk_fc &= ~0x50;
 }
 
@@ -72,7 +72,7 @@ void func_02076bcc(Camera *a) {
     data_021704dc[0] = *b;
     data_021704dc[1] = *(Vec3 *) a;
     data_021704dc[2] = *c;
-    func_0214abb4(b, (Vec3 *) a, c, 0, &data_usa_021702c8);
+    ComputeLookAtMatrix(b, (Vec3 *) a, c, 0, &data_usa_021702c8);
     data_0217029c.mUnk_fc &= ~0xe8;
 }
 

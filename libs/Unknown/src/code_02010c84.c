@@ -146,7 +146,7 @@ void func_0201261c(Unk02011624 *a, u32 b) {
         reg_G3X_GXFIFO = 0x151110;
         reg_G3X_GXFIFO = 0;
         reg_G3X_GXFIFO = 0;
-        while (func_0214a7a4(mm) != 0) {
+        while (G3X_GetClipMtx(mm) != 0) {
         }
         if (data_0217029c.mUnk_fc & 1) {
             Matrix4x3ToMatrix4x4(func_02010e2c(), m2);
@@ -237,7 +237,7 @@ void func_020122cc(Unk02011624 *a, u32 b) {
         reg_G3X_GXFIFO = 0x151110;
         reg_G3X_GXFIFO = 0;
         reg_G3X_GXFIFO = 0;
-        while (func_0214a7a4(mm) != 0) {
+        while (G3X_GetClipMtx(mm) != 0) {
         }
         if (data_0217029c.mUnk_fc & 1) {
             Matrix4x3ToMatrix4x4(func_02010e2c(), m2);
@@ -340,7 +340,7 @@ void func_02011c58(Unk02011624 *a) {
             t.mUnk_30[8] += (v * r[8]) >> 12;
         }
         if (!d) {
-            while (func_0214a7a4(m) != 0) {
+            while (G3X_GetClipMtx(m) != 0) {
             }
             reg_G3_MTX_MODE = 2;
             GxFifoWrite0x1aThenMemCopy9Words(q + k * 0x54 + 0x30);
@@ -361,7 +361,7 @@ void func_02011c58(Unk02011624 *a) {
         t.mUnk_00[11] += (v * m[14]) >> 12;
         p += 3;
         if (!d) {
-            while (func_0214a75c(r) != 0) {
+            while (G3X_GetVectorMtx(r) != 0) {
             }
         }
     }
@@ -565,7 +565,7 @@ void func_02011624(Unk02011624 *a) {
             reg_G3_MTX_MODE = 0;
             reg_G3_MTX_PUSH = 0;
             reg_G3_MTX_IDENTITY = 0;
-            while (func_0214a7a4(mm) != 0) {
+            while (G3X_GetClipMtx(mm) != 0) {
             }
             reg_G3_MTX_POP = 1;
             reg_G3_MTX_MODE = 3;

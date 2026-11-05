@@ -14,12 +14,12 @@ void func_020ae6d4(void *c, void *d) {
     if (a != NULL) {
         a->mUnk_400 = 0;
         a->mUnk_402 = 0;
-        func_0214cc04(3, a, 0xc0, 0x400);
+        MI_DmaFill32(3, a, 0xc0, 0x400);
     }
     if (b != NULL) {
         b->mUnk_400 = 0;
         b->mUnk_402 = 0;
-        func_0214cc04(3, b, 0xc0, 0x400);
+        MI_DmaFill32(3, b, 0xc0, 0x400);
     }
 }
 

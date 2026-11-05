@@ -375,8 +375,8 @@ void RefreshCameraProjection(Camera *p) {
     }
     func_020d4a20(a, b, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar);
     *(u32 *) 0x4000440 = 0;
-    func_0214b048(p->mFrustumTop, p->mFrustumBottom, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar, 0x1000, 1,
-                  (Unk0214ad4c *) data_0217acc0);
+    ComputeFrustumMatrix(p->mFrustumTop, p->mFrustumBottom, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar,
+                         0x1000, 1, (Unk0214ad4c *) data_0217acc0);
 }
 
 void UpdateCameraViewWithWorldUp(Camera *p) {
@@ -409,7 +409,7 @@ void UpdateCameraViewWithWorldUp(Camera *p) {
     e.x = p->mLookAt.x >> 4;
     e.y = p->mLookAt.y >> 4;
     e.z = p->mLookAt.z >> 4;
-    func_0214abb4(&d, &p->mUp, &e, 1, &p->mViewMatrix);
+    ComputeLookAtMatrix(&d, &p->mUp, &e, 1, &p->mViewMatrix);
 }
 
 // Per frame for each camera in use: axes, shake, view position and look-at in 1/16 scale, loads the view matrix.
@@ -452,5 +452,5 @@ void UpdateCameraView(Camera *p) {
     p->mViewLookAt.y = d.y >> 4;
     p->mViewLookAt.z = d.z >> 4;
     *(u32 *) 0x4000440 = 2;
-    func_0214abb4(&p->mViewPos, &p->mUp, &p->mViewLookAt, 1, &p->mViewMatrix);
+    ComputeLookAtMatrix(&p->mViewPos, &p->mUp, &p->mViewLookAt, 1, &p->mViewMatrix);
 }
