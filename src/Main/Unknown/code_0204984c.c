@@ -318,9 +318,9 @@ void func_02049f60(void) {
     } else {
         func_02108c80();
     }
-    func_0214f4bc(&data_021759cc->mUnk_0cc);
-    func_0214f4a4(&data_021759cc->mUnk_0d8);
-    func_0214f72c(1);
+    PM_DeletePreSleepCallback(&data_021759cc->mUnk_0cc);
+    PM_DeletePostSleepCallback(&data_021759cc->mUnk_0d8);
+    PM_SetLCDPower(1);
     if (a != FALSE) {
         switch (data_021759cc->mUnk_118) {
             case 1:
@@ -346,7 +346,7 @@ void func_02049f60(void) {
             f = gWiFiSession->mUnk_0008.mState == 0;
         }
         if (f != 0 && ((*(vu16 *) 0x027fffa8 & 0x8000) >> 15)) {
-            func_0214f83c(12, 0, 0);
+            PM_GoSleepMode(12, 0, 0);
         }
         g = func_0212b0b8();
         func_0210823c();
@@ -452,8 +452,8 @@ void func_02049c3c(void *a) {
     ThreadSetRunnable(&data_021759cc->mUnk_004);
     func_02049c3c_inline2(&data_021759cc->mUnk_0cc, func_02049d8c);
     func_02049c3c_inline2(&data_021759cc->mUnk_0d8, (void (*)(void *)) func_02049d54);
-    func_0214f504(&data_021759cc->mUnk_0cc);
-    func_0214f4d4(&data_021759cc->mUnk_0d8);
+    PM_AppendPreSleepCallback(&data_021759cc->mUnk_0cc);
+    PM_AppendPostSleepCallback(&data_021759cc->mUnk_0d8);
 }
 
 u32 func_02049b6c(void) {

@@ -4,9 +4,9 @@
 void func_ov003_021d3278(void) {
     int v1;
     int v2[1];
-    v1 = func_0214f5f4((u32 *) v2);
+    v1 = PM_GetLEDPattern((u32 *) v2);
     if ((v1 == 0) && (v2[0] != 0xf)) {
-        func_0214f680(0xf);
+        SendPowerLedPattern(0xf);
     }
     return;
 }

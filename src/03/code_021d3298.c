@@ -50,7 +50,7 @@ void func_ov003_021d332c(void) {
     *(u32 *) 0x4001014 = 0;
     *(u32 *) 0x4001018 = 0;
     *(u32 *) 0x400101c = 0;
-    func_0214f72c(1);
+    PM_SetLCDPower(1);
 }
 
 void func_ov003_021d3298(void) {

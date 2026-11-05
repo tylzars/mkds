@@ -52,7 +52,7 @@ void func_ov003_021c33e4(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_0200fd10((u32) (((u32) 0x01000000u)));
-        func_0214fb54();
+        PM_ForceToPowerOff();
     }
     return;
 }

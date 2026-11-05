@@ -10,8 +10,8 @@ u32 data_0217d1bc;
 
 void func_0210f1d4(void) {
     func_0214f418();
-    func_021500a0();
-    func_0214fb3c(1);
+    PM_Init();
+    PM_SetAmp(1);
     data_0217d1bc = 1;
 }
 
@@ -21,8 +21,8 @@ void func_0210f130(Unk0210f090 *p) {
 
     if (data_0217d1bc == 0) {
         func_0214f418();
-        func_021500a0();
-        func_0214fb3c(1);
+        PM_Init();
+        PM_SetAmp(1);
         data_0217d1bc = 1;
     }
     p->mUnk_41c = 0;
@@ -39,5 +39,5 @@ void func_0210f130(Unk0210f090 *p) {
     q->mUnk_18 = 0;
     func_02020430((Unk02173290 *) q);
     func_020203d4(0);
-    func_0214fb24(3);
+    PM_SetAmpGain(3);
 }

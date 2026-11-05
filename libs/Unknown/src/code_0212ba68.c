@@ -27,8 +27,8 @@ void func_0212baa8(void) {
     data_0217d420.mArg = 0;
     data_0217d42c.mCallback = func_0212b9ec;
     data_0217d42c.mArg = 0;
-    func_0214f4ec(&data_0217d420);
-    func_0214f4d4(&data_0217d42c);
+    PM_PrependPreSleepCallback(&data_0217d420);
+    PM_AppendPostSleepCallback(&data_0217d42c);
     func_0212bb50();
     func_0212d0ec();
     func_0212c310();

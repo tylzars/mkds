@@ -7,7 +7,7 @@
 
 void func_02146ab4(void) {
     if (((s32) (*(vu16 *) 0x027FFFA8 & 0x8000)) >> 15 != 0) {
-        func_0214fb54();
+        PM_ForceToPowerOff();
     }
     func_02146a50(1, 1);
     IrqDisableLoopForever();

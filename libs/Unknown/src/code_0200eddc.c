@@ -165,7 +165,7 @@ void func_0200eec0(void) {
     func_0200fd74();
     func_0200c7f4();
     func_02146154();
-    func_021500a0();
+    PM_Init();
 }
 
 // clang-format off

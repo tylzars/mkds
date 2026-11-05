@@ -6,33 +6,33 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "code_0214d5b8.h"
 
-u16 data_02180430;
+u16 gPowerInitialized;
 vu32 data_02180438;
-CallbackEntry *data_02180444;
+CallbackEntry *gPowerPostSleepCallbacks;
 u32 data_02180440;
-CallbackEntry *data_0218043c;
-vu32 data_02180434;
-Unk0214f630 data_02180448;
+CallbackEntry *gPowerPreSleepCallbacks;
+vu32 gPowerSleepHandshakeReplyReceived;
+PowerCommand gPowerCommand;
 ThreadLock data_02180458;
-Unk0214fe10 data_02180470[4];
+PowerRegisterSlot gPowerRegisterSlots[4];
 
-int func_021501d8(void) {
+int TryLockPowerCommand(void) {
     u32 v;
 
     v = IrqDisable();
-    if (data_02180448.mUnk_00 != 0) {
+    if (gPowerCommand.mLocked != 0) {
         IrqRestore(v);
         return 0;
     }
-    data_02180448.mUnk_00 = 1;
+    gPowerCommand.mLocked = 1;
     IrqRestore(v);
     return 1;
 }
 
-void func_021501c0(void) {
+void WaitPowerCommandDone(void) {
     vu32 *p;
 
-    p = &data_02180448.mUnk_00;
+    p = &gPowerCommand.mLocked;
     while (*p != 0) {
     }
 }
@@ -41,51 +41,51 @@ void WordStore(u32 a, u32 *p) {
     *p = a;
 }
 
-void func_02150164(u32 a) {
+void FinishPowerCommand(u32 a) {
     u32 f;
     void (*fn)(u32 a, u32 *b);
     u32 *arg;
 
-    f = data_02180448.mUnk_00;
-    fn = data_02180448.mUnk_04;
-    arg = data_02180448.mUnk_08;
+    f = gPowerCommand.mLocked;
+    fn = gPowerCommand.mCallback;
+    arg = gPowerCommand.mCallbackArg;
     if (f != 0) {
-        data_02180448.mUnk_00 = 0;
+        gPowerCommand.mLocked = 0;
     }
     if (fn == 0) {
         return;
     }
-    data_02180448.mUnk_04 = 0;
+    gPowerCommand.mCallback = 0;
     fn(a, arg);
 }
 
-void func_021500a0(void) {
+void PM_Init(void) {
     int i;
 
-    if (data_02180430 != 0) {
+    if (gPowerInitialized != 0) {
         return;
     }
-    data_02180430 = 1;
-    data_02180448.mUnk_00 = 0;
-    data_02180448.mUnk_04 = 0;
+    gPowerInitialized = 1;
+    gPowerCommand.mLocked = 0;
+    gPowerCommand.mCallback = 0;
     PxiInit();
     while (PxiCallbackBitIsSet(8, 1) == 0) {
     }
-    PxiCallbackSet(8, func_0214ffb4);
+    PxiCallbackSet(8, ReceivePowerReply);
     for (i = 0; i < 4; i++) {
-        data_02180470[i].mUnk_00 = 0;
+        gPowerRegisterSlots[i].mReplyReceived = 0;
     }
     ThreadLockInit(&data_02180458);
     data_02180440 = *(u32 *) 0x27ffc3c;
 }
 
-void func_0214ffb4(u32 a, u32 b, u32 c) {
+void ReceivePowerReply(u32 a, u32 b, u32 c) {
     u16 v;
     u16 t;
     u32 *p;
 
     if (c != 0) {
-        func_02150164(2);
+        FinishPowerCommand(2);
         return;
     }
     t = (b & 0x7f00) >> 8;
@@ -95,101 +95,101 @@ void func_0214ffb4(u32 a, u32 b, u32 c) {
         u16 w;
 
         w = v & 0xff;
-        q = data_02180470[t - 0x70].mUnk_04;
+        q = gPowerRegisterSlots[t - 0x70].mBuffer;
         if (q != 0) {
             *q = w;
         }
-        data_02180470[t - 0x70].mUnk_00 = 1;
+        gPowerRegisterSlots[t - 0x70].mReplyReceived = 1;
         v = 0;
     } else if (t == 0x60) {
-        data_02180434 = 1;
+        gPowerSleepHandshakeReplyReceived = 1;
     } else if (t == 0x62) {
         data_02180438 = 1;
     } else if (t == 0x67) {
-        p = data_02180448.mUnk_0c;
+        p = gPowerCommand.mLedPatternBuffer;
         if (p != 0) {
             *p = v;
         }
         v = 0;
     }
-    func_02150164(v);
+    FinishPowerCommand(v);
 }
 
-int func_0214fefc(u32 a, u16 b) {
-    if (func_021501d8() == 0) {
+int SendPowerSleepRequest(u32 a, u16 b) {
+    if (TryLockPowerCommand() == 0) {
         return 1;
     }
-    data_02180434 = 0;
-    func_0214fa7c(0x3006000);
-    while (data_02180434 == 0) {
+    gPowerSleepHandshakeReplyReceived = 0;
+    SendPowerFifoWord(0x3006000);
+    while (gPowerSleepHandshakeReplyReceived == 0) {
     }
-    data_02180434 = 0;
+    gPowerSleepHandshakeReplyReceived = 0;
     data_02180438 = 0;
-    func_0214f74c(0, 2, 0, 0);
-    func_0214fa7c((a & 0xff) | 0x2006100);
-    func_0214fa7c((b & 0xffff) | 0x1010000);
+    TrySetLcdPowerAndLed(0, 2, 0, 0);
+    SendPowerFifoWord((a & 0xff) | 0x2006100);
+    SendPowerFifoWord((b & 0xffff) | 0x1010000);
     return 0;
 }
 
-int func_0214fe88(u32 a, void (*fn)(u32 a, u32 *b), u32 *arg) {
-    if (func_021501d8() == 0) {
+int PM_SendUtilityCommandAsync(u32 a, void (*fn)(u32 a, u32 *b), u32 *arg) {
+    if (TryLockPowerCommand() == 0) {
         return 1;
     }
-    data_02180448.mUnk_04 = fn;
-    data_02180448.mUnk_08 = arg;
-    func_0214fa7c(((a >> 16) & 0xff) | 0x2006300);
-    func_0214fa7c((a & 0xffff) | 0x1010000);
+    gPowerCommand.mCallback = fn;
+    gPowerCommand.mCallbackArg = arg;
+    SendPowerFifoWord(((a >> 16) & 0xff) | 0x2006300);
+    SendPowerFifoWord((a & 0xffff) | 0x1010000);
     return 0;
 }
 
-int func_0214fe10(u32 a, u16 *p, void (*fn)(u32 a, u32 *b), u32 *arg) {
-    if (func_021501d8() == 0) {
+int ReadPowerRegisterAsync(u32 a, u16 *p, void (*fn)(u32 a, u32 *b), u32 *arg) {
+    if (TryLockPowerCommand() == 0) {
         return 1;
     }
-    data_02180470[a].mUnk_00 = 0;
-    data_02180448.mUnk_04 = fn;
-    data_02180448.mUnk_08 = arg;
-    data_02180470[a].mUnk_04 = p;
-    func_0214fa7c((a & 0xff) | 0x3006500);
+    gPowerRegisterSlots[a].mReplyReceived = 0;
+    gPowerCommand.mCallback = fn;
+    gPowerCommand.mCallbackArg = arg;
+    gPowerRegisterSlots[a].mBuffer = p;
+    SendPowerFifoWord((a & 0xff) | 0x3006500);
     return 0;
 }
 
-int func_0214fdd4(u32 a, u16 *p) {
+int ReadPowerRegister(u32 a, u16 *p) {
     u32 v;
     int r;
 
-    r = func_0214fe10(a, p, WordStore, &v);
+    r = ReadPowerRegisterAsync(a, p, WordStore, &v);
     if (r != 0) {
         return r;
     }
-    func_021501c0();
+    WaitPowerCommandDone();
     return v;
 }
 
-int func_0214fd54(u32 a, u16 b, void (*fn)(u32 a, u32 *b), u32 *arg) {
-    if (func_021501d8() == 0) {
+int WritePowerRegisterAsync(u32 a, u16 b, void (*fn)(u32 a, u32 *b), u32 *arg) {
+    if (TryLockPowerCommand() == 0) {
         return 1;
     }
-    data_02180448.mUnk_04 = fn;
-    data_02180448.mUnk_08 = arg;
-    func_0214fa7c((a & 0xff) | 0x2006400);
-    func_0214fa7c((b & 0xffff) | 0x1010000);
+    gPowerCommand.mCallback = fn;
+    gPowerCommand.mCallbackArg = arg;
+    SendPowerFifoWord((a & 0xff) | 0x2006400);
+    SendPowerFifoWord((b & 0xffff) | 0x1010000);
     return 0;
 }
 
-int func_0214fd18(u32 a, u16 b) {
+int WritePowerRegister(u32 a, u16 b) {
     u32 v;
     int r;
 
-    r = func_0214fd54(a, b, WordStore, &v);
+    r = WritePowerRegisterAsync(a, b, WordStore, &v);
     if (r != 0) {
         return r;
     }
-    func_021501c0();
+    WaitPowerCommandDone();
     return v;
 }
 
-int func_0214fcb0(u32 a, void (*fn)(u32 a, u32 *b), u32 *arg) {
+int SetPowerLedAsync(u32 a, void (*fn)(u32 a, u32 *b), u32 *arg) {
     u32 b;
 
     switch (a) {
@@ -209,22 +209,22 @@ int func_0214fcb0(u32 a, void (*fn)(u32 a, u32 *b), u32 *arg) {
     if (b == 0) {
         return 0xffff;
     }
-    return func_0214fe88(b, fn, arg);
+    return PM_SendUtilityCommandAsync(b, fn, arg);
 }
 
-int func_0214fc74(u32 a) {
+int SetPowerLed(u32 a) {
     u32 v;
     int r;
 
-    r = func_0214fcb0(a, WordStore, &v);
+    r = SetPowerLedAsync(a, WordStore, &v);
     if (r != 0) {
         return r;
     }
-    func_021501c0();
+    WaitPowerCommandDone();
     return v;
 }
 
-int func_0214fbe4(u32 a, u32 b, void (*fn)(u32 a, u32 *b), u32 *arg) {
+int PM_SetBackLightAsync(u32 a, u32 b, void (*fn)(u32 a, u32 *b), u32 *arg) {
     u32 c;
 
     c = 0;
@@ -253,50 +253,50 @@ int func_0214fbe4(u32 a, u32 b, void (*fn)(u32 a, u32 *b), u32 *arg) {
     if (c == 0) {
         return 0xffff;
     }
-    return func_0214fe88(c, fn, arg);
+    return PM_SendUtilityCommandAsync(c, fn, arg);
 }
 
-int func_0214fba8(u32 a, u32 b) {
+int PM_SetBackLight(u32 a, u32 b) {
     u32 v;
     int r;
 
-    r = func_0214fbe4(a, b, WordStore, &v);
+    r = PM_SetBackLightAsync(a, b, WordStore, &v);
     if (r != 0) {
         return r;
     }
-    func_021501c0();
+    WaitPowerCommandDone();
     return v;
 }
 
-int func_0214fb90(void (*fn)(u32 a, u32 *b), u32 *arg) {
-    return func_0214fe88(0xe, fn, arg);
+int PM_ForceToPowerOffAsync(void (*fn)(u32 a, u32 *b), u32 *arg) {
+    return PM_SendUtilityCommandAsync(0xe, fn, arg);
 }
 
-int func_0214fb54(void) {
+int PM_ForceToPowerOff(void) {
     u32 v;
     int r;
 
-    r = func_0214fb90(WordStore, &v);
+    r = PM_ForceToPowerOffAsync(WordStore, &v);
     if (r != 0) {
         return r;
     }
-    func_021501c0();
+    WaitPowerCommandDone();
     return v;
 }
 
-int func_0214fb3c(u32 a) {
-    return func_0214fd18(2, a);
+int PM_SetAmp(u32 a) {
+    return WritePowerRegister(2, a);
 }
 
-int func_0214fb24(u32 a) {
-    return func_0214fd18(3, a);
+int PM_SetAmpGain(u32 a) {
+    return WritePowerRegister(3, a);
 }
 
-int func_0214faac(u32 *a, u32 *b) {
+int PM_GetBackLight(u32 *a, u32 *b) {
     u16 v;
     int r;
 
-    r = func_0214fdd4(0, &v);
+    r = ReadPowerRegister(0, &v);
     if (r != 0) {
         return r;
     }
@@ -309,7 +309,7 @@ int func_0214faac(u32 *a, u32 *b) {
     return r;
 }
 
-void func_0214fa7c(u32 a) {
+void SendPowerFifoWord(u32 a) {
     while (PxiSendFifoWord(8, a, 0) != 0) {
     }
 }
@@ -318,7 +318,7 @@ static inline u32 func_0214f83c_inline(void) {
     return *(vu32 *) 0x27ffc3c;
 }
 
-void func_0214f83c(u32 a, u32 b, u32 c) {
+void PM_GoSleepMode(u32 a, u32 b, u32 c) {
     u32 v0;
     u32 v1;
     u32 v2;
@@ -333,7 +333,7 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     u16 tmp;
 
     d = 0;
-    CallbackListRun(data_0218043c);
+    CallbackListRun(gPowerPreSleepCallbacks);
     saved = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 0;
     v0 = IrqDisable();
@@ -354,9 +354,9 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     }
     k0 = *(vu32 *) 0x4000000;
     k1 = *(vu32 *) 0x4001000;
-    v2 = func_0214f710();
-    func_0214faac(&w0, &w1);
-    func_0214fba8(2, 0);
+    v2 = PM_GetLCDPower();
+    PM_GetBackLight(&w0, &w1);
+    PM_SetBackLight(2, 0);
     t = func_0214f83c_inline();
     while (t == func_0214f83c_inline()) {
     }
@@ -369,7 +369,7 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     while (t == func_0214f83c_inline()) {
     }
     g = (u16) (a | (w0 << 5) | (w1 << 6));
-    while (func_0214fefc(g, (u16) (b | c)) != 0) {
+    while (SendPowerSleepRequest(g, (u16) (b | c)) != 0) {
     }
     func_0200fd04();
     func_0200fd10(0x332340);
@@ -380,9 +380,9 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     }
     if (d == 0) {
         if (v2 == 1) {
-            func_0214f74c(1, 1, 1, 0);
+            TrySetLcdPowerAndLed(1, 1, 1, 0);
         } else {
-            func_0214fc74(1);
+            SetPowerLed(1);
         }
         *(vu32 *) 0x4000000 = k0;
         *(vu32 *) 0x4001000 = k1;
@@ -393,12 +393,12 @@ void func_0214f83c(u32 a, u32 b, u32 c) {
     tmp = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = saved;
     if (d != 0) {
-        func_0214fb54();
+        PM_ForceToPowerOff();
     }
-    CallbackListRun(data_02180444);
+    CallbackListRun(gPowerPostSleepCallbacks);
 }
 
-int func_0214f74c(u32 a, u32 b, u32 c, u32 d) {
+int TrySetLcdPowerAndLed(u32 a, u32 b, u32 c, u32 d) {
     switch (a) {
         case 1:
             if (c == 0) {
@@ -408,9 +408,9 @@ int func_0214f74c(u32 a, u32 b, u32 c, u32 d) {
             }
             if (b != 0) {
                 if (d != 0) {
-                    func_0214fc74(b);
+                    SetPowerLed(b);
                 } else {
-                    func_0214fcb0(b, 0, 0);
+                    SetPowerLedAsync(b, 0, 0);
                 }
             }
             *(vu16 *) 0x4000304 |= 1;
@@ -420,9 +420,9 @@ int func_0214f74c(u32 a, u32 b, u32 c, u32 d) {
             data_02180440 = *(vu32 *) 0x27ffc3c;
             if (b != 0) {
                 if (d != 0) {
-                    func_0214fc74(b);
+                    SetPowerLed(b);
                 } else {
-                    func_0214fcb0(b, 0, 0);
+                    SetPowerLedAsync(b, 0, 0);
                 }
             }
             break;
@@ -430,59 +430,59 @@ int func_0214f74c(u32 a, u32 b, u32 c, u32 d) {
     return 1;
 }
 
-int func_0214f72c(u32 a) {
+int PM_SetLCDPower(u32 a) {
     if (a != 1) {
         a = 0;
     }
-    return func_0214f74c(a, 0, 0, 1);
+    return TrySetLcdPowerAndLed(a, 0, 0, 1);
 }
 
-int func_0214f710(void) {
+int PM_GetLCDPower(void) {
     return (*(vu16 *) 0x4000304 & 1) != 0 ? 1 : 0;
 }
 
-int func_0214f6bc(u32 a, void (*fn)(u32 a, u32 *b), u32 *arg) {
-    if (func_021501d8() == 0) {
+int SendPowerLedPatternAsync(u32 a, void (*fn)(u32 a, u32 *b), u32 *arg) {
+    if (TryLockPowerCommand() == 0) {
         return 1;
     }
-    data_02180448.mUnk_04 = fn;
-    data_02180448.mUnk_08 = arg;
-    func_0214fa7c((a & 0xff) | 0x3006600);
+    gPowerCommand.mCallback = fn;
+    gPowerCommand.mCallbackArg = arg;
+    SendPowerFifoWord((a & 0xff) | 0x3006600);
     return 0;
 }
 
-int func_0214f680(u32 a) {
+int SendPowerLedPattern(u32 a) {
     u32 v;
     int r;
 
-    r = func_0214f6bc(a, WordStore, &v);
+    r = SendPowerLedPatternAsync(a, WordStore, &v);
     if (r != 0) {
         return r;
     }
-    func_021501c0();
+    WaitPowerCommandDone();
     return v;
 }
 
-int func_0214f630(u32 *p, void (*fn)(u32 a, u32 *b), u32 *arg) {
-    if (func_021501d8() == 0) {
+int PM_GetLEDPatternAsync(u32 *p, void (*fn)(u32 a, u32 *b), u32 *arg) {
+    if (TryLockPowerCommand() == 0) {
         return 1;
     }
-    data_02180448.mUnk_04 = fn;
-    data_02180448.mUnk_08 = arg;
-    data_02180448.mUnk_0c = p;
-    func_0214fa7c(0x3006700);
+    gPowerCommand.mCallback = fn;
+    gPowerCommand.mCallbackArg = arg;
+    gPowerCommand.mLedPatternBuffer = p;
+    SendPowerFifoWord(0x3006700);
     return 0;
 }
 
-int func_0214f5f4(u32 *p) {
+int PM_GetLEDPattern(u32 *p) {
     u32 v;
     int r;
 
-    r = func_0214f630(p, WordStore, &v);
+    r = PM_GetLEDPatternAsync(p, WordStore, &v);
     if (r != 0) {
         return r;
     }
-    func_021501c0();
+    WaitPowerCommandDone();
     return v;
 }
 
@@ -551,22 +551,22 @@ void CallbackListRun(CallbackEntry *p) {
     } while (p != 0);
 }
 
-void func_0214f504(CallbackEntry *p) {
-    CallbackListAppend(&data_0218043c, p);
+void PM_AppendPreSleepCallback(CallbackEntry *p) {
+    CallbackListAppend(&gPowerPreSleepCallbacks, p);
 }
 
-void func_0214f4ec(CallbackEntry *p) {
-    CallbackListPrepend(&data_0218043c, p);
+void PM_PrependPreSleepCallback(CallbackEntry *p) {
+    CallbackListPrepend(&gPowerPreSleepCallbacks, p);
 }
 
-void func_0214f4d4(CallbackEntry *p) {
-    CallbackListAppend(&data_02180444, p);
+void PM_AppendPostSleepCallback(CallbackEntry *p) {
+    CallbackListAppend(&gPowerPostSleepCallbacks, p);
 }
 
-void func_0214f4bc(CallbackEntry *p) {
-    CallbackListRemove(&data_0218043c, p);
+void PM_DeletePreSleepCallback(CallbackEntry *p) {
+    CallbackListRemove(&gPowerPreSleepCallbacks, p);
 }
 
-void func_0214f4a4(CallbackEntry *p) {
-    CallbackListRemove(&data_02180444, p);
+void PM_DeletePostSleepCallback(CallbackEntry *p) {
+    CallbackListRemove(&gPowerPostSleepCallbacks, p);
 }

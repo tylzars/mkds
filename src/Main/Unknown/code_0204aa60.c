@@ -71,14 +71,14 @@ s32 func_0204aab4(s32 a, s32 b) {
         d = 0;
     }
     if (c != p->mUnk_48) {
-        if (func_0214fba8(0, c) == 0) {
+        if (PM_SetBackLight(0, c) == 0) {
             data_021759d0->mUnk_48 = c;
         } else {
             r = FALSE;
         }
     }
     if (d != data_021759d0->mUnk_4c) {
-        if (func_0214fba8(1, d) == 0) {
+        if (PM_SetBackLight(1, d) == 0) {
             data_021759d0->mUnk_4c = d;
         } else {
             r = FALSE;

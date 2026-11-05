@@ -345,7 +345,7 @@ Inline getters and helpers:
 - A value assigned in both arms of an if/else that takes its register too early: give one arm's value its own local,
   declared before the local it swaps with (func_020b5ae8).
 - A narrow local converted where it is passed to a call can take its register before the local it swaps with: declare it
-  `u32`, put the narrowing cast at its assignment, and declare it first (func_0214f83c).
+  `u32`, put the narrowing cast at its assignment, and declare it first (PM_GoSleepMode).
 - An `s32` local passed to a `u32` parameter inside a loop: declare it `u32` (func_02106580).
 - A local whose register must stay apart from a pointer's: assign it earlier, before the preceding test (func_02082750).
 - Two values that swap registers: declare the one with the lower register in the original later (`q` before `p`, `s`
@@ -516,7 +516,7 @@ Expression shapes:
 - `x == f()` compiled with the compare operands the other way round: put the result in a local and write it on the left,
   `k = f(); if (k == x)` (func_02151b38).
 - `cmp t, reg` with the hardware word read before `t`: read the word through a static inline helper and write `t ==
-  helper()` (func_0214f83c).
+  helper()` (PM_GoSleepMode).
 - Stores to one global array in a different order than ours, with two shifted values in each other's registers: write
   the stores in index order (func_02011624).
 - A bit-field update that reads the value before the word: put the value in a local first; reuse one local for the

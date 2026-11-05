@@ -24,8 +24,8 @@ void func_0212c948(Unk0212c7f0 *p) {
     if (p->mUnk_24_1) {
         return;
     }
-    func_0214f4ec(&p->mUnk_08);
-    func_0214f4d4(&p->mUnk_14);
+    PM_PrependPreSleepCallback(&p->mUnk_08);
+    PM_AppendPostSleepCallback(&p->mUnk_14);
     p->mUnk_24_1 = 1;
 }
 
@@ -53,8 +53,8 @@ void func_0212c824(Unk0212c7f0 *p) {
 
     if (p->mUnk_24_1) {
         func_02020bbc(p->mUnk_44, 0, 1 << p->mUnk_40, 0);
-        func_0214f4bc(&p->mUnk_08);
-        func_0214f4a4(&p->mUnk_14);
+        PM_DeletePreSleepCallback(&p->mUnk_08);
+        PM_DeletePostSleepCallback(&p->mUnk_14);
         p->mUnk_24_1 = 0;
         r = func_02021114();
         PxiCommandSendPending(1);
