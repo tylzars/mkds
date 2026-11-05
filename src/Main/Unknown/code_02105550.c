@@ -846,7 +846,7 @@ void func_02107010(void) {
             }
             data_0217c7b0 = 1;
         }
-        if (data_021759c0->mMode != 2) {
+        if (data_021759c0->mMode != MODE_BATTLE) {
             func_02110534(gCourseMap->mUnk_104);
             data_0217c814.mUnk_14 = func_02044618();
         }
@@ -1001,7 +1001,7 @@ void func_02106ab8(void) {
             return;
         }
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         return;
     }
     data_0217c814.mUnk_15 = data_0217c814.mUnk_15 + 1;
@@ -1165,7 +1165,7 @@ void func_02106580(void) {
             func_02111024();
             break;
     }
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         v = &data_0217d07c;
         if (func_0210f858() != 0) {
             func_0210f780(v);

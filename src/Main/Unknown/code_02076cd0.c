@@ -148,7 +148,7 @@ void func_020777ac(u32 a) {
     if (data_021759c0->mUnk_00c == 6) {
         gEntryCamera->mCourseMapCamera = gCourseMap->mCameras;
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         gEntryCamera->mCourseMapCamera = gCourseMap->mFirstKind7EntryInMode2;
         if (gEntryCamera->mCourseMapCamera != NULL) {
             n = 0;

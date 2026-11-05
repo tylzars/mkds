@@ -164,7 +164,7 @@ void func_020e9d10(void) {
     if (data_0217b9ec.mUnk_00e != 0) {
         return;
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         return;
     }
     if (data_021759c0->mMode != MODE_MISSION_RUN && gRaceProgress->mUnk_000[data_0217b888].mStatus == 1 &&

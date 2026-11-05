@@ -55,7 +55,7 @@ void func_020bbbb4(void) {
         x = func_020b4d9c();
         GetKartLapTime(x, func_020b4d2c(), &a, &b, &c);
     } else {
-        if (data_021759c0->mMode != 2 && IsKartEnded(func_020b4d9c()) != 0) {
+        if (data_021759c0->mMode != MODE_BATTLE && IsKartEnded(func_020b4d9c()) != 0) {
             GetKartFinishTime(func_020b4d9c(), &a, &b, &c);
         } else {
             GetRaceClockTime(&a, &b, &c);

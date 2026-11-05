@@ -446,7 +446,7 @@ s32 LoadCourseMapRespawnsData(void *a, ...) {
     h = GetHeap(func_020364e8());
     gCourseMap->mRespawnCount = ReadCourseMapSectionCount(&a);
     gCourseMap->mRespawns = a;
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         n = gCourseMap->mRespawnCount;
         gCourseMap->mRespawnIndexBySlot = HeapAlloc(h, n * 2);
         gCourseMap->mNextRespawnSlot = 0;
@@ -774,7 +774,7 @@ s32 func_02042170(void *a, ...) {
         if (gCourseMap->mFirstKind6Entry == NULL && e->mKind == 6) {
             gCourseMap->mFirstKind6Entry = e;
         }
-        if (data_021759c0->mMode == 2 && gCourseMap->mFirstKind7EntryInMode2 == NULL && e->mKind == 7) {
+        if (data_021759c0->mMode == MODE_BATTLE && gCourseMap->mFirstKind7EntryInMode2 == NULL && e->mKind == 7) {
             gCourseMap->mFirstKind7EntryInMode2 = e;
         }
         if (data_021759c0->mMode == MODE_MISSION_RUN && gCourseMap->mFirstKind8EntryInMode4 == NULL && e->mKind == 8) {

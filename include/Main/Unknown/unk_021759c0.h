@@ -43,7 +43,16 @@ typedef struct KartEntry {
     /* 08 */ Unk021759c0_70 mPlayer;
 } KartEntry;
 
-// Values of the mMode member of Unk021759c0 and of Unk021759c0_1e8 (the other values stay literals).
+// Values of the mMode member of Unk021759c0 and of Unk021759c0_1e8 (the other values stay literals). The member is set
+// when the race is confirmed and is 0 in the menus before that.
+// Grand Prix (also the value in the menus before a race is confirmed): code_0203b6ac.c:114 stores it as the next mode.
+#define MODE_GRAND_PRIX 0
+// Time attack: code_020bc11c.c:113 returns early in this mode (the end handling below is not run).
+#define MODE_TIME_ATTACK 1
+// Battle: code_020bc11c.c:119 reads the balloon or shine count of every kart only in this mode.
+#define MODE_BATTLE 2
+// Versus: code_0203ca38.c:36 (shared case with battle) reads the team setting mUseTeams.
+#define MODE_VS 3
 // Mission run: the mission row and column are read only while the mode has this value (code_02045874.c:372-373).
 #define MODE_MISSION_RUN 4
 

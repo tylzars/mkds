@@ -346,7 +346,7 @@ void InitMapObjects(void) {
     } while (data_0217b4ec < 0x85);
     gGrpconfTbl = FindMainRaceOrMainEffectFile("MapObj/grpconf.tbl");
     v = 1;
-    if (data_021759c0->mMode != 1 && data_021759c0->mMode != 5) {
+    if (data_021759c0->mMode != MODE_TIME_ATTACK && data_021759c0->mMode != 5) {
         v = 0;
     }
     data_0217b4e0 = v;
@@ -369,7 +369,7 @@ void InitMapObjects(void) {
     }
     for (i = 0; i < n; i++) {
         e = (CourseMapRow *) ((u8 *) gCourseMap->mRows + i * sizeof(CourseMapRow));
-        if (data_021759c0->mMode == 1 && (e->mUnk_38 & 1) == 0) {
+        if (data_021759c0->mMode == MODE_TIME_ATTACK && (e->mUnk_38 & 1) == 0) {
             continue;
         }
         CreateMapObject(e->mUnk_24, e, NULL);

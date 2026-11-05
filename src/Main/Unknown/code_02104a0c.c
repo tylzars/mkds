@@ -49,7 +49,7 @@ void func_02105214(void) {
     Vec3 buf;
     s32 i;
     switch (data_021759c0->mMode) {
-        case 2:
+        case MODE_BATTLE:
             data_0217c724 = 0xb;
             break;
         case MODE_MISSION_RUN:
@@ -101,7 +101,7 @@ void func_02104ff8(void) {
     Unk0212c400 **v;
     u32 a = 0;
     u32 b = 0;
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         return;
     }
     for (i = 0; i < 8; i++) {
@@ -136,7 +136,7 @@ void func_02104ff8(void) {
 }
 
 void func_02104f84(s32 a) {
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         return;
     }
     if ((s32) data_0217c6e4[a] >= 0) {
@@ -235,7 +235,7 @@ void func_02104a0c(Unk02104c68 *p) {
             func_020f758c(&p->mUnk_000.mUnk_000);
         }
     } else if ((p->mUnk_000.mUnk_000.mFlags & 0x8000) != 0) {
-        if (data_021759c0->mMode == 2) {
+        if (data_021759c0->mMode == MODE_BATTLE) {
             i = (u16) (p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00);
             v = data_0217c6e4[i] - 0x3c;
             if (v < p->mUnk_000.mUnk_000.mUnk_d8) {

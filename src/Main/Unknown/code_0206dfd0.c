@@ -166,7 +166,7 @@ void CollideKartWithKarts(Kart *p) {
                 g.z = (s32) (((s64) n.z * f) >> 12);
                 q->mForwardSpeed += Vec3Dot(&q->mUnk_50, &g);
             }
-            if (data_021759c0->mMode == 2) {
+            if (data_021759c0->mMode == MODE_BATTLE) {
                 k = func_020a1ee4(p->mIndex, q->mIndex);
             }
             w = p->mUnk_4c;

@@ -32,16 +32,16 @@ void func_0203d21c(void) {
     u32 a;
     BOOL f = FALSE;
     switch (m) {
-        case 2:
-        case 3:
+        case MODE_BATTLE:
+        case MODE_VS:
             if (d->mUseTeams != 0) {
                 f = TRUE;
             }
             break;
     }
     switch (m) {
-        case 0:
-        case 3:
+        case MODE_GRAND_PRIX:
+        case MODE_VS:
         case 5: {
             for (a = 0; a < d->mKartCount; a = (u16) (a + 1)) {
                 u32 t;
@@ -72,7 +72,7 @@ void func_0203d21c(void) {
             }
             break;
         }
-        case 2: {
+        case MODE_BATTLE: {
             s32 e;
             if (f != FALSE) {
                 a = 0;
@@ -154,9 +154,9 @@ void func_0203d078(void) {
     }
     if (func_0203ef58() != 0) {
         switch (data_021759c0->mMode) {
-            case 1:
+            case MODE_TIME_ATTACK:
                 break;
-            case 2:
+            case MODE_BATTLE:
                 func_020a12b8();
                 break;
             case MODE_MISSION_RUN:
@@ -184,7 +184,7 @@ BOOL func_0203cfb4(void) {
     if (d->mRaceDone != 0) {
         return FALSE;
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         c = 0;
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             if (d->mUnk_000[i].mStatus == 0) {
@@ -302,9 +302,9 @@ void UpdateRaceProgress(void) {
                 FinishRaceProgressKart(p, p->mUnk_3c_8 == 1 ? 1 : 0);
                 if (func_0203ef58() != 0) {
                     switch (data_021759c0->mMode) {
-                        case 1:
+                        case MODE_TIME_ATTACK:
                             break;
-                        case 2:
+                        case MODE_BATTLE:
                             func_020a12b8();
                             break;
                         case MODE_MISSION_RUN:
@@ -340,7 +340,7 @@ void UpdateRaceProgress(void) {
         }
         gRaceProgress->mUnk_4f0 = t;
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             u16 *q;
             u8 v = func_0203ca38_inline(i);
@@ -358,7 +358,7 @@ void UpdateRaceProgress(void) {
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_0203cd14();
     }
-    if (data_021759c0->mMode == 1) {
+    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
         BOOL f = FALSE;
         switch (gRaceProgress->mUnk_000[0].mStatus) {
             case 1:

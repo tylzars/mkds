@@ -84,10 +84,10 @@ void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
         return;
     }
     switch (data_021759c0->mMode) {
-        case 2:
+        case MODE_BATTLE:
             GetCourseMapStartPlacementWithOffsets(a, b, (u16) ((j + gRaceProgress->mStartPlacementOffset) % 8), 0, 0);
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);
             break;
         case MODE_MISSION_RUN:
@@ -356,7 +356,7 @@ u16 GetCourseMapRespawnSlot(u32 a) {
     u16 r;
     CourseMap *p;
 
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         p = gCourseMap;
         r = p->mNextRespawnSlot;
         p->mNextRespawnSlot = (r + 1) % p->mRespawnCount;

@@ -139,7 +139,7 @@ void func_02072eb8(Kart *p) {
 
     if (p->mUnk_3c4 == -1) {
         i = p->mIndex;
-        if (data_021759c0->mMode == 2) {
+        if (data_021759c0->mMode == MODE_BATTLE) {
             i = GetCourseMapRespawnSlot(0);
         } else {
             i = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[i].mCheckpoint);
@@ -147,7 +147,7 @@ void func_02072eb8(Kart *p) {
         p->mUnk_3c4 = i;
     }
     i = (u16) p->mUnk_3c4;
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         r = func_02040fd8(i, &a, &c);
     } else {
         r = func_020410a4(i, &a, &c);
@@ -155,11 +155,11 @@ void func_02072eb8(Kart *p) {
     i = ((u16) ((s32) (((s64) c.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
     Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &b);
-    if (data_021759c0->mMode != 2 && gCourseMap->mUnk_60 != 0) {
+    if (data_021759c0->mMode != MODE_BATTLE && gCourseMap->mUnk_60 != 0) {
         (e = &(gKartItems)[p->mIndex])->mUnk_1f0.mUnk_00 = func_02040f78((u16) p->mUnk_3c4);
         e->mUnk_1f0.mUnk_04 = 1;
     }
-    if (data_021759c0->mMode != 1) {
+    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
         x = data_usa_02154d4c[p->mIndex][0];
         y = data_usa_02154d50[p->mIndex][0];
         func_020397a8(&data_02154f7c, &b, &d);
@@ -681,7 +681,7 @@ void func_02071e28(Kart *p) {
     if (p->mKartModelsEntry->mUnk_008 != NULL) {
         p->mUnk_7c |= KART_7C_MODELS_ENTRY_008_SET;
     }
-    if (data_021759c0->mMode == 1 || func_02062eb0() != 0) {
+    if (data_021759c0->mMode == MODE_TIME_ATTACK || func_02062eb0() != 0) {
         p->mUnk_7c |= 0x8000000;
     }
 }
@@ -1366,7 +1366,7 @@ void func_020705fc(Kart *p, u32 b) {
         4;
     Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &e);
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         Vec3Sub(&a, &p->mPos, &v);
         func_020a21bc(p->mIndex, (s32) &v);
     }
@@ -1397,7 +1397,7 @@ void func_020705fc(Kart *p, u32 b) {
     if (!(p->mUnk_7c & 2)) {
         return;
     }
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         return;
     }
     func_02089754(p->mUnk_310, func_02040da8(b));

@@ -33,7 +33,8 @@ void func_020b2574(void) {
     if (func_020b2bf0() != 0) {
         return;
     }
-    if ((func_020b252c() == 0 || func_020b252c() == 1) && func_020b24e4() == 2 && func_0203c0bc() != 0) {
+    if ((func_020b252c() == MODE_GRAND_PRIX || func_020b252c() == MODE_TIME_ATTACK) && func_020b24e4() == 2 &&
+        func_0203c0bc() != 0) {
         return;
     }
     if (gChoisesS->mUnk_014 == 0 && gChoisesS->mUnk_018 == 0 && func_020b32ec() == 0) {

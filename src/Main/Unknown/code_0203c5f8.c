@@ -28,7 +28,7 @@ s32 IsKartEnded(u32 param_1) {
 void GetKartFinishTime(s32 a, u8 *b, u8 *c, u16 *d) {
     RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + a * 0x8c);
     BOOL g = TRUE;
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         if (data_021759c0->mUnk_18 == 1) {
             g = FALSE;
         }

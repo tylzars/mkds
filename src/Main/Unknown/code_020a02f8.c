@@ -284,7 +284,7 @@ u16 func_020a1cd8(s32 a) {
     s32 i;
     s32 v1;
 
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         if (data_021759c0->mUnk_18 == 0) {
             v = 3 - gStandings->mKarts[a].mBalloonOrShineCount;
             v += 1;
@@ -389,7 +389,7 @@ void EliminateKart(u16 a) {
         gStandings->mKartEliminatedCallback(a);
     }
     gStandings->mKarts[a].mEliminationStatus = 1;
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         gStandings->mKarts[a].mBalloonOrShineCount = -1;
         gStandings->mKarts[a].mUnk_50 = 0;
     }
@@ -397,7 +397,7 @@ void EliminateKart(u16 a) {
         return;
     }
     func_020a19f8(a);
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         func_02068b5c(GetKart(a));
     } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
         c = GetKart(a);
@@ -443,7 +443,7 @@ found:
         c->mUnk_7c |= 8;
     }
     gStandings->mWinnerTeamId = v;
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         if (data_021759c0->mUnk_18 == 1) {
             func_0212ecc0(&data_0217d068, 0, 0x4a);
         }
@@ -555,7 +555,7 @@ void func_020a12b8(void) {
     if (gStandings->mWinnerTeamId >= 0) {
         return;
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         n = data_021759c0->mKartCount;
         if (data_021759c0->mUnk_18 == 0) {
             if (gStandings->mWinnerTeamId >= 0) {
@@ -891,7 +891,7 @@ void func_020a08ec(void) {
                     e->mUnk_44 = (u16) i;
                     e->mUnk_20 = FALSE;
                     if (e->mBalloonOrShineCount <= 1) {
-                        if ((data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) ||
+                        if ((data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) ||
                             data_021759c0->mMode == MODE_MISSION_RUN) {
                             o->mUnk_7c |= 0x20000000;
                             o->mUnk_48 &= ~0x2000000;
@@ -914,7 +914,7 @@ void func_020a08ec(void) {
                 if (e->mUnk_00 == FALSE && b != FALSE && (o->mUnk_4c & 0x400000) == 0) {
                     e->mUnk_00 = TRUE;
                     if (e->mBalloonOrShineCount <= 1) {
-                        if ((data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) ||
+                        if ((data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) ||
                             data_021759c0->mMode == MODE_MISSION_RUN) {
                             o->mUnk_7c |= 0x20000000;
                         }

@@ -142,13 +142,13 @@ void func_0207b44c(Kart *a) {
         return;
     }
     m = data_021759c0->mMode;
-    if (m == 2) {
+    if (m == MODE_BATTLE) {
         return;
     }
     if (m == MODE_MISSION_RUN) {
         return;
     }
-    if (m != 2 && data_021759c0->mUnk_1c == 1) {
+    if (m != MODE_BATTLE && data_021759c0->mUnk_1c == 1) {
         b = (u16) gRaceProgress->mKartAtRank[0];
         if (data_021759c0->mUseTeams != 0) {
             if (func_0207b44c_inline(b) != func_0207b44c_inline(a->mIndex)) {
@@ -165,7 +165,7 @@ void func_0207b44c(Kart *a) {
             a->mUnk_7c |= 0x2000000;
             e = c;
         }
-    } else if (m == 1) {
+    } else if (m == MODE_TIME_ATTACK) {
         if ((t & 4) == 0) {
             if (func_020c7148() != 0 || func_020c70ec() != 0) {
                 f = 0;

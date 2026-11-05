@@ -271,7 +271,7 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c) {
                 m = FALSE;
             }
         } else if (j & 0x1e34ef) {
-            if (data_021759c0->mMode != 2 || Vec3Dot(&data_usa_02154fc4, &w) < 0xfae ||
+            if (data_021759c0->mMode != MODE_BATTLE || Vec3Dot(&data_usa_02154fc4, &w) < 0xfae ||
                 a->mPos.y - b->mPos.y < data_usa_0217ac7c) {
                 Vec3Add(&v, &a->mPos, &a->mPos);
             }
@@ -349,7 +349,7 @@ void StartEntryCameraKind6Entry(void) {
     p->mShakeKind = q->mShakeKind;
     if ((s16) q->mEntryGroupIndex != -1) {
         SetupPosCurve(&p->mPosCurve, q);
-        if (data_021759c0->mMode == 2) {
+        if (data_021759c0->mMode == MODE_BATTLE) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
@@ -394,7 +394,7 @@ void func_02075d08(s32 a) {
     p->mShakeKind = q->mShakeKind;
     if ((s16) q->mEntryGroupIndex != -1) {
         SetupPosCurve(&p->mPosCurve, q);
-        if (data_021759c0->mMode == 2) {
+        if (data_021759c0->mMode == MODE_BATTLE) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
@@ -444,7 +444,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
     func_0207a948(&v, p->mFollowedKartIndex);
     i = func_020411e4(&v);
     if (p->mKind6EntryRunning != FALSE) {
-        if (data_021759c0->mMode == 2) {
+        if (data_021759c0->mMode == MODE_BATTLE) {
             UpdateCameraByEntryKind(p);
             return TRUE;
         }
@@ -469,7 +469,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
                 p->mShakeKind = q->mShakeKind;
                 if ((s16) q->mEntryGroupIndex != -1) {
                     SetupPosCurve(&p->mPosCurve, q);
-                    if (data_021759c0->mMode == 2) {
+                    if (data_021759c0->mMode == MODE_BATTLE) {
                         func_0207bd6c(&p->mUnk_1d0, q);
                     }
                 }
@@ -561,7 +561,7 @@ void StartEntryCameraKind8Entry(void) {
     p->mShakeKind = q->mShakeKind;
     if ((s16) q->mEntryGroupIndex != -1) {
         SetupPosCurve(&p->mPosCurve, q);
-        if (data_021759c0->mMode == 2) {
+        if (data_021759c0->mMode == MODE_BATTLE) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
@@ -741,7 +741,7 @@ void UpdateCameraAngleEntry(Camera *p) {
     Vec3Add(&p->mPos, &n, &p->mLookAt);
     p->mLookAt.y = p->mLookAt.y - o->mHopHeight;
     p->mPos.y = p->mPos.y - o->mHopHeight;
-    if (data_021759c0->mMode != MODE_MISSION_RUN && data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_MISSION_RUN && data_021759c0->mMode != MODE_BATTLE) {
         if (func_01ffdee4(&p->mPos, (u32 *) &p->mPrevPos, 0, data_usa_021656c0 >> 1, 2, -2, &w, NULL, NULL, NULL, NULL,
                           NULL, NULL, NULL) != 0) {
             o = GetKart(p->mFollowedKartIndex);

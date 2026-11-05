@@ -104,7 +104,7 @@ BOOL func_01ffa1f8(Kart *p) {
         if (!(p->mUnk_7c & 0x400) && !(p->mUnk_48 & 0x800)) {
             p->mUnk_48 = p->mUnk_48 | 0x800;
             i = p->mIndex;
-            if (data_021759c0->mMode == 2) {
+            if (data_021759c0->mMode == MODE_BATTLE) {
                 r = GetCourseMapRespawnSlot(0);
             } else {
                 r = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[i].mCheckpoint);

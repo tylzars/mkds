@@ -72,8 +72,8 @@ void func_02046594(void) {
     k = 1;
     f = FALSE;
     switch (data_021759c0->mNextHeader.mMode) {
-        case 0:
-        case 1:
+        case MODE_GRAND_PRIX:
+        case MODE_TIME_ATTACK:
         case MODE_MISSION_RUN:
         case 5:
             f = TRUE;
@@ -260,17 +260,17 @@ void func_02045ed0(void) {
     u8 r;
     func_02046594();
     switch (data_021759c0->mNextHeader.mMode) {
-        case 0:
+        case MODE_GRAND_PRIX:
             func_0205db50();
             data_021759c0->mNextHeader.mCourseNumber = 1;
             data_021759c0->mNextHeader.mUnk_0c = 3;
             data_021759c0->mNextHeader.mCourseId =
                 data_02154128[data_021759c0->mNextHeader.mCupIndex][data_021759c0->mNextHeader.mCourseNumber - 1];
             break;
-        case 3:
+        case MODE_VS:
             func_02046024(1);
             break;
-        case 2:
+        case MODE_BATTLE:
             func_02046024(0);
             break;
         case 5:
@@ -385,7 +385,7 @@ void func_02045a2c(s32 a) {
                 x = i;
                 y = i * 3;
             }
-        } else if (data_021759c0->mMode == 0) {
+        } else if (data_021759c0->mMode == MODE_GRAND_PRIX) {
             if (func_020909cc() != 2) {
                 x = i;
                 y = i * 3;

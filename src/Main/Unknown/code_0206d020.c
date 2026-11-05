@@ -380,7 +380,7 @@ void func_0206d18c(Kart *p) {
             func_0206d020(p, r, 0x5a);
             p->mUnk_48 |= 0x100000;
             p->mUnk_538.mUnk_00 = 0x5a;
-            if (data_021759c0->mMode == 2) {
+            if (data_021759c0->mMode == MODE_BATTLE) {
                 func_020a1ddc(p->mIndex);
             }
             break;
@@ -426,7 +426,7 @@ void func_0206d18c(Kart *p) {
     if (r != 0 && data_021759c0->mMode == MODE_MISSION_RUN) {
         func_0207a70c(p->mIndex);
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         func_020a1e40(p->mIndex, e);
     }
     if (func_020f9880(e) == 0) {

@@ -97,7 +97,7 @@ void func_02033b80(s32 a) {
     t = &data_02174e60->mUnk_048[1];
     r = data_02174e60->mUnk_0e4[a].mUnk_08;
     q = data_02174e60->mUnk_0e4[a].mUnk_04;
-    if (data_021759c0->mMode == 2 && data_021759c0->mUseTeams != 0 && data_021759c0->mUnk_1c == 1) {
+    if (data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUseTeams != 0 && data_021759c0->mUnk_1c == 1) {
         t->mUnk_18[r + 0x38].mUnk_00 = 0;
         t->mUnk_18[r + 0x48].mUnk_00 = 0;
         return;

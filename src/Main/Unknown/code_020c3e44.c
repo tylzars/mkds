@@ -132,7 +132,7 @@ void func_020c5940(void) {
         *q = *q + 1;
     }
     switch (data_021759c0->mMode) {
-        case 0:
+        case MODE_GRAND_PRIX:
             data_0217b3f0->mUnk_08 = GetKartRank(func_020b4d9c()) - 1;
             b = func_0205dc7c(func_020b4d9c());
             a = func_0205db28();
@@ -143,12 +143,12 @@ void func_020c5940(void) {
                 data_0217b3f0->mUnk_00 = 1;
             }
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             if (n > 0x14) {
                 data_0217b3f0->mUnk_00 = 1;
             }
             break;
-        case 3:
+        case MODE_VS:
         case 5:
             data_0217b3f0->mUnk_08 = GetKartRank(func_020b4d9c()) - 1;
             for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
@@ -212,10 +212,10 @@ void func_020c5804(Unk020c06c4 *a) {
         return;
     }
     switch (data_021759c0->mMode) {
-        case 0:
+        case MODE_GRAND_PRIX:
             func_020c55b0(a);
             break;
-        case 3:
+        case MODE_VS:
         case 5:
             y = func_020ae4c0(1, 0x40, 0, data_0217b3f0->mUnk_04, 0x14);
             c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_08);
@@ -493,7 +493,7 @@ void InitRaceStartGp(void) {
     w.mUnk_04 = r;
     w.mUnk_08 = 1;
     w.mUnk_0c = 0;
-    if (data_021759c0->mMode == 0) {
+    if (data_021759c0->mMode == MODE_GRAND_PRIX) {
         s = func_02025d8c(data_021759c0->mCourseId);
         w.mUnk_08 = func_020b4b10();
     } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
@@ -545,7 +545,7 @@ void func_020c4ae8(void) {
 }
 
 void func_020c4ab8(s32 a) {
-    if (data_021759c0->mMode == 1) {
+    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
         data_0217b3e4->mUnk_004[a] = 0;
     }
 }
@@ -554,7 +554,7 @@ void func_020c4a04(s32 a) {
     s32 i;
     s32 j;
 
-    if (data_021759c0->mMode != 1) {
+    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
         return;
     }
     for (i = 0; i < 0x28; i++) {
@@ -571,7 +571,7 @@ void func_020c4780(void) {
     s32 j;
     Vec3 v;
 
-    if (data_021759c0->mMode != 1) {
+    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
         return;
     }
     data_0217b3e4 = HeapAlloc(GetHeap(func_020364e8()), 0x910);
@@ -629,7 +629,7 @@ void func_020c43c4(void) {
     s32 n;
     u32 i;
 
-    if (data_021759c0->mMode != 1) {
+    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
         return;
     }
     if (IsRaceStartSequenceDone() == 0) {
@@ -702,7 +702,7 @@ void func_020c3e44(Unk020c06c4 *a) {
     s32 d;
     Unk020c06c4_08 *p;
 
-    if (data_021759c0->mMode != 1) {
+    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
         return;
     }
     if (data_0217b3e4->mUnk_000 == 0) {

@@ -532,13 +532,13 @@ void func_0205ef70(void) {
 void func_0205eeb0(void) {
     if (data_021759c0->mUnk_00c == 0) {
         switch (data_021759c0->mMode) {
-            case 3:
+            case MODE_VS:
                 func_0205f700();
                 break;
             case MODE_MISSION_RUN:
                 func_0203b230();
                 break;
-            case 2:
+            case MODE_BATTLE:
                 switch (data_021759c0->mUnk_18) {
                     case 0:
                         func_0205f498();

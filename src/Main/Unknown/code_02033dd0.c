@@ -161,12 +161,12 @@ void func_02033e6c(void) {
         data_02174e60->mUnk_0e4[j].mUnk_00 = n;
     }
     if (data_021759c0->mUseTeams != 0) {
-        if (data_021759c0->mMode == 2 && data_021759c0->mUnk_1c == 1) {
+        if (data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_1c == 1) {
             func_02034188();
         } else {
             func_02034024();
         }
-    } else if (data_021759c0->mMode == 2) {
+    } else if (data_021759c0->mMode == MODE_BATTLE) {
         for (k = 0; k < data_02174e60->mUnk_0d8; k++) {
             data_02174e60->mUnk_0e4[k].mUnk_08 = data_0217b488->mUnk_ec[k];
         }

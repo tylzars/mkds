@@ -48,7 +48,7 @@ void func_02073630(void) {
         data_0217ac14 = func_01ffa380;
     }
     data_0217ac10 = 0;
-    if (d->mMode == 2) {
+    if (d->mMode == MODE_BATTLE) {
         switch (d->mCourseId) {
             case 0x2a:
             case 0x2b:

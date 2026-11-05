@@ -55,9 +55,9 @@ void func_0203fed4(void) {
                     FinishRaceProgressKart(&gRaceProgress->mKarts[k], 0);
                     if (func_0203ef58() != 0) {
                         switch (data_021759c0->mMode) {
-                            case 1:
+                            case MODE_TIME_ATTACK:
                                 break;
-                            case 2:
+                            case MODE_BATTLE:
                                 func_020a12b8();
                                 break;
                             case MODE_MISSION_RUN:
@@ -97,7 +97,7 @@ void func_0203fed4(void) {
                         func_0212ecc0(&data_0217d068, 0, 0x4a);
                     }
                     break;
-                case 2:
+                case MODE_BATTLE:
                     if (data_021759c0->mUnk_18 == 1) {
                         gRaceProgress->mTimeLimitFrameCount = func_020a1520() * 0x3c;
                         p->mUnk_000[0].mElapsedFrames = 0;

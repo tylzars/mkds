@@ -188,7 +188,7 @@ void func_020f41c4(Unk020f40dc *rec) {
     s32 x;
     s32 y;
 
-    if (data_021759c0->mMode == 1) {
+    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
         st = &gRaceProgress->mLocalRandom;
     } else {
         st = &gRaceProgress->mRandom;

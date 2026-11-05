@@ -162,7 +162,7 @@ void InitRace(void) {
     RefreshCameraProjection(data_0217aa88);
     func_02047b6c(3);
     switch (data_021759c0->mMode) {
-        case 2:
+        case MODE_BATTLE:
             InitStandings();
             break;
         case MODE_MISSION_RUN:
@@ -273,7 +273,7 @@ void UpdateRace(void) {
         func_02085778();
     }
     switch (data_021759c0->mMode) {
-        case 2:
+        case MODE_BATTLE:
             func_020a08ec();
             break;
         case MODE_MISSION_RUN:

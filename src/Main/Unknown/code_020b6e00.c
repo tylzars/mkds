@@ -128,10 +128,10 @@ void func_020b8624(void) {
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[0].mNclr, FindSceneFileWrapper("race_m_o.NCLR"));
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[1].mNclr, FindSceneFileWrapper("race_goal_m_o.NCLR"));
     switch (data_021759c0->mMode) {
-        case 1:
+        case MODE_TIME_ATTACK:
             data_0217b3c4->mNclrNcgrPairs[2].mNclr = data_0217b3c4->mNclrNcgrPairs[0].mNclr;
             break;
-        case 2:
+        case MODE_BATTLE:
             LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[3].mNclr, FindSceneFileWrapper("race_battle_m_o.NCLR"));
             if (data_021759c0->mUnk_00c == 4) {
                 LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[10].mNclr,
@@ -149,10 +149,10 @@ void func_020b8624(void) {
     LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[0].mNcgr, FindSceneFileWrapper("race_m_o.NCGR"));
     LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[1].mNcgr, FindSceneFileWrapper("race_goal_m_o.NCGR"));
     switch (data_021759c0->mMode) {
-        case 1:
+        case MODE_TIME_ATTACK:
             LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[2].mNcgr, FindSceneFileWrapper("race_ta_m_o.NCGR"));
             break;
-        case 2:
+        case MODE_BATTLE:
             LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[3].mNcgr, FindSceneFileWrapper("race_battle_m_o.NCGR"));
             if (data_021759c0->mUnk_00c == 4) {
                 LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[10].mNcgr,
@@ -179,7 +179,7 @@ void func_020b8624(void) {
     }
 
     switch (data_021759c0->mMode) {
-        case 1:
+        case MODE_TIME_ATTACK:
             p = func_020b403c(2);
             func_02023408(buf0, data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData, 0x20, 0x10, 4);
             s0.mUnk_08 = func_020b4acc();
@@ -206,7 +206,7 @@ void func_020b8624(void) {
             func_020b46d0(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData, 0, 0, 0x20, 4,
                           data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mData, 0, 0);
             break;
-        case 2:
+        case MODE_BATTLE:
             if (data_021759c0->mUnk_00c != 4) {
                 a3 = NULL;
                 LoadNcerData(&a3, FindSceneFileWrapper("race_battle_m.NCER"));
@@ -360,7 +360,7 @@ void func_020b8624(void) {
         data_0217b3c4->mRaceGoalTeamSNcerEntries[i] = func_02021f1c(a11, i);
     }
 
-    if (data_021759c0->mMode != 1) {
+    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
         return;
     }
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[9].mNclr, FindSceneFileWrapper("race_new_record_ta_s_o.NCLR"));
@@ -830,12 +830,12 @@ void func_020b6e00(u16 *a, void *b) {
         r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
         r = (Unk020b6e00 *) data_0217b3c4->mRaceGoalTeamSNcerEntries[j]->mUnk_04;
         r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
-        if (data_021759c0->mMode == 1) {
+        if (data_021759c0->mMode == MODE_TIME_ATTACK) {
             r = (Unk020b6e00 *) data_0217b3c4->mRaceNewRecordTaSNcerEntries[j + 7]->mUnk_04;
             r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
         }
     }
-    if (data_021759c0->mMode == 1) {
+    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
         for (j = 0; j < 6; j++) {
             func_020b7ee8(j, &x, &y);
             func_020b46d0(p, x << 1, 2, 2, 2, b, ((j + 2) << 1) + 0x10, 0);
@@ -851,7 +851,7 @@ void func_020b6e00(u16 *a, void *b) {
     func_0212b09c();
     LoadNcgrData2(&o, FindSceneFileWrapper("race_transfer_map_s_o.NCGR"));
     p = o->mData;
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         func_020b46d0(p, 0x14, 6, 0xc, 4, b, 0, 8);
         func_020b46d0(p, 0x14, 0xa, 0xb, 4, b, 0, 0xc);
         q1 = NULL;

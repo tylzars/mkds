@@ -225,7 +225,7 @@ u32 func_02094e3c(void) {
     s32 m;
 
     m = data_021759c0->mMode;
-    if (m == 3 || m == 5) {
+    if (m == MODE_VS || m == 5) {
         if (func_02061818() == 0) {
             return 0;
         }

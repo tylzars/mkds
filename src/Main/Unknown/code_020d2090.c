@@ -80,7 +80,7 @@ void InitRaceMNumberPair(void) {
     p->mCourseNumber = data_021759c0->mCourseNumber;
     if (data_021759c0->mMode == 5) {
         gRaceMNumberPair->mCourseCount = 4;
-    } else if (data_021759c0->mMode == 3 && data_021759c0->mUnk_1c == 2) {
+    } else if (data_021759c0->mMode == MODE_VS && data_021759c0->mUnk_1c == 2) {
         gRaceMNumberPair->mCourseCount = data_021759c0->mUnk_3d8;
     } else {
         gRaceMNumberPair->mCourseCount = 0;

@@ -31,7 +31,7 @@ s32 func_0203ef58(void) {
     RaceProgress *q;
     o = data_021759c0;
     switch (o->mMode) {
-        case 0:
+        case MODE_GRAND_PRIX:
             r = TRUE;
             for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
                 f = FALSE;
@@ -56,7 +56,7 @@ s32 func_0203ef58(void) {
                 }
             }
             break;
-        case 3:
+        case MODE_VS:
             r = TRUE;
             q = gRaceProgress;
             if (q->mUnk_000[0].mFinishedCount < (s32) func_0203f320() - (q->mUnk_000[0].mRemovedCount + 1)) {
@@ -103,7 +103,7 @@ s32 func_0203ef58(void) {
                 }
             }
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             r = FALSE;
             switch (gRaceProgress->mUnk_000[0].mStatus) {
                 case 1:
@@ -113,7 +113,7 @@ s32 func_0203ef58(void) {
                     break;
             }
             break;
-        case 2:
+        case MODE_BATTLE:
             r = TRUE;
             for (i = 0; i < (u32) o->mKartCount; i++) {
                 f = FALSE;
@@ -168,7 +168,7 @@ void func_0203ee28(void) {
             p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
             t = &p->mLapTimes[5];
             h = gRaceProgress->mUnk_000[0].mElapsedFrames;
-            if (data_021759c0->mMode == 0) {
+            if (data_021759c0->mMode == MODE_GRAND_PRIX) {
                 if (p->mRaceProgress > 0) {
                     h = (u32) (h * ReciprocalFixed12(p->mRaceProgress)) >> 12;
                     if (h > 0x57e40) {
@@ -210,7 +210,7 @@ void func_0203ecf0(void) {
             p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
             t = &p->mLapTimes[5];
             h = gRaceProgress->mUnk_000[0].mElapsedFrames;
-            if (data_021759c0->mMode == 0) {
+            if (data_021759c0->mMode == MODE_GRAND_PRIX) {
                 if (p->mRaceProgress > 0) {
                     h = (u32) (h * ReciprocalFixed12(p->mRaceProgress)) >> 12;
                     if (h > 0x57e40) {
@@ -252,7 +252,7 @@ void func_0203eb38(void) {
             p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
             t = &p->mLapTimes[5];
             h = gRaceProgress->mUnk_000[0].mElapsedFrames;
-            if (data_021759c0->mMode == 0) {
+            if (data_021759c0->mMode == MODE_GRAND_PRIX) {
                 if (p->mRaceProgress > 0) {
                     h = (u32) (h * ReciprocalFixed12(p->mRaceProgress)) >> 12;
                     if (h > 0x57e40) {
@@ -321,7 +321,7 @@ void FinishRaceProgressKart(RaceProgressKart *a, s32 b) {
         a->mFinishTimeMs = 0x5b8d80;
     }
     m = data_021759c0->mMode;
-    if (m == 0 || m == MODE_MISSION_RUN) {
+    if (m == MODE_GRAND_PRIX || m == MODE_MISSION_RUN) {
         if ((a->mFlags & 1) != 0) {
             a->mScore = func_020408f0((u32) (a->mUnk_3c << 24) >> 28);
             d = a->mScore;
@@ -388,7 +388,7 @@ void func_0203e788(s32 a, s32 b) {
         return;
     }
     switch (data_021759c0->mMode) {
-        case 2:
+        case MODE_BATTLE:
             func_020a12b8();
             return;
         case MODE_MISSION_RUN:
@@ -400,7 +400,7 @@ void func_0203e788(s32 a, s32 b) {
         default:
             func_0203ee28();
             return;
-        case 1:
+        case MODE_TIME_ATTACK:
             return;
     }
 }

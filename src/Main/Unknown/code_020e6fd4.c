@@ -153,7 +153,7 @@ void func_020e7760(void) {
         s++;
     }
     switch (data_021759c0->mMode) {
-        case 2:
+        case MODE_BATTLE:
             data_0217b8b0 = 0;
             break;
         case MODE_MISSION_RUN: {

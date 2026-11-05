@@ -72,7 +72,7 @@ void AdvanceKartState1And2(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
 }
@@ -210,7 +210,7 @@ void AdvanceKartState6(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
     p->mUnk_4c &= ~0x80000010;
@@ -332,7 +332,7 @@ void AdvanceKartState3(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
 }
@@ -474,7 +474,7 @@ void AdvanceKartState4(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
     if (p->mUnk_44 & 0x10) {
@@ -588,7 +588,7 @@ void AdvanceKartState5(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == 2 && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
     if (p->mUnk_44 & 0x10) {

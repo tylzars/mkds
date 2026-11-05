@@ -419,9 +419,9 @@ void UpdateRaceProgressKarts(void) {
             FinishRaceProgressKart(s, 1);
             if (func_0203ef58() != 0) {
                 switch (data_021759c0->mMode) {
-                    case 1:
+                    case MODE_TIME_ATTACK:
                         break;
-                    case 2:
+                    case MODE_BATTLE:
                         func_020a12b8();
                         break;
                     case MODE_MISSION_RUN:
@@ -497,13 +497,13 @@ void func_0203d568(void) {
         }
     }
     switch (data_021759c0->mMode) {
-        case 3:
+        case MODE_VS:
             func_0203d568_b_inline();
             break;
         case MODE_MISSION_RUN:
             func_0205e2b8();
             break;
-        case 2:
+        case MODE_BATTLE:
             func_0203d568_b_inline();
             break;
     }

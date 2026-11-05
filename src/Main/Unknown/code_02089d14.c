@@ -139,7 +139,7 @@ void func_0208a460(void *a) {
             InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[i], &gCountStartStems[(u32) i], i);
         }
     }
-    if (data_021759c0->mMode == 2 || data_021759c0->mUnk_1c == 1) {
+    if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mUnk_1c == 1) {
         data_0217b034->mUnk_000[4] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[4], &gWinStems, 4);
         data_0217b034->mUnk_000[5] = HeapAlloc(a, 0x14);

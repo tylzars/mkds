@@ -50,7 +50,7 @@ void func_020aeb7c(void) {
         return;
     }
     switch (data_021759c0->mMode) {
-        case 0:
+        case MODE_GRAND_PRIX:
             if (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0) {
                 if (data_021759c0->mUnk_00c == 0) {
                     if (gRaceHud->mUnk_83c != FALSE) {
@@ -115,7 +115,7 @@ void func_020aeb7c(void) {
                 }
             }
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             if (gRaceProgress->mRaceDone != 0 && gRaceHud->mUnk_8dc == 0) {
                 if (gRaceHud->mUnk_83c == FALSE) {
                     gRaceHud->mUnk_83c = TRUE;
@@ -187,7 +187,7 @@ void func_020aeb7c(void) {
                 }
             }
             break;
-        case 2:
+        case MODE_BATTLE:
             if (func_020a128c() != 0) {
                 if (gRaceHud->mUnk_83c != FALSE) {
                     gRaceHud->mUnk_82c = FALSE;
@@ -246,7 +246,7 @@ void func_020aeb7c(void) {
                 }
             }
             break;
-        case 3:
+        case MODE_VS:
         case 5:
             if (gRaceProgress->mRaceDone != 0 && data_021759c0->mUnk_00c == 0) {
                 if (gRaceHud->mUnk_838 == FALSE) {

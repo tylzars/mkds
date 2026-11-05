@@ -71,7 +71,7 @@ void func_02104970(void) {
     u32 *p;
     u32 *q;
 
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         return;
     }
     i = 0;
@@ -685,7 +685,7 @@ void func_021031f4(Unk02102674 *p) {
 
     b2 = (u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8);
     a = data_021759c0->mEntryIndex;
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         b3 = data_021759c0->mKartCount;
         for (i = 0; i < b3; i++) {
             if (i == b2) {

@@ -90,8 +90,8 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                         break;
                     case 2:
                         switch (func_0203a8f4()) {
-                            case 0:
-                            case 1:
+                            case MODE_GRAND_PRIX:
+                            case MODE_TIME_ATTACK:
                                 if (func_0203c0bc() != 0) {
                                     a->mUnk_04 = 2;
                                 }

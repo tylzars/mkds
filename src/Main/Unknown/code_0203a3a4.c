@@ -162,7 +162,7 @@ void InitRaceScene(void) {
     }
     func_02043a9c(x);
     func_02047b6c(9);
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         if (data_021759c0->mMode == 5) {
             f = FALSE;
             q = gWiFiSession;
@@ -210,7 +210,7 @@ void func_0203aacc(void) {
     p = data_021759c0;
     if (p->mUnk_00c == 6) {
         t = 0x18;
-        if (p->mMode != 0) {
+        if (p->mMode != MODE_GRAND_PRIX) {
             if (p->mMode == MODE_MISSION_RUN) {
                 t = 0x1a;
             }
@@ -262,7 +262,7 @@ u32 func_0203a9ec(u32 a) {
 u32 func_0203a908(u32 a) {
     u32 r;
     s32 t = 0x18;
-    if (data_021759c0->mMode != 0) {
+    if (data_021759c0->mMode != MODE_GRAND_PRIX) {
         if (data_021759c0->mMode == MODE_MISSION_RUN) {
             t = 0x1a;
         }
@@ -327,7 +327,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                 } else {
                     r = 0;
                 }
-                if (data_021759c0->mMode == 1) {
+                if (data_021759c0->mMode == MODE_TIME_ATTACK) {
                     func_0204673c();
                 }
             } else {
@@ -346,11 +346,11 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
             break;
         case 2:
             switch (data_021759c0->mMode) {
-                case 0:
+                case MODE_GRAND_PRIX:
                     func_02046740();
                     r = 2;
                     break;
-                case 3:
+                case MODE_VS:
                     if (func_02045914() != 0) {
                         if (data_021759d0->mUnk_1c_2 == 0) {
                             r = 2;
@@ -379,7 +379,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                         data_0217b488->mUnk_1c = 2;
                     }
                     break;
-                case 2:
+                case MODE_BATTLE:
                     if (func_020458cc() != 0) {
                         if (data_021759d0->mUnk_1c_2 == 0) {
                             r = 2;
@@ -403,7 +403,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
             break;
         case 7:
             switch (data_021759c0->mMode) {
-                case 0:
+                case MODE_GRAND_PRIX:
                     if (func_02045bd4() != FALSE) {
                         r = 2;
                     } else {
@@ -413,8 +413,8 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                 case MODE_MISSION_RUN:
                     r = 0;
                     break;
-                case 2:
-                case 3:
+                case MODE_BATTLE:
+                case MODE_VS:
                     if (data_021759d0->mUnk_1c_2 != 0) {
                         r = 6;
                         data_0217b488->mUnk_74 = 2;

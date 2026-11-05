@@ -54,7 +54,7 @@ void InitChoisesS(void) {
     func_020b3008();
     func_020b31e4();
     switch (func_020b252c()) {
-        case 0:
+        case MODE_GRAND_PRIX:
             func_020b31b8(0, 0);
             func_020b31b8(0, 9);
             if (func_020b250c() != FALSE) {
@@ -76,7 +76,7 @@ void InitChoisesS(void) {
                 func_020b31b8(3, 9);
             }
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             func_020b31b8(0, 0);
             func_020b31b8(0, 3);
             func_020b31b8(0, 4);
@@ -94,14 +94,14 @@ void InitChoisesS(void) {
             func_020b31b8(3, 8);
             func_020b31b8(3, 9);
             break;
-        case 2:
+        case MODE_BATTLE:
             func_020b31b8(0, 0);
             func_020b31b8(0, 9);
             func_020b31b8(1, 2);
             func_020b31b8(1, 9);
             func_020b31b8(2, 7);
             break;
-        case 3:
+        case MODE_VS:
             func_020b31b8(0, 0);
             func_020b31b8(0, 9);
             func_020b31b8(1, 2);
@@ -165,8 +165,8 @@ void InitChoisesS(void) {
         gChoisesS->mList3Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[3].mValueCount - 1];
         gChoisesS->mUnk_174 = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[1].mValueCount));
         switch (func_020b252c()) {
-            case 2:
-            case 3:
+            case MODE_BATTLE:
+            case MODE_VS:
             case MODE_MISSION_RUN:
                 gChoisesS->mUnk_178 = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[2].mValueCount));
                 break;

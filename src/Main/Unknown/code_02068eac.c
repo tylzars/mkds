@@ -211,7 +211,7 @@ void func_02069db8(Kart *p) {
     func_0206d020(p, 0, 0x5a);
     p->mUnk_48 |= 0x100000;
     p->mUnk_538.mUnk_00 = 0x5a;
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         return;
     }
     func_020a1ddc(p->mIndex);
@@ -251,7 +251,7 @@ void func_02069c38(Kart *p) {
     if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
         func_02106e78();
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         func_020a1e3c(p->mIndex);
     }
     if (p->mUnk_7c & 0x200) {
@@ -647,7 +647,7 @@ s32 func_02068ec0(Kart *p, s32 a) {
         if (p->mUnk_2ca != -1) {
             p->mUnk_2ca = func_020d5344(p->mUnk_2ca);
         }
-        if (data_021759c0->mMode == 2 && a == 0) {
+        if (data_021759c0->mMode == MODE_BATTLE && a == 0) {
             func_021090c4(&p->mUnk_00, 0xd3, 0x7f, 0);
             if (data_021759c0->mUnk_18 == 0 && (data_0217c780 & 1)) {
                 h = (Unk0212c400 **) func_0210e128(func_02108ea0(0));

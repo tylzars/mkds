@@ -41,7 +41,7 @@ void func_020c1060(void) {
     x3 = 0;
     {
         for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
-            if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
+            if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE) {
                 v = x0;
                 if ((u32) data_021759c0->mCurrentEntries[i].mPlayer.mKind <= 3 &&
                     ((1 << data_021759c0->mCurrentEntries[i].mPlayer.mKind) & 0xd)) {
@@ -149,7 +149,7 @@ void func_020c0dd8(void) {
     s32 a;
     s32 b;
 
-    if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
+    if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE) {
         if (data_021759c0->mUseTeams != 0) {
             a = func_020c0dd8_inline(0)->mUnk_02;
             b = func_020c0dd8_inline(1)->mUnk_02;

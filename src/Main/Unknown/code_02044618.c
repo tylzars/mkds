@@ -50,7 +50,7 @@ void func_02045590(void) {
 
     data_021759c0->mNextHeader.mCourseId = 0x14;
     data_021759c0->mNextHeader.mCupIndex = 0;
-    data_021759c0->mNextHeader.mMode = 0;
+    data_021759c0->mNextHeader.mMode = MODE_GRAND_PRIX;
     data_021759c0->mNextHeader.mUnk_0c = 0;
     data_021759c0->mNextHeader.mUnk_10 = 0;
     data_021759c0->mNextHeader.mUnk_14 = 0;
@@ -320,15 +320,15 @@ void func_02044940(void) {
 
     r = 0;
     switch (data_021759c0->mNextHeader.mMode) {
-        case 0:
-        case 2:
-        case 3:
+        case MODE_GRAND_PRIX:
+        case MODE_BATTLE:
+        case MODE_VS:
             r = 8;
             break;
         case 5:
             r = 4;
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             n = 1;
             e = data_0217aa08->mUnk_14[0];
             if (e->mUnk_08_0 == 1) {
@@ -418,7 +418,7 @@ void func_020446e0(void) {
     s32 d;
 
     switch (data_021759c0->mNextHeader.mMode) {
-        case 0:
+        case MODE_GRAND_PRIX:
             if (data_021759c0->mNextHeader.mCourseId == 0x34) {
                 data_021759c0->mNextHeader.mCourseId = 0x34;
                 data_021759c0->mNextHeader.mUnk_0c = 5;
@@ -461,7 +461,7 @@ void func_020446e0(void) {
                 data_021759c0->mNextHeader.mCupIndex = m;
             }
             break;
-        case 2:
+        case MODE_BATTLE:
             if (data_021759d0->mUnk_1c_2 != 0) {
                 data_021759c0->mNextHeader.mUnk_0c = 0;
             } else {
@@ -479,7 +479,7 @@ void func_020446e0(void) {
 void func_0204465c(void) {
     u16 i;
 
-    if (data_021759c0->mNextHeader.mMode != 1) {
+    if (data_021759c0->mNextHeader.mMode != MODE_TIME_ATTACK) {
         return;
     }
     data_021759c0->mNextHeader.mUnk_0c = 0;
@@ -497,7 +497,7 @@ u16 func_02044618(void) {
 
     r = 1;
     p = data_021759c0;
-    if (p->mMode != 2) {
+    if (p->mMode != MODE_BATTLE) {
         if (p->mUnk_064 <= 0) {
             r = gCourseMap->mSettings->mUnk_02;
         } else {

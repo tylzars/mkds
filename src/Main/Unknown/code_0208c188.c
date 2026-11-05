@@ -25,7 +25,7 @@ void func_0208c284(void) {
         data_0217b064 = func_0208c000;
         data_0217b068 = func_0208bfec;
         data_0217b06c = func_0208bfd8;
-    } else if (data_021759c0->mMode == 2) {
+    } else if (data_021759c0->mMode == MODE_BATTLE) {
         data_0217b05c = func_0208bf94;
         data_0217b060 = func_0208bf6c;
         data_0217b058 = func_0208bf40;

@@ -133,7 +133,7 @@ u16 func_020b6368(void) {
 
     switch (GetRaceHudSubScreenState()) {
         case 1:
-            if (func_020b4df8() == 2) {
+            if (func_020b4df8() == MODE_BATTLE) {
                 p = GetCurrentCamera();
             } else {
                 p = GetChaseCamera();

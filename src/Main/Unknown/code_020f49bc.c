@@ -184,7 +184,7 @@ void func_020f6630(ItemObject *a0, s32 b, Vec3 *c, Vec3 *d, Vec3 *e) {
     p = &a->mVelocity;
     i = *(vs32 *) &a->mKind;
     t = gItemKinds[i].mUnk_80;
-    if (data_021759c0->mMode == 1 || (a->mFlags & 0x8000000)) {
+    if (data_021759c0->mMode == MODE_TIME_ATTACK || (a->mFlags & 0x8000000)) {
         t = 0;
     }
     a->mFlags |= 0x4000;
@@ -341,7 +341,7 @@ void func_020f6220(void *a0, s32 b) {
 BOOL func_020f6150(Unk020eda5c *a, Unk020f6150 *b) {
     BOOL v;
 
-    v = data_021759c0->mMode == 2;
+    v = data_021759c0->mMode == MODE_BATTLE;
     func_020f9114(b);
     func_0210b850(&b->mUnk_16c);
     b->mUnk_000.mUnk_000.mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
@@ -424,7 +424,7 @@ s32 func_020f5d6c(Unk020eda5c *a, Unk020f5d6c *b) {
         b->mUnk_000.mUnk_21c.mUnk_04 = 1;
     } else {
         b->mUnk_254 = 1;
-        if (data_021759c0->mMode != 2 && a->mUnk_00c->mUnk_1f0.mUnk_00 != NULL) {
+        if (data_021759c0->mMode != MODE_BATTLE && a->mUnk_00c->mUnk_1f0.mUnk_00 != NULL) {
             x = (u16) (!(b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
                            ? (u16) (b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
                            : 8);
@@ -1020,7 +1020,7 @@ void CreateItemInfos(void) {
     p[16] = data_0215a174;
     p[17] = data_0215a4c0;
     switch (data_021759c0->mMode) {
-        case 2:
+        case MODE_BATTLE:
             p[17].mEnabled = TRUE;
             break;
         case 5:

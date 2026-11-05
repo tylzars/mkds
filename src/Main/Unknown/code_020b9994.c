@@ -435,7 +435,7 @@ void func_020ba520(void) {
             data_0217b3c8->mUnk_00 = v == MODE_MISSION_RUN ? func_ov001_02181820() : 0;
             data_0217b3c8->mUnk_04 = data_021759c0->mUnk_37;
             break;
-        case 2:
+        case MODE_BATTLE:
             switch (data_021759c0->mUnk_18) {
                 case 0:
                     q->mUnk_00_h[0] = 0;
@@ -447,7 +447,7 @@ void func_020ba520(void) {
                     break;
             }
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             break;
         default:
             data_0217b3c8->mUnk_00 = GetKartRank(func_020b4d9c()) - 1;
@@ -473,7 +473,7 @@ void func_020ba3ec(void) {
         case MODE_MISSION_RUN:
             data_0217b3c8->mUnk_00 = v == MODE_MISSION_RUN ? func_ov001_02181820() : 0;
             break;
-        case 2:
+        case MODE_BATTLE:
             if (data_021759c0->mUnk_18 == 0) {
                 if (func_020a2204(func_020b4d9c()) != 0) {
                     data_0217b3c8->mUnk_00_h[0] += 1;
@@ -488,7 +488,7 @@ void func_020ba3ec(void) {
                 data_0217b3c8->mUnk_00_h[0] = GetBalloonOrShineCount(func_020b4d9c());
             }
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             break;
         default:
             data_0217b3c8->mUnk_00 = GetKartRank(func_020b4d9c()) - 1;
@@ -523,7 +523,7 @@ void func_020b9dfc(Unk020d029c *p) {
         case MODE_MISSION_RUN:
             func_020b9994(p);
             return;
-        case 2:
+        case MODE_BATTLE:
             if (IsKartEnded(func_020b4d9c()) == 0) {
                 if (data_021759c0->mUnk_18 == 0) {
                     i = 0;
@@ -577,7 +577,7 @@ void func_020b9dfc(Unk020d029c *p) {
                 p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, a, 0, 1);
             }
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             if (data_02175628[0].mSourceKind != 2) {
                 return;
             }

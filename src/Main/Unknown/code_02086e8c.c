@@ -70,7 +70,7 @@ void func_020875b4(void) {
     s32 w;
     BOOL k;
     v1 = GetHeap(func_020364e8());
-    if (data_021759c0->mMode == 0) {
+    if (data_021759c0->mMode == MODE_GRAND_PRIX) {
         f = TRUE;
     } else {
         f = FALSE;

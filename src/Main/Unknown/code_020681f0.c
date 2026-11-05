@@ -73,7 +73,7 @@ void func_02068b98(Kart *a) {
     c = a->mUnk_3c8;
     if (c >= 0x19 || (b & KART_7C_ENTRY_KIND_2) != 0) {
         d = FALSE;
-        if (data_021759c0->mMode == 2) {
+        if (data_021759c0->mMode == MODE_BATTLE) {
             if (func_020a128c() != 0) {
                 d = TRUE;
             }
@@ -261,7 +261,7 @@ void func_020688a0(Kart *a) {
     if ((c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
         return;
     }
-    if (data_021759c0->mMode == 2 || data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mMode == MODE_MISSION_RUN) {
         d = 1;
         if ((c & 0x10000) != 0) {
             d = 0;
@@ -322,7 +322,7 @@ void func_02068640(Kart *a, s32 b) {
     func_02068494(a, 0, b);
     h = a->mUnk_7c;
     if ((h & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-        if (data_021759c0->mMode == 2 || data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mMode == MODE_MISSION_RUN) {
             i = 1;
             if ((h & 0x10000) != 0) {
                 i = 0;
@@ -383,7 +383,7 @@ void func_02068494(Kart *a, s32 b, s32 c) {
             func_02068a64(a, 3, 1);
         }
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         Vec3Sub(&a->mPos, &d.mUnk_04, &d.mUnk_28);
         func_020a21bc(a->mIndex, (s32) &d.mUnk_28);
     }

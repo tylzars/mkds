@@ -349,7 +349,7 @@ void func_020eb8f8(Unk020ebef8 *param_1) {
 
 u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
     if (*param_3 == 3) {
-        if (data_021759c0->mMode != 1) {
+        if (data_021759c0->mMode != MODE_TIME_ATTACK) {
             if (param_2->mUnk_29c == 1 || param_2->mUnk_2a4 > 0x3000) {
                 func_020ebef8(param_1, &param_2->mUnk_0a4);
                 if (data_0217bbf0 == param_1) {

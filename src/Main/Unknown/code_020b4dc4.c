@@ -10,7 +10,7 @@ u32 func_020b4dc4(int a) {
     int v1;
     u32 v2;
     v1 = func_020b4df8();
-    if ((v1 == 1) && (a != 0)) {
+    if ((v1 == MODE_TIME_ATTACK) && (a != 0)) {
         return 1;
     }
     v2 = func_0207a68c(a);

@@ -190,7 +190,7 @@ s32 func_020676fc(Kart *a) {
     func_02083f6c(0, a);
     if ((a->mUnk_48 & 0x10000) == 0) {
         b = a->mSurfaceVariant;
-        if (data_021759c0->mMode == 2 || data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mMode == MODE_MISSION_RUN) {
             func_020705fc(a, b);
         } else {
             a->mUnk_48 = a->mUnk_48 | 0x10000;
@@ -264,7 +264,7 @@ void func_02067488(Kart *a) {
     if (a->mIndex != func_02061f90()) {
         return;
     }
-    if (data_021759c0->mMode != 0) {
+    if (data_021759c0->mMode != MODE_GRAND_PRIX) {
         return;
     }
     c = GetKart(data_021759c0->mEntryIndex);
@@ -362,7 +362,7 @@ void func_02066fe0(Kart *a) {
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         func_020617d8();
         p = data_021759c0;
-        if (p->mMode != 0 && p->mMode != 1 &&
+        if (p->mMode != MODE_GRAND_PRIX && p->mMode != MODE_TIME_ATTACK &&
             ((p->mUnk_1c == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) ||
              ((i = p->mKartCount) > 1 && (c = GetKartRank(a->mIndex), c == i)))) {
             func_02075cf0();
@@ -370,7 +370,7 @@ void func_02066fe0(Kart *a) {
             StartEntryCameraKind6Entry();
             func_02081f30();
         }
-    } else if (data_021759c0->mMode == 3 || data_021759c0->mMode == 5) {
+    } else if (data_021759c0->mMode == MODE_VS || data_021759c0->mMode == 5) {
         if (gRaceProgress->mUnk_000[a->mIndex].mStatus == 1) {
             e = 0;
             if (func_020617a8((u32 *) &e) != 0 && (u32) e > 0xb4) {
@@ -379,7 +379,7 @@ void func_02066fe0(Kart *a) {
         }
     }
     p = data_021759c0;
-    if (p->mMode == 2) {
+    if (p->mMode == MODE_BATTLE) {
         return;
     }
     g = 1;

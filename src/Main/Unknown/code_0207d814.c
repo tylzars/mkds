@@ -332,7 +332,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
         }
     }
     if (k[0] == 1) {
-        if (data_021759c0->mMode == 0) {
+        if (data_021759c0->mMode == MODE_GRAND_PRIX) {
             if (func_020853a4(m) >= 0x28f) {
                 if (GetKartRank(m) >= 4) {
                     for (i = 1; i < 4; i++) {

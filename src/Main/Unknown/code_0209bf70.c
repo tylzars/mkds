@@ -125,7 +125,7 @@ void func_0209d394(Unk02100094 *a) {
         return;
     }
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
-        if (data_021759c0->mMode == 1) {
+        if (data_021759c0->mMode == MODE_TIME_ATTACK) {
             p->mUnk_0a8 = (u16) p->mUnk_000.mCourseMapRow->mUnk_28;
         } else if (data_021759c0->mMode == 5) {
             p->mUnk_0a8 = (u16) p->mUnk_000.mCourseMapRow->mUnk_2a;
@@ -185,7 +185,7 @@ void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
             if (func_020d8cc8(&p->mUnk_0b8) != FALSE && (t = p->mUnk_0b8.mUnk_1c->mUnk_0e) != 0) {
                 if (p->mUnk_000.mFlags & 0x800) {
                     k = data_021759c0->mMode;
-                    if (k == 1) {
+                    if (k == MODE_TIME_ATTACK) {
                         p->mUnk_0a8 = t;
                     } else if (k == 5) {
                         p->mUnk_0a8 = p->mUnk_0b8.mUnk_1c->mUnk_10;
@@ -326,7 +326,7 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
             Vec3Sub(&v0, &p->mUnk_000.mMatrix.mUnk_00[1], &v0);
             Vec3AddScaled(0x19a, &v0, &p->mUnk_000.mUnk_10, &p->mUnk_000.mUnk_10);
             p->mUnk_120[k->mIndex] = 0x1f;
-            if (data_021759c0->mMode == 2) {
+            if (data_021759c0->mMode == MODE_BATTLE) {
                 func_020a21bc(k->mIndex, (s32) &p->mUnk_000.mUnk_10);
             }
         } else {

@@ -209,12 +209,12 @@ void InitRaceGoalS(void) {
     gRaceGoalS->mUnk_00b4 = 0;
     gRaceGoalS->mUnk_00a0 = -0x100;
     for (j = 0; j < data_021759c0->mKartCount; j = (u16) (j + 1)) {
-        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2) {
+        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE) {
             e = data_021759c0->mCurrentEntries[j].mPlayer.mKind;
             k = e == 0 || e == 2 || e == 3 ? 1 : 0;
             l = func_0205d360(j);
             s[j] = l * 16 + k * 8;
-            if (data_021759c0->mMode == 3 || data_021759c0->mMode == 5) {
+            if (data_021759c0->mMode == MODE_VS || data_021759c0->mMode == 5) {
                 s[j] = s[j] + (8 - func_0205d27c(j));
             } else {
                 s[j] += 8 - j;
@@ -382,7 +382,7 @@ void func_020c28dc(Unk020c06c4 *a) {
             e3[1] = t[i] << 12;
             a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
                                          NULL, e3, 0, 1);
-            if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2)) {
+            if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE)) {
                 x = func_020b4b98(v) != FALSE ? 0x1a : 0x1b;
                 m = GetRaceGoalSNcerEntry(x);
                 e4[0] = (d + 0xd1) << 12;
@@ -398,7 +398,8 @@ void func_020c28dc(Unk020c06c4 *a) {
                 a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
                                              NULL, e5, 0, 1);
             }
-            if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2 || data_021759c0->mCourseNumber == 1)) {
+            if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE ||
+                  data_021759c0->mCourseNumber == 1)) {
                 if (gRaceGoalS->mUnk_00ac == func_020c155c || gRaceGoalS->mUnk_00ac == func_020c13e8 ||
                     gRaceGoalS->mUnk_00ac == func_020c13d0) {
                     m = GetRaceGoalSNcerEntry(gRaceGoalS->mUnk_0080[k] + 0x1c);
@@ -465,7 +466,7 @@ void func_020c2570(Unk020c06c4 *a, u32 b, s32 c, s32 d) {
     e2[1] = d << 12;
     a->mUnk_400 +=
         func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m, NULL, e2, 0, 1);
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         return;
     }
     if (p >= 10) {
@@ -559,7 +560,7 @@ void func_020c214c(Unk020c06c4 *a) {
     }
     for (i = 0; i < 2; i++) {
         f = TRUE;
-        if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2)) {
+        if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE)) {
             f = FALSE;
         }
         if (f != FALSE) {

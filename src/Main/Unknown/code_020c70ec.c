@@ -63,7 +63,7 @@ void func_020c7164(void) {
     Unk02056bc0 *q;
     Unk02056bc0 *r;
 
-    if (data_021759c0->mMode != 1) {
+    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
         return;
     }
     if (gRaceNewRecordTa == NULL) {

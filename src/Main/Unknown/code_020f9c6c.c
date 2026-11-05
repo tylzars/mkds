@@ -969,7 +969,7 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     if (v == 3) {
         return;
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         c = FALSE;
         if ((u32) v > 3) {
         } else if ((1 << v) & 0xd) {
@@ -1184,7 +1184,7 @@ void InitItems(void) {
         func_020fe46c();
         func_020fe450();
     }
-    if (data_021759c0->mMode == 1) {
+    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
         for (i = 0; i < gKartItemsCount; i++) {
             p = &(gKartItems)[i].mHeldItem;
             func_020f47e4(p, 5);

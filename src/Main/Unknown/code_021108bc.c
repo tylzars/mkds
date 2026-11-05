@@ -87,7 +87,7 @@ s32 func_02110e58(void) {
     a = -1;
     p = data_021759c0;
     switch (p->mMode) {
-        case 0:
+        case MODE_GRAND_PRIX:
         case 5:
             switch (data_0217d32c.mUnk_0c) {
                 case 0:
@@ -104,7 +104,7 @@ s32 func_02110e58(void) {
             }
             a = b;
             break;
-        case 3:
+        case MODE_VS:
             if (p->mUnk_1c == 1) {
                 a = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
             } else {
@@ -127,10 +127,10 @@ s32 func_02110e58(void) {
         case MODE_MISSION_RUN:
             a = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
             break;
-        case 2:
+        case MODE_BATTLE:
             a = (data_0217d32c.mUnk_0c == 0) ? 0 : 2;
             break;
-        case 1:
+        case MODE_TIME_ATTACK:
             a = (data_0217d32c.mUnk_0c == 0) ? 1 : 2;
             if (a == func_020c7108()) {
                 a = 0;

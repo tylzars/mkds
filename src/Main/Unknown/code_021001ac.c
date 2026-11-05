@@ -574,7 +574,7 @@ void func_02101178(Unk02101c84 *p) {
     g = GetCurrentCamera();
     if (!(p->mUnk_000.mFlags & 0x8000000)) {
         o = data_021759c0;
-        f = (o->mMode == 2) ? func_02101d90 : func_02101f7c;
+        f = (o->mMode == MODE_BATTLE) ? func_02101d90 : func_02101f7c;
         if (o->mUseTeams != 0) {
             if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
                 i = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);

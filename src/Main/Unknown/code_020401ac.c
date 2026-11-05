@@ -60,7 +60,7 @@ BOOL func_02040bc0(void) {
                 }
             }
             return TRUE;
-        case 2:
+        case MODE_BATTLE:
             if (gRaceProgress->mRaceDone != 0) {
                 r = TRUE;
             }
@@ -124,7 +124,7 @@ s16 func_020408f0(s32 a) {
     }
     g = data_021759c0;
     switch (g->mMode) {
-        case 0:
+        case MODE_GRAND_PRIX:
             func_02040a8c(&b, a);
             break;
         case MODE_MISSION_RUN:
@@ -275,7 +275,7 @@ void InitRaceProgress(void) {
             }
             gRaceProgress->mTimeLimitFrameCount = data_021759c0->mUnk_028;
             break;
-        case 2:
+        case MODE_BATTLE:
             if (data_021759c0->mUnk_18 == 1) {
                 gRaceProgress->mTimeCountsDown = TRUE;
                 gRaceProgress->mTimeLimitFrameCount = gCourseMap->mSettings->mUnk_02 * 0x3c;
@@ -298,7 +298,7 @@ void InitRaceProgress(void) {
             break;
         default:
             switch (data_021759c0->mMode) {
-                case 1:
+                case MODE_TIME_ATTACK:
                     s = 0x34a8f71;
                     break;
                 case MODE_MISSION_RUN:
@@ -333,7 +333,7 @@ void InitRaceProgress(void) {
     d = OS_GetTick();
     func_020401ac_inline4(&gRaceProgress->mLocalRandom, a + ((c << 24) + (d << 8)));
     func_020401ac_inline4(&gRaceProgress->mUnk_4b0, 0xa094a2f);
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         ShuffleCourseMapRespawnSlots(&gRaceProgress->mRandom);
     }
     gRaceProgress->mUnk_4d0 = 0;
@@ -358,7 +358,7 @@ void InitRaceProgress(void) {
             }
         }
     }
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         gRaceProgress->mStartPlacementOffset = 0;
         return;
     }

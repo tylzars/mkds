@@ -152,7 +152,7 @@ void InitKarts(u32 a) {
     q->mUnk_10 = 0;
     q->mUnk_14 = 0;
     q->mUnk_18 = 0;
-    data_usa_021658bc = data_021759c0->mMode == 2 ? 1 : 2;
+    data_usa_021658bc = data_021759c0->mMode == MODE_BATTLE ? 1 : 2;
     func_02073630();
     func_0208c284();
     func_020845cc(a);
@@ -843,7 +843,7 @@ u32 func_020799a0(s32 e) {
     if (c == 0 && func_02062eb0() == 0) {
         b = 0;
     }
-    if (b == 0 && data_021759c0->mMode != 1) {
+    if (b == 0 && data_021759c0->mMode != MODE_TIME_ATTACK) {
         a = FALSE;
     }
     if (a != FALSE) {

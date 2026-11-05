@@ -74,7 +74,7 @@ void func_0206ff50(Kart *p, u32 a) {
         }
         b = (u16) ((func_020d59f8(0x8000) & 0xe0) >> 5);
         h = data_021759c0->mMode;
-        if (h == 2 || h == MODE_MISSION_RUN) {
+        if (h == MODE_BATTLE || h == MODE_MISSION_RUN) {
             func_020705fc(p, b);
             return;
         }
@@ -85,7 +85,7 @@ void func_0206ff50(Kart *p, u32 a) {
     if (!(p->mUnk_48 & 0x800)) {
         p->mUnk_48 |= 0x800;
         k = p->mIndex;
-        if (data_021759c0->mMode == 2) {
+        if (data_021759c0->mMode == MODE_BATTLE) {
             c = GetCourseMapRespawnSlot(0);
         } else {
             c = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[k].mCheckpoint);

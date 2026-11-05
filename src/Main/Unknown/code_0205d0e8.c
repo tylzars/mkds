@@ -62,7 +62,7 @@ void func_0205d9d4(u32 a, s32 b, u32 c) {
     m = p->mMode;
     k = (u8) t - 1;
     i = k;
-    if (m == 2 || m == 3 || m == 5) {
+    if (m == MODE_BATTLE || m == MODE_VS || m == 5) {
         if (i < 0) {
             i = i + 4;
         }
@@ -73,7 +73,7 @@ void func_0205d9d4(u32 a, s32 b, u32 c) {
         v = data_0217aa1c->mUnk_000[i][(u8) a].mUnk_00;
     }
     j = k;
-    if (m == 2 || m == 3 || m == 5) {
+    if (m == MODE_BATTLE || m == MODE_VS || m == 5) {
         if (j < 0) {
             j = j + 4;
         }
@@ -115,7 +115,7 @@ void func_0205d88c(u32 a, s32 b) {
     m = p->mMode;
     k = (u8) t - 1;
     i = k;
-    if (m == 2 || m == 3 || m == 5) {
+    if (m == MODE_BATTLE || m == MODE_VS || m == 5) {
         if (i < 0) {
             i = i + 4;
         }
@@ -191,7 +191,7 @@ void func_0205d558(s32 a) {
         v1 = &data_0217aa1c->mUnk_144[(u8) ((data_021759c0->mCourseNumber - 1) % 4)];
         e = &v1->mUnk_00[(s32) j];
         i = (u8) ((data_021759c0->mCourseNumber - 1) % 4) - 1;
-        if (data_021759c0->mMode == 2 || data_021759c0->mMode == 3 || data_021759c0->mMode == 5) {
+        if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mMode == MODE_VS || data_021759c0->mMode == 5) {
             if (i < 0) {
                 i = i + 4;
             }
@@ -227,7 +227,7 @@ s32 func_0205d4e8(u32 a) {
     Unk0217aa1c_00 *b;
 
     m = data_021759c0->mMode;
-    if (m == 0 || m == 3 || m == 5) {
+    if (m == MODE_GRAND_PRIX || m == MODE_VS || m == 5) {
         v1 = data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mCourseNumber - 1) % 4)];
         b = &v1[(u8) a];
         return b->mUnk_02;
@@ -256,7 +256,7 @@ u16 func_0205d3f0(u32 a) {
 
     m = data_021759c0->mMode;
     i = (u8) ((data_021759c0->mCourseNumber - 1) % 4) - 1;
-    if (m == 2 || m == 3 || m == 5) {
+    if (m == MODE_BATTLE || m == MODE_VS || m == 5) {
         if (i < 0) {
             i = i + 4;
         }
@@ -273,7 +273,7 @@ u8 func_0205d360(u32 a) {
 
     m = data_021759c0->mMode;
     i = (u8) ((data_021759c0->mCourseNumber - 1) % 4) - 1;
-    if (m == 2 || m == 3 || m == 5) {
+    if (m == MODE_BATTLE || m == MODE_VS || m == 5) {
         if (i < 0) {
             i = i + 4;
         }
@@ -293,12 +293,12 @@ u8 func_0205d27c(u32 a) {
     p = data_021759c0;
     m = p->mMode;
     i = (u8) ((p->mCourseNumber - 1) % 4) - 1;
-    if (m == 2 || m == 3 || m == 5) {
+    if (m == MODE_BATTLE || m == MODE_VS || m == 5) {
         if (i < 0) {
             i = i + 4;
         }
     }
-    if (m == 0 || m == 3 || m == 5) {
+    if (m == MODE_GRAND_PRIX || m == MODE_VS || m == 5) {
         if (i < 0) {
             r = p->mKartCount - a;
         } else {

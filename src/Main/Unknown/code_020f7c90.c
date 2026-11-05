@@ -51,8 +51,8 @@ void CreateItemSlotTables(void) {
 
     p = FindMainRaceOrMainEffectFile(data_0216c680);
     switch (data_021759c0->mMode) {
-        case 0:
-        case 1:
+        case MODE_GRAND_PRIX:
+        case MODE_TIME_ATTACK:
         case MODE_MISSION_RUN:
             p = LoadItemSlotTableData(&data_0217bc6c, p + 1);
             p = LoadItemSlotTableData(&data_0217bc64, p);
@@ -62,7 +62,7 @@ void CreateItemSlotTables(void) {
             p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
             break;
-        case 2:
+        case MODE_BATTLE:
             p = (u8 *) ComputeItemSlotTableDataEnd((u32) (p + 1));
             p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
             p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
@@ -84,7 +84,7 @@ void CreateItemSlotTables(void) {
                     break;
             }
             break;
-        case 3:
+        case MODE_VS:
             p = (u8 *) ComputeItemSlotTableDataEnd((u32) (p + 1));
             p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
             p = LoadItemSlotTableData(&data_0217bc6c, p);

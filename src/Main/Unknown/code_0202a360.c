@@ -31,7 +31,7 @@ u32 func_0202a360(void) {
 
     d = data_021759c0;
     n = d->mKartCount;
-    if (d->mMode == 0) {
+    if (d->mMode == MODE_GRAND_PRIX) {
         if (data_0217b488->mUnk_7c < 3) {
             return 0;
         }

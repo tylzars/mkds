@@ -46,7 +46,7 @@ void CreateItemKinds(void) {
     }
     m = data_021759c0->mMode;
     switch (m) {
-        case 2:
+        case MODE_BATTLE:
             gItemKinds[8].mLimit = 8;
             break;
         case MODE_MISSION_RUN:

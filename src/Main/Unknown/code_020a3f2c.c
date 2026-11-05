@@ -875,7 +875,7 @@ void func_020a4c58(u16 a) {
     Balloon *f;
     Balloon *l;
 
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         return;
     }
     func_020a4d94(a, a);
@@ -902,7 +902,7 @@ void func_020a4c58(u16 a) {
 }
 
 void func_020a4c20(void) {
-    if (data_021759c0->mMode != 2) {
+    if (data_021759c0->mMode != MODE_BATTLE) {
         return;
     }
     func_020a305c();
@@ -947,7 +947,7 @@ void InitKartBalloons(Unk020a3fa8 *a) {
     if (func_020d3bf8(MAP_OBJECT_KIND_BALLOON) == 0) {
         d = data_021759c0;
         n = d->mKartCount;
-        if (d->mMode == 2) {
+        if (d->mMode == MODE_BATTLE) {
             CreateParkedMapObjects(MAP_OBJECT_KIND_BALLOON, 0x20, a);
         } else {
             CreateParkedMapObjects(MAP_OBJECT_KIND_BALLOON, 4, a);
@@ -1215,7 +1215,7 @@ u32 func_020a3f48(void) {
 
     d = data_021759c0;
     k = d->mMode;
-    if (k == 2 && d->mUnk_18 == 0) {
+    if (k == MODE_BATTLE && d->mUnk_18 == 0) {
         return func_0209bf8c();
     }
     if (k != MODE_MISSION_RUN) {

@@ -12,9 +12,9 @@ u16 LookupRankPoints(u8 a) {
     RankPointRow *t = gRaceProgress->mRankPointFile;
     if (t != NULL) {
         switch (data_021759c0->mMode) {
-            case 0:
+            case MODE_GRAND_PRIX:
                 break;
-            case 3: {
+            case MODE_VS: {
                 u16 k = 1;
                 if (data_021759c0->mUseTeams != 0) {
                     if (data_021759c0->mKartCount > 3) {
@@ -67,7 +67,7 @@ void func_0203c2e4(u16 a) {
         }
         gRaceProgress->mUnk_000[0].mRemovedCount++;
     }
-    if (data_021759c0->mMode == 2) {
+    if (data_021759c0->mMode == MODE_BATTLE) {
         func_020a16d0(a);
     }
     p->mStatus = 4;
@@ -75,9 +75,9 @@ void func_0203c2e4(u16 a) {
     func_020b1cdc(a, 1);
     if (func_0203ef58() != 0) {
         switch (data_021759c0->mMode) {
-            case 1:
+            case MODE_TIME_ATTACK:
                 break;
-            case 2:
+            case MODE_BATTLE:
                 func_020a12b8();
                 break;
             case MODE_MISSION_RUN:

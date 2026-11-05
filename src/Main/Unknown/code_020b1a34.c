@@ -61,7 +61,7 @@ void func_020b1a34(void) {
     u8 i;
     u8 j;
 
-    if (data_021759c0->mMode == 0 || data_021759c0->mMode == 1) {
+    if (data_021759c0->mMode == MODE_GRAND_PRIX || data_021759c0->mMode == MODE_TIME_ATTACK) {
         gRaceHud->mUnk_8dc = 1;
     }
     if (gRaceHud->mUseTimeDifference == 0) {
@@ -73,7 +73,7 @@ void func_020b1a34(void) {
         t[i].mUnk_08 = 0;
     }
     for (j = 1; j <= func_020b4d2c(); j++) {
-        if (data_021759c0->mMode == 1) {
+        if (data_021759c0->mMode == MODE_TIME_ATTACK) {
             MemCopy(&data_021759c0->mUnk_3ec[j - 1], &a, 4);
         }
         t[0].mUnk_00 += a.mUnk_02;
