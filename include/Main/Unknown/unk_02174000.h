@@ -64,16 +64,16 @@ typedef struct SelectKart {
     /* 084 */ void *mUnk_084;
     /* 088 */ void *mUnk_088;
     /* 08c */ void *mHeap;
-    /* 090 */ s32 mUnk_090;
-    /* 094 */ s32 mUnk_094;
+    /* 090 */ s32 mStateFrames; /* counts only in states 3, 4 and 6 */
+    /* 094 */ s32 mState;
     /* 098 */ Unk0205fd2c *mUnk_098;
     /* 09c */ s32 mUnk_09c;
     /* 0a0 */ s32 mUnk_0a0;
-    /* 0a4 */ s32 mUnk_0a4;
-    /* 0a8 */ s32 mUnk_0a8;
+    /* 0a4 */ s32 mCharacterIndex;
+    /* 0a8 */ s32 mKartIndex;
     /* ac */ Unk02025ebc mUnk_0ac[5];
-    /* 0fc */ s32 mUnk_0fc;
-    /* 100 */ s32 mUnk_100;
+    /* 0fc */ s32 mMode;
+    /* 100 */ s32 mResult;
     /* 104 */ BOOL mUnk_104;
     /* 108 */ s32 mUnk_108;
     /* 10c */ s32 mUnk_10c;

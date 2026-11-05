@@ -49,7 +49,7 @@ void LocateAndQueueSelectRaceRule(void) {
     v2 = NULL;
     v3 = NULL;
     v4 = NULL;
-    if (gSelectRaceRule->mUnk_2c == 3) {
+    if (gSelectRaceRule->mMode == 3) {
         v1 = FindSceneFile(data_0216dc08);
         LocateNcgr(&v3, v1);
         v1 = FindSceneFile(data_0216dbdc);

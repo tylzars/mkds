@@ -49,7 +49,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     gSelectKart = HeapAlloc(h, 0x118);
     func_02028e00(gSelectKart, 0x118);
     gSelectKart->mHeap = h;
-    gSelectKart->mUnk_0fc = b;
+    gSelectKart->mMode = b;
     gSelectKart->mUnk_110 = -1;
     switch (func_02029930()->mUnk_108) {
         case 1:
@@ -70,14 +70,14 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     func_02025f80(&gSelectKart->mUnk_0ac[4], 0, 10, -0xc0, 0);
     gSelectKart->mUnk_080 = c;
     gSelectKart->mUnk_084 = d;
-    if (gSelectKart->mUnk_0fc != 0 || func_02029930()->mUnk_c8 == 3 || func_02029930()->mUnk_c8 == 2) {
+    if (gSelectKart->mMode != 0 || func_02029930()->mUnk_c8 == 3 || func_02029930()->mUnk_c8 == 2) {
         v = 1;
     } else {
         v = 0;
     }
     gSelectKart->mUnk_104 = v;
     if (gSelectKart->mUnk_104 != FALSE) {
-        switch (gSelectKart->mUnk_0fc) {
+        switch (gSelectKart->mMode) {
             case 0:
                 m = 0;
                 break;
@@ -90,7 +90,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         }
         func_0202c0d4(m, 1);
     }
-    switch (gSelectKart->mUnk_0fc) {
+    switch (gSelectKart->mMode) {
         case 0:
             gSelectKart->mUnk_0a0 = 0;
             break;
@@ -106,18 +106,18 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         gSelectKart->mUnk_098 = func_02056444(gSelectKart->mHeap);
     }
     g = gSelectKart;
-    g->mUnk_0a4 = func_02029930()->mUnk_00[g->mUnk_0a0].mCharacterIndex;
+    g->mCharacterIndex = func_02029930()->mUnk_00[g->mUnk_0a0].mCharacterIndex;
     g = gSelectKart;
-    g->mUnk_0a8 = func_02029930()->mUnk_00[g->mUnk_0a0].mKartIndex;
-    if (gSelectKart->mUnk_0a4 == -1) {
-        gSelectKart->mUnk_0a4 = 0;
+    g->mKartIndex = func_02029930()->mUnk_00[g->mUnk_0a0].mKartIndex;
+    if (gSelectKart->mCharacterIndex == -1) {
+        gSelectKart->mCharacterIndex = 0;
     }
-    if (gSelectKart->mUnk_0a8 == -1) {
-        gSelectKart->mUnk_0a8 = 0;
+    if (gSelectKart->mKartIndex == -1) {
+        gSelectKart->mKartIndex = 0;
     }
     func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mKartIndex = -1;
     func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_14 = 0;
-    gSelectKart->mUnk_09c = func_02025e34(gSelectKart->mUnk_0a8);
+    gSelectKart->mUnk_09c = func_02025e34(gSelectKart->mKartIndex);
     if (func_020280dc() == 0) {
         g = gSelectKart;
         if (g->mUnk_104 == FALSE) {
@@ -130,10 +130,10 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             func_02124748(1, e.mUnk_08, (void *) e.mUnk_00, e.mUnk_0c, 0, 0, p->mUnk_08, p->mUnk_0c);
             func_02025b20(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, NULL,
                           gSelectCharacterGpNameMBnclName2, NULL, NULL, func_02047a28);
-            func_02124748(data_usa_021537dc[gSelectKart->mUnk_0a4], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0, 2,
-                          p->mUnk_08, p->mUnk_0c);
-            func_02124748(data_usa_021537dc[gSelectKart->mUnk_0a4], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0, 1,
-                          p->mUnk_08, p->mUnk_0c);
+            func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0,
+                          2, p->mUnk_08, p->mUnk_0c);
+            func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0,
+                          1, p->mUnk_08, p->mUnk_0c);
         }
     }
     if (func_020280dc() == 0) {
@@ -175,7 +175,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     if (func_0202811c() == 2) {
         SetSelectReturnDisplayBitOn();
     }
-    if (gSelectKart->mUnk_0fc == 0) {
+    if (gSelectKart->mMode == 0) {
         func_02117060();
     }
     FrmHeapShrinkInParent(h);

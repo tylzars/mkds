@@ -93,10 +93,10 @@ void func_0202b3f4(void) {
     for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
         p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_06 = func_020ae4c0(
             1, 0, (s16) (0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, data_usa_021539f4[i].mUnk_06))[1] << 20 >> 20)),
-            (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mUnk_13c, 0x3c);
+            (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
         p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_06 = func_020ae4c0(
             1, 0, (s16) (0x60 - (((s16 *) func_0201ea58(p->mUnk_14, data_usa_021539f4[i].mUnk_00))[1] << 20 >> 20)),
-            (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mUnk_13c, 0x3c);
+            (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
     }
 }
 
@@ -160,7 +160,7 @@ void func_0202b100(void) {
         } else {
             v = 0;
         }
-        switch (gWiFiVSCourseSelect->mUnk_0ac) {
+        switch (gWiFiVSCourseSelect->mState) {
             case 0:
             case 1:
             case 2:
@@ -191,17 +191,17 @@ void func_0202afe4(void) {
     func_02025edc(&gWiFiVSCourseSelect->mUnk_0cc[2]);
     p->mUnk_18[16].mUnk_04 = func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[2]);
     p->mUnk_18[15].mUnk_04 = p->mUnk_18[16].mUnk_04;
-    switch (gWiFiVSCourseSelect->mUnk_0ac) {
+    switch (gWiFiVSCourseSelect->mState) {
         case 0:
         case 1:
         case 2:
-            if (gWiFiVSCourseSelect->mUnk_140 != 0) {
-                gWiFiVSCourseSelect->mUnk_140--;
-                v = (gWiFiVSCourseSelect->mUnk_140 + 0x3c) / 0x3c;
+            if (gWiFiVSCourseSelect->mTimer != 0) {
+                gWiFiVSCourseSelect->mTimer--;
+                v = (gWiFiVSCourseSelect->mTimer + 0x3c) / 0x3c;
                 p->mUnk_18[15].mUnk_00 = v >= 10 ? 1 : 0;
-                if (gWiFiVSCourseSelect->mUnk_140 == 0) {
+                if (gWiFiVSCourseSelect->mTimer == 0) {
                     func_0212ecc0(&data_0217d068, 0, 0x51);
-                } else if ((gWiFiVSCourseSelect->mUnk_140 + 0x3c) % 0x3c == 0 && v <= 4) {
+                } else if ((gWiFiVSCourseSelect->mTimer + 0x3c) % 0x3c == 0 && v <= 4) {
                     func_0212ecc0(&data_0217d068, 0, 0x50);
                 }
             }
@@ -279,7 +279,7 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
     l->mUnk_10 = 0x269ec3;
     gWiFiVSCourseSelect->mUnk_0b8 = func_020295d0();
     gWiFiVSCourseSelect->mUnk_0b4 = func_020295e4();
-    gWiFiVSCourseSelect->mUnk_140 = 0x4b0;
+    gWiFiVSCourseSelect->mTimer = 0x4b0;
     gWiFiVSCourseSelect->mUnk_154 = -0xc0;
     for (i = 0; i < 4; i++) {
         gWiFiVSCourseSelect->mUnk_0bc[i] = 0;
@@ -354,13 +354,13 @@ s32 AdvanceWiFiVSCourseSelect(void) {
 
     func_0202e4b0();
     func_0202b100();
-    switch (gWiFiVSCourseSelect->mUnk_0ac) {
+    switch (gWiFiVSCourseSelect->mState) {
         case 0:
             if (func_02036c5c() == 0) {
                 break;
             }
             if (gWiFiVSCourseSelect->mUnk_0cc[0].mUnk_00 == 1) {
-                gWiFiVSCourseSelect->mUnk_0ac = 1;
+                gWiFiVSCourseSelect->mState = 1;
             }
             func_0202b264();
             break;
@@ -368,7 +368,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             if (func_0202e468() != 0) {
                 func_0212ecc0(&data_0217d068, 0, 0x208);
             }
-            if (func_0202e47c() == 0 && gWiFiVSCourseSelect->mUnk_140 != 0) {
+            if (func_0202e47c() == 0 && gWiFiVSCourseSelect->mTimer != 0) {
                 break;
             }
             v = func_0202e4a4();
@@ -378,49 +378,49 @@ s32 AdvanceWiFiVSCourseSelect(void) {
                 v--;
             }
             func_02121e84(data_usa_02153a4c[v]);
-            gWiFiVSCourseSelect->mUnk_0ac = 2;
+            gWiFiVSCourseSelect->mState = 2;
             gWiFiVSCourseSelect->mUnk_0b0 = 1;
             func_0202e490(0);
             break;
         case 2:
             if (func_02121cd0() != 0) {
-                gWiFiVSCourseSelect->mUnk_0ac = 3;
+                gWiFiVSCourseSelect->mState = 3;
                 func_02025f14(&gWiFiVSCourseSelect->mUnk_0cc[2], 2);
             }
             break;
         case 3:
-            gWiFiVSCourseSelect->mUnk_13c++;
-            if (gWiFiVSCourseSelect->mUnk_13c > 0x3c) {
+            gWiFiVSCourseSelect->mStateFrames++;
+            if (gWiFiVSCourseSelect->mStateFrames > 0x3c) {
                 func_02036e20(0x3c, 1);
-                gWiFiVSCourseSelect->mUnk_0ac = 4;
-                gWiFiVSCourseSelect->mUnk_13c = 0;
+                gWiFiVSCourseSelect->mState = 4;
+                gWiFiVSCourseSelect->mStateFrames = 0;
                 func_0212ecc0(&data_0217d068, 0, 0x209);
             }
             break;
         case 4:
-            gWiFiVSCourseSelect->mUnk_13c++;
-            if (gWiFiVSCourseSelect->mUnk_13c <= 0x3c) {
+            gWiFiVSCourseSelect->mStateFrames++;
+            if (gWiFiVSCourseSelect->mStateFrames <= 0x3c) {
                 func_0202b3f4();
             } else {
                 func_02037334(10, 1);
-                gWiFiVSCourseSelect->mUnk_0ac = 5;
-                gWiFiVSCourseSelect->mUnk_13c = 0;
+                gWiFiVSCourseSelect->mState = 5;
+                gWiFiVSCourseSelect->mStateFrames = 0;
                 func_0202b2bc();
             }
             break;
         case 5:
-            gWiFiVSCourseSelect->mUnk_13c++;
-            if (gWiFiVSCourseSelect->mUnk_13c > 0x3c) {
+            gWiFiVSCourseSelect->mStateFrames++;
+            if (gWiFiVSCourseSelect->mStateFrames > 0x3c) {
                 func_02036f10(10);
-                gWiFiVSCourseSelect->mUnk_0ac = 6;
-                gWiFiVSCourseSelect->mUnk_13c = 0;
+                gWiFiVSCourseSelect->mState = 6;
+                gWiFiVSCourseSelect->mStateFrames = 0;
             }
             break;
         case 6:
-            gWiFiVSCourseSelect->mUnk_13c++;
-            if (gWiFiVSCourseSelect->mUnk_13c > 10) {
-                gWiFiVSCourseSelect->mUnk_0ac = 7;
-                gWiFiVSCourseSelect->mUnk_13c = 0;
+            gWiFiVSCourseSelect->mStateFrames++;
+            if (gWiFiVSCourseSelect->mStateFrames > 10) {
+                gWiFiVSCourseSelect->mState = 7;
+                gWiFiVSCourseSelect->mStateFrames = 0;
             }
             break;
         case 7:
@@ -441,7 +441,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
 
 #pragma thumb on
 
-void func_0202a90c(void) {
+void ReleaseWiFiVSCourseSelect(void) {
     HeapDestroy((void *) (gWiFiVSCourseSelect->mHeap));
     *&gWiFiVSCourseSelect = NULL;
     return;

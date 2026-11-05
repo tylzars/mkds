@@ -630,8 +630,8 @@ void func_021134d4(void) {
     u16 a;
     s32 j;
     i = 0;
-    gRecordVS->mUnk_50 = 0;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 0;
+    gRecordVS->mStateFrames = 0;
     gRecordVS->mUnk_58 = 0;
     gRecordVS->mUnk_5c = -192;
     gRecordVS->mUnk_60 = 0;
@@ -680,36 +680,36 @@ void func_021134d4(void) {
 }
 
 void func_021134b8(void) {
-    gRecordVS->mUnk_50 = 1;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 1;
+    gRecordVS->mStateFrames = 0;
     func_02113a3c();
 }
 
 void func_0211349c(void) {
-    gRecordVS->mUnk_50 = 2;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 2;
+    gRecordVS->mStateFrames = 0;
     func_021139b4();
 }
 
 void func_02113480(void) {
-    gRecordVS->mUnk_50 = 3;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 3;
+    gRecordVS->mStateFrames = 0;
     func_02128374();
 }
 
 void func_0211346c(void) {
-    gRecordVS->mUnk_50 = 4;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 4;
+    gRecordVS->mStateFrames = 0;
 }
 
 void func_02113458(void) {
-    gRecordVS->mUnk_50 = 5;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 5;
+    gRecordVS->mStateFrames = 0;
 }
 
 void func_02113420(void) {
-    gRecordVS->mUnk_50 = 6;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 6;
+    gRecordVS->mStateFrames = 0;
     switch (gRecordVS->mUnk_6c) {
         case 0:
             func_021139a0();
@@ -722,16 +722,16 @@ void func_02113420(void) {
 }
 
 void func_0211340c(void) {
-    gRecordVS->mUnk_50 = 7;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 7;
+    gRecordVS->mStateFrames = 0;
 }
 
 void func_021132e4(void) {
     s32 i;
     u16 x;
-    gRecordVS->mUnk_50 = 8;
+    gRecordVS->mNextState = 8;
     i = 0;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mStateFrames = 0;
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mUnk_3c[20].mUnk_04 = 0x100;
     gRecordVS->mUnk_3c[21].mUnk_04 = 0x100;
@@ -754,24 +754,24 @@ void func_021132e4(void) {
 }
 
 void func_021132b4(void) {
-    gRecordVS->mUnk_50 = 9;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 9;
+    gRecordVS->mStateFrames = 0;
     gRecordVS->mUnk_3c[25].mUnk_00 = 1;
     func_0212ecc0(&data_0217d068, 0, 4);
 }
 
 void func_02113298(void) {
-    gRecordVS->mUnk_50 = 10;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mNextState = 10;
+    gRecordVS->mStateFrames = 0;
     func_021282c8();
 }
 
 void func_02113174(void) {
     s32 i;
     u16 x;
-    gRecordVS->mUnk_50 = 11;
+    gRecordVS->mNextState = 11;
     i = 0;
-    gRecordVS->mUnk_54 = 0;
+    gRecordVS->mStateFrames = 0;
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mUnk_3c[20].mUnk_04 = 0x100;
     gRecordVS->mUnk_3c[21].mUnk_04 = 0x100;
@@ -885,10 +885,10 @@ void InitRecordVS(void *a) {
     gRecordVS->mUnk_7c = HeapAlloc(a, 0x200);
     if (func_0211147c() == 4) {
         if (func_021143b4() != 0) {
-            gRecordVS->mUnk_4c = 11;
+            gRecordVS->mState = 11;
             func_02113174();
         } else {
-            gRecordVS->mUnk_4c = 8;
+            gRecordVS->mState = 8;
             func_021132e4();
             if (func_0211146c() == 12) {
                 gRecordVS->mUnk_90 = 6;
@@ -897,7 +897,7 @@ void InitRecordVS(void *a) {
             }
         }
     } else {
-        gRecordVS->mUnk_4c = 0;
+        gRecordVS->mState = 0;
         func_021134d4();
         func_020ae6d4(func_02111318(), func_0211130c());
     }

@@ -27,8 +27,8 @@ void func_02029330(void) {
     Unk02174e50_24 *p;
     if (func_020280dc() == 0) {
         d = gSelectKart;
-        a = func_02025da4(d->mUnk_098, d->mUnk_0a4, d->mUnk_0a8);
-        b = func_02025df4(gSelectKart->mUnk_098, gSelectKart->mUnk_0a4);
+        a = func_02025da4(d->mUnk_098, d->mCharacterIndex, d->mKartIndex);
+        b = func_02025df4(gSelectKart->mUnk_098, gSelectKart->mCharacterIndex);
         d = gSelectKart;
         if (d->mUnk_104 != FALSE) {
             func_0202b554(a, b);
@@ -56,9 +56,9 @@ void func_020292bc(void) {
         i = 0;
     }
     while (d = gSelectKart, i != d->mUnk_09c) {
-        if (func_0205fd2c(d->mUnk_098, d->mUnk_0a4, func_02025e28(i)) != 0) {
+        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, func_02025e28(i)) != 0) {
             gSelectKart->mUnk_09c = i;
-            gSelectKart->mUnk_0a8 = func_02025e28(gSelectKart->mUnk_09c);
+            gSelectKart->mKartIndex = func_02025e28(gSelectKart->mUnk_09c);
         } else {
             i++;
             if (i >= 0x24) {
@@ -77,9 +77,9 @@ void func_02029248(void) {
         i = 0x23;
     }
     while (d = gSelectKart, i != d->mUnk_09c) {
-        if (func_0205fd2c(d->mUnk_098, d->mUnk_0a4, func_02025e28(i)) != 0) {
+        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, func_02025e28(i)) != 0) {
             gSelectKart->mUnk_09c = i;
-            gSelectKart->mUnk_0a8 = func_02025e28(gSelectKart->mUnk_09c);
+            gSelectKart->mKartIndex = func_02025e28(gSelectKart->mUnk_09c);
         } else {
             i--;
             if (i < 0) {

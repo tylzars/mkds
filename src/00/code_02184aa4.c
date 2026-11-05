@@ -30,7 +30,7 @@ void InitWiFiVSCourseSelectState(u32 a) {
 }
 
 void func_ov000_02184b50(void) {
-    func_0202a90c();
+    ReleaseWiFiVSCourseSelect();
     *(u32 *) &data_ov000_021b4c80 = 0;
     return;
 }

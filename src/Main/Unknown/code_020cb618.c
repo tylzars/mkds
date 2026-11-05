@@ -175,7 +175,7 @@ void func_020cb618(void) {
             case 6:
             case 9:
             case 22:
-                func_0202808c();
+                ReleaseSelectKart();
                 break;
             case 7:
             case 11:
@@ -184,7 +184,7 @@ void func_020cb618(void) {
                 break;
             case 13:
             case 25:
-                func_021196f4();
+                ReleaseSelectCup();
                 break;
             case 10:
             case 16:

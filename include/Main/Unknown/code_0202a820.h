@@ -14,15 +14,15 @@ typedef struct WiFiVSCourseSelect {
     /* 08c */ void *mUnk_08c;
     /* 090 */ void *mHeap;
     /* 094 */ Unk020f41c4_B mUnk_094;
-    /* 0ac */ s32 mUnk_0ac;
+    /* 0ac */ s32 mState;
     /* 0b0 */ s32 mUnk_0b0;
     /* 0b4 */ s32 mUnk_0b4;
     /* 0b8 */ s32 mUnk_0b8;
     /* 0bc */ s32 mUnk_0bc[4];
     /* 0cc */ Unk02025ebc mUnk_0cc[3];
     /* 0fc */ Unk02025ebc mUnk_0fc[4];
-    /* 13c */ s32 mUnk_13c;
-    /* 140 */ s32 mUnk_140;
+    /* 13c */ s32 mStateFrames; /* counts only in states 3, 4, 5, 6 */
+    /* 140 */ s32 mTimer;
     /* 144 */ s32 mUnk_144;
     /* 148 */ s32 mUnk_148;
     /* 14c */ u16 mUnk_14c[4];
@@ -67,7 +67,7 @@ extern Unk021539f4 data_usa_02153a14[];
 extern s32 data_usa_02153a4c[];
 
 void func_0202a820(void);
-void func_0202a90c(void);
+void ReleaseWiFiVSCourseSelect(void);
 s32 func_0202af60(void);
 void func_0202afe4(void);
 void func_0202b100(void);

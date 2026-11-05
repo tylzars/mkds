@@ -69,7 +69,7 @@
 void func_0211db30(Unk0215ce70 *a, s32 b) {
     Unk0215ce70 v;
 
-    if (gSelectRaceRule->mUnk_2c == 3) {
+    if (gSelectRaceRule->mMode == 3) {
         v = data_0215ce70[b];
     } else {
         v = data_0215ce0c[b];
@@ -222,7 +222,7 @@ void func_0211d66c(void) {
                 break;
         }
     }
-    if (gSelectRaceRule->mUnk_2c == 3) {
+    if (gSelectRaceRule->mMode == 3) {
         gSelectRaceRule->mUnk_14[h + data_0215cd4c[0].mUnk_00[1]].mUnk_00 = 0;
         gSelectRaceRule->mUnk_14[h + data_0215cd4c[2].mUnk_00[1]].mUnk_00 = 0;
     }
@@ -409,7 +409,7 @@ BOOL func_0211d2f0(u16 *a) {
         *a = 8;
         return FALSE;
     }
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
             c = func_0211d650();
@@ -483,7 +483,7 @@ void func_0211d09c(void) {
     gSelectRaceRule->mUnk_ac[0] = 0;
     gSelectRaceRule->mUnk_ac[1] = 0;
     for (i = 0; i < n; i++) {
-        switch (gSelectRaceRule->mUnk_2c) {
+        switch (gSelectRaceRule->mMode) {
             case 0:
             case 1:
                 a = func_020ae3b4(2);
@@ -514,7 +514,7 @@ void func_0211cfd0(void) {
     gSelectRaceRule->mUnk_b0[0] = 0;
     gSelectRaceRule->mUnk_b0[1] = 0;
     for (i = func_0211d650(); i < 8; i++) {
-        switch (gSelectRaceRule->mUnk_2c) {
+        switch (gSelectRaceRule->mMode) {
             case 0:
             case 1:
                 a = func_020ae3b4(2);
@@ -543,7 +543,7 @@ BOOL func_0211cea8(void) {
         return FALSE;
     }
     p = gSelectRaceRule;
-    switch (p->mUnk_2c) {
+    switch (p->mMode) {
         case 0:
             if (p->mUnk_60 == 1 && p->mUnk_68[1] == 0) {
                 return FALSE;
@@ -596,7 +596,7 @@ BOOL func_0211cea8(void) {
 BOOL func_0211ce24(void) {
     BOOL a;
     u8 b;
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
             if (func_0211d650() == 1) {
@@ -829,7 +829,7 @@ void func_0211c818(void) {
             }
         }
     }
-    if (gSelectRaceRule->mUnk_2c == 3) {
+    if (gSelectRaceRule->mMode == 3) {
         for (j = 0; j < 2; j++) {
             gSelectRaceRule->mUnk_14[data_0215cd88[0][j]].mUnk_00 = 0;
             gSelectRaceRule->mUnk_14[data_0215cd88[2][j]].mUnk_00 = 0;
@@ -1116,7 +1116,7 @@ void func_0211bd84(void) {
         func_02029550(0);
     }
     if (func_0202962c() != 0) {
-        switch (gSelectRaceRule->mUnk_2c) {
+        switch (gSelectRaceRule->mMode) {
             case 0:
             case 1:
                 a = 1;
@@ -1159,7 +1159,7 @@ void func_0211bd84(void) {
     while (b != gSelectRaceRule->mUnk_68[1]) {
         func_0211ccac(0);
     }
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
             if (b == 0 && gSelectRaceRule->mUnk_68[1] != 2) {
@@ -1193,7 +1193,7 @@ void func_0211bd84(void) {
 void func_0211bd10(void) {
     BOOL a;
     u8 b;
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
             gSelectRaceRule->mUnk_ac[0] = 1;
@@ -1267,7 +1267,7 @@ void func_0211bad8(void) {
 void func_0211baac(void) {
     gSelectRaceRule->mNextState = 2;
     gSelectRaceRule->mStateFrames = 0;
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
             func_02128374();
@@ -1325,7 +1325,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     h = CreateFrmHeapFromMaxFree(a);
     gSelectRaceRule = HeapAlloc(h, 0xbc);
     gSelectRaceRule->mHeap = h;
-    gSelectRaceRule->mUnk_2c = d;
+    gSelectRaceRule->mMode = d;
     gSelectRaceRule->mState = 0;
     gSelectRaceRule->mUnk_60 = 0;
     gSelectRaceRule->mUnk_64 = 4;
@@ -1406,7 +1406,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     }
     func_0211d910(0);
     func_0211d844(0);
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 2:
         case 4:
             func_021170f8();
@@ -1422,7 +1422,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
             func_02116ec0();
             break;
     }
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
             func_0202c0d4(0, 2);
@@ -1441,7 +1441,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
         func_0211cfd0();
     }
     p = gSelectRaceRule;
-    switch (p->mUnk_2c) {
+    switch (p->mMode) {
         case 0:
             p->mUnk_60 = 1;
             if (gSelectRaceRule->mUnk_68[1] == 0) {
@@ -1490,7 +1490,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
             }
             break;
     }
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 1:
             gSelectRaceRule->mUnk_14[n + data_0215cd4c[0].mUnk_00[0]].mUnk_00 = 0;
             break;
@@ -1535,7 +1535,7 @@ void ReleaseSelectRaceRule(void) {
     u32 a;
     u32 b;
     p = gSelectRaceRule;
-    if (p->mUnk_b8 == 1 && (p->mUnk_2c == 3 || p->mUnk_68[2] == 1)) {
+    if (p->mUnk_b8 == 1 && (p->mMode == 3 || p->mUnk_68[2] == 1)) {
         a = ((reg_GX_DISPCNT) & 0x1f00) >> 8;
         a &= ~3;
         (reg_GX_DISPCNT) = ((reg_GX_DISPCNT) & 0xffffe0ff) | (a << 8);
@@ -1630,7 +1630,7 @@ void AdvanceSelectRaceRuleState2(void) {
         gSelectRaceRule->mUnk_14[0x2a].mUnk_06 = a;
         gSelectRaceRule->mUnk_14[b + 14].mUnk_06 = a;
     }
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
             if (gSelectRaceRule->mStateFrames >= 10 && IsSelectReturnState2NoState3Or4Request() != 0) {
@@ -1697,7 +1697,7 @@ void AdvanceSelectRaceRuleState3(void) {
             goto chain;
         }
     }
-    switch (gSelectRaceRule->mUnk_2c) {
+    switch (gSelectRaceRule->mMode) {
         case 0:
         case 1:
             func_021281c8(0xe);
@@ -1786,7 +1786,7 @@ void AdvanceSelectRaceRuleState4(void) {
         gSelectRaceRule->mUnk_84 = 1;
     }
     if (gSelectRaceRule->mStateFrames >= 10) {
-        if (gSelectRaceRule->mUnk_2c == 3 || gSelectRaceRule->mUnk_68[2] == 1) {
+        if (gSelectRaceRule->mMode == 3 || gSelectRaceRule->mUnk_68[2] == 1) {
             func_0211ba1c();
             return;
         }

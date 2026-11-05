@@ -2,13 +2,13 @@
 
 #include "types.h"
 
-void func_02119340(void);
-void func_021192c4(void);
-void func_02119260(void);
-void func_02119208(void);
-void func_0211913c(void);
-void func_02118f98(void);
-s32 func_02118e64(void);
+void AdvanceSelectCupState3(void);
+void AdvanceSelectCupState4(void);
+void AdvanceSelectCupState5(void);
+void AdvanceSelectCupState6(void);
+void AdvanceSelectCupState7(void);
+void AdvanceSelectCupState8(void);
+s32 AdvanceSelectCup(void);
 void func_02118e30(void);
 void func_02118d44(void);
 void func_02118b48(void);

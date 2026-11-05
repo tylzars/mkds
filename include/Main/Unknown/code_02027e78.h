@@ -12,7 +12,7 @@ void func_02028010(u32 a);
 void func_0202802c(u32 a, u32 b);
 u32 func_02028058(u32 arg0);
 u32 func_02028074(u32 arg0);
-void func_0202808c(void);
+void ReleaseSelectKart(void);
 u32 func_020280dc(void);
 u32 func_020280e8(void);
 u16 *func_02028110(void);

@@ -35,9 +35,9 @@ u32 func_020280dc(void) {
 
 #pragma thumb on
 
-void func_0202808c(void) {
+void ReleaseSelectKart(void) {
     int v1;
-    if ((gSelectKart->mUnk_100 == 1) && (v1 = ((u32) func_0202811c()), v1 == 2)) {
+    if ((gSelectKart->mResult == 1) && (v1 = ((u32) func_0202811c()), v1 == 2)) {
         ClearSelectReturnDisplayBitOn();
     }
     v1 = func_020280dc();
@@ -150,7 +150,7 @@ void func_02027f1c(u32 a, u32 b, u32 c, u32 d) {
 void func_02027e78(void) {
     u32 a = 0x16;
     s32 b = func_02025ebc(&gSelectKart->mUnk_0ac[4]);
-    if (gSelectKart->mUnk_094 != 8) {
+    if (gSelectKart->mState != 8) {
         a |= 8;
     }
     func_02028074(0x19);
@@ -158,7 +158,7 @@ void func_02027e78(void) {
     func_0202802c(0, -b);
     func_02028010(2);
     func_02027fd4(0, 0x3f, 6, 10);
-    if (b != 0 && gSelectKart->mUnk_094 != 8) {
+    if (b != 0 && gSelectKart->mState != 8) {
         func_02027fb8(1);
         func_02027f90(0x1f, 1);
         func_02027f68(7, 1);

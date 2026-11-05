@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02112b30(void);
+void AdvanceRecordVSState0(void);

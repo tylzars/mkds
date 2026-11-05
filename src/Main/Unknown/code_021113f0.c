@@ -58,7 +58,7 @@
 
 #pragma thumb on
 
-void func_02112b30(void) {
+void AdvanceRecordVSState0(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
@@ -70,14 +70,14 @@ void func_02112b30(void) {
 
 #pragma thumb on
 
-void func_02112a0c(void) {
+void AdvanceRecordVSState1(void) {
     u16 b;
     u16 a;
     s32 i;
     s32 j;
     s16 v;
-    gRecordVS->mUnk_54 = gRecordVS->mUnk_54 + 1;
-    v = func_020ae4c0(1, -192, 0, gRecordVS->mUnk_54, 10);
+    gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
+    v = func_020ae4c0(1, -192, 0, gRecordVS->mStateFrames, 10);
     gRecordVS->mUnk_5c = v;
     gRecordVS->mUnk_64 = v;
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
@@ -103,18 +103,18 @@ void func_02112a0c(void) {
     for (j = 0; j < 12; j++) {
         gRecordVS->mUnk_24[b + data_0215c478[j]].mUnk_06 = v;
     }
-    if (gRecordVS->mUnk_54 >= 10) {
+    if (gRecordVS->mStateFrames >= 10) {
         func_0211349c();
     }
 }
 
-void func_021128cc(void) {
+void AdvanceRecordVSState2(void) {
     s16 v;
     s32 i;
     u16 x;
     func_021137f4();
-    gRecordVS->mUnk_54 = gRecordVS->mUnk_54 + 1;
-    v = func_020ae4c0(1, 0x100, 0, gRecordVS->mUnk_54, 10);
+    gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
+    v = func_020ae4c0(1, 0x100, 0, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mUnk_3c[20].mUnk_04 = v;
     gRecordVS->mUnk_3c[21].mUnk_04 = v;
@@ -129,10 +129,10 @@ void func_021128cc(void) {
         gRecordVS->mUnk_3c[data_0215c404[i]].mUnk_04 = v;
         gRecordVS->mUnk_3c[x + data_0215c3bc[i]].mUnk_04 = v;
     }
-    if (gRecordVS->mUnk_54 >= 10) {
+    if (gRecordVS->mStateFrames >= 10) {
         func_02113480();
     }
-    if (gRecordVS->mUnk_54 == 4) {
+    if (gRecordVS->mStateFrames == 4) {
         gRecordVS->mUnk_3c[24].mUnk_00 = 1;
         gRecordVS->mUnk_3c[25].mUnk_00 = 0;
     }
@@ -142,7 +142,7 @@ void func_021128cc(void) {
 
 #pragma thumb on
 
-void func_021128b4(void) {
+void AdvanceRecordVSState3(void) {
     int v1;
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
@@ -154,7 +154,7 @@ void func_021128b4(void) {
 
 #pragma thumb on
 
-void func_0211256c(void) {
+void AdvanceRecordVSState4(void) {
     s32 a;
     s32 b;
     Unk02175628Index i;
@@ -299,7 +299,7 @@ l1:
     }
 }
 
-void func_021123a0(void) {
+void AdvanceRecordVSState5(void) {
     s32 i;
     u16 b;
     u16 x;
@@ -318,11 +318,11 @@ void func_021123a0(void) {
             c = 0x100;
             break;
     }
-    gRecordVS->mUnk_54 = gRecordVS->mUnk_54 + 1;
+    gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
     b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    v = func_020ae4c0(1, 0, c, gRecordVS->mUnk_54, 10);
+    v = func_020ae4c0(1, 0, c, gRecordVS->mStateFrames, 10);
     gRecordVS->mUnk_58 = v;
     gRecordVS->mUnk_60 = v;
     gRecordVS->mUnk_14[1].mUnk_04 = v;
@@ -351,12 +351,12 @@ void func_021123a0(void) {
         gRecordVS->mUnk_3c[data_0215c404[l]].mUnk_04 = v;
         gRecordVS->mUnk_3c[x + data_0215c3bc[l]].mUnk_04 = v;
     }
-    if (gRecordVS->mUnk_54 >= 10) {
+    if (gRecordVS->mStateFrames >= 10) {
         func_02113420();
     }
 }
 
-void func_021121d4(void) {
+void AdvanceRecordVSState6(void) {
     s32 i;
     u16 b;
     u16 x;
@@ -375,11 +375,11 @@ void func_021121d4(void) {
             c = -256;
             break;
     }
-    gRecordVS->mUnk_54 = gRecordVS->mUnk_54 + 1;
+    gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
     b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    v = func_020ae4c0(1, c, 0, gRecordVS->mUnk_54, 10);
+    v = func_020ae4c0(1, c, 0, gRecordVS->mStateFrames, 10);
     gRecordVS->mUnk_58 = v;
     gRecordVS->mUnk_60 = v;
     gRecordVS->mUnk_14[1].mUnk_04 = v;
@@ -408,17 +408,17 @@ void func_021121d4(void) {
         gRecordVS->mUnk_3c[data_0215c404[l]].mUnk_04 = v;
         gRecordVS->mUnk_3c[x + data_0215c3bc[l]].mUnk_04 = v;
     }
-    if (gRecordVS->mUnk_54 >= 10) {
+    if (gRecordVS->mStateFrames >= 10) {
         func_0211346c();
     }
 }
 
-void func_0211209c(void) {
+void AdvanceRecordVSState7(void) {
     s16 v;
     s32 i;
     u16 x;
-    gRecordVS->mUnk_54 = gRecordVS->mUnk_54 + 1;
-    v = func_020ae4c0(1, 0, 0x100, gRecordVS->mUnk_54, 10);
+    gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
+    v = func_020ae4c0(1, 0, 0x100, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mUnk_3c[20].mUnk_04 = v;
     gRecordVS->mUnk_3c[21].mUnk_04 = v;
@@ -433,16 +433,16 @@ void func_0211209c(void) {
         gRecordVS->mUnk_3c[data_0215c404[i]].mUnk_04 = v;
         gRecordVS->mUnk_3c[x + data_0215c3bc[i]].mUnk_04 = v;
     }
-    if (gRecordVS->mUnk_54 >= 10) {
+    if (gRecordVS->mStateFrames >= 10) {
         func_021132e4();
     }
-    if (gRecordVS->mUnk_54 == 6) {
+    if (gRecordVS->mStateFrames == 6) {
         gRecordVS->mUnk_3c[24].mUnk_00 = 0;
         gRecordVS->mUnk_3c[25].mUnk_00 = 0;
     }
 }
 
-void func_02111f54(void) {
+void AdvanceRecordVSState8(void) {
     u16 b;
     u16 a;
     s32 i;
@@ -451,8 +451,8 @@ void func_02111f54(void) {
     if (func_0211145c() == -1 && gRecordVS->mUnk_90 == 6) {
         func_02111450(12);
     }
-    gRecordVS->mUnk_54 = gRecordVS->mUnk_54 + 1;
-    v = func_020ae4c0(1, 0, -192, gRecordVS->mUnk_54, 10);
+    gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
+    v = func_020ae4c0(1, 0, -192, gRecordVS->mStateFrames, 10);
     gRecordVS->mUnk_5c = v;
     gRecordVS->mUnk_64 = v;
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
@@ -478,32 +478,32 @@ void func_02111f54(void) {
     for (j = 0; j < 12; j++) {
         gRecordVS->mUnk_24[b + data_0215c478[j]].mUnk_06 = v;
     }
-    if (gRecordVS->mUnk_54 >= 10 && gRecordVS->mUnk_90 != 6) {
+    if (gRecordVS->mStateFrames >= 10 && gRecordVS->mUnk_90 != 6) {
         func_02111488(gRecordVS->mUnk_90);
     }
 }
 
-void func_02111ef4(void) {
+void AdvanceRecordVSState9(void) {
     s16 v;
     u16 i;
-    gRecordVS->mUnk_54 = gRecordVS->mUnk_54 + 1;
-    v = func_020ae488(gRecordVS->mUnk_54);
+    gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
+    v = func_020ae488(gRecordVS->mStateFrames);
     i = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mUnk_3c[24].mUnk_04 = v;
     gRecordVS->mUnk_3c[25].mUnk_04 = v;
     gRecordVS->mUnk_3c[26].mUnk_04 = v;
     gRecordVS->mUnk_3c[i + 5].mUnk_04 = v;
-    if (gRecordVS->mUnk_54 >= 10) {
+    if (gRecordVS->mStateFrames >= 10) {
         func_02113298();
     }
 }
 
-void func_02111db8(void) {
+void AdvanceRecordVSState10(void) {
     s16 v;
     s32 i;
     u16 x;
-    gRecordVS->mUnk_54 = gRecordVS->mUnk_54 + 1;
-    v = func_020ae4c0(1, 0, 0x100, gRecordVS->mUnk_54, 10);
+    gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
+    v = func_020ae4c0(1, 0, 0x100, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mUnk_3c[20].mUnk_04 = v;
     gRecordVS->mUnk_3c[21].mUnk_04 = v;
@@ -518,22 +518,22 @@ void func_02111db8(void) {
         gRecordVS->mUnk_3c[data_0215c404[i]].mUnk_04 = v;
         gRecordVS->mUnk_3c[x + data_0215c3bc[i]].mUnk_04 = v;
     }
-    if (gRecordVS->mUnk_54 >= 10) {
+    if (gRecordVS->mStateFrames >= 10) {
         func_02111488(gRecordVS->mUnk_90);
     }
-    if (gRecordVS->mUnk_54 == 6) {
+    if (gRecordVS->mStateFrames == 6) {
         gRecordVS->mUnk_3c[24].mUnk_00 = 0;
         gRecordVS->mUnk_3c[25].mUnk_00 = 0;
     }
 }
 
-void func_02111c78(void) {
+void AdvanceRecordVSState11(void) {
     s16 v;
     s32 i;
     u16 x;
     func_021137f4();
-    gRecordVS->mUnk_54 = gRecordVS->mUnk_54 + 1;
-    v = func_020ae4c0(1, 0x100, 0, gRecordVS->mUnk_54, 10);
+    gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
+    v = func_020ae4c0(1, 0x100, 0, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
     gRecordVS->mUnk_3c[20].mUnk_04 = v;
     gRecordVS->mUnk_3c[21].mUnk_04 = v;
@@ -548,54 +548,54 @@ void func_02111c78(void) {
         gRecordVS->mUnk_3c[data_0215c404[i]].mUnk_04 = v;
         gRecordVS->mUnk_3c[x + data_0215c3bc[i]].mUnk_04 = v;
     }
-    if (gRecordVS->mUnk_54 >= 10) {
+    if (gRecordVS->mStateFrames >= 10) {
         func_0211346c();
     }
-    if (gRecordVS->mUnk_54 == 2) {
+    if (gRecordVS->mStateFrames == 2) {
         gRecordVS->mUnk_3c[24].mUnk_00 = 1;
         gRecordVS->mUnk_3c[25].mUnk_00 = 0;
     }
 }
 
-void func_02111b94(void) {
+void AdvanceRecordVS(void) {
     RecordVS *p;
-    gRecordVS->mUnk_4c = gRecordVS->mUnk_50;
-    switch (gRecordVS->mUnk_4c) {
+    gRecordVS->mState = gRecordVS->mNextState;
+    switch (gRecordVS->mState) {
         case 0:
-            func_02112b30();
+            AdvanceRecordVSState0();
             break;
         case 1:
-            func_02112a0c();
+            AdvanceRecordVSState1();
             break;
         case 2:
-            func_021128cc();
+            AdvanceRecordVSState2();
             break;
         case 3:
-            func_021128b4();
+            AdvanceRecordVSState3();
             break;
         case 4:
-            func_0211256c();
+            AdvanceRecordVSState4();
             break;
         case 5:
-            func_021123a0();
+            AdvanceRecordVSState5();
             break;
         case 6:
-            func_021121d4();
+            AdvanceRecordVSState6();
             break;
         case 7:
-            func_0211209c();
+            AdvanceRecordVSState7();
             break;
         case 8:
-            func_02111f54();
+            AdvanceRecordVSState8();
             break;
         case 9:
-            func_02111ef4();
+            AdvanceRecordVSState9();
             break;
         case 10:
-            func_02111db8();
+            AdvanceRecordVSState10();
             break;
         case 11:
-            func_02111c78();
+            AdvanceRecordVSState11();
             break;
     }
     func_02113d84();
@@ -639,7 +639,7 @@ void func_02111adc(void) {
 }
 
 void func_02111ab4(void) {
-    Unk0217d344_18 v = {InitRecordVS, func_02112b48, func_02111b94, func_02111b40, func_02111adc};
+    Unk0217d344_18 v = {InitRecordVS, func_02112b48, AdvanceRecordVS, func_02111b40, func_02111adc};
     func_02111494(&v);
 }
 

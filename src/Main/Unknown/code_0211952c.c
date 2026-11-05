@@ -61,7 +61,7 @@ void func_02119d78(void) {
 
     if (func_02119dfc() != 0) {
         if (gSelectCup->mUnk_58 == 7) {
-            gSelectCup->mUnk_5c = gSelectCup->mUnk_50;
+            gSelectCup->mUnk_5c = gSelectCup->mIndex;
             func_02119e88();
         } else if (*(vu16 *) 0x027ffc40 != 2) {
             w = gSelectCup->mUnk_04->mUnk_06;
@@ -70,7 +70,7 @@ void func_02119d78(void) {
             gSelectCup->mUnk_1c[w + 1].mUnk_06 = r;
         }
         gSelectCup->mUnk_58--;
-    } else if (gSelectCup->mUnk_50 != gSelectCup->mUnk_5c) {
+    } else if (gSelectCup->mIndex != gSelectCup->mUnk_5c) {
         gSelectCup->mUnk_58 = 7;
     }
 }
@@ -81,12 +81,12 @@ void func_02119c20(void) {
     s32 i;
     s32 u;
 
-    gSelectCup->mUnk_38 = 0;
-    gSelectCup->mUnk_3c = 0;
+    gSelectCup->mNextState = 0;
+    gSelectCup->mStateFrames = 0;
     if (*(vu16 *) 0x027ffc40 != 2) {
         if (func_020cccb4() != 0x1a) {
             w = gSelectCup->mUnk_04->mUnk_06;
-            gSelectCup->mUnk_44 = -0xc0;
+            gSelectCup->mBg0Offset = -0xc0;
             gSelectCup->mUnk_1c[0].mUnk_06 = -0xc0;
             gSelectCup->mUnk_1c[2].mUnk_06 = -0xc0;
             gSelectCup->mUnk_1c[1].mUnk_06 = -0xc0;
@@ -106,7 +106,7 @@ void func_02119c20(void) {
             v = -0xe0;
         }
         u = gSelectCup->mUnk_10->mUnk_06;
-        gSelectCup->mUnk_48 = v;
+        gSelectCup->mBg3Offset = v;
         gSelectCup->mUnk_20[0x14].mUnk_06 = v;
         gSelectCup->mUnk_20[0x13].mUnk_06 = v;
         gSelectCup->mUnk_20[2].mUnk_06 = v;
@@ -123,24 +123,24 @@ void func_02119c20(void) {
 }
 
 void func_02119c0c(void) {
-    gSelectCup->mUnk_38 = 1;
-    gSelectCup->mUnk_3c = 0;
+    gSelectCup->mNextState = 1;
+    gSelectCup->mStateFrames = 0;
 }
 
 void func_02119bf0(void) {
-    gSelectCup->mUnk_38 = 2;
-    gSelectCup->mUnk_3c = 0;
+    gSelectCup->mNextState = 2;
+    gSelectCup->mStateFrames = 0;
     func_02128374();
 }
 
 void func_02119bdc(void) {
-    gSelectCup->mUnk_38 = 3;
-    gSelectCup->mUnk_3c = 0;
+    gSelectCup->mNextState = 3;
+    gSelectCup->mStateFrames = 0;
 }
 
 void func_02119ba8(void) {
-    gSelectCup->mUnk_38 = 4;
-    gSelectCup->mUnk_3c = 0;
+    gSelectCup->mNextState = 4;
+    gSelectCup->mStateFrames = 0;
     if (*(vu16 *) 0x027ffc40 != 2) {
         func_0212ecc0(&data_0217d068, 0, 5);
     }
@@ -150,10 +150,10 @@ void func_02119ac4(void) {
     u16 buf[0x100];
     SelectCup *d;
 
-    gSelectCup->mUnk_38 = 5;
-    gSelectCup->mUnk_3c = 0;
+    gSelectCup->mNextState = 5;
+    gSelectCup->mStateFrames = 0;
     d = gSelectCup;
-    switch (d->mUnk_40) {
+    switch (d->mMode) {
         case 0:
         case 1:
         case 3:
@@ -162,9 +162,9 @@ void func_02119ac4(void) {
         case 2:
             func_021277f8(GetBmgEntry(d->mUnk_28, 4), GetBmgEntry(d->mUnk_28, 2), 0);
             if (*(vu16 *) 0x027ffc40 == 2) {
-                func_0212513c(GetBmgEntry(gSelectCup->mUnk_2c,
-                                          data_0215cb3c[data_0215cadc[func_0202968c()]][gSelectCup->mUnk_50]),
-                              GetBmgEntry(gSelectCup->mUnk_28, 0x8b), buf, 0x200);
+                func_0212513c(
+                    GetBmgEntry(gSelectCup->mUnk_2c, data_0215cb3c[data_0215cadc[func_0202968c()]][gSelectCup->mIndex]),
+                    GetBmgEntry(gSelectCup->mUnk_28, 0x8b), buf, 0x200);
                 func_02125ebc(0x23);
                 func_021266e4(buf);
             }
@@ -176,8 +176,8 @@ void func_02119ac4(void) {
 #pragma thumb on
 
 void func_02119a90(void) {
-    gSelectCup->mUnk_38 = 6;
-    gSelectCup->mUnk_3c = 0;
+    gSelectCup->mNextState = 6;
+    gSelectCup->mStateFrames = 0;
     func_0212775c(0, (u32) 7);
     func_0212775c(1, (u32) 0x10);
     func_0212775c(0xffffffff, 0x10);
@@ -187,9 +187,9 @@ void func_02119a90(void) {
 
 #pragma thumb on
 void func_02119a38(void) {
-    gSelectCup->mUnk_38 = 7;
-    gSelectCup->mUnk_3c = 0;
-    switch (gSelectCup->mUnk_40) {
+    gSelectCup->mNextState = 7;
+    gSelectCup->mStateFrames = 0;
+    switch (gSelectCup->mMode) {
         case 0:
         case 1:
         case 3:
@@ -205,10 +205,10 @@ void func_02119a38(void) {
 }
 
 void func_021199f8(void) {
-    gSelectCup->mUnk_38 = 8;
-    gSelectCup->mUnk_3c = 0;
-    if (gSelectCup->mUnk_40 == 0) {
-        if (gSelectCup->mUnk_6c == 1) {
+    gSelectCup->mNextState = 8;
+    gSelectCup->mStateFrames = 0;
+    if (gSelectCup->mMode == 0) {
+        if (gSelectCup->mResult == 1) {
             if (func_0211e130() != 0) {
                 func_021282c8();
             }
@@ -231,16 +231,16 @@ void InitSelectCup(void *b, void *c, void *d, s32 e) {
     a = CreateFrmHeapFromMaxFree(b);
     gSelectCup = HeapAlloc(a, 0x70);
     gSelectCup->mHeap = a;
-    gSelectCup->mUnk_34 = 0;
-    gSelectCup->mUnk_50 = data_0215cb7c[func_020296e4()];
+    gSelectCup->mState = 0;
+    gSelectCup->mIndex = data_0215cb7c[func_020296e4()];
     gSelectCup->mUnk_54 = 1;
     gSelectCup->mUnk_58 = 0;
-    gSelectCup->mUnk_40 = e;
-    gSelectCup->mUnk_5c = gSelectCup->mUnk_50;
+    gSelectCup->mMode = e;
+    gSelectCup->mUnk_5c = gSelectCup->mIndex;
     gSelectCup->mUnk_60 = 0;
     gSelectCup->mUnk_64 = c;
     gSelectCup->mUnk_68 = d;
-    gSelectCup->mUnk_6c = 0;
+    gSelectCup->mResult = 0;
     func_0211a3bc();
     gSelectCup->mUnk_28 = func_02047a28("common.bmg");
     if (*(vu16 *) 0x027ffc40 != 2) {
@@ -278,9 +278,9 @@ void InitSelectCup(void *b, void *c, void *d, s32 e) {
     FrmHeapShrinkInParent(gSelectCup->mHeap);
 }
 
-void func_021196f4(void) {
-    if (gSelectCup->mUnk_6c == 1) {
-        if (gSelectCup->mUnk_40 == 0) {
+void ReleaseSelectCup(void) {
+    if (gSelectCup->mResult == 1) {
+        if (gSelectCup->mMode == 0) {
             if (func_0211e130() != 0) {
                 reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
             }
@@ -301,7 +301,7 @@ void func_021196f4(void) {
 
 #pragma thumb on
 
-void func_021196dc(void) {
+void AdvanceSelectCupState0(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
@@ -312,18 +312,18 @@ void func_021196dc(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_02119544(void) {
+void AdvanceSelectCupState1(void) {
     s16 v;
     s32 w;
     s32 i;
 
-    gSelectCup->mUnk_3c++;
+    gSelectCup->mStateFrames++;
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_020ae4c0(1, 0x100, 0, gSelectCup->mUnk_3c, 10);
-        v = func_020ae4c0(1, -0xc0, 0, gSelectCup->mUnk_3c, 10);
+        func_020ae4c0(1, 0x100, 0, gSelectCup->mStateFrames, 10);
+        v = func_020ae4c0(1, -0xc0, 0, gSelectCup->mStateFrames, 10);
         if (func_020cccb4() != 0x1a) {
             w = gSelectCup->mUnk_04->mUnk_06;
-            gSelectCup->mUnk_44 = v;
+            gSelectCup->mBg0Offset = v;
             gSelectCup->mUnk_1c[0].mUnk_06 = v;
             gSelectCup->mUnk_1c[2].mUnk_06 = v;
             gSelectCup->mUnk_1c[1].mUnk_06 = v;
@@ -339,7 +339,7 @@ void func_02119544(void) {
         }
         if (func_020cccb4() == 0x1a) {
             w = gSelectCup->mUnk_10->mUnk_06;
-            gSelectCup->mUnk_48 = v - 0x20;
+            gSelectCup->mBg3Offset = v - 0x20;
             gSelectCup->mUnk_20[0x14].mUnk_06 = v - 0x20;
             gSelectCup->mUnk_20[0x13].mUnk_06 = v - 0x20;
             gSelectCup->mUnk_20[2].mUnk_06 = v - 0x20;
@@ -355,7 +355,7 @@ void func_02119544(void) {
             }
         }
     }
-    if (gSelectCup->mUnk_3c >= 10) {
+    if (gSelectCup->mStateFrames >= 10) {
         func_02119bf0();
     }
 }
@@ -363,7 +363,7 @@ void func_02119544(void) {
 
 #pragma thumb on
 
-void func_0211952c(void) {
+void AdvanceSelectCupState2(void) {
     int v1;
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {

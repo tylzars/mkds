@@ -66,7 +66,7 @@ int AdvanceSelectKart(void) {
     Unk02174e50_24 *q;
     u32 v;
     d = gSelectKart;
-    e = d->mUnk_0a8;
+    e = d->mKartIndex;
     x = 0;
     r = 0;
     q = &d->mUnk_048;
@@ -87,46 +87,46 @@ int AdvanceSelectKart(void) {
         gSelectKart->mUnk_110 = -1;
     }
     d = gSelectKart;
-    switch (d->mUnk_094) {
+    switch (d->mState) {
         case 0:
             if (d->mUnk_0ac[4].mUnk_00 == 1) {
-                d->mUnk_090 = 0;
+                d->mStateFrames = 0;
                 if (func_020280dc() != 0) {
                     v = 1;
                 } else {
                     v = 2;
                 }
-                gSelectKart->mUnk_094 = v;
+                gSelectKart->mState = v;
             }
             func_02028fac();
             break;
         case 1:
-            func_02028824(d->mUnk_0a8 | 0x80);
-            gSelectKart->mUnk_100 = 1;
-            gSelectKart->mUnk_094 = 5;
+            func_02028824(d->mKartIndex | 0x80);
+            gSelectKart->mResult = 1;
+            gSelectKart->mState = 5;
             break;
         case 2:
             if (func_02028774(t) != 0) {
                 x = IsSelectReturnState2NoState3Or4RequestAndInRect(func_0202874c(t), func_02028724(t));
             }
             if (func_020286f4(t, 1) != 0 || gSelectKart->mUnk_110 == 2 || func_02028f84() != 0) {
-                gSelectKart->mUnk_090 = 0;
-                gSelectKart->mUnk_100 = 1;
-                gSelectKart->mUnk_094 = 4;
+                gSelectKart->mStateFrames = 0;
+                gSelectKart->mResult = 1;
+                gSelectKart->mState = 4;
                 p->mUnk_18[18].mUnk_00 = 0;
                 func_02124100(data_usa_02153834[4], 0, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
-                func_021106a8(func_02025eb0(gSelectKart->mUnk_0a4), 1);
+                func_021106a8(func_02025eb0(gSelectKart->mCharacterIndex), 1);
                 func_02077f48(1);
                 func_0212b7e8();
             } else if (func_020286f4(t, 2) != 0 || x != 0) {
-                gSelectKart->mUnk_090 = 0;
-                gSelectKart->mUnk_100 = 2;
+                gSelectKart->mStateFrames = 0;
+                gSelectKart->mResult = 2;
                 func_0202941c(0);
                 func_02025f14(&gSelectKart->mUnk_0ac[1], 2);
                 func_02025f14(&gSelectKart->mUnk_0ac[3], 2);
                 func_02025f14(&gSelectKart->mUnk_0ac[4], 2);
-                gSelectKart->mUnk_094 = 7;
-                if (gSelectKart->mUnk_0fc != 0) {
+                gSelectKart->mState = 7;
+                if (gSelectKart->mMode != 0) {
                     v = 1;
                 } else {
                     v = 0;
@@ -143,26 +143,26 @@ int AdvanceSelectKart(void) {
                 p->mUnk_18[0].mUnk_00 = 0;
                 p->mUnk_18[2].mUnk_00 = 1;
             }
-            if (e != gSelectKart->mUnk_0a8) {
+            if (e != gSelectKart->mKartIndex) {
                 func_02110698();
                 func_02028f20();
                 func_02028e38();
-                gSelectKart->mUnk_094 = 3;
-                gSelectKart->mUnk_090 = 0;
+                gSelectKart->mState = 3;
+                gSelectKart->mStateFrames = 0;
             }
             break;
         case 3:
-            d->mUnk_090 = d->mUnk_090 + 1;
-            if (gSelectKart->mUnk_090 > 6) {
-                gSelectKart->mUnk_090 = 0;
-                gSelectKart->mUnk_094 = 2;
+            d->mStateFrames = d->mStateFrames + 1;
+            if (gSelectKart->mStateFrames > 6) {
+                gSelectKart->mStateFrames = 0;
+                gSelectKart->mState = 2;
                 p->mUnk_18[gSelectKart->mUnk_114].mUnk_04 = 0;
                 p->mUnk_18[1].mUnk_00 = 1;
                 p->mUnk_18[0].mUnk_00 = 1;
                 p->mUnk_18[3].mUnk_00 = 0;
                 p->mUnk_18[2].mUnk_00 = 0;
             } else {
-                v = func_020adc64(gSelectKart->mUnk_090);
+                v = func_020adc64(gSelectKart->mStateFrames);
                 if (gSelectKart->mUnk_114 == 2) {
                     v = -v;
                 }
@@ -170,47 +170,47 @@ int AdvanceSelectKart(void) {
             }
             break;
         case 4:
-            d->mUnk_090 = d->mUnk_090 + 1;
+            d->mStateFrames = d->mStateFrames + 1;
             d = gSelectKart;
-            if (d->mUnk_090 >= 5) {
-                switch (d->mUnk_0fc) {
+            if (d->mStateFrames >= 5) {
+                switch (d->mMode) {
                     case 0:
-                        func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mKartIndex = d->mUnk_0a8;
+                        func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mKartIndex = d->mKartIndex;
                         func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_14 = 1;
                         func_02116ef8();
-                        gSelectKart->mUnk_094 = 6;
+                        gSelectKart->mState = 6;
                         break;
                     case 1:
                         func_021282c8();
-                        func_02028824(gSelectKart->mUnk_0a8 | 0x80);
-                        gSelectKart->mUnk_094 = 5;
+                        func_02028824(gSelectKart->mKartIndex | 0x80);
+                        gSelectKart->mState = 5;
                         break;
                     case 2:
                         func_021282c8();
-                        func_02121eb4(gSelectKart->mUnk_0a8);
-                        gSelectKart->mUnk_094 = 5;
+                        func_02121eb4(gSelectKart->mKartIndex);
+                        gSelectKart->mState = 5;
                         break;
                 }
-                gSelectKart->mUnk_090 = 0;
+                gSelectKart->mStateFrames = 0;
                 p->mUnk_18[18].mUnk_00 = 1;
                 func_02124100(data_usa_02153834[4], 1, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
             }
             break;
         case 5:
-            if (d->mUnk_0fc == 1 && func_0202b888() != 0 || gSelectKart->mUnk_0fc == 2 && func_02121d0c() != 0) {
-                gSelectKart->mUnk_090 = 0;
-                gSelectKart->mUnk_094 = 6;
+            if (d->mMode == 1 && func_0202b888() != 0 || gSelectKart->mMode == 2 && func_02121d0c() != 0) {
+                gSelectKart->mStateFrames = 0;
+                gSelectKart->mState = 6;
             }
             break;
         case 6:
-            d->mUnk_090 = d->mUnk_090 + 1;
-            if (gSelectKart->mUnk_090 > 0x3c) {
+            d->mStateFrames = d->mStateFrames + 1;
+            if (gSelectKart->mStateFrames > 0x3c) {
                 func_02025f14(&gSelectKart->mUnk_0ac[0], 2);
                 func_02025f14(&gSelectKart->mUnk_0ac[1], 2);
                 func_02025f14(&gSelectKart->mUnk_0ac[2], 2);
                 func_02025f14(&gSelectKart->mUnk_0ac[3], 2);
                 func_02025f14(&gSelectKart->mUnk_0ac[4], 2);
-                if (gSelectKart->mUnk_0fc == 2) {
+                if (gSelectKart->mMode == 2) {
                     func_021219cc();
                     func_0202941c(3);
                 } else {
@@ -221,24 +221,24 @@ int AdvanceSelectKart(void) {
                 } else {
                     func_0211f378();
                 }
-                gSelectKart->mUnk_090 = 0;
-                gSelectKart->mUnk_094 = 7;
+                gSelectKart->mStateFrames = 0;
+                gSelectKart->mState = 7;
             }
             break;
         case 7:
             if (d->mUnk_0ac[4].mUnk_00 == 3) {
-                func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_14 = d->mUnk_100 == 1;
-                gSelectKart->mUnk_094 = 8;
+                func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_14 = d->mResult == 1;
+                gSelectKart->mState = 8;
             }
             func_02028fac();
             break;
         case 8:
-            r = d->mUnk_100;
+            r = d->mResult;
             break;
     }
     if (func_020280dc() == 0) {
-        func_02078a9c(gSelectKart->mUnk_0a4);
-        func_02078a34(gSelectKart->mUnk_0a8);
+        func_02078a9c(gSelectKart->mCharacterIndex);
+        func_02078a34(gSelectKart->mKartIndex);
         func_02078420(func_02029930()->mUnk_d8);
         func_020780f4();
     }
@@ -250,7 +250,7 @@ int AdvanceSelectKart(void) {
     }
     if (func_020280dc() == 0) {
         d = gSelectKart;
-        if (d->mUnk_094 != 8) {
+        if (d->mState != 8) {
             func_02124c30(p->mUnk_0c, p->mUnk_08, p->mUnk_14, d->mUnk_084, p->mUnk_18);
         }
     } else {

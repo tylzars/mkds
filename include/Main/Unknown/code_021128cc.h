@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_02112a0c(void);
-void func_021128cc(void);
+void AdvanceRecordVSState1(void);
+void AdvanceRecordVSState2(void);

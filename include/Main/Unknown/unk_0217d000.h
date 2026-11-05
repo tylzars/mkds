@@ -198,9 +198,9 @@ typedef struct RecordVS {
     /* 40 */ s32 mUnk_40;
     /* 44 */ void *mUnk_44;
     /* 48 */ void *mUnk_48;
-    /* 4c */ s32 mUnk_4c;
-    /* 50 */ s32 mUnk_50;
-    /* 54 */ s32 mUnk_54;
+    /* 4c */ s32 mState;
+    /* 50 */ s32 mNextState;
+    /* 54 */ s32 mStateFrames; /* counts only in states 1, 2, 5 to 11 */
     /* 58 */ s32 mUnk_58;
     /* 5c */ s32 mUnk_5c;
     /* 60 */ s32 mUnk_60;
@@ -268,14 +268,14 @@ typedef struct SelectCup {
     /* 28 */ void *mUnk_28;
     /* 2c */ void *mUnk_2c;
     /* 30 */ void *mHeap;
-    /* 34 */ s32 mUnk_34;
-    /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-    /* 40 */ s32 mUnk_40;
-    /* 44 */ s32 mUnk_44;
-    /* 48 */ s32 mUnk_48;
+    /* 34 */ s32 mState;
+    /* 38 */ s32 mNextState;
+    /* 3c */ s32 mStateFrames; /* counts only in states 1, 4, 5, 7, 8 */
+    /* 40 */ s32 mMode;
+    /* 44 */ s32 mBg0Offset;
+    /* 48 */ s32 mBg3Offset; /* the sub engine's BG3 offset (0x0400101c); mBg0Offset is the main engine's */
     /* 4c */ u8 mUnk_4c[4];
-    /* 50 */ s16 mUnk_50;
+    /* 50 */ s16 mIndex; /* 0..3 position among the four cups of the page: the cup is data_0215cbec[row][mIndex] */
     /* 52 */ u8 mUnk_52[2];
     /* 54 */ s32 mUnk_54;
     /* 58 */ s32 mUnk_58;
@@ -284,7 +284,7 @@ typedef struct SelectCup {
     /* 60 */ s32 mUnk_60;
     /* 64 */ void *mUnk_64;
     /* 68 */ void *mUnk_68;
-    /* 6c */ s32 mUnk_6c;
+    /* 6c */ s32 mResult;
 } SelectCup;
 
 // Object behind gSelectRaceRule, and the object its mUnk_20 member points to.
@@ -305,7 +305,7 @@ typedef struct SelectRaceRule {
     /* 20 */ Unk0217d368_20 *mUnk_20;
     /* 24 */ void *mUnk_24;
     /* 28 */ void *mHeap;
-    /* 2c */ s32 mUnk_2c;
+    /* 2c */ s32 mMode;
     /* 30 */ s32 mState;
     /* 34 */ s32 mNextState;
     /* 38 */ s32 mStateFrames;
@@ -518,10 +518,10 @@ typedef struct Unk0217d3f4 {
 
 // Object behind gSelectReturn: 0x828 bytes allocated by InitSelectReturn.
 typedef struct SelectReturn {
-    /* 000 */ s32 mUnk_00;
+    /* 000 */ s32 mEnabled; /* only ever set to 1 by InitSelectReturn; the off path does not run in this build */
     /* 004 */ s32 mState;
-    /* 008 */ s32 mUnk_08;
-    /* 00c */ s32 mUnk_0c;
+    /* 008 */ s32 mNextState;
+    /* 00c */ s32 mStateFrames; /* counts only in states 1, 3, 4 */
     /* 010 */ u16 mUnk_10[0x400];
     /* 810 */ s32 mState1Requested;
     /* 814 */ s32 mState3Requested;
@@ -571,8 +571,8 @@ typedef struct Keyboard {
     /* 00 */ void *mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
+    /* 0c */ s32 mState;
+    /* 10 */ s32 mNextState;
     /* 14 */ s32 mUnk_14[2];
     /* 1c */ s32 mUnk_1c[2];
     /* 24 */ s32 mUnk_24;

@@ -48,10 +48,10 @@ s32 InitSelectReturn(void *heap, s32 b) {
         t &= ~4;
         *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (t << 8);
     }
-    gSelectReturn->mUnk_00 = 1;
+    gSelectReturn->mEnabled = 1;
     gSelectReturn->mState = 0;
-    gSelectReturn->mUnk_08 = 0;
-    gSelectReturn->mUnk_0c = 0;
+    gSelectReturn->mNextState = 0;
+    gSelectReturn->mStateFrames = 0;
     gSelectReturn->mState1Requested = 0;
     gSelectReturn->mState4Requested = 0;
     gSelectReturn->mBg2Offset = -0x28;
@@ -122,20 +122,20 @@ void func_02128624(s32 a) {
 
 void AdvanceSelectReturnState0(void) {
     if (gSelectReturn->mState1Requested != 0) {
-        gSelectReturn->mUnk_08 = 1;
-        gSelectReturn->mUnk_0c = 0;
+        gSelectReturn->mNextState = 1;
+        gSelectReturn->mStateFrames = 0;
         func_02128624(1);
     }
 }
 
 void AdvanceSelectReturnState1(void) {
     SelectReturn *p;
-    gSelectReturn->mBg2Offset = func_0212825c(gSelectReturn->mUnk_0c);
-    gSelectReturn->mUnk_0c++;
+    gSelectReturn->mBg2Offset = func_0212825c(gSelectReturn->mStateFrames);
+    gSelectReturn->mStateFrames++;
     p = gSelectReturn;
-    if (p->mUnk_0c >= 10) {
-        p->mUnk_08 = 2;
-        gSelectReturn->mUnk_0c = 0;
+    if (p->mStateFrames >= 10) {
+        p->mNextState = 2;
+        gSelectReturn->mStateFrames = 0;
         gSelectReturn->mState1Requested = 0;
     }
 }
@@ -162,30 +162,30 @@ void AdvanceSelectReturnState2(void) {
 void AdvanceSelectReturnState3(void) {
     SelectReturn *p;
     p = gSelectReturn;
-    p->mBg2Offset = data_0215d0b4[p->mUnk_0c];
-    gSelectReturn->mUnk_0c++;
+    p->mBg2Offset = data_0215d0b4[p->mStateFrames];
+    gSelectReturn->mStateFrames++;
     p = gSelectReturn;
-    if (p->mUnk_0c >= 9) {
+    if (p->mStateFrames >= 9) {
         if (p->mState4Requested != 0) {
-            p->mUnk_08 = 4;
+            p->mNextState = 4;
             func_02128624(0);
         } else {
-            p->mUnk_08 = 2;
+            p->mNextState = 2;
             func_02128624(1);
         }
-        gSelectReturn->mUnk_0c = 0;
+        gSelectReturn->mStateFrames = 0;
         gSelectReturn->mState3Requested = 0;
     }
 }
 
 void AdvanceSelectReturnState4(void) {
     SelectReturn *p;
-    gSelectReturn->mBg2Offset = func_02128244(gSelectReturn->mUnk_0c);
-    gSelectReturn->mUnk_0c++;
+    gSelectReturn->mBg2Offset = func_02128244(gSelectReturn->mStateFrames);
+    gSelectReturn->mStateFrames++;
     p = gSelectReturn;
-    if (p->mUnk_0c >= 10) {
-        p->mUnk_08 = 0;
-        gSelectReturn->mUnk_0c = 0;
+    if (p->mStateFrames >= 10) {
+        p->mNextState = 0;
+        gSelectReturn->mStateFrames = 0;
         gSelectReturn->mState4Requested = 0;
     }
 }
@@ -193,8 +193,8 @@ void AdvanceSelectReturnState4(void) {
 void AdvanceSelectReturn(void) {
     SelectReturn *p;
     p = gSelectReturn;
-    if (p->mUnk_00 != 0) {
-        p->mState = p->mUnk_08;
+    if (p->mEnabled != 0) {
+        p->mState = p->mNextState;
         switch (gSelectReturn->mState) {
             case 0:
                 AdvanceSelectReturnState0();
@@ -219,7 +219,7 @@ void WriteSelectReturnRegisters(void) {
     SelectReturn *p;
     u32 t;
     p = gSelectReturn;
-    if (p->mUnk_00 != 0) {
+    if (p->mEnabled != 0) {
         if (p->mDisplayBitOn != 0) {
             if (((*(vu32 *) 0x4001000 & 0x1f00) >> 8 & 4) == 0) {
                 t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;

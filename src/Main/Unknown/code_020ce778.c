@@ -6,7 +6,7 @@
 #pragma optimize_for_size on
 #pragma thumb on
 void func_020ce7b8(void) {
-    switch (func_02118e64()) {
+    switch (AdvanceSelectCup()) {
         case 1:
             func_020ccc74(0x1d, 0x1f);
             break;

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02119544(void);
+void AdvanceSelectCupState1(void);

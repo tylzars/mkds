@@ -12,9 +12,9 @@ typedef struct Unk021b0cd4 {
 typedef struct WiFiStates {
     /* 00 */ void *mUnk_00;
     /* 04 */ void *mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ u32 mUnk_10;
+    /* 08 */ u32 mState;
+    /* 0c */ s32 mNextState;
+    /* 10 */ u32 mPrevState;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s16 mUnk_18;
     /* 1a */ u8 pad_1a[2];

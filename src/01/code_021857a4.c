@@ -208,7 +208,7 @@ void func_ov001_02185828(void) {
 }
 
 void func_ov001_021857ec(void) {
-    switch (func_02118e64()) {
+    switch (AdvanceSelectCup()) {
         case 1:
             if (func_0211e130()) {
                 func_020ccc74(0x1d, 0x1f);
