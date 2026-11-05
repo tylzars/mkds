@@ -44,61 +44,59 @@ void func_020ae824(void) {
         DrawEndingStaffRoll();
         return;
     }
-    if (data_0217b350->mUnk_898 == FALSE) {
+    if (gRaceHud->mEnabled == FALSE) {
         return;
     }
     func_020b3410();
     func_020b3724();
-    data_0217b350->mUnk_404 = 0;
-    data_0217b350->mUnk_406 = 0;
+    gRaceHud->mUnk_404 = 0;
+    gRaceHud->mUnk_406 = 0;
     if (data_021759c0->mUnk_00c == 4) {
-        func_020d1198((Unk020d029c *) data_0217b350->mUnk_004);
+        func_020d1198((Unk020d029c *) gRaceHud->mUnk_004);
     }
     v = data_021759c0->mMode;
     if ((v == 2   ? data_0217561c->mUnk_4cc
          : v == 4 ? func_0203c174()
-                  : (func_0203c880(func_020b4d9c()) != 0 && data_0217b350->mUnk_8dc == 0)) == 0) {
-        func_020ba63c((Unk020d029c *) data_0217b350->mUnk_004);
-        func_020bc208((Unk020d029c *) data_0217b350->mUnk_004);
-        DrawRaceMNumberPair((Unk020d029c *) data_0217b350->mUnk_004);
-        func_020d06b8((Unk020d029c *) data_0217b350->mUnk_004);
-        func_020c4f08((Unk020c06c4 *) data_0217b350->mUnk_004);
-        func_020b9dfc((Unk020d029c *) data_0217b350->mUnk_004);
-        func_020c5804((Unk020c06c4 *) data_0217b350->mUnk_004);
+                  : (func_0203c880(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
+        func_020ba63c((Unk020d029c *) gRaceHud->mUnk_004);
+        func_020bc208((Unk020d029c *) gRaceHud->mUnk_004);
+        DrawRaceMNumberPair((Unk020d029c *) gRaceHud->mUnk_004);
+        func_020d06b8((Unk020d029c *) gRaceHud->mUnk_004);
+        func_020c4f08((Unk020c06c4 *) gRaceHud->mUnk_004);
+        func_020b9dfc((Unk020d029c *) gRaceHud->mUnk_004);
+        func_020c5804((Unk020c06c4 *) gRaceHud->mUnk_004);
     } else {
-        func_020d06b8((Unk020d029c *) data_0217b350->mUnk_004);
-        func_020c4f08((Unk020c06c4 *) data_0217b350->mUnk_004);
-        func_020c5804((Unk020c06c4 *) data_0217b350->mUnk_004);
+        func_020d06b8((Unk020d029c *) gRaceHud->mUnk_004);
+        func_020c4f08((Unk020c06c4 *) gRaceHud->mUnk_004);
+        func_020c5804((Unk020c06c4 *) gRaceHud->mUnk_004);
     }
-    func_0200ee74(data_0217b350->mUnk_004, 0x400);
-    func_0214cc04(3, data_0217b350->mUnk_004 + data_0217b350->mUnk_404 * 8, 0xc0,
-                  (0x80 - data_0217b350->mUnk_404) << 3);
-    data_0217b350->mUnk_808 = 0;
-    data_0217b350->mUnk_80a = 0;
-    a = data_0217b350->mUnk_828;
+    func_0200ee74(gRaceHud->mUnk_004, 0x400);
+    func_0214cc04(3, gRaceHud->mUnk_004 + gRaceHud->mUnk_404 * 8, 0xc0, (0x80 - gRaceHud->mUnk_404) << 3);
+    gRaceHud->mUnk_808 = 0;
+    gRaceHud->mUnk_80a = 0;
+    a = gRaceHud->mSubScreenState;
     if (a != 4 && a != 5) {
-        func_020bb5ec((Unk020d029c *) data_0217b350->mUnk_408);
+        func_020bb5ec((Unk020d029c *) gRaceHud->mUnk_408);
     }
-    func_020be2f4((Unk020d029c *) data_0217b350->mUnk_408);
-    func_0200ee74(data_0217b350->mUnk_408, 0x400);
-    func_0214cc04(3, data_0217b350->mUnk_408 + data_0217b350->mUnk_808 * 8, 0xc0,
-                  (0x80 - data_0217b350->mUnk_808) << 3);
-    switch (data_0217b350->mUnk_828) {
+    func_020be2f4((Unk020d029c *) gRaceHud->mUnk_408);
+    func_0200ee74(gRaceHud->mUnk_408, 0x400);
+    func_0214cc04(3, gRaceHud->mUnk_408 + gRaceHud->mUnk_808 * 8, 0xc0, (0x80 - gRaceHud->mUnk_808) << 3);
+    switch (gRaceHud->mSubScreenState) {
         case 0:
-            func_020be950(data_0217b350->mUnk_408);
+            func_020be950(gRaceHud->mUnk_408);
             break;
         case 1:
         case 2:
         case 3:
-            func_020be950(data_0217b350->mUnk_408);
-            func_020c3e44((Unk020c06c4 *) data_0217b350->mUnk_408);
+            func_020be950(gRaceHud->mUnk_408);
+            func_020c3e44((Unk020c06c4 *) gRaceHud->mUnk_408);
             break;
         case 4:
         case 5:
-            func_020c2118((Unk020c06c4 *) data_0217b350->mUnk_408);
+            func_020c2118((Unk020c06c4 *) gRaceHud->mUnk_408);
             break;
         case 6:
-            func_020c676c((Unk020c06c4 *) data_0217b350->mUnk_408);
+            DrawRaceNewRecordTa((Unk020c06c4 *) gRaceHud->mUnk_408);
             break;
     }
 }

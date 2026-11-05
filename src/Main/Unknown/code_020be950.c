@@ -873,7 +873,7 @@ void func_020be9d4(void) {
     s32 n;
     float f;
 
-    switch (func_020b1dbc()) {
+    switch (GetRaceHudSubScreenState()) {
         case 0:
             func_020c97c0();
             break;
@@ -901,7 +901,7 @@ void func_020be9d4(void) {
 void func_020be950(void *a) {
     s32 i;
 
-    switch (func_020b1dbc()) {
+    switch (GetRaceHudSubScreenState()) {
         case 0:
             func_020c8dbc(a);
             break;

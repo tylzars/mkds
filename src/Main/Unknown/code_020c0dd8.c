@@ -74,7 +74,7 @@ void func_020c1060(void) {
         gRaceGoalS->mUnk_0040[i] = i;
         a[i] = a[i] * neg;
     }
-    func_020ae770(gRaceGoalS->mUnk_0040, a, data_021759c0->mKartCount);
+    SortIndicesByKey(gRaceGoalS->mUnk_0040, a, data_021759c0->mKartCount);
     for (k = 0; (u32) k < (u32) data_021759c0->mKartCount; k++) {
         {
             for (j = 0; (u32) j < (u32) data_021759c0->mKartCount; j++) {

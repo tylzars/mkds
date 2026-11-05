@@ -130,7 +130,7 @@ u16 func_020b6368(void) {
     Unk020748a8 *p;
     s32 a;
 
-    switch (func_020b1dbc()) {
+    switch (GetRaceHudSubScreenState()) {
         case 1:
             if (func_020b4df8() == 2) {
                 p = GetCurrentCamera();
@@ -334,7 +334,7 @@ void func_020b58f8(Unk020b503c *out) {
     } else {
         func_0207a91c(&pos, func_020b4d9c());
     }
-    if (func_020b1dbc() == 3) {
+    if (GetRaceHudSubScreenState() == 3) {
         pos = func_020b57e4()->mUnk_00;
     }
     data_0217b3c0->mUnk_00.mUnk_00 = func_020b502c(0x200000, func_020b57b4(pos.x - a.mUnk_00, data_0217b3c0->mUnk_5c));
@@ -368,7 +368,7 @@ void func_020b57f8(Unk020b503c *out) {
     } else {
         func_0207a91c(&pos, func_020b4d9c());
     }
-    if (func_020b1dbc() == 3) {
+    if (GetRaceHudSubScreenState() == 3) {
         pos = func_020b57e4()->mUnk_00;
     }
     out->mUnk_10 = func_020b5250(func_020b502c(0x200000, func_020b57b4(pos.x - a.mUnk_00, data_0217b3c0->mUnk_7c)));
@@ -400,12 +400,12 @@ void func_020b5658(Unk020b503c *out) {
     } else {
         func_0207a91c(&pos, func_020b4d9c());
     }
-    if (func_020b1dbc() == 3) {
+    if (GetRaceHudSubScreenState() == 3) {
         pos = func_020b57e4()->mUnk_00;
     }
     ex = b.mUnk_00 - a.mUnk_00;
     ez = b.mUnk_04 - a.mUnk_04;
-    n = func_020b1dd0() / 32;
+    n = GetRaceHudUpdateFrames() / 32;
     dx = ex * n;
     dz = ez * n;
     pos.x -= dx / 512;
@@ -532,7 +532,7 @@ void func_020b503c(Unk020b503c *p, s32 scale) {
     data_0217b3c0->mUnk_1e = func_020b5258(angle);
     data_0217b3c0->mUnk_20 = func_020b502c(data_0217b3c0->mUnk_1c, scale);
     data_0217b3c0->mUnk_24 = func_020b502c(data_0217b3c0->mUnk_1e, scale);
-    if (func_020b1dbc() == 2) {
+    if (GetRaceHudSubScreenState() == 2) {
         func_020b5290();
     }
     data_0217b3c0->mUnk_18 = func_020b5250(DivFixed12(0xb0000, scale));

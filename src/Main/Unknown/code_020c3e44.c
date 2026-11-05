@@ -628,7 +628,7 @@ void func_020c43c4(void) {
     if (data_021759c0->mMode != 1) {
         return;
     }
-    if (func_020b33d8() == 0) {
+    if (IsRaceStartSequenceDone() == 0) {
         return;
     }
     if ((u16) (data_02175628[func_020435bc()].mUnk_00 & 4) != 0) {

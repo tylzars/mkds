@@ -63,7 +63,7 @@ void func_020c1ef8(void) {
             a[i] = func_0203c8dc(i);
         }
     }
-    func_020ae770(gRaceGoalS->mUnk_0040, a, data_021759c0->mKartCount);
+    SortIndicesByKey(gRaceGoalS->mUnk_0040, a, data_021759c0->mKartCount);
     if (data_021759c0->mMode == 3 || data_021759c0->mMode == 5) {
         if (func_020617a8(&w) != 0) {
             if (w >= 0xb4) {

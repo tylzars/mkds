@@ -45,26 +45,26 @@ void func_020aeb7c(void) {
     if (data_021759c0->mUnk_00c - 3 <= 3) {
         return;
     }
-    if (data_0217b350->mUnk_898 == FALSE) {
+    if (gRaceHud->mEnabled == FALSE) {
         return;
     }
     switch (data_021759c0->mMode) {
         case 0:
-            if (func_0203c880(func_020b4d9c()) != 0 && data_0217b350->mUnk_8dc == 0) {
+            if (func_0203c880(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0) {
                 if (data_021759c0->mUnk_00c == 0) {
-                    if (data_0217b350->mUnk_83c != FALSE) {
-                        data_0217b350->mUnk_82c = FALSE;
+                    if (gRaceHud->mUnk_83c != FALSE) {
+                        gRaceHud->mUnk_82c = FALSE;
                     } else {
-                        data_0217b350->mUnk_82c = TRUE;
-                        data_0217b350->mUnk_828 = 4;
-                        data_0217b350->mUnk_83c = TRUE;
-                        data_0217b350->mUnk_840 = TRUE;
-                        data_0217b350->mUnk_850 = 0xc;
+                        gRaceHud->mUnk_82c = TRUE;
+                        gRaceHud->mSubScreenState = 4;
+                        gRaceHud->mUnk_83c = TRUE;
+                        gRaceHud->mUnk_840 = TRUE;
+                        gRaceHud->mUnk_850 = 0xc;
                     }
-                } else if (data_0217b350->mUnk_83c == FALSE) {
-                    data_0217b350->mUnk_83c = TRUE;
-                    data_0217b350->mUnk_840 = TRUE;
-                    data_0217b350->mUnk_850 = 0xc;
+                } else if (gRaceHud->mUnk_83c == FALSE) {
+                    gRaceHud->mUnk_83c = TRUE;
+                    gRaceHud->mUnk_840 = TRUE;
+                    gRaceHud->mUnk_850 = 0xc;
                 }
             } else {
                 a = FALSE;
@@ -98,28 +98,28 @@ void func_020aeb7c(void) {
                     }
                 }
                 if (a != FALSE) {
-                    data_0217b350->mUnk_82c = TRUE;
-                    switch (data_0217b350->mUnk_828) {
+                    gRaceHud->mUnk_82c = TRUE;
+                    switch (gRaceHud->mSubScreenState) {
                         case 0:
-                            data_0217b350->mUnk_828 = 1;
+                            gRaceHud->mSubScreenState = 1;
                             func_0212ecc0(&data_0217d068, 0, 0x18);
                             break;
                         case 1:
-                            data_0217b350->mUnk_828 = 0;
+                            gRaceHud->mSubScreenState = 0;
                             func_0212ecc0(&data_0217d068, 0, 0x17);
                             break;
                     }
                 } else {
-                    data_0217b350->mUnk_82c = FALSE;
+                    gRaceHud->mUnk_82c = FALSE;
                 }
             }
             break;
         case 1:
-            if (data_0217561c->mUnk_4cc != 0 && data_0217b350->mUnk_8dc == 0) {
-                if (data_0217b350->mUnk_83c == FALSE) {
-                    data_0217b350->mUnk_83c = TRUE;
-                    data_0217b350->mUnk_840 = TRUE;
-                    data_0217b350->mUnk_850 = 0xc;
+            if (data_0217561c->mUnk_4cc != 0 && gRaceHud->mUnk_8dc == 0) {
+                if (gRaceHud->mUnk_83c == FALSE) {
+                    gRaceHud->mUnk_83c = TRUE;
+                    gRaceHud->mUnk_840 = TRUE;
+                    gRaceHud->mUnk_850 = 0xc;
                 }
             } else {
                 a = FALSE;
@@ -153,49 +153,49 @@ void func_020aeb7c(void) {
                     }
                 }
                 if (a != FALSE) {
-                    data_0217b350->mUnk_82c = TRUE;
+                    gRaceHud->mUnk_82c = TRUE;
                     if (data_021759c0->mUnk_00c != 2) {
-                        switch (data_0217b350->mUnk_828) {
+                        switch (gRaceHud->mSubScreenState) {
                             case 0:
-                                data_0217b350->mUnk_828 = 1;
+                                gRaceHud->mSubScreenState = 1;
                                 func_0212ecc0(&data_0217d068, 0, 0x18);
                                 break;
                             case 1:
-                                data_0217b350->mUnk_828 = 0;
+                                gRaceHud->mSubScreenState = 0;
                                 func_0212ecc0(&data_0217d068, 0, 0x17);
                                 break;
                         }
                     } else {
-                        switch (data_0217b350->mUnk_828) {
+                        switch (gRaceHud->mSubScreenState) {
                             case 0:
-                                data_0217b350->mUnk_828 = 1;
+                                gRaceHud->mSubScreenState = 1;
                                 func_0212ecc0(&data_0217d068, 0, 0x18);
                                 break;
                             case 1:
-                                data_0217b350->mUnk_828 = 2;
+                                gRaceHud->mSubScreenState = 2;
                                 func_0212ecc0(&data_0217d068, 0, 0x17);
                                 break;
                             case 2:
-                                data_0217b350->mUnk_828 = 0;
+                                gRaceHud->mSubScreenState = 0;
                                 func_0212ecc0(&data_0217d068, 0, 0x17);
                                 break;
                         }
                     }
                 } else {
-                    data_0217b350->mUnk_82c = FALSE;
+                    gRaceHud->mUnk_82c = FALSE;
                 }
             }
             break;
         case 2:
             if (func_020a128c() != 0) {
-                if (data_0217b350->mUnk_83c != FALSE) {
-                    data_0217b350->mUnk_82c = FALSE;
+                if (gRaceHud->mUnk_83c != FALSE) {
+                    gRaceHud->mUnk_82c = FALSE;
                 } else {
-                    data_0217b350->mUnk_82c = TRUE;
-                    data_0217b350->mUnk_828 = 4;
-                    data_0217b350->mUnk_83c = TRUE;
-                    data_0217b350->mUnk_840 = TRUE;
-                    data_0217b350->mUnk_850 = 0x8c;
+                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenState = 4;
+                    gRaceHud->mUnk_83c = TRUE;
+                    gRaceHud->mUnk_840 = TRUE;
+                    gRaceHud->mUnk_850 = 0x8c;
                 }
             } else {
                 a = FALSE;
@@ -229,44 +229,44 @@ void func_020aeb7c(void) {
                     }
                 }
                 if (a != FALSE) {
-                    data_0217b350->mUnk_82c = TRUE;
-                    switch (data_0217b350->mUnk_828) {
+                    gRaceHud->mUnk_82c = TRUE;
+                    switch (gRaceHud->mSubScreenState) {
                         case 0:
-                            data_0217b350->mUnk_828 = 1;
+                            gRaceHud->mSubScreenState = 1;
                             func_0212ecc0(&data_0217d068, 0, 0x18);
                             break;
                         case 1:
-                            data_0217b350->mUnk_828 = 0;
+                            gRaceHud->mSubScreenState = 0;
                             func_0212ecc0(&data_0217d068, 0, 0x17);
                             break;
                     }
                 } else {
-                    data_0217b350->mUnk_82c = FALSE;
+                    gRaceHud->mUnk_82c = FALSE;
                 }
             }
             break;
         case 3:
         case 5:
             if (data_0217561c->mUnk_4cc != 0 && data_021759c0->mUnk_00c == 0) {
-                if (data_0217b350->mUnk_838 == FALSE) {
-                    data_0217b350->mUnk_82c = TRUE;
-                    data_0217b350->mUnk_828 = 4;
-                    data_0217b350->mUnk_838 = TRUE;
-                    if (data_0217b350->mUnk_83c == FALSE) {
-                        data_0217b350->mUnk_83c = TRUE;
-                        data_0217b350->mUnk_840 = TRUE;
-                        data_0217b350->mUnk_850 = 0x8c;
+                if (gRaceHud->mUnk_838 == FALSE) {
+                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenState = 4;
+                    gRaceHud->mUnk_838 = TRUE;
+                    if (gRaceHud->mUnk_83c == FALSE) {
+                        gRaceHud->mUnk_83c = TRUE;
+                        gRaceHud->mUnk_840 = TRUE;
+                        gRaceHud->mUnk_850 = 0x8c;
                     }
                 } else {
-                    data_0217b350->mUnk_82c = FALSE;
+                    gRaceHud->mUnk_82c = FALSE;
                 }
             } else if (func_0203c880(func_020b4d9c()) != 0 && data_021759c0->mUnk_00c == 0) {
-                if (data_0217b350->mUnk_83c == FALSE) {
-                    data_0217b350->mUnk_82c = TRUE;
-                    data_0217b350->mUnk_828 = 0;
-                    data_0217b350->mUnk_83c = TRUE;
-                    data_0217b350->mUnk_840 = TRUE;
-                    data_0217b350->mUnk_850 = 0x8c;
+                if (gRaceHud->mUnk_83c == FALSE) {
+                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenState = 0;
+                    gRaceHud->mUnk_83c = TRUE;
+                    gRaceHud->mUnk_840 = TRUE;
+                    gRaceHud->mUnk_850 = 0x8c;
                 } else {
                     a = FALSE;
                     b = FALSE;
@@ -299,19 +299,19 @@ void func_020aeb7c(void) {
                         }
                     }
                     if (a != FALSE) {
-                        data_0217b350->mUnk_82c = TRUE;
-                        switch (data_0217b350->mUnk_828) {
+                        gRaceHud->mUnk_82c = TRUE;
+                        switch (gRaceHud->mSubScreenState) {
                             case 0:
-                                data_0217b350->mUnk_828 = 3;
+                                gRaceHud->mSubScreenState = 3;
                                 func_0212ecc0(&data_0217d068, 0, 0x18);
                                 break;
                             case 3:
-                                data_0217b350->mUnk_828 = 0;
+                                gRaceHud->mSubScreenState = 0;
                                 func_0212ecc0(&data_0217d068, 0, 0x17);
                                 break;
                         }
                     } else {
-                        data_0217b350->mUnk_82c = FALSE;
+                        gRaceHud->mUnk_82c = FALSE;
                     }
                 }
             } else {
@@ -346,34 +346,34 @@ void func_020aeb7c(void) {
                     }
                 }
                 if (a != FALSE) {
-                    data_0217b350->mUnk_82c = TRUE;
-                    switch (data_0217b350->mUnk_828) {
+                    gRaceHud->mUnk_82c = TRUE;
+                    switch (gRaceHud->mSubScreenState) {
                         case 0:
-                            data_0217b350->mUnk_828 = 1;
+                            gRaceHud->mSubScreenState = 1;
                             func_0212ecc0(&data_0217d068, 0, 0x18);
                             break;
                         case 1:
-                            data_0217b350->mUnk_828 = 0;
+                            gRaceHud->mSubScreenState = 0;
                             func_0212ecc0(&data_0217d068, 0, 0x17);
                             break;
                     }
                 } else {
-                    data_0217b350->mUnk_82c = FALSE;
+                    gRaceHud->mUnk_82c = FALSE;
                 }
             }
             break;
         case 4:
             if (func_0203c174() != FALSE) {
-                if (data_0217b350->mUnk_83c == FALSE) {
-                    data_0217b350->mUnk_83c = TRUE;
-                    data_0217b350->mUnk_840 = TRUE;
+                if (gRaceHud->mUnk_83c == FALSE) {
+                    gRaceHud->mUnk_83c = TRUE;
+                    gRaceHud->mUnk_840 = TRUE;
                     if (func_0203c880((u16) data_021759c0->mEntryIndex) != 0) {
                         v = data_0217561c->mUnk_4e0;
                     } else {
                         v = 6;
                     }
                     if (v == 0) {
-                        data_0217b350->mUnk_850 = 0xaf;
+                        gRaceHud->mUnk_850 = 0xaf;
                     }
                 }
             } else if (data_0217561c->mUnk_4cc != 0) {
@@ -383,17 +383,17 @@ void func_020aeb7c(void) {
                     v = 6;
                 }
                 if (v != 0) {
-                    data_0217b350->mUnk_84c = 1;
+                    gRaceHud->mUnk_84c = 1;
                 }
             }
             if ((u16) (data_0217562c[func_020435bc()].mUnk_00 & 0x800) != 0) {
                 func_0212ecc0(&data_0217d068, 0, 0x19);
             }
-            data_0217b350->mUnk_82c = FALSE;
+            gRaceHud->mUnk_82c = FALSE;
             break;
     }
-    if (data_0217b350->mUnk_82c != FALSE) {
-        switch (data_0217b350->mUnk_828) {
+    if (gRaceHud->mUnk_82c != FALSE) {
+        switch (gRaceHud->mSubScreenState) {
             case 0:
                 func_020be9d4();
                 break;
@@ -412,7 +412,7 @@ void func_020aeb7c(void) {
                 break;
         }
     }
-    if (data_0217b350->mUnk_90c != FALSE) {
+    if (gRaceHud->mUnk_90c != FALSE) {
         return;
     }
     if (data_021759c0->mMode == 4) {
@@ -439,7 +439,7 @@ void func_020aeb7c(void) {
     if (v != 0) {
         data_0217b488->mUnk_10 = 0;
     } else {
-        data_0217b488->mUnk_10 = data_0217b350->mUnk_910 == 0;
+        data_0217b488->mUnk_10 = gRaceHud->mUnk_910 == 0;
     }
-    data_0217b350->mUnk_90c = TRUE;
+    gRaceHud->mUnk_90c = TRUE;
 }

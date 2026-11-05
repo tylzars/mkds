@@ -40,43 +40,43 @@
 #include "01/code_021956dc.h"
 
 u32 func_020c70d8(void) {
-    return ((u32) data_0217b3f4->mUnk_14);
+    return ((u32) gRaceNewRecordTa->mUnk_14);
 }
 
 s32 func_020c70bc(void) {
-    return data_0217b3f4 != NULL ? data_0217b3f4->mUnk_18 : 0;
+    return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mUnk_18 : 0;
 }
 
 s32 func_020c70a0(void) {
-    return data_0217b3f4 != NULL ? data_0217b3f4->mUnk_dc : 0;
+    return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mUnk_dc : 0;
 }
 
-void func_020c6fac(void) {
+void InitRaceNewRecordTa(void) {
     s32 i;
 
     if (data_021759c0->mMode != 1) {
         return;
     }
-    data_0217b3f4 = HeapAlloc(GetHeap(func_020364e8()), 0xe8);
-    data_0217b3f4->mUnk_00 = func_020c610c;
-    data_0217b3f4->mUnk_04 = 0;
-    data_0217b3f4->mUnk_08 = 0;
-    data_0217b3f4->mUnk_0c = -1;
-    data_0217b3f4->mUnk_10 = 0;
-    data_0217b3f4->mUnk_14 = 0;
-    data_0217b3f4->mUnk_18 = 0;
+    gRaceNewRecordTa = HeapAlloc(GetHeap(func_020364e8()), 0xe8);
+    gRaceNewRecordTa->mUnk_00 = func_020c610c;
+    gRaceNewRecordTa->mUnk_04 = 0;
+    gRaceNewRecordTa->mUnk_08 = 0;
+    gRaceNewRecordTa->mUnk_0c = -1;
+    gRaceNewRecordTa->mUnk_10 = 0;
+    gRaceNewRecordTa->mUnk_14 = 0;
+    gRaceNewRecordTa->mUnk_18 = 0;
     for (i = 0; i < 6; i++) {
-        func_02056bc0(data_021759c0->mCourseId, i, &data_0217b3f4->mUnk_1c[i]);
+        func_02056bc0(data_021759c0->mCourseId, i, &gRaceNewRecordTa->mRecords[i]);
     }
-    data_0217b3f4->mUnk_18 = 0;
-    data_0217b3f4->mUnk_dc = 0;
-    data_0217b3f4->mUnk_e0 = -0x100;
-    data_0217b3f4->mUnk_e4 = 0;
+    gRaceNewRecordTa->mUnk_18 = 0;
+    gRaceNewRecordTa->mUnk_dc = 0;
+    gRaceNewRecordTa->mOffsetX = -0x100;
+    gRaceNewRecordTa->mUnk_e4 = 0;
 }
 
 void func_020c6f84(void) {
     if (data_021759c0->mMode == 1) {
-        data_0217b3f4 = NULL;
+        gRaceNewRecordTa = NULL;
     }
 }
 
@@ -84,10 +84,10 @@ void func_020c6f14(void) {
     if (data_021759c0->mMode != 1) {
         return;
     }
-    data_0217b3f4->mUnk_00();
-    data_0217b3f4->mUnk_e4 = data_0217b3f4->mUnk_e4 + 1;
-    if (data_0217b3f4->mUnk_e4 >= 0x18) {
-        data_0217b3f4->mUnk_e4 = 0;
+    gRaceNewRecordTa->mUnk_00();
+    gRaceNewRecordTa->mUnk_e4 = gRaceNewRecordTa->mUnk_e4 + 1;
+    if (gRaceNewRecordTa->mUnk_e4 >= 0x18) {
+        gRaceNewRecordTa->mUnk_e4 = 0;
     }
 }
 
@@ -102,11 +102,11 @@ void func_020c6adc(Unk020c06c4 *a, s32 b, s32 c, Unk02056bc0 *d) {
     s32 e7[2];
     s32 e8[2];
     s32 v[9] = {0, 9, 18, 28, 37, 46, 56, 65, 74};
-    Unk020ae7c4 w;
+    TimeDigits w;
     s32 k;
     void *p;
 
-    func_020ae7c4(d->mUnk_02, d->mUnk_03, d->mUnk_00, &w);
+    SplitTimeDigits(d->mUnk_02, d->mUnk_03, d->mUnk_00, &w);
     if (d->mUnk_18 == 0) {
         w.mUnk_00[0] = w.mUnk_00[1] = w.mUnk_00[2] = w.mUnk_00[3] = w.mUnk_00[4] = w.mUnk_00[5] = w.mUnk_00[6] = 0xb;
     }
@@ -167,12 +167,12 @@ void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
     BOOL f;
     s32 k;
     void *p;
-    Unk0217b3f4 *m;
+    RaceNewRecordTa *m;
 
-    m = data_0217b3f4;
+    m = gRaceNewRecordTa;
     n = m->mUnk_e4;
     f = FALSE;
-    l = m->mUnk_1c[b];
+    l = m->mRecords[b];
     if (b == 5) {
         if ((m != NULL ? m->mUnk_10 : 0) != 0) {
             b = 0;
@@ -204,7 +204,7 @@ void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
     func_020c6adc(a, c + 0xab, d, &l);
 }
 
-void func_020c676c(Unk020c06c4 *a) {
+void DrawRaceNewRecordTa(Unk020c06c4 *a) {
     s32 e0[2];
     s32 e1[2];
     s32 e2[2];
@@ -215,25 +215,25 @@ void func_020c676c(Unk020c06c4 *a) {
     void *p;
 
     p = GetRaceNewRecordTaSNcerEntry(0);
-    e0[0] = (data_0217b3f4->mUnk_e0 + 0x80) << 12;
+    e0[0] = (gRaceNewRecordTa->mOffsetX + 0x80) << 12;
     e0[1] = 0xc000;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
     for (i = 0; i < 5; i++) {
         p = GetRaceNewRecordTaSNcerEntry(i + 1);
         x = i * 0x18 + 0x28;
-        e1[0] = data_0217b3f4->mUnk_e0 << 12;
+        e1[0] = gRaceNewRecordTa->mOffsetX << 12;
         e1[1] = (i * 0x18 + 0x28) << 12;
         k = a->mUnk_400;
         a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
-        func_020c692c(a, i, data_0217b3f4->mUnk_e0, x);
+        func_020c692c(a, i, gRaceNewRecordTa->mOffsetX, x);
     }
     p = GetRaceNewRecordTaSNcerEntry(6);
-    e2[0] = data_0217b3f4->mUnk_e0 << 12;
+    e2[0] = gRaceNewRecordTa->mOffsetX << 12;
     e2[1] = 0x9f000;
     k = a->mUnk_400;
     a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e2, 0, 1);
-    func_020c692c(a, i, data_0217b3f4->mUnk_e0 + 1, 0xb4);
+    func_020c692c(a, i, gRaceNewRecordTa->mOffsetX + 1, 0xb4);
 }
 
 BOOL func_020c657c(s32 a) {
@@ -251,7 +251,7 @@ BOOL func_020c657c(s32 a) {
     u16 n2;
 
     func_0203c7cc(func_020b4d9c(), &x, &y, &z);
-    q = data_0217b3f4->mUnk_1c;
+    q = gRaceNewRecordTa->mRecords;
     t = y * 1000 + x * 60000 + z;
     k = 0;
     do {
@@ -265,13 +265,13 @@ BOOL func_020c657c(s32 a) {
 found:
     if (a != 0) {
         for (j = 4; j > k; j--) {
-            data_0217b3f4->mUnk_1c[j] = data_0217b3f4->mUnk_1c[j - 1];
-            func_02056c6c(data_021759c0->mCourseId, j, &data_0217b3f4->mUnk_1c[j]);
+            gRaceNewRecordTa->mRecords[j] = gRaceNewRecordTa->mRecords[j - 1];
+            func_02056c6c(data_021759c0->mCourseId, j, &gRaceNewRecordTa->mRecords[j]);
         }
         n2 = z;
         n1 = y;
         n0 = x;
-        g = data_0217b3f4->mUnk_1c;
+        g = gRaceNewRecordTa->mRecords;
         e = g + k;
         e->mUnk_02 = n0;
         e->mUnk_03 = n1;
@@ -282,10 +282,10 @@ found:
         e->mUnk_1a = data_021759c0->mCurrentEntries[func_020b4d9c()].mKartIndex;
         func_02056c6c(data_021759c0->mCourseId, k, e);
         if (k != 5) {
-            data_0217b3f4->mUnk_0c = k;
+            gRaceNewRecordTa->mUnk_0c = k;
         }
     } else {
-        data_0217b3f4->mUnk_0c = k;
+        gRaceNewRecordTa->mUnk_0c = k;
     }
     return TRUE;
 }
@@ -300,8 +300,8 @@ BOOL func_020c6428(s32 a) {
     u8 n1;
     u16 n2;
 
-    e = &data_0217b3f4->mUnk_1c[5];
-    data_0217b3f4->mUnk_14 = func_0203c5f8(func_020b4d9c(), &x, &y, &z);
+    e = &gRaceNewRecordTa->mRecords[5];
+    gRaceNewRecordTa->mUnk_14 = func_0203c5f8(func_020b4d9c(), &x, &y, &z);
     if (e->mUnk_18 != 0) {
         if (z + (y * 1000 + x * 60000) >= e->mUnk_00 + (e->mUnk_03 * 1000 + e->mUnk_02 * 60000)) {
             return FALSE;
@@ -311,7 +311,7 @@ BOOL func_020c6428(s32 a) {
         n2 = z;
         n1 = y;
         n0 = x;
-        g = data_0217b3f4->mUnk_1c;
+        g = gRaceNewRecordTa->mRecords;
         e = g + 5;
         e->mUnk_02 = n0;
         e->mUnk_03 = n1;
@@ -350,13 +350,13 @@ void func_020c610c(void) {
         return;
     }
     if (data_021759c0->mUnk_00c == 0) {
-        data_0217b3f4->mUnk_08 = func_020c657c(1);
-        data_0217b3f4->mUnk_10 = func_020c6428(1);
-        if (data_0217b3f4->mUnk_08 != 0 || data_0217b3f4->mUnk_10 != 0) {
-            data_0217b3f4->mUnk_18 = 1;
+        gRaceNewRecordTa->mUnk_08 = func_020c657c(1);
+        gRaceNewRecordTa->mUnk_10 = func_020c6428(1);
+        if (gRaceNewRecordTa->mUnk_08 != 0 || gRaceNewRecordTa->mUnk_10 != 0) {
+            gRaceNewRecordTa->mUnk_18 = 1;
             func_02056408();
-            data_0217b3f4->mUnk_00 = func_020c5f7c;
-            data_0217b3f4->mUnk_04 = 0;
+            gRaceNewRecordTa->mUnk_00 = func_020c5f7c;
+            gRaceNewRecordTa->mUnk_04 = 0;
         } else {
             r = FALSE;
             if (func_020ba620() != 0) {
@@ -376,18 +376,18 @@ void func_020c610c(void) {
                 }
             }
             if (r != FALSE) {
-                data_0217b3f4->mUnk_18 = 1;
+                gRaceNewRecordTa->mUnk_18 = 1;
                 func_02056750(data_021759c0->mCourseId, (u16) data_021759c0->mEntryIndex);
-                data_0217b3f4->mUnk_00 = func_020c5f08;
-                data_0217b3f4->mUnk_04 = 0;
+                gRaceNewRecordTa->mUnk_00 = func_020c5f08;
+                gRaceNewRecordTa->mUnk_04 = 0;
             } else {
-                data_0217b3f4->mUnk_00 = func_020c5e30;
-                data_0217b3f4->mUnk_04 = 0;
+                gRaceNewRecordTa->mUnk_00 = func_020c5e30;
+                gRaceNewRecordTa->mUnk_04 = 0;
             }
         }
     } else {
         func_0203c7cc(func_020b4d9c(), &a, &b, &c);
-        w = data_0217b3f4->mUnk_1c;
+        w = gRaceNewRecordTa->mRecords;
         t = b * 1000 + a * 60000 + c;
         for (j = 4; j >= 0; j--) {
             q = &w[j];
@@ -398,19 +398,19 @@ void func_020c610c(void) {
         }
         j = 0;
     found:
-        data_0217b3f4->mUnk_08 = j;
-        q = &data_0217b3f4->mUnk_1c[5];
-        data_0217b3f4->mUnk_14 = func_0203c5f8(func_020b4d9c(), &d, &e, &f);
+        gRaceNewRecordTa->mUnk_08 = j;
+        q = &gRaceNewRecordTa->mRecords[5];
+        gRaceNewRecordTa->mUnk_14 = func_0203c5f8(func_020b4d9c(), &d, &e, &f);
         if (d == q->mUnk_02 && e == q->mUnk_03 && f == q->mUnk_00) {
             r = TRUE;
         } else {
             r = FALSE;
         }
-        data_0217b3f4->mUnk_10 = r;
-        data_0217b3f4->mUnk_00 = func_020c5e30;
-        data_0217b3f4->mUnk_04 = 0;
+        gRaceNewRecordTa->mUnk_10 = r;
+        gRaceNewRecordTa->mUnk_00 = func_020c5e30;
+        gRaceNewRecordTa->mUnk_04 = 0;
     }
-    data_0217b3f4->mUnk_dc = 1;
+    gRaceNewRecordTa->mUnk_dc = 1;
 }
 
 void func_020c5f7c(void) {
@@ -446,14 +446,14 @@ void func_020c5f7c(void) {
         }
     }
     if (r != FALSE) {
-        data_0217b3f4->mUnk_18 = 1;
+        gRaceNewRecordTa->mUnk_18 = 1;
         func_02056750(data_021759c0->mCourseId, (u16) data_021759c0->mEntryIndex);
-        data_0217b3f4->mUnk_00 = func_020c5f08;
-        data_0217b3f4->mUnk_04 = 0;
+        gRaceNewRecordTa->mUnk_00 = func_020c5f08;
+        gRaceNewRecordTa->mUnk_04 = 0;
     } else {
-        data_0217b3f4->mUnk_18 = 0;
-        data_0217b3f4->mUnk_00 = func_020c5eb8;
-        data_0217b3f4->mUnk_04 = 0;
+        gRaceNewRecordTa->mUnk_18 = 0;
+        gRaceNewRecordTa->mUnk_00 = func_020c5eb8;
+        gRaceNewRecordTa->mUnk_04 = 0;
     }
 }
 
@@ -468,9 +468,9 @@ void func_020c5f08(void) {
     if (t != 0) {
         return;
     }
-    data_0217b3f4->mUnk_18 = 0;
-    data_0217b3f4->mUnk_00 = func_020c5eb8;
-    data_0217b3f4->mUnk_04 = 0;
+    gRaceNewRecordTa->mUnk_18 = 0;
+    gRaceNewRecordTa->mUnk_00 = func_020c5eb8;
+    gRaceNewRecordTa->mUnk_04 = 0;
 }
 
 void func_020c5eb8(void) {
@@ -478,21 +478,21 @@ void func_020c5eb8(void) {
         return;
     }
     func_020b1d64();
-    data_0217b3f4->mUnk_00 = func_020c5e30;
-    data_0217b3f4->mUnk_04 = 0;
+    gRaceNewRecordTa->mUnk_00 = func_020c5e30;
+    gRaceNewRecordTa->mUnk_04 = 0;
 }
 
 void func_020c5e30(void) {
     s32 n;
 
-    n = data_0217b3f4->mUnk_04;
-    data_0217b3f4->mUnk_04 = n + 1;
+    n = gRaceNewRecordTa->mUnk_04;
+    gRaceNewRecordTa->mUnk_04 = n + 1;
     if (n < 0x14) {
-        data_0217b3f4->mUnk_e0 = func_020ae4c0(1, -0x100, 0, n, 0x14);
+        gRaceNewRecordTa->mOffsetX = func_020ae4c0(1, -0x100, 0, n, 0x14);
     } else {
-        data_0217b3f4->mUnk_e0 = 0;
-        data_0217b3f4->mUnk_00 = (void (*)(void)) func_020c5df0;
-        data_0217b3f4->mUnk_04 = 0;
+        gRaceNewRecordTa->mOffsetX = 0;
+        gRaceNewRecordTa->mUnk_00 = (void (*)(void)) func_020c5df0;
+        gRaceNewRecordTa->mUnk_04 = 0;
     }
 }
 
@@ -503,7 +503,7 @@ u32 func_020c5df0(void) {
     u32 value3;
     u32 compareLeft0;
     u32 compareRight0;
-    value0 = (u32) &data_0217b3f4;
+    value0 = (u32) &gRaceNewRecordTa;
     value3 = (u32) * (const u32 *) ((value0) + (0));
     value2 = (u32) * (const u32 *) ((value3) + (4));
     value1 = (value2) + (1u);
@@ -525,7 +525,7 @@ u32 func_020c5df0(void) {
 u32 func_020c5dd8(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217b3f4;
+    value0 = (u32) &gRaceNewRecordTa;
     value1 = 0u;
     value0 = (u32) * (const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (220)) = value1;

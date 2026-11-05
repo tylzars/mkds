@@ -17,7 +17,9 @@
 
 #pragma opt_arithtransformation off
 
-s32 func_020b1bf8(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c) {
+// Absolute difference of two times (minutes, seconds, milliseconds) written to the out record (minutes capped to
+// 99:59.999 from 100 minutes); returns non-zero when a >= b.
+s32 ComputeTimeDifference(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c) {
     s32 x;
     s32 y;
     s32 d;
@@ -54,14 +56,14 @@ void func_020b1a34(void) {
     Unk020b1a34_0c b;
     Unk020b1a34_0c c;
     Unk020b1bf8 t[2];
-    Unk020ae7c4 w;
+    TimeDigits w;
     u8 i;
     u8 j;
 
     if (data_021759c0->mMode == 0 || data_021759c0->mMode == 1) {
-        data_0217b350->mUnk_8dc = 1;
+        gRaceHud->mUnk_8dc = 1;
     }
-    if (data_0217b350->mUnk_8e4 == 0) {
+    if (gRaceHud->mUseTimeDifference == 0) {
         return;
     }
     for (i = 0; i < 2; i++) {
@@ -81,7 +83,7 @@ void func_020b1a34(void) {
         t[1].mUnk_04 += b.mUnk_03;
         t[1].mUnk_08 += b.mUnk_00;
     }
-    data_0217b350->mUnk_8e8 = func_020b1bf8(&t[1], &t[0], &c);
-    func_020ae7c4(c.mUnk_02, c.mUnk_03, c.mUnk_00, &w);
-    data_0217b350->mUnk_8ec = w;
+    gRaceHud->mTimeDifferenceSign = ComputeTimeDifference(&t[1], &t[0], &c);
+    SplitTimeDigits(c.mUnk_02, c.mUnk_03, c.mUnk_00, &w);
+    gRaceHud->mTimeDifferenceDigits = w;
 }

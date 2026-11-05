@@ -46,7 +46,7 @@ void func_020bbbb4(void) {
     s32 x;
     Unk0212c400 **r;
 
-    if (func_020b1dbc() == 6) {
+    if (GetRaceHudSubScreenState() == 6) {
         return;
     }
     if (func_020b1a20() != 0) {
@@ -59,7 +59,7 @@ void func_020bbbb4(void) {
             func_0203c950(&a, &b, &c);
         }
     }
-    func_020ae7c4(a, b, c, &data_0217b3d0->mUnk_00);
+    SplitTimeDigits(a, b, c, &data_0217b3d0->mUnk_00);
     if (data_0217b3d0->mUnk_1c == FALSE) {
         return;
     }
@@ -184,7 +184,7 @@ void func_020bb5ec(Unk020d029c *p) {
 
     u = func_020b1a20();
     m = 0;
-    if (func_020b1dbc() == 6) {
+    if (GetRaceHudSubScreenState() == 6) {
         return;
     }
     if (data_021759c0->mUnk_00c == 4) {

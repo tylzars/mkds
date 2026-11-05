@@ -16,5 +16,5 @@ typedef struct Unk020b1a34_0c {
     /* 03 */ u8 mUnk_03;
 } Unk020b1a34_0c;
 
-s32 func_020b1bf8(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c);
+s32 ComputeTimeDifference(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c);
 void func_020b1a34(void);

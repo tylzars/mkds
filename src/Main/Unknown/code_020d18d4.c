@@ -16,7 +16,7 @@
 void DrawRaceMNumberPair(Unk020d029c *param_1) {
     s32 a;
 
-    a = func_020b33f4();
+    a = GetRaceStartSequenceFrames();
     if (data_021759c0->mUnk_00c == 4 || data_021759c0->mUnk_00c == 1) {
         return;
     }
@@ -27,10 +27,10 @@ void DrawRaceMNumberPair(Unk020d029c *param_1) {
         return;
     }
     func_020d1de8(param_1, a);
-    if (data_0217b4b4->mUnk_1c == 0) {
+    if (gRaceMNumberPair->mUnk_1c == 0) {
         return;
     }
-    if (data_0217b4b4->mUnk_04 >= 10) {
+    if (gRaceMNumberPair->mCourseCount >= 10) {
         DrawRaceMNumberPairTwoDigit(param_1);
         return;
     }
@@ -44,44 +44,44 @@ void func_020d1de8(Unk020d029c *param_1, s32 param_2) {
     Unk020224e0_o *e;
 
     if (param_2 < 0) {
-        data_0217b4b4->mUnk_24 = 0;
-        data_0217b4b4->mUnk_18 = NULL;
-        data_0217b4b4->mUnk_1c = 0;
-        data_0217b4b4->mUnk_20 = 0;
+        gRaceMNumberPair->mOffsetX = 0;
+        gRaceMNumberPair->mUnk_18 = NULL;
+        gRaceMNumberPair->mUnk_1c = 0;
+        gRaceMNumberPair->mUnk_20 = 0;
         return;
     }
     if (param_2 < 0x14) {
         s32 *p;
 
         a = t[param_2];
-        func_020b4cec(data_0217b4b4->mUnk_08, a);
-        data_0217b4b4->mUnk_24 = 0;
-        data_0217b4b4->mUnk_18 = data_0217b4b4->mUnk_08;
-        data_0217b4b4->mUnk_1c = a;
-        data_0217b4b4->mUnk_20 = func_020ae5c4(param_1);
-        p = data_0217b4b4->mUnk_18;
-        e = &param_1->mUnk_000[data_0217b4b4->mUnk_20 * 4];
+        func_020b4cec(gRaceMNumberPair->mUnk_08, a);
+        gRaceMNumberPair->mOffsetX = 0;
+        gRaceMNumberPair->mUnk_18 = gRaceMNumberPair->mUnk_08;
+        gRaceMNumberPair->mUnk_1c = a;
+        gRaceMNumberPair->mUnk_20 = func_020ae5c4(param_1);
+        p = gRaceMNumberPair->mUnk_18;
+        e = &param_1->mUnk_000[gRaceMNumberPair->mUnk_20 * 4];
         e[0].mUnk_00[3] = p[0] >> 4;
         e[1].mUnk_00[3] = p[1] >> 4;
         e[2].mUnk_00[3] = p[2] >> 4;
         e[3].mUnk_00[3] = p[3] >> 4;
-        data_0217b4b4->mUnk_18[3] = data_0217b4b4->mUnk_1c;
-        data_0217b4b4->mUnk_18[0] = data_0217b4b4->mUnk_18[3];
-        data_0217b4b4->mUnk_18[2] = 0;
-        data_0217b4b4->mUnk_18[1] = data_0217b4b4->mUnk_18[2];
+        gRaceMNumberPair->mUnk_18[3] = gRaceMNumberPair->mUnk_1c;
+        gRaceMNumberPair->mUnk_18[0] = gRaceMNumberPair->mUnk_18[3];
+        gRaceMNumberPair->mUnk_18[2] = 0;
+        gRaceMNumberPair->mUnk_18[1] = gRaceMNumberPair->mUnk_18[2];
         return;
     }
     if (param_2 < 0x78) {
-        data_0217b4b4->mUnk_24 = 0;
-        data_0217b4b4->mUnk_18 = NULL;
-        data_0217b4b4->mUnk_1c = 0x1000;
-        data_0217b4b4->mUnk_20 = 0;
+        gRaceMNumberPair->mOffsetX = 0;
+        gRaceMNumberPair->mUnk_18 = NULL;
+        gRaceMNumberPair->mUnk_1c = 0x1000;
+        gRaceMNumberPair->mUnk_20 = 0;
         return;
     }
-    data_0217b4b4->mUnk_24 = func_020ae4c0(1, 0, 0x80, param_2 - 0x78, 0x14);
-    data_0217b4b4->mUnk_18 = NULL;
-    data_0217b4b4->mUnk_1c = 0x1000;
-    data_0217b4b4->mUnk_20 = 0;
+    gRaceMNumberPair->mOffsetX = func_020ae4c0(1, 0, 0x80, param_2 - 0x78, 0x14);
+    gRaceMNumberPair->mUnk_18 = NULL;
+    gRaceMNumberPair->mUnk_1c = 0x1000;
+    gRaceMNumberPair->mUnk_20 = 0;
 }
 
 void DrawRaceMNumberPairTwoDigit(Unk020d029c *param_1) {
@@ -95,37 +95,37 @@ void DrawRaceMNumberPairTwoDigit(Unk020d029c *param_1) {
     s32 q3[2];
     s32 q4[2];
 
-    if (data_0217b4b4->mUnk_00 / 10 != 0) {
-        a = data_0217b4b4->mUnk_20;
-        p = data_0217b4b4->mUnk_18;
-        c = GetRaceMNcerEntry(data_0217b4b4->mUnk_00 / 10 + 0x2d);
-        q0[0] = (t[0] + data_0217b4b4->mUnk_24) << 12;
+    if (gRaceMNumberPair->mCourseNumber / 10 != 0) {
+        a = gRaceMNumberPair->mUnk_20;
+        p = gRaceMNumberPair->mUnk_18;
+        c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseNumber / 10 + 0x2d);
+        q0[0] = (t[0] + gRaceMNumberPair->mOffsetX) << 12;
         q0[1] = 0xb1000;
         param_1->mUnk_400 +=
             func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q0, a, 1);
     }
-    a = data_0217b4b4->mUnk_20;
-    p = data_0217b4b4->mUnk_18;
-    c = GetRaceMNcerEntry(data_0217b4b4->mUnk_00 % 10 + 0x2d);
-    q1[0] = (t[1] + data_0217b4b4->mUnk_24) << 12;
+    a = gRaceMNumberPair->mUnk_20;
+    p = gRaceMNumberPair->mUnk_18;
+    c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseNumber % 10 + 0x2d);
+    q1[0] = (t[1] + gRaceMNumberPair->mOffsetX) << 12;
     q1[1] = 0xb1000;
     param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q1, a, 1);
-    a = data_0217b4b4->mUnk_20;
-    p = data_0217b4b4->mUnk_18;
+    a = gRaceMNumberPair->mUnk_20;
+    p = gRaceMNumberPair->mUnk_18;
     c = GetRaceMNcerEntry(0x37);
-    q2[0] = (t[2] + data_0217b4b4->mUnk_24) << 12;
+    q2[0] = (t[2] + gRaceMNumberPair->mOffsetX) << 12;
     q2[1] = 0xb1000;
     param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q2, a, 1);
-    a = data_0217b4b4->mUnk_20;
-    p = data_0217b4b4->mUnk_18;
-    c = GetRaceMNcerEntry(data_0217b4b4->mUnk_04 / 10 + 0x2d);
-    q3[0] = (t[3] + data_0217b4b4->mUnk_24) << 12;
+    a = gRaceMNumberPair->mUnk_20;
+    p = gRaceMNumberPair->mUnk_18;
+    c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseCount / 10 + 0x2d);
+    q3[0] = (t[3] + gRaceMNumberPair->mOffsetX) << 12;
     q3[1] = 0xb1000;
     param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q3, a, 1);
-    a = data_0217b4b4->mUnk_20;
-    p = data_0217b4b4->mUnk_18;
-    c = GetRaceMNcerEntry(data_0217b4b4->mUnk_04 % 10 + 0x2d);
-    q4[0] = (t[4] + data_0217b4b4->mUnk_24) << 12;
+    a = gRaceMNumberPair->mUnk_20;
+    p = gRaceMNumberPair->mUnk_18;
+    c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseCount % 10 + 0x2d);
+    q4[0] = (t[4] + gRaceMNumberPair->mOffsetX) << 12;
     q4[1] = 0xb1000;
     param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q4, a, 1);
 }
@@ -139,22 +139,22 @@ void DrawRaceMNumberPairOneDigit(Unk020d029c *param_1) {
     s32 q1[2];
     s32 q2[2];
 
-    a = data_0217b4b4->mUnk_20;
-    p = data_0217b4b4->mUnk_18;
-    c = GetRaceMNcerEntry(data_0217b4b4->mUnk_00 + 0x2d);
-    q0[0] = (t[0] + data_0217b4b4->mUnk_24) << 12;
+    a = gRaceMNumberPair->mUnk_20;
+    p = gRaceMNumberPair->mUnk_18;
+    c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseNumber + 0x2d);
+    q0[0] = (t[0] + gRaceMNumberPair->mOffsetX) << 12;
     q0[1] = 0xb1000;
     param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q0, a, 1);
-    a = data_0217b4b4->mUnk_20;
-    p = data_0217b4b4->mUnk_18;
+    a = gRaceMNumberPair->mUnk_20;
+    p = gRaceMNumberPair->mUnk_18;
     c = GetRaceMNcerEntry(0x37);
-    q1[0] = (t[1] + data_0217b4b4->mUnk_24) << 12;
+    q1[0] = (t[1] + gRaceMNumberPair->mOffsetX) << 12;
     q1[1] = 0xb1000;
     param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q1, a, 1);
-    a = data_0217b4b4->mUnk_20;
-    p = data_0217b4b4->mUnk_18;
-    c = GetRaceMNcerEntry(data_0217b4b4->mUnk_04 + 0x2d);
-    q2[0] = (t[2] + data_0217b4b4->mUnk_24) << 12;
+    a = gRaceMNumberPair->mUnk_20;
+    p = gRaceMNumberPair->mUnk_18;
+    c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseCount + 0x2d);
+    q2[0] = (t[2] + gRaceMNumberPair->mOffsetX) << 12;
     q2[1] = 0xb1000;
     param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q2, a, 1);
 }

@@ -5,7 +5,7 @@ u32 func_020b1cdc(u32 arg0, u32 arg1) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
-    value2 = (u32) &data_0217b350;
+    value2 = (u32) &gRaceHud;
     value2 = (u32) * (const u32 *) ((value2) + (0));
     value0 = (value2) + ((value0 << 2));
     *(u32 *) ((value0) + (2204)) = value1;

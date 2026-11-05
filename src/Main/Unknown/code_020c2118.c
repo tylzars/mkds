@@ -3,7 +3,7 @@
 
 void func_020c2118(Unk020c06c4 *a) {
     int v1;
-    v1 = func_020b1dbc();
+    v1 = GetRaceHudSubScreenState();
     if (v1 != 5) {
         func_020c28dc(a);
         return;

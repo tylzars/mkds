@@ -99,12 +99,12 @@ void func_020be3e4(void) {
     Unk020ee684 *o;
 
     e = data_0217b3d8->mUnk_0f8;
-    if (func_020b33f4() <= 0x188) {
-        data_0217b3d8->mUnk_0e0 = (0x20 - (func_020b33f4() - 0x168)) * 4;
+    if (GetRaceStartSequenceFrames() <= 0x188) {
+        data_0217b3d8->mUnk_0e0 = (0x20 - (GetRaceStartSequenceFrames() - 0x168)) * 4;
     } else {
         data_0217b3d8->mUnk_0e0 = 0;
     }
-    if (func_020b33f4() < 0x168) {
+    if (GetRaceStartSequenceFrames() < 0x168) {
         return;
     }
     if (data_021759c0->mMode == 1) {
@@ -149,7 +149,7 @@ void func_020be3e4(void) {
         data_0217b3d8->mUnk_0a0[i] = i;
         b[i] = data_0217b3d8->mUnk_080[i];
     }
-    func_020ae770(data_0217b3d8->mUnk_0a0, b, data_021759c0->mKartCount);
+    SortIndicesByKey(data_0217b3d8->mUnk_0a0, b, data_021759c0->mKartCount);
     data_0217b3d8->mUnk_0f8++;
     if (data_0217b3d8->mUnk_0f8 >= 0x1c) {
         data_0217b3d8->mUnk_0f8 = 0;
@@ -168,7 +168,7 @@ void func_020be2f4(Unk020d029c *a) {
     s32 *e;
     Unk020224e0_o *p;
 
-    if (func_020b33f4() < 0x168) {
+    if (GetRaceStartSequenceFrames() < 0x168) {
         return;
     }
     data_0217b3d8->mUnk_0e4 = func_020ae5c4(a);
@@ -179,7 +179,7 @@ void func_020be2f4(Unk020d029c *a) {
             func_020bd7f8(a);
             break;
         case 2:
-            switch (func_020b1dbc()) {
+            switch (GetRaceHudSubScreenState()) {
                 case 0:
                     func_020bd178(a);
                     break;
@@ -417,7 +417,7 @@ void func_020bd850(Unk020d029c *a) {
 }
 
 void func_020bd7f8(Unk020d029c *a) {
-    switch (func_020b1dbc()) {
+    switch (GetRaceHudSubScreenState()) {
         case 0:
             func_020bdf08(a);
             func_020bdb34(a);
@@ -712,7 +712,7 @@ void func_020bc958(void) {
 void func_020bc208(Unk020d029c *a) {
     s32 t[2] = {0xf8, 0x10};
     s32 *p;
-    Unk020ae7c4 *r;
+    TimeDigits *r;
     s32 q1[2];
     s32 q2[2];
     s32 q3[2];

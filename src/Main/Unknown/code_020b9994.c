@@ -544,7 +544,7 @@ void func_020b9dfc(Unk020d029c *p) {
                     c[1] = 0xc000;
                     p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, c, 0, 1);
                 } else {
-                    i = func_020b33f4() % 16;
+                    i = GetRaceStartSequenceFrames() % 16;
                     if (func_020a1048(func_020b4d9c()) != 0 && i >= 10) {
                         return;
                     }

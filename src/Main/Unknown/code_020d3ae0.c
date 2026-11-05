@@ -488,7 +488,7 @@ void UpdateMapObjects(void) {
 
     t = data_0217b4f0->mUnk_134;
     n = data_0217b4f0->mUnk_174;
-    r = func_020b33f4();
+    r = GetRaceStartSequenceFrames();
     if (r <= 0x168) {
         if (data_021759c0->mUnk_00c != 3) {
             if (r == -0x73) {

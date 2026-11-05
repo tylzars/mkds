@@ -121,10 +121,10 @@ void func_020d0a18(void) {
         return;
     }
     func_0203c7cc(func_020b4d9c(), &a, &b, &c);
-    func_020ae7c4(a, b, c, &data_0217b49c->mUnk_00);
+    SplitTimeDigits(a, b, c, &data_0217b49c->mUnk_00);
     for (i = 0; i < func_02044618(); i++) {
         func_0203c778(func_020b4d9c(), i + 1, &a, &b, &c);
-        func_020ae7c4(a, b, c, &data_0217b49c->mUnk_1c[i]);
+        SplitTimeDigits(a, b, c, &data_0217b49c->mUnk_1c[i]);
     }
     if (data_021759c0->mMode != 1) {
         return;
@@ -203,7 +203,7 @@ void func_020d06b8(Unk020d029c *a) {
     }
 }
 
-void func_020d029c(Unk020d029c *a, s32 b, s32 d, Unk020ae7c4 *e, s32 f) {
+void func_020d029c(Unk020d029c *a, s32 b, s32 d, TimeDigits *e, s32 f) {
     Unk020224e0_c *c;
     s32 p0[2];
     s32 p1[2];

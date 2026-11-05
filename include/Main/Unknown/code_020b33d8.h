@@ -3,7 +3,7 @@
 #include "types.h"
 
 void func_020b36a4(void);
-void func_020b3584(void);
+void UpdateRaceStartSequence(void);
 void func_020b3410(void);
-s32 func_020b33f4(void);
-s32 func_020b33d8(void);
+s32 GetRaceStartSequenceFrames(void);
+s32 IsRaceStartSequenceDone(void);

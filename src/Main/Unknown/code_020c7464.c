@@ -218,7 +218,7 @@ void func_020c97c0(void) {
         data_0217b428->mUnk_130[i] = i;
         v1[i] = func_0203c8dc(i & 0xff);
     }
-    switch (func_020b1dbc()) {
+    switch (GetRaceHudSubScreenState()) {
         case 0:
             for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
                 func_020b6078(i, &data_0217b428->mUnk_060[i]);
@@ -340,7 +340,7 @@ void func_020c97c0(void) {
     if (data_021759c0->mMode == 1) {
         return;
     }
-    func_020ae770(data_0217b428->mUnk_130, v1, data_021759c0->mKartCount);
+    SortIndicesByKey(data_0217b428->mUnk_130, v1, data_021759c0->mKartCount);
 }
 
 static inline void func_020c8dbc_inline(Unk020c06c4 *p, Unk020224e0_c *c, s32 *r, s32 x, s32 y, u16 v, s32 s, s32 g) {
@@ -406,7 +406,7 @@ void func_020c8dbc(Unk020c06c4 *p) {
     s32 v6;
     s32 v7;
 
-    switch (func_020b1dbc()) {
+    switch (GetRaceHudSubScreenState()) {
         case 0:
             for (k = 0; k < data_021759c0->mKartCount; k++) {
                 i = data_0217b428->mUnk_130[k];

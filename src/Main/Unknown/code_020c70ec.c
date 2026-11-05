@@ -65,16 +65,16 @@ void func_020c7164(void) {
     if (data_021759c0->mMode != 1) {
         return;
     }
-    if (data_0217b3f4 == NULL) {
+    if (gRaceNewRecordTa == NULL) {
         return;
     }
     if (data_021759c0->mUnk_00c == 0) {
-        data_0217b3f4->mUnk_08 = func_020c657c(0);
-        data_0217b3f4->mUnk_10 = func_020c6428(0);
+        gRaceNewRecordTa->mUnk_08 = func_020c657c(0);
+        gRaceNewRecordTa->mUnk_10 = func_020c6428(0);
         return;
     }
     func_0203c7cc(func_020b4d9c(), &a, &b, &c);
-    r = data_0217b3f4->mUnk_1c;
+    r = gRaceNewRecordTa->mRecords;
     t = b * 1000 + a * 60000 + c;
     for (j = 4; j >= 0; j--) {
         q = &r[j];
@@ -85,20 +85,20 @@ void func_020c7164(void) {
     }
     j = 0;
 found:
-    data_0217b3f4->mUnk_08 = j;
-    q = &data_0217b3f4->mUnk_1c[5];
-    data_0217b3f4->mUnk_14 = func_0203c5f8(func_020b4d9c(), &d, &e, &f);
-    data_0217b3f4->mUnk_10 = (d == q->mUnk_02 && e == q->mUnk_03 && f == q->mUnk_00) ? 1 : 0;
+    gRaceNewRecordTa->mUnk_08 = j;
+    q = &gRaceNewRecordTa->mRecords[5];
+    gRaceNewRecordTa->mUnk_14 = func_0203c5f8(func_020b4d9c(), &d, &e, &f);
+    gRaceNewRecordTa->mUnk_10 = (d == q->mUnk_02 && e == q->mUnk_03 && f == q->mUnk_00) ? 1 : 0;
 }
 
 s32 func_020c7148(void) {
-    return data_0217b3f4 != NULL ? data_0217b3f4->mUnk_08 : 0;
+    return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mUnk_08 : 0;
 }
 
 BOOL func_020c7108(void) {
-    if (data_0217b3f4 != NULL) {
-        if (data_0217b3f4->mUnk_08 != 0) {
-            if (data_0217b3f4->mUnk_0c == 0) {
+    if (gRaceNewRecordTa != NULL) {
+        if (gRaceNewRecordTa->mUnk_08 != 0) {
+            if (gRaceNewRecordTa->mUnk_0c == 0) {
                 return TRUE;
             }
         }
@@ -108,5 +108,5 @@ BOOL func_020c7108(void) {
 }
 
 s32 func_020c70ec(void) {
-    return data_0217b3f4 != NULL ? data_0217b3f4->mUnk_10 : 0;
+    return gRaceNewRecordTa != NULL ? gRaceNewRecordTa->mUnk_10 : 0;
 }

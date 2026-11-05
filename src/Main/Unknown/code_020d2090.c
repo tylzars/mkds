@@ -73,29 +73,29 @@ u32 DecimalNonZeroDigitsToBitMask(s32 c) {
 
 #pragma thumb off
 
-void func_020d20a8(void) {
-    Unk0217b4b4 *p;
+void InitRaceMNumberPair(void) {
+    RaceMNumberPair *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
-    data_0217b4b4 = p;
-    p->mUnk_00 = data_021759c0->mCourseNumber;
+    gRaceMNumberPair = p;
+    p->mCourseNumber = data_021759c0->mCourseNumber;
     if (data_021759c0->mMode == 5) {
-        data_0217b4b4->mUnk_04 = 4;
+        gRaceMNumberPair->mCourseCount = 4;
     } else if (data_021759c0->mMode == 3 && data_021759c0->mUnk_1c == 2) {
-        data_0217b4b4->mUnk_04 = data_021759c0->mUnk_3d8;
+        gRaceMNumberPair->mCourseCount = data_021759c0->mUnk_3d8;
     } else {
-        data_0217b4b4->mUnk_04 = 0;
+        gRaceMNumberPair->mCourseCount = 0;
     }
-    func_020b4cec(data_0217b4b4->mUnk_08, 0x1000);
-    data_0217b4b4->mUnk_18 = NULL;
-    data_0217b4b4->mUnk_1c = 0;
-    data_0217b4b4->mUnk_20 = 0;
-    data_0217b4b4->mUnk_24 = 0;
+    func_020b4cec(gRaceMNumberPair->mUnk_08, 0x1000);
+    gRaceMNumberPair->mUnk_18 = NULL;
+    gRaceMNumberPair->mUnk_1c = 0;
+    gRaceMNumberPair->mUnk_20 = 0;
+    gRaceMNumberPair->mOffsetX = 0;
 }
 
 u32 func_020d2094(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217b4b4;
+    value0 = (u32) &gRaceMNumberPair;
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
     return value0;

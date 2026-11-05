@@ -235,11 +235,11 @@ void func_0206f914(Kart *p) {
         p->mUnk_4d4 = (s32) (((s64) p->mUnk_4d4 * 0xf5c) >> 12);
     }
     if (!(p->mUnk_4c & 0x20000000)) {
-        if (func_020b33f4() - 0xaf > 0) {
+        if (GetRaceStartSequenceFrames() - 0xaf > 0) {
             p->mUnk_44 |= 0x1000000;
         }
     }
-    if (func_020b33f4() - 0xaf == 0) {
+    if (GetRaceStartSequenceFrames() - 0xaf == 0) {
         if (p->mUnk_7c & 2) {
             if (func_0208c180(p->mUnk_310) != 0) {
                 if (!(p->mUnk_4c & 0x20000000)) {

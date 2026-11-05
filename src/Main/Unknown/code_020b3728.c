@@ -97,7 +97,7 @@ void func_020b3cd8(void) {
         b[i] = i;
         a[i] = a[i] * n;
     }
-    func_020ae770(b, a, data_021759c0->mKartCount);
+    SortIndicesByKey(b, a, data_021759c0->mKartCount);
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         for (j = 0; j < (u32) data_021759c0->mKartCount; j++) {
             if (i == b[j]) {

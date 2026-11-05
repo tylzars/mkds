@@ -232,7 +232,7 @@ void InitRaceGoalS(void) {
         gRaceGoalS->mUnk_0040[g] = g;
         s[g] *= -1;
     }
-    func_020ae770(gRaceGoalS->mUnk_0040, s, data_021759c0->mKartCount);
+    SortIndicesByKey(gRaceGoalS->mUnk_0040, s, data_021759c0->mKartCount);
     for (j = 0; j < data_021759c0->mKartCount; j = (u16) (j + 1)) {
         gRaceGoalS->mUnk_0060[j] = gRaceGoalS->mUnk_0040[j];
     }

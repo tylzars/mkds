@@ -149,50 +149,50 @@ void func_020b0b8c(void) {
         func_0212b1c0();
         return;
     }
-    if (data_0217b350->mUnk_898 == FALSE) {
+    if (gRaceHud->mEnabled == FALSE) {
         return;
     }
-    if (data_0217b350->mUnk_840 != FALSE) {
+    if (gRaceHud->mUnk_840 != FALSE) {
         MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x3000);
-        data_0217b350->mUnk_840 = FALSE;
+        gRaceHud->mUnk_840 = FALSE;
         func_0214c090(GetRaceNclrNcgr(1)->mNclr->mData, 0, GetRaceNclrNcgr(1)->mNclr->mDataSize);
         func_0214bf04(GetRaceNclrNcgr(1)->mNcgr->mData, 0, 0x4000);
-        data_0217b350->mUnk_848 = 1;
-        data_0217b350->mUnk_844 = 1;
+        gRaceHud->mUnk_848 = 1;
+        gRaceHud->mUnk_844 = 1;
         reg_GX_DISPCNT &= ~0xe000;
-    } else if (data_0217b350->mUnk_844 != 0) {
+    } else if (gRaceHud->mUnk_844 != 0) {
         if (func_020b2ec0() == 0) {
-            if (data_0217b350->mUnk_844++ >= data_0217b350->mUnk_850) {
+            if (gRaceHud->mUnk_844++ >= gRaceHud->mUnk_850) {
                 if (data_021759c0->mMode == 0 && data_021759c0->mUnk_00c == 0) {
                     w = (reg_GX_DISPCNT & 0x1f00) >> 8;
                     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((w | 8) << 8);
                     reg_G2_BG3CNT = (reg_G2_BG3CNT & ~3) | 1;
                     reg_G2_BG3CNT &= ~0x40;
                     reg_G2_BG3CNT = (reg_G2_BG3CNT & 0x43) | 0x500;
-                    func_0214c160(data_0217b350->mNclrs[0]->mData, 0, data_0217b350->mNclrs[0]->mDataSize);
-                    MemCopyWordsToG2Bg3CntBits2To5Address(data_0217b350->mNcgrs[0]->mData, 0,
-                                                          data_0217b350->mNcgrs[0]->mDataSize);
-                    MemCopyHalfwordsToG2Bg3CntBits8To12Address(data_0217b350->mNscrs[1]->mData, 0, 0x600);
+                    func_0214c160(gRaceHud->mNclrs[0]->mData, 0, gRaceHud->mNclrs[0]->mDataSize);
+                    MemCopyWordsToG2Bg3CntBits2To5Address(gRaceHud->mNcgrs[0]->mData, 0,
+                                                          gRaceHud->mNcgrs[0]->mDataSize);
+                    MemCopyHalfwordsToG2Bg3CntBits8To12Address(gRaceHud->mNscrs[1]->mData, 0, 0x600);
                     func_0214a40c((u32 *) 0x04000050, 8, 0x27, 5, 9);
                 }
-                data_0217b350->mUnk_844 = 0;
-                data_0217b350->mUnk_84c = 1;
+                gRaceHud->mUnk_844 = 0;
+                gRaceHud->mUnk_84c = 1;
             }
         }
     }
     v = data_021759c0->mMode;
-    if (v == 0 && data_0217b350->mUnk_84c != 0) {
+    if (v == 0 && gRaceHud->mUnk_84c != 0) {
         reg_G2_BG3OFS = 0x01ff0000 & (func_020ae4c0(1, -64, 0, func_020c5db0(), 20) << 16);
-    } else if (v == 4 && data_0217b350->mUnk_84c != 0) {
+    } else if (v == 4 && gRaceHud->mUnk_84c != 0) {
         MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x3000);
         MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
     }
-    func_0200ee74(data_0217b350->mUnk_004, 0x400);
-    func_0214bfcc(data_0217b350->mUnk_004, 0, 0x400);
-    func_0200ee74(data_0217b350->mUnk_408, 0x400);
-    func_0214bf64(data_0217b350->mUnk_408, 0, 0x400);
-    if (data_0217b350->mUnk_82c != FALSE) {
-        switch (data_0217b350->mUnk_828) {
+    func_0200ee74(gRaceHud->mUnk_004, 0x400);
+    func_0214bfcc(gRaceHud->mUnk_004, 0, 0x400);
+    func_0200ee74(gRaceHud->mUnk_408, 0x400);
+    func_0214bf64(gRaceHud->mUnk_408, 0, 0x400);
+    if (gRaceHud->mUnk_82c != FALSE) {
+        switch (gRaceHud->mSubScreenState) {
             case 0:
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
                 GxsDispCntBits0To2Write(0);
@@ -230,10 +230,10 @@ void func_020b0b8c(void) {
                 break;
         }
     }
-    switch (data_0217b350->mUnk_828) {
+    switch (gRaceHud->mSubScreenState) {
         case 0:
             reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
-            a = data_0217b350->mUnk_000 / 6;
+            a = gRaceHud->mUpdateFrames / 6;
             reg_G2S_DB_BG3OFS = (a & 0x1ff) | (((0x200 - a) << 16) & 0x01ff0000);
             break;
         case 1:
@@ -242,13 +242,12 @@ void func_020b0b8c(void) {
             if (data_021759c0->mMode == 4) {
                 func_0214c028(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
             }
-            func_0214a428((u32 *) 0x04001020, data_0217b350->mUnk_858[0].mUnk_00, data_0217b350->mUnk_858[0].mUnk_10,
-                          data_0217b350->mUnk_858[0].mUnk_14, data_0217b350->mUnk_858[0].mUnk_18,
-                          data_0217b350->mUnk_858[0].mUnk_1c);
+            func_0214a428((u32 *) 0x04001020, gRaceHud->mUnk_858[0].mUnk_00, gRaceHud->mUnk_858[0].mUnk_10,
+                          gRaceHud->mUnk_858[0].mUnk_14, gRaceHud->mUnk_858[0].mUnk_18, gRaceHud->mUnk_858[0].mUnk_1c);
             if (func_020b64e8() != 0) {
-                func_0214a428((u32 *) 0x04001030, data_0217b350->mUnk_858[1].mUnk_00,
-                              data_0217b350->mUnk_858[1].mUnk_10, data_0217b350->mUnk_858[1].mUnk_14,
-                              data_0217b350->mUnk_858[1].mUnk_18, data_0217b350->mUnk_858[1].mUnk_1c);
+                func_0214a428((u32 *) 0x04001030, gRaceHud->mUnk_858[1].mUnk_00, gRaceHud->mUnk_858[1].mUnk_10,
+                              gRaceHud->mUnk_858[1].mUnk_14, gRaceHud->mUnk_858[1].mUnk_18,
+                              gRaceHud->mUnk_858[1].mUnk_1c);
             }
             func_020cf340((Unk020cf340 *) &data_0217b34c[0x100]);
             if (func_020b64e8() != 0) {
@@ -287,14 +286,14 @@ void func_020b0b8c(void) {
                     break;
             }
             w = func_020c3e00();
-            if (data_0217b350->mUnk_830 != FALSE) {
+            if (gRaceHud->mUnk_830 != FALSE) {
                 MemCopyHalfwordsToG2sBg1CntBits8To12Address(func_020c3e14(3)->mData, 0, func_020c3e14(3)->mDataSize);
                 MemCopyHalfwordsToG2sBg2CntBits8To12Address(func_020c3e14(4)->mData, 0, func_020c3e14(4)->mDataSize);
                 MemCopyHalfwordsToG2sBg3CntBits8To12Address(func_020c3e14(5)->mData, 0, func_020c3e14(5)->mDataSize);
                 func_0214c028(GetRaceNclrNcgr(8)->mNclr->mData, 0, 0x20);
                 func_0214c028(GetRaceNclrNcgr(8)->mNclr->mData + 0xc0, 0x180, 0x80);
                 func_0214bea4(GetRaceNclrNcgr(8)->mNcgr->mData, 0, 0x4000);
-                data_0217b350->mUnk_830 = FALSE;
+                gRaceHud->mUnk_830 = FALSE;
             }
             if (w < 0x100) {
                 reg_G2S_DB_BG2OFS = w & 0x1ff;
@@ -302,22 +301,21 @@ void func_020b0b8c(void) {
             }
             break;
         case 6:
-            if (data_0217b350->mUnk_834 != FALSE) {
+            if (gRaceHud->mUnk_834 != FALSE) {
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1200;
                 GxsDispCntBits0To2Write(0);
                 reg_G2S_DB_BG1OFS = 0;
                 reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
                 reg_G2S_DB_BG1CNT &= ~0x40;
                 reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 8;
-                func_0214c0f8(data_0217b350->mNclrs[1]->mData, 0, 0x20);
-                MemCopyWordsToG2sBg1CntBits2To5Address(data_0217b350->mNcgrs[1]->mData, 0,
-                                                       data_0217b350->mNcgrs[1]->mDataSize);
-                MemCopyHalfwordsToG2sBg1CntBits8To12Address(data_0217b350->mNscrs[2]->mData, 0,
-                                                            data_0217b350->mNscrs[2]->mDataSize);
+                func_0214c0f8(gRaceHud->mNclrs[1]->mData, 0, 0x20);
+                MemCopyWordsToG2sBg1CntBits2To5Address(gRaceHud->mNcgrs[1]->mData, 0, gRaceHud->mNcgrs[1]->mDataSize);
+                MemCopyHalfwordsToG2sBg1CntBits8To12Address(gRaceHud->mNscrs[2]->mData, 0,
+                                                            gRaceHud->mNscrs[2]->mDataSize);
                 func_0214c028(GetRaceNclrNcgr(9)->mNclr->mData, 0, 0xa0);
                 func_0214c028(GetRaceNclrNcgr(9)->mNclr->mData + 0xb0, 0x160, 0xa0);
                 func_0214bea4(GetRaceNclrNcgr(9)->mNcgr->mData, 0, 0x4000);
-                data_0217b350->mUnk_834 = FALSE;
+                gRaceHud->mUnk_834 = FALSE;
             }
             break;
     }
@@ -325,7 +323,7 @@ void func_020b0b8c(void) {
         if (data_0217561c->mUnk_4cc == 0) {
             w = (reg_GX_DISPCNT & 0x1f00) >> 8;
             reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((w | 4) << 8);
-            MemCopyHalfwordsToG2Bg2CntBits8To12Address(data_0217b350->mNscrs[0]->mData, 0, 0x600);
+            MemCopyHalfwordsToG2Bg2CntBits8To12Address(gRaceHud->mNscrs[0]->mData, 0, 0x600);
         }
         MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
         w = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
@@ -339,9 +337,9 @@ void func_020b0b8c(void) {
         func_0214a40c((u32 *) 0x04001050, 0, 0x3f, 6, 10);
     }
     for (i = 0; i < data_021759c0->mKartCount; i++) {
-        if (data_0217b350->mUnk_89c[i] != 0 && data_0217b350->mUnk_8bc[i] == 0) {
+        if (gRaceHud->mUnk_89c[i] != 0 && gRaceHud->mUnk_8bc[i] == 0) {
             func_0212ecc0(&data_0217d068, 0, 0x52);
-            data_0217b350->mUnk_8bc[i] = 1;
+            gRaceHud->mUnk_8bc[i] = 1;
         }
     }
 }
@@ -366,8 +364,8 @@ void func_020b03bc(void) {
         func_0212b5ec(GetHeap(func_020364e8()));
         return;
     }
-    data_0217b350 = HeapAlloc(GetHeap(func_020364e8()), 0x914);
-    func_020b36dc();
+    gRaceHud = HeapAlloc(GetHeap(func_020364e8()), 0x914);
+    InitRaceStartSequence();
     func_020b3b08();
     func_020b65f0();
     func_020b8624();
@@ -381,35 +379,35 @@ void func_020b03bc(void) {
     func_020c5ce0();
     func_020bc11c();
     func_020bcb74();
-    func_020d20a8();
+    InitRaceMNumberPair();
     func_020d0bd0();
     func_020be7fc();
     func_020beb9c();
     InitRaceGoalS();
-    func_020c6fac();
+    InitRaceNewRecordTa();
     func_020c4780();
-    data_0217b350->mUnk_000 = 0;
+    gRaceHud->mUpdateFrames = 0;
     for (i = 0; i < 7; i++) {
-        data_0217b350->mNclrs[i] = NULL;
-        data_0217b350->mNcgrs[i] = NULL;
+        gRaceHud->mNclrs[i] = NULL;
+        gRaceHud->mNcgrs[i] = NULL;
     }
-    data_0217b350->mUnk_828 = 1;
-    data_0217b350->mUnk_82c = FALSE;
-    data_0217b350->mUnk_830 = FALSE;
-    data_0217b350->mUnk_838 = FALSE;
-    data_0217b350->mUnk_83c = FALSE;
-    data_0217b350->mUnk_840 = FALSE;
-    data_0217b350->mUnk_844 = 0;
-    data_0217b350->mUnk_848 = 0;
-    data_0217b350->mUnk_84c = 0;
-    data_0217b350->mUnk_850 = 0;
+    gRaceHud->mSubScreenState = 1;
+    gRaceHud->mUnk_82c = FALSE;
+    gRaceHud->mUnk_830 = FALSE;
+    gRaceHud->mUnk_838 = FALSE;
+    gRaceHud->mUnk_83c = FALSE;
+    gRaceHud->mUnk_840 = FALSE;
+    gRaceHud->mUnk_844 = 0;
+    gRaceHud->mUnk_848 = 0;
+    gRaceHud->mUnk_84c = 0;
+    gRaceHud->mUnk_850 = 0;
     if (data_021759c0->mMode == 2) {
         switch (data_021759c0->mCourseId) {
             case 0x2e:
-                data_0217b350->mUnk_854 = 0x40;
+                gRaceHud->mUnk_854 = 0x40;
                 break;
             default:
-                data_0217b350->mUnk_854 = 0x64;
+                gRaceHud->mUnk_854 = 0x64;
                 break;
         }
     } else if (data_021759c0->mMode == 4) {
@@ -418,42 +416,42 @@ void func_020b03bc(void) {
             case 0x31:
             case 0x32:
             case 0x33:
-                data_0217b350->mUnk_854 = 0x64;
+                gRaceHud->mUnk_854 = 0x64;
                 break;
             default:
-                data_0217b350->mUnk_854 = 0x86;
+                gRaceHud->mUnk_854 = 0x86;
                 break;
         }
     } else {
-        data_0217b350->mUnk_854 = 0x86;
+        gRaceHud->mUnk_854 = 0x86;
     }
-    data_0217b350->mUnk_898 = FALSE;
+    gRaceHud->mEnabled = FALSE;
     for (i = 0; i < 8; i++) {
-        data_0217b350->mUnk_89c[i] = 0;
-        data_0217b350->mUnk_8bc[i] = 0;
+        gRaceHud->mUnk_89c[i] = 0;
+        gRaceHud->mUnk_8bc[i] = 0;
     }
-    data_0217b350->mUnk_8dc = 0;
-    data_0217b350->mUnk_8e0 = -1;
+    gRaceHud->mUnk_8dc = 0;
+    gRaceHud->mUnk_8e0 = -1;
     if (data_021759c0->mMode == 1 && data_021759c0->mKartCount > 1) {
-        data_0217b350->mUnk_8e4 = 1;
+        gRaceHud->mUseTimeDifference = 1;
     } else {
-        data_0217b350->mUnk_8e4 = 0;
+        gRaceHud->mUseTimeDifference = 0;
     }
-    data_0217b350->mUnk_908 = 0;
-    data_0217b350->mUnk_90c = FALSE;
-    data_0217b350->mUnk_910 = data_021759c0->mMode == 4 ? func_020adc04() : 0;
-    func_0214cc04(3, data_0217b350->mUnk_004, 0xc0, 0x400);
-    func_0214cc04(3, data_0217b350->mUnk_408, 0xc0, 0x400);
-    LoadNclrData(&data_0217b350->mNclrs[0], FindSceneFileWrapper("race_m_b.NCLR"));
-    LoadNcgrData(&data_0217b350->mNcgrs[0], FindSceneFileWrapper("race_m_b.NCGR"));
-    LoadNscrData(&data_0217b350->mNscrs[0], FindSceneFileWrapper("race_m_pause.NSCR"));
-    LoadNscrData(&data_0217b350->mNscrs[1], FindSceneFileWrapper("race_m_goal.NSCR"));
+    gRaceHud->mUnk_908 = 0;
+    gRaceHud->mUnk_90c = FALSE;
+    gRaceHud->mUnk_910 = data_021759c0->mMode == 4 ? func_020adc04() : 0;
+    func_0214cc04(3, gRaceHud->mUnk_004, 0xc0, 0x400);
+    func_0214cc04(3, gRaceHud->mUnk_408, 0xc0, 0x400);
+    LoadNclrData(&gRaceHud->mNclrs[0], FindSceneFileWrapper("race_m_b.NCLR"));
+    LoadNcgrData(&gRaceHud->mNcgrs[0], FindSceneFileWrapper("race_m_b.NCGR"));
+    LoadNscrData(&gRaceHud->mNscrs[0], FindSceneFileWrapper("race_m_pause.NSCR"));
+    LoadNscrData(&gRaceHud->mNscrs[1], FindSceneFileWrapper("race_m_goal.NSCR"));
     if (data_021759c0->mMode == 1) {
-        LoadNclrData(&data_0217b350->mNclrs[1], FindSceneFileWrapper("race_new_record_ta_s_b.NCLR"));
-        LoadNcgrData(&data_0217b350->mNcgrs[1], FindSceneFileWrapper("race_new_record_ta_s_b.NCGR"));
-        LoadNscrData(&data_0217b350->mNscrs[2], FindSceneFileWrapper("race_new_record_ta_s_bg.NSCR"));
-        func_0200ee74(((Ncgr *) data_0217b350->mNscrs[0])->mData, ((Ncgr *) data_0217b350->mNscrs[0])->mDataSize);
-        func_0200ee74(data_0217b350->mNscrs[2]->mData, data_0217b350->mNscrs[2]->mDataSize);
+        LoadNclrData(&gRaceHud->mNclrs[1], FindSceneFileWrapper("race_new_record_ta_s_b.NCLR"));
+        LoadNcgrData(&gRaceHud->mNcgrs[1], FindSceneFileWrapper("race_new_record_ta_s_b.NCGR"));
+        LoadNscrData(&gRaceHud->mNscrs[2], FindSceneFileWrapper("race_new_record_ta_s_bg.NSCR"));
+        func_0200ee74(((Ncgr *) gRaceHud->mNscrs[0])->mData, ((Ncgr *) gRaceHud->mNscrs[0])->mDataSize);
+        func_0200ee74(gRaceHud->mNscrs[2]->mData, gRaceHud->mNscrs[2]->mDataSize);
     }
     p = func_020b33c4()->mData;
     for (i = 0; i < 0x80; i++) {
@@ -652,11 +650,11 @@ void func_020af99c(void) {
     }
     w = gCourseMap->mSettings->mUnk_14 & 0x7fff;
     *(vu16 *) 0x05000000 = w;
-    data_0217b350->mNclrs[0]->mData[0] = w;
-    func_0200ee74(data_0217b350->mNclrs[0]->mData, data_0217b350->mNclrs[0]->mDataSize);
-    func_0214c160(data_0217b350->mNclrs[0]->mData, 0, data_0217b350->mNclrs[0]->mDataSize);
-    MemCopyWordsToG2Bg2CntBits2To5Address(data_0217b350->mNcgrs[0]->mData, 0, data_0217b350->mNcgrs[0]->mDataSize);
-    MemCopyHalfwordsToG2Bg2CntBits8To12Address(data_0217b350->mNscrs[0]->mData, 0, data_0217b350->mNscrs[0]->mDataSize);
+    gRaceHud->mNclrs[0]->mData[0] = w;
+    func_0200ee74(gRaceHud->mNclrs[0]->mData, gRaceHud->mNclrs[0]->mDataSize);
+    func_0214c160(gRaceHud->mNclrs[0]->mData, 0, gRaceHud->mNclrs[0]->mDataSize);
+    MemCopyWordsToG2Bg2CntBits2To5Address(gRaceHud->mNcgrs[0]->mData, 0, gRaceHud->mNcgrs[0]->mDataSize);
+    MemCopyHalfwordsToG2Bg2CntBits8To12Address(gRaceHud->mNscrs[0]->mData, 0, gRaceHud->mNscrs[0]->mDataSize);
     func_0214c090(GetRaceNclrNcgr(0)->mNclr->mData, 0, GetRaceNclrNcgr(0)->mNclr->mDataSize);
     func_0214bf04(GetRaceNclrNcgr(0)->mNcgr->mData, 0, 0x4000);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0xe000) | 0xe000;
@@ -692,7 +690,7 @@ void func_020af99c(void) {
     MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, func_020b3374()->mDataSize);
     MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
     func_020b18b0();
-    data_0217b350->mUnk_898 = TRUE;
+    gRaceHud->mEnabled = TRUE;
 }
 
 void func_020af86c(void) {
@@ -713,7 +711,7 @@ void func_020af86c(void) {
     }
     func_0214a40c((u32 *) 0x04000050, 0, 0, 0x10, 0x10);
     func_0214a40c((u32 *) 0x04001050, 0, 0, 0x10, 0x10);
-    data_0217b350 = NULL;
+    gRaceHud = NULL;
     func_020b36c8();
     func_020b3af4();
     func_020b65dc();
@@ -741,8 +739,8 @@ void func_020af86c(void) {
 void func_020af66c(void) {
     u32 v;
 
-    if (data_0217b350 != NULL) {
-        data_0217b350->mUnk_908 = 1;
+    if (gRaceHud != NULL) {
+        gRaceHud->mUnk_908 = 1;
     }
     v = data_021759c0->mUnk_00c;
     if (v == 3) {
@@ -757,17 +755,17 @@ void func_020af66c(void) {
         func_0212b204();
         return;
     }
-    if (data_0217b350->mUnk_898 == FALSE) {
+    if (gRaceHud->mEnabled == FALSE) {
         return;
     }
-    if (data_0217b350->mUnk_8dc != 0) {
-        data_0217b350->mUnk_8e0++;
-        if (data_0217b350->mUnk_8e0 >= 0x80) {
-            data_0217b350->mUnk_8dc = 0;
-            data_0217b350->mUnk_8e0 = -1;
+    if (gRaceHud->mUnk_8dc != 0) {
+        gRaceHud->mUnk_8e0++;
+        if (gRaceHud->mUnk_8e0 >= 0x80) {
+            gRaceHud->mUnk_8dc = 0;
+            gRaceHud->mUnk_8e0 = -1;
         }
     }
-    func_020b3584();
+    UpdateRaceStartSequence();
     func_020b3728();
     if (data_021759c0->mUnk_00c == 4) {
         func_020d1298();
@@ -775,7 +773,7 @@ void func_020af66c(void) {
     v = data_021759c0->mMode;
     if ((v == 2   ? data_0217561c->mUnk_4cc
          : v == 4 ? func_0203c174()
-                  : (func_0203c880(func_020b4d9c()) != 0 && data_0217b350->mUnk_8dc == 0)) == 0) {
+                  : (func_0203c880(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
         func_020bab54();
         func_020bc958();
         func_020d2090();
@@ -790,7 +788,7 @@ void func_020af66c(void) {
     }
     func_020bbbb4();
     func_020be3e4();
-    switch (data_0217b350->mUnk_828) {
+    switch (gRaceHud->mSubScreenState) {
         case 0:
         case 1:
         case 2:
@@ -806,8 +804,8 @@ void func_020af66c(void) {
             break;
     }
     func_020c6f14();
-    data_0217b350->mUnk_000++;
-    if (data_0217b350->mUnk_000 >= 0xc00) {
-        data_0217b350->mUnk_000 = 0;
+    gRaceHud->mUpdateFrames++;
+    if (gRaceHud->mUpdateFrames >= 0xc00) {
+        gRaceHud->mUpdateFrames = 0;
     }
 }

@@ -9,8 +9,8 @@ typedef struct Unk020c06c4 Unk020c06c4;
 
 // Object behind data_0217b49c.
 typedef struct Unk0217b49c {
-    /* 00 */ Unk020ae7c4 mUnk_00;
-    /* 1c */ Unk020ae7c4 mUnk_1c[5];
+    /* 00 */ TimeDigits mUnk_00;
+    /* 1c */ TimeDigits mUnk_1c[5];
     /* a8 */ s32 mUnk_a8;
     /* ac */ s32 mUnk_ac;
 } Unk0217b49c;
@@ -28,7 +28,7 @@ void func_020d0134(void *a);
 void func_020d0150(void);
 void func_020d026c(void);
 s32 func_020d0280(void);
-void func_020d029c(Unk020d029c *a, s32 b, s32 d, Unk020ae7c4 *e, s32 f);
+void func_020d029c(Unk020d029c *a, s32 b, s32 d, TimeDigits *e, s32 f);
 void func_020d06b8(Unk020d029c *a);
 void func_020d0a18(void);
 u32 func_020d0bbc(void);

@@ -116,17 +116,24 @@ typedef struct Unk0217b490 {
     /* 02 */ Unk0217b490_02 mUnk_02;
 } Unk0217b490;
 
-// Object behind data_0217b4b4, 0x28 bytes; mUnk_18 points into mUnk_08.
-typedef struct Unk0217b4b4 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+// Pair of numbers "course number, course count" drawn on the main screen before start-sequence frame 0xb4, only in mode
+// 5 and in mode 3 with data_021759c0->mUnk_1c == 2 (DrawRaceMNumberPair), one record behind gRaceMNumberPair (0x28
+// bytes, InitRaceMNumberPair); mUnk_08 .. mUnk_20 are the slide-in animation state. mUnk_18 points into mUnk_08.
+typedef struct RaceMNumberPair {
+    // Copy of data_021759c0->mCourseNumber taken in InitRaceMNumberPair.
+    /* 00 */ s32 mCourseNumber;
+    // Number of courses of the run: 4 in mode 5, data_021759c0->mUnk_3d8 in mode 3 with mUnk_1c == 2, else 0 (not
+    // drawn). mUnk_3d8 has another meaning (score threshold) in mode 2 and for mUnk_1c == 1; this member never copies
+    // that one.
+    /* 04 */ s32 mCourseCount;
     /* 08 */ s32 mUnk_08[4];
     /* 18 */ s32 *mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ u16 mUnk_20;
     /* 22 */ u8 mUnk_22[2];
-    /* 24 */ s32 mUnk_24;
-} Unk0217b4b4;
+    // X added to every sprite of the pair: 0, or eased by func_020ae4c0 (func_020d1de8) for the slide-in.
+    /* 24 */ s32 mOffsetX;
+} RaceMNumberPair;
 
 // Object behind data_0217b4d8: the words at 0x00 to 0x0c.
 typedef struct Unk0217b4d8 {
@@ -520,10 +527,20 @@ typedef struct Unk0217b350_858 {
     /* 1c */ s32 mUnk_1c;
 } Unk0217b350_858;
 
-// Object behind data_0217b350, 0x914 bytes allocated by func_020b03bc (words from 0x828 to 0x910 read and written by
-// func_020aeb7c). The pointers at 0x80c to 0x824 are written through LoadNclrData, LoadNcgrData and LoadNscrData.
-typedef struct Unk0217b350 {
-    /* 000 */ s32 mUnk_000;
+// On-screen display of the race, one record behind gRaceHud (0x914 bytes, allocated by func_020b03bc on the scene heap,
+// set NULL by the release slot func_020af86c, never freed). It holds the two 0x400-byte sprite entry buffers the
+// element draws append to (mUnk_004 for the main screen, mUnk_408 for the sub screen, copied to 0x07000000 /
+// 0x07000400), the loaded graphics, the sub-screen page (mSubScreenState) and the goal-background delay; the elements
+// themselves (time digits, number pair, goal page, new-record page) are separate objects. It does not exist in kinds 3,
+// 5 and 6 of data_021759c0->mUnk_00c (the scene slots run RaceStartGp / EndingStaffRoll there). Weak name: the word Hud
+// is a role word, not in the game's strings.
+// Words from 0x828 to 0x910 are read and written by func_020aeb7c. The pointers at 0x80c to 0x824 are written through
+// LoadNclrData, LoadNcgrData and LoadNscrData.
+typedef struct RaceHud {
+    // Calls of the step func_020af66c that ran its body (not in kinds 3, 5, 6, not before mEnabled); wraps to 0 at
+    // 0xc00. An animation clock: read by the upload slot (value / 6 = scroll of the sub-screen page 0) and by
+    // GetRaceHudUpdateFrames (value / 32).
+    /* 000 */ s32 mUpdateFrames;
     /* 004 */ u8 mUnk_004[0x400];
     /* 404 */ u16 mUnk_404;
     /* 406 */ u16 mUnk_406;
@@ -533,7 +550,11 @@ typedef struct Unk0217b350 {
     /* 80c */ struct Nclr *mNclrs[2];
     /* 814 */ struct Ncgr *mNcgrs[2];
     /* 81c */ struct Nscr *mNscrs[3];
-    /* 828 */ s32 mUnk_828;
+    // Page of the sub screen (reg_GXS_DB_* / reg_G2S_DB_* = sub engine), 0..6, switched on by the step, the draw and
+    // the upload slot; assigned by func_020aeb7c (per mode and race state), func_020b1d90 (5, RaceGoalS) and
+    // func_020b1d64 (6, RaceNewRecordTa). 4 and 5 run the RaceGoalS page, 6 the new-record page; what 0 and 1..3 show
+    // is not named (the player switches 0 and 1 with sounds 0x18 / 0x17).
+    /* 828 */ s32 mSubScreenState;
     /* 82c */ BOOL mUnk_82c;
     /* 830 */ BOOL mUnk_830;
     /* 834 */ BOOL mUnk_834;
@@ -546,20 +567,29 @@ typedef struct Unk0217b350 {
     /* 850 */ s32 mUnk_850;
     /* 854 */ s32 mUnk_854;
     /* 858 */ Unk0217b350_858 mUnk_858[2];
-    /* 898 */ BOOL mUnk_898;
+    // FALSE from func_020b03bc until the scene's screen set-up func_020af99c ends and sets it TRUE (never cleared
+    // again); the step, the draw, the page choice and the upload slot return at once while FALSE.
+    /* 898 */ BOOL mEnabled;
     /* 89c */ s32 mUnk_89c[8];
     /* 8bc */ s32 mUnk_8bc[8];
     /* 8dc */ s32 mUnk_8dc;
     /* 8e0 */ s32 mUnk_8e0;
-    /* 8e4 */ s32 mUnk_8e4;
-    /* 8e8 */ s32 mUnk_8e8;
-    /* 8ec */ Unk020ae7c4 mUnk_8ec;
+    // Set once in func_020b03bc: 1 only in mode 1 with more than one kart; gates func_020b1a34 (the computation) and
+    // the draw of the time difference.
+    /* 8e4 */ s32 mUseTimeDifference;
+    // ComputeTimeDifference's return: non-zero when the entry's summed lap times (func_0203c778) are >= the summed
+    // reference times (data_021759c0->mUnk_3ec); the draw picks one of two sprites by it. Which sprite is plus or minus
+    // is not named.
+    /* 8e8 */ s32 mTimeDifferenceSign;
+    // The difference as seven digits (SplitTimeDigits), written by func_020b1a34, read through func_020b19b4 by the
+    // draw.
+    /* 8ec */ TimeDigits mTimeDifferenceDigits;
     /* 908 */ s32 mUnk_908;
     /* 90c */ BOOL mUnk_90c;
     /* 910 */ s32 mUnk_910;
-} Unk0217b350;
+} RaceHud;
 
-extern Unk0217b350 *data_0217b350;
+extern RaceHud *gRaceHud;
 struct ChoisesS;
 extern struct ChoisesS *gChoisesS;
 struct Unk0217b3c4;
@@ -632,7 +662,7 @@ typedef struct RaceGoalS {
 extern RaceGoalS *gRaceGoalS;
 extern struct RaceStartGp *gRaceStartGp;
 extern struct Unk0217b3f0 *data_0217b3f0;
-extern struct Unk0217b3f4 *data_0217b3f4;
+extern struct RaceNewRecordTa *gRaceNewRecordTa;
 extern s32 data_0217b3f8;
 extern EmblemChoises *gEmblemChoises;
 extern struct Unk0217b43c *data_0217b43c;
@@ -747,7 +777,7 @@ typedef struct Unk0217b3cc {
 extern Unk0217b3cc *data_0217b3cc;
 // Object behind data_0217b3d0, 0x38 bytes, allocated by func_020bc11c.
 typedef struct Unk0217b3d0 {
-    /* 00 */ Unk020ae7c4 mUnk_00;
+    /* 00 */ TimeDigits mUnk_00;
     /* 1c */ BOOL mUnk_1c;
     /* 20 */ s32 mUnk_20[6];
 } Unk0217b3d0;
@@ -833,7 +863,7 @@ extern Unk0217b428 *data_0217b428;
 extern struct Unk0217b49c *data_0217b49c;
 extern u8 data_0217b4a8[];
 extern struct Unk0217b4ac *gEndingStaffRoll;
-extern Unk0217b4b4 *data_0217b4b4;
+extern RaceMNumberPair *gRaceMNumberPair;
 extern u16 data_0217b4c0;
 extern u16 data_0217b4c4;
 extern u16 data_0217b4c8;
