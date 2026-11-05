@@ -378,7 +378,10 @@ void func_020a19f8(u16 a) {
     }
 }
 
-void func_020a1904(u16 a) {
+// Takes one kart out of play: runs the kart-eliminated callback, sets its status to 1, in mode 2 sets its count to -1,
+// re-sorts the ranks and starts the mode's out handling of the kart (mode 2: a kart handler call; mode 4: two bits in
+// the kart's words).
+void EliminateKart(u16 a) {
     Kart *c;
 
     if (gStandings->mKartEliminatedCallback != NULL) {
@@ -487,7 +490,7 @@ void func_020a16d0(u16 a) {
     if (gStandings->mKarts[a].mEliminationStatus != 0) {
         return;
     }
-    func_020a1904(a);
+    EliminateKart(a);
     func_020a1790();
 }
 
@@ -516,7 +519,7 @@ u16 func_020a1520(void) {
             for (i = n - 1; i >= 0; i--) {
                 k = func_020a12b8_inline(i);
                 if (m == gStandings->mKarts[k].mBalloonOrShineCount) {
-                    func_020a1904(k);
+                    EliminateKart(k);
                 }
             }
             func_020a1790();
