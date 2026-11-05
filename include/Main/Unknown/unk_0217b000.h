@@ -701,12 +701,12 @@ extern struct Unk0217b4a4 *gCupPicture;
 extern struct Unk0217b4b0 *data_0217b4b0;
 extern struct Unk020f41c4_B *data_0217b4b8;
 extern struct Unk020f41c4_B *data_0217b4bc;
-// The same pointer as gWaterEfct, stored by func_020d4970 (the last call of CreateWaterEfct) and set to NULL in
+// The same pointer as gWaterEfct, stored by SetCourseWaterEfct (the last call of CreateWaterEfct) and set to NULL in
 // InitMapObjects; the water_efct getters and the level getter read this one.
 extern Unk0217b4d8 *gCourseWaterEfct;
 extern Vec3 *data_0217b4dc;
 extern s32 data_0217b4e0;
-// The same pointer as gWater, stored by func_020d4980 (the last call of each Create...Water) and set to NULL in
+// The same pointer as gWater, stored by SetCourseWater (the last call of each Create...Water) and set to NULL in
 // InitMapObjects before the objects are created, so NULL means the course has no water; the update, draw, getters and
 // camera read this one, while gWater (never cleared) is only the creators' variable.
 extern struct Water *gCourseWater;

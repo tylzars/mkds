@@ -230,7 +230,7 @@ void CreateMiniStage3Water(void) {
                     1);
     gWater->mModelAFile = FindCourseMapObjFile("mini_stage3_waterA.nsbmd");
     gWater->mModelCFile = FindCourseMapObjFile("mini_stage3_waterC.nsbmd");
-    func_020d4980(gWater);
+    SetCourseWater(gWater);
 }
 
 void CreateBeachWater(void) {
@@ -238,7 +238,7 @@ void CreateBeachWater(void) {
     InitWaterFields(0x78000, 0x62000, 0x50000, 0x43000, 0x3c000, 0x7fff, 0x3fff, 0x1f4, 0x96, 0x96, 1, 6, 0xa, 0xa, 1);
     gWater->mModelAFile = FindCourseMapObjFile("beach_waterA.nsbmd");
     gWater->mModelCFile = FindCourseMapObjFile("beach_waterC.nsbmd");
-    func_020d4980(gWater);
+    SetCourseWater(gWater);
 }
 
 void CreateTownWater(void) {
@@ -246,7 +246,7 @@ void CreateTownWater(void) {
     InitWaterFields(0, 0, 0x29000, 0x1e000, 0xb000, 0x4e20, 0x3fff, 0x12c, 0x78, 0x1e, 1, 0xd, 0x19, 0x10, 0);
     gWater->mModelAFile = FindCourseMapObjFile("town_waterA.nsbmd");
     gWater->mModelCFile = FindCourseMapObjFile("town_waterC.nsbmd");
-    func_020d4980(gWater);
+    SetCourseWater(gWater);
 }
 
 void CreateYoshiWater(void) {
@@ -254,7 +254,7 @@ void CreateYoshiWater(void) {
     InitWaterFields(0, 0, 0xc8000, 0x55000, 0x3c000, 0x7fff, 0x3fff, 0x1c2, 0x78, 0x1e, 1, 0xa, 0x17, 0x10, 0);
     gWater->mModelAFile = NULL;
     gWater->mModelCFile = FindCourseMapObjFile("yoshi_waterC.nsbmd");
-    func_020d4980(gWater);
+    SetCourseWater(gWater);
 }
 
 void CreateHyudoroWater(void) {
@@ -262,7 +262,7 @@ void CreateHyudoroWater(void) {
     InitWaterFields(0, 0, 0x63000, 0x4d000, 0x1e000, 0x7fff, 0x3fff, 0x1c2, 0x78, 0x1e, 1, 0xf, 0x19, 0x10, 0);
     gWater->mModelAFile = FindCourseMapObjFile("hyudoro_waterA.nsbmd");
     gWater->mModelCFile = FindCourseMapObjFile("hyudoro_waterC.nsbmd");
-    func_020d4980(gWater);
+    SetCourseWater(gWater);
 }
 
 // Once per course, from func_020d2e24 in InitMapObjects: builds the embedded model of each file (mUnk_68 only when A
@@ -319,7 +319,7 @@ void CreateWaterEfct(Unk020da384 *a) {
     gWaterEfct->mNsbmdFile = FindCourseFile("MapObj/water_efct.nsbmd");
     gWaterEfct->mNsbcaFile = FindCourseFile("MapObj/water_efct.nsbca");
     gWaterEfct->mNsbmaFile = FindCourseFile("MapObj/water_efct.nsbma");
-    func_020d4970(gWaterEfct);
+    SetCourseWaterEfct(gWaterEfct);
 }
 
 #pragma thumb off

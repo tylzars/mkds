@@ -25,7 +25,7 @@
 void InitMkdEfBurner(MapObject *arg0) {
     MapObject *value0 = arg0;
     u32 value12;
-    func_020d28e0(value0);
+    CreateMapObjectSoundSourceFalloff2(value0);
 }
 
 u8 func_02093754(MkdEfBurner *a, Kart *b, u8 *c, u8 *d) {
@@ -142,7 +142,7 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
                 p->mUnk_a0 = 0;
                 p->mState = 3;
             }
-            func_020d275c(&p->mUnk_00, 0x170);
+            StartMapObjectSoundWhileRequested(&p->mUnk_00, 0x170);
             break;
         case 3:
             p->mUnk_a8 -= 0x29;
@@ -154,7 +154,7 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
             p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mKindData->mUnk_10 * p->mUnk_a8) >> 12;
             break;
         case 4:
-            func_020d275c(&p->mUnk_00, 0x170);
+            StartMapObjectSoundWhileRequested(&p->mUnk_00, 0x170);
             break;
     }
     n = GetMapObjectModelNsbtaFrameCount(gMkdEfBurner);

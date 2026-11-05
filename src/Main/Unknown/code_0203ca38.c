@@ -129,7 +129,7 @@ void func_0203d078(void) {
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
             if (p->mStatus == 0) {
-                if (func_020a100c(i) != 0) {
+                if (IsKartOnWinningTeamAtEnd(i) != 0) {
                     p->mStatus = 1;
                 } else {
                     p->mStatus = 2;
@@ -143,7 +143,7 @@ void func_0203d078(void) {
         if (IsKartEliminated(i) != FALSE) {
             RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
             if (p->mStatus == 0) {
-                if (func_020a100c(i) != 0) {
+                if (IsKartOnWinningTeamAtEnd(i) != 0) {
                     p->mStatus = 1;
                 } else {
                     p->mStatus = 2;
@@ -234,7 +234,7 @@ void func_0203cd14(void) {
             func_020b3f64();
             func_02110cc8(0);
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_020a0dbc();
+                FinishStandings();
             }
             p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + v1);
             p->mFlags &= ~0x10;
@@ -249,7 +249,7 @@ void func_0203cd14(void) {
             func_0207a828((u16) v);
             func_02110cc8(0);
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_020a0dbc();
+                FinishStandings();
             }
             p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + v1);
             p->mFlags &= ~0x20;

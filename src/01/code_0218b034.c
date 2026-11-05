@@ -52,5 +52,5 @@ void func_ov001_0218b034(Unk02188950 *a) {
         }
     }
     func_ov001_02187518(a, (u32) (0x2000), (u32) (0), (u32) (0x3ae), (u32) (0x410), (u32) (0));
-    func_020d2774(&a->mUnk_000, (u32) (0x236));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x236));
 }

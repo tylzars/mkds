@@ -30,7 +30,7 @@ void InitKeyboardScene(s16 *a) {
 void ReleaseKeyboardScene(void) {
     u32 value0;
     u32 value1;
-    func_0212a1c4();
+    ReleaseKeyboard();
     value1 = 0u;
     value0 = (u32) &data_0217d3fc;
     *(u32 *) ((value0) + 0u) = value1;
@@ -48,11 +48,11 @@ void func_0212891c(void) {
 
 void UpdateKeyboardScene(s16 *a) {
     func_020ae6ac(data_0217d3fc, &data_0217d3fc->mUnk_404);
-    func_021289e0();
+    AdvanceKeyboard();
     func_020ae630(data_0217d3fc, &data_0217d3fc->mUnk_404);
     if (a != NULL) {
-        if (func_0212898c() != -1) {
-            a[2] = func_0212898c();
+        if (GetKeyboardNextScene() != -1) {
+            a[2] = GetKeyboardNextScene();
         }
     }
 }

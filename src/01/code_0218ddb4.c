@@ -75,7 +75,7 @@ void func_ov001_0218f850(Unk02188950 *a) {
     func_ov001_021875c0(a, 0, 0, 0, 0x41e, 0);
     func_ov001_021875c0(a, 0, 0, 0, 0x41f, 0);
     func_ov001_021875c0(a, 0, 0, 0, 0x420, 0);
-    func_020d2774(&a->mUnk_000, 0x22d);
+    StartMapObjectSound(&a->mUnk_000, 0x22d);
     a->mUnk_000.mFlags = a->mUnk_000.mFlags | data_ov001_021a65bc;
 }
 
@@ -171,7 +171,7 @@ void func_ov001_0218f454(Unk02188950 *a) {
     func_ov001_021889c8(a);
     func_ov001_02188e24(a, (s32) (a->mPrm->mUnk_1f0), (UnkFunc *) func_ov001_0218f51c);
     func_ov001_02188200(a, func_ov001_0218f9a8);
-    func_020d2774(&a->mUnk_000, (u32) (0x229));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x229));
 }
 
 s32 func_ov001_0218f3ec(Unk02188950 *a) {
@@ -447,7 +447,7 @@ void func_ov001_0218e8d8(Unk02188950 *a) {
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02182a3c(0);
-    func_020d2774(&a->mUnk_000, (u32) (((u32) 0x00000230u)));
+    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x00000230u)));
 }
 
 void func_ov001_0218e8b0(Unk02188950 *a) {
@@ -601,7 +601,7 @@ void func_ov001_0218e38c(Unk02188950 *a, Kart *b) {
     func_ov001_02188200(a, func_ov001_0218f9a8);
     func_ov001_0218e860(a);
     a->mUnk_0a8 = 0;
-    func_020d2774(&a->mUnk_000, (u32) (0x22c));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x22c));
     a->mUnk_25c = a->mUnk_268 = a->mUnk_264 = a->mUnk_270 = a->mPrm->mUnk_00c;
 }
 
@@ -614,7 +614,7 @@ void func_ov001_0218e344(Unk02188950 *a) {
     a->mUnk_2d8 = 0xd;
     func_ov001_02188200(a, func_ov001_0218e344);
     if (a->mTimer == 0) {
-        func_020d2774(&a->mUnk_000, (u32) (((u32) 0x00000234u)));
+        StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x00000234u)));
     }
 }
 
@@ -731,9 +731,9 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
         if (data_0217d20c == 0) {
             func_02110350(b->mUnk_000.mUnk_94);
         } else if (func_02110324() != 0) {
-            func_020d275c(&b->mUnk_000, (u32) (0x22a));
+            StartMapObjectSoundWhileRequested(&b->mUnk_000, (u32) (0x22a));
         } else if (data_0217d20c == 4) {
-            func_020d275c(&b->mUnk_000, (u32) (0x22b));
+            StartMapObjectSoundWhileRequested(&b->mUnk_000, (u32) (0x22b));
         }
     }
     func_ov001_021864ac(a, b);

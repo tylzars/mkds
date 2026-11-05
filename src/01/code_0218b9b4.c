@@ -85,7 +85,7 @@ void func_ov001_0218bcc4(Unk02188950 *a) {
     func_ov001_02188c90(a);
     func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_1ec), (s32) (a->mPrm->mUnk_1f0));
     func_ov001_02188db8(a, (UnkFunc *) func_ov001_0218bd80);
-    func_020d2774(&a->mUnk_000, (u32) 0x226);
+    StartMapObjectSound(&a->mUnk_000, (u32) 0x226);
     a->mUnk_000.mFlags |= data_ov001_021a65a8;
 }
 
@@ -110,9 +110,9 @@ void func_ov001_0218bbac(Unk02188950 *a) {
 
 int func_ov001_0218bb74(Unk02188950 *a) {
     if (func_ov001_02188220(a) == 1) {
-        func_020d275c(&a->mUnk_000, (u32) 0x220);
+        StartMapObjectSoundWhileRequested(&a->mUnk_000, (u32) 0x220);
     } else if (func_ov001_02188220(a) == 2) {
-        func_020d275c(&a->mUnk_000, (u32) 0x221);
+        StartMapObjectSoundWhileRequested(&a->mUnk_000, (u32) 0x221);
     }
     return 0;
 }

@@ -146,7 +146,7 @@ void func_020d5fb4(void *a, Unk020d5bf0 *p) {
         p->mUnk_108 += 1;
     }
     if (p->mUnk_108 < 10) {
-        func_020d275c(&p->mUnk_000, 0x179);
+        StartMapObjectSoundWhileRequested(&p->mUnk_000, 0x179);
     }
     p->mUnk_000.mUnk_10.y = p->mUnk_000.mUnk_10.y - 0x400;
     p->mUnk_000.mPos.y = p->mUnk_000.mPos.y + p->mUnk_000.mUnk_10.y;
@@ -288,9 +288,9 @@ void func_020d5bf0(Unk020d5bf0 *p, struct CourseMapRow *q) {
     }
     p->mUnk_120 = (q->mUnk_2c << 12) / 100;
     if (p->mUnk_000.mKind == 0x192) {
-        func_020d278c(&p->mUnk_000);
+        CreateMapObjectSoundSourceFalloff4(&p->mUnk_000);
     } else {
-        func_020d27fc(&p->mUnk_000);
+        CreateMapObjectSoundSourceFalloff3(&p->mUnk_000);
     }
     p->mUnk_000.mFlags |= data_02156918;
 }

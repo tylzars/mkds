@@ -153,5 +153,5 @@ void func_ov001_0218c0a4(Unk02188950 *a) {
         StartEffect(0x3f7, &pos);
         StartEffect(0x3f6, &pos);
     }
-    func_020d2774(&a->mUnk_000, (u32) (0x222));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x222));
 }

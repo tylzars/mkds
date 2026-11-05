@@ -111,5 +111,5 @@ void func_020e44e4(u32 a, Unk020e43a8 *p) {
     if (p->mUnk_15c == -1) {
         return;
     }
-    func_020d275c(&p->mUnk_00, p->mUnk_15c);
+    StartMapObjectSoundWhileRequested(&p->mUnk_00, p->mUnk_15c);
 }

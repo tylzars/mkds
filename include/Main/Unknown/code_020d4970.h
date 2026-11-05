@@ -4,5 +4,7 @@
 
 typedef struct Water Water;
 
-void func_020d4970(void *p0);
-void func_020d4980(Water *p0);
+// Publishes the WaterEfct object as gCourseWaterEfct.
+void SetCourseWaterEfct(void *p0);
+// Publishes the Water object as gCourseWater.
+void SetCourseWater(Water *p0);

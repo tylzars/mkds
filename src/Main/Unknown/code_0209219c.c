@@ -29,7 +29,7 @@ void InitBasabasa(MapObject *arg0) {
     value4 = value0;
     ParkMapObject(value0);
     value0 = value4;
-    func_020d28e0(value0);
+    CreateMapObjectSoundSourceFalloff2(value0);
 }
 
 u8 func_0209297c(Basabasa *a, Unk0209297c *b, void *c, u8 *d) {
@@ -162,7 +162,7 @@ void UpdateBasabasa(void *a, Basabasa *b) {
     if (b->mUnk_bc == 0) {
         return;
     }
-    func_020d275c(&b->mUnk_00, 0x165);
+    StartMapObjectSoundWhileRequested(&b->mUnk_00, 0x165);
 }
 
 void func_020924a8(void) {

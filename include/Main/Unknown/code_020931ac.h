@@ -39,4 +39,4 @@ void DrawMkdEfBurner(void *a, MkdEfBurner *p);
 void func_020936f0(void *a);
 void CreateMkdEfBurner(Unk02093708 *p); /* also sets word +0x1c of the group record to 1 */
 u8 func_02093754(MkdEfBurner *a, Kart *b, u8 *c, u8 *d);
-void InitMkdEfBurner(MapObject *arg0); /* allocates the object's effect record (func_020d28e0) */
+void InitMkdEfBurner(MapObject *arg0); /* allocates the object's sound source (CreateMapObjectSoundSourceFalloff2) */

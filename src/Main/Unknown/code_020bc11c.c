@@ -210,7 +210,7 @@ u32 func_020be15c(u16 a) {
 
     if (func_020b1cf4(a) != 0) {
         r = 0x25;
-    } else if (data_021759c0->mMode == MODE_BATTLE && func_020a100c(a) != 0) {
+    } else if (data_021759c0->mMode == MODE_BATTLE && IsKartOnWinningTeamAtEnd(a) != 0) {
         r = 0x24;
     } else if (data_021759c0->mMode == MODE_BATTLE && IsKartEliminated(a) != FALSE) {
         r = 0xc9;

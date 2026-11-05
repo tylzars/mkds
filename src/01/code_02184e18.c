@@ -2,7 +2,7 @@
 #include "01/code_02184f7c.h"
 
 void func_ov001_02184f40(Unk02188950 *a) {
-    func_020d2774(&a->mUnk_000, (u32) (((u32) 0x0000020fu)));
+    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x0000020fu)));
     func_ov001_02187af4(a);
     func_ov001_02187518(a, (u32) (((u32) 0x000008cdu)), (u32) (0), (u32) (((u32) 0x0000119au)),
                         (u32) (((u32) 0x00000413u)), (u32) (0));
@@ -10,7 +10,7 @@ void func_ov001_02184f40(Unk02188950 *a) {
 }
 
 void func_ov001_02184f04(Unk02188950 *a) {
-    func_020d2774(&a->mUnk_000, (u32) (((u32) 0x0000020fu)));
+    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x0000020fu)));
     func_ov001_02187af4(a);
     func_ov001_02187518(a, (u32) (((u32) 0xfffff733u)), (u32) (0), (u32) (((u32) 0x0000119au)),
                         (u32) (((u32) 0x00000413u)), (u32) (0));
@@ -18,7 +18,7 @@ void func_ov001_02184f04(Unk02188950 *a) {
 }
 
 void func_ov001_02184ec8(Unk02188950 *a) {
-    func_020d2774(&a->mUnk_000, (u32) (((u32) 0x0000020fu)));
+    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x0000020fu)));
     func_ov001_02187af4(a);
     func_ov001_02187518(a, (u32) (((u32) 0xfffff000u)), (u32) (0), (u32) (((u32) 0x00001333u)),
                         (u32) (((u32) 0x00000444u)), (u32) (0));
@@ -26,7 +26,7 @@ void func_ov001_02184ec8(Unk02188950 *a) {
 }
 
 void func_ov001_02184e8c(Unk02188950 *a) {
-    func_020d2774(&a->mUnk_000, (u32) (((u32) 0x0000020fu)));
+    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x0000020fu)));
     func_ov001_02187af4(a);
     func_ov001_02187518(a, (u32) (((u32) 0x00001000u)), (u32) (0), (u32) (((u32) 0x00001333u)),
                         (u32) (((u32) 0x00000444u)), (u32) (0));

@@ -97,14 +97,14 @@ s32 func_ov001_0218b850(Unk02188950 *a) {
         func_ov001_02187af4(a);
         func_ov001_02187518(a, (u32) (((u32) 0xfffff99au)), (u32) 0, (u32) (((u32) 0xfffff99au)),
                             (u32) (((u32) 0x0000042bu)), (u32) 0);
-        func_020d2774(&a->mUnk_000, (u32) (((u32) 0x0000021eu)));
+        StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x0000021eu)));
     } else {
         v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd);
         if (v1 == 0x68) {
             func_ov001_02187af4(a);
             func_ov001_02187518(a, (u32) (((u32) 0xfffff99au)), (u32) 0, (u32) (((u32) 0xfffff99au)),
                                 (u32) (((u32) 0x0000042cu)), (u32) 0);
-            func_020d2774(&a->mUnk_000, (u32) (((u32) 0x0000021fu)));
+            StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x0000021fu)));
         }
     }
     return 0;

@@ -68,7 +68,7 @@ void func_ov001_02183ff4(Unk02188950 *a) {
     func_ov001_021874c4(a, 0, 0, 0, 0x423, 0);
     func_ov001_021874c4(a, 0, 0, 0, 0x425, 0);
     func_ov001_02187444(a, 4, 0);
-    func_020d2774(&a->mUnk_000, (u32) (0x244));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x244));
     a->mUnk_000.mFlags |= data_ov001_021a6578;
 }
 
@@ -105,7 +105,7 @@ void func_ov001_02183ed4(Unk02188950 *a) {
 }
 
 u32 func_ov001_02183ebc(Unk02188950 *a) {
-    func_020d275c(&a->mUnk_000, (u32) (((u32) 0x00000243u)));
+    StartMapObjectSoundWhileRequested(&a->mUnk_000, (u32) (((u32) 0x00000243u)));
     return 0;
 }
 
@@ -193,9 +193,9 @@ void func_ov001_02183ad8(Unk02188950 *a) {
     func_ov001_02188cec(a, a->mPrm->mUnk_0d4);
     func_ov001_02188de0(a, 0, a->mPrm->mUnk_0e4, &r4->mPos, func_ov001_02183c08);
     if (a->mUnk_000.mKind == 0x1f5) {
-        func_020d2774(&a->mUnk_000, (u32) (0x214));
+        StartMapObjectSound(&a->mUnk_000, (u32) (0x214));
     } else if (a->mUnk_000.mKind == 0x1f6) {
-        func_020d2774(&a->mUnk_000, (u32) (0x245));
+        StartMapObjectSound(&a->mUnk_000, (u32) (0x245));
     }
     func_ov001_02184e6c(a);
 }
@@ -270,7 +270,7 @@ int func_ov001_02183780(Unk02188950 *a) {
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x428, 0);
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x429, 0);
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x800, -0x1000, 0x42a, 0);
-            func_020d2774(&a->mUnk_000, (u32) (0x240));
+            StartMapObjectSound(&a->mUnk_000, (u32) (0x240));
         }
     }
     if (func_02061fec() == 1) {
@@ -286,7 +286,7 @@ int func_ov001_02183690(Unk02188950 *a) {
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x428, 0);
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x666, -0x1000, 0x429, 0);
             func_ov001_021872e0(a, 0x1000, 0, 0, 0, 0x800, -0x1000, 0x42a, 0);
-            func_020d2774(&a->mUnk_000, (u32) (0x240));
+            StartMapObjectSound(&a->mUnk_000, (u32) (0x240));
         }
     } else if (a->mUnk_000.mKind == 0x1f5) {
         if (GetMapObjectModelNsbcaFrameIndex(a->mNsbmd) == 0x2b ||
@@ -305,7 +305,7 @@ s32 func_ov001_021835e0(Unk02188950 *a) {
         func_ov001_021872e0(a, (0x00001000u), 0, 0, 0, (0x00000666u), (0xfffff000u), (0x00000428u), 0);
         func_ov001_021872e0(a, (0x00001000u), 0, 0, 0, (0x00000666u), (0xfffff000u), (0x00000429u), 0);
         func_ov001_021872e0(a, (0x00001000u), 0, 0, 0, (0x00000800u), (0xfffff000u), (0x0000042au), 0);
-        func_020d2774(&a->mUnk_000, (u32) (((u32) 0x00000240u)));
+        StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x00000240u)));
     }
     return 0;
 }

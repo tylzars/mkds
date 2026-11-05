@@ -213,9 +213,9 @@ void func_ov001_02184f9c(Unk021a5a58 *a, s32 b, s32 c, s32 d, s32 e) {
 }
 
 void func_ov001_02184f8c(Unk02188950 *a) {
-    func_020d2774(&a->mUnk_000, (u32) (0x210));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x210));
 }
 
 void func_ov001_02184f7c(Unk02188950 *a) {
-    func_020d2774(&a->mUnk_000, (u32) (0x210));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x210));
 }

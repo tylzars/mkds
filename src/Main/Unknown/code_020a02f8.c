@@ -50,11 +50,11 @@
 #include "Main/Unknown/code_0203ca38.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_020a238c(KartBalloons *p0) {
+void SetStandingsKartBalloons(KartBalloons *p0) {
     gStandings->mKartBalloons = p0;
 }
 
-KartBalloons *func_020a2378(void) {
+KartBalloons *GetStandingsKartBalloons(void) {
     return gStandings->mKartBalloons;
 }
 
@@ -734,7 +734,7 @@ s32 func_020a1048(u16 a) {
     return r;
 }
 
-s32 func_020a100c(s32 a) {
+s32 IsKartOnWinningTeamAtEnd(s32 a) {
     KartStanding *e;
     BOOL r;
 
@@ -815,14 +815,14 @@ void InitStandings(void) {
     gStandings->mWinnerTeamId = -1;
 }
 
-void func_020a0dbc(void) {
+void FinishStandings(void) {
     gStandings->mEndTimer = -1;
     if (gStandings->mEndCallback != NULL) {
         gStandings->mEndCallback();
     }
 }
 
-void func_020a08ec(void) {
+void UpdateStandings(void) {
     Kart *o;
     BOOL a;
     BOOL b;

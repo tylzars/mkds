@@ -274,14 +274,14 @@ void UpdateRace(void) {
     }
     switch (data_021759c0->mMode) {
         case MODE_BATTLE:
-            func_020a08ec();
+            UpdateStandings();
             break;
         case MODE_MISSION_RUN:
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 func_ov001_02181860();
             }
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_020a08ec();
+                UpdateStandings();
             }
             break;
     }

@@ -41,7 +41,7 @@ void InitFireball2(Fireball2 *a) {
     a->mUnk_00.mFlags |= data_usa_021565ec;
     a->mUnk_a0 = a->mUnk_00.mCourseMapRow->mUnk_28;
     a->mUnk_a2 = a->mUnk_00.mCourseMapRow->mUnk_2e + 1;
-    func_020d28e0(&a->mUnk_00);
+    CreateMapObjectSoundSourceFalloff2(&a->mUnk_00);
     a->mUnk_00.mFlags &= ~1;
     a->mUnk_00.mFlags &= ~2;
     a->mUnk_00.mFlags &= ~8;
@@ -293,7 +293,7 @@ void UpdateFireball2(void *a, Fireball2 *b) {
             b->mUnk_19c4[i] = b->mUnk_19c4[i] - 1;
         }
     }
-    func_020d275c(&b->mUnk_00, 0x160);
+    StartMapObjectSoundWhileRequested(&b->mUnk_00, 0x160);
 }
 
 void func_0209df44(void) {

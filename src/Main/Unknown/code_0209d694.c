@@ -32,7 +32,7 @@ void func_0209decc(u32 p0) {
     u32 v9;
     *(u16 *) ((p0) + (2)) = (u16) v5;
     ParkMapObject((void *) (p0));
-    func_020d28e0((MapObject *) p0);
+    CreateMapObjectSoundSourceFalloff2((MapObject *) p0);
 }
 
 u8 func_0209ddec(Unk0209d694 *a, Kart *b, u8 *c, u8 *d) {

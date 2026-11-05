@@ -25,7 +25,7 @@ void func_02099278(u32 p0) {
     u32 v9;
     *(u16 *) ((p0) + (2)) = (u16) v5;
     ParkMapObject((void *) (p0));
-    func_020d28e0((MapObject *) p0);
+    CreateMapObjectSoundSourceFalloff2((MapObject *) p0);
 }
 
 u32 func_02099208(Unk0209905c *a, Kart *b, u8 *c, u8 *d) {

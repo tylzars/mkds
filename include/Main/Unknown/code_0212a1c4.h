@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-void func_0212a1c4(void);
+// Releases the helper objects of the Keyboard screen and clears gKeyboard; the memory is freed with the scene heap.
+void ReleaseKeyboard(void);

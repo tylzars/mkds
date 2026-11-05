@@ -367,11 +367,11 @@ void func_020d4990(Unk020e6fd4 *p) {
 }
 #pragma thumb off
 
-void func_020d4980(Water *p0) {
+void SetCourseWater(Water *p0) {
     gCourseWater = p0;
 }
 
-void func_020d4970(void *p0) {
+void SetCourseWaterEfct(void *p0) {
     gCourseWaterEfct = p0;
 }
 

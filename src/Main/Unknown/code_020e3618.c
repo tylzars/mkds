@@ -78,7 +78,7 @@ void InitBridge(Bridge *a, struct CourseMapRow *b) {
     a->mUnk_000.mFlags &= ~8;
     a->mUnk_000.mUnk_66 = 0x1f;
     if (b->mUnk_0c.y < 0) {
-        func_020d278c(&a->mUnk_000);
+        CreateMapObjectSoundSourceFalloff4(&a->mUnk_000);
     }
 }
 

@@ -2,11 +2,17 @@
 
 #include "types.h"
 
-void func_02129788(void);
-void func_021297cc(void);
-void func_0212982c(void);
-void func_02129994(void);
-void func_02129acc(void);
+// Handler of state 5 of the Keyboard mState switch in AdvanceKeyboard.
+void AdvanceKeyboardState5(void);
+// Handler of state 4 of the Keyboard mState switch in AdvanceKeyboard.
+void AdvanceKeyboardState4(void);
+// Handler of state 3 of the Keyboard mState switch in AdvanceKeyboard.
+void AdvanceKeyboardState3(void);
+// Handler of state 2 of the Keyboard mState switch in AdvanceKeyboard.
+void AdvanceKeyboardState2(void);
+// Handler of state 1 of the Keyboard mState switch in AdvanceKeyboard.
+void AdvanceKeyboardState1(void);
 void func_02129b60(void);
-void func_02129bdc(void);
+// Handler of state 0 of the Keyboard mState switch in AdvanceKeyboard.
+void AdvanceKeyboardState0(void);
 void func_02129c18(void);

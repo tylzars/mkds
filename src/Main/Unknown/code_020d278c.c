@@ -101,7 +101,7 @@ void func_020d2950(MapObject *b, s32 c) {
     func_020d5148(b->mUnk_64, a);
 }
 
-void func_020d28e0(MapObject *a) {
+void CreateMapObjectSoundSourceFalloff2(MapObject *a) {
     a->mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     InitSoundSource(&a->mUnk_94->mSoundSource, 2, &a->mPos);
     a->mUnk_70 = gSoundFalloffs[2].mUnk_20;
@@ -122,7 +122,7 @@ Unk0210b7ec *func_020d286c(MapObject *a) {
     return &a->mUnk_94->mUnk_44;
 }
 
-void func_020d27fc(MapObject *a) {
+void CreateMapObjectSoundSourceFalloff3(MapObject *a) {
     a->mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     InitSoundSource(&a->mUnk_94->mSoundSource, 3, &a->mPos);
     a->mUnk_70 = gSoundFalloffs[3].mUnk_20;
@@ -132,7 +132,7 @@ void func_020d27fc(MapObject *a) {
     }
 }
 
-void func_020d278c(MapObject *a) {
+void CreateMapObjectSoundSourceFalloff4(MapObject *a) {
     a->mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     InitSoundSource(&a->mUnk_94->mSoundSource, 4, &a->mPos);
     a->mUnk_70 = gSoundFalloffs[4].mUnk_20;

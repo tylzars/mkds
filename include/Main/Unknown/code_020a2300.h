@@ -10,5 +10,7 @@ void SetStandingsKartEliminatedCallback(void (*p0)(u16 a));
 void func_020a233c(s32 (*p0)(u16 a, u16 b));
 void func_020a2350(unsigned int p0);
 void func_020a2364(unsigned int p0);
-KartBalloons *func_020a2378(void);
-void func_020a238c(KartBalloons *p0);
+// Returns Standings.mKartBalloons, the pointer stored by SetStandingsKartBalloons.
+KartBalloons *GetStandingsKartBalloons(void);
+// Stores the pointer to the KartBalloons array of the balloon object in Standings.mKartBalloons.
+void SetStandingsKartBalloons(KartBalloons *p0);

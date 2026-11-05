@@ -43,8 +43,12 @@ u32 func_020a02f8(void);
 void func_020a0318(void *a, Unk020a0318 *p);
 void func_020a066c(Unk020a066c *p);
 void func_020a089c(Unk020a0318 *p);
-void func_020a08ec(void);
-void func_020a0dbc(void);
+// Steps Standings once per UpdateRace call in battle and mission run: the end timer and end callback, the hand- over of
+// eliminated karts, the hit tracking, and the copy of each kart's position.
+void UpdateStandings(void);
+// Ends the Standings end timer (mEndTimer = -1) and runs mEndCallback when it is set; the mode 4 end step of the race
+// progress calls it.
+void FinishStandings(void);
 void InitStandings(void);
 Unk02175620_84 *func_020a0f0c(void);
 Vec3 *GetKartStandingPos(int arg0);

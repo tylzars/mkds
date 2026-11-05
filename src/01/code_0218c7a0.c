@@ -240,7 +240,7 @@ void func_ov001_0218cedc(u32 a, Unk02188950 *b) {
         }
     }
     if (func_020d2c2c(&b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mUnk_64, 9, NULL) == 2) {
-        func_020d2774(&b->mUnk_000, (u32) (0x253));
+        StartMapObjectSound(&b->mUnk_000, (u32) (0x253));
     }
     func_ov001_021864ac(a, b);
 }
@@ -268,7 +268,7 @@ void func_ov001_0218ce30(u32 a, Unk02188950 *b) {
     func_ov001_0218dba8(b);
     v1 = func_020d2c2c(&b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mUnk_64, 9, NULL);
     if (v1 == 2) {
-        func_020d2774(&b->mUnk_000, 0x253);
+        StartMapObjectSound(&b->mUnk_000, 0x253);
     }
     func_ov001_021864ac(a, b);
 }

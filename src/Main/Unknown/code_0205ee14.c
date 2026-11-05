@@ -344,11 +344,11 @@ void func_0205f498(void) {
             continue;
         }
         t = 2;
-        if (func_020a100c((u16) data_021759c0->mEntryIndex) != 0) {
-            if (func_020a100c(i) == 0) {
+        if (IsKartOnWinningTeamAtEnd((u16) data_021759c0->mEntryIndex) != 0) {
+            if (IsKartOnWinningTeamAtEnd(i) == 0) {
                 t = 0;
             }
-        } else if (func_020a100c(i) != 0) {
+        } else if (IsKartOnWinningTeamAtEnd(i) != 0) {
             if (gRaceProgress->mUnk_000[i].mStatus != 4) {
                 t = 1;
             }
@@ -412,11 +412,11 @@ void func_0205f218(void) {
             continue;
         }
         t = 2;
-        if (func_020a100c((u16) data_021759c0->mEntryIndex) != 0) {
-            if (func_020a100c(i) == 0) {
+        if (IsKartOnWinningTeamAtEnd((u16) data_021759c0->mEntryIndex) != 0) {
+            if (IsKartOnWinningTeamAtEnd(i) == 0) {
                 t = 0;
             }
-        } else if (func_020a100c(i) != 0) {
+        } else if (IsKartOnWinningTeamAtEnd(i) != 0) {
             if (gRaceProgress->mUnk_000[i].mStatus != 4) {
                 t = 1;
             }

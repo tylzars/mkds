@@ -175,7 +175,7 @@ void UpdateDossun(void *a, Dossun *p) {
             return;
         case 1:
             if (p->mUnk_f0 != 0) {
-                func_020d275c(&p->mUnk_00, 0x18b);
+                StartMapObjectSoundWhileRequested(&p->mUnk_00, 0x18b);
             }
             break;
         case 2:
@@ -407,7 +407,7 @@ void InitDossun(Dossun *p, CourseMapRow *a) {
     p->mUnk_c4 = (s32) (((s64) p->mUnk_00.mScale.y * 0x3000) >> 12);
     func_020db430(p);
     if (p->mUnk_f0 != 0) {
-        func_020d27fc(&p->mUnk_00);
+        CreateMapObjectSoundSourceFalloff3(&p->mUnk_00);
     } else {
         p->mUnk_00.mUnk_70 = data_0217caec[3];
     }

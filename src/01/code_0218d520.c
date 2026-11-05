@@ -111,10 +111,10 @@ void func_ov001_0218da1c(Unk02188950 *a) {
     func_ov001_02187af4(a);
     func_ov001_021875c0(a, 0, a->mUnk_248 >> 4, 0, 0x427, 0xf);
     func_ov001_021875c0(a, 0, a->mUnk_248 >> 4, 0, 0x426, 0xf);
-    func_020d2774(&a->mUnk_000, (u32) (0x24d));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x24d));
     func_ov001_02188230(a);
     if (func_ov001_02188220(a) == 2) {
-        func_020d2774(&a->mUnk_000, (u32) (0x24c));
+        StartMapObjectSound(&a->mUnk_000, (u32) (0x24c));
     } else if (func_ov001_02188220(a) >= 3) {
         a->mUnk_0ac = 0;
     }
@@ -223,7 +223,7 @@ int func_ov001_0218d520(Unk02188950 *a) {
                 func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_118), (s32) (a->mPrm->mUnk_11c),
                                     (UnkFunc *) (func_ov001_0218d800));
                 r4 -= a->mPrm->mUnk_130;
-                func_020d2774(&a->mUnk_000, (u32) (0x24b));
+                StartMapObjectSound(&a->mUnk_000, (u32) (0x24b));
             } else if (func_ov001_02188084(a, (s32) (a->mPrm->mUnk_10c), (s32) (a->mPrm->mUnk_110),
                                            (s32) (a->mPrm->mUnk_114))) {
                 a->mUnk_0a8 = a->mPrm->mUnk_12c;
@@ -231,7 +231,7 @@ int func_ov001_0218d520(Unk02188950 *a) {
                 func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_104), (s32) (a->mPrm->mUnk_108),
                                     (UnkFunc *) (func_ov001_0218d800));
                 r4 -= a->mPrm->mUnk_130;
-                func_020d2774(&a->mUnk_000, (u32) (0x24b));
+                StartMapObjectSound(&a->mUnk_000, (u32) (0x24b));
             }
         }
         func_ov001_0218d824(a, r4);
@@ -252,13 +252,13 @@ int func_ov001_0218d520(Unk02188950 *a) {
             }
             a->mUnk_144 = a->mUnk_144 + 1 >= 0x12 ? 0 : a->mUnk_144 + 1;
             if (a->mUnk_144 == 0) {
-                func_020d2774(&a->mUnk_000, (u32) (0x24f));
+                StartMapObjectSound(&a->mUnk_000, (u32) (0x24f));
             }
         } else if (func_ov001_02188220(a) == 1) {
             a->mUnk_140 = a->mUnk_140 + 1 >= 0x12 ? 0 : a->mUnk_140 + 1;
             if (a->mUnk_140 == 0) {
                 func_ov001_021875c0(a, 0, 0, 0, 0x3f8, 0x1c);
-                func_020d2774(&a->mUnk_000, (u32) (0x24e));
+                StartMapObjectSound(&a->mUnk_000, (u32) (0x24e));
             }
         }
     }

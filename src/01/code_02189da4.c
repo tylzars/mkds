@@ -99,7 +99,7 @@ void func_ov001_0218a20c(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_04c), (s32) (a->mPrm->mUnk_050));
     func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218a250);
-    func_020d2774(&a->mUnk_000, (u32) (((u32) 0x00000235u)));
+    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x00000235u)));
 }
 
 void func_ov001_0218a1d0(Unk02188950 *a) {

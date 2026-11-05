@@ -268,7 +268,7 @@ void InitKeyboard(void *a, s32 b) {
 
 #pragma thumb on
 
-void func_0212a1c4(void) {
+void ReleaseKeyboard(void) {
     func_0212abd0();
     func_02125da0();
     *(u32 *) &gKeyboard = 0;
@@ -409,7 +409,7 @@ void func_02129c18(void) {
     MemFillWordsByBlock_inline((void *) G2Bg3CntBits8To12Address(), 0x1000);
 }
 
-void func_02129bdc(void) {
+void AdvanceKeyboardState0(void) {
     if (func_02036c5c() != 0) {
         gKeyboard->mNextState = 1;
         func_02126638(GetBmgEntry(gKeyboard->mUnk_c0, 7), 0, 0, 0, 0, 0, 0);
@@ -436,7 +436,7 @@ void func_02129b60(void) {
     }
 }
 
-void func_02129acc(void) {
+void AdvanceKeyboardState1(void) {
     gKeyboard->mUnk_28++;
     gKeyboard->mUnk_84 = func_020ae4c0(1, 0xc0, 0, gKeyboard->mUnk_28, 0xf);
     gKeyboard->mUnk_86[0][1] = func_020ae4c0(1, data_0215d108[0][1], data_0215d100[0][1], gKeyboard->mUnk_28, 0xf);
@@ -451,7 +451,7 @@ void func_02129acc(void) {
     func_02129b60();
 }
 
-void func_02129994(void) {
+void AdvanceKeyboardState2(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     Keyboard *p;
     Unk0217d400_2c *q;
@@ -500,7 +500,7 @@ void func_02129994(void) {
     }
 }
 
-void func_0212982c(void) {
+void AdvanceKeyboardState3(void) {
     Keyboard *p;
     gKeyboard->mUnk_28++;
     gKeyboard->mUnk_84 = func_020ae4c0(1, 0, 0xc0, gKeyboard->mUnk_28, 0xf);
@@ -546,7 +546,7 @@ void func_0212982c(void) {
     }
 }
 
-void func_021297cc(void) {
+void AdvanceKeyboardState4(void) {
     Keyboard *p;
     gKeyboard->mUnk_28++;
     if (func_02125f6c() != 0) {
@@ -560,7 +560,7 @@ void func_021297cc(void) {
     }
 }
 
-void func_02129788(void) {
+void AdvanceKeyboardState5(void) {
     if (func_02036c5c() != 0) {
         gKeyboard->mNextState = 6;
         func_02126638(GetBmgEntry(gKeyboard->mUnk_c0, 0xf), 0, 0, 0, 0, 0, 0);
@@ -603,7 +603,7 @@ void func_021296b4(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_021295f4(void) {
+void AdvanceKeyboardState6(void) {
     Keyboard *p;
     gKeyboard->mUnk_28++;
     gKeyboard->mUnk_84 = func_020ae4c0(1, 0xc0, 0, gKeyboard->mUnk_28, 0xf);
@@ -624,7 +624,7 @@ void func_021295f4(void) {
     func_02128b0c();
 }
 
-void func_021293b4(void) {
+void AdvanceKeyboardState7(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
     Keyboard *p;
     Unk0217d400_2c *q;
@@ -726,7 +726,7 @@ void func_021293b4(void) {
     func_02128b0c();
 }
 
-void func_021291d4(void) {
+void AdvanceKeyboardState8(void) {
     u16 buf[10];
     u16 buf2[0xfe];
     Keyboard *p;
@@ -779,7 +779,7 @@ void func_021291d4(void) {
     }
 }
 
-void func_0212913c(void) {
+void AdvanceKeyboardState9(void) {
     s16 v;
     gKeyboard->mUnk_28++;
     v = data_0215d100[1][0];
@@ -797,7 +797,7 @@ void func_0212913c(void) {
     }
 }
 
-void func_02128f7c(void) {
+void AdvanceKeyboardState10(void) {
     Keyboard *p;
     s16 v;
     void *a;
@@ -846,7 +846,7 @@ void func_02128f7c(void) {
     }
 }
 
-void func_02128ecc(void) {
+void AdvanceKeyboardState11(void) {
     Keyboard *p;
     void *a;
     s32 w;
@@ -871,7 +871,7 @@ void func_02128ecc(void) {
     }
 }
 
-void func_02128e08(void) {
+void AdvanceKeyboardState12(void) {
     void *a;
     s32 w;
     void *b;
@@ -901,7 +901,7 @@ void func_02128e08(void) {
     }
 }
 
-void func_02128dbc(void) {
+void AdvanceKeyboardState13(void) {
     if (func_02125f88() != 0) {
         if (func_02125f60() == 0) {
             gKeyboard->mUnk_2c[2].mUnk_16 = 3;
@@ -1017,7 +1017,7 @@ void func_02128b0c(void) {
     gKeyboard->mUnk_74[1][1][data_0215d0e8[gKeyboard->mUnk_08]].mUnk_00 = 1;
 }
 
-void func_021289e0(void) {
+void AdvanceKeyboard(void) {
     s32 i;
     Keyboard *p;
     func_0212a920();
@@ -1028,46 +1028,46 @@ void func_021289e0(void) {
     }
     switch (gKeyboard->mState) {
         case 0:
-            func_02129bdc();
+            AdvanceKeyboardState0();
             break;
         case 1:
-            func_02129acc();
+            AdvanceKeyboardState1();
             break;
         case 2:
-            func_02129994();
+            AdvanceKeyboardState2();
             break;
         case 3:
-            func_0212982c();
+            AdvanceKeyboardState3();
             break;
         case 4:
-            func_021297cc();
+            AdvanceKeyboardState4();
             break;
         case 5:
-            func_02129788();
+            AdvanceKeyboardState5();
             break;
         case 6:
-            func_021295f4();
+            AdvanceKeyboardState6();
             break;
         case 7:
-            func_021293b4();
+            AdvanceKeyboardState7();
             break;
         case 8:
-            func_021291d4();
+            AdvanceKeyboardState8();
             break;
         case 9:
-            func_0212913c();
+            AdvanceKeyboardState9();
             break;
         case 10:
-            func_02128f7c();
+            AdvanceKeyboardState10();
             break;
         case 11:
-            func_02128ecc();
+            AdvanceKeyboardState11();
             break;
         case 12:
-            func_02128e08();
+            AdvanceKeyboardState12();
             break;
         case 13:
-            func_02128dbc();
+            AdvanceKeyboardState13();
             break;
     }
     func_02128cfc();
@@ -1093,7 +1093,7 @@ void func_0212899c(void) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_0212898c(void) {
+u32 GetKeyboardNextScene(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gKeyboard;

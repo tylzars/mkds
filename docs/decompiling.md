@@ -578,7 +578,7 @@ Expression shapes:
   const view on one read of a field a store just changed gives a second load and 4 more bytes (func_0210298c).
 - When the ROM reuses one address register in two loads from one table, write the address in both and make the
   expressions differ by a cast on one index: `data[(u32) o->mUnk_78].mUnk_02` and `data[o->mUnk_78].mUnk_5a`
-  (func_020a08ec).
+  (UpdateStandings).
 - A field loaded twice back to back before a min compare, with one copy kept for the arm and later uses: use a named `t
   = v.x` for those uses and read the compare through `((const Vec3 *) &v)->x` (func_020d2c2c).
 - `i << 1` computed early and kept live through a long block for a late store, costing a saved register: write `(u32) i

@@ -191,7 +191,7 @@ void UpdateNsKiller2(void *a, NsKiller2 *p) {
                 }
                 Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
                 if (p->mUnk_a0 < 0x24e) {
-                    func_020d275c(&p->mUnk_00, 0x17d);
+                    StartMapObjectSoundWhileRequested(&p->mUnk_00, 0x17d);
                 }
             } else {
                 ParkMapObject(&p->mUnk_00);

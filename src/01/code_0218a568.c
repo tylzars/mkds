@@ -23,7 +23,7 @@ void func_ov001_0218aba0(Unk02188950 *a) {
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02188e24(a, a->mPrm->mUnk_1a0, &func_ov001_0218ac04);
-    func_020d2774(&a->mUnk_000, (u32) (0x238));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x238));
 }
 
 void func_ov001_0218ab04(Unk02188950 *a) {
@@ -60,7 +60,7 @@ void func_ov001_0218aa34(Unk02188950 *a) {
         func_ov001_02188cec(a, 0);
         func_ov001_02188e74(a, (s32) (a->mPrm->mUnk_0dc), func_ov001_0218b1d8);
     }
-    func_020d2774(&a->mUnk_000, (u32) (0x23c));
+    StartMapObjectSound(&a->mUnk_000, (u32) (0x23c));
 }
 
 void func_ov001_0218a970(Unk02188950 *b) {
@@ -88,7 +88,7 @@ void func_ov001_0218a910(Unk02188950 *a) {
         func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_0d4), (s32) (a->mPrm->mUnk_0d8), (UnkFunc *) (0));
         func_ov001_02188cec(a, 0);
         func_ov001_02188e74(a, (s32) (a->mPrm->mUnk_0dc), func_ov001_0218b1d8);
-        func_020d2774(&a->mUnk_000, (u32) (0x23c));
+        StartMapObjectSound(&a->mUnk_000, (u32) (0x23c));
     }
 }
 
@@ -190,7 +190,7 @@ int func_ov001_0218a590(Unk02188950 *a) {
             func_ov001_02187518(a, 0, 0, 0, 0x412, 0);
         }
         if (a->mVelocity.y > 0) {
-            func_020d2774(&a->mUnk_000, (u32) (0x23b));
+            StartMapObjectSound(&a->mUnk_000, (u32) (0x23b));
         }
     }
     return 0;

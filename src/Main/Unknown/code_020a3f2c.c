@@ -686,9 +686,9 @@ BOOL func_020a5268(u16 a, u16 b) {
     s32 n;
 
     o = GetKart(a);
-    func_020a2378();
+    GetStandingsKartBalloons();
     if (GetBalloonOrShineCount(b) >= 3 || GetBalloonOrShineCount(a) == 0) {
-        e = func_020a2378() + a;
+        e = GetStandingsKartBalloons() + a;
         f = func_020a2204(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
         l = GetBalloonOrShineCount(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
         if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
@@ -720,7 +720,7 @@ BOOL func_020a5268(u16 a, u16 b) {
             return FALSE;
         }
     } else {
-        e = func_020a2378() + a;
+        e = GetStandingsKartBalloons() + a;
         f = func_020a2204(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
         l = GetBalloonOrShineCount(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
         if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
@@ -733,7 +733,7 @@ BOOL func_020a5268(u16 a, u16 b) {
             }
         }
         if (l != NULL) {
-            e = func_020a2378() + b;
+            e = GetStandingsKartBalloons() + b;
             n = GetBalloonOrShineCount(b);
             e->mBalloons[n + 1] = e->mBalloons[GetBalloonOrShineCount(b)];
             e->mBalloons[GetBalloonOrShineCount(b)] = l;
@@ -765,7 +765,7 @@ s32 func_020a4f54(u16 a, u16 b) {
     Unk0210b7a8 s;
     s32 n;
 
-    v1 = func_020a2378();
+    v1 = GetStandingsKartBalloons();
     v1 += a;
     f = func_020a2204(a) != 0 ? v1->mBalloons[GetBalloonOrShineCount(a)] : 0;
     l = GetBalloonOrShineCount(a) != 0 ? v1->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
@@ -778,7 +778,7 @@ s32 func_020a4f54(u16 a, u16 b) {
             func_020a10f0(a, -1);
         }
     }
-    v2 = func_020a2378();
+    v2 = GetStandingsKartBalloons();
     v2 += b;
     g = func_020a2204(b) != 0 ? v2->mBalloons[GetBalloonOrShineCount(b)] : 0;
     m = GetBalloonOrShineCount(b) != 0 ? v2->mBalloons[GetBalloonOrShineCount(b) - 1] : 0;
@@ -792,7 +792,7 @@ s32 func_020a4f54(u16 a, u16 b) {
         }
     }
     if (l != NULL) {
-        v2 = func_020a2378();
+        v2 = GetStandingsKartBalloons();
         v2 += b;
         n = GetBalloonOrShineCount(b);
         v2->mBalloons[n + 1] = v2->mBalloons[GetBalloonOrShineCount(b)];
@@ -805,7 +805,7 @@ s32 func_020a4f54(u16 a, u16 b) {
         }
     }
     if (m != NULL) {
-        v1 = func_020a2378();
+        v1 = GetStandingsKartBalloons();
         v1 += a;
         n = GetBalloonOrShineCount(a);
         v1->mBalloons[n + 1] = v1->mBalloons[GetBalloonOrShineCount(a)];
@@ -834,7 +834,7 @@ BOOL func_020a4d94(u16 a, u16 b) {
     Balloon *l;
     Vec3 v;
 
-    e = func_020a2378() + a;
+    e = GetStandingsKartBalloons() + a;
     f = func_020a2204(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
     l = GetBalloonOrShineCount(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
     if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
@@ -848,7 +848,7 @@ BOOL func_020a4d94(u16 a, u16 b) {
     }
     if (l != NULL) {
         o = GetKart(a);
-        func_020a2378();
+        GetStandingsKartBalloons();
         if (a == data_021759c0->mEntryIndex) {
             func_020a2ebc(l, NULL);
         } else {
@@ -883,7 +883,7 @@ void func_020a4c58(u16 a) {
         return;
     }
     do {
-        e = func_020a2378() + a;
+        e = GetStandingsKartBalloons() + a;
         f = func_020a2204(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a)] : 0;
         l = GetBalloonOrShineCount(a) != 0 ? e->mBalloons[GetBalloonOrShineCount(a) - 1] : 0;
         if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
@@ -914,7 +914,7 @@ void func_020a4b70(u16 a, Vec3 *b) {
     s32 i;
     s32 n;
 
-    e = func_020a2378() + a;
+    e = GetStandingsKartBalloons() + a;
     if (b == NULL) {
         return;
     }
@@ -980,7 +980,7 @@ void InitKartBalloons(Unk020a3fa8 *a) {
         } else {
             a->mStartTimer = 0x3c;
         }
-        func_020a238c(a->mKartBalloons);
+        SetStandingsKartBalloons(a->mKartBalloons);
         func_020a2364((u32) func_020a5268);
         func_020a2350((u32) func_020a4f54);
         func_020a233c(func_020a4d94);

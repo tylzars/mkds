@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_020d275c.h"
 #include "Main/Unknown/code_02109054.h"
 
-void func_020d2774(MapObject *arg0, u32 arg1) {
+void StartMapObjectSound(MapObject *arg0, u32 arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value2;
@@ -13,7 +13,7 @@ void func_020d2774(MapObject *arg0, u32 arg1) {
     value0 = (u32) StartSound((void *) value0, value1, value2, value3);
 }
 
-void func_020d275c(MapObject *arg0, u32 arg1) {
+void StartMapObjectSoundWhileRequested(MapObject *arg0, u32 arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value2;

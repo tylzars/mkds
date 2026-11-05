@@ -256,7 +256,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
                         b->mUnk_0cc = -b->mUnk_0cc;
                         func_020d759c(&b->mUnk_0c4, &b->mUnk_0b4, &b->mUnk_0c4, 0x8cd);
                         b->mUnk_152 = 0x320;
-                        func_020d2774(&b->mUnk_000, b->mUnk_160);
+                        StartMapObjectSound(&b->mUnk_000, b->mUnk_160);
                     } else if (f && b != NULL) {
                         b->mUnk_0fe = 0xf;
                         b->mUnk_000.mUnk_10.y = 0;
@@ -310,7 +310,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
     if (b->mUnk_000.mUnk_78 & 8) {
         func_0210b7ec(b->mUnk_158, b->mUnk_000.mUnk_78 & 0x3FFFFFE0);
     }
-    func_020d275c(&b->mUnk_000, b->mUnk_15c);
+    StartMapObjectSoundWhileRequested(&b->mUnk_000, b->mUnk_15c);
     if (b->mUnk_000.mPos.y < 0) {
         func_020e1e98(b);
     }

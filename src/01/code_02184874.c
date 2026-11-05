@@ -47,7 +47,7 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                 if (d->mUnk_000.mKind == 0x1f5) {
                     d->mUnk_000.mUnk_78 |= data_ov001_021a657c;
                     StopSound(&d->mUnk_000.mUnk_94->mSoundSource, 0x214);
-                    func_020d2774(&d->mUnk_000, (u32) (0x211));
+                    StartMapObjectSound(&d->mUnk_000, (u32) (0x211));
                     StartEffect(0x3e9, &b);
                     StartEffect(0x3e8, &b);
                     StartEffect(0x3ea, &b);
@@ -56,7 +56,7 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                 } else if (d->mUnk_000.mKind == 0x1f6) {
                     d->mUnk_000.mUnk_78 |= data_ov001_021a657c;
                     StopSound(&d->mUnk_000.mUnk_94->mSoundSource, 0x245);
-                    func_020d2774(&d->mUnk_000, (u32) (0x23f));
+                    StartMapObjectSound(&d->mUnk_000, (u32) (0x23f));
                     StartEffect(0x3fa, &b);
                     StartEffect(0x3fb, &b);
                     StartEffect(0x3fc, &b);

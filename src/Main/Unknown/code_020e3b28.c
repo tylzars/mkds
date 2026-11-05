@@ -198,7 +198,7 @@ void func_020e3ef4(Unk020e3ef4 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
         a->mUnk_15c = c->mUnk_18;
     }
     if (a->mUnk_15c != -1) {
-        func_020d27fc(&a->mUnk_000);
+        CreateMapObjectSoundSourceFalloff3(&a->mUnk_000);
     }
 }
 
@@ -261,7 +261,7 @@ void UpdateBridge(s32 a, Bridge *b) {
         return;
     }
     if (b->mUnk_000.mUnk_94 != NULL) {
-        func_020d275c(&b->mUnk_000, 0x189);
+        StartMapObjectSoundWhileRequested(&b->mUnk_000, 0x189);
     }
     b->mUnk_148 += b->mUnk_146;
     if (b->mUnk_148 >= 0x4000 && b->mUnk_148 < b->mUnk_146 + 0x4000) {
