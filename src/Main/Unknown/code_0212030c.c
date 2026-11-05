@@ -83,7 +83,7 @@ void func_021204d0(void) {
     Unk0217d384_08 *p;
 
     func_02120714();
-    data_0217d384->mUnk_1f34 = 1;
+    data_0217d384->mUnk_1f34 = TRUE;
     p = &data_0217d384->mUnk_0008;
     p->mNextState = 0;
     p->mNextStateRequested = 1;

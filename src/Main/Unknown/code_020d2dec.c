@@ -259,8 +259,8 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                 if (kindData->mUnk_20 == 0) {
                     m |= data_021568e0;
                 }
-                if (func_020dff70(object->mKind) != 0 || func_020e4320(object->mKind) != 0 ||
-                    func_020e3af0(object->mKind) != 0 || func_020ffabc(object->mKind) != 0) {
+                if (func_020dff70(object->mKind) != 0 || func_020e4320(object->mKind) != FALSE ||
+                    func_020e3af0(object->mKind) != FALSE || func_020ffabc(object->mKind) != FALSE) {
                     m |= data_021568e4;
                 }
                 object->mUnk_64 = func_020d555c(&object->mPos, func_020d252c(object), m, object);
@@ -318,8 +318,8 @@ void InitMapObjects(void) {
     data_0217b4e8 = HeapAlloc(h, 0x80);
     data_0217b4dc = HeapAlloc(h, 0x180);
     data_0217b4f0->mMapObjectCount = 0;
-    data_0217b4f0->mUnk_130 = 0;
-    data_0217b4f0->mUnk_178 = 0;
+    data_0217b4f0->mUnk_130 = FALSE;
+    data_0217b4f0->mUnk_178 = FALSE;
     v = 0;
     if (data_021759c0->mMode != 5) {
         v = 1;
@@ -441,7 +441,7 @@ void InitMapObjects(void) {
     for (i = 0; i < data_0217b4f0->mUnk_128; i++) {
         func_020d4990(data_0217b4f0->mUnk_008[i]);
     }
-    data_0217b4f0->mUnk_130 = 1;
+    data_0217b4f0->mUnk_130 = TRUE;
     func_020d2e24();
     n = data_0217b4f0->mUnk_128;
     c1 = 0;
@@ -519,7 +519,7 @@ void InitMapObjects(void) {
             }
         }
     }
-    data_0217b4f0->mUnk_178 = 1;
+    data_0217b4f0->mUnk_178 = TRUE;
     func_020d2dec();
 }
 

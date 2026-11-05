@@ -75,7 +75,7 @@ void func_ov000_0219d81c(void) {
     if (func_ov000_0219c39c() != 0) {
         return;
     }
-    if (func_ov000_0219caf4() != 0 && func_ov000_0219746c() == 0) {
+    if (func_ov000_0219caf4() != 0 && func_ov000_0219746c() == FALSE) {
         func_ov000_0219d734(6, -0x1194a);
         return;
     }
@@ -299,7 +299,7 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
     for (; data_ov000_021b5664->mUnk_1c < b; data_ov000_021b5664->mUnk_1c++) {
         g = func_ov000_0219d630(data_ov000_021b5664->mUnk_1c);
         if (g != 0) {
-            if (func_ov000_0219d210(a, data_ov000_021b5664->mUnk_1c, g) == 0 &&
+            if (func_ov000_0219d210(a, data_ov000_021b5664->mUnk_1c, g) == FALSE &&
                 func_02152a24(&a[data_ov000_021b5664->mUnk_1c]) == 0) {
                 func_ov000_0219d034(GpGetBuddyIndex(data_ov000_021b5664->mUnk_04, g, &d));
                 if (d == -1) {

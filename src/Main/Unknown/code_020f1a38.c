@@ -71,7 +71,7 @@ void func_020f1a38(void) {
         a[i] = 1;
     }
     for (j = 0; j < 0x12; j++) {
-        if (data_0217bc48[j].mUnk_00 != 0) {
+        if (data_0217bc48[j].mUnk_00 != FALSE) {
             i = data_0217bc48[j].mUnk_08;
             n = data_0217bc48[j].mUnk_0c;
             if (a[i] < n) {

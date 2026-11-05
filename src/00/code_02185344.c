@@ -137,8 +137,8 @@ void AdvanceWiFiAikotobaCheckState1(void) {
         if (b == FALSE && data_02175628[i].mPrevHasPair == 0 && c != 0) {
             a = TRUE;
         }
-        if (a == FALSE ||
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (a == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
+                                                                          data_02175628[i].mUnk_4a) == FALSE) {
             return;
         }
     }

@@ -130,7 +130,7 @@ void func_ov001_021a1c34(void) {
     for (i = 0; i < 4; i++) {
         gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][1]].mUnk_00 = 0;
         gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][2]].mUnk_00 = 0;
-        if (gSelectEngine->mIndex == i && gSelectEngine->mUnk_38 != 0) {
+        if (gSelectEngine->mIndex == i && gSelectEngine->mUnk_38 != FALSE) {
             gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][2]].mUnk_00 = 1;
         } else {
             gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][1]].mUnk_00 = 1;
@@ -281,7 +281,7 @@ void InitSelectEngine(s32 a, void *b, void *c) {
     p->mHeap = heap;
     gSelectEngine->mState = 0;
     gSelectEngine->mUnk_3c = 0;
-    gSelectEngine->mUnk_38 = 1;
+    gSelectEngine->mUnk_38 = TRUE;
     gSelectEngine->mUnk_44 = b;
     gSelectEngine->mUnk_48 = c;
     gSelectEngine->mResult = 0;
@@ -417,7 +417,7 @@ void AdvanceSelectEngineState4(void) {
             b2 = TRUE;
         }
         if (b2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                           data_02175628[idx].mUnk_4a) == 0) {
+                                                                           data_02175628[idx].mUnk_4a) == FALSE) {
             goto next;
         }
     }
@@ -433,14 +433,14 @@ next:
     if (r5 <= 3) {
         s = data_ov001_021a6f80[r5];
         if (gSelectEngine->mIndex == s) {
-            gSelectEngine->mUnk_38 = 0;
+            gSelectEngine->mUnk_38 = FALSE;
         }
         gSelectEngine->mIndex = s;
         func_ov001_021a1978();
         return;
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 1) != 0) {
-        gSelectEngine->mUnk_38 = 0;
+        gSelectEngine->mUnk_38 = FALSE;
         func_ov001_021a1978();
         return;
     }
@@ -506,7 +506,7 @@ next:
 void AdvanceSelectEngineState5(void) {
     func_ov001_021a1b08();
     if (gSelectEngine->mStateFrames == 5) {
-        gSelectEngine->mUnk_38 = 1;
+        gSelectEngine->mUnk_38 = TRUE;
     }
     gSelectEngine->mStateFrames++;
     if (gSelectEngine->mStateFrames >= 10) {

@@ -239,7 +239,7 @@ void InitKeyboard(void *a, s32 b) {
     for (i = 0; i < 2; i++) {
         gKeyboard->mUnk_14[i] = 0;
     }
-    gKeyboard->mUnk_24 = 0;
+    gKeyboard->mUnk_24 = FALSE;
     gKeyboard->mNextState = gKeyboard->mState;
     gKeyboard->mUnk_28 = 0;
     gKeyboard->mUnk_84 = 0xc0;
@@ -445,7 +445,7 @@ void func_02129acc(void) {
     }
     if (gKeyboard->mUnk_28 >= 0xf && func_02125fa4() != 0) {
         gKeyboard->mNextState = 2;
-        gKeyboard->mUnk_24 = 1;
+        gKeyboard->mUnk_24 = TRUE;
         gKeyboard->mUnk_28 = 0;
     }
     func_02129b60();
@@ -485,7 +485,7 @@ void func_02129994(void) {
             gKeyboard->mUnk_2c[2].mUnk_10 = 1;
             func_02125fc0();
             func_020ab8cc(1);
-            gKeyboard->mUnk_24 = 0;
+            gKeyboard->mUnk_24 = FALSE;
             func_0212ecc0(&data_0217d068, 0, 4);
         } else {
             func_0212ecc0(&data_0217d068, 0, 0x16);
@@ -495,7 +495,7 @@ void func_02129994(void) {
         gKeyboard->mUnk_2c[2].mUnk_10 = 0;
         func_02125fc0();
         func_020ab8cc(2);
-        gKeyboard->mUnk_24 = 0;
+        gKeyboard->mUnk_24 = FALSE;
         func_0212ecc0(&data_0217d068, 0, 0xe);
     }
 }
@@ -617,7 +617,7 @@ void func_021295f4(void) {
     }
     if (gKeyboard->mUnk_28 >= 0xf && func_02125fa4() != 0) {
         gKeyboard->mNextState = 7;
-        gKeyboard->mUnk_24 = 1;
+        gKeyboard->mUnk_24 = TRUE;
         gKeyboard->mUnk_28 = 0;
     }
     func_021296b4();
@@ -659,7 +659,7 @@ void func_021293b4(void) {
             gKeyboard->mUnk_2c[2].mUnk_10 = 1;
             func_02125fc0();
             func_020ab8cc(1);
-            gKeyboard->mUnk_24 = 0;
+            gKeyboard->mUnk_24 = FALSE;
             func_0212ecc0(&data_0217d068, 0, 4);
         } else {
             func_0212ecc0(&data_0217d068, 0, 0x16);
@@ -671,7 +671,7 @@ void func_021293b4(void) {
             gKeyboard->mUnk_2c[2].mUnk_10 = 0;
             func_02125fc0();
             func_020ab8cc(2);
-            gKeyboard->mUnk_24 = 0;
+            gKeyboard->mUnk_24 = FALSE;
             func_0212ecc0(&data_0217d068, 0, 0xe);
         } else {
             func_0212ecc0(&data_0217d068, 0, 0x16);
@@ -1023,7 +1023,7 @@ void func_021289e0(void) {
     func_0212a920();
     func_02125928();
     gKeyboard->mState = gKeyboard->mNextState;
-    if (gKeyboard->mUnk_24 != 0) {
+    if (gKeyboard->mUnk_24 != FALSE) {
         func_020abae0();
     }
     switch (gKeyboard->mState) {

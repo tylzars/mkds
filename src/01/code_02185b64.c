@@ -55,7 +55,7 @@ u32 func_ov001_02185d74(MissionGateObject *c, Unk02185d74 *d, u8 *e, u8 *f) {
     u32 a = *e;
     u32 b = *f;
 
-    if ((d->mUnk_48 & 0x200) != 0 || (data_021759c0->mMode == 4 ? func_020a1084(d->mUnk_74) : 0) != 0) {
+    if ((d->mUnk_48 & 0x200) != 0 || (data_021759c0->mMode == 4 ? func_020a1084(d->mUnk_74) : 0) != FALSE) {
         return 0;
     }
     if (a == 1) {

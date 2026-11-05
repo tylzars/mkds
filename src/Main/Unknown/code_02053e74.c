@@ -288,20 +288,20 @@ s32 func_02054938(void) {
     return r;
 }
 
-s32 func_02054754(void) {
+BOOL func_02054754(void) {
     BOOL r;
     Unk0217aa00_15bc *q;
 
     r = FALSE;
     q = &data_0217aa00->mUnk_15bc_view;
     if (!func_02053e74_inline2()) {
-        return 1;
+        return TRUE;
     }
     if (!(data_0217aa00->mUnk_0454 & 4)) {
-        return 1;
+        return TRUE;
     }
     if (func_0204ffbc() != 0) {
-        return 1;
+        return TRUE;
     }
     if (q->mUnk_10[0] != 0) {
         Unk0217aa00 *p;

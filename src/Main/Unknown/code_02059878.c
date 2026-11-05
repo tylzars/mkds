@@ -107,7 +107,7 @@ void func_02059954(u8 *a) {
     if (f != 0) {
         m = (u8) (1U << a[0]);
         if (func_02059878_inline() == 1) {
-            if (func_020586ac(0xff, NULL, 0, 0, m) != 0) {
+            if (func_020586ac(0xff, NULL, 0, 0, m) != FALSE) {
                 data_0217aa00->mUnk_162a |= 1 << a[0];
                 return;
             }
@@ -115,7 +115,7 @@ void func_02059954(u8 *a) {
             data_0217aa00->mUnk_162a |= 1 << a[0];
             if (data_0217aa00->mUnk_043a == (data_0217aa00->mUnk_043a & data_0217aa00->mUnk_162a)) {
                 v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
-                if (func_020586ac(0xfd, NULL, 0, v, 1) != 0) {
+                if (func_020586ac(0xfd, NULL, 0, v, 1) != FALSE) {
                     func_02059878_inline2(10);
                 }
             }

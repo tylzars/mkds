@@ -69,7 +69,7 @@ void func_02086a04(void) {
                 func_0210cfbc(&p->mUnk_00, 2, 1);
             }
             if (d < 0) {
-                s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = 1;
+                s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = TRUE;
                 s->mUnk_01c->mUnk_70 &= ~1;
                 p->mUnk_4c |= 0x800000;
             } else {
@@ -84,17 +84,17 @@ void func_02086a04(void) {
                     p->mUnk_4c |= 0x800000;
                 } else {
                     p->mUnk_4c &= ~0x800000;
-                    s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = 0;
+                    s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = FALSE;
                     s->mUnk_01c->mUnk_70 |= 1;
                     if (e > data_0217aed8->z) {
                         p->mUnk_4c |= 0x800000;
-                        s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = 1;
+                        s->mUnk_058 = s->mUnk_05c = s->mUnk_060 = TRUE;
                         s->mUnk_01c->mUnk_70 &= ~1;
                     } else if (e > data_0217aed8->y) {
-                        s->mUnk_058 = s->mUnk_060 = 1;
+                        s->mUnk_058 = s->mUnk_060 = TRUE;
                         s->mUnk_01c->mUnk_70 &= ~1;
                     } else if (e > data_0217aed8->x) {
-                        s->mUnk_060 = 1;
+                        s->mUnk_060 = TRUE;
                         s->mUnk_01c->mUnk_70 &= ~1;
                     }
                 }
@@ -170,9 +170,9 @@ void func_0208677c(void) {
             (func_020738f8(w->y - GetKart(data_021759c0->mEntryIndex)->mPos.y) > 0x96000 && func_02061818() != 3)) {
             p->mUnk_20 = -1;
         }
-        if (p->mUnk_18 != 0) {
+        if (p->mUnk_18 != FALSE) {
             if (func_0203c598() - 0x3c > 0) {
-                p->mUnk_18 = 0;
+                p->mUnk_18 = FALSE;
             }
         } else if (p->mUnk_20 != 0) {
             p->mUnk_22 = p->mUnk_22 + p->mUnk_20;
@@ -336,7 +336,7 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, Unk02012f58 *c, s32 d, s32 e,
     m.mUnk_00[3] = b->mUnk_00;
     Matrix4x3Multiply(&m, c, &m);
     m.mUnk_00[3].x = g;
-    if (b->mUnk_10 == 1) {
+    if (b->mUnk_10 == TRUE) {
         m.mUnk_00[3].x = g + ((s32) (((s64) i * d + 0x800) >> 12) + 0x1e000);
     }
     m.mUnk_00[3].y = 0x5000 + h + (s32) (((s64) j * e + 0x800) >> 12);

@@ -55,9 +55,9 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c) {
         entry->mUnk_0c = rec[i].mUnk_06 != 0;
         func_02022904((Unk02022030 *) &entry->mUnk_2c, func_02021db0(c, rec[i].mUnk_00), b);
         if (rec[i].mUnk_06 > 1) {
-            entry->mUnk_2c.mUnk_08 = 1;
+            entry->mUnk_2c.mUnk_08 = TRUE;
         } else {
-            entry->mUnk_2c.mUnk_08 = 0;
+            entry->mUnk_2c.mUnk_08 = FALSE;
         }
         cell = entry->mUnk_2c.mUnk_2c;
         if ((cell->mUnk_02 >> 11) & 1) {
@@ -89,7 +89,7 @@ void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
                 entry->mUnk_84 = NULL;
             }
         }
-        if (entry->mUnk_0c != 0 && entry->mUnk_18 > 0) {
+        if (entry->mUnk_0c != FALSE && entry->mUnk_18 > 0) {
             x = (entry->mUnk_04 >> 12) + a->mUnk_10;
             y = (entry->mUnk_08 >> 12) + a->mUnk_14;
             if (x >= -64 && x <= 0x140 && y >= -48 && y <= 0xf0) {
@@ -119,7 +119,7 @@ void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
                 }
             }
         }
-        if (sub->mUnk_08 != 0) {
+        if (sub->mUnk_08 != FALSE) {
             func_02022890((Unk02022030 *) &entry->mUnk_2c, 0x1000);
             func_020228c0((Unk02022030 *) &entry->mUnk_2c, 0x1000);
         }
@@ -160,25 +160,25 @@ void func_ov001_02185018(Unk021a5a58 *a, s32 b) {
 
     if (b == -1) {
         sub->mUnk_14 = 2;
-        a->mUnk_2c.mUnk_08 = 1;
+        a->mUnk_2c.mUnk_08 = TRUE;
     } else if (b == -2) {
         func_02022040((Unk02022030 *) sub);
         sub->mUnk_14 = 1;
-        a->mUnk_2c.mUnk_08 = 1;
+        a->mUnk_2c.mUnk_08 = TRUE;
     } else if (b == -3) {
-        a->mUnk_2c.mUnk_08 = 0;
+        a->mUnk_2c.mUnk_08 = FALSE;
     } else if (b == -4) {
-        a->mUnk_0c = 1;
+        a->mUnk_0c = TRUE;
     } else if (b == -5) {
-        a->mUnk_0c = 0;
+        a->mUnk_0c = FALSE;
     } else if (b >= 0) {
-        a->mUnk_0c = 1;
+        a->mUnk_0c = TRUE;
         func_02022898((Unk02022030 *) sub, b);
     }
 }
 
 s32 func_ov001_02184ff8(Unk021a5a58 *a) {
-    if (a->mUnk_0c != 0) {
+    if (a->mUnk_0c != FALSE) {
         return func_020220f0((u32) (&a->mUnk_2c));
     }
     return -5;

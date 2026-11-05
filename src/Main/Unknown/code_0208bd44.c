@@ -18,13 +18,13 @@ void func_0208bf40(Unk020888b4 *p) {
 
 void func_0208bef4(Unk020888b4 *p) {
     if (p->mUnk_28.mUnk_14 != NULL) {
-        if (p->mUnk_28.mUnk_18 != 0) {
+        if (p->mUnk_28.mUnk_18 != FALSE) {
             return;
         }
     }
     p->mUnk_28.mUnk_14 = func_020413a4(&p->mKart->mPos);
     if (p->mUnk_28.mUnk_14 != NULL) {
-        p->mUnk_28.mUnk_18 = 1;
+        p->mUnk_28.mUnk_18 = TRUE;
     }
 }
 

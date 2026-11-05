@@ -79,7 +79,7 @@ u8 func_ov000_0219b9c4(Unk0219887c *object);
 void *func_ov000_0219b9d4(u32 a);
 s32 func_ov000_0219ba20(void);
 u32 func_ov000_0219bab4(void);
-s32 func_ov000_0219bac8(u32 a);
+BOOL func_ov000_0219bac8(u32 a);
 s32 func_ov000_0219bb04(u8 **a);
 u8 func_ov000_0219bb50(void);
 s32 func_ov000_0219bb68(void);

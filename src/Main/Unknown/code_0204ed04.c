@@ -67,7 +67,7 @@ void func_0204ed84(void) {
                 c = 1;
                 break;
         }
-        if (func_02050650((void *) data_0217aa00->mUnk_1e30, b, c, NULL, &data_usa_0216522c) == 0) {
+        if (func_02050650((void *) data_0217aa00->mUnk_1e30, b, c, NULL, &data_usa_0216522c) == FALSE) {
             data_0217aa00->mUnk_1e42 = data_usa_02165228;
             data_0217aa00->mUnk_1e44 &= ~1;
         }

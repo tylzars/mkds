@@ -50,7 +50,7 @@ u32 func_ov000_021998d8(Gt2Connection *a, s32 b, u32 c, const u8 *d, s32 e, s32 
     }
     AppendBufferBytes(&a->mUnk_44, d, e);
     if (h == 0) {
-        if (func_ov000_02198ba8(a, a->mUnk_66, c - 1) == 0) {
+        if (func_ov000_02198ba8(a, a->mUnk_66, c - 1) == FALSE) {
             return 0;
         }
     } else {
@@ -58,7 +58,7 @@ u32 func_ov000_021998d8(Gt2Connection *a, s32 b, u32 c, const u8 *d, s32 e, s32 
         if (j->mUnk_0c == c) {
             j = DarrayGetElement(a->mUnk_5c, h - 1);
             if ((u16) func_ov000_0219a014(c, j->mUnk_0c) > 1) {
-                if (func_ov000_02198ba8(a, j->mUnk_0c + 1, c - 1) == 0) {
+                if (func_ov000_02198ba8(a, j->mUnk_0c + 1, c - 1) == FALSE) {
                     return 0;
                 }
             }

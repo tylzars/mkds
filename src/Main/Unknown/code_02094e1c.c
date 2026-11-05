@@ -154,9 +154,9 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
         v1 = q2->x - o->mUnk_00.mPos.x;
         v2 = q2->z - o->mUnk_00.mPos.z;
         if ((s64) v1 * v1 + (s64) v2 * v2 < (s64) e * e) {
-            o->mUnk_a4 = 1;
+            o->mUnk_a4 = TRUE;
         } else {
-            o->mUnk_a4 = 0;
+            o->mUnk_a4 = FALSE;
         }
     }
     switch (o->mUnk_ac) {
@@ -185,7 +185,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
             if (func_02061818() == 2) {
                 break;
             }
-            if (o->mUnk_a4 == 0) {
+            if (o->mUnk_a4 == FALSE) {
                 break;
             }
             if (func_02061818() != 0) {
@@ -201,7 +201,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
             if (t > 0) {
                 break;
             }
-            if (o->mUnk_a4 != 0) {
+            if (o->mUnk_a4 != FALSE) {
                 if (func_02061818() != 0) {
                     func_020952dc(o, 0x1e, 1, 0x1f4, 4);
                 } else {

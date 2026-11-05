@@ -42,7 +42,7 @@ void func_0208aa30(void *a) {
     data_0217b034->mUnk_784.mUnk_00 = 0;
     p->mUnk_02 = 0;
     p->mUnk_04 = 0x7fff;
-    p->mUnk_08 = 0;
+    p->mUnk_08 = FALSE;
 }
 
 void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16 d) {
@@ -225,7 +225,7 @@ void func_0208a218(void) {
             }
         }
     }
-    if (data_0217b034->mUnk_784.mUnk_08 != 0) {
+    if (data_0217b034->mUnk_784.mUnk_08 != FALSE) {
         data_0217b034->mUnk_798(&data_0217b034->mUnk_784);
     }
 }
@@ -267,7 +267,7 @@ void func_02089fa0(void) {
             func_01ff8cf0(e);
         }
     }
-    if (data_0217b034->mUnk_784.mUnk_08 != 0) {
+    if (data_0217b034->mUnk_784.mUnk_08 != FALSE) {
         reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
         reg_G3_SPE_EMI = 0x4210;
         reg_G3_DIF_AMB = 0x42100000;

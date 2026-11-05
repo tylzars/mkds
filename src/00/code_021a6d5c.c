@@ -687,7 +687,7 @@ s32 func_ov000_021a8604(s32 param_1) {
     if (param_1 <= 0) {
         return -0x1c;
     }
-    if (func_ov000_021a8a5c((Unk021a8ab8 *) a) != 0) {
+    if (func_ov000_021a8a5c((Unk021a8ab8 *) a) != FALSE) {
         return -0x1a;
     }
     if (func_ov000_021a8a80(a) != 0) {

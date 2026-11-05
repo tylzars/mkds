@@ -1038,7 +1038,7 @@ s32 func_ov003_021bcf1c(void) {
                 l.mUnk_00 = 8;
                 func_ov003_021bd768(data_ov003_021d8c7c, &l);
                 if (func_ov000_021a90a0(b, data_ov003_021d9904, 0x800, 4, &l) > 0) {
-                    if (func_ov003_021bd998(data_ov003_021d9904, (s32 *) &data_ov003_021d8c20) != 0) {
+                    if (func_ov003_021bd998(data_ov003_021d9904, (s32 *) &data_ov003_021d8c20) != FALSE) {
                         data_ov003_021d68b8 = func_ov003_021bb354() + 30000;
                         data_ov003_021d8bec = 5;
                         data_ov003_021d8c08 = 4;
@@ -1215,7 +1215,7 @@ BOOL func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int
     return TRUE;
 }
 
-int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
+BOOL func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5) {
     u8 a[16];
     u64 b;
     u32 c[80];
@@ -1234,11 +1234,11 @@ int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int 
     d[0] = 0xa6a6a6a6;
     d[1] = 0xa6a6a6a6;
     if ((param_3 & 7) != 0 || (param_5 & 7) != 0) {
-        return 0;
+        return FALSE;
     }
     f = (param_3 - 1) >> 3;
     if (f < 2) {
-        return 0;
+        return FALSE;
     }
     g = func_ov003_021bc5e4(c, param_4, param_5 << 3);
     p = a;

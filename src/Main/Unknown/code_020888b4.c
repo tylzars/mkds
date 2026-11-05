@@ -59,7 +59,7 @@ void func_02089c3c(Unk02089b4c *a, Unk020888b4 *b) {
     Kart *q;
 
     if (b->mIndex == func_02061f90()) {
-        a->mUnk_0c = 0;
+        a->mUnk_0c = FALSE;
         m = b->mKart->mUnk_cc;
         if (m > 0xa000) {
             m = 0xa000;
@@ -190,7 +190,7 @@ void func_020898bc(Unk020888b4 *p) {
     p->mUnk_50 = z;
     p->mUnk_5c = &p->mUnk_44;
     p->mUnk_c2 = 0;
-    p->mUnk_c4 = 0;
+    p->mUnk_c4 = FALSE;
     p->mUnk_c8 = 0;
     p->mUnk_ca = 0;
     p->mUnk_cc = 0;
@@ -239,7 +239,7 @@ void func_02089754(Unk020888b4 *p, Unk02175620_bc *a) {
 
 void func_020896e0(Unk020888b4 *p) {
     func_02088d34(p);
-    if (p->mUnk_c4 == 0) {
+    if (p->mUnk_c4 == FALSE) {
         func_0207e668(p);
     }
     func_02089494(p);
@@ -309,13 +309,13 @@ void func_02089494(Unk020888b4 *p) {
             p->mUnk_44 = *s->mUnk_00->mUnk_20;
             Vec3Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
             s->mUnk_14 = NULL;
-            s->mUnk_18 = 0;
+            s->mUnk_18 = FALSE;
         }
     }
     if (q->mState != 0) {
         return;
     }
-    if (p->mUnk_c4 != 0) {
+    if (p->mUnk_c4 != FALSE) {
         return;
     }
     func_0204360c(p->mKart->mEntryIndex, 1);
@@ -425,7 +425,7 @@ void func_02088e44(Unk020888b4 *p) {
     if (v1->mUnk_058.mUnk_000 == 0xf && v1->mUnk_030.mUnk_00 == 0x13 && (p->mKart->mUnk_4c & 0x40) == 0) {
         goto clear;
     }
-    if (func_0207f600(p->mUnk_b0->mIndex) == 0) {
+    if (func_0207f600(p->mUnk_b0->mIndex) == FALSE) {
         goto clear;
     }
     q = p->mKart;
@@ -497,11 +497,11 @@ void func_02088d34(Unk020888b4 *p) {
     u16 b;
     BOOL c;
 
-    p->mUnk_c4 = 0;
+    p->mUnk_c4 = FALSE;
     if (data_021759c0->mUnk_18 != 0) {
         return;
     }
-    if (func_01ffc67c(p->mKart) != 0) {
+    if (func_01ffc67c(p->mKart) != FALSE) {
         func_020a228c(p->mIndex);
         return;
     }
@@ -522,7 +522,7 @@ void func_02088d34(Unk020888b4 *p) {
         func_020a22ac(p->mIndex);
         p->mUnk_c2 = 0;
     }
-    p->mUnk_c4 = 1;
+    p->mUnk_c4 = TRUE;
 }
 
 void func_02088c7c(Unk020888b4 *p) {

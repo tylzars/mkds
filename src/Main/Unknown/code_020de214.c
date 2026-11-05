@@ -44,7 +44,7 @@ Unk020de2d8 *func_020de2d8(void) {
 
 void func_020de270(void *a, Unk020de000 *b, s32 c, u16 d) {
     func_020ddaa0(&b->mUnk_a4, gWanwanChain, c, d);
-    if (b->mUnk_f4 == 0) {
+    if (b->mUnk_f4 == FALSE) {
         return;
     }
     func_020dda38(&b->mUnk_a4, gWanwanKui, &b->mUnk_04, c, d);
@@ -55,7 +55,7 @@ void func_020de214(void *a, Unk020de000 *b) {
     Wanwan *p;
 
     p = b->mUnk_a0;
-    if (b->mUnk_f4 == 0) {
+    if (b->mUnk_f4 == FALSE) {
         b->mUnk_04 = p->mUnk_00.mPos;
     }
     Vec3AddScaled(-p->mUnk_f0, &p->mUnk_00.mMatrix.mUnk_00[2], &p->mUnk_00.mPos, &v);

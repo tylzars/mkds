@@ -26,7 +26,7 @@
 
 void func_020b36dc(void) {
     data_0217b358 = HeapAlloc(GetHeap(func_020364e8()), 0xc);
-    data_0217b358->mUnk_00 = 0;
+    data_0217b358->mUnk_00 = FALSE;
     data_0217b358->mUnk_04 = 0;
     data_0217b358->mUnk_08 = 0;
 }
@@ -41,7 +41,7 @@ u32 func_020b36c8(void) {
 }
 
 void func_020b36a4(void) {
-    data_0217b358->mUnk_00 = 0;
+    data_0217b358->mUnk_00 = FALSE;
     data_0217b358->mUnk_08 = -0x78;
 }
 
@@ -50,7 +50,7 @@ void func_020b3584(void) {
     s32 a;
     s32 *q;
 
-    if (p->mUnk_00 != 0) {
+    if (p->mUnk_00 != FALSE) {
         a = p->mUnk_08;
         if (a < 200) {
             p->mUnk_08 = a + 1;
@@ -76,13 +76,13 @@ void func_020b3584(void) {
         if ((data_0217aa14->mUnk_75c & 2) == 0) {
             return;
         }
-        p->mUnk_00 = 1;
+        p->mUnk_00 = TRUE;
         func_020617f0();
         func_020d3c7c();
         return;
     }
     if (func_02054754() == 1) {
-        data_0217b358->mUnk_00 = 1;
+        data_0217b358->mUnk_00 = TRUE;
     }
 }
 

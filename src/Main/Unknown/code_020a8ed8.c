@@ -359,7 +359,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
                 a->mUnk_10.x = b->x + (s32) (((s64) gPairsByAngle[n] * 0x5dc000) >> 12);
                 a->mUnk_10.y = b->y;
                 a->mUnk_10.z = b->z + (s32) (((s64) gPairsByAngle[n + 1] * 0x5dc000) >> 12);
-                a->mUnk_20 = 0;
+                a->mUnk_20 = FALSE;
             } else if (r->mUnk_024.z > b->z && r->mUnk_024.y < b->y - 0x32000) {
                 a->mUnk_10.x = b->x + (s32) (((s64) gPairsByAngle[0] * 0x5dc000) >> 12);
                 a->mUnk_10.y = b->y;
@@ -370,12 +370,12 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
                     n = v;
                 }
                 a->mUnk_10.x = n;
-                a->mUnk_20 = 1;
+                a->mUnk_20 = TRUE;
             } else {
                 a->mUnk_10.x = b->x + (s32) (((s64) data_0215feb4[0x54] * 0x5dc000) >> 12);
                 a->mUnk_10.y = b->y;
                 a->mUnk_10.z = b->z + (s32) (((s64) data_0215feb4[0x55] * 0x5dc000) >> 12);
-                a->mUnk_20 = 0;
+                a->mUnk_20 = FALSE;
             }
             break;
         case 0x19:
@@ -395,9 +395,9 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             a->mUnk_10.y = b->y;
             a->mUnk_10.z = b->z;
             if (r->mUnk_024.x < b->x) {
-                a->mUnk_20 = 1;
+                a->mUnk_20 = TRUE;
             } else {
-                a->mUnk_20 = 0;
+                a->mUnk_20 = FALSE;
             }
             break;
     }

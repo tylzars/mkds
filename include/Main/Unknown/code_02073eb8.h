@@ -67,7 +67,7 @@ Unk02012f58 *func_0207564c(void);
 Unk02012f58 *func_02075694(void);
 void func_020757d8(void);
 void func_02075900(Unk02061808 *p);
-s32 func_02075a94(Unk02061808 *p);
+BOOL func_02075a94(Unk02061808 *p);
 u32 func_02075cf0(void);
 void func_02075d08(s32 a);
 void func_02075eb8(void);

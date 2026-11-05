@@ -15,8 +15,8 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02147cd8.h"
 
-int func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, void *g, void *h, u32 *o, u32 *j, int *k,
-                  u16 *l, u32 *m) {
+BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, void *g, void *h, u32 *o, u32 *j, int *k,
+                   u16 *l, u32 *m) {
     u16 *pl;
     Unk0217b614_08 *ta;
     s64 ss;
@@ -78,15 +78,15 @@ int func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, void
     x = (pa.x - kp->mUnk_14) >> 12;
     ss = (s64) r * r;
     if (x & kp->mUnk_20) {
-        return 0;
+        return FALSE;
     }
     y = (pa.y - kp->mUnk_18) >> 12;
     if (y & kp->mUnk_24) {
-        return 0;
+        return FALSE;
     }
     z = (pa.z - kp->mUnk_1c) >> 12;
     if (z & kp->mUnk_28) {
-        return 0;
+        return FALSE;
     }
     sh = kp->mUnk_2c;
     v = ((z >> sh) << kp->mUnk_34) | ((y >> sh) << kp->mUnk_30) | (x >> sh);

@@ -45,7 +45,7 @@ typedef struct Unk020d5bf0 {
     /* 0e0 */ s32 mUnk_0e0;
     /* 0e4 */ Vec3 mUnk_0e4;
     /* 0f0 */ Vec3 *mUnk_0f0;
-    /* 0f4 */ s32 mUnk_0f4;
+    /* 0f4 */ BOOL mUnk_0f4;
     /* 0f8 */ s32 mUnk_0f8;
     /* 0fc */ s32 mUnk_0fc;
     /* 100 */ s32 mUnk_100;

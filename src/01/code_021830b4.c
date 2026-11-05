@@ -375,7 +375,7 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
         }
     } else {
         if (func_ov001_021871f8(d, 8) != 0) {
-            if (func_ov001_021871d0(d) != 0) {
+            if (func_ov001_021871d0(d) != FALSE) {
                 func_ov001_02183880(d);
             }
         }
@@ -395,7 +395,7 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
             }
         }
         if (func_ov001_021871f8(d, 3) != 0) {
-            if (func_ov001_021881a8(d, (Vec3 *) d->mUnk_000.mCourseMapRow, (s32) (d->mPrm->mUnk_180), 0) == 0) {
+            if (func_ov001_021881a8(d, (Vec3 *) d->mUnk_000.mCourseMapRow, (s32) (d->mPrm->mUnk_180), 0) == FALSE) {
                 func_ov001_021839ac(d);
             }
         }

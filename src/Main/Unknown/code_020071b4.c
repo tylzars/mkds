@@ -46,7 +46,7 @@ u32 func_020072c0(void) {
     v3 = data_0216fdac;
     v4 = (Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4);
     if (func_0200806c(&v2, v3->mUnk_1d2c + v3->mUnk_1525 * 0x5d4, v4->mUnk_1d48,
-                      v3->mUnk_1788 + v3->mUnk_1525 * 0x5d4) == 0) {
+                      v3->mUnk_1788 + v3->mUnk_1525 * 0x5d4) == FALSE) {
         return 21;
     }
     v1.mUnk_00 = 4;

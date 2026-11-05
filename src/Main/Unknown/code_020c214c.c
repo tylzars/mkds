@@ -383,7 +383,7 @@ void func_020c28dc(Unk020c06c4 *a) {
             a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
                                          NULL, e3, 0, 1);
             if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == 2)) {
-                x = func_020b4b98(v) != 0 ? 0x1a : 0x1b;
+                x = func_020b4b98(v) != FALSE ? 0x1a : 0x1b;
                 m = GetRaceGoalSNcerEntry(x);
                 e4[0] = (d + 0xd1) << 12;
                 e4[1] = t[i] << 12;

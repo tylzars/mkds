@@ -156,7 +156,7 @@ void func_02046024(s32 a) {
                 }
                 c = 0;
                 for (f = 0; f < n; f++) {
-                    if (func_02046648(t[p]) != 0) {
+                    if (func_02046648(t[p]) != FALSE) {
                         data_021759c0->mCourseList[c] = data_02154128[t[p]][q];
                         c = (u8) (c + 1);
                     }
@@ -213,7 +213,7 @@ void func_02046024(s32 a) {
                 for (k = 0; k < n; k++) {
                     p = k / 4;
                     q = k % 4;
-                    if (func_02046648(t[p]) != 0) {
+                    if (func_02046648(t[p]) != FALSE) {
                         data_021759c0->mCourseList[c] = data_02154128[t[p]][q];
                         c = (u8) (c + 1);
                     }

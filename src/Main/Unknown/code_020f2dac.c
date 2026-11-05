@@ -130,7 +130,7 @@ void func_020f45f0(Unk020f40dc *rec, s32 keep) {
 
     if (data_021759c0->mMode == 5) {
         n = rec->mUnk_08;
-        if (rec->mUnk_24 == 0) {
+        if (rec->mUnk_24 == FALSE) {
             for (i = 0; i < n; i++) {
                 func_020fe828(tab);
             }
@@ -798,7 +798,7 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
         if (a->mUnk_000.mUnk_fc & 0x214300) {
             a->mUnk_000.mUnk_74 |= 0x20;
             func_020f92e8((u32) p, (u32) &v);
-            if (func_020f9290(a, &v) != 0) {
+            if (func_020f9290(a, &v) != FALSE) {
                 return;
             }
             a->mUnk_000.mUnk_78 &= ~0x4000;

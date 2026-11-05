@@ -160,7 +160,7 @@ typedef struct Unk02174e3c {
     /* 200 */ s32 mUnk_200;
     /* 204 */ s32 mUnk_204;
     /* 208 */ s32 mUnk_208;
-    /* 20c */ s32 mUnk_20c;
+    /* 20c */ BOOL mUnk_20c;
     /* 210 */ Unk02025ebc mUnk_210[4];
     /* 250 */ s32 mUnk_250;
     /* 254 */ s32 mUnk_254;
@@ -199,7 +199,7 @@ typedef struct Unk02174e60 {
     /* 0e0 */ s32 mUnk_0e0;
     /* 0e4 */ Unk02174e60_e4 mUnk_0e4[8];
     /* 144 */ s32 mUnk_144;
-    /* 148 */ s32 mUnk_148;
+    /* 148 */ BOOL mUnk_148;
     /* 14c */ s32 mUnk_14c;
     /* 150 */ s32 mUnk_150;
 } Unk02174e60;
@@ -220,7 +220,7 @@ typedef struct Unk02174e64_9c_00 {
 // 0x3c-byte entries from 0x9c of Unk02174e64.
 typedef struct Unk02174e64_9c {
     /* 00 */ Unk02174e64_9c_00 mUnk_00;
-    /* 28 */ s32 mUnk_28;
+    /* 28 */ BOOL mUnk_28;
     /* 2c */ Unk02025ebc mUnk_2c;
 } Unk02174e64_9c;
 
@@ -238,7 +238,7 @@ typedef struct Unk02174e64 {
     /* 094 */ s32 mUnk_094;
     /* 098 */ s32 mUnk_098;
     /* 09c */ Unk02174e64_9c mUnk_09c[4];
-    /* 18c */ s32 mUnk_18c;
+    /* 18c */ BOOL mUnk_18c;
     /* 190 */ s32 mUnk_190;
     /* 194 */ Unk02025ebc mUnk_194;
     /* 1a4 */ void *mHeap;
@@ -355,7 +355,7 @@ typedef struct Unk02174e68 {
     /* 88 */ Unk020b3fb0 *mUnk_88;
     /* 8c */ s32 mUnk_8c;
     /* 90 */ Unk02025ebc mUnk_90;
-    /* a0 */ s32 mUnk_a0;
+    /* a0 */ BOOL mUnk_a0;
     /* a4 */ void *mHeap;
 } Unk02174e68;
 

@@ -119,7 +119,7 @@ s32 func_ov000_0218151c(s32 a, s32 b, s32 *c) {
 }
 
 void func_ov000_02181458(void) {
-    if (func_ov000_02181684() != 0) {
+    if (func_ov000_02181684() != FALSE) {
         data_ov000_021b4c68->mNextState = 1;
         func_02126570(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x1c),
                       GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 6));
@@ -163,7 +163,7 @@ void func_ov000_0218134c(void) {
             data_ov000_021b4c68->mNextState = 7;
             func_02126638(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x14), 1, 1, 1, 0, 1, 0);
             func_0211fe24();
-            data_ov000_021b4c68->mUnk_14 = 1;
+            data_ov000_021b4c68->mUnk_14 = TRUE;
             func_02108bb4();
             return;
         }
@@ -243,7 +243,7 @@ void func_ov000_021810dc(void) {
             data_ov000_021b4c68->mNextState = 7;
             func_02126638(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x14), 1, 1, 1, 0, 1, 0);
             func_0211fe24();
-            data_ov000_021b4c68->mUnk_14 = 1;
+            data_ov000_021b4c68->mUnk_14 = TRUE;
             func_02108bb4();
             return;
         }
@@ -289,7 +289,7 @@ void func_ov000_02180f80(void) {
             data_ov000_021b4c68->mNextState = 7;
             func_02126638(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x14), 1, 1, 1, 0, 1, 0);
             func_0211fe24();
-            data_ov000_021b4c68->mUnk_14 = 0;
+            data_ov000_021b4c68->mUnk_14 = FALSE;
             func_02108bb4();
             return;
         }
@@ -325,7 +325,7 @@ void func_ov000_02180e58(void) {
                 break;
             case 1:
                 if (func_ov000_021806a0() != 0) {
-                    if (data_ov000_021b4c68->mUnk_14 != 0) {
+                    if (data_ov000_021b4c68->mUnk_14 != FALSE) {
                         data_ov000_021b4c68->mNextState = 5;
                         func_02126570(GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x1e),
                                       GetBmgEntry(data_ov000_021b4c68->mCommonMessages, 6));
@@ -385,7 +385,7 @@ void func_ov000_02180cdc(void) {
                 b = TRUE;
             }
             if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                              data_02175628[i].mUnk_4a) == 0) {
+                                                                              data_02175628[i].mUnk_4a) == FALSE) {
                 goto next;
             }
         }

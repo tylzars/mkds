@@ -184,7 +184,7 @@ void func_ov003_021c6ba0(void) {
             func_ov003_021c212c(func_ov003_021c6b80);
             return;
         case 0x83:
-            if (func_ov003_021c6764() != 0) {
+            if (func_ov003_021c6764() != FALSE) {
                 func_ov003_021cdc10(6);
                 data_ov003_021da1f8->mUnk_2a = 1;
             } else {

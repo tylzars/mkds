@@ -432,7 +432,7 @@ void func_ov003_021d0900(u16 param_1, u16 param_2, u8 *param_3) {
         data_ov003_021da2ac->mUnk_ab0->mUnk_04[0] = data_ov003_021da2ac->mUnk_a92;
     }
     if (func_ov003_021d010c() == 5) {
-        if (func_ov003_021cfb98(data_ov003_021da2ac) == 0) {
+        if (func_ov003_021cfb98(data_ov003_021da2ac) == FALSE) {
             data_ov003_021da2ac->mUnk_204 = data_ov003_021da2ac->mUnk_204 + 4;
             return;
         }

@@ -9,7 +9,7 @@ u32 func_ov000_02199fb0(Gt2Connection *a, u32 d, u32 e) {
     if (b < 5) {
         if (a->mUnk_10 != 0) {
             func_ov000_02198514(a);
-            if (Gt2SetResultAndCallResultCallback(a, d, NULL, 0) == 0) {
+            if (Gt2SetResultAndCallResultCallback(a, d, NULL, 0) == FALSE) {
                 return 0;
             }
         } else {
@@ -20,7 +20,7 @@ u32 func_ov000_02199fb0(Gt2Connection *a, u32 d, u32 e) {
         }
     } else if (b != 7) {
         func_ov000_02198514(a);
-        if (func_ov000_021981d0(a, (void *) e) == 0) {
+        if (func_ov000_021981d0(a, (void *) e) == FALSE) {
             return 0;
         }
     }

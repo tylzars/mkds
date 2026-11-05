@@ -155,7 +155,7 @@ void func_0211ed80(void) {
         func_02124100(data_0215cf0c[m], 0xf, data_0217d378->mUnk_14, data_0217d378->mUnk_1c, data_0217d378->mUnk_10);
     }
     TrySetCupPictureIndexAndQueueLoads(data_0215cf8c[data_0215cf2c[func_0202968c()]][0]);
-    data_0217d378->mUnk_38 = 1;
+    data_0217d378->mUnk_38 = TRUE;
 }
 
 void func_0211ec54(void) {
@@ -250,7 +250,7 @@ void func_0211e958(void *a, void *b, void *c) {
     p = CreateFrmHeapFromMaxFree(a);
     data_0217d378 = HeapAlloc(p, 0x54);
     data_0217d378->mHeap = p;
-    data_0217d378->mUnk_38 = 0;
+    data_0217d378->mUnk_38 = FALSE;
     data_0217d378->mUnk_48 = b;
     data_0217d378->mUnk_4c = c;
     data_0217d378->mUnk_50 = 0;
@@ -403,7 +403,7 @@ s32 func_0211e51c(void) {
             break;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        if (data_0217d378->mUnk_38 != 0 && func_020d0ec4() != 0) {
+        if (data_0217d378->mUnk_38 != FALSE && func_020d0ec4() != FALSE) {
             p = GetCupPictureNscrData();
             CallQueueAppend(0xf, 0, GetCupPictureNclrData(), 0xe0);
             CallQueueAppend(4, 0x20, GetCupPictureNcgrData(), 0xdc0);
@@ -420,7 +420,7 @@ s32 func_0211e51c(void) {
                 n = ((i + 8) << 5) + 0x16;
                 CallQueueAppend(a, n << 1, p + n, b);
             }
-            data_0217d378->mUnk_38 = 0;
+            data_0217d378->mUnk_38 = FALSE;
         }
         func_02124c30(data_0217d378->mUnk_04, data_0217d378->mUnk_00, data_0217d378->mUnk_08, data_0217d378->mUnk_48,
                       data_0217d378->mUnk_18);

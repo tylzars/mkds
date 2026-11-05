@@ -291,8 +291,8 @@ recheck:
     p->mUnk_30c = 0;
     func_02063b10(p, &p->mUnk_290);
     func_02063b30(p, &p->mUnk_284);
-    if (p->mUnk_208->mUnk_00 != 0) {
-        p->mUnk_208->mUnk_00 = 0;
+    if (p->mUnk_208->mUnk_00 != FALSE) {
+        p->mUnk_208->mUnk_00 = FALSE;
     }
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x1;

@@ -14,7 +14,7 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void func_020cb9b8(void) {
-    if (data_0217b43c->mUnk_104 == 0) {
+    if (data_0217b43c->mUnk_104 == FALSE) {
         data_0217b43c->mUnk_008 = data_0217b43c->mUnk_00c;
         data_0217b43c->mUnk_00c = 0x1f;
         func_020cb618();

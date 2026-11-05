@@ -20,7 +20,7 @@ void func_020ad268(void) {
     } else {
         func_020ad2f0(0, 0, 0, 0);
         func_020ad2dc(1);
-        data_0217b340->mUnk_50 = 1;
+        data_0217b340->mUnk_50 = TRUE;
         data_0217b340->mUnk_64--;
     }
 }

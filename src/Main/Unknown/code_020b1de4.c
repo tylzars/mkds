@@ -42,12 +42,12 @@ void InitChoisesS(void) {
     gChoisesS->mUnk_008 = 0;
     gChoisesS->mUnk_00c = 0;
     gChoisesS->mUnk_014 = 0;
-    gChoisesS->mUnk_010 = 0;
+    gChoisesS->mUnk_010 = FALSE;
     gChoisesS->mUnk_01c = 0;
     if (func_020b252c() == 4) {
         gChoisesS->mUnk_020 = func_020adb34();
     } else {
-        gChoisesS->mUnk_020 = 0;
+        gChoisesS->mUnk_020 = FALSE;
     }
     gChoisesS->mUnk_02c = 0;
     gChoisesS->mUnk_030 = 0;
@@ -57,7 +57,7 @@ void InitChoisesS(void) {
         case 0:
             func_020b31b8(0, 0);
             func_020b31b8(0, 9);
-            if (func_020b250c() != 0) {
+            if (func_020b250c() != FALSE) {
                 func_020b31b8(1, 7);
                 func_020b31b8(1, 8);
             } else {
@@ -65,7 +65,7 @@ void InitChoisesS(void) {
                 func_020b31b8(1, 8);
                 func_020b31b8(1, 9);
             }
-            if (func_020b250c() != 0) {
+            if (func_020b250c() != FALSE) {
                 func_020b31b8(3, 0);
                 func_020b31b8(3, 7);
                 func_020b31b8(3, 8);

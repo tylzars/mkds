@@ -22,7 +22,7 @@ void func_ov000_0219a044(Gt2Socket *a) {
     if (a->mUnk_18 == 0) {
         a->mUnk_18 = 1;
         func_ov000_021988e8(a);
-        if (func_ov000_02198448(a) != 0) {
+        if (func_ov000_02198448(a) != FALSE) {
             DeleteSocket(a);
         }
     }

@@ -20,7 +20,7 @@ typedef struct Dossun {
     /* a4 */ s32 mTimer;
     /* a8 */ s32 mUnk_a8;
     /* ac */ s32 mUnk_ac;
-    /* b0 */ s32 mUnk_b0;
+    /* b0 */ BOOL mUnk_b0;
     /* b4 */ s32 mUnk_b4;
     /* b8 */ s16 mUnk_b8;
     /* ba */ s16 mUnk_ba;

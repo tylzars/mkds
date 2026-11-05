@@ -498,7 +498,7 @@ void func_0210fb88(Unk0217d244 *a, Unk0212c400 **b) {
         func_02110114(b);
         return;
     }
-    a->mUnk_0c = (func_0207a2a8(&x) != 0 && x < 0x8d04) ? 1 : 0;
+    a->mUnk_0c = (func_0207a2a8(&x) != FALSE && x < 0x8d04) ? 1 : 0;
     if ((a->mUnk_08 >> 2) & 1) {
         j = 0;
         l = 0x1e;

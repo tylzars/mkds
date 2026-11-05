@@ -371,7 +371,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                 n = 0;
                 b->mUnk_14 = 5;
                 if (GpiReadError(a, (const char *) p->mUnk_008, 1) != FALSE) {
-                    p->mUnk_140 = 1;
+                    p->mUnk_140 = TRUE;
                     return 4;
                 }
                 if (p->mUnk_000 == 1) {
@@ -824,7 +824,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                 } else {
                     AssertionFailed(data_ov000_021b3768, data_ov000_021b3628, NULL, 0x52a);
                 }
-                p->mUnk_140 = 1;
+                p->mUnk_140 = TRUE;
                 k = FALSE;
             }
         }

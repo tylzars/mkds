@@ -17,11 +17,11 @@ typedef struct ChoisesS {
     /* 004 */ s32 mUnk_004;
     /* 008 */ s32 mUnk_008;
     /* 00c */ s32 mUnk_00c;
-    /* 010 */ s32 mUnk_010;
+    /* 010 */ BOOL mUnk_010;
     /* 014 */ s32 mUnk_014;
     /* 018 */ s32 mUnk_018;
     /* 01c */ s32 mUnk_01c;
-    /* 020 */ s32 mUnk_020;
+    /* 020 */ BOOL mUnk_020;
     /* 024 */ s32 mUnk_024;
     /* 028 */ s32 mUnk_028;
     /* 02c */ s32 mUnk_02c;

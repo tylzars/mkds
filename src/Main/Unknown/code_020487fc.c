@@ -107,7 +107,7 @@ static inline void func_020487fc_inline7(void) {
         if (!func_02049aa4()) {
             if (func_0214f710() == 1) {
                 t = IrqDisable();
-                data_021759cc->mUnk_110 = 1;
+                data_021759cc->mUnk_110 = TRUE;
                 func_0214f72c(0);
                 IrqRestore(t);
             }
@@ -122,7 +122,7 @@ static inline void func_020487fc_inline7(void) {
                 func_02049808(0);
                 func_020497f0(0);
             }
-            data_021759cc->mUnk_110 = 0;
+            data_021759cc->mUnk_110 = FALSE;
             IrqRestore(t);
         }
     }
@@ -198,9 +198,9 @@ void func_020487fc(Unk020487fc *a, const Unk021a9034 *b) {
     data_021759cc->mUnk_11c = 0;
     t = IrqDisable();
     if (func_0214f710() == 1) {
-        data_021759cc->mUnk_110 = 0;
+        data_021759cc->mUnk_110 = FALSE;
     } else {
-        data_021759cc->mUnk_110 = 1;
+        data_021759cc->mUnk_110 = TRUE;
     }
     IrqRestore(t);
     data_021759cc->mUnk_10c = 0;

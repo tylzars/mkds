@@ -91,7 +91,7 @@ void func_02121f4c(u32 a, void *b, u32 c) {
     if (func_02121f4c_inline(p, a, c, n) == FALSE) {
         return;
     }
-    if (func_021217e8(p->mKind) == 0) {
+    if (func_021217e8(p->mKind) == FALSE) {
         return;
     }
     switch (p->mKind) {

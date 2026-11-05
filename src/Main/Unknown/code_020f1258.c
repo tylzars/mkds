@@ -25,7 +25,7 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_020ee684.h"
 
-int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
+BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     Vec3 t;
     Vec3 u;
     Vec3 w;
@@ -42,7 +42,7 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     if ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_48 & 1) == func_02061f7c()) {
         v = a->mUnk_228->mUnk_1fc;
         if (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_74 & 0x20000)) {
-            if (func_0206c0e0(v) != 0) {
+            if (func_0206c0e0(v) != FALSE) {
                 b >>= 1;
             }
             Vec3Sub(&v->mUnk_98, p, &t);
@@ -65,7 +65,7 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
                     a->mUnk_238 = a->mUnk_238 + 1;
                     if (a->mUnk_238 > 0x5a) {
                         func_020f7070(a, 1);
-                        return 0;
+                        return FALSE;
                     }
                     t.x = 0;
                     t.y = 0;
@@ -88,7 +88,7 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
             Vec3Add(q, &t, q);
         }
     }
-    a->mUnk_228->mUnk_208 = 1;
+    a->mUnk_228->mUnk_208 = TRUE;
     Vec3Add(&a->mUnk_22c, p, p);
     Vec3Add(q, p, p);
     if (func_01ffdee4(&p->x, (u32 *) &a->mUnk_000.mUnk_000.mUnk_000.mUnk_0e4, 0, a->mUnk_000.mUnk_000.mUnk_000.mUnk_dc,
@@ -121,12 +121,12 @@ int func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
                 q->y = (s32) (((s64) q->y * 0x23d) >> 12);
                 q->z = (s32) (((s64) q->z * 0x23d) >> 12);
                 func_020f6fc4(a, 1);
-                return 0;
+                return FALSE;
             }
         }
         if (a->mUnk_000.mUnk_000.mUnk_000.mUnk_fc & 0x8000) {
             func_020f7070(a, 1);
-            return 0;
+            return FALSE;
         }
     }
     func_020f2028(&a->mUnk_000.mUnk_000.mUnk_000);

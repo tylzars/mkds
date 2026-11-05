@@ -554,7 +554,7 @@ void func_ov003_021cfd44(Unk021425e8 *a) {
     }
 }
 
-s32 func_ov003_021cfc4c(u32 a, u16 b, u16 c) {
+BOOL func_ov003_021cfc4c(u32 a, u16 b, u16 c) {
     if (data_ov003_021da2a8->mUnk_40 != 1) {
         IrqDisableLoopForever();
     }
@@ -584,7 +584,7 @@ s32 func_ov003_021cfc4c(u32 a, u16 b, u16 c) {
     if (data_ov003_021da2a4 != NULL) {
         data_ov003_021da2a4(0x08000000, data_ov003_021d7aac, a);
     }
-    return 0;
+    return FALSE;
 }
 
 void func_ov003_021cfc40(u32 a) {

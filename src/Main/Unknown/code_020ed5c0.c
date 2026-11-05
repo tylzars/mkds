@@ -211,7 +211,7 @@ void func_020edf10(Unk020eda5c *p) {
     for (j = n - 1; j >= 0; j--) {
         q = d[j];
         if (q->mUnk_da == -1) {
-            if (func_020f91e0(q) != 0) {
+            if (func_020f91e0(q) != FALSE) {
                 idx = q->mUnk_44;
                 if (data_0217bc34[idx].mUnk_68 != 0) {
                     func_020f9ca8(q);
@@ -232,7 +232,7 @@ void func_020edf10(Unk020eda5c *p) {
                 func_020ee160(q, e);
             } else if ((data_0217b5bc[i] & 0x2000) != 0) {
                 MapObject *e = data_0217b5c4[i];
-                if (func_020d2234(e, q) == 0) {
+                if (func_020d2234(e, q) == FALSE) {
                     continue;
                 }
                 func_020f944c(q, e);

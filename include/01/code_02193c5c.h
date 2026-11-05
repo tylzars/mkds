@@ -15,7 +15,7 @@ typedef struct OptionTopMenu {
     /* option state passed to RequestOptionState (1, 2 or 4); no initial store, set by the input handler (state 3,
        also state 9), not set for entry 2 (dialog path); also tested inside the screen */
     /* 10 */ s32 mNextOptionState;
-    /* 14 */ s32 mUnk_14;
+    /* 14 */ BOOL mUnk_14;
     /* stored to reg_G2_BG0OFS without negation (the other mBg0Offset members are stored negated) */
     /* 18 */ s32 mBg0Offset;
     /* 1c */ void *mUnk_1c;
@@ -78,8 +78,8 @@ typedef struct RecordGpx {
     // Set to 6, counted down while above 0; the row member is set to -func_020adc64(6 - timer) for [0] and
     // +func_020adc64(6 - timer) for [1] (stored, not added).
     /* 80 */ s32 mOffsetTimers[2];
-    /* 88 */ s32 mUnk_88;
-    /* 8c */ s32 mUnk_8c;
+    /* 88 */ BOOL mUnk_88;
+    /* 8c */ BOOL mUnk_8c;
     /* 90 */ s32 mUnk_90;
 } RecordGpx;
 

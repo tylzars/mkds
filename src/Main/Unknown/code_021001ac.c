@@ -403,7 +403,7 @@ void func_0210174c(Unk02101c84 *p) {
     if (p->mUnk_248 >= 0xb) {
         return;
     }
-    if (func_020d849c(&p->mUnk_1a4.mUnk_00) != 0) {
+    if (func_020d849c(&p->mUnk_1a4.mUnk_00) != FALSE) {
         do {
             p->mUnk_248++;
             if (p->mUnk_248 >= 0xb) {

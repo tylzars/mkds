@@ -6,14 +6,14 @@ void func_0204a978(Unk02175650 *a) {
     if (a->mUnk_00 == NULL) {
         return;
     }
-    if (a->mUnk_0c == 0) {
+    if (a->mUnk_0c == FALSE) {
         if (a->mUnk_00 != NULL) {
             MemFill(a->mUnk_00, 0, 0xdcc);
         }
-        a->mUnk_0c = 1;
+        a->mUnk_0c = TRUE;
     }
     a->mUnk_00->mUnk_00 = 0;
-    a->mUnk_0c = 0;
+    a->mUnk_0c = FALSE;
     a->mUnk_04 = 0;
     a->mUnk_06 = 0;
     a->mUnk_08 = 1;

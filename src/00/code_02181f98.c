@@ -53,7 +53,7 @@ void InitWiFiVSSetting(void *heap) {
     gWiFiVSSetting->mUnk_08 = 1;
     gWiFiVSSetting->mPendingWiFiState = -1;
     gWiFiVSSetting->mStateFrames = 0;
-    gWiFiVSSetting->mUnk_24 = 1;
+    gWiFiVSSetting->mUnk_24 = TRUE;
     func_ov000_02180638(0);
     func_ov000_02182e18();
     func_0212b928(heap, gWiFiVSSetting->mWiFiVSSettingSONclr, 3);
@@ -283,7 +283,7 @@ void AdvanceWiFiVSSettingState4(void) {
     gWiFiVSSetting->mNextState = 6;
     gWiFiVSSetting->mPendingWiFiState = 1;
     func_02128310(1);
-    gWiFiVSSetting->mUnk_28 = 1;
+    gWiFiVSSetting->mUnk_28 = TRUE;
     func_02125fc0();
     goto end;
 next:
@@ -291,7 +291,7 @@ next:
     if (((u16) v8 != 0 && gWiFiVSSetting->mUnk_08 == 2) || v4 == 2) {
         gWiFiVSSetting->mNextState = 5;
         if (gWiFiVSSetting->mUnk_08 == 2) {
-            gWiFiVSSetting->mUnk_24 = 0;
+            gWiFiVSSetting->mUnk_24 = FALSE;
         }
         gWiFiVSSetting->mPendingWiFiState = 3;
         gWiFiVSSetting->mUnk_08 = 2;
@@ -304,7 +304,7 @@ next:
     } else if (((u16) v8 != 0 && gWiFiVSSetting->mUnk_08 == 0) || v4 == 0) {
         gWiFiVSSetting->mNextState = 5;
         if (gWiFiVSSetting->mUnk_08 == 0) {
-            gWiFiVSSetting->mUnk_24 = 0;
+            gWiFiVSSetting->mUnk_24 = FALSE;
         }
         gWiFiVSSetting->mPendingWiFiState = 14;
         gWiFiVSSetting->mUnk_08 = 0;
@@ -377,12 +377,12 @@ void AdvanceWiFiVSSettingState5(void) {
         if (func_ov000_021832f0() != FALSE ||
             (gWiFiVSSetting->mPendingWiFiState == 3 && gWiFiVSSetting->mSettingIndex != 0)) {
             func_021282c8();
-            gWiFiVSSetting->mUnk_28 = 1;
+            gWiFiVSSetting->mUnk_28 = TRUE;
             return;
         }
-        gWiFiVSSetting->mUnk_28 = 0;
+        gWiFiVSSetting->mUnk_28 = FALSE;
     } else if (gWiFiVSSetting->mStateFrames >= 5) {
-        gWiFiVSSetting->mUnk_24 = 1;
+        gWiFiVSSetting->mUnk_24 = TRUE;
     }
 }
 
@@ -416,7 +416,7 @@ void AdvanceWiFiVSSettingState6(void) {
         gWiFiVSSetting->mUnk_14[2][1] = u;
     }
     if (gWiFiVSSetting->mStateFrames >= 10 && gWiFiVSSetting->mStateFrames >= 13 && func_02125f88() != 0 &&
-        ((gWiFiVSSetting->mUnk_28 != 0 && IsSelectReturnState0NoState1Request() != 0) ||
+        ((gWiFiVSSetting->mUnk_28 != FALSE && IsSelectReturnState0NoState1Request() != 0) ||
          IsSelectReturnState2NoState3Or4Request() != 0) &&
         func_ov000_021806c4() == -1) {
         if (gWiFiVSSetting->mPendingWiFiState == 14 && func_ov000_021832f0() == FALSE) {
@@ -441,7 +441,7 @@ void AdvanceWiFiVSSettingState6(void) {
 
             gWiFiVSSetting->mNextState = 9;
             gWiFiVSSetting->mStateFrames = 0;
-            gWiFiVSSetting->mUnk_34 = 0;
+            gWiFiVSSetting->mUnk_34 = FALSE;
             a = GetBmgEntry(gWiFiVSSetting->mWiFiMessages, 0x17);
             b = GetBmgEntry(gWiFiVSSetting->mCommonMessages, 0);
             c = GetBmgEntry(gWiFiVSSetting->mCommonMessages, 1);
@@ -549,11 +549,11 @@ void AdvanceWiFiVSSettingState9(void) {
 
 void AdvanceWiFiVSSettingState10(void) {
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
-    if (func_02125fa4() != 0 && gWiFiVSSetting->mUnk_34 == 0) {
-        gWiFiVSSetting->mUnk_34 = 1;
+    if (func_02125fa4() != 0 && gWiFiVSSetting->mUnk_34 == FALSE) {
+        gWiFiVSSetting->mUnk_34 = TRUE;
         func_0211fe18();
     }
-    if (gWiFiVSSetting->mUnk_34 != 0 && func_0211fda8() != 0 && gWiFiVSSetting->mStateFrames > 90 &&
+    if (gWiFiVSSetting->mUnk_34 != FALSE && func_0211fda8() != 0 && gWiFiVSSetting->mStateFrames > 90 &&
         func_02125fa4() != 0) {
         void *t;
 
@@ -611,7 +611,7 @@ void func_ov000_021821e0(void) {
     BOOL z = FALSE;
 
     for (i = 0; i < 3; i++) {
-        if (i == gWiFiVSSetting->mUnk_08 && gWiFiVSSetting->mUnk_24 != 0) {
+        if (i == gWiFiVSSetting->mUnk_08 && gWiFiVSSetting->mUnk_24 != FALSE) {
             gWiFiVSSetting->mUnk_103c[data_ov000_021b060c[i][1]].mUnk_00 = 1;
             func_02124100(data_ov000_021b05e8[i], 14, gWiFiVSSetting->mWiFiVSSettingBnll, gWiFiVSSetting->mUnk_103c,
                           gWiFiVSSetting->mWiFiVSSettingBncl);

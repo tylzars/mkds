@@ -30,7 +30,7 @@ void func_020caf98(s32 a) {
         if (func_020cb1f4(v, 1)) {
             func_020ccc74(3, 0x1f);
             func_020cb1cc(5);
-            data_0217b43c->mUnk_934 = 1;
+            data_0217b43c->mUnk_934 = TRUE;
         } else if (func_020cb1f4(v, 2)) {
             func_020ccc74(2, 0x1b);
             func_02128310(1);
@@ -50,7 +50,7 @@ void func_020caf98(s32 a) {
             o = p->mUnk_930;
             if (c != -1) {
                 if (o == c) {
-                    p->mUnk_934 = 1;
+                    p->mUnk_934 = TRUE;
                 }
                 data_0217b43c->mUnk_930 = c;
                 func_020ccc74(3, 0x1f);

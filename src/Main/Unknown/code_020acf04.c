@@ -34,7 +34,7 @@ void func_020acf44(void) {
             p[i + w].mUnk_04 = 0;
         }
         func_020adad0(2, 8);
-        data_0217b340->mUnk_58 = 0;
+        data_0217b340->mUnk_58 = FALSE;
     }
     func_020acff4();
 }

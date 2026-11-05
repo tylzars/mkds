@@ -197,7 +197,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
             j.mUnk_00 = k.mUnk_0c_0;
             j.mUnk_01 = k.mUnk_0c_7;
             j.mUnk_02 = k.mUnk_0c_11;
-            if (k.mUnk_22_0 == 1 && k.mUnk_22_3 == 0 && func_0203b0a0(&j, &h) != 0) {
+            if (k.mUnk_22_0 == 1 && k.mUnk_22_3 == 0 && func_0203b0a0(&j, &h) != FALSE) {
                 h = j;
                 q = i;
             }

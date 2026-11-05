@@ -240,14 +240,14 @@ void func_02044fc0(void) {
     data_021759c0->mUnk_3d4 = n;
 }
 
-s32 func_02044e9c(s32 a, s32 b) {
+BOOL func_02044e9c(s32 a, s32 b) {
     u8 i;
     BOOL r;
     Unk0217aa08_14 *p;
 
     r = FALSE;
     if (data_021759c0->mNextHeader.mUnk_0c == 2) {
-        return 1;
+        return TRUE;
     }
     p = data_0217aa08->mUnk_14[0];
     if (p->mUnk_08_0 == 1) {
@@ -354,7 +354,7 @@ void func_02044940(void) {
                     }
                     break;
                 case 2:
-                    if (func_02044bf8(data_021759c0->mNextHeader.mCourseId, 1) != 0) {
+                    if (func_02044bf8(data_021759c0->mNextHeader.mCourseId, 1) != FALSE) {
                         n++;
                     }
                     break;

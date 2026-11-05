@@ -86,12 +86,12 @@ typedef struct Unk0206bcb0_590_6a {
 // Words and halfwords from 0x24 of a Unk0206bcb0_590.
 typedef struct Unk0206bcb0_590_24 {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 04 */ BOOL mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ u8 mUnk_0c[4];
     /* 10 */ s16 mUnk_10;
     /* 12 */ u8 mUnk_12[2];
-    /* 14 */ s32 mUnk_14;
+    /* 14 */ BOOL mUnk_14;
     /* 18 */ s16 mUnk_18;
 } Unk0206bcb0_590_24;
 
@@ -115,15 +115,15 @@ typedef struct Unk0206bcb0_590 {
     /* 054 */ Unk0206bcb0_590_54 *mUnk_054;
     /* 058 */ s32 mUnk_058;
     /* 05c */ s32 mUnk_05c;
-    /* 060 */ s32 mUnk_060;
-    /* 064 */ s32 mUnk_064;
+    /* 060 */ BOOL mUnk_060;
+    /* 064 */ BOOL mUnk_064;
     /* 068 */ u16 mUnk_068;
     /* 06a */ Unk0206bcb0_590_6a mUnk_06a;
     /* 096 */ u8 mUnk_096[2];
     /* 098 */ u8 mUnk_098[0xc];
     /* 0a4 */ s32 mUnk_0a4;
     /* 0a8 */ u8 mUnk_0a8[4];
-    /* 0ac */ s32 mUnk_0ac;
+    /* 0ac */ BOOL mUnk_0ac;
     /* 0b0 */ s32 mUnk_0b0;
 } Unk0206bcb0_590;
 

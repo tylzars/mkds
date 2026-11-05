@@ -181,7 +181,7 @@ void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
         case 1:
             p->mUnk_0b8.mUnk_04 = 0x3c000;
             p->mUnk_0b8.mUnk_10 = ((s64) p->mUnk_0b8.mUnk_00->mUnk_00[p->mUnk_0b8.mUnk_0c].mUnk_34 * 0x3c000) >> 12;
-            if (func_020d8cc8(&p->mUnk_0b8) != 0 && (t = p->mUnk_0b8.mUnk_1c->mUnk_0e) != 0) {
+            if (func_020d8cc8(&p->mUnk_0b8) != FALSE && (t = p->mUnk_0b8.mUnk_1c->mUnk_0e) != 0) {
                 if (p->mUnk_000.mFlags & 0x800) {
                     k = data_021759c0->mMode;
                     if (k == 1) {

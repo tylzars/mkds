@@ -156,7 +156,7 @@ typedef struct Unk0206bcb0_514 {
 } Unk0206bcb0_514;
 
 typedef struct Unk0206c5e4_208 {
-    /* 0 */ s32 mUnk_00;
+    /* 0 */ BOOL mUnk_00;
 } Unk0206c5e4_208;
 
 // The 0x38 bytes at 0x450 of a Kart: words at 0x08, 0x28, 0x30 and 0x34 and a byte at 0x2c.

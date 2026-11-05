@@ -103,7 +103,7 @@ void UpdateDossun(void *a, Dossun *p) {
     s32 v;
     s32 t;
     s32 w;
-    p->mUnk_b0 = 0;
+    p->mUnk_b0 = FALSE;
     q = &p->mUnk_c8;
     if (p->mUnk_b4 != 0) {
         p->mUnk_ba += p->mUnk_b8;
@@ -259,7 +259,7 @@ void UpdateDossun(void *a, Dossun *p) {
                 func_0208b7bc(0x59, &e->mUnk_00);
                 func_0208b7bc(0x5a, &e->mUnk_00);
             }
-            p->mUnk_b0 = 1;
+            p->mUnk_b0 = TRUE;
         }
         p->mTimer = q->mUnk_1c->mUnk_0e;
         if (p->mTimer != 0) {
@@ -309,7 +309,7 @@ u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c) {
             p->mUnk_bc = func_02061fb8();
         }
     }
-    if (p->mState == 4 || p->mUnk_b0 != 0) {
+    if (p->mState == 4 || p->mUnk_b0 != FALSE) {
         Vec3Sub(&a->mUnk_1b8, &p->mUnk_00.mPos, &s2);
         n = ((s64) s2.x * s2.x + (s64) s2.z * s2.z) * 5;
         y = s2.y;
@@ -381,7 +381,7 @@ void func_020db430(Dossun *p) {
     p->mUnk_b8 = p->mUnk_ba;
     p->mUnk_c0 = 0;
     p->mUnk_ac = p->mUnk_00.mPos.y;
-    p->mUnk_b0 = 0;
+    p->mUnk_b0 = FALSE;
 }
 #pragma thumb off
 

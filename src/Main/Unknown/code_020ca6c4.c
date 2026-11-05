@@ -29,11 +29,11 @@ void InitEmblemChoises(void) {
     gEmblemChoises = HeapAlloc(func_020ca820(), 0x6c);
     gEmblemChoises->mUnk_00 = 0;
     gEmblemChoises->mUnk_04 = 1;
-    gEmblemChoises->mUnk_08 = 0;
+    gEmblemChoises->mUnk_08 = FALSE;
     gEmblemChoises->mUnk_0c = NULL;
     func_020cac9c();
     gEmblemChoises->mUnk_24 = 0;
-    gEmblemChoises->mUnk_10 = 0;
+    gEmblemChoises->mUnk_10 = FALSE;
     gEmblemChoises->mUnk_14 = 0;
     gEmblemChoises->mUnk_18 = 0;
     gEmblemChoises->mChoisesCount = 3;

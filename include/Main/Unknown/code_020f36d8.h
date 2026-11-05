@@ -252,7 +252,7 @@ typedef struct {
     /* 4e0 */ s32 mUnk_4e0;
     /* 4e4 */ s32 mUnk_4e4;
     /* 4e8 */ s32 mUnk_4e8;
-    /* 4ec */ s32 mUnk_4ec;
+    /* 4ec */ BOOL mUnk_4ec;
     /* 4f0 */ s32 mUnk_4f0;
     /* 4f4 */ u32 mUnk_4f4;
     /* 4f8 */ u8 mUnk_4f8;
@@ -348,7 +348,7 @@ typedef struct {
 
 // Entry of the table behind data_0217bc48.
 typedef struct {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ BOOL mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mUnk_0c;
@@ -425,7 +425,7 @@ typedef struct {
     /* 12 */ s16 mUnk_12;
     /* 14 */ Unk020f41c4_A *mUnk_14[3];
     /* 20 */ s32 mUnk_20;
-    /* 24 */ s32 mUnk_24;
+    /* 24 */ BOOL mUnk_24;
 } Unk020f40dc;
 
 extern Kart *GetKart(s32 idx);

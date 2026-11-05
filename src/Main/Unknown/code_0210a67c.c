@@ -311,7 +311,7 @@ void func_0210aefc(void) {
     Unk0217ccc0 *q = &data_0217ccc0;
 
     q->mUnk_60 = 0;
-    q->mUnk_64 = 0;
+    q->mUnk_64 = FALSE;
     for (i = 0; i < 8; i++) {
         q->mUnk_00[i] = NULL;
         q->mUnk_40[i] = 0;
@@ -324,7 +324,7 @@ void func_0210add4(void) {
     Unk0217ccc0 *q = &data_0217ccc0;
     s32 i;
 
-    if (q->mUnk_64 != 0) {
+    if (q->mUnk_64 != FALSE) {
         return;
     }
     if (q->mUnk_6c != -1) {
@@ -361,7 +361,7 @@ void func_0210add4(void) {
 void func_0210ad58(Kart *a, s32 b) {
     Unk0217ccc0 *q = &data_0217ccc0;
 
-    if (q->mUnk_64 != 0) {
+    if (q->mUnk_64 != FALSE) {
         return;
     }
     if (a->mIndex == data_021759c0->mEntryIndex) {
@@ -425,7 +425,7 @@ void func_0210ab48(s32 a, s32 b) {
     u16 d;
 
     c = b != 0 ? 0xc : 0xd;
-    data_0217ccc0.mUnk_64 = 1;
+    data_0217ccc0.mUnk_64 = TRUE;
     if (func_02105504() == 0) {
         return;
     }

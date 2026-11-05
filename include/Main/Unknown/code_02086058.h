@@ -28,9 +28,9 @@ typedef struct Unk02086250 {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ u16 mUnk_0c;
     /* 0e */ u8 mUnk_0e[2];
-    /* 10 */ s32 mUnk_10;
+    /* 10 */ BOOL mUnk_10;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
+    /* 18 */ BOOL mUnk_18;
     /* 1c */ Unk02086250_1c *mUnk_1c;
     /* 20 */ s16 mUnk_20;
     /* 22 */ s16 mUnk_22;

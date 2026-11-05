@@ -109,7 +109,7 @@ s32 func_0202da44(s32 a) {
 s32 func_0202d9fc(void) {
     s32 i;
     for (i = 0; i < 10; i++) {
-        if (func_0206174c(data_02174e44->mUnk_8c0 + (u8) i * 0x230) == 0) {
+        if (func_0206174c(data_02174e44->mUnk_8c0 + (u8) i * 0x230) == FALSE) {
             return i;
         }
     }

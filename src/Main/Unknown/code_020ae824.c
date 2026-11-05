@@ -44,7 +44,7 @@ void func_020ae824(void) {
         DrawEndingStaffRoll();
         return;
     }
-    if (data_0217b350->mUnk_898 == 0) {
+    if (data_0217b350->mUnk_898 == FALSE) {
         return;
     }
     func_020b3410();

@@ -817,9 +817,9 @@ void func_020efbd4(Unk020ee684 *a, s32 n) {
     q = (Unk02175620_060 *) gCourseMap;
     a->mUnk_1f0.mUnk_00 = q->mUnk_060 != 0 ? q->mUnk_0b0 : 0;
     a->mUnk_1f0.mUnk_04 = 1;
-    a->mUnk_204 = 0;
-    a->mUnk_208 = 0;
-    a->mUnk_20c = 0;
+    a->mUnk_204 = FALSE;
+    a->mUnk_208 = FALSE;
+    a->mUnk_20c = FALSE;
 }
 
 #pragma thumb off
@@ -839,7 +839,7 @@ void func_020efa60(Unk020eda5c *a, s32 f) {
     cb = data_0217bc34[b->mUnk_44].mUnk_24;
     func_020efb84(a, b);
     if (cb(a, b) == 0) {
-        if (a->mUnk_00c->mUnk_208 != 0) {
+        if (a->mUnk_00c->mUnk_208 != FALSE) {
             b->mUnk_78 |= data_021595ac;
             f = 0;
         }

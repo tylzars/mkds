@@ -1277,7 +1277,7 @@ void func_020aa89c(u16 a, Unk0214e334_b b) {
         }
         if (func_020aab40(&data_0217b278) != 0) {
             func_020ab5bc(&data_0217b2ac);
-            if (func_020ab59c(&data_0217b2ac) != 0) {
+            if (func_020ab59c(&data_0217b2ac) != FALSE) {
                 data_0217b278.mUnk_3c = data_0217b278.mUnk_10->mUnk_06;
                 func_020ab028(0);
             }

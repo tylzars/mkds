@@ -26,7 +26,8 @@ Kart *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
     Kart *q;
 
     q = GetKart((u16) data_021759c0->mEntryIndex);
-    if (q != NULL && func_ov001_021881a8(a, (Vec3 *) &q->mPos, (s32) (b), (s32) (c)) != 0 && (q->mUnk_48 & 0x40) == 0) {
+    if (q != NULL && func_ov001_021881a8(a, (Vec3 *) &q->mPos, (s32) (b), (s32) (c)) != FALSE &&
+        (q->mUnk_48 & 0x40) == 0) {
         return q;
     }
     return NULL;

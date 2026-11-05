@@ -88,7 +88,7 @@ u32 func_ov000_021a3448(u32 a) {
 }
 
 BOOL func_ov000_021a33e4(u32 a, s32 b) {
-    if ((b == 1 && func_ov000_0219bac8(a) == 0) || func_ov000_0219b8bc(a) == 0) {
+    if ((b == 1 && func_ov000_0219bac8(a) == 0) || func_ov000_0219b8bc(a) == FALSE) {
         return FALSE;
     }
     if (func_ov000_021a2fc8(a) == 1) {
@@ -107,7 +107,7 @@ BOOL func_ov000_021a3310(u16 a, u32 b, u8 *c, s32 d) {
     if (func_ov000_0219c39c() != 0) {
         return FALSE;
     }
-    if (func_ov000_021a33e4(b, a) == 0) {
+    if (func_ov000_021a33e4(b, a) == FALSE) {
         return FALSE;
     }
     e->mUnk_1c = 1;

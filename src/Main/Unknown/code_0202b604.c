@@ -141,7 +141,7 @@ void func_0202b7c0(s32 a) {
             for (i = 0; i < 8; i++) {
                 func_0202cb2c(i);
             }
-            data_02174e3c->mUnk_20c = 1;
+            data_02174e3c->mUnk_20c = TRUE;
             break;
     }
 }

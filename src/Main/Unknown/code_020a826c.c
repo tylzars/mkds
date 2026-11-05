@@ -61,8 +61,8 @@ void func_020a826c(void *a, Unk020a826c *p) {
             break;
         case 2:
             func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
-            if (data_021759c0->mUnk_00c == 0 && func_0203c25c((u16) data_021759c0->mEntryIndex) != 0 &&
-                p->mUnk_0a0.mUnk_24 == 0 && p->mUnk_0a0.mUnk_20 != 0) {
+            if (data_021759c0->mUnk_00c == 0 && func_0203c25c((u16) data_021759c0->mEntryIndex) != FALSE &&
+                p->mUnk_0a0.mUnk_24 == 0 && p->mUnk_0a0.mUnk_20 != FALSE) {
                 v = func_02110c40();
                 func_0212c6f0(p->mUnk_0a0.mUnk_1c, 0);
                 p->mUnk_0a0.mUnk_00.mUnk_00 = v;
@@ -74,7 +74,7 @@ void func_020a826c(void *a, Unk020a826c *p) {
             func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
             if (func_0203c880((u16) data_021759c0->mEntryIndex) != 0) {
                 func_020d2398(&p->mUnk_000);
-            } else if (p->mUnk_0a0.mUnk_20 == 0) {
+            } else if (p->mUnk_0a0.mUnk_20 == FALSE) {
                 v = p->mUnk_0c8.mUnk_00.mUnk_00;
                 func_0212c6f0(p->mUnk_0a0.mUnk_1c, 0);
                 p->mUnk_0a0.mUnk_00.mUnk_00 = v;

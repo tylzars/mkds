@@ -70,7 +70,7 @@ void func_02043410(void) {
         }
     }
     data_02175624->mUnk_08 = 0;
-    data_02175624->mUnk_0c = 0;
+    data_02175624->mUnk_0c = FALSE;
 }
 
 void func_020431e4(void) {
@@ -98,7 +98,7 @@ void func_020431e4(void) {
     data_02175628[8].mSourceKind = 5;
     data_02175628[9].mSourceKind = 6;
     data_02175624->mUnk_08 = 0;
-    data_02175624->mUnk_0c = 0;
+    data_02175624->mUnk_0c = FALSE;
     p = data_02175628;
     for (k = 0; k < 10; k++) {
         func_02039728(p);

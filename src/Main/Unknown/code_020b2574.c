@@ -79,7 +79,7 @@ void func_020b2574(void) {
                             func_020b3278();
                         }
                         gChoisesS->mUnk_014 = 1;
-                        gChoisesS->mUnk_010 = 1;
+                        gChoisesS->mUnk_010 = TRUE;
                     } else {
                         func_02105d70();
                         func_020b2f88(1);
@@ -114,7 +114,7 @@ void func_020b2574(void) {
                         func_020b3278();
                     }
                     gChoisesS->mUnk_014 = 1;
-                    gChoisesS->mUnk_010 = 1;
+                    gChoisesS->mUnk_010 = TRUE;
                 }
             } else if (func_020b2b24(func_020b2b54(), 2) != 0) {
                 if (func_020b2e98() != 0) {
@@ -144,7 +144,7 @@ void func_020b2574(void) {
                 func_020b2f88(0);
             }
             gChoisesS->mUnk_014 = 0;
-            gChoisesS->mUnk_010 = 0;
+            gChoisesS->mUnk_010 = FALSE;
         }
     }
     a = gChoisesS->mUnk_018;

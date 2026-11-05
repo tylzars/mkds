@@ -811,8 +811,8 @@ void InitRecordVS(void *a) {
     gRecordVS->mUnk_70 = 0;
     gRecordVS->mUnk_74 = gRecordVS->mUnk_68;
     gRecordVS->mUnk_40 = 0;
-    gRecordVS->mUnk_88 = 0;
-    gRecordVS->mUnk_8c = 0;
+    gRecordVS->mUnk_88 = FALSE;
+    gRecordVS->mUnk_8c = FALSE;
     for (i = 0; i < 2; i++) {
         gRecordVS->mUnk_80[i] = 0;
     }
@@ -827,12 +827,12 @@ void InitRecordVS(void *a) {
                        gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14, r);
     r -= func_021243ac(a, 1, gRecordVS->mRecordVSMBnll, 0xaa, 0xe, 1, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14, r);
-    func_0212426c(0, 1, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mRecordMessages, 0), gRecordVS->mRecordVSMBncl,
-                  gRecordVS->mUnk_14);
+    func_0212426c(0, 1, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mRecordMessages, 0),
+                  gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14);
     r -= func_021243ac(a, 0xb, gRecordVS->mRecordVSMBnll, 0x96, 0xe, 2, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14, r);
-    func_0212426c(0, 0xb, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mRecordMessages, 1), gRecordVS->mRecordVSMBncl,
-                  gRecordVS->mUnk_14);
+    func_0212426c(0, 0xb, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mRecordMessages, 1),
+                  gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14);
     r -= func_021243ac(a, 0xc, gRecordVS->mRecordVSMBnll, 0x46, 0x10, 3, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14, r);
     e = 4;
@@ -847,7 +847,8 @@ void InitRecordVS(void *a) {
     }
     for (i = 0; i < 3; i++) {
         func_0212426c(0, data_0215c410[0][i], gRecordVS->mRecordVSMBnll,
-                      GetBmgEntry(gRecordVS->mRecordMessages, data_0215c3b4[i]), gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14);
+                      GetBmgEntry(gRecordVS->mRecordMessages, data_0215c3b4[i]), gRecordVS->mRecordVSMBncl,
+                      gRecordVS->mUnk_14);
     }
     r -= func_021243ac(a, 0, gRecordVS->mRecordVSMTransientBnll, 0x8c, 0x10, 0, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMTransientBncl, gRecordVS->mUnk_24, r);
@@ -871,8 +872,8 @@ void InitRecordVS(void *a) {
     }
     func_021243ac(a, 5, gRecordVS->mRecordVSSBnll, 0x98, 0x10, 0x19, gRecordVS->mRecordVSSNcer,
                   gRecordVS->mRecordVSSBncl, gRecordVS->mUnk_3c, r);
-    func_0212426c(1, 5, gRecordVS->mRecordVSSBnll, GetBmgEntry(gRecordVS->mRecordMessages, 3), gRecordVS->mRecordVSSBncl,
-                  gRecordVS->mUnk_3c);
+    func_0212426c(1, 5, gRecordVS->mRecordVSSBnll, GetBmgEntry(gRecordVS->mRecordMessages, 3),
+                  gRecordVS->mRecordVSSBncl, gRecordVS->mUnk_3c);
     for (i = 0; i < 5; i++) {
         func_02124a98(data_0215c3e0[i], 0, gRecordVS->mRecordVSSNcer, gRecordVS->mRecordVSSBncl);
         func_02124a98(data_0215c3ec[i], 0, gRecordVS->mRecordVSSNcer, gRecordVS->mRecordVSSBncl);

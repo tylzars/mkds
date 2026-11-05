@@ -398,14 +398,14 @@ s32 func_ov000_0219bb04(u8 **a) {
     return func_ov000_021a158c((void **) a);
 }
 
-s32 func_ov000_0219bac8(u32 a) {
+BOOL func_ov000_0219bac8(u32 a) {
     if (data_ov000_021b54c8 == NULL) {
-        return 0;
+        return FALSE;
     }
     if ((data_ov000_021b54c8->mUnk_33c.mUnk_2d8 & (1 << a)) != 0) {
         return func_ov000_0219b8bc(a);
     }
-    return 0;
+    return FALSE;
 }
 
 u32 func_ov000_0219bab4(void) {

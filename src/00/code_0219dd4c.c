@@ -1515,7 +1515,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
         case 13:
         case 14:
         case 15:
-            if (func_ov000_0219ec44(b, a, e[0]) != 0) {
+            if (func_ov000_0219ec44(b, a, e[0]) != FALSE) {
                 break;
             }
             return 0;
@@ -2992,7 +2992,7 @@ void func_ov000_0219e138(u32 a, s32 b, s32 c) {
                         e = SbServerGetInt((SbServer *) func_ov000_0218b480(a, 0), data_ov000_021b40c4, 0);
                         f = data_ov000_021b566c;
                         if (f->mUnk_15 == 1 && e == f->mUnk_f4[0]) {
-                            if (func_ov000_0219dfe4(0) != 0) {
+                            if (func_ov000_0219dfe4(0) != FALSE) {
                                 if (data_ov000_021b566c->mUnk_0d != 0) {
                                     if (func_ov000_0219fee4(func_ov000_0219f8b0()) != 0) {
                                         return;

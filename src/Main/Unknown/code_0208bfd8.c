@@ -34,13 +34,13 @@ void func_0208c09c(Unk020888b4 *p) {
 
 void func_0208c050(Unk020888b4 *p) {
     if (p->mUnk_08.mUnk_00.mUnk_14 != NULL) {
-        if (p->mUnk_08.mUnk_00.mUnk_18 != 0) {
+        if (p->mUnk_08.mUnk_00.mUnk_18 != FALSE) {
             return;
         }
     }
     p->mUnk_08.mUnk_00.mUnk_14 = func_02041588(&p->mKart->mPos);
     if (p->mUnk_08.mUnk_00.mUnk_14 != NULL) {
-        p->mUnk_08.mUnk_00.mUnk_18 = 1;
+        p->mUnk_08.mUnk_00.mUnk_18 = TRUE;
     }
 }
 

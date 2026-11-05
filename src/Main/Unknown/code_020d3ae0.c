@@ -59,7 +59,7 @@ Unk0217b4f8 *func_020d50e0(void) {
 }
 
 void func_020d50c4(void) {
-    data_0217b4f8.mUnk_50 = 1;
+    data_0217b4f8.mUnk_50 = TRUE;
     data_0217b4f8.mUnk_54 = 0;
 }
 
@@ -88,8 +88,8 @@ void func_020d4f94(Unk020d4f94 *p) {
     Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_2c, buf, &data_0217b4f8.mUnk_2c);
     Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_38, buf, &data_0217b4f8.mUnk_38);
     Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_44, buf, &data_0217b4f8.mUnk_44);
-    if (data_0217b4f8.mUnk_50 != 0) {
-        data_0217b4f8.mUnk_50 = 0;
+    if (data_0217b4f8.mUnk_50 != FALSE) {
+        data_0217b4f8.mUnk_50 = FALSE;
         data_0217b4f8.mUnk_54 = 1;
     } else {
         data_0217b4f8.mUnk_54 = 0;
@@ -223,7 +223,7 @@ void func_020d4c28(Unk020e6fd4 *p, void *a) {
 #pragma thumb on
 
 void func_020d4bf0(void) {
-    data_0217b4f8.mUnk_50 = 1;
+    data_0217b4f8.mUnk_50 = TRUE;
     data_0217b4f8.mUnk_54 = 0;
     if (data_021759c0->mUnk_00c == 2) {
         *(u32 *) &data_0217b4f4 = ((u32) 0x00258000u);
@@ -612,7 +612,7 @@ s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
             if (k != FALSE && !(e->mUnk_78 & 0x10)) {
                 continue;
             }
-            if (func_020d3e34(&v, q, e, p) != 0) {
+            if (func_020d3e34(&v, q, e, p) != FALSE) {
                 if (!(e->mFlags & 0x40) && func_020d69e4(r, e) != 0) {
                     lo.x = (p->x < lo.x) ? p->x : lo.x;
                     lo.y = (p->y < lo.y) ? p->y : lo.y;

@@ -894,7 +894,7 @@ void func_020f50b4(Unk020f5240 *a) {
 void func_020f504c(Unk020eda5c *a, Unk020f40dc *b) {
     func_02069db8(b->mUnk_04->mUnk_1fc);
     func_020f4754(b, 1);
-    a->mUnk_00c->mUnk_204 = 1;
+    a->mUnk_00c->mUnk_204 = TRUE;
     if (data_021759c0->mMode != 5) {
         return;
     }
@@ -1019,18 +1019,18 @@ void func_020f4b8c(void) {
     p[17] = data_0215a4c0;
     switch (data_021759c0->mMode) {
         case 2:
-            p[17].mUnk_00 = 1;
+            p[17].mUnk_00 = TRUE;
             break;
         case 5:
             for (i = 0; i < 0x12; i++) {
-                if (data_0217bc48[(u32) i].mUnk_00 != 0 && data_0217bc48[(u32) i].mUnk_04 == 0) {
-                    data_0217bc48[i].mUnk_00 = 0;
+                if (data_0217bc48[(u32) i].mUnk_00 != FALSE && data_0217bc48[(u32) i].mUnk_04 == 0) {
+                    data_0217bc48[i].mUnk_00 = FALSE;
                 }
             }
             break;
     }
     if (data_021759c0->mUnk_00c == 1) {
-        data_0217bc48[15].mUnk_00 = 0;
+        data_0217bc48[15].mUnk_00 = FALSE;
     }
 }
 

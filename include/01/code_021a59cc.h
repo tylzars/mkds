@@ -13,7 +13,7 @@ typedef struct Unk021a5a58_2c_2c {
 // Object at Unk021a5a58::mUnk_2c.
 typedef struct Unk021a5a58_2c {
     /* 00 */ u8 mUnk_00[0x8];
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ BOOL mUnk_08;
     /* 0c */ u8 mUnk_0c[0x8];
     /* 14 */ s32 mUnk_14;
     /* 18 */ u8 mUnk_18[0x14];
@@ -27,7 +27,7 @@ typedef struct Unk021a5a58 {
     /* 02 */ u8 mUnk_02[0x2];
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ BOOL mUnk_0c;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;

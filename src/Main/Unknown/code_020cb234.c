@@ -35,7 +35,7 @@ void func_020cb234(void) {
         }
         func_020ccc74(1, 0x1f);
         func_021281c8(0xf);
-        data_0217b43c->mUnk_934 = 0;
+        data_0217b43c->mUnk_934 = FALSE;
     }
     func_020cb2d4();
 }

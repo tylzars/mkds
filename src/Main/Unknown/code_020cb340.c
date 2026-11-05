@@ -18,7 +18,7 @@ void func_020cb340(void) {
     for (i = 10; i <= 14; i++) {
         a[i].mUnk_00 = 0;
     }
-    if (func_020ccca8() != 3 || data_0217b43c->mUnk_934 == 0 || func_020ccccc() >= 5) {
+    if (func_020ccca8() != 3 || data_0217b43c->mUnk_934 == FALSE || func_020ccccc() >= 5) {
         a[b + 5].mUnk_00 = 0;
         a[b + 10].mUnk_00 = 1;
     }

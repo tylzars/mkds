@@ -47,13 +47,13 @@ typedef struct RecordTAtt {
     /* 68 */ s32 mUnk_68;
     /* 6c */ s32 mIndex;
     /* 70 */ s32 mUnk_70;
-    /* 74 */ s32 mUnk_74;
+    /* 74 */ BOOL mUnk_74;
     /* 78 */ s32 mUnk_78[2];
     /* 80 */ s16 mUnk_80;
     /* 82 */ u8 mUnk_82[2];
-    /* 84 */ s32 mUnk_84;
-    /* 88 */ s32 mUnk_88;
-    /* 8c */ s32 mUnk_8c;
+    /* 84 */ BOOL mUnk_84;
+    /* 88 */ BOOL mUnk_88;
+    /* 8c */ BOOL mUnk_8c;
     /* 90 */ s32 mUnk_90;
 } RecordTAtt;
 

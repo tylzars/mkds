@@ -32,7 +32,7 @@ static inline s32 func_02040bc0_inline(s8 i) {
     return f;
 }
 
-s32 func_02040bc0(void) {
+BOOL func_02040bc0(void) {
     BOOL r = FALSE;
     BOOL g;
     s8 i = data_021759c0->mEntryIndex;
@@ -58,7 +58,7 @@ s32 func_02040bc0(void) {
                     return r;
                 }
             }
-            return 1;
+            return TRUE;
         case 2:
             if (data_0217561c->mUnk_4cc != 0) {
                 r = TRUE;
@@ -262,20 +262,20 @@ void func_020401ac(void) {
     }
     data_0217561c->mUnk_4f0 = f;
     data_0217561c->mUnk_4e0 = 6;
-    data_0217561c->mUnk_4ec = 0;
+    data_0217561c->mUnk_4ec = FALSE;
     data_0217561c->mUnk_4f4 = 0;
     switch (data_021759c0->mMode) {
         case 4:
             if (data_021759c0->mUnk_2f == 6) {
-                data_0217561c->mUnk_4ec = 0;
+                data_0217561c->mUnk_4ec = FALSE;
             } else {
-                data_0217561c->mUnk_4ec = 1;
+                data_0217561c->mUnk_4ec = TRUE;
             }
             data_0217561c->mUnk_4f4 = data_021759c0->mUnk_028;
             break;
         case 2:
             if (data_021759c0->mUnk_18 == 1) {
-                data_0217561c->mUnk_4ec = 1;
+                data_0217561c->mUnk_4ec = TRUE;
                 data_0217561c->mUnk_4f4 = gCourseMap->mUnk_018->mUnk_02 * 0x3c;
             }
             break;

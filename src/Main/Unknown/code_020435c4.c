@@ -64,7 +64,7 @@ static inline void func_02043c14_inline(void) {
     data_02175628[8].mSourceKind = 5;
     data_02175628[9].mSourceKind = 6;
     data_02175624->mUnk_08 = 0;
-    data_02175624->mUnk_0c = 0;
+    data_02175624->mUnk_0c = FALSE;
     q = data_02175628;
     for (k = 0; k < 10; k++) {
         func_02039728(q);
@@ -185,7 +185,7 @@ void func_02044060(u32 a) {
     if (data_021759d4->mUnk_04 != NULL) {
         data_0217aa08->mUnk_14[0]->mUnk_08_0 = 0;
     }
-    if (func_0203b018(a, v1, 0x80) != 0) {
+    if (func_0203b018(a, v1, 0x80) != FALSE) {
         p = func_02056284((u32) v1);
     }
     if (p != NULL) {

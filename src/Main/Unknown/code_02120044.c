@@ -136,7 +136,7 @@ void func_02120150(void) {
     if (data_0217d384->mUnk_0008.mState != 5) {
         return;
     }
-    if (data_0217d384->mUnk_1f38 == 0) {
+    if (data_0217d384->mUnk_1f38 == FALSE) {
         return;
     }
     func_0205ccec();
@@ -164,7 +164,7 @@ void func_021200f0(void) {
 void func_021200a8(void) {
     Unk0217d384_08 *p;
 
-    if (func_02120d14() == 0) {
+    if (func_02120d14() == FALSE) {
         return;
     }
     p = &data_0217d384->mUnk_0008;

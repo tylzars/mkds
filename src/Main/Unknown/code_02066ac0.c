@@ -71,14 +71,14 @@ s32 func_02067b60(Kart *a, s32 *b) {
         }
         func_02055c5c();
     }
-    if (func_0206bcb0(a, 1, 0) != 0) {
+    if (func_0206bcb0(a, 1, 0) != FALSE) {
         func_02081224(a->mIndex);
     }
     return 5;
 }
 
 s32 func_02067b0c(Kart *a, s32 *b, s32 c) {
-    if (func_0206a24c(a) != 0 && a->mUnk_44c != (struct MapObject *) c &&
+    if (func_0206a24c(a) != FALSE && a->mUnk_44c != (struct MapObject *) c &&
         (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         func_0207a6b0()->mUnk_14++;
     }
@@ -228,7 +228,7 @@ u32 func_020675b4(Kart *a) {
     u32 c;
 
     b = func_0208c5b8(a->mIndex);
-    if (b->mUnk_34 != 0) {
+    if (b->mUnk_34 != FALSE) {
         c = 0;
     } else {
         c = b->mUnk_38;

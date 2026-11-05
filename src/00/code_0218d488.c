@@ -43,7 +43,7 @@ void func_ov000_0218d6e4(const char *a) {
     if (c == 0) {
         sprintf(v1, data_ov000_021b22b4, a);
     }
-    if (func_ov000_0218d7bc(c != 0 ? data_ov000_021b4d2c : v1, 0x6cfc, (Unk0218ce14 *) data_ov000_021b4db0) != 0) {
+    if (func_ov000_0218d7bc(c != 0 ? data_ov000_021b4d2c : v1, 0x6cfc, (Unk0218ce14 *) data_ov000_021b4db0) != FALSE) {
         data_ov000_021b4dac.mUnk_00 = func_ov000_0218e554(2, 2, 0);
         if (data_ov000_021b4dac.mUnk_00 != -1) {
             u32 n;
@@ -91,7 +91,7 @@ s32 func_ov000_0218d574(void) {
     }
     if (func_ov000_0218e668(data_ov000_021b4dac.mUnk_00) != 0 &&
         func_ov000_0218d644(v4, func_ov000_0218e438(data_ov000_021b4dac.mUnk_00, v4, 0x40, 0, (u8 *) &v1, &v2),
-                            (u8 *) &v1, &v3) == 0) {
+                            (u8 *) &v1, &v3) == FALSE) {
         func_ov000_0218e53c(data_ov000_021b4dac.mUnk_00);
         if ((v3 & 1) != 0) {
             data_ov000_021b4d28 = 2;

@@ -257,7 +257,7 @@ void UpdateSanbo(void *a, Sanbo *p) {
         t = p->mUnk_1d4;
         p->mUnk_1d8.mUnk_04 = t;
         p->mUnk_1d8.mUnk_10 = (s64) t * p->mUnk_1d8.mUnk_00->mUnk_00[p->mUnk_1d8.mUnk_0c].mUnk_34 >> 12;
-        if (func_020d8cc8(&p->mUnk_1d8) != 0) {
+        if (func_020d8cc8(&p->mUnk_1d8) != FALSE) {
             p->mUnk_0a0 = (u16) p->mUnk_1d8.mUnk_1c->mUnk_0e;
         } else {
             p->mUnk_0a0 = 0;

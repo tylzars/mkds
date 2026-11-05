@@ -25,9 +25,9 @@ void func_0212b928(void *a, Nclr *b, u32 c) {
     s32 v;
     data_0217d410 = HeapAlloc(a, 0x90);
     data_0217d410->mUnk_00 = 0;
-    data_0217d410->mUnk_04 = 0;
+    data_0217d410->mUnk_04 = FALSE;
     data_0217d410->mUnk_08 = c;
-    data_0217d410->mUnk_8c = 1;
+    data_0217d410->mUnk_8c = TRUE;
     MemCopy(b->mData + c * 0x10, data_0217d410->mUnk_0a, 0x20);
     for (i = 0; i < 4; i++) {
         v = data_0217d410->mUnk_14[i];
@@ -64,16 +64,16 @@ void func_0212b874(s32 a) {
                               ((((0x1000 - a) * p->mUnk_2c[i].mUnk_00 + a * p->mUnk_5c[i].mUnk_00) >> 12) |
                                ((((0x1000 - a) * p->mUnk_2c[i].mUnk_04 + a * p->mUnk_5c[i].mUnk_04) >> 12) << 5));
     }
-    if (data_0217d410->mUnk_8c == 0) {
+    if (data_0217d410->mUnk_8c == FALSE) {
         CallQueueAppend(0x1e, data_0217d410->mUnk_08 << 5, data_0217d410->mUnk_0a, 0x20);
     } else {
-        data_0217d410->mUnk_8c = 0;
+        data_0217d410->mUnk_8c = FALSE;
     }
 }
 
 void func_0212b80c(void) {
     s32 a;
-    if (data_0217d410->mUnk_04 == 0) {
+    if (data_0217d410->mUnk_04 == FALSE) {
         data_0217d410->mUnk_00++;
         if (data_0217d410->mUnk_00 >= 0x5a) {
             data_0217d410->mUnk_00 = 0;
@@ -95,11 +95,11 @@ void func_0212b7fc(void) {
 
 void func_0212b7e8(void) {
     data_0217d410->mUnk_00 = 0;
-    data_0217d410->mUnk_04 = 1;
+    data_0217d410->mUnk_04 = TRUE;
 }
 
 void func_0212b7d8(void) {
-    data_0217d410->mUnk_04 = 0;
+    data_0217d410->mUnk_04 = FALSE;
 }
 #pragma thumb off
 

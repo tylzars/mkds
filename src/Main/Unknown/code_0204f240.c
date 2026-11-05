@@ -79,8 +79,8 @@ void func_0204f240(void *a, s32 b) {
         v->mUnk_000[i].mUnk_84_0 = 0;
     }
     v->mUnk_660 = b;
-    v->mUnk_798 = 0;
-    v->mUnk_79c = 0;
+    v->mUnk_798 = FALSE;
+    v->mUnk_79c = FALSE;
     v->mUnk_7a0 = 0;
     v->mUnk_7a2 = 0;
     v->mUnk_7a4 = 0;

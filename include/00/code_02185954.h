@@ -92,7 +92,7 @@ typedef struct Unk02185984 {
     /* 2fc */ Thread mUnk_2fc;
     /* 3b4 */ u8 pad_3b4[8];
     /* 3bc */ ThreadLock mUnk_3bc;
-    /* 3d4 */ s32 mUnk_3d4;
+    /* 3d4 */ BOOL mUnk_3d4;
     /* 3d8 */ u8 pad_3d8[8];
     /* 3e0 */ u8 mUnk_3e0[0x1000];
 } Unk02185984;

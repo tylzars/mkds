@@ -116,7 +116,7 @@ void func_02055340(void) {
         case 7:
         case 8:
         case 9:
-            if (func_0205373c() == 0) {
+            if (func_0205373c() == FALSE) {
                 data_0217aa00->mUnk_0454 |= 0x10;
             }
             if (data_0217aa00->mUnk_0004 != 9) {
@@ -139,7 +139,7 @@ void func_02055340(void) {
             }
             i = data_0217aa00->mUnk_0044.mUnk_3e % 8;
             if (v1 & (1 << i)) {
-                if (func_020504a4(i, b) == 0) {
+                if (func_020504a4(i, b) == FALSE) {
                     return;
                 }
                 data_0217aa00->mUnk_0044.mUnk_3e++;

@@ -210,7 +210,7 @@ void func_020f944c(void *param_1, void *param_2) {
     Unk020f41c4_A *p = param_1;
     MapObject *r = param_2;
 
-    if (func_020d3e34(&p->mUnk_50, p->mUnk_e0, r, &a) == 0) {
+    if (func_020d3e34(&p->mUnk_50, p->mUnk_e0, r, &a) == FALSE) {
         return;
     }
     if ((r->mFlags & 0x40) == 0 && (p->mUnk_74 & 0x80000) == 0 && func_020d6968(p->mUnk_44, r) != 0) {

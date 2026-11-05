@@ -75,7 +75,7 @@ void func_ov001_02181aa0(void) {
     Unk021a9b90 *p;
     u32 n;
 
-    if ((data_021759c0->mMode == 4 ? func_020a126c() : 0) != 0) {
+    if ((data_021759c0->mMode == 4 ? func_020a126c() : 0) != FALSE) {
         return;
     }
     p = data_ov001_021a9b90;

@@ -211,7 +211,7 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
         out->x = (s32) (((s64) a->mUnk_28.mUnk_18.x * t) >> 12);
         out->y = (s32) (((s64) a->mUnk_28.mUnk_18.y * t) >> 12);
         out->z = (s32) (((s64) a->mUnk_28.mUnk_18.z * t) >> 12);
-        a->mUnk_10c = 0;
+        a->mUnk_10c = FALSE;
     } else {
         if (v.y < 0) {
             v.y = 0;
@@ -223,7 +223,7 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
         out->x = (s32) (((s64) v.x * d) >> 12);
         out->y = (s32) (((s64) v.y * d) >> 12);
         out->z = (s32) (((s64) v.z * d) >> 12);
-        a->mUnk_10c = 1;
+        a->mUnk_10c = TRUE;
     }
     return TRUE;
 }
@@ -257,7 +257,7 @@ void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q) {
     p->mUnk_fc = (u16) ((u32) (m * 0x1111) / 0x64u);
     p->mUnk_104 = (s32) (((s64) p->mUnk_1c.x * 0x64000) >> 12);
     p->mUnk_108 = (s32) (((s64) p->mUnk_1c.z * 0x32000) >> 12);
-    p->mUnk_10c = 0;
+    p->mUnk_10c = FALSE;
 }
 
 #pragma thumb off

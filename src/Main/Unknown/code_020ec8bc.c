@@ -177,7 +177,7 @@ void func_020ece1c(Unk020ec8bc *p, s32 a, s32 b, s32 c) {
     }
     q = &p->mUnk_000.mUnk_130;
     r = &p->mUnk_000.mUnk_13c;
-    if (func_020f3bb4(&p->mUnk_21c, &p->mUnk_168, &p->mUnk_21c, &p->mUnk_000.mUnk_000.mUnk_50) != 0) {
+    if (func_020f3bb4(&p->mUnk_21c, &p->mUnk_168, &p->mUnk_21c, &p->mUnk_000.mUnk_000.mUnk_50) != FALSE) {
         func_020f371c(&p->mUnk_21c, &p->mUnk_168, b, c);
     }
     Vec3Sub(p->mUnk_168.mUnk_00->mUnk_18, &p->mUnk_000.mUnk_000.mUnk_50, &v);
@@ -234,7 +234,7 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
     a -= p->mUnk_000.mUnk_12c;
     p->mUnk_000.mUnk_12c = p->mUnk_000.mUnk_12c + (s32) (((u64) ((s64) a * b)) >> 12);
     func_020d84c0(&t->mUnk_00, p->mUnk_000.mUnk_12c);
-    if (func_020d849c(&t->mUnk_00) != 0) {
+    if (func_020d849c(&t->mUnk_00) != FALSE) {
         do {
             p->mUnk_21c = p->mUnk_168;
             func_020f371c(&p->mUnk_21c, &p->mUnk_168, c, e);

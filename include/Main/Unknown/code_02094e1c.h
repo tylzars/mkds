@@ -8,7 +8,7 @@
 typedef struct Unk02094e8c {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ s32 mUnk_a0;
-    /* a4 */ s32 mUnk_a4;
+    /* a4 */ BOOL mUnk_a4;
     /* a8 */ s32 mUnk_a8;
     /* ac */ s32 mUnk_ac;
 } Unk02094e8c;

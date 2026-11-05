@@ -142,7 +142,7 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
 
     q = &gCourseMap->mUnk_44[b];
     r = &gCourseMap->mUnk_44[c];
-    if (func_0203fde0(a, q, r) == 0) {
+    if (func_0203fde0(a, q, r) == FALSE) {
         return -0x1000;
     }
     l[0].mUnk_00 = a->x - q->mUnk_08;
@@ -160,7 +160,7 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
     return DivFixed12((s32) x, (s32) y);
 }
 
-s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
+BOOL func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     BOOL r;
     u32 m;
     s32 w;
@@ -176,7 +176,7 @@ s32 func_0203fa60(Unk0217561c_14 *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     t = gCourseMap->mUnk_44[e].mUnk_1c;
     f = a->mUnk_4c[w];
     if ((f & m) != 0) {
-        return 0;
+        return FALSE;
     }
     if (t != -1) {
         p = &gCourseMap->mUnk_4c[d];
@@ -291,7 +291,7 @@ void func_0203f5f0(u8 *a, u8 *b, u16 *c, s32 d, u32 e) {
     s32 x;
 
     p = data_0217561c;
-    if (p->mUnk_4ec != 0) {
+    if (p->mUnk_4ec != FALSE) {
         if (p->mUnk_4f4 > e) {
             e = p->mUnk_4f4 - e;
         } else {

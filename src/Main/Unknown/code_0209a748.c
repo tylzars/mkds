@@ -253,7 +253,7 @@ void UpdateCrab(void *a, Crab *b) {
         case 1:
             b->mUnk_0f0.mUnk_04 = 0x800;
             b->mUnk_0f0.mUnk_10 = ((s64) b->mUnk_0f0.mUnk_00->mUnk_00[b->mUnk_0f0.mUnk_0c].mUnk_34 * 0x800) >> 12;
-            if (func_020d8cc8(&b->mUnk_0f0) != 0) {
+            if (func_020d8cc8(&b->mUnk_0f0) != FALSE) {
                 b->mUnk_0d0.mUnk_00 = 0;
                 b->mUnk_0d0.mUnk_0c = 0;
                 b->mUnk_0d0.mUnk_10 = 0x1c7;

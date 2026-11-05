@@ -595,8 +595,8 @@ void func_02120714(void) {
     MemFill(data_0217d384->mUnk_1d00, 0, 0x110);
     MemFill(data_0217d384->mUnk_1e10, 0, 0x110);
     MemFill(&data_0217d384->mUnk_1f20, 0, 0x10);
-    data_0217d384->mUnk_1f34 = 0;
-    data_0217d384->mUnk_1f38 = 0;
+    data_0217d384->mUnk_1f34 = FALSE;
+    data_0217d384->mUnk_1f38 = FALSE;
     data_0217d384->mUnk_1f3c = 0;
     data_0217d384->mUnk_1f40 = 0;
     data_0217d384->mUnk_1f44 = 0;

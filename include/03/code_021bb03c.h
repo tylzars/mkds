@@ -76,7 +76,7 @@ void func_ov003_021bc1c4(u32 *a, int b, u8 *c, u8 *d);
 int func_ov003_021bc5e4(u32 *a, u8 *b, int c);
 int func_ov003_021bc7a8(u32 *a, u8 *b, int c);
 void func_ov003_021bca90(u8 *a, u8 *b, u8 *c);
-int func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5);
+BOOL func_ov003_021bcadc(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5);
 BOOL func_ov003_021bccd0(u8 *param_1, u8 *param_2, u32 param_3, u8 *param_4, int param_5);
 void func_ov003_021bcedc(void);
 int func_ov003_021bcf1c(void);

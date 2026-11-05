@@ -172,7 +172,7 @@ void func_0203abdc(void) {
             }
             if (f != FALSE) {
                 Unk0217d384_08 *p;
-                q->mUnk_1f38 = 1;
+                q->mUnk_1f38 = TRUE;
                 p = &data_0217d384->mUnk_0008;
                 p->mNextState = 5;
                 p->mNextStateRequested = 1;
@@ -200,7 +200,7 @@ void func_0203aacc(void) {
         }
         if (f != FALSE) {
             Unk0217d384_08 *p;
-            q->mUnk_1f38 = 0;
+            q->mUnk_1f38 = FALSE;
             p = &data_0217d384->mUnk_0008;
             p->mNextState = 4;
             p->mNextStateRequested = 1;
@@ -370,7 +370,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                     }
                     break;
                 case 5:
-                    if (func_02045874() != 0) {
+                    if (func_02045874() != FALSE) {
                         r = 0xc;
                         data_0217b488->mUnk_1c = 3;
                     } else {
@@ -403,7 +403,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
         case 7:
             switch (data_021759c0->mMode) {
                 case 0:
-                    if (func_02045bd4() != 0) {
+                    if (func_02045bd4() != FALSE) {
                         r = 2;
                     } else {
                         r = 0xa;

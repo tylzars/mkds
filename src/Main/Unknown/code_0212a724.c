@@ -8,7 +8,7 @@
 s32 func_0212a8d0(void) {
     BOOL r = FALSE;
     if (!data_0217aa08->mUnk_00->mUnk_31_4) {
-        if (func_021213f4() != 0) {
+        if (func_021213f4() != FALSE) {
             r = TRUE;
         }
     }

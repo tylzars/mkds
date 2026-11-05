@@ -171,7 +171,7 @@ void func_ov001_021a0b3c(void) {
                 gMissionRunMSsel->mUnk_44[data_ov001_021a6e7c[i][out + 1]].mUnk_00 = 1;
             }
             if (i == 8) {
-                gMissionRunMSsel->mUnk_a4 = 1;
+                gMissionRunMSsel->mUnk_a4 = TRUE;
             }
         }
         func_021057f0(0, func_02029608());
@@ -182,7 +182,7 @@ void func_ov001_021a0b3c(void) {
                 if (func_020cccb4() == 0x12) {
                     gMissionRunMSsel->mIndex = 8;
                 }
-                if (gMissionRunMSsel->mUnk_a4 == 0) {
+                if (gMissionRunMSsel->mUnk_a4 == FALSE) {
                     gMissionRunMSsel->mIndex = 8;
                     func_02124a20(data_ov001_021a6e7c[i][2], 0xb, gMissionRunMSsel->mUnk_0c, gMissionRunMSsel->mUnk_10);
                     func_02124a20(data_ov001_021a6e7c[i][1], 0xe, gMissionRunMSsel->mUnk_0c, gMissionRunMSsel->mUnk_10);
@@ -222,7 +222,7 @@ void func_ov001_021a09a4(void) {
     s32 bl;
 
     if (gMissionRunMSsel->mUnk_a0 != 0) {
-        if (gMissionRunMSsel->mUnk_a4 == 0) {
+        if (gMissionRunMSsel->mUnk_a4 == FALSE) {
             gMissionRunMSsel->mUnk_a8 = gMissionRunMSsel->mUnk_a8 + 1;
             if (gMissionRunMSsel->mUnk_a8 >= 100) {
                 gMissionRunMSsel->mUnk_a8 = 0;
@@ -504,7 +504,7 @@ void InitMissionRunMSsel(s32 a, s32 b, s32 c) {
     gMissionRunMSsel->mIndex = func_020295f8() - 1;
     gMissionRunMSsel->mUnk_9c = 0;
     gMissionRunMSsel->mUnk_ac = 0;
-    gMissionRunMSsel->mUnk_a4 = 0;
+    gMissionRunMSsel->mUnk_a4 = FALSE;
     gMissionRunMSsel->mUnk_b4 = (void *) b;
     gMissionRunMSsel->mUnk_b8 = (void *) c;
     gMissionRunMSsel->mResult = 0;
@@ -649,7 +649,7 @@ void AdvanceMissionRunMSselState3(void) {
             flag_b = TRUE;
         }
         if (!flag_b || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[slot].mUnk_48,
-                                                                       data_02175628[slot].mUnk_4a) == 0) {
+                                                                       data_02175628[slot].mUnk_4a) == FALSE) {
             goto skip;
         }
     }

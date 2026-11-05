@@ -138,7 +138,7 @@ void func_02080d34(Unk02080d34 *p, u16 a) {
     Vec3Sub(p->mUnk_00.mUnk_00->mUnk_18, p->mUnk_00.mUnk_04->mUnk_18, &p->mUnk_00.mUnk_08);
     func_02039860(&p->mUnk_00.mUnk_08, &p->mUnk_00.mUnk_08);
     p->mUnk_00.mUnk_14 = NULL;
-    p->mUnk_00.mUnk_18 = 0;
+    p->mUnk_00.mUnk_18 = FALSE;
     p->mUnk_1c = a;
     p->mUnk_1e = 0;
 }
@@ -147,7 +147,7 @@ void func_02080cd0(Unk0208001c *p, Unk02175620_bc *a) {
     p->mUnk_00 = a;
     p->mUnk_04 = p->mUnk_00->mUnk_0c;
     p->mUnk_14 = NULL;
-    p->mUnk_18 = 0;
+    p->mUnk_18 = FALSE;
     p->mUnk_08 = data_021557ec;
     Vec3Sub(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
     func_02039860(&p->mUnk_08, &p->mUnk_08);
@@ -223,7 +223,7 @@ void func_02080adc(Unk0208001c *p, Unk02175620_bc *a) {
 void func_02080ac0(Unk0208001c *p) {
     if (p->mUnk_14 == NULL) {
         p->mUnk_14 = p->mUnk_04;
-        p->mUnk_18 = 0;
+        p->mUnk_18 = FALSE;
     }
 }
 
@@ -272,7 +272,7 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
     p->mUnk_04 = r;
     p->mUnk_08 = data_021557ec;
     p->mUnk_14 = NULL;
-    p->mUnk_18 = 0;
+    p->mUnk_18 = FALSE;
 }
 
 void func_020808d4(Unk0208001c *p, Unk02175620_bc *a) {
@@ -280,7 +280,7 @@ void func_020808d4(Unk0208001c *p, Unk02175620_bc *a) {
     p->mUnk_00 = p->mUnk_04;
     p->mUnk_08 = data_021557ec;
     p->mUnk_14 = NULL;
-    p->mUnk_18 = 0;
+    p->mUnk_18 = FALSE;
 }
 
 void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s32 e) {

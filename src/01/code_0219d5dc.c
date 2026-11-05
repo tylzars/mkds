@@ -24,7 +24,7 @@ void InitOptionEmbremSelect(void *a) {
     gOptionEmbremSelect->mNextState = 0;
     gOptionEmbremSelect->mUnk_08 = 0;
     gOptionEmbremSelect->mStateFrames = 0;
-    gOptionEmbremSelect->mUnk_24 = 1;
+    gOptionEmbremSelect->mUnk_24 = TRUE;
     LocateAndQueueOptionEmbremSelect();
     for (i = 0; i < 2; i++) {
         func_02124a98(data_ov001_021a6c38[i][0], 1, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
@@ -166,7 +166,7 @@ void AdvanceOptionEmbremSelectState3(void) {
         cond2 = TRUE;
     }
     if (cond2 != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[index].mUnk_48,
-                                                                          data_02175628[index].mUnk_4a) != 0) {
+                                                                          data_02175628[index].mUnk_4a) != FALSE) {
     next:
         gOptionEmbremSelect->mNextState = 5;
         gOptionEmbremSelect->mNextOptionState = 2;
@@ -185,7 +185,7 @@ void AdvanceOptionEmbremSelectState3(void) {
         flags = data_02175628[index].mUnk_00 & 1;
         if ((flags != 0 && gOptionEmbremSelect->mUnk_08 == 0) || result == 0) {
             if (gOptionEmbremSelect->mUnk_08 == 0) {
-                gOptionEmbremSelect->mUnk_24 = 0;
+                gOptionEmbremSelect->mUnk_24 = FALSE;
             }
             gOptionEmbremSelect->mNextState = 4;
             gOptionEmbremSelect->mNextOptionState = 6;
@@ -243,7 +243,7 @@ void AdvanceOptionEmbremSelectState4(void) {
         return;
     }
     if (5 <= v1->mStateFrames) {
-        v1->mUnk_24 = 1;
+        v1->mUnk_24 = TRUE;
     }
     return;
 }
@@ -359,7 +359,7 @@ void func_ov001_0219d730(void) {
     s32 j;
 
     for (i = 0; i < 2; i++) {
-        if (i == gOptionEmbremSelect->mUnk_08 && gOptionEmbremSelect->mUnk_24 != 0) {
+        if (i == gOptionEmbremSelect->mUnk_08 && gOptionEmbremSelect->mUnk_24 != FALSE) {
             gOptionEmbremSelect->mOptionEmbremSelectSTable[data_ov001_021a6c38[i][1]].mUnk_00 = 1;
             if (i == 1) {
                 func_02124100(0, 14, gOptionEmbremSelect->mOptionEmbremSelectSBnll,

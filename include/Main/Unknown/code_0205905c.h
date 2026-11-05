@@ -6,4 +6,4 @@ u32 func_0205905c(void);
 u32 func_0205910c(void);
 s32 func_020591bc(void);
 s32 func_020591c4(void);
-s32 func_020591cc(void);
+BOOL func_020591cc(void);

@@ -112,7 +112,7 @@ void func_0210298c(Unk02102674 *p) {
             }
         }
         if (p->mUnk_16c < -p->mUnk_170) {
-            if (func_0210300c(p) != 0) {
+            if (func_0210300c(p) != FALSE) {
                 p->mUnk_160 = 1;
                 p->mUnk_198 = 0;
                 return;

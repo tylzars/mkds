@@ -9,7 +9,7 @@ typedef struct Unk0217ccc0 {
     /* 20 */ s32 mUnk_20[8];
     /* 40 */ u32 mUnk_40[8];
     /* 60 */ s32 mUnk_60;
-    /* 64 */ s32 mUnk_64;
+    /* 64 */ BOOL mUnk_64;
     /* 68 */ s32 mUnk_68;
     /* 6c */ s32 mUnk_6c;
 } Unk0217ccc0;

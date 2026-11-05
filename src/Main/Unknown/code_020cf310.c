@@ -166,7 +166,7 @@ void func_020cf340(Unk020cf340 *a) {
             break;
         }
         case 0x1f:
-            if (func_020d3e18() != 0) {
+            if (func_020d3e18() != FALSE) {
                 n = func_020d3dd8();
                 for (k = 7; k > 0; k--) {
                     f = (7 - k) * 0.286f + -0.858f;
@@ -243,7 +243,7 @@ void func_020cf340(Unk020cf340 *a) {
             break;
         }
         case 0x2e:
-            if (func_020d3e18() != 0) {
+            if (func_020d3e18() != FALSE) {
                 n = func_020d3dd8();
                 x = func_020d3dbc();
                 for (k = 0; k < 0x13; k++) {

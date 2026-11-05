@@ -234,8 +234,8 @@ void func_02115728(void *a) {
     data_0217d350->mUnk_80 = data_0217d350->mUnk_74;
     data_0217d350->mUnk_40 = 0;
     data_0217d350->mUnk_84 = 0;
-    data_0217d350->mUnk_98 = 0;
-    data_0217d350->mUnk_9c = 0;
+    data_0217d350->mUnk_98 = FALSE;
+    data_0217d350->mUnk_9c = FALSE;
     for (i = 0; i < 2; i++) {
         data_0217d350->mUnk_90[i] = 0;
     }
@@ -412,15 +412,16 @@ void func_02115204(void) {
         w = RectTableFindContaining(data_0217d350->mUnk_34, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     if (v != 5) {
-        data_0217d350->mUnk_98 = 0;
+        data_0217d350->mUnk_98 = FALSE;
     }
     if (v != 6) {
-        data_0217d350->mUnk_9c = 0;
+        data_0217d350->mUnk_9c = FALSE;
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) != 0 ||
         ((n = !(data_02175674[i].mUnk_00 == 0 && data_02175680[i].mUnk_00 < 5) &&
               (data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0)) &&
-         IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) != 0)) {
+         IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) !=
+             FALSE)) {
         if (func_0211606c() != 0) {
             return;
         }
@@ -429,7 +430,7 @@ void func_02115204(void) {
         func_02128310(0);
         return;
     }
-    if ((v == 5 && data_0217d350->mUnk_98 != 0) || (w == 5 && data_0217d350->mUnk_98 == 0) ||
+    if ((v == 5 && data_0217d350->mUnk_98 != FALSE) || (w == 5 && data_0217d350->mUnk_98 == FALSE) ||
         (u16) (data_0217562a[i].mBits & 0x20) != 0) {
         if (func_0211606c() != 0) {
             return;
@@ -439,12 +440,12 @@ void func_02115204(void) {
         }
         data_0217d350->mUnk_78 = 1;
         data_0217d350->mUnk_90[0] = 6;
-        data_0217d350->mUnk_98 = 1;
+        data_0217d350->mUnk_98 = TRUE;
         func_02115df8();
         func_0212ecc0(&data_0217d068, 0, 2);
         return;
     }
-    if ((v == 6 && data_0217d350->mUnk_9c != 0) || (w == 6 && data_0217d350->mUnk_9c == 0) ||
+    if ((v == 6 && data_0217d350->mUnk_9c != FALSE) || (w == 6 && data_0217d350->mUnk_9c == FALSE) ||
         (u16) (data_0217562a[i].mBits & 0x10) != 0) {
         if (func_0211606c() != 0) {
             return;
@@ -454,7 +455,7 @@ void func_02115204(void) {
         }
         data_0217d350->mUnk_78 = 0;
         data_0217d350->mUnk_90[1] = 6;
-        data_0217d350->mUnk_9c = 1;
+        data_0217d350->mUnk_9c = TRUE;
         func_02115df8();
         func_0212ecc0(&data_0217d068, 0, 2);
         return;

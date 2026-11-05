@@ -126,7 +126,7 @@ void InitWiFiVSMatching(void *a) {
     for (i = 0; i < 3; i++) {
         gWiFiVSMatching->mUnk_24[i] = 0;
     }
-    gWiFiVSMatching->mUnk_40 = 0;
+    gWiFiVSMatching->mUnk_40 = FALSE;
     func_ov000_02184130();
     b = func_ov000_021804f4();
     func_020ae6d4(b, func_ov000_021804e0());
@@ -248,10 +248,10 @@ void AdvanceWiFiVSMatchingState0(void) {
             gWiFiVSMatching->mUnk_08 = 0;
             if (func_ov000_02180644() != 0) {
                 func_02121190(data_0217b488->mUnk_54, 0, 0);
-                gWiFiVSMatching->mUnk_3c = 0;
+                gWiFiVSMatching->mUnk_3c = FALSE;
             } else {
                 func_02121190(data_0217b488->mUnk_54, 1, 0);
-                gWiFiVSMatching->mUnk_3c = 1;
+                gWiFiVSMatching->mUnk_3c = TRUE;
             }
             func_02108b2c();
         }
@@ -284,9 +284,9 @@ void AdvanceWiFiVSMatchingState1(void) {
     } else {
         func_021282c8();
     }
-    if (gWiFiVSMatching->mUnk_3c != 0) {
+    if (gWiFiVSMatching->mUnk_3c != FALSE) {
         if (func_02121434() == FALSE) {
-            gWiFiVSMatching->mUnk_3c = 0;
+            gWiFiVSMatching->mUnk_3c = FALSE;
             func_02126638(GetBmgEntry(gWiFiVSMatching->mWiFiMessages, 12), 0, 0, 1, 0, 1, 0);
         }
     }
@@ -320,7 +320,7 @@ void AdvanceWiFiVSMatchingState1(void) {
     if (func_02125fa4() != 0 && gWiFiVSMatching->mUnk_08 >= 0x78 && func_0212111c() == -1) {
         func_ov000_021840c8();
         gWiFiVSMatching->mNextState = 9;
-        gWiFiVSMatching->mUnk_40 = 1;
+        gWiFiVSMatching->mUnk_40 = TRUE;
         gWiFiVSMatching->mUnk_08 = 0;
         for (i = 0; i < 3; i++) {
             gWiFiVSMatching->mUnk_10d4[data_ov000_021b065c[i]].mUnk_00 = 0;
@@ -336,7 +336,7 @@ void AdvanceWiFiVSMatchingState1(void) {
         if (data_0217d384->mKartCount <= 1) {
             func_ov000_021840c8();
             gWiFiVSMatching->mNextState = 9;
-            gWiFiVSMatching->mUnk_40 = 1;
+            gWiFiVSMatching->mUnk_40 = TRUE;
             for (i = 0; i < 3; i++) {
                 gWiFiVSMatching->mUnk_10d4[data_ov000_021b065c[i]].mUnk_00 = 0;
             }
@@ -599,7 +599,7 @@ void AdvanceWiFiVSMatchingState10(void) {
         gWiFiVSMatching->mUnk_08 = 10;
     }
     if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0 && gWiFiVSMatching->mUnk_08 >= 10) {
-        if (gWiFiVSMatching->mUnk_40 != 0) {
+        if (gWiFiVSMatching->mUnk_40 != FALSE) {
             RequestWiFiState(gWiFiVSMatching->mPendingWiFiState);
             return;
         }

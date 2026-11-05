@@ -132,7 +132,7 @@ s32 func_02034370(Unk02034370 *a) {
                     data_02174e64->mUnk_094 = 5;
                     break;
                 case 0:
-                    if (data_02174e64->mUnk_18c != 0) {
+                    if (data_02174e64->mUnk_18c != FALSE) {
                         break;
                     }
                     if (func_02125f88() != 0) {
@@ -146,15 +146,15 @@ s32 func_02034370(Unk02034370 *a) {
                             s.mUnk_18[0] = c[1];
                             s.mUnk_18[2] = c[2];
                             data_02174e64->mUnk_190++;
-                            if (data_02174e64->mUnk_09c[i].mUnk_28 == 0 ||
-                                func_02034e68(&data_02174e64->mUnk_09c[i].mUnk_00, &s) != 0) {
+                            if (data_02174e64->mUnk_09c[i].mUnk_28 == FALSE ||
+                                func_02034e68(&data_02174e64->mUnk_09c[i].mUnk_00, &s) != FALSE) {
                                 v = func_02025d74(s.mUnk_18[2]);
                                 s.mUnk_00[10] = 0;
                                 func_0212426c(1, data_02164254[i][0], q->mUnk_14, &s, q->mUnk_0c, q->mUnk_18);
                                 func_0212426c(1, data_02164254[j][0], q->mUnk_14,
                                               GetBmgEntry(data_02174e64->mUnk_088, v), q->mUnk_0c, q->mUnk_18);
                                 MemCopyWordsByBlock(&s, &data_02174e64->mUnk_09c[i].mUnk_00, 0x28);
-                                data_02174e64->mUnk_09c[i].mUnk_28 = 1;
+                                data_02174e64->mUnk_09c[i].mUnk_28 = TRUE;
                                 func_02025f14(&data_02174e64->mUnk_09c[i].mUnk_2c, 0);
                                 if (data_02174e64->mUnk_080 == i) {
                                     func_02034f60();
@@ -165,7 +165,7 @@ s32 func_02034370(Unk02034370 *a) {
                             }
                         } else {
                             func_02025f14(&data_02174e64->mUnk_09c[i].mUnk_2c, 2);
-                            data_02174e64->mUnk_09c[i].mUnk_28 = 0;
+                            data_02174e64->mUnk_09c[i].mUnk_28 = FALSE;
                         }
                     }
                     func_02035114();
@@ -184,13 +184,13 @@ s32 func_02034370(Unk02034370 *a) {
                         z = IsSelectReturnState2NoState3Or4RequestAndInRect(x, y);
                         m = RectTableFindContaining(q->mUnk_10, x, y);
                     }
-                    if (m >= 0 && data_02174e64->mUnk_09c[m].mUnk_28 != 0) {
+                    if (m >= 0 && data_02174e64->mUnk_09c[m].mUnk_28 != FALSE) {
                         func_020351c8();
                         func_02035228(data_02174e64->mUnk_080 != m ? 1 : 0);
                         data_02174e64->mUnk_080 = m;
                         func_0212ecc0(&data_0217d068, 0, 5);
                         func_021282c8();
-                        data_02174e64->mUnk_18c = 1;
+                        data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mUnk_090 = 0;
                         data_02174e64->mUnk_094 = 3;
                     } else if ((u16) (data_02175628[k].mUnk_00 & 1) != 0 && data_02174e64->mUnk_080 >= 0) {
@@ -198,7 +198,7 @@ s32 func_02034370(Unk02034370 *a) {
                         func_02035228(0);
                         func_0212ecc0(&data_0217d068, 0, 5);
                         func_021282c8();
-                        data_02174e64->mUnk_18c = 1;
+                        data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mUnk_090 = 0;
                         data_02174e64->mUnk_094 = 3;
                     } else if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || z != 0) {
@@ -240,7 +240,7 @@ s32 func_02034370(Unk02034370 *a) {
                     func_0204ece0((u16) data_02174e64->mUnk_080);
                 } else {
                     func_02128374();
-                    data_02174e64->mUnk_18c = 0;
+                    data_02174e64->mUnk_18c = FALSE;
                 }
                 func_02125fc0();
                 data_02174e64->mUnk_094 = 2;

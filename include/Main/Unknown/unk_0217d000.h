@@ -23,7 +23,7 @@ typedef struct Unk0217d410_2c {
 // Object behind data_0217d410: 0x90 bytes allocated by func_0212b928.
 typedef struct Unk0217d410 {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 04 */ BOOL mUnk_04;
     /* 08 */ u8 mUnk_08;
     /* 09 */ u8 mUnk_09;
     /* 0a */ u16 mUnk_0a[5];
@@ -33,7 +33,7 @@ typedef struct Unk0217d410 {
     /* 2a */ u8 mUnk_2a[2];
     /* 2c */ Unk0217d410_2c mUnk_2c[4];
     /* 5c */ Unk0217d410_2c mUnk_5c[4];
-    /* 8c */ s32 mUnk_8c;
+    /* 8c */ BOOL mUnk_8c;
 } Unk0217d410;
 
 // Object behind data_0217d358.
@@ -119,8 +119,8 @@ typedef struct Unk0217d350 {
     /* 88 */ void *mUnk_88;
     /* 8c */ void *mUnk_8c;
     /* 90 */ s32 mUnk_90[2];
-    /* 98 */ s32 mUnk_98;
-    /* 9c */ s32 mUnk_9c;
+    /* 98 */ BOOL mUnk_98;
+    /* 9c */ BOOL mUnk_9c;
     /* a0 */ s32 mUnk_a0;
 } Unk0217d350;
 
@@ -207,8 +207,8 @@ typedef struct RecordVS {
     /* 78 */ void *mUnk_78;
     /* 7c */ void *mUnk_7c;
     /* 80 */ s32 mUnk_80[2];
-    /* 88 */ s32 mUnk_88;
-    /* 8c */ s32 mUnk_8c;
+    /* 88 */ BOOL mUnk_88;
+    /* 8c */ BOOL mUnk_8c;
     /* 90 */ s32 mUnk_90;
 } RecordVS;
 
@@ -234,13 +234,13 @@ typedef struct Unk0217d360 {
     /* 40 */ s32 mBg0Offset;
     /* 44 */ s32 mIndex;
     /* 48 */ s32 mUnk_48[8];
-    /* 68 */ s32 mUnk_68;
+    /* 68 */ BOOL mUnk_68;
     /* 6c */ s32 mUnk_6c;
     /* 70 */ s32 mUnk_70;
     /* 74 */ s32 mUnk_74;
     /* 78 */ s16 mUnk_78;
     /* 7a */ u8 mUnk_7a[2];
-    /* 7c */ s32 mUnk_7c;
+    /* 7c */ BOOL mUnk_7c;
     /* 80 */ void *mUnk_80;
     /* 84 */ void *mUnk_84;
     /* 88 */ s32 mResult;
@@ -270,11 +270,11 @@ typedef struct SelectCup {
     /* 4c */ u8 mUnk_4c[4];
     /* 50 */ s16 mIndex; /* 0..3 position among the four cups of the page: the cup is data_0215cbec[row][mIndex] */
     /* 52 */ u8 mUnk_52[2];
-    /* 54 */ s32 mUnk_54;
+    /* 54 */ BOOL mUnk_54;
     /* 58 */ s32 mUnk_58;
     /* 5c */ s16 mUnk_5c;
     /* 5e */ u8 mUnk_5e[2];
-    /* 60 */ s32 mUnk_60;
+    /* 60 */ BOOL mUnk_60;
     /* 64 */ void *mUnk_64;
     /* 68 */ void *mUnk_68;
     /* 6c */ s32 mResult;
@@ -382,7 +382,7 @@ typedef struct Unk0217d378 {
     /* 2c */ s32 mUnk_2c;
     /* 30 */ s32 mUnk_30;
     /* 34 */ s32 mUnk_34;
-    /* 38 */ s32 mUnk_38;
+    /* 38 */ BOOL mUnk_38;
     /* 3c */ s32 mUnk_3c;
     /* 40 */ s32 mUnk_40;
     /* 44 */ u8 mUnk_44[0x04];
@@ -407,9 +407,9 @@ typedef struct Unk0217d34c {
 
 // Object behind data_0217d3ec: 0x814 bytes allocated by func_02125de0.
 typedef struct Unk0217d3ec {
-    /* 000 */ s32 mUnk_00;
-    /* 004 */ s32 mUnk_04;
-    /* 008 */ s32 mUnk_08;
+    /* 000 */ BOOL mUnk_00;
+    /* 004 */ BOOL mUnk_04;
+    /* 008 */ BOOL mUnk_08;
     /* 00c */ s32 mBackScreenKind;
     /* 010 */ u16 mBackScreenSNscrCopy[0x400];
     /* 810 */ s32 mUnk_810;
@@ -563,7 +563,7 @@ typedef struct Keyboard {
     /* 10 */ s32 mNextState;
     /* 14 */ s32 mUnk_14[2];
     /* 1c */ s32 mUnk_1c[2];
-    /* 24 */ s32 mUnk_24;
+    /* 24 */ BOOL mUnk_24;
     /* 28 */ s32 mUnk_28;
     /* 2c */ Unk0217d400_2c mUnk_2c[3];
     /* 74 */ Unk02124b1c *mUnk_74[2][2];
@@ -611,7 +611,7 @@ typedef struct Unk0217d408 {
     /* 0000 */ s32 mUnk_0000;
     /* 0004 */ s32 mUnk_0004;
     /* 0008 */ void *mUnk_0008;
-    /* 000c */ s32 mUnk_000c;
+    /* 000c */ BOOL mUnk_000c;
     /* 0010 */ s32 mUnk_0010;
     /* 0014 */ u8 mUnk_0014[0x20];
     /* 0034 */ Unk02180728 mUnk_0034;

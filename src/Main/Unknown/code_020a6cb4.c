@@ -44,8 +44,8 @@ BOOL func_020a6f94(Unk02100094 *a) {
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
             f = FALSE;
-            if (e->mUnk_a0 == 0) {
-                if (e->mUnk_a4 == 0) {
+            if (e->mUnk_a0 == FALSE) {
+                if (e->mUnk_a4 == FALSE) {
                     f = TRUE;
                 }
             }
@@ -76,10 +76,10 @@ BOOL func_020a6f94(Unk02100094 *a) {
         k = v2;
         if (a != NULL) {
             for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
-                if (e->mUnk_a0 == 0 && e->mUnk_a4 == 0) {
+                if (e->mUnk_a0 == FALSE && e->mUnk_a4 == FALSE) {
                     if (k-- == 0) {
                         func_020a5744(&e->mUnk_00.mPos, i, 1);
-                        e->mUnk_a0 = 1;
+                        e->mUnk_a0 = TRUE;
                         return TRUE;
                     }
                 }
@@ -117,13 +117,13 @@ void func_020a6e70(Unk02100094 *a) {
         return;
     }
     for (j = 0; j < a->mUnk_04 && (e = a->mUnk_00[j]) != NULL; j++) {
-        e->mUnk_a4 = 1;
+        e->mUnk_a4 = TRUE;
         if (e->mUnk_00.mCourseMapRow->mUnk_28 != 0) {
             n = data_021759c0->mKartCount;
             v = func_020a1238();
             if (v + func_020a119c() < n + 1) {
                 func_020a5744(&e->mUnk_00.mPos, j, func_02062ec4());
-                e->mUnk_a0 = 1;
+                e->mUnk_a0 = TRUE;
             }
         }
     }
@@ -175,10 +175,10 @@ void func_020a6cb4(s32 a) {
     }
     for (i = 0; i < v1->mUnk_04 && (e = v1->mUnk_00[i]) != NULL; i++) {
         if (i == a) {
-            e->mUnk_a0 = 0;
-            e->mUnk_a4 = 1;
+            e->mUnk_a0 = FALSE;
+            e->mUnk_a4 = TRUE;
         } else {
-            e->mUnk_a4 = 0;
+            e->mUnk_a4 = FALSE;
         }
     }
 }

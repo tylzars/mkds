@@ -58,7 +58,7 @@ void InitWiFiTopMenu(void *heap) {
             break;
     }
     gWiFiTopMenu->mStateFrames = 0;
-    gWiFiTopMenu->mUnk_18 = 1;
+    gWiFiTopMenu->mUnk_18 = TRUE;
     gWiFiTopMenu->mUnk_38 = FindSceneFile("wifi.bmg");
     gWiFiTopMenu->mUnk_3c = func_02047a28("common.bmg");
     LocateAndQueueWiFiTopMenu();
@@ -171,8 +171,8 @@ void AdvanceWiFiTopMenuState3(void) {
         if (v7 == 0 && data_0217567c[i].mUnk_00 == 0 && data_02175674[i].mUnk_00 != 0) {
             v6 = TRUE;
         }
-        if (v6 == FALSE ||
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
+        if (v6 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00,
+                                                                           data_02175672[i].mUnk_00) == FALSE) {
             goto next;
         }
     }
@@ -200,7 +200,7 @@ next:
             }
         }
         if (gWiFiTopMenu->mIndex == v4) {
-            gWiFiTopMenu->mUnk_18 = 0;
+            gWiFiTopMenu->mUnk_18 = FALSE;
         }
         gWiFiTopMenu->mNextState = 4;
         switch (gWiFiTopMenu->mIndex) {
@@ -252,7 +252,7 @@ void AdvanceWiFiTopMenuState4(void) {
         }
         gWiFiTopMenu->mStateFrames = 0;
     } else if (gWiFiTopMenu->mStateFrames >= 5) {
-        gWiFiTopMenu->mUnk_18 = 1;
+        gWiFiTopMenu->mUnk_18 = TRUE;
     }
 }
 
@@ -349,7 +349,7 @@ void AdvanceWiFiTopMenuState8(void) {
                 b = TRUE;
             }
             if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
-                                                                              data_02175628[i].mUnk_4a) == 0) {
+                                                                              data_02175628[i].mUnk_4a) == FALSE) {
                 return;
             }
         }
@@ -365,7 +365,7 @@ void func_ov000_021817e8(void) {
     const u8 *p = data_ov000_021b05c4;
     const u8 *q = data_ov000_021b05c8;
     for (; i < 3; i++) {
-        if (i == gWiFiTopMenu->mIndex && gWiFiTopMenu->mUnk_18 != 0) {
+        if (i == gWiFiTopMenu->mIndex && gWiFiTopMenu->mUnk_18 != FALSE) {
             gWiFiTopMenu->mUnk_1c[*p].mUnk_00 = 1;
             func_02124a20(*q, 0xe, gWiFiTopMenu->mUnk_20, gWiFiTopMenu->mUnk_2c);
         } else {

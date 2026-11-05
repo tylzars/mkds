@@ -13,7 +13,7 @@ typedef struct Unk020a0318 {
     /* ac */ s32 mUnk_ac;
     /* b0 */ s32 mUnk_b0;
     /* b4 */ s32 mUnk_b4;
-    /* b8 */ s32 mUnk_b8;
+    /* b8 */ BOOL mUnk_b8;
     /* bc */ u16 mUnk_bc;
     /* be */ u16 mUnk_be;
     /* c0 */ s32 mUnk_c0;

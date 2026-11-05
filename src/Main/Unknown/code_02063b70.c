@@ -94,7 +94,7 @@ void DrawKart(Kart *a) {
     }
     func_0208ab4c(&e->mUnk_040);
     if (e->mUnk_058 == 0) {
-        func_02079b9c(e, e->mUnk_060 == 0);
+        func_02079b9c(e, e->mUnk_060 == FALSE);
         func_02063cc4_inline(0x13, 0x1c);
         func_02063cc4_inline2(0x1b, a->mUnk_4f0.x, a->mUnk_4f0.y, 0x1000);
         func_020849d0(e->mUnk_010[1]);

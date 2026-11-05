@@ -32,7 +32,7 @@ void func_0211fef4(u32 a, void *b, u32 c) {
     if (data_0217d384->mUnk_0008.mState != 5) {
         return;
     }
-    if (data_0217d384->mUnk_1f38 == 0) {
+    if (data_0217d384->mUnk_1f38 == FALSE) {
         return;
     }
     if (func_02121990(b, c, a, func_ov000_0219bb50()) != FALSE) {
@@ -42,7 +42,7 @@ void func_0211fef4(u32 a, void *b, u32 c) {
 }
 
 void func_0211fe44(void) {
-    if (data_0217d384->mUnk_1cfc == 0) {
+    if (data_0217d384->mUnk_1cfc == FALSE) {
         return;
     }
     func_02060c0c(&data_0217d384->mUnk_19f0[0]);
@@ -50,7 +50,7 @@ void func_0211fe44(void) {
     func_0205edf8();
     while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1) {
     }
-    data_0217d384->mUnk_1cfc = 0;
+    data_0217d384->mUnk_1cfc = FALSE;
 }
 
 void func_0211fe24(void) {
@@ -200,7 +200,7 @@ void func_0211f77c(s32 a, s32 b) {
 
     if (a == 0) {
         if (b != 0) {
-            data_0217d384->mUnk_1cfc = 1;
+            data_0217d384->mUnk_1cfc = TRUE;
         }
         i = 0;
         if (func_ov000_0219d9b0(&data_0217d384->mUnk_19f0[0], 0x3c) > 0) {

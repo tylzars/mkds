@@ -41,8 +41,8 @@ typedef struct Unk020e0764 {
 typedef struct Unk020e20a8 {
     /* 000 */ u8 mUnk_000[0x2c];
     /* 02c */ Vec3 mUnk_02c;
-    /* 038 */ s32 mUnk_038;
-    /* 03c */ s32 mUnk_03c;
+    /* 038 */ BOOL mUnk_038;
+    /* 03c */ BOOL mUnk_03c;
 } Unk020e20a8;
 
 // Object with vectors at 0x50 and 0x80.
@@ -212,8 +212,8 @@ void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c
                    Unk020e0764 *j, Vec3 *k, Vec3 *l, u16 *m);
 BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 i, s32 j, Unk020e005c *w, Vec3 *l,
                    Vec3 *m, Vec3 *n, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, Vec3 *r, u16 *s);
-s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
-                  u16 *s);
-s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
-                  u16 *s);
+BOOL func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
+                   u16 *s);
+BOOL func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
+                   u16 *s);
 void func_020e0680(Unk020e005c *a, Vec3 *b, Vec3 *c, Vec3 *d, u16 *e);

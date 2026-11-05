@@ -8,8 +8,8 @@
 // Object of the list func_02100138(0x6b): the shared MapObject part, then three words.
 typedef struct Unk020a6cb4 {
     /* 00 */ MapObject mUnk_00;
-    /* a0 */ s32 mUnk_a0;
-    /* a4 */ s32 mUnk_a4;
+    /* a0 */ BOOL mUnk_a0;
+    /* a4 */ BOOL mUnk_a4;
     /* a8 */ s32 mUnk_a8;
 } Unk020a6cb4;
 

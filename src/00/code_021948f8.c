@@ -54,7 +54,7 @@ s32 func_ov000_02194a0c(GpConnection *a, GpiOperation *b, const char *c) {
     s32 t;
     char d[0x10];
 
-    if (GpiReadError(a, c, 1) != 0) {
+    if (GpiReadError(a, c, 1) != FALSE) {
         return 4;
     }
     if (strncmp(c, data_ov000_021b3564, 5) != 0) {
@@ -62,7 +62,7 @@ s32 func_ov000_02194a0c(GpConnection *a, GpiOperation *b, const char *c) {
         GpiQueueErrorCallback(a, 3, 1);
         return 3;
     }
-    if (GpiGetValue(c, data_ov000_021b359c, d, 0x10) == 0) {
+    if (GpiGetValue(c, data_ov000_021b359c, d, 0x10) == FALSE) {
         GpiSetError(a, 1, data_ov000_021b356c);
         GpiQueueErrorCallback(a, 3, 1);
         return 3;

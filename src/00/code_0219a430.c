@@ -59,7 +59,7 @@ u32 CreateSocket(Gt2Socket **a, const char *b, u32 c, u32 d, u32 e) {
     if (c == 0) {
         c = 0x10000;
     }
-    if (Gt2ParseAddress(b, &h, &i) == 0) {
+    if (Gt2ParseAddress(b, &h, &i) == FALSE) {
         return 4;
     }
     f = func_ov000_021a3690(0x44);

@@ -147,7 +147,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
         case 3:
             data_02174e60->mUnk_0d0 = func_02122778(func_ov000_0219bb50());
             data_02174e60->mUnk_0d8 = data_0217d384->mKartCount;
-            data_02174e60->mUnk_148 = 1;
+            data_02174e60->mUnk_148 = TRUE;
             data_02174e60->mUnk_14c = 0x384;
             data_02174e60->mUnk_150 = 2;
             break;
@@ -311,7 +311,7 @@ void func_02032ac4(Unk02032ac4 *a) {
 
     t = &data_02174e60->mUnk_048[1];
     s = &data_02174e60->mUnk_048[0];
-    if (data_02174e60->mUnk_148 != 0) {
+    if (data_02174e60->mUnk_148 != FALSE) {
         if (data_02174e60->mUnk_14c != 0) {
             data_02174e60->mUnk_14c = data_02174e60->mUnk_14c - 1;
             x = (data_02174e60->mUnk_14c + 0x3c) / 0x3c;

@@ -64,7 +64,7 @@ u32 func_0203c0bc(void) {
     if (data_0217561c->mUnk_000[0].mUnk_0a >= 7) {
         return 1;
     }
-    if (func_0204a620((Unk02175650 *) &data_02175628[i].mUnk_28) != 0) {
+    if (func_0204a620((Unk02175650 *) &data_02175628[i].mUnk_28) != FALSE) {
         return 1;
     }
     if (func_020617a8(&v) != 0) {

@@ -130,7 +130,7 @@ void func_02118814(void) {
                 data_0217d360->mSelectCupSTable[q[3]].mUnk_00 = 1;
                 data_0217d360->mSelectCupSTable[q[5]].mUnk_00 = 1;
             } else {
-                if (data_0217d360->mIndex == i && data_0217d360->mUnk_68 != 0) {
+                if (data_0217d360->mIndex == i && data_0217d360->mUnk_68 != FALSE) {
                     data_0217d360->mSelectCupSTable[q[2]].mUnk_00 = 1;
                 } else {
                     data_0217d360->mSelectCupSTable[q[1]].mUnk_00 = 1;
@@ -147,7 +147,7 @@ void func_02118814(void) {
 void func_021187d4(void) {
     if (*(vu16 *) 0x027ffc40 != 2) {
         TrySetCupPictureIndexAndQueueLoads(data_0215ca1c[data_0217d360->mIndex][data_0217d360->mUnk_78]);
-        data_0217d360->mUnk_7c = 1;
+        data_0217d360->mUnk_7c = TRUE;
     }
 }
 
@@ -482,11 +482,11 @@ void func_02117e24(void *a, void *b, void *c, s32 d) {
     data_0217d360->mHeap = a;
     data_0217d360->mState = 0;
     data_0217d360->mIndex = data_0215c8fc[func_0202968c()];
-    data_0217d360->mUnk_68 = 1;
+    data_0217d360->mUnk_68 = TRUE;
     data_0217d360->mUnk_6c = 0;
     data_0217d360->mMode = d;
     data_0217d360->mUnk_70 = data_0217d360->mIndex;
-    data_0217d360->mUnk_7c = 0;
+    data_0217d360->mUnk_7c = FALSE;
     data_0217d360->mUnk_80 = b;
     data_0217d360->mUnk_84 = c;
     data_0217d360->mResult = 0;
@@ -720,7 +720,7 @@ L2:
             return;
         }
         if (data_0217d360->mIndex == d) {
-            data_0217d360->mUnk_68 = 0;
+            data_0217d360->mUnk_68 = FALSE;
         }
         data_0217d360->mIndex = d;
         func_02118184();
@@ -728,7 +728,7 @@ L2:
     }
     if ((u16) (q->mUnk_00 & 1) != 0) {
         func_02118184();
-        data_0217d360->mUnk_68 = 0;
+        data_0217d360->mUnk_68 = FALSE;
         return;
     }
     if (func_020ae408(8, 0x40) != 0) {
@@ -790,7 +790,7 @@ void func_0211784c(void) {
     func_021184d4();
     func_02118414();
     if (data_0217d360->mStateFrames == 5) {
-        data_0217d360->mUnk_68 = 1;
+        data_0217d360->mUnk_68 = TRUE;
     }
     data_0217d360->mStateFrames = data_0217d360->mStateFrames + 1;
     if (data_0217d360->mStateFrames >= 10 && func_021185d4() == 0) {
@@ -1007,7 +1007,7 @@ s32 func_02117418(void) {
     func_02118814();
     func_02118458();
     if (*(vu16 *) 0x027ffc40 != 2) {
-        if (data_0217d360->mUnk_7c != 0 && func_020d0ec4() != FALSE) {
+        if (data_0217d360->mUnk_7c != FALSE && func_020d0ec4() != FALSE) {
             p = GetCupPictureNscrData();
             CallQueueAppend(0xf, 0, GetCupPictureNclrData(), 0xe0);
             CallQueueAppend(4, 0x20, GetCupPictureNcgrData(), 0xdc0);
@@ -1015,7 +1015,7 @@ s32 func_02117418(void) {
                 n = (i + 8) * 0x20 + 0x16;
                 CallQueueAppend(8, n * 2, p + n, 0x14);
             }
-            data_0217d360->mUnk_7c = 0;
+            data_0217d360->mUnk_7c = FALSE;
         }
         func_02124c30(data_0217d360->mSelectCupMBncl, data_0217d360->mSelectCupMNcer, data_0217d360->mSelectCupMBnll,
                       data_0217d360->mUnk_80, data_0217d360->mSelectCupMTable);

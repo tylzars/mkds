@@ -302,7 +302,7 @@ void func_020bab54(void) {
             data_0217b3cc->mUnk_18.mUnk_00 = 0;
         }
     }
-    if (func_020bab54_inline(i)->mUnk_204 != 0) {
+    if (func_020bab54_inline(i)->mUnk_204 != FALSE) {
         s32 q;
         q = func_020bab54_inline(i)->mUnk_030.mUnk_00 == 0x13 ? func_020bab54_inline(i)->mUnk_014
                                                               : func_020bab54_inline(i)->mUnk_030.mUnk_00;
@@ -579,7 +579,7 @@ void func_020b9dfc(Unk020d029c *p) {
             if (data_02175628[0].mSourceKind != 2) {
                 return;
             }
-            if (func_0204a650(&data_02175650[0]) == 0) {
+            if (func_0204a650(&data_02175650[0]) == FALSE) {
                 return;
             }
             data_0217b3c8->mUnk_08 = 0;

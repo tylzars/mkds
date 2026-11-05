@@ -368,7 +368,7 @@ void func_020c610c(void) {
                 }
                 if (v1 != FALSE) {
                     func_0203c7cc((u16) data_021759c0->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
-                    if (func_020adc24(&y, &x) != 0) {
+                    if (func_020adc24(&y, &x) != FALSE) {
                         r = TRUE;
                     }
                 } else {
@@ -438,7 +438,7 @@ void func_020c5f7c(void) {
         }
         if (v1 != FALSE) {
             func_0203c7cc((u16) data_021759c0->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
-            if (func_020adc24(&y, &x) != 0) {
+            if (func_020adc24(&y, &x) != FALSE) {
                 r = TRUE;
             }
         } else {

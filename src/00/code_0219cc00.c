@@ -36,7 +36,7 @@ void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c) {
         if (data_ov000_021b5664->mUnk_00 == 1) {
             data_ov000_021b5664->mUnk_1d = 1;
             for (i = 0; i < b->mUnk_04; i++) {
-                if (func_ov000_0219d210(data_ov000_021b5664->mUnk_18, c, b->mUnk_0c[i].mUnk_00) != 0) {
+                if (func_ov000_0219d210(data_ov000_021b5664->mUnk_18, c, b->mUnk_0c[i].mUnk_00) != FALSE) {
                     data_ov000_021b5664->mUnk_1c++;
                     data_ov000_021b5664->mUnk_1e = 1;
                     b->mUnk_08 = 0x601;

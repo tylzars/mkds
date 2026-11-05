@@ -195,21 +195,21 @@ void func_0206302c(void) {
     u32 j;
     Unk0201290c *c;
 
-    data_usa_0217aafc.mUnk_e0 = 0;
+    data_usa_0217aafc.mUnk_e0 = FALSE;
     data_usa_0217aafc.mUnk_e4 = 0;
-    data_usa_0217aafc.mUnk_ec = 0;
+    data_usa_0217aafc.mUnk_ec = FALSE;
     data_usa_0217aafc.mUnk_f0 = 0;
     switch (data_021759c0->mCourseId) {
         case 0x12:
         case 0x1b:
         case 0x2d:
-            data_usa_0217aafc.mUnk_e0 = 1;
+            data_usa_0217aafc.mUnk_e0 = TRUE;
             break;
         case 0x1d:
-            data_usa_0217aafc.mUnk_ec = 1;
+            data_usa_0217aafc.mUnk_ec = TRUE;
             break;
     }
-    if (data_usa_0217aafc.mUnk_e0 != 0) {
+    if (data_usa_0217aafc.mUnk_e0 != FALSE) {
         b = data_usa_0217aafc.mUnk_00->mUnk_04;
         for (i = 0; i < b->mEntryCount; i++) {
             if (func_02013314(b, i) != 0) {
@@ -222,7 +222,7 @@ void func_0206302c(void) {
     if (data_usa_0217aafc.mUnk_04 == NULL) {
         return;
     }
-    if (data_usa_0217aafc.mUnk_ec == 0) {
+    if (data_usa_0217aafc.mUnk_ec == FALSE) {
         return;
     }
     c = data_usa_0217aafc.mUnk_04->mUnk_04;
@@ -239,7 +239,7 @@ void func_02062ef8(u32 a) {
     u32 j;
 
     if (data_usa_0217aafc.mUnk_04 != NULL) {
-        if (data_usa_0217aafc.mUnk_ec != 0 && a == 0) {
+        if (data_usa_0217aafc.mUnk_ec != FALSE && a == 0) {
             b = data_usa_0217aafc.mUnk_04->mUnk_04;
             for (i = 0; i < b->mEntryCount; i++) {
                 func_02013424(b, i, (data_usa_0217aafc.mUnk_f0 & (1 << i)) != 0 ? 1 : 0);
@@ -248,7 +248,7 @@ void func_02062ef8(u32 a) {
             func_02013044(data_usa_0217aafc.mUnk_04->mUnk_04, a);
         }
     }
-    if (data_usa_0217aafc.mUnk_e0 == 0) {
+    if (data_usa_0217aafc.mUnk_e0 == FALSE) {
         return;
     }
     if (a != 0) {

@@ -36,12 +36,12 @@ typedef struct Unk02174e58 {
     /* 6c */ s32 mUnk_6c;
     /* 70 */ s32 mUnk_70;
     /* 74 */ s32 mUnk_74;
-    /* 78 */ s32 mUnk_78;
-    /* 7c */ s32 mUnk_7c;
-    /* 80 */ s32 mUnk_80;
+    /* 78 */ BOOL mUnk_78;
+    /* 7c */ BOOL mUnk_7c;
+    /* 80 */ BOOL mUnk_80;
     /* 84 */ s32 mUnk_84;
-    /* 88 */ s32 mUnk_88;
-    /* 8c */ s32 mUnk_8c;
+    /* 88 */ BOOL mUnk_88;
+    /* 8c */ BOOL mUnk_8c;
     /* 90 */ s32 mUnk_90;
     /* 94 */ s32 mUnk_94;
     /* 98 */ s32 mUnk_98;
@@ -50,7 +50,7 @@ typedef struct Unk02174e58 {
     /* e0 */ Unk02174e58_e0 mUnk_e0[8];
     /* 140 */ s32 mUnk_140;
     /* 144 */ s32 mUnk_144;
-    /* 148 */ s32 mUnk_148;
+    /* 148 */ BOOL mUnk_148;
     /* 14c */ s32 mUnk_14c;
     /* 150 */ void *mHeap;
 } Unk02174e58;

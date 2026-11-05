@@ -21,11 +21,11 @@ typedef struct Unk0217b4f0 {
     /* 12a */ u16 mUnk_12a;
     /* 12c */ u16 mUnk_12c;
     /* 12e */ u8 mUnk_12e[2];
-    /* 130 */ s32 mUnk_130;
+    /* 130 */ BOOL mUnk_130;
     /* 134 */ Unk020e6fd4 *mUnk_134[16];
     /* 174 */ u16 mUnk_174;
     /* 176 */ u8 mUnk_176[2];
-    /* 178 */ s32 mUnk_178;
+    /* 178 */ BOOL mUnk_178;
     /* 17c */ s32 mUnk_17c;
     /* 180 */ s32 mUnk_180;
     /* 184 */ s32 mUnk_184;

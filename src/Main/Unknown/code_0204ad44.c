@@ -92,7 +92,7 @@ void func_0204ad44(void) {
     data_021759d0->mUnk_5c = 0;
     func_02012b20(0);
     data_021759d0->mUnk_1c_3 = 0;
-    data_021759d0->mUnk_54 = 0;
+    data_021759d0->mUnk_54 = FALSE;
     data_021759d0->mUnk_50 = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         data_021759d0->mUnk_1c_2 = 1;

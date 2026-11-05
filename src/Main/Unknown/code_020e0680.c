@@ -121,14 +121,14 @@ void func_020e2ccc(Unk020e20a8 *a) {
     u16 b;
 
     b = data_021759c0->mEntryIndex;
-    if (a->mUnk_038 == 0) {
+    if (a->mUnk_038 == FALSE) {
         return;
     }
     if (b < 8) {
         func_020f3678((u32) data_027e00c8[b].mUnk_1f0.mUnk_00, (u32) &a->mUnk_02c);
         a->mUnk_03c = func_02039828(&a->mUnk_02c, (Vec3 *) func_020e6b14()) < 0;
     } else {
-        a->mUnk_03c = 0;
+        a->mUnk_03c = FALSE;
     }
 }
 
@@ -146,7 +146,7 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
     s32 x;
     s32 y;
 
-    if (a->mUnk_03c != 0) {
+    if (a->mUnk_03c != FALSE) {
         t = func_02039828(&b->mUnk_000.mMatrix.mUnk_00[2], &a->mUnk_02c);
         v = b->mUnk_000.mCourseMapRow->mUnk_2e;
         w = b->mUnk_0d8.mUnk_1c->mUnk_12;
@@ -450,7 +450,7 @@ void func_020e20a8(Unk020e20a8 *a) {
     b = (u32) FindCourseMapObjFile(gCarANsbmdName);
     c = (u32) FindCourseMapObjFile(gTruckANsbmdName);
     a->mUnk_038 = data_021759c0->mMode != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mEntryIndex < 8;
-    a->mUnk_03c = 0;
+    a->mUnk_03c = FALSE;
     func_020ea588(&gCarA, (void *) b, NULL);
     func_020ea588(&gTruckA, (void *) c, NULL);
     func_020ea588(&gBusA, (void *) FindCourseMapObjFile(gBusANsbmdName), NULL);
@@ -770,8 +770,8 @@ BOOL func_020e16dc(s32 a, s32 b, s32 c, u32 d, u16 e, u16 f, u16 *g, u16 h, s32 
     return TRUE;
 }
 
-s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
-                  u16 *s) {
+BOOL func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
+                   u16 *s) {
     Vec3 v;
     Vec3 w;
     Vec3 tmp;
@@ -796,7 +796,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
     f6 = func_02039828(&v, &a->mUnk_028);
     if (f6 > 0) {
         if (f6 > a->mUnk_100 + c) {
-            return 0;
+            return FALSE;
         }
         if (f6 > a->mUnk_100) {
             n |= 0xa00;
@@ -805,7 +805,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
         }
     } else {
         if (f6 < -(a->mUnk_100 + c)) {
-            return 0;
+            return FALSE;
         }
         if (f6 < -a->mUnk_100) {
             n |= 0x600;
@@ -816,7 +816,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
     f5 = func_02039828(&v, &a->mUnk_034);
     if (f5 > 0) {
         if (f5 > a->mUnk_104 + c) {
-            return 0;
+            return FALSE;
         }
         if (f5 > a->mUnk_104) {
             n |= 0xa0;
@@ -825,7 +825,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
         }
     } else {
         if (f5 < -(a->mUnk_104 + c)) {
-            return 0;
+            return FALSE;
         }
         if (f5 < -a->mUnk_104) {
             n |= 0x60;
@@ -836,7 +836,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
     f4 = func_02039828(&v, &a->mUnk_040);
     if (f4 > 0) {
         if (f4 > a->mUnk_108 + c) {
-            return 0;
+            return FALSE;
         }
         if (f4 > a->mUnk_108) {
             n |= 0xa;
@@ -845,7 +845,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
         }
     } else {
         if (f4 < -(a->mUnk_10c + c)) {
-            return 0;
+            return FALSE;
         }
         if (f4 < -a->mUnk_10c) {
             n |= 0x6;
@@ -854,7 +854,7 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
         }
     }
     if ((d & 4) && a->mUnk_13c != 0) {
-        return 0;
+        return FALSE;
     }
     if (n & 0x100) {
         if (n & 0x10) {
@@ -911,13 +911,13 @@ s32 func_020e0bac(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
     }
 call_800:
     func_020e1a80(c, k6, m6, n, 0x800, g, a->mUnk_110, a, b, &a->mUnk_028, o, p, q, r, s);
-    return 1;
+    return TRUE;
 call_80:
     func_020e1a80(c, k5, m5, n, 0x80, g, a->mUnk_114.x, a, b, &a->mUnk_034, o, p, q, r, s);
-    return 1;
+    return TRUE;
 call_8:
     func_020e1a80(c, f4, m4, n, 8, g, a->mUnk_114.y, a, b, &a->mUnk_040, o, p, q, r, s);
-    return 1;
+    return TRUE;
 smallest:
     if (m6 < m4) {
         if (m6 < m5) {
@@ -1039,7 +1039,7 @@ rest:
     v.z <<= 10;
     t = Vec3NormalizeAndGetLengthOrZero(&v, &w);
     if (t > (c << 10)) {
-        return 0;
+        return FALSE;
     }
     if (t != 0) {
         tmp.x = (s32) (((s64) w.x * c) >> 12);
@@ -1101,11 +1101,11 @@ rest:
     if (u) {
         func_020e0680(a, b, &w, r, s);
     }
-    return 1;
+    return TRUE;
 }
 
-s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
-                  u16 *s) {
+BOOL func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e0764 *p, Vec3 *q, u16 *g, Vec3 *r,
+                   u16 *s) {
     Vec3 v;
     s32 d0;
     Vec3 w;
@@ -1124,7 +1124,7 @@ s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
     sq = (s64) x * x + (s64) y * y;
     t = a->mUnk_100 + c;
     if ((s64) t * t < sq) {
-        return 0;
+        return FALSE;
     }
     if ((s64) a->mUnk_100 * a->mUnk_100 < sq) {
         fl |= data_021588e8;
@@ -1134,7 +1134,7 @@ s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
     n = func_02039828(&v, &a->mUnk_034);
     if (n > 0) {
         if (n > a->mUnk_104 + c) {
-            return 0;
+            return FALSE;
         }
         if (n > a->mUnk_104) {
             fl |= 0xa0;
@@ -1143,7 +1143,7 @@ s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
         }
     } else {
         if (n < -(a->mUnk_104 + c)) {
-            return 0;
+            return FALSE;
         }
         if (n < -a->mUnk_104) {
             fl |= 0x60;
@@ -1199,10 +1199,10 @@ s32 func_020e0764(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *o, Unk020e
     goto tail;
 apply80:
     func_020e1a80(c, n, d0, fl, 0x80, g, a->mUnk_114.x, a, b, &a->mUnk_034, o, p, q, r, s);
-    return 1;
+    return TRUE;
 apply3000:
     func_020e1a80(c, k, x, fl, 0x3000, g, a->mUnk_110, a, b, &w, o, p, q, r, s);
-    return 1;
+    return TRUE;
 tail:
     x = x - a->mUnk_100;
     if (fl & 0x80) {

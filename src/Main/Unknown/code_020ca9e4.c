@@ -11,10 +11,10 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void func_020ca9e4(void) {
-    if (gEmblemChoises->mUnk_08 != 0) {
+    if (gEmblemChoises->mUnk_08 != FALSE) {
         func_0214c0f8(gEmblemChoises->mChoisesSBNclr->mData + 0xe0, 0x1c0, 0x40);
         MemCopyWordsToG2sBg0CntBits2To5Address(gEmblemChoises->mChoisesSBNcgr->mData, 0, 0x3000);
-        gEmblemChoises->mUnk_08 = 0;
+        gEmblemChoises->mUnk_08 = FALSE;
     }
     if (gEmblemChoises->mUnk_00 != 0) {
         MemCopyHalfwordsToG2sBg0CntBits8To12Address(gEmblemChoises->mChoisesS3Nscr->mData, 0, 0x600);

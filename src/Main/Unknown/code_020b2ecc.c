@@ -110,7 +110,7 @@ u32 func_020b302c(void) {
                     gChoisesS->mUnk_028 = gChoisesS->mLists[k].mValues[i];
                     func_020b3120(0);
                 } else {
-                    gChoisesS->mUnk_010 = 1;
+                    gChoisesS->mUnk_010 = TRUE;
                 }
                 r = 1;
             }
@@ -193,7 +193,7 @@ u32 func_020b2ecc(void) {
     s32 r;
 
     r = func_0205fd78(func_020b2f38(), func_020b2f18(), &v1);
-    if (func_020b2d54() == 0 && gChoisesS->mUnk_020 != 0 && r != 0 && (u32) (v1 - 5) <= 2) {
+    if (func_020b2d54() == 0 && gChoisesS->mUnk_020 != FALSE && r != 0 && (u32) (v1 - 5) <= 2) {
         return 1;
     }
     return 0;

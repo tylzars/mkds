@@ -272,7 +272,7 @@ s32 func_ov000_02186560(Unk02186560 *a, Http *b) {
 
 void func_ov000_021864e0(void) {
     ThreadLockInit(&data_ov000_021b4c90->mUnk_3bc);
-    data_ov000_021b4c90->mUnk_3d4 = 0;
+    data_ov000_021b4c90->mUnk_3d4 = FALSE;
     if (data_ov000_021b4c90->mUnk_2fc.mUnk_6c == 0 || ThreadHasEnded(&data_ov000_021b4c90->mUnk_2fc) != 0) {
         ThreadInit(&data_ov000_021b4c90->mUnk_2fc, func_ov000_021860ac, &data_ov000_021b4c90,
                    data_ov000_021b4c90->mUnk_3e0 + 0x1000, 0x1000, 0x10);
@@ -283,7 +283,7 @@ void func_ov000_021864e0(void) {
 void func_ov000_02186474(void) {
     if (data_ov000_021b4c90 != NULL) {
         ThreadLockWait(&data_ov000_021b4c90->mUnk_3bc);
-        data_ov000_021b4c90->mUnk_3d4 = 1;
+        data_ov000_021b4c90->mUnk_3d4 = TRUE;
         ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
         if (data_ov000_021b4c90->mUnk_2f8 != NULL) {
             func_ov000_02187274((Unk02186d7c *) data_ov000_021b4c90->mUnk_2f8);
@@ -339,7 +339,7 @@ void func_ov000_0218635c(s32 *a) {
 
 s32 func_ov000_02186298(s32 a) {
     if (strcmp(data_ov000_021b1040.mUnk_00, data_ov000_021b1020) != 0) {
-        data_ov000_021b1040.mUnk_18 = 1;
+        data_ov000_021b1040.mUnk_18 = TRUE;
     }
     if (func_ov000_021873d4((Unk02186d7c *) data_ov000_021b4c90->mUnk_2f8,
                             (const Unk021873d4 *) &data_ov000_021b1040) != 0) {
@@ -422,7 +422,7 @@ void func_ov000_021860ac(void *param_1) {
         h = ((func_0200f5ac() - g) * 64) / 0x82ea;
         while (h < 5000) {
             ThreadLockWait(&data_ov000_021b4c90->mUnk_3bc);
-            if (data_ov000_021b4c90->mUnk_3d4 == 1) {
+            if (data_ov000_021b4c90->mUnk_3d4 == TRUE) {
                 data_ov000_021b4c90->mUnk_008 = -0x4e84;
                 ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
                 func_ov000_02185954(0x13);

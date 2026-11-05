@@ -1595,10 +1595,10 @@ BOOL func_ov000_021a9494(Unk021a998c *a) {
     return FALSE;
 }
 
-s32 func_ov000_021a943c(Unk021a998c *a) {
+BOOL func_ov000_021a943c(Unk021a998c *a) {
     Unk021a998c_0c *c = a->mUnk_0c;
     if (a->mState != 4 && func_ov000_021ae16c(a) != 0) {
-        return 1;
+        return TRUE;
     }
     c->mUnk_429 = 0;
     c->mUnk_428 = 0;

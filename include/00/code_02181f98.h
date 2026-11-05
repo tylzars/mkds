@@ -27,13 +27,13 @@ typedef struct WiFiVSSetting {
     /* 0010 */ s32 mStateFrames;
     /* 0014 */ s16 mUnk_14[3][2];
     /* 0020 */ s32 mPendingWiFiState;
-    /* 0024 */ s32 mUnk_24;
-    /* 0028 */ s32 mUnk_28;
+    /* 0024 */ BOOL mUnk_24;
+    /* 0028 */ BOOL mUnk_28;
     // Count down from 6 only while mUnk_08 == 1; a press sets them to 6. Nothing fires at 0: the cell flag and offset
     // they drive stop there.
     /* 002c */ s32 mIndexDecrementTimer;
     /* 0030 */ s32 mIndexIncrementTimer;
-    /* 0034 */ s32 mUnk_34;
+    /* 0034 */ BOOL mUnk_34;
     /* 0038 */ u8 mNscrCopy[0x1000];
     /* 1038 */ void *mHeap;
     /* 103c */ Unk02124b1c *mUnk_103c;
@@ -62,8 +62,8 @@ typedef struct WiFiVSMatching {
     /* 0034 */ u8 mUnk_34[3];
     /* 0037 */ u8 pad_37;
     /* 0038 */ s32 mUnk_38;
-    /* 003c */ s32 mUnk_3c;
-    /* 0040 */ s32 mUnk_40;
+    /* 003c */ BOOL mUnk_3c;
+    /* 0040 */ BOOL mUnk_40;
     /* 0044 */ s32 mUnk_44;
     /* 0048 */ s32 mUnk_48;
     /* 004c */ u16 mUnk_4c[5];
@@ -258,13 +258,13 @@ typedef struct Unk0217d384 {
     /* 19ec */ u32 mUnk_19ec;
     /* 19f0 */ Unk0217d384_19f0 mUnk_19f0[0x3c];
     /* 1cc0 */ u8 mUnk_1cc0[0x3c];
-    /* 1cfc */ s32 mUnk_1cfc;
+    /* 1cfc */ BOOL mUnk_1cfc;
     /* 1d00 */ Unk0217d384_1d00 mUnk_1d00[4];
     /* 1e10 */ Unk0217d384_1d00 mUnk_1e10[4];
     /* 1f20 */ Unk0217d384_1f20 mUnk_1f20;
     /* 1f30 */ s32 mHeapCreated;
-    /* 1f34 */ s32 mUnk_1f34;
-    /* 1f38 */ s32 mUnk_1f38;
+    /* 1f34 */ BOOL mUnk_1f34;
+    /* 1f38 */ BOOL mUnk_1f38;
     /* 1f3c */ s32 mUnk_1f3c;
     /* 1f40 */ s32 mUnk_1f40;
     /* 1f44 */ s32 mUnk_1f44;

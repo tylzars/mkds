@@ -15,7 +15,7 @@ u32 func_ov000_021acef8(const char *a) {
     s[0] = ((data_ov000_021b63e0[0] >> 32) * 0x10000) >> 32;
     data_ov000_021b63e0[0] = (s64) data_ov000_021b63e0[1] * (s64) data_ov000_021b63e0[0] + data_ov000_021b63e0[2];
     s[1] = ((data_ov000_021b63e0[0] >> 32) * 0x10000) >> 32;
-    if (func_ov000_021ad018(a, &r) != 0) {
+    if (func_ov000_021ad018(a, &r) != FALSE) {
         return r;
     }
     f[0] = 1;

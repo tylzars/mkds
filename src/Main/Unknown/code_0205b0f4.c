@@ -87,11 +87,11 @@ static inline BOOL func_0205c98c_inline(void) {
     p = data_0217aa14;
     q = &p->mUnk_754->mUnk_04;
     for (i = 0; i < 4; i++) {
-        if (p->mUnk_014[i].mUnk_30 != 0) {
+        if (p->mUnk_014[i].mUnk_30 != FALSE) {
             MemCopy(&p->mUnk_014[i], q, 0x28);
             *(u64 *) &q->mUnk_0c[2] = func_0200f5ac();
             if (func_0205c340(i, 0, 0x28) != 0) {
-                data_0217aa14->mUnk_014[i].mUnk_30 = 0;
+                data_0217aa14->mUnk_014[i].mUnk_30 = FALSE;
             } else {
                 MemFill(q, 0, 0x28);
             }
@@ -325,11 +325,11 @@ void func_0205c6b0(void) {
     p = data_0217aa14;
     q = &p->mUnk_754->mUnk_04;
     for (i = 0; i < 4; i++) {
-        if (p->mUnk_014[i].mUnk_30 != 0) {
+        if (p->mUnk_014[i].mUnk_30 != FALSE) {
             MemCopy(&p->mUnk_014[i], q, 0x28);
             *(u64 *) &q->mUnk_0c[2] = func_0200f5ac();
             if (func_0205c340(i, 0, 0x28) != 0) {
-                data_0217aa14->mUnk_014[i].mUnk_30 = 0;
+                data_0217aa14->mUnk_014[i].mUnk_30 = FALSE;
             } else {
                 MemFill(q, 0, 0x28);
             }
@@ -902,7 +902,7 @@ void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
             t = func_0200f5ac();
             e->mUnk_0c = t;
             e->mUnk_10 = t >> 32;
-            data_0217aa14->mUnk_014[i].mUnk_30 = 1;
+            data_0217aa14->mUnk_014[i].mUnk_30 = TRUE;
             break;
         case 1:
             data_0217aa14->mUnk_0fa = data_0217aa14->mUnk_0fa | (1 << b->mUnk_00_0);

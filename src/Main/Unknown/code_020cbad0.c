@@ -83,9 +83,9 @@ void func_020cbb10(void) {
     data_0217b43c->mUnk_008 = 0x1f;
     data_0217b43c->mUnk_00c = 0x1f;
     data_0217b43c->mUnk_010 = 0x1f;
-    data_0217b43c->mUnk_104 = 1;
-    data_0217b43c->mUnk_958 = 1;
-    data_0217b43c->mUnk_95c = 1;
+    data_0217b43c->mUnk_104 = TRUE;
+    data_0217b43c->mUnk_958 = TRUE;
+    data_0217b43c->mUnk_95c = TRUE;
     func_020cc3b8();
     func_020ae6d4(data_0217b43c->mUnk_108, data_0217b43c->mUnk_50c);
     func_02047b6c(9);
@@ -255,7 +255,7 @@ void func_020cbb10(void) {
             data_0217b43c->mUnk_930 = 4;
             break;
     }
-    data_0217b43c->mUnk_934 = 0;
+    data_0217b43c->mUnk_934 = FALSE;
     data_0217b43c->mUnk_938 = 0;
 }
 #pragma thumb off

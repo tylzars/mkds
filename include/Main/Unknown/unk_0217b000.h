@@ -146,7 +146,7 @@ typedef struct Unk0217b4f8 {
     /* 2c */ Vec3 mUnk_2c;
     /* 38 */ Vec3 mUnk_38;
     /* 44 */ Vec3 mUnk_44;
-    /* 50 */ s32 mUnk_50;
+    /* 50 */ BOOL mUnk_50;
     /* 54 */ s32 mUnk_54;
 } Unk0217b4f8;
 
@@ -154,9 +154,9 @@ typedef struct Unk0217b4f8 {
 typedef struct EmblemChoises {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ BOOL mUnk_08;
     /* 0c */ UnkFunc *mUnk_0c;
-    /* 10 */ s32 mUnk_10;
+    /* 10 */ BOOL mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
@@ -262,7 +262,7 @@ typedef struct Unk0217b034_784 {
     /* 02 */ s16 mUnk_02;
     /* 04 */ u16 mUnk_04;
     /* 06 */ u8 mUnk_06[2];
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ BOOL mUnk_08;
     /* 0c */ u8 mUnk_0c[4];
 } Unk0217b034_784;
 
@@ -284,13 +284,13 @@ extern u32 data_0217b0d8;
 extern void *gChandelier;
 // 0x70-byte entries of Unk0217b1fc, one per index 0 to 7.
 typedef struct Unk0217b1fc_000 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 00 */ BOOL mUnk_00;
+    /* 04 */ BOOL mUnk_04;
     /* 08 */ s32 mUnk_08;
     /* 0c */ Vec3 mUnk_0c;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
+    /* 20 */ BOOL mUnk_20;
     /* 24 */ s32 mUnk_24[8];
     /* 44 */ u16 mUnk_44;
     /* 46 */ u16 mUnk_46;
@@ -473,16 +473,16 @@ struct Unk0201ea30;
 // Object behind data_0217b340, 0x8bc bytes allocated by func_020ad344.
 typedef struct Unk020ad344 {
     /* 000 */ s32 mUnk_00;
-    /* 004 */ s32 mUnk_04;
+    /* 004 */ BOOL mUnk_04;
     /* 008 */ s32 mUnk_08;
     /* 00c */ s32 mUnk_0c;
     /* 010 */ s32 mUnk_10;
     /* 014 */ Unk020ad344_14 mUnk_14[7];
     /* 04c */ s32 mUnk_4c;
-    /* 050 */ s32 mUnk_50;
+    /* 050 */ BOOL mUnk_50;
     /* 054 */ s32 mUnk_54;
-    /* 058 */ s32 mUnk_58;
-    /* 05c */ s32 mUnk_5c;
+    /* 058 */ BOOL mUnk_58;
+    /* 05c */ BOOL mUnk_5c;
     /* 060 */ s16 mUnk_60;
     /* 062 */ u8 pad_62[2];
     /* 064 */ s32 mUnk_64;
@@ -534,19 +534,19 @@ typedef struct Unk0217b350 {
     /* 814 */ struct Ncgr *mNcgrs[2];
     /* 81c */ struct Nscr *mNscrs[3];
     /* 828 */ s32 mUnk_828;
-    /* 82c */ s32 mUnk_82c;
-    /* 830 */ s32 mUnk_830;
-    /* 834 */ s32 mUnk_834;
-    /* 838 */ s32 mUnk_838;
-    /* 83c */ s32 mUnk_83c;
-    /* 840 */ s32 mUnk_840;
+    /* 82c */ BOOL mUnk_82c;
+    /* 830 */ BOOL mUnk_830;
+    /* 834 */ BOOL mUnk_834;
+    /* 838 */ BOOL mUnk_838;
+    /* 83c */ BOOL mUnk_83c;
+    /* 840 */ BOOL mUnk_840;
     /* 844 */ s32 mUnk_844;
     /* 848 */ s32 mUnk_848;
     /* 84c */ s32 mUnk_84c;
     /* 850 */ s32 mUnk_850;
     /* 854 */ s32 mUnk_854;
     /* 858 */ Unk0217b350_858 mUnk_858[2];
-    /* 898 */ s32 mUnk_898;
+    /* 898 */ BOOL mUnk_898;
     /* 89c */ s32 mUnk_89c[8];
     /* 8bc */ s32 mUnk_8bc[8];
     /* 8dc */ s32 mUnk_8dc;
@@ -555,7 +555,7 @@ typedef struct Unk0217b350 {
     /* 8e8 */ s32 mUnk_8e8;
     /* 8ec */ Unk020ae7c4 mUnk_8ec;
     /* 908 */ s32 mUnk_908;
-    /* 90c */ s32 mUnk_90c;
+    /* 90c */ BOOL mUnk_90c;
     /* 910 */ s32 mUnk_910;
 } Unk0217b350;
 
@@ -748,7 +748,7 @@ extern Unk0217b3cc *data_0217b3cc;
 // Object behind data_0217b3d0, 0x38 bytes, allocated by func_020bc11c.
 typedef struct Unk0217b3d0 {
     /* 00 */ Unk020ae7c4 mUnk_00;
-    /* 1c */ s32 mUnk_1c;
+    /* 1c */ BOOL mUnk_1c;
     /* 20 */ s32 mUnk_20[6];
 } Unk0217b3d0;
 

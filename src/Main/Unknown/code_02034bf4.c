@@ -34,7 +34,7 @@ void func_02035114(void) {
     s = &p->mUnk_02c[1];
     if (p->mUnk_080 < 0) {
         for (i = 0; i < 4; i++) {
-            if (p->mUnk_09c[i].mUnk_28 != 0) {
+            if (p->mUnk_09c[i].mUnk_28 != FALSE) {
                 p->mUnk_080 = i;
                 s->mUnk_18[4].mUnk_00 = 1;
                 func_02025c6c(4, data_02164254[i][3], s->mUnk_0c);
@@ -47,9 +47,9 @@ void func_02035114(void) {
             data_02174e64->mUnk_080 = -1;
             return;
         }
-        if (p->mUnk_09c[p->mUnk_080].mUnk_28 == 0) {
+        if (p->mUnk_09c[p->mUnk_080].mUnk_28 == FALSE) {
             for (i = 0; i < 4; i++) {
-                if (p->mUnk_09c[i].mUnk_28 != 0) {
+                if (p->mUnk_09c[i].mUnk_28 != FALSE) {
                     p->mUnk_080 = i;
                     return;
                 }

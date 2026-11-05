@@ -15,8 +15,8 @@ typedef struct Unk020ee684 {
     /* 010 */ s32 mUnk_010;
     /* 014 */ s32 mUnk_014;
     /* 018 */ struct Unk020ee684 *mUnk_018;
-    /* 01c */ s32 mUnk_01c;
-    /* 020 */ s32 mUnk_020;
+    /* 01c */ BOOL mUnk_01c;
+    /* 020 */ BOOL mUnk_020;
     /* 024 */ s32 mUnk_024;
     /* 028 */ u32 mUnk_028;
     /* 02c */ s32 mUnk_02c;
@@ -29,9 +29,9 @@ typedef struct Unk020ee684 {
     /* 1fa */ u8 mUnk_1fa[2];
     /* 1fc */ Kart *mUnk_1fc;
     /* 200 */ s32 mUnk_200;
-    /* 204 */ s32 mUnk_204;
-    /* 208 */ s32 mUnk_208;
-    /* 20c */ s32 mUnk_20c;
+    /* 204 */ BOOL mUnk_204;
+    /* 208 */ BOOL mUnk_208;
+    /* 20c */ BOOL mUnk_20c;
 } Unk020ee684;
 
 // Element of the table behind data_0217562a.

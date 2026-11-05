@@ -34,12 +34,12 @@ typedef struct Unk02174e50 {
     /* 50 */ s32 mUnk_50;
     /* 54 */ s32 mUnk_54;
     /* 58 */ Unk02174e50_58 mUnk_58[4];
-    /* 88 */ s32 mUnk_88;
+    /* 88 */ BOOL mUnk_88;
     /* 8c */ s32 mUnk_8c;
     /* 90 */ s32 mUnk_90;
     /* 94 */ s32 mUnk_94;
     /* 98 */ s32 mUnk_98;
-    /* 9c */ s32 mUnk_9c;
+    /* 9c */ BOOL mUnk_9c;
     /* a0 */ Unk020b3fb0 *mUnk_a0;
     /* a4 */ void *mHeap;
 } Unk02174e50;

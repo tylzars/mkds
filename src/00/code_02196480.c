@@ -35,7 +35,7 @@ s32 func_ov000_021964e4(GpConnection *a, GpiOperation *b, const char *c) {
     u32 *m;
     s32 t;
 
-    if (GpiReadError(a, c, 1) != 0) {
+    if (GpiReadError(a, c, 1) != FALSE) {
         return 4;
     }
     if (strncmp(c, data_ov000_021b39c4, 4) != 0) {

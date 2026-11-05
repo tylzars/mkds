@@ -131,7 +131,7 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             v = p->mUnk_a8;
             p->mUnk_b4.mUnk_04 = v;
             p->mUnk_b4.mUnk_10 = ((s64) v * p->mUnk_b4.mUnk_00->mUnk_00[p->mUnk_b4.mUnk_0c].mUnk_34) >> 12;
-            if (func_020d8cc8(&p->mUnk_b4) != 0) {
+            if (func_020d8cc8(&p->mUnk_b4) != FALSE) {
                 p->mUnk_a0 = (u16) p->mUnk_b4.mUnk_1c->mUnk_0e;
                 p->mState = 0;
             }

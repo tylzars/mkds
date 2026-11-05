@@ -36,10 +36,11 @@ void InitOptionHensyuMenu(void *heap) {
             break;
     }
     gOptionHensyuMenu->mStateFrames = 0;
-    gOptionHensyuMenu->mUnk_14 = 1;
+    gOptionHensyuMenu->mUnk_14 = TRUE;
     LocateAndQueueOptionHensyuMenu();
     for (i = 0; i < 2; i++) {
-        func_02124a98(data_ov001_021a6a84[i], 1, gOptionHensyuMenu->mOptionHensyuMenuSNcer, gOptionHensyuMenu->mOptionHensyuMenuSBncl);
+        func_02124a98(data_ov001_021a6a84[i], 1, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
+                      gOptionHensyuMenu->mOptionHensyuMenuSBncl);
     }
     a = func_ov001_0219e920();
     func_020ae6d4(a, func_ov001_0219e90c());
@@ -76,8 +77,10 @@ void LocateAndQueueOptionHensyuMenu(void) {
     CallQueueAppend(4, 0, a->mData, a->mDataSize);
     CallQueueAppend(8, 0, b->mData, b->mDataSize);
     CallQueueAppend(15, 0, c->mData, 0x100);
-    CallQueueAppend(0x23, 0, gOptionHensyuMenu->mOptionHensyuMenuSNcgr->mData, gOptionHensyuMenu->mOptionHensyuMenuSNcgr->mDataSize);
-    CallQueueAppend(0x1e, 0, gOptionHensyuMenu->mOptionHensyuMenuSONclr->mData, gOptionHensyuMenu->mOptionHensyuMenuSONclr->mDataSize);
+    CallQueueAppend(0x23, 0, gOptionHensyuMenu->mOptionHensyuMenuSNcgr->mData,
+                    gOptionHensyuMenu->mOptionHensyuMenuSNcgr->mDataSize);
+    CallQueueAppend(0x1e, 0, gOptionHensyuMenu->mOptionHensyuMenuSONclr->mData,
+                    gOptionHensyuMenu->mOptionHensyuMenuSONclr->mDataSize);
 }
 
 void AdvanceOptionHensyuMenuState0(void) {
@@ -141,7 +144,8 @@ void AdvanceOptionHensyuMenuState3(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        r = RectTableFindContaining(gOptionHensyuMenu->mOptionHensyuMenuSBnbl, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+        r = RectTableFindContaining(gOptionHensyuMenu->mOptionHensyuMenuSBnbl, data_02175628[i].mUnk_48,
+                                    data_02175628[i].mUnk_4a);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         b = FALSE;
@@ -153,8 +157,8 @@ void AdvanceOptionHensyuMenuState3(void) {
         if (a == FALSE && data_02175628[i].mPrevHasPair == 0 && v != 0) {
             b = TRUE;
         }
-        if (b != FALSE &&
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) != 0) {
+        if (b != FALSE && IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
+                                                                          data_02175628[i].mUnk_4a) != FALSE) {
             goto leave;
         }
     } else {
@@ -193,7 +197,7 @@ void AdvanceOptionHensyuMenuState3(void) {
                 break;
         }
         if (gOptionHensyuMenu->mIndex == oldv) {
-            gOptionHensyuMenu->mUnk_14 = 0;
+            gOptionHensyuMenu->mUnk_14 = FALSE;
         }
         func_02105ac0(5);
         return;
@@ -222,7 +226,7 @@ void AdvanceOptionHensyuMenuState4(void) {
             func_021282c8();
         }
     } else if (gOptionHensyuMenu->mStateFrames >= 5) {
-        gOptionHensyuMenu->mUnk_14 = 1;
+        gOptionHensyuMenu->mUnk_14 = TRUE;
     }
 }
 
@@ -265,12 +269,14 @@ void AdvanceOptionHensyuMenuState5(void) {
 void func_ov001_02199a20(void) {
     s32 i;
     for (i = 0; i < 2; i++) {
-        if (i == gOptionHensyuMenu->mIndex && gOptionHensyuMenu->mUnk_14 != 0) {
+        if (i == gOptionHensyuMenu->mIndex && gOptionHensyuMenu->mUnk_14 != FALSE) {
             gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a88[i]].mUnk_00 = 1;
-            func_02124a20(data_ov001_021a6a80[i], 0xe, gOptionHensyuMenu->mOptionHensyuMenuSNcer, gOptionHensyuMenu->mOptionHensyuMenuSBncl);
+            func_02124a20(data_ov001_021a6a80[i], 0xe, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
+                          gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         } else {
             gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a88[i]].mUnk_00 = 0;
-            func_02124a20(data_ov001_021a6a80[i], 0xf, gOptionHensyuMenu->mOptionHensyuMenuSNcer, gOptionHensyuMenu->mOptionHensyuMenuSBncl);
+            func_02124a20(data_ov001_021a6a80[i], 0xf, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
+                          gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         }
     }
 }

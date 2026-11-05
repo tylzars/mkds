@@ -48,7 +48,7 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
     gSelectBattleStage->mStateFrames = 0;
     gSelectBattleStage->mUnk_10 = 0;
     gSelectBattleStage->mUnk_1c = 0;
-    gSelectBattleStage->mUnk_20 = 1;
+    gSelectBattleStage->mUnk_20 = TRUE;
     gSelectBattleStage->mResult = -4;
     gSelectBattleStage->mMenuMessages = FindSceneFile("menu.bmg");
     gSelectBattleStage->mCommonMessages = func_02047a28("common.bmg");
@@ -262,25 +262,25 @@ void AdvanceSelectBattleStageState2(void) {
             b = TRUE;
         }
         if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                          data_02175628[idx].mUnk_4a) == 0) {
+                                                                          data_02175628[idx].mUnk_4a) == FALSE) {
             goto next;
         }
     }
     if (data_0217b488->mUnk_08 == 2) {
         gSelectBattleStage->mNextState = 4;
         func_02128310(0);
-        gSelectBattleStage->mUnk_2c = 0;
+        gSelectBattleStage->mUnk_2c = FALSE;
         return;
     }
     gSelectBattleStage->mNextState = 6;
     gSelectBattleStage->mPendingResult = -3;
     if (data_021759d0->mUnk_20 == 0) {
         func_02128310(0);
-        gSelectBattleStage->mUnk_2c = 0;
+        gSelectBattleStage->mUnk_2c = FALSE;
         return;
     }
     func_02128310(1);
-    gSelectBattleStage->mUnk_2c = 1;
+    gSelectBattleStage->mUnk_2c = TRUE;
     return;
 next:
     if ((u16) (data_02175628[idx].mUnk_00 & 1) != 0 || sel != -4) {
@@ -289,7 +289,7 @@ next:
             gSelectBattleStage->mIndex = sel;
         }
         if (gSelectBattleStage->mIndex == prev) {
-            gSelectBattleStage->mUnk_20 = 0;
+            gSelectBattleStage->mUnk_20 = FALSE;
         }
         gSelectBattleStage->mPendingResult = gSelectBattleStage->mIndex;
         gSelectBattleStage->mNextState = 3;
@@ -334,7 +334,7 @@ void AdvanceSelectBattleStageState3(void) {
         func_0212775c(0, 7);
         func_0212775c(1, 0x10);
     } else if (gSelectBattleStage->mStateFrames >= 5) {
-        gSelectBattleStage->mUnk_20 = 1;
+        gSelectBattleStage->mUnk_20 = TRUE;
     }
 }
 
@@ -361,7 +361,7 @@ void AdvanceSelectBattleStageState5(void) {
             if (func_02127794() == 0) {
                 gSelectBattleStage->mNextState = 6;
                 func_021282c8();
-                gSelectBattleStage->mUnk_2c = 1;
+                gSelectBattleStage->mUnk_2c = TRUE;
             } else {
                 gSelectBattleStage->mNextState = 2;
             }
@@ -376,8 +376,8 @@ void AdvanceSelectBattleStageState6(void) {
 
     gSelectBattleStage->mStateFrames++;
     if (gSelectBattleStage->mStateFrames > 10) {
-        if ((gSelectBattleStage->mUnk_2c != 0 && IsSelectReturnState0NoState1Request() != 0) ||
-            (gSelectBattleStage->mUnk_2c == 0 && IsSelectReturnState2NoState3Or4Request() != 0)) {
+        if ((gSelectBattleStage->mUnk_2c != FALSE && IsSelectReturnState0NoState1Request() != 0) ||
+            (gSelectBattleStage->mUnk_2c == FALSE && IsSelectReturnState2NoState3Or4Request() != 0)) {
             gSelectBattleStage->mResult = gSelectBattleStage->mPendingResult;
             return;
         }
@@ -400,7 +400,7 @@ void func_ov001_0219c8ec(void) {
     BOOL zero = FALSE;
 
     for (i = 0; i < 6; i++) {
-        if (i == gSelectBattleStage->mIndex && gSelectBattleStage->mUnk_20 != 0) {
+        if (i == gSelectBattleStage->mIndex && gSelectBattleStage->mUnk_20 != FALSE) {
             gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][1]].mUnk_00 = 1;
             gSelectBattleStage->mSelectBattleStageTables[1][gSelectBattleStageSTableIndices[i][2]].mUnk_00 = 0;
         } else {

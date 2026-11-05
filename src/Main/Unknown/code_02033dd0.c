@@ -193,7 +193,7 @@ s32 func_02033dfc(void) {
     BOOL r;
 
     r = FALSE;
-    if (data_02174e60->mUnk_148 != 0 && data_02174e60->mUnk_14c == 0) {
+    if (data_02174e60->mUnk_148 != FALSE && data_02174e60->mUnk_14c == 0) {
         r = TRUE;
     }
     return r;
@@ -203,7 +203,7 @@ s32 func_02033dd0(void) {
     BOOL r;
 
     r = FALSE;
-    if (data_02174e60->mUnk_148 != 0 && data_02174e60->mUnk_14c < 0x12c) {
+    if (data_02174e60->mUnk_148 != FALSE && data_02174e60->mUnk_14c < 0x12c) {
         r = TRUE;
     }
     return r;

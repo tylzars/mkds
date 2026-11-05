@@ -52,7 +52,7 @@ s32 GstatsStartConnect(s32 a, s32 b) {
     } else {
         strcpy((char *) d, data_ov000_021b3c48);
     }
-    if (func_ov000_02197064(d, 0x74e0, c, NULL) == 0) {
+    if (func_ov000_02197064(d, 0x74e0, c, NULL) == FALSE) {
         return 2;
     }
     data_ov000_021b3b2c = func_ov000_0218e554(2, 1, 0);

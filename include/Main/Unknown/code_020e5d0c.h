@@ -53,7 +53,7 @@ typedef struct Unk020e5e24 {
     /* 102 */ u8 mUnk_102[0x02];
     /* 104 */ s32 mUnk_104;
     /* 108 */ s32 mUnk_108;
-    /* 10c */ s32 mUnk_10c;
+    /* 10c */ BOOL mUnk_10c;
 } Unk020e5e24;
 
 // Allocated by func_020e6488 and func_020ed4d0, filled in by func_020e6514, 0x2c bytes.

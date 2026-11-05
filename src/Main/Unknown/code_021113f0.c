@@ -195,10 +195,10 @@ void AdvanceRecordVSState4(void) {
         b = RectTableFindContaining(gRecordVS->mRecordVSSBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00);
     }
     if (a != 10) {
-        gRecordVS->mUnk_88 = 0;
+        gRecordVS->mUnk_88 = FALSE;
     }
     if (a != 11) {
-        gRecordVS->mUnk_8c = 0;
+        gRecordVS->mUnk_8c = FALSE;
     }
     q = &data_02175628[i];
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
@@ -211,8 +211,8 @@ void AdvanceRecordVSState4(void) {
         if (f == FALSE && data_0217567c[i].mUnk_00 == 0 && x != 0) {
             g = TRUE;
         }
-        if (g == FALSE ||
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00, data_02175672[i].mUnk_00) == 0) {
+        if (g == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[i].mUnk_00,
+                                                                          data_02175672[i].mUnk_00) == FALSE) {
             goto l1;
         }
     }
@@ -229,7 +229,7 @@ void AdvanceRecordVSState4(void) {
     func_02128310(0);
     return;
 l1:
-    if ((a == 10 && gRecordVS->mUnk_88 != 0) || (b == 10 && gRecordVS->mUnk_88 == 0) ||
+    if ((a == 10 && gRecordVS->mUnk_88 != FALSE) || (b == 10 && gRecordVS->mUnk_88 == FALSE) ||
         (u16) (data_0217562a[i].mBits & 0x20) != 0) {
         if (func_02113790() != 0) {
             return;
@@ -239,12 +239,12 @@ l1:
         }
         gRecordVS->mUnk_6c = 1;
         gRecordVS->mUnk_80[0] = 6;
-        gRecordVS->mUnk_88 = 1;
+        gRecordVS->mUnk_88 = TRUE;
         func_02113458();
         func_0212ecc0(&data_0217d068, 0, 2);
         return;
     }
-    if ((a == 11 && gRecordVS->mUnk_8c != 0) || (b == 11 && gRecordVS->mUnk_8c == 0) ||
+    if ((a == 11 && gRecordVS->mUnk_8c != FALSE) || (b == 11 && gRecordVS->mUnk_8c == FALSE) ||
         (u16) (data_0217562a[i].mBits & 0x10) != 0) {
         if (func_02113790() != 0) {
             return;
@@ -254,7 +254,7 @@ l1:
         }
         gRecordVS->mUnk_6c = 0;
         gRecordVS->mUnk_80[1] = 6;
-        gRecordVS->mUnk_8c = 1;
+        gRecordVS->mUnk_8c = TRUE;
         func_02113458();
         func_0212ecc0(&data_0217d068, 0, 2);
         return;

@@ -91,7 +91,7 @@ u32 func_ov000_02199614(Gt2Connection *a, const u8 *b, s32 c) {
     for (i = 0; i < f; i++) {
         g = DarrayGetElement(a->mUnk_60, i);
         if (func_ov000_0219a014(g->mUnk_08, d) >= 0 && func_ov000_0219a014(g->mUnk_08, e) <= 0) {
-            if (func_ov000_02198af4(a, (Unk02198af4 *) g) == 0) {
+            if (func_ov000_02198af4(a, (Unk02198af4 *) g) == FALSE) {
                 return 0;
             }
         }

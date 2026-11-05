@@ -149,12 +149,12 @@ void func_020b0b8c(void) {
         func_0212b1c0();
         return;
     }
-    if (data_0217b350->mUnk_898 == 0) {
+    if (data_0217b350->mUnk_898 == FALSE) {
         return;
     }
-    if (data_0217b350->mUnk_840 != 0) {
+    if (data_0217b350->mUnk_840 != FALSE) {
         MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, 0x3000);
-        data_0217b350->mUnk_840 = 0;
+        data_0217b350->mUnk_840 = FALSE;
         func_0214c090(GetRaceNclrNcgr(1)->mNclr->mData, 0, GetRaceNclrNcgr(1)->mNclr->mDataSize);
         func_0214bf04(GetRaceNclrNcgr(1)->mNcgr->mData, 0, 0x4000);
         data_0217b350->mUnk_848 = 1;
@@ -191,7 +191,7 @@ void func_020b0b8c(void) {
     func_0214bfcc(data_0217b350->mUnk_004, 0, 0x400);
     func_0200ee74(data_0217b350->mUnk_408, 0x400);
     func_0214bf64(data_0217b350->mUnk_408, 0, 0x400);
-    if (data_0217b350->mUnk_82c != 0) {
+    if (data_0217b350->mUnk_82c != FALSE) {
         switch (data_0217b350->mUnk_828) {
             case 0:
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
@@ -287,14 +287,14 @@ void func_020b0b8c(void) {
                     break;
             }
             w = func_020c3e00();
-            if (data_0217b350->mUnk_830 != 0) {
+            if (data_0217b350->mUnk_830 != FALSE) {
                 MemCopyHalfwordsToG2sBg1CntBits8To12Address(func_020c3e14(3)->mData, 0, func_020c3e14(3)->mDataSize);
                 MemCopyHalfwordsToG2sBg2CntBits8To12Address(func_020c3e14(4)->mData, 0, func_020c3e14(4)->mDataSize);
                 MemCopyHalfwordsToG2sBg3CntBits8To12Address(func_020c3e14(5)->mData, 0, func_020c3e14(5)->mDataSize);
                 func_0214c028(GetRaceNclrNcgr(8)->mNclr->mData, 0, 0x20);
                 func_0214c028(GetRaceNclrNcgr(8)->mNclr->mData + 0xc0, 0x180, 0x80);
                 func_0214bea4(GetRaceNclrNcgr(8)->mNcgr->mData, 0, 0x4000);
-                data_0217b350->mUnk_830 = 0;
+                data_0217b350->mUnk_830 = FALSE;
             }
             if (w < 0x100) {
                 reg_G2S_DB_BG2OFS = w & 0x1ff;
@@ -302,7 +302,7 @@ void func_020b0b8c(void) {
             }
             break;
         case 6:
-            if (data_0217b350->mUnk_834 != 0) {
+            if (data_0217b350->mUnk_834 != FALSE) {
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1200;
                 GxsDispCntBits0To2Write(0);
                 reg_G2S_DB_BG1OFS = 0;
@@ -317,7 +317,7 @@ void func_020b0b8c(void) {
                 func_0214c028(GetRaceNclrNcgr(9)->mNclr->mData, 0, 0xa0);
                 func_0214c028(GetRaceNclrNcgr(9)->mNclr->mData + 0xb0, 0x160, 0xa0);
                 func_0214bea4(GetRaceNclrNcgr(9)->mNcgr->mData, 0, 0x4000);
-                data_0217b350->mUnk_834 = 0;
+                data_0217b350->mUnk_834 = FALSE;
             }
             break;
     }
@@ -394,11 +394,11 @@ void func_020b03bc(void) {
         data_0217b350->mNcgrs[i] = NULL;
     }
     data_0217b350->mUnk_828 = 1;
-    data_0217b350->mUnk_82c = 0;
-    data_0217b350->mUnk_830 = 0;
-    data_0217b350->mUnk_838 = 0;
-    data_0217b350->mUnk_83c = 0;
-    data_0217b350->mUnk_840 = 0;
+    data_0217b350->mUnk_82c = FALSE;
+    data_0217b350->mUnk_830 = FALSE;
+    data_0217b350->mUnk_838 = FALSE;
+    data_0217b350->mUnk_83c = FALSE;
+    data_0217b350->mUnk_840 = FALSE;
     data_0217b350->mUnk_844 = 0;
     data_0217b350->mUnk_848 = 0;
     data_0217b350->mUnk_84c = 0;
@@ -427,7 +427,7 @@ void func_020b03bc(void) {
     } else {
         data_0217b350->mUnk_854 = 0x86;
     }
-    data_0217b350->mUnk_898 = 0;
+    data_0217b350->mUnk_898 = FALSE;
     for (i = 0; i < 8; i++) {
         data_0217b350->mUnk_89c[i] = 0;
         data_0217b350->mUnk_8bc[i] = 0;
@@ -440,7 +440,7 @@ void func_020b03bc(void) {
         data_0217b350->mUnk_8e4 = 0;
     }
     data_0217b350->mUnk_908 = 0;
-    data_0217b350->mUnk_90c = 0;
+    data_0217b350->mUnk_90c = FALSE;
     data_0217b350->mUnk_910 = data_021759c0->mMode == 4 ? func_020adc04() : 0;
     func_0214cc04(3, data_0217b350->mUnk_004, 0xc0, 0x400);
     func_0214cc04(3, data_0217b350->mUnk_408, 0xc0, 0x400);
@@ -692,7 +692,7 @@ void func_020af99c(void) {
     MemCopyWordsToG2sBg0CntBits2To5Address(func_020b3374()->mData, 0, func_020b3374()->mDataSize);
     MemCopyHalfwordsToG2sBg0CntBits8To12Address(func_020b32f8(), 0, 0x600);
     func_020b18b0();
-    data_0217b350->mUnk_898 = 1;
+    data_0217b350->mUnk_898 = TRUE;
 }
 
 void func_020af86c(void) {
@@ -757,7 +757,7 @@ void func_020af66c(void) {
         func_0212b204();
         return;
     }
-    if (data_0217b350->mUnk_898 == 0) {
+    if (data_0217b350->mUnk_898 == FALSE) {
         return;
     }
     if (data_0217b350->mUnk_8dc != 0) {

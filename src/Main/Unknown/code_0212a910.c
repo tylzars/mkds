@@ -56,13 +56,13 @@ void func_0212b158(void *a) {
 }
 
 void func_0212b144(void) {
-    data_0217d408->mUnk_000c = 0;
+    data_0217d408->mUnk_000c = FALSE;
     data_0217d408->mUnk_0010 = -1;
 }
 
 s32 func_0212b0b8(void) {
     Unk0217d408 *p;
-    if (data_0217d408->mUnk_000c == 0) {
+    if (data_0217d408->mUnk_000c == FALSE) {
         return -1;
     }
     MasterBrightWrite((u16 *) 0x400006c, 0);
@@ -192,8 +192,8 @@ void func_0212ae2c(void) {
 
 void func_0212ad28(s32 a, s32 b) {
     u32 t;
-    if (data_0217d408->mUnk_000c == 0 && a != -1) {
-        data_0217d408->mUnk_000c = 1;
+    if (data_0217d408->mUnk_000c == FALSE && a != -1) {
+        data_0217d408->mUnk_000c = TRUE;
         data_0217d408->mUnk_0004 = b;
         data_0217d408->mUnk_0000 = a;
         data_0217d408->mUnk_0008 = func_0212afac();
@@ -344,7 +344,7 @@ void func_0212a99c(void) {
     } else if (data_0217d404->mUnk_000[4] != 0) {
         r = FALSE;
         if (!data_0217aa08->mUnk_00->mUnk_31_4) {
-            if (func_021213f4() != 0) {
+            if (func_021213f4() != FALSE) {
                 r = TRUE;
             }
         }

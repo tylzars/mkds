@@ -131,15 +131,15 @@ void func_020ad344(void) {
     r = func_02090940();
     data_0217b340 = HeapAlloc((void *) func_020ada10(), 0x8bc);
     data_0217b340->mUnk_00 = 0;
-    data_0217b340->mUnk_04 = 1;
+    data_0217b340->mUnk_04 = TRUE;
     data_0217b340->mUnk_08 = 0;
     data_0217b340->mUnk_0c = 0;
     data_0217b340->mUnk_10 = 8;
     data_0217b340->mUnk_4c = 0;
     data_0217b340->mUnk_50 = func_020ad9fc() != 0;
     data_0217b340->mUnk_54 = 0;
-    data_0217b340->mUnk_58 = 0;
-    data_0217b340->mUnk_5c = 1;
+    data_0217b340->mUnk_58 = FALSE;
+    data_0217b340->mUnk_5c = TRUE;
     data_0217b340->mUnk_60 = 0;
     data_0217b340->mUnk_64 = func_020ad9fc() != 0 ? 0x6b : 0;
     func_020ad268();

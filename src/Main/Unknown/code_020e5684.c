@@ -77,7 +77,7 @@ void func_020e5bd4(u32 a, Unk020e43a8 *p) {
 }
 
 u8 func_020e5ba0(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
-    if (func_020ec450(p, a, b) != 0) {
+    if (func_020ec450(p, a, b) != FALSE) {
         func_020d26f8(&p->mUnk_00, a);
     }
     return *c;

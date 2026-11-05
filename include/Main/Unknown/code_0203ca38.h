@@ -17,6 +17,6 @@ s32 func_0207a4fc(void);
 void func_0203ca38(void);
 void func_0203cd04(u16 a);
 void func_0203cd14(void);
-s32 func_0203cfb4(void);
+BOOL func_0203cfb4(void);
 void func_0203d078(void);
 void func_0203d21c(void);

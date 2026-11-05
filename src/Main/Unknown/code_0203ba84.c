@@ -50,7 +50,7 @@ void func_0203bc64(u8 *b) {
             u = 0;
             w = t * 3;
             for (; u < 3; u++) {
-                if (func_0205fc98(a->mUnk_44, t, u + w) != 0) {
+                if (func_0205fc98(a->mUnk_44, t, u + w) != FALSE) {
                     n = (u8) (n | (1 << u));
                 }
             }
@@ -61,7 +61,7 @@ void func_0203bc64(u8 *b) {
             }
             if (n == 0) {
                 for (u = 0; u < 3; u++) {
-                    if (func_0205fc98(a->mUnk_44, t, u + w) != 0) {
+                    if (func_0205fc98(a->mUnk_44, t, u + w) != FALSE) {
                         n = (u8) (n | (1 << u));
                     }
                 }

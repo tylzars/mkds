@@ -140,7 +140,7 @@ void func_020e01f0(void *a0, Unk020e005c *a1) {
         func_0210b7a8(&buf);
         return;
     }
-    if (func_020d8cc8(b) != 0) {
+    if (func_020d8cc8(b) != FALSE) {
         if (a1->mUnk_080.mState == 2) {
             a1->mUnk_080.mNextState = 0;
             a1->mUnk_080.mNextStateRequested = 1;

@@ -19,7 +19,7 @@ typedef struct WiFiTopMenu {
     /* 0c */ s32 mStateFrames;
     /* 10 */ s32 mPendingWiFiState;
     /* 14 */ void *mHeap;
-    /* 18 */ s32 mUnk_18;
+    /* 18 */ BOOL mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
     /* 20 */ struct Unk02021dc8 *mUnk_20;
     /* 24 */ struct Ncgr *mUnk_24;

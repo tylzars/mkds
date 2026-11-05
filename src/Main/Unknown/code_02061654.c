@@ -215,7 +215,7 @@ void func_02062a0c(void) {
     data_0217aa54->mUnk_0c = 0;
     data_0217aa54->mUnk_18 = 0;
     data_0217aa54->mUnk_1c = 0;
-    data_0217aa54->mUnk_30 = 0;
+    data_0217aa54->mUnk_30 = FALSE;
     data_0217aa54->mUnk_34 = 0;
     data_0217aa54->mUnk_3c = 0;
     v = data_021653f0;
@@ -342,10 +342,10 @@ void func_02062464(void) {
     func_0208677c();
     if (data_021759c0->mMode == 5) {
         if (data_0217aa54->mUnk_34 == 0) {
-            if (data_0217aa54->mUnk_30 == 0) {
+            if (data_0217aa54->mUnk_30 == FALSE) {
                 data_0217aa54->mUnk_04++;
                 if ((u32) data_0217aa54->mUnk_04 >= 128) {
-                    data_0217aa54->mUnk_30 = 1;
+                    data_0217aa54->mUnk_30 = TRUE;
                 }
             }
         } else {

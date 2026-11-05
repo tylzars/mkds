@@ -33,7 +33,7 @@ void func_020fcf10(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     s = (s32) (((s64) c * gPairsByAngle[(b >> 4) * 2]) >> 12);
     Vec3AddScaled(s, &p0->mUnk_22c, &p0->mUnk_250, &p0->mUnk_250);
     Vec3AddScaled(0x1e000, &p0->mUnk_22c, &p0->mUnk_250, &t);
-    if (func_0206c0b0(p) == 0) {
+    if (func_0206c0b0(p) == FALSE) {
         p0->mUnk_244 = p->mUnk_98;
     }
     Vec3Add(&t, &p0->mUnk_244, &t);

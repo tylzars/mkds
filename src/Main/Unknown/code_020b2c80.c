@@ -47,7 +47,7 @@ void func_020b2c80(s32 a) {
     n = gChoisesS->mLists[func_020b2d04()].mValueCount;
     p = (u16 *) func_020b32f8();
     if (p != NULL) {
-        if (gChoisesS->mUnk_010 == 0 || gChoisesS->mUnk_014 >= 5) {
+        if (gChoisesS->mUnk_010 == FALSE || gChoisesS->mUnk_014 >= 5) {
             b = 0xd - n * 2 + a * 4;
             if (gChoisesS->mUnk_034 < 0x1e) {
                 func_020b4428(p, 2, b, 1, 1, 0x21);

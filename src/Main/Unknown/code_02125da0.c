@@ -21,24 +21,24 @@ void func_02125de0(void *a, void *b) {
 
     data_0217d3ec = HeapAlloc(a, 0x814);
     data_0217d3ec->mUnk_810 = 0x5800;
-    data_0217d3ec->mUnk_00 = 0;
-    data_0217d3ec->mUnk_04 = 0;
-    data_0217d3ec->mUnk_08 = 0;
+    data_0217d3ec->mUnk_00 = FALSE;
+    data_0217d3ec->mUnk_04 = FALSE;
+    data_0217d3ec->mUnk_08 = FALSE;
     if (((Unk02125de0Arg *) b)->mUnk_00 != 0) {
         t.mUnk_00 = (u32) ((Unk02125de0Arg *) b)->mUnk_04;
         t.mUnk_04 = ((Unk02125de0Arg *) b)->mUnk_08;
         t.mUnk_08 = ((Unk02125de0Arg *) b)->mUnk_0c;
         t.mUnk_0c = ((Unk02125de0Arg *) b)->mUnk_10;
         t.mUnk_10 = data_0217d3ec->mUnk_810;
-        data_0217d3ec->mUnk_00 = 1;
+        data_0217d3ec->mUnk_00 = TRUE;
         data_0217d3ec->mUnk_810 = InitTxtSystem(a, &t);
     }
     if (((Unk02125de0Arg *) b)->mUnk_14 != 0) {
-        data_0217d3ec->mUnk_04 = 1;
+        data_0217d3ec->mUnk_04 = TRUE;
         data_0217d3ec->mUnk_810 = func_02128058(a, ((Unk02125de0Arg *) b)->mUnk_18, data_0217d3ec->mUnk_810);
     }
     if (((Unk02125de0Arg *) b)->mUnk_1c != 0) {
-        data_0217d3ec->mUnk_08 = 1;
+        data_0217d3ec->mUnk_08 = TRUE;
         data_0217d3ec->mUnk_810 = InitSelectReturn(a, data_0217d3ec->mUnk_810);
     }
     if (((Unk02125de0Arg *) b)->mUnk_20 != 0) {
@@ -53,13 +53,13 @@ void func_02125de0(void *a, void *b) {
 #pragma thumb on
 
 void func_02125da0(void) {
-    if (data_0217d3ec->mUnk_00 != 0) {
+    if (data_0217d3ec->mUnk_00 != FALSE) {
         func_021274e0();
     }
-    if (data_0217d3ec->mUnk_04 != 0) {
+    if (data_0217d3ec->mUnk_04 != FALSE) {
         func_0212804c();
     }
-    if (data_0217d3ec->mUnk_08 != 0) {
+    if (data_0217d3ec->mUnk_08 != FALSE) {
         func_021287c0();
     }
     *&data_0217d3ec = NULL;

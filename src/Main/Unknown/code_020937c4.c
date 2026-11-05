@@ -78,7 +78,7 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
             p->mState = 1;
             break;
         case 1:
-            if (func_020d8cc8(&p->mUnk_ac) != 0) {
+            if (func_020d8cc8(&p->mUnk_ac) != FALSE) {
                 p->mUnk_a0 = 0x2d;
                 p->mState = 2;
             }

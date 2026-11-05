@@ -51,7 +51,7 @@ void func_020680e0(Kart *a, const Vec3 *b) {
 }
 
 void func_02068094(Kart *a, s32 b, s32 c) {
-    if (TryStartKartState4(a, (Unk0206b020 *) c) == 0) {
+    if (TryStartKartState4(a, (Unk0206b020 *) c) == FALSE) {
         return;
     }
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {

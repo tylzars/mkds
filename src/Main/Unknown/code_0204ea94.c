@@ -46,7 +46,7 @@ BOOL func_0204ebb8(u8 a, void *b, u8 *c, u8 *d, u8 *e, u8 *f, u8 *g, u16 *h) {
     return TRUE;
 }
 
-s32 func_0204eb08(void *a) {
+BOOL func_0204eb08(void *a) {
     BOOL r;
     u8 i;
     u8 m;
@@ -63,10 +63,10 @@ s32 func_0204eb08(void *a) {
         v = 0;
     }
     if (v != 1) {
-        return 0;
+        return FALSE;
     }
     if (func_0204eb08_inline() != 1) {
-        return 0;
+        return FALSE;
     }
     i = 1;
     m = data_0217aa00->mUnk_0044.mUnk_43;

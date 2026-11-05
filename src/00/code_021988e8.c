@@ -29,7 +29,7 @@ int func_ov000_02198968(void *a, Gt2Connection **b, u32 c, void *d, int e, u32 f
     u32 k;
     int l;
     int n;
-    if (Gt2ParseAddress((const char *) c, &i, &j) == 0 || i == 0 || (k = j) == 0) {
+    if (Gt2ParseAddress((const char *) c, &i, &j) == FALSE || i == 0 || (k = j) == 0) {
         return 4;
     }
     if (((((i << 24) & 0xff000000) | (((i << 8) & 0xff0000) | (((i >> 24) & 0xff) | ((i >> 8) & 0xff00)))) &

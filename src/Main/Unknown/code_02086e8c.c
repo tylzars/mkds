@@ -162,9 +162,9 @@ void func_02087508(Unk02086250 *a, u16 b, void *c) {
     a->mUnk_1c->mUnk_00[1] = data_02165a34;
     a->mUnk_1c->mUnk_00[2] = data_02165a10;
     a->mUnk_1c->mUnk_00[3] = data_02165a58;
-    a->mUnk_10 = 1;
+    a->mUnk_10 = TRUE;
     a->mUnk_14 = 0;
-    a->mUnk_18 = 1;
+    a->mUnk_18 = TRUE;
     a->mUnk_24 = 0;
     a->mUnk_26 = 0x7fff;
     a->mUnk_22 = 0;

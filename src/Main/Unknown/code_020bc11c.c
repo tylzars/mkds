@@ -847,15 +847,15 @@ void func_020bc11c(void) {
     data_0217b3d0->mUnk_00.mUnk_00[4] = 0;
     data_0217b3d0->mUnk_00.mUnk_00[5] = 0;
     data_0217b3d0->mUnk_00.mUnk_00[6] = 0;
-    data_0217b3d0->mUnk_1c = 0;
+    data_0217b3d0->mUnk_1c = FALSE;
     if (data_021759c0->mMode == 2) {
         if (data_021759c0->mUnk_18 == 1) {
-            data_0217b3d0->mUnk_1c = 1;
+            data_0217b3d0->mUnk_1c = TRUE;
         }
     }
     if (data_021759c0->mMode == 4) {
         if (data_021759c0->mUnk_2f != 6) {
-            data_0217b3d0->mUnk_1c = 1;
+            data_0217b3d0->mUnk_1c = TRUE;
         }
     }
     for (i = 0; i < 6; i++) {

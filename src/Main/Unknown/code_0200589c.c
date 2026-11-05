@@ -313,8 +313,8 @@ u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d) {
                             if (a->mUnk_000.mUnk_00 == 4 || a->mUnk_000.mUnk_00 == 6) {
                                 if (v5->mUnk_10 == a->mUnk_000.mUnk_14) {
                                     if ((a->mUnk_000.mUnk_08 & (u16) (1 << b)) != 0) {
-                                        if (func_02006380(v6, v5->mUnk_14) == 0) {
-                                            if (func_0200628c(v6, v5->mUnk_14, v5->mUnk_20) == 1) {
+                                        if (func_02006380(v6, v5->mUnk_14) == FALSE) {
+                                            if (func_0200628c(v6, v5->mUnk_14, v5->mUnk_20) == TRUE) {
                                                 func_0200635c(v6, v5->mUnk_14);
                                             } else {
                                                 func_020061d8(a, 15, b, 6);

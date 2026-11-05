@@ -255,32 +255,36 @@ void InitRecordTopMenu(void *heap) {
     }
     func_ov001_0219b000();
     for (i = 0; i < 3; i++) {
-        func_02124a98(data_ov001_021a6ac4[i], 1, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
+        func_02124a98(data_ov001_021a6ac4[i], 1, gRecordTopMenu->mRecordTopMenuSNcer,
+                      gRecordTopMenu->mRecordTopMenuSBncl);
     }
     func_020ae6d4(func_02111318(), func_0211130c());
-    func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMBnll, &gRecordTopMenu->mUnk_18);
+    func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMBnll,
+                  &gRecordTopMenu->mUnk_18);
     func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuSBncl, NULL, &gRecordTopMenu->mUnk_1c);
     gRecordTopMenu->mUnk_20 = func_02047a28("common.bmg");
     gRecordTopMenu->mRecordMessages = FindSceneFile("record.bmg");
     rem = 0x8000;
-    rem -= func_021243ac(heap, 0, gRecordTopMenu->mRecordTopMenuMBnll, 0xaa, 0xe, 0, gRecordTopMenu->mRecordTopMenuMNcer,
-                         gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18, rem);
-    func_0212426c(0, 0, gRecordTopMenu->mRecordTopMenuMBnll, GetBmgEntry(gRecordTopMenu->mRecordMessages, 9), gRecordTopMenu->mRecordTopMenuMBncl,
-                  gRecordTopMenu->mUnk_18);
+    rem -=
+        func_021243ac(heap, 0, gRecordTopMenu->mRecordTopMenuMBnll, 0xaa, 0xe, 0, gRecordTopMenu->mRecordTopMenuMNcer,
+                      gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18, rem);
+    func_0212426c(0, 0, gRecordTopMenu->mRecordTopMenuMBnll, GetBmgEntry(gRecordTopMenu->mRecordMessages, 9),
+                  gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18);
     x = 1;
     base = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            rem -= func_021243ac(heap, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll, data_ov001_021a6af8[i][j],
-                                 data_ov001_021a6b0c[i][j], x, gRecordTopMenu->mRecordTopMenuMNcer, gRecordTopMenu->mRecordTopMenuMBncl,
+            rem -= func_021243ac(heap, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll,
+                                 data_ov001_021a6af8[i][j], data_ov001_021a6b0c[i][j], x,
+                                 gRecordTopMenu->mRecordTopMenuMNcer, gRecordTopMenu->mRecordTopMenuMBncl,
                                  gRecordTopMenu->mUnk_18, rem);
             x = base + data_ov001_021a6ae4[i][j];
         }
     }
     for (i = 0; i < 3; i++) {
         func_0212426c(0, data_ov001_021a6ae4[0][i], gRecordTopMenu->mRecordTopMenuMBnll,
-                      GetBmgEntry(gRecordTopMenu->mRecordMessages, data_ov001_021a6abc[i]), gRecordTopMenu->mRecordTopMenuMBncl,
-                      gRecordTopMenu->mUnk_18);
+                      GetBmgEntry(gRecordTopMenu->mRecordMessages, data_ov001_021a6abc[i]),
+                      gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18);
     }
     pp = &data_0217aa08->mUnk_00;
     scores[1][0] = (*pp)->mUnk_34[0];
@@ -295,8 +299,8 @@ void InitRecordTopMenu(void *heap) {
                 scores[i][j] = 9999;
             }
             func_02124fac(scores[i][j], buf);
-            func_02124248(0, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll, buf, gRecordTopMenu->mRecordTopMenuMBncl,
-                          gRecordTopMenu->mUnk_18, 6);
+            func_02124248(0, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll, buf,
+                          gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18, 6);
         }
     }
     func_ov001_0219ac98();
@@ -409,7 +413,8 @@ void AdvanceRecordTopMenuState4(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        sel = RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+        sel = RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mUnk_48,
+                                      data_02175628[i].mUnk_4a);
     }
     flags = data_02175628[i].mUnk_00 & 2;
     if (flags == 0) {
@@ -421,8 +426,8 @@ void AdvanceRecordTopMenuState4(void) {
         if (a2 == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             b2 = TRUE;
         }
-        if (b2 == FALSE ||
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (b2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
+                                                                           data_02175628[i].mUnk_4a) == FALSE) {
             goto skip;
         }
     }
@@ -568,8 +573,8 @@ void AdvanceRecordTopMenuState9(void) {
         if (a == FALSE && data_02175628[i].mPrevHasPair == 0 && v != 0) {
             b = TRUE;
         }
-        if (b == FALSE ||
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (b == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
+                                                                          data_02175628[i].mUnk_4a) == FALSE) {
             return;
         }
     }

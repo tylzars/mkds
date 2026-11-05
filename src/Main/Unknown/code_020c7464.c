@@ -732,7 +732,7 @@ void func_020c82dc(Unk020c06c4 *p) {
     p->mUnk_000.mUnk_20[v2].mUnk_1e = r[3] >> 4;
 }
 
-s32 func_020c8254(void) {
+BOOL func_020c8254(void) {
     u16 a[3] = {0x19a, 0x195, 0x19c};
     u16 i;
     u16 b;
@@ -743,7 +743,7 @@ s32 func_020c8254(void) {
             return func_020c0c2c(&data_0217b420, b);
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020c8240(void) {
@@ -1032,7 +1032,7 @@ void func_020c7820(Unk020c06c4 *a) {
     func_020c092c(a, data_0217b408, 0);
 }
 
-s32 func_020c77a0(void) {
+BOOL func_020c77a0(void) {
     u16 a[2] = {0x196, 0x1a5};
     u16 i;
     u16 b;
@@ -1043,7 +1043,7 @@ s32 func_020c77a0(void) {
             return func_020c0c2c(&data_0217b404, b);
         }
     }
-    return 0;
+    return FALSE;
 }
 
 void func_020c778c(void) {

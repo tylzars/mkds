@@ -29,11 +29,11 @@ void func_020c7310(void) {
     c = func_020c0db0();
     k = 0;
     for (i = 0; i < data_0217b3fc->mUnk_08; i++) {
-        if (data_0217b3f8 == 0 || func_020b5f68(&data_0217b3fc->mUnk_0c[i]) != 0) {
+        if (data_0217b3f8 == 0 || func_020b5f68(&data_0217b3fc->mUnk_0c[i]) != FALSE) {
             p = data_0217b3fc->mUnk_00[i];
             if ((p->mUnk_02 & 1) == 0) {
                 v = &p->mUnk_04;
-                if (func_020b5ae8(v, &data_0217b3fc->mUnk_10[k].mUnk_00, c, 0, 0) != 0) {
+                if (func_020b5ae8(v, &data_0217b3fc->mUnk_10[k].mUnk_00, c, 0, 0) != FALSE) {
                     data_0217b3fc->mUnk_10[k].mUnk_08 = GetRaceSNcerEntry(0x4e);
                     data_0217b3fc->mUnk_10[k].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
                     data_0217b3fc->mUnk_10[k].mUnk_0e = p->mUnk_02 & 0x20;

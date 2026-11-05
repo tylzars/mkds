@@ -339,7 +339,7 @@ void func_020e71a0(MapObject *p) {
     q = p->mUnk_94;
     if ((p->mFlags & 2) == 0) {
         q->mUnk_00.mUnk_40 = p->mUnk_78 & ~0xc000001f;
-        a = (func_020d4ddc(p) == 0);
+        a = (func_020d4ddc(p) == FALSE);
         b = (q->mUnk_00.mUnk_34 & 1) != 0;
         if (a != FALSE) {
             if (b != FALSE) {
@@ -361,7 +361,7 @@ void func_020e71a0(MapObject *p) {
 
         v = func_020d4ef4(&p->mPos);
         q->mUnk_00.mUnk_40 = v;
-        if (func_020d4d60(p, v) != 0) {
+        if (func_020d4d60(p, v) != FALSE) {
             p->mUnk_78 |= data_02159310;
             if ((q->mUnk_00.mUnk_34 & 1) != 0) {
                 func_0210cfbc(&q->mUnk_00, 2, 1);

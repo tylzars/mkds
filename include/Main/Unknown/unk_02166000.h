@@ -11,8 +11,8 @@ struct Unk0208e490;
 // 0x84 and its size at 0x18, mUnk_04, mUnk_08 and mUnk_0c select the objects at 0x90, 0x94 and 0x98.
 typedef struct Unk0216618c {
     /* 00 */ u16 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    /* 04 */ BOOL mUnk_04;
+    /* 08 */ BOOL mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ void (*mUnk_10)(struct Unk0208e490 *, s32);
     /* 14 */ void (*mUnk_14)(struct Unk0208e490 *);

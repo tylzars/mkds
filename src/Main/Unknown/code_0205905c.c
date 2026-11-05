@@ -41,12 +41,12 @@ static inline s32 func_0205905c_inline4(void) {
 
 #pragma thumb on
 
-s32 func_020591cc(void) {
+BOOL func_020591cc(void) {
     BOOL r;
 
     r = FALSE;
     if (!func_0205905c_inline2()) {
-        return 1;
+        return TRUE;
     }
     func_02046b40(&data_0217aa00->mUnk_1608);
     if (!func_0205905c_inline4()) {

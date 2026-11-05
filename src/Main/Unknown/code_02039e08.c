@@ -158,7 +158,7 @@ void func_0203a0dc(Unk0203a0dc *a, u32 b) {
 }
 
 void func_0203a05c(void) {
-    data_021759d0->mUnk_54 = 0;
+    data_021759d0->mUnk_54 = FALSE;
     if (data_021759c0->mUnk_00c == 0) {
         func_020b2e64(1);
     }

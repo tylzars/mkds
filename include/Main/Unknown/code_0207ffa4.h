@@ -20,7 +20,7 @@ typedef struct Unk0208001c {
     /* 04 */ Unk02175620_bc *mUnk_04;
     /* 08 */ Vec3 mUnk_08;
     /* 14 */ Unk02175620_bc *mUnk_14;
-    /* 18 */ s32 mUnk_18;
+    /* 18 */ BOOL mUnk_18;
 } Unk0208001c;
 
 #include "Main/Unknown/code_02080b1c.h"

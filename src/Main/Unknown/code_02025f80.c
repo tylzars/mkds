@@ -465,7 +465,7 @@ int AdvanceSelectCharacter(void) {
                     gSelectCharacter->mUnk_068 = 0;
                     gSelectCharacter->mUnk_06c = 5;
                 } else if (gSelectCharacter->mUnk_080 == 0 &&
-                           IsSelectReturnState2NoState3Or4RequestAndInRect(x, y) != 0) {
+                           IsSelectReturnState2NoState3Or4RequestAndInRect(x, y) != FALSE) {
                     func_020273c0();
                 }
             } else if (func_020270d0() != 0) {

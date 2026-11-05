@@ -233,11 +233,11 @@ void InitSelectCup(void *b, void *c, void *d, s32 e) {
     gSelectCup->mHeap = a;
     gSelectCup->mState = 0;
     gSelectCup->mIndex = data_0215cb7c[func_020296e4()];
-    gSelectCup->mUnk_54 = 1;
+    gSelectCup->mUnk_54 = TRUE;
     gSelectCup->mUnk_58 = 0;
     gSelectCup->mMode = e;
     gSelectCup->mUnk_5c = gSelectCup->mIndex;
-    gSelectCup->mUnk_60 = 0;
+    gSelectCup->mUnk_60 = FALSE;
     gSelectCup->mUnk_64 = c;
     gSelectCup->mUnk_68 = d;
     gSelectCup->mResult = 0;

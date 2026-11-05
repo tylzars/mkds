@@ -53,7 +53,7 @@ s32 func_020cacc0(void) {
                     gEmblemChoises->mChoisesIndex = j;
                     func_020cadac(z);
                 } else {
-                    gEmblemChoises->mUnk_10 = 1;
+                    gEmblemChoises->mUnk_10 = TRUE;
                 }
                 switch (gEmblemChoises->mChoisesIndex) {
                     case 0:
@@ -77,7 +77,7 @@ void func_020cac9c(void) {
     gEmblemChoises->mUnk_1c = -1;
     gEmblemChoises->mChoisesIndex = 0;
     gEmblemChoises->mUnk_24 = 0;
-    gEmblemChoises->mUnk_10 = 0;
+    gEmblemChoises->mUnk_10 = FALSE;
     gEmblemChoises->mUnk_14 = 0;
     gEmblemChoises->mUnk_18 = 0;
 }
@@ -112,7 +112,7 @@ void func_020caba4(s32 a) {
     n = p->mChoisesCount;
     v = p->mChoisesS3Nscr->mData;
     if (v != NULL) {
-        if (p->mUnk_10 == 0 || p->mUnk_14 >= 5) {
+        if (p->mUnk_10 == FALSE || p->mUnk_14 >= 5) {
             c = 13 - n * 2 + a * 4;
             if (p->mUnk_24 < 0x1e) {
                 func_020b4428(v, 2, c, 1, 1, 0x21);

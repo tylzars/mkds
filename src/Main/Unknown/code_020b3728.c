@@ -164,7 +164,7 @@ void func_020b3b08(void) {
     data_0217b35c->mUnk_00 = 0;
     data_0217b35c->mUnk_04 = 0;
     data_0217b35c->mUnk_08 = 0;
-    data_0217b35c->mUnk_0c = 0;
+    data_0217b35c->mUnk_0c = FALSE;
 }
 
 u32 func_020b3af4(void) {
@@ -193,11 +193,11 @@ void func_020b3728(void) {
     BOOL f;
     u16 i;
 
-    if (data_0217561c->mUnk_4cc != 0 && data_0217b35c->mUnk_0c == 0) {
+    if (data_0217561c->mUnk_4cc != 0 && data_0217b35c->mUnk_0c == FALSE) {
         func_020b3cd8();
         func_020b3b58();
         func_0205eeb0();
-        data_0217b35c->mUnk_0c = 1;
+        data_0217b35c->mUnk_0c = TRUE;
     }
     i = func_020b4d9c();
     if (data_0217561c->mUnk_000[i].mUnk_14 != 1 && data_0217561c->mUnk_4cc == 0) {

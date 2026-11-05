@@ -210,7 +210,7 @@ void func_ov003_021c73cc(void) {
             func_ov003_021c212c(func_ov003_021c733c);
             return;
         case 0x13:
-            if (func_ov003_021c6f64() != 0) {
+            if (func_ov003_021c6f64() != FALSE) {
                 func_ov003_021cdc10(6);
                 data_ov003_021da1fc->mUnk_15 = 1;
             } else {

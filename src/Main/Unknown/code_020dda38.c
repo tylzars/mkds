@@ -36,7 +36,7 @@ void func_020de184(Unk020de000 *o) {
     v = p->mUnk_a0;
     v.y -= p->mUnk_f0 >> 1;
     func_020dd8b0(&o->mUnk_a4, &v, &w);
-    if (o->mUnk_f4 != 0) {
+    if (o->mUnk_f4 != FALSE) {
         return;
     }
     func_020dda2c(&o->mUnk_a4);
@@ -61,13 +61,13 @@ void func_020de000(Unk020de000 *o, void *a, Wanwan *p) {
 
     o->mUnk_04 = p->mUnk_a0;
     o->mUnk_f4 = p->mUnk_fc == 0;
-    if (o->mUnk_f4 != 0) {
+    if (o->mUnk_f4 != FALSE) {
         d = p->mUnk_1ec;
     } else {
         d = 0x55000;
     }
     func_020dd950(&o->mUnk_a4, &o->mUnk_04, &o->mUnk_04, d - p->mUnk_f0, p->mUnk_fc != 0 ? 4 : 7, 0x6000, &o->mUnk_1c);
-    if (o->mUnk_f4 == 0) {
+    if (o->mUnk_f4 == FALSE) {
         func_020dda2c(&o->mUnk_a4);
         o->mUnk_a4.mUnk_04 -= 0xcd;
         o->mUnk_a4.mUnk_10 -= 0x3d;
@@ -78,7 +78,7 @@ void func_020de000(Unk020de000 *o, void *a, Wanwan *p) {
         o->mUnk_02 |= data_021583d4;
     }
     o->mUnk_a0 = p;
-    if (o->mUnk_f4 != 0) {
+    if (o->mUnk_f4 != FALSE) {
         d = p->mUnk_f8;
     } else {
         d = 0xc8000;

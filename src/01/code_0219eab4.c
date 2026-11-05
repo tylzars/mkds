@@ -405,8 +405,8 @@ void AdvanceMissionRunLVselState3(void) {
         if (g1 == FALSE && data_02175628[i].mPrevHasPair == 0 && data_02175628[i].mHasPair != 0) {
             g2 = TRUE;
         }
-        if (g2 == FALSE ||
-            IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a) == 0) {
+        if (g2 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[i].mUnk_48,
+                                                                           data_02175628[i].mUnk_4a) == FALSE) {
             goto next;
         }
     }

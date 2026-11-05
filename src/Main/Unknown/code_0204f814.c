@@ -26,8 +26,6 @@ static inline u32 func_0204ff14_inline(Unk0217aa00 *p) {
     return p->mUnk_0000;
 }
 
-
-
 u16 func_0204ffe8(u32 a) {
     BOOL f;
     u32 r;
@@ -60,17 +58,17 @@ s32 func_0204ffbc(void) {
     return r;
 }
 
-s32 func_0204ff14(u16 a, void *b) {
+BOOL func_0204ff14(u16 a, void *b) {
     Unk0217aa00 *t;
     BOOL r;
 
     t = data_0217aa00;
     r = FALSE;
     if (func_0204ff14_inline(t) != 2) {
-        return 0;
+        return FALSE;
     }
     if (*(u16 *) 0x027ffc40 == 2) {
-        return 0;
+        return FALSE;
     }
     if (t->mUnk_00ac[a].mUnk_dc_0 != 0) {
         if (b != NULL) {

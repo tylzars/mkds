@@ -19,7 +19,7 @@ typedef struct Unk020de000 {
     /* a0 */ Wanwan *mUnk_a0;
     /* a4 */ Unk020dd950 mUnk_a4;
     /* f0 */ u8 mUnk_f0[4];
-    /* f4 */ s32 mUnk_f4;
+    /* f4 */ BOOL mUnk_f4;
 } Unk020de000;
 
 extern const u16 data_021583d4;

@@ -21,7 +21,7 @@ typedef struct Unk02194cac_04 {
     /* 134 */ s32 mUnk_134;
     /* 138 */ s32 mUnk_138;
     /* 13c */ u8 mUnk_13c[4];
-    /* 140 */ s32 mUnk_140;
+    /* 140 */ BOOL mUnk_140;
 } Unk02194cac_04;
 
 // Object GpiUpdateSearch takes as its second argument.

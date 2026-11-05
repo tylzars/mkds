@@ -347,13 +347,13 @@ void func_0202c0d4(s32 a, s32 b) {
     } else if (data_02174e3c->mUnk_254 == 1) {
         func_02025f14(&data_02174e3c->mUnk_210[3], 0);
     }
-    if (data_02174e3c->mUnk_20c != 0) {
+    if (data_02174e3c->mUnk_20c != FALSE) {
         for (i = 0; i < 8; i++) {
             if (i < data_02174e3c->mUnk_048 || data_02174e3c->mUnk_208 != 0) {
                 func_0202cb68(i);
             }
         }
-        data_02174e3c->mUnk_20c = 0;
+        data_02174e3c->mUnk_20c = FALSE;
     }
     CallQueueAppend(0x13, 0, ((Unk02174e3c_00 *) data_02174e3c->mUnk_000.mUnk_00)->mUnk_14,
                     ((Unk02174e3c_00 *) data_02174e3c->mUnk_000.mUnk_00)->mUnk_10);

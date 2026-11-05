@@ -97,7 +97,7 @@ typedef struct MissionRunMSsel {
     /* 9c */ s16 mUnk_9c;
     /* 9e */ s16 mIndex; /* mission number - 1, 8 = ninth mission */
     /* a0 */ s32 mUnk_a0;
-    /* a4 */ s32 mUnk_a4;
+    /* a4 */ BOOL mUnk_a4;
     /* a8 */ s32 mUnk_a8;
     /* ac */ s32 mUnk_ac;
     /* b0 */ s16 mUnk_b0;
@@ -123,7 +123,7 @@ typedef struct SelectEngine {
     /* 2c */ s32 mStateFrames; /* counted only in states 1, 2, 5, 6; zeroed by the next-state setter */
     /* 30 */ s32 mBg0Offset;
     /* 34 */ s32 mIndex;
-    /* 38 */ s32 mUnk_38;
+    /* 38 */ BOOL mUnk_38;
     /* 3c */ s32 mUnk_3c;
     /* 40 */ s16 mUnk_40;
     /* 42 */ u8 mUnk_42[0x2];

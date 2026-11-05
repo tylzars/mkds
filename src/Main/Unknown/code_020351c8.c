@@ -321,7 +321,7 @@ s32 func_0203551c(u16 *a) {
                 func_02125ed0(0, 5);
                 func_02126230(e, h);
                 func_02128310(1);
-                data_02174e68->mUnk_a0 = 0;
+                data_02174e68->mUnk_a0 = FALSE;
                 data_02174e68->mUnk_8c = 4;
             }
             break;
@@ -349,7 +349,7 @@ s32 func_0203551c(u16 *a) {
                 h = GetBmgEntry(data_02174e68->mUnk_84, 4);
                 func_02125ed0(0, 5);
                 func_02126230(e, h);
-                data_02174e68->mUnk_a0 = 0;
+                data_02174e68->mUnk_a0 = FALSE;
                 data_02174e68->mUnk_8c = 4;
             }
             break;
@@ -452,7 +452,7 @@ void func_020352fc(s32 a) {
     }
     if (i != c) {
         do {
-            if (p->mUnk_09c[i].mUnk_28 == 1 && p->mUnk_09c[i].mUnk_2c.mUnk_00 == 1) {
+            if (p->mUnk_09c[i].mUnk_28 == TRUE && p->mUnk_09c[i].mUnk_2c.mUnk_00 == 1) {
                 f = TRUE;
                 p->mUnk_080 = i;
                 break;
@@ -489,7 +489,7 @@ void func_02035280(s32 a) {
     }
     if (i != c) {
         do {
-            if (p->mUnk_09c[i].mUnk_28 == 1 && p->mUnk_09c[i].mUnk_2c.mUnk_00 == 1) {
+            if (p->mUnk_09c[i].mUnk_28 == TRUE && p->mUnk_09c[i].mUnk_2c.mUnk_00 == 1) {
                 f = TRUE;
                 p->mUnk_080 = i;
                 break;

@@ -209,7 +209,7 @@ void func_0202fd2c(void) {
             }
             return;
         case 1:
-            if (data_02174e50->mUnk_88 != 0) {
+            if (data_02174e50->mUnk_88 != FALSE) {
                 if (data_02174e50->mUnk_48 < 4) {
                     for (i = 0; i < 4; i++) {
                         if (func_0204ff14(i, &func_0202f14c()->mUnk_04[i]) != 0) {
@@ -340,13 +340,13 @@ s32 func_0202f764(Unk0202f764 *a) {
     v1 = -1;
     v2 = func_020435bc();
     q = &data_02174e50->mUnk_24;
-    if (data_02174e50->mUnk_9c == 0) {
+    if (data_02174e50->mUnk_9c == FALSE) {
         data_02174e50->mUnk_94++;
         if (data_02174e50->mUnk_94 > 0x78) {
             for (i = 0; i < 4; i++) {
                 func_0202f764_inline(&func_0202f14c()->mUnk_04[i], 0x16);
             }
-            data_02174e50->mUnk_9c = 1;
+            data_02174e50->mUnk_9c = TRUE;
         }
     }
     if (data_02174e50->mUnk_4c != -1) {
@@ -392,7 +392,7 @@ s32 func_0202f764(Unk0202f764 *a) {
             v = data_02175628[v2].mUnk_00;
             if ((u16) (v & 1) != 0) {
                 if (func_0203023c() != 0) {
-                    data_02174e50->mUnk_88 = 1;
+                    data_02174e50->mUnk_88 = TRUE;
                     data_02174e50->mUnk_4c = 2;
                     data_02174e50->mUnk_98 = 0;
                     func_0203003c(0);
@@ -435,7 +435,7 @@ s32 func_0202f764(Unk0202f764 *a) {
                 data_02174e50->mUnk_98 = 0;
                 data_02174e50->mUnk_4c = 2;
                 data_02174e50->mUnk_48 = 4;
-                data_02174e50->mUnk_88 = 1;
+                data_02174e50->mUnk_88 = TRUE;
             } else {
                 for (i = 0; i < 4; i++) {
                     if (func_02030274(v4, i) != 0) {
@@ -448,7 +448,7 @@ s32 func_0202f764(Unk0202f764 *a) {
                             func_0203003c(v7);
                             data_02174e50->mUnk_98 = 0;
                             data_02174e50->mUnk_4c = 2;
-                            data_02174e50->mUnk_88 = 1;
+                            data_02174e50->mUnk_88 = TRUE;
                         } else {
                             func_0212ecc0(&data_0217d068, 0, 0x4f);
                         }

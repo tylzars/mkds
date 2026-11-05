@@ -64,7 +64,7 @@ void func_020ff1d8(void) {
     s32 n;
     s32 i;
 
-    if (data_0217bc48[3].mUnk_00 == 0) {
+    if (data_0217bc48[3].mUnk_00 == FALSE) {
         return;
     }
     v = data_0216c734;

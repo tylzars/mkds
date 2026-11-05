@@ -136,7 +136,7 @@ void func_0203d078(void) {
         return;
     }
     for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
-        if (func_020a1084(i) != 0) {
+        if (func_020a1084(i) != FALSE) {
             Unk0217561c_14 *p = (Unk0217561c_14 *) ((u8 *) &data_0217561c->mUnk_14[0] + i * 0x8c);
             if (p->mUnk_00 == 0) {
                 if (func_020a100c(i) != 0) {
@@ -172,13 +172,13 @@ static inline u16 func_0203cd14_inline(s32 v) {
     return (u16) v;
 }
 
-s32 func_0203cfb4(void) {
+BOOL func_0203cfb4(void) {
     u32 i;
     s32 c;
     BOOL r = TRUE;
     Unk0217561c *d = data_0217561c;
     if (d->mUnk_4cc != 0) {
-        return 0;
+        return FALSE;
     }
     if (data_021759c0->mMode == 2) {
         c = 0;
@@ -193,7 +193,7 @@ s32 func_0203cfb4(void) {
         }
         return r;
     }
-    return 0;
+    return FALSE;
 }
 
 void func_0203cd14(void) {
@@ -253,7 +253,7 @@ void func_0203cd14(void) {
         return;
     }
     if ((d->mUnk_044 & 2) != 0) {
-        if (func_0207a574() != 0) {
+        if (func_0207a574() != FALSE) {
             g = TRUE;
         }
     }

@@ -15,7 +15,7 @@ typedef struct Unk02175650 {
     /* 04 */ u16 mUnk_04;
     /* 06 */ u16 mUnk_06;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ BOOL mUnk_0c;
     /* 10 */ u8 mUnk_10[0x4c];
 } Unk02175650;
 

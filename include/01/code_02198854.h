@@ -19,7 +19,7 @@ typedef struct OptionSelectMenu {
     /* 08 */ s32 mIndex; /* 0 and 1 are the two setting rows, 2 is the OK entry */
     /* 0c */ s32 mUnk_0c[2];
     /* 14 */ s32 mUnk_14[2];
-    /* 1c */ s32 mUnk_1c;
+    /* 1c */ BOOL mUnk_1c;
     /* counted only in states 0, 1, 3, 4; zeroed when 0, 1, 3 hand over and when 4 hands over to 5 (OK path); on
        the Back path state 4 keeps counting while it requests the next option state */
     /* 20 */ s32 mStateFrames;
@@ -27,8 +27,8 @@ typedef struct OptionSelectMenu {
     /* 26 */ Unk021a9be8Pair mUnk_26[3];
     /* 32 */ u8 mUnk_32[2];
     /* 34 */ s32 mNextOptionState; /* only ever 0 (the top menu state), passed to RequestOptionState */
-    /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
+    /* 38 */ BOOL mUnk_38;
+    /* 3c */ BOOL mUnk_3c;
     /* 40 */ s32 mUnk_40[2][2];
     /* 50 */ void *mHeap;
     /* 54 */ Unk02124b1c *mUnk_54;

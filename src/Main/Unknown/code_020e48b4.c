@@ -230,7 +230,7 @@ void func_020e4ab4(Unk020e43a8 *p0) {
 }
 
 void func_020e4a68(Unk020e43a8 *p) {
-    if (func_020ec7e8(p) == 0) {
+    if (func_020ec7e8(p) == FALSE) {
         return;
     }
     if (p->mUnk_00.mCourseMapRow->mUnk_28 == 0) {

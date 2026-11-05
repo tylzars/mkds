@@ -26,7 +26,7 @@ u32 TrySetCupPictureIndexAndQueueLoads(int a) {
     r = 1;
     if (data_0216aeac[a * 2] == 0) {
         r = 0;
-    } else if (func_020d0ec4() != 0) {
+    } else if (func_020d0ec4() != FALSE) {
         if (gCupPicture->mCupPictureIndex != a) {
             gCupPicture->mCupPictureIndex = a;
             func_02057df0(LoadCupPictureNclr);

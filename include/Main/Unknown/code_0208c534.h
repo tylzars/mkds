@@ -16,11 +16,11 @@ typedef struct Unk0208c5b8 {
     /* 20 */ Unk0201ca6c *mUnk_20[2];
     /* 28 */ Unk0201ca6c *mUnk_28[2];
     /* 30 */ s16 mUnk_30;
-    /* 34 */ s32 mUnk_34;
+    /* 34 */ BOOL mUnk_34;
     /* 38 */ s32 mUnk_38;
     /* 3c */ u32 mUnk_3c;
     /* 40 */ s32 mUnk_40;
-    /* 44 */ s32 mUnk_44;
+    /* 44 */ BOOL mUnk_44;
     /* 48 */ s16 mUnk_48;
     /* 4a */ s16 mUnk_4a;
     /* 4c */ s32 mUnk_4c;

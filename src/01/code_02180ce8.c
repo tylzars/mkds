@@ -82,9 +82,9 @@ u8 *func_ov001_02181200(s32 p0, s32 p1) {
 }
 
 void func_ov001_021811c8(void) {
-    if (data_ov001_021a9b88->mUnk_0c == 0) {
+    if (data_ov001_021a9b88->mUnk_0c == FALSE) {
         data_ov001_021a9b88->mUnk_10 = 1;
-        data_ov001_021a9b88->mUnk_0c = 1;
+        data_ov001_021a9b88->mUnk_0c = TRUE;
         data_ov001_021a9b88->mUnk_14 = 0;
         MemCopyWordsByBlock(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
                             data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
@@ -161,7 +161,7 @@ u32 func_ov001_0218108c(void) {
 }
 
 void func_ov001_0218107c(void) {
-    data_ov001_021a9b88->mUnk_0c = 0;
+    data_ov001_021a9b88->mUnk_0c = FALSE;
 }
 
 u32 func_ov001_02181070(void) {
@@ -170,7 +170,7 @@ u32 func_ov001_02181070(void) {
 
 void func_ov001_02181048(void) {
     data_ov001_021a9b88->mUnk_10 = 0;
-    data_ov001_021a9b88->mUnk_0c = 0;
+    data_ov001_021a9b88->mUnk_0c = FALSE;
     data_ov001_021a9b88->mUnk_14 = 0;
     MemCopyWordsByBlock(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
                         data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);

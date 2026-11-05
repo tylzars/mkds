@@ -71,17 +71,17 @@ void func_020acbf8(Unk020aca24 *a) {
         if (func_020acec4(i, 1) != 0) {
             func_020adad0(4, 8);
             func_020acf04();
-            data_0217b340->mUnk_58 = 1;
+            data_0217b340->mUnk_58 = TRUE;
         } else if (func_020ae408(i, 0x30) != 0) {
             switch (data_0217b340->mUnk_54) {
                 case 3:
                     data_0217b340->mUnk_54 = 4;
-                    data_0217b340->mUnk_5c = 1;
+                    data_0217b340->mUnk_5c = TRUE;
                     func_02105ac0(0);
                     break;
                 case 4:
                     data_0217b340->mUnk_54 = 3;
-                    data_0217b340->mUnk_5c = 0;
+                    data_0217b340->mUnk_5c = FALSE;
                     func_02105ac0(0);
                     break;
             }
@@ -89,7 +89,7 @@ void func_020acbf8(Unk020aca24 *a) {
         } else if (func_020ae408(i, 0x40) != 0) {
             switch (data_0217b340->mUnk_54) {
                 case 0:
-                    if (data_0217b340->mUnk_5c != 0) {
+                    if (data_0217b340->mUnk_5c != FALSE) {
                         data_0217b340->mUnk_54 = 4;
                     } else {
                         data_0217b340->mUnk_54 = 3;
@@ -117,7 +117,7 @@ void func_020acbf8(Unk020aca24 *a) {
                     data_0217b340->mUnk_54 = 2;
                     break;
                 case 2:
-                    if (data_0217b340->mUnk_5c != 0) {
+                    if (data_0217b340->mUnk_5c != FALSE) {
                         data_0217b340->mUnk_54 = 4;
                     } else {
                         data_0217b340->mUnk_54 = 3;
@@ -137,7 +137,7 @@ void func_020acbf8(Unk020aca24 *a) {
             n = func_020291c4(x, y, data_0217b340->mUnk_70);
             if (n != -1) {
                 if (j == n) {
-                    data_0217b340->mUnk_58 = 1;
+                    data_0217b340->mUnk_58 = TRUE;
                 }
                 data_0217b340->mUnk_54 = n;
                 func_020adad0(4, 8);

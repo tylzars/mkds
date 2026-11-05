@@ -30,7 +30,7 @@ u32 GpiInitialize(GpConnection *a, s32 b, s32 c) {
     p.mGpiConnection->mFirewall = 0;
     p.mGpiConnection->mProductId = b;
     p.mGpiConnection->mNamespaceId = c;
-    if (GpiInitProfileList(&p) == 0) {
+    if (GpiInitProfileList(&p) == FALSE) {
         func_ov000_021a3668(p.mGpiConnection);
         p.mGpiConnection = NULL;
         return 1;

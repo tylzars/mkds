@@ -219,19 +219,19 @@ void func_0208e2c8(Unk0216618c *a, s32 b) {
         z = func_020d2b78();
         a->mUnk_00 = b;
         if (y != 0) {
-            a->mUnk_04 = 1;
+            a->mUnk_04 = TRUE;
         } else {
-            a->mUnk_04 = 0;
+            a->mUnk_04 = FALSE;
         }
         if (z != 0) {
-            a->mUnk_08 = 1;
+            a->mUnk_08 = TRUE;
         } else {
-            a->mUnk_08 = 0;
+            a->mUnk_08 = FALSE;
         }
     } else {
         a->mUnk_00 = 0;
-        a->mUnk_04 = 0;
-        a->mUnk_08 = 0;
+        a->mUnk_04 = FALSE;
+        a->mUnk_08 = FALSE;
         data_0217b084[0] = -1;
         data_0217b084[1] = -1;
     }
@@ -248,19 +248,19 @@ void func_0208e23c(void) {
         y = FindCourseFile(data_02166280);
         e->mUnk_00 = 1;
         if (x != NULL) {
-            e->mUnk_04 = 1;
+            e->mUnk_04 = TRUE;
         } else {
-            e->mUnk_04 = 0;
+            e->mUnk_04 = FALSE;
         }
         if (y != NULL) {
-            e->mUnk_08 = 1;
+            e->mUnk_08 = TRUE;
         } else {
-            e->mUnk_08 = 0;
+            e->mUnk_08 = FALSE;
         }
     } else {
         e->mUnk_00 = 0;
-        e->mUnk_04 = 0;
-        e->mUnk_08 = 0;
+        e->mUnk_04 = FALSE;
+        e->mUnk_08 = FALSE;
     }
 }
 
@@ -280,12 +280,12 @@ void func_0208e098(void *a) {
         for (j = 0; j < g->mUnk_00; j++) {
             p = HeapAlloc(a, g->mUnk_18);
             data_0217b080->mUnk_48[i][j] = p;
-            if (g->mUnk_04 == 0) {
+            if (g->mUnk_04 == FALSE) {
                 p->mUnk_90[0] = NULL;
             } else {
                 p->mUnk_90[0] = HeapAlloc(a, 0x38);
             }
-            if (g->mUnk_08 == 0) {
+            if (g->mUnk_08 == FALSE) {
                 p->mUnk_90[1] = NULL;
             } else {
                 p->mUnk_90[1] = HeapAlloc(a, 0x38);

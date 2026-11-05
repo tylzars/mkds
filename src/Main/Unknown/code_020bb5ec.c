@@ -60,7 +60,7 @@ void func_020bbbb4(void) {
         }
     }
     func_020ae7c4(a, b, c, &data_0217b3d0->mUnk_00);
-    if (data_0217b3d0->mUnk_1c == 0) {
+    if (data_0217b3d0->mUnk_1c == FALSE) {
         return;
     }
     if (a == 0 && b > 6) {

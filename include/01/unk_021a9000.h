@@ -33,7 +33,7 @@ typedef struct OptionHensyuMenu {
     /* option state passed to RequestOptionState (0, 3, 5 or 6); no initial store, set by the input handler (state
        3); also tested inside the screen */
     /* 10 */ s32 mNextOptionState;
-    /* 14 */ s32 mUnk_14;
+    /* 14 */ BOOL mUnk_14;
     /* 18 */ void *mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
     /* 20 */ struct Unk02021dc8 *mOptionHensyuMenuSNcer;
@@ -86,7 +86,7 @@ typedef struct Unk021a9b88 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ BOOL mUnk_0c;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ u16 *mUnk_18;
@@ -103,10 +103,10 @@ typedef struct SelectBattleStage {
     /* 0014 */ s32 mUnk_14;
     /* 0018 */ s32 mUnk_18;
     /* 001c */ s32 mUnk_1c;
-    /* 0020 */ s32 mUnk_20;
+    /* 0020 */ BOOL mUnk_20;
     /* 0024 */ s32 mResult;
     /* 0028 */ s32 mPendingResult;
-    /* 002c */ s32 mUnk_2c;
+    /* 002c */ BOOL mUnk_2c;
     /* 0030 */ u16 mSelectBattleStageMNscrCopy[64][32];
     /* 1030 */ void *mHeap;
     /* 1034 */ Unk02124b1c *mSelectBattleStageTables[2];
@@ -176,7 +176,7 @@ typedef struct OptionEmbremSelect {
     /* 14 */ s32 mStateFrames;
     /* 18 */ Unk021a9bfc_18 mUnk_18[2];
     /* 20 */ s32 mNextOptionState;
-    /* 24 */ s32 mUnk_24;
+    /* 24 */ BOOL mUnk_24;
     // Set to 6 by a press; counts down to 0 only while mUnk_08 == 1. 6 - timer indexes a table through func_020adc64
     // (a displacement that returns to 0); [0] is subtracted from a row member, [1] added to one.
     /* 28 */ s32 mOffsetTimers[2];

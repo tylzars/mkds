@@ -17,7 +17,7 @@ void func_020ca6b8(void) {
 
 #pragma thumb on
 void func_020ca6a8(void) {
-    gEmblemChoises->mUnk_08 = 1;
+    gEmblemChoises->mUnk_08 = TRUE;
 }
 #pragma thumb off
 

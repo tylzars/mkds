@@ -32,7 +32,7 @@ void func_020ad028(void) {
                 p[5].mUnk_04 = data_0217b340->mUnk_60;
                 p[10].mUnk_04 = data_0217b340->mUnk_60;
             }
-            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == 0 || func_020adaf8() >= 5) {
+            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == FALSE || func_020adaf8() >= 5) {
                 p[5].mUnk_00 = 0;
                 p[10].mUnk_00 = 1;
             }
@@ -43,7 +43,7 @@ void func_020ad028(void) {
                 p[6].mUnk_04 = data_0217b340->mUnk_60;
                 p[11].mUnk_04 = data_0217b340->mUnk_60;
             }
-            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == 0 || func_020adaf8() >= 5) {
+            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == FALSE || func_020adaf8() >= 5) {
                 p[6].mUnk_00 = 0;
                 p[11].mUnk_00 = 1;
             }
@@ -54,20 +54,20 @@ void func_020ad028(void) {
                 p[7].mUnk_04 = data_0217b340->mUnk_60;
                 p[12].mUnk_04 = data_0217b340->mUnk_60;
             }
-            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == 0 || func_020adaf8() >= 5) {
+            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == FALSE || func_020adaf8() >= 5) {
                 p[7].mUnk_00 = 0;
                 p[12].mUnk_00 = 1;
             }
             break;
         case 3:
-            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == 0 || func_020adaf8() >= 5) {
+            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == FALSE || func_020adaf8() >= 5) {
                 p[8].mUnk_00 = 0;
                 p[13].mUnk_00 = 1;
                 func_02124100(0, 14, data_0217b340->mUnk_74, p, data_0217b340->mUnk_6c);
             }
             break;
         case 4:
-            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == 0 || func_020adaf8() >= 5) {
+            if (data_0217b340->mUnk_0c != 4 || data_0217b340->mUnk_58 == FALSE || func_020adaf8() >= 5) {
                 p[9].mUnk_00 = 0;
                 p[14].mUnk_00 = 1;
                 func_02124100(1, 14, data_0217b340->mUnk_74, p, data_0217b340->mUnk_6c);

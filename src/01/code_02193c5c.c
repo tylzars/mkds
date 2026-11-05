@@ -406,8 +406,8 @@ void InitRecordGpx(void *heap) {
     gRecordGpx->mState = 0;
     gRecordGpx->mIndex = 0;
     gRecordGpx->mUnk_7c = 0;
-    gRecordGpx->mUnk_88 = 0;
-    gRecordGpx->mUnk_8c = 0;
+    gRecordGpx->mUnk_88 = FALSE;
+    gRecordGpx->mUnk_8c = FALSE;
     for (i = 0; i < 2; i++) {
         gRecordGpx->mOffsetTimers[i] = 0;
     }
@@ -540,10 +540,10 @@ void AdvanceRecordGpxState2(void) {
                                     data_02175628[idx].mUnk_4a);
     }
     if (a != 0) {
-        gRecordGpx->mUnk_88 = 0;
+        gRecordGpx->mUnk_88 = FALSE;
     }
     if (a != 1) {
-        gRecordGpx->mUnk_8c = 0;
+        gRecordGpx->mUnk_8c = FALSE;
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         x3 = FALSE;
@@ -555,7 +555,7 @@ void AdvanceRecordGpxState2(void) {
             x3 = TRUE;
         }
         if (x3 == FALSE || IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175628[idx].mUnk_48,
-                                                                           data_02175628[idx].mUnk_4a) == 0) {
+                                                                           data_02175628[idx].mUnk_4a) == FALSE) {
             goto next;
         }
     }
@@ -564,20 +564,20 @@ void AdvanceRecordGpxState2(void) {
     func_02128310(0);
     return;
 next:
-    if ((a == 0 && gRecordGpx->mUnk_88 != 0) || (b == 0 && gRecordGpx->mUnk_88 == 0) ||
+    if ((a == 0 && gRecordGpx->mUnk_88 != FALSE) || (b == 0 && gRecordGpx->mUnk_88 == FALSE) ||
         (u16) (data_02175628[idx].mBits & 0x20) != 0) {
         gRecordGpx->mUnk_7c = 1;
         gRecordGpx->mOffsetTimers[0] = 6;
-        gRecordGpx->mUnk_88 = 1;
+        gRecordGpx->mUnk_88 = TRUE;
         func_ov001_02194a0c();
         func_0212ecc0(&data_0217d068, 0, 2);
         return;
     }
-    if ((a == 1 && gRecordGpx->mUnk_8c != 0) || (b == 1 && gRecordGpx->mUnk_8c == 0) ||
+    if ((a == 1 && gRecordGpx->mUnk_8c != FALSE) || (b == 1 && gRecordGpx->mUnk_8c == FALSE) ||
         (u16) (data_02175628[idx].mBits & 0x10) != 0) {
         gRecordGpx->mUnk_7c = 0;
         gRecordGpx->mOffsetTimers[1] = 6;
-        gRecordGpx->mUnk_8c = 1;
+        gRecordGpx->mUnk_8c = TRUE;
         func_ov001_02194a0c();
         func_0212ecc0(&data_0217d068, 0, 2);
     }

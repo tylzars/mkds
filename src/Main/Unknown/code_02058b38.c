@@ -98,7 +98,7 @@ s32 func_02058dc0(void (*a)(void)) {
             }
             break;
         case 5:
-            if (func_020505a8(4, 1) != 0) {
+            if (func_020505a8(4, 1) != FALSE) {
                 data_0217aa00->mUnk_1e34 = 1;
             }
             break;

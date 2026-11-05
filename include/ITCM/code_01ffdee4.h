@@ -34,6 +34,6 @@ typedef struct Unk0217b614 {
     /* 38 */ u8 mUnk_38[4];
 } Unk0217b614;
 
-int func_01ffdee4(void *param_1, void *param_2, u32 param_3, int param_4, u16 param_5, short param_6, void *param_7,
-                  void *param_8, void *param_9, u32 *param_10, u32 *param_11, int *param_12, u16 *param_13,
-                  u32 *param_14);
+BOOL func_01ffdee4(void *param_1, void *param_2, u32 param_3, int param_4, u16 param_5, short param_6, void *param_7,
+                   void *param_8, void *param_9, u32 *param_10, u32 *param_11, int *param_12, u16 *param_13,
+                   u32 *param_14);
