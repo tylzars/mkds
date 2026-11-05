@@ -52,15 +52,15 @@ void CreateBalloon(Unk020a3eb8 *a) {
 }
 
 void func_020a3e38(void *p) {
-    Unk02061808 *g;
+    Camera *g;
 
-    g = func_02061808();
-    data_0217b214.x = g->mUnk_024.x >> 1;
-    data_0217b214.y = g->mUnk_024.y >> 1;
-    data_0217b214.z = g->mUnk_024.z >> 1;
-    data_0217b208.x = g->mUnk_024.x >> 3;
-    data_0217b208.y = g->mUnk_024.y >> 3;
-    data_0217b208.z = g->mUnk_024.z >> 3;
+    g = GetCurrentCamera();
+    data_0217b214.x = g->mPos.x >> 1;
+    data_0217b214.y = g->mPos.y >> 1;
+    data_0217b214.z = g->mPos.z >> 1;
+    data_0217b208.x = g->mPos.x >> 3;
+    data_0217b208.y = g->mPos.y >> 3;
+    data_0217b208.z = g->mPos.z >> 3;
     func_0209bbd0(p, gBalloon);
 }
 
@@ -256,7 +256,7 @@ u32 func_020a3690(Balloon *p) {
 }
 
 void func_020a35b0(Balloon *a) {
-    Unk02061808 *g;
+    Camera *g;
     Vec3 v;
     u16 v1;
     s32 i;
@@ -267,16 +267,16 @@ void func_020a35b0(Balloon *a) {
     s32 u;
     s32 w;
 
-    g = func_02061808();
-    v1 = AngleFromPair(g->mUnk_15c.x, g->mUnk_15c.z) - 0x4000;
-    Vec3Sub(&a->mUnk_00.mPos, &g->mUnk_024, &v);
+    g = GetCurrentCamera();
+    v1 = AngleFromPair(g->mForward.x, g->mForward.z) - 0x4000;
+    Vec3Sub(&a->mUnk_00.mPos, &g->mPos, &v);
     i = (v1 >> 4) * 2;
     s = gPairsByAngle[i];
     c = gPairsByAngle[i + 1];
     x = (s32) (((s64) v.z * c) >> 12);
     y = (s32) (((s64) v.x * s) >> 12);
     u = v.y;
-    Vec3Sub(&a->mUnk_b0, &g->mUnk_024, &v);
+    Vec3Sub(&a->mUnk_b0, &g->mPos, &v);
     w = (s32) (((s64) v.x * s) >> 12) + (s32) (((s64) v.z * c) >> 12);
     a->mUnk_00.mAngle = AngleFromPair(u - v.y, -(y + x - w));
 }

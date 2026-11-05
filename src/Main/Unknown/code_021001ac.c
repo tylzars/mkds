@@ -316,7 +316,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
     s32 n;
 
     q = p->mUnk_168;
-    g = (s32 *) func_02061808();
+    g = (s32 *) GetCurrentCamera();
     v = &p->mUnk_000.mUnk_50;
     k = m = TRUE;
     if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
@@ -563,13 +563,13 @@ void func_0210136c(Unk02101c84 *p) {
 
 void func_02101178(Unk02101c84 *p) {
     s32 *v;
-    Unk02061808 *g;
+    Camera *g;
     Unk021759c0 *o;
     void (*f)(Unk02101c84 *, s32);
     int i;
 
     v = &p->mUnk_16c;
-    g = func_02061808();
+    g = GetCurrentCamera();
     if (!(p->mUnk_000.mUnk_74 & 0x8000000)) {
         o = data_021759c0;
         f = (o->mMode == 2) ? func_02101d90 : func_02101f7c;
@@ -601,10 +601,10 @@ void func_02101178(Unk02101c84 *p) {
             p->mUnk_000.mUnk_d0 = &p->mUnk_000.mUnk_0c4;
         }
     }
-    v[0] = (s32) (((s64) g->mUnk_00c.x * -0xa000) >> 12);
-    v[2] = (s32) (((s64) g->mUnk_00c.z * -0xa000) >> 12);
-    v[0] += (s32) (((s64) g->mUnk_15c.x * -0x11000) >> 12);
-    v[2] += (s32) (((s64) g->mUnk_15c.z * -0x11000) >> 12);
+    v[0] = (s32) (((s64) g->mSide.x * -0xa000) >> 12);
+    v[2] = (s32) (((s64) g->mSide.z * -0xa000) >> 12);
+    v[0] += (s32) (((s64) g->mForward.x * -0x11000) >> 12);
+    v[2] += (s32) (((s64) g->mForward.z * -0x11000) >> 12);
     p->mUnk_17c = -p->mUnk_17c;
     p->mUnk_270 = 0;
 }

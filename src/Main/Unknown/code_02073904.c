@@ -11,7 +11,7 @@ static inline s32 func_02073904_inline(Vec3 *v, Vec3 *n) {
     return func_02039860(v, n);
 }
 
-void func_02073904(Unk02073904 *p) {
+void UpdateCameraShake(Unk02073904 *p) {
     Unk020f41c4_B *r;
     Vec3 a;
     Vec3 b;
@@ -27,7 +27,7 @@ void func_02073904(Unk02073904 *p) {
     s32 i;
 
     if (func_02061f7c() == 0) {
-        Vec3Sub(&p->mUnk_024, &p->mUnk_018, &d);
+        Vec3Sub(&p->mPos, &p->mLookAt, &d);
         l = func_02073904_inline(&d, &d);
         if (l != 0) {
             k = data_usa_021656a8;
@@ -37,50 +37,50 @@ void func_02073904(Unk02073904 *p) {
             h = (s16) (u16) (r->mUnk_00 >> 52);
             s = (s32) (((s64) (s + 0x1000) * data_usa_021656c8) >> 12);
             m = (s32) (((s64) s * ((h - 0x800) * 2)) >> 12);
-            a.x = (s32) (((s64) p->mUnk_00c.x * m) >> 12);
-            a.y = (s32) (((s64) p->mUnk_00c.y * m) >> 12);
-            a.z = (s32) (((s64) p->mUnk_00c.z * m) >> 12);
+            a.x = (s32) (((s64) p->mSide.x * m) >> 12);
+            a.y = (s32) (((s64) p->mSide.y * m) >> 12);
+            a.z = (s32) (((s64) p->mSide.z * m) >> 12);
             r = &data_0217561c->mUnk_498;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             h = (s16) (u16) (r->mUnk_00 >> 52);
             m = (s32) (((s64) s * ((h - 0x800) * 2)) >> 12);
-            b.x = (s32) (((s64) p->mUnk_000.x * m) >> 12);
-            b.y = (s32) (((s64) p->mUnk_000.y * m) >> 12);
-            b.z = (s32) (((s64) p->mUnk_000.z * m) >> 12);
-            Vec3Add(&a, &b, &p->mUnk_0f4);
+            b.x = (s32) (((s64) p->mUp.x * m) >> 12);
+            b.y = (s32) (((s64) p->mUp.y * m) >> 12);
+            b.z = (s32) (((s64) p->mUp.z * m) >> 12);
+            Vec3Add(&a, &b, &p->mShakeLookAtOffsetGoal);
             r = &data_0217561c->mUnk_498;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             h = (s16) (u16) (r->mUnk_00 >> 52);
             m = (s32) (((s64) k * ((h - 0x800) * 2)) >> 12);
-            a.x = (s32) (((s64) p->mUnk_00c.x * m) >> 12);
-            a.y = (s32) (((s64) p->mUnk_00c.y * m) >> 12);
-            a.z = (s32) (((s64) p->mUnk_00c.z * m) >> 12);
+            a.x = (s32) (((s64) p->mSide.x * m) >> 12);
+            a.y = (s32) (((s64) p->mSide.y * m) >> 12);
+            a.z = (s32) (((s64) p->mSide.z * m) >> 12);
             r = &data_0217561c->mUnk_498;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             h = (s16) (u16) (r->mUnk_00 >> 52);
             m = (s32) (((s64) k * ((h - 0x800) * 2)) >> 12);
-            b.x = (s32) (((s64) p->mUnk_000.x * m) >> 12);
-            b.y = (s32) (((s64) p->mUnk_000.y * m) >> 12);
-            b.z = (s32) (((s64) p->mUnk_000.z * m) >> 12);
-            Vec3Add(&a, &b, &p->mUnk_100);
+            b.x = (s32) (((s64) p->mUp.x * m) >> 12);
+            b.y = (s32) (((s64) p->mUp.y * m) >> 12);
+            b.z = (s32) (((s64) p->mUp.z * m) >> 12);
+            Vec3Add(&a, &b, &p->mShakePosOffsetGoal);
         }
     }
     s = data_usa_021656b0;
-    Vec3Sub(&p->mUnk_100, &p->mUnk_118, &e);
+    Vec3Sub(&p->mShakePosOffsetGoal, &p->mShakePosOffset, &e);
     e.x = (s32) (((s64) e.x * s) >> 12);
     e.y = (s32) (((s64) e.y * s) >> 12);
     e.z = (s32) (((s64) e.z * s) >> 12);
-    Vec3Add(&p->mUnk_118, &e, &p->mUnk_118);
+    Vec3Add(&p->mShakePosOffset, &e, &p->mShakePosOffset);
     s = data_usa_021656a4;
-    Vec3Sub(&p->mUnk_0f4, &p->mUnk_10c, &f);
+    Vec3Sub(&p->mShakeLookAtOffsetGoal, &p->mShakeLookAtOffset, &f);
     f.x = (s32) (((s64) f.x * s) >> 12);
     f.y = (s32) (((s64) f.y * s) >> 12);
     f.z = (s32) (((s64) f.z * s) >> 12);
-    Vec3Add(&p->mUnk_10c, &f, &p->mUnk_10c);
-    i = -data_usa_021656cc[p->mUnk_130 - 1];
-    g.x = (s32) (((s64) p->mUnk_10c.x * i) >> 12);
-    g.y = (s32) (((s64) p->mUnk_10c.y * i) >> 12);
-    g.z = (s32) (((s64) p->mUnk_10c.z * i) >> 12);
+    Vec3Add(&p->mShakeLookAtOffset, &f, &p->mShakeLookAtOffset);
+    i = -data_usa_021656cc[p->mShakeKind - 1];
+    g.x = (s32) (((s64) p->mShakeLookAtOffset.x * i) >> 12);
+    g.y = (s32) (((s64) p->mShakeLookAtOffset.y * i) >> 12);
+    g.z = (s32) (((s64) p->mShakeLookAtOffset.z * i) >> 12);
     Vec3Add(&g, &p->mUnk_124, &p->mUnk_124);
     s = data_usa_021656bc;
     p->mUnk_124.x = (s32) (((s64) p->mUnk_124.x * s) >> 12);

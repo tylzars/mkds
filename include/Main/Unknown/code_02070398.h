@@ -46,7 +46,7 @@ void func_02072eb8(Kart *p);
 void func_020732d8(Kart *p);
 // Declared here until the code that defines them is decompiled.
 void func_02073f90(void);
-void func_020747f4(s32 a);
+void SetCameraHeightHold(s32 a);
 void func_02075d08(s32 a);
 void func_02076a5c(void);
 void func_0207a2d4(s32 a);

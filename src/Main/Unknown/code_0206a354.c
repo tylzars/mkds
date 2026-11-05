@@ -95,7 +95,7 @@ void StartKartState6(Kart *p) {
     p->mUnk_23c = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
-            func_02074854();
+            ResetCameraHalfFovAngleGoal();
         }
         func_02055c5c();
     }
@@ -131,7 +131,7 @@ void StartKartState6(Kart *p) {
     }
     p->mUnk_4c &= ~0x80000000;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        func_020747f4(1);
+        SetCameraHeightHold(1);
     }
 }
 
@@ -184,7 +184,7 @@ void AdvanceKartState6(Kart *p) {
     if (!(p->mUnk_4c & 0x80000000)) {
         if ((u32) p->mUnk_348 > 2 && (p->mUnk_340 >= p->mPos.y || (p->mUnk_44 & 0x10))) {
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-                func_020747f4(0);
+                SetCameraHeightHold(0);
             }
             if (p->mUnk_35c != 0) {
                 return;

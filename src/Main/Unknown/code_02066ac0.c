@@ -51,7 +51,7 @@ s32 func_02067bf4(Kart *a, s32 *b) {
     a->mUnk_23c = 0;
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         if ((a->mUnk_4c & 0x10000000) == 0 && (a->mUnk_48 & 0x4000000) == 0) {
-            func_02074854();
+            ResetCameraHalfFovAngleGoal();
         }
         func_02055c5c();
     }
@@ -67,7 +67,7 @@ s32 func_02067b60(Kart *a, s32 *b) {
     a->mUnk_23c = 0;
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         if ((a->mUnk_4c & 0x10000000) == 0 && (a->mUnk_48 & 0x4000000) == 0) {
-            func_02074854();
+            ResetCameraHalfFovAngleGoal();
         }
         func_02055c5c();
     }

@@ -813,7 +813,7 @@ void func_0207becc(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
     a->mUnk_02 = a->mUnk_08->mTimerBase + (u16) v;
 }
 
-void func_0207be40(Unk0207b960 *a, struct Unk020748b8_218 *b) {
+void func_0207be40(Unk0207b960 *a, struct CourseMapCamera *b) {
     CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mUnk_40];
     u16 i;
 
@@ -829,7 +829,7 @@ void func_0207be40(Unk0207b960 *a, struct Unk020748b8_218 *b) {
     }
 }
 
-void func_0207bd6c(Unk0207b960 *a, struct Unk020748b8_218 *b) {
+void func_0207bd6c(Unk0207b960 *a, struct CourseMapCamera *b) {
     s16 j;
     s16 i;
     CourseMapEntryGroup *e = &gCourseMap->mEntryGroups[b->mUnk_40];
@@ -850,7 +850,7 @@ void func_0207bd6c(Unk0207b960 *a, struct Unk020748b8_218 *b) {
     a->mUnk_00[3] = GetCourseMapGroupEntry(b->mUnk_40, e->mEntryCount - 1)->mUnk_00;
 }
 
-void func_0207bc9c(Vec3 *a, Unk0207b960 *b, struct Unk020748b8_218 *c, s32 d) {
+void func_0207bc9c(Vec3 *a, Unk0207b960 *b, struct CourseMapCamera *c, s32 d) {
     CourseMapEntryGroup *e;
     Unk02042044 *f;
     u16 i;

@@ -122,10 +122,10 @@ void DrawFireball2(void *a, Fireball2 *b) {
     s32 j;
     s32 f;
     s32 g;
-    Unk02061808 *q;
+    Camera *q;
 
-    q = func_02061808();
-    c = func_02039828(&b->mUnk_00.mMatrix.mUnk_00[0], &q->mUnk_15c);
+    q = GetCurrentCamera();
+    c = func_02039828(&b->mUnk_00.mMatrix.mUnk_00[0], &q->mForward);
     for (i = 0; i < b->mUnk_a0; i++) {
         if (c >= 0) {
             f = 1;

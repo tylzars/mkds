@@ -8,20 +8,22 @@ u32 func_02073e88(void) {
     return (u32) data_0217aca8;
 }
 
-int func_02073e4c(u32 a) {
-    Unk02061808 *v1;
+// Distance of the point a along the forward axis of the current camera.
+int GetCameraForwardDistance(u32 a) {
+    Camera *v1;
     u8 v2[12];
-    v1 = func_02061808();
-    Vec3Sub((const Vec3 *) a, &v1->mUnk_024, (Vec3 *) (v2));
-    return func_02039828(&v1->mUnk_15c, (const Vec3 *) v2);
+    v1 = GetCurrentCamera();
+    Vec3Sub((const Vec3 *) a, &v1->mPos, (Vec3 *) (v2));
+    return func_02039828(&v1->mForward, (const Vec3 *) v2);
 }
 
-int func_02073e04(u32 a) {
-    Unk02061808 *v1;
+// Distance of the point a along mSide of the current camera, times mUnk_26c (mirror).
+int GetCameraSideDistance(u32 a) {
+    Camera *v1;
     int v2;
     u8 v3[12];
-    v1 = func_02061808();
-    Vec3Sub((const Vec3 *) a, &v1->mUnk_024, (Vec3 *) (v3));
-    v2 = ((u32) func_02039828(&v1->mUnk_00c, (const Vec3 *) v3));
+    v1 = GetCurrentCamera();
+    Vec3Sub((const Vec3 *) a, &v1->mPos, (Vec3 *) (v3));
+    v2 = ((u32) func_02039828(&v1->mSide, (const Vec3 *) v3));
     return v1->mUnk_26c * v2;
 }

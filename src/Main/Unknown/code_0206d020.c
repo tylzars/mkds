@@ -510,7 +510,7 @@ void func_0206d020(Kart *p, int a, int b) {
             f = 1;
         }
         func_02084034(f, p);
-        func_02074874(0x1770);
+        SetCameraHalfFovAngleGoal(0x1770);
         func_02055c80(5);
         if (a != 3) {
             return;

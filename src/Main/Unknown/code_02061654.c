@@ -159,8 +159,8 @@ void InitRace(void) {
     data_0217aa88 = func_020748a8();
     data_0217aa5c = func_02074898();
     data_0217aa6c = data_0217aa88;
-    data_0217aa7c = &data_0217aa88->mUnk_030;
-    func_02077060(data_0217aa88);
+    data_0217aa7c = &data_0217aa88->mViewMatrix;
+    RefreshCameraProjection(data_0217aa88);
     func_02047b6c(3);
     switch (data_021759c0->mMode) {
         case 2:
@@ -297,21 +297,21 @@ void UpdateRace(void) {
         data_0217aa6c = func_02074888();
     } else if (func_0203c5e4() != 0) {
         func_02076528(data_0217aa88, GetKart(data_021759c0->mUnk_063));
-        func_02076cd0(data_0217aa88);
+        UpdateCameraView(data_0217aa88);
         if (func_02075a94(data_0217aa5c) != 0) {
             data_0217aa6c = data_0217aa5c;
-            data_0217aa7c = &data_0217aa5c->mUnk_030;
+            data_0217aa7c = &data_0217aa5c->mViewMatrix;
         } else {
             data_0217aa6c = data_0217aa88;
-            data_0217aa7c = &data_0217aa88->mUnk_030;
+            data_0217aa7c = &data_0217aa88->mViewMatrix;
         }
     } else {
         func_02076528(data_0217aa88, GetKart(data_021759c0->mEntryIndex));
-        func_02076cd0(data_0217aa88);
+        UpdateCameraView(data_0217aa88);
         data_0217aa6c = data_0217aa88;
-        data_0217aa7c = &data_0217aa88->mUnk_030;
+        data_0217aa7c = &data_0217aa88->mViewMatrix;
     }
-    func_02077060(data_0217aa6c);
+    RefreshCameraProjection(data_0217aa6c);
     func_020d4f94((Unk020d4f94 *) data_0217aa7c);
     if (func_02073e88() != 0) {
         func_020d50c4();
@@ -418,19 +418,19 @@ void func_02062078(void) {
     Vec3 a;
     Vec3 b;
     u32 v;
-    Unk02061808 *p;
+    Camera *p;
 
     func_02076c50(data_0217aa6c, 1);
     func_02076bcc(data_0217aa6c);
     p = data_0217aa6c;
     func_02010fac(0, gRace->mUnk_40, gRace->mUnk_42, gRace->mUnk_44);
     func_02010f98(0, 0x7fff);
-    a.x = p->mUnk_030.mUnk_00[0].y;
-    a.y = p->mUnk_030.mUnk_00[1].y;
-    a.z = p->mUnk_030.mUnk_00[2].y;
-    b.x = -p->mUnk_030.mUnk_00[0].z;
-    b.y = -p->mUnk_030.mUnk_00[1].z;
-    b.z = -p->mUnk_030.mUnk_00[2].z;
+    a.x = p->mViewMatrix.mUnk_00[0].y;
+    a.y = p->mViewMatrix.mUnk_00[1].y;
+    a.z = p->mViewMatrix.mUnk_00[2].y;
+    b.x = -p->mViewMatrix.mUnk_00[0].z;
+    b.y = -p->mViewMatrix.mUnk_00[1].z;
+    b.z = -p->mViewMatrix.mUnk_00[2].z;
     Vec3Sub(&b, &a, &c);
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 16) {
         func_02039860(&c, &c);
@@ -645,10 +645,11 @@ Unk02012f58 *func_0206182c(void) {
 }
 
 u32 func_02061818(void) {
-    return ((u32) data_0217aa6c->mUnk_250);
+    return ((u32) data_0217aa6c->mKind);
 }
 
-void *func_02061808(void) {
+// The camera used this frame: data_0217aa6c (returned as void *).
+void *GetCurrentCamera(void) {
     return (void *) ((u32) data_0217aa6c);
 }
 

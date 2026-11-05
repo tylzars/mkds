@@ -23,7 +23,7 @@ void func_0206ceb4(s32 *out, Kart *p) {
             return;
         }
         if (!(p->mUnk_4c & 0x10000000)) {
-            func_02074854();
+            ResetCameraHalfFovAngleGoal();
         }
         func_02055c5c();
         return;
@@ -454,7 +454,7 @@ void func_0206bf88(Kart *p, int mode) {
     p->mUnk_23c = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
-            func_02074854();
+            ResetCameraHalfFovAngleGoal();
         }
         func_02055c5c();
     }

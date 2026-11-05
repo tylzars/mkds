@@ -126,7 +126,7 @@ void func_ov001_02187af4(Unk02188950 *a) {
 // combined with the pair of gPairsByAngle values selected by param_1->mUnk_184. The entry's mUnk_00 (1-5) selects
 // the variant; other values write nothing.
 void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c) {
-    Unk02061808 *obj;
+    Camera *obj;
     s32 x;
     s32 y;
     s32 z;
@@ -143,13 +143,13 @@ void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c) {
                    (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
             break;
         case 3:
-            // As case 1 with mUnk_024 of the object from func_02061808 added, then halved.
-            obj = func_02061808();
-            c->x = a->mUnk_000.mPos.x + obj->mUnk_024.x +
+            // As case 1 with mUnk_024 of the object from GetCurrentCamera added, then halved.
+            obj = GetCurrentCamera();
+            c->x = a->mUnk_000.mPos.x + obj->mPos.x +
                    (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12) +
                    (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
-            c->y = a->mUnk_000.mPos.y + obj->mUnk_024.y + a->mUnk_0bc[b].mOffset.y;
-            c->z = a->mUnk_000.mPos.z + obj->mUnk_024.z +
+            c->y = a->mUnk_000.mPos.y + obj->mPos.y + a->mUnk_0bc[b].mOffset.y;
+            c->z = a->mUnk_000.mPos.z + obj->mPos.z +
                    (s32) (((s64) a->mUnk_0bc[b].mOffset.z * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12) -
                    (s32) (((s64) a->mUnk_0bc[b].mOffset.x * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
             c->x >>= 1;

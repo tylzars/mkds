@@ -23,7 +23,7 @@ s32 func_02061788(void);
 s32 func_020617a8(u32 *a);
 u32 func_020617d8(void);
 u32 func_020617f0(void);
-void *func_02061808(void);
+void *GetCurrentCamera(void);
 unsigned int func_02061818(void);
 Unk02012f58 *func_0206182c(void);
 unsigned int func_0206183c(void);

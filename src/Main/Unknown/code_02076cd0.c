@@ -126,30 +126,30 @@ void func_02077944(void) {
     data_0217ac94 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
     func_02076a5c();
     func_02063b10(a, &data_0217ac94->mUnk_260);
-    func_02077060(data_0217ac94);
+    RefreshCameraProjection(data_0217ac94);
 }
 
 void func_020777ac(u32 a) {
     void *h = GetHeap(func_020364e8());
     u16 i;
     u16 n;
-    Unk020748b8_218 *e;
+    CourseMapCamera *e;
     u16 m;
     u16 j;
     s32 k;
 
     data_0217acbc = HeapAlloc(h, 0x270);
-    func_0207729c(data_0217acbc);
-    data_0217acbc->mUnk_210 = a;
-    data_0217acbc->mUnk_218 = NULL;
+    SetupCamera(data_0217acbc);
+    data_0217acbc->mFollowedKartIndex = a;
+    data_0217acbc->mCourseMapCamera = NULL;
     data_0217acbc->mUnk_24c = 0;
-    data_0217acbc->mUnk_250 = 1;
+    data_0217acbc->mKind = 1;
     if (data_021759c0->mUnk_00c == 6) {
-        data_0217acbc->mUnk_218 = gCourseMap->mUnk_7c;
+        data_0217acbc->mCourseMapCamera = gCourseMap->mUnk_7c;
     }
     if (data_021759c0->mMode == 2) {
-        data_0217acbc->mUnk_218 = gCourseMap->mUnk_d0;
-        if (data_0217acbc->mUnk_218 != NULL) {
+        data_0217acbc->mCourseMapCamera = gCourseMap->mUnk_d0;
+        if (data_0217acbc->mCourseMapCamera != NULL) {
             n = 0;
             k = -1;
             for (i = 0; i < gCourseMap->mUnk_80; i++) {
@@ -159,13 +159,13 @@ void func_020777ac(u32 a) {
             }
             data_usa_0217ac70 = n;
             data_0217acbc->mUnk_21c = HeapAlloc(h, n * 0x88);
-            e = data_0217acbc->mUnk_218;
+            e = data_0217acbc->mCourseMapCamera;
             m = 0;
             j = 0;
             for (; m < gCourseMap->mUnk_80; m++) {
                 if (k != -1) {
                     e = &gCourseMap->mUnk_7c[(u16) k];
-                    if (e == data_0217acbc->mUnk_218) {
+                    if (e == data_0217acbc->mCourseMapCamera) {
                         break;
                     }
                 }
@@ -177,13 +177,13 @@ void func_020777ac(u32 a) {
             }
             data_0217acbc->mUnk_220 = data_0217acbc->mUnk_21c;
             data_0217acbc->mUnk_224 = 0;
-            data_0217acbc->mUnk_250 = 3;
+            data_0217acbc->mKind = 3;
             data_0217aca8 = 1;
         }
     }
 }
 
-void func_02077750(Unk02077750 *a, Unk020748b8_218 *b) {
+void func_02077750(Unk02077750 *a, CourseMapCamera *b) {
     CourseMapEntryGroup *v1 = &gCourseMap->mEntryGroups[b->mUnk_40];
 
     a->mUnk_7c = b->mUnk_42;
@@ -202,116 +202,117 @@ void func_0207767c(void) {
 
     data_usa_0217ac98 = HeapAlloc(h, 0x270);
     data_usa_0217ac84 = HeapAlloc(h, 0x270);
-    func_0207729c(data_usa_0217ac98);
-    func_0207729c(data_usa_0217ac84);
-    data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
-    data_usa_0217ac84->mUnk_218 = gCourseMap->mUnk_c8;
-    data_usa_0217ac98->mUnk_250 = 2;
-    data_usa_0217ac84->mUnk_250 = 2;
-    if (data_usa_0217ac98->mUnk_218 == NULL) {
+    SetupCamera(data_usa_0217ac98);
+    SetupCamera(data_usa_0217ac84);
+    data_usa_0217ac98->mCourseMapCamera = gCourseMap->mUnk_c4;
+    data_usa_0217ac84->mCourseMapCamera = gCourseMap->mUnk_c8;
+    data_usa_0217ac98->mKind = 2;
+    data_usa_0217ac84->mKind = 2;
+    if (data_usa_0217ac98->mCourseMapCamera == NULL) {
         data_0217561c->mUnk_4d0 = 1;
         return;
     }
-    if ((s16) data_usa_0217ac98->mUnk_218->mUnk_40 != -1) {
-        func_0207be40(&data_usa_0217ac98->mUnk_194, data_usa_0217ac98->mUnk_218);
+    if ((s16) data_usa_0217ac98->mCourseMapCamera->mUnk_40 != -1) {
+        func_0207be40(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
     }
-    if ((s16) data_usa_0217ac84->mUnk_218->mUnk_40 != -1) {
-        func_0207be40(&data_usa_0217ac84->mUnk_194, data_usa_0217ac84->mUnk_218);
+    if ((s16) data_usa_0217ac84->mCourseMapCamera->mUnk_40 != -1) {
+        func_0207be40(&data_usa_0217ac84->mPosCurve, data_usa_0217ac84->mCourseMapCamera);
     }
 }
 
 void func_020775e4(void) {
     data_usa_0217ac98 = HeapAlloc(GetHeap(func_020364e8()), 0x270);
     data_usa_0217ac84 = NULL;
-    func_0207729c(data_usa_0217ac98);
-    data_usa_0217ac98->mUnk_218 = gCourseMap->mUnk_c4;
-    data_usa_0217ac98->mUnk_250 = 2;
+    SetupCamera(data_usa_0217ac98);
+    data_usa_0217ac98->mCourseMapCamera = gCourseMap->mUnk_c4;
+    data_usa_0217ac98->mKind = 2;
     data_usa_0217ac98->mUnk_24c = 0;
-    if (data_usa_0217ac98->mUnk_218 == NULL) {
+    if (data_usa_0217ac98->mCourseMapCamera == NULL) {
         data_0217561c->mUnk_4d0 = 1;
         return;
     }
-    if ((s16) data_usa_0217ac98->mUnk_218->mUnk_40 != -1) {
-        func_0207be40(&data_usa_0217ac98->mUnk_194, data_usa_0217ac98->mUnk_218);
+    if ((s16) data_usa_0217ac98->mCourseMapCamera->mUnk_40 != -1) {
+        func_0207be40(&data_usa_0217ac98->mPosCurve, data_usa_0217ac98->mCourseMapCamera);
     }
 }
 
 #pragma thumb off
 
-void func_0207729c(Unk02061808 *p) {
+// Writes the default values of 76 members; re-run by func_02076a5c when a kart is placed.
+void SetupCamera(Camera *p) {
     Vec3 b;
     Vec3 a;
     Vec3 c;
 
-    p->mUnk_024.x = 0x1e3000;
-    p->mUnk_024.y = 0x4bd000;
-    p->mUnk_024.z = 0xc6b000;
+    p->mPos.x = 0x1e3000;
+    p->mPos.y = 0x4bd000;
+    p->mPos.z = 0xc6b000;
     a = *(volatile Vec3 *) &data_usa_02154fdc;
-    p->mUnk_018 = a;
+    p->mLookAt = a;
     b = *(volatile Vec3 *) &data_usa_02154fc4;
-    p->mUnk_000 = data_usa_02154fc4;
-    p->mUnk_00c = data_usa_02154fd0;
-    Matrix4x3Identity(&p->mUnk_030);
-    p->mUnk_15c = data_usa_02154fb8;
+    p->mUp = data_usa_02154fc4;
+    p->mSide = data_usa_02154fd0;
+    Matrix4x3Identity(&p->mViewMatrix);
+    p->mForward = data_usa_02154fb8;
     p->mUnk_168 = 0;
-    p->mUnk_064 = data_0216569c;
-    p->mUnk_060 = data_0216569c + 5;
-    p->mUnk_068 = gPairsByAngle[((u16) p->mUnk_060 >> 4) * 2];
-    p->mUnk_06a = gPairsByAngle[((u16) p->mUnk_060 >> 4) * 2 + 1];
-    p->mUnk_06c = 0x1555;
-    p->mUnk_070 = 0x400;
+    p->mHalfFovAngleGoal = data_0216569c;
+    p->mHalfFovAngle = data_0216569c + 5;
+    p->mUnk_068 = gPairsByAngle[((u16) p->mHalfFovAngle >> 4) * 2];
+    p->mUnk_06a = gPairsByAngle[((u16) p->mHalfFovAngle >> 4) * 2 + 1];
+    p->mAspectRatio = 0x1555;
+    p->mNear = 0x400;
     p->mUnk_08c = 0x640000;
-    p->mUnk_074 = gCourseMap->mSettings->mUnk_24;
-    if (p->mUnk_074 < 0x1000) {
-        p->mUnk_074 = 0x640000;
+    p->mFar = gCourseMap->mSettings->mUnk_24;
+    if (p->mFar < 0x1000) {
+        p->mFar = 0x640000;
     }
-    p->mUnk_078 = 0;
-    p->mUnk_07c = 0;
-    p->mUnk_080 = 0;
-    p->mUnk_084 = 0;
+    p->mFrustumTop = 0;
+    p->mFrustumBottom = 0;
+    p->mFrustumLeft = 0;
+    p->mFrustumRight = 0;
     c = data_usa_02154fdc;
-    p->mUnk_09c = c;
-    p->mUnk_090 = c;
-    p->mUnk_0c0 = b;
-    p->mUnk_0cc = 0;
-    p->mUnk_0d4 = data_usa_0217ac78;
+    p->mViewPos = c;
+    p->mViewLookAt = c;
+    p->mBaseUp = b;
+    p->mHeldHeight = 0;
+    p->mLookAtHeight = data_usa_0217ac78;
     p->mUnk_0d8 = 1;
-    p->mUnk_0dc = data_usa_0217ac90;
-    p->mUnk_0e0 = p->mUnk_0dc;
+    p->mFollowDistance = data_usa_0217ac90;
+    p->mUnk_0e0 = p->mFollowDistance;
     p->mUnk_0e4 = 0;
-    p->mUnk_0e8 = 0x1000;
+    p->mFollowDistanceScale = 0x1000;
     p->mUnk_0ec = 0;
-    p->mUnk_0f0 = 0x1000;
-    p->mUnk_0f4 = c;
-    p->mUnk_100 = c;
-    p->mUnk_10c = c;
-    p->mUnk_118 = c;
-    p->mUnk_130 = 0;
+    p->mFollowDirectionSign = 0x1000;
+    p->mShakeLookAtOffsetGoal = c;
+    p->mShakePosOffsetGoal = c;
+    p->mShakeLookAtOffset = c;
+    p->mShakePosOffset = c;
+    p->mShakeKind = 0;
     p->mUnk_124 = c;
-    p->mUnk_240 = 0;
-    p->mUnk_244 = 0;
-    p->mUnk_248 = 0;
+    p->mFovBlend = 0;
+    p->mLookAtBlend = 0;
+    p->mHeightHold = 0;
     p->mUnk_16c = 0;
     p->mUnk_170 = 0;
     p->mUnk_174 = 0;
-    p->mUnk_178 = 0;
-    p->mUnk_140 = FALSE;
+    p->mViewPosYOffset = 0;
+    p->mWobbling = FALSE;
     p->mUnk_144 = 0;
-    p->mUnk_14c = 0;
-    p->mUnk_150 = 1;
-    p->mUnk_154 = 0;
-    p->mUnk_158 = 0;
-    p->mUnk_148 = 0;
-    p->mUnk_210 = 0;
-    p->mUnk_214 = -1;
-    p->mUnk_23c = 0;
+    p->mWobblePerFrame = 0;
+    p->mWobbleDirection = 1;
+    p->mWobbleDecay = 0;
+    p->mWobbleOffset = 0;
+    p->mWobbleAmplitude = 0;
+    p->mFollowedKartIndex = 0;
+    p->mLastCourseMapCameraIndex = -1;
+    p->mCourseMapCameraFrames = 0;
     p->mUnk_228 = FALSE;
     p->mUnk_22c = 0;
     p->mUnk_230 = 0;
     p->mUnk_234 = FALSE;
     p->mUnk_238 = FALSE;
     p->mUnk_24c = 0;
-    p->mUnk_250 = 0;
+    p->mKind = 0;
     p->mUnk_188 = c;
     p->mUnk_17c = c;
     p->mUnk_254 = 3;
@@ -329,55 +330,55 @@ void func_0207729c(Unk02061808 *p) {
     p->mUnk_088 = 0x1000;
 }
 
-void func_02077060(Unk02061808 *p) {
+void RefreshCameraProjection(Camera *p) {
     s32 a;
     s32 b;
     s32 c;
     s32 d;
 
     if (p == data_0217ac94) {
-        if (p->mUnk_060 == p->mUnk_064 && data_0217acac == 0) {
+        if (p->mHalfFovAngle == p->mHalfFovAngleGoal && data_0217acac == 0) {
             return;
         }
-        if (func_020738f8(p->mUnk_060 - p->mUnk_064) < 10) {
-            p->mUnk_060 = p->mUnk_064;
+        if (func_020738f8(p->mHalfFovAngle - p->mHalfFovAngleGoal) < 10) {
+            p->mHalfFovAngle = p->mHalfFovAngleGoal;
         }
     }
-    p->mUnk_078 = (s32) (((s64) p->mUnk_070 * DivFixed12(p->mUnk_068, p->mUnk_06a)) >> 12);
-    p->mUnk_07c = -p->mUnk_078;
-    p->mUnk_080 = (s32) (((s64) -p->mUnk_078 * p->mUnk_06c) >> 12);
-    a = p->mUnk_078;
-    b = p->mUnk_07c;
+    p->mFrustumTop = (s32) (((s64) p->mNear * DivFixed12(p->mUnk_068, p->mUnk_06a)) >> 12);
+    p->mFrustumBottom = -p->mFrustumTop;
+    p->mFrustumLeft = (s32) (((s64) -p->mFrustumTop * p->mAspectRatio) >> 12);
+    a = p->mFrustumTop;
+    b = p->mFrustumBottom;
     switch (p->mUnk_24c) {
         case 1:
             a <<= 1;
             b = -a;
-            p->mUnk_078 = (s32) (((s64) a * (data_usa_021656b8 + 0x1000)) >> 12);
-            p->mUnk_07c = (s32) (((s64) a * data_usa_021656b8) >> 12);
+            p->mFrustumTop = (s32) (((s64) a * (data_usa_021656b8 + 0x1000)) >> 12);
+            p->mFrustumBottom = (s32) (((s64) a * data_usa_021656b8) >> 12);
             break;
         case 2:
             b <<= 1;
             a = -b;
-            p->mUnk_07c = (s32) (((s64) b * (data_usa_021656b8 + 0x1000)) >> 12);
-            p->mUnk_078 = (s32) (((s64) b * data_usa_021656b8) >> 12);
+            p->mFrustumBottom = (s32) (((s64) b * (data_usa_021656b8 + 0x1000)) >> 12);
+            p->mFrustumTop = (s32) (((s64) b * data_usa_021656b8) >> 12);
             break;
     }
     if (data_021759c0->mUnk_57 != 0) {
-        p->mUnk_080 = -p->mUnk_080;
+        p->mFrustumLeft = -p->mFrustumLeft;
     }
-    p->mUnk_084 = -p->mUnk_080;
-    if (data_021759c0->mUnk_00c == 6 && p->mUnk_218 != NULL) {
-        c = (s32) (((s64) p->mUnk_078 * p->mUnk_218->mUnk_00.y + 0x800) >> 12);
-        p->mUnk_07c += c;
-        p->mUnk_078 += c;
+    p->mFrustumRight = -p->mFrustumLeft;
+    if (data_021759c0->mUnk_00c == 6 && p->mCourseMapCamera != NULL) {
+        c = (s32) (((s64) p->mFrustumTop * p->mCourseMapCamera->mUnk_00.y + 0x800) >> 12);
+        p->mFrustumBottom += c;
+        p->mFrustumTop += c;
     }
-    func_020d4a20(a, b, p->mUnk_080, p->mUnk_084, p->mUnk_070, p->mUnk_074);
+    func_020d4a20(a, b, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar);
     *(u32 *) 0x4000440 = 0;
-    func_0214b048(p->mUnk_078, p->mUnk_07c, p->mUnk_080, p->mUnk_084, p->mUnk_070, p->mUnk_074, 0x1000, 1,
+    func_0214b048(p->mFrustumTop, p->mFrustumBottom, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar, 0x1000, 1,
                   (Unk0214ad4c *) data_0217acc0);
 }
 
-void func_02076ed4(Unk02061808 *p) {
+void UpdateCameraViewWithWorldUp(Camera *p) {
     Vec3 c;
     Vec3 b;
     Vec3 a;
@@ -385,73 +386,70 @@ void func_02076ed4(Unk02061808 *p) {
     Vec3 e;
 
     a = data_usa_02154fc4;
-    Vec3Sub(&p->mUnk_018, &p->mUnk_024, &b);
+    Vec3Sub(&p->mLookAt, &p->mPos, &b);
     if ((s64) b.x * b.x + (s64) b.y * b.y + (s64) b.z * b.z >= 0x10) {
         func_02039860(&b, &b);
     }
-    p->mUnk_15c = b;
+    p->mForward = b;
     func_020397a8(&a, &b, &c);
-    func_020397a8(&b, &c, &p->mUnk_000);
-    if (p->mUnk_000.x == 0 && p->mUnk_000.y == 0 && p->mUnk_000.z == 0) {
-        p->mUnk_000.x = 0x1000;
-        p->mUnk_000.y = 0x1000;
-        p->mUnk_000.z = 0x1000;
-        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y +
-                (s64) p->mUnk_000.z * p->mUnk_000.z >=
-            0x10) {
-            func_02039860(&p->mUnk_000, &p->mUnk_000);
+    func_020397a8(&b, &c, &p->mUp);
+    if (p->mUp.x == 0 && p->mUp.y == 0 && p->mUp.z == 0) {
+        p->mUp.x = 0x1000;
+        p->mUp.y = 0x1000;
+        p->mUp.z = 0x1000;
+        if ((s64) p->mUp.x * p->mUp.x + (s64) p->mUp.y * p->mUp.y + (s64) p->mUp.z * p->mUp.z >= 0x10) {
+            func_02039860(&p->mUp, &p->mUp);
         }
     }
     *(u32 *) 0x4000440 = 2;
-    d.x = p->mUnk_024.x >> 4;
-    d.y = (p->mUnk_024.y + p->mUnk_178) >> 4;
-    d.z = p->mUnk_024.z >> 4;
-    e.x = p->mUnk_018.x >> 4;
-    e.y = p->mUnk_018.y >> 4;
-    e.z = p->mUnk_018.z >> 4;
-    func_0214abb4(&d, &p->mUnk_000, &e, 1, &p->mUnk_030);
+    d.x = p->mPos.x >> 4;
+    d.y = (p->mPos.y + p->mViewPosYOffset) >> 4;
+    d.z = p->mPos.z >> 4;
+    e.x = p->mLookAt.x >> 4;
+    e.y = p->mLookAt.y >> 4;
+    e.z = p->mLookAt.z >> 4;
+    func_0214abb4(&d, &p->mUp, &e, 1, &p->mViewMatrix);
 }
 
-void func_02076cd0(Unk02061808 *p) {
+// Per frame for each camera in use: axes, shake, view position and look-at in 1/16 scale, loads the view matrix.
+void UpdateCameraView(Camera *p) {
     Vec3 a;
     Vec3 b;
     Vec3 c;
     Vec3 d;
 
-    b = p->mUnk_0c0;
-    c = p->mUnk_024;
-    d = p->mUnk_018;
-    d.y += p->mUnk_158;
+    b = p->mBaseUp;
+    c = p->mPos;
+    d = p->mLookAt;
+    d.y += p->mWobbleOffset;
     Vec3Sub(&d, &c, &a);
     if ((s64) a.x * a.x + (s64) a.y * a.y + (s64) a.z * a.z >= 0x10) {
         func_02039860(&a, &a);
     }
-    p->mUnk_15c = a;
-    func_020397a8(&b, &a, &p->mUnk_00c);
-    func_020397a8(&a, &p->mUnk_00c, &p->mUnk_000);
-    if (p->mUnk_000.x == 0 && p->mUnk_000.y == 0 && p->mUnk_000.z == 0) {
-        p->mUnk_000.x = 0x1000;
-        p->mUnk_000.y = 0x1000;
-        p->mUnk_000.z = 0x1000;
-        if ((s64) p->mUnk_000.x * p->mUnk_000.x + (s64) p->mUnk_000.y * p->mUnk_000.y +
-                (s64) p->mUnk_000.z * p->mUnk_000.z >=
-            0x10) {
-            func_02039860(&p->mUnk_000, &p->mUnk_000);
+    p->mForward = a;
+    func_020397a8(&b, &a, &p->mSide);
+    func_020397a8(&a, &p->mSide, &p->mUp);
+    if (p->mUp.x == 0 && p->mUp.y == 0 && p->mUp.z == 0) {
+        p->mUp.x = 0x1000;
+        p->mUp.y = 0x1000;
+        p->mUp.z = 0x1000;
+        if ((s64) p->mUp.x * p->mUp.x + (s64) p->mUp.y * p->mUp.y + (s64) p->mUp.z * p->mUp.z >= 0x10) {
+            func_02039860(&p->mUp, &p->mUp);
         }
     }
-    if (p->mUnk_130 != 0) {
-        func_02073904(p);
-        Vec3Add(&c, &p->mUnk_118, &c);
-        Vec3Add(&d, &p->mUnk_10c, &d);
+    if (p->mShakeKind != 0) {
+        UpdateCameraShake(p);
+        Vec3Add(&c, &p->mShakePosOffset, &c);
+        Vec3Add(&d, &p->mShakeLookAtOffset, &d);
         Vec3Add(&p->mUnk_124, &d, &d);
     }
-    p->mUnk_09c.x = c.x >> 4;
-    p->mUnk_09c.y = c.y >> 4;
-    p->mUnk_09c.z = c.z >> 4;
-    p->mUnk_09c.y += p->mUnk_178 >> 4;
-    p->mUnk_090.x = d.x >> 4;
-    p->mUnk_090.y = d.y >> 4;
-    p->mUnk_090.z = d.z >> 4;
+    p->mViewPos.x = c.x >> 4;
+    p->mViewPos.y = c.y >> 4;
+    p->mViewPos.z = c.z >> 4;
+    p->mViewPos.y += p->mViewPosYOffset >> 4;
+    p->mViewLookAt.x = d.x >> 4;
+    p->mViewLookAt.y = d.y >> 4;
+    p->mViewLookAt.z = d.z >> 4;
     *(u32 *) 0x4000440 = 2;
-    func_0214abb4(&p->mUnk_09c, &p->mUnk_000, &p->mUnk_090, 1, &p->mUnk_030);
+    func_0214abb4(&p->mViewPos, &p->mUp, &p->mViewLookAt, 1, &p->mViewMatrix);
 }

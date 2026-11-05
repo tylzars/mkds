@@ -163,7 +163,7 @@ typedef struct {
 } Unk02175620_54_10;
 
 // 0x4c-byte entries of the table at CourseMap::mUnk_7c.
-typedef Unk020748b8_218 Unk02175620_7c;
+typedef CourseMapCamera Unk02175620_7c;
 
 // 0x14-byte entries of the table at CourseMap::mUnk_8c.
 typedef struct {

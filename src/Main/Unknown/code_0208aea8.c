@@ -42,7 +42,7 @@ void func_0208b190(void) {
     s32 m;
     s32 n;
     Unk0217b050Func *f;
-    Unk02061808 *g;
+    Camera *g;
 
     data_0217b048->mUnk_60--;
     if (data_0217b048->mUnk_60 > 0) {
@@ -50,8 +50,8 @@ void func_0208b190(void) {
     }
     v1 = -0x1000;
     v2 = -1;
-    g = func_02061808();
-    v3 = g->mUnk_15c;
+    g = GetCurrentCamera();
+    v3 = g->mForward;
     for (i = 0; i < 6; i++) {
         Unk0217b048 *h = data_0217b048;
         if (h->mUnk_48[i] != NULL) {

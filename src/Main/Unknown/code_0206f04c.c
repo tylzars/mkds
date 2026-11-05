@@ -115,7 +115,7 @@ void func_0206ff50(Kart *p, u32 a) {
     p->mUnk_23c = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
-            func_02074854();
+            ResetCameraHalfFovAngleGoal();
         }
         func_02055c5c();
     }
@@ -123,7 +123,7 @@ void func_0206ff50(Kart *p, u32 a) {
         p->mUnk_4c &= ~0x10000000;
         func_0210515c(p->mIndex);
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-            func_02074854();
+            ResetCameraHalfFovAngleGoal();
         }
         p->mUnk_4c8 = 0x1000;
         p->mUnk_3dc = -1;
@@ -510,7 +510,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                 p->mUnk_23c = 0;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
-                        func_02074854();
+                        ResetCameraHalfFovAngleGoal();
                     }
                     func_02055c5c();
                 }

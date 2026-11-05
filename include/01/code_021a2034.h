@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02061808 Unk02061808;
+typedef struct Camera Camera;
 
 // Object whose address func_ov001_021a2048 receives as its second argument.
 typedef struct Unk021a2048_9c {
@@ -30,7 +30,7 @@ typedef struct Unk021a2300 {
 
 void *func_ov001_021a2034(void);
 void func_ov001_021a2048(void *p0, Unk021a2048 *p1);
-void func_ov001_021a2218(Unk021a2048 *o, Unk02061808 *g, Vec3 *out);
+void func_ov001_021a2218(Unk021a2048 *o, Camera *g, Vec3 *out);
 void *func_ov001_021a226c(void);
 void func_ov001_021a2284(void *p0, Unk021a2048 *p1);
 void func_ov001_021a2300(Unk021a2300 *p);

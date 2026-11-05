@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/unk_0217a000.h" // Unk02061808, Unk0217ad08
+#include "Main/Unknown/unk_0217a000.h" // Camera, Unk0217ad08
 #include "Main/Unknown/code_0207b960.h"
 #include "Main/Unknown/code_02073eb8.h"
 #include "code_02012b30.h"
@@ -12,7 +12,7 @@
 // 0x88-byte object built from an entry of the table at CourseMap::mUnk_7c: the entry, two Unk0207b960 and two
 // halfwords.
 typedef struct Unk02077750 {
-    /* 00 */ Unk020748b8_218 *mUnk_00;
+    /* 00 */ CourseMapCamera *mUnk_00;
     /* 04 */ Unk0207b960 mUnk_04;
     /* 40 */ Unk0207b960 mUnk_40;
     /* 7c */ s16 mUnk_7c;
@@ -25,13 +25,13 @@ typedef struct Unk02077750 {
 extern const char data_usa_02165714[];
 void LoadKartAndCharacterFiles(void);
 
-void func_02076cd0(Unk02061808 *p);
-void func_02076ed4(Unk02061808 *p);
-void func_02077060(Unk02061808 *p);
-void func_0207729c(Unk02061808 *p);
+void UpdateCameraView(Camera *p);
+void UpdateCameraViewWithWorldUp(Camera *p);
+void RefreshCameraProjection(Camera *p);
+void SetupCamera(Camera *p);
 void func_020775e4(void);
 void func_0207767c(void);
-void func_02077750(Unk02077750 *a, Unk020748b8_218 *b);
+void func_02077750(Unk02077750 *a, CourseMapCamera *b);
 void func_020777ac(u32 a);
 void func_02077944(void);
 void func_02077998(void);

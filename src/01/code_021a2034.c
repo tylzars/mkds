@@ -54,17 +54,17 @@ void *func_ov001_021a226c(void) {
     return (void *) func_0209bf48(func_ov001_021a2300, func_ov001_021a2284, NULL);
 }
 
-void func_ov001_021a2218(Unk021a2048 *o, Unk02061808 *g, Vec3 *out) {
-    out->x = g->mUnk_024.x + (s32) (((s64) g->mUnk_15c.x * 0x58000) >> 12);
+void func_ov001_021a2218(Unk021a2048 *o, Camera *g, Vec3 *out) {
+    out->x = g->mPos.x + (s32) (((s64) g->mForward.x * 0x58000) >> 12);
     out->y = o->mUnk_04.y;
-    out->z = g->mUnk_024.z + (s32) (((s64) g->mUnk_15c.z * 0x58000) >> 12);
+    out->z = g->mPos.z + (s32) (((s64) g->mForward.z * 0x58000) >> 12);
 }
 
 void func_ov001_021a2048(void *p0, Unk021a2048 *p1) {
-    Unk02061808 *g;
+    Camera *g;
     Vec3 v = {0, 0, 0};
 
-    g = func_02061808();
+    g = GetCurrentCamera();
     switch (p1->mUnk_a0) {
         case 0:
             p1->mUnk_a0 = 1;
@@ -82,7 +82,7 @@ void func_ov001_021a2048(void *p0, Unk021a2048 *p1) {
                     func_0208b7bc(0x409, &v);
                     func_0208b7bc(0x40a, &v);
                     func_0208b7bc(0x40b, &v);
-                    p1->mUnk_a4 = func_0208b7bc(0x42f, &g->mUnk_024);
+                    p1->mUnk_a4 = func_0208b7bc(0x42f, &g->mPos);
                     break;
                 case 1:
                     break;
@@ -103,7 +103,7 @@ void func_ov001_021a2048(void *p0, Unk021a2048 *p1) {
         case 1:
             switch (p1->mUnk_9c->mUnk_28) {
                 case 0:
-                    func_0208b5b0(p1->mUnk_a4, &g->mUnk_024);
+                    func_0208b5b0(p1->mUnk_a4, &g->mPos);
                     break;
                 case 1:
                     break;

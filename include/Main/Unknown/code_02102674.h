@@ -37,15 +37,16 @@ typedef struct Unk02102674 {
 
 // Object returned by func_020748a8 and passed to the vector helpers by func_0210298c.
 typedef struct Unk020748a8 {
-    /* 000 */ Vec3 mUnk_00;
-    /* 00c */ Vec3 mUnk_0c;
-    /* 018 */ Vec3 mUnk_18;
-    /* 024 */ Vec3 mUnk_24;
-    /* 030 */ s32 mUnk_030[9];
+    /* 000 */ Vec3 mUp;
+    /* 00c */ Vec3 mSide;
+    /* 018 */ Vec3 mLookAt;
+    /* 024 */ Vec3 mPos;
+    // The first nine words (the 3x3 part) of the camera's 4x3 view matrix; the translation words lie in mUnk_054.
+    /* 030 */ s32 mViewMatrix[9];
     /* 054 */ u8 mUnk_054[0x48];
-    /* 09c */ Vec3 mUnk_9c;
+    /* 09c */ Vec3 mViewPos;
     /* 0a8 */ u8 mUnk_0a8[0xb4];
-    /* 15c */ Vec3 mUnk_15c;
+    /* 15c */ Vec3 mForward;
 } Unk020748a8;
 
 // Row of the 0xc-byte table behind data_0215a3b0.

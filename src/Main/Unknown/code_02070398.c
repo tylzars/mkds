@@ -270,9 +270,9 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
         }
     }
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-        func_0207409c(a, &p->mUnk_e0_m);
+        ResetCameraBehind(a, &p->mUnk_e0_m);
         func_02089f9c(((u32(*)(void)) func_02074828)());
-        func_020747f4(0);
+        SetCameraHeightHold(0);
     }
 }
 
@@ -314,7 +314,7 @@ void func_02072930(Kart *p) {
         p->mUnk_4c &= ~0x10000000;
         func_0210515c(p->mIndex);
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-            func_02074854();
+            ResetCameraHalfFovAngleGoal();
         }
         p->mUnk_4c8 = 0x1000;
         p->mUnk_3dc = -1;
@@ -1070,7 +1070,7 @@ void func_020710b0(Kart *p, s32 b) {
     p->mUnk_23c = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         if (!(p->mUnk_4c & 0x10000000) && !(p->mUnk_48 & 0x4000000)) {
-            func_02074854();
+            ResetCameraHalfFovAngleGoal();
         }
         func_02055c5c();
     }
@@ -1136,7 +1136,7 @@ void func_02070f8c(Kart *p) {
     s32 q[2];
     Vec3 v;
     Vec3 u;
-    Unk02061808 *r;
+    Camera *r;
     Vec3 *c;
     BOOL v1;
     s32 n;
@@ -1146,8 +1146,8 @@ void func_02070f8c(Kart *p) {
 
     v = data_0216553c;
     v1 = TRUE;
-    r = func_02061808();
-    c = &r->mUnk_024;
+    r = GetCurrentCamera();
+    c = &r->mPos;
     if (c->x > -0x64f000) {
         if (c->x < -0x3cb000) {
             if (c->z > -0x1ad7000) {

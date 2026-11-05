@@ -1004,73 +1004,93 @@ extern Race *gRace;
 extern s32 data_0217aa64;
 struct Unk02077750;
 
-// Object behind data_0217aa6c, returned by func_02061808.
-typedef struct Unk02061808 {
-    /* 000 */ Vec3 mUnk_000;
-    /* 00c */ Vec3 mUnk_00c;
-    /* 018 */ Vec3 mUnk_018;
-    /* 024 */ Vec3 mUnk_024;
-    /* 030 */ Unk02012f58 mUnk_030;
-    /* 060 */ s32 mUnk_060;
-    /* 064 */ s32 mUnk_064;
+// The viewer of a race: position, look-at point, three axes, view matrix and frustum. One class, several instances:
+// data_0217ac94 follows the selected kart, data_0217acbc and data_usa_0217ac98 / data_usa_0217ac84 step through
+// CourseMapCamera entries; data_0217aa6c points at the one used this frame.
+typedef struct Camera {
+    /* 000 */ Vec3 mUp;
+    // baseUp x forward, perpendicular to mUp and mForward. Sign not fixed (left or right is not shown); not updated
+    // by UpdateCameraViewWithWorldUp.
+    /* 00c */ Vec3 mSide;
+    /* 018 */ Vec3 mLookAt;
+    /* 024 */ Vec3 mPos;
+    /* 030 */ Unk02012f58 mViewMatrix;
+    // Half of the vertical field of view, 0x10000 per turn (top = near * tan). The chase camera eases it toward
+    // mHalfFovAngleGoal; entry cameras set the sin/cos pair mUnk_068/mUnk_06a directly.
+    /* 060 */ s32 mHalfFovAngle;
+    // Default data_0216569c (0x157c, about 30 degrees).
+    /* 064 */ s32 mHalfFovAngleGoal;
     /* 068 */ s16 mUnk_068;
     /* 06a */ s16 mUnk_06a;
-    /* 06c */ s32 mUnk_06c;
-    /* 070 */ s32 mUnk_070;
-    /* 074 */ s32 mUnk_074;
-    /* 078 */ s32 mUnk_078;
-    /* 07c */ s32 mUnk_07c;
-    /* 080 */ s32 mUnk_080;
-    /* 084 */ s32 mUnk_084;
+    /* 06c */ s32 mAspectRatio;
+    /* 070 */ s32 mNear;
+    // Far plane of the main projection (course settings value, default 0x640000); mUnk_08c is a second far value.
+    /* 074 */ s32 mFar;
+    // The four extents handed to func_0214b048 (top, bottom, left, right), 20.12; shifted by the split-screen part
+    // (mUnk_24c) and a kind-6 entry offset, left and right swapped in mirror mode.
+    /* 078 */ s32 mFrustumTop;
+    /* 07c */ s32 mFrustumBottom;
+    /* 080 */ s32 mFrustumLeft;
+    /* 084 */ s32 mFrustumRight;
     /* 088 */ s32 mUnk_088;
     /* 08c */ s32 mUnk_08c;
-    /* 090 */ Vec3 mUnk_090;
-    /* 09c */ Vec3 mUnk_09c;
+    /* 090 */ Vec3 mViewLookAt;
+    /* 09c */ Vec3 mViewPos;
     /* 0a8 */ Vec3 mUnk_0a8;
     /* 0b4 */ Vec3 mUnk_0b4;
-    /* 0c0 */ Vec3 mUnk_0c0;
-    /* 0cc */ s32 mUnk_0cc;
-    /* 0d0 */ BOOL mUnk_0d0;
-    /* 0d4 */ s32 mUnk_0d4;
+    // The up vector mUp is built from: eased toward world up (or a kart vector); mUp is made perpendicular to
+    // mForward from it.
+    /* 0c0 */ Vec3 mBaseUp;
+    /* 0cc */ s32 mHeldHeight;
+    // Set once the kart is above mHeldHeight; then mHeldHeight eases toward the free y.
+    /* 0d0 */ BOOL mHeldHeightEasing;
+    /* 0d4 */ s32 mLookAtHeight;
     /* 0d8 */ s32 mUnk_0d8;
-    /* 0dc */ s32 mUnk_0dc;
+    /* 0dc */ s32 mFollowDistance;
     /* 0e0 */ s32 mUnk_0e0;
     /* 0e4 */ s32 mUnk_0e4;
-    /* 0e8 */ s32 mUnk_0e8;
+    /* 0e8 */ s32 mFollowDistanceScale;
     /* 0ec */ s32 mUnk_0ec;
-    /* 0f0 */ s32 mUnk_0f0;
-    /* 0f4 */ Vec3 mUnk_0f4;
-    /* 100 */ Vec3 mUnk_100;
-    /* 10c */ Vec3 mUnk_10c;
-    /* 118 */ Vec3 mUnk_118;
+    // 0x1000, or -0x1000 in mode 4 with flag 0x20 of data_021759c0->mUnk_044.
+    /* 0f0 */ s32 mFollowDirectionSign;
+    /* 0f4 */ Vec3 mShakeLookAtOffsetGoal;
+    /* 100 */ Vec3 mShakePosOffsetGoal;
+    /* 10c */ Vec3 mShakeLookAtOffset;
+    /* 118 */ Vec3 mShakePosOffset;
     /* 124 */ Vec3 mUnk_124;
-    /* 130 */ u8 mUnk_130;
+    /* 130 */ u8 mShakeKind;
     /* 131 */ u8 mUnk_131[0x3];
-    /* 134 */ Vec3 mUnk_134;
-    /* 140 */ BOOL mUnk_140;
+    // mPos of the previous frame; the chase step keeps it while a collision push is active.
+    /* 134 */ Vec3 mPrevPos;
+    // Set by StartCameraWobble, cleared by UpdateCameraWobble when the amplitude is used up.
+    /* 140 */ BOOL mWobbling;
     /* 144 */ s32 mUnk_144;
-    /* 148 */ s32 mUnk_148;
-    /* 14c */ s32 mUnk_14c;
-    /* 150 */ s16 mUnk_150;
+    /* 148 */ s32 mWobbleAmplitude;
+    // Added to mUnk_144 each frame, times mWobbleDirection.
+    /* 14c */ s32 mWobblePerFrame;
+    /* 150 */ s16 mWobbleDirection;
     /* 152 */ u8 mUnk_152[0x2];
-    /* 154 */ s32 mUnk_154;
-    /* 158 */ s32 mUnk_158;
-    /* 15c */ Vec3 mUnk_15c;
+    /* 154 */ s32 mWobbleDecay;
+    /* 158 */ s32 mWobbleOffset;
+    /* 15c */ Vec3 mForward;
     /* 168 */ s32 mUnk_168;
     /* 16c */ s32 mUnk_16c;
     /* 170 */ s32 mUnk_170;
     /* 174 */ s32 mUnk_174;
-    /* 178 */ s32 mUnk_178;
+    // Added to the eye height of the view only, not to the look-at.
+    /* 178 */ s32 mViewPosYOffset;
     /* 17c */ Vec3 mUnk_17c;
     /* 188 */ Vec3 mUnk_188;
-    /* 194 */ Unk0207b960 mUnk_194;
+    /* 194 */ Unk0207b960 mPosCurve;
     /* 1d0 */ Unk0207b960 mUnk_1d0;
     /* 20c */ u16 mUnk_20c;
     /* 20e */ u16 mUnk_20e;
-    /* 210 */ u16 mUnk_210;
+    // Index into gKarts the look-at is taken from (entry cameras; the chase camera is handed its Kart).
+    /* 210 */ u16 mFollowedKartIndex;
     /* 212 */ u8 mUnk_212[0x2];
-    /* 214 */ s32 mUnk_214;
-    /* 218 */ struct Unk020748b8_218 *mUnk_218;
+    // Index func_020411e4 last returned for the followed kart; mCourseMapCamera is the entry actually in use.
+    /* 214 */ s32 mLastCourseMapCameraIndex;
+    /* 218 */ struct CourseMapCamera *mCourseMapCamera;
     /* 21c */ struct Unk02077750 *mUnk_21c;
     /* 220 */ struct Unk02077750 *mUnk_220;
     /* 224 */ u16 mUnk_224;
@@ -1081,22 +1101,25 @@ typedef struct Unk02061808 {
     /* 230 */ s32 mUnk_230;
     /* 234 */ BOOL mUnk_234;
     /* 238 */ BOOL mUnk_238;
-    /* 23c */ u16 mUnk_23c;
+    /* 23c */ u16 mCourseMapCameraFrames;
     /* 23e */ u8 mUnk_23e[0x2];
-    /* 240 */ s32 mUnk_240;
-    /* 244 */ s32 mUnk_244;
-    /* 248 */ s32 mUnk_248;
+    /* 240 */ s32 mFovBlend;
+    /* 244 */ s32 mLookAtBlend;
+    // Non-zero while the position y is held at mHeldHeight (set by SetCameraHeightHold for kart state 6).
+    /* 248 */ s32 mHeightHold;
     /* 24c */ s32 mUnk_24c;
-    /* 250 */ s32 mUnk_250;
+    // Which camera this instance is: 0 chase, 1 entry-stepped, 2 split-screen half, 3 battle entry run; tested by
+    // outside code (func_02061818).
+    /* 250 */ s32 mKind;
     /* 254 */ s32 mUnk_254;
     /* 258 */ BOOL mUnk_258;
     /* 25c */ BOOL mUnk_25c;
     /* 260 */ Vec3 mUnk_260;
     /* 26c */ s16 mUnk_26c;
     /* 26e */ u8 mUnk_26e[0x2];
-} Unk02061808;
+} Camera;
 
-extern Unk02061808 *data_0217aa6c;
+extern Camera *data_0217aa6c;
 extern u16 data_0217aa28;
 extern u16 data_0217aa30;
 extern s16 data_0217aa34;
@@ -1108,7 +1131,7 @@ extern s32 data_0217aa48;
 extern s32 data_0217aa4c;
 extern s32 data_0217aa50;
 extern s32 data_0217aa58;
-extern Unk02061808 *data_0217aa5c;
+extern Camera *data_0217aa5c;
 extern s32 data_0217aa60;
 extern s32 data_0217aa68;
 extern s32 data_0217aa70;
@@ -1116,7 +1139,7 @@ extern void *data_0217aa74;
 extern s32 data_0217aa78;
 extern s32 data_0217aa80;
 extern s32 data_0217aa84;
-extern Unk02061808 *data_0217aa88;
+extern Camera *data_0217aa88;
 extern u32 data_0217aa8c[4];
 extern u32 data_0217aa9c[8];
 extern u32 data_0217aabc[8];
@@ -1126,10 +1149,10 @@ extern u32 data_0217ac10;
 extern void *data_0217ac14;
 extern void *data_0217ac18[15];
 extern void *data_0217ac54[15];
-extern struct Unk02061808 *data_0217ac94;
+extern struct Camera *data_0217ac94;
 extern s32 data_0217aca8;
-extern Unk02061808 *data_0217acb4;
-extern Unk02061808 *data_0217acbc;
+extern Camera *data_0217acb4;
+extern Camera *data_0217acbc;
 extern u8 data_0217acc0[];
 // 0x20-byte entries behind member 0x014 of Unk0217ad00.
 typedef struct Unk0217ad00_014 {
@@ -1524,8 +1547,8 @@ extern LinkedList data_0217aeb0;
 struct Unk0206cdd4_B;
 extern struct Unk0206cdd4_B *data_usa_0217acfc;
 
-extern Unk02061808 *data_usa_0217ac84;
-extern Unk02061808 *data_usa_0217ac98;
+extern Camera *data_usa_0217ac84;
+extern Camera *data_usa_0217ac98;
 extern void *data_usa_0217aa68;
 extern s32 data_usa_0217ac7c;
 extern s32 data_usa_0217ac90;

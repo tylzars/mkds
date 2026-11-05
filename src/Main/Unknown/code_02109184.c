@@ -377,8 +377,8 @@ u32 func_02109184(Unk0210bcf4 *p) {
     reg_CP_SQRTCNT = 0;
     *(vu32 *) 0x040002b8 = a;
     b = p->mUnk_04;
-    p->mUnk_08 = func_02073e4c(b) >> 12;
-    p->mUnk_0c = func_02073e04(b) >> 12;
+    p->mUnk_08 = GetCameraForwardDistance(b) >> 12;
+    p->mUnk_0c = GetCameraSideDistance(b) >> 12;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
     return reg_CP_SQRT_RESULT;
