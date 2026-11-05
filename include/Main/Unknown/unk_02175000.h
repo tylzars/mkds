@@ -196,7 +196,7 @@ typedef struct Unk021759c8_9b0 {
     };
 } Unk021759c8_9b0;
 
-// 0x70-byte entries from the start of Unk021759c8; mLoaded is nonzero while the entry is in use.
+// 0x70-byte entries from the start of Unk021759c8; mLoaded is nonzero while its archive is loaded.
 typedef struct ArchiveSlot {
     /* 00 */ Unk020182c0 mArchive;
     /* 68 */ s32 mLoaded;

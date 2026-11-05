@@ -111,8 +111,8 @@ s32 func_020fa0b8(void *param_1, s32 param_2, s32 param_3);
 s32 func_020fa0e8(s32 param_1, s32 param_2);
 void InitItems(void);
 void func_020fa294(void);
-// Takes an object of kind param_1 from its pool, reserves it, starts it and places it; returns 0 without taking
-// anything when the pool is full (limit - reserved <= 0). Nothing is allocated.
+// Takes an object of kind param_1 from its pool, reserves, starts and places it; returns 0 when the pool is full
+// (mLimit - mReservedCount <= 0).
 void *StartItemObjectOrZero(s32 param_1, u16 param_2, void *param_3, void *param_4);
 struct ItemObject *func_020fa4b4(u32 arg0);
 s32 func_020fa4c8(Kart *param_1);

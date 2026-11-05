@@ -1079,11 +1079,11 @@ extern s32 data_0217b8f4;
 extern u32 data_0217b8fc;
 extern s32 gItemSlotPossibleItems[];
 extern s32 data_0217bc58;
-// The items the local kart's spin may show when the roll used a forced row; written by PickItem, cleared when the
-// tables are created
+// Items the spin may show after a roll with a forced row: the items with a non-zero weight in that row plus the one
+// picked. Written by PickItem, cleared by CreateItemSlotTables.
 extern s32 gItemSlotSpinItems[];
 extern u16 gItemSlotPossibleItemCount;
-// Length of gItemSlotSpinItems; 0 means gItemSlotPossibleItems is used instead
+// Length of gItemSlotSpinItems; 0 means the spin uses gItemSlotPossibleItems.
 extern u16 gItemSlotSpinItemCount;
 extern u16 data_0217bc7c[];
 extern s32 data_0217bd3c;

@@ -28,10 +28,9 @@ typedef struct Unk021541a8 {
 
 #include "Main/Unknown/unk_02175000.h"
 
-// The scene-name table, 16 rows indexed by scene number like gSceneFuncs: 0 'Title', 1 'Menu', 2
-// 'Race', 3 'Emblem', 4 'Menu', 5 'Test', 6 'WLMenu', 7 'Option', 8 'Record', 9 'Logo', 10
-// 'Result', 11 'Nickname', 12 'WiFiMenu', 13 'Ghost', 14 'Keyboard', 15 'Ending'. Scene 4 is also
-// named 'Menu'.
+// The scene-name table, 16 rows indexed by scene number like gSceneFuncs: 0 'Title', 1 'Menu', 2 'Race', 3 'Emblem',
+// 4 'Menu', 5 'Test', 6 'WLMenu', 7 'Option', 8 'Record', 9 'Logo', 10 'Result', 11 'Nickname', 12 'WiFiMenu',
+// 13 'Ghost', 14 'Keyboard', 15 'Ending'.
 extern Unk021541a8 gSceneNames[];
 extern Unk021543e0 data_usa_021543e0[];
 extern const char data_usa_02165008[];

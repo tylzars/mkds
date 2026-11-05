@@ -526,7 +526,7 @@ void func_01ffbfe4(Kart *p) {
     Vec3AddScaled(p->mRadius + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mUnk_1c4);
 }
 
-// Once per step of the driving states, not of every state; also writes mUnk_dc in five branches.
+// Called once per step of the driving states (func_01ffcc50, func_020651fc); also writes mUnk_dc in five branches.
 void UpdateKartSpeedLimitGoal(Kart *p) {
     s32 *q;
     u32 f;
@@ -562,7 +562,8 @@ void UpdateKartSpeedLimitGoal(Kart *p) {
     }
 }
 
-// Once per step of the driving states: the limit falls by x0xf37/0x1000 per step and rises to the goal at once.
+// Called right after UpdateKartSpeedLimitGoal: the limit falls by 0xf37/0x1000 per step down to the goal and rises to
+// it at once.
 void UpdateKartSpeedLimit(Kart *p) {
     if (p->mSpeedLimit > p->mSpeedLimitGoal) {
         p->mSpeedLimit = (s32) (((s64) p->mSpeedLimit * 0xf37) >> 12);

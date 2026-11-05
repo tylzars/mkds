@@ -164,7 +164,7 @@ void func_01ffa11c(Kart *p, const Vec3 *a) {
     }
 }
 
-// Counts mAirborneFrames, also clears mUnk_234 and sets or clears bit 0x4000 and stores mLastGroundY; not run while the
+// Counts mAirborneFrames, also clears mUnk_234, sets or clears bit 0x4000 and stores mLastGroundY. Not run while the
 // kart is below y = 0.
 void UpdateKartAirborne(Kart *p) {
     if (p->mUnk_44 & 0x10) {
@@ -211,7 +211,7 @@ void func_01ff9f60(Kart *p, Vec3 *a) {
     func_01ffcf7c(&p->mUnk_110_q, &p->mUnk_110_q);
 }
 
-// Runs only on a step with a ground hit (non-zero normal), not every frame.
+// Runs only on a step with a ground hit (non-zero normal).
 void RefreshKartSurface(Kart *p) {
     s32 r = func_020d59f8(0x1e34ef);
     s32 k;

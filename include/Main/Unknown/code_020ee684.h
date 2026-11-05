@@ -108,11 +108,11 @@ void func_020f00f0(KartItems *p);
 BOOL func_020f0154(KartItems *p);
 // Builds the pool of one kind: allocates the pointer array and every object, and runs InitItemObject for each.
 void CreateItemPool(ItemPool *q, s32 a, s32 *b);
-// Releases the object at index 0 of mObjects (not strictly the oldest, the array is reordered); FALSE when none is
+// Releases the object at index 0 of mObjects (not necessarily the oldest: the array is reordered); FALSE when none is
 // active.
 BOOL TryReleaseFirstItemObject(ItemPool *tab);
-// Runs UpdateItemObject for every active object (mode 5: several sub-steps). When the limit is above 1 and fewer than
-// 2 objects are free it also releases a stale element or sorts the ordered prefix.
+// Runs UpdateItemObject for every active object (mode 5: some get several sub-steps). When mLimit is above 1 and
+// mLimit - mReservedCount is below 2 it first calls func_020f9ba8 on the first object or sorts with func_020f0684.
 void UpdateItemPool(ItemPool *a);
 void func_020f0684(ItemObject **p, s32 i, s32 n, s32 step);
 void func_020f0758(ItemPool *a, s32 m, s32 b, u8 *c, s32 d);

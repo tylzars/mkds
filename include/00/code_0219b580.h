@@ -43,16 +43,16 @@ typedef struct WiFiConnection {
     /* 24 */ s32 mState;
     // State before the last SetWiFiConnectionState; WiFiBuddySyncCallback returns to it when the sync ends.
     /* 28 */ s32 mPrevState;
-    // This player's index among the participants; set by Init (0) and on a successful match; read through
-    // func_ov000_0219bb50 (96 call sites).
+    // This player's index among the participants: 0 after Init, then taken from the participant table when a
+    // participant id equals mProfileId; read through func_ov000_0219bb50 (96 call sites).
     /* 2c */ u8 mOwnIndex;
     // 1 only while func_ov000_0219bbfc closes every peer connection of the socket (state 5 or 6, other participants
     // present); read by func_ov000_0219b27c (code_0219b1f8.c:111, :126, :149) to tell this close from a peer leaving.
     // The matching object's own close-all does not set it.
     /* 2d */ u8 mUnk_2d;
     /* 2e */ u16 mUnk_2e;
-    // The GP profile id of the logged-in player, the same value as the library's own GpiConnection.mProfileId; set by
-    // WiFiLoginCallback, compared with the participant ids of the matching object.
+    // The GP profile id of the logged-in player; set by WiFiLoginCallback and compared with the participant ids of the
+    // matching object.
     /* 30 */ u32 mProfileId;
     // 0x20-byte text given to StartWiFiBuddySync (the only caller passes NULL, so it is always empty); handed to
     // InitBuddySync, used as the add-buddy reason text and, when not empty, in the stats request '\dwc_name\%s'.
