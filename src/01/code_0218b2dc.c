@@ -137,7 +137,7 @@ void func_ov001_0218b770(Unk02188950 *a) {
 }
 
 void func_ov001_0218b72c(Unk02188950 *a) {
-    func_020ac588((u32) 0x191, 0x32, a);
+    CreateParkedMapObjects((u32) 0x191, 0x32, a);
     a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) 0xf, (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cc6c[15];

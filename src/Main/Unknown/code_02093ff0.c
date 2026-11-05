@@ -25,7 +25,7 @@
 u32 InitTeresa(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    func_020d2398((void *) value0);
+    ParkMapObject((void *) value0);
     value0 = (u32) &data_0217b0d8;
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
@@ -153,7 +153,7 @@ void UpdateTeresa(void *a, Teresa *o) {
                     o->mUnk_ac = o->mUnk_fc >> 12;
                 } else {
                     o->mUnk_ac = 0;
-                    func_020d2398(&o->mUnk_00);
+                    ParkMapObject(&o->mUnk_00);
                     data_0217b0d8--;
                 }
             } else {
@@ -244,7 +244,7 @@ void func_02094000(Vec3 *a) {
     s32 d;
     s32 f;
 
-    o = func_0209bbfc(func_02100138(0x13b));
+    o = UnparkFirstParkedMapObject(func_02100138(0x13b));
     if (o == NULL) {
         return;
     }

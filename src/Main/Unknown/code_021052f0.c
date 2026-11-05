@@ -7,8 +7,8 @@
 void func_021053d8(u32 arg0) {
     u32 value0 = arg0;
     u32 value12;
-    value12 = (u32) &func_020d2398;
-    func_020d2398((void *) value0);
+    value12 = (u32) &ParkMapObject;
+    ParkMapObject((void *) value0);
 }
 
 void func_02105338(Unk021052fc *p, s32 a, Vec3 *v) {

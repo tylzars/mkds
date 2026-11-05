@@ -434,7 +434,7 @@ void func_020a71c8(void) {
     if (l != NULL) {
         for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
             if ((o->mFlags & 0x100) == 0) {
-                func_020d2398(o);
+                ParkMapObject(o);
             }
         }
     }
@@ -442,9 +442,9 @@ void func_020a71c8(void) {
     if (l != NULL) {
         for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
             if ((o->mFlags & 0x100) == 0) {
-                func_020d2398(o);
+                ParkMapObject(o);
             }
         }
     }
-    func_020a5848();
+    ParkShine16Objects();
 }

@@ -15,5 +15,5 @@ typedef struct MapObject MapObject;
 Unk020f41c4_B *func_020d22c0(void);
 Unk020f41c4_B *func_020d22d0(void);
 void func_020d22e0(void);
-void func_020d233c(MapObject *a);
-void func_020d2398(MapObject *a);
+void UnparkMapObject(MapObject *a);
+void ParkMapObject(MapObject *a);

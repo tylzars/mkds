@@ -19,7 +19,7 @@ void InitNsKiller1(u32 arg0) {
     value0 = 0x1a2u;
     value2 = value4;
     value1 = 0x14u;
-    func_020ac588(value0, value1, (void *) value2);
+    CreateParkedMapObjects(value0, value1, (void *) value2);
     value0 = (u32) &data_0217ca6c;
     value0 = (u32) * (const u32 *) ((value0) + (356));
     *(u32 *) ((value4) + (112)) = value0;

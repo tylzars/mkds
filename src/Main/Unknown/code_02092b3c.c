@@ -22,11 +22,11 @@ void func_02093190(u32 arg0) {
     u32 value1;
     u32 value2;
     u32 value12;
-    value12 = (u32) &func_020ac588;
+    value12 = (u32) &CreateParkedMapObjects;
     value2 = value0;
     value0 = 0x19fu;
     value1 = 8u;
-    func_020ac588(value0, value1, (void *) value2);
+    CreateParkedMapObjects(value0, value1, (void *) value2);
 }
 
 static inline u32 func_02092b5c_inline(u32 n) {

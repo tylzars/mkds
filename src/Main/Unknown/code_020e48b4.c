@@ -238,7 +238,7 @@ void func_020e4a68(Unk020e43a8 *p) {
         p->mUnk_00.mUnk_80.mNextStateRequested = 1;
         return;
     }
-    func_020d2398(&p->mUnk_00);
+    ParkMapObject(&p->mUnk_00);
 }
 
 void func_020e4a34(Unk020e4a34 *p0) {

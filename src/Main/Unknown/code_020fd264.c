@@ -300,7 +300,7 @@ void func_020fdc08(Unk020fdae8 *e, Unk020fdae8 *b, Unk021052fc *c) {
     if (e->mUnk_170 == 0) {
         v1 = e->mUnk_198;
         v1->mUnk_00.mFlags &= ~1;
-        func_020d2398(&v1->mUnk_00);
+        ParkMapObject(&v1->mUnk_00);
         e->mUnk_198 = NULL;
         ReleaseItemPoolObject(gItemPools + e->mUnk_000.mUnk_000.mKind, &e->mUnk_000.mUnk_000);
     }
@@ -444,7 +444,7 @@ void func_020fd804(u32 arg0) {
     value1 = (u32) * (const u16 *) ((value0) + (2));
     value1 = (value1) & ~(1u);
     *(u16 *) ((value0) + (2)) = (u16) value1;
-    func_020d2398((void *) value0);
+    ParkMapObject((void *) value0);
 }
 
 u32 func_020fd7f0(void) {
@@ -567,7 +567,7 @@ void func_020fd494(void **a) {
     v1 = e->mUnk_198;
     if (v1 != NULL) {
         v1->mUnk_00.mFlags &= ~1;
-        func_020d2398(&v1->mUnk_00);
+        ParkMapObject(&v1->mUnk_00);
         e->mUnk_198 = NULL;
         ReleaseItemPoolObject(gItemPools + e->mUnk_000.mUnk_000.mKind, &e->mUnk_000.mUnk_000);
     } else {
@@ -613,7 +613,7 @@ void *func_020fd338(void *b, s32 a) {
     if (e == NULL) {
         return NULL;
     }
-    func_020d233c(&v1->mUnk_00);
+    UnparkMapObject(&v1->mUnk_00);
     v1->mUnk_00.mFlags |= data_02159f18;
     v1->mUnk_00.mFlags |= data_02159f1c;
     v1->mUnk_00.mFlags |= data_02159f20;

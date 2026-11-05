@@ -73,7 +73,7 @@ void func_020a826c(void *a, Unk020a826c *p) {
         case 3:
             func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
             if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
-                func_020d2398(&p->mUnk_000);
+                ParkMapObject(&p->mUnk_000);
             } else if (p->mUnk_0a0.mUnk_20 == FALSE) {
                 v = p->mUnk_0c8.mUnk_00.mUnk_00;
                 func_0212c6f0(p->mUnk_0a0.mUnk_1c, 0);

@@ -19,14 +19,14 @@
 
 void func_020a7148(MapObject *a) {
     if (func_020d3bf8(0x6a) == 0) {
-        func_020ac588(0x6a, 0x14, a);
-        func_020ac588(0x70, data_021759c0->mKartCount, a);
+        CreateParkedMapObjects(0x6a, 0x14, a);
+        CreateParkedMapObjects(0x70, data_021759c0->mKartCount, a);
         func_020a233c(func_020a72c8);
         SetStandingsKartEliminatedCallback(func_020a7270);
         SetStandingsEndCallback(func_020a71c8);
         return;
     }
-    func_020d2398(a);
+    ParkMapObject(a);
 }
 
 BOOL func_020a6f94(Unk02100094 *a) {

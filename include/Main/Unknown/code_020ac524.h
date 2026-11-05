@@ -16,8 +16,8 @@ typedef struct ShineBalloonObject {
     /* b0 */ s32 mState;
 } ShineBalloonObject;
 
-void *func_020ac524(s32 a);
-void func_020ac588(u32 a, s32 b, void *c);
+void *FindParkedMapObject(s32 a);
+void CreateParkedMapObjects(u32 a, s32 b, void *c);
 void func_020ac5e4(Kart *a);
 void *func_020ac63c(void);
 void *func_020ac658(void);

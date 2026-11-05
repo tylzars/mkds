@@ -54,7 +54,7 @@ Unk0215a680 *func_02105480(void) {
 
 void func_02105464(void *p, void *q) {
     func_020de6a8(p, q);
-    func_020d2398(p);
+    ParkMapObject(p);
 }
 
 u32 func_0210543c(void) {
@@ -65,7 +65,7 @@ u32 func_0210543c(void) {
 }
 
 void func_021053e4(Unk021052fc *p) {
-    func_020d233c(&p->mUnk_00);
+    UnparkMapObject(&p->mUnk_00);
     p->mUnk_00.mUnk_66 = 0x1f;
     p->mUnk_00.mFlags &= ~2;
     p->mUnk_00.mFlags &= ~8;

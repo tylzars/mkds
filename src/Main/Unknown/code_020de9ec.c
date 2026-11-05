@@ -351,7 +351,7 @@ u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
     func_020deb2c(&a->mUnk_000.mPos, b, n != FALSE ? a->mUnk_0f2 : a->mUnk_0f4, m, a->mUnk_0ac);
     if (a->mUnk_0f8 != 0 || a->mUnk_000.mCourseMapRow->mUnk_32 != 0) {
         a->mUnk_0a4 = 0x80;
-        func_020d2398(&a->mUnk_000);
+        ParkMapObject(&a->mUnk_000);
     }
     return *d;
 }

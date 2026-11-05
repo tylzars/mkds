@@ -44,7 +44,8 @@ void UpdateNsKiller2(void *a, NsKiller2 *p); /* skipped for objects with mFlags 
 void DrawNsKiller2(void *a, NsKiller2 *p);
 void CreateNsKiller2AndNsKiller2S(void *a);
 u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d);
-/* creates the pooled object hidden (parks it with func_020d2398); the spawner later takes it with func_0209bbfc */
+/* creates the pooled object hidden (parks it with ParkMapObject); the spawner later takes it with
+ * UnparkFirstParkedMapObject */
 void InitNsKiller2(NsKiller2 *p);
 void func_02093cb4(void);
 void func_02093cd4(void);

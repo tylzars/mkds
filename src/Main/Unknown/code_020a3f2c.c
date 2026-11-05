@@ -80,7 +80,7 @@ void InitShine16(u32 arg0) {
     u32 value2;
     u32 value4;
     value4 = value0;
-    func_020d2398((void *) value0);
+    ParkMapObject((void *) value0);
     value0 = (u32) func_020364e8();
     value0 = (u32) GetHeap((void *) value0);
     value1 = 0x44u;
@@ -319,7 +319,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                 return;
             }
             p->mUnk_a8 = 0;
-            func_020d2398(&p->mUnk_00);
+            ParkMapObject(&p->mUnk_00);
             AddShineCount(-1);
             if (p->mUnk_c4 < 0) {
                 return;
@@ -350,7 +350,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                 p->mUnk_a8 -= 0x19a;
                 if (p->mUnk_a8 <= 0) {
                     p->mUnk_a8 = 0;
-                    func_020d2398(&p->mUnk_00);
+                    ParkMapObject(&p->mUnk_00);
                     AddShineCount(-1);
                     if (p->mUnk_c4 >= 0) {
                         func_020a6cb4(p->mUnk_c4);
@@ -582,7 +582,8 @@ u32 func_020a58b4(void) {
     return func_0209bf48(NULL, UpdateShine16, NULL);
 }
 
-void func_020a5848(void) {
+// Parks each map object of kind 0x6a (Shine16) that is not already parked.
+void ParkShine16Objects(void) {
     s32 i;
     MapObject *o;
     Unk020e6fd4 *l;
@@ -593,7 +594,7 @@ void func_020a5848(void) {
     }
     for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
         if ((o->mFlags & 0x100) == 0) {
-            func_020d2398(o);
+            ParkMapObject(o);
         }
     }
 }
@@ -601,7 +602,7 @@ void func_020a5848(void) {
 void func_020a5744(Vec3 *a, s32 b, s32 c) {
     Shine16 *p;
 
-    p = func_0209bbfc(func_02100138(0x6a));
+    p = UnparkFirstParkedMapObject(func_02100138(0x6a));
     if (p == NULL) {
         return;
     }
@@ -641,7 +642,7 @@ void func_020a5608(Kart *a, Kart *b) {
     u16 c;
     s32 n;
 
-    p = func_0209bbfc(func_02100138(0x6a));
+    p = UnparkFirstParkedMapObject(func_02100138(0x6a));
     if (p == NULL) {
         return;
     }
@@ -946,9 +947,9 @@ void InitKartBalloons(Unk020a3fa8 *a) {
         d = data_021759c0;
         n = d->mKartCount;
         if (d->mMode == 2) {
-            func_020ac588(0x6c, 0x20, a);
+            CreateParkedMapObjects(0x6c, 0x20, a);
         } else {
-            func_020ac588(0x6c, 4, a);
+            CreateParkedMapObjects(0x6c, 4, a);
         }
         for (i = 0; i < n; i++) {
             p = &a->mKartBalloons[i];
@@ -986,7 +987,7 @@ void InitKartBalloons(Unk020a3fa8 *a) {
         SetStandingsEndCallback(func_020a4c20);
         func_020a2300((u32) func_020a4b70);
     } else {
-        func_020d2398(&a->mUnk_000);
+        ParkMapObject(&a->mUnk_000);
     }
 }
 

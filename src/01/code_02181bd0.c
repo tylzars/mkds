@@ -68,7 +68,7 @@ void func_ov001_02182e84(void) {
     Unk02181c3c *o;
 
     c = GetKart((u16) data_021759c0->mEntryIndex);
-    o = func_0209bbfc(func_02100138(0x68));
+    o = UnparkFirstParkedMapObject(func_02100138(0x68));
     if (o != NULL) {
         func_ov001_02182f1c(o, c);
     }
@@ -83,7 +83,7 @@ void func_ov001_02182d30(void) {
     Unk0210b7a8 arg;
 
     c = GetKart((u16) data_021759c0->mEntryIndex);
-    o = func_0209bbfc((Unk02181c3c_list *) (func_02100138((u32) (0x68))));
+    o = UnparkFirstParkedMapObject((Unk02181c3c_list *) (func_02100138((u32) (0x68))));
     if (o != NULL) {
         rnd = func_020d22d0();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
@@ -120,7 +120,7 @@ void func_ov001_02182bdc(void) {
     Unk0210b7a8 arg;
 
     c = GetKart((u16) data_021759c0->mEntryIndex);
-    o = func_0209bbfc((Unk02181c3c_list *) (func_02100138((u32) (0x68))));
+    o = UnparkFirstParkedMapObject((Unk02181c3c_list *) (func_02100138((u32) (0x68))));
     if (o != NULL) {
         rnd = func_020d22d0();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
@@ -228,7 +228,7 @@ void func_ov001_021829ac(s32 a) {
                 n++;
                 if (n <= a) {
                     if ((p->mUnk_000.mFlags & 0x100) == 0) {
-                        func_020d2398(&p->mUnk_000);
+                        ParkMapObject(&p->mUnk_000);
                     }
                     if (data_021759c0->mMode == 4) {
                         func_ov001_0218155c(1);
@@ -325,7 +325,7 @@ u8 func_ov001_0218274c(Unk02181c3c *c, Unk0218274c *d, u8 *e, u8 *f) {
     }
     if (a == 1) {
         if (c->mUnk_0f8 != 3 && c->mUnk_0f8 != 5 && c->mUnk_0f8 != 6) {
-            func_020d2398(&c->mUnk_000);
+            ParkMapObject(&c->mUnk_000);
             if (data_021759c0->mMode == 4) {
                 func_ov001_021815d0(1);
             }
@@ -501,7 +501,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             b->mUnk_000.mPos.z = e->mPos.z;
             b->mUnk_000.mUnk_10.y -= 0x333;
             if (b->mUnk_0ac-- <= 0) {
-                func_020d2398((void *) ((u32) b));
+                ParkMapObject((void *) ((u32) b));
             } else if (b->mUnk_0ac == 3) {
                 func_02081f10(func_0208b7bc(0x3f4, &e->mPos), e->mIndex, 0x18);
             }

@@ -182,7 +182,7 @@ void UpdateIronBall(void *a, IronBall *p) {
                 p->mUnk_130 = 0;
                 return;
             } else {
-                func_020d2398(&p->mUnk_000);
+                ParkMapObject(&p->mUnk_000);
                 return;
             }
         } else if (e->mUnk_10 >= 0) {

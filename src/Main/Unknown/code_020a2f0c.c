@@ -5,5 +5,5 @@ void func_020a2f0c(Balloon *p, u16 a) {
     p->mKartIndex = -1;
     p->mDrawCount = 1;
     p->mDrawList = NULL;
-    func_020d2398(&p->mUnk_00);
+    ParkMapObject(&p->mUnk_00);
 }

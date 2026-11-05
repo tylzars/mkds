@@ -130,7 +130,7 @@ void UpdateSman(void *a, Sman *b) {
             }
             if (b->mUnk_00.mCourseMapRow->mUnk_28 > 0) {
                 if (b->mUnk_b8 < 0) {
-                    func_020d2398(&b->mUnk_00);
+                    ParkMapObject(&b->mUnk_00);
                 }
             } else if (b->mUnk_b8 < b->mUnk_c4) {
                 b->mUnk_b8 = b->mUnk_c4;

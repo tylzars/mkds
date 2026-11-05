@@ -31,6 +31,6 @@ void func_020ec490(Unk020ec490 *a) {
 void func_020ec484(u32 arg0) {
     u32 value0 = arg0;
     u32 value12;
-    value12 = (u32) &func_020d2398;
-    func_020d2398((void *) value0);
+    value12 = (u32) &ParkMapObject;
+    ParkMapObject((void *) value0);
 }

@@ -12,7 +12,8 @@
 #include "code_020109c4.h"
 #include "code_02012b30.h"
 
-void *func_0209bbfc(void *b) {
+// Unparks and returns the first parked map object of the list, or NULL if the list is NULL or has none.
+void *UnparkFirstParkedMapObject(void *b) {
     Unk020e6fd4 *a = b;
     MapObject *e;
     s32 i;
@@ -20,7 +21,7 @@ void *func_0209bbfc(void *b) {
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
             if ((e->mFlags & 0x100) != 0) {
-                func_020d233c(e);
+                UnparkMapObject(e);
                 return e;
             }
         }

@@ -30,8 +30,8 @@
 void InitShineBalloon(u32 arg0) {
     u32 value0 = arg0;
     u32 value12;
-    value12 = (u32) &func_020d2398;
-    func_020d2398((void *) value0);
+    value12 = (u32) &ParkMapObject;
+    ParkMapObject((void *) value0);
 }
 
 void CreateShineBalloon(void *a) {
@@ -152,7 +152,7 @@ void *func_020ac63c(void) {
 void func_020ac5e4(Kart *a) {
     ShineBalloonObject *o;
 
-    o = func_0209bbfc(func_02100138(0x70));
+    o = UnparkFirstParkedMapObject(func_02100138(0x70));
     if (o == NULL) {
         return;
     }
@@ -169,19 +169,22 @@ void func_020ac5e4(Kart *a) {
     o->mState = 0;
 }
 
-void func_020ac588(u32 a, s32 b, void *c) {
+// Creates b map objects of kind a from the source object c and parks each one that is not already parked.
+void CreateParkedMapObjects(u32 a, s32 b, void *c) {
     s32 i;
     MapObject *e;
 
     for (i = 0; i < b; i++) {
         e = CreateMapObjectFromObject(c, a);
         if ((e->mFlags & 0x100) == 0) {
-            func_020d2398(e);
+            ParkMapObject(e);
         }
     }
 }
 
-void *func_020ac524(s32 a) {
+// Returns the first map object in the update list of kind a that has the parked bit 0x100, or NULL if there is none;
+// changes nothing.
+void *FindParkedMapObject(s32 a) {
     Unk02100094 *v1;
     void **v2;
     s32 n;

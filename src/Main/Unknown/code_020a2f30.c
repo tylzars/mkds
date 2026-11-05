@@ -37,10 +37,10 @@ void InitBalloon(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value12;
-    value12 = (u32) &func_020d2398;
+    value12 = (u32) &ParkMapObject;
     value1 = ~(0u);
     *(u32 *) ((value0) + (164)) = value1;
-    func_020d2398((void *) value0);
+    ParkMapObject((void *) value0);
 }
 
 void CreateBalloon(Unk020a3eb8 *a) {
@@ -378,7 +378,7 @@ void UpdateBalloon(void *p, Balloon *a) {
             func_0208b748(0x5c, &a->mUnk_00.mPos, a, func_020a392c);
             func_0208b748(0x5d, &a->mUnk_00.mPos, a, func_020a392c);
             func_0210b8f4(&a->mUnk_00.mPos, func_020d4ef4(&a->mUnk_00.mPos));
-            func_020d2398(&a->mUnk_00);
+            ParkMapObject(&a->mUnk_00);
         } else {
             a->mUnk_c8 = a->mUnk_c8 + a->mUnk_cc;
             if (a->mUnk_c8 >= 0) {
@@ -432,7 +432,7 @@ void func_020a305c(void) {
             e->mUnk_dc = 0;
             e->mState = 2;
         } else if ((e->mUnk_00.mFlags & 0x100) == 0) {
-            func_020d2398(&e->mUnk_00);
+            ParkMapObject(&e->mUnk_00);
         }
     }
 }
@@ -440,7 +440,7 @@ void func_020a305c(void) {
 Balloon *func_020a2fe4(u16 a, Vec3 *b) {
     Balloon *o;
 
-    o = func_0209bbfc(func_02100138(0x6c));
+    o = UnparkFirstParkedMapObject(func_02100138(0x6c));
     if (o == NULL) {
         return NULL;
     }
@@ -483,5 +483,5 @@ void func_020a2f30(Balloon *a, u16 b, s32 c) {
     a->mKartIndex = -1;
     a->mDrawCount = 1;
     a->mDrawList = NULL;
-    func_020d2398(&a->mUnk_00);
+    ParkMapObject(&a->mUnk_00);
 }

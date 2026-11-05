@@ -131,7 +131,7 @@ void UpdateKuriboState4(Kuribo *p) {
     }
     p->mUnk_100--;
     if (p->mUnk_100 == 0) {
-        func_020d2398(&p->mUnk_00);
+        ParkMapObject(&p->mUnk_00);
     }
 }
 

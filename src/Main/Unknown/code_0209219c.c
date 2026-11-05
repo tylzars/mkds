@@ -27,7 +27,7 @@ void InitBasabasa(MapObject *arg0) {
     MapObject *value0 = arg0;
     MapObject *value4;
     value4 = value0;
-    func_020d2398(value0);
+    ParkMapObject(value0);
     value0 = value4;
     func_020d28e0(value0);
 }
@@ -147,7 +147,7 @@ void UpdateBasabasa(void *a, Basabasa *b) {
             b->mUnk_a0.z -= (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].z * 0xcd) >> 12);
             Vec3Add(&b->mUnk_00.mPos, &b->mUnk_a0, &b->mUnk_00.mPos);
             if (b->mUnk_00.mPos.y >= 0x1b8000) {
-                func_020d2398(&b->mUnk_00);
+                ParkMapObject(&b->mUnk_00);
             }
             break;
     }
@@ -209,7 +209,7 @@ void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     u32 n;
     u16 w;
 
-    p = func_0209bbfc(func_02100138(0x19f));
+    p = UnparkFirstParkedMapObject(func_02100138(0x19f));
     if (p == NULL) {
         return;
     }

@@ -62,7 +62,7 @@ s32 func_020a4f54(u16 a, u16 b);
 BOOL func_020a5268(u16 a, u16 b);
 void func_020a5608(Kart *a, Kart *b);
 void func_020a5744(Vec3 *a, s32 b, s32 c);
-void func_020a5848(void);
+void ParkShine16Objects(void);
 u32 func_020a58b4(void);
 u32 func_020a58d0(void);
 u32 func_020a58f4(void);

@@ -17,9 +17,9 @@ typedef struct Unk02094000_bc {
     /* 1c */ s32 mUnk_1c;
 } Unk02094000_bc;
 
-// Object of kind 0x13b (Teresa), returned by func_0209bbfc for func_02100138(0x13b), filled by func_02094000. The
-// pool objects are made by another kind's init (func_020954e4 in code_02094e1c.c); Unk02094db4 is a view of the
-// draw group record, not of this object.
+// Object of kind 0x13b (Teresa), returned by UnparkFirstParkedMapObject for func_02100138(0x13b), filled by
+// func_02094000. The pool objects are made by another kind's init (func_020954e4 in code_02094e1c.c); Unk02094db4 is a
+// view of the draw group record, not of this object.
 typedef struct Teresa {
     /* 000 */ MapObject mUnk_00;
     /* 0a0 */ Vec3 mUnk_a0;
@@ -66,4 +66,4 @@ void func_02094c24(Unk020946b8 *a);
 void DrawTeresa(void *a, Teresa *b);
 void func_02094d9c(void *a);
 void CreateTeresa(Unk02094db4 *a); /* also sets word +0x1c of the group record to 1 */
-u32 InitTeresa(u32 arg0); /* parks the pooled object (func_020d2398) and zeroes the live-Teresa count data_0217b0d8 */
+u32 InitTeresa(u32 arg0); /* parks the pooled object (ParkMapObject) and zeroes the live-Teresa count data_0217b0d8 */

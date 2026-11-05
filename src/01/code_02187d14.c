@@ -34,7 +34,7 @@ void func_ov001_02187e48(Unk02188950 *a, s32 b) {
 void *func_ov001_02187e00(u16 a) {
     Unk020de6a8 *p;
 
-    p = func_020ac524(0xc9);
+    p = FindParkedMapObject(0xc9);
     if (p != NULL) {
         func_020de9ec(p);
         p->mUnk_0f2 = a;
@@ -48,7 +48,7 @@ void *func_ov001_02187e00(u16 a) {
 void *func_ov001_02187dd4(void) {
     void *p;
 
-    p = func_020ac524(0x191);
+    p = FindParkedMapObject(0x191);
     if (p != NULL) {
         func_020da628(p);
         return func_020fd338(p, 0);

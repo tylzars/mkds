@@ -24,7 +24,7 @@ void func_02099278(u32 p0) {
     u32 v7;
     u32 v9;
     *(u16 *) ((p0) + (2)) = (u16) v5;
-    func_020d2398((void *) (p0));
+    ParkMapObject((void *) (p0));
     func_020d28e0((MapObject *) p0);
 }
 
@@ -91,7 +91,7 @@ void func_0209905c(void *a, Unk0209905c *p) {
                 }
                 func_0208b6b0((void **) &p->mUnk_d0);
             }
-            func_020d2398(&p->mUnk_00);
+            ParkMapObject(&p->mUnk_00);
             return;
     }
 }

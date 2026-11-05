@@ -43,7 +43,7 @@ void *func_02099004(void) {
 
 void func_02098f18(Unk020e0144 *a, s32 b) {
     Unk0209905c *p;
-    p = func_0209bbfc(func_02100138(0x1ab));
+    p = UnparkFirstParkedMapObject(func_02100138(0x1ab));
     if (p == NULL) {
         return;
     }
@@ -109,7 +109,7 @@ void InitPakkun(Pakkun *p) {
         }
     }
     p->mUnk_0a0 = func_020d3c2c();
-    func_020ac588(0x1ab, 0x14, p);
+    CreateParkedMapObjects(0x1ab, 0x14, p);
 }
 
 void CreatePakkunMouth(void *a) {

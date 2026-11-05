@@ -122,7 +122,7 @@ void func_02093cb4(void) {
 
 void InitNsKiller2(NsKiller2 *p) {
     p->mUnk_00.mFlags |= data_021564b4;
-    func_020d2398(&p->mUnk_00);
+    ParkMapObject(&p->mUnk_00);
     p->mUnk_a8 = func_020d286c(&p->mUnk_00);
     func_0210b850(p->mUnk_a8);
     p->mUnk_00.mUnk_94->mUnk_00.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
@@ -194,7 +194,7 @@ void UpdateNsKiller2(void *a, NsKiller2 *p) {
                     func_020d275c(&p->mUnk_00, 0x17d);
                 }
             } else {
-                func_020d2398(&p->mUnk_00);
+                ParkMapObject(&p->mUnk_00);
             }
             break;
         case 1:
@@ -202,7 +202,7 @@ void UpdateNsKiller2(void *a, NsKiller2 *p) {
                 p->mUnk_00.mUnk_10.y -= 0x400;
                 Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             } else {
-                func_020d2398(&p->mUnk_00);
+                ParkMapObject(&p->mUnk_00);
             }
             break;
     }
@@ -227,7 +227,7 @@ void func_02093884(void) {
 void func_020937c4(Vec3 *a, Vec3 *b, u16 c) {
     Unk020937c4 *o;
 
-    o = func_0209bbfc(func_02100138(0x1a2));
+    o = UnparkFirstParkedMapObject(func_02100138(0x1a2));
     if (o == NULL) {
         return;
     }

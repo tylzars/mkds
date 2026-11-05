@@ -87,7 +87,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     break;
                 default:
                     if ((p->mUnk_000.mFlags & 0x100) == 0) {
-                        func_020d2398(&p->mUnk_000);
+                        ParkMapObject(&p->mUnk_000);
                     }
                     break;
             }
@@ -160,7 +160,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     break;
                 default:
                     if ((p->mUnk_000.mFlags & 0x100) == 0) {
-                        func_020d2398(&p->mUnk_000);
+                        ParkMapObject(&p->mUnk_000);
                     }
                     break;
             }

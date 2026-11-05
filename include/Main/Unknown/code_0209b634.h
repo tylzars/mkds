@@ -23,4 +23,4 @@ void func_0209ba58(void *a, void *b, void *c);
 void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, int d);
 void DrawMapObjectModel(void *a, void *b, void *d);
 void func_0209bbd0(void *a, void *b);
-void *func_0209bbfc(void *b);
+void *UnparkFirstParkedMapObject(void *b);
