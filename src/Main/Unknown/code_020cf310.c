@@ -16,6 +16,9 @@
 #include "code_0200eddc.h"
 #include "code_0214b338.h"
 
+// placeholder: an object of the original file that is not known yet; it only sets the order of the tables below
+u8 data_020cfca4_pad[24];
+
 void func_020cfca4(void) {
     s32 i;
     s32 j;

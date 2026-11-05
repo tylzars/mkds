@@ -614,6 +614,7 @@ src/03/code_021d1da8.c:
 
 // provisional: file name and boundaries
 src/03/code_021d1dd0.c:
+    complete
     .text       start:0x021d1d90 end:0x021d1ea0
     .data       start:0x021d7bc0 end:0x021d7bc8
 

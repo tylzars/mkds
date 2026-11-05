@@ -43,3 +43,6 @@ void func_0212a724(void) {
     }
 }
 #pragma thumb off
+
+// placeholder: an object of the original file that is not known yet; it only sets the order of the tables above
+u8 data_0212a724_pad[12];

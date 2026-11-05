@@ -5,6 +5,10 @@
 #include "code_0214a348.h"
 #include "code_0214a390.h"
 
+// placeholder: two objects of the original file that are not known yet; they only set the order of the tables below
+u8 data_ov003_021d1e14_pad1[1];
+u8 data_ov003_021d1e14_pad2[8];
+
 void func_ov003_021d1e14(u32 param_1, Unk021d1da8 *param_2) {
     u8 a[4] = {0x11, 0x10, 0x01, 0x00};
     s8 b[4] = {0x00, -0x10, 0x00, 0x10};
