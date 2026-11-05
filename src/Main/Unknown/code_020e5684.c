@@ -91,12 +91,12 @@ u8 func_020e5b88(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 #pragma thumb on
 
 void CreateObPakkunSf(void) {
-    u32 v1;
+    void *v1;
     u32 v2;
-    v1 = (u32) FindCourseMapObjFile(gObPakkunSfNsbmdName);
+    v1 = FindCourseMapObjFile(gObPakkunSfNsbmdName);
     v2 = (u32) FindCourseMapObjFile(gObPakkunSfNsbtpName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gObPakkunSf)), (void *) v1, v2, (u32) 0);
-    func_020e6ab8((Unk020e6488 *) gObPakkunSf);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gObPakkunSf)), v1, v2, (u32) 0);
+    func_020e6ab8(gObPakkunSf);
 }
 
 #pragma thumb off
@@ -231,14 +231,14 @@ void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c) {
 #pragma thumb on
 
 void CreateSecondHand(void) {
-    func_020ea588(&gSecondHand, (void *) FindCourseMapObjFile(gSecondHandNsbmdName), NULL);
+    func_020ea588(&gSecondHand, FindCourseMapObjFile(gSecondHandNsbmdName), NULL);
     func_02084968(gSecondHand, 0x3f, 2, 0x294a);
 }
 
 void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q) {
     p->mUnk_00.mUnk_58.y = (s32) (((s64) p->mUnk_00.mScale.x * 0x4b000) >> 12);
     func_02046be8(&p->mUnk_00.mUnk_80, (UnkFunc *const *) data_0216c240, 4, p);
-    func_020d720c((Vec3 *) &q->mUnk_0c, (u32 *) &p->mUnk_a0.mUnk_00);
+    func_020d720c(&q->mUnk_0c, (u32 *) &p->mUnk_a0.mUnk_00);
     *(Unk020d7b88 *) &p->mUnk_a0.mUnk_0c.y = *(Unk020d7b88 *) &p->mUnk_a0.mUnk_00;
     *(s16 *) &p->mUnk_a0.mUnk_18.z = q->mUnk_2c;
     *((s16 *) &p->mUnk_a0.mUnk_18.z + 1) = q->mUnk_2a;

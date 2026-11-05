@@ -444,7 +444,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
 #pragma thumb on
 
 void ReleaseWiFiVSCourseSelect(void) {
-    HeapDestroy((void *) (gWiFiVSCourseSelect->mHeap));
+    HeapDestroy(gWiFiVSCourseSelect->mHeap);
     *&gWiFiVSCourseSelect = NULL;
     return;
 }

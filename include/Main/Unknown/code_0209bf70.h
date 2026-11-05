@@ -8,10 +8,10 @@
 // 0x40-byte object of func_0209bfa8: the words at 0x00 and 0x04 are its first two arguments, 0x18 the third, 0x20 the
 // fourth and 0x1c the fifth; func_0209bf70 stores its sixth argument at 0x24.
 typedef struct Unk0209bf70 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
+    /* 00 */ void *mUnk_00;
+    /* 04 */ void *mUnk_04;
     /* 08 */ u8 mUnk_08[0x10];
-    /* 18 */ u32 mUnk_18;
+    /* 18 */ void *mUnk_18;
     /* 1c */ u32 mUnk_1c;
     /* 20 */ u32 mUnk_20;
     /* 24 */ u32 mUnk_24;

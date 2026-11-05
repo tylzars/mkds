@@ -170,7 +170,7 @@ void func_ov003_021c1abc(Unk021d34e0 *param_1) {
 void func_ov003_021c1a60(Unk021d34e0 *param_1) {
     u32 a;
     s32 b;
-    func_ov003_021d1770((Unk021d1770 *) data_ov003_021da160->mUnk_40[0], 0, &a, &b);
+    func_ov003_021d1770(data_ov003_021da160->mUnk_40[0], 0, &a, &b);
     b = b - 0xc;
     if (b > data_ov003_021d6244[0][1]) {
         func_ov003_021c1364(4, b);

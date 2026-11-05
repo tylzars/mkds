@@ -351,25 +351,25 @@ void func_ov001_0218263c(void *b, Unk02181c3c *c) {
 
     if (c->mUnk_0b0 > 0 && c->mUnk_0a0 != 0) {
         a = 0x1e;
-        func_01ff9048((u32) (0x14), (void *) (&a), 1);
-        func_01ff9048((u32) (0x19), (void *) (func_020e6cbc((Vec3 *) (&c->mUnk_000.mPos))), 0xc);
+        func_01ff9048((u32) (0x14), (&a), 1);
+        func_01ff9048((u32) (0x19), (func_020e6cbc(&c->mUnk_000.mPos)), 0xc);
         s = c->mUnk_0b0;
         if (s != 0x1000) {
             v.x = s;
             v.y = s;
             v.z = s;
-            func_01ff9048((u32) (0x1b), (void *) (&v), 3);
+            func_01ff9048((u32) (0x1b), (&v), 3);
         }
-        func_01ff9048((u32) (0x1b), (void *) (&c->mUnk_000.mScale), 3);
+        func_01ff9048((u32) (0x1b), (&c->mUnk_000.mScale), 3);
         SetMapObjectModelPolygonId(data_ov001_021a9b98, func_020d3c44());
         t = c->mUnk_0a0;
         if (t >= 0x1f) {
             t = 0x1f;
         }
         func_0209b9a4(data_ov001_021a9b98, t);
-        func_0209b688((void *) (data_ov001_021a9b98), (u16) c->mUnk_0a4);
+        func_0209b688(data_ov001_021a9b98, (u16) c->mUnk_0a4);
         func_0209bbd0(b, data_ov001_021a9b98);
-        DrawMapObjectModel((void *) (b), (void *) (data_ov001_021a9b98), (void *) (c));
+        DrawMapObjectModel((b), (data_ov001_021a9b98), (c));
     }
 }
 

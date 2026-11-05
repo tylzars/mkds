@@ -94,7 +94,7 @@ void func_ov000_021874ec(void) {
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const char *) o->mUnk_938) != TRUE) {
+        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, o->mUnk_938) != TRUE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;
@@ -295,7 +295,7 @@ void func_ov000_021874ec(void) {
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, (const char *) o->mUnk_938) != TRUE) {
+        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, o->mUnk_938) != TRUE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;
@@ -433,7 +433,7 @@ void func_ov000_021874ec(void) {
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 1, (const char *) o->mUnk_938) != TRUE) {
+        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 1, o->mUnk_938) != TRUE) {
             ReleaseHttp((Http *) gHttp);
             func_ov000_02187490(2);
             break;
@@ -469,9 +469,9 @@ end:
 
 u32 func_ov000_021874c0(void) {
     u32 v1;
-    ThreadLockWait((void *) &data_ov000_021b4cb0->mUnk_1dc);
+    ThreadLockWait(&data_ov000_021b4cb0->mUnk_1dc);
     v1 = data_ov000_021b4cb0->mUnk_00;
-    ThreadLockUnlock((void *) &data_ov000_021b4cb0->mUnk_1dc);
+    ThreadLockUnlock(&data_ov000_021b4cb0->mUnk_1dc);
     return v1;
 }
 
@@ -597,7 +597,7 @@ void func_ov000_02186d7c(void *l) {
     a->mReceiveBuffer = p->mLowReceiveBuffer;
     a->mSendBufferSize = 0x5ea;
     a->mSendBuffer = p->mLowSendBuffer;
-    func_ov000_021ae304((void *) a);
+    func_ov000_021ae304(a);
     g = func_ov000_021acef8((const char *) p->mHost);
     if (g == 0) {
         p->mResult = 2;

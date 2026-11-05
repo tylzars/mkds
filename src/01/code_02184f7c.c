@@ -36,10 +36,10 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c) {
     Unk021852f8_02 *rec;
     Unk021a5a58_2c_2c *cell;
 
-    list = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x18));
+    list = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x18));
     data = FindSceneFile((a));
     list->mUnk_00 = data->mUnk_00;
-    list->mUnk_04 = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (list->mUnk_00 * 0x88));
+    list->mUnk_04 = HeapAlloc(GetHeap(func_020364e8()), (u32) (list->mUnk_00 * 0x88));
     list->mUnk_08 = b;
     list->mUnk_0c = c;
     rec = data->mUnk_02;

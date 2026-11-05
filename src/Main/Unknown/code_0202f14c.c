@@ -157,7 +157,7 @@ void func_0202f160(void) {
         func_021258f0();
     }
     data_02174e4c->mUnk_80c->mUnk_0c();
-    func_020ae5f0((void *) data_02174e4c, (void *) data_02174e4c->mUnk_404);
+    func_020ae5f0(data_02174e4c, data_02174e4c->mUnk_404);
 }
 
 Unk02174e4c_818 *func_0202f14c(void) {

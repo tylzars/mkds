@@ -28,7 +28,7 @@
 #pragma thumb on
 
 void CreateDram(void) {
-    func_020ea588(&gDram, (void *) FindCourseMapObjFile(gDramNsbmdName), NULL);
+    func_020ea588(&gDram, FindCourseMapObjFile(gDramNsbmdName), NULL);
     func_02084968(gDram, 0x3f, 2, 0x294a);
 }
 

@@ -729,12 +729,10 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         b->mUnk_0b0 = 0;
         func_ov001_02188e94(b, &b->mUnk_1f4);
     }
-    if (b->mUnk_20c != NULL &&
-        func_ov001_021881a8(b, (Vec3 *) &b->mUnk_200, (s32) (b->mUnk_1f8), (s32) (b->mUnk_1fc))) {
+    if (b->mUnk_20c != NULL && func_ov001_021881a8(b, &b->mUnk_200, (s32) (b->mUnk_1f8), (s32) (b->mUnk_1fc))) {
         func_ov001_02188e94(b, &b->mUnk_20c);
     }
-    if (b->mUnk_224 != NULL &&
-        !func_ov001_021881a8(b, (Vec3 *) &b->mUnk_218, (s32) (b->mUnk_210), (s32) (b->mUnk_214))) {
+    if (b->mUnk_224 != NULL && !func_ov001_021881a8(b, &b->mUnk_218, (s32) (b->mUnk_210), (s32) (b->mUnk_214))) {
         func_ov001_02188e94(b, &b->mUnk_224);
     }
     if (b->mUnk_228 != NULL && b->mVelocity.y == 0 && -b->mPrm->mUnk_018 < b->mSpeed && b->mPrm->mUnk_018 > b->mSpeed &&

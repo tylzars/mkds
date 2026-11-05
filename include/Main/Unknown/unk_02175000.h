@@ -311,7 +311,7 @@ typedef struct Unk02175ec0_440 {
     /* 00 */ u32 mUnk_00_0 : 4;
     /* 00 */ u32 mUnk_00_4 : 28;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    /* 08 */ u8 *mUnk_08;
 } Unk02175ec0_440;
 
 // Nine bytes that func_0204d28c builds on the stack and passes to func_02006d3c: two four-bit parts, a 24-bit part,

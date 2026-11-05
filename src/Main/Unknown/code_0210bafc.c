@@ -16,7 +16,7 @@ u32 func_0210bc8c(void *a, void *b) {
         i = FALSE;
     } else {
         i = TRUE;
-        p->mUnk_08 = (u32) a;
+        p->mUnk_08 = a;
     }
     if (i != FALSE) {
         ListAppend((LinkedList *) a, b);

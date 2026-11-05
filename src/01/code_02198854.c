@@ -621,5 +621,5 @@ void func_ov001_02198878(void) {
 void RegisterOptionSelectMenuCallbacks(void) {
     UnkFunc *table[4] = {InitOptionSelectMenu, ReleaseOptionSelectMenu, AdvanceOptionSelectMenu, func_ov001_02198878};
 
-    SetOptionStateCallbacks((UnkFunc **) (table));
+    SetOptionStateCallbacks((table));
 }

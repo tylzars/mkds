@@ -77,7 +77,7 @@ void func_ov003_021c0d2c(void) {
 
 void func_ov003_021c0cf8(void) {
     func_ov003_021d197c(data_ov003_021da15c->mUnk_114);
-    func_ov003_021d34e0((Unk021d34e0 *) (data_ov003_021da15c->mUnk_118), func_ov003_021bfc80);
+    func_ov003_021d34e0(data_ov003_021da15c->mUnk_118, func_ov003_021bfc80);
 }
 
 u8 func_ov003_021c0ce4(void) {

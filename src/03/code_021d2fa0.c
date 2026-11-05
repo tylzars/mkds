@@ -93,7 +93,7 @@ void func_ov003_021d305c(u32 c) {
     if (c >= (u32) a + 0x1a0) {
         b = 1;
     }
-    func_ov003_021d1d0c((Unk021d1d88 *) a[b].mUnk_19c, (void *) c);
+    func_ov003_021d1d0c(a[b].mUnk_19c, (void *) c);
 }
 
 void func_ov003_021d2fdc(void) {

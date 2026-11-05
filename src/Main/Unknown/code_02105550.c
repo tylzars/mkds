@@ -189,7 +189,7 @@ void func_02108a40(void) {
 void func_021089f4(void) {
     func_0212c6f0(&data_0217c788, 1);
     func_0212c6f0(&data_0217c778, 1);
-    func_0212ecc0((const void *) &data_0217d068, (u32) 0, (u32) (((u32) 0x0000020au)));
+    func_0212ecc0(&data_0217d068, (u32) 0, (u32) (((u32) 0x0000020au)));
 }
 
 void func_02108990(void) {
@@ -393,8 +393,8 @@ void func_02108344(void *a, u32 b, u32 c) {
     } else {
         ((u32 *) &data_0216c7d8)[0] = data_0215a6e4[0];
         ((u32 *) &data_0216c7d8)[1] = data_0215a6e4[1];
-        data_0217c77c = HeapStackCreate((void *) (a + b), 0x25a5c);
-        func_02111250((void *) (a + b + 0x25a5c), 0x35a0);
+        data_0217c77c = HeapStackCreate((a + b), 0x25a5c);
+        func_02111250((a + b + 0x25a5c), 0x35a0);
     }
     data_0216cb28 = 0x69;
     func_0210d854(1);

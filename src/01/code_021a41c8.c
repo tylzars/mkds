@@ -45,12 +45,12 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                         func_0212ecc0(&data_0217d068, 0, 0x1f1);
                     } else {
                         gEmblem->mUnk_1080 = a - 0x1b;
-                        func_ov001_021a5df0((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                        func_ov001_021a5df0((gEmblem->mEmblemSLld), (s32) (a));
                         func_ov001_021a63c0((u8) (gEmblem->mUnk_1080 + 1));
                         func_0212ecc0(&data_0217d068, 0, 0x1f0);
                     }
                     if (func_ov001_021a639c() == 1) {
-                        func_ov001_021a5ab0((void *) (gEmblem->mEmblemSLld), (s32) (func_ov001_021a637c() + 0xe));
+                        func_ov001_021a5ab0(gEmblem->mEmblemSLld, (s32) (func_ov001_021a637c() + 0xe));
                         func_ov001_021a63a8(0);
                     }
                     gEmblem->mUnk_1094 = 3;
@@ -59,7 +59,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                     if (b) {
                         func_ov001_02184fb4(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0x1000);
                     }
-                    func_ov001_021a59cc((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                    func_ov001_021a59cc((gEmblem->mEmblemSLld), (s32) (a));
                     if (b) {
                         gEmblem->mUnk_1094 = 3;
                         return;
@@ -68,7 +68,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0xe:
                 case 0xf:
                 case 0x10:
-                    func_ov001_021a5ab0((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                    func_ov001_021a5ab0((gEmblem->mEmblemSLld), (s32) (a));
                     func_ov001_021a63a8(0);
                     func_ov001_021a6388((s32) (a - 0xe));
                     func_0212ecc0(&data_0217d068, 0, 0x1f2);
@@ -77,21 +77,21 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0x11:
                 case 0x12:
                 case 0x13:
-                    func_ov001_021a5ab0((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                    func_ov001_021a5ab0((gEmblem->mEmblemSLld), (s32) (a));
                     func_ov001_021a63a8(1);
                     func_ov001_021a6388((s32) (a - 0x11));
                     func_0212ecc0(&data_0217d068, 0, 0x1f2);
                     gEmblem->mUnk_1094 = 3;
                     return;
                 case 0x14:
-                    func_ov001_021a5ab0((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                    func_ov001_021a5ab0((gEmblem->mEmblemSLld), (s32) (a));
                     func_ov001_021a63a8(2);
                     func_ov001_021a6388(0);
                     func_0212ecc0(&data_0217d068, 0, 0x1f2);
                     gEmblem->mUnk_1094 = 3;
                     return;
                 case 0x15:
-                    func_ov001_021a5ab0((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                    func_ov001_021a5ab0((gEmblem->mEmblemSLld), (s32) (a));
                     func_ov001_021a63a8(3);
                     func_ov001_021a6388(0);
                     func_0212ecc0(&data_0217d068, 0, 0x1f2);
@@ -100,7 +100,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0x16:
                     if (gEmblem->mUnk_108c == NULL) {
                         gEmblem->mUnk_108c = func_ov001_021a4a10;
-                        func_ov001_021a5d00((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                        func_ov001_021a5d00((gEmblem->mEmblemSLld), (s32) (a));
                         func_0212ecc0(&data_0217d068, 0, 0x1f3);
                         gEmblem->mUnk_10b0 = TRUE;
                     }
@@ -114,7 +114,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                             func_0212ecc0(&data_0217d068, 0, 0x1fc);
                         }
                         func_ov001_02181098();
-                        func_ov001_021a5d00((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                        func_ov001_021a5d00((gEmblem->mEmblemSLld), (s32) (a));
                     }
                     if (b) {
                         gEmblem->mUnk_1094 = 3;
@@ -124,7 +124,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0x19:
                     if (gEmblem->mUnk_108c == NULL) {
                         gEmblem->mUnk_108c = func_ov001_021a4878;
-                        func_ov001_021a5d00((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                        func_ov001_021a5d00((gEmblem->mEmblemSLld), (s32) (a));
                         func_0212ecc0(&data_0217d068, 0, 0xc);
                         gEmblem->mUnk_10b0 = TRUE;
                         gEmblem->mUnk_10ac = FALSE;
@@ -134,7 +134,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0x1a:
                     if (gEmblem->mUnk_108c == NULL) {
                         gEmblem->mUnk_108c = func_ov001_021a4b28;
-                        func_ov001_021a5c28((void *) (gEmblem->mEmblemSLld), (s32) (a));
+                        func_ov001_021a5c28((gEmblem->mEmblemSLld), (s32) (a));
                         func_0212ecc0(&data_0217d068, 0, 4);
                         gEmblem->mUnk_10b0 = TRUE;
                     }
@@ -147,7 +147,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0:
                     if (gEmblem->mUnk_108c == NULL) {
                         gEmblem->mUnk_108c = func_ov001_021a4914;
-                        func_ov001_021a5a40((void *) (gEmblem->mEmblemTemplateSLld), 1);
+                        func_ov001_021a5a40((gEmblem->mEmblemTemplateSLld), 1);
                         func_0212ecc0(&data_0217d068, 0, 0xe);
                         gEmblem->mUnk_10b0 = TRUE;
                     }
@@ -189,10 +189,10 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                         buf[1] = (func_ov001_021a63b4() == 1) ? 2 : 1;
                         buf[2] = func_ov001_021a63b4();
                         func_020ac284(p, gEmblem->mUnk_0c7c, func_ov001_02181268());
-                        func_ov001_021810bc((u8 *) (gEmblem->mUnk_0c7c), (u16 *) (buf));
+                        func_ov001_021810bc((gEmblem->mUnk_0c7c), (buf));
                         func_ov001_0218107c();
                         gEmblem->mUnk_108c = func_ov001_021a4914;
-                        func_ov001_021a5d00((void *) (gEmblem->mEmblemTemplateSLld), (s32) (a));
+                        func_ov001_021a5d00((gEmblem->mEmblemTemplateSLld), (s32) (a));
                         gEmblem->mUnk_1084 = a - 3;
                         func_0212ecc0(&data_0217d068, 0, 0x1f6);
                     }
@@ -204,7 +204,7 @@ void func_ov001_021a41c8(s32 a, s32 b) {
             if (a == 1) {
                 if (gEmblem->mUnk_108c == NULL) {
                     gEmblem->mUnk_108c = func_ov001_021a4844;
-                    func_ov001_021a5d00((void *) (gEmblem->mEmblemCameraSLld), (s32) (a));
+                    func_ov001_021a5d00((gEmblem->mEmblemCameraSLld), (s32) (a));
                     func_0212ecc0(&data_0217d068, 0, 0xc);
                     gEmblem->mUnk_10ac = TRUE;
                 }

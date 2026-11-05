@@ -243,7 +243,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
         u = w;
         if (func_01ffdee4(&u, NULL, 0, 0xf000, 8, -2, out, &u, NULL, &n, NULL, NULL, NULL, NULL) != 0) {
             if (n & 0x1e34ef) {
-                func_020d7b88((Vec3 *) &u, &b->mUnk_0b4);
+                func_020d7b88(&u, &b->mUnk_0b4);
                 func_0208ab98(&b->mUnk_132, (u16) ((n & 0x3c000000) >> 26), 0x5000);
                 if (b->mUnk_0fe != 0 && b->mUnk_000.mUnk_10.y < 0) {
                     if (b->mUnk_000.mFlags & 1) {
@@ -333,7 +333,7 @@ void func_020e24d0(Unk020e1e98 *a, Vec3 *b) {
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 0x10) {
         func_02039860(&c, &c);
     }
-    func_020d7b88((Vec3 *) &c, &a->mUnk_0c4);
+    func_020d7b88(&c, &a->mUnk_0c4);
     a->mUnk_152 = 0x384;
     if (a->mUnk_0fe > 0xf || a->mUnk_000.mUnk_10.y <= 0) {
         f = 0;
@@ -431,8 +431,8 @@ void func_020e230c(Unk0217b79c *a) {
 }
 
 void func_020e20a8(Unk020e20a8 *a) {
-    u32 b;
-    u32 c;
+    void *b;
+    void *c;
     u32 k1;
     Unk0201290c *y1;
     u32 k2;
@@ -447,19 +447,19 @@ void func_020e20a8(Unk020e20a8 *a) {
     Unk020e1e98_12c **z;
     s32 n;
 
-    b = (u32) FindCourseMapObjFile(gCarANsbmdName);
-    c = (u32) FindCourseMapObjFile(gTruckANsbmdName);
+    b = FindCourseMapObjFile(gCarANsbmdName);
+    c = FindCourseMapObjFile(gTruckANsbmdName);
     a->mUnk_038 = data_021759c0->mMode != 4 && func_0203c5e4() == 0 && (u16) data_021759c0->mEntryIndex < 8;
     a->mUnk_03c = FALSE;
-    func_020ea588(&gCarA, (void *) b, NULL);
-    func_020ea588(&gTruckA, (void *) c, NULL);
-    func_020ea588(&gBusA, (void *) FindCourseMapObjFile(gBusANsbmdName), NULL);
-    func_020ea588(&gCarTire, (void *) FindCourseMapObjFile(gCarTireNsbmdName), NULL);
-    func_020ea55c(&gCarAShadow, (void *) FindCourseMapObjFile(gCarAShadowNsbmdName), 7);
-    func_020ea55c(&gTruckAShadow, (void *) FindCourseMapObjFile(gTruckAShadowNsbmdName), 7);
-    func_020ea55c(&gBusAShadow, (void *) FindCourseMapObjFile(gBusAShadowNsbmdName), 7);
-    func_020ea4bc(2, gCarA, &gCarANsbtp, (void *) b, (void *) FindCourseMapObjFile(gCarANsbtpName));
-    func_020ea4bc(2, gTruckA, &gTruckANsbtp, (void *) c, (void *) FindCourseMapObjFile(gTruckANsbtpName));
+    func_020ea588(&gCarA, b, NULL);
+    func_020ea588(&gTruckA, c, NULL);
+    func_020ea588(&gBusA, FindCourseMapObjFile(gBusANsbmdName), NULL);
+    func_020ea588(&gCarTire, FindCourseMapObjFile(gCarTireNsbmdName), NULL);
+    func_020ea55c(&gCarAShadow, FindCourseMapObjFile(gCarAShadowNsbmdName), 7);
+    func_020ea55c(&gTruckAShadow, FindCourseMapObjFile(gTruckAShadowNsbmdName), 7);
+    func_020ea55c(&gBusAShadow, FindCourseMapObjFile(gBusAShadowNsbmdName), 7);
+    func_020ea4bc(2, gCarA, &gCarANsbtp, b, FindCourseMapObjFile(gCarANsbtpName));
+    func_020ea4bc(2, gTruckA, &gTruckANsbtp, c, FindCourseMapObjFile(gTruckANsbtpName));
     func_02084968(gCarA, 0x3f, 2, 0x294a);
     for (k1 = 0, y1 = ((Unk0217b7a0 *) gCarA)->mUnk_04; k1 < y1->mEntryCount; k1++) {
         func_020134b0(y1, k1, 7);

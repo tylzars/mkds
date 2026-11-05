@@ -295,12 +295,11 @@ void func_02126ef8(void) {
     v1 = gTxtSystem;
     if (0 < v1->mUnk_28) {
         CallQueueAppend(0x1f, ((0xee - v1->mUnk_2c) * 2), &v1->mUnk_2246, 2);
-        CallQueueAppend((u32) 0x1f, (u32) ((0xfe - gTxtSystem->mUnk_2c) * 2), (void *) &gTxtSystem->mUnk_2246, (u32) 2);
+        CallQueueAppend((u32) 0x1f, (u32) ((0xfe - gTxtSystem->mUnk_2c) * 2), &gTxtSystem->mUnk_2246, (u32) 2);
         v1 = gTxtSystem;
         if (v1->mUnk_28 == 2) {
             CallQueueAppend(0x1f, ((v1->mUnk_2c + 0xed) * 2), &v1->mUnk_2244, 2);
-            CallQueueAppend((u32) 0x1f, (u32) ((gTxtSystem->mUnk_2c + 0xfd) * 2), (void *) &gTxtSystem->mUnk_2244,
-                            (u32) 2);
+            CallQueueAppend((u32) 0x1f, (u32) ((gTxtSystem->mUnk_2c + 0xfd) * 2), &gTxtSystem->mUnk_2244, (u32) 2);
         }
     }
 }

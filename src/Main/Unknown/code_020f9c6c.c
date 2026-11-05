@@ -725,7 +725,7 @@ void func_020fb038(Unk020fc2e8 *param_1) {
         0x10) {
         func_02039860(&param_1->mUnk_000.mVelocity, &s.mUnk_00);
     }
-    func_020d7b88((Vec3 *) &s.mUnk_00, &s.mUnk_0c);
+    func_020d7b88(&s.mUnk_00, &s.mUnk_0c);
     func_01ffccd0(&param_1->mUnk_000.mUnk_94, &s.mUnk_0c);
 }
 
@@ -1083,7 +1083,7 @@ void *StartItemObjectOrZero(s32 param_1, u16 param_2, void *param_3, void *param
     if (gItemPools[param_1].mLimit - gItemPools[param_1].mReservedCount <= 0) {
         return 0;
     }
-    func_020f1048(&gItemPools[param_1], 1, (ItemObject **) &p, param_2, param_3);
+    func_020f1048(&gItemPools[param_1], 1, &p, param_2, param_3);
     e = &gItemPools[param_1];
     e->mReservedCount++;
     StartItemObject(&gItemPools[p->mKind], p);
@@ -1104,7 +1104,7 @@ static inline ItemObject *func_020fa3d0_inline(s32 param_1, u16 param_2, void *p
     if (gItemPools[param_1].mLimit - gItemPools[param_1].mReservedCount <= 0) {
         return 0;
     }
-    func_020f1048(&gItemPools[param_1], 1, (ItemObject **) &p, param_2, param_3);
+    func_020f1048(&gItemPools[param_1], 1, &p, param_2, param_3);
     e = &gItemPools[param_1];
     e->mReservedCount++;
     StartItemObject(&gItemPools[p->mKind], p);

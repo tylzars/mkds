@@ -925,7 +925,7 @@ s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b) {
     u32 f;
     Unk021ab728 *g;
     Unk021abca0 *h;
-    e = func_ov000_021aa380((u32) a, (u8 *) (b + 5), (b[3] << 8) + b[4]);
+    e = func_ov000_021aa380((u32) a, (b + 5), (b[3] << 8) + b[4]);
     switch (a->mUnk_006) {
         case 4:
             e -= 0x10;
@@ -1029,7 +1029,7 @@ s32 func_ov000_021aa054(void *g, u8 *h) {
     }
     b[3] = c >> 8;
     b[4] = c;
-    func_ov000_021ac3e4((u8 *) a->mUnk_09c, (u8 *) (b + 5), c);
+    func_ov000_021ac3e4(a->mUnk_09c, (b + 5), c);
     func_ov000_021aa398(a->mUnk_1a0, 8);
     return c + 5;
 }

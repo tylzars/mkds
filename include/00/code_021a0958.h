@@ -17,7 +17,7 @@ typedef struct Unk021a0a40 {
     /* 08 */ u8 mUnk_08;
     /* 09 */ u8 mUnk_09;
     /* 0a */ u16 mUnk_0a;
-    /* 0c */ u32 mUnk_0c;
+    /* 0c */ void *mUnk_0c;
     /* 10 */ u32 mUnk_10;
 } Unk021a0a40;
 

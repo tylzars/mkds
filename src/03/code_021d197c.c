@@ -26,7 +26,7 @@ void func_ov003_021d1b3c(void) {
     data_ov003_021da2b4 = func_ov003_021d283c(0x450, 4);
     for (i = 0; i < 2; i++) {
         data_ov003_021da2b4[i].mUnk_224 = func_ov003_021d1d60(0x20, &data_ov003_021da2b4[i], 0x10);
-        data_ov003_021da2b4[i].mUnk_220 = (void *) func_ov003_021d2ecc();
+        data_ov003_021da2b4[i].mUnk_220 = func_ov003_021d2ecc();
         data_ov003_021da2b4[i].mUnk_200.mUnk_08 = func_ov003_021d2eec(i, 0x40);
         data_ov003_021da2b4[i].mUnk_210.mUnk_08 = func_ov003_021d2eec(i, 0x7f) + 1;
         func_ov003_021d2e50(data_ov003_021da2b4[i].mUnk_220, &data_ov003_021da2b4[i].mUnk_200);

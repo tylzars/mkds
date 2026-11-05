@@ -312,16 +312,16 @@ void func_020deb2c(Vec3 *a, void *b, u32 c, int d, u32 e) {
     v2 = (u32) * (u16 *) ((u32) b + 0x74);
     if (d == 0) {
         if (v2 == data_021759c0->mEntryIndex) {
-            v1 = func_0208b7bc((u32) 0x2d, (const Vec3 *) a);
+            v1 = func_0208b7bc((u32) 0x2d, a);
             if (v1 != NULL) {
                 func_02081f10(v1, v2, (u32) 0x1e);
             }
-            v1 = func_0208b7bc((u32) 0x2e, (const Vec3 *) a);
+            v1 = func_0208b7bc((u32) 0x2e, a);
             if (v1 != NULL) {
                 func_02081f10(v1, v2, (u32) 0x1e);
             }
         }
-        v1 = func_0208b7bc((u32) 0x2f, (const Vec3 *) a);
+        v1 = func_0208b7bc((u32) 0x2f, a);
         if (v1 != NULL) {
             func_02081f10(v1, v2, (u32) 0x1e);
         }

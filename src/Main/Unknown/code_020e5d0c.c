@@ -102,7 +102,7 @@ void func_020e64b8(void *p, void *a, void *b, s32 c) {
 
 void func_020e6488(Unk020e6488 **param_1, void *param_2, u32 param_3, u32 param_4) {
     *param_1 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
-    func_020e64b8((void *) *param_1, param_2, (void *) param_3, param_4);
+    func_020e64b8(*param_1, param_2, (void *) param_3, param_4);
 }
 
 #pragma thumb off
@@ -231,8 +231,8 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
 #pragma thumb on
 
 void CreatePendulumAndPendulumShadow(void) {
-    func_020ea588((void **) &gPendulum, (void *) FindCourseMapObjFile(gPendulumNsbmdName), NULL);
-    func_020ea55c((void **) &gPendulumShadow, (void *) FindCourseMapObjFile(gPendulumShadowNsbmdName), 0x3f);
+    func_020ea588(&gPendulum, FindCourseMapObjFile(gPendulumNsbmdName), NULL);
+    func_020ea55c(&gPendulumShadow, FindCourseMapObjFile(gPendulumShadowNsbmdName), 0x3f);
     func_02084968(gPendulum, 0x3f, 2, 0x294a);
 }
 

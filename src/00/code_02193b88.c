@@ -99,7 +99,7 @@ s32 func_ov000_02194590(GpConnection *a, GpiPeer *b) {
             }
             break;
         case 0x68:
-            t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mUnk_18, (s32 *) &y, (u32 *) &z, data_ov000_021b3490);
+            t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mUnk_18, &y, (u32 *) &z, data_ov000_021b3490);
             if (t != 0) {
                 return t;
             }
@@ -157,7 +157,7 @@ s32 GpiPeerUpdateWaiting(GpConnection *a, GpiPeer *b) {
     if (b->mState != 0x68) {
         AssertionFailed(data_ov000_021b34a8, data_ov000_021b333c, NULL, 0xc1);
     }
-    t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mUnk_18, (s32 *) &x, (u32 *) &y, data_ov000_021b3490);
+    t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mUnk_18, &x, (u32 *) &y, data_ov000_021b3490);
     if (t != 0) {
         return t;
     }
@@ -257,7 +257,7 @@ s32 func_ov000_021941c4(GpConnection *a, GpiPeer *b) {
             return 0;
         }
     }
-    t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mUnk_18, (s32 *) &x, (u32 *) &y, data_ov000_021b3490);
+    t = GpiReceiveBuffer(a, b->mSocket, (GpiBuffer *) &b->mUnk_18, &x, (u32 *) &y, data_ov000_021b3490);
     if (t != 0) {
         b->mState = 0x6a;
         return 0;
@@ -281,7 +281,7 @@ s32 func_ov000_021941c4(GpConnection *a, GpiPeer *b) {
                             return 1;
                         }
                         s->mUnk_00 = b->mProfileId;
-                        s->mUnk_08 = (u32) func_ov000_0218e880((const char *) m);
+                        s->mUnk_08 = func_ov000_0218e880((const char *) m);
                         s->mUnk_04 = func_ov000_0218e320(NULL);
                         t = GpiQueueCallback(a, p, s, NULL, 2);
                         if (t != 0) {
@@ -460,7 +460,7 @@ GpiPeer *GpiPeerCreate(GpConnection *c, u32 d, u32 e) {
     b->mProfileId = d;
     b->mUnk_10 = func_ov000_0218e320(NULL) + 0x12c;
     b->mNext = a->mPeerList;
-    b->mQueuedMessages = (void *) DarrayCreate(0x18, 0, (void (*)(void *)) func_ov000_02193f18);
+    b->mQueuedMessages = DarrayCreate(0x18, 0, (void (*)(void *)) func_ov000_02193f18);
     a->mPeerList = b;
     return b;
 }

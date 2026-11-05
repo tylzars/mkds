@@ -187,7 +187,7 @@ void func_02072eb8(Kart *p) {
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_0207a6b0()->mUnk_18++;
     } else {
-        func_0210b850((Unk0210b7ec *) &p->mUnk_518);
+        func_0210b850(&p->mUnk_518);
     }
     p->mUnk_4c |= 0xc00;
     p->mUnk_48 |= 0x2000000;
@@ -755,13 +755,13 @@ void func_02071c18(Kart *p) {
             func_0210cfbc(&p->mUnk_00, 2, 1);
         }
         if (data_021759c0->mUnk_00c == 2) {
-            func_0210b850((Unk0210b7ec *) &p->mUnk_518);
+            func_0210b850(&p->mUnk_518);
         }
     } else {
         if (p->mUnk_00.mUnk_34 & 1) {
             func_0210cfbc(&p->mUnk_00, 2, 1);
         }
-        func_0210b850((Unk0210b7ec *) &p->mUnk_518);
+        func_0210b850(&p->mUnk_518);
     }
 }
 
@@ -898,7 +898,7 @@ void func_02071958(Kart *p, s32 b) {
 }
 
 void func_02071944(void *p, int v1) {
-    u32 v2 = (u32) p;
+    Unk0210bfbc *v2 = p;
     u32 v3 = (u32) v1;
     u32 v4;
     u32 v5;
@@ -906,7 +906,7 @@ void func_02071944(void *p, int v1) {
     v6 = (u32) &func_021090c4;
     v4 = 0x7fu;
     v5 = 0u;
-    func_021090c4((Unk0210bfbc *) v2, v3, v4, v5);
+    func_021090c4(v2, v3, v4, v5);
     return;
 }
 
@@ -1380,7 +1380,7 @@ void func_020705fc(Kart *p, u32 b) {
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         SetupCameraBehindKart();
         if (data_0217c780 & 1) {
-            h = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
+            h = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (h[0] != NULL) {
                     func_0212c6f0(h, 0);

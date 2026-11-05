@@ -321,7 +321,7 @@ void func_020871c0(Unk02086098 *a, u32 b) {
     v2[2] = 0;
     v2[3] = 0x1f;
     func_0200ee74(v2, 8);
-    MemFill((void *) ((u32 *) v3), (u8) 0, (u32) (a->mUnk_04));
+    MemFill(((u32 *) v3), (u8) 0, (u32) (a->mUnk_04));
     func_020adddc(b, v3, (u32) 1, (u32) 2);
     func_0200ee74((const void *) v3, (0x00000100u));
     a->mUnk_0c = (void *) v3;

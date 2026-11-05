@@ -319,7 +319,7 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
     }
     func_ov001_0219f4f8();
     func_ov001_0219f2a4();
-    FrmHeapShrinkInParent((void *) gMissionRunLVsel->mHeap);
+    FrmHeapShrinkInParent(gMissionRunLVsel->mHeap);
 }
 
 void ReleaseMissionRunLVsel(void) {
@@ -336,7 +336,7 @@ void ReleaseMissionRunLVsel(void) {
             func_0210593c(4);
             break;
     }
-    HeapDestroy((void *) gMissionRunLVsel->mHeap);
+    HeapDestroy(gMissionRunLVsel->mHeap);
     gMissionRunLVsel = NULL;
 }
 

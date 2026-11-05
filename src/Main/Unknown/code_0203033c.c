@@ -205,7 +205,7 @@ s32 func_020303e8(void) {
 
 void func_020303c4(void) {
     func_0204f7f4();
-    HeapDestroy((void *) (data_02174e54->mHeap));
+    HeapDestroy(data_02174e54->mHeap);
     data_02174e54 = NULL;
     return;
 }

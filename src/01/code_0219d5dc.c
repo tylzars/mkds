@@ -440,12 +440,12 @@ void AdvanceOptionEmbremSelect(void) {
 }
 
 void func_ov001_0219d600(void) {
-    func_0214a40c((u32 *) ((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
+    func_0214a40c(((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
     return;
 }
 
 void RegisterOptionEmbremSelectCallbacks(void) {
     Unk021a8cd0 local = gOptionEmbremSelectCallbacks;
 
-    SetOptionStateCallbacks((UnkFunc **) (local.mUnk_00));
+    SetOptionStateCallbacks((local.mUnk_00));
 }

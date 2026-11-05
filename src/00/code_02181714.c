@@ -93,9 +93,9 @@ void LocateAndQueueWiFiTopMenu(void) {
     LocateNcer(&gWiFiTopMenu->mWiFiTopMenuSNcer, v1);
     v1 = FindSceneFile(gWiFiTopMenuSONclrName);
     LocateNclr(&gWiFiTopMenu->mWiFiTopMenuSONclr, v1);
-    CallQueueAppend(0x23, 0, (void *) (gWiFiTopMenu->mWiFiTopMenuSNcgr->mData),
+    CallQueueAppend(0x23, 0, (gWiFiTopMenu->mWiFiTopMenuSNcgr->mData),
                     (u32) (gWiFiTopMenu->mWiFiTopMenuSNcgr->mDataSize));
-    CallQueueAppend(0x1e, 0, (void *) (gWiFiTopMenu->mWiFiTopMenuSONclr->mData),
+    CallQueueAppend(0x1e, 0, (gWiFiTopMenu->mWiFiTopMenuSONclr->mData),
                     (u32) (gWiFiTopMenu->mWiFiTopMenuSONclr->mDataSize));
     return;
 }
@@ -418,7 +418,7 @@ void AdvanceWiFiTopMenu(void) {
 }
 
 void func_ov000_02181738(void) {
-    func_0214a40c((u32 *) ((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
+    func_0214a40c(((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
     return;
 }
 

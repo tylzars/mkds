@@ -35,14 +35,14 @@ void GetCourseMapStartPlacementWithOffsets(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e
     }
     if (gCourseMap->mStartPlacementCount > 1) {
         for (i = 0; i < gCourseMap->mStartPlacementCount; i++) {
-            p = &((CourseMapPlacement *) gCourseMap->mStartPlacements)[i];
+            p = &(gCourseMap->mStartPlacements)[i];
             if (c == (s16) p->mUnk_1a) {
                 q = p;
                 break;
             }
         }
     } else {
-        q = (CourseMapPlacement *) gCourseMap->mStartPlacements;
+        q = gCourseMap->mStartPlacements;
     }
     x = (u16) ((q->mUnk_0c.x >> 12) * 0xb6);
     y = (u16) ((q->mUnk_0c.y >> 12) * 0xb6);

@@ -264,12 +264,12 @@ u8 func_020e2fe4(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d) {
 #pragma thumb on
 
 void CreateChoropu(void) {
-    u32 v1;
+    void *v1;
     u32 v2;
-    v1 = (u32) FindCourseMapObjFile(gChoropuNsbmdName);
+    v1 = FindCourseMapObjFile(gChoropuNsbmdName);
     v2 = (u32) FindCourseMapObjFile(gChoropuNsbtpName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gChoropu)), (void *) v1, v2, (u32) 0);
-    func_020e6ab8((Unk020e6488 *) gChoropu);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gChoropu)), v1, v2, (u32) 0);
+    func_020e6ab8(gChoropu);
 }
 
 #pragma thumb off

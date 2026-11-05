@@ -5,7 +5,7 @@
 #pragma thumb on
 
 Nclr *func_020b33c4(void) {
-    return ((Nclr *) gChoisesS->mChoisesSBNclr);
+    return (gChoisesS->mChoisesSBNclr);
 }
 
 Ncgr *func_020b3374(void) {

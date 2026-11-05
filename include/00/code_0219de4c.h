@@ -99,7 +99,7 @@ typedef struct WiFiMatching {
     // game name to the query-report init (it keys the answer to the master server's challenge packet,
     // code_021a3a18.c:419) and to func_ov000_0218b668 (code_0219dd4c.c:163, :198).
     /* 2e0 */ u32 mUnk_2e0;
-    /* 2e4 */ u32 mUnk_2e4;
+    /* 2e4 */ u8 *mUnk_2e4;
     /* 2e8 */ u32 mUnk_2e8;
     /* 2ec */ u8 mUnk_2ec[0x40];
     /* 32c */ s32 mUnk_32c;

@@ -707,11 +707,11 @@ void *func_0209bfa8(void *param_1, void *param_2, void *param_3, u32 param_4, u1
 
     GetHeap(func_020364e8());
     o = HeapAlloc(GetHeap(func_020364e8()), 0x40);
-    o->mUnk_00 = (u32) param_1;
-    o->mUnk_04 = (u32) param_2;
+    o->mUnk_00 = param_1;
+    o->mUnk_04 = param_2;
     o->mUnk_20 = param_4;
     o->mUnk_1c = param_5;
-    o->mUnk_18 = (u32) param_3;
+    o->mUnk_18 = param_3;
     return o;
 }
 

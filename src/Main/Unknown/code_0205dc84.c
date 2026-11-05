@@ -76,7 +76,7 @@ void func_0205dee0(void) {
     func_02108ed8();
     b = CreateExpHeapFromMaxFree(a);
     c = HeapAllocAligned(b, 0x40000, 0x20);
-    func_0205dee0_inline(c, (void *) SDK_OVERLAY_OV003_ID);
+    func_0205dee0_inline(c, SDK_OVERLAY_OV003_ID);
     HeapDestroy(b);
     MasterBrightWrite((u16 *) 0x400006c, 0x10);
     MasterBrightWrite((u16 *) 0x400106c, 0x10);

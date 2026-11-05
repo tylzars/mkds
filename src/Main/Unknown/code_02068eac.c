@@ -647,7 +647,7 @@ s32 func_02068ec0(Kart *p, s32 a) {
         if (data_021759c0->mMode == 2 && a == 0) {
             func_021090c4(&p->mUnk_00, 0xd3, 0x7f, 0);
             if (data_021759c0->mUnk_18 == 0 && (data_0217c780 & 1)) {
-                h = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
+                h = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (h[0] != NULL) {
                         func_0212c6f0(h, 0);

@@ -58,8 +58,8 @@ void func_ov001_021a6430(s32 a, s32 flagB, void *c, void *d, u32 e, u16 f, s32 f
         }
     }
     p = data_ov001_021ca424;
-    func_02124748((u32) (data_ov001_021a7664[a]), (void *) p->mUnk_04, (void *) p->mUnk_00, (void *) p->mUnk_0c,
-                  (s32) (flagG), (u32) (e), (void *) (c), (void *) (d));
+    func_02124748((u32) (data_ov001_021a7664[a]), p->mUnk_04, p->mUnk_00, p->mUnk_0c, (s32) (flagG), (u32) (e), (c),
+                  (d));
     dst = data_ov001_021ca424->mUnk_08->mUnk_0c;
     if (flagB != 0) {
         v1 = data_ov001_021a7674[a];

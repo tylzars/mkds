@@ -522,7 +522,7 @@ u16 func_020a1520(void) {
         }
     }
     if (data_0217c780 & 1) {
-        h = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
+        h = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (h[0] != NULL) {
                 func_0212c6f0(h, 0);

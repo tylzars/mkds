@@ -35,9 +35,9 @@ int RunEndingScene(void *a) {
 void InitOptionScene(s16 *a) {
     void *heap;
 
-    heap = (void *) GetHeap(func_020364e8());
+    heap = GetHeap(func_020364e8());
     data_ov001_021ca408 = HeapAlloc(heap, 0x808);
-    InitOptionStates((void *) (heap), (s16) (*a));
+    InitOptionStates((heap), (s16) (*a));
 }
 
 void ReleaseOptionScene(void) {
@@ -77,7 +77,7 @@ u8 *func_ov001_0219e90c(void) {
 void func_ov001_0219e8d8(s16 *a) {
     void *heap;
 
-    heap = (void *) GetHeap(func_020364e8());
+    heap = GetHeap(func_020364e8());
     data_ov001_021ca404 = HeapAlloc(heap, 0x808);
     func_ov001_021987d4(heap, *a);
 }

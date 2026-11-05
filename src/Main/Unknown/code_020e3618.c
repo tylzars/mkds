@@ -35,9 +35,9 @@ BOOL func_020e3af0(u32 a) {
 void CreateBridge(void) {
     void *p;
 
-    p = (void *) FindCourseMapObjFile(gBridgeNsbmdName);
+    p = FindCourseMapObjFile(gBridgeNsbmdName);
     func_020ea588(&gBridge, p, NULL);
-    func_020ea4bc(0, gBridge, &gBridgeNsbca, p, (void *) FindCourseMapObjFile(gBridgeNsbcaName));
+    func_020ea4bc(0, gBridge, &gBridgeNsbca, p, FindCourseMapObjFile(gBridgeNsbcaName));
     ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c = func_02087d0c(gBridgeNsbca);
     func_02084968(gBridge, 0x3f, 2, 0x294a);
     func_020e1dc0(*(void **) data_0217b7c4, gBridge);

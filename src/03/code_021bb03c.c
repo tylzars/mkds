@@ -1957,13 +1957,13 @@ u32 func_ov003_021bb070(u32 *a) {
 }
 
 u32 func_ov003_021bb058(Unk021d8dc8 *a) {
-    memcpy((u32 *) ((u32 *) (u32) (a)), (const void *) &data_ov003_021d8dc8, 0xe8);
+    memcpy(((u32 *) (u32) (a)), &data_ov003_021d8dc8, 0xe8);
     return 1;
 }
 
 void func_ov003_021bb03c(void) {
     u8 v1[8];
-    func_ov003_021bb070((u32 *) ((u32 *) (void *) (v1)));
+    func_ov003_021bb070(((u32 *) (void *) (v1)));
     (*(UnkFunc *) (u32) data_ov003_021d8c4c)(v1);
     return;
 }

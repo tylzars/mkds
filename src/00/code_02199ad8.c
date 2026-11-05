@@ -66,7 +66,7 @@ u32 func_ov000_02199e50(Gt2Connection *a, const u8 *b, s32 c) {
         return 1;
     }
     if (DarrayGetCount(a->mUnk_9c) != 0) {
-        if (func_ov000_02197fe8(a, 0, (void *) b, c, 0) != FALSE) {
+        if (func_ov000_02197fe8(a, 0, b, c, 0) != FALSE) {
             return 1;
         }
         return 0;

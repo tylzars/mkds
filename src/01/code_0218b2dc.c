@@ -137,9 +137,9 @@ void func_ov001_0218b770(Unk02188950 *a) {
 }
 
 void func_ov001_0218b72c(Unk02188950 *a) {
-    func_020ac588((u32) 0x191, 0x32, (void *) a);
-    a->mUnk_000.mUnk_94 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) 0xf, (Vec3 *) (&a->mUnk_000.mPos));
+    func_020ac588((u32) 0x191, 0x32, a);
+    a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) 0xf, (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cc6c[15];
 }
 
@@ -250,8 +250,8 @@ void InitKuriking(Unk0218d87c *a) {
             if (data_021759c0->mMode == 4) {
                 func_ov001_02181b8c(obj);
             }
-            func_ov001_021870e4((void *) a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"), ("kuriking.prm"));
-            func_ov001_021870b0((void *) a, obj, ("sh_circle.nsbmd"));
+            func_ov001_021870e4(a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"), ("kuriking.prm"));
+            func_ov001_021870b0(a, obj, ("sh_circle.nsbmd"));
             LoadMapObjectModelNsbtaAnimation(obj->mNsbmd, "kuriking.nsbta");
             LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, "kuriking.nsbtp");
             LoadMapObjectModelNsbmaAnimation(obj->mNsbmd, "kuriking.nsbma");
@@ -270,8 +270,7 @@ void func_ov001_0218b310(void) {
     void *v7 = &func_ov001_02185fb0;
     void *v8 = &func_ov001_02185f04;
     void *v9 = &func_ov001_021860cc;
-    u32 v11 =
-        (u32) func_ov001_0219b510(v7, v8, v9, (u32) 0x2u, (u16) ((u32) 0x1u), (u16) ((u32) 0x0u), (u16) ((u32) 0x0u));
+    void *v11 = func_ov001_0219b510(v7, v8, v9, (u32) 0x2u, (u16) ((u32) 0x1u), (u16) ((u32) 0x0u), (u16) ((u32) 0x0u));
 }
 
 void *func_ov001_0218b2f4(void) {

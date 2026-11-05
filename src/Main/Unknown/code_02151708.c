@@ -10,7 +10,7 @@
 
 u32 func_02151830(u16 *a) {
     int v1;
-    v1 = func_0215122c((u32) 0x20, (u32) 0x20, (void *) a);
+    v1 = func_0215122c((u32) 0x20, (u32) 0x20, a);
     if (v1 == 0) {
         return 0;
     }

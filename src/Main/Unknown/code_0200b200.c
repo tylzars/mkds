@@ -47,11 +47,11 @@ void func_0200b43c(s32 a, Unk021425e8 *b) {
             func_0200ba44(3, 0);
             break;
         case 6:
-            func_0200ba44(2, (void *) b);
+            func_0200ba44(2, b);
             func_0200bef8(data_0216fde8, data_0216fde8->mUnk_0020);
             break;
         case 10:
-            func_0200ba44(4, (void *) b);
+            func_0200ba44(4, b);
             break;
         case 25:
             func_0200b200();

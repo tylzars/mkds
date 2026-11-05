@@ -308,11 +308,11 @@ void InitSelectEngine(void *a, void *b, void *c) {
     func_ov001_021a1cb0();
     func_ov001_021a1bf8();
     func_ov001_021a1a04();
-    FrmHeapShrinkInParent((void *) gSelectEngine->mHeap);
+    FrmHeapShrinkInParent(gSelectEngine->mHeap);
 }
 
 void ReleaseSelectEngine(void) {
-    HeapDestroy((void *) gSelectEngine->mHeap);
+    HeapDestroy(gSelectEngine->mHeap);
     gSelectEngine = NULL;
 }
 

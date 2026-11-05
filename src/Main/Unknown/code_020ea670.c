@@ -397,7 +397,7 @@ u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
 #pragma thumb on
 
 void CreateWoodbox1(void) {
-    func_020ea588((void **) &gWoodbox1, (void *) FindCourseMapObjFile(gWoodbox1NsbmdName), NULL);
+    func_020ea588((void **) &gWoodbox1, FindCourseMapObjFile(gWoodbox1NsbmdName), NULL);
     func_02084968(gWoodbox1, 0x3f, 2, 0x294a);
 }
 
@@ -821,7 +821,7 @@ void func_020ea740(Unk020ea670 *param_1, s32 param_2) {
         func_020130d4((Unk0201290c *) p, func_020d3c44());
         func_0201308c((Unk0201290c *) p, param_2);
     }
-    func_0201290c((Unk0201290c *) param_1->mUnk_004, 0, 0, 1);
+    func_0201290c(param_1->mUnk_004, 0, 0, 1);
     m = data_0216c3d4;
     if (param_2 < m) {
         func_0201308c((Unk0201290c *) p, m);

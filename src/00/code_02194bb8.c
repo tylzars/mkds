@@ -519,7 +519,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                                     return 1;
                                 }
                                 u3->mUnk_3c[u3->mUnk_38] = q;
-                                GpiCopyString((char *) u3->mUnk_3c[u3->mUnk_38], w1, 0x1f);
+                                GpiCopyString(u3->mUnk_3c[u3->mUnk_38], w1, 0x1f);
                                 u3->mUnk_38++;
                             } else if (strcmp(w0, data_ov000_021b37c8) == 0) {
                                 if (u3->mUnk_38 > 0) {
@@ -535,7 +535,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                                         return 1;
                                     }
                                     u3->mUnk_40[u3->mUnk_38 - 1] = q;
-                                    GpiCopyString((char *) u3->mUnk_40[u3->mUnk_38 - 1], w1, 0x15);
+                                    GpiCopyString(u3->mUnk_40[u3->mUnk_38 - 1], w1, 0x15);
                                 }
                             } else if (strcmp(w0, data_ov000_021b3824) == 0) {
                                 d = TRUE;
@@ -802,7 +802,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                                     GpiSetErrorMessage(a, data_ov000_021b35f8);
                                     return 1;
                                 }
-                                GpiCopyString((char *) u9->mUnk_08[i], w1, 0x15);
+                                GpiCopyString(u9->mUnk_08[i], w1, 0x15);
                                 i++;
                             } else if (strcmp(w0, data_ov000_021b3884) == 0) {
                                 if (i != u9->mUnk_04) {

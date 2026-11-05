@@ -84,7 +84,7 @@ void func_0210f458(s32 a) {
                 if (*p != NULL) {
                     func_0212c6f0(p, 0);
                 }
-                p = (Unk0212c400 **) func_02108e6c(7);
+                p = func_02108e6c(7);
                 if (*p != NULL) {
                     func_0212c6f0(p, 0);
                 }
@@ -95,7 +95,7 @@ void func_0210f458(s32 a) {
             break;
     }
     if (v < 0xfff) {
-        p = (Unk0212c400 **) func_02108e6c(a < 5 ? a + 7 : a + 2);
+        p = func_02108e6c(a < 5 ? a + 7 : a + 2);
         if ((data_0217c780 & 1) == 0) {
             return;
         }
@@ -127,9 +127,9 @@ u32 func_0210f35c(s32 a, u32 b) {
     u32 ok;
 
     if (a == 0) {
-        p = (Unk0212c400 **) func_02108e6c(0xa);
+        p = func_02108e6c(0xa);
     } else {
-        p = (Unk0212c400 **) func_02108e6c(0xb);
+        p = func_02108e6c(0xb);
     }
     v = ((Unk0217d1c0 *) data_0217d1c0)[a].mUnk_00;
     if (v == 0) {
@@ -165,9 +165,9 @@ u32 func_0210f230(u32 a, u32 b) {
     u32 ok;
 
     if (a == 0) {
-        p = (Unk0212c400 **) func_02108e6c(0xa);
+        p = func_02108e6c(0xa);
     } else {
-        p = (Unk0212c400 **) func_02108e6c(0xb);
+        p = func_02108e6c(0xb);
     }
     v = ((Unk0217d1c0 *) data_0217d1c0)[a].mUnk_00;
     if (v == 0) {

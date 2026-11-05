@@ -27,7 +27,7 @@
 Unk021a9bc8 *data_ov001_021a9bc8;
 
 void func_ov001_02192d28(void) {
-    data_ov001_021a9bc8 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x54);
+    data_ov001_021a9bc8 = HeapAlloc(GetHeap(func_020364e8()), 0x54);
 }
 
 void func_ov001_02192a78(void) {

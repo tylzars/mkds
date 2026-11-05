@@ -497,7 +497,7 @@ s32 func_0202f764(Unk0202f764 *a) {
 #pragma thumb on
 
 void func_0202f744(void) {
-    HeapDestroy((void *) data_02174e50->mHeap);
+    HeapDestroy(data_02174e50->mHeap);
     *&data_02174e50 = NULL;
 }
 

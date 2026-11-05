@@ -137,7 +137,7 @@ int func_ov000_0218d2a8(SbServerList *a, int b, int c) {
         do {
             v4 = DarrayGetElement(a->mUnk_004, v2);
             v1 = *v4;
-            v3 = func_ov000_0218b27c((u32 *) ((u32 *) (u32) (v1)));
+            v3 = func_ov000_0218b27c(((u32 *) (u32) (v1)));
             if ((b == v3) && (v3 = func_ov000_0218b25c(v1), c == v3)) {
                 return v2;
             }

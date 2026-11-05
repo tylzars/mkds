@@ -42,12 +42,12 @@ void *LoadMissionRunFile(char *p0) {
 // Overlay-1 counterpart of CreateMapObjectModelAnimated: the file comes from LoadMissionRunFile; also clears bit 15 of
 // the model's attribute word.
 Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, char *p1) {
-    Unk0219b250 *o = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x2c));
+    Unk0219b250 *o = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x2c));
     if (p0 != NULL) {
         p0->mUnk_18 = 1;
     }
     o->mNsbmdFile = LoadMissionRunFile((p1));
-    o->mAnimatedModel = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x6c));
+    o->mAnimatedModel = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x6c));
     func_02084e28(o->mAnimatedModel, o->mNsbmdFile);
     func_0209b8ac(o, 0);
     o->mScale = data_ov001_021a6b2c;
@@ -57,12 +57,12 @@ Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, char *p1) {
 // Overlay-1 counterpart of CreateMapObjectModelShadow: the file comes from LoadMissionRunFile; also clears bit 15 of
 // the model's attribute word.
 Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, char *p1) {
-    Unk0219b250 *o = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x2c));
+    Unk0219b250 *o = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x2c));
     void *r = LoadMissionRunFile((p1));
     if (p0 != NULL) {
         p0->mUnk_18 = 1;
     }
-    o->mShadowModel = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x74));
+    o->mShadowModel = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x74));
     func_0207afa8(o->mShadowModel, r, 0x3f);
     func_0209b8ac(o, 0);
     o->mScale = data_ov001_021a6b20;
@@ -72,7 +72,7 @@ Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, char *p1) {
 void LoadMapObjectModelNsbcaAnimation(Unk0219b250 *p0, char *p1) {
     void *r = LoadMissionRunFile((p1));
     u8 v;
-    p0->mNsbcaAnimation = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
+    p0->mNsbcaAnimation = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x38));
     v = ((u8 *) func_02013a30(r))[9];
     func_0208823c(0, p0->mNsbcaAnimation, p0->mAnimatedModel, v, GetHeap(func_020364e8()), p0->mNsbmdFile);
     func_0208805c(p0->mNsbcaAnimation, r, GetHeap(func_020364e8()));
@@ -81,15 +81,14 @@ void LoadMapObjectModelNsbcaAnimation(Unk0219b250 *p0, char *p1) {
 
 void LoadMapObjectModelNsbmaAnimation(Unk0219b250 *p0, char *p1) {
     void *r = LoadMissionRunFile((p1));
-    p0->mNsbmaAnimation = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
-    func_020ea514((u32) (4), (void *) (p0->mAnimatedModel), (void *) (p0->mNsbmaAnimation), (void *) (p0->mNsbmdFile),
-                  (void *) (r));
+    p0->mNsbmaAnimation = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x38));
+    func_020ea514((u32) (4), (p0->mAnimatedModel), (p0->mNsbmaAnimation), (p0->mNsbmdFile), (r));
 }
 
 void LoadMapObjectModelNsbtaAnimation(Unk0219b250 *p0, char *p1) {
     void *r = LoadMissionRunFile((p1));
     u8 v;
-    p0->mNsbtaAnimation = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
+    p0->mNsbtaAnimation = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x38));
     v = ((u8 *) func_02013aa8(r))[9];
     func_0208823c(1, p0->mNsbtaAnimation, p0->mAnimatedModel, v, GetHeap(func_020364e8()), p0->mNsbmdFile);
     func_0208805c(p0->mNsbtaAnimation, r, GetHeap(func_020364e8()));
@@ -98,14 +97,13 @@ void LoadMapObjectModelNsbtaAnimation(Unk0219b250 *p0, char *p1) {
 
 void LoadMapObjectModelNsbtpAnimation(Unk0219b250 *p0, char *p1) {
     void *r = LoadMissionRunFile((p1));
-    p0->mNsbtpAnimation = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
-    func_020ea514((u32) (2), (void *) (p0->mAnimatedModel), (void *) (p0->mNsbtpAnimation), (void *) (p0->mNsbmdFile),
-                  (void *) (r));
+    p0->mNsbtpAnimation = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x38));
+    func_020ea514((u32) (2), (p0->mAnimatedModel), (p0->mNsbtpAnimation), (p0->mNsbmdFile), (r));
 }
 
 void func_ov001_0219b28c(Unk0219b250 *p0, void *p1) {
     u8 v;
-    p0->mNsbcaAnimation = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
+    p0->mNsbcaAnimation = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x38));
     v = ((u8 *) func_02013a30(p1))[9];
     func_0208823c(0, p0->mNsbcaAnimation, p0->mAnimatedModel, v, GetHeap(func_020364e8()), p0->mNsbmdFile);
     func_0208805c(p0->mNsbcaAnimation, p1, GetHeap(func_020364e8()));
@@ -113,9 +111,8 @@ void func_ov001_0219b28c(Unk0219b250 *p0, void *p1) {
 }
 
 void func_ov001_0219b25c(Unk0219b250 *p0, void *p1) {
-    p0->mNsbtpAnimation = HeapAlloc((void *) GetHeap(func_020364e8()), (u32) (0x38));
-    func_020ea514((u32) (2), (void *) (p0->mAnimatedModel), (void *) (p0->mNsbtpAnimation), (void *) (p0->mNsbmdFile),
-                  (void *) (p1));
+    p0->mNsbtpAnimation = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x38));
+    func_020ea514((u32) (2), (p0->mAnimatedModel), (p0->mNsbtpAnimation), (p0->mNsbmdFile), (p1));
 }
 
 void func_ov001_0219b250(Unk0219b250 *p0) {

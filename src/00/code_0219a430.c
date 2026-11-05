@@ -78,7 +78,7 @@ u32 CreateSocket(Gt2Socket **a, const char *b, u32 c, u32 d, u32 e) {
         func_ov000_021a3668(f);
         return 1;
     }
-    f->mConnectionsToFree = (void *) DarrayCreate(4, 4, (void (*)(void *)) & func_ov000_0219a5dc);
+    f->mConnectionsToFree = DarrayCreate(4, 4, (void (*)(void *)) & func_ov000_0219a5dc);
     if (f->mConnectionsToFree == NULL) {
         HashtableDelete(f->mConnections);
         func_ov000_021a3668(f);

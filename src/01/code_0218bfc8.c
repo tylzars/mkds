@@ -11,7 +11,7 @@ void func_ov001_0218bfc8(Unk02188950 *a) {
     Unk02188950_a0 *v2;
     func_ov001_02187218(a, 2, &func_ov001_0218c584);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_15c), (s32) (a->mPrm->mUnk_160));
-    func_ov001_0219b1c4((Unk0219b250 *) (a->mNsbmd), (s32) (a->mPrm->mUnk_164), (s32) (a->mPrm->mUnk_160), 0);
+    func_ov001_0219b1c4(a->mNsbmd, (s32) (a->mPrm->mUnk_164), (s32) (a->mPrm->mUnk_160), 0);
     func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_168), (s32) (a->mPrm->mUnk_16c));
     v2 = a->mPrm;
     func_ov001_021889ec(a, (s32) (v2->mUnk_178), (s32) (v2->mUnk_17c), (s32) (v2->mUnk_170), (s32) (v2->mUnk_174));

@@ -100,7 +100,7 @@ void func_020b3410(void) {
     }
     if (a == 0 || a == 60 || a == 120) {
         if (data_0217c780 & 1) {
-            p = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
+            p = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*p != NULL) {
                     func_0212c6f0(p, 0);
@@ -114,7 +114,7 @@ void func_020b3410(void) {
     }
     if (a == 175) {
         if (data_0217c780 & 1) {
-            p = (Unk0212c400 **) func_0210e128((void *) func_02108ea0(0));
+            p = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*p != NULL) {
                     func_0212c6f0(p, 0);

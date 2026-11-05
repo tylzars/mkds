@@ -29,7 +29,7 @@ void InitEmblem(void) {
     Unk020391d4 unk;
     Unk0217aa08_04 *p;
 
-    gEmblem = HeapAlloc((void *) GetHeap(func_020364e8()), 0x10c0);
+    gEmblem = HeapAlloc(GetHeap(func_020364e8()), 0x10c0);
     func_020391d4(&unk);
     unk.mUnk_06 = 1;
     unk.mUnk_08 = 0;
@@ -43,42 +43,40 @@ void InitEmblem(void) {
     unk.mUnk_04 = 0x10;
     unk.mUnk_1c = 4;
     unk.mUnk_1e = 8;
-    func_02037abc(func_02038d88((void *) GetHeap(func_020364e8()), &unk));
-    LoadNclrData((Nclr **) (&gEmblem->mEmblemMONclr), (void *) (FindSceneFile("emblem_m_o.NCLR")));
-    LoadNcgrData2((Ncgr **) (&gEmblem->mEmblemMONcgr), (void *) (FindSceneFile("emblem_m_o.NCGR")));
+    func_02037abc(func_02038d88(GetHeap(func_020364e8()), &unk));
+    LoadNclrData(&gEmblem->mEmblemMONclr, (FindSceneFile("emblem_m_o.NCLR")));
+    LoadNcgrData2(&gEmblem->mEmblemMONcgr, (FindSceneFile("emblem_m_o.NCGR")));
     LoadNcerData(&gEmblem->mEmblemMNcer, FindSceneFile("emblem_m.NCER"));
     LoadNanrData(&gEmblem->mEmblemMNanr, FindSceneFile("emblem_m.NANR"));
     gEmblem->mEmblemMLld = func_ov001_021852f8("emblem_m.lld", gEmblem->mEmblemMNcer, gEmblem->mEmblemMNanr);
-    LoadNclrData((Nclr **) (&gEmblem->mEmblemMBNclr), (void *) (FindSceneFile("emblem_m_b.NCLR")));
-    LoadNcgrData((Ncgr **) (&gEmblem->mEmblemMBNcgr), (void *) (FindSceneFile("emblem_m_b.NCGR")));
-    LoadNscrData((Nscr **) (&gEmblem->mEmblemMNscr), (void *) (FindSceneFile("emblem_m.NSCR")));
-    LoadNscrData((Nscr **) (&gEmblem->mEmblemMBgNscr), (void *) (FindSceneFile("emblem_m_bg.NSCR")));
-    LoadNclrData(&gEmblem->mEmblemSONclr, (void *) (FindSceneFile("emblem_s_o.NCLR")));
-    LoadNcgrData2((Ncgr **) (&gEmblem->mEmblemSONcgr), (void *) (FindSceneFile("emblem_s_o.NCGR")));
+    LoadNclrData(&gEmblem->mEmblemMBNclr, (FindSceneFile("emblem_m_b.NCLR")));
+    LoadNcgrData(&gEmblem->mEmblemMBNcgr, (FindSceneFile("emblem_m_b.NCGR")));
+    LoadNscrData(&gEmblem->mEmblemMNscr, (FindSceneFile("emblem_m.NSCR")));
+    LoadNscrData(&gEmblem->mEmblemMBgNscr, (FindSceneFile("emblem_m_bg.NSCR")));
+    LoadNclrData(&gEmblem->mEmblemSONclr, (FindSceneFile("emblem_s_o.NCLR")));
+    LoadNcgrData2(&gEmblem->mEmblemSONcgr, (FindSceneFile("emblem_s_o.NCGR")));
     LoadNcerData(&gEmblem->mEmblemSNcer, FindSceneFile("emblem_s.NCER"));
     LoadNanrData(&gEmblem->mEmblemSNanr, FindSceneFile("emblem_s.NANR"));
     gEmblem->mEmblemSLld = func_ov001_021852f8("emblem_s.lld", gEmblem->mEmblemSNcer, gEmblem->mEmblemSNanr);
     gEmblem->mEmblemTemplateSLld =
         func_ov001_021852f8("emblem_template_s.lld", gEmblem->mEmblemSNcer, gEmblem->mEmblemSNanr);
-    LoadNclrData(&gEmblem->mEmblemSBNclr, (void *) (FindSceneFile("emblem_s_b.NCLR")));
-    LoadNcgrData((Ncgr **) (&gEmblem->mEmblemSBNcgr), (void *) (FindSceneFile("emblem_s_b.NCGR")));
-    LoadNcgrData(&gEmblem->mEmblemTemplateBNcgr, (void *) (FindSceneFile("emblem_template_b.NCGR")));
-    LoadNscrData((Nscr **) (&gEmblem->mEmblemSTemplateFrameNscr),
-                 (void *) (FindSceneFile("emblem_s_template_frame.NSCR")));
-    LoadNscrData((Nscr **) (&gEmblem->mEmblemSToolNscr), (void *) (FindSceneFile("emblem_s_tool.NSCR")));
-    LoadNscrData((Nscr **) (&gEmblem->mEmblemSBgNscr), (void *) (FindSceneFile("emblem_s_bg.NSCR")));
-    LoadNscrData((Nscr **) (&gEmblem->mEmblemSTemplateDarkNscr),
-                 (void *) (FindSceneFile("emblem_s_template_dark.NSCR")));
-    LoadNcgrData2((Ncgr **) (&gEmblem->mEmblemCameraSONcgr), (void *) (FindSceneFile("emblem_camera_s_o.NCGR")));
+    LoadNclrData(&gEmblem->mEmblemSBNclr, (FindSceneFile("emblem_s_b.NCLR")));
+    LoadNcgrData(&gEmblem->mEmblemSBNcgr, (FindSceneFile("emblem_s_b.NCGR")));
+    LoadNcgrData(&gEmblem->mEmblemTemplateBNcgr, (FindSceneFile("emblem_template_b.NCGR")));
+    LoadNscrData(&gEmblem->mEmblemSTemplateFrameNscr, (FindSceneFile("emblem_s_template_frame.NSCR")));
+    LoadNscrData(&gEmblem->mEmblemSToolNscr, (FindSceneFile("emblem_s_tool.NSCR")));
+    LoadNscrData(&gEmblem->mEmblemSBgNscr, (FindSceneFile("emblem_s_bg.NSCR")));
+    LoadNscrData(&gEmblem->mEmblemSTemplateDarkNscr, (FindSceneFile("emblem_s_template_dark.NSCR")));
+    LoadNcgrData2(&gEmblem->mEmblemCameraSONcgr, (FindSceneFile("emblem_camera_s_o.NCGR")));
     LoadNcerData(&gEmblem->mEmblemCameraSNcer, FindSceneFile("emblem_camera_s.NCER"));
     LoadNanrData(&gEmblem->mEmblemCameraSNanr, FindSceneFile("emblem_camera_s.NANR"));
     gEmblem->mEmblemCameraSLld =
         func_ov001_021852f8("emblem_camera_s.lld", gEmblem->mEmblemCameraSNcer, gEmblem->mEmblemCameraSNanr);
-    LoadNcgrData((Ncgr **) (&gEmblem->mEmblemCameraSBNcgr), (void *) (FindSceneFile("emblem_camera_s_b.NCGR")));
-    LoadNscrData((Nscr **) (&gEmblem->mEmblemCameraSDSNscr), (void *) (FindSceneFile("emblem_camera_s_DS.NSCR")));
-    LoadNscrData((Nscr **) (&gEmblem->mEmblemCameraSBgNscr), (void *) (FindSceneFile("emblem_camera_s_bg.NSCR")));
+    LoadNcgrData(&gEmblem->mEmblemCameraSBNcgr, (FindSceneFile("emblem_camera_s_b.NCGR")));
+    LoadNscrData(&gEmblem->mEmblemCameraSDSNscr, (FindSceneFile("emblem_camera_s_DS.NSCR")));
+    LoadNscrData(&gEmblem->mEmblemCameraSBgNscr, (FindSceneFile("emblem_camera_s_bg.NSCR")));
     func_ov001_02192d28();
-    func_02078c58((void *) GetHeap(func_020364e8()));
+    func_02078c58(GetHeap(func_020364e8()));
     InitEmblemChoises();
     func_020ae6d4(gEmblem->mUnk_0000, gEmblem->mUnk_0404);
     func_ov001_021a6238(0x40, 0x10, 0x20, 0x80, 0x10);

@@ -7,7 +7,7 @@
 
 // Seven words at 0x24 of Unk02174e50, passed by address to func_02025b20, func_02025a50 and func_02025a00.
 typedef struct Unk02174e50_24 {
-    /* 00 */ s32 mUnk_00;
+    /* 00 */ void *mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ void *mUnk_08;
     /* 0c */ void *mUnk_0c;

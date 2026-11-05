@@ -115,7 +115,7 @@ BOOL func_ov001_021a6278(void) {
 }
 
 void func_ov001_021a6238(s32 a, s32 b, s32 c, s32 d, s32 e) {
-    data_ov001_021ca420 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);
+    data_ov001_021ca420 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
     data_ov001_021ca420->mUnk_10 = a;
     data_ov001_021ca420->mUnk_14 = b;
     data_ov001_021ca420->mUnk_18 = c;

@@ -120,7 +120,7 @@ void func_02048050(int a, int b) {
     switch (a) {
         case 3:
         case 13:
-            func_02048498((char *) c, data_021759c0->mCourseId, a != 3);
+            func_02048498(c, data_021759c0->mCourseId, a != 3);
             break;
         case 5:
             switch (b) {
@@ -136,11 +136,11 @@ void func_02048050(int a, int b) {
             }
             switch (b) {
                 case 10:
-                    func_020483a0((char *) c);
+                    func_020483a0(c);
                     break;
                 case 2:
                     if (data_021759c0->mUnk_00c == 6) {
-                        StringFormatBounded((char *) c, 0x80, data_usa_02165058);
+                        StringFormatBounded(c, 0x80, data_usa_02165058);
                     } else {
                         func_020483e4(c, (u8 *) gSceneNames[b].mUnk_00);
                     }
@@ -165,7 +165,7 @@ void func_02048050(int a, int b) {
             }
             switch (b) {
                 case 10:
-                    func_02048350((char *) c);
+                    func_02048350(c);
                     break;
                 case 2:
                     if (data_021759c0->mUnk_00c == 6) {
@@ -704,7 +704,7 @@ void func_02047468(const void *a, u32 b) {
 
 void func_020473e4(void) {
     func_0204f5e4();
-    FrmHeapFree((void *) data_021759c8->mUnk_a80, (u32) 3);
+    FrmHeapFree(data_021759c8->mUnk_a80, (u32) 3);
     func_02047498(gKartModelMainAArchivePath, 0xb);
     func_02047498(gKartModelMainBArchivePath, 0xc);
     func_02047498(gMenuDLArchivePath2, 0);
@@ -717,7 +717,7 @@ void func_020473e4(void) {
 
 void func_020473a8(void) {
     func_0204f5e4();
-    FrmHeapFree((void *) data_021759c8->mUnk_a80, (u32) 3);
+    FrmHeapFree(data_021759c8->mUnk_a80, (u32) 3);
     func_02047498(gMenuDLArchivePath, 0);
     func_02047468(gMenuDLArchivePrefix, (u32) 1);
 }

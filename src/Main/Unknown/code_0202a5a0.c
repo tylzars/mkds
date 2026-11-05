@@ -51,13 +51,13 @@ void func_0202a604(u32 a) {
     int v1;
     v1 = func_02049b6c();
     if (v1 == 0) {
-        func_020ae6ac((void *) data_02174e24, (void *) data_02174e24->mUnk_404);
+        func_020ae6ac(data_02174e24, data_02174e24->mUnk_404);
         if (data_02174e24->mUnk_808 == 0) {
             func_02029aa0((Unk02029aa0 *) a);
         } else {
             func_02032ac4((Unk02032ac4 *) a);
         }
-        func_020ae630((void *) data_02174e24, (void *) data_02174e24->mUnk_404);
+        func_020ae630(data_02174e24, data_02174e24->mUnk_404);
         func_0212a920();
     }
 }
@@ -77,7 +77,7 @@ void func_0202a5a0(void) {
     } else {
         func_02032aa8();
     }
-    func_020ae5f0((void *) data_02174e24, (void *) data_02174e24->mUnk_404);
+    func_020ae5f0(data_02174e24, data_02174e24->mUnk_404);
 }
 
 #pragma thumb off

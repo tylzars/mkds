@@ -673,7 +673,7 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
     s32 dy;
     s32 dz;
 
-    n = func_02039828((const Vec3 *) &a->mUnk_06c, (const Vec3 *) &a->mUnk_02c.mUnk_18);
+    n = func_02039828(&a->mUnk_06c, &a->mUnk_02c.mUnk_18);
     m = (a->mUnk_010->mUnk_48 & 1) != 0;
     n = (s32) (((s64) n * 0x1ec) >> 12);
     if (n < 0x666) {
@@ -704,18 +704,17 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
             dx = a->mUnk_06c.y > 0 ? 0x666 : 0x1333;
             n += (s32) (((s64) dx * a->mUnk_06c.y) >> 12);
         }
-        Vec3AddScaled(n, (const Vec3 *) &a->mUnk_02c.mUnk_0c, &v, &p->mUnk_000.mVelocity);
+        Vec3AddScaled(n, &a->mUnk_02c.mUnk_0c, &v, &p->mUnk_000.mVelocity);
     }
     if (c == 0) {
         Vec3Add(&p->mUnk_000.mVelocity, &a->mUnk_010->mUnk_1fc, &p->mUnk_000.mVelocity);
     }
     if (c != 0) {
         p->mUnk_000.mPos = a->mUnk_010->mUnk_1b8;
-        Vec3AddScaled(p->mUnk_000.mUnk_68.z * 10, (const Vec3 *) &a->mUnk_02c.mUnk_18, &p->mUnk_000.mPos,
-                      &p->mUnk_000.mPos);
+        Vec3AddScaled(p->mUnk_000.mUnk_68.z * 10, &a->mUnk_02c.mUnk_18, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     } else {
         if (a->mUnk_07c != 0 && a->mUnk_068 < 0x2000 && p->mUnk_000.mUnk_68.z < 0xccd) {
-            Vec3Sub((const Vec3 *) &a->mUnk_02c.mUnk_0c, (const Vec3 *) &a->mUnk_02c.mUnk_18, &v);
+            Vec3Sub(&a->mUnk_02c.mUnk_0c, &a->mUnk_02c.mUnk_18, &v);
             Vec3AddScaled(0x2000, &v, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
         }
     }
@@ -731,15 +730,14 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
     if (!m) {
         return;
     }
-    n = Vec3Dot((const Vec3 *) &a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity);
+    n = Vec3Dot(&a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity);
     dx = (s32) (((s64) a->mUnk_02c.mUnk_0c.x * n) >> 12);
     dy = (s32) (((s64) a->mUnk_02c.mUnk_0c.y * n) >> 12);
     dz = (s32) (((s64) a->mUnk_02c.mUnk_0c.z * n) >> 12);
     p->mUnk_000.mVelocity.x -= dx;
     p->mUnk_000.mVelocity.y -= dy;
     p->mUnk_000.mVelocity.z -= dz;
-    Vec3AddScaled(c != 0 ? 0x8800 : -0x1000, (const Vec3 *) &a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity,
-                  &p->mUnk_000.mVelocity);
+    Vec3AddScaled(c != 0 ? 0x8800 : -0x1000, &a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity, &p->mUnk_000.mVelocity);
     p->mUnk_12c = 0;
 }
 

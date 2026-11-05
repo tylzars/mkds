@@ -16,5 +16,5 @@ void func_0208ab00(void) {
     v1 = ((u32) 0x00007fffu);
     func_01ff9048((u32) 0x33, (void *) ((u32) (&v1)), 1);
     v2[0] = ((u32) 0x40007fffu);
-    func_01ff9048((u32) 0x33, (void *) v2, 1);
+    func_01ff9048((u32) 0x33, v2, 1);
 }

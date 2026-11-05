@@ -82,7 +82,7 @@ Unk021d34e4 *func_ov003_021d34e4(u32 a, void (*b)(Unk021d34e4 *a, u32 b), u32 c,
     Unk021d34e4 *g;
     u32 h;
 
-    f = func_ov003_021d1cd4((Unk021d1d88 *) data_ov003_021da32c[a].mUnk_00);
+    f = func_ov003_021d1cd4(data_ov003_021da32c[a].mUnk_00);
     f->mUnk_08 = b;
     f->mUnk_0c = c;
     f->mUnk_10 = d;
@@ -105,7 +105,7 @@ void func_ov003_021d34e0(Unk021d34e0 *a, UnkFunc *b) {
 }
 
 void func_ov003_021d34c8(u32 index, u32 value) {
-    func_ov003_021d1d0c((Unk021d1d88 *) data_ov003_021da32c[index].mResource, (void *) value);
+    func_ov003_021d1d0c(data_ov003_021da32c[index].mResource, (void *) value);
 }
 
 void func_ov003_021d34c0(u32 arg0, u32 arg1) {
@@ -122,5 +122,5 @@ void func_ov003_021d3488(int a, int b) {
         func_ov003_021d2808((s32 *) (b + 0xc));
     }
     func_ov003_021d2e90((u32) (b));
-    func_ov003_021d1d0c((Unk021d1d88 *) (data_ov003_021da32c[a].mUnk_00), (void *) b);
+    func_ov003_021d1d0c(data_ov003_021da32c[a].mUnk_00, (void *) b);
 }

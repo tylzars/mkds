@@ -59,7 +59,7 @@ void func_ov003_021d244c(void) {
 }
 
 Unk021d23b0 *func_ov003_021d23b0(u32 a, u16 b, u16 c, s32 d, u32 *e, s32 f) {
-    Unk021d23b0 *g = func_ov003_021d1cd4((Unk021d1d88 *) (*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_788);
+    Unk021d23b0 *g = func_ov003_021d1cd4((*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_788);
     u32 h;
     u32 i;
     Unk02022aa8 *j;

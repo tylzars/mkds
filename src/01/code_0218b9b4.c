@@ -127,7 +127,7 @@ void func_ov001_0218ba48(Unk02188950 *a) {
     func_ov001_02188e24(a, (s32) ((u32) (a->mPrm->mUnk_100)), (UnkFunc *) func_ov001_0218c354);
     func_ov001_02188d08(a, (s32) (a->mUnk_000.mScale.x + a->mPrm->mUnk_0f8), (s32) (a->mPrm->mUnk_0fc));
     func_ov001_02188cec(a, 0);
-    func_0209b688((void *) (a->mNsbmd), (u16) (func_ov001_02188220(a)));
+    func_0209b688(a->mNsbmd, (u16) (func_ov001_02188220(a)));
     if (func_ov001_02188220(a) == 0) {
         func_ov001_0218c6b4(a);
         func_ov001_0218756c(a, 0, 0x1800, 0, 0x419, 0);

@@ -47,7 +47,7 @@ void ReleaseSelectKart(void) {
     } else {
         func_0211f498();
     }
-    HeapDestroy((void *) gSelectKart->mHeap);
+    HeapDestroy(gSelectKart->mHeap);
     *&gSelectKart = NULL;
 }
 

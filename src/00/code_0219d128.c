@@ -202,7 +202,7 @@ int GetBuddyEntryProfileId(int a) {
     Unk02152500 *v1;
     u32 v2;
     v1 = func_ov000_0219c9c4();
-    v2 = func_02152520((void *) (v1), &gWiFiBuddySync->mBuddies[a]);
+    v2 = func_02152520(v1, &gWiFiBuddySync->mBuddies[a]);
     if ((v2 == 0) || (v2 == -1)) {
         v2 = 0;
     }
@@ -253,7 +253,7 @@ void func_ov000_0219d504(s32 a) {
     }
     if (gWiFiBuddySync->mBuddyStatusCallback != NULL) {
         WiFiBuddySync *c;
-        u8 d = func_ov000_0219daa8(&gWiFiBuddySync->mBuddies[a], (char *) b.mUnk_108);
+        u8 d = func_ov000_0219daa8(&gWiFiBuddySync->mBuddies[a], b.mUnk_108);
         c = gWiFiBuddySync;
         c->mBuddyStatusCallback(a, d, b.mUnk_108, c->mBuddyStatusCallbackArg);
     }
@@ -320,7 +320,7 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
                     AddBuddy(g);
                 }
             }
-        } else if (func_02152520((void *) func_ov000_0219c9c4(), &a[gWiFiBuddySync->mSyncIndex]) == -1) {
+        } else if (func_02152520(func_ov000_0219c9c4(), &a[gWiFiBuddySync->mSyncIndex]) == -1) {
             func_02152458(func_ov000_0219c9c4(), &a[gWiFiBuddySync->mSyncIndex], e);
             func_ov000_0218f0a8(gWiFiBuddySync->mGpConnection, NULL, NULL, NULL, NULL, (s8 *) e, 0, 0,
                                 (Unk0218f0a8Cb) func_ov000_0219ce48, gWiFiBuddySync->mSyncIndex);

@@ -591,10 +591,10 @@ u32 func_0210fb54(void) {
 
 void func_0210fb10(void) {
     Unk0212c400 **v1;
-    v1 = (Unk0212c400 **) &data_0217d07c;
+    v1 = &data_0217d07c;
     *((u32 *) ((u32) (&data_0217d244))) = 2;
     func_0212c594(v1, 1, 1);
-    func_0212c494((Unk0212c400 **) &data_0217d07c, 0xd9);
+    func_0212c494(&data_0217d07c, 0xd9);
 }
 
 void func_0210faf4(void) {

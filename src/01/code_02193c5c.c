@@ -98,22 +98,20 @@ void func_ov001_021950fc(s32 a) {
 
     k = func_020603bc(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[a]].mUnk_00 = 1;
-    func_02124748((u32) (data_ov001_021a66a4[gRecordGpx->mIndex]), (void *) (gRecordGpx->mRecordTrophyONcer),
-                  (void *) (gRecordGpx->mRecordTrophyONcgr), (void *) (gRecordGpx->mRecordTrophySOBncl), 1,
-                  (u32) (data_ov001_021a666c[a]), (void *) (gRecordGpx->mRecordGpxSNcer),
-                  (void *) (gRecordGpx->mRecordGpxSBncl));
+    func_02124748((u32) (data_ov001_021a66a4[gRecordGpx->mIndex]), (gRecordGpx->mRecordTrophyONcer),
+                  (gRecordGpx->mRecordTrophyONcgr), (gRecordGpx->mRecordTrophySOBncl), 1,
+                  (u32) (data_ov001_021a666c[a]), (gRecordGpx->mRecordGpxSNcer), (gRecordGpx->mRecordGpxSBncl));
     func_02124a20(data_ov001_021a666c[a], (u8) data_ov001_021a6604[k], gRecordGpx->mRecordGpxSNcer,
                   gRecordGpx->mRecordGpxSBncl);
     k = func_02060414(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][0]].mUnk_00 = 1;
-    func_02124748((u32) (data_ov001_021a66e4[k]), (void *) (gRecordGpx->mPlayerCharacterMNcer),
-                  (void *) (gRecordGpx->mPlayerCharacterMNcgr), (void *) (gRecordGpx->mPlayerCharacterMBncl), 1,
-                  (u32) (data_ov001_021a6674[a][0]), (void *) (gRecordGpx->mRecordGpxSNcer),
-                  (void *) (gRecordGpx->mRecordGpxSBncl));
+    func_02124748((u32) (data_ov001_021a66e4[k]), (gRecordGpx->mPlayerCharacterMNcer),
+                  (gRecordGpx->mPlayerCharacterMNcgr), (gRecordGpx->mPlayerCharacterMBncl), 1,
+                  (u32) (data_ov001_021a6674[a][0]), (gRecordGpx->mRecordGpxSNcer), (gRecordGpx->mRecordGpxSBncl));
     p = gRecordGpx->mPlayerCharacterMONclr->mUnk_0c;
     CallQueueAppend(0x1e, data_ov001_021a6684[a] << 5,
-                    p + (func_02124a68((u32) (data_ov001_021a66e4[k]), (void *) (gRecordGpx->mPlayerCharacterMNcer),
-                                       (void *) (gRecordGpx->mPlayerCharacterMBncl))
+                    p + (func_02124a68((u32) (data_ov001_021a66e4[k]), (gRecordGpx->mPlayerCharacterMNcer),
+                                       (gRecordGpx->mPlayerCharacterMBncl))
                          << 5),
                     0x20);
     k = func_020603e8(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
@@ -231,8 +229,8 @@ void func_ov001_02194d78(void) {
         gRecordGpx->mRecordGpxSTable[n + data_ov001_021a663c[3]].mUnk_00 = 0;
     }
     d = gRecordGpx;
-    v = func_02124a68((u32) (1), (void *) (d->mRecordGpxMNcer), (void *) (d->mRecordGpxMBncl));
-    func_0211ded0((u32) (d->mIndex), (void *) d->mRecordGpxMNcer, (void *) d->mRecordGpxMBncl, (u32) (1), (u16) (v), 0);
+    v = func_02124a68((u32) (1), (d->mRecordGpxMNcer), (d->mRecordGpxMBncl));
+    func_0211ded0((u32) (d->mIndex), d->mRecordGpxMNcer, d->mRecordGpxMBncl, (u32) (1), (u16) (v), 0);
     d = gRecordGpx;
     p = GetBmgEntry(d->mCommonMessages, data_ov001_021a6720[d->mIndex]);
     func_0212426c(0, 0, gRecordGpx->mRecordGpxMBnll, p, d->mRecordGpxMBncl, d->mRecordGpxMTable);

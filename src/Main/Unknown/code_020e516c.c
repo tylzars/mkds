@@ -99,7 +99,7 @@ void func_020e52bc(void) {
     Unk020e52bc_8 *b;
     Unk020e52bc_c *c;
 
-    func_020ea588((void **) &gObjShadow, (void *) FindMainRaceOrMainEffectMapObjFile(gObjShadowNsbmdName), NULL);
+    func_020ea588((void **) &gObjShadow, FindMainRaceOrMainEffectMapObjFile(gObjShadowNsbmdName), NULL);
     func_020849c0(gObjShadow, 0x3f);
     func_020849b0(gObjShadow, 0);
     a = gObjShadow->mUnk_004;
@@ -109,7 +109,7 @@ void func_020e52bc(void) {
     c = (Unk020e52bc_c *) &a->mUnk_000[a->mUnk_00c];
     data_0217b818 = (Unk020e54e4 *) &c->mUnk_000[((u32 *) &c->mUnk_000[c->mUnk_006])[1]];
     if (data_021759c0->mUnk_00c != 6) {
-        func_020ea55c((void **) &gJgShadow, (void *) FindSceneFile(gJgShadowNsbmdName), 0x3f);
+        func_020ea55c((void **) &gJgShadow, FindSceneFile(gJgShadowNsbmdName), 0x3f);
     }
 }
 
@@ -125,7 +125,7 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
     s.y = s.y + 0x1999;
     if (func_01ffdee4(&s, NULL, 0, 0xa000, 8, -2, NULL, &buf1, NULL, NULL, NULL, NULL, NULL, NULL) != 0) {
         r = TRUE;
-        func_020d7b88((Vec3 *) &buf1, &buf2);
+        func_020d7b88(&buf1, &buf2);
         func_01ffccd0(a, &buf2);
         d = b / 10;
         ((Unk020e516c *) a)->mUnk_000[0] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[0] * d) >> 12);

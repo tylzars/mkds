@@ -265,12 +265,12 @@ void func_020da628(Kuribo *p) {
 #pragma thumb on
 
 void CreateKuribo(void) {
-    u32 v1;
+    void *v1;
     u32 v2;
-    v1 = (u32) FindCourseMapObjFile(gKuriboNsbmdName);
+    v1 = FindCourseMapObjFile(gKuriboNsbmdName);
     v2 = (u32) FindCourseMapObjFile(gKuriboNsbtpName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gKuribo)), (void *) v1, v2, (u32) 0);
-    func_020e6ab8((Unk020e6488 *) gKuribo);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gKuribo)), v1, v2, (u32) 0);
+    func_020e6ab8(gKuribo);
 }
 
 #pragma thumb off

@@ -304,7 +304,7 @@ void func_02116174(void) {
         }
     }
     if (data_0217d350->mUnk_74 != v4) {
-        func_0212ecc0((const void *) &data_0217d068, (u32) 0, (u32) 0);
+        func_0212ecc0(&data_0217d068, (u32) 0, (u32) 0);
     }
     data_0217d350->mUnk_74 = v4;
 }

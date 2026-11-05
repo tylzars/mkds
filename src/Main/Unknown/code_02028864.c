@@ -128,13 +128,13 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
             func_02025a50(0, gSelectKart->mHeap, p);
             func_02025b20(&e, gSelectCharacterGpTitleMNcgrName2, gSelectCharacterGpTitleMNcerName2, NULL,
                           gSelectCharacterGpTitleMBnclName2, NULL, NULL, func_02047a28);
-            func_02124748(1, e.mUnk_08, (void *) e.mUnk_00, e.mUnk_0c, 0, 0, p->mUnk_08, p->mUnk_0c);
+            func_02124748(1, e.mUnk_08, e.mUnk_00, e.mUnk_0c, 0, 0, p->mUnk_08, p->mUnk_0c);
             func_02025b20(&f, gSelectCharacterGpNameMNcgrName2, gSelectCharacterGpNameMNcerName2, NULL,
                           gSelectCharacterGpNameMBnclName2, NULL, NULL, func_02047a28);
-            func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0,
-                          2, p->mUnk_08, p->mUnk_0c);
-            func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, (void *) f.mUnk_00, f.mUnk_0c, 0,
-                          1, p->mUnk_08, p->mUnk_0c);
+            func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 2,
+                          p->mUnk_08, p->mUnk_0c);
+            func_02124748(data_usa_021537dc[gSelectKart->mCharacterIndex], f.mUnk_08, f.mUnk_00, f.mUnk_0c, 0, 1,
+                          p->mUnk_08, p->mUnk_0c);
         }
     }
     if (func_020280dc() == 0) {

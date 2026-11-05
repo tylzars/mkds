@@ -137,14 +137,14 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 v4.z = (s32) (((s64) u->z * 0x7000) >> 12);
                 break;
             case 2:
-                u = (Vec3 *) &p->mUnk_120;
+                u = &p->mUnk_120;
                 v4.x = (s32) (((s64) u->x * 0x7000) >> 12);
                 v4.y = (s32) (((s64) u->y * 0x7000) >> 12);
                 v4.z = (s32) (((s64) u->z * 0x7000) >> 12);
                 break;
             case 3:
             default:
-                u = (Vec3 *) &p->mUnk_120;
+                u = &p->mUnk_120;
                 v4.x = (s32) (((s64) u->x * -0x7000) >> 12);
                 v4.y = (s32) (((s64) u->y * -0x7000) >> 12);
                 v4.z = (s32) (((s64) u->z * -0x7000) >> 12);
@@ -177,7 +177,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 }
                 func_01ffd190(&data_02154f7c, p->mUnk_236, (Vec4 *) &p->mUnk_e0);
                 func_01ffcebc((Vec4 *) &p->mUnk_f0, (Vec4 *) &p->mUnk_e0, (Vec4 *) &p->mUnk_108.z);
-                func_01ffcd84((Vec3 *) &p->mUnk_120, (Vec4 *) &p->mUnk_108.z);
+                func_01ffcd84(&p->mUnk_120, (Vec4 *) &p->mUnk_108.z);
                 r = p->mUnk_514;
                 r->mUnk_5c = r->mUnk_5c + (s32) (((s64) (r->mUnk_40 - r->mUnk_5c) * 0x333 + 0x800) >> 12);
                 p->mUnk_388 = r->mUnk_5c;
@@ -185,8 +185,8 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                                                        gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2],
                                                        gPairsByAngle[((u16) p->mUnk_388 >> 4) * 2 + 1]);
                 if (p->mUnk_48 & 1) {
-                    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m2, (Vec3 *) &p->mUnk_120,
-                                                           gPairsByAngle[0xba], gPairsByAngle[0xbb]);
+                    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m2, &p->mUnk_120, gPairsByAngle[0xba],
+                                                           gPairsByAngle[0xbb]);
                     Matrix3x3Multiply(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
                 }
                 Vec3MultiplyMatrix3x3(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
@@ -427,7 +427,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == 4) {
             goto l7;
         }
-        Vec3Sub((Vec3 *) &o->mUnk_1d8, (Vec3 *) &o2->mUnk_1d8, &t);
+        Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             func_02039860(&t, &t);
         }
@@ -448,7 +448,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == 4) {
             goto l8;
         }
-        Vec3Sub((Vec3 *) &o->mUnk_1d8, (Vec3 *) &o2->mUnk_1d8, &t);
+        Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             func_02039860(&t, &t);
         }
@@ -469,7 +469,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == 4) {
             goto l9;
         }
-        Vec3Sub((Vec3 *) &o->mUnk_1d8, (Vec3 *) &o2->mUnk_1d8, &t);
+        Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             func_02039860(&t, &t);
         }
@@ -490,7 +490,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == 4) {
             goto l10;
         }
-        Vec3Sub((Vec3 *) &o->mUnk_1d8, (Vec3 *) &o2->mUnk_1d8, &t);
+        Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             func_02039860(&t, &t);
         }

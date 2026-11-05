@@ -81,12 +81,12 @@ void func_0209a6dc(void *a) {
 }
 
 void DrawBeachTree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gBeachTree1, b);
 }
@@ -105,12 +105,12 @@ void func_0209a5f8(void *a) {
 }
 
 void DrawOpaTree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gOpaTree1, b);
 }
@@ -129,12 +129,12 @@ void func_0209a514(void *a) {
 }
 
 void DrawOlgMush1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gOlgMush1, b);
 }
@@ -153,12 +153,12 @@ void func_0209a430(void *a) {
 }
 
 void DrawOlgPipe1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gOlgPipe1, b);
 }
@@ -177,12 +177,12 @@ void func_0209a34c(void *a) {
 }
 
 void DrawOf6yoshi1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gOf6yoshi1, b);
 }
@@ -201,12 +201,12 @@ void func_0209a268(void *a) {
 }
 
 void DrawNsCannon1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gNsCannon1, b);
 }
@@ -225,12 +225,12 @@ void func_0209a184(void *a) {
 }
 
 void DrawCrossTree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gCrossTree1, b);
 }
@@ -249,12 +249,12 @@ void func_0209a0a0(void *a) {
 }
 
 void DrawBankTree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gBankTree1, b);
 }
@@ -273,12 +273,12 @@ void func_02099fbc(void *a) {
 }
 
 void DrawGardenTree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gGardenTree1, b);
 }
@@ -297,12 +297,12 @@ void func_02099ed8(void *a) {
 }
 
 void DrawTownTree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gTownTree1, b);
 }
@@ -321,12 +321,12 @@ void func_02099df4(void *a) {
 }
 
 void DrawMarioTree3(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gMarioTree3, b);
 }
@@ -345,12 +345,12 @@ void func_02099d10(void *a) {
 }
 
 void DrawSnowTree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gSnowTree1, b);
 }
@@ -369,12 +369,12 @@ void func_02099c2c(void *a) {
 }
 
 void DrawDeTree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gDeTree1, b);
 }
@@ -393,12 +393,12 @@ void func_02099b48(void *a) {
 }
 
 void DrawOlaTree1c(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gOlaTree1c, b);
 }
@@ -417,12 +417,12 @@ void func_02099a64(void *a) {
 }
 
 void DrawOsaTree1c(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gOsaTree1c, b);
 }
@@ -441,12 +441,12 @@ void func_02099980(void *a) {
 }
 
 void DrawKinoHouse1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gKinoHouse1, b);
 }
@@ -465,12 +465,12 @@ void func_0209989c(void *a) {
 }
 
 void DrawKinoHouse2(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gKinoHouse2, b);
 }
@@ -489,12 +489,12 @@ void func_020997b8(void *a) {
 }
 
 void DrawKinoMount1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gKinoMount1, b);
 }
@@ -513,12 +513,12 @@ void func_020996d4(void *a) {
 }
 
 void DrawKinoMount2(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gKinoMount2, b);
 }
@@ -537,12 +537,12 @@ void func_020995f0(void *a) {
 }
 
 void DrawOm6Tree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gOm6Tree1, b);
 }
@@ -561,12 +561,12 @@ void func_0209950c(void *a) {
 }
 
 void DrawOf6Tree1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gOf6Tree1, b);
 }
@@ -585,12 +585,12 @@ void func_02099428(void *a) {
 }
 
 void DrawBankEgg1(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gBankEgg1, b);
 }
@@ -609,12 +609,12 @@ void func_02099344(void *a) {
 }
 
 void DrawMiniDokan(u32 a, int b) {
-    u32 v1;
+    Unk02012f58 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
-    v1 = (u32) func_020e6cbc((Vec3 *) (b + 4));
-    func_01ff9048((u32) 0x19, (void *) v1, 0xc);
+    v1 = func_020e6cbc((Vec3 *) (b + 4));
+    func_01ff9048((u32) 0x19, v1, 0xc);
     func_01ff9048((u32) 0x1b, (void *) (b + 0x1c), 3);
     DrawMapObjectModelWithPos(a, gMiniDokan, b);
 }

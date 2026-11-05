@@ -238,15 +238,15 @@ void func_ov001_0219c0bc(void) {
     x = data_ov001_021a6b54[2];
     gSelectGhost->mSelectGhostSTable[n + x].mUnk_00 = 1;
     r = data_ov001_021a6b88[func_0211e274(data_ov001_021a6b78[gSelectGhost->mIndex])];
-    func_02124748((u32) (r), (void *) (gSelectGhost->mPlayerCharacterMNcer),
-                  (void *) (gSelectGhost->mPlayerCharacterMNcgr), (void *) (gSelectGhost->mPlayerCharacterMBncl), 1,
-                  (u32) (a), (void *) (gSelectGhost->mSelectGhostSONcer), (void *) (gSelectGhost->mSelectGhostSBncl));
+    func_02124748((u32) (r), (gSelectGhost->mPlayerCharacterMNcer), (gSelectGhost->mPlayerCharacterMNcgr),
+                  (gSelectGhost->mPlayerCharacterMBncl), 1, (u32) (a), (gSelectGhost->mSelectGhostSONcer),
+                  (gSelectGhost->mSelectGhostSBncl));
     blk = gSelectGhost->mPlayerCharacterMONclr->mUnk_0c;
-    CallQueueAppend(0x1e, 0x100,
-                    blk + (func_02124a68((u32) (r), (void *) (gSelectGhost->mPlayerCharacterMNcer),
-                                         (void *) (gSelectGhost->mPlayerCharacterMBncl))
-                           << 5),
-                    0x20);
+    CallQueueAppend(
+        0x1e, 0x100,
+        blk + (func_02124a68((u32) (r), (gSelectGhost->mPlayerCharacterMNcer), (gSelectGhost->mPlayerCharacterMBncl))
+               << 5),
+        0x20);
     k = func_0211e1f0(data_ov001_021a6b78[gSelectGhost->mIndex]);
     func_021171a0(k, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, b, 9, 1);
     func_0211e38c(data_ov001_021a6b78[gSelectGhost->mIndex], buf14);
@@ -314,10 +314,10 @@ void func_ov001_0219be5c(void) {
     gSelectGhost->mSelectCupCourseTaMTable[n + 5].mUnk_00 = 1;
     func_0211de00(data_ov001_021a6ba4[func_0202968c()], gSelectGhost->mSelectCupCourseMNcer,
                   gSelectGhost->mSelectCupCourseTaMBncl, 0, 0);
-    func_0211ded0((u32) (data_ov001_021a6ba4[func_0202968c()]), (void *) gSelectGhost->mSelectCupCourseMNcer,
-                  (void *) gSelectGhost->mSelectCupCourseTaMBncl, (u32) (5),
-                  (u16) (func_02124a68((u32) (5), (void *) (gSelectGhost->mSelectCupCourseMNcer),
-                                       (void *) (gSelectGhost->mSelectCupCourseTaMBncl))),
+    func_0211ded0((u32) (data_ov001_021a6ba4[func_0202968c()]), gSelectGhost->mSelectCupCourseMNcer,
+                  gSelectGhost->mSelectCupCourseTaMBncl, (u32) (5),
+                  (u16) (func_02124a68((u32) (5), (gSelectGhost->mSelectCupCourseMNcer),
+                                       (gSelectGhost->mSelectCupCourseTaMBncl))),
                   0);
     func_0212426c(0, 2, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x73),
                   gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMTable);
@@ -409,7 +409,7 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
         }
     }
     func_ov001_0219c0bc();
-    FrmHeapShrinkInParent((void *) (gSelectGhost->mHeap));
+    FrmHeapShrinkInParent((gSelectGhost->mHeap));
 }
 
 void func_ov001_0219baf4(void) {

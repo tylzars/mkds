@@ -372,12 +372,12 @@ void func_02129cbc(void) {
     v1 = FindSceneFile(data_0216e9e8);
     LoadNclrData(&gKeyboard->mNclr, v1);
     func_0200ee74(gKeyboard->mNcgr->mData, gKeyboard->mNcgr->mDataSize);
-    func_0214bf04((const void *) (gKeyboard->mNcgr->mData), 0, (u32) (gKeyboard->mNcgr->mDataSize));
-    func_0214bea4((const void *) (gKeyboard->mNcgr->mData), 0, (u32) (gKeyboard->mNcgr->mDataSize));
+    func_0214bf04(gKeyboard->mNcgr->mData, 0, (u32) (gKeyboard->mNcgr->mDataSize));
+    func_0214bea4(gKeyboard->mNcgr->mData, 0, (u32) (gKeyboard->mNcgr->mDataSize));
     func_0200ee74(gKeyboard->mNclr->mData, gKeyboard->mNclr->mDataSize);
-    func_0214c090((const void *) (gKeyboard->mNclr->mData), 0, (u32) (((u32) 0x000001a0u)));
-    func_0214c090((const void *) (&gKeyboard->mNclr->mData[0xe0]), 0x1c0, (u32) 0x40);
-    func_0214c028((const void *) (gKeyboard->mNclr->mData), 0, (u32) (gKeyboard->mNclr->mDataSize));
+    func_0214c090(gKeyboard->mNclr->mData, 0, (u32) (((u32) 0x000001a0u)));
+    func_0214c090(&gKeyboard->mNclr->mData[0xe0], 0x1c0, (u32) 0x40);
+    func_0214c028(gKeyboard->mNclr->mData, 0, (u32) (gKeyboard->mNclr->mDataSize));
     v1 = FindSceneFile(data_0216e9fc);
     LoadNcgrData(&v2, v1);
     func_0200ee74(v2->mData, v2->mDataSize);

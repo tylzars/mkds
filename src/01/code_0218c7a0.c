@@ -70,13 +70,13 @@ void func_ov001_0218d2c4(Unk02188950 *a) {
 
     func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_070), (s32) (a->mPrm->mUnk_074));
-    func_0209b688((void *) (a->mNsbmd), (u16) (0));
+    func_0209b688(a->mNsbmd, (u16) (0));
     list = func_02100138(0x1fe);
     if (list != NULL) {
         for (i = 0; i < list->mUnk_04 && (p = list->mUnk_00[i]) != NULL; i++) {
             func_ov001_02187218(p, 1, NULL);
             func_ov001_02188d64(p, (s32) (p->mPrm->mUnk_070), (s32) (p->mPrm->mUnk_074));
-            func_0209b688((void *) (p->mNsbmd), (u16) (0));
+            func_0209b688((p->mNsbmd), (u16) (0));
         }
     }
     local = data_ov001_021a7c08;
@@ -239,8 +239,7 @@ void func_ov001_0218cedc(u32 a, Unk02188950 *b) {
             func_ov001_0218d3ec(b);
         }
     }
-    if (func_020d2c2c((Vec3 *) &b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mUnk_64, 9, NULL) ==
-        2) {
+    if (func_020d2c2c(&b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mUnk_64, 9, NULL) == 2) {
         func_020d2774(&b->mUnk_000, (u32) (0x253));
     }
     func_ov001_021864ac(a, b);
@@ -288,14 +287,14 @@ void func_ov001_0218cdb8(Unk02188950 *e) {
     b->mUnk_0a4 = (struct Unk0218dabc *) a;
     c->mUnk_0a4 = (struct Unk0218dabc *) b;
     d->mUnk_0a4 = (struct Unk0218dabc *) c;
-    e->mUnk_000.mUnk_94 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (e->mUnk_000.mUnk_94), (u32) (0xd), (Vec3 *) (&e->mUnk_000.mPos));
+    e->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    func_02109110((Unk0210bfbc *) (e->mUnk_000.mUnk_94), (u32) (0xd), (&e->mUnk_000.mPos));
     e->mUnk_000.mUnk_70 = data_0217cbec[0x1d];
 }
 
 void func_ov001_0218cd80(Unk02188950 *a) {
-    a->mUnk_000.mUnk_94 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xd), (Vec3 *) (&a->mUnk_000.mPos));
+    a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xd), (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cbec[0x1d];
 }
 
@@ -445,8 +444,7 @@ void func_ov001_0218c830(void) {
     void *v7 = &func_ov001_02185fb0;
     void *v8 = &func_ov001_02185f04;
     void *v9 = &func_ov001_021860cc;
-    u32 v11 =
-        (u32) func_ov001_0219b510(v7, v8, v9, (u32) 0x2u, (u16) ((u32) 0x1u), (u16) ((u32) 0x0u), (u16) ((u32) 0x0u));
+    void *v11 = func_ov001_0219b510(v7, v8, v9, (u32) 0x2u, (u16) ((u32) 0x1u), (u16) ((u32) 0x0u), (u16) ((u32) 0x0u));
 }
 
 void *func_ov001_0218c818(void) {
@@ -461,8 +459,7 @@ void func_ov001_0218c7d4(void) {
     void *v7 = &func_ov001_02185fb0;
     void *v8 = &func_ov001_02185f04;
     void *v9 = &func_ov001_021860cc;
-    u32 v11 =
-        (u32) func_ov001_0219b510(v7, v8, v9, (u32) 0x2u, (u16) ((u32) 0x1u), (u16) ((u32) 0x0u), (u16) ((u32) 0x0u));
+    void *v11 = func_ov001_0219b510(v7, v8, v9, (u32) 0x2u, (u16) ((u32) 0x1u), (u16) ((u32) 0x0u), (u16) ((u32) 0x0u));
 }
 
 void *func_ov001_0218c7b8(void) {

@@ -192,7 +192,7 @@ s32 func_02035db4(u32 a) {
 #pragma thumb on
 
 void func_02035d90(void) {
-    HeapDestroy((void *) (data_02174e6c->mHeap));
+    HeapDestroy(data_02174e6c->mHeap);
     *&data_02174e6c = NULL;
 }
 

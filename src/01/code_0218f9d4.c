@@ -67,8 +67,8 @@
 #include "Main/Unknown/code_02061654.h"
 
 void func_ov001_02192890(Unk02188950 *a) {
-    a->mUnk_000.mUnk_94 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xc), (Vec3 *) (&a->mUnk_000.mPos));
+    a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xc), (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cbec[0x14];
 }
 
@@ -1093,15 +1093,15 @@ int func_ov001_02190168(Unk02188950 *c) {
         b = NULL;
     }
     if (func_ov001_021871f8(a, 3) && func_ov001_021871f8(b, 3)) {
-        if (func_ov001_02188220((Unk02188950 *) ((
-                data_021759c0->mMode == 4
-                    ? func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0) + 2))
-                    : 0))) == 1) {
+        if (func_ov001_02188220(
+                ((data_021759c0->mMode == 4
+                      ? func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0) + 2))
+                      : 0))) == 1) {
             func_ov001_02190270(c);
-        } else if (func_ov001_02188220((Unk02188950 *) ((
-                       data_021759c0->mMode == 4
-                           ? func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0) + 2))
-                           : 0))) == 2) {
+        } else if (func_ov001_02188220(
+                       ((data_021759c0->mMode == 4
+                             ? func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0) + 2))
+                             : 0))) == 2) {
             func_ov001_02190248(c);
         } else {
             func_ov001_02188e88(c);
@@ -1126,10 +1126,10 @@ void func_ov001_021900ac(Unk02188950 *c) {
     } else {
         b = NULL;
     }
-    if (func_ov001_02188220((Unk02188950 *) ((
-            data_021759c0->mMode == 4
-                ? func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0) + 2))
-                : 0))) >= 2) {
+    if (func_ov001_02188220(
+            ((data_021759c0->mMode == 4
+                  ? func_ov001_02181b68((u16) ((data_021759c0->mMode == 4 ? func_ov001_02181b54() : 0) + 2))
+                  : 0))) >= 2) {
         func_ov001_02190fc4(a);
         func_ov001_02190fc4(b);
     } else {
@@ -1319,7 +1319,7 @@ void func_ov001_0218fb24(u32 a, Unk02188950 *b) {
         }
         b->mUnk_134 = value;
     }
-    func_0209b688((void *) (b->mNsbmd), (u16) b->mUnk_134);
+    func_0209b688(b->mNsbmd, (u16) b->mUnk_134);
     func_ov001_021864ac(a, b);
 }
 

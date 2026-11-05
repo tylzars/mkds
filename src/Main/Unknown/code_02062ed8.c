@@ -29,8 +29,8 @@ static inline void func_0206331c_inline(u32 a, u8 *b, Unk02084b2c *c, void *d, c
     if (f == NULL) {
         *g = 0;
     } else {
-        func_0208823c(a, b, c, 1, d, (void *) e);
-        func_0208805c(b, (void *) f, d);
+        func_0208823c(a, b, c, 1, d, e);
+        func_0208805c(b, f, d);
         func_02087cfc(b, 0, 1);
         func_02087f84(b, 0);
     }

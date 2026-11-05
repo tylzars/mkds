@@ -119,7 +119,7 @@ void func_ov001_021819f4(void) {
     Kart *c;
     Unk021a9b90 *o;
 
-    data_ov001_021a9b90 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x68);
+    data_ov001_021a9b90 = HeapAlloc(GetHeap(func_020364e8()), 0x68);
     c = GetKart((u16) data_021759c0->mEntryIndex);
     o = data_ov001_021a9b90;
     o->mUnk_34 = c->mPos;

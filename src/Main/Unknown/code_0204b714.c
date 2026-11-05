@@ -26,7 +26,7 @@ void func_0204bb34(void *a) {
     s32 v1;
     u8 *q;
     o = FS_FindArchive(data_usa_021651d0, 3);
-    g = (Unk02175ec0 *) &data_02175ec0;
+    g = &data_02175ec0;
     while (1) {
         s = IrqDisable();
         b = (Unk021762e0 *) &data_usa_021762e0;

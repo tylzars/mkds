@@ -74,8 +74,8 @@ void func_ov001_02180800(void) {
                 *(u16 *) 0x500040a = 0x7c1f;
                 *(u16 *) 0x500040c = 0;
                 *(u16 *) 0x500040e = 0xffff;
-                func_ov001_02180ccc((u16 *) (data_ov001_021a99e4->mUnk_00a8));
-                MemCopyHalfwordsToG2sBg1CntBits8To12Address((const void *) data_ov001_021a99e4->mUnk_60a8, 0, 0x600);
+                func_ov001_02180ccc((data_ov001_021a99e4->mUnk_00a8));
+                MemCopyHalfwordsToG2sBg1CntBits8To12Address(data_ov001_021a99e4->mUnk_60a8, 0, 0x600);
                 break;
         }
     }
@@ -131,7 +131,7 @@ void func_ov001_02180800(void) {
             func_ov001_02180ad0(&data_ov001_021a99e4->mUnk_0078[idx], 0x80, 0x62,
                                 data_ov001_021a99e4->mUnk_0004 == 3 ? 6 : 7, 0x412, data_ov001_021a99ec);
         }
-        MemCopyWordsToG2sBg1CntBits2To5Address((const void *) data_ov001_021a99e4->mUnk_00a8, 0, 0x6000);
+        MemCopyWordsToG2sBg1CntBits2To5Address(data_ov001_021a99e4->mUnk_00a8, 0, 0x6000);
     }
     switch (data_ov001_021a99e4->mUnk_0008) {
         case 0:
@@ -178,13 +178,13 @@ void func_ov001_02180610(void) {
     void *x;
     int i;
 
-    data_ov001_021a99e4 = HeapAlloc((void *) func_ov001_021807e4(), 0x66a8);
+    data_ov001_021a99e4 = HeapAlloc(func_ov001_021807e4(), 0x66a8);
     data_ov001_021a99e4->mUnk_0000 = 0;
     data_ov001_021a99e4->mUnk_0004 = 1;
     data_ov001_021a99e4->mUnk_0008 = 1;
-    func_ov001_02180ccc((u16 *) (data_ov001_021a99e4->mUnk_00a8));
-    func_ov001_02180cb4((u16 *) (data_ov001_021a99e4->mUnk_60a8));
-    x = func_02038d88((void *) func_ov001_021807e4(), &v);
+    func_ov001_02180ccc(data_ov001_021a99e4->mUnk_00a8);
+    func_ov001_02180cb4(data_ov001_021a99e4->mUnk_60a8);
+    x = func_02038d88(func_ov001_021807e4(), &v);
     func_ov001_021807a8(x, 0, 0, 0, 0, 4, 0, 0);
     func_ov001_02180774(x, 2, 0, 0, 0, 0xe, 1);
     func_ov001_02180740(x, 2, 0, 0, 0, 4, 4);

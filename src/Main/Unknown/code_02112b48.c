@@ -298,11 +298,11 @@ void func_02113f34(void) {
     v1 = FindSceneFile(gRecordVSMBNclrName);
     LocateNclr(&v7, v1);
     v3 = v4->mData;
-    CallQueueAppend((u32) 0x13, (u32) 0, (void *) (gRecordVS->mRecordVSMNcgr->mData),
+    CallQueueAppend((u32) 0x13, (u32) 0, (gRecordVS->mRecordVSMNcgr->mData),
                     (u32) (gRecordVS->mRecordVSMNcgr->mDataSize));
     CallQueueAppend((u32) 0xe, (u32) 0, v4->mData, (u32) (((u32) 0x000001a0u)));
     CallQueueAppend((u32) 0xe, (u32) 0x1c0, v3 + 0xe0, (u32) 0x40);
-    CallQueueAppend((u32) 0x23, (u32) 0, (void *) (gRecordVS->mRecordVSSNcgr->mData),
+    CallQueueAppend((u32) 0x23, (u32) 0, (gRecordVS->mRecordVSSNcgr->mData),
                     (u32) (gRecordVS->mRecordVSSNcgr->mDataSize));
     CallQueueAppend((u32) 0x1e, (u32) 0, v8->mData, v8->mDataSize);
     CallQueueAppend((u32) 4, (u32) 0, v5->mData, v5->mDataSize);
@@ -533,7 +533,7 @@ void func_021138e4(void) {
         }
     }
     if (gRecordVS->mUnk_68 != v4) {
-        func_0212ecc0((const void *) &data_0217d068, (u32) 0, (u32) 0);
+        func_0212ecc0(&data_0217d068, (u32) 0, (u32) 0);
     }
     gRecordVS->mUnk_68 = v4;
 }

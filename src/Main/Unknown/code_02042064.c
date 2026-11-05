@@ -430,7 +430,7 @@ u32 LoadCourseMapSettingsData(u32 arg0) {
 #pragma thumb on
 s32 LoadCourseMapStartPlacementsData(void *a, ...) {
     gCourseMap->mStartPlacementCount = ReadCourseMapSectionCount(&a);
-    gCourseMap->mStartPlacements = (s32) a;
+    gCourseMap->mStartPlacements = a;
     return 1;
 }
 

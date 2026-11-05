@@ -6,7 +6,7 @@
 
 Unk0217aa08_14 *func_02056284(const char *a) {
     int v1;
-    v1 = func_02048684(a, (void *) data_0217aa08->mUnk_14[2], (u32) (((u32) 0x00001000u)));
+    v1 = func_02048684(a, data_0217aa08->mUnk_14[2], (u32) (((u32) 0x00001000u)));
     if (v1 != 0) {
         return data_0217aa08->mUnk_14[2];
     }

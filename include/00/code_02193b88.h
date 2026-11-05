@@ -78,7 +78,7 @@ typedef struct Unk0219405c {
 typedef struct Unk021941c4Msg {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
+    /* 08 */ void *mUnk_08;
 } Unk021941c4Msg;
 
 // Entry of the list at 0x38 of GpiPeer.

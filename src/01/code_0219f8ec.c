@@ -148,14 +148,12 @@ void func_ov001_021a0b3c(void) {
         if (i == 8) {
             if (gMissionRunMSsel->mUnk_a0 != 0) {
                 gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
-                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 1,
-                                    (void *) gMissionRunMSsel->mMissionRunMSselSNcer,
-                                    (void *) gMissionRunMSsel->mMissionRunMSselSBncl, (u32) (0x2d), (u16) (8), 1);
+                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 1, gMissionRunMSsel->mMissionRunMSselSNcer,
+                                    gMissionRunMSsel->mMissionRunMSselSBncl, (u32) (0x2d), (u16) (8), 1);
             } else {
                 gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][4]].mUnk_00 = 1;
-                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 0,
-                                    (void *) gMissionRunMSsel->mMissionRunMSselSNcer,
-                                    (void *) gMissionRunMSsel->mMissionRunMSselSBncl, (u32) (0x2d), (u16) (8), 1);
+                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 0, gMissionRunMSsel->mMissionRunMSselSNcer,
+                                    gMissionRunMSsel->mMissionRunMSselSBncl, (u32) (0x2d), (u16) (8), 1);
             }
         } else {
             gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
@@ -198,7 +196,7 @@ void func_ov001_021a0b3c(void) {
             }
         }
         gMissionRunMSsel->mMissionRunMSselSTable[cnt10 + data_ov001_021a6e10[i][1]].mUnk_00 = 1;
-        func_ov001_021a0e08((s32) ((s16) i), (u16 *) buf);
+        func_ov001_021a0e08((s32) ((s16) i), buf);
         func_0212426c(1, data_ov001_021a6e10[i][1], gMissionRunMSsel->mMissionRunMSselSBnll, buf,
                       gMissionRunMSsel->mMissionRunMSselSBncl, gMissionRunMSsel->mMissionRunMSselSTable);
         func_02124a98(data_ov001_021a6e7c[i][0], 1, gMissionRunMSsel->mMissionRunMSselSNcer,

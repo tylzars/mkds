@@ -256,7 +256,7 @@ void func_ov001_0219e1b0(void) {
 
 void func_ov001_0219e118(void) {
     data_ov001_021ca400->mState = data_ov001_021ca400->mNextState;
-    func_020ae6ac((void *) (data_ov001_021ca400->mUnk_068), NULL);
+    func_020ae6ac(data_ov001_021ca400->mUnk_068, NULL);
     switch (data_ov001_021ca400->mState) {
         case 0:
             func_ov001_0219e34c();
@@ -285,7 +285,7 @@ void func_ov001_0219e118(void) {
     }
     func_02124c30(data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mThanksYouMNcer,
                   data_ov001_021ca400->mEndingThanksBnll, data_ov001_021ca400->mUnk_068, data_ov001_021ca400->mUnk_020);
-    func_020ae630((void *) (data_ov001_021ca400->mUnk_068), NULL);
+    func_020ae630(data_ov001_021ca400->mUnk_068, NULL);
 }
 
 void func_ov001_0219e0d4(void) {
@@ -295,7 +295,7 @@ void func_ov001_0219e0d4(void) {
         bits = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
         *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | ((bits | 0x10) << 8);
     }
-    func_020ae5f0((void *) (data_ov001_021ca400->mUnk_068), NULL);
+    func_020ae5f0(data_ov001_021ca400->mUnk_068, NULL);
 }
 
 void func_ov001_0219e0c4(void) {

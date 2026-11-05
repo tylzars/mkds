@@ -109,7 +109,7 @@ void func_ov001_021899e4(void) {
                 row = func_ov001_0218b2d4((Unk02188950 *) obj);
                 dst = GetRaceNclrNcgr(6)->mNclr->mData;
                 nclr = NULL;
-                LocateNclr((Nclr **) (&nclr), (void *) (FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR")));
+                LocateNclr((&nclr), (FindSceneFileWrapper("race_transfer_map_mr_s_o.NCLR")));
                 for (k = 0; k < 16; k++) {
                     dst[0x50 + k] = nclr->mData[(row + 2) * 16 + k];
                 }

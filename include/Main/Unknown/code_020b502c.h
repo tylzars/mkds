@@ -216,7 +216,7 @@ typedef struct CourseMap {
     /* 014 */ u16 mGroupEntryCount;
     /* 016 */ u8 mUnk_016[0x2];
     /* 018 */ CourseMapSettings *mSettings;
-    /* 01c */ s32 mStartPlacements;
+    /* 01c */ CourseMapPlacement *mStartPlacements;
     // Count of records of mStartPlacements; four of the five reads only test > 1 (several start spots: battle) or <= 1.
     /* 020 */ u16 mStartPlacementCount;
     /* 022 */ u8 mUnk_022[0x2];

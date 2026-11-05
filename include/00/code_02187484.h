@@ -35,7 +35,7 @@ typedef struct Unk021b4cac {
     /* 000 */ u8 mUnk_000[0x24];
     /* 024 */ s32 mResult;
     /* 028 */ u8 mUnk_028[0x910];
-    /* 938 */ u32 mUnk_938;
+    /* 938 */ const char *mUnk_938;
     /* 93c */ u8 mUnk_93c[0x2c];
     /* 968 */ u8 mThread[0x6c];
     /* 9d4 */ s32 mUnk_9d4;

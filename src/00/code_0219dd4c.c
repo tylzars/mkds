@@ -88,7 +88,7 @@ void InitMatching(WiFiMatching *param_1, GpConnection *param_2, void **param_3, 
     gWiFiMatching->mUnk_1e8 = 0;
     gWiFiMatching->mGameName = (u32) param_5;
     gWiFiMatching->mUnk_2e0 = (u32) param_6;
-    gWiFiMatching->mUnk_2e4 = (u32) param_7;
+    gWiFiMatching->mUnk_2e4 = param_7;
     gWiFiMatching->mUnk_2e8 = param_8;
     MemFill(gWiFiMatching->mUnk_2ec, 0, 0x40);
     gWiFiMatching->mUnk_32c = 0;
@@ -1209,7 +1209,7 @@ u32 func_ov000_021a0a40(u32 a, u32 b, u32 c, u32 *d, u32 e) {
     s.mUnk_08 = a;
     s.mUnk_09 = e * 4;
     s.mUnk_0a = gWiFiMatching->mUnk_1a;
-    s.mUnk_0c = (u32) gWiFiMatching->mUnk_1c;
+    s.mUnk_0c = gWiFiMatching->mUnk_1c;
     s.mUnk_10 = gWiFiMatching->mUnk_1e8;
     for (i = 0; i < 5; i++) {
         r = func_ov000_0218b530(gWiFiMatching->mUnk_e4, Gt2FormatAddress(b, 0, 0), c, (u8 *) &s, s.mUnk_09 + 0x14);
@@ -1316,7 +1316,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             if (t == 0xff) {
                 break;
             }
-            if (func_ov000_0219fee4(func_ov000_021a0ae8(t, b, c, d, (void *) g, i)) == 0) {
+            if (func_ov000_0219fee4(func_ov000_021a0ae8(t, b, c, d, g, i)) == 0) {
                 break;
             }
             return 0;
@@ -1559,7 +1559,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             } else {
                 g[0] = 0;
             }
-            if (func_ov000_0219fee4(func_ov000_021a0ae8(0x12, b, c, d, (void *) g, 1)) == 0) {
+            if (func_ov000_0219fee4(func_ov000_021a0ae8(0x12, b, c, d, g, 1)) == 0) {
                 break;
             }
             return 0;
@@ -1767,15 +1767,14 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
         }
         c = TRUE;
         p = gWiFiMatching;
-        n = func_02152520((void *) func_ov000_0219c9c4(), (u8 *) p->mUnk_2e4 + p->mUnk_2ec[p->mUnk_19d] * 12);
+        n = func_02152520(func_ov000_0219c9c4(), p->mUnk_2e4 + p->mUnk_2ec[p->mUnk_19d] * 12);
         if (n == 0) {
             continue;
         }
         if (n == -1) {
             continue;
         }
-        if (func_02152698((u8 *) gWiFiMatching->mUnk_2e4 + gWiFiMatching->mUnk_2ec[gWiFiMatching->mUnk_19d] * 12) ==
-            0) {
+        if (func_02152698(gWiFiMatching->mUnk_2e4 + gWiFiMatching->mUnk_2ec[gWiFiMatching->mUnk_19d] * 12) == 0) {
             continue;
         }
         for (k = 1; k <= gWiFiMatching->mLastParticipantPos; k++) {

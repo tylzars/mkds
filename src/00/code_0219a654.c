@@ -20,7 +20,7 @@ Unk0219b1d4 *func_ov000_0219b178(void) {
     Unk0219b1d4 a = {0};
 
     if (data_ov000_021b52c4 == NULL) {
-        data_ov000_021b52c4 = (void *) DarrayCreate(0x40, 4, (void (*)(void *)) func_ov000_0219b1d4);
+        data_ov000_021b52c4 = DarrayCreate(0x40, 4, (void (*)(void *)) func_ov000_0219b1d4);
     }
     DarrayAppend(data_ov000_021b52c4, &a);
     return DarrayGetElement(data_ov000_021b52c4, DarrayGetCount((u32 *) data_ov000_021b52c4) - 1);

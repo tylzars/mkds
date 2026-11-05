@@ -123,7 +123,7 @@ void func_ov001_0218a120(Unk0218d87c *a) {
             Vec3 v = {0, 0, 0};
             v.x = obj->mPrm->mUnk_0fc;
             v.y = obj->mPrm->mUnk_100;
-            func_ov001_02187c88(obj, 5, (const Vec3 *) (&v));
+            func_ov001_02187c88(obj, 5, (&v));
             if (func_02062ec4() != 0) {
                 func_ov001_0218a19c(obj);
             } else {
@@ -172,9 +172,9 @@ void func_ov001_0218a074(u32 a, Unk02188950 *b) {
 }
 
 void func_ov001_0218a034(Unk02188950 *a) {
-    func_020ac588((u32) (0xc9), 0xa, (void *) a);
-    a->mUnk_000.mUnk_94 = HeapAlloc((void *) GetHeap(func_020364e8()), 0x44);
-    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xc), (Vec3 *) (&a->mUnk_000.mPos));
+    func_020ac588((u32) (0xc9), 0xa, a);
+    a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    func_02109110((Unk0210bfbc *) (a->mUnk_000.mUnk_94), (u32) (0xc), (&a->mUnk_000.mPos));
     a->mUnk_000.mUnk_70 = data_0217cbec[0x50 / 4];
 }
 

@@ -216,15 +216,12 @@ void func_ov001_021972f4(void) {
         result = func_020601e4(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
         gRecordTAtt->mRecordTAttMTable[5].mUnk_00 = 1;
         tile = data_ov001_021a6864[result];
-        func_02124748((u32) (tile), (void *) (gRecordTAtt->mUnk_2c), (void *) (gRecordTAtt->mUnk_28),
-                      (void *) (gRecordTAtt->mUnk_34), 0, (u32) (5), (void *) (gRecordTAtt->mRecordTAttMNcer),
-                      (void *) (gRecordTAtt->mRecordTAttMBncl));
+        func_02124748((u32) (tile), (gRecordTAtt->mUnk_2c), (gRecordTAtt->mUnk_28), (gRecordTAtt->mUnk_34), 0,
+                      (u32) (5), (gRecordTAtt->mRecordTAttMNcer), (gRecordTAtt->mRecordTAttMBncl));
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
-        CallQueueAppend(
-            0xe, 0x80,
-            palette +
-                (func_02124a68((u32) (tile), (void *) (gRecordTAtt->mUnk_2c), (void *) (gRecordTAtt->mUnk_34)) << 5),
-            0x20);
+        CallQueueAppend(0xe, 0x80,
+                        palette + (func_02124a68((u32) (tile), (gRecordTAtt->mUnk_2c), (gRecordTAtt->mUnk_34)) << 5),
+                        0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
         gRecordTAtt->mRecordTAttMTable[6].mUnk_00 = 1;
         func_021171a0(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, 6, 6, 0);

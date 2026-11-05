@@ -83,10 +83,8 @@ void func_ov000_021851a0(void) {
     LocateNcer(&gWiFiAikotoba->mWiFiAikotobaSNcer, v1);
     v1 = FindSceneFile(data_ov000_021b0ed0);
     LocateNclr(&gWiFiAikotoba->mWiFiAikotobaSONclr, v1);
-    func_0214bea4((const void *) gWiFiAikotoba->mWiFiAikotobaSNcgr->mData, 0,
-                  (u32) (gWiFiAikotoba->mWiFiAikotobaSNcgr->mDataSize));
-    func_0214c028((const void *) gWiFiAikotoba->mWiFiAikotobaSONclr->mData, 0,
-                  (u32) (gWiFiAikotoba->mWiFiAikotobaSONclr->mDataSize));
+    func_0214bea4(gWiFiAikotoba->mWiFiAikotobaSNcgr->mData, 0, (u32) (gWiFiAikotoba->mWiFiAikotobaSNcgr->mDataSize));
+    func_0214c028(gWiFiAikotoba->mWiFiAikotobaSONclr->mData, 0, (u32) (gWiFiAikotoba->mWiFiAikotobaSONclr->mDataSize));
     return;
 }
 
@@ -363,7 +361,7 @@ void AdvanceWiFiAikotoba(void) {
 }
 
 void func_ov000_02184bcc(void) {
-    func_0214a40c((u32 *) ((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
+    func_0214a40c(((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
     return;
 }
 

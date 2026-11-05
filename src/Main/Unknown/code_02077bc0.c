@@ -1204,12 +1204,12 @@ void func_020790e0(void *a, s32 b) {
 #pragma thumb on
 
 void func_02079078(void *a, void *b, void *c, Unk020136f0 *d, Unk020136f0 *e, void *f) {
-    u32 v2;
+    Unk0201290c *v2;
     u32 v3;
     void *v1;
-    v2 = (u32) func_02084d3c(b, d, e);
+    v2 = func_02084d3c(b, d, e);
     func_020849c0(b, 3);
-    func_0207a14c((Unk0201290c *) v2, (u32) 1);
+    func_0207a14c(v2, (u32) 1);
     func_0208823c(0, c, b, 1, a, NULL);
     v1 = func_02013a4c(func_02013a30(f), 0);
     v3 = func_0207b8dc(2);
@@ -1228,10 +1228,10 @@ void func_02079038(void *a, Unk020136f0 *b, Unk020136f0 *c) {
 }
 
 void func_02079014(void *a, Unk020136f0 *b, Unk020136f0 *c) {
-    u32 v1;
-    v1 = (u32) func_02084d3c(a, b, c);
+    Unk0201290c *v1;
+    v1 = func_02084d3c(a, b, c);
     func_020849c0(a, 3);
-    func_0207a14c((Unk0201290c *) v1, (u32) 1);
+    func_0207a14c(v1, (u32) 1);
 }
 
 #pragma thumb off
@@ -1941,7 +1941,7 @@ void func_02077eb4(void *a, u32 *b) {
     u32 v1;
     u32 v2;
     v1 = ((u32) HeapAlloc(a, (u32) (((u32) 0x0000f000u))));
-    v2 = (u32) ExpHeapCreate((void *) ((void *) v1), (u32) ((u32) (((u32) 0x0000f000u))), (u32) 0);
+    v2 = (u32) ExpHeapCreate(((void *) v1), (u32) ((u32) (((u32) 0x0000f000u))), (u32) 0);
     b[1] = v2;
     *b = v1;
     b[4] = 0;
@@ -1990,7 +1990,7 @@ void LoadKartAndCharacterFiles(void) {
     e = (char *) &data_0217ad08->mUnk_1c8[c];
     func_02048590(BuildCharacterNsbmdPath(b, 1), p->mUnk_04, (void **) &p->mUnk_08);
     func_02048590(BuildCharacterNsbtxPath(b, 1), p->mUnk_04, (void **) &p->mUnk_0c);
-    func_02048590(BuildCharacterNsbcaPath(b, 2), p->mUnk_04, (void **) &p->mUnk_14);
+    func_02048590(BuildCharacterNsbcaPath(b, 2), p->mUnk_04, &p->mUnk_14);
     func_02048590(BuildEmblemNsbtxPath(b), p->mUnk_04, (void **) &p->mUnk_10);
     func_02048590(BuildKartNsbmdPath(c), p->mUnk_04, (void **) &p->mUnk_18);
     func_02048590(BuildKartNsbtxPath(c), p->mUnk_04, (void **) &p->mUnk_1c);

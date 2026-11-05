@@ -100,7 +100,7 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
 
 void func_02035c14(void) {
     void *v1;
-    v1 = GetBmgEntry((void *) data_02174e68->mUnk_88, 3);
+    v1 = GetBmgEntry(data_02174e68->mUnk_88, 3);
     func_02125ee8((int) 0xfffffff4, 0);
     func_02126638(v1, 0, 0, 0, 0, 0, 0);
 }
@@ -377,7 +377,7 @@ s32 func_0203551c(u16 *a) {
 #pragma thumb on
 
 void func_020354fc(void) {
-    HeapDestroy((void *) data_02174e68->mHeap);
+    HeapDestroy(data_02174e68->mHeap);
     *(int *) &data_02174e68 = 0;
 }
 
@@ -428,7 +428,7 @@ void func_020353a4(void) {
 
 void func_02035378(void) {
     void *v1;
-    v1 = GetBmgEntry((void *) data_02174e64->mUnk_088, 1);
+    v1 = GetBmgEntry(data_02174e64->mUnk_088, 1);
     func_0212658c(v1, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0);
 }
 

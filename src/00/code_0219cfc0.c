@@ -18,7 +18,7 @@ u32 func_ov000_0219d094(void *a, Unk0218ec44 *b) {
     if (gWiFiBuddySync == NULL || IsWiFiLoginDone() == 0) {
         return 0;
     }
-    c = func_02152520((void *) func_ov000_0219c9c4(), a);
+    c = func_02152520(func_ov000_0219c9c4(), a);
     if (c > 0 && GpGetBuddyIndex(gWiFiBuddySync->mGpConnection, c, &d) != 0) {
         return 0;
     }

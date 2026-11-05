@@ -311,11 +311,11 @@ void AdvanceOptionHensyuMenu(void) {
 }
 
 void func_ov001_02199988(void) {
-    func_0214a40c((u32 *) ((u32 *) (u32) (((u32) 0x04001050u))), 0, 2, 6, 10);
+    func_0214a40c(((u32 *) (u32) (((u32) 0x04001050u))), 0, 2, 6, 10);
     return;
 }
 
 void RegisterOptionHensyuMenuCallbacks(void) {
     UnkFunc *tbl[4] = {InitOptionHensyuMenu, ReleaseOptionHensyuMenu, AdvanceOptionHensyuMenu, func_ov001_02199988};
-    SetOptionStateCallbacks((UnkFunc **) (tbl));
+    SetOptionStateCallbacks((tbl));
 }

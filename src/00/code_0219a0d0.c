@@ -46,13 +46,13 @@ u32 CreateConnection(Gt2Socket *a, Gt2Connection **b, u32 c, u32 d) {
         e->mUnk_64 = 0;
         e->mUnk_66 = 0;
         if (InitBuffer(&e->mUnk_44, a->mUnk_3c) != 0 && InitBuffer(&e->mSendBuffer, a->mSendBufferSize) != 0) {
-            e->mUnk_5c = (void *) DarrayCreate(0x10, 0x40, NULL);
+            e->mUnk_5c = DarrayCreate(0x10, 0x40, NULL);
             if (e->mUnk_5c != NULL) {
-                e->mUnk_60 = (void *) DarrayCreate(0x10, 0x40, NULL);
+                e->mUnk_60 = DarrayCreate(0x10, 0x40, NULL);
                 if (e->mUnk_60 != NULL) {
-                    e->mUnk_98 = (void *) DarrayCreate(4, 2, NULL);
+                    e->mUnk_98 = DarrayCreate(4, 2, NULL);
                     if (e->mUnk_98 != NULL) {
-                        e->mUnk_9c = (void *) DarrayCreate(4, 2, NULL);
+                        e->mUnk_9c = DarrayCreate(4, 2, NULL);
                         if (e->mUnk_9c != NULL) {
                             HashtableSet(a->mConnections, &e);
                             *b = FindConnection(a, c, d);

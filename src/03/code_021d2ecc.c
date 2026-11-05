@@ -30,7 +30,7 @@ void func_ov003_021d2f00(u32 *a) {
     if ((u32) a >= (u32) b + 0x400) {
         c = 1;
     }
-    func_ov003_021d1d0c((Unk021d1d88 *) b->mUnk_800[c], a);
+    func_ov003_021d1d0c(b->mUnk_800[c], a);
 }
 
 Unk021d1770_08 *func_ov003_021d2eec(int a, int b) {

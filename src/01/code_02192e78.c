@@ -138,7 +138,7 @@ void AdvanceOptionStates(void) {
     if (gOptionStates->mNextState != -1) {
         gOptionStates->mCallbacks.mRelease();
         ClearOptionStateCallbacks();
-        HeapDestroy((void *) gOptionStates->mStateHeap);
+        HeapDestroy(gOptionStates->mStateHeap);
         gOptionStates->mStateHeap = CreateExpHeapFromMaxFree(gOptionStates->mHeap);
         switch (gOptionStates->mNextState) {
             case 0:

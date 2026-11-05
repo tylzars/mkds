@@ -66,7 +66,7 @@ void func_02076c50(Camera *a, s32 b) {
 
 void func_02076bcc(Camera *a) {
     Vec3 *b = &a->mViewPos;
-    Vec3 *c = (Vec3 *) &a->mViewLookAt;
+    Vec3 *c = &a->mViewLookAt;
 
     data_021704dc[0] = *b;
     data_021704dc[1] = *(Vec3 *) a;
@@ -335,7 +335,7 @@ void func_02075eb8(void) {
     CourseMapCamera *q;
     Unk020f41c4_B *r;
 
-    q = (CourseMapCamera *) gCourseMap->mUnk_cc;
+    q = gCourseMap->mUnk_cc;
     if (q == NULL) {
         return;
     }
@@ -384,7 +384,7 @@ void func_02075d08(s32 a) {
     if (s < 0) {
         return;
     }
-    q = (CourseMapCamera *) &gCourseMap->mUnk_7c[(u16) s];
+    q = &gCourseMap->mUnk_7c[(u16) s];
     p->mCourseMapCamera = q;
     p->mFovBlend = 0;
     p->mHalfFovPairFirst = q->mHalfFovPairFirst;

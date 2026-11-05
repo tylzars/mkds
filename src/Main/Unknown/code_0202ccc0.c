@@ -111,8 +111,8 @@ void func_0202d868(s32 a, s32 b, s32 c, s32 d) {
 void func_0202d82c(void) {
     void *v1;
     void *v2;
-    v1 = GetBmgEntry((void *) data_02174e40->mUnk_0ac, 0xd);
-    v2 = GetBmgEntry((void *) data_02174e40->mUnk_0a8, 4);
+    v1 = GetBmgEntry(data_02174e40->mUnk_0ac, 0xd);
+    v2 = GetBmgEntry(data_02174e40->mUnk_0a8, 4);
     data_02174e40->mUnk_0b0 = 8;
     func_02126230(v1, v2);
 }
@@ -176,7 +176,7 @@ void func_0202d6a0(void) {
 
 void func_0202d674(void) {
     void *v1;
-    v1 = GetBmgEntry((void *) data_02174e40->mUnk_0ac, 0);
+    v1 = GetBmgEntry(data_02174e40->mUnk_0ac, 0);
     func_0212658c(v1, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0);
 }
 
@@ -510,7 +510,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
 #pragma thumb on
 
 void func_0202cdd4(void) {
-    HeapDestroy((void *) data_02174e40->mHeap);
+    HeapDestroy(data_02174e40->mHeap);
     *(int *) &data_02174e40 = 0;
 }
 
@@ -519,7 +519,7 @@ void func_0202cdd4(void) {
 #pragma thumb on
 
 void func_0202ccc0(void) {
-    s16 a = func_02025ebc((Unk02025ebc *) &data_02174e40->mUnk_0cc);
+    s16 a = func_02025ebc(&data_02174e40->mUnk_0cc);
     int b;
     *(vu32 *) 0x4000010 = ((a << 16) & 0x1ff0000);
     b = -a;

@@ -230,7 +230,7 @@ void func_ov003_021c73cc(void) {
                 }
             }
             func_ov003_021cdc10(1);
-            g = (Unk021da1fc **) &data_ov003_021da1fc;
+            g = &data_ov003_021da1fc;
             b = (*g)->mUnk_08;
             k = (*g)->mUnk_14 * 3;
             if (b[k + 2] == 0) {
