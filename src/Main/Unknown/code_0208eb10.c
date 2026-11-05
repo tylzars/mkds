@@ -481,7 +481,7 @@ void func_0208f0f8(void *a) {
     data_021663f4.mUnk_18 = (q->mUnk_2c & 0xffff) << 3;
     data_021663f4.mUnk_1c = 0x10000;
     data_021663f4.mUnk_20 = 0x8000;
-    data_0217b08c->mUnk_34 = data_021759c0->mCourseId == 0x1d ? 0 : 0x8000;
+    data_0217b08c->mUnk_34 = data_021759c0->mCourseId == COURSE_ID_RAINBOW ? 0 : 0x8000;
 }
 
 void func_0208f0a0(void) {

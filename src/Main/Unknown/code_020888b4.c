@@ -165,7 +165,7 @@ void func_02089974(void) {
         }
     } else {
         gEntryYDifferenceLimit = 0x190000;
-        if (t->mCourseId == 0x2b) {
+        if (t->mCourseId == COURSE_ID_MINI_DOKAN_GC) {
             gEntryYDifferenceLimit = 0x28000;
         }
     }

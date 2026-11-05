@@ -62,7 +62,7 @@ void UpdateWater(Water *a) {
     s32 k;
     h = func_02108e6c(10);
     if (a->mUnk_170 != 0) {
-        if (data_021759c0->mCourseId != 0x1f) {
+        if (data_021759c0->mCourseId != COURSE_ID_BEACH) {
             v = 0x7f000;
         } else {
             v = func_020a02c8();

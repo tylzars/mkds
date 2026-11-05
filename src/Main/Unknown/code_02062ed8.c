@@ -114,14 +114,14 @@ void InitCourseModels(void *a) {
     func_020849c0(gCourseModels.mNsbmd, 8);
     func_02012ffc(e, 1);
     switch (data_021759c0->mCourseId) {
-        case 0xc:
+        case COURSE_ID_OLD_KOOPA_AGB:
             f = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02154a00);
             if (f >= 0) {
                 func_02013468(e, f, 0x1e);
                 func_020133e0(e, f, 0);
             }
             break;
-        case 0x16:
+        case COURSE_ID_BANK:
             f = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02154990);
             if (f >= 0) {
                 func_020133e0(e, f, 0);
@@ -183,7 +183,7 @@ void DrawCourseModelV(void) {
 void func_020631b0(void) {
     UnkVec16 a;
 
-    if (data_021759c0->mCourseId != 0x20) {
+    if (data_021759c0->mCourseId != COURSE_ID_KOOPA) {
         return;
     }
     a = data_usa_021653fc;
@@ -202,12 +202,12 @@ void func_0206302c(void) {
     gCourseModels.mUnk_ec = FALSE;
     gCourseModels.mUnk_f0 = 0;
     switch (data_021759c0->mCourseId) {
-        case 0x12:
-        case 0x1b:
-        case 0x2d:
+        case COURSE_ID_MANSION:
+        case COURSE_ID_DESERT:
+        case COURSE_ID_MINI_STAGE2:
             gCourseModels.mUnk_e0 = TRUE;
             break;
-        case 0x1d:
+        case COURSE_ID_RAINBOW:
             gCourseModels.mUnk_ec = TRUE;
             break;
     }

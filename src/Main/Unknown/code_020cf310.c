@@ -24,7 +24,7 @@ void func_020cfca4(void) {
     s32 j;
 
     switch (data_021759c0->mCourseId) {
-        case 0xf:
+        case COURSE_ID_OLD_NOKO_SFC:
             for (i = 0; i < 9; i++) {
                 for (j = 0; j < 3; j++) {
                     data_0217b490->mUnk_02.mUnk_01[i][j] = ((u16 *) 0x05000400)[i * 16 + j + 0x40];
@@ -41,18 +41,18 @@ void func_020cfca4(void) {
             }
             break;
         }
-        case 0x1c:
+        case COURSE_ID_TOWN:
             for (i = 0; i < 20; i++) {
                 data_0217b490->mUnk_02.mUnk_00[i] = ((u16 *) 0x05000400)[0x78 + i];
             }
             data_0217b490->mUnk_02.mUnk_00[20] = ((u16 *) 0x05000400)[0];
             break;
-        case 0x1f:
+        case COURSE_ID_BEACH:
             for (i = 0; i < 3; i++) {
                 data_0217b490->mUnk_02.mUnk_00[i] = ((u16 *) 0x05000400)[0x46 + i];
             }
             break;
-        case 0x20:
+        case COURSE_ID_KOOPA:
             for (i = 0; i < 6; i++) {
                 data_0217b490->mUnk_02.mUnk_03.mUnk_00[i] = ((u16 *) 0x05000400)[0x54 + i];
             }
@@ -65,7 +65,7 @@ void func_020cfca4(void) {
                 data_0217b490->mUnk_02.mUnk_03.mUnk_18[i] = ((u16 *) 0x05000400)[i];
             }
             break;
-        case 0x2e:
+        case COURSE_ID_MINI_STAGE3:
             for (i = 0; i < 5; i++) {
                 data_0217b490->mUnk_02.mUnk_00[i] = ((u16 *) 0x05000400)[0xfb + i];
             }
@@ -85,7 +85,7 @@ void func_020cf340(Unk020cf340 *a) {
     float f;
 
     switch (data_021759c0->mCourseId) {
-        case 0xf:
+        case COURSE_ID_OLD_NOKO_SFC:
             v = func_02062ed8();
             for (i = 0; i < 3; i++) {
                 a->mUnk_00[i + 0x40] = data_0217b490->mUnk_02.mUnk_01[v / 10][i];
@@ -165,7 +165,7 @@ void func_020cf340(Unk020cf340 *a) {
             GXS_EndLoadBGExtPltt();
             break;
         }
-        case 0x1f:
+        case COURSE_ID_BEACH:
             if (IsWaterPresent() != FALSE) {
                 n = GetWaterHeightFactor();
                 for (k = 7; k > 0; k--) {
@@ -242,7 +242,7 @@ void func_020cf340(Unk020cf340 *a) {
             GXS_EndLoadBGExtPltt();
             break;
         }
-        case 0x2e:
+        case COURSE_ID_MINI_STAGE3:
             if (IsWaterPresent() != FALSE) {
                 n = GetWaterHeightFactor();
                 x = GetWaterHeightAngle();

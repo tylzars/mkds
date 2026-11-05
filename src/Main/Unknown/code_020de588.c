@@ -50,7 +50,7 @@ void func_020de84c(void) {
         data_0217b708[j].mUnk_00 = gPairsByAngle[n * 2 + 1];
         data_0217b708[j].mUnk_04 = gPairsByAngle[n * 2];
     }
-    if (data_021759c0->mCourseId == 0x1d) {
+    if (data_021759c0->mCourseId == COURSE_ID_RAINBOW) {
         data_0217b71c->mUnk_14 &= 0xffff7fff;
         data_0217b710->mUnk_14 &= 0xffff7fff;
     }

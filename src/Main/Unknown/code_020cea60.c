@@ -3,11 +3,13 @@
 #include "Main/Unknown/code_020ccc74.h"
 #include "Main/Unknown/code_020ceaf8.h"
 #include "01/code_0219c784.h"
+#include "Main/Unknown/unk_021759c0.h"
 
 #pragma optimize_for_size on
 #pragma thumb on
 void func_020cea60(void) {
-    s32 t[6] = {0x2c, 0x2d, 0x2e, 0x2f, 0x2a, 0x2b};
+    s32 t[6] = {COURSE_ID_MINI_STAGE1, COURSE_ID_MINI_STAGE2,   COURSE_ID_MINI_STAGE3,
+                COURSE_ID_MINI_STAGE4, COURSE_ID_MINI_BLOCK_64, COURSE_ID_MINI_DOKAN_GC};
     s32 a;
 
     a = AdvanceSelectBattleStage();

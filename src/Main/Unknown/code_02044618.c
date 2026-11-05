@@ -48,7 +48,7 @@ void func_02045590(void) {
     u16 i;
     Unk020565e4 *e;
 
-    data_021759c0->mNextHeader.mCourseId = 0x14;
+    data_021759c0->mNextHeader.mCourseId = COURSE_ID_CROSS;
     data_021759c0->mNextHeader.mCupIndex = 0;
     data_021759c0->mNextHeader.mMode = MODE_GRAND_PRIX;
     data_021759c0->mNextHeader.mUnk_0c = 0;
@@ -419,8 +419,8 @@ void func_020446e0(void) {
 
     switch (data_021759c0->mNextHeader.mMode) {
         case MODE_GRAND_PRIX:
-            if (data_021759c0->mNextHeader.mCourseId == 0x34) {
-                data_021759c0->mNextHeader.mCourseId = 0x34;
+            if (data_021759c0->mNextHeader.mCourseId == COURSE_ID_AWARD) {
+                data_021759c0->mNextHeader.mCourseId = COURSE_ID_AWARD;
                 data_021759c0->mNextHeader.mUnk_0c = 5;
                 for (i = 3; i < 8; i++) {
                     func_020468b0(i, i, i * 3, 4, -1, 3);
@@ -437,7 +437,7 @@ void func_020446e0(void) {
                         }
                     }
                     d = c * 3;
-                    if (data_021759c0->mNextHeader.mCourseId != 0x36) {
+                    if (data_021759c0->mNextHeader.mCourseId != COURSE_ID_STAFFROLLTRUE) {
                         func_020446e0_inline(3, -1, 1, d, c, c);
                     }
                 }

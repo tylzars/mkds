@@ -111,7 +111,7 @@ BOOL func_01ffa1f8(Kart *p) {
             }
             p->mUnk_3c4 = r;
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-                if (data_021759c0->mCourseId == 0x1d && (data_0217c780 & 1)) {
+                if (data_021759c0->mCourseId == COURSE_ID_RAINBOW && (data_0217c780 & 1)) {
                     q = func_0210e128(func_02108ea0(0));
                     if (data_0217d084.mUnk_0c != 0) {
                         if (*(u32 *) q != 0) {

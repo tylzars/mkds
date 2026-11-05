@@ -56,6 +56,59 @@ typedef struct KartEntry {
 // Mission run: the mission row and column are read only while the mode has this value (code_02045874.c:372-373).
 #define MODE_MISSION_RUN 4
 
+// Values of the mCourseId member of Unk021759c0 and of Unk021759c0_1e8, and of the course id stored in the race
+// setup. The value is the row of the course name table data_usa_02154228 (8 byte rows, the string pointer first):
+// func_02048498 formats the row's string as the first %s of "/data/Course/%s%s%s.carc". Each name below is that
+// row's string without a trailing "_course", upper-cased, and the comment after it quotes the row index and the
+// string. Only the values that occur at a compare, case label or store of the member are defined;
+// the other rows stay literals.
+#define COURSE_ID_OLD_YOSHI_GC 1  // row 1: "old_yoshi_gc"
+#define COURSE_ID_OLD_BABY_GC 9  // row 9: "old_baby_gc"
+#define COURSE_ID_OLD_MARIO_SFC 10  // row 10: "old_mario_sfc"
+#define COURSE_ID_OLD_MOMO_64 11  // row 11: "old_momo_64"
+#define COURSE_ID_OLD_KOOPA_AGB 0xc  // row 12: "old_koopa_agb"
+#define COURSE_ID_OLD_PEACH_AGB 0xd  // row 13: "old_peach_agb"
+#define COURSE_ID_OLD_LUIGI_GC 0xe  // row 14: "old_luigi_gc"
+#define COURSE_ID_OLD_NOKO_SFC 0xf  // row 15: "old_noko_sfc"
+#define COURSE_ID_OLD_FRAPPE_64 16  // row 16: "old_frappe_64"
+#define COURSE_ID_CLOCK 0x11  // row 17: "clock_course"
+#define COURSE_ID_MANSION 0x12  // row 18: "mansion_course"
+#define COURSE_ID_AIRSHIP 0x13  // row 19: "airship_course"
+#define COURSE_ID_CROSS 0x14  // row 20: "cross_course"
+#define COURSE_ID_BANK 0x16  // row 22: "bank_course"
+#define COURSE_ID_OLD_HYUDORO_64 23  // row 23: "old_hyudoro_64"
+#define COURSE_ID_RIDGE 24  // row 24: "ridge_course"
+#define COURSE_ID_MARIO 0x19  // row 25: "mario_course"
+#define COURSE_ID_GARDEN 26  // row 26: "garden_course"
+#define COURSE_ID_DESERT 27  // row 27: "desert_course"
+#define COURSE_ID_TOWN 0x1c  // row 28: "town_course"
+#define COURSE_ID_RAINBOW 0x1d  // row 29: "rainbow_course"
+#define COURSE_ID_SNOW 0x1e  // row 30: "snow_course"
+#define COURSE_ID_BEACH 0x1f  // row 31: "beach_course"
+#define COURSE_ID_KOOPA 0x20  // row 32: "koopa_course"
+#define COURSE_ID_PINBALL 0x21  // row 33: "pinball_course"
+#define COURSE_ID_STADIUM 0x22  // row 34: "stadium_course"
+#define COURSE_ID_OLD_DONUT_SFC 35  // row 35: "old_donut_sfc"
+#define COURSE_ID_OLD_CHOCO_64 36  // row 36: "old_choco_64"
+#define COURSE_ID_OLD_LUIGI_AGB 0x25  // row 37: "old_luigi_agb"
+#define COURSE_ID_OLD_KINOKO_GC 0x26  // row 38: "old_kinoko_gc"
+#define COURSE_ID_OLD_CHOCO_SFC 39  // row 39: "old_choco_sfc"
+#define COURSE_ID_OLD_SKY_AGB 40  // row 40: "old_sky_agb"
+#define COURSE_ID_MINI_BLOCK 41  // row 41: "mini_block_course"
+#define COURSE_ID_MINI_BLOCK_64 0x2a  // row 42: "mini_block_64"
+#define COURSE_ID_MINI_DOKAN_GC 0x2b  // row 43: "mini_dokan_gc"
+#define COURSE_ID_MINI_STAGE1 0x2c  // row 44: "mini_stage1"
+#define COURSE_ID_MINI_STAGE2 0x2d  // row 45: "mini_stage2"
+#define COURSE_ID_MINI_STAGE3 0x2e  // row 46: "mini_stage3"
+#define COURSE_ID_MINI_STAGE4 0x2f  // row 47: "mini_stage4"
+#define COURSE_ID_MR_STAGE1 48  // row 48: "mr_stage1"
+#define COURSE_ID_MR_STAGE2 0x31  // row 49: "mr_stage2"
+#define COURSE_ID_MR_STAGE3 0x32  // row 50: "mr_stage3"
+#define COURSE_ID_MR_STAGE4 0x33  // row 51: "mr_stage4"
+#define COURSE_ID_AWARD 0x34  // row 52: "Award"
+#define COURSE_ID_STAFFROLL 0x35  // row 53: "StaffRoll"
+#define COURSE_ID_STAFFROLLTRUE 0x36  // row 54: "StaffRollTrue"
+
 // The 0x68 bytes at 0x1e8 of the object behind data_021759c0.
 typedef struct Unk021759c0_1e8 {
     /* 00 */ s32 mCourseId;

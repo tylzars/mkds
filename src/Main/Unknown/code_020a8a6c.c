@@ -37,7 +37,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         if (func_02062ec4() != 0) {
             switch (data_021759c0->mCourseId) {
-                case 0x14:
+                case COURSE_ID_CROSS:
                     p->mUnk_0f0 = 4;
                     q = p->mUnk_000.mCourseMapRow;
                     z1 = q->mUnk_00.z + (-0x4a6000);
@@ -62,7 +62,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_10.y = y2;
                     p->mUnk_0c8.mUnk_10.z = z2;
                     break;
-                case 0x16:
+                case COURSE_ID_BANK:
                     p->mUnk_0f0 = 5;
                     q = p->mUnk_000.mCourseMapRow;
                     z3 = q->mUnk_00.z;
@@ -93,7 +93,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
             }
         } else {
             switch (data_021759c0->mCourseId) {
-                case 0x14:
+                case COURSE_ID_CROSS:
                     p->mUnk_0f0 = 1;
                     p->mUnk_0a0.mUnk_00.mUnk_00 = 0x108;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 8;
@@ -111,7 +111,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_10.z = 0;
                     func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
                     break;
-                case 0x19:
+                case COURSE_ID_MARIO:
                     p->mUnk_0f0 = 1;
                     p->mUnk_0a0.mUnk_00.mUnk_00 = 0x1a0;
                     p->mUnk_0a0.mUnk_00.mUnk_08 = 8;
@@ -129,7 +129,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     p->mUnk_0c8.mUnk_10.z = 0;
                     func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
                     break;
-                case 0x16:
+                case COURSE_ID_BANK:
                     p->mUnk_0f0 = 6;
                     q = p->mUnk_000.mCourseMapRow;
                     z4 = q->mUnk_00.z;

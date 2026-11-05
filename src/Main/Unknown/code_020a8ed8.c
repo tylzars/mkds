@@ -348,7 +348,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
 
     r = GetCurrentCamera();
     switch (data_021759c0->mCourseId) {
-        case 0x14:
+        case COURSE_ID_CROSS:
             if (IsKartOnLastLap(data_021759c0->mEntryIndex) != FALSE || func_02062ec4() != 0) {
                 k = 0x898000;
             } else {
@@ -379,7 +379,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
                 a->mUnk_20 = FALSE;
             }
             break;
-        case 0x19:
+        case COURSE_ID_MARIO:
             if (IsKartOnLastLap(data_021759c0->mEntryIndex) != FALSE || func_02062ec4() != 0) {
                 m = 0x384000;
             } else {

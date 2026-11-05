@@ -1059,7 +1059,7 @@ void func_02081f30(void) {
     Unk0201ca6c *p;
 
     switch (data_021759c0->mCourseId) {
-        case 0x25:
+        case COURSE_ID_OLD_LUIGI_AGB:
             if (data_0217ae78 != NULL) {
                 func_0208b710(data_0217ae78);
                 p = StartEffect(0x3c, &data_02155a14);
@@ -1074,7 +1074,7 @@ void func_02081f30(void) {
             data_0217ae88 = p;
             p->mUnk_90 = func_0208266c;
             break;
-        case 0x10:
+        case COURSE_ID_OLD_FRAPPE_64:
             if (data_0217ae78 != NULL) {
                 data_0217ae78->mUnk_90 = func_02082034;
             }

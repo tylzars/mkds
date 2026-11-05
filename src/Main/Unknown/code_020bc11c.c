@@ -684,7 +684,7 @@ void func_020bc958(void) {
     if (data_0217b3d4->mUnk_00 != data_0217b3d4->mUnk_04 && data_0217b3d4->mUnk_08 > 0) {
         if (data_0217b3d4->mUnk_00 < data_0217b3d4->mUnk_08) {
             v = 0x41;
-            if (data_021759c0->mCourseId == 0x21) {
+            if (data_021759c0->mCourseId == COURSE_ID_PINBALL) {
                 v = 0x1c7;
             }
             if (data_0217c780 & 1) {

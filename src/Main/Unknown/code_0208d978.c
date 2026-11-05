@@ -142,7 +142,7 @@ void func_0208e570(void *a) {
                   (void *) GetWaterEfctNsbmaFile(), NULL);
     func_0208ddf4(a, 4, (void *) GetWaterEfctNsbmdFile(), (void *) GetWaterEfctNsbcaFile(),
                   (void *) GetWaterEfctNsbmaFile(), NULL);
-    if (data_021759c0->mCourseId == 0x17) {
+    if (data_021759c0->mCourseId == COURSE_ID_OLD_HYUDORO_64) {
         func_0208ddf4(a, 3, (void *) GetWaterEfctNsbmdFile(), FindCourseFile(data_021663a8),
                       FindCourseFile(data_021663c0), NULL);
     }
@@ -303,7 +303,7 @@ void func_0208e098(void *a) {
             p->mUnk_84 = g->mUnk_14;
             ListAppend(&data_0217b080->mUnk_0c[i], p);
             if (i == 2) {
-                v = data_021759c0->mCourseId == 0xc ? 0xb33 : 0x1000;
+                v = data_021759c0->mCourseId == COURSE_ID_OLD_KOOPA_AGB ? 0xb33 : 0x1000;
                 p->mUnk_9c[0] = v;
                 p->mUnk_9c[1] = v;
                 p->mUnk_9c[2] = v;
@@ -323,7 +323,7 @@ void func_0208ddf4(void *a, s32 b, Unk020136f0 *c, void *d, void *e, void *f) {
 
     g = &data_0216618c[b];
     k = 1;
-    if (data_021759c0->mCourseId == 0x12 || data_021759c0->mCourseId == 0x1d) {
+    if (data_021759c0->mCourseId == COURSE_ID_MANSION || data_021759c0->mCourseId == COURSE_ID_RAINBOW) {
         k = 0;
     }
     if (g->mUnk_00 == 0) {

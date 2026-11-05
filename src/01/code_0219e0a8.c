@@ -9,6 +9,7 @@
 #include "Main/Unknown/code_020ae5e4.h"
 #include "Main/Unknown/code_02105000.h"
 #include "Main/Unknown/code_02037000.h"
+#include "Main/Unknown/unk_021759c0.h"
 
 Unk021ca400 *data_ov001_021ca400;
 
@@ -22,7 +23,7 @@ void func_ov001_0219e6ec(void *heap) {
     data_ov001_021ca400->mState = 0;
     data_ov001_021ca400->mNextState = data_ov001_021ca400->mState;
     data_ov001_021ca400->mUnk_008 = 0;
-    if (data_021759c0->mCourseId == 0x36) {
+    if (data_021759c0->mCourseId == COURSE_ID_STAFFROLLTRUE) {
         data_ov001_021ca400->mKind = 1;
     } else {
         data_ov001_021ca400->mKind = 0;

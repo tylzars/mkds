@@ -840,7 +840,7 @@ void func_020fad00(void) {
     data_0217bd34 = v;
     data_0217bd34 = v * v;
     data_0217bd38 = func_020ed490(data_0216c6f4, data_0216c704);
-    if (data_021759c0->mCourseId == 0x1d) {
+    if (data_021759c0->mCourseId == COURSE_ID_RAINBOW) {
         func_02013044(data_0217bd38->mUnk_004, 0);
     }
 }

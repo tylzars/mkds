@@ -404,14 +404,14 @@ void func_020846c0(void *a) {
     }
     data_0217ae6c = 0x7fff;
     switch (data_021759c0->mCourseId) {
-        case 0x12:
-        case 0x20:
+        case COURSE_ID_MANSION:
+        case COURSE_ID_KOOPA:
             data_0217ae6c = 0x1667;
             break;
-        case 0x1c:
+        case COURSE_ID_TOWN:
             data_0217ae6c = 0x2ff;
             break;
-        case 0x1a:
+        case COURSE_ID_GARDEN:
             data_0217ae6c = 0x3e67;
             break;
     }

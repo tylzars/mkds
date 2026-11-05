@@ -861,9 +861,9 @@ void func_020b6e00(u16 *a, void *b) {
         }
     } else {
         switch (data_021759c0->mCourseId) {
-            case 15:
-            case 31:
-            case 46:
+            case COURSE_ID_OLD_NOKO_SFC:
+            case COURSE_ID_BEACH:
+            case COURSE_ID_MINI_STAGE3:
                 func_020b46d0(p, 0x0, 0, 4, 2, b, 0, 8);
                 q2 = NULL;
                 LoadNclrData(&q2, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -871,9 +871,9 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q2->mData[n];
                 }
                 break;
-            case 10:
-            case 18:
-            case 35:
+            case COURSE_ID_OLD_MARIO_SFC:
+            case COURSE_ID_MANSION:
+            case COURSE_ID_OLD_DONUT_SFC:
                 func_020b46d0(p, 0x4, 0, 5, 2, b, 0, 8);
                 q3 = NULL;
                 LoadNclrData(&q3, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -881,7 +881,7 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q3->mData[0x10 + n];
                 }
                 break;
-            case 27:
+            case COURSE_ID_DESERT:
                 func_020b46d0(p, 0x9, 0, 6, 2, b, 0, 8);
                 q4 = NULL;
                 LoadNclrData(&q4, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -889,7 +889,7 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q4->mData[0x20 + n];
                 }
                 break;
-            case 36:
+            case COURSE_ID_OLD_CHOCO_64:
                 func_020b46d0(p, 0xf, 0, 3, 2, b, 0, 8);
                 q5 = NULL;
                 LoadNclrData(&q5, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -897,7 +897,7 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q5->mData[0x30 + n];
                 }
                 break;
-            case 33:
+            case COURSE_ID_PINBALL:
                 func_020b46d0(p, 0, 2, 0xc, 4, b, 0, 8);
                 func_020b46d0(p, 0, 6, 0xb, 4, b, 0, 0xc);
                 if (data_021759c0->mUnk_57 != 0) {
@@ -909,8 +909,8 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q6->mData[0x40 + n];
                 }
                 break;
-            case 24:
-            case 38:
+            case COURSE_ID_RIDGE:
+            case COURSE_ID_OLD_KINOKO_GC:
                 func_020b46d0(p, 0x14, 0, 8, 4, b, 0, 8);
                 q7 = NULL;
                 LoadNclrData(&q7, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -918,8 +918,8 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q7->mData[0x50 + n];
                 }
                 break;
-            case 16:
-            case 30:
+            case COURSE_ID_OLD_FRAPPE_64:
+            case COURSE_ID_SNOW:
                 func_020b46d0(p, 0x1d, 0, 3, 2, b, 0, 8);
                 q8 = NULL;
                 LoadNclrData(&q8, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -927,7 +927,7 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q8->mData[0x60 + n];
                 }
                 break;
-            case 17:
+            case COURSE_ID_CLOCK:
                 func_020b46d0(p, 0xc, 4, 8, 4, b, 0, 8);
                 q9 = NULL;
                 LoadNclrData(&q9, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -935,10 +935,10 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q9->mData[0x70 + n];
                 }
                 break;
-            case 1:
-            case 9:
-            case 25:
-            case 39:
+            case COURSE_ID_OLD_YOSHI_GC:
+            case COURSE_ID_OLD_BABY_GC:
+            case COURSE_ID_MARIO:
+            case COURSE_ID_OLD_CHOCO_SFC:
                 func_020b46d0(p, 0xc, 2, 8, 2, b, 0, 8);
                 q10 = NULL;
                 LoadNclrData(&q10, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -946,10 +946,10 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q10->mData[0x80 + n];
                 }
                 break;
-            case 11:
-            case 14:
-            case 19:
-            case 26:
+            case COURSE_ID_OLD_MOMO_64:
+            case COURSE_ID_OLD_LUIGI_GC:
+            case COURSE_ID_AIRSHIP:
+            case COURSE_ID_GARDEN:
                 func_020b46d0(p, 0x13, 4, 12, 4, b, 0, 8);
                 q11 = NULL;
                 LoadNclrData(&q11, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -957,7 +957,7 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q11->mData[0x90 + n];
                 }
                 break;
-            case 34:
+            case COURSE_ID_STADIUM:
                 func_020b46d0(p, 0x8, 10, 8, 4, b, 0, 8);
                 q12 = NULL;
                 LoadNclrData(&q12, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -965,8 +965,8 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q12->mData[0x80 + n];
                 }
                 break;
-            case 12:
-            case 32:
+            case COURSE_ID_OLD_KOOPA_AGB:
+            case COURSE_ID_KOOPA:
                 func_020b46d0(p, 0xc, 8, 8, 2, b, 0, 8);
                 q13 = NULL;
                 LoadNclrData(&q13, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -974,7 +974,7 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q13->mData[0xa0 + n];
                 }
                 break;
-            case 29:
+            case COURSE_ID_RAINBOW:
                 func_020b46d0(p, 0x12, 10, 2, 2, b, 0, 8);
                 q14 = NULL;
                 LoadNclrData(&q14, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));
@@ -982,7 +982,7 @@ void func_020b6e00(u16 *a, void *b) {
                     a[0x40 + n] = q14->mData[0xb0 + n];
                 }
                 break;
-            case 23:
+            case COURSE_ID_OLD_HYUDORO_64:
                 func_020b46d0(p, 0x0, 10, 8, 6, b, 0, 8);
                 q15 = NULL;
                 LoadNclrData(&q15, FindSceneFileWrapper("race_transfer_map_s_o.NCLR"));

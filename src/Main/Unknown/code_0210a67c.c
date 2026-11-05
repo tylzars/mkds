@@ -199,7 +199,7 @@ void func_0210b234(Kart *a, s32 b, s32 c, s32 d, s32 f) {
     if (e == 0xffff) {
         return;
     }
-    if (data_021759c0->mCourseId == 0x1d) {
+    if (data_021759c0->mCourseId == COURSE_ID_RAINBOW) {
         e = 0x1b6;
     }
     StartSound(&a->mSoundSource, e, 0x7f, 0);

@@ -105,7 +105,7 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                         break;
                     case 6:
                         c = 0x2a5a;
-                        if (func_0203a3a4() == 0x36) {
+                        if (func_0203a3a4() == COURSE_ID_STAFFROLLTRUE) {
                             c = 0x2b02;
                         }
                         if (b > c) {

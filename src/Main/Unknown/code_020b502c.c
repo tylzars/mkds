@@ -77,27 +77,27 @@ s32 func_020b64e8(void) {
     BOOL r = FALSE;
 
     switch (func_020b4e5c()) {
-        case 1:
-        case 11:
-        case 14:
-        case 16:
-        case 17:
-        case 18:
-        case 19:
-        case 20:
-        case 23:
-        case 24:
-        case 25:
-        case 26:
-        case 27:
-        case 28:
-        case 30:
-        case 33:
-        case 34:
-        case 38:
-        case 40:
-        case 48:
-        case 50:
+        case COURSE_ID_OLD_YOSHI_GC:
+        case COURSE_ID_OLD_MOMO_64:
+        case COURSE_ID_OLD_LUIGI_GC:
+        case COURSE_ID_OLD_FRAPPE_64:
+        case COURSE_ID_CLOCK:
+        case COURSE_ID_MANSION:
+        case COURSE_ID_AIRSHIP:
+        case COURSE_ID_CROSS:
+        case COURSE_ID_OLD_HYUDORO_64:
+        case COURSE_ID_RIDGE:
+        case COURSE_ID_MARIO:
+        case COURSE_ID_GARDEN:
+        case COURSE_ID_DESERT:
+        case COURSE_ID_TOWN:
+        case COURSE_ID_SNOW:
+        case COURSE_ID_PINBALL:
+        case COURSE_ID_STADIUM:
+        case COURSE_ID_OLD_KINOKO_GC:
+        case COURSE_ID_OLD_SKY_AGB:
+        case COURSE_ID_MR_STAGE1:
+        case COURSE_ID_MR_STAGE3:
             r = TRUE;
             break;
     }
@@ -108,18 +108,18 @@ s32 func_020b6430(void) {
     BOOL r = FALSE;
 
     switch (func_020b4e5c()) {
-        case 1:
-        case 11:
-        case 16:
-        case 23:
-        case 24:
-        case 25:
-        case 26:
-        case 27:
-        case 34:
-        case 40:
-        case 48:
-        case 50:
+        case COURSE_ID_OLD_YOSHI_GC:
+        case COURSE_ID_OLD_MOMO_64:
+        case COURSE_ID_OLD_FRAPPE_64:
+        case COURSE_ID_OLD_HYUDORO_64:
+        case COURSE_ID_RIDGE:
+        case COURSE_ID_MARIO:
+        case COURSE_ID_GARDEN:
+        case COURSE_ID_DESERT:
+        case COURSE_ID_STADIUM:
+        case COURSE_ID_OLD_SKY_AGB:
+        case COURSE_ID_MR_STAGE1:
+        case COURSE_ID_MR_STAGE3:
             r = TRUE;
             break;
     }
@@ -165,9 +165,9 @@ void func_020b6078(s32 idx, UnkPair020b502c *out) {
 
     GetKartPos(&v, (u8) idx);
     switch (func_020b4e5c()) {
-        case 0xb:
-        case 0x14:
-        case 0x26:
+        case COURSE_ID_OLD_MOMO_64:
+        case COURSE_ID_CROSS:
+        case COURSE_ID_OLD_KINOKO_GC:
             if (func_020b523c() != 0) {
                 out->mUnk_00 =
                     func_020b5250(func_020b502c(0x80000, func_020b57b4(a.mUnk_00 - v.z, data_0217b3c0->mUnk_3c))) +
@@ -180,7 +180,7 @@ void func_020b6078(s32 idx, UnkPair020b502c *out) {
             out->mUnk_04 =
                 func_020b5250(func_020b502c(0x98000, func_020b57b4(v.x - a.mUnk_04, data_0217b3c0->mUnk_44))) + 0x28;
             break;
-        case 0x16:
+        case COURSE_ID_BANK:
             if (func_020b523c() != 0) {
                 out->mUnk_00 =
                     func_020b5250(func_020b502c(0x80000, func_020b57b4(a.mUnk_00 - v.z, data_0217b3c0->mUnk_3c))) +
@@ -554,17 +554,17 @@ void func_020b503c(Unk020b503c *p, s32 scale) {
         default:
             p[1] = p[0];
             break;
-        case 0xe:
-        case 0x12:
-        case 0x14:
-        case 0x1c:
-        case 0x1e:
-        case 0x21:
-        case 0x26:
+        case COURSE_ID_OLD_LUIGI_GC:
+        case COURSE_ID_MANSION:
+        case COURSE_ID_CROSS:
+        case COURSE_ID_TOWN:
+        case COURSE_ID_SNOW:
+        case COURSE_ID_PINBALL:
+        case COURSE_ID_OLD_KINOKO_GC:
             func_020b57f8(&p[1]);
             break;
-        case 0x30:
-        case 0x32:
+        case COURSE_ID_MR_STAGE1:
+        case COURSE_ID_MR_STAGE3:
             func_020b5658(&p[1]);
             break;
     }

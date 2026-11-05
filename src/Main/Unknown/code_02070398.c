@@ -1105,7 +1105,7 @@ void func_020710b0(Kart *p, s32 b) {
     }
     func_02073f90();
     switch (data_021759c0->mCourseId) {
-        case 0x13:
+        case COURSE_ID_AIRSHIP:
             func_02089d14(0);
             d = StartSound((SoundSource *) p, 0x15c, 0x7f, 0);
             if (d != NULL) {
@@ -1126,7 +1126,7 @@ void func_020710b0(Kart *p, s32 b) {
             }
             func_0212ecc0(h, 0, 0x1d2);
             break;
-        case 0x21:
+        case COURSE_ID_PINBALL:
             d = StartSound((SoundSource *) p, 0x15b, 0x7f, 0);
             if (d != NULL) {
                 d->mUnk_19 |= 0x10;
@@ -1300,7 +1300,7 @@ void func_020708a4(Kart *p) {
         func_01ffa11c(p, &p->mUnk_244);
         p->mUnk_48 &= ~0x40000;
         p->mUnk_3e8 = (s16) ((s32) (((s64) b.x * 0x4000) >> 12) >> 12) + 0x32;
-        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mCourseId == 0x13) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mCourseId == COURSE_ID_AIRSHIP) {
             func_0212c6f0(func_02108e6c(7), 0x14);
         }
     } else {

@@ -72,7 +72,7 @@ void func_020cc3e8(void) {
         func_02029930()->mUnk_c8 = GetCurrentMode();
     }
     if (func_020cae38() != 0) {
-        func_02029930()->mCourseId = 10;
+        func_02029930()->mCourseId = COURSE_ID_OLD_MARIO_SFC;
     } else {
         func_02029930()->mCourseId = GetCurrentCourseId();
     }

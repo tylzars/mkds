@@ -57,7 +57,7 @@ void func_0208b934(void *a) {
             c = data_0217aa10->mUnk_a4;
             e = 0x96;
         }
-        if (d->mCourseId == 0x34) {
+        if (d->mCourseId == COURSE_ID_AWARD) {
             e = 0x12c;
             f = 0x32;
         }
@@ -95,14 +95,14 @@ void func_0208b934(void *a) {
         data_0217b03c->mUnk_38_24 = 1;
     }
     func_0208d758(a);
-    if (data_021759c0->mCourseId != 0x1d) {
+    if (data_021759c0->mCourseId != COURSE_ID_RAINBOW) {
         data_0217b044->mUnk_3c = 0x8000;
     } else {
         data_0217b044->mUnk_3c = 0;
     }
     func_02082aec();
     switch (data_021759c0->mCourseId) {
-        case 0x22:
+        case COURSE_ID_STADIUM:
             w = data_usa_021660fc;
             data_0217b048 = HeapAlloc(c, 0x64);
             for (j = 0; j < 6; j++) {
@@ -116,7 +116,7 @@ void func_0208b934(void *a) {
             data_0217b048->mUnk_60 = 1;
             data_0217b054 = (UnkFunc *) func_0208b190;
             break;
-        case 0x34:
+        case COURSE_ID_AWARD:
             func_0208afe4();
             break;
     }

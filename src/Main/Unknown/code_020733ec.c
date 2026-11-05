@@ -44,14 +44,14 @@ void func_02073630(void) {
     i = 0;
     a = data_0217ac18;
     b = data_0217ac54;
-    if (d->mCourseId == 0x1d || d->mCourseId == 0x28) {
+    if (d->mCourseId == COURSE_ID_RAINBOW || d->mCourseId == COURSE_ID_OLD_SKY_AGB) {
         data_0217ac14 = func_01ffa380;
     }
     data_0217ac10 = 0;
     if (d->mMode == MODE_BATTLE) {
         switch (d->mCourseId) {
-            case 0x2a:
-            case 0x2b:
+            case COURSE_ID_MINI_BLOCK_64:
+            case COURSE_ID_MINI_DOKAN_GC:
                 data_0217ac10 = 1;
                 data_0217ac14 = func_01ffa41c;
                 break;

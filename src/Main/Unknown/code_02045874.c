@@ -326,7 +326,7 @@ BOOL func_02045bd4(void) {
     if ((u32) func_0205d4e8((u16) data_021759c0->mEntryIndex) > 3) {
         return FALSE;
     }
-    data_021759c0->mNextHeader.mCourseId = 0x34;
+    data_021759c0->mNextHeader.mCourseId = COURSE_ID_AWARD;
     data_021759c0->mNextHeader.mUnk_0c = 5;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_021759c0->mKartCount; j++) {
@@ -355,9 +355,9 @@ void func_02045a2c(s32 a) {
     s32 x;
     s32 y;
     if (a != 0) {
-        data_021759c0->mNextHeader.mCourseId = 0x36;
+        data_021759c0->mNextHeader.mCourseId = COURSE_ID_STAFFROLLTRUE;
     } else {
-        data_021759c0->mNextHeader.mCourseId = 0x35;
+        data_021759c0->mNextHeader.mCourseId = COURSE_ID_STAFFROLL;
     }
     data_021759c0->mNextHeader.mUnk_0c = 6;
     data_021759c0->mNextHeader.mUnk_10 = 1;

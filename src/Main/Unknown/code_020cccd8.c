@@ -223,7 +223,8 @@ void func_020cdf50(void) {
         if ((e->mUnk_02 & 1) == 0 && func_020931ac(e) != 0) {
             v = &e->mUnk_04;
             if (func_020b5ae8(v, &data_0217b470->mUnk_10[a].mUnk_00, n, 0, 0) != FALSE) {
-                data_0217b470->mUnk_10[a].mUnk_08 = GetRaceSNcerEntry(data_021759c0->mCourseId == 0x13 ? 0xae : 0xb2);
+                data_0217b470->mUnk_10[a].mUnk_08 =
+                    GetRaceSNcerEntry(data_021759c0->mCourseId == COURSE_ID_AIRSHIP ? 0xae : 0xb2);
                 data_0217b470->mUnk_10[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
                 data_0217b470->mUnk_0c[a].mUnk_00 = b != 0 ? 0x1000 : 0xccd;
                 a++;

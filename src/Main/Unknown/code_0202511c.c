@@ -16,121 +16,121 @@ u32 func_0202553c(u32 a, void *c) {
 
     r = 0x36;
     switch (a) {
-        case 20:
+        case COURSE_ID_CROSS:
             r = 7;
             break;
-        case 25:
+        case COURSE_ID_MARIO:
             r = 34;
             break;
-        case 14:
+        case COURSE_ID_OLD_LUIGI_GC:
             r = 8;
             break;
-        case 1:
+        case COURSE_ID_OLD_YOSHI_GC:
             r = 9;
             break;
-        case 31:
+        case COURSE_ID_BEACH:
             r = 10;
             break;
-        case 22:
+        case COURSE_ID_BANK:
             r = 11;
             break;
-        case 9:
+        case COURSE_ID_OLD_BABY_GC:
             r = 12;
             break;
-        case 11:
+        case COURSE_ID_OLD_MOMO_64:
             r = 13;
             break;
-        case 16:
+        case COURSE_ID_OLD_FRAPPE_64:
             r = 14;
             break;
-        case 28:
+        case COURSE_ID_TOWN:
             r = 15;
             break;
-        case 19:
+        case COURSE_ID_AIRSHIP:
             r = 16;
             break;
-        case 34:
+        case COURSE_ID_STADIUM:
             r = 17;
             break;
-        case 33:
+        case COURSE_ID_PINBALL:
             r = 32;
             break;
-        case 38:
+        case COURSE_ID_OLD_KINOKO_GC:
             r = 18;
             break;
-        case 26:
+        case COURSE_ID_GARDEN:
             r = 19;
             break;
-        case 18:
+        case COURSE_ID_MANSION:
             r = 20;
             break;
-        case 10:
+        case COURSE_ID_OLD_MARIO_SFC:
             r = 21;
             break;
-        case 15:
+        case COURSE_ID_OLD_NOKO_SFC:
             r = 22;
             break;
-        case 35:
+        case COURSE_ID_OLD_DONUT_SFC:
             r = 23;
             break;
-        case 39:
+        case COURSE_ID_OLD_CHOCO_SFC:
             r = 24;
             break;
-        case 13:
+        case COURSE_ID_OLD_PEACH_AGB:
             r = 25;
             break;
-        case 37:
+        case COURSE_ID_OLD_LUIGI_AGB:
             r = 26;
             break;
-        case 24:
+        case COURSE_ID_RIDGE:
             r = 27;
             break;
-        case 23:
+        case COURSE_ID_OLD_HYUDORO_64:
             r = 29;
             break;
-        case 36:
+        case COURSE_ID_OLD_CHOCO_64:
             r = 28;
             break;
-        case 30:
+        case COURSE_ID_SNOW:
             r = 30;
             break;
-        case 27:
+        case COURSE_ID_DESERT:
             r = 31;
             break;
-        case 17:
+        case COURSE_ID_CLOCK:
             r = 33;
             break;
-        case 32:
+        case COURSE_ID_KOOPA:
             r = 37;
             break;
-        case 29:
+        case COURSE_ID_RAINBOW:
             r = 35;
             break;
-        case 12:
+        case COURSE_ID_OLD_KOOPA_AGB:
             r = 36;
             break;
-        case 40:
+        case COURSE_ID_OLD_SKY_AGB:
             r = 38;
             break;
-        case 41:
-        case 42:
-        case 43:
-        case 44:
-        case 45:
-        case 46:
-        case 47:
+        case COURSE_ID_MINI_BLOCK:
+        case COURSE_ID_MINI_BLOCK_64:
+        case COURSE_ID_MINI_DOKAN_GC:
+        case COURSE_ID_MINI_STAGE1:
+        case COURSE_ID_MINI_STAGE2:
+        case COURSE_ID_MINI_STAGE3:
+        case COURSE_ID_MINI_STAGE4:
             r = 39;
             break;
-        case 48:
-        case 49:
-        case 50:
-        case 51:
+        case COURSE_ID_MR_STAGE1:
+        case COURSE_ID_MR_STAGE2:
+        case COURSE_ID_MR_STAGE3:
+        case COURSE_ID_MR_STAGE4:
             r = 40;
             break;
-        case 52:
+        case COURSE_ID_AWARD:
             r = 42;
             break;
-        case 53:
+        case COURSE_ID_STAFFROLL:
             r = 51;
             break;
     }
@@ -215,15 +215,15 @@ u32 func_0202511c(s32 a, void *c) {
                     break;
                 case 3:
                     switch (data_021759c0->mCourseId) {
-                        case 0xe:
-                        case 0x14:
-                        case 0x19:
+                        case COURSE_ID_OLD_LUIGI_GC:
+                        case COURSE_ID_CROSS:
+                        case COURSE_ID_MARIO:
                             r = 2;
                             break;
-                        case 0x22:
+                        case COURSE_ID_STADIUM:
                             r = 3;
                             break;
-                        case 0x21:
+                        case COURSE_ID_PINBALL:
                             r = 4;
                             break;
                         default:

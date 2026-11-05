@@ -168,7 +168,7 @@ void func_020bab54(void) {
         if (func_020bab54_inline(i)->mSlotShownItem >= 9) {
             if (data_021759c0->mUnk_00c != 2) {
                 k = 0x40;
-                if (data_021759c0->mCourseId == 0x21) {
+                if (data_021759c0->mCourseId == COURSE_ID_PINBALL) {
                     k = 0x1c6;
                 }
                 if ((data_0217c780 & 1) != 0) {
@@ -187,7 +187,7 @@ void func_020bab54(void) {
         } else {
             if (data_021759c0->mUnk_00c != 2) {
                 k = 0x3f;
-                if (data_021759c0->mCourseId == 0x21) {
+                if (data_021759c0->mCourseId == COURSE_ID_PINBALL) {
                     k = 0x1c5;
                 }
                 if ((data_0217c780 & 1) != 0) {
@@ -209,7 +209,7 @@ void func_020bab54(void) {
     if (data_0217b3cc->mUnk_14 == 0 && data_0217b3cc->mUnk_10 != 0 && data_021759c0->mUnk_00c != 2) {
         r2 = (Unk0212c400 **) func_02108e88();
         k2 = 0x3e;
-        if (data_021759c0->mCourseId == 0x21) {
+        if (data_021759c0->mCourseId == COURSE_ID_PINBALL) {
             k2 = 0x1c4;
         }
         if ((data_0217c780 & 1) != 0) {

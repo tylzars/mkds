@@ -947,9 +947,9 @@ void func_020a089c(Unk020a0318 *p) {
     s32 v;
 
     v = data_021759c0->mCourseId;
-    if (v == 0x12) {
+    if (v == COURSE_ID_MANSION) {
         p->mUnk_bc = 0x121;
-    } else if (v == 0x1f) {
+    } else if (v == COURSE_ID_BEACH) {
         p->mUnk_bc = 0x111;
         p->mUnk_be = 0x10a;
     } else {
@@ -966,13 +966,13 @@ void func_020a066c(Unk020a066c *p) {
         return;
     }
     for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
-        if (data_021759c0->mCourseId == 0x12) {
+        if (data_021759c0->mCourseId == COURSE_ID_MANSION) {
             o->mUnk_a8 = 0xa28;
             o->mUnk_ac = o->mUnk_00.mPos.x + 0x73a000;
             o->mUnk_b0 = o->mUnk_00.mPos.y;
             o->mUnk_b4 = o->mUnk_00.mPos.z - 0x1400000;
             o->mUnk_b8 = TRUE;
-        } else if (data_021759c0->mCourseId == 0x1f) {
+        } else if (data_021759c0->mCourseId == COURSE_ID_BEACH) {
             o->mUnk_a8 = 0x546;
             o->mUnk_ac = o->mUnk_00.mPos.x + 0x28a000;
             o->mUnk_b0 = o->mUnk_00.mPos.y;

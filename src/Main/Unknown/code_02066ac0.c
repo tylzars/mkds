@@ -152,7 +152,7 @@ s32 ApplyKartSurfaceKind7(Kart *a) {
 
 s32 ApplyKartSurfaceKind12(Kart *a) {
     if (a->mSurfaceGroup != 8 || (a->mUnk_44 & 0x80000000) != 0) {
-        if (data_021759c0->mCourseId == 0xc || data_021759c0->mCourseId == 0x28) {
+        if (data_021759c0->mCourseId == COURSE_ID_OLD_KOOPA_AGB || data_021759c0->mCourseId == COURSE_ID_OLD_SKY_AGB) {
             StartSound(&a->mSoundSource, 0x15e, 0x7f, 0);
         }
     }

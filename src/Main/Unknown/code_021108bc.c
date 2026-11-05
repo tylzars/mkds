@@ -172,7 +172,7 @@ void func_02110cc8(s32 d) {
     data_0217d324 = 1;
     data_0217d328 = 1;
     switch (data_021759c0->mCourseId) {
-        case 0x22:
+        case COURSE_ID_STADIUM:
             switch (b) {
                 case 0:
                 case 1:
@@ -183,7 +183,7 @@ void func_02110cc8(s32 d) {
                     break;
             }
             break;
-        case 0x14:
+        case COURSE_ID_CROSS:
             switch (b) {
                 case 0:
                 case 1:
@@ -194,7 +194,7 @@ void func_02110cc8(s32 d) {
                     break;
             }
             break;
-        case 0x19:
+        case COURSE_ID_MARIO:
             switch (b) {
                 case 0:
                 case 1:
@@ -219,7 +219,7 @@ s32 func_02110c40(void) {
     b = func_02110e58();
     a = -1;
     switch (data_021759c0->mCourseId) {
-        case 0x14:
+        case COURSE_ID_CROSS:
             switch (b) {
                 case 0:
                 case 1:
@@ -230,7 +230,7 @@ s32 func_02110c40(void) {
                     break;
             }
             break;
-        case 0x19:
+        case COURSE_ID_MARIO:
             switch (b) {
                 case 0:
                 case 1:

@@ -404,7 +404,7 @@ void func_020b03bc(void) {
     gRaceHud->mUnk_850 = 0;
     if (data_021759c0->mMode == MODE_BATTLE) {
         switch (data_021759c0->mCourseId) {
-            case 0x2e:
+            case COURSE_ID_MINI_STAGE3:
                 gRaceHud->mUnk_854 = 0x40;
                 break;
             default:
@@ -413,10 +413,10 @@ void func_020b03bc(void) {
         }
     } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
         switch (data_021759c0->mCourseId) {
-            case 0x30:
-            case 0x31:
-            case 0x32:
-            case 0x33:
+            case COURSE_ID_MR_STAGE1:
+            case COURSE_ID_MR_STAGE2:
+            case COURSE_ID_MR_STAGE3:
+            case COURSE_ID_MR_STAGE4:
                 gRaceHud->mUnk_854 = 0x64;
                 break;
             default:

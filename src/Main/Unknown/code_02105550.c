@@ -478,20 +478,20 @@ void func_021074ac(s32 e) {
     }
     if (b != FALSE) {
         switch (data_021759c0->mCourseId) {
-            case 0x1f:
+            case COURSE_ID_BEACH:
                 v = v + 0x17;
                 break;
-            case 0xb:
+            case COURSE_ID_OLD_MOMO_64:
                 v = v + 5;
                 break;
-            case 0xa:
+            case COURSE_ID_OLD_MARIO_SFC:
                 v = v + 1;
                 break;
-            case 0xd:
-            case 0x25:
+            case COURSE_ID_OLD_PEACH_AGB:
+            case COURSE_ID_OLD_LUIGI_AGB:
                 v = v + 0xd;
                 break;
-            case 0x23:
+            case COURSE_ID_OLD_DONUT_SFC:
                 v = v + 5;
                 break;
         }
@@ -516,11 +516,11 @@ void func_021074ac(s32 e) {
         case 2:
             v = data_021759c0->mCourseId;
             switch (v) {
-                case 0x1c:
+                case COURSE_ID_TOWN:
                     func_0210f868(0, 1);
                     func_0210f868(1, 1);
                     break;
-                case 0x12:
+                case COURSE_ID_MANSION:
                     func_0210bbec(0x15, data_0216c860[0].mUnk_04, &data_0216c860[0]);
                     func_0210bbec(0x8, data_0216c860[0].mUnk_04, &data_0216c860[0]);
                     func_0210bbec(0x9, data_0216c860[0].mUnk_04, &data_0216c860[0]);
@@ -528,7 +528,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[0].mUnk_04, &data_0216c860[0]);
                     func_0210bbec(0x10, data_0216c860[0].mUnk_04, &data_0216c860[0]);
                     break;
-                case 0x21:
+                case COURSE_ID_PINBALL:
                     func_0210bbec(0x15, data_0216c860[1].mUnk_04, &data_0216c860[1]);
                     func_0210bbec(0x8, data_0216c860[1].mUnk_04, &data_0216c860[1]);
                     func_0210bbec(0x9, data_0216c860[1].mUnk_04, &data_0216c860[1]);
@@ -536,7 +536,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[1].mUnk_04, &data_0216c860[1]);
                     func_0210bbec(0x10, data_0216c860[1].mUnk_04, &data_0216c860[1]);
                     break;
-                case 0x18:
+                case COURSE_ID_RIDGE:
                     func_0210bbec(0x15, data_0216c860[2].mUnk_04, &data_0216c860[2]);
                     func_0210bbec(0x8, data_0216c860[2].mUnk_04, &data_0216c860[2]);
                     func_0210bbec(0x9, data_0216c860[2].mUnk_04, &data_0216c860[2]);
@@ -544,7 +544,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[2].mUnk_04, &data_0216c860[2]);
                     func_0210bbec(0x10, data_0216c860[2].mUnk_04, &data_0216c860[2]);
                     break;
-                case 0x1e:
+                case COURSE_ID_SNOW:
                     func_0210bbec(0x15, data_0216c860[3].mUnk_04, &data_0216c860[3]);
                     func_0210bbec(0x8, data_0216c860[3].mUnk_04, &data_0216c860[3]);
                     func_0210bbec(0x9, data_0216c860[3].mUnk_04, &data_0216c860[3]);
@@ -552,7 +552,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[3].mUnk_04, &data_0216c860[3]);
                     func_0210bbec(0x10, data_0216c860[3].mUnk_04, &data_0216c860[3]);
                     break;
-                case 0x11:
+                case COURSE_ID_CLOCK:
                     func_0210bbec(0x15, data_0216c860[4].mUnk_04, &data_0216c860[4]);
                     func_0210bbec(0x8, data_0216c860[4].mUnk_04, &data_0216c860[4]);
                     func_0210bbec(0x9, data_0216c860[4].mUnk_04, &data_0216c860[4]);
@@ -560,7 +560,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[4].mUnk_04, &data_0216c860[4]);
                     func_0210bbec(0x10, data_0216c860[4].mUnk_04, &data_0216c860[4]);
                     break;
-                case 0x13:
+                case COURSE_ID_AIRSHIP:
                     func_0210bbec(0x15, data_0216c860[5].mUnk_04, &data_0216c860[5]);
                     func_0210bbec(0x8, data_0216c860[5].mUnk_04, &data_0216c860[5]);
                     func_0210bbec(0x9, data_0216c860[5].mUnk_04, &data_0216c860[5]);
@@ -568,7 +568,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[5].mUnk_04, &data_0216c860[5]);
                     func_0210bbec(0x10, data_0216c860[5].mUnk_04, &data_0216c860[5]);
                     break;
-                case 0x22:
+                case COURSE_ID_STADIUM:
                     func_0210bbec(0x15, data_0216c860[6].mUnk_04, &data_0216c860[6]);
                     func_0210bbec(0x8, data_0216c860[6].mUnk_04, &data_0216c860[6]);
                     func_0210bbec(0x9, data_0216c860[6].mUnk_04, &data_0216c860[6]);
@@ -576,7 +576,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[6].mUnk_04, &data_0216c860[6]);
                     func_0210bbec(0x10, data_0216c860[6].mUnk_04, &data_0216c860[6]);
                     break;
-                case 0x1a:
+                case COURSE_ID_GARDEN:
                     func_0210bbec(0x15, data_0216c860[7].mUnk_04, &data_0216c860[7]);
                     func_0210bbec(0x8, data_0216c860[7].mUnk_04, &data_0216c860[7]);
                     func_0210bbec(0x9, data_0216c860[7].mUnk_04, &data_0216c860[7]);
@@ -584,7 +584,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[7].mUnk_04, &data_0216c860[7]);
                     func_0210bbec(0x10, data_0216c860[7].mUnk_04, &data_0216c860[7]);
                     break;
-                case 0x20:
+                case COURSE_ID_KOOPA:
                     func_0210bbec(0x15, data_0216c860[8].mUnk_04, &data_0216c860[8]);
                     func_0210bbec(0x8, data_0216c860[8].mUnk_04, &data_0216c860[8]);
                     func_0210bbec(0x9, data_0216c860[8].mUnk_04, &data_0216c860[8]);
@@ -592,7 +592,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[8].mUnk_04, &data_0216c860[8]);
                     func_0210bbec(0x10, data_0216c860[8].mUnk_04, &data_0216c860[8]);
                     break;
-                case 0x9:
+                case COURSE_ID_OLD_BABY_GC:
                     func_0210bbec(0x15, data_0216c860[9].mUnk_04, &data_0216c860[9]);
                     func_0210bbec(0x8, data_0216c860[9].mUnk_04, &data_0216c860[9]);
                     func_0210bbec(0x9, data_0216c860[9].mUnk_04, &data_0216c860[9]);
@@ -600,7 +600,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[9].mUnk_04, &data_0216c860[9]);
                     func_0210bbec(0x10, data_0216c860[9].mUnk_04, &data_0216c860[9]);
                     break;
-                case 0x26:
+                case COURSE_ID_OLD_KINOKO_GC:
                     func_0210bbec(0x15, data_0216c860[10].mUnk_04, &data_0216c860[10]);
                     func_0210bbec(0x8, data_0216c860[10].mUnk_04, &data_0216c860[10]);
                     func_0210bbec(0x9, data_0216c860[10].mUnk_04, &data_0216c860[10]);
@@ -608,7 +608,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[10].mUnk_04, &data_0216c860[10]);
                     func_0210bbec(0x10, data_0216c860[10].mUnk_04, &data_0216c860[10]);
                     break;
-                case 0x17:
+                case COURSE_ID_OLD_HYUDORO_64:
                     func_0210bbec(0x15, data_0216c860[11].mUnk_04, &data_0216c860[11]);
                     func_0210bbec(0x8, data_0216c860[11].mUnk_04, &data_0216c860[11]);
                     func_0210bbec(0x9, data_0216c860[11].mUnk_04, &data_0216c860[11]);
@@ -616,7 +616,7 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[11].mUnk_04, &data_0216c860[11]);
                     func_0210bbec(0x10, data_0216c860[11].mUnk_04, &data_0216c860[11]);
                     break;
-                case 0x2f:
+                case COURSE_ID_MINI_STAGE4:
                     func_0210bbec(0x15, data_0216c860[12].mUnk_04, &data_0216c860[12]);
                     func_0210bbec(0x8, data_0216c860[12].mUnk_04, &data_0216c860[12]);
                     func_0210bbec(0x9, data_0216c860[12].mUnk_04, &data_0216c860[12]);
@@ -624,10 +624,10 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xe, data_0216c860[12].mUnk_04, &data_0216c860[12]);
                     func_0210bbec(0x10, data_0216c860[12].mUnk_04, &data_0216c860[12]);
                     break;
-                case 0x25:
+                case COURSE_ID_OLD_LUIGI_AGB:
                     func_0210bc00(data_0216c7e0.mUnk_10, data_0216c7e0.mUnk_14, &data_0216c7e0);
                     break;
-                case 0x32:
+                case COURSE_ID_MR_STAGE3:
                     func_0210bbec(0x15, data_0216c860[13].mUnk_04, &data_0216c860[13]);
                     func_0210bbec(0x8, data_0216c860[13].mUnk_04, &data_0216c860[13]);
                     func_0210bbec(0x9, data_0216c860[13].mUnk_04, &data_0216c860[13]);
@@ -819,13 +819,13 @@ void func_02107010(void) {
         }
         if (v == 0xffff) {
             switch (data_021759c0->mCourseId) {
-                case 0x13:
+                case COURSE_ID_AIRSHIP:
                     v = 0x1d2;
                     break;
-                case 0x22:
+                case COURSE_ID_STADIUM:
                     v = 0x1bf;
                     break;
-                case 0x25:
+                case COURSE_ID_OLD_LUIGI_AGB:
                     v = 0x1d6;
                     break;
             }
@@ -907,7 +907,7 @@ void func_02106efc(void) {
     if (data_0217c7b0 != 0) {
         func_0212c6f0((Unk0212c400 **) &data_0217c854, 0x14);
     }
-    if (data_021759c0->mCourseId != 0x22) {
+    if (data_021759c0->mCourseId != COURSE_ID_STADIUM) {
         return;
     }
     for (i = 7; i < 12; i++) {
@@ -1017,7 +1017,7 @@ void func_02106ab8(void) {
         func_0210d614(&data_0217d070, 0x3e, NULL);
         data_0217c814.mUnk_16 = 1;
     }
-    if (data_021759c0->mCourseId != 0x22) {
+    if (data_021759c0->mCourseId != COURSE_ID_STADIUM) {
         return;
     }
     if (b != FALSE) {
@@ -1072,7 +1072,7 @@ void func_0210689c(u32 a) {
         return;
     }
     switch (data_021759c0->mCourseId) {
-        case 0x22:
+        case COURSE_ID_STADIUM:
             if (data_0217c814.mUnk_10 != 0) {
                 v = 0x1c2;
                 for (i = 7; i < 12; i++) {
@@ -1081,7 +1081,7 @@ void func_0210689c(u32 a) {
                 b = TRUE;
             }
             { break; }
-        case 0x21:
+        case COURSE_ID_PINBALL:
             v = a == 0 ? 0x1cb : 0x1ca;
             b = TRUE;
             p = ((Unk0217c854 **) data_0217c838)[7];
@@ -1169,13 +1169,13 @@ void func_02106580(void) {
         v = &data_0217d07c;
         if (func_0210f858() != 0) {
             func_0210f780(v);
-            if (data_021759c0->mCourseId == 0x1c) {
+            if (data_021759c0->mCourseId == COURSE_ID_TOWN) {
                 if (func_0210f75c(0) != 0 || func_0210f75c(1) != 0) {
                     func_0210f35c(0, 0x1a9);
                 }
             }
         }
-        if (data_021759c0->mCourseId == 0x20) {
+        if (data_021759c0->mCourseId == COURSE_ID_KOOPA) {
             func_0210f230(0, 0x16b);
         }
         if (data_0217c814.mUnk_1c != -1) {
@@ -1217,27 +1217,27 @@ void func_021062a8(void) {
 
     v = 0xffff;
     switch (data_021759c0->mCourseId) {
-        case 0x22:
+        case COURSE_ID_STADIUM:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x1bc;
             }
             break;
-        case 0x18:
+        case COURSE_ID_RIDGE:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x1a6;
             }
             break;
-        case 0x1a:
+        case COURSE_ID_GARDEN:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x1a5;
             }
             break;
-        case 0x12:
+        case COURSE_ID_MANSION:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x126;
             }
             break;
-        case 0x13:
+        case COURSE_ID_AIRSHIP:
             switch (data_0217c814.mUnk_04) {
                 case 0xa:
                     v = 0x1d2;
@@ -1250,52 +1250,52 @@ void func_021062a8(void) {
                     break;
             }
             { break; }
-        case 0x20:
+        case COURSE_ID_KOOPA:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x1aa;
             }
             break;
-        case 0x11:
+        case COURSE_ID_CLOCK:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x192;
             }
             break;
-        case 0x19:
+        case COURSE_ID_MARIO:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x19b;
             }
             break;
-        case 0xf:
+        case COURSE_ID_OLD_NOKO_SFC:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x112;
             }
             break;
-        case 0x1f:
+        case COURSE_ID_BEACH:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x112;
             }
             break;
-        case 0xb:
+        case COURSE_ID_OLD_MOMO_64:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x12b;
             }
             break;
-        case 0x17:
+        case COURSE_ID_OLD_HYUDORO_64:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x19a;
             }
             break;
-        case 0x25:
+        case COURSE_ID_OLD_LUIGI_AGB:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x1d5;
             }
             break;
-        case 0x1d:
+        case COURSE_ID_RAINBOW:
             if (data_0217c814.mUnk_04 == 0x28) {
                 v = 0x1ba;
             }
             break;
-        case 0x1c:
+        case COURSE_ID_TOWN:
             if (data_0217c814.mUnk_04 == 0x28) {
                 v = 0x199;
             }
