@@ -91,7 +91,6 @@ void func_02024fc0(u32 arg0, u32 arg1) {
         value3 = 0x440000u;
     }
     value3 = (value3 << 4);
-    value12 = (u32) &func_02109078;
     value1 = (u32) * (const u32 *) ((value1) + (92));
     value3 = ((u32) ((s32) value3 >> 16));
     func_02109078((Unk0210bfbc *) value0, value1, value2, value3);

@@ -7,7 +7,6 @@
 void func_021053d8(u32 arg0) {
     u32 value0 = arg0;
     u32 value12;
-    value12 = (u32) &ParkMapObject;
     ParkMapObject((void *) value0);
 }
 

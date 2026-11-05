@@ -38,7 +38,6 @@ void InitBalloon(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value12;
-    value12 = (u32) &ParkMapObject;
     value1 = ~(0u);
     *(u32 *) ((value0) + (164)) = value1;
     ParkMapObject((void *) value0);

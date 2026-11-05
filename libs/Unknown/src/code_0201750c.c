@@ -7,8 +7,8 @@ void ListInit(LinkedList *arg0, u16 arg1) {
     value2 = 0u;
     *(u32 *) ((value0) + (0)) = value2;
     *(u32 *) ((value0) + (4)) = value2;
-    *(u16 *) ((value0) + (8)) = (u16) value2;
-    *(u16 *) ((value0) + (10)) = (u16) value1;
+    arg0->mCount = (u16) value2;
+    arg0->mLinkOffset = (u16) value1;
 }
 
 void ListAppendToEmpty(LinkedList *arg0, u32 arg1) {

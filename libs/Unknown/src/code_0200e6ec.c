@@ -21,7 +21,7 @@ void ThreadLockInit(ThreadLock *arg0) {
     value1 = (u32) * (const u32 *) ((value0) + (4));
     *(u32 *) ((value0) + (0)) = value1;
     *(u32 *) ((value0) + (8)) = value2;
-    *(u32 *) ((value0) + (12)) = value2;
+    arg0->mLockCount = value2;
 }
 
 // With t = data_0216ff5c.mCurrentThread: when n->mHolder is 0 it is set to t, mLockCount is raised and

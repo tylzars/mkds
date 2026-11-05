@@ -924,7 +924,6 @@ void ResetCameraHalfFovAngleGoal(void) {
     u32 value0;
     u32 value1;
     value1 = (u32) &data_0216569c;
-    value0 = (u32) &gChaseCamera;
     value1 = (u32) * (const u16 *) ((value1) + (0));
     gChaseCamera->mHalfFovAngleGoal = value1;
 }

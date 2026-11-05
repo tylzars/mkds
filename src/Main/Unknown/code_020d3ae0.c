@@ -298,7 +298,7 @@ void func_020d4a18(Unk020e6fd4 *arg0) {
     u32 value1;
     value1 = 0u;
     *(u32 *) ((value0) + 0u) = value1;
-    *(u16 *) ((value0) + 4u) = (u16) value1;
+    arg0->mUnk_04 = (u16) value1;
 }
 #pragma thumb off
 
@@ -334,9 +334,9 @@ u32 AddMapObjectToDrawList(Unk020e6fd4 *arg0, MapObject *arg1) {
     u32 value1 = (u32) arg1;
     u32 value2;
     u32 value3;
-    value3 = (u32) * (const u16 *) ((value0) + 4u);
+    value3 = (u32) arg0->mUnk_04;
     value2 = (value3) + (1u);
-    *(u16 *) ((value0) + 4u) = (u16) value2;
+    arg0->mUnk_04 = (u16) value2;
     value2 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = (value3 << 2);
     *(u32 *) ((value2) + (value0)) = value1;

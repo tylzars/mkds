@@ -89,7 +89,6 @@ s32 func_020ca3e4(void) {
 void func_020ca3d0(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b42c;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -752,7 +751,6 @@ BOOL func_020c8254(void) {
 void func_020c8240(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b420;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -804,7 +802,6 @@ s32 func_020c8098(void) {
 void func_020c8084(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b41c;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -837,7 +834,6 @@ s32 func_020c7f84(void) {
 void func_020c7f70(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b418;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -888,7 +884,6 @@ s32 func_020c7d54(void) {
 void func_020c7d40(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b414;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -927,7 +922,6 @@ s32 func_020c7c1c(void) {
 void func_020c7c08(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b410;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -960,7 +954,6 @@ s32 func_020c7b0c(void) {
 void func_020c7af8(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b40c;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -999,7 +992,6 @@ s32 func_020c79d4(void) {
 void func_020c79c0(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b408;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -1052,7 +1044,6 @@ BOOL func_020c77a0(void) {
 void func_020c778c(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b404;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -1085,7 +1076,6 @@ s32 func_020c7690(void) {
 void func_020c767c(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b400;
     func_020c0b84((Unk0217b498 **) value0);
 }

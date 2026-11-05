@@ -52,7 +52,6 @@ void func_020e7a40(void) {
     u32 value1;
     u32 compareLeft0;
     u32 compareRight0;
-    value0 = (u32) &data_021759c0;
     value0 = (u32) data_021759c0->mUnk_00c;
     compareLeft0 = value0;
     compareRight0 = 6u;

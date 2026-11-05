@@ -16,7 +16,6 @@ void func_020f73d4(u32 arg0) {
     value2 = (u32) * (const u32 *) ((value1) + (68));
     value0 = 0x44u;
     value0 = (value2) * (value0) + (value3);
-    value12 = (u32) &ReleaseItemPoolObject;
     ReleaseItemPoolObject((ItemPool *) value0, (ItemObject *) value1);
 }
 

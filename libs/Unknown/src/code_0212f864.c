@@ -5,10 +5,10 @@ void InterpolatorInit(Interpolator *arg0) {
     u32 value1;
     u32 value2;
     value2 = 0u;
-    *(u32 *) ((value0) + (4)) = value2;
-    value1 = (u32) * (const u32 *) ((value0) + (4));
-    *(u32 *) ((value0) + (0)) = value1;
-    *(u32 *) ((value0) + (12)) = value2;
-    value1 = (u32) * (const u32 *) ((value0) + (12));
-    *(u32 *) ((value0) + (8)) = value1;
+    arg0->mToValue = value2;
+    value1 = (u32) arg0->mToValue;
+    arg0->mFromValue = value1;
+    arg0->mTotalCount = value2;
+    value1 = (u32) arg0->mTotalCount;
+    arg0->mDoneCount = value1;
 }

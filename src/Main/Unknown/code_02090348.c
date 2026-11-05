@@ -3,6 +3,5 @@
 
 void func_02090348(Unk0208fd8c *arg0) {
     u32 value12;
-    value12 = (u32) &func_0207c448;
     func_0207c448(arg0);
 }

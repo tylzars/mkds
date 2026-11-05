@@ -154,12 +154,11 @@ u32 func_0207e200(struct Unk02089a24 *arg0, struct Unk020888b4 *arg1) {
     u32 value4;
     value2 = (u32) * (const u32 *) ((value1) + (0));
     value4 = value0;
-    value0 = (u32) * (const u32 *) ((value2) + (716));
-    value0 = (u32) * (const u32 *) ((value0) + (16));
+    value0 = (u32) arg1->mKart->mPhysicalParam->mBaseSpeedLimit;
     *(u32 *) ((value4) + (0)) = value0;
     value0 = (u32) * (const u32 *) ((value4) + (0));
     *(u32 *) ((value4) + (16)) = value0;
-    value0 = (u32) * (const u16 *) ((value1) + (4));
+    value0 = (u32) arg1->mIndex;
     value0 = (u32) func_020853f0(value0);
     *(u32 *) ((value4) + (28)) = value0;
     value0 = (u32) * (const u32 *) ((value4) + (28));

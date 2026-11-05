@@ -22,6 +22,6 @@ void FS_InitFile(Unk02003024 *arg0) {
     value2 = (u32) * (const u32 *) ((value0) + (28));
     *(u32 *) ((value0) + (24)) = value2;
     *(u32 *) ((value0) + (8)) = value3;
-    *(u32 *) ((value0) + (16)) = value1;
-    *(u32 *) ((value0) + (12)) = value3;
+    arg0->mUnk_10 = value1;
+    arg0->mUnk_0c = value3;
 }

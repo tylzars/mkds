@@ -147,7 +147,6 @@ u32 func_02035e44(void) {
 
 void func_02035e38(void) {
     u32 value12;
-    value12 = (u32) &func_02108d80;
     func_02108d80();
 }
 
@@ -225,7 +224,6 @@ void func_02035d20(void) {
 #pragma thumb on
 void func_02035d18(void) {
     u32 value3;
-    value3 = (u32) &func_02035d20;
     func_02035d20();
 }
 #pragma thumb off

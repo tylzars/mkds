@@ -268,7 +268,7 @@ void RequestWiFiState(s32 nextState) {
     u32 value1;
     value1 = (u32) &gWiFiStates;
     value1 = (u32) * (const u32 *) ((value1) + 0u);
-    *(u32 *) ((value1) + 12u) = value0;
+    gWiFiStates->mNextState = value0;
     return;
 }
 
@@ -307,8 +307,7 @@ void SetWiFiVSSettingIndex(u32 settingIndex) {
 s32 func_ov000_02180644(void) {
     u32 value0;
     value0 = (u32) &gWiFiStates;
-    value0 = (u32) * (const u32 *) ((value0) + 0u);
-    value0 = (u32) * (const u32 *) ((value0) + 52u);
+    value0 = (u32) gWiFiStates->mUnk_34;
     return (s32) value0;
 }
 
@@ -317,7 +316,7 @@ void func_ov000_02180638(s32 arg0) {
     u32 value1;
     value1 = (u32) &gWiFiStates;
     value1 = (u32) * (const u32 *) ((value1) + 0u);
-    *(u32 *) ((value1) + 52u) = value0;
+    gWiFiStates->mUnk_34 = value0;
     return;
 }
 

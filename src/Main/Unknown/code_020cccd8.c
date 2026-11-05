@@ -32,7 +32,6 @@
 void func_020ce694(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b480;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -71,7 +70,6 @@ s32 func_020ce548(void) {
 void func_020ce534(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b47c;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -120,7 +118,6 @@ s32 func_020ce3e0(void) {
 void func_020ce3cc(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b478;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -164,7 +161,6 @@ s32 func_020ce264(void) {
 void func_020ce250(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b474;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -203,7 +199,6 @@ s32 func_020ce100(void) {
 void func_020ce0ec(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b470;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -249,7 +244,6 @@ s32 func_020cdf18(void) {
 void func_020cdf04(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b46c;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -288,7 +282,6 @@ s32 func_020cdde4(void) {
 void func_020cddd0(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b468;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -328,7 +321,6 @@ s32 func_020cdc90(void) {
 void func_020cdc7c(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b464;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -367,7 +359,6 @@ s32 func_020cdb54(void) {
 void func_020cdb40(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b460;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -409,7 +400,6 @@ s32 func_020cd9dc(void) {
 void func_020cd9c8(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b45c;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -451,7 +441,6 @@ s32 func_020cd844(void) {
 void func_020cd830(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b458;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -491,7 +480,6 @@ s32 func_020cd6f4(void) {
 void func_020cd6e0(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b454;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -532,7 +520,6 @@ s32 func_020cd598(void) {
 void func_020cd584(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b450;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -572,7 +559,6 @@ s32 func_020cd44c(void) {
 void func_020cd438(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b44c;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -613,7 +599,6 @@ s32 func_020cd2f0(void) {
 void func_020cd2dc(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b448;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -704,7 +689,6 @@ s32 func_020ccf6c(void) {
 void func_020ccf58(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b444;
     func_020c0b84((Unk0217b498 **) value0);
 }
@@ -743,7 +727,6 @@ s32 func_020cce24(void) {
 void func_020cce10(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_020c0b84;
     value0 = (u32) &data_0217b440;
     func_020c0b84((Unk0217b498 **) value0);
 }

@@ -1037,7 +1037,6 @@ void func_021173e4(void) {
     u32 value0;
     u32 value1;
     u32 value2;
-    value0 = (u32) &data_0217d360;
     value0 = (u32) data_0217d360->mBg0Offset;
     value0 = 0u - (value0);
     value1 = (value0 << 16);

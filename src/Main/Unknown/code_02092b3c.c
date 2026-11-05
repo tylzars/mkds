@@ -24,7 +24,6 @@ void func_02093190(u32 arg0) {
     u32 value1;
     u32 value2;
     u32 value12;
-    value12 = (u32) &CreateParkedMapObjects;
     value2 = value0;
     value0 = MAP_OBJECT_KIND_BASABASA;
     value1 = 8u;

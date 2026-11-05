@@ -21,7 +21,6 @@ void func_020d7da8(Unk020e0144 *arg0, CourseMapRow *arg1, s32 arg2) {
     u32 value2 = (u32) arg2;
     u32 value3;
     value1 = (u32) * (const u16 *) ((value1) + 38u);
-    value3 = (u32) &func_020d7db4;
     func_020d7db4((Unk020e0144 *) value0, value1, value2);
 }
 #pragma thumb off

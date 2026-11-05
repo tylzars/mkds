@@ -72,7 +72,6 @@ void func_02016838(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &MemCopyHalfwordsToG2Bg2CntBits8To12Address;
     MemCopyHalfwordsToG2Bg2CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
@@ -85,7 +84,6 @@ void func_02016820(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &MemCopyHalfwordsToG2Bg2CntBits8To12Address;
     MemCopyHalfwordsToG2Bg2CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
@@ -98,7 +96,6 @@ void func_02016808(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &GX_LoadOBJPltt;
     GX_LoadOBJPltt((const void *) value0, (int) value1, value2);
 }
 
@@ -123,7 +120,6 @@ void func_02016790(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &GX_LoadOAM;
     GX_LoadOAM((const void *) value0, (int) value1, value2);
 }
 
@@ -132,7 +128,6 @@ void func_02016784(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &GX_LoadOBJ;
     GX_LoadOBJ((const void *) value0, (int) value1, value2);
 }
 
@@ -145,7 +140,6 @@ void func_0201676c(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &MemCopyWordsToG2sBg1CntBits2To5Address;
     MemCopyWordsToG2sBg1CntBits2To5Address((const void *) value0, (int) value1, value2);
 }
 
@@ -154,7 +148,6 @@ void func_02016760(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &MemCopyWordsToG2sBg2CntBits2To5Address;
     MemCopyWordsToG2sBg2CntBits2To5Address((const void *) value0, (int) value1, value2);
 }
 
@@ -163,7 +156,6 @@ void func_02016754(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &MemCopyWordsToG2sBg3CntBits2To5Address;
     MemCopyWordsToG2sBg3CntBits2To5Address((const void *) value0, (int) value1, value2);
 }
 
@@ -176,7 +168,6 @@ void func_0201673c(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &MemCopyHalfwordsToG2sBg1CntBits8To12Address;
     MemCopyHalfwordsToG2sBg1CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
@@ -185,7 +176,6 @@ void func_02016730(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &MemCopyHalfwordsToG2sBg2CntBits8To12Address;
     MemCopyHalfwordsToG2sBg2CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
@@ -198,7 +188,6 @@ void func_02016718(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &MemCopyHalfwordsToG2sBg2CntBits8To12Address;
     MemCopyHalfwordsToG2sBg2CntBits8To12Address((const void *) value0, (int) value1, value2);
 }
 
@@ -211,7 +200,6 @@ void func_02016700(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &GXS_LoadOBJPltt;
     GXS_LoadOBJPltt((const void *) value0, (int) value1, value2);
 }
 
@@ -220,7 +208,6 @@ void func_020166f4(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &GXS_LoadBGPltt;
     GXS_LoadBGPltt((const void *) value0, (int) value1, value2);
 }
 
@@ -241,7 +228,6 @@ void func_02016688(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &GXS_LoadOAM;
     GXS_LoadOAM((const void *) value0, (int) value1, value2);
 }
 
@@ -250,7 +236,6 @@ void func_0201667c(u32 arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value12;
-    value12 = (u32) &GXS_LoadOBJ;
     GXS_LoadOBJ((const void *) value0, (int) value1, value2);
 }
 

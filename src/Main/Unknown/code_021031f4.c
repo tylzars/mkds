@@ -494,7 +494,6 @@ u32 func_02103840(u32 arg0) {
     u32 compareRight1;
     u32 compareLeft2;
     u32 compareRight2;
-    value1 = (u32) &data_021759c0;
     value1 = (u32) data_021759c0->mEntryIndex;
     compareLeft0 = value0;
     compareRight0 = value1;

@@ -488,7 +488,6 @@ void WakeSleepingThread(Thread **arg0) {
     value2 = (u32) * (const u32 *) ((value0) + (0));
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
-    value12 = (u32) &ThreadSetRunnable;
     value0 = value2;
     *(u32 *) ((value2) + (176)) = value1;
     ThreadSetRunnable((Thread *) value0);

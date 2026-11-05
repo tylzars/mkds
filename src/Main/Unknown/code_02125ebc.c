@@ -875,7 +875,6 @@ s32 func_02125f6c(void) {
 #pragma thumb on
 s32 func_02125f60(void) {
     u32 value0;
-    value0 = (u32) &gTxtSystem;
     value0 = (u32) gTxtSystem->mUnk_2c;
     return (s32) value0;
 }
@@ -884,7 +883,6 @@ s32 func_02125f60(void) {
 #pragma thumb on
 s32 func_02125f54(void) {
     u32 value0;
-    value0 = (u32) &gTxtSystem;
     value0 = (u32) gTxtSystem->mUnk_30;
     return (s32) value0;
 }

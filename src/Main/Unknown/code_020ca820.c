@@ -5,7 +5,6 @@
 #pragma thumb on
 void func_020ca83c(void) {
     u32 value3;
-    value3 = (u32) &func_020cab8c;
     func_020cab8c();
 }
 #pragma thumb off

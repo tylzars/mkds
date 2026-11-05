@@ -885,7 +885,6 @@ void func_02111494(const void *a) {
 void func_02111488(s32 arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
-    value1 = (u32) &data_0217d344;
     data_0217d344->mUnk_0c = value0;
 }
 #pragma thumb off
@@ -951,7 +950,6 @@ u32 func_02111408(void) {
 void func_021113fc(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &data_0217d344;
     data_0217d344->mUnk_30 = (u16) value0;
 }
 #pragma thumb off
@@ -960,7 +958,6 @@ void func_021113fc(u32 arg0) {
 void func_021113f0(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) &data_0217d344;
     data_0217d344->mUnk_32 = (u16) value0;
 }
 #pragma thumb off
