@@ -160,13 +160,8 @@ void DarrayReplace(Darray *array, const void *b, s32 n) {
     DarraySetElement(array, b, n);
 }
 
-void DarraySort(u32 p0, u32 p1) {
-    u32 v2 = ((p0) + (0x0u));
-    u32 v3 = ((p1) + (0x0u));
-    u32 v4 = ((u32) * (u32 *) ((v2) + (20)));
-    u32 v5 = ((u32) * (u32 *) ((v2) + (0)));
-    u32 v6 = ((u32) * (u32 *) ((v2) + (8)));
-    qsort((u8 *) v4, v5, v6, (int (*)(void *, void *))(v3));
+void DarraySort(Darray *p0, u32 p1) {
+    qsort(p0->mList, p0->mCount, p0->mElemSize, (int (*)(void *, void *)) p1);
 }
 
 s32 DarrayFindIndex(Darray *a, const void *b, UnkCompare *c, s32 d, s32 e) {

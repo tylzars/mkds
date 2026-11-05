@@ -1444,7 +1444,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             s.mUnk_02 = ((y >> 8) & 0xff) | ((y << 8) & 0xff00);
             gWiFiMatching->mUnk_18c[0] = 1;
             p = gWiFiMatching;
-            func_ov000_0219db18(0, GetSocketDescriptor(*p->mConnectionSocket), (s32) &s, p->mUnk_18c);
+            func_ov000_0219db18(0, GetSocketDescriptor(*p->mConnectionSocket), &s, p->mUnk_18c);
             gWiFiMatching->mUnk_184 = 0;
             break;
         case 7:
@@ -3145,18 +3145,18 @@ void func_ov000_0219de68(s32 a, Unk021a3fc8 *b, void *c) {
     u8 *d;
     switch (a) {
         case 0:
-            func_ov000_021a4784((u32) b, 8);
-            func_ov000_021a4784((u32) b, 0xa);
-            func_ov000_021a4784((u32) b, 0x32);
-            func_ov000_021a4784((u32) b, 0x33);
-            func_ov000_021a4784((u32) b, 0x34);
-            func_ov000_021a4784((u32) b, 0x35);
-            func_ov000_021a4784((u32) b, 0x36);
+            func_ov000_021a4784(b, 8);
+            func_ov000_021a4784(b, 0xa);
+            func_ov000_021a4784(b, 0x32);
+            func_ov000_021a4784(b, 0x33);
+            func_ov000_021a4784(b, 0x34);
+            func_ov000_021a4784(b, 0x35);
+            func_ov000_021a4784(b, 0x36);
             i = 0;
             d = data_ov000_021b5698[0];
             for (; i < 0x9a; i++) {
                 if (d[0] != 0) {
-                    func_ov000_021a4784((u32) b, d[0]);
+                    func_ov000_021a4784(b, d[0]);
                 }
                 d += 12;
             }

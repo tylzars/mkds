@@ -111,7 +111,7 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
             }
         } while (func_020d7c84(&data_0217bb88.mUnk_00, 0, data_0217b9cc) != FALSE);
     }
-    func_020d8488((u32) &data_0217bb88, (u32) &v);
+    func_020d8488(&data_0217bb88, &v);
     data_0217b878 += 0x64;
     i = data_0217b878 >> 4;
     c = gPairsByAngle[i * 2];

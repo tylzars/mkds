@@ -85,7 +85,7 @@ u32 func_02124c70(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, Unk0201ea30 *d, Unk0212
         p->mUnk_00[2].mUnk_00[3] = f->mUnk_14[2] >> 4;
         p->mUnk_00[3].mUnk_00[3] = f->mUnk_14[3] >> 4;
         if (g != 0) {
-            func_020ae5d4((u32) e);
+            func_020ae5d4(e);
         }
     }
     h = e->mUnk_400;

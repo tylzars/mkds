@@ -94,7 +94,7 @@ void func_0210bf24(u32 a, u32 b, u32 c, u32 d) {
         func_0210bc54(w, (u8 *) v);
         func_0210bfbc((Unk0210bfbc *) (w - 1));
     }
-    func_0210cfe8((u32) v);
+    func_0210cfe8(v);
     func_0210bcf4(a, b, c, (u32) v, d);
 }
 

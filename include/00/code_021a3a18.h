@@ -146,7 +146,7 @@ BOOL func_ov000_021a4654(const char *a, u32 b, Unk021a4654 *c, Unk021a8f84 **d);
 void func_ov000_021a46d4(void);
 void func_ov000_021a471c(Unk021a471c *a, const char *b);
 void func_ov000_021a4760(Unk021a471c *a, s32 b);
-void func_ov000_021a4784(u32 a, int b);
+void func_ov000_021a4784(Unk021a3fc8 *a, int b);
 void func_ov000_021a47ac(Unk021a4a08 *a);
 void func_ov000_021a4818(Unk021a4a08 *a);
 void func_ov000_021a4868(Unk021a4a08 *a);

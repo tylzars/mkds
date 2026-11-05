@@ -187,20 +187,14 @@ void func_0210d020(s32 (*p0)(Unk0210bcf4 *)) {
     data_0217d014 = p0;
 }
 
-void func_0210cfe8(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value4;
-    value4 = value0;
-    func_0210e328((Unk0210bf24 *) value0);
-    value0 = (value4) + (8u);
-    func_0210bce0((void *) value0);
-    value0 = 0u;
-    *(u8 *) ((value4) + (24)) = (u8) value0;
-    *(u16 *) ((value4) + (22)) = (u16) value0;
-    *(u8 *) ((value4) + (25)) = (u8) value0;
-    *(u16 *) ((value4) + (20)) = (u16) value0;
-    value0 = 0x7fu;
-    *(u8 *) ((value4) + (26)) = (u8) value0;
+void func_0210cfe8(Unk0210bf24 *arg0) {
+    func_0210e328(arg0);
+    func_0210bce0(&arg0->mUnk_08);
+    arg0->mUnk_18 = 0;
+    arg0->mUnk_16 = 0;
+    arg0->mUnk_19 = 0;
+    arg0->mUnk_14 = 0;
+    arg0->mUnk_1a = 0x7f;
 }
 
 void func_0210cfbc(Unk0210bfbc *p, s32 b, s32 c) {

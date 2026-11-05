@@ -42,7 +42,7 @@ s32 CallQueueAppend(u32 a, u32 b, void *c, u32 d) {
     if (CallQueueIsFull(p) != 0) {
         return 0;
     }
-    e = CallQueueGetTailEntry((u32) p);
+    e = CallQueueGetTailEntry(p);
     e->mFuncIndex = a;
     e->mSource = (u32) c;
     e->mUnk_08 = b;

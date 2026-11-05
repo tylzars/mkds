@@ -2,6 +2,8 @@
 
 #include "types.h"
 
+typedef struct Unk021a01dc Unk021a01dc;
+
 // Object func_ov000_0219db18 reads and writes through its last parameter.
 typedef struct Unk0219db18 {
     /* 00 */ u8 mUnk_00;
@@ -11,4 +13,4 @@ typedef struct Unk0219db18 {
 } Unk0219db18;
 
 u32 func_ov000_0219dabc(void);
-void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d);
+void func_ov000_0219db18(s32 a, s32 b, Unk021a01dc *c, void *d);

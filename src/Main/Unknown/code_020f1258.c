@@ -135,8 +135,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     return r;
 }
 
-int func_020f1258(int a0, int i, s32 c, u32 b) {
-    Unk020f5d6c *a;
+int func_020f1258(Unk020f5d6c *a, int i, s32 c, u32 b) {
     u16 x;
     Kart *p;
     u32 n;
@@ -149,7 +148,6 @@ int func_020f1258(int a0, int i, s32 c, u32 b) {
     s64 t1;
     s64 t2;
 
-    a = (Unk020f5d6c *) a0;
     p = GetKart(i);
     x = (u16) (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
                    ? (u16) (a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)

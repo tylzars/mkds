@@ -16,7 +16,7 @@
 #include "00/code_0219dd4c.h"
 #include "00/code_021a3264.h"
 
-void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
+void func_ov000_0219db18(s32 a, s32 b, Unk021a01dc *c, void *d) {
     s32 e;
     s32 f;
     u32 g;
@@ -33,9 +33,8 @@ void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
         gWiFiMatching->mUnk_14++;
         e = gWiFiMatching->mUnk_14;
         if (((Unk0219db18 *) d)->mUnk_00 != 0) {
-            gWiFiMatching->mUnk_1f8[e] = ((Unk021a01dc *) c)->mUnk_04;
-            gWiFiMatching->mUnk_278[e] =
-                (u16) ((((Unk021a01dc *) c)->mUnk_02 >> 8) & 0xff | (((Unk021a01dc *) c)->mUnk_02 << 8) & 0xff00);
+            gWiFiMatching->mUnk_1f8[e] = c->mUnk_04;
+            gWiFiMatching->mUnk_278[e] = (u16) ((c->mUnk_02 >> 8) & 0xff | (c->mUnk_02 << 8) & 0xff00);
             gWiFiMatching->mUnk_174[0] = 0;
             gWiFiMatching->mUnk_178 = 0;
             gWiFiMatching->mUnk_17c = 0;
@@ -55,9 +54,8 @@ void func_ov000_0219db18(s32 a, s32 b, s32 c, void *d) {
             return;
         }
         if (c != 0) {
-            gWiFiMatching->mUnk_1f8[e - 1] = ((Unk021a01dc *) c)->mUnk_04;
-            gWiFiMatching->mUnk_278[e - 1] =
-                (u16) ((((Unk021a01dc *) c)->mUnk_02 >> 8) & 0xff | (((Unk021a01dc *) c)->mUnk_02 << 8) & 0xff00);
+            gWiFiMatching->mUnk_1f8[e - 1] = c->mUnk_04;
+            gWiFiMatching->mUnk_278[e - 1] = (u16) ((c->mUnk_02 >> 8) & 0xff | (c->mUnk_02 << 8) & 0xff00);
         }
         gWiFiMatching->mUnk_184 = func_ov000_021a350c();
         gWiFiMatching->mState = 7;

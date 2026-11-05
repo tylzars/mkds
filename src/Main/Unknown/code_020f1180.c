@@ -12,7 +12,7 @@ BOOL func_020f1180(Unk020f5d6c *a, u32 b) {
     r = 0;
     n = data_021759c0->mKartCount;
     for (i = 0; i < n; i++) {
-        v = func_020f1258((s32) a, i, r, b);
+        v = func_020f1258(a, i, r, b);
         if (v != 0) {
             r = v;
         }

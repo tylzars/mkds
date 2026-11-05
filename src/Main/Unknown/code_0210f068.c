@@ -1,22 +1,17 @@
 #include "Main/Unknown/code_0210f068.h"
+#include "Main/Unknown/code_0210f090.h"
 #include "code_0201ec30.h"
 
-void func_0210f07c(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
+void func_0210f07c(Unk0210f090 *arg0) {
     u32 value12;
     value12 = (u32) &func_020203e4;
-    value1 = 1u;
-    *(u32 *) ((value0) + (1052)) = value1;
+    arg0->mUnk_41c = 1;
     func_020203e4();
 }
 
-void func_0210f068(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
+void func_0210f068(Unk0210f090 *arg0) {
     u32 value12;
     value12 = (u32) &func_0202041c;
-    value1 = 2u;
-    *(u32 *) ((value0) + (1052)) = value1;
+    arg0->mUnk_41c = 2;
     func_0202041c();
 }

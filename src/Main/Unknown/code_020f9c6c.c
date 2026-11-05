@@ -151,7 +151,7 @@ void func_020fc8ec(Unk020fc2e8 *e, s32 a) {
     if (e->mUnk_228 != NULL) {
         return;
     }
-    func_020fcb9c((s32) e, a);
+    func_020fcb9c(e, a);
     p = e->mUnk_228->mKart;
     e->mUnk_2f8 = ((e->mUnk_000.mFlags & 0x40000000) || (p->mUnk_48 & 1)) ? 2 : 3;
     e->mUnk_2fa = 1;
@@ -165,7 +165,7 @@ s32 func_020fc79c(Unk020eda5c *a, Unk020fc2e8 *e) {
         func_020ed268((Unk020ec8bc *) e, a, 0x14, 0xcc, 1, 1, 0, 0x6000, e->mUnk_276, 1);
         func_02046bcc(e->mUnk_2e8, 1);
     } else {
-        func_020fcb9c((s32) e, (u16) gRaceProgress->mKartAtRank[0]);
+        func_020fcb9c(e, (u16) gRaceProgress->mKartAtRank[0]);
         p = e->mUnk_228->mKart;
         e->mUnk_2f8 = ((e->mUnk_000.mFlags & 0x40000000) || (p->mUnk_48 & 1)) ? 2 : 3;
         e->mUnk_2fa = 1;
@@ -381,7 +381,7 @@ void func_020fbd98(Unk020fc2e8 *param_1) {
     if ((u32) v >= 8) {
         v = 0;
     }
-    func_020fcb9c((s32) param_1, (u16) v);
+    func_020fcb9c(param_1, (u16) v);
     p = param_1->mUnk_228->mKart;
     r = ((param_1->mUnk_000.mFlags & 0x40000000) || (p->mUnk_48 & 1)) ? 2 : 3;
     param_1->mUnk_2f8 = r;
@@ -705,7 +705,7 @@ void func_020fb038(Unk020fc2e8 *param_1) {
     } else if (param_1->mUnk_000.mFlags & 0x8000000) {
         v = (u16) gRaceProgress->mKartAtRank[0];
         if (param_1->mUnk_228 == NULL) {
-            func_020fcb9c((s32) param_1, v);
+            func_020fcb9c(param_1, v);
             q = param_1->mUnk_228->mKart;
             r = ((param_1->mUnk_000.mFlags & 0x40000000) || (q->mUnk_48 & 1)) ? 2 : 3;
             param_1->mUnk_2f8 = r;
@@ -713,7 +713,7 @@ void func_020fb038(Unk020fc2e8 *param_1) {
         }
     } else {
         v = (u16) gRaceProgress->mKartAtRank[0];
-        func_020fcb9c((s32) param_1, v);
+        func_020fcb9c(param_1, v);
         q = param_1->mUnk_228->mKart;
         r = ((param_1->mUnk_000.mFlags & 0x40000000) || (q->mUnk_48 & 1)) ? 2 : 3;
         param_1->mUnk_2f8 = r;

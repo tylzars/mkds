@@ -203,7 +203,7 @@ Unk0210bf24 *func_0210c86c(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
             func_0210bc54(u, (u8 *) v);
             func_0210bfbc((Unk0210bfbc *) (u - 1));
         }
-        func_0210cfe8((u32) v);
+        func_0210cfe8(v);
     }
     func_0210e328(v);
     func_0210bce0(&v->mUnk_08);
@@ -277,7 +277,7 @@ Unk0210bf24 *func_0210c610(Unk0210bfbc *a, u32 b, u32 c, u32 d, s16 e) {
             func_0210bc54(u, (u8 *) v);
             func_0210bfbc((Unk0210bfbc *) (u - 1));
         }
-        func_0210cfe8((u32) v);
+        func_0210cfe8(v);
     }
     func_0210e328(v);
     func_0210bce0(&v->mUnk_08);

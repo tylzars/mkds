@@ -667,7 +667,7 @@ int AdvanceSelectCharacter(void) {
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02124bf0(s->mUnk_0c, s->mUnk_08, NULL, gSelectCharacter->mUnk_058, s->mUnk_18);
-        func_020ae5d4((u32) gSelectCharacter->mUnk_058);
+        func_020ae5d4(gSelectCharacter->mUnk_058);
     } else if (func_02029930()->mUnk_c8 == 2) {
         func_0211f39c();
     }

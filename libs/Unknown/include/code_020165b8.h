@@ -5,5 +5,5 @@
 
 typedef struct CallQueue CallQueue;
 
-CallQueueEntry *CallQueueGetTailEntry(u32 arg0);
+CallQueueEntry *CallQueueGetTailEntry(CallQueue *arg0);
 CallQueueEntry *CallQueueGetHeadEntry(CallQueue *p);

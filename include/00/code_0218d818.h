@@ -22,7 +22,7 @@ void DarrayRemoveAll(Darray *a);
 void *DarrayFindByFnReverse(Darray *array, UnkCompare *fn, const void *c);
 void DarrayForEachReverse(Darray *array, UnkCompare *fn, const void *c);
 s32 DarrayFindIndex(Darray *a, const void *b, UnkCompare *c, s32 d, s32 e);
-void DarraySort(unsigned int p0, unsigned int p1);
+void DarraySort(Darray *p0, unsigned int p1);
 void DarrayReplace(Darray *array, const void *b, s32 n);
 void DarrayRemove(Darray *array, s32 n);
 void DarrayRemoveWithoutCallback(Darray *array, int n);

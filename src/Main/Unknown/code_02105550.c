@@ -1387,7 +1387,7 @@ void func_02105fcc(void) {
     }
     data_0217c7f0.mUnk_0c = 0;
     data_0217c7f0.mUnk_08 = 0;
-    func_0210d58c((u32) &data_0217d070);
+    func_0210d58c(&data_0217d070);
     func_0210d9a0(&data_0217d084, 4);
     for (i = 0; i < 12; i++) {
         func_0212c6f0(data_0217c838 + i, func_0210d960());

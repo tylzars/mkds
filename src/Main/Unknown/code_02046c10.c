@@ -25,7 +25,7 @@ void func_02046fb4(void *a) {
     }
     data_021759c4->mUnk_3c = HeapAllocAligned(a, 0x420, 0x20);
     func_0210f130(data_021759c4->mUnk_3c);
-    func_0210f0f4((s32) data_021759c4->mUnk_3c);
+    func_0210f0f4(data_021759c4->mUnk_3c);
     data_021759c4->mUnk_30_1 = 1;
     data_021759c4->mUnk_30_2 = 0;
     data_021759c4->mUnk_30_3 = 0;
@@ -59,7 +59,7 @@ void func_02046e84(void) {
         return;
     }
     if (p->mUnk_30_2 == 0) {
-        func_0210f07c((u32) p->mUnk_3c);
+        func_0210f07c(p->mUnk_3c);
     }
     data_021759c4->mUnk_30_2 = 1;
 }
@@ -72,7 +72,7 @@ void func_02046e24(void) {
         return;
     }
     if (p->mUnk_30_2) {
-        func_0210f068((u32) p->mUnk_3c);
+        func_0210f068(p->mUnk_3c);
     }
     data_021759c4->mUnk_30_2 = 0;
 }

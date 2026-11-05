@@ -343,7 +343,7 @@ void func_0206988c(Kart *p) {
             s->mUnk_1a = -1;
             s->mUnk_16 = 0;
         }
-        func_0208c504((u32) func_0208c5b8(p->mIndex));
+        func_0208c504(func_0208c5b8(p->mIndex));
     }
     s->mUnk_10++;
     if (s->mUnk_10 > 0x1c2 && (p->mUnk_7c & 0x2000)) {

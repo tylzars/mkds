@@ -31,9 +31,9 @@ Unk021c250c *func_ov003_021c2564(void *a) {
     return b;
 }
 
-void func_ov003_021c2544(int a) {
-    func_ov003_021d1490(*(void **) (a + 8));
-    func_ov003_021d1d0c(data_ov003_021da190->mUnk_60, (void *) (a));
+void func_ov003_021c2544(Unk021c250c *a) {
+    func_ov003_021d1490(a->mUnk_08);
+    func_ov003_021d1d0c(data_ov003_021da190->mUnk_60, a);
     return;
 }
 

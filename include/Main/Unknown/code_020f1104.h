@@ -2,6 +2,8 @@
 
 #include "types.h"
 
-void func_020f1104(int a);
-void func_020f112c(int arg0, int arg1);
+typedef struct Unk020f5d6c Unk020f5d6c;
+
+void func_020f1104(Unk020f5d6c *a);
+void func_020f112c(Unk020f5d6c *a, int b);
 void func_020f1150(int arg0, int arg1);

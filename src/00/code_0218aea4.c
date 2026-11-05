@@ -100,7 +100,7 @@ void func_ov000_0218d374(SbServerList *p, s32 a, u32 b, u32 c) {
     p->mUnk_498 = b;
     p->mUnk_49c = a;
     data_ov000_021b4d24 = p;
-    DarraySort((u32) p->mUnk_004, (u32) f);
+    DarraySort(p->mUnk_004, (u32) f);
 }
 
 void func_ov000_0218d340(SbServerList *p, u32 a) {

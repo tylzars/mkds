@@ -413,7 +413,7 @@ void func_0210174c(Unk02101c84 *p) {
             }
         } while (func_020f3fa8(&p->mUnk_1a4, &data_0215a1c0[p->mUnk_248]) != 0);
     }
-    func_020d8488((u32) &p->mUnk_1a4, (u32) &s);
+    func_020d8488(&p->mUnk_1a4, &s);
     func_020d84c0(&p->mUnk_1a4.mUnk_00, s.y);
     if (p->mUnk_000.mUnk_d0 == &p->mUnk_000.mUnk_0c4) {
         v = (Vec3){s.x};

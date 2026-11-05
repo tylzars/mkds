@@ -1,16 +1,15 @@
 #include "Main/Unknown/code_02063b50.h"
+#include "Main/Unknown/code_0206bcb0.h"
 
-u32 func_02063b50(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    u32 value3;
-    value2 = (u32) * (const u32 *) ((value0) + (288));
-    value3 = (value0) + (0x120u);
-    *(u32 *) ((value1) + (0)) = value2;
-    value0 = (u32) * (const u32 *) ((value3) + (4));
-    *(u32 *) ((value1) + (4)) = value0;
-    value0 = (u32) * (const u32 *) ((value3) + (8));
-    *(u32 *) ((value1) + (8)) = value0;
+u32 func_02063b50(Kart *arg0, Vec3 *arg1) {
+    Vec3 *value3;
+    s32 value0;
+    s32 value2 = arg0->mUnk_120.x;
+    value3 = &arg0->mUnk_120;
+    arg1->x = value2;
+    value0 = value3->y;
+    arg1->y = value0;
+    value0 = value3->z;
+    arg1->z = value0;
     return value0;
 }

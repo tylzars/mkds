@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-u32 func_020ae5d4(u32 arg0);
+typedef struct Unk02124c70 Unk02124c70;
+
+u32 func_020ae5d4(Unk02124c70 *arg0);

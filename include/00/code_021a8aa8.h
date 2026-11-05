@@ -43,11 +43,11 @@ extern char data_ov000_021b6030[16];
 extern Unk021b5f94 data_ov000_021b6040;
 extern s8 data_ov000_021b6078[0x104];
 
-void func_ov000_021a8aa8(u32 arg0);
+void func_ov000_021a8aa8(Unk021a6fa8 *arg0);
 Unk021a8ab8 **func_ov000_021a8ab8(Unk021a8ab8 **head, Unk021a8ab8 *node);
 void func_ov000_021a8ad0(Unk021a8ab8 **head, Unk021a8ab8 *node);
-void func_ov000_021a8ae8(u32 arg0);
-void func_ov000_021a8af8(u32 arg0);
+void func_ov000_021a8ae8(Unk021a6fa8 *arg0);
+void func_ov000_021a8af8(Unk021a6fa8 *arg0);
 void func_ov000_021a8b08(u32 arg0, u32 arg1);
 void func_ov000_021a8b10(void *arg0);
 s32 func_ov000_021a8b20(void *a, s32 b, s64 c);

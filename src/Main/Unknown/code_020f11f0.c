@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_020f1258.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-u32 func_020f11f0(u32 a, u32 b) {
+u32 func_020f11f0(Unk020f5d6c *a, u32 b) {
     u16 v1;
     int v2;
     v1 = func_02061f90();

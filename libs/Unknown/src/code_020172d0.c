@@ -5,7 +5,7 @@ void ListAppend(LinkedList *a, void *p) {
     u32 o;
 
     if (a->mHead == 0) {
-        ListAppendToEmpty((u32) a, (u32) p);
+        ListAppendToEmpty(a, (u32) p);
         return;
     }
     o = a->mLinkOffset;
@@ -20,7 +20,7 @@ void ListPrepend(LinkedList *a, void *p) {
     u32 o;
 
     if (a->mHead == 0) {
-        ListAppendToEmpty((u32) a, (u32) p);
+        ListAppendToEmpty(a, (u32) p);
         return;
     }
     o = a->mLinkOffset;

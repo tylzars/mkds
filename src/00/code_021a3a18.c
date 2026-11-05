@@ -204,12 +204,12 @@ void func_ov000_021a47ac(Unk021a4a08 *a) {
     }
 }
 
-void func_ov000_021a4784(u32 a, int b) {
+void func_ov000_021a4784(Unk021a3fc8 *a, int b) {
     int v1;
-    v1 = *(s32 *) (a + 0x100);
+    v1 = a->mUnk_100;
     if (((v1 < 0xfe) && (1 <= b)) && (b <= 254)) {
-        *(s32 *) (a + 0x100) = v1 + 1;
-        *(s8 *) (a + v1) = (s8) b;
+        a->mUnk_100 = v1 + 1;
+        a->mUnk_000[v1] = (s8) b;
     }
 }
 

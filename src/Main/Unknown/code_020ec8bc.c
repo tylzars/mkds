@@ -243,7 +243,7 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
     }
     if (f) {
         v4c = *q;
-        func_020d8488((u32) t, (u32) q);
+        func_020d8488(t, q);
         r->y = 0;
         if (p->mUnk_000.mUnk_158 == 0) {
             Vec3Sub(q, &v4c, &v4c);

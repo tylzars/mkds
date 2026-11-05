@@ -96,7 +96,7 @@ u32 func_ov000_021994c4(Gt2Connection *a, u32 b, u8 *c, s32 d) {
             return 0;
         }
     } else if (b == 0x66) {
-        if (func_ov000_0219960c((u32) a, (u32) c, (u32) d) == 0) {
+        if (func_ov000_0219960c(a, (u32) c, (u32) d) == 0) {
             return 0;
         }
     } else if (b == 0x67) {
