@@ -242,7 +242,7 @@ void InitSelectCup(void *b, void *c, void *d, s32 e) {
     gSelectCup->mUnk_58 = 0;
     gSelectCup->mMode = e;
     gSelectCup->mUnk_5c = gSelectCup->mIndex;
-    gSelectCup->mUnk_60 = FALSE;
+    gSelectCup->mCupPicturePending = FALSE;
     gSelectCup->mUnk_64 = c;
     gSelectCup->mUnk_68 = d;
     gSelectCup->mResult = 0;

@@ -93,13 +93,13 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     }
     switch (gSelectKart->mMode) {
         case 0:
-            gSelectKart->mUnk_0a0 = 0;
+            gSelectKart->mEntryIndex = 0;
             break;
         case 1:
-            gSelectKart->mUnk_0a0 = func_02028d9c();
+            gSelectKart->mEntryIndex = func_02028d9c();
             break;
         case 2:
-            gSelectKart->mUnk_0a0 = func_020295e4();
+            gSelectKart->mEntryIndex = func_020295e4();
             break;
     }
     if (func_020280dc() == 0) {
@@ -107,18 +107,18 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
         gSelectKart->mUnk_098 = func_02056444(gSelectKart->mHeap);
     }
     g = gSelectKart;
-    g->mCharacterIndex = func_02029930()->mUnk_00[g->mUnk_0a0].mCharacterIndex;
+    g->mCharacterIndex = func_02029930()->mUnk_00[g->mEntryIndex].mCharacterIndex;
     g = gSelectKart;
-    g->mKartIndex = func_02029930()->mUnk_00[g->mUnk_0a0].mKartIndex;
+    g->mKartIndex = func_02029930()->mUnk_00[g->mEntryIndex].mKartIndex;
     if (gSelectKart->mCharacterIndex == -1) {
         gSelectKart->mCharacterIndex = 0;
     }
     if (gSelectKart->mKartIndex == -1) {
         gSelectKart->mKartIndex = 0;
     }
-    func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mKartIndex = -1;
-    func_02029930()->mUnk_00[gSelectKart->mUnk_0a0].mUnk_14 = 0;
-    gSelectKart->mUnk_09c = func_02025e34(gSelectKart->mKartIndex);
+    func_02029930()->mUnk_00[gSelectKart->mEntryIndex].mKartIndex = -1;
+    func_02029930()->mUnk_00[gSelectKart->mEntryIndex].mUnk_14 = 0;
+    gSelectKart->mKartTableIndex = func_02025e34(gSelectKart->mKartIndex);
     if (func_020280dc() == 0) {
         g = gSelectKart;
         if (g->mUnk_104 == FALSE) {

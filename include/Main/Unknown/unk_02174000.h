@@ -68,8 +68,11 @@ typedef struct SelectKart {
     /* 090 */ s32 mStateFrames; /* counts only in states 3, 4 and 6 */
     /* 094 */ s32 mState;
     /* 098 */ Unk0205fd2c *mUnk_098;
-    /* 09c */ s32 mUnk_09c;
-    /* 0a0 */ s32 mUnk_0a0;
+    // Position of the kart in the table data_0215336c that the player steps through; mKartIndex is the kart at that
+    // position, -1 when the kart is not in the table.
+    /* 09c */ s32 mKartTableIndex;
+    // Index of the entry (element of the array behind data_02174e1c) whose character and kart this screen edits.
+    /* 0a0 */ s32 mEntryIndex;
     /* 0a4 */ s32 mCharacterIndex;
     /* 0a8 */ s32 mKartIndex;
     /* ac */ Unk02025ebc mUnk_0ac[5];

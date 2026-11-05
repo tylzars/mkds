@@ -177,17 +177,20 @@ typedef struct RecordVS {
     /* 08 */ Unk0201ea30 *mRecordVSMBncl;
     /* 0c */ struct Unk0201ea30 *mRecordVSMBnll;
     /* 10 */ struct Nscr *mRecordVSM02Nscr;
-    /* 14 */ Unk02124b1c *mUnk_14;
+    // Object table of the main part of the screen (files mRecordVSMBncl / mRecordVSMBnll).
+    /* 14 */ Unk02124b1c *mRecordVSMTable;
     /* 18 */ Unk0201ea30 *mRecordVSMTransientBncl;
     /* 1c */ struct Unk0201ea30 *mRecordVSMTransientBnll;
     /* 20 */ struct Nscr *mRecordVSM03Nscr;
-    /* 24 */ Unk02124b1c *mUnk_24;
+    // Object table of the transient part of the main screen (files mRecordVSMTransientBncl / mRecordVSMTransientBnll).
+    /* 24 */ Unk02124b1c *mRecordVSMTransientTable;
     /* 28 */ struct Ncgr *mRecordVSSNcgr;
     /* 2c */ struct Unk02021dc8 *mRecordVSSNcer;
     /* 30 */ Unk0201ea30 *mRecordVSSBncl;
     /* 34 */ Unk0201ea30 *mRecordVSSBnbl;
     /* 38 */ struct Unk0201ea30 *mRecordVSSBnll;
-    /* 3c */ Unk02124b1c *mUnk_3c;
+    // Object table of the sub screen (files mRecordVSSBncl / mRecordVSSBnll).
+    /* 3c */ Unk02124b1c *mRecordVSSTable;
     /* 40 */ s32 mUnk_40;
     /* 44 */ struct Bmg *mRecordMessages;
     /* 48 */ void *mUnk_48;
@@ -202,7 +205,9 @@ typedef struct RecordVS {
     /* 60 */ s32 mBg1OffsetX;
     // Y half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated
     /* 64 */ s32 mBg1OffsetY;
-    /* 68 */ s16 mUnk_68;
+    // Position of the highlight among the six items: 0 to 4 are the records of the page, 5 the extra item; -1 can be
+    // stored (count % 5 - 1 in func_021139b4).
+    /* 68 */ s16 mIndex;
     /* 6a */ s16 mUnk_6a;
     /* 6c */ s32 mUnk_6c;
     /* 70 */ s32 mUnk_70;
@@ -282,7 +287,8 @@ typedef struct SelectCup {
     /* 58 */ s32 mUnk_58;
     /* 5c */ s16 mUnk_5c;
     /* 5e */ u8 mUnk_5e[2];
-    /* 60 */ BOOL mUnk_60;
+    // Set when the cup picture was asked for; the step queues its data once it is ready.
+    /* 60 */ BOOL mCupPicturePending;
     /* 64 */ void *mUnk_64;
     /* 68 */ void *mUnk_68;
     /* 6c */ s32 mResult;
@@ -295,9 +301,12 @@ typedef struct SelectRaceRule {
     /* 08 */ Unk0201ea30 *mBnbl;
     /* 0c */ struct Unk0201ea30 *mBnll;
     /* 10 */ struct Nclr *mNclr; /* the _o palette */
-    /* 14 */ Unk02124b1c *mUnk_14;
-    /* 18 */ struct Bmg *mUnk_18;
-    /* 1c */ struct Bmg *mUnk_1c;
+    // Object table allocated for the bncl / bnll of this screen.
+    /* 14 */ Unk02124b1c *mTable;
+    // Messages of common.bmg.
+    /* 18 */ struct Bmg *mCommonMessages;
+    // Messages of rule.bmg.
+    /* 1c */ struct Bmg *mRuleMessages;
     /* 20 */ struct Nscr *mNscr; /* multi_simple_s (mMode == 3) or s_menu, two files */
     /* 24 */ void *mUnk_24;
     /* 28 */ void *mHeap;
@@ -307,15 +316,22 @@ typedef struct SelectRaceRule {
     /* 38 */ s32 mStateFrames;
     /* 3c */ s16 mUnk_3c[5][2];
     /* 50 */ s16 mUnk_50[2][2];
-    /* 58 */ s16 mUnk_58;
+    // Vertical shift in lines of the whole layout, 0 or -0x1c by mode; added to the positions of the objects and taken
+    // off the touch y.
+    /* 58 */ s16 mOffsetY;
     /* 5a */ u8 mUnk_5a[0x02];
-    /* 5c */ s32 mUnk_5c;
-    /* 60 */ s32 mUnk_60;
-    /* 64 */ s32 mUnk_64;
+    // Offset stored negated into the sub engine's BG3 offset register.
+    /* 5c */ s32 mBg3Offset;
+    // Row (0 to 4) the highlight is on; the value of rows 0 to 3 is mUnk_68[row] and that of row 4 is mUnk_78.
+    /* 60 */ s32 mRow;
+    // Row at the start of the step, to see whether it changed.
+    /* 64 */ s32 mPrevRow;
     /* 68 */ s32 mUnk_68[4];
     /* 78 */ s32 mUnk_78;
-    /* 7c */ s32 mUnk_7c;
-    /* 80 */ s32 mUnk_80;
+    // Non-zero while the highlight is on the button below the rows instead of on a row.
+    /* 7c */ s32 mOnButton;
+    // mOnButton at the start of the step.
+    /* 80 */ s32 mPrevOnButton;
     /* 84 */ u32 mUnk_84;
     /* 88 */ s16 mUnk_88;
     /* 8a */ s16 mUnk_8a;
@@ -323,7 +339,8 @@ typedef struct SelectRaceRule {
     /* ac */ u16 mUnk_ac[2];
     /* b0 */ u16 mUnk_b0[2];
     /* b4 */ void *mUnk_b4;
-    /* b8 */ vu32 mUnk_b8;
+    // Result AdvanceSelectRaceRule returns in state 8 once the state has run 10 calls: 1 or 2; 0 until set.
+    /* b8 */ vu32 mResult;
 } SelectRaceRule;
 
 // Object behind data_0217d37c (0x10 bytes), allocated by func_0211f2b8.
@@ -556,26 +573,40 @@ typedef struct Unk0217d400_2c {
         struct {
             /* 00 */ u16 mUnk_00_0[8];
             /* 10 */ s32 mUnk_10;
-            /* 14 */ s16 mUnk_14;
-            /* 16 */ s16 mUnk_16;
+            // Mode of the screen as passed in by the scene (0xc, 7 or 0xb); element 2 of Keyboard.mUnk_2c only: in
+            // element 0 these bytes are character 10 of the text.
+            /* 14 */ s16 mMode;
+            // Scene to run when the keyboard ends, -1 until set, read by GetKeyboardNextScene through the raw offset
+            // 114; element 2 of Keyboard.mUnk_2c only: in element 0 these bytes are character 11 of the text.
+            /* 16 */ s16 mNextScene;
         };
     };
 } Unk0217d400_2c;
 
 // Object behind gKeyboard: 0xc4 bytes allocated by InitKeyboard.
 typedef struct Keyboard {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    // Heap the screen's objects are allocated from.
+    /* 00 */ void *mHeap;
+    // Which of the two sets (background files, text records, cell counts, object tables) the screen works on, 0 or 1;
+    // set from the mode argument at start, to 1 in state 3 and back to 0 in state 8.
+    /* 04 */ s32 mKind;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mState;
     /* 10 */ s32 mNextState;
     /* 14 */ s32 mUnk_14[2];
-    /* 1c */ s32 mUnk_1c[2];
+    // Per button: non-zero while the button accepts its input; button 0 needs text entered.
+    /* 1c */ s32 mButtonEnabled[2];
     /* 24 */ BOOL mUnk_24;
-    /* 28 */ s32 mUnk_28;
+    // Calls spent in the current state: counted up by the handlers of states 1, 3, 4, 6, 8, 9 and 11, and by state 10
+    // only while func_02125f54 or func_02125f88 returns non-zero; zeroed by the handler that leaves; the slide states
+    // hold it at 0xf.
+    /* 28 */ s32 mStateFrames;
     /* 2c */ Unk0217d400_2c mUnk_2c[3];
-    /* 74 */ Unk02124b1c *mUnk_74[2][2];
-    /* 84 */ s16 mUnk_84;
+    // Object tables of the keyboard, indexed by kind and by the buffer they are drawn to.
+    /* 74 */ Unk02124b1c *mTables[2][2];
+    // Vertical shift in lines of the whole screen (0xc0 = slid out of view, 0 = in place); also stored negated into the
+    // vertical half of the sub engine's BG3 offset.
+    /* 84 */ s16 mOffsetY;
     /* 86 */ s16 mUnk_86[2][2];
     /* 8e */ u8 mUnk_8e[2];
     /* 90 */ struct Unk02021dc8 *mNcer;
@@ -586,7 +617,8 @@ typedef struct Keyboard {
     /* ac */ void *mBnlls[2];
     /* b4 */ struct Nscr *mNscrs[2]; /* [0] flame02, [1] flame01 */
     /* bc */ void *mUnk_bc;
-    /* c0 */ struct Bmg *mUnk_c0;
+    // Messages of common.bmg.
+    /* c0 */ struct Bmg *mCommonMessages;
 } Keyboard;
 
 // Elements of 0x20 bytes at member 0x14 of Ncgr.

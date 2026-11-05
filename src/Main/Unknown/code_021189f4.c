@@ -337,14 +337,14 @@ s32 AdvanceSelectCup(void) {
     }
     func_0211a07c();
     if (*(vu16 *) 0x027ffc40 != 2) {
-        if (gSelectCup->mUnk_60 != FALSE && func_020d0ec4() != FALSE) {
+        if (gSelectCup->mCupPicturePending != FALSE && func_020d0ec4() != FALSE) {
             p = GetCupPictureNscrData();
             CallQueueAppend(0x1f, 0, GetCupPictureNclrData(), 0xe0);
             CallQueueAppend(0x17, 0x20, GetCupPictureNcgrData(), 0xdc0);
             for (i = 0; i < 11; i++) {
                 CallQueueAppend(0x1b, ((i + 8) * 0x20 + 0x16) * 2, p + ((i + 8) * 0x20 + 0x16), 0x14);
             }
-            gSelectCup->mUnk_60 = FALSE;
+            gSelectCup->mCupPicturePending = FALSE;
         }
         func_02124c30(gSelectCup->mSelectCupCourseTaOrVsMBncl, gSelectCup->mSelectCupCourseMNcer,
                       gSelectCup->mSelectCupCourseTaOrVsMBnll, gSelectCup->mUnk_64,

@@ -81,27 +81,27 @@ void AdvanceRecordVSState1(void) {
     gRecordVS->mBg0OffsetY = v;
     gRecordVS->mBg1OffsetY = v;
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
-    gRecordVS->mUnk_14[0].mUnk_06 = v;
-    gRecordVS->mUnk_14[1].mUnk_06 = v;
-    gRecordVS->mUnk_14[2].mUnk_06 = v;
-    gRecordVS->mUnk_14[3].mUnk_06 = v;
-    gRecordVS->mUnk_14[a].mUnk_06 = v;
-    gRecordVS->mUnk_14[a + 1].mUnk_06 = v;
-    gRecordVS->mUnk_14[a + 11].mUnk_06 = v;
-    gRecordVS->mUnk_14[a + 12].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[0].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[1].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[2].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[3].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[a].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[a + 1].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[a + 11].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[a + 12].mUnk_06 = v;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVS->mUnk_14[a + data_0215c410[i][j]].mUnk_06 = v;
+            gRecordVS->mRecordVSMTable[a + data_0215c410[i][j]].mUnk_06 = v;
         }
     }
     b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
-    gRecordVS->mUnk_24[1].mUnk_06 = v;
-    gRecordVS->mUnk_24[0].mUnk_06 = v;
-    gRecordVS->mUnk_24[b].mUnk_06 = v;
-    gRecordVS->mUnk_24[b + 1].mUnk_06 = v;
-    gRecordVS->mUnk_24[b + 14].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[1].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[0].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[b].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[b + 1].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[b + 14].mUnk_06 = v;
     for (j = 0; j < 12; j++) {
-        gRecordVS->mUnk_24[b + data_0215c478[j]].mUnk_06 = v;
+        gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mUnk_06 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
         func_0211349c();
@@ -116,25 +116,25 @@ void AdvanceRecordVSState2(void) {
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     v = func_020ae4c0(1, 0x100, 0, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mUnk_3c[20].mUnk_04 = v;
-    gRecordVS->mUnk_3c[21].mUnk_04 = v;
-    gRecordVS->mUnk_3c[24].mUnk_04 = v;
-    gRecordVS->mUnk_3c[25].mUnk_04 = v;
-    gRecordVS->mUnk_3c[26].mUnk_04 = v;
-    gRecordVS->mUnk_3c[x + 5].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[20].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[21].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[24].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[25].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[26].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[x + 5].mUnk_04 = v;
     for (i = 0; i < 5; i++) {
-        gRecordVS->mUnk_3c[data_0215c3e0[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3ec[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3f8[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c404[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[x + data_0215c3bc[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3e0[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c404[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mUnk_04 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
         func_02113480();
     }
     if (gRecordVS->mStateFrames == 4) {
-        gRecordVS->mUnk_3c[24].mUnk_00 = 1;
-        gRecordVS->mUnk_3c[25].mUnk_00 = 0;
+        gRecordVS->mRecordVSSTable[24].mUnk_00 = 1;
+        gRecordVS->mRecordVSSTable[25].mUnk_00 = 0;
     }
 }
 
@@ -234,7 +234,7 @@ l1:
         if (func_02113790() != 0) {
             return;
         }
-        if (gRecordVS->mUnk_3c[20].mUnk_00 == 0) {
+        if (gRecordVS->mRecordVSSTable[20].mUnk_00 == 0) {
             return;
         }
         gRecordVS->mUnk_6c = 1;
@@ -249,7 +249,7 @@ l1:
         if (func_02113790() != 0) {
             return;
         }
-        if (gRecordVS->mUnk_3c[21].mUnk_00 == 0) {
+        if (gRecordVS->mRecordVSSTable[21].mUnk_00 == 0) {
             return;
         }
         gRecordVS->mUnk_6c = 0;
@@ -264,20 +264,20 @@ l1:
         if (func_02113ef0(t) == 0) {
             return;
         }
-        gRecordVS->mUnk_68 = t;
+        gRecordVS->mIndex = t;
         func_021137a8(t);
         return;
     }
     if ((u32) b <= 4) {
         t = data_0215c44c[b];
-        if (t == gRecordVS->mUnk_68) {
+        if (t == gRecordVS->mIndex) {
             func_021137a8(t);
             return;
         }
         if (func_02113ef0(t) == 0) {
             return;
         }
-        gRecordVS->mUnk_68 = t;
+        gRecordVS->mIndex = t;
         func_0212ecc0(&data_0217d068, 0, 0);
         return;
     }
@@ -287,7 +287,7 @@ l1:
         return;
     }
     if ((u16) (q->mUnk_00 & 1) != 0) {
-        func_021137a8(gRecordVS->mUnk_68);
+        func_021137a8(gRecordVS->mIndex);
         return;
     }
     if (func_020ae408(8, 0x40) != 0) {
@@ -325,31 +325,31 @@ void AdvanceRecordVSState5(void) {
     v = func_020ae4c0(1, 0, c, gRecordVS->mStateFrames, 10);
     gRecordVS->mBg0OffsetX = v;
     gRecordVS->mBg1OffsetX = v;
-    gRecordVS->mUnk_14[1].mUnk_04 = v;
-    gRecordVS->mUnk_14[2].mUnk_04 = v;
-    gRecordVS->mUnk_14[3].mUnk_04 = v;
-    gRecordVS->mUnk_14[a].mUnk_04 = v;
-    gRecordVS->mUnk_14[a + 1].mUnk_04 = v;
-    gRecordVS->mUnk_14[a + 11].mUnk_04 = v;
-    gRecordVS->mUnk_14[a + 12].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[1].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[2].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[3].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[a].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[a + 1].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[a + 11].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[a + 12].mUnk_04 = v;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVS->mUnk_14[a + data_0215c410[i][j]].mUnk_04 = v;
+            gRecordVS->mRecordVSMTable[a + data_0215c410[i][j]].mUnk_04 = v;
         }
     }
-    gRecordVS->mUnk_24[1].mUnk_04 = v;
-    gRecordVS->mUnk_24[b].mUnk_04 = v;
-    gRecordVS->mUnk_24[b + 1].mUnk_04 = v;
-    gRecordVS->mUnk_24[b + 14].mUnk_04 = v;
+    gRecordVS->mRecordVSMTransientTable[1].mUnk_04 = v;
+    gRecordVS->mRecordVSMTransientTable[b].mUnk_04 = v;
+    gRecordVS->mRecordVSMTransientTable[b + 1].mUnk_04 = v;
+    gRecordVS->mRecordVSMTransientTable[b + 14].mUnk_04 = v;
     for (j = 0; j < 12; j++) {
-        gRecordVS->mUnk_24[b + data_0215c478[j]].mUnk_04 = v;
+        gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mUnk_04 = v;
     }
     for (l = 0; l < 5; l++) {
-        gRecordVS->mUnk_3c[data_0215c3e0[l]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3ec[l]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3f8[l]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c404[l]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[x + data_0215c3bc[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3e0[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3ec[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3f8[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c404[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[x + data_0215c3bc[l]].mUnk_04 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
         func_02113420();
@@ -382,31 +382,31 @@ void AdvanceRecordVSState6(void) {
     v = func_020ae4c0(1, c, 0, gRecordVS->mStateFrames, 10);
     gRecordVS->mBg0OffsetX = v;
     gRecordVS->mBg1OffsetX = v;
-    gRecordVS->mUnk_14[1].mUnk_04 = v;
-    gRecordVS->mUnk_14[2].mUnk_04 = v;
-    gRecordVS->mUnk_14[3].mUnk_04 = v;
-    gRecordVS->mUnk_14[a].mUnk_04 = v;
-    gRecordVS->mUnk_14[a + 1].mUnk_04 = v;
-    gRecordVS->mUnk_14[a + 11].mUnk_04 = v;
-    gRecordVS->mUnk_14[a + 12].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[1].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[2].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[3].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[a].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[a + 1].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[a + 11].mUnk_04 = v;
+    gRecordVS->mRecordVSMTable[a + 12].mUnk_04 = v;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVS->mUnk_14[a + data_0215c410[i][j]].mUnk_04 = v;
+            gRecordVS->mRecordVSMTable[a + data_0215c410[i][j]].mUnk_04 = v;
         }
     }
-    gRecordVS->mUnk_24[1].mUnk_04 = v;
-    gRecordVS->mUnk_24[b].mUnk_04 = v;
-    gRecordVS->mUnk_24[b + 1].mUnk_04 = v;
-    gRecordVS->mUnk_24[b + 14].mUnk_04 = v;
+    gRecordVS->mRecordVSMTransientTable[1].mUnk_04 = v;
+    gRecordVS->mRecordVSMTransientTable[b].mUnk_04 = v;
+    gRecordVS->mRecordVSMTransientTable[b + 1].mUnk_04 = v;
+    gRecordVS->mRecordVSMTransientTable[b + 14].mUnk_04 = v;
     for (j = 0; j < 12; j++) {
-        gRecordVS->mUnk_24[b + data_0215c478[j]].mUnk_04 = v;
+        gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mUnk_04 = v;
     }
     for (l = 0; l < 5; l++) {
-        gRecordVS->mUnk_3c[data_0215c3e0[l]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3ec[l]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3f8[l]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c404[l]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[x + data_0215c3bc[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3e0[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3ec[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3f8[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c404[l]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[x + data_0215c3bc[l]].mUnk_04 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
         RequestRecordVSState4();
@@ -420,25 +420,25 @@ void AdvanceRecordVSState7(void) {
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     v = func_020ae4c0(1, 0, 0x100, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mUnk_3c[20].mUnk_04 = v;
-    gRecordVS->mUnk_3c[21].mUnk_04 = v;
-    gRecordVS->mUnk_3c[24].mUnk_04 = v;
-    gRecordVS->mUnk_3c[25].mUnk_04 = v;
-    gRecordVS->mUnk_3c[26].mUnk_04 = v;
-    gRecordVS->mUnk_3c[x + 5].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[20].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[21].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[24].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[25].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[26].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[x + 5].mUnk_04 = v;
     for (i = 0; i < 5; i++) {
-        gRecordVS->mUnk_3c[data_0215c3e0[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3ec[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3f8[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c404[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[x + data_0215c3bc[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3e0[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c404[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mUnk_04 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
         func_021132e4();
     }
     if (gRecordVS->mStateFrames == 6) {
-        gRecordVS->mUnk_3c[24].mUnk_00 = 0;
-        gRecordVS->mUnk_3c[25].mUnk_00 = 0;
+        gRecordVS->mRecordVSSTable[24].mUnk_00 = 0;
+        gRecordVS->mRecordVSSTable[25].mUnk_00 = 0;
     }
 }
 
@@ -456,27 +456,27 @@ void AdvanceRecordVSState8(void) {
     gRecordVS->mBg0OffsetY = v;
     gRecordVS->mBg1OffsetY = v;
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
-    gRecordVS->mUnk_14[0].mUnk_06 = v;
-    gRecordVS->mUnk_14[1].mUnk_06 = v;
-    gRecordVS->mUnk_14[2].mUnk_06 = v;
-    gRecordVS->mUnk_14[3].mUnk_06 = v;
-    gRecordVS->mUnk_14[a].mUnk_06 = v;
-    gRecordVS->mUnk_14[a + 1].mUnk_06 = v;
-    gRecordVS->mUnk_14[a + 11].mUnk_06 = v;
-    gRecordVS->mUnk_14[a + 12].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[0].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[1].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[2].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[3].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[a].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[a + 1].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[a + 11].mUnk_06 = v;
+    gRecordVS->mRecordVSMTable[a + 12].mUnk_06 = v;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            gRecordVS->mUnk_14[a + data_0215c410[i][j]].mUnk_06 = v;
+            gRecordVS->mRecordVSMTable[a + data_0215c410[i][j]].mUnk_06 = v;
         }
     }
     b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
-    gRecordVS->mUnk_24[1].mUnk_06 = v;
-    gRecordVS->mUnk_24[0].mUnk_06 = v;
-    gRecordVS->mUnk_24[b].mUnk_06 = v;
-    gRecordVS->mUnk_24[b + 1].mUnk_06 = v;
-    gRecordVS->mUnk_24[b + 14].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[1].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[0].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[b].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[b + 1].mUnk_06 = v;
+    gRecordVS->mRecordVSMTransientTable[b + 14].mUnk_06 = v;
     for (j = 0; j < 12; j++) {
-        gRecordVS->mUnk_24[b + data_0215c478[j]].mUnk_06 = v;
+        gRecordVS->mRecordVSMTransientTable[b + data_0215c478[j]].mUnk_06 = v;
     }
     if (gRecordVS->mStateFrames >= 10 && gRecordVS->mUnk_90 != 6) {
         func_02111488(gRecordVS->mUnk_90);
@@ -489,10 +489,10 @@ void AdvanceRecordVSState9(void) {
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     v = func_020ae488(gRecordVS->mStateFrames);
     i = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mUnk_3c[24].mUnk_04 = v;
-    gRecordVS->mUnk_3c[25].mUnk_04 = v;
-    gRecordVS->mUnk_3c[26].mUnk_04 = v;
-    gRecordVS->mUnk_3c[i + 5].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[24].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[25].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[26].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[i + 5].mUnk_04 = v;
     if (gRecordVS->mStateFrames >= 10) {
         func_02113298();
     }
@@ -505,25 +505,25 @@ void AdvanceRecordVSState10(void) {
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     v = func_020ae4c0(1, 0, 0x100, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mUnk_3c[20].mUnk_04 = v;
-    gRecordVS->mUnk_3c[21].mUnk_04 = v;
-    gRecordVS->mUnk_3c[24].mUnk_04 = v;
-    gRecordVS->mUnk_3c[25].mUnk_04 = v;
-    gRecordVS->mUnk_3c[26].mUnk_04 = v;
-    gRecordVS->mUnk_3c[x + 5].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[20].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[21].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[24].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[25].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[26].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[x + 5].mUnk_04 = v;
     for (i = 0; i < 5; i++) {
-        gRecordVS->mUnk_3c[data_0215c3e0[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3ec[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3f8[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c404[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[x + data_0215c3bc[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3e0[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c404[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mUnk_04 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
         func_02111488(gRecordVS->mUnk_90);
     }
     if (gRecordVS->mStateFrames == 6) {
-        gRecordVS->mUnk_3c[24].mUnk_00 = 0;
-        gRecordVS->mUnk_3c[25].mUnk_00 = 0;
+        gRecordVS->mRecordVSSTable[24].mUnk_00 = 0;
+        gRecordVS->mRecordVSSTable[25].mUnk_00 = 0;
     }
 }
 
@@ -535,25 +535,25 @@ void AdvanceRecordVSState11(void) {
     gRecordVS->mStateFrames = gRecordVS->mStateFrames + 1;
     v = func_020ae4c0(1, 0x100, 0, gRecordVS->mStateFrames, 10);
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
-    gRecordVS->mUnk_3c[20].mUnk_04 = v;
-    gRecordVS->mUnk_3c[21].mUnk_04 = v;
-    gRecordVS->mUnk_3c[24].mUnk_04 = v;
-    gRecordVS->mUnk_3c[25].mUnk_04 = v;
-    gRecordVS->mUnk_3c[26].mUnk_04 = v;
-    gRecordVS->mUnk_3c[x + 5].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[20].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[21].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[24].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[25].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[26].mUnk_04 = v;
+    gRecordVS->mRecordVSSTable[x + 5].mUnk_04 = v;
     for (i = 0; i < 5; i++) {
-        gRecordVS->mUnk_3c[data_0215c3e0[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3ec[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c3f8[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[data_0215c404[i]].mUnk_04 = v;
-        gRecordVS->mUnk_3c[x + data_0215c3bc[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3e0[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3ec[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c3f8[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[data_0215c404[i]].mUnk_04 = v;
+        gRecordVS->mRecordVSSTable[x + data_0215c3bc[i]].mUnk_04 = v;
     }
     if (gRecordVS->mStateFrames >= 10) {
         RequestRecordVSState4();
     }
     if (gRecordVS->mStateFrames == 2) {
-        gRecordVS->mUnk_3c[24].mUnk_00 = 1;
-        gRecordVS->mUnk_3c[25].mUnk_00 = 0;
+        gRecordVS->mRecordVSSTable[24].mUnk_00 = 1;
+        gRecordVS->mRecordVSSTable[25].mUnk_00 = 0;
     }
 }
 
@@ -602,15 +602,15 @@ void AdvanceRecordVS(void) {
     p = gRecordVS;
     switch (p->mUnk_40) {
         case 0:
-            func_02124c30(p->mRecordVSMBncl, p->mRecordVSMNcer, p->mRecordVSMBnll, func_02111318(), p->mUnk_14);
+            func_02124c30(p->mRecordVSMBncl, p->mRecordVSMNcer, p->mRecordVSMBnll, func_02111318(), p->mRecordVSMTable);
             break;
         case 1:
             func_02124c30(p->mRecordVSMTransientBncl, p->mRecordVSMNcer, p->mRecordVSMTransientBnll, func_02111318(),
-                          p->mUnk_24);
+                          p->mRecordVSMTransientTable);
             break;
     }
     p = gRecordVS;
-    func_02124c30(p->mRecordVSSBncl, p->mRecordVSSNcer, p->mRecordVSSBnll, func_0211130c(), p->mUnk_3c);
+    func_02124c30(p->mRecordVSSBncl, p->mRecordVSSNcer, p->mRecordVSSBnll, func_0211130c(), p->mRecordVSSTable);
 }
 
 #pragma thumb off
