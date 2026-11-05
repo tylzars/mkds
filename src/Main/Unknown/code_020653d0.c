@@ -159,8 +159,8 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         p->mUnk_98 = p->mPrevPos;
         q->mUnk_00 = p->mUnk_98;
         *(Vec3 *) &p->mUnk_25c = data_02154f94;
-        ComputeKartPointAlongUp(&p->mUnk_1b8, &v, 0x400, p);
-        func_01ffbfe4(p);
+        ComputeKartPointAlongUp(&p->mCollisionCenter, &v, 0x400, p);
+        SetKartPrevCollisionCenter(p);
         q->mUnk_b4++;
         if (q->mUnk_b4 > 3) {
             q->mUnk_b4 = 0;

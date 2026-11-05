@@ -337,7 +337,7 @@ void func_020e71a0(MapObject *p) {
 
     q = p->mUnk_94;
     if ((p->mFlags & 2) == 0) {
-        q->mSoundSource.mUnk_40 = p->mUnk_78 & ~0xc000001f;
+        q->mSoundSource.mDistanceSquared = p->mUnk_78 & ~0xc000001f;
         a = (func_020d4ddc(p) == FALSE);
         b = (q->mSoundSource.mUnk_34 & 1) != 0;
         if (a != FALSE) {
@@ -359,7 +359,7 @@ void func_020e71a0(MapObject *p) {
         s32 v;
 
         v = func_020d4ef4(&p->mPos);
-        q->mSoundSource.mUnk_40 = v;
+        q->mSoundSource.mDistanceSquared = v;
         if (func_020d4d60(p, v) != FALSE) {
             p->mUnk_78 |= data_02159310;
             if ((q->mSoundSource.mUnk_34 & 1) != 0) {

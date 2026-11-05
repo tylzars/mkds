@@ -18,8 +18,8 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/unk_0215d000.h"
 
-void func_02064180(Kart *a) {
-    a->mSoundSource.mUnk_40 = func_02086080(a->mIndex);
+void SetKartSoundDistanceSquaredAndChange(Kart *a) {
+    a->mSoundSource.mDistanceSquared = func_02086080(a->mIndex);
     func_0210b7ec(&a->mUnk_518, func_02086080(a->mIndex));
 }
 

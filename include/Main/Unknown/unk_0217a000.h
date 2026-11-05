@@ -1337,7 +1337,8 @@ typedef struct Unk0217ad08 {
 extern Unk0217ad08 *data_0217ad08;
 extern u16 data_0217ad10;
 extern char gCharacterNsbcaPathBuffer[];
-extern s32 data_0217ad24;
+// 1 when this is a mission run and the course has a shape of kind 2, else 0; set by InitKarts.
+extern s32 gMissionRunKind2ShapesPresent;
 extern u32 data_0217ad28;
 extern s32 data_0217ad2c;
 extern s32 data_0217ad30;

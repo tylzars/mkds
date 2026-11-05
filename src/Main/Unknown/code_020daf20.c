@@ -285,7 +285,7 @@ u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c) {
     q = &p->mUnk_c8;
     if (*b == 1) {
         if ((p->mUnk_c0 & (1 << a->mIndex)) == 0 || p->mUnk_bc + 0xf < GetRaceUpdateFrames()) {
-            Vec3Sub(&a->mUnk_1b8, &p->mUnk_00.mPos, &s0);
+            Vec3Sub(&a->mCollisionCenter, &p->mUnk_00.mPos, &s0);
             Vec3Sub(&q->mUnk_20->mUnk_00, &p->mUnk_00.mPos, &s1);
             s1.y += p->mUnk_f8;
             if (Vec3DotUnrounded(&s0, &s1) > 0) {
@@ -310,7 +310,7 @@ u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c) {
         }
     }
     if (p->mState == 4 || p->mUnk_b0 != FALSE) {
-        Vec3Sub(&a->mUnk_1b8, &p->mUnk_00.mPos, &s2);
+        Vec3Sub(&a->mCollisionCenter, &p->mUnk_00.mPos, &s2);
         n = ((s64) s2.x * s2.x + (s64) s2.z * s2.z) * 5;
         y = s2.y;
         m = ((s64) y * y) << 2;
@@ -409,7 +409,7 @@ void InitDossun(Dossun *p, CourseMapRow *a) {
     if (p->mUnk_f0 != 0) {
         CreateMapObjectSoundSourceFalloff3(&p->mUnk_00);
     } else {
-        p->mUnk_00.mUnk_70 = data_0217caec[3];
+        p->mUnk_00.mUnk_70 = gSoundFalloffs[3].mUnk_20;
     }
 }
 #pragma thumb off

@@ -370,7 +370,7 @@ u32 func_02109184(Unk0210bcf4 *p) {
     u32 b;
 
     if (p->mUnk_00 != NULL) {
-        a = ((Kart *) p->mUnk_00)->mSoundSource.mUnk_40;
+        a = ((Kart *) p->mUnk_00)->mSoundSource.mDistanceSquared;
     } else {
         a = p->mUnk_20->mUnk_0c;
     }

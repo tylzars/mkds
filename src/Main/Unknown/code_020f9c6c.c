@@ -1057,7 +1057,7 @@ s32 func_020fa4c8(Kart *param_1) {
         k = e->mKind;
         if (gItemKinds[k].mUnk_88 != 0) {
             if (func_020f9880(e) != 0) {
-                func_020f6be8(e, &param_1->mUnk_1b8, &param_1->mVelocity, &param_1->mUnk_05c);
+                func_020f6be8(e, &param_1->mCollisionCenter, &param_1->mVelocity, &param_1->mUnk_05c);
                 func_020f6f10(e, 1, (u16) param_1->mIndex);
             } else {
                 func_020f7430(e, 1);

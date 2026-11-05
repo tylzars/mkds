@@ -711,7 +711,7 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
         Vec3Add(&p->mUnk_000.mVelocity, &a->mUnk_010->mUnk_1fc, &p->mUnk_000.mVelocity);
     }
     if (c != 0) {
-        p->mUnk_000.mPos = a->mUnk_010->mUnk_1b8;
+        p->mUnk_000.mPos = a->mUnk_010->mCollisionCenter;
         Vec3AddScaled(p->mUnk_000.mUnk_68.z * 10, &a->mUnk_02c.mUnk_18, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     } else {
         if (a->mUnk_07c != 0 && a->mUnk_068 < 0x2000 && p->mUnk_000.mUnk_68.z < 0xccd) {

@@ -159,7 +159,7 @@ void func_020733ec(Kart *p) {
     if (data_021759c0->mMode == 5) {
         v = &p->mUnk_1d8;
     } else {
-        v = &p->mUnk_1b8;
+        v = &p->mCollisionCenter;
     }
     if (p->mUnk_2c8 == -1) {
         p->mUnk_2c8 = func_020d555c(v, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);

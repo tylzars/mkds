@@ -124,7 +124,7 @@ void func_020732d8(Kart *p) {
     p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
 }
 
-void func_02072eb8(Kart *p) {
+void ResetKartToRespawnPoint(Kart *p) {
     Vec3 a;
     Vec3 b;
     Vec3 c;
@@ -137,16 +137,16 @@ void func_02072eb8(Kart *p) {
     KartItems *e;
     s64 l;
 
-    if (p->mUnk_3c4 == -1) {
+    if (p->mRespawnSlot == -1) {
         i = p->mIndex;
         if (data_021759c0->mMode == MODE_BATTLE) {
             i = GetCourseMapRespawnSlot(0);
         } else {
             i = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[i].mCheckpoint);
         }
-        p->mUnk_3c4 = i;
+        p->mRespawnSlot = i;
     }
-    i = (u16) p->mUnk_3c4;
+    i = (u16) p->mRespawnSlot;
     if (data_021759c0->mMode == MODE_BATTLE) {
         r = func_02040fd8(i, &a, &c);
     } else {
@@ -156,7 +156,7 @@ void func_02072eb8(Kart *p) {
     Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &b);
     if (data_021759c0->mMode != MODE_BATTLE && gCourseMap->mUnk_60 != 0) {
-        (e = &(gKartItems)[p->mIndex])->mUnk_1f0.mUnk_00 = func_02040f78((u16) p->mUnk_3c4);
+        (e = &(gKartItems)[p->mIndex])->mUnk_1f0.mUnk_00 = func_02040f78((u16) p->mRespawnSlot);
         e->mUnk_1f0.mUnk_04 = 1;
     }
     if (data_021759c0->mMode != MODE_TIME_ATTACK) {
@@ -239,7 +239,7 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
 
     func_02072930(p);
     func_02079c0c(p->mKartModelsEntry);
-    p->mUnk_210(p);
+    p->mSlotFunctions[1](p);
     p->mUnk_7c &= ~0xe000;
     func_02103890(p->mIndex);
     p->mUnk_48 |= 0x240;
@@ -263,8 +263,8 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
     p->mUnk_68 = p->mUnk_50;
     p->mPrevPos = p->mPos;
     p->mUnk_98 = p->mPrevPos;
-    p->mUnk_1c4 = p->mPos;
-    p->mUnk_1b8 = p->mPos;
+    p->mPrevCollisionCenter = p->mPos;
+    p->mCollisionCenter = p->mPos;
     p->mLastGroundY = p->mPos.y;
     if (p->mUnk_7c & 2) {
         if (c != NULL) {
@@ -346,7 +346,7 @@ void func_02072930(Kart *p) {
     }
 }
 
-void func_020727d4(Kart *p) {
+void ResetKartToStartPlacement(Kart *p) {
     Vec3 a;
     Vec3 b;
     Vec3 c;
@@ -364,7 +364,7 @@ void func_020727d4(Kart *p) {
     if (data_021759c0->mMode == 5) {
         q = &p->mUnk_1d8;
     } else {
-        q = &p->mUnk_1b8;
+        q = &p->mCollisionCenter;
     }
     if (p->mUnk_2c8 == -1) {
         p->mUnk_2c8 = func_020d555c(q, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
@@ -474,8 +474,8 @@ void ResetKart(Kart *p) {
     Matrix4x3Identity(&p->mUnk_184_m);
     p->mUnk_1d8 = v;
     p->mUnk_1e4 = p->mUnk_1d8;
-    p->mUnk_1c4 = p->mUnk_1e4;
-    p->mUnk_1b8 = p->mUnk_1c4;
+    p->mPrevCollisionCenter = p->mUnk_1e4;
+    p->mCollisionCenter = p->mPrevCollisionCenter;
     p->mUnk_1f0 = v;
     p->mUnk_1fc = v;
     p->mUnk_dc = 0x1000;
@@ -552,7 +552,7 @@ void ResetKart(Kart *p) {
     p->mUnk_3bc = 0;
     p->mUnk_3be = 0;
     p->mUnk_3c0 = 0;
-    p->mUnk_3c4 = -1;
+    p->mRespawnSlot = -1;
     p->mUnk_3c8 = 0;
     p->mKartCollisionTimer = 0;
     p->mUnk_3d4 = 0;

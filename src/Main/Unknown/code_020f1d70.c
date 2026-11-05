@@ -56,7 +56,7 @@ void func_020f2b94(void *a0, Unk020eda5c *b0, s32 c, s32 d, s32 e, s32 f) {
         a->mUnk_000.mUnk_68.y = 0xccd;
         a->mUnk_000.mUnk_68.z = 0xccd;
         if (d != 0) {
-            a->mUnk_000.mPos = b->mUnk_010->mUnk_1b8;
+            a->mUnk_000.mPos = b->mUnk_010->mCollisionCenter;
             Vec3AddScaled(a->mUnk_000.mUnk_68.z * 10, &b->mUnk_02c.mUnk_18, &a->mUnk_000.mPos, &a->mUnk_000.mPos);
         }
     }

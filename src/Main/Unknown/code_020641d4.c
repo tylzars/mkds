@@ -143,6 +143,6 @@ void func_020641f0(Kart *a) {
 }
 
 void func_020641d4(Kart *a) {
-    func_01ffcb58(a);
+    AdvanceKartCollision(a);
     func_020641f0(a);
 }

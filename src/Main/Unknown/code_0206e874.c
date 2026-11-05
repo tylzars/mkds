@@ -133,7 +133,7 @@ void func_0206e874(Kart *p) {
     e = NULL;
     n = 0;
     p->mUnk_3a0 = p->mUnk_39c = 0;
-    k = func_020d41e0(p, &p->mUnk_1b8, &t);
+    k = func_020d41e0(p, &p->mCollisionCenter, &t);
     if (k != 0) {
         if (!(p->mUnk_48 & 0x40)) {
             i = k - 1;

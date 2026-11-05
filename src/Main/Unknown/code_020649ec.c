@@ -120,7 +120,7 @@ void func_02064f50(Kart *a) {
     } else {
         a->mUnk_44 = a->mUnk_44 & ~0x80000;
     }
-    ComputeKartPointAlongUp(&a->mUnk_1b8, &a->mPos, 0x400, a);
+    ComputeKartPointAlongUp(&a->mCollisionCenter, &a->mPos, 0x400, a);
     func_01ffa4b4(a, &d);
     func_02064d60(a, &d);
     a->mUnk_244 = d;
@@ -203,8 +203,8 @@ void func_02064d60(Kart *a, Vec3 *b) {
     QuaternionNormalize(&a->mUnk_110_q, &a->mUnk_110_q);
 }
 
-void func_02064d44(Kart *a) {
-    ComputeKartPointAlongUp(&a->mUnk_1c4, &a->mPrevPos, 0x400, a);
+void SetKartPrevCollisionCenterFromPrevPos(Kart *a) {
+    ComputeKartPointAlongUp(&a->mPrevCollisionCenter, &a->mPrevPos, 0x400, a);
 }
 
 void InitKart(Kart *a, void (**b)(Kart *)) {
@@ -219,44 +219,44 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     if (data_021759c0->mMode == 5) {
         for (i = 0; i < 9; i++) {
             if (i == 3) {
-                a->mUnk_20c_fn[i] = c != 0 ? func_020637e0 : func_02063830;
+                a->mSlotFunctions[i] = c != 0 ? func_020637e0 : func_02063830;
             } else if (i == 4) {
-                a->mUnk_20c_fn[i] = c != 0 ? func_020637c4 : func_02063880;
+                a->mSlotFunctions[i] = c != 0 ? func_020637c4 : func_02063880;
             } else if (i == 5) {
-                a->mUnk_20c_fn[i] = c != 0 ? func_02064d44 : func_01ffbfe4;
+                a->mSlotFunctions[i] = c != 0 ? SetKartPrevCollisionCenterFromPrevPos : SetKartPrevCollisionCenter;
             } else {
-                a->mUnk_20c_fn[i] = *b;
+                a->mSlotFunctions[i] = *b;
             }
             b++;
         }
     } else {
         for (i = 0; i < 9; i++) {
             if (i == 3) {
-                a->mUnk_20c_fn[i] = func_020646c0;
+                a->mSlotFunctions[i] = func_020646c0;
             } else if (i == 4) {
-                a->mUnk_20c_fn[i] = func_020641d4;
+                a->mSlotFunctions[i] = func_020641d4;
             } else if (i == 5) {
-                a->mUnk_20c_fn[i] = func_01ffbfe4;
+                a->mSlotFunctions[i] = SetKartPrevCollisionCenter;
             } else {
-                a->mUnk_20c_fn[i] = *b;
+                a->mSlotFunctions[i] = *b;
             }
             b++;
         }
     }
     a->mUnk_514 = NULL;
-    if (a->mUnk_20c_fn[1] != 0) {
-        a->mUnk_20c_fn[1](a);
+    if (a->mSlotFunctions[1] != 0) {
+        a->mSlotFunctions[1](a);
     }
     a->mPosSource = &a->mPos;
     a->mUnk_50c = &a->mUnk_110_q;
     a->mUnk_510 = &a->mPos;
-    if (a->mUnk_20c_fn[0] != 0) {
-        a->mUnk_20c_fn[0](a);
+    if (a->mSlotFunctions[0] != 0) {
+        a->mSlotFunctions[0](a);
     }
     if (data_021759c0->mUnk_00c == 2 || (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
-        a->mUnk_20c_fn[2] = func_02064180;
+        a->mSlotFunctions[2] = SetKartSoundDistanceSquaredAndChange;
     } else {
-        a->mUnk_20c_fn[2] = func_020641b8;
+        a->mSlotFunctions[2] = SetKartSoundDistanceSquared;
     }
     if (data_021759c0->mMode == 5) {
         if (c != 0) {
@@ -276,8 +276,8 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     a->mUnk_534 = a->mPosSource;
     func_020646f0(a, 0);
     if (func_02062ec4() != 0 && data_021759c0->mUnk_00c != 5) {
-        a->mUnk_20c_fn[3] = func_020649e8;
-        a->mUnk_20c_fn[4] = func_020649e8;
+        a->mSlotFunctions[3] = func_020649e8;
+        a->mSlotFunctions[4] = func_020649e8;
         a->mUnk_98 = a->mUnk_174;
         a->mUnk_174.x = a->mUnk_174.x >> 4;
         a->mUnk_174.y = a->mUnk_174.y >> 4;

@@ -30,7 +30,8 @@ void func_0210ba78(void *p0, s32 b) {
 }
 
 void func_0210ba38(struct Unk020e71a0_94 *p, s32 b) {
-    func_0210ddf4(&data_0217d29c, p->mSoundSource.mUnk_40 + 0x15f90, (void (*)(void *, int)) func_0210bad4, p, b);
+    func_0210ddf4(&data_0217d29c, p->mSoundSource.mDistanceSquared + 0x15f90, (void (*)(void *, int)) func_0210bad4, p,
+                  b);
 }
 
 void func_0210b98c(struct Unk020e71a0_94 *p, s32 b) {
@@ -60,7 +61,7 @@ void func_0210b98c(struct Unk020e71a0_94 *p, s32 b) {
             c = 0x19;
             break;
     }
-    func_0210ddf4(&data_0217d29c, p->mSoundSource.mUnk_40 + c, func_0210ba78, p, b);
+    func_0210ddf4(&data_0217d29c, p->mSoundSource.mDistanceSquared + c, func_0210ba78, p, b);
 }
 
 void func_0210b924(void *p, s32 b) {

@@ -39,7 +39,7 @@ void func_02063ad0(Kart *a) {
     if ((a->mUnk_7c & 0x400) != 0) {
         return;
     }
-    a->mUnk_20c_fn[6](a);
+    a->mSlotFunctions[6](a);
     if ((a->mUnk_7c & 0x200) != 0) {
         a->mUnk_514->mUnk_2c ^= 0x10000;
     }
@@ -53,7 +53,7 @@ void func_02063a68(Kart *a) {
         return;
     }
     if (b == 0) {
-        a->mUnk_20c_fn[6](a);
+        a->mSlotFunctions[6](a);
         if ((a->mUnk_7c & 0x200) != 0) {
             a->mUnk_514->mUnk_2c ^= 0x10000;
         }

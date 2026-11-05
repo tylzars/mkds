@@ -126,7 +126,7 @@ void func_020dfd64(Unk020e005c *a, CourseMapRow *b) {
     a->mUnk_066 = 0x1f;
     a->mUnk_080.mNextState = 0;
     a->mUnk_080.mNextStateRequested = 1;
-    a->mUnk_070 = data_0217caec[3];
+    a->mUnk_070 = gSoundFalloffs[3].mUnk_20;
 }
 #pragma thumb off
 

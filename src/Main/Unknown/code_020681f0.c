@@ -85,7 +85,7 @@ void func_02068b98(Kart *a) {
             if (a->mUnk_3c8 >= 0xb9) {
                 *e = *e | 0x80000;
                 func_02063ad0(a);
-                k = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mUnk_1b8;
+                k = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
                 if (a->mUnk_2c8 == -1) {
                     a->mUnk_2c8 = func_020d555c(k, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
                 }
@@ -300,7 +300,7 @@ void func_02068640(Kart *a, s32 b) {
         func_01ffcd84(&a->mUnk_120, &a->mUnk_e0_m);
         GetKartForward(a, &e);
         ResetKartAndSetPos(a, &c, &e, NULL);
-        f = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mUnk_1b8;
+        f = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
         if (a->mUnk_2c8 == -1) {
             a->mUnk_2c8 = func_020d555c(f, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
         }
@@ -362,7 +362,7 @@ void func_02068494(Kart *a, s32 b, s32 c) {
     }
     func_02072930(a);
     func_02079c0c(a->mKartModelsEntry);
-    a->mUnk_210(a);
+    a->mSlotFunctions[1](a);
     a->mUnk_7c = a->mUnk_7c & ~0xe000;
     func_02103890(a->mIndex);
     func_020646f0(a, b);

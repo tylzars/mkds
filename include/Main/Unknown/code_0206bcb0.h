@@ -217,8 +217,8 @@ typedef struct Kart {
     /* a4 */ Vec3 mVelocity;
     /* b0 */ Vec3 mVelocityDirection;
     // Size scale of the kart (x, y, z; 0x1000 = 1.0): mScaleBase times mScaleFactor per axis, y also times
-    // mScaleYFactor. Zero at the start placement (func_020727d4) and where the kart is moved to a far corner
-    // (func_02068b98, func_02068640).
+    // mScaleYFactor. Zero at the start placement (ResetKartToStartPlacement) and where the kart is moved to a far
+    // corner (func_02068b98, func_02068640).
     /* bc */ Vec3 mScale;
     // Negative step added by ApplyKartGravity to mVerticalSpeed, by func_01ff9c40 to mHopSpeed while hopping and to a
     // speed of the mode-5 record; -0x2b9 at reset, 0 after the water-height branch of func_0206ff50.
@@ -272,8 +272,12 @@ typedef struct Kart {
     /* 180 */ vs32 mState;
     /* 184 */ Unk02012f58 mUnk_184_m;
     /* 1b4 */ Unk02012f58 *mUnk_1b4;
-    /* 1b8 */ Vec3 mUnk_1b8;
-    /* 1c4 */ Vec3 mUnk_1c4;
+    // Collision center of the Kart: the position moved up by mRadius plus 0x400 along the up vector. The
+    // collision sweep ends here; Kart.mPrevCollisionCenter is where it starts.
+    /* 1b8 */ Vec3 mCollisionCenter;
+    // Collision center of the previous step, set from the previous position by slot 5 of Kart.mSlotFunctions: the start
+    // of the collision sweep that ends at Kart.mCollisionCenter.
+    /* 1c4 */ Vec3 mPrevCollisionCenter;
     // Current radius: the record's radius times two scales (code_01ffba68.c:208), set from the record at creation.
     /* 1d0 */ s32 mRadius;
     /* 1d4 */ s32 mUnk_1d4;
@@ -282,19 +286,12 @@ typedef struct Kart {
     /* 1f0 */ Vec3 mUnk_1f0;
     /* 1fc */ Vec3 mUnk_1fc;
     /* 208 */ Unk0206c5e4_208 *mUnk_208;
-    /* 20c */ union {
-        void (*mUnk_20c_fn[9])(struct Kart *);
-        struct {
-            u8 mUnk_20c[4];
-            void (*mUnk_210)(struct Kart *);
-            u8 mUnk_214[8];
-            s32 mUnk_21c;
-            void (*mUnk_220)(struct Kart *);
-            u8 mUnk_224[4];
-            struct KartItems *mUnk_228;
-            u8 mUnk_22c[4];
-        };
-    };
+    // The functions of one Kart, one per slot index: 0 set-up at creation, 1 reset to the starting values, 2 stores the
+    // squared distance in the sound source, 3 and 4 the two steps UpdateKarts runs for every Kart, 5 stores the
+    // previous collision center, 6 respawn, 7 start placement, 8 does nothing. 7 and 8 are never called. InitKart fills
+    // it from gKartDefaultSlotFunctions and replaces slots 2 to 5; it also replaces slots 3 and 4 with an empty
+    // function when gRace.mUnk_28 is set and Unk021759c0.mUnk_00c is not 5.
+    /* 20c */ void (*mSlotFunctions[9])(struct Kart *);
     /* 230 */ void (*mUnk_230)(struct Kart *);
     /* 234 */ s16 mUnk_234;
     // Angle about world up that orients the kart (0x10000 per turn): set from a direction vector or a start rotation,
@@ -415,7 +412,9 @@ typedef struct Kart {
     /* 3be */ u16 mUnk_3be;
     /* 3c0 */ s16 mUnk_3c0;
     /* 3c2 */ u8 mUnk_3c2[2];
-    /* 3c4 */ s32 mUnk_3c4;
+    // Number of the course respawn slot this Kart goes back to, set when it falls or when it respawns with none chosen;
+    // -1 means none chosen (ResetKart writes -1).
+    /* 3c4 */ s32 mRespawnSlot;
     /* 3c8 */ s16 mUnk_3c8;
     /* 3ca */ u8 mUnk_3ca[2];
     /* 3cc */ s32 mUnk_3cc;

@@ -103,7 +103,7 @@ void func_020f90dc(ItemObject *a) {
 void func_020f90bc(ItemObject *a) {
     ItemObject *p = a;
 
-    p->mSoundSource.mUnk_40 = p->mUnk_d4 & ~0xc000001f;
+    p->mSoundSource.mDistanceSquared = p->mUnk_d4 & ~0xc000001f;
     func_020d4e28(p, &p->mPos, p->mUnk_d4);
 }
 

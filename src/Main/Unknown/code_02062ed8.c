@@ -38,7 +38,7 @@ static inline void func_0206331c_inline(u32 a, u8 *b, Unk02084b2c *c, void *d, c
 }
 
 void func_02063880(Kart *a) {
-    func_01ffcb58(a);
+    AdvanceKartCollision(a);
     if ((data_0217aa14->mUnk_75c & 2) != 0) {
         func_020636f8(a);
     }
@@ -46,18 +46,18 @@ void func_02063880(Kart *a) {
 }
 
 void func_02063830(Kart *a) {
-    if (func_0207a870() != 0) {
+    if (IsMissionRunWithKind2Shapes() != 0) {
         func_0203c1a8(&a->mPos, a->mIndex);
     }
     if ((a->mUnk_4c & 0x1000) != 0) {
         func_0206d138(a);
     }
     a->mUnk_4c = a->mUnk_4c & ~0x1000;
-    func_01ffcc50(a);
+    AdvanceKartMotion(a);
 }
 
 void func_020637e0(Kart *a) {
-    if (func_0207a870() != 0) {
+    if (IsMissionRunWithKind2Shapes() != 0) {
         func_0203c1a8(&a->mPos, a->mIndex);
     }
     if ((a->mUnk_4c & 0x1000) != 0) {

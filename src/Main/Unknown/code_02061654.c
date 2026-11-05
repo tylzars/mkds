@@ -342,7 +342,7 @@ void UpdateRace(void) {
     }
     func_0208a218();
     UpdateRaceProgress();
-    func_0207aa7c();
+    UpdateKartSoundDistancesSquared();
     func_0208677c();
     if (data_021759c0->mMode == 5) {
         if (gRace->mUnk_34 == FALSE) {

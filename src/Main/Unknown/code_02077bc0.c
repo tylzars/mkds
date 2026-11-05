@@ -156,16 +156,16 @@ void InitKarts(u32 a) {
     func_02073630();
     func_0208c284();
     InitKartEffects(a);
-    data_0217ad24 = 0;
+    gMissionRunKind2ShapesPresent = 0;
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         if (gCourseMap->mKind2ShapeCountInMode4 != 0) {
-            data_0217ad24 = 1;
+            gMissionRunKind2ShapesPresent = 1;
         }
     }
     for (i = 0; i < a; i++) {
         gKarts[i].mIndex = i;
         gKarts[i].mEntryIndex = data_021759c0->mCurrentEntries[i].mPlayer.mIndex;
-        InitKart(&gKarts[i], data_usa_021655e4);
+        InitKart(&gKarts[i], gKartDefaultSlotFunctions);
     }
     data_0217ad28 = 0;
 }
@@ -176,27 +176,27 @@ void UpdateKarts(void) {
     data_0217ad20 = 0;
     data_usa_021658c0 = -1;
     for (i = 0; i < gKartCount; i++) {
-        func_01ffcac0(p);
+        UpdateKartPrevValuesAndClearFlags(p);
         p++;
     }
     func_0207a32c();
     p = gKarts;
     for (i = 0; i < gKartCount; i++) {
-        p->mUnk_20c_fn[3](p);
+        p->mSlotFunctions[3](p);
         p++;
     }
     p = gKarts;
     for (i = 0; i < gKartCount; i++) {
-        p->mUnk_20c_fn[4](p);
+        p->mSlotFunctions[4](p);
         p++;
     }
 }
 
-void func_0207aa7c(void) {
+void UpdateKartSoundDistancesSquared(void) {
     Kart *p = gKarts;
     s16 i;
     for (i = 0; i < gKartCount; i++) {
-        p->mUnk_20c_fn[2](p);
+        p->mSlotFunctions[2](p);
         p++;
     }
 }
@@ -264,8 +264,8 @@ u16 func_0207a880(s32 arg0) {
     return (u16) value0;
 }
 
-u32 func_0207a870(void) {
-    return (u32) data_0217ad24;
+u32 IsMissionRunWithKind2Shapes(void) {
+    return (u32) gMissionRunKind2ShapesPresent;
 }
 
 s32 func_0207a84c(s32 a) {

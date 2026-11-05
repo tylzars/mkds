@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-unsigned int func_0207a870(void);
+// Whether this is a mission run on a course with a shape of kind 2.
+unsigned int IsMissionRunWithKind2Shapes(void);

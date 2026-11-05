@@ -30,7 +30,10 @@ typedef struct SoundSource {
     // Number of the volume curve (element of gSoundFalloffs) of this source.
     /* 3c */ u8 mFalloffIndex;
     /* 3d */ u8 mUnk_3d[3];
-    /* 40 */ u32 mUnk_40;
+    // Squared distance from the camera to the owner of the sound source. For a Kart it is the three-axis one, for map
+    // and item objects the horizontal one with the low 5 and top 2 bits cleared; InitSoundSource stores 0xffffffff. The
+    // sound pass takes its square root.
+    /* 40 */ u32 mDistanceSquared;
 } SoundSource;
 
 // One sound started on a SoundSource, from the start request until it is stopped. The entries are taken from a pool of

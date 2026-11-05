@@ -3,8 +3,8 @@
 #include "ITCM/code_01ffba68.h"
 
 void func_020646c0(Kart *a) {
-    if (func_0207a870() != 0) {
+    if (IsMissionRunWithKind2Shapes() != 0) {
         func_0203c1a8(&a->mPos, a->mIndex);
     }
-    func_01ffcc50(a);
+    AdvanceKartMotion(a);
 }

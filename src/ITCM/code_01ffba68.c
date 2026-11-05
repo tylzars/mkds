@@ -137,7 +137,7 @@ void Matrix3x3FromQuaternion(void *a, void *b) {
     o[8] = 0x1000 - (ww + xx);
 }
 
-void func_01ffcc50(Kart *p) {
+void AdvanceKartMotion(Kart *p) {
     if (p->mUnk_7c & 0xa0) {
         func_020732d8(p);
         return;
@@ -156,7 +156,7 @@ void func_01ffcc50(Kart *p) {
     }
 }
 
-void func_01ffcb58(Kart *p) {
+void AdvanceKartCollision(Kart *p) {
     Vec3 v;
 
     if (p->mUnk_7c & 0x20) {
@@ -167,7 +167,7 @@ void func_01ffcb58(Kart *p) {
     } else {
         p->mUnk_44 &= ~0x80000;
     }
-    func_01ffc008(&p->mUnk_1b8, &p->mUnk_98, 0x400, p);
+    func_01ffc008(&p->mCollisionCenter, &p->mUnk_98, 0x400, p);
     func_01ffa4b4(p, &v);
     func_01ff9f60(p, &v);
     p->mUnk_244 = v;
@@ -186,7 +186,7 @@ void func_01ffcb58(Kart *p) {
     p->mUnk_230(p);
 }
 
-void func_01ffcac0(Kart *p) {
+void UpdateKartPrevValuesAndClearFlags(Kart *p) {
     p->mTestedKartMask = 0;
     p->mUnk_44 &= 0x57ffffdf;
     p->mUnk_4c &= 0xffeb7efd;
@@ -196,7 +196,7 @@ void func_01ffcac0(Kart *p) {
     p->mUnk_1e4 = p->mUnk_1d8;
     p->mUnk_2f0 = p->mUnk_2e4;
     p->mUnk_2e4 = p->mUnk_2d8;
-    p->mUnk_220(p);
+    p->mSlotFunctions[5](p);
 }
 
 static inline const s32 func_01ffc090_inline(void) {
@@ -526,11 +526,11 @@ void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
     Vec3AddScaled(p->mRadius + c, &p->mUnk_15c, &e, a);
 }
 
-void func_01ffbfe4(Kart *p) {
-    Vec3AddScaled(p->mRadius + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mUnk_1c4);
+void SetKartPrevCollisionCenter(Kart *p) {
+    Vec3AddScaled(p->mRadius + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mPrevCollisionCenter);
 }
 
-// Called once per step of the driving states (func_01ffcc50, func_020651fc); also writes mUnk_dc in five branches.
+// Called once per step of the driving states (AdvanceKartMotion, func_020651fc); also writes mUnk_dc in five branches.
 void UpdateKartSpeedLimitGoal(Kart *p) {
     s32 *q;
     u32 f;

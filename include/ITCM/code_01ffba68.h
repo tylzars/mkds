@@ -8,7 +8,9 @@ void func_01ffba68(Kart *p);
 void func_01ffbd9c(Kart *p);
 void UpdateKartSpeedLimit(Kart *p);
 void UpdateKartSpeedLimitGoal(Kart *p);
-void func_01ffbfe4(Kart *p);
+// Stores the previous collision center: the point mRadius plus 0x400 along the up vector from mUnk_98. Slot 5 of
+// Kart.mSlotFunctions for every Kart except the remote Karts of mode 5; also called once from func_020653d0.
+void SetKartPrevCollisionCenter(Kart *p);
 void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p);
 void ComputeKartPointAlongUp(Vec3 *a, const Vec3 *b, s32 c, Kart *p);
 void func_01ffc090(Kart *p, s32 a);
@@ -24,9 +26,16 @@ void func_01ffc920(Kart *p);
 s32 func_01ffc92c(Kart *p);
 void func_01ffc9e8(Kart *p, s32 a);
 void func_01ffca50(Kart *p);
-void func_01ffcac0(Kart *p);
-void func_01ffcb58(Kart *p);
-void func_01ffcc50(Kart *p);
+// First step of UpdateKarts for one Kart: copies the near-Kart mask, the position, mUnk_1d8, mUnk_2e4 and mUnk_2d8 into
+// their previous values, clears mTestedKartMask, mNearKartMask and some bits of mUnk_44 and mUnk_4c, then runs slot 5
+// of Kart.mSlotFunctions.
+void UpdateKartPrevValuesAndClearFlags(Kart *p);
+// Slot 4 step of one Kart: moves Kart.mCollisionCenter, sweeps it against the course from Kart.mPrevCollisionCenter,
+// counts the step and calls the function in mUnk_230.
+void AdvanceKartCollision(Kart *p);
+// Slot 3 step of one Kart: speed limits from the physical parameters, the Kart state function, gravity and the velocity
+// added to mPos. Does not test collisions.
+void AdvanceKartMotion(Kart *p);
 // Writes nine words (a 3x3 rotation matrix with 12 fractional bits) to its first argument from the quaternion at its
 // second argument (w in the fourth component); which of the nine words is a row or a column is not claimed.
 void Matrix3x3FromQuaternion(void *param_1, void *param_2);

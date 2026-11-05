@@ -117,4 +117,6 @@ void func_0207a91c(Vec3 *dst, u8 idx);
 // 5 to a Vec3 of the received record).
 void GetKartPos(Vec3 *dst, s32 idx);
 void func_0207a990(void);
-void func_0207aa7c(void);
+// Runs slot 2 of Kart.mSlotFunctions for every Kart each time UpdateRace runs; the slot stores the Kart's squared
+// distance in its sound source.
+void UpdateKartSoundDistancesSquared(void);

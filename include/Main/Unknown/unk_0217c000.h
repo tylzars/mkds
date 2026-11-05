@@ -27,8 +27,6 @@ typedef struct SoundFalloff {
 
 // Volume curves by sound source number (SoundSource.mFalloffIndex); filled by func_02109468.
 extern SoundFalloff gSoundFalloffs[];
-extern s32 data_0217caec[];
-extern s32 data_0217caec[];
 // Volume curve of the Karts other than the selected entry whose sound source number is 0.
 extern SoundFalloff gOtherKartSoundFalloff;
 
