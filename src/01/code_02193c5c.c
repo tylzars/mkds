@@ -310,7 +310,7 @@ void func_ov001_02194a50(void) {
     gRecordGpx->mNextState = 0;
     gRecordGpx->mStateFrames = 0;
     gRecordGpx->mBg0Offset = ~0xbf;
-    gRecordGpx->mUnk_70 = ~0xff;
+    gRecordGpx->mBg3OffsetX = ~0xff;
     count0 = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     count1 = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     gRecordGpx->mRecordGpxMTable[0].mUnk_04 = 0x100;
@@ -355,12 +355,16 @@ void func_ov001_02194a34(void) {
     func_ov001_02194d78();
 }
 
-void func_ov001_02194a20(void) {
+// Requests state 2: stores mNextState = 2 and zeroes mStateFrames; the next AdvanceRecordGpx call copies it to mState
+// and runs AdvanceRecordGpxState2.
+void RequestRecordGpxState2(void) {
     gRecordGpx->mNextState = 2;
     gRecordGpx->mStateFrames = 0;
 }
 
-void func_ov001_02194a0c(void) {
+// Requests state 3: stores mNextState = 3 and zeroes mStateFrames; the next AdvanceRecordGpx call copies it to mState
+// and runs AdvanceRecordGpxState3.
+void RequestRecordGpxState3(void) {
     gRecordGpx->mNextState = 3;
     gRecordGpx->mStateFrames = 0;
 }
@@ -379,12 +383,16 @@ void func_ov001_021949d4(void) {
     func_ov001_02194d78();
 }
 
-void func_ov001_021949c0(void) {
+// Requests state 5: stores mNextState = 5 and zeroes mStateFrames; the next AdvanceRecordGpx call copies it to mState
+// and runs AdvanceRecordGpxState5.
+void RequestRecordGpxState5(void) {
     gRecordGpx->mNextState = 5;
     gRecordGpx->mStateFrames = 0;
 }
 
-void func_ov001_021949ac(void) {
+// Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceRecordGpx call copies it to mState
+// and runs AdvanceRecordGpxState6.
+void RequestRecordGpxState6(void) {
     gRecordGpx->mNextState = 6;
     gRecordGpx->mStateFrames = 0;
 }
@@ -478,7 +486,7 @@ void AdvanceRecordGpxState1(void) {
     AdvanceRecordGpxOffsetTimers();
     gRecordGpx->mStateFrames++;
     v = func_020ae4c0(1, 0x100, 0, gRecordGpx->mStateFrames, 10);
-    gRecordGpx->mUnk_70 = v;
+    gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     gRecordGpx->mRecordGpxMTable[0].mUnk_04 = v;
@@ -504,7 +512,7 @@ void AdvanceRecordGpxState1(void) {
         }
     }
     if (gRecordGpx->mStateFrames >= 10) {
-        func_ov001_02194a20();
+        RequestRecordGpxState2();
     }
 }
 
@@ -559,7 +567,7 @@ void AdvanceRecordGpxState2(void) {
             goto next;
         }
     }
-    func_ov001_021949c0();
+    RequestRecordGpxState5();
     gRecordGpx->mUnk_90 = 0;
     func_02128310(0);
     return;
@@ -569,7 +577,7 @@ next:
         gRecordGpx->mUnk_7c = 1;
         gRecordGpx->mOffsetTimers[0] = 6;
         gRecordGpx->mUnk_88 = TRUE;
-        func_ov001_02194a0c();
+        RequestRecordGpxState3();
         func_0212ecc0(&data_0217d068, 0, 2);
         return;
     }
@@ -578,7 +586,7 @@ next:
         gRecordGpx->mUnk_7c = 0;
         gRecordGpx->mOffsetTimers[1] = 6;
         gRecordGpx->mUnk_8c = TRUE;
-        func_ov001_02194a0c();
+        RequestRecordGpxState3();
         func_0212ecc0(&data_0217d068, 0, 2);
     }
 }
@@ -602,7 +610,7 @@ void AdvanceRecordGpxState3(void) {
     }
     gRecordGpx->mStateFrames++;
     v = func_020ae4c0(1, 0, x, gRecordGpx->mStateFrames, 10);
-    gRecordGpx->mUnk_70 = v;
+    gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     gRecordGpx->mRecordGpxMTable[0].mUnk_04 = v;
@@ -649,7 +657,7 @@ void AdvanceRecordGpxState4(void) {
     }
     gRecordGpx->mStateFrames++;
     v = func_020ae4c0(1, x, 0, gRecordGpx->mStateFrames, 10);
-    gRecordGpx->mUnk_70 = v;
+    gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     gRecordGpx->mRecordGpxMTable[0].mUnk_04 = v;
@@ -673,7 +681,7 @@ void AdvanceRecordGpxState4(void) {
         }
     }
     if (gRecordGpx->mStateFrames >= 10) {
-        func_ov001_02194a20();
+        RequestRecordGpxState2();
     }
 }
 
@@ -686,7 +694,7 @@ void AdvanceRecordGpxState5(void) {
 
     gRecordGpx->mStateFrames++;
     v = func_020ae4c0(1, 0, 0x100, gRecordGpx->mStateFrames, 10);
-    gRecordGpx->mUnk_70 = v;
+    gRecordGpx->mBg3OffsetX = v;
     a = gRecordGpx->mRecordGpxMBncl->mUnk_06;
     b = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     gRecordGpx->mRecordGpxMTable[0].mUnk_04 = v;
@@ -712,7 +720,7 @@ void AdvanceRecordGpxState5(void) {
         }
     }
     if (gRecordGpx->mStateFrames >= 10) {
-        func_ov001_021949ac();
+        RequestRecordGpxState6();
     }
 }
 
@@ -759,7 +767,7 @@ void AdvanceRecordGpx(void) {
 
 void func_ov001_02193ccc(void) {
     *(vu32 *) 0x4000010 = (-gRecordGpx->mBg0Offset << 16) & 0x1ff0000;
-    *(vu32 *) 0x400101c = ((-gRecordGpx->mUnk_70) & 0x1ff) | ((-gRecordGpx->mUnk_74 << 16) & 0x1ff0000);
+    *(vu32 *) 0x400101c = ((-gRecordGpx->mBg3OffsetX) & 0x1ff) | ((-gRecordGpx->mUnk_74 << 16) & 0x1ff0000);
     func_02111428();
 }
 

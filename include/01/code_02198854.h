@@ -31,19 +31,23 @@ typedef struct OptionSelectMenu {
     /* 3c */ BOOL mUnk_3c;
     /* 40 */ s32 mUnk_40[2][2];
     /* 50 */ void *mHeap;
-    /* 54 */ Unk02124b1c *mUnk_54;
-    /* 58 */ Unk02124b1c *mUnk_58;
-    /* 5c */ struct Unk02021dc8 *mUnk_5c;
-    /* 60 */ struct Unk02021dc8 *mUnk_60;
-    /* 64 */ Ncgr *mUnk_64;
-    /* 68 */ Ncgr *mUnk_68;
-    /* 6c */ Nclr *mUnk_6c;
-    /* 70 */ Nclr *mUnk_70;
-    /* 74 */ Unk0201ea30 *mUnk_74;
-    /* 78 */ Unk0201ea30 *mUnk_78;
-    /* 7c */ void *mUnk_7c;
-    /* 80 */ void *mUnk_80;
-    /* 84 */ void *mUnk_84;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; indexed with an offset
+    // added
+    /* 54 */ Unk02124b1c *mOptionSelectMenuMTable;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; indexed with an offset
+    // added
+    /* 58 */ Unk02124b1c *mOptionSelectMenuSTable;
+    /* 5c */ struct Unk02021dc8 *mOptionSelectMenuMNcer;
+    /* 60 */ struct Unk02021dc8 *mOptionSelectMenuSNcer;
+    /* 64 */ Ncgr *mOptionSelectMenuMNcgr;
+    /* 68 */ Ncgr *mOptionSelectMenuSNcgr;
+    /* 6c */ Nclr *mOptionSelectMenuMONclr;
+    /* 70 */ Nclr *mOptionSelectMenuSONclr;
+    /* 74 */ Unk0201ea30 *mOptionSelectMenuMBncl;
+    /* 78 */ Unk0201ea30 *mOptionSelectMenuSBncl;
+    /* 7c */ void *mOptionSelectMenuSBnbl;
+    /* 80 */ void *mOptionSelectMenuMBnll;
+    /* 84 */ void *mOptionSelectMenuSBnll;
     /* 88 */ void *mOptionMessages;
     /* 8c */ void *mCommonMessages;
 } OptionSelectMenu;

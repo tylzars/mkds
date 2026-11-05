@@ -105,7 +105,7 @@ void func_ov001_0219c480(void) {
     gSelectGhost->mNextState = 0;
     gSelectGhost->mStateFrames = 0;
     gSelectGhost->mBg0Offset = 0;
-    gSelectGhost->mUnk_5c = -0xc0;
+    gSelectGhost->mBg3Offset = -0xc0;
     for (i = 0; i < 6; i++) {
         gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[i]].mUnk_06 = -0xc0;
     }
@@ -122,12 +122,16 @@ void func_ov001_0219c480(void) {
     }
 }
 
-void func_ov001_0219c46c(void) {
+// Requests state 1: stores mNextState = 1 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
+// and runs AdvanceSelectGhostState1.
+void RequestSelectGhostState1(void) {
     gSelectGhost->mNextState = 1;
     gSelectGhost->mStateFrames = 0;
 }
 
-void func_ov001_0219c458(void) {
+// Requests state 2: stores mNextState = 2 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
+// and runs AdvanceSelectGhostState2.
+void RequestSelectGhostState2(void) {
     gSelectGhost->mNextState = 2;
     gSelectGhost->mStateFrames = 0;
 }
@@ -145,7 +149,9 @@ void func_ov001_0219c3ec(void) {
     func_021277f8(GetBmgEntry(gSelectGhost->mCommonMessages, 4), GetBmgEntry(gSelectGhost->mCommonMessages, 2), 0);
 }
 
-void func_ov001_0219c3d8(void) {
+// Requests state 5: stores mNextState = 5 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
+// and runs AdvanceSelectGhostState5.
+void RequestSelectGhostState5(void) {
     gSelectGhost->mNextState = 5;
     gSelectGhost->mStateFrames = 0;
 }
@@ -156,7 +162,9 @@ void func_ov001_0219c3bc(void) {
     func_021277e4();
 }
 
-void func_ov001_0219c3a8(void) {
+// Requests state 7: stores mNextState = 7 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
+// and runs AdvanceSelectGhostState7.
+void RequestSelectGhostState7(void) {
     gSelectGhost->mNextState = 7;
     gSelectGhost->mStateFrames = 0;
 }
@@ -425,7 +433,7 @@ void AdvanceSelectGhostState0(void) {
     n = gSelectGhost->mSelectGhostSBncl->mUnk_06;
     gSelectGhost->mStateFrames++;
     v = func_020ae4c0(1, ~0xbf, 0, gSelectGhost->mStateFrames, 10);
-    gSelectGhost->mUnk_5c = v;
+    gSelectGhost->mBg3Offset = v;
     for (i = 0; i < 6; i++) {
         gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[i]].mUnk_06 = v;
     }
@@ -437,7 +445,7 @@ void AdvanceSelectGhostState0(void) {
         gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_06 = v;
     }
     if (gSelectGhost->mStateFrames >= 10) {
-        func_ov001_0219c46c();
+        RequestSelectGhostState1();
     }
 }
 
@@ -453,7 +461,7 @@ void AdvanceSelectGhostState1(void) {
     gSelectGhost->mSelectGhostSTable[11].mUnk_06 = w;
     gSelectGhost->mSelectGhostSTable[n + 5].mUnk_06 = w;
     if (gSelectGhost->mStateFrames >= 10) {
-        func_ov001_0219c458();
+        RequestSelectGhostState2();
     }
 }
 
@@ -495,7 +503,7 @@ void AdvanceSelectGhostState2(void) {
         }
     }
     func_021281c8(14);
-    func_ov001_0219c3a8();
+    RequestSelectGhostState7();
     gSelectGhost->mResult = 2;
     func_02128310(0);
     return;
@@ -539,7 +547,7 @@ void AdvanceSelectGhostState3(void) {
 
 void AdvanceSelectGhostState4(void) {
     if (func_021277c8() != 0) {
-        func_ov001_0219c3d8();
+        RequestSelectGhostState5();
     }
 }
 
@@ -563,13 +571,13 @@ void AdvanceSelectGhostState6(void) {
         case 0:
             func_ov001_0219bfc0();
             gSelectGhost->mResult = 1;
-            func_ov001_0219c3a8();
+            RequestSelectGhostState7();
             func_021282c8();
             break;
         case -1:
         case 1:
             func_0212b7d8();
-            func_ov001_0219c458();
+            RequestSelectGhostState2();
             break;
     }
 }
@@ -602,7 +610,7 @@ void AdvanceSelectGhostState7(void) {
     }
     n = gSelectGhost->mSelectGhostSBncl->mUnk_06;
     w = -func_02128244(gSelectGhost->mStateFrames);
-    gSelectGhost->mUnk_5c = v;
+    gSelectGhost->mBg3Offset = v;
     for (i = 0; i < 6; i++) {
         gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[i]].mUnk_06 = v;
     }
@@ -674,5 +682,5 @@ int AdvanceSelectGhost(void) {
 
 void func_ov001_0219b540(void) {
     *(u32 *) 0x4000010 = (-gSelectGhost->mBg0Offset << 16) & 0x1ff0000;
-    *(u32 *) 0x400101c = (-gSelectGhost->mUnk_5c << 16) & 0x1ff0000;
+    *(u32 *) 0x400101c = (-gSelectGhost->mBg3Offset << 16) & 0x1ff0000;
 }

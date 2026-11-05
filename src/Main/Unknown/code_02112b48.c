@@ -608,7 +608,7 @@ void func_021136f8(void) {
             a = gRecordVS->mRecordVSMBncl->mUnk_06;
             b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
             v = func_02116d10(7 - gRecordVS->mUnk_70, 0);
-            gRecordVS->mUnk_5c = v;
+            gRecordVS->mBg0OffsetY = v;
             gRecordVS->mUnk_14[3].mUnk_06 = v;
             gRecordVS->mUnk_14[a].mUnk_06 = v;
             gRecordVS->mUnk_24[1].mUnk_06 = v;
@@ -632,10 +632,10 @@ void func_021134d4(void) {
     i = 0;
     gRecordVS->mNextState = 0;
     gRecordVS->mStateFrames = 0;
-    gRecordVS->mUnk_58 = 0;
-    gRecordVS->mUnk_5c = -192;
-    gRecordVS->mUnk_60 = 0;
-    gRecordVS->mUnk_64 = -192;
+    gRecordVS->mBg0OffsetX = 0;
+    gRecordVS->mBg0OffsetY = -192;
+    gRecordVS->mBg1OffsetX = 0;
+    gRecordVS->mBg1OffsetY = -192;
     a = gRecordVS->mRecordVSMBncl->mUnk_06;
     b = gRecordVS->mRecordVSMTransientBncl->mUnk_06;
     x = gRecordVS->mRecordVSSBncl->mUnk_06;
@@ -697,12 +697,16 @@ void func_02113480(void) {
     func_02128374();
 }
 
-void func_0211346c(void) {
+// Requests state 4: stores mNextState = 4 and zeroes mStateFrames; the next AdvanceRecordVS call copies it to mState
+// and runs AdvanceRecordVSState4.
+void RequestRecordVSState4(void) {
     gRecordVS->mNextState = 4;
     gRecordVS->mStateFrames = 0;
 }
 
-void func_02113458(void) {
+// Requests state 5: stores mNextState = 5 and zeroes mStateFrames; the next AdvanceRecordVS call copies it to mState
+// and runs AdvanceRecordVSState5.
+void RequestRecordVSState5(void) {
     gRecordVS->mNextState = 5;
     gRecordVS->mStateFrames = 0;
 }
@@ -721,7 +725,9 @@ void func_02113420(void) {
     func_021139b4();
 }
 
-void func_0211340c(void) {
+// Requests state 7: stores mNextState = 7 and zeroes mStateFrames; the next AdvanceRecordVS call copies it to mState
+// and runs AdvanceRecordVSState7.
+void RequestRecordVSState7(void) {
     gRecordVS->mNextState = 7;
     gRecordVS->mStateFrames = 0;
 }

@@ -80,12 +80,12 @@ void func_ov001_0219b000(void) {
 }
 
 void func_ov001_0219afc8(s32 a) {
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[a]].mUnk_00 = 1;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mUnk_00 = 1;
     func_02124a20(data_ov001_021a6aa4[a], 14, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
 void func_ov001_0219af90(s32 a) {
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[a]].mUnk_00 = 0;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mUnk_00 = 0;
     func_02124a20(data_ov001_021a6aa4[a], 15, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
@@ -99,33 +99,37 @@ void func_ov001_0219ae88(void) {
     gRecordTopMenu->mStateFrames = 0;
     gRecordTopMenu->mBg0Offset = ~0xbf;
     n = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
-    gRecordTopMenu->mUnk_18[0].mUnk_06 = ~0xbf;
-    gRecordTopMenu->mUnk_18[1].mUnk_06 = ~0xbf;
-    gRecordTopMenu->mUnk_18[n].mUnk_06 = ~0xbf;
+    gRecordTopMenu->mRecordTopMenuMTable[0].mUnk_06 = ~0xbf;
+    gRecordTopMenu->mRecordTopMenuMTable[1].mUnk_06 = ~0xbf;
+    gRecordTopMenu->mRecordTopMenuMTable[n].mUnk_06 = ~0xbf;
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_18[data_ov001_021a6aac[i]].mUnk_06 = ~0xbf;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mUnk_06 = ~0xbf;
     }
     for (i = 0; i < 3; i++) {
         for (j = 0, p = data_ov001_021a6ae4[i]; j < 3; j++) {
-            gRecordTopMenu->mUnk_18[n + *p].mUnk_06 = ~0xbf;
+            gRecordTopMenu->mRecordTopMenuMTable[n + *p].mUnk_06 = ~0xbf;
             p++;
         }
     }
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[i]].mUnk_04 = 0xe0;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[i]].mUnk_04 = 0xe0;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = 0xe0;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = 0xe0;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = 0xe0;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = 0xe0;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = 0xe0;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = 0xe0;
         func_ov001_0219af90(i);
     }
 }
 
-void func_ov001_0219ae74(void) {
+// Requests state 1: stores mNextState = 1 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
+// mState and runs AdvanceRecordTopMenuState1.
+void RequestRecordTopMenuState1(void) {
     gRecordTopMenu->mNextState = 1;
     gRecordTopMenu->mStateFrames = 0;
 }
 
-void func_ov001_0219ae60(void) {
+// Requests state 2: stores mNextState = 2 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
+// mState and runs AdvanceRecordTopMenuState2.
+void RequestRecordTopMenuState2(void) {
     gRecordTopMenu->mNextState = 2;
     gRecordTopMenu->mStateFrames = 0;
 }
@@ -136,7 +140,9 @@ void func_ov001_0219ae44(void) {
     func_02128374();
 }
 
-void func_ov001_0219ae30(void) {
+// Requests state 4: stores mNextState = 4 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
+// mState and runs AdvanceRecordTopMenuState4.
+void RequestRecordTopMenuState4(void) {
     gRecordTopMenu->mNextState = 4;
     gRecordTopMenu->mStateFrames = 0;
 }
@@ -147,12 +153,16 @@ void func_ov001_0219ae10(void) {
     func_0212ecc0(&data_0217d068, 0, 5);
 }
 
-void func_ov001_0219adfc(void) {
+// Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
+// mState and runs AdvanceRecordTopMenuState6.
+void RequestRecordTopMenuState6(void) {
     gRecordTopMenu->mNextState = 6;
     gRecordTopMenu->mStateFrames = 0;
 }
 
-void func_ov001_0219ade8(void) {
+// Requests state 7: stores mNextState = 7 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
+// mState and runs AdvanceRecordTopMenuState7.
+void RequestRecordTopMenuState7(void) {
     gRecordTopMenu->mNextState = 7;
     gRecordTopMenu->mStateFrames = 0;
 }
@@ -175,7 +185,9 @@ void func_ov001_0219ad7c(void) {
     func_02125fc0();
 }
 
-void func_ov001_0219ad68(void) {
+// Requests state 11: stores mNextState = 11 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
+// mState and runs AdvanceRecordTopMenuState11.
+void RequestRecordTopMenuState11(void) {
     gRecordTopMenu->mNextState = 11;
     gRecordTopMenu->mStateFrames = 0;
 }
@@ -214,10 +226,10 @@ void func_ov001_0219ac98(void) {
         }
     }
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_18[data_ov001_021a6aac[i]].mUnk_00 = 0;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mUnk_00 = 0;
     }
     if (best > 4) {
-        gRecordTopMenu->mUnk_18[data_ov001_021a6aac[best - 5]].mUnk_00 = 1;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[best - 5]].mUnk_00 = 1;
     }
 }
 
@@ -260,16 +272,16 @@ void InitRecordTopMenu(void *heap) {
     }
     func_020ae6d4(func_02111318(), func_0211130c());
     func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMBnll,
-                  &gRecordTopMenu->mUnk_18);
-    func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuSBncl, NULL, &gRecordTopMenu->mUnk_1c);
+                  &gRecordTopMenu->mRecordTopMenuMTable);
+    func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuSBncl, NULL, &gRecordTopMenu->mRecordTopMenuSTable);
     gRecordTopMenu->mUnk_20 = func_02047a28("common.bmg");
     gRecordTopMenu->mRecordMessages = FindSceneFile("record.bmg");
     rem = 0x8000;
     rem -=
         func_021243ac(heap, 0, gRecordTopMenu->mRecordTopMenuMBnll, 0xaa, 0xe, 0, gRecordTopMenu->mRecordTopMenuMNcer,
-                      gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18, rem);
+                      gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable, rem);
     func_0212426c(0, 0, gRecordTopMenu->mRecordTopMenuMBnll, GetBmgEntry(gRecordTopMenu->mRecordMessages, 9),
-                  gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18);
+                  gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable);
     x = 1;
     base = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     for (i = 0; i < 3; i++) {
@@ -277,14 +289,14 @@ void InitRecordTopMenu(void *heap) {
             rem -= func_021243ac(heap, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll,
                                  data_ov001_021a6af8[i][j], data_ov001_021a6b0c[i][j], x,
                                  gRecordTopMenu->mRecordTopMenuMNcer, gRecordTopMenu->mRecordTopMenuMBncl,
-                                 gRecordTopMenu->mUnk_18, rem);
+                                 gRecordTopMenu->mRecordTopMenuMTable, rem);
             x = base + data_ov001_021a6ae4[i][j];
         }
     }
     for (i = 0; i < 3; i++) {
         func_0212426c(0, data_ov001_021a6ae4[0][i], gRecordTopMenu->mRecordTopMenuMBnll,
                       GetBmgEntry(gRecordTopMenu->mRecordMessages, data_ov001_021a6abc[i]),
-                      gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18);
+                      gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable);
     }
     pp = &data_0217aa08->mUnk_00;
     scores[1][0] = (*pp)->mUnk_34[0];
@@ -300,7 +312,7 @@ void InitRecordTopMenu(void *heap) {
             }
             func_02124fac(scores[i][j], buf);
             func_02124248(0, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll, buf,
-                          gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18, 6);
+                          gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable, 6);
         }
     }
     func_ov001_0219ac98();
@@ -325,7 +337,7 @@ void AdvanceRecordTopMenuState0(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
-        func_ov001_0219ae74();
+        RequestRecordTopMenuState1();
     }
     return;
 }
@@ -343,26 +355,26 @@ void AdvanceRecordTopMenuState1(void) {
     b = func_020ae4c0(1, -0xc0, 0, gRecordTopMenu->mStateFrames, 10);
     gRecordTopMenu->mBg0Offset = b;
     idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
-    gRecordTopMenu->mUnk_18[0].mUnk_06 = b;
-    gRecordTopMenu->mUnk_18[1].mUnk_06 = b;
-    gRecordTopMenu->mUnk_18[idx].mUnk_06 = b;
+    gRecordTopMenu->mRecordTopMenuMTable[0].mUnk_06 = b;
+    gRecordTopMenu->mRecordTopMenuMTable[1].mUnk_06 = b;
+    gRecordTopMenu->mRecordTopMenuMTable[idx].mUnk_06 = b;
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_18[data_ov001_021a6aac[i]].mUnk_06 = b;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mUnk_06 = b;
     }
     for (i = 0; i < 3; i++) {
         for (j = 0, p = data_ov001_021a6ae4[i]; j < 3; j++) {
-            gRecordTopMenu->mUnk_18[idx + *p].mUnk_06 = b;
+            gRecordTopMenu->mRecordTopMenuMTable[idx + *p].mUnk_06 = b;
             p++;
         }
     }
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[i]].mUnk_04 = a;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[i]].mUnk_04 = a;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = a;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = a;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
-        func_ov001_0219ae60();
+        RequestRecordTopMenuState2();
     }
 }
 
@@ -373,10 +385,10 @@ void AdvanceRecordTopMenuState2(void) {
     gRecordTopMenu->mStateFrames++;
     v = func_020ae488(gRecordTopMenu->mStateFrames);
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[i]].mUnk_04 = v;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[i]].mUnk_04 = v;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = v;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = v;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
         func_ov001_0219ae44();
@@ -387,7 +399,7 @@ void AdvanceRecordTopMenuState3(void) {
     int v1;
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
-        func_ov001_0219ae30();
+        RequestRecordTopMenuState4();
     }
     return;
 }
@@ -432,14 +444,14 @@ void AdvanceRecordTopMenuState4(void) {
         }
     }
     func_021281c8(15);
-    func_ov001_0219adfc();
+    RequestRecordTopMenuState6();
     gRecordTopMenu->mUnk_44 = 5;
     func_02128310(1);
     return;
 skip:
     if ((u32) sel <= 2) {
         t = data_ov001_021a6acc[sel];
-        if (gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[t]].mUnk_00 != 0) {
+        if (gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[t]].mUnk_00 != 0) {
             if (gRecordTopMenu->mIndex == t) {
                 func_ov001_0219af90(gRecordTopMenu->mIndex);
                 gRecordTopMenu->mIndex = t;
@@ -472,20 +484,20 @@ void AdvanceRecordTopMenuState5(void) {
 
     gRecordTopMenu->mStateFrames++;
     v = func_020ae488(gRecordTopMenu->mStateFrames);
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[gRecordTopMenu->mIndex]].mUnk_04 = v;
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[gRecordTopMenu->mIndex]].mUnk_04 = v;
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[gRecordTopMenu->mIndex]].mUnk_04 = v;
-    gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[gRecordTopMenu->mIndex]].mUnk_04 = v;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[gRecordTopMenu->mIndex]].mUnk_04 = v;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[gRecordTopMenu->mIndex]].mUnk_04 = v;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[gRecordTopMenu->mIndex]].mUnk_04 = v;
+    gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[gRecordTopMenu->mIndex]].mUnk_04 = v;
     if (gRecordTopMenu->mStateFrames == 5) {
         func_ov001_0219afc8(gRecordTopMenu->mIndex);
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
         if (gRecordTopMenu->mIndex == 2 && func_021143b4() == 0) {
-            func_ov001_0219ade8();
+            RequestRecordTopMenuState7();
             return;
         }
         gRecordTopMenu->mUnk_44 = data_ov001_021a6ad8[gRecordTopMenu->mIndex];
-        func_ov001_0219adfc();
+        RequestRecordTopMenuState6();
     }
 }
 
@@ -505,23 +517,23 @@ void AdvanceRecordTopMenuState6(void) {
     b = func_020ae4c0(1, 0, -0xc0, gRecordTopMenu->mStateFrames, 10);
     gRecordTopMenu->mBg0Offset = b;
     idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
-    gRecordTopMenu->mUnk_18[0].mUnk_06 = b;
-    gRecordTopMenu->mUnk_18[1].mUnk_06 = b;
-    gRecordTopMenu->mUnk_18[idx].mUnk_06 = b;
+    gRecordTopMenu->mRecordTopMenuMTable[0].mUnk_06 = b;
+    gRecordTopMenu->mRecordTopMenuMTable[1].mUnk_06 = b;
+    gRecordTopMenu->mRecordTopMenuMTable[idx].mUnk_06 = b;
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_18[data_ov001_021a6aac[i]].mUnk_06 = b;
+        gRecordTopMenu->mRecordTopMenuMTable[data_ov001_021a6aac[i]].mUnk_06 = b;
     }
     for (i = 0; i < 3; i++) {
         for (j = 0, p = data_ov001_021a6ae4[i]; j < 3; j++) {
-            gRecordTopMenu->mUnk_18[idx + *p].mUnk_06 = b;
+            gRecordTopMenu->mRecordTopMenuMTable[idx + *p].mUnk_06 = b;
             p++;
         }
     }
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[i]].mUnk_04 = a;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[i]].mUnk_04 = a;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = a;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = a;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = a;
     }
     if (gRecordTopMenu->mStateFrames >= 10 && func_0211145c() == -1) {
         func_02111488(gRecordTopMenu->mUnk_44);
@@ -535,10 +547,10 @@ void AdvanceRecordTopMenuState7(void) {
     gRecordTopMenu->mStateFrames++;
     v = func_020ae4c0(1, 0, 0xe0, gRecordTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[i]].mUnk_04 = v;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[i]].mUnk_04 = v;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = v;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = v;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
         func_ov001_0219adbc();
@@ -586,7 +598,7 @@ void AdvanceRecordTopMenuState10(void) {
     int v1;
     v1 = func_02125f88();
     if (v1 != 0) {
-        func_ov001_0219ad68();
+        RequestRecordTopMenuState11();
     }
     return;
 }
@@ -597,10 +609,10 @@ void AdvanceRecordTopMenuState11(void) {
     gRecordTopMenu->mStateFrames++;
     v = func_020ae4c0(1, 0xe0, 0, gRecordTopMenu->mStateFrames, 10);
     for (i = 0; i < 3; i++) {
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ab4[i]].mUnk_04 = v;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6ac4[i]].mUnk_04 = v;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[i]].mUnk_04 = v;
-        gRecordTopMenu->mUnk_1c[data_ov001_021a6aa4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ab4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = v;
+        gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = v;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
         func_ov001_0219ae44();
@@ -649,9 +661,10 @@ void AdvanceRecordTopMenu(void) {
             break;
     }
     p = gRecordTopMenu;
-    func_02124c30(p->mRecordTopMenuMBncl, p->mRecordTopMenuMNcer, p->mRecordTopMenuMBnll, func_02111318(), p->mUnk_18);
+    func_02124c30(p->mRecordTopMenuMBncl, p->mRecordTopMenuMNcer, p->mRecordTopMenuMBnll, func_02111318(),
+                  p->mRecordTopMenuMTable);
     p = gRecordTopMenu;
-    func_02124c30(p->mRecordTopMenuSBncl, p->mRecordTopMenuSNcer, NULL, func_0211130c(), p->mUnk_1c);
+    func_02124c30(p->mRecordTopMenuSBncl, p->mRecordTopMenuSNcer, NULL, func_0211130c(), p->mRecordTopMenuSTable);
 }
 
 void func_ov001_0219a0c0(void) {

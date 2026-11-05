@@ -35,7 +35,8 @@ typedef struct OptionHensyuMenu {
     /* 10 */ s32 mNextOptionState;
     /* 14 */ BOOL mUnk_14;
     /* 18 */ void *mUnk_18;
-    /* 1c */ Unk02124b1c *mUnk_1c;
+    // one 0x40-byte record per cell of the Bncl member, built by func_02124ed0
+    /* 1c */ Unk02124b1c *mOptionHensyuMenuSTable;
     /* 20 */ struct Unk02021dc8 *mOptionHensyuMenuSNcer;
     /* 24 */ Ncgr *mOptionHensyuMenuSNcgr;
     /* 28 */ Nclr *mOptionHensyuMenuSONclr;
@@ -228,7 +229,8 @@ typedef struct TimeAttackTopMenu {
     /* 00 */ struct Unk02021dc8 *mTimeAttackTopMenuSNcer;
     /* 04 */ void *mTimeAttackTopMenuSBncl;
     /* 08 */ void *mTimeAttackTopMenuSBnbl;
-    /* 0c */ Unk02124b1c *mUnk_0c;
+    // one 0x40-byte record per cell of the Bncl member, built by func_02124ed0
+    /* 0c */ Unk02124b1c *mTimeAttackTopMenuSTable;
     /* 10 */ void *mUnk_10;
     /* 14 */ void *mHeap;
     /* 18 */ s32 mState;

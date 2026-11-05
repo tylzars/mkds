@@ -14,7 +14,7 @@ void ReleaseMissionRunLVsel(void);
 void InitMissionRunLVsel(void *a, void *b, void *c);
 void func_ov001_0219f198(void);
 void func_ov001_0219f1f4(void);
-void func_ov001_0219f230(void);
+void RequestMissionRunLVselState3(void);
 void func_ov001_0219f244(void);
 void func_ov001_0219f260(void);
 void func_ov001_0219f2a4(void);

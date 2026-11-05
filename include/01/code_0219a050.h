@@ -10,8 +10,10 @@ typedef struct RecordTopMenu {
     /* 0x0c */ struct Unk02021dc8 *mRecordTopMenuSNcer;
     /* 0x10 */ void *mRecordTopMenuSBncl;
     /* 0x14 */ void *mRecordTopMenuSBnbl;
-    /* 0x18 */ Unk02124b1c *mUnk_18;
-    /* 0x1c */ Unk02124b1c *mUnk_1c;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    /* 0x18 */ Unk02124b1c *mRecordTopMenuMTable;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    /* 0x1c */ Unk02124b1c *mRecordTopMenuSTable;
     /* 0x20 */ void *mUnk_20;
     /* 0x24 */ void *mRecordMessages;
     /* 0x28 */ void *mUnk_28;
@@ -59,17 +61,17 @@ void InitRecordTopMenu(void *heap);
 void func_ov001_0219ac98(void);
 void func_ov001_0219ad10(void);
 void func_ov001_0219ad3c(void);
-void func_ov001_0219ad68(void);
+void RequestRecordTopMenuState11(void);
 void func_ov001_0219ad7c(void);
 void func_ov001_0219ad98(void);
 void func_ov001_0219adbc(void);
-void func_ov001_0219ade8(void);
-void func_ov001_0219adfc(void);
+void RequestRecordTopMenuState7(void);
+void RequestRecordTopMenuState6(void);
 void func_ov001_0219ae10(void);
-void func_ov001_0219ae30(void);
+void RequestRecordTopMenuState4(void);
 void func_ov001_0219ae44(void);
-void func_ov001_0219ae60(void);
-void func_ov001_0219ae74(void);
+void RequestRecordTopMenuState2(void);
+void RequestRecordTopMenuState1(void);
 void func_ov001_0219ae88(void);
 void func_ov001_0219af90(s32 a);
 void func_ov001_0219afc8(s32 a);

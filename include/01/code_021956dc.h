@@ -32,8 +32,10 @@ typedef struct RecordTAtt {
     /* 2c */ void *mUnk_2c;
     /* 30 */ Nclr *mUnk_30;
     /* 34 */ void *mUnk_34;
-    /* 38 */ Unk02124b1c *mUnk_38;
-    /* 3c */ Unk02124b1c *mUnk_3c;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    /* 38 */ Unk02124b1c *mRecordTAttMTable;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    /* 3c */ Unk02124b1c *mRecordTAttSTable;
     /* 40 */ void *mCommonMessages;
     /* 44 */ void *mGhostMessages;
     /* 48 */ void *mRecordMessages;
@@ -42,9 +44,12 @@ typedef struct RecordTAtt {
     /* 54 */ s32 mNextState;
     /* 58 */ s32 mStateFrames; /* counted only in states 0, 1, 3-8, 11, 12, 13, 17 */
     /* 5c */ s32 mBg0Offset;
-    /* 60 */ s32 mUnk_60;
-    /* 64 */ s32 mUnk_64;
-    /* 68 */ s32 mUnk_68;
+    // X half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated (code_021956dc.c:1215)
+    /* 60 */ s32 mBg1OffsetX;
+    // Y half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated
+    /* 64 */ s32 mBg1OffsetY;
+    // X half of reg_G2S_DB_BG3OFS (0x0400101c): the SUB engine's BG3, stored negated; Y is not written
+    /* 68 */ s32 mBg3OffsetX;
     /* 6c */ s32 mIndex;
     /* 70 */ s32 mUnk_70;
     /* 74 */ BOOL mUnk_74;
@@ -136,9 +141,9 @@ void func_ov001_02196904(void);
 void InitRecordTAtt(void *heap);
 BOOL func_ov001_02196c4c(void);
 void func_ov001_02196cd0(void);
-void func_ov001_02196d78(void);
+void RequestRecordTAttState17(void);
 void func_ov001_02196d8c(void);
-void func_ov001_02196da8(void);
+void RequestRecordTAttState15(void);
 void func_ov001_02196dbc(void);
 void func_ov001_02196e30(void);
 void func_ov001_02196e54(void);
@@ -147,10 +152,10 @@ void func_ov001_02196eb0(void);
 void func_ov001_02196ecc(void);
 void func_ov001_02196f64(void);
 void func_ov001_02196f80(void);
-void func_ov001_02196fb0(void);
-void func_ov001_02196fc4(void);
+void RequestRecordTAttState6(void);
+void RequestRecordTAttState5(void);
 void func_ov001_02196fd8(void);
-void func_ov001_02197010(void);
+void RequestRecordTAttState3(void);
 void func_ov001_02197024(void);
 void func_ov001_0219703c(void);
 void func_ov001_02197058(void);

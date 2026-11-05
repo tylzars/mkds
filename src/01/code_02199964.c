@@ -44,13 +44,13 @@ void InitOptionHensyuMenu(void *heap) {
     }
     a = func_ov001_0219e920();
     func_020ae6d4(a, func_ov001_0219e90c());
-    func_02124ed0(heap, gOptionHensyuMenu->mOptionHensyuMenuSBncl, NULL, &gOptionHensyuMenu->mUnk_1c);
+    func_02124ed0(heap, gOptionHensyuMenu->mOptionHensyuMenuSBncl, NULL, &gOptionHensyuMenu->mOptionHensyuMenuSTable);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
             if (i == 1) {
-                gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a94[i][j]].mUnk_04 = 0xfa;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = 0xfa;
             } else {
-                gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a94[i][j]].mUnk_04 = -0xfa;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = -0xfa;
             }
         }
     }
@@ -101,9 +101,9 @@ void AdvanceOptionHensyuMenuState1(void) {
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
             if (i == 1) {
-                gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a94[i][j]].mUnk_04 = v;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = v;
             } else {
-                gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a94[i][j]].mUnk_04 = -v;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = -v;
             }
         }
     }
@@ -250,9 +250,9 @@ void AdvanceOptionHensyuMenuState5(void) {
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
             if (i == 1) {
-                gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a94[i][j]].mUnk_04 = v;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = v;
             } else {
-                gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a94[i][j]].mUnk_04 = -v;
+                gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a94[i][j]].mUnk_04 = -v;
             }
         }
     }
@@ -270,11 +270,11 @@ void func_ov001_02199a20(void) {
     s32 i;
     for (i = 0; i < 2; i++) {
         if (i == gOptionHensyuMenu->mIndex && gOptionHensyuMenu->mUnk_14 != FALSE) {
-            gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a88[i]].mUnk_00 = 1;
+            gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a88[i]].mUnk_00 = 1;
             func_02124a20(data_ov001_021a6a80[i], 0xe, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
                           gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         } else {
-            gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a88[i]].mUnk_00 = 0;
+            gOptionHensyuMenu->mOptionHensyuMenuSTable[data_ov001_021a6a88[i]].mUnk_00 = 0;
             func_02124a20(data_ov001_021a6a80[i], 0xf, gOptionHensyuMenu->mOptionHensyuMenuSNcer,
                           gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         }
@@ -306,7 +306,8 @@ void AdvanceOptionHensyuMenu(void) {
     }
     func_ov001_02199a20();
     p = gOptionHensyuMenu;
-    func_02124c30(p->mOptionHensyuMenuSBncl, p->mOptionHensyuMenuSNcer, NULL, func_ov001_0219e90c(), p->mUnk_1c);
+    func_02124c30(p->mOptionHensyuMenuSBncl, p->mOptionHensyuMenuSNcer, NULL, func_ov001_0219e90c(),
+                  p->mOptionHensyuMenuSTable);
 }
 
 void func_ov001_02199988(void) {

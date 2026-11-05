@@ -33,11 +33,16 @@ typedef struct Unk021ca400 {
 // Objects whose layout isn't known yet.
 // Object behind gMissionRunLVsel.
 typedef struct MissionRunLVsel {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ Unk0201ea30 *mUnk_04;
-    /* 08 */ void *mUnk_08;
-    /* 0c */ void *mUnk_0c;
-    /* 10 */ Unk02124b1c *mUnk_10;
+    /* 00 */ struct Unk02021dc8 *mMissionRunLVselSNcer;
+    // mr/Mission_run_LVsel_s_7.bncl when mUnk_4a >= 6, else _s_6; Bnbl and Bnll follow the same test
+    // (mUnk_4a is the highest level number whose conditions hold: set at code_0219eab4.c:165-183)
+    /* 04 */ Unk0201ea30 *mMissionRunLVselS7Or6Bncl;
+    // same variant as mMissionRunLVselS7Or6Bncl (.bnbl)
+    /* 08 */ void *mMissionRunLVselS7Or6Bnbl;
+    // same variant as mMissionRunLVselS7Or6Bncl (.bnll)
+    /* 0c */ void *mMissionRunLVselS7Or6Bnll;
+    // cell records of mMissionRunLVselS7Or6Bncl and Bnll
+    /* 10 */ Unk02124b1c *mMissionRunLVselS7Or6Table;
     /* 14 */ void *mUnk_14;
     /* 18 */ void *mHeap;
     /* 1c */ s32 mState;
@@ -70,19 +75,23 @@ typedef struct Unk021ca414_50 {
 
 // Object behind gMissionRunMSsel.
 typedef struct MissionRunMSsel {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ Unk0201ea30 *mUnk_04;
-    /* 08 */ void *mUnk_08;
-    /* 0c */ struct Unk02021dc8 *mUnk_0c;
-    /* 10 */ Unk0201ea30 *mUnk_10;
-    /* 14 */ void *mUnk_14;
-    /* 18 */ void *mUnk_18;
+    /* 00 */ struct Unk02021dc8 *mMissionRunMSselMNcer;
+    /* 04 */ Unk0201ea30 *mMissionRunMSselMBncl;
+    /* 08 */ void *mMissionRunMSselMBnll;
+    /* 0c */ struct Unk02021dc8 *mMissionRunMSselSNcer;
+    /* 10 */ Unk0201ea30 *mMissionRunMSselSBncl;
+    /* 14 */ void *mMissionRunMSselSBnbl;
+    /* 18 */ void *mMissionRunMSselSBnll;
     /* 1c */ Unk021ca414_1c *mUnk_1c;
     /* 20 */ u16 mUnk_20[0x10];
-    /* 40 */ Unk02124b1c *mUnk_40;
-    /* 44 */ Unk02124b1c *mUnk_44;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    /* 40 */ Unk02124b1c *mMissionRunMSselMTable;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    /* 44 */ Unk02124b1c *mMissionRunMSselSTable;
     /* 48 */ void *mUnk_48;
-    /* 4c */ void *mUnk_4c;
+    // missionTable.mtbl: byte table, header u16 row width at +6, data at +8; func_0203b680(table, row, column) returns
+    // the mission number
+    /* 4c */ void *mMissionTableMtbl;
     /* 50 */ Unk021ca414_50 *mUnk_50;
     /* 54 */ void *mCommonMessages;
     /* 58 */ void *mMissionMessages;
@@ -91,9 +100,12 @@ typedef struct MissionRunMSsel {
     /* 64 */ s32 mNextState;
     /* 68 */ s32 mStateFrames; /* counted only in states 1, 4, 8; zeroed by the next-state setter */
     /* 6c */ s32 mUnk_6c[9];
-    /* 90 */ s32 mUnk_90;
-    /* 94 */ s32 mUnk_94;
-    /* 98 */ s32 mUnk_98;
+    // X half of reg_G2_BG0OFS (0x04000010, main engine BG0), stored negated
+    /* 90 */ s32 mBg0OffsetX;
+    // Y half of reg_G2_BG0OFS (0x04000010, main engine BG0), stored negated
+    /* 94 */ s32 mBg0OffsetY;
+    // Y half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated; X is not written
+    /* 98 */ s32 mBg1Offset;
     /* 9c */ s16 mUnk_9c;
     /* 9e */ s16 mIndex; /* mission number - 1, 8 = ninth mission */
     /* a0 */ s32 mUnk_a0;
@@ -109,13 +121,19 @@ typedef struct MissionRunMSsel {
 
 // Object behind gSelectEngine.
 typedef struct SelectEngine {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ struct Unk02021dc8 *mUnk_08;
-    /* 0c */ void *mUnk_0c;
-    /* 10 */ void *mUnk_10;
-    /* 14 */ Unk02124b1c *mUnk_14;
-    /* 18 */ Unk02124b1c *mUnk_18;
+    /* 00 */ struct Unk02021dc8 *mSelectEngineMNcer;
+    /* 04 */ void *mSelectEngineMBncl;
+    /* 08 */ struct Unk02021dc8 *mSelectEngineSNcer;
+    // gp/select_engine_B_s.bncl when func_02056dec(0x10) != 0, else gp/select_engine_A_s.bncl; the same flag hides item
+    // 3 (A layout has no fourth item)
+    // (code_021a11a4.c:139-143 zeroes the cells of item 3 when func_02056dec(0x10) is 0)
+    /* 0c */ void *mSelectEngineAOrBSBncl;
+    // same variant as mSelectEngineAOrBSBncl (.bnbl)
+    /* 10 */ void *mSelectEngineAOrBSBnbl;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    /* 14 */ Unk02124b1c *mSelectEngineMTable;
+    // cell records of mSelectEngineAOrBSBncl (variant chosen by func_02056dec(0x10))
+    /* 18 */ Unk02124b1c *mSelectEngineAOrBSTable;
     /* 1c */ void *mUnk_1c;
     /* 20 */ void *mHeap;
     /* 24 */ s32 mState;

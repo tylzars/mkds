@@ -76,19 +76,19 @@ void LocateAndQueueSelectEngine(void) {
     LocateNclr(&g, FindSceneFile(data_ov001_021a9508));
     LocateNscr(&f, FindSceneFile(data_ov001_021a94f0));
     gSelectEngine->mUnk_1c = HeapAlloc(gSelectEngine->mHeap, 0x800);
-    gSelectEngine->mUnk_04 = FindSceneFile(data_ov001_021a9504);
+    gSelectEngine->mSelectEngineMBncl = FindSceneFile(data_ov001_021a9504);
     LocateNcgr2(&a, FindSceneFile(data_ov001_021a94dc));
-    LocateNcer(&gSelectEngine->mUnk_00, FindSceneFile(data_ov001_021a94e4));
+    LocateNcer(&gSelectEngine->mSelectEngineMNcer, FindSceneFile(data_ov001_021a94e4));
     LocateNclr(&b, FindSceneFile(data_ov001_021a950c));
     LocateNcgr2(&c, FindSceneFile(data_ov001_021a94f4));
-    LocateNcer(&gSelectEngine->mUnk_08, FindSceneFile(data_ov001_021a94f8));
+    LocateNcer(&gSelectEngine->mSelectEngineSNcer, FindSceneFile(data_ov001_021a94f8));
     LocateNclr(&d, FindSceneFile(data_ov001_021a94fc));
     if (func_02056dec(0x10) != 0) {
-        gSelectEngine->mUnk_0c = FindSceneFile(data_ov001_021a94e8);
-        gSelectEngine->mUnk_10 = FindSceneFile(data_ov001_021a9510);
+        gSelectEngine->mSelectEngineAOrBSBncl = FindSceneFile(data_ov001_021a94e8);
+        gSelectEngine->mSelectEngineAOrBSBnbl = FindSceneFile(data_ov001_021a9510);
     } else {
-        gSelectEngine->mUnk_0c = FindSceneFile(data_ov001_021a9500);
-        gSelectEngine->mUnk_10 = FindSceneFile(data_ov001_021a94e0);
+        gSelectEngine->mSelectEngineAOrBSBncl = FindSceneFile(data_ov001_021a9500);
+        gSelectEngine->mSelectEngineAOrBSBnbl = FindSceneFile(data_ov001_021a94e0);
     }
     h = b->mData;
     CallQueueAppend(4, 0, e->mData, e->mDataSize);
@@ -107,38 +107,39 @@ void func_ov001_021a1cb0(void) {
     s32 j;
 
     for (i = 0; i < 4; i++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f28[i]].mUnk_00 = 0;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[i]].mUnk_00 = 0;
         for (j = 0; j < 3; j++) {
-            gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_00 = 0;
+            gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][j]].mUnk_00 = 0;
         }
     }
     for (i = 0; i < 6; i++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f68[i]].mUnk_00 = 1;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f68[i]].mUnk_00 = 1;
     }
-    gSelectEngine->mUnk_14[6].mUnk_00 = 1;
-    gSelectEngine->mUnk_14[data_ov001_021a6f28[gSelectEngine->mIndex]].mUnk_00 = 1;
+    gSelectEngine->mSelectEngineMTable[6].mUnk_00 = 1;
+    gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[gSelectEngine->mIndex]].mUnk_00 = 1;
     for (i = 0; i < 4; i++) {
-        gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][0]].mUnk_00 = 1;
-        func_02124a98(data_ov001_021a6fa0[i][0], 1, gSelectEngine->mUnk_08, gSelectEngine->mUnk_0c);
+        gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][0]].mUnk_00 = 1;
+        func_02124a98(data_ov001_021a6fa0[i][0], 1, gSelectEngine->mSelectEngineSNcer,
+                      gSelectEngine->mSelectEngineAOrBSBncl);
     }
-    func_02124a98(2, 1, gSelectEngine->mUnk_00, gSelectEngine->mUnk_04);
+    func_02124a98(2, 1, gSelectEngine->mSelectEngineMNcer, gSelectEngine->mSelectEngineMBncl);
 }
 
 void func_ov001_021a1c34(void) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][1]].mUnk_00 = 0;
-        gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][2]].mUnk_00 = 0;
+        gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][1]].mUnk_00 = 0;
+        gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][2]].mUnk_00 = 0;
         if (gSelectEngine->mIndex == i && gSelectEngine->mUnk_38 != FALSE) {
-            gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][2]].mUnk_00 = 1;
+            gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][2]].mUnk_00 = 1;
         } else {
-            gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][1]].mUnk_00 = 1;
+            gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][1]].mUnk_00 = 1;
         }
     }
     if (func_02056dec(0x10) == 0) {
         for (i = 0; i < 3; i++) {
-            gSelectEngine->mUnk_18[data_ov001_021a6fa0[3][i]].mUnk_00 = 0;
+            gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[3][i]].mUnk_00 = 0;
         }
     }
 }
@@ -147,9 +148,9 @@ void func_ov001_021a1bf8(void) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f28[i]].mUnk_00 = 0;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[i]].mUnk_00 = 0;
     }
-    gSelectEngine->mUnk_14[data_ov001_021a6f28[gSelectEngine->mIndex]].mUnk_00 = 1;
+    gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[gSelectEngine->mIndex]].mUnk_00 = 1;
 }
 
 void func_ov001_021a1bb8(void) {
@@ -181,10 +182,10 @@ void func_ov001_021a1b08(void) {
         } else {
             v = func_02116d10(7 - gSelectEngine->mUnk_3c, 0);
             for (i = 0; i < 6; i++) {
-                gSelectEngine->mUnk_14[data_ov001_021a6f68[i]].mUnk_06 = v;
+                gSelectEngine->mSelectEngineMTable[data_ov001_021a6f68[i]].mUnk_06 = v;
             }
             for (i = 0; i < 4; i++) {
-                gSelectEngine->mUnk_14[data_ov001_021a6f28[i]].mUnk_06 = v;
+                gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[i]].mUnk_06 = v;
             }
         }
         gSelectEngine->mUnk_3c -= 1;
@@ -201,40 +202,44 @@ void func_ov001_021a1a04(void) {
     gSelectEngine->mStateFrames = 0;
     gSelectEngine->mBg0Offset = 0xc0;
     for (i = 0; i < 6; i++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f68[i]].mUnk_06 = 0xc0;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f68[i]].mUnk_06 = 0xc0;
     }
-    gSelectEngine->mUnk_14[6].mUnk_06 = -0xc0;
+    gSelectEngine->mSelectEngineMTable[6].mUnk_06 = -0xc0;
     for (i = 0; i < 4; i++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f28[i]].mUnk_06 = 0xc0;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[i]].mUnk_06 = 0xc0;
         if (func_02056dec(0x10) != 0) {
             switch (i) {
                 case 0:
                 case 2:
                     for (j = 0; j < 3; j++) {
-                        gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = -0xe0;
+                        gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][j]].mUnk_04 = -0xe0;
                     }
                     break;
                 case 1:
                 case 3:
                     for (j = 0; j < 3; j++) {
-                        gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = 0xe0;
+                        gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][j]].mUnk_04 = 0xe0;
                     }
                     break;
             }
         } else {
             for (j = 0; j < 3; j++) {
-                gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = 0xe0;
+                gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][j]].mUnk_04 = 0xe0;
             }
         }
     }
 }
 
-void func_ov001_021a19f0(void) {
+// Requests state 1: stores mNextState = 1 and zeroes mStateFrames; the next AdvanceSelectEngine call copies it to
+// mState and runs AdvanceSelectEngineState1.
+void RequestSelectEngineState1(void) {
     gSelectEngine->mNextState = 1;
     gSelectEngine->mStateFrames = 0;
 }
 
-void func_ov001_021a19dc(void) {
+// Requests state 2: stores mNextState = 2 and zeroes mStateFrames; the next AdvanceSelectEngine call copies it to
+// mState and runs AdvanceSelectEngineState2.
+void RequestSelectEngineState2(void) {
     gSelectEngine->mNextState = 2;
     gSelectEngine->mStateFrames = 0;
 }
@@ -245,7 +250,9 @@ void func_ov001_021a19c0(void) {
     func_02128374();
 }
 
-void func_ov001_021a19ac(void) {
+// Requests state 4: stores mNextState = 4 and zeroes mStateFrames; the next AdvanceSelectEngine call copies it to
+// mState and runs AdvanceSelectEngineState4.
+void RequestSelectEngineState4(void) {
     gSelectEngine->mNextState = 4;
     gSelectEngine->mStateFrames = 0;
 }
@@ -258,7 +265,9 @@ void func_ov001_021a1978(void) {
     func_0212ecc0(&data_0217d068, 0, 5);
 }
 
-void func_ov001_021a1964(void) {
+// Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceSelectEngine call copies it to
+// mState and runs AdvanceSelectEngineState6.
+void RequestSelectEngineState6(void) {
     gSelectEngine->mNextState = 6;
     gSelectEngine->mStateFrames = 0;
 }
@@ -293,8 +302,9 @@ void InitSelectEngine(s32 a, void *b, void *c) {
     gSelectEngine->mUnk_40 = gSelectEngine->mIndex;
     LocateAndQueueSelectEngine();
     func_020ae6d4(gSelectEngine->mUnk_44, gSelectEngine->mUnk_48);
-    func_02124ed0(gSelectEngine->mHeap, gSelectEngine->mUnk_04, NULL, &gSelectEngine->mUnk_14);
-    func_02124ed0(gSelectEngine->mHeap, gSelectEngine->mUnk_0c, NULL, &gSelectEngine->mUnk_18);
+    func_02124ed0(gSelectEngine->mHeap, gSelectEngine->mSelectEngineMBncl, NULL, &gSelectEngine->mSelectEngineMTable);
+    func_02124ed0(gSelectEngine->mHeap, gSelectEngine->mSelectEngineAOrBSBncl, NULL,
+                  &gSelectEngine->mSelectEngineAOrBSTable);
     func_ov001_021a1cb0();
     func_ov001_021a1bf8();
     func_ov001_021a1a04();
@@ -310,7 +320,7 @@ void AdvanceSelectEngineState0(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
-        func_ov001_021a19f0();
+        RequestSelectEngineState1();
     }
     return;
 }
@@ -325,34 +335,34 @@ void AdvanceSelectEngineState1(void) {
     b = func_020ae4c0(1, -0xc0, 0, gSelectEngine->mStateFrames, 10);
     gSelectEngine->mBg0Offset = -b;
     for (i = 0; i < 6; i++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f68[i]].mUnk_06 = -b;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f68[i]].mUnk_06 = -b;
     }
-    gSelectEngine->mUnk_14[6].mUnk_06 = b;
+    gSelectEngine->mSelectEngineMTable[6].mUnk_06 = b;
     for (i = 0; i < 4; i++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f28[i]].mUnk_06 = -b;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[i]].mUnk_06 = -b;
         if (func_02056dec(0x10)) {
             switch (i) {
                 case 0:
                 case 2:
                     for (j = 0; j < 3; j++) {
-                        gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = -a;
+                        gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][j]].mUnk_04 = -a;
                     }
                     break;
                 case 1:
                 case 3:
                     for (j = 0; j < 3; j++) {
-                        gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = a;
+                        gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][j]].mUnk_04 = a;
                     }
                     break;
             }
         } else {
             for (j = 0; j < 3; j++) {
-                gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][j]].mUnk_04 = a;
+                gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][j]].mUnk_04 = a;
             }
         }
     }
     if (gSelectEngine->mStateFrames >= 10) {
-        func_ov001_021a19dc();
+        RequestSelectEngineState2();
     }
 }
 
@@ -363,10 +373,10 @@ void AdvanceSelectEngineState2(void) {
     x = func_020ae488(gSelectEngine->mStateFrames);
     gSelectEngine->mBg0Offset = x;
     for (j = 0; j < 6; j++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f68[j]].mUnk_06 = x;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f68[j]].mUnk_06 = x;
     }
     for (j = 0; j < 4; j++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f28[j]].mUnk_06 = x;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[j]].mUnk_06 = x;
     }
     if (gSelectEngine->mStateFrames >= 10) {
         func_ov001_021a19c0();
@@ -377,7 +387,7 @@ void AdvanceSelectEngineState3(void) {
     int v1;
     v1 = IsSelectReturnState2NoState3Or4Request();
     if (v1 != 0) {
-        func_ov001_021a19ac();
+        RequestSelectEngineState4();
     }
     return;
 }
@@ -405,7 +415,8 @@ void AdvanceSelectEngineState4(void) {
         b1 = TRUE;
     }
     if (b1 != FALSE) {
-        r5 = RectTableFindContaining(gSelectEngine->mUnk_10, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+        r5 = RectTableFindContaining(gSelectEngine->mSelectEngineAOrBSBnbl, data_02175628[idx].mUnk_48,
+                                     data_02175628[idx].mUnk_4a);
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 2) == 0) {
         a2 = b2 = FALSE;
@@ -425,7 +436,7 @@ void AdvanceSelectEngineState4(void) {
         return;
     }
     func_021281c8(0xe);
-    func_ov001_021a1964();
+    RequestSelectEngineState6();
     gSelectEngine->mResult = 2;
     func_02128310(0);
     return;
@@ -511,7 +522,7 @@ void AdvanceSelectEngineState5(void) {
     gSelectEngine->mStateFrames++;
     if (gSelectEngine->mStateFrames >= 10) {
         if (func_ov001_021a1ba0() == 0) {
-            func_ov001_021a1964();
+            RequestSelectEngineState6();
         }
     }
 }
@@ -527,29 +538,29 @@ void AdvanceSelectEngineState6(void) {
     b = func_020ae4c0(1, 0, -0xc0, gSelectEngine->mStateFrames, 10);
     gSelectEngine->mBg0Offset = -b;
     for (i = 0; i < 6; i++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f68[i]].mUnk_06 = -b;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f68[i]].mUnk_06 = -b;
     }
-    gSelectEngine->mUnk_14[6].mUnk_06 = b;
+    gSelectEngine->mSelectEngineMTable[6].mUnk_06 = b;
     for (i = 0; i < 4; i++) {
-        gSelectEngine->mUnk_14[data_ov001_021a6f28[i]].mUnk_06 = -b;
+        gSelectEngine->mSelectEngineMTable[data_ov001_021a6f28[i]].mUnk_06 = -b;
         if (func_02056dec(0x10) != 0) {
             switch (i) {
                 case 0:
                 case 2:
                     for (k = 0; k < 3; k++) {
-                        gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][k]].mUnk_04 = -a;
+                        gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][k]].mUnk_04 = -a;
                     }
                     break;
                 case 1:
                 case 3:
                     for (k = 0; k < 3; k++) {
-                        gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][k]].mUnk_04 = a;
+                        gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][k]].mUnk_04 = a;
                     }
                     break;
             }
         } else {
             for (k = 0; k < 3; k++) {
-                gSelectEngine->mUnk_18[data_ov001_021a6fa0[i][k]].mUnk_04 = a;
+                gSelectEngine->mSelectEngineAOrBSTable[data_ov001_021a6fa0[i][k]].mUnk_04 = a;
             }
         }
     }
@@ -581,8 +592,10 @@ int AdvanceSelectEngine(void) {
             break;
     }
     func_ov001_021a1c34();
-    func_02124c30(gSelectEngine->mUnk_04, gSelectEngine->mUnk_00, NULL, gSelectEngine->mUnk_44, gSelectEngine->mUnk_14);
-    func_02124c30(gSelectEngine->mUnk_0c, gSelectEngine->mUnk_08, NULL, gSelectEngine->mUnk_48, gSelectEngine->mUnk_18);
+    func_02124c30(gSelectEngine->mSelectEngineMBncl, gSelectEngine->mSelectEngineMNcer, NULL, gSelectEngine->mUnk_44,
+                  gSelectEngine->mSelectEngineMTable);
+    func_02124c30(gSelectEngine->mSelectEngineAOrBSBncl, gSelectEngine->mSelectEngineSNcer, NULL,
+                  gSelectEngine->mUnk_48, gSelectEngine->mSelectEngineAOrBSTable);
     if (gSelectEngine->mState == 6 && gSelectEngine->mStateFrames >= 10) {
         return gSelectEngine->mResult;
     }

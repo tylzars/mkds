@@ -50,7 +50,8 @@ typedef struct SelectGhost {
     /* 54 */ s16 mOffsetTimers[2];
     // Negated and shifted into the upper half-word of the BG0 offset register.
     /* 58 */ s32 mBg0Offset;
-    /* 5c */ s32 mUnk_5c;
+    // Y half of reg_G2S_DB_BG3OFS (0x0400101c): the SUB engine's BG3, stored negated; mBg0Offset is the main engine's
+    /* 5c */ s32 mBg3Offset;
     /* 60 */ s32 mIndex;
     /* 64 */ u32 mUnk_64;
     /* 68 */ u32 mUnk_68;
@@ -103,13 +104,13 @@ void func_ov001_0219c058(void);
 void func_ov001_0219c0bc(void);
 void AdvanceSelectGhostOffsetTimers(void);
 void func_ov001_0219c358(void);
-void func_ov001_0219c3a8(void);
+void RequestSelectGhostState7(void);
 void func_ov001_0219c3bc(void);
-void func_ov001_0219c3d8(void);
+void RequestSelectGhostState5(void);
 void func_ov001_0219c3ec(void);
 void func_ov001_0219c428(void);
-void func_ov001_0219c458(void);
-void func_ov001_0219c46c(void);
+void RequestSelectGhostState2(void);
+void RequestSelectGhostState1(void);
 void func_ov001_0219c480(void);
 void func_ov001_0219c544(void);
 void LoadSelectGhostAndKartIconData(void);

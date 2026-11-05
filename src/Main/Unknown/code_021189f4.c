@@ -211,7 +211,7 @@ void AdvanceSelectCupState7(void) {
                         break;
                     case -1:
                     case 1:
-                        func_02119bdc();
+                        RequestSelectCupState3();
                         break;
                 }
             }
@@ -232,7 +232,7 @@ void AdvanceSelectCupState7(void) {
                             break;
                         case -1:
                         case 1:
-                            func_02119bdc();
+                            RequestSelectCupState3();
                             break;
                     }
                 }
@@ -269,34 +269,34 @@ void AdvanceSelectCupState8(void) {
     if (a != FALSE) {
         w = gSelectCup->mSelectCupCourseTaOrVsMBncl->mUnk_06;
         gSelectCup->mBg0Offset = v;
-        gSelectCup->mUnk_1c[0].mUnk_06 = v;
-        gSelectCup->mUnk_1c[2].mUnk_06 = v;
-        gSelectCup->mUnk_1c[1].mUnk_06 = v;
-        gSelectCup->mUnk_1c[4].mUnk_06 = v;
-        gSelectCup->mUnk_1c[3].mUnk_06 = v;
-        gSelectCup->mUnk_1c[5].mUnk_06 = v;
-        gSelectCup->mUnk_1c[w].mUnk_06 = v;
-        gSelectCup->mUnk_1c[w + 1].mUnk_06 = v;
-        gSelectCup->mUnk_1c[w + 2].mUnk_06 = v;
-        gSelectCup->mUnk_1c[w + 3].mUnk_06 = v;
-        gSelectCup->mUnk_1c[w + 4].mUnk_06 = v;
-        gSelectCup->mUnk_1c[w + 5].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[0].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[2].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[1].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[4].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[3].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[5].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[w].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 1].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 2].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 3].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 4].mUnk_06 = v;
+        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 5].mUnk_06 = v;
     }
     if (gSelectCup->mResult != 2) {
         w = gSelectCup->mSelectCupMBncl->mUnk_06;
         gSelectCup->mBg3Offset = v - 0x20;
-        gSelectCup->mUnk_20[0x14].mUnk_06 = v - 0x20;
-        gSelectCup->mUnk_20[0x13].mUnk_06 = v - 0x20;
-        gSelectCup->mUnk_20[2].mUnk_06 = v - 0x20;
-        gSelectCup->mUnk_20[1].mUnk_06 = v - 0x20;
-        gSelectCup->mUnk_20[0].mUnk_06 = v - 0x20;
+        gSelectCup->mSelectCupMTable[0x14].mUnk_06 = v - 0x20;
+        gSelectCup->mSelectCupMTable[0x13].mUnk_06 = v - 0x20;
+        gSelectCup->mSelectCupMTable[2].mUnk_06 = v - 0x20;
+        gSelectCup->mSelectCupMTable[1].mUnk_06 = v - 0x20;
+        gSelectCup->mSelectCupMTable[0].mUnk_06 = v - 0x20;
         for (i = 0; i < 8; i++) {
-            gSelectCup->mUnk_20[data_0215cacc[i]].mUnk_06 = v - 0x20;
+            gSelectCup->mSelectCupMTable[data_0215cacc[i]].mUnk_06 = v - 0x20;
         }
         v -= 0x20;
         for (i = 0; i < 4; i++) {
-            gSelectCup->mUnk_20[data_0215caa4[i]].mUnk_06 = v;
-            gSelectCup->mUnk_20[w + data_0215cab4[i]].mUnk_06 = v;
+            gSelectCup->mSelectCupMTable[data_0215caa4[i]].mUnk_06 = v;
+            gSelectCup->mSelectCupMTable[w + data_0215cab4[i]].mUnk_06 = v;
         }
     }
 }
@@ -347,9 +347,10 @@ s32 AdvanceSelectCup(void) {
             gSelectCup->mUnk_60 = FALSE;
         }
         func_02124c30(gSelectCup->mSelectCupCourseTaOrVsMBncl, gSelectCup->mSelectCupCourseMNcer,
-                      gSelectCup->mSelectCupCourseTaOrVsMBnll, gSelectCup->mUnk_64, gSelectCup->mUnk_1c);
+                      gSelectCup->mSelectCupCourseTaOrVsMBnll, gSelectCup->mUnk_64,
+                      gSelectCup->mSelectCupCourseTaOrVsMTable);
         func_02124c30(gSelectCup->mSelectCupMBncl, gSelectCup->mSelectCupMNcer, gSelectCup->mSelectCupMBnll,
-                      gSelectCup->mUnk_68, gSelectCup->mUnk_20);
+                      gSelectCup->mUnk_68, gSelectCup->mSelectCupMTable);
     } else {
         func_0211f39c();
     }

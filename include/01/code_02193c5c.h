@@ -19,7 +19,8 @@ typedef struct OptionTopMenu {
     /* stored to reg_G2_BG0OFS without negation (the other mBg0Offset members are stored negated) */
     /* 18 */ s32 mBg0Offset;
     /* 1c */ void *mUnk_1c;
-    /* 20 */ Unk02124b1c *mUnk_20;
+    // one 0x40-byte record per cell of the Bncl member, built by func_02124ed0
+    /* 20 */ Unk02124b1c *mOptionTopMenuSTable;
     /* 24 */ struct Unk02021dc8 *mOptionTopMenuSNcer;
     /* 28 */ Ncgr *mOptionTopMenuSNcgr;
     /* 2c */ Nclr *mOptionTopMenuSONclr;
@@ -71,7 +72,9 @@ typedef struct RecordGpx {
     /* 68 */ s32 mStateFrames;
     // The register receives the negation of this value in its upper half-word.
     /* 6c */ s32 mBg0Offset;
-    /* 70 */ s32 mUnk_70;
+    // X half of reg_G2S_DB_BG3OFS (0x0400101c): the SUB engine's BG3, stored negated; the Y half is mUnk_74 (also the y
+    // of the S cells)
+    /* 70 */ s32 mBg3OffsetX;
     /* 74 */ s32 mUnk_74;
     /* 78 */ s32 mIndex;
     /* 7c */ s32 mUnk_7c;
@@ -128,11 +131,11 @@ void AdvanceRecordGpxState1(void);
 void AdvanceRecordGpxState0(void);
 void func_ov001_021946d0(void);
 void InitRecordGpx(void *heap);
-void func_ov001_021949ac(void);
-void func_ov001_021949c0(void);
+void RequestRecordGpxState6(void);
+void RequestRecordGpxState5(void);
 void func_ov001_021949d4(void);
-void func_ov001_02194a0c(void);
-void func_ov001_02194a20(void);
+void RequestRecordGpxState3(void);
+void RequestRecordGpxState2(void);
 void func_ov001_02194a34(void);
 void func_ov001_02194a50(void);
 u32 func_ov001_02194c9c(u32 a);

@@ -1257,7 +1257,9 @@ void func_0211baec(void) {
     }
 }
 
-void func_0211bad8(void) {
+// Requests state 1: stores mNextState = 1 and zeroes mStateFrames; the next AdvanceSelectRaceRule call copies it to
+// mState and runs AdvanceSelectRaceRuleState1.
+void RequestSelectRaceRuleState1(void) {
     gSelectRaceRule->mNextState = 1;
     gSelectRaceRule->mStateFrames = 0;
 }
@@ -1273,7 +1275,9 @@ void func_0211baac(void) {
     }
 }
 
-void func_0211ba98(void) {
+// Requests state 3: stores mNextState = 3 and zeroes mStateFrames; the next AdvanceSelectRaceRule call copies it to
+// mState and runs AdvanceSelectRaceRuleState3.
+void RequestSelectRaceRuleState3(void) {
     gSelectRaceRule->mNextState = 3;
     gSelectRaceRule->mStateFrames = 0;
 }
@@ -1296,7 +1300,9 @@ void func_0211ba1c(void) {
     func_021277f8(a, GetBmgEntry(gSelectRaceRule->mUnk_18, 2), 0);
 }
 
-void func_0211ba08(void) {
+// Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceSelectRaceRule call copies it to
+// mState and runs AdvanceSelectRaceRuleState6.
+void RequestSelectRaceRuleState6(void) {
     gSelectRaceRule->mNextState = 6;
     gSelectRaceRule->mStateFrames = 0;
 }
@@ -1307,7 +1313,9 @@ void func_0211b9ec(void) {
     func_021277e4();
 }
 
-void func_0211b9d8(void) {
+// Requests state 8: stores mNextState = 8 and zeroes mStateFrames; the next AdvanceSelectRaceRule call copies it to
+// mState and runs AdvanceSelectRaceRuleState8.
+void RequestSelectRaceRuleState8(void) {
     gSelectRaceRule->mNextState = 8;
     gSelectRaceRule->mStateFrames = 0;
 }
@@ -1558,7 +1566,7 @@ void AdvanceSelectRaceRuleState0(void) {
     int v1;
     v1 = func_02036c5c();
     if (v1 != 0) {
-        func_0211bad8();
+        RequestSelectRaceRuleState1();
     }
 }
 
@@ -1632,13 +1640,13 @@ void AdvanceSelectRaceRuleState2(void) {
         case 0:
         case 1:
             if (gSelectRaceRule->mStateFrames >= 10 && IsSelectReturnState2NoState3Or4Request() != 0) {
-                func_0211ba98();
+                RequestSelectRaceRuleState3();
                 return;
             }
             break;
         default:
             if (gSelectRaceRule->mStateFrames >= 10) {
-                func_0211ba98();
+                RequestSelectRaceRuleState3();
             }
             break;
     }
@@ -1699,7 +1707,7 @@ void AdvanceSelectRaceRuleState3(void) {
         case 0:
         case 1:
             func_021281c8(0xe);
-            func_0211b9d8();
+            RequestSelectRaceRuleState8();
             gSelectRaceRule->mUnk_b8 = 2;
             func_02128310(0);
             func_0202b7c0(1);
@@ -1788,7 +1796,7 @@ void AdvanceSelectRaceRuleState4(void) {
             func_0211ba1c();
             return;
         }
-        func_0211b9d8();
+        RequestSelectRaceRuleState8();
         gSelectRaceRule->mUnk_b8 = 1;
         func_0202b7c0(3);
     }
@@ -1802,7 +1810,7 @@ void AdvanceSelectRaceRuleState5(void) {
     int v1;
     v1 = func_021277c8();
     if (v1 != 0) {
-        func_0211ba08();
+        RequestSelectRaceRuleState6();
     }
 }
 

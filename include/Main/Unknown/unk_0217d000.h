@@ -194,10 +194,14 @@ typedef struct RecordVS {
     /* 4c */ s32 mState;
     /* 50 */ s32 mNextState;
     /* 54 */ s32 mStateFrames; /* counts only in states 1, 2, 5 to 11 */
-    /* 58 */ s32 mUnk_58;
-    /* 5c */ s32 mUnk_5c;
-    /* 60 */ s32 mUnk_60;
-    /* 64 */ s32 mUnk_64;
+    // X half of reg_G2_BG0OFS (0x04000010, main engine BG0), stored negated
+    /* 58 */ s32 mBg0OffsetX;
+    // Y half of reg_G2_BG0OFS (0x04000010, main engine BG0), stored negated
+    /* 5c */ s32 mBg0OffsetY;
+    // X half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated
+    /* 60 */ s32 mBg1OffsetX;
+    // Y half of reg_G2_BG1OFS (0x04000014, main engine BG1), stored negated
+    /* 64 */ s32 mBg1OffsetY;
     /* 68 */ s16 mUnk_68;
     /* 6a */ s16 mUnk_6a;
     /* 6c */ s32 mUnk_6c;
@@ -255,8 +259,12 @@ typedef struct SelectCup {
     /* 10 */ Unk0201ea30 *mSelectCupMBncl;
     /* 14 */ Unk0201ea30 *mSelectCupMBnbl;
     /* 18 */ void *mSelectCupMBnll;
-    /* 1c */ Unk02124b1c *mUnk_1c;
-    /* 20 */ Unk02124b1c *mUnk_20;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; assigned only when *(vu16
+    // *) 0x027ffc40 != 2
+    /* 1c */ Unk02124b1c *mSelectCupCourseTaOrVsMTable;
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; assigned only when *(vu16
+    // *) 0x027ffc40 != 2
+    /* 20 */ Unk02124b1c *mSelectCupMTable;
     /* 24 */ void *mUnk_24;
     /* 28 */ void *mCommonMessages;
     /* 2c */ void *mGhostMessages;

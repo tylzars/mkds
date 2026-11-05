@@ -4,14 +4,14 @@
 
 void ReleaseSelectRaceRule(void);
 void InitSelectRaceRule(void *a, s32 b, void *c, s32 d);
-void func_0211b9d8(void);
+void RequestSelectRaceRuleState8(void);
 void func_0211b9ec(void);
-void func_0211ba08(void);
+void RequestSelectRaceRuleState6(void);
 void func_0211ba1c(void);
 void func_0211ba58(void);
-void func_0211ba98(void);
+void RequestSelectRaceRuleState3(void);
 void func_0211baac(void);
-void func_0211bad8(void);
+void RequestSelectRaceRuleState1(void);
 void func_0211baec(void);
 void func_0211bd10(void);
 void func_0211bd84(void);
