@@ -39,7 +39,7 @@ void func_020cb6c0(void) {
     if (p->mUnk_00c != p->mUnk_008) {
         switch (p->mUnk_00c) {
             case 4:
-                InitSelectEngine((s32) func_020cb99c(), p->mUnk_108, p->mUnk_50c);
+                InitSelectEngine((void *) func_020cb99c(), p->mUnk_108, p->mUnk_50c);
                 break;
             case 5:
             case 8:
@@ -123,13 +123,13 @@ void func_020cb6c0(void) {
                 InitMissionRunLVsel(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
                 break;
             case 19:
-                InitMissionRunMSsel((s32) func_020cb99c(), (s32) p->mUnk_108, (s32) p->mUnk_50c);
+                InitMissionRunMSsel((void *) func_020cb99c(), (void *) p->mUnk_108, (void *) p->mUnk_50c);
                 break;
             case 20:
                 InitTimeAttackTopMenu(func_020cb99c(), p->mUnk_108, (s32) p->mUnk_50c);
                 break;
             case 26:
-                InitSelectGhost((u32) func_020cb99c(), (u32) p->mUnk_108, (u32) p->mUnk_50c);
+                InitSelectGhost((void *) func_020cb99c(), (u32) p->mUnk_108, (u32) p->mUnk_50c);
                 break;
             case 12:
             case 24:

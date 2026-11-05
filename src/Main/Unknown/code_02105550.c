@@ -348,7 +348,7 @@ void func_02108598(u32 a, u32 b) {
     func_0210e8f8(x);
 }
 
-void func_02108344(u32 a, u32 b, u32 c) {
+void func_02108344(void *a, u32 b, u32 c) {
     u32 v;
     u32 w;
     Unk02108344 n;
@@ -384,7 +384,7 @@ void func_02108344(u32 a, u32 b, u32 c) {
         data_0216c7d4 = 2;
         b = b - w;
     }
-    func_0210d894((void *) a, b, c != 0 ? data_0216c8d0 : 0);
+    func_0210d894(a, b, c != 0 ? data_0216c8d0 : 0);
     func_021105d8();
     func_0212d5f8(&data_0217c868, data_0215a880);
     func_0212d5e0(&data_0217d0a0);

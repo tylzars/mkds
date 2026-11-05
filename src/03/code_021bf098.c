@@ -151,14 +151,14 @@ void func_ov003_021bf0d8(void) {
     data_ov003_021da108->mUnk_16 = -1;
 }
 
-void func_ov003_021bf098(int a) {
+void func_ov003_021bf098(Unk021d34e0 *a) {
     u32 stackValue;
     int v1;
     func_ov003_021d1770(data_ov003_021da108->mUnk_08, 0, &stackValue, &v1);
     v1 = v1 + 4;
     func_ov003_021bf258(v1);
     if (192 <= v1) {
-        func_ov003_021d34e0((Unk021d34e0 *) (a), func_ov003_021bf048);
+        func_ov003_021d34e0(a, func_ov003_021bf048);
     }
     return;
 }

@@ -14,7 +14,7 @@ void AdvanceMissionRunMSselState2(void);
 void AdvanceMissionRunMSselState1(void);
 void AdvanceMissionRunMSselState0(void);
 void ReleaseMissionRunMSsel(void);
-void InitMissionRunMSsel(s32 a, s32 b, s32 c);
+void InitMissionRunMSsel(void *a, void *b, void *c);
 void func_ov001_021a03a0(void);
 void func_ov001_021a03f8(void);
 void RequestMissionRunMSselState6(void);

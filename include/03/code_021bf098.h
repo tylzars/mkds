@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "03/code_021d1770.h"
+#include "03/code_021d3488.h"
 
 typedef struct Unk021d34e0 Unk021d34e0;
 
@@ -17,7 +18,7 @@ typedef struct Unk021da108 {
     /* 19 */ u8 mUnk_19;
 } Unk021da108;
 
-void func_ov003_021bf098(int a);
+void func_ov003_021bf098(Unk021d34e0 *a);
 void func_ov003_021bf0d8(void);
 void func_ov003_021bf1d8(Unk021d34e0 *b);
 void func_ov003_021bf20c(Unk021d34e0 *c);

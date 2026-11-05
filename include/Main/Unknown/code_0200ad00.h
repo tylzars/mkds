@@ -78,4 +78,4 @@ void func_0200ad00(void);
 u32 func_0200ad4c(void);
 u32 func_0200ada4(Unk02143a78 *a);
 u32 func_0200adfc(Unk0200adfc *a, u32 b, void *c, u32 d);
-void func_0200ae60(Unk0200adfc *a, u32 b, u32 c, u32 d, u32 e);
+void func_0200ae60(Unk0200adfc *a, u32 b, u32 c, u8 *d, u32 e);

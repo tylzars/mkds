@@ -377,7 +377,7 @@ void func_0200bab0(void) {
     *(u16 *) &data_0216fde4 = 0;
     data_0216fde8->mUnk_5f04 = 0;
     func_0200bc0c();
-    func_0200ba44((u32) 0x14, (u32) 0);
+    func_0200ba44((u32) 0x14, (void *) 0);
 }
 
 u32 func_0200baa8(void) {
@@ -399,13 +399,13 @@ void func_0200ba84(UnkFunc *p0) {
 
 #pragma thumb on
 
-void func_0200ba44(u32 a, u32 b) {
+void func_0200ba44(u32 a, void *b) {
     u32 v1;
     v1 = IrqDisable();
     data_0216fde8->mUnk_5f0e = a;
     IrqRestore(v1);
     if (data_0216fde8->mUnk_05e0 != NULL) {
-        data_0216fde8->mUnk_05e0(a, (void *) b);
+        data_0216fde8->mUnk_05e0(a, b);
     }
 }
 

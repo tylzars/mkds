@@ -5,7 +5,7 @@
 
 void func_020b6dc4(void *a, void *b) {
     (func_0212b090());
-    func_020b41e8((s32) a, 0xc, b, 0x1b, 8);
+    func_020b41e8((u16 *) a, 0xc, b, 0x1b, 8);
 }
 
 void func_020b6d98(void *a, void *b) {

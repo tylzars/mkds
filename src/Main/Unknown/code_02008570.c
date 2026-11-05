@@ -76,7 +76,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             func_0200aea8((u32) v3);
             v3 += 0x70;
             v13 -= 0x70;
-            func_0200ae60(v5, 0, 0x160, (u32) v2, 3);
+            func_0200ae60(v5, 0, 0x160, (u8 *) v2, 3);
             p = (s8 *) v1->mUnk_08;
             v10 = 0;
             while (v10 < 3 && p[v10] != 0) {
@@ -102,24 +102,24 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             v10 = v1->mUnk_20.w.mUnk_04;
             FS_SeekFile(v1, v6[1] - v10, 0);
             FS_ReadFile(v1, v3, v2->mUnk_2c);
-            func_0200ae60(v5, v6[1], v2->mUnk_2c, (u32) v3, 3);
+            func_0200ae60(v5, v6[1], v2->mUnk_2c, (u8 *) v3, 3);
             v3 += v2->mUnk_2c;
             FS_SeekFile(v1, v6[2] - v10, 0);
             FS_ReadFile(v1, v3, v2->mUnk_3c);
-            func_0200ae60(v5, v6[2], v2->mUnk_3c, (u32) v3, 3);
+            func_0200ae60(v5, v6[2], v2->mUnk_3c, (u8 *) v3, 3);
             v11 = TRUE;
         } else if (v13 >= 0xcc00) {
             v10 = v1->mUnk_20.w.mUnk_04;
             v8 = v6[1];
             FS_SeekFile(v1, v8 - v10, 0);
             FS_ReadFile(v1, v3, 0x4400);
-            func_0200ae60(v5, v8, 0x4400, (u32) v3, 3);
+            func_0200ae60(v5, v8, 0x4400, (u8 *) v3, 3);
             FS_SeekFile(v1, v8 + 0x4400 - v10, 0);
             FS_ReadFile(v1, v3 + 0x4400, 0x4400);
-            func_0200ae60(v5, v8 + 0x4400, 0x4400, (u32) (v3 + 0x4400), 2);
+            func_0200ae60(v5, v8 + 0x4400, 0x4400, (u8 *) (v3 + 0x4400), 2);
             FS_SeekFile(v1, v8 + 0x8800 - v10, 0);
             FS_ReadFile(v1, v3 + 0x8800, 0x4400);
-            func_0200ae60(v5, v8 + 0x8800, 0x4400, (u32) (v3 + 0x8800), 2);
+            func_0200ae60(v5, v8 + 0x8800, 0x4400, (u8 *) (v3 + 0x8800), 2);
             v11 = TRUE;
         }
         FS_SeekFile(v1, v7, 0);

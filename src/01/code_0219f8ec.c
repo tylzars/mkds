@@ -501,7 +501,7 @@ void func_ov001_021a03a0(void) {
     }
 }
 
-void InitMissionRunMSsel(s32 a, s32 b, s32 c) {
+void InitMissionRunMSsel(void *a, void *b, void *c) {
     s32 i;
     void *heap;
     s32 rem;
@@ -511,7 +511,7 @@ void InitMissionRunMSsel(s32 a, s32 b, s32 c) {
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 1;
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xd204;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x9004;
-    heap = CreateFrmHeapFromMaxFree((void *) a);
+    heap = CreateFrmHeapFromMaxFree(a);
     gMissionRunMSsel = HeapAlloc(heap, 0xc0);
     gMissionRunMSsel->mHeap = heap;
     gMissionRunMSsel->mState = 0;
@@ -519,8 +519,8 @@ void InitMissionRunMSsel(s32 a, s32 b, s32 c) {
     gMissionRunMSsel->mUnk_9c = 0;
     gMissionRunMSsel->mUnk_ac = 0;
     gMissionRunMSsel->mUnk_a4 = FALSE;
-    gMissionRunMSsel->mUnk_b4 = (void *) b;
-    gMissionRunMSsel->mUnk_b8 = (void *) c;
+    gMissionRunMSsel->mUnk_b4 = b;
+    gMissionRunMSsel->mUnk_b8 = c;
     gMissionRunMSsel->mResult = 0;
     for (i = 0; i < 9; i++) {
         gMissionRunMSsel->mUnk_6c[i] = 0;

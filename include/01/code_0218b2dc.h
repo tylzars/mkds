@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "01/code_02188950.h"
 
 typedef struct Unk02188950 Unk02188950;
 typedef struct Unk021a7b64 Unk021a7b64;
@@ -11,7 +12,8 @@ extern Unk021a7b64 data_ov001_021a7b64;
 void *func_ov001_0218b2dc(void);
 void *func_ov001_0218b2f4(void);
 void func_ov001_0218b310(void);
-void DrawKuriking(u32 a, u32 b); /* only calls the two draw helpers shared with five other ov001 draw callbacks */
+void DrawKuriking(void *a,
+                  Unk02188950 *b); /* only calls the two draw helpers shared with five other ov001 draw callbacks */
 void InitKuriking(Unk0218d87c *a);
 void UpdateKuriking(u32 a, Unk02188950 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_ov001_0218b5d8(Unk0218d87c *a);

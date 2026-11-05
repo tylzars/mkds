@@ -33,7 +33,7 @@
 #include "00/code_021a3668.h"
 #include "00/code_02193b88.h"
 
-u32 GpiUnpackDate(u32 a, s32 b, u32 *c, u32 *d, u32 *e) {
+u32 GpiUnpackDate(u32 *a, s32 b, u32 *c, u32 *d, u32 *e) {
     int v1;
     u32 v2;
     u32 v3;
@@ -218,7 +218,7 @@ s32 GpiProcessInfoOperation(GpConnection *r, GpiOperation *s, const char *t) {
             k.mUnk_b8 = 0;
             k.mUnk_bc = 0;
         } else {
-            o = GpiUnpackDate((u32) r, StrtolBase10(d), &k.mUnk_b4, &k.mUnk_b8, &k.mUnk_bc);
+            o = GpiUnpackDate((u32 *) r, StrtolBase10(d), &k.mUnk_b4, &k.mUnk_b8, &k.mUnk_bc);
             if (o != 0) {
                 return o;
             }

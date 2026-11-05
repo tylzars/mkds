@@ -112,7 +112,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a);
 u32 func_ov000_021aa004(u8 *a, s32 b, Unk021a998c *c);
 s32 func_ov000_021aa054(void *g, u8 *h);
 s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b);
-unsigned int func_ov000_021aa380(unsigned int p0, unsigned int p1, unsigned int p2);
+unsigned int func_ov000_021aa380(unsigned int p0, u8 *p1, unsigned int p2);
 void func_ov000_021aa398(u8 *bytes, s32 count);
 void func_ov000_021aa3b8(Unk021a998c_0c *a, u8 *b);
 void func_ov000_021aa468(Unk021a998c_0c *a, u8 *b, u32 c);

@@ -13,7 +13,7 @@ void AdvanceSelectEngineState2(void);
 void AdvanceSelectEngineState1(void);
 void AdvanceSelectEngineState0(void);
 void ReleaseSelectEngine(void);
-void InitSelectEngine(s32 a, void *b, void *c);
+void InitSelectEngine(void *a, void *b, void *c);
 void RequestSelectEngineState6(void);
 void func_ov001_021a1978(void);
 void RequestSelectEngineState4(void);

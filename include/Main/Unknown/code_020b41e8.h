@@ -8,4 +8,4 @@ void func_020b45b0(u16 *a, s32 b, s32 c, s32 d, s32 e, u16 *f, s32 g, s32 h);
 void func_020b4520(u16 *a, s32 b, s32 c, s32 d, s32 e, u16 *f, s32 g, s32 h);
 void func_020b44a4(u16 *a, s32 b, s32 c, s32 d, s32 e, u16 f);
 void func_020b4428(u16 *a, s32 b, s32 c, s32 d, s32 e, s32 f);
-void func_020b41e8(s32 a, s32 b, u16 *c, s32 d, s32 e);
+void func_020b41e8(u16 *a, s32 b, u16 *c, s32 d, s32 e);

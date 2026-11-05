@@ -24,7 +24,7 @@
 
 #pragma thumb on
 
-void func_0200ae60(Unk0200adfc *a, u32 b, u32 c, u32 d, u32 e) {
+void func_0200ae60(Unk0200adfc *a, u32 b, u32 c, u8 *d, u32 e) {
     u32 v1;
     Unk0200adfc_30 *v2;
     v1 = IrqDisable();
@@ -36,7 +36,7 @@ void func_0200ae60(Unk0200adfc *a, u32 b, u32 c, u32 d, u32 e) {
         if (v2->mUnk_0c == 0) {
             v2->mUnk_00 = b;
             v2->mUnk_04 = c;
-            v2->mUnk_08 = (u8 *) d;
+            v2->mUnk_08 = d;
             v2->mUnk_0c = e;
             break;
         }

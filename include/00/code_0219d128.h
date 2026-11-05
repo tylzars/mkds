@@ -26,7 +26,7 @@ int GetBuddyEntryProfileId(int a);
 s32 func_ov000_0219d660(void);
 void WiFiGpBuddyStatusCallback(struct GpConnection *a, s32 *b);
 u32 func_ov000_0219d6c4(u32 a, u32 *b, u32 c);
-void WiFiGpBuddyRequestCallback(u32 a, u32 *b);
+void WiFiGpBuddyRequestCallback(GpConnection *a, u32 *b);
 void ReportBuddySyncError(s32 a, s32 b);
 void UpdateBuddySync(void);
 void InitBuddySync(WiFiBuddySync *a, struct GpConnection *b, char *c, Unk02152490 *d, s32 e);

@@ -475,11 +475,11 @@ void func_ov000_0219a7e4(u8 *a, s32 b, void *c) {
     }
 }
 
-u32 Gt2FormatAddress(u32 a, u32 b, u32 c) {
+u32 Gt2FormatAddress(u32 a, u32 b, char *c) {
     Unk021b5dfc d;
     char *e;
 
-    e = (char *) c;
+    e = c;
     if (e == NULL) {
         data_ov000_021b5284 ^= 1;
         e = data_ov000_021b5288[data_ov000_021b5284];

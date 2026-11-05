@@ -272,7 +272,7 @@ void RequestSelectEngineState6(void) {
     gSelectEngine->mStateFrames = 0;
 }
 
-void InitSelectEngine(s32 a, void *b, void *c) {
+void InitSelectEngine(void *a, void *b, void *c) {
     void *heap;
     SelectEngine *p;
     vu16 *bg0 = (vu16 *) 0x4000008;
@@ -284,7 +284,7 @@ void InitSelectEngine(s32 a, void *b, void *c) {
     *bg1 = (*bg1 & 0x43) | 0x9204;
     *(vu32 *) 0x4000010 = 0xc00000;
     *(vu32 *) 0x4000014 = 0xc00000;
-    heap = CreateFrmHeapFromMaxFree((void *) a);
+    heap = CreateFrmHeapFromMaxFree(a);
     p = HeapAlloc(heap, 0x50);
     gSelectEngine = p;
     p->mHeap = heap;

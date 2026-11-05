@@ -333,7 +333,7 @@ void func_ov001_0219be5c(void) {
                   gSelectGhost->mSelectCupCourseTaMBncl);
 }
 
-void InitSelectGhost(u32 a, u32 b, u32 c) {
+void InitSelectGhost(void *a, u32 b, u32 c) {
     void *heap;
     s32 rem;
     s32 i;
@@ -341,7 +341,7 @@ void InitSelectGhost(u32 a, u32 b, u32 c) {
     reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
-    heap = CreateFrmHeapFromMaxFree((void *) a);
+    heap = CreateFrmHeapFromMaxFree(a);
     gSelectGhost = HeapAlloc(heap, 0x70);
     gSelectGhost->mHeap = heap;
     gSelectGhost->mState = 0;

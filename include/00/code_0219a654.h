@@ -61,7 +61,7 @@ typedef struct Unk0219aeb0 {
 BOOL func_ov000_0218e57c(u32 *a);
 
 BOOL Gt2ParseAddress(const char *a, u32 *b, u16 *c);
-u32 Gt2FormatAddress(u32 a, u32 b, u32 c);
+u32 Gt2FormatAddress(u32 a, u32 b, char *c);
 void func_ov000_0219a7e4(u8 *a, s32 b, void *c);
 void func_ov000_0219a8bc(Unk0219b1d4 *a, Unk0219aa64 *b, Unk021a4654 *c);
 void func_ov000_0219a958(Unk0219b1d4 *a, Unk0219ade4 *b, Unk021a4654 *c);

@@ -908,12 +908,12 @@ void func_ov000_021aa398(u8 *bytes, s32 count) {
     }
 }
 
-u32 func_ov000_021aa380(u32 p0, u32 p1, u32 p2) {
+u32 func_ov000_021aa380(u32 p0, u8 *p1, u32 p2) {
     u32 v1 = ((p2) + (0x0u));
     u32 v2 = 0x1b4u;
     u32 v3 = ((p0) + (v2));
     u32 v5;
-    func_ov000_021ac3e4((u8 *) v3, (u8 *) p1, (s32) p2);
+    func_ov000_021ac3e4((u8 *) v3, p1, (s32) p2);
     v5 = ((v1) + (0x0u));
     return v5;
 }
@@ -925,7 +925,7 @@ s32 func_ov000_021aa1e0(Unk021a998c_0c *a, u8 *b) {
     u32 f;
     Unk021ab728 *g;
     Unk021abca0 *h;
-    e = func_ov000_021aa380((u32) a, (u32) (b + 5), (b[3] << 8) + b[4]);
+    e = func_ov000_021aa380((u32) a, (u8 *) (b + 5), (b[3] << 8) + b[4]);
     switch (a->mUnk_006) {
         case 4:
             e -= 0x10;

@@ -123,7 +123,7 @@ int func_021087d4(int a);
 int func_021087c4(int a);
 void func_02108720(void);
 void func_02108598(u32 a, u32 b);
-void func_02108344(u32 a, u32 b, u32 c);
+void func_02108344(void *a, u32 b, u32 c);
 void func_0210823c(void);
 void func_021074ac(s32 e);
 void func_021073ec(u32 a, Unk021073ec b, Unk0217c814 *c);

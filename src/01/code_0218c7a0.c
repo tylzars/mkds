@@ -436,9 +436,9 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     func_ov001_021881f4(obj, (UnkFunc *) func_ov001_0218dd9c);
 }
 
-void func_ov001_0218c85c(u32 a, u32 b) {
-    func_ov001_02186368((void *) a, (Unk02188950 *) b);
-    func_ov001_021861f4((void *) a, (Unk02188950 *) b, 0);
+void func_ov001_0218c85c(void *a, Unk02188950 *b) {
+    func_ov001_02186368(a, b);
+    func_ov001_021861f4(a, b, 0);
 }
 
 void func_ov001_0218c830(void) {

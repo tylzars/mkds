@@ -96,7 +96,7 @@ void AdvanceSelectGhostState2(void);
 void AdvanceSelectGhostState1(void);
 void AdvanceSelectGhostState0(void);
 void func_ov001_0219baf4(void);
-void InitSelectGhost(u32 a, u32 b, u32 c);
+void InitSelectGhost(void *a, u32 b, u32 c);
 void func_ov001_0219be5c(void);
 void func_ov001_0219bfc0(void);
 void func_ov001_0219bff4(void);

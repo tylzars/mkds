@@ -248,7 +248,7 @@ s32 func_0202af60(void) {
     return v;
 }
 
-void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
+void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
     void *h;
     Unk02174e14_00 *p;
     Unk02174e14_00 *t;
@@ -264,7 +264,7 @@ void InitWiFiVSCourseSelect(u32 param_1, void *param_2, void *param_3) {
     Unk02124b1c *e;
     u16 w[2];
 
-    h = CreateFrmHeapFromMaxFree((void *) param_1);
+    h = CreateFrmHeapFromMaxFree(param_1);
     gWiFiVSCourseSelect = HeapAlloc(h, 0x158);
     MemFillWordsByBlock_inline(gWiFiVSCourseSelect, 0x158);
     gWiFiVSCourseSelect->mHeap = h;

@@ -156,9 +156,9 @@ void ReportBuddySyncError(s32 a, s32 b) {
 // GP callback slot 1 (request): an incoming add-buddy request. The reply handler func_ov000_0219cd74 authorizes it
 // and adds the sender back (AddBuddy) when the list holds an entry with that name or id; otherwise the request is
 // dropped locally (no message is sent).
-void WiFiGpBuddyRequestCallback(u32 a, u32 *b) {
+void WiFiGpBuddyRequestCallback(GpConnection *a, u32 *b) {
     if (gWiFiBuddySync->mBuddies != NULL) {
-        func_ov000_0218eff8((GpConnection *) (a), *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cd74, 0);
+        func_ov000_0218eff8(a, *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cd74, 0);
     }
     return;
 }

@@ -953,13 +953,13 @@ void func_ov000_021a1140(s32 a) {
     }
 }
 
-void func_ov000_021a10b0(u8 a, u8 b, u32 c, u32 d) {
+void func_ov000_021a10b0(u8 a, u8 b, UnkFunc *c, u32 d) {
     WiFiMatching **v1;
     func_ov000_021a1140(0);
     v1 = &gWiFiMatching;
     gWiFiMatching->mMode = a;
     (*v1)->mUnk_16 = b;
-    (*v1)->mResultCallback = (UnkFunc *) c;
+    (*v1)->mResultCallback = c;
     (*v1)->mResultCallbackArg = d;
     (*v1)->mUnk_174[1] = 0;
     (*v1)->mParticipantIndices[0] = 0;

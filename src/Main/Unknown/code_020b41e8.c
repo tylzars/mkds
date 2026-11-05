@@ -79,7 +79,7 @@ static inline u16 *func_020b41e8_inline(u16 *p, s32 r, s32 k) {
     return p + (r + k % 4) * 16 + k / 4 * 512;
 }
 
-void func_020b41e8(s32 a, s32 b, u16 *c, s32 d, s32 e) {
+void func_020b41e8(u16 *a, s32 b, u16 *c, s32 d, s32 e) {
     Unk021759c0 *p = data_021759c0;
     Nclr *o1;
     Ncgr *o2;
@@ -111,7 +111,7 @@ void func_020b41e8(s32 a, s32 b, u16 *c, s32 d, s32 e) {
         m = n;
     }
     for (x = 0; x < 16; x++) {
-        ((u16 *) a)[b * 16 + x] = k[m * 16 + x];
+        a[b * 16 + x] = k[m * 16 + x];
     }
     s = o2->mData;
     for (j = 0; j < 16; j++) {

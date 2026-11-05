@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void DrawChandelier(u32 a, int b);
+void DrawChandelier(void *a, int b);

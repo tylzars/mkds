@@ -26,7 +26,7 @@ void InitWiFiVSCourseSelectState(u32 a) {
     func_ov000_02184b4c();
     v2 = func_ov000_021804f4();
     v3 = func_ov000_021804e0();
-    InitWiFiVSCourseSelect((u32) (a), v2, v3);
+    InitWiFiVSCourseSelect((void *) (a), v2, v3);
     func_0212a910(1, 1);
     return;
 }

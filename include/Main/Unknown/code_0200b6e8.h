@@ -82,7 +82,7 @@ void func_0200b850(u32 a, Unk02008934 *b, u32 c);
 void func_0200b894(Unk021425e8 *a);
 void func_0200b934(void);
 void func_0200b9e0(UnkFunc *a, u32 b);
-void func_0200ba44(u32 a, u32 b);
+void func_0200ba44(u32 a, void *b);
 void func_0200ba84(UnkFunc *p0);
 unsigned int func_0200baa8(void);
 void func_0200bab0(void);

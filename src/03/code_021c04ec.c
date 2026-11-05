@@ -104,7 +104,7 @@ static inline void func_ov003_021c0ab0_inline(Unk021bf920 *p, u32 *x, u32 *y) {
     *y = p->mUnk_00 & 0xff;
 }
 
-void func_ov003_021c0c2c(u32 param_1) {
+void func_ov003_021c0c2c(Unk021d34e0 *param_1) {
     s32 a;
     s32 y;
     func_ov003_021c0ab0_inline(data_ov003_021da15c->mUnk_030[0], (u32 *) &a, (u32 *) &y);
@@ -115,10 +115,10 @@ void func_ov003_021c0c2c(u32 param_1) {
     }
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 0, data_ov003_021d5fb0[0][1]);
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 1, 0xc0);
-    func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021c0bb0);
+    func_ov003_021d34e0(param_1, func_ov003_021c0bb0);
 }
 
-void func_ov003_021c0bb0(u32 param_1) {
+void func_ov003_021c0bb0(Unk021d34e0 *param_1) {
     s32 a;
     s32 y;
     func_ov003_021c0ab0_inline(data_ov003_021da15c->mUnk_030[12], (u32 *) &a, (u32 *) &y);
@@ -129,10 +129,10 @@ void func_ov003_021c0bb0(u32 param_1) {
     }
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 1, data_ov003_021d5fb0[12][1]);
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 2, 0xc0);
-    func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021c0b30);
+    func_ov003_021d34e0(param_1, func_ov003_021c0b30);
 }
 
-void func_ov003_021c0b30(u32 param_1) {
+void func_ov003_021c0b30(Unk021d34e0 *param_1) {
     s32 a;
     s32 y;
     func_ov003_021c0ab0_inline(data_ov003_021da15c->mUnk_030[24], (u32 *) &a, (u32 *) &y);
@@ -143,10 +143,10 @@ void func_ov003_021c0b30(u32 param_1) {
     }
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 2, data_ov003_021d5ff0[8][1]);
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 3, 0xc0);
-    func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021c0ab0);
+    func_ov003_021d34e0(param_1, func_ov003_021c0ab0);
 }
 
-void func_ov003_021c0ab0(u32 param_1) {
+void func_ov003_021c0ab0(Unk021d34e0 *param_1) {
     s32 a;
     s32 b;
     func_ov003_021c0ab0_inline(data_ov003_021da15c->mUnk_030[36], (u32 *) &a, (u32 *) &b);
@@ -157,10 +157,10 @@ void func_ov003_021c0ab0(u32 param_1) {
     }
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 3, data_ov003_021d6030[4][1]);
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 4, 0xc0);
-    func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021c0a40);
+    func_ov003_021d34e0(param_1, func_ov003_021c0a40);
 }
 
-void func_ov003_021c0a40(u32 param_1) {
+void func_ov003_021c0a40(Unk021d34e0 *param_1) {
     u32 x;
     s32 y;
     func_ov003_021d1770(data_ov003_021da15c->mUnk_0fc[0], 0, &x, &y);
@@ -171,7 +171,7 @@ void func_ov003_021c0a40(u32 param_1) {
     }
     func_ov003_021c0154(data_ov003_021da15c->mUnk_11d, 4, data_ov003_021d5f88[0][1]);
     func_ov003_021bffb0();
-    func_ov003_021d34e0((Unk021d34e0 *) param_1, func_ov003_021c0a24);
+    func_ov003_021d34e0(param_1, func_ov003_021c0a24);
 }
 
 void func_ov003_021c0a24(void) {
