@@ -39,11 +39,11 @@ void InitOptionHensyuMenu(void *heap) {
     gOptionHensyuMenu->mUnk_14 = 1;
     LocateAndQueueOptionHensyuMenu();
     for (i = 0; i < 2; i++) {
-        func_02124a98(data_ov001_021a6a84[i], 1, gOptionHensyuMenu->mUnk_20, gOptionHensyuMenu->mUnk_2c);
+        func_02124a98(data_ov001_021a6a84[i], 1, gOptionHensyuMenu->mOptionHensyuMenuSNcer, gOptionHensyuMenu->mOptionHensyuMenuSBncl);
     }
     a = func_ov001_0219e920();
     func_020ae6d4(a, func_ov001_0219e90c());
-    func_02124ed0(heap, gOptionHensyuMenu->mUnk_2c, NULL, &gOptionHensyuMenu->mUnk_1c);
+    func_02124ed0(heap, gOptionHensyuMenu->mOptionHensyuMenuSBncl, NULL, &gOptionHensyuMenu->mUnk_1c);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < data_ov001_021a6a8c[i]; j++) {
             if (i == 1) {
@@ -68,16 +68,16 @@ void LocateAndQueueOptionHensyuMenu(void) {
     LocateNcgr(&a, FindSceneFile(data_ov001_021a866c));
     LocateNscr(&b, FindSceneFile(data_ov001_021a8688));
     LocateNclr(&c, FindSceneFile(data_ov001_021a86a0));
-    gOptionHensyuMenu->mUnk_2c = FindSceneFile(data_ov001_021a86bc);
-    gOptionHensyuMenu->mUnk_30 = FindSceneFile(data_ov001_021a86d8);
-    LocateNcgr2(&gOptionHensyuMenu->mUnk_24, FindSceneFile(data_ov001_021a86f4));
-    LocateNcer(&gOptionHensyuMenu->mUnk_20, FindSceneFile(data_ov001_021a8714));
-    LocateNclr(&gOptionHensyuMenu->mUnk_28, FindSceneFile(data_ov001_021a8734));
+    gOptionHensyuMenu->mOptionHensyuMenuSBncl = FindSceneFile(data_ov001_021a86bc);
+    gOptionHensyuMenu->mOptionHensyuMenuSBnbl = FindSceneFile(data_ov001_021a86d8);
+    LocateNcgr2(&gOptionHensyuMenu->mOptionHensyuMenuSNcgr, FindSceneFile(data_ov001_021a86f4));
+    LocateNcer(&gOptionHensyuMenu->mOptionHensyuMenuSNcer, FindSceneFile(data_ov001_021a8714));
+    LocateNclr(&gOptionHensyuMenu->mOptionHensyuMenuSONclr, FindSceneFile(data_ov001_021a8734));
     CallQueueAppend(4, 0, a->mData, a->mDataSize);
     CallQueueAppend(8, 0, b->mData, b->mDataSize);
     CallQueueAppend(15, 0, c->mData, 0x100);
-    CallQueueAppend(0x23, 0, gOptionHensyuMenu->mUnk_24->mData, gOptionHensyuMenu->mUnk_24->mDataSize);
-    CallQueueAppend(0x1e, 0, gOptionHensyuMenu->mUnk_28->mData, gOptionHensyuMenu->mUnk_28->mDataSize);
+    CallQueueAppend(0x23, 0, gOptionHensyuMenu->mOptionHensyuMenuSNcgr->mData, gOptionHensyuMenu->mOptionHensyuMenuSNcgr->mDataSize);
+    CallQueueAppend(0x1e, 0, gOptionHensyuMenu->mOptionHensyuMenuSONclr->mData, gOptionHensyuMenu->mOptionHensyuMenuSONclr->mDataSize);
 }
 
 void AdvanceOptionHensyuMenuState0(void) {
@@ -141,7 +141,7 @@ void AdvanceOptionHensyuMenuState3(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        r = RectTableFindContaining(gOptionHensyuMenu->mUnk_30, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+        r = RectTableFindContaining(gOptionHensyuMenu->mOptionHensyuMenuSBnbl, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {
         b = FALSE;
@@ -267,10 +267,10 @@ void func_ov001_02199a20(void) {
     for (i = 0; i < 2; i++) {
         if (i == gOptionHensyuMenu->mUnk_08 && gOptionHensyuMenu->mUnk_14 != 0) {
             gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a88[i]].mUnk_00 = 1;
-            func_02124a20(data_ov001_021a6a80[i], 0xe, gOptionHensyuMenu->mUnk_20, gOptionHensyuMenu->mUnk_2c);
+            func_02124a20(data_ov001_021a6a80[i], 0xe, gOptionHensyuMenu->mOptionHensyuMenuSNcer, gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         } else {
             gOptionHensyuMenu->mUnk_1c[data_ov001_021a6a88[i]].mUnk_00 = 0;
-            func_02124a20(data_ov001_021a6a80[i], 0xf, gOptionHensyuMenu->mUnk_20, gOptionHensyuMenu->mUnk_2c);
+            func_02124a20(data_ov001_021a6a80[i], 0xf, gOptionHensyuMenu->mOptionHensyuMenuSNcer, gOptionHensyuMenu->mOptionHensyuMenuSBncl);
         }
     }
 }
@@ -300,7 +300,7 @@ void AdvanceOptionHensyuMenu(void) {
     }
     func_ov001_02199a20();
     p = gOptionHensyuMenu;
-    func_02124c30(p->mUnk_2c, p->mUnk_20, NULL, func_ov001_0219e90c(), p->mUnk_1c);
+    func_02124c30(p->mOptionHensyuMenuSBncl, p->mOptionHensyuMenuSNcer, NULL, func_ov001_0219e90c(), p->mUnk_1c);
 }
 
 void func_ov001_02199988(void) {

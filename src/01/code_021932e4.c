@@ -51,10 +51,10 @@ void InitOptionTopMenu(void *heap) {
     }
     LocateAndQueueOptionTopMenu();
     for (i = 0; i < 3; i++) {
-        func_02124a98(data_ov001_021a65dc[i], 1, gOptionTopMenu->mUnk_24, gOptionTopMenu->mUnk_30);
+        func_02124a98(data_ov001_021a65dc[i], 1, gOptionTopMenu->mOptionTopMenuSNcer, gOptionTopMenu->mOptionTopMenuSBncl);
     }
     func_020ae6d4(func_ov001_0219e920(), func_ov001_0219e90c());
-    func_02124ed0(heap, gOptionTopMenu->mUnk_30, NULL, &gOptionTopMenu->mUnk_20);
+    func_02124ed0(heap, gOptionTopMenu->mOptionTopMenuSBncl, NULL, &gOptionTopMenu->mUnk_20);
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov001_021a65e4[i]; j++) {
             if (i == 1) {
@@ -79,16 +79,16 @@ void LocateAndQueueOptionTopMenu(void) {
     LocateNcgr(&a, FindSceneFile(data_ov001_021a8180));
     LocateNscr(&b, FindSceneFile(data_ov001_021a819c));
     LocateNclr(&c, FindSceneFile(data_ov001_021a81b4));
-    gOptionTopMenu->mUnk_30 = FindSceneFile(data_ov001_021a81d0);
-    gOptionTopMenu->mUnk_34 = FindSceneFile(data_ov001_021a81e8);
-    LocateNcgr2(&gOptionTopMenu->mUnk_28, FindSceneFile(data_ov001_021a8200));
-    LocateNcer(&gOptionTopMenu->mUnk_24, FindSceneFile(data_ov001_021a821c));
-    LocateNclr(&gOptionTopMenu->mUnk_2c, FindSceneFile(data_ov001_021a8238));
+    gOptionTopMenu->mOptionTopMenuSBncl = FindSceneFile(data_ov001_021a81d0);
+    gOptionTopMenu->mOptionTopMenuSBnbl = FindSceneFile(data_ov001_021a81e8);
+    LocateNcgr2(&gOptionTopMenu->mOptionTopMenuSNcgr, FindSceneFile(data_ov001_021a8200));
+    LocateNcer(&gOptionTopMenu->mOptionTopMenuSNcer, FindSceneFile(data_ov001_021a821c));
+    LocateNclr(&gOptionTopMenu->mOptionTopMenuSONclr, FindSceneFile(data_ov001_021a8238));
     CallQueueAppend(4, 0, a->mData, a->mDataSize);
     CallQueueAppend(8, 0, b->mData, b->mDataSize);
     CallQueueAppend(15, 0, c->mData, 0x100);
-    CallQueueAppend(0x23, 0, gOptionTopMenu->mUnk_28->mData, gOptionTopMenu->mUnk_28->mDataSize);
-    CallQueueAppend(0x1e, 0, gOptionTopMenu->mUnk_2c->mData, gOptionTopMenu->mUnk_2c->mDataSize);
+    CallQueueAppend(0x23, 0, gOptionTopMenu->mOptionTopMenuSNcgr->mData, gOptionTopMenu->mOptionTopMenuSNcgr->mDataSize);
+    CallQueueAppend(0x1e, 0, gOptionTopMenu->mOptionTopMenuSONclr->mData, gOptionTopMenu->mOptionTopMenuSONclr->mDataSize);
 }
 
 void AdvanceOptionTopMenuState0(void) {
@@ -152,7 +152,7 @@ void AdvanceOptionTopMenuState3(void) {
     }
     if (b != FALSE) {
         result =
-            RectTableFindContaining(gOptionTopMenu->mUnk_34, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
+            RectTableFindContaining(gOptionTopMenu->mOptionTopMenuSBnbl, data_02175628[idx].mUnk_48, data_02175628[idx].mUnk_4a);
     }
     flagA = data_02175628[idx].mUnk_00 & 2;
     if (flagA == 0) {
@@ -350,10 +350,10 @@ void func_ov001_021933dc(void) {
     for (i = 0; i < 3; i++) {
         if (i == gOptionTopMenu->mUnk_08 && gOptionTopMenu->mUnk_14 != 0) {
             gOptionTopMenu->mUnk_20[data_ov001_021a65e0[i]].mUnk_00 = 1;
-            func_02124a20(data_ov001_021a65d8[i], 14, gOptionTopMenu->mUnk_24, gOptionTopMenu->mUnk_30);
+            func_02124a20(data_ov001_021a65d8[i], 14, gOptionTopMenu->mOptionTopMenuSNcer, gOptionTopMenu->mOptionTopMenuSBncl);
         } else {
             gOptionTopMenu->mUnk_20[data_ov001_021a65e0[i]].mUnk_00 = zero;
-            func_02124a20(data_ov001_021a65d8[i], 15, gOptionTopMenu->mUnk_24, gOptionTopMenu->mUnk_30);
+            func_02124a20(data_ov001_021a65d8[i], 15, gOptionTopMenu->mOptionTopMenuSNcer, gOptionTopMenu->mOptionTopMenuSBncl);
         }
     }
 }
@@ -396,7 +396,7 @@ void AdvanceOptionTopMenu(void) {
     }
     func_ov001_021933dc();
     obj = gOptionTopMenu;
-    func_02124c30(obj->mUnk_30, obj->mUnk_24, NULL, func_ov001_0219e90c(), obj->mUnk_20);
+    func_02124c30(obj->mOptionTopMenuSBncl, obj->mOptionTopMenuSNcer, NULL, func_ov001_0219e90c(), obj->mUnk_20);
 }
 
 void func_ov001_02193308(void) {

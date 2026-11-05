@@ -57,15 +57,15 @@ void func_ov001_0219b000(void) {
     LocateNclr(&f, FindSceneFile(gRecordTopMenuMBNclrName));
     LocateNscr(&g, FindSceneFile(gRecordTopMenuMNscrName));
     gRecordTopMenu->mUnk_28 = HeapAlloc(gRecordTopMenu->mHeap, 0x800);
-    gRecordTopMenu->mUnk_04 = FindSceneFile(gRecordTopMenuMBnclName);
-    gRecordTopMenu->mUnk_08 = FindSceneFile(gRecordTopMenuMBnllName);
+    gRecordTopMenu->mRecordTopMenuMBncl = FindSceneFile(gRecordTopMenuMBnclName);
+    gRecordTopMenu->mRecordTopMenuMBnll = FindSceneFile(gRecordTopMenuMBnllName);
     LocateNcgr2(&a, FindSceneFile(gRecordTopMenuMNcgrName));
-    LocateNcer(&gRecordTopMenu->mUnk_00, FindSceneFile(gRecordTopMenuMNcerName));
+    LocateNcer(&gRecordTopMenu->mRecordTopMenuMNcer, FindSceneFile(gRecordTopMenuMNcerName));
     LocateNclr(&b, FindSceneFile(gRecordTopMenuMONclrName));
-    gRecordTopMenu->mUnk_10 = FindSceneFile(gRecordTopMenuSBnclName);
-    gRecordTopMenu->mUnk_14 = FindSceneFile(gRecordTopMenuSBnblName);
+    gRecordTopMenu->mRecordTopMenuSBncl = FindSceneFile(gRecordTopMenuSBnclName);
+    gRecordTopMenu->mRecordTopMenuSBnbl = FindSceneFile(gRecordTopMenuSBnblName);
     LocateNcgr2(&c, FindSceneFile(gRecordTopMenuSNcgrName));
-    LocateNcer(&gRecordTopMenu->mUnk_0c, FindSceneFile(gRecordTopMenuSNcerName));
+    LocateNcer(&gRecordTopMenu->mRecordTopMenuSNcer, FindSceneFile(gRecordTopMenuSNcerName));
     LocateNclr(&d, FindSceneFile(gRecordTopMenuSONclrName));
     q = b->mData;
     CallQueueAppend(4, 0, e->mData, e->mDataSize);
@@ -81,12 +81,12 @@ void func_ov001_0219b000(void) {
 
 void func_ov001_0219afc8(s32 a) {
     gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[a]].mUnk_00 = 1;
-    func_02124a20(data_ov001_021a6aa4[a], 14, gRecordTopMenu->mUnk_0c, gRecordTopMenu->mUnk_10);
+    func_02124a20(data_ov001_021a6aa4[a], 14, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
 void func_ov001_0219af90(s32 a) {
     gRecordTopMenu->mUnk_1c[data_ov001_021a6a9c[a]].mUnk_00 = 0;
-    func_02124a20(data_ov001_021a6aa4[a], 15, gRecordTopMenu->mUnk_0c, gRecordTopMenu->mUnk_10);
+    func_02124a20(data_ov001_021a6aa4[a], 15, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
 void func_ov001_0219ae88(void) {
@@ -98,7 +98,7 @@ void func_ov001_0219ae88(void) {
     gRecordTopMenu->mNextState = 0;
     gRecordTopMenu->mUnk_38 = 0;
     gRecordTopMenu->mUnk_3c = ~0xbf;
-    n = gRecordTopMenu->mUnk_04->mUnk_06;
+    n = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     gRecordTopMenu->mUnk_18[0].mUnk_06 = ~0xbf;
     gRecordTopMenu->mUnk_18[1].mUnk_06 = ~0xbf;
     gRecordTopMenu->mUnk_18[n].mUnk_06 = ~0xbf;
@@ -255,31 +255,31 @@ void InitRecordTopMenu(void *heap) {
     }
     func_ov001_0219b000();
     for (i = 0; i < 3; i++) {
-        func_02124a98(data_ov001_021a6ac4[i], 1, gRecordTopMenu->mUnk_0c, gRecordTopMenu->mUnk_10);
+        func_02124a98(data_ov001_021a6ac4[i], 1, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
     }
     func_020ae6d4(func_02111318(), func_0211130c());
-    func_02124ed0(heap, gRecordTopMenu->mUnk_04, gRecordTopMenu->mUnk_08, &gRecordTopMenu->mUnk_18);
-    func_02124ed0(heap, gRecordTopMenu->mUnk_10, NULL, &gRecordTopMenu->mUnk_1c);
+    func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMBnll, &gRecordTopMenu->mUnk_18);
+    func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuSBncl, NULL, &gRecordTopMenu->mUnk_1c);
     gRecordTopMenu->mUnk_20 = func_02047a28("common.bmg");
-    gRecordTopMenu->mUnk_24 = FindSceneFile("record.bmg");
+    gRecordTopMenu->mRecordMessages = FindSceneFile("record.bmg");
     rem = 0x8000;
-    rem -= func_021243ac(heap, 0, gRecordTopMenu->mUnk_08, 0xaa, 0xe, 0, gRecordTopMenu->mUnk_00,
-                         gRecordTopMenu->mUnk_04, gRecordTopMenu->mUnk_18, rem);
-    func_0212426c(0, 0, gRecordTopMenu->mUnk_08, GetBmgEntry(gRecordTopMenu->mUnk_24, 9), gRecordTopMenu->mUnk_04,
+    rem -= func_021243ac(heap, 0, gRecordTopMenu->mRecordTopMenuMBnll, 0xaa, 0xe, 0, gRecordTopMenu->mRecordTopMenuMNcer,
+                         gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mUnk_18, rem);
+    func_0212426c(0, 0, gRecordTopMenu->mRecordTopMenuMBnll, GetBmgEntry(gRecordTopMenu->mRecordMessages, 9), gRecordTopMenu->mRecordTopMenuMBncl,
                   gRecordTopMenu->mUnk_18);
     x = 1;
-    base = gRecordTopMenu->mUnk_04->mUnk_06;
+    base = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < 3; j++) {
-            rem -= func_021243ac(heap, data_ov001_021a6ae4[i][j], gRecordTopMenu->mUnk_08, data_ov001_021a6af8[i][j],
-                                 data_ov001_021a6b0c[i][j], x, gRecordTopMenu->mUnk_00, gRecordTopMenu->mUnk_04,
+            rem -= func_021243ac(heap, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll, data_ov001_021a6af8[i][j],
+                                 data_ov001_021a6b0c[i][j], x, gRecordTopMenu->mRecordTopMenuMNcer, gRecordTopMenu->mRecordTopMenuMBncl,
                                  gRecordTopMenu->mUnk_18, rem);
             x = base + data_ov001_021a6ae4[i][j];
         }
     }
     for (i = 0; i < 3; i++) {
-        func_0212426c(0, data_ov001_021a6ae4[0][i], gRecordTopMenu->mUnk_08,
-                      GetBmgEntry(gRecordTopMenu->mUnk_24, data_ov001_021a6abc[i]), gRecordTopMenu->mUnk_04,
+        func_0212426c(0, data_ov001_021a6ae4[0][i], gRecordTopMenu->mRecordTopMenuMBnll,
+                      GetBmgEntry(gRecordTopMenu->mRecordMessages, data_ov001_021a6abc[i]), gRecordTopMenu->mRecordTopMenuMBncl,
                       gRecordTopMenu->mUnk_18);
     }
     pp = &data_0217aa08->mUnk_00;
@@ -295,7 +295,7 @@ void InitRecordTopMenu(void *heap) {
                 scores[i][j] = 9999;
             }
             func_02124fac(scores[i][j], buf);
-            func_02124248(0, data_ov001_021a6ae4[i][j], gRecordTopMenu->mUnk_08, buf, gRecordTopMenu->mUnk_04,
+            func_02124248(0, data_ov001_021a6ae4[i][j], gRecordTopMenu->mRecordTopMenuMBnll, buf, gRecordTopMenu->mRecordTopMenuMBncl,
                           gRecordTopMenu->mUnk_18, 6);
         }
     }
@@ -338,7 +338,7 @@ void AdvanceRecordTopMenuState1(void) {
     a = func_020ae4c0(1, 0xe0, 0, gRecordTopMenu->mUnk_38, 10);
     b = func_020ae4c0(1, -0xc0, 0, gRecordTopMenu->mUnk_38, 10);
     gRecordTopMenu->mUnk_3c = b;
-    idx = gRecordTopMenu->mUnk_04->mUnk_06;
+    idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     gRecordTopMenu->mUnk_18[0].mUnk_06 = b;
     gRecordTopMenu->mUnk_18[1].mUnk_06 = b;
     gRecordTopMenu->mUnk_18[idx].mUnk_06 = b;
@@ -409,7 +409,7 @@ void AdvanceRecordTopMenuState4(void) {
         b = TRUE;
     }
     if (b != FALSE) {
-        sel = RectTableFindContaining(gRecordTopMenu->mUnk_14, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+        sel = RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     }
     flags = data_02175628[i].mUnk_00 & 2;
     if (flags == 0) {
@@ -499,7 +499,7 @@ void AdvanceRecordTopMenuState6(void) {
     a = func_020ae4c0(1, 0, 0xe0, gRecordTopMenu->mUnk_38, 10);
     b = func_020ae4c0(1, 0, -0xc0, gRecordTopMenu->mUnk_38, 10);
     gRecordTopMenu->mUnk_3c = b;
-    idx = gRecordTopMenu->mUnk_04->mUnk_06;
+    idx = gRecordTopMenu->mRecordTopMenuMBncl->mUnk_06;
     gRecordTopMenu->mUnk_18[0].mUnk_06 = b;
     gRecordTopMenu->mUnk_18[1].mUnk_06 = b;
     gRecordTopMenu->mUnk_18[idx].mUnk_06 = b;
@@ -556,7 +556,7 @@ void AdvanceRecordTopMenuState9(void) {
     BOOL a;
     u16 v;
 
-    RectTableFindContaining(gRecordTopMenu->mUnk_14, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+    RectTableFindContaining(gRecordTopMenu->mRecordTopMenuSBnbl, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     flags = data_02175628[i].mUnk_00 & 2;
     if (flags == 0) {
         b = FALSE;
@@ -644,9 +644,9 @@ void AdvanceRecordTopMenu(void) {
             break;
     }
     p = gRecordTopMenu;
-    func_02124c30(p->mUnk_04, p->mUnk_00, p->mUnk_08, func_02111318(), p->mUnk_18);
+    func_02124c30(p->mRecordTopMenuMBncl, p->mRecordTopMenuMNcer, p->mRecordTopMenuMBnll, func_02111318(), p->mUnk_18);
     p = gRecordTopMenu;
-    func_02124c30(p->mUnk_10, p->mUnk_0c, NULL, func_0211130c(), p->mUnk_1c);
+    func_02124c30(p->mRecordTopMenuSBncl, p->mRecordTopMenuSNcer, NULL, func_0211130c(), p->mUnk_1c);
 }
 
 void func_ov001_0219a0c0(void) {

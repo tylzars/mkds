@@ -52,10 +52,10 @@ void LocateAndQueueTimeAttackTopMenu(void) {
     LocateNclr(&d, FindSceneFile(data_ov001_021a8360));
     LocateNscr(&e, FindSceneFile(data_ov001_021a8354));
     gTimeAttackTopMenu->mUnk_10 = HeapAlloc(gTimeAttackTopMenu->mHeap, 0x800);
-    gTimeAttackTopMenu->mUnk_04 = FindSceneFile(data_ov001_021a8358);
-    gTimeAttackTopMenu->mUnk_08 = FindSceneFile(data_ov001_021a8348);
+    gTimeAttackTopMenu->mTimeAttackTopMenuSBncl = FindSceneFile(data_ov001_021a8358);
+    gTimeAttackTopMenu->mTimeAttackTopMenuSBnbl = FindSceneFile(data_ov001_021a8348);
     LocateNcgr2(&a, FindSceneFile(data_ov001_021a8350));
-    LocateNcer(&gTimeAttackTopMenu->mUnk_00, FindSceneFile(data_ov001_021a834c));
+    LocateNcer(&gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, FindSceneFile(data_ov001_021a834c));
     LocateNclr(&b, FindSceneFile(data_ov001_021a8364));
     CallQueueAppend(4, 0, c->mData, c->mDataSize);
     CallQueueAppend(0xf, 0, d->mData, 0x20);
@@ -106,12 +106,12 @@ void func_ov001_021982d4(void) {
 
 void func_ov001_0219829c(s32 a) {
     gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a00[a]].mUnk_00 = 1;
-    func_02124a20(data_ov001_021a6a18[a], 0xe, gTimeAttackTopMenu->mUnk_00, gTimeAttackTopMenu->mUnk_04);
+    func_02124a20(data_ov001_021a6a18[a], 0xe, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, gTimeAttackTopMenu->mTimeAttackTopMenuSBncl);
 }
 
 void func_ov001_02198264(s32 a) {
     gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a00[a]].mUnk_00 = 0;
-    func_02124a20(data_ov001_021a6a18[a], 0xf, gTimeAttackTopMenu->mUnk_00, gTimeAttackTopMenu->mUnk_04);
+    func_02124a20(data_ov001_021a6a18[a], 0xf, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, gTimeAttackTopMenu->mTimeAttackTopMenuSBncl);
 }
 
 void InitTimeAttackTopMenu(void *a, void *b, s32 c) {
@@ -138,10 +138,10 @@ void InitTimeAttackTopMenu(void *a, void *b, s32 c) {
     }
     LocateAndQueueTimeAttackTopMenu();
     for (i = 0; i < 3; i++) {
-        func_02124a98(data_ov001_021a6a10[i], 1, gTimeAttackTopMenu->mUnk_00, gTimeAttackTopMenu->mUnk_04);
+        func_02124a98(data_ov001_021a6a10[i], 1, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, gTimeAttackTopMenu->mTimeAttackTopMenuSBncl);
     }
     func_020ae6d4(gTimeAttackTopMenu->mUnk_2c, (void *) gTimeAttackTopMenu->mUnk_30);
-    func_02124ed0(gTimeAttackTopMenu->mHeap, gTimeAttackTopMenu->mUnk_04, NULL, &gTimeAttackTopMenu->mUnk_0c);
+    func_02124ed0(gTimeAttackTopMenu->mHeap, gTimeAttackTopMenu->mTimeAttackTopMenuSBncl, NULL, &gTimeAttackTopMenu->mUnk_0c);
     for (i = 0; i < 3; i++) {
         gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a08[i]].mUnk_04 = 0xe0;
         gTimeAttackTopMenu->mUnk_0c[data_ov001_021a6a10[i]].mUnk_04 = 0xe0;
@@ -223,7 +223,7 @@ void AdvanceTimeAttackTopMenuState3(void) {
         flag2 = TRUE;
     }
     if (flag2 != FALSE) {
-        sel = RectTableFindContaining(gTimeAttackTopMenu->mUnk_08, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
+        sel = RectTableFindContaining(gTimeAttackTopMenu->mTimeAttackTopMenuSBnbl, data_02175628[i].mUnk_48, data_02175628[i].mUnk_4a);
     }
     e = &data_02175628[i];
     bits = e->mUnk_00 & 2;
@@ -365,7 +365,7 @@ s32 AdvanceTimeAttackTopMenu(void) {
             AdvanceTimeAttackTopMenuState5();
             break;
     }
-    func_02124c30(gTimeAttackTopMenu->mUnk_04, gTimeAttackTopMenu->mUnk_00, NULL, (void *) gTimeAttackTopMenu->mUnk_30,
+    func_02124c30(gTimeAttackTopMenu->mTimeAttackTopMenuSBncl, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, NULL, (void *) gTimeAttackTopMenu->mUnk_30,
                   gTimeAttackTopMenu->mUnk_0c);
     if (gTimeAttackTopMenu->mState == 5 && gTimeAttackTopMenu->mUnk_20 >= 10) {
         return gTimeAttackTopMenu->mUnk_34;

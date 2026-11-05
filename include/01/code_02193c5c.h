@@ -14,11 +14,11 @@ typedef struct OptionTopMenu {
     /* 18 */ s32 mUnk_18;
     /* 1c */ void *mUnk_1c;
     /* 20 */ Unk02124b1c *mUnk_20;
-    /* 24 */ struct Unk02021dc8 *mUnk_24;
-    /* 28 */ Ncgr *mUnk_28;
-    /* 2c */ Nclr *mUnk_2c;
-    /* 30 */ void *mUnk_30;
-    /* 34 */ void *mUnk_34;
+    /* 24 */ struct Unk02021dc8 *mOptionTopMenuSNcer;
+    /* 28 */ Ncgr *mOptionTopMenuSNcgr;
+    /* 2c */ Nclr *mOptionTopMenuSONclr;
+    /* 30 */ void *mOptionTopMenuSBncl;
+    /* 34 */ void *mOptionTopMenuSBnbl;
     /* 38 */ void *mOptionMessages;
     /* 3c */ void *mCommonMessages;
 } OptionTopMenu;

@@ -106,13 +106,13 @@ void func_0211d9dc(void) {
     }
     for (i = 0; i < 5; i++) {
         func_0211db30(&buf, i);
-        func_020b44a4(gSelectRaceRule->mUnk_20->mData, buf.mUnk_00, buf.mUnk_04, buf.mUnk_08, buf.mUnk_0c, buf.mUnk_10);
+        func_020b44a4(gSelectRaceRule->mNscr->mData, buf.mUnk_00, buf.mUnk_04, buf.mUnk_08, buf.mUnk_0c, buf.mUnk_10);
     }
     if (gSelectRaceRule->mUnk_7c == 0) {
         func_0211db30(&buf, gSelectRaceRule->mUnk_60);
-        func_020b44a4(gSelectRaceRule->mUnk_20->mData, buf.mUnk_00, buf.mUnk_04, buf.mUnk_08, buf.mUnk_0c, buf.mUnk_12);
+        func_020b44a4(gSelectRaceRule->mNscr->mData, buf.mUnk_00, buf.mUnk_04, buf.mUnk_08, buf.mUnk_0c, buf.mUnk_12);
     }
-    CallQueueAppend(0x1b, 0, gSelectRaceRule->mUnk_20->mData, 0x600);
+    CallQueueAppend(0x1b, 0, gSelectRaceRule->mNscr->mData, 0x600);
 }
 
 void func_0211d910(s16 a) {
@@ -1359,7 +1359,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
         for (j = 0; j < 2; j++) {
             if (!(i == 3 && j == 1)) {
                 e -= func_021243ac(gSelectRaceRule->mHeap, data_0215cd4c[i].mUnk_00[j], gSelectRaceRule->mBnll,
-                                   data_0215cd60[i][j], data_0215cd74[i].h[j], i * 2 + j, gSelectRaceRule->mUnk_00,
+                                   data_0215cd60[i][j], data_0215cd74[i].h[j], i * 2 + j, gSelectRaceRule->mNcer,
                                    gSelectRaceRule->mBncl, gSelectRaceRule->mUnk_14, e);
             }
         }
@@ -1374,33 +1374,33 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     }
     if (data_021759d0->mUnk_20 != 2) {
         p = gSelectRaceRule;
-        e -= func_021243ac(p->mHeap, 9, p->mBnll, 0x96, 0xf, n + 3, p->mUnk_00, p->mBncl, p->mUnk_14, e);
+        e -= func_021243ac(p->mHeap, 9, p->mBnll, 0x96, 0xf, n + 3, p->mNcer, p->mBncl, p->mUnk_14, e);
         p = gSelectRaceRule;
-        e -= func_021243ac(p->mHeap, 0xa, p->mBnll, 0xc8, 0xf, n + 9, p->mUnk_00, p->mBncl, p->mUnk_14, e);
+        e -= func_021243ac(p->mHeap, 0xa, p->mBnll, 0xc8, 0xf, n + 9, p->mNcer, p->mBncl, p->mUnk_14, e);
         p = gSelectRaceRule;
         func_0212426c(1, 0xa, gSelectRaceRule->mBnll, GetBmgEntry(p->mUnk_1c, data_0216dc0c[3][2]), p->mBncl,
                       p->mUnk_14);
     } else {
         p = gSelectRaceRule;
-        e -= func_021243ac(p->mHeap, 0xa, p->mBnll, 0xc8, 0xf, n + 3, p->mUnk_00, p->mBncl, p->mUnk_14, e);
+        e -= func_021243ac(p->mHeap, 0xa, p->mBnll, 0xc8, 0xf, n + 3, p->mNcer, p->mBncl, p->mUnk_14, e);
         p = gSelectRaceRule;
         func_0212426c(1, 0xa, gSelectRaceRule->mBnll, GetBmgEntry(p->mUnk_1c, data_0216dc0c[3][2]), p->mBncl,
                       p->mUnk_14);
     }
     p = gSelectRaceRule;
-    e -= func_021243ac(p->mHeap, 0xc, p->mBnll, 0x37, 0xf, n + 0xb, p->mUnk_00, p->mBncl, p->mUnk_14, e);
+    e -= func_021243ac(p->mHeap, 0xc, p->mBnll, 0x37, 0xf, n + 0xb, p->mNcer, p->mBncl, p->mUnk_14, e);
     p = gSelectRaceRule;
     func_0212426c(1, 0xc, gSelectRaceRule->mBnll, GetBmgEntry(p->mUnk_1c, data_0216dc0c[4][2]), p->mBncl, p->mUnk_14);
     if (data_021759d0->mUnk_20 != 2) {
         p = gSelectRaceRule;
-        e -= func_021243ac(p->mHeap, 0xd, p->mBnll, 0x32, 0xd, 0x29, p->mUnk_00, p->mBncl, p->mUnk_14, e);
+        e -= func_021243ac(p->mHeap, 0xd, p->mBnll, 0x32, 0xd, 0x29, p->mNcer, p->mBncl, p->mUnk_14, e);
         p = gSelectRaceRule;
         func_0212426c(1, 0xd, gSelectRaceRule->mBnll, GetBmgEntry(p->mUnk_18, 4), p->mBncl, p->mUnk_14);
         p = gSelectRaceRule;
-        func_021243ac(p->mHeap, 8, p->mBnll, 0x15, 0xf, 0x1f, p->mUnk_00, p->mBncl, p->mUnk_14, e);
+        func_021243ac(p->mHeap, 8, p->mBnll, 0x15, 0xf, 0x1f, p->mNcer, p->mBncl, p->mUnk_14, e);
     } else {
         p = gSelectRaceRule;
-        func_021243ac(p->mHeap, 0xe, p->mBnll, 0xc8, 0xd, 0x2a, p->mUnk_00, p->mBncl, p->mUnk_14, e);
+        func_021243ac(p->mHeap, 0xe, p->mBnll, 0xc8, 0xd, 0x2a, p->mNcer, p->mBncl, p->mUnk_14, e);
     }
     func_0211d910(0);
     func_0211d844(0);
@@ -1520,9 +1520,9 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     }
     func_0211baec();
     p = gSelectRaceRule;
-    func_02116dd4(p->mHeap, p->mUnk_00, p->mBncl, 0x2a, 0xe, 1);
+    func_02116dd4(p->mHeap, p->mNcer, p->mBncl, 0x2a, 0xe, 1);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_0212b928(gSelectRaceRule->mHeap, gSelectRaceRule->mUnk_10, 9);
+        func_0212b928(gSelectRaceRule->mHeap, gSelectRaceRule->mNclr, 9);
     }
     FrmHeapShrinkInParent(gSelectRaceRule->mHeap);
     func_0211d9dc();

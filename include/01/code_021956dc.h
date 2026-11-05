@@ -18,25 +18,25 @@
 #include "Main/Unknown/code_02060004.h"
 
 typedef struct RecordTAtt {
-    /* 00 */ Ncgr *mUnk_00;
-    /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ Unk0201ea30 *mUnk_08;
+    /* 00 */ Ncgr *mRecordTAttMNcgr;
+    /* 04 */ struct Unk02021dc8 *mRecordTAttMNcer;
+    /* 08 */ Unk0201ea30 *mRecordTAttMBncl;
     /* 0c */ u8 mUnk_0c[4];
-    /* 10 */ Unk0201ea30 *mUnk_10;
-    /* 14 */ Ncgr *mUnk_14;
-    /* 18 */ struct Unk02021dc8 *mUnk_18;
-    /* 1c */ Unk0201ea30 *mUnk_1c;
-    /* 20 */ void *mUnk_20;
-    /* 24 */ Unk0201ea30 *mUnk_24;
+    /* 10 */ Unk0201ea30 *mRecordTAttMBnll;
+    /* 14 */ Ncgr *mRecordTAttSNcgr;
+    /* 18 */ struct Unk02021dc8 *mRecordTAttSNcer;
+    /* 1c */ Unk0201ea30 *mRecordTAttSBncl;
+    /* 20 */ void *mRecordTAttSBnbl;
+    /* 24 */ Unk0201ea30 *mRecordTAttSBnll;
     /* 28 */ void *mUnk_28;
     /* 2c */ void *mUnk_2c;
     /* 30 */ Nclr *mUnk_30;
     /* 34 */ void *mUnk_34;
     /* 38 */ Unk02124b1c *mUnk_38;
     /* 3c */ Unk02124b1c *mUnk_3c;
-    /* 40 */ void *mUnk_40;
-    /* 44 */ void *mUnk_44;
-    /* 48 */ void *mUnk_48;
+    /* 40 */ void *mCommonMessages;
+    /* 44 */ void *mGhostMessages;
+    /* 48 */ void *mRecordMessages;
     /* 4c */ void *mUnk_4c;
     /* 50 */ s32 mState;
     /* 54 */ s32 mNextState;

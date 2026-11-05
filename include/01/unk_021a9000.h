@@ -31,11 +31,11 @@ typedef struct OptionHensyuMenu {
     /* 14 */ s32 mUnk_14;
     /* 18 */ void *mUnk_18;
     /* 1c */ Unk02124b1c *mUnk_1c;
-    /* 20 */ struct Unk02021dc8 *mUnk_20;
-    /* 24 */ Ncgr *mUnk_24;
-    /* 28 */ Nclr *mUnk_28;
-    /* 2c */ void *mUnk_2c;
-    /* 30 */ void *mUnk_30;
+    /* 20 */ struct Unk02021dc8 *mOptionHensyuMenuSNcer;
+    /* 24 */ Ncgr *mOptionHensyuMenuSNcgr;
+    /* 28 */ Nclr *mOptionHensyuMenuSONclr;
+    /* 2c */ void *mOptionHensyuMenuSBncl;
+    /* 30 */ void *mOptionHensyuMenuSBnbl;
 } OptionHensyuMenu;
 
 // Allocated by InitOptionStates and held in gOptionStates.
@@ -220,9 +220,9 @@ extern char data_ov001_021a94b0[];
 extern char data_ov001_021a94bc[];
 extern char data_ov001_021a94d0[];
 typedef struct TimeAttackTopMenu {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ void *mUnk_08;
+    /* 00 */ struct Unk02021dc8 *mTimeAttackTopMenuSNcer;
+    /* 04 */ void *mTimeAttackTopMenuSBncl;
+    /* 08 */ void *mTimeAttackTopMenuSBnbl;
     /* 0c */ Unk02124b1c *mUnk_0c;
     /* 10 */ void *mUnk_10;
     /* 14 */ void *mHeap;

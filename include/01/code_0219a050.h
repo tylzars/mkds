@@ -4,16 +4,16 @@
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c, Unk0201ea30
 
 typedef struct RecordTopMenu {
-    /* 0x00 */ struct Unk02021dc8 *mUnk_00;
-    /* 0x04 */ Unk0201ea30 *mUnk_04;
-    /* 0x08 */ void *mUnk_08;
-    /* 0x0c */ struct Unk02021dc8 *mUnk_0c;
-    /* 0x10 */ void *mUnk_10;
-    /* 0x14 */ void *mUnk_14;
+    /* 0x00 */ struct Unk02021dc8 *mRecordTopMenuMNcer;
+    /* 0x04 */ Unk0201ea30 *mRecordTopMenuMBncl;
+    /* 0x08 */ void *mRecordTopMenuMBnll;
+    /* 0x0c */ struct Unk02021dc8 *mRecordTopMenuSNcer;
+    /* 0x10 */ void *mRecordTopMenuSBncl;
+    /* 0x14 */ void *mRecordTopMenuSBnbl;
     /* 0x18 */ Unk02124b1c *mUnk_18;
     /* 0x1c */ Unk02124b1c *mUnk_1c;
     /* 0x20 */ void *mUnk_20;
-    /* 0x24 */ void *mUnk_24;
+    /* 0x24 */ void *mRecordMessages;
     /* 0x28 */ void *mUnk_28;
     /* 0x2c */ void *mHeap;
     /* 0x30 */ s32 mState;

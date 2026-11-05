@@ -189,7 +189,7 @@ typedef struct RecordVS {
     /* 38 */ void *mRecordVSSBnll;
     /* 3c */ Unk02124b1c *mUnk_3c;
     /* 40 */ s32 mUnk_40;
-    /* 44 */ void *mUnk_44;
+    /* 44 */ void *mRecordMessages;
     /* 48 */ void *mUnk_48;
     /* 4c */ s32 mState;
     /* 50 */ s32 mNextState;
@@ -248,18 +248,18 @@ typedef struct Unk0217d360 {
 
 // Object behind gSelectCup.
 typedef struct SelectCup {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ Unk0201ea30 *mUnk_04;
-    /* 08 */ void *mUnk_08;
-    /* 0c */ struct Unk02021dc8 *mUnk_0c;
-    /* 10 */ Unk0201ea30 *mUnk_10;
-    /* 14 */ Unk0201ea30 *mUnk_14;
-    /* 18 */ void *mUnk_18;
+    /* 00 */ struct Unk02021dc8 *mSelectCupCourseMNcer;
+    /* 04 */ Unk0201ea30 *mSelectCupCourseTaOrVsMBncl; /* ta_m file when mMode == 0, vs_m otherwise */
+    /* 08 */ void *mSelectCupCourseTaOrVsMBnll; /* ta_m file when mMode == 0, vs_m otherwise */
+    /* 0c */ struct Unk02021dc8 *mSelectCupMNcer;
+    /* 10 */ Unk0201ea30 *mSelectCupMBncl;
+    /* 14 */ Unk0201ea30 *mSelectCupMBnbl;
+    /* 18 */ void *mSelectCupMBnll;
     /* 1c */ Unk02124b1c *mUnk_1c;
     /* 20 */ Unk02124b1c *mUnk_20;
     /* 24 */ void *mUnk_24;
-    /* 28 */ void *mUnk_28;
-    /* 2c */ void *mUnk_2c;
+    /* 28 */ void *mCommonMessages;
+    /* 2c */ void *mGhostMessages;
     /* 30 */ void *mHeap;
     /* 34 */ s32 mState;
     /* 38 */ s32 mNextState;
@@ -282,15 +282,15 @@ typedef struct SelectCup {
 
 // Object behind gSelectRaceRule.
 typedef struct SelectRaceRule {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
+    /* 00 */ struct Unk02021dc8 *mNcer;
     /* 04 */ Unk0201ea30 *mBncl;
     /* 08 */ Unk0201ea30 *mBnbl;
     /* 0c */ void *mBnll;
-    /* 10 */ struct Nclr *mUnk_10;
+    /* 10 */ struct Nclr *mNclr; /* the _o palette */
     /* 14 */ Unk02124b1c *mUnk_14;
     /* 18 */ void *mUnk_18;
     /* 1c */ void *mUnk_1c;
-    /* 20 */ struct Nscr *mUnk_20;
+    /* 20 */ struct Nscr *mNscr; /* multi_simple_s (mMode == 3) or s_menu, two files */
     /* 24 */ void *mUnk_24;
     /* 28 */ void *mHeap;
     /* 2c */ s32 mMode;
@@ -576,7 +576,7 @@ typedef struct Keyboard {
     /* 9c */ Unk0201ea30 *mBncls[2];
     /* a4 */ Unk0201ea30 *mBnbls[2];
     /* ac */ void *mBnlls[2];
-    /* b4 */ void *mUnk_b4[2];
+    /* b4 */ void *mNscrs[2]; /* [0] flame02, [1] flame01 */
     /* bc */ void *mUnk_bc;
     /* c0 */ void *mUnk_c0;
 } Keyboard;

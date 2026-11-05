@@ -821,17 +821,17 @@ void InitRecordVS(void *a) {
     func_02124ed0(a, gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMBnll, &gRecordVS->mUnk_14);
     func_02124ed0(a, gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientBnll, &gRecordVS->mUnk_24);
     func_02124ed0(a, gRecordVS->mRecordVSSBncl, gRecordVS->mRecordVSSBnll, &gRecordVS->mUnk_3c);
-    gRecordVS->mUnk_44 = FindSceneFile("record.bmg");
+    gRecordVS->mRecordMessages = FindSceneFile("record.bmg");
     r = 0x8000;
     r -= func_021243ac(a, 0, gRecordVS->mRecordVSMBnll, 0x8c, 0x10, 0, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14, r);
     r -= func_021243ac(a, 1, gRecordVS->mRecordVSMBnll, 0xaa, 0xe, 1, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14, r);
-    func_0212426c(0, 1, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mUnk_44, 0), gRecordVS->mRecordVSMBncl,
+    func_0212426c(0, 1, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mRecordMessages, 0), gRecordVS->mRecordVSMBncl,
                   gRecordVS->mUnk_14);
     r -= func_021243ac(a, 0xb, gRecordVS->mRecordVSMBnll, 0x96, 0xe, 2, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14, r);
-    func_0212426c(0, 0xb, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mUnk_44, 1), gRecordVS->mRecordVSMBncl,
+    func_0212426c(0, 0xb, gRecordVS->mRecordVSMBnll, GetBmgEntry(gRecordVS->mRecordMessages, 1), gRecordVS->mRecordVSMBncl,
                   gRecordVS->mUnk_14);
     r -= func_021243ac(a, 0xc, gRecordVS->mRecordVSMBnll, 0x46, 0x10, 3, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14, r);
@@ -847,17 +847,17 @@ void InitRecordVS(void *a) {
     }
     for (i = 0; i < 3; i++) {
         func_0212426c(0, data_0215c410[0][i], gRecordVS->mRecordVSMBnll,
-                      GetBmgEntry(gRecordVS->mUnk_44, data_0215c3b4[i]), gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14);
+                      GetBmgEntry(gRecordVS->mRecordMessages, data_0215c3b4[i]), gRecordVS->mRecordVSMBncl, gRecordVS->mUnk_14);
     }
     r -= func_021243ac(a, 0, gRecordVS->mRecordVSMTransientBnll, 0x8c, 0x10, 0, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMTransientBncl, gRecordVS->mUnk_24, r);
     r -= func_021243ac(a, 1, gRecordVS->mRecordVSMTransientBnll, 0x70, 0x10, 1, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMTransientBncl, gRecordVS->mUnk_24, r);
-    func_0212426c(0, 1, gRecordVS->mRecordVSMTransientBnll, GetBmgEntry(gRecordVS->mUnk_44, 0xb),
+    func_0212426c(0, 1, gRecordVS->mRecordVSMTransientBnll, GetBmgEntry(gRecordVS->mRecordMessages, 0xb),
                   gRecordVS->mRecordVSMTransientBncl, gRecordVS->mUnk_24);
     r -= func_021243ac(a, 0xe, gRecordVS->mRecordVSMTransientBnll, 0xe0, 0x38, 2, gRecordVS->mRecordVSMNcer,
                        gRecordVS->mRecordVSMTransientBncl, gRecordVS->mUnk_24, r);
-    func_0212426c(0, 0xe, gRecordVS->mRecordVSMTransientBnll, GetBmgEntry(gRecordVS->mUnk_44, 0xc),
+    func_0212426c(0, 0xe, gRecordVS->mRecordVSMTransientBnll, GetBmgEntry(gRecordVS->mRecordMessages, 0xc),
                   gRecordVS->mRecordVSMTransientBncl, gRecordVS->mUnk_24);
     for (i = 0; i < 12; i++) {
         r -= func_021243ac(a, data_0215c478[i], gRecordVS->mRecordVSMTransientBnll, data_0215c490[i], data_0215c460[i],
@@ -871,7 +871,7 @@ void InitRecordVS(void *a) {
     }
     func_021243ac(a, 5, gRecordVS->mRecordVSSBnll, 0x98, 0x10, 0x19, gRecordVS->mRecordVSSNcer,
                   gRecordVS->mRecordVSSBncl, gRecordVS->mUnk_3c, r);
-    func_0212426c(1, 5, gRecordVS->mRecordVSSBnll, GetBmgEntry(gRecordVS->mUnk_44, 3), gRecordVS->mRecordVSSBncl,
+    func_0212426c(1, 5, gRecordVS->mRecordVSSBnll, GetBmgEntry(gRecordVS->mRecordMessages, 3), gRecordVS->mRecordVSSBncl,
                   gRecordVS->mUnk_3c);
     for (i = 0; i < 5; i++) {
         func_02124a98(data_0215c3e0[i], 0, gRecordVS->mRecordVSSNcer, gRecordVS->mRecordVSSBncl);

@@ -72,7 +72,7 @@ void AdvanceSelectCupState3(void) {
     i = UNK_02175628_INDEX_8;
     func_02119d78();
     if (func_02119340_inline(i) != 0) {
-        a = RectTableFindContaining(gSelectCup->mUnk_14, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00 + 0x20);
+        a = RectTableFindContaining(gSelectCup->mSelectCupMBnbl, data_02175670[i].mUnk_00, data_02175672[i].mUnk_00 + 0x20);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) != 0 ||
         (func_02119340_inline(i) != 0 &&
@@ -266,7 +266,7 @@ void AdvanceSelectCupState8(void) {
     func_020ae4c0(1, 0, 0x100, gSelectCup->mStateFrames, 10);
     v = func_020ae4c0(1, 0, -0xc0, gSelectCup->mStateFrames, 10);
     if (a != FALSE) {
-        w = gSelectCup->mUnk_04->mUnk_06;
+        w = gSelectCup->mSelectCupCourseTaOrVsMBncl->mUnk_06;
         gSelectCup->mBg0Offset = v;
         gSelectCup->mUnk_1c[0].mUnk_06 = v;
         gSelectCup->mUnk_1c[2].mUnk_06 = v;
@@ -282,7 +282,7 @@ void AdvanceSelectCupState8(void) {
         gSelectCup->mUnk_1c[w + 5].mUnk_06 = v;
     }
     if (gSelectCup->mResult != 2) {
-        w = gSelectCup->mUnk_10->mUnk_06;
+        w = gSelectCup->mSelectCupMBncl->mUnk_06;
         gSelectCup->mBg3Offset = v - 0x20;
         gSelectCup->mUnk_20[0x14].mUnk_06 = v - 0x20;
         gSelectCup->mUnk_20[0x13].mUnk_06 = v - 0x20;
@@ -345,9 +345,9 @@ s32 AdvanceSelectCup(void) {
             }
             gSelectCup->mUnk_60 = 0;
         }
-        func_02124c30(gSelectCup->mUnk_04, gSelectCup->mUnk_00, gSelectCup->mUnk_08, gSelectCup->mUnk_64,
+        func_02124c30(gSelectCup->mSelectCupCourseTaOrVsMBncl, gSelectCup->mSelectCupCourseMNcer, gSelectCup->mSelectCupCourseTaOrVsMBnll, gSelectCup->mUnk_64,
                       gSelectCup->mUnk_1c);
-        func_02124c30(gSelectCup->mUnk_10, gSelectCup->mUnk_0c, gSelectCup->mUnk_18, gSelectCup->mUnk_68,
+        func_02124c30(gSelectCup->mSelectCupMBncl, gSelectCup->mSelectCupMNcer, gSelectCup->mSelectCupMBnll, gSelectCup->mUnk_68,
                       gSelectCup->mUnk_20);
     } else {
         func_0211f39c();

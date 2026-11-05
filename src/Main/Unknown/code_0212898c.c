@@ -345,7 +345,7 @@ void func_02129ea4(void) {
 
 void func_02129e78(void) {
     u8 *v1;
-    v1 = gKeyboard->mUnk_b4[gKeyboard->mUnk_04];
+    v1 = gKeyboard->mNscrs[gKeyboard->mUnk_04];
     CallQueueAppend((u32) 0x1b, (u32) 0, v1 + 0xc, (u32) (*(u32 *) (v1 + 8)));
 }
 
@@ -383,9 +383,9 @@ void func_02129cbc(void) {
     func_0200ee74(v2->mData, v2->mDataSize);
     MemCopyWordsToG2sBg3CntBits2To5Address(v2->mData, 0, v2->mDataSize);
     v1 = FindSceneFile(data_0216ea14);
-    LoadNscrData((Nscr **) &gKeyboard->mUnk_b4[0], v1);
+    LoadNscrData((Nscr **) &gKeyboard->mNscrs[0], v1);
     v1 = FindSceneFile(data_0216ea30);
-    LoadNscrData((Nscr **) &gKeyboard->mUnk_b4[1], v1);
+    LoadNscrData((Nscr **) &gKeyboard->mNscrs[1], v1);
     v1 = FindSceneFile(data_0216ea4c);
     LoadNclrData(&v3, v1);
     func_0200ee74(v3->mData, 0x80);
