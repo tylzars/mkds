@@ -13,7 +13,7 @@ typedef struct Unk02025bb4Entry {
     /* 10 */ u8 mUnk_10[0x30];
 } Unk02025bb4Entry;
 
-void RectTableSetEntryXY(int id, int x, int y, void *graphics);
+void RectTableSetEntryXY(int id, int x, int y, Unk0201ea30 *graphics);
 void func_02025bf0(u32 a, void *b, Unk0201ea30 *c);
 void func_02025c1c(u32 a, void *b, Unk0201ea30 *c);
 void func_02025c48(u32 a, u32 b, Unk0201ea30 *c);

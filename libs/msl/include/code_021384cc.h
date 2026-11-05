@@ -21,6 +21,8 @@ int vsscanf(const char *a, const char *b, char *c);
 
 #include "code_0213a460.h"
 
+typedef struct ScanStringSource ScanStringSource;
+
 int ScanStringSourceOp(void *a, int b, int c);
-int ScanWithSourceFunc(Unk02138618Func f, void *a, const char *s, char *b);
+int ScanWithSourceFunc(Unk02138618Func f, ScanStringSource *a, const char *s, char *b);
 const char *ScanParseSpec(const char *a, ScanSpec *b);

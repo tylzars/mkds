@@ -45,7 +45,7 @@ void func_02025bf0(u32 a, void *b, Unk0201ea30 *c) {
     d->mUnk_0e = ((v1[1] << 0x14) >> 0x14);
 }
 
-void RectTableSetEntryXY(int id, int x, int y, void *graphics) {
+void RectTableSetEntryXY(int id, int x, int y, Unk0201ea30 *graphics) {
     short *entry = (s16 *) RectTableGetEntry(graphics, id);
     entry[0] = (entry[0] & 0xfffff000U) | (x & 0xfff);
     entry[1] = (entry[1] & 0xfffff000U) | (y & 0xfff);

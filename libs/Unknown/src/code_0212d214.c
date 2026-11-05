@@ -715,7 +715,7 @@ void func_0212d968(void) {
     PxiCommandWaitForSequence(v);
 }
 
-void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, void *p, u32 flag) {
+void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, HeapStack *p, u32 flag) {
     a->mUnk_8c = 0;
     a->mUnk_84 = 0;
     a->mUnk_88 = 0;

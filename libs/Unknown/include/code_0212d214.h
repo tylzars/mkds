@@ -154,7 +154,7 @@ struct Unk0212d5f8 *func_0212d5d0(void);
 Unk0212d5f8 *func_0212d5e0(Unk0212d5f8 *a);
 void func_0212d5f8(Unk0212d5f8 *a, void *buf);
 u32 func_0212d6c4(Unk0212d5f8 *a, HeapStack *p, u32 flag);
-void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, void *p, u32 flag);
+void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, HeapStack *p, u32 flag);
 void func_0212da1c(LinkedList *arg0);
 u32 func_0212dd64(Unk02021968 *a, Unk02021968 *b, u32 c, u32 d, HeapStack *e);
 u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, HeapStack *d);

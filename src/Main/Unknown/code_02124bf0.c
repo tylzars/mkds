@@ -99,7 +99,7 @@ void func_02124c30(Unk0201ea30 *a, Unk02021dc8 *b, Unk0201ea30 *c, void *d, Unk0
     }
 }
 
-void func_02124bf0(Unk0201ea30 *a, void *b, void *c, void *d, void *e) {
+void func_02124bf0(Unk0201ea30 *a, Unk02021dc8 *b, void *c, void *d, void *e) {
     s32 i;
     for (i = ((Unk0201ea30 *) a)->mUnk_06 - 1; i >= 0; i--) {
         func_02124c70(i, b, a, c, d, (Unk02124b1c *) e + i, 0);

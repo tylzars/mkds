@@ -1206,7 +1206,7 @@ void func_020790e0(void *a, s32 b) {
 
 #pragma thumb on
 
-void func_02079078(void *a, void *b, void *c, Unk020136f0 *d, Unk020136f0 *e, void *f) {
+void func_02079078(void *a, Unk02084b2c *b, void *c, Unk020136f0 *d, Unk020136f0 *e, void *f) {
     Unk0201290c *v2;
     u32 v3;
     void *v1;
@@ -1220,7 +1220,7 @@ void func_02079078(void *a, void *b, void *c, Unk020136f0 *d, Unk020136f0 *e, vo
     func_02087f84(c, 0);
 }
 
-void func_02079038(void *a, Unk020136f0 *b, Unk020136f0 *c) {
+void func_02079038(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
     Unk0201290c *v1;
     u32 v2;
     v1 = func_02084d3c(a, b, c);
@@ -1230,7 +1230,7 @@ void func_02079038(void *a, Unk020136f0 *b, Unk020136f0 *c) {
     func_02013468(v1, v2, 0);
 }
 
-void func_02079014(void *a, Unk020136f0 *b, Unk020136f0 *c) {
+void func_02079014(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
     Unk0201290c *v1;
     v1 = func_02084d3c(a, b, c);
     func_020849c0(a, 3);

@@ -176,7 +176,7 @@ static inline int func_02138618_inline(int c) {
     return (c < 0 || c >= 0x80) ? 0 : (data_0215d284[c] & 0x100);
 }
 
-int ScanWithSourceFunc(Unk02138618Func fn, void *a, const char *s, char *v) {
+int ScanWithSourceFunc(Unk02138618Func fn, ScanStringSource *a, const char *s, char *v) {
     int k;
     int s32;
     long long s64;

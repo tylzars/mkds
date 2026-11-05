@@ -444,7 +444,7 @@ void func_0212426c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk021
     func_0212428c(a, b, c, d, e, f, 0, -1);
 }
 
-void func_02124248(s32 a, s32 b, void *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g) {
+void func_02124248(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g) {
     func_0212428c(a, b, c, d, e, f, 0, g);
 }
 
@@ -482,7 +482,7 @@ BOOL func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d) {
     return FALSE;
 }
 
-void func_02124140(u32 a, u32 b, void *c, Unk02124b1c *d, Unk0201ea30 *e) {
+void func_02124140(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e) {
     Unk02124b1c *r;
     Unk02124b1c *s;
     s32 i;

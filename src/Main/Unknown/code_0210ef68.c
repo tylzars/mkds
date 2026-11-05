@@ -6,7 +6,7 @@
 #include "code_02004d80.h"
 #include "Main/Unknown/code_0210e33c.h"
 
-u32 func_0210efcc(Unk0212d5f8 *a, const u8 *b, void *c, u32 d) {
+u32 func_0210efcc(Unk0212d5f8 *a, const u8 *b, HeapStack *c, u32 d) {
     a->mUnk_8c = NULL;
     a->mUnk_84 = NULL;
     a->mUnk_88 = NULL;
