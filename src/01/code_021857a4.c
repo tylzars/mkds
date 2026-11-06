@@ -35,7 +35,7 @@ void func_ov001_02185b1c(void) {
         func_ov001_02185ad8(0x19);
         GX_SetGraphicsMode(1, 0, 0);
         func_ov001_02185abc(0x16);
-        GxsDispCntBits0To2Write(0);
+        GXS_SetGraphicsMode(0);
     }
     WriteMissionRunLVselBg0Offset();
 }
@@ -68,7 +68,7 @@ void func_ov001_02185a88(void) {
         func_ov001_02185ad8(0x1b);
         GX_SetGraphicsMode(1, 0, 0);
         func_ov001_02185abc(0x16);
-        GxsDispCntBits0To2Write(0);
+        GXS_SetGraphicsMode(0);
     }
     func_ov001_0219f8ec();
 }
@@ -89,7 +89,7 @@ void func_ov001_02185a28(void) {
         func_ov001_021856a8(0x19);
         GX_SetGraphicsMode(1, 0, 0);
         func_ov001_0218568c(0x16);
-        GxsDispCntBits0To2Write(0);
+        GXS_SetGraphicsMode(0);
     }
     WriteTimeAttackTopMenuBg0Offset();
 }
@@ -124,7 +124,7 @@ void func_ov001_02185980(void) {
         func_ov001_021856a8(0xb);
         GX_SetGraphicsMode(1, 0, 1);
         func_ov001_0218568c(8);
-        GxsDispCntBits0To2Write(0);
+        GXS_SetGraphicsMode(0);
     }
     func_ov001_0218568c(0x12);
     func_02026058();
@@ -166,7 +166,7 @@ void func_ov001_021858c8(void) {
         func_ov001_021856a8(0x19);
         GX_SetGraphicsMode(1, 0, 0);
         func_ov001_0218568c(0x16);
-        GxsDispCntBits0To2Write(0);
+        GXS_SetGraphicsMode(0);
     }
     func_021173e4();
 }
@@ -202,7 +202,7 @@ void func_ov001_02185828(void) {
         func_ov001_021856a8(0x19);
         GX_SetGraphicsMode(1, 0, 0);
         func_ov001_0218568c(0x1e);
-        GxsDispCntBits0To2Write(0);
+        GXS_SetGraphicsMode(0);
     }
     func_02118e30();
 }

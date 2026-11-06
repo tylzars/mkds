@@ -65,8 +65,8 @@ void func_0203907c(void) {
     data_021755a8.mUnk_04 = 0;
     data_021755a8.mUnk_06 = 0;
     data_021755a8.mUnk_08 = 0x10;
-    MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
-    MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
+    GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
+    GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
 }
 
 void func_02039044(void) {
@@ -611,7 +611,7 @@ void func_02037abc(void *a) {
     data_02175614.mUnk_00;
     GX_SetGraphicsMode(p->mUnk_06, p->mUnk_08, p->mUnk_0a);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (p->mUnk_02 << 8);
-    GxsDispCntBits0To2Write(p->mUnk_0c);
+    GXS_SetGraphicsMode(p->mUnk_0c);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (p->mUnk_04 << 8);
     if (p->mUnk_0a == 1) {
         G3X_Init();
@@ -808,10 +808,10 @@ void func_02037850(void) {
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = OS_GetTick();
     if (c != data_021755b4.mUnk_08) {
-        MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
+        GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
     }
     if (d != data_021755a8.mUnk_08) {
-        MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
+        GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
     }
     if (data_usa_02175584 != NULL) {
         data_usa_02175584(2);
@@ -859,10 +859,10 @@ void func_02037658(s32 a) {
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = OS_GetTick();
     if (c != data_021755b4.mUnk_08) {
-        MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
+        GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
     }
     if (d != data_021755a8.mUnk_08) {
-        MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
+        GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
     }
     if (data_usa_02175584 != NULL) {
         data_usa_02175584(2);
@@ -902,10 +902,10 @@ void func_02037498(s32 a) {
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = OS_GetTick();
     if (c != data_021755b4.mUnk_08) {
-        MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
+        GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
     }
     if (d != data_021755a8.mUnk_08) {
-        MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
+        GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
     }
     if (data_usa_02175584 != NULL) {
         data_usa_02175584(2);
@@ -995,8 +995,8 @@ void func_02036c90(void) {
     data_021755a8.mUnk_04 = 0;
     data_021755a8.mUnk_06 = 0;
     data_021755a8.mUnk_08 = 0;
-    MasterBrightWrite((u16 *) 0x400006c, data_021755b4.mUnk_08);
-    MasterBrightWrite((u16 *) 0x400106c, data_021755a8.mUnk_08);
+    GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
+    GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
 }
 
 u32 func_02036c5c(void) {

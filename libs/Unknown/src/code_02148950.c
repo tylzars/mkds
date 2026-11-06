@@ -14,40 +14,40 @@
 
 u8 gDispOn[4] = {1, 0, 0, 0};
 
-void WriteVramControlDirect(u32 a) {
-    if (a & 0x1) {
+void GX_VRAMCNT_SetLCDC_(u32 lcdc) {
+    if (lcdc & 0x1) {
         *(vu8 *) 0x4000240 = 0x80;
     }
-    if (a & 0x2) {
+    if (lcdc & 0x2) {
         *(vu8 *) 0x4000241 = 0x80;
     }
-    if (a & 0x4) {
+    if (lcdc & 0x4) {
         *(vu8 *) 0x4000242 = 0x80;
     }
-    if (a & 0x8) {
+    if (lcdc & 0x8) {
         *(vu8 *) 0x4000243 = 0x80;
     }
-    if (a & 0x10) {
+    if (lcdc & 0x10) {
         *(vu8 *) 0x4000244 = 0x80;
     }
-    if (a & 0x20) {
+    if (lcdc & 0x20) {
         *(vu8 *) 0x4000245 = 0x80;
     }
-    if (a & 0x40) {
+    if (lcdc & 0x40) {
         *(vu8 *) 0x4000246 = 0x80;
     }
-    if (a & 0x80) {
+    if (lcdc & 0x80) {
         *(vu8 *) 0x4000248 = 0x80;
     }
-    if (a & 0x100) {
+    if (lcdc & 0x100) {
         *(vu8 *) 0x4000249 = 0x80;
     }
 }
 
-void GX_SetBankForBG(s32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[1]) & ~a;
-    ((u16 *) gVramBankGroups)[1] = a;
-    switch (a) {
+void GX_SetBankForBG(s32 bg) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[1]) & ~bg;
+    ((u16 *) gVramBankGroups)[1] = bg;
+    switch (bg) {
         case 8:
             *(vu8 *) 0x4000243 = 0x81;
             break;
@@ -111,13 +111,13 @@ void GX_SetBankForBG(s32 a) {
             *(vu8 *) 0x4000246 = 0x81;
             break;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForOBJ(s32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[2]) & ~a;
-    ((u16 *) gVramBankGroups)[2] = a;
-    switch (a) {
+void GX_SetBankForOBJ(s32 obj) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[2]) & ~obj;
+    ((u16 *) gVramBankGroups)[2] = obj;
+    switch (obj) {
         case 0x40:
             *(vu8 *) 0x4000246 = 0x82;
             break;
@@ -148,13 +148,13 @@ void GX_SetBankForOBJ(s32 a) {
             *(vu8 *) 0x4000245 = 0x82;
             break;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForBGExtPltt(s32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[7]) & ~a;
-    ((u16 *) gVramBankGroups)[7] = a;
-    switch (a) {
+void GX_SetBankForBGExtPltt(s32 bgExtPltt) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[7]) & ~bgExtPltt;
+    ((u16 *) gVramBankGroups)[7] = bgExtPltt;
+    switch (bgExtPltt) {
         case 0:
             *(vu32 *) 0x4000000 &= ~0x40000000;
             break;
@@ -173,13 +173,13 @@ void GX_SetBankForBGExtPltt(s32 a) {
             *(vu32 *) 0x4000000 |= 0x40000000;
             break;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForOBJExtPltt(u32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[8]) & ~a;
-    ((u16 *) gVramBankGroups)[8] = a;
-    switch (a) {
+void GX_SetBankForOBJExtPltt(u32 objExtPltt) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[8]) & ~objExtPltt;
+    ((u16 *) gVramBankGroups)[8] = objExtPltt;
+    switch (objExtPltt) {
         case 0x20:
             *(vu32 *) 0x4000000 |= 0x80000000;
             *(vu8 *) 0x4000245 = 0x85;
@@ -192,17 +192,17 @@ void GX_SetBankForOBJExtPltt(u32 a) {
             *(vu32 *) 0x4000000 &= ~0x80000000;
             break;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForTex(u32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[4]) & ~a;
-    ((u16 *) gVramBankGroups)[4] = a;
-    if (a == 0) {
+void GX_SetBankForTex(u32 tex) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[4]) & ~tex;
+    ((u16 *) gVramBankGroups)[4] = tex;
+    if (tex == 0) {
         *(vu16 *) 0x4000060 &= 0xcffe;
     } else {
         *(vu16 *) 0x4000060 = (*(vu16 *) 0x4000060 & ~0x3000) | 0x1;
-        switch (a) {
+        switch (tex) {
             case 5:
                 *(vu8 *) 0x4000240 = 0x83;
                 *(vu8 *) 0x4000242 = 0x8b;
@@ -251,13 +251,13 @@ void GX_SetBankForTex(u32 a) {
                 break;
         }
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForTexPltt(s32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[5]) & ~a;
-    ((u16 *) gVramBankGroups)[5] = a;
-    switch (a) {
+void GX_SetBankForTexPltt(s32 texPltt) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[5]) & ~texPltt;
+    ((u16 *) gVramBankGroups)[5] = texPltt;
+    switch (texPltt) {
         case 0:
             break;
         case 0x40:
@@ -276,13 +276,13 @@ void GX_SetBankForTexPltt(s32 a) {
             *(vu8 *) 0x4000244 = 0x83;
             break;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForClearImage(u32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[6]) & ~a;
-    ((u16 *) gVramBankGroups)[6] = a;
-    switch (a) {
+void GX_SetBankForClearImage(u32 clrImg) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[6]) & ~clrImg;
+    ((u16 *) gVramBankGroups)[6] = clrImg;
+    switch (clrImg) {
         case 3:
             *(vu8 *) 0x4000240 = 0x93;
         case 2:
@@ -307,13 +307,13 @@ void GX_SetBankForClearImage(u32 a) {
             *(vu16 *) 0x4000060 |= 0x4000;
             break;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForARM7(s32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[3]) & ~a;
-    ((u16 *) gVramBankGroups)[3] = a;
-    switch (a) {
+void GX_SetBankForARM7(s32 arm7) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[3]) & ~arm7;
+    ((u16 *) gVramBankGroups)[3] = arm7;
+    switch (arm7) {
         case 0:
             break;
         case 12:
@@ -327,18 +327,18 @@ void GX_SetBankForARM7(s32 a) {
             *(vu8 *) 0x4000243 = 0x82;
             break;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForLCDC(u32 a) {
-    ((u16 *) gVramBankGroups)[0] = ((u16 *) gVramBankGroups)[0] | a;
-    WriteVramControlDirect(a);
+void GX_SetBankForLCDC(u32 lcdc) {
+    ((u16 *) gVramBankGroups)[0] = ((u16 *) gVramBankGroups)[0] | lcdc;
+    GX_VRAMCNT_SetLCDC_(lcdc);
 }
 
-void GX_SetBankForSubBG(s32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[9]) & ~a;
-    ((u16 *) gVramBankGroups)[9] = a;
-    switch (a) {
+void GX_SetBankForSubBG(s32 subBg) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[9]) & ~subBg;
+    ((u16 *) gVramBankGroups)[9] = subBg;
+    switch (subBg) {
         case 0:
             break;
         case 4:
@@ -350,14 +350,14 @@ void GX_SetBankForSubBG(s32 a) {
             *(vu8 *) 0x4000248 = 0x81;
             break;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForSubOBJ(u32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[10]) & ~a;
-    ((u16 *) gVramBankGroups)[10] = a;
-    if (a != 0) {
-        switch (a) {
+void GX_SetBankForSubOBJ(u32 subObj) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[10]) & ~subObj;
+    ((u16 *) gVramBankGroups)[10] = subObj;
+    if (subObj != 0) {
+        switch (subObj) {
             case 0x100:
                 *(vu8 *) 0x4000249 = 0x82;
                 break;
@@ -366,288 +366,225 @@ void GX_SetBankForSubOBJ(u32 a) {
                 break;
         }
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForSubBGExtPltt(u32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[11]) & ~a;
-    ((u16 *) gVramBankGroups)[11] = a;
-    if (a != 0) {
-        if (a == 0x80) {
+void GX_SetBankForSubBGExtPltt(u32 subBgExtPltt) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[11]) & ~subBgExtPltt;
+    ((u16 *) gVramBankGroups)[11] = subBgExtPltt;
+    if (subBgExtPltt != 0) {
+        if (subBgExtPltt == 0x80) {
             *(vu32 *) 0x4001000 |= 0x40000000;
             *(vu8 *) 0x4000248 = 0x82;
         }
     } else {
         *(vu32 *) 0x4001000 &= ~0x40000000;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-void GX_SetBankForSubOBJExtPltt(u32 a) {
-    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[12]) & ~a;
-    ((u16 *) gVramBankGroups)[12] = a;
-    if (a != 0) {
-        if (a == 0x100) {
+void GX_SetBankForSubOBJExtPltt(u32 subObjExtPltt) {
+    ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[12]) & ~subObjExtPltt;
+    ((u16 *) gVramBankGroups)[12] = subObjExtPltt;
+    if (subObjExtPltt != 0) {
+        if (subObjExtPltt == 0x100) {
             *(vu32 *) 0x4001000 |= 0x80000000;
             *(vu8 *) 0x4000249 = 0x83;
         }
     } else {
         *(vu32 *) 0x4001000 &= ~0x80000000;
     }
-    WriteVramControlDirect(((u16 *) gVramBankGroups)[0]);
+    GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
 
-u16 SetVramBankGroupDirect(u16 *p) {
-    u16 v;
+u16 resetBankForX_(u16 *group) {
+    u16 mask;
 
-    v = *p;
-    *p = 0;
-    ((u16 *) gVramBankGroups)[0] = ((u16 *) gVramBankGroups)[0] | v;
-    WriteVramControlDirect(v);
-    return v;
+    mask = *group;
+    *group = 0;
+    ((u16 *) gVramBankGroups)[0] = ((u16 *) gVramBankGroups)[0] | mask;
+    GX_VRAMCNT_SetLCDC_(mask);
+    return mask;
 }
 
 u16 GX_ResetBankForBGExtPltt(void) {
     *(vu32 *) 0x4000000 &= ~0x40000000;
-    return SetVramBankGroupDirect(&data_021802be);
+    return resetBankForX_(&data_021802be);
 }
 
 u16 GX_ResetBankForOBJExtPltt(void) {
     *(vu32 *) 0x4000000 &= ~0x80000000;
-    return SetVramBankGroupDirect(&data_021802c0);
+    return resetBankForX_(&data_021802c0);
 }
 
 u16 GX_ResetBankForTex(void) {
-    return SetVramBankGroupDirect(&data_021802b8);
+    return resetBankForX_(&data_021802b8);
 }
 
 u16 GX_ResetBankForTexPltt(void) {
-    return SetVramBankGroupDirect(&data_021802ba);
+    return resetBankForX_(&data_021802ba);
 }
 
 u16 GX_ResetBankForClearImage(void) {
-    return SetVramBankGroupDirect(&data_021802bc);
+    return resetBankForX_(&data_021802bc);
 }
 
 u16 GX_ResetBankForSubBG(void) {
-    return SetVramBankGroupDirect(&data_021802c2);
+    return resetBankForX_(&data_021802c2);
 }
 
 u16 GX_ResetBankForSubOBJ(void) {
-    return SetVramBankGroupDirect(&data_021802c4);
+    return resetBankForX_(&data_021802c4);
 }
 
 u16 GX_ResetBankForSubBGExtPltt(void) {
     *(vu32 *) 0x4001000 &= ~0x40000000;
-    return SetVramBankGroupDirect(&data_021802c6);
+    return resetBankForX_(&data_021802c6);
 }
 
 u16 GX_ResetBankForSubOBJExtPltt(void) {
     *(vu32 *) 0x4001000 &= ~0x80000000;
-    return SetVramBankGroupDirect(&data_021802c8);
+    return resetBankForX_(&data_021802c8);
 }
 
-u32 ReleaseVramBankGroup(u16 *p) {
-    u32 v;
+u32 disableBankForX_(u16 *group) {
+    u32 mask;
 
-    v = *p;
-    *p = 0;
-    if (v & 0x1) {
+    mask = *group;
+    *group = 0;
+    if (mask & 0x1) {
         *(vu8 *) 0x4000240 = 0;
     }
-    if (v & 0x2) {
+    if (mask & 0x2) {
         *(vu8 *) 0x4000241 = 0;
     }
-    if (v & 0x4) {
+    if (mask & 0x4) {
         *(vu8 *) 0x4000242 = 0;
     }
-    if (v & 0x8) {
+    if (mask & 0x8) {
         *(vu8 *) 0x4000243 = 0;
     }
-    if (v & 0x10) {
+    if (mask & 0x10) {
         *(vu8 *) 0x4000244 = 0;
     }
-    if (v & 0x20) {
+    if (mask & 0x20) {
         *(vu8 *) 0x4000245 = 0;
     }
-    if (v & 0x40) {
+    if (mask & 0x40) {
         *(vu8 *) 0x4000246 = 0;
     }
-    if (v & 0x80) {
+    if (mask & 0x80) {
         *(vu8 *) 0x4000248 = 0;
     }
-    if (v & 0x100) {
+    if (mask & 0x100) {
         *(vu8 *) 0x4000249 = 0;
     }
-    OSi_UnlockVram((u16) v, gVramLockId);
-    return v;
+    OSi_UnlockVram((u16) mask, gVramLockId);
+    return mask;
 }
 
 u32 GX_DisableBankForBG(void) {
-    return ReleaseVramBankGroup(&data_021802b2);
+    return disableBankForX_(&data_021802b2);
 }
 
 u32 GX_DisableBankForOBJ(void) {
-    return ReleaseVramBankGroup(&data_021802b4);
+    return disableBankForX_(&data_021802b4);
 }
 
 u32 GX_DisableBankForBGExtPltt(void) {
     *(vu32 *) 0x4000000 &= ~0x40000000;
-    return ReleaseVramBankGroup(&data_021802be);
+    return disableBankForX_(&data_021802be);
 }
 
 u32 GX_DisableBankForOBJExtPltt(void) {
     *(vu32 *) 0x4000000 &= ~0x80000000;
-    return ReleaseVramBankGroup(&data_021802c0);
+    return disableBankForX_(&data_021802c0);
 }
 
 u32 GX_DisableBankForTex(void) {
-    return ReleaseVramBankGroup(&data_021802b8);
+    return disableBankForX_(&data_021802b8);
 }
 
 u32 GX_DisableBankForTexPltt(void) {
-    return ReleaseVramBankGroup(&data_021802ba);
+    return disableBankForX_(&data_021802ba);
 }
 
 u32 GX_DisableBankForClearImage(void) {
-    return ReleaseVramBankGroup(&data_021802bc);
+    return disableBankForX_(&data_021802bc);
 }
 
 u32 GX_DisableBankForARM7(void) {
-    return ReleaseVramBankGroup(&data_021802b6);
+    return disableBankForX_(&data_021802b6);
 }
 
 u32 GX_DisableBankForLCDC(void) {
-    return ReleaseVramBankGroup((u16 *) gVramBankGroups);
+    return disableBankForX_((u16 *) gVramBankGroups);
 }
 
 u32 GX_DisableBankForSubBG(void) {
-    return ReleaseVramBankGroup(&data_021802c2);
+    return disableBankForX_(&data_021802c2);
 }
 
 u32 GX_DisableBankForSubOBJ(void) {
-    return ReleaseVramBankGroup(&data_021802c4);
+    return disableBankForX_(&data_021802c4);
 }
 
 u32 GX_DisableBankForSubBGExtPltt(void) {
     *(vu32 *) 0x4001000 &= ~0x40000000;
-    return ReleaseVramBankGroup(&data_021802c6);
+    return disableBankForX_(&data_021802c6);
 }
 
 u32 GX_DisableBankForSubOBJExtPltt(void) {
     *(vu32 *) 0x4001000 &= ~0x80000000;
-    return ReleaseVramBankGroup(&data_021802c8);
+    return disableBankForX_(&data_021802c8);
 }
 
 u32 GX_GetBankForTex(void) {
-    u32 value0;
-    value0 = (u32) &gVramBankGroups;
-    value0 = (u32) * (const u16 *) ((value0) + (8));
-    return value0;
+    return ((u16 *) gVramBankGroups)[4];
 }
 
-u32 ComputeVramBankSize(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    u32 compareLeft0;
-    u32 compareRight0;
-    u32 compareLeft1;
-    u32 compareRight1;
-    u32 compareLeft2;
-    u32 compareRight2;
-    u32 compareLeft3;
-    u32 compareRight3;
-    u32 compareLeft4;
-    u32 compareRight4;
-    u32 compareLeft5;
-    u32 compareRight5;
-    u32 compareLeft6;
-    u32 compareRight6;
-    u32 compareLeft7;
-    u32 compareRight7;
-    u32 compareLeft8;
-    u32 compareRight8;
-    value2 = 0u;
-    value1 = (value0) & (1u);
-    compareLeft0 = value1;
-    compareRight0 = 0u;
-    if (compareLeft0 != compareRight0) {
-        value2 = (value2) + (0x20000u);
+u32 GX_GetSizeOfX_(u32 bits) {
+    u32 size = 0;
+
+    if (bits & 0x1) {
+        size += 0x20000;
     }
-    value1 = (value0) & (2u);
-    compareLeft1 = value1;
-    compareRight1 = 0u;
-    if (compareLeft1 != compareRight1) {
-        value2 = (value2) + (0x20000u);
+    if (bits & 0x2) {
+        size += 0x20000;
     }
-    value1 = (value0) & (4u);
-    compareLeft2 = value1;
-    compareRight2 = 0u;
-    if (compareLeft2 != compareRight2) {
-        value2 = (value2) + (0x20000u);
+    if (bits & 0x4) {
+        size += 0x20000;
     }
-    value1 = (value0) & (8u);
-    compareLeft3 = value1;
-    compareRight3 = 0u;
-    if (compareLeft3 != compareRight3) {
-        value2 = (value2) + (0x20000u);
+    if (bits & 0x8) {
+        size += 0x20000;
     }
-    value1 = (value0) & (0x10u);
-    compareLeft4 = value1;
-    compareRight4 = 0u;
-    if (compareLeft4 != compareRight4) {
-        value2 = (value2) + (0x10000u);
+    if (bits & 0x10) {
+        size += 0x10000;
     }
-    value1 = (value0) & (0x20u);
-    compareLeft5 = value1;
-    compareRight5 = 0u;
-    if (compareLeft5 != compareRight5) {
-        value2 = (value2) + (0x4000u);
+    if (bits & 0x20) {
+        size += 0x4000;
     }
-    value1 = (value0) & (0x40u);
-    compareLeft6 = value1;
-    compareRight6 = 0u;
-    if (compareLeft6 != compareRight6) {
-        value2 = (value2) + (0x4000u);
+    if (bits & 0x40) {
+        size += 0x4000;
     }
-    value1 = (value0) & (0x80u);
-    compareLeft7 = value1;
-    compareRight7 = 0u;
-    if (compareLeft7 != compareRight7) {
-        value2 = (value2) + (0x8000u);
+    if (bits & 0x80) {
+        size += 0x8000;
     }
-    value0 = (value0) & (0x100u);
-    compareLeft8 = value0;
-    compareRight8 = 0u;
-    if (compareLeft8 != compareRight8) {
-        value2 = (value2) + (0x4000u);
+    if (bits & 0x100) {
+        size += 0x4000;
     }
-    value0 = value2;
-    return value0;
+    return size;
 }
 
 u32 GX_GetSizeOfOBJ(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gVramBankGroups;
-    value12 = (u32) &ComputeVramBankSize;
-    value0 = (u32) * (const u16 *) ((value0) + (4));
-    value0 = (u32) ComputeVramBankSize(value0);
-    return value0;
+    return GX_GetSizeOfX_(((u16 *) gVramBankGroups)[2]);
 }
 
 u32 GX_GetSizeOfSubOBJ(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gVramBankGroups;
-    value12 = (u32) &ComputeVramBankSize;
-    value0 = (u32) * (const u16 *) ((value0) + (20));
-    value0 = (u32) ComputeVramBankSize(value0);
-    return value0;
+    return GX_GetSizeOfX_(((u16 *) gVramBankGroups)[10]);
 }
 
-void ClearVramBankState(void) {
+void GX_InitGXState(void) {
     ((u16 *) gVramBankGroups)[0] = 0;
     ((u16 *) gVramBankGroups)[1] = 0;
     ((u16 *) gVramBankGroups)[2] = 0;
@@ -669,18 +606,18 @@ void ClearVramBankState(void) {
 }
 
 void GX_Init(void) {
-    s32 r;
+    s32 lockResult;
 
     *(vu16 *) 0x4000304 |= 0x8000;
     *(vu16 *) 0x4000304 = (*(vu16 *) 0x4000304 & ~0x20e) | 0x20e;
     *(vu16 *) 0x4000304 |= 0x1;
-    ClearVramBankState();
+    GX_InitGXState();
     while (*(vu16 *) &gVramLockId == 0) {
-        r = OS_GetLockID();
-        if (r == -3) {
+        lockResult = OS_GetLockID();
+        if (lockResult == -3) {
             OS_Terminate();
         }
-        *(vu16 *) &gVramLockId = r;
+        *(vu16 *) &gVramLockId = lockResult;
     }
     *(vu16 *) 0x4000004 = 0;
     *(vu32 *) 0x4000000 = 0;
@@ -707,61 +644,49 @@ void GX_Init(void) {
     *(vu16 *) 0x4001036 = 0x100;
 }
 
-u32 GX_VBlankIntr(s32 a) {
-    u32 old;
+u32 GX_VBlankIntr(s32 enable) {
+    u32 previous;
 
-    old = *(vu16 *) 0x4000004 & 0x8;
-    if (a != 0) {
+    previous = *(vu16 *) 0x4000004 & 0x8;
+    if (enable != 0) {
         *(vu16 *) 0x4000004 |= 0x8;
     } else {
         *(vu16 *) 0x4000004 &= ~0x8;
     }
-    return old;
+    return previous;
 }
 
 void GX_DispOff(void) {
-    u32 value0;
-    u32 value1;
-    u32 value2;
-    u32 value3;
-    u32 value12;
-    u32 value14;
-    value14 = 0x4000000u;
-    value12 = (u32) * (const u32 *) ((value14) + (0));
-    value1 = (u32) &gDispOn;
-    value2 = (value12) & (0x30000u);
-    value3 = 0u;
-    value0 = (u32) &gSavedDispMode;
-    value2 = (value2 >> 16);
-    *(u16 *) ((value1) + (0)) = (u16) value3;
-    *(u16 *) ((value0) + (0)) = (u16) value2;
-    value0 = (value12) & ~(0x30000u);
-    *(u32 *) ((value14) + (0)) = value0;
+    u32 cnt = *(vu32 *) 0x4000000;
+
+    *(u16 *) gDispOn = 0;
+    *(u16 *) gSavedDispMode = (cnt & 0x30000) >> 16;
+    *(vu32 *) 0x4000000 = cnt & ~0x30000;
 }
 
 void GX_DispOn(void) {
-    u32 a;
+    u32 mode;
 
     *(u16 *) gDispOn = 1;
-    a = *(u16 *) gSavedDispMode;
-    if (a != 0) {
-        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & ~0x30000) | (a << 16);
+    mode = *(u16 *) gSavedDispMode;
+    if (mode != 0) {
+        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & ~0x30000) | (mode << 16);
     } else {
         *(vu32 *) 0x4000000 |= 0x10000;
     }
 }
 
-void GX_SetGraphicsMode(u16 a, u32 b, s32 c) {
-    u32 v;
-    u32 x;
+void GX_SetGraphicsMode(u16 dispMode, u32 bgMode, s32 bg0As) {
+    u32 isDispOn;
+    u32 dispCtrl;
 
-    x = *(vu32 *) 0x4000000;
-    v = *(u16 *) gDispOn;
-    *(u16 *) gSavedDispMode = a;
-    if (v == 0) {
-        a = 0;
+    dispCtrl = *(vu32 *) 0x4000000;
+    isDispOn = *(u16 *) gDispOn;
+    *(u16 *) gSavedDispMode = dispMode;
+    if (isDispOn == 0) {
+        dispMode = 0;
     }
-    *(vu32 *) 0x4000000 = ((x & 0xfff0fff0) | (a << 16) | b) | (c << 3);
+    *(vu32 *) 0x4000000 = ((dispCtrl & 0xfff0fff0) | (dispMode << 16) | bgMode) | (bg0As << 3);
     if (*(u16 *) gSavedDispMode == 0) {
         *(u16 *) gDispOn = 0;
     }

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-u32 MulFixed12(s32 a, s32 b);
+s32 FX_MulFunc(s32 v1, s32 v2);
 void func_02148904(void);
-void MasterBrightWrite(u16 *p, s32 v);
-void GxsDispCntBits0To2Write(u32 a);
+void GXx_SetMasterBrightness_(u16 *reg, s32 brightness);
+void GXS_SetGraphicsMode(u32 bgMode);

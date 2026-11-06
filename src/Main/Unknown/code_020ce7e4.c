@@ -17,12 +17,12 @@ void func_020ce7e4(void) {
             GxDispCntBits8To12Write(0x19);
             GX_SetGraphicsMode((u16) 1, (u32) 0, 0);
             GxsDispCntBits8To12Write(0x1e);
-            GxsDispCntBits0To2Write((u32) 0);
+            GXS_SetGraphicsMode((u32) 0);
         } else {
             GxDispCntBits8To12Write(0x1c);
             GX_SetGraphicsMode((u16) 1, (u32) 0, 0);
             GxsDispCntBits8To12Write(0x12);
-            GxsDispCntBits0To2Write((u32) 0);
+            GXS_SetGraphicsMode((u32) 0);
         }
     }
     func_02118e30();

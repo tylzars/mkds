@@ -407,7 +407,7 @@ void func_02049e38(s32 a) {
             func_020373ec();
         } while (func_02036d08() == 0);
     } else {
-        MasterBrightWrite((u16 *) 0x400006c, 0x10);
+        GXx_SetMasterBrightness_((u16 *) 0x400006c, 0x10);
     }
 }
 

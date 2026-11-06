@@ -11,7 +11,7 @@ void func_020cec00(void) {
     v1 = func_020cccc0();
     if (v1 != 0) {
         GxsDispCntBits8To12Write2(0x1f);
-        GxsDispCntBits0To2Write((u32) 0);
+        GXS_SetGraphicsMode((u32) 0);
     }
     func_0211a794();
 }

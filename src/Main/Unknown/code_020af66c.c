@@ -103,7 +103,7 @@ void func_020b18b0(void) {
     } else {
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1400;
     }
-    GxsDispCntBits0To2Write(5);
+    GXS_SetGraphicsMode(5);
     reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 2;
     reg_G2S_DB_BG2CNT &= ~0x40;
     reg_G2S_DB_BG3CNT &= ~0x40;
@@ -115,7 +115,7 @@ void func_020b18b0(void) {
 
 void func_020b17a4(void) {
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1e00;
-    GxsDispCntBits0To2Write(0);
+    GXS_SetGraphicsMode(0);
     reg_G2S_DB_BG1OFS = 0;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT &= ~0x40;
@@ -195,7 +195,7 @@ void func_020b0b8c(void) {
         switch (gRaceHud->mSubScreenState) {
             case 0:
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
-                GxsDispCntBits0To2Write(0);
+                GXS_SetGraphicsMode(0);
                 reg_G2S_DB_BG2OFS = 0;
                 reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 2;
                 reg_G2S_DB_BG2CNT &= ~0x40;
@@ -302,7 +302,7 @@ void func_020b0b8c(void) {
         case 6:
             if (gRaceHud->mUnk_834 != FALSE) {
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1200;
-                GxsDispCntBits0To2Write(0);
+                GXS_SetGraphicsMode(0);
                 reg_G2S_DB_BG1OFS = 0;
                 reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
                 reg_G2S_DB_BG1CNT &= ~0x40;
@@ -594,9 +594,9 @@ void InitMap2D(void) {
             nscrs[1]->mData[i] = (u16) (nscrs[1]->mData[i] & 0xfc00) | (r + ((k + 6) << 5));
         }
         DC_StoreAll();
-        GxsDispCntBits0To2Write(5);
+        GXS_SetGraphicsMode(5);
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
-        GxsDispCntBits0To2Write(0);
+        GXS_SetGraphicsMode(0);
         reg_G2S_DB_BG2OFS = 0;
         reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 2;
         reg_G2S_DB_BG2CNT = reg_G2S_DB_BG2CNT & ~0x40;
@@ -666,7 +666,7 @@ void func_020af99c(void) {
     reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f00) | 0x1200) | 0x2000;
     reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xf) | 0x20;
     reg_GXS_DB_DISPCNT &= ~0xe000;
-    GxsDispCntBits0To2Write(5);
+    GXS_SetGraphicsMode(5);
     GXS_LoadOBJPltt(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
     GXS_LoadOBJ(GetRaceNclrNcgr(6)->mNcgr->mData, 0, 0x4000);
     func_020b17a4();

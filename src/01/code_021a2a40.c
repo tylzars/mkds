@@ -73,7 +73,7 @@ void func_ov001_021a4fa0(void) {
 }
 
 void func_ov001_021a4d10(void) {
-    GxsDispCntBits0To2Write(1);
+    GXS_SetGraphicsMode(1);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1e00;
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 1;
     reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x8a10;
@@ -111,7 +111,7 @@ void func_ov001_021a4d10(void) {
 }
 
 void func_ov001_021a4ba0(void) {
-    GxsDispCntBits0To2Write(1);
+    GXS_SetGraphicsMode(1);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1600;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
     reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0xe10;

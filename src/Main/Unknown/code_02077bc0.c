@@ -1565,7 +1565,7 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
     t.x = data_usa_021656f0.x;
     t.y = data_usa_021656f0.y;
     t.z = data_usa_021656f0.z;
-    k = MulFixed12(data_usa_021656e4, param_2->mUnk_08);
+    k = FX_MulFunc(data_usa_021656e4, param_2->mUnk_08);
     v.x = k;
     v.y = k;
     v.z = k;
@@ -1919,7 +1919,7 @@ void func_02077f0c(u16 *a, int b, u32 c) {
     if (v3 < 0) {
         v3 = 0xffff - v3;
     }
-    v2 = MulFixed12(v3, c);
+    v2 = FX_MulFunc(v3, c);
     *a = *a + v2;
     if (((*a + 100) - b) < 0) {
         *a = (u16) (*a + 100);

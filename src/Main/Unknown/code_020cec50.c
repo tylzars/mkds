@@ -15,7 +15,7 @@ void func_020cec50(void) {
         GxDispCntBits8To12Write2(0xb);
         GX_SetGraphicsMode((u16) 1, (u32) 0, 1);
         GxsDispCntBits8To12Write2(8);
-        GxsDispCntBits0To2Write((u32) 0);
+        GXS_SetGraphicsMode((u32) 0);
     }
     GxsDispCntBits8To12Write2(0x12);
     func_02026058();

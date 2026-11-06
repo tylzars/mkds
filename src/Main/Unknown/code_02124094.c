@@ -36,10 +36,10 @@ void func_02124b1c(Unk02124b1c *a, s32 b, s32 c) {
     p[2] = -p[1];
     p[3] = a->mUnk_14[0];
     Matrix2x2FromPair(q, y, x);
-    a->mUnk_24[0] = MulFixed12(a->mUnk_24[0], c);
-    q[1] = MulFixed12(q[1], c);
-    q[2] = MulFixed12(q[2], c);
-    q[3] = MulFixed12(q[3], c);
+    a->mUnk_24[0] = FX_MulFunc(a->mUnk_24[0], c);
+    q[1] = FX_MulFunc(q[1], c);
+    q[2] = FX_MulFunc(q[2], c);
+    q[3] = FX_MulFunc(q[3], c);
 }
 
 BOOL func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c) {

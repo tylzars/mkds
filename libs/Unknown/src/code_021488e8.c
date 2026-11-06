@@ -1,27 +1,28 @@
 #include "code_021488e8.h"
 
-// Replaces the low three bits of the word at 0x4001000 with the bits of a.
-void GxsDispCntBits0To2Write(u32 a) {
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x7) | a;
+// Sets the background mode of the sub screen (DISPCNT bits 0-2).
+void GXS_SetGraphicsMode(u32 bgMode) {
+    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x7) | bgMode;
 }
 
-// Stores 0 at p when v is 0, v | 0x4000 for positive v and -v | 0x8000 for negative v.
-void MasterBrightWrite(u16 *p, s32 v) {
-    if (v == 0) {
-        *p = 0;
+// Writes the master brightness register: 0 for no change, 0x4000 | brightness to brighten, 0x8000 | -brightness to
+// darken.
+void GXx_SetMasterBrightness_(u16 *reg, s32 brightness) {
+    if (brightness == 0) {
+        *reg = 0;
         return;
     }
-    if (v > 0) {
-        *p = v | 0x4000;
+    if (brightness > 0) {
+        *reg = brightness | 0x4000;
     } else {
-        *p = -v | 0x8000;
+        *reg = -brightness | 0x8000;
     }
 }
 
 // Does nothing.
 void func_02148904(void) {}
 
-// Returns the low 32 bits of (a * b + 0x800) >> 12, computed in 64 bits.
-u32 MulFixed12(s32 a, s32 b) {
-    return ((s64) a * b + 0x800) >> 12;
+// Multiplies two 20.12 fixed-point values, rounding to nearest.
+s32 FX_MulFunc(s32 v1, s32 v2) {
+    return ((s64) v1 * v2 + 0x800) >> 12;
 }

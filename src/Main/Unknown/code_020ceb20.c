@@ -12,7 +12,7 @@ void func_020ceb20(void) {
         GxDispCntBits8To12Write2(0x1e);
         GX_SetGraphicsMode(1, 0, 0);
         GxsDispCntBits8To12Write2(0x1f);
-        GxsDispCntBits0To2Write(0);
+        GXS_SetGraphicsMode(0);
     }
     func_ov001_0219c784();
 }

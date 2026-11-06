@@ -111,7 +111,7 @@ void func_ov003_021c2188(void) {
     GX_SetGraphicsMode(1, 0, 0);
     p = (u32 *) 0x4000000;
     *p = *p & 0xffffe0ff;
-    MasterBrightWrite((u16 *) 0x400006c, 0);
+    GXx_SetMasterBrightness_((u16 *) 0x400006c, 0);
     *(u32 *) 0x4000000 = (*(u32 *) 0x4000000 & 0xffcfffef) | 0x200010;
     *(u16 *) 0x4000008 &= ~0x40;
     *(u16 *) 0x400000a &= ~0x40;
@@ -124,10 +124,10 @@ void func_ov003_021c2188(void) {
     func_0214a3e8((u16 *) 0x4000050, 0x3f, 0x10);
     GX_SetBankForSubBG(0x80);
     GX_SetBankForSubOBJ(0x100);
-    GxsDispCntBits0To2Write(0);
+    GXS_SetGraphicsMode(0);
     p = (u32 *) 0x4001000;
     *p = *p & 0xffffe0ff;
-    MasterBrightWrite((u16 *) 0x400106c, 0);
+    GXx_SetMasterBrightness_((u16 *) 0x400106c, 0);
     *(u32 *) 0x4001000 = (*(u32 *) 0x4001000 & 0xffcfffef) | 0x10;
     *(u16 *) 0x4001008 &= ~0x40;
     *(u16 *) 0x400100a &= ~0x40;
