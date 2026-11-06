@@ -2,22 +2,10 @@
 #include "code_0200eddc.h"
 #include "code_02020e3c.h"
 
-void func_020219b0(Unk02021968 *arg0, u32 arg1, void *arg2) {
-    u32 value0 = (u32) arg0;
-    u32 value1 = arg1;
-    u32 value2 = (u32) arg2;
-    u32 value4;
-    u32 value5;
-    u32 value6;
-    value6 = value0;
-    value5 = value1;
-    value4 = value2;
-    SharedLockWait();
-    value0 = (value6) + (0x3cu);
-    value2 = (value6) + ((value5 << 2));
-    value0 = (value0) + ((value5 << 2));
-    value1 = 4u;
-    *(u32 *) ((value2) + (60)) = value4;
-    DC_StoreRange((void *) value0, (int) value1);
-    SharedLockUnlock();
+// Stores address as entry index of the wave data table of waveArc and writes that word back to memory.
+void SND_SetWaveDataAddress(Unk02021968 *waveArc, u32 index, void *address) {
+    SNDi_LockMutex();
+    waveArc->mUnk_3c[index] = (u32) address;
+    DC_StoreRange(&waveArc->mUnk_3c[index], 4);
+    SNDi_UnlockMutex();
 }

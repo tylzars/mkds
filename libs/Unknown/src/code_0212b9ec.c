@@ -11,8 +11,8 @@ void func_0212b9f8(void *a) {
     func_0212cb78();
     SND_StopTimer(0, 0, 0, 0);
     v = SND_GetCurrentCommandTag();
-    PxiCommandSendPending(1);
-    PxiCommandWaitForSequence(v);
+    SND_FlushCommand(1);
+    SND_WaitForCommandProc(v);
 }
 
 void func_0212b9ec(void *a) {

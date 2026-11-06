@@ -9,14 +9,14 @@ typedef struct Unk02021a5c {
     /* 02 */ u16 mUnk_02;
 } Unk02021a5c;
 
-// 10 bytes that func_020219f0 copies to mUnk_02..mUnk_0a of its record.
+// 10 bytes that SND_GetNextInstData copies to mUnk_02..mUnk_0a of its record.
 typedef struct Unk02021a60 {
     /* 00 */ Unk02021a5c mUnk_00;
     /* 04 */ Unk02021a5c mUnk_04;
     /* 08 */ u16 mUnk_08;
 } Unk02021a60;
 
-// 12 bytes that func_020219f0 copies over the start of its record.
+// 12 bytes that SND_GetNextInstData copies over the start of its record.
 typedef struct Unk02021ab0 {
     /* 00 */ Unk02021a5c mUnk_00;
     /* 04 */ Unk02021a5c mUnk_04;
@@ -36,9 +36,9 @@ typedef struct Unk02021b24 {
     /* 08 */ Unk02021ab0 mUnk_08[8];
 } Unk02021b24;
 
-u32 func_020219e8(Unk02021968 *a);
-u32 func_020219f0(Unk02021968 *a, Unk020219f0 *b, Unk02021bc8 *c);
-void func_02021bc8(Unk02021bc8 *a);
-void func_02021be8(Unk02021968 *a);
-void func_02021c34(Unk02021968 *a);
-void func_02021cd4(Unk02021968 *a, u32 b, Unk02021968 *c);
+u32 SND_GetWaveDataCount(Unk02021968 *waveArc);
+u32 SND_GetNextInstData(Unk02021968 *bank, Unk020219f0 *inst, Unk02021bc8 *pos);
+void SND_GetFirstInstDataPos(Unk02021bc8 *pos);
+void SND_DestroyWaveArc(Unk02021968 *waveArc);
+void SND_DestroyBank(Unk02021968 *bank);
+void SND_AssignWaveArc(Unk02021968 *bank, s32 index, Unk02021968 *waveArc);

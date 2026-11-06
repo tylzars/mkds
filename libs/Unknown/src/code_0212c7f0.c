@@ -43,7 +43,7 @@ void func_0212c8a4(Unk0212c7f0 *p, s32 a) {
     p->mUnk_3c = a;
     for (i = 0; i < p->mUnk_48; i++) {
         v = p->mUnk_4c[i];
-        r = func_020218f4(p->mUnk_3c + data_0217dd28[v].mUnk_04);
+        r = SND_CalcChannelVolume(p->mUnk_3c + data_0217dd28[v].mUnk_04);
         SND_SetChannelVolume(1 << v, r & 0xff, r >> 8);
     }
 }
@@ -57,8 +57,8 @@ void func_0212c824(Unk0212c7f0 *p) {
         PM_DeletePostSleepCallback(&p->mUnk_14);
         p->mUnk_24_1 = 0;
         r = SND_GetCurrentCommandTag();
-        PxiCommandSendPending(1);
-        PxiCommandWaitForSequence(r);
+        SND_FlushCommand(1);
+        SND_WaitForCommandProc(r);
     }
     func_0212c7f0(p);
 }

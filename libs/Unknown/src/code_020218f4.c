@@ -2,42 +2,45 @@
 #include "code_02020e3c.h"
 #include "Main/Unknown/unk_02152000.h"
 
-void *func_02021968(Unk02021968 *a, u32 b) {
-    u32 v;
-    u8 *p;
+// Returns the entry of waveArc table at index as an address: values below 0x2000000 are offsets from waveArc, others
+// are addresses already; an empty entry gives 0.
+void *SND_GetWaveDataAddress(Unk02021968 *waveArc, u32 index) {
+    u32 entry;
+    u8 *address;
 
-    SharedLockWait();
-    v = a->mUnk_3c[b];
-    if (v != 0) {
-        p = (u8 *) v;
-        if (v < 0x2000000) {
-            p = (u8 *) a + v;
+    SNDi_LockMutex();
+    entry = waveArc->mUnk_3c[index];
+    if (entry != 0) {
+        address = (u8 *) entry;
+        if (entry < 0x2000000) {
+            address = (u8 *) waveArc + entry;
         }
     } else {
-        p = 0;
+        address = 0;
     }
-    SharedLockUnlock();
-    return p;
+    SNDi_UnlockMutex();
+    return address;
 }
 
-u16 func_020218f4(s32 a) {
-    u8 t;
-    s32 k;
+// Converts an attenuation dB (-723 to 0) into a volume byte, with a shift selector in bits 8 and 9.
+u16 SND_CalcChannelVolume(s32 dB) {
+    u8 volume;
+    s32 shift;
 
-    if (a < -0x2d3) {
-        a = -0x2d3;
-    } else if (a > 0) {
-        a = 0;
+    if (dB < -0x2d3) {
+        dB = -0x2d3;
+    } else if (dB > 0) {
+        dB = 0;
     }
-    t = data_02152de4[a + 0x2d3];
-    if (a < -0xf0) {
-        k = 3;
-    } else if (a < -0x78) {
-        k = 2;
-    } else if (a < -0x3c) {
-        k = 1;
+    volume = data_02152de4[dB + 0x2d3];
+    if (dB < -0xf0) {
+        shift = 3;
+    } else if (dB < -0x78) {
+        shift = 2;
+    } else if (dB < -0x3c) {
+        shift = 1;
     } else {
-        k = 0;
+        shift = 0;
     }
-    return t | (k << 8);
+    return volume | (shift << 8);
 }

@@ -18,8 +18,8 @@ void func_0212f730(void *a, u32 b, s32 c) {
 }
 
 // Does nothing when a equals mUnk_00 of data_0216eaa4. Otherwise clears the 0xc0 bytes at mUnk_18, stores a in mUnk_00
-// and one of func_0212f59c, func_0212f3f8, func_0212f1f8 and func_0212f1ac in mUnk_04 (by a = 0 to 3); func_02020844 is
-// called with 0 first when the old mUnk_00 is 1 and with 0x3000 last when a is 1.
+// and one of func_0212f59c, func_0212f3f8, func_0212f1f8 and func_0212f1ac in mUnk_04 (by a = 0 to 3);
+// SNDi_SetSurroundDecay is called with 0 first when the old mUnk_00 is 1 and with 0x3000 last when a is 1.
 void func_0212f638(s32 a) {
     u32 v;
     volatile u16 z;
@@ -28,7 +28,7 @@ void func_0212f638(s32 a) {
         return;
     }
     if (data_0216eaa4.mUnk_00 == 1) {
-        func_02020844(0);
+        SNDi_SetSurroundDecay(0);
     }
     v = OS_DisableInterrupts();
     z = 0;
@@ -53,7 +53,7 @@ void func_0212f638(s32 a) {
     }
     OS_RestoreInterrupts(v);
     if (a == 1) {
-        func_02020844(0x3000);
+        SNDi_SetSurroundDecay(0x3000);
     }
 }
 

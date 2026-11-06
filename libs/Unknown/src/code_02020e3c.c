@@ -8,6 +8,7 @@
 u32 data_021732ac;
 OSMutex data_021732b0;
 
+// Sets up the sound library once: the mutex, the command queue and the alarm table.
 void SND_Init(void) {
     if (data_021732ac != 0) {
         return;
@@ -18,10 +19,12 @@ void SND_Init(void) {
     SND_AlarmInit();
 }
 
-void SharedLockWait(void) {
+// Takes the mutex that guards the shared sound data.
+void SNDi_LockMutex(void) {
     OS_LockMutex(&data_021732b0);
 }
 
-void SharedLockUnlock(void) {
+// Releases the mutex that guards the shared sound data.
+void SNDi_UnlockMutex(void) {
     OS_UnlockMutex(&data_021732b0);
 }

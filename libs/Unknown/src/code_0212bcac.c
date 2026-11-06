@@ -267,7 +267,7 @@ void func_0212c19c(void) {
     m = SND_GetPlayerStatus();
     for (p = ListGetNext(&data_0217d450, 0); p != 0; p = q) {
         q = ListGetNext(&data_0217d450, p);
-        if (p->mUnk_2d == 0 && PxiCommandSequenceReached(p->mUnk_30) != 0) {
+        if (p->mUnk_2d == 0 && SND_IsFinishedCommandTag(p->mUnk_30) != 0) {
             p->mUnk_2d = 1;
         }
         if (p->mUnk_2d != 0 && (m & (1 << p->mUnk_3c)) == 0) {
@@ -333,7 +333,7 @@ void func_0212c0d4(void *a) {
 void func_0212c078(Unk0212c400 *a, void *b, u32 c, Unk02021968 *d) {
     Unk0212c7a0 *e = a->mUnk_04;
 
-    SND_PrepareSeq(a->mUnk_3c, (u32) b, c, (u32) d);
+    SND_PrepareSeq(a->mUnk_3c, b, c, d);
     if (e->mUnk_1c != 0) {
         SND_SetTrackAllocatableChannel(a->mUnk_3c, 0xffff, e->mUnk_1c);
     }

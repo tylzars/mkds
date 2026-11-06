@@ -145,12 +145,12 @@ s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i,
         func_0212bbe0(3);
         return 0;
     }
-    SND_SetupChannelPcm(1, x28, (u32) b, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, k);
-    SND_SetupCapture(0, x24, (u32) b, d >> 2, h, f, g);
-    SND_SetupChannelPcm(3, x28, (u32) c, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, l);
-    SND_SetupCapture(1, x24, (u32) c, d >> 2, h, f, g);
+    SND_SetupChannelPcm(1, x28, b, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, k);
+    SND_SetupCapture(0, x24, b, d >> 2, h, f, g);
+    SND_SetupChannelPcm(3, x28, c, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, l);
+    SND_SetupCapture(1, x24, c, d >> 2, h, f, g);
     if (r >= 0) {
-        SND_SetupAlarm(r, w + t, w, func_0212c9d4, p);
+        SND_SetupAlarm(r, w + t, w, (SNDAlarmHandler) func_0212c9d4, p);
     }
     if (a == 1) {
         SND_SetOutputSelector(1, 2, 1, 1);
@@ -190,8 +190,8 @@ void func_0212cbd8(void) {
     SND_StopTimer(p->mUnk_24, p->mUnk_28, f != 0 ? 1 << p->mUnk_2c : 0, 0);
     if (f != 0) {
         r = SND_GetCurrentCommandTag();
-        PxiCommandSendPending(1);
-        PxiCommandWaitForSequence(r);
+        SND_FlushCommand(1);
+        SND_WaitForCommandProc(r);
         while (OS_ReceiveMessage(&data_0217ddb0, 0, 0) != 0) {
         }
     }
@@ -219,8 +219,8 @@ void func_0212cb78(void) {
     }
     SND_StopTimer(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);
     r = SND_GetCurrentCommandTag();
-    PxiCommandSendPending(1);
-    PxiCommandWaitForSequence(r);
+    SND_FlushCommand(1);
+    SND_WaitForCommandProc(r);
 }
 
 void func_0212cad8(void) {

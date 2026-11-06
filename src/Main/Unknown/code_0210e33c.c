@@ -111,7 +111,7 @@ u32 func_0210ed20(u32 a, u32 b) {
         if (r == NULL) {
             continue;
         }
-        func_02021cd4((Unk02021968 *) x, i, (Unk02021968 *) r);
+        SND_AssignWaveArc((Unk02021968 *) x, i, (Unk02021968 *) r);
     }
     if (func_0210e50c(a) == 0) {
         return 0;

@@ -316,7 +316,7 @@ u32 func_0212e538(s32 a, u32 b, HeapStack *c, u32 d, Unk02021968 **out) {
                 }
             }
             if (v != 0 && tmp != 0) {
-                func_02021cd4(v, i, tmp);
+                SND_AssignWaveArc(v, i, tmp);
             }
         }
     }
@@ -484,25 +484,25 @@ void func_0212e018(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
 void func_0212dfdc(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
     func_0212e04c(a, c, d);
     SND_InvalidateBankData(a, a + b);
-    func_02021c34((Unk02021968 *) a);
+    SND_DestroyBank((Unk02021968 *) a);
 }
 
 void func_0212dfa0(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
     func_0212e04c(a, c, d);
     SND_InvalidateWaveData(a, a + b);
-    func_02021be8((Unk02021968 *) a);
+    SND_DestroyWaveArc((Unk02021968 *) a);
 }
 
 void func_0212df7c(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
     func_0212e04c(a, c, d);
-    func_02021be8((Unk02021968 *) a);
+    SND_DestroyWaveArc((Unk02021968 *) a);
 }
 
 void func_0212df28(void *buf, u32 size, void *p, u32 idx) {
     u8 *q = buf;
 
-    if (q == func_02021968(p, idx)) {
-        func_020219b0(p, idx, 0);
+    if (q == SND_GetWaveDataAddress(p, idx)) {
+        SND_SetWaveDataAddress(p, idx, 0);
     }
     SND_InvalidateWaveData(q, q + size);
 }
@@ -515,10 +515,10 @@ u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, HeapStack *d) {
     u32 start;
     void *buf;
 
-    if (func_02021968(a, b) != 0) {
+    if (SND_GetWaveDataAddress(a, b) != 0) {
         return 1;
     }
-    n = func_020219e8(a);
+    n = SND_GetWaveDataCount(a);
     e = (u32 *) a + (a->mUnk_38 + b);
     start = e[15];
     end = b < n - 1 ? e[16] : a->mUnk_08;
@@ -534,7 +534,7 @@ u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, HeapStack *d) {
         return 0;
     }
     DC_StoreRange(buf, size);
-    func_020219b0(a, b, buf);
+    SND_SetWaveDataAddress(a, b, buf);
     return 1;
 }
 
@@ -543,19 +543,19 @@ u32 func_0212dd64(Unk02021968 *a, Unk02021968 *b, u32 c, u32 d, HeapStack *e) {
     Unk02021bc8 init;
     Unk020219f0 rec;
 
-    func_02021bc8(&init);
+    SND_GetFirstInstDataPos(&init);
     it = init;
     if (b == 0) {
         return 0;
     }
-    if (func_020219f0(b, &rec, &it) != 0) {
+    if (SND_GetNextInstData(b, &rec, &it) != 0) {
         do {
             if (rec.mUnk_00 == 1 && c == rec.mUnk_04) {
                 if (func_0212de34(a, rec.mUnk_02, d, e) == 0) {
                     return 0;
                 }
             }
-        } while (func_020219f0(b, &rec, &it) != 0);
+        } while (SND_GetNextInstData(b, &rec, &it) != 0);
     }
     return 1;
 }
@@ -710,8 +710,8 @@ void func_0212d968(void) {
     u32 v;
 
     v = SND_GetCurrentCommandTag();
-    PxiCommandSendPending(1);
-    PxiCommandWaitForSequence(v);
+    SND_FlushCommand(1);
+    SND_WaitForCommandProc(v);
 }
 
 void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, HeapStack *p, u32 flag) {
