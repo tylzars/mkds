@@ -110,7 +110,7 @@ s32 func_02125960(s32 a) {
     }
     CallQueueAppend(7, 0, ncgrM->mData, ncgrM->mDataSize);
     CallQueueAppend(0xb, 0, nscrM->mData, nscrM->mDataSize);
-    CallQueueAppend(0xf, nclrMOffset, (void *) ((u32) nclrM->mData + nclrMOffset), nclrMSize);
+    CallQueueAppend(0xf, nclrMOffset, OFFSET_PTR(void, nclrM->mData, nclrMOffset), nclrMSize);
     a -= ncgrS->mDataSize;
     CallQueueAppend(0x15, a, ncgrS->mData, ncgrS->mDataSize);
     for (i = 0; i < 0x20; i++) {
@@ -119,7 +119,7 @@ s32 func_02125960(s32 a) {
         }
     }
     CallQueueAppend(0x19, 0, data_0217d3ec->mBackScreenSNscrCopy, nscrS->mDataSize);
-    CallQueueAppend(0x1f, nclrSOffset, (void *) ((u32) nclrS->mData + nclrSOffset), nclrSSize);
+    CallQueueAppend(0x1f, nclrSOffset, OFFSET_PTR(void, nclrS->mData, nclrSOffset), nclrSSize);
     return a;
 }
 

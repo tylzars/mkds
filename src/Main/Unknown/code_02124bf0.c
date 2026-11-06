@@ -89,8 +89,7 @@ u32 func_02124c70(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, Unk0201ea30 *d, Unk0212
         }
     }
     h = e->mUnk_400;
-    e->mUnk_400 +=
-        NNS_G2dMakeCellToOams(&e->mUnk_000[0].mUnk_00[h], 0x80 - h, (Unk020224e0_c *) m, v18, v28, r6, f->mUnk_34);
+    e->mUnk_400 += NNS_G2dMakeCellToOams(&e->mUnk_000[0].mUnk_00[h], 0x80 - h, m, v18, v28, r6, f->mUnk_34);
 }
 
 void func_02124c30(Unk0201ea30 *a, Unk02021dc8 *b, Unk0201ea30 *c, void *d, Unk02124b1c *e) {

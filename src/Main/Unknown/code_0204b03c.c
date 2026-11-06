@@ -149,7 +149,7 @@ void func_0204b138(u32 *p, u32 n) {
     i = (OS_GetTick() >> 16) % 0x1d;
     m = data_usa_02154694[i] + (data_usa_02154648[0] + (data_usa_021545d8[0] + data_usa_02154604[0]));
     i = func_0204b20c(m ^ *p, *p);
-    e = (u32 *) ((u8 *) p + n);
+    e = OFFSET_PTR(u32, p, n);
     do {
         *p ^= data_usa_02154694[i] + (data_usa_02154648[j] + (data_usa_021545d8[k] + data_usa_02154604[l]));
         p++;
@@ -187,7 +187,7 @@ u32 func_0204b084(u32 *p, u32 n, u32 a) {
         return 0;
     }
     i = s;
-    e = (u32 *) ((u8 *) p + n);
+    e = OFFSET_PTR(u32, p, n);
     do {
         *p ^= data_usa_02154694[i] + (data_usa_02154648[j] + (data_usa_021545d8[k] + data_usa_02154604[l]));
         p++;

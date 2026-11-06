@@ -29,5 +29,5 @@ u16 func_020acec4(u32 a, u32 b) {
 }
 
 u32 func_020acebc(const void *p0) {
-    return (*(const u16 *) ((u8 *) p0 + 4));
+    return (*OFFSET_PTR(const u16, p0, 4));
 }

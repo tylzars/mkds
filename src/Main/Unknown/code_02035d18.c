@@ -151,7 +151,7 @@ void func_02035e38(void) {
 }
 
 void func_02035e30(u32 p0, u32 p1) {
-    *(u16 *) ((u8 *) p0 + 4) = p1;
+    *OFFSET_PTR(u16, p0, 4) = p1;
 }
 
 #pragma thumb on

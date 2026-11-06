@@ -1,7 +1,7 @@
 #include "code_0212f864.h"
 
 void InterpolatorInit(NNSSndFader *arg0) {
-    u32 value0 = (u32) arg0;
+    NNSSndFader *value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = 0u;

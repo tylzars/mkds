@@ -41,7 +41,7 @@ u16 LookupRankPoints(u8 a) {
 
 void RemoveRaceProgressKart(u16 a) {
     u32 o;
-    RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + a * 0x8c);
+    RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], a * 0x8c);
     BOOL f = FALSE;
     switch (p->mStatus) {
         case 1:
@@ -57,7 +57,7 @@ void RemoveRaceProgressKart(u16 a) {
         v = (u16) (data_021759c0->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount);
         p->mRank = data_021759c0->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount;
         for (i = 0; i < data_021759c0->mKartCount; i++) {
-            RaceProgressKart *q = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
+            RaceProgressKart *q = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
             if (i != a) {
                 u32 m = q->mRank;
                 if (m > o && m <= v) {

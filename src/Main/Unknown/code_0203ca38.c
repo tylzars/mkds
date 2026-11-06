@@ -127,7 +127,7 @@ void func_0203d078(void) {
     u32 i;
     if (func_020a128c() != 0) {
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
-            RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
+            RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
             if (p->mStatus == 0) {
                 if (IsKartOnWinningTeamAtEnd(i) != 0) {
                     p->mStatus = 1;
@@ -141,7 +141,7 @@ void func_0203d078(void) {
     }
     for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
         if (IsKartEliminated(i) != FALSE) {
-            RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
+            RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
             if (p->mStatus == 0) {
                 if (IsKartOnWinningTeamAtEnd(i) != 0) {
                     p->mStatus = 1;
@@ -214,7 +214,7 @@ void AdvanceMissionRunEnd(void) {
     }
     w = v;
     v1 = w * 0x8c;
-    p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + v1);
+    p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], v1);
     h = FALSE;
     switch (p->mStatus) {
         case 1:
@@ -236,7 +236,7 @@ void AdvanceMissionRunEnd(void) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 FinishStandings();
             }
-            p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + v1);
+            p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], v1);
             p->mFlags &= ~0x10;
         } else if ((p->mFlags & 0x20) != 0) {
             if (func_0207a218() != 0) {
@@ -251,7 +251,7 @@ void AdvanceMissionRunEnd(void) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 FinishStandings();
             }
-            p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + v1);
+            p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], v1);
             p->mFlags &= ~0x20;
         }
         return;
@@ -297,7 +297,7 @@ void UpdateRaceProgress(void) {
     func_0203fed4();
     if (data_021759c0->mMode == 5) {
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
-            RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
+            RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
             if (p->mFinishRequest != 0) {
                 FinishRaceProgressKart(p, p->mFinishRequest == 1 ? 1 : 0);
                 if (IsRaceEndConditionMet() != 0) {
@@ -344,7 +344,7 @@ void UpdateRaceProgress(void) {
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             u16 *q;
             u8 v = func_0203ca38_inline(i);
-            q = (u16 *) ((u8 *) &gRaceProgress->mUnk_000[0].mUnk_50 + i * 0x8c);
+            q = OFFSET_PTR(u16, &gRaceProgress->mUnk_000[0].mUnk_50, i * 0x8c);
             *q = (*q & ~0xf) | (v & 0xf);
         }
         for (i = 0; i < 8; i = (u16) (i + 1)) {

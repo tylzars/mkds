@@ -538,8 +538,8 @@ void func_020c4ae8(void) {
     p = &gRaceStartGp->mUnk_18;
     v[0] = 0x80000;
     v[1] = 0x60000;
-    p->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400,
-                                         (Unk020224e0_c *) c, NULL, v, 0, 1);
+    p->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400, c,
+                                         NULL, v, 0, 1);
     DC_FlushRange(&gRaceStartGp->mUnk_18, 0x400);
     MI_DmaFill32(3, &gRaceStartGp->mUnk_18.mUnk_000.mUnk_00[gRaceStartGp->mUnk_18.mUnk_400], 0xc0,
                  (0x80 - gRaceStartGp->mUnk_18.mUnk_400) * 8);

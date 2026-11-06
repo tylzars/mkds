@@ -33,7 +33,7 @@ u32 func_020072c0(void) {
         v3 = data_0216fdac;
         v3->mUnk_1525 = (v3->mUnk_1525 + 1) % 16;
         v13 = (Unk0216fdac *) *(u32 *) &data_0216fdac;
-        v4 = (Unk0216fdac *) ((u8 *) v13 + v13->mUnk_1525 * 0x5d4);
+        v4 = OFFSET_PTR(Unk0216fdac, v13, v13->mUnk_1525 * 0x5d4);
         if (v4->mUnk_1d52 != 0 && v4->mUnk_1d4c != 0) {
             break;
         }
@@ -44,7 +44,7 @@ u32 func_020072c0(void) {
     }
     func_02007154(v13->mUnk_1525);
     v3 = data_0216fdac;
-    v4 = (Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4);
+    v4 = OFFSET_PTR(Unk0216fdac, v3, v3->mUnk_1525 * 0x5d4);
     if (func_0200806c(&v2, v3->mUnk_1d2c + v3->mUnk_1525 * 0x5d4, v4->mUnk_1d48,
                       v3->mUnk_1788 + v3->mUnk_1525 * 0x5d4) == FALSE) {
         return 21;
@@ -52,13 +52,13 @@ u32 func_020072c0(void) {
     v1.mUnk_00 = 4;
     v3 = data_0216fdac;
     v1.mUnk_02 = v3->mUnk_1525;
-    v1.mUnk_04 = ((Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4))->mUnk_1d48;
+    v1.mUnk_04 = (OFFSET_PTR(Unk0216fdac, v3, v3->mUnk_1525 * 0x5d4))->mUnk_1d48;
     v9 = func_0200c3a4((u8 *) &v1, (u8 *) v3);
     v14 = v2.mUnk_0c;
     v3 = data_0216fdac;
-    v10 = v2.mUnk_08 - ((u32 *) ((Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4))->mUnk_1d2c)[v14] +
-          ((Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4))->mUnk_1d58[v14];
-    v4 = (Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4);
+    v10 = v2.mUnk_08 - ((u32 *) (OFFSET_PTR(Unk0216fdac, v3, v3->mUnk_1525 * 0x5d4))->mUnk_1d2c)[v14] +
+          (OFFSET_PTR(Unk0216fdac, v3, v3->mUnk_1525 * 0x5d4))->mUnk_1d58[v14];
+    v4 = OFFSET_PTR(Unk0216fdac, v3, v3->mUnk_1525 * 0x5d4);
     v5 = v4->mUnk_1d54;
     if (func_0200adfc(v5, v10, v9, v2.mUnk_04) == 0) {
         v8 = (Unk02007478 *) data_0216fdac->mUnk_7ce0;
@@ -87,7 +87,7 @@ u32 func_020072c0(void) {
         return 21;
     }
     v3 = data_0216fdac;
-    return func_02008908(v2.mUnk_04 + 6, ((Unk0216fdac *) ((u8 *) v3 + v3->mUnk_1525 * 0x5d4))->mUnk_1d4c, (u32) v3);
+    return func_02008908(v2.mUnk_04 + 6, (OFFSET_PTR(Unk0216fdac, v3, v3->mUnk_1525 * 0x5d4))->mUnk_1d4c, (u32) v3);
 }
 
 int func_020071b4(void) {

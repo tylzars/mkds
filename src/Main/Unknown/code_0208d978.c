@@ -502,9 +502,9 @@ void func_0208d978(const Vec3 *a, s32 b) {
     }
     i = 0;
     if (b != 0) {
-        p = NNS_FndGetNthListObject((NNSFndList *) ((u8 *) data_0217b080->mUnk_0c + 0x18), 0);
+        p = NNS_FndGetNthListObject(OFFSET_PTR(NNSFndList, data_0217b080->mUnk_0c, 0x18), 0);
         if (p != NULL) {
-            NNS_FndRemoveListObject((NNSFndList *) ((u8 *) data_0217b080->mUnk_0c + 0x18), p);
+            NNS_FndRemoveListObject(OFFSET_PTR(NNSFndList, data_0217b080->mUnk_0c, 0x18), p);
             p->mUnk_88 = 0;
             p->mUnk_74 = *a;
             p->mUnk_a8 = 0;

@@ -28,7 +28,7 @@ void StartDmaTransferAndChannel0Dummy(u32 a, const void *b, void *c, u32 d) {
     u32 s = OS_DisableInterrupts();
 
     *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
-    e = (vu32 *) ((u32) r + a * 12);
+    e = OFFSET_PTR(vu32, r, a * 12);
     e[1] = (u32) c;
     e[2] = d;
     *r;

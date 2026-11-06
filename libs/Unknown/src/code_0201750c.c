@@ -12,7 +12,7 @@ void NNS_FndInitList(NNSFndList *list, u16 offset) {
 void SetFirstObject(NNSFndList *list, void *object) {
     NNSFndLink *links;
 
-    links = (NNSFndLink *) ((u8 *) object + list->mLinkOffset);
+    links = OFFSET_PTR(NNSFndLink, object, list->mLinkOffset);
     links->mNextObject = 0;
     links->mPrevObject = 0;
     list->mHead = object;

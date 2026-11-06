@@ -1068,7 +1068,7 @@ void func_021001ac(ItemTeresa *p, s32 c, Unk020e6488 *q) {
     s32 n;
     s32 b;
     s32 t;
-    s16 d;
+    u16 d;
     s32 v[3];
     s32 x;
     s32 y;
@@ -1131,6 +1131,6 @@ void func_021001ac(ItemTeresa *p, s32 c, Unk020e6488 *q) {
     q->mUnk_14 = q->mUnk_14 | (t << 24);
     d = p->mUnk_000.mUnk_d8;
     q->mUnk_14 = q->mUnk_14 & ~0x1f0000;
-    q->mUnk_14 = q->mUnk_14 | ((u16) d << 16);
+    q->mUnk_14 = q->mUnk_14 | (d << 16);
     func_020ed588(&p->mUnk_000, q);
 }

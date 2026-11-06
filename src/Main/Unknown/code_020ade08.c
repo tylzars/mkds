@@ -49,7 +49,7 @@ u16 func_020ae5c4(void *a) {
     u16 *p;
     u16 v;
 
-    p = (u16 *) ((u8 *) a + 0x402);
+    p = OFFSET_PTR(u16, a, 0x402);
     v = *p;
     *p = v + 1;
     return v;
@@ -255,7 +255,7 @@ u32 func_020ae244(u32 a, Unk020ae244 b) {
 #pragma thumb off
 
 u32 func_020ae23c(u32 p0) {
-    return (*(const u16 *) ((u8 *) p0 + 0));
+    return (*OFFSET_PTR(const u16, p0, 0));
 }
 
 u32 func_020ae21c(u32 arg0) {
@@ -273,7 +273,7 @@ u32 func_020ae21c(u32 arg0) {
 }
 
 u32 func_020ae214(u32 p0) {
-    return (*(const u16 *) ((u8 *) p0 + 2));
+    return (*OFFSET_PTR(const u16, p0, 2));
 }
 
 u32 func_020ae1f4(u32 arg0) {

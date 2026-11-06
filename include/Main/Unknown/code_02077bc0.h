@@ -93,7 +93,7 @@ void func_020790e0(void *a, s32 b);
 void func_020792c8(Unk0206bcb0_590 *a, s32 b);
 void func_0207940c(Unk02084b2c *a, s32 b, void *c);
 void func_02079678(void *a, s32 b);
-void func_02079988(Unk0206bcb0_590 *a, u32 b);
+void func_02079988(Unk0206bcb0_590 *a, int b);
 void DrawKarts(void);
 Kart *GetKart(s32 idx);
 void GetKartPrevPos(Vec3 *dst, s32 idx);

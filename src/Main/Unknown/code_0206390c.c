@@ -17,7 +17,7 @@
 void GetKartUp(const Kart *a, Vec3 *b) {
     const MtxFx43 *c;
 
-    c = (const MtxFx43 *) ((u8 *) a + 0x120);
+    c = OFFSET_PTR(const MtxFx43, a, 0x120);
     b->x = c->mUnk_00[1].x;
     b->y = c->mUnk_00[1].y;
     b->z = c->mUnk_00[1].z;
@@ -29,7 +29,7 @@ void GetKartUp(const Kart *a, Vec3 *b) {
 void GetKartForward(const Kart *a, Vec3 *b) {
     const MtxFx43 *c;
 
-    c = (const MtxFx43 *) ((u8 *) a + 0x120);
+    c = OFFSET_PTR(const MtxFx43, a, 0x120);
     b->x = c->mUnk_00[2].x;
     b->y = c->mUnk_00[2].y;
     b->z = c->mUnk_00[2].z;

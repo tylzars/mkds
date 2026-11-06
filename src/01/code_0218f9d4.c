@@ -1350,7 +1350,7 @@ void func_ov001_0218fa20(void) {
     void *v8 = &func_ov001_02185fb0;
     void *v9 = &func_ov001_02185f04;
     void *v10 = &func_ov001_021860cc;
-    u32 v12 = (u32) func_ov001_0219b510(v8, v9, v10, 0x2u, 0x1u, v4, v6);
+    void *v12 = func_ov001_0219b510(v8, v9, v10, 0x2u, 0x1u, v4, v6);
 }
 
 void *func_ov001_0218fa04(void) {

@@ -310,7 +310,7 @@ void func_020debec(void *a, Unk020de6a8 *b) {
 void func_020deb2c(Vec3 *a, void *b, u32 c, int d, u32 e) {
     void *v1;
     u32 v2;
-    v2 = *(u16 *) ((u32) b + 0x74);
+    v2 = *OFFSET_PTR(u16, b, 0x74);
     if (d == 0) {
         if (v2 == data_021759c0->mEntryIndex) {
             v1 = StartEffect(0x2d, a);

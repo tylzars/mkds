@@ -31,7 +31,7 @@ void func_020367c4(void) {
             gDisplaySettings->mIrqCallback();
         }
     }
-    *(u32 *) ((u8 *) &data_027e0000 + 0x3ff8) |= 1;
+    *OFFSET_PTR(u32, &data_027e0000, 0x3ff8) |= 1;
 }
 
 void func_02036778(void) {

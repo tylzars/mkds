@@ -154,7 +154,7 @@ void OSi_IrqCallback(int index) {
     if (callback != 0) {
         callback(OSi_IrqCallbackInfo[index].mArg);
     }
-    *(u32 *) ((u8 *) &data_027e0000 + 0x3ff8) |= irqBit;
+    *OFFSET_PTR(u32, &data_027e0000, 0x3ff8) |= irqBit;
     if (OSi_IrqCallbackInfo[index].mEnable != 0) {
         return;
     }

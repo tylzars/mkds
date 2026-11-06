@@ -513,7 +513,7 @@ s32 func_02005a30(Unk0216f3dc *a, u8 *b, s32 c) {
                         return v1;
                     }
                 }
-                v3 = (Unk0200628c *) ((u8 *) v3 + 0x68);
+                v3 = OFFSET_PTR(Unk0200628c, v3, 0x68);
             }
             return v1;
         case 10:
@@ -555,7 +555,7 @@ s32 func_0200589c(Unk0216f3dc *a, u8 *b, s32 c) {
                 if (((a->mUnk_000.mUnk_08 >> i) & 1) != 0) {
                     func_0200639c(v4, a->mUnk_000.mUnk_18, v4->mUnk_1c, a->mUnk_000.mUnk_1c[i]);
                 }
-                v4 = (Unk0200628c *) ((u8 *) v4 + 0x68);
+                v4 = OFFSET_PTR(Unk0200628c, v4, 0x68);
             }
             if (v3->mUnk_00 == 4) {
                 v1 = func_02006794(b, a->mUnk_000.mUnk_08, a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_14, 0);
@@ -570,7 +570,7 @@ s32 func_0200589c(Unk0216f3dc *a, u8 *b, s32 c) {
                 if (((a->mUnk_000.mUnk_08 >> i) & 1) != 0) {
                     func_0200639c(v5, a->mUnk_000.mUnk_18, a->mUnk_000.mUnk_5c[i], a->mUnk_000.mUnk_1c[i]);
                 }
-                v5 = (Unk0200628c *) ((u8 *) v5 + 0x68);
+                v5 = OFFSET_PTR(Unk0200628c, v5, 0x68);
             }
             if (v3->mUnk_00 == 4) {
                 v1 = func_02006794(b, a->mUnk_000.mUnk_08, a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_14, 0);

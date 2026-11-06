@@ -158,7 +158,7 @@ void func_0204b7b8(void (*a)(u32 *, u32)) {
         case 0:
             DC_StoreRange(data_021759d4->mUnk_28, data_021759d4->mUnk_30);
             if (data_021759d4->mUnk_38 != 0) {
-                p = (u32 *) ((u8 *) data_021759d4->mUnk_28 + 8);
+                p = OFFSET_PTR(u32, data_021759d4->mUnk_28, 8);
                 n = data_021759d4->mUnk_30 - 8;
                 if (func_0204b960((u8 *) data_021759d4->mUnk_28) == 0) {
                     e = 4;
@@ -200,7 +200,7 @@ void func_0204b7b8(void (*a)(u32 *, u32)) {
                 data_021759d4->mUnk_1c = e;
                 data_021759d4->mUnk_20 = data_021759d4->mUnk_28;
                 data_021759d4->mUnk_24 = v;
-                p = (u32 *) ((u8 *) data_021759d4->mUnk_28 + data_021759d4->mUnk_30);
+                p = OFFSET_PTR(u32, data_021759d4->mUnk_28, data_021759d4->mUnk_30);
                 func_0204b714(data_021759d4->mUnk_18, p, data_021759d4->mUnk_30, a, 2, data_021759d4->mUnk_34,
                               data_021759d4->mUnk_38);
                 f = FALSE;

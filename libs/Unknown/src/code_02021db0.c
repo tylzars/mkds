@@ -10,7 +10,7 @@ void NNS_G2dUnpackNAN(Unk02021dc8 *bank) {
 
     bank->mUnk_04 += (u32) bank;
     bank->mUnk_08 += (u32) bank;
-    bank->mUnk_0c = (Unk02021e40 *) ((u32) bank->mUnk_0c + (u32) bank);
+    bank->mUnk_0c = OFFSET_PTR(Unk02021e40, bank->mUnk_0c, (u32) bank);
     sequences = (Unk02021e1c *) bank->mUnk_04;
     contents = (u32) bank->mUnk_0c;
     frames = bank->mUnk_08;

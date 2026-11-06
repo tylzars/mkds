@@ -168,7 +168,7 @@ static inline u32 func_020f41c4_inline(Unk020f41c4_B *r, u32 c) {
 
 void func_020f41c4(Unk020f40dc *rec) {
     Kart *owner = rec->mUnk_04->mKart;
-    Unk020f41c4_C *halves = (Unk020f41c4_C *) ((u8 *) owner->mKartModelsEntry + 0x40);
+    Unk020f41c4_C *halves = OFFSET_PTR(Unk020f41c4_C, owner->mKartModelsEntry, 0x40);
     Vec3 *dir = &owner->mUnk_168;
     Vec3 *axis = &owner->mUnk_150;
     s32 i;

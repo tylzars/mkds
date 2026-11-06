@@ -493,8 +493,8 @@ u32 func_02103840(u32 arg0) {
     u32 compareRight0;
     u32 compareLeft1;
     u32 compareRight1;
-    u32 compareLeft2;
-    u32 compareRight2;
+    s32 compareLeft2;
+    s32 compareRight2;
     value1 = data_021759c0->mEntryIndex;
     compareLeft0 = value0;
     compareRight0 = value1;
@@ -514,7 +514,7 @@ u32 func_02103840(u32 arg0) {
     value1 = *(const u32 *) ((value0) + (0));
     compareLeft2 = value1;
     compareRight2 = value2;
-    if ((s32) compareLeft2 < (s32) compareRight2) {
+    if (compareLeft2 < compareRight2) {
         *(u32 *) ((value0) + (0)) = value2;
     }
     return value0;

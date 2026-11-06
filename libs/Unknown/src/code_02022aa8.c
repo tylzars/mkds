@@ -186,7 +186,7 @@ u32 GetGlyphIndex(Unk02022dd8 *pMap, u32 code) {
             index = (u16) (pMap->mUnk_0c.mUnk_00 + (code - pMap->mUnk_00));
             break;
         case 1:
-            index = ((u16 *) ((u8 *) pMap + 0xc))[code - pMap->mUnk_00];
+            index = (OFFSET_PTR(u16, pMap, 0xc))[code - pMap->mUnk_00];
             break;
         case 2:
             scan = &pMap->mUnk_0c;

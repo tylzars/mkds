@@ -155,7 +155,7 @@ void FinishRemainingRaceProgressKarts(void) {
     u = FALSE;
     v = FALSE;
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        s = ((Unk0217561c_000 *) ((u8 *) gRaceProgress + i * 0x8c))->mStatus;
+        s = (OFFSET_PTR(Unk0217561c_000, gRaceProgress, i * 0x8c))->mStatus;
         f = FALSE;
         switch (s) {
             case 1:
@@ -165,7 +165,7 @@ void FinishRemainingRaceProgressKarts(void) {
                 break;
         }
         if (f == FALSE && s != 4) {
-            p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
+            p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
             t = &p->mLapTimes[5];
             h = gRaceProgress->mUnk_000[0].mElapsedFrames;
             if (data_021759c0->mMode == MODE_GRAND_PRIX) {
@@ -197,7 +197,7 @@ void func_0203ecf0(void) {
     u = FALSE;
     v = FALSE;
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        s = ((Unk0217561c_000 *) ((u8 *) gRaceProgress + i * 0x8c))->mStatus;
+        s = (OFFSET_PTR(Unk0217561c_000, gRaceProgress, i * 0x8c))->mStatus;
         f = FALSE;
         switch (s) {
             case 1:
@@ -207,7 +207,7 @@ void func_0203ecf0(void) {
                 break;
         }
         if (f == FALSE && s != 4) {
-            p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
+            p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
             t = &p->mLapTimes[5];
             h = gRaceProgress->mUnk_000[0].mElapsedFrames;
             if (data_021759c0->mMode == MODE_GRAND_PRIX) {
@@ -239,7 +239,7 @@ void func_0203eb38(void) {
     Unk0217aa1c_144_00 *t;
     u32 h;
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        s = ((Unk0217561c_000 *) ((u8 *) gRaceProgress + i * 0x8c))->mStatus;
+        s = (OFFSET_PTR(Unk0217561c_000, gRaceProgress, i * 0x8c))->mStatus;
         f = FALSE;
         switch (s) {
             case 1:
@@ -249,7 +249,7 @@ void func_0203eb38(void) {
                 break;
         }
         if (f == FALSE) {
-            p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
+            p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
             t = &p->mLapTimes[5];
             h = gRaceProgress->mUnk_000[0].mElapsedFrames;
             if (data_021759c0->mMode == MODE_GRAND_PRIX) {
@@ -341,7 +341,7 @@ void FinishRaceProgressKartWithEndKind(s32 a, s32 b) {
     s32 s;
     BOOL f;
     RaceProgressKart *e;
-    e = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + a * 0x8c);
+    e = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], a * 0x8c);
     s = e->mStatus;
     f = FALSE;
     switch (s) {
@@ -361,7 +361,7 @@ void FinishRaceProgressKartWithEndKind(s32 a, s32 b) {
         return;
     }
     q = GetKart(a);
-    e = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + a * 0x8c);
+    e = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], a * 0x8c);
     gRaceProgress->mUnk_000[0].mClockEnabled = 0;
     ComputeRaceTime(&t.mUnk_02, &t.mUnk_03, &t.mUnk_00, 0, gRaceProgress->mUnk_000[0].mElapsedFrames);
     e->mLapTimes[5] = t;

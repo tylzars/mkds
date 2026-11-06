@@ -32,5 +32,5 @@ u8 func_020df7d8(MkdEfBubbleObject *a, Unk020dea50_1 *b, void *c, u8 *d) {
 }
 
 u32 func_020df7d0(u32 p0, u32 p1, u32 p2, u32 p3) {
-    return (*(const u8 *) ((u8 *) p3 + 0));
+    return (*OFFSET_PTR(const u8, p3, 0));
 }

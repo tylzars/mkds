@@ -640,5 +640,5 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
 }
 
 void func_0208eb10(u32 p0) {
-    *(u32 *) ((u8 *) p0 + 24) = 0x1u;
+    *OFFSET_PTR(u32, p0, 24) = 0x1u;
 }

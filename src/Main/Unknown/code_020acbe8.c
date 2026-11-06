@@ -24,7 +24,7 @@
 #include "Main/Unknown/code_020ace0c.h"
 
 u32 func_020ace0c(u32 p0) {
-    return (*(const u16 *) ((u8 *) p0 + 0));
+    return (*OFFSET_PTR(const u16, p0, 0));
 }
 
 u32 func_020acdec(u32 arg0) {
@@ -42,7 +42,7 @@ u32 func_020acdec(u32 arg0) {
 }
 
 u32 func_020acde4(u32 p0) {
-    return (*(const u16 *) ((u8 *) p0 + 2));
+    return (*OFFSET_PTR(const u16, p0, 2));
 }
 
 u32 func_020acdc4(u32 arg0) {
@@ -170,5 +170,5 @@ u32 func_020acbf0(u32 arg0) {
 #pragma thumb off
 
 u32 func_020acbe8(Unk0201ea30 *p0) {
-    return (*(const u16 *) ((u8 *) p0 + 6));
+    return (*OFFSET_PTR(const u16, p0, 6));
 }

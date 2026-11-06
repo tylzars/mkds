@@ -127,7 +127,7 @@ void func_020245a4(Unk02021f9c *a) {
     s32 i;
     Unk020245a4_08 *q;
 
-    p = (Unk02021fd0 *) ((u8 *) a + a->mUnk_0c);
+    p = OFFSET_PTR(Unk02021fd0, a, a->mUnk_0c);
     for (i = 0; i < a->mUnk_0e; i++) {
         switch (p->mUnk_00) {
             case 0x46494e46:
@@ -155,6 +155,6 @@ void func_020245a4(Unk02021f9c *a) {
             case 0x43474c50:
                 break;
         }
-        p = (Unk02021fd0 *) ((u8 *) p + p->mUnk_04);
+        p = OFFSET_PTR(Unk02021fd0, p, p->mUnk_04);
     }
 }

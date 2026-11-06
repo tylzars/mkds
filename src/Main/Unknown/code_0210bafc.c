@@ -11,7 +11,7 @@ u32 func_0210bc8c(void *a, void *b) {
     BOOL i;
     Unk0210bc54 *p;
 
-    p = (Unk0210bc54 *) ((u8 *) b + ((NNSFndList *) a)->mLinkOffset);
+    p = OFFSET_PTR(Unk0210bc54, b, ((NNSFndList *) a)->mLinkOffset);
     if (p->mUnk_08 != 0) {
         i = FALSE;
     } else {
@@ -30,7 +30,7 @@ void func_0210bc54(NNSFndList *a, void *b) {
     Unk0210bc54 *p;
 
     NNS_FndRemoveListObject(a, b);
-    p = (Unk0210bc54 *) ((u8 *) b + a->mLinkOffset);
+    p = OFFSET_PTR(Unk0210bc54, b, a->mLinkOffset);
     if (p->mUnk_08 != 0) {
         p->mUnk_08 = 0;
     }

@@ -29,7 +29,7 @@ u32 func_020074d8(void) {
     v8 = 0;
     do {
         v6 = (v6 + 1) % 16;
-        if (((Unk0216fdac *) ((u8 *) v7 + v6 * 0x5d4))->mUnk_1d52 != 0 && v2[v6] != 0) {
+        if ((OFFSET_PTR(Unk0216fdac, v7, v6 * 0x5d4))->mUnk_1d52 != 0 && v2[v6] != 0) {
             v4 = (s8) v6;
             break;
         }

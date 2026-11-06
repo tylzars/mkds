@@ -27,11 +27,11 @@ u32 func_02008310(void *a, Unk02008188 *b) {
         return 0;
     }
     for (i = 0; i < 0x10; i++) {
-        if (((Unk0216fdac *) ((u8 *) v4 + i * 0x5d4))->mUnk_1d40 == a) {
+        if ((OFFSET_PTR(Unk0216fdac, v4, i * 0x5d4))->mUnk_1d40 == a) {
             OS_RestoreInterrupts(v1);
             return 0;
         }
-        if (((Unk0216fdac *) ((u8 *) v4 + i * 0x5d4))->mUnk_1d52 == 0) {
+        if ((OFFSET_PTR(Unk0216fdac, v4, i * 0x5d4))->mUnk_1d52 == 0) {
             v2 = i;
             break;
         }
@@ -41,7 +41,7 @@ u32 func_02008310(void *a, Unk02008188 *b) {
         return 0;
     }
     v3 = v2 * 0x5d4;
-    ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d40 = a;
+    (OFFSET_PTR(Unk0216fdac, data_0216fdac, v3))->mUnk_1d40 = a;
     v5 = (Unk020082b4 *) (data_0216fdac->mUnk_1788 + v3);
     func_020082b4(v5, b);
     MI_CpuCopy8((u8 *) a + 0x1c, v5->mUnk_c4, 0x20);
@@ -50,20 +50,20 @@ u32 func_02008310(void *a, Unk02008188 *b) {
         return 0;
     }
     func_02009828((Unk0200b610 *) (data_0216fdac->mUnk_1788 + 0xe4 + v3), a, (const u8 *) &data_0216fdac->mUnk_1300);
-    ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d21 = v2;
+    (OFFSET_PTR(Unk0216fdac, data_0216fdac, v3))->mUnk_1d21 = v2;
     func_020096f4((Unk0200b610 *) (data_0216fdac->mUnk_1788 + 0xe4 + v3));
-    ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d1f = data_0216fc30++;
-    ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d4e = 1;
-    ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d44 = b;
-    ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d54 = &b->mUnk_1e8;
-    ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d58 = b->mUnk_258;
-    if (((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d54->mUnk_30[3].mUnk_0c != 0) {
+    (OFFSET_PTR(Unk0216fdac, data_0216fdac, v3))->mUnk_1d1f = data_0216fc30++;
+    (OFFSET_PTR(Unk0216fdac, data_0216fdac, v3))->mUnk_1d4e = 1;
+    (OFFSET_PTR(Unk0216fdac, data_0216fdac, v3))->mUnk_1d44 = b;
+    (OFFSET_PTR(Unk0216fdac, data_0216fdac, v3))->mUnk_1d54 = &b->mUnk_1e8;
+    (OFFSET_PTR(Unk0216fdac, data_0216fdac, v3))->mUnk_1d58 = b->mUnk_258;
+    if ((OFFSET_PTR(Unk0216fdac, data_0216fdac, v3))->mUnk_1d54->mUnk_30[3].mUnk_0c != 0) {
         if (func_0200b018() == 0) {
             func_0200b00c(data_0216fdac->mUnk_7ce0);
             func_0200b02c(&data_0216fdac->mUnk_74e0, 0x800);
         }
     }
-    ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d52 = 1;
+    (OFFSET_PTR(Unk0216fdac, data_0216fdac, v3))->mUnk_1d52 = 1;
     data_0216fdac->mUnk_1524++;
     OS_RestoreInterrupts(v1);
     return 1;

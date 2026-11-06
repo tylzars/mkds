@@ -290,7 +290,7 @@ u32 TP_CalcCalibrateParam(TPCalibrateParam *calibrate, u16 rawX1, u16 rawY1, u16
     s32 rxWidth;
     s32 dxWidth;
     s32 ryWidth;
-    s32 dyWidth;
+    u32 dyWidth;
     s32 value;
     OSIntrMode enabled;
 
@@ -314,7 +314,7 @@ u32 TP_CalcCalibrateParam(TPCalibrateParam *calibrate, u16 rawX1, u16 rawY1, u16
     value = *(vs32 *) 0x040002a0;
     reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = ryWidth << 8;
-    reg_CP_DIV_DENOM = (u32) dyWidth;
+    reg_CP_DIV_DENOM = dyWidth;
     if (value >= 0x8000 || value < -0x8000) {
         OS_RestoreInterrupts(enabled);
         return 1;

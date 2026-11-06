@@ -209,7 +209,7 @@ void SetupRecordGpx(void) {
 
     n = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     if (func_ov001_02194d04(gRecordGpx->mIndex) != 0) {
-        CallQueueAppend(0x1b, 0x3c6, (u8 *) ((u8 *) gRecordGpx->mRecordGpxSNscr + 0xc) + 0x3c6, 0x134);
+        CallQueueAppend(0x1b, 0x3c6, OFFSET_PTR(u8, gRecordGpx->mRecordGpxSNscr, 0xc) + 0x3c6, 0x134);
         gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[3]].mUnk_00 = 1;
         for (i = 0; i < 3; i++) {
             gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[3][i]].mUnk_00 = 1;

@@ -26,7 +26,7 @@ s32 IsKartEnded(u32 param_1) {
 }
 
 void GetKartFinishTime(s32 a, u8 *b, u8 *c, u16 *d) {
-    RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + a * 0x8c);
+    RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], a * 0x8c);
     BOOL g = TRUE;
     if (data_021759c0->mMode == MODE_BATTLE) {
         if (data_021759c0->mUnk_18 == 1) {
@@ -57,7 +57,7 @@ void GetKartFinishTime(s32 a, u8 *b, u8 *c, u16 *d) {
 
 void GetKartLapTime(s32 a, u16 b, u8 *c, u8 *d, u16 *e) {
     s32 k = b - 1;
-    Unk0217aa1c_144_00 *p = (Unk0217aa1c_144_00 *) ((u8 *) &gRaceProgress->mKarts[0].mLapTimes[0] + a * 0x8c);
+    Unk0217aa1c_144_00 *p = OFFSET_PTR(Unk0217aa1c_144_00, &gRaceProgress->mKarts[0].mLapTimes[0], a * 0x8c);
     Unk0217aa1c_144_00 *q = &p[k];
     *c = q->mUnk_02;
     *d = q->mUnk_03;
@@ -77,7 +77,7 @@ u16 GetKartBestLapTime(u16 a, u8 *b, u8 *c, u16 *d) {
     if (gCourseMap->mSettings->mLapCountOrBattleSeconds >= 1) {
         v1 = a * 0x8c;
         do {
-            q = (Unk0217aa1c_144_00 *) ((u8 *) &gRaceProgress->mKarts[0].mLapTimes[0] + v1) + (i - 1);
+            q = OFFSET_PTR(Unk0217aa1c_144_00, &gRaceProgress->mKarts[0].mLapTimes[0], v1) + (i - 1);
             if (f != FALSE) {
                 f = FALSE;
                 r = i;

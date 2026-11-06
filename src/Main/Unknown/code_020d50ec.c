@@ -299,10 +299,10 @@ void func_020d5bf0(Unk020d5bf0 *p, struct CourseMapRow *q) {
 #pragma thumb on
 void func_020d5bac(Unk0217b614 *p, Unk0217b614 *a) {
     *p = *a;
-    p->mUnk_00 = (Vec3 *) ((u32) a + (u32) p->mUnk_00);
-    p->mUnk_04 = (UnkVec16 *) ((u32) a + (u32) p->mUnk_04);
-    p->mUnk_08 = (Unk0217b614_08 *) ((u32) a + (u32) p->mUnk_08);
-    p->mUnk_0c = (u8 *) ((u32) a + (u32) p->mUnk_0c);
+    p->mUnk_00 = OFFSET_PTR(Vec3, a, (u32) p->mUnk_00);
+    p->mUnk_04 = OFFSET_PTR(UnkVec16, a, (u32) p->mUnk_04);
+    p->mUnk_08 = OFFSET_PTR(Unk0217b614_08, a, (u32) p->mUnk_08);
+    p->mUnk_0c = OFFSET_PTR(u8, a, (u32) p->mUnk_0c);
     data_0217b610 = 0;
 }
 #pragma thumb off

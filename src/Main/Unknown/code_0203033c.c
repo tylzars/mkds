@@ -34,7 +34,7 @@
 #include "Main/Unknown/unk_02174000.h"
 
 u32 func_02030700(u32 p0) {
-    return (*(const u16 *) ((u8 *) p0 + 0));
+    return (*OFFSET_PTR(const u16, p0, 0));
 }
 
 u32 func_020306e0(u32 arg0) {
@@ -52,7 +52,7 @@ u32 func_020306e0(u32 arg0) {
 }
 
 u32 func_020306d8(u32 p0) {
-    return (*(const u16 *) ((u8 *) p0 + 2));
+    return (*OFFSET_PTR(const u16, p0, 2));
 }
 
 u32 func_020306b8(u32 arg0) {

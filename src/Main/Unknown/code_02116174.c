@@ -294,7 +294,7 @@ void IncrementRecordVSEraseIndex(void) {
 
 void DecrementRecordVSEraseIndex(void) {
     int v1;
-    u32 v2;
+    int v2;
     int v3;
     int v4;
     v4 = (gRecordVSErase->mIndex + -1) * 0x10000 >> 0x10;
@@ -303,7 +303,7 @@ void DecrementRecordVSEraseIndex(void) {
         v1 = IsRecordVSEraseRowFilled(4);
         if (v1 == 0) {
             v2 = func_021143b4();
-            v3 = (int) (v2) % 5;
+            v3 = (v2) % 5;
             v4 = (v3 + -1) * 0x10000 >> 0x10;
         }
     }

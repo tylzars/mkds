@@ -29,7 +29,7 @@ void NNS_G2dUnpackNCE(Unk02021dc8 *bank) {
         entry->mUnk_04 += (u32) oamHead;
     }
     if (bank->mUnk_0c != 0) {
-        bank->mUnk_0c = (Unk02021e40 *) ((u32) bank->mUnk_0c + (u32) bank);
+        bank->mUnk_0c = OFFSET_PTR(Unk02021e40, bank->mUnk_0c, (u32) bank);
         entry = bank->mUnk_0c;
         entry->mUnk_04 += (u32) entry;
         bank->mUnk_0c = entry;

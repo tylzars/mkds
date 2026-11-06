@@ -78,7 +78,7 @@ void func_020636f8(Kart *a) {
     Unk020636f8_B *d;
 
     c = &data_0217aa14->mUnk_754->mUnk_04;
-    d = (Unk020636f8_B *) ((u8 *) c + 8);
+    d = OFFSET_PTR(Unk020636f8_B, c, 8);
     b = a->mUnk_514;
     d->mUnk_00 = a->mPos.x >> 10;
     d->mUnk_02 = (a->mPos.y - a->mHopHeight) >> 10;

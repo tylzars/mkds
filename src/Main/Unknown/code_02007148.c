@@ -9,7 +9,7 @@ void func_02007154(u32 a) {
     u16 v3;
     enum { K0 } k;
     k = a * 0x5d4;
-    v1 = (Unk0216fdac *) ((u8 *) data_0216fdac + k);
+    v1 = OFFSET_PTR(Unk0216fdac, data_0216fdac, k);
     if (v1->mUnk_1d52 == 0) {
         return;
     }

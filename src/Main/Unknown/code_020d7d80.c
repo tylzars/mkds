@@ -14,7 +14,7 @@ void func_020d7d80(Unk020e0144 *a) {
     if (0 < v3) {
         v4 = 0;
         do {
-            v5 = (Unk020e0144_00_0 *) ((u8 *) v1->mUnk_00 + v4);
+            v5 = OFFSET_PTR(Unk020e0144_00_0, v1->mUnk_00, v4);
             v5->mUnk_30 = v5->mUnk_40;
             v5->mUnk_34 = v5->mUnk_44;
             v4 = v4 + 0x54;

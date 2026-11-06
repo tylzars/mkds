@@ -60,9 +60,9 @@ s32 WmInitCore(void *wmSysBuf, u16 dmaNo, u32 bufSize) {
     MI_DmaFill32(dmaNo, wmSysBuf, 0, bufSize);
     data_0217eed4 = wmSysBuf;
     data_0217eed4->mWM7 = (u8 *) wmSysBuf + 0x200;
-    data_0217eed4->mStatusArea = (Unk02142988 *) ((u8 *) data_0217eed4->mWM7 + 0x300);
-    data_0217eed4->mRequestArea = (u16 *) ((u8 *) data_0217eed4->mStatusArea + 0x800);
-    data_0217eed4->mMessageArea = (Unk021425e8 *) ((u8 *) data_0217eed4->mRequestArea + 0x100);
+    data_0217eed4->mStatusArea = OFFSET_PTR(Unk02142988, data_0217eed4->mWM7, 0x300);
+    data_0217eed4->mRequestArea = OFFSET_PTR(u16, data_0217eed4->mStatusArea, 0x800);
+    data_0217eed4->mMessageArea = OFFSET_PTR(Unk021425e8, data_0217eed4->mRequestArea, 0x100);
     WmClearFifoRecvFlag();
     data_0217eed4->mDmaNo = dmaNo;
     for (port = 0; port < 16; port++) {
@@ -126,7 +126,7 @@ s32 WMi_SendCommand(u32 id, u16 paramNum, ...) {
     args = (u32 *) (((u32) &paramNum & ~3) + 4);
     for (i = 0; i < paramNum; i++) {
         args++;
-        ((u32 *) ((u8 *) buffer + 4))[i] = args[-1];
+        (OFFSET_PTR(u32, buffer, 4))[i] = args[-1];
     }
     DC_StoreRange(buffer, 0x100);
     result = PXI_SendWordByFifo(0xa, (u32) buffer, 0);

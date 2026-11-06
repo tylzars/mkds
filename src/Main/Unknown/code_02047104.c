@@ -759,7 +759,7 @@ void func_02047274(void) {
     s32 i;
 
     for (i = 0; i < 16; i++) {
-        *(u32 *) ((u8 *) &data_021759c8->mUnk_9b0[0].mUnk_08 + i * 12) &= 0x7fffffff;
+        *OFFSET_PTR(u32, &data_021759c8->mUnk_9b0[0].mUnk_08, i * 12) &= 0x7fffffff;
     }
 }
 

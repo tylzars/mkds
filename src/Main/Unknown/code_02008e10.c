@@ -75,7 +75,7 @@ void func_02008f00(Unk02008f00Func a, u32 b) {
     i = 0;
     v2 = 0;
     for (; i < 0x10; i++) {
-        Unk02008934 *e = (Unk02008934 *) ((u8 *) data_0216fc40->mUnk_10 + v2);
+        Unk02008934 *e = OFFSET_PTR(Unk02008934, data_0216fc40->mUnk_10, v2);
         u16 m = 1 << i;
         if (data_0216fc40->mUnk_00 & m) {
             e->mUnk_58a -= data_0216fc40->mUnk_0c;

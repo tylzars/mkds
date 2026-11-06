@@ -433,7 +433,7 @@ void func_0210823c(void) {
     func_0210fa28();
     func_0210bac0();
     for (i = 0; i < 7; i++) {
-        func_0210dd44((Unk0217d26c *) ((u8 *) data_0217d26c + i * sizeof(Unk0217d26c)));
+        func_0210dd44(OFFSET_PTR(Unk0217d26c, data_0217d26c, i * sizeof(Unk0217d26c)));
     }
     func_0210e280(&data_0217c7c4);
     func_0210d2cc();
@@ -911,7 +911,7 @@ void func_02106efc(void) {
         return;
     }
     for (i = 7; i < 12; i++) {
-        NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) ((u8 *) data_0217c838 + i * sizeof(NNSSndSeqPlayer *)), 0);
+        NNS_SndPlayerStopSeq(OFFSET_PTR(NNSSndSeqPlayer *, data_0217c838, i * sizeof(NNSSndSeqPlayer *)), 0);
     }
     p = &data_0217c854;
     if ((data_0217c780 & 1) == 0) {
@@ -1024,7 +1024,7 @@ void func_02106ab8(void) {
         return;
     }
     for (i = 7; i < 12; i++) {
-        NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) ((u8 *) data_0217c838 + i * sizeof(NNSSndSeqPlayer *)), 0);
+        NNS_SndPlayerStopSeq(OFFSET_PTR(NNSSndSeqPlayer *, data_0217c838, i * sizeof(NNSSndSeqPlayer *)), 0);
     }
     p = &data_0217c854;
     if ((data_0217c780 & 1) == 0) {
@@ -1076,7 +1076,7 @@ void func_0210689c(u32 a) {
             if (data_0217c814.mUnk_10 != 0) {
                 v = 0x1c2;
                 for (i = 7; i < 12; i++) {
-                    NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) ((u8 *) data_0217c838 + i * sizeof(NNSSndSeqPlayer *)),
+                    NNS_SndPlayerStopSeq(OFFSET_PTR(NNSSndSeqPlayer *, data_0217c838, i * sizeof(NNSSndSeqPlayer *)),
                                          b);
                 }
                 b = TRUE;

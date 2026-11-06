@@ -364,7 +364,7 @@ void func_0212a99c(void) {
 
 void func_0212a920(void) {
     s32 i;
-    s32 v;
+    u32 v;
     data_0217d404->mUnk_024++;
     if (data_0217d404->mUnk_024 > 0x78) {
         data_0217d404->mUnk_024 = 0;
@@ -372,7 +372,7 @@ void func_0212a920(void) {
     func_0212a99c();
     for (i = 0; i < 2; i++) {
         v = data_0217d404->mUnk_014[i];
-        if (data_0217d404->mUnk_024 < 0x69 || (u32) v <= 1) {
+        if (data_0217d404->mUnk_024 < 0x69 || v <= 1) {
             MIi_CpuCopy16(&data_0217d404->mUnk_10c[i],
                           &data_0217d404->mUnk_038->mUnk_00[data_0217d404->mUnk_038->mUnk_400], 6);
             data_0217d404->mUnk_038->mUnk_400++;

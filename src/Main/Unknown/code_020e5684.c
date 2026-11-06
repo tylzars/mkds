@@ -214,7 +214,7 @@ s32 func_020e57fc(Unk020e43a8 *p, Unk020e57fc *q, s32 a, u8 *b) {
 }
 
 u32 func_020e57f4(u32 p0, u32 p1, u32 p2, u32 p3) {
-    return (*(const u8 *) ((u8 *) p3 + 0));
+    return (*OFFSET_PTR(const u8, p3, 0));
 }
 
 void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c) {

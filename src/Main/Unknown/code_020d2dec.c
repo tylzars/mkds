@@ -368,7 +368,7 @@ void InitMapObjects(void) {
         }
     }
     for (i = 0; i < n; i++) {
-        e = (CourseMapRow *) ((u8 *) gCourseMap->mRows + i * sizeof(CourseMapRow));
+        e = OFFSET_PTR(CourseMapRow, gCourseMap->mRows, i * sizeof(CourseMapRow));
         if (data_021759c0->mMode == MODE_TIME_ATTACK && (e->mUnk_38 & 1) == 0) {
             continue;
         }

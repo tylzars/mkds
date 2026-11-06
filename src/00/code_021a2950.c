@@ -136,7 +136,7 @@ u32 func_ov000_021a299c(u32 a, void *b, u32 c) {
             data_ov000_021b5670->mUnk_01 = ((u8 *) b)[1];
             data_ov000_021b5670->mUnk_02 = 0;
             data_ov000_021b5670->mUnk_03 = 0;
-            data_ov000_021b5670->mUnk_04 = *(u32 *) ((u8 *) b + 4);
+            data_ov000_021b5670->mUnk_04 = *OFFSET_PTR(u32, b, 4);
             data_ov000_021b5670->mUnk_08 = 0;
             data_ov000_021b5670->mUnk_0c = 0;
             data_ov000_021b5670->mUnk_10 = func_ov000_021a350c();

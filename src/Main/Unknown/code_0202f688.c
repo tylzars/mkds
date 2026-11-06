@@ -95,7 +95,7 @@ void func_02030200(void) {
     Unk02174e50_24 *p;
 
     p = &gMultiSelectMemberGroup->mGroupSParts;
-    n = *(u16 *) ((u8 *) p->mUnk_0c + 6) + *(u16 *) ((u8 *) p->mUnk_14 + 6);
+    n = *OFFSET_PTR(u16, p->mUnk_0c, 6) + *OFFSET_PTR(u16, p->mUnk_14, 6);
     for (i = 0; i < n; i++) {
         p->mUnk_18[i].mUnk_06 = gMultiSelectMemberGroup->mBg3Offset;
     }
@@ -161,7 +161,7 @@ void func_0203003c(s32 a) {
         }
         func_02124100(q->mUnk_30, t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
         r4 += 0xc;
-        q = (Unk02153c58 *) ((u8 *) q + 0x32);
+        q = OFFSET_PTR(Unk02153c58, q, 0x32);
         i++;
     } while (i < 4);
     if (gMultiSelectMemberGroup->mUnk_48 == i && a != 0) {

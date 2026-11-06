@@ -868,7 +868,7 @@ void func_020719d0(Kart *p) {
 }
 
 PlayingSound *func_020719bc(SoundSource *p, u32 a) {
-    u32 value0 = (u32) p;
+    SoundSource *value0 = p;
     u32 value1 = a;
     u32 value2;
     u32 value3;
@@ -876,7 +876,7 @@ PlayingSound *func_020719bc(SoundSource *p, u32 a) {
     value12 = (u32) &StartSound;
     value2 = 0x7fu;
     value3 = 0u;
-    return StartSound((SoundSource *) value0, value1, value2, value3);
+    return StartSound(value0, value1, value2, value3);
 }
 
 void func_020719a8(u32 arg0, u32 arg1) {

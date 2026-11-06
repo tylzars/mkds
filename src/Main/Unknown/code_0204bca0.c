@@ -144,7 +144,7 @@ void func_0204d6f4(FSFile *a, s32 b) {
             *q = t[j].mUnk_04;
             FS_SeekFile(&v1, v10 + (u32) t[j].mUnk_00, v11);
             FS_ReadFile(&v1, q + 1, *q);
-            v15 = (u32 *) ((u8 *) v15 + (v3[j] + 4));
+            v15 = OFFSET_PTR(u32, v15, (v3[j] + 4));
         }
     }
     if (v8 != 0) {
@@ -228,7 +228,7 @@ void func_0204d28c(void) {
     u32 n;
     s32 g;
     Unk02175ec0 *q = &data_02175ec0;
-    Unk02175ec0_440s *p = (Unk02175ec0_440s *) ((u32) q + 0x440);
+    Unk02175ec0_440s *p = OFFSET_PTR(Unk02175ec0_440s, q, 0x440);
     s32 a;
 
     if (q->mUnk_0000 == 0) {
@@ -481,7 +481,7 @@ void func_0204cc94(Unk0204cc94 *a) {
     u16 m;
 
     p = &data_02175ec0;
-    z = (Unk02175ec0_440s *) ((u8 *) p + 0x440);
+    z = OFFSET_PTR(Unk02175ec0_440s, p, 0x440);
     if (p->mUnk_000c == 0) {
         return;
     }
@@ -881,10 +881,10 @@ void func_0204c090(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u
     OS_RestoreInterrupts(v1);
     v2 = &data_02175ec0;
     v2->mUnk_0000 = 1;
-    v3 = (Unk02175ec0_440s *) ((u8 *) v2 + 0x440);
+    v3 = OFFSET_PTR(Unk02175ec0_440s, v2, 0x440);
     DC_FlushRange(v3, 0x46f0);
     DC_WaitWriteBufferEmpty();
-    v4 = (Unk0204c090 *) ((u8 *) v3 + 0xc0);
+    v4 = OFFSET_PTR(Unk0204c090, v3, 0xc0);
     v3->mUnk_46c0 = v4;
     if (v4 + 1 < (Unk0204c090 *) &v3->mUnk_46c0) {
         do {
@@ -892,7 +892,7 @@ void func_0204c090(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u
             FS_InitFile(&v4->mUnk_038);
             v4->mUnk_084 = 0;
             v4->mUnk_080 = 0;
-            v4->mUnk_08c = (v4 + 0x10001) - (Unk0204c090 *) ((u8 *) v3 + 0xc0);
+            v4->mUnk_08c = (v4 + 0x10001) - OFFSET_PTR(Unk0204c090, v3, 0xc0);
             v4++;
         } while (v4 + 1 < (Unk0204c090 *) &v3->mUnk_46c0);
     }
@@ -939,7 +939,7 @@ void func_0204bfac(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u
     OS_RestoreInterrupts(v1);
     v2 = &data_02175ec0;
     v2->mUnk_0000 = 0;
-    v3 = (Unk0204bfac *) ((u8 *) v2 + 0x440);
+    v3 = OFFSET_PTR(Unk0204bfac, v2, 0x440);
     DC_FlushRange(v3, 0xb0c);
     DC_WaitWriteBufferEmpty();
     for (i = 0; i < 16; i++) {
@@ -1054,12 +1054,12 @@ u32 func_0204bcdc(void) {
 
 u32 func_0204bcb4(u32 arg0) {
     u32 value0 = arg0;
-    u32 value1;
+    Unk02179ec0 *value1;
     u32 value2;
     u32 value4;
     value4 = value0;
     value0 = OS_DisableInterrupts();
-    value1 = (u32) &data_02179ec0;
+    value1 = &data_02179ec0;
     value2 = (value4) & ~(1u);
     data_02179ec0.mUnk_b10 = value2;
     value0 = OS_RestoreInterrupts(value0);

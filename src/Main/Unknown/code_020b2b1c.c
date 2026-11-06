@@ -22,5 +22,5 @@ u16 func_020b2b24(s32 a, u32 b) {
 }
 
 u32 func_020b2b1c(const void *p0) {
-    return (*(const u16 *) ((u8 *) p0 + 4));
+    return (*OFFSET_PTR(const u16, p0, 4));
 }

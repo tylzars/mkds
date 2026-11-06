@@ -9,7 +9,7 @@ NNSG3dResTexPatAnmFV *NNSi_G3dGetTexPatAnmFV(const NNSG3dResTexPatAnm *pPatAnm, 
 
     patData = NNSi_G3dGetTexPatAnmDataByIdx(pPatAnm, idx);
     cur = patData->mRatioDataFrame;
-    frames = (NNSG3dResTexPatAnmFV *) ((const u8 *) pPatAnm + patData->mOffset);
+    frames = OFFSET_PTR(NNSG3dResTexPatAnmFV, pPatAnm, patData->mOffset);
     cur = (cur * frame) >> 12;
     while (cur != 0 && frames[cur].mIdxFrame >= frame) {
         cur--;

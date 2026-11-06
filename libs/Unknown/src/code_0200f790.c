@@ -162,7 +162,7 @@ void OSi_ArrangeTimer(void) {
 
     *(vu16 *) 0x4000106 = 0;
     OS_DisableIrqMask(0x10);
-    *(u32 *) ((u8 *) &data_027e0000 + 0x3ff8) |= 0x10;
+    *OFFSET_PTR(u32, &data_027e0000, 0x3ff8) |= 0x10;
     now = OS_GetTick();
     alarm = gAlarmList.mHead;
     if (alarm == 0) {

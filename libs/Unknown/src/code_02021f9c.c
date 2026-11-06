@@ -5,13 +5,13 @@ Unk02021fd0 *FindPartByTag(Unk02021f9c *file, u32 tag) {
     u16 count;
     Unk02021fd0 *part;
 
-    part = (Unk02021fd0 *) ((u8 *) file + file->mUnk_0c);
+    part = OFFSET_PTR(Unk02021fd0, file, file->mUnk_0c);
     count = file->mUnk_0e;
     for (i = 0; i < count; i++) {
         if (part->mUnk_00 == tag) {
             return part;
         }
-        part = (Unk02021fd0 *) ((u8 *) part + part->mUnk_04);
+        part = OFFSET_PTR(Unk02021fd0, part, part->mUnk_04);
     }
     return 0;
 }
