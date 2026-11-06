@@ -26,7 +26,7 @@
 #include "03/unk_021d5000.h"
 #include "03/code_021bf410.h"
 
-void func_ov003_021cc3d0(void) {
+void SetupXb3Multi(void) {
     data_ov003_021da254 = 0;
     LoadXb3MultiFilesAndSetBgCnt();
     func_ov003_021bf86c(8);
@@ -109,17 +109,17 @@ void func_ov003_021cc2e0(void) {
 void func_ov003_021cc2bc(void) {
     if (func_ov003_021bf334() != -2) {
         func_ov003_021bf2e0();
-        func_ov003_021c212c(func_ov003_021cc2a4);
+        func_ov003_021c212c(UpdateXb3Multi);
     }
 }
 
-void func_ov003_021cc2a4(void) {
-    func_ov003_021cc278();
+void UpdateXb3Multi(void) {
+    UpdateXb3MultiInput();
     func_ov003_021cc274();
     func_ov003_021cc234();
 }
 
-void func_ov003_021cc278(void) {
+void UpdateXb3MultiInput(void) {
     int v1;
     v1 = func_ov003_021d2b04(1);
     if (v1 != 0) {
@@ -187,6 +187,6 @@ void func_ov003_021cc144(void) {
             return;
         }
         func_ov003_021c2120(2, 1);
-        func_ov003_021c212c(func_ov003_021cc83c);
+        func_ov003_021c212c(SetupUsb);
     }
 }

@@ -35,7 +35,7 @@
 #include "code_0200fc8c.h"
 #include "code_0214cfe4.h"
 
-void func_ov003_021cc83c(void) {
+void SetupUsb(void) {
     u16 a[12];
     Unk0200fddc b;
     data_ov003_021da258 = 0;
@@ -124,11 +124,11 @@ void func_ov003_021cc76c(void) {
 void func_ov003_021cc748(void) {
     if (func_ov003_021bf334() != -2) {
         func_ov003_021bf2e0();
-        func_ov003_021c212c(func_ov003_021cc730);
+        func_ov003_021c212c(UpdateUsb);
     }
 }
 
-void func_ov003_021cc730(void) {
+void UpdateUsb(void) {
     func_ov003_021cc700();
     func_ov003_021cc6fc();
     func_ov003_021cc6c4();
@@ -198,7 +198,7 @@ void func_ov003_021cc5a8(void) {
             func_ov003_021c212c(CreateAp);
         } else if (data_ov003_021da258 == 3) {
             func_ov003_021c2120(2, 1);
-            func_ov003_021c212c(func_ov003_021cc3d0);
+            func_ov003_021c212c(SetupXb3Multi);
         } else {
             func_ov003_021c2120(0, 0);
             func_ov003_021c212c(func_ov003_021cc110);
@@ -288,6 +288,6 @@ void func_ov003_021cc410(void) {
         func_ov003_021bf2e0();
         data_ov003_021da258 = 0;
         func_ov003_021ce834((u32) &func_ov003_021cc4ec);
-        func_ov003_021c212c(func_ov003_021cc730);
+        func_ov003_021c212c(UpdateUsb);
     }
 }

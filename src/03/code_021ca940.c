@@ -236,7 +236,7 @@ void func_ov003_021cacfc(void) {
                     break;
                 case 3:
                     func_ov003_021c2120(2, 1);
-                    func_ov003_021c212c(func_ov003_021cc3d0);
+                    func_ov003_021c212c(SetupXb3Multi);
                     break;
             }
         }
