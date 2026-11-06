@@ -11,7 +11,7 @@ void func_02125928(void) {
         func_02126834();
     }
     if (data_0217d3ec->mUnk_04 != FALSE) {
-        func_021279a0();
+        AdvanceSelectChoises();
     }
     if (data_0217d3ec->mUnk_08 != FALSE) {
         AdvanceSelectReturn();
@@ -23,7 +23,7 @@ void func_021258f0(void) {
         func_02126730();
     }
     if (data_0217d3ec->mUnk_04 != FALSE) {
-        func_021278f4();
+        WriteSelectChoisesRegisters();
     }
     if (data_0217d3ec->mUnk_08 != FALSE) {
         WriteSelectReturnRegisters();

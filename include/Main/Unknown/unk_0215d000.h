@@ -15,10 +15,10 @@ extern u8 data_0215d044[][2];
 extern u16 data_0215d054[];
 extern Unk0215d064 data_0215d064[];
 extern Unk0215d064 data_0215d080[];
-extern u8 data_0215d09c[][2];
-extern Unk0215d064 data_0215d0a0;
-extern Unk0215d064 data_0215d0a4[];
-extern Unk0215d064 data_0215d0ac[];
+extern u8 gSelectChoisesNscrOrigins[][2];
+extern Unk0215d064 gSelectChoisesTileRect;
+extern Unk0215d064 gSelectChoisesHitRects[];
+extern Unk0215d064 gSelectChoisesPaletteRects[];
 
 // Objects whose layout isn't known yet.
 extern const s16 gPairsByAngle[];

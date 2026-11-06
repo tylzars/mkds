@@ -529,31 +529,30 @@ typedef struct TxtSystem {
     /* 225c */ struct Nscr *mBgNscrs[7];
 } TxtSystem;
 
-// Object behind data_0217d3f4.
-typedef struct Unk0217d3f4 {
-    /* 000 */ u32 mUnk_00;
-    /* 004 */ s32 mUnk_04;
-    /* 008 */ u32 mUnk_08;
-    /* 00c */ u32 mUnk_0c;
-    /* 010 */ s32 mUnk_10;
-    /* 014 */ u32 mUnk_14;
-    /* 018 */ u32 mUnk_18;
-    /* 01c */ u32 mUnk_1c;
-    /* 020 */ u32 mUnk_20;
-    /* 024 */ u32 mUnk_24;
-    /* 028 */ u32 mUnk_28;
-    /* 02c */ u16 mUnk_2c[0x400];
-    /* 82c */ u32 mUnk_82c;
-    /* 830 */ u32 mUnk_830;
-    /* 834 */ Unk0217d3f0_2098 mUnk_834[2];
+typedef struct SelectChoises {
+    /* 000 */ u32 mEnabled;
+    /* 004 */ s32 mState;
+    /* 008 */ u32 mNextState;
+    /* 00c */ u32 mState2Frames;
+    /* 010 */ s32 mToggleFrames;
+    /* 014 */ u32 mToggleOn;
+    /* 018 */ u32 mIndex;
+    /* 01c */ u32 mDone;
+    /* 020 */ u32 mIndexNone;
+    /* 024 */ u32 mState1Requested;
+    /* 028 */ u32 mState0Requested;
+    /* 02c */ u16 mNscrCopy[0x400];
+    /* 82c */ u32 mToggleOnFirstTile;
+    /* 830 */ u32 mToggleOffFirstTile;
+    /* 834 */ Unk0217d3f0_2098 mCharCanvases[2];
     /* 874 */ Unk0217d3f0_2178 mUnk_874[2];
-    /* 894 */ u8 *mUnk_894[2];
-    /* 89c */ s32 mUnk_89c;
+    /* 894 */ u8 *mCharBuffers[2];
+    /* 89c */ s32 mFirstTileIndex;
     /* 8a0 */ u32 mUnk_8a0;
     /* 8a4 */ u32 mUnk_8a4;
-    /* 8a8 */ s32 mUnk_8a8[2];
-    /* 8b0 */ s32 mUnk_8b0;
-} Unk0217d3f4;
+    /* 8a8 */ s32 mSoundIds[2];
+    /* 8b0 */ s32 mIndexNoneSoundId;
+} SelectChoises;
 
 // Object behind gSelectReturn: 0x828 bytes allocated by InitSelectReturn.
 typedef struct SelectReturn {
@@ -745,7 +744,7 @@ extern Unk0217d380 *data_0217d380;
 extern char gKartFilterString[0x64];
 extern Unk0217d3ec *data_0217d3ec;
 extern TxtSystem *gTxtSystem;
-extern Unk0217d3f4 *data_0217d3f4;
+extern SelectChoises *gSelectChoises;
 extern SelectReturn *gSelectReturn;
 extern Unk0217d3fc *data_0217d3fc;
 extern Keyboard *gKeyboard;

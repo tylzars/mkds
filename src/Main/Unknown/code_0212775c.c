@@ -372,7 +372,7 @@ u32 func_021281b4(void) {
     u32 value1;
     u32 value2;
     value2 = 0u;
-    value0 = (u32) &data_0217d3f4;
+    value0 = (u32) &gSelectChoises;
     value1 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = 0x8a0u;
     *(u32 *) ((value1) + (value0)) = value2;
@@ -381,49 +381,49 @@ u32 func_021281b4(void) {
 #pragma thumb off
 
 #pragma thumb on
-s32 func_02128058(void *a, s32 b, s32 c) {
+s32 InitSelectChoises(void *a, s32 b, s32 c) {
     s32 i;
     s32 r;
     Unk0217d3f0_2098 *q;
     Unk0217d3f0_2178 *e;
     u32 t;
-    data_0217d3f4 = HeapAlloc(a, 0x8b4);
+    gSelectChoises = HeapAlloc(a, 0x8b4);
     if (*(vu16 *) 0x27ffc40 != 2) {
-        func_0212802c();
-        c = func_02127f14(c);
-        data_0217d3f4->mUnk_8a4 = 1;
+        InitSelectChoisesDisplay();
+        c = LoadSelectChoises(c);
+        gSelectChoises->mUnk_8a4 = 1;
     } else {
-        data_0217d3f4->mUnk_8a4 = 0;
+        gSelectChoises->mUnk_8a4 = 0;
         t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
         t &= ~1;
         *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (t << 8);
     }
     for (i = 0; i < 2; i++) {
-        data_0217d3f4->mUnk_894[i] = HeapAlloc(a, 0x800);
-        NNS_G2dCharCanvasInitForBG(&data_0217d3f4->mUnk_834[i], data_0217d3f4->mUnk_894[i], 0x20, 2, 4);
-        q = &data_0217d3f4->mUnk_834[i];
+        gSelectChoises->mCharBuffers[i] = HeapAlloc(a, 0x800);
+        NNS_G2dCharCanvasInitForBG(&gSelectChoises->mCharCanvases[i], gSelectChoises->mCharBuffers[i], 0x20, 2, 4);
+        q = &gSelectChoises->mCharCanvases[i];
         q->mUnk_18(q, 0);
         r = func_020b4acc();
-        e = &data_0217d3f4->mUnk_874[i];
-        e->mUnk_00 = &data_0217d3f4->mUnk_834[i];
+        e = &gSelectChoises->mUnk_874[i];
+        e->mUnk_00 = &gSelectChoises->mCharCanvases[i];
         e->mUnk_04 = b;
         e->mUnk_08 = r;
         e->mUnk_0c = 0;
     }
     func_021281b4();
-    data_0217d3f4->mUnk_00 = 1;
-    data_0217d3f4->mUnk_04 = 0;
-    data_0217d3f4->mUnk_08 = 0;
-    data_0217d3f4->mUnk_0c = 0;
-    data_0217d3f4->mUnk_10 = 0;
-    data_0217d3f4->mUnk_14 = 1;
-    data_0217d3f4->mUnk_24 = 0;
-    data_0217d3f4->mUnk_28 = 0;
-    data_0217d3f4->mUnk_1c = 0;
-    data_0217d3f4->mUnk_20 = 0;
-    data_0217d3f4->mUnk_8a8[0] = 7;
-    data_0217d3f4->mUnk_8a8[1] = 0x10;
-    data_0217d3f4->mUnk_8b0 = 0x10;
+    gSelectChoises->mEnabled = 1;
+    gSelectChoises->mState = 0;
+    gSelectChoises->mNextState = 0;
+    gSelectChoises->mState2Frames = 0;
+    gSelectChoises->mToggleFrames = 0;
+    gSelectChoises->mToggleOn = 1;
+    gSelectChoises->mState1Requested = 0;
+    gSelectChoises->mState0Requested = 0;
+    gSelectChoises->mDone = 0;
+    gSelectChoises->mIndexNone = 0;
+    gSelectChoises->mSoundIds[0] = 7;
+    gSelectChoises->mSoundIds[1] = 0x10;
+    gSelectChoises->mIndexNoneSoundId = 0x10;
     return c;
 }
 #pragma thumb off
@@ -433,13 +433,13 @@ void func_0212804c(void) {
     u32 value0;
     u32 value1;
     value1 = 0u;
-    value0 = (u32) &data_0217d3f4;
+    value0 = (u32) &gSelectChoises;
     *(u32 *) ((value0) + 0u) = value1;
 }
 #pragma thumb off
 
 #pragma thumb on
-u32 func_0212802c(void) {
+u32 InitSelectChoisesDisplay(void) {
     u32 value0;
     u32 value1;
     u32 value2;
@@ -460,7 +460,7 @@ u32 func_0212802c(void) {
 
 #pragma thumb on
 
-s32 func_02127f14(s32 d) {
+s32 LoadSelectChoises(s32 d) {
     Ncgr *a;
     Nscr *b;
     Nclr *c;
@@ -471,32 +471,32 @@ s32 func_02127f14(s32 d) {
     s32 y;
     Unk0215d064 *e;
 
-    LocateNcgr(&a, func_02047a28(data_0216e840));
-    LocateNscr(&b, func_02047a28(data_0216e858));
-    LocateNclr(&c, func_02047a28(data_0216e874));
+    LocateNcgr(&a, func_02047a28(gSelectChoisesSBNcgrName));
+    LocateNscr(&b, func_02047a28(gSelectChoisesSBgNscrName));
+    LocateNclr(&c, func_02047a28(gSelectChoisesSBNclrName));
     d = d - a->mDataSize;
     s = d >> 5;
-    data_0217d3f4->mUnk_89c = s;
+    gSelectChoises->mFirstTileIndex = s;
     DC_FlushRange(a->mData, a->mDataSize);
     GXS_LoadBG0Char(a->mData, d, a->mDataSize);
     for (i = 0; i < 32; i++) {
         for (j = 0; j < 32; j++) {
-            *(data_0217d3f4->mUnk_2c + i * 32 + j) = s + *((u16 *) b->mData + i * 32 + j);
+            *(gSelectChoises->mNscrCopy + i * 32 + j) = s + *((u16 *) b->mData + i * 32 + j);
         }
     }
-    DC_FlushRange(data_0217d3f4->mUnk_2c, b->mDataSize);
-    GXS_LoadBG0Scr(data_0217d3f4->mUnk_2c, 0, b->mDataSize);
-    e = &data_0215d0a0;
+    DC_FlushRange(gSelectChoises->mNscrCopy, b->mDataSize);
+    GXS_LoadBG0Scr(gSelectChoises->mNscrCopy, 0, b->mDataSize);
+    e = &gSelectChoisesTileRect;
     y = e->mUnk_02 * 32;
     x = e->mUnk_00;
-    data_0217d3f4->mUnk_82c = data_0217d3f4->mUnk_89c + (x + y);
-    data_0217d3f4->mUnk_830 = data_0217d3f4->mUnk_89c + (y + (x + 3));
+    gSelectChoises->mToggleOnFirstTile = gSelectChoises->mFirstTileIndex + (x + y);
+    gSelectChoises->mToggleOffFirstTile = gSelectChoises->mFirstTileIndex + (y + (x + 3));
     DC_FlushRange(c->mData, 0x1c0);
     GXS_LoadBGPltt(c->mData + 0xe0, 0x1c0, 0x40);
     return d;
 }
 
-void func_02127e30(void) {
+void RefreshSelectChoisesNscrCopy(void) {
     s32 c;
     s32 i;
     s32 r;
@@ -509,26 +509,26 @@ void func_02127e30(void) {
     s32 q;
 
     i = 0;
-    p = data_0215d09c;
-    e = &data_0215d0a0;
+    p = gSelectChoisesNscrOrigins;
+    e = &gSelectChoisesTileRect;
     w = e->mUnk_01 - e->mUnk_00;
     h = e->mUnk_03 - e->mUnk_02;
     for (; i < 2; i++) {
         f = FALSE;
-        if (i == data_0217d3f4->mUnk_18 && data_0217d3f4->mUnk_14 != 0) {
+        if (i == gSelectChoises->mIndex && gSelectChoises->mToggleOn != 0) {
             f = TRUE;
         }
         for (r = 0; r <= h; r++) {
             for (c = 0; c <= w; c++) {
                 q = c + (*p)[0] + ((r + (*p)[1]) << 5);
-                v = r * 32 + (data_0217d3f4->mUnk_830 + c);
+                v = r * 32 + (gSelectChoises->mToggleOffFirstTile + c);
                 if (f != FALSE) {
-                    v = r * 32 + (data_0217d3f4->mUnk_82c + c);
+                    v = r * 32 + (gSelectChoises->mToggleOnFirstTile + c);
                 }
                 if (f != FALSE) {
-                    data_0217d3f4->mUnk_2c[q] = v + ((data_0217d3f4->mUnk_2c[q] & 0xffff0c00) + 0xe000);
+                    gSelectChoises->mNscrCopy[q] = v + ((gSelectChoises->mNscrCopy[q] & 0xffff0c00) + 0xe000);
                 } else {
-                    data_0217d3f4->mUnk_2c[q] = v + (data_0217d3f4->mUnk_2c[q] & 0xfffffc00);
+                    gSelectChoises->mNscrCopy[q] = v + (gSelectChoises->mNscrCopy[q] & 0xfffffc00);
                 }
             }
         }
@@ -536,7 +536,7 @@ void func_02127e30(void) {
     }
 }
 
-void func_02127db8(void) {
+void RefreshSelectChoisesPaletteBits(void) {
     s32 i;
     s32 r;
     s32 c;
@@ -545,63 +545,63 @@ void func_02127db8(void) {
 
     for (i = 0; i < 2; i++) {
         v = 0xe;
-        if (data_0217d3f4->mUnk_18 != i) {
+        if (gSelectChoises->mIndex != i) {
             v = 0xf;
         }
-        for (r = data_0215d0ac[i].mUnk_02; r <= data_0215d0ac[i].mUnk_03; r++) {
-            for (c = data_0215d0ac[i].mUnk_00; c <= data_0215d0ac[i].mUnk_01; c++) {
-                t = data_0217d3f4->mUnk_2c[r * 32 + c];
+        for (r = gSelectChoisesPaletteRects[i].mUnk_02; r <= gSelectChoisesPaletteRects[i].mUnk_03; r++) {
+            for (c = gSelectChoisesPaletteRects[i].mUnk_00; c <= gSelectChoisesPaletteRects[i].mUnk_01; c++) {
+                t = gSelectChoises->mNscrCopy[r * 32 + c];
                 t &= 0xffff0fff;
                 t += v << 12;
-                data_0217d3f4->mUnk_2c[r * 32 + c] = t;
+                gSelectChoises->mNscrCopy[r * 32 + c] = t;
             }
         }
     }
 }
 
-void func_02127d74(void) {
-    data_0217d3f4->mUnk_10 = 0;
-    data_0217d3f4->mUnk_14 = 1;
-    func_02127db8();
-    func_02127e30();
+void RefreshAndQueueSelectChoises(void) {
+    gSelectChoises->mToggleFrames = 0;
+    gSelectChoises->mToggleOn = 1;
+    RefreshSelectChoisesPaletteBits();
+    RefreshSelectChoisesNscrCopy();
     if (*(vu16 *) 0x27ffc40 != 2) {
-        CallQueueAppend(0x18, 0, data_0217d3f4->mUnk_2c, 0x800);
+        CallQueueAppend(0x18, 0, gSelectChoises->mNscrCopy, 0x800);
     }
 }
 
 void func_02127d28(void) {
     s32 a;
 
-    a = data_0217d3f4->mUnk_18;
-    data_0217d3f4->mUnk_18 = -1;
-    func_02127db8();
-    data_0217d3f4->mUnk_18 = a;
-    data_0217d3f4->mUnk_10 = 0;
-    data_0217d3f4->mUnk_14 = 1;
+    a = gSelectChoises->mIndex;
+    gSelectChoises->mIndex = -1;
+    RefreshSelectChoisesPaletteBits();
+    gSelectChoises->mIndex = a;
+    gSelectChoises->mToggleFrames = 0;
+    gSelectChoises->mToggleOn = 1;
     if (*(vu16 *) 0x27ffc40 != 2) {
-        CallQueueAppend(0x18, 0, data_0217d3f4->mUnk_2c, 0x800);
+        CallQueueAppend(0x18, 0, gSelectChoises->mNscrCopy, 0x800);
     }
 }
 
-void func_02127c78(void) {
+void AdvanceSelectChoisesState0(void) {
     s32 i;
     s32 j;
     s32 t;
 
-    if (data_0217d3f4->mUnk_24 != 0) {
-        func_02127d74();
-        data_0217d3f4->mUnk_08 = 1;
+    if (gSelectChoises->mState1Requested != 0) {
+        RefreshAndQueueSelectChoises();
+        gSelectChoises->mNextState = 1;
         i = 0;
-        data_0217d3f4->mUnk_24 = i;
-        data_0217d3f4->mUnk_0c = i;
-        data_0217d3f4->mUnk_20 = i;
-        if (data_0217d3f4->mUnk_8a0 != 0) {
+        gSelectChoises->mState1Requested = i;
+        gSelectChoises->mState2Frames = i;
+        gSelectChoises->mIndexNone = i;
+        if (gSelectChoises->mUnk_8a0 != 0) {
             for (i = 0; i < 2; i++) {
                 for (j = 0; j < 2; j++) {
                     t = (j + i * 2) * 32 + 5;
                     if (*(vu16 *) 0x27ffc40 != 2) {
-                        CallQueueAppend(0x14, (data_0217d3f4->mUnk_89c + t) << 5,
-                                        data_0217d3f4->mUnk_894[i] + ((j * 32 + 5) << 5), 0x360);
+                        CallQueueAppend(0x14, (gSelectChoises->mFirstTileIndex + t) << 5,
+                                        gSelectChoises->mCharBuffers[i] + ((j * 32 + 5) << 5), 0x360);
                     }
                 }
             }
@@ -630,7 +630,7 @@ static inline s32 func_02127a84_inline2(u32 v) {
     return r;
 }
 
-void func_02127a84(void) {
+void AdvanceSelectChoisesState1(void) {
     s32 hit;
     u16 x;
     u16 y;
@@ -640,60 +640,60 @@ void func_02127a84(void) {
     v = UNK_02175628_INDEX_8;
     x = data_02175670[v].mUnk_00;
     y = data_02175672[v].mUnk_00;
-    if (data_0217d3f4->mUnk_28 != 0) {
-        data_0217d3f4->mUnk_08 = 0;
-        data_0217d3f4->mUnk_28 = 0;
+    if (gSelectChoises->mState0Requested != 0) {
+        gSelectChoises->mNextState = 0;
+        gSelectChoises->mState0Requested = 0;
         return;
     }
     hit = -1;
     if (func_02127a84_inline2(v) != 0) {
-        if (func_02127a84_inline(x, y, data_0215d0a4[0].mUnk_00, data_0215d0a4[0].mUnk_01, data_0215d0a4[0].mUnk_02,
-                                 data_0215d0a4[0].mUnk_03) != FALSE) {
+        if (func_02127a84_inline(x, y, gSelectChoisesHitRects[0].mUnk_00, gSelectChoisesHitRects[0].mUnk_01,
+                                 gSelectChoisesHitRects[0].mUnk_02, gSelectChoisesHitRects[0].mUnk_03) != FALSE) {
             hit = 0;
         }
-        if (func_02127a84_inline(x, y, data_0215d0a4[1].mUnk_00, data_0215d0a4[1].mUnk_01, data_0215d0a4[1].mUnk_02,
-                                 data_0215d0a4[1].mUnk_03) != FALSE) {
+        if (func_02127a84_inline(x, y, gSelectChoisesHitRects[1].mUnk_00, gSelectChoisesHitRects[1].mUnk_01,
+                                 gSelectChoisesHitRects[1].mUnk_02, gSelectChoisesHitRects[1].mUnk_03) != FALSE) {
             hit = 1;
         }
     }
     w = data_02175628[v].mUnk_00;
     if ((u16) (w & 1) != 0 || hit != -1) {
-        if (hit == -1 || data_0217d3f4->mUnk_18 == hit) {
+        if (hit == -1 || gSelectChoises->mIndex == hit) {
             func_02127d28();
         } else {
-            data_0217d3f4->mUnk_18 = hit;
-            func_02127d74();
+            gSelectChoises->mIndex = hit;
+            RefreshAndQueueSelectChoises();
         }
-        data_0217d3f4->mUnk_08 = 2;
-        if (data_0217d3f4->mUnk_8a4 != 0) {
-            if (data_0217d3f4->mUnk_8a8[data_0217d3f4->mUnk_18] != -1) {
-                func_02105ac0((u16) data_0217d3f4->mUnk_8a8[data_0217d3f4->mUnk_18]);
+        gSelectChoises->mNextState = 2;
+        if (gSelectChoises->mUnk_8a4 != 0) {
+            if (gSelectChoises->mSoundIds[gSelectChoises->mIndex] != -1) {
+                func_02105ac0((u16) gSelectChoises->mSoundIds[gSelectChoises->mIndex]);
             }
         }
     } else {
         if ((u16) (w & 2) != 0) {
-            data_0217d3f4->mUnk_20 = 1;
-            data_0217d3f4->mUnk_0c = 0xb;
-            data_0217d3f4->mUnk_08 = 2;
-            if (data_0217d3f4->mUnk_8a4 != 0) {
-                if (data_0217d3f4->mUnk_8b0 != -1) {
-                    func_02105ac0((u16) data_0217d3f4->mUnk_8b0);
+            gSelectChoises->mIndexNone = 1;
+            gSelectChoises->mState2Frames = 0xb;
+            gSelectChoises->mNextState = 2;
+            if (gSelectChoises->mUnk_8a4 != 0) {
+                if (gSelectChoises->mIndexNoneSoundId != -1) {
+                    func_02105ac0((u16) gSelectChoises->mIndexNoneSoundId);
                 }
             }
             return;
         }
-        if ((u16) (w & 0x40) != 0 && data_0217d3f4->mUnk_18 == 1) {
-            data_0217d3f4->mUnk_18 = 0;
-            func_02127d74();
-            if (data_0217d3f4->mUnk_8a4 != 0) {
+        if ((u16) (w & 0x40) != 0 && gSelectChoises->mIndex == 1) {
+            gSelectChoises->mIndex = 0;
+            RefreshAndQueueSelectChoises();
+            if (gSelectChoises->mUnk_8a4 != 0) {
                 func_02105ac0(0);
             }
             return;
         }
-        if ((u16) (w & 0x80) != 0 && data_0217d3f4->mUnk_18 == 0) {
-            data_0217d3f4->mUnk_18 = 1;
-            func_02127d74();
-            if (data_0217d3f4->mUnk_8a4 != 0) {
+        if ((u16) (w & 0x80) != 0 && gSelectChoises->mIndex == 0) {
+            gSelectChoises->mIndex = 1;
+            RefreshAndQueueSelectChoises();
+            if (gSelectChoises->mUnk_8a4 != 0) {
                 func_02105ac0(0);
             }
         }
@@ -703,24 +703,24 @@ void func_02127a84(void) {
 
 #pragma thumb on
 
-void func_02127a38(void) {
-    Unk0217d3f4 *v1;
+void AdvanceSelectChoisesState2(void) {
+    SelectChoises *v1;
     int v2;
-    v1 = data_0217d3f4;
-    if (v1->mUnk_28 != 0) {
-        v1->mUnk_08 = 0;
-        data_0217d3f4->mUnk_28 = 0;
+    v1 = gSelectChoises;
+    if (v1->mState0Requested != 0) {
+        v1->mNextState = 0;
+        gSelectChoises->mState0Requested = 0;
         return;
     }
-    v1->mUnk_0c = v1->mUnk_0c + 1;
-    v2 = data_0217d3f4->mUnk_0c;
+    v1->mState2Frames = v1->mState2Frames + 1;
+    v2 = gSelectChoises->mState2Frames;
     if (15 <= v2) {
-        data_0217d3f4->mUnk_1c = 1;
-        data_0217d3f4->mUnk_0c = 0xf;
+        gSelectChoises->mDone = 1;
+        gSelectChoises->mState2Frames = 0xf;
         return;
     }
     if (5 <= v2) {
-        func_02127d74();
+        RefreshAndQueueSelectChoises();
     }
 }
 
@@ -728,39 +728,39 @@ void func_02127a38(void) {
 
 #pragma thumb on
 
-void func_021279a0(void) {
-    if (data_0217d3f4->mUnk_00 != 0) {
-        data_0217d3f4->mUnk_04 = data_0217d3f4->mUnk_08;
-        switch (data_0217d3f4->mUnk_04) {
+void AdvanceSelectChoises(void) {
+    if (gSelectChoises->mEnabled != 0) {
+        gSelectChoises->mState = gSelectChoises->mNextState;
+        switch (gSelectChoises->mState) {
             case 0:
-                func_02127c78();
+                AdvanceSelectChoisesState0();
                 break;
             case 1:
-                func_02127a84();
+                AdvanceSelectChoisesState1();
                 break;
             case 2:
-                func_02127a38();
+                AdvanceSelectChoisesState2();
                 break;
         }
-        data_0217d3f4->mUnk_10++;
-        if ((data_0217d3f4->mUnk_14 != 0 && data_0217d3f4->mUnk_10 > 0x1e) ||
-            (data_0217d3f4->mUnk_14 == 0 && data_0217d3f4->mUnk_10 > 0x14)) {
-            data_0217d3f4->mUnk_14 = data_0217d3f4->mUnk_14 == 0;
-            data_0217d3f4->mUnk_10 = 0;
-            func_02127e30();
+        gSelectChoises->mToggleFrames++;
+        if ((gSelectChoises->mToggleOn != 0 && gSelectChoises->mToggleFrames > 0x1e) ||
+            (gSelectChoises->mToggleOn == 0 && gSelectChoises->mToggleFrames > 0x14)) {
+            gSelectChoises->mToggleOn = gSelectChoises->mToggleOn == 0;
+            gSelectChoises->mToggleFrames = 0;
+            RefreshSelectChoisesNscrCopy();
             if (*(vu16 *) 0x27ffc40 != 2) {
-                CallQueueAppend(0x18, 0, data_0217d3f4->mUnk_2c, 0x800);
+                CallQueueAppend(0x18, 0, gSelectChoises->mNscrCopy, 0x800);
             }
         }
     }
 }
 
-void func_021278f4(void) {
+void WriteSelectChoisesRegisters(void) {
     u32 a;
 
-    if (data_0217d3f4->mUnk_00 != 0) {
+    if (gSelectChoises->mEnabled != 0) {
         *(vu32 *) 0x4001010 = 0;
-        if (data_0217d3f4->mUnk_04 == 0 || data_0217d3f4->mUnk_8a4 == 0) {
+        if (gSelectChoises->mState == 0 || gSelectChoises->mUnk_8a4 == 0) {
             G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, 0x1e, 0x1f, 6, 10, 0);
             a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
             *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((a & ~1) << 8);
@@ -772,58 +772,58 @@ void func_021278f4(void) {
     }
 }
 
-void func_021278c8(void) {
-    if ((data_0217d3f4->mUnk_04 == 0 && data_0217d3f4->mUnk_24 != 0) || data_0217d3f4->mUnk_04 == 1) {
-        data_0217d3f4->mUnk_28 = 1;
+void RequestSelectChoisesState1(void) {
+    if ((gSelectChoises->mState == 0 && gSelectChoises->mState1Requested != 0) || gSelectChoises->mState == 1) {
+        gSelectChoises->mState0Requested = 1;
     } else {
-        data_0217d3f4->mUnk_28 = 0;
+        gSelectChoises->mState0Requested = 0;
     }
-    data_0217d3f4->mUnk_24 = 1;
+    gSelectChoises->mState1Requested = 1;
 }
 
-void func_021277f8(void *a, void *b, s32 c) {
+void StartSelectChoises(void *a, void *b, s32 c) {
     Unk0217d3f0_2098 *p;
 
-    p = &data_0217d3f4->mUnk_834[0];
+    p = &gSelectChoises->mCharCanvases[0];
     p->mUnk_18(p, 5);
-    p = &data_0217d3f4->mUnk_834[1];
+    p = &gSelectChoises->mCharCanvases[1];
     p->mUnk_18(p, 5);
-    func_0212583c(&data_0217d3f4->mUnk_874[0], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, a);
-    func_0212583c(&data_0217d3f4->mUnk_874[1], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, b);
+    func_0212583c(&gSelectChoises->mUnk_874[0], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, a);
+    func_0212583c(&gSelectChoises->mUnk_874[1], 0x28, 0, 0xd8, 0x10, 0xc, 0x480, 1, b);
     func_021281b4();
-    data_0217d3f4->mUnk_8a0 = 1;
-    func_021278c8();
+    gSelectChoises->mUnk_8a0 = 1;
+    RequestSelectChoisesState1();
     if (c == 0) {
-        data_0217d3f4->mUnk_18 = 0;
+        gSelectChoises->mIndex = 0;
     } else {
-        data_0217d3f4->mUnk_18 = 1;
+        gSelectChoises->mIndex = 1;
     }
-    func_02127d74();
-    data_0217d3f4->mUnk_1c = 0;
-    data_0217d3f4->mUnk_10 = 0;
-    data_0217d3f4->mUnk_14 = 1;
+    RefreshAndQueueSelectChoises();
+    gSelectChoises->mDone = 0;
+    gSelectChoises->mToggleFrames = 0;
+    gSelectChoises->mToggleOn = 1;
 }
 
-void func_021277e4(void) {
-    data_0217d3f4->mUnk_24 = 0;
-    data_0217d3f4->mUnk_28 = 1;
+void RequestSelectChoisesState0(void) {
+    gSelectChoises->mState1Requested = 0;
+    gSelectChoises->mState0Requested = 1;
 }
 
-u32 func_021277c8(void) {
+u32 IsSelectChoisesState1NoState0Request(void) {
     u32 r;
 
     r = 0;
-    if (data_0217d3f4->mUnk_04 == 1 && data_0217d3f4->mUnk_28 == 0) {
+    if (gSelectChoises->mState == 1 && gSelectChoises->mState0Requested == 0) {
         r = 1;
     }
     return r;
 }
 
-s32 func_021277ac(void) {
+s32 IsSelectChoisesState0NoState1Request(void) {
     BOOL r;
 
     r = FALSE;
-    if (data_0217d3f4->mUnk_04 == 0 && data_0217d3f4->mUnk_24 == 0) {
+    if (gSelectChoises->mState == 0 && gSelectChoises->mState1Requested == 0) {
         r = TRUE;
     }
     return r;
@@ -832,23 +832,23 @@ s32 func_021277ac(void) {
 
 #pragma thumb on
 
-s32 func_02127794(void) {
-    if (data_0217d3f4->mUnk_20 != 0) {
+s32 GetSelectChoisesIndex(void) {
+    if (gSelectChoises->mIndexNone != 0) {
         return 0xffffffff;
     }
-    return data_0217d3f4->mUnk_18;
+    return gSelectChoises->mIndex;
 }
 
-u32 func_02127788(void) {
-    return data_0217d3f4->mUnk_1c;
+u32 GetSelectChoisesDone(void) {
+    return gSelectChoises->mDone;
 }
 
-void func_0212775c(int a, u32 b) {
+void SetSelectChoisesSoundId(int a, u32 b) {
     if (a == -1) {
-        data_0217d3f4->mUnk_8b0 = b;
+        gSelectChoises->mIndexNoneSoundId = b;
         return;
     }
-    data_0217d3f4->mUnk_8a8[a] = b;
+    gSelectChoises->mSoundIds[a] = b;
 }
 
 #pragma thumb off

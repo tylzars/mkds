@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-u32 func_0212802c(void);
+u32 InitSelectChoisesDisplay(void);
 void func_0212804c(void);

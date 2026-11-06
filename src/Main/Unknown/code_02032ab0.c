@@ -138,7 +138,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
             break;
         case 1:
         case 2:
-            func_0212775c(1, 0xf);
+            SetSelectChoisesSoundId(1, 0xf);
             data_02174e60->mUnk_0d0 =
                 data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0)].mUnk_00;
             data_02174e60->mUnk_0d8 = data_021759c0->mKartCount;
@@ -391,8 +391,8 @@ void func_02032ac4(Unk02032ac4 *a) {
             switch (data_02174e60->mUnk_0e0) {
                 case 1:
                 case 2:
-                    if (func_02127788() != 0) {
-                        switch (func_02127794()) {
+                    if (GetSelectChoisesDone() != 0) {
+                        switch (GetSelectChoisesIndex()) {
                             case 0:
                                 if (data_021759d0->mUnk_1c_2 != 0) {
                                     data_0217b488->mUnk_74 = 3;
@@ -416,12 +416,12 @@ void func_02032ac4(Unk02032ac4 *a) {
                                 data_02174e60->mUnk_150 = 3;
                                 break;
                         }
-                        func_021277e4();
+                        RequestSelectChoisesState0();
                     }
                     break;
                 case 3:
-                    if (func_02127788() != 0 || func_02033dfc() != 0) {
-                        switch (func_02127794()) {
+                    if (GetSelectChoisesDone() != 0 || func_02033dfc() != 0) {
+                        switch (GetSelectChoisesIndex()) {
                             case 0:
                                 data_02174e60->mUnk_150 = 5;
                                 func_02121dec(1);
@@ -438,7 +438,7 @@ void func_02032ac4(Unk02032ac4 *a) {
                                 data_02174e60->mUnk_150 = 3;
                                 break;
                         }
-                        func_021277e4();
+                        RequestSelectChoisesState0();
                     }
                     break;
             }

@@ -47,9 +47,9 @@
 #pragma thumb on
 
 void AdvanceSelectRaceRuleState6(void) {
-    if (func_02127788() != 0) {
+    if (GetSelectChoisesDone() != 0) {
         func_0211b9ec();
-        switch (func_02127794()) {
+        switch (GetSelectChoisesIndex()) {
             case 0:
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 7);
                 break;
@@ -62,8 +62,8 @@ void AdvanceSelectRaceRuleState6(void) {
 }
 
 void AdvanceSelectRaceRuleState7(void) {
-    if (func_021277ac() != 0) {
-        switch (func_02127794()) {
+    if (IsSelectChoisesState0NoState1Request() != 0) {
+        switch (GetSelectChoisesIndex()) {
             case 0:
                 RequestSelectRaceRuleState8();
                 gSelectRaceRule->mResult = 1;

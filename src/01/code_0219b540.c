@@ -146,7 +146,7 @@ void func_ov001_0219c428(void) {
 void func_ov001_0219c3ec(void) {
     gSelectGhost->mNextState = 4;
     gSelectGhost->mStateFrames = 0;
-    func_021277f8(GetBmgEntry(gSelectGhost->mCommonMessages, 4), GetBmgEntry(gSelectGhost->mCommonMessages, 2), 0);
+    StartSelectChoises(GetBmgEntry(gSelectGhost->mCommonMessages, 4), GetBmgEntry(gSelectGhost->mCommonMessages, 2), 0);
 }
 
 // Requests state 5: stores mNextState = 5 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
@@ -159,7 +159,7 @@ void RequestSelectGhostState5(void) {
 void func_ov001_0219c3bc(void) {
     gSelectGhost->mNextState = 6;
     gSelectGhost->mStateFrames = 0;
-    func_021277e4();
+    RequestSelectChoisesState0();
 }
 
 // Requests state 7: stores mNextState = 7 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
@@ -546,14 +546,14 @@ void AdvanceSelectGhostState3(void) {
 }
 
 void AdvanceSelectGhostState4(void) {
-    if (func_021277c8() != 0) {
+    if (IsSelectChoisesState1NoState0Request() != 0) {
         RequestSelectGhostState5();
     }
 }
 
 void AdvanceSelectGhostState5(void) {
     int v1;
-    v1 = func_02127788();
+    v1 = GetSelectChoisesDone();
     if (v1 != 0) {
         func_ov001_0219c3bc();
     }
@@ -563,10 +563,10 @@ void AdvanceSelectGhostState5(void) {
 void AdvanceSelectGhostState6(void) {
     s32 r;
 
-    if (func_021277ac() == 0) {
+    if (IsSelectChoisesState0NoState1Request() == 0) {
         return;
     }
-    r = func_02127794();
+    r = GetSelectChoisesIndex();
     switch (r) {
         case 0:
             func_ov001_0219bfc0();

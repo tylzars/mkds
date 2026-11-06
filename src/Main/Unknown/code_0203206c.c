@@ -226,8 +226,8 @@ void InitSelectGame(void *a, s32 b, void *c, void *d) {
     }
     func_02128374();
     if (gSelectGame->mMode == 1) {
-        func_0212775c(0, 5);
-        func_0212775c(1, 0xf);
+        SetSelectChoisesSoundId(0, 5);
+        SetSelectChoisesSoundId(1, 0xf);
     }
     data_0217b488->mUnk_08 = 0;
     FrmHeapShrinkInParent(gSelectGame->mHeap);
@@ -312,7 +312,7 @@ s32 AdvanceSelectGame(void) {
                         p = GetBmgEntry(gSelectGame->mMenuMessages, 0x14);
                         p1 = GetBmgEntry(gSelectGame->mMenuMessages, 0x16);
                     }
-                    func_021277f8(p, p1, 0);
+                    StartSelectChoises(p, p1, 0);
                     gSelectGame->mState = 7;
                     func_020329dc(0);
                 }
@@ -340,8 +340,8 @@ s32 AdvanceSelectGame(void) {
             }
             break;
         case 7:
-            if (func_02127788() != 0) {
-                if (func_02127794() == 0 || func_02127794() == ~a) {
+            if (GetSelectChoisesDone() != 0) {
+                if (GetSelectChoisesIndex() == 0 || GetSelectChoisesIndex() == ~a) {
                     gSelectGame->mState = 4;
                 } else {
                     data_0217aa00->mUnk_0454 |= 0x80;
@@ -349,7 +349,7 @@ s32 AdvanceSelectGame(void) {
                     gSelectGame->mState = 8;
                 }
                 func_020329dc(1);
-                func_021277e4();
+                RequestSelectChoisesState0();
             }
             break;
         case 8:

@@ -162,10 +162,10 @@ void func_02119ac4(void) {
         case 0:
         case 1:
         case 3:
-            func_021277f8(GetBmgEntry(d->mCommonMessages, 4), GetBmgEntry(d->mCommonMessages, 2), 0);
+            StartSelectChoises(GetBmgEntry(d->mCommonMessages, 4), GetBmgEntry(d->mCommonMessages, 2), 0);
             break;
         case 2:
-            func_021277f8(GetBmgEntry(d->mCommonMessages, 4), GetBmgEntry(d->mCommonMessages, 2), 0);
+            StartSelectChoises(GetBmgEntry(d->mCommonMessages, 4), GetBmgEntry(d->mCommonMessages, 2), 0);
             if (*(vu16 *) 0x027ffc40 == 2) {
                 func_0212513c(GetBmgEntry(gSelectCupCourse->mGhostMessages,
                                           data_0215cb3c[data_0215cadc[func_0202968c()]][gSelectCupCourse->mIndex]),
@@ -183,9 +183,9 @@ void func_02119ac4(void) {
 void func_02119a90(void) {
     gSelectCupCourse->mNextState = 6;
     gSelectCupCourse->mStateFrames = 0;
-    func_0212775c(0, (u32) 7);
-    func_0212775c(1, (u32) 0x10);
-    func_0212775c(0xffffffff, 0x10);
+    SetSelectChoisesSoundId(0, (u32) 7);
+    SetSelectChoisesSoundId(1, (u32) 0x10);
+    SetSelectChoisesSoundId(0xffffffff, 0x10);
 }
 
 #pragma thumb off
@@ -198,10 +198,10 @@ void func_02119a38(void) {
         case 0:
         case 1:
         case 3:
-            func_021277e4();
+            RequestSelectChoisesState0();
             break;
         case 2:
-            func_021277e4();
+            RequestSelectChoisesState0();
             if (*(vu16 *) 0x027ffc40 == 2) {
                 func_02125fc0();
             }

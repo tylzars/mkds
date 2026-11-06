@@ -159,14 +159,14 @@ void AdvanceSelectCupCourseState5(void) {
         case 0:
         case 1:
         case 3:
-            if (func_021277c8() != 0) {
+            if (IsSelectChoisesState1NoState0Request() != 0) {
                 func_02119a90();
             }
             break;
         case 2:
             gSelectCupCourse->mStateFrames++;
             if (gSelectCupCourse->mStateFrames >= 0xf) {
-                if (func_021277c8() != 0 || func_02127788() != 0) {
+                if (IsSelectChoisesState1NoState0Request() != 0 || GetSelectChoisesDone() != 0) {
                     func_02119a90();
                 }
             }
@@ -177,10 +177,10 @@ void AdvanceSelectCupCourseState5(void) {
 void AdvanceSelectCupCourseState6(void) {
     s32 v;
 
-    if (func_02127788() != 0) {
+    if (GetSelectChoisesDone() != 0) {
         func_02119a38();
         if (*(vu16 *) 0x027ffc40 == 2) {
-            v = func_02127794();
+            v = GetSelectChoisesIndex();
             switch (v) {
                 case 0:
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 7);
@@ -201,8 +201,8 @@ void AdvanceSelectCupCourseState7(void) {
         case 0:
         case 1:
         case 3:
-            if (func_021277ac() != 0) {
-                v = func_02127794();
+            if (IsSelectChoisesState0NoState1Request() != 0) {
+                v = GetSelectChoisesIndex();
                 switch (v) {
                     case 0:
                         func_02119e50();
@@ -219,8 +219,8 @@ void AdvanceSelectCupCourseState7(void) {
         case 2:
             gSelectCupCourse->mStateFrames++;
             if (gSelectCupCourse->mStateFrames >= 0xf) {
-                if (func_021277ac() != 0) {
-                    v = func_02127794();
+                if (IsSelectChoisesState0NoState1Request() != 0) {
+                    v = GetSelectChoisesIndex();
                     switch (v) {
                         case 0:
                             func_02119e50();

@@ -329,10 +329,10 @@ void AdvanceSelectBattleStageState3(void) {
     if (gSelectBattleStage->mStateFrames >= 10) {
         gSelectBattleStage->mNextState = 5;
         gSelectBattleStage->mStateFrames = 0;
-        func_021277f8(GetBmgEntry(gSelectBattleStage->mCommonMessages, 4),
-                      GetBmgEntry(gSelectBattleStage->mCommonMessages, 2), 0);
-        func_0212775c(0, 7);
-        func_0212775c(1, 0x10);
+        StartSelectChoises(GetBmgEntry(gSelectBattleStage->mCommonMessages, 4),
+                           GetBmgEntry(gSelectBattleStage->mCommonMessages, 2), 0);
+        SetSelectChoisesSoundId(0, 7);
+        SetSelectChoisesSoundId(1, 0x10);
     } else if (gSelectBattleStage->mStateFrames >= 5) {
         gSelectBattleStage->mUnk_20 = TRUE;
     }
@@ -341,24 +341,24 @@ void AdvanceSelectBattleStageState3(void) {
 void AdvanceSelectBattleStageState4(void) {
     if (IsSelectReturnState2NoState3Or4Request() != 0) {
         gSelectBattleStage->mPendingResult = -2;
-        func_021277f8(GetBmgEntry(gSelectBattleStage->mMenuMessages, 0x14),
-                      GetBmgEntry(gSelectBattleStage->mMenuMessages, 0x15), 0);
-        func_0212775c(0, 5);
-        func_0212775c(1, 0xc);
+        StartSelectChoises(GetBmgEntry(gSelectBattleStage->mMenuMessages, 0x14),
+                           GetBmgEntry(gSelectBattleStage->mMenuMessages, 0x15), 0);
+        SetSelectChoisesSoundId(0, 5);
+        SetSelectChoisesSoundId(1, 0xc);
         gSelectBattleStage->mNextState = 5;
     }
 }
 
 void AdvanceSelectBattleStageState5(void) {
-    if (func_02127788() != 0) {
+    if (GetSelectChoisesDone() != 0) {
         if (gSelectBattleStage->mPendingResult == -2 || gSelectBattleStage->mPendingResult == -1) {
-            if (func_02127794() == 1) {
+            if (GetSelectChoisesIndex() == 1) {
                 gSelectBattleStage->mNextState = 6;
             } else {
                 gSelectBattleStage->mNextState = 2;
             }
         } else {
-            if (func_02127794() == 0) {
+            if (GetSelectChoisesIndex() == 0) {
                 gSelectBattleStage->mNextState = 6;
                 func_021282c8();
                 gSelectBattleStage->mUnk_2c = TRUE;
@@ -366,7 +366,7 @@ void AdvanceSelectBattleStageState5(void) {
                 gSelectBattleStage->mNextState = 2;
             }
         }
-        func_021277e4();
+        RequestSelectChoisesState0();
     }
 }
 

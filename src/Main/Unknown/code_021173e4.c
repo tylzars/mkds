@@ -402,7 +402,7 @@ void func_02118148(void) {
     gSelectCupGrid->mNextState = 5;
     gSelectCupGrid->mStateFrames = 0;
     a = GetBmgEntry(gSelectCupGrid->mCommonMessages, 4);
-    func_021277f8(a, GetBmgEntry(gSelectCupGrid->mCommonMessages, 2), 0);
+    StartSelectChoises(a, GetBmgEntry(gSelectCupGrid->mCommonMessages, 2), 0);
 }
 
 #pragma thumb off
@@ -412,9 +412,9 @@ void func_02118148(void) {
 void func_02118114(void) {
     gSelectCupGrid->mNextState = 6;
     gSelectCupGrid->mStateFrames = 0;
-    func_0212775c(0, (u32) 7);
-    func_0212775c(1, (u32) 0x10);
-    func_0212775c(0xffffffff, 0x10);
+    SetSelectChoisesSoundId(0, (u32) 7);
+    SetSelectChoisesSoundId(1, (u32) 0x10);
+    SetSelectChoisesSoundId(0xffffffff, 0x10);
 }
 
 #pragma thumb off
@@ -424,7 +424,7 @@ void func_02118114(void) {
 void func_021180f8(void) {
     gSelectCupGrid->mNextState = 7;
     gSelectCupGrid->mStateFrames = 0;
-    func_021277e4();
+    RequestSelectChoisesState0();
 }
 
 void func_02118088(void) {
@@ -434,10 +434,10 @@ void func_02118088(void) {
     gSelectCupGrid->mStateFrames = 0;
     if (*(vu16 *) 0x027ffc40 == 2) {
         a = GetBmgEntry(gSelectCupGrid->mCommonMessages, 0x5d);
-        func_021277f8(a, GetBmgEntry(gSelectCupGrid->mCommonMessages, 0x5f), 0);
+        StartSelectChoises(a, GetBmgEntry(gSelectCupGrid->mCommonMessages, 0x5f), 0);
     } else {
         a = GetBmgEntry(gSelectCupGrid->mMenuMessages, 0x14);
-        func_021277f8(a, GetBmgEntry(gSelectCupGrid->mMenuMessages, 0x15), 0);
+        StartSelectChoises(a, GetBmgEntry(gSelectCupGrid->mMenuMessages, 0x15), 0);
     }
 }
 
@@ -448,9 +448,9 @@ void func_02118088(void) {
 void func_02118054(void) {
     gSelectCupGrid->mNextState = 9;
     gSelectCupGrid->mStateFrames = 0;
-    func_0212775c(0, (u32) 5);
-    func_0212775c(1, (u32) 0xf);
-    func_0212775c(0xffffffff, 0x10);
+    SetSelectChoisesSoundId(0, (u32) 5);
+    SetSelectChoisesSoundId(1, (u32) 0xf);
+    SetSelectChoisesSoundId(0xffffffff, 0x10);
 }
 
 #pragma thumb off
@@ -460,7 +460,7 @@ void func_02118054(void) {
 void func_02118038(void) {
     gSelectCupGrid->mNextState = 0xa;
     gSelectCupGrid->mStateFrames = 0;
-    func_021277e4();
+    RequestSelectChoisesState0();
 }
 
 void RequestSelectCupGridState11(void) {
@@ -812,7 +812,7 @@ void AdvanceSelectCupGridState4(void) {
 void AdvanceSelectCupGridState5(void) {
     int v1;
     AdvanceSelectCupGridShownCourse();
-    v1 = func_021277c8();
+    v1 = IsSelectChoisesState1NoState0Request();
     if (v1 != 0) {
         func_02118114();
     }
@@ -821,7 +821,7 @@ void AdvanceSelectCupGridState5(void) {
 void AdvanceSelectCupGridState6(void) {
     int v1;
     AdvanceSelectCupGridShownCourse();
-    v1 = func_02127788();
+    v1 = GetSelectChoisesDone();
     if (v1 != 0) {
         func_021180f8();
     }
@@ -835,8 +835,8 @@ void AdvanceSelectCupGridState7(void) {
     s32 a;
 
     AdvanceSelectCupGridShownCourse();
-    if (func_021277ac() != 0) {
-        a = func_02127794();
+    if (IsSelectChoisesState0NoState1Request() != 0) {
+        a = GetSelectChoisesIndex();
         switch (a) {
             case 0:
                 func_021185ec();
@@ -859,7 +859,7 @@ void AdvanceSelectCupGridState7(void) {
 void AdvanceSelectCupGridState8(void) {
     int v1;
     AdvanceSelectCupGridShownCourse();
-    v1 = func_021277c8();
+    v1 = IsSelectChoisesState1NoState0Request();
     if (v1 != 0) {
         func_02118054();
     }
@@ -873,10 +873,10 @@ void AdvanceSelectCupGridState9(void) {
     s32 a;
 
     AdvanceSelectCupGridShownCourse();
-    if (func_02127788() != 0) {
+    if (GetSelectChoisesDone() != 0) {
         func_02118038();
         if (*(vu16 *) 0x027ffc40 == 2) {
-            a = func_02127794();
+            a = GetSelectChoisesIndex();
             switch (a) {
                 case -1:
                 case 0:
@@ -893,8 +893,8 @@ void AdvanceSelectCupGridState10(void) {
     s32 a;
 
     AdvanceSelectCupGridShownCourse();
-    if (func_021277ac() != 0) {
-        a = func_02127794();
+    if (IsSelectChoisesState0NoState1Request() != 0) {
+        a = GetSelectChoisesIndex();
         switch (a) {
             case -1:
             case 0:

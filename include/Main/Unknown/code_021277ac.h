@@ -2,10 +2,10 @@
 
 #include "types.h"
 
-s32 func_021277ac(void);
-u32 func_021277c8(void);
-void func_021277e4(void);
-void func_021277f8(void *a, void *b, s32 c);
-void func_021278c8(void);
-void func_021278f4(void);
-void func_021279a0(void);
+s32 IsSelectChoisesState0NoState1Request(void);
+u32 IsSelectChoisesState1NoState0Request(void);
+void RequestSelectChoisesState0(void);
+void StartSelectChoises(void *a, void *b, s32 c);
+void RequestSelectChoisesState1(void);
+void WriteSelectChoisesRegisters(void);
+void AdvanceSelectChoises(void);

@@ -35,7 +35,7 @@ void func_02125de0(void *a, void *b) {
     }
     if (((Unk02125de0Arg *) b)->mUnk_14 != FALSE) {
         data_0217d3ec->mUnk_04 = TRUE;
-        data_0217d3ec->mUnk_810 = func_02128058(a, ((Unk02125de0Arg *) b)->mUnk_18, data_0217d3ec->mUnk_810);
+        data_0217d3ec->mUnk_810 = InitSelectChoises(a, ((Unk02125de0Arg *) b)->mUnk_18, data_0217d3ec->mUnk_810);
     }
     if (((Unk02125de0Arg *) b)->mUnk_1c != FALSE) {
         data_0217d3ec->mUnk_08 = TRUE;

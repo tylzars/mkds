@@ -467,7 +467,7 @@ void func_ov001_021a0428(void) {
     gMissionRunMSsel->mNextState = 5;
     gMissionRunMSsel->mStateFrames = 0;
     v0 = GetBmgEntry(gMissionRunMSsel->mCommonMessages, 4);
-    func_021277f8(v0, GetBmgEntry(gMissionRunMSsel->mCommonMessages, 2), 0);
+    StartSelectChoises(v0, GetBmgEntry(gMissionRunMSsel->mCommonMessages, 2), 0);
     for (i = 0; i < 9; i++) {
         gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][0]].mUnk_00 = 0;
     }
@@ -483,7 +483,7 @@ void RequestMissionRunMSselState6(void) {
 void func_ov001_021a03f8(void) {
     gMissionRunMSsel->mNextState = 7;
     gMissionRunMSsel->mStateFrames = 0;
-    func_021277e4();
+    RequestSelectChoisesState0();
 }
 
 void func_ov001_021a03a0(void) {
@@ -771,7 +771,7 @@ void AdvanceMissionRunMSselState4(void) {
 void AdvanceMissionRunMSselState5(void) {
     func_021055b0(gMissionRunMSsel->mUnk_a8);
     func_ov001_021a0620();
-    if (func_021277c8()) {
+    if (IsSelectChoisesState1NoState0Request()) {
         RequestMissionRunMSselState6();
     }
 }
@@ -779,7 +779,7 @@ void AdvanceMissionRunMSselState5(void) {
 void AdvanceMissionRunMSselState6(void) {
     func_021055b0(gMissionRunMSsel->mUnk_a8);
     func_ov001_021a0620();
-    if (func_02127788()) {
+    if (GetSelectChoisesDone()) {
         func_ov001_021a03f8();
     }
 }
@@ -790,8 +790,8 @@ void AdvanceMissionRunMSselState7(void) {
 
     func_021055b0(gMissionRunMSsel->mUnk_a8);
     func_ov001_021a0620();
-    if (func_021277ac()) {
-        r = func_02127794();
+    if (IsSelectChoisesState0NoState1Request()) {
+        r = GetSelectChoisesIndex();
         switch (r) {
             case 0:
                 func_ov001_021a0734();

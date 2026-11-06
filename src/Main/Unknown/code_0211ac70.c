@@ -1300,7 +1300,7 @@ void func_0211ba1c(void) {
     gSelectRaceRule->mNextState = 5;
     gSelectRaceRule->mStateFrames = 0;
     a = GetBmgEntry(gSelectRaceRule->mCommonMessages, 4);
-    func_021277f8(a, GetBmgEntry(gSelectRaceRule->mCommonMessages, 2), 0);
+    StartSelectChoises(a, GetBmgEntry(gSelectRaceRule->mCommonMessages, 2), 0);
 }
 
 // Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceSelectRaceRule call copies it to
@@ -1313,7 +1313,7 @@ void RequestSelectRaceRuleState6(void) {
 void func_0211b9ec(void) {
     gSelectRaceRule->mNextState = 7;
     gSelectRaceRule->mStateFrames = 0;
-    func_021277e4();
+    RequestSelectChoisesState0();
 }
 
 // Requests state 8: stores mNextState = 8 and zeroes mStateFrames; the next AdvanceSelectRaceRule call copies it to
@@ -1812,7 +1812,7 @@ void AdvanceSelectRaceRuleState4(void) {
 
 void AdvanceSelectRaceRuleState5(void) {
     int v1;
-    v1 = func_021277c8();
+    v1 = IsSelectChoisesState1NoState0Request();
     if (v1 != 0) {
         RequestSelectRaceRuleState6();
     }
