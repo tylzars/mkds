@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk02101c84 Unk02101c84;
+typedef struct ItemTeresa ItemTeresa;
 
-void func_02100b84(Unk02101c84 *p);
-void func_02100bc8(Unk02101c84 *p);
-void func_02100bf0(Unk02101c84 *p);
+void UpdateItemTeresaState4(ItemTeresa *p);
+void EnterItemTeresaState4(ItemTeresa *p);
+void UpdateItemTeresaState3(ItemTeresa *p);

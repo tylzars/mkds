@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_02100700(unsigned int p0);
+unsigned int EnterItemTeresaState6(unsigned int p0);

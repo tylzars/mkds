@@ -56,11 +56,11 @@ void func_02102668(Unk02102668 *p0) {
     p0->mUnk_170 = 0x1u;
 }
 
-void func_021025d8(Unk021025d8 *a) {
+void ResetItemTeresa(Unk021025d8 *a) {
     UnkFunc *const *v1;
     a->mUnk_154 = 0x13;
     a->mUnk_158 = 0;
-    v1 = (UnkFunc *const *) data_0216c77c;
+    v1 = (UnkFunc *const *) gItemTeresaStateTable;
     a->mUnk_15c = 0;
     a->mUnk_160 = 0xe;
     func_02046be8(a->mUnk_12c, v1, 7, a);
@@ -116,7 +116,7 @@ static inline s32 func_02101f7c_inline(KartItems *v1, Unk021759c0 *o, s32 a, u16
     return v2;
 }
 
-void func_02101f7c(Unk02101c84 *p, s32 a) {
+void PickItemTeresaKartByRank(ItemTeresa *p, s32 a) {
     u16 acc[7];
     u16 b2[7];
     u32 lim;
@@ -200,13 +200,13 @@ void func_02101f7c(Unk02101c84 *p, s32 a) {
     v = (u16) (s == 0 ? 0 : func_02101f7c_inline_2(b, s));
     for (i = 0; i < c; i++) {
         if (v < acc[i]) {
-            p->mUnk_140 = b2[i];
+            p->mPickedKartIndex = b2[i];
             return;
         }
     }
 }
 
-void func_02101d90(Unk02101c84 *p, s32 a) {
+void PickItemTeresaKartBattle(ItemTeresa *p, s32 a) {
     RaceProgress *m;
     Unk020f41c4_B *b;
     s32 end;
@@ -258,7 +258,7 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
                 }
             }
             if (l != 0) {
-                p->mUnk_140 = k;
+                p->mPickedKartIndex = k;
                 return;
             }
         }
@@ -267,7 +267,7 @@ void func_02101d90(Unk02101c84 *p, s32 a) {
     } while (i < end);
 }
 
-void func_02101d18(Unk02101d18 *x, Unk02101c84 *p) {
+void func_02101d18(Unk02101d18 *x, ItemTeresa *p) {
     Kart *q;
 
     q = x->mUnk_10;
@@ -284,7 +284,7 @@ void func_02101d18(Unk02101d18 *x, Unk02101c84 *p) {
     p->mUnk_24c = TRUE;
 }
 
-void func_02101c84(Unk02101c84 *p) {
+void func_02101c84(ItemTeresa *p) {
     Kart *q;
     Vec3 *w;
     Vec3 v;
@@ -294,7 +294,7 @@ void func_02101c84(Unk02101c84 *p) {
     if (p->mUnk_000.mUnk_d0 != &p->mUnk_000.mUnk_0c4) {
         return;
     }
-    q = p->mUnk_168;
+    q = p->mKart;
     if (q == NULL) {
         return;
     }
@@ -304,7 +304,7 @@ void func_02101c84(Unk02101c84 *p) {
     VEC_Add(w, &v, &p->mUnk_000.mUnk_0c4);
 }
 
-void func_02101964(Unk02101c84 *p, s32 a) {
+void func_02101964(ItemTeresa *p, s32 a) {
     Kart *q;
     Vec3 *v;
     s32 *g;
@@ -317,7 +317,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
     s32 t;
     s32 n;
 
-    q = p->mUnk_168;
+    q = p->mKart;
     g = (s32 *) GetCurrentCamera();
     v = &p->mUnk_000.mPos;
     k = m = TRUE;
@@ -330,7 +330,7 @@ void func_02101964(Unk02101c84 *p, s32 a) {
     if (m != FALSE) {
         if (p->mUnk_144 == FALSE && (p->mUnk_000.mFlags & 0x8000000) && p->mUnk_24c != FALSE) {
             p->mUnk_144 = TRUE;
-            func_020fe694(0xb, p->mUnk_000.mId, 1, p->mUnk_13a & 0xff);
+            func_020fe694(0xb, p->mUnk_000.mId, 1, p->mState & 0xff);
         } else {
             p->mUnk_144 = TRUE;
         }
@@ -384,20 +384,20 @@ void func_02101964(Unk02101c84 *p, s32 a) {
     p->mUnk_174 = d[2] + (s32) p->mUnk_174;
 }
 
-void func_021018a0(Unk02101c84 *p) {
-    p->mUnk_168 = GetKart((u16) (p->mUnk_000.mUnk_78 & ~0xff00));
-    p->mUnk_184 = p->mUnk_168->mUnk_98;
-    p->mUnk_190 = p->mUnk_168->mVelocity;
+void EnterItemTeresaState0(ItemTeresa *p) {
+    p->mKart = GetKart((u16) (p->mUnk_000.mUnk_78 & ~0xff00));
+    p->mUnk_184 = p->mKart->mUnk_98;
+    p->mUnk_190 = p->mKart->mVelocity;
     *(Vec3 *) &p->mUnk_16c =
-        (Vec3){0, (s32) (((s64) * (s32 *) p->mUnk_168->mPhysicalParam * p->mUnk_168->mScale.z + 0x800) >> 12), 0};
+        (Vec3){0, (s32) (((s64) * (s32 *) p->mKart->mPhysicalParam * p->mKart->mScale.z + 0x800) >> 12), 0};
     p->mUnk_17c = 0;
     p->mUnk_000.mUnk_d8 = 0x1f;
-    if (p->mUnk_168->mUnk_48 & 1) {
+    if (p->mKart->mUnk_48 & 1) {
         p->mUnk_000.mUnk_d0 = &p->mUnk_000.mUnk_0c4;
     }
 }
 
-void func_0210174c(Unk02101c84 *p) {
+void func_0210174c(ItemTeresa *p) {
     Vec3 v;
     Vec3 s;
     Vec3 *q;
@@ -430,12 +430,12 @@ void func_0210174c(Unk02101c84 *p) {
     VEC_MultAdd(0x4f6, &s, (Vec3 *) &p->mUnk_16c, (Vec3 *) &p->mUnk_16c);
 }
 
-BOOL func_02101618(Unk02101c84 *p, s32 a, s32 b) {
+BOOL func_02101618(ItemTeresa *p, s32 a, s32 b) {
     s32 n;
     s32 m;
     s32 d;
 
-    n = p->mUnk_130;
+    n = p->mStateFrames;
     if (p->mUnk_15c != FALSE) {
         m = -7;
         d = GetRaceUpdateFramesMod8() > 2;
@@ -463,12 +463,12 @@ BOOL func_02101618(Unk02101c84 *p, s32 a, s32 b) {
         }
         if (n >= (p->mUnk_15c != FALSE ? 0x37 : 0x28)) {
             if (b < 7) {
-                if (p->mUnk_13a == 0) {
+                if (p->mState == 0) {
                     p->mUnk_14c = p->mUnk_170;
                     p->mUnk_150 = p->mUnk_17c;
                 }
-                p->mUnk_13c = b;
-                p->mUnk_13e = 1;
+                p->mNextState = b;
+                p->mNextStateRequested = 1;
             }
             return TRUE;
         }
@@ -476,11 +476,11 @@ BOOL func_02101618(Unk02101c84 *p, s32 a, s32 b) {
     return FALSE;
 }
 
-s32 func_021014a0(Unk02101c84 *p, s32 a, s32 b) {
+s32 func_021014a0(ItemTeresa *p, s32 a, s32 b) {
     s32 n;
     u16 k;
 
-    n = p->mUnk_130;
+    n = p->mStateFrames;
     if (p->mUnk_15c != FALSE) {
         func_0210174c(p);
     } else if (p->mUnk_26c != FALSE) {
@@ -509,15 +509,15 @@ s32 func_021014a0(Unk02101c84 *p, s32 a, s32 b) {
                 p->mUnk_178 = p->mUnk_16c - p->mUnk_178;
                 p->mUnk_180 = p->mUnk_174 - p->mUnk_180;
             }
-            p->mUnk_13c = b;
-            p->mUnk_13e = 1;
+            p->mNextState = b;
+            p->mNextStateRequested = 1;
             p->mUnk_26c = FALSE;
         }
     }
     return n;
 }
 
-void func_0210140c(Unk02101c84 *p) {
+void UpdateItemTeresaState0(ItemTeresa *p) {
     func_02101618(p, 0, (p->mUnk_000.mFlags & 0x8000000) ? 1 : 2);
     if (!(p->mUnk_000.mFlags & 0x8000000)) {
         return;
@@ -537,44 +537,44 @@ void func_0210140c(Unk02101c84 *p) {
     }
 }
 
-void func_021013bc(Unk02101c84 *p) {
+void EnterItemTeresaState1(ItemTeresa *p) {
     if (p->mUnk_24c == FALSE) {
         return;
     }
-    func_02101f7c(p, -1);
-    func_020fe694(0xb, p->mUnk_000.mId, 0, p->mUnk_140 & 0xff);
-    p->mUnk_250 = p->mUnk_140;
+    PickItemTeresaKartByRank(p, -1);
+    func_020fe694(0xb, p->mUnk_000.mId, 0, p->mPickedKartIndex & 0xff);
+    p->mUnk_250 = p->mPickedKartIndex;
     p->mUnk_24c = FALSE;
 }
 
-void func_0210136c(Unk02101c84 *p) {
+void UpdateItemTeresaState1(ItemTeresa *p) {
     s32 n;
 
     if (p->mUnk_250 == 0xffffffff) {
         return;
     }
-    n = p->mUnk_130;
+    n = p->mStateFrames;
     if (p->mUnk_24c == FALSE && n < 0x28) {
         return;
     }
     p->mUnk_268 = n - 0x28;
-    p->mUnk_140 = p->mUnk_250;
-    p->mUnk_13c = 2;
-    p->mUnk_13e = 1;
+    p->mPickedKartIndex = p->mUnk_250;
+    p->mNextState = 2;
+    p->mNextStateRequested = 1;
 }
 
-void func_02101178(Unk02101c84 *p) {
+void EnterItemTeresaState2(ItemTeresa *p) {
     s32 *v;
     Camera *g;
     Unk021759c0 *o;
-    void (*f)(Unk02101c84 *, s32);
+    void (*f)(ItemTeresa *, s32);
     int i;
 
     v = &p->mUnk_16c;
     g = GetCurrentCamera();
     if (!(p->mUnk_000.mFlags & 0x8000000)) {
         o = data_021759c0;
-        f = (o->mMode == MODE_BATTLE) ? func_02101d90 : func_02101f7c;
+        f = (o->mMode == MODE_BATTLE) ? PickItemTeresaKartBattle : PickItemTeresaKartByRank;
         if (o->mUseTeams != 0) {
             if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
                 i = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);
@@ -582,7 +582,7 @@ void func_02101178(Unk02101c84 *p) {
                 i = 8;
             }
             f(p, o->mCurrentEntries[(u16) i].mPlayer.mTeamIndex);
-            if (p->mUnk_140 == 8) {
+            if (p->mPickedKartIndex == 8) {
                 f(p, -1);
             }
         } else {
@@ -593,13 +593,13 @@ void func_02101178(Unk02101c84 *p) {
         p->mUnk_000.mPos = p->mUnk_000.mUnk_0c4;
         p->mUnk_000.mUnk_d0 = &p->mUnk_000.mPos;
     }
-    if (p->mUnk_140 < 8) {
-        p->mUnk_168 = GetKart(p->mUnk_140);
-        p->mUnk_184 = p->mUnk_168->mUnk_98;
-        p->mUnk_190 = p->mUnk_168->mVelocity;
+    if (p->mPickedKartIndex < 8) {
+        p->mKart = GetKart(p->mPickedKartIndex);
+        p->mUnk_184 = p->mKart->mUnk_98;
+        p->mUnk_190 = p->mKart->mVelocity;
         p->mUnk_144 = FALSE;
-        func_020f8e3c((u32) p->mUnk_168, 0xf4);
-        if (p->mUnk_168->mUnk_48 & 1) {
+        func_020f8e3c((u32) p->mKart, 0xf4);
+        if (p->mKart->mUnk_48 & 1) {
             p->mUnk_000.mUnk_d0 = &p->mUnk_000.mUnk_0c4;
         }
     }
@@ -608,10 +608,10 @@ void func_02101178(Unk02101c84 *p) {
     v[0] += (s32) (((s64) g->mForward.x * -0x11000) >> 12);
     v[2] += (s32) (((s64) g->mForward.z * -0x11000) >> 12);
     p->mUnk_17c = -p->mUnk_17c;
-    p->mUnk_270 = 0;
+    p->mStallFrames = 0;
 }
 
-s32 func_02101014(Unk02101c84 *p) {
+s32 func_02101014(ItemTeresa *p) {
     KartItems *e;
     Kart *q;
     Unk020f40dc *r;
@@ -619,7 +619,7 @@ s32 func_02101014(Unk02101c84 *p) {
     s32 b;
     enum { K0 } k;
 
-    e = &gKartItems[(u16) p->mUnk_140];
+    e = &gKartItems[(u16) p->mPickedKartIndex];
     q = e->mKart;
     r = &e->mHeldItem;
     if (r->mUnk_00 == 0x13 || r->mUnk_20 != 0) {
@@ -642,49 +642,49 @@ s32 func_02101014(Unk02101c84 *p) {
         return 0xf;
     }
     if (p->mUnk_000.mFlags & 0x8000000) {
-        p->mUnk_154 = r->mUnk_00;
-        p->mUnk_158 = r->mUnk_08;
-        func_0205a5b0(((u8 *) data_0217aa18)[p->mUnk_140 & 0xff]);
+        p->mItemInfoIndex = r->mUnk_00;
+        p->mItemCount = r->mUnk_08;
+        func_0205a5b0(((u8 *) data_0217aa18)[p->mPickedKartIndex & 0xff]);
     } else {
-        func_020f413c(r, &p->mUnk_154, &p->mUnk_158);
+        func_020f413c(r, &p->mItemInfoIndex, &p->mItemCount);
     }
     func_02068a10(q);
-    k = p->mUnk_154;
+    k = p->mItemInfoIndex;
     return gItemInfos[k].mObjectKind;
 }
 
-void func_02100de4(Unk02101c84 *p) {
+void UpdateItemTeresaState2(ItemTeresa *p) {
     u32 n;
     BOOL k;
 
-    if (p->mUnk_140 == 8) {
-        if (p->mUnk_130 > 0x6e) {
-            p->mUnk_160 = 0xf;
-            p->mUnk_13c = (p->mUnk_000.mFlags & 0x8000000) ? 4 : 5;
-            p->mUnk_13e = 1;
+    if (p->mPickedKartIndex == 8) {
+        if (p->mStateFrames > 0x6e) {
+            p->mItemObjectKind = 0xf;
+            p->mNextState = (p->mUnk_000.mFlags & 0x8000000) ? 4 : 5;
+            p->mNextStateRequested = 1;
         }
     } else {
         n = 0x28 - func_021014a0(p, 1, 3);
-        if (p->mUnk_160 == 0xe) {
+        if (p->mItemObjectKind == 0xe) {
             if (p->mUnk_24c != FALSE) {
                 if (n == 0xa) {
-                    p->mUnk_160 = func_02101014(p);
+                    p->mItemObjectKind = func_02101014(p);
                     p->mUnk_164 = 0;
                     if (p->mUnk_000.mFlags & 0x8000000) {
-                        func_020fe694(0xb, p->mUnk_000.mId, 2, ((p->mUnk_154 << 2) | p->mUnk_158) & 0xff);
+                        func_020fe694(0xb, p->mUnk_000.mId, 2, ((p->mItemInfoIndex << 2) | p->mItemCount) & 0xff);
                     }
                 }
             } else if (n <= 0xa) {
                 if (p->mUnk_258 != -1) {
-                    p->mUnk_154 = p->mUnk_254;
-                    p->mUnk_158 = p->mUnk_258;
+                    p->mItemInfoIndex = p->mUnk_254;
+                    p->mItemCount = p->mUnk_258;
                     p->mUnk_254 = 0x12;
                     p->mUnk_258 = -1;
-                    if (p->mUnk_154 == 0x13) {
-                        p->mUnk_160 = 0xf;
+                    if (p->mItemInfoIndex == 0x13) {
+                        p->mItemObjectKind = 0xf;
                     } else {
-                        p->mUnk_160 = gItemInfos[p->mUnk_154].mObjectKind;
-                        func_0205a5b0(((u8 *) data_0217aa18)[p->mUnk_140 & 0xff]);
+                        p->mItemObjectKind = gItemInfos[p->mItemInfoIndex].mObjectKind;
+                        func_0205a5b0(((u8 *) data_0217aa18)[p->mPickedKartIndex & 0xff]);
                     }
                     p->mUnk_164 = 0;
                     k = TRUE;
@@ -692,10 +692,10 @@ void func_02100de4(Unk02101c84 *p) {
                     k = FALSE;
                 }
                 if (k == FALSE && n == 1) {
-                    p->mUnk_130--;
+                    p->mStateFrames--;
                     p->mUnk_26c = TRUE;
-                    p->mUnk_270++;
-                    if (p->mUnk_270 > 0x3c) {
+                    p->mStallFrames++;
+                    if (p->mStallFrames > 0x3c) {
                         p->mUnk_254 = 0x13;
                         p->mUnk_258 = 0;
                     }
@@ -721,17 +721,17 @@ void func_02100de4(Unk02101c84 *p) {
     }
 }
 
-void func_02100dd8(Unk02100dd8 *p0) {
+void EnterItemTeresaState3(Unk02100dd8 *p0) {
     p0->mUnk_19c = 0x0u;
 }
 
-void func_02100bf0(Unk02101c84 *p) {
+void UpdateItemTeresaState3(ItemTeresa *p) {
     if (p->mUnk_164 < 0x1f) {
         p->mUnk_164 += 5;
     }
     p->mUnk_178 = (s32) (((s64) p->mUnk_178 * 0xf85) >> 12);
     p->mUnk_180 = (s32) (((s64) p->mUnk_180 * 0xf85) >> 12);
-    if (p->mUnk_130 == 0x12) {
+    if (p->mStateFrames == 0x12) {
         if (p->mUnk_19c == 0) {
             p->mUnk_19c = -0x1ae;
             p->mUnk_1a0 = p->mUnk_17c;
@@ -742,7 +742,7 @@ void func_02100bf0(Unk02101c84 *p) {
         if (p->mUnk_19c >= 0 && p->mUnk_17c >= p->mUnk_1a0) {
             return;
         }
-        p->mUnk_130--;
+        p->mStateFrames--;
         if (p->mUnk_19c >= 0) {
             return;
         }
@@ -756,7 +756,7 @@ void func_02100bf0(Unk02101c84 *p) {
         if (p->mUnk_17c >= -p->mUnk_19c) {
             return;
         }
-        func_020f8e3c((u32) p->mUnk_168, 0xf5);
+        func_020f8e3c((u32) p->mKart, 0xf5);
     } else {
         p->mUnk_16c += p->mUnk_178;
         p->mUnk_174 += p->mUnk_180;
@@ -780,36 +780,36 @@ void func_02100bf0(Unk02101c84 *p) {
     }
 }
 
-void func_02100bc8(Unk02101c84 *p) {
+void EnterItemTeresaState4(ItemTeresa *p) {
     p->mUnk_268 = ((p->mUnk_000.mFlags & 0x10000000) ? 0xf : 0) - p->mUnk_268;
     p->mUnk_24c = FALSE;
 }
 
-void func_02100b84(Unk02101c84 *p) {
+void UpdateItemTeresaState4(ItemTeresa *p) {
     p->mUnk_268--;
     if (p->mUnk_268 >= 0) {
         return;
     }
     p->mUnk_24c = (p->mUnk_000.mFlags & 0x10000000) == 0;
-    p->mUnk_13c = 5;
-    p->mUnk_13e = 1;
+    p->mNextState = 5;
+    p->mNextStateRequested = 1;
 }
 
-void func_02100b78(Unk02101c84 *p0) {
+void func_02100b78(ItemTeresa *p0) {
     p0->mUnk_000.mUnk_d0 = &p0->mUnk_000.mUnk_0c4;
 }
 
-void func_02100b54(Unk02101c84 *p) {
+void func_02100b54(ItemTeresa *p) {
     if (p->mUnk_000.mUnk_d0 == &p->mUnk_000.mUnk_0c4) {
         p->mUnk_000.mPos = p->mUnk_000.mUnk_0c4;
         p->mUnk_000.mUnk_d0 = &p->mUnk_000.mPos;
     }
 }
 
-void func_021009fc(Unk02101c84 *p) {
+void EnterItemTeresaState5(ItemTeresa *p) {
     int i;
     KartItems *e;
-    void (*f)(Unk02101c84 *);
+    void (*f)(ItemTeresa *);
 
     if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
         i = (u16) (p->mUnk_000.mUnk_78 & ~0xff00);
@@ -817,12 +817,12 @@ void func_021009fc(Unk02101c84 *p) {
         i = 8;
     }
     e = &(gKartItems)[(u16) i];
-    p->mUnk_168 = e->mKart;
+    p->mKart = e->mKart;
     p->mUnk_144 = FALSE;
     if (p->mUnk_24c != FALSE) {
         if (e->mActiveItem == 0x10) {
-            p->mUnk_184 = p->mUnk_168->mUnk_98;
-            p->mUnk_190 = p->mUnk_168->mVelocity;
+            p->mUnk_184 = p->mKart->mUnk_98;
+            p->mUnk_190 = p->mKart->mVelocity;
             p->mUnk_16c = 0;
             p->mUnk_174 = 0;
         } else {
@@ -834,7 +834,7 @@ void func_021009fc(Unk02101c84 *p) {
             p->mUnk_174 = 0;
         }
     }
-    if (p->mUnk_160 == 0xf) {
+    if (p->mItemObjectKind == 0xf) {
         func_020f4020(&p->mUnk_1a4, data_0215a1c0, data_0215a1c0[0].y);
         p->mUnk_248 = 3;
         p->mUnk_15c = TRUE;
@@ -843,14 +843,14 @@ void func_021009fc(Unk02101c84 *p) {
         p->mUnk_170 = p->mUnk_14c;
     }
     if (p->mUnk_144 == FALSE) {
-        func_020f8e3c((u32) p->mUnk_168, 0xf7);
+        func_020f8e3c((u32) p->mKart, 0xf7);
     }
-    p->mUnk_270 = 0;
-    f = (p->mUnk_168->mUnk_48 & 1) ? func_02100b78 : func_02100b54;
+    p->mStallFrames = 0;
+    f = (p->mKart->mUnk_48 & 1) ? func_02100b78 : func_02100b54;
     f(p);
 }
 
-void func_02100704(Unk02101c84 *p) {
+void UpdateItemTeresaState5(ItemTeresa *p) {
     s32 i;
     KartItems *e;
     u32 n;
@@ -864,7 +864,7 @@ void func_02100704(Unk02101c84 *p) {
         i = 8;
     }
     e = &(gKartItems)[(u16) i];
-    if (p->mUnk_24c != FALSE && e->mActiveItem != 0x10 && p->mUnk_158 != -0x40) {
+    if (p->mUnk_24c != FALSE && e->mActiveItem != 0x10 && p->mItemCount != -0x40) {
         p->mUnk_144 = TRUE;
         if (p->mUnk_000.mFlags & 0x8000000) {
             func_020fe694(0xb, p->mUnk_000.mId, 1, 5);
@@ -880,38 +880,38 @@ void func_02100704(Unk02101c84 *p) {
                     if (p->mUnk_260 == -1) {
                         k = FALSE;
                     } else {
-                        p->mUnk_154 = p->mUnk_25c;
-                        p->mUnk_158 = p->mUnk_260;
+                        p->mItemInfoIndex = p->mUnk_25c;
+                        p->mItemCount = p->mUnk_260;
                         p->mUnk_25c = 0x12;
                         p->mUnk_260 = -1;
                         k = TRUE;
                     }
                     if (k == FALSE) {
-                        p->mUnk_130--;
+                        p->mStateFrames--;
                         p->mUnk_26c = TRUE;
-                        p->mUnk_270++;
-                        if (p->mUnk_270 > 0x3c) {
+                        p->mStallFrames++;
+                        if (p->mStallFrames > 0x3c) {
                             p->mUnk_25c = 0x13;
                             p->mUnk_260 = -0x40;
-                            p->mUnk_160 = 0xe;
+                            p->mItemObjectKind = 0xe;
                         }
                         goto skip;
                     }
                 }
                 e->mActiveItem = 0x13;
-                if (p->mUnk_154 != 0x13) {
+                if (p->mItemInfoIndex != 0x13) {
                     if (p->mUnk_24c == FALSE) {
-                        func_0205a548(((u8 *) data_0217aa18)[e->mKartIndex & 0xff], p->mUnk_154, p->mUnk_158);
+                        func_0205a548(((u8 *) data_0217aa18)[e->mKartIndex & 0xff], p->mItemInfoIndex, p->mItemCount);
                     } else {
-                        func_020f40dc(&e->mHeldItem, p->mUnk_154, p->mUnk_158);
+                        func_020f40dc(&e->mHeldItem, p->mItemInfoIndex, p->mItemCount);
                     }
-                    p->mUnk_154 = 0x13;
-                    p->mUnk_158 = -0x40;
-                    p->mUnk_160 = 0xe;
+                    p->mItemInfoIndex = 0x13;
+                    p->mItemCount = -0x40;
+                    p->mItemObjectKind = 0xe;
                     func_020f8e3c((u32) e->mKart, 0xf8);
                 } else {
-                    p->mUnk_158 = -0x40;
-                    p->mUnk_160 = 0xe;
+                    p->mItemCount = -0x40;
+                    p->mItemObjectKind = 0xe;
                 }
                 if ((p->mUnk_000.mFlags & 0x8000000) && p->mUnk_24c != FALSE) {
                     func_020fe694(0xb, p->mUnk_000.mId, 3, ((e->mHeldItem.mUnk_00 << 2) | e->mHeldItem.mUnk_08) & 0xff);
@@ -926,8 +926,8 @@ skip:
         func_021014a0(p, 1, 6);
         p->mUnk_178 = p->mUnk_16c - a0;
         p->mUnk_180 = p->mUnk_174 - a1;
-        p->mUnk_13c = 6;
-        p->mUnk_13e = 1;
+        p->mNextState = 6;
+        p->mNextStateRequested = 1;
         p->mUnk_26c = FALSE;
     }
     if (!(p->mUnk_000.mFlags & 0x8000000)) {
@@ -948,15 +948,15 @@ skip:
     }
 }
 
-u32 func_02100700(u32 p0) {
+u32 EnterItemTeresaState6(u32 p0) {
     return p0;
 }
 
-void func_02100564(Unk02101c84 *p) {
+void UpdateItemTeresaState6(ItemTeresa *p) {
     BOOL a;
     s32 i;
 
-    a = p->mUnk_154 != 0x13;
+    a = p->mItemInfoIndex != 0x13;
     if (p->mUnk_15c == FALSE) {
         p->mUnk_178 = (s32) (((s64) p->mUnk_178 * 0xf85) >> 12);
         p->mUnk_180 = (s32) (((s64) p->mUnk_180 * 0xf85) >> 12);
@@ -975,7 +975,8 @@ void func_02100564(Unk02101c84 *p) {
             } else {
                 i = 8;
             }
-            ((void (*)(s32 param_1, s32 param_2, s32 param_3)) func_020f40a0)(p->mUnk_154, p->mUnk_158, (u16) i);
+            ((void (*)(s32 param_1, s32 param_2, s32 param_3)) func_020f40a0)(p->mItemInfoIndex, p->mItemCount,
+                                                                              (u16) i);
         }
         ReleaseItemPoolObject(gItemPools + p->mUnk_000.mKind, &p->mUnk_000);
     }
@@ -997,7 +998,7 @@ void func_02100564(Unk02101c84 *p) {
     }
 }
 
-void func_0210050c(Unk02101c84 *p) {
+void func_0210050c(ItemTeresa *p) {
     int i;
     KartItems *e;
 
@@ -1010,12 +1011,12 @@ void func_0210050c(Unk02101c84 *p) {
     if (e->mActiveItem != 0x10) {
         return;
     }
-    if (p->mUnk_158 != -0x40) {
+    if (p->mItemCount != -0x40) {
         e->mActiveItem = 0x13;
     }
 }
 
-void func_021004c4(void *p, Unk02101c84 *a, void *b) {
+void func_021004c4(void *p, ItemTeresa *a, void *b) {
     func_020fecdc(p, a, b);
     if (a == NULL) {
         return;
@@ -1026,7 +1027,7 @@ void func_021004c4(void *p, Unk02101c84 *a, void *b) {
     func_020fe8ac(a->mUnk_000.mKind);
 }
 
-void func_0210045c(Unk02101c84 *p) {
+void func_0210045c(ItemTeresa *p) {
     int i;
 
     func_020f8e78(p);
@@ -1040,7 +1041,7 @@ void func_0210045c(Unk02101c84 *p) {
     SetActiveItem(&gKartItems[(u16) i], 0x10);
 }
 
-void func_021003e8(Unk02101c84 *p, u32 sel, s32 v1) {
+void func_021003e8(ItemTeresa *p, u32 sel, s32 v1) {
     switch (sel) {
         case 0:
             p->mUnk_250 = v1;
@@ -1062,7 +1063,7 @@ void func_021003e8(Unk02101c84 *p, u32 sel, s32 v1) {
     }
 }
 
-void func_021001ac(Unk02101c84 *p, s32 c, Unk020e6488 *q) {
+void func_021001ac(ItemTeresa *p, s32 c, Unk020e6488 *q) {
     s32 a;
     s32 n;
     s32 b;
@@ -1089,10 +1090,10 @@ void func_021001ac(Unk02101c84 *p, s32 c, Unk020e6488 *q) {
     v[1] = y;
     v[2] = z;
     func_01ff9048(0x1b, v, 3);
-    if (p->mUnk_160 < 0xe && p->mUnk_13a >= 3) {
-        r = func_020ed578(p->mUnk_160);
+    if (p->mItemObjectKind < 0xe && p->mState >= 3) {
+        r = func_020ed578(p->mItemObjectKind);
         n = p->mUnk_164;
-        b2 = p->mUnk_158;
+        b2 = p->mItemCount;
         if (p->mUnk_000.mUnk_d8 < 0x1f) {
             if (p->mUnk_000.mUnk_d8 < n) {
                 n = p->mUnk_000.mUnk_d8;

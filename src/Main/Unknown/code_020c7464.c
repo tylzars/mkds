@@ -130,7 +130,7 @@ void func_020ca074(void) {
                 if (q != NULL) {
                     if (func_020b5ae8(q, &data_0217b42c->mCells[n].mUnk_00, a, 1, 1) != FALSE) {
                         if (p->mUnk_d8 > 0) {
-                            v = ((Unk02101c84 *) p)->mUnk_170;
+                            v = ((ItemTeresa *) p)->mUnk_170;
                             data_0217b42c->mCells[n].mUnk_00.mUnk_04 -= 0x88 * v / (s32) func_021001a0();
                             if (data_0217b42c->mCells[n].mUnk_00.mUnk_04 > 0) {
                                 data_0217b42c->mCells[n].mUnk_08 = c;

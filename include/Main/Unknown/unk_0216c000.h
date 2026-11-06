@@ -10,7 +10,7 @@ extern const char gObPakkunSfNsbmdName[];
 extern const char gObPakkunSfNsbtpName[];
 extern u8 gItemKouraWStateTable[];
 extern u8 data_0216c714[];
-extern u8 data_0216c77c[];
+extern u8 gItemTeresaStateTable[];
 extern s32 data_0216ca44;
 extern u32 data_0216cb2c;
 extern u16 data_0216cba0[];

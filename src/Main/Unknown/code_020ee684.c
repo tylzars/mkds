@@ -384,7 +384,7 @@ s32 func_020f0898(ItemPool *a, u8 *b) {
             func_020fc8ec((ItemKouraW *) e, c);
         }
         if (a->mKind == 0xb) {
-            func_021003e8((Unk02101c84 *) e, c, b[3]);
+            func_021003e8((ItemTeresa *) e, c, b[3]);
         }
     }
     return m;

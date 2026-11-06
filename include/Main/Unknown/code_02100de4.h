@@ -4,28 +4,27 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-// Element of gItemPools[11]: 0x274 bytes (the size in gItemKinds[11]), handled by the functions of
-// this file and of code_021001ac.c, code_02100704.c and code_02100b84.c.
-typedef struct Unk02101c84 {
+// Object of item kind 11, element of gItemPools[11].
+typedef struct ItemTeresa {
     /* 000 */ ItemObject mUnk_000;
     /* 12c */ u8 mUnk_12c[4];
-    /* 130 */ u32 mUnk_130;
+    /* 130 */ u32 mStateFrames;
     /* 134 */ u8 mUnk_134[0x6];
-    /* 13a */ u16 mUnk_13a;
-    /* 13c */ u16 mUnk_13c;
-    /* 13e */ u16 mUnk_13e;
-    /* 140 */ s32 mUnk_140;
+    /* 13a */ u16 mState;
+    /* 13c */ u16 mNextState;
+    /* 13e */ u16 mNextStateRequested;
+    /* 140 */ s32 mPickedKartIndex;
     /* 144 */ BOOL mUnk_144;
     /* 148 */ BOOL mUnk_148;
     /* 14c */ s32 mUnk_14c;
     /* 150 */ s32 mUnk_150;
-    /* 154 */ s32 mUnk_154;
-    /* 158 */ s32 mUnk_158;
+    /* 154 */ s32 mItemInfoIndex;
+    /* 158 */ s32 mItemCount;
     /* 15c */ BOOL mUnk_15c;
-    /* 160 */ s32 mUnk_160;
+    /* 160 */ s32 mItemObjectKind;
     /* 164 */ s16 mUnk_164;
     /* 166 */ u8 mUnk_166[0x2];
-    /* 168 */ Kart *mUnk_168;
+    /* 168 */ Kart *mKart;
     /* 16c */ s32 mUnk_16c;
     /* 170 */ s32 mUnk_170;
     /* 174 */ s32 mUnk_174;
@@ -47,8 +46,8 @@ typedef struct Unk02101c84 {
     /* 264 */ u32 mUnk_264;
     /* 268 */ s32 mUnk_268;
     /* 26c */ BOOL mUnk_26c;
-    /* 270 */ s32 mUnk_270;
-} Unk02101c84;
+    /* 270 */ s32 mStallFrames;
+} ItemTeresa;
 
 // First argument of func_02101d18: objects at 0x0c and 0x10.
 typedef struct Unk02101d18 {
@@ -57,18 +56,18 @@ typedef struct Unk02101d18 {
     /* 10 */ Kart *mUnk_10;
 } Unk02101d18;
 
-s32 func_02101014(Unk02101c84 *p);
-void func_02101178(Unk02101c84 *p);
-s32 func_021014a0(Unk02101c84 *p, s32 param_2, s32 param_3);
-BOOL func_02101618(Unk02101c84 *p, s32 param_2, s32 param_3);
-void func_0210174c(Unk02101c84 *p);
-void func_021018a0(Unk02101c84 *p);
-void func_02101964(Unk02101c84 *p, s32 param_2);
-void func_0210140c(Unk02101c84 *p);
-void func_021013bc(Unk02101c84 *p);
-void func_0210136c(Unk02101c84 *p);
-void func_02101d90(Unk02101c84 *p, s32 param_2);
-void func_02101f7c(Unk02101c84 *p, s32 param_2);
-void func_02100de4(Unk02101c84 *p);
-void func_02101c84(Unk02101c84 *p);
-void func_02101d18(Unk02101d18 *x, Unk02101c84 *p);
+s32 func_02101014(ItemTeresa *p);
+void EnterItemTeresaState2(ItemTeresa *p);
+s32 func_021014a0(ItemTeresa *p, s32 param_2, s32 param_3);
+BOOL func_02101618(ItemTeresa *p, s32 param_2, s32 param_3);
+void func_0210174c(ItemTeresa *p);
+void EnterItemTeresaState0(ItemTeresa *p);
+void func_02101964(ItemTeresa *p, s32 param_2);
+void UpdateItemTeresaState0(ItemTeresa *p);
+void EnterItemTeresaState1(ItemTeresa *p);
+void UpdateItemTeresaState1(ItemTeresa *p);
+void PickItemTeresaKartBattle(ItemTeresa *p, s32 param_2);
+void PickItemTeresaKartByRank(ItemTeresa *p, s32 param_2);
+void UpdateItemTeresaState2(ItemTeresa *p);
+void func_02101c84(ItemTeresa *p);
+void func_02101d18(Unk02101d18 *x, ItemTeresa *p);
