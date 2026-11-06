@@ -17,8 +17,8 @@
 
 void func_ov000_0218592c(void *a) {
     data_ov000_021b4c8c = HeapAlloc(a, 8);
-    data_ov000_021b4c8c->mUnk_00 = 0;
-    data_ov000_021b4c8c->mUnk_04 = 0;
+    data_ov000_021b4c8c->mState = 0;
+    data_ov000_021b4c8c->mNextState = 0;
     StartFadeToFadedNegative(0x1e);
 }
 
@@ -32,7 +32,7 @@ void func_ov000_0218583c(void) {
     s8 b;
 
     if (AreBrightnessFadesFaded() != 0) {
-        data_ov000_021b4c8c->mUnk_04 = 1;
+        data_ov000_021b4c8c->mNextState = 1;
         StartFadeToClear(0x1e);
         reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x1208;
         reg_G2_BG1CNT = reg_G2_BG1CNT & ~3;
@@ -73,8 +73,8 @@ void func_ov000_02185818(void) {
 }
 
 void func_ov000_021857e0(void) {
-    data_ov000_021b4c8c->mUnk_00 = data_ov000_021b4c8c->mUnk_04;
-    switch (data_ov000_021b4c8c->mUnk_00) {
+    data_ov000_021b4c8c->mState = data_ov000_021b4c8c->mNextState;
+    switch (data_ov000_021b4c8c->mState) {
         case 0:
             func_ov000_0218583c();
             break;

@@ -4,10 +4,10 @@
 
 typedef struct WiFiStateCallbacks WiFiStateCallbacks;
 
-// Object behind data_ov000_021b4c8c; mUnk_00 selects the handler run by func_ov000_021857e0.
+// mState selects the handler run by func_ov000_021857e0.
 typedef struct Unk021b4c8c {
-    /* 0 */ s32 mUnk_00;
-    /* 4 */ s32 mUnk_04;
+    /* 0 */ s32 mState;
+    /* 4 */ s32 mNextState;
 } Unk021b4c8c;
 
 extern WiFiStateCallbacks data_ov000_021b0fd8;

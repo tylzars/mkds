@@ -11,9 +11,9 @@ typedef struct Unk021b4c68 {
     /* 08 */ s32 mUnk_08;
     // Usually passed to RequestWiFiState right after it is stored; -1 until set.
     /* 0c */ s32 mPendingWiFiState;
-    /* 10 */ s32 mUnk_10;
+    /* 10 */ s32 mMessageTableIndex;
     /* 14 */ BOOL mUnk_14;
-    /* 18 */ s32 mUnk_18;
+    /* 18 */ s32 mErrorCode;
     /* 1c */ void *mHeap;
     /* 20 */ u8 pad_20[0x18];
     /* 38 */ struct Bmg *mWiFiMessages;
