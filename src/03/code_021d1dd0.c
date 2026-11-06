@@ -25,15 +25,15 @@ void func_ov003_021d1e14(u32 param_1, Unk021d1da8 *param_2) {
         c = -c;
     }
     if (param_2 == data_ov003_021da2c0) {
-        func_0214a348((u16 *) 0x4001050, c);
+        G2x_ChangeBlendBrightness_((u16 *) 0x4001050, c);
     } else {
-        func_0214a348((u16 *) 0x4000050, c);
+        G2x_ChangeBlendBrightness_((u16 *) 0x4000050, c);
     }
     if (param_2->mFrames >= param_2->mFrameCount) {
         if (param_2 == data_ov003_021da2c0) {
-            func_0214a348((u16 *) 0x4001050, b[param_2->mUnk_08]);
+            G2x_ChangeBlendBrightness_((u16 *) 0x4001050, b[param_2->mUnk_08]);
         } else {
-            func_0214a348((u16 *) 0x4000050, b[param_2->mUnk_08]);
+            G2x_ChangeBlendBrightness_((u16 *) 0x4000050, b[param_2->mUnk_08]);
         }
         param_2->mEnabled = 0;
         func_ov003_021d34c8(1, param_1);

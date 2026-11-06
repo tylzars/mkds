@@ -930,7 +930,7 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
         m.mUnk_00[3].y = t.y;
         m.mUnk_00[3].z = t.z;
         reg_G3_MTX_IDENTITY = 0;
-        GxFifoWrite0x19Then12Words(&m);
+        G3_MultMtx43(&m);
     } else {
         t.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         t.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -957,7 +957,7 @@ void func_0201c09c(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        GxFifoWrite0x19Then12Words(&m);
+        G3_MultMtx43(&m);
     }
     reg_G3_COLOR = (u16) ((((c0 & 0x1f) * (c1 & 0x1f)) >> 5) | ((((c0 & 0x3e0) * (c1 & 0x3e0)) >> 15) << 5) |
                           ((((c0 & 0x7c00) * (c1 & 0x7c00)) >> 25) << 10));
@@ -1023,7 +1023,7 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
         m.mUnk_00[3].y = t.y;
         m.mUnk_00[3].z = t.z;
         reg_G3_MTX_IDENTITY = 0;
-        GxFifoWrite0x19Then12Words(&m);
+        G3_MultMtx43(&m);
     } else {
         t.x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         t.y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -1050,7 +1050,7 @@ void func_0201bc48(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        GxFifoWrite0x19Then12Words(&m);
+        G3_MultMtx43(&m);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
@@ -1140,7 +1140,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         buf[8] = 0x1000;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
-        GxFifoWrite0x19Then12Words(buf);
+        G3_MultMtx43(buf);
     } else {
         pos.x = e->mUnk_08.x + e->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         pos.y = e->mUnk_08.y + e->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -1185,7 +1185,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
         reg_G3_MTX_TRANS = i;
         reg_G3_MTX_TRANS = j;
         reg_G3_MTX_TRANS = n;
-        GxFifoWrite0x19Then12Words(buf);
+        G3_MultMtx43(buf);
     }
     q = e->mUnk_36;
     k = p->mUnk_40->mUnk_72;
@@ -1276,7 +1276,7 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         buf[8] = 0x1000;
         buf[11] = pos.z;
         reg_G3_MTX_IDENTITY = 0;
-        GxFifoWrite0x19Then12Words(buf);
+        G3_MultMtx43(buf);
     } else {
         pos.x = e->mUnk_08.x + e->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         pos.y = e->mUnk_08.y + e->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -1321,7 +1321,7 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
         reg_G3_MTX_TRANS = i;
         reg_G3_MTX_TRANS = j;
         reg_G3_MTX_TRANS = n;
-        GxFifoWrite0x19Then12Words(buf);
+        G3_MultMtx43(buf);
     }
     q = e->mUnk_36;
     k = p->mUnk_40->mUnk_72;
@@ -1371,8 +1371,8 @@ void func_0201ab30(Unk020184e4 *p, Unk0201e3c8 *n) {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y;
         a.mUnk_00[3].z = n->mUnk_08.z + n->mUnk_38.z;
-        GxFifoWrite0x17Then12Words(p->mUnk_44);
-        GxFifoWrite0x19Then12Words(&a);
+        G3_LoadMtx43(p->mUnk_44);
+        G3_MultMtx43(&a);
     } else {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -1384,8 +1384,8 @@ void func_0201ab30(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        GxFifoWrite0x19Then12Words(p->mUnk_44);
-        GxFifoWrite0x19Then12Words(&a);
+        G3_MultMtx43(p->mUnk_44);
+        G3_MultMtx43(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
@@ -1437,8 +1437,8 @@ void func_0201a7e0(Unk020184e4 *p, Unk0201e3c8 *n) {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y;
         a.mUnk_00[3].z = n->mUnk_08.z + n->mUnk_38.z;
-        GxFifoWrite0x17Then12Words(p->mUnk_44);
-        GxFifoWrite0x19Then12Words(&a);
+        G3_LoadMtx43(p->mUnk_44);
+        G3_MultMtx43(&a);
     } else {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -1450,8 +1450,8 @@ void func_0201a7e0(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        GxFifoWrite0x19Then12Words(p->mUnk_44);
-        GxFifoWrite0x19Then12Words(&a);
+        G3_MultMtx43(p->mUnk_44);
+        G3_MultMtx43(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
@@ -1537,8 +1537,8 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y;
         a.mUnk_00[3].z = n->mUnk_08.z + n->mUnk_38.z;
-        GxFifoWrite0x17Then12Words(p->mUnk_44);
-        GxFifoWrite0x19Then12Words(&a);
+        G3_LoadMtx43(p->mUnk_44);
+        G3_MultMtx43(&a);
     } else {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -1550,8 +1550,8 @@ void func_0201a364(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        GxFifoWrite0x19Then12Words(p->mUnk_44);
-        GxFifoWrite0x19Then12Words(&a);
+        G3_MultMtx43(p->mUnk_44);
+        G3_MultMtx43(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;
@@ -1639,8 +1639,8 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y;
         a.mUnk_00[3].z = n->mUnk_08.z + n->mUnk_38.z;
-        GxFifoWrite0x17Then12Words(p->mUnk_44);
-        GxFifoWrite0x19Then12Words(&a);
+        G3_LoadMtx43(p->mUnk_44);
+        G3_MultMtx43(&a);
     } else {
         a.mUnk_00[3].x = n->mUnk_08.x + n->mUnk_38.x - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.x;
         a.mUnk_00[3].y = n->mUnk_08.y + n->mUnk_38.y - p->mUnk_40->mUnk_20->mUnk_00->mUnk_04.y;
@@ -1652,8 +1652,8 @@ void func_02019ee4(Unk020184e4 *p, Unk0201e3c8 *n) {
         reg_G3_MTX_TRANS = x;
         reg_G3_MTX_TRANS = y;
         reg_G3_MTX_TRANS = z;
-        GxFifoWrite0x19Then12Words(p->mUnk_44);
-        GxFifoWrite0x19Then12Words(&a);
+        G3_MultMtx43(p->mUnk_44);
+        G3_MultMtx43(&a);
     }
     c0 = n->mUnk_36;
     c1 = p->mUnk_40->mUnk_72;

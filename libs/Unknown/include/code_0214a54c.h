@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void MemZero128WordsToOneAddress(void *a);
+void GXi_NopClearFifo128_(void *dest);

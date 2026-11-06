@@ -613,7 +613,7 @@ void func_ov001_02198878(void) {
         plane &= ~2;
         *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (plane << 8);
     }
-    func_0214a40c((u32 *) 0x4001050, 0, 2, 6, 10);
+    G2x_SetBlendAlpha_((u32 *) 0x4001050, 0, 2, 6, 10);
     *(vu32 *) 0x4000010 = (-gOptionSelectMenu->mUnk_24 << 16) & 0x1ff0000;
     *(vu32 *) 0x4000014 = (-gOptionSelectMenu->mUnk_24 << 16) & 0x1ff0000;
 }

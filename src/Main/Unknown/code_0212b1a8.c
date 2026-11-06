@@ -125,9 +125,9 @@ void func_0212b5ec(void *a) {
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x1f00) | 0x100;
     *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 1;
     *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & 0x43) | 0x1000;
-    MemFillWordsByBlock_inline((void *) G2sBg0CntBits2To5Address(), 0x8000);
+    MemFillWordsByBlock_inline((void *) G2S_GetBG0CharPtr(), 0x8000);
     for (i = 0; i < 0x400; i++) {
-        ((u16 *) G2sBg0CntBits8To12Address())[i] = i | 0xf000;
+        ((u16 *) G2S_GetBG0ScrPtr())[i] = i | 0xf000;
     }
     LoadNclrData(&p, FindSceneFile(data_0216ea78));
     CallQueueAppend(0x1f, 0x1e0, p->mData + 0xf0, 0x20);
@@ -173,7 +173,7 @@ void func_0212b260(void) {
         a += 0x100;
     }
     a = a % 256;
-    MemFillWordsByBlock_inline((void *) (G2sBg0CntBits2To5Address() + ((a >> 3) << 10)), 0x400);
+    MemFillWordsByBlock_inline((void *) (G2S_GetBG0CharPtr() + ((a >> 3) << 10)), 0x400);
     p = data_0217d40c;
     if (p->mUnk_014 > 0) {
         p->mUnk_014 -= p->mUnk_00c;

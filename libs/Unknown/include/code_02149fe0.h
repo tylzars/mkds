@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 G2sBg1CntBits2To5Address(void);
+u32 G2S_GetBG1CharPtr(void);

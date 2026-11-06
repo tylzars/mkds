@@ -35,7 +35,7 @@ void func_020362dc(void *a) {
     func_0204aa28(1);
     data_02174e6c->mUnk_638 = func_020d1630()->mUnk_20;
     data_02174e6c->mUnk_000 = (u8 *) func_020d1630() + 0x14;
-    b = G2sBg1CntBits2To5Address();
+    b = G2S_GetBG1CharPtr();
     h = GetBmgEntry(data_02174e6c->mUnk_638, 1);
     func_02023408(data_02174e6c->mUnk_004, (u8 *) b + 0x400, 0x20, 4, 4);
     func_020362c4(&data_02174e6c->mUnk_024, data_02174e6c->mUnk_004, data_02174e6c->mUnk_000, 1, 4);

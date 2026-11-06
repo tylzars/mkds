@@ -56,7 +56,7 @@ void func_ov001_021a2408(void) {
             *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x1218;
             DC_FlushRange(gEmblem->mUnk_0a7c, 0x200);
             GX_LoadBG2Char((gEmblem->mUnk_0a7c), 0, 0x200);
-            func_0214a40c((u32 *) 0x4001050, 0, 0, 0x10, 0x10);
+            G2x_SetBlendAlpha_((u32 *) 0x4001050, 0, 0, 0x10, 0x10);
             gEmblem->mUnk_1098 = 4;
             break;
         case 4:
@@ -82,7 +82,7 @@ void func_ov001_021a2408(void) {
             *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 1;
             *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x1010;
             *(vu32 *) 0x400101c = 0;
-            func_0214a40c((u32 *) 0x4001050, 8, 0x36, 8, 8);
+            G2x_SetBlendAlpha_((u32 *) 0x4001050, 8, 0x36, 8, 8);
             gEmblem->mUnk_1098 = 5;
             break;
         case 7:
@@ -117,23 +117,23 @@ void func_ov001_021a2408(void) {
             GXS_LoadOBJPltt(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
             break;
         case 12:
-            func_0214a3e8((u16 *) 0x4001050, 0x3e, -16);
+            G2x_SetBlendBrightness_((u16 *) 0x4001050, 0x3e, -16);
             func_ov001_021a4d10();
             gEmblem->mUnk_1098 = 13;
             break;
         case 9:
-            func_0214a3e8((u16 *) 0x4001050, 0x3e, -16);
+            G2x_SetBlendBrightness_((u16 *) 0x4001050, 0x3e, -16);
             func_ov001_021a4ba0();
             gEmblem->mUnk_1098 = 10;
             break;
         case 10:
             *(vu32 *) 0x4001018 = 0;
-            func_0214a3e8((u16 *) 0x4001050, 0x3e, -gEmblem->mUnk_109c);
+            G2x_SetBlendBrightness_((u16 *) 0x4001050, 0x3e, -gEmblem->mUnk_109c);
             break;
         case 13:
             *(vu32 *) 0x4001018 =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
-            func_0214a3e8((u16 *) 0x4001050, 0x3e, -gEmblem->mUnk_109c);
+            G2x_SetBlendBrightness_((u16 *) 0x4001050, 0x3e, -gEmblem->mUnk_109c);
             break;
         case 14:
             func_ov001_021a4d10();

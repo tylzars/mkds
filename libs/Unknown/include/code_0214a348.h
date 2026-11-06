@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0214a348(u16 *p, s32 v);
+void G2x_ChangeBlendBrightness_(u16 *reg, s32 brightness);

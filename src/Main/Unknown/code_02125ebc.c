@@ -226,8 +226,8 @@ s32 func_0212717c(s32 d) {
     GXS_LoadBGPltt(c->mData + 0xe0, 0x1c0, 0x40);
     gTxtSystem->mUnk_2244 = c->mData[0xee];
     gTxtSystem->mUnk_2246 = c->mData[0xdf];
-    MemFillWordsByBlock_inline((void *) G2Bg2CntBits8To12Address(), 0x1000);
-    func_0212717c_inline((void *) G2sBg0CntBits8To12Address(), gTxtSystem->mUnk_2220[4]);
+    MemFillWordsByBlock_inline((void *) G2_GetBG2ScrPtr(), 0x1000);
+    func_0212717c_inline((void *) G2S_GetBG0ScrPtr(), gTxtSystem->mUnk_2220[4]);
     return d;
 }
 
@@ -592,18 +592,18 @@ void func_02126730(void) {
         *(vu32 *) 0x4000018 = (gTxtSystem->mUnk_2054[0] << 16) & 0x1ff0000;
         *(vu32 *) 0x4001010 = (gTxtSystem->mUnk_2054[1] << 16) & 0x1ff0000;
         if (gTxtSystem->mUnk_206c[0] != 0) {
-            func_0214a390((u16 *) 0x4000050, gTxtSystem->mUnk_2080[0], 0x1f, gTxtSystem->mUnk_2088[0],
-                          gTxtSystem->mUnk_2090[0], gTxtSystem->mUnk_207c);
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4000050, gTxtSystem->mUnk_2080[0], 0x1f, gTxtSystem->mUnk_2088[0],
+                                       gTxtSystem->mUnk_2090[0], gTxtSystem->mUnk_207c);
         } else {
-            func_0214a390((u16 *) 0x4000050, 0, 0x1f, gTxtSystem->mUnk_2088[0], gTxtSystem->mUnk_2090[0],
-                          gTxtSystem->mUnk_207c);
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4000050, 0, 0x1f, gTxtSystem->mUnk_2088[0], gTxtSystem->mUnk_2090[0],
+                                       gTxtSystem->mUnk_207c);
         }
         if (gTxtSystem->mUnk_206c[1] != 0) {
-            func_0214a390((u16 *) 0x4001050, gTxtSystem->mUnk_2080[1], 0x1f, gTxtSystem->mUnk_2088[1],
-                          gTxtSystem->mUnk_2090[1], gTxtSystem->mUnk_207c);
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, gTxtSystem->mUnk_2080[1], 0x1f, gTxtSystem->mUnk_2088[1],
+                                       gTxtSystem->mUnk_2090[1], gTxtSystem->mUnk_207c);
         } else {
-            func_0214a390((u16 *) 0x4001050, 0, 0x1f, gTxtSystem->mUnk_2088[1], gTxtSystem->mUnk_2090[1],
-                          gTxtSystem->mUnk_207c);
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, 0, 0x1f, gTxtSystem->mUnk_2088[1], gTxtSystem->mUnk_2090[1],
+                                       gTxtSystem->mUnk_207c);
         }
     }
 }

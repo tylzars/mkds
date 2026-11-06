@@ -18,9 +18,9 @@ u32 func_ov003_021d1ee0(s32 param_1, s32 param_2, u32 param_3, u16 param_4) {
         return 0;
     }
     if (param_2 == 1) {
-        func_0214a3e8((u16 *) 0x4001050, param_3, a[param_1]);
+        G2x_SetBlendBrightness_((u16 *) 0x4001050, param_3, a[param_1]);
     } else {
-        func_0214a3e8((u16 *) 0x4000050, param_3, a[param_1]);
+        G2x_SetBlendBrightness_((u16 *) 0x4000050, param_3, a[param_1]);
     }
     b->mUnk_00 = func_ov003_021d3544(1, func_ov003_021d1e14, b, 200);
     b->mFrames = 0;

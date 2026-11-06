@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void func_0214a3e8(u16 *param_1, u32 param_2, s32 param_3);
-void func_0214a40c(u32 *param_1, u32 param_2, int param_3, u32 param_4, int param_5);
-void func_0214a428(u32 *param_1, const s32 *param_2, s32 param_3, s32 param_4, s32 param_5, s32 param_6);
-void func_0214a390(u16 *param_1, u32 param_2, u32 param_3, u32 param_4, u32 param_5, s32 param_6);
+void G2x_SetBlendBrightness_(u16 *reg, u32 plane, s32 brightness);
+void G2x_SetBlendAlpha_(u32 *reg, u32 plane1, int plane2, u32 ev1, int ev2);
+void G2x_SetBGyAffine_(u32 *reg, const s32 *mtx, s32 centerX, s32 centerY, s32 x1, s32 y1);
+void G2x_SetBlendBrightnessExt_(u16 *reg, u32 plane1, u32 plane2, u32 ev1, u32 ev2, s32 brightness);

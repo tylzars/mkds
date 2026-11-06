@@ -8,249 +8,260 @@
 #include "code_0214d018.h"
 #include "registers.h"
 
-void ComputeFrustumMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk0214ad4c *i) {
-    s64 x;
-    s64 y;
-    s64 z;
-    s32 e2;
-    s32 t1;
-    s32 t2;
-    s32 t3;
-    s32 t4;
-    s32 u;
-    vu32 *p;
+// Builds a perspective projection matrix from the six edge values, scaled by scaleW (0x1000 = 1.0). With draw
+// nonzero it sets the projection matrix mode and loads the 16 words with the 4x4 load command; with mtx not null it
+// stores them there.
+void G3i_FrustumW_(s32 top, s32 bottom, s32 left, s32 right, s32 nearPlane, s32 farPlane, s32 scaleW, int draw,
+                   Unk0214ad4c *mtx) {
+    s64 invWidth;
+    s64 invHeight;
+    s64 invDepth;
+    s32 dblNear;
+    s32 m00;
+    s32 m11;
+    s32 m22;
+    s32 m32;
+    s32 nearFar;
+    vu32 *fifo;
 
-    FX_InvAsync(d - c);
-    if (h != 0) {
+    FX_InvAsync(right - left);
+    if (draw != 0) {
         reg_G3_MTX_MODE = 0;
-        p = &reg_G3_MTX_LOAD_4x4;
+        fifo = &reg_G3_MTX_LOAD_4x4;
     }
-    if (i != 0) {
-        i->mUnk_04 = 0;
-        i->mUnk_08 = 0;
-        i->mUnk_0c = 0;
-        i->mUnk_10 = 0;
-        i->mUnk_18 = 0;
-        i->mUnk_1c = 0;
-        i->mUnk_2c = -g;
-        i->mUnk_30 = 0;
-        i->mUnk_34 = 0;
-        i->mUnk_3c = 0;
+    if (mtx != 0) {
+        mtx->mUnk_04 = 0;
+        mtx->mUnk_08 = 0;
+        mtx->mUnk_0c = 0;
+        mtx->mUnk_10 = 0;
+        mtx->mUnk_18 = 0;
+        mtx->mUnk_1c = 0;
+        mtx->mUnk_2c = -scaleW;
+        mtx->mUnk_30 = 0;
+        mtx->mUnk_34 = 0;
+        mtx->mUnk_3c = 0;
     }
-    e2 = e << 1;
-    x = FX_GetDivResultFx64c();
+    dblNear = nearPlane << 1;
+    invWidth = FX_GetDivResultFx64c();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
-    reg_CP_DIV_DENOM = (u32) (a - b);
-    if (g != 0x1000) {
-        x = x * g / 0x1000;
+    reg_CP_DIV_DENOM = (u32) (top - bottom);
+    if (scaleW != 0x1000) {
+        invWidth = invWidth * scaleW / 0x1000;
     }
-    t1 = (x * e2 + 0x80000000) >> 32;
-    if (h != 0) {
-        *p = t1;
-        *p = 0;
-        *p = 0;
-        *p = 0;
+    m00 = (invWidth * dblNear + 0x80000000) >> 32;
+    if (draw != 0) {
+        *fifo = m00;
+        *fifo = 0;
+        *fifo = 0;
+        *fifo = 0;
     }
-    if (i != 0) {
-        i->mUnk_00 = t1;
+    if (mtx != 0) {
+        mtx->mUnk_00 = m00;
     }
-    y = FX_GetDivResultFx64c();
+    invHeight = FX_GetDivResultFx64c();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
-    reg_CP_DIV_DENOM = (u32) (e - f);
-    if (g != 0x1000) {
-        y = y * g / 0x1000;
+    reg_CP_DIV_DENOM = (u32) (nearPlane - farPlane);
+    if (scaleW != 0x1000) {
+        invHeight = invHeight * scaleW / 0x1000;
     }
-    t2 = (y * e2 + 0x80000000) >> 32;
-    if (h != 0) {
-        *p = 0;
-        *p = t2;
-        *p = 0;
-        *p = 0;
+    m11 = (invHeight * dblNear + 0x80000000) >> 32;
+    if (draw != 0) {
+        *fifo = 0;
+        *fifo = m11;
+        *fifo = 0;
+        *fifo = 0;
     }
-    if (i != 0) {
-        i->mUnk_14 = t2;
+    if (mtx != 0) {
+        mtx->mUnk_14 = m11;
     }
     {
-        s32 m = d + c;
-        s32 n = a + b;
-        s32 k0 = (x * m + 0x80000000) >> 32;
-        s32 k1 = (y * n + 0x80000000) >> 32;
-        if (h != 0) {
-            *p = k0;
-            *p = k1;
+        s32 sumLR = right + left;
+        s32 sumTB = top + bottom;
+        s32 m20 = (invWidth * sumLR + 0x80000000) >> 32;
+        s32 m21 = (invHeight * sumTB + 0x80000000) >> 32;
+        if (draw != 0) {
+            *fifo = m20;
+            *fifo = m21;
         }
-        if (i != 0) {
-            i->mUnk_20 = k0;
-            i->mUnk_24 = k1;
+        if (mtx != 0) {
+            mtx->mUnk_20 = m20;
+            mtx->mUnk_24 = m21;
         }
     }
-    z = FX_GetDivResultFx64c();
-    if (g != 0x1000) {
-        z = z * g / 0x1000;
+    invDepth = FX_GetDivResultFx64c();
+    if (scaleW != 0x1000) {
+        invDepth = invDepth * scaleW / 0x1000;
     }
-    u = ((s64) e2 * f + 0x800) >> 12;
-    t3 = (z * (f + e) + 0x80000000) >> 32;
-    t4 = (z * u + 0x80000000) >> 32;
-    if (h != 0) {
-        *p = t3;
-        *p = -g;
-        *p = 0;
-        *p = 0;
-        *p = t4;
-        *p = 0;
+    nearFar = ((s64) dblNear * farPlane + 0x800) >> 12;
+    m22 = (invDepth * (farPlane + nearPlane) + 0x80000000) >> 32;
+    m32 = (invDepth * nearFar + 0x80000000) >> 32;
+    if (draw != 0) {
+        *fifo = m22;
+        *fifo = -scaleW;
+        *fifo = 0;
+        *fifo = 0;
+        *fifo = m32;
+        *fifo = 0;
     }
-    if (i != 0) {
-        i->mUnk_28 = t3;
-        i->mUnk_38 = t4;
+    if (mtx != 0) {
+        mtx->mUnk_28 = m22;
+        mtx->mUnk_38 = m32;
     }
 }
 
-void ComputeOrthoMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, Unk0214ad4c *i) {
-    s64 x;
-    s64 y;
-    s64 z;
-    s32 u;
-    s32 v;
-    s32 w;
-    vu32 *p;
+// Builds an orthographic projection matrix from the six edge values, scaled by scaleW. With draw nonzero it sets the
+// projection matrix mode and loads the 16 words with the 4x4 load command; with mtx not null it stores them there.
+void G3i_OrthoW_(s32 top, s32 bottom, s32 left, s32 right, s32 nearPlane, s32 farPlane, s32 scaleW, int draw,
+                 Unk0214ad4c *mtx) {
+    s64 invWidth;
+    s64 invHeight;
+    s64 invDepth;
+    s32 m00;
+    s32 m11;
+    s32 m22;
+    vu32 *fifo;
 
-    FX_InvAsync(d - c);
-    if (h != 0) {
+    FX_InvAsync(right - left);
+    if (draw != 0) {
         reg_G3_MTX_MODE = 0;
-        p = &reg_G3_MTX_LOAD_4x4;
+        fifo = &reg_G3_MTX_LOAD_4x4;
     }
-    if (i != 0) {
-        i->mUnk_04 = 0;
-        i->mUnk_08 = 0;
-        i->mUnk_0c = 0;
-        i->mUnk_10 = 0;
-        i->mUnk_18 = 0;
-        i->mUnk_1c = 0;
-        i->mUnk_20 = 0;
-        i->mUnk_24 = 0;
-        i->mUnk_2c = 0;
-        i->mUnk_3c = g;
+    if (mtx != 0) {
+        mtx->mUnk_04 = 0;
+        mtx->mUnk_08 = 0;
+        mtx->mUnk_0c = 0;
+        mtx->mUnk_10 = 0;
+        mtx->mUnk_18 = 0;
+        mtx->mUnk_1c = 0;
+        mtx->mUnk_20 = 0;
+        mtx->mUnk_24 = 0;
+        mtx->mUnk_2c = 0;
+        mtx->mUnk_3c = scaleW;
     }
-    x = FX_GetDivResultFx64c();
+    invWidth = FX_GetDivResultFx64c();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
-    reg_CP_DIV_DENOM = (u32) (a - b);
-    if (g != 0x1000) {
-        x = x * g / 0x1000;
+    reg_CP_DIV_DENOM = (u32) (top - bottom);
+    if (scaleW != 0x1000) {
+        invWidth = invWidth * scaleW / 0x1000;
     }
-    u = ((x << 13) + 0x80000000) >> 32;
-    if (h != 0) {
-        *p = u;
-        *p = 0;
-        *p = 0;
-        *p = 0;
-        *p = 0;
+    m00 = ((invWidth << 13) + 0x80000000) >> 32;
+    if (draw != 0) {
+        *fifo = m00;
+        *fifo = 0;
+        *fifo = 0;
+        *fifo = 0;
+        *fifo = 0;
     }
-    if (i != 0) {
-        i->mUnk_00 = u;
+    if (mtx != 0) {
+        mtx->mUnk_00 = m00;
     }
-    y = FX_GetDivResultFx64c();
+    invHeight = FX_GetDivResultFx64c();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
-    reg_CP_DIV_DENOM = (u32) (e - f);
-    if (g != 0x1000) {
-        y = y * g / 0x1000;
+    reg_CP_DIV_DENOM = (u32) (nearPlane - farPlane);
+    if (scaleW != 0x1000) {
+        invHeight = invHeight * scaleW / 0x1000;
     }
-    v = ((y << 13) + 0x80000000) >> 32;
-    if (h != 0) {
-        *p = v;
-        *p = 0;
-        *p = 0;
-        *p = 0;
-        *p = 0;
+    m11 = ((invHeight << 13) + 0x80000000) >> 32;
+    if (draw != 0) {
+        *fifo = m11;
+        *fifo = 0;
+        *fifo = 0;
+        *fifo = 0;
+        *fifo = 0;
     }
-    if (i != 0) {
-        i->mUnk_14 = v;
+    if (mtx != 0) {
+        mtx->mUnk_14 = m11;
     }
-    z = FX_GetDivResultFx64c();
-    if (g != 0x1000) {
-        z = z * g / 0x1000;
+    invDepth = FX_GetDivResultFx64c();
+    if (scaleW != 0x1000) {
+        invDepth = invDepth * scaleW / 0x1000;
     }
-    w = ((z << 13) + 0x80000000) >> 32;
-    if (h != 0) {
-        *p = w;
-        *p = 0;
+    m22 = ((invDepth << 13) + 0x80000000) >> 32;
+    if (draw != 0) {
+        *fifo = m22;
+        *fifo = 0;
     }
-    if (i != 0) {
-        i->mUnk_28 = w;
+    if (mtx != 0) {
+        mtx->mUnk_28 = m22;
     }
     {
-        s32 m = -(d + c);
-        s32 n = -(a + b);
-        s32 o = f + e;
-        s32 k0 = (x * m + 0x80000000) >> 32;
-        s32 k1 = (y * n + 0x80000000) >> 32;
-        s32 k2 = (z * o + 0x80000000) >> 32;
-        if (h != 0) {
-            *p = k0;
-            *p = k1;
-            *p = k2;
-            *p = g;
+        s32 negSumLR = -(right + left);
+        s32 negSumTB = -(top + bottom);
+        s32 sumNF = farPlane + nearPlane;
+        s32 m30 = (invWidth * negSumLR + 0x80000000) >> 32;
+        s32 m31 = (invHeight * negSumTB + 0x80000000) >> 32;
+        s32 m32 = (invDepth * sumNF + 0x80000000) >> 32;
+        if (draw != 0) {
+            *fifo = m30;
+            *fifo = m31;
+            *fifo = m32;
+            *fifo = scaleW;
         }
-        if (i != 0) {
-            i->mUnk_30 = k0;
-            i->mUnk_34 = k1;
-            i->mUnk_38 = k2;
+        if (mtx != 0) {
+            mtx->mUnk_30 = m30;
+            mtx->mUnk_34 = m31;
+            mtx->mUnk_38 = m32;
         }
     }
 }
 
-void ComputeLookAtMatrix(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, MtxFx43 *out) {
-    Vec3 v0;
-    Vec3 v1;
-    Vec3 v2;
-    s32 x;
-    s32 y;
-    s32 z;
-    vu32 *p;
+// Builds a view matrix from the camera position, the up vector and the target. With draw nonzero it sets the position
+// vector matrix mode and loads the 12 words with the 4x3 load command; with mtx not null it stores them there.
+void G3i_LookAt_(const Vec3 *camPos, const Vec3 *camUp, const Vec3 *target, int draw, MtxFx43 *mtx) {
+    Vec3 look;
+    Vec3 right;
+    Vec3 up;
+    s32 transX;
+    s32 transY;
+    s32 transZ;
+    vu32 *fifo;
 
-    v0.x = a->x - c->x;
-    v0.y = a->y - c->y;
-    v0.z = a->z - c->z;
-    VEC_Normalize(&v0, &v0);
-    VEC_CrossProduct(b, &v0, &v1);
-    VEC_Normalize(&v1, &v1);
-    VEC_CrossProduct(&v0, &v1, &v2);
-    if (d != 0) {
+    look.x = camPos->x - target->x;
+    look.y = camPos->y - target->y;
+    look.z = camPos->z - target->z;
+    VEC_Normalize(&look, &look);
+    VEC_CrossProduct(camUp, &look, &right);
+    VEC_Normalize(&right, &right);
+    VEC_CrossProduct(&look, &right, &up);
+    if (draw != 0) {
         reg_G3_MTX_MODE = 2;
-        p = &reg_G3_MTX_LOAD_4x3;
-        *p = v1.x;
-        *p = v2.x;
-        *p = v0.x;
-        *p = v1.y;
-        *p = v2.y;
-        *p = v0.y;
-        *p = v1.z;
-        *p = v2.z;
-        *p = v0.z;
+        fifo = &reg_G3_MTX_LOAD_4x3;
+        *fifo = right.x;
+        *fifo = up.x;
+        *fifo = look.x;
+        *fifo = right.y;
+        *fifo = up.y;
+        *fifo = look.y;
+        *fifo = right.z;
+        *fifo = up.z;
+        *fifo = look.z;
     }
-    x = -VEC_DotProduct(a, &v1);
-    y = -VEC_DotProduct(a, &v2);
-    z = -VEC_DotProduct(a, &v0);
-    if (d != 0) {
-        *p = x;
-        *p = y;
-        *p = z;
+    transX = -VEC_DotProduct(camPos, &right);
+    transY = -VEC_DotProduct(camPos, &up);
+    transZ = -VEC_DotProduct(camPos, &look);
+    if (draw != 0) {
+        *fifo = transX;
+        *fifo = transY;
+        *fifo = transZ;
     }
-    if (out != 0) {
-        out->mUnk_00[0].x = v1.x;
-        out->mUnk_00[0].y = v2.x;
-        out->mUnk_00[0].z = v0.x;
-        out->mUnk_00[1].x = v1.y;
-        out->mUnk_00[1].y = v2.y;
-        out->mUnk_00[1].z = v0.y;
-        out->mUnk_00[2].x = v1.z;
-        out->mUnk_00[2].y = v2.z;
-        out->mUnk_00[2].z = v0.z;
-        out->mUnk_00[3].x = x;
-        out->mUnk_00[3].y = y;
-        out->mUnk_00[3].z = z;
+    if (mtx != 0) {
+        mtx->mUnk_00[0].x = right.x;
+        mtx->mUnk_00[0].y = up.x;
+        mtx->mUnk_00[0].z = look.x;
+        mtx->mUnk_00[1].x = right.y;
+        mtx->mUnk_00[1].y = up.y;
+        mtx->mUnk_00[1].z = look.y;
+        mtx->mUnk_00[2].x = right.z;
+        mtx->mUnk_00[2].y = up.z;
+        mtx->mUnk_00[2].z = look.z;
+        mtx->mUnk_00[3].x = transX;
+        mtx->mUnk_00[3].y = transY;
+        mtx->mUnk_00[3].z = transZ;
     }
 }
 
+// Resets the geometry engine and its registers to the start state: clears the FIFO and the matrix stacks, sets the
+// clear color, depth, fog and BG0 registers, clears the tables and sets the default polygon attributes.
 void G3X_Init(void) {
     G3X_ClearFifo();
     reg_G3_END_VTXS = 0;
@@ -279,90 +290,101 @@ void G3X_Init(void) {
     reg_G3_PLTT_BASE = 0;
 }
 
+// Waits for the geometry engine, resets the matrix stacks and sets the default polygon attributes, texture
+// parameters and palette base.
 void G3X_Reset(void) {
-    while (*(vu32 *) 0x4000600 & 0x8000000) {
+    while (reg_G3X_GXSTAT & 0x8000000) {
     }
-    *(vu32 *) 0x4000600 |= 0x8000;
-    *(vu16 *) 0x4000060 |= 0x2000;
-    *(vu16 *) 0x4000060 |= 0x1000;
+    reg_G3X_GXSTAT |= 0x8000;
+    reg_G3X_DISP3DCNT |= 0x2000;
+    reg_G3X_DISP3DCNT |= 0x1000;
     G3X_ResetMtxStack();
-    *(vu32 *) 0x40004a4 = 0x1f0080;
-    *(vu32 *) 0x40004a8 = 0;
-    *(vu32 *) 0x40004ac = 0;
+    reg_G3_POLYGON_ATTR = 0x1f0080;
+    reg_G3_TEXIMAGE_PARAM = 0;
+    reg_G3_PLTT_BASE = 0;
 }
 
+// Writes 128 zero words to the geometry FIFO, then waits for the geometry engine.
 void G3X_ClearFifo(void) {
-    MemZero128WordsToOneAddress((void *) 0x4000400);
-    while (*(vu32 *) 0x4000600 & 0x8000000) {
+    GXi_NopClearFifo128_((void *) &reg_G3X_GXFIFO);
+    while (reg_G3X_GXSTAT & 0x8000000) {
     }
 }
 
+// Pops the projection and position vector stacks to their bottom and loads the identity matrix into the texture,
+// projection and position vector matrices.
 void G3X_InitMtxStack(void) {
-    u32 a;
-    u32 b;
+    s32 positionLevel;
+    s32 projectionLevel;
 
-    *(vu32 *) 0x4000600 |= 0x8000;
-    while (GxStatTryReadBits8To12(&a) != 0) {
+    reg_G3X_GXSTAT |= 0x8000;
+    while (G3X_GetMtxStackLevelPV(&positionLevel) != 0) {
     }
-    while (GxStatTryReadBit13(&b) != 0) {
+    while (G3X_GetMtxStackLevelPJ(&projectionLevel) != 0) {
     }
-    *(vu32 *) 0x4000440 = 3;
-    *(vu32 *) 0x4000454 = 0;
-    *(vu32 *) 0x4000440 = 0;
-    if (b != 0) {
-        *(vu32 *) 0x4000448 = b;
+    reg_G3_MTX_MODE = 3;
+    reg_G3_MTX_IDENTITY = 0;
+    reg_G3_MTX_MODE = 0;
+    if (projectionLevel != 0) {
+        reg_G3_MTX_POP = projectionLevel;
     }
-    *(vu32 *) 0x4000454 = 0;
-    *(vu32 *) 0x4000440 = 2;
-    *(vu32 *) 0x4000448 = a;
-    *(vu32 *) 0x4000454 = 0;
+    reg_G3_MTX_IDENTITY = 0;
+    reg_G3_MTX_MODE = 2;
+    reg_G3_MTX_POP = positionLevel;
+    reg_G3_MTX_IDENTITY = 0;
 }
 
+// As G3X_InitMtxStack, except that the projection matrix does not get the identity matrix.
 void G3X_ResetMtxStack(void) {
-    u32 a;
-    u32 b;
+    s32 positionLevel;
+    s32 projectionLevel;
 
-    *(vu32 *) 0x4000600 |= 0x8000;
-    while (GxStatTryReadBits8To12(&a) != 0) {
+    reg_G3X_GXSTAT |= 0x8000;
+    while (G3X_GetMtxStackLevelPV(&positionLevel) != 0) {
     }
-    while (GxStatTryReadBit13(&b) != 0) {
+    while (G3X_GetMtxStackLevelPJ(&projectionLevel) != 0) {
     }
-    *(vu32 *) 0x4000440 = 3;
-    *(vu32 *) 0x4000454 = 0;
-    *(vu32 *) 0x4000440 = 0;
-    if (b != 0) {
-        *(vu32 *) 0x4000448 = b;
+    reg_G3_MTX_MODE = 3;
+    reg_G3_MTX_IDENTITY = 0;
+    reg_G3_MTX_MODE = 0;
+    if (projectionLevel != 0) {
+        reg_G3_MTX_POP = projectionLevel;
     }
-    *(vu32 *) 0x4000440 = 2;
-    *(vu32 *) 0x4000448 = a;
-    *(vu32 *) 0x4000454 = 0;
+    reg_G3_MTX_MODE = 2;
+    reg_G3_MTX_POP = positionLevel;
+    reg_G3_MTX_IDENTITY = 0;
 }
 
-void G3X_SetFog(s32 a, u32 b, u32 c, u32 d) {
-    if (a != 0) {
-        *(vu16 *) 0x400035c = d;
-        *(vu16 *) 0x4000060 = (*(vu16 *) 0x4000060 & ~0x3f40) | ((c << 8) | (b << 6) | 0x80);
+// With enable nonzero, sets the fog offset and the fog mode and slope bits of DISP3DCNT and turns the fog on;
+// otherwise clears the fog bits.
+void G3X_SetFog(s32 enable, u32 fogMode, u32 fogSlope, u32 fogOffset) {
+    if (enable != 0) {
+        reg_G3X_FOG_OFFSET = fogOffset;
+        reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3f40) | ((fogSlope << 8) | (fogMode << 6) | 0x80);
     } else {
-        *(vu16 *) 0x4000060 = *(vu16 *) 0x4000060 & 0xcf7f;
+        reg_G3X_DISP3DCNT = reg_G3X_DISP3DCNT & 0xcf7f;
     }
 }
 
-s32 G3X_GetClipMtx(void *a) {
-    if (*(vu32 *) 0x4000600 & 0x8000000) {
+// Copies the 16 words of the clip matrix to m. Returns -1 while the geometry engine is busy, 0 otherwise.
+s32 G3X_GetClipMtx(void *m) {
+    if (reg_G3X_GXSTAT & 0x8000000) {
         return -1;
     }
-    MI_Copy64B((const void *) 0x4000640, a);
+    MI_Copy64B((const void *) 0x4000640, m);
     return 0;
 }
 
-s32 G3X_GetVectorMtx(void *a) {
-    if (*(vu32 *) 0x4000600 & 0x8000000) {
+// Copies the 9 words of the vector matrix to m. Returns -1 while the geometry engine is busy, 0 otherwise.
+s32 G3X_GetVectorMtx(void *m) {
+    if (reg_G3X_GXSTAT & 0x8000000) {
         return -1;
     }
-    MI_Copy36B((const void *) 0x4000680, a);
+    MI_Copy36B((const void *) 0x4000680, m);
     return 0;
 }
 
-void G3X_SetFogTable(const void *a) {
-    MI_Copy32B(a, (void *) 0x4000360);
+// Copies the 8 words of fogTable to the fog table registers.
+void G3X_SetFogTable(const void *fogTable) {
+    MI_Copy32B(fogTable, (void *) 0x4000360);
 }

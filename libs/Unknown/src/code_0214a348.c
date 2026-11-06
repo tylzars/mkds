@@ -1,18 +1,20 @@
 #include "code_0214a348.h"
 
-void func_0214a348(u16 *p, s32 v) {
-    u32 t;
+// Sets the brightness amount of a blend register block. A negative value changes a brightness increase effect
+// to a decrease; a positive value changes a decrease to an increase.
+void G2x_ChangeBlendBrightness_(u16 *reg, s32 brightness) {
+    u32 control;
 
-    t = p[0];
-    if (v < 0) {
-        if ((t & 0xc0) == 0x80) {
-            p[0] = (t & ~0xc0) | 0xc0;
+    control = reg[0];
+    if (brightness < 0) {
+        if ((control & 0xc0) == 0x80) {
+            reg[0] = (control & ~0xc0) | 0xc0;
         }
-        p[2] = -v;
+        reg[2] = -brightness;
     } else {
-        if ((t & 0xc0) == 0xc0) {
-            p[0] = (t & ~0xc0) | 0x80;
+        if ((control & 0xc0) == 0xc0) {
+            reg[0] = (control & ~0xc0) | 0x80;
         }
-        p[2] = v;
+        reg[2] = brightness;
     }
 }

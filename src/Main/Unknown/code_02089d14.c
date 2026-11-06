@@ -38,7 +38,7 @@ void func_0208aa30(void *a) {
     func_0208a460(a);
     data_0217b034->mUnk_73c = 9;
     reg_G3_MTX_MODE = 0;
-    ComputeOrthoMatrix(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217b034->mUnk_744);
+    G3i_OrthoW_(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217b034->mUnk_744);
     p = &data_0217b034->mUnk_784;
     data_0217b034->mUnk_784.mUnk_00 = 0;
     p->mUnk_02 = 0;
@@ -257,8 +257,8 @@ void func_02089fa0(void) {
         MTX_Identity33_(&b);
         for (i = 0; i < data_0217b034->mUnk_000[8]->mNsbmdCount; i++) {
             e = &data_0217b034->mUnk_000[8]->mNsbmds[i];
-            ComputeOrthoMatrix(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x1f6, 0,
-                               (Unk0214ad4c *) data_0217029c.mUnk_08);
+            G3i_OrthoW_(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x1f6, 0,
+                        (Unk0214ad4c *) data_0217029c.mUnk_08);
             data_0217029c.mUnk_fc &= ~0x50;
             func_02010fe4(&d);
             MI_Copy36B(&b, &data_0217029c.mUnk_bc);
@@ -273,7 +273,7 @@ void func_02089fa0(void) {
         reg_G3_SPE_EMI = 0x4210;
         reg_G3_DIF_AMB = 0x42100000;
         reg_G3_MTX_MODE = 0;
-        GxFifoWrite0x16Then16Words(&data_0217b034->mUnk_744);
+        G3_LoadMtx44(&data_0217b034->mUnk_744);
         reg_G3_TEXIMAGE_PARAM = 0x20000000;
         reg_G3_MTX_MODE = 2;
         reg_G3_MTX_IDENTITY = 0;

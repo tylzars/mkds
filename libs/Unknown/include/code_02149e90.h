@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-u32 G2sBg3CntBits2To5Address(void);
-u32 G2Bg3CntBits2To5Address(void);
-u32 G2sBg2CntBits2To5Address(void);
-u32 G2Bg2CntBits2To5Address(void);
+u32 G2S_GetBG3CharPtr(void);
+u32 G2_GetBG3CharPtr(void);
+u32 G2S_GetBG2CharPtr(void);
+u32 G2_GetBG2CharPtr(void);

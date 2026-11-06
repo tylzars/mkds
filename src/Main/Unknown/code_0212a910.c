@@ -211,7 +211,7 @@ void func_0212ad28(s32 a, s32 b) {
                 t |= 2;
                 *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (t << 8);
             }
-            func_0214a390((u16 *) 0x4000050, 0x1d, 0, 8, 8, -11);
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4000050, 0x1d, 0, 8, 8, -11);
         } else {
             *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x200;
             *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffffe0ff;

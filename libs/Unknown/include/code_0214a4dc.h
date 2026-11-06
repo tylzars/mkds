@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void GxFifoWrite0x1aThenMemCopy9Words(const void *a);
-void GxFifoWrite0x19Then12Words(const void *a);
-void GxFifoWrite0x17Then12Words(const void *a);
-void GxFifoWrite0x16Then16Words(const void *a);
+void G3_MultMtx33(const void *mtx);
+void G3_MultMtx43(const void *mtx);
+void G3_LoadMtx43(const void *mtx);
+void G3_LoadMtx44(const void *mtx);

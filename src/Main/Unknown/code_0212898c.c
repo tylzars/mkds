@@ -405,8 +405,8 @@ void func_02129c18(void) {
     *(vu16 *) 0x400100c = (*(vu16 *) 0x400100c & ~3) | 2;
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x9010;
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 2;
-    MemFillWordsByBlock_inline((void *) G2Bg2CntBits8To12Address(), 0x1000);
-    MemFillWordsByBlock_inline((void *) G2Bg3CntBits8To12Address(), 0x1000);
+    MemFillWordsByBlock_inline((void *) G2_GetBG2ScrPtr(), 0x1000);
+    MemFillWordsByBlock_inline((void *) G2_GetBG3ScrPtr(), 0x1000);
 }
 
 void AdvanceKeyboardState0(void) {

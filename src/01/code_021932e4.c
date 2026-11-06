@@ -406,7 +406,7 @@ void AdvanceOptionTopMenu(void) {
 }
 
 void func_ov001_02193308(void) {
-    func_0214a40c(((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
+    G2x_SetBlendAlpha_(((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
     reg_G2_BG0OFS = gOptionTopMenu->mBg0Offset << 0x10 & ((u32) 0x01ff0000u);
     return;
 }

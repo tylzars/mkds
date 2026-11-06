@@ -39,7 +39,7 @@ u32 func_ov003_021cef6c(void) {
 
 void func_ov003_021cef28(Unk021d34e0 *a) {
     data_ov003_021da284->mUnk_1a--;
-    func_0214a348((u16 *) 0x04000050, data_ov003_021da284->mUnk_1a);
+    G2x_ChangeBlendBrightness_((u16 *) 0x04000050, data_ov003_021da284->mUnk_1a);
     if (data_ov003_021da284->mUnk_1a <= -12) {
         func_ov003_021d34e0(a, func_ov003_021cee98);
     }
@@ -194,7 +194,7 @@ void func_ov003_021ceaf8(Unk021d34e0 *a) {
 
 void func_ov003_021ceab8(Unk021d34e0 *a) {
     data_ov003_021da284->mUnk_1a++;
-    func_0214a348((u16 *) 0x04000050, data_ov003_021da284->mUnk_1a);
+    G2x_ChangeBlendBrightness_((u16 *) 0x04000050, data_ov003_021da284->mUnk_1a);
     if (data_ov003_021da284->mUnk_1a >= 0) {
         func_ov003_021d34e0(a, func_ov003_021cea3c);
     }

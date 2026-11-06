@@ -38,7 +38,7 @@ void func_020a29cc(void) {
     Unk0217b200 *d;
     Unk0217b200_08 *p;
 
-    func_0214a40c((u32 *) 0x4000050, 1, 0x1f, 0x10, 0x10);
+    G2x_SetBlendAlpha_((u32 *) 0x4000050, 1, 0x1f, 0x10, 0x10);
     func_02010fac(0, data_0217b200->mUnk_0fc, data_0217b200->mUnk_100, data_0217b200->mUnk_104);
     func_02010fac(1, data_0217b200->mUnk_0fe, data_0217b200->mUnk_102, data_0217b200->mUnk_106);
     func_02010f98(0, 0x7fff);
@@ -46,10 +46,10 @@ void func_020a29cc(void) {
     x = (s32) (((s64) FX_Div(data_0215d6b4[0x54], data_0215d6b4[0x55]) * 0x19a) >> 12);
     y = (s32) (((s64) -x * 0x1555) >> 12);
     if (data_021759c0->mUnk_57 != 0) {
-        ComputeFrustumMatrix(x, -x, -y, y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
+        G3i_FrustumW_(x, -x, -y, y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
         data_0217029c.mUnk_fc &= ~0x50;
     } else {
-        ComputeFrustumMatrix(x, -x, y, -y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
+        G3i_FrustumW_(x, -x, y, -y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
         data_0217029c.mUnk_fc &= ~0x50;
     }
     {
@@ -62,7 +62,7 @@ void func_020a29cc(void) {
         data_021704dc[0] = v3;
         data_021704dc[1] = v2;
         data_021704dc[2] = v1;
-        ComputeLookAtMatrix(&v3, &v2, &v1, 0, &data_0217029c.mUnk_4c);
+        G3i_LookAt_(&v3, &v2, &v1, 0, &data_0217029c.mUnk_4c);
         data_0217029c.mUnk_fc &= ~0xe8;
         func_02038c9c(data_021755a0, 1, 1);
         data_0217029c.mUnk_a0 = 0xbfff0000;

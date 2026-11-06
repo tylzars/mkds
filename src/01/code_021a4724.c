@@ -59,7 +59,7 @@ void func_ov001_021a4d10(void) {
     reg_G2S_DB_BG0OFS = 0;
     reg_G2S_DB_BG1OFS = 0;
     reg_G2S_DB_BG2OFS = 0;
-    func_0214a428((u32 *) 0x04001030, data_ov001_021a6fd8, 16, 16, -0x70, -0x40);
+    G2x_SetBGyAffine_((u32 *) 0x04001030, data_ov001_021a6fd8, 16, 16, -0x70, -0x40);
     DC_FlushRange(gEmblem->mEmblemSONclr->mData, gEmblem->mEmblemSONclr->mDataSize);
     GXS_LoadOBJPltt(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSONcgr->mData, gEmblem->mEmblemSONcgr->mDataSize);

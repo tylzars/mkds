@@ -86,7 +86,7 @@ void func_02028010(u32 a) {
 }
 
 void func_02027fd4(u32 a, u32 b, u32 c, u32 d) {
-    func_0214a40c(((u32 *) 0x04001050u), a, b, c, d);
+    G2x_SetBlendAlpha_(((u32 *) 0x04001050u), a, b, c, d);
 }
 
 u32 func_02027fb8(u32 arg0) {

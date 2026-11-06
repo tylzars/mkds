@@ -275,7 +275,7 @@ void func_02104144(Unk0210340c *p) {
     *(u32 *) 0x40004c0 = p->mUnk_10;
     *(u32 *) 0x40004c4 = p->mUnk_14;
     *(u32 *) 0x4000440 = 0;
-    GxFifoWrite0x16Then16Words(data_0217c6a4);
+    G3_LoadMtx44(data_0217c6a4);
     *(u32 *) 0x4000440 = 3;
     *(u32 *) 0x4000454 = 0;
     *(u32 *) 0x4000440 = 2;
@@ -650,7 +650,7 @@ void func_02103468(void) {
     }
     *(u32 *) 0x4000440 = 0;
     *(u32 *) 0x4000444 = 0;
-    ComputeOrthoMatrix(0x60000, 0xfffa0000, 0xfff80000, 0x80000, 0, 0x1000, 0x1fb, 1, (Unk0214ad4c *) data_0217c6a4);
+    G3i_OrthoW_(0x60000, 0xfffa0000, 0xfff80000, 0x80000, 0, 0x1000, 0x1fb, 1, (Unk0214ad4c *) data_0217c6a4);
     *(u32 *) 0x4000448 = 1;
 }
 

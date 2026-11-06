@@ -1517,7 +1517,7 @@ void func_02078934(s32 param_1) {
         c = d;
     }
     func_01ff9048(0x15, NULL, 0);
-    ComputeFrustumMatrix(a, b, c, e, 0x200, 0x64000, 0x1000, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
+    G3i_FrustumW_(a, b, c, e, 0x200, 0x64000, 0x1000, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
     data_0217029c.mUnk_fc &= ~0x50;
     func_02011034();
 }
@@ -1544,7 +1544,7 @@ void func_020787f4(s32 param_1, s32 param_2) {
     data_021704dc[0] = data_usa_021656fc;
     data_021704dc[1] = e;
     data_021704dc[2] = c;
-    ComputeLookAtMatrix(&data_usa_021656fc, &e, &c, 0, &data_0217029c.mUnk_4c);
+    G3i_LookAt_(&data_usa_021656fc, &e, &c, 0, &data_0217029c.mUnk_4c);
     data_0217029c.mUnk_fc &= ~0xe8;
     func_02011034();
 }

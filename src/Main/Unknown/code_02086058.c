@@ -274,7 +274,7 @@ void func_02086250(MtxFx43 *a) {
     *(u32 *) 0x40004c4 = 0x4210;
     *(u32 *) 0x40004c0 = 0x42100000;
     *(u32 *) 0x4000440 = 0;
-    GxFifoWrite0x16Then16Words(&data_0217aee0);
+    G3_LoadMtx44(&data_0217aee0);
     *(u32 *) 0x4000440 = 3;
     *(u32 *) 0x4000454 = 0;
     for (i = data_021759c0->mKartCount - 1; i >= 0; i--) {
@@ -356,7 +356,7 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, MtxFx43 *c, s32 d, s32 e, s16
     m.mUnk_00[2].x = 0;
     *(u32 *) 0x40004a4 = (func_02086098_inline(b) | 0xc0) | (f << 16);
     *(u32 *) 0x4000440 = 2;
-    GxFifoWrite0x17Then12Words(&m);
+    G3_LoadMtx43(&m);
     *(u32 *) 0x4000500 = 1;
     *(u32 *) 0x4000480 = 0x7fff;
     k(x, y, b->mUnk_26);

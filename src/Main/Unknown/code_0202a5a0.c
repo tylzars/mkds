@@ -37,8 +37,8 @@ void func_0202a658(void *a) {
     func_0212abdc(a, data_02174e24);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
-    func_0214a40c((u32 *) 0x04000050, 1, 0x3f, 8, 8);
-    func_0214a40c((u32 *) 0x04001050, 0, 0x2f, 8, 8);
+    G2x_SetBlendAlpha_((u32 *) 0x04000050, 1, 0x3f, 8, 8);
+    G2x_SetBlendAlpha_((u32 *) 0x04001050, 0, 0x2f, 8, 8);
     reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
     reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
 }

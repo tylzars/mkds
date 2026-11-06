@@ -173,7 +173,7 @@ void func_020b0b8c(void) {
                     GX_LoadBGPltt(gRaceHud->mNclrs[0]->mData, 0, gRaceHud->mNclrs[0]->mDataSize);
                     GX_LoadBG3Char(gRaceHud->mNcgrs[0]->mData, 0, gRaceHud->mNcgrs[0]->mDataSize);
                     GX_LoadBG3Scr(gRaceHud->mNscrs[1]->mData, 0, 0x600);
-                    func_0214a40c((u32 *) 0x04000050, 8, 0x27, 5, 9);
+                    G2x_SetBlendAlpha_((u32 *) 0x04000050, 8, 0x27, 5, 9);
                 }
                 gRaceHud->mUnk_844 = 0;
                 gRaceHud->mUnk_84c = 1;
@@ -241,12 +241,13 @@ void func_020b0b8c(void) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
             }
-            func_0214a428((u32 *) 0x04001020, gRaceHud->mUnk_858[0].mUnk_00, gRaceHud->mUnk_858[0].mUnk_10,
-                          gRaceHud->mUnk_858[0].mUnk_14, gRaceHud->mUnk_858[0].mUnk_18, gRaceHud->mUnk_858[0].mUnk_1c);
+            G2x_SetBGyAffine_((u32 *) 0x04001020, gRaceHud->mUnk_858[0].mUnk_00, gRaceHud->mUnk_858[0].mUnk_10,
+                              gRaceHud->mUnk_858[0].mUnk_14, gRaceHud->mUnk_858[0].mUnk_18,
+                              gRaceHud->mUnk_858[0].mUnk_1c);
             if (func_020b64e8() != 0) {
-                func_0214a428((u32 *) 0x04001030, gRaceHud->mUnk_858[1].mUnk_00, gRaceHud->mUnk_858[1].mUnk_10,
-                              gRaceHud->mUnk_858[1].mUnk_14, gRaceHud->mUnk_858[1].mUnk_18,
-                              gRaceHud->mUnk_858[1].mUnk_1c);
+                G2x_SetBGyAffine_((u32 *) 0x04001030, gRaceHud->mUnk_858[1].mUnk_00, gRaceHud->mUnk_858[1].mUnk_10,
+                                  gRaceHud->mUnk_858[1].mUnk_14, gRaceHud->mUnk_858[1].mUnk_18,
+                                  gRaceHud->mUnk_858[1].mUnk_1c);
             }
             func_020cf340((Unk020cf340 *) &data_0217b34c[0x100]);
             if (func_020b64e8() != 0) {
@@ -326,13 +327,13 @@ void func_020b0b8c(void) {
         GXS_LoadBG0Scr(func_020b32f8(), 0, 0x600);
         w = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | ((w | 1) << 8);
-        func_0214a390((u16 *) 0x04001050, 0x3e, 0x3f, 8, 8, -7);
+        G2x_SetBlendBrightnessExt_((u16 *) 0x04001050, 0x3e, 0x3f, 8, 8, -7);
     } else {
         w = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
         reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | ((w & ~1) << 8);
         w = (reg_GX_DISPCNT & 0x1f00) >> 8;
         reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((w & ~4) << 8);
-        func_0214a40c((u32 *) 0x04001050, 0, 0x3f, 6, 10);
+        G2x_SetBlendAlpha_((u32 *) 0x04001050, 0, 0x3f, 6, 10);
     }
     for (i = 0; i < data_021759c0->mKartCount; i++) {
         if (gRaceHud->mUnk_89c[i] != 0 && gRaceHud->mUnk_8bc[i] == 0) {
@@ -461,7 +462,7 @@ void func_020b03bc(void) {
         w = func_020b33c4()->mData[i + 0xe0];
         func_020c3e2c(0)->mUnk_00->mData[i + 0xe0] = w;
     }
-    func_0214a40c((u32 *) 0x04001050, 0, 0x3f, 6, 10);
+    G2x_SetBlendAlpha_((u32 *) 0x04001050, 0, 0x3f, 6, 10);
     if (data_021759c0->mMode == MODE_GRAND_PRIX) {
         func_020b6dc4(GetRaceNclrNcgr(1)->mNclr->mData, GetRaceNclrNcgr(1)->mNcgr->mData);
         DC_FlushRange(GetRaceNclrNcgr(1)->mNclr->mData, GetRaceNclrNcgr(1)->mNclr->mDataSize);
@@ -707,8 +708,8 @@ void func_020af86c(void) {
         func_020d1450();
         return;
     }
-    func_0214a40c((u32 *) 0x04000050, 0, 0, 0x10, 0x10);
-    func_0214a40c((u32 *) 0x04001050, 0, 0, 0x10, 0x10);
+    G2x_SetBlendAlpha_((u32 *) 0x04000050, 0, 0, 0x10, 0x10);
+    G2x_SetBlendAlpha_((u32 *) 0x04001050, 0, 0, 0x10, 0x10);
     gRaceHud = NULL;
     func_020b36c8();
     func_020b3af4();

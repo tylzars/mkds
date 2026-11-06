@@ -761,11 +761,11 @@ void func_021278f4(void) {
     if (data_0217d3f4->mUnk_00 != 0) {
         *(vu32 *) 0x4001010 = 0;
         if (data_0217d3f4->mUnk_04 == 0 || data_0217d3f4->mUnk_8a4 == 0) {
-            func_0214a390((u16 *) 0x4001050, 0x1e, 0x1f, 6, 10, 0);
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, 0x1e, 0x1f, 6, 10, 0);
             a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
             *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((a & ~1) << 8);
         } else {
-            func_0214a390((u16 *) 0x4001050, 0x1e, 0x1f, 6, 10, -10);
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, 0x1e, 0x1f, 6, 10, -10);
             a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
             *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((a | 1) << 8);
         }

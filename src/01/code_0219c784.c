@@ -461,6 +461,6 @@ void func_ov001_0219c784(void) {
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | 0x1600;
     *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & ~3) | 1;
     *(vu16 *) 0x4000050 = 0;
-    func_0214a40c((u32 *) 0x4001050, 0, 2, 6, 10);
+    G2x_SetBlendAlpha_((u32 *) 0x4001050, 0, 2, 6, 10);
     *(vu32 *) 0x4000018 = ((gSelectBattleStage->mUnk_14 - gSelectBattleStage->mUnk_1c) << 16) & 0x1ff0000;
 }

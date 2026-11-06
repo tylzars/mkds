@@ -1,12 +1,12 @@
 #include "code_0214a2a0.h"
 
-u32 G2sBg1CntBits8To12Address(void) {
-    u32 value0;
-    value0 = 0x400100au;
-    value0 = (u32) * (const u16 *) ((value0) + (0));
-    value0 = (value0) & (0x1f00u);
-    value0 = ((u32) ((s32) value0 >> 8));
-    value0 = (value0 << 11);
-    value0 = (value0) + (0x6200000u);
-    return value0;
+// Returns the address in the sub engine BG VRAM of the screen base block set in the BG1 control register.
+// Returns the sub engine BG VRAM address of the screen base block set in BG1CNT.
+u32 G2S_GetBG1ScrPtr(void) {
+    u32 control;
+
+    control = *(vu16 *) 0x400100a;
+    control &= 0x1f00;
+    control = (s32) control >> 8;
+    return (control << 11) + 0x6200000;
 }

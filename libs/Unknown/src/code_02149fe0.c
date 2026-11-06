@@ -1,12 +1,12 @@
 #include "code_02149fe0.h"
 
-u32 G2sBg1CntBits2To5Address(void) {
-    u32 value0;
-    value0 = 0x400100au;
-    value0 = (u32) * (const u16 *) ((value0) + (0));
-    value0 = (value0) & (0x3cu);
-    value0 = ((u32) ((s32) value0 >> 2));
-    value0 = (value0 << 14);
-    value0 = (value0) + (0x6200000u);
-    return value0;
+// Returns the address in the sub engine BG VRAM of the character base block set in the BG1 control register.
+// Returns the sub engine BG VRAM address of the character base block set in BG1CNT.
+u32 G2S_GetBG1CharPtr(void) {
+    u32 control;
+
+    control = *(vu16 *) 0x400100a;
+    control &= 0x3c;
+    control = (s32) control >> 2;
+    return (control << 14) + 0x6200000;
 }

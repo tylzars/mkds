@@ -76,12 +76,12 @@ void func_0208e82c(const MtxFx43 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk02
     MTX_Concat43(&m, a, &m);
     MTX_Concat43(&n, a, &n);
     *(u32 *) 0x4000500 = 1;
-    GxFifoWrite0x17Then12Words(&m);
+    G3_LoadMtx43(&m);
     *(u32 *) 0x4000488 = (u16) ((d->mUnk_1c << 8) >> 16);
     *(u32 *) 0x4000490 = 0x10000;
     *(u32 *) 0x4000488 = 0;
     *(u32 *) 0x4000490 = 0xf0000;
-    GxFifoWrite0x17Then12Words(&n);
+    G3_LoadMtx43(&n);
     *(u32 *) 0x4000488 = (u16) ((d->mUnk_20 << 8) >> 16) << 16;
     *(u32 *) 0x4000490 = 0xf0000;
     *(u32 *) 0x4000488 = (u16) ((d->mUnk_1c << 8) >> 16) | (u16) ((d->mUnk_20 << 8) >> 16) << 16;

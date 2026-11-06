@@ -326,7 +326,7 @@ void func_02011c58(Unk02011624 *a) {
             a->mUnk_cc[k >> 5] |= 1 << (k & 0x1f);
             reg_G3_MTX_RESTORE = p[0];
             reg_G3_MTX_MODE = 1;
-            GxFifoWrite0x19Then12Words(q + k * 0x54);
+            G3_MultMtx43(q + k * 0x54);
         }
         if (i != 0) {
             t.mUnk_30[0] += (v * r[0]) >> 12;
@@ -343,7 +343,7 @@ void func_02011c58(Unk02011624 *a) {
             while (G3X_GetClipMtx(m) != 0) {
             }
             reg_G3_MTX_MODE = 2;
-            GxFifoWrite0x1aThenMemCopy9Words(q + k * 0x54 + 0x30);
+            G3_MultMtx33(q + k * 0x54 + 0x30);
         }
         r = data_02171944[k];
         v = p[2] << 4;
@@ -374,9 +374,9 @@ void func_02011c58(Unk02011624 *a) {
     t.mUnk_30[6] += (v * r[6]) >> 12;
     t.mUnk_30[7] += (v * r[7]) >> 12;
     t.mUnk_30[8] += (v * r[8]) >> 12;
-    GxFifoWrite0x17Then12Words(t.mUnk_30);
+    G3_LoadMtx43(t.mUnk_30);
     reg_G3_MTX_MODE = 1;
-    GxFifoWrite0x17Then12Words(t.mUnk_00);
+    G3_LoadMtx43(t.mUnk_00);
     reg_G3_MTX_MODE = 0;
     reg_G3_MTX_RESTORE = 1;
     reg_G3_MTX_MODE = 2;

@@ -64,10 +64,10 @@ void func_ov001_021930ac(void) {
     reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 2;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x9204;
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 1;
-    d1 = (void *) G2sBg0CntBits8To12Address();
+    d1 = (void *) G2S_GetBG0ScrPtr();
     a = 0;
     MIi_CpuClearFast(a, d1, 0x1000);
-    d2 = (void *) G2sBg1CntBits8To12Address();
+    d2 = (void *) G2S_GetBG1ScrPtr();
     b = 0;
     MIi_CpuClearFast(b, d2, 0x1000);
 }

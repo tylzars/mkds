@@ -382,12 +382,12 @@ void func_020386d0(Unk0203810c *a, s32 b) {
             break;
         case 2:
             if (b != 0) {
-                func_0214a428((u32 *) 0x04000020, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04000020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
                 func_020386d0_inline3((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
                                       (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             } else {
-                func_0214a428((u32 *) 0x04001020, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04001020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
                 func_020386d0_inline3((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
                                       (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
@@ -395,12 +395,12 @@ void func_020386d0(Unk0203810c *a, s32 b) {
             break;
         case 3:
             if (b != 0) {
-                func_0214a428((u32 *) 0x04000020, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04000020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
                 func_020386d0_inline4((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                func_0214a428((u32 *) 0x04001020, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04001020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
                 func_020386d0_inline4((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
@@ -408,12 +408,12 @@ void func_020386d0(Unk0203810c *a, s32 b) {
             break;
         case 4:
             if (b != 0) {
-                func_0214a428((u32 *) 0x04000020, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04000020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
                 func_020386d0_inline5((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                func_0214a428((u32 *) 0x04001020, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04001020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
                 func_020386d0_inline5((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
@@ -421,12 +421,12 @@ void func_020386d0(Unk0203810c *a, s32 b) {
             break;
         case 5:
             if (b != 0) {
-                func_0214a428((u32 *) 0x04000020, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04000020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400000c, q);
                 func_020386d0_inline6((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                func_0214a428((u32 *) 0x04001020, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04001020, m, 0, 0, 0, 0);
                 func_020386d0_inline((vu16 *) 0x0400100c, q);
                 func_020386d0_inline6((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
@@ -462,12 +462,12 @@ void func_0203810c(Unk0203810c *a, s32 b) {
             break;
         case 2:
             if (b != 0) {
-                func_0214a428((u32 *) 0x04000030, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04000030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
                 func_0203810c_inline3((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
                                       (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             } else {
-                func_0214a428((u32 *) 0x04001030, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04001030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
                 func_0203810c_inline3((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
                                       (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
@@ -475,12 +475,12 @@ void func_0203810c(Unk0203810c *a, s32 b) {
             break;
         case 3:
             if (b != 0) {
-                func_0214a428((u32 *) 0x04000030, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04000030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
                 func_0203810c_inline4((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                func_0214a428((u32 *) 0x04001030, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04001030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
                 func_0203810c_inline4((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
@@ -488,12 +488,12 @@ void func_0203810c(Unk0203810c *a, s32 b) {
             break;
         case 4:
             if (b != 0) {
-                func_0214a428((u32 *) 0x04000030, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04000030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
                 func_0203810c_inline5((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                func_0214a428((u32 *) 0x04001030, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04001030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
                 func_0203810c_inline5((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
@@ -501,12 +501,12 @@ void func_0203810c(Unk0203810c *a, s32 b) {
             break;
         case 5:
             if (b != 0) {
-                func_0214a428((u32 *) 0x04000030, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04000030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400000e, q);
                 func_0203810c_inline6((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                func_0214a428((u32 *) 0x04001030, m, 0, 0, 0, 0);
+                G2x_SetBGyAffine_((u32 *) 0x04001030, m, 0, 0, 0, 0);
                 func_0203810c_inline((vu16 *) 0x0400100e, q);
                 func_0203810c_inline6((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
@@ -625,7 +625,7 @@ void func_02037abc(void *a) {
         reg_G2_BLDCNT = 0;
         reg_G3_SWAP_BUFFERS = (p->mUnk_6c->mUnk_03 << 1) | p->mUnk_6c->mUnk_02;
         v = p->mUnk_6c->mUnk_00;
-        ClearColorDepthWrite((u16) (v & 0x7fff), (u8) ((v & 0x8000) >> 15), 0x7fff, 0x3f, 0);
+        G3X_SetClearColor((u16) (v & 0x7fff), (u8) ((v & 0x8000) >> 15), 0x7fff, 0x3f, 0);
     }
     if (p->mUnk_02 & 1) {
         q = &p->mUnk_28;

@@ -40,9 +40,9 @@ void func_020cab2c(u32 a, u32 b) {
 }
 
 void func_020caae8(u32 a, u32 b, u32 c, u32 d, s32 e) {
-    func_0214a390((u16 *) 0x4001050, a, b, c, d, e);
+    G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, a, b, c, d, e);
 }
 
 void func_020caaac(u32 a, u32 b, u32 c, u32 d) {
-    func_0214a40c(((u32 *) 0x04001050u), a, b, c, d);
+    G2x_SetBlendAlpha_(((u32 *) 0x04001050u), a, b, c, d);
 }
