@@ -21,7 +21,7 @@
 void func_0204e928(void *a, u32 b, void *c) {
     u32 r;
     data_0217aa00->mUnk_1664 = a;
-    r = func_0200baa8();
+    r = GetScanConnectWorkSize();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && r < 0xc000) {
         r = 0xc000;
     }
@@ -180,21 +180,21 @@ void func_0204e4d8(void) {
     b.mUnk_00_4 = 9;
     MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, b.mUnk_02, 0x14);
     data_0217aa00->mUnk_169a = -1;
-    func_0200bb98(data_0217aa00->mUnk_165c, &b);
-    func_0200ba84(func_0204e304);
+    InitScanConnectWork(data_0217aa00->mUnk_165c, &b);
+    SetScanConnectStateCallback(func_0204e304);
     data_0217aa00->mUnk_0010 = 0;
 }
 
 void func_0204e4bc(void) {
     data_0217aa00->mUnk_000c = 0x1f;
     data_0217aa00->mUnk_0010 = 1;
-    func_0200bae0();
+    CloseScanConnect();
 }
 
 void func_0204e498(void) {
     data_0217aa00->mUnk_000c = 0x1d;
     data_0217aa00->mUnk_0010 = 1;
-    func_0200b9e0(func_0204e3b4, 0x25);
+    StartRepeatedScan(func_0204e3b4, 0x25);
 }
 
 static inline u32 func_0204e1a8_inline(void) {
@@ -207,7 +207,7 @@ static inline u32 func_0204e1a8_inline(void) {
 void func_0204e474(void) {
     data_0217aa00->mUnk_000c = 0x1e;
     data_0217aa00->mUnk_0010 = 1;
-    func_0200b9e0(func_0204e3b4, 0x25);
+    StartRepeatedScan(func_0204e3b4, 0x25);
 }
 
 s32 func_0204e3f0(u32 a) {
@@ -404,14 +404,14 @@ void func_0204e090(void) {
 void func_0204e074(void) {
     data_0217aa00->mUnk_000c = 0x21;
     data_0217aa00->mUnk_0010 = 1;
-    func_0200b70c();
+    RequestEndScan();
 }
 
 void func_0204e03c(u32 a) {
     data_0217aa00->mUnk_000c = 0x22;
     data_0217aa00->mUnk_0010 = 1;
     data_0217aa00->mUnk_169c = 0;
-    if (func_0200b610(a) == 0) {
+    if (StartConnectToEntry(a) == 0) {
         func_02050e60(5);
     }
 }

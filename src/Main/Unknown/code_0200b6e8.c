@@ -14,18 +14,18 @@
 #include "03/code_021b94b8.h"
 
 #pragma thumb on
-u32 func_0200c0ac(u32 arg0) {
+u32 SetupMPLink(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_0216fdec;
+    value2 = (u32) &gMPLink;
     *(u32 *) ((value2) + 0u) = value0;
     value1 = 0u;
     *(u32 *) ((value0) + 12u) = value1;
-    data_0216fdec->mUnk_1a = (u16) value1;
-    data_0216fdec->mUnk_1e = (u16) value1;
-    data_0216fdec->mUnk_20 = (u16) value1;
-    data_0216fdec->mUnk_1c = (u16) value1;
+    gMPLink->mMPStarted = (u16) value1;
+    gMPLink->mUnk_1e = (u16) value1;
+    gMPLink->mDataQueued = (u16) value1;
+    gMPLink->mResetting = (u16) value1;
     value0 = (u32) * (const u32 *) ((value2) + 0u);
     *(u32 *) ((value0) + 4u) = value1;
     value0 = (u32) * (const u32 *) ((value2) + 0u);
@@ -38,10 +38,10 @@ u32 func_0200c0ac(u32 arg0) {
 
 #pragma thumb on
 
-void func_0200c090(u32 p0) {
-    u32 v1 = ((p0) + (0x0u));
+void SetMPLinkCallback(u32 callback) {
+    u32 v1 = ((callback) + (0x0u));
     u32 v2 = ((u32) OS_DisableInterrupts());
-    u32 v3 = ((u32) (&data_0216fdec));
+    u32 v3 = ((u32) (&gMPLink));
     u32 v4 = ((u32) * (u32 *) ((v3) + (0)));
     u32 v6;
     *(u32 *) ((v4) + (0)) = v1;
@@ -52,28 +52,28 @@ void func_0200c090(u32 p0) {
 
 #pragma thumb on
 
-void func_0200c008(u8 *a) {
+void ScanConnectStartConnect(u8 *scanBuffer) {
     s32 r;
-    data_0216fdec->mUnk_1a = 0;
-    data_0216fdec->mUnk_1c = 0;
-    data_0216fdec->mUnk_10 = (*(u16 *) (a + 0x4e) + 0x21) & ~0x1f;
-    data_0216fdec->mUnk_12 = ((*(u16 *) (a + 0x4c) + 0x55) & ~0x1f) * 2;
-    data_0216fdec->mUnk_14 = *(u16 *) (a + 0x4c);
-    data_0216fdec->mUnk_16 = *(u16 *) (a + 0x4e);
-    data_0216fdec->mUnk_18 = data_0216fdec->mUnk_14 - 6;
-    func_0200c448(data_0216fdec->mUnk_16);
-    r = WM_StartConnectEx(func_0200bf90, (u16 *) a, NULL, 1, 0);
+    gMPLink->mMPStarted = 0;
+    gMPLink->mResetting = 0;
+    gMPLink->mSendBufferSize = (*(u16 *) (scanBuffer + 0x4e) + 0x21) & ~0x1f;
+    gMPLink->mReceiveBufferSize = ((*(u16 *) (scanBuffer + 0x4c) + 0x55) & ~0x1f) * 2;
+    gMPLink->mUnk_14 = *(u16 *) (scanBuffer + 0x4c);
+    gMPLink->mUnk_16 = *(u16 *) (scanBuffer + 0x4e);
+    gMPLink->mUnk_18 = gMPLink->mUnk_14 - 6;
+    func_0200c448(gMPLink->mUnk_16);
+    r = WM_StartConnectEx(ScanConnectStartConnectCallback, (u16 *) scanBuffer, NULL, 1, 0);
     if (r != 2) {
-        if (data_0216fdec->mUnk_00 != NULL) {
-            data_0216fdec->mUnk_00(11, 0);
+        if (gMPLink->mCallback != NULL) {
+            gMPLink->mCallback(11, 0);
         }
     }
 }
 
-void func_0200bf90(Unk021425e8 *a) {
+void ScanConnectStartConnectCallback(Unk021425e8 *a) {
     if (a->mResultCode != 0) {
-        if (data_0216fdec->mUnk_00 != NULL) {
-            data_0216fdec->mUnk_00(11, a);
+        if (gMPLink->mCallback != NULL) {
+            gMPLink->mCallback(11, a);
         }
     } else {
         switch (a->mUnk_08_0) {
@@ -87,85 +87,86 @@ void func_0200bf90(Unk021425e8 *a) {
             case 8:
                 break;
             case 9:
-                if (data_0216fdec->mUnk_00 != NULL) {
-                    data_0216fdec->mUnk_00(10, 0);
+                if (gMPLink->mCallback != NULL) {
+                    gMPLink->mCallback(10, 0);
                 }
                 break;
             case 7:
-                if (data_0216fdec->mUnk_00 != NULL) {
-                    data_0216fdec->mUnk_00(6, a);
+                if (gMPLink->mCallback != NULL) {
+                    gMPLink->mCallback(6, a);
                 }
                 break;
         }
     }
 }
 
-void func_0200bef8(void *a, u8 *b) {
-    Unk0200bd34 v;
-    Unk0200bd34 w;
+void SetPortCallbackAndStartMP(void *sendBuffer, u8 *receiveBuffer) {
+    CommandResult v;
+    CommandResult w;
     s32 r;
-    Unk0216fdec *p;
-    data_0216fdec->mUnk_04 = a;
-    data_0216fdec->mUnk_08 = b;
-    r = WM_SetPortCallback(1, func_0200bcd8, NULL);
+    MPLink *p;
+    gMPLink->mSendBuffer = sendBuffer;
+    gMPLink->mReceiveBuffer = receiveBuffer;
+    r = WM_SetPortCallback(1, PortCallback, NULL);
     if (r != 0) {
-        p = data_0216fdec;
-        if (p->mUnk_00 != NULL) {
-            v.mUnk_00 = 14;
-            v.mUnk_02 = r;
-            p->mUnk_00(0xff, &v);
+        p = gMPLink;
+        if (p->mCallback != NULL) {
+            v.mCommand = 14;
+            v.mResultCode = r;
+            p->mCallback(0xff, &v);
         }
         return;
     }
-    p = data_0216fdec;
-    r = WM_StartMPEx(func_0200be44, (u32) b, p->mUnk_12, (u32) a, p->mUnk_10, 1, 0, 0, 0, 1, 1);
+    p = gMPLink;
+    r = WM_StartMPEx(ScanConnectStartMPCallback, (u32) receiveBuffer, p->mReceiveBufferSize, (u32) sendBuffer,
+                     p->mSendBufferSize, 1, 0, 0, 0, 1, 1);
     if (r != 2) {
-        p = data_0216fdec;
-        if (p->mUnk_00 != NULL) {
-            w.mUnk_00 = 14;
-            w.mUnk_02 = r;
-            p->mUnk_00(0xff, &w);
+        p = gMPLink;
+        if (p->mCallback != NULL) {
+            w.mCommand = 14;
+            w.mResultCode = r;
+            p->mCallback(0xff, &w);
         }
     }
 }
 
-void func_0200be44(Unk021425e8 *a) {
-    Unk0200bd34 v;
-    Unk0200bd34 w;
-    Unk0216fdec *p;
+void ScanConnectStartMPCallback(Unk021425e8 *a) {
+    CommandResult v;
+    CommandResult w;
+    MPLink *p;
     u16 c;
     u16 b = a->mResultCode;
     if (b != 0) {
         if (b != 15 && b != 9 && b != 13) {
             c = a->mCommand;
-            p = data_0216fdec;
-            if (p->mUnk_00 != NULL) {
-                v.mUnk_00 = c;
-                v.mUnk_02 = b;
-                p->mUnk_00(0x100, &v);
+            p = gMPLink;
+            if (p->mCallback != NULL) {
+                v.mCommand = c;
+                v.mResultCode = b;
+                p->mCallback(0x100, &v);
             }
         }
     } else {
         switch (a->mUnk_04) {
             case 10:
-                data_0216fdec->mUnk_1a = 1;
-                data_0216fdec->mUnk_20 = 0;
-                data_0216fdec->mUnk_1e = 0;
-                if (data_0216fdec->mUnk_00 != NULL) {
-                    data_0216fdec->mUnk_00(20, 0);
+                gMPLink->mMPStarted = 1;
+                gMPLink->mDataQueued = 0;
+                gMPLink->mUnk_1e = 0;
+                if (gMPLink->mCallback != NULL) {
+                    gMPLink->mCallback(20, 0);
                 }
-                if (data_0216fdec->mUnk_00 != NULL) {
-                    data_0216fdec->mUnk_00(25, 0);
+                if (gMPLink->mCallback != NULL) {
+                    gMPLink->mCallback(25, 0);
                 }
                 break;
             case 11:
             default:
                 c = a->mCommand;
-                p = data_0216fdec;
-                if (p->mUnk_00 != NULL) {
-                    w.mUnk_00 = c;
-                    w.mUnk_02 = 1;
-                    p->mUnk_00(0x100, &w);
+                p = gMPLink;
+                if (p->mCallback != NULL) {
+                    w.mCommand = c;
+                    w.mResultCode = 1;
+                    p->mCallback(0x100, &w);
                 }
                 break;
             case 12:
@@ -175,165 +176,165 @@ void func_0200be44(Unk021425e8 *a) {
     }
 }
 
-void func_0200be00(void) {
-    Unk0200bd34 v;
+void StartResetWithFlag(void) {
+    CommandResult v;
     s32 r;
-    data_0216fdec->mUnk_1c = 1;
-    r = WM_Reset(func_0200bdb4);
+    gMPLink->mResetting = 1;
+    r = WM_Reset(StartResetWithFlagCallback);
     if (r != 2) {
-        Unk0216fdec *p;
-        data_0216fdec->mUnk_1c = 0;
-        p = data_0216fdec;
-        if (p->mUnk_00 != NULL) {
-            v.mUnk_00 = 1;
-            v.mUnk_02 = r;
-            p->mUnk_00(0xff, &v);
+        MPLink *p;
+        gMPLink->mResetting = 0;
+        p = gMPLink;
+        if (p->mCallback != NULL) {
+            v.mCommand = 1;
+            v.mResultCode = r;
+            p->mCallback(0xff, &v);
         }
     }
 }
 
-void func_0200bdb4(Unk021425e8 *a) {
-    Unk0200bd34 v;
+void StartResetWithFlagCallback(Unk021425e8 *a) {
+    CommandResult v;
     u16 b;
-    data_0216fdec->mUnk_1c = 0;
+    gMPLink->mResetting = 0;
     b = a->mResultCode;
     if (b != 0) {
         u16 c = a->mCommand;
-        Unk0216fdec *p = data_0216fdec;
-        if (p->mUnk_00 != NULL) {
-            v.mUnk_00 = c;
-            v.mUnk_02 = b;
-            p->mUnk_00(0x100, &v);
+        MPLink *p = gMPLink;
+        if (p->mCallback != NULL) {
+            v.mCommand = c;
+            v.mResultCode = b;
+            p->mCallback(0x100, &v);
         }
     } else {
-        if (data_0216fdec->mUnk_00 != NULL) {
-            data_0216fdec->mUnk_00(15, 0);
+        if (gMPLink->mCallback != NULL) {
+            gMPLink->mCallback(15, 0);
         }
     }
 }
 
-void func_0200bd7c(void) {
-    Unk0200bd34 v;
-    s32 r = WM_Reset(func_0200bd34);
+void StartReset(void) {
+    CommandResult v;
+    s32 r = WM_Reset(StartResetCallback);
     if (r != 2) {
-        Unk0216fdec *p = data_0216fdec;
-        if (p->mUnk_00 != NULL) {
-            v.mUnk_00 = 1;
-            v.mUnk_02 = r;
-            p->mUnk_00(0xff, &v);
+        MPLink *p = gMPLink;
+        if (p->mCallback != NULL) {
+            v.mCommand = 1;
+            v.mResultCode = r;
+            p->mCallback(0xff, &v);
         }
     }
 }
 
-void func_0200bd34(Unk021425e8 *a) {
-    Unk0200bd34 v;
+void StartResetCallback(Unk021425e8 *a) {
+    CommandResult v;
     u16 b = a->mResultCode;
     if (b != 0) {
         u16 c = a->mCommand;
-        Unk0216fdec *p = data_0216fdec;
-        if (p->mUnk_00 != NULL) {
-            v.mUnk_00 = c;
-            v.mUnk_02 = b;
-            p->mUnk_00(0x100, &v);
+        MPLink *p = gMPLink;
+        if (p->mCallback != NULL) {
+            v.mCommand = c;
+            v.mResultCode = b;
+            p->mCallback(0x100, &v);
         }
     } else {
-        if (data_0216fdec->mUnk_00 != NULL) {
-            data_0216fdec->mUnk_00(15, 0);
+        if (gMPLink->mCallback != NULL) {
+            gMPLink->mCallback(15, 0);
         }
     }
 }
 
-u32 func_0200bd0c(void) {
+u32 IsMPReadyToQueueData(void) {
     u32 r = 0;
     u32 v = 0;
-    Unk0216fdec *p = data_0216fdec;
-    if (p->mUnk_1a == 1 && p->mUnk_20 == 0) {
+    MPLink *p = gMPLink;
+    if (p->mMPStarted == 1 && p->mDataQueued == 0) {
         v = 1;
     }
-    if (v != 0 && p->mUnk_1c == 0) {
+    if (v != 0 && p->mResetting == 0) {
         r = 1;
     }
     return r;
 }
 
-void func_0200bcd8(Unk021425e8 *a) {
+void PortCallback(Unk021425e8 *a) {
     if (a->mResultCode == 0) {
         switch (a->mUnk_04) {
             case 7:
             case 9:
                 break;
             case 21:
-                if (data_0216fdec->mUnk_00 != NULL) {
-                    data_0216fdec->mUnk_00(9, a);
+                if (gMPLink->mCallback != NULL) {
+                    gMPLink->mCallback(9, a);
                 }
                 break;
         }
     }
 }
 
-s32 func_0200bc78(u32 a, u16 b, u8 *c) {
+s32 QueueMPDataIfReady(u32 a, u16 b, u8 *c) {
     s32 r;
     DC_FlushRange(c, 4);
     DC_WaitWriteBufferEmpty();
-    if (func_0200bd0c() == 0) {
+    if (IsMPReadyToQueueData() == 0) {
         return 1;
     }
-    r = WM_SetMPDataToPortEx(func_0200bc1c, NULL, c, (u16) a, b, 1, 3);
+    r = WM_SetMPDataToPortEx(QueueMPDataCallback, NULL, c, (u16) a, b, 1, 3);
     if (r == 2) {
-        data_0216fdec->mUnk_20 = 1;
+        gMPLink->mDataQueued = 1;
         return 2;
     }
     return r;
 }
 
-void func_0200bc1c(Unk021425e8 *a) {
-    data_0216fdec->mUnk_20 = 0;
+void QueueMPDataCallback(Unk021425e8 *a) {
+    gMPLink->mDataQueued = 0;
     if (a->mResultCode == 0) {
-        if (data_0216fdec->mUnk_00 != NULL) {
-            data_0216fdec->mUnk_00(8, a);
+        if (gMPLink->mCallback != NULL) {
+            gMPLink->mCallback(8, a);
         }
     } else if (a->mResultCode == 9) {
-        if (data_0216fdec->mUnk_00 != NULL) {
-            data_0216fdec->mUnk_00(0x29, a);
+        if (gMPLink->mCallback != NULL) {
+            gMPLink->mCallback(0x29, a);
         }
     } else {
-        if (data_0216fdec->mUnk_00 != NULL) {
-            data_0216fdec->mUnk_00(0x12, a);
+        if (gMPLink->mCallback != NULL) {
+            gMPLink->mCallback(0x12, a);
         }
     }
-    if (data_0216fdec->mUnk_00 != NULL) {
-        data_0216fdec->mUnk_00(0x19, 0);
+    if (gMPLink->mCallback != NULL) {
+        gMPLink->mCallback(0x19, 0);
     }
 }
 
-void func_0200bc0c(void) {
+void ClearPortCallback(void) {
     WM_SetPortCallback(1, NULL, NULL);
 }
 
-void func_0200bb98(Unk0216fde8 *a, void *b) {
-    if (*(u16 *) &data_0216fde4 == 0) {
-        *(u16 *) &data_0216fde4 = 1;
+void InitScanConnectWork(ScanConnectWork *a, void *b) {
+    if (*(u16 *) &gScanConnectInitialized == 0) {
+        *(u16 *) &gScanConnectInitialized = 1;
         MI_CpuFill8(a, 0, 0x5f20);
-        data_0216fde8 = a;
-        a->mUnk_5f0e = 0;
-        MI_CpuCopy8(b, data_0216fde8->mUnk_05c4, 0x16);
-        func_0200991c(data_0216fde8->mUnk_05e8);
+        gScanConnectWork = a;
+        a->mState = 0;
+        MI_CpuCopy8(b, gScanConnectWork->mUnk_05c4, 0x16);
+        func_0200991c(gScanConnectWork->mUnk_05e8);
         func_020092a4();
-        func_02009908((UnkFunc *) func_0200b7e0, (UnkFunc *) func_0200b7cc);
+        func_02009908((UnkFunc *) SetScanBssid, (UnkFunc *) ClearUseScanBssid);
     }
 }
 
-void func_0200bae0(void) {
-    if (data_0216fde8->mUnk_5f04 == 0) {
-        data_0216fde8->mUnk_5f04 = 1;
-        switch (data_0216fde8->mUnk_5f0e) {
+void CloseScanConnect(void) {
+    if (gScanConnectWork->mEndRequested == 0) {
+        gScanConnectWork->mEndRequested = 1;
+        switch (gScanConnectWork->mState) {
             case 0:
-                if (data_0216fde8->mUnk_5ef8 != 0) {
-                    data_0216fde8->mUnk_5ef8 = 0;
+                if (gScanConnectWork->mRepeatScan != 0) {
+                    gScanConnectWork->mRepeatScan = 0;
                     return;
                 }
-                if (data_0216fde8->mUnk_5efc == 0) {
-                    func_0200bab0();
+                if (gScanConnectWork->mEndScanRequested == 0) {
+                    FinishScanConnect();
                     return;
                 }
                 break;
@@ -344,19 +345,19 @@ void func_0200bae0(void) {
             case 6:
             case 14:
             case 19:
-                func_0200bd7c();
+                StartReset();
                 break;
             case 5:
             case 7:
             case 8:
             case 9:
-                func_0200be00();
+                StartResetWithFlag();
                 break;
             case 10:
                 break;
             case 11:
             case 12:
-                func_0200bab0();
+                FinishScanConnect();
                 break;
             default:
                 OS_Terminate();
@@ -369,21 +370,21 @@ void func_0200bae0(void) {
 
 #pragma thumb on
 
-void func_0200bab0(void) {
-    *(u16 *) &data_0216fde4 = 0;
-    data_0216fde8->mUnk_5f04 = 0;
-    func_0200bc0c();
-    func_0200ba44((u32) 0x14, (void *) 0);
+void FinishScanConnect(void) {
+    *(u16 *) &gScanConnectInitialized = 0;
+    gScanConnectWork->mEndRequested = 0;
+    ClearPortCallback();
+    SetScanConnectStateAndNotify((u32) 0x14, (void *) 0);
 }
 
-u32 func_0200baa8(void) {
+u32 GetScanConnectWorkSize(void) {
     return 0x5f20u;
 }
 
-void func_0200ba84(UnkFunc *p0) {
-    u32 v1 = (u32) p0;
+void SetScanConnectStateCallback(UnkFunc *callback) {
+    u32 v1 = (u32) callback;
     u32 v2 = ((u32) OS_DisableInterrupts());
-    u32 v3 = ((u32) (&data_0216fde8));
+    u32 v3 = ((u32) (&gScanConnectWork));
     u32 v4 = ((u32) * (u32 *) ((v3) + (0)));
     u32 v5 = 0x5e0u;
     u32 v7;
@@ -395,13 +396,13 @@ void func_0200ba84(UnkFunc *p0) {
 
 #pragma thumb on
 
-void func_0200ba44(u32 a, void *b) {
+void SetScanConnectStateAndNotify(u32 state, void *b) {
     u32 v1;
     v1 = OS_DisableInterrupts();
-    data_0216fde8->mUnk_5f0e = a;
+    gScanConnectWork->mState = state;
     OS_RestoreInterrupts(v1);
-    if (data_0216fde8->mUnk_05e0 != NULL) {
-        data_0216fde8->mUnk_05e0(a, b);
+    if (gScanConnectWork->mStateCallback != NULL) {
+        gScanConnectWork->mStateCallback(state, b);
     }
 }
 
@@ -409,111 +410,111 @@ void func_0200ba44(u32 a, void *b) {
 
 #pragma thumb on
 
-void func_0200b9e0(UnkFunc *a, u32 b) {
-    data_0216fde8->mUnk_05dc = a;
-    data_0216fde8->mUnk_05e4 = b;
-    data_0216fde8->mUnk_0580.mUnk_04 = 0;
-    data_0216fde8->mUnk_0580.mUnk_00 = data_0216fde8->mUnk_04c0;
-    data_0216fde8->mUnk_5ef8 = 1;
-    data_0216fde8->mUnk_5f00 = 0;
-    data_0216fde8->mUnk_05ee = 0;
-    func_0200b934();
+void StartRepeatedScan(UnkFunc *callback, u32 b) {
+    gScanConnectWork->mScanCallback = callback;
+    gScanConnectWork->mUnk_05e4 = b;
+    gScanConnectWork->mScanParams.mUnk_04 = 0;
+    gScanConnectWork->mScanParams.mUnk_00 = gScanConnectWork->mScanBuffer;
+    gScanConnectWork->mRepeatScan = 1;
+    gScanConnectWork->mUseScanBssid = 0;
+    gScanConnectWork->mUnk_05ee = 0;
+    ScanConnectStartScan();
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0200b934(void) {
+void ScanConnectStartScan(void) {
     s32 r;
-    Unk0216fde8 *d;
+    ScanConnectWork *d;
     u8 *p;
     u8 *q;
-    d = data_0216fde8;
-    if (d->mUnk_5f00 != 0) {
-        d->mUnk_0580.mUnk_06 = 0xdc;
+    d = gScanConnectWork;
+    if (d->mUseScanBssid != 0) {
+        d->mScanParams.mUnk_06 = 0xdc;
     } else {
-        p = d->mUnk_0580.mUnk_08;
-        q = data_usa_02152be4;
+        p = d->mScanParams.mUnk_08;
+        q = gDefaultScanBssid;
         p[0] = q[0];
         p[1] = q[1];
         p[2] = q[2];
         p[3] = q[3];
         p[4] = q[4];
         p[5] = q[5];
-        data_0216fde8->mUnk_0580.mUnk_06 = 10;
-        if (func_0200b72c() == 0) {
-            func_0200b820(0x1e, 0);
+        gScanConnectWork->mScanParams.mUnk_06 = 10;
+        if (PickScanChannel() == 0) {
+            ReportScanError(0x1e, 0);
             return;
         }
     }
-    if (data_0216fde8->mUnk_0580.mUnk_04 == 0) {
-        data_0216fde8->mUnk_0580.mUnk_04 = 1;
+    if (gScanConnectWork->mScanParams.mUnk_04 == 0) {
+        gScanConnectWork->mScanParams.mUnk_04 = 1;
     }
-    r = WM_StartScan(func_0200b894, &data_0216fde8->mUnk_0580);
+    r = WM_StartScan(ScanConnectStartScanCallback, &gScanConnectWork->mScanParams);
     if (r != 2) {
-        func_0200b820(0xa, r);
+        ReportScanError(0xa, r);
     }
 }
 
-void func_0200b894(Unk021425e8 *a) {
+void ScanConnectStartScanCallback(Unk021425e8 *a) {
     if (a->mResultCode != 0) {
-        func_0200b820(0xa, a->mResultCode);
+        ReportScanError(0xa, a->mResultCode);
         return;
     }
     switch (a->mUnk_08_0) {
         case 3:
             break;
         case 5:
-            if (a->mUnk_38.mUnk_00[1] == data_0216fde8->mUnk_05e4) {
-                DC_InvalidateRange(data_0216fde8->mUnk_04c0, 0xc0);
-                func_0200921c(func_0200b794, a->mUnk_12, (Unk02007ec4 *) data_0216fde8->mUnk_04c0);
-                func_02008f00(func_0200b794, 1);
+            if (a->mUnk_38.mUnk_00[1] == gScanConnectWork->mUnk_05e4) {
+                DC_InvalidateRange(gScanConnectWork->mScanBuffer, 0xc0);
+                func_0200921c(EntryCallback, a->mUnk_12, (Unk02007ec4 *) gScanConnectWork->mScanBuffer);
+                func_02008f00(EntryCallback, 1);
             }
         case 4:
-            func_02008f00(func_0200b794, 0);
-            if (data_0216fde8->mUnk_5ef8 != 0) {
-                func_0200b934();
+            func_02008f00(EntryCallback, 0);
+            if (gScanConnectWork->mRepeatScan != 0) {
+                ScanConnectStartScan();
             } else {
-                func_0200b6e8();
+                ScanConnectEndScan();
             }
             break;
         default:
-            func_0200b820(0xa, 1);
+            ReportScanError(0xa, 1);
             break;
     }
 }
 
-void func_0200b850(u32 a, Unk02008934 *b, u32 c) {
-    Unk0200b850 v;
-    Unk0216fde8 *d;
-    d = data_0216fde8;
-    if (d->mUnk_05dc != NULL) {
-        v.mUnk_00 = c;
-        if (b != NULL) {
-            v.mUnk_04 = b;
-            v.mUnk_08 = b->mUnk_4c0;
+void CallScanCallbackWithEntry(u32 a, Unk02008934 *entry, u32 entryIndex) {
+    ScanEntryArgs v;
+    ScanConnectWork *d;
+    d = gScanConnectWork;
+    if (d->mScanCallback != NULL) {
+        v.mEntryIndex = entryIndex;
+        if (entry != NULL) {
+            v.mEntry = entry;
+            v.mScanBuffer = entry->mUnk_4c0;
         } else {
-            v.mUnk_04 = NULL;
-            v.mUnk_08 = NULL;
+            v.mEntry = NULL;
+            v.mScanBuffer = NULL;
         }
-        d->mUnk_05dc(a, &v);
+        d->mScanCallback(a, &v);
     }
 }
 
-void func_0200b820(u16 a, u16 b) {
-    Unk0200b820 v;
-    if (data_0216fde8->mUnk_05dc != NULL) {
+void ReportScanError(u16 a, u16 b) {
+    ScanErrorArgs v;
+    if (gScanConnectWork->mScanCallback != NULL) {
         v.mUnk_00 = a;
         v.mUnk_02 = b;
-        data_0216fde8->mUnk_05dc(2, &v);
+        gScanConnectWork->mScanCallback(2, &v);
     }
 }
 
-void func_0200b7e0(const u8 *a) {
+void SetScanBssid(const u8 *a) {
     u8 *p;
-    data_0216fde8->mUnk_5f00 = 1;
-    p = data_0216fde8->mUnk_0580.mUnk_08;
+    gScanConnectWork->mUseScanBssid = 1;
+    p = gScanConnectWork->mScanParams.mUnk_08;
     p[0] = a[0];
     p[1] = a[1];
     p[2] = a[2];
@@ -525,12 +526,12 @@ void func_0200b7e0(const u8 *a) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_0200b7cc(void) {
+u32 ClearUseScanBssid(void) {
     u32 value0;
     u32 value1;
     u32 value2;
     value2 = 0u;
-    value0 = (u32) &data_0216fde8;
+    value0 = (u32) &gScanConnectWork;
     value1 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = 0x5f00u;
     *(u32 *) ((value1) + (value0)) = value2;
@@ -540,51 +541,51 @@ u32 func_0200b7cc(void) {
 
 #pragma thumb on
 
-void func_0200b794(u32 a, void *b, u32 c) {
+void EntryCallback(u32 a, void *entry, u32 entryIndex) {
     switch (a) {
         case 0:
         case 2:
         case 4:
             break;
         case 1:
-            func_0200b850(0, b, c);
+            CallScanCallbackWithEntry(0, entry, entryIndex);
             break;
         case 3:
-            func_0200b850(1, b, c);
+            CallScanCallbackWithEntry(1, entry, entryIndex);
             break;
     }
 }
 
-u32 func_0200b72c(void) {
+u32 PickScanChannel(void) {
     u16 a;
     a = WM_GetAllowedChannel();
     if (a == 0x8000 || a == 0) {
         return 0;
     }
-    data_0216fde8->mUnk_0580.mUnk_04++;
+    gScanConnectWork->mScanParams.mUnk_04++;
     do {
-        data_0216fde8->mUnk_0580.mUnk_04++;
-        if (data_0216fde8->mUnk_0580.mUnk_04 > 0x10) {
-            data_0216fde8->mUnk_0580.mUnk_04 = 1;
+        gScanConnectWork->mScanParams.mUnk_04++;
+        if (gScanConnectWork->mScanParams.mUnk_04 > 0x10) {
+            gScanConnectWork->mScanParams.mUnk_04 = 1;
         }
-    } while ((a & (1 << (data_0216fde8->mUnk_0580.mUnk_04 - 1))) == 0);
+    } while ((a & (1 << (gScanConnectWork->mScanParams.mUnk_04 - 1))) == 0);
     return 1;
 }
 
-void func_0200b70c(void) {
-    data_0216fde8->mUnk_5ef8 = 0;
-    data_0216fde8->mUnk_5efc = 1;
+void RequestEndScan(void) {
+    gScanConnectWork->mRepeatScan = 0;
+    gScanConnectWork->mEndScanRequested = 1;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0200b6e8(void) {
+void ScanConnectEndScan(void) {
     u32 v1;
-    v1 = WM_EndScan(func_0200b698);
+    v1 = WM_EndScan(ScanConnectEndScanCallback);
     if (v1 != 2) {
-        func_0200b820((u16) 0xb, (u16) (v1 & 0xffff));
+        ReportScanError((u16) 0xb, (u16) (v1 & 0xffff));
     }
 }
 

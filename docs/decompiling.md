@@ -736,11 +736,11 @@ Expression shapes:
   (func_0204dd24).
 - A compare tree where the original has a jump table, or a table over a different range: add empty case labels. The
   compiler groups sorted case values into a table while (count / value span) is at least 0.4; pick the labels to hit
-  that (func_ov003_021c25e0, func_0200b43c).
+  that (func_ov003_021c25e0, MPLinkCallback).
 - Signed `bgt`/`blt` on a switch where ours has `bhi`/`bcc`: the switch operand is signed, an `s32` parameter or an
-  `(s32)` cast (func_0200b43c).
+  `(s32)` cast (MPLinkCallback).
 - An inner switch value loaded before its guard, with case results set in the same register and stored once after the
-  switch: one local, `t = b->m; if (..) { switch (t) { .. t = 9; .. } v = t; }` (func_0200b43c).
+  switch: one local, `t = b->m; if (..) { switch (t) { .. t = 9; .. } v = t; }` (MPLinkCallback).
 - Range compare signed (`blt`/`ble`) where the original is unsigned (`bcc`/`bls`): an unsigned mask constant, `v &
   0xff00u` (func_ov000_021a0cac).
 - A sign flag and its source swapped: write abs as `a = a > 0 ? a : -a;`, not `if (a <= 0) a = -a;` (LimitKartForwardSpeedAndGetScaled).
