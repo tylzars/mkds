@@ -6,8 +6,8 @@
 // Three words: a function called with (name, size) that returns a block, a function called with (name, block, 0) that
 // releases it, and a word.
 typedef struct Unk02188114 {
-    /* 00 */ void *(*mUnk_00)();
-    /* 04 */ void (*mUnk_04)();
+    /* 00 */ void *(*mAlloc)();
+    /* 04 */ void (*mFree)();
     /* 08 */ u32 mUnk_08;
 } Unk02188114;
 
@@ -67,15 +67,15 @@ typedef struct Unk02188408 {
 } Unk02188408;
 
 extern const s8 *data_ov000_021b1488;
-extern u8 data_ov000_021b1474[];
-extern u8 data_ov000_021b147c[];
+extern u8 gHttpName[];
+extern u8 gNetcheckName[];
 
 // Declared here until the code that defines them is decompiled.
 
-void func_ov000_02188008(void);
-void func_ov000_02188068(void);
-u32 func_ov000_02188114(Unk02188114 *p);
-s32 func_ov000_021881d0(const s8 *a, u32 b, u8 *c, u32 d);
-s32 func_ov000_021882f8(const u8 *a, u32 b, char *c, u32 d);
+void DWCi_Netcheck_StartThread(void);
+void DWC_Netcheck_Destroy(void);
+u32 DWC_Netcheck_Create(Unk02188114 *p);
+s32 DWC_Auth_Base64Decode(const s8 *a, u32 b, u8 *c, u32 d);
+s32 DWC_Auth_Base64Encode(const u8 *a, u32 b, char *c, u32 d);
 s32 func_ov000_02188408(void);
 void func_ov000_021884a8(void);

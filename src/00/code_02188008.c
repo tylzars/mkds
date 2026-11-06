@@ -43,7 +43,7 @@ s32 func_ov000_02188408(void) {
     return 1;
 }
 
-s32 func_ov000_021882f8(const u8 *a, u32 b, char *c, u32 d) {
+s32 DWC_Auth_Base64Encode(const u8 *a, u32 b, char *c, u32 d) {
     const u8 *v1;
     s32 e;
     u32 r;
@@ -92,7 +92,7 @@ s32 func_ov000_021882f8(const u8 *a, u32 b, char *c, u32 d) {
     return v2 - c;
 }
 
-s32 func_ov000_021881d0(const s8 *a, u32 b, u8 *c, u32 d) {
+s32 DWC_Auth_Base64Decode(const s8 *a, u32 b, u8 *c, u32 d) {
     s32 n;
     s32 m;
     u32 i;
@@ -166,54 +166,54 @@ s32 func_ov000_021881d0(const s8 *a, u32 b, u8 *c, u32 d) {
     return v1 - c;
 }
 
-u32 func_ov000_02188114(Unk02188114 *p) {
-    if (data_ov000_021b4cb0 != NULL) {
+u32 DWC_Netcheck_Create(Unk02188114 *p) {
+    if (gNetcheck != NULL) {
         return 4;
     }
-    data_ov000_021b4cb0 = p->mUnk_00(data_ov000_021b147c, 0x1200);
-    if (data_ov000_021b4cb0 == NULL) {
+    gNetcheck = p->mAlloc(gNetcheckName, 0x1200);
+    if (gNetcheck == NULL) {
         return 4;
     }
-    MI_CpuFill8(data_ov000_021b4cb0, 0, 0x1200);
-    data_ov000_021b4cb0->mUnk_04 = -99999;
-    data_ov000_021b4cb0->mUnk_108 = *p;
+    MI_CpuFill8(gNetcheck, 0, 0x1200);
+    gNetcheck->mUnk_04 = -99999;
+    gNetcheck->mParam = *p;
     if (gHttp != NULL) {
         return 4;
     }
-    gHttp = data_ov000_021b4cb0->mUnk_108.mUnk_00(data_ov000_021b1474, 0x1a60);
+    gHttp = gNetcheck->mParam.mAlloc(gHttpName, 0x1a60);
     if (gHttp == NULL) {
         return 4;
     }
-    OS_InitMutex(&data_ov000_021b4cb0->mUnk_1dc);
-    func_ov000_02188008();
+    OS_InitMutex(&gNetcheck->mMutex);
+    DWCi_Netcheck_StartThread();
     return 0;
 }
 
-void func_ov000_02188068(void) {
+void DWC_Netcheck_Destroy(void) {
     if (gHttp != NULL) {
         ReleaseHttp((Http *) gHttp);
-        data_ov000_021b4cb0->mUnk_108.mUnk_04(data_ov000_021b1474, gHttp, 0);
+        gNetcheck->mParam.mFree(gHttpName, gHttp, 0);
         gHttp = NULL;
     }
-    func_ov000_02186430();
-    if (data_ov000_021b4cb0 != NULL) {
-        if (data_ov000_021b4cb0->mUnk_114 != NULL) {
-            data_ov000_021b4cb0->mUnk_108.mUnk_04(data_ov000_021b13ac, data_ov000_021b4cb0->mUnk_114, 0);
-            data_ov000_021b4cb0->mUnk_114 = NULL;
+    DWC_Auth_Destroy();
+    if (gNetcheck != NULL) {
+        if (gNetcheck->mBody302 != NULL) {
+            gNetcheck->mParam.mFree(gNetcheckBody302Name, gNetcheck->mBody302, 0);
+            gNetcheck->mBody302 = NULL;
         }
-        if (data_ov000_021b4cb0->mUnk_118 != NULL) {
-            data_ov000_021b4cb0->mUnk_108.mUnk_04(data_ov000_021b13d8, data_ov000_021b4cb0->mUnk_118, 0);
-            data_ov000_021b4cb0->mUnk_118 = NULL;
+        if (gNetcheck->mBodyWayport != NULL) {
+            gNetcheck->mParam.mFree(gNetcheckBodyWayportName, gNetcheck->mBodyWayport, 0);
+            gNetcheck->mBodyWayport = NULL;
         }
-        data_ov000_021b4cb0->mUnk_108.mUnk_04(data_ov000_021b147c, data_ov000_021b4cb0, 0);
-        data_ov000_021b4cb0 = NULL;
+        gNetcheck->mParam.mFree(gNetcheckName, gNetcheck, 0);
+        gNetcheck = NULL;
     }
 }
 
-void func_ov000_02188008(void) {
-    if (data_ov000_021b4cb0->mUnk_11c.mId == 0 || OS_IsThreadTerminated(&data_ov000_021b4cb0->mUnk_11c) != 0) {
-        OS_CreateThread(&data_ov000_021b4cb0->mUnk_11c, (void (*)(void *)) func_ov000_021874ec, data_ov000_021b4cb0,
-                        data_ov000_021b4cb0->mUnk_1200, 0x1000, 0x10);
-        OS_WakeupThreadDirect(&data_ov000_021b4cb0->mUnk_11c);
+void DWCi_Netcheck_StartThread(void) {
+    if (gNetcheck->mThread.mId == 0 || OS_IsThreadTerminated(&gNetcheck->mThread) != 0) {
+        OS_CreateThread(&gNetcheck->mThread, (void (*)(void *)) DWCi_Netcheck_Thread, gNetcheck, gNetcheck->mUnk_1200,
+                        0x1000, 0x10);
+        OS_WakeupThreadDirect(&gNetcheck->mThread);
     }
 }

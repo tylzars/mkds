@@ -102,8 +102,8 @@ void ReportWiFiLoginError(s32 a, s32 b) {
 // WiFiConnection and is not freed. Called by ReleaseWiFiConnection; no NULL test of gWiFiLogin.
 void ReleaseWiFiLogin(void) {
     if (gWiFiLogin->mHttp != NULL) {
-        func_ov000_02186474();
-        func_ov000_02186430();
+        DWC_Auth_Abort();
+        DWC_Auth_Destroy();
         func_ov000_021a3704((u32) 0, (u32) ((u32) gWiFiLogin->mHttp), (u32) 0);
         gWiFiLogin->mHttp = NULL;
     }
@@ -234,14 +234,14 @@ void StartWiFiLoginRequest(void (*a)(), void *b) {
         }
         DWCi_Acc_LoginIdToUserName(&gWiFiLogin->mUnk_40, gWiFiLogin->mUnk_0c, gWiFiLogin->mUnk_24c);
     }
-    strcpy(s.mUnk_15, gWiFiLogin->mUnk_255);
-    s.mUnk_24 = (void *(*) (const void *, u32)) func_ov000_021a372c;
-    s.mUnk_28 = (void (*)(const void *, void *, u32)) func_ov000_021a3704;
+    strcpy(s.mGsbrcd, gWiFiLogin->mUnk_255);
+    s.mAlloc = (void *(*) (const void *, u32)) func_ov000_021a372c;
+    s.mFree = (void (*)(const void *, void *, u32)) func_ov000_021a3704;
     h = func_ov000_021a3718(0, 0x1a60, 4);
     gWiFiLogin->mHttp = h;
     t = OS_GetTick();
     gWiFiLogin->mRequestStartTime = t;
-    func_ov000_02186560(&s, h);
+    DWC_Auth_Create(&s, h);
 }
 
 // State 1 step of UpdateWiFiLogin (every frame while mState is 1): when the reply is done (status 0x14) copies the
@@ -252,11 +252,11 @@ void UpdateWiFiLoginRequest(void) {
     Unk02186560 s;
     Unk0218635c x;
     Unk0218635c y;
-    if (func_ov000_021863cc() == 0x14) {
+    if (DWC_Auth_GetError() == 0x14) {
         func_ov000_0218635c(&x.mUnk_000);
         strcpy(gWiFiLogin->mAuthToken, x.mUnk_04a);
         strcpy(gWiFiLogin->mUnk_14c, x.mUnk_177);
-        func_ov000_02186430();
+        DWC_Auth_Destroy();
         func_ov000_021a3704(0, (u32) gWiFiLogin->mHttp, 0);
         gWiFiLogin->mHttp = NULL;
         if (DWCi_Acc_IsAuthentic(gWiFiLogin->mUnk_20) != 0) {
@@ -264,20 +264,20 @@ void UpdateWiFiLoginRequest(void) {
         } else {
             StartWiFiLoginGpConnect(gWiFiLogin->mAuthToken, gWiFiLogin->mUnk_14c, WiFiLoginGpConnectCallback, 3);
         }
-    } else if (func_ov000_021863cc() != 0) {
+    } else if (DWC_Auth_GetError() != 0) {
         if ((((u64) OS_GetTick() - gWiFiLogin->mRequestStartTime) << 6) / 0x82ea > 0x2710) {
             func_ov000_0218635c(&y.mUnk_000);
-            func_ov000_02186430();
+            DWC_Auth_Destroy();
             func_ov000_021a3704(0, (u32) gWiFiLogin->mHttp, 0);
             gWiFiLogin->mHttp = NULL;
             ReportWiFiLoginError(2, y.mUnk_000);
         } else {
-            func_ov000_02186430();
+            DWC_Auth_Destroy();
             MI_CpuFill8(&s, 0, 0x2c);
-            strcpy(s.mUnk_15, gWiFiLogin->mUnk_255);
-            s.mUnk_24 = (void *(*) (const void *, u32)) func_ov000_021a372c;
-            s.mUnk_28 = (void (*)(const void *, void *, u32)) func_ov000_021a3704;
-            func_ov000_02186560(&s, gWiFiLogin->mHttp);
+            strcpy(s.mGsbrcd, gWiFiLogin->mUnk_255);
+            s.mAlloc = (void *(*) (const void *, u32)) func_ov000_021a372c;
+            s.mFree = (void (*)(const void *, void *, u32)) func_ov000_021a3704;
+            DWC_Auth_Create(&s, gWiFiLogin->mHttp);
         }
     }
 }

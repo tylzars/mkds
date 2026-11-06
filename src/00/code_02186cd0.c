@@ -23,20 +23,20 @@
 #include "code_0200fc8c.h"
 #include "code_021510a4.h"
 
-void func_ov000_02187fb8(void) {
-    if (data_ov000_021b4cb0 != NULL) {
+void DWC_Netcheck_Abort(void) {
+    if (gNetcheck != NULL) {
         if (gHttp != NULL) {
-            func_ov000_02187274(gHttp);
+            DWC_Http_Abort(gHttp);
         }
-        func_ov000_02186474();
-        if (data_ov000_021b4cb0->mUnk_11c.mId != 0) {
-            OS_JoinThread(&data_ov000_021b4cb0->mUnk_11c);
+        DWC_Auth_Abort();
+        if (gNetcheck->mThread.mId != 0) {
+            OS_JoinThread(&gNetcheck->mThread);
         }
-        data_ov000_021b4cb0->mUnk_04 = 0xfffffff9;
+        gNetcheck->mUnk_04 = 0xfffffff9;
     }
 }
 
-void func_ov000_021874ec(void) {
+void DWCi_Netcheck_Thread(void) {
     Unk0218635c e;
     DWCWiFiInfo c;
     char d[0x24];
@@ -55,7 +55,7 @@ void func_ov000_021874ec(void) {
     s32 r;
     u32 h;
     Unk021b4cac *o;
-    Unk02187490 *q;
+    DWCNetcheck *q;
 
     p1 = NULL;
     p2 = NULL;
@@ -65,75 +65,75 @@ void func_ov000_021874ec(void) {
         data_ov000_021b4cb4.mUnk_04 = TRUE;
         data_ov000_021b4cb4.mUnk_08 = FALSE;
         data_ov000_021b4cb4.mUnk_0c = 0x1000;
-        data_ov000_021b4cb4.mUnk_10 = data_ov000_021b4cb0->mUnk_108.mUnk_00;
-        data_ov000_021b4cb4.mUnk_14 = data_ov000_021b4cb0->mUnk_108.mUnk_04;
+        data_ov000_021b4cb4.mUnk_10 = gNetcheck->mParam.mAlloc;
+        data_ov000_021b4cb4.mUnk_14 = gNetcheck->mParam.mFree;
         data_ov000_021b4cb4.mUnk_1c = 20000;
-        data_ov000_021b4cb0->mUnk_04 = -2;
-        if (func_ov000_021873d4(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
+        gNetcheck->mUnk_04 = -2;
+        if (DWC_Http_Create(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(1);
+            DWCi_Netcheck_SetError(1);
             break;
         }
-        if (func_ov000_0218735c(gHttp) != 0) {
+        if (DWC_Http_FinishHeader(gHttp) != 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(1);
+            DWCi_Netcheck_SetError(1);
             break;
         }
-        func_ov000_021872bc(gHttp);
+        DWC_Http_StartThread(gHttp);
         if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
             OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
         }
         o = (Unk021b4cac *) gHttp;
         switch (o->mResult) {
             case 2:
-                data_ov000_021b4cb0->mUnk_04 = -1;
+                gNetcheck->mUnk_04 = -1;
             default:
                 ReleaseHttp((Http *) gHttp);
-                func_ov000_02187490(3);
+                DWCi_Netcheck_SetError(3);
                 goto end;
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, o->mUnk_938) != TRUE) {
+        if (DWC_Http_ParseResult(gNetcheck->mHttpLabelvalue, 0x20, 0, o->mUnk_938) != TRUE) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(2);
+            DWCi_Netcheck_SetError(2);
             break;
         }
-        r = StrtolBase10(func_ov000_021866b8(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13f4));
+        r = StrtolBase10(DWC_Http_GetResult(gNetcheck->mHttpLabelvalue, 0x20, gHttpresultPairName3));
         if (gLibErrorCode == 0x22) {
-            func_ov000_02187490(2);
+            DWCi_Netcheck_SetError(2);
             break;
         }
         if (r != 200) {
             if (r == 0x12e) {
-                q = data_ov000_021b4cb0;
-                if (q->mUnk_118 != NULL) {
+                q = gNetcheck;
+                if (q->mBodyWayport != NULL) {
                     q->mUnk_04 = -6;
                     ReleaseHttp((Http *) gHttp);
                     data_ov000_021b4cb4.mUnk_00 = data_ov000_021b1040.mUnk_00;
                     data_ov000_021b4cb4.mUnk_04 = FALSE;
                     data_ov000_021b4cb4.mUnk_08 = FALSE;
                     data_ov000_021b4cb4.mUnk_0c = 0x200;
-                    data_ov000_021b4cb4.mUnk_10 = data_ov000_021b4cb0->mUnk_108.mUnk_00;
-                    data_ov000_021b4cb4.mUnk_14 = data_ov000_021b4cb0->mUnk_108.mUnk_04;
+                    data_ov000_021b4cb4.mUnk_10 = gNetcheck->mParam.mAlloc;
+                    data_ov000_021b4cb4.mUnk_14 = gNetcheck->mParam.mFree;
                     data_ov000_021b4cb4.mUnk_1c = 20000;
                     if (strcmp(data_ov000_021b4cb4.mUnk_00, data_ov000_021b1400) != 0) {
                         data_ov000_021b4cb4.mUnk_18 = TRUE;
                     }
-                    if (func_ov000_021873d4(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
+                    if (DWC_Http_Create(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
                         ReleaseHttp((Http *) gHttp);
-                        func_ov000_02187490(1);
+                        DWCi_Netcheck_SetError(1);
                         break;
                     }
-                    if (func_ov000_02185984((Http *) gHttp, data_ov000_021b1420, data_ov000_021b1420,
-                                            data_ov000_021b4cb0->mUnk_08, 0x20, 1) != 0) {
+                    if (DWCi_Auth_Prepare_FirstPost((Http *) gHttp, data_ov000_021b1420, data_ov000_021b1420,
+                                                    gNetcheck->mHttpLabelvalue, 0x20, 1) != 0) {
                         ReleaseHttp((Http *) gHttp);
-                        func_ov000_02187490(8);
+                        DWCi_Netcheck_SetError(8);
                         break;
                     }
-                    if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1424, data_ov000_021b142c, 7) != FALSE) {
+                    if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gActionPairName2, gMessagePairValue, 7) != FALSE) {
                         ReleaseHttp((Http *) gHttp);
-                        func_ov000_02187490(8);
+                        DWCi_Netcheck_SetError(8);
                         break;
                     }
                     h = OS_DisableInterrupts();
@@ -141,119 +141,118 @@ void func_ov000_021874ec(void) {
                     func_ov000_021a6abc(&b);
                     MI_CpuCopy8(func_ov000_021a6abc(NULL), d, b);
                     OS_RestoreInterrupts(h);
-                    if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != FALSE) {
+                    if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gSsidPairName, d, strlen(d)) != FALSE) {
                         ReleaseHttp((Http *) gHttp);
-                        func_ov000_02187490(8);
+                        DWCi_Netcheck_SetError(8);
                         break;
                     }
-                    s = data_ov000_021b4cb0->mUnk_118;
-                    if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b143c, s, strlen(s)) != FALSE) {
+                    s = gNetcheck->mBodyWayport;
+                    if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gHotSpotResponsePairName, s, strlen(s)) != FALSE) {
                         ReleaseHttp((Http *) gHttp);
-                        func_ov000_02187490(8);
+                        DWCi_Netcheck_SetError(8);
                         break;
                     }
-                    q = data_ov000_021b4cb0;
-                    q->mUnk_108.mUnk_04(data_ov000_021b13d8, q->mUnk_118, 0);
-                    data_ov000_021b4cb0->mUnk_118 = NULL;
-                    if (func_ov000_0218735c(gHttp) != 0) {
+                    q = gNetcheck;
+                    q->mParam.mFree(gNetcheckBodyWayportName, q->mBodyWayport, 0);
+                    gNetcheck->mBodyWayport = NULL;
+                    if (DWC_Http_FinishHeader(gHttp) != 0) {
                         ReleaseHttp((Http *) gHttp);
-                        func_ov000_02187490(1);
+                        DWCi_Netcheck_SetError(1);
                         break;
                     }
-                    func_ov000_021872bc(gHttp);
+                    DWC_Http_StartThread(gHttp);
                     if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
                         OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
                     }
                     o = (Unk021b4cac *) gHttp;
                     switch (o->mResult) {
                         case 2:
-                            data_ov000_021b4cb0->mUnk_04 = -1;
+                            gNetcheck->mUnk_04 = -1;
                         default:
                             ReleaseHttp((Http *) gHttp);
-                            func_ov000_02187490(3);
+                            DWCi_Netcheck_SetError(3);
                             goto end;
                         case 8:
                             ReleaseHttp((Http *) o);
-                            func_ov000_02187490(7);
+                            DWCi_Netcheck_SetError(7);
                             goto end;
                     }
                 }
-                s = func_ov000_021866b8(q->mUnk_08, 0x20, data_ov000_021b144c);
+                s = DWC_Http_GetResult(q->mHttpLabelvalue, 0x20, gHttpbodyPairName2);
                 if (s == NULL) {
                     ReleaseHttp((Http *) gHttp);
-                    func_ov000_02187490(2);
+                    DWCi_Netcheck_SetError(2);
                     break;
                 }
-                data_ov000_021b4cb0->mUnk_114 =
-                    data_ov000_021b4cb0->mUnk_108.mUnk_00(data_ov000_021b13ac, strlen(s) + 1);
-                t = data_ov000_021b4cb0->mUnk_114;
+                gNetcheck->mBody302 = gNetcheck->mParam.mAlloc(gNetcheckBody302Name, strlen(s) + 1);
+                t = gNetcheck->mBody302;
                 if (t == NULL) {
                     ReleaseHttp((Http *) gHttp);
-                    func_ov000_02187490(4);
+                    DWCi_Netcheck_SetError(4);
                     break;
                 }
                 strncpy(t, s, strlen(s));
             } else {
                 ReleaseHttp((Http *) gHttp);
-                func_ov000_02187490(10);
+                DWCi_Netcheck_SetError(10);
                 break;
             }
         }
         ReleaseHttp((Http *) gHttp);
         DWCi_BM_GetWiFiInfo(&c);
         if (c.mAttestedUserId == 0) {
-            data_ov000_021b4cb0->mUnk_04 = -3;
+            gNetcheck->mUnk_04 = -3;
             data_ov000_021b4cd4.mUnk_00 = 0;
             data_ov000_021b4cd4.mUnk_15 = 0;
-            data_ov000_021b4cd4.mUnk_24 = data_ov000_021b4cb0->mUnk_108.mUnk_00;
-            data_ov000_021b4cd4.mUnk_28 = data_ov000_021b4cb0->mUnk_108.mUnk_04;
-            if (func_ov000_02186560((Unk02186560 *) &data_ov000_021b4cd4, (Http *) gHttp) != 0) {
-                func_ov000_02187490(5);
+            data_ov000_021b4cd4.mUnk_24 = gNetcheck->mParam.mAlloc;
+            data_ov000_021b4cd4.mUnk_28 = gNetcheck->mParam.mFree;
+            if (DWC_Auth_Create((Unk02186560 *) &data_ov000_021b4cd4, (Http *) gHttp) != 0) {
+                DWCi_Netcheck_SetError(5);
                 break;
             }
-            func_ov000_02186404();
-            if (func_ov000_021863cc() != 20) {
-                if (func_ov000_021863cc() == 9) {
-                    data_ov000_021b4cb0->mUnk_04 = -1;
+            DWC_Auth_Join();
+            if (DWC_Auth_GetError() != 20) {
+                if (DWC_Auth_GetError() == 9) {
+                    gNetcheck->mUnk_04 = -1;
                 } else {
                     func_ov000_0218635c((s32 *) &e);
-                    data_ov000_021b4cb0->mUnk_04 = e.mUnk_000;
+                    gNetcheck->mUnk_04 = e.mUnk_000;
                 }
-                func_ov000_02187490(6);
+                DWCi_Netcheck_SetError(6);
                 break;
             }
-            func_ov000_02186430();
+            DWC_Auth_Destroy();
         }
         if (r == 200) {
-            data_ov000_021b4cb0->mUnk_04 = 0;
-            func_ov000_02187490(11);
+            gNetcheck->mUnk_04 = 0;
+            DWCi_Netcheck_SetError(11);
             break;
         }
-        data_ov000_021b4cb0->mUnk_04 = -4;
+        gNetcheck->mUnk_04 = -4;
         data_ov000_021b4cb4.mUnk_00 = data_ov000_021b1040.mUnk_00;
         data_ov000_021b4cb4.mUnk_04 = FALSE;
         data_ov000_021b4cb4.mUnk_08 = FALSE;
         data_ov000_021b4cb4.mUnk_0c = 0x1000;
-        data_ov000_021b4cb4.mUnk_10 = data_ov000_021b4cb0->mUnk_108.mUnk_00;
-        data_ov000_021b4cb4.mUnk_14 = data_ov000_021b4cb0->mUnk_108.mUnk_04;
+        data_ov000_021b4cb4.mUnk_10 = gNetcheck->mParam.mAlloc;
+        data_ov000_021b4cb4.mUnk_14 = gNetcheck->mParam.mFree;
         data_ov000_021b4cb4.mUnk_1c = 40000;
         if (strcmp(data_ov000_021b4cb4.mUnk_00, data_ov000_021b1400) != 0) {
             data_ov000_021b4cb4.mUnk_18 = TRUE;
         }
-        if (func_ov000_021873d4(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
+        if (DWC_Http_Create(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(1);
+            DWCi_Netcheck_SetError(1);
             break;
         }
-        if (func_ov000_02185984((Http *) gHttp, data_ov000_021b1420, data_ov000_021b1420, data_ov000_021b4cb0->mUnk_08,
-                                0x20, 1) != 0) {
+        if (DWCi_Auth_Prepare_FirstPost((Http *) gHttp, data_ov000_021b1420, data_ov000_021b1420,
+                                        gNetcheck->mHttpLabelvalue, 0x20, 1) != 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(8);
+            DWCi_Netcheck_SetError(8);
             break;
         }
-        if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1424, data_ov000_021b1458, 5) != FALSE) {
+        if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gActionPairName2, gParsePairValue, 5) != FALSE) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(8);
+            DWCi_Netcheck_SetError(8);
             break;
         }
         h = OS_DisableInterrupts();
@@ -261,132 +260,132 @@ void func_ov000_021874ec(void) {
         func_ov000_021a6abc(&b);
         MI_CpuCopy8(func_ov000_021a6abc(NULL), d, b);
         OS_RestoreInterrupts(h);
-        if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != FALSE) {
+        if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gSsidPairName, d, strlen(d)) != FALSE) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(8);
+            DWCi_Netcheck_SetError(8);
             break;
         }
-        s = data_ov000_021b4cb0->mUnk_114;
-        if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1460, s, strlen(s)) != FALSE) {
+        s = gNetcheck->mBody302;
+        if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gHtmlPairName, s, strlen(s)) != FALSE) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(8);
+            DWCi_Netcheck_SetError(8);
             break;
         }
-        q = data_ov000_021b4cb0;
-        q->mUnk_108.mUnk_04(data_ov000_021b13ac, q->mUnk_114, 0);
-        data_ov000_021b4cb0->mUnk_114 = NULL;
-        if (func_ov000_0218735c(gHttp) != 0) {
+        q = gNetcheck;
+        q->mParam.mFree(gNetcheckBody302Name, q->mBody302, 0);
+        gNetcheck->mBody302 = NULL;
+        if (DWC_Http_FinishHeader(gHttp) != 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(1);
+            DWCi_Netcheck_SetError(1);
             break;
         }
-        func_ov000_021872bc(gHttp);
+        DWC_Http_StartThread(gHttp);
         if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
             OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
         }
         o = (Unk021b4cac *) gHttp;
         switch (o->mResult) {
             case 2:
-                data_ov000_021b4cb0->mUnk_04 = -1;
+                gNetcheck->mUnk_04 = -1;
             default:
                 ReleaseHttp((Http *) gHttp);
-                func_ov000_02187490(3);
+                DWCi_Netcheck_SetError(3);
                 goto end;
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 0, o->mUnk_938) != TRUE) {
+        if (DWC_Http_ParseResult(gNetcheck->mHttpLabelvalue, 0x20, 0, o->mUnk_938) != TRUE) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(2);
+            DWCi_Netcheck_SetError(2);
             break;
         }
-        r = StrtolBase10(func_ov000_021866b8(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13f4));
+        r = StrtolBase10(DWC_Http_GetResult(gNetcheck->mHttpLabelvalue, 0x20, gHttpresultPairName3));
         if (gLibErrorCode == 0x22) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(2);
+            DWCi_Netcheck_SetError(2);
             break;
         }
         if (r != 200) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(2);
+            DWCi_Netcheck_SetError(2);
             break;
         }
-        if (func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b1468, b2, 4) <= 0) {
+        if (DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gReturncdPairName2, b2, 4) <= 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(9);
+            DWCi_Netcheck_SetError(9);
             break;
         }
         r = StrtolBase10(b2);
         if (gLibErrorCode == 0x22) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(9);
+            DWCi_Netcheck_SetError(9);
             break;
         }
         if (r >= 100) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(6);
+            DWCi_Netcheck_SetError(6);
             break;
         }
-        n1 = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13c4, NULL, 0);
+        n1 = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gUrlPairName, NULL, 0);
         if (n1 <= 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(9);
+            DWCi_Netcheck_SetError(9);
             break;
         }
-        n2 = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13c8, NULL, 0);
+        n2 = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gDataPairName, NULL, 0);
         if (n2 <= 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(9);
+            DWCi_Netcheck_SetError(9);
             break;
         }
-        n3 = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13d0, NULL, 0);
-        p1 = data_ov000_021b4cb0->mUnk_108.mUnk_00(data_ov000_021b13c4, n1 + 1);
+        n3 = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gWaitPairName, NULL, 0);
+        p1 = gNetcheck->mParam.mAlloc(gUrlPairName, n1 + 1);
         if (p1 == NULL) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(4);
+            DWCi_Netcheck_SetError(4);
             break;
         }
-        p2 = data_ov000_021b4cb0->mUnk_108.mUnk_00(data_ov000_021b13c8, n2 + 1);
+        p2 = gNetcheck->mParam.mAlloc(gDataPairName, n2 + 1);
         if (p2 == NULL) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(4);
+            DWCi_Netcheck_SetError(4);
             break;
         }
         if (n3 > 0) {
-            p3 = data_ov000_021b4cb0->mUnk_108.mUnk_00(data_ov000_021b13d0, n3 + 1);
+            p3 = gNetcheck->mParam.mAlloc(gWaitPairName, n3 + 1);
             if (p3 == NULL) {
                 ReleaseHttp((Http *) gHttp);
-                func_ov000_02187490(4);
+                DWCi_Netcheck_SetError(4);
                 break;
             }
         }
-        k = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13c4, p1, n1 + 1);
+        k = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gUrlPairName, p1, n1 + 1);
         if (k < 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(9);
+            DWCi_Netcheck_SetError(9);
             break;
         }
         p1[k] = 0;
-        k = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13c8, p2, n2 + 1);
+        k = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gDataPairName, p2, n2 + 1);
         if (k < 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(9);
+            DWCi_Netcheck_SetError(9);
             break;
         }
         p2[k] = 0;
         v = 0;
         if (n3 > 0) {
-            k = func_ov000_02186674(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b13d0, p3, n3 + 1);
+            k = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gWaitPairName, p3, n3 + 1);
             if (k < 0) {
                 ReleaseHttp((Http *) gHttp);
-                func_ov000_02187490(9);
+                DWCi_Netcheck_SetError(9);
                 break;
             }
             p3[k] = 0;
             v = StrtolBase10(p3);
             if (gLibErrorCode == 0x22) {
                 ReleaseHttp((Http *) gHttp);
-                func_ov000_02187490(9);
+                DWCi_Netcheck_SetError(9);
                 break;
             }
             v *= 1000;
@@ -395,60 +394,60 @@ void func_ov000_021874ec(void) {
             }
         }
         ReleaseHttp((Http *) gHttp);
-        data_ov000_021b4cb0->mUnk_04 = -5;
+        gNetcheck->mUnk_04 = -5;
         data_ov000_021b4cb4.mUnk_00 = p1;
         data_ov000_021b4cb4.mUnk_04 = FALSE;
         data_ov000_021b4cb4.mUnk_08 = FALSE;
         data_ov000_021b4cb4.mUnk_0c = 0x1000;
-        data_ov000_021b4cb4.mUnk_10 = data_ov000_021b4cb0->mUnk_108.mUnk_00;
-        data_ov000_021b4cb4.mUnk_14 = data_ov000_021b4cb0->mUnk_108.mUnk_04;
+        data_ov000_021b4cb4.mUnk_10 = gNetcheck->mParam.mAlloc;
+        data_ov000_021b4cb4.mUnk_14 = gNetcheck->mParam.mFree;
         data_ov000_021b4cb4.mUnk_1c = 40000;
-        if (func_ov000_021873d4(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
+        if (DWC_Http_Create(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(1);
+            DWCi_Netcheck_SetError(1);
             break;
         }
-        if (func_ov000_02186a9c((Http *) gHttp, p2) != FALSE) {
+        if (DWC_Http_Add_Body((Http *) gHttp, p2) != FALSE) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(8);
+            DWCi_Netcheck_SetError(8);
             break;
         }
-        if (func_ov000_0218735c(gHttp) != 0) {
+        if (DWC_Http_FinishHeader(gHttp) != 0) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(1);
+            DWCi_Netcheck_SetError(1);
             break;
         }
-        func_ov000_021872bc(gHttp);
+        DWC_Http_StartThread(gHttp);
         if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
             OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
         }
         o = (Unk021b4cac *) gHttp;
         switch (o->mResult) {
             case 2:
-                data_ov000_021b4cb0->mUnk_04 = -1;
+                gNetcheck->mUnk_04 = -1;
             default:
                 ReleaseHttp((Http *) gHttp);
-                func_ov000_02187490(3);
+                DWCi_Netcheck_SetError(3);
                 goto end;
             case 8:
                 break;
         }
-        if (func_ov000_021866fc(data_ov000_021b4cb0->mUnk_08, 0x20, 1, o->mUnk_938) != TRUE) {
+        if (DWC_Http_ParseResult(gNetcheck->mHttpLabelvalue, 0x20, 1, o->mUnk_938) != TRUE) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(2);
+            DWCi_Netcheck_SetError(2);
             break;
         }
-        s = func_ov000_021866b8(data_ov000_021b4cb0->mUnk_08, 0x20, data_ov000_021b144c);
+        s = DWC_Http_GetResult(gNetcheck->mHttpLabelvalue, 0x20, gHttpbodyPairName2);
         if (s == NULL) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(2);
+            DWCi_Netcheck_SetError(2);
             break;
         }
-        data_ov000_021b4cb0->mUnk_118 = data_ov000_021b4cb0->mUnk_108.mUnk_00(data_ov000_021b13d8, strlen(s) + 1);
-        t = data_ov000_021b4cb0->mUnk_118;
+        gNetcheck->mBodyWayport = gNetcheck->mParam.mAlloc(gNetcheckBodyWayportName, strlen(s) + 1);
+        t = gNetcheck->mBodyWayport;
         if (t == NULL) {
             ReleaseHttp((Http *) gHttp);
-            func_ov000_02187490(4);
+            DWCi_Netcheck_SetError(4);
             break;
         }
         strncpy(t, s, strlen(s));
@@ -457,73 +456,73 @@ void func_ov000_021874ec(void) {
     }
 end:
     if (p1 != NULL) {
-        data_ov000_021b4cb0->mUnk_108.mUnk_04(data_ov000_021b13c4, p1, 0);
+        gNetcheck->mParam.mFree(gUrlPairName, p1, 0);
     }
     if (p2 != NULL) {
-        data_ov000_021b4cb0->mUnk_108.mUnk_04(data_ov000_021b13c8, p2, 0);
+        gNetcheck->mParam.mFree(gDataPairName, p2, 0);
     }
     if (p3 != NULL) {
-        data_ov000_021b4cb0->mUnk_108.mUnk_04(data_ov000_021b13d0, p3, 0);
+        gNetcheck->mParam.mFree(gWaitPairName, p3, 0);
     }
 }
 
-u32 func_ov000_021874c0(void) {
+u32 DWC_Netcheck_GetError(void) {
     u32 v1;
-    OS_LockMutex(&data_ov000_021b4cb0->mUnk_1dc);
-    v1 = data_ov000_021b4cb0->mUnk_00;
-    OS_UnlockMutex(&data_ov000_021b4cb0->mUnk_1dc);
+    OS_LockMutex(&gNetcheck->mMutex);
+    v1 = gNetcheck->mError;
+    OS_UnlockMutex(&gNetcheck->mMutex);
     return v1;
 }
 
-void func_ov000_02187490(u32 a) {
-    OS_LockMutex(&data_ov000_021b4cb0->mUnk_1dc);
-    data_ov000_021b4cb0->mUnk_00 = a;
-    OS_UnlockMutex(&data_ov000_021b4cb0->mUnk_1dc);
+void DWCi_Netcheck_SetError(u32 a) {
+    OS_LockMutex(&gNetcheck->mMutex);
+    gNetcheck->mError = a;
+    OS_UnlockMutex(&gNetcheck->mMutex);
 }
 
 u32 func_ov000_02187484(void) {
-    return (u32) data_ov000_021b4cb0->mUnk_04;
+    return (u32) gNetcheck->mUnk_04;
 }
 
-s32 func_ov000_021873d4(Unk02186d7c *p, const Unk021873d4 *q) {
+s32 DWC_Http_Create(Unk02186d7c *p, const Unk021873d4 *q) {
     MI_CpuFill8(p, 0, 0x1a60);
     p->mContentLength = -1;
     p->mUnk_04 = *q;
-    p->mLowReceiveBuffer = p->mUnk_04.mUnk_10(data_ov000_021b1320, 0xb68);
+    p->mLowReceiveBuffer = p->mUnk_04.mUnk_10(gHttpLowReceiveBufferName, 0xb68);
     if (p->mLowReceiveBuffer == NULL) {
         p->mResult = 1;
         return 1;
     }
-    p->mLowSendBuffer = p->mUnk_04.mUnk_10(data_ov000_021b1334, 0x5ea);
+    p->mLowSendBuffer = p->mUnk_04.mUnk_10(gHttpLowSendBufferName, 0x5ea);
     if (p->mLowSendBuffer == NULL) {
         p->mResult = 1;
         return 1;
     }
-    func_ov000_021868d0((Http *) p, (const char *) q->mUnk_00);
-    p->mResult = func_ov000_02186c74((Http *) p);
+    DWCi_Http_SetHostinfo((Http *) p, (const char *) q->mUnk_00);
+    p->mResult = DWCi_Http_WriteBasicHeader((Http *) p);
     if (p->mResult == 0) {
         p->mUnk_00 = 0xff;
     }
     return p->mResult;
 }
 
-u32 func_ov000_0218735c(Unk02186d7c *p) {
+u32 DWC_Http_FinishHeader(Unk02186d7c *p) {
     char v1[8];
     u32 n;
-    if (func_ov000_02186bd4((Http *) p, data_ov000_021b135c, data_ov000_021b1368) != FALSE) {
+    if (DWC_Http_Add_HeaderItem((Http *) p, data_ov000_021b135c, data_ov000_021b1368) != FALSE) {
         return 1;
     }
     n = strlen(strstr(p->mSendBuffer.mStart, data_ov000_021b1230) + 4);
     if (n != 0) {
         OS_SNPrintf(v1, 7, data_ov000_021b1370, n);
-        if (func_ov000_02186bd4((Http *) p, data_ov000_021b1374, v1) != FALSE) {
+        if (DWC_Http_Add_HeaderItem((Http *) p, data_ov000_021b1374, v1) != FALSE) {
             return 1;
         }
     }
     return 0;
 }
 
-void func_ov000_021872bc(Unk02186d7c *p) {
+void DWC_Http_StartThread(Unk02186d7c *p) {
     u32 n;
     n = OS_GetThreadPriority(data_0216ff5c.mCurrentThread);
     p->mUnk_a40 = FALSE;
@@ -535,12 +534,12 @@ void func_ov000_021872bc(Unk02186d7c *p) {
         data_ov000_021b4ca8 = 0;
     }
     if (p->mThread.mId == 0 || OS_IsThreadTerminated(&p->mThread) != 0) {
-        OS_CreateThread(&p->mThread, func_ov000_02186d7c, p, p->mUnk_1a60, 0x1000, n - 1);
+        OS_CreateThread(&p->mThread, DWCi_Http_Thread, p, p->mUnk_1a60, 0x1000, n - 1);
         OS_WakeupThreadDirect(&p->mThread);
     }
 }
 
-void func_ov000_02187274(Unk02186d7c *p) {
+void DWC_Http_Abort(Unk02186d7c *p) {
     if (p->mUnk_00 == 0xff) {
         OS_LockMutex(&p->mUnk_a28);
         p->mUnk_a40 = TRUE;
@@ -562,7 +561,7 @@ u32 func_ov000_02187230(Unk02186d7c *a) {
     return 1;
 }
 
-void func_ov000_02186d7c(void *l) {
+void DWCi_Http_Thread(void *l) {
     Unk02186d7c *p = l;
     Unk02186d7cB4 *a;
     Unk02186d7c118 *b;
@@ -776,11 +775,11 @@ void ReleaseHttp(Http *a) {
         }
         FreeHttpBuffer(a, &a->mSendBuffer);
         if (a->mLowReceiveBuffer != NULL) {
-            a->mFree(data_ov000_021b1320, a->mLowReceiveBuffer, 0);
+            a->mFree(gHttpLowReceiveBufferName, a->mLowReceiveBuffer, 0);
             a->mLowReceiveBuffer = NULL;
         }
         if (a->mLowSendBuffer != NULL) {
-            a->mFree(data_ov000_021b1334, a->mLowSendBuffer, 0);
+            a->mFree(gHttpLowSendBufferName, a->mLowSendBuffer, 0);
             a->mLowSendBuffer = NULL;
         }
         MI_CpuFill8(a, 0, 0x1a60);

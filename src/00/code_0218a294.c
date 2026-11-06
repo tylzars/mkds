@@ -48,8 +48,8 @@ u32 func_ov000_0218a294(void) {
                 s = func_ov000_0218a0f4();
                 break;
             case 14:
-                func_ov000_02187fb8();
-                func_ov000_02188068();
+                DWC_Netcheck_Abort();
+                DWC_Netcheck_Destroy();
             default:
                 v1->mUnk_444[v1->mUnk_d13].mUnk_00 = 2;
                 s = 0xb;

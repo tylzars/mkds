@@ -18,8 +18,8 @@ u32 func_ov000_021892f4(u8 *a) {
             return 1;
         }
     } else if (v1 == 0xe) {
-        func_ov000_02187fb8();
-        func_ov000_02188068();
+        DWC_Netcheck_Abort();
+        DWC_Netcheck_Destroy();
         *a = 0xc;
     } else if ((v1 < 0x12) && (v2 = func_ov000_0218925c(), v2 == 1)) {
         *a = 10;

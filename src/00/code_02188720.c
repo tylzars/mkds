@@ -256,8 +256,8 @@ u32 func_ov000_02188868(Unk02188868 *p) {
     q->mUnk_d0a = p->mUnk_08;
     q->mUnk_d0b_0 = p->mUnk_09;
     y = data_ov000_021b4d0c;
-    y->mUnk_00 = p->mUnk_00;
-    y->mUnk_04 = p->mUnk_04;
+    y->mAlloc = p->mUnk_00;
+    y->mFree = p->mUnk_04;
     y->mUnk_08 = 0;
     q->mUnk_d0c_0 = p->mUnk_0a;
     q->mUnk_d0c_4 = p->mUnk_0b;

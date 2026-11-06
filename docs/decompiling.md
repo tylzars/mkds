@@ -311,12 +311,12 @@ Reused variables and own locals:
   second loop `for (j...)` -> `for (i...)` (func_ov000_021854f8), `b = data[0]` -> `j = data[0]` (func_0211ed80).
 - The reverse: a 0/1 or index local that gets the first register in a crowded loop, or a spill slot that sits low,
   was its own named local: `u16 l;` with `l = 0; ... l = 1; v2[0] = v4[l];` (func_020800f4), a string pointer in its
-  own `const u8 *y` instead of reusing `x` (func_ov000_02186d7c). Try moving its declaration relative to the loop's
+  own `const u8 *y` instead of reusing `x` (DWCi_Http_Thread). Try moving its declaration relative to the loop's
   other locals.
 - When two later values swap, the variable that first appears earlier in the function wins. Reuse the variable that
   appears first: `for (j = 0, p = T3; ...)` reusing the first loop's `p` (func_ov003_021c1680). If a variable's
   first use is a short unrelated one (`h = i + 1`), give the early use its own variable (`k = i + 1`,
-  func_ov000_021866fc).
+  DWC_Http_ParseResult).
 - A flag the original registers after a shared-expression temporary must be its variable's first or only value:
   write its earlier use with another local (func_02066fe0).
 - A table entry loaded once and kept in a callee-saved register across two calls is a reused dead variable:
@@ -1035,7 +1035,7 @@ Link order and linking:
 - `/` and `%` on ints call a combined division helper (`_s32_div_f`: quotient r0, remainder r1). Write the
   operator, never call the helper by name. The divisor in r1 often already holds a value used elsewhere (keep it in
   a local). Compound-assigned locals (`s32 q = a; q /= b;`) fix the order of division calls. `_s32_div_f` vs
-  `_u32_div_f` follows the signedness of the operand (`(u32) b`, func_ov000_021882f8).
+  `_u32_div_f` follows the signedness of the operand (`(u32) b`, DWC_Auth_Base64Encode).
 - 64-bit fixed point (NitroSDK-style matrix concat): a product of two locals gives `umull+mla` with sign words on
   the stack; a local times a fresh load gives `smull/smlal`. `(fx32)((e64 >> 12) + t)` gives `adds`. Matrix concat
   reuses the last column loaded in a row for the next row's first element (load columns into locals, alternate

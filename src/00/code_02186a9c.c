@@ -10,7 +10,7 @@
 
 #pragma opt_lifetimes off
 
-BOOL func_ov000_02186c74(Http *a) {
+BOOL DWCi_Http_WriteBasicHeader(Http *a) {
     HttpBuffer *b = &a->mSendBuffer;
     char *c;
     s32 d;
@@ -31,7 +31,7 @@ BOOL func_ov000_02186c74(Http *a) {
     return FALSE;
 }
 
-BOOL func_ov000_02186bd4(Http *a, const char *b, const char *c) {
+BOOL DWC_Http_Add_HeaderItem(Http *a, const char *b, const char *c) {
     s32 e;
     HttpBuffer *d;
     s32 f;
@@ -59,7 +59,7 @@ BOOL func_ov000_02186bd4(Http *a, const char *b, const char *c) {
     return FALSE;
 }
 
-BOOL func_ov000_02186b0c(Http *a, const char *b, const void *c, s32 d) {
+BOOL DWC_Http_Add_PostBase64Item(Http *a, const char *b, const void *c, s32 d) {
     HttpBuffer *e = &a->mSendBuffer;
     char *f;
     s32 g;
@@ -72,7 +72,7 @@ BOOL func_ov000_02186b0c(Http *a, const char *b, const void *c, s32 d) {
         f = data_ov000_021b1298;
     }
     a->mPairCount = a->mPairCount + 1;
-    g = func_ov000_021882f8(c, d, NULL, 0);
+    g = DWC_Auth_Base64Encode(c, d, NULL, 0);
     h = strlen(f);
     i = g + (h - 2 + strlen(b));
     j = e->mEnd - e->mCursor;
@@ -83,7 +83,7 @@ BOOL func_ov000_02186b0c(Http *a, const char *b, const void *c, s32 d) {
         j = e->mEnd - e->mCursor;
     }
     e->mCursor = e->mCursor + OS_SNPrintf(e->mCursor, j, f, b);
-    if (func_ov000_021882f8(c, d, e->mCursor, e->mEnd - e->mCursor - 1) < 0) {
+    if (DWC_Auth_Base64Encode(c, d, e->mCursor, e->mEnd - e->mCursor - 1) < 0) {
         return TRUE;
     }
     e->mCursor = e->mCursor + g;
@@ -91,7 +91,7 @@ BOOL func_ov000_02186b0c(Http *a, const char *b, const void *c, s32 d) {
     return FALSE;
 }
 
-BOOL func_ov000_02186a9c(Http *a, const char *b) {
+BOOL DWC_Http_Add_Body(Http *a, const char *b) {
     s32 d;
     HttpBuffer *c;
     s32 e;

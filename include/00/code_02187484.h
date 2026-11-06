@@ -15,20 +15,20 @@
 
 typedef struct OSThread OSThread;
 
-// Object behind data_ov000_021b4cb0.
-typedef struct Unk02187490 {
-    /* 000 */ u32 mUnk_00;
+// Object behind gNetcheck.
+typedef struct DWCNetcheck {
+    /* 000 */ u32 mError;
     /* 004 */ s32 mUnk_04;
-    /* 008 */ Unk021868a4Entry mUnk_08[0x20];
-    /* 108 */ Unk02188114 mUnk_108;
-    /* 114 */ void *mUnk_114;
-    /* 118 */ void *mUnk_118;
-    /* 11c */ OSThread mUnk_11c;
+    /* 008 */ DWCHttpLabelValue mHttpLabelvalue[0x20];
+    /* 108 */ Unk02188114 mParam;
+    /* 114 */ void *mBody302;
+    /* 118 */ void *mBodyWayport;
+    /* 11c */ OSThread mThread;
     /* 1d4 */ u8 pad_1d4[8];
-    /* 1dc */ OSMutex mUnk_1dc;
+    /* 1dc */ OSMutex mMutex;
     /* 1f4 */ u8 pad_1f4[0x100c];
     /* 1200 */ u8 mUnk_1200[0x1000];
-} Unk02187490;
+} DWCNetcheck;
 
 // Object behind gHttp.
 typedef struct Unk021b4cac {
@@ -61,25 +61,25 @@ typedef struct Unk0218635c {
 #include "code_0200db4c.h"
 
 extern char *data_ov000_021b1384;
-extern char data_ov000_021b13c4[];
-extern char data_ov000_021b13c8[];
-extern char data_ov000_021b13d0[];
-extern char data_ov000_021b13f4[];
+extern char gUrlPairName[];
+extern char gDataPairName[];
+extern char gWaitPairName[];
+extern char gHttpresultPairName3[];
 extern char data_ov000_021b1400[];
 extern char data_ov000_021b1420[];
-extern char data_ov000_021b1424[];
-extern char data_ov000_021b142c[];
-extern char data_ov000_021b1434[];
-extern char data_ov000_021b143c[];
-extern char data_ov000_021b144c[];
-extern char data_ov000_021b1458[];
-extern char data_ov000_021b1460[];
-extern char data_ov000_021b1468[];
+extern char gActionPairName2[];
+extern char gMessagePairValue[];
+extern char gSsidPairName[];
+extern char gHotSpotResponsePairName[];
+extern char gHttpbodyPairName2[];
+extern char gParsePairValue[];
+extern char gHtmlPairName[];
+extern char gReturncdPairName2[];
 extern Unk021b4cb4 data_ov000_021b4cb4;
 extern Unk021b4cd4 data_ov000_021b4cd4;
 
 u32 func_ov000_02187484(void);
-void func_ov000_02187490(u32 a);
-u32 func_ov000_021874c0(void);
-void func_ov000_021874ec(void);
-void func_ov000_02187fb8(void);
+void DWCi_Netcheck_SetError(u32 a);
+u32 DWC_Netcheck_GetError(void);
+void DWCi_Netcheck_Thread(void);
+void DWC_Netcheck_Abort(void);

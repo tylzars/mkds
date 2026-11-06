@@ -82,7 +82,7 @@ extern u8 data_ov000_021b4be4[];
 extern u8 data_ov000_021b4be5[];
 extern u8 data_ov000_021b4c80[];
 extern Unk02186d7c *gHttp;
-extern Unk02187490 *data_ov000_021b4cb0;
+extern DWCNetcheck *gNetcheck;
 extern Unk02188408 *data_ov000_021b4d00;
 extern void *data_ov000_021b4d04;
 extern void *data_ov000_021b4d08;

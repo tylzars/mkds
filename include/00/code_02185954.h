@@ -4,16 +4,16 @@
 
 // Declared here until the code that defines them is decompiled.
 
-typedef struct Unk021868a4Entry {
+typedef struct DWCHttpLabelValue {
     /* 00 */ void *mFirst;
     /* 04 */ void *mSecond;
-} Unk021868a4Entry;
+} DWCHttpLabelValue;
 
-typedef struct Unk021868a4 {
-    /* 00 */ Unk021868a4Entry *mEntries;
+typedef struct DWCHttpParseResult {
+    /* 00 */ DWCHttpLabelValue *mEntries;
     /* 04 */ s32 mCapacity;
     /* 08 */ s32 mCount;
-} Unk021868a4;
+} DWCHttpParseResult;
 
 #include "code_0200db4c.h"
 
@@ -54,50 +54,50 @@ u32 GrowHttpBuffer(Http *a, HttpBuffer *b, int c);
 void FreeHttpBuffer(Http *a, HttpBuffer *b);
 u32 InitHttpBuffer(Http *a, HttpBuffer *b, int c);
 
-// Object behind data_ov000_021b4c90; the mutex at 0x3bc is passed to OS_LockMutex and OS_UnlockMutex.
+// Object behind gAuth; the mutex at 0x3bc is passed to OS_LockMutex and OS_UnlockMutex.
 typedef struct Unk021b4c90 {
     /* 000 */ u8 pad_000[4];
-    /* 004 */ s32 mUnk_004;
+    /* 004 */ s32 mError;
     /* 008 */ u8 pad_008[0x3b4];
-    /* 3bc */ OSMutex mUnk_3bc;
+    /* 3bc */ OSMutex mMutex;
 } Unk021b4c90;
 
 #include "00/code_02186d04.h"
 
-// Written into Unk02185984 at 0x1cc; mUnk_24 and mUnk_28 allocate and release the 0x13e0 bytes of the object and the
+// Written into DWCAuth at 0x1cc; mUnk_24 and mUnk_28 allocate and release the 0x13e0 bytes of the object and the
 // buffers.
 typedef struct Unk02186560 {
-    /* 00 */ char mUnk_00[0x15];
-    /* 15 */ char mUnk_15[0xc];
+    /* 00 */ char mIngamesn[0x15];
+    /* 15 */ char mGsbrcd[0xc];
     /* 21 */ u8 pad_21[3];
-    /* 24 */ void *(*mUnk_24)(const void *, u32);
-    /* 28 */ void (*mUnk_28)(const void *, void *, u32);
+    /* 24 */ void *(*mAlloc)(const void *, u32);
+    /* 28 */ void (*mFree)(const void *, void *, u32);
 } Unk02186560;
 
-// 0x13e0 bytes, held in data_ov000_021b4c90; the stack of its thread is the last 0x1000 bytes.
-typedef struct Unk02185984 {
+// 0x13e0 bytes, held in gAuth; the stack of its thread is the last 0x1000 bytes.
+typedef struct DWCAuth {
     /* 000 */ u32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
+    /* 004 */ s32 mError;
     /* 008 */ s32 mUnk_008;
-    /* 00c */ char mUnk_00c[4];
-    /* 010 */ char mUnk_010[0xf];
-    /* 01f */ char mUnk_01f[0x33];
-    /* 052 */ char mUnk_052[0x12d];
-    /* 17f */ char mUnk_17f[9];
-    /* 188 */ char mUnk_188[0x41];
+    /* 00c */ char mRetcode[4];
+    /* 010 */ char mDatetime[0xf];
+    /* 01f */ char mLocator[0x33];
+    /* 052 */ char mToken[0x12d];
+    /* 17f */ char mChallenge[9];
+    /* 188 */ char mCookie[0x41];
     /* 1c9 */ u8 pad_1c9[3];
     /* 1cc */ Unk02186560 mUnk_1cc;
-    /* 1f8 */ Unk021868a4Entry mUnk_1f8[0x20];
-    /* 2f8 */ Http *mUnk_2f8;
-    /* 2fc */ OSThread mUnk_2fc;
+    /* 1f8 */ DWCHttpLabelValue mHttpLabelvalue[0x20];
+    /* 2f8 */ Http *mHttp;
+    /* 2fc */ OSThread mThread;
     /* 3b4 */ u8 pad_3b4[8];
-    /* 3bc */ OSMutex mUnk_3bc;
-    /* 3d4 */ BOOL mUnk_3d4;
+    /* 3bc */ OSMutex mMutex;
+    /* 3d4 */ BOOL mAbort;
     /* 3d8 */ u8 pad_3d8[8];
-    /* 3e0 */ u8 mUnk_3e0[0x1000];
-} Unk02185984;
+    /* 3e0 */ u8 mStack[0x1000];
+} DWCAuth;
 
-// Some of the locals of func_ov000_02185984.
+// Some of the locals of DWCi_Auth_Prepare_FirstPost.
 typedef struct Unk02185984Data {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02[6];
@@ -117,27 +117,27 @@ typedef struct Unk021b4c94 {
 
 #include "00/code_021ad734.h"
 
-extern Unk02185984 *data_ov000_021b4c90;
+extern DWCAuth *gAuth;
 extern Unk021b4c94 data_ov000_021b4c94;
 
-void func_ov000_02185954(s32 a);
-u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry *d, s32 e, s32 f);
-s32 func_ov000_02185d54(void);
+void DWCi_Auth_SetError(s32 a);
+u32 DWCi_Auth_Prepare_FirstPost(Http *a, const char *b, const char *c, DWCHttpLabelValue *d, s32 e, s32 f);
+s32 DWCi_Auth_FillResult(void);
 s32 func_ov000_02185ef4(void);
-void func_ov000_021860ac(void *param_1);
-s32 func_ov000_02186298(s32 a);
+void DWCi_Auth_Thread(void *param_1);
+s32 DWCi_Auth_Start(s32 a);
 void func_ov000_0218635c(s32 *a);
-s32 func_ov000_021863cc(void);
-void func_ov000_02186404(void);
-void func_ov000_02186430(void);
-void func_ov000_02186474(void);
-void func_ov000_021864e0(void);
-s32 func_ov000_02186560(Unk02186560 *a, Http *b);
+s32 DWC_Auth_GetError(void);
+void DWC_Auth_Join(void);
+void DWC_Auth_Destroy(void);
+void DWC_Auth_Abort(void);
+void DWCi_Auth_StartThread(void);
+s32 DWC_Auth_Create(Unk02186560 *a, Http *b);
 void func_ov000_02186628(const void *a);
-BOOL func_ov000_02186634(Unk021868a4Entry *a, s32 b, const char *c, char *d, s32 e);
-s32 func_ov000_02186674(Unk021868a4Entry *a, s32 b, const char *c, char *d, s32 e);
-void *func_ov000_021866b8(Unk021868a4Entry *a, s32 b, const char *c);
-BOOL func_ov000_021866fc(Unk021868a4Entry *a, s32 b, s32 c, const char *d);
-BOOL func_ov000_021868a4(Unk021868a4 *list, void *first, void *second);
-BOOL func_ov000_021868d0(Http *a, const char *b);
+BOOL DWC_Http_GetRawResult(DWCHttpLabelValue *a, s32 b, const char *c, char *d, s32 e);
+s32 DWC_Http_GetBase64DecodedResult(DWCHttpLabelValue *a, s32 b, const char *c, char *d, s32 e);
+void *DWC_Http_GetResult(DWCHttpLabelValue *a, s32 b, const char *c);
+BOOL DWC_Http_ParseResult(DWCHttpLabelValue *a, s32 b, s32 c, const char *d);
+BOOL DWCi_Http_AddResult(DWCHttpParseResult *list, void *first, void *second);
+BOOL DWCi_Http_SetHostinfo(Http *a, const char *b);
 u32 func_ov000_02186a84(u32 value);

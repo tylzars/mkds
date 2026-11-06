@@ -4,7 +4,7 @@
 
 typedef struct Http Http;
 
-BOOL func_ov000_02186a9c(Http *a, const char *b);
-BOOL func_ov000_02186b0c(Http *a, const char *b, const void *c, s32 d);
-BOOL func_ov000_02186bd4(Http *a, const char *b, const char *c);
-BOOL func_ov000_02186c74(Http *a);
+BOOL DWC_Http_Add_Body(Http *a, const char *b);
+BOOL DWC_Http_Add_PostBase64Item(Http *a, const char *b, const void *c, s32 d);
+BOOL DWC_Http_Add_HeaderItem(Http *a, const char *b, const char *c);
+BOOL DWCi_Http_WriteBasicHeader(Http *a);

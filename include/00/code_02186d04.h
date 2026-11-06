@@ -36,7 +36,7 @@ typedef struct Unk02186d7cB4 {
     /* 50 */ u8 pad_50[0x14];
 } Unk02186d7cB4;
 
-// Written to mUnk_04 of an Unk02186d7c by func_ov000_021873d4.
+// Written to mUnk_04 of an Unk02186d7c by DWC_Http_Create.
 typedef struct Unk021873d4 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -83,9 +83,9 @@ extern char data_ov000_021b1374[];
 extern u32 data_ov000_021b4ca8;
 
 void ReleaseHttp(Http *a);
-void func_ov000_02186d7c(void *l);
+void DWCi_Http_Thread(void *l);
 u32 func_ov000_02187230(Unk02186d7c *a);
-void func_ov000_02187274(Unk02186d7c *p);
-void func_ov000_021872bc(Unk02186d7c *p);
-u32 func_ov000_0218735c(Unk02186d7c *p);
-s32 func_ov000_021873d4(Unk02186d7c *p, const Unk021873d4 *q);
+void DWC_Http_Abort(Unk02186d7c *p);
+void DWC_Http_StartThread(Unk02186d7c *p);
+u32 DWC_Http_FinishHeader(Unk02186d7c *p);
+s32 DWC_Http_Create(Unk02186d7c *p, const Unk021873d4 *q);

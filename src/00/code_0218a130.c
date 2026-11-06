@@ -11,12 +11,12 @@ u32 func_ov000_0218a130(Unk02188ec0 *v1) {
     u32 s;
 
     p = (Unk02189350 *) func_ov000_02188584(1);
-    s = func_ov000_021874c0();
+    s = DWC_Netcheck_GetError();
     if (s != 0) {
         if (p->mUnk_15 == func_ov000_021884d8(v1->mUnk_d0d)) {
             p->mUnk_10 = func_ov000_02187484();
         }
-        func_ov000_02188068();
+        DWC_Netcheck_Destroy();
         if (s != 0xb) {
             v1->mUnk_444[v1->mUnk_d13].mUnk_00 = 1;
             return 0xb;
