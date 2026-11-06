@@ -18,12 +18,12 @@ typedef struct Unk02005814 {
     /* 04 */ s32 mUnk_04;
 } Unk02005814;
 
-// 12 bytes at 0x20 and at 0x30 of Unk02003024 (assigned as a whole by FileReadDirTableEntry, FileLookUpPath and
+// 12 bytes at 0x20 and at 0x30 of Unk02003024 (assigned as a whole by FileReadDirTableEntry, FSi_FindPath and
 // FS_ChangeDir; data_0216f344). Different functions use the region with different types: an Unk02003a6c pointer
-// (FileEnterDirectoryById, FileReadDirEntry, FileLookUpPath), an Unk02003670 pointer (FileWalkPath,
+// (FileEnterDirectoryById, FileReadDirEntry, FSi_FindPath), an Unk02003670 pointer (FileWalkPath,
 // FileBuildPathString), three words (FileOpenFromTableEntry, FS_OpenFileDirect), an Unk02005814 (FileWalkPath,
 // FS_OpenFileFast), a u8 pointer with two lengths (FileBuildPathString) and a pointer with two signed words
-// (FS_SeekFile, FileReadClamped, FileReadViaArchive).
+// (FS_SeekFile, FSi_ReadFileCore, FileReadViaArchive).
 typedef union Unk02003024U {
     struct {
         /* 00 */ u32 mUnk_00;
@@ -65,7 +65,7 @@ typedef struct Unk02003024 {
     /* 04 */ struct Unk02003024 *mUnk_04;
     /* 08 */ struct Unk02003a6c *mUnk_08;
     /* 0c */ volatile u32 mUnk_0c; // bit 2 selects the path in FileDispatchCommand; FileFinishCommand clears 0x4f
-    /* 10 */ u32 mUnk_10; // index passed to FileDispatchCommand by FileRunCommandBlocking and FileRunQueueAsync
+    /* 10 */ u32 mUnk_10; // index passed to FileDispatchCommand by FSi_ExecuteSyncCommand and FSi_ExecuteAsyncCommand
     /* 14 */ s32 mUnk_14; // set from a return value in FileDispatchCommand and FileFinishCommand
     /* 18 */ OSThreadQueue mUnk_18;
     /* 20 */ Unk02003024U mUnk_20;
@@ -79,8 +79,8 @@ typedef struct Unk02003024 {
 // 0x5c-byte object (FS_InitArchive clears 0x5c bytes; data_0216f36c) at mUnk_08 of Unk02003024. Links at mUnk_04 and
 // mUnk_08 (FS_RegisterArchiveName, FS_ReleaseArchiveName), flags at mUnk_1c, the list of Unk02003024 at mUnk_24; the
 // addresses of mUnk_0c and mUnk_14 go to OS_WakeupThread and OS_SleepThread; mUnk_48 to mUnk_54 are called from
-// FileDispatchCommand, FileWriteViaArchive, FileReadViaArchive, FileReadTableBytes, FileQueueCommand and
-// FilePickNextCommand.
+// FileDispatchCommand, FileWriteViaArchive, FileReadViaArchive, FileReadTableBytes, FSi_SendCommand and
+// FSi_NextCommand.
 typedef struct Unk02003a6c {
     /* 00 */ u32 mUnk_00;
     /* 04 */ struct Unk02003a6c *mUnk_04;
