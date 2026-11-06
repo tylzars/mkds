@@ -452,7 +452,7 @@ void func_02083680(Unk0201ca6c *p, s32 a) {
         data_0217ae80 = NULL;
         return;
     }
-    if (!(q->mUnk_48 & 0x20)) {
+    if (!(q->mUnk_48 & KART_48_BOOST)) {
         p->mUnk_24.mUnk_00_1 = 1;
     }
     v = g->mViewPos;

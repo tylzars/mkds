@@ -467,7 +467,7 @@ void ResetKart(Kart *p) {
     p->mSpeedLimit = 0xd000;
     p->mUnk_d4 = 0x1000;
     p->mUnk_d8 = 0x1000;
-    p->mState = 0;
+    p->mState = KART_STATE_NORMAL;
     func_02071ddc(&p->mUnk_538);
     MTX_Identity43_(&p->mUnk_120_m);
     MTX_Identity43_(&p->mUnk_150_m);
@@ -1040,7 +1040,7 @@ void func_02071318(Kart *p, s32 a) {
     s32 k;
 
     k = p->mState;
-    if (k != 0 && k != 6) {
+    if (k != KART_STATE_NORMAL && k != KART_STATE_LAUNCH_DOUBLE_FLIP) {
         return;
     }
     if (a == 2) {
@@ -1063,7 +1063,7 @@ void func_020710b0(Kart *p, s32 b) {
 
     if (b == 0) {
         p->mUnk_48 |= 0x40000;
-        p->mUnk_44 &= ~0x10;
+        p->mUnk_44 &= ~KART_44_ON_GROUND;
     }
     p->mUnk_48 &= 0xdfe77fdf;
     p->mBoostTimer = 0;
@@ -1091,7 +1091,7 @@ void func_020710b0(Kart *p, s32 b) {
     p->mLeftTurnCount = p->mRightTurnCount;
     p->mTurnCountTimer = 0;
     StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
-    p->mState = 0;
+    p->mState = KART_STATE_NORMAL;
     p->mUnk_4c &= ~0x30;
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);

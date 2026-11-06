@@ -34,7 +34,7 @@
 void func_ov001_02184874(Unk02188950 *d, Kart *e) {
     s32 scale;
 
-    if ((GetKart(e->mIndex)->mUnk_48 & 0x20) && e->mBoostTimer > 0) {
+    if ((GetKart(e->mIndex)->mUnk_48 & KART_48_BOOST) && e->mBoostTimer > 0) {
         if (func_ov001_021871f8(d, 8)) {
             if (d->mPrm->mUnk_1dc > 0 || d->mPrm->mUnk_1e0 > 0) {
                 Vec3 a = {0, 0, 0};
@@ -114,7 +114,7 @@ void func_ov001_021843b0(Unk02188950 *a, Kart *b) {
     Vec3 vec2;
     Vec3 vec3;
 
-    if ((GetKart(b->mIndex)->mUnk_48 & 0x20) && b->mBoostTimer > 0) {
+    if ((GetKart(b->mIndex)->mUnk_48 & KART_48_BOOST) && b->mBoostTimer > 0) {
         if (func_ov001_021871f8(a, 8)) {
             if (a->mPrm->mUnk_1a8 > 0 || a->mPrm->mUnk_1ac > 0) {
                 vec1.x = ((s64) -a->mPrm->mUnk_1ac * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2]) >> 12;

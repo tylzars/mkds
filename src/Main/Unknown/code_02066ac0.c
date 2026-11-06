@@ -135,7 +135,7 @@ s32 ApplyKartSurfaceKind7(Kart *a) {
     PlayingSound *c;
 
     if (a->mSurfaceGroup != 8 || (a->mUnk_44 & 0x80000000) != 0) {
-        StartKartBoost(a, 0, 0x3c);
+        StartKartBoost(a, KART_BOOST_ITEM_OR_SURFACE, 0x3c);
         b = data_02165518;
         if (a->mSurfaceVariant > 0 && (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
             c = StartSound(&a->mSoundSource, b.mUnk_00[a->mSurfaceVariant - 1], 0x7f, 0);
@@ -168,7 +168,7 @@ s32 ApplyKartSurfaceKind18(Kart *a) {
     PlayingSound *c;
 
     if (a->mSurfaceGroup != 8 || (a->mUnk_44 & 0x80000000) != 0) {
-        StartKartBoost(a, 0, 0x3c);
+        StartKartBoost(a, KART_BOOST_ITEM_OR_SURFACE, 0x3c);
         b = data_02165518;
         if (a->mSurfaceVariant > 0 && (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
             c = StartSound(&a->mSoundSource, b.mUnk_00[a->mSurfaceVariant - 1], 0x7f, 0);
@@ -209,7 +209,7 @@ s32 ApplyKartSurfaceKind19(Kart *a) {
     PlayingSound *b;
 
     if (a->mSurfaceGroup != 0xb || (a->mUnk_44 & 0x80000000) != 0) {
-        StartKartBoost(a, 0, 0x3c);
+        StartKartBoost(a, KART_BOOST_ITEM_OR_SURFACE, 0x3c);
         if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
             b = StartSound(&a->mSoundSource, 0x1b9, 0x7f, 0);
             if (b != NULL) {
@@ -424,7 +424,8 @@ void AdvanceKartWobble(Kart *a) {
     if (a->mWobbleAmplitude > 0) {
         a->mWobbleAmplitude = (s64) a->mWobbleAmplitude * data_021654fc + 0x800 >> 12;
         a->mWobbleAmplitude = a->mWobbleAmplitude - 0x64;
-        if ((a->mUnk_44 & 0x10) == 0 || (a->mForwardSpeed > 0 ? a->mForwardSpeed : -a->mForwardSpeed) < 0x3000) {
+        if ((a->mUnk_44 & KART_44_ON_GROUND) == 0 ||
+            (a->mForwardSpeed > 0 ? a->mForwardSpeed : -a->mForwardSpeed) < 0x3000) {
             a->mWobbleAmplitude = (s64) a->mWobbleAmplitude * 0xe66 + 0x800 >> 12;
         }
         if (a->mWobbleAmplitude < 0) {
@@ -527,13 +528,13 @@ void func_02066ac0(Kart *a) {
         func_0204360c(a->mEntryIndex, 0x10);
     }
     if ((a->mUnk_514->mUnk_44 & 1) != 0) {
-        a->mUnk_44 = a->mUnk_44 | 0x10;
+        a->mUnk_44 = a->mUnk_44 | KART_44_ON_GROUND;
     }
     if ((a->mUnk_514->mUnk_44 & 0x20) != 0) {
         a->mBoostTimer = 3;
-        a->mUnk_48 = a->mUnk_48 | 0x20;
+        a->mUnk_48 = a->mUnk_48 | KART_48_BOOST;
     } else {
         a->mBoostTimer = 0;
-        a->mUnk_48 = a->mUnk_48 & ~0x20;
+        a->mUnk_48 = a->mUnk_48 & ~KART_48_BOOST;
     }
 }

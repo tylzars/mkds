@@ -562,7 +562,7 @@ void func_02090638(Unk020905a8 *a) {
     s32 b;
     p = GetKart(a->mUnk_24);
     v = a->mUnk_20;
-    if ((p->mUnk_44 & 0x10) != 0) {
+    if ((p->mUnk_44 & KART_44_ON_GROUND) != 0) {
         s = 0x19a;
     } else {
         s = 0x52;

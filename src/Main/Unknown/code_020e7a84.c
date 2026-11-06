@@ -566,7 +566,7 @@ void func_020e8ac8(void) {
             }
         }
         data_0217b99c = data_0217b930;
-        if (data_0217b8c8->mState >= 4) {
+        if (data_0217b8c8->mState >= KART_STATE_PUSH_FLIP) {
             data_0217b8ac = 0;
         }
         if (data_0217b900 != 0 && data_0217b8ac != 0) {

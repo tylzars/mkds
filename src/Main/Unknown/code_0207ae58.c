@@ -52,7 +52,7 @@ void func_0207b734(Kart *a) {
     p = (Unk0206bcb0_590_24 *) &q->mUnk_024;
     r = q->mUnk_008;
     c = p->mUnk_08;
-    b = (a->mUnk_44 & 8) != 0 ? 0x2000 : 0x1000;
+    b = (a->mUnk_44 & KART_44_DRIFTING) != 0 ? 0x2000 : 0x1000;
     v = a->mUnk_48;
     if ((v & 8) != 0) {
         if (data_021759c0->mUnk_00c != 6) {

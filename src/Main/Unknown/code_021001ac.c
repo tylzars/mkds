@@ -97,7 +97,7 @@ static inline s32 func_02101f7c_inline(KartItems *v1, Unk021759c0 *o, s32 a, u16
     v2 = TRUE;
     e = &v1[k];
     q = e->mKart;
-    if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
+    if (q->mState < KART_STATE_PUSH_FLIP && (q->mUnk_7c & 0x400020) == 0) {
         v2 = FALSE;
     }
     if (v2 == FALSE && (q->mUnk_4c & 0x10000800) == 0) {
@@ -241,7 +241,7 @@ void PickItemTeresaKartBattle(ItemTeresa *p, s32 a) {
             e = &v1[k];
             q = e->mKart;
             n = l = 1;
-            if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
+            if (q->mState < KART_STATE_PUSH_FLIP && (q->mUnk_7c & 0x400020) == 0) {
                 n = 0;
             }
             if (n == 0 && (q->mUnk_4c & 0x10000800) == 0) {
@@ -321,7 +321,7 @@ void func_02101964(ItemTeresa *p, s32 a) {
     g = GetCurrentCamera();
     v = &p->mUnk_000.mPos;
     k = m = TRUE;
-    if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
+    if (q->mState < KART_STATE_PUSH_FLIP && (q->mUnk_7c & 0x400020) == 0) {
         k = 0;
     }
     if (k == 0 && (q->mUnk_4c & 0x10000800) == 0) {
@@ -632,7 +632,7 @@ s32 func_02101014(ItemTeresa *p) {
         return 0xf;
     }
     a = b = 1;
-    if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
+    if (q->mState < KART_STATE_PUSH_FLIP && (q->mUnk_7c & 0x400020) == 0) {
         a = 0;
     }
     if (a == 0 && (q->mUnk_4c & 0x10000800) == 0) {

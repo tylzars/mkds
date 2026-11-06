@@ -60,7 +60,7 @@ void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         }
         a->mUnk_04 = v;
     }
-    if (b->mKart->mState != 0) {
+    if (b->mKart->mState != KART_STATE_NORMAL) {
         return;
     }
     if ((b->mKart->mUnk_48 & 0x10000020) != 0) {

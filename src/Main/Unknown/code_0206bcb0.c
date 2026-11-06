@@ -61,12 +61,12 @@ void func_0206ceb4(s32 *out, Kart *p) {
 }
 
 void func_0206cdd4(Kart *p) {
-    if (!(p->mUnk_44 & 0x10)) {
+    if (!(p->mUnk_44 & KART_44_ON_GROUND)) {
         p->mUnk_44 |= 0x8000;
     }
     if (p->mDriftCharge == 4) {
-        StartKartBoost(p, 1, p->mPhysicalParam->mUnk_0e);
-        p->mUnk_48 |= 0x80000;
+        StartKartBoost(p, KART_BOOST_MINI_TURBO, p->mPhysicalParam->mUnk_0e);
+        p->mUnk_48 |= KART_48_MINI_TURBO;
         p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             GetEntryKartCounters()->mUnk_04++;
@@ -120,7 +120,7 @@ void func_0206cc60(Kart *p, int arg) {
         p->mUnk_38a = (s32) (((s64) p->mUnk_38a * 0xf33) >> 12);
     }
     AdvanceKartDriftCharge(p);
-    if (!(p->mUnk_44 & 0x10)) {
+    if (!(p->mUnk_44 & KART_44_ON_GROUND)) {
         return;
     }
     func_01ffc9e8(p, 1);
@@ -179,10 +179,10 @@ recheck:
     }
     f = p->mUnk_44;
     g = p->mTurnDirection;
-    if (!(f & 8) && (f & 0x10)) {
+    if (!(f & KART_44_DRIFTING) && (f & KART_44_ON_GROUND)) {
         if ((f & 3) && p->mVelocityLength > (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * 0x8cd) >> 12) &&
             g != 0 && (u16) (data_02175628[k = p->mEntryIndex].mBits & 0x100)) {
-            p->mUnk_44 |= 8;
+            p->mUnk_44 |= KART_44_DRIFTING;
             p->mDriftCharge = 1;
             if (p->mTurnDirection > 0) {
                 p->mAwayTurnCounter = &p->mLeftTurnCount;
@@ -202,16 +202,16 @@ recheck:
         p->mUnk_44 &= 0xfffff7fc;
     }
     f = p->mUnk_44;
-    if (f & 8) {
+    if (f & KART_44_DRIFTING) {
         k = p->mEntryIndex;
         if (!((u16) (data_02175628[k].mBits & 0x100) && (p->mUnk_48 & 2) &&
               p->mVelocityLength >= p->mPhysicalParam->mBaseSpeedLimit / 2 && !(f & 0x2000c0))) {
-            if (!(f & 0x10)) {
+            if (!(f & KART_44_ON_GROUND)) {
                 p->mUnk_44 |= 0x8000;
             }
             if (p->mDriftCharge == 4) {
-                StartKartBoost(p, 1, p->mPhysicalParam->mUnk_0e);
-                p->mUnk_48 |= 0x80000;
+                StartKartBoost(p, KART_BOOST_MINI_TURBO, p->mPhysicalParam->mUnk_0e);
+                p->mUnk_48 |= KART_48_MINI_TURBO;
                 p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                     GetEntryKartCounters()->mUnk_04++;
@@ -228,11 +228,11 @@ recheck:
             p->mLeftTurnCount = p->mRightTurnCount;
             p->mTurnCountTimer = 0;
             StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
-        } else if (f & 0x10) {
+        } else if (f & KART_44_ON_GROUND) {
             func_0206cc60(p, 0);
         }
     }
-    if (hasB && (p->mUnk_44 & 0x10)) {
+    if (hasB && (p->mUnk_44 & KART_44_ON_GROUND)) {
         int turn = 0;
         int dot;
         int ang;
@@ -261,7 +261,7 @@ recheck:
         } else if (p->mTurnAngle < -0x2af8) {
             p->mTurnAngle = -0x2af8;
         }
-        if (!(p->mUnk_44 & 8)) {
+        if (!(p->mUnk_44 & KART_44_DRIFTING)) {
             return;
         }
         p->mUnk_38a = (s32) (((s64) p->mVelocityLength * 0x1a) >> 12);
@@ -276,7 +276,7 @@ recheck:
     if (p->mUnk_4c & 0x10000000) {
         return;
     }
-    if (!(p->mUnk_44 & 0x10)) {
+    if (!(p->mUnk_44 & KART_44_ON_GROUND)) {
         return;
     }
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -328,7 +328,7 @@ int func_0206c494(Kart *p) {
             p->mTurnDirection = 1;
             delta = -500;
         }
-        if (p->mUnk_44 & 0x10) {
+        if (p->mUnk_44 & KART_44_ON_GROUND) {
             if (GetKartTurnEffects(p->mIndex)->mTurnStartPresent == 0 && (p->mUnk_4c & 0x8000)) {
                 t = GetKartTurnEffects(p->mIndex);
                 ResetKartLevel4Effects(t);
@@ -431,7 +431,7 @@ void func_0206c11c(Kart *p) {
 }
 
 BOOL func_0206c0e0(Kart *p) {
-    if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || p->mState != 0) {
+    if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || p->mState != KART_STATE_NORMAL) {
         return TRUE;
     }
     return FALSE;
@@ -452,7 +452,7 @@ BOOL func_0206c094(Kart *p) {
     return (p->mUnk_4c & 0x800000) != 0;
 }
 
-void StartKartState(Kart *p, int mode) {
+void StartKartState(Kart *p, KartState mode) {
     p->mUnk_48 &= 0xdfe77fdf;
     p->mBoostTimer = 0;
     p->mUnk_538.mUnk_00 = 0;
@@ -482,7 +482,7 @@ void StartKartState(Kart *p, int mode) {
     }
 }
 
-BOOL TryStartKartState(Kart *p, int a) {
+BOOL TryStartKartState(Kart *p, KartState a) {
     BOOL ok;
     BOOL res;
     BOOL t;
@@ -492,20 +492,20 @@ BOOL TryStartKartState(Kart *p, int a) {
     if (f & 0x400000) {
         ok = FALSE;
     } else if (p->mUnk_7c & 0x200) {
-        if (p->mState == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
+        if (p->mState == KART_STATE_NORMAL && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
             ok = TRUE;
         } else {
             ok = FALSE;
         }
     } else {
         switch (a) {
-            case 1:
-            case 2:
+            case KART_STATE_1:
+            case KART_STATE_SPIN:
                 res = TRUE;
                 if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
                     v = p->mState;
                     t = FALSE;
-                    if (v != 0 && v != 1 && v != 2) {
+                    if (v != KART_STATE_NORMAL && v != KART_STATE_1 && v != KART_STATE_SPIN) {
                         t = TRUE;
                     }
                     if (t == FALSE) {
@@ -519,7 +519,7 @@ BOOL TryStartKartState(Kart *p, int a) {
                 if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
                     v = p->mState;
                     t = FALSE;
-                    if (v != 0 && v != 1 && v != 2) {
+                    if (v != KART_STATE_NORMAL && v != KART_STATE_1 && v != KART_STATE_SPIN) {
                         t = TRUE;
                     }
                     if (t == FALSE) {
@@ -546,7 +546,7 @@ BOOL func_0206bcb0(Kart *p, int a, int b) {
     int v;
     u32 f;
 
-    x = s != 1 && s != 2;
+    x = s != KART_STATE_1 && s != KART_STATE_SPIN;
     if (x == FALSE) {
         if (p->mYRotationCount * 0xffff - p->mYRotationAngleSum > 0xffff || (p->mUnk_7c & 0x200)) {
             return FALSE;
@@ -556,7 +556,7 @@ BOOL func_0206bcb0(Kart *p, int a, int b) {
     if (f & 0x400000) {
         ok = FALSE;
     } else if (p->mUnk_7c & 0x200) {
-        if (p->mState == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
+        if (p->mState == KART_STATE_NORMAL && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
             ok = TRUE;
         } else {
             ok = FALSE;
@@ -566,7 +566,7 @@ BOOL func_0206bcb0(Kart *p, int a, int b) {
         if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
             v = p->mState;
             t = FALSE;
-            if (v != 0 && s != 1 && s != 2) {
+            if (v != KART_STATE_NORMAL && s != KART_STATE_1 && s != KART_STATE_SPIN) {
                 t = TRUE;
             }
             if (t == FALSE) {

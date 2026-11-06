@@ -167,7 +167,7 @@ void func_01ffa11c(Kart *p, const Vec3 *a) {
 // Counts mAirborneFrames, also clears mUnk_234, sets or clears bit 0x4000 and stores mLastGroundY. Not run while the
 // kart is below y = 0.
 void UpdateKartAirborne(Kart *p) {
-    if (p->mUnk_44 & 0x10) {
+    if (p->mUnk_44 & KART_44_ON_GROUND) {
         p->mAirborneFrames = 0;
         p->mUnk_234 = 0;
         p->mUnk_44 = p->mUnk_44 & ~0x4000;
@@ -239,7 +239,7 @@ void RefreshKartSurface(Kart *p) {
     }
     p->mUnk_240 = p->mPhysicalParam->mUnk_38[c];
     if (p->mUnk_48 & 0x40000000) {
-        if (p->mUnk_44 & 0x10) {
+        if (p->mUnk_44 & KART_44_ON_GROUND) {
             if (k != 0xb) {
                 p->mUnk_48 = p->mUnk_48 & ~0x40000000;
             }
@@ -253,10 +253,10 @@ void func_01ff9d18(Kart *p) {
     s32 d;
     enum { K0 } j;
 
-    if (p->mUnk_48 & 0x80000) {
+    if (p->mUnk_48 & KART_48_MINI_TURBO) {
         p->mUnk_23c = p->mUnk_23c - 1;
         if (p->mUnk_23c <= 0) {
-            p->mUnk_48 = p->mUnk_48 & ~0x80000;
+            p->mUnk_48 = p->mUnk_48 & ~KART_48_MINI_TURBO;
             p->mUnk_23c = 0;
         }
     }
@@ -291,7 +291,7 @@ void func_01ff9d18(Kart *p) {
         d = -d;
     }
     if (d <= 2) {
-        StartKartBoost(p, 3, 10);
+        StartKartBoost(p, KART_BOOST_RESPAWN, 10);
     }
     p->mUnk_4c = p->mUnk_4c & ~0x400;
 }
@@ -348,7 +348,7 @@ void func_01ff9b70(Kart *p) {
     }
     p->mEffectVelocity = p->mVelocity;
     f = p->mUnk_44;
-    if (f & 0x10) {
+    if (f & KART_44_ON_GROUND) {
         if (!(f & 0x1000)) {
             p->mEffectVelocity.y = p->mEffectVelocity.y - p->mVerticalSpeed;
         }

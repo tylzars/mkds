@@ -34,7 +34,7 @@
 void StartKartState2(Kart *p, int a, int b) {
     int d = 1;
 
-    StartKartState(p, 2);
+    StartKartState(p, KART_STATE_SPIN);
     if (p->mUnk_44 & 0xa) {
         if (p->mTurnDirection == 1) {
             d = -1;
@@ -67,7 +67,7 @@ void AdvanceKartState1And2(Kart *p) {
     }
     p->mUnk_48 |= 0x44000;
     p->mUnk_23a = 0xa;
-    p->mState = 0;
+    p->mState = KART_STATE_NORMAL;
     p->mUnk_4c &= ~0x30;
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
@@ -78,7 +78,7 @@ void AdvanceKartState1And2(Kart *p) {
 }
 
 BOOL TryStartKartState6(Kart *p) {
-    if (!TryStartKartState(p, 6)) {
+    if (!TryStartKartState(p, KART_STATE_LAUNCH_DOUBLE_FLIP)) {
         return FALSE;
     }
     StartKartState6(p);
@@ -109,7 +109,7 @@ void StartKartState6(Kart *p) {
         }
         func_02080ee4(p);
     }
-    p->mState = 6;
+    p->mState = KART_STATE_LAUNCH_DOUBLE_FLIP;
     p->mUnk_4c |= 0x10;
     p->mVerticalSpeed = 0x6000;
     p->mRotationAngleSum = 0;
@@ -183,7 +183,7 @@ void AdvanceKartState6(Kart *p) {
     }
     QuaternionNormalize(&p->mRotationQuaternion, &p->mRotationQuaternion);
     if (!(p->mUnk_4c & 0x80000000)) {
-        if ((u32) p->mUnk_348 > 2 && (p->mUnk_340 >= p->mPos.y || (p->mUnk_44 & 0x10))) {
+        if ((u32) p->mUnk_348 > 2 && (p->mUnk_340 >= p->mPos.y || (p->mUnk_44 & KART_44_ON_GROUND))) {
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                 SetCameraHeightHold(0);
             }
@@ -204,7 +204,7 @@ void AdvanceKartState6(Kart *p) {
     if (p->mRotationEndFrames < 0x1e) {
         return;
     }
-    p->mState = 0;
+    p->mState = KART_STATE_NORMAL;
     p->mUnk_4c &= ~0x30;
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
@@ -213,7 +213,7 @@ void AdvanceKartState6(Kart *p) {
         func_02088c7c(p->mUnk_310);
     }
     p->mUnk_4c &= ~0x80000010;
-    if (p->mUnk_44 & 0x10) {
+    if (p->mUnk_44 & KART_44_ON_GROUND) {
         p->mTurnAngle = 0;
     }
 }
@@ -228,7 +228,7 @@ BOOL TryStartKartState3(Kart *p) {
     if (f & 0x400000) {
         v1 = FALSE;
     } else if (p->mUnk_7c & 0x200) {
-        if (p->mState == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
+        if (p->mState == KART_STATE_NORMAL && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
             v1 = TRUE;
         } else {
             v1 = FALSE;
@@ -238,7 +238,7 @@ BOOL TryStartKartState3(Kart *p) {
         if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
             v = p->mState;
             c = FALSE;
-            if (v != 0 && v != 1 && v != 2) {
+            if (v != KART_STATE_NORMAL && v != KART_STATE_1 && v != KART_STATE_SPIN) {
                 c = TRUE;
             }
             if (c == FALSE) {
@@ -260,7 +260,7 @@ BOOL TryStartKartState3(Kart *p) {
 void StartKartState3(Kart *p) {
     Vec3 v;
 
-    StartKartState(p, 3);
+    StartKartState(p, KART_STATE_FLIP);
     p->mUnk_4c |= 0x10;
     p->mRotationAngle = 0;
     p->mRotationAnglePerFrame = 0x666;
@@ -326,7 +326,7 @@ void AdvanceKartState3(Kart *p) {
     if (p->mRotationEndFrames < data_usa_021654c4) {
         return;
     }
-    p->mState = 0;
+    p->mState = KART_STATE_NORMAL;
     p->mUnk_4c &= ~0x30;
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
@@ -349,7 +349,7 @@ BOOL TryStartKartState4(Kart *p, Unk0206b020 *a) {
     if (f & 0x400000) {
         v1 = FALSE;
     } else if (p->mUnk_7c & 0x200) {
-        if (p->mState == 0 && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
+        if (p->mState == KART_STATE_NORMAL && !(p->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
             v1 = TRUE;
         } else {
             v1 = FALSE;
@@ -359,7 +359,7 @@ BOOL TryStartKartState4(Kart *p, Unk0206b020 *a) {
         if (!(f & 0x10000040) && !(p->mUnk_48 & 0x1800)) {
             v = p->mState;
             c = FALSE;
-            if (v != 0 && v != 1 && v != 2) {
+            if (v != KART_STATE_NORMAL && v != KART_STATE_1 && v != KART_STATE_SPIN) {
                 c = TRUE;
             }
             if (c == FALSE) {
@@ -390,7 +390,7 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
     s32 y;
     s32 z;
 
-    StartKartState(p, 4);
+    StartKartState(p, KART_STATE_PUSH_FLIP);
     p->mUnk_4c |= 0x10;
     p->mRotationAngle = 0;
     p->mRotationAngleSum = 0;
@@ -469,7 +469,7 @@ void AdvanceKartState4(Kart *p) {
     if (p->mRotationEndFrames < 0x1e) {
         return;
     }
-    p->mState = 0;
+    p->mState = KART_STATE_NORMAL;
     p->mUnk_4c &= ~0x30;
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
@@ -477,7 +477,7 @@ void AdvanceKartState4(Kart *p) {
     if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
-    if (p->mUnk_44 & 0x10) {
+    if (p->mUnk_44 & KART_44_ON_GROUND) {
         p->mTurnAngle = 0;
     }
 }
@@ -490,7 +490,7 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
     s32 y;
     s32 z;
 
-    StartKartState(p, 5);
+    StartKartState(p, KART_STATE_PUSH_DOUBLE_FLIP);
     v = *a;
     v.y = 0;
     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16) {
@@ -584,7 +584,7 @@ void AdvanceKartState5(Kart *p) {
     if (p->mRotationEndFrames < 10) {
         return;
     }
-    p->mState = 0;
+    p->mState = KART_STATE_NORMAL;
     p->mUnk_4c &= ~0x30;
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
@@ -592,7 +592,7 @@ void AdvanceKartState5(Kart *p) {
     if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
         func_02088c7c(p->mUnk_310);
     }
-    if (p->mUnk_44 & 0x10) {
+    if (p->mUnk_44 & KART_44_ON_GROUND) {
         p->mTurnAngle = 0;
     }
 }

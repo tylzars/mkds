@@ -234,7 +234,7 @@ void func_020c97c0(void) {
                         data_0217b428->mUnk_040[i] = 0;
                     }
                     GetKartScale(&data_0217b428->mUnk_0a0[i], i);
-                    if (GetKart(i)->mState != 0) {
+                    if (GetKart(i)->mState != KART_STATE_NORMAL) {
                         data_0217b428->mUnk_110[i]++;
                         data_0217b428->mUnk_100[i] = (data_0217b428->mUnk_110[i] << 12) % 0x10000;
                     } else {
@@ -257,7 +257,7 @@ void func_020c97c0(void) {
                     data_0217b428->mUnk_000[i] = 1;
                     data_0217b428->mUnk_040[i] = func_020b4dc4(i);
                     GetKartScale(&data_0217b428->mUnk_0a0[i], i);
-                    if (GetKart(i)->mState != 0) {
+                    if (GetKart(i)->mState != KART_STATE_NORMAL) {
                         data_0217b428->mUnk_110[i]++;
                         data_0217b428->mUnk_100[i] = (data_0217b428->mUnk_110[i] << 12) % 0x10000;
                     } else {

@@ -42,7 +42,7 @@ static inline s32 func_0206dbf8_inline(Kart *q) {
     if (f & 0x400000) {
         c = FALSE;
     } else if (q->mUnk_7c & 0x200) {
-        if (q->mState == 0 && !(q->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
+        if (q->mState == KART_STATE_NORMAL && !(q->mUnk_48 & 0x1800) && !(f & 0x10000040)) {
             c = TRUE;
         } else {
             c = FALSE;
@@ -52,7 +52,7 @@ static inline s32 func_0206dbf8_inline(Kart *q) {
         if (!(f & 0x10000040) && !(q->mUnk_48 & 0x1800)) {
             u = FALSE;
             v = q->mState;
-            if (v != 0 && v != 1 && v != 2) {
+            if (v != KART_STATE_NORMAL && v != KART_STATE_1 && v != KART_STATE_SPIN) {
                 u = TRUE;
             }
             if (u == FALSE) {
@@ -301,7 +301,7 @@ void func_0206d578(Kart *p) {
     ComputeKartPointAlongUp(&p->mUnk_1f0, p->mUnk_510, 0x400, p);
     VEC_MultAdd(((s64) p->mRadius * -0x4000) >> 12, &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
     if (p->mIndex == GetRaceUpdateFramesMod8() && !(p->mUnk_4c & 0x10002000)) {
-        if (p->mVelocityLength > 0x4000 && p->mState == 0) {
+        if (p->mVelocityLength > 0x4000 && p->mState == KART_STATE_NORMAL) {
             for (i = 0; i < data_0217b5a8; i++) {
                 q = data_0217b5c4[i];
                 if (q->mVelocityLength >= 0x2000 && (data_0217b5bc[i] & 0x800) && q != p && !(q->mUnk_7c & 0x402000)) {
@@ -377,6 +377,7 @@ void func_0206d18c(Kart *p) {
             }
             break;
         case 3:
+            // r is still 0 here, KART_BOOST_ITEM_OR_SURFACE.
             StartKartBoost(p, r, 0x5a);
             p->mUnk_48 |= 0x100000;
             p->mUnk_538.mUnk_00 = 0x5a;
@@ -479,12 +480,12 @@ void func_0206d138(Kart *p) {
     func_0207b054(p, 2, 0);
 }
 
-void StartKartBoost(Kart *p, int a, int b) {
+void StartKartBoost(Kart *p, KartBoostKind a, int b) {
     s32 c;
     u32 d;
     s16 e;
     enum { K0 } f;
-    if (p->mState != 0) {
+    if (p->mState != KART_STATE_NORMAL) {
         return;
     }
     d = p->mUnk_48 & 0x1000;
@@ -494,12 +495,12 @@ void StartKartBoost(Kart *p, int a, int b) {
     if (p->mUnk_4c & 0x10000000) {
         return;
     }
-    p->mUnk_48 |= 0x20;
+    p->mUnk_48 |= KART_48_BOOST;
     e = p->mBoostTimer;
     if (b > e) {
         p->mBoostTimer = b;
     }
-    if (a != 1 && a != 3) {
+    if (a != KART_BOOST_MINI_TURBO && a != KART_BOOST_RESPAWN) {
         p->mUnk_48 |= 0x20000000;
     }
     func_0210a53c(p);
@@ -514,7 +515,7 @@ void StartKartBoost(Kart *p, int a, int b) {
         func_02084034(f, p);
         SetCameraHalfFovAngleGoal(0x1770);
         func_02055c80(5);
-        if (a != 3) {
+        if (a != KART_BOOST_RESPAWN) {
             return;
         }
         StartSound(&p->mSoundSource, 0xa2, 0x7f, 0);

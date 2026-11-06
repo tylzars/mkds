@@ -44,7 +44,7 @@ void UpdateKartItems(KartItems *p) {
     }
     p->mUnk_204 = FALSE;
     if (p->mUnk_20c != FALSE) {
-        if (func_01ffc67c(q) == FALSE && !(q->mUnk_48 & 0x10000) && (q->mUnk_44 & 0x10)) {
+        if (func_01ffc67c(q) == FALSE && !(q->mUnk_48 & 0x10000) && (q->mUnk_44 & KART_44_ON_GROUND)) {
             p->mUnk_20c = FALSE;
         }
     } else if (func_01ffc67c(q) != FALSE || (q->mUnk_48 & 0x10000)) {
@@ -58,7 +58,7 @@ void UpdateKartItems(KartItems *p) {
     }
     if (b->mUnk_00 != 0x13) {
         if ((p->mFlags & 0x242) == 0x242 && b->mUnk_00 != 0x13 && b->mUnk_20 == 0 && (p->mFlags & 0x200) &&
-            q->mState == 0) {
+            q->mState == KART_STATE_NORMAL) {
             func_020ee2e4(a, b);
         }
         func_020f4884(b);

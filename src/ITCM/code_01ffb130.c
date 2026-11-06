@@ -127,13 +127,13 @@ void func_01ffb130(Kart *p) {
     } else {
         ApplyKartGravity(p);
     }
-    if (p->mUnk_44 & 0x10) {
+    if (p->mUnk_44 & KART_44_ON_GROUND) {
         GetKartForward(p, &v2);
         if (!(p->mUnk_48 & 6) && p->mUnk_244.y > 0 && (v2.y > 0 ? v2.y : -v2.y) > 0xcd && p->mUnk_38c <= 0) {
             p->mForwardSpeed += (s32) (((s64) -v2.y * 0x19a) >> 12);
         }
     }
-    if ((p->mUnk_44 & 0x10) || (p->mUnk_4c & 0x10000000)) {
+    if ((p->mUnk_44 & KART_44_ON_GROUND) || (p->mUnk_4c & 0x10000000)) {
         MTX_RotAxis33((MtxFx43 *) &m1, &p->mUnk_244, gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2],
                       gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2 + 1]);
         if (p->mUnk_48 & 1) {
@@ -178,14 +178,14 @@ void func_01ffb130(Kart *p) {
         p->mUnk_05c.y = -p->mUnk_50.y;
         p->mUnk_05c.z = -p->mUnk_50.z;
     }
-    if (p->mState == 6) {
+    if (p->mState == KART_STATE_LAUNCH_DOUBLE_FLIP) {
         v1.y = 0;
     }
     p->mVelocity = v1;
     VEC_Add(&p->mVelocity, &p->mUnk_374, &p->mVelocity);
     p->mVelocity.y += p->mVerticalSpeed;
     VEC_MultAdd(p->mUnk_274, &p->mUnk_268, &p->mVelocity, &p->mVelocity);
-    if (!(p->mUnk_44 & 0x10) && p->mAirborneFrames > 5 && p->mVelocity.y < -0x6000) {
+    if (!(p->mUnk_44 & KART_44_ON_GROUND) && p->mAirborneFrames > 5 && p->mVelocity.y < -0x6000) {
         p->mVelocity.y = -0x6000;
     }
     VEC_Add(&p->mVelocity, &p->mUnk_2f0, &p->mVelocity);
@@ -205,7 +205,7 @@ void func_01ffb130(Kart *p) {
         VEC_Add(&p->mPos, &p->mVelocity, &p->mPos);
         p->mUnk_38c = 0x1000;
     }
-    f = (p->mUnk_44 & 0x10) ? 0xee1 : 0xfae;
+    f = (p->mUnk_44 & KART_44_ON_GROUND) ? 0xee1 : 0xfae;
     p->mUnk_2d8.x = ((s64) p->mUnk_2d8.x * f) >> 12;
     p->mUnk_2d8.y = ((s64) p->mUnk_2d8.y * f) >> 12;
     p->mUnk_2d8.z = ((s64) p->mUnk_2d8.z * f) >> 12;

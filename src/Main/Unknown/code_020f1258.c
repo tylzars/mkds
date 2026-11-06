@@ -162,7 +162,7 @@ int func_020f1258(ItemKouraR *a, int i, s32 c, u32 b) {
             }
         }
     }
-    if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || (n != 1 && p->mState != 0)) {
+    if ((p->mUnk_7c & 0x402020) || (p->mUnk_4c & 0x800) || (n != 1 && p->mState != KART_STATE_NORMAL)) {
         return 0;
     }
     GetKartPos(&v, i);

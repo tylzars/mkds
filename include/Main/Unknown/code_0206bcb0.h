@@ -194,9 +194,37 @@ typedef struct Unk0206bcb0_A {
 #define KART_7C_MODELS_ENTRY_008_SET 0x10
 
 // Bits of Kart.mUnk_44.
+// Set from the start of a drift until it ends.
+#define KART_44_DRIFTING 0x8
+// Set while the Kart is on the ground; the hop clears it and the landing sets it again.
+#define KART_44_ON_GROUND 0x10
 // Set on both Karts of a pair when the near test passed; cleared at the start of the next step (inside the literal
 // 0x57ffffdf).
 #define KART_44_NEAR_KART 0x20
+
+// Bits of Kart.mUnk_48.
+// Set while a boost runs (StartKartBoost sets it; mBoostTimer counts it down).
+#define KART_48_BOOST 0x20
+// Set from the release of a fully charged drift until mUnk_23c has counted down.
+#define KART_48_MINI_TURBO 0x80000
+
+// The values of Kart.mState; each indexes gKartStateFunctions.
+typedef enum {
+    // Ordinary driving; the handler does nothing.
+    KART_STATE_NORMAL,
+    // No code starts it; it shares the handler of KART_STATE_SPIN.
+    KART_STATE_1,
+    // The Kart turns about its vertical axis mYRotationCount times in place.
+    KART_STATE_SPIN,
+    // The Kart hops and rotates once; started with no direction.
+    KART_STATE_FLIP,
+    // The Kart is pushed along a direction and rotates once.
+    KART_STATE_PUSH_FLIP,
+    // The Kart is pushed along a direction and rotates twice.
+    KART_STATE_PUSH_DOUBLE_FLIP,
+    // The Kart is thrown up and rotates twice with its forward speed cleared.
+    KART_STATE_LAUNCH_DOUBLE_FLIP
+} KartState;
 
 typedef struct Kart {
     // Sound source of the Kart (the sounds started on it).
@@ -269,7 +297,7 @@ typedef struct Kart {
         };
         MtxFx43 mUnk_150_m;
     };
-    /* 180 */ vs32 mState;
+    /* 180 */ volatile KartState mState;
     /* 184 */ MtxFx43 mWobbleMatrix;
     /* 1b4 */ MtxFx43 *mDrawMatrix;
     // Collision center of the Kart: the position moved up by mRadius plus 0x400 along the up vector. The
@@ -379,7 +407,7 @@ typedef struct Kart {
     /* 370 */ u16 mUnk_370;
     /* 372 */ u8 mUnk_372[2];
     /* 374 */ Vec3 mUnk_374;
-    // Calls of UpdateKartAirborne since the floor-hit bit (mUnk_44 & 0x10) was last set; not every step (skipped below
+    // Calls of UpdateKartAirborne since KART_44_ON_GROUND was last set; not every step (skipped below
     // y = 0).
     /* 380 */ u32 mAirborneFrames;
     // Draw gate of the kart: 0xffff while it is drawn, 0 when DrawKart skips it (hidden states, or the off phase of
@@ -518,7 +546,7 @@ extern Kart *data_0217b8c8;
 
 extern int data_02154f10[];
 
-void StartKartState(Kart *p, int mode);
+void StartKartState(Kart *p, KartState mode);
 BOOL func_0206c094(Kart *p);
 int func_0206c0a8(Kart *p);
 BOOL func_0206c0b0(Kart *p);
@@ -547,7 +575,7 @@ void func_020718c8(void *p, int arg);
 void func_02071944(void *p, int arg);
 #include "Main/Unknown/code_021035ac.h"
 BOOL func_0206bcb0(Kart *p, int a, int b);
-BOOL TryStartKartState(Kart *p, int a);
+BOOL TryStartKartState(Kart *p, KartState a);
 void func_0206c5e4(Kart *p);
 void GetKartForward(const Kart *p, Vec3 *out);
 void GetKartUp(const Kart *p, Vec3 *out);

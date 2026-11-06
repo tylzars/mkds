@@ -3,7 +3,7 @@
 #include "Main/Unknown/unk_02165000.h"
 
 void func_01ffb9e0(Kart *p) {
-    if ((p->mUnk_44 & 0x400) || p->mState != 0) {
+    if ((p->mUnk_44 & 0x400) || p->mState != KART_STATE_NORMAL) {
         p->mForwardSpeed = (s64) p->mForwardSpeed * p->mPhysicalParam->mUnk_2c >> 12;
     }
     if (!(p->mUnk_48 & 0x2000)) {
@@ -21,14 +21,14 @@ void func_01ffb930(s32 *a, Kart *p) {
     u32 f;
     s32 c;
 
-    if (p->mState != 0) {
+    if (p->mState != KART_STATE_NORMAL) {
         return;
     }
     f = p->mUnk_44;
-    if (f & 8) {
+    if (f & KART_44_DRIFTING) {
         return;
     }
-    if (!(f & 0x10)) {
+    if (!(f & KART_44_ON_GROUND)) {
         return;
     }
     if (*a <= 0x3000) {

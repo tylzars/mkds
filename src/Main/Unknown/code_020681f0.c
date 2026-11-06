@@ -373,7 +373,7 @@ void func_02068494(Kart *a, s32 b, s32 c) {
             a->mUnk_48 = a->mUnk_48 | 0x2000;
         }
     }
-    a->mUnk_44 = a->mUnk_44 | 0x10;
+    a->mUnk_44 = a->mUnk_44 | KART_44_ON_GROUND;
     if ((a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0) {
         if (c != 0) {
             a->mUnk_7c = a->mUnk_7c | 0x10000;

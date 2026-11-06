@@ -107,7 +107,7 @@ u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
 
     v1 = *a;
     v2 = *b;
-    if (o->mState != 0 || (o->mUnk_48 & 0x200) != 0 || IsKartEliminated(o->mIndex) != FALSE) {
+    if (o->mState != KART_STATE_NORMAL || (o->mUnk_48 & 0x200) != 0 || IsKartEliminated(o->mIndex) != FALSE) {
         return 0;
     }
     if (v1 == 1) {

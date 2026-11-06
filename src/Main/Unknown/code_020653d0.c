@@ -72,7 +72,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     Vec3 *u;
 
     f = a->mUnk_0c;
-    b = (p->mUnk_44 & 0x10) != 0;
+    b = (p->mUnk_44 & KART_44_ON_GROUND) != 0;
     q = p->mUnk_514;
     v.x = a->mUnk_00 << 10;
     v.y = a->mUnk_02 << 10;
@@ -91,9 +91,9 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     q->mUnk_40 = a->mUnk_08;
     p->mTurnAngle = a->mUnk_08;
     if (b) {
-        p->mUnk_44 |= 0x10;
+        p->mUnk_44 |= KART_44_ON_GROUND;
     } else {
-        p->mUnk_44 &= ~0x10;
+        p->mUnk_44 &= ~KART_44_ON_GROUND;
     }
     if (p->mUnk_514->mUnk_48 & 2) {
         p->mUnk_44 |= 2;
@@ -101,9 +101,9 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         p->mUnk_44 &= ~2;
     }
     if (p->mUnk_514->mUnk_48 & 8) {
-        p->mUnk_44 |= 8;
+        p->mUnk_44 |= KART_44_DRIFTING;
     } else {
-        p->mUnk_44 &= ~8;
+        p->mUnk_44 &= ~KART_44_DRIFTING;
     }
     if (((p->mUnk_514->mUnk_30 & 0x10000) != 0) != ((f & 0x10000) != 0)) {
         s = p->mHeadingAngle;
@@ -199,7 +199,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 if (p->mUnk_514->mUnk_44 & 1) {
                     p->mVerticalSpeed = 0;
                 }
-                k = (p->mUnk_44 & 0x10) ? 0xee1 : 0xfae;
+                k = (p->mUnk_44 & KART_44_ON_GROUND) ? 0xee1 : 0xfae;
                 p->mUnk_2d8.x = ((s64) p->mUnk_2d8.x * k) >> 12;
                 p->mUnk_2d8.y = ((s64) p->mUnk_2d8.y * k) >> 12;
                 p->mUnk_2d8.z = ((s64) p->mUnk_2d8.z * k) >> 12;
@@ -224,7 +224,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     p->mPos.x = v.x;
     p->mPos.z = v.z;
     c = 0;
-    if (((p->mUnk_514->mUnk_30 & 1) != 0) != ((f & 1) != 0) && (p->mUnk_44 & 0x10)) {
+    if (((p->mUnk_514->mUnk_30 & 1) != 0) != ((f & 1) != 0) && (p->mUnk_44 & KART_44_ON_GROUND)) {
         r = ((volatile Kart *) p)->mUnk_514;
         r->mUnk_64 = 0x1405;
         r->mUnk_60 = 0;
@@ -280,10 +280,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     }
     if (((p->mUnk_514->mUnk_30 & 0x40) != 0) != ((f & 0x40) != 0)) {
         if (p->mUnk_7c & 0x200) {
-            if ((p->mUnk_4c & 0x10000040) || p->mState == 4) {
+            if ((p->mUnk_4c & 0x10000040) || p->mState == KART_STATE_PUSH_FLIP) {
                 goto l1;
             }
-        } else if (p->mState == 5) {
+        } else if (p->mState == KART_STATE_PUSH_DOUBLE_FLIP) {
             goto l1;
         }
         StartSound(&p->mSoundSource, 0xe8, 0x7f, 0);
@@ -294,10 +294,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
     } else if (((p->mUnk_514->mUnk_30 & 0x20) != 0) != ((f & 0x20) != 0)) {
         if (p->mUnk_7c & 0x200) {
-            if ((p->mUnk_4c & 0x10000040) || p->mState == 4) {
+            if ((p->mUnk_4c & 0x10000040) || p->mState == KART_STATE_PUSH_FLIP) {
                 goto l2;
             }
-        } else if (p->mState == 4) {
+        } else if (p->mState == KART_STATE_PUSH_FLIP) {
             goto l2;
         }
         StartKartState4(p, &q->mUnk_98, 0);
@@ -341,10 +341,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         t = data_02154f88;
         o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == KART_STATE_PUSH_FLIP) {
                 goto l3;
             }
-        } else if (o->mState == 4) {
+        } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l3;
         }
         func_020653d0_inline(o, o2, &t);
@@ -360,10 +360,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         t = data_02154f88;
         o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == KART_STATE_PUSH_FLIP) {
                 goto l4;
             }
-        } else if (o->mState == 4) {
+        } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l4;
         }
         func_020653d0_inline(o, o2, &t);
@@ -379,10 +379,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         t = data_02154f88;
         o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == KART_STATE_PUSH_FLIP) {
                 goto l5;
             }
-        } else if (o->mState == 4) {
+        } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l5;
         }
         func_020653d0_inline(o, o2, &t);
@@ -398,10 +398,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         t = data_02154f88;
         o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == KART_STATE_PUSH_FLIP) {
                 goto l6;
             }
-        } else if (o->mState == 4) {
+        } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l6;
         }
         func_020653d0_inline(o, o2, &t);
@@ -420,10 +420,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         t = data_02154f88;
         o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == KART_STATE_PUSH_FLIP) {
                 goto l7;
             }
-        } else if (o->mState == 4) {
+        } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l7;
         }
         VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
@@ -441,10 +441,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         t = data_02154f88;
         o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == KART_STATE_PUSH_FLIP) {
                 goto l8;
             }
-        } else if (o->mState == 4) {
+        } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l8;
         }
         VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
@@ -462,10 +462,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         t = data_02154f88;
         o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == KART_STATE_PUSH_FLIP) {
                 goto l9;
             }
-        } else if (o->mState == 4) {
+        } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l9;
         }
         VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
@@ -483,10 +483,10 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         t = data_02154f88;
         o2 = GetKart(s);
         if (o->mUnk_7c & 0x200) {
-            if ((o->mUnk_4c & 0x10000040) || o->mState == 4) {
+            if ((o->mUnk_4c & 0x10000040) || o->mState == KART_STATE_PUSH_FLIP) {
                 goto l10;
             }
-        } else if (o->mState == 4) {
+        } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l10;
         }
         VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);

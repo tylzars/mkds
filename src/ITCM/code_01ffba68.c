@@ -294,9 +294,9 @@ void func_01ffc6c0(Kart *p) {
             func_01ffc558(p);
         }
         func_01ffc5a0(p);
-        if (p->mState == 0) {
+        if (p->mState == KART_STATE_NORMAL) {
             b = 0;
-            if (!(p->mUnk_44 & 8)) {
+            if (!(p->mUnk_44 & KART_44_DRIFTING)) {
                 b = func_0206c494(p);
             }
             a = func_01ffc27c(p, b);
@@ -323,11 +323,11 @@ void func_01ffc6c0(Kart *p) {
     } else if ((u16) (a & 0x10)) {
         p->mUnk_48 |= 0x10;
     }
-    p->mUnk_44 |= 0x10;
+    p->mUnk_44 |= KART_44_ON_GROUND;
 }
 
 BOOL func_01ffc67c(Kart *p) {
-    if (p->mState != 0 || (p->mUnk_48 & 0x6052840) || (p->mUnk_7c & 0x200000a8)) {
+    if (p->mState != KART_STATE_NORMAL || (p->mUnk_48 & 0x6052840) || (p->mUnk_7c & 0x200000a8)) {
         return TRUE;
     }
     return FALSE;
@@ -423,7 +423,7 @@ s32 func_01ffc27c(Kart *p, s32 a) {
         }
         return 1;
     }
-    if (!(f & 0x10)) {
+    if (!(f & KART_44_ON_GROUND)) {
         k = p->mEntryIndex;
         w = data_02175628[k].mBits;
         if ((u16) (w & 0x40)) {
@@ -464,13 +464,13 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
     k = p->mUnk_38a;
     p->mUnk_48 |= e;
     if (d != 0) {
-        if (!(p->mUnk_44 & 8)) {
+        if (!(p->mUnk_44 & KART_44_DRIFTING)) {
             p->mUnk_3ec = 0x32 * c;
         }
         return 1;
     }
     f = p->mUnk_44;
-    if (f & 8) {
+    if (f & KART_44_DRIFTING) {
         m = p->mTurnDirection * c;
         x = p->mPhysicalParam->mUnk_32;
         if (m > 0) {
@@ -482,7 +482,7 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
         m = data_usa_021654c0 * b;
         x = a - (s32) (((s64) m * p->mVelocityLengthRatio) >> 12);
     }
-    if (f & 0x10) {
+    if (f & KART_44_ON_GROUND) {
         p->mUnk_2d4 += c * 0x666;
         if (p->mUnk_2d4 > 0x1000) {
             p->mUnk_2d4 = 0x1000;
@@ -498,7 +498,7 @@ s32 func_01ffc158(Kart *p, s16 a, s16 b, s32 c, s32 d, u32 e) {
 
 void func_01ffc090(Kart *p, s32 a) {
     if (a == 0) {
-        if (p->mUnk_44 & 8) {
+        if (p->mUnk_44 & KART_44_DRIFTING) {
             p->mUnk_3ec = -p->mTurnDirection * ((p->mPhysicalParam->mUnk_32 + p->mUnk_38a) >> 1);
         }
         func_01ffc500(&p->mUnk_2d4);
@@ -548,7 +548,7 @@ void UpdateKartSpeedLimitGoal(Kart *p) {
         p->mUnk_dc = 0x1000;
     }
     f = p->mUnk_48;
-    if (f & 0x20) {
+    if (f & KART_48_BOOST) {
         if ((p->mUnk_4c & 0x10000040) || (f & 0x20000000)) {
             *q = p->mPhysicalParam->mBaseSpeedLimit;
             p->mUnk_dc = 0x1000;
@@ -581,7 +581,7 @@ void UpdateKartSpeedLimit(Kart *p) {
 
 void func_01ffbd9c(Kart *p) {
     FX_DivAsync(p->mVelocityLength, p->mSpeedLimit);
-    if (p->mUnk_44 & 0x10) {
+    if (p->mUnk_44 & KART_44_ON_GROUND) {
         Vec3CrossUnrounded(&p->mUnk_120, &p->mUnk_244, &p->mUnk_278);
     } else {
         GetKartForward(p, &p->mUnk_278);
@@ -603,7 +603,7 @@ void func_01ffba68(Kart *p) {
     s32 f;
     u32 g;
 
-    d = (p->mUnk_44 & 8) == 0;
+    d = (p->mUnk_44 & KART_44_DRIFTING) == 0;
     if (d) {
         v = p->mPhysicalParam->mUnk_14;
         a = p->mPhysicalParam->mUnk_18;
@@ -615,7 +615,7 @@ void func_01ffba68(Kart *p) {
     }
     c = v;
     f = p->mUnk_48;
-    if (f & 0x20) {
+    if (f & KART_48_BOOST) {
         func_0206ceb4(&v, p);
     } else if (f & 4) {
         v = -0x19a;
@@ -647,7 +647,7 @@ void func_01ffba68(Kart *p) {
     f = p->mUnk_48;
     if (f & 0x10000000) {
         p->mForwardSpeed += 0x1000;
-    } else if (p->mUnk_44 & 0x10) {
+    } else if (p->mUnk_44 & KART_44_ON_GROUND) {
         g = p->mUnk_4c;
         if (!(g & 0x20000000)) {
             if (f & 0x80) {
@@ -660,7 +660,7 @@ void func_01ffba68(Kart *p) {
         }
     }
     g = p->mUnk_44;
-    if ((g & 0x8000) && (g & 0x10)) {
+    if ((g & 0x8000) && (g & KART_44_ON_GROUND)) {
         p->mUnk_44 &= ~0x8000;
     }
     if (p->mHeadingAnglePerFrame != 0) {
@@ -671,7 +671,7 @@ void func_01ffba68(Kart *p) {
         p->mHeadingAngle += (u16) p->mHeadingAnglePerFrame;
     }
     g = p->mUnk_44;
-    if (!(g & 0x10) || !d || (g & 0x8008002)) {
+    if (!(g & KART_44_ON_GROUND) || !d || (g & 0x8008002)) {
         return;
     }
     if (p->mTurnAngle > 0) {

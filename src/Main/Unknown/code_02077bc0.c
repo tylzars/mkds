@@ -364,7 +364,7 @@ s32 func_0207a5c4(s32 a) {
 
 BOOL func_0207a574(void) {
     Kart *p = &gKarts[data_021759c0->mEntryIndex];
-    if (p->mState != 0 || (p->mUnk_48 & 0x4000000) != 0) {
+    if (p->mState != KART_STATE_NORMAL || (p->mUnk_48 & 0x4000000) != 0) {
         return TRUE;
     }
     return FALSE;
@@ -453,7 +453,7 @@ s32 func_0207a218(void) {
     s32 m = data_021759c0->mMode;
     if (m == MODE_MISSION_RUN) {
         Kart *p = &gKarts[data_021759c0->mEntryIndex];
-        if (p->mState != 0 || (p->mUnk_48 & 0x2000840) != 0 || (p->mUnk_44 & 0x10) == 0 ||
+        if (p->mState != KART_STATE_NORMAL || (p->mUnk_48 & 0x2000840) != 0 || (p->mUnk_44 & KART_44_ON_GROUND) == 0 ||
             (m != MODE_MISSION_RUN ? 0 : func_ov001_021816b4()) != 0) {
             r = FALSE;
         }

@@ -120,7 +120,7 @@ void CollideKartWithKarts(Kart *p) {
             b.z = -a.z;
             k = 0;
             c = FALSE;
-            if (p->mUnk_44 & 0x10) {
+            if (p->mUnk_44 & KART_44_ON_GROUND) {
                 f = VEC_DotProduct(&p->mUnk_244, &a);
                 a.x -= (s32) (((s64) p->mUnk_244.x * f) >> 12);
                 a.y -= (s32) (((s64) p->mUnk_244.y * f) >> 12);
@@ -134,7 +134,7 @@ void CollideKartWithKarts(Kart *p) {
                     a.z -= (s32) (((s64) p->mUnk_250.z * f) >> 12);
                 }
             }
-            if (q->mUnk_44 & 0x10) {
+            if (q->mUnk_44 & KART_44_ON_GROUND) {
                 f = VEC_DotProduct(&q->mUnk_244, &b);
                 b.x -= (s32) (((s64) q->mUnk_244.x * f) >> 12);
                 b.y -= (s32) (((s64) q->mUnk_244.y * f) >> 12);

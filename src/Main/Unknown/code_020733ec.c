@@ -167,7 +167,7 @@ void func_020733ec(Kart *p) {
     if (p->mUnk_2ca == -1) {
         p->mUnk_2ca = func_020d555c(&p->mUnk_1f0, ((s64) p->mPhysicalParam->mRadius << 15) >> 12, 0x800, p);
     }
-    p->mUnk_44 |= 0x10;
+    p->mUnk_44 |= KART_44_ON_GROUND;
     p->mUnk_4d0 = 0x64;
     p->mRadius = p->mPhysicalParam->mRadius;
     func_020719d0(p);

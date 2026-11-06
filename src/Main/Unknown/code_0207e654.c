@@ -232,7 +232,7 @@ void func_0207f8f8(Unk020888b4 *p) {
     s = q->mUnk_14;
     GetKartPos(&v, p->mIndex);
     func_0207f6f0(p, q, a, s, &v, t);
-    if (a->mState == 0) {
+    if (a->mState == KART_STATE_NORMAL) {
         func_0204360c(p->mKart->mEntryIndex, 1);
         VEC_Subtract(&p->mUnk_44, &v, &w);
         func_01ffd224(p, &w, t);
@@ -503,7 +503,7 @@ void func_0207ebfc(Unk020888b4 *p) {
             p->mUnk_94 = 0;
         }
     }
-    if (p->mUnk_90 == 3 && (q->mUnk_44 & 0x10)) {
+    if (p->mUnk_90 == 3 && (q->mUnk_44 & KART_44_ON_GROUND)) {
         a = &q->mUnk_12c;
         c = &q->mUnk_138;
         VEC_Subtract(&p->mUnk_44, &q->mPos, &v1);

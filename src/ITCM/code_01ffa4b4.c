@@ -124,7 +124,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
             if (p->mUnk_4c & 0x10000000) {
                 func_02090838(&p->mUnk_538.mUnk_2c, (Unk02080b1c_00 *) (gKartItems)[p->mIndex].mUnk_1f0.mUnk_00);
             }
-            if ((p->mUnk_7c & 2) && (f & 0x400000) && p->mState != 6) {
+            if ((p->mUnk_7c & 2) && (f & 0x400000) && p->mState != KART_STATE_LAUNCH_DOUBLE_FLIP) {
                 func_0208c1f4(p->mUnk_310);
             }
         }
@@ -148,7 +148,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                 if (f & 0x80000000) {
                     p->mUnk_1fc.y = 0;
                 }
-                p->mUnk_44 |= 0x10;
+                p->mUnk_44 |= KART_44_ON_GROUND;
                 if (p->mForwardSpeed != 0 || func_02070398(p, f, &w) == FALSE) {
                     func_01ff9cb0(p);
                     if (((s32(*)(Kart *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0) {
@@ -189,7 +189,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
     if (func_020d3d94()) {
         func_0206fe08(p);
     }
-    if ((p->mUnk_4c & 0x40000000) && p->mState == 0) {
+    if ((p->mUnk_4c & 0x40000000) && p->mState == KART_STATE_NORMAL) {
         func_0206f824(p, a, b1);
     }
     p->mUnk_274 = ((s64) p->mUnk_274 * 0xf33) >> 12;

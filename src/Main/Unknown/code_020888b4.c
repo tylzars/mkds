@@ -80,7 +80,7 @@ void func_02089c3c(Unk02089b4c *a, Unk020888b4 *b) {
         }
     }
     q = b->mKart;
-    if (q->mState != 0) {
+    if (q->mState != KART_STATE_NORMAL) {
         return;
     }
     if ((q->mUnk_48 & 0x10000020) == 0) {
@@ -313,7 +313,7 @@ void func_02089494(Unk020888b4 *p) {
             s->mUnk_18 = FALSE;
         }
     }
-    if (q->mState != 0) {
+    if (q->mState != KART_STATE_NORMAL) {
         return;
     }
     if (p->mUnk_c4 != FALSE) {

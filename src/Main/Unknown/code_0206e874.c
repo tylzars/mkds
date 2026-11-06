@@ -67,7 +67,7 @@ void func_0206edac(Kart *p, Vec3 *a) {
     }
     if ((!(p->mUnk_4c & 0x10000000) && p->mVelocity.y < 0 &&
          (p->mAirborneFrames > 0x19 || p->mLastGroundY - p->mPos.y > 0x1e000)) ||
-        p->mState == 6) {
+        p->mState == KART_STATE_LAUNCH_DOUBLE_FLIP) {
         s = VEC_DotProduct(a, &p->mVelocity);
         v.x = ((s64) a->x * s) >> 12;
         v.y = ((s64) a->y * s) >> 12;

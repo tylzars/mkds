@@ -69,7 +69,7 @@ void func_0206ff50(Kart *p, u32 a) {
         return;
     }
     if (a & 0x8000) {
-        if (p->mState == 6) {
+        if (p->mState == KART_STATE_LAUNCH_DOUBLE_FLIP) {
             return;
         }
         b = (u16) ((func_020d59f8(0x8000) & 0xe0) >> 5);
@@ -270,7 +270,7 @@ void func_0206f914(Kart *p) {
                 d = func_0208c16c(p->mUnk_310);
                 p->mUnk_3be = data_usa_02154a48[d - 1];
                 p->mUnk_44 |= 0x1800000;
-                StartKartBoost(p, 2, (s16) p->mUnk_3be);
+                StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mUnk_3be);
                 if (!(p->mUnk_48 & 0x840)) {
                     func_0210af40(p, p->mUnk_3cc, 5);
                 }
@@ -316,7 +316,7 @@ void func_0206f914(Kart *p) {
                 }
                 p->mUnk_3be = data_usa_02154a48[d - 1];
                 p->mUnk_44 |= 0x1800000;
-                StartKartBoost(p, 2, (s16) p->mUnk_3be);
+                StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mUnk_3be);
                 if (!(p->mUnk_48 & 0x840)) {
                     func_0210af40(p, p->mUnk_3cc, 5);
                 }
@@ -411,7 +411,7 @@ void func_0206f574(Kart *p, u32 a, Vec3 *b) {
     func_0206f04c(p, b, (p->mUnk_44 & 0x80) != 0, c, (s32) (e & 0x1f00) >> 8, ((e & 0xe0) << 11) >> 16, 2);
     p->mUnk_44 |= 0x80;
     p->mUnk_250 = *b;
-    if (p->mState == 6 && b->y < -0x800 && p->mVerticalSpeed > 0) {
+    if (p->mState == KART_STATE_LAUNCH_DOUBLE_FLIP && b->y < -0x800 && p->mVerticalSpeed > 0) {
         p->mVerticalSpeed = -p->mVerticalSpeed;
     }
     d = b->y;
@@ -476,7 +476,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         p->mTurnCountTimer = 0;
         p->mHeadingAnglePerFrame = 0;
         if (p->mVelocityLength > 0x1800) {
-            if (!(p->mUnk_48 & 0x20) && (m.x != 0 || m.y != 0 || m.z != 0) && c != 0x1000) {
+            if (!(p->mUnk_48 & KART_48_BOOST) && (m.x != 0 || m.y != 0 || m.z != 0) && c != 0x1000) {
                 func_020eaa14(&m, a, 0, 0x4cd, 0, &m);
                 p->mUnk_2d8.x = m.x;
                 p->mUnk_2d8.z = m.z;
@@ -545,7 +545,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     } else if (e == 4) {
         func_020813ec(p->mIndex, a);
     }
-    if (p->mState != 0) {
+    if (p->mState != KART_STATE_NORMAL) {
         p->mHeadingAnglePerFrame = 0;
     }
     return j;

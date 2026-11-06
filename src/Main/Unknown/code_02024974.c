@@ -209,7 +209,7 @@ void func_02024a88(Kart *a) {
     k = a->mVelocityLength;
     h = k - j;
     l = h > 0 ? 1 : 0;
-    if (g != 0 && a->mForwardSpeed > 0 && (a->mUnk_44 & 0x10) != 0) {
+    if (g != 0 && a->mForwardSpeed > 0 && (a->mUnk_44 & KART_44_ON_GROUND) != 0) {
         g = ((s64) q->mUnk_24 * k + 0x800) >> 12;
         if (g > 0x280000) {
             g = 0x280000;

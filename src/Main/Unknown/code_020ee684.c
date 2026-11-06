@@ -616,7 +616,7 @@ BOOL func_020f0154(KartItems *p) {
     if (IsRaceStarted() == 0) {
         return FALSE;
     }
-    if (b->mState != 0) {
+    if (b->mState != KART_STATE_NORMAL) {
         return FALSE;
     }
     if ((b->mUnk_4c & 0x20000000) != 0) {
@@ -1258,7 +1258,7 @@ void func_020ee748(Unk020eda5c *a) {
     c = a->mUnk_00c;
     n = a->mUnk_020;
     d = (u16) (((u32) (a->mUnk_068 * 0x1e)) >> 12);
-    if (a->mUnk_010->mState != 0) {
+    if (a->mUnk_010->mState != KART_STATE_NORMAL) {
         a->mUnk_176 = 0;
     } else {
         if (a->mUnk_176 < 0x578) {

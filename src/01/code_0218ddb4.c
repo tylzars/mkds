@@ -669,7 +669,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
         if (b->mUnk_0a8 != 0) {
             if (func_ov001_021871f8(b, 5) != 0) {
                 p = GetKart((u16) data_021759c0->mEntryIndex);
-                if (p->mState == 0 && (p->mUnk_48 & 0x200) == 0 &&
+                if (p->mState == KART_STATE_NORMAL && (p->mUnk_48 & 0x200) == 0 &&
                     func_ov001_02188104(b, 0, b->mPrm->mUnk_184) != NULL &&
                     func_ov001_02188000(b, 0, b->mPrm->mUnk_180) != NULL &&
                     func_ov001_02188104(b, b->mPrm->mUnk_188, 0) != NULL) {

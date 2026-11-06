@@ -179,7 +179,7 @@ void UpdateChaseCamera(Camera *a, Kart *b) {
     UpdateChaseCameraCollision(a, b, &u);
     p = &b->mUnk_120;
     t = 0;
-    if (b->mUnk_44 & 8) {
+    if (b->mUnk_44 & KART_44_DRIFTING) {
         t = data_usa_021656c4;
         if (b->mTurnDirection > 0) {
             t *= -1;
@@ -315,7 +315,7 @@ void UpdateChaseCameraPosGoalYOffset(Camera *a, Kart *b, Vec3 *c) {
     if (b->mUnk_3e8 > 0) {
         f = 0x52;
     }
-    if ((b->mUnk_44 & 0x10) || (d & 0x10000)) {
+    if ((b->mUnk_44 & KART_44_ON_GROUND) || (d & 0x10000)) {
         if ((h = c->y) > 0) {
             g = ((s64) h * e) >> 12;
         } else if (h + 0x4cd < 0) {

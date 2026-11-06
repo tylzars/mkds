@@ -241,7 +241,7 @@ void func_020a1e40(s32 a, ItemObject *p) {
     if (gStandings->mWinnerTeamId >= 0) {
         return;
     }
-    if (GetKart(a)->mState == 0) {
+    if (GetKart(a)->mState == KART_STATE_NORMAL) {
         return;
     }
     if (p->mKind != 0 && p->mKind != 1 && p->mKind != 9) {
@@ -885,7 +885,7 @@ void UpdateStandings(void) {
                 b = TRUE;
                 f = o->mUnk_48;
                 a = (f & 0x200) != 0;
-                if (o->mState == 0 && (f & 0x4000000) == 0) {
+                if (o->mState == KART_STATE_NORMAL && (f & 0x4000000) == 0) {
                     b = FALSE;
                 }
                 if (e->mUnk_04 == FALSE && a != FALSE && (o->mUnk_4c & 0x400000) == 0) {
