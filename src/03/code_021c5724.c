@@ -62,7 +62,7 @@ void CreateApList(void) {
     }
     gApList->mEntryCount = func_ov003_021cd0d0((s32 *) gApList);
     LoadApListFilesAndSetBgCnt();
-    func_ov003_021bf854();
+    LoadHlSetScr();
     func_ov003_021bf43c(0x80, -1, 0);
     func_ov003_021bf5ec(2);
     func_ov003_021c6508();

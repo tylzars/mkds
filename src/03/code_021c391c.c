@@ -42,7 +42,7 @@ void SetupOptMenu(void) {
     Unk021da104_04 *a;
     data_ov003_021da1b0[0] = 0;
     LoadOptMenuFilesAndSetBgCnt();
-    func_ov003_021bf86c(0x10);
+    LoadHlScr(0x10);
     func_ov003_021cdcf0(3);
     func_ov003_021bf43c(0x88, -1, 0);
     data_ov003_021da1b8 = func_ov003_021d1c18(0, 0x5b);

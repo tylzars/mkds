@@ -40,7 +40,7 @@ void SetupUsb(void) {
     Unk0200fddc b;
     data_ov003_021da258 = 0;
     LoadUsbFilesAndSetBgCnt();
-    func_ov003_021bf86c(8);
+    LoadHlScr(8);
     func_ov003_021bf5ec(2);
     OS_GetOwnerInfo(&b);
     a[0] = 0;

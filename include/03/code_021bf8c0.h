@@ -3,7 +3,7 @@
 #include "types.h"
 #include "03/code_021d3488.h"
 
-void func_ov003_021bf8c0(void);
+void InitHlScr(void);
 void func_ov003_021bf920(void);
 void func_ov003_021bf9b8(void);
 void func_ov003_021bf9e8(int param_1);

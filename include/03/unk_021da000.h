@@ -52,7 +52,7 @@ typedef struct Unk021bf920 {
 // Object behind data_ov003_021da158.
 typedef struct Unk021da158 {
     /* 00 */ Unk021bf920 *mUnk_00;
-    /* 04 */ u32 mUnk_04;
+    /* 04 */ u32 mTask;
     /* 08 */ s8 mUnk_08;
 } Unk021da158;
 

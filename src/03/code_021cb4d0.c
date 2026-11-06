@@ -43,7 +43,7 @@ void SetupWay(void) {
         }
     }
     LoadWayFilesAndSetBgCnt();
-    func_ov003_021bf854();
+    LoadHlSetScr();
     func_ov003_021bf43c(0x7e, data_ov003_021d6578[func_ov003_021c20d0()], a->mUnk_f4 + 1);
     func_ov003_021bf5ec(1);
     func_ov003_021bf6c8(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,

@@ -20,7 +20,7 @@ void func_ov003_021cbf60(void) {
     func_ov003_021cbf0c();
     func_ov003_021bf43c(0x7d, -1, 0);
     if (a != 2) {
-        func_ov003_021bf854();
+        LoadHlSetScr();
     }
     if (a == 1) {
         func_ov003_021cd6d0();

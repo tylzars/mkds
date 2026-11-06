@@ -39,7 +39,7 @@ void func_ov003_021ca8e8(void) {
     *(u8 *) &data_ov003_021da228 = 0;
     func_ov003_021ca864();
     func_ov003_021bf43c(0x7f, -1, 0);
-    func_ov003_021bf854();
+    LoadHlSetScr();
     func_ov003_021bf5ec(2);
     func_ov003_021bf578(0x7f);
     func_ov003_021beef8(0);

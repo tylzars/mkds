@@ -102,7 +102,7 @@ void CreateAp(void) {
     gAp = a;
     a->mUnk_1d = 0;
     LoadApFilesAndSetBgCnt();
-    func_ov003_021bf86c(1);
+    LoadHlScr(1);
     func_ov003_021bf43c(0x7b, -1, 0);
     func_ov003_021bf5ec(0);
     func_ov003_021cb11c();

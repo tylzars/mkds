@@ -29,7 +29,7 @@
 void SetupXb3Multi(void) {
     data_ov003_021da254 = 0;
     LoadXb3MultiFilesAndSetBgCnt();
-    func_ov003_021bf86c(8);
+    LoadHlScr(8);
     func_ov003_021bf43c(0x85, -1, 0);
     func_ov003_021bf5ec(1);
     func_ov003_021bf578(0x6c);

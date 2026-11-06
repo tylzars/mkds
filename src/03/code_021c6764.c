@@ -52,7 +52,7 @@ void CreateEdit(void) {
         gEdit->mCharCount = func_ov003_021d3254((u8 *) gEdit + 8, 0x20);
     }
     LoadEditFilesAndSetBgCnt();
-    func_ov003_021bf86c(b + 9);
+    LoadHlScr(b + 9);
     if (c == 1) {
         func_ov003_021bf43c(0x81, -1, 0);
     } else {

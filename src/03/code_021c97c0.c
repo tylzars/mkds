@@ -34,7 +34,7 @@ void func_ov003_021c9964(void) {
 
 void func_ov003_021c9944(void) {
     func_ov003_021c98d0();
-    func_ov003_021bf854();
+    LoadHlSetScr();
     func_ov003_021cd6d0();
     func_ov003_021c212c(func_ov003_021c9894);
 }

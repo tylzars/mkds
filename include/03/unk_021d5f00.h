@@ -24,7 +24,7 @@ extern u16 data_ov003_021d6030[][2];
 extern u16 data_ov003_021d606c[][2];
 extern u16 data_ov003_021d606e[][2];
 extern s8 data_ov003_021d6140[][4];
-extern char data_ov003_021d6bb0[];
+extern char gJbBgHlNcgName[];
 extern u8 data_ov003_021d6bc4[5];
 extern u8 data_ov003_021d6bcc[5];
 extern u8 data_ov003_021d6bd4[5];

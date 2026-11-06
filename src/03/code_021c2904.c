@@ -24,7 +24,7 @@ void func_ov003_021c2a28(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0) {
         func_ov003_021d1c90(1);
         func_ov003_021d1c90(0);
-        func_ov003_021bf8b0();
+        ReleaseHlScr();
         func_ov003_021bf7dc();
         func_ov003_021c2544(data_ov003_021da19c);
         func_ov003_021c25a4();

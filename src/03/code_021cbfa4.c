@@ -24,7 +24,7 @@
 void func_ov003_021cc110(void) {
     data_ov003_021da250 = 0;
     func_ov003_021cc0ac();
-    func_ov003_021bf86c(8);
+    LoadHlScr(8);
     func_ov003_021bf578(0x6f);
     StartSoundSeq(0x10);
     func_ov003_021c212c(func_ov003_021cc084);

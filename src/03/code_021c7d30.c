@@ -76,7 +76,7 @@ void CreateJb3List(void) {
         func_ov003_021bf43c(0x97, -1, 0);
     }
     func_ov003_021bf5ec(1);
-    func_ov003_021bf83c();
+    LoadHlListScr();
     func_ov003_021ccea4(2, 0x55, 0xf1, 0x41, _s32_div_f(*(u16 *) &gJb3ListScrollY * 0x37, 0x91));
     gJb3List->mUnk_14 = func_ov003_021d2288(0, 1);
     for (i = 0; i < 7; i++) {

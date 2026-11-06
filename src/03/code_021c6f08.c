@@ -59,7 +59,7 @@ void CreateEditAddr(void) {
         gEditAddr->mGroupIndex = 0;
     }
     LoadEditAddrFilesAndSetBgCnt();
-    func_ov003_021bf86c(c + 0xb);
+    LoadHlScr(c + 0xb);
     func_ov003_021bf43c(b[c], -1, 0);
     func_ov003_021bf5ec(2);
     gEditAddr->mUnk_00 = func_ov003_021d2288(0, 0);

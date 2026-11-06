@@ -30,7 +30,7 @@
 void SetupYb5Multi(void) {
     data_ov003_021da1a8 = 0;
     LoadYb5MultiFileAndSetBgCnt();
-    func_ov003_021bf86c(18);
+    LoadHlScr(18);
     func_ov003_021bf43c(140, -1, 0);
     func_ov003_021bf578(85);
     func_ov003_021c212c(func_ov003_021c330c);

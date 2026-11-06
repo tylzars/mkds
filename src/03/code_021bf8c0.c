@@ -442,13 +442,13 @@ void func_ov003_021bf9e8(int param_1) {
             ((data_ov003_021d5f54[0] & 0x1ff) << 16) |
             ((data_ov003_021da158->mUnk_00->mUnk_00 & 0xfe00ff00) | (data_ov003_021d5f54[1] & 0xff));
         data_ov003_021da158->mUnk_00->mUnk_04 = (data_ov003_021da158->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
-        data_ov003_021da158->mUnk_04 = func_ov003_021d3544(0, func_ov003_021bf920, NULL, 0x78);
+        data_ov003_021da158->mTask = func_ov003_021d3544(0, func_ov003_021bf920, NULL, 0x78);
     }
 }
 
 void func_ov003_021bf9b8(void) {
     if (data_ov003_021da158 != NULL) {
-        func_ov003_021d34c0(0, data_ov003_021da158->mUnk_04);
+        func_ov003_021d34c0(0, data_ov003_021da158->mTask);
         func_ov003_021d2f00((u32 *) data_ov003_021da158->mUnk_00);
         func_ov003_021d2808(&data_ov003_021da158);
     }
@@ -472,15 +472,15 @@ void func_ov003_021bf920(void) {
     data_ov003_021da158->mUnk_00->mUnk_04 = (data_ov003_021da158->mUnk_00->mUnk_04 & 0xfffff3ff) | 0x800;
 }
 
-void func_ov003_021bf8c0(void) {
-    data_ov003_021da154 = func_ov003_021d285c(0xc0, 4);
-    func_ov003_021bf620(data_ov003_021d6bb0, GX_LoadBG1Char);
+void InitHlScr(void) {
+    gHlScr = func_ov003_021d285c(0xc0, 4);
+    func_ov003_021bf620(gJbBgHlNcgName, GX_LoadBG1Char);
     switch (func_ov003_021c20c0()) {
         case 0:
-            func_ov003_021bf620(data_ov003_021d6b60[0], GX_LoadBG1Scr);
+            func_ov003_021bf620(gHlNscNames[0], GX_LoadBG1Scr);
             break;
         case 1:
-            func_ov003_021bf620(data_ov003_021d6b60[1], GX_LoadBG1Scr);
+            func_ov003_021bf620(gHlNscNames[1], GX_LoadBG1Scr);
             break;
     }
 }

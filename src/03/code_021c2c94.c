@@ -30,7 +30,7 @@
 
 void SetupJb2Menu(void) {
     LoadJb2MenuFilesAndSetBgCnt();
-    func_ov003_021bf86c(0);
+    LoadHlScr(0);
     func_ov003_021bf43c(0x7a, -1, 0);
     func_ov003_021cdcf0(4);
     func_ov003_021bf6c8(data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],

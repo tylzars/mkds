@@ -21,7 +21,7 @@ void func_ov003_021c2b28(void) {
     func_ov003_021cdb90();
     func_ov003_021c25b4();
     func_ov003_021bf7f4();
-    func_ov003_021bf8c0();
+    InitHlScr();
     func_ov003_021bf4d0();
     if (func_ov003_021c20d0() == 1 && func_ov003_021c20a8(2) != 0) {
         data_ov003_021da19c = func_ov003_021c2564(data_ov003_021d6eb8);

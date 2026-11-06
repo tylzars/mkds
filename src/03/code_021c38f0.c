@@ -13,7 +13,7 @@
 
 void SetupJb5Info(void) {
     LoadJb5InfoFileAndSetBgCnt();
-    func_ov003_021bf86c(0x11);
+    LoadHlScr(0x11);
     func_ov003_021bf43c(0x89, -1, 0);
     PrintJb5Info();
     func_ov003_021c212c(func_ov003_021c371c);

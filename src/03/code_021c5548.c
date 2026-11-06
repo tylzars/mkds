@@ -50,7 +50,7 @@ void func_ov003_021c56d8(void) {
 void func_ov003_021c56a4(void) {
     *(u8 *) &data_ov003_021da1e8 = 0;
     func_ov003_021c5650();
-    func_ov003_021bf854();
+    LoadHlSetScr();
     func_ov003_021bf578((u32) 0x68);
     StartSoundSeq((u32) 0x10);
     func_ov003_021c212c(func_ov003_021c5628);

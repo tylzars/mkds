@@ -43,7 +43,7 @@ void func_ov003_021cbb98(void) {
     }
     func_ov003_021bf5ec(2);
     if (a == 0) {
-        func_ov003_021bf854();
+        LoadHlSetScr();
     }
     func_ov003_021bf578(0x76);
     func_ov003_021beef8(0);
