@@ -70,10 +70,10 @@ void func_02032028(void) {
     void *a;
     void *b;
 
-    a = GetBmgEntry(data_02174e58->mUnk_64, 0xb);
-    b = GetBmgEntry(data_02174e58->mUnk_68, 4);
-    data_02174e58->mUnk_70 = 8;
-    data_02174e58->mUnk_94 = 5;
+    a = GetBmgEntry(gMultiSelectMember->mBannerMessages, 0xb);
+    b = GetBmgEntry(gMultiSelectMember->mCommonMessages, 4);
+    gMultiSelectMember->mUnk_70 = 8;
+    gMultiSelectMember->mState = 5;
     func_02126230(a, b);
     func_021282c8();
 }
@@ -97,19 +97,19 @@ void func_02031f5c(void) {
     u16 v1[12];
     s32 i;
 
-    q = &data_02174e58->mUnk_24[1];
+    q = &gMultiSelectMember->mUnk_24[1];
     for (i = 1, t = data_usa_02153d88; i < 8; t++, i++) {
         v1[0] = 0;
         MIi_CpuClear16(v1[0], &v1[1], 0x16);
         if (func_0204fcec(i, &v1[1]) != 0) {
             v1[11] = 0;
             func_0212426c(1, t->mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
-            if (data_02174e58->mUnk_e0[i].mUnk_00 != 2) {
-                data_02174e58->mUnk_e0[i].mUnk_00 = 1;
+            if (gMultiSelectMember->mUnk_e0[i].mUnk_00 != 2) {
+                gMultiSelectMember->mUnk_e0[i].mUnk_00 = 1;
             }
         } else {
             func_021241c0(1, t->mUnk_00, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
-            data_02174e58->mUnk_e0[i].mUnk_00 = 0;
+            gMultiSelectMember->mUnk_e0[i].mUnk_00 = 0;
         }
     }
 }
@@ -122,7 +122,7 @@ void func_02031e80(void) {
     s32 i;
 
     n = 0;
-    q = &data_02174e58->mUnk_24[1];
+    q = &gMultiSelectMember->mUnk_24[1];
     for (i = 1, t = data_usa_02153d88; i < 8; t++, i++) {
         v1[0] = 0;
         MIi_CpuClear16(v1[0], &v1[1], 0x16);
@@ -130,16 +130,16 @@ void func_02031e80(void) {
             MIi_CpuCopy16(&data_0217aa00->mUnk_045c[(u16) i], &v1[1], 0x14);
             if (v1[1] != 0) {
                 func_0212426c(1, t->mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
-                data_02174e58->mUnk_e0[i].mUnk_00 = 2;
+                gMultiSelectMember->mUnk_e0[i].mUnk_00 = 2;
                 n++;
             } else {
                 func_021241c0(1, t->mUnk_00, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
-                data_02174e58->mUnk_e0[i].mUnk_00 = 0;
+                gMultiSelectMember->mUnk_e0[i].mUnk_00 = 0;
             }
         }
     }
-    data_02174e58->mUnk_74 = n;
-    data_02174e58->mUnk_8c = TRUE;
+    gMultiSelectMember->mUnk_74 = n;
+    gMultiSelectMember->mUnk_8c = TRUE;
 }
 
 void func_02031ba4(void) {
@@ -155,44 +155,44 @@ void func_02031ba4(void) {
     s32 d;
     Unk02174e58_e0 *t;
 
-    p = &data_02174e58->mUnk_24[0];
-    q = &data_02174e58->mUnk_24[1];
+    p = &gMultiSelectMember->mUnk_24[0];
+    q = &gMultiSelectMember->mUnk_24[1];
     n0 = p->mUnk_14->mUnk_06;
     n1 = p->mUnk_0c->mUnk_06;
     n2 = q->mUnk_14->mUnk_06;
     n3 = q->mUnk_0c->mUnk_06;
-    func_02025edc(&data_02174e58->mUnk_a0[0]);
-    p->mUnk_18[2].mUnk_06 = func_02025ebc(&data_02174e58->mUnk_a0[0]);
+    func_02025edc(&gMultiSelectMember->mUnk_a0[0]);
+    p->mUnk_18[2].mUnk_06 = func_02025ebc(&gMultiSelectMember->mUnk_a0[0]);
     p->mUnk_18[1].mUnk_06 = p->mUnk_18[2].mUnk_06;
     p->mUnk_18[0].mUnk_06 = p->mUnk_18[1].mUnk_06;
-    data_02174e58->mUnk_144 = data_02174e58->mUnk_144 + 1;
-    if (data_02174e58->mUnk_144 > data_usa_02153d46[data_02174e58->mUnk_140][0]) {
-        data_02174e58->mUnk_140 = data_02174e58->mUnk_140 + 1;
-        if (data_02174e58->mUnk_140 == 4) {
-            data_02174e58->mUnk_140 = 0;
+    gMultiSelectMember->mUnk_144 = gMultiSelectMember->mUnk_144 + 1;
+    if (gMultiSelectMember->mUnk_144 > data_usa_02153d46[gMultiSelectMember->mUnk_140][0]) {
+        gMultiSelectMember->mUnk_140 = gMultiSelectMember->mUnk_140 + 1;
+        if (gMultiSelectMember->mUnk_140 == 4) {
+            gMultiSelectMember->mUnk_140 = 0;
         }
-        data_02174e58->mUnk_144 = 0;
+        gMultiSelectMember->mUnk_144 = 0;
     }
-    if (data_usa_02153d44[data_02174e58->mUnk_140][0] == 0) {
+    if (data_usa_02153d44[gMultiSelectMember->mUnk_140][0] == 0) {
         d = 1;
     } else {
         d = 0;
     }
     p->mUnk_18[0].mUnk_00 = d;
-    if (data_usa_02153d44[data_02174e58->mUnk_140][0] == 1) {
+    if (data_usa_02153d44[gMultiSelectMember->mUnk_140][0] == 1) {
         d = 1;
     } else {
         d = 0;
     }
     p->mUnk_18[1].mUnk_00 = d;
-    if (data_usa_02153d44[data_02174e58->mUnk_140][0] == 2) {
+    if (data_usa_02153d44[gMultiSelectMember->mUnk_140][0] == 2) {
         d = 1;
     } else {
         d = 0;
     }
     p->mUnk_18[2].mUnk_00 = d;
-    func_02025edc(&data_02174e58->mUnk_a0[1]);
-    v = func_02025ebc(&data_02174e58->mUnk_a0[1]);
+    func_02025edc(&gMultiSelectMember->mUnk_a0[1]);
+    v = func_02025ebc(&gMultiSelectMember->mUnk_a0[1]);
     p->mUnk_18[0xb].mUnk_06 = v;
     p->mUnk_18[0xa].mUnk_06 = p->mUnk_18[0xb].mUnk_06;
     p->mUnk_18[9].mUnk_06 = p->mUnk_18[0xa].mUnk_06;
@@ -205,27 +205,27 @@ void func_02031ba4(void) {
     for (i = 0; i < n0; i++) {
         p->mUnk_18[i + n1].mUnk_06 = v;
     }
-    func_02025edc(&data_02174e58->mUnk_a0[2]);
-    v = func_02025ebc(&data_02174e58->mUnk_a0[2]);
+    func_02025edc(&gMultiSelectMember->mUnk_a0[2]);
+    v = func_02025ebc(&gMultiSelectMember->mUnk_a0[2]);
     i = 0;
     d = n3 + n2;
     for (; i < d; i++) {
         q->mUnk_18[i].mUnk_06 = v;
     }
-    if (data_02174e58->mUnk_74 > 0) {
-        func_02025f14(&data_02174e58->mUnk_a0[3], 0);
+    if (gMultiSelectMember->mUnk_74 > 0) {
+        func_02025f14(&gMultiSelectMember->mUnk_a0[3], 0);
     } else {
-        func_02025f14(&data_02174e58->mUnk_a0[3], 2);
+        func_02025f14(&gMultiSelectMember->mUnk_a0[3], 2);
     }
-    func_02025edc(&data_02174e58->mUnk_a0[3]);
-    v = func_02025ebc(&data_02174e58->mUnk_a0[3]);
+    func_02025edc(&gMultiSelectMember->mUnk_a0[3]);
+    v = func_02025ebc(&gMultiSelectMember->mUnk_a0[3]);
     n3 = n3 + 8;
     q->mUnk_18[n3].mUnk_06 = v;
     q->mUnk_18[0x11].mUnk_06 = q->mUnk_18[n3].mUnk_06;
     q->mUnk_18[0x10].mUnk_06 = q->mUnk_18[0x11].mUnk_06;
-    if (data_02174e58->mUnk_84 == 0) {
+    if (gMultiSelectMember->mUnk_84 == 0) {
         for (i = 0; i < 8; i++) {
-            t = &data_02174e58->mUnk_e0[i];
+            t = &gMultiSelectMember->mUnk_e0[i];
             switch (t->mUnk_00) {
                 case 0:
                     q->mUnk_18[t->mUnk_0a].mUnk_00 = 0;
@@ -266,9 +266,9 @@ void func_02031b6c(void) {
     Unk02174e58_24 *p;
     BOOL f;
 
-    p = &data_02174e58->mUnk_24[0];
+    p = &gMultiSelectMember->mUnk_24[0];
     for (i = 0; i < 8; i++) {
-        if (i == data_02174e58->mUnk_74) {
+        if (i == gMultiSelectMember->mUnk_74) {
             f = TRUE;
         } else {
             f = FALSE;
@@ -281,7 +281,7 @@ void func_02031b30(s32 a) {
     Unk02174e58_24 *q;
     s32 f;
 
-    q = &data_02174e58->mUnk_24[1];
+    q = &gMultiSelectMember->mUnk_24[1];
     if (a != 0) {
         f = 1;
     } else {
@@ -294,22 +294,22 @@ void func_02031b30(s32 a) {
 void func_02031960(void) {
     s32 v;
 
-    switch (data_02174e58->mUnk_70) {
+    switch (gMultiSelectMember->mUnk_70) {
         case 0:
             if (func_0205579c(1, data_021759d0->mUnk_1c_2) == 1) {
-                data_02174e58->mUnk_70 = 1;
+                gMultiSelectMember->mUnk_70 = 1;
             }
             break;
         case 1:
-            if (data_02174e58->mUnk_78 != FALSE) {
-                data_02174e58->mUnk_78 = FALSE;
-                data_02174e58->mUnk_70 = 3;
-                data_02174e58->mUnk_9c = 0x78;
-                func_02126248(GetBmgEntry(data_02174e58->mUnk_68, 0x79), 0, 1, 1, 0, 1);
-                func_02025f14(&data_02174e58->mUnk_a0[0], 2);
-            } else if (data_02174e58->mUnk_7c != FALSE) {
-                data_02174e58->mUnk_7c = FALSE;
-                data_02174e58->mUnk_70 = 7;
+            if (gMultiSelectMember->mUnk_78 != FALSE) {
+                gMultiSelectMember->mUnk_78 = FALSE;
+                gMultiSelectMember->mUnk_70 = 3;
+                gMultiSelectMember->mTimer = 0x78;
+                func_02126248(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x79), 0, 1, 1, 0, 1);
+                func_02025f14(&gMultiSelectMember->mUnk_a0[0], 2);
+            } else if (gMultiSelectMember->mUnk_7c != FALSE) {
+                gMultiSelectMember->mUnk_7c = FALSE;
+                gMultiSelectMember->mUnk_70 = 7;
             } else {
                 func_020554e4();
             }
@@ -317,7 +317,7 @@ void func_02031960(void) {
         case 3:
             switch (func_0204db6c()) {
                 case 1:
-                    data_02174e58->mUnk_70 = 4;
+                    gMultiSelectMember->mUnk_70 = 4;
                     break;
                 case 2:
                     func_02032028();
@@ -327,17 +327,17 @@ void func_02031960(void) {
         case 4:
             switch (func_02058cac()) {
                 case 1:
-                    if (data_02174e58->mUnk_9c == 0) {
+                    if (gMultiSelectMember->mTimer == 0) {
                         if ((u8) ((data_0217aa00->mUnk_15f6 & ~data_0217aa00->mUnk_0457) & 0xfe) != 0) {
-                            func_021262f0(GetBmgEntry(data_02174e58->mUnk_68, 0x81));
-                            data_02174e58->mUnk_9c = 0x78;
+                            func_021262f0(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x81));
+                            gMultiSelectMember->mTimer = 0x78;
                         } else {
                             func_02125fc0();
                         }
                         func_02108d80();
                         func_0205e5c4(1);
-                        data_02174e58->mUnk_148 = FALSE;
-                        data_02174e58->mUnk_70 = 6;
+                        gMultiSelectMember->mUnk_148 = FALSE;
+                        gMultiSelectMember->mUnk_70 = 6;
                     }
                     break;
                 case 2:
@@ -348,7 +348,7 @@ void func_02031960(void) {
         case 7:
         case 8:
             if (func_02054f58() == 1) {
-                data_02174e58->mUnk_70 = 11;
+                gMultiSelectMember->mUnk_70 = 11;
             }
             break;
         case 6:
@@ -361,8 +361,8 @@ void func_02031960(void) {
             } else {
                 v = 1;
             }
-            if (v == 0 && data_02174e58->mUnk_9c == 0) {
-                data_02174e58->mUnk_70 = 11;
+            if (v == 0 && gMultiSelectMember->mTimer == 0) {
+                gMultiSelectMember->mUnk_70 = 11;
             }
             break;
     }
@@ -371,11 +371,11 @@ void func_02031960(void) {
 void func_020317a0(void) {
     s32 v;
 
-    switch (data_02174e58->mUnk_70) {
+    switch (gMultiSelectMember->mUnk_70) {
         case 2:
-            if (data_02174e58->mUnk_7c != FALSE) {
-                data_02174e58->mUnk_7c = FALSE;
-                data_02174e58->mUnk_70 = 7;
+            if (gMultiSelectMember->mUnk_7c != FALSE) {
+                gMultiSelectMember->mUnk_7c = FALSE;
+                gMultiSelectMember->mUnk_70 = 7;
                 return;
             }
             switch (func_02055730(func_0202f14c()->mUnk_00)) {
@@ -383,11 +383,11 @@ void func_020317a0(void) {
                     if (data_021759d0->mUnk_20 == 2) {
                         func_0204aa28((data_0217aa00->mUnk_0454 & 0x40) != 0 ? 1 : 0);
                     }
-                    data_02174e58->mUnk_70 = 4;
-                    if (data_02174e58->mUnk_84 == 0) {
-                        data_02174e58->mUnk_74 = func_02032000();
+                    gMultiSelectMember->mUnk_70 = 4;
+                    if (gMultiSelectMember->mUnk_84 == 0) {
+                        gMultiSelectMember->mUnk_74 = func_02032000();
                         func_02031f5c();
-                        data_02174e58->mUnk_88 = TRUE;
+                        gMultiSelectMember->mUnk_88 = TRUE;
                     }
                     break;
                 case 2:
@@ -396,24 +396,24 @@ void func_020317a0(void) {
             }
             break;
         case 4:
-            if (data_02174e58->mUnk_7c != FALSE) {
-                data_02174e58->mUnk_7c = FALSE;
-                data_02174e58->mUnk_70 = 7;
+            if (gMultiSelectMember->mUnk_7c != FALSE) {
+                gMultiSelectMember->mUnk_7c = FALSE;
+                gMultiSelectMember->mUnk_70 = 7;
                 return;
             }
             switch (func_02058cac()) {
                 case 1:
-                    if (data_02174e58->mUnk_84 == 0 && data_02174e58->mUnk_8c == FALSE) {
+                    if (gMultiSelectMember->mUnk_84 == 0 && gMultiSelectMember->mUnk_8c == FALSE) {
                         func_02031e80();
                         func_02031b6c();
                     }
-                    if (data_02174e58->mUnk_9c == 0) {
-                        func_021262f0(GetBmgEntry(data_02174e58->mUnk_68, 0x81));
+                    if (gMultiSelectMember->mTimer == 0) {
+                        func_021262f0(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x81));
                         func_02108d80();
                         func_0205e5c4(1);
-                        data_02174e58->mUnk_148 = FALSE;
-                        data_02174e58->mUnk_9c = 0x78;
-                        data_02174e58->mUnk_70 = 6;
+                        gMultiSelectMember->mUnk_148 = FALSE;
+                        gMultiSelectMember->mTimer = 0x78;
+                        gMultiSelectMember->mUnk_70 = 6;
                     }
                     break;
                 case 2:
@@ -424,7 +424,7 @@ void func_020317a0(void) {
         case 7:
         case 8:
             if (func_02054f58() == 1) {
-                data_02174e58->mUnk_70 = 11;
+                gMultiSelectMember->mUnk_70 = 11;
             }
             break;
         case 6:
@@ -437,14 +437,14 @@ void func_020317a0(void) {
             } else {
                 v = 1;
             }
-            if (v == 0 && data_02174e58->mUnk_9c == 0) {
-                data_02174e58->mUnk_70 = 11;
+            if (v == 0 && gMultiSelectMember->mTimer == 0) {
+                gMultiSelectMember->mUnk_70 = 11;
             }
             break;
     }
 }
 
-void func_0203154c(void *a, void *b, void *c) {
+void InitMultiSelectMember(void *a, void *b, void *c) {
     Unk02174e58_24 *p;
     Unk02174e58_24 *q;
     u32 v;
@@ -456,50 +456,52 @@ void func_0203154c(void *a, void *b, void *c) {
     Unk02153c1c *g;
 
     h = CreateFrmHeapFromMaxFree(a);
-    data_02174e58 = HeapAlloc(h, 0x154);
+    gMultiSelectMember = HeapAlloc(h, 0x154);
     z = 0;
-    MIi_CpuClearFast(z, data_02174e58, 0x154);
-    data_02174e58->mHeap = h;
-    data_02174e58->mUnk_5c = b;
-    data_02174e58->mUnk_60 = c;
-    data_02174e58->mUnk_64 = FindSceneFile(data_usa_021636f4);
-    data_02174e58->mUnk_68 = func_02047a28(data_usa_02163700);
-    data_02174e58->mUnk_6c = -1;
+    MIi_CpuClearFast(z, gMultiSelectMember, 0x154);
+    gMultiSelectMember->mHeap = h;
+    gMultiSelectMember->mUnk_5c = b;
+    gMultiSelectMember->mUnk_60 = c;
+    gMultiSelectMember->mBannerMessages = FindSceneFile(data_usa_021636f4);
+    gMultiSelectMember->mCommonMessages = func_02047a28(data_usa_02163700);
+    gMultiSelectMember->mUnk_6c = -1;
     v = GX_GetSizeOfOBJ();
-    p = &data_02174e58->mUnk_24[0];
-    func_02025b20(p, data_usa_0216370c, data_usa_0216372c, data_usa_0216374c, data_usa_0216376c, data_usa_02163788,
-                  NULL, FindSceneFile);
-    func_02025a50(0, data_02174e58->mHeap, p);
+    p = &gMultiSelectMember->mUnk_24[0];
+    func_02025b20(p, gMultiSelectMemberMNcgrName2, gMultiSelectMemberMNcerName2, gMultiSelectMemberMONclrName2,
+                  gMultiSelectMemberMBnclName, gMultiSelectMemberMBnllName, NULL, FindSceneFile);
+    func_02025a50(0, gMultiSelectMember->mHeap, p);
     i = 0;
     t = data_usa_02153d64;
     g = t;
     for (; i < 2; i++) {
-        v -= func_02025a00(0, data_02174e58->mHeap, p, t, v);
-        func_0212426c(0, g->mUnk_00, p->mUnk_14, GetBmgEntry(data_02174e58->mUnk_64, g->mUnk_08), p->mUnk_0c,
-                      p->mUnk_18);
+        v -= func_02025a00(0, gMultiSelectMember->mHeap, p, t, v);
+        func_0212426c(0, g->mUnk_00, p->mUnk_14, GetBmgEntry(gMultiSelectMember->mBannerMessages, g->mUnk_08),
+                      p->mUnk_0c, p->mUnk_18);
         t++;
         g++;
     }
     func_02031b6c();
-    func_020258d4(1, data_02174e58, data_usa_021637a4, data_usa_021637c4, data_usa_021637e4, 3, FindSceneFile);
+    func_020258d4(1, gMultiSelectMember, gMultiSelectMemberSBNcgrName3, gMultiSelectMemberSBNclrName3,
+                  gMultiSelectMemberSRegisterNscrName2, 3, FindSceneFile);
     r = GX_GetSizeOfSubOBJ();
-    q = &data_02174e58->mUnk_24[1];
-    func_02025b20(q, data_usa_02163808, data_usa_02163830, data_usa_02163858, data_usa_02163880, data_usa_021638a4,
-                  data_usa_021638c8, FindSceneFile);
-    func_02025a50(1, data_02174e58->mHeap, q);
+    q = &gMultiSelectMember->mUnk_24[1];
+    func_02025b20(q, gMultiSelectMemberRegisterSNcgrName2, gMultiSelectMemberRegisterSNcerName2,
+                  gMultiSelectMemberRegisterSONclrName2, gMultiSelectMemberSRegisterBnclName,
+                  gMultiSelectMemberSRegisterBnllName, gMultiSelectMemberSRegisterBnblName, FindSceneFile);
+    func_02025a50(1, gMultiSelectMember->mHeap, q);
     for (i = 0; i < 9; i++) {
-        r -= func_02025a00(1, data_02174e58->mHeap, q, &data_usa_02153d7c[i], r);
+        r -= func_02025a00(1, gMultiSelectMember->mHeap, q, &data_usa_02153d7c[i], r);
     }
-    func_02025f80(&data_02174e58->mUnk_a0[3], 3, 10, 0x40, 0);
-    InitPaletteBlend(data_02174e58->mHeap, q->mUnk_04, 3);
+    func_02025f80(&gMultiSelectMember->mUnk_a0[3], 3, 10, 0x40, 0);
+    InitPaletteBlend(gMultiSelectMember->mHeap, q->mUnk_04, 3);
     func_02031b30(1);
-    func_02025f80(&data_02174e58->mUnk_a0[0], 0, 10, -0x40, 0);
-    func_02025f80(&data_02174e58->mUnk_a0[1], 0, 10, 0x40, 0);
-    func_02025f80(&data_02174e58->mUnk_a0[2], 0, 10, -0xc0, 0);
-    data_02174e58->mUnk_e0[0].mUnk_00 = 2;
+    func_02025f80(&gMultiSelectMember->mUnk_a0[0], 0, 10, -0x40, 0);
+    func_02025f80(&gMultiSelectMember->mUnk_a0[1], 0, 10, 0x40, 0);
+    func_02025f80(&gMultiSelectMember->mUnk_a0[2], 0, 10, -0xc0, 0);
+    gMultiSelectMember->mUnk_e0[0].mUnk_00 = 2;
     for (i = 0; i < 8; i++) {
-        data_02174e58->mUnk_e0[i].mUnk_08 = i * 2;
-        data_02174e58->mUnk_e0[i].mUnk_0a = i * 2 + 1;
+        gMultiSelectMember->mUnk_e0[i].mUnk_08 = i * 2;
+        gMultiSelectMember->mUnk_e0[i].mUnk_0a = i * 2 + 1;
     }
     func_02125ee8(0x20, 0);
 }
@@ -508,19 +510,20 @@ void func_0203147c(void *a, void *b, void *c) {
     Unk02174e58_24 *q;
     u16 v1[11];
 
-    func_0203154c(a, b, c);
-    q = &data_02174e58->mUnk_24[1];
+    InitMultiSelectMember(a, b, c);
+    q = &gMultiSelectMember->mUnk_24[1];
     MIi_CpuCopy16(data_0217aa08->mUnk_00->mUnk_0c, v1, 0x14);
     v1[10] = 0;
     func_0212426c(1, data_usa_02153d7c[0].mUnk_00, q->mUnk_14, v1, q->mUnk_0c, q->mUnk_18);
     func_0212426c(1, data_usa_02153dbc[16], q->mUnk_14,
-                  GetBmgEntry(data_02174e58->mUnk_64, data_usa_02153d7c[8].mUnk_08), q->mUnk_0c, q->mUnk_18);
+                  GetBmgEntry(gMultiSelectMember->mBannerMessages, data_usa_02153d7c[8].mUnk_08), q->mUnk_0c,
+                  q->mUnk_18);
     data_021759d0->mUnk_20 = 1;
-    func_02126638(GetBmgEntry(data_02174e58->mUnk_64, 9), 0, 0, 1, 0, 0, 0);
+    func_02126638(GetBmgEntry(gMultiSelectMember->mBannerMessages, 9), 0, 0, 1, 0, 0, 0);
     q->mUnk_18[0x11].mUnk_00 = 0;
     q->mUnk_18[0x10].mUnk_00 = q->mUnk_18[0x11].mUnk_00;
     func_021281c8(-1);
-    FrmHeapShrinkInParent(data_02174e58->mHeap);
+    FrmHeapShrinkInParent(gMultiSelectMember->mHeap);
 }
 
 void func_02031280(void *a, void *b, void *c) {
@@ -534,27 +537,27 @@ void func_02031280(void *a, void *b, void *c) {
     s32 i;
     void *v;
 
-    func_0203154c(a, b, c);
-    p = &data_02174e58->mUnk_24[0];
-    q = &data_02174e58->mUnk_24[1];
-    data_02174e58->mUnk_70 = 2;
-    data_02174e58->mUnk_84 = func_0204fe90(func_0202f14c()->mUnk_00);
+    InitMultiSelectMember(a, b, c);
+    p = &gMultiSelectMember->mUnk_24[0];
+    q = &gMultiSelectMember->mUnk_24[1];
+    gMultiSelectMember->mUnk_70 = 2;
+    gMultiSelectMember->mUnk_84 = func_0204fe90(func_0202f14c()->mUnk_00);
     v1[0] = 0;
     MIi_CpuClear16(v1[0], &v1[1], 0x16);
-    if (data_02174e58->mUnk_84 == 0 && func_0204ff14(func_0202f14c()->mUnk_00, &v1[1]) != 0) {
+    if (gMultiSelectMember->mUnk_84 == 0 && func_0204ff14(func_0202f14c()->mUnk_00, &v1[1]) != 0) {
         v1[11] = 0;
         func_0212426c(1, data_usa_02153d7c[0].mUnk_00, q->mUnk_14, &v1[1], q->mUnk_0c, q->mUnk_18);
-        data_02174e58->mUnk_80 = TRUE;
+        gMultiSelectMember->mUnk_80 = TRUE;
     }
     q->mUnk_18[0x11].mUnk_00 = 0;
     q->mUnk_18[0x10].mUnk_00 = q->mUnk_18[0x11].mUnk_00;
-    v = GetBmgEntry(data_02174e58->mUnk_64, 10);
-    if (data_02174e58->mUnk_84 != 0) {
+    v = GetBmgEntry(gMultiSelectMember->mBannerMessages, 10);
+    if (gMultiSelectMember->mUnk_84 != 0) {
         func_02126248(v, 0, 0, 1, 0, 1);
     } else {
         func_02126638(v, 0, 0, 1, 0, 0, 0);
     }
-    if (data_02174e58->mUnk_84 != 0) {
+    if (gMultiSelectMember->mUnk_84 != 0) {
         n0 = p->mUnk_14->mUnk_06;
         n1 = p->mUnk_0c->mUnk_06;
         n2 = q->mUnk_14->mUnk_06;
@@ -570,9 +573,9 @@ void func_02031280(void *a, void *b, void *c) {
         p->mUnk_18[4].mUnk_00 = p->mUnk_18[5].mUnk_00;
         p->mUnk_18[3].mUnk_00 = p->mUnk_18[4].mUnk_00;
         for (i = 0; i < 8; i++) {
-            q->mUnk_18[data_02174e58->mUnk_e0[i].mUnk_0a].mUnk_00 = 0;
-            q->mUnk_18[data_02174e58->mUnk_e0[i].mUnk_08].mUnk_00 =
-                q->mUnk_18[data_02174e58->mUnk_e0[i].mUnk_0a].mUnk_00;
+            q->mUnk_18[gMultiSelectMember->mUnk_e0[i].mUnk_0a].mUnk_00 = 0;
+            q->mUnk_18[gMultiSelectMember->mUnk_e0[i].mUnk_08].mUnk_00 =
+                q->mUnk_18[gMultiSelectMember->mUnk_e0[i].mUnk_0a].mUnk_00;
         }
         for (i = 0; i < n0; i++) {
             p->mUnk_18[i + n1].mUnk_00 = 0;
@@ -584,7 +587,7 @@ void func_02031280(void *a, void *b, void *c) {
         }
     }
     func_021281c8(-1);
-    FrmHeapShrinkInParent(data_02174e58->mHeap);
+    FrmHeapShrinkInParent(gMultiSelectMember->mHeap);
 }
 
 #pragma thumb off
@@ -592,14 +595,14 @@ void func_02031280(void *a, void *b, void *c) {
 #pragma thumb on
 
 u32 func_02031268(void) {
-    if (data_02174e58->mUnk_a0[2].mUnk_00 == 1) {
+    if (gMultiSelectMember->mUnk_a0[2].mUnk_00 == 1) {
         return 1;
     }
     return 0;
 }
 
 u32 func_02031250(void) {
-    if (data_02174e58->mUnk_a0[2].mUnk_00 == 3) {
+    if (gMultiSelectMember->mUnk_a0[2].mUnk_00 == 3) {
         return 1;
     }
     return 0;
@@ -608,11 +611,11 @@ u32 func_02031250(void) {
 void func_02031208(void) {
     int v1;
     Unk02174e58_24 *v2;
-    if (data_02174e58->mUnk_94 != 6) {
+    if (gMultiSelectMember->mState != 6) {
         v1 = 0;
         do {
-            v2 = &data_02174e58->mUnk_24[v1];
-            func_02124c30(v2->mUnk_0c, v2->mUnk_08, v2->mUnk_14, (&data_02174e58->mUnk_5c)[v1], v2->mUnk_18);
+            v2 = &gMultiSelectMember->mUnk_24[v1];
+            func_02124c30(v2->mUnk_0c, v2->mUnk_08, v2->mUnk_14, (&gMultiSelectMember->mUnk_5c)[v1], v2->mUnk_18);
             v1++;
         } while (v1 < 2);
     }
@@ -637,14 +640,14 @@ s32 func_02030ea4(Unk02030b18 *a) {
 
     v1 = -1;
     k = func_020435bc();
-    p = &data_02174e58->mUnk_24[1];
-    v2 = data_02174e58->mUnk_74;
-    if (data_02174e58->mUnk_9c > 0) {
-        data_02174e58->mUnk_9c = data_02174e58->mUnk_9c - 1;
+    p = &gMultiSelectMember->mUnk_24[1];
+    v2 = gMultiSelectMember->mUnk_74;
+    if (gMultiSelectMember->mTimer > 0) {
+        gMultiSelectMember->mTimer = gMultiSelectMember->mTimer - 1;
     }
     func_02031960();
-    if (data_02174e58->mUnk_94 != 0 && data_02174e58->mUnk_94 != 3 && data_02174e58->mUnk_94 != 4 &&
-        data_02174e58->mUnk_94 != 5 && data_02174e58->mUnk_94 != 6) {
+    if (gMultiSelectMember->mState != 0 && gMultiSelectMember->mState != 3 && gMultiSelectMember->mState != 4 &&
+        gMultiSelectMember->mState != 5 && gMultiSelectMember->mState != 6) {
         if (data_0217aa00 == NULL) {
             x = 0;
         } else {
@@ -659,10 +662,10 @@ s32 func_02030ea4(Unk02030b18 *a) {
         } else {
             x = 0;
         }
-        data_02174e58->mUnk_74 = x;
-        if (data_02174e58->mUnk_74 != v2) {
+        gMultiSelectMember->mUnk_74 = x;
+        if (gMultiSelectMember->mUnk_74 != v2) {
             func_02031f5c();
-            if (data_02174e58->mUnk_74 > v2) {
+            if (gMultiSelectMember->mUnk_74 > v2) {
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
                 NNS_SndArcSetCurrent(&data_0217d0a0);
@@ -676,17 +679,17 @@ s32 func_02030ea4(Unk02030b18 *a) {
     func_02031b6c();
     func_02031ba4();
     AdvancePaletteBlend();
-    if (data_02174e58->mUnk_148 != FALSE) {
-        data_02174e58->mUnk_14c = data_02174e58->mUnk_14c + 1;
-        if (data_02174e58->mUnk_14c > 0x96) {
+    if (gMultiSelectMember->mUnk_148 != FALSE) {
+        gMultiSelectMember->mUnk_14c = gMultiSelectMember->mUnk_14c + 1;
+        if (gMultiSelectMember->mUnk_14c > 0x96) {
             func_02108ddc();
-            data_02174e58->mUnk_148 = FALSE;
+            gMultiSelectMember->mUnk_148 = FALSE;
         }
     }
-    switch (data_02174e58->mUnk_94) {
+    switch (gMultiSelectMember->mState) {
         case 0:
             if (func_02031268() != 0) {
-                data_02174e58->mUnk_94 = 1;
+                gMultiSelectMember->mState = 1;
                 p->mUnk_18[0x10].mUnk_00 = 1;
                 func_02031b30(1);
             }
@@ -710,23 +713,23 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 m = RectTableFindContaining(p->mUnk_10, x, y);
             }
             if ((u16) (data_02175628[k].mUnk_00 & 1) != 0 || m == 0) {
-                if (data_02174e58->mUnk_74 > 0 && data_02174e58->mUnk_a0[3].mUnk_00 == 1) {
+                if (gMultiSelectMember->mUnk_74 > 0 && gMultiSelectMember->mUnk_a0[3].mUnk_00 == 1) {
                     func_02031b30(0);
                     func_021282c8();
                     StopPaletteBlend();
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 6);
                     NNS_SndArcSetCurrent(&data_0217d0a0);
-                    data_02174e58->mUnk_78 = TRUE;
-                    data_02174e58->mUnk_148 = TRUE;
-                    data_02174e58->mUnk_94 = 2;
+                    gMultiSelectMember->mUnk_78 = TRUE;
+                    gMultiSelectMember->mUnk_148 = TRUE;
+                    gMultiSelectMember->mState = 2;
                     break;
                 }
             }
             if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || z != 0) {
-                data_02174e58->mUnk_6c = 1;
-                data_02174e58->mUnk_94 = 3;
-                data_02174e58->mUnk_7c = TRUE;
+                gMultiSelectMember->mUnk_6c = 1;
+                gMultiSelectMember->mState = 3;
+                gMultiSelectMember->mUnk_7c = TRUE;
                 func_02125fc0();
                 func_02128310(0);
                 NNS_SndArcSetCurrent(&data_0217c868);
@@ -735,17 +738,17 @@ s32 func_02030ea4(Unk02030b18 *a) {
             }
             break;
         case 2:
-            data_02174e58->mUnk_98 = data_02174e58->mUnk_98 + 1;
-            if (data_02174e58->mUnk_98 >= 5) {
+            gMultiSelectMember->mUnk_98 = gMultiSelectMember->mUnk_98 + 1;
+            if (gMultiSelectMember->mUnk_98 >= 5) {
                 func_02031b30(1);
-                if (data_02174e58->mUnk_70 == 11) {
+                if (gMultiSelectMember->mUnk_70 == 11) {
                     data_0217b488->mUnk_04 = 1;
                     data_0217b488->mUnk_08 = 4;
                     if (a != NULL) {
                         a->mUnk_04 = 1;
                     }
-                    data_02174e58->mUnk_98 = 0;
-                    data_02174e58->mUnk_94 = 7;
+                    gMultiSelectMember->mUnk_98 = 0;
+                    gMultiSelectMember->mState = 7;
                 }
             }
             break;
@@ -755,25 +758,25 @@ s32 func_02030ea4(Unk02030b18 *a) {
             }
             if (func_02125f54() != 0) {
                 func_02125fc0();
-                data_02174e58->mUnk_6c = 0;
-                data_02174e58->mUnk_94 = 3;
+                gMultiSelectMember->mUnk_6c = 0;
+                gMultiSelectMember->mState = 3;
             }
             break;
         case 3:
-            if (data_02174e58->mUnk_70 == 11) {
-                func_02025f14(&data_02174e58->mUnk_a0[0], 2);
-                func_02025f14(&data_02174e58->mUnk_a0[1], 2);
-                func_02025f14(&data_02174e58->mUnk_a0[2], 2);
-                data_02174e58->mUnk_94 = 4;
+            if (gMultiSelectMember->mUnk_70 == 11) {
+                func_02025f14(&gMultiSelectMember->mUnk_a0[0], 2);
+                func_02025f14(&gMultiSelectMember->mUnk_a0[1], 2);
+                func_02025f14(&gMultiSelectMember->mUnk_a0[2], 2);
+                gMultiSelectMember->mState = 4;
             }
             break;
         case 4:
             if (func_02031250() != 0) {
-                data_02174e58->mUnk_94 = 6;
+                gMultiSelectMember->mState = 6;
             }
             break;
         case 6:
-            v1 = data_02174e58->mUnk_6c;
+            v1 = gMultiSelectMember->mUnk_6c;
             break;
     }
     func_02031208();
@@ -796,52 +799,52 @@ s32 func_02030b18(Unk02030b18 *a) {
     v1 = -1;
     k = func_020435bc();
     v = 0;
-    p = &data_02174e58->mUnk_24[1];
-    if (data_02174e58->mUnk_9c > 0) {
-        data_02174e58->mUnk_9c = data_02174e58->mUnk_9c - 1;
+    p = &gMultiSelectMember->mUnk_24[1];
+    if (gMultiSelectMember->mTimer > 0) {
+        gMultiSelectMember->mTimer = gMultiSelectMember->mTimer - 1;
     }
     func_020317a0();
-    v2 = data_02174e58->mUnk_74;
-    if (data_02174e58->mUnk_84 == 0 && data_02174e58->mUnk_8c == FALSE) {
-        data_02174e58->mUnk_74 = func_02032000();
-        if (data_02174e58->mUnk_74 != v2) {
+    v2 = gMultiSelectMember->mUnk_74;
+    if (gMultiSelectMember->mUnk_84 == 0 && gMultiSelectMember->mUnk_8c == FALSE) {
+        gMultiSelectMember->mUnk_74 = func_02032000();
+        if (gMultiSelectMember->mUnk_74 != v2) {
             func_02031f5c();
-            if (data_02174e58->mUnk_88 == FALSE) {
-                if (data_02174e58->mUnk_74 > v2) {
+            if (gMultiSelectMember->mUnk_88 == FALSE) {
+                if (gMultiSelectMember->mUnk_74 > v2) {
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
                     NNS_SndArcSetCurrent(&data_0217d0a0);
-                } else if (data_02174e58->mUnk_74 < v2) {
+                } else if (gMultiSelectMember->mUnk_74 < v2) {
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 3);
                     NNS_SndArcSetCurrent(&data_0217d0a0);
                 }
-                data_02174e58->mUnk_88 = FALSE;
+                gMultiSelectMember->mUnk_88 = FALSE;
             }
         }
         func_02031b6c();
     }
-    if (data_02174e58->mUnk_84 == 0 && data_02174e58->mUnk_80 == FALSE) {
+    if (gMultiSelectMember->mUnk_84 == 0 && gMultiSelectMember->mUnk_80 == FALSE) {
         v3[0] = 0;
         MIi_CpuClear16(v3[0], &v3[1], 0x16);
         if (func_0204ff14(func_0202f14c()->mUnk_00, &v3[1]) != 0) {
             v3[11] = 0;
             func_0212426c(1, data_usa_02153d7c[0].mUnk_00, p->mUnk_14, &v3[1], p->mUnk_0c, p->mUnk_18);
-            data_02174e58->mUnk_80 = TRUE;
+            gMultiSelectMember->mUnk_80 = TRUE;
         }
     }
     func_02031ba4();
-    if (data_02174e58->mUnk_148 != FALSE) {
-        data_02174e58->mUnk_14c = data_02174e58->mUnk_14c + 1;
-        if (data_02174e58->mUnk_14c > 0x96) {
+    if (gMultiSelectMember->mUnk_148 != FALSE) {
+        gMultiSelectMember->mUnk_14c = gMultiSelectMember->mUnk_14c + 1;
+        if (gMultiSelectMember->mUnk_14c > 0x96) {
             func_02108ddc();
-            data_02174e58->mUnk_148 = FALSE;
+            gMultiSelectMember->mUnk_148 = FALSE;
         }
     }
-    switch (data_02174e58->mUnk_94) {
+    switch (gMultiSelectMember->mState) {
         case 0:
             if (func_02031268() != 0) {
-                data_02174e58->mUnk_94 = 1;
+                gMultiSelectMember->mState = 1;
             }
             break;
         case 1:
@@ -857,7 +860,7 @@ s32 func_02030b18(Unk02030b18 *a) {
             if (b1 != 0) {
                 v = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[k].mUnk_00, data_02175672[k].mUnk_00);
             }
-            y = data_02174e58->mUnk_90;
+            y = gMultiSelectMember->mUnk_90;
             if (y == 0) {
                 switch (data_0217aa00->mUnk_0004) {
                     case 7:
@@ -873,27 +876,27 @@ s32 func_02030b18(Unk02030b18 *a) {
                 }
                 if (x != FALSE) {
                     func_021282c8();
-                    func_02025f14(&data_02174e58->mUnk_a0[0], 2);
+                    func_02025f14(&gMultiSelectMember->mUnk_a0[0], 2);
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 6);
                     NNS_SndArcSetCurrent(&data_0217d0a0);
-                    data_02174e58->mUnk_148 = TRUE;
-                    data_02174e58->mUnk_90 = 1;
+                    gMultiSelectMember->mUnk_148 = TRUE;
+                    gMultiSelectMember->mUnk_90 = 1;
                     break;
                 }
             }
-            if (data_02174e58->mUnk_70 == 11) {
+            if (gMultiSelectMember->mUnk_70 == 11) {
                 data_0217b488->mUnk_04 = 1;
                 data_0217b488->mUnk_08 = 4;
                 if (a != NULL) {
                     a->mUnk_04 = 1;
                 }
-                data_02174e58->mUnk_94 = 7;
+                gMultiSelectMember->mState = 7;
             } else if (y == 0) {
                 if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || v != 0) {
-                    data_02174e58->mUnk_6c = 0;
-                    data_02174e58->mUnk_94 = 3;
-                    data_02174e58->mUnk_7c = TRUE;
+                    gMultiSelectMember->mUnk_6c = 0;
+                    gMultiSelectMember->mState = 3;
+                    gMultiSelectMember->mUnk_7c = TRUE;
                     func_02125fc0();
                     func_02128310(0);
                     NNS_SndArcSetCurrent(&data_0217c868);
@@ -907,26 +910,26 @@ s32 func_02030b18(Unk02030b18 *a) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
             if (func_02125f54() != 0) {
-                data_02174e58->mUnk_6c = 0;
-                data_02174e58->mUnk_94 = 3;
+                gMultiSelectMember->mUnk_6c = 0;
+                gMultiSelectMember->mState = 3;
                 func_02125fc0();
             }
             break;
         case 3:
-            if (data_02174e58->mUnk_70 == 11) {
-                func_02025f14(&data_02174e58->mUnk_a0[0], 2);
-                func_02025f14(&data_02174e58->mUnk_a0[1], 2);
-                func_02025f14(&data_02174e58->mUnk_a0[2], 2);
-                data_02174e58->mUnk_94 = 4;
+            if (gMultiSelectMember->mUnk_70 == 11) {
+                func_02025f14(&gMultiSelectMember->mUnk_a0[0], 2);
+                func_02025f14(&gMultiSelectMember->mUnk_a0[1], 2);
+                func_02025f14(&gMultiSelectMember->mUnk_a0[2], 2);
+                gMultiSelectMember->mState = 4;
             }
             break;
         case 4:
             if (func_02031250() != 0) {
-                data_02174e58->mUnk_94 = 6;
+                gMultiSelectMember->mState = 6;
             }
             break;
         case 6:
-            v1 = data_02174e58->mUnk_6c;
+            v1 = gMultiSelectMember->mUnk_6c;
             break;
     }
     func_02031208();
@@ -937,11 +940,11 @@ s32 func_02030b18(Unk02030b18 *a) {
 
 #pragma thumb on
 
-void func_02030ae8(void) {
+void ReleaseMultiSelectMember(void) {
     func_02125ee8(0, 0);
     func_0212b91c();
-    HeapDestroy(data_02174e58->mHeap);
-    *&data_02174e58 = NULL;
+    HeapDestroy(gMultiSelectMember->mHeap);
+    *&gMultiSelectMember = NULL;
 }
 
 #pragma thumb off
@@ -953,8 +956,8 @@ void func_02030a20(void) {
     s32 r;
 
     a = 0x17;
-    r = func_02025ebc(&data_02174e58->mUnk_a0[2]);
-    if (data_02174e58->mUnk_84 == 0 && data_02174e58->mUnk_94 != 6) {
+    r = func_02025ebc(&gMultiSelectMember->mUnk_a0[2]);
+    if (gMultiSelectMember->mUnk_84 == 0 && gMultiSelectMember->mState != 6) {
         a |= 8;
     }
     *(u32 *) 0x4001000 = (*(u32 *) 0x4001000 & 0xffffe0ff) | (a << 8);

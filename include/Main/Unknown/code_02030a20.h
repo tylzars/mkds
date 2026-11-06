@@ -6,7 +6,7 @@
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_020b4000.h"
 
-// 0x1c-byte elements from 0x24 of Unk02174e58; the buffer at 0x18 holds 0x40-byte elements.
+// 0x1c-byte elements from 0x24 of MultiSelectMember; the buffer at 0x18 holds 0x40-byte elements.
 typedef struct Unk02174e58_24 {
     /* 00 */ u8 mUnk_00[4];
     /* 04 */ Nclr *mUnk_04;
@@ -17,7 +17,7 @@ typedef struct Unk02174e58_24 {
     /* 18 */ Unk02124b1c *mUnk_18;
 } Unk02174e58_24;
 
-// 0xc-byte elements from 0xe0 of Unk02174e58.
+// 0xc-byte elements from 0xe0 of MultiSelectMember.
 typedef struct Unk02174e58_e0 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -25,14 +25,14 @@ typedef struct Unk02174e58_e0 {
     /* 0a */ u16 mUnk_0a;
 } Unk02174e58_e0;
 
-// Object behind data_02174e58, 0x154 bytes (func_0203154c allocates it).
-typedef struct Unk02174e58 {
+// 0x154 bytes.
+typedef struct MultiSelectMember {
     /* 00 */ u8 mUnk_00[0x24];
     /* 24 */ Unk02174e58_24 mUnk_24[2];
     /* 5c */ void *mUnk_5c;
     /* 60 */ void *mUnk_60;
-    /* 64 */ Bmg *mUnk_64;
-    /* 68 */ Bmg *mUnk_68;
+    /* 64 */ Bmg *mBannerMessages;
+    /* 68 */ Bmg *mCommonMessages;
     /* 6c */ s32 mUnk_6c;
     /* 70 */ s32 mUnk_70;
     /* 74 */ s32 mUnk_74;
@@ -43,9 +43,9 @@ typedef struct Unk02174e58 {
     /* 88 */ BOOL mUnk_88;
     /* 8c */ BOOL mUnk_8c;
     /* 90 */ s32 mUnk_90;
-    /* 94 */ s32 mUnk_94;
+    /* 94 */ s32 mState;
     /* 98 */ s32 mUnk_98;
-    /* 9c */ s32 mUnk_9c;
+    /* 9c */ s32 mTimer;
     /* a0 */ Unk02025ebc mUnk_a0[4];
     /* e0 */ Unk02174e58_e0 mUnk_e0[8];
     /* 140 */ s32 mUnk_140;
@@ -53,7 +53,7 @@ typedef struct Unk02174e58 {
     /* 148 */ BOOL mUnk_148;
     /* 14c */ s32 mUnk_14c;
     /* 150 */ void *mHeap;
-} Unk02174e58;
+} MultiSelectMember;
 
 // Object whose u16 at 4 func_02030b18 and func_02030ea4 set.
 typedef struct Unk02030b18 {
@@ -64,7 +64,7 @@ typedef struct Unk02030b18 {
 #include "Main/Unknown/unk_02174000.h"
 
 void func_02030a20(void);
-void func_02030ae8(void);
+void ReleaseMultiSelectMember(void);
 s32 func_02030b18(Unk02030b18 *a);
 s32 func_02030ea4(Unk02030b18 *a);
 void func_02031208(void);
@@ -72,7 +72,7 @@ u32 func_02031250(void);
 u32 func_02031268(void);
 void func_02031280(void *a, void *b, void *c);
 void func_0203147c(void *a, void *b, void *c);
-void func_0203154c(void *a, void *b, void *c);
+void InitMultiSelectMember(void *a, void *b, void *c);
 void func_020317a0(void);
 void func_02031960(void);
 void func_02031b30(s32 a);
