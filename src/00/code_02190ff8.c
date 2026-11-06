@@ -46,7 +46,7 @@ u32 GpiOpenSockets(GpConnection *p, Unk021919ac_node *n) {
     GpiConnection *o;
     Unk021919ac_sa s;
     Unk021a8f84 *x;
-    s32 z;
+    u32 z;
     s32 r;
 
     o = p->mGpiConnection;
@@ -75,7 +75,7 @@ u32 GpiOpenSockets(GpConnection *p, Unk021919ac_node *n) {
             return 3;
         }
         z = 8;
-        if (func_ov000_0218e394(o->mListenSocket, &s, (u32 *) &z) == -1) {
+        if (func_ov000_0218e394(o->mListenSocket, &s, &z) == -1) {
             GpiSetError(p, 5, data_ov000_021b2e6c);
             GpiQueueErrorCallback(p, 3, 1);
             return 3;
@@ -231,10 +231,10 @@ u32 GpiWriteLogin(GpConnection *p, Unk021919ac_q *q) {
     GpiAppendBufferString(p, &o->mOutputBuffer, q->mUnk_080);
     if (q->mUnk_0c2[0] != 0) {
         GpiAppendBufferString(p, &o->mOutputBuffer, data_ov000_021b2d5c);
-        GpiAppendBufferString(p, &o->mOutputBuffer, (u8 *) q->mUnk_0c2);
+        GpiAppendBufferString(p, &o->mOutputBuffer, q->mUnk_0c2);
     } else if (o->mUniquenick[0] != 0) {
         GpiAppendBufferString(p, &o->mOutputBuffer, data_ov000_021b2c50);
-        GpiAppendBufferString(p, &o->mOutputBuffer, (u8 *) o->mUniquenick);
+        GpiAppendBufferString(p, &o->mOutputBuffer, o->mUniquenick);
     } else {
         GpiAppendBufferString(p, &o->mOutputBuffer, data_ov000_021b2d68);
         GpiAppendBufferString(p, &o->mOutputBuffer, o->mNick);
@@ -483,9 +483,9 @@ u32 GpiProcessConnectOperation(GpConnection *a, GpiOperation *b, const char *c) 
 int func_ov000_02191200(GpConnection *a) {
     int v1;
     GpiConnection *v2;
-    int v3;
+    u32 v3;
     v2 = a->mGpiConnection;
-    v1 = GpiCheckConnectComplete(a, v2->mConnectSocket, (u32 *) (&v3));
+    v1 = GpiCheckConnectComplete(a, v2->mConnectSocket, &v3);
     if (v1 == 0) {
         if (v3 == 4) {
             GpiSetError(a, 0x107u, data_ov000_021b2b48);

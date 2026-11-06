@@ -80,7 +80,7 @@ extern s32 data_ov003_021d8c40;
 extern Unk021d8c54 data_ov003_021d8c54;
 extern Unk021d8c54 data_ov003_021d8c5c;
 extern u8 data_ov003_021d8c7c[0x10];
-extern u8 data_ov003_021d8ca4[];
+extern Unk021d8ca4 data_ov003_021d8ca4;
 extern char data_ov003_021d8ce4[];
 extern u8 data_ov003_021d8cac[];
 extern u32 data_ov003_021d8eb0[0x95];

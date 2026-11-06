@@ -5,7 +5,7 @@
 typedef struct Unk021b4cb4 {
     /* 00 */ char *mUnk_00;
     /* 04 */ BOOL mUnk_04;
-    /* 08 */ BOOL mUnk_08;
+    /* 08 */ char *mUnk_08;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ void *(*mUnk_10)();
     /* 14 */ void (*mUnk_14)();

@@ -1053,7 +1053,7 @@ u32 func_ov000_021a0f20(u32 a) {
     }
     func_ov000_0218b48c(gWiFiMatching->mUnk_e4);
     for (i = 0; i < 5; i++) {
-        r = func_ov000_0218b570(gWiFiMatching->mUnk_e4, 1, 0, (u32) v2, n, (u32) v1, 0x10);
+        r = func_ov000_0218b570(gWiFiMatching->mUnk_e4, 1, 0, v2, n, (u32) v1, 0x10);
         if (r == 0 || r != 2) {
             break;
         }

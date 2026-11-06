@@ -64,7 +64,7 @@ s32 func_ov000_021a8e18(Unk021a6fa8 *a, Unk021a8e18 *b, s32 f);
 s32 func_ov000_021a8e70(s32 descriptor);
 void func_ov000_021a8e78(unsigned int *p0, unsigned int *p1);
 unsigned int func_ov000_021a8ed4(void);
-unsigned int func_ov000_021a8f0c(unsigned int f, unsigned int g);
+unsigned int func_ov000_021a8f0c(unsigned int f, void *g);
 s32 func_ov000_021a9008(s32 descriptor);
 s32 func_ov000_021a9010(s32 descriptor);
 s32 func_ov000_021a9018(s32 id, void *buffer, s32 length, s32 flags, void *addr);

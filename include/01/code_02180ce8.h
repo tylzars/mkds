@@ -23,7 +23,7 @@ unsigned int IsEmblemGridSwapped(void);
 void SwapEmblemGridCells(void);
 s32 SetEmblemGridCellsFromTable(u8 *indices, u16 *table);
 u32 SetEmblemGridCells(u8 *src);
-unsigned int GetEmblemGridCells(void);
+u8 *GetEmblemGridCells(void);
 unsigned int GetEmblemGridCharSize(void);
 unsigned int func_ov001_02181194(void);
 int GetEmblemGridScrSize(void);

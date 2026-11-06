@@ -156,28 +156,28 @@ int func_ov000_021960a4(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int 
         if (b == NULL) {
             v2->mUnk_028[0] = 0;
         } else {
-            GpiCopyString((char *) v2->mUnk_028, (const char *) b, 0x1f);
+            GpiCopyString(v2->mUnk_028, (const char *) b, 0x1f);
         }
         if (c == NULL) {
             v2->mUnk_047[0] = 0;
         } else {
-            GpiCopyString((char *) v2->mUnk_047, (const char *) c, 0x15);
+            GpiCopyString(v2->mUnk_047, (const char *) c, 0x15);
         }
         if (d == NULL) {
             v2->mUnk_05c[0] = 0;
         } else {
-            GpiCopyString((char *) v2->mUnk_05c, (const char *) d, 0x33);
+            GpiCopyString(v2->mUnk_05c, (const char *) d, 0x33);
         }
-        func_ov000_0218e850(v2->mUnk_05c);
+        func_ov000_0218e850((s8 *) v2->mUnk_05c);
         if (e == NULL) {
             v2->mUnk_08f[0] = 0;
         } else {
-            GpiCopyString((char *) v2->mUnk_08f, (const char *) e, 0x1f);
+            GpiCopyString(v2->mUnk_08f, (const char *) e, 0x1f);
         }
         if (f == NULL) {
             v2->mUnk_0ae[0] = 0;
         } else {
-            GpiCopyString((char *) v2->mUnk_0ae, (const char *) f, 0x1f);
+            GpiCopyString(v2->mUnk_0ae, (const char *) f, 0x1f);
         }
         v2->mUnk_130 = g;
         if (h < 0) {
@@ -382,12 +382,12 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                     e.mUnk_0c = NULL;
                     e.mUnk_08 = 0x601;
                     do {
-                        r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
                         if (strcmp(w0, data_ov000_021b37ac) == 0) {
-                            r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }
@@ -409,20 +409,20 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                             f = FALSE;
                             do {
                                 g = n;
-                                r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                                r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                                 if (r != 0) {
                                     return r;
                                 }
                                 if (strcmp(w0, data_ov000_021b37c0) == 0) {
-                                    GpiCopyString((char *) t1->mUnk_04, w1, 0x1f);
+                                    GpiCopyString(t1->mUnk_04, w1, 0x1f);
                                 } else if (strcmp(w0, data_ov000_021b37c8) == 0) {
-                                    GpiCopyString((char *) t1->mUnk_23, w1, 0x15);
+                                    GpiCopyString(t1->mUnk_23, w1, 0x15);
                                 } else if (strcmp(w0, data_ov000_021b37d4) == 0) {
-                                    GpiCopyString((char *) t1->mUnk_38, w1, 0x1f);
+                                    GpiCopyString(t1->mUnk_38, w1, 0x1f);
                                 } else if (strcmp(w0, data_ov000_021b37e0) == 0) {
-                                    GpiCopyString((char *) t1->mUnk_57, w1, 0x1f);
+                                    GpiCopyString(t1->mUnk_57, w1, 0x1f);
                                 } else if (strcmp(w0, data_ov000_021b37ec) == 0) {
-                                    GpiCopyString((char *) t1->mUnk_76, w1, 0x33);
+                                    GpiCopyString(t1->mUnk_76, w1, 0x33);
                                 } else if (strcmp(w0, data_ov000_021b37bc) == 0 ||
                                            strcmp(w0, data_ov000_021b37ac) == 0) {
                                     f = TRUE;
@@ -453,7 +453,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                 } else if (p->mUnk_000 == 2) {
                     c2 = b->mUnk_0c;
                     if (c2.mCallback != NULL) {
-                        r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -468,7 +468,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                             return 1;
                         }
                         u2->mUnk_00 = 0;
-                        GpiCopyString((char *) u2->mUnk_04, (const char *) p->mUnk_05c, 0x33);
+                        GpiCopyString(u2->mUnk_04, (const char *) p->mUnk_05c, 0x33);
                         if ((s8) w1[0] == 0x30) {
                             u2->mUnk_38 = FALSE;
                         } else {
@@ -492,7 +492,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                         u3->mUnk_38 = 0;
                         u3->mUnk_3c = NULL;
                         u3->mUnk_40 = NULL;
-                        r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -503,7 +503,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                         }
                         d = FALSE;
                         do {
-                            r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }
@@ -565,7 +565,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                         u4->mUnk_08 = 0;
                         u4->mUnk_0c = NULL;
                         do {
-                            r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }
@@ -587,14 +587,14 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                                 f = FALSE;
                                 do {
                                     g = n;
-                                    r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                                    r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                                     if (r != 0) {
                                         return r;
                                     }
                                     if (strcmp(w0, data_ov000_021b3838) == 0) {
-                                        GpiCopyString((char *) t4->mUnk_028, w1, 0x100);
+                                        GpiCopyString(t4->mUnk_028, w1, 0x100);
                                     } else if (strcmp(w0, data_ov000_021b37c0) == 0) {
-                                        GpiCopyString((char *) t4->mUnk_004, w1, 0x1f);
+                                        GpiCopyString(t4->mUnk_004, w1, 0x1f);
                                     }
                                     if (strcmp(w0, data_ov000_021b3840) == 0) {
                                         t4->mUnk_024 = StrtolBase10(w1);
@@ -618,7 +618,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                 } else if (p->mUnk_000 == 5) {
                     c5 = b->mUnk_0c;
                     if (c5.mCallback != NULL) {
-                        r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -654,7 +654,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                 } else if (p->mUnk_000 == 6) {
                     c6 = b->mUnk_0c;
                     if (c6.mCallback != NULL) {
-                        r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -700,7 +700,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                         u7->mUnk_00 = 0;
                         u7->mUnk_04 = 0;
                         u7->mUnk_08 = NULL;
-                        r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -711,7 +711,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                         }
                         d = FALSE;
                         do {
-                            r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }
@@ -733,20 +733,20 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                                 f = FALSE;
                                 do {
                                     g = n;
-                                    r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                                    r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                                     if (r != 0) {
                                         return r;
                                     }
                                     if (strcmp(w0, data_ov000_021b37c0) == 0) {
-                                        GpiCopyString((char *) t1->mUnk_04, w1, 0x1f);
+                                        GpiCopyString(t1->mUnk_04, w1, 0x1f);
                                     } else if (strcmp(w0, data_ov000_021b37c8) == 0) {
-                                        GpiCopyString((char *) t1->mUnk_23, w1, 0x15);
+                                        GpiCopyString(t1->mUnk_23, w1, 0x15);
                                     } else if (strcmp(w0, data_ov000_021b3870) == 0) {
-                                        GpiCopyString((char *) t1->mUnk_38, w1, 0x1f);
+                                        GpiCopyString(t1->mUnk_38, w1, 0x1f);
                                     } else if (strcmp(w0, data_ov000_021b3878) == 0) {
-                                        GpiCopyString((char *) t1->mUnk_57, w1, 0x1f);
+                                        GpiCopyString(t1->mUnk_57, w1, 0x1f);
                                     } else if (strcmp(w0, data_ov000_021b37ec) == 0) {
-                                        GpiCopyString((char *) t1->mUnk_76, w1, 0x33);
+                                        GpiCopyString(t1->mUnk_76, w1, 0x33);
                                     } else if (strcmp(w0, data_ov000_021b386c) == 0 ||
                                                strcmp(w0, data_ov000_021b3864) == 0) {
                                         f = TRUE;
@@ -776,7 +776,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                         u9->mUnk_00 = 0;
                         u9->mUnk_04 = 0;
                         u9->mUnk_08 = NULL;
-                        r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                        r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                         if (r != 0) {
                             return r;
                         }
@@ -793,7 +793,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                         }
                         d = FALSE;
                         do {
-                            r = GpiReadKeyValue(a, (s8 *) p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
+                            r = GpiReadKeyValue(a, p->mUnk_008, &n, (s8 *) w0, (s8 *) w1);
                             if (r != 0) {
                                 return r;
                             }

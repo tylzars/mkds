@@ -16,7 +16,7 @@ BOOL DWCi_Http_WriteBasicHeader(Http *a) {
     s32 d;
     s32 e;
     s32 f;
-    if (a->mUseGet == 0) {
+    if (a->mUnk_04.mUnk_04 == 0) {
         c = data_ov000_021b12ac;
     } else {
         c = data_ov000_021b1300;

@@ -34,8 +34,8 @@ u32 NNSi_SndFaderIsFinished(NNSSndFader *fade) {
 
 // Returns record number entry (12 bytes) of the sequence archive, or 0 when entry is out of range or the record's first
 // word is -1.
-u32 *NNSi_SndSeqArcGetSeqInfo(Unk0212f788 *archive, s32 entry) {
-    u32 *record;
+NNSSndSeqArcSeqInfo *NNSi_SndSeqArcGetSeqInfo(Unk0212f788 *archive, s32 entry) {
+    NNSSndSeqArcSeqInfo *record;
 
     if (entry < 0) {
         return 0;
@@ -43,8 +43,8 @@ u32 *NNSi_SndSeqArcGetSeqInfo(Unk0212f788 *archive, s32 entry) {
     if (entry >= archive->mUnk_1c) {
         return 0;
     }
-    record = (u32 *) ((u8 *) archive->mUnk_20 + entry * 12);
-    if (*record == -1) {
+    record = (NNSSndSeqArcSeqInfo *) ((u8 *) archive->mUnk_20 + entry * 12);
+    if (record->mOffset == -1) {
         return 0;
     }
     return record;

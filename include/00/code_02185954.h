@@ -16,6 +16,8 @@ typedef struct DWCHttpParseResult {
 } DWCHttpParseResult;
 
 #include "code_0200db4c.h"
+#include "00/unk_021b1000.h"
+#include "code_021510a4.h"
 
 // Growing buffer: mStart is its start, mCursor the write position, mEnd the end and mSize the size.
 typedef struct HttpBuffer {
@@ -25,42 +27,59 @@ typedef struct HttpBuffer {
     /* 0c */ s32 mSize;
 } HttpBuffer;
 
-// 0x1a60 bytes; mAllocate and mFree allocate and release the memory of its buffers.
+// Object at p + 0x118 of an Http.
+typedef struct Http118 {
+    /* 000 */ u8 pad_000[0x7d4];
+    /* 7d4 */ char *mUnk_7d4;
+    /* 7d8 */ u8 pad_7d8[0xc];
+    /* 7e4 */ u32 (*mUnk_7e4)(u32);
+    /* 7e8 */ u8 pad_7e8[0x1c];
+} Http118;
+
+// Object at p + 0xb4 of an Http.
+typedef struct HttpB4 {
+    /* 00 */ u8 pad_00[0xc];
+    /* 0c */ Http118 *mUnk_0c;
+    /* 10 */ u8 pad_10[0x2c];
+    /* 3c */ u32 mReceiveBufferSize;
+    /* 40 */ void *mReceiveBuffer;
+    /* 44 */ u8 pad_44[4];
+    /* 48 */ u32 mSendBufferSize;
+    /* 4c */ void *mSendBuffer;
+    /* 50 */ u8 pad_50[0x14];
+} HttpB4;
+
+// 0x1a60 bytes; the stack of its thread ends at mUnk_1a60. mUnk_04 holds the setup it was created with; its allocate
+// and free functions allocate and release the memory of the buffers.
 typedef struct Http {
-    /* 000 */ u8 mUnk_000[8];
-    /* 008 */ s32 mUseGet;
-    /* 00c */ s32 mGivenReceiveBuffer;
-    /* 010 */ u8 mUnk_010[4];
-    /* 014 */ void *(*mAllocate)(const void *, s32);
-    /* 018 */ void (*mFree)(const void *, void *, s32);
-    /* 01c */ u8 mUnk_01c[8];
+    /* 000 */ u8 mUnk_00;
+    /* 004 */ Unk021b4cb4 mUnk_04;
     /* 024 */ s32 mResult;
     /* 028 */ char mUnk_028[0x80];
     /* 0a8 */ char *mHost;
     /* 0ac */ char *mPath;
     /* 0b0 */ BOOL mUseHttps;
-    /* 0b4 */ u8 mUnk_0b4[0x868];
+    /* 0b4 */ HttpB4 mUnk_b4;
+    /* 118 */ Http118 mUnk_118;
     /* 91c */ void *mLowReceiveBuffer;
     /* 920 */ void *mLowSendBuffer;
     /* 924 */ s32 mPairCount;
     /* 928 */ HttpBuffer mSendBuffer;
     /* 938 */ HttpBuffer mReceiveBuffer;
-    /* 948 */ u8 mUnk_948[0x20];
+    /* 948 */ OSMutex mUnk_948;
+    /* 960 */ s32 mContentLength;
+    /* 964 */ const char *mBodyStart;
     /* 968 */ OSThread mThread;
-    /* a20 */ u8 mUnk_a20[0x1040];
+    /* a20 */ u8 pad_a20[8];
+    /* a28 */ OSMutex mUnk_a28;
+    /* a40 */ BOOL mUnk_a40;
+    /* a44 */ u8 pad_a44[0x101c];
+    /* 1a60 */ u8 mUnk_1a60[];
 } Http;
 
 u32 GrowHttpBuffer(Http *a, HttpBuffer *b, int c);
 void FreeHttpBuffer(Http *a, HttpBuffer *b);
 u32 InitHttpBuffer(Http *a, HttpBuffer *b, int c);
-
-// Object behind gAuth; the mutex at 0x3bc is passed to OS_LockMutex and OS_UnlockMutex.
-typedef struct Unk021b4c90 {
-    /* 000 */ u8 pad_000[4];
-    /* 004 */ s32 mError;
-    /* 008 */ u8 pad_008[0x3b4];
-    /* 3bc */ OSMutex mMutex;
-} Unk021b4c90;
 
 #include "00/code_02186d04.h"
 
@@ -108,17 +127,10 @@ typedef struct Unk02185984Data {
     /* 1b */ char mUnk_1b[4];
 } Unk02185984Data;
 
-// 0x12 bytes at data_ov000_021b4c94.
-typedef struct Unk021b4c94 {
-    /* 00 */ u64 mUnk_00;
-    /* 08 */ u64 mUnk_08;
-    /* 10 */ u16 mUnk_10;
-} Unk021b4c94;
-
 #include "00/code_021ad734.h"
 
 extern DWCAuth *gAuth;
-extern Unk021b4c94 data_ov000_021b4c94;
+extern DWCWiFiInfo data_ov000_021b4c94;
 
 void DWCi_Auth_SetError(s32 a);
 u32 DWCi_Auth_Prepare_FirstPost(Http *a, const char *b, const char *c, DWCHttpLabelValue *d, s32 e, s32 f);

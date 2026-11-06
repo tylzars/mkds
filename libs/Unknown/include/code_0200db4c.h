@@ -43,7 +43,7 @@ typedef struct OSThread {
     /* 94 */ u8 *mStackBottom;
     /* 98 */ u32 mStackWarningOffset;
     /* 9c */ OSThreadQueue mJoinQueue;
-    /* a4 */ u8 mUnk_a4[0xc];
+    /* a4 */ void *mUnk_a4[3];
     // The alarm of the OS_Sleep call the thread is in, 0 otherwise; OS_CreateThread and OSi_SleepAlarmCallback set it
     // to 0, OS_Sleep sets it, OSi_CancelThreadAlarmForSleep cancels it.
     /* b0 */ OSAlarm *mAlarmForSleep;

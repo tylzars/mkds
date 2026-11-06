@@ -44,9 +44,9 @@ void NNS_G3dDraw1Mat1Shp(NNSG3dResMdl *resMdl, u32 matId, u32 shpId, BOOL sendMa
         func_01ff9048(0x1b, scale, 3);
     }
     if (sendMat != 0) {
-        matBlock = (NNSG3dResMat *) ((u8 *) resMdl + resMdl->mOfsMat);
-        entries = (NNSG3dResDictEntryHeader *) ((u8 *) &matBlock->mDict + matBlock->mDict.mOfsEntry);
-        matData = (NNSG3dResMatData *) ((u8 *) matBlock + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+        matBlock = OFFSET_PTR(NNSG3dResMat, resMdl, resMdl->mOfsMat);
+        entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &matBlock->mDict, matBlock->mDict.mOfsEntry);
+        matData = OFFSET_PTR(NNSG3dResMatData, matBlock, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
         if (!(matData->mPolyAttr & 0x1f0000)) {
             return;
         }
@@ -93,9 +93,9 @@ void NNS_G3dDraw1Mat1Shp(NNSG3dResMdl *resMdl, u32 matId, u32 shpId, BOOL sendMa
             sendTexSRT(&texResult);
         }
     }
-    shpBlock = (NNSG3dResShp *) ((u8 *) resMdl + resMdl->mOfsShp);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &shpBlock->mDict + shpBlock->mDict.mOfsEntry);
-    shpData = (NNSG3dResShpData *) ((u8 *) shpBlock + *(u32 *) (entries->mData + entries->mSizeUnit * shpId));
+    shpBlock = OFFSET_PTR(NNSG3dResShp, resMdl, resMdl->mOfsShp);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &shpBlock->mDict, shpBlock->mDict.mOfsEntry);
+    shpData = OFFSET_PTR(NNSG3dResShpData, shpBlock, *(u32 *) (entries->mData + entries->mSizeUnit * shpId));
     func_01ff9144((u8 *) shpData + shpData->mOfsDL, shpData->mSizeDL);
     posScale = resMdl->mInfo.mInvPosScale;
     if (posScale != 0x1000) {
@@ -452,9 +452,9 @@ void NNSi_G3dFuncSbc_ENVMAP(NNSG3dRS *state) {
         func_01ff9048(0x1b, &nrm.mUnk_00[3], 3);
         texCoord = (u16) (s16) (width << 3) | ((u16) (s16) (height << 3) << 16);
         func_01ff9048(0x22, &texCoord, 1);
-        entries = (NNSG3dResDictEntryHeader *) ((u8 *) &state->mResMat->mDict + state->mResMat->mDict.mOfsEntry);
-        matData = (NNSG3dResMatData *) ((u8 *) state->mResMat +
-                                        *(u32 *) (entries->mData + entries->mSizeUnit * state->mC[1]));
+        entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &state->mResMat->mDict, state->mResMat->mDict.mOfsEntry);
+        matData =
+            OFFSET_PTR(NNSG3dResMatData, state->mResMat, *(u32 *) (entries->mData + entries->mSizeUnit * state->mC[1]));
         flag = matData->mFlag;
         if (flag & 0x2000) {
             texMtx = matData->mTexMtxData;
@@ -539,9 +539,9 @@ void NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS *state) {
         data_0216189c[12] = width << 15;
         data_0216189c[13] = height << 15;
         func_01ff9048(0x16, data_0216189c, 0x10);
-        entries = (NNSG3dResDictEntryHeader *) ((u8 *) &state->mResMat->mDict + state->mResMat->mDict.mOfsEntry);
-        matData = (NNSG3dResMatData *) ((u8 *) state->mResMat +
-                                        *(u32 *) (entries->mData + entries->mSizeUnit * state->mC[1]));
+        entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &state->mResMat->mDict, state->mResMat->mDict.mOfsEntry);
+        matData =
+            OFFSET_PTR(NNSG3dResMatData, state->mResMat, *(u32 *) (entries->mData + entries->mSizeUnit * state->mC[1]));
         flag = matData->mFlag;
         if (flag & 0x2000) {
             effectMtx = matData->mTexMtxData;

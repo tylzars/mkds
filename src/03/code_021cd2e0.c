@@ -93,27 +93,27 @@ void func_ov003_021cd9dc(const u8 *a) {
 }
 
 void func_ov003_021cd9c4(const char *input) {
-    func_ov003_021cd2e0(input, (u8 *) data_ov003_021da270 + 0x4c0);
+    func_ov003_021cd2e0(input, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_c0);
 }
 
 void func_ov003_021cd9ac(const char *input) {
-    func_ov003_021cd2e0(input, (u8 *) data_ov003_021da270 + 0x4f0);
+    func_ov003_021cd2e0(input, data_ov003_021da270->mUnk_400.mUnk_f0);
 }
 
 void func_ov003_021cd994(const char *input) {
-    func_ov003_021cd2e0(input, (u8 *) data_ov003_021da270 + 0x4c4);
+    func_ov003_021cd2e0(input, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_c4);
 }
 
 void func_ov003_021cd97c(const char *input) {
-    func_ov003_021cd2e0(input, (u8 *) data_ov003_021da270 + 0x4c8);
+    func_ov003_021cd2e0(input, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_c8);
 }
 
 void func_ov003_021cd964(const char *input) {
-    func_ov003_021cd2e0(input, (u8 *) data_ov003_021da270 + 0x4cc);
+    func_ov003_021cd2e0(input, &data_ov003_021da270->mUnk_400.mUnk_00.mUnk_c8[4]);
 }
 
 void func_ov003_021cd948(void *output) {
-    MI_CpuCopy8((u8 *) data_ov003_021da270 + 0x440, output, 0x20);
+    MI_CpuCopy8(data_ov003_021da270->mUnk_400.mUnk_00.mUnk_40, output, 0x20);
 }
 
 void func_ov003_021cd918(char *p0) {

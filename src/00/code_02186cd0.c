@@ -54,7 +54,7 @@ void DWCi_Netcheck_Thread(void) {
     s32 k;
     s32 r;
     u32 h;
-    Unk021b4cac *o;
+    Http *o;
     DWCNetcheck *q;
 
     p1 = NULL;
@@ -63,39 +63,39 @@ void DWCi_Netcheck_Thread(void) {
     for (;;) {
         data_ov000_021b4cb4.mUnk_00 = data_ov000_021b1384;
         data_ov000_021b4cb4.mUnk_04 = TRUE;
-        data_ov000_021b4cb4.mUnk_08 = FALSE;
+        data_ov000_021b4cb4.mUnk_08 = NULL;
         data_ov000_021b4cb4.mUnk_0c = 0x1000;
         data_ov000_021b4cb4.mUnk_10 = gNetcheck->mParam.mAlloc;
         data_ov000_021b4cb4.mUnk_14 = gNetcheck->mParam.mFree;
         data_ov000_021b4cb4.mUnk_1c = 20000;
         gNetcheck->mUnk_04 = -2;
-        if (DWC_Http_Create(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_Create(gHttp, &data_ov000_021b4cb4) != 0) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(1);
             break;
         }
         if (DWC_Http_FinishHeader(gHttp) != 0) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(1);
             break;
         }
         DWC_Http_StartThread(gHttp);
-        if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-            OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
+        if (gHttp->mThread.mId != 0) {
+            OS_JoinThread(&gHttp->mThread);
         }
-        o = (Unk021b4cac *) gHttp;
+        o = gHttp;
         switch (o->mResult) {
             case 2:
                 gNetcheck->mUnk_04 = -1;
             default:
-                ReleaseHttp((Http *) gHttp);
+                ReleaseHttp(gHttp);
                 DWCi_Netcheck_SetError(3);
                 goto end;
             case 8:
                 break;
         }
-        if (DWC_Http_ParseResult(gNetcheck->mHttpLabelvalue, 0x20, 0, o->mUnk_938) != TRUE) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_ParseResult(gNetcheck->mHttpLabelvalue, 0x20, 0, o->mReceiveBuffer.mStart) != TRUE) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(2);
             break;
         }
@@ -109,10 +109,10 @@ void DWCi_Netcheck_Thread(void) {
                 q = gNetcheck;
                 if (q->mBodyWayport != NULL) {
                     q->mUnk_04 = -6;
-                    ReleaseHttp((Http *) gHttp);
+                    ReleaseHttp(gHttp);
                     data_ov000_021b4cb4.mUnk_00 = data_ov000_021b1040.mUnk_00;
                     data_ov000_021b4cb4.mUnk_04 = FALSE;
-                    data_ov000_021b4cb4.mUnk_08 = FALSE;
+                    data_ov000_021b4cb4.mUnk_08 = NULL;
                     data_ov000_021b4cb4.mUnk_0c = 0x200;
                     data_ov000_021b4cb4.mUnk_10 = gNetcheck->mParam.mAlloc;
                     data_ov000_021b4cb4.mUnk_14 = gNetcheck->mParam.mFree;
@@ -120,19 +120,19 @@ void DWCi_Netcheck_Thread(void) {
                     if (strcmp(data_ov000_021b4cb4.mUnk_00, data_ov000_021b1400) != 0) {
                         data_ov000_021b4cb4.mUnk_18 = TRUE;
                     }
-                    if (DWC_Http_Create(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
-                        ReleaseHttp((Http *) gHttp);
+                    if (DWC_Http_Create(gHttp, &data_ov000_021b4cb4) != 0) {
+                        ReleaseHttp(gHttp);
                         DWCi_Netcheck_SetError(1);
                         break;
                     }
-                    if (DWCi_Auth_Prepare_FirstPost((Http *) gHttp, data_ov000_021b1420, data_ov000_021b1420,
+                    if (DWCi_Auth_Prepare_FirstPost(gHttp, data_ov000_021b1420, data_ov000_021b1420,
                                                     gNetcheck->mHttpLabelvalue, 0x20, 1) != 0) {
-                        ReleaseHttp((Http *) gHttp);
+                        ReleaseHttp(gHttp);
                         DWCi_Netcheck_SetError(8);
                         break;
                     }
-                    if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gActionPairName2, gMessagePairValue, 7) != FALSE) {
-                        ReleaseHttp((Http *) gHttp);
+                    if (DWC_Http_Add_PostBase64Item(gHttp, gActionPairName2, gMessagePairValue, 7) != FALSE) {
+                        ReleaseHttp(gHttp);
                         DWCi_Netcheck_SetError(8);
                         break;
                     }
@@ -141,14 +141,14 @@ void DWCi_Netcheck_Thread(void) {
                     func_ov000_021a6abc(&b);
                     MI_CpuCopy8(func_ov000_021a6abc(NULL), d, b);
                     OS_RestoreInterrupts(h);
-                    if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gSsidPairName, d, strlen(d)) != FALSE) {
-                        ReleaseHttp((Http *) gHttp);
+                    if (DWC_Http_Add_PostBase64Item(gHttp, gSsidPairName, d, strlen(d)) != FALSE) {
+                        ReleaseHttp(gHttp);
                         DWCi_Netcheck_SetError(8);
                         break;
                     }
                     s = gNetcheck->mBodyWayport;
-                    if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gHotSpotResponsePairName, s, strlen(s)) != FALSE) {
-                        ReleaseHttp((Http *) gHttp);
+                    if (DWC_Http_Add_PostBase64Item(gHttp, gHotSpotResponsePairName, s, strlen(s)) != FALSE) {
+                        ReleaseHttp(gHttp);
                         DWCi_Netcheck_SetError(8);
                         break;
                     }
@@ -156,57 +156,57 @@ void DWCi_Netcheck_Thread(void) {
                     q->mParam.mFree(gNetcheckBodyWayportName, q->mBodyWayport, 0);
                     gNetcheck->mBodyWayport = NULL;
                     if (DWC_Http_FinishHeader(gHttp) != 0) {
-                        ReleaseHttp((Http *) gHttp);
+                        ReleaseHttp(gHttp);
                         DWCi_Netcheck_SetError(1);
                         break;
                     }
                     DWC_Http_StartThread(gHttp);
-                    if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-                        OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
+                    if (gHttp->mThread.mId != 0) {
+                        OS_JoinThread(&gHttp->mThread);
                     }
-                    o = (Unk021b4cac *) gHttp;
+                    o = gHttp;
                     switch (o->mResult) {
                         case 2:
                             gNetcheck->mUnk_04 = -1;
                         default:
-                            ReleaseHttp((Http *) gHttp);
+                            ReleaseHttp(gHttp);
                             DWCi_Netcheck_SetError(3);
                             goto end;
                         case 8:
-                            ReleaseHttp((Http *) o);
+                            ReleaseHttp(o);
                             DWCi_Netcheck_SetError(7);
                             goto end;
                     }
                 }
                 s = DWC_Http_GetResult(q->mHttpLabelvalue, 0x20, gHttpbodyPairName2);
                 if (s == NULL) {
-                    ReleaseHttp((Http *) gHttp);
+                    ReleaseHttp(gHttp);
                     DWCi_Netcheck_SetError(2);
                     break;
                 }
                 gNetcheck->mBody302 = gNetcheck->mParam.mAlloc(gNetcheckBody302Name, strlen(s) + 1);
                 t = gNetcheck->mBody302;
                 if (t == NULL) {
-                    ReleaseHttp((Http *) gHttp);
+                    ReleaseHttp(gHttp);
                     DWCi_Netcheck_SetError(4);
                     break;
                 }
                 strncpy(t, s, strlen(s));
             } else {
-                ReleaseHttp((Http *) gHttp);
+                ReleaseHttp(gHttp);
                 DWCi_Netcheck_SetError(10);
                 break;
             }
         }
-        ReleaseHttp((Http *) gHttp);
+        ReleaseHttp(gHttp);
         DWCi_BM_GetWiFiInfo(&c);
         if (c.mAttestedUserId == 0) {
             gNetcheck->mUnk_04 = -3;
-            data_ov000_021b4cd4.mUnk_00 = 0;
-            data_ov000_021b4cd4.mUnk_15 = 0;
-            data_ov000_021b4cd4.mUnk_24 = gNetcheck->mParam.mAlloc;
-            data_ov000_021b4cd4.mUnk_28 = gNetcheck->mParam.mFree;
-            if (DWC_Auth_Create((Unk02186560 *) &data_ov000_021b4cd4, (Http *) gHttp) != 0) {
+            data_ov000_021b4cd4.mIngamesn[0] = 0;
+            data_ov000_021b4cd4.mGsbrcd[0] = 0;
+            data_ov000_021b4cd4.mAlloc = gNetcheck->mParam.mAlloc;
+            data_ov000_021b4cd4.mFree = gNetcheck->mParam.mFree;
+            if (DWC_Auth_Create(&data_ov000_021b4cd4, gHttp) != 0) {
                 DWCi_Netcheck_SetError(5);
                 break;
             }
@@ -215,7 +215,7 @@ void DWCi_Netcheck_Thread(void) {
                 if (DWC_Auth_GetError() == 9) {
                     gNetcheck->mUnk_04 = -1;
                 } else {
-                    func_ov000_0218635c((s32 *) &e);
+                    func_ov000_0218635c(&e.mUnk_000);
                     gNetcheck->mUnk_04 = e.mUnk_000;
                 }
                 DWCi_Netcheck_SetError(6);
@@ -231,7 +231,7 @@ void DWCi_Netcheck_Thread(void) {
         gNetcheck->mUnk_04 = -4;
         data_ov000_021b4cb4.mUnk_00 = data_ov000_021b1040.mUnk_00;
         data_ov000_021b4cb4.mUnk_04 = FALSE;
-        data_ov000_021b4cb4.mUnk_08 = FALSE;
+        data_ov000_021b4cb4.mUnk_08 = NULL;
         data_ov000_021b4cb4.mUnk_0c = 0x1000;
         data_ov000_021b4cb4.mUnk_10 = gNetcheck->mParam.mAlloc;
         data_ov000_021b4cb4.mUnk_14 = gNetcheck->mParam.mFree;
@@ -239,19 +239,19 @@ void DWCi_Netcheck_Thread(void) {
         if (strcmp(data_ov000_021b4cb4.mUnk_00, data_ov000_021b1400) != 0) {
             data_ov000_021b4cb4.mUnk_18 = TRUE;
         }
-        if (DWC_Http_Create(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_Create(gHttp, &data_ov000_021b4cb4) != 0) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(1);
             break;
         }
-        if (DWCi_Auth_Prepare_FirstPost((Http *) gHttp, data_ov000_021b1420, data_ov000_021b1420,
-                                        gNetcheck->mHttpLabelvalue, 0x20, 1) != 0) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWCi_Auth_Prepare_FirstPost(gHttp, data_ov000_021b1420, data_ov000_021b1420, gNetcheck->mHttpLabelvalue,
+                                        0x20, 1) != 0) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(8);
             break;
         }
-        if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gActionPairName2, gParsePairValue, 5) != FALSE) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_Add_PostBase64Item(gHttp, gActionPairName2, gParsePairValue, 5) != FALSE) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(8);
             break;
         }
@@ -260,14 +260,14 @@ void DWCi_Netcheck_Thread(void) {
         func_ov000_021a6abc(&b);
         MI_CpuCopy8(func_ov000_021a6abc(NULL), d, b);
         OS_RestoreInterrupts(h);
-        if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gSsidPairName, d, strlen(d)) != FALSE) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_Add_PostBase64Item(gHttp, gSsidPairName, d, strlen(d)) != FALSE) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(8);
             break;
         }
         s = gNetcheck->mBody302;
-        if (DWC_Http_Add_PostBase64Item((Http *) gHttp, gHtmlPairName, s, strlen(s)) != FALSE) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_Add_PostBase64Item(gHttp, gHtmlPairName, s, strlen(s)) != FALSE) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(8);
             break;
         }
@@ -275,100 +275,100 @@ void DWCi_Netcheck_Thread(void) {
         q->mParam.mFree(gNetcheckBody302Name, q->mBody302, 0);
         gNetcheck->mBody302 = NULL;
         if (DWC_Http_FinishHeader(gHttp) != 0) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(1);
             break;
         }
         DWC_Http_StartThread(gHttp);
-        if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-            OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
+        if (gHttp->mThread.mId != 0) {
+            OS_JoinThread(&gHttp->mThread);
         }
-        o = (Unk021b4cac *) gHttp;
+        o = gHttp;
         switch (o->mResult) {
             case 2:
                 gNetcheck->mUnk_04 = -1;
             default:
-                ReleaseHttp((Http *) gHttp);
+                ReleaseHttp(gHttp);
                 DWCi_Netcheck_SetError(3);
                 goto end;
             case 8:
                 break;
         }
-        if (DWC_Http_ParseResult(gNetcheck->mHttpLabelvalue, 0x20, 0, o->mUnk_938) != TRUE) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_ParseResult(gNetcheck->mHttpLabelvalue, 0x20, 0, o->mReceiveBuffer.mStart) != TRUE) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(2);
             break;
         }
         r = StrtolBase10(DWC_Http_GetResult(gNetcheck->mHttpLabelvalue, 0x20, gHttpresultPairName3));
         if (gLibErrorCode == 0x22) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(2);
             break;
         }
         if (r != 200) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(2);
             break;
         }
         if (DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gReturncdPairName2, b2, 4) <= 0) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(9);
             break;
         }
         r = StrtolBase10(b2);
         if (gLibErrorCode == 0x22) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(9);
             break;
         }
         if (r >= 100) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(6);
             break;
         }
         n1 = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gUrlPairName, NULL, 0);
         if (n1 <= 0) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(9);
             break;
         }
         n2 = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gDataPairName, NULL, 0);
         if (n2 <= 0) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(9);
             break;
         }
         n3 = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gWaitPairName, NULL, 0);
         p1 = gNetcheck->mParam.mAlloc(gUrlPairName, n1 + 1);
         if (p1 == NULL) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(4);
             break;
         }
         p2 = gNetcheck->mParam.mAlloc(gDataPairName, n2 + 1);
         if (p2 == NULL) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(4);
             break;
         }
         if (n3 > 0) {
             p3 = gNetcheck->mParam.mAlloc(gWaitPairName, n3 + 1);
             if (p3 == NULL) {
-                ReleaseHttp((Http *) gHttp);
+                ReleaseHttp(gHttp);
                 DWCi_Netcheck_SetError(4);
                 break;
             }
         }
         k = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gUrlPairName, p1, n1 + 1);
         if (k < 0) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(9);
             break;
         }
         p1[k] = 0;
         k = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gDataPairName, p2, n2 + 1);
         if (k < 0) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(9);
             break;
         }
@@ -377,14 +377,14 @@ void DWCi_Netcheck_Thread(void) {
         if (n3 > 0) {
             k = DWC_Http_GetBase64DecodedResult(gNetcheck->mHttpLabelvalue, 0x20, gWaitPairName, p3, n3 + 1);
             if (k < 0) {
-                ReleaseHttp((Http *) gHttp);
+                ReleaseHttp(gHttp);
                 DWCi_Netcheck_SetError(9);
                 break;
             }
             p3[k] = 0;
             v = StrtolBase10(p3);
             if (gLibErrorCode == 0x22) {
-                ReleaseHttp((Http *) gHttp);
+                ReleaseHttp(gHttp);
                 DWCi_Netcheck_SetError(9);
                 break;
             }
@@ -393,65 +393,65 @@ void DWCi_Netcheck_Thread(void) {
                 v = 180000;
             }
         }
-        ReleaseHttp((Http *) gHttp);
+        ReleaseHttp(gHttp);
         gNetcheck->mUnk_04 = -5;
         data_ov000_021b4cb4.mUnk_00 = p1;
         data_ov000_021b4cb4.mUnk_04 = FALSE;
-        data_ov000_021b4cb4.mUnk_08 = FALSE;
+        data_ov000_021b4cb4.mUnk_08 = NULL;
         data_ov000_021b4cb4.mUnk_0c = 0x1000;
         data_ov000_021b4cb4.mUnk_10 = gNetcheck->mParam.mAlloc;
         data_ov000_021b4cb4.mUnk_14 = gNetcheck->mParam.mFree;
         data_ov000_021b4cb4.mUnk_1c = 40000;
-        if (DWC_Http_Create(gHttp, (const Unk021873d4 *) &data_ov000_021b4cb4) != 0) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_Create(gHttp, &data_ov000_021b4cb4) != 0) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(1);
             break;
         }
-        if (DWC_Http_Add_Body((Http *) gHttp, p2) != FALSE) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_Add_Body(gHttp, p2) != FALSE) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(8);
             break;
         }
         if (DWC_Http_FinishHeader(gHttp) != 0) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(1);
             break;
         }
         DWC_Http_StartThread(gHttp);
-        if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-            OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
+        if (gHttp->mThread.mId != 0) {
+            OS_JoinThread(&gHttp->mThread);
         }
-        o = (Unk021b4cac *) gHttp;
+        o = gHttp;
         switch (o->mResult) {
             case 2:
                 gNetcheck->mUnk_04 = -1;
             default:
-                ReleaseHttp((Http *) gHttp);
+                ReleaseHttp(gHttp);
                 DWCi_Netcheck_SetError(3);
                 goto end;
             case 8:
                 break;
         }
-        if (DWC_Http_ParseResult(gNetcheck->mHttpLabelvalue, 0x20, 1, o->mUnk_938) != TRUE) {
-            ReleaseHttp((Http *) gHttp);
+        if (DWC_Http_ParseResult(gNetcheck->mHttpLabelvalue, 0x20, 1, o->mReceiveBuffer.mStart) != TRUE) {
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(2);
             break;
         }
         s = DWC_Http_GetResult(gNetcheck->mHttpLabelvalue, 0x20, gHttpbodyPairName2);
         if (s == NULL) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(2);
             break;
         }
         gNetcheck->mBodyWayport = gNetcheck->mParam.mAlloc(gNetcheckBodyWayportName, strlen(s) + 1);
         t = gNetcheck->mBodyWayport;
         if (t == NULL) {
-            ReleaseHttp((Http *) gHttp);
+            ReleaseHttp(gHttp);
             DWCi_Netcheck_SetError(4);
             break;
         }
         strncpy(t, s, strlen(s));
-        ReleaseHttp((Http *) gHttp);
+        ReleaseHttp(gHttp);
         OS_Sleep(v);
     }
 end:
@@ -484,7 +484,7 @@ u32 func_ov000_02187484(void) {
     return gNetcheck->mUnk_04;
 }
 
-s32 DWC_Http_Create(Unk02186d7c *p, const Unk021873d4 *q) {
+s32 DWC_Http_Create(Http *p, const Unk021b4cb4 *q) {
     MI_CpuFill8(p, 0, 0x1a60);
     p->mContentLength = -1;
     p->mUnk_04 = *q;
@@ -498,31 +498,31 @@ s32 DWC_Http_Create(Unk02186d7c *p, const Unk021873d4 *q) {
         p->mResult = 1;
         return 1;
     }
-    DWCi_Http_SetHostinfo((Http *) p, (const char *) q->mUnk_00);
-    p->mResult = DWCi_Http_WriteBasicHeader((Http *) p);
+    DWCi_Http_SetHostinfo(p, q->mUnk_00);
+    p->mResult = DWCi_Http_WriteBasicHeader(p);
     if (p->mResult == 0) {
         p->mUnk_00 = 0xff;
     }
     return p->mResult;
 }
 
-u32 DWC_Http_FinishHeader(Unk02186d7c *p) {
+u32 DWC_Http_FinishHeader(Http *p) {
     char v1[8];
     u32 n;
-    if (DWC_Http_Add_HeaderItem((Http *) p, data_ov000_021b135c, data_ov000_021b1368) != FALSE) {
+    if (DWC_Http_Add_HeaderItem(p, data_ov000_021b135c, data_ov000_021b1368) != FALSE) {
         return 1;
     }
     n = strlen(strstr(p->mSendBuffer.mStart, data_ov000_021b1230) + 4);
     if (n != 0) {
         OS_SNPrintf(v1, 7, data_ov000_021b1370, n);
-        if (DWC_Http_Add_HeaderItem((Http *) p, data_ov000_021b1374, v1) != FALSE) {
+        if (DWC_Http_Add_HeaderItem(p, data_ov000_021b1374, v1) != FALSE) {
             return 1;
         }
     }
     return 0;
 }
 
-void DWC_Http_StartThread(Unk02186d7c *p) {
+void DWC_Http_StartThread(Http *p) {
     u32 n;
     n = OS_GetThreadPriority(data_0216ff5c.mCurrentThread);
     p->mUnk_a40 = FALSE;
@@ -539,7 +539,7 @@ void DWC_Http_StartThread(Unk02186d7c *p) {
     }
 }
 
-void DWC_Http_Abort(Unk02186d7c *p) {
+void DWC_Http_Abort(Http *p) {
     if (p->mUnk_00 == 0xff) {
         OS_LockMutex(&p->mUnk_a28);
         p->mUnk_a40 = TRUE;
@@ -550,7 +550,7 @@ void DWC_Http_Abort(Unk02186d7c *p) {
     }
 }
 
-u32 func_ov000_02187230(Unk02186d7c *a) {
+u32 func_ov000_02187230(Http *a) {
     OS_LockMutex(&a->mUnk_a28);
     if (a->mUnk_a40 == TRUE) {
         OS_UnlockMutex(&a->mUnk_a28);
@@ -562,10 +562,10 @@ u32 func_ov000_02187230(Unk02186d7c *a) {
 }
 
 void DWCi_Http_Thread(void *l) {
-    Unk02186d7c *p = l;
-    Unk02186d7cB4 *a;
-    Unk02186d7c118 *b;
-    Unk02186d7cBuf *c;
+    Http *p = l;
+    HttpB4 *a;
+    Http118 *b;
+    HttpBuffer *c;
     const u8 *x;
     s32 d;
     int g;
@@ -663,10 +663,10 @@ void DWCi_Http_Thread(void *l) {
             goto fail;
         }
     }
-    FreeHttpBuffer((Http *) p, (HttpBuffer *) &p->mSendBuffer);
+    FreeHttpBuffer(p, &p->mSendBuffer);
     OS_LockMutex(&p->mUnk_948);
     if (p->mUnk_04.mUnk_08 == NULL) {
-        if (InitHttpBuffer((Http *) p, (HttpBuffer *) &p->mReceiveBuffer, p->mUnk_04.mUnk_0c) == 0) {
+        if (InitHttpBuffer(p, &p->mReceiveBuffer, p->mUnk_04.mUnk_0c) == 0) {
             p->mResult = 1;
             OS_UnlockMutex(&p->mUnk_948);
             goto fail;
@@ -770,16 +770,16 @@ fail:
 
 void ReleaseHttp(Http *a) {
     if (a != NULL) {
-        if (a->mGivenReceiveBuffer == 0) {
+        if (a->mUnk_04.mUnk_08 == NULL) {
             FreeHttpBuffer(a, &a->mReceiveBuffer);
         }
         FreeHttpBuffer(a, &a->mSendBuffer);
         if (a->mLowReceiveBuffer != NULL) {
-            a->mFree(gHttpLowReceiveBufferName, a->mLowReceiveBuffer, 0);
+            a->mUnk_04.mUnk_14(gHttpLowReceiveBufferName, a->mLowReceiveBuffer, 0);
             a->mLowReceiveBuffer = NULL;
         }
         if (a->mLowSendBuffer != NULL) {
-            a->mFree(gHttpLowSendBufferName, a->mLowSendBuffer, 0);
+            a->mUnk_04.mUnk_14(gHttpLowSendBufferName, a->mLowSendBuffer, 0);
             a->mLowSendBuffer = NULL;
         }
         MI_CpuFill8(a, 0, 0x1a60);

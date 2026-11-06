@@ -95,7 +95,7 @@ u32 func_ov000_021ab5bc(void) {
 void func_ov000_021ab594(u32 a, u32 b) {
     Unk021a998c *v1;
     Unk021a998c_0c *v2;
-    v1 = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    v1 = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if ((v1 != NULL) && (v2 = v1->mUnk_0c, v2 != NULL)) {
         v2->mUnk_7e8 = a;
         v2->mUnk_7ec = b;

@@ -56,8 +56,8 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
     if (func_01ffa1f8(p) != FALSE) {
         return;
     }
-    if (func_01ffdee4(&p->mCollisionCenter, &p->mPrevCollisionCenter, (u32) &p->mUnk_50, p->mRadius, 1, p->mUnk_2c8,
-                      &v1, &v5, &v2, &f, (u32 *) &v3, (s32 *) &v4, &h, &w) != 0) {
+    if (func_01ffdee4(&p->mCollisionCenter, &p->mPrevCollisionCenter, &p->mUnk_50, p->mRadius, 1, p->mUnk_2c8, &v1, &v5,
+                      &v2, &f, (u32 *) &v3, (s32 *) &v4, &h, &w) != 0) {
         m = f & 0x1e34ef;
         VEC_Add(&p->mPos, &v1, &p->mPos);
         func_0208ab98(&p->mKartModelsEntry->mUnk_040, (f & 0x3c000000) >> 26, p->mVelocityLength);

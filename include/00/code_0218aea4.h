@@ -75,7 +75,7 @@ typedef struct Unk0218ce14 {
 void SbServerListInit(SbServerList *slist, const char *a, const char *b, const char *c, u32 d, s32 e, UnkFunc *callback,
                       void *g);
 
-unsigned int func_ov000_0218b570(Unk0218b668 *p0, unsigned int p1, unsigned int p2, unsigned int p3, unsigned int p4,
+unsigned int func_ov000_0218b570(Unk0218b668 *p0, unsigned int p1, unsigned int p2, u8 *p3, unsigned int p4,
                                  unsigned int p5, unsigned int p6);
 
 #include "00/unk_021b4000.h"

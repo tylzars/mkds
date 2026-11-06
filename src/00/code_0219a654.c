@@ -24,13 +24,13 @@ Unk0219b1d4 *func_ov000_0219b178(void) {
         data_ov000_021b52c4 = DarrayCreate(0x40, 4, (void (*)(void *)) func_ov000_0219b1d4);
     }
     DarrayAppend(data_ov000_021b52c4, &a);
-    return DarrayGetElement(data_ov000_021b52c4, DarrayGetCount((u32 *) data_ov000_021b52c4) - 1);
+    return DarrayGetElement(data_ov000_021b52c4, DarrayGetCount(data_ov000_021b52c4) - 1);
 }
 
 void func_ov000_0219b130(Unk0219b1d4 *a) {
     s32 b;
 
-    for (b = 0; b < DarrayGetCount((u32 *) data_ov000_021b52c4); b++) {
+    for (b = 0; b < DarrayGetCount(data_ov000_021b52c4); b++) {
         if (a == DarrayGetElement(data_ov000_021b52c4, b)) {
             DarrayRemoveWithoutCallback(data_ov000_021b52c4, b);
             return;
@@ -74,7 +74,7 @@ u32 func_ov000_0219b05c(void) {
     }
     e = 0;
     while (1) {
-        c = *(u32 **) ((u8 *) d->mUnk_0c + e);
+        c = *OFFSET_PTR(u32 *, d->mUnk_0c, e);
         if (c == NULL) {
             break;
         }
@@ -348,7 +348,7 @@ void func_ov000_0219aaec(void) {
     s32 a;
 
     if (data_ov000_021b52c4 != NULL) {
-        for (a = DarrayGetCount((u32 *) data_ov000_021b52c4) - 1; a >= 0; a--) {
+        for (a = DarrayGetCount(data_ov000_021b52c4) - 1; a >= 0; a--) {
             func_ov000_0219ab24(DarrayGetElement(data_ov000_021b52c4, a));
         }
     }

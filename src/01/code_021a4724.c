@@ -68,8 +68,8 @@ void func_ov001_021a4d10(void) {
     GXS_LoadBGPltt(gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSBNcgr->mData, gEmblem->mEmblemSBNcgr->mDataSize);
     GXS_LoadBG1Char((gEmblem->mEmblemSBNcgr->mData), 0, gEmblem->mEmblemSBNcgr->mDataSize);
-    DC_FlushRange((const void *) GetEmblemGridCells(), GetEmblemGridCharSize());
-    GXS_LoadBG3Char((const void *) (GetEmblemGridCells()), func_ov001_02181194(), GetEmblemGridCharSize());
+    DC_FlushRange(GetEmblemGridCells(), GetEmblemGridCharSize());
+    GXS_LoadBG3Char(GetEmblemGridCells(), func_ov001_02181194(), GetEmblemGridCharSize());
     DC_FlushRange(gEmblem->mEmblemSTemplateFrameNscr->mData, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
     GXS_LoadBG0Scr(gEmblem->mEmblemSTemplateFrameNscr->mData, 0, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSToolNscr->mData, gEmblem->mEmblemSToolNscr->mDataSize);

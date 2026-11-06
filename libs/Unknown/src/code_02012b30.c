@@ -20,14 +20,14 @@
 NNSG3dResTex *NNS_G3dGetTex(NNSG3dResFileHeader *file) {
     u32 *blocks;
 
-    blocks = (u32 *) ((u8 *) file + file->mHeaderSize);
+    blocks = OFFSET_PTR(u32, file, file->mHeaderSize);
     if (file->mDataBlocks == 1) {
         if (file->mSigVal == 0x30585442) {
-            return (NNSG3dResTex *) ((u8 *) file + blocks[0]);
+            return OFFSET_PTR(NNSG3dResTex, file, blocks[0]);
         }
         return 0;
     }
-    return (NNSG3dResTex *) ((u8 *) file + blocks[1]);
+    return OFFSET_PTR(NNSG3dResTex, file, blocks[1]);
 }
 
 // Sets the diffuse color of one material.
@@ -36,9 +36,9 @@ void NNS_G3dMdlSetMdlDiff(NNSG3dResMdl *mdl, u32 matId, u32 color) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     data->mDiffAmb = (data->mDiffAmb & -0x8000) | color;
 }
 
@@ -48,9 +48,9 @@ void NNS_G3dMdlSetMdlAmb(NNSG3dResMdl *mdl, u32 matId, u32 color) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     data->mDiffAmb = (data->mDiffAmb & 0x8000ffff) | (color << 16);
 }
 
@@ -60,9 +60,9 @@ void NNS_G3dMdlSetMdlSpec(NNSG3dResMdl *mdl, u32 matId, u32 color) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     data->mSpecEmi = (data->mSpecEmi & -0x8000) | color;
 }
 
@@ -72,9 +72,9 @@ void NNS_G3dMdlSetMdlEmi(NNSG3dResMdl *mdl, u32 matId, u32 color) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     data->mSpecEmi = (data->mSpecEmi & 0x8000ffff) | (color << 16);
 }
 
@@ -84,9 +84,9 @@ void NNS_G3dMdlSetMdlLightEnableFlag(NNSG3dResMdl *mdl, u32 matId, u32 light) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     data->mPolyAttr = (data->mPolyAttr & ~0xf) | light;
 }
 
@@ -96,9 +96,9 @@ void NNS_G3dMdlSetMdlPolygonMode(NNSG3dResMdl *mdl, u32 matId, u32 polyMode) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     data->mPolyAttr = (data->mPolyAttr & ~0x30) | (polyMode << 4);
 }
 
@@ -108,9 +108,9 @@ void NNS_G3dMdlSetMdlCullMode(NNSG3dResMdl *mdl, u32 matId, u32 cullMode) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     data->mPolyAttr = (data->mPolyAttr & ~0xc0) | (cullMode << 6);
 }
 
@@ -120,9 +120,9 @@ void NNS_G3dMdlSetMdlPolygonID(NNSG3dResMdl *mdl, u32 matId, u32 polygonId) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     data->mPolyAttr = (data->mPolyAttr & ~0x3f000000) | (polygonId << 24);
 }
 
@@ -132,9 +132,9 @@ void NNS_G3dMdlSetMdlAlpha(NNSG3dResMdl *mdl, u32 matId, u32 alpha) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     data->mPolyAttr = (data->mPolyAttr & ~0x1f0000) | (alpha << 16);
 }
 
@@ -144,9 +144,9 @@ void NNS_G3dMdlSetMdlFogEnableFlag(NNSG3dResMdl *mdl, u32 matId, s32 flag) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     if (flag != 0) {
         data->mPolyAttr |= 0x8000;
     } else {
@@ -160,9 +160,9 @@ void NNS_G3dMdlSetMdlXLDepthUpdate(NNSG3dResMdl *mdl, u32 matId, s32 flag) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     if (flag != 0) {
         data->mPolyAttr |= 0x800;
     } else {
@@ -176,9 +176,9 @@ u32 NNS_G3dMdlGetMdlCullMode(NNSG3dResMdl *mdl, u32 matId) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     return (data->mPolyAttr & 0xc0) >> 6;
 }
 
@@ -188,9 +188,9 @@ u32 NNS_G3dMdlGetMdlPolygonID(NNSG3dResMdl *mdl, u32 matId) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     return (data->mPolyAttr & 0x3f000000) >> 24;
 }
 
@@ -200,9 +200,9 @@ u32 NNS_G3dMdlGetMdlAlpha(NNSG3dResMdl *mdl, u32 matId) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     return (data->mPolyAttr & 0x1f0000) >> 16;
 }
 
@@ -212,9 +212,9 @@ u32 NNS_G3dMdlGetMdlFogEnableFlag(NNSG3dResMdl *mdl, u32 matId) {
     NNSG3dResDictEntryHeader *entries;
     NNSG3dResMatData *data;
 
-    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
-    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
-    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    mat = OFFSET_PTR(NNSG3dResMat, mdl, mdl->mOfsMat);
+    entries = OFFSET_PTR(NNSG3dResDictEntryHeader, &mat->mDict, mat->mDict.mOfsEntry);
+    data = OFFSET_PTR(NNSG3dResMatData, mat, *(u32 *) (entries->mData + entries->mSizeUnit * matId));
     return data->mPolyAttr & 0x8000;
 }
 

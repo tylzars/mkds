@@ -59,8 +59,8 @@ void func_020646f0(Kart *a, s32 b) {
     g = a->mPos;
     g.y = g.y + 0x1000;
     a->mPos.y = a->mPos.y - 0x1400;
-    if (func_01ffdee4(&a->mPos, (u32 *) &g, (u32) &a->mUnk_50, 0x5000, 1, -2, &e, &f, NULL, NULL, NULL, NULL, NULL,
-                      NULL) != 0) {
+    if (func_01ffdee4(&a->mPos, (u32 *) &g, &a->mUnk_50, 0x5000, 1, -2, &e, &f, NULL, NULL, NULL, NULL, NULL, NULL) !=
+        0) {
         h.x = (s64) f.x * 0x5000 >> 12;
         h.y = (s64) f.y * 0x5000 >> 12;
         h.z = (s64) f.z * 0x5000 >> 12;

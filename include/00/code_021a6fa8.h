@@ -72,8 +72,8 @@ typedef struct Unk021a6fa8 {
     /* 50 */ Unk021a71a4 mUnk_50;
     /* 58 */ Unk021a71a4 mUnk_58;
     /* 60 */ u8 mUnk_60[4];
-    /* 64 */ void *mReceiveBlock;
-    /* 68 */ void *mSendBlock;
+    /* 64 */ Unk021a71c0 *mReceiveBlock;
+    /* 68 */ Unk021a722a *mSendBlock;
     /* 6c */ s32 mEntryResult;
     /* 70 */ s16 mUnk_70;
     /* 72 */ s8 mUnk_72;

@@ -81,7 +81,7 @@ extern u8 data_ov000_021b4a60[];
 extern u8 data_ov000_021b4be4[];
 extern u8 data_ov000_021b4be5[];
 extern u8 gWiFiVSCourseSelectState[];
-extern Unk02186d7c *gHttp;
+extern Http *gHttp;
 extern DWCNetcheck *gNetcheck;
 extern Unk02188408 *data_ov000_021b4d00;
 extern void *data_ov000_021b4d04;
@@ -89,7 +89,7 @@ extern void *data_ov000_021b4d08;
 extern Unk02188114 *data_ov000_021b4d0c;
 extern Unk021884e4 *data_ov000_021b4d10;
 extern struct Hashtable *data_ov000_021b4d18;
-extern u8 data_ov000_021b4d1c[];
+extern struct SbServer *data_ov000_021b4d1c;
 // Objects behind gWiFiSelectCharacterState and gWiFiSelectKartState.
 typedef struct Unk021b4c78 {
     /* 0 */ void *mHeap;

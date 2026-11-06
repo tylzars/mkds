@@ -11,7 +11,7 @@ typedef struct NNSSndFader {
     /* 0c */ s32 mFrame;
 } NNSSndFader;
 
-u32 *NNSi_SndSeqArcGetSeqInfo(Unk0212f788 *archive, s32 entry);
+NNSSndSeqArcSeqInfo *NNSi_SndSeqArcGetSeqInfo(Unk0212f788 *archive, s32 entry);
 u32 NNSi_SndFaderIsFinished(NNSSndFader *fade);
 void NNSi_SndFaderUpdate(NNSSndFader *fade);
 s32 NNSi_SndFaderGet(NNSSndFader *fade);

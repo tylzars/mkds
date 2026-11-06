@@ -46,7 +46,7 @@ void NNSi_G3dAnmObjInitNsBtp(NNSG3dAnmObj *pAnmObj, void *pResAnm, const NNSG3dR
     zero = 0;
     MIi_CpuClear16(zero, pAnmObj->mMapData, pAnmObj->mNumMapData * 2);
     for (i = 0; i < patAnim->mDict.mNumEntry; i++) {
-        dictEntries = (NNSG3dResDictEntryHeader *) ((u8 *) &patAnim->mDict + patAnim->mDict.mOfsEntry);
+        dictEntries = OFFSET_PTR(NNSG3dResDictEntryHeader, &patAnim->mDict, patAnim->mDict.mOfsEntry);
         matIdx = NNS_G3dGetResDictIdxByName(matBlock + 4,
                                             (const u32 *) ((u8 *) dictEntries + dictEntries->mOfsName + i * 16));
         if (matIdx >= 0) {
@@ -260,7 +260,7 @@ void GetTexSRTAnm_(const NNSG3dResTexSRTAnm *pTexAnm, u16 idx, u32 frame, NNSG3d
     s32 y;
     u32 z;
 
-    dictEntries = (const NNSG3dResDictEntryHeader *) ((const u8 *) &pTexAnm->mDict + pTexAnm->mDict.mOfsEntry);
+    dictEntries = OFFSET_PTR(const NNSG3dResDictEntryHeader, &pTexAnm->mDict, pTexAnm->mDict.mOfsEntry);
     srtData = (const NNSG3dResDictTexSRTAnmData *) (dictEntries->mData + dictEntries->mSizeUnit * idx);
     flag = pResult->mUnk_00;
     x = GetTexSRTAnmVectorVal_(pTexAnm, srtData->mTransS, srtData->mTransSEx, frame);
@@ -307,7 +307,7 @@ void NNSi_G3dAnmObjInitNsBta(NNSG3dAnmObj *pAnmObj, void *pResAnm, const NNSG3dR
     zero = 0;
     MIi_CpuClear16(zero, pAnmObj->mMapData, pAnmObj->mNumMapData * 2);
     for (i = 0; i < srtAnim->mDict.mNumEntry; i++) {
-        dictEntries = (NNSG3dResDictEntryHeader *) ((u8 *) &srtAnim->mDict + srtAnim->mDict.mOfsEntry);
+        dictEntries = OFFSET_PTR(NNSG3dResDictEntryHeader, &srtAnim->mDict, srtAnim->mDict.mOfsEntry);
         matIdx = NNS_G3dGetResDictIdxByName(matBlock + 4,
                                             (const u32 *) ((u8 *) dictEntries + dictEntries->mOfsName + i * 16));
         if (matIdx >= 0) {
@@ -438,7 +438,7 @@ void NNSi_G3dAnmObjInitNsBma(NNSG3dAnmObj *pAnmObj, void *pResAnm, const NNSG3dR
     zero = 0;
     MIi_CpuClear16(zero, pAnmObj->mMapData, pAnmObj->mNumMapData * 2);
     for (i = 0; i < colorAnim->mDict.mNumEntry; i++) {
-        dictEntries = (NNSG3dResDictEntryHeader *) ((u8 *) &colorAnim->mDict + colorAnim->mDict.mOfsEntry);
+        dictEntries = OFFSET_PTR(NNSG3dResDictEntryHeader, &colorAnim->mDict, colorAnim->mDict.mOfsEntry);
         matIdx = NNS_G3dGetResDictIdxByName(matBlock + 4,
                                             (const u32 *) ((u8 *) dictEntries + dictEntries->mOfsName + i * 16));
         if (matIdx >= 0) {
@@ -482,7 +482,7 @@ void NNSi_G3dAnmObjInitNsBca(NNSG3dAnmObj *pAnmObj, void *pResAnm, const NNSG3dR
     MIi_CpuClear16(zero, pAnmObj->mMapData, pAnmObj->mNumMapData * 2);
     tagOffsets = anim->mUnk_14;
     for (i = 0; i < anim->mNumNode; i++) {
-        pAnmObj->mMapData[i] = (*(u32 *) ((u8 *) anim + tagOffsets[i]) >> 24) | 0x100;
+        pAnmObj->mMapData[i] = (*OFFSET_PTR(u32, anim, tagOffsets[i]) >> 24) | 0x100;
     }
 }
 
@@ -512,7 +512,7 @@ void getMdlTrans_(NNSG3dJntAnmResult *out) {
     rs = data_02170500;
     nodeInfo = rs->mUnk_d4;
     table = (u8 *) nodeInfo + nodeInfo->mUnk_06;
-    node = (NNSG3dResNodeData *) ((u8 *) nodeInfo + *(u32 *) (table + *(u16 *) table * rs->mUnk_00[1] + 4));
+    node = OFFSET_PTR(NNSG3dResNodeData, nodeInfo, *(u32 *) (table + *(u16 *) table * rs->mUnk_00[1] + 4));
     if (node->mFlag & 1) {
         out->mFlag |= 4;
         return;
@@ -537,7 +537,7 @@ void getMdlScale_(NNSG3dJntAnmResult *out) {
     cmd = rs->mUnk_00;
     table = (u8 *) nodeInfo + nodeInfo->mUnk_06;
     nodeOfs = *(u32 *) (table + *(u16 *) table * cmd[1] + 4);
-    flags = *(u16 *) ((u8 *) nodeInfo + nodeOfs);
+    flags = *OFFSET_PTR(u16, nodeInfo, nodeOfs);
     scalePtr = (u8 *) nodeInfo + nodeOfs + 4;
     if (!(flags & 1)) {
         scalePtr += 0xc;
@@ -565,7 +565,7 @@ void getMdlRot_(NNSG3dJntAnmResult *out) {
     rs = data_02170500;
     nodeInfo = rs->mUnk_d4;
     table = (u8 *) nodeInfo + nodeInfo->mUnk_06;
-    node = (NNSG3dResNodeData *) ((u8 *) nodeInfo + *(u32 *) (table + *(u16 *) table * rs->mUnk_00[1] + 4));
+    node = OFFSET_PTR(NNSG3dResNodeData, nodeInfo, *(u32 *) (table + *(u16 *) table * rs->mUnk_00[1] + 4));
     vals = node->mUnk_04;
     if (!(node->mFlag & 1)) {
         vals += 6;
@@ -617,7 +617,7 @@ void getJntSRTAnmResult_(const NNSG3dResJntAnm *jntAnm, int node, s32 frame, NNS
     s32 r4;
     s32 r5;
 
-    tag = (const u32 *) ((u8 *) jntAnm + jntAnm->mUnk_14[node]);
+    tag = OFFSET_PTR(const u32, jntAnm, jntAnm->mUnk_14[node]);
     flags = tag[0];
     if (flags & 1) {
         out->mFlag = 7;
@@ -674,8 +674,8 @@ void getJntSRTAnmResult_(const NNSG3dResJntAnm *jntAnm, int node, s32 frame, NNS
                 }
                 cursor += 2;
             } else {
-                if (getRotDataByIdx_((s32 *) out->mRot, (const s16 *) ((u8 *) jntAnm + jntAnm->mOfsRot3),
-                                     (const s16 *) ((u8 *) jntAnm + jntAnm->mOfsRot5), *cursor)) {
+                if (getRotDataByIdx_((s32 *) out->mRot, OFFSET_PTR(const s16, jntAnm, jntAnm->mOfsRot3),
+                                     OFFSET_PTR(const s16, jntAnm, jntAnm->mOfsRot5), *cursor)) {
                     r5 = ((s32 *) out->mRot)[5];
                     r0 = ((s32 *) out->mRot)[0];
                     r3 = ((s32 *) out->mRot)[3];
@@ -1086,10 +1086,10 @@ void getRotData_(s32 *out, s32 frame, const u32 *desc, const NNSG3dResJntAnm *jn
     s32 x5;
 
     i = frame >> 12;
-    s0 = (const s16 *) ((u8 *) jntAnm + jntAnm->mOfsRot3);
-    s1 = (const s16 *) ((u8 *) jntAnm + jntAnm->mOfsRot5);
+    s0 = OFFSET_PTR(const s16, jntAnm, jntAnm->mOfsRot3);
+    s1 = OFFSET_PTR(const s16, jntAnm, jntAnm->mOfsRot5);
     info = desc[0];
-    values = (const u16 *) ((u8 *) jntAnm + desc[1]);
+    values = OFFSET_PTR(const u16, jntAnm, desc[1]);
     if (info & 0xc0000000) {
         lastStep = (info & 0x1fff0000) >> 16;
         if (info & 0x40000000) {
@@ -1219,10 +1219,10 @@ void getRotDataEx_(s32 *out, s32 frame, const u32 *desc, const NNSG3dResJntAnm *
     u32 j;
 
     i = frame >> 12;
-    s0 = (const s16 *) ((u8 *) jntAnm + jntAnm->mOfsRot3);
-    s1 = (const s16 *) ((u8 *) jntAnm + jntAnm->mOfsRot5);
+    s0 = OFFSET_PTR(const s16, jntAnm, jntAnm->mOfsRot3);
+    s1 = OFFSET_PTR(const s16, jntAnm, jntAnm->mOfsRot5);
     info = desc[0];
-    values = (const u16 *) ((u8 *) jntAnm + desc[1]);
+    values = OFFSET_PTR(const u16, jntAnm, desc[1]);
     if (i == jntAnm->mNumFrame - 1) {
         if (info & 0xc0000000) {
             if (info & 0x40000000) {
@@ -1383,9 +1383,9 @@ NNSG3dResVisAnm *NNS_G3dGetVisAnmByIdx(NNSG3dResVisAnmSet *pAnmSet, u8 idx) {
     NNSG3dResDictEntryHeader *dictEntries;
     NNSG3dResDictAnmSetData *setEntry;
 
-    dictEntries = (NNSG3dResDictEntryHeader *) ((u8 *) &pAnmSet->mDict + pAnmSet->mDict.mOfsEntry);
+    dictEntries = OFFSET_PTR(NNSG3dResDictEntryHeader, &pAnmSet->mDict, pAnmSet->mDict.mOfsEntry);
     setEntry = (NNSG3dResDictAnmSetData *) (dictEntries->mData + dictEntries->mSizeUnit * idx);
-    return (NNSG3dResVisAnm *) ((u8 *) pAnmSet + setEntry->mOffset);
+    return OFFSET_PTR(NNSG3dResVisAnm, pAnmSet, setEntry->mOffset);
 }
 
 NNSG3dResVisAnmSet *NNS_G3dGetVisAnmSet(const u8 *pFileHead) {

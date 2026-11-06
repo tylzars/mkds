@@ -6,6 +6,13 @@ typedef struct Ncgr Ncgr;
 typedef struct Nscr Nscr;
 typedef struct Nclr Nclr;
 
+// Argument of func_ov001_0218516c.
+typedef struct Unk0218516c {
+    /* 000 */ u8 mUnk_000[0x400];
+    /* 400 */ u16 mUnk_400;
+    /* 402 */ u16 mUnk_402;
+} Unk0218516c;
+
 // Object behind the pointer at 0x85c of Emblem.
 typedef struct Unk021ca41c_085c {
     /* 00 */ u16 mUnk_00;
@@ -19,8 +26,8 @@ typedef struct Unk021ca41c_085c {
 
 // Object behind gEmblem, allocated by InitEmblem.
 typedef struct Emblem {
-    /* 0000 */ u8 mUnk_0000[0x404];
-    /* 0404 */ u8 mUnk_0404[0x404];
+    /* 0000 */ Unk0218516c mUnk_0000;
+    /* 0404 */ Unk0218516c mUnk_0404;
     /* 0808 */ Nclr *mEmblemMONclr;
     /* 080c */ Nclr *mEmblemMBNclr;
     /* 0810 */ Ncgr *mEmblemMONcgr;

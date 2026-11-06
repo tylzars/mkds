@@ -106,8 +106,8 @@ u32 GetEmblemGridCharSize(void) {
     return gEmblemGrid->mSide * gEmblemGrid->mSide + 0x40;
 }
 
-u32 GetEmblemGridCells(void) {
-    return ((u32) gEmblemGrid->mBuffers[1]);
+u8 *GetEmblemGridCells(void) {
+    return gEmblemGrid->mBuffers[1];
 }
 
 u32 SetEmblemGridCells(u8 *src) {

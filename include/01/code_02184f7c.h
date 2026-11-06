@@ -30,13 +30,6 @@ typedef struct Unk0218516c_000 {
     /* 1e */ s16 mUnk_1e;
 } Unk0218516c_000;
 
-// Argument of func_ov001_0218516c.
-typedef struct Unk0218516c {
-    /* 000 */ u8 mUnk_000[0x400];
-    /* 400 */ u16 mUnk_400;
-    /* 402 */ u16 mUnk_402;
-} Unk0218516c;
-
 void func_ov001_02184f7c(Unk02188950 *a);
 void func_ov001_02184f8c(Unk02188950 *a);
 void func_ov001_02184f9c(Unk021a5a58 *a, s32 b, s32 c, s32 d, s32 e);

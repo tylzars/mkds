@@ -29,15 +29,14 @@ u8 *func_ov000_021a7bfc(Unk021a6fa8 *a, s32 *b, u16 *c, u16 *d, u32 *e);
 s32 func_ov000_021a7c4c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e);
 s32 func_ov000_021a7d14(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f);
 s32 func_ov000_021a7d68(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f, s32 g);
-unsigned int func_ov000_021a7de0(unsigned int a, unsigned int b, unsigned int c, unsigned int d, unsigned int e,
-                                 unsigned int f);
+unsigned int func_ov000_021a7de0(unsigned int a, void *b, unsigned int c, unsigned int d, u32 *e, unsigned int f);
 s32 func_ov000_021a7eec(const void *a, s32 b, Unk021a7eec *c);
 s32 func_ov000_021a7f48(Unk021a7064 *a);
 s32 func_ov000_021a8014(Unk021a6fa8 *a, u8 *b, s32 c, s32 d, u16 e, u16 *f, s32 g);
 s32 func_ov000_021a8118(Unk021a6fa8 *a);
 s32 func_ov000_021a813c(Unk021a6fa8 *a, s32 b, s32 c, u32 *d, s32 e);
 s32 func_ov000_021a81a8(Unk021a6fa8 *a, u8 *b, s32 c, u16 d, u16 *e, s32 f);
-u32 func_ov000_021a8268(u32 a, u32 b, u32 c, u16 d, u32 e, u32 f);
+u32 func_ov000_021a8268(u32 a, void *b, u32 c, u16 d, u32 e, u32 f);
 s32 func_ov000_021a8344(Unk021a7064 *a);
 s32 func_ov000_021a836c(s32 a);
 void func_ov000_021a8454(Unk021a7154 *a);

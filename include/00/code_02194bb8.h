@@ -7,7 +7,7 @@
 typedef struct Unk02194cac_04 {
     /* 000 */ s32 mUnk_000;
     /* 004 */ u32 mUnk_004;
-    /* 008 */ u8 *mUnk_008;
+    /* 008 */ s8 *mUnk_008;
     /* 00c */ u8 mUnk_00c[0xc];
     /* 018 */ u8 mUnk_018[0x10];
     /* 028 */ s8 mUnk_028[0x1f];
@@ -36,19 +36,19 @@ typedef struct Unk02194cac {
 // 0xac-byte array element GpiUpdateSearch fills.
 typedef struct Unk02194cac_ac {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ s8 mUnk_04[0x1f];
-    /* 23 */ s8 mUnk_23[0x15];
-    /* 38 */ s8 mUnk_38[0x1f];
-    /* 57 */ s8 mUnk_57[0x1f];
-    /* 76 */ s8 mUnk_76[0x36];
+    /* 04 */ char mUnk_04[0x1f];
+    /* 23 */ char mUnk_23[0x15];
+    /* 38 */ char mUnk_38[0x1f];
+    /* 57 */ char mUnk_57[0x1f];
+    /* 76 */ char mUnk_76[0x36];
 } Unk02194cac_ac;
 
 // 0x128-byte array element GpiUpdateSearch fills.
 typedef struct Unk02194cac_128 {
     /* 000 */ s32 mUnk_000;
-    /* 004 */ s8 mUnk_004[0x20];
+    /* 004 */ char mUnk_004[0x20];
     /* 024 */ s32 mUnk_024;
-    /* 028 */ s8 mUnk_028[0x100];
+    /* 028 */ char mUnk_028[0x100];
 } Unk02194cac_128;
 
 // 0x10-byte local of GpiUpdateSearch passed to GpiCallback.mCallback.
@@ -86,7 +86,7 @@ typedef struct Unk02194cac_102 {
 
 typedef struct Unk02194cac_3c {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ s8 mUnk_04[0x34];
+    /* 04 */ char mUnk_04[0x34];
     /* 38 */ BOOL mUnk_38;
 } Unk02194cac_3c;
 

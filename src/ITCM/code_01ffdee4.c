@@ -16,7 +16,7 @@
 #include "code_02147cd8.h"
 #include "registers.h"
 
-BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, void *g, void *h, u32 *o, u32 *j, int *k,
+BOOL func_01ffdee4(void *a, void *b, Vec3 *c, int r, u16 fl, short e, void *f, void *g, void *h, u32 *o, u32 *j, int *k,
                    u16 *l, u32 *m) {
     u16 *pl;
     Unk0217b614_08 *ta;
@@ -592,10 +592,10 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
             cc.z = cc.z + cd.z;
             qq = (s64) cc.x * ((Vec3 *) h)->z - (s64) cc.z * ((Vec3 *) h)->x;
             if (qq < -16 || qq > 16) {
-                cd.x = ((s64) cc.x * ((Vec3 *) c)->x) >> 12;
-                cd.z = ((s64) cc.z * ((Vec3 *) c)->z) >> 12;
-                cc.x = cc.x - (s32) (((s64) cd.x * ((Vec3 *) c)->x) >> 12);
-                cc.z = cc.z - (s32) (((s64) cd.z * ((Vec3 *) c)->z) >> 12);
+                cd.x = ((s64) cc.x * (c)->x) >> 12;
+                cd.z = ((s64) cc.z * (c)->z) >> 12;
+                cc.x = cc.x - (s32) (((s64) cd.x * (c)->x) >> 12);
+                cc.z = cc.z - (s32) (((s64) cd.z * (c)->z) >> 12);
                 VEC_Add((Vec3 *) &wa.mUnk_00, (Vec3 *) &wa.mUnk_0c, &ua);
                 if (Vec3DotUnrounded(&cc, &ua) >= 0) {
                     if ((s64) cc.x * cc.x + (s64) cc.y * cc.y + (s64) cc.z * cc.z >= 16) {

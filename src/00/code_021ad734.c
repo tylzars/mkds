@@ -46,7 +46,7 @@ void func_ov000_021b04f8(u32 a) {
         c = data_0216ff5c.mListHead;
         if (c != NULL) {
             do {
-                d = *(Unk021b04f8 **) c->mUnk_a4;
+                d = c->mUnk_a4[0];
                 if (d != NULL && d->mThread != NULL) {
                     if (d->mState != 10 && d->mState != 11) {
                         d->mState = 0;
@@ -804,7 +804,7 @@ void func_ov000_021af2a0(Unk021ae3f0 *c, Unk021af1e4 *d, u32 e) {
     Unk021a998c *b;
 
     for (a = data_0216ff5c.mListHead; a != NULL; a = a->mNext) {
-        b = *(Unk021a998c **) a->mUnk_a4;
+        b = a->mUnk_a4[0];
         if (b == NULL || b->mThread == NULL || b->mState != 0xb || (u16) (u32) b->mThread != d->mUnk_04) {
             continue;
         }
@@ -863,7 +863,7 @@ Unk021a998c *func_ov000_021af15c(const Unk021ae3f0 *c, const Unk021ae87c *d) {
     OSThread *a;
 
     for (a = data_0216ff5c.mListHead; a != NULL; a = a->mNext) {
-        b = *(Unk021a998c **) a->mUnk_a4;
+        b = a->mUnk_a4[0];
         if (b == NULL || b->mThread == NULL || b->mState != 1 ||
             b->mUnk_0a != (u16) ((d->mUnk_02 >> 8) | (d->mUnk_02 << 8))) {
             continue;
@@ -914,7 +914,7 @@ Unk021a998c *func_ov000_021af090(const Unk021ae3f0 *c, const Unk021ae87c *d) {
 
     a = data_0216ff5c.mListHead;
     while (a != NULL) {
-        b = *(Unk021a998c **) a->mUnk_a4;
+        b = a->mUnk_a4[0];
         if (b != NULL && b->mThread != NULL && func_ov000_021af0dc(c, d, b) != 0) {
             return b;
         }
@@ -1284,7 +1284,7 @@ void func_ov000_021ae724(Unk021ae3f0 *a, Unk021ae724 *b, u32 c) {
         return;
     }
     for (t = data_0216ff5c.mListHead; t != NULL; t = t->mNext) {
-        s = *(Unk021a998c **) t->mUnk_a4;
+        s = t->mUnk_a4[0];
         if (s == NULL || s->mThread == NULL || s->mState != 0xa ||
             s->mUnk_0a != (u16) ((b->mUnk_02 >> 8) | (b->mUnk_02 << 8))) {
             continue;
@@ -1480,10 +1480,10 @@ void func_ov000_021ae3a4(void) {
         if (v1 > 0x22) {
             switch ((u16) ((v2->mUnk_0c >> 8) | (v2->mUnk_0c << 8))) {
                 case 0x800:
-                    func_ov000_021ae3f0((Unk021ae3f0 *) ((u8 *) v2 + 0xe), v1 - 0xe);
+                    func_ov000_021ae3f0(OFFSET_PTR(Unk021ae3f0, v2, 0xe), v1 - 0xe);
                     break;
                 case 0x806:
-                    func_ov000_021af3e8((Unk021af3e8 *) ((u8 *) v2 + 0xe), v1 - 0xe);
+                    func_ov000_021af3e8(OFFSET_PTR(Unk021af3e8, v2, 0xe), v1 - 0xe);
                     break;
             }
         }
@@ -1503,7 +1503,7 @@ u16 func_ov000_021ae340(void) {
             data_ov000_021b6374 = 0x400;
         }
         for (t = data_0216ff5c.mListHead; t != NULL; t = t->mNext) {
-            s = *(Unk021a998c **) t->mUnk_a4;
+            s = t->mUnk_a4[0];
             if (s != NULL && s->mThread != NULL && s->mUnk_0a == data_ov000_021b6374) {
                 v1 = 1;
                 break;
@@ -1528,12 +1528,12 @@ void func_ov000_021ae304(void *arg0) {
 }
 
 void func_ov000_021ae2f4(void) {
-    *(u32 *) data_0216ff5c.mCurrentThread->mUnk_a4 = 0;
+    data_0216ff5c.mCurrentThread->mUnk_a4[0] = NULL;
 }
 
 void func_ov000_021ae2d8(void) {
     Unk021a998c *v1;
-    v1 = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    v1 = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (v1 != NULL) {
         v1->mState = 10;
         v1->mReceiveBufferLength = 0;
@@ -1543,7 +1543,7 @@ void func_ov000_021ae2d8(void) {
 void func_ov000_021ae290(int a, u16 b, int c) {
     u16 v1;
     Unk021a998c *v2;
-    v2 = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    v2 = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (v2 != NULL) {
         if (c == 0x7f000001) {
             c = *(s32 *) &data_ov000_021b63b4;
@@ -1563,7 +1563,7 @@ void func_ov000_021ae290(int a, u16 b, int c) {
 
 void func_ov000_021ae270(void) {
     Unk021a998c *v1;
-    v1 = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    v1 = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (v1 != NULL) {
         v1->mThread = data_0216ff5c.mCurrentThread;
         v1->mState = 0;
@@ -1575,14 +1575,14 @@ void func_ov000_021ae270(void) {
 
 void func_ov000_021ae258(void) {
     Unk021a998c *v1;
-    v1 = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    v1 = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (v1 != NULL) {
         v1->mThread = NULL;
     }
 }
 
 void func_ov000_021ae244(OSThread *thread) {
-    *(u32 *) thread->mUnk_a4 = *(u32 *) data_0216ff5c.mCurrentThread->mUnk_a4;
+    thread->mUnk_a4[0] = data_0216ff5c.mCurrentThread->mUnk_a4[0];
 }
 
 void func_ov000_021ae228(Unk021a998c *a) {
@@ -1596,7 +1596,7 @@ void func_ov000_021ae228(Unk021a998c *a) {
 
 void func_ov000_021ae214(Unk021a78a4Func a) {
     u8 *v1;
-    v1 = *(u8 **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    v1 = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (v1 != NULL) {
         *(Unk021a78a4Func *) (v1 + 0x38) = a;
     }
@@ -1605,7 +1605,7 @@ void func_ov000_021ae214(Unk021a78a4Func a) {
 void func_ov000_021ae1e4(void) {
     Unk021a998c *a;
 
-    a = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    a = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (a != NULL) {
         if (a->mUnk_09 != 0) {
             func_ov000_021a9534(a);
@@ -1645,7 +1645,7 @@ u32 func_ov000_021ae16c(Unk021a998c *b) {
 u32 func_ov000_021ae134(void) {
     Unk021a998c *a;
 
-    a = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    a = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (a != NULL) {
         if (a->mUnk_09 != 0) {
             return func_ov000_021a943c(a);
@@ -1657,7 +1657,7 @@ u32 func_ov000_021ae134(void) {
 
 u32 func_ov000_021ae100(u16 *a, u32 *b) {
     Unk021a998c *v1;
-    v1 = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    v1 = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if ((v1 != NULL) && ((v1->mState == 4 || (v1->mState == '\n')))) {
         if (a != NULL) {
             *a = v1->mUnk_18;
@@ -1685,7 +1685,7 @@ void func_ov000_021ae0c4(Unk021a998c *a) {
 void func_ov000_021ae094(void) {
     Unk021a998c *s;
 
-    s = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
         if (s->mUnk_09 != 0) {
             func_ov000_021a9228(s);
@@ -1699,7 +1699,7 @@ void func_ov000_021ae048(void) {
     Unk021a998c *s;
     s32 t;
 
-    s = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
         t = OS_GetTick() >> 16;
         while (data_ov000_021b6388() != 0 && s->mState != 0 && (s32) (OS_GetTick() >> 16) - t < 0x27) {
@@ -1739,7 +1739,7 @@ u8 *func_ov000_021adfc8(u32 *a, Unk021a998c *b) {
 u8 *func_ov000_021adf78(u32 *a) {
     Unk021a998c *s;
 
-    s = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
         if ((u8) (s->mState + 0xf6) <= 1) {
             return func_ov000_021ae01c(a, s);
@@ -1779,7 +1779,7 @@ void func_ov000_021adf30(u32 a, Unk021a998c *b) {
 void func_ov000_021adf00(u32 a) {
     Unk021a998c *s;
 
-    s = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
         if (s->mUnk_09 != 0) {
             func_ov000_021a9394(a, s);
@@ -1904,7 +1904,7 @@ s32 func_ov000_021adc64(const u8 *a, s32 b, const u8 *c, s32 d) {
     u8 t;
     s32 r;
 
-    s = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
         t = s->mState;
         if (t == 0xa) {
@@ -1939,7 +1939,7 @@ s32 func_ov000_021adbf4(const u8 *a, s32 b) {
     Unk021a998c *s;
     s32 r;
 
-    s = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
         if (s->mUnk_60 != 0) {
             r = func_ov000_021adc64(s->mUnk_5c, s->mUnk_60, a, b);
@@ -1961,7 +1961,7 @@ s32 func_ov000_021adbac(void) {
     Unk021a998c *s;
     s32 r;
 
-    s = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    s = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if (s != NULL) {
         if (s->mUnk_09 != 0) {
             r = func_ov000_021a9358(s);
@@ -1978,7 +1978,7 @@ s32 func_ov000_021adbac(void) {
 
 void func_ov000_021adb80(void) {
     Unk021a998c *v1;
-    v1 = *(Unk021a998c **) data_0216ff5c.mCurrentThread->mUnk_a4;
+    v1 = data_0216ff5c.mCurrentThread->mUnk_a4[0];
     if ((v1 != NULL) && (v1->mUnk_60 != 0)) {
         func_ov000_021adc64((v1->mUnk_5c), v1->mUnk_60, NULL, 0);
         v1->mUnk_60 = 0;
@@ -2090,7 +2090,7 @@ void func_ov000_021ad898(void) {
         f = data_0216ff5c.mListHead;
         if (f != NULL) {
             do {
-                g = *(Unk021a998c **) f->mUnk_a4;
+                g = f->mUnk_a4[0];
                 if (g != NULL && g->mThread != NULL) {
                     if (g->mState == 3 && (s32) (c - g->mStateStartTime) > 0x27) {
                         g->mState = 1;

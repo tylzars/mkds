@@ -444,7 +444,7 @@ s32 func_ov003_021b8b18(Unk021b8760 *a, u8 *b) {
                 return -1;
         }
         if (c->mUnk_04 != 0) {
-            c = (Unk021b8760 *) ((u8 *) a + func_ov003_021b7c44(c->mUnk_04));
+            c = OFFSET_PTR(Unk021b8760, a, func_ov003_021b7c44(c->mUnk_04));
             continue;
         }
         return 0;
@@ -462,7 +462,7 @@ u32 func_ov003_021b8af4(const u8 *bytes, s32 count) {
 }
 
 s32 func_ov003_021b8990(Unk021b8760 *a, Unk021b8990 *b) {
-    Unk021b8760 *c = (Unk021b8760 *) ((u8 *) a + 6);
+    Unk021b8760 *c = OFFSET_PTR(Unk021b8760, a, 6);
     u32 d;
     while (1) {
         d = func_ov003_021b7c44(c->mUnk_02);
@@ -530,7 +530,7 @@ s32 func_ov003_021b8990(Unk021b8760 *a, Unk021b8990 *b) {
 }
 
 s32 func_ov003_021b88c0(Unk021b8760 *a, Unk021b88c0 *b) {
-    Unk021b8760 *c = (Unk021b8760 *) ((u8 *) a + 6);
+    Unk021b8760 *c = OFFSET_PTR(Unk021b8760, a, 6);
     u32 d;
     while (1) {
         d = func_ov003_021b7c44(c->mUnk_02);
@@ -573,7 +573,7 @@ s32 func_ov003_021b88c0(Unk021b8760 *a, Unk021b88c0 *b) {
 }
 
 s32 func_ov003_021b887c(Unk021b8760 *a, u8 *b) {
-    Unk021b8760 *c = (Unk021b8760 *) ((u8 *) a + 6);
+    Unk021b8760 *c = OFFSET_PTR(Unk021b8760, a, 6);
     s32 d;
     d = func_ov003_021b7c44(c->mUnk_02);
     if (d <= 0) {
@@ -606,13 +606,13 @@ s32 func_ov003_021b8758(s32 a, Unk021b8760 *b, s32 c, Unk021b8758 *d, u8 *e) {
             break;
         }
         g = func_ov003_021b7c44(b->mUnk_02) + 4;
-        b = (Unk021b8760 *) ((u8 *) b + g);
+        b = OFFSET_PTR(Unk021b8760, b, g);
         c -= g;
         if (c <= 0) {
             return -4;
         }
     }
-    b = (Unk021b8760 *) ((u8 *) b + 4);
+    b = OFFSET_PTR(Unk021b8760, b, 4);
     h = func_ov003_021b7c44(m->mUnk_02);
     j = d + a;
     k = e + (a + 3) * 0x80;
@@ -646,7 +646,7 @@ s32 func_ov003_021b8758(s32 a, Unk021b8760 *b, s32 c, Unk021b8758 *d, u8 *e) {
             return l;
         }
         g = func_ov003_021b7c44(b->mUnk_02) + 4;
-        b = (Unk021b8760 *) ((u8 *) b + g);
+        b = OFFSET_PTR(Unk021b8760, b, g);
         h -= g;
     } while ((s32) h > 0);
     data_ov003_021d7c6c.mUnk_0c |= f;
@@ -784,7 +784,7 @@ s16 func_ov003_021b839c(void *a) {
     e = (d + 1) / 2 * 2;
     b->mUnk_04 = func_ov003_021b7c94(e);
     f += e;
-    c = (Unk021b839c *) ((u8 *) b + e);
+    c = OFFSET_PTR(Unk021b839c, b, e);
     ((u8 *) b)[e] = 0x60;
     c->mUnk_01 = 0;
     c->mUnk_04 = func_ov003_021b7c94(0);
@@ -1062,13 +1062,13 @@ void func_ov003_021b7d90(void *arg0, const void *arg1, u32 arg2) {
 }
 
 void func_ov003_021b7d84(void *arg0, s32 arg1, u32 arg2) {
-    u32 value0 = (u32) arg0;
+    void *value0 = arg0;
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value3;
     value1 = (value1 << 24);
     value1 = (value1 >> 24);
-    MI_CpuFill8((void *) value0, value1, value2);
+    MI_CpuFill8(value0, value1, value2);
 }
 
 s32 func_ov003_021b7d68(s32 v1, void *v2, s32 v3, s32 v4, Unk021b7cec *v5, s32 *v6) {

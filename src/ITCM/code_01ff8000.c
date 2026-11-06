@@ -114,7 +114,7 @@ void func_01ff8e64(Unk02170500 *s, Unk02170500_04 *i) {
         s->mUnk_00 = (u8 *) i->mUnk_04 + i->mUnk_04->mUnk_04;
     }
     s->mUnk_04 = i;
-    s->mUnk_d4 = (Unk02170500_d4 *) ((u8 *) i->mUnk_04 + 0x40);
+    s->mUnk_d4 = OFFSET_PTR(Unk02170500_d4, i->mUnk_04, 0x40);
     s->mUnk_d8 = (u8 *) i->mUnk_04 + i->mUnk_04->mUnk_08;
     s->mUnk_dc = (u8 *) i->mUnk_04 + i->mUnk_04->mUnk_0c;
     s->mUnk_e8 = (UnkFunc *) data_usa_02161850[i->mUnk_04->mUnk_15];

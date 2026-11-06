@@ -30,26 +30,6 @@ typedef struct DWCNetcheck {
     /* 1200 */ u8 mUnk_1200[0x1000];
 } DWCNetcheck;
 
-// Object behind gHttp.
-typedef struct Unk021b4cac {
-    /* 000 */ u8 mUnk_000[0x24];
-    /* 024 */ s32 mResult;
-    /* 028 */ u8 mUnk_028[0x910];
-    /* 938 */ const char *mUnk_938;
-    /* 93c */ u8 mUnk_93c[0x2c];
-    /* 968 */ u8 mThread[0x6c];
-    /* 9d4 */ s32 mUnk_9d4;
-} Unk021b4cac;
-
-typedef struct Unk021b4cd4 {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01[0x14];
-    /* 15 */ u8 mUnk_15;
-    /* 16 */ u8 mUnk_16[0xe];
-    /* 24 */ void *(*mUnk_24)();
-    /* 28 */ void (*mUnk_28)();
-} Unk021b4cd4;
-
 // Object filled by func_ov000_0218635c.
 typedef struct Unk0218635c {
     /* 000 */ s32 mUnk_000;
@@ -76,7 +56,7 @@ extern char gParsePairValue[];
 extern char gHtmlPairName[];
 extern char gReturncdPairName2[];
 extern Unk021b4cb4 data_ov000_021b4cb4;
-extern Unk021b4cd4 data_ov000_021b4cd4;
+extern Unk02186560 data_ov000_021b4cd4;
 
 u32 func_ov000_02187484(void);
 void DWCi_Netcheck_SetError(u32 a);

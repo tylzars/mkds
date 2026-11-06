@@ -78,7 +78,7 @@ void InitEmblem(void) {
     CreateEmblemInput();
     func_02078c58(GetHeap(func_020364e8()));
     InitEmblemChoises();
-    func_020ae6d4(gEmblem->mUnk_0000, gEmblem->mUnk_0404);
+    func_020ae6d4(&gEmblem->mUnk_0000, &gEmblem->mUnk_0404);
     func_ov001_021a6238(0x40, 0x10, 0x20, 0x80, 0x10);
     p = data_0217aa08->mUnk_04;
     if (p->mUnk_004) {

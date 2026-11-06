@@ -2072,35 +2072,35 @@ void SPLManager_LoadResources(Unk020184e4 *mgr, Unk02018a1c *data) {
     MI_CpuFill8(mgr->mUnk_28, 0, mgr->mUnk_30 << 5);
     for (i = 0; i < mgr->mUnk_30; i++) {
         e = mgr->mUnk_28 + i;
-        e->mUnk_00 = (Unk0201ca6c_20_00 *) ((u8 *) data + off);
+        e->mUnk_00 = OFFSET_PTR(Unk0201ca6c_20_00, data, off);
         off += 0x58;
         flags = e->mUnk_00->mUnk_00;
         if (flags.mUnk_00_8) {
-            e->mUnk_04 = (Unk0201ca6c_20_04 *) ((u8 *) data + off);
+            e->mUnk_04 = OFFSET_PTR(Unk0201ca6c_20_04, data, off);
             off += 0xc;
         } else {
             e->mUnk_04 = 0;
         }
         if (flags.mUnk_00_9) {
-            e->mUnk_08 = (Unk0201ca6c_20_08 *) ((u8 *) data + off);
+            e->mUnk_08 = OFFSET_PTR(Unk0201ca6c_20_08, data, off);
             off += 0xc;
         } else {
             e->mUnk_08 = 0;
         }
         if (flags.mUnk_00_10) {
-            e->mUnk_0c = (Unk0201ca6c_20_0c *) ((u8 *) data + off);
+            e->mUnk_0c = OFFSET_PTR(Unk0201ca6c_20_0c, data, off);
             off += 8;
         } else {
             e->mUnk_0c = 0;
         }
         if (flags.mUnk_00_11) {
-            e->mUnk_10 = (Unk0201ca6c_20_10 *) ((u8 *) data + off);
+            e->mUnk_10 = OFFSET_PTR(Unk0201ca6c_20_10, data, off);
             off += 0xc;
         } else {
             e->mUnk_10 = 0;
         }
         if (flags.mUnk_00_16) {
-            e->mUnk_14 = (Unk0201ca6c_20_14 *) ((u8 *) data + off);
+            e->mUnk_14 = OFFSET_PTR(Unk0201ca6c_20_14, data, off);
             off += 0x14;
         } else {
             e->mUnk_14 = 0;
@@ -2153,7 +2153,7 @@ void SPLManager_LoadResources(Unk020184e4 *mgr, Unk02018a1c *data) {
     MI_CpuFill8(mgr->mUnk_2c, 0, mgr->mUnk_32 * 0x14);
     for (i = 0; i < mgr->mUnk_32; i++) {
         h = mgr->mUnk_2c + i;
-        d = (Unk020184e4_2c_00 *) ((u8 *) data + off);
+        d = OFFSET_PTR(Unk020184e4_2c_00, data, off);
         h->mUnk_00 = d;
         h->mUnk_10 = 1 << (d->mUnk_04.mUnk_00_4 + 3);
         h->mUnk_12 = 1 << (d->mUnk_04.mUnk_00_8 + 3);

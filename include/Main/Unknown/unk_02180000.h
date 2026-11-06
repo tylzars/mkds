@@ -24,7 +24,7 @@ extern u16 gVramLockId;
 // 13 bank-mask halfwords: [0] banks that are directly accessible, then the banks given to the background, sprites,
 // second processor, texture, texture palette, clear image, background and sprite extended palettes, sub background, sub
 // sprites, sub background and sub sprite extended palettes. data_021802b2-data_021802c8 are elements 1 to 12.
-extern u8 gVramBankGroups[];
+extern u16 gVramBankGroups[];
 extern u16 data_021802b2;
 extern u16 data_021802b4;
 extern u16 data_021802b6;
@@ -54,7 +54,7 @@ extern u32 gSubObjExtPaletteLoadBankMask;
 
 // Display mode value (the bits at 16 and up of the main display word) kept while the display is off and by
 // GX_SetGraphicsMode; GX_DispOn writes it back.
-extern u8 gSavedDispMode[];
+extern u16 gSavedDispMode;
 
 // The bank mask kept between the begin and end call of that load group; 0 when no load is open.
 extern u32 gClearImageLoadBankMask;

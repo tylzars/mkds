@@ -79,7 +79,7 @@ BOOL NNS_SndArcPlayerStartSeqArc(NNSSndSeqPlayer **handle, u32 seqArcNo, u32 ind
     if (seqArc == 0) {
         return 0;
     }
-    sound = (NNSSndSeqArcSeqInfo *) NNSi_SndSeqArcGetSeqInfo(seqArc, index);
+    sound = NNSi_SndSeqArcGetSeqInfo(seqArc, index);
     if (sound == 0) {
         return 0;
     }
@@ -102,7 +102,7 @@ BOOL NNS_SndArcPlayerStartSeqArcEx(NNSSndSeqPlayer **handle, s32 playerNo, s32 b
     if (seqArc == 0) {
         return 0;
     }
-    sound = (NNSSndSeqArcSeqInfo *) NNSi_SndSeqArcGetSeqInfo(seqArc, index);
+    sound = NNSi_SndSeqArcGetSeqInfo(seqArc, index);
     if (sound == 0) {
         return 0;
     }
@@ -795,10 +795,10 @@ void NNS_SndArcInitOnMemory(NNSSndArc *arc, void *data) {
     u32 i;
 
     MIi_CpuCopy32(data, &arc->mHeader, 0x30);
-    arc->mInfo = arc->mHeader.mInfoOffset == 0 ? 0 : (NNSSndArcInfo *) ((u8 *) data + arc->mHeader.mInfoOffset);
-    arc->mFat = arc->mHeader.mFatOffset == 0 ? 0 : (NNSSndArcFat *) ((u8 *) data + arc->mHeader.mFatOffset);
+    arc->mInfo = arc->mHeader.mInfoOffset == 0 ? 0 : OFFSET_PTR(NNSSndArcInfo, data, arc->mHeader.mInfoOffset);
+    arc->mFat = arc->mHeader.mFatOffset == 0 ? 0 : OFFSET_PTR(NNSSndArcFat, data, arc->mHeader.mFatOffset);
     arc->mSymbol =
-        arc->mHeader.mSymbolDataOffset == 0 ? 0 : (NNSSndArcSymbol *) ((u8 *) data + arc->mHeader.mSymbolDataOffset);
+        arc->mHeader.mSymbolDataOffset == 0 ? 0 : OFFSET_PTR(NNSSndArcSymbol, data, arc->mHeader.mSymbolDataOffset);
     for (i = 0; i < arc->mFat->mCount; i++) {
         NNSSndArcFileInfo *file = &arc->mFat->mFiles[i];
 
@@ -832,7 +832,7 @@ NNSSndSeqParam *NNS_SndArcGetSeqArcParam(s32 seqArcNo, s32 index) {
     if (seqArc == 0) {
         return 0;
     }
-    sound = (NNSSndSeqArcSeqInfo *) NNSi_SndSeqArcGetSeqInfo(seqArc, index);
+    sound = NNSi_SndSeqArcGetSeqInfo(seqArc, index);
     if (sound == 0) {
         return 0;
     }
@@ -846,7 +846,7 @@ NNSSndArcSeqInfo *NNS_SndArcGetSeqInfo(s32 seqNo) {
     u8 *base;
 
     offset = arc->mInfo->mSeqOffset;
-    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    table = offset == 0 ? 0 : OFFSET_PTR(NNSSndArcOffsetTable, arc->mInfo, offset);
     if (table == 0) {
         return 0;
     }
@@ -868,7 +868,7 @@ NNSSndArcSeqArcInfo *NNS_SndArcGetSeqArcInfo(s32 seqArcNo) {
     u8 *base;
 
     offset = arc->mInfo->mSeqArcOffset;
-    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    table = offset == 0 ? 0 : OFFSET_PTR(NNSSndArcOffsetTable, arc->mInfo, offset);
     if (table == 0) {
         return 0;
     }
@@ -890,7 +890,7 @@ NNSSndArcBankInfo *NNS_SndArcGetBankInfo(s32 bankNo) {
     u8 *base;
 
     offset = arc->mInfo->mBankOffset;
-    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    table = offset == 0 ? 0 : OFFSET_PTR(NNSSndArcOffsetTable, arc->mInfo, offset);
     if (table == 0) {
         return 0;
     }
@@ -912,7 +912,7 @@ NNSSndArcWaveArcInfo *NNS_SndArcGetWaveArcInfo(s32 waveArcNo) {
     u8 *base;
 
     offset = arc->mInfo->mWaveArcOffset;
-    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    table = offset == 0 ? 0 : OFFSET_PTR(NNSSndArcOffsetTable, arc->mInfo, offset);
     if (table == 0) {
         return 0;
     }
@@ -934,7 +934,7 @@ NNSSndArcPlayerInfo *NNS_SndArcGetPlayerInfo(s32 playerNo) {
     u8 *base;
 
     offset = arc->mInfo->mPlayerInfoOffset;
-    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    table = offset == 0 ? 0 : OFFSET_PTR(NNSSndArcOffsetTable, arc->mInfo, offset);
     if (table == 0) {
         return 0;
     }
@@ -956,7 +956,7 @@ NNSSndArcGroupInfo *NNS_SndArcGetGroupInfo(s32 groupNo) {
     u8 *base;
 
     offset = arc->mInfo->mGroupInfoOffset;
-    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    table = offset == 0 ? 0 : OFFSET_PTR(NNSSndArcOffsetTable, arc->mInfo, offset);
     if (table == 0) {
         return 0;
     }

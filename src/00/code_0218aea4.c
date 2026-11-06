@@ -320,11 +320,11 @@ void func_ov000_0218cf30(SbServerList *p) {
             t = data_ov000_021b21ec;
             if (strncmp(q, t, strlen(t)) == 0) {
                 func_ov000_0218c45c(p, q + strlen(s));
-                p->mCallback(p, 5, *(u32 *) data_ov000_021b4d1c, p->mUnk_494);
+                p->mCallback(p, 5, data_ov000_021b4d1c, p->mUnk_494);
             }
         }
     }
-    p->mCallback(p, 4, *(u32 *) data_ov000_021b4d1c, p->mUnk_494);
+    p->mCallback(p, 4, data_ov000_021b4d1c, p->mUnk_494);
     func_ov000_0218c980(p);
 }
 
@@ -906,7 +906,7 @@ s32 func_ov000_0218c15c(SbServerList *a) {
             q[1] = p[1];
             q[2] = p[2];
             q[3] = p[3];
-            a->mCallback(a, 6, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
+            a->mCallback(a, 6, data_ov000_021b4d1c, a->mUnk_494);
             q = (u8 *) &a->mUnk_4a8;
             r = p + 4;
             q[0] = r[0];
@@ -916,7 +916,7 @@ s32 func_ov000_0218c15c(SbServerList *a) {
                     break;
                 }
                 func_ov000_0218c45c(a, (char *) (p + 6));
-                a->mCallback(a, 5, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
+                a->mCallback(a, 5, data_ov000_021b4d1c, a->mUnk_494);
                 if (a->mInBuffer == NULL) {
                     break;
                 }
@@ -1000,7 +1000,7 @@ s32 func_ov000_0218c15c(SbServerList *a) {
                     p += 5;
                     a->mUnk_5c8 = 5;
                     a->mState = 2;
-                    a->mCallback(a, 3, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
+                    a->mCallback(a, 3, data_ov000_021b4d1c, a->mUnk_494);
                     break;
                 }
                 p += k;
@@ -1412,7 +1412,7 @@ s32 func_ov000_0218b928(SbServerList *a) {
         func_ov000_0218e53c(a->mUnk_4b0);
         a->mUnk_4b0 = -1;
         a->mState = 1;
-        a->mCallback(a, 3, *(u32 *) data_ov000_021b4d1c, a->mUnk_494);
+        a->mCallback(a, 3, data_ov000_021b4d1c, a->mUnk_494);
     }
     return 0;
 }
@@ -1551,11 +1551,11 @@ s32 func_ov000_0218b590(Unk0218b668 *a, s32 b, u32 c, u8 *d, s32 e, const char *
     return r;
 }
 
-u32 func_ov000_0218b570(Unk0218b668 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6) {
+u32 func_ov000_0218b570(Unk0218b668 *p0, u32 p1, u32 p2, u8 *p3, u32 p4, u32 p5, u32 p6) {
     u32 v2 = p4;
     u32 v4 = p5;
     u32 v8 = p6;
-    u32 v10 = func_ov000_0218b590(p0, p1, p2, (u8 *) p3, v2, (const char *) v4, 0x80u, v8);
+    u32 v10 = func_ov000_0218b590(p0, p1, p2, p3, v2, (const char *) v4, 0x80u, v8);
     return v10;
 }
 
@@ -1979,7 +1979,7 @@ u8 func_ov000_0218af10(SbServer *a) {
 }
 
 u32 func_ov000_0218aefc(SbServer *a) {
-    if (a == *(SbServer **) &data_ov000_021b4d1c) {
+    if (a == data_ov000_021b4d1c) {
         return 1;
     }
     return 0;

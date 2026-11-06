@@ -71,7 +71,7 @@ s32 func_ov000_021a911c(Unk021a6fa8 *a, Unk021a8e18 *b) {
 
 s32 func_ov000_021a9104(s32 p0, void *p1, s32 p2, s32 p3) {
     u32 v5 = ((0x0u) + (0x0u));
-    u32 v6 = func_ov000_021a7de0(p0, (u32) p1, p2, v5, 0x0u, p3);
+    u32 v6 = func_ov000_021a7de0(p0, p1, p2, v5, 0x0u, p3);
     return v6;
 }
 
@@ -79,7 +79,7 @@ s32 func_ov000_021a90a0(s32 v1, void *v2, s32 v3, s32 v4, void *v5) {
     Unk021a8e18 *a;
     u16 b;
     u32 c;
-    s32 d = func_ov000_021a7de0(v1, (u32) v2, v3, (u32) &b, (u32) &c, v4);
+    s32 d = func_ov000_021a7de0(v1, v2, v3, (u32) &b, &c, v4);
     if (d >= 0 && v5 != NULL) {
         a = v5;
         a->mUnk_02 = ((b >> 8) & 0xff) | ((b << 8) & 0xff00);
@@ -90,7 +90,7 @@ s32 func_ov000_021a90a0(s32 v1, void *v2, s32 v3, s32 v4, void *v5) {
 
 s32 func_ov000_021a9088(s32 p0, void *p1, s32 p2, s32 p3) {
     u32 v5 = ((0x0u) + (0x0u));
-    u32 v6 = func_ov000_021a8268(p0, (u32) p1, p2, v5, 0x0u, p3);
+    u32 v6 = func_ov000_021a8268(p0, p1, p2, v5, 0x0u, p3);
     return v6;
 }
 
@@ -106,7 +106,7 @@ s32 func_ov000_021a9018(s32 v1, void *v2, s32 v3, s32 v4, void *v5) {
         b = 0;
         c = 0;
     }
-    return func_ov000_021a8268(v1, (u32) v2, v3, b, c, v4);
+    return func_ov000_021a8268(v1, v2, v3, b, c, v4);
 }
 
 s32 func_ov000_021a9010(s32 descriptor) {
@@ -135,9 +135,9 @@ Unk021a8f84 *func_ov000_021a8f84(const char *a) {
     return &data_ov000_021b6020;
 }
 
-u32 func_ov000_021a8f0c(u32 f, u32 g) {
+u32 func_ov000_021a8f0c(u32 f, void *g) {
     Unk021a6fa8 *a = (Unk021a6fa8 *) f;
-    Unk021a8e18 *b = (Unk021a8e18 *) g;
+    Unk021a8e18 *b = g;
     u32 c;
     u32 d;
     u16 e;
@@ -689,7 +689,7 @@ s32 func_ov000_021a8604(s32 param_1) {
     }
     v->mUnk_70 |= 0x18;
     if (func_ov000_021a7c4c_inline(a) != 0) {
-        func_ov000_021a7008(a->mSendBlock, NULL);
+        func_ov000_021a7008(&a->mSendBlock->mUnk_00, NULL);
     }
     c = func_ov000_021a7064(func_ov000_021a8580, a, 1);
     c->mUnk_0d = 0;
@@ -701,7 +701,7 @@ s32 func_ov000_021a8580(Unk021a7064 *a) {
     void *c;
     u32 d;
     if (func_ov000_021a7c4c_inline(b) != 0) {
-        OS_JoinThread(&((Unk021a722a *) b->mSendBlock)->mUnk_00.mUnk_20);
+        OS_JoinThread(&b->mSendBlock->mUnk_00.mUnk_20);
         func_ov000_021ae094();
         func_ov000_021ae048();
         func_ov000_021ae258();
@@ -729,22 +729,22 @@ void func_ov000_021a84c4(Unk021a6fa8 *a) {
     if (a != NULL) {
         a->mUnk_70 = 0;
         if (func_ov000_021a7c4c_inline(a) != 0) {
-            func_ov000_021a8454(a->mSendBlock);
-            func_ov000_021a8454(a->mReceiveBlock);
+            func_ov000_021a8454(&a->mSendBlock->mUnk_00);
+            func_ov000_021a8454(&a->mReceiveBlock->mUnk_00);
         } else if (a->mUnk_73 == 1) {
-            b = ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_104;
+            b = a->mReceiveBlock->mUnk_104;
             while (b != NULL) {
                 c = b->mUnk_00;
                 data_ov000_021b5f94->mUnk_1c(b);
                 b = c;
             }
-            ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_108 = 0;
-            ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_100 = NULL;
-            ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_104 = NULL;
-            OS_WakeupThread(&((Unk021a71c0 *) a->mReceiveBlock)->mUnk_10c);
-            func_ov000_021a8454(a->mReceiveBlock);
+            a->mReceiveBlock->mUnk_108 = 0;
+            a->mReceiveBlock->mUnk_100 = NULL;
+            a->mReceiveBlock->mUnk_104 = NULL;
+            OS_WakeupThread(&a->mReceiveBlock->mUnk_10c);
+            func_ov000_021a8454(&a->mReceiveBlock->mUnk_00);
         } else if (a->mUnk_73 == 2) {
-            func_ov000_021a8454(a->mSendBlock);
+            func_ov000_021a8454(&a->mSendBlock->mUnk_00);
         }
         d = OS_DisableInterrupts();
         func_ov000_021a8ae8(a);
@@ -819,7 +819,7 @@ s32 func_ov000_021a8344(Unk021a7064 *a) {
     return 0;
 }
 
-u32 func_ov000_021a8268(u32 a, u32 b, u32 c, u16 d, u32 e, u32 f) {
+u32 func_ov000_021a8268(u32 a, void *b, u32 c, u16 d, u32 e, u32 f) {
     volatile Unk021a6fa8 *v;
     Unk021a6fa8 *g = (Unk021a6fa8 *) a;
     Unk021a722a *h;
@@ -847,7 +847,7 @@ u32 func_ov000_021a8268(u32 a, u32 b, u32 c, u16 d, u32 e, u32 f) {
         OS_LockMutex(&h->mUnk_00.mUnk_e0);
         i = TRUE;
     }
-    j = func_ov000_021a81a8(g, (u8 *) b, c, d, (u16 *) e, i);
+    j = func_ov000_021a81a8(g, b, c, d, (u16 *) e, i);
     OS_UnlockMutex(&h->mUnk_00.mUnk_e0);
     return j;
 }
@@ -858,7 +858,7 @@ s32 func_ov000_021a81a8(Unk021a6fa8 *a, u8 *b, s32 c, u16 d, u16 *e, s32 f) {
     s32 i;
     u32 j;
     g = 0;
-    h = ((Unk021a722a *) a->mSendBlock)->mUnk_10c->mSendBuffer.mSize;
+    h = a->mSendBlock->mUnk_10c->mSendBuffer.mSize;
     if (a->mUnk_73 == 1) {
         h -= 0x2a;
         if (c > h) {
@@ -1049,7 +1049,7 @@ s32 func_ov000_021a7eec(const void *a, s32 b, Unk021a7eec *c) {
     return d + e;
 }
 
-u32 func_ov000_021a7de0(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
+u32 func_ov000_021a7de0(u32 a, void *b, u32 c, u32 d, u32 *e, u32 f) {
     volatile Unk021a6fa8 *v;
     Unk021a6fa8 *g = (Unk021a6fa8 *) a;
     Unk021a71c0 *h;
@@ -1085,7 +1085,7 @@ u32 func_ov000_021a7de0(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
     } else {
         OS_LockMutex(&h->mUnk_00.mUnk_e0);
     }
-    i = func_ov000_021a7d68(g, (void *) b, c, (u16 *) d, (u32 *) e, i, f);
+    i = func_ov000_021a7d68(g, b, c, (u16 *) d, e, i, f);
     OS_UnlockMutex(&h->mUnk_00.mUnk_e0);
     return i;
 }
@@ -1150,8 +1150,8 @@ s32 func_ov000_021a7c4c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e) {
                 k = c;
             }
             MI_CpuCopy8(j, b, c);
-            if (((Unk021a71c0 *) a->mReceiveBlock)->mUnk_fe == 0) {
-                ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_f8 = ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_f8 + k;
+            if (a->mReceiveBlock->mUnk_fe == 0) {
+                a->mReceiveBlock->mUnk_f8 = a->mReceiveBlock->mUnk_f8 + k;
             }
         }
     } else {
@@ -1177,7 +1177,7 @@ s32 func_ov000_021a7c4c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e) {
 
 u8 *func_ov000_021a7bfc(Unk021a6fa8 *a, s32 *b, u16 *c, u16 *d, u32 *e) {
     Unk021a71c0 *f = a->mReceiveBlock;
-    Unk021a6fa8 *g = *(Unk021a6fa8 **) f->mUnk_00.mUnk_20.mUnk_a4;
+    Unk021a6fa8 *g = f->mUnk_00.mUnk_20.mUnk_a4[0];
     s32 h = f->mUnk_f8;
     s32 i = g->mReceiveBufferLength - h;
     if (i >= 0) {
@@ -1640,7 +1640,7 @@ s32 func_ov000_021a7378(Unk021a7064 *param_1) {
 
     a = param_1->mUnk_04;
     func_ov000_021ae304(a);
-    b = a->mSendBlock;
+    b = &a->mSendBlock->mUnk_00;
     switch (a->mUnk_73) {
         case 0:
         case 4:
@@ -1716,7 +1716,7 @@ u8 *func_ov000_021a71c0(Unk021a6fa8 *d, Unk021b49b8 *e) {
     a = (u8 *) &d->mUnk_80;
     if (e->mUnk_02 != 0) {
         b = &d->mUnk_80;
-        d->mReceiveBlock = a;
+        d->mReceiveBlock = b;
         b->mUnk_fc = e->mUnk_04;
         a = func_ov000_021a7154(b->mUnk_114, &b->mUnk_00, &e->mUnk_10);
         a = func_ov000_021a71a4(a, &d->mReceiveBuffer, e->mUnk_02);
@@ -1727,7 +1727,7 @@ u8 *func_ov000_021a71c0(Unk021a6fa8 *d, Unk021b49b8 *e) {
     }
     if (e->mUnk_06 != 0) {
         c = (Unk021a722a *) a;
-        d->mSendBlock = a;
+        d->mSendBlock = c;
         c->mUnk_10c = d;
         a = func_ov000_021a7154(c->mUnk_110, &c->mUnk_00, &e->mUnk_14);
         a = func_ov000_021a71a4(a, &d->mSendBuffer, e->mUnk_06);
@@ -1776,7 +1776,7 @@ s32 func_ov000_021a70ec(s32 e) {
         return -1;
     }
     OS_InitMessageQueue(&data_ov000_021b5fdc, b, e);
-    c = (Unk021a7064 *) ((u8 *) b + a);
+    c = OFFSET_PTR(Unk021a7064, b, a);
     if (e > 0) {
         do {
             func_ov000_021a7048(c);
@@ -1857,18 +1857,18 @@ s32 func_ov000_021a6fc0(Unk021a7154 *d, Unk021a7064 *e) {
 }
 
 s32 func_ov000_021a6fb4(Unk021a6fa8 *a, Unk021a7064 *b) {
-    return func_ov000_021a6fc0(a->mReceiveBlock, b);
+    return func_ov000_021a6fc0(&a->mReceiveBlock->mUnk_00, b);
 }
 
 s32 func_ov000_021a6fa8(Unk021a6fa8 *object, void *request) {
-    return func_ov000_021a6fc0(object->mSendBlock, request);
+    return func_ov000_021a6fc0(&object->mSendBlock->mUnk_00, request);
 }
 
 s32 func_ov000_021a6f84(Unk021a6fa8 *param_1, Unk021a7064 *param_2) {
     if (param_1->mReceiveBlock != NULL) {
-        return func_ov000_021a6fc0(param_1->mReceiveBlock, param_2);
+        return func_ov000_021a6fc0(&param_1->mReceiveBlock->mUnk_00, param_2);
     }
-    return func_ov000_021a6fc0(param_1->mSendBlock, param_2);
+    return func_ov000_021a6fc0(&param_1->mSendBlock->mUnk_00, param_2);
 }
 
 void func_ov000_021a6f18(void *param_1) {

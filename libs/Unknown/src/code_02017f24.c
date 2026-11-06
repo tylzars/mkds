@@ -159,18 +159,18 @@ u32 NNS_FndGetAllocatableSizeForFrmHeapEx(NNSFndHeapHandle heap, int alignment) 
 // Records both allocation positions under tagName in a 16-byte entry taken from the front; returns 0 when there is no
 // room for it.
 BOOL NNS_FndRecordStateForFrmHeap(NNSFndHeapHandle heap, u32 tagName) {
-    u32 oldHead;
+    void *oldHead;
     NNSiFndFrmHeapState *state;
     NNSiFndFrmHeapHead *frmHeap;
 
     frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
-    oldHead = (u32) frmHeap->mHeadAllocator;
+    oldHead = frmHeap->mHeadAllocator;
     state = AllocFromHead_(frmHeap, 0x10, 4);
     if (state == 0) {
         return 0;
     }
     state->mTagName = tagName;
-    state->mHeadAllocator = (void *) oldHead;
+    state->mHeadAllocator = oldHead;
     state->mTailAllocator = frmHeap->mTailAllocator;
     state->mPrevState = frmHeap->mState;
     frmHeap->mState = state;
