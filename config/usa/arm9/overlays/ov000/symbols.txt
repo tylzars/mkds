@@ -137,7 +137,7 @@ AdvanceWiFiAikotobaState2 kind:function(thumb,size=0x20) addr:0x0218507c
 AdvanceWiFiAikotobaState1 kind:function(thumb,size=0x94) addr:0x0218509c
 AdvanceWiFiAikotobaState0 kind:function(thumb,size=0x20) addr:0x02185130
 func_ov000_02185184 kind:function(thumb,size=0x1c) addr:0x02185150
-func_ov000_021851a0 kind:function(thumb,size=0x90) addr:0x0218516c
+LocateAndUploadWiFiAikotoba kind:function(thumb,size=0x90) addr:0x0218516c
 func_ov000_02185230 kind:function(thumb,size=0xc) addr:0x021851fc
 InitWiFiAikotoba kind:function(thumb,size=0x108) addr:0x02185208
 RegisterWiFiAikotobaCheckCallbacks kind:function(thumb,size=0x24) addr:0x02185310
@@ -1564,11 +1564,11 @@ gSelectCharacterCallbacks kind:data(any) addr:0x021b0df0
 gSelectKartCallbacks kind:data(any) addr:0x021b0e00
 gWiFiVSCourseSelectCallbacks kind:data(any) addr:0x021b0e10
 gWiFiAikotobaCallbacks kind:data(any) addr:0x021b0e20
-data_ov000_021b0e70 kind:data(any) addr:0x021b0e30
-data_ov000_021b0e84 kind:data(any) addr:0x021b0e44
-data_ov000_021b0e98 kind:data(any) addr:0x021b0e58
-data_ov000_021b0eb4 kind:data(any) addr:0x021b0e74
-data_ov000_021b0ed0 kind:data(any) addr:0x021b0e90
+gWiFiAikotobaBnclName kind:data(any) addr:0x021b0e30
+gWiFiAikotobaBnblName kind:data(any) addr:0x021b0e44
+gWiFiAikotobaSNcgrName kind:data(any) addr:0x021b0e58
+gWiFiAikotobaSNcerName kind:data(any) addr:0x021b0e74
+gWiFiAikotobaSONclrName kind:data(any) addr:0x021b0e90
 data_ov000_021b0ee8 kind:data(any) addr:0x021b0ea8
 data_ov000_021b0ef4 kind:data(any) addr:0x021b0eb4
 @3622 kind:data(any) addr:0x021b0ec0 local

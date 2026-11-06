@@ -10,16 +10,16 @@ struct Unk02021dc8;
 struct Ncgr;
 struct Nclr;
 
-// Object behind gWiFiAikotoba; func_ov000_021851a0 fills 0x20 to 0x30.
+// Object behind gWiFiAikotoba; LocateAndUploadWiFiAikotoba fills 0x20 to 0x30.
 typedef struct WiFiAikotoba {
     /* 00 */ s32 mState;
     /* 04 */ s32 mNextState;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
+    /* 0c */ s32 mStateFrames;
+    /* 10 */ s32 mPendingWiFiState;
     /* 14 */ BOOL mUnk_14;
-    /* 18 */ void *mUnk_18;
-    // Table of cells built from the Bncl / Bnll by func_02124ed0.
+    /* 18 */ void *mHeap;
+    // Table of cells built from the Bncl by func_02124ed0.
     /* 1c */ Unk02124b1c *mWiFiAikotobaTable;
     /* 20 */ struct Unk02021dc8 *mWiFiAikotobaSNcer;
     /* 24 */ struct Ncgr *mWiFiAikotobaSNcgr;
@@ -59,7 +59,7 @@ void AdvanceWiFiAikotobaState2(void);
 void AdvanceWiFiAikotobaState1(void);
 void AdvanceWiFiAikotobaState0(void);
 u32 func_ov000_02185184(void);
-void func_ov000_021851a0(void);
+void LocateAndUploadWiFiAikotoba(void);
 void func_ov000_02185230(void);
 void InitWiFiAikotoba(void *a);
 
