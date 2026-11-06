@@ -930,9 +930,9 @@ RequestSelectGhostState1 kind:function(thumb,size=0x14) addr:0x0219c44c
 func_ov001_0219c480 kind:function(thumb,size=0xc4) addr:0x0219c460
 func_ov001_0219c544 kind:function(thumb,size=0x1ac) addr:0x0219c524
 LoadSelectGhostAndKartIconData kind:function(thumb,size=0x94) addr:0x0219c6d0
-func_ov001_0219c784 kind:function(thumb,size=0x88) addr:0x0219c764
+WriteSelectBattleStageRegisters kind:function(thumb,size=0x88) addr:0x0219c764
 AdvanceSelectBattleStage kind:function(thumb,size=0xbc) addr:0x0219c7ec
-func_ov001_0219c8c8 kind:function(thumb,size=0x24) addr:0x0219c8a8
+AdvanceSelectBattleStageOffsetTimer kind:function(thumb,size=0x24) addr:0x0219c8a8
 func_ov001_0219c8ec kind:function(thumb,size=0x64) addr:0x0219c8cc
 AdvanceSelectBattleStageState6 kind:function(thumb,size=0xdc) addr:0x0219c930
 AdvanceSelectBattleStageState5 kind:function(thumb,size=0x68) addr:0x0219ca0c
@@ -942,7 +942,7 @@ AdvanceSelectBattleStageState2 kind:function(thumb,size=0x214) addr:0x0219cb80
 AdvanceSelectBattleStageState1 kind:function(thumb,size=0x20) addr:0x0219cd94
 AdvanceSelectBattleStageState0 kind:function(thumb,size=0xf0) addr:0x0219cdb4
 func_ov001_0219cec4 kind:function(thumb,size=0x9c) addr:0x0219cea4
-func_ov001_0219cf60 kind:function(thumb,size=0xdc) addr:0x0219cf40
+CopyAndQueueSelectBattleStageNscrRect kind:function(thumb,size=0xdc) addr:0x0219cf40
 LocateAndQueueSelectBattleStage kind:function(thumb,size=0x230) addr:0x0219d01c
 ReleaseSelectBattleStage kind:function(thumb,size=0x54) addr:0x0219d24c
 InitSelectBattleStage kind:function(thumb,size=0x24c) addr:0x0219d2a0
@@ -1286,9 +1286,9 @@ data_ov001_021a6bc8 kind:data(any) addr:0x021a6ba8
 gSelectBattleStageMNscrCopyDestination kind:data(any) addr:0x021a6bac
 data_ov001_021a6bd0 kind:data(any) addr:0x021a6bb0
 data_ov001_021a6bd4 kind:data(any) addr:0x021a6bb4
-data_ov001_021a6bd8 kind:data(any) addr:0x021a6bb8
+gSelectBattleStageOffsets kind:data(any) addr:0x021a6bb8
 gSelectBattleStageMNscrIndices kind:data(any) addr:0x021a6bc0
-data_ov001_021a6be8 kind:data(any) addr:0x021a6bc8
+gSelectBattleStageBnblRectIndices kind:data(any) addr:0x021a6bc8
 gSelectBattleStageSTableIndices kind:data(any) addr:0x021a6bd0
 gSelectBattleStageNscrRects kind:data(any) addr:0x021a6be4
 data_ov001_021a6c1c kind:data(any) addr:0x021a6bfc

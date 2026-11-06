@@ -14,6 +14,6 @@ void func_020ceb20(void) {
         GxsDispCntBits8To12Write2(0x1f);
         GXS_SetGraphicsMode(0);
     }
-    func_ov001_0219c784();
+    WriteSelectBattleStageRegisters();
 }
 #pragma thumb off

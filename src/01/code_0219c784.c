@@ -24,8 +24,8 @@ const u8 data_ov001_021a6bc8[] = {0, 1};
 const u8 gSelectBattleStageMNscrCopyDestination[] = {9, 7};
 const u8 data_ov001_021a6bd0[] = {1, 2, 3};
 const u8 data_ov001_021a6bd4[] = {4, 5, 6};
-const u8 data_ov001_021a6be8[6] = {0, 1, 2, 3, 4, 5};
-const s8 data_ov001_021a6bd8[] = {0, -2, -3, -4, -3, -2};
+const u8 gSelectBattleStageBnblRectIndices[6] = {0, 1, 2, 3, 4, 5};
+const s8 gSelectBattleStageOffsets[] = {0, -2, -3, -4, -3, -2};
 const u8 gSelectBattleStageMNscrIndices[] = {0, 0, 1, 1, 2, 2};
 const u8 gSelectBattleStageSTableIndices[6][3] = {{0, 12, 6}, {1, 13, 7},  {2, 14, 8},
                                                   {3, 15, 9}, {4, 16, 10}, {5, 17, 11}};
@@ -46,14 +46,14 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
     gSelectBattleStage->mNextState = 0;
     gSelectBattleStage->mIndex = 0;
     gSelectBattleStage->mStateFrames = 0;
-    gSelectBattleStage->mUnk_10 = 0;
-    gSelectBattleStage->mUnk_1c = 0;
+    gSelectBattleStage->mOffsetTimer = 0;
+    gSelectBattleStage->mOffset = 0;
     gSelectBattleStage->mUnk_20 = TRUE;
     gSelectBattleStage->mResult = -4;
     gSelectBattleStage->mMenuMessages = FindSceneFile("menu.bmg");
     gSelectBattleStage->mCommonMessages = func_02047a28("common.bmg");
     LocateAndQueueSelectBattleStage();
-    func_ov001_0219cf60();
+    CopyAndQueueSelectBattleStageNscrRect();
     for (i = 0; i < 6; i++) {
         func_02124a98(gSelectBattleStageSTableIndices[i][0], 1, gSelectBattleStage->mSelectBattleStageSNcer,
                       gSelectBattleStage->mSelectBattleStageBncls[1]);
@@ -146,7 +146,7 @@ void LocateAndQueueSelectBattleStage(void) {
     CallQueueAppend(30, 0, nclrSO->mData, nclrSO->mDataSize);
 }
 
-void func_ov001_0219cf60(void) {
+void CopyAndQueueSelectBattleStageNscrRect(void) {
     s32 x, y;
     s32 idx = gSelectBattleStage->mIndex;
     u8 src = gSelectBattleStageMNscrIndices[idx];
@@ -176,7 +176,7 @@ void func_ov001_0219cec4(void) {
     }
     for (i = 0; i < 3; i++) {
         gSelectBattleStage->mSelectBattleStageTables[0][data_ov001_021a6bd0[i]].mUnk_06 =
-            gSelectBattleStage->mUnk_1c - gSelectBattleStage->mUnk_14;
+            gSelectBattleStage->mOffset - gSelectBattleStage->mUnk_14;
     }
     for (i = 0; i < 3; i++) {
         gSelectBattleStage->mSelectBattleStageTables[0][data_ov001_021a6bd4[i]].mUnk_04 = gSelectBattleStage->mUnk_18;
@@ -247,7 +247,7 @@ void AdvanceSelectBattleStageState2(void) {
                                       data_02175628[idx].mUnk_4a);
     }
     for (i = 0; i < 6; i++) {
-        if (res == data_ov001_021a6be8[i]) {
+        if (res == gSelectBattleStageBnblRectIndices[i]) {
             sel = i;
         }
     }
@@ -293,7 +293,7 @@ next:
         }
         gSelectBattleStage->mPendingResult = gSelectBattleStage->mIndex;
         gSelectBattleStage->mNextState = 3;
-        gSelectBattleStage->mUnk_10 = 6;
+        gSelectBattleStage->mOffsetTimer = 6;
         func_02105ac0(5);
         return;
     }
@@ -302,7 +302,7 @@ next:
         if (gSelectBattleStage->mIndex < 0) {
             gSelectBattleStage->mIndex = 5;
         }
-        gSelectBattleStage->mUnk_10 = 6;
+        gSelectBattleStage->mOffsetTimer = 6;
         func_02105ac0(0);
         return;
     }
@@ -311,7 +311,7 @@ next:
         if (gSelectBattleStage->mIndex >= 6) {
             gSelectBattleStage->mIndex = 0;
         }
-        gSelectBattleStage->mUnk_10 = 6;
+        gSelectBattleStage->mOffsetTimer = 6;
         func_02105ac0(0);
     }
 }
@@ -410,11 +410,11 @@ void func_ov001_0219c8ec(void) {
     }
 }
 
-void func_ov001_0219c8c8(void) {
-    if (gSelectBattleStage->mUnk_10 > 0) {
-        gSelectBattleStage->mUnk_10--;
+void AdvanceSelectBattleStageOffsetTimer(void) {
+    if (gSelectBattleStage->mOffsetTimer > 0) {
+        gSelectBattleStage->mOffsetTimer--;
     }
-    gSelectBattleStage->mUnk_1c = data_ov001_021a6bd8[gSelectBattleStage->mUnk_10];
+    gSelectBattleStage->mOffset = gSelectBattleStageOffsets[gSelectBattleStage->mOffsetTimer];
 }
 
 s32 AdvanceSelectBattleStage(void) {
@@ -444,10 +444,10 @@ s32 AdvanceSelectBattleStage(void) {
             AdvanceSelectBattleStageState6();
             break;
     }
-    func_ov001_0219c8c8();
+    AdvanceSelectBattleStageOffsetTimer();
     func_ov001_0219c8ec();
     func_ov001_0219cec4();
-    func_ov001_0219cf60();
+    CopyAndQueueSelectBattleStageNscrRect();
     for (i = 0; i < 2; i++) {
         func_02124c30(gSelectBattleStage->mSelectBattleStageBncls[i], (&gSelectBattleStage->mSelectBattleStageMNcer)[i],
                       gSelectBattleStage->mSelectBattleStageBnlls[i], (&gSelectBattleStage->mUnk_1078)[i],
@@ -456,11 +456,11 @@ s32 AdvanceSelectBattleStage(void) {
     return gSelectBattleStage->mResult;
 }
 
-void func_ov001_0219c784(void) {
+void WriteSelectBattleStageRegisters(void) {
     *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x1c00;
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | 0x1600;
     *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & ~3) | 1;
     *(vu16 *) 0x4000050 = 0;
     G2x_SetBlendAlpha_((u32 *) 0x4001050, 0, 2, 6, 10);
-    *(vu32 *) 0x4000018 = ((gSelectBattleStage->mUnk_14 - gSelectBattleStage->mUnk_1c) << 16) & 0x1ff0000;
+    *(vu32 *) 0x4000018 = ((gSelectBattleStage->mUnk_14 - gSelectBattleStage->mOffset) << 16) & 0x1ff0000;
 }

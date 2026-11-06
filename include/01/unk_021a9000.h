@@ -100,10 +100,10 @@ typedef struct SelectBattleStage {
     /* 0004 */ s32 mNextState;
     /* 0008 */ s32 mIndex;
     /* 000c */ s32 mStateFrames;
-    /* 0010 */ s32 mUnk_10;
+    /* 0010 */ s32 mOffsetTimer;
     /* 0014 */ s32 mUnk_14;
     /* 0018 */ s32 mUnk_18;
-    /* 001c */ s32 mUnk_1c;
+    /* 001c */ s32 mOffset;
     /* 0020 */ BOOL mUnk_20;
     /* 0024 */ s32 mResult;
     /* 0028 */ s32 mPendingResult;
