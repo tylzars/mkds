@@ -75,7 +75,7 @@ void InitEmblem(void) {
     LoadNcgrData(&gEmblem->mEmblemCameraSBNcgr, (FindSceneFile("emblem_camera_s_b.NCGR")));
     LoadNscrData(&gEmblem->mEmblemCameraSDSNscr, (FindSceneFile("emblem_camera_s_DS.NSCR")));
     LoadNscrData(&gEmblem->mEmblemCameraSBgNscr, (FindSceneFile("emblem_camera_s_bg.NSCR")));
-    func_ov001_02192d28();
+    CreateEmblemInput();
     func_02078c58(GetHeap(func_020364e8()));
     InitEmblemChoises();
     func_020ae6d4(gEmblem->mUnk_0000, gEmblem->mUnk_0404);

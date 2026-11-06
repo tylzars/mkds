@@ -24,13 +24,13 @@
 #include "01/code_02192000.h"
 #include "Main/Unknown/code_0209bef0.h"
 
-Unk021a9bc8 *data_ov001_021a9bc8;
+EmblemInput *gEmblemInput;
 
-void func_ov001_02192d28(void) {
-    data_ov001_021a9bc8 = HeapAlloc(GetHeap(func_020364e8()), 0x54);
+void CreateEmblemInput(void) {
+    gEmblemInput = HeapAlloc(GetHeap(func_020364e8()), 0x54);
 }
 
-void func_ov001_02192a78(void) {
+void AdvanceEmblemInput(void) {
     Unk02175628Index idx;
     BOOL f1;
     int f0;
@@ -38,20 +38,20 @@ void func_ov001_02192a78(void) {
     u16 t;
     s32 n;
 
-    data_ov001_021a9bc8->mUnk_18 = data_ov001_021a9bc8->mUnk_00;
-    data_ov001_021a9bc8->mUnk_1c = data_ov001_021a9bc8->mUnk_04;
-    data_ov001_021a9bc8->mUnk_20 = data_ov001_021a9bc8->mUnk_08;
-    data_ov001_021a9bc8->mUnk_28 = data_ov001_021a9bc8->mUnk_10;
-    data_ov001_021a9bc8->mUnk_24 = data_ov001_021a9bc8->mUnk_0c;
-    if (data_ov001_021a9bc8->mUnk_10 == 0 && data_02175928[0x14] != 0 && data_02175928[0x15] != 0) {
-        data_ov001_021a9bc8->mUnk_08 = 1;
+    gEmblemInput->mPrevX = gEmblemInput->mX;
+    gEmblemInput->mPrevY = gEmblemInput->mY;
+    gEmblemInput->mPrevPressed = gEmblemInput->mPressed;
+    gEmblemInput->mPrevDown = gEmblemInput->mDown;
+    gEmblemInput->mPrevReleased = gEmblemInput->mReleased;
+    if (gEmblemInput->mDown == 0 && data_02175928[0x14] != 0 && data_02175928[0x15] != 0) {
+        gEmblemInput->mPressed = 1;
     } else {
-        data_ov001_021a9bc8->mUnk_08 = 0;
+        gEmblemInput->mPressed = 0;
     }
-    if (data_ov001_021a9bc8->mUnk_10 != 0 && data_02175928[0x14] == 0 && data_02175928[0x15] == 0) {
-        data_ov001_021a9bc8->mUnk_0c = 1;
+    if (gEmblemInput->mDown != 0 && data_02175928[0x14] == 0 && data_02175928[0x15] == 0) {
+        gEmblemInput->mReleased = 1;
     } else {
-        data_ov001_021a9bc8->mUnk_0c = 0;
+        gEmblemInput->mReleased = 0;
     }
     idx = UNK_02175628_INDEX_8;
     f1 = TRUE;
@@ -64,153 +64,152 @@ void func_ov001_02192a78(void) {
         f1 = FALSE;
     }
     if (f1 != FALSE && (v = data_02175928[0x14]) != 0 && data_02175928[0x15] != 0) {
-        data_ov001_021a9bc8->mUnk_00 = v;
-        data_ov001_021a9bc8->mUnk_04 = data_02175928[0x15];
-        data_ov001_021a9bc8->mUnk_10 = 1;
+        gEmblemInput->mX = v;
+        gEmblemInput->mY = data_02175928[0x15];
+        gEmblemInput->mDown = 1;
     } else {
-        data_ov001_021a9bc8->mUnk_10 = 0;
+        gEmblemInput->mDown = 0;
     }
-    if (data_ov001_021a9bc8->mUnk_10 != 0 && data_ov001_021a9bc8->mUnk_00 <= data_ov001_021a9bc8->mUnk_18 + 1 &&
-        data_ov001_021a9bc8->mUnk_00 >= data_ov001_021a9bc8->mUnk_18 - 1 &&
-        data_ov001_021a9bc8->mUnk_04 <= data_ov001_021a9bc8->mUnk_1c + 1 &&
-        data_ov001_021a9bc8->mUnk_04 >= data_ov001_021a9bc8->mUnk_1c - 1) {
-        data_ov001_021a9bc8->mUnk_14++;
-        if (data_ov001_021a9bc8->mUnk_14 > 0x3c) {
-            data_ov001_021a9bc8->mUnk_14 = 0;
-            data_ov001_021a9bc8->mUnk_08 = 1;
-            data_ov001_021a9bc8->mUnk_0c = 1;
+    if (gEmblemInput->mDown != 0 && gEmblemInput->mX <= gEmblemInput->mPrevX + 1 &&
+        gEmblemInput->mX >= gEmblemInput->mPrevX - 1 && gEmblemInput->mY <= gEmblemInput->mPrevY + 1 &&
+        gEmblemInput->mY >= gEmblemInput->mPrevY - 1) {
+        gEmblemInput->mStillCallCount++;
+        if (gEmblemInput->mStillCallCount > 0x3c) {
+            gEmblemInput->mStillCallCount = 0;
+            gEmblemInput->mPressed = 1;
+            gEmblemInput->mReleased = 1;
         }
     } else {
-        data_ov001_021a9bc8->mUnk_14 = 0;
+        gEmblemInput->mStillCallCount = 0;
     }
     t = data_021758e8[0x11] & 0x20;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_2c + 1;
+        n = gEmblemInput->mBit5HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_2c = n;
+    gEmblemInput->mBit5HeldCount = n;
     t = data_021758e8[0x11] & 0x10;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_30 + 1;
+        n = gEmblemInput->mBit4HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_30 = n;
+    gEmblemInput->mBit4HeldCount = n;
     t = data_021758e8[0x11] & 0x40;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_34 + 1;
+        n = gEmblemInput->mBit6HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_34 = n;
+    gEmblemInput->mBit6HeldCount = n;
     t = data_021758e8[0x11] & 0x80;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_38 + 1;
+        n = gEmblemInput->mBit7HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_38 = n;
+    gEmblemInput->mBit7HeldCount = n;
     t = data_021758e8[0x11] & 0x1;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_3c + 1;
+        n = gEmblemInput->mBit0HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_3c = n;
+    gEmblemInput->mBit0HeldCount = n;
     t = data_021758e8[0x11] & 0x2;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_40 + 1;
+        n = gEmblemInput->mBit1HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_40 = n;
+    gEmblemInput->mBit1HeldCount = n;
     t = data_021758e8[0x11] & 0x400;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_44 + 1;
+        n = gEmblemInput->mBit10HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_44 = n;
+    gEmblemInput->mBit10HeldCount = n;
     t = data_021758e8[0x11] & 0x800;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_48 + 1;
+        n = gEmblemInput->mBit11HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_48 = n;
+    gEmblemInput->mBit11HeldCount = n;
     t = data_021758e8[0x11] & 0x200;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_4c + 1;
+        n = gEmblemInput->mBit9HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_4c = n;
+    gEmblemInput->mBit9HeldCount = n;
     t = data_021758e8[0x11] & 0x100;
     if (t == 0) {
         n = 0;
     } else {
-        n = data_ov001_021a9bc8->mUnk_50 + 1;
+        n = gEmblemInput->mBit8HeldCount + 1;
         if (n >= 0x11) {
             n = 0xf;
         }
     }
-    data_ov001_021a9bc8->mUnk_50 = n;
+    gEmblemInput->mBit8HeldCount = n;
 }
 
-s32 func_ov001_02192a6c(void) {
-    return data_ov001_021a9bc8->mUnk_00;
+s32 GetEmblemInputX(void) {
+    return gEmblemInput->mX;
 }
 
-u32 func_ov001_02192a60(void) {
-    return data_ov001_021a9bc8->mUnk_04;
+u32 GetEmblemInputY(void) {
+    return gEmblemInput->mY;
 }
 
-u32 func_ov001_02192a54(void) {
-    return data_ov001_021a9bc8->mUnk_08;
+u32 GetEmblemInputPressed(void) {
+    return gEmblemInput->mPressed;
 }
 
-u32 func_ov001_02192a48(void) {
-    return data_ov001_021a9bc8->mUnk_10;
+u32 GetEmblemInputDown(void) {
+    return gEmblemInput->mDown;
 }
 
-u32 func_ov001_02192a3c(void) {
-    return data_ov001_021a9bc8->mUnk_18;
+u32 GetEmblemInputPrevX(void) {
+    return gEmblemInput->mPrevX;
 }
 
-u32 func_ov001_02192a30(void) {
-    return data_ov001_021a9bc8->mUnk_1c;
+u32 GetEmblemInputPrevY(void) {
+    return gEmblemInput->mPrevY;
 }
 
-u32 func_ov001_02192a24(void) {
-    return data_ov001_021a9bc8->mUnk_28;
+u32 GetEmblemInputPrevDown(void) {
+    return gEmblemInput->mPrevDown;
 }
 
 u16 func_ov001_02192a14(u16 a) {
@@ -221,28 +220,28 @@ u16 func_ov001_02192a04(u16 a) {
     return data_021758e8[0x11] & a;
 }
 
-BOOL func_ov001_021928c8(int a) {
+BOOL IsEmblemInputRepeat(int a) {
     switch (a) {
         case 0x20:
-            return data_ov001_021a9bc8->mUnk_2c == 1 || data_ov001_021a9bc8->mUnk_2c == 0xf;
+            return gEmblemInput->mBit5HeldCount == 1 || gEmblemInput->mBit5HeldCount == 0xf;
         case 0x10:
-            return data_ov001_021a9bc8->mUnk_30 == 1 || data_ov001_021a9bc8->mUnk_30 == 0xf;
+            return gEmblemInput->mBit4HeldCount == 1 || gEmblemInput->mBit4HeldCount == 0xf;
         case 0x40:
-            return data_ov001_021a9bc8->mUnk_34 == 1 || data_ov001_021a9bc8->mUnk_34 == 0xf;
+            return gEmblemInput->mBit6HeldCount == 1 || gEmblemInput->mBit6HeldCount == 0xf;
         case 0x80:
-            return data_ov001_021a9bc8->mUnk_38 == 1 || data_ov001_021a9bc8->mUnk_38 == 0xf;
+            return gEmblemInput->mBit7HeldCount == 1 || gEmblemInput->mBit7HeldCount == 0xf;
         case 1:
-            return data_ov001_021a9bc8->mUnk_3c == 1 || data_ov001_021a9bc8->mUnk_3c == 0xf;
+            return gEmblemInput->mBit0HeldCount == 1 || gEmblemInput->mBit0HeldCount == 0xf;
         case 2:
-            return data_ov001_021a9bc8->mUnk_40 == 1 || data_ov001_021a9bc8->mUnk_40 == 0xf;
+            return gEmblemInput->mBit1HeldCount == 1 || gEmblemInput->mBit1HeldCount == 0xf;
         case 0x400:
-            return data_ov001_021a9bc8->mUnk_44 == 1 || data_ov001_021a9bc8->mUnk_44 == 0xf;
+            return gEmblemInput->mBit10HeldCount == 1 || gEmblemInput->mBit10HeldCount == 0xf;
         case 0x800:
-            return data_ov001_021a9bc8->mUnk_48 == 1 || data_ov001_021a9bc8->mUnk_48 == 0xf;
+            return gEmblemInput->mBit11HeldCount == 1 || gEmblemInput->mBit11HeldCount == 0xf;
         case 0x200:
-            return data_ov001_021a9bc8->mUnk_4c == 1 || data_ov001_021a9bc8->mUnk_4c == 0xf;
+            return gEmblemInput->mBit9HeldCount == 1 || gEmblemInput->mBit9HeldCount == 0xf;
         case 0x100:
-            return data_ov001_021a9bc8->mUnk_50 == 1 || data_ov001_021a9bc8->mUnk_50 == 0xf;
+            return gEmblemInput->mBit8HeldCount == 1 || gEmblemInput->mBit8HeldCount == 0xf;
     }
     return FALSE;
 }
