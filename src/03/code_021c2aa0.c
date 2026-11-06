@@ -15,7 +15,7 @@ void func_ov003_021c2aa0(void) {
                 break;
             case 1:
                 func_ov003_021c2120(1, 1);
-                func_ov003_021c212c(func_ov003_021cb294);
+                func_ov003_021c212c(CreateAp);
                 break;
         }
     }

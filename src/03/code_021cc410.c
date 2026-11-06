@@ -39,7 +39,7 @@ void func_ov003_021cc83c(void) {
     u16 a[12];
     Unk0200fddc b;
     data_ov003_021da258 = 0;
-    func_ov003_021cc7b8();
+    LoadUsbFilesAndSetBgCnt();
     func_ov003_021bf86c(8);
     func_ov003_021bf5ec(2);
     OS_GetOwnerInfo(&b);
@@ -53,14 +53,14 @@ void func_ov003_021cc83c(void) {
     func_ov003_021c212c(func_ov003_021cc790);
 }
 
-void func_ov003_021cc7b8(void) {
-    void *v2 = &data_ov003_021d7780;
+void LoadUsbFilesAndSetBgCnt(void) {
+    void *v2 = &gJbBgStep3NcgName8;
     void *v3 = &GX_LoadBG2Char;
     u32 v4 = func_ov003_021bf620(v2, v3);
-    void *v5 = &data_ov003_021d7798;
+    void *v5 = &gYbBgStep3NclName8;
     void *v6 = &GX_LoadBGPltt;
     u32 v7 = func_ov003_021bf620(v5, v6);
-    void *v8 = &data_ov003_021d77b0;
+    void *v8 = &gJb4UsbNscName;
     void *v9 = &GX_LoadBG2Scr;
     u32 v10 = func_ov003_021bf620(v8, v9);
     u32 v11 = 0x4001008u;
@@ -195,7 +195,7 @@ void func_ov003_021cc5a8(void) {
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da258 == 2) {
             func_ov003_021c2120(2, 1);
-            func_ov003_021c212c(func_ov003_021cb294);
+            func_ov003_021c212c(CreateAp);
         } else if (data_ov003_021da258 == 3) {
             func_ov003_021c2120(2, 1);
             func_ov003_021c212c(func_ov003_021cc3d0);

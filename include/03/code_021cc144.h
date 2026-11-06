@@ -12,5 +12,5 @@ void func_ov003_021cc2a4(void);
 void func_ov003_021cc2bc(void);
 void func_ov003_021cc2e0(void);
 void func_ov003_021cc310(void);
-void func_ov003_021cc34c(void);
+void LoadXb3MultiFilesAndSetBgCnt(void);
 void func_ov003_021cc3d0(void);

@@ -57,7 +57,7 @@ void func_ov003_021ca194(void) {
 }
 
 void func_ov003_021ca130(void) {
-    void *v2 = &data_ov003_021d7524;
+    void *v2 = &gXb4MultiNscName5;
     void *v3 = &GX_LoadBG2Scr;
     u32 v4 = func_ov003_021bf620(v2, v3);
     u32 v5 = 0x4001008u;

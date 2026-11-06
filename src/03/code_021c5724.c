@@ -423,7 +423,7 @@ void func_ov003_021c5cdc(void) {
         func_ov003_021cd27c();
         func_ov003_021cd790(func_ov003_021cdb6c()->mUnk_f4);
         func_ov003_021c2120(2, 0);
-        func_ov003_021c212c(func_ov003_021cb7fc);
+        func_ov003_021c212c(SetupWay);
     } else if (gApListSelectedRow == 4) {
         func_ov003_021cd27c();
         func_ov003_021c2120(0, 1);

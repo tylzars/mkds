@@ -17,5 +17,5 @@ void func_ov003_021cc730(void);
 void func_ov003_021cc748(void);
 void func_ov003_021cc76c(void);
 void func_ov003_021cc790(void);
-void func_ov003_021cc7b8(void);
+void LoadUsbFilesAndSetBgCnt(void);
 void func_ov003_021cc83c(void);

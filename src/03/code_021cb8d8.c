@@ -54,13 +54,13 @@ void func_ov003_021cbb98(void) {
 }
 
 void func_ov003_021cbb14(void) {
-    void *v2 = &data_ov003_021d76b0;
+    void *v2 = &gJbBgStep3NcgName7;
     void *v3 = &GX_LoadBG2Char;
     u32 v4 = func_ov003_021bf620(v2, v3);
-    void *v5 = &data_ov003_021d76c8;
+    void *v5 = &gYbBgStep3NclName7;
     void *v6 = &GX_LoadBGPltt;
     u32 v7 = func_ov003_021bf620(v5, v6);
-    void *v8 = &data_ov003_021d76e0;
+    void *v8 = &gXb4MultiNscName8;
     void *v9 = &GX_LoadBG2Scr;
     u32 v10 = func_ov003_021bf620(v8, v9);
     u32 v11 = 0x4001008u;

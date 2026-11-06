@@ -132,6 +132,6 @@ void func_ov003_021c97c0(void) {
         func_ov003_021d272c(1, (u32) 1);
         func_ov003_021d272c(0, (u32) 0x14);
         func_ov003_021c2120((u32) 2, (u32) 1);
-        func_ov003_021c212c(func_ov003_021cb294);
+        func_ov003_021c212c(CreateAp);
     }
 }

@@ -157,7 +157,7 @@ void func_ov003_021c2d18(void) {
         switch (data_ov003_021da1a0) {
             case 0:
                 func_ov003_021c2120(1, 0);
-                func_ov003_021c212c(func_ov003_021cb294);
+                func_ov003_021c212c(CreateAp);
                 break;
             case 1:
                 func_ov003_021c2120(0, 0);

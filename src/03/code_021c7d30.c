@@ -510,11 +510,11 @@ void func_ov003_021c8c14(void) {
         case 13:
             if (*(u8 *) &gJb3ListMode == 0) {
                 func_ov003_021c2120(2, 1);
-                func_ov003_021c212c(func_ov003_021cb294);
+                func_ov003_021c212c(CreateAp);
             } else {
                 func_ov003_021cd790((func_ov003_021cdb6c())->mUnk_f4);
                 func_ov003_021c2120(0, 1);
-                func_ov003_021c212c(func_ov003_021cb7fc);
+                func_ov003_021c212c(SetupWay);
             }
             break;
     }

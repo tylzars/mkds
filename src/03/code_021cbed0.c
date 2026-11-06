@@ -7,7 +7,7 @@
 #include "code_0214b824.h"
 
 void func_ov003_021cbf0c(void) {
-    void *v2 = &data_ov003_021d7714;
+    void *v2 = &gXb4NoneNscName2;
     void *v3 = &GX_LoadBG2Scr;
     u32 v4 = func_ov003_021bf620(v2, v3);
     u32 v5 = 0x4001008u;

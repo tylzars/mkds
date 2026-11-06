@@ -51,13 +51,13 @@ void func_ov003_021ca504(void) {
 }
 
 void func_ov003_021ca480(void) {
-    void *v2 = &data_ov003_021d7538;
+    void *v2 = &gJbBgStep3NcgName5;
     void *v3 = &GX_LoadBG2Char;
     u32 v4 = func_ov003_021bf620(v2, v3);
-    void *v5 = &data_ov003_021d7550;
+    void *v5 = &gYbBgStep3NclName5;
     void *v6 = &GX_LoadBGPltt;
     u32 v7 = func_ov003_021bf620(v5, v6);
-    void *v8 = &data_ov003_021d7568;
+    void *v8 = &gXb4MultiNscName6;
     void *v9 = &GX_LoadBG2Scr;
     u32 v10 = func_ov003_021bf620(v8, v9);
     u32 v11 = 0x4001008u;
@@ -204,7 +204,7 @@ void func_ov003_021ca270(void) {
         if (data_ov003_021da224 == 0) {
             func_ov003_021c29b8();
             func_ov003_021c2120(2, 1);
-            func_ov003_021c212c(func_ov003_021cb7fc);
+            func_ov003_021c212c(SetupWay);
             return;
         }
         func_ov003_021c2120(0, 0);

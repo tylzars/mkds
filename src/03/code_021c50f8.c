@@ -180,7 +180,7 @@ void func_ov003_021c51bc(void) {
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da1dc == 0) {
             func_ov003_021c2120(2, 1);
-            func_ov003_021c212c(func_ov003_021cb7fc);
+            func_ov003_021c212c(SetupWay);
             return;
         }
         func_ov003_021c2120(0, 0);

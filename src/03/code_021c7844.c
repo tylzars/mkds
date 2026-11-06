@@ -211,7 +211,7 @@ void func_ov003_021c7850(void) {
         func_ov003_021c20dc(NULL, v2);
         if (v2[0] != 0) {
             func_ov003_021c2120(2, 1);
-            func_ov003_021c212c(func_ov003_021cb294);
+            func_ov003_021c212c(CreateAp);
             return;
         }
         func_ov003_021c2120(2, 0);
