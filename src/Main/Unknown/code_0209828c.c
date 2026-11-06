@@ -160,13 +160,11 @@ void DrawPakkunMouth(void *a, Pakkun *p) {
     f[2] = 0;
     func_01ff9048(0x1c, f, 3);
     if (p->mUnk_1dc != 0) {
-        Matrix3x3FromPairY(m, gPairsByAngle[((u16) p->mUnk_1dc >> 4) * 2],
-                           gPairsByAngle[((u16) p->mUnk_1dc >> 4) * 2 + 1]);
+        MTX_RotY33_(m, gPairsByAngle[((u16) p->mUnk_1dc >> 4) * 2], gPairsByAngle[((u16) p->mUnk_1dc >> 4) * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
     }
     if (p->mUnk_1e0 != 0) {
-        Matrix3x3FromPairX(n, gPairsByAngle[((u16) p->mUnk_1e0 >> 4) * 2],
-                           gPairsByAngle[((u16) p->mUnk_1e0 >> 4) * 2 + 1]);
+        MTX_RotX33_(n, gPairsByAngle[((u16) p->mUnk_1e0 >> 4) * 2], gPairsByAngle[((u16) p->mUnk_1e0 >> 4) * 2 + 1]);
         func_01ff9048(0x1a, n, 9);
     }
     t = p->mUnk_1f0;

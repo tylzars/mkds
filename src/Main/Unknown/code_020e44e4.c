@@ -101,9 +101,9 @@ void func_020e44e4(u32 a, Unk020e43a8 *p) {
     p->mUnk_128 = (s32) (((s64) p->mUnk_00.mMatrix.mUnk_00[1].y * d) >> 12);
     p->mUnk_12c = (s32) (((s64) p->mUnk_00.mMatrix.mUnk_00[1].z * d) >> 12);
     p->mUnk_a0 = *(Unk020e43a8_28 *) &p->mUnk_00.mMatrix;
-    Matrix3x3FromPairY((s32 *) &p->mUnk_00.mMatrix, gPairsByAngle[(p->mUnk_00.mAngle >> 4) * 2],
-                       gPairsByAngle[(p->mUnk_00.mAngle >> 4) * 2 + 1]);
-    Matrix3x3Multiply((const s32 *) &p->mUnk_00.mMatrix, (const s32 *) &p->mUnk_c4, (s32 *) &p->mUnk_00.mMatrix);
+    MTX_RotY33_((s32 *) &p->mUnk_00.mMatrix, gPairsByAngle[(p->mUnk_00.mAngle >> 4) * 2],
+                gPairsByAngle[(p->mUnk_00.mAngle >> 4) * 2 + 1]);
+    MTX_Concat33((const s32 *) &p->mUnk_00.mMatrix, (const s32 *) &p->mUnk_c4, (s32 *) &p->mUnk_00.mMatrix);
     VEC_MultAdd(-p->mUnk_104, &p->mUnk_00.mMatrix.mUnk_00[1], &p->mUnk_00.mPos, &p->mUnk_f4);
     if (p->mUnk_00.mStateMachine.mState == 3) {
         return;

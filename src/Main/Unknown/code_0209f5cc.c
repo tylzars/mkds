@@ -4,7 +4,7 @@
 #include "ITCM/code_01ff8000.h"
 
 void DrawChandelier(void *a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);

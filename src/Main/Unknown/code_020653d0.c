@@ -54,8 +54,8 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     Vec3 v4;
     Vec3 v5;
     Vec3 v6;
-    Matrix3x3 m1;
-    Matrix3x3 m2;
+    MtxFx33 m1;
+    MtxFx33 m2;
     u32 w;
     u32 f;
     Unk0206bcb0_514 *q;
@@ -182,15 +182,13 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 r = p->mUnk_514;
                 r->mUnk_5c = r->mUnk_5c + (s32) (((s64) (r->mUnk_40 - r->mUnk_5c) * 0x333 + 0x800) >> 12);
                 p->mTurnAngle = r->mUnk_5c;
-                Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m1, &p->mUnk_12c,
-                                                       gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2],
-                                                       gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2 + 1]);
+                MTX_RotAxis33((MtxFx43 *) &m1, &p->mUnk_12c, gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2],
+                              gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2 + 1]);
                 if (p->mUnk_48 & 1) {
-                    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m2, &p->mUnk_120, gPairsByAngle[0xba],
-                                                           gPairsByAngle[0xbb]);
-                    Matrix3x3Multiply(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
+                    MTX_RotAxis33((MtxFx43 *) &m2, &p->mUnk_120, gPairsByAngle[0xba], gPairsByAngle[0xbb]);
+                    MTX_Concat33(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
                 }
-                Vec3MultiplyMatrix3x3(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
+                MTX_MultVec33(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
                 k = p->mForwardSpeed;
                 v2.x = (s32) (((s64) p->mUnk_50.x * k) >> 12);
                 v2.y = (s32) (((s64) p->mUnk_50.y * k) >> 12);

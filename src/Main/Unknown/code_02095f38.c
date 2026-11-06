@@ -338,9 +338,9 @@ void DrawCoverPooHole(void *a, CoverPooHole *p) {
         f3[2] = 0;
         func_01ff9048(0x1c, f3, 3);
         j = (e >> 4) * 2;
-        Matrix3x3FromPairY(m, gPairsByAngle[j], gPairsByAngle[j + 1]);
+        MTX_RotY33_(m, gPairsByAngle[j], gPairsByAngle[j + 1]);
         func_01ff9048(0x1a, m, 9);
-        Matrix3x3FromPairZ(m, v1, gPairsByAngle[k + 1]);
+        MTX_RotZ33_(m, v1, gPairsByAngle[k + 1]);
         func_01ff9048(0x1a, m, 9);
     } else {
         t = p->mUnk_a0 >> 4;

@@ -43,7 +43,7 @@
 #include "Main/Unknown/code_020e5c6c.h"
 
 void func_020e5c6c(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     gObPakkunSf->mUnk_18 = ((*(u16 *) &b->mUnk_a0.mUnk_18.x & 0x10) >> 4);
     if (b->mUnk_00.mStateMachine.mState == 0) {
         v1 = func_020e6cbc(&b->mUnk_00.mPos);

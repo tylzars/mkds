@@ -149,11 +149,11 @@ void func_0201261c(Unk02011624 *a, u32 b) {
         while (G3X_GetClipMtx(mm) != 0) {
         }
         if (data_0217029c.mUnk_fc & 1) {
-            Matrix4x3ToMatrix4x4(func_02010e2c(), m2);
-            Matrix4x4Multiply(mm, m2, mm);
+            MTX_Copy43To44_(func_02010e2c(), m2);
+            MTX_Concat44(mm, m2, mm);
         } else if (data_0217029c.mUnk_fc & 2) {
-            Matrix4x3ToMatrix4x4(&data_0217029c.mUnk_4c, m3);
-            Matrix4x4Multiply(mm, m3, mm);
+            MTX_Copy43To44_(&data_0217029c.mUnk_4c, m3);
+            MTX_Concat44(mm, m3, mm);
         }
         p0c->x = mm[12];
         p0c->y = mm[13];
@@ -240,11 +240,11 @@ void func_020122cc(Unk02011624 *a, u32 b) {
         while (G3X_GetClipMtx(mm) != 0) {
         }
         if (data_0217029c.mUnk_fc & 1) {
-            Matrix4x3ToMatrix4x4(func_02010e2c(), m2);
-            Matrix4x4Multiply(mm, m2, mm);
+            MTX_Copy43To44_(func_02010e2c(), m2);
+            MTX_Concat44(mm, m2, mm);
         } else if (data_0217029c.mUnk_fc & 2) {
-            Matrix4x3ToMatrix4x4(&data_0217029c.mUnk_4c, m3);
-            Matrix4x4Multiply(mm, m3, mm);
+            MTX_Copy43To44_(&data_0217029c.mUnk_4c, m3);
+            MTX_Concat44(mm, m3, mm);
         }
         p54->x = mm[12];
         p54->y = mm[13];
@@ -411,7 +411,7 @@ void func_02011928(Unk02011624 *a) {
     u32 c2;
     u32 c3;
     u32 c4;
-    Unk02012f58 m;
+    MtxFx43 m;
     u32 v;
     u8 *e;
     u8 *t;
@@ -493,7 +493,7 @@ void func_02011624(Unk02011624 *a) {
     u32 c1;
     u32 c2;
     u32 c3;
-    Unk02012f58 m;
+    MtxFx43 m;
     s32 mm[16];
     u32 v;
     u8 *e;
@@ -712,8 +712,8 @@ void func_02011074(void) {
     data_0217029c.mUnk_90 = 0x60293130;
     data_0217029c.mUnk_a4 = 0x33333333;
     data_0217029c.mUnk_b8 = 0x2a1b19;
-    Matrix4x3Identity(&data_0217029c.mUnk_4c);
-    Matrix4x4Identity(data_0217029c.mUnk_08);
+    MTX_Identity43_(&data_0217029c.mUnk_4c);
+    MTX_Identity44_(data_0217029c.mUnk_08);
     data_0217029c.mUnk_80 = 0x2d8b62d8;
     data_0217029c.mUnk_84 = 0x40000200;
     data_0217029c.mUnk_88 = 0x800001ff;
@@ -729,7 +729,7 @@ void func_02011074(void) {
     data_0217029c.mUnk_bc.mUnk_00[3].x = 0;
     data_0217029c.mUnk_bc.mUnk_00[3].y = 0;
     data_0217029c.mUnk_bc.mUnk_00[3].z = 0;
-    Matrix3x3Identity(&data_0217029c.mUnk_bc);
+    MTX_Identity33_(&data_0217029c.mUnk_bc);
     data_0217029c.mUnk_ec.x = 0x1000;
     data_0217029c.mUnk_ec.y = 0x1000;
     data_0217029c.mUnk_ec.z = 0x1000;
@@ -791,22 +791,22 @@ void func_02010f24(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
     data_0217029c.mUnk_9c = (f | (a | (b << 4) | (c << 6))) | (d << 24) | (e << 16);
 }
 
-Unk02012f58 *func_02010ed4(void) {
+MtxFx43 *func_02010ed4(void) {
     if (!(data_0217029c.mUnk_fc & 0x8)) {
-        Matrix4x3Invert(&data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[0]);
+        MTX_Inverse43(&data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[0]);
         data_0217029c.mUnk_fc |= 0x8;
     }
     return &data_0217029c.mUnk_100[0];
 }
 
 void func_02010e70(void) {
-    Matrix4x3Multiply(&data_0217029c.mUnk_bc, &data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[1]);
-    Matrix4x3ScaleRowsCopyRow3(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[1], data_0217029c.mUnk_ec.x,
-                               data_0217029c.mUnk_ec.y, data_0217029c.mUnk_ec.z);
-    Matrix4x3Invert(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[2]);
+    MTX_Concat43(&data_0217029c.mUnk_bc, &data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[1]);
+    MTX_ScaleApply43(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[1], data_0217029c.mUnk_ec.x,
+                     data_0217029c.mUnk_ec.y, data_0217029c.mUnk_ec.z);
+    MTX_Inverse43(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[2]);
 }
 
-Unk02012f58 *func_02010e2c(void) {
+MtxFx43 *func_02010e2c(void) {
     if (!(data_0217029c.mUnk_fc & 0x80)) {
         func_02010e70();
         data_0217029c.mUnk_fc |= 0x80;
@@ -814,7 +814,7 @@ Unk02012f58 *func_02010e2c(void) {
     return &data_0217029c.mUnk_100[1];
 }
 
-Unk02012f58 *func_02010de8(void) {
+MtxFx43 *func_02010de8(void) {
     if (!(data_0217029c.mUnk_fc & 0x80)) {
         func_02010e70();
         data_0217029c.mUnk_fc |= 0x80;

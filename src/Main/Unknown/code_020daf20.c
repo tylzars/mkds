@@ -80,13 +80,13 @@ Unk020dbe74 *func_020dbe74(void) {
 }
 
 void DrawDossun(void *a, Dossun *p, void *c, s32 d) {
-    Unk02012f58 *q;
+    MtxFx43 *q;
     q = &p->mUnk_00.mMatrix;
     if (p->mUnk_b4 != 0) {
         q = &data_0217b69c;
-        Matrix3x3FromPairY((s32 *) &data_0217b69c, gPairsByAngle[((u16) p->mUnk_ba >> 4) * 2],
-                           gPairsByAngle[((u16) p->mUnk_ba >> 4) * 2 + 1]);
-        Matrix3x3Multiply((const s32 *) &data_0217b69c, (const s32 *) &p->mUnk_00.mMatrix, (s32 *) &data_0217b69c);
+        MTX_RotY33_((s32 *) &data_0217b69c, gPairsByAngle[((u16) p->mUnk_ba >> 4) * 2],
+                    gPairsByAngle[((u16) p->mUnk_ba >> 4) * 2 + 1]);
+        MTX_Concat33((const s32 *) &data_0217b69c, (const s32 *) &p->mUnk_00.mMatrix, (s32 *) &data_0217b69c);
     }
     q->mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     q->mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;

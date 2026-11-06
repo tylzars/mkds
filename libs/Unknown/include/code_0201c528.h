@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 #include "code_02147cd8.h"
 
 // Linked through mUnk_00/mUnk_04; on the lists at Unk0201ca6c 0x08 and 0x14 and Unk020184e4 0x1c.
@@ -301,7 +301,7 @@ typedef struct Unk0201e170 {
     /* 02 */ u16 mUnk_02;
 } Unk0201e170;
 
-void func_0201c528(s32 a, s32 b, Unk02012f58 *m);
+void func_0201c528(s32 a, s32 b, MtxFx43 *m);
 void func_0201c5d4(u32 a, u32 b, s32 c, s32 d);
 void func_0201c690(u32 a, u32 b, s32 c, s32 d);
 void func_0201c74c(Unk0201e3c8 *p, Unk0201ca6c *q, Unk0201e494 *r);

@@ -48,8 +48,8 @@ void func_ov001_02182f98(void *f, Unk02181c3c *g, void *h, u32 l) {
             func_01ff9048(0x1b, &c, 3);
         }
         func_01ff9048(0x1b, &g->mUnk_000.mScale, 3);
-        Matrix3x3FromPairY(m, gPairsByAngle[(data_ov001_021a656c[data_ov001_021a9b94] >> 4) * 2 + 1],
-                           gPairsByAngle[(data_ov001_021a656c[data_ov001_021a9b94] >> 4) * 2]);
+        MTX_RotY33_(m, gPairsByAngle[(data_ov001_021a656c[data_ov001_021a9b94] >> 4) * 2 + 1],
+                    gPairsByAngle[(data_ov001_021a656c[data_ov001_021a9b94] >> 4) * 2]);
         func_01ff9048(0x1a, m, 9);
         d.x = 0x199a;
         d.y = 0x2000;

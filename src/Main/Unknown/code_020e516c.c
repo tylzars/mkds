@@ -82,7 +82,7 @@ void func_020e53ac(Unk020e516c *p, void *d, u32 e, u32 f) {
     func_01ff9144(&data_0217b818->mUnk_000[data_0217b818->mUnk_008], data_0217b818->mUnk_00c);
 }
 
-void func_020e5370(Vec3 *a, Unk02012f58 *b, u32 c, u32 d) {
+void func_020e5370(Vec3 *a, MtxFx43 *b, u32 c, u32 d) {
     gJgShadow->mUnk_06e = c < d ? c : d;
     func_0207aec8(gJgShadow, b, a);
 }
@@ -138,7 +138,7 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
         ((Unk020e516c *) a)->mUnk_000[7] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[7] * d) >> 12);
         ((Unk020e516c *) a)->mUnk_000[8] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[8] * d) >> 12);
     } else {
-        Matrix3x3Identity((Unk02012f58 *) a);
+        MTX_Identity33_((MtxFx43 *) a);
     }
     ((Unk020e516c *) a)->mUnk_000[9] = s.x >> 4;
     ((Unk020e516c *) a)->mUnk_000[10] = s.y >> 4;

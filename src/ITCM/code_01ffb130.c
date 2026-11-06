@@ -43,8 +43,8 @@ void func_01ffb130(Kart *p) {
     s32 b;
     Vec3 v1;
     Vec3 v2;
-    Matrix3x3 m1;
-    Matrix3x3 m2;
+    MtxFx33 m1;
+    MtxFx33 m2;
     Vec3 v3;
     Vec3 v4;
     Unk0206ceb4 *q;
@@ -134,15 +134,13 @@ void func_01ffb130(Kart *p) {
         }
     }
     if ((p->mUnk_44 & 0x10) || (p->mUnk_4c & 0x10000000)) {
-        Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m1, &p->mUnk_244,
-                                               gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2],
-                                               gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2 + 1]);
+        MTX_RotAxis33((MtxFx43 *) &m1, &p->mUnk_244, gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2],
+                      gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2 + 1]);
         if (p->mUnk_48 & 1) {
-            Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m2, &p->mUnk_120, gPairsByAngle[0xba],
-                                                   gPairsByAngle[0xbb]);
-            Matrix3x3Multiply(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
+            MTX_RotAxis33((MtxFx43 *) &m2, &p->mUnk_120, gPairsByAngle[0xba], gPairsByAngle[0xbb]);
+            MTX_Concat33(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
         }
-        Vec3MultiplyMatrix3x3(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
+        MTX_MultVec33(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
         d = VEC_DotProduct(&p->mUnk_244, &p->mUnk_50);
         v3.x = p->mUnk_50.x - (s32) (((s64) p->mUnk_244.x * d) >> 12);
         v3.y = p->mUnk_50.y - (s32) (((s64) p->mUnk_244.y * d) >> 12);

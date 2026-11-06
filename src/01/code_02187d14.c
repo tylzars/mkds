@@ -58,8 +58,8 @@ void *func_ov001_02187dd4(void) {
 }
 
 void func_ov001_02187d14(Unk02187d14 *c) {
-    Unk02012f58 a;
-    Unk02012f58 b;
+    MtxFx43 a;
+    MtxFx43 b;
     Vec3 v;
     Unk02188950 *p;
     Camera *q;
@@ -68,8 +68,8 @@ void func_ov001_02187d14(Unk02187d14 *c) {
     if (c->mUnk_00->mUnk_01 == p->mUnk_2e4) {
         q = GetCurrentCamera();
         func_02012f58(&a, NULL);
-        Matrix4x3Invert(&q->mViewMatrix, &b);
-        Matrix4x3Multiply(&a, &b, &a);
+        MTX_Inverse43(&q->mViewMatrix, &b);
+        MTX_Concat43(&a, &b, &a);
         p->mUnk_2e8.x = a.mUnk_00[3].x << 4;
         p->mUnk_2e8.y = a.mUnk_00[3].y << 4;
         p->mUnk_2e8.z = a.mUnk_00[3].z << 4;

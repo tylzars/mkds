@@ -639,7 +639,7 @@ u32 func_0206183c(void) {
     return ((u32) data_0217aa64);
 }
 
-Unk02012f58 *func_0206182c(void) {
+MtxFx43 *func_0206182c(void) {
     return data_0217aa7c;
 }
 

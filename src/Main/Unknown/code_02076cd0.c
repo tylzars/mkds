@@ -253,7 +253,7 @@ void SetupCamera(Camera *p) {
     b = *(volatile Vec3 *) &data_usa_02154fc4;
     p->mUp = data_usa_02154fc4;
     p->mSide = data_usa_02154fd0;
-    Matrix4x3Identity(&p->mViewMatrix);
+    MTX_Identity43_(&p->mViewMatrix);
     p->mForward = data_usa_02154fb8;
     p->mPosGoalYOffset = 0;
     p->mHalfFovAngleGoal = data_0216569c;

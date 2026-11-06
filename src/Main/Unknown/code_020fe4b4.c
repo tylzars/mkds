@@ -68,7 +68,7 @@ void func_020ff1d8(void) {
         return;
     }
     v = data_0216c734;
-    Matrix4x3FirstThreeRowsFromVec3AndPair(&data_0217c600, &v, 0xb50, 0xb50);
+    MTX_RotAxis33(&data_0217c600, &v, 0xb50, 0xb50);
     p = &gItemPools[7];
     e = p->mObjects;
     n = p->mObjectCount;

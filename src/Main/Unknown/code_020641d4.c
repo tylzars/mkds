@@ -23,17 +23,17 @@ void func_020641f0(Kart *a) {
     Unk0206bcb0_590 *b;
     Unk0206bcb0_590_08 *c;
     Vec3 m;
-    Unk02012f58 d;
-    Unk02012f58 e;
-    Unk02012f58 f;
-    Unk02012f58 g;
-    Unk02012f58 h;
+    MtxFx43 d;
+    MtxFx43 e;
+    MtxFx43 f;
+    MtxFx43 g;
+    MtxFx43 h;
     s32 i;
     s32 j;
     s32 k;
     u16 l;
     u32 n;
-    Unk02012f58 *p;
+    MtxFx43 *p;
     Vec3 *q;
     Vec4 *r;
     enum { K0 } o;
@@ -42,7 +42,7 @@ void func_020641f0(Kart *a) {
     n = a->mUnk_4c;
     if ((n & 0x10) != 0) {
         p = &a->mUnk_150_m;
-        Matrix4x3Identity(&d);
+        MTX_Identity43_(&d);
         e = d;
         func_01ffcd84(&f, &a->mUnk_34c);
         q = &a->mUnk_12c;
@@ -54,21 +54,21 @@ void func_020641f0(Kart *a) {
         m.y = -m.y;
         m.z = -m.z;
         e.mUnk_00[3] = m;
-        Matrix4x3Multiply(&a->mUnk_120_m, &d, p);
-        Matrix4x3Multiply(p, &f, p);
-        Matrix4x3Multiply(p, &e, p);
+        MTX_Concat43(&a->mUnk_120_m, &d, p);
+        MTX_Concat43(p, &f, p);
+        MTX_Concat43(p, &e, p);
         if ((a->mUnk_4c & 0x20) != 0) {
             i = (a->mUnk_364 >> 4) * 2;
-            Matrix4x3FromPairY(&g, gPairsByAngle[i], gPairsByAngle[i + 1]);
-            Matrix4x3Multiply(p, &g, p);
+            MTX_RotY43_(&g, gPairsByAngle[i], gPairsByAngle[i + 1]);
+            MTX_Concat43(p, &g, p);
         }
         p->mUnk_00[3].x = p->mUnk_00[3].x + a->mPosSource->x;
         p->mUnk_00[3].y = p->mUnk_00[3].y + a->mPosSource->y;
         p->mUnk_00[3].z = p->mUnk_00[3].z + a->mPosSource->z;
     } else if ((n & 0x20) != 0) {
         i = (a->mUnk_364 >> 4) * 2;
-        Matrix4x3FromPairY(&h, gPairsByAngle[i], gPairsByAngle[i + 1]);
-        Matrix4x3Multiply(&h, &a->mUnk_120_m, &a->mUnk_150_m);
+        MTX_RotY43_(&h, gPairsByAngle[i], gPairsByAngle[i + 1]);
+        MTX_Concat43(&h, &a->mUnk_120_m, &a->mUnk_150_m);
         q = a->mPosSource;
         a->mUnk_174.x = q->x;
         a->mUnk_174.y = q->y;

@@ -61,7 +61,7 @@ typedef struct Unk020184e4 {
     /* 38 */ u32 mUnk_38_25 : 7;
     /* 3c */ u32 mUnk_3c;
     /* 40 */ Unk0201ca6c *mUnk_40;
-    /* 44 */ Unk02012f58 *mUnk_44;
+    /* 44 */ MtxFx43 *mUnk_44;
     /* 48 */ u16 mUnk_48;
 } Unk020184e4;
 
@@ -74,7 +74,7 @@ typedef struct Unk020192e0_28 {
 void func_020184e4(Unk020184e4 *a, Unk0201ca6c *b);
 Unk0201ca6c *func_02018578(Unk020184e4 *a, s32 b, Vec3 *c, s32 d, void (*e)(Unk0201ca6c *p, s32 a));
 Unk0201ca6c *func_02018600(Unk020184e4 *a, s32 b, Vec3 *c);
-void func_02018674(Unk020184e4 *a, Unk02012f58 *b);
+void func_02018674(Unk020184e4 *a, MtxFx43 *b);
 void func_0201873c(Unk020184e4 *a);
 s32 func_02018874(Unk020184e4 *a);
 s32 func_02018888(Unk020184e4 *a);

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
-void Matrix3x3Identity(Unk02012f58 *a);
-void Matrix3x3ToMatrix4x3(const s32 *a, s32 *b);
-void Matrix3x3Transpose(const void *a, void *b);
-void Matrix3x3FromPairX(s32 *a, s32 b, s32 c);
-void Matrix3x3FromPairY(s32 *a, s32 b, s32 c);
-void Matrix3x3FromPairZ(s32 *a, s32 b, s32 c);
+void MTX_Identity33_(MtxFx43 *dst);
+void MTX_Copy33To43_(const s32 *src, s32 *dst);
+void MTX_Transpose33_(const void *src, void *dst);
+void MTX_RotX33_(s32 *dst, s32 sinVal, s32 cosVal);
+void MTX_RotY33_(s32 *dst, s32 sinVal, s32 cosVal);
+void MTX_RotZ33_(s32 *dst, s32 sinVal, s32 cosVal);

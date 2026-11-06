@@ -44,7 +44,7 @@ extern CourseModels gCourseModels;
 extern u8 data_usa_0217ab04[];
 extern u8 data_0217ab5c[];
 extern u8 data_usa_0217ab74[];
-extern Unk02012f58 data_usa_0217abac;
+extern MtxFx43 data_usa_0217abac;
 
 extern const char data_usa_02165404[];
 extern const char data_usa_02165418[];

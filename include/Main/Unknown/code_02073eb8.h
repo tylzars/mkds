@@ -42,11 +42,11 @@ typedef struct CourseMapCamera {
     /* 4b */ u8 mShakeKind;
 } CourseMapCamera;
 
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
 extern s32 data_usa_021656c4;
 extern Unk0214ad4c data_usa_02170284;
-extern Unk02012f58 data_usa_021702c8;
+extern MtxFx43 data_usa_021702c8;
 extern s32 data_usa_0217ac80;
 
 void UpdateCameraWobble(Camera *p);
@@ -98,12 +98,12 @@ void UpdateCameraPosCurveLookAtKart(Camera *p);
 void UpdateCameraEntry(Camera *p);
 // Steps gFirstChainCamera (UpdateCameraEntry), updates its view, stores it in gCurrentChainCamera and returns its view
 // matrix. UpdateRace calls it when data_021759c0->mUnk_00c is 4.
-Unk02012f58 *UpdateFirstChainCamera(void);
+MtxFx43 *UpdateFirstChainCamera(void);
 // Sets mFrustumShift of the two chain cameras (1 and 2 while the second's entry is of kind 4, else 0) and steps the
 // first. Then it copies the first's field of view pair, mPos and mLookAt into the second (shift 2) or steps the second.
 // It updates the view of the first on even frames and of the second on odd frames, stores that camera in
 // gCurrentChainCamera and returns its view matrix. UpdateRace calls it when data_021759c0->mUnk_00c is 3 or 5.
-Unk02012f58 *UpdateChainCameraPair(void);
+MtxFx43 *UpdateChainCameraPair(void);
 // As StartEntryCameraKind6Entry for CourseMap.mFirstKind8EntryInMode4, setting mKind8EntryRunning.
 void StartEntryCameraKind8Entry(void);
 // Runs the Camera's current entry by its mKind: 0 puts the camera at the entry position and looks at the followed Kart,
@@ -141,4 +141,4 @@ void UpdateChaseCamera(Camera *a, Kart *b);
 void SetupCameraBehindKart(void);
 void func_02076bcc(Camera *a);
 void func_02076c50(Camera *a, s32 b);
-Unk02012f58 *func_02076cc4(void);
+MtxFx43 *func_02076cc4(void);

@@ -153,7 +153,7 @@ void InitCourseModels(void *a) {
             func_020134b0(e, g[i], 7);
         }
     }
-    Matrix4x3Identity(&data_usa_0217abac);
+    MTX_Identity43_(&data_usa_0217abac);
     func_0206302c();
 }
 

@@ -30,7 +30,7 @@ typedef struct Unk0208ec64 Unk0208ec64;
 
 // Declared here until the code that defines them is decompiled.
 
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
 typedef struct Unk0208fd8c Unk0208fd8c;
 
@@ -41,7 +41,7 @@ Unk0208ec64 *func_0208eb1c(s32 a);
 s32 func_0208ec64(u32 a);
 void func_0208ecd8(Unk0208ec64_08 *a, Unk0208ec64 *b);
 void func_0208ee40(u32 arg0, u32 arg1);
-void func_0208ee7c(const Unk02012f58 *a);
+void func_0208ee7c(const MtxFx43 *a);
 void func_0208f0a0(void);
 void func_0208f0f8(void *a);
 void func_0208f3d0(Unk0208fd8c *a, struct Unk020888b4 *b);

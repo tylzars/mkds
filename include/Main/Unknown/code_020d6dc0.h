@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
 typedef struct Unk020d84e4 Unk020d84e4;
 typedef struct Unk020d849c Unk020d849c;
@@ -16,7 +16,7 @@ typedef struct Unk020d7b88 {
 void func_020d7d4c(Unk020d84e4 *m, struct CourseMapRow *b, s32 c, s32 d);
 void func_020d7d18(Unk020d849c *p, s32 a, Vec3 **b, s32 c);
 BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b);
-void func_020d7bec(Unk02012f58 *a);
+void func_020d7bec(MtxFx43 *a);
 void func_020d7b88(Vec3 *p, void *q);
 void func_020d7b34(s32 a, Unk020d7b88 *b);
 void func_020d7a3c(void *p, s32 b, void *q);

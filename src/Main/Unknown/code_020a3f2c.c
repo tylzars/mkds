@@ -223,7 +223,7 @@ void func_020a683c(void *a, Shine16 *p, void *b, s32 c) {
     }
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     x = data_021567a4[data_0217b220] >> 4;
-    Matrix3x3FromPairY(m, gPairsByAngle[x * 2 + 1], gPairsByAngle[x * 2]);
+    MTX_RotY33_(m, gPairsByAngle[x * 2 + 1], gPairsByAngle[x * 2]);
     func_01ff9048(0x1a, m, 9);
     u.x = 0x2000;
     u.y = 0x2000;

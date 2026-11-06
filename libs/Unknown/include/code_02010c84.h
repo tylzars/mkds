@@ -1,9 +1,9 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
-typedef struct Unk02012f58 Unk02012f58;
+typedef struct MtxFx43 MtxFx43;
 typedef struct Unk0201290c Unk0201290c;
 
 // Linked through mUnk_10. Bit 8 and bit 9 of mUnk_1a[n] are tested; the low byte is passed on to the function at
@@ -22,7 +22,7 @@ typedef struct Unk020111e0 {
 typedef struct Unk02011254 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ Vec3 mUnk_04[3];
-    /* 28 */ Unk02012f58 mUnk_28;
+    /* 28 */ MtxFx43 mUnk_28;
 } Unk02011254;
 
 typedef struct Unk02011c58_04_04 {
@@ -151,7 +151,7 @@ typedef struct Unk0217029c {
     /* 004 */ u32 mUnk_04;
     /* 008 */ s32 mUnk_08[16];
     /* 048 */ u32 mUnk_48;
-    /* 04c */ Unk02012f58 mUnk_4c;
+    /* 04c */ MtxFx43 mUnk_4c;
     /* 07c */ u32 mUnk_7c;
     /* 080 */ u32 mUnk_80;
     /* 084 */ u32 mUnk_84;
@@ -168,11 +168,11 @@ typedef struct Unk0217029c {
     /* 0b0 */ u32 mUnk_b0;
     /* 0b4 */ u32 mUnk_b4;
     /* 0b8 */ u32 mUnk_b8;
-    /* 0bc */ Unk02012f58 mUnk_bc;
+    /* 0bc */ MtxFx43 mUnk_bc;
     /* 0ec */ Vec3 mUnk_ec;
     /* 0f8 */ u32 mUnk_f8;
     /* 0fc */ u32 mUnk_fc;
-    /* 100 */ Unk02012f58 mUnk_100[3];
+    /* 100 */ MtxFx43 mUnk_100[3];
     /* 190 */ u8 mUnk_190[0xb0];
     /* 240 */ u32 mUnk_240;
     /* 244 */ u32 mUnk_244;
@@ -188,10 +188,10 @@ typedef struct Unk0217029c {
 void func_02010c84(Unk02010c84 *a, u32 b);
 void func_02010cec(Unk02010c84 *a, const Unk02010cec_08 *b, u32 c, u32 d);
 u32 func_02010d98(const u8 *a, const Unk02010d98 *b);
-Unk02012f58 *func_02010de8(void);
-Unk02012f58 *func_02010e2c(void);
+MtxFx43 *func_02010de8(void);
+MtxFx43 *func_02010e2c(void);
 void func_02010e70(void);
-Unk02012f58 *func_02010ed4(void);
+MtxFx43 *func_02010ed4(void);
 void func_02010f24(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f);
 void func_02010f50(u32 a, u32 b, u32 c);
 void func_02010f74(u32 a, u32 b, u32 c);

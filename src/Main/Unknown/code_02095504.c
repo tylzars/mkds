@@ -206,7 +206,7 @@ void DrawBakubaku(void *a, Bakubaku *p) {
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     DrawMapObjectModel(a, gBakuShadow, p);
     i = (u16) (u32) FX_Atan2Idx(-p->mUnk_00.mUnk_10.y, 0xc000) >> 4;
-    Matrix3x3FromPairX(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+    MTX_RotX33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     DrawMapObjectModel(a, gBakubaku, p);
 }

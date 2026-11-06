@@ -257,14 +257,14 @@ void func_020865ec(void) {
     }
 }
 
-void func_02086250(Unk02012f58 *a) {
+void func_02086250(MtxFx43 *a) {
     s32 i;
     s16 h;
     s32 u;
     s32 t;
     s32 z;
     Vec3 v;
-    Unk02012f58 *m;
+    MtxFx43 *m;
     Unk02086250 *p;
     BOOL f;
     if (func_02061818() != 0 && func_02061818() != 3) {
@@ -292,7 +292,7 @@ void func_02086250(Unk02012f58 *a) {
         if ((GetKart(data_0217aed0->mUnk_044[i])->mUnk_7c & 0xe0) != 0) {
             continue;
         }
-        Vec3MultiplyMatrix4x3(&p->mUnk_00, a, &v);
+        MTX_MultVec43(&p->mUnk_00, a, &v);
         if (v.z >= 0) {
             f = FALSE;
         } else {
@@ -324,9 +324,9 @@ static inline s32 func_02086098_inline(Unk02086250 *b) {
     return ((u16) b->mUnk_0c + 11) << 24;
 }
 
-void func_02086098(Unk02086098 *a, Unk02086250 *b, Unk02012f58 *c, s32 d, s32 e, s16 f, s32 g, s32 h, s32 i, s32 j,
+void func_02086098(Unk02086098 *a, Unk02086250 *b, MtxFx43 *c, s32 d, s32 e, s16 f, s32 g, s32 h, s32 i, s32 j,
                    UnkFunc *k) {
-    Unk02012f58 m;
+    MtxFx43 m;
     s32 x;
     s32 y;
     s32 z;
@@ -334,9 +334,9 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, Unk02012f58 *c, s32 d, s32 e,
     if (a->mUnk_08 != 0) {
         *(u32 *) 0x40004ac = a->mUnk_18 >> (4 - ((a->mUnk_00 >> 26 & 7) == 2));
     }
-    Matrix4x3Identity(&m);
+    MTX_Identity43_(&m);
     m.mUnk_00[3] = b->mUnk_00;
-    Matrix4x3Multiply(&m, c, &m);
+    MTX_Concat43(&m, c, &m);
     m.mUnk_00[3].x = g;
     if (b->mUnk_10 == TRUE) {
         m.mUnk_00[3].x = g + ((s32) (((s64) i * d + 0x800) >> 12) + 0x1e000);

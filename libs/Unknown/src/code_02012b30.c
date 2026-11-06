@@ -290,7 +290,7 @@ void func_02012ffc(Unk0201290c *a, u32 b) {
     }
 }
 
-void func_02012f58(Unk02012f58 *a, void *b) {
+void func_02012f58(MtxFx43 *a, void *b) {
     s32 m[16];
 
     func_01ff9234();
@@ -300,7 +300,7 @@ void func_02012f58(Unk02012f58 *a, void *b) {
     if (a != 0) {
         while (G3X_GetClipMtx(m) != 0) {
         }
-        Matrix4x4ToMatrix4x3(m, a);
+        MTX_Copy44To43_(m, a);
     }
     if (b != 0) {
         while (G3X_GetVectorMtx(b) != 0) {

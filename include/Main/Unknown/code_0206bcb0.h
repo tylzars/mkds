@@ -9,7 +9,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_02039774.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 #include "code_02148538.h"
 #include "Main/Unknown/code_02039860.h"
 #include "Main/Unknown/unk_02175628.h"
@@ -258,7 +258,7 @@ typedef struct Kart {
             Vec3 mUnk_138;
             Vec3 mUnk_144;
         };
-        Unk02012f58 mUnk_120_m;
+        MtxFx43 mUnk_120_m;
     };
     /* 150 */ union {
         struct {
@@ -267,11 +267,11 @@ typedef struct Kart {
             Vec3 mUnk_168;
             Vec3 mUnk_174;
         };
-        Unk02012f58 mUnk_150_m;
+        MtxFx43 mUnk_150_m;
     };
     /* 180 */ vs32 mState;
-    /* 184 */ Unk02012f58 mUnk_184_m;
-    /* 1b4 */ Unk02012f58 *mUnk_1b4;
+    /* 184 */ MtxFx43 mUnk_184_m;
+    /* 1b4 */ MtxFx43 *mUnk_1b4;
     // Collision center of the Kart: the position moved up by mRadius plus 0x400 along the up vector. The
     // collision sweep ends here; Kart.mPrevCollisionCenter is where it starts.
     /* 1b8 */ Vec3 mCollisionCenter;

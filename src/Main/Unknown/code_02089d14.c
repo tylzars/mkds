@@ -232,14 +232,14 @@ void func_0208a218(void) {
 }
 
 void func_02089fa0(void) {
-    Unk02012f58 a;
-    Unk02012f58 b;
+    MtxFx43 a;
+    MtxFx43 b;
     Vec3 d;
     Vec3 *c;
     u16 i;
     Unk02084b2c *e;
 
-    Matrix4x3Identity(&a);
+    MTX_Identity43_(&a);
     data_0217029c.mUnk_4c = a;
     if (data_021759c0->mUnk_00c != 0) {
         return;
@@ -254,7 +254,7 @@ void func_02089fa0(void) {
         if (data_0217b034->mUnk_73c == 2) {
             b.mUnk_00[3].y = 0x50000;
         }
-        Matrix3x3Identity(&b);
+        MTX_Identity33_(&b);
         for (i = 0; i < data_0217b034->mUnk_000[8]->mNsbmdCount; i++) {
             e = &data_0217b034->mUnk_000[8]->mNsbmds[i];
             ComputeOrthoMatrix(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x1f6, 0,

@@ -1553,7 +1553,7 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
     Vec3 v;
     s32 m1[9];
     s32 m2[9];
-    Unk02012f58 m3;
+    MtxFx43 m3;
     Vec3 t;
     Vec3 u;
     Vec3 w;
@@ -1569,16 +1569,16 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
     v.x = k;
     v.y = k;
     v.z = k;
-    Matrix3x3FromPairY(m1, gPairsByAngle[(param_2->mUnk_16 >> 4) * 2], gPairsByAngle[(param_2->mUnk_16 >> 4) * 2 + 1]);
-    Matrix3x3FromPairX(m2, gPairsByAngle[(((u16) (data_usa_021656dc + param_2->mUnk_1a)) >> 4) * 2],
-                       gPairsByAngle[(((u16) (data_usa_021656dc + param_2->mUnk_1a)) >> 4) * 2 + 1]);
-    Matrix3x3Multiply(m1, m2, m1);
+    MTX_RotY33_(m1, gPairsByAngle[(param_2->mUnk_16 >> 4) * 2], gPairsByAngle[(param_2->mUnk_16 >> 4) * 2 + 1]);
+    MTX_RotX33_(m2, gPairsByAngle[(((u16) (data_usa_021656dc + param_2->mUnk_1a)) >> 4) * 2],
+                gPairsByAngle[(((u16) (data_usa_021656dc + param_2->mUnk_1a)) >> 4) * 2 + 1]);
+    MTX_Concat33(m1, m2, m1);
     if (param_1->mUnk_20 != NULL) {
-        Matrix3x3ToMatrix4x3(m1, &m3.mUnk_00[0].x);
+        MTX_Copy33To43_(m1, &m3.mUnk_00[0].x);
         m3.mUnk_00[3] = t;
-        Matrix4x3ScaleRowsCopyRow3(&m3, &m3, v.x, v.y, v.z);
+        MTX_ScaleApply43(&m3, &m3, v.x, v.y, v.z);
     } else {
-        Matrix4x3Identity(&m3);
+        MTX_Identity43_(&m3);
     }
     func_02010fe4(&v);
     func_0201100c(&t);
@@ -1625,7 +1625,7 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
                     u.x = e->x >> 4;
                     u.y = e->y >> 4;
                     u.z = e->z >> 4;
-                    Vec3MultiplyMatrix4x3(&u, &m3, &t);
+                    MTX_MultVec43(&u, &m3, &t);
                     func_02010fe4(&w);
                     func_0201100c(&t);
                     func_02011034();
@@ -1639,7 +1639,7 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
             }
         }
         if (param_1->mUnk_10 != NULL) {
-            Vec3MultiplyMatrix4x3(&param_1->mUnk_20->mUnk_44[param_1->mUnk_00], &m3, &t);
+            MTX_MultVec43(&param_1->mUnk_20->mUnk_44[param_1->mUnk_00], &m3, &t);
             func_0201100c(&t);
             func_02011034();
             if (param_3 != 0) {

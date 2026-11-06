@@ -314,7 +314,7 @@ void func_02084a88(void *a, u8 b, u8 c) {
     func_02013468(p, 0, b);
 }
 
-void func_020849f8(void *a, Unk02012f58 *b, u32 *c) {
+void func_020849f8(void *a, MtxFx43 *b, u32 *c) {
     s32 v0 = 30;
     u32 v[3];
 

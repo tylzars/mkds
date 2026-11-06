@@ -51,7 +51,7 @@ typedef struct MapObject {
     /* 04 */ Vec3 mPos;
     /* 10 */ Vec3 mUnk_10;
     /* 1c */ Vec3 mScale;
-    /* 28 */ Unk02012f58 mMatrix;
+    /* 28 */ MtxFx43 mMatrix;
     // Size of the collision shape along the object's local axes: the kind's size times mScale (a few kinds set a
     // component directly). x is the radius given to the collision slot, and the Vec3 length is the bounding radius.
     /* 58 */ Vec3 mExtent;

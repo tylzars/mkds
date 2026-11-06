@@ -493,7 +493,7 @@ void func_0208f0a0(void) {
     }
 }
 
-void func_0208ee7c(const Unk02012f58 *a) {
+void func_0208ee7c(const MtxFx43 *a) {
     Unk0208ec64 *p;
     Unk0208ec64_08 *r;
     Unk0208ec64_08 *q;

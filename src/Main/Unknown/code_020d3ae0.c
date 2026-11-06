@@ -72,8 +72,8 @@ u32 func_020d50b4(void) {
 void func_020d4f94(Unk020d4f94 *p) {
     s32 buf[10];
 
-    Matrix3x3Transpose(p, buf);
-    Vec3MultiplyMatrix3x3(&p->mUnk_24, buf, &data_0217b4f8.mUnk_08);
+    MTX_Transpose33_(p, buf);
+    MTX_MultVec33(&p->mUnk_24, buf, &data_0217b4f8.mUnk_08);
     data_0217b4f8.mUnk_08.x = -data_0217b4f8.mUnk_08.x;
     data_0217b4f8.mUnk_08.y = -data_0217b4f8.mUnk_08.y;
     data_0217b4f8.mUnk_08.z = -data_0217b4f8.mUnk_08.z;
@@ -83,10 +83,10 @@ void func_020d4f94(Unk020d4f94 *p) {
     data_0217b4f8.mUnk_14.x = -buf[6];
     data_0217b4f8.mUnk_14.y = -buf[7];
     data_0217b4f8.mUnk_14.z = -buf[8];
-    Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_20, buf, &data_0217b4f8.mUnk_20);
-    Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_2c, buf, &data_0217b4f8.mUnk_2c);
-    Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_38, buf, &data_0217b4f8.mUnk_38);
-    Vec3MultiplyMatrix3x3(&data_0217b550.mUnk_44, buf, &data_0217b4f8.mUnk_44);
+    MTX_MultVec33(&data_0217b550.mUnk_20, buf, &data_0217b4f8.mUnk_20);
+    MTX_MultVec33(&data_0217b550.mUnk_2c, buf, &data_0217b4f8.mUnk_2c);
+    MTX_MultVec33(&data_0217b550.mUnk_38, buf, &data_0217b4f8.mUnk_38);
+    MTX_MultVec33(&data_0217b550.mUnk_44, buf, &data_0217b4f8.mUnk_44);
     if (data_0217b4f8.mUnk_50 != FALSE) {
         data_0217b4f8.mUnk_50 = FALSE;
         data_0217b4f8.mUnk_54 = TRUE;
@@ -174,12 +174,12 @@ BOOL func_020d4d60(MapObject *p, s32 a) {
     return (func_0207a780() & p->mDigitMask) != 0;
 }
 
-void func_020d4d44(Unk02012f58 *p) {
+void func_020d4d44(MtxFx43 *p) {
     func_020e6df0(p);
     func_020d7bec(p);
 }
 
-void func_020d4c28(Unk020e6fd4 *p, Unk02012f58 *a) {
+void func_020d4c28(Unk020e6fd4 *p, MtxFx43 *a) {
     s32 i;
     MapObject *e;
     UnkFunc *f;
@@ -531,7 +531,7 @@ void DrawMapObjects(Unk020d4418 *p) {
     s32 n;
     Unk020e6fd4 **t;
     Unk020e6fd4 *e;
-    Unk02012f58 *v;
+    MtxFx43 *v;
     s32 k;
     s32 j;
 
@@ -571,7 +571,7 @@ void DrawMapObjects(Unk020d4418 *p) {
 }
 
 void func_020d4418(Unk020d4418 *p) {
-    Unk02012f58 *v;
+    MtxFx43 *v;
 
     v = &p->mUnk_30;
     if (data_0217b4f0->mUnk_17c != 0) {

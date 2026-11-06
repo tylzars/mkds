@@ -143,7 +143,7 @@ void AdvanceKartState6(Kart *p) {
     u16 i;
 
     if (p->mUnk_35c == 0) {
-        Matrix3x3 m;
+        MtxFx33 m;
 
         p->mForwardSpeed = 0;
         if ((p->mUnk_318 > 0 ? p->mUnk_318 : -p->mUnk_318) < 0x1ffff) {
@@ -172,9 +172,8 @@ void AdvanceKartState6(Kart *p) {
             p->mUnk_334 = gPairsByAngle[(p->mUnk_338 >> 4) * 2];
         }
         i = (u16) (((s64) p->mUnk_334 * 0xce4) >> 12);
-        Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m, &p->mUnk_328, gPairsByAngle[(i >> 4) * 2],
-                                               gPairsByAngle[(i >> 4) * 2 + 1]);
-        Vec3MultiplyMatrix3x3(&p->mUnk_31c, m.mUnk_00, &a);
+        MTX_RotAxis33((MtxFx43 *) &m, &p->mUnk_328, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
+        MTX_MultVec33(&p->mUnk_31c, m.mUnk_00, &a);
         QuaternionFromAxisAngle(&a, p->mUnk_314, &p->mUnk_34c);
     } else {
         Vec4 q;

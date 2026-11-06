@@ -76,7 +76,7 @@ Unk020dd7a8 *func_020dd7a8(void) {
 }
 
 void func_020dd6c8(void *a, Wanwan *p, void *b, u32 c) {
-    Unk02012f58 s;
+    MtxFx43 s;
 
     if (p->mUnk_00.mStateMachine.mState == 4) {
         if (func_020b2ec0() == 0) {

@@ -413,7 +413,7 @@ void func_02066fe0(Kart *a) {
 }
 
 void func_02066de8(Kart *a) {
-    Unk02012f58 b;
+    MtxFx43 b;
     s32 c;
     s32 d;
     u16 e;
@@ -436,8 +436,8 @@ void func_02066de8(Kart *a) {
     c = (s64) a->mUnk_59c * data_021654cc + 0x800 >> 12;
     d = (s64) c * a->mUnk_5a4 + 0x800 >> 12;
     e = d;
-    Matrix4x3FromPairY(&b, gPairsByAngle[(e >> 4) * 2], gPairsByAngle[(e >> 4) * 2 + 1]);
-    Matrix4x3Multiply(&b, &a->mUnk_150_m, &a->mUnk_184_m);
+    MTX_RotY43_(&b, gPairsByAngle[(e >> 4) * 2], gPairsByAngle[(e >> 4) * 2 + 1]);
+    MTX_Concat43(&b, &a->mUnk_150_m, &a->mUnk_184_m);
     if ((a->mUnk_59c > 0 ? a->mUnk_59c : -a->mUnk_59c) >= 0x29) {
         return;
     }

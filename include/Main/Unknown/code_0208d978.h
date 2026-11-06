@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58, Unk020136f0
+#include "code_02012b30.h" // MtxFx43, Unk020136f0
 #include "Main/Unknown/code_020846c0.h"
 #include "Main/Unknown/code_02087d0c.h"
 #include "Main/Unknown/code_02017000.h"
@@ -46,5 +46,5 @@ void func_0208e400(void);
 Unk0208e490 *func_0208e490(u32 a, const Vec3 *b, s32 c);
 void func_0208e570(void *a);
 void func_0208e808(s32 a);
-void func_0208e82c(const Unk02012f58 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk021663f4 *d);
+void func_0208e82c(const MtxFx43 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk021663f4 *d);
 void func_0208e99c(Unk0208ec64 *a);

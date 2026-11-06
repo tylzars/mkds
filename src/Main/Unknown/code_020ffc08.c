@@ -58,12 +58,12 @@ Unk020fff4c *func_020fff4c(void) {
 }
 
 void DrawDram(void *a, Dram *e, void *c, s32 d) {
-    Unk02012f58 *q;
+    MtxFx43 *q;
     s32 v;
 
     q = &e->mUnk_00.mMatrix;
     v = (u16) (-(s32) e->mUnk_a6) >> 4;
-    Matrix3x3FromPairX((s32 *) q, gPairsByAngle[v * 2], gPairsByAngle[v * 2 + 1]);
+    MTX_RotX33_((s32 *) q, gPairsByAngle[v * 2], gPairsByAngle[v * 2 + 1]);
     q->mUnk_00[3].x = e->mUnk_00.mPos.x >> 4;
     q->mUnk_00[3].y = e->mUnk_00.mPos.y >> 4;
     q->mUnk_00[3].z = e->mUnk_00.mPos.z >> 4;

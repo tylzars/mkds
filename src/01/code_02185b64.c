@@ -32,9 +32,8 @@ void InitMissionGate(MissionGateObject *a) {
 
     func_020d2450(a);
     a->mUnk_000.mAngle = (s32) (((s64) a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xB60B60B60BLL + 0x80000000000LL) >> 44);
-    Matrix3x3FromPairY(mtx, gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2],
-                       gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2 + 1]);
-    Matrix3x3Multiply(mtx, &a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_000.mMatrix.mUnk_00[0].x);
+    MTX_RotY33_(mtx, gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2], gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2 + 1]);
+    MTX_Concat33(mtx, &a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_000.mMatrix.mUnk_00[0].x);
     r4 = (s32) (((s64) a->mUnk_000.mScale.x * 0xA000LL) >> 12);
     r6 = (s32) (((s64) a->mUnk_000.mScale.y * 0xF000LL) >> 12);
     saved = a->mUnk_000.mCourseMapRow->mUnk_28;

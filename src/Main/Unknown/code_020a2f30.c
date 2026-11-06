@@ -111,7 +111,7 @@ void DrawBalloon(void *p, Balloon *a) {
         func_01ff9048(0x19, func_020e6cf8(&a->mUnk_e8), 12);
         if (a->mUnk_00.mAngle != 0) {
             i = (a->mUnk_00.mAngle >> 4) * 2;
-            Matrix3x3FromPairZ(m0, gPairsByAngle[i + 1], gPairsByAngle[i]);
+            MTX_RotZ33_(m0, gPairsByAngle[i + 1], gPairsByAngle[i]);
             func_01ff9048(0x1a, m0, 9);
         }
         u = a->mUnk_e4;
@@ -158,7 +158,7 @@ void DrawBalloon(void *p, Balloon *a) {
             e = a->mDrawList[i];
             func_01ff9048(0x11, NULL, 0);
             k = data_02156700[n - 1][i];
-            Matrix3x3FromPairZ(m1, gPairsByAngle[(k >> 4) * 2 + 1], gPairsByAngle[(k >> 4) * 2]);
+            MTX_RotZ33_(m1, gPairsByAngle[(k >> 4) * 2 + 1], gPairsByAngle[(k >> 4) * 2]);
             func_01ff9048(0x1a, m1, 9);
             t = e->mScaleFactor;
             if (t != 0x1000) {

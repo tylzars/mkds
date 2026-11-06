@@ -153,8 +153,8 @@ void ResetKartToRespawnPoint(Kart *p) {
         r = GetCourseMapRespawnRacePointLink(i, &a, &c);
     }
     i = ((u16) ((s32) (((s64) c.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
-    Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
-    Vec3MultiplyMatrix3x3(&data_02154f70, m, &b);
+    MTX_RotY33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+    MTX_MultVec33(&data_02154f70, m, &b);
     if (data_021759c0->mMode != MODE_BATTLE && gCourseMap->mItemRouteCount != 0) {
         (e = &(gKartItems)[p->mIndex])->mUnk_1f0.mUnk_00 = GetCourseMapRespawnItemPointLink((u16) p->mRespawnSlot);
         e->mUnk_1f0.mUnk_04 = 1;
@@ -469,9 +469,9 @@ void ResetKart(Kart *p) {
     p->mUnk_d8 = 0x1000;
     p->mState = 0;
     func_02071ddc(&p->mUnk_538);
-    Matrix4x3Identity(&p->mUnk_120_m);
-    Matrix4x3Identity(&p->mUnk_150_m);
-    Matrix4x3Identity(&p->mUnk_184_m);
+    MTX_Identity43_(&p->mUnk_120_m);
+    MTX_Identity43_(&p->mUnk_150_m);
+    MTX_Identity43_(&p->mUnk_184_m);
     p->mUnk_1d8 = v;
     p->mUnk_1e4 = p->mUnk_1d8;
     p->mPrevCollisionCenter = p->mUnk_1e4;
@@ -1203,7 +1203,7 @@ void func_020708a4(Kart *p) {
     Vec3 g;
     Vec3 h;
     Vec3 l;
-    Unk02012f58 m2;
+    MtxFx43 m2;
     s32 m1[9];
     Vec3 q;
 
@@ -1216,8 +1216,8 @@ void func_020708a4(Kart *p) {
     b.y = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.y;
     b.z = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.z;
     k = (u16) (((s64) b.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >> 4;
-    Matrix3x3FromPairY(m1, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
-    Vec3MultiplyMatrix3x3(&data_02154f70, m1, &e);
+    MTX_RotY33_(m1, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
+    MTX_MultVec33(&data_02154f70, m1, &e);
     func_021035ac(p->mIndex);
 
     w = p->mUnk_4c;
@@ -1322,9 +1322,9 @@ void func_020708a4(Kart *p) {
                 p->mUnk_234 = -5000;
             }
         }
-        Matrix4x3FirstThreeRowsFromVec3AndPair(&m2, &p->mUnk_120, gPairsByAngle[((u16) p->mUnk_234 >> 4) * 2],
-                                               gPairsByAngle[((u16) p->mUnk_234 >> 4) * 2 + 1]);
-        Vec3MultiplyMatrix3x3(&n, &m2.mUnk_00[0].x, &n);
+        MTX_RotAxis33(&m2, &p->mUnk_120, gPairsByAngle[((u16) p->mUnk_234 >> 4) * 2],
+                      gPairsByAngle[((u16) p->mUnk_234 >> 4) * 2 + 1]);
+        MTX_MultVec33(&n, &m2.mUnk_00[0].x, &n);
         p->mUnk_244 = n;
         func_01ff9f60(p, &n);
     }
@@ -1366,8 +1366,8 @@ void func_020705fc(Kart *p, u32 b) {
                 0x80000000LL) >>
                44) >>
         4;
-    Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
-    Vec3MultiplyMatrix3x3(&data_02154f70, m, &e);
+    MTX_RotY33_(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
+    MTX_MultVec33(&data_02154f70, m, &e);
     if (data_021759c0->mMode == MODE_BATTLE) {
         VEC_Subtract(&a, &p->mPos, &v);
         func_020a21bc(p->mIndex, (s32) &v);
@@ -1406,8 +1406,8 @@ void func_020705fc(Kart *p, u32 b) {
 }
 
 void func_02070484(Kart *p, Vec4 *q) {
-    Unk02012f58 m1;
-    Unk02012f58 m2;
+    MtxFx43 m1;
+    MtxFx43 m2;
     Vec3 v1;
     Vec3 v2;
     s32 d;
@@ -1423,10 +1423,10 @@ void func_02070484(Kart *p, Vec4 *q) {
     p->mUnk_234 = p->mUnk_234 + p->mUnk_3e8;
     k = p->mHeadingAngle;
     t = (u16) p->mUnk_234;
-    Matrix4x3FromPairY(&m1, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
-    Vec3MultiplyMatrix4x3(&data_02154f88, &m1, &v1);
-    Matrix4x3FromVec3AndPair(&m2, &v1, gPairsByAngle[(t >> 4) * 2], gPairsByAngle[(t >> 4) * 2 + 1]);
-    Vec3MultiplyMatrix4x3(&data_02154f7c, &m2, &v2);
+    MTX_RotY43_(&m1, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
+    MTX_MultVec43(&data_02154f88, &m1, &v1);
+    MTX_RotAxis43(&m2, &v1, gPairsByAngle[(t >> 4) * 2], gPairsByAngle[(t >> 4) * 2 + 1]);
+    MTX_MultVec43(&data_02154f7c, &m2, &v2);
     func_01ffd0e8(q, &data_02154f7c, &v2);
     if (p->mUnk_48 & 0x80000000) {
         q->x = -q->x;

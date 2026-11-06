@@ -13,7 +13,7 @@
 // Object of func_020ff97c: 0x144 bytes.
 typedef struct Unk020ff97c {
     /* 000 */ MapObject mUnk_00;
-    /* 0a0 */ Matrix3x3 mUnk_a0;
+    /* 0a0 */ MtxFx33 mUnk_a0;
     /* 0c4 */ u8 mUnk_c4[0x24];
     /* 0e8 */ Vec3 mUnk_e8;
     /* 0f4 */ Vec3 mUnk_f4;
@@ -52,8 +52,8 @@ u32 func_020ff538(Unk020eda5c *a, Unk020ff438 *e);
 void func_020ff638(Unk020eda5c *a, Unk020ff438 *e);
 void func_020ff654(Unk020ff438 *e);
 void func_020ff67c(Unk020ff438 *e);
-void func_020ff6d8(Unk020ff438 *e, Unk02012f58 *out);
-void func_020ff910(Unk020ff438 *e, Unk02012f58 *out);
+void func_020ff6d8(Unk020ff438 *e, MtxFx43 *out);
+void func_020ff910(Unk020ff438 *e, MtxFx43 *out);
 void func_020ff97c(Unk020ff97c *e);
 BOOL func_020ffabc(u32 a);
 Unk02100004 *func_020ffacc(void);

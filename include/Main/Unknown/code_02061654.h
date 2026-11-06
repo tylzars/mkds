@@ -6,7 +6,7 @@ typedef struct Unk02056bc0 Unk02056bc0;
 
 // Declared here until the code that defines them is decompiled.
 
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
 extern u16 data_021653e8;
 extern s16 data_021653ec;
@@ -29,7 +29,7 @@ u32 SetRaceUpdateFramesAtEntryEnd(void);
 u32 func_020617f0(void);
 void *GetCurrentCamera(void);
 unsigned int func_02061818(void);
-Unk02012f58 *func_0206182c(void);
+MtxFx43 *func_0206182c(void);
 unsigned int func_0206183c(void);
 void func_0206184c(void);
 void func_02061860(void);

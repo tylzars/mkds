@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
-void Matrix4x4Identity(s32 *a);
-void Matrix4x4ToMatrix4x3(const s32 *a, Unk02012f58 *b);
+void MTX_Identity44_(s32 *dst);
+void MTX_Copy44To43_(const s32 *src, MtxFx43 *dst);

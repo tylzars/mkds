@@ -1,14 +1,14 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
 // Nine words.
-typedef struct Matrix3x3 {
+typedef struct MtxFx33 {
     /* 00 */ s32 mUnk_00[9];
-} Matrix3x3;
+} MtxFx33;
 
-void Vec3MultiplyMatrix3x3(const Vec3 *a, const s32 *b, Vec3 *c);
-void Matrix3x3Multiply(const s32 *a, const s32 *b, s32 *c);
-void Matrix4x3FirstThreeRowsFromVec3AndPair(Unk02012f58 *a, const Vec3 *b, s32 c, s32 d);
-void Matrix4x3ScaleFirstThreeRows(const Unk02012f58 *a, Unk02012f58 *b, s32 c, s32 d, s32 e);
+void MTX_MultVec33(const Vec3 *vec, const s32 *m, Vec3 *dst);
+void MTX_Concat33(const s32 *a, const s32 *b, s32 *ab);
+void MTX_RotAxis33(MtxFx43 *dst, const Vec3 *vec, s32 sinVal, s32 cosVal);
+void MTX_ScaleApply33(const MtxFx43 *src, MtxFx43 *dst, s32 x, s32 y, s32 z);

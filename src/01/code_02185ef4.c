@@ -682,9 +682,9 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
             func_ov001_02187074(b->mUnk_160, b->mUnk_164, b->mUnk_000.mScale.x);
     }
     if (b->mUnk_234 == 1) {
-        Matrix3x3FromPairY(&b->mUnk_000.mMatrix.mUnk_00[0].x, gPairsByAngle[((u16) b->mAngle >> 4) * 2],
-                           gPairsByAngle[((u16) b->mAngle >> 4) * 2 + 1]);
-        Vec3MultiplyMatrix3x3((Vec3 *) &b->mUnk_244, &b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_238);
+        MTX_RotY33_(&b->mUnk_000.mMatrix.mUnk_00[0].x, gPairsByAngle[((u16) b->mAngle >> 4) * 2],
+                    gPairsByAngle[((u16) b->mAngle >> 4) * 2 + 1]);
+        MTX_MultVec33((Vec3 *) &b->mUnk_244, &b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_238);
         VEC_Add(&b->mUnk_238, &b->mUnk_000.mPos, &b->mUnk_238);
     } else {
         b->mUnk_238.x = b->mUnk_000.mPos.x + b->mUnk_244;
@@ -799,7 +799,7 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
         func_01ff9048(0x19, func_020e6b58(&b->mUnk_000.mPos), 0xc);
         if (b->mUnk_000.mAngle != 0) {
             k = b->mUnk_000.mAngle >> 4;
-            Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
+            MTX_RotY33_(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
             func_01ff9048(0x1a, m, 9);
         }
         func_01ff9048(0x1b, &b->mUnk_000.mScale.x, 3);
@@ -855,7 +855,7 @@ void func_ov001_021861f4(void *d, Unk02188950 *e, s32 f) {
         func_01ff9048(0x14, &value, 1);
         func_01ff9048(0x19, func_020e6b58(&v), 0xc);
         k = (u16) e->mAngle >> 4;
-        Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
+        MTX_RotY33_(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
         func_01ff9048(0x1a, m, 9);
         c = e->mUnk_288 >> 4;
         b = e->mUnk_284 >> 4;

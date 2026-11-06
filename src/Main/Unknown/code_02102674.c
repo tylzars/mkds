@@ -153,7 +153,7 @@ void func_0210298c(Unk02102674 *p) {
 
 void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
     Vec3 w;
-    Unk02012f58 s;
+    MtxFx43 s;
     s32 k;
     s32 d;
 

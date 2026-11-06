@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
 // 0x24-byte entry: the word at 0x00 and the halfword at 0x08 are tested by func_02086098 and func_02086e8c,
 // the words at 0x1c and 0x20 are passed to the function given to func_02086098.
@@ -38,13 +38,13 @@ typedef struct Unk02086250 {
     /* 26 */ u16 mUnk_26;
 } Unk02086250;
 
-void func_02086098(Unk02086098 *a, Unk02086250 *b, Unk02012f58 *c, s32 d, s32 e, s16 f, s32 g, s32 h, s32 i, s32 j,
+void func_02086098(Unk02086098 *a, Unk02086250 *b, MtxFx43 *c, s32 d, s32 e, s16 f, s32 g, s32 h, s32 i, s32 j,
                    UnkFunc *k);
 
 u16 *func_02086058(void);
 u16 func_0208606c(int a);
 int func_02086080(int arg0);
-void func_02086250(Unk02012f58 *a);
+void func_02086250(MtxFx43 *a);
 void func_020865ec(void);
 void func_020866b4(void);
 void func_0208677c(void);

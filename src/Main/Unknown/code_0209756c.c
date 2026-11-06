@@ -115,7 +115,7 @@ void CreateFlipper(void *a) {
 
 void DrawFlipper(void *a, Flipper *p) {
     s32 v;
-    Unk02012f58 *e;
+    MtxFx43 *e;
     Unk02087d0c *s;
 
     v = 0x1e;
@@ -144,7 +144,7 @@ void func_020979c8(Unk020e6fd4 *a) {
     s32 k;
     u32 e;
     Flipper *p;
-    Unk02012f58 *q;
+    MtxFx43 *q;
     s32 m2[9];
     s32 m1[9];
 
@@ -159,14 +159,14 @@ void func_020979c8(Unk020e6fd4 *a) {
                 p->mUnk_00.mFlags &= ~0x400;
                 p->mUnk_00.mAngle = 0x2000;
                 p->mUnk_eb8 = 0x1e;
-                Matrix3x3FromPairY(m2, data_usa_02160fb4[0x74], data_usa_02160fb4[0x75]);
+                MTX_RotY33_(m2, data_usa_02160fb4[0x74], data_usa_02160fb4[0x75]);
                 break;
             case 1:
                 p->mUnk_a4 = 1;
                 p->mUnk_00.mFlags |= data_usa_02156584;
                 p->mUnk_00.mAngle = 0x2000;
                 p->mUnk_eb8 = 0x1e;
-                Matrix3x3FromPairY(m2, data_usa_0215d8b4[10], data_usa_0215d8b4[11]);
+                MTX_RotY33_(m2, data_usa_0215d8b4[10], data_usa_0215d8b4[11]);
                 break;
         }
         p->mUnk_ec8 = 0;
@@ -183,10 +183,10 @@ void func_020979c8(Unk020e6fd4 *a) {
             }
             e = e - d;
             k = (u16) e >> 4;
-            Matrix3x3FromPairY(m1, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
+            MTX_RotY33_(m1, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
             q = &p->mUnk_a8[j];
-            Matrix3x3Multiply(m1, &p->mUnk_00.mMatrix.mUnk_00[0].x, &q->mUnk_00[0].x);
-            Matrix3x3Multiply(m2, &q->mUnk_00[0].x, &p->mUnk_648[j].mUnk_00[0].x);
+            MTX_Concat33(m1, &p->mUnk_00.mMatrix.mUnk_00[0].x, &q->mUnk_00[0].x);
+            MTX_Concat33(m2, &q->mUnk_00[0].x, &p->mUnk_648[j].mUnk_00[0].x);
             p->mUnk_be8[j].x = p->mUnk_00.mPos.x >> 4;
             p->mUnk_be8[j].y = p->mUnk_00.mPos.y >> 4;
             p->mUnk_be8[j].z = p->mUnk_00.mPos.z >> 4;

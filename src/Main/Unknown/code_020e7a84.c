@@ -124,7 +124,7 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     VEC_Add(&v, param_1, &v);
     w = v;
     w.x += data_0217b88c;
-    Vec3MultiplyMatrix4x3(&w, &data_0217bab8, &data_0217b9c0);
+    MTX_MultVec43(&w, &data_0217bab8, &data_0217b9c0);
 }
 
 void func_020e9d10(void) {
@@ -176,7 +176,7 @@ void func_020e9d10(void) {
         func_020e9658();
         v = data_0217b990;
         v.x += data_0217b88c;
-        Vec3MultiplyMatrix4x3(&v, &data_0217bab8, &data_0217b9c0);
+        MTX_MultVec43(&v, &data_0217bab8, &data_0217b9c0);
         data_0217b890 = 3;
         if (func_0203c5e4() == 0) {
             if ((u32) data_0217b890 <= 1) {
@@ -200,7 +200,7 @@ void func_020e9d10(void) {
             func_020e9658();
             v = data_0217b978;
             v.x += data_0217b88c;
-            Vec3MultiplyMatrix4x3(&v, &data_0217bab8, &data_0217b9c0);
+            MTX_MultVec43(&v, &data_0217bab8, &data_0217b9c0);
             if (data_0217b87c == data_0217b884) {
                 data_0217b890 = 1;
                 if (func_0203c5e4() == 0) {
@@ -330,7 +330,7 @@ void func_020e9810(void) {
     v4.y = 0;
     v4.z = 0xa4;
     func_01ff9048(0x1c, &v4, 3);
-    Matrix3x3FromPairZ(m, data_0217b8a8[data_0217b8e8], data_0217b8a0[data_0217b8e8]);
+    MTX_RotZ33_(m, data_0217b8a8[data_0217b8e8], data_0217b8a0[data_0217b8e8]);
     func_01ff9048(0x1a, m, 9);
     func_020e6a18(&data_0217ba2c);
     func_020e6854(&data_0217ba2c, NULL, 0, 0x1f);
@@ -392,7 +392,7 @@ void func_020e9658(void) {
         data_0217bab8.mUnk_00[2].y = -v->y;
         data_0217bab8.mUnk_00[2].z = -v->z;
     } else {
-        data_0217bab8.mUnk_00[2] = ((Unk02012f58 *) func_020e6b38())->mUnk_00[2];
+        data_0217bab8.mUnk_00[2] = ((MtxFx43 *) func_020e6b38())->mUnk_00[2];
     }
     Vec3CrossUnrounded(&data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2], &data_0217bab8.mUnk_00[2]);
     sq = (s64) data_0217bab8.mUnk_00[2].x * data_0217bab8.mUnk_00[2].x +
@@ -406,8 +406,8 @@ void func_020e9658(void) {
         data_0217bab8.mUnk_00[0] = data_0217bab8.mUnk_00[2];
     }
     Vec3CrossUnrounded(&data_0217bab8.mUnk_00[0], &data_0217bab8.mUnk_00[1], &data_0217bab8.mUnk_00[2]);
-    Matrix3x3Transpose(&data_0217bab8, &data_0217ba58);
-    Vec3MultiplyMatrix3x3(&data_0217bab8.mUnk_00[3], (const s32 *) &data_0217ba58, &data_0217ba7c);
+    MTX_Transpose33_(&data_0217bab8, &data_0217ba58);
+    MTX_MultVec33(&data_0217bab8.mUnk_00[3], (const s32 *) &data_0217ba58, &data_0217ba7c);
     data_0217ba58.mUnk_00[3].x = -data_0217ba58.mUnk_00[3].x;
     data_0217ba58.mUnk_00[3].y = -data_0217ba58.mUnk_00[3].y;
     data_0217ba58.mUnk_00[3].z = -data_0217ba58.mUnk_00[3].z;
@@ -610,7 +610,7 @@ void func_020e8ac8(void) {
             }
             data_0217b924.x += v.x;
             data_0217b924.z += v.z;
-            Vec3MultiplyMatrix3x3(&data_0217b924, (const s32 *) &data_0217bab8.mUnk_00[0], &u);
+            MTX_MultVec33(&data_0217b924, (const s32 *) &data_0217bab8.mUnk_00[0], &u);
         }
         data_0217b924.y = data_0217b924.y + ((s32) (((s64) data_021593bc.y * t.y) >> 12) -
                                              (s32) (((s64) data_021593b0.y * data_0217b924.y) >> 12));
@@ -701,7 +701,7 @@ void func_020e8790(void) {
     data_0217b9c0.x = (s32) (((s64) data_0217b9a8.z * data_0215f4b4[0]) >> 12) +
                       (s32) (((s64) data_0217b9a8.x * data_0215f4b4[1]) >> 12);
     data_0217b9c0.y = data_0217b9a8.y;
-    Vec3MultiplyMatrix4x3(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
+    MTX_MultVec43(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
     data_0217b90c = data_0217b9c0;
     data_0217b918 = data_0217b90c;
     data_0217b93c = data_0217b918;
@@ -752,7 +752,7 @@ void func_020e84b0(void) {
         }
         data_0217b9c0.x = (s32) (((s64) data_0217b9a8.z * s) >> 12) + (s32) (((s64) data_0217b9a8.x * c) >> 12);
         data_0217b9c0.y = data_0217b9a8.y;
-        Vec3MultiplyMatrix4x3(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
+        MTX_MultVec43(&data_0217b9c0, &data_0217bab8, &data_0217b9c0);
         if (data_0217b8f8 != 0) {
             data_0217b8b4 -= 0xf0;
         } else {
@@ -800,7 +800,7 @@ void func_020e8418(void) {
     data_0217b8b4 = 0;
     v = data_0217b978;
     v.x += data_0217b88c;
-    Vec3MultiplyMatrix4x3(&v, &data_0217bab8, &data_0217b9c0);
+    MTX_MultVec43(&v, &data_0217bab8, &data_0217b9c0);
 }
 
 void func_020e8368(void) {
@@ -808,7 +808,7 @@ void func_020e8368(void) {
 
     v = data_0217b978;
     v.x += data_0217b88c;
-    Vec3MultiplyMatrix4x3(&v, &data_0217bab8, &data_0217b9c0);
+    MTX_MultVec43(&v, &data_0217bab8, &data_0217b9c0);
     if (++data_0217b8b4 > data_0217b880 || (data_0217b8c8->mUnk_48 & 0x800) != 0) {
         func_02046bcc(&data_0217b9ec, 5);
     }
@@ -861,10 +861,10 @@ void func_020e7fa8(void) {
     data_0217b8b4 = 0;
     if (func_0203c5e4() != 0) {
         q = (u32 *) func_020e6b48();
-        ((Unk02012f58 *) q)->mUnk_00[3] = data_0217b954;
-        Vec3MultiplyMatrix4x3(&data_0217b960, (Unk02012f58 *) q, &data_0217b9c0);
+        ((MtxFx43 *) q)->mUnk_00[3] = data_0217b954;
+        MTX_MultVec43(&data_0217b960, (MtxFx43 *) q, &data_0217b9c0);
     } else {
-        Vec3MultiplyMatrix4x3(&data_0217b960, &data_0217bab8, &data_0217b9c0);
+        MTX_MultVec43(&data_0217b960, &data_0217bab8, &data_0217b9c0);
     }
     data_0217b90c = data_0217b9c0;
     data_0217b918 = data_0217b90c;
@@ -914,10 +914,10 @@ void func_020e7ed0(void) {
     }
     if (func_0203c5e4() != 0) {
         p = (void *) func_020e6b48();
-        ((Unk02012f58 *) p)->mUnk_00[3] = data_0217b954;
-        Vec3MultiplyMatrix4x3(&data_0217b960, (Unk02012f58 *) p, &data_0217b9c0);
+        ((MtxFx43 *) p)->mUnk_00[3] = data_0217b954;
+        MTX_MultVec43(&data_0217b960, (MtxFx43 *) p, &data_0217b9c0);
     } else {
-        Vec3MultiplyMatrix4x3(&data_0217b960, &data_0217bab8, &data_0217b9c0);
+        MTX_MultVec43(&data_0217b960, &data_0217bab8, &data_0217b9c0);
     }
 }
 
@@ -925,7 +925,7 @@ void func_020e7e58(void) {
     s32 a;
 
     data_0217b8e4 = 1;
-    Vec3MultiplyMatrix4x3(&data_0217b9c0, &data_0217ba88, &data_0217b984);
+    MTX_MultVec43(&data_0217b9c0, &data_0217ba88, &data_0217b984);
     data_0217b89c = 0;
     a = 0;
     if ((data_0217b8c8->mUnk_48 & 1) == 0) {
@@ -937,7 +937,7 @@ void func_020e7e58(void) {
 void func_020e7d90(void) {
     s32 a;
 
-    Vec3MultiplyMatrix4x3(&data_0217b984, &data_0217bab8, &data_0217b9c0);
+    MTX_MultVec43(&data_0217b984, &data_0217bab8, &data_0217b9c0);
     if ((data_0217b8c8->mUnk_48 & 1) != 0) {
         a = 0x2000;
     } else {
@@ -977,7 +977,7 @@ void func_020e7b7c(void) {
             p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
         }
     }
-    Vec3MultiplyMatrix4x3(&data_0217b9c0, &data_0217ba88, &data_0217b96c);
+    MTX_MultVec43(&data_0217b9c0, &data_0217ba88, &data_0217b96c);
     for (i = 0, b = 0, a = 0; i < 0x1e; i++) {
         t = (b > -0x3000) ? -0x3000 : b;
         a -= t;
@@ -1012,7 +1012,7 @@ void func_020e7a84(void) {
     s32 a;
     s32 b;
 
-    Vec3MultiplyMatrix4x3(&data_0217b96c, &data_0217bab8, &data_0217b9c0);
+    MTX_MultVec43(&data_0217b96c, &data_0217bab8, &data_0217b9c0);
     data_0217b8d0 -= 0x19a;
     a = data_0217b8d0;
     if (a > -0x3000) {

@@ -83,7 +83,7 @@ typedef struct ItemObject {
     /* 7c */ Unk020f41c4_C mUnk_7c;
     /* 08e */ u8 mUnk_08e[2];
     /* 090 */ u16 *mUnk_90;
-    /* 094 */ Unk02012f58 mUnk_94;
+    /* 094 */ MtxFx43 mUnk_94;
     /* 0c4 */ Vec3 mUnk_0c4;
     /* d0 */ Vec3 *mUnk_d0;
     /* 0d4 */ s32 mUnk_d4;

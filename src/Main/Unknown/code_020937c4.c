@@ -168,7 +168,7 @@ void DrawNsKiller2(void *a, NsKiller2 *p) {
     func_01ff9048(0x14, &t, 1);
     func_01ff9048(0x19, func_020e6b58(&p->mUnk_00.mPos), 12);
     i = p->mUnk_00.mAngle >> 4;
-    Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+    MTX_RotY33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     DrawMapObjectModel(a, gNsKiller2S, p);

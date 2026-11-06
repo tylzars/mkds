@@ -11,7 +11,7 @@
 #include "Main/Unknown/unk_0216b000.h"
 
 void func_020de4e4(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     if (b->mUnk_00.mStateMachine.mState == 0) {
         v1 = func_020e6cbc(&b->mUnk_00.mPos);
         func_020e67c4(gEarthenPipe1, v1, &b->mUnk_00.mScale, 0, d);

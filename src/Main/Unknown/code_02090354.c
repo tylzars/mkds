@@ -66,7 +66,7 @@ void DrawSmanTop(void *a, Sman *b) {
     s[2] = 0;
     func_01ff9048(0x1c, s, 3);
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    Matrix3x3FromPairZ(m, gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2], gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2 + 1]);
+    MTX_RotZ33_(m, gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2], gPairsByAngle[((u16) b->mUnk_a4 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     DrawMapObjectModel(a, gSmanTop, b);
 }

@@ -4,7 +4,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject
 #include "Main/Unknown/code_02042044.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 #include "Main/Unknown/code_020d8cac.h"
 #include "Main/Unknown/code_020b1dbc.h"
 #include "Main/Unknown/code_0207b960.h"
@@ -19,7 +19,7 @@
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_020f9c6c.h"
 
-struct Unk02012f58;
+struct MtxFx43;
 #include "Main/Unknown/code_020d6dc0.h"
 #include "Main/Unknown/code_020e6b58.h"
 
@@ -137,7 +137,7 @@ typedef struct Water {
     /* 64 */ void *mModelCFile;
     /* 68 */ Unk020d9cf4_68 mUnk_68;
     /* d4 */ Unk020d9cf4_68 mUnk_d4;
-    /* 140 */ Unk02012f58 mUnk_140;
+    /* 140 */ MtxFx43 mUnk_140;
     /* 170 */ s32 mUnk_170;
     // The file MapObj/water_efct.nsbmd as FindCourseFile returned it (a pointer to the whole file, not a built model
     // object), loaded by InitWater; the getter returns it when mUnk_170 is
@@ -156,7 +156,7 @@ typedef struct Unk020d9de0 {
 
 void InitWater(Unk020da384 *a, void *b, UnkFunc *c);
 void UpdateWater(Water *a);
-void DrawWater(Water *a, struct Unk02012f58 *b);
+void DrawWater(Water *a, struct MtxFx43 *b);
 Unk020d9de0 *func_020d9de0(void);
 void InitWaterFields(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16 i, u16 j, u16 k, u16 l, u16 m, u16 n,
                      s32 o);

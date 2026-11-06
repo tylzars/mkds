@@ -300,7 +300,7 @@ void func_02101c84(Unk02101c84 *p) {
     }
     w = &q->mUnk_98;
     VEC_Subtract(&p->mUnk_000.mPos, w, &v);
-    Vec3MultiplyMatrix3x3(&v, (s32 *) func_020e6b38(), &v);
+    MTX_MultVec33(&v, (s32 *) func_020e6b38(), &v);
     VEC_Add(w, &v, &p->mUnk_000.mUnk_0c4);
 }
 

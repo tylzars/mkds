@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
 // Sixteen words written by ComputeOrthoMatrix.
 typedef struct Unk0214ad4c {
@@ -56,7 +56,7 @@ void G3X_Init(void);
 // Builds a view matrix from a position, an up vector and a look-at point, a load flag and an optional output block
 // (12 words: three rotation rows and the translation). With a nonzero flag it sets matrix mode 2 and writes the 12
 // words to 0x400045c; with a non-null output block it stores them there.
-void ComputeLookAtMatrix(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk02012f58 *out);
+void ComputeLookAtMatrix(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, MtxFx43 *out);
 // Builds an orthographic projection matrix from six edge values in the same order as ComputeFrustumMatrix, a scale,
 // a load flag and an optional output block. With a nonzero flag it sets matrix mode 0 and writes the 16 words to
 // 0x4000458; with a non-null output block it stores the 16 words there.

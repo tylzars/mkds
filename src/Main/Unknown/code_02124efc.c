@@ -15,8 +15,8 @@ void func_02124efc(Unk02124b1c *p, s32 n) {
         p->mUnk_0c = 0;
         p->mUnk_0e = 0;
         p->mUnk_10 = 0;
-        Matrix2x2Identity(p->mUnk_14);
-        Matrix2x2Identity(p->mUnk_24);
+        MTX_Identity22_(p->mUnk_14);
+        MTX_Identity22_(p->mUnk_24);
         p->mUnk_34 = 1;
         p->mUnk_38 = -1;
         p->mUnk_3c = NULL;

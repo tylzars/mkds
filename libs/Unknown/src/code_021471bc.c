@@ -1,12 +1,8 @@
 #include "code_021471bc.h"
 
 // clang-format off
-// Fills the twelve words at a with a 4x3 identity in 20.12 fixed point: 0x1000 on the diagonal of the first three rows,
-// 0 elsewhere.
-// Not compiled code: the stores are `stm r0!` with lists that do not start at r0. The 1.2 compiler builds ldm/stm only
-// in prologues, epilogues and block moves (struct copies and fills), which keep their data in r0 upward and move the
-// base off r0; separate stores of constants stay `str` (docs/compiler.md, ldm/stm; checked on C).
-asm void Matrix4x3Identity(Unk02012f58 *a) {
+// Sets dst to the 4x3 identity matrix: 0x1000 on the diagonal of the first three rows, 0 elsewhere.
+asm void MTX_Identity43_(MtxFx43 *dst) {
     mov r2, #0x1000
     mov r3, #0
     stmia r0!, {r2, r3}
@@ -19,11 +15,8 @@ asm void Matrix4x3Identity(Unk02012f58 *a) {
     bx lr
 }
 
-// Copies the twelve words at a (four rows of three) to b as four rows of four, the fourth column being 0, 0, 0, 0x1000.
-// Not compiled code: it saves r4 alone, with no lr and no padding word, where 1.2 saves lr with r4 and pads every frame
-// to 8 bytes; and it copies with `ldm r0!` / `stm r1!` lists 1.2 builds only for block moves (docs/compiler.md; frame
-// layout in the compiler).
-asm void Matrix4x3ToMatrix4x4(const Unk02012f58 *a, s32 *b) {
+// Copies the four rows of three words at src to dst as four rows of four, the fourth column being 0, 0, 0, 0x1000.
+asm void MTX_Copy43To44_(const MtxFx43 *src, s32 *dst) {
     stmdb sp!, {r4}
     mov ip, #0
     ldmia r0!, {r2, r3, r4}
@@ -41,10 +34,8 @@ asm void Matrix4x3ToMatrix4x4(const Unk02012f58 *a, s32 *b) {
 
 #pragma thumb on
 
-// Fills the twelve words at a with the rows (b, 0, 0), (0, c, 0), (0, 0, d), (0, 0, 0).
-// Not compiled code: it stores separate values with `stmia r0!`, which the 1.2 compiler builds in Thumb code only for
-// block moves (docs/compiler.md, ldm/stm).
-asm void Matrix4x3FromDiagonal(Unk02012f58 *a, s32 b, s32 c, s32 d) {
+// Sets dst to the scale matrix with x, y and z on the diagonal and a zero translation.
+asm void MTX_Scale43_(MtxFx43 *dst, s32 x, s32 y, s32 z) {
     stmia r0!, {r1}
     mov r1, #0
     str r3, [r0, #28]
@@ -58,11 +49,8 @@ asm void Matrix4x3FromDiagonal(Unk02012f58 *a, s32 b, s32 c, s32 d) {
     bx lr
 }
 
-// Fills the twelve words at a with the rows (0x1000, 0, 0), (0, c, b), (0, -b, c), (0, 0, 0).
-// Not compiled code: it stores separate values with `stmia r0!`, which the 1.2 compiler builds in Thumb code only for
-// block moves (docs/compiler.md, ldm/stm). It also builds 0x1000 with `movs; lsls`, which 1.2 never does in Thumb code
-// (docs/compiler.md, Thumb constants).
-asm void Matrix4x3FromPairX(s32 *a, s32 b, s32 c) {
+// Sets dst to the rotation about the x axis, rows (0x1000, 0, 0), (0, cosVal, sinVal), (0, -sinVal, cosVal), (0, 0, 0).
+asm void MTX_RotX43_(s32 *dst, s32 sinVal, s32 cosVal) {
     str r1, [r0, #20]
     neg r1, r1
     str r1, [r0, #28]
@@ -80,11 +68,8 @@ asm void Matrix4x3FromPairX(s32 *a, s32 b, s32 c) {
     bx lr
 }
 
-// Fills the twelve words at a with the rows (c, 0, -b), (0, 0x1000, 0), (b, 0, c), (0, 0, 0).
-// Not compiled code: it stores separate values with `stmia r0!`, which the 1.2 compiler builds in Thumb code only for
-// block moves (docs/compiler.md, ldm/stm). It also builds 0x1000 with `movs; lsls`, which 1.2 never does in Thumb code
-// (docs/compiler.md, Thumb constants).
-asm void Matrix4x3FromPairY(Unk02012f58 *a, s32 b, s32 c) {
+// Sets dst to the rotation about the y axis, rows (cosVal, 0, -sinVal), (0, 0x1000, 0), (sinVal, 0, cosVal), (0, 0, 0).
+asm void MTX_RotY43_(MtxFx43 *dst, s32 sinVal, s32 cosVal) {
     str r1, [r0, #24]
     mov r3, #0
     stmia r0!, {r2, r3}
@@ -100,11 +85,8 @@ asm void Matrix4x3FromPairY(Unk02012f58 *a, s32 b, s32 c) {
     bx lr
 }
 
-// Fills the twelve words at a with the rows (c, b, 0), (-b, c, 0), (0, 0, 0x1000), (0, 0, 0).
-// Not compiled code: it stores separate values with `stmia r0!`, which the 1.2 compiler builds in Thumb code only for
-// block moves (docs/compiler.md, ldm/stm). It also builds 0x1000 with `movs; lsls`, which 1.2 never does in Thumb code
-// (docs/compiler.md, Thumb constants).
-asm void Matrix4x3FromPairZ(s32 *a, s32 b, s32 c) {
+// Sets dst to the rotation about the z axis, rows (cosVal, sinVal, 0), (-sinVal, cosVal, 0), (0, 0, 0x1000), (0, 0, 0).
+asm void MTX_RotZ43_(s32 *dst, s32 sinVal, s32 cosVal) {
     stmia r0!, {r2}
     mov r3, #0
     stmia r0!, {r1, r3}

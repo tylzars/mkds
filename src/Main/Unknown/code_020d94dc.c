@@ -149,7 +149,7 @@ void UpdateWater(Water *a) {
 
 // Draws model A (when it exists) and model C at their circle positions and mHeight, in the order of mDrawModelAFirst;
 // returns at once when the water map object's mFlags has bit 0x2 or 0x10; writes only the scratch matrix mUnk_140.
-void DrawWater(Water *a, struct Unk02012f58 *b) {
+void DrawWater(Water *a, struct MtxFx43 *b) {
     if ((gWaterMapObject->mUnk_02 & 0x12) != 0) {
         return;
     }
@@ -220,7 +220,7 @@ void InitWaterFields(s32 a, s32 b, s32 c, s32 d, s32 e, u16 f, u16 g, u16 h, u16
     gWater->mUnk_58 = l;
     gWater->mUnk_5a = m;
     gWater->mUnk_5c = n;
-    Matrix4x3Identity(&gWater->mUnk_140);
+    MTX_Identity43_(&gWater->mUnk_140);
     gWater->mUnk_170 = o;
 }
 

@@ -79,11 +79,11 @@ void ComputeKartSidePoints(Kart *p) {
         q.x = (s32) (((s64) v.x * p->mScale.x) >> 12);
         q.y = (s32) (((s64) v.y * p->mScale.y) >> 12);
         q.z = (s32) (((s64) v.z * p->mScale.z) >> 12);
-        Vec3MultiplyMatrix4x3(&q, &p->mUnk_150_m, &e->mSidePositions[i]);
+        MTX_MultVec43(&q, &p->mUnk_150_m, &e->mSidePositions[i]);
         e->mSidePositions[i].x = e->mSidePositions[i].x >> 4;
         e->mSidePositions[i].y = e->mSidePositions[i].y >> 4;
         e->mSidePositions[i].z = e->mSidePositions[i].z >> 4;
-        Vec3MultiplyMatrix3x3(&data_02155818[i], &p->mUnk_150.x, &w);
+        MTX_MultVec33(&data_02155818[i], &p->mUnk_150.x, &w);
         e->mSideDirections[i].x = w.x;
         e->mSideDirections[i].y = w.y;
         e->mSideDirections[i].z = w.z;
@@ -857,7 +857,7 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
     Vec3 v;
     Vec3 x;
     Vec3 u;
-    Matrix3x3 m;
+    MtxFx33 m;
     Vec3 y;
     Unk020748a8 *g;
     Kart *q;
@@ -888,9 +888,8 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
         k = data_02165938;
     }
     i = (s32) (((s64) t * 0x38e3 + 0x800) >> 12);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) &m, &x, gPairsByAngle[(i >> 4) * 2],
-                                           gPairsByAngle[(i >> 4) * 2 + 1]);
-    Vec3MultiplyMatrix3x3(&y, m.mUnk_00, &y);
+    MTX_RotAxis33((MtxFx43 *) &m, &x, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
+    MTX_MultVec33(&y, m.mUnk_00, &y);
     h.x = y.x;
     h.y = y.y;
     h.z = y.z;

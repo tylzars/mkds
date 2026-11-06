@@ -15,9 +15,9 @@
 // its up while bit 0x40000000 of mUnk_48 is set and the world up (0, 0x1000, 0) otherwise; the steering code removes
 // this component from vectors. The kart has two more matrices (0x150 and 0x184), built from this one for drawing.
 void GetKartUp(const Kart *a, Vec3 *b) {
-    const Unk02012f58 *c;
+    const MtxFx43 *c;
 
-    c = (const Unk02012f58 *) ((u8 *) a + 0x120);
+    c = (const MtxFx43 *) ((u8 *) a + 0x120);
     b->x = c->mUnk_00[1].x;
     b->y = c->mUnk_00[1].y;
     b->z = c->mUnk_00[1].z;
@@ -27,9 +27,9 @@ void GetKartUp(const Kart *a, Vec3 *b) {
 // it, and its mSavedKartForward holds a copy taken when the camera is set up. The kart has two more matrices (0x150 and
 // 0x184), built from this one for drawing.
 void GetKartForward(const Kart *a, Vec3 *b) {
-    const Unk02012f58 *c;
+    const MtxFx43 *c;
 
-    c = (const Unk02012f58 *) ((u8 *) a + 0x120);
+    c = (const MtxFx43 *) ((u8 *) a + 0x120);
     b->x = c->mUnk_00[2].x;
     b->y = c->mUnk_00[2].y;
     b->z = c->mUnk_00[2].z;
@@ -66,12 +66,12 @@ void func_02063a68(Kart *a) {
 void func_0206390c(Unk0206390c *a) {
     u32 b;
     Vec3 c[3];
-    Unk02012f58 d;
+    MtxFx43 d;
     Vec3 f;
     Vec3 g;
-    Unk02012f58 e;
+    MtxFx43 e;
     s32 h;
-    Unk02012f58 *i;
+    MtxFx43 *i;
     Kart *j;
     s32 k;
 
@@ -82,9 +82,9 @@ void func_0206390c(Unk0206390c *a) {
     }
     i = func_0206182c();
     func_02012f58(&d, c);
-    Matrix4x3Invert(i, &e);
-    Matrix4x3Multiply(&d, &e, &d);
-    Matrix3x3Multiply((const s32 *) c, (const s32 *) &e, (s32 *) c);
+    MTX_Inverse43(i, &e);
+    MTX_Concat43(&d, &e, &d);
+    MTX_Concat33((const s32 *) c, (const s32 *) &e, (s32 *) c);
     f = d.mUnk_00[3];
     g = c[2];
     j = GetKart(b);

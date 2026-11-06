@@ -105,7 +105,7 @@ void func_020fcb30(Unk020fc2e8 *p) {
 
 void func_020fcac0(Unk020fc2e8 *a) {
     func_02046be8(&a->mUnk_2e8, (UnkFunc *const *) data_0216c6b4, 8, a);
-    Matrix4x3Identity((Unk02012f58 *) a->mUnk_2b4);
+    MTX_Identity43_((MtxFx43 *) a->mUnk_2b4);
     a->mUnk_274 = 1;
     a->mUnk_276 = gRaceProgress->mKartAtRank[0];
     a->mUnk_278 = 0;
@@ -175,7 +175,7 @@ s32 func_020fc79c(Unk020eda5c *a, Unk020fc2e8 *e) {
     }
     func_020fc94c(e);
     // one 36-byte copy of the three vectors (three Vec3 assignments give 0x160 bytes against 0x150)
-    *(Matrix3x3 *) &e->mUnk_000.mUnk_94 = *(Matrix3x3 *) &a->mUnk_02c.mUnk_00;
+    *(MtxFx33 *) &e->mUnk_000.mUnk_94 = *(MtxFx33 *) &a->mUnk_02c.mUnk_00;
     if (e->mUnk_000.mFlags & 0x8000000) {
         e->mUnk_2f8 = 0;
         e->mUnk_2fa = 1;

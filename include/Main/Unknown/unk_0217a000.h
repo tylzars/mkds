@@ -9,7 +9,7 @@
 #include "code_021445e0.h" // Unk021450ec, Unk0214461c
 #include "code_02147cd8.h" // Vec3s16
 #include "code_0214a748.h" // Unk0214ad4c
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 #include "Main/Unknown/code_02006954.h"
 #include "Main/Unknown/code_0207b960.h" // PosCurve
 #include "Main/Unknown/code_0207adf8.h" // Unk0207adf8
@@ -1051,7 +1051,7 @@ typedef struct Camera {
     /* 00c */ Vec3 mSide;
     /* 018 */ Vec3 mLookAt;
     /* 024 */ Vec3 mPos;
-    /* 030 */ Unk02012f58 mViewMatrix;
+    /* 030 */ MtxFx43 mViewMatrix;
     // Half of the vertical field of view, 0x10000 per turn (top = near * tan). The chase camera eases it toward
     // mHalfFovAngleGoal; entry cameras set the pair mHalfFovPairFirst / mHalfFovPairSecond (sin and cos of the angle)
     // directly.
@@ -1217,7 +1217,7 @@ extern u32 data_0217aa8c[4];
 extern u32 data_0217aa9c[8];
 extern u32 data_0217aabc[8];
 extern u16 data_0217aadc[32];
-extern Unk02012f58 *data_0217aa7c;
+extern MtxFx43 *data_0217aa7c;
 extern u32 data_0217ac10;
 extern void *data_0217ac14;
 extern void *data_0217ac18[15];

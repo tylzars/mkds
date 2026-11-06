@@ -127,7 +127,7 @@ void func_020e3724(void) {
 }
 
 void func_020e3618(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
-    Unk02012f58 *p;
+    MtxFx43 *p;
 
     switch (b->mUnk_000.mStateMachine.mState) {
         case 4:

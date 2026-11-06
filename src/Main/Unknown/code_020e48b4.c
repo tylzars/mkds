@@ -87,7 +87,7 @@ void func_020e4ea8(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
     u32 v;
 
     if (p->mUnk_00.mStateMachine.mState == 0) {
-        Unk02012f58 *r;
+        MtxFx43 *r;
         neg = p->mUnk_00.mCollisionSlotIndex & 1;
         r = func_020e6cf8(&p->mUnk_00.mPos);
         q = gPukupuku;
@@ -98,7 +98,7 @@ void func_020e4ea8(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
         }
         func_020e67c4(q, r, &data_0217b800, 0, c);
     } else {
-        Unk02012f58 *r;
+        MtxFx43 *r;
         neg = p->mUnk_00.mCollisionSlotIndex & 1;
         v = *(u16 *) &p->mUnk_a0.mUnk_0c.x;
         r = func_020e6cf8(&p->mUnk_00.mPos);

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void Matrix2x2FromPair(s32 *arg0, s32 arg1, s32 arg2);
+void MTX_Rot22_(s32 *dst, s32 sinVal, s32 cosVal);

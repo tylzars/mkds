@@ -153,15 +153,15 @@ void DrawCrab(void *a, Crab *b) {
     func_020e6d88(&b->mUnk_000.mMatrix.mUnk_00[1]);
     func_01ff9048(0x19, func_020e6bd0(&b->mUnk_000.mPos), 0xc);
     if (b->mUnk_0a2 != 0) {
-        Matrix3x3FromPairZ(f0, gPairsByAngle[(b->mUnk_0a2 >> 4) * 2], gPairsByAngle[(b->mUnk_0a2 >> 4) * 2 + 1]);
+        MTX_RotZ33_(f0, gPairsByAngle[(b->mUnk_0a2 >> 4) * 2], gPairsByAngle[(b->mUnk_0a2 >> 4) * 2 + 1]);
         func_01ff9048(0x1a, f0, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_000.mScale, 3);
     func_0209b688(gCrab, (u16) (b->mUnk_0a8 >> 12));
     func_0209bbd0(a, gCrab);
     DrawMapObjectModel(a, gCrab, b);
-    Matrix3x3FromPairZ(f1, gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
-                       gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
+    MTX_RotZ33_(f1, gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
+                gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, f1, 9);
     func_0209b688(gCrabHand, (u16) (b->mUnk_0ac >> 12));
     func_0209bbd0(a, gCrabHand);

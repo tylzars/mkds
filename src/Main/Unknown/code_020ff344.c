@@ -69,7 +69,7 @@ BOOL func_020ffabc(u32 a) {
 #pragma thumb on
 
 void func_020ff97c(Unk020ff97c *e) {
-    e->mUnk_a0 = *(Matrix3x3 *) &e->mUnk_00.mMatrix;
+    e->mUnk_a0 = *(MtxFx33 *) &e->mUnk_00.mMatrix;
     e->mUnk_124 = 0;
     e->mUnk_128 = 0;
     e->mUnk_12c = 0;
@@ -96,7 +96,7 @@ void func_020ff97c(Unk020ff97c *e) {
 
 #pragma thumb off
 
-void func_020ff910(Unk020ff438 *e, Unk02012f58 *out) {
+void func_020ff910(Unk020ff438 *e, MtxFx43 *out) {
     Vec3 *v;
 
     v = e->mUnk_000.mUnk_000.mUnk_d0;
@@ -104,10 +104,10 @@ void func_020ff910(Unk020ff438 *e, Unk02012f58 *out) {
     e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[3].y = v->y >> 4;
     e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[3].z = v->z >> 4;
     *out = e->mUnk_000.mUnk_000.mUnk_94;
-    Matrix3x3Multiply((const s32 *) &data_0217c600, (const s32 *) out, (s32 *) out);
+    MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) out, (s32 *) out);
 }
 
-void func_020ff6d8(Unk020ff438 *e, Unk02012f58 *out) {
+void func_020ff6d8(Unk020ff438 *e, MtxFx43 *out) {
     s32 a, b;
     Vec3 *v;
 
@@ -169,7 +169,7 @@ void func_020ff6d8(Unk020ff438 *e, Unk02012f58 *out) {
 }
 
 void func_020ff67c(Unk020ff438 *e) {
-    *(Matrix3x3 *) &e->mUnk_000.mUnk_000.mUnk_94 = *(Matrix3x3 *) &data_0217c600;
+    *(MtxFx33 *) &e->mUnk_000.mUnk_000.mUnk_94 = *(MtxFx33 *) &data_0217c600;
     func_021053e4(e->mUnk_140);
     e->mUnk_140->mUnk_b0 = 2;
     func_021052f0(e->mUnk_140, func_020ff910, e);
@@ -187,8 +187,8 @@ void func_020ff638(Unk020eda5c *a, Unk020ff438 *e) {
 u32 func_020ff538(Unk020eda5c *a, Unk020ff438 *e) {
     func_020f9114(e);
     e->mUnk_000.mUnk_000.mUnk_78 |= data_0215a02c;
-    Matrix3x3Multiply((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
-                      (s32 *) &e->mUnk_000.mUnk_000.mUnk_94);
+    MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
+                 (s32 *) &e->mUnk_000.mUnk_000.mUnk_94);
     e->mUnk_130.x = 0;
     e->mUnk_130.y = 0;
     e->mUnk_130.z = 0;
@@ -257,8 +257,8 @@ void func_020ff344(Unk020ff438 *e) {
     }
     Vec3CrossUnrounded(&e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0], &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1],
                        &e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2]);
-    Matrix3x3Multiply((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
-                      (s32 *) &e->mUnk_000.mUnk_000.mUnk_94);
+    MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
+                 (s32 *) &e->mUnk_000.mUnk_000.mUnk_94);
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
         e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020ff438;
     }

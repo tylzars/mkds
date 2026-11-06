@@ -133,7 +133,7 @@ void func_0208b8c8(void) {
     }
 }
 
-void func_0208b870(Unk02012f58 *a) {
+void func_0208b870(MtxFx43 *a) {
     func_02018674(data_0217b044, a);
     func_02018674(data_0217b04c, a);
     if (data_0217b03c != NULL) {

@@ -184,7 +184,7 @@ void CreateTownMonte(MapObjectModel *a) {
 void DrawTownMonte(void *a, TownMonte *p) {
     s32 v;
     s32 d;
-    Unk02012f58 *h;
+    MtxFx43 *h;
 
     d = (0x16c000 - p->mUnk_a4) >> 12;
     v = 0x1e;

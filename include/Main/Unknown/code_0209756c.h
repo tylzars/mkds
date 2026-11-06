@@ -5,7 +5,7 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
 #include "code_0201c528.h" // Unk0201ca6c
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 
 // Object of kind 0x1a9 (Flipper), up to 0xed4 bytes plus a table of words from 0xed4. mUnk_ebc is also written
 // through Unk0209753c.
@@ -13,8 +13,8 @@ typedef struct Flipper {
     /* 000 */ MapObject mUnk_00;
     /* 0a0 */ s32 mUnk_a0;
     /* 0a4 */ s32 mUnk_a4;
-    /* 0a8 */ Unk02012f58 mUnk_a8[30];
-    /* 648 */ Unk02012f58 mUnk_648[30];
+    /* 0a8 */ MtxFx43 mUnk_a8[30];
+    /* 648 */ MtxFx43 mUnk_648[30];
     /* be8 */ Vec3 mUnk_be8[30];
     /* d50 */ Vec3 mUnk_d50[30];
     /* eb8 */ s32 mUnk_eb8;

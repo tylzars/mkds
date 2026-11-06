@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 *Matrix2x2Identity(s32 *a);
+void MTX_Identity22_(s32 *dst);

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02012f58 Unk02012f58;
+typedef struct MtxFx43 MtxFx43;
 
 // Object behind gJgShadow; only the field at 0x6e is used here.
 typedef struct Unk020e5348 {
@@ -71,7 +71,7 @@ typedef struct Unk020e516c {
 } Unk020e516c;
 
 void func_020e5348(u32 a, u32 b);
-void func_020e5370(Vec3 *a, Unk02012f58 *b, u32 c, u32 d);
+void func_020e5370(Vec3 *a, MtxFx43 *b, u32 c, u32 d);
 void func_020e53ac(Unk020e516c *p, void *d, u32 e, u32 f);
 void func_020e54e4(void *d, void *e, u32 f, u32 g);
 s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c);

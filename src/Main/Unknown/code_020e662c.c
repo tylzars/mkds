@@ -19,7 +19,7 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "code_021471bc.h"
 
-void func_020e6df0(Unk02012f58 *p) {
+void func_020e6df0(MtxFx43 *p) {
     data_0217b850->mUnk_00[0].x = 0x1000;
     data_0217b850->mUnk_00[0].y = 0;
     data_0217b850->mUnk_00[0].z = 0;
@@ -29,10 +29,10 @@ void func_020e6df0(Unk02012f58 *p) {
     data_0217b850->mUnk_00[2].x = 0;
     data_0217b850->mUnk_00[2].y = -p->mUnk_00[1].z;
     data_0217b850->mUnk_00[2].z = p->mUnk_00[1].y;
-    Matrix3x3Transpose(p, data_0217b848);
-    Matrix3x3Multiply((const s32 *) data_0217b850, (const s32 *) data_0217b848, (s32 *) data_0217b860);
+    MTX_Transpose33_(p, data_0217b848);
+    MTX_Concat33((const s32 *) data_0217b850, (const s32 *) data_0217b848, (s32 *) data_0217b860);
     {
-        Unk02012f58 *h;
+        MtxFx43 *h;
         Vec3 *v;
         s32 a;
         s32 b;
@@ -63,15 +63,15 @@ s32 func_020e6d88(Vec3 *v) {
     return Vec3NormalizeAndGetLengthUnchecked(&data_0217b84c->mUnk_00[0], &data_0217b84c->mUnk_00[0]);
 }
 
-s32 func_020e6d34(Vec3 *v, Unk02012f58 *h) {
+s32 func_020e6d34(Vec3 *v, MtxFx43 *h) {
     h->mUnk_00[1] = *v;
     h->mUnk_00[2] = data_0217b860->mUnk_00[2];
     Vec3CrossUnrounded(&h->mUnk_00[1], &h->mUnk_00[2], &h->mUnk_00[0]);
     return Vec3NormalizeAndGetLengthUnchecked(&h->mUnk_00[0], &h->mUnk_00[0]);
 }
 
-Unk02012f58 *func_020e6cf8(Vec3 *a) {
-    Unk02012f58 *p;
+MtxFx43 *func_020e6cf8(Vec3 *a) {
+    MtxFx43 *p;
     Vec3 *q;
 
     p = data_0217b848;
@@ -82,8 +82,8 @@ Unk02012f58 *func_020e6cf8(Vec3 *a) {
     return data_0217b848;
 }
 
-Unk02012f58 *func_020e6cbc(Vec3 *a) {
-    Unk02012f58 *p;
+MtxFx43 *func_020e6cbc(Vec3 *a) {
+    MtxFx43 *p;
     Vec3 *q;
 
     p = data_0217b860;
@@ -94,7 +94,7 @@ Unk02012f58 *func_020e6cbc(Vec3 *a) {
     return data_0217b860;
 }
 
-Unk02012f58 *func_020e6c3c(Vec3 *v, s32 a1, s32 a2) {
+MtxFx43 *func_020e6c3c(Vec3 *v, s32 a1, s32 a2) {
     Vec3 *q;
 
     data_0217b860->mUnk_00[1].x = (a1 * data_0217b860->mUnk_00[0].x) >> 12;
@@ -113,8 +113,8 @@ void func_020e6c0c(void) {
     data_0217b860->mUnk_00[1].y = 0x1000;
 }
 
-Unk02012f58 *func_020e6bd0(Vec3 *a) {
-    Unk02012f58 *p;
+MtxFx43 *func_020e6bd0(Vec3 *a) {
+    MtxFx43 *p;
     Vec3 *q;
 
     p = data_0217b84c;
@@ -125,8 +125,8 @@ Unk02012f58 *func_020e6bd0(Vec3 *a) {
     return data_0217b84c;
 }
 
-Unk02012f58 *func_020e6b94(Vec3 *a) {
-    Unk02012f58 *p;
+MtxFx43 *func_020e6b94(Vec3 *a) {
+    MtxFx43 *p;
     Vec3 *q;
 
     p = data_0217b85c;
@@ -137,8 +137,8 @@ Unk02012f58 *func_020e6b94(Vec3 *a) {
     return data_0217b85c;
 }
 
-Unk02012f58 *func_020e6b58(Vec3 *a) {
-    Unk02012f58 *p;
+MtxFx43 *func_020e6b58(Vec3 *a) {
+    MtxFx43 *p;
     Vec3 *q;
 
     p = data_0217b844;
@@ -191,7 +191,7 @@ void func_020e6a18(Unk020e6488 *p) {
 }
 
 s32 func_020e69bc(Vec3 *v) {
-    Unk02012f58 *t;
+    MtxFx43 *t;
     s64 acc;
 
     t = data_0217b854;
@@ -203,7 +203,7 @@ void func_020e6854(Unk020e6488 *p, Vec3 *q, s32 c, u32 d) {
     u32 a[3];
     u32 v;
     u32 e;
-    Unk02012f58 *t;
+    MtxFx43 *t;
     s32 m;
     u32 r;
     s64 acc;
@@ -246,7 +246,7 @@ void func_020e6854(Unk020e6488 *p, Vec3 *q, s32 c, u32 d) {
     func_01ff9144(p->mUnk_00, p->mUnk_04);
 }
 
-void func_020e67c4(Unk020e6488 *p, Unk02012f58 *q, Vec3 *v, s32 a4, u16 a5) {
+void func_020e67c4(Unk020e6488 *p, MtxFx43 *q, Vec3 *v, s32 a4, u16 a5) {
     u32 n;
     Vec3 t;
     s32 x;
@@ -268,7 +268,7 @@ void func_020e67c4(Unk020e6488 *p, Unk02012f58 *q, Vec3 *v, s32 a4, u16 a5) {
     func_020e6854(p, &q->mUnk_00[3], a4, a5);
 }
 
-void func_020e66e4(Unk020e6488 *p, Unk02012f58 *q, s32 r, Vec3 *v, s32 a5, u16 a6) {
+void func_020e66e4(Unk020e6488 *p, MtxFx43 *q, s32 r, Vec3 *v, s32 a5, u16 a6) {
     u32 n;
     Vec3 t;
     s32 i;
@@ -281,7 +281,7 @@ void func_020e66e4(Unk020e6488 *p, Unk02012f58 *q, s32 r, Vec3 *v, s32 a5, u16 a
     func_01ff9048(0x19, q, 0xc);
     if (r != 0) {
         i = r >> 4;
-        Matrix3x3FromPairZ((s32 *) *(void **) data_0217b858, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+        MTX_RotZ33_((s32 *) *(void **) data_0217b858, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
         func_01ff9048(0x1a, *(void **) data_0217b858, 9);
     }
     if (v != NULL) {
@@ -316,7 +316,7 @@ void func_020e662c(void) {
     *(u32 *) &data_0217b854 = v1;
     v1 = ((u32) HeapAlloc(data_021759d0->mHeap, (u32) 0x24));
     *(u32 *) &data_0217b858 = v1;
-    Matrix4x3Identity((Unk02012f58 *) (u32) data_0217b844);
+    MTX_Identity43_((MtxFx43 *) (u32) data_0217b844);
 }
 
 #pragma thumb off

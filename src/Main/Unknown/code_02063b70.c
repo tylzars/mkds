@@ -104,7 +104,7 @@ void DrawKart(Kart *a) {
             func_02063cc4_inline(0x14, 0x1c);
             func_01ff9048(0x1c, &f->mUnk_18, 3);
             w = (a->mTireSpinAngle >> 4) * 2;
-            Matrix3x3FromPairX(j, gPairsByAngle[w], gPairsByAngle[w + 1]);
+            MTX_RotX33_(j, gPairsByAngle[w], gPairsByAngle[w + 1]);
             func_01ff9048(0x1a, j, 9);
             func_020849d0(e->mUnk_010[2]);
             if (f->mUnk_18 != 0) {
@@ -116,7 +116,7 @@ void DrawKart(Kart *a) {
             func_02063cc4_inline2(0x1b, h, h, h);
             func_01ff9048(0x11, NULL, 0);
             w = (a->mUnk_4cc >> 4) * 2;
-            Matrix3x3FromPairY(k, gPairsByAngle[w], gPairsByAngle[w + 1]);
+            MTX_RotY33_(k, gPairsByAngle[w], gPairsByAngle[w + 1]);
             func_01ff9048(0x1a, k, 9);
             func_01ff9048(0x1a, j, 9);
             func_020849d0(e->mUnk_010[2]);
@@ -149,7 +149,7 @@ s32 func_02063b70(Kart *a) {
     s32 k;
     Vec3 h;
     Vec3 i;
-    Unk02012f58 g;
+    MtxFx43 g;
 
     b = a->mKartModelsEntry;
     d = b->mUnk_058 == 0;

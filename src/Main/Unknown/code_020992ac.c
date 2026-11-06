@@ -81,7 +81,7 @@ void func_0209a6dc(void *a) {
 }
 
 void DrawBeachTree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -105,7 +105,7 @@ void func_0209a5f8(void *a) {
 }
 
 void DrawOpaTree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -129,7 +129,7 @@ void func_0209a514(void *a) {
 }
 
 void DrawOlgMush1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -153,7 +153,7 @@ void func_0209a430(void *a) {
 }
 
 void DrawOlgPipe1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -177,7 +177,7 @@ void func_0209a34c(void *a) {
 }
 
 void DrawOf6yoshi1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -201,7 +201,7 @@ void func_0209a268(void *a) {
 }
 
 void DrawNsCannon1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -225,7 +225,7 @@ void func_0209a184(void *a) {
 }
 
 void DrawCrossTree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -249,7 +249,7 @@ void func_0209a0a0(void *a) {
 }
 
 void DrawBankTree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -273,7 +273,7 @@ void func_02099fbc(void *a) {
 }
 
 void DrawGardenTree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -297,7 +297,7 @@ void func_02099ed8(void *a) {
 }
 
 void DrawTownTree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -321,7 +321,7 @@ void func_02099df4(void *a) {
 }
 
 void DrawMarioTree3(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -345,7 +345,7 @@ void func_02099d10(void *a) {
 }
 
 void DrawSnowTree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -369,7 +369,7 @@ void func_02099c2c(void *a) {
 }
 
 void DrawDeTree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -393,7 +393,7 @@ void func_02099b48(void *a) {
 }
 
 void DrawOlaTree1c(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -417,7 +417,7 @@ void func_02099a64(void *a) {
 }
 
 void DrawOsaTree1c(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -441,7 +441,7 @@ void func_02099980(void *a) {
 }
 
 void DrawKinoHouse1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -465,7 +465,7 @@ void func_0209989c(void *a) {
 }
 
 void DrawKinoHouse2(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -489,7 +489,7 @@ void func_020997b8(void *a) {
 }
 
 void DrawKinoMount1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -513,7 +513,7 @@ void func_020996d4(void *a) {
 }
 
 void DrawKinoMount2(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -537,7 +537,7 @@ void func_020995f0(void *a) {
 }
 
 void DrawOm6Tree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -561,7 +561,7 @@ void func_0209950c(void *a) {
 }
 
 void DrawOf6Tree1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -585,7 +585,7 @@ void func_02099428(void *a) {
 }
 
 void DrawBankEgg1(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);
@@ -609,7 +609,7 @@ void func_02099344(void *a) {
 }
 
 void DrawMiniDokan(u32 a, int b) {
-    Unk02012f58 *v1;
+    MtxFx43 *v1;
     u32 v2;
     v2 = 0x1e;
     func_01ff9048((u32) 0x14, (void *) ((u32) (&v2)), 1);

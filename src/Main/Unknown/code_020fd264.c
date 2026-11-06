@@ -59,7 +59,7 @@
 
 void func_020fe3d8(Unk020fdae8 *a) {
     u32 v1;
-    Matrix4x3Identity((Unk02012f58 *) a->mUnk_13c);
+    MTX_Identity43_((MtxFx43 *) a->mUnk_13c);
     func_02046be8(a->mUnk_184, (UnkFunc *const *) &data_0216c714, 4, a);
     func_02046bcc(a->mUnk_184, (u16) 0);
     a->mUnk_170 = 300;

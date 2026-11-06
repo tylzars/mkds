@@ -4,7 +4,7 @@
 #include "code_02012b30.h" // Unk020136f0, Unk0201290c
 #include "code_0212d214.h"
 
-typedef struct Unk02012f58 Unk02012f58;
+typedef struct MtxFx43 MtxFx43;
 
 // Object func_020850c4 prepares; it returns 0 without doing anything when bit 0 of one of the halfwords at 0x10, 0x20
 // and 0x32 is set. mUnk_14 is the size func_02084b2c copies.
@@ -51,7 +51,7 @@ void func_020849a0(void *a, u32 b);
 void func_020849b0(void *a, u32 b);
 void func_020849c0(void *a, u32 b);
 void func_020849d0(void *a);
-void func_020849f8(void *a, Unk02012f58 *b, u32 *c);
+void func_020849f8(void *a, MtxFx43 *b, u32 *c);
 void func_02084a88(void *a, u8 b, u8 c);
 void func_02084ad8(void *a, u8 b);
 Unk0201290c *func_02084b2c(void *a, Unk02084b2c *b, Unk020136f0 *c, Unk020136f0 *d);

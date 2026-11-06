@@ -35,8 +35,8 @@
 #include "code_02010c84.h"
 #include "Main/Unknown/code_0203c5f8.h"
 
-Unk02012f58 *func_02076cc4(void) {
-    return (Unk02012f58 *) data_0217acc0;
+MtxFx43 *func_02076cc4(void) {
+    return (MtxFx43 *) data_0217acc0;
 }
 
 static inline s32 func_020760ec_inline(Vec3 *v, Vec3 *n) {
@@ -597,7 +597,7 @@ static inline void func_02075424_inline(Camera *p) {
     gCameraEntryChanged = 1;
 }
 
-Unk02012f58 *UpdateChainCameraPair(void) {
+MtxFx43 *UpdateChainCameraPair(void) {
     if (gSecondChainCamera->mCourseMapCamera != NULL) {
         if (gSecondChainCamera->mCourseMapCamera->mKind == 4) {
             gFirstChainCamera->mFrustumShift = 1;
@@ -626,7 +626,7 @@ Unk02012f58 *UpdateChainCameraPair(void) {
     return &gSecondChainCamera->mViewMatrix;
 }
 
-Unk02012f58 *UpdateFirstChainCamera(void) {
+MtxFx43 *UpdateFirstChainCamera(void) {
     UpdateCameraEntry(gFirstChainCamera);
     UpdateCameraView(gFirstChainCamera);
     gCurrentChainCamera = gFirstChainCamera;
@@ -707,21 +707,19 @@ void UpdateCameraAngleEntry(Camera *p) {
     j = (u16) ((s32) (((s64) q->mUnk_18.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     k = (u16) ((s32) (((s64) q->mUnk_24.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
     l = (u16) ((s32) (((s64) q->mUnk_24.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m0, &o->mUnk_120, gPairsByAngle[(o->mHopTiltAngle >> 4) * 2],
-                                           gPairsByAngle[(o->mHopTiltAngle >> 4) * 2 + 1]);
-    Vec3MultiplyMatrix3x3(&a, m0, &a);
+    MTX_RotAxis33((MtxFx43 *) m0, &o->mUnk_120, gPairsByAngle[(o->mHopTiltAngle >> 4) * 2],
+                  gPairsByAngle[(o->mHopTiltAngle >> 4) * 2 + 1]);
+    MTX_MultVec33(&a, m0, &a);
     b = a;
     c = b;
     d = b;
     func_02074b00_inline(&n, &d, -q->mUnk_18.z);
     Vec3CrossUnrounded(&data_usa_02154fc4, &a, &f);
     Vec3CrossUnrounded(&c, &f, &g);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m2, &g, gPairsByAngle[(i >> 4) * 2],
-                                           gPairsByAngle[(i >> 4) * 2 + 1]);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m3, &f, gPairsByAngle[(j >> 4) * 2],
-                                           gPairsByAngle[(j >> 4) * 2 + 1]);
-    Matrix3x3Multiply(m3, m2, m4);
-    Vec3MultiplyMatrix3x3(&d, m4, &d);
+    MTX_RotAxis33((MtxFx43 *) m2, &g, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
+    MTX_RotAxis33((MtxFx43 *) m3, &f, gPairsByAngle[(j >> 4) * 2], gPairsByAngle[(j >> 4) * 2 + 1]);
+    MTX_Concat33(m3, m2, m4);
+    MTX_MultVec33(&d, m4, &d);
     func_02074b00_inline(&t, &d, q->mUnk_18.z);
     VEC_Add(&p->mLookAt, &t, &p->mPos);
     f.x = -f.x;
@@ -730,14 +728,12 @@ void UpdateCameraAngleEntry(Camera *p) {
     g.x = -g.x;
     g.y = -g.y;
     g.z = -g.z;
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m5, &g, gPairsByAngle[(k >> 4) * 2],
-                                           gPairsByAngle[(k >> 4) * 2 + 1]);
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m6, &f, gPairsByAngle[(l >> 4) * 2],
-                                           gPairsByAngle[(l >> 4) * 2 + 1]);
-    Matrix3x3Multiply(m5, m2, m5);
-    Matrix3x3Multiply(m6, m3, m6);
-    Matrix3x3Multiply(m6, m5, m7);
-    Vec3MultiplyMatrix3x3(&n, m7, &n);
+    MTX_RotAxis33((MtxFx43 *) m5, &g, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
+    MTX_RotAxis33((MtxFx43 *) m6, &f, gPairsByAngle[(l >> 4) * 2], gPairsByAngle[(l >> 4) * 2 + 1]);
+    MTX_Concat33(m5, m2, m5);
+    MTX_Concat33(m6, m3, m6);
+    MTX_Concat33(m6, m5, m7);
+    MTX_MultVec33(&n, m7, &n);
     VEC_Add(&p->mPos, &n, &p->mLookAt);
     p->mLookAt.y = p->mLookAt.y - o->mHopHeight;
     p->mPos.y = p->mPos.y - o->mHopHeight;
@@ -795,10 +791,9 @@ void func_02074b00(Camera *p) {
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&d, &d);
     }
-    Matrix4x3FirstThreeRowsFromVec3AndPair((Unk02012f58 *) m, &data_usa_02154fc4,
-                                           gPairsByAngle[(data_usa_021656a0 >> 4) * 2],
-                                           gPairsByAngle[(data_usa_021656a0 >> 4) * 2 + 1]);
-    Vec3MultiplyMatrix3x3(&d, m, &d);
+    MTX_RotAxis33((MtxFx43 *) m, &data_usa_02154fc4, gPairsByAngle[(data_usa_021656a0 >> 4) * 2],
+                  gPairsByAngle[(data_usa_021656a0 >> 4) * 2 + 1]);
+    MTX_MultVec33(&d, m, &d);
     d.x = (s32) (((s64) d.x * 0xfae) >> 12);
     d.y = (s32) (((s64) d.y * 0xfae) >> 12);
     d.z = (s32) (((s64) d.z * 0xfae) >> 12);

@@ -65,7 +65,7 @@ BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
 
 #pragma thumb off
 
-void func_020d7bec(Unk02012f58 *a) {
+void func_020d7bec(MtxFx43 *a) {
     s32 t;
     s32 i;
     t = FX_Atan2(a->mUnk_00[0].z, a->mUnk_00[2].z);
@@ -333,8 +333,8 @@ s32 Vec3NormalizeXZAndGetLengthOrZero(Vec3 *a, Vec3 *b) {
 void Vec3RotateAroundY(Vec3 *a, s32 b, Vec3 *c) {
     s32 m[9];
     s32 i = b >> 4;
-    Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
-    Vec3MultiplyMatrix3x3(a, m, c);
+    MTX_RotY33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+    MTX_MultVec33(a, m, c);
 }
 
 void Matrix3x3FromVec3Degrees(Vec3 *a, s32 *b) {
@@ -345,11 +345,11 @@ void Matrix3x3FromVec3Degrees(Vec3 *a, s32 *b) {
     i = (u16) ((((s64) a->x * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
     j = (u16) ((((s64) a->y * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
     k = (u16) ((((s64) a->z * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
-    Matrix3x3FromPairX(b, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
-    Matrix3x3FromPairY(m, gPairsByAngle[(j >> 4) * 2], gPairsByAngle[(j >> 4) * 2 + 1]);
-    Matrix3x3Multiply(b, m, b);
-    Matrix3x3FromPairZ(m, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
-    Matrix3x3Multiply(b, m, b);
+    MTX_RotX33_(b, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
+    MTX_RotY33_(m, gPairsByAngle[(j >> 4) * 2], gPairsByAngle[(j >> 4) * 2 + 1]);
+    MTX_Concat33(b, m, b);
+    MTX_RotZ33_(m, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
+    MTX_Concat33(b, m, b);
 }
 
 u32 func_020d6dc0(s32 a, s32 b, s32 c, s32 d) {
@@ -560,7 +560,7 @@ Unk0217b654 *func_020d6794(void) {
 
 void func_020d673c(void) {
     s32 i = (s32) (GetRaceUpdateFrames() << 25 >> 16) >> 4;
-    Matrix3x3FromPairY(data_0217b650->mUnk_2c.mUnk_00, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+    MTX_RotY33_(data_0217b650->mUnk_2c.mUnk_00, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
 }
 
 void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // Unk02012f58
+#include "code_02012b30.h" // MtxFx43
 #include "code_0201c528.h" // Unk0201ca6c
 #include "01/code_0219b250.h"
 
@@ -26,7 +26,7 @@ typedef struct Unk0217b200 {
     /* 028 */ u8 mUnk_028[0x6c];
     /* 094 */ Unk0219b250_Item mUnk_094;
     /* 0b4 */ u8 mUnk_0b4[0x18];
-    /* 0cc */ Unk02012f58 mUnk_0cc;
+    /* 0cc */ MtxFx43 mUnk_0cc;
     /* 0fc */ s16 mUnk_0fc;
     /* 0fe */ s16 mUnk_0fe;
     /* 100 */ s16 mUnk_100;

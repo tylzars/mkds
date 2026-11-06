@@ -3,9 +3,9 @@
 #include "types.h"
 
 // Matrix of three direction vectors and a position.
-typedef struct Unk02012f58 {
+typedef struct MtxFx43 {
     /* 00 */ Vec3 mUnk_00[4];
-} Unk02012f58;
+} MtxFx43;
 
 // Entry of the table at mUnk_08 of Unk0201290c.
 typedef struct Unk0201290c_08 {
@@ -51,7 +51,7 @@ typedef struct Unk020136f0 {
 void func_02012b30(Unk020136f0 *a);
 s32 func_02012cbc(Unk020136f0 *a);
 void func_02012f24(void);
-void func_02012f58(Unk02012f58 *a, void *b);
+void func_02012f58(MtxFx43 *a, void *b);
 void func_02012ffc(Unk0201290c *a, u32 b);
 void func_02013044(Unk0201290c *a, u32 b);
 void func_0201308c(Unk0201290c *a, u32 b);
