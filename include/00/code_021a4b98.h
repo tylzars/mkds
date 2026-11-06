@@ -62,7 +62,7 @@ typedef struct Unk021b5f50 {
     /* 2284 */ s32 mUnk_2284;
     /* 2288 */ Unk021438f0 mUnk_2288;
     /* 22c0 */ u8 mUnk_22c0[0xc];
-    /* 22cc */ Unk0200fb08 mUnk_22cc;
+    /* 22cc */ OSAlarm mUnk_22cc;
     /* 22f8 */ u16 mUnk_22f8;
     /* 22fa */ u8 mUnk_22fa[6];
 } Unk021b5f50;

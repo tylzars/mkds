@@ -479,7 +479,7 @@ u32 OS_GetThreadPriority(OSThread *thread) {
 // Sleeps the current thread for msec milliseconds: an alarm wakes it up again.
 void OS_Sleep(u32 msec) {
     OSThread *thread;
-    Unk0200fb08 alarm;
+    OSAlarm alarm;
     u32 enabled;
 
     OS_CreateAlarm(&alarm);

@@ -2,53 +2,52 @@
 
 #include "types.h"
 
-// 0x2c bytes. Entry of a doubly linked list ordered by mUnk_0c; gAlarmList holds the first and last entry.
-// OS_SetAlarm stores its third and fourth arguments at mUnk_00 and mUnk_04; OS_CancelAlarm and AdvanceAlarmList clear
-// mUnk_00 when they unlink the entry.
-typedef struct Unk0200fb08 {
-    /* 00 */ void (*mUnk_00)(void *); // called with mUnk_04
-    /* 04 */ void *mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u64 mUnk_0c;
-    /* 14 */ struct Unk0200fb08 *mUnk_14; // previous entry
-    /* 18 */ struct Unk0200fb08 *mUnk_18; // next entry
-    /* 1c */ u64 mUnk_1c;
-    /* 24 */ u64 mUnk_24;
-} Unk0200fb08;
+typedef void (*OSAlarmHandler)(void *);
 
-typedef struct Unk02170260 {
-    /* 00 */ Unk0200fb08 *mUnk_00;
-    /* 04 */ Unk0200fb08 *mUnk_04;
-} Unk02170260;
+// 0x2c bytes. Entry of a doubly linked list ordered by mFire; gAlarmList holds the first and last entry. An alarm with
+// mHandler 0 is not armed.
+typedef struct OSAlarm {
+    /* 00 */ OSAlarmHandler mHandler; // called with mArg
+    /* 04 */ void *mArg;
+    /* 08 */ u32 mTag;
+    /* 0c */ u64 mFire;
+    /* 14 */ struct OSAlarm *mPrev;
+    /* 18 */ struct OSAlarm *mNext;
+    /* 1c */ u64 mPeriod;
+    /* 24 */ u64 mStart;
+} OSAlarm;
 
-typedef struct Unk0200fb08 Unk0200fb08;
+typedef struct OSiAlarmQueue {
+    /* 00 */ OSAlarm *mHead;
+    /* 04 */ OSAlarm *mTail;
+} OSiAlarmQueue;
 
-// Registered by StartAlarmTimer as the timer 1 handler; calls AdvanceAlarmList.
-void AlarmTimerCallback(void);
-// Timer 1 interrupt body: stops timer 1, clears IE bit 4. When the head alarm is not yet due, restarts the timer and
-// returns. Otherwise removes it, calls its handler with its argument (the handler word is cleared first unless the
-// alarm is periodic), adds a periodic alarm again, and starts the timer for the next head.
-void AdvanceAlarmList(void);
-// Does nothing when the handler is 0. Otherwise unlinks the alarm from gAlarmList (StartAlarmTimer when a new head
-// exists), then clears its handler and period.
-void OS_CancelAlarm(Unk0200fb08 *a);
-// Halts when the alarm is null or armed (handler nonzero). Otherwise a one-shot: clears the period, stores handler
-// and argument and with interrupts off adds the alarm with fire time OS_GetTick() + n (AddAlarmToList).
-void OS_SetAlarm(Unk0200fb08 *a, u64 n, void (*f)(void *), void *p);
-// Adds the alarm to gAlarmList in order of fire time (after alarms with an equal time). A periodic alarm (period
-// nonzero) takes as fire time its start moved forward by whole periods to the first time after now and ignores the
-// argument. Calls StartAlarmTimer when the alarm became the head.
-void AddAlarmToList(Unk0200fb08 *a, u64 n);
-// Clears the words at +0 (handler) and +8 of the alarm object; an alarm with handler 0 is not armed.
-void OS_CreateAlarm(Unk0200fb08 *a);
+// Timer 1 handler registered by OSi_SetTimer; calls OSi_ArrangeTimer.
+void OSi_AlarmHandler(void);
+// Timer 1 interrupt body: stops timer 1 and clears its interrupt enable. Restarts the timer when the first alarm is not
+// due yet. Otherwise unlinks that alarm, calls its handler with OSAlarm.mArg and re-inserts it when OSAlarm.mPeriod is
+// set; then starts the timer for the next first alarm.
+void OSi_ArrangeTimer(void);
+// Does nothing when OSAlarm.mHandler is 0. Otherwise unlinks the alarm from gAlarmList (starting the timer for a new
+// first alarm), then clears OSAlarm.mHandler and OSAlarm.mPeriod.
+void OS_CancelAlarm(OSAlarm *alarm);
+// Halts when the alarm is null or already armed. Otherwise sets a one-shot alarm that fires tick ticks from now and
+// calls handler with arg.
+void OS_SetAlarm(OSAlarm *alarm, u64 tick, OSAlarmHandler handler, void *arg);
+// Inserts the alarm into gAlarmList in order of OSAlarm.mFire, after alarms with an equal time. A periodic alarm
+// ignores fire and takes OSAlarm.mStart moved forward by whole periods to the first time after now. Starts the timer
+// when the alarm became the first one.
+void OSi_InsertAlarm(OSAlarm *alarm, u64 fire);
+// Clears OSAlarm.mHandler and OSAlarm.mTag.
+void OS_CreateAlarm(OSAlarm *alarm);
 // Returns gAlarmInitialized.
 u32 OS_IsAlarmAvailable(void);
-// Runs once: marks timer slot 1 (func_0200f580), clears head and tail of gAlarmList, clears IE bit 4.
+// Runs once: reserves timer 1 (func_0200f580), empties gAlarmList and clears the timer 1 interrupt enable.
 void OS_InitAlarm(void);
-// Starts timer 1 for the head alarm: stops it, registers AlarmTimerCallback for slot 1, writes the count 0xfffe when
-// the fire time has passed, the complement of the distance when it is under 0x10000 ticks away and 0 otherwise,
-// starts it with control 0xc1 and sets IE bit 4.
-void StartAlarmTimer(Unk0200fb08 *n);
-// Runs once: clears the two-word list at 0x02170254, the words at 0x02170250 and 0x0217024c and IE bit 2 (the V-count
-// interrupt). Nothing else in the ROM touches those words.
+// Starts timer 1 for the alarm: stops it, registers OSi_AlarmHandler, sets the count from the time left until
+// OSAlarm.mFire (the next tick when it has passed, 0 when it is 0x10000 ticks or more away), starts it and enables its
+// interrupt.
+void OSi_SetTimer(OSAlarm *alarm);
+// Runs once: clears the vertical count alarm list (data_02170274), data_02170270 and data_0217026c and the V-count
+// interrupt enable.
 void OS_InitVAlarm(void);

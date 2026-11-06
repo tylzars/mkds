@@ -176,7 +176,7 @@ u32 func_ov003_021be3b8(void) {
 }
 
 s32 func_ov003_021be264(void) {
-    Unk0200fb08 v1;
+    OSAlarm v1;
     Unk021d8c2c *p0;
     s32 a = 1;
     s32 b = -2;
@@ -374,7 +374,7 @@ s32 func_ov003_021bdd3c(void) {
     u8 *t;
     u32 i;
     u8 o[0x20];
-    Unk0200fb08 n;
+    OSAlarm n;
     a = 0;
     j = NULL;
     a = -1;

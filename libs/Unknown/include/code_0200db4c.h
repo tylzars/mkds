@@ -46,7 +46,7 @@ typedef struct OSThread {
     /* a4 */ u8 mUnk_a4[0xc];
     // The alarm of the OS_Sleep call the thread is in, 0 otherwise; OS_CreateThread and OSi_SleepAlarmCallback set it
     // to 0, OS_Sleep sets it, OSi_CancelThreadAlarmForSleep cancels it.
-    /* b0 */ Unk0200fb08 *mAlarmForSleep;
+    /* b0 */ OSAlarm *mAlarmForSleep;
     // What OS_SetThreadDestructor stores; OSi_ExitThread clears it and calls it with the exit argument.
     /* b4 */ void (*mDestructor)(void *);
 } OSThread;

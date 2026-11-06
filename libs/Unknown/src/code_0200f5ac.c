@@ -10,6 +10,8 @@ u16 gTickInitialized;
 u32 data_02170250;
 volatile u64 gTickOverflowCount;
 
+// Runs once: reserves timer 0, clears gTickOverflowCount, starts timer 0 and installs OSi_CountUpTick for its
+// interrupt.
 void OS_InitTick(void) {
     if (gTickInitialized != 0) {
         return;
@@ -20,19 +22,18 @@ void OS_InitTick(void) {
     *(vu16 *) 0x4000102 = 0;
     *(vu16 *) 0x4000100 = 0;
     *(vu16 *) 0x4000102 = 0xc1;
-    OS_SetIrqFunction(8, TickOverflowCallback);
+    OS_SetIrqFunction(8, OSi_CountUpTick);
     OS_EnableIrqMask(8);
     data_02170250 = 0;
 }
 
+// Returns gTickInitialized.
 u32 OS_IsTickAvailable(void) {
-    u32 value0;
-    value0 = (u32) &gTickInitialized;
-    value0 = (u32) * (const u16 *) ((value0) + (0));
-    return value0;
+    return gTickInitialized;
 }
 
-void TickOverflowCallback(void) {
+// Timer 0 overflow handler: adds 1 to gTickOverflowCount and restarts timer 0 when data_02170250 asks for it.
+void OSi_CountUpTick(void) {
     gTickOverflowCount++;
     if (data_02170250 != 0) {
         *(vu16 *) 0x4000102 = 0;
@@ -40,20 +41,22 @@ void TickOverflowCallback(void) {
         *(vu16 *) 0x4000102 = 0xc1;
         data_02170250 = 0;
     }
-    OSi_EnterTimerCallback(0, TickOverflowCallback, 0);
+    OSi_EnterTimerCallback(0, OSi_CountUpTick, 0);
 }
 
+// Returns gTickOverflowCount shifted left by 16 plus the timer 0 count, adding 1 to the overflow count when an overflow
+// is pending that the count does not yet include.
 u64 OS_GetTick(void) {
-    u32 s;
-    volatile u16 t;
-    volatile u64 v;
+    u32 enabled;
+    volatile u16 count;
+    volatile u64 overflows;
 
-    s = IrqDisable();
-    t = *(vu16 *) 0x4000100;
-    v = gTickOverflowCount & 0xffffffffffffULL;
-    if ((*(vu32 *) 0x4000214 & 8) && !(t & 0x8000)) {
-        v++;
+    enabled = IrqDisable();
+    count = *(vu16 *) 0x4000100;
+    overflows = gTickOverflowCount & 0xffffffffffffULL;
+    if ((*(vu32 *) 0x4000214 & 8) && !(count & 0x8000)) {
+        overflows++;
     }
-    IrqRestore(s);
-    return (v << 16) | t;
+    IrqRestore(enabled);
+    return (overflows << 16) | count;
 }

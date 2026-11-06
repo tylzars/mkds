@@ -19,12 +19,12 @@ extern u16 data_02170248;
 // Halfword set to 1 by OS_InitTick.
 extern u16 gTickInitialized;
 extern u32 data_02170250;
-// 64-bit count of timer 0 wraps, added by TickOverflowCallback, read by OS_GetTick.
+// 64-bit count of timer 0 wraps, added by OSi_CountUpTick, read by OS_GetTick.
 extern volatile u64 gTickOverflowCount;
 // Halfword set to 1 by OS_InitAlarm.
 extern u16 gAlarmInitialized;
 // Head and tail of the armed alarms, ordered by fire time; cleared by OS_InitAlarm.
-extern Unk02170260 gAlarmList;
+extern OSiAlarmQueue gAlarmList;
 extern u16 data_02170268;
 extern u32 data_0217026c;
 extern u32 data_02170270;
