@@ -81,10 +81,10 @@ u32 func_02151fc4(Unk021510a4 *a) {
     u32 h;
     func_02151910(a);
     RTC_Init();
-    if (RTC_GetDate(e) != 0) {
+    if (RTC_GetDate((RTCDate *) e) != 0) {
         return 0;
     }
-    if (RTC_GetTime(f) != 0) {
+    if (RTC_GetTime((RTCTime *) f) != 0) {
         return 0;
     }
     g = func_02152244(e, f);

@@ -517,7 +517,7 @@ void func_020ab714(void) {
 
 #pragma thumb on
 
-void func_020ab660(u16 a, volatile TouchSample b) {
+void func_020ab660(u16 a, volatile TPData b) {
     u32 t;
     u16 v;
 
@@ -531,14 +531,14 @@ void func_020ab660(u16 a, volatile TouchSample b) {
         data_0217b2d8.mUnk_00 = 0;
     }
     if (data_0217b2d8.mUnk_24 != FALSE) {
-        if (b.mInvalidBits != 0) {
+        if (b.mValidity != 0) {
             b.mX = data_0217b2d8.mUnk_0c[0];
             b.mY = data_0217b2d8.mUnk_0c[1];
-            b.mTouched = data_0217b2d8.mUnk_0c[2];
-            b.mInvalidBits = data_0217b2d8.mUnk_0c[3];
-            b.mTouched = 0;
+            b.mTouch = data_0217b2d8.mUnk_0c[2];
+            b.mValidity = data_0217b2d8.mUnk_0c[3];
+            b.mTouch = 0;
         }
-        v = b.mTouched;
+        v = b.mTouch;
         if (v != data_0217b2d8.mUnk_0c[2]) {
             data_0217b2d8.mUnk_1c = v != 0 ? 1 : 3;
             data_0217b2d8.mUnk_18 = 0;
@@ -555,8 +555,8 @@ void func_020ab660(u16 a, volatile TouchSample b) {
         data_0217b2d8.mUnk_20 = v;
         data_0217b2d8.mUnk_0c[0] = b.mX;
         data_0217b2d8.mUnk_0c[1] = b.mY;
-        data_0217b2d8.mUnk_0c[2] = b.mTouched;
-        data_0217b2d8.mUnk_0c[3] = b.mInvalidBits;
+        data_0217b2d8.mUnk_0c[2] = b.mTouch;
+        data_0217b2d8.mUnk_0c[3] = b.mValidity;
     }
 }
 
@@ -1197,7 +1197,7 @@ u32 func_020aab40(Unk0217b278 *a) {
     return r;
 }
 
-void func_020aa89c(u16 a, TouchSample b) {
+void func_020aa89c(u16 a, TPData b) {
     u16 h;
     u16 k;
     void (*fn)(Unk0217b278 *);
@@ -1294,17 +1294,17 @@ void func_020aa89c(u16 a, TouchSample b) {
 }
 
 void func_020aa81c(void) {
-    TouchSample a;
-    TouchSample b;
+    TPData a;
+    TPData b;
 
     if (func_020ab604() != 0) {
         do {
             TP_RequestSamplingAsync();
         } while (TP_WaitRawResult(&a) != 0);
-        TP_GetCalibratedPoint((Unk0214e334 *) &b, &a);
+        TP_GetCalibratedPoint(&b, &a);
     } else {
-        b.mTouched = 0;
-        b.mInvalidBits = 3;
+        b.mTouch = 0;
+        b.mValidity = 3;
     }
     func_020aa89c(((*(vu16 *) 0x4000130 | *(vu16 *) 0x27fffa8) ^ 0x2fff) & 0x2fff, b);
 }

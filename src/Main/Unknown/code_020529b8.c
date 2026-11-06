@@ -538,18 +538,18 @@ void func_02052cf4(void) {
 }
 
 u16 func_02052c5c(u32 a) {
-    Unk0203bfc4 t;
+    RTCTime t;
     u32 h;
     u16 m;
     u64 x;
     u64 y;
 
     func_0203bfc4(&t);
-    h = t.mUnk_00;
+    h = t.mHour;
     if (h >= 0x12) {
         h -= 0x12;
     }
-    m = (h * 0x3c + t.mUnk_04) * 0x3c + t.mUnk_08;
+    m = (h * 0x3c + t.mMinute) * 0x3c + t.mSecond;
     x = OS_GetTickLo() | m << 16;
     x = x * 0x5d588b656c078965ull + 0x269ec3;
     y = x >> 32;

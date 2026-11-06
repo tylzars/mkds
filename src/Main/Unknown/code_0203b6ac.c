@@ -87,7 +87,7 @@ u32 func_0203b8e4(Unk020f41c4_B *a) {
 
 void func_0203b6ac(u8 *a) {
     Unk020f41c4_B r;
-    u32 t[3];
+    RTCTime t;
     u16 v1[2];
     u32 x;
     u32 y;
@@ -103,12 +103,12 @@ void func_0203b6ac(u8 *a) {
     u32 h;
     u32 l;
 
-    if (RTC_GetTime(t) != 0) {
-        t[0] = 0;
-        t[1] = 0;
-        t[2] = 0;
+    if (RTC_GetTime(&t) != 0) {
+        t.mHour = 0;
+        t.mMinute = 0;
+        t.mSecond = 0;
     }
-    r.mUnk_00 = (u32) ((t[0] * 60 + t[1]) * 60 + t[2] + OS_GetTick());
+    r.mUnk_00 = (u32) ((t.mHour * 60 + t.mMinute) * 60 + t.mSecond + OS_GetTick());
     r.mUnk_08 = 0x5d588b656c078965ULL;
     r.mUnk_10 = 0x269ec3;
     data_021759c0->mNextHeader.mMode = MODE_GRAND_PRIX;

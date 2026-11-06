@@ -158,7 +158,7 @@ s32 func_0204fcec(u16 a, void *b) {
 void func_0204fb40(s32 a) {
     Unk02143c30 *q;
     Unk0217aa00_24_50 *e;
-    Unk0203bfc4 t;
+    RTCTime t;
     u32 h;
     u16 m;
     u64 x;
@@ -179,11 +179,11 @@ void func_0204fb40(s32 a) {
         q->mUnk_0c = (data_0217aa00->mUnk_1690 + 7) & 0x7fff;
     } else {
         func_0203bfc4(&t);
-        h = t.mUnk_00;
+        h = t.mHour;
         if (h >= 0x12) {
             h -= 0x12;
         }
-        m = (h * 0x3c + t.mUnk_04) * 0x3c + t.mUnk_08;
+        m = (h * 0x3c + t.mMinute) * 0x3c + t.mSecond;
         x = OS_GetTickLo() | m << 16;
         x = x * 0x5d588b656c078965ull + 0x269ec3;
         y = x >> 32;
@@ -200,7 +200,7 @@ void func_0204fb40(s32 a) {
 void func_0204f938(Unk0217aa08_14 *a) {
     Unk02143c30 *q;
     Unk0217aa00_24_50 *e;
-    Unk0203bfc4 t;
+    RTCTime t;
     u32 h;
     u16 m;
     u64 x;
@@ -218,11 +218,11 @@ void func_0204f938(Unk0217aa08_14 *a) {
     e->mUnk_18_16 = a->mUnk_08_15;
     e->mUnk_18_22 = a->mUnk_08_22;
     func_0203bfc4(&t);
-    h = t.mUnk_00;
+    h = t.mHour;
     if (h >= 0x12) {
         h -= 0x12;
     }
-    m = (h * 0x3c + t.mUnk_04) * 0x3c + t.mUnk_08;
+    m = (h * 0x3c + t.mMinute) * 0x3c + t.mSecond;
     x = OS_GetTickLo() | m << 16;
     x = x * 0x5d588b656c078965ull + 0x269ec3;
     y = x >> 32;

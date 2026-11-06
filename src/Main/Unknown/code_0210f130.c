@@ -16,7 +16,7 @@ void func_0210f1d4(void) {
 }
 
 void func_0210f130(Unk0210f090 *p) {
-    Unk0210f130 *q;
+    MICAutoParam *q;
     s32 i;
 
     if (data_0217d1bc == 0) {
@@ -29,14 +29,14 @@ void func_0210f130(Unk0210f090 *p) {
     for (i = 0; i < 0x400; i++) {
         p->mUnk_000[i] = 0;
     }
-    p->mUnk_400.mUnk_00 = 2;
+    p->mUnk_400.mType = MIC_SAMPLING_TYPE_SIGNED_8BIT;
     q = &p->mUnk_400;
-    q->mUnk_04 = (u32) p;
-    q->mUnk_08 = 0x400;
-    q->mUnk_0c = 0x105d;
-    q->mUnk_10 = 1;
-    q->mUnk_14 = 0;
-    q->mUnk_18 = 0;
+    q->mBuffer = p;
+    q->mSize = 0x400;
+    q->mRate = 0x105d;
+    q->mLoopEnable = 1;
+    q->mFullCallback = 0;
+    q->mFullArg = 0;
     func_02020430((Unk02173290 *) q);
     func_020203d4(0);
     PM_SetAmpGain(3);

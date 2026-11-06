@@ -52,7 +52,7 @@ void func_ov003_021d2b3c(void) {
     u32 a;
     u32 c;
     s32 i;
-    u16 d[4];
+    TPData d;
     Unk021da2d4Input *g;
 
     if (data_ov003_021da2d4->mBits.mBit_0 != 0) {
@@ -67,12 +67,12 @@ void func_ov003_021d2b3c(void) {
     g->mUnk_2e = g->mUnk_2a;
     i = 0;
     do {
-        TouchSample *e = &data_ov003_021da2d4->mUnk_00[c];
+        TPData *e = &data_ov003_021da2d4->mUnk_00[c];
 
-        if (e->mTouched == 1 && e->mInvalidBits == 0) {
+        if (e->mTouch == 1 && e->mValidity == 0) {
             b = 1;
-            TP_GetCalibratedPoint((Unk0214e334 *) d, e);
-            func_ov003_021d2544(d[0], d[1], &data_ov003_021da2d4->mUnk_28);
+            TP_GetCalibratedPoint(&d, e);
+            func_ov003_021d2544(d.mX, d.mY, &data_ov003_021da2d4->mUnk_28);
             break;
         }
         i++;

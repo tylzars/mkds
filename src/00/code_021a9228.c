@@ -85,11 +85,11 @@ Unk021ab5e4 *func_ov000_021ab5e4(const u8 *a) {
 }
 
 u32 func_ov000_021ab5bc(void) {
-    Unk0214e1e0 a;
-    u32 b[3];
-    RTC_GetDate((u32 *) &a);
-    RTC_GetTime(b);
-    return (u32) DateTimeToSeconds(&a, (const Unk0214e1e0 *) b) + 0x386d4380;
+    RTCDate a;
+    RTCTime b;
+    RTC_GetDate(&a);
+    RTC_GetTime(&b);
+    return (u32) RTC_ConvertDateTimeToSecond(&a, &b) + 0x386d4380;
 }
 
 void func_ov000_021ab594(u32 a, u32 b) {
@@ -513,12 +513,12 @@ void func_ov000_021aabf0(Unk021a998c_0c *a, u8 *b) {
     BOOL m;
     s32 k;
     u8 *q;
-    u32 d[4];
+    RTCDate d;
     n = (((b[0] << 8) + b[1]) << 8) + b[2];
     b += 3;
     a->mUnk_430 = -1;
-    RTC_GetDate(d);
-    a->mUnk_7e0 = d[2] + (((d[0] + 0x7d0) << 16) + (d[1] << 8));
+    RTC_GetDate(&d);
+    a->mUnk_7e0 = d.mDay + (((d.mYear + 0x7d0) << 16) + (d.mMonth << 8));
     a->mUnk_684[0] = 0;
     a->mUnk_568 = a->mUnk_574 = 0;
     m = FALSE;

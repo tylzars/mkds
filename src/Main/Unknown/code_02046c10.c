@@ -83,15 +83,15 @@ void func_02046d7c(void) {
 
     i = TP_GetLatestIndexInAuto();
     p = data_021759c4;
-    p->mUnk_28 = *(TouchSample *) &p->mUnk_00[i];
-    TP_GetCalibratedPoint((Unk0214e334 *) &p->mUnk_28, &p->mUnk_28);
+    p->mUnk_28 = *(TPData *) &p->mUnk_00[i];
+    TP_GetCalibratedPoint(&p->mUnk_28, &p->mUnk_28);
     if (data_021759c4->mUnk_30_1) {
         data_021759c4->mUnk_30_3 = func_0210f090(data_021759c4->mUnk_3c) > 0x14;
     }
 }
 
 void func_02046ca8(Unk02175628_48 *a, s32 b, s32 c) {
-    TouchSample d;
+    TPData d;
     u32 e;
     s32 f;
 
@@ -101,14 +101,14 @@ void func_02046ca8(Unk02175628_48 *a, s32 b, s32 c) {
         if (e > 0xbf) {
             d.mY = 0;
             d.mX = 0;
-            d.mTouched = 0;
+            d.mTouch = 0;
         } else {
             d.mX = f;
             d.mY = e;
-            d.mTouched = 1;
+            d.mTouch = 1;
         }
-        *(TouchSample *) &a->mUnk_08 = *(TouchSample *) a;
-        *(TouchSample *) a = d;
+        *(TPData *) &a->mUnk_08 = *(TPData *) a;
+        *(TPData *) a = d;
         if (a->mHasPair != 0) {
             a->mNoPairCount = 0;
         } else if (a->mNoPairCount <= 5) {
@@ -127,13 +127,13 @@ void func_02046c74(void) {
 
 u16 func_02046c10(void) {
     Unk021759c4 *p;
-    TouchSample *q;
+    TPData *q;
     u32 a;
     u32 b;
 
     p = data_021759c4;
     q = &p->mUnk_28;
-    if (!p->mUnk_30_0 || q->mTouched == 0 || q->mInvalidBits != 0) {
+    if (!p->mUnk_30_0 || q->mTouch == 0 || q->mValidity != 0) {
         a = 0xff;
         b = a;
     } else {

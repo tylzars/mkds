@@ -1,6 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "code_0214e1e0.h" // Unk0214e1e0
+#include "code_0214d93c.h" // RTCDate
 
-s32 DateToDays(const Unk0214e1e0 *a);
+s32 RTC_ConvertDateToDay(const RTCDate *date);

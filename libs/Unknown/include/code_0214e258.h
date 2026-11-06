@@ -1,6 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "code_0214e1e0.h" // Unk0214e1e0
+#include "code_0214d93c.h" // RTCTime
 
-s32 TimeToSeconds(const Unk0214e1e0 *arg0);
+s32 RTCi_ConvertTimeToSecond(const RTCTime *time);

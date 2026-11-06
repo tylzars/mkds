@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct TouchSample TouchSample;
+typedef struct TPData TPData;
 
-void func_020ab660(u16 a, volatile TouchSample b);
+void func_020ab660(u16 a, volatile TPData b);

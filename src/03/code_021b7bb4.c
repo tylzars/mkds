@@ -1181,15 +1181,15 @@ int func_ov003_021b7c30(const void *a) {
 
 u16 func_ov003_021b7bb4(void) {
     s32 a;
-    u32 b[3];
+    RTCTime b;
     u32 *c;
     if (data_ov003_021d7c48 == 0) {
         a = 0;
-        func_ov003_021b7d84(b, 0, 12);
-        if (RTC_GetTime(b) == 0) {
-            a += b[0] << 10;
-            a += b[1] << 3;
-            a += b[2];
+        func_ov003_021b7d84(&b, 0, 12);
+        if (RTC_GetTime(&b) == 0) {
+            a += b.mHour << 10;
+            a += b.mMinute << 3;
+            a += b.mSecond;
         }
         data_ov003_021d7c60[0] = a;
         data_ov003_021d7c60[1] = 0x5d588b65;

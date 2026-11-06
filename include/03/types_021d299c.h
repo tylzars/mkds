@@ -11,7 +11,7 @@ typedef struct Unk021d299c {
 } Unk021d299c;
 
 typedef struct Unk021da2d4Input {
-    /* 00 */ TouchSample mUnk_00[5];
+    /* 00 */ TPData mUnk_00[5];
     /* 28 */ u16 mUnk_28;
     /* 2a */ u16 mUnk_2a;
     /* 2c */ u16 mUnk_2c;

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct TouchSample TouchSample;
+typedef struct TPData TPData;
 typedef struct Unk0217b278_10 Unk0217b278_10;
 typedef struct Unk0217b278_1c Unk0217b278_1c;
 typedef struct Unk0217b278 Unk0217b278;
@@ -14,7 +14,7 @@ typedef struct Unk0217b278 Unk0217b278;
 typedef struct Unk0217b278_34 Unk0217b278_34;
 
 void func_020aa81c(void);
-void func_020aa89c(u16 a, TouchSample b);
+void func_020aa89c(u16 a, TPData b);
 u32 func_020aab40(Unk0217b278 *a);
 void func_020aab70(Unk0217b278 *a);
 void func_020aad9c(Unk0217b278 *a);

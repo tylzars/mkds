@@ -100,7 +100,7 @@ u8 func_0201ec30(void) {
         return 0;
     }
     mind = len;
-    p = (u8 *) MIC_GetLastSamplingAddress();
+    p = MIC_GetLastSamplingAddress();
     buf = data_02173290->mUnk_04;
     pos = p - buf;
     if (pos >= len / 8) {

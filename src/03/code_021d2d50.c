@@ -35,7 +35,7 @@ void func_ov003_021d2da4(void) {
 }
 
 void func_ov003_021d2d50(void) {
-    Unk0214e334 a;
+    TPCalibrateParam a;
 
     data_ov003_021da2d4 = func_ov003_021d283c(0x3a, 4);
     if (TP_GetUserInfo(&a) == 0) {

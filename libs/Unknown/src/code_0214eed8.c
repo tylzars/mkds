@@ -6,207 +6,214 @@
 
 u16 gMicrophoneInitialized;
 
+// Sets up the microphone channel on the first call only.
 void MIC_Init(void) {
     if (gMicrophoneInitialized != 0) {
         return;
     }
     gMicrophoneInitialized = 1;
-    gMicrophoneCommand.mUnk_00 = 0;
-    gMicrophoneCommand.mUnk_04 = 0;
+    gMicrophoneCommand.mLock = 0;
+    gMicrophoneCommand.mCallback = 0;
     PXI_Init();
     while (!PXI_IsCallbackReady(9, 1)) {
     }
     *(u32 *) 0x27fff90 = 0;
-    PXI_SetFifoRecvCallback(9, ReceiveMicrophoneReply);
+    PXI_SetFifoRecvCallback(9, MicCommonCallback);
 }
 
-u32 MIC_StartAutoSamplingAsync(Unk0214f2a8 *p, void (*fn)(), u32 arg) {
-    u32 f;
-    u32 v;
-    u32 b;
-    u8 g;
+// Checks the parameters and starts sampling into the buffer; callback is called with the result and arg when the reply
+// arrives.
+MICResult MIC_StartAutoSamplingAsync(const MICAutoParam *param, MICCallback callback, void *arg) {
+    OSIntrMode enabled;
+    u32 typeFlags;
+    u32 size;
+    u8 flags;
 
-    if ((p->mUnk_04 & 0x1f) != 0) {
-        return 2;
+    if (((u32) param->mBuffer & 0x1f) != 0) {
+        return MIC_RESULT_ILLEGAL_PARAMETER;
     }
-    b = p->mUnk_08;
-    if ((b & 0x1f) != 0) {
-        return 2;
+    size = param->mSize;
+    if ((size & 0x1f) != 0) {
+        return MIC_RESULT_ILLEGAL_PARAMETER;
     }
-    if (b == 0) {
-        return 2;
+    if (size == 0) {
+        return MIC_RESULT_ILLEGAL_PARAMETER;
     }
-    if (p->mUnk_0c < 0x400) {
-        return 2;
+    if (param->mRate < 0x400) {
+        return MIC_RESULT_ILLEGAL_PARAMETER;
     }
-    switch (p->mUnk_00) {
-        case 0:
-            f = 0;
+    switch (param->mType) {
+        case MIC_SAMPLING_TYPE_8BIT:
+            typeFlags = 0;
             break;
-        case 1:
-            f = 1;
+        case MIC_SAMPLING_TYPE_12BIT:
+            typeFlags = 1;
             break;
-        case 2:
-            f = 2;
+        case MIC_SAMPLING_TYPE_SIGNED_8BIT:
+            typeFlags = 2;
             break;
-        case 3:
-            f = 3;
+        case MIC_SAMPLING_TYPE_SIGNED_12BIT:
+            typeFlags = 3;
             break;
-        case 4:
-            f = 5;
+        case MIC_SAMPLING_TYPE_12BIT_FILTER_OFF:
+            typeFlags = 5;
             break;
-        case 5:
-            f = 7;
+        case MIC_SAMPLING_TYPE_SIGNED_12BIT_FILTER_OFF:
+            typeFlags = 7;
             break;
         default:
-            return 2;
+            return MIC_RESULT_ILLEGAL_PARAMETER;
     }
-    g = p->mUnk_10 != 0 ? (f | 0x10) & 0xff : f & 0xff;
-    v = OS_DisableInterrupts();
-    if (gMicrophoneCommand.mUnk_00 != 0) {
-        OS_RestoreInterrupts(v);
-        return 1;
+    flags = param->mLoopEnable != 0 ? (typeFlags | 0x10) & 0xff : typeFlags & 0xff;
+    enabled = OS_DisableInterrupts();
+    if (gMicrophoneCommand.mLock != 0) {
+        OS_RestoreInterrupts(enabled);
+        return MIC_RESULT_BUSY;
     }
-    gMicrophoneCommand.mUnk_00 = 1;
-    OS_RestoreInterrupts(v);
-    gMicrophoneCommand.mUnk_04 = fn;
-    gMicrophoneCommand.mUnk_08 = arg;
-    gMicrophoneCommand.mUnk_10 = p->mUnk_14;
-    gMicrophoneCommand.mUnk_14 = p->mUnk_18;
-    return TrySendMicrophoneStartCommand(p->mUnk_04, p->mUnk_08, p->mUnk_0c, g) != 0 ? 0 : 3;
+    gMicrophoneCommand.mLock = 1;
+    OS_RestoreInterrupts(enabled);
+    gMicrophoneCommand.mCallback = callback;
+    gMicrophoneCommand.mCallbackArg = arg;
+    gMicrophoneCommand.mFull = param->mFullCallback;
+    gMicrophoneCommand.mFullArg = param->mFullArg;
+    return MicStartAutoSampling(param->mBuffer, param->mSize, param->mRate, flags) != 0 ? MIC_RESULT_SUCCESS
+                                                                                        : MIC_RESULT_SEND_ERROR;
 }
 
-u32 MIC_StartAutoSampling(Unk0214f2a8 *p) {
-    gMicrophoneCommand.mUnk_0c = MIC_StartAutoSamplingAsync(p, SetMicrophoneResult, 0);
-    if (gMicrophoneCommand.mUnk_0c == 0) {
-        WaitMicrophoneIdle();
+// Starts sampling and waits for the reply.
+MICResult MIC_StartAutoSampling(const MICAutoParam *param) {
+    gMicrophoneCommand.mCommonResult = MIC_StartAutoSamplingAsync(param, MicGetResultCallback, 0);
+    if (gMicrophoneCommand.mCommonResult == MIC_RESULT_SUCCESS) {
+        MicWaitBusy();
     }
-    return gMicrophoneCommand.mUnk_0c;
+    return gMicrophoneCommand.mCommonResult;
 }
 
-u32 MIC_StopAutoSamplingAsync(void (*fn)(), u32 arg) {
-    u32 v = OS_DisableInterrupts();
+// Sends the stop command; callback is called with the result and arg when the reply arrives.
+MICResult MIC_StopAutoSamplingAsync(MICCallback callback, void *arg) {
+    OSIntrMode enabled = OS_DisableInterrupts();
 
-    if (gMicrophoneCommand.mUnk_00 != 0) {
-        OS_RestoreInterrupts(v);
-        return 1;
+    if (gMicrophoneCommand.mLock != 0) {
+        OS_RestoreInterrupts(enabled);
+        return MIC_RESULT_BUSY;
     }
-    gMicrophoneCommand.mUnk_00 = 1;
-    OS_RestoreInterrupts(v);
-    gMicrophoneCommand.mUnk_04 = fn;
-    gMicrophoneCommand.mUnk_08 = arg;
-    return TrySendMicrophoneStopCommand() != 0 ? 0 : 3;
+    gMicrophoneCommand.mLock = 1;
+    OS_RestoreInterrupts(enabled);
+    gMicrophoneCommand.mCallback = callback;
+    gMicrophoneCommand.mCallbackArg = arg;
+    return MicStopAutoSampling() != 0 ? MIC_RESULT_SUCCESS : MIC_RESULT_SEND_ERROR;
 }
 
-u32 MIC_StopAutoSampling(void) {
-    gMicrophoneCommand.mUnk_0c = MIC_StopAutoSamplingAsync(SetMicrophoneResult, 0);
-    if (gMicrophoneCommand.mUnk_0c == 0) {
-        WaitMicrophoneIdle();
+// Stops sampling and waits for the reply.
+MICResult MIC_StopAutoSampling(void) {
+    gMicrophoneCommand.mCommonResult = MIC_StopAutoSamplingAsync(MicGetResultCallback, 0);
+    if (gMicrophoneCommand.mCommonResult == MIC_RESULT_SUCCESS) {
+        MicWaitBusy();
     }
-    return gMicrophoneCommand.mUnk_0c;
+    return gMicrophoneCommand.mCommonResult;
 }
 
-u32 MIC_GetLastSamplingAddress(void) {
-    u32 value0;
-    value0 = 0x27fff90u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    return value0;
+// Returns the address in the sampling buffer up to which samples have been written.
+void *MIC_GetLastSamplingAddress(void) {
+    return *(void **) 0x27fff90;
 }
 
-void ReceiveMicrophoneReply(u32 a, u32 b, u32 c) {
-    u16 x;
-    u16 k;
-    u32 n;
+// Handles a word from the other processor: turns it into a result, then finishes the command or reports a full buffer.
+void MicCommonCallback(u32 tag, u32 data, BOOL err) {
+    u16 status;
+    u16 command;
+    MICResult result;
+    MICCallback callback;
 
-    if (c != 0) {
-        if (gMicrophoneCommand.mUnk_00 != 0) {
-            gMicrophoneCommand.mUnk_00 = 0;
+    if (err != 0) {
+        if (gMicrophoneCommand.mLock != 0) {
+            gMicrophoneCommand.mLock = 0;
         }
-        if (gMicrophoneCommand.mUnk_04 != 0) {
-            void (*g)() = gMicrophoneCommand.mUnk_04;
-            gMicrophoneCommand.mUnk_04 = 0;
-            g(6, gMicrophoneCommand.mUnk_08);
+        if (gMicrophoneCommand.mCallback != 0) {
+            callback = gMicrophoneCommand.mCallback;
+            gMicrophoneCommand.mCallback = 0;
+            callback(MIC_RESULT_FATAL_ERROR, gMicrophoneCommand.mCallbackArg);
         }
     }
-    x = b & 0xff;
-    k = (b & 0x7f00) >> 8;
-    switch (x) {
+    status = data & 0xff;
+    command = (data & 0x7f00) >> 8;
+    switch (status) {
         case 0:
-            n = 0;
+            result = MIC_RESULT_SUCCESS;
             break;
         case 1:
-            n = 4;
+            result = MIC_RESULT_INVALID_COMMAND;
             break;
         case 2:
-            n = 2;
+            result = MIC_RESULT_ILLEGAL_PARAMETER;
             break;
         case 3:
-            n = 5;
+            result = MIC_RESULT_ILLEGAL_STATUS;
             break;
         case 4:
-            n = 1;
+            result = MIC_RESULT_BUSY;
             break;
         default:
-            n = 6;
+            result = MIC_RESULT_FATAL_ERROR;
             break;
     }
-    if (k == 0x51) {
-        if (gMicrophoneCommand.mUnk_10 != 0) {
-            gMicrophoneCommand.mUnk_10(n, gMicrophoneCommand.mUnk_14);
+    if (command == 0x51) {
+        if (gMicrophoneCommand.mFull != 0) {
+            gMicrophoneCommand.mFull(result, gMicrophoneCommand.mFullArg);
         }
         return;
     }
-    if (k == 0x40) {
-        if (gMicrophoneCommand.mUnk_18 != 0) {
-            *gMicrophoneCommand.mUnk_18 = *(u16 *) 0x27fff94;
+    if (command == 0x40) {
+        if (gMicrophoneCommand.mDstBuf != 0) {
+            *gMicrophoneCommand.mDstBuf = *(u16 *) 0x27fff94;
         }
     }
-    if (gMicrophoneCommand.mUnk_00 != 0) {
-        gMicrophoneCommand.mUnk_00 = 0;
+    if (gMicrophoneCommand.mLock != 0) {
+        gMicrophoneCommand.mLock = 0;
     }
-    if (gMicrophoneCommand.mUnk_04 != 0) {
-        void (*f)() = gMicrophoneCommand.mUnk_04;
-        gMicrophoneCommand.mUnk_04 = 0;
-        f(n, gMicrophoneCommand.mUnk_08);
+    if (gMicrophoneCommand.mCallback != 0) {
+        callback = gMicrophoneCommand.mCallback;
+        gMicrophoneCommand.mCallback = 0;
+        callback(result, gMicrophoneCommand.mCallbackArg);
     }
 }
 
-u32 TrySendMicrophoneStartCommand(u32 a, u32 b, u32 c, u32 d) {
-    if (PXI_SendWordByFifo(9, d | 0x2004100, 0) < 0) {
-        return 0;
+// Sends the seven words of the start command; FALSE at the first word the FIFO refuses.
+BOOL MicStartAutoSampling(void *buf, u32 size, u32 span, u8 flags) {
+    if (PXI_SendWordByFifo(9, flags | 0x2004100, 0) < 0) {
+        return FALSE;
     }
-    if (PXI_SendWordByFifo(9, (a >> 16) | 0x10000, 0) < 0) {
-        return 0;
+    if (PXI_SendWordByFifo(9, ((u32) buf >> 16) | 0x10000, 0) < 0) {
+        return FALSE;
     }
-    if (PXI_SendWordByFifo(9, (a & 0xffff) | 0x20000, 0) < 0) {
-        return 0;
+    if (PXI_SendWordByFifo(9, ((u32) buf & 0xffff) | 0x20000, 0) < 0) {
+        return FALSE;
     }
-    if (PXI_SendWordByFifo(9, (b >> 16) | 0x30000, 0) < 0) {
-        return 0;
+    if (PXI_SendWordByFifo(9, (size >> 16) | 0x30000, 0) < 0) {
+        return FALSE;
     }
-    if (PXI_SendWordByFifo(9, (b & 0xffff) | 0x40000, 0) < 0) {
-        return 0;
+    if (PXI_SendWordByFifo(9, (size & 0xffff) | 0x40000, 0) < 0) {
+        return FALSE;
     }
-    if (PXI_SendWordByFifo(9, (c >> 16) | 0x50000, 0) < 0) {
-        return 0;
+    if (PXI_SendWordByFifo(9, (span >> 16) | 0x50000, 0) < 0) {
+        return FALSE;
     }
-    return PXI_SendWordByFifo(9, (c & 0xffff) | 0x1060000, 0) >= 0;
+    return PXI_SendWordByFifo(9, (span & 0xffff) | 0x1060000, 0) >= 0;
 }
 
-s32 TrySendMicrophoneStopCommand(void) {
+// Sends the stop command word.
+BOOL MicStopAutoSampling(void) {
     return PXI_SendWordByFifo(9, 0x3004200, 0) >= 0;
 }
 
-void SetMicrophoneResult(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    gMicrophoneCommand.mUnk_0c = value0;
+// Stores the result of the waiting calls.
+void MicGetResultCallback(MICResult result, void *arg) {
+    gMicrophoneCommand.mCommonResult = result;
 }
 
 // clang-format off
-// Hand-written asm: waits while the first word of gMicrophoneCommand is 1. It keeps the address in ip, a register
-// compiled C would not use for it.
-asm void WaitMicrophoneIdle(void) {
+// Waits while the lock word of gMicrophoneCommand is 1.
+asm void MicWaitBusy(void) {
     ldr ip, =gMicrophoneCommand
 wait_loop:
     ldr r0, [ip]

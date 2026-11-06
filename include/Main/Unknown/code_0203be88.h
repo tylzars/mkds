@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_0214d93c.h" // RTCTime
 
 typedef struct Vec3 Vec3;
 
@@ -27,19 +28,12 @@ typedef struct Unk0203bf04_b {
     /* 230 */ u8 mUnk_230[0xdcc];
 } Unk0203bf04_b;
 
-// Three words that func_0203bfc4 fills.
-typedef struct Unk0203bfc4 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-} Unk0203bfc4;
-
 void func_0203be88(u8 *a, u32 b, u32 c);
 void func_0203bea4(u8 *a, u32 b, u32 c);
 void func_0203bec0(u8 *a);
 u8 *func_0203bedc(void *a);
 void func_0203bf04(Unk0203bf04_a *a, Unk0203bf04_b *b);
-void func_0203bfc4(Unk0203bfc4 *a);
+void func_0203bfc4(RTCTime *a);
 void func_0203bfec(s32 *a);
 // Scene function of gSceneFuncs[0] (scene 'Title' in gSceneNames): copies the callbacks and calls
 // RunScene. Returns 0.

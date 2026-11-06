@@ -802,7 +802,7 @@ void func_020471b0(void *a) {
 #pragma thumb off
 
 void func_02047178(void) {
-    Unk0214e334 v;
+    TPCalibrateParam v;
 
     TP_Init();
     if (TP_GetUserInfo(&v) == 0) {

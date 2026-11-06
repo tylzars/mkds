@@ -796,12 +796,12 @@ Unk02142f24 WM_GetOtherElements(const u16 *a) {
 }
 
 u16 WM_GetNextTgid(void) {
-    u32 buf[3];
+    RTCTime time;
 
     if (data_0216f06c == 0x10000) {
         RTC_Init();
-        if (RTC_GetTime(buf) == 0) {
-            data_0216f06c = (u16) (buf[2] + (buf[1] << 8));
+        if (RTC_GetTime(&time) == 0) {
+            data_0216f06c = (u16) (time.mSecond + (time.mMinute << 8));
         }
     }
     data_0216f06c = (u16) (data_0216f06c + 1);

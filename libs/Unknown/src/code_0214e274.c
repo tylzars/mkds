@@ -1,22 +1,21 @@
 #include "code_0214e274.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-// Returns -1 when a field of a is out of range (mUnk_00 below 100, mUnk_04 in 1..12, mUnk_08 in 1..31, mUnk_0c below
-// 7); otherwise mUnk_08 - 1 + data_0216f074[mUnk_04], plus 1 when mUnk_04 >= 3 and mUnk_00 is a multiple of 4, plus
-// mUnk_00 * 365 + (mUnk_00 + 3) / 4.
-s32 DateToDays(const Unk0214e1e0 *a) {
-    u32 y;
-    u32 m;
-    u32 d;
-    u32 n;
+// Returns the number of days from 2000-01-01 to date, or -1 when a field is out of range. The leap day counts from
+// March on in years divisible by 4.
+s32 RTC_ConvertDateToDay(const RTCDate *date) {
+    s32 dayNum;
 
-    if ((y = a->mUnk_00) >= 100 || (m = a->mUnk_04) < 1 || m > 12 || (d = a->mUnk_08) < 1 || d > 31 ||
-        a->mUnk_0c >= 7 || m < 1 || m > 12) {
+    if (date->mYear >= 100 || date->mMonth < 1 || date->mMonth > 12 || date->mDay < 1 || date->mDay > 31 ||
+        date->mWeek >= RTC_WEEK_MAX || date->mMonth < 1 || date->mMonth > 12) {
         return -1;
     }
-    n = d - 1 + data_0216f074[m];
-    if (m >= 3 && (y & 3) == 0) {
-        n++;
+    dayNum = date->mDay - 1;
+    dayNum += data_0216f074[date->mMonth];
+    if (date->mMonth >= 3 && (date->mYear & 3) == 0) {
+        dayNum++;
     }
-    return y * 365 + n + ((y + 3) >> 2);
+    dayNum += date->mYear * 365;
+    dayNum += (date->mYear + 3) / 4;
+    return dayNum;
 }

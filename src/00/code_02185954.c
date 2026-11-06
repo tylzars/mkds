@@ -549,8 +549,8 @@ s32 func_ov000_02185d54(void) {
 
 u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry *d, s32 e, s32 f) {
     Unk02185984Data g;
-    u32 o[4];
-    u32 p[3];
+    RTCDate o;
+    RTCTime p;
     Unk021868a4 q;
     char r[13];
     char s[13];
@@ -569,7 +569,7 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     char *n;
     OS_GetMacAddress(g.mUnk_02);
     OS_GetOwnerInfo(&y);
-    if (RTC_GetDate(o) != 0 || RTC_GetTime(p) != 0) {
+    if (RTC_GetDate(&o) != 0 || RTC_GetTime(&p) != 0) {
         return 5;
     }
     h = OS_DisableInterrupts();
@@ -600,7 +600,7 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
         y.mUnk_00 = 1;
     }
     OS_SNPrintf(g.mUnk_16, 5, data_ov000_021b1068, y.mUnk_02, y.mUnk_03);
-    OS_SNPrintf(s, 0xd, data_ov000_021b1074, o[0], o[1], o[2], p[0], p[1], p[2]);
+    OS_SNPrintf(s, 0xd, data_ov000_021b1074, o.mYear, o.mMonth, o.mDay, p.mHour, p.mMinute, p.mSecond);
     MI_CpuCopy8(y.mUnk_04, t, 0x14);
     t[0x14] = 0;
     MI_CpuFill8(&q, 0, 0xc);

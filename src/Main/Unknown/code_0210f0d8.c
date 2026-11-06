@@ -9,7 +9,7 @@ void func_0210f114(Unk0210f090 *p) {
 }
 
 void func_0210f0f4(Unk0210f090 *a) {
-    MIC_StartAutoSampling((Unk0214f2a8 *) &a->mUnk_400);
+    MIC_StartAutoSampling(&a->mUnk_400);
     func_0202041c();
 }
 
