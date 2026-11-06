@@ -512,7 +512,7 @@ double pow(double a, double b) {
 
 // Classifies the exponent field of d: 1 and 2 when it is all ones (1 with mantissa bits set, 2 without), 3 and 5
 // when it is zero (3 with a zero mantissa, 5 otherwise), 4 otherwise.
-static inline int func_021401ac_inline(double d) {
+static inline int __fpclassifyd(double d) {
     int m = *((int *) &d + 1) & 0x7ff00000;
 
     switch (m) {
@@ -536,7 +536,7 @@ double ldexp(double x, int n) {
     int l;
     int k;
 
-    if (func_021401ac_inline(x) <= 2 || 0.0 == x) {
+    if (__fpclassifyd(x) <= 2 || 0.0 == x) {
         return x;
     }
     h = *((int *) &x + 1);
