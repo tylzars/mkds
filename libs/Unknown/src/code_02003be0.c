@@ -251,17 +251,17 @@ u32 FilePackLowercaseName(const u8 *p0, s32 p1) {
 }
 
 s32 FileCopyFromArchiveMemory(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
-    MemCopy(p0->mUnk_28 + p2, p1, p3);
+    MI_CpuCopy8(p0->mUnk_28 + p2, p1, p3);
     return 0;
 }
 
 s32 FileCopyToArchiveMemory(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
-    MemCopy(p1, p0->mUnk_28 + p2, p3);
+    MI_CpuCopy8(p1, p0->mUnk_28 + p2, p3);
     return 0;
 }
 
 s32 FileCopyFromAddress(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
-    MemCopy((const void *) p2, p1, p3);
+    MI_CpuCopy8((const void *) p2, p1, p3);
     return 0;
 }
 
@@ -436,7 +436,7 @@ void FS_InitArchive(Unk02003a6c *arg0) {
     value1 = 0u;
     value2 = 0x5cu;
     value4 = value0;
-    MemFill((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
     value1 = 0u;
     *(u32 *) ((value4) + (16)) = value1;
     value0 = (u32) * (const u32 *) ((value4) + (16));
@@ -582,7 +582,7 @@ u32 FS_LoadArchiveTables(Unk02003a6c *p0, u32 p1, u32 p2) {
         FS_InitFile(&b);
         if (FS_OpenFileDirect(&b, p0, p0->mUnk_2c, p0->mUnk_2c + p0->mUnk_30, -1) != 0) {
             if (FS_ReadFile(&b, p, p0->mUnk_30) < 0) {
-                MemFill(p, 0, p0->mUnk_30);
+                MI_CpuFill8(p, 0, p0->mUnk_30);
             }
             FS_CloseFile(&b);
         }
@@ -590,7 +590,7 @@ u32 FS_LoadArchiveTables(Unk02003a6c *p0, u32 p1, u32 p2) {
         p += p0->mUnk_30;
         if (FS_OpenFileDirect(&b, p0, p0->mUnk_34, p0->mUnk_34 + p0->mUnk_38, -1) != 0) {
             if (FS_ReadFile(&b, p, p0->mUnk_38) < 0) {
-                MemFill(p, 0, p0->mUnk_38);
+                MI_CpuFill8(p, 0, p0->mUnk_38);
             }
             FS_CloseFile(&b);
         }

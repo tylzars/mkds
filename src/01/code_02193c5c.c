@@ -448,7 +448,7 @@ void InitRecordGpx(void *heap) {
     }
     gRecordGpx->mUnk_4c = HeapAlloc(heap, 0x134);
     zero = 0;
-    MemFillHalfwords(zero, gRecordGpx->mUnk_4c, 0x134);
+    MIi_CpuClear16(zero, gRecordGpx->mUnk_4c, 0x134);
     func_ov001_02194a50();
 }
 

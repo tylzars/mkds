@@ -13,7 +13,7 @@ void func_020572e8(void) {
     value0 = (u32) * (const u32 *) ((value0) + 4u);
     value1 = 0u;
     value2 = 0x300u;
-    MemFill((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off
 
@@ -28,7 +28,7 @@ void func_020572cc(void) {
     value0 = (u32) * (const u32 *) ((value0) + 8u);
     value1 = 0u;
     value2 = 0x400u;
-    MemFill((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off
 
@@ -43,7 +43,7 @@ void func_020572b0(void) {
     value0 = (u32) * (const u32 *) ((value0) + 12u);
     value1 = 0u;
     value2 = 0x1600u;
-    MemFill((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off
 
@@ -58,6 +58,6 @@ void func_02057294(void) {
     value0 = (u32) * (const u32 *) ((value0) + 16u);
     value1 = 0u;
     value2 = 0x100u;
-    MemFill((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off

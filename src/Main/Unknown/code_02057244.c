@@ -13,6 +13,6 @@ void func_02057244(void) {
     value0 = (u32) * (const u32 *) ((value0) + 32u);
     value1 = 0u;
     value2 = 0xc00u;
-    MemFill((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off

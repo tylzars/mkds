@@ -250,7 +250,7 @@ s32 WM_GetMPReceiveBufferSize(void);
 // otherwise returns (the halfword at +0x18e + 0x1f) & ~0x1f.
 s32 WM_GetMPSendBufferSize(void);
 // Returns the result of GetErrorUnlessInitialized when it is not 0 and 6 when the argument is NULL. Invalidates the
-// 0x7bc bytes of the status area and copies them to the argument (MemCopyWordsByBlock). Returns 0.
+// 0x7bc bytes of the status area and copies them to the argument (MIi_CpuCopyFast). Returns 0.
 s32 WM_ReadStatus(void *a);
 // Disables interrupts, returns the result of GetErrorUnlessInitialized when it is not 0 (after restoring them). Stores
 // the second argument at the index given by the first argument (not range checked) in the table at +0xc4 of w and the
@@ -281,7 +281,7 @@ s32 WM_EndScan(Unk021425e8Func a);
 // above 0x400, the halfword at +0x12 is above 0x20, the halfword at +0x10 is above 3, or, when that halfword is 2 or
 // 3, the halfword at +0x34 is above 0x20. Stores the first argument as the callback for command 38, writes 38 to the
 // first halfword of the request area and fills it from the record (the pointer at +0, the halfwords at +4, +6, +8,
-// +0x10, +0x12 and +0x34, 6 bytes from +10 and 32 bytes from +20, MemCopy), and sends command 38 with no words.
+// +0x10, +0x12 and +0x34, 6 bytes from +10 and 32 bytes from +20, MI_CpuCopy8), and sends command 38 with no words.
 // Returns the send result.
 s32 WM_StartScanEx(Unk021425e8Func a, Unk021438f0 *b);
 // Needs state 2, 3 or 5. Returns 6 when the record pointer is NULL, the pointer at +0 is NULL or the halfword at +4
@@ -353,7 +353,7 @@ s32 WM_StartMPEx(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u3
 s32 WM_EndDCF(Unk021425e8Func a);
 // Needs state 11. Returns 3 when the word at +0x10 of the status area is 0, and 6 when the size is above 0x5e4.
 // Stores the data (DC_StoreRange), stores the first argument as the callback for command 18, copies 6 bytes from the
-// second argument (MemCopy) and sends command 18 with four words: the six bytes as two words, the data pointer and
+// second argument (MI_CpuCopy8) and sends command 18 with four words: the six bytes as two words, the data pointer and
 // the size. Returns the send result.
 s32 WM_SetDCFData(Unk021425e8Func a, const void *b, void *c, u32 d);
 // Needs state 8. Returns 3 when the word at +0x10 of the status area is 1, and 6 when the size is below 0x10 or the

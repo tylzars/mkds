@@ -1,12 +1,12 @@
 #include "code_0214d464.h"
 
 // clang-format off
-// Resumable form of the expansion in ExpandCompressed. a points at the saved state: the output pointer at 0, the number
-// of bytes still to write at 4, the current flag byte at 0xb, the flag bits left at 0xc, the back copy length at 0xd
-// and a pending-byte flag at 0xe. Reads at most c bytes from b, writes every output byte with swpb, stores the state
-// back and returns the number of bytes still to write.
+// Resumable form of the expansion in MI_UncompressLZ8. context holds the output pointer, the number of bytes still to
+// write and the position inside the current flag byte and back copy (MIUncompContextLZ.mDestp, .mDestCount, .mFlags,
+// .mFlagIndex, .mLength, .mLengthFlg). Reads at most len bytes from data, writes every output byte with swpb, stores the
+// state back and returns the number of bytes still to write.
 // Not compiled code: it uses swpb, tst and a flag-setting add of an asr operand, which the 1.2 compiler never builds.
-asm s32 ExpandCompressedContinue(void *a, const u8 *b, s32 c) {
+asm s32 MI_ReadUncompLZ8(MIUncompContextLZ *context, const u8 *data, u32 len) {
     stmfd sp!, {r4, r5, r6, r7, r8, r9, r10}
     ldr r3, [r0, #0x0]
     ldr r4, [r0, #0x4]

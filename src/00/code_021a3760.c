@@ -24,7 +24,7 @@
 
 void func_ov000_021a39d8(Unk021b5df4 *a, u16 b, u32 c, u32 d) {
     if (data_ov000_021b5df4 == NULL) {
-        MemFill(a, 0, 12);
+        MI_CpuFill8(a, 0, 12);
         a->mUnk_08 = b;
         a->mUnk_0a = 1;
         a->mUnk_04 = 1;
@@ -60,7 +60,7 @@ void func_ov000_021a3910(void) {
         if (data_ov000_021b5df4->mUnk_04 != 1) {
             return;
         }
-        MemFill(&t, 0, 12);
+        MI_CpuFill8(&t, 0, 12);
         t.mUnk_08 = data_ov000_021b5df4->mUnk_08;
         t.mUnk_09 = data_ov000_021b5df4->mUnk_0a;
         t.mUnk_00 = func_ov000_021a372c;

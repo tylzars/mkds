@@ -90,7 +90,7 @@ void InitMatching(WiFiMatching *param_1, GpConnection *param_2, void **param_3, 
     gWiFiMatching->mUnk_2e0 = param_6;
     gWiFiMatching->mUnk_2e4 = param_7;
     gWiFiMatching->mUnk_2e8 = param_8;
-    MemFill(gWiFiMatching->mUnk_2ec, 0, 0x40);
+    MI_CpuFill8(gWiFiMatching->mUnk_2ec, 0, 0x40);
     gWiFiMatching->mUnk_32c = 0;
     gWiFiMatching->mResultCallback = NULL;
     gWiFiMatching->mResultCallbackArg = 0;
@@ -157,7 +157,7 @@ void StartMatchingWithFilter(u32 param_1, const void *param_2, u32 param_3, u32 
             func_ov000_021a1a38(11, -80001);
             return;
         }
-        MemCopy(param_2, data_ov000_021b5674, n);
+        MI_CpuCopy8(param_2, data_ov000_021b5674, n);
         *((u8 *) data_ov000_021b5674 + n - 1) = 0;
     }
     ((void (*)(u32, u32, u32, u32)) SetupMatching)(0, param_1, param_3, param_4);
@@ -194,7 +194,7 @@ void StartMatchingWithBuddies(const void *param_1, s32 param_2, s32 param_3, s32
     gWiFiMatching->mUnk_19e = param_4 != 0 ? 1 : 0;
     gWiFiMatching->mUnk_45c = param_7;
     gWiFiMatching->mUnk_460 = param_8;
-    MemCopy(param_1, gWiFiMatching->mUnk_2ec, param_2);
+    MI_CpuCopy8(param_1, gWiFiMatching->mUnk_2ec, param_2);
     gWiFiMatching->mUnk_32c = param_2;
     if (param_2 == 0 || (param_2 < param_3 && param_4 == 0 &&
                          (data_ov000_021b5670 == NULL || data_ov000_021b5670->mUnk_00 == 0 ||
@@ -411,7 +411,7 @@ u32 func_ov000_021a1e40(u32 param_1, u32 param_2, u16 param_3, u8 *param_4, u32 
         return 0;
     }
     v = 0;
-    MemFillWords(v, &a, 8);
+    MIi_CpuClear32(v, &a, 8);
     a.mUnk_01 = 2;
     a.mUnk_04 = param_2;
     a.mUnk_02 = ((param_3 >> 8) & 0xff) | ((param_3 << 8) & 0xff00);
@@ -828,7 +828,7 @@ u32 func_ov000_021a1514(void **a) {
     if (gWiFiMatching == NULL) {
         return 0;
     }
-    MemFill(data_ov000_021b5678, 0, 0x20);
+    MI_CpuFill8(data_ov000_021b5678, 0, 0x20);
     i = 0;
     c = (u8 *) gWiFiMatching;
     if (i <= ((WiFiMatching *) c)->mUnk_0e) {
@@ -938,13 +938,13 @@ void func_ov000_021a1140(s32 a) {
         gWiFiMatching->mParticipantMask = 0;
         func_0214d018_inline(gWiFiMatching->mUnk_24, 0x80);
         h = 0;
-        MemFillHalfwords(h, gWiFiMatching->mUnk_a4, 0x40);
+        MIi_CpuClear16(h, gWiFiMatching->mUnk_a4, 0x40);
         func_0214d018_inline(gWiFiMatching->mParticipantProfileIds, 0x80);
         func_0214d018_inline(gWiFiMatching->mUnk_18c, 0xc);
         func_0214d018_inline(gWiFiMatching->mUnk_1f8, 0x80);
         g = 0;
-        MemFillHalfwords(g, gWiFiMatching->mUnk_278, 0x40);
-        MemFill(gWiFiMatching->mParticipantIndices, 0, 0x20);
+        MIi_CpuClear16(g, gWiFiMatching->mUnk_278, 0x40);
+        MI_CpuFill8(gWiFiMatching->mParticipantIndices, 0, 0x20);
         func_0214d018_inline(gWiFiMatching->mUnk_330, 0x84);
         if (a == 1) {
             if (gWiFiMatching->mMode == 0) {
@@ -1170,7 +1170,7 @@ u32 func_ov000_021a0ae8(u32 a, u32 b, u32 c, u32 d, void *e, s32 f) {
             n = OS_SNPrintf(v2, 0x200, data_ov000_021b40b8, w[0]);
             for (k = 1; k < f; k++) {
                 j = OS_SNPrintf(v1, 0x10, data_ov000_021b4138, w[k]);
-                MemCopy(v1, v2 + n, j);
+                MI_CpuCopy8(v1, v2 + n, j);
                 n += j;
             }
         }
@@ -1185,7 +1185,7 @@ u32 func_ov000_021a0ae8(u32 a, u32 b, u32 c, u32 d, void *e, s32 f) {
         gWiFiMatching->mUnk_440 = f;
         gWiFiMatching->mUnk_444 = func_ov000_021a350c();
         if (e != NULL && f != 0) {
-            MemCopyWords(e, gWiFiMatching->mUnk_3bc, f * 4);
+            MIi_CpuCopy32(e, gWiFiMatching->mUnk_3bc, f * 4);
         }
     }
     return n;
@@ -1198,7 +1198,7 @@ u32 func_ov000_021a0a40(u32 a, u32 b, u32 c, u32 *d, u32 e) {
     s32 i;
 
     if (d != NULL && e != 0) {
-        MemCopyWords(d, v1, e * 4);
+        MIi_CpuCopy32(d, v1, e * 4);
     } else {
         e = 0;
     }
@@ -1232,7 +1232,7 @@ s32 func_ov000_021a09d0(struct GpConnection *a, u32 b, u32 c, const char *d) {
     g[i] = 0;
     if (d != NULL) {
         n = strlen(d);
-        MemCopy(d, e, n);
+        MI_CpuCopy8(d, e, n);
         e[n] = 0;
     }
     return GpSendMessage(a, c, v1);
@@ -1260,7 +1260,7 @@ s32 func_ov000_021a0958(char *a, const char *b, s32 c) {
         return -1;
     }
     n = p - b;
-    MemCopy(b, a, n);
+    MI_CpuCopy8(b, a, n);
     a[n] = 0;
     return n;
 }
@@ -1676,7 +1676,7 @@ void func_ov000_0219ff0c(u32 a, u32 *b) {
 
     n = b[0] + 2;
     if (n > 2) {
-        MemCopyWords(b + 1, &gWiFiMatching->mUnk_330[2], (n - 2) * 4);
+        MIi_CpuCopy32(b + 1, &gWiFiMatching->mUnk_330[2], (n - 2) * 4);
     }
     gWiFiMatching->mUnk_330[0] = n - 1;
     gWiFiMatching->mUnk_330[1] = a;
@@ -2562,7 +2562,7 @@ void func_ov000_0219ea88(void) {
         e++;
     }
     v = 0;
-    MemFillWords(v, data_ov000_021b5698, 0x738);
+    MIi_CpuClear32(v, data_ov000_021b5698, 0x738);
 }
 
 u8 func_ov000_0219ea48(void) {
@@ -3204,14 +3204,14 @@ void func_ov000_0219dd4c(const void *a, u32 b) {
     e = 0;
     if (b >= 0x14) {
         do {
-            MemCopy(a, &c, 0x14);
+            MI_CpuCopy8(a, &c, 0x14);
             if (strncmp(c.mUnk_00, data_ov000_021b40bc, 4) != 0) {
                 break;
             }
             if (c.mUnk_04 != 3) {
                 break;
             }
-            MemCopy(a + 0x14, d, c.mUnk_09);
+            MI_CpuCopy8(a + 0x14, d, c.mUnk_09);
             if (func_ov000_021a01dc(c.mUnk_08, c.mUnk_10, c.mUnk_0c, c.mUnk_0a, (u32 *) d, c.mUnk_09 >> 2) == 0) {
                 break;
             }

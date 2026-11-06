@@ -450,8 +450,8 @@ Unk02021968 *func_0212e0b8(u32 a, HeapStack *b, u32 c) {
         if (m != n + 0x3c) {
             return 0;
         }
-        MemCopy(p->mUnk_3c, p->mUnk_3c + p->mUnk_38, n);
-        MemFill(p->mUnk_3c, 0, n);
+        MI_CpuCopy8(p->mUnk_3c, p->mUnk_3c + p->mUnk_38, n);
+        MI_CpuFill8(p->mUnk_3c, 0, n);
         DC_StoreRange(p, size);
         if (c != 0) {
             func_0212d238(a, p);
@@ -783,7 +783,7 @@ u32 func_0212d6c4(Unk0212d5f8 *a, HeapStack *p, u32 flag) {
 void func_0212d5f8(Unk0212d5f8 *a, void *buf) {
     u32 i;
 
-    MemCopyWords(buf, a, 0x30);
+    MIi_CpuCopy32(buf, a, 0x30);
     a->mUnk_8c = a->mUnk_18 == 0 ? 0 : (Unk0212d38c *) ((u8 *) buf + a->mUnk_18);
     a->mUnk_84 = a->mUnk_20 == 0 ? 0 : (Unk0212d254 *) ((u8 *) buf + a->mUnk_20);
     a->mUnk_88 = a->mUnk_10 == 0 ? 0 : (u8 *) buf + a->mUnk_10;

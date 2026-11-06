@@ -17,7 +17,7 @@ u32 func_0200b1b0(u32 a, struct Unk0217aa00_24 *b) {
         OS_RestoreInterrupts(v1);
         return 0;
     }
-    MemCopy(v2->mUnk_4c0, ((u32 *) (u32) b), (u32) 0xc0);
+    MI_CpuCopy8(v2->mUnk_4c0, ((u32 *) (u32) b), (u32) 0xc0);
     OS_RestoreInterrupts(v1);
     return 1;
 }

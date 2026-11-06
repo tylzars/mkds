@@ -277,7 +277,7 @@ Unk0201290c *func_02084b2c(void *a, Unk02084b2c *b, Unk020136f0 *c, Unk020136f0 
     if (m != NULL) {
         v4 = m->mUnk_14;
         e->mUnk_0c = HeapAlloc(a, v4);
-        MemCopy(m, e->mUnk_0c, v4);
+        MI_CpuCopy8(m, e->mUnk_0c, v4);
     }
     return q;
 }

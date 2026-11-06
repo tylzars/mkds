@@ -215,7 +215,7 @@ void StartWiFiLoginRequest(void (*a)(), void *b) {
     Unk02186560 s;
     void *h;
     u64 t;
-    MemFill(&s, 0, 0x2c);
+    MI_CpuFill8(&s, 0, 0x2c);
     data_ov000_021b5660 = a;
     data_ov000_021b5658 = b;
     if (func_021526bc(gWiFiLogin->mUnk_20) != 0) {
@@ -271,7 +271,7 @@ void UpdateWiFiLoginRequest(void) {
             ReportWiFiLoginError(2, y.mUnk_000);
         } else {
             func_ov000_02186430();
-            MemFill(&s, 0, 0x2c);
+            MI_CpuFill8(&s, 0, 0x2c);
             strcpy(s.mUnk_15, gWiFiLogin->mUnk_255);
             s.mUnk_24 = (void *(*) (const void *, u32)) func_ov000_021a372c;
             s.mUnk_28 = (void (*)(const void *, void *, u32)) func_ov000_021a3704;

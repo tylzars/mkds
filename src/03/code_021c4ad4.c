@@ -39,8 +39,8 @@ void func_ov003_021c4d3c(void) {
     data_ov003_021da1d0 = 0;
     func_ov003_021c4cd8();
     c[0] = 0;
-    MemFillHalfwords(c[0], &c[1], 0x16);
-    MemCopyHalfwords(a + 2, &c[1], a[1] * 2);
+    MIi_CpuClear16(c[0], &c[1], 0x16);
+    MIi_CpuCopy16(a + 2, &c[1], a[1] * 2);
     func_ov003_021d2070(b, data_ov003_021d6380.mUnk_00, data_ov003_021d6380.mUnk_02,
                         data_ov003_021d6380.mUnk_04 - data_ov003_021d6380.mUnk_00,
                         data_ov003_021d6380.mUnk_06 - data_ov003_021d6380.mUnk_02, 2, 0x480, &c[1]);

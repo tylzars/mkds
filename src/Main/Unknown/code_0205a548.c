@@ -24,12 +24,12 @@ found:
     e->mUnk_0a = b;
     e->mUnk_08 = 1;
     e->mUnk_00 = data_0217aa14->mUnk_728 + 0x28;
-    MemFill(e->mUnk_04, 0, 20);
+    MI_CpuFill8(e->mUnk_04, 0, 20);
     if (d == 0) {
         e->mUnk_0b = 0;
         return;
     }
-    MemCopy(c, e->mUnk_04, d);
+    MI_CpuCopy8(c, e->mUnk_04, d);
     e->mUnk_0b = d;
 }
 
@@ -44,7 +44,7 @@ void func_0205a7dc(s32 a, u16 b, s32 c, s32 d) {
 
 void func_0205a7ac(s32 a) {
     Unk0217aa14_754_04 *p = (void *) &data_0217aa14->mUnk_754->mUnk_04;
-    MemFill(&p->mUnk_20[a], 0, 2);
+    MI_CpuFill8(&p->mUnk_20[a], 0, 2);
 }
 
 void func_0205a750(s32 a) {

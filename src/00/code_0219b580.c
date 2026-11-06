@@ -104,14 +104,14 @@ void InitWiFiConnection(void *a, void *b, s32 c, const char *d, const char *e, s
     } else {
         n = 0xff;
     }
-    MemCopy(d, data_ov000_021b4e84, n);
+    MI_CpuCopy8(d, data_ov000_021b4e84, n);
     data_ov000_021b4e84[n] = 0;
     if (strlen(e) < 0x100) {
         m = strlen(e);
     } else {
         m = 0xff;
     }
-    MemCopy(e, data_ov000_021b4f84, m);
+    MI_CpuCopy8(e, data_ov000_021b4f84, m);
     data_ov000_021b4f84[m] = 0;
 }
 
@@ -285,7 +285,7 @@ BOOL StartWiFiBuddySync(const s8 *a, void (*b)(s32, s32), void *c, void (*d)(u32
         } else {
             n = 0x1f;
         }
-        MemCopy(a, p->mUnk_34, n);
+        MI_CpuCopy8(a, p->mUnk_34, n);
     }
     gWiFiConnection->mUnk_34[n] = 0;
     gWiFiConnection->mBuddySyncCallback = b;

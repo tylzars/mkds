@@ -896,7 +896,7 @@ void InitKartModels(void *a, u32 b) {
         e->mUnk_004 = data_021759c0->mCurrentEntries[i].mKartIndex;
         func_02079988(e, e->mUnk_004);
         e->mUnk_020 = HeapAlloc(a, 0xe0);
-        MemCopy(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);
+        MI_CpuCopy8(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);
         CopyKartPhysicalParams(i, (u16) e->mUnk_004, (u16) d[i].mUnk_000);
     }
     func_02079678(a, 1);
@@ -1582,13 +1582,13 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
     }
     func_02010fe4(&v);
     func_0201100c(&t);
-    MemCopy9Words(m2, &data_0217029c.mUnk_bc);
+    MI_Copy36B(m2, &data_0217029c.mUnk_bc);
     data_0217029c.mUnk_fc &= ~0xa4;
     func_02011034();
     if (data_0217ad08->mUnk_1cc != NULL) {
         func_01ff8cf0(data_0217ad08->mUnk_1cc);
     }
-    MemCopy9Words(m1, &data_0217029c.mUnk_bc);
+    MI_Copy36B(m1, &data_0217029c.mUnk_bc);
     data_0217029c.mUnk_fc &= ~0xa4;
     func_0201100c(&t);
     func_02011034();

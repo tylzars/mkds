@@ -97,8 +97,8 @@ void func_0211e2f8(u32 a, void *b) {
         case 4:
             break;
     }
-    MemFill(b, 0, 0x20);
-    MemCopyHalfwords(buf, b, 0x14);
+    MI_CpuFill8(b, 0, 0x20);
+    MIi_CpuCopy16(buf, b, 0x14);
 }
 
 s32 func_0211e274(u32 a) {

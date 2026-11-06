@@ -62,26 +62,26 @@ void func_02116b98(Unk02116b98 *a, u16 *b, s32 c) {
     func_02116ccc(b + i, c);
     func_02116ce8(a->mUnk_03, buf, c);
     if (a->mUnk_03 >= 10) {
-        MemCopyHalfwords(buf, b + (u16) (i + 1), 4);
+        MIi_CpuCopy16(buf, b + (u16) (i + 1), 4);
         i += 3;
     } else {
         func_02116cb0(b + (u16) (i + 1), c);
-        MemCopyHalfwords(buf, b + (u16) (i + 2), 2);
+        MIi_CpuCopy16(buf, b + (u16) (i + 2), 2);
         i += 3;
     }
     func_02116ccc(b + i, c);
     func_02116ce8(a->mUnk_00, buf, c);
     if (a->mUnk_00 >= 100) {
-        MemCopyHalfwords(buf, b + (u16) (i + 1), 6);
+        MIi_CpuCopy16(buf, b + (u16) (i + 1), 6);
         i += 4;
     } else if (a->mUnk_00 >= 10) {
         func_02116cb0(b + (u16) (i + 1), c);
-        MemCopyHalfwords(buf, b + (u16) (i + 2), 4);
+        MIi_CpuCopy16(buf, b + (u16) (i + 2), 4);
         i += 4;
     } else {
         func_02116cb0(b + (u16) (i + 1), c);
         func_02116cb0(b + (u16) (i + 2), c);
-        MemCopyHalfwords(buf, b + (u16) (i + 3), 2);
+        MIi_CpuCopy16(buf, b + (u16) (i + 3), 2);
         i += 4;
     }
     b[i] = 0;

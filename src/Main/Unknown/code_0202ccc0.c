@@ -162,7 +162,7 @@ void func_0202d6a0(void) {
     s32 b;
     func_0202dcf4(data_02174e40->mUnk_0a4, &t);
     func_0202dc68(data_02174e40->mUnk_0a4, n);
-    MemCopyHalfwords(n, m, 0x14);
+    MIi_CpuCopy16(n, m, 0x14);
     m[10] = 0;
     a = func_0202dbe8(data_02174e40->mUnk_0a4);
     b = func_0202db68(data_02174e40->mUnk_0a4);
@@ -189,7 +189,7 @@ void func_0202d5f8(s32 a, s32 b) {
     u16 y[0x100];
     void *r;
     r = GetBmgEntry(data_02174e40->mUnk_0ac, a);
-    MemCopyHalfwords(data_02174e40->mUnk_0b8, x, 0x14);
+    MIi_CpuCopy16(data_02174e40->mUnk_0b8, x, 0x14);
     x[10] = 0;
     func_0212513c(x, r, y, 0x100);
     if (b != 0) {

@@ -9,6 +9,6 @@ void func_0200aea8(u32 arg0) {
     u32 value3;
     value1 = 0u;
     value2 = 112u;
-    MemFill((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off

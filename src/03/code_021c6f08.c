@@ -55,7 +55,7 @@ void func_ov003_021c7748(void) {
     if (memcmp(d->mUnk_08, data_ov003_021d73ac, 3) != 0) {
         d->mUnk_14 = 3;
     } else {
-        MemFill(d->mUnk_08, 0, 0xc);
+        MI_CpuFill8(d->mUnk_08, 0, 0xc);
         data_ov003_021da1fc->mUnk_14 = 0;
     }
     func_ov003_021c76b4();
@@ -185,7 +185,7 @@ void func_ov003_021c73cc(void) {
             if (data_ov003_021da1fc->mUnk_08[data_ov003_021da1fc->mUnk_14 * 3 + 2] == 0) {
                 data_ov003_021da1fc->mUnk_14--;
             }
-            MemFill(data_ov003_021da1fc->mUnk_08 + data_ov003_021da1fc->mUnk_14 * 3, 0, 3);
+            MI_CpuFill8(data_ov003_021da1fc->mUnk_08 + data_ov003_021da1fc->mUnk_14 * 3, 0, 3);
             if (data_ov003_021da1fc->mUnk_14 == 0 && data_ov003_021da1fc->mUnk_08[2] == 0) {
                 func_ov003_021c1c90(0);
             }
@@ -281,7 +281,7 @@ u32 func_ov003_021c735c(s32 a) {
     if (f != 0 && f != 0x20) {
         return 1;
     }
-    MemCopy(c, b, 3);
+    MI_CpuCopy8(c, b, 3);
     b[3] = 0;
     c = b;
     for (e = 0; e < 3; e++) {

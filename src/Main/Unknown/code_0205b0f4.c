@@ -91,12 +91,12 @@ static inline BOOL func_0205c98c_inline(void) {
     q = &p->mUnk_754->mUnk_04;
     for (i = 0; i < 4; i++) {
         if (p->mUnk_014[i].mUnk_30 != FALSE) {
-            MemCopy(&p->mUnk_014[i], q, 0x28);
+            MI_CpuCopy8(&p->mUnk_014[i], q, 0x28);
             *(u64 *) &q->mUnk_0c[2] = OS_GetTick();
             if (func_0205c340(i, 0, 0x28) != 0) {
                 data_0217aa14->mUnk_014[i].mUnk_30 = FALSE;
             } else {
-                MemFill(q, 0, 0x28);
+                MI_CpuFill8(q, 0, 0x28);
             }
             return TRUE;
         }
@@ -124,9 +124,9 @@ void func_0205cd24(void *a) {
         }
     }
     data_0217aa14->mUnk_0fc = data_0217aa18->mUnk_04;
-    MemFill(data_0217aa14->mUnk_754, 0, 0x6c);
+    MI_CpuFill8(data_0217aa14->mUnk_754, 0, 0x6c);
     for (n = 0; n < 4; n++) {
-        MemFill(&data_0217aa14->mUnk_104[n], 0, 0x68);
+        MI_CpuFill8(&data_0217aa14->mUnk_104[n], 0, 0x68);
         data_0217aa14->mUnk_104[n].mUnk_86_0 = 0;
     }
     k = data_0217aa14->mUnk_0fc;
@@ -329,12 +329,12 @@ void func_0205c6b0(void) {
     q = &p->mUnk_754->mUnk_04;
     for (i = 0; i < 4; i++) {
         if (p->mUnk_014[i].mUnk_30 != FALSE) {
-            MemCopy(&p->mUnk_014[i], q, 0x28);
+            MI_CpuCopy8(&p->mUnk_014[i], q, 0x28);
             *(u64 *) &q->mUnk_0c[2] = OS_GetTick();
             if (func_0205c340(i, 0, 0x28) != 0) {
                 data_0217aa14->mUnk_014[i].mUnk_30 = FALSE;
             } else {
-                MemFill(q, 0, 0x28);
+                MI_CpuFill8(q, 0, 0x28);
             }
             break;
         }
@@ -394,7 +394,7 @@ void func_0205c470(void) {
     data_0217aa14->mUnk_72c = FALSE;
     data_0217aa14->mUnk_738 = 0;
     data_0217aa14->mUnk_758 = 2;
-    MemFill(data_0217aa14->mUnk_754, 0, 0x6c);
+    MI_CpuFill8(data_0217aa14->mUnk_754, 0, 0x6c);
     for (i = 0; i < 4; i++) {
         if ((data_0217aa14->mUnk_0fc & (1 << i)) != 0 && (data_0217aa14->mUnk_749 & (1 << i)) == 0) {
             if (data_0217aa18->mUnk_06[i] >= 0) {
@@ -832,7 +832,7 @@ void func_0205b778(u32 a, Unk0205b504 *b, u32 c) {
     if (p->mUnk_104[v1].mUnk_86_0 == 0) {
         p->mUnk_104[v1].mUnk_86_0 = 1;
     }
-    MemCopy(s, e, n);
+    MI_CpuCopy8(s, e, n);
 }
 
 void func_0205b6bc(u32 a, Unk0205b504 *b, u32 c) {
@@ -901,7 +901,7 @@ void func_0205b504(u32 a, Unk0205b504 *b, u32 c, u32 d) {
                 return;
             }
             e = &data_0217aa14->mUnk_014[i];
-            MemCopy(m, e, 0x28);
+            MI_CpuCopy8(m, e, 0x28);
             t = OS_GetTick();
             e->mUnk_0c = t;
             e->mUnk_10 = t >> 32;

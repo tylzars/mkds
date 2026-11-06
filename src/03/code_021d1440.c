@@ -130,7 +130,7 @@ void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
     {
         void *d = func_ov003_021d285c(c, h);
 
-        ExpandCompressed(b, d);
+        MI_UncompressLZ8(b, d);
         func_ov003_021d2808(&b);
         return d;
     }

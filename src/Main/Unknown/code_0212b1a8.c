@@ -28,7 +28,7 @@ void func_0212b928(void *a, Nclr *b, u32 c) {
     data_0217d410->mUnk_04 = FALSE;
     data_0217d410->mUnk_08 = c;
     data_0217d410->mUnk_8c = TRUE;
-    MemCopy(b->mData + c * 0x10, data_0217d410->mUnk_0a, 0x20);
+    MI_CpuCopy8(b->mData + c * 0x10, data_0217d410->mUnk_0a, 0x20);
     for (i = 0; i < 4; i++) {
         v = data_0217d410->mUnk_14[i];
         data_0217d410->mUnk_2c[i].mUnk_00 = v & 0x1f;
@@ -140,7 +140,7 @@ void func_0212b5ec(void *a) {
     q->mUnk_04 = t;
     q->mUnk_08 = v;
     q->mUnk_0c = 0;
-    MemFill(data_0217d40c->mUnk_050, 0, 0x800);
+    MI_CpuFill8(data_0217d40c->mUnk_050, 0, 0x800);
     data_0217d40c->mUnk_018 = GetBmgEntry(FindSceneFile(data_0216ea94), 0);
 }
 
@@ -187,7 +187,7 @@ void func_0212b260(void) {
     }
     i = 0;
     n = FALSE;
-    MemFill(buf, 0, 0xc8);
+    MI_CpuFill8(buf, 0, 0xc8);
     do {
         p = data_0217d40c;
         r = p->mUnk_018;
@@ -251,7 +251,7 @@ void func_0212b260(void) {
             p->mUnk_018 += 2;
         }
     } while (n == FALSE);
-    MemFill(data_0217d40c->mUnk_050, 0, 0x800);
+    MI_CpuFill8(data_0217d40c->mUnk_050, 0, 0x800);
     v = data_0217d40c->mUnk_850;
     c = 0;
     if (v == 3) {

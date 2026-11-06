@@ -47,8 +47,8 @@ void func_ov001_02181274(s32 p0, s32 p1, s32 p2) {
     heap = GetHeap(func_020364e8());
     data_ov001_021a9b88->mUnk_1c[0] =
         (u8 *) HeapAllocAligned(heap, data_ov001_021a9b88->mUnk_04 / 8 * (data_ov001_021a9b88->mUnk_04 / 8), 0x20);
-    MemFill(data_ov001_021a9b88->mUnk_1c[0], data_ov001_021a9b88->mUnk_00 / 8 * data_ov001_021a9b88->mUnk_00 / 8,
-            data_ov001_021a9b88->mUnk_04 / 8 * (data_ov001_021a9b88->mUnk_04 / 8));
+    MI_CpuFill8(data_ov001_021a9b88->mUnk_1c[0], data_ov001_021a9b88->mUnk_00 / 8 * data_ov001_021a9b88->mUnk_00 / 8,
+                data_ov001_021a9b88->mUnk_04 / 8 * (data_ov001_021a9b88->mUnk_04 / 8));
     for (i = 0; i < data_ov001_021a9b88->mUnk_00 / 8; i++) {
         for (j = 0; j < data_ov001_021a9b88->mUnk_00 / 8; j++) {
             data_ov001_021a9b88->mUnk_1c[0][i * data_ov001_021a9b88->mUnk_04 / 8 + j] =
@@ -86,8 +86,8 @@ void func_ov001_021811c8(void) {
         data_ov001_021a9b88->mUnk_10 = 1;
         data_ov001_021a9b88->mUnk_0c = TRUE;
         data_ov001_021a9b88->mUnk_14 = 0;
-        MemCopyWordsByBlock(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
-                            data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
+        MIi_CpuCopyFast(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
+                        data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
     }
 }
 
@@ -172,8 +172,8 @@ void func_ov001_02181048(void) {
     data_ov001_021a9b88->mUnk_10 = 0;
     data_ov001_021a9b88->mUnk_0c = FALSE;
     data_ov001_021a9b88->mUnk_14 = 0;
-    MemCopyWordsByBlock(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
-                        data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
+    MIi_CpuCopyFast(data_ov001_021a9b88->mUnk_1c[1], data_ov001_021a9b88->mUnk_1c[2],
+                    data_ov001_021a9b88->mUnk_00 * data_ov001_021a9b88->mUnk_00);
 }
 
 u32 func_ov001_02181020(u32 a, u32 b, u32 c) {

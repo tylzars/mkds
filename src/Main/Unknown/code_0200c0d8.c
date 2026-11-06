@@ -24,7 +24,7 @@ void func_0200c430(u32 arg0) {
     *(u32 *) ((value1) + 0u) = value0;
     value1 = 0u;
     value2 = 0x21cu;
-    MemFill((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off
 
@@ -35,7 +35,7 @@ void func_0200c3fc(s32 a) {
 
     if (data_0216fdf4 != NULL) {
         i = a - 1;
-        MemFill(&data_0216fdf4->mUnk_000[i * 0x20], 0, 0x1e);
+        MI_CpuFill8(&data_0216fdf4->mUnk_000[i * 0x20], 0, 0x1e);
         data_0216fdf4->mUnk_1e0[i] = 0;
     }
 }
@@ -81,7 +81,7 @@ u8 *func_0200c2e0(u8 *a, Unk0200c16c *b, u32 c) {
             if (*(u8 *) &b->mUnk_02 > data_0216fdf8.mUnk_04) {
                 return NULL;
             }
-            MemCopy(a + 2, (u8 *) b + 3, data_0216fdf8.mUnk_00);
+            MI_CpuCopy8(a + 2, (u8 *) b + 3, data_0216fdf8.mUnk_00);
             v1 = func_0200c25c(b, c);
             break;
         case 8:
@@ -93,7 +93,7 @@ u8 *func_0200c2e0(u8 *a, Unk0200c16c *b, u32 c) {
             b->mUnk_02 = a[1] & 0xff;
             v1 = a + 3;
             b->mUnk_02 |= (a[2] << 8) & 0xff00;
-            MemCopy(v1, b->mUnk_04, data_0216fdf8.mUnk_00);
+            MI_CpuCopy8(v1, b->mUnk_04, data_0216fdf8.mUnk_00);
             v1 += data_0216fdf8.mUnk_00;
             break;
         default:
@@ -117,7 +117,7 @@ u8 *func_0200c25c(Unk0200c16c *a, u32 b) {
     }
     v4 = b - 1;
     v3 = v4 << 5;
-    MemCopy((u8 *) a + 3, (u8 *) v1 + v3 + v2 * data_0216fdf8.mUnk_00, data_0216fdf8.mUnk_00);
+    MI_CpuCopy8((u8 *) a + 3, (u8 *) v1 + v3 + v2 * data_0216fdf8.mUnk_00, data_0216fdf8.mUnk_00);
     data_0216fdf4->mUnk_1e0[v4] |= 1 << v2;
     if (func_0200c20c(b) != 0) {
         return (u8 *) data_0216fdf4 + v3;
@@ -153,13 +153,13 @@ u8 *func_0200c16c(Unk0200c16c *a, u8 *b) {
             if (*(u8 *) &a->mUnk_02 > data_0216fdf8.mUnk_04) {
                 return NULL;
             }
-            MemCopy((u8 *) a + 3, v1, data_0216fdf8.mUnk_00);
+            MI_CpuCopy8((u8 *) a + 3, v1, data_0216fdf8.mUnk_00);
             v1 += data_0216fdf8.mUnk_00;
             break;
         case 9:
             *v1++ = a->mUnk_02;
             *v1++ = (a->mUnk_02 & 0xff00) >> 8;
-            MemCopy(a->mUnk_04, v1, data_0216fdf8.mUnk_00);
+            MI_CpuCopy8(a->mUnk_04, v1, data_0216fdf8.mUnk_00);
             v1 += data_0216fdf8.mUnk_00;
             break;
         case 8:
@@ -174,7 +174,7 @@ u8 *func_0200c16c(Unk0200c16c *a, u8 *b) {
 
 u8 func_0200c12c(void *a, void *b) {
     data_0216fdf0 = (data_0216fdf0 + 1) % data_0216fdf8.mUnk_04;
-    MemCopy((u8 *) b + data_0216fdf0 * data_0216fdf8.mUnk_00, a, data_0216fdf8.mUnk_00);
+    MI_CpuCopy8((u8 *) b + data_0216fdf0 * data_0216fdf8.mUnk_00, a, data_0216fdf8.mUnk_00);
     return data_0216fdf0;
 }
 

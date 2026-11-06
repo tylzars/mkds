@@ -104,8 +104,8 @@ void func_ov001_02198624(void) {
         if (func_02125f60() == 0) {
             d = data_021759d0->mUnk_2a;
             data_0217aa08->mUnk_00->mUnk_31_0 = 1;
-            MemFill(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
-            MemCopy(d, data_0217aa08->mUnk_00->mUnk_0c, 0x14);
+            MI_CpuFill8(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
+            MI_CpuCopy8(d, data_0217aa08->mUnk_00->mUnk_0c, 0x14);
             func_02056d40();
             data_ov001_021a9be4->mUnk_04 = 3;
             a = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0x13);

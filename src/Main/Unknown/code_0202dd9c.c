@@ -167,7 +167,7 @@ void func_0202de00(Unk02174e14 *a, s16 (*b)[4], void *c, s32 d, s32 e, s32 f, Un
                   a->mUnk_000.mUnk_18);
     func_02025cd0((s16 *) s, g->mUnk_02, g->mUnk_03, g->mUnk_00);
     func_02124224(0, b[1][0], a->mUnk_000.mUnk_14, s, a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_18, 7);
-    MemCopyHalfwords(c, t, 0x14);
+    MIi_CpuCopy16(c, t, 0x14);
     t[10] = 0;
     func_0212426c(0, b[2][0], a->mUnk_000.mUnk_14, t, a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_18);
     func_0212463c(d, h->mUnk_08, a->mUnk_038.mUnk_00, h->mUnk_04, h->mUnk_0c, 0, b[0][3], a->mUnk_000.mUnk_08,

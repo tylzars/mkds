@@ -13,7 +13,7 @@ void GX_LoadClearImageColor(const void *a, u32 b);
 void GX_BeginLoadClearImage(void);
 // Waits for the DMA channel, returns the kept mask to the bank group and clears the mask and base.
 void GX_EndLoadTexPltt(void);
-// Copies c bytes from a to the texture palette base + b; DMA channel when in use, else MemCopyWords.
+// Copies c bytes from a to the texture palette base + b; DMA channel when in use, else MIi_CpuCopy32.
 void GX_LoadTexPltt(const void *a, u32 b, u32 c);
 // Keeps the texture-palette bank mask and sets the load base from the 8-entry table, indexed by mask >> 4.
 void GX_BeginLoadTexPltt(void);

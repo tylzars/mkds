@@ -137,9 +137,9 @@ void func_ov000_021874ec(void) {
                         break;
                     }
                     h = OS_DisableInterrupts();
-                    MemFill(d, 0, 0x21);
+                    MI_CpuFill8(d, 0, 0x21);
                     func_ov000_021a6abc(&b);
-                    MemCopy(func_ov000_021a6abc(NULL), d, b);
+                    MI_CpuCopy8(func_ov000_021a6abc(NULL), d, b);
                     OS_RestoreInterrupts(h);
                     if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != FALSE) {
                         ReleaseHttp((Http *) gHttp);
@@ -257,9 +257,9 @@ void func_ov000_021874ec(void) {
             break;
         }
         h = OS_DisableInterrupts();
-        MemFill(d, 0, 0x21);
+        MI_CpuFill8(d, 0, 0x21);
         func_ov000_021a6abc(&b);
-        MemCopy(func_ov000_021a6abc(NULL), d, b);
+        MI_CpuCopy8(func_ov000_021a6abc(NULL), d, b);
         OS_RestoreInterrupts(h);
         if (func_ov000_02186b0c((Http *) gHttp, data_ov000_021b1434, d, strlen(d)) != FALSE) {
             ReleaseHttp((Http *) gHttp);
@@ -486,7 +486,7 @@ u32 func_ov000_02187484(void) {
 }
 
 s32 func_ov000_021873d4(Unk02186d7c *p, const Unk021873d4 *q) {
-    MemFill(p, 0, 0x1a60);
+    MI_CpuFill8(p, 0, 0x1a60);
     p->mContentLength = -1;
     p->mUnk_04 = *q;
     p->mLowReceiveBuffer = p->mUnk_04.mUnk_10(data_ov000_021b1320, 0xb68);
@@ -592,7 +592,7 @@ void func_ov000_02186d7c(void *l) {
     if (d <= 0) {
         d = 60000;
     }
-    MemFill(a, 0, 0x64);
+    MI_CpuFill8(a, 0, 0x64);
     a->mReceiveBufferSize = 0xb68;
     a->mReceiveBuffer = p->mLowReceiveBuffer;
     a->mSendBufferSize = 0x5ea;
@@ -605,7 +605,7 @@ void func_ov000_02186d7c(void *l) {
     }
     func_ov000_021ae270();
     if (p->mUseHttps == 1) {
-        MemFill(b, 0, 0x804);
+        MI_CpuFill8(b, 0, 0x804);
         b->mUnk_7e4 = func_ov000_02186a84;
         b->mUnk_7d4 = p->mHost;
         a->mUnk_0c = b;
@@ -703,7 +703,7 @@ void func_ov000_02186d7c(void *l) {
             if ((s32) m >= r) {
                 m = r;
             }
-            MemCopy(x, c->mCursor, m);
+            MI_CpuCopy8(x, c->mCursor, m);
             c->mCursor += m;
             *c->mCursor = 0;
             if (f != 1) {
@@ -783,7 +783,7 @@ void ReleaseHttp(Http *a) {
             a->mFree(data_ov000_021b1334, a->mLowSendBuffer, 0);
             a->mLowSendBuffer = NULL;
         }
-        MemFill(a, 0, 0x1a60);
+        MI_CpuFill8(a, 0, 0x1a60);
     }
     return;
 }

@@ -6,7 +6,7 @@
 #pragma thumb on
 
 void func_020487e0(const void *a, void *b, u32 c) {
-    ExpandCompressed(a, b);
+    MI_UncompressLZ8(a, b);
     DC_StoreRange(b, c);
 }
 

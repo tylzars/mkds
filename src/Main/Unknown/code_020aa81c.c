@@ -926,7 +926,7 @@ void func_020ab11c(s32 *a, s32 *b, s32 *c, s32 *d) {
 }
 
 void func_020ab088(struct Unk02022aa8 *a, void *b, u16 *c, s32 d, s32 e, s32 f) {
-    MemFill(&data_0217b278, 0, 0x54);
+    MI_CpuFill8(&data_0217b278, 0, 0x54);
     data_0217b254.mUnk_00 = a;
     data_0217b254.mUnk_04 = b;
     data_0217b254.mUnk_08 = b;
@@ -1001,7 +1001,7 @@ void func_020aafa8(Unk0217b278 *a) {
     h = a->mUnk_2c->mUnk_04->mUnk_02;
     w = a->mUnk_2c->mUnk_04->mUnk_00;
     n = h * w;
-    MemFillHalfwords(n, data_0217b254.mUnk_0c, data_0217b254.mUnk_14 * (data_0217b254.mUnk_10 * 2));
+    MIi_CpuClear16(n, data_0217b254.mUnk_0c, data_0217b254.mUnk_14 * (data_0217b254.mUnk_10 * 2));
     i = 0;
     v1 = 0;
     v1 = (u32) v1;
@@ -1082,7 +1082,7 @@ void func_020aad9c(Unk0217b278 *a) {
     f = data_0217b254.mUnk_00;
     c = f->mUnk_00->mUnk_08->mUnk_01;
     q = a->mUnk_2c;
-    MemCopyWordsByBlock(q->mUnk_04->mData, data_0217b254.mUnk_04, q->mUnk_04->mDataSize);
+    MIi_CpuCopyFast(q->mUnk_04->mData, data_0217b254.mUnk_04, q->mUnk_04->mDataSize);
     func_02023408(&v2, data_0217b254.mUnk_04, q->mUnk_04->mUnk_02, q->mUnk_04->mUnk_00, 4);
     n = func_020aaf70(q);
     i = 0;
@@ -1117,7 +1117,7 @@ void func_020aab70(Unk0217b278 *a) {
     Unk0217b278_10 *r;
 
     q = a->mUnk_2c;
-    MemCopyWordsByBlock(data_0217b254.mUnk_04, data_0217b254.mUnk_08, q->mUnk_04->mDataSize);
+    MIi_CpuCopyFast(data_0217b254.mUnk_04, data_0217b254.mUnk_08, q->mUnk_04->mDataSize);
     MemFillWordsByBlock_inline((u8 *) data_0217b254.mUnk_08 + (q->mUnk_04->mDataSize << 5), 0x20);
     if (a->mUnk_40 != 0) {
         e = q->mUnk_00 + (a->mUnk_40 - 1);

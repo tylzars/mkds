@@ -51,7 +51,7 @@ void func_ov000_021a321c(Unk021a31e8 *a, u16 b, u32 c) {
 
 u16 func_ov000_021a31e8(const void *a) {
     Unk021a31e8 t;
-    MemCopy(a, &t, 8);
+    MI_CpuCopy8(a, &t, 8);
     if (memcmp(t.mUnk_06, data_ov000_021b41f0, 2) == 0) {
         return t.mUnk_04;
     }
@@ -72,7 +72,7 @@ s32 func_ov000_021a31d4(s32 value) {
 // Per login (called by InitWiFiConnection): stores gWiFiMessageLayer, zeroes the struct and sets mSendChunkSize.
 void InitWiFiMessageLayer(WiFiMessageLayer *state) {
     gWiFiMessageLayer = state;
-    MemFill(state, 0, sizeof(WiFiMessageLayer));
+    MI_CpuFill8(state, 0, sizeof(WiFiMessageLayer));
     gWiFiMessageLayer->mSendChunkSize = 0x5b9;
 }
 
@@ -217,7 +217,7 @@ void func_ov000_021a2e7c(Unk0219887c *a, const void *b, int c) {
     v1 = func_ov000_0219b9c4(a);
     v2 = &gWiFiMessageLayer->mPeers[v1];
     if ((v2->mReceiveBuffer != NULL) && (v2->mReceiveBufferSize >= c)) {
-        MemCopy(b, v2->mReceiveBuffer, c);
+        MI_CpuCopy8(b, v2->mReceiveBuffer, c);
         if (gWiFiMessageLayer->mReceiveCallback != NULL) {
             gWiFiMessageLayer->mReceiveCallback(v1, v2->mReceiveBuffer, c);
         }
@@ -239,7 +239,7 @@ void func_ov000_021a2dfc(int a, void *b, s32 c) {
             if (c != 8) {
                 return;
             }
-            MemCopy(b, t, 8);
+            MI_CpuCopy8(b, t, 8);
             e->mReceiveSize = t[0];
             e->mReceivedSize = 0;
             if (e->mReceiveBuffer != NULL && e->mReceiveBufferSize >= e->mReceiveSize) {
@@ -264,7 +264,7 @@ void func_ov000_021a2d68(int a, void *b, s32 c) {
         if (e->mReceivedSize + c > e->mReceiveBufferSize) {
             OS_Terminate();
         }
-        MemCopy(b, e->mReceiveBuffer + e->mReceivedSize, c);
+        MI_CpuCopy8(b, e->mReceiveBuffer + e->mReceivedSize, c);
     }
     e->mReceivedSize += c;
     n = e->mReceiveSize;

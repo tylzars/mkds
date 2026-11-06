@@ -15,5 +15,5 @@ void func_02060c38(void *arg0) {
     value0 = (u32) * (const u32 *) ((value2) + (32));
     value2 = 0x2d0u;
     value0 = (value0) + (value3);
-    MemCopy((const void *) value0, (void *) value1, value2);
+    MI_CpuCopy8((const void *) value0, (void *) value1, value2);
 }

@@ -88,21 +88,21 @@ s32 func_02056574(s32 a, Unk020565e4 *b) {
 }
 
 void func_02056464(Unk0217aa00_45c *a) {
-    MemCopy(data_0217aa08->mUnk_00->mUnk_0c, a->mUnk_000, 0x14);
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, a->mUnk_000, 0x14);
     if (data_0217aa08->mUnk_04->mUnk_004 != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
         a->mUnk_214 = 1;
-        MemCopy(data_0217aa08->mUnk_04->mUnk_008, &a->mUnk_014, 0x200);
+        MI_CpuCopy8(data_0217aa08->mUnk_04->mUnk_008, &a->mUnk_014, 0x200);
     } else {
         a->mUnk_214 = 0;
-        MemFill(&a->mUnk_014, 0, 0x200);
+        MI_CpuFill8(&a->mUnk_014, 0, 0x200);
     }
-    MemCopy(data_0217aa08->mUnk_00->mUnk_20, a->mUnk_224, 4);
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_20, a->mUnk_224, 4);
     a->mUnk_228_0 = data_021759d0->mUnk_00;
     a->mUnk_228_4 = data_021759d0->mUnk_04;
     a->mUnk_216 = data_0217aa08->mUnk_00->mUnk_24;
     a->mUnk_229 = func_02056208();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        MemFill(&a->mUnk_218, 0, 0xc);
+        MI_CpuFill8(&a->mUnk_218, 0, 0xc);
     } else {
         func_02152490(data_0217aa08->mUnk_00->mUnk_4c, &a->mUnk_218);
     }

@@ -75,7 +75,7 @@ u32 func_ov000_02181674(void) {
 Unk021b4c68 *data_ov000_021b4c68;
 
 WiFiStateCallbacks data_ov000_021b0a98 = {func_ov000_021816b0, func_ov000_021816a4, func_ov000_02180c3c,
-                                   (void (*)(void)) func_ov000_02180c28};
+                                          (void (*)(void)) func_ov000_02180c28};
 
 static inline s32 func_ov000_02180e58_inline(void) {
     if (data_0217aa08->mUnk_28 == 0) {
@@ -360,7 +360,7 @@ void func_ov000_02180d94(void) {
             return;
         }
         v1 = 0;
-        MemFillHalfwords(v1, v3, 0x14);
+        MIi_CpuClear16(v1, v3, 0x14);
         func_02124fac(data_ov000_021b4c68->mUnk_18, v3);
         func_0212513c(v3, GetBmgEntry(data_ov000_021b4c68->mWiFiMessages, 0x30), v4, 0x258);
         data_ov000_021b4c68->mNextState = 9;

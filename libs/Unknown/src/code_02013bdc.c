@@ -42,7 +42,7 @@ void func_02015d68(Unk020152bc *a, Unk02015d68_b *b, Unk02015428_c *c) {
     a->mUnk_19 = c->mUnk_18;
     a->mUnk_08 = b;
     v = 0;
-    MemFillHalfwords(v, a->mUnk_1a, a->mUnk_19 * 2);
+    MIi_CpuClear16(v, a->mUnk_1a, a->mUnk_19 * 2);
     for (i = 0; i < b->mUnk_0d; i++) {
         tab = (u8 *) b + 0xc + b->mUnk_12;
         k = func_02013754(r + 4, (const u32 *) (tab + *(u16 *) (tab + 2) + i * 16));
@@ -298,7 +298,7 @@ void func_020157d8(Unk020152bc *a, Unk02015428_b *b, Unk02015428_c *c) {
     a->mUnk_0c = data_021617dc;
     a->mUnk_19 = c->mUnk_18;
     v = 0;
-    MemFillHalfwords(v, a->mUnk_1a, a->mUnk_19 * 2);
+    MIi_CpuClear16(v, a->mUnk_1a, a->mUnk_19 * 2);
     for (i = 0; i < b->mUnk_09; i++) {
         tab = (u8 *) b + 8 + b->mUnk_0e;
         k = func_02013754(r + 4, (const u32 *) (tab + *(u16 *) (tab + 2) + i * 16));
@@ -424,7 +424,7 @@ void func_02015428(Unk020152bc *a, Unk02015428_b *b, Unk02015428_c *c) {
     a->mUnk_0c = data_021617e4;
     a->mUnk_19 = c->mUnk_18;
     v = 0;
-    MemFillHalfwords(v, a->mUnk_1a, a->mUnk_19 * 2);
+    MIi_CpuClear16(v, a->mUnk_1a, a->mUnk_19 * 2);
     for (i = 0; i < b->mUnk_09; i++) {
         tab = (u8 *) b + 8 + b->mUnk_0e;
         k = func_02013754(r + 4, (const u32 *) (tab + *(u16 *) (tab + 2) + i * 16));
@@ -461,7 +461,7 @@ void func_020152bc(Unk020152bc *a, Unk02014c5c *b, Unk020152bc_c *c) {
     a->mUnk_0c = data_021617d8;
     a->mUnk_19 = c->mUnk_17;
     v = 0;
-    MemFillHalfwords(v, a->mUnk_1a, a->mUnk_19 * 2);
+    MIi_CpuClear16(v, a->mUnk_1a, a->mUnk_19 * 2);
     q = b->mUnk_14;
     for (i = 0; i < b->mUnk_06; i++) {
         a->mUnk_1a[i] = (*(u32 *) ((u8 *) b + q[i]) >> 24) | 0x100;
@@ -555,7 +555,7 @@ void func_02015044(Unk02014c5c_out *o) {
             i = (e->mUnk_00 & 0xf0) >> 4;
             x = q[0];
             y = q[1];
-            MemZero9Words(o->mUnk_28);
+            MI_Zero36B(o->mUnk_28);
             o->mUnk_28[i] = (e->mUnk_00 & 0x100) ? -0x1000 : 0x1000;
             o->mUnk_28[data_02152c30[i][0]] = x;
             o->mUnk_28[data_02152c31[i][0]] = y;

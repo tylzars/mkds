@@ -352,7 +352,7 @@ void func_020fea84(u32 a, u32 b, void *c, u8 d) {
     p = &data_0217be00[v1];
     p->mUnk_14 = a;
     p->mUnk_18 = b;
-    MemCopy(c, p, d);
+    MI_CpuCopy8(c, p, d);
     data_0217bd64[0] = data_0217bd80[v1][0];
     if (data_0217bd60[0] == 0xff) {
         data_0217bd60[0] = v1;
@@ -384,7 +384,7 @@ void func_020fe9d0(u32 a, u32 b, s32 c, void *d, u32 e) {
     p->mUnk_14 = a;
     p->mUnk_18 = b;
     p->mUnk_1c = e;
-    MemCopy(d, p, 0x14);
+    MI_CpuCopy8(d, p, 0x14);
     data_0217bd5c[0] = data_0217bdc0[v1][0];
     data_0217bdc0[v1][0] = data_0217bd68[0];
     if (e != 0) {

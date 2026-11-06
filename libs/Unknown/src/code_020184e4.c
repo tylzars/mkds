@@ -1115,7 +1115,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
             return;
         }
         Vec3Normalize(&v, &v);
-        MemCopy9Words(m, m33);
+        MI_Copy36B(m, m33);
         Vec3MultiplyMatrix3x3(&v, m33, &v);
         Vec3MultiplyMatrix4x3(&pos, m, &pos);
         c = e->mUnk_14;
@@ -1154,7 +1154,7 @@ void func_0201b560(Unk020184e4 *p, Unk0201e3c8 *e) {
             return;
         }
         Vec3Normalize(&v, &v);
-        MemCopy9Words(m, m33);
+        MI_Copy36B(m, m33);
         Vec3MultiplyMatrix3x3(&v, m33, &v);
         Vec3MultiplyMatrix4x3(&pos, m, &pos);
         c = e->mUnk_14;
@@ -1251,7 +1251,7 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
             return;
         }
         Vec3Normalize(&v, &v);
-        MemCopy9Words(m, m33);
+        MI_Copy36B(m, m33);
         Vec3MultiplyMatrix3x3(&v, m33, &v);
         Vec3MultiplyMatrix4x3(&pos, m, &pos);
         c = e->mUnk_14;
@@ -1290,7 +1290,7 @@ void func_0201ae80(Unk020184e4 *p, Unk0201e3c8 *e) {
             return;
         }
         Vec3Normalize(&v, &v);
-        MemCopy9Words(m, m33);
+        MI_Copy36B(m, m33);
         Vec3MultiplyMatrix3x3(&v, m33, &v);
         Vec3MultiplyMatrix4x3(&pos, m, &pos);
         c = e->mUnk_14;
@@ -2026,7 +2026,7 @@ Unk020184e4 *func_02018d94(void *(*a)(u32 a), u16 b, u16 c, s32 d, u16 e, u16 f)
     u8 *q;
 
     p = a(0x4c);
-    MemFill(p, 0, 0x4c);
+    MI_CpuFill8(p, 0, 0x4c);
     p->mUnk_34 = b;
     p->mUnk_36 = c;
     p->mUnk_38_0 = e;
@@ -2045,13 +2045,13 @@ Unk020184e4 *func_02018d94(void *(*a)(u32 a), u16 b, u16 c, s32 d, u16 e, u16 f)
     p->mUnk_3c = 0;
     p->mUnk_48 = 0;
     q = a(b * 0x9c);
-    MemFill(q, 0, b * 0x9c);
+    MI_CpuFill8(q, 0, b * 0x9c);
     for (i = 0; i < b; i++) {
         func_0201e494(&p->mUnk_04[1], (Unk0201e3c8 *) q);
         q += 0x9c;
     }
     q = a(c * 0x44);
-    MemFill(q, 0, c * 0x44);
+    MI_CpuFill8(q, 0, c * 0x44);
     for (i = 0; i < c; i++) {
         func_0201e494(&p->mUnk_04[2], (Unk0201e3c8 *) q);
         q += 0x44;
@@ -2076,7 +2076,7 @@ void func_02018a1c(Unk020184e4 *a, Unk02018a1c *b) {
     a->mUnk_30 = b->mUnk_08;
     a->mUnk_32 = b->mUnk_0a;
     a->mUnk_28 = a->mUnk_00(a->mUnk_30 << 5);
-    MemFill(a->mUnk_28, 0, a->mUnk_30 << 5);
+    MI_CpuFill8(a->mUnk_28, 0, a->mUnk_30 << 5);
     for (i = 0; i < a->mUnk_30; i++) {
         e = a->mUnk_28 + i;
         e->mUnk_00 = (Unk0201ca6c_20_00 *) ((u8 *) b + off);
@@ -2157,7 +2157,7 @@ void func_02018a1c(Unk020184e4 *a, Unk02018a1c *b) {
         }
     }
     a->mUnk_2c = a->mUnk_00(a->mUnk_32 * 0x14);
-    MemFill(a->mUnk_2c, 0, a->mUnk_32 * 0x14);
+    MI_CpuFill8(a->mUnk_2c, 0, a->mUnk_32 * 0x14);
     for (i = 0; i < a->mUnk_32; i++) {
         h = a->mUnk_2c + i;
         d = (Unk020184e4_2c_00 *) ((u8 *) b + off);

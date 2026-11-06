@@ -1,18 +1,13 @@
 #include "code_0214d564.h"
 
-void ExpandCompressedStateInit(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    *(u32 *) ((value0) + (0)) = value1;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
-    value1 = 0u;
-    value2 = (value2 >> 8);
-    *(u32 *) ((value0) + (4)) = value2;
-    *(u8 *) ((value0) + (11)) = (u8) value1;
-    *(u8 *) ((value0) + (12)) = (u8) value1;
-    *(u8 *) ((value0) + (13)) = (u8) value1;
-    *(u8 *) ((value0) + (14)) = (u8) value1;
-    *(u16 *) ((value0) + (8)) = (u16) value1;
-    *(u8 *) ((value0) + (10)) = (u8) value1;
+// Starts a stepped LZ expansion: output at dest, the expanded size from header, every other member cleared.
+void MI_InitUncompContextLZ(MIUncompContextLZ *context, u8 *dest, const MICompressionHeader *header) {
+    context->mDestp = dest;
+    context->mDestCount = header->mDestSize;
+    context->mFlags = 0;
+    context->mFlagIndex = 0;
+    context->mLength = 0;
+    context->mLengthFlg = 0;
+    context->mDestTmp = 0;
+    context->mDestTmpCnt = 0;
 }

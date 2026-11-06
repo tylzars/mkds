@@ -31,7 +31,7 @@ void OS_InitLock(void) {
     *(u32 *) 0x027fffb0 = 0xffffffff;
     *(u32 *) 0x027fffb4 = 0xffff0000;
     zero = 0;
-    MemFillWords(zero, (void *) 0x027fffc0, 0x28);
+    MIi_CpuClear32(zero, (void *) 0x027fffc0, 0x28);
     reg_MI_EXMEMCNT |= 0x800;
     reg_MI_EXMEMCNT |= 0x80;
     OS_UnlockByWord(0x7e, (OSLockWord *) 0x027ffff0, 0);
@@ -90,7 +90,7 @@ s32 OSi_DoTryLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrlFuncp)(void), 
     } else {
         lastInterrupts = OS_DisableInterrupts();
     }
-    lastLockFlag = WordSwap(lockID, &lockp->mLockFlag);
+    lastLockFlag = MI_SwapWord(lockID, &lockp->mLockFlag);
     if (lastLockFlag == 0) {
         if (ctrlFuncp != 0) {
             ctrlFuncp();

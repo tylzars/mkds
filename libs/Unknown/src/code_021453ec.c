@@ -68,7 +68,7 @@ int WM_SetGameInfo(Unk021425e8Func a, const void *b, u32 c, u32 d, u16 e, u8 f) 
     if (c > 0x70) {
         return 6;
     }
-    MemCopyHalfwords(b, data_0217f960, c);
+    MIi_CpuCopy16(b, data_0217f960, c);
     DC_StoreRange(data_0217f960, c);
     SetCommandCallback(0x18, (u32) a);
     r = SendCommandMessage(0x18, 5, data_0217f960, c, d, e, f);

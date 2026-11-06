@@ -1060,7 +1060,7 @@ s32 func_ov003_021b7da0(const u8 *left, const u8 *right, s32 count) {
 }
 
 void func_ov003_021b7d90(void *arg0, const void *arg1, u32 arg2) {
-    MemCopy(arg1, arg0, arg2);
+    MI_CpuCopy8(arg1, arg0, arg2);
 }
 
 void func_ov003_021b7d84(void *arg0, s32 arg1, u32 arg2) {
@@ -1070,8 +1070,8 @@ void func_ov003_021b7d84(void *arg0, s32 arg1, u32 arg2) {
     u32 value3;
     value1 = (value1 << 24);
     value1 = (value1 >> 24);
-    value3 = (u32) &MemFill;
-    MemFill((void *) value0, (u8) value1, value2);
+    value3 = (u32) &MI_CpuFill8;
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
     return;
 }
 

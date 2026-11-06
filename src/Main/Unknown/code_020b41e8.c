@@ -17,7 +17,7 @@ void func_020b46d0(void *a, s32 b, s32 c, s32 d, s32 e, void *f, s32 g, s32 h) {
 
     for (i = 0; i < d; i++) {
         for (j = 0; j < e; j++) {
-            MemCopyHalfwords((u8 *) a + (b + i) * 32 + (c + j) * 1024, (u8 *) f + (g + i) * 32 + (h + j) * 1024, 0x20);
+            MIi_CpuCopy16((u8 *) a + (b + i) * 32 + (c + j) * 1024, (u8 *) f + (g + i) * 32 + (h + j) * 1024, 0x20);
         }
     }
 }
@@ -115,15 +115,15 @@ void func_020b41e8(u16 *a, s32 b, u16 *c, s32 d, s32 e) {
     }
     s = o2->mData;
     for (j = 0; j < 16; j++) {
-        MemCopyHalfwords(s + (n * 25 + j) * 16, func_020b41e8_inline(c, d + e * 32, j), 0x20);
+        MIi_CpuCopy16(s + (n * 25 + j) * 16, func_020b41e8_inline(c, d + e * 32, j), 0x20);
     }
     s3 = o2->mData;
     for (y = 0; y < 4; y++) {
-        MemCopyHalfwords(s3 + (n * 25 + 16 + y) * 16, c + (d + 4 + e * 32) * 16 + y * 512, 0x20);
+        MIi_CpuCopy16(s3 + (n * 25 + 16 + y) * 16, c + (d + 4 + e * 32) * 16 + y * 512, 0x20);
     }
     q = o2->mData;
     for (w = 0; w < 4; w++) {
-        MemCopyHalfwords(q + (n * 25 + 20 + w) * 16, func_020b41e8_inline(c, d + (e + 4) * 32, w), 0x20);
+        MIi_CpuCopy16(q + (n * 25 + 20 + w) * 16, func_020b41e8_inline(c, d + (e + 4) * 32, w), 0x20);
     }
-    MemCopyHalfwords(o2->mData + (n * 25 + 24) * 16, c + (d + 4 + (e + 4) * 32) * 16, 0x20);
+    MIi_CpuCopy16(o2->mData + (n * 25 + 24) * 16, c + (d + 4 + (e + 4) * 32) * 16, 0x20);
 }

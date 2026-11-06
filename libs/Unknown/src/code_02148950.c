@@ -692,10 +692,10 @@ void GX_Init(void) {
         volatile u32 z0 = 0;
         volatile u32 z1;
 
-        MemFillWords(z0, (void *) 0x4000008, 0x60);
+        MIi_CpuClear32(z0, (void *) 0x4000008, 0x60);
         *(vu16 *) 0x400006c = 0;
         z1 = 0;
-        MemFillWords(z1, (void *) 0x4001000, 0x70);
+        MIi_CpuClear32(z1, (void *) 0x4001000, 0x70);
     }
     *(vu16 *) 0x4000020 = 0x100;
     *(vu16 *) 0x4000026 = 0x100;

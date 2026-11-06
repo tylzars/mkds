@@ -83,5 +83,5 @@ void RemoveBuddyEntry(void *a) {
             func_ov000_0218eb44(gWiFiBuddySync->mGpConnection, b);
         }
     }
-    MemFill(a, 0, 12);
+    MI_CpuFill8(a, 0, 12);
 }

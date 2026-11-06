@@ -118,24 +118,24 @@ void ReceiveWiFiSessionMessage(u32 a, void *b, u32 c) {
             if (p->mUnk_40 == 0) {
                 return;
             }
-            MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+            MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
             gWiFiSession->mReceivedMask |= 1 << a;
             break;
         case 9:
             if (gWiFiSession->mStep == 3) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask |= 1 << a;
             } else if (gWiFiSession->mStep == 4) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
         case 3:
             if (gWiFiSession->mStep == 1) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask = 0xff;
             } else if (gWiFiSession->mStep == 5) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 if (p->mCharacterIndex == -1) {
                     return;
                 }
@@ -144,46 +144,46 @@ void ReceiveWiFiSessionMessage(u32 a, void *b, u32 c) {
                 }
                 gWiFiSession->mReceivedMask |= 1 << a;
             } else if (gWiFiSession->mStep == 4) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask = 0xff;
             }
             break;
         case 4:
             if (gWiFiSession->mStep == 5) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask |= 1 << a;
             } else if (gWiFiSession->mStep == 6) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
         case 5:
             if (gWiFiSession->mStep == 6) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask = 0xff;
             } else if (gWiFiSession->mStep == 7) {
                 if (p->mPickedCourseId == 0) {
                     return;
                 }
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
         case 6:
             if (gWiFiSession->mStep == 7) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask |= 1 << a;
             } else if (gWiFiSession->mStep == 8) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask |= 1 << a;
             }
             break;
         case 7:
             if (gWiFiSession->mStep == 8) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 gWiFiSession->mReceivedMask |= 1 << a;
             } else if (gWiFiSession->mStep == 9) {
-                MemCopy(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
+                MI_CpuCopy8(&gWiFiSession->mReceiveBuffers[a], &gWiFiSession->mUnk_1e10[a], 0x44);
                 func_0212145c(a);
                 gWiFiSession->mReceivedMask |= 1 << a;
             }

@@ -32,7 +32,7 @@ void func_0212f638(s32 a) {
     }
     v = OS_DisableInterrupts();
     z = 0;
-    MemFillHalfwords(z, &data_0216eaa4.mUnk_18, 0xc0);
+    MIi_CpuClear16(z, &data_0216eaa4.mUnk_18, 0xc0);
     data_0216eaa4.mUnk_00 = a;
     switch (a) {
         case 1:
@@ -216,7 +216,7 @@ void func_0212f1f8(s16 *a, s16 *b, u32 n, Unk0212f1f8 *d) {
     }
 }
 
-// Replaces a with the rounded average of a and b, then calls MemCopyWordsByBlock with a, b and n.
+// Replaces a with the rounded average of a and b, then calls MIi_CpuCopyFast with a, b and n.
 void func_0212f1ac(s16 *a, s16 *b, u32 n) {
     u32 m;
     u32 i;
@@ -225,5 +225,5 @@ void func_0212f1ac(s16 *a, s16 *b, u32 n) {
     for (i = 0; i < m; i++) {
         a[i] = (a[i] + b[i] + 1) >> 1;
     }
-    MemCopyWordsByBlock(a, b, n);
+    MIi_CpuCopyFast(a, b, n);
 }

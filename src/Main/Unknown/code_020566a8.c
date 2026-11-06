@@ -12,7 +12,7 @@ void func_020566a8(u32 a, int b) {
     u32 v2;
     v2 = (u32) data_0217aa08->mUnk_14[1];
     *(u32 *) (b + 8) = *(u32 *) (b + 8) & 0xfffffffe | 1;
-    MemCopy(((u16 *) (u32) b), ((u32 *) v2), (u32) (((u32) 0x00001000u)));
+    MI_CpuCopy8(((u16 *) (u32) b), ((u32 *) v2), (u32) (((u32) 0x00001000u)));
     func_02057944(a, (const void *) v2);
     v1 = func_020573c8(a);
     if (v1 == 0) {

@@ -244,7 +244,7 @@ void func_ov001_021a09a4(void) {
                 c2 = 14;
             }
             zero = 0;
-            MemFillHalfwords(zero, gMissionRunMSsel->mUnk_20, 0x20);
+            MIi_CpuClear16(zero, gMissionRunMSsel->mUnk_20, 0x20);
             pal = gMissionRunMSsel->mUnk_1c->mUnk_0c;
             for (k = 0; k < 16; k++) {
                 col0 = ((u16 *) (pal + c0 * 32))[k];

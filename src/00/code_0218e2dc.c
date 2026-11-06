@@ -297,7 +297,7 @@ s32 func_ov000_0218e3e4(s32 param_1, void *param_2, s32 param_3, s32 param_4, vo
 }
 
 s32 func_ov000_0218e3c4(s32 param_1, s32 param_2, s32 param_3, void *param_4, s32 *param_5) {
-    MemFill(param_4, 0, *param_5);
+    MI_CpuFill8(param_4, 0, *param_5);
     return func_ov000_0218e56c(0, -1);
 }
 

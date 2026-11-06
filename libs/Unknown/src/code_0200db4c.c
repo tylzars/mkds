@@ -201,7 +201,7 @@ void OS_CreateThread(OSThread *thread, void (*func)(void *), void *arg, u8 *stac
     thread->mUnk_04 = arg;
     thread->mUnk_3c = OS_ExitThread;
     fill = 0;
-    MemFillWords(fill, stackTop + 4, stackSize - 8);
+    MIi_CpuClear32(fill, stackTop + 4, stackSize - 8);
     OS_SetThreadDestructor(thread, 0);
     thread->mQueue = 0;
     thread->mLinkNext = 0;

@@ -155,8 +155,8 @@ void func_ov000_02182e18(void) {
     LocateNclr(&gWiFiVSSetting->mWiFiVSSettingSONclr, FindSceneFile("WiFi_VS_setting_s_o.nclr"));
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x4400;
     v4 = 0;
-    MemFillHalfwords(v4, gWiFiVSSetting->mNscrCopy, 0x1000);
-    MemCopyHalfwords(v2->mData, gWiFiVSSetting->mNscrCopy, 0x800);
+    MIi_CpuClear16(v4, gWiFiVSSetting->mNscrCopy, 0x1000);
+    MIi_CpuCopy16(v2->mData, gWiFiVSSetting->mNscrCopy, 0x800);
     CallQueueAppend(0x17, 0, v1->mData, v1->mDataSize);
     CallQueueAppend(0x1b, 0, gWiFiVSSetting->mNscrCopy, 0x1000);
     CallQueueAppend(0x1f, 0, v3->mData, 0x80);

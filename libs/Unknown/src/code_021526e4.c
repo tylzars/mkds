@@ -57,7 +57,7 @@ void func_02152808(const Unk02152490 *a, u32 b, char *c) {
 void func_021527ac(Unk02152500 *a, u32 b) {
     u32 t[0x100];
 
-    MemFill(a, 0, 0x40);
+    MI_CpuFill8(a, 0, 0x40);
     a->mUnk_00 = 0x40;
     a->mUnk_1c = 0;
     a->mUnk_24 = b;

@@ -28,7 +28,7 @@ void func_ov000_021a6894(void) {
         return;
     }
     if (g->mUnk_2270 != NULL && (s32) g->mUnk_2274 > 0) {
-        MemFill(g->mUnk_2270, 0, g->mUnk_2274);
+        MI_CpuFill8(g->mUnk_2270, 0, g->mUnk_2274);
     }
     OS_RestoreInterrupts(v1);
 }
@@ -106,7 +106,7 @@ void func_ov000_021a671c(Unk021a5e84 *a, u16 b) {
         }
         if (e != NULL) {
             e->mUnk_02 = b;
-            MemCopyWordsByBlock(a, e->mUnk_10, 0xc0);
+            MIi_CpuCopyFast(a, e->mUnk_10, 0xc0);
             func_ov000_021a6558(e);
         }
     }

@@ -35,9 +35,9 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
         d->mUnk_1374.mUnk_00 = d->mUnk_0f00;
         data_ov003_021da280->mUnk_1374.mUnk_08 = WM_GetDispersionScanPeriod();
         OS_GetOwnerInfo(&s);
-        MemCopy(data_ov003_021d66c4, &data_ov003_021da280->mUnk_1374.mUnk_14[0], 8);
+        MI_CpuCopy8(data_ov003_021d66c4, &data_ov003_021da280->mUnk_1374.mUnk_14[0], 8);
         data_ov003_021da280->mUnk_1374.mUnk_14[9] = 1;
-        MemCopy(s.mUnk_04, &data_ov003_021da280->mUnk_1374.mUnk_14[0xc], s.mUnk_18 * 2);
+        MI_CpuCopy8(s.mUnk_04, &data_ov003_021da280->mUnk_1374.mUnk_14[0xc], s.mUnk_18 * 2);
         if (func_ov003_021ce8ec() != 0) {
             data_ov003_021da280->mUnk_1b7c = func_ov003_021d3544(0, func_ov003_021ce4d4, NULL, 0x78);
             return 1;
@@ -159,7 +159,7 @@ void func_ov003_021ce6ac(Unk021ce5b8 *a) {
         q = d->mUnk_1300[0].mUnk_00;
         for (; k < 16; k++) {
             if (memcmp(q, data_ov003_021d66bc, 6) == 0) {
-                MemCopy(e->mUnk_04, d->mUnk_1300[k].mUnk_00, 6);
+                MI_CpuCopy8(e->mUnk_04, d->mUnk_1300[k].mUnk_00, 6);
                 data_ov003_021da280->mUnk_1300[k].mUnk_06 = (e->mUnk_15 & 1) ? 1 : 0;
                 goto next;
             }

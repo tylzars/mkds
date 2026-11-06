@@ -313,10 +313,10 @@ void func_0200bc0c(void) {
 void func_0200bb98(Unk0216fde8 *a, void *b) {
     if (*(u16 *) &data_0216fde4 == 0) {
         *(u16 *) &data_0216fde4 = 1;
-        MemFill(a, 0, 0x5f20);
+        MI_CpuFill8(a, 0, 0x5f20);
         data_0216fde8 = a;
         a->mUnk_5f0e = 0;
-        MemCopy(b, data_0216fde8->mUnk_05c4, 0x16);
+        MI_CpuCopy8(b, data_0216fde8->mUnk_05c4, 0x16);
         func_0200991c(data_0216fde8->mUnk_05e8);
         func_020092a4();
         func_02009908((UnkFunc *) func_0200b7e0, (UnkFunc *) func_0200b7cc);

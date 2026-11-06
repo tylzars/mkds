@@ -89,7 +89,7 @@ void func_020597d0(const void *a, s32 b, s32 c, s32 d) {
     }
     m = 1 << c;
     if (!(data_0217aa00->mUnk_164c & m)) {
-        MemCopy(a, &data_0217aa00->mUnk_045c[c], 0x14);
+        MI_CpuCopy8(a, &data_0217aa00->mUnk_045c[c], 0x14);
         data_0217aa00->mUnk_164c |= m;
     }
 }

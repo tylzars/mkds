@@ -97,7 +97,7 @@ void func_02059954(u8 *a) {
             f = 1;
             break;
         default:
-            MemCopy(a + 4, e->mUnk_000 + v1, *(u16 *) (a + 2));
+            MI_CpuCopy8(a + 4, e->mUnk_000 + v1, *(u16 *) (a + 2));
             data_0217aa00->mUnk_162c[a[0]][a[1]] = 1;
             if (func_02059b28(a[0]) != 0) {
                 f = 1;

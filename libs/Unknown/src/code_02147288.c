@@ -78,7 +78,7 @@ s32 Matrix4x3Invert(const Unk02012f58 *a, Unk02012f58 *b) {
                                (s64) p->mUnk_00[2].z * a->mUnk_00[3].z) >>
                               12);
     if (p == &buf) {
-        MemCopy12Words(&buf, b);
+        MI_Copy48B(&buf, b);
     }
     return 0;
 }

@@ -12,7 +12,7 @@ u32 GetPendingStatsRequestCount(void) {
 // ReleaseWiFiLogin.
 void InitWiFiLogin(WiFiLogin *a, Unk02152500 *b, GpConnection *c, u32 d, u32 e, void (*f)(), void *g) {
     gWiFiLogin = a;
-    MemFill(a, 0, 0x264);
+    MI_CpuFill8(a, 0, 0x264);
     gWiFiLogin->mGpConnection = c;
     gWiFiLogin->mState = 0;
     gWiFiLogin->mProductId = d;

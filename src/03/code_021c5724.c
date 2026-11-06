@@ -492,7 +492,7 @@ void func_ov003_021c5b90(int param_0, int param_1) {
         if (b <= 0x10) {
             param_1 += 6;
         }
-        MemFill(a, 0, 0x22);
+        MI_CpuFill8(a, 0, 0x22);
         if (b <= 0x10) {
             n = b;
         } else {
@@ -503,7 +503,7 @@ void func_ov003_021c5b90(int param_0, int param_1) {
         }
         func_ov003_021d2094(data_ov003_021da1f4->mUnk_0c, 0xa, param_1, 2, 0xa, a, 1);
         if (b > 0x10) {
-            MemFill(a, 0, 0x22);
+            MI_CpuFill8(a, 0, 0x22);
             n = b - 0x10;
             for (i = 0; i < n; i++) {
                 a[i] = (data_ov003_021da1f4->mUnk_00 + c)[i + 0x10];

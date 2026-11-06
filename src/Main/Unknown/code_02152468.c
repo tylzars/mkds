@@ -6,7 +6,7 @@
 #pragma thumb on
 
 void func_02152468(Unk02152490 *a, u32 b) {
-    MemFill(a, 0, 0xc);
+    MI_CpuFill8(a, 0, 0xc);
     func_02152a7c(a, b);
     func_021529e0(a, 3);
 }

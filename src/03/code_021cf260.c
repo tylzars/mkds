@@ -39,7 +39,7 @@ void func_ov003_021cf978(u32 a, u32 b) {
     OS_GetOwnerInfo(&s);
     x.mUnk_00 = (x.mUnk_00 & ~0xf) | (s.mUnk_01 & 0xf);
     x.mUnk_01 = s.mUnk_18;
-    MemCopy(s.mUnk_04, x.mUnk_02, s.mUnk_18 * 2);
+    MI_CpuCopy8(s.mUnk_04, x.mUnk_02, s.mUnk_18 * 2);
     x.mUnk_00 &= ~0xf0;
     {
         u16 *p = (u16 *) &z;
@@ -303,7 +303,7 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
             func_ov003_021cf844(a);
             t = (u32) func_02007e38(a);
             if (t != 0) {
-                MemCopy((void *) t, &data_ov003_021da288->mRecords[a - 1], 0x16);
+                MI_CpuCopy8((void *) t, &data_ov003_021da288->mRecords[a - 1], 0x16);
             }
             break;
         case 14:
@@ -394,7 +394,7 @@ u32 func_ov003_021cf284(u32 a) {
         OS_RestoreInterrupts(t);
         return 0;
     }
-    MemCopy(data_ov003_021da288, s, 0xe);
+    MI_CpuCopy8(data_ov003_021da288, s, 0xe);
     OS_RestoreInterrupts(t);
     if ((s[2] & b) != 0) {
         return 2;

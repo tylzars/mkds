@@ -5,7 +5,7 @@
 void func_020addb8(void *a, u16 b, s32 c) {
     volatile u16 v = b;
 
-    MemFillHalfwords(v, a, c);
+    MIi_CpuClear16(v, a, c);
 }
 
 u32 func_020add90(Unk02022aa8 *a, u32 b) {

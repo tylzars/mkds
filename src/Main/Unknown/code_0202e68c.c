@@ -237,7 +237,7 @@ void func_0202e6c4(void) {
 
 void func_0202e6a0(void *a, u32 b, u32 c) {
     volatile u32 v = b;
-    MemFillWordsByBlock(v, a, c);
+    MIi_CpuClearFast(v, a, c);
 }
 
 void func_0202e68c(void *a, u32 b) {

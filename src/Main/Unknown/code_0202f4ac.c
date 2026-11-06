@@ -7,7 +7,7 @@
 void func_0202f530(void *p, u32 v, u32 n) {
     volatile u32 value = v;
 
-    MemFillWordsByBlock(value, p, n);
+    MIi_CpuClearFast(value, p, n);
 }
 
 void func_0202f51c(void *p, u32 n) {

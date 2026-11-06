@@ -918,7 +918,7 @@ void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g) {
     v7->mUnk_000 = v3->mUnk_46c4;
     v3->mUnk_46c4 = v7;
     v7->mUnk_084 = 1;
-    MemFill(v7, 0, 0x8c0);
+    MI_CpuFill8(v7, 0, 0x8c0);
     func_02006e74(&v7->mUnk_004, 0x20000, data_usa_0215470c, v2->mUnk_0020, data_02175ec0.mUnk_0024, 0);
     v2->mUnk_000c = 1;
     func_0204bad8();

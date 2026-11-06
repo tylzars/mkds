@@ -22,7 +22,7 @@ int WM_SetLifeTime(Unk021425e8Func a, u32 b, u32 c, u32 d, u16 e);
 // result.
 int WM_SetBeaconIndication(Unk021425e8Func a, u32 b);
 // Needs state 7 or 9. Returns 6 when the data pointer is NULL or the size is above 0x70. Copies the size in bytes to
-// data_0217f960 (MemCopyHalfwords) and stores them (DC_StoreRange), stores the first argument as the callback for
+// data_0217f960 (MIi_CpuCopy16) and stores them (DC_StoreRange), stores the first argument as the callback for
 // command 24 and sends command 24 with five words: the address of data_0217f960, the size, the fourth argument, the
 // fifth (halfword) and the sixth (byte). Returns the send result.
 int WM_SetGameInfo(Unk021425e8Func a, const void *b, u32 c, u32 d, u16 e, u8 f);

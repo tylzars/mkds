@@ -301,7 +301,7 @@ void func_02050d80(u32 a, u8 *b, Unk0217aa00_45c *c) {
     p->mUnk_00[0].mUnk_00[3] = b[3];
     p->mUnk_00[0].mUnk_00[4] = b[4];
     p->mUnk_00[0].mUnk_00[5] = b[5];
-    MemCopy(c, &data_0217aa00->mUnk_045c[a], 0x14);
+    MI_CpuCopy8(c, &data_0217aa00->mUnk_045c[a], 0x14);
     data_0217aa00->mUnk_008b |= 8;
     if ((c->mUnk_014 & 1) != 0) {
         data_0217aa00->mUnk_0457 |= 1 << a;
@@ -429,7 +429,7 @@ void func_0205081c(u32 a, Unk0205081c *b) {
             if ((data_0217aa00->mUnk_164d & (1 << b->mUnk_0a)) != 0) {
                 return;
             }
-            MemCopy(b->mUnk_02, data_0217aa00->mUnk_045c[b->mUnk_0a].mUnk_224, 4);
+            MI_CpuCopy8(b->mUnk_02, data_0217aa00->mUnk_045c[b->mUnk_0a].mUnk_224, 4);
             data_0217aa00->mUnk_164d |= 1 << b->mUnk_0a;
             break;
         case 7:
@@ -457,7 +457,7 @@ void func_02050764(Unk021425e8 *a) {
         return;
     }
     DC_InvalidateRange(a->mUnk_0c, a->mUnk_10);
-    MemCopy(a->mUnk_0c, &v1, a->mUnk_10);
+    MI_CpuCopy8(a->mUnk_0c, &v1, a->mUnk_10);
     if (a->mUnk_04 == 7) {
         return;
     }
@@ -493,7 +493,7 @@ BOOL func_02050650(void *a, s32 b, u16 c, void *d, Unk021652a0 *e) {
     if (d == NULL) {
         d = a;
     } else {
-        MemCopy(a, d, n);
+        MI_CpuCopy8(a, d, n);
         DC_FlushRange(d, n);
     }
     if (WM_SetMPDataToPortEx(e->mUnk_00, NULL, d, n, c, e->mUnk_08, e->mUnk_0c) != 2) {
@@ -522,7 +522,7 @@ BOOL func_020504a4(s32 a, u16 b) {
     Unk020504a4 v1;
 
     v1.mUnk_00 = 6;
-    MemCopy(&data_0217aa00->mUnk_045c[a], v1.mUnk_02, 0x14);
+    MI_CpuCopy8(&data_0217aa00->mUnk_045c[a], v1.mUnk_02, 0x14);
     v1.mUnk_16 = a;
     if (func_02050650_inline() == 1) {
         v1.mUnk_17 = data_0217aa00->mUnk_0044.mUnk_43 | 1;
@@ -545,7 +545,7 @@ BOOL func_020503cc(s32 a, u16 b) {
     Unk020503cc v1;
 
     v1.mUnk_00 = 9;
-    MemCopy(data_0217aa00->mUnk_045c[a].mUnk_224, v1.mUnk_02, 4);
+    MI_CpuCopy8(data_0217aa00->mUnk_045c[a].mUnk_224, v1.mUnk_02, 4);
     v1.mUnk_0a = a;
     if ((data_0217aa00->mUnk_0454 & 1) == 0) {
         return FALSE;

@@ -4,7 +4,7 @@
 
 typedef struct Unk02022aa8 Unk02022aa8;
 
-// Four bytes read by func_020adc24 and written by MemCopy.
+// Four bytes read by func_020adc24 and written by MI_CpuCopy8.
 typedef struct Unk020adc24 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02;

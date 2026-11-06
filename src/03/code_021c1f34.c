@@ -18,10 +18,10 @@ void func_ov003_021c1fc8(void) {
     data_ov003_021da168 = func_ov003_021d283c(0x26c, 4);
     data_ov003_021da164[0] = 0;
     a.mUnk_00 = 0;
-    MemFillHalfwords(a.mUnk_00, &a.mUnk_02, 0x104);
+    MIi_CpuClear16(a.mUnk_00, &a.mUnk_02, 0x104);
     a.mUnk_02 = 0x50;
     a.mUnk_04 = 0xc;
-    MemCopy(data_ov003_021d630c, a.mUnk_06, 0xc);
+    MI_CpuCopy8(data_ov003_021d630c, a.mUnk_06, 0xc);
     data_ov003_021da168->mUnk_000 = 3;
     p = data_ov003_021da168;
     *(Unk021c1fc8_02 *) &p->mUnk_002 = *(Unk021c1fc8_02 *) &a.mUnk_02;

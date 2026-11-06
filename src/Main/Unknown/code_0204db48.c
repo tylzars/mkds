@@ -227,7 +227,6 @@ s32 func_0204db6c(void) {
 #pragma thumb off
 
 s32 func_0204db48(Unk02003a6c *a, void *b, u32 c, u32 d) {
-    MemCopy((const void *) c, b, d);
+    MI_CpuCopy8((const void *) c, b, d);
     return 0;
 }
-

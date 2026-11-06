@@ -53,7 +53,7 @@ u32 func_0200704c(const Unk0216f3dc_9c *a) {
         OS_RestoreInterrupts(v1);
         return 0;
     }
-    MemCopyWords(a, data_0216f478, 0x9c);
+    MIi_CpuCopy32(a, data_0216f478, 0x9c);
     OS_RestoreInterrupts(v1);
     return 1;
 }
@@ -182,9 +182,9 @@ s32 func_02006e74(Unk02007014 *a, u32 b, const void *c, u8 *d, u32 e, u16 f) {
     a->mUnk_04 = e;
     a->mUnk_30 = f;
     if (c != NULL) {
-        MemCopy(c, a->mUnk_08, 0x20);
+        MI_CpuCopy8(c, a->mUnk_08, 0x20);
     } else {
-        MemFill(a->mUnk_08, 0, 0x20);
+        MI_CpuFill8(a->mUnk_08, 0, 0x20);
     }
     OS_RestoreInterrupts(v2);
     return 1;
@@ -231,7 +231,7 @@ u32 func_02006db0(u16 a, u32 b, const void *c, void (*d)(Unk0216f3dc_9c *)) {
     v1.mUnk_10 = d;
     v1.mUnk_14 = b;
     v1.mUnk_18 = 0x28;
-    MemCopyWords(c, &v1.mUnk_1c, 0x40);
+    MIi_CpuCopy32(c, &v1.mUnk_1c, 0x40);
     return func_0200704c(&v1);
 }
 
@@ -242,8 +242,8 @@ u32 func_02006d78(u16 a, u32 b, const void *c, u32 d, const void *e, void (*f)(U
     v1.mUnk_10 = f;
     v1.mUnk_14 = b;
     v1.mUnk_18 = d;
-    MemCopyWords(c, &v1.mUnk_1c, 0x40);
-    MemCopyWords(e, &v1.mUnk_5c, 0x40);
+    MIi_CpuCopy32(c, &v1.mUnk_1c, 0x40);
+    MIi_CpuCopy32(e, &v1.mUnk_5c, 0x40);
     return func_0200704c(&v1);
 }
 
@@ -257,7 +257,7 @@ u32 func_02006d3c(u16 a, const void *b, s32 c, void (*d)(void)) {
     v2 = &v1;
     v2->mUnk_08 = a;
     v2->mUnk_10 = (void (*)(Unk0216f3dc_9c *)) d;
-    MemCopy(b, &v2->mUnk_14, c);
+    MI_CpuCopy8(b, &v2->mUnk_14, c);
     *((u8 *) v2 + 0x1d) = c;
     return func_0200704c(&v1);
 }

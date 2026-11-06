@@ -43,6 +43,6 @@ void func_ov000_0218a67c(const u8 *a, char *b) {
     u8 t[24];
     func_ov000_0218a5b0(a, t);
     if (memcmp(t, data_ov000_021b2174, 8) == 0) {
-        MemCopy(t + 8, b, 10);
+        MI_CpuCopy8(t + 8, b, 10);
     }
 }

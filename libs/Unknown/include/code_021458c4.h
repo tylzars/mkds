@@ -152,7 +152,7 @@ int TryStartRomDmaRead(Unk02146154 *p);
 // word of the request block to 0 and ends the transfer (clears flag values 0x4, 0x8 and 0x40, wakes the waiting
 // threads, wakes the worker when value 0x10 is set, calls the callback).
 void AdvanceRomDmaRead(void);
-// Starts StartCardDmaCopy with the channel at +0x28, the data port 0x04100010, the destination at +0x20 and 0x200
+// Starts MIi_CardDmaCopy32 with the channel at +0x28, the data port 0x04100010, the destination at +0x20 and 0x200
 // bytes, writes the page command for the offset at +0x1c with WriteRomCommandBytes, then writes the control word at
 // +4 of gRomReadState to 0x040001a4.
 void StartRomPageDma(void);

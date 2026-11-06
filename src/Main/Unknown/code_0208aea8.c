@@ -177,6 +177,6 @@ void CopyKartPhysicalParams(u32 a, u32 b, u32 c) {
     } else if (data_021759c0->mMode == MODE_BATTLE) {
         b = (u16) (c + 0x25);
     }
-    MemCopy(p + b * 0x98, gKartPhysicalParamTable->mKartParams + a * 0x98, 0x98);
-    MemCopy(q + c * 8, gKartPhysicalParamTable->mCharParams + a * 8, 8);
+    MI_CpuCopy8(p + b * 0x98, gKartPhysicalParamTable->mKartParams + a * 0x98, 0x98);
+    MI_CpuCopy8(q + c * 8, gKartPhysicalParamTable->mCharParams + a * 8, 8);
 }

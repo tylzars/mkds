@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// Blocks of words moved by MemCopy8Words, MemCopy9Words, MemCopy12Words and MemCopy16Words.
+// Blocks of words moved by MI_Copy32B, MI_Copy36B, MI_Copy48B and MI_Copy64B.
 typedef struct Unk0214d0e0 {
     /* 00 */ u32 mUnk_00[8];
 } Unk0214d0e0;
@@ -19,23 +19,23 @@ typedef struct Unk0214d13c {
     /* 00 */ u32 mUnk_00[16];
 } Unk0214d13c;
 
-void MemFillWords(u32 a, void *b, u32 c);
-void MemCopyWords(const void *a, void *b, u32 c);
-void MemCopyWordsToOneAddress(const void *a, vu32 *b, u32 c);
-void MemFillWordsByBlock(u32 a, void *b, u32 c);
-void MemCopyWordsByBlock(const void *a, void *b, u32 c);
-void MemCopy8Words(const void *a, void *b);
-void MemCopy9Words(const void *a, void *b);
-void MemCopy12Words(const void *a, void *b);
-void MemCopy16Words(const void *a, void *b);
-void MemFill(void *a, u8 b, u32 c);
-void MemCopy(const void *a, void *b, u32 c);
-void MemZero9Words(s32 *a);
-s32 WordSwap(s32 a, s32 *b);
-void ExpandCompressed(const void *a, void *b);
+void MIi_CpuClear32(u32 data, void *destp, u32 size);
+void MIi_CpuCopy32(const void *srcp, void *destp, u32 size);
+void MIi_CpuSend32(const void *srcp, vu32 *destp, u32 size);
+void MIi_CpuClearFast(u32 data, void *destp, u32 size);
+void MIi_CpuCopyFast(const void *srcp, void *destp, u32 size);
+void MI_Copy32B(const void *pSrc, void *pDest);
+void MI_Copy36B(const void *pSrc, void *pDest);
+void MI_Copy48B(const void *pSrc, void *pDest);
+void MI_Copy64B(const void *pSrc, void *pDest);
+void MI_CpuFill8(void *dstp, u8 data, u32 size);
+void MI_CpuCopy8(const void *srcp, void *dstp, u32 size);
+void MI_Zero36B(void *pDest);
+u32 MI_SwapWord(u32 setData, volatile u32 *destp);
+void MI_UncompressLZ8(const void *srcp, void *destp);
 
-// Calls MemFillWordsByBlock with 0, passed through a stack offset of its own.
+// Calls MIi_CpuClearFast with 0, passed through a stack offset of its own.
 static inline void MemFillWordsByBlock_inline(void *p, u32 n) {
     volatile u32 v = 0;
-    MemFillWordsByBlock(v, p, n);
+    MIi_CpuClearFast(v, p, n);
 }

@@ -1,11 +1,11 @@
 #include "code_0214d018.h"
 
 // clang-format off
-// Fills c bytes at b (whole words) with the word a.
+// Fills size bytes at destp (whole words) with the word data.
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here each word is stored with a conditional one-register `stmlt r1!`.
-asm void MemFillWords(u32 a, void *b, u32 c) {
+asm void MIi_CpuClear32(u32 data, void *destp, u32 size) {
     add ip, r1, r2
 fillw_loop:
     cmp r1, ip
@@ -14,11 +14,11 @@ fillw_loop:
     bx lr
 }
 
-// Copies c bytes (whole words) from a to b.
+// Copies size bytes (whole words) from srcp to destp.
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here each word moves with a conditional one-register `ldmlt r0!` / `stmlt r1!`.
-asm void MemCopyWords(const void *a, void *b, u32 c) {
+asm void MIi_CpuCopy32(const void *srcp, void *destp, u32 size) {
     add ip, r1, r2
 copyw_loop:
     cmp r1, ip
@@ -28,11 +28,11 @@ copyw_loop:
     bx lr
 }
 
-// Copies c bytes (whole words) from a to the one address b.
+// Copies size bytes (whole words) from srcp to the one address destp.
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here each word is read with a conditional one-register `ldmlt r0!`.
-asm void MemCopyWordsToOneAddress(const void *a, vu32 *b, u32 c) {
+asm void MIi_CpuSend32(const void *srcp, vu32 *destp, u32 size) {
     add ip, r0, r2
 copyp_loop:
     cmp r0, ip
@@ -42,11 +42,11 @@ copyp_loop:
     bx lr
 }
 
-// Fills c bytes at b (whole words) with the word a: 32 bytes per store while a full block remains, then a word at a
+// Fills size bytes at destp (whole words) with the word data: 32 bytes per store while a full block remains, then a word at a
 // time.
 // Not compiled code: it saves r4-r9 without lr, where in 1.2 code a function that saves r4 also saves lr
 // (docs/compiler.md, Registers), and stores with conditional `stmlt r1!` lists 1.2 builds only in block moves.
-asm void MemFillWordsByBlock(u32 a, void *b, u32 c) {
+asm void MIi_CpuClearFast(u32 data, void *destp, u32 size) {
     stmfd sp!, {r4, r5, r6, r7, r8, r9}
     // ip = end of the whole 32-byte blocks; r0 and r2-r8 all hold the value.
     add r9, r1, r2
@@ -71,11 +71,11 @@ fillb_word_loop:
     bx lr
 }
 
-// Copies c bytes (whole words) from a to b: 32 bytes per step while a full block remains, then a word at a time.
+// Copies size bytes (whole words) from srcp to destp: 32 bytes per step while a full block remains, then a word at a time.
 // Not compiled code: it saves r4-r10 without lr and without a padding word, where 1.2 saves lr with r4 and pads every
 // frame to 8 bytes (docs/compiler.md, Registers; frame layout in the compiler), and copies with conditional `ldmlt` /
 // `stmlt` lists 1.2 builds only in block moves.
-asm void MemCopyWordsByBlock(const void *a, void *b, u32 c) {
+asm void MIi_CpuCopyFast(const void *srcp, void *destp, u32 size) {
     stmfd sp!, {r4, r5, r6, r7, r8, r9, r10}
     // ip = end of the whole 32-byte blocks.
     add r10, r1, r2
@@ -95,11 +95,11 @@ copyb_word_loop:
     bx lr
 }
 
-// Copies 8 words from a to b.
+// Copies 8 words from pSrc to pDest.
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here it copies with `ldm r0!` / `stm r1!` and data in r2, r3 and ip.
-asm void MemCopy8Words(const void *a, void *b) {
+asm void MI_Copy32B(const void *pSrc, void *pDest) {
     ldmia r0!, {r2, r3, ip}
     stmia r1!, {r2, r3, ip}
     ldmia r0!, {r2, r3, ip}
@@ -109,11 +109,11 @@ asm void MemCopy8Words(const void *a, void *b) {
     bx lr
 }
 
-// Copies 9 words from a to b.
+// Copies 9 words from pSrc to pDest.
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here it copies with `ldm r0!` / `stm r1!` and data in r2, r3 and ip.
-asm void MemCopy9Words(const void *a, void *b) {
+asm void MI_Copy36B(const void *pSrc, void *pDest) {
     ldmia r0!, {r2, r3, ip}
     stmia r1!, {r2, r3, ip}
     ldmia r0!, {r2, r3, ip}
@@ -123,11 +123,11 @@ asm void MemCopy9Words(const void *a, void *b) {
     bx lr
 }
 
-// Copies 12 words from a to b.
+// Copies 12 words from pSrc to pDest.
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here it copies with `ldm r0!` / `stm r1!` and data in r2, r3 and ip.
-asm void MemCopy12Words(const void *a, void *b) {
+asm void MI_Copy48B(const void *pSrc, void *pDest) {
     ldmia r0!, {r2, r3, ip}
     stmia r1!, {r2, r3, ip}
     ldmia r0!, {r2, r3, ip}
@@ -139,11 +139,11 @@ asm void MemCopy12Words(const void *a, void *b) {
     bx lr
 }
 
-// Copies 16 words from a to b.
+// Copies 16 words from pSrc to pDest.
 // Not compiled code: the 1.2 compiler builds ldm/stm only in prologues, epilogues and block moves (struct copies and
 // fills), which keep their data in r0 upward, move the base off r0 and use ldr/str for a lone word (docs/compiler.md,
 // ldm/stm; checked on C). Here it copies with `ldm r0!` / `stm r1!` and data in r2, r3 and ip.
-asm void MemCopy16Words(const void *a, void *b) {
+asm void MI_Copy64B(const void *pSrc, void *pDest) {
     ldmia r0!, {r2, r3, ip}
     stmia r1!, {r2, r3, ip}
     ldmia r0!, {r2, r3, ip}
@@ -157,10 +157,10 @@ asm void MemCopy16Words(const void *a, void *b) {
     bx lr
 }
 
-// Fills c bytes at a with the byte b using only halfword and word stores (an odd first or last byte is merged with its
+// Fills size bytes at dstp with the byte data using only halfword and word stores (an odd first or last byte is merged with its
 // neighbour through a halfword read).
 // Not compiled code: it tests bits with tst, which the 1.2 compiler never builds (docs/compiler.md).
-asm void MemFill(void *a, u8 b, u32 c) {
+asm void MI_CpuFill8(void *dstp, u8 data, u32 size) {
     // Nothing to do for c = 0. An odd start address: merge the byte into the halfword below it.
     cmp r2, #0
     bxeq lr
@@ -209,11 +209,11 @@ fillh_last_byte:
     bx lr
 }
 
-// Copies c bytes from a to b using only halfword and word accesses: an odd first or last destination byte is merged
-// with its neighbour through a halfword read; when a and b differ in alignment the bytes are reassembled from halfword
+// Copies size bytes from srcp to dstp using only halfword and word accesses: an odd first or last destination byte is merged
+// with its neighbour through a halfword read; when srcp and dstp differ in alignment the bytes are reassembled from halfword
 // reads.
 // Not compiled code: it tests bits with tst, which the 1.2 compiler never builds (docs/compiler.md).
-asm void MemCopy(const void *a, void *b, u32 c) {
+asm void MI_CpuCopy8(const void *srcp, void *dstp, u32 size) {
     // Nothing to do for c = 0. An odd destination: merge the first byte into the halfword below it.
     cmp r2, #0
     bxeq lr
@@ -309,10 +309,10 @@ copyh_last_byte:
 
 #pragma thumb on
 
-// Clears the nine words at a.
+// Clears the nine words at pDest.
 // Not compiled code: it stores with `stmia r0!` and the list {r1, r2, r3}; in Thumb code the 1.2 compiler builds stm
 // only for block moves, which keep their data in r0 upward (docs/compiler.md, ldm/stm).
-asm void MemZero9Words(s32 *a) {
+asm void MI_Zero36B(void *pDest) {
     mov r1, #0
     mov r2, #0
     mov r3, #0
@@ -324,21 +324,21 @@ asm void MemZero9Words(s32 *a) {
 
 #pragma thumb off
 
-// Swaps a with the word at b in one instruction and returns the old word.
+// Swaps setData with the word at destp in one instruction and returns the old word.
 // Not compiled code: it is a word swp, which the 1.2 compiler never builds: the instruction's opcode number appears in
 // the compiler only as an argument to its error reporter, while the byte form has a code-generator use.
-asm s32 WordSwap(s32 a, s32 *b) {
+asm u32 MI_SwapWord(u32 setData, volatile u32 *destp) {
     swp r0, r0, [r1]
     bx lr
 }
 
-// Expands compressed data from a into b. The first word holds the expanded size in its upper 24 bits. Then each flag
+// Expands compressed data from srcp into destp. The first word holds the expanded size in its upper 24 bits. Then each flag
 // byte covers the next eight items, its top bit first: a clear bit is one literal byte; a set bit is a two-byte
 // back copy: copy (top nibble + 3) bytes from (low 12 bits + 1) bytes back in the output. Every output byte is written
 // with swpb.
 // Not compiled code: it tests bits with tst, which the 1.2 compiler never builds, and tests `subs r4, r4, #1` with lt,
 // where 1.2 folds a compare into a flag-setting subtract only for eq/ne/mi/pl (docs/compiler.md).
-asm void ExpandCompressed(const void *a, void *b) {
+asm void MI_UncompressLZ8(const void *srcp, void *destp) {
     // r2 = the number of bytes still to write.
     stmfd sp!, {r4, r5, r6, lr}
     ldr r5, [r0], #4

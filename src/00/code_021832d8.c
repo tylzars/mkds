@@ -201,8 +201,8 @@ void func_ov000_02184130(void) {
     LocateNclr(&gWiFiVSMatching->mWiFiVSMatchingSONclr, FindSceneFile("WiFi_VS_matching_s_o.nclr"));
     (reg_G2S_DB_BG3CNT) = ((reg_G2S_DB_BG3CNT) & 0x43) | 0x4400;
     zero = 0;
-    MemFillHalfwords(zero, gWiFiVSMatching->mUnk_d4, 0x1000);
-    MemCopyHalfwords(scrn->mData, gWiFiVSMatching->mUnk_d4, 0x800);
+    MIi_CpuClear16(zero, gWiFiVSMatching->mUnk_d4, 0x1000);
+    MIi_CpuCopy16(scrn->mData, gWiFiVSMatching->mUnk_d4, 0x800);
     CallQueueAppend(0x17, 0, chr->mData, chr->mDataSize);
     CallQueueAppend(0x1b, 0, gWiFiVSMatching->mUnk_d4, 0x1000);
     CallQueueAppend(0x1f, 0, pltt->mData, 0x80);
@@ -355,7 +355,7 @@ void AdvanceWiFiVSMatchingState1(void) {
             }
         }
         for (i = 0; i < gWiFiVSMatching->mOtherCount; i++) {
-            MemCopyHalfwords(func_021202b0(gWiFiVSMatching->mOtherIndices[i]), name, 0x14);
+            MIi_CpuCopy16(func_021202b0(gWiFiVSMatching->mOtherIndices[i]), name, 0x14);
             name[10] = 0;
             func_0212426c(1, data_ov000_021b0664[i], gWiFiVSMatching->mWiFiVSMatchingBnll, name,
                           gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingTable);

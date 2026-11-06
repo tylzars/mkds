@@ -121,13 +121,13 @@ void func_0203bfc4(Unk0203bfc4 *a) {
 }
 
 void func_0203bf04(Unk0203bf04_a *a, Unk0203bf04_b *b) {
-    MemCopy(a, b, 0x30);
-    MemCopy(a->mUnk_030, b->mUnk_230, 0xdcc);
+    MI_CpuCopy8(a, b, 0x30);
+    MI_CpuCopy8(a->mUnk_030, b->mUnk_230, 0xdcc);
     if (data_0217aa08->mUnk_04->mUnk_004 != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
-        MemCopy(data_0217aa08->mUnk_04->mUnk_008, b->mUnk_030, 0x200);
+        MI_CpuCopy8(data_0217aa08->mUnk_04->mUnk_008, b->mUnk_030, 0x200);
         b->mUnk_008 |= 2;
     } else {
-        MemFill(b->mUnk_030, 0, 0x200);
+        MI_CpuFill8(b->mUnk_030, 0, 0x200);
         b->mUnk_008 &= ~2;
     }
     b->mUnk_02f_0 = func_02056208();

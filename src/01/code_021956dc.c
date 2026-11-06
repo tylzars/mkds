@@ -127,8 +127,8 @@ void func_ov001_021975f4(u16 a) {
         func_02124224(0, pal, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable, 7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
-        MemFill(str, 0, 0x20);
-        MemCopyHalfwords(name, str, 0x14);
+        MI_CpuFill8(str, 0, 0x20);
+        MIi_CpuCopy16(name, str, 0x14);
         pal = data_ov001_021a6810[0];
         gRecordTAtt->mRecordTAttMTable[cnt + pal].mUnk_00 = 1;
         func_0212426c(0, pal, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
@@ -159,8 +159,8 @@ void func_ov001_021975f4(u16 a) {
         func_02124224(1, pal, gRecordTAtt->mRecordTAttSBnll, str, gRecordTAtt->mRecordTAttSBncl,
                       gRecordTAtt->mRecordTAttSTable, 7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
-        MemFill(str, 0, 0x20);
-        MemCopyHalfwords(name, str, 0x14);
+        MI_CpuFill8(str, 0, 0x20);
+        MIi_CpuCopy16(name, str, 0x14);
         pal = data_ov001_021a6810[a];
         gRecordTAtt->mRecordTAttSTable[cnt + pal].mUnk_00 = 1;
         func_0212426c(1, pal, gRecordTAtt->mRecordTAttSBnll, str, gRecordTAtt->mRecordTAttSBncl,
@@ -231,8 +231,8 @@ void func_ov001_021972f4(void) {
         func_02124224(0, 2, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable, 7);
         func_020600d0(data_ov001_021a6900[gRecordTAtt->mIndex], 5, name);
-        MemFill(str, 0, 0x20);
-        MemCopyHalfwords(name, str, 0x14);
+        MI_CpuFill8(str, 0, 0x20);
+        MIi_CpuCopy16(name, str, 0x14);
         gRecordTAtt->mRecordTAttMTable[cnt + 4].mUnk_00 = 1;
         func_0212426c(0, 4, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable);
@@ -395,7 +395,7 @@ void func_ov001_02196ecc(void) {
     gRecordTAtt->mNextState = 9;
     gRecordTAtt->mStateFrames = 0;
     buf[0] = 0;
-    MemFillHalfwords(buf[0], &buf[1], 0x200);
+    MIi_CpuClear16(buf[0], &buf[1], 0x200);
     p = gRecordTAtt;
     a = GetBmgEntry(p->mGhostMessages, data_ov001_021a6980[p->mIndex]);
     func_0212513c(a, GetBmgEntry(p->mRecordMessages, 10), &buf[1], 0x200);

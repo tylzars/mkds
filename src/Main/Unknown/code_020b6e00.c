@@ -213,8 +213,8 @@ void func_020b8624(void) {
                 for (i = 0; i < 0xd; i++) {
                     data_0217b3c4->mRaceBattleMNcerEntries[i] = func_02021f1c(a3, i);
                 }
-                MemCopyHalfwords(data_0217b3c4->mNclrNcgrPairs[3].mNclr->mData,
-                                 data_0217b3c4->mNclrNcgrPairs[0].mNclr->mData, 0x40);
+                MIi_CpuCopy16(data_0217b3c4->mNclrNcgrPairs[3].mNclr->mData,
+                              data_0217b3c4->mNclrNcgrPairs[0].mNclr->mData, 0x40);
                 func_020b46d0(data_0217b3c4->mNclrNcgrPairs[3].mNcgr->mData, 0, 0, 0x20, 4,
                               data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mData, 0, 0);
             } else {
@@ -240,8 +240,8 @@ void func_020b8624(void) {
                 func_02024340(&s2, 0, 0x18, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
                 DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData,
                               data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mDataSize);
-                MemCopyHalfwords(data_0217b3c4->mNclrNcgrPairs[10].mNclr->mData,
-                                 data_0217b3c4->mNclrNcgrPairs[0].mNclr->mData, 0x40);
+                MIi_CpuCopy16(data_0217b3c4->mNclrNcgrPairs[10].mNclr->mData,
+                              data_0217b3c4->mNclrNcgrPairs[0].mNclr->mData, 0x40);
                 func_020b46d0(data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData, 0, 0, 0x20, 4,
                               data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mData, 0, 0);
             }
@@ -252,8 +252,8 @@ void func_020b8624(void) {
             for (i = 0; i < 0x16; i++) {
                 data_0217b3c4->mRaceMrMNcerEntries[i] = func_02021f1c(a5, i);
             }
-            MemCopyHalfwords(data_0217b3c4->mNclrNcgrPairs[4].mNclr->mData,
-                             data_0217b3c4->mNclrNcgrPairs[0].mNclr->mData, 0x40);
+            MIi_CpuCopy16(data_0217b3c4->mNclrNcgrPairs[4].mNclr->mData, data_0217b3c4->mNclrNcgrPairs[0].mNclr->mData,
+                          0x40);
             func_020b46d0(data_0217b3c4->mNclrNcgrPairs[4].mNcgr->mData, 0, 0, 0x20, 4,
                           data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mData, 0, 0);
             a6 = NULL;
@@ -261,8 +261,8 @@ void func_020b8624(void) {
             for (i = 0; i < 8; i++) {
                 data_0217b3c4->mRaceGoalMrMNcerEntries[i] = func_02021f1c(a6, i);
             }
-            MemCopyHalfwords(data_0217b3c4->mNclrNcgrPairs[5].mNclr->mData,
-                             data_0217b3c4->mNclrNcgrPairs[1].mNclr->mData, 0x20);
+            MIi_CpuCopy16(data_0217b3c4->mNclrNcgrPairs[5].mNclr->mData, data_0217b3c4->mNclrNcgrPairs[1].mNclr->mData,
+                          0x20);
             func_020b46d0(data_0217b3c4->mNclrNcgrPairs[5].mNcgr->mData, 0, 0, 0x20, 8,
                           data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData, 0, 0);
             break;

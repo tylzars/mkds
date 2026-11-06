@@ -25,9 +25,9 @@ void G3X_InitTable(void) {
         MI_DmaFill32(data_0216f074[0], (void *) 0x4000360, 0, 0x60);
     } else {
         a = 0;
-        MemFillWords(a, (void *) 0x4000330, 0x10);
+        MIi_CpuClear32(a, (void *) 0x4000330, 0x10);
         b = 0;
-        MemFillWords(b, (void *) 0x4000360, 0x60);
+        MIi_CpuClear32(b, (void *) 0x4000360, 0x60);
     }
     for (i = 0; i < 32; i++) {
         *(vu32 *) 0x40004d0 = 0;

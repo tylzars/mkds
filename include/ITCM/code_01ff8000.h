@@ -38,8 +38,8 @@ void func_01ff9234(void);
 Unk01ff9048 *func_01ff92b4(void);
 void func_01ff92e0(Unk01ff9048 *a);
 
-// Calls MemFillWords with 0, passed through a stack offset of its own.
+// Calls MIi_CpuClear32 with 0, passed through a stack offset of its own.
 static inline void func_01ff8cf0_inline(u32 *p) {
     volatile u32 v = 0;
-    MemFillWords(v, p, 8);
+    MIi_CpuClear32(v, p, 8);
 }

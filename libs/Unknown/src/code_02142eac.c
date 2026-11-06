@@ -56,7 +56,7 @@ s32 WM_SetDCFData(Unk021425e8Func a, const void *b, void *c, u32 d) {
     }
     DC_StoreRange(c, d);
     SetCommandCallback(0x12, (u32) a);
-    MemCopy(b, w, 6);
+    MI_CpuCopy8(b, w, 6);
     r = SendCommandMessage(0x12, 4, w[0], w[1], c, d);
     if (r == 0) {
         return 2;
@@ -470,11 +470,11 @@ s32 WM_StartScanEx(Unk021425e8Func a, Unk021438f0 *b) {
     pk->mUnk_04 = b->mUnk_00;
     pk->mUnk_08 = b->mUnk_04;
     pk->mUnk_0a = b->mUnk_08;
-    MemCopy(b->mUnk_0a, pk->mUnk_0c, 6);
+    MI_CpuCopy8(b->mUnk_0a, pk->mUnk_0c, 6);
     pk->mUnk_12 = b->mUnk_10;
     pk->mUnk_36 = b->mUnk_34;
     pk->mUnk_14 = b->mUnk_12;
-    MemCopy(b->mUnk_14, pk->mUnk_16, 0x20);
+    MI_CpuCopy8(b->mUnk_14, pk->mUnk_16, 0x20);
     r = SendCommandMessage(0x26, 0);
     if (r == 0) {
         return 2;
@@ -514,9 +514,9 @@ s32 WM_StartConnectEx(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e) {
     pk->mUnk_00 = 0xc;
     pk->mUnk_04 = b;
     if (c != 0) {
-        MemCopy(c, pk->mUnk_08, 0x18);
+        MI_CpuCopy8(c, pk->mUnk_08, 0x18);
     } else {
-        MemFill(pk->mUnk_08, 0, 0x18);
+        MI_CpuFill8(pk->mUnk_08, 0, 0x18);
     }
     pk->mUnk_20 = d;
     pk->mUnk_26 = e;
@@ -622,7 +622,7 @@ s32 WM_ReadStatus(void *a) {
         return 6;
     }
     DC_InvalidateRange(p->mStatusArea, 0x7bc);
-    MemCopyWordsByBlock(p->mStatusArea, a, 0x7bc);
+    MIi_CpuCopyFast(p->mStatusArea, a, 0x7bc);
     return 0;
 }
 

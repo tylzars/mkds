@@ -170,7 +170,7 @@ void func_0212745c(void) {
 static inline void func_0212717c_inline(void *dst, u16 value) {
     vu16 v = value;
 
-    MemFillHalfwords(v, dst, 0x1000);
+    MIi_CpuClear16(v, dst, 0x1000);
 }
 
 s32 func_0212717c(s32 d) {

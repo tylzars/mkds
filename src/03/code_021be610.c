@@ -346,7 +346,7 @@ s32 func_ov003_021be96c(u8 *param_0, s32 param_1) {
                 if (i >= param_1) {
                     break;
                 }
-                MemCopyWords(func_ov000_021a6788(i), param_0, 0xc0);
+                MIi_CpuCopy32(func_ov000_021a6788(i), param_0, 0xc0);
                 i++;
                 param_0 += 0xc0;
             } while (i < a);
@@ -369,7 +369,7 @@ u32 func_ov003_021be860(u8 *param_0, u8 *param_1, s32 param_2, u32 param_3) {
             *b++ = *param_0++;
         }
     } else {
-        MemFill(b, 0xff, 6);
+        MI_CpuFill8(b, 0xff, 6);
         data_ov003_021d8c14 = data_ov000_021b07bc;
     }
     b = data_ov003_021d8cc4;
@@ -390,7 +390,7 @@ u32 func_ov003_021be860(u8 *param_0, u8 *param_1, s32 param_2, u32 param_3) {
             } while (i < 0x20);
         }
     } else {
-        MemFill(data_ov003_021d8cc4, 0xff, 0x20);
+        MI_CpuFill8(data_ov003_021d8cc4, 0xff, 0x20);
         data_ov003_021d8c18 = data_ov000_021b07c4;
     }
     if (data_ov003_021d8bfc == 3) {
@@ -448,11 +448,11 @@ u32 func_ov003_021be708(void *param_0, void *param_1, u32 param_2) {
 
     data_ov003_021d8c28 = param_2;
     if (param_1 != NULL) {
-        MemCopy(param_1, data_ov003_021d8bf8, 0x60);
+        MI_CpuCopy8(param_1, data_ov003_021d8bf8, 0x60);
     } else {
-        MemFill(data_ov003_021d8bf8, 0, 0x60);
+        MI_CpuFill8(data_ov003_021d8bf8, 0, 0x60);
     }
-    MemCopyWords(param_0, data_ov003_021d8c1c, 0xc0);
+    MIi_CpuCopy32(param_0, data_ov003_021d8c1c, 0xc0);
     if (func_ov003_021be9b8() == 1) {
         data_ov003_021d8bfc = 8;
         OS_RestoreInterrupts(a);

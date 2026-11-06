@@ -5,7 +5,7 @@
 // Lock word at a fixed address: mLockFlag is swapped to take the lock, mOwnerID holds the id of the owner, mExtension
 // is used by OS_InitLock.
 typedef struct OSLockWord {
-    /* 00 */ s32 mLockFlag;
+    /* 00 */ u32 mLockFlag;
     /* 04 */ u16 mOwnerID;
     /* 06 */ u16 mExtension;
 } OSLockWord;

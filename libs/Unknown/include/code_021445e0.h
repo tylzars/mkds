@@ -110,7 +110,7 @@ void ReceiveBlockSendResult(Unk02144920 *a);
 // 0: when it was 4 stores 1 and sends the previous block again (as SendBlockIfComplete does; a result of 7 stores
 // 0xffff and advances +0x80a, another result except 0 and 2 stores 5 and returns 1); when the block at +0x80c is not
 // the one at +0x80a it sets bit 0 of its first halfword, copies its 0x200 bytes to the third argument
-// (MemCopyHalfwords), stores the entry of +0x800 at +0x81a, advances +0x80c and the result will be 0; then calls
+// (MIi_CpuCopy16), stores the entry of +0x800 at +0x81a, advances +0x80c and the result will be 0; then calls
 // SendBlockIfComplete, and for a delivered block SetMemberData(object, 0, the second argument) and, when +0x818 is 0,
 // SendBlockIfComplete again (its second argument is 1 when the +0x86 halfword is not 0 and the first halfword of the
 // current block is 1). For another index: when it was 4 stores 1 and sends; otherwise, when +0x80c is not +0x808, sets

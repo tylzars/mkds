@@ -365,10 +365,10 @@ void func_02121190(u32 kartType, s32 b, s32 c) {
     Unk0217d384_08 *p;
 
     func_ov000_0219bbfc();
-    MemFill(&gWiFiSession->mKeys[0], 0, 0x18);
-    MemFill(&gWiFiSession->mKeys[1], 0, 0x18);
-    MemFill(&gWiFiSession->mKeys[2], 0, 0x18);
-    MemFill(&gWiFiSession->mKeys[3], 0, 0x18);
+    MI_CpuFill8(&gWiFiSession->mKeys[0], 0, 0x18);
+    MI_CpuFill8(&gWiFiSession->mKeys[1], 0, 0x18);
+    MI_CpuFill8(&gWiFiSession->mKeys[2], 0, 0x18);
+    MI_CpuFill8(&gWiFiSession->mKeys[3], 0, 0x18);
     gWiFiSession->mUnk_194e = 0;
     gWiFiSession->mUnk_194c = 0;
     gWiFiSession->mUnk_194d = 0;
@@ -377,7 +377,7 @@ void func_02121190(u32 kartType, s32 b, s32 c) {
     gWiFiSession->mKartCountCopy = 0;
     gWiFiSession->mKartMask = 0;
     gWiFiSession->mKartRemoveMask = 0;
-    MemFill(&gWiFiSession->mStep, 0, 0x60);
+    MI_CpuFill8(&gWiFiSession->mStep, 0, 0x60);
     gWiFiSession->mKeys[1].mValue = kartType;
     gWiFiSession->mUnk_194c = 4;
     if (b == 0) {
@@ -407,7 +407,7 @@ void RegisterKartKeysAndStart(void) {
     s32 eloLow;
 
     func_02120610();
-    MemFill(gWiFiSession->mPlayerRecords, 0, 0x910);
+    MI_CpuFill8(gWiFiSession->mPlayerRecords, 0, 0x910);
     func_02056464((Unk0217aa00_45c *) &gWiFiSession->mPlayerRecords[0].mUnk_00c);
     gWiFiSession->mKeys[0].mValue = gWiFiSession->mPlayerRecords[0].mRegion;
     gWiFiSession->mKeys[3].mValue = gWiFiSession->mPlayerRecords[0].mElo;
@@ -431,7 +431,7 @@ void RegisterKartKeysAndStart(void) {
     if (eloHigh > 0x2710) {
         eloHigh = 0x2710;
     }
-    MemFill(gKartFilterString, 0, 0x64);
+    MI_CpuFill8(gKartFilterString, 0, 0x64);
     if (gWiFiSession->mKeys[1].mValue == 1) {
         sprintf(gKartFilterString, "%s = '%s' and %s > %d and %s < %d", "kart_filter", "ds_mario_kart_product",
                 "kart_elo", eloLow, "kart_elo", eloHigh);
@@ -570,7 +570,7 @@ void KartKeysStartCallback(u32 a, s32 b) {
             d = gWiFiSession;
             i++;
         }
-        MemFill(d->mPlayerRecords, 0, 0x910);
+        MI_CpuFill8(d->mPlayerRecords, 0, 0x910);
         func_02056464((Unk0217aa00_45c *) &gWiFiSession->mPlayerRecords[func_ov000_0219bb50()].mUnk_00c);
         func_02123a48(0);
         gWiFiSession->mStartStatus = 3;
@@ -589,14 +589,14 @@ void func_021208e8(s32 a) {
 }
 
 void ResetWiFiSession(void) {
-    MemFill(gWiFiSession->mUnk_001c, 0, 0x200);
-    MemFill(gWiFiSession->mPlayerRecords, 0, 0x910);
-    MemFill(gWiFiSession->mUnk_0b2c, 0, 0xe24);
-    MemFill(&gWiFiSession->mStep, 0, 0x60);
-    MemFill(gWiFiSession->mUnk_19b0, 0, 0x350);
-    MemFill(gWiFiSession->mReceiveBuffers, 0, 0x110);
-    MemFill(gWiFiSession->mUnk_1e10, 0, 0x110);
-    MemFill(&gWiFiSession->mUnk_1f20, 0, 0x10);
+    MI_CpuFill8(gWiFiSession->mUnk_001c, 0, 0x200);
+    MI_CpuFill8(gWiFiSession->mPlayerRecords, 0, 0x910);
+    MI_CpuFill8(gWiFiSession->mUnk_0b2c, 0, 0xe24);
+    MI_CpuFill8(&gWiFiSession->mStep, 0, 0x60);
+    MI_CpuFill8(gWiFiSession->mUnk_19b0, 0, 0x350);
+    MI_CpuFill8(gWiFiSession->mReceiveBuffers, 0, 0x110);
+    MI_CpuFill8(gWiFiSession->mUnk_1e10, 0, 0x110);
+    MI_CpuFill8(&gWiFiSession->mUnk_1f20, 0, 0x10);
     gWiFiSession->mUnk_1f34 = FALSE;
     gWiFiSession->mUnk_1f38 = FALSE;
     gWiFiSession->mUnk_1f3c = 0;
@@ -605,7 +605,7 @@ void ResetWiFiSession(void) {
     gWiFiSession->mUnk_1f48 = 0;
     gWiFiSession->mUnk_1f4c = 0;
     gWiFiSession->mUnk_1f4d = 0;
-    MemFill(gWiFiSession->mPackedIndices, 0, 4);
+    MI_CpuFill8(gWiFiSession->mPackedIndices, 0, 4);
     gWiFiSession->mKartCount = 0;
     gWiFiSession->mStartKartCount = 0;
     gWiFiSession->mKartCountCopy = 0;

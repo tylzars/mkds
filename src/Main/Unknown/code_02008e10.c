@@ -29,7 +29,7 @@ s32 func_02009098(const u8 *a, Unk02008f00Func b) {
     for (; i < 0x10; i++) {
         u32 m = 1 << i;
         if ((v1 & m) == 0) {
-            MemCopyHalfwords(a, d->mUnk_10[i].mUnk_4c0, 0xc0);
+            MIi_CpuCopy16(a, d->mUnk_10[i].mUnk_4c0, 0xc0);
             data_0216fc40->mUnk_10[i].mUnk_4b3 = data_0216fc3c->mUnk_05;
             data_0216fc40->mUnk_00 |= (u16) m;
             func_02008a4c(i);

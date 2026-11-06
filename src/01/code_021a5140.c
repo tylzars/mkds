@@ -82,7 +82,7 @@ void InitEmblem(void) {
     func_ov001_021a6238(0x40, 0x10, 0x20, 0x80, 0x10);
     p = data_0217aa08->mUnk_04;
     if (p->mUnk_004) {
-        MemCopy(p->mUnk_008, gEmblem->mUnk_087c, 0x200);
+        MI_CpuCopy8(p->mUnk_008, gEmblem->mUnk_087c, 0x200);
         func_020ac454(gEmblem->mUnk_087c, gEmblem->mUnk_0c7c, func_ov001_02181268());
         func_ov001_02181124(gEmblem->mUnk_0c7c);
         func_ov001_02181098();

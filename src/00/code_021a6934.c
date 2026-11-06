@@ -112,7 +112,7 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
         OS_RestoreInterrupts(a);
         return -4;
     }
-    MemCopy(e, b->mUnk_0f00, f);
+    MI_CpuCopy8(e, b->mUnk_0f00, f);
     c = WM_SetDCFData(func_ov000_021a6944, d, b->mUnk_0f00, (u16) f);
     switch (c) {
         case 0:

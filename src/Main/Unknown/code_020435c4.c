@@ -191,7 +191,7 @@ void func_02044060(u32 a) {
     if (p != NULL) {
         return;
     }
-    MemFill(p, 0, 0x1000);
+    MI_CpuFill8(p, 0, 0x1000);
     p->mUnk_08_0 = 0;
 }
 

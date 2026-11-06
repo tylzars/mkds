@@ -56,9 +56,9 @@ void func_0204ad44(void) {
     Unk020f41c4_B *q;
 
     OS_GetOwnerInfo(&v);
-    MemFill(data_021759d0->mUnk_2a, 0, 0x14);
+    MI_CpuFill8(data_021759d0->mUnk_2a, 0, 0x14);
     data_021759d0->mUnk_3e = v.mUnk_18;
-    MemCopy(v.mUnk_04, data_021759d0->mUnk_2a, data_021759d0->mUnk_3e << 1);
+    MI_CpuCopy8(v.mUnk_04, data_021759d0->mUnk_2a, data_021759d0->mUnk_3e << 1);
     data_021759d0->mUnk_40 = v.mUnk_01;
     data_021759d0->mUnk_00 = 1;
     switch (v.mUnk_00) {

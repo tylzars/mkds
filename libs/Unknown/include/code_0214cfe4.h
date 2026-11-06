@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void MemFillHalfwords(u16 value, void *dst, s32 size);
-void MemCopyHalfwords(const void *src, void *dst, s32 size);
+void MIi_CpuClear16(u16 data, void *destp, s32 size);
+void MIi_CpuCopy16(const void *srcp, void *destp, s32 size);

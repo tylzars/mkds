@@ -209,7 +209,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     if (m == -1) {
         return -1;
     }
-    MemCopy(c, a + m * 12, 12);
+    MI_CpuCopy8(c, a + m * 12, 12);
     v = m;
     func_0205ee14(v, &k);
     if (n == FALSE) {
@@ -223,7 +223,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     } else {
         k.mUnk_22_1 = 0;
     }
-    MemCopy(b, k.mUnk_0e, 0x14);
+    MI_CpuCopy8(b, k.mUnk_0e, 0x14);
     k.mUnk_22_2 = e != 0;
     k.mUnk_22_0 = 1;
     func_0205ee74(v, &k);

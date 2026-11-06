@@ -25,7 +25,7 @@ void func_02024000(u8 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 g) {
 
     if (d == 8 && e == 8) {
         v = f;
-        MemFillWordsByBlock(v, a, g << 3);
+        MIi_CpuClearFast(v, a, g << 3);
         return;
     }
     if (g == 4) {
@@ -384,7 +384,7 @@ void func_02023944(Unk02023374 *a, u32 b) {
     v = b;
     n = a->mUnk_04 * a->mUnk_08;
     n *= (a->mUnk_0c * 0x40) / 8;
-    MemFillWordsByBlock(v, a->mUnk_00, n);
+    MIi_CpuClearFast(v, a->mUnk_00, n);
 }
 
 void func_02023764(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {

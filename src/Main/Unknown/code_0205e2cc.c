@@ -45,13 +45,13 @@ BOOL func_0205eca4(Unk0205ec14 *a, u8 b, Unk021141c8 *c) {
     if (d != a->mUnk_00) {
         return FALSE;
     }
-    MemCopy(&data_0217aa08->mUnk_20->mUnk_04[b], &e, 0x24);
+    MI_CpuCopy8(&data_0217aa08->mUnk_20->mUnk_04[b], &e, 0x24);
     if (e.mUnk_22_0 == 0 || e.mUnk_22_2 == 0) {
         return FALSE;
     }
     c->mUnk_200 = (a->mUnk_04.mUnk_004 & (1 << m)) != 0;
     if (c->mUnk_200 != 0) {
-        MemCopy(a->mUnk_04.mUnk_008[m], c, 0x200);
+        MI_CpuCopy8(a->mUnk_04.mUnk_008[m], c, 0x200);
     }
     return TRUE;
 }
@@ -121,7 +121,7 @@ void func_0205e900(void) {
                     CARD_WaitBackupAsync();
                 }
             } else {
-                MemFill(r, 0, 0xb00);
+                MI_CpuFill8(r, 0, 0xb00);
                 func_0205746c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2);
                 f = TRUE;
             }
@@ -132,7 +132,7 @@ void func_0205e900(void) {
                 if (t >= v1 && t < v2) {
                     x = t % 5;
                     r->mUnk_004 |= 1 << x;
-                    MemCopy((u8 *) &data_0217aa00->mUnk_045c[k] + 0x14, r->mUnk_008[x], 0x200);
+                    MI_CpuCopy8((u8 *) &data_0217aa00->mUnk_045c[k] + 0x14, r->mUnk_008[x], 0x200);
                 }
             }
             func_02057710(r, i);
@@ -194,7 +194,7 @@ void func_0205e67c(void) {
                     CARD_WaitBackupAsync();
                 }
             } else {
-                MemFill(r, 0, 0xb00);
+                MI_CpuFill8(r, 0, 0xb00);
                 func_0205746c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2);
             }
             v1 = i * 5;
@@ -205,7 +205,7 @@ void func_0205e67c(void) {
                 if (t >= v1 && t < v2) {
                     x = t % 5;
                     *q = *q | (1 << x);
-                    MemCopy((u8 *) GetWiFiSessionPlayerRecordData(k & 0xff) + 0x14, r->mUnk_008[x], 0x200);
+                    MI_CpuCopy8((u8 *) GetWiFiSessionPlayerRecordData(k & 0xff) + 0x14, r->mUnk_008[x], 0x200);
                 }
             }
             func_02057710(r, i);
@@ -262,7 +262,7 @@ static inline u8 func_0205e548_inline(void *a) {
     u8 i = 0;
     do {
         if (a != 0) {
-            MemCopy(&data_0217aa08->mUnk_20->mUnk_04[i], a, 0x24);
+            MI_CpuCopy8(&data_0217aa08->mUnk_20->mUnk_04[i], a, 0x24);
         }
         if (data_0217aa08->mUnk_20->mUnk_04[i].mUnk_22_0 != 0) {
             n = n + 1;

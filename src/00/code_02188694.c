@@ -7,7 +7,7 @@
 void func_ov000_021886fc(int param_1, void *param_2) {
     int v1;
     v1 = func_ov000_02188584(0x10);
-    MemCopyWords(param_2, ((u32 *) (u32) (v1 + param_1 * 0x100)), 0xf0);
+    MIi_CpuCopy32(param_2, ((u32 *) (u32) (v1 + param_1 * 0x100)), 0xf0);
     return;
 }
 

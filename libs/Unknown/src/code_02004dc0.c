@@ -47,7 +47,7 @@ void FS_ClearOverlayImage(Unk020055f0 *p) {
     b = p->mUnk_04;
     IC_InvalidateRange(b, a);
     DC_InvalidateRange(b, a);
-    MemFill(b + n, 0, a - n);
+    MI_CpuFill8(b + n, 0, a - n);
 }
 
 void FS_GetOverlayFileID(Unk02005814 *dst, Unk020055f0 *src) {
@@ -113,7 +113,7 @@ u32 FS_LoadOverlayInfo(Unk020055f0 *dst, u32 sel, u32 idx) {
         if (idx * 32 >= tab->mUnk_04) {
             return 0;
         }
-        MemCopy(tab->mUnk_00 + idx * 32, dst, 0x20);
+        MI_CpuCopy8(tab->mUnk_00 + idx * 32, dst, 0x20);
         dst->mUnk_20 = sel;
         FS_InitFile(&o);
         FS_GetOverlayFileID(&s, dst);
@@ -173,8 +173,8 @@ u32 FileCheckHmac(const u8 *expected, const u8 *data, u32 n) {
     u8 k[0x40];
     u32 i;
 
-    MemFill(d, 0, 0x14);
-    MemCopy(data_02161768, k, data_0216176c);
+    MI_CpuFill8(d, 0, 0x14);
+    MI_CpuCopy8(data_02161768, k, data_0216176c);
     Hash20Hmac(d, data, n, k, data_0216176c);
     for (i = 0; i < 0x14; i += 4) {
         if (*(u32 *) (d + i) != *(u32 *) (expected + i)) {
@@ -199,7 +199,7 @@ void FS_StartOverlay(Unk020055f0 *rec) {
             }
         }
         if (ok == 0) {
-            MemFill(rec->mUnk_04, 0, n);
+            MI_CpuFill8(rec->mUnk_04, 0, n);
             OS_Terminate();
             return;
         }

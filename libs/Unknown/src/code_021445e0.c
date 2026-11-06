@@ -193,7 +193,7 @@ int WM_StepDataSharing(Unk021450ec *p, void *a, Unk0214461c *b) {
         }
         if (p->mUnk_80c != p->mUnk_80a) {
             p->mUnk_000[p->mUnk_80c].mUnk_00 |= 1;
-            MemCopyHalfwords(&p->mUnk_000[p->mUnk_80c], b, 0x200);
+            MIi_CpuCopy16(&p->mUnk_000[p->mUnk_80c], b, 0x200);
             p->mUnk_81a = p->mUnk_800[p->mUnk_80c];
             p->mUnk_80c = (p->mUnk_80c + 1) & 3;
             f1 = 1;
@@ -220,7 +220,7 @@ int WM_StepDataSharing(Unk021450ec *p, void *a, Unk0214461c *b) {
             if ((p->mUnk_000[p->mUnk_80c].mUnk_00 & 1) == 0) {
                 p->mUnk_000[p->mUnk_80c].mUnk_00 |= 1;
             } else {
-                MemCopyHalfwords(&p->mUnk_000[p->mUnk_80c], b, 0x200);
+                MIi_CpuCopy16(&p->mUnk_000[p->mUnk_80c], b, 0x200);
                 p->mUnk_81a = p->mUnk_800[p->mUnk_80c];
                 p->mUnk_80c = (p->mUnk_80c + 1) & 3;
                 t = 1;
@@ -229,7 +229,7 @@ int WM_StepDataSharing(Unk021450ec *p, void *a, Unk0214461c *b) {
         }
         if (t != 0) {
             e7 = &p->mUnk_000[p->mUnk_80a].mUnk_04[0x1c];
-            MemCopyHalfwords(a, e7, p->mMemberDataSize);
+            MIi_CpuCopy16(a, e7, p->mMemberDataSize);
             rr = WM_SetMPDataToPortEx((UnkFunc *) ReceiveBlockSendResult, p, e7, p->mMemberDataSize, p->mMemberMask,
                                       p->mPort, 1);
             p->mUnk_80a = (p->mUnk_80a + 1) & 3;
@@ -376,7 +376,7 @@ void ReceiveChildPortMessage(Unk02144920 *a) {
         if ((v & (1 << g)) == 0) {
             return;
         }
-        MemCopyHalfwords(d, &p->mUnk_000[p->mUnk_808], n);
+        MIi_CpuCopy16(d, &p->mUnk_000[p->mUnk_808], n);
         p->mUnk_800[p->mUnk_808] = a->mUnk_1a >> 1;
         p->mUnk_808 = (p->mUnk_808 + 1) & 3;
     } else {
@@ -409,10 +409,10 @@ void SetMemberData(Unk021450ec *p, u32 bit, const void *src) {
     }
     dst = GetMemberDataInBlock(p, p->mMemberMask, p->mUnk_000[n].mUnk_04, bit);
     if (src != 0) {
-        MemCopyHalfwords(src, dst, p->mMemberDataSize);
+        MIi_CpuCopy16(src, dst, p->mMemberDataSize);
     } else {
         z = 0;
-        MemFillHalfwords(z, dst, p->mMemberDataSize);
+        MIi_CpuClear16(z, dst, p->mMemberDataSize);
     }
     s = OS_DisableInterrupts();
     p->mUnk_000[n].mUnk_00 &= ~m;
@@ -445,7 +445,7 @@ void SendBlockIfComplete(Unk021450ec *p, u32 f) {
             n2 = n1;
         }
         z = 0;
-        MemFillHalfwords(z, &p->mUnk_000[n2], 0x200);
+        MIi_CpuClear16(z, &p->mUnk_000[n2], 0x200);
         p->mUnk_000[n2].mUnk_00 = p->mMemberMask & (w | 1);
         p->mUnk_808 = n1;
         p->mUnk_000[i].mUnk_00 = p->mMemberMask;

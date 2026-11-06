@@ -334,9 +334,9 @@ s32 FileBuildPathString(Unk02003024 *a) {
     } else {
         n = 3;
     }
-    MemCopy(o, buf, n);
+    MI_CpuCopy8(o, buf, n);
     off += n;
-    MemCopy(":/", buf + off, 2);
+    MI_CpuCopy8(":/", buf + off, 2);
     FileEnterDirectoryById(&c, k);
     if (id != 0x10000) {
         c.mUnk_30.e.mUnk_00 = &e;
@@ -349,7 +349,7 @@ s32 FileBuildPathString(Unk02003024 *a) {
             } while (FileDispatchCommand(&c, 3) == 0);
         }
         n = e.mUnk_10 + 1;
-        MemCopy(e.mUnk_14, buf + len - n, n);
+        MI_CpuCopy8(e.mUnk_14, buf + len - n, n);
         len -= n;
     } else {
         *(buf + len - 1) = 0;
@@ -366,7 +366,7 @@ s32 FileBuildPathString(Unk02003024 *a) {
                 do {
                     if (e.mUnk_0c != 0 && e.mUnk_00.h.mUnk_04 == k) {
                         n = e.mUnk_10;
-                        MemCopy(e.mUnk_14, buf + len - n, n);
+                        MI_CpuCopy8(e.mUnk_14, buf + len - n, n);
                         len -= n;
                         break;
                     }

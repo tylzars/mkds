@@ -28,10 +28,10 @@ void func_ov003_021d1c3c(u32 f, u32 g, u8 *h) {
     // placeholder: the value is sent through the stack
     volatile u32 d = 0;
 
-    MemFillWords(d, e, 8);
+    MIi_CpuClear32(d, e, 8);
     for (i = 0; i < c; i++, b += 6, h += 8) {
-        MemCopyHalfwords(b, e, 6);
-        MemCopyWords(e, h, 8);
+        MIi_CpuCopy16(b, e, 6);
+        MIi_CpuCopy32(e, h, 8);
     }
 }
 

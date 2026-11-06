@@ -25,9 +25,9 @@ void func_02123a48(u32 a) {
     func_0211fe44();
     switch (a) {
         case 0:
-            MemFill(&gWiFiSession->mStep, 0, 0x60);
-            MemFill(gWiFiSession->mUnk_1e10, 0, 0x110);
-            MemFill(gWiFiSession->mReceiveBuffers, 0, 0x110);
+            MI_CpuFill8(&gWiFiSession->mStep, 0, 0x60);
+            MI_CpuFill8(gWiFiSession->mUnk_1e10, 0, 0x110);
+            MI_CpuFill8(gWiFiSession->mReceiveBuffers, 0, 0x110);
             for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
                 if (i != func_ov000_0219bb50()) {
                     SetPeerReceiveBuffer(i, &gWiFiSession->mPlayerRecords[i], 0x244);

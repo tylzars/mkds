@@ -261,7 +261,7 @@ void func_02089fa0(void) {
                                (Unk0214ad4c *) data_0217029c.mUnk_08);
             data_0217029c.mUnk_fc &= ~0x50;
             func_02010fe4(&d);
-            MemCopy9Words(&b, &data_0217029c.mUnk_bc);
+            MI_Copy36B(&b, &data_0217029c.mUnk_bc);
             data_0217029c.mUnk_fc &= ~0xa4;
             func_0201100c(&b.mUnk_00[3]);
             func_02011034();

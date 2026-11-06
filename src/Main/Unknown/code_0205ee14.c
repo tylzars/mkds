@@ -66,7 +66,7 @@ u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c) {
     }
     e = ((e & 0x3ffff) << 14) | ((f & 0x1f) << 9);
     *(u32 *) &d[0] = e | (g & 0x1ff);
-    MemCopy(&b->mUnk_04, &d[4], 4);
+    MI_CpuCopy8(&b->mUnk_04, &d[4], 4);
     *(u16 *) &d[8] = 0;
     func_0204b284(d, 10, 1);
     x = 0xc3;
@@ -181,7 +181,7 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
         func_02057624((u32) &e);
     }
     if (data_021759c0->mCurrentEntries[a].mPlayer.mName != NULL) {
-        MemCopy(data_021759c0->mCurrentEntries[a].mPlayer.mName, e.mUnk_0e, 0x14);
+        MI_CpuCopy8(data_021759c0->mCurrentEntries[a].mPlayer.mName, e.mUnk_0e, 0x14);
     }
     switch (c) {
         case 0:
@@ -556,12 +556,12 @@ void func_0205eeb0(void) {
 }
 
 void func_0205ee74(u32 a, Unk0217aa08_20_04 *b) {
-    MemCopy(b, &data_0217aa08->mUnk_20->mUnk_04[a], 0x24);
+    MI_CpuCopy8(b, &data_0217aa08->mUnk_20->mUnk_04[a], 0x24);
 }
 
 u32 func_0205ee14(u32 a, Unk0217aa08_20_04 *b) {
     if (b != NULL) {
-        MemCopy(&data_0217aa08->mUnk_20->mUnk_04[a], b, 0x24);
+        MI_CpuCopy8(&data_0217aa08->mUnk_20->mUnk_04[a], b, 0x24);
     }
     return data_0217aa08->mUnk_20->mUnk_04[a].mUnk_22_0 != 0;
 }

@@ -1,29 +1,29 @@
 #include "code_0214cfe4.h"
 
-// Copies size bytes from src to dst, a halfword at a time.
-void MemCopyHalfwords(const void *src, void *dst, s32 size) {
-    s32 i;
+// Copies size bytes from srcp to destp, a halfword at a time.
+void MIi_CpuCopy16(const void *srcp, void *destp, s32 size) {
+    s32 offset;
 
-    i = 0;
+    offset = 0;
     do {
-        if (i >= size) {
+        if (offset >= size) {
             break;
         }
-        *(u16 *) ((u32) dst + i) = *(const u16 *) ((u32) src + i);
-        i += 2;
+        *(u16 *) ((u32) destp + offset) = *(const u16 *) ((u32) srcp + offset);
+        offset += 2;
     } while (1);
 }
 
-// Stores value at dst, a halfword at a time, for size bytes.
-void MemFillHalfwords(u16 value, void *dst, s32 size) {
-    s32 i;
+// Stores data at destp, a halfword at a time, for size bytes.
+void MIi_CpuClear16(u16 data, void *destp, s32 size) {
+    s32 offset;
 
-    i = 0;
+    offset = 0;
     do {
-        if (i >= size) {
+        if (offset >= size) {
             break;
         }
-        *(u16 *) ((u32) dst + i) = value;
-        i += 2;
+        *(u16 *) ((u32) destp + offset) = data;
+        offset += 2;
     } while (1);
 }

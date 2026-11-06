@@ -44,7 +44,7 @@ u32 func_02008310(void *a, Unk02008188 *b) {
     ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d40 = a;
     v5 = (Unk020082b4 *) (data_0216fdac->mUnk_1788 + v3);
     func_020082b4(v5, b);
-    MemCopy((u8 *) a + 0x1c, v5->mUnk_c4, 0x20);
+    MI_CpuCopy8((u8 *) a + 0x1c, v5->mUnk_c4, 0x20);
     if (func_020080e8((Unk0200806c_b *) (data_0216fdac->mUnk_1d2c + v3), v5) == 0) {
         OS_RestoreInterrupts(v1);
         return 0;
@@ -86,7 +86,7 @@ void func_020082b4(Unk020082b4 *a, Unk02008188 *b) {
         v3++;
         v4++;
     }
-    MemCopy(v2, a->mUnk_3c, 0x88);
+    MI_CpuCopy8(v2, a->mUnk_3c, 0x88);
 }
 
 void func_02008188(Unk02008188 *a, u32 *b, Unk020082b4_0c *c, u32 *d) {
@@ -279,7 +279,7 @@ void func_02007ec4(Unk02007ec4 *a, u16 b, u16 c, u32 d, u32 e) {
     u32 v1;
     u32 v2;
     u16 *p = (u16 *) 0x027ffc40;
-    MemCopy(*p == 2 ? (void *) (p + 1) : (void *) 0, a, 0x3c);
+    MI_CpuCopy8(*p == 2 ? (void *) (p + 1) : (void *) 0, a, 0x3c);
     a->mUnk_3c = 0x10;
     a->mUnk_44 = a->mUnk_0c | (a->mUnk_0e << 16);
     a->mUnk_48 = a->mUnk_10;

@@ -109,7 +109,7 @@ void func_02029dcc(void *a, void *b, void *c) {
     func_02025abc(q, data_usa_021621a0, data_usa_021621b8, data_usa_021621d0, data_usa_021621e4, data_usa_021621f8,
                   NULL, FindSceneFile);
     func_02025a50(0, a, q);
-    MemCopyHalfwords(&data_0217aa08->mUnk_00->mUnk_0c, v2, 0x14);
+    MIi_CpuCopy16(&data_0217aa08->mUnk_00->mUnk_0c, v2, 0x14);
     v2[10] = 0;
     func_021243ac(a, 0, q->mUnk_14, 0x82, 0xd, 0x14, q->mUnk_08, q->mUnk_0c, q->mUnk_18, n);
     func_0212426c(0, 0, q->mUnk_14, v2, q->mUnk_0c, q->mUnk_18);

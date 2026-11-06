@@ -339,7 +339,7 @@ void FinishBuddySync(void) {
 
 void func_ov000_0219d288(Unk02152490 *a, s32 b, s32 c) {
     if (gWiFiBuddySync != NULL) {
-        MemFill(&a[b], 0, 12);
+        MI_CpuFill8(&a[b], 0, 12);
         if (gWiFiBuddySync->mEntryMergedCallback != NULL) {
             gWiFiBuddySync->mEntryMergedCallback(b, c, gWiFiBuddySync->mEntryMergedCallbackArg);
         }

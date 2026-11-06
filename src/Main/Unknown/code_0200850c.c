@@ -20,10 +20,10 @@ void func_0200850c(u32 *a, u32 b, u32 c, int d) {
     }
     if (b < c) {
         if (d != 0) {
-            MemFill(((u32 *) (u32) (a[2] + b)), (u8) 0, (u32) (c - b));
+            MI_CpuFill8(((u32 *) (u32) (a[2] + b)), (u8) 0, (u32) (c - b));
             return;
         }
-        MemCopy(((u16 *) (u32) (a[1] + b)), ((u32 *) (u32) (a[2] + b)), (u32) (c - b));
+        MI_CpuCopy8(((u16 *) (u32) (a[1] + b)), ((u32 *) (u32) (a[2] + b)), (u32) (c - b));
     }
 }
 

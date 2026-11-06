@@ -42,12 +42,12 @@ void GX_LoadTex(const void *a, u32 b, u32 c) {
             if (data_0216f074[0] != -1 && n > 0x30) {
                 MI_DmaCopy32(data_0216f074[0], a, dst, n);
             } else {
-                MemCopyWords(a, dst, n);
+                MIi_CpuCopy32(a, dst, n);
             }
             if (data_0216f074[0] != -1) {
                 MI_DmaCopy32Async(data_0216f074[0], (const u8 *) a + n, p, c - n, 0, 0);
             } else {
-                MemCopyWords((const u8 *) a + n, p, c - n);
+                MIi_CpuCopy32((const u8 *) a + n, p, c - n);
             }
             return;
         }
@@ -55,7 +55,7 @@ void GX_LoadTex(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
         MI_DmaCopy32Async(data_0216f074[0], a, dst, c, 0, 0);
     } else {
-        MemCopyWords(a, dst, c);
+        MIi_CpuCopy32(a, dst, c);
     }
 }
 
@@ -81,7 +81,7 @@ void GX_LoadTexPltt(const void *a, u32 b, u32 c) {
     if (data_0216f074[0] != -1) {
         MI_DmaCopy32Async(data_0216f074[0], a, p, c, 0, 0);
     } else {
-        MemCopyWords(a, p, c);
+        MIi_CpuCopy32(a, p, c);
     }
 }
 
@@ -120,7 +120,7 @@ void GX_LoadClearImageColor(const void *a, u32 b) {
     if (data_0216f074[0] != -1) {
         MI_DmaCopy32Async(data_0216f074[0], a, p, b, 0, 0);
     } else {
-        MemCopyWords(a, p, b);
+        MIi_CpuCopy32(a, p, b);
     }
 }
 
@@ -129,7 +129,7 @@ void GX_LoadClearImageDepth(const void *a, u32 b) {
     if (data_0216f074[0] != -1) {
         MI_DmaCopy32Async(data_0216f074[0], a, p, b, 0, 0);
     } else {
-        MemCopyWords(a, p, b);
+        MIi_CpuCopy32(a, p, b);
     }
 }
 

@@ -2,7 +2,7 @@
 #include "code_0214d018.h"
 
 void func_ov000_021abd2c(Unk021abca0 *a) {
-    MemFill(a, (u8) (0), (u32) (0x5c));
+    MI_CpuFill8(a, (u8) (0), (u32) (0x5c));
     a->mUnk_00 = ((u32) 0x67452301u);
     a->mUnk_04 = ((u32) 0xefcdab89u);
     a->mUnk_08 = ((u32) 0x98badcfeu);

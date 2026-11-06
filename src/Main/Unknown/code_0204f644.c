@@ -17,7 +17,7 @@ void func_0204f770(void) {
         v2 = HeapAllocAligned(data_0217aa00->mUnk_16a0[m].mUnk_80, v1, 0x20);
         *data_0217aa00->mUnk_16a0[m].mUnk_7c = v2;
     }
-    ExpandCompressed(data_0217aa00->mUnk_16a0[m].mUnk_74, v2);
+    MI_UncompressLZ8(data_0217aa00->mUnk_16a0[m].mUnk_74, v2);
     data_0217aa00->mUnk_16a0[m].mUnk_84_29 = 0;
 }
 

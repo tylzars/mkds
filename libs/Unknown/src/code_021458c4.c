@@ -93,7 +93,7 @@ int CopyFromRomPageBuffer(Unk02146154 *p) {
         if (n > d->mUnk_24) {
             n = d->mUnk_24;
         }
-        MemCopy((u8 *) p->mUnk_20 + m, (void *) d->mUnk_20, n);
+        MI_CpuCopy8((u8 *) p->mUnk_20 + m, (void *) d->mUnk_20, n);
         d->mUnk_1c += n;
         d->mUnk_20 += n;
         d->mUnk_24 -= n;
@@ -119,7 +119,7 @@ void StartRomPageDma(void) {
     Unk021458c4 *d;
 
     d = (Unk021458c4 *) (u32) &gAccessState;
-    StartCardDmaCopy(d->mUnk_28, (void *) 0x04100010, (void *) d->mUnk_20, 0x200);
+    MIi_CardDmaCopy32(d->mUnk_28, (void *) 0x04100010, (void *) d->mUnk_20, 0x200);
     WriteRomCommandBytes((d->mUnk_1c >> 8) | 0xb7000000, d->mUnk_1c << 24);
     reg_MI_MCCNT1 = gRomReadState.mUnk_04;
 }
@@ -388,7 +388,7 @@ void RunBackupTransfer(Unk021458c4 *p) {
             p->mUnk_00->mUnk_0c = p->mUnk_1c;
             p->mUnk_00->mUnk_10 = (u32) p->mUnk_120;
         } else {
-            MemCopy((void *) p->mUnk_1c, p->mUnk_120, n);
+            MI_CpuCopy8((void *) p->mUnk_1c, p->mUnk_120, n);
             DC_FlushRange(p->mUnk_120, n);
             DC_WaitWriteBufferEmpty();
             p->mUnk_00->mUnk_0c = (s32) p->mUnk_120;
@@ -402,7 +402,7 @@ void RunBackupTransfer(Unk021458c4 *p) {
                 break;
             }
         } else if (b == 0) {
-            MemCopy(p->mUnk_120, (void *) p->mUnk_20, n);
+            MI_CpuCopy8(p->mUnk_120, (void *) p->mUnk_20, n);
         }
         p->mUnk_1c += n;
         p->mUnk_20 += n;
@@ -507,7 +507,7 @@ void SetupBackupSpec(s32 a) {
     u32 x;
 
     p = gAccessState.mUnk_00;
-    MemFill(&p->mUnk_18, 0, 0x28);
+    MI_CpuFill8(&p->mUnk_18, 0, 0x28);
     p->mUnk_04 = a;
     if (a == 0) {
         return;
@@ -637,7 +637,7 @@ void InitBackupAndRomAccess(void) {
     MemFillWordsByBlock_inline(&gRequestBlock, 0x40);
     DC_FlushRange(&gRequestBlock, 0x40);
     if (*(u16 *) 0x027ffc40 != 2) {
-        MemCopy((void *) 0x027ffe00, (void *) 0x027ffa80, 0x160);
+        MI_CpuCopy8((void *) 0x027ffe00, (void *) 0x027ffa80, 0x160);
     }
     p->mUnk_10.mTail = 0;
     p->mUnk_10.mHead = p->mUnk_10.mTail;

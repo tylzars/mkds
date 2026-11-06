@@ -279,12 +279,12 @@ void ReceiveCommandReply(u32 a, Unk021425e8 *m, s32 c) {
                 data_0217ef20.mUnk_12 = v7;
                 data_0217ef20.mUnk_20 = v6;
                 data_0217ef20.mUnk_1a = 0xffff;
-                MemCopy(p5, data_0217ef20.mUnk_14, 6);
+                MI_CpuCopy8(p5, data_0217ef20.mUnk_14, 6);
                 if (p4 != 0) {
-                    MemCopyHalfwords(p4, data_0217ef20.mUnk_24, 0x18);
+                    MIi_CpuCopy16(p4, data_0217ef20.mUnk_24, 0x18);
                 } else {
                     z = 0;
-                    MemFillHalfwords(z, data_0217ef20.mUnk_24, 0x18);
+                    MIi_CpuClear16(z, data_0217ef20.mUnk_24, 0x18);
                 }
                 for (i = 0; i < 16; i++) {
                     data_0217ef20.mUnk_06 = i;

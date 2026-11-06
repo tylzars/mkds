@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_0214d000.h"
 
 void func_ov003_021d28b0(void *buffer) {
-    MemFill(buffer, 0, 0x40000);
+    MI_CpuFill8(buffer, 0, 0x40000);
     data_ov003_021da2c8 = ExpHeapCreate(buffer, 0x40000, 0);
     if (data_ov003_021da2c8 == NULL) {
         OS_Terminate();
@@ -33,7 +33,7 @@ void *func_ov003_021d285c(u32 size, s32 alignment) {
 void *func_ov003_021d283c(u32 size, s32 alignment) {
     void *block = func_ov003_021d285c(size, alignment);
 
-    MemFill(block, 0, size);
+    MI_CpuFill8(block, 0, size);
     return block;
 }
 

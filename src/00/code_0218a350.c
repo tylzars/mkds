@@ -43,7 +43,7 @@ void func_ov000_0218a57c(const u8 *a, u8 *b) {
     Hash16Init((u32) &c);
     Hash16Update(&c, a, 24);
     Hash16Final(d, &c);
-    MemCopy(d + 3, b, 13);
+    MI_CpuCopy8(d + 3, b, 13);
 }
 
 void func_ov000_0218a48c(const u8 *a, u8 *b) {
@@ -66,7 +66,7 @@ void func_ov000_0218a48c(const u8 *a, u8 *b) {
     for (k = 0; k < 13; k++) {
         b[k] ^= data_ov000_021b20ec[k];
     }
-    MemCopy(b, t, 13);
+    MI_CpuCopy8(b, t, 13);
     l = 0;
     p = t;
     q = data_ov000_021b0790;

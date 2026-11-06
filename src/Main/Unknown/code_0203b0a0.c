@@ -52,7 +52,7 @@ void func_0203b4c8(Unk02056bc0 *a) {
     a->mUnk_02 = 0;
     a->mUnk_03 = 0;
     a->mUnk_00 = 0;
-    MemCopy(data_0217aa08->mUnk_00->mUnk_0c, a->mUnk_04, 0x14);
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, a->mUnk_04, 0x14);
     for (i = 0; i < 4; i++) {
         func_0203b598(a, &data_0217b488->mUnk_98[i], a);
     }

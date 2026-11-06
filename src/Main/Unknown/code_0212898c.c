@@ -144,30 +144,30 @@ void func_0212a4f4(void) {
 void func_0212a4bc(void) {
     u16 a[12];
     a[0] = 0;
-    MemFillHalfwords(a[0], &a[1], 0x1a);
-    MemCopyHalfwords(&gKeyboard->mUnk_2c[0], &a[1], 0x18);
+    MIi_CpuClear16(a[0], &a[1], 0x1a);
+    MIi_CpuCopy16(&gKeyboard->mUnk_2c[0], &a[1], 0x18);
     func_020ab7a4(&a[1]);
 }
 
 void func_0212a484(void) {
     u16 a[12];
     a[0] = 0;
-    MemFillHalfwords(a[0], &a[1], 0x16);
-    MemCopyHalfwords(&gKeyboard->mUnk_2c[1], &a[1], 0x14);
+    MIi_CpuClear16(a[0], &a[1], 0x16);
+    MIi_CpuCopy16(&gKeyboard->mUnk_2c[1], &a[1], 0x14);
     func_020ab7a4(&a[1]);
 }
 
 void func_0212a448(void) {
     u16 a[12];
     a[0] = 0;
-    MemFillHalfwords(a[0], &a[1], 0x16);
-    MemCopyHalfwords(data_0217aa08->mUnk_00->mUnk_0c, &a[1], 0x14);
+    MIi_CpuClear16(a[0], &a[1], 0x16);
+    MIi_CpuCopy16(data_0217aa08->mUnk_00->mUnk_0c, &a[1], 0x14);
     func_020ab7a4(&a[1]);
 }
 
 void func_0212a410(void) {
     s32 i;
-    MemFill(&gKeyboard->mUnk_2c[2], 0, 0xd);
+    MI_CpuFill8(&gKeyboard->mUnk_2c[2], 0, 0xd);
     for (i = 0; i < 12; i++) {
         ((u8 *) &gKeyboard->mUnk_2c[2])[i] = gKeyboard->mUnk_2c[0].mUnk_00[i];
     }
@@ -257,7 +257,7 @@ void InitKeyboard(void *a, s32 b) {
     func_0212a604();
     for (i = 0; i < 2; i++) {
         d = 0;
-        MemFillHalfwords(d, &gKeyboard->mUnk_2c[i], 0x18);
+        MIi_CpuClear16(d, &gKeyboard->mUnk_2c[i], 0x18);
     }
     func_0212a724();
     func_0212a670();
@@ -476,7 +476,7 @@ void AdvanceKeyboardState2(void) {
     p = gKeyboard;
     q = &p->mUnk_2c[p->mKind];
     w = func_020ab798();
-    MemCopyHalfwords(w, q, 0x18);
+    MIi_CpuCopy16(w, q, 0x18);
     func_02129b60();
     if (v == 1 || (func_020ab8c4() == 1 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
         p = gKeyboard;
@@ -650,7 +650,7 @@ void AdvanceKeyboardState7(void) {
     p = gKeyboard;
     q = &p->mUnk_2c[p->mKind];
     w = func_020ab798();
-    MemCopyHalfwords(w, q, 0x18);
+    MIi_CpuCopy16(w, q, 0x18);
     func_021296b4();
     if (v == 5 || (func_020ab8c4() == 1 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
         p = gKeyboard;
@@ -822,8 +822,8 @@ void AdvanceKeyboardState10(void) {
                 gKeyboard->mNextState = 0xb;
             } else {
                 data_0217aa08->mUnk_00->mUnk_31_0 = 1;
-                MemFill(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
-                MemCopy(&p->mUnk_2c[1], data_0217aa08->mUnk_00->mUnk_0c, 0x14);
+                MI_CpuFill8(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
+                MI_CpuCopy8(&p->mUnk_2c[1], data_0217aa08->mUnk_00->mUnk_0c, 0x14);
                 func_02056d40();
                 func_02125ebc(0x21);
                 a = GetBmgEntry(gKeyboard->mCommonMessages, 0x10);

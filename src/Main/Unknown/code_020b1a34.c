@@ -74,7 +74,7 @@ void func_020b1a34(void) {
     }
     for (j = 1; j <= func_020b4d2c(); j++) {
         if (data_021759c0->mMode == MODE_TIME_ATTACK) {
-            MemCopy(&data_021759c0->mUnk_3ec[j - 1], &a, 4);
+            MI_CpuCopy8(&data_021759c0->mUnk_3ec[j - 1], &a, 4);
         }
         t[0].mUnk_00 += a.mUnk_02;
         t[0].mUnk_04 += a.mUnk_03;

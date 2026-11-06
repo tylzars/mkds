@@ -5,7 +5,7 @@
 #include "code_02152500.h"
 #include "00/code_0218f960.h"
 
-// Login machine, embedded in WiFiConnection at 0x84 (0x264 bytes = the MemFill of InitWiFiLogin), reached through
+// Login machine, embedded in WiFiConnection at 0x84 (0x264 bytes = the MI_CpuFill8 of InitWiFiLogin), reached through
 // gWiFiLogin and stepped by UpdateWiFiLogin in connection state 2. mState 1 waits for the HTTP reply that holds the
 // auth token and a second string; 2 to 4 run the GP connect with them (state 2: check the saved record's profile id,
 // make the socket, done; state 3 then 4: profile name check in func_ov000_0219c400, which can send the machine back to

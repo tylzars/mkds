@@ -69,7 +69,7 @@ u8 *func_ov003_021c27b4(void) {
 }
 
 static inline void func_ov003_021c25e0_inline(const void *s, void *d, s32 n) {
-    MemCopyHalfwords(s, d, n);
+    MIi_CpuCopy16(s, d, n);
 }
 
 void func_ov003_021c25e0(u32 a) {

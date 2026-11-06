@@ -133,7 +133,7 @@ void LocateAndQueueSelectBattleStage(void) {
     LocateNcer(&gSelectBattleStage->mSelectBattleStageSNcer, FindSceneFile("mg/select_battle_stage_s.nce.ncer"));
     LocateNclr(&nclrSO, FindSceneFile("mg/select_battle_stage_s_o.nclr"));
     z = 0;
-    MemFillHalfwords(z, gSelectBattleStage->mSelectBattleStageMNscrCopy, 0x1000);
+    MIi_CpuClear16(z, gSelectBattleStage->mSelectBattleStageMNscrCopy, 0x1000);
     CallQueueAppend(6, 0, ncgrMB->mData, ncgrMB->mDataSize);
     CallQueueAppend(10, 0, gSelectBattleStage->mSelectBattleStageMNscrCopy, 0x1000);
     CallQueueAppend(15, 0, nclrMB->mData, 0x180);

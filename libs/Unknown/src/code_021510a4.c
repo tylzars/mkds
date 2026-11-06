@@ -60,8 +60,8 @@ u32 func_02151640(const u8 *a, const u8 *b) {
     if (func_02151620(a) == 0) {
         return 0;
     }
-    MemCopy(a, &c[0], 4);
-    MemCopy(b, &c[1], 4);
+    MI_CpuCopy8(a, &c[0], 4);
+    MI_CpuCopy8(b, &c[1], 4);
     if ((c[0] | c[1]) == 0xfffffffe) {
         return 0;
     }
@@ -327,17 +327,17 @@ u8 *func_021510a4(const Unk021510a4 *a) {
     u32 c;
     u32 d;
     b = a->mUnk_08;
-    MemCopy(a, data_021804a0, 5);
+    MI_CpuCopy8(a, data_021804a0, 5);
     c = ((u32) (a->mUnk_00 >> 32) >> 8) & 7;
     c |= ((u32) b & 0x1f) << 3;
     data_021804a0[5] = c;
     b >>= 5;
-    MemCopy(&b, data_021804a0 + 6, 4);
+    MI_CpuCopy8(&b, data_021804a0 + 6, 4);
     d = (u32) (b >> 32) & 0x3f;
     d |= (a->mUnk_10 & 3) << 6;
     data_021804a0[10] = d;
     data_021804a0[11] = a->mUnk_10 >> 2;
-    MemCopy(&a->mUnk_12, data_021804a0 + 12, 2);
+    MI_CpuCopy8(&a->mUnk_12, data_021804a0 + 12, 2);
     return data_021804a0;
 }
 

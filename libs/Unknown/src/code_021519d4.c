@@ -106,7 +106,7 @@ s32 func_02151b38(u8 *a) {
     if (func_02151804(a) == 0) {
         return -10001;
     }
-    MemFill(b, 0, 0x10);
+    MI_CpuFill8(b, 0, 0x10);
     c = 0;
     d = a;
     e = a;
@@ -154,11 +154,11 @@ s32 func_02151b38(u8 *a) {
     }
     if (b[0] == 0) {
         func_021519d4(a, 0);
-        MemCopy(a + 0x1f0, a + 0xf0, 0xd);
+        MI_CpuCopy8(a + 0x1f0, a + 0xf0, 0xd);
         a[0xef] = a[0x1ef];
     } else if (b[1] == 0) {
         func_021519d4(a, 1);
-        MemCopy(a + 0xf0, a + 0x1f0, 0xd);
+        MI_CpuCopy8(a + 0xf0, a + 0x1f0, 0xd);
         a[0x1ef] = a[0xef];
     }
     func_02151708((u32) (a + 0xf0));
@@ -167,7 +167,7 @@ s32 func_02151b38(u8 *a) {
     }
     if (b[3] == 0) {
         vu16 z = 0;
-        MemFillHalfwords(z, a + 0x300, 0x100);
+        MIi_CpuClear16(z, a + 0x300, 0x100);
     }
     g = 0;
     h = 0;
@@ -231,7 +231,7 @@ s32 func_02151a00(u8 *a) {
     Unk021510a4 f;
     u8 *g;
     b = 0;
-    MemFillHalfwords(b, a, 0x400);
+    MIi_CpuClear16(b, a, 0x400);
     c = 0;
     d = a;
     for (; c < 3; c++) {
@@ -242,7 +242,7 @@ s32 func_02151a00(u8 *a) {
     g = func_021510a4(&f);
     e = a;
     for (c = 0; c < 2; c++) {
-        MemCopy(g, e + 0xf0, 0xe);
+        MI_CpuCopy8(g, e + 0xf0, 0xe);
         e += 0x100;
     }
     return 0;
@@ -253,7 +253,7 @@ void func_021519d4(u8 *a, u32 b) {
     u32 d;
     c = 0;
     d = b << 8;
-    MemFillHalfwords(c, a + d, 0x100);
+    MIi_CpuClear16(c, a + d, 0x100);
     (a + d)[0xe7] = 0xff;
 }
 

@@ -31,23 +31,23 @@ void Hash16Update(Hash16State *ctx, const u8 *src, u32 n) {
         if (n == 0) {
             return;
         }
-        MemCopy(src, ctx->mBlock + off, n);
+        MI_CpuCopy8(src, ctx->mBlock + off, n);
         return;
     }
-    MemCopy(src, ctx->mBlock + off, room);
+    MI_CpuCopy8(src, ctx->mBlock + off, room);
     Hash16Block(ctx);
     n -= room;
     blocks = n >> 6;
     p = src + room;
     for (; blocks > 0; blocks--) {
-        MemCopy(p, ctx->mBlock, 0x40);
+        MI_CpuCopy8(p, ctx->mBlock, 0x40);
         p += 0x40;
         Hash16Block(ctx);
     }
     if ((n & 0x3f) == 0) {
         return;
     }
-    MemCopy(p, ctx->mBlock, n & 0x3f);
+    MI_CpuCopy8(p, ctx->mBlock, n & 0x3f);
 }
 
 void Hash16Final(u8 *out, Hash16State *ctx) {
@@ -64,19 +64,19 @@ void Hash16Final(u8 *out, Hash16State *ctx) {
     n = (u32) (ctx->mByteCount & 0x3f);
     m = 0x40 - n;
     if (m < 8) {
-        MemFill(ctx->mBlock + n, 0, m);
+        MI_CpuFill8(ctx->mBlock + n, 0, m);
         Hash16Block(ctx);
         n = 0;
         m = 0x40;
     }
     if (m > 8) {
-        MemFill(ctx->mBlock + n, 0, m - 8);
+        MI_CpuFill8(ctx->mBlock + n, 0, m - 8);
     }
     ctx->mBitCountLow = lo;
     ctx->mBitCountHigh = hi;
     Hash16Block(ctx);
-    MemCopy(ctx, out, 0x10);
-    MemFill(ctx, 0, 0x58);
+    MI_CpuCopy8(ctx, out, 0x10);
+    MI_CpuFill8(ctx, 0, 0x58);
 }
 
 void Hash16Block(Hash16State *q) {

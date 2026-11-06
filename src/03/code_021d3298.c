@@ -63,16 +63,16 @@ void func_ov003_021d3298(void) {
 
     GX_SetBankForLCDC(0x1f3);
     a = 0;
-    MemFillWordsByBlock(a, (void *) 0x6800000, 0x40000);
+    MIi_CpuClearFast(a, (void *) 0x6800000, 0x40000);
     b = 0;
-    MemFillWordsByBlock(b, (void *) 0x6880000, 0x24000);
+    MIi_CpuClearFast(b, (void *) 0x6880000, 0x24000);
     GX_DisableBankForLCDC();
     c = 0x200;
-    MemFillWordsByBlock(c, (void *) 0x7000000, 0x400);
+    MIi_CpuClearFast(c, (void *) 0x7000000, 0x400);
     d = 0;
-    MemFillWordsByBlock(d, (void *) 0x5000000, 0x400);
+    MIi_CpuClearFast(d, (void *) 0x5000000, 0x400);
     e = 0x200;
-    MemFillWordsByBlock(e, (void *) 0x7000400, 0x400);
+    MIi_CpuClearFast(e, (void *) 0x7000400, 0x400);
     f = 0;
-    MemFillWordsByBlock(f, (void *) 0x5000400, 0x400);
+    MIi_CpuClearFast(f, (void *) 0x5000400, 0x400);
 }

@@ -213,7 +213,7 @@ void func_02022438(Unk02022438 *a) {
     volatile u16 z;
 
     z = 0;
-    MemFillHalfwords(z, &a->mUnk_04, 0x18);
+    MIi_CpuClear16(z, &a->mUnk_04, 0x18);
     a->mUnk_04 = 0x1000;
     a->mUnk_08 = 0x1000;
 }

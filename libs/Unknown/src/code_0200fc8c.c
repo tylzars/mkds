@@ -11,7 +11,7 @@ u16 data_0217027c;
 
 // Copies the 6-byte MAC address from the fixed system block into macAddress.
 void OS_GetMacAddress(void *macAddress) {
-    MemCopy((void *) 0x27ffcf4, macAddress, 6);
+    MI_CpuCopy8((void *) 0x27ffcf4, macAddress, 6);
 }
 
 // Fills info from the owner data block in the system area.
@@ -25,8 +25,8 @@ void OS_GetOwnerInfo(Unk0200fddc *info) {
     info->mUnk_03 = source[4];
     info->mUnk_18 = source[0x1a];
     info->mUnk_4e = source[0x50];
-    MemCopyHalfwords(source + 6, info->mUnk_04, 0x14);
-    MemCopyHalfwords(source + 0x1c, info->mUnk_1a, 0x34);
+    MIi_CpuCopy16(source + 6, info->mUnk_04, 0x14);
+    MIi_CpuCopy16(source + 0x1c, info->mUnk_1a, 0x34);
 }
 
 // Opens the reset channel once and installs OSi_CommonCallback on it.

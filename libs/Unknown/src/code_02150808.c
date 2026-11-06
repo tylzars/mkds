@@ -51,13 +51,13 @@ void Hash20Update(Hash20State *ctx, u8 *src, u32 n) {
     if (f != 0) {
         if (f + n >= 0x40) {
             k = 0x40 - f;
-            MemCopy(src, buf + f, k);
+            MI_CpuCopy8(src, buf + f, k);
             n -= k;
             src += k;
             data_0216f26c(ctx, buf, 0x40);
             ctx->mBufferLen = 0;
         } else {
-            MemCopy(src, buf + f, n);
+            MI_CpuCopy8(src, buf + f, n);
             ctx->mBufferLen += n;
             return;
         }
@@ -70,7 +70,7 @@ void Hash20Update(Hash20State *ctx, u8 *src, u32 n) {
             src += k;
         } else {
             do {
-                MemCopy(src, buf, 0x40);
+                MI_CpuCopy8(src, buf, 0x40);
                 src += 0x40;
                 data_0216f26c(ctx, buf, 0x40);
                 k -= 0x40;
@@ -81,11 +81,11 @@ void Hash20Update(Hash20State *ctx, u8 *src, u32 n) {
     if (n == 0) {
         return;
     }
-    MemCopy(src, buf, n);
+    MI_CpuCopy8(src, buf, n);
 }
 
 // Callers pass ctx and out only. The prologue pushes r0-r3 (the form 1.2 gives a variadic function), and the call
-// to MemFillWords at the end clears the pushed ctx.
+// to MIi_CpuClear32 at the end clears the pushed ctx.
 void Hash20Final(Hash20State *ctx, u8 *out, ...) {
     volatile u32 z;
     u32 *w;
@@ -156,7 +156,7 @@ void Hash20Final(Hash20State *ctx, u8 *out, ...) {
     out[19] = x;
     ctx->mBufferLen = 0;
     z = 0;
-    MemFillWords(z, &ctx, 4);
+    MIi_CpuClear32(z, &ctx, 4);
 }
 
 void func_02150994(Hash20State *ctx, u8 *data, int n) {

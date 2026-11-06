@@ -332,7 +332,7 @@ void func_020559ec(const void *a, s32 b, s32 c) {
     u8 m;
 
     m = data_0217aa00->mUnk_043d & c;
-    MemCopy(a, &data_0217aa00->mUnk_045c[b], 0x14);
+    MI_CpuCopy8(a, &data_0217aa00->mUnk_045c[b], 0x14);
     data_0217aa00->mUnk_043d = m | (1 << b);
 }
 

@@ -383,6 +383,6 @@ void func_0205d0e8(u8 a, u8 b) {
     s32 i;
 
     for (i = 0; i < 4; i++) {
-        MemCopy(&data_0217aa1c->mUnk_000[i][a], &data_0217aa1c->mUnk_000[i][b], 10);
+        MI_CpuCopy8(&data_0217aa1c->mUnk_000[i][a], &data_0217aa1c->mUnk_000[i][b], 10);
     }
 }

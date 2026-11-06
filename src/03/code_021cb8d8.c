@@ -110,7 +110,7 @@ void func_ov003_021cbaa0(void) {
     s32 a;
     Unk02188868 b;
     Unk021cd5e0_400 *c = func_ov003_021cdb6c();
-    MemCopyWords(data_ov003_021d6620, &b, 0xc);
+    MIi_CpuCopy32(data_ov003_021d6620, &b, 0xc);
     func_ov003_021c20dc(NULL, &a);
     if (a == 2) {
         b.mUnk_0a = 4;
@@ -182,8 +182,8 @@ void func_ov003_021cb9c8(void) {
 void func_ov003_021cb948(void) {
     u32 a = func_ov003_021cd4dc();
     if (func_ov000_02188720() != 0) {
-        MemCopy((const void *) func_0215109c(), (void *) (a + 0xf0), 0xe);
-        MemCopy((const void *) func_0215109c(), (void *) (a + 0x1f0), 0xe);
+        MI_CpuCopy8((const void *) func_0215109c(), (void *) (a + 0xf0), 0xe);
+        MI_CpuCopy8((const void *) func_0215109c(), (void *) (a + 0x1f0), 0xe);
         func_ov003_021beecc();
         func_ov003_021d2168(0);
         func_ov003_021d272c(0, 0x15);

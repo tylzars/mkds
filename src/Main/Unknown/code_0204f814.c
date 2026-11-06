@@ -72,7 +72,7 @@ BOOL func_0204ff14(u16 a, void *b) {
     }
     if (t->mUnk_00ac[a].mUnk_dc_0 != 0) {
         if (b != NULL) {
-            MemCopy(t->mUnk_00ac[a].mUnk_c6, b, 0x14);
+            MI_CpuCopy8(t->mUnk_00ac[a].mUnk_c6, b, 0x14);
         }
         r = TRUE;
     }
@@ -131,13 +131,13 @@ s32 func_0204fcec(u16 a, void *b) {
                 p = func_02007e38(a);
                 if ((data_0217aa00->mUnk_1696 & (1 << a)) != 0 && p != NULL) {
                     if (b != NULL) {
-                        MemCopy((u8 *) p + 2, b, 0x14);
+                        MI_CpuCopy8((u8 *) p + 2, b, 0x14);
                     }
                     r = TRUE;
                 }
             } else if ((data_0217aa00->mUnk_0044.mUnk_43 & (1 << a)) != 0) {
                 if (b != NULL) {
-                    MemCopy(&data_0217aa00->mUnk_045c[a], b, 0x14);
+                    MI_CpuCopy8(&data_0217aa00->mUnk_045c[a], b, 0x14);
                 }
                 r = TRUE;
             }
@@ -146,7 +146,7 @@ s32 func_0204fcec(u16 a, void *b) {
             r = FALSE;
             if ((data_0217aa00->mUnk_043d & (1 << a)) != 0) {
                 if (b != NULL) {
-                    MemCopy(&data_0217aa00->mUnk_045c[a], b, 0x14);
+                    MI_CpuCopy8(&data_0217aa00->mUnk_045c[a], b, 0x14);
                 }
                 r = TRUE;
             }
@@ -165,7 +165,7 @@ void func_0204fb40(s32 a) {
     u64 y;
 
     q = data_0217aa00->mUnk_0018;
-    MemCopyWords(data_02154788, q, 0x40);
+    MIi_CpuCopy32(data_02154788, q, 0x40);
     e = data_0217aa00->mUnk_0044.mUnk_38;
     e->mUnk_0e.mUnk_07_0 = 0;
     e->mUnk_0e.mUnk_07_1 = 0;
@@ -207,10 +207,10 @@ void func_0204f938(Unk0217aa08_14 *a) {
     u64 y;
 
     q = data_0217aa00->mUnk_0018;
-    MemCopyWords(data_02154788, q, 0x40);
+    MIi_CpuCopy32(data_02154788, q, 0x40);
     e = data_0217aa00->mUnk_0044.mUnk_38;
     e->mUnk_0e.mUnk_07_0 = 1;
-    MemCopy(a->mUnk_0c, e, 0x14);
+    MI_CpuCopy8(a->mUnk_0c, e, 0x14);
     e->mUnk_0e.mUnk_07_1 = (u8) a->mUnk_04_4;
     e->mUnk_18_0 = a->mUnk_04_0;
     e->mUnk_18_4 = (u8) func_0204684c(a->mUnk_04_10);

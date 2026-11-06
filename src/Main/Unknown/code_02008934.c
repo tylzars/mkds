@@ -59,7 +59,7 @@ void func_02008c08(u32 a) {
     if (p + n > v1) {
         return;
     }
-    MemCopyHalfwords(&data_0216fc3c->mUnk_0e, p, n);
+    MIi_CpuCopy16(&data_0216fc3c->mUnk_0e, p, n);
     e->mUnk_4b2 = data_0216fc3c->mUnk_04;
     e->mUnk_580 |= 1 << data_0216fc3c->mUnk_0a;
     e->mUnk_584 = (1 << data_0216fc3c->mUnk_0b) - 1;
@@ -81,7 +81,7 @@ void func_02008aa0(u32 a) {
             for (; i < 0xf; i++) {
                 if (data_0216fc3c->mUnk_0e & (2 << i)) {
                     v1 = z;
-                    MemFillHalfwords(v1, p, 0x16);
+                    MIi_CpuClear16(v1, p, 0x16);
                 }
                 p += 0x16;
             }
@@ -89,7 +89,7 @@ void func_02008aa0(u32 a) {
             data_0216fc40->mUnk_04 &= ~(1 << a);
         } else {
             vu16 v2 = 0;
-            MemFillHalfwords(v2, e->mUnk_35e, 0x14a);
+            MIi_CpuClear16(v2, e->mUnk_35e, 0x14a);
             e->mUnk_588 = 0;
             data_0216fc40->mUnk_04 &= ~(1 << a);
         }
@@ -107,7 +107,7 @@ void func_02008aa0(u32 a) {
     for (j = 0; j < 4; j++) {
         u32 n = data_0216fc3c->mUnk_10[j].mUnk_00_4;
         if (n != 0) {
-            MemCopyHalfwords(&data_0216fc3c->mUnk_10[j], &e->mUnk_35e[(n - 1) * 0x16], 0x16);
+            MIi_CpuCopy16(&data_0216fc3c->mUnk_10[j], &e->mUnk_35e[(n - 1) * 0x16], 0x16);
             e->mUnk_588 |= 1 << n;
         }
     }
@@ -141,7 +141,7 @@ void func_020089d0(u32 a) {
     data_0216fc40->mUnk_02 &= ~m;
     data_0216fc40->mUnk_04 &= ~m;
     v1 = 0;
-    MemFillHalfwords(v1, &data_0216fc40->mUnk_10[a], sizeof(Unk02008934));
+    MIi_CpuClear16(v1, &data_0216fc40->mUnk_10[a], sizeof(Unk02008934));
 }
 
 void func_0200895c(u32 a) {
@@ -154,7 +154,7 @@ void func_0200895c(u32 a) {
     data_0216fc40->mUnk_10[a].mUnk_588 = 0;
     data_0216fc40->mUnk_10[a].mUnk_58c = 0;
     v1 = 0;
-    MemFillHalfwords(v1, &data_0216fc40->mUnk_10[a], 0x4c0);
+    MIi_CpuClear16(v1, &data_0216fc40->mUnk_10[a], 0x4c0);
 }
 
 Unk02008934 *func_02008934(u32 a) {

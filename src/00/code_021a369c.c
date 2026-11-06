@@ -42,7 +42,7 @@ void *func_ov000_021a369c(u32 a, void *b, u32 c, u32 d, u32 e) {
         return NULL;
     }
     if (b != NULL) {
-        MemCopy(b, v1, d);
+        MI_CpuCopy8(b, v1, d);
         (*(UnkWordFunc *) (*(u32 *) &data_ov000_021b5dec))(a, b, c);
     }
     return v1;

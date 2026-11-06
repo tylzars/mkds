@@ -13,7 +13,7 @@
 void func_ov003_021cca30(const void *b) {
     Unk021da25c *a = func_ov003_021d283c(0x608, 4);
     data_ov003_021da25c = a;
-    MemCopyWordsByBlock(b, a->mUnk_004, 0x600);
+    MIi_CpuCopyFast(b, a->mUnk_004, 0x600);
     data_ov003_021da25c->mUnk_000 = func_ov003_021d3544(1, func_ov003_021cc97c, NULL, 0x78);
 }
 
@@ -33,7 +33,7 @@ void func_ov003_021cc9c0(int a, int b, int c, int d) {
     v2 = 0;
     if (d > 0) {
         do {
-            MemCopyHalfwords((const void *) a, (void *) v1, (u32) (c << 1));
+            MIi_CpuCopy16((const void *) a, (void *) v1, (u32) (c << 1));
             v2 = v2 + 1;
             a = a + 0x40;
             v1 = v1 + 0x40;
@@ -56,7 +56,7 @@ void func_ov003_021cc948(u8 *a, u32 b, u32 c) {
 }
 
 void func_ov003_021cc924(u32 a) {
-    MemCopyHalfwords(((const void **) data_ov003_021da260)[0], ((void **) data_ov003_021da260)[1], 0x20);
+    MIi_CpuCopy16(((const void **) data_ov003_021da260)[0], ((void **) data_ov003_021da260)[1], 0x20);
     func_ov003_021d34c8(1, a);
 }
 
@@ -66,7 +66,7 @@ void func_ov003_021cc900(u32 a) {
 }
 
 void func_ov003_021cc8d4(u32 a) {
-    MemCopyHalfwords((const void *) ((*(u32 *) &data_ov003_021da260)), (void *) (((u32) 0x05000000u)),
-                     (u32) (((u32) 0x00000200u)));
+    MIi_CpuCopy16((const void *) ((*(u32 *) &data_ov003_021da260)), (void *) (((u32) 0x05000000u)),
+                  (u32) (((u32) 0x00000200u)));
     func_ov003_021d34c8(1, a);
 }

@@ -80,7 +80,7 @@ void InitCartridgeHeaderCopy(void) {
     }
     s->mUnk_06 = d->mHeaderTailCopy.mUnk_30;
     s->mIdWord = d->mHeaderTailCopy.mUnk_2c;
-    MemCopyWords((void *) 0xffff0020, gCartridgeHeaderCopy.mUnk_04, 0x9c);
+    MIi_CpuCopy32((void *) 0xffff0020, gCartridgeHeaderCopy.mUnk_04, 0x9c);
     DC_FlushAll();
     SendTag13WordUntilAccepted(((((u32) &gCartridgeHeaderCopy - 0x02000000) >> 5) << 6) | 1);
     while (gCartridgeState.mReplyReceived != 1) {

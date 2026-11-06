@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void MemCopy12WordsToOneAddress(const void *a, void *b);
-void MemCopy16WordsToOneAddress(const void *a, void *b);
+void GX_SendFifo48B(const void *pSrc, void *pDest);
+void GX_SendFifo64B(const void *pSrc, void *pDest);

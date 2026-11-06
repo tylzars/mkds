@@ -30,7 +30,7 @@ u32 func_0200b610(u32 a) {
     func_0200c0ac((u32) data_0216fde8->mUnk_05a0);
     func_0200c090((u32) func_0200b43c);
     func_0200ba44(1, 0);
-    MemCopy(v1->mUnk_4c0, data_0216fde8->mUnk_04c0, 0xc0);
+    MI_CpuCopy8(v1->mUnk_4c0, data_0216fde8->mUnk_04c0, 0xc0);
     func_0200c008(data_0216fde8->mUnk_04c0);
     return 1;
 }
@@ -172,7 +172,7 @@ void func_0200b200(void) {
             v2.mUnk_00 = data_0216fde8->mUnk_5f08;
             v2.mUnk_1a = 1;
             v2.mUnk_1c = data_0216fde8->mUnk_5f0c;
-            MemCopy(data_0216fde8->mUnk_05c4, v2.mUnk_04, 0x16);
+            MI_CpuCopy8(data_0216fde8->mUnk_05c4, v2.mUnk_04, 0x16);
             v1.mUnk_00 = 7;
             p = &v1.mUnk_00;
             p += 3;

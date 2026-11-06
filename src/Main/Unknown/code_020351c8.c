@@ -137,7 +137,7 @@ void func_02035b78(void) {
     f = GetBmgEntry(data_02174e68->mUnk_84, 0);
     g = GetBmgEntry(data_02174e68->mUnk_84, 1);
     func_0202dc68(data_02174e68->mUnk_80 + func_0202ddb0(), y);
-    MemCopyHalfwords(y, w, 0x14);
+    MIi_CpuCopy16(y, w, 0x14);
     w[10] = 0;
     func_0212513c(w, e, h, 0x100);
     func_02125ed0(0, -1);
@@ -177,7 +177,7 @@ void func_02035a9c(void) {
     n = func_0202ddb0() + data_02174e68->mUnk_80;
     func_0202dcf4(n, &x);
     func_0202dc68(n, y);
-    MemCopyHalfwords(y, w, 0x14);
+    MIi_CpuCopy16(y, w, 0x14);
     w[10] = 0;
     d = func_0202dbe8(n);
     e = func_0202db68(n);

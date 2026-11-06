@@ -97,7 +97,7 @@ void func_0212b09c(void) {
     value0 = (value0) + 68u;
     value1 = 0u;
     value2 = 0x1400u;
-    MemFill((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, (u8) value1, value2);
 }
 #pragma thumb off
 
@@ -113,7 +113,7 @@ void *func_0212b090(void) {
 void func_0212b064(void) {
     volatile u16 a;
     a = 0;
-    MemFillHalfwords(a, data_0217d408->mUnk_1444, 0x600);
+    MIi_CpuClear16(a, data_0217d408->mUnk_1444, 0x600);
 }
 
 void *func_0212afac(void) {
@@ -183,7 +183,7 @@ void func_0212ae80(void) {
 void func_0212ae2c(void) {
     u16 a[11];
     a[0] = 0;
-    MemFillHalfwords(a[0], &a[1], 0x14);
+    MIi_CpuClear16(a[0], &a[1], 0x14);
     func_02124fac(func_021205f4(), &a[1]);
     func_0212513c(&a[1], data_0217d408->mUnk_0008, data_0217d408->mUnk_1444, 0x600);
     data_0217d408->mUnk_0008 = data_0217d408->mUnk_1444;
@@ -229,7 +229,7 @@ void func_0212abdc(void *a, void *b) {
     Unk0217d3fc_00_00 *q;
     data_0217d404 = HeapAlloc(a, 0x11c);
     data_0217d404->mUnk_038 = b;
-    MemFill(data_0217d404->mUnk_03c, 0, 0x20);
+    MI_CpuFill8(data_0217d404->mUnk_03c, 0, 0x20);
     data_0217d404->mUnk_024 = 0;
     for (i = 0; i < 5; i++) {
         data_0217d404->mUnk_000[i] = 0;
@@ -372,8 +372,8 @@ void func_0212a920(void) {
     for (i = 0; i < 2; i++) {
         v = data_0217d404->mUnk_014[i];
         if (data_0217d404->mUnk_024 < 0x69 || (u32) v <= 1) {
-            MemCopyHalfwords(&data_0217d404->mUnk_10c[i],
-                             &data_0217d404->mUnk_038->mUnk_00[data_0217d404->mUnk_038->mUnk_400], 6);
+            MIi_CpuCopy16(&data_0217d404->mUnk_10c[i],
+                          &data_0217d404->mUnk_038->mUnk_00[data_0217d404->mUnk_038->mUnk_400], 6);
             data_0217d404->mUnk_038->mUnk_400++;
         }
     }

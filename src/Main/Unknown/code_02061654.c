@@ -726,7 +726,7 @@ BOOL func_020616c0(void *v, void *b) {
     if (a->mUnk_08_0 != 1) {
         return FALSE;
     }
-    MemCopy(a->mUnk_0c, b, 0x14);
+    MI_CpuCopy8(a->mUnk_0c, b, 0x14);
     return TRUE;
 }
 

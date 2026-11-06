@@ -351,7 +351,7 @@ s32 G3X_GetClipMtx(void *a) {
     if (*(vu32 *) 0x4000600 & 0x8000000) {
         return -1;
     }
-    MemCopy16Words((const void *) 0x4000640, a);
+    MI_Copy64B((const void *) 0x4000640, a);
     return 0;
 }
 
@@ -359,10 +359,10 @@ s32 G3X_GetVectorMtx(void *a) {
     if (*(vu32 *) 0x4000600 & 0x8000000) {
         return -1;
     }
-    MemCopy9Words((const void *) 0x4000680, a);
+    MI_Copy36B((const void *) 0x4000680, a);
     return 0;
 }
 
 void G3X_SetFogTable(const void *a) {
-    MemCopy8Words(a, (void *) 0x4000360);
+    MI_Copy32B(a, (void *) 0x4000360);
 }

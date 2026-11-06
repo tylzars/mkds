@@ -55,7 +55,7 @@ void FreeHttpBuffer(Http *a, HttpBuffer *b) {
     if (b->mStart != NULL) {
         a->mFree(data_ov000_021b1280, b->mStart, 0);
     }
-    MemFill(b, 0, 0x10);
+    MI_CpuFill8(b, 0, 0x10);
 }
 
 u32 GrowHttpBuffer(Http *a, HttpBuffer *b, int c) {
@@ -67,7 +67,7 @@ u32 GrowHttpBuffer(Http *a, HttpBuffer *b, int c) {
     if (v1 == NULL) {
         return 0;
     }
-    MemCopy(b->mStart, v1, b->mSize);
+    MI_CpuCopy8(b->mStart, v1, b->mSize);
     a->mFree(NULL, b->mStart, 0);
     if (v1 == NULL) {
         return 0;
@@ -132,7 +132,7 @@ BOOL func_ov000_021866fc(Unk021868a4Entry *a, s32 b, s32 c, const char *d) {
     g.mEntries = a;
     g.mCapacity = b;
     g.mCount = 0;
-    MemFill(a, 0, b * 8);
+    MI_CpuFill8(a, 0, b * 8);
     e = strstr(d, data_ov000_021b1230);
     if (e == NULL) {
         return FALSE;
@@ -253,9 +253,9 @@ s32 func_ov000_02186560(Unk02186560 *a, Http *b) {
         return 2;
     }
     data_ov000_021b4c90 = c;
-    MemFill(c, 0, 0x13e0);
+    MI_CpuFill8(c, 0, 0x13e0);
     data_ov000_021b4c90->mUnk_2f8 = b;
-    MemFill(&data_ov000_021b4c90->mUnk_008, 0, 0x1c4);
+    MI_CpuFill8(&data_ov000_021b4c90->mUnk_008, 0, 0x1c4);
     data_ov000_021b4c90->mUnk_008 = -1;
     data_ov000_021b4c90->mUnk_1cc = *a;
     data_ov000_021b4c90->mUnk_1cc.mUnk_00[0x14] = 0;
@@ -324,9 +324,9 @@ s32 func_ov000_021863cc(void) {
 void func_ov000_0218635c(s32 *a) {
     s32 b;
     if (data_ov000_021b4c90 == NULL) {
-        MemFill(a, 0, 0x1c4);
+        MI_CpuFill8(a, 0, 0x1c4);
     }
-    MemCopy(&data_ov000_021b4c90->mUnk_008, a, 0x1c4);
+    MI_CpuCopy8(&data_ov000_021b4c90->mUnk_008, a, 0x1c4);
     b = *a;
     if (b >= 0) {
         if (b < 0x4e20 || b >= 0x7530) {
@@ -578,18 +578,18 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
         OS_RestoreInterrupts(h);
         return 3;
     }
-    MemCopy(i, g.mUnk_08, 6);
-    MemFill(v, 0, 0x21);
+    MI_CpuCopy8(i, g.mUnk_08, 6);
+    MI_CpuFill8(v, 0, 0x21);
     j = func_ov000_021a6abc((u16 *) &g);
     if (j == NULL) {
         OS_RestoreInterrupts(h);
         return 3;
     }
-    MemCopy(j, v, g.mUnk_00);
+    MI_CpuCopy8(j, v, g.mUnk_00);
     OS_RestoreInterrupts(h);
-    MemCopy((const void *) 0x27ffe0c, g.mUnk_0e, 4);
+    MI_CpuCopy8((const void *) 0x27ffe0c, g.mUnk_0e, 4);
     g.mUnk_0e[4] = 0;
-    MemCopy((const void *) 0x27ffe10, g.mUnk_13, 2);
+    MI_CpuCopy8((const void *) 0x27ffe10, g.mUnk_13, 2);
     g.mUnk_13[2] = 0;
     l = g.mUnk_02;
     for (k = 0; k < 6; l++, k++) {
@@ -601,9 +601,9 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     }
     OS_SNPrintf(g.mUnk_16, 5, data_ov000_021b1068, y.mUnk_02, y.mUnk_03);
     OS_SNPrintf(s, 0xd, data_ov000_021b1074, o[0], o[1], o[2], p[0], p[1], p[2]);
-    MemCopy(y.mUnk_04, t, 0x14);
+    MI_CpuCopy8(y.mUnk_04, t, 0x14);
     t[0x14] = 0;
-    MemFill(&q, 0, 0xc);
+    MI_CpuFill8(&q, 0, 0xc);
     q.mEntries = d;
     q.mCapacity = e;
     if (f != 1) {

@@ -34,7 +34,7 @@ void func_ov000_021ace14(u16 *a, const u16 *b, const u16 *c, s32 n) {
         k = t >> 16;
     }
     if (a != b && a != c) {
-        MemFill(a + i, 0, (n - i) * 2);
+        MI_CpuFill8(a + i, 0, (n - i) * 2);
     }
 }
 
@@ -87,7 +87,7 @@ void func_ov000_021acd24(u16 *a, const u16 *b, const u16 *c, s32 n) {
         k = t >> 16;
     }
     if (a != b && a != c) {
-        MemFill(a + i, 0, (n - i) * 2);
+        MI_CpuFill8(a + i, 0, (n - i) * 2);
     }
 }
 

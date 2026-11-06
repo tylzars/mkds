@@ -14,7 +14,7 @@ void func_0204f4d0(const void *a, void *b, void **c, u32 d, s32 e) {
     u16 i;
     for (i = 0; i < 12; i++) {
         if (data_0217aa00->mUnk_16a0[i].mUnk_34 == 0) {
-            MemCopy(a, &data_0217aa00->mUnk_16a0[i].mUnk_34, 0x40);
+            MI_CpuCopy8(a, &data_0217aa00->mUnk_16a0[i].mUnk_34, 0x40);
             if (e != 0) {
                 data_0217aa00->mUnk_16a0[i].mUnk_74 = data_0217aa00->mUnk_1d58;
                 data_0217aa00->mUnk_16a0[i].mUnk_78 = 0;

@@ -60,7 +60,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             FS_OpenFileDirect(&v4, FS_FindArchive(data_usa_0216178c, 3), 0, v9 + 0x88, -1);
             v1 = &v4;
             v7 = v4.mUnk_2c - v4.mUnk_20.w.mUnk_04;
-            MemCopy((const void *) 0x027ffe00, v2, 0x160);
+            MI_CpuCopy8((const void *) 0x027ffe00, v2, 0x160);
             v2->mUnk_60 |= 0x00406000;
         }
         if (v13 >= 0x88) {
@@ -82,7 +82,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             while (v10 < 3 && p[v10] != 0) {
                 v10++;
             }
-            MemCopy(p, v5->mUnk_10, v10);
+            MI_CpuCopy8(p, v5->mUnk_10, v10);
             v5->mUnk_14 = v10;
         } else {
             v13 = 0;

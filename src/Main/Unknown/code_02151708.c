@@ -95,6 +95,6 @@ void func_02151708(u32 arg0) {
     u32 value3;
     value1 = (u32) &data_021804a0;
     value2 = 14u;
-    MemCopy((const void *) value0, (void *) value1, value2);
+    MI_CpuCopy8((const void *) value0, (void *) value1, value2);
 }
 #pragma thumb off

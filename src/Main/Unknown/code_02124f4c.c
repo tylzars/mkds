@@ -160,7 +160,7 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                         break;
                     case 0xff:
                         if (t2 == 0) {
-                            MemCopy(v30 - 2, q, v18);
+                            MI_CpuCopy8(v30 - 2, q, v18);
                             q += v18 >> 1;
                         }
                         break;
@@ -333,7 +333,7 @@ void func_0212513c(u16 *a, u16 *b, u16 *c, u32 d) {
     while ((v = *b) != 0) {
         if (v == 0x1a) {
             k = ((Unk0212513c *) b)->mUnk_02;
-            MemCopyHalfwords(b, c + n, k);
+            MIi_CpuCopy16(b, c + n, k);
             b += k >> 1;
             n += k >> 1;
         } else {

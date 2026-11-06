@@ -11,7 +11,7 @@ void func_ov000_021acbf8(u16 *a, const u16 *b, const u16 *c, s32 n) {
     const u16 *p;
     const u16 *q;
 
-    MemFill(a, 0, n * 2);
+    MI_CpuFill8(a, 0, n * 2);
     d = func_ov000_021acec8(b, n);
     e = func_ov000_021acec8(c, n);
     q = c;

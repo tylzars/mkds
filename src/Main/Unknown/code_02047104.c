@@ -249,7 +249,7 @@ void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
 void func_02047e94(void) {
     Unk021759c8_8c8 *p;
     Unk02003024 f;
-    u8 b[0x10];
+    MIUncompContextLZ b;
     u32 n;
     s32 r;
 
@@ -270,13 +270,13 @@ void func_02047e94(void) {
     } else {
         p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
     }
-    ExpandCompressedStateInit((u32) b, (u32) p->mUnk_84, (u32) p->mUnk_88);
+    MI_InitUncompContextLZ(&b, p->mUnk_84, (const MICompressionHeader *) p->mUnk_88);
     do {
         r = FS_ReadFile(&f, p->mUnk_88, 0x400);
         if (r <= 0) {
             return;
         }
-    } while (ExpandCompressedContinue(b, (const u8 *) p->mUnk_88, r) != 0);
+    } while (MI_ReadUncompLZ8(&b, (const u8 *) p->mUnk_88, r) != 0);
     DC_StoreRange(p->mUnk_84, n);
     ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
 }
@@ -292,7 +292,7 @@ void func_02047e0c(void) {
     } else {
         p->mUnk_84 = HeapAllocAligned(GetHeap(func_020364e8()), n, 0x20);
     }
-    ExpandCompressed(p->mUnk_80, p->mUnk_84);
+    MI_UncompressLZ8(p->mUnk_80, p->mUnk_84);
     DC_StoreRange(p->mUnk_84, n);
     ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
 }

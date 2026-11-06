@@ -89,11 +89,11 @@ u16 GetKartBestLapTime(u16 a, u8 *b, u8 *c, u16 *d) {
                     (u32) ((v2.mUnk_02 * 60 + v2.mUnk_03) * 1000 + v2.mUnk_00)) {
                     k = TRUE;
                     if (q != p) {
-                        MemCopy(q, p, 4);
+                        MI_CpuCopy8(q, p, 4);
                     }
                 } else {
                     if (p != &v2) {
-                        MemCopy(q, p, 4);
+                        MI_CpuCopy8(q, p, 4);
                     }
                 }
                 if (k != FALSE) {

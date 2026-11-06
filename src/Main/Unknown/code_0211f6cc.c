@@ -108,11 +108,11 @@ void func_0211fb44(void) {
     u8 i;
     WiFiSession *p;
 
-    MemFill(&gWiFiSession->mUnk_1f20, 0, 0x10);
-    MemFill(&gWiFiSession->mUnk_19b0, 0, 0x350);
-    MemFill(&gWiFiSession->mUnk_0b2c, 0, 0xe24);
+    MI_CpuFill8(&gWiFiSession->mUnk_1f20, 0, 0x10);
+    MI_CpuFill8(&gWiFiSession->mUnk_19b0, 0, 0x350);
+    MI_CpuFill8(&gWiFiSession->mUnk_0b2c, 0, 0xe24);
     if (func_02061290() != 0) {
-        MemCopy(&data_0217aa08->mUnk_00->mUnk_4c, &gWiFiSession->mUnk_19b0, 0x40);
+        MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_4c, &gWiFiSession->mUnk_19b0, 0x40);
     } else {
         func_02152690(&gWiFiSession->mUnk_19b0, 0x414d434a);
     }
@@ -187,7 +187,7 @@ void func_0211f864(s32 a) {
     if (a == 0) {
         if (func_021525e0(&gWiFiSession->mUnk_19b0) != 0) {
             func_021525a8(&gWiFiSession->mUnk_19b0);
-            MemCopy(&gWiFiSession->mUnk_19b0, &data_0217aa08->mUnk_00->mUnk_4c, 0x40);
+            MI_CpuCopy8(&gWiFiSession->mUnk_19b0, &data_0217aa08->mUnk_00->mUnk_4c, 0x40);
             func_02056d40();
         }
         gWiFiSession->mUnk_1f20.mStep = 3;

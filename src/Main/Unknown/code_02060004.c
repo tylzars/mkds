@@ -30,7 +30,7 @@ static inline s32 func_02060004_inline(s32 a, s32 b, Unk02056bc0 *c) {
 }
 
 void func_02060c0c(Unk0217d384_19f0 *a) {
-    MemCopy(a, (u8 *) data_0217aa08->mUnk_20 + 0x874, 0x2d0);
+    MI_CpuCopy8(a, (u8 *) data_0217aa08->mUnk_20 + 0x874, 0x2d0);
 }
 
 void func_02060b68(void) {
@@ -147,7 +147,7 @@ BOOL func_020608fc(u8 a, void *b) {
     if (c.mUnk_22_0 != 1) {
         return FALSE;
     }
-    MemCopy(c.mUnk_0e, b, 0x14);
+    MI_CpuCopy8(c.mUnk_0e, b, 0x14);
     return TRUE;
 }
 
@@ -169,13 +169,13 @@ s32 func_020607b0(u8 a) {
 
     func_0205ee14(a, &b);
     c = b.mUnk_22_0 == 1;
-    MemFill(&b, 0, 0x24);
+    MI_CpuFill8(&b, 0, 0x24);
     b.mUnk_22_0 = 0;
     func_0205ee74(a, &b);
     if (gWiFiSession->mUnk_0008.mState != 0) {
         RemoveBuddyEntry((u8 *) data_0217aa08->mUnk_20 + 0x874 + a * 12);
     } else {
-        MemFill((u8 *) data_0217aa08->mUnk_20 + 0x874 + a * 12, 0, 0xc);
+        MI_CpuFill8((u8 *) data_0217aa08->mUnk_20 + 0x874 + a * 12, 0, 0xc);
     }
     func_0205edf8();
     return c;
@@ -196,7 +196,7 @@ void func_02060510(u8 a, u8 b) {
         e.mUnk_00[1][1] = e.mUnk_00[1][1] + d.mUnk_00[1][1];
         e.mUnk_00[2][0] = e.mUnk_00[2][0] + d.mUnk_00[2][0];
         e.mUnk_00[2][1] = e.mUnk_00[2][1] + d.mUnk_00[2][1];
-        MemCopy(d.mUnk_0e, e.mUnk_0e, 0x14);
+        MI_CpuCopy8(d.mUnk_0e, e.mUnk_0e, 0x14);
         e.mUnk_0c_0 = d.mUnk_0c_0;
         e.mUnk_0c_7 = d.mUnk_0c_7;
         e.mUnk_0c_11 = d.mUnk_0c_11;
@@ -208,7 +208,7 @@ void func_02060510(u8 a, u8 b) {
         e.mUnk_00[1][1] = e.mUnk_00[1][1] + c.mUnk_00[1][1];
         e.mUnk_00[2][0] = e.mUnk_00[2][0] + c.mUnk_00[2][0];
         e.mUnk_00[2][1] = e.mUnk_00[2][1] + d.mUnk_00[2][1];
-        MemCopy(c.mUnk_0e, e.mUnk_0e, 0x14);
+        MI_CpuCopy8(c.mUnk_0e, e.mUnk_0e, 0x14);
         e.mUnk_0c_0 = c.mUnk_0c_0;
         e.mUnk_0c_7 = c.mUnk_0c_7;
         e.mUnk_0c_11 = c.mUnk_0c_11;
@@ -218,7 +218,7 @@ void func_02060510(u8 a, u8 b) {
     e.mUnk_22_2 = c.mUnk_22_2;
     e.mUnk_22_3 = c.mUnk_22_3 == 1 || d.mUnk_22_3 == 1;
     func_0205ee74(a, &e);
-    MemFill(&d, 0, 0x24);
+    MI_CpuFill8(&d, 0, 0x24);
     d.mUnk_22_0 = 0;
     func_0205ee74(b, &d);
 }
@@ -313,7 +313,7 @@ BOOL func_02060318(s32 a, s32 b, void *c) {
     if (d.mUnk_18 == 0) {
         return FALSE;
     }
-    MemCopy(&d, c, 4);
+    MI_CpuCopy8(&d, c, 4);
     return TRUE;
 }
 
@@ -387,7 +387,7 @@ BOOL func_020600d0(s32 a, s32 b, void *v1) {
     if (!func_02060004_inline(a, b, &c)) {
         return FALSE;
     }
-    MemCopy(c.mUnk_04, v1, 0x14);
+    MI_CpuCopy8(c.mUnk_04, v1, 0x14);
     return TRUE;
 }
 
@@ -413,7 +413,7 @@ void func_02060004(s32 a) {
         d = TRUE;
     }
     for (i = 0; i < 6; i++) {
-        MemFill(&b, 0, 0x20);
+        MI_CpuFill8(&b, 0, 0x20);
         func_02056c6c(a, i, &b);
     }
     if (d != FALSE) {

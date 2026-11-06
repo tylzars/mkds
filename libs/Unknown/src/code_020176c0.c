@@ -53,7 +53,7 @@ void *ExpHeapAllocFromFreeBlock(Unk020179d4 *a, ExpHeapBlock *b, void *c, u32 d,
 
         if ((u16) (*(u32 *) ((u8 *) a - 4) & 0xff) & 1) {
             z = 0;
-            MemFillWords(z, (void *) r1.mEnd, n);
+            MIi_CpuClear32(z, (void *) r1.mEnd, n);
         }
     }
     r3.mStart = (u32) q;
@@ -280,7 +280,7 @@ u32 ExpHeapResizeBlock(Unk020176c0 *a, void *b, u32 c) {
 
             if ((u16) (a->mUnk_00.mUnk_20 & 0xff) & 1) {
                 z = 0;
-                MemFillWords(z, (void *) start, n);
+                MIi_CpuClear32(z, (void *) start, n);
             }
         }
     } else {

@@ -163,18 +163,18 @@ void func_0201261c(Unk02011624 *a, u32 b) {
         p18->z = Vec3Length((Vec3 *) &mm[8]);
         if (data_0217029c.mUnk_fc & 1) {
             reg_G3X_GXFIFO = 0x171012;
-            MemCopyWordsToOneAddress(data_021618e0, &reg_G3X_GXFIFO, 8);
-            MemCopyWordsToOneAddress(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
+            MIi_CpuSend32(data_021618e0, &reg_G3X_GXFIFO, 8);
+            MIi_CpuSend32(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
-            MemCopyWordsToOneAddress(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
+            MIi_CpuSend32(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
         } else if (data_0217029c.mUnk_fc & 2) {
             reg_G3X_GXFIFO = 0x171012;
-            MemCopyWordsToOneAddress(data_021618e0, &reg_G3X_GXFIFO, 8);
-            MemCopyWordsToOneAddress(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
+            MIi_CpuSend32(data_021618e0, &reg_G3X_GXFIFO, 8);
+            MIi_CpuSend32(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
-            MemCopyWordsToOneAddress(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
+            MIi_CpuSend32(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
         } else {
-            MemCopyWordsToOneAddress(data_021618dc, &reg_G3X_GXFIFO, 0x48);
+            MIi_CpuSend32(data_021618dc, &reg_G3X_GXFIFO, 0x48);
         }
     }
     if (v == 3) {
@@ -263,18 +263,18 @@ void func_020122cc(Unk02011624 *a, u32 b) {
         }
         if (data_0217029c.mUnk_fc & 1) {
             reg_G3X_GXFIFO = 0x171012;
-            MemCopyWordsToOneAddress(data_02161928, &reg_G3X_GXFIFO, 8);
-            MemCopyWordsToOneAddress(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
+            MIi_CpuSend32(data_02161928, &reg_G3X_GXFIFO, 8);
+            MIi_CpuSend32(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
-            MemCopyWordsToOneAddress(data_02161930, &reg_G3X_GXFIFO, 0x3c);
+            MIi_CpuSend32(data_02161930, &reg_G3X_GXFIFO, 0x3c);
         } else if (data_0217029c.mUnk_fc & 2) {
             reg_G3X_GXFIFO = 0x171012;
-            MemCopyWordsToOneAddress(data_02161928, &reg_G3X_GXFIFO, 8);
-            MemCopyWordsToOneAddress(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
+            MIi_CpuSend32(data_02161928, &reg_G3X_GXFIFO, 8);
+            MIi_CpuSend32(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
-            MemCopyWordsToOneAddress(data_02161930, &reg_G3X_GXFIFO, 0x3c);
+            MIi_CpuSend32(data_02161930, &reg_G3X_GXFIFO, 0x3c);
         } else {
-            MemCopyWordsToOneAddress(data_02161924, &reg_G3X_GXFIFO, 0x48);
+            MIi_CpuSend32(data_02161924, &reg_G3X_GXFIFO, 0x48);
         }
     }
     if (v == 3) {
@@ -854,7 +854,7 @@ void func_02010cec(Unk02010c84 *a, const Unk02010cec_08 *b, u32 c, u32 d) {
 void func_02010c84(Unk02010c84 *a, u32 b) {
     volatile u32 z = 0;
 
-    MemFillWords(z, a, 0x54);
+    MIi_CpuClear32(z, a, 0x54);
     a->mUnk_0c = data_021617f0;
     a->mUnk_14 = data_021617ec;
     a->mUnk_1c = data_021617e8;

@@ -66,10 +66,10 @@ void func_ov001_021930ac(void) {
     reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 1;
     d1 = (void *) G2sBg0CntBits8To12Address();
     a = 0;
-    MemFillWordsByBlock(a, d1, 0x1000);
+    MIi_CpuClearFast(a, d1, 0x1000);
     d2 = (void *) G2sBg1CntBits8To12Address();
     b = 0;
-    MemFillWordsByBlock(b, d2, 0x1000);
+    MIi_CpuClearFast(b, d2, 0x1000);
 }
 
 void InitOptionStates(void *heap, s16 a) {

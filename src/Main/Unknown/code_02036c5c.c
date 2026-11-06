@@ -520,10 +520,10 @@ void func_0203810c(Unk0203810c *a, s32 b) {
 // Enum-typed parameters of the inlines below: the original reads their values before the register.
 typedef enum { UNK_02037ABC_ARG_0 } Unk02037abc_Arg;
 
-// Calls MemFillWordsByBlock with v, passed through a stack offset of its own.
+// Calls MIi_CpuClearFast with v, passed through a stack offset of its own.
 static inline void func_02037abc_inline(u32 v, void *p, u32 n) {
     volatile u32 w = v;
-    MemFillWordsByBlock(w, p, n);
+    MIi_CpuClearFast(w, p, n);
 }
 
 // Sets the low two bits of the halfword register r and its bit 6 from the first two halfwords of q.

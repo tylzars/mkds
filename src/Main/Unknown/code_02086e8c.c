@@ -293,7 +293,7 @@ void func_02087228(Unk02086098 *a, u16 b) {
     u16 v;
     p = data_0217aed4;
     q = data_0217aed0->mUnk_144[b];
-    MemCopy(data_0217aed0->mUnk_164[b], p, a->mUnk_08);
+    MI_CpuCopy8(data_0217aed0->mUnk_164[b], p, a->mUnk_08);
     v = 0x7fff;
     if (data_021759c0->mUseTeams != 0) {
         v = data_02155a28[data_021759c0->mCurrentEntries[b].mPlayer.mTeamIndex];
@@ -321,7 +321,7 @@ void func_020871c0(Unk02086098 *a, u32 b) {
     v2[2] = 0;
     v2[3] = 0x1f;
     DC_FlushRange(v2, 8);
-    MemFill(((u32 *) v3), (u8) 0, (u32) (a->mUnk_04));
+    MI_CpuFill8(((u32 *) v3), (u8) 0, (u32) (a->mUnk_04));
     func_020adddc(b, v3, (u32) 1, (u32) 2);
     DC_FlushRange((const void *) v3, (0x00000100u));
     a->mUnk_0c = (void *) v3;
@@ -362,7 +362,7 @@ void func_020870ec(Unk02086098 *a, u16 b) {
                 c = -1;
                 break;
         }
-        MemCopy(q->mUnk_0c, p, q->mUnk_04);
+        MI_CpuCopy8(q->mUnk_0c, p, q->mUnk_04);
         if (c > 0) {
             for (i = 0; i < q->mUnk_04; i++) {
                 v = p[i];

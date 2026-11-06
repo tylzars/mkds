@@ -186,7 +186,7 @@ void func_0203003c(s32 a) {
 // Fills with 0 through a halfword stack offset of its own.
 static inline void func_0202f764_inline(void *p, s32 v1) {
     volatile u16 zero = 0;
-    MemFillHalfwords(zero, p, v1);
+    MIi_CpuClear16(zero, p, v1);
 }
 
 void func_0202fd2c(void) {

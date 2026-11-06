@@ -83,7 +83,7 @@ void func_ov003_021d1218(void) {
     func_ov003_021d0128(data_ov003_021da2ac->mUnk_ac8);
     data_ov003_021da2ac->mUnk_a90 = 1;
     data_ov003_021da2ac->mUnk_648 = WM_GetNextTgid();
-    MemCopy(data_ov003_021da2ac->mUnk_aa0[1], data_ov003_021da2ac->mUnk_a50, 0x40);
+    MI_CpuCopy8(data_ov003_021da2ac->mUnk_aa0[1], data_ov003_021da2ac->mUnk_a50, 0x40);
     data_ov003_021da2ac->mUnk_a93 = 0;
     data_ov003_021da2ac->mUnk_204 = 0;
     data_ov003_021da2ac->mUnk_648++;
@@ -414,8 +414,8 @@ u32 func_ov003_021d0a50(Unk021425e8 *v1) {
 }
 
 void func_ov003_021d0a18(void) {
-    MemFill(data_ov003_021da2ac->mUnk_100, 0, 0x100);
-    MemFill(data_ov003_021da2ac, 0, 0x100);
+    MI_CpuFill8(data_ov003_021da2ac->mUnk_100, 0, 0x100);
+    MI_CpuFill8(data_ov003_021da2ac, 0, 0x100);
     data_ov003_021da2ac->mUnk_ab0 = (Unk021da2ac_100 *) data_ov003_021da2ac;
 }
 
@@ -425,7 +425,7 @@ void func_ov003_021d0900(u16 param_1, u16 param_2, u8 *param_3) {
     if (data_ov003_021da2ac->mUnk_a93 == 1) {
         data_ov003_021da2ac->mUnk_ab0->mUnk_00 = param_1;
         data_ov003_021da2ac->mUnk_ab0->mUnk_02 = param_2;
-        MemCopy(param_3, data_ov003_021da2ac->mUnk_ab0->mUnk_04, 0x40);
+        MI_CpuCopy8(param_3, data_ov003_021da2ac->mUnk_ab0->mUnk_04, 0x40);
     } else {
         data_ov003_021da2ac->mUnk_204 = data_ov003_021da2ac->mUnk_204 + 1;
         data_ov003_021da2ac->mUnk_ab0->mUnk_00 = 0xbc;
@@ -448,7 +448,7 @@ void func_ov003_021d0900(u16 param_1, u16 param_2, u8 *param_3) {
         for (i = 0; i < 2; i++) {
             u8 *p = func_ov003_021cfc1c(i);
             if (p != NULL) {
-                MemCopy(p, &data_ov003_021da2ac->mUnk_100[i], 0x44);
+                MI_CpuCopy8(p, &data_ov003_021da2ac->mUnk_100[i], 0x44);
                 data_ov003_021da2ac->mUnk_208[i] = 1;
             } else {
                 data_ov003_021da2ac->mUnk_208[i] = 0;

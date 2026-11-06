@@ -37,7 +37,7 @@ void func_01ff9234(void) {
     if (data_usa_021731e4->mUnk_00 == 0) {
         return;
     }
-    MemCopyWordsToOneAddress(data_usa_021731e4->mUnk_04, (vu32 *) 0x4000400, data_usa_021731e4->mUnk_00 * 4);
+    MIi_CpuSend32(data_usa_021731e4->mUnk_04, (vu32 *) 0x4000400, data_usa_021731e4->mUnk_00 * 4);
     data_usa_021731e4->mUnk_00 = 0;
 }
 
@@ -76,7 +76,7 @@ void func_01ff9048(u32 a, const void *b, u32 n) {
                 if (n == 0) {
                     return;
                 }
-                MemCopyWordsByBlock(b, &data_usa_021731e4->mUnk_04[data_usa_021731e4->mUnk_00], n * 4);
+                MIi_CpuCopyFast(b, &data_usa_021731e4->mUnk_04[data_usa_021731e4->mUnk_00], n * 4);
                 data_usa_021731e4->mUnk_00 += n;
                 return;
             }
@@ -90,7 +90,7 @@ void func_01ff9048(u32 a, const void *b, u32 n) {
         func_01ff921c();
     }
     *(vu32 *) 0x4000400 = a;
-    MemCopyWordsToOneAddress(b, (vu32 *) 0x4000400, n * 4);
+    MIi_CpuSend32(b, (vu32 *) 0x4000400, n * 4);
 }
 
 void func_01ff8ff8(Unk02170500 *s) {
@@ -535,7 +535,7 @@ void func_01ff8220(Unk02170500 *s, u32 a) {
             k = (v2 & 0xf0) >> 4;
             b1 = ((s16 *) r)[1];
             b0 = ((s16 *) r)[0];
-            MemZero9Words(o->mUnk_28);
+            MI_Zero36B(o->mUnk_28);
             r += 2;
             m = (*p & 0x100) ? -0x1000 : 0x1000;
             o->mUnk_28[k] = m;

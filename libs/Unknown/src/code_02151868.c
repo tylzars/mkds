@@ -8,15 +8,15 @@
 #pragma thumb on
 
 void func_02151910(Unk021510a4 *a) {
-    MemCopy(data_021804a0, a, 6);
+    MI_CpuCopy8(data_021804a0, a, 6);
     a->mUnk_00 &= ~0xfffff80000000000ULL;
-    MemCopy(data_021804a0 + 5, &a->mUnk_08, 6);
+    MI_CpuCopy8(data_021804a0 + 5, &a->mUnk_08, 6);
     a->mUnk_08 >>= 3;
     a->mUnk_08 &= ~0xfffff80000000000ULL;
-    MemCopy(data_021804a0 + 10, &a->mUnk_10, 2);
+    MI_CpuCopy8(data_021804a0 + 10, &a->mUnk_10, 2);
     a->mUnk_10 = a->mUnk_10 >> 6;
     a->mUnk_10 &= 0x3ff;
-    MemCopy(data_021804a0 + 12, &a->mUnk_12, 2);
+    MI_CpuCopy8(data_021804a0 + 12, &a->mUnk_12, 2);
 }
 
 u32 func_02151868(Unk021510a4 *a, u8 *b) {
@@ -30,7 +30,7 @@ u32 func_02151868(Unk021510a4 *a, u8 *b) {
             OS_Terminate();
             return 0;
         }
-        MemCopy(data_021804a0, b + 0xf0, 0xe);
+        MI_CpuCopy8(data_021804a0, b + 0xf0, 0xe);
         *(u16 *) (b + 0xfe) = Crc16((u16 *) (b + 0x200), b, 0xfe);
         do {
             func_021511d8(c, 0x100, b);
