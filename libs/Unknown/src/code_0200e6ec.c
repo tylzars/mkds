@@ -276,17 +276,17 @@ u32 OS_GetConsoleType(void) {
 u32 ReadCartridgeMarkerBits(void) {
     u32 a;
     s32 d;
-    u32 h;
+    u16 h;
     s32 v;
     u32 s;
 
     d = 0;
-    h = (u16) IdAlloc();
+    h = OS_GetLockID();
     a = 0;
     do {
         v = -1;
         s = IrqDisable();
-        if ((SwapLockGetHolderId((SwapLockSlot *) 0x27fffe8) & 0x40) != 0 || (v = OS_TryLockCartridge(h)) == 0) {
+        if ((OS_ReadOwnerOfLockWord((OSLockWord *) 0x27fffe8) & 0x40) != 0 || (v = OS_TryLockCartridge(h)) == 0) {
             if (*(u32 *) 0x8000000 == 0x544e494e && *(u32 *) 0x8000004 == 0x4f444e45) {
                 a = 0x1000000;
             } else {

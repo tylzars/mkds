@@ -126,7 +126,7 @@ void InitCartridgeState(void) {
 
     v = 0;
     CpuSet(&v, &gCartridgeState, 0x05000001);
-    gCartridgeState.mLockId = IdAlloc();
+    gCartridgeState.mLockId = OS_GetLockID();
 }
 
 s32 CTRDG_IsExisting(void) {
@@ -175,14 +175,14 @@ void RestoreExMemControlBits(Unk0200c4a4 *p) {
     reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0x10) | (b << 4);
 }
 
-void LockCartridgeAndDisableIrq(u32 a, Unk0200c4a4 *p) {
+void LockCartridgeAndDisableIrq(u16 lockID, Unk0200c4a4 *p) {
     for (;;) {
         p->mUnk_04 = IrqDisable();
-        p->mUnk_00 = SwapLockGetHolderId((SwapLockSlot *) 0x027fffe8) & 0x40;
+        p->mUnk_00 = OS_ReadOwnerOfLockWord((OSLockWord *) 0x027fffe8) & 0x40;
         if (p->mUnk_00 != 0) {
             break;
         }
-        if (OS_TryLockCartridge(a) == 0) {
+        if (OS_TryLockCartridge(lockID) == 0) {
             break;
         }
         IrqRestore(p->mUnk_04);
@@ -190,9 +190,9 @@ void LockCartridgeAndDisableIrq(u32 a, Unk0200c4a4 *p) {
     }
 }
 
-void UnlockCartridgeAndRestoreIrq(u32 a, Unk0200c4a4 *p) {
+void UnlockCartridgeAndRestoreIrq(u16 lockID, Unk0200c4a4 *p) {
     if (p->mUnk_00 == 0) {
-        OS_UnLockCartridge(a);
+        OS_UnLockCartridge(lockID);
     }
     IrqRestore(p->mUnk_04);
 }

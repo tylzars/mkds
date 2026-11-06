@@ -13,7 +13,7 @@ typedef struct Unk0200c4a4 {
 typedef struct Unk0216fe04 {
     // Set to 1 by ReceiveCartridgeHeaderReply; InitCartridgeHeaderCopy waits until it is 1.
     /* 00 */ u16 mReplyReceived;
-    // The IdAlloc result stored by InitCartridgeState; the first argument of every lock and unlock call of this
+    // The OS_GetLockID result stored by InitCartridgeState; the first argument of every lock and unlock call of this
     // file.
     /* 02 */ u16 mLockId;
 } Unk0216fe04;
@@ -81,13 +81,13 @@ extern s32 (*gCartridgeRemovalCallback)(void);
 // 0x08000080, reads four fields from the second part, and sends the block's address on tag 13.
 extern Unk0216fe20 gCartridgeHeaderCopy;
 
-// Calls OS_UnLockCartridge(a) when the first word of p is 0, then IrqRestore with the second word of p.
-void UnlockCartridgeAndRestoreIrq(u32 a, Unk0200c4a4 *p);
-// Loops: stores IrqDisable() in the second word of p and the halfword at slot + 4 of the lock at 0x027fffe8
-// (SwapLockGetHolderId) & 0x40 in the first word, and returns when that is not 0; otherwise calls
-// OS_TryLockCartridge(a) and returns when it gives 0; else calls IrqRestore, WaitByLoop(1) and tries again. Returns
-// with the interrupts disabled.
-void LockCartridgeAndDisableIrq(u32 a, Unk0200c4a4 *p);
+// Calls OS_UnLockCartridge(lockID) when the first word of p is 0, then IrqRestore with the second word of p.
+void UnlockCartridgeAndRestoreIrq(u16 lockID, Unk0200c4a4 *p);
+// Loops: stores IrqDisable() in the second word of p and the owner id of the lock word at 0x027fffe8
+// (OS_ReadOwnerOfLockWord) & 0x40 in the first word, and returns when that is not 0; otherwise calls
+// OS_TryLockCartridge(lockID) and returns when it gives 0; else calls IrqRestore, WaitByLoop(1) and tries again.
+// Returns with the interrupts disabled.
+void LockCartridgeAndDisableIrq(u16 lockID, Unk0200c4a4 *p);
 // Writes the first word of p (shifted left by 2) into bits 2 and 3 and the second word (shifted left by 4) into bit 4
 // of the halfword at 0x04000204.
 void RestoreExMemControlBits(Unk0200c4a4 *p);
@@ -100,7 +100,7 @@ void SaveAndSetExMemControlBits(Unk0200c4a4 *p);
 // the word at 0x027ffc38. On a difference sets bit 1 of that byte and returns 0, otherwise 1. Its only caller is
 // PM_GoSleepMode.
 s32 CTRDG_IsExisting(void);
-// Zero-fills the 4 bytes of gCartridgeState (CpuSet, one word) and stores IdAlloc() in gCartridgeState.mLockId.
+// Zero-fills the 4 bytes of gCartridgeState (CpuSet, one word) and stores OS_GetLockID() in gCartridgeState.mLockId.
 void InitCartridgeState(void);
 // Sends the word 2 with SendTag13WordUntilAccepted, then calls IrqDisableLoopForever. Its only caller is
 // ReceiveCartridgeRemovalMessage.

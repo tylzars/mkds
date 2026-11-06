@@ -13,102 +13,102 @@
 s32 gLockInitialized;
 
 void OS_InitLock(void) {
-    SwapLockSlot *p;
-    volatile u32 v;
+    OSLockWord *lockWord;
+    volatile u32 zero;
 
     if (gLockInitialized != 0) {
         return;
     }
     gLockInitialized = 1;
-    ((SwapLockSlot *) 0x027ffff0)->mUnk_00 = 0;
-    SwapLockSpin(0x7e, (SwapLockSlot *) 0x027ffff0, 0);
-    p = (SwapLockSlot *) 0x027ffff0;
-    if (p->mUnk_06 != 0) {
+    ((OSLockWord *) 0x027ffff0)->mLockFlag = 0;
+    OS_LockByWord(0x7e, (OSLockWord *) 0x027ffff0, 0);
+    lockWord = (OSLockWord *) 0x027ffff0;
+    if (lockWord->mExtension != 0) {
         do {
-            WaitByLoop4096();
-        } while (p->mUnk_06 != 0);
+            OSi_WaitByLoop();
+        } while (lockWord->mExtension != 0);
     }
     *(u32 *) 0x027fffb0 = 0xffffffff;
     *(u32 *) 0x027fffb4 = 0xffff0000;
-    v = 0;
-    MemFillWords(v, (void *) 0x027fffc0, 0x28);
+    zero = 0;
+    MemFillWords(zero, (void *) 0x027fffc0, 0x28);
     reg_MI_EXMEMCNT |= 0x800;
     reg_MI_EXMEMCNT |= 0x80;
-    SwapLockUnlock(0x7e, (SwapLockSlot *) 0x027ffff0, 0);
-    SwapLockSpin(0x7f, (SwapLockSlot *) 0x027ffff0, 0);
+    OS_UnlockByWord(0x7e, (OSLockWord *) 0x027ffff0, 0);
+    OS_LockByWord(0x7f, (OSLockWord *) 0x027ffff0, 0);
 }
 
-s32 SwapLockSpinEx(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
-    s32 r;
+s32 OSi_DoLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrlFuncp)(void), s32 disableFiq) {
+    s32 lastLockFlag;
 
-    r = SwapLockTry(a, p, f, k);
-    while (r > 0) {
-        WaitByLoop4096();
-        r = SwapLockTry(a, p, f, k);
+    lastLockFlag = OSi_DoTryLockByWord(lockID, lockp, ctrlFuncp, disableFiq);
+    while (lastLockFlag > 0) {
+        OSi_WaitByLoop();
+        lastLockFlag = OSi_DoTryLockByWord(lockID, lockp, ctrlFuncp, disableFiq);
     }
-    return r;
+    return lastLockFlag;
 }
 
-s32 SwapLockSpin(u32 a, SwapLockSlot *p, u32 (*f)(void)) {
-    return SwapLockSpinEx(a, p, f, 0);
+s32 OS_LockByWord(u16 lockID, OSLockWord *lockp, void (*ctrlFuncp)(void)) {
+    return OSi_DoLockByWord(lockID, lockp, ctrlFuncp, 0);
 }
 
-s32 SwapLockUnlockEx(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
-    u32 s;
+s32 OSi_DoUnlockByWord(u16 lockID, OSLockWord *lockp, void (*ctrlFuncp)(void), s32 disableFiq) {
+    u32 lastInterrupts;
 
-    if (a != p->mHolderId) {
+    if (lockID != lockp->mOwnerID) {
         return -2;
     }
-    if (k != 0) {
-        s = IrqFiqDisable();
+    if (disableFiq != 0) {
+        lastInterrupts = IrqFiqDisable();
     } else {
-        s = IrqDisable();
+        lastInterrupts = IrqDisable();
     }
-    p->mHolderId = 0;
-    if (f != 0) {
-        f();
+    lockp->mOwnerID = 0;
+    if (ctrlFuncp != 0) {
+        ctrlFuncp();
     }
-    p->mUnk_00 = 0;
-    if (k != 0) {
-        IrqFiqRestore(s);
+    lockp->mLockFlag = 0;
+    if (disableFiq != 0) {
+        IrqFiqRestore(lastInterrupts);
     } else {
-        IrqRestore(s);
+        IrqRestore(lastInterrupts);
     }
     return 0;
 }
 
-s32 SwapLockUnlock(u32 a, SwapLockSlot *p, u32 (*f)(void)) {
-    return SwapLockUnlockEx(a, p, f, 0);
+s32 OS_UnlockByWord(u16 lockID, OSLockWord *lockp, void (*ctrlFuncp)(void)) {
+    return OSi_DoUnlockByWord(lockID, lockp, ctrlFuncp, 0);
 }
 
-s32 SwapLockTry(u32 a, SwapLockSlot *p, u32 (*f)(void), s32 k) {
-    u32 s;
-    s32 r;
+s32 OSi_DoTryLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrlFuncp)(void), s32 disableFiq) {
+    u32 lastInterrupts;
+    s32 lastLockFlag;
 
-    if (k != 0) {
-        s = IrqFiqDisable();
+    if (disableFiq != 0) {
+        lastInterrupts = IrqFiqDisable();
     } else {
-        s = IrqDisable();
+        lastInterrupts = IrqDisable();
     }
-    r = WordSwap(a, &p->mUnk_00);
-    if (r == 0) {
-        if (f != 0) {
-            f();
+    lastLockFlag = WordSwap(lockID, &lockp->mLockFlag);
+    if (lastLockFlag == 0) {
+        if (ctrlFuncp != 0) {
+            ctrlFuncp();
         }
-        p->mHolderId = a;
+        lockp->mOwnerID = lockID;
     }
-    if (k != 0) {
-        IrqFiqRestore(s);
+    if (disableFiq != 0) {
+        IrqFiqRestore(lastInterrupts);
     } else {
-        IrqRestore(s);
+        IrqRestore(lastInterrupts);
     }
-    return r;
+    return lastLockFlag;
 }
 
-s32 OS_UnlockCartridge(u32 a) {
-    return SwapLockUnlockEx(a, (SwapLockSlot *) 0x027fffe8, SetCartridgeSlotAccessBit, 1);
+s32 OS_UnlockCartridge(u16 lockID) {
+    return OSi_DoUnlockByWord(lockID, (OSLockWord *) 0x027fffe8, OSi_FreeCartridgeBus, 1);
 }
 
-s32 OS_TryLockCartridge(u32 a) {
-    return SwapLockTry(a, (SwapLockSlot *) 0x027fffe8, ClearCartridgeSlotAccessBit, 1);
+s32 OS_TryLockCartridge(u16 lockID) {
+    return OSi_DoTryLockByWord(lockID, (OSLockWord *) 0x027fffe8, OSi_AllocateCartridgeBus, 1);
 }

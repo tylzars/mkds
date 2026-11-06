@@ -2,6 +2,7 @@
 
 #include "types.h"
 
-typedef struct SwapLockSlot SwapLockSlot;
+typedef struct OSLockWord OSLockWord;
 
-u16 SwapLockGetHolderId(SwapLockSlot *p);
+// Returns the owner id of a lock word.
+u16 OS_ReadOwnerOfLockWord(OSLockWord *lockp);

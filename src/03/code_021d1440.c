@@ -34,7 +34,7 @@ void func_ov003_021d1654(void) {
     if (FS_OpenFile(&a, data_ov003_021d7be0) == 0) {
         IrqDisableLoopForever();
     }
-    data_ov003_021da2b0->mUnk_e4 = IdAlloc();
+    data_ov003_021da2b0->mUnk_e4 = OS_GetLockID();
     e = a.mUnk_20.w.mUnk_04;
     FS_ReadFile(&a, b, 8);
     FS_ReadFile(&a, c, 8);
@@ -62,7 +62,7 @@ void func_ov003_021d15f4(void) {
     FS_UnloadArchiveTables(&data_ov003_021da2b0->mUnk_88);
     FS_UnloadArchive(&data_ov003_021da2b0->mUnk_88);
     FS_ReleaseArchiveName(&data_ov003_021da2b0->mUnk_88);
-    IdFree(data_ov003_021da2b0->mUnk_e4);
+    OS_ReleaseLockID(data_ov003_021da2b0->mUnk_e4);
     data_ov003_021da2b0->mUnk_e4 = 0;
     func_ov003_021d2808(data_ov003_021da2b0);
     data_ov003_021da2b0->mUnk_00 = NULL;

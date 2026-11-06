@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-// Sets bit 0x80 of the halfword at 0x04000204. OS_UnlockCartridge runs it before it releases the lock word at
-// 0x027fffe8.
-u32 SetCartridgeSlotAccessBit(void);
-// Clears bit 0x80 of the halfword at 0x04000204. OS_TryLockCartridge runs it once the lock word at 0x027fffe8 is
-// taken.
-u32 ClearCartridgeSlotAccessBit(void);
+// Hands the cartridge bus to the ARM7 (sets bit 0x80 of the halfword at 0x04000204). OS_UnlockCartridge runs it
+// before it releases the cartridge lock word.
+void OSi_FreeCartridgeBus(void);
+// Hands the cartridge bus to the ARM9 (clears bit 0x80 of the halfword at 0x04000204). OS_TryLockCartridge runs it
+// once the cartridge lock word is taken.
+void OSi_AllocateCartridgeBus(void);

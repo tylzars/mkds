@@ -16,14 +16,14 @@ void func_0204b3dc(void) {
     r = data_021759d4->mUnk_08;
     if (r != -3) {
         CARD_UnlockBackup(r);
-        IdFree((u16) data_021759d4->mUnk_08);
+        OS_ReleaseLockID(data_021759d4->mUnk_08);
         data_021759d4->mUnk_08 = -3;
     }
 }
 
 u32 func_0204b3a4(void) {
     s32 r;
-    data_021759d4->mUnk_08 = IdAlloc();
+    data_021759d4->mUnk_08 = OS_GetLockID();
     r = data_021759d4->mUnk_08;
     if (r == -3) {
         return 0;

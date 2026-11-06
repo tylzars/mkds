@@ -19,7 +19,7 @@ extern u32 gRemovalSeen;
 // The hook set by CARD_SetPulledOutCallback, cleared by CARD_InitPulledOutCallback and called by
 // ReceiveRemovalMessage.
 extern UnkWordFunc *gRemovalCallback;
-// Id from IdAlloc, taken in GX_Init; ReleaseVramBankGroup hands it to the lock-table release.
+// Id from OS_GetLockID, taken in GX_Init; ReleaseVramBankGroup hands it to the lock-table release.
 extern u16 gVramLockId;
 // 13 bank-mask halfwords: [0] banks that are directly accessible, then the banks given to the background, sprites,
 // second processor, texture, texture palette, clear image, background and sprite extended palettes, sub background, sub

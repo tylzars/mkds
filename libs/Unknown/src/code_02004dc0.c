@@ -369,7 +369,7 @@ void FileInitRomArchive(u32 arg) {
     enum { K0 } x, y;
 
     data_0216f358 = arg;
-    data_0216f354 = IdAlloc();
+    data_0216f354 = OS_GetLockID();
     data_0216f35c.mUnk_00 = 0;
     data_0216f35c.mUnk_04 = 0;
     data_0216f364.mUnk_00 = 0;

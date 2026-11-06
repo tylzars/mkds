@@ -16,7 +16,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
     }
     if (data_02173278 == 0) {
         do {
-            s32 n = IdAlloc();
+            s32 n = OS_GetLockID();
 
             if (n == -3) {
                 return 7;

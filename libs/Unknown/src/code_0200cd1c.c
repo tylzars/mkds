@@ -3,7 +3,7 @@
 
 // clang-format off
 // Hand-written asm: jumps to OS_UnlockCartridge through r1; compiled C would jump through ip.
-asm s32 OS_UnLockCartridge(u32 a) {
+asm s32 OS_UnLockCartridge(u16 lockID) {
     ldr r1, =OS_UnlockCartridge
     bx r1
 }
@@ -14,7 +14,7 @@ asm s32 OS_UnLockCartridge(u32 a) {
 // 0x40 plus the bit position counted from the top for the first word, 0x60 plus it for the second, or -3 when both
 // words are zero.
 // Not compiled code: it counts leading zeros with clz, which 1.2 never builds (docs/compiler.md).
-asm s32 IdAlloc(void) {
+asm s32 OS_GetLockID(void) {
     ldr r3, =0x27fffb0
     ldr r1, [r3, #0x0]
     clz r2, r1
@@ -40,9 +40,9 @@ cd28_clear:
 // clang-format on
 
 // clang-format off
-// Hand-written asm: sets bit a of the two words at 0x027fffb0 (bits 0x40 to 0x5f in the first, 0x60 and up in the
+// Hand-written asm: sets bit lockID of the two words at 0x027fffb0 (bits 0x40 to 0x5f in the first, 0x60 and up in the
 // second). It tests with pl/mi after a compare, which the compiler never does.
-asm void IdFree(s32 a) {
+asm void OS_ReleaseLockID(u16 lockID) {
     ldr r3, =0x27fffb0
     cmp r0, #0x60
     addpl r3, r3, #0x4
