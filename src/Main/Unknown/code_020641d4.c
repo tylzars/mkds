@@ -102,7 +102,7 @@ void func_020641f0(Kart *a) {
             k = (s64) k * 0xfa0 >> 12;
             if (func_020738f8(func_0207a7ec()) < 0x29) {
                 k = 0;
-                if ((u16) (data_0217562a[o = a->mEntryIndex].mBits & 3) != 0 && func_02061fec() == 1) {
+                if ((u16) (data_0217562a[o = a->mEntryIndex].mBits & 3) != 0 && IsRaceStarted() == 1) {
                     k = k + 0x190;
                 }
             } else if ((a->mUnk_44 & 0x100) != 0) {

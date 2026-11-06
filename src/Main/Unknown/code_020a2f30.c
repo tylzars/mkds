@@ -302,7 +302,7 @@ void UpdateBalloon(void *p, Balloon *a) {
                     }
                 }
                 if (a->mKartIndex == data_021759c0->mEntryIndex) {
-                    if (func_02061fec() == 1) {
+                    if (IsRaceStarted() == 1) {
                         o = GetKart((u16) a->mKartIndex);
                         func_020249b8(o, a->mScaleFactor + a->mUnk_d8, a->mUnk_d4);
                     }

@@ -66,7 +66,7 @@ void func_020c1ef8(void) {
     }
     SortIndicesByKey(gRaceGoalS->mUnk_0040, a, data_021759c0->mKartCount);
     if (data_021759c0->mMode == MODE_VS || data_021759c0->mMode == 5) {
-        if (func_020617a8(&w) != 0) {
+        if (TryGetRaceUpdateFramesSinceEntryEnd(&w) != 0) {
             if (w >= 0xb4) {
                 func_0212ecc0(&data_0217d068, 0, 0x46);
             }

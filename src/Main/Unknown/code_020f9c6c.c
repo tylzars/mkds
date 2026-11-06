@@ -360,7 +360,7 @@ void func_020fbd98(Unk020fc2e8 *param_1) {
         }
         return;
     }
-    r = (u16) func_02061f90();
+    r = (u16) GetRaceUpdateFramesMod8();
     if ((param_1->mUnk_280 & (1 << r)) != 0 && param_1->mUnk_276 != r && IsKartEnded(r) != 0 &&
         func_020fcbb8(param_1, r) != 0) {
         p = param_1->mUnk_228->mKart;

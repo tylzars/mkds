@@ -158,7 +158,7 @@ void func_ov001_02181860(void) {
     {
         u32 m = data_021759c0->mUnk_2f;
         if (m == 1 || m == 5) {
-            if (func_02061f90() == 0) {
+            if (GetRaceUpdateFramesMod8() == 0) {
                 o = data_ov001_021a9b90;
                 if (o->mUnk_0c != 0) {
                     o->mUnk_0c -= 1;

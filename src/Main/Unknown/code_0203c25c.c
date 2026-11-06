@@ -39,7 +39,7 @@ u16 LookupRankPoints(u8 a) {
     return r;
 }
 
-void func_0203c2e4(u16 a) {
+void RemoveRaceProgressKart(u16 a) {
     u32 o;
     RaceProgressKart *p = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + a * 0x8c);
     BOOL f = FALSE;
@@ -53,15 +53,15 @@ void func_0203c2e4(u16 a) {
     if (f == FALSE) {
         u32 v;
         s32 i;
-        o = p->mUnk_3c_0;
+        o = p->mRank;
         v = (u16) (data_021759c0->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount);
-        p->mUnk_3c_0 = data_021759c0->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount;
+        p->mRank = data_021759c0->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount;
         for (i = 0; i < data_021759c0->mKartCount; i++) {
             RaceProgressKart *q = (RaceProgressKart *) ((u8 *) &gRaceProgress->mKarts[0] + i * 0x8c);
             if (i != a) {
-                u32 m = q->mUnk_3c_0;
+                u32 m = q->mRank;
                 if (m > o && m <= v) {
-                    q->mUnk_3c_0--;
+                    q->mRank--;
                 }
             }
         }
@@ -73,7 +73,7 @@ void func_0203c2e4(u16 a) {
     p->mStatus = 4;
     func_02069044(GetKart(a));
     func_020b1cdc(a, 1);
-    if (func_0203ef58() != 0) {
+    if (IsRaceEndConditionMet() != 0) {
         switch (data_021759c0->mMode) {
             case MODE_TIME_ATTACK:
                 break;
@@ -87,7 +87,7 @@ void func_0203c2e4(u16 a) {
                 func_0203ecf0();
                 break;
             default:
-                func_0203ee28();
+                FinishRemainingRaceProgressKarts();
                 break;
         }
     }

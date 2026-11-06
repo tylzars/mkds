@@ -257,7 +257,7 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Kart *r, Unk02175620_bc *s, V
         data_usa_0217ae44(p, q, r);
         return;
     }
-    if (func_02061f90() == p->mIndex) {
+    if (GetRaceUpdateFramesMod8() == p->mIndex) {
         if (p->mKart->mUnk_44 & 0x2000) {
             func_0207e7f0(p);
         }
@@ -350,7 +350,7 @@ void func_0207f2e4(Unk020888b4 *p) {
     p->mUnk_b4 = 0;
     e = p->mIndex;
     a = e;
-    if (a != func_02061f90()) {
+    if (a != GetRaceUpdateFramesMod8()) {
         return;
     }
     if (data_021759c0->mUnk_014 != 3) {

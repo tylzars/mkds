@@ -83,7 +83,7 @@ void func_ov001_0218b8f0(void) {
 
 s32 func_ov001_0218b8d4(Unk02188950 *a) {
     int v1;
-    v1 = func_02061fec();
+    v1 = IsRaceStarted();
     if (v1 == 1) {
         func_ov001_02188e88(a);
     }
@@ -170,7 +170,7 @@ void func_ov001_0218b5d8(Unk0218d87c *a) {
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
             func_ov001_0219b1c4(obj->mNsbmd, obj->mPrm->mUnk_080, obj->mPrm->mUnk_050, 0);
-            if (func_02062ec4()) {
+            if (GetRaceUseChainCameras()) {
                 func_ov001_0218b770(obj);
             } else {
                 func_ov001_0218b7c8(obj);

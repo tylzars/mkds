@@ -33,5 +33,5 @@ u32 GetKartRank(u32 param_1) {
     if (data_021759c0->mMode == 5) {
         return data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[param_1 & 0xff]].mUnk_86_1;
     }
-    return gRaceProgress->mKarts[param_1].mUnk_3c_0;
+    return gRaceProgress->mKarts[param_1].mRank;
 }

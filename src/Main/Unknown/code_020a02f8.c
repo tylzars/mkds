@@ -85,7 +85,7 @@ void func_020a2300(u32 p0) {
 }
 
 void func_020a22ac(u16 a) {
-    if (func_02061fec() != 1) {
+    if (IsRaceStarted() != 1) {
         return;
     }
     if (func_01ffc67c(GetKart(a)) != FALSE) {
@@ -874,7 +874,7 @@ void UpdateStandings(void) {
             if (func_01ffc67c(o) != FALSE || (u16) (data_02175628[o->mEntryIndex].mBits & 3) != 0) {
                 gStandings->mKarts[i].mUnk_68 = -1;
                 gStandings->mKarts[i].mUnk_64 = -1;
-            } else if (func_02061fec() == 1) {
+            } else if (IsRaceStarted() == 1) {
                 if ((u16) (data_02175628[(u32) o->mEntryIndex].mBits & 4) != 0) {
                     gStandings->mKarts[i].mUnk_68 = 1;
                 } else if (data_02175628[o->mEntryIndex].mUnk_5a != 0) {

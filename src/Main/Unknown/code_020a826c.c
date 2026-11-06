@@ -38,7 +38,7 @@ static inline void func_020a826c_inline(Unk020a826c_a0 *q) {
     q->mUnk_00.mUnk_0c = func_020d4ef4(&q->mUnk_10);
     if (q->mUnk_00.mUnk_0c < v) {
         q->mUnk_24 = q->mUnk_24 == 0 ? 1 : 2;
-        if (func_02062ec4() != 0) {
+        if (GetRaceUseChainCameras() != 0) {
             func_0210b734(&q->mUnk_00, (u32) q->mUnk_1c);
         } else {
             func_0210b760(&q->mUnk_00, q->mUnk_1c);
@@ -53,7 +53,7 @@ void func_020a826c(void *a, Unk020a826c *p) {
 
     switch (p->mUnk_0f0) {
         case 1:
-            if (func_02061fec() == 1) {
+            if (IsRaceStarted() == 1) {
                 v = p->mUnk_0c8.mUnk_00.mUnk_00;
                 func_0212c6f0(p->mUnk_0a0.mUnk_1c, 0);
                 p->mUnk_0a0.mUnk_00.mUnk_00 = v;

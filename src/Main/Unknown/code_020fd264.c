@@ -212,7 +212,7 @@ void func_020fde18(Unk020fdae8 *e) {
     s32 y;
     s32 z;
 
-    v1 = (u16) func_02061f90();
+    v1 = (u16) GetRaceUpdateFramesMod8();
     if (v1 >= data_021759c0->mKartCount) {
         return;
     }

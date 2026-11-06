@@ -143,9 +143,9 @@ typedef struct RaceProgressKart {
     /* 3c */ union {
         u16 mUnk_3c;
         struct {
-            u16 mUnk_3c_0 : 4;
-            u16 mUnk_3c_4 : 4;
-            u16 mUnk_3c_8 : 2;
+            u16 mRank : 4;
+            u16 mIndex : 4;
+            u16 mFinishRequest : 2;
         };
     };
     // Set by FinishRaceProgressKart for the local entry in modes 0 and 4; 0 otherwise.
@@ -166,8 +166,8 @@ typedef struct RaceProgressKart {
 // Entry 0 also holds the clock header at 0x00..0x13.
 typedef struct Unk0217561c_000 {
     /* 00 */ s32 mElapsedFrames;
-    // Gate of the clock; cleared by func_0203e788 (finish request for ANY entry: mission goal, forced finish, kind 6),
-    // not by the normal goal crossing; set only by StartRaceClock.
+    // Gate of the clock; cleared by FinishRaceProgressKartWithEndKind (finish request for ANY entry: mission goal,
+    // forced finish, kind 6), not by the normal goal crossing; set only by StartRaceClock.
     /* 04 */ s32 mClockEnabled;
     /* 08 */ union {
         struct {
@@ -302,8 +302,8 @@ typedef struct RaceProgress {
     /* 4d4 */ s32 *mCheckpointLapProgress;
     /* 4d8 */ u8 mUnk_4d8[0x4];
     /* 4dc */ RankPointRow *mRankPointFile;
-    // How the race of the entry flagged local in RaceProgressKart.mFlags ended: the second argument of func_0203e788 (0
-    // goal reached, other values the other ends), 6 until it has ended.
+    // How the race of the entry flagged local in RaceProgressKart.mFlags ended: the second argument of
+    // FinishRaceProgressKartWithEndKind (0 goal reached, other values the other ends), 6 until it has ended.
     /* 4e0 */ s32 mEntryEndKind;
     // Reciprocal of one more than gCourseMap's mUnk_9c, as a fixed-point factor: multiplied with a position in the
     // route to get RaceProgressKart.mLapProgress and mCheckpointLapProgress.
@@ -319,8 +319,8 @@ typedef struct RaceProgress {
     /* 4f4 */ u32 mTimeLimitFrameCount;
     /* 4f8 */ u8 mStartPlacementOffset;
     /* 4f9 */ u8 mUnk_4f9;
-    // Mode 4 only: counted while the local entry ended with flag 0x10, zeroed by func_0203e788. No init write (zero
-    // from the allocation).
+    // Mode 4 only: counted while the local entry ended with flag 0x10, zeroed by FinishRaceProgressKartWithEndKind. No
+    // init write (zero from the allocation).
     /* 4fa */ u16 mFramesSinceFinish;
     // Calls of the end step, counted while func_0207a218 returns non-zero, since the selected entry ended without the
     // goal; the step waits for 0x3c and then takes the entry out.

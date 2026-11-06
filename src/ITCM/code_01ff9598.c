@@ -298,7 +298,7 @@ void func_01ff9d18(Kart *p) {
 
 void func_01ff9cb0(Kart *p) {
     if (!(p->mUnk_4c & 2)) {
-        if (func_02061fec() == 1) {
+        if (IsRaceStarted() == 1) {
             func_01ffc9e8(p, 0);
         }
     }

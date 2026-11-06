@@ -77,7 +77,7 @@ void func_ov001_0218a2d4(void) {
 
 s32 func_ov001_0218a2b8(Unk02188950 *a) {
     int v1;
-    v1 = func_02061fec();
+    v1 = IsRaceStarted();
     if (v1 == 1) {
         func_ov001_02188e88(a);
     }
@@ -124,7 +124,7 @@ void func_ov001_0218a120(Unk0218d87c *a) {
             v.x = obj->mPrm->mUnk_0fc;
             v.y = obj->mPrm->mUnk_100;
             func_ov001_02187c88(obj, 5, (&v));
-            if (func_02062ec4() != 0) {
+            if (GetRaceUseChainCameras() != 0) {
                 func_ov001_0218a19c(obj);
             } else {
                 func_ov001_0218a20c(obj);

@@ -6,7 +6,7 @@
 u32 func_020f11f0(Unk020f5d6c *a, u32 b) {
     u16 v1;
     int v2;
-    v1 = func_02061f90();
+    v1 = GetRaceUpdateFramesMod8();
     if (((u32) v1 < data_021759c0->mKartCount) && (v2 = func_020f1258(a, v1, 0, b), v2 != 0)) {
         return 1;
     }

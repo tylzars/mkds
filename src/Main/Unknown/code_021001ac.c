@@ -438,7 +438,7 @@ BOOL func_02101618(Unk02101c84 *p, s32 a, s32 b) {
     n = p->mUnk_130;
     if (p->mUnk_15c != FALSE) {
         m = -7;
-        d = func_02061f90() > 2;
+        d = GetRaceUpdateFramesMod8() > 2;
         func_0210174c(p);
     } else {
         if (b < 7) {

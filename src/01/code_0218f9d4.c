@@ -1150,7 +1150,7 @@ void func_ov001_021900ac(Unk02188950 *c) {
 
 u32 func_ov001_02190090(Unk02188950 *a) {
     int v1;
-    v1 = func_02061fec();
+    v1 = IsRaceStarted();
     if (v1 == 1) {
         func_ov001_02190328(a);
     }
@@ -1296,7 +1296,7 @@ void func_ov001_0218fbe0(Unk0218fa78 *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
-            if (func_02062ec4()) {
+            if (GetRaceUseChainCameras()) {
                 obj->mUnk_000.mPos.y += obj->mPrm->mUnk_080;
                 func_ov001_0218fef8(obj);
             } else {

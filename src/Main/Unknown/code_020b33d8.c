@@ -64,7 +64,7 @@ void UpdateRaceStartSequence(void) {
                 return;
             }
             func_02106efc();
-            func_02061fcc();
+            StartRace();
             gRaceStartSequence->mDone = 1;
             return;
         }

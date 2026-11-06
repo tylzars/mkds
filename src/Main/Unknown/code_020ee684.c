@@ -492,7 +492,7 @@ void UpdateItemPool(ItemPool *a) {
     n = a->mActiveCount;
     if (a->mLimit > 1 && a->mLimit - a->mReservedCount < 2) {
         m = a->mUnk_18;
-        if ((t = func_02061f90()) == 0) {
+        if ((t = GetRaceUpdateFramesMod8()) == 0) {
             if (a->mLimit - a->mReservedCount < 1 && a->mActiveCount > 0) {
                 func_020f9ba8(a->mObjects[0]);
             }
@@ -613,7 +613,7 @@ BOOL func_020f0154(KartItems *p) {
     enum { K0 } i;
 
     b = p->mKart;
-    if (func_02061fec() == 0) {
+    if (IsRaceStarted() == 0) {
         return FALSE;
     }
     if (b->mState != 0) {

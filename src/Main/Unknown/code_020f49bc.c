@@ -126,7 +126,7 @@ void func_020f68b0(ItemObject *a) {
         Vec3AddScaled(a->mUnk_dc, &a->mUnk_f0, &a->mUnk_108, &a->mPos);
         if (a->mUnk_11a > 0) {
             a->mUnk_11a -= 1;
-            if ((a->mUnk_48 & 7) != func_02061f90()) {
+            if ((a->mUnk_48 & 7) != GetRaceUpdateFramesMod8()) {
                 return;
             }
             if (func_01ffdee4(&a->mPos.x, NULL, 0, a->mUnk_dc, 0x44, a->mUnk_da, NULL, NULL, NULL, &a->mUnk_fc, NULL,

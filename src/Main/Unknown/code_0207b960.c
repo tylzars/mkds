@@ -35,7 +35,7 @@ void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     s32 v;
     s32 x;
 
-    if (func_02061f90() == b->mIndex) {
+    if (GetRaceUpdateFramesMod8() == b->mIndex) {
         a->mUnk_08 = 0;
         v = b->mKart->mSpeedLimitGoal;
         if (v > 0xa000) {
@@ -668,7 +668,7 @@ void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
         return;
     }
     v1 = b->mIndex;
-    if (v1 == func_02061f90()) {
+    if (v1 == GetRaceUpdateFramesMod8()) {
         e = &(gKartItems)[v1];
         if (e->mItemInUse.mUnk_000 != 0xf && a->mUnk_08 != NULL) {
             a->mUnk_08->mUnk_00(a, b);

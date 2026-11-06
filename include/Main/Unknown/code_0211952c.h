@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void AdvanceSelectCupState2(void);
+void AdvanceSelectCupCourseState2(void);

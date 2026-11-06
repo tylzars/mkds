@@ -518,7 +518,7 @@ void func_0205be0c(void) {
                     g = (u8) ((f & 0x7800000) >> 23);
                 }
                 x = x & g;
-                if (f == 0 && func_02061fec() == 0) {
+                if (f == 0 && IsRaceStarted() == 0) {
                     if (data_0217aa18->mUnk_06[i] != -1) {
                         f = (func_0205d27c((u16) data_0217aa18->mUnk_06[i]) - 1) | 0x700000;
                     }
@@ -1024,7 +1024,7 @@ void func_0205b0f4(void) {
     for (i = 0; i < 4; i++) {
         v1 = 1 << i;
         if ((a & v1) != 0 && (data_0217aa14->mUnk_749 & v1) != 0 && data_0217aa18->mUnk_06[i] != -1) {
-            func_0203c2e4(data_0217aa18->mUnk_06[i]);
+            RemoveRaceProgressKart(data_0217aa18->mUnk_06[i]);
             data_0217aa14->mUnk_749 = data_0217aa14->mUnk_749 & ~v1;
         }
     }

@@ -425,8 +425,8 @@ Pointer locals and addresses:
   base register while the others go through the pointer. Read every field through the local in the ROM's order
   (func_02094e8c), or write the accesses through the existing pointer locals (func_020f14a0).
 - An address computed from a pointer already loaded for a store: write the address statement above the store so the
-  base isn't loaded again (func_0203e788). An address the ROM computes before a test's branch: assign it in the
-  block of that test (func_0206938c).
+  base isn't loaded again (FinishRaceProgressKartWithEndKind). An address the ROM computes before a test's branch:
+  assign it in the block of that test (func_0206938c).
 - A global's address load is reused only along single-predecessor blocks; the block after an `if` loads it again. A
   second address load early in the ROM means the access sits below the preceding `if` (ReceiveClockReply). Two
   statements that share global addresses in the ROM have no branch between them: set the flag first (`b = 0;

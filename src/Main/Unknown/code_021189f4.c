@@ -63,7 +63,7 @@ static inline s32 func_02119340_inline(Unk02175628Index i) {
     return g;
 }
 
-void AdvanceSelectCupState3(void) {
+void AdvanceSelectCupCourseState3(void) {
     s32 a;
     Unk02175628Index i;
     s16 w;
@@ -72,7 +72,7 @@ void AdvanceSelectCupState3(void) {
     i = UNK_02175628_INDEX_8;
     func_02119d78();
     if (func_02119340_inline(i) != 0) {
-        a = RectTableFindContaining(gSelectCup->mSelectCupMBnbl, data_02175670[i].mUnk_00,
+        a = RectTableFindContaining(gSelectCupCourse->mSelectCupMBnbl, data_02175670[i].mUnk_00,
                                     data_02175672[i].mUnk_00 + 0x20);
     }
     if ((u16) (data_02175628[i].mUnk_00 & 2) != 0 ||
@@ -85,17 +85,17 @@ void AdvanceSelectCupState3(void) {
                 func_021281c8(0xe);
             }
             func_021199f8();
-            gSelectCup->mResult = 2;
+            gSelectCupCourse->mResult = 2;
             func_02128310(0);
         }
         return;
     }
     if ((u32) a <= 3) {
         w = data_0215caac[a];
-        if (gSelectCup->mIndex == w) {
-            gSelectCup->mUnk_54 = FALSE;
+        if (gSelectCupCourse->mIndex == w) {
+            gSelectCupCourse->mUnk_54 = FALSE;
         }
-        gSelectCup->mIndex = w;
+        gSelectCupCourse->mIndex = w;
         func_02119ba8();
         return;
     }
@@ -105,13 +105,13 @@ void AdvanceSelectCupState3(void) {
     }
     if ((u16) (data_02175628[i].mUnk_00 & 1) != 0) {
         func_02119ba8();
-        gSelectCup->mUnk_54 = FALSE;
+        gSelectCupCourse->mUnk_54 = FALSE;
         return;
     }
     if (func_020ae408(8, 0x40) != 0) {
-        gSelectCup->mIndex = gSelectCup->mIndex - 1;
-        if (gSelectCup->mIndex < 0) {
-            gSelectCup->mIndex = 3;
+        gSelectCupCourse->mIndex = gSelectCupCourse->mIndex - 1;
+        if (gSelectCupCourse->mIndex < 0) {
+            gSelectCupCourse->mIndex = 3;
         }
         if (*(vu16 *) 0x027ffc40 != 2) {
             func_0212ecc0(&data_0217d068, 0, 0);
@@ -119,9 +119,9 @@ void AdvanceSelectCupState3(void) {
         return;
     }
     if (func_020ae408(8, 0x80) != 0) {
-        gSelectCup->mIndex = gSelectCup->mIndex + 1;
-        if (gSelectCup->mIndex >= 4) {
-            gSelectCup->mIndex = 0;
+        gSelectCupCourse->mIndex = gSelectCupCourse->mIndex + 1;
+        if (gSelectCupCourse->mIndex >= 4) {
+            gSelectCupCourse->mIndex = 0;
         }
         if (*(vu16 *) 0x027ffc40 != 2) {
             func_0212ecc0(&data_0217d068, 0, 0);
@@ -129,15 +129,15 @@ void AdvanceSelectCupState3(void) {
     }
 }
 
-void AdvanceSelectCupState4(void) {
+void AdvanceSelectCupCourseState4(void) {
     func_02119d78();
-    if (gSelectCup->mStateFrames == 5) {
-        gSelectCup->mUnk_54 = TRUE;
+    if (gSelectCupCourse->mStateFrames == 5) {
+        gSelectCupCourse->mUnk_54 = TRUE;
     }
-    gSelectCup->mStateFrames++;
-    if (gSelectCup->mStateFrames >= 10) {
+    gSelectCupCourse->mStateFrames++;
+    if (gSelectCupCourse->mStateFrames >= 10) {
         if (func_02119dfc() == 0) {
-            if (gSelectCup->mMode == 0) {
+            if (gSelectCupCourse->mMode == 0) {
                 func_02119e14();
                 if (func_0211e130() != FALSE) {
                     func_0211e0c4(0);
@@ -145,7 +145,7 @@ void AdvanceSelectCupState4(void) {
                     return;
                 }
                 func_02119e50();
-                gSelectCup->mResult = 1;
+                gSelectCupCourse->mResult = 1;
                 func_021199f8();
                 return;
             }
@@ -154,8 +154,8 @@ void AdvanceSelectCupState4(void) {
     }
 }
 
-void AdvanceSelectCupState5(void) {
-    switch (gSelectCup->mMode) {
+void AdvanceSelectCupCourseState5(void) {
+    switch (gSelectCupCourse->mMode) {
         case 0:
         case 1:
         case 3:
@@ -164,8 +164,8 @@ void AdvanceSelectCupState5(void) {
             }
             break;
         case 2:
-            gSelectCup->mStateFrames++;
-            if (gSelectCup->mStateFrames >= 0xf) {
+            gSelectCupCourse->mStateFrames++;
+            if (gSelectCupCourse->mStateFrames >= 0xf) {
                 if (func_021277c8() != 0 || func_02127788() != 0) {
                     func_02119a90();
                 }
@@ -174,7 +174,7 @@ void AdvanceSelectCupState5(void) {
     }
 }
 
-void AdvanceSelectCupState6(void) {
+void AdvanceSelectCupCourseState6(void) {
     s32 v;
 
     if (func_02127788() != 0) {
@@ -194,10 +194,10 @@ void AdvanceSelectCupState6(void) {
     }
 }
 
-void AdvanceSelectCupState7(void) {
+void AdvanceSelectCupCourseState7(void) {
     s32 v;
 
-    switch (gSelectCup->mMode) {
+    switch (gSelectCupCourse->mMode) {
         case 0:
         case 1:
         case 3:
@@ -206,25 +206,25 @@ void AdvanceSelectCupState7(void) {
                 switch (v) {
                     case 0:
                         func_02119e50();
-                        gSelectCup->mResult = 1;
+                        gSelectCupCourse->mResult = 1;
                         func_021199f8();
                         break;
                     case -1:
                     case 1:
-                        RequestSelectCupState3();
+                        RequestSelectCupCourseState3();
                         break;
                 }
             }
             break;
         case 2:
-            gSelectCup->mStateFrames++;
-            if (gSelectCup->mStateFrames >= 0xf) {
+            gSelectCupCourse->mStateFrames++;
+            if (gSelectCupCourse->mStateFrames >= 0xf) {
                 if (func_021277ac() != 0) {
                     v = func_02127794();
                     switch (v) {
                         case 0:
                             func_02119e50();
-                            gSelectCup->mResult = 1;
+                            gSelectCupCourse->mResult = 1;
                             func_021199f8();
                             if (*(vu16 *) 0x027ffc40 == 2) {
                                 func_0211f378();
@@ -232,7 +232,7 @@ void AdvanceSelectCupState7(void) {
                             break;
                         case -1:
                         case 1:
-                            RequestSelectCupState3();
+                            RequestSelectCupCourseState3();
                             break;
                     }
                 }
@@ -241,18 +241,18 @@ void AdvanceSelectCupState7(void) {
     }
 }
 
-void AdvanceSelectCupState8(void) {
+void AdvanceSelectCupCourseState8(void) {
     BOOL a;
     s16 v;
     s32 w;
     s32 i;
 
-    gSelectCup->mStateFrames++;
+    gSelectCupCourse->mStateFrames++;
     if (*(vu16 *) 0x027ffc40 == 2) {
         return;
     }
-    if (gSelectCup->mMode == 0) {
-        if (gSelectCup->mResult == 1) {
+    if (gSelectCupCourse->mMode == 0) {
+        if (gSelectCupCourse->mResult == 1) {
             if (func_0211e130() != FALSE) {
                 a = TRUE;
             } else {
@@ -264,105 +264,105 @@ void AdvanceSelectCupState8(void) {
     } else {
         a = TRUE;
     }
-    func_020ae4c0(1, 0, 0x100, gSelectCup->mStateFrames, 10);
-    v = func_020ae4c0(1, 0, -0xc0, gSelectCup->mStateFrames, 10);
+    func_020ae4c0(1, 0, 0x100, gSelectCupCourse->mStateFrames, 10);
+    v = func_020ae4c0(1, 0, -0xc0, gSelectCupCourse->mStateFrames, 10);
     if (a != FALSE) {
-        w = gSelectCup->mSelectCupCourseTaOrVsMBncl->mUnk_06;
-        gSelectCup->mBg0Offset = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[0].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[2].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[1].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[4].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[3].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[5].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[w].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 1].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 2].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 3].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 4].mUnk_06 = v;
-        gSelectCup->mSelectCupCourseTaOrVsMTable[w + 5].mUnk_06 = v;
+        w = gSelectCupCourse->mSelectCupCourseTaOrVsMBncl->mUnk_06;
+        gSelectCupCourse->mBg0Offset = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[0].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[2].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[1].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[4].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[3].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[5].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 1].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 2].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 3].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 4].mUnk_06 = v;
+        gSelectCupCourse->mSelectCupCourseTaOrVsMTable[w + 5].mUnk_06 = v;
     }
-    if (gSelectCup->mResult != 2) {
-        w = gSelectCup->mSelectCupMBncl->mUnk_06;
-        gSelectCup->mBg3Offset = v - 0x20;
-        gSelectCup->mSelectCupMTable[0x14].mUnk_06 = v - 0x20;
-        gSelectCup->mSelectCupMTable[0x13].mUnk_06 = v - 0x20;
-        gSelectCup->mSelectCupMTable[2].mUnk_06 = v - 0x20;
-        gSelectCup->mSelectCupMTable[1].mUnk_06 = v - 0x20;
-        gSelectCup->mSelectCupMTable[0].mUnk_06 = v - 0x20;
+    if (gSelectCupCourse->mResult != 2) {
+        w = gSelectCupCourse->mSelectCupMBncl->mUnk_06;
+        gSelectCupCourse->mBg3Offset = v - 0x20;
+        gSelectCupCourse->mSelectCupMTable[0x14].mUnk_06 = v - 0x20;
+        gSelectCupCourse->mSelectCupMTable[0x13].mUnk_06 = v - 0x20;
+        gSelectCupCourse->mSelectCupMTable[2].mUnk_06 = v - 0x20;
+        gSelectCupCourse->mSelectCupMTable[1].mUnk_06 = v - 0x20;
+        gSelectCupCourse->mSelectCupMTable[0].mUnk_06 = v - 0x20;
         for (i = 0; i < 8; i++) {
-            gSelectCup->mSelectCupMTable[data_0215cacc[i]].mUnk_06 = v - 0x20;
+            gSelectCupCourse->mSelectCupMTable[data_0215cacc[i]].mUnk_06 = v - 0x20;
         }
         v -= 0x20;
         for (i = 0; i < 4; i++) {
-            gSelectCup->mSelectCupMTable[data_0215caa4[i]].mUnk_06 = v;
-            gSelectCup->mSelectCupMTable[w + data_0215cab4[i]].mUnk_06 = v;
+            gSelectCupCourse->mSelectCupMTable[data_0215caa4[i]].mUnk_06 = v;
+            gSelectCupCourse->mSelectCupMTable[w + data_0215cab4[i]].mUnk_06 = v;
         }
     }
 }
 
-s32 AdvanceSelectCup(void) {
+s32 AdvanceSelectCupCourse(void) {
     s32 i;
     u16 *p;
 
-    gSelectCup->mState = gSelectCup->mNextState;
-    switch (gSelectCup->mState) {
+    gSelectCupCourse->mState = gSelectCupCourse->mNextState;
+    switch (gSelectCupCourse->mState) {
         case 0:
-            AdvanceSelectCupState0();
+            AdvanceSelectCupCourseState0();
             break;
         case 1:
-            AdvanceSelectCupState1();
+            AdvanceSelectCupCourseState1();
             break;
         case 2:
-            AdvanceSelectCupState2();
+            AdvanceSelectCupCourseState2();
             break;
         case 3:
-            AdvanceSelectCupState3();
+            AdvanceSelectCupCourseState3();
             break;
         case 4:
-            AdvanceSelectCupState4();
+            AdvanceSelectCupCourseState4();
             break;
         case 5:
-            AdvanceSelectCupState5();
+            AdvanceSelectCupCourseState5();
             break;
         case 6:
-            AdvanceSelectCupState6();
+            AdvanceSelectCupCourseState6();
             break;
         case 7:
-            AdvanceSelectCupState7();
+            AdvanceSelectCupCourseState7();
             break;
         case 8:
-            AdvanceSelectCupState8();
+            AdvanceSelectCupCourseState8();
             break;
     }
     func_0211a07c();
     if (*(vu16 *) 0x027ffc40 != 2) {
-        if (gSelectCup->mCupPicturePending != FALSE && func_020d0ec4() != FALSE) {
+        if (gSelectCupCourse->mCupPicturePending != FALSE && func_020d0ec4() != FALSE) {
             p = GetCupPictureNscrData();
             CallQueueAppend(0x1f, 0, GetCupPictureNclrData(), 0xe0);
             CallQueueAppend(0x17, 0x20, GetCupPictureNcgrData(), 0xdc0);
             for (i = 0; i < 11; i++) {
                 CallQueueAppend(0x1b, ((i + 8) * 0x20 + 0x16) * 2, p + ((i + 8) * 0x20 + 0x16), 0x14);
             }
-            gSelectCup->mCupPicturePending = FALSE;
+            gSelectCupCourse->mCupPicturePending = FALSE;
         }
-        func_02124c30(gSelectCup->mSelectCupCourseTaOrVsMBncl, gSelectCup->mSelectCupCourseMNcer,
-                      gSelectCup->mSelectCupCourseTaOrVsMBnll, gSelectCup->mUnk_64,
-                      gSelectCup->mSelectCupCourseTaOrVsMTable);
-        func_02124c30(gSelectCup->mSelectCupMBncl, gSelectCup->mSelectCupMNcer, gSelectCup->mSelectCupMBnll,
-                      gSelectCup->mUnk_68, gSelectCup->mSelectCupMTable);
+        func_02124c30(gSelectCupCourse->mSelectCupCourseTaOrVsMBncl, gSelectCupCourse->mSelectCupCourseMNcer,
+                      gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, gSelectCupCourse->mUnk_64,
+                      gSelectCupCourse->mSelectCupCourseTaOrVsMTable);
+        func_02124c30(gSelectCupCourse->mSelectCupMBncl, gSelectCupCourse->mSelectCupMNcer,
+                      gSelectCupCourse->mSelectCupMBnll, gSelectCupCourse->mUnk_68, gSelectCupCourse->mSelectCupMTable);
     } else {
         func_0211f39c();
     }
-    if (gSelectCup->mState == 8 && gSelectCup->mStateFrames >= 10) {
-        return gSelectCup->mResult;
+    if (gSelectCupCourse->mState == 8 && gSelectCupCourse->mStateFrames >= 10) {
+        return gSelectCupCourse->mResult;
     }
     return 0;
 }
 
 void func_02118e30(void) {
-    reg_G2_BG0OFS = (-gSelectCup->mBg0Offset << 16) & 0x1ff0000;
-    reg_G2S_DB_BG3OFS = (-gSelectCup->mBg3Offset << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-gSelectCupCourse->mBg0Offset << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (-gSelectCupCourse->mBg3Offset << 16) & 0x1ff0000;
 }
 
 void func_02118d44(void) {
@@ -403,29 +403,29 @@ void func_02118b48(void) {
     u16 *p;
 
     if (*(vu16 *) 0x027ffc40 == 2) {
-        data_0217d360->mSelectCupSBnbl = FindSceneFile(data_0216d6a4);
+        gSelectCupGrid->mSelectCupSBnbl = FindSceneFile(data_0216d6a4);
         return;
     }
     LocateNcgr(&e, FindSceneFile(data_0216d690));
     LocateNclr(&g, FindSceneFile(data_0216d6b8));
     LocateNscr(&f, FindSceneFile(data_0216d6bc));
-    data_0217d360->mUnk_20 = HeapAlloc(data_0217d360->mHeap, 0x800);
-    data_0217d360->mSelectCupMBncl = FindSceneFile(data_0216d698);
-    data_0217d360->mSelectCupMBnll = FindSceneFile(data_0216d6a8);
+    gSelectCupGrid->mUnk_20 = HeapAlloc(gSelectCupGrid->mHeap, 0x800);
+    gSelectCupGrid->mSelectCupMBncl = FindSceneFile(data_0216d698);
+    gSelectCupGrid->mSelectCupMBnll = FindSceneFile(data_0216d6a8);
     LocateNcgr2(&a, FindSceneFile(data_0216d6ac));
-    LocateNcer(&data_0217d360->mSelectCupMNcer, FindSceneFile(data_0216d694));
+    LocateNcer(&gSelectCupGrid->mSelectCupMNcer, FindSceneFile(data_0216d694));
     LocateNclr(&b, FindSceneFile(data_0216d6a0));
-    data_0217d360->mSelectCupSBncl = FindSceneFile(data_0216d6b0);
-    data_0217d360->mSelectCupSBnbl = FindSceneFile(data_0216d6a4);
+    gSelectCupGrid->mSelectCupSBncl = FindSceneFile(data_0216d6b0);
+    gSelectCupGrid->mSelectCupSBnbl = FindSceneFile(data_0216d6a4);
     LocateNcgr2(&c, FindSceneFile(data_0216d69c));
-    LocateNcer(&data_0217d360->mSelectCupSNcer, FindSceneFile(data_0216d6b4));
+    LocateNcer(&gSelectCupGrid->mSelectCupSNcer, FindSceneFile(data_0216d6b4));
     LocateNclr(&d, FindSceneFile(data_0216d68c));
     p = b->mData;
     if (func_020cccb4() != 0x18 && func_020cccb4() != 0xc) {
         CallQueueAppend(4, 0, e->mData, e->mDataSize);
         CallQueueAppend(0xf, 0, g->mData, 0x100);
         CallQueueAppend(8, 0, &f->mData, f->mDataSize);
-        CallQueueAppend(8, 0x800, data_0217d360->mUnk_20, 0x800);
+        CallQueueAppend(8, 0x800, gSelectCupGrid->mUnk_20, 0x800);
     }
     CallQueueAppend(0x13, 0, a->mData, a->mDataSize);
     CallQueueAppend(0xe, 0, b->mData, 0x1a0);
@@ -434,12 +434,12 @@ void func_02118b48(void) {
     CallQueueAppend(0x1e, 0, d->mData, d->mDataSize);
 }
 
-u32 func_021189f4(u32 a) {
+u32 GetSelectCupGridCupEnabled(u32 a) {
     u32 r;
     s32 i;
 
     r = 0;
-    switch (data_0217d360->mMode) {
+    switch (gSelectCupGrid->mMode) {
         case 0:
         case 2:
             switch (a) {

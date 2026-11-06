@@ -616,7 +616,7 @@ Unk02012f58 *UpdateChainCameraPair(void) {
     } else {
         UpdateCameraEntry(gSecondChainCamera);
     }
-    if (func_02061f7c() == 0) {
+    if (GetRaceUpdateFramesMod2() == 0) {
         UpdateCameraView(gFirstChainCamera);
         gCurrentChainCamera = gFirstChainCamera;
         return &gFirstChainCamera->mViewMatrix;
@@ -802,7 +802,7 @@ void func_02074b00(Camera *p) {
     d.x = (s32) (((s64) d.x * 0xfae) >> 12);
     d.y = (s32) (((s64) d.y * 0xfae) >> 12);
     d.z = (s32) (((s64) d.z * 0xfae) >> 12);
-    func_02062254(&d);
+    SetRaceLightVector(&d);
     q = p->mCourseMapCamera;
     if (q->mFovBlendPerFrame != 0) {
         s32 r;

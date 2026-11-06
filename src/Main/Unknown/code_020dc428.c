@@ -351,7 +351,7 @@ void UpdateWanwanState0(Wanwan *p) {
     }
     func_020d8474(&p->mUnk_100, &p->mUnk_00.mPos);
     if (!(p->mUnk_00.mFlags & 0x800)) {
-        u = func_02061fa4();
+        u = GetRaceUpdateFramesModKartCount();
         o = GetKart(u);
         if (func_0206c0e0(o) == FALSE) {
             e = p->mUnk_1dc;

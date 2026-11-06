@@ -119,7 +119,7 @@ static inline s32 func_0203df74_c_inline(CourseMapRoute *r, u16 c, s32 v) {
 
 static inline void func_0203e550_inline(s32 a) {
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        func_0203e788(a, 0);
+        FinishRaceProgressKartWithEndKind(a, 0);
     }
 }
 
@@ -186,15 +186,15 @@ void func_0203e550(RaceProgressKart *a) {
                 }
                 break;
             case 6:
-                if (a->mUnk_3c_0 != 1) {
+                if (a->mRank != 1) {
                     g = FALSE;
                 }
                 break;
         }
         if (g != FALSE) {
-            func_0203e550_inline(a->mUnk_3c_4);
+            func_0203e550_inline(a->mIndex);
         } else {
-            func_0203e788(a->mUnk_3c_4, 4);
+            FinishRaceProgressKartWithEndKind(a->mIndex, 4);
         }
     } else {
         if ((a->mFlags & 1) == 0 && data_021759c0->mMode == 5) {
@@ -253,7 +253,7 @@ void UpdateRaceProgressKart(Vec3 *a, RaceProgressKart *b) {
     d = b->mRoute;
     p = (s16) c;
     v = 0;
-    if (func_0207a5c4(b->mUnk_3c_4) != 0) {
+    if (func_0207a5c4(b->mIndex) != 0) {
         return;
     }
     if (func_0203fa60(b, &v, a, d, c) == 0) {
@@ -333,7 +333,7 @@ void UpdateRaceProgressKarts(void) {
             GetKartForward(GetKart(i), &w);
             UpdateRaceProgressKart(&v, e);
             f = FALSE;
-            if (func_0207a7fc(e->mUnk_3c_4) == 0) {
+            if (func_0207a7fc(e->mIndex) == 0) {
                 o = &gCourseMap->mCheckpoints[e->mCheckpoint].mUnk_10;
                 t.mUnk_00 = w.x;
                 t.mUnk_04 = w.z;
@@ -373,7 +373,7 @@ void UpdateRaceProgressKarts(void) {
         }
         for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
             if (d[i] < 8) {
-                gRaceProgress->mKarts[d[i]].mUnk_3c_0 = i + 1;
+                gRaceProgress->mKarts[d[i]].mRank = i + 1;
             }
         }
         gRaceProgress->mUnk_000[d[0]].mFirstPlaceFrames++;
@@ -417,7 +417,7 @@ void UpdateRaceProgressKarts(void) {
         }
         if (f == FALSE && (s->mFlags & 0x40) != 0) {
             FinishRaceProgressKart(s, 1);
-            if (func_0203ef58() != 0) {
+            if (IsRaceEndConditionMet() != 0) {
                 switch (data_021759c0->mMode) {
                     case MODE_TIME_ATTACK:
                         break;
@@ -431,7 +431,7 @@ void UpdateRaceProgressKarts(void) {
                         func_0203ecf0();
                         break;
                     default:
-                        func_0203ee28();
+                        FinishRemainingRaceProgressKarts();
                         break;
                 }
             }
@@ -440,7 +440,7 @@ void UpdateRaceProgressKarts(void) {
         if ((s->mFlags & 8) != 0) {
             s->mFlags &= ~8;
             if (data_021759c0->mMode != MODE_MISSION_RUN) {
-                func_0207a828(s->mUnk_3c_4);
+                func_0207a828(s->mIndex);
                 if ((s->mFlags & 1) != 0) {
                     func_02110cc8(0);
                 }

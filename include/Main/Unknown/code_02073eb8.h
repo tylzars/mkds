@@ -94,7 +94,7 @@ void UpdateCameraPosCurveLookAtKart(Camera *p);
 // Does nothing while mCourseMapCamera is NULL. Otherwise runs the entry (UpdateCameraByEntryKind), counts
 // mCourseMapCameraFrames and, when it reaches the entry's mFrameCount, starts the entry at mNextIndex (sets
 // gRaceProgress->mUnk_4d0 when there is none). For gFirstChainCamera with mFrustumShift 1 it also starts the next entry
-// of gSecondChainCamera. UpdateRace reaches it once a frame, only while gRace->mUnk_28 is non-zero.
+// of gSecondChainCamera. UpdateRace reaches it once a frame, only while gRace->mUseChainCameras is non-zero.
 void UpdateCameraEntry(Camera *p);
 // Steps gFirstChainCamera (UpdateCameraEntry), updates its view, stores it in gCurrentChainCamera and returns its view
 // matrix. UpdateRace calls it when data_021759c0->mUnk_00c is 4.
@@ -117,7 +117,7 @@ void UpdateCameraByEntryKind(Camera *p);
 // TRUE. Returns FALSE while mEntryUpdateHold or mEntryUpdateDisabled is set, and when no CourseMapShape of mKind 1
 // contains the followed Kart's position (func_020411e4 finds none); mPrevPos and gEntryCameraUpdateRan are written
 // before either. Otherwise it starts the entry that shape names when it differs from the last one, runs it and returns
-// TRUE. UpdateRace calls it only while gRace->mUnk_28 is 0 and func_0203c5e4() is non-zero.
+// TRUE. UpdateRace calls it only while gRace->mUseChainCameras is 0 and func_0203c5e4() is non-zero.
 BOOL TryUpdateEntryCamera(Camera *p);
 u32 func_02075cf0(void);
 void func_02075d08(s32 a);
@@ -136,7 +136,7 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c);
 // One frame of the chase camera (gChaseCamera) following Kart b: eases the field of view, the look-at, the position
 // goal and the position toward the Kart, then runs the collision test and the wobble. With bit 0x20 of the Kart's
 // mUnk_7c set it only updates mViewPosYOffset, and only while water is present. UpdateRace does not call it while
-// gRace->mUnk_28 is non-zero.
+// gRace->mUseChainCameras is non-zero.
 void UpdateChaseCamera(Camera *a, Kart *b);
 void SetupCameraBehindKart(void);
 void func_02076bcc(Camera *a);

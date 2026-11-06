@@ -90,7 +90,7 @@ void func_020651fc(Kart *a) {
         b->mUnk_60 = 0;
         b->mUnk_64 = 0;
     }
-    if (func_02061fec() == 1) {
+    if (IsRaceStarted() == 1) {
         a->mUnk_230 = func_01ffb0cc;
     }
     if ((a->mUnk_514->mUnk_44 & 1) != 0) {
@@ -275,7 +275,7 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     }
     a->mUnk_534 = a->mPosSource;
     func_020646f0(a, 0);
-    if (func_02062ec4() != 0 && data_021759c0->mUnk_00c != 5) {
+    if (GetRaceUseChainCameras() != 0 && data_021759c0->mUnk_00c != 5) {
         a->mSlotFunctions[3] = func_020649e8;
         a->mSlotFunctions[4] = func_020649e8;
         a->mUnk_98 = a->mUnk_174;

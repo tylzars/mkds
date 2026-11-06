@@ -273,7 +273,7 @@ int func_ov001_02183780(Unk02188950 *a) {
             StartMapObjectSound(&a->mUnk_000, (u32) (0x240));
         }
     }
-    if (func_02061fec() == 1) {
+    if (IsRaceStarted() == 1) {
         func_ov001_02183b9c(a);
     }
     return 0;
@@ -351,7 +351,7 @@ void func_ov001_02183450(Unk0218fa78 *a) {
             func_ov001_02187eb0(o);
             o->mUnk_000.mCourseMapRow->mUnk_00.x = 0;
             o->mUnk_000.mCourseMapRow->mUnk_00.z = 0;
-            if (func_02062ec4() != 0) {
+            if (GetRaceUseChainCameras() != 0) {
                 func_ov001_021834c4(o);
             } else {
                 func_ov001_02183524(o);

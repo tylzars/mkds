@@ -59,7 +59,7 @@ void func_02089c3c(Unk02089b4c *a, Unk020888b4 *b) {
     s32 m;
     Kart *q;
 
-    if (b->mIndex == func_02061f90()) {
+    if (b->mIndex == GetRaceUpdateFramesMod8()) {
         a->mUnk_0c = FALSE;
         m = b->mKart->mSpeedLimitGoal;
         if (m > 0xa000) {
@@ -284,7 +284,7 @@ void func_02089494(Unk020888b4 *p) {
         p->mUnk_44 = *s->mUnk_00->mUnk_20;
         Vec3Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
     } else {
-        if (p->mIndex == func_02061f90()) {
+        if (p->mIndex == GetRaceUpdateFramesMod8()) {
             f = p->mUnk_5c;
             z = *g;
             Vec3Sub(f, &q->mPos, &t);
@@ -382,7 +382,7 @@ void func_02088e44(Unk020888b4 *p) {
     Vec3 *v3;
 
     m = p->mIndex;
-    if (m != func_02061f90()) {
+    if (m != GetRaceUpdateFramesMod8()) {
         return;
     }
     if (data_021759c0->mUnk_014 == 1) {
@@ -610,7 +610,7 @@ void func_02088a0c(Unk020888b4 *p) {
             p->mUnk_5c = &p->mUnk_44;
         }
     } else {
-        if (p->mIndex == func_02061f90()) {
+        if (p->mIndex == GetRaceUpdateFramesMod8()) {
             func_020888b4(p, 0x17d7840, gEntryYDifferenceLimit);
         }
     }

@@ -642,7 +642,7 @@ void func_ov001_0218e208(Unk0218d87c *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
-            if (func_02062ec4() != 0) {
+            if (GetRaceUseChainCameras() != 0) {
                 func_ov001_0218e4ac(obj);
             } else {
                 func_ov001_0218e520(obj);

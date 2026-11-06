@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-void func_02117be0(void);
+// Waits until IsSelectReturnState2NoState3Or4Request returns non-zero, then requests state 3.
+void AdvanceSelectCupGridState2(void);

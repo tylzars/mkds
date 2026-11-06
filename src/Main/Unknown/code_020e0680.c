@@ -237,7 +237,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
         b->mUnk_000.mUnk_10.x = b->mUnk_000.mPos.x - v.x;
         b->mUnk_000.mUnk_10.z = b->mUnk_000.mPos.z - v.z;
     }
-    if (f || (b->mUnk_0d4 & 7) == func_02061f90()) {
+    if (f || (b->mUnk_0d4 & 7) == GetRaceUpdateFramesMod8()) {
         w.x = b->mUnk_000.mPos.x;
         w.y = b->mUnk_000.mPos.y + (f ? 0xf000 : 0);
         w.z = b->mUnk_000.mPos.z;

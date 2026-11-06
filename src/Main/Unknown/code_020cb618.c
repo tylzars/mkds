@@ -58,7 +58,7 @@ void func_020cb6c0(void) {
                 InitSelectKart(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;
             case 7:
-                func_02117e24(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 0);
+                InitSelectCupGrid(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 0);
                 break;
             case 11:
                 if (func_020cae54() == 0) {
@@ -69,10 +69,10 @@ void func_020cb6c0(void) {
                     v = 4;
                 }
                 p = data_0217b43c;
-                func_02117e24(func_020cb99c(), p->mUnk_108, p->mUnk_50c, v);
+                InitSelectCupGrid(func_020cb99c(), p->mUnk_108, p->mUnk_50c, v);
                 break;
             case 23:
-                func_02117e24(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 1);
+                InitSelectCupGrid(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 1);
                 break;
             case 13:
                 if (func_020cae54() == 0) {
@@ -83,10 +83,10 @@ void func_020cb6c0(void) {
                     v = 3;
                 }
                 p = data_0217b43c;
-                InitSelectCup(func_020cb99c(), p->mUnk_108, p->mUnk_50c, v);
+                InitSelectCupCourse(func_020cb99c(), p->mUnk_108, p->mUnk_50c, v);
                 break;
             case 25:
-                InitSelectCup(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 0);
+                InitSelectCupCourse(func_020cb99c(), p->mUnk_108, p->mUnk_50c, 0);
                 break;
             case 10:
                 if (func_020cae54() == 0) {
@@ -182,11 +182,11 @@ void func_020cb618(void) {
             case 7:
             case 11:
             case 23:
-                func_02117db0();
+                ReleaseSelectCupGrid();
                 break;
             case 13:
             case 25:
-                ReleaseSelectCup();
+                ReleaseSelectCupCourse();
                 break;
             case 10:
             case 16:

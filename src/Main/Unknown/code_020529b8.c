@@ -199,7 +199,7 @@ BOOL func_0205373c(void) {
                 if ((f & v3) != 0 && (m & v3) != 0) {
                     data_0217aa00->mUnk_15f6 = f & ~v3;
                     if (data_0217aa00->mUnk_0004 == 9) {
-                        func_0203c2e4(v);
+                        RemoveRaceProgressKart(v);
                     }
                     if ((data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) == 1) {
                         data_0217aa00->mUnk_1eac[0] &= ~v3;

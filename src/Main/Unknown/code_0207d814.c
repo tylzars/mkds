@@ -239,7 +239,7 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     s32 s;
     Kart *q;
 
-    if (b->mIndex == func_02061f90()) {
+    if (b->mIndex == GetRaceUpdateFramesMod8()) {
         a->mUnk_08 = 0;
         a->mUnk_18 = 0;
         f = FALSE;

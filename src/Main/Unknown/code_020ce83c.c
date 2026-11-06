@@ -6,7 +6,7 @@
 #pragma optimize_for_size on
 #pragma thumb on
 void func_020ce83c(void) {
-    switch (func_02117418()) {
+    switch (AdvanceSelectCupGrid()) {
         case 1:
             func_020ccc74(0xc, 0x1f);
             break;

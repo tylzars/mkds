@@ -99,8 +99,8 @@
 #include "01/code_0218155c.h"
 #include "Main/Unknown/code_0203ca38.h"
 
-u32 func_02062ec4(void) {
-    return ((u32) gRace->mUnk_28);
+u32 GetRaceUseChainCameras(void) {
+    return ((u32) gRace->mUseChainCameras);
 }
 
 u32 func_02062eb0(void) {
@@ -148,8 +148,8 @@ void InitRace(void) {
     InitKarts(data_021759c0->mKartCount);
     CreateChaseCamera();
     func_020777ac(data_021759c0->mUnk_063);
-    if (gRace->mUnk_28 != 0) {
-        if (gRace->mUnk_2c != 0) {
+    if (gRace->mUseChainCameras != 0) {
+        if (gRace->mUseFirstChainCamera != 0) {
             CreateFirstChainCamera();
         } else {
             CreateChainCameraPair();
@@ -211,22 +211,22 @@ void func_02062a0c(void) {
 
     gRace->mUpdateFrames = 0;
     gRace->mDrawFrames = 0;
-    gRace->mUnk_14 = 0;
-    gRace->mUnk_10 = 0;
-    gRace->mUnk_0c = 0;
-    gRace->mUnk_18 = 0;
-    gRace->mUnk_1c = 0;
-    gRace->mUnk_30 = FALSE;
-    gRace->mUnk_34 = FALSE;
-    gRace->mUnk_3c = 0;
+    gRace->mUpdateFramesModKartCount = 0;
+    gRace->mUpdateFramesMod2 = 0;
+    gRace->mUpdateFramesMod8 = 0;
+    gRace->mToonTableOffset = 0;
+    gRace->mToonTableFrames = 0;
+    gRace->mUpdateFramesLimitReached = FALSE;
+    gRace->mUpdateFramesUnlimited = FALSE;
+    gRace->mUpdateFramesAtEntryEnd = 0;
     v = data_021653f0;
-    gRace->mUnk_40 = v.x;
-    gRace->mUnk_42 = v.y;
-    gRace->mUnk_44 = v.z;
-    gRace->mUnk_28 = (u32) (data_021759c0->mUnk_00c - 3) <= 2 ? 1 : 0;
-    gRace->mUnk_2c = data_021759c0->mUnk_00c == 4 ? 1 : 0;
+    gRace->mLightVectorX = v.x;
+    gRace->mLightVectorY = v.y;
+    gRace->mLightVectorZ = v.z;
+    gRace->mUseChainCameras = (u32) (data_021759c0->mUnk_00c - 3) <= 2 ? 1 : 0;
+    gRace->mUseFirstChainCamera = data_021759c0->mUnk_00c == 4 ? 1 : 0;
     gRace->mUnk_38 = (data_021759c0->mUnk_00c == 5 || data_021759c0->mUnk_00c == 6) != 0 ? 1 : 0;
-    gRace->mUnk_00 = gRace->mUnk_38 != 0 ? 1 : 0;
+    gRace->mStarted = gRace->mUnk_38 != 0 ? 1 : 0;
 }
 
 void func_020629a4(void) {
@@ -269,7 +269,7 @@ void UpdateRace(void) {
     func_01ffdb70();
     UpdateCourseModels();
     UpdateKarts();
-    if (gRace->mUnk_0c == 0) {
+    if (gRace->mUpdateFramesMod8 == 0) {
         func_02085778();
     }
     switch (data_021759c0->mMode) {
@@ -286,8 +286,8 @@ void UpdateRace(void) {
             break;
     }
     ClearCameraEntryFlags();
-    if (gRace->mUnk_28 != 0) {
-        if (gRace->mUnk_2c != 0) {
+    if (gRace->mUseChainCameras != 0) {
+        if (gRace->mUseFirstChainCamera != 0) {
             v = UpdateFirstChainCamera();
         } else {
             v = UpdateChainCameraPair();
@@ -324,7 +324,7 @@ void UpdateRace(void) {
     if (data_0217aa64 != 0) {
         if (data_0217aa4c != 0) {
             if (data_021653e8 == 0) {
-                gRace->mUnk_20 = 0;
+                gRace->mFadeFog = 0;
                 func_0207a5f0(1);
                 func_02062ef8(0);
                 data_0217aa64 = 0;
@@ -345,11 +345,11 @@ void UpdateRace(void) {
     UpdateKartSoundDistancesSquared();
     func_0208677c();
     if (data_021759c0->mMode == 5) {
-        if (gRace->mUnk_34 == FALSE) {
-            if (gRace->mUnk_30 == FALSE) {
+        if (gRace->mUpdateFramesUnlimited == FALSE) {
+            if (gRace->mUpdateFramesLimitReached == FALSE) {
                 gRace->mUpdateFrames++;
                 if ((u32) gRace->mUpdateFrames >= 128) {
-                    gRace->mUnk_30 = TRUE;
+                    gRace->mUpdateFramesLimitReached = TRUE;
                 }
             }
         } else {
@@ -358,17 +358,17 @@ void UpdateRace(void) {
     } else {
         gRace->mUpdateFrames++;
     }
-    gRace->mUnk_0c = gRace->mUpdateFrames & 7;
-    gRace->mUnk_10 = gRace->mUpdateFrames & 1;
-    gRace->mUnk_14 = (u32) gRace->mUpdateFrames % data_021759c0->mKartCount;
-    G3X_SetToonTable(&data_0217aadc[gRace->mUnk_18]);
-    gRace->mUnk_1c++;
-    if ((u32) gRace->mUnk_1c > data_021653ec) {
-        gRace->mUnk_1c = 0;
-        gRace->mUnk_18++;
+    gRace->mUpdateFramesMod8 = gRace->mUpdateFrames & 7;
+    gRace->mUpdateFramesMod2 = gRace->mUpdateFrames & 1;
+    gRace->mUpdateFramesModKartCount = (u32) gRace->mUpdateFrames % data_021759c0->mKartCount;
+    G3X_SetToonTable(&data_0217aadc[gRace->mToonTableOffset]);
+    gRace->mToonTableFrames++;
+    if ((u32) gRace->mToonTableFrames > data_021653ec) {
+        gRace->mToonTableFrames = 0;
+        gRace->mToonTableOffset++;
     }
-    if ((u32) gRace->mUnk_18 > 7) {
-        gRace->mUnk_18 = 0;
+    if ((u32) gRace->mToonTableOffset > 7) {
+        gRace->mToonTableOffset = 0;
     }
 }
 
@@ -379,8 +379,8 @@ void DrawRace(void) {
         G3X_SetFog(1, 0, data_0217aa80, data_0217aa70);
         G3X_SetFogTable(data_0217aa9c);
         reg_G3X_FOG_COLOR = data_0217aa28 | (data_0217aa68 << 16);
-    } else if (gRace->mUnk_20 != gRace->mUnk_24) {
-        if (gRace->mUnk_20 == 0) {
+    } else if (gRace->mFadeFog != gRace->mDrawnFadeFog) {
+        if (gRace->mFadeFog == 0) {
             if (gCourseMap->mSettings->mFogEnabled != 0) {
                 G3X_SetFog(1, 0, data_0217aa80, data_0217aa48);
                 reg_G3X_FOG_COLOR = data_0217aa38 | (data_0217aa50 << 16);
@@ -394,22 +394,22 @@ void DrawRace(void) {
             G3X_SetFogTable(data_0217aa9c);
         }
     }
-    gRace->mUnk_24 = gRace->mUnk_20;
+    gRace->mDrawnFadeFog = gRace->mFadeFog;
     func_02062078();
     func_0208b870(data_0217aa7c);
     func_0208ee7c(data_0217aa7c);
     func_02089fa0();
-    if (gRace->mUnk_28 == 0) {
+    if (gRace->mUseChainCameras == 0) {
         func_02086250(data_0217aa7c);
     }
     func_02104118();
     gRace->mDrawFrames++;
 }
 
-void func_02062254(const Vec3 *a) {
-    gRace->mUnk_40 = a->x;
-    gRace->mUnk_42 = a->y;
-    gRace->mUnk_44 = a->z;
+void SetRaceLightVector(const Vec3 *a) {
+    gRace->mLightVectorX = a->x;
+    gRace->mLightVectorY = a->y;
+    gRace->mLightVectorZ = a->z;
 }
 
 void func_02062078(void) {
@@ -422,7 +422,7 @@ void func_02062078(void) {
     func_02076c50(data_0217aa6c, 1);
     func_02076bcc(data_0217aa6c);
     p = data_0217aa6c;
-    func_02010fac(0, gRace->mUnk_40, gRace->mUnk_42, gRace->mUnk_44);
+    func_02010fac(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
     func_02010f98(0, 0x7fff);
     a.x = p->mViewMatrix.mUnk_00[0].y;
     a.y = p->mViewMatrix.mUnk_00[1].y;
@@ -448,7 +448,7 @@ void func_02062078(void) {
     func_020d4418((Unk020d4418 *) data_0217aa6c);
     func_01ff92b4();
     DrawKarts();
-    func_02010fac(0, gRace->mUnk_40, gRace->mUnk_42, gRace->mUnk_44);
+    func_02010fac(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
     func_020e9810();
     DrawMapObjects((Unk020d4418 *) data_0217aa6c);
     func_020fa8ac(data_0217aa7c);
@@ -477,12 +477,12 @@ void func_02062004(void) {
 
 void func_02062000(void) {}
 
-u32 func_02061fec(void) {
-    return ((u32) gRace->mUnk_00);
+u32 IsRaceStarted(void) {
+    return ((u32) gRace->mStarted);
 }
 
-void func_02061fcc(void) {
-    gRace->mUnk_00 = 1;
+void StartRace(void) {
+    gRace->mStarted = 1;
     StartRaceClock();
 }
 
@@ -490,16 +490,16 @@ u32 GetRaceUpdateFrames(void) {
     return ((u32) gRace->mUpdateFrames);
 }
 
-u32 func_02061fa4(void) {
-    return ((u32) gRace->mUnk_14);
+u32 GetRaceUpdateFramesModKartCount(void) {
+    return ((u32) gRace->mUpdateFramesModKartCount);
 }
 
-u32 func_02061f90(void) {
-    return ((u32) gRace->mUnk_0c);
+u32 GetRaceUpdateFramesMod8(void) {
+    return ((u32) gRace->mUpdateFramesMod8);
 }
 
-u32 func_02061f7c(void) {
-    return ((u32) gRace->mUnk_10);
+u32 GetRaceUpdateFramesMod2(void) {
+    return ((u32) gRace->mUpdateFramesMod2);
 }
 
 // Also writes FOG_COLOR, FOG_OFFSET and FOG_TABLE directly and resets the fade state.
@@ -513,8 +513,8 @@ void InitRaceFog(void) {
     data_0217aa4c = 0;
     data_0217aa64 = 0;
     data_0217aa2c = 0;
-    gRace->mUnk_24 = 0;
-    gRace->mUnk_20 = gRace->mUnk_24;
+    gRace->mDrawnFadeFog = 0;
+    gRace->mFadeFog = gRace->mDrawnFadeFog;
     if (gCourseMap->mSettings->mFogEnabled != 0) {
         m = gCourseMap->mSettings->mFogTableMode;
         if (m == 0) {
@@ -603,10 +603,10 @@ void func_02061944(s32 a, s32 b) {
 }
 
 void func_02061874(void) {
-    if (gRace->mUnk_24 == 1) {
-        gRace->mUnk_24 = 0;
+    if (gRace->mDrawnFadeFog == 1) {
+        gRace->mDrawnFadeFog = 0;
     }
-    gRace->mUnk_20 = 1;
+    gRace->mFadeFog = 1;
     func_0207a5f0(0);
     func_02062ef8(1);
     data_021653e8 = 72;
@@ -662,25 +662,25 @@ u32 func_020617f0(void) {
     return value0;
 }
 
-u32 func_020617d8(void) {
+u32 SetRaceUpdateFramesAtEntryEnd(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRace;
     value1 = (u32) * (const u32 *) ((value0) + (0));
     value0 = (u32) gRace->mUpdateFrames;
-    gRace->mUnk_3c = value0;
+    gRace->mUpdateFramesAtEntryEnd = value0;
     return value0;
 }
 
-s32 func_020617a8(u32 *a) {
+s32 TryGetRaceUpdateFramesSinceEntryEnd(u32 *a) {
     Race *b;
     BOOL c;
 
     b = gRace;
     c = FALSE;
-    if (b->mUnk_3c != 0) {
+    if (b->mUpdateFramesAtEntryEnd != 0) {
         c = TRUE;
-        *a = b->mUpdateFrames - b->mUnk_3c;
+        *a = b->mUpdateFrames - b->mUpdateFramesAtEntryEnd;
     }
     return c;
 }

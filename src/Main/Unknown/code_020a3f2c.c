@@ -975,7 +975,7 @@ void InitKartBalloons(Unk020a3fa8 *a) {
                 a->mBalloonOffsets[i][j] = v;
             }
         }
-        if (func_02062ec4() != 0) {
+        if (GetRaceUseChainCameras() != 0) {
             a->mStartTimer = 0xffff;
         } else {
             a->mStartTimer = 0x3c;

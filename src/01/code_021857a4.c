@@ -182,7 +182,7 @@ void func_ov001_021858a0(s32 a) {
 #pragma thumb on
 
 void func_ov001_0218585c(void) {
-    switch (func_02117418()) {
+    switch (AdvanceSelectCupGrid()) {
         case 1:
             func_020ccc74(0x18, 0x1f);
             break;
@@ -208,7 +208,7 @@ void func_ov001_02185828(void) {
 }
 
 void func_ov001_021857ec(void) {
-    switch (AdvanceSelectCup()) {
+    switch (AdvanceSelectCupCourse()) {
         case 1:
             if (func_0211e130()) {
                 func_020ccc74(0x1d, 0x1f);

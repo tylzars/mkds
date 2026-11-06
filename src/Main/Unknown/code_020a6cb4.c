@@ -124,7 +124,7 @@ void func_020a6e70(Unk02100094 *a) {
             n = data_021759c0->mKartCount;
             v = GetShineCount();
             if (v + func_020a119c() < n + 1) {
-                func_020a5744(&e->mUnk_00.mPos, j, func_02062ec4());
+                func_020a5744(&e->mUnk_00.mPos, j, GetRaceUseChainCameras());
                 e->mUnk_a0 = TRUE;
             }
         }

@@ -2,4 +2,5 @@
 
 #include "types.h"
 
-void func_02117bf8(void);
+// Slides the cups in over 10 steps (mStateFrames counts the calls), then requests state 2.
+void AdvanceSelectCupGridState1(void);

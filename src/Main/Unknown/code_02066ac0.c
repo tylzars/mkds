@@ -254,14 +254,14 @@ void func_02067488(Kart *a) {
     if ((d & 0x200000) != 0) {
         return;
     }
-    if (func_02061fec() != 1) {
+    if (IsRaceStarted() != 1) {
         return;
     }
     if (gCourseMap->mUnk_70 == 0 && gCourseMap->mUnk_90 == 0) {
         return;
     }
     func_0208c218(a->mUnk_310);
-    if (a->mIndex != func_02061f90()) {
+    if (a->mIndex != GetRaceUpdateFramesMod8()) {
         return;
     }
     if (data_021759c0->mMode != MODE_GRAND_PRIX) {
@@ -360,7 +360,7 @@ void func_02066fe0(Kart *a) {
         }
     }
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-        func_020617d8();
+        SetRaceUpdateFramesAtEntryEnd();
         p = data_021759c0;
         if (p->mMode != MODE_GRAND_PRIX && p->mMode != MODE_TIME_ATTACK &&
             ((p->mUnk_1c == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) ||
@@ -373,7 +373,7 @@ void func_02066fe0(Kart *a) {
     } else if (data_021759c0->mMode == MODE_VS || data_021759c0->mMode == 5) {
         if (gRaceProgress->mUnk_000[a->mIndex].mStatus == 1) {
             e = 0;
-            if (func_020617a8((u32 *) &e) != 0 && (u32) e > 0xb4) {
+            if (TryGetRaceUpdateFramesSinceEntryEnd((u32 *) &e) != 0 && (u32) e > 0xb4) {
                 func_0212ecc0(&data_0217d068, 0, 0x45);
             }
         }
@@ -464,7 +464,7 @@ void func_02066ac0(Kart *a) {
     b = a->mUnk_514;
     j = 0;
     h = func_0205b954(((u8 *) data_0217aa18)[a->mIndex & 0xff]);
-    b->mUnk_24 = func_02061fec() == 1 ? 0x333 : j;
+    b->mUnk_24 = IsRaceStarted() == 1 ? 0x333 : j;
     if (h > b->mUnk_20) {
         f = func_0205b978(((u8 *) data_0217aa18)[a->mIndex & 0xff], h);
         g = f != NULL ? (Unk020653d0 *) f->mUnk_08 : 0;

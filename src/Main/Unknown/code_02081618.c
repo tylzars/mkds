@@ -790,7 +790,7 @@ void func_02082aec(void) {
                 p = StartEffect(0x27, &data_02155a14);
                 data_0217ae88 = p;
                 p->mUnk_90 = func_02082a10;
-            } else if (func_02062ec4() != 0) {
+            } else if (GetRaceUseChainCameras() != 0) {
                 p = StartEffect(0x3d, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_020824d0;
@@ -810,7 +810,7 @@ void func_02082aec(void) {
         case 0x10: {
             Unk0201ca6c *p;
 
-            if (func_02062ec4() != 0) {
+            if (GetRaceUseChainCameras() != 0) {
                 p = StartEffect(0x3e, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_02082034;

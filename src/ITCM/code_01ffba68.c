@@ -175,7 +175,7 @@ void AdvanceKartCollision(Kart *p) {
     if (p->mUnk_4c & 0x8000) {
         func_02084478(p);
     }
-    if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && func_02061fec() == 1) {
+    if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && IsRaceStarted() == 1) {
         func_0207a790(p->mIndex);
     }
     func_01ffc920(p);
@@ -275,7 +275,7 @@ void func_01ffc6c0(Kart *p) {
             p->mUnk_48 &= ~0x44000;
         }
     }
-    if (func_02061fec() == 1) {
+    if (IsRaceStarted() == 1) {
         a = 0;
         if (func_01ffc67c(p) != FALSE) {
             k = p->mEntryIndex;

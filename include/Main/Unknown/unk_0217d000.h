@@ -226,8 +226,12 @@ typedef struct RecordVS {
     /* 90 */ s32 mUnk_90;
 } RecordVS;
 
-// Object behind data_0217d360.
-typedef struct Unk0217d360 {
+// Object behind gSelectCupGrid: the screen that picks one of eight cups, laid out as two rows of four (a direction key
+// or a touch moves mIndex to a neighbour cup that is enabled). Choosing stores the cup and the first course of that cup
+// in the record behind data_02174e1c (func_021185ec); SelectCupCourse then picks one of the four courses of the stored
+// cup. Allocated by InitSelectCupGrid, freed by ReleaseSelectCupGrid; mMode is 0, 1 or 2 to 4 by the screen that opened
+// it.
+typedef struct SelectCupGrid {
     /* 00 */ struct Unk02021dc8 *mSelectCupMNcer;
     /* 04 */ Unk0201ea30 *mSelectCupMBncl;
     /* 08 */ struct Unk0201ea30 *mSelectCupMBnll;
@@ -247,21 +251,34 @@ typedef struct Unk0217d360 {
     // Negated and shifted into the upper half-word of the BG0 offset register.
     /* 40 */ s32 mBg0Offset;
     /* 44 */ s32 mIndex;
-    /* 48 */ s32 mUnk_48[8];
+    // One entry per cup: non-zero when the cup can be chosen, filled once at InitSelectCupGrid from
+    // GetSelectCupGridCupEnabled; a disabled cup shows its other cells, plays the error sound when touched and is
+    // skipped by the direction keys.
+    /* 48 */ s32 mCupsEnabled[8];
     /* 68 */ BOOL mUnk_68;
-    /* 6c */ s32 mUnk_6c;
-    /* 70 */ s32 mUnk_70;
-    /* 74 */ s32 mUnk_74;
-    /* 78 */ s16 mUnk_78;
+    // Counts 7 down to 0 after mIndex changed: AdvanceSelectCupGridIndexChange sets 7 when mIndex differs from
+    // mShownIndex, rebuilds the cells at 7 and moves them while it runs; IsSelectCupGridIndexChangeRunning tells
+    // whether it is non-zero.
+    /* 6c */ s32 mIndexChangeTimer;
+    // mIndex that the cells were last built for: AdvanceSelectCupGridIndexChange copies mIndex here when it rebuilds
+    // them and starts mIndexChangeTimer when mIndex differs from it.
+    /* 70 */ s32 mShownIndex;
+    // Calls of AdvanceSelectCupGridShownCourse since the shown course changed; at 0x4b the next course is shown and it
+    // restarts at 0.
+    /* 74 */ s32 mShownCourseFrames;
+    // Position 0 to 3 of the course of the cup at mIndex whose picture is shown: indexes data_0215ca1c[mIndex];
+    // AdvanceSelectCupGrid also shows the cell of that position differently from the other three.
+    /* 78 */ s16 mShownCourseIndex;
     /* 7a */ u8 mUnk_7a[2];
-    /* 7c */ BOOL mUnk_7c;
+    // Set when the cup picture was asked for; AdvanceSelectCupGrid queues its data once it is ready.
+    /* 7c */ BOOL mCupPicturePending;
     /* 80 */ void *mUnk_80;
     /* 84 */ void *mUnk_84;
     /* 88 */ s32 mResult;
-} Unk0217d360;
+} SelectCupGrid;
 
-// Object behind gSelectCup.
-typedef struct SelectCup {
+// Object behind gSelectCupCourse.
+typedef struct SelectCupCourse {
     /* 00 */ struct Unk02021dc8 *mSelectCupCourseMNcer;
     /* 04 */ Unk0201ea30 *mSelectCupCourseTaOrVsMBncl; /* ta_m file when mMode == 0, vs_m otherwise */
     /* 08 */ struct Unk0201ea30 *mSelectCupCourseTaOrVsMBnll; /* ta_m file when mMode == 0, vs_m otherwise */
@@ -286,7 +303,7 @@ typedef struct SelectCup {
     /* 44 */ s32 mBg0Offset;
     /* 48 */ s32 mBg3Offset; /* the sub engine's BG3 offset (0x0400101c); mBg0Offset is the main engine's */
     /* 4c */ u8 mUnk_4c[4];
-    /* 50 */ s16 mIndex; /* 0..3 position among the four cups of the page: the cup is data_0215cbec[row][mIndex] */
+    /* 50 */ s16 mIndex; /* 0..3 position among the four courses of the cup: the course is data_0215cbec[row][mIndex] */
     /* 52 */ u8 mUnk_52[2];
     /* 54 */ BOOL mUnk_54;
     // Counts 7 down to 0 after mIndex changed: func_02119d78 sets 7 when mIndex differs from mShownIndex,
@@ -302,7 +319,7 @@ typedef struct SelectCup {
     /* 64 */ void *mUnk_64;
     /* 68 */ void *mUnk_68;
     /* 6c */ s32 mResult;
-} SelectCup;
+} SelectCupCourse;
 
 // Object behind gSelectRaceRule.
 typedef struct SelectRaceRule {
@@ -780,8 +797,9 @@ extern struct Unk0212d5f8 data_0217d0a0;
 extern Unk0217d32c data_0217d32c;
 extern RecordVS *gRecordVS;
 extern Unk0217d34c *data_0217d34c;
-extern Unk0217d360 *data_0217d360;
-extern SelectCup *gSelectCup;
+// Pointer to the cup chooser object: set by InitSelectCupGrid, cleared by ReleaseSelectCupGrid.
+extern SelectCupGrid *gSelectCupGrid;
+extern SelectCupCourse *gSelectCupCourse;
 extern u32 data_0217d1bc;
 extern u8 data_0217d1c0[];
 extern u8 data_0217d1c4[];

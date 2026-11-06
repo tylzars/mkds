@@ -46,9 +46,9 @@ void func_0203c1a8(Vec3 *a, u32 b) {
         if (data_021759c0->mMode != MODE_MISSION_RUN) {
             return;
         }
-        func_0203e788(b, 0);
+        FinishRaceProgressKartWithEndKind(b, 0);
     } else {
-        func_0203e788(b, 6);
+        FinishRaceProgressKartWithEndKind(b, 6);
     }
 }
 
@@ -68,7 +68,7 @@ u32 func_0203c0bc(void) {
     if (func_0204a620((Unk02175650 *) &data_02175628[i].mUnk_28) != FALSE) {
         return 1;
     }
-    if (func_020617a8(&v) != 0) {
+    if (TryGetRaceUpdateFramesSinceEntryEnd(&v) != 0) {
         if (v > 0x384) {
             return 1;
         }

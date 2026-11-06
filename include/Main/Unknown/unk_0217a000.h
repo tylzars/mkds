@@ -976,28 +976,65 @@ extern Unk0217aa14 *data_0217aa14;
 // cycle, fog/fade switch, kind flags derived from data_021759c0->mUnk_00c (also live in the demo and credits kinds 3 to
 // 6), a light vector. Not the race setup (data_021759c0), not the karts.
 typedef struct Race {
-    /* 00 */ s16 mUnk_00;
+    // 1 once the race has started, else 0: StartRace sets it when UpdateRaceStartSequence reaches its frame 180, and
+    // InitRace sets it at once for the kinds 5 and 6 of Unk021759c0.mUnk_00c, which have no countdown; IsRaceStarted
+    // returns it.
+    /* 00 */ s16 mStarted;
     /* 02 */ u8 mUnk_02[2];
-    // Counts calls of UpdateRace; in mode 5 held at 128 until mUnk_34 is set (func_020617f0).
+    // Counts calls of UpdateRace; in mode 5 held at 128 until mUpdateFramesUnlimited is set (func_020617f0).
     /* 04 */ s32 mUpdateFrames;
     // Counts calls of DrawRace; never read (2 writes, 0 reads).
     /* 08 */ s32 mDrawFrames;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
-    /* 24 */ s32 mUnk_24;
-    /* 28 */ s32 mUnk_28;
-    /* 2c */ s32 mUnk_2c;
-    /* 30 */ BOOL mUnk_30;
-    /* 34 */ BOOL mUnk_34;
+    // Value of mUpdateFrames modulo 8 (its low three bits) as of the end of the latest UpdateRace, 0 at set-up; kart
+    // and map object code compare it with an index or a limit to act on one frame out of eight.
+    /* 0c */ s32 mUpdateFramesMod8;
+    // Value of mUpdateFrames modulo 2 as of the end of the latest UpdateRace, 0 at set-up; compared with 0 or with a
+    // bit of the object's own flags to act on every second frame.
+    /* 10 */ s32 mUpdateFramesMod2;
+    // Value of mUpdateFrames modulo Unk021759c0.mKartCount as of the end of the latest UpdateRace, 0 at set-up; its one
+    // reader uses it as a kart index.
+    /* 14 */ s32 mUpdateFramesModKartCount;
+    // Start index (0 to 7) of the 32 entries of data_0217aadc that UpdateRace gives to G3X_SetToonTable on each call;
+    // it advances by 1 each time mToonTableFrames passes data_021653ec and wraps back to 0 after 7.
+    /* 18 */ s32 mToonTableOffset;
+    // Counts calls of UpdateRace since mToonTableOffset last changed; when it exceeds data_021653ec (2) it restarts at
+    // 0 and mToonTableOffset advances (every third call).
+    /* 1c */ s32 mToonTableFrames;
+    // 1 from the start of a fog fade (func_02061874) until UpdateRace ends it, else 0: while it is 1 DrawRace writes
+    // the fade fog into the fog registers instead of the course fog. UpdateRace holds it for 72 calls, then steps
+    // data_021653e8 from 72 down to 0 in steps of 4 and clears it. DrawRace compares it with mDrawnFadeFog.
+    /* 20 */ s32 mFadeFog;
+    // The value of mFadeFog that DrawRace last handled; DrawRace writes the fog registers when it differs from
+    // mFadeFog, then copies mFadeFog here. func_02061874 sets it to 0 when it is 1 so that the next DrawRace writes the
+    // registers again.
+    /* 24 */ s32 mDrawnFadeFog;
+    // 1 when Unk021759c0.mUnk_00c is 3, 4 or 5, else 0. While it is 1, InitRace creates the chain cameras, UpdateRace
+    // updates them and takes their view, and DrawRace skips the draw call of func_02086250. The other readers go
+    // through GetRaceUseChainCameras and use it to tell these kinds apart (map objects, balloons, effects, kart
+    // set-up).
+    /* 28 */ s32 mUseChainCameras;
+    // 1 when Unk021759c0.mUnk_00c is 4: only the first chain camera is created and updated instead of the pair (read
+    // only while mUseChainCameras is non-zero).
+    /* 2c */ s32 mUseFirstChainCamera;
+    // Mode 5 only: set by UpdateRace when mUpdateFrames reaches 128 while mUpdateFramesUnlimited is FALSE; from then on
+    // mUpdateFrames stays put until mUpdateFramesUnlimited is set. Never cleared again.
+    /* 30 */ BOOL mUpdateFramesLimitReached;
+    // Mode 5 only: FALSE at set-up, set by func_020617f0 (called by UpdateRaceStartSequence when it begins counting);
+    // once set, UpdateRace counts mUpdateFrames on every call with no stop at 128.
+    /* 34 */ BOOL mUpdateFramesUnlimited;
     /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-    /* 40 */ s16 mUnk_40;
-    /* 42 */ s16 mUnk_42;
-    /* 44 */ s16 mUnk_44;
+    // Value of mUpdateFrames when the end handler of the kart of the selected entry (Unk021759c0.mEntryIndex) first
+    // ran, stored by SetRaceUpdateFramesAtEntryEnd (in mission run mode that is after the end wait); 0 until then.
+    /* 3c */ s32 mUpdateFramesAtEntryEnd;
+    // x component of the direction of light 0, the vector func_02062078 gives to func_02010fac; set at InitRace from
+    // data_021653f0 and by SetRaceLightVector.
+    /* 40 */ s16 mLightVectorX;
+    // y component of the direction of light 0, the vector func_02062078 gives to func_02010fac; set at InitRace from
+    // data_021653f0 and by SetRaceLightVector.
+    /* 42 */ s16 mLightVectorY;
+    // z component of the direction of light 0, the vector func_02062078 gives to func_02010fac; set at InitRace from
+    // data_021653f0 and by SetRaceLightVector.
+    /* 44 */ s16 mLightVectorZ;
 } Race;
 
 extern Race *gRace;

@@ -35,7 +35,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
         return;
     }
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
-        if (func_02062ec4() != 0) {
+        if (GetRaceUseChainCameras() != 0) {
             switch (data_021759c0->mCourseId) {
                 case COURSE_ID_CROSS:
                     p->mUnk_0f0 = 4;

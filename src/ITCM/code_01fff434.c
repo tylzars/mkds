@@ -70,7 +70,7 @@ void UpdateKartItems(KartItems *p) {
             func_020f47e4(b, k);
         }
     }
-    if (p->mKartIndex == func_02061f90() && (r = &p->mUnk_1f0)->mUnk_00 != NULL) {
+    if (p->mKartIndex == GetRaceUpdateFramesMod8() && (r = &p->mUnk_1f0)->mUnk_00 != NULL) {
         q = p->mKart;
         v = &q->mUnk_98;
         func_020f3c54(r, r, v);

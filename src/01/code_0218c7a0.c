@@ -102,7 +102,7 @@ void func_ov001_0218d280(void) {
 
 s32 func_ov001_0218d264(Unk02188950 *a) {
     int v1;
-    v1 = func_02061fec();
+    v1 = IsRaceStarted();
     if (v1 == 1) {
         func_ov001_0218d4c8(a);
     }
@@ -138,7 +138,7 @@ void func_ov001_0218d188(Unk02188950 *a) {
 
 s32 func_ov001_0218d16c(Unk02188950 *a) {
     int v1;
-    v1 = func_02061fec();
+    v1 = IsRaceStarted();
     if (v1 == 1) {
         func_ov001_0218d950(a);
     }
@@ -203,7 +203,7 @@ void func_ov001_0218cf94(Unk0218d87c *a) {
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
             p->mUnk_2c4 = TRUE;
-            if (func_02062ec4() != 0) {
+            if (GetRaceUseChainCameras() != 0) {
                 func_ov001_0218d188(p);
             } else {
                 func_ov001_0218d1e0(p);
@@ -252,7 +252,7 @@ void func_ov001_0218ce90(Unk0218d87c *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
-            if (func_02062ec4() != 0) {
+            if (GetRaceUseChainCameras() != 0) {
                 func_ov001_0218d01c(p);
             } else if (i == 0) {
                 func_ov001_0218d074(p);

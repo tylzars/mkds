@@ -19,7 +19,7 @@
 #include "Main/Unknown/code_0203c5f8.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-s32 func_0203ef58(void) {
+s32 IsRaceEndConditionMet(void) {
     BOOL r;
     u16 i;
     s32 s;
@@ -143,7 +143,7 @@ s32 func_0203ef58(void) {
     return r;
 }
 
-void func_0203ee28(void) {
+void FinishRemainingRaceProgressKarts(void) {
     u16 i;
     RaceProgressKart *p;
     s32 s;
@@ -281,10 +281,10 @@ void func_0203eb38(void) {
             if (g != 0) {
                 u32 k = (u32) (p->mUnk_3c << 24) >> 28;
                 if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                    func_0203e788(k, 0);
+                    FinishRaceProgressKartWithEndKind(k, 0);
                 }
             } else {
-                func_0203e788((u32) (p->mUnk_3c << 24) >> 28, 4);
+                FinishRaceProgressKartWithEndKind((u32) (p->mUnk_3c << 24) >> 28, 4);
             }
         }
     }
@@ -335,7 +335,7 @@ void FinishRaceProgressKart(RaceProgressKart *a, s32 b) {
     gRaceProgress->mUnk_000[0].mFinishedCount++;
 }
 
-void func_0203e788(s32 a, s32 b) {
+void FinishRaceProgressKartWithEndKind(s32 a, s32 b) {
     Kart *q;
     Unk0217aa1c_144_00 t;
     s32 s;
@@ -384,7 +384,7 @@ void func_0203e788(s32 a, s32 b) {
         }
     }
     FinishRaceProgressKart(e, b == 0);
-    if (func_0203ef58() == 0) {
+    if (IsRaceEndConditionMet() == 0) {
         return;
     }
     switch (data_021759c0->mMode) {
@@ -398,7 +398,7 @@ void func_0203e788(s32 a, s32 b) {
             func_0203ecf0();
             return;
         default:
-            func_0203ee28();
+            FinishRemainingRaceProgressKarts();
             return;
         case MODE_TIME_ATTACK:
             return;
@@ -409,5 +409,5 @@ void func_0203e74c(u16 param_1) {
     if (data_021759c0->mMode != MODE_MISSION_RUN) {
         return;
     }
-    func_0203e788(param_1, 0);
+    FinishRaceProgressKartWithEndKind(param_1, 0);
 }

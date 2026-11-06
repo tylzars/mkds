@@ -41,7 +41,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     r = FALSE;
     p = &a->mUnk_000.mUnk_000.mUnk_000.mPos;
     q = &a->mUnk_000.mUnk_000.mUnk_000.mVelocity;
-    if ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_48 & 1) == func_02061f7c()) {
+    if ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_48 & 1) == GetRaceUpdateFramesMod2()) {
         v = a->mUnk_228->mKart;
         if (!(a->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x20000)) {
             if (func_0206c0e0(v) != FALSE) {

@@ -26,7 +26,7 @@ void UpdateCameraShake(Unk02073904 *p) {
     s32 s;
     s32 i;
 
-    if (func_02061f7c() == 0) {
+    if (GetRaceUpdateFramesMod2() == 0) {
         Vec3Sub(&p->mPos, &p->mLookAt, &d);
         l = func_02073904_inline(&d, &d);
         if (l != 0) {

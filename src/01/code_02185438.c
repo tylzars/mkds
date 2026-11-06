@@ -13,7 +13,7 @@
 #pragma optimize_for_size on
 
 void func_ov001_02185438(void) {
-    switch (func_02117418()) {
+    switch (AdvanceSelectCupGrid()) {
         case 1:
             func_020ccc74(0x1d, 0x1f);
             break;

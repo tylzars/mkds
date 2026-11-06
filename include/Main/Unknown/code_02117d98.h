@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-void func_02117d98(void);
+// Waits until func_02036c5c returns non-zero, then requests state 1 (the first state after InitSelectCupGrid: mState is
+// 0 from the allocation).
+void AdvanceSelectCupGridState0(void);
