@@ -39,7 +39,7 @@ static inline void func_020a826c_inline(Unk020a826c_a0 *q) {
     if (q->mUnk_00.mUnk_0c < v) {
         q->mUnk_24 = q->mUnk_24 == 0 ? 1 : 2;
         if (GetRaceUseChainCameras() != 0) {
-            func_0210b734(&q->mUnk_00, (u32) q->mUnk_1c);
+            func_0210b734(&q->mUnk_00, q->mUnk_1c);
         } else {
             func_0210b760(&q->mUnk_00, q->mUnk_1c);
         }

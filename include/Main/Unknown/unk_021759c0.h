@@ -18,7 +18,7 @@ typedef enum { UNK_021759C0_70_KIND_0, UNK_021759C0_70_KIND_1 } Unk021759c0_70_K
 
 // The 0x28 bytes from 0x08 of each KartEntry entry (code keeps pointers to them).
 typedef struct Unk021759c0_70 {
-    /* 00 */ s32 mKind;
+    /* 00 */ u32 mKind;
     /* 04 */ s32 mTeamIndex;
     /* 08 */ s32 mUnk_08;
     /* 0c */ s32 mIndex;

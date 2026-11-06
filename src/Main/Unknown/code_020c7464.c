@@ -87,10 +87,7 @@ s32 func_020ca3e4(void) {
 }
 
 void func_020ca3d0(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b42c;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b42c);
 }
 
 void func_020ca074(void) {
@@ -508,7 +505,7 @@ BOOL func_020c8d30(void) {
         return FALSE;
     }
     data_0217b424 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    data_0217b424->mUnk_00 = (Unk020e1e98 **) func_02100084(a);
+    data_0217b424->mUnk_00 = func_02100084(a);
     data_0217b424->mUnk_04 = n;
     data_0217b424->mUnk_08 = n;
     return TRUE;
@@ -750,10 +747,7 @@ BOOL func_020c8254(void) {
 }
 
 void func_020c8240(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b420;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b420);
 }
 
 void func_020c80cc(void) {
@@ -801,10 +795,7 @@ s32 func_020c8098(void) {
 }
 
 void func_020c8084(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b41c;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b41c);
 }
 
 void func_020c7fbc(void) {
@@ -834,10 +825,7 @@ s32 func_020c7f84(void) {
 }
 
 void func_020c7f70(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b418;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b418);
 }
 
 void func_020c7d8c(void) {
@@ -884,10 +872,7 @@ s32 func_020c7d54(void) {
 }
 
 void func_020c7d40(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b414;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b414);
 }
 
 void func_020c7c54(void) {
@@ -922,10 +907,7 @@ s32 func_020c7c1c(void) {
 }
 
 void func_020c7c08(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b410;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b410);
 }
 
 void func_020c7b44(void) {
@@ -955,10 +937,7 @@ s32 func_020c7b0c(void) {
 }
 
 void func_020c7af8(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b40c;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b40c);
 }
 
 void func_020c7a0c(void) {
@@ -993,10 +972,7 @@ s32 func_020c79d4(void) {
 }
 
 void func_020c79c0(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b408;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b408);
 }
 
 void func_020c783c(void) {
@@ -1045,10 +1021,7 @@ BOOL func_020c77a0(void) {
 }
 
 void func_020c778c(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b404;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b404);
 }
 
 void func_020c76c8(void) {
@@ -1078,10 +1051,7 @@ s32 func_020c7690(void) {
 }
 
 void func_020c767c(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b400;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b400);
 }
 
 void func_020c756c(void) {

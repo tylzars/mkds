@@ -66,8 +66,8 @@ s32 func_0212b0b8(void) {
     if (data_0217d408->mUnk_000c == FALSE) {
         return -1;
     }
-    GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, 0);
-    GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, 0);
+    GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, 0);
+    GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, 0);
     if ((u16) (data_021755dc.mUnk_00 & 1) != 0) {
         p = data_0217d408;
         if (p->mUnk_0004 != 0) {

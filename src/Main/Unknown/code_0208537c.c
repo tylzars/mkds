@@ -144,7 +144,7 @@ void func_02085d1c(void) {
         if (data_021759c0->mUseTeams != 0) {
             for (k = 0; k < 2; k++) {
                 f = FALSE;
-                if ((u32) data_021759c0->mCurrentEntries[j].mPlayer.mKind > 3) {
+                if (data_021759c0->mCurrentEntries[j].mPlayer.mKind > 3) {
                 } else if ((1 << data_021759c0->mCurrentEntries[j].mPlayer.mKind) & 0xd) {
                     f = TRUE;
                 }
@@ -156,7 +156,7 @@ void func_02085d1c(void) {
         } else {
             g = FALSE;
             e = &data_021759c0->mCurrentEntries[j].mPlayer;
-            if ((u32) e->mKind <= 3 && ((1 << e->mKind) & 0xd)) {
+            if (e->mKind <= 3 && ((1 << e->mKind) & 0xd)) {
                 g = TRUE;
             }
             if (g != FALSE) {
@@ -189,7 +189,7 @@ void func_02085bec(void) {
             k = i;
             v = func_0205d3f0(k);
             f = FALSE;
-            if ((u32) data_021759c0->mCurrentEntries[k].mPlayer.mKind <= 3 &&
+            if (data_021759c0->mCurrentEntries[k].mPlayer.mKind <= 3 &&
                 ((1 << data_021759c0->mCurrentEntries[k].mPlayer.mKind) & 0xd)) {
                 f = TRUE;
             }
@@ -246,7 +246,7 @@ void func_02085ad8(void) {
     n = data_021759c0->mKartCount;
     for (k = 0; (u32) k < n; k++) {
         f = FALSE;
-        if ((u32) data_021759c0->mCurrentEntries[k].mPlayer.mKind <= 3 &&
+        if (data_021759c0->mCurrentEntries[k].mPlayer.mKind <= 3 &&
             ((1 << data_021759c0->mCurrentEntries[k].mPlayer.mKind) & 0xd)) {
             f = TRUE;
         }
@@ -378,7 +378,7 @@ void func_020858ac(u32 a) {
     s16 j;
     p = data_021759c0;
     f = FALSE;
-    if ((u32) p->mCurrentEntries[a].mPlayer.mKind <= 3 && ((1 << p->mCurrentEntries[a].mPlayer.mKind) & 0xd)) {
+    if (p->mCurrentEntries[a].mPlayer.mKind <= 3 && ((1 << p->mCurrentEntries[a].mPlayer.mKind) & 0xd)) {
         f = TRUE;
     }
     if (f == FALSE) {
@@ -500,7 +500,7 @@ void func_0208552c(void) {
         if (y >= 0) {
             q = y;
             f = FALSE;
-            if ((u32) data_021759c0->mCurrentEntries[q].mPlayer.mKind <= 3 &&
+            if (data_021759c0->mCurrentEntries[q].mPlayer.mKind <= 3 &&
                 ((1 << data_021759c0->mCurrentEntries[q].mPlayer.mKind) & 0xd)) {
                 f = TRUE;
             }

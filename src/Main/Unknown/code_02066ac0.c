@@ -301,7 +301,7 @@ void func_02066fe0(Kart *a) {
             i = a->mIndex;
             b = &p->mCurrentEntries[i].mPlayer;
             c = 0;
-            if ((u32) b->mKind <= 3 && ((1 << b->mKind) & 0xd) != 0) {
+            if (b->mKind <= 3 && ((1 << b->mKind) & 0xd) != 0) {
                 c = 1;
             }
             if (c != 0) {

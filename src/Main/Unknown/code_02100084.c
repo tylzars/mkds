@@ -5,6 +5,6 @@ void **func_0210008c(Unk02100094 *p) {
     return p->mUnk_00;
 }
 
-void **func_02100084(Unk02100094 *p) {
+void *func_02100084(Unk02100094 *p) {
     return p->mUnk_00;
 }

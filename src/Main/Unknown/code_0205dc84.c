@@ -78,8 +78,8 @@ void func_0205dee0(void) {
     c = HeapAllocAligned(b, 0x40000, 0x20);
     func_0205dee0_inline(c, SDK_OVERLAY_OV003_ID);
     HeapDestroy(b);
-    GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, 0x10);
-    GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, 0x10);
+    GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, 0x10);
+    GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, 0x10);
     WaitIrqAndTurnOnDisplays();
     func_02108ec4();
     a = HeapAlloc(a, func_021087d4(1));

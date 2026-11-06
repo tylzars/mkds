@@ -420,7 +420,7 @@ void func_0210174c(ItemTeresa *p) {
     } else {
         s32 f = s.x;
 
-        q = (Vec3 *) func_020e6b28();
+        q = func_020e6b28();
         v.x = ((s64) q->x * f) >> 12;
         v.y = ((s64) q->y * f) >> 12;
         v.z = ((s64) q->z * f) >> 12;

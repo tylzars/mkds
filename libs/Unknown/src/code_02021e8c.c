@@ -7,14 +7,14 @@ Unk02021e40 *GetPtrOamArrayHead_(Unk02021dc8 *bank) {
     return (Unk02021e40 *) (bank->mUnk_04 + bank->mUnk_00 * 8);
 }
 
-Unk02021e40 *NNS_G2dGetCellDataByIdx(Unk02021dc8 *bank, u32 idx) {
+Unk020224e0_c *NNS_G2dGetCellDataByIdx(Unk02021dc8 *bank, u32 idx) {
     if (idx >= bank->mUnk_00) {
         return 0;
     }
     if (bank->mUnk_02 & 1) {
-        return (Unk02021e40 *) (bank->mUnk_04 + idx * 16);
+        return (Unk020224e0_c *) (bank->mUnk_04 + idx * 16);
     }
-    return (Unk02021e40 *) (bank->mUnk_04 + idx * 8);
+    return (Unk020224e0_c *) (bank->mUnk_04 + idx * 8);
 }
 
 void NNS_G2dUnpackNCE(Unk02021dc8 *bank) {
@@ -25,7 +25,7 @@ void NNS_G2dUnpackNCE(Unk02021dc8 *bank) {
     bank->mUnk_04 += (u32) bank;
     oamHead = GetPtrOamArrayHead_(bank);
     for (i = 0; i < bank->mUnk_00; i++) {
-        entry = NNS_G2dGetCellDataByIdx(bank, i);
+        entry = (Unk02021e40 *) NNS_G2dGetCellDataByIdx(bank, i);
         entry->mUnk_04 += (u32) oamHead;
     }
     if (bank->mUnk_0c != 0) {

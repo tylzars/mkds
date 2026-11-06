@@ -39,6 +39,11 @@ typedef struct Unk0217d1cc {
     /* 00 */ u8 mUnk_00[0x10];
 } Unk0217d1cc;
 
+extern Unk0217d1c0 data_0217d1c0[];
+extern Unk0217d1c4 data_0217d1c4[];
+extern Unk0217d1c8 data_0217d1c8[];
+extern Unk0217d1cc data_0217d1cc[];
+extern Unk0217d1c0 data_0217d1d0[];
 extern u32 data_0216cb4c;
 extern Unk0216cb50 data_0216cb50[5];
 

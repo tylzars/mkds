@@ -438,15 +438,7 @@ u8 *LoadItemSlotTableData(ItemSlotTable *param_1, u8 *param_2) {
 #pragma thumb off
 
 #pragma thumb on
-u32 ComputeItemSlotTableDataEnd(u32 arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (value0) + (2u);
-    value1 = *(const u8 *) ((value0) + 1u);
-    value0 = *(const u8 *) ((value0) + 0u);
-    value1 = (value1) * (value0);
-    value0 = (value2) + (value1);
-    return value0;
+u8 *ComputeItemSlotTableDataEnd(u8 *p) {
+    return p + 2 + p[1] * p[0];
 }
 #pragma thumb off

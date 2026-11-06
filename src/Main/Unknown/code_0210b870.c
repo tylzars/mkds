@@ -73,7 +73,7 @@ void func_0210b924(void *p, s32 b) {
     q->mUnk_04 = p;
     q->mUnk_0c = b;
     if (data_0217c780 & 1) {
-        func_0210bf24(0, q->mUnk_00, (u32) q->mUnk_04, (u32) q);
+        func_0210bf24(0, q->mUnk_00, (u32) q->mUnk_04, q);
     }
 }
 

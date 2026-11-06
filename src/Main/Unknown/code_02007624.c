@@ -7,7 +7,7 @@
 void *func_02007e38(u32 a) {
     u32 v1;
     v1 = OS_DisableInterrupts();
-    if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0) {
+    if (data_0216fdac != NULL && func_02007138(a) != 0) {
         MI_CpuCopy8(data_0216fdac->mUnk_1340 + (a - 1) * 0x16, data_0216fdac->mUnk_1772, 0x16);
         OS_RestoreInterrupts(v1);
         return data_0216fdac->mUnk_1772;
@@ -17,7 +17,7 @@ void *func_02007e38(u32 a) {
 }
 
 u32 func_02007df8(u32 a) {
-    if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0 && data_0216fdac->mUnk_14e8[a - 1] == 7) {
+    if (data_0216fdac != NULL && func_02007138(a) != 0 && data_0216fdac->mUnk_14e8[a - 1] == 7) {
         return 1;
     }
     return 0;
@@ -49,7 +49,7 @@ u32 func_02007d50(u32 a, u32 b) {
             OS_RestoreInterrupts(v1);
             return 0;
     }
-    if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0 && v2 == data_0216fdac->mUnk_14e8[a - 1]) {
+    if (data_0216fdac != NULL && func_02007138(a) != 0 && v2 == data_0216fdac->mUnk_14e8[a - 1]) {
         data_0216fdac->mUnk_1754[a - 1] = v3;
         OS_RestoreInterrupts(v1);
         return 1;
@@ -197,7 +197,7 @@ void func_020079c4(s32 a, Unk021425e8 *b) {
     if (a == 0x11) {
         v6 = data_0216fdac->mUnk_14e4;
         MemFillWordsByBlock_inline(data_0216fdac, 0x7d00);
-        *(u32 *) &data_0216fdac = 0;
+        data_0216fdac = NULL;
         if (v6 != NULL) {
             v6(0, 0xc, NULL);
         }

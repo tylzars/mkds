@@ -30,10 +30,7 @@
 #include "Main/Unknown/code_021000d0.h"
 
 void func_020ce694(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b480;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b480);
 }
 
 void func_020ce580(void) {
@@ -68,10 +65,7 @@ s32 CreateRaceHudSubScreenBasabasaCells(void) {
 }
 
 void ClearRaceHudSubScreenBasabasaCells(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gRaceHudSubScreenBasabasaCells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenBasabasaCells);
 }
 
 void UpdateRaceHudSubScreenBasabasaCells(void) {
@@ -117,10 +111,7 @@ s32 CreateRaceHudSubScreenMkdEfBubbleCells(void) {
 }
 
 void ClearRaceHudSubScreenMkdEfBubbleCells(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gRaceHudSubScreenMkdEfBubbleCells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenMkdEfBubbleCells);
 }
 
 void UpdateRaceHudSubScreenMkdEfBubbleCells(void) {
@@ -161,10 +152,7 @@ s32 func_020ce264(void) {
 }
 
 void func_020ce250(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b474;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b474);
 }
 
 void func_020ce134(void) {
@@ -199,10 +187,7 @@ s32 CreateRaceHudSubScreenMkdEfBurnerCells(void) {
 }
 
 void ClearRaceHudSubScreenMkdEfBurnerCells(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gRaceHudSubScreenMkdEfBurnerCells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenMkdEfBurnerCells);
 }
 
 void UpdateRaceHudSubScreenMkdEfBurnerCells(void) {
@@ -247,10 +232,7 @@ s32 func_020cdf18(void) {
 }
 
 void func_020cdf04(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b46c;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b46c);
 }
 
 void func_020cde18(void) {
@@ -285,10 +267,7 @@ s32 CreateRaceHudSubScreenIronBallCells(void) {
 }
 
 void ClearRaceHudSubScreenIronBallCells(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gRaceHudSubScreenIronBallCells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenIronBallCells);
 }
 
 void UpdateRaceHudSubScreenIronBallCells(void) {
@@ -325,10 +304,7 @@ s32 CreateRaceHudSubScreenKuriboCells(void) {
 }
 
 void ClearRaceHudSubScreenKuriboCells(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gRaceHudSubScreenKuriboCells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenKuriboCells);
 }
 
 void UpdateRaceHudSubScreenKuriboCells(void) {
@@ -364,10 +340,7 @@ s32 func_020cdb54(void) {
 }
 
 void func_020cdb40(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b460;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b460);
 }
 
 void func_020cda14(void) {
@@ -404,10 +377,7 @@ s32 CreateRaceHudSubScreenCoverPooHoleCells(void) {
 }
 
 void ClearRaceHudSubScreenCoverPooHoleCells(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gRaceHudSubScreenCoverPooHoleCells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenCoverPooHoleCells);
 }
 
 void UpdateRaceHudSubScreenCoverPooHoleCells(void) {
@@ -447,10 +417,7 @@ s32 func_020cd844(void) {
 }
 
 void func_020cd830(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b458;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b458);
 }
 
 void func_020cd72c(void) {
@@ -486,10 +453,7 @@ s32 CreateRaceHudSubScreenSanboCells(void) {
 }
 
 void ClearRaceHudSubScreenSanboCells(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gRaceHudSubScreenSanboCells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenSanboCells);
 }
 
 void UpdateRaceHudSubScreenSanboCells(void) {
@@ -527,10 +491,7 @@ s32 func_020cd598(void) {
 }
 
 void func_020cd584(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b450;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b450);
 }
 
 void func_020cd480(void) {
@@ -566,10 +527,7 @@ s32 func_020cd44c(void) {
 }
 
 void func_020cd438(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b44c;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b44c);
 }
 
 void func_020cd328(void) {
@@ -606,10 +564,7 @@ s32 CreateRaceHudSubScreenFlipperCells(void) {
 }
 
 void ClearRaceHudSubScreenFlipperCells(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gRaceHudSubScreenFlipperCells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenFlipperCells);
 }
 
 void UpdateRaceHudSubScreenFlipperCells(void) {
@@ -697,10 +652,7 @@ s32 CreateRaceHudSubScreenNsKiller2Cells(void) {
 }
 
 void ClearRaceHudSubScreenNsKiller2Cells(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &gRaceHudSubScreenNsKiller2Cells;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&gRaceHudSubScreenNsKiller2Cells);
 }
 
 void UpdateRaceHudSubScreenNsKiller2Cells(void) {
@@ -736,10 +688,7 @@ s32 func_020cce24(void) {
 }
 
 void func_020cce10(void) {
-    u32 value0;
-    u32 value12;
-    value0 = (u32) &data_0217b440;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    ClearRaceHudSubScreenCells(&data_0217b440);
 }
 
 void func_020cccf4(void) {

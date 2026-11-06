@@ -91,7 +91,7 @@ s32 WM_EndDCF(Unk021425e8Func callback) {
 
 // Starts the MP protocol (command 14). Needs state 7 or 8 and MP not running; the buffer sizes are checked against
 // WM_GetMPReceiveBufferSize and WM_GetMPSendBufferSize.
-s32 WM_StartMPEx(Unk021425e8Func callback, u32 recvBuf, u16 recvBufSize, u32 sendBuf, u16 sendBufSize, u16 mpFreq,
+s32 WM_StartMPEx(Unk021425e8Func callback, void *recvBuf, u16 recvBufSize, void *sendBuf, u16 sendBufSize, u16 mpFreq,
                  u16 defaultRetryCount, BOOL minPollBmpMode, BOOL singlePacketMode, BOOL fixFreqMode,
                  BOOL ignoreFatalError) {
     Unk02142aa8 *work;

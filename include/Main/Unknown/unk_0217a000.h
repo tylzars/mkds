@@ -582,9 +582,9 @@ typedef struct Unk0217aa00 {
     /* 0028 */ void *mUnk_0028;
     /* 002c */ void *mUnk_002c;
     /* 0030 */ s32 mUnk_0030;
-    /* 0034 */ u32 mUnk_0034;
+    /* 0034 */ void *mUnk_0034;
     /* 0038 */ s32 mUnk_0038;
-    /* 003c */ u32 mUnk_003c;
+    /* 003c */ void *mUnk_003c;
     /* 0040 */ void *mUnk_0040;
     /* 0044 */ Unk0217aa00_44 mUnk_0044;
     /* 0088 */ s8 mUnk_0088;
@@ -715,7 +715,7 @@ typedef struct Unk0217aa00 {
             /* 1e24 */ void *mUnk_1e24;
             /* 1e28 */ s32 mUnk_1e28;
             /* 1e2c */ s32 mUnk_1e2c;
-            /* 1e30 */ s32 mUnk_1e30;
+            /* 1e30 */ u8 *mUnk_1e30;
             /* 1e34 */ s32 mUnk_1e34;
             /* 1e38 */ s32 mUnk_1e38;
             /* 1e3c */ s32 mUnk_1e3c;
@@ -1249,7 +1249,7 @@ typedef struct Unk0217ad00 {
     // Array of the per-kart model entries (0xb4 bytes each), allocated by InitKartModels with mKartCount elements;
     // Kart.mKartModelsEntry points into it.
     /* 000 */ struct Unk0206bcb0_590 *mKartModelsEntries;
-    /* 004 */ u8 *mUnk_004;
+    /* 004 */ u16 *mUnk_004;
     // Number of elements of mKartModelsEntries, copied from data_021759c0->mKartCount; the loop bound over the
     // entries.
     /* 008 */ u16 mKartCount;

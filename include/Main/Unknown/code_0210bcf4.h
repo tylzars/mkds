@@ -18,7 +18,7 @@ typedef struct SoundSource {
     // The sounds started on this source, as a list of PlayingSound entries.
     /* 0c */ NNSFndList mPlayingSounds;
     /* 18 */ u32 mUnk_18;
-    /* 1c */ u8 mUnk_1c[0xc];
+    /* 1c */ u32 mUnk_1c[3];
     // Pointer to the owner's position (declared u32); the distance and the direction to the camera are measured to it.
     // Without one (0) a sound gets full volume and no direction.
     /* 28 */ u32 mOwnerPosSource;
@@ -77,9 +77,9 @@ typedef struct Unk0210bcf4 {
     /* 20 */ Unk0210bcf4_20 *mUnk_20;
 } Unk0210bcf4;
 
-u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e);
-u32 func_0210bee8(u32 a, u32 b, u32 c, u32 d, u32 e);
-void func_0210bf24(u32 a, u32 b, u32 c, u32 d);
+u32 func_0210bcf4(u32 a, u32 b, u32 c, NNSSndSeqPlayer **d, void *e);
+u32 func_0210bee8(u32 a, u32 b, u32 c, NNSSndSeqPlayer **d, void *e);
+void func_0210bf24(u32 a, u32 b, u32 c, void *d);
 void func_0210bfbc(SoundSource *p);
 void func_0210c084(PlayingSound *p, u32 b);
 void func_0210c0bc(SoundSource *p);

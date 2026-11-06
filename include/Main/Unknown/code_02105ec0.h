@@ -74,7 +74,7 @@ typedef struct Unk0210e2c4 {
 typedef struct Unk0217c814 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
+    /* 08 */ NNSSndSeqPlayer *mUnk_08;
     /* 0c */ u32 mUnk_0c;
     /* 10 */ u32 mUnk_10;
     /* 14 */ u8 mUnk_14;

@@ -7,7 +7,7 @@ void *FindKartModelFile(const char *path);
 void *FindCourseFile(const char *path);
 void *FindSceneFile(const char *name);
 void *FindMainRaceOrMainEffectFile(const char *path);
-u32 FindArchiveFile(u32 archiveName, const char *path);
+void *FindArchiveFile(u32 archiveName, const char *path);
 
 // 0x18-byte entries.
 typedef struct Unk021543e0 {
@@ -54,7 +54,7 @@ extern const char data_usa_02165124[];
 void func_02047104(void *a);
 void func_02047178(void);
 void func_020471b0(void *a);
-void func_02047220(void *a, u32 b);
+void func_02047220(u8 *a, u32 b);
 s32 func_02047250(void);
 void func_02047274(void);
 void func_020472a8(void);
@@ -81,8 +81,8 @@ void func_02047e0c(void);
 void func_02047e94(void);
 void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g);
 void func_02048050(int a, int b);
-void func_02048284(u32 a, char *b);
-void func_020482ac(char *a, u8 *b, int c);
+void func_02048284(const char *a, char *b);
+void func_020482ac(char *a, const char *b, int c);
 void func_020482f0(char *a, const char *b, int c);
 void func_02048324(char *a);
 void func_02048350(char *a);

@@ -71,7 +71,7 @@ void func_020b3cd8(void) {
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE) {
             f = FALSE;
-            if ((u32) data_021759c0->mCurrentEntries[i].mPlayer.mKind <= 3) {
+            if (data_021759c0->mCurrentEntries[i].mPlayer.mKind <= 3) {
                 if ((1 << data_021759c0->mCurrentEntries[i].mPlayer.mKind) & 0xd) {
                     f = TRUE;
                 }
@@ -83,7 +83,7 @@ void func_020b3cd8(void) {
             a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
         } else {
             f = FALSE;
-            if ((u32) data_021759c0->mCurrentEntries[i].mPlayer.mKind <= 3) {
+            if (data_021759c0->mCurrentEntries[i].mPlayer.mKind <= 3) {
                 if ((1 << data_021759c0->mCurrentEntries[i].mPlayer.mKind) & 0xd) {
                     f = TRUE;
                 }

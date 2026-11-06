@@ -189,7 +189,7 @@ typedef struct Unk02143c30 {
 s32 WM_StartDCF(Unk021425e8Func callback, void *recvBuf, u16 recvBufSize);
 s32 WM_SetDCFData(Unk021425e8Func callback, const void *destAdr, void *sendData, u16 sendDataSize);
 s32 WM_EndDCF(Unk021425e8Func callback);
-s32 WM_StartMPEx(Unk021425e8Func callback, u32 recvBuf, u16 recvBufSize, u32 sendBuf, u16 sendBufSize, u16 mpFreq,
+s32 WM_StartMPEx(Unk021425e8Func callback, void *recvBuf, u16 recvBufSize, void *sendBuf, u16 sendBufSize, u16 mpFreq,
                  u16 defaultRetryCount, BOOL minPollBmpMode, BOOL singlePacketMode, BOOL fixFreqMode,
                  BOOL ignoreFatalError);
 s32 WM_SetMPFrequency(Unk021425e8Func callback, u32 mpFreq);

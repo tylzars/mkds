@@ -112,7 +112,7 @@ void func_ov003_021c2188(void) {
     GX_SetGraphicsMode(1, 0, 0);
     p = &reg_GX_DISPCNT;
     *p = *p & 0xffffe0ff;
-    GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, 0);
+    GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, 0);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x200010;
     reg_G2_BG0CNT &= ~0x40;
     reg_G2_BG1CNT &= ~0x40;
@@ -128,7 +128,7 @@ void func_ov003_021c2188(void) {
     GXS_SetGraphicsMode(0);
     p = &reg_GXS_DB_DISPCNT;
     *p = *p & 0xffffe0ff;
-    GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, 0);
+    GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, 0);
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     reg_G2S_DB_BG0CNT &= ~0x40;
     reg_G2S_DB_BG1CNT &= ~0x40;

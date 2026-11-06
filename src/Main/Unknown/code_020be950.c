@@ -101,7 +101,7 @@ BOOL CreateRaceHudSubScreenCells(RaceHudSubScreenCells **a, s32 b) {
     if (t != FALSE) {
         (*a)->mObjects = (Unk0217b498_00 **) func_0210008c(p);
     } else {
-        (*a)->mObjects = (Unk0217b498_00 **) func_02100084(q);
+        (*a)->mObjects = func_02100084(q);
     }
     (*a)->mCellCount = 0;
     (*a)->mObjectCount = n;

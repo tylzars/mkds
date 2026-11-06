@@ -56,19 +56,19 @@ void CreateItemSlotTables(void) {
         case MODE_MISSION_RUN:
             p = LoadItemSlotTableData(&data_0217bc6c, p + 1);
             p = LoadItemSlotTableData(&data_0217bc64, p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
             break;
         case MODE_BATTLE:
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) (p + 1));
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = ComputeItemSlotTableDataEnd(p + 1);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
             switch (data_021759c0->mUnk_18) {
                 case 0:
@@ -77,20 +77,20 @@ void CreateItemSlotTables(void) {
                     p = LoadItemSlotTableData(&data_0217bc64, p);
                     break;
                 case 1:
-                    p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-                    p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+                    p = ComputeItemSlotTableDataEnd(p);
+                    p = ComputeItemSlotTableDataEnd(p);
                     p = LoadItemSlotTableData(&data_0217bc6c, p);
                     p = LoadItemSlotTableData(&data_0217bc64, p);
                     break;
             }
             break;
         case MODE_VS:
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) (p + 1));
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = ComputeItemSlotTableDataEnd(p + 1);
+            p = ComputeItemSlotTableDataEnd(p);
             p = LoadItemSlotTableData(&data_0217bc6c, p);
             p = LoadItemSlotTableData(&data_0217bc64, p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
             if (data_021759c0->mUnk_014 == 0) {
                 func_020f80c0(&data_0217bc6c, data_021759c0->mKartCount);
@@ -98,10 +98,10 @@ void CreateItemSlotTables(void) {
             }
             break;
         case 5:
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) (p + 1));
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
-            p = (u8 *) ComputeItemSlotTableDataEnd((u32) p);
+            p = ComputeItemSlotTableDataEnd(p + 1);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
+            p = ComputeItemSlotTableDataEnd(p);
             p = LoadItemSlotTableData(&data_0217bc6c, p);
             p = LoadItemSlotTableData(&data_0217bc64, p);
             p = LoadItemSlotTableData(&data_0217bc74, p);

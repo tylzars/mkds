@@ -193,17 +193,17 @@ u32 func_02048440(void) {
     return ((u32 *) &data_02164dc8)[v1];
 }
 
-void func_0204840c(char *a, u8 *b) {
+void func_0204840c(char *a, const char *b) {
     u32 v1;
     if (*b != 0) {
         v1 = func_02048474();
-        OS_SNPrintf(a, 0x80, data_02165148, b, v1, (u32) &data_0216515c);
+        OS_SNPrintf(a, 0x80, data_02165148, b, v1, data_0216515c);
     }
 }
 
-void func_020483e4(char *a, u8 *b) {
+void func_020483e4(char *a, const char *b) {
     if (*b != 0) {
-        OS_SNPrintf(a, 0x80, data_0216512c, b, (u32) &data_02165140);
+        OS_SNPrintf(a, 0x80, data_0216512c, b, data_02165140);
     }
 }
 

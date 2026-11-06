@@ -7,7 +7,7 @@ typedef struct ItemSlotTable ItemSlotTable;
 typedef struct KartItems KartItems;
 
 // Address after one table: start + 2 + rows * columns from the two header bytes
-u32 ComputeItemSlotTableDataEnd(u32 arg0);
+u8 *ComputeItemSlotTableDataEnd(u8 *p);
 u8 *LoadItemSlotTableData(ItemSlotTable *param_1, u8 *param_2);
 void SetActiveItem(KartItems *p0, unsigned int p1);
 // HUD tick: picks the item shown now (random entry of the spin or possible-items list other than the last, or the

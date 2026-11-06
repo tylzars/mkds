@@ -49,7 +49,7 @@ extern const char data_02164684[];
 
 // Objects whose layout isn't known yet.
 extern const char data_02164770[];
-extern u8 data_02164d28[];
+extern const char *data_02164d28[];
 extern u8 data_02164dc8[];
 extern u32 gArchiveNames[];
 extern u8 gResultDLArchivePath[];

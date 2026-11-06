@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0207a68c(int arg0);
+u32 func_0207a68c(int a);

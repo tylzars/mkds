@@ -67,14 +67,14 @@ u32 ArchiveUnload(FSArchive *a) {
     return 1;
 }
 
-u32 ArchiveFileGetAddress(const u8 *a) {
+void *ArchiveFileGetAddress(const u8 *a) {
     FSFile s;
-    u32 r;
+    void *r;
 
-    r = 0;
+    r = NULL;
     FS_InitFile(&s);
     if (FS_OpenFile(&s, a) != 0) {
-        r = (u32) (((Unk020182c0 *) s.mArc)->mUnk_64 + s.mProp.w.mUnk_04);
+        r = ((Unk020182c0 *) s.mArc)->mUnk_64 + s.mProp.w.mUnk_04;
         FS_CloseFile(&s);
     }
     return r;

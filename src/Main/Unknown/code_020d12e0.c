@@ -47,7 +47,7 @@ void InitEndingStaffRoll(void) {
     LoadNcgrData2(&gEndingStaffRoll->mEndingStaffRollM00Ncgr, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncgr"));
     a = NULL;
     LoadNcerData(&a, FindSceneFileWrapper("ending_staffRoll_m_00.nce.ncer"));
-    gEndingStaffRoll->mUnk_0c = (Unk020224e0_c *) NNS_G2dGetCellDataByIdx(a, 0);
+    gEndingStaffRoll->mUnk_0c = NNS_G2dGetCellDataByIdx(a, 0);
     GX_LoadOBJPltt(gEndingStaffRoll->mEndingStaffRollMO00Nclr->mData, 0,
                    gEndingStaffRoll->mEndingStaffRollMO00Nclr->mDataSize);
     GX_LoadOBJ(gEndingStaffRoll->mEndingStaffRollM00Ncgr->mData, 0,

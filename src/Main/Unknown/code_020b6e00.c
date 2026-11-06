@@ -387,13 +387,9 @@ void func_020b8624(void) {
     }
 }
 
-u32 func_020b8610(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &data_0217b3c4;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    return value0;
+struct Unk0217b3c4 **func_020b8610(void) {
+    data_0217b3c4 = NULL;
+    return &data_0217b3c4;
 }
 
 RaceNclrNcgr *GetRaceNclrNcgr(u32 a) {
@@ -401,12 +397,7 @@ RaceNclrNcgr *GetRaceNclrNcgr(u32 a) {
 }
 
 Unk020224e0_c *GetRaceMNcerEntry(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (u32) &data_0217b3c4;
-    value1 = *(const u32 *) ((value1) + (0));
-    value0 = *(const u32 *) ((value1) + ((value0 << 2)));
-    return (Unk020224e0_c *) value0;
+    return data_0217b3c4->mRaceMNcerEntries[arg0];
 }
 
 u32 LookupRaceMNcerIndex(u32 a) {
@@ -491,43 +482,43 @@ u32 LookupRaceMNcerIndex(u32 a) {
 }
 
 Unk020224e0_c *GetRaceGoalMNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceGoalMNcerEntries[p0]);
+    return data_0217b3c4->mRaceGoalMNcerEntries[p0];
 }
 
 Unk020224e0_c *GetRaceTaMNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceTaMNcerEntries[p0]);
+    return data_0217b3c4->mRaceTaMNcerEntries[p0];
 }
 
 Unk020224e0_c *GetRaceBattleMNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceBattleMNcerEntries[p0]);
+    return data_0217b3c4->mRaceBattleMNcerEntries[p0];
 }
 
 Unk020224e0_c *GetRaceMrMNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceMrMNcerEntries[p0]);
+    return data_0217b3c4->mRaceMrMNcerEntries[p0];
 }
 
 Unk020224e0_c *GetRaceGoalMrMNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceGoalMrMNcerEntries[p0]);
+    return data_0217b3c4->mRaceGoalMrMNcerEntries[p0];
 }
 
 Unk020224e0_c *GetRaceSNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceSNcerEntries[p0]);
+    return data_0217b3c4->mRaceSNcerEntries[p0];
 }
 
 Unk020224e0_c *GetRaceGoalSNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceGoalSNcerEntries[p0]);
+    return data_0217b3c4->mRaceGoalSNcerEntries[p0];
 }
 
 Unk020224e0_c *GetRaceGoalTeamSNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceGoalTeamSNcerEntries[p0]);
+    return data_0217b3c4->mRaceGoalTeamSNcerEntries[p0];
 }
 
 Unk020224e0_c *GetRaceNewRecordTaSNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceNewRecordTaSNcerEntries[p0]);
+    return data_0217b3c4->mRaceNewRecordTaSNcerEntries[p0];
 }
 
 Unk020224e0_c *GetRaceStartBattleMNcerEntry(u32 p0) {
-    return ((Unk020224e0_c *) data_0217b3c4->mRaceStartBattleMNcerEntries[p0]);
+    return data_0217b3c4->mRaceStartBattleMNcerEntries[p0];
 }
 
 s32 LookupRaceSNcerIndex(s32 a, s32 b) {
@@ -813,27 +804,27 @@ void func_020b6e00(u16 *a, void *b) {
     u8 j;
     u8 k;
     s32 n;
-    Unk020b6e00 *r;
+    Unk020224e0_s *r;
 
     LoadNcgrData2(&o, FindSceneFileWrapper("race_transfer_s_o.NCGR"));
     p = o->mData;
     for (i = 0; i < (s32) data_021759c0->mKartCount; i++) {
         func_020b7fd8(i, &x, &y);
         func_020b46d0(p, x << 1, 0, 2, 2, b, i << 1, 0);
-        r = (Unk020b6e00 *) data_0217b3c4->mRaceSNcerEntries[i]->mUnk_04;
+        r = data_0217b3c4->mRaceSNcerEntries[i]->mUnk_04;
         r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
     }
     for (j = 0; j < (s32) data_021759c0->mKartCount; j++) {
         func_020b7fd8(j, &x, &y);
         func_020b46d0(p, x << 1, 2, 2, 2, b, (j << 1) + 0x10, 0);
-        r = (Unk020b6e00 *) data_0217b3c4->mRaceSNcerEntries[j + 8]->mUnk_04;
+        r = data_0217b3c4->mRaceSNcerEntries[j + 8]->mUnk_04;
         r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
-        r = (Unk020b6e00 *) data_0217b3c4->mRaceGoalSNcerEntries[j]->mUnk_04;
+        r = data_0217b3c4->mRaceGoalSNcerEntries[j]->mUnk_04;
         r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
-        r = (Unk020b6e00 *) data_0217b3c4->mRaceGoalTeamSNcerEntries[j]->mUnk_04;
+        r = data_0217b3c4->mRaceGoalTeamSNcerEntries[j]->mUnk_04;
         r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
         if (data_021759c0->mMode == MODE_TIME_ATTACK) {
-            r = (Unk020b6e00 *) data_0217b3c4->mRaceNewRecordTaSNcerEntries[j + 7]->mUnk_04;
+            r = data_0217b3c4->mRaceNewRecordTaSNcerEntries[j + 7]->mUnk_04;
             r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
         }
     }
@@ -841,7 +832,7 @@ void func_020b6e00(u16 *a, void *b) {
         for (j = 0; j < 6; j++) {
             func_020b7ee8(j, &x, &y);
             func_020b46d0(p, x << 1, 2, 2, 2, b, ((j + 2) << 1) + 0x10, 0);
-            r = (Unk020b6e00 *) data_0217b3c4->mRaceNewRecordTaSNcerEntries[j + 8]->mUnk_04;
+            r = data_0217b3c4->mRaceNewRecordTaSNcerEntries[j + 8]->mUnk_04;
             r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
         }
     }

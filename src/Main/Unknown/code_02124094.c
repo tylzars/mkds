@@ -43,11 +43,11 @@ void func_02124b1c(Unk02124b1c *a, s32 b, s32 c) {
 }
 
 BOOL func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
-    Unk02124a68 *p;
+    Unk020224e0_c *p;
     Unk0201ea30_08 *e;
     e = (Unk0201ea30_08 *) (c + 1);
     e += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(b, (u16) e->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(b, (u16) e->mUnk_04);
     if ((p->mUnk_04->mUnk_00 & 0xc00) >> 10 == 1) {
         return TRUE;
     }
@@ -55,13 +55,13 @@ BOOL func_02124ae4(s32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
 }
 
 void func_02124a98(u32 a, s32 b, Unk02021dc8 *c, Unk0201ea30 *d) {
-    Unk02124a68 *p;
+    Unk020224e0_c *p;
     Unk0201ea30_08 *e;
     s32 i;
-    Unk02124a68_04 *q;
+    Unk020224e0_s *q;
     e = (Unk0201ea30_08 *) ((Unk0201ea30 *) d + 1);
     e += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(c, (u16) e->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(c, (u16) e->mUnk_04);
     q = p->mUnk_04;
     for (i = 0; i < p->mUnk_00; i++) {
         q->mUnk_00 &= ~0xc00;
@@ -73,22 +73,22 @@ void func_02124a98(u32 a, s32 b, Unk02021dc8 *c, Unk0201ea30 *d) {
 }
 
 u8 func_02124a68(u32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
-    Unk02124a68 *p;
+    Unk020224e0_c *p;
     Unk0201ea30_08 *e;
     e = (Unk0201ea30_08 *) ((Unk0201ea30 *) c + 1);
     e += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(b, (u16) e->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(b, (u16) e->mUnk_04);
     return (p->mUnk_04->mUnk_04 & 0xf000) >> 12;
 }
 
 void func_02124a20(s32 a, s32 b, Unk02021dc8 *c, Unk0201ea30 *d) {
-    Unk02124a68 *p;
+    Unk020224e0_c *p;
     Unk0201ea30_08 *e;
     s32 i;
-    Unk02124a68_04 *q;
+    Unk020224e0_s *q;
     e = (Unk0201ea30_08 *) ((Unk0201ea30 *) d + 1);
     e += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(c, (u16) e->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(c, (u16) e->mUnk_04);
     q = p->mUnk_04;
     for (i = 0; i < p->mUnk_00; i++) {
         q->mUnk_04 &= ~0xf000;
@@ -98,22 +98,22 @@ void func_02124a20(s32 a, s32 b, Unk02021dc8 *c, Unk0201ea30 *d) {
 }
 
 u8 func_021249f0(s32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
-    Unk02124a68 *p;
+    Unk020224e0_c *p;
     Unk0201ea30_08 *e;
     e = (Unk0201ea30_08 *) (c + 1);
     e += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(b, (u16) e->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(b, (u16) e->mUnk_04);
     return (p->mUnk_04->mUnk_04 & 0xc00) >> 10;
 }
 
 void func_021249a8(u32 a, u32 b, Unk02021dc8 *c, Unk0201ea30 *d) {
-    Unk02124a68 *p;
+    Unk020224e0_c *p;
     Unk0201ea30_08 *e;
     s32 i;
-    Unk02124a68_04 *q;
+    Unk020224e0_s *q;
     e = (Unk0201ea30_08 *) (d + 1);
     e += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(c, (u16) e->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(c, (u16) e->mUnk_04);
     q = p->mUnk_04;
     for (i = 0; i < p->mUnk_00; i++) {
         q->mUnk_04 &= ~0xc00;
@@ -123,11 +123,11 @@ void func_021249a8(u32 a, u32 b, Unk02021dc8 *c, Unk0201ea30 *d) {
 }
 
 u16 func_0212497c(u32 a, Unk02021dc8 *b, Unk0201ea30 *c) {
-    Unk02124a68 *p;
+    Unk020224e0_c *p;
     Unk0201ea30_08 *e;
     e = (Unk0201ea30_08 *) ((Unk0201ea30 *) c + 1);
     e += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(b, (u16) e->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(b, (u16) e->mUnk_04);
     return p->mUnk_04->mUnk_04 & 0x3ff;
 }
 
@@ -137,10 +137,10 @@ void func_0212481c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
     s32 n;
     s32 u;
     u8 *buf;
-    Unk02124a68 *p;
+    Unk020224e0_c *p;
     s32 j;
-    Unk02124a68 *q;
-    Unk02124a68_04 *r;
+    Unk020224e0_c *q;
+    Unk020224e0_s *r;
     Unk0201ea30_08 *s;
     Unk0201ea30_08 *s2;
     s32 v;
@@ -155,10 +155,10 @@ void func_0212481c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
     s32 ln;
     s = (Unk0201ea30_08 *) (e + 1);
     s += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(b, (u16) s->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(b, (u16) s->mUnk_04);
     s2 = (Unk0201ea30_08 *) (i + 1);
     s2 += g;
-    q = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(h, (u16) s2->mUnk_04);
+    q = NNS_G2dGetCellDataByIdx(h, (u16) s2->mUnk_04);
     n = p->mUnk_00;
     for (k = 0; k < 16; k++) {
         arr[k] = 0;
@@ -206,9 +206,9 @@ void func_0212481c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
 
 void func_02124748(u32 a, Unk02021dc8 *b, void *c, Unk0201ea30 *d, s32 e, u32 f, Unk02021dc8 *g, Unk0201ea30 *h) {
     s32 i;
-    Unk02124a68 *p;
-    Unk02124a68 *q;
-    Unk02124a68_04 *r;
+    Unk020224e0_c *p;
+    Unk020224e0_c *q;
+    Unk020224e0_s *r;
     Unk0201ea30_08 *s;
     Unk0201ea30_08 *s2;
     s32 n;
@@ -219,10 +219,10 @@ void func_02124748(u32 a, Unk02021dc8 *b, void *c, Unk0201ea30 *d, s32 e, u32 f,
     u32 x;
     s = (Unk0201ea30_08 *) ((Unk0201ea30 *) d + 1);
     s += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(b, (u16) s->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(b, (u16) s->mUnk_04);
     s2 = (Unk0201ea30_08 *) ((Unk0201ea30 *) h + 1);
     s2 += f;
-    q = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(g, (u16) s2->mUnk_04);
+    q = NNS_G2dGetCellDataByIdx(g, (u16) s2->mUnk_04);
     i = 0;
     n = p->mUnk_00;
     for (; i < n; i++) {
@@ -244,9 +244,9 @@ void func_02124748(u32 a, Unk02021dc8 *b, void *c, Unk0201ea30 *d, s32 e, u32 f,
 void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Unk0201ea30 *e, s32 f, u32 g,
                    Unk02021dc8 *h, Unk0201ea30 *i) {
     s32 j;
-    Unk02124a68 *p;
-    Unk02124a68 *q;
-    Unk02124a68_04 *r;
+    Unk020224e0_c *p;
+    Unk020224e0_c *q;
+    Unk020224e0_s *r;
     Unk0201ea30_08 *s;
     Unk0201ea30_08 *s2;
     s32 n;
@@ -260,10 +260,10 @@ void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
     u8 *z;
     s = (Unk0201ea30_08 *) (e + 1);
     s += a;
-    p = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(b, (u16) s->mUnk_04);
+    p = NNS_G2dGetCellDataByIdx(b, (u16) s->mUnk_04);
     s2 = (Unk0201ea30_08 *) (i + 1);
     s2 += g;
-    q = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(h, (u16) s2->mUnk_04);
+    q = NNS_G2dGetCellDataByIdx(h, (u16) s2->mUnk_04);
     j = 0;
     n = p->mUnk_00;
     for (; j < n; j++) {
@@ -295,7 +295,7 @@ s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021d
     Unk02022eb0 buf[128];
     Unk0212428c *p;
     Unk021243ac *q;
-    Unk02124a68 *r;
+    Unk020224e0_c *r;
     s32 w;
     s32 x;
     s32 y;
@@ -361,7 +361,7 @@ s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021d
     r = HeapAlloc(a, z * 6 + 0x10);
     r->mUnk_00 = z;
     r->mUnk_02 = 0;
-    r->mUnk_04 = (Unk02124a68_04 *) (r + 1);
+    r->mUnk_04 = (Unk020224e0_s *) (r + 1);
     r->mUnk_08 = w << 2;
     r->mUnk_0a = x << 2;
     r->mUnk_0c = -w << 2;
@@ -486,8 +486,8 @@ void func_02124140(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e)
     Unk02124b1c *r;
     Unk02124b1c *s;
     s32 i;
-    Unk02124a68 *p;
-    Unk02124a68_04 *q;
+    Unk020224e0_c *p;
+    Unk020224e0_s *q;
     s = (Unk02124b1c *) d + a;
     r = s + ((Unk0201ea30 *) e)->mUnk_06;
     p = r->mUnk_3c->mUnk_44;
@@ -505,8 +505,8 @@ void func_02124100(s32 a, u8 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e) 
     Unk02124b1c *r;
     Unk02124b1c *s;
     s32 i;
-    Unk02124a68 *p;
-    Unk02124a68_04 *q;
+    Unk020224e0_c *p;
+    Unk020224e0_s *q;
     s = (Unk02124b1c *) d + a;
     r = s + ((Unk0201ea30 *) e)->mUnk_06;
     p = r->mUnk_3c->mUnk_44;
@@ -530,8 +530,8 @@ void func_02124094(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e)
     Unk02124b1c *r;
     Unk02124b1c *s;
     s32 i;
-    Unk02124a68 *p;
-    Unk02124a68_04 *q;
+    Unk020224e0_c *p;
+    Unk020224e0_s *q;
     s = d + a;
     r = s + e->mUnk_06;
     p = r->mUnk_3c->mUnk_44;

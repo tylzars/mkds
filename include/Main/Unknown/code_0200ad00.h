@@ -30,7 +30,7 @@ typedef struct Unk0216fda8 {
     /* 440 */ u8 mUnk_440[0xc0];
     /* 500 */ u16 mUnk_500;
     /* 502 */ u16 mUnk_502;
-    /* 504 */ u32 mUnk_504;
+    /* 504 */ void *mUnk_504;
     /* 508 */ Unk021425e8Func mUnk_508;
     /* 50c */ u8 mUnk_50c;
     /* 50d */ u8 mUnk_50d;

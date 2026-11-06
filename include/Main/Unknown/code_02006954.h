@@ -17,14 +17,14 @@ typedef struct Unk02007014 {
     /* 32 */ u16 mUnk_32;
 } Unk02007014;
 
-u32 func_02006954(s32 a, s32 b);
+u32 func_02006954(u8 *a, s32 b);
 void func_02006974(void);
 void func_02006a10(void (*a)(Unk0216f3dc_9c *));
 void func_02006aac(s32 a, s32 b, void (*c)(Unk0216f3dc_9c *));
-void func_02006b50(s32 a, s32 b);
+void func_02006b50(u8 *a, s32 b);
 void func_02006bec(const u8 *a, u32 b);
 void func_02006c0c(u32 a, const u8 *b, int c);
-s32 func_02006c2c(s32 a, s32 b);
+s32 func_02006c2c(u8 *a, s32 b);
 u32 func_02006d3c(u16 a, const void *b, s32 c, void (*d)(void));
 u32 func_02006d78(u16 a, u32 b, const void *c, u32 d, const void *e, void (*f)(Unk0216f3dc_9c *));
 u32 func_02006db0(u16 a, u32 b, const void *c, void (*d)(Unk0216f3dc_9c *));

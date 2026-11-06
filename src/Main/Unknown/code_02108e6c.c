@@ -90,14 +90,14 @@ void func_02108e94(s32 a) {
     func_0210d834(a);
 }
 
-u32 func_02108e88(void) {
-    return ((u32) (&data_0217c838));
+NNSSndSeqPlayer **func_02108e88(void) {
+    return data_0217c838;
 }
 
-u32 func_02108e7c(void) {
-    return ((u32) (&data_0217c83c));
+NNSSndSeqPlayer **func_02108e7c(void) {
+    return &data_0217c83c;
 }
 
 NNSSndSeqPlayer **func_02108e6c(u32 p0) {
-    return (NNSSndSeqPlayer **) ((((u32) (&data_0217c838))) + (((p0) << 2)));
+    return data_0217c838 + p0;
 }

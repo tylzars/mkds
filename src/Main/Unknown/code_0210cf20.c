@@ -26,7 +26,7 @@
 void func_0210d4a4(PlayingSound *a, s32 b) {
     s32 i;
 
-    func_0210e2c4((Unk0217c7c4 *) data_0217d034, a, b, 0x1c);
+    func_0210e2c4(&data_0217d034, a, b, 0x1c);
     for (i = 0; i < b; i++) {
         func_0210e328(a);
         func_0210bce0(&a->mUnk_08);
@@ -65,7 +65,7 @@ void func_0210d2cc(void) {
         }
         data_0217d020 = 0;
     }
-    func_0210e280((Unk0217c7c4 *) data_0217d034);
+    func_0210e280(&data_0217d034);
     l = data_0217d048;
     for (p = l->mHead; p != NULL; p = l->mHead) {
         func_0210ca4c(p);
@@ -74,7 +74,7 @@ void func_0210d2cc(void) {
             p->mUnk_18 = 3;
         }
     }
-    m = (NNSFndList *) data_0217d054;
+    m = &data_0217d054;
     p = m->mHead;
     t = data_0217d024[0];
     if (p != NULL) {
@@ -135,10 +135,10 @@ void func_0210d1a4(s32 a, s32 b) {
     u8 *p;
     s32 i;
 
-    p = ((Unk0217c7c4 *) data_0217d034)->mUnk_0c;
-    for (i = 0; i < ((Unk0217c7c4 *) data_0217d034)->mUnk_00; i++) {
+    p = data_0217d034.mUnk_0c;
+    for (i = 0; i < data_0217d034.mUnk_00; i++) {
         NNS_SndPlayerMoveVolume(&((PlayingSound *) p)->mUnk_00, a, b);
-        p += ((Unk0217c7c4 *) data_0217d034)->mUnk_10;
+        p += data_0217d034.mUnk_10;
     }
 }
 
@@ -146,13 +146,13 @@ void func_0210d120(u32 a) {
     u8 *p;
     s32 i;
 
-    p = ((Unk0217c7c4 *) data_0217d034)->mUnk_0c;
-    for (i = 0; i < ((Unk0217c7c4 *) data_0217d034)->mUnk_00; i++) {
+    p = data_0217d034.mUnk_0c;
+    for (i = 0; i < data_0217d034.mUnk_00; i++) {
         NNS_SndPlayerStopSeq(&((PlayingSound *) p)->mUnk_00, a);
         ((PlayingSound *) p)->mUnk_19 &= ~4;
         ((PlayingSound *) p)->mUnk_19 &= ~8;
         ((PlayingSound *) p)->mUnk_19 &= ~2;
-        p += ((Unk0217c7c4 *) data_0217d034)->mUnk_10;
+        p += data_0217d034.mUnk_10;
     }
 }
 
@@ -171,8 +171,8 @@ void func_0210d078(u32 a, PlayingSound *b) {
     NNS_SndPlayerSetTrackPitch(&b->mUnk_00, data_0216cb20, b->mUnk_14);
 }
 
-void func_0210d050(u32 a, u32 b, u32 c, u32 d) {
-    NNS_SndArcPlayerStartSeqArcEx((NNSSndSeqPlayer **) a, (u32) 0xffffffff, (u32) 0xffffffff, d, b, c);
+void func_0210d050(NNSSndSeqPlayer **a, u32 b, u32 c, u32 d) {
+    NNS_SndArcPlayerStartSeqArcEx(a, -1, -1, d, b, c);
 }
 
 void func_0210d040(s32 (*p0)(Unk0210bcf4 *)) {
@@ -225,7 +225,7 @@ void func_0210cf20(SoundSource *a, u32 b) {
     a->mUnk_34 = 0;
     a->mOwnerPosSource = b;
     a->mUnk_18 = 3;
-    func_0210bce0((u32 *) a->mUnk_1c);
+    func_0210bce0(a->mUnk_1c);
     func_0210bce0((u32 *) a);
     func_0210bc8c(&data_0217d028, a);
 }

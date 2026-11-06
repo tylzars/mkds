@@ -32,6 +32,7 @@ void func_020e54e4(void *d, void *e, u32 f, u32 g) {
     u32 a;
     u32 b;
     u32 c[3];
+    Unk020e516c *m = d;
 
     b = 0x1e;
     func_01ff9048(0x14, &b, 1);
@@ -45,7 +46,7 @@ void func_020e54e4(void *d, void *e, u32 f, u32 g) {
         func_01ff9048(0x1b, c, 3);
     }
     a = data_0217b814->mUnk_00c;
-    g = g < ((Unk020e516c *) d)->mUnk_030 ? g : ((Unk020e516c *) d)->mUnk_030;
+    g = g < m->mUnk_030 ? g : m->mUnk_030;
     a = a & ~0x1f0000;
     a = a | (g << 16);
     func_01ff9048(0x29, &a, 1);
@@ -119,6 +120,7 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
     Vec3 s;
     s32 d;
     BOOL r;
+    Unk020e516c *m = a;
 
     s = *v;
     r = FALSE;
@@ -128,22 +130,22 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
         func_020d7b88(&buf1, &buf2);
         Matrix3x3FromQuaternion(a, &buf2);
         d = b / 10;
-        ((Unk020e516c *) a)->mUnk_000[0] = ((s64) ((Unk020e516c *) a)->mUnk_000[0] * d) >> 12;
-        ((Unk020e516c *) a)->mUnk_000[1] = ((s64) ((Unk020e516c *) a)->mUnk_000[1] * d) >> 12;
-        ((Unk020e516c *) a)->mUnk_000[2] = ((s64) ((Unk020e516c *) a)->mUnk_000[2] * d) >> 12;
-        ((Unk020e516c *) a)->mUnk_000[3] = ((s64) ((Unk020e516c *) a)->mUnk_000[3] * d) >> 12;
-        ((Unk020e516c *) a)->mUnk_000[4] = ((s64) ((Unk020e516c *) a)->mUnk_000[4] * d) >> 12;
-        ((Unk020e516c *) a)->mUnk_000[5] = ((s64) ((Unk020e516c *) a)->mUnk_000[5] * d) >> 12;
-        ((Unk020e516c *) a)->mUnk_000[6] = ((s64) ((Unk020e516c *) a)->mUnk_000[6] * d) >> 12;
-        ((Unk020e516c *) a)->mUnk_000[7] = ((s64) ((Unk020e516c *) a)->mUnk_000[7] * d) >> 12;
-        ((Unk020e516c *) a)->mUnk_000[8] = ((s64) ((Unk020e516c *) a)->mUnk_000[8] * d) >> 12;
+        m->mUnk_000[0] = ((s64) m->mUnk_000[0] * d) >> 12;
+        m->mUnk_000[1] = ((s64) m->mUnk_000[1] * d) >> 12;
+        m->mUnk_000[2] = ((s64) m->mUnk_000[2] * d) >> 12;
+        m->mUnk_000[3] = ((s64) m->mUnk_000[3] * d) >> 12;
+        m->mUnk_000[4] = ((s64) m->mUnk_000[4] * d) >> 12;
+        m->mUnk_000[5] = ((s64) m->mUnk_000[5] * d) >> 12;
+        m->mUnk_000[6] = ((s64) m->mUnk_000[6] * d) >> 12;
+        m->mUnk_000[7] = ((s64) m->mUnk_000[7] * d) >> 12;
+        m->mUnk_000[8] = ((s64) m->mUnk_000[8] * d) >> 12;
     } else {
         MTX_Identity33_(a);
     }
-    ((Unk020e516c *) a)->mUnk_000[9] = s.x >> 4;
-    ((Unk020e516c *) a)->mUnk_000[10] = s.y >> 4;
-    ((Unk020e516c *) a)->mUnk_000[11] = s.z >> 4;
-    ((Unk020e516c *) a)->mUnk_030 = c;
+    m->mUnk_000[9] = s.x >> 4;
+    m->mUnk_000[10] = s.y >> 4;
+    m->mUnk_000[11] = s.z >> 4;
+    m->mUnk_030 = c;
     return r;
 }
 

@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "code_02021db0.h" // Unk02021dc8
+#include "code_02022030.h" // Unk020224e0_c, Unk020224e0_s
 #include "code_0201ea58.h" // Unk0201ea30
 
 // 8-byte elements from offset 8 of an Unk0201ea30 (func_0201ea30 indexes them).
@@ -15,25 +16,6 @@ typedef struct Unk0201ea30_08 {
     };
     /* 04 */ u32 mUnk_04;
 } Unk0201ea30_08;
-
-// 6-byte element of the array behind Unk02124a68.
-typedef struct Unk02124a68_04 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
-} Unk02124a68_04;
-
-// What NNS_G2dGetCellDataByIdx returns for the functions here, and what mUnk_44 of Unk021243ac points to:
-// mUnk_00 elements at mUnk_04.
-typedef struct Unk02124a68 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ Unk02124a68_04 *mUnk_04;
-    /* 08 */ s16 mUnk_08;
-    /* 0a */ s16 mUnk_0a;
-    /* 0c */ s16 mUnk_0c;
-    /* 0e */ s16 mUnk_0e;
-} Unk02124a68;
 
 // 0x24 bytes at member 0x20 of Unk021243ac (func_02125808 takes its address).
 typedef struct Unk021243ac_20 {
@@ -54,7 +36,7 @@ typedef struct Unk021243ac {
     /* 18 */ void (*mUnk_18)(struct Unk021243ac *a, s32 b);
     /* 1c */ u8 mUnk_1c[0x4];
     /* 20 */ Unk021243ac_20 mUnk_20;
-    /* 44 */ Unk02124a68 *mUnk_44;
+    /* 44 */ Unk020224e0_c *mUnk_44;
 } Unk021243ac;
 
 // 0x40-byte element of the tables func_02124ed0 allocates and func_02124efc sets up: behind WiFiVSMatching.mUnk_10d4,
@@ -75,7 +57,7 @@ typedef struct Unk02124b1c {
     /* 3c */ Unk021243ac *mUnk_3c;
 } Unk02124b1c;
 
-// 8-byte elements func_021243ac fills and copies into Unk02124a68_04 elements.
+// 8-byte elements func_021243ac fills and copies into Unk020224e0_s elements.
 typedef struct Unk02022eb0 {
     /* 00 */ union {
         u32 mUnk_00;

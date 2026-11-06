@@ -60,14 +60,14 @@ typedef struct Unk0216f3dc {
     /* 1d4 */ Unk0216f3dc_68 mUnk_1d4[16];
 } Unk0216f3dc;
 
-s32 func_0200589c(Unk0216f3dc *a, s32 b, s32 c);
-s32 func_02005a30(Unk0216f3dc *a, s32 b, s32 c);
-s32 func_02005b18(Unk0216f3dc *a, s32 b, s32 c, s32 d);
-s32 func_02005b80(Unk0216f3dc *a, s32 b, s32 c, s32 d);
-s32 func_02005bec(Unk0216f3dc *a, s32 b, s32 c, s32 d);
-s32 func_02005cc8(Unk0216f3dc *a, s32 b, s32 c, s32 d);
-s32 func_02005d08(Unk0216f3dc *a, s32 b, s32 c, s32 d);
-s32 func_02005d4c(Unk0216f3dc *a, s32 b, s32 c, s32 d);
+s32 func_0200589c(Unk0216f3dc *a, u8 *b, s32 c);
+s32 func_02005a30(Unk0216f3dc *a, u8 *b, s32 c);
+s32 func_02005b18(Unk0216f3dc *a, s32 b, u8 *c, s32 d);
+s32 func_02005b80(Unk0216f3dc *a, s32 b, u8 *c, s32 d);
+s32 func_02005bec(Unk0216f3dc *a, s32 b, u8 *c, s32 d);
+s32 func_02005cc8(Unk0216f3dc *a, s32 b, u8 *c, s32 d);
+s32 func_02005d08(Unk0216f3dc *a, s32 b, u8 *c, s32 d);
+s32 func_02005d4c(Unk0216f3dc *a, s32 b, u8 *c, s32 d);
 u32 func_02005dac(Unk0216f3dc *a, s32 b, const u8 *c, s32 d);
 void func_02006144(Unk0216f3dc *a, s32 b, s32 c);
 void func_020061d8(Unk0216f3dc *a, s32 b, s32 c, u32 d);

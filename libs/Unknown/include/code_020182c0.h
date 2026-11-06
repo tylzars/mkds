@@ -22,7 +22,7 @@ typedef struct Unk020182c0 {
     /* 64 */ u8 *mUnk_64;
 } Unk020182c0;
 
-u32 ArchiveFileGetAddress(const u8 *a);
+void *ArchiveFileGetAddress(const u8 *a);
 u32 ArchiveUnload(FSArchive *a);
 u32 ArchiveLoadFromMemory(Unk020182c0 *a, const u8 *b, Unk02018344 *c);
 u32 ArchiveHeaderMatches(Unk02018344 *a);

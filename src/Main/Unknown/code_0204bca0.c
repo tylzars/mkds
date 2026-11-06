@@ -343,7 +343,7 @@ void func_0204d18c(Unk02175ec0_440s *a, Unk0204c090 *b, s32 c) {
             func_0204d110(&a->mUnk_46c8, &a->mUnk_46c4, b);
             b->mUnk_080 = 2;
         }
-        v5 = (Unk02175ec0_440 *) a;
+        v5 = a->mUnk_0000;
         for (v3 = 0;; v3++) {
             if ((1 << v3) > v2) {
                 break;
@@ -461,9 +461,9 @@ void func_0204ce60(void) {
     }
     v4 = p->mUnk_0040;
     if (v1 != 0) {
-        v3 = ((u32(*)(s32, s32)) func_02006954)((s32) v4, v2);
+        v3 = func_02006954(v4, v2);
     } else {
-        v3 = ((u32(*)(s32, s32)) func_02006914)((s32) v4, v2);
+        v3 = func_02006914(v4, v2);
     }
     p->mUnk_0008 = WM_SetMPDataToPortEx(func_0204ce60, NULL, v4, v3, 0xffff, p->mUnk_0030, 3) == 2;
     p->mUnk_0004 = data_02175ec0.mUnk_0008 == FALSE;
@@ -504,9 +504,9 @@ void func_0204cc94(Unk0204cc94 *a) {
             }
             v4 = p->mUnk_0040;
             if (v1 != 0) {
-                v3 = ((u32(*)(s32, s32)) func_02006954)((s32) v4, v2);
+                v3 = func_02006954(v4, v2);
             } else {
-                v3 = ((u32(*)(s32, s32)) func_02006914)((s32) v4, v2);
+                v3 = func_02006914(v4, v2);
             }
             p->mUnk_0008 = WM_SetMPDataToPortEx(func_0204ce60, NULL, v4, v3, 0xffff, p->mUnk_0030, 3) == 2;
             p->mUnk_0004 = data_02175ec0.mUnk_0008 == FALSE;
@@ -841,7 +841,7 @@ void func_0204c320(Unk0204c320 *a) {
     }
 }
 
-void func_0204c28c(u32 a, u32 b, u32 c, u32 d) {
+void func_0204c28c(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u32 d) {
     Unk02175ec0 *const v1 = &data_02175ec0;
     u16 v2;
 
@@ -851,8 +851,8 @@ void func_0204c28c(u32 a, u32 b, u32 c, u32 d) {
     v1->mUnk_0004 = FALSE;
     v1->mUnk_0008 = FALSE;
     v1->mUnk_000c = 0;
-    v1->mUnk_0010 = (void (*)(s32)) b;
-    v1->mUnk_0014 = (void *(*) (s32, u32, void *) ) c;
+    v1->mUnk_0010 = b;
+    v1->mUnk_0014 = c;
     v1->mUnk_0018 = d;
     v1->mUnk_001c = NULL;
     v1->mUnk_0024 = 0;
@@ -865,7 +865,7 @@ void func_0204c28c(u32 a, u32 b, u32 c, u32 d) {
     }
 }
 
-void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, FSFile *f, s32 g) {
+void func_0204c090(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u32 d, u32 e, FSFile *f, s32 g) {
     u32 v1;
     Unk02175ec0 *v2;
     Unk02175ec0_440s *v3;
@@ -924,7 +924,7 @@ void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, FSFile *f, s32 g) {
     func_0204bad8();
 }
 
-void func_0204bfac(u32 a, u32 b, u32 c, u32 d) {
+void func_0204bfac(u32 a, void (*b)(s32 a), void *(*c)(s32 a, u32 b, void *c), u32 d) {
     u32 v1;
     Unk02175ec0 *v2;
     Unk0204bfac *v3;
@@ -956,12 +956,12 @@ void func_0204bfac(u32 a, u32 b, u32 c, u32 d) {
     v2->mUnk_000c = 1;
 }
 
-void func_0204bf48(int a, u32 b, u32 c, void *d, void *e, u32 f) {
+void func_0204bf48(int a, u32 b, u32 c, void (*d)(s32 a), void *(*e)(s32 a, u32 b, void *c), u32 f) {
     if (a != 0) {
-        func_0204c090(b, (u32) d, (u32) e, f, c, NULL, 1);
+        func_0204c090(b, d, e, f, c, NULL, 1);
         return;
     }
-    func_0204bfac(b, (u32) d, (u32) e, f);
+    func_0204bfac(b, d, e, f);
 }
 
 static inline void func_0204bcec_inline(Unk02175ec0 *a, void *p) {
@@ -1004,9 +1004,9 @@ void func_0204be0c(void) {
     }
     q = g->mUnk_0040;
     if (z != 0) {
-        r = func_02006954((s32) q, h);
+        r = func_02006954(q, h);
     } else {
-        r = func_02006914((s32) q, h);
+        r = func_02006914(q, h);
     }
     g->mUnk_0008 = WM_SetMPDataToPortEx(func_0204ce60, NULL, q, r, 0xffff, g->mUnk_0030, 3) == 2;
     g->mUnk_0004 = data_02175ec0.mUnk_0008 == FALSE;

@@ -106,7 +106,7 @@ void func_020cf340(Unk020cf340 *a) {
 
             p = func_021000d0(0xcb);
             if (p != NULL) {
-                q = (Unk0217b498_00 **) func_02100084(p);
+                q = func_02100084(p);
                 for (i = 0; i < 5; i++) {
                     w = q[i]->mAngle;
                     if (i == 4) {
@@ -200,7 +200,7 @@ void func_020cf340(Unk020cf340 *a) {
 
             p = func_021000d0(0xd0);
             if (p != NULL) {
-                q = (Unk0217b498_00 **) func_02100084(p);
+                q = func_02100084(p);
                 v = (q[1]->mAngle * 0x48) >> 16;
                 for (i = 0; i < 6; i++) {
                     a->mUnk_00[i + 0x54] = data_0217b490->mUnk_02.mUnk_03.mUnk_00[(i + 0x48 - v) % 6];
@@ -214,7 +214,7 @@ void func_020cf340(Unk020cf340 *a) {
             }
             p = func_021000d0(0xca);
             if (p != NULL) {
-                r = (Unk020e005c **) func_02100084(p);
+                r = func_02100084(p);
                 for (i = 0; i < 4; i++) {
                     v = func_020dff4c(r[i]);
                     if (i % 2 != 0) {

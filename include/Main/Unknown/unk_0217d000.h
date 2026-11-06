@@ -10,6 +10,7 @@
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
 #include "code_0212d214.h"
 #include "Main/Unknown/types_02180728.h" // Unk02180728
+#include "Main/Unknown/code_02105ec0.h" // Unk0217c7c4
 
 typedef struct OSMessageQueue OSMessageQueue;
 
@@ -793,16 +794,11 @@ extern Unk0217d34c *data_0217d34c;
 extern SelectCupGrid *gSelectCupGrid;
 extern SelectCupCourse *gSelectCupCourse;
 extern u32 data_0217d1bc;
-extern u8 data_0217d1c0[];
-extern u8 data_0217d1c4[];
-extern u8 data_0217d1c8[];
-extern u8 data_0217d1cc[];
-extern u8 data_0217d1d0[];
 extern u32 data_0217d23c[];
 extern u32 data_0217d010[];
 extern u32 data_0217d024[];
-extern u8 data_0217d034[];
+extern Unk0217c7c4 data_0217d034;
 extern NNSFndList data_0217d048[];
-extern u8 data_0217d054[];
+extern NNSFndList data_0217d054;
 extern u32 data_0217d020;
 extern void *data_0217d06c;

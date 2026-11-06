@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02079a3c(u32 *arg0);
+void func_02079a3c(void *arg0);

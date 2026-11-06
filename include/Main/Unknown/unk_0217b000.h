@@ -779,7 +779,7 @@ extern MtxFx43 *data_0217b848;
 extern MtxFx43 *data_0217b84c;
 extern MtxFx43 *data_0217b850;
 extern MtxFx43 *data_0217b854;
-extern u8 data_0217b858[];
+extern s32 *data_0217b858;
 extern MtxFx43 *data_0217b85c;
 extern MtxFx43 *data_0217b860;
 extern u16 *data_0217b868;

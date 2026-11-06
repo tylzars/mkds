@@ -50,7 +50,7 @@ void func_020c1ef8(void) {
         gRaceGoalS->mUnk_0040[i] = i;
         if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE) {
             v = x0;
-            if ((u32) data_021759c0->mCurrentEntries[i].mPlayer.mKind <= 3 &&
+            if (data_021759c0->mCurrentEntries[i].mPlayer.mKind <= 3 &&
                 ((1 << data_021759c0->mCurrentEntries[i].mPlayer.mKind) & 0xd)) {
                 v = 1;
             }

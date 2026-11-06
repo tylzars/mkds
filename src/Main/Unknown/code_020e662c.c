@@ -157,12 +157,12 @@ void *func_020e6b38(void) {
     return data_0217b848;
 }
 
-u32 func_020e6b28(void) {
-    return ((u32) data_0217b848);
+Vec3 *func_020e6b28(void) {
+    return &data_0217b848->mUnk_00[0];
 }
 
-u32 func_020e6b14(void) {
-    return (u32) &data_0217b848->mUnk_00[2];
+Vec3 *func_020e6b14(void) {
+    return &data_0217b848->mUnk_00[2];
 }
 
 void func_020e6ab8(Unk020e6488 *p0) {
@@ -176,7 +176,7 @@ void func_020e6ab8(Unk020e6488 *p0) {
 
 void func_020e6a74(void) {
     u32 v1[1];
-    func_01ff9048(0x17, (void *) (u32) data_0217b854, 0xc);
+    func_01ff9048(0x17, data_0217b854, 0xc);
     v1[0] = 0x1e;
     func_01ff9048(0x13, (void *) ((u32) v1), 1);
 }
@@ -281,8 +281,8 @@ void func_020e66e4(Unk020e6488 *p, MtxFx43 *q, s32 r, Vec3 *v, s32 a5, u16 a6) {
     func_01ff9048(0x19, q, 0xc);
     if (r != 0) {
         i = r >> 4;
-        MTX_RotZ33_(*(void **) data_0217b858, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
-        func_01ff9048(0x1a, *(void **) data_0217b858, 9);
+        MTX_RotZ33_(data_0217b858, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+        func_01ff9048(0x1a, data_0217b858, 9);
     }
     if (v != NULL) {
         z = v->z;
@@ -299,24 +299,24 @@ void func_020e66e4(Unk020e6488 *p, MtxFx43 *q, s32 r, Vec3 *v, s32 a5, u16 a6) {
 #pragma thumb on
 
 void func_020e662c(void) {
-    u32 v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
-    *(u32 *) &data_0217b848 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
-    *(u32 *) &data_0217b860 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
-    *(u32 *) &data_0217b850 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
-    *(u32 *) &data_0217b84c = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
-    *(u32 *) &data_0217b85c = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
-    *(u32 *) &data_0217b844 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
-    *(u32 *) &data_0217b854 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x24));
-    *(u32 *) &data_0217b858 = v1;
-    MTX_Identity43_((MtxFx43 *) (u32) data_0217b844);
+    void *v1;
+    v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
+    data_0217b848 = v1;
+    v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
+    data_0217b860 = v1;
+    v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
+    data_0217b850 = v1;
+    v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
+    data_0217b84c = v1;
+    v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
+    data_0217b85c = v1;
+    v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
+    data_0217b844 = v1;
+    v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
+    data_0217b854 = v1;
+    v1 = HeapAlloc(data_021759d0->mHeap, 0x24);
+    data_0217b858 = v1;
+    MTX_Identity43_(data_0217b844);
 }
 
 #pragma thumb off

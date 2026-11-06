@@ -30,11 +30,11 @@ void func_0210ef34(void) {
 
 u32 func_0210ed20(u32 a, u32 b) {
     NNSSndArcBankInfo *p;
-    u32 *q;
-    u32 *r;
+    NNSSndArcWaveArcInfo *q;
+    Unk02021968 *r;
     u32 v;
     u32 w;
-    u32 x;
+    Unk02021968 *x;
     u32 ok;
     u32 n;
     s32 i;
@@ -43,15 +43,15 @@ u32 func_0210ed20(u32 a, u32 b) {
         if (NNS_SndArcLoadWaveArc(0x61, data_0217d130) == 0) {
             ok = 0;
         } else {
-            u32 *q;
-            u32 *r;
+            NNSSndArcWaveArcInfo *q;
+            NNSSndArcWaveArcInfo *r;
             u32 v;
             u32 w;
 
-            q = (u32 *) NNS_SndArcGetWaveArcInfo(0x61);
-            r = (u32 *) NNS_SndArcGetWaveArcInfo(0);
-            w = ((NNSSndArcWaveArcInfo *) r)->mFileId;
-            v = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+            q = NNS_SndArcGetWaveArcInfo(0x61);
+            r = NNS_SndArcGetWaveArcInfo(0);
+            w = (r)->mFileId;
+            v = q->mFileId;
             NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
             NNS_SndArcSetFileAddress(v, NULL);
             ok = 1;
@@ -65,15 +65,15 @@ u32 func_0210ed20(u32 a, u32 b) {
         if (NNS_SndArcLoadWaveArc(0x62, data_0217d130) == 0) {
             ok = 0;
         } else {
-            u32 *q;
-            u32 *r;
+            NNSSndArcWaveArcInfo *q;
+            NNSSndArcWaveArcInfo *r;
             u32 v;
             u32 w;
 
-            q = (u32 *) NNS_SndArcGetWaveArcInfo(0x62);
-            r = (u32 *) NNS_SndArcGetWaveArcInfo(0x50);
-            w = ((NNSSndArcWaveArcInfo *) r)->mFileId;
-            v = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+            q = NNS_SndArcGetWaveArcInfo(0x62);
+            r = NNS_SndArcGetWaveArcInfo(0x50);
+            w = (r)->mFileId;
+            v = q->mFileId;
             NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
             NNS_SndArcSetFileAddress(v, NULL);
             ok = 1;
@@ -93,25 +93,25 @@ u32 func_0210ed20(u32 a, u32 b) {
         }
     }
     p = NNS_SndArcGetBankInfo(0);
-    x = (u32) NNS_SndArcGetFileAddress(p->mFileId);
+    x = NNS_SndArcGetFileAddress(p->mFileId);
     for (i = 0; i < 4; i++) {
         v = p->mWaveArcNo[i];
         if (v == 0xffff) {
             continue;
         }
-        q = (u32 *) NNS_SndArcGetWaveArcInfo(v);
+        q = NNS_SndArcGetWaveArcInfo(v);
         if (q == NULL) {
             break;
         }
-        w = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+        w = q->mFileId;
         r = NNS_SndArcGetFileAddress(w);
-        if (x == 0) {
+        if (x == NULL) {
             continue;
         }
         if (r == NULL) {
             continue;
         }
-        SND_AssignWaveArc((Unk02021968 *) x, i, (Unk02021968 *) r);
+        SND_AssignWaveArc(x, i, r);
     }
     if (func_0210e50c(a) == 0) {
         return 0;
@@ -148,15 +148,15 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 if (NNS_SndArcLoadWaveArc(0x63, data_0217d130) == 0) {
                     ok = 0;
                 } else {
-                    u32 *p;
-                    u32 *q;
+                    NNSSndArcWaveArcInfo *p;
+                    NNSSndArcWaveArcInfo *q;
                     u32 a;
                     u32 b;
 
-                    p = (u32 *) NNS_SndArcGetWaveArcInfo(0x63);
-                    q = (u32 *) NNS_SndArcGetWaveArcInfo(0x31);
-                    b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
-                    a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+                    p = NNS_SndArcGetWaveArcInfo(0x63);
+                    q = NNS_SndArcGetWaveArcInfo(0x31);
+                    b = q->mFileId;
+                    a = p->mFileId;
                     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                     NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
@@ -172,15 +172,15 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 if (NNS_SndArcLoadWaveArc(0x64, data_0217d130) == 0) {
                     ok = 0;
                 } else {
-                    u32 *p;
-                    u32 *q;
+                    NNSSndArcWaveArcInfo *p;
+                    NNSSndArcWaveArcInfo *q;
                     u32 a;
                     u32 b;
 
-                    p = (u32 *) NNS_SndArcGetWaveArcInfo(0x64);
-                    q = (u32 *) NNS_SndArcGetWaveArcInfo(0x58);
-                    b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
-                    a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+                    p = NNS_SndArcGetWaveArcInfo(0x64);
+                    q = NNS_SndArcGetWaveArcInfo(0x58);
+                    b = q->mFileId;
+                    a = p->mFileId;
                     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                     NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
@@ -196,15 +196,15 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 if (NNS_SndArcLoadWaveArc(0x34, data_0217d130) == 0) {
                     ok = 0;
                 } else {
-                    u32 *p;
-                    u32 *q;
+                    NNSSndArcWaveArcInfo *p;
+                    NNSSndArcWaveArcInfo *q;
                     u32 a;
                     u32 b;
 
-                    p = (u32 *) NNS_SndArcGetWaveArcInfo(0x34);
-                    q = (u32 *) NNS_SndArcGetWaveArcInfo(0x33);
-                    b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
-                    a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+                    p = NNS_SndArcGetWaveArcInfo(0x34);
+                    q = NNS_SndArcGetWaveArcInfo(0x33);
+                    b = q->mFileId;
+                    a = p->mFileId;
                     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                     NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
@@ -221,15 +221,15 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
             if (NNS_SndArcLoadWaveArc(0x13, data_0217d130) == 0) {
                 ok = 0;
             } else {
-                u32 *p;
-                u32 *q;
+                NNSSndArcWaveArcInfo *p;
+                NNSSndArcWaveArcInfo *q;
                 u32 a;
                 u32 b;
 
-                p = (u32 *) NNS_SndArcGetWaveArcInfo(0x13);
-                q = (u32 *) NNS_SndArcGetWaveArcInfo(0x12);
-                b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
-                a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+                p = NNS_SndArcGetWaveArcInfo(0x13);
+                q = NNS_SndArcGetWaveArcInfo(0x12);
+                b = q->mFileId;
+                a = p->mFileId;
                 NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                 NNS_SndArcSetFileAddress(a, NULL);
                 ok = 1;
@@ -274,8 +274,10 @@ void func_0210e888(Unk0210e524 a, u32 b) {
 }
 
 u32 func_0210e680(void) {
-    u32 *p;
-    u32 *q;
+    NNSSndArcSeqArcInfo *p;
+    NNSSndArcSeqArcInfo *q;
+    NNSSndArcWaveArcInfo *v1;
+    NNSSndArcWaveArcInfo *v2;
     u32 v;
     u32 a;
     u32 b;
@@ -291,20 +293,20 @@ u32 func_0210e680(void) {
     if (NNS_SndArcLoadSeqArc(1, data_0217d130) == 0) {
         return 0;
     }
-    p = (u32 *) NNS_SndArcGetSeqArcInfo(1);
-    q = (u32 *) NNS_SndArcGetSeqArcInfo(0);
-    a = *p;
-    b = *q;
+    p = NNS_SndArcGetSeqArcInfo(1);
+    q = NNS_SndArcGetSeqArcInfo(0);
+    a = p->mFileId;
+    b = q->mFileId;
     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
     NNS_SndArcSetFileAddress(a, NULL);
     n = data_0217d178.mUnk_40;
     data_0217d178.mUnk_40 = n + 1;
     data_0217d178.mUnk_00[n] = b;
     if (NNS_SndArcLoadWaveArc(0x3e, data_0217d130) != 0) {
-        p = (u32 *) NNS_SndArcGetWaveArcInfo(0x3e);
-        q = (u32 *) NNS_SndArcGetWaveArcInfo(0x3d);
-        b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
-        a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+        v1 = NNS_SndArcGetWaveArcInfo(0x3e);
+        v2 = NNS_SndArcGetWaveArcInfo(0x3d);
+        b = v2->mFileId;
+        a = v1->mFileId;
         NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
         NNS_SndArcSetFileAddress(a, NULL);
         ok = 1;

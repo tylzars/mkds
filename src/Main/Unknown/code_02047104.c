@@ -71,24 +71,24 @@ void func_02048350(char *a) {
 void func_02048324(char *a) {
     u32 v1;
     v1 = func_02048474();
-    OS_SNPrintf(a, 0x80, data_021650bc, v1, (u32) &data_021650d8);
+    OS_SNPrintf(a, 0x80, data_021650bc, v1, data_021650d8);
 }
 
 void func_020482f0(char *a, const char *b, int c) {
     if (*b != 0) {
-        OS_SNPrintf(a, 0x80, data_021650a0, b, ((u32 *) &data_02164d28)[c], (u32) &data_021650b4);
+        OS_SNPrintf(a, 0x80, data_021650a0, b, data_02164d28[c], data_021650b4);
     }
 }
 
-void func_020482ac(char *a, u8 *b, int c) {
+void func_020482ac(char *a, const char *b, int c) {
     u32 v1;
     if (*b != 0) {
         v1 = func_02048474();
-        OS_SNPrintf(a, 0x80, data_02165080, b, ((u32 *) &data_02164d28)[c], v1, (u32) &data_02165098);
+        OS_SNPrintf(a, 0x80, data_02165080, b, data_02164d28[c], v1, data_02165098);
     }
 }
 
-void func_02048284(u32 a, char *b) {
+void func_02048284(const char *a, char *b) {
     u32 v1;
     v1 = func_02048474();
     OS_SNPrintf(b, 0x80, data_02165074, a, v1);
@@ -142,11 +142,11 @@ void func_02048050(int a, int b) {
                     if (data_021759c0->mUnk_00c == 6) {
                         OS_SNPrintf(c, 0x80, data_usa_02165058);
                     } else {
-                        func_020483e4(c, (u8 *) gSceneNames[b].mUnk_00);
+                        func_020483e4(c, gSceneNames[b].mUnk_00);
                     }
                     break;
                 default:
-                    func_020483e4(c, (u8 *) gSceneNames[b].mUnk_00);
+                    func_020483e4(c, gSceneNames[b].mUnk_00);
                     break;
             }
             g = gSceneNames[b].mUnk_04;
@@ -171,11 +171,11 @@ void func_02048050(int a, int b) {
                     if (data_021759c0->mUnk_00c == 6) {
                         func_02048324(c);
                     } else {
-                        func_0204840c(c, (u8 *) gSceneNames[b].mUnk_00);
+                        func_0204840c(c, gSceneNames[b].mUnk_00);
                     }
                     break;
                 default:
-                    func_0204840c(c, (u8 *) gSceneNames[b].mUnk_00);
+                    func_0204840c(c, gSceneNames[b].mUnk_00);
                     break;
             }
             break;
@@ -183,12 +183,12 @@ void func_02048050(int a, int b) {
             func_020482f0(c, gSceneNames[b].mUnk_00, data_021759c0->mMode);
             break;
         case 12:
-            func_020482ac(c, (u8 *) gSceneNames[b].mUnk_00, data_021759c0->mMode);
+            func_020482ac(c, gSceneNames[b].mUnk_00, data_021759c0->mMode);
             break;
         case 2:
         case 15:
         case 17:
-            func_02048284((u32) data_usa_021543e0[a].mUnk_00, c);
+            func_02048284(data_usa_021543e0[a].mUnk_00, c);
             break;
         case 0:
         case 1:
@@ -412,7 +412,7 @@ void func_02047b6c(u32 a) {
 
 #pragma thumb on
 
-u32 FindArchiveFile(u32 archiveName, const char *path) {
+void *FindArchiveFile(u32 archiveName, const char *path) {
     char fullPath[0x80];
 
     if (path[0] == '/') {
@@ -428,12 +428,12 @@ u32 FindArchiveFile(u32 archiveName, const char *path) {
 #pragma thumb on
 
 void *FindMainRaceOrMainEffectFile(const char *path) {
-    int file;
+    void *file;
     file = FindArchiveFile(gArchiveNames[0], path);
-    if (file == 0) {
+    if (file == NULL) {
         file = FindArchiveFile(gArchiveNames[18], path);
     }
-    return (void *) file;
+    return file;
 }
 
 #pragma thumb off
@@ -441,49 +441,49 @@ void *FindMainRaceOrMainEffectFile(const char *path) {
 #pragma thumb on
 
 void *func_02047a28(const char *path) {
-    u32 file;
+    void *file;
 
-    file = 0;
+    file = NULL;
     if (data_021759c8->mUnk_7d8 != 0) {
         file = FindArchiveFile(gArchiveNames[17], path);
     }
-    if (file == 0 && data_021759c8->mUnk_768 != 0) {
+    if (file == NULL && data_021759c8->mUnk_768 != 0) {
         file = FindArchiveFile(gArchiveNames[16], path);
     }
-    if (file == 0 && data_021759c8->mUnk_6f8 != 0) {
+    if (file == NULL && data_021759c8->mUnk_6f8 != 0) {
         file = FindArchiveFile(gArchiveNames[15], path);
     }
-    if (file == 0 && data_021759c8->mUnk_688 != 0) {
+    if (file == NULL && data_021759c8->mUnk_688 != 0) {
         file = FindArchiveFile(gArchiveNames[14], path);
     }
-    if (file == 0 && data_021759c8->mUnk_8b8 != 0) {
+    if (file == NULL && data_021759c8->mUnk_8b8 != 0) {
         file = FindArchiveFile(gArchiveNames[19], path);
     }
-    if (file == 0 && data_021759c8->mUnk_148 != 0) {
+    if (file == NULL && data_021759c8->mUnk_148 != 0) {
         file = FindArchiveFile(gArchiveNames[2], path);
     }
-    if (file == 0 && data_021759c8->mUnk_d8 != 0) {
+    if (file == NULL && data_021759c8->mUnk_d8 != 0) {
         file = FindArchiveFile(gArchiveNames[1], path);
     }
-    return (void *) file;
+    return file;
 }
 
 void *FindSceneFile(const char *path) {
-    u32 file;
+    void *file;
 
     file = FindArchiveFile(gArchiveNames[5], path);
-    if (file == 0 && data_021759c8->mUnk_458 != 0) {
+    if (file == NULL && data_021759c8->mUnk_458 != 0) {
         file = FindArchiveFile(gArchiveNames[9], path);
     }
     if (GetCurrentSceneNumber() == 2) {
-        if (file == 0 && data_021759c8->mUnk_538 != 0) {
+        if (file == NULL && data_021759c8->mUnk_538 != 0) {
             file = FindArchiveFile(gArchiveNames[11], path);
         }
-        if (file == 0 && data_021759c8->mUnk_5a8 != 0) {
+        if (file == NULL && data_021759c8->mUnk_5a8 != 0) {
             file = FindArchiveFile(gArchiveNames[12], path);
         }
     }
-    return (void *) file;
+    return file;
 }
 
 #pragma thumb off
@@ -491,12 +491,12 @@ void *FindSceneFile(const char *path) {
 #pragma thumb on
 
 void *FindCourseFile(const char *path) {
-    int file;
+    void *file;
     file = FindArchiveFile(gArchiveNames[3], path);
-    if (file == 0) {
+    if (file == NULL) {
         file = FindArchiveFile(gArchiveNames[13], path);
     }
-    return (void *) file;
+    return file;
 }
 
 void *func_02047950(const char *path) {
@@ -510,8 +510,8 @@ void *func_02047950(const char *path) {
 
 void *FindKartModelFile(const char *path) {
     int v1;
-    int file;
-    file = 0;
+    void *file;
+    file = NULL;
     v1 = GetCurrentSceneNumber();
     if (((v1 == 1) || (v1 == 3)) || (v1 == 0xc)) {
         file = FindArchiveFile(gArchiveNames[10], path);
@@ -519,14 +519,14 @@ void *FindKartModelFile(const char *path) {
         if (data_021759c8->mUnk_308 != 0) {
             file = FindArchiveFile(gArchiveNames[6], path);
         }
-        if ((file == 0) && (data_021759c8->mUnk_378 != 0)) {
+        if ((file == NULL) && (data_021759c8->mUnk_378 != 0)) {
             file = FindArchiveFile(gArchiveNames[7], path);
         }
-        if ((file == 0) && (data_021759c8->mUnk_3e8 != 0)) {
+        if ((file == NULL) && (data_021759c8->mUnk_3e8 != 0)) {
             file = FindArchiveFile(gArchiveNames[8], path);
         }
     }
-    return (void *) file;
+    return file;
 }
 
 #pragma thumb off
@@ -746,7 +746,7 @@ void func_020472e4(void *a, void *b) {
 
 void func_020472a8(void) {
     func_0204f5e4();
-    NNS_FndFreeToFrmHeap((void *) ((u32) data_021759c8->mUnk_a80), 3);
+    NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
     func_02047498(gResultDLArchivePath, 0xe);
     func_02047468(gResultDLArchivePrefix, 0xf);
 }
@@ -770,11 +770,11 @@ s32 func_02047250(void) {
     return 1;
 }
 
-void func_02047220(void *a, u32 b) {
-    void *p;
+void func_02047220(u8 *a, u32 b) {
+    u8 *p;
 
     p = data_021759c8->mUnk_84c;
-    NNS_FndResizeForMBlockExpHeap(GetHeap(func_020364e8()), p, b + ((u32) a - (u32) p));
+    NNS_FndResizeForMBlockExpHeap(GetHeap(func_020364e8()), p, b + (a - p));
 }
 
 void func_020471b0(void *a) {

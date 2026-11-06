@@ -157,8 +157,8 @@ BOOL func_ov003_021d04a8(void) {
         return TRUE;
     }
     func_ov003_021d07b0(4);
-    r = WM_StartMPEx(func_ov003_021d03c0, (u32) data_ov003_021da2a8->mUnk_1060, data_ov003_021da2a8->mUnk_12a4,
-                     (u32) data_ov003_021da2a8->mUnk_f80, data_ov003_021da2a8->mUnk_12a0, 1, 0, 0, 0, 0, 0);
+    r = WM_StartMPEx(func_ov003_021d03c0, data_ov003_021da2a8->mUnk_1060, data_ov003_021da2a8->mUnk_12a4,
+                     data_ov003_021da2a8->mUnk_f80, data_ov003_021da2a8->mUnk_12a0, 1, 0, 0, 0, 0, 0);
     if (r != 2) {
         func_ov003_021d079c(r);
         return FALSE;

@@ -125,8 +125,7 @@ void func_0200ad00(void) {
     u32 v1;
     v1 = WM_SetIndCallback(func_0200a7b0);
     func_02009928(0x80, v1);
-    v1 = WM_SetLifeTime(func_0200a7b0, *(u16 *) &data_0216179c, *(u16 *) &data_02161794, *(u16 *) &data_02161790,
-                        *(u16 *) &data_02161798);
+    v1 = WM_SetLifeTime(func_0200a7b0, data_0216179c, data_02161794, data_02161790, data_02161798);
     func_02009928(0x1d, v1);
 }
 
@@ -187,9 +186,9 @@ void func_0200a7b0(Unk021425e8 *a) {
                         if (data_0216fda8->mUnk_52c != 0) {
                             x = 0;
                         }
-                        func_02009928(0xe, WM_StartMPEx(func_0200a7b0, data_0216fda8->mUnk_504, data_0216fda8->mUnk_51a,
-                                                        (u32) data_0216fda8->mUnk_040, data_0216fda8->mUnk_518, x, 0, 0,
-                                                        0, 1, 1));
+                        func_02009928(0xe,
+                                      WM_StartMPEx(func_0200a7b0, data_0216fda8->mUnk_504, data_0216fda8->mUnk_51a,
+                                                   data_0216fda8->mUnk_040, data_0216fda8->mUnk_518, x, 0, 0, 0, 1, 1));
                         return;
                     }
                     if (func_0200ad4c() == 0) {
@@ -336,8 +335,8 @@ void func_0200a1bc(Unk021425e8 *a) {
                 return;
             }
             v1->mUnk_51c(0x15, a);
-            func_02009928(0x1d, WM_SetLifeTime(func_0200a1bc, *(u16 *) &data_0216179c, *(u16 *) &data_02161794,
-                                               *(u16 *) &data_02161790, *(u16 *) &data_02161798));
+            func_02009928(0x1d,
+                          WM_SetLifeTime(func_0200a1bc, data_0216179c, data_02161794, data_02161790, data_02161798));
             return;
         case 0x1d:
             if (a->mResultCode != 0) {
@@ -455,7 +454,7 @@ void func_0200a1bc(Unk021425e8 *a) {
                     if (WM_SetPortCallback(1, (UnkFunc *) func_0200a77c, NULL) != 0) {
                         return;
                     }
-                    func_02009928(0xe, WM_StartMPEx(func_0200a1bc, v1->mUnk_504, v1->mUnk_51a, (u32) v1->mUnk_040,
+                    func_02009928(0xe, WM_StartMPEx(func_0200a1bc, v1->mUnk_504, v1->mUnk_51a, v1->mUnk_040,
                                                     v1->mUnk_518, v1->mUnk_52c == 0 ? 1 : 0, 0, 0, 0, 1, 1));
                     return;
                 case 9:
@@ -594,7 +593,7 @@ s32 func_02009ff4(void *a, Unk02009ff4 *b, u32 c, u32 d, u32 e) {
     v1->mUnk_518 = 0;
     v1->mUnk_51a = 0;
     v1->mUnk_52c = 1;
-    v1->mUnk_504 = (u32) v2->mUnk_0000 + 0x400;
+    v1->mUnk_504 = v2->mUnk_0000 + 0x400;
     v1->mUnk_00e = 1;
     v1->mUnk_012 = 0;
     v1->mUnk_016 = 1;

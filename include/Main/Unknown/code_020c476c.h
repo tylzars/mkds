@@ -9,7 +9,7 @@ typedef struct RaceStartGp {
     /* 00 */ s32 mUnk_00;
     /* 04 */ Nclr *mRaceStartGpMONclr;
     /* 08 */ Ncgr *mRaceStartGpMONcgr;
-    /* 0c */ Unk02021e40 *mRaceStartGpMNcerEntries[3];
+    /* 0c */ Unk020224e0_c *mRaceStartGpMNcerEntries[3];
     /* 18 */ Unk020c06c4 mUnk_18;
 } RaceStartGp;
 

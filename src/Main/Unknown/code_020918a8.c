@@ -132,7 +132,7 @@ static inline BOOL func_020919e8_inline_4(Unk020919e8 *p, s32 k) {
 
     for (i = 0; i < data_021759c0->mKartCount; i++) {
         f = FALSE;
-        if ((u32) data_021759c0->mCurrentEntries[(u16) i].mPlayer.mKind <= 3 &&
+        if (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mKind <= 3 &&
             ((1 << data_021759c0->mCurrentEntries[(u16) i].mPlayer.mKind) & 0xd)) {
             f = TRUE;
         }

@@ -18,9 +18,9 @@ u32 func_02049820(void) {
 }
 
 void func_02049808(s32 a) {
-    GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, a);
+    GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, a);
 }
 
 void func_020497f0(s32 a) {
-    GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, a);
+    GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, a);
 }

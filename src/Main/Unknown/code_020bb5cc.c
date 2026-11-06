@@ -3,7 +3,7 @@
 #include "code_0212bcac.h"
 
 void func_020bb5cc(void) {
-    u32 v1;
+    NNSSndSeqPlayer **v1;
     v1 = func_02108e88();
-    NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) v1, 0);
+    NNS_SndPlayerStopSeq(v1, 0);
 }

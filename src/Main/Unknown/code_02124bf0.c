@@ -28,7 +28,7 @@ u32 func_02124c70(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, Unk0201ea30 *d, Unk0212
     s32 *v18;
     Unk0201ea84 l20[3];
     s32 v28[2];
-    Unk02124a68 *m;
+    Unk020224e0_c *m;
     Unk0201ea30_08 *t;
     u16 r6;
     u32 h;
@@ -52,7 +52,7 @@ u32 func_02124c70(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, Unk0201ea30 *d, Unk0212
         v28[1] = l20[1].mUnk_00_0 << 12;
     } else {
         t = func_0201ea30(c, a);
-        m = (Unk02124a68 *) NNS_G2dGetCellDataByIdx(b, (u16) t->mUnk_04);
+        m = NNS_G2dGetCellDataByIdx(b, (u16) t->mUnk_04);
         l20[2] = t->mUnk_00_0;
         l20[0] = l20[2];
         l20[1] = t->mUnk_00_2;

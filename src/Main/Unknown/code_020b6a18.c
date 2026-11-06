@@ -25,7 +25,7 @@ void func_020b6c74(u32 a, u16 *b, u32 c) {
     }
     f = FALSE;
     if (a == 0) {
-        if ((u32) data_021759c0->mCurrentEntries[a].mPlayer.mKind <= 3) {
+        if (data_021759c0->mCurrentEntries[a].mPlayer.mKind <= 3) {
             if ((1 << data_021759c0->mCurrentEntries[a].mPlayer.mKind) & 0xd) {
                 f = TRUE;
             }

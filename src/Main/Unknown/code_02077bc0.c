@@ -239,29 +239,12 @@ void GetKartScale(Vec3 *a, s32 b) {
     *a = gKarts[b].mScale;
 }
 
-u32 func_0207a8a4(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &gKarts;
-    value1 = 0x5a8u;
-    value2 = *(const u32 *) ((value2) + (0));
-    value1 = (value0) * (value1) + (value2);
-    value0 = *(const u32 *) ((value1) + (668));
-    return value0;
+u32 func_0207a8a4(u32 a) {
+    return gKarts[a].mUnk_29c;
 }
 
-u16 func_0207a880(s32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &gKarts;
-    value1 = 0x5a8u;
-    value2 = *(const u32 *) ((value2) + (0));
-    value1 = (value0) * (value1) + (value2);
-    value0 = (value1) + (0x200u);
-    value0 = *(const u16 *) ((value0) + (54));
-    return value0;
+u16 func_0207a880(s32 a) {
+    return gKarts[a].mHeadingAngle;
 }
 
 u32 IsMissionRunWithKind2Shapes(void) {
@@ -329,18 +312,8 @@ EntryKartCounters *GetEntryKartCounters(void) {
     return gEntryKartCounters;
 }
 
-u32 func_0207a68c(int arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    u32 value12;
-    value2 = (u32) &gKarts;
-    value1 = 0x5a8u;
-    value2 = *(const u32 *) ((value2) + (0));
-    value12 = (u32) &func_0206c0a8;
-    value0 = (value1) * (value0) + (value2);
-    value0 = func_0206c0a8((Kart *) value0);
-    return value0;
+u32 func_0207a68c(int a) {
+    return func_0206c0a8(&gKarts[a]);
 }
 
 void func_0207a5f0(s32 a) {
@@ -468,7 +441,7 @@ void func_0207a14c(NNSG3dResMdl *a, u32 b) {
     u32 f;
     switch (b) {
         case 0: {
-            u16 *p = (u16 *) gKartModels->mUnk_004;
+            u16 *p = gKartModels->mUnk_004;
             c = p[0];
             d = p[1];
             e = p[2];
@@ -501,30 +474,15 @@ void func_0207a14c(NNSG3dResMdl *a, u32 b) {
 }
 
 u16 func_0207a134(void) {
-    u32 value0;
-    value0 = (u32) &gKartModels;
-    value0 = *(const u32 *) ((value0) + (0));
-    value0 = *(const u32 *) ((value0) + (4));
-    value0 = *(const u16 *) ((value0) + (0));
-    return value0;
+    return gKartModels->mUnk_004[0];
 }
 
 u16 func_0207a11c(void) {
-    u32 value0;
-    value0 = (u32) &gKartModels;
-    value0 = *(const u32 *) ((value0) + (0));
-    value0 = *(const u32 *) ((value0) + (4));
-    value0 = *(const u16 *) ((value0) + (6));
-    return value0;
+    return gKartModels->mUnk_004[3];
 }
 
 u16 func_0207a104(void) {
-    u32 value0;
-    value0 = (u32) &gKartModels;
-    value0 = *(const u32 *) ((value0) + (0));
-    value0 = *(const u32 *) ((value0) + (4));
-    value0 = *(const u16 *) ((value0) + (2));
-    return value0;
+    return gKartModels->mUnk_004[1];
 }
 
 void func_02079f70(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d) {
@@ -596,7 +554,7 @@ s32 func_02079ce0(struct Unk0206bcb0_590 *a, s32 b) {
 }
 
 void func_02079c0c(struct Unk0206bcb0_590 *a) {
-    u16 *p = (u16 *) gKartModels->mUnk_004;
+    u16 *p = gKartModels->mUnk_004;
     u32 b;
     u32 c;
     u32 d;
@@ -617,30 +575,12 @@ void func_02079c0c(struct Unk0206bcb0_590 *a) {
     }
 }
 
-Unk0206bcb0_590 *func_02079bf0(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &gKartModels;
-    value1 = 0xb4u;
-    value2 = *(const u32 *) ((value2) + (0));
-    value2 = *(const u32 *) ((value2) + (0));
-    value0 = (value1) * (value0) + (value2);
-    return (Unk0206bcb0_590 *) value0;
+Unk0206bcb0_590 *func_02079bf0(u32 a) {
+    return &gKartModels->mKartModelsEntries[a];
 }
 
-void *func_02079bcc(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &gKartModels;
-    value1 = 0xb4u;
-    value2 = *(const u32 *) ((value2) + (0));
-    value2 = *(const u32 *) ((value2) + (0));
-    value1 = (value0) * (value1) + (value2);
-    value0 = *(const u32 *) ((value1) + (20));
-    value0 = *(const u32 *) ((value0) + (4));
-    return (void *) value0;
+void *func_02079bcc(u32 a) {
+    return gKartModels->mKartModelsEntries[a].mUnk_010[1]->mUnk_04;
 }
 
 void func_02079b9c(struct Unk0206bcb0_590 *a, s32 b) {
@@ -659,21 +599,12 @@ void *func_02079b60(void) {
     return &gKartModels->mUnk_10c;
 }
 
-u32 func_02079b40(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &gKartModels;
-    value1 = 0xb4u;
-    value2 = *(const u32 *) ((value2) + (0));
-    value2 = *(const u32 *) ((value2) + (0));
-    value1 = (value0) * (value1) + (value2);
-    value0 = *(const u16 *) ((value1) + (104));
-    return value0;
+u32 func_02079b40(u32 a) {
+    return gKartModels->mKartModelsEntries[a].mUnk_068;
 }
 
 #pragma thumb on
-void func_02079a3c(u32 *arg0) {
+void func_02079a3c(void *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
@@ -877,7 +808,7 @@ void InitKartModels(void *a, u32 b) {
     gKartModels = HeapAlloc(a, 0x144);
     gKartModels->mKartModelsEntries = HeapAlloc(a, b * 0xb4);
     gKartModels->mUnk_004 = func_02047950("kartcrsmat.bin");
-    gKartModels->mUnk_004 = gKartModels->mUnk_004 + (data_021759c0->mCourseId << 3) - 8;
+    gKartModels->mUnk_004 = gKartModels->mUnk_004 + (data_021759c0->mCourseId << 2) - 4;
     gKartModels->mUnk_010 = LoadKartAPaletteFromKartModelFile();
     gKartModels->mUnk_014 = NULL;
     gKartModels->mUnk_028 = func_02047950((const char *) BuildPFaceanimNsbtpPath());
@@ -889,7 +820,7 @@ void InitKartModels(void *a, u32 b) {
     for (i = 0; i < gKartModels->mKartCount; i++) {
         d = gKartModels->mKartModelsEntries;
         e = &d[i];
-        func_02079a3c((u32 *) e);
+        func_02079a3c(e);
         e->mUnk_0b0 = data_021759c0->mCurrentEntries[i].mPlayer.mUnk_25;
         func_02079a14(e);
         d[i].mUnk_000 = data_021759c0->mCurrentEntries[i].mCharacterIndex;
@@ -1266,20 +1197,14 @@ void func_02078f78(NNSG3dResFileHeader *a) {
 }
 
 void func_02078f18(void *a, Unk0217ad08_058 *b) {
-    u32 v1;
-    func_02079a3c((u32 *) b);
+    func_02079a3c(b);
     b->mUnk_b0 = (u32) data_021759d0->mUnk_00;
     b->mUnk_b4 = 0;
-    v1 = ((u32) HeapAlloc(a, 0x6c));
-    b->mUnk_10 = (struct Unk02084b2c *) v1;
-    v1 = ((u32) HeapAlloc(a, 0x6c));
-    b->mUnk_14 = (struct Unk02084b2c *) v1;
-    v1 = ((u32) HeapAlloc(a, 0x6c));
-    b->mUnk_18 = (struct Unk02084b2c *) v1;
-    v1 = ((u32) HeapAlloc(a, 0x74));
-    b->mUnk_1c = (struct Unk0207adf8 *) v1;
-    v1 = ((u32) HeapAlloc(a, 0x38));
-    b->mUnk_08 = (Unk0217ad08_058_08 *) v1;
+    b->mUnk_10 = HeapAlloc(a, 0x6c);
+    b->mUnk_14 = HeapAlloc(a, 0x6c);
+    b->mUnk_18 = HeapAlloc(a, 0x6c);
+    b->mUnk_1c = HeapAlloc(a, 0x74);
+    b->mUnk_08 = HeapAlloc(a, 0x38);
 }
 
 void func_02078ee0(Unk0217ad08_024 *a, int b) {
@@ -1993,7 +1918,7 @@ void LoadKartAndCharacterFiles(void) {
     e = (char *) &data_0217ad08->mUnk_1c8[c];
     func_02048590(BuildCharacterNsbmdPath(b, 1), p->mUnk_04, (void **) &p->mUnk_08);
     func_02048590(BuildCharacterNsbtxPath(b, 1), p->mUnk_04, (void **) &p->mUnk_0c);
-    func_02048590(BuildCharacterNsbcaPath(b, 2), p->mUnk_04, &p->mUnk_14);
+    func_02048590(BuildCharacterNsbcaPath(b, 2), p->mUnk_04, (void **) &p->mUnk_14);
     func_02048590(BuildEmblemNsbtxPath(b), p->mUnk_04, (void **) &p->mUnk_10);
     func_02048590(BuildKartNsbmdPath(c), p->mUnk_04, (void **) &p->mUnk_18);
     func_02048590(BuildKartNsbtxPath(c), p->mUnk_04, (void **) &p->mUnk_1c);

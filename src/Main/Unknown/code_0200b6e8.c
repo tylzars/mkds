@@ -118,8 +118,8 @@ void SetPortCallbackAndStartMP(void *sendBuffer, u8 *receiveBuffer) {
         return;
     }
     p = gMPLink;
-    r = WM_StartMPEx(ScanConnectStartMPCallback, (u32) receiveBuffer, p->mReceiveBufferSize, (u32) sendBuffer,
-                     p->mSendBufferSize, 1, 0, 0, 0, 1, 1);
+    r = WM_StartMPEx(ScanConnectStartMPCallback, receiveBuffer, p->mReceiveBufferSize, sendBuffer, p->mSendBufferSize,
+                     1, 0, 0, 0, 1, 1);
     if (r != 2) {
         p = gMPLink;
         if (p->mCallback != NULL) {

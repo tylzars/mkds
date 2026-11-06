@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020b8610(void);
+struct Unk0217b3c4 **func_020b8610(void);

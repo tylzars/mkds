@@ -46,7 +46,7 @@ void func_0210c0bc(SoundSource *p) {
 }
 
 void func_0210c084(PlayingSound *p, u32 b) {
-    NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) p, b);
+    NNS_SndPlayerStopSeq(&p->mUnk_00, b);
     p->mUnk_19 &= ~4;
     p->mUnk_19 &= ~8;
     p->mUnk_19 &= ~2;
@@ -80,14 +80,14 @@ void func_0210bfbc(SoundSource *p) {
     }
 }
 
-void func_0210bf24(u32 a, u32 b, u32 c, u32 d) {
+void func_0210bf24(u32 a, u32 b, u32 c, void *d) {
     PlayingSound *v;
     NNSFndList *w;
 
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
-    v = func_0210e128((Unk0217c7c4 *) data_0217d034);
+    v = func_0210e128(&data_0217d034);
     func_0210c084(v, 0);
     w = v->mUnk_10;
     if (w != NULL) {
@@ -95,17 +95,17 @@ void func_0210bf24(u32 a, u32 b, u32 c, u32 d) {
         func_0210bfbc((SoundSource *) (w - 1));
     }
     func_0210cfe8(v);
-    func_0210bcf4(a, b, c, (u32) v, d);
+    func_0210bcf4(a, b, c, &v->mUnk_00, d);
 }
 
-u32 func_0210bee8(u32 a, u32 b, u32 c, u32 d, u32 e) {
+u32 func_0210bee8(u32 a, u32 b, u32 c, NNSSndSeqPlayer **d, void *e) {
     if (data_0217d084.mUnk_10 == 0) {
         return a;
     }
     return func_0210bcf4(a, b, c, d, e);
 }
 
-u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e) {
+u32 func_0210bcf4(u32 a, u32 b, u32 c, NNSSndSeqPlayer **d, void *e) {
     Unk0210bcf4 st;
     u32 v;
     u32 ok;
@@ -121,7 +121,7 @@ u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e) {
     if (data_0217d084.mUnk_04 == 0) {
         return v;
     }
-    if (((PlayingSound *) d)->mUnk_00 == NULL) {
+    if (*d == NULL) {
         v = 1;
         ok = v;
     } else {
@@ -136,7 +136,7 @@ u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e) {
     }
     st.mUnk_00 = NULL;
     st.mUnk_04 = c;
-    st.mUnk_20 = (Unk0210bcf4_20 *) e;
+    st.mUnk_20 = e;
     st.mUnk_14 = 0;
     st.mUnk_1c = 0;
     st.mUnk_18 = 0;
@@ -151,10 +151,10 @@ u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e) {
         st.mUnk_18 = data_0217d01c(&st);
     }
     if (st.mUnk_14 <= 0) {
-        if (((PlayingSound *) d)->mUnk_00 == NULL) {
-            return (u32) ((PlayingSound *) d)->mUnk_00;
+        if (*d == NULL) {
+            return (u32) *d;
         }
-        return NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) d, 0);
+        return NNS_SndPlayerStopSeq(d, 0);
     }
     k = st.mUnk_1c;
     n = k + (NNS_SndArcGetSeqArcParam(a, b)->mPlayerPrio - 0x40);
@@ -166,9 +166,9 @@ u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e) {
         n = 0;
     }
     if (v != 0) {
-        data_0216cb1c[0]((void *) d, a, b, n);
+        data_0216cb1c[0](d, a, b, n);
     }
-    NNS_SndPlayerSetVolume((NNSSndSeqPlayer **) d, st.mUnk_14);
-    NNS_SndPlayerSetPlayerPriority((NNSSndSeqPlayer **) d, n);
-    return NNS_SndPlayerSetTrackPan((NNSSndSeqPlayer **) d, data_0216cb20, st.mUnk_18);
+    NNS_SndPlayerSetVolume(d, st.mUnk_14);
+    NNS_SndPlayerSetPlayerPriority(d, n);
+    return NNS_SndPlayerSetTrackPan(d, data_0216cb20, st.mUnk_18);
 }

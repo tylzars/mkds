@@ -262,7 +262,7 @@ u32 func_02006d3c(u16 a, const void *b, s32 c, void (*d)(void)) {
     return func_0200704c(&v1);
 }
 
-s32 func_02006c2c(s32 a, s32 b) {
+s32 func_02006c2c(u8 *a, s32 b) {
     Unk0216f3dc *v1;
     s32 i;
     s32 v2;
@@ -341,7 +341,7 @@ void func_02006bec(const u8 *a, u32 b) {
 
 #pragma thumb on
 
-void func_02006b50(s32 a, s32 b) {
+void func_02006b50(u8 *a, s32 b) {
     Unk0216f3dc *v1;
     v1 = func_020070b8();
     if (func_02005cc8(v1, 0, a, b) != 0) {
@@ -470,10 +470,10 @@ void func_02006974(void) {
     OS_RestoreInterrupts(v3);
 }
 
-u32 func_02006954(s32 a, s32 b) {
+u32 func_02006954(u8 *a, s32 b) {
     u16 v1;
     v1 = 0;
-    if (b > 0 && a != 0) {
+    if (b > 0 && a != NULL) {
         v1 = func_02006c2c(a, b);
     }
     return v1;

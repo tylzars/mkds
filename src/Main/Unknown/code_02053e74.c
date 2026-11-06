@@ -387,9 +387,9 @@ void func_02054368(void *a) {
     data_0217aa00->mUnk_0020 = HeapAllocAligned(a, 0x44, 0x20);
     data_0217aa00->mUnk_002c = HeapAllocAligned(a, 0x400, 0x20);
     data_0217aa00->mUnk_0030 = 0x1c0;
-    data_0217aa00->mUnk_0034 = (u32) HeapAllocAligned(a, data_0217aa00->mUnk_0030, 0x20);
+    data_0217aa00->mUnk_0034 = HeapAllocAligned(a, data_0217aa00->mUnk_0030, 0x20);
     data_0217aa00->mUnk_0038 = 0x400;
-    data_0217aa00->mUnk_003c = (u32) HeapAllocAligned(a, data_0217aa00->mUnk_0038, 0x20);
+    data_0217aa00->mUnk_003c = HeapAllocAligned(a, data_0217aa00->mUnk_0038, 0x20);
     data_0217aa00->mUnk_15bc = HeapAllocAligned(a, 0x820, 0x20);
     data_0217aa00->mUnk_15c0 = HeapAllocAligned(a, 0x200, 0x20);
     data_0217aa00->mUnk_15c4 = HeapAllocAligned(a, 8, 0x20);

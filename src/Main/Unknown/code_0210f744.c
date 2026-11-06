@@ -176,7 +176,7 @@ s32 func_02110640(Unk0217c7f0 *a, s32 b) {
 void func_021105d8(void) {
     s32 i;
     Unk0217d26c *p;
-    for (i = 0, p = &data_0217d26c; i < 7; i++, p++) {
+    for (i = 0, p = data_0217d26c; i < 7; i++, p++) {
         s32 t[7] = {1, 3, 2, 1, 3, 2, 3};
         func_0210e094(p, t[i], data_0217d130);
     }
@@ -185,7 +185,7 @@ void func_021105d8(void) {
 void func_021105a0(void) {
     s32 i;
     Unk0217d26c *p;
-    for (i = 0, p = &data_0217d26c; i < 7; i++, p++) {
+    for (i = 0, p = data_0217d26c; i < 7; i++, p++) {
         func_0210e03c(p);
     }
 }

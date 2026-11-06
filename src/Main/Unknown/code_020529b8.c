@@ -434,7 +434,7 @@ void func_02053020(Unk021425e8 *a) {
     func_02053094(a->mUnk_08_0);
 }
 
-void *func_02052fa4(u32 a, u32 b, void *c) {
+void *func_02052fa4(s32 a, u32 b, void *c) {
     u32 v1;
     void *r;
 
@@ -475,7 +475,7 @@ void func_02052ecc(void) {
     func_0204f5e4();
 }
 
-void func_02052e64(void) {
+void func_02052e64(s32 a) {
     if (data_0217aa00->mUnk_000c == 0x24) {
         if (func_0204bcdc() == 2) {
             data_0217aa00->mUnk_0010 = 0;

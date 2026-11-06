@@ -530,7 +530,7 @@ const Vec3 data_02156880 = {0, 0, 0};
 
 void func_020c4ae8(void) {
     Unk020c06c4 *p;
-    Unk02021e40 *c;
+    Unk020224e0_c *c;
     s32 v[2];
 
     gRaceStartGp->mUnk_18.mUnk_400 = 0;

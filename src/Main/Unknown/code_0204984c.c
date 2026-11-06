@@ -408,7 +408,7 @@ void func_02049e38(s32 a) {
             RecordFrameTimes();
         } while (AreBrightnessFadesFaded() == 0);
     } else {
-        GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, 0x10);
+        GXx_SetMasterBrightness_(&reg_GX_MASTER_BRIGHT, 0x10);
     }
 }
 

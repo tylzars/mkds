@@ -76,7 +76,7 @@ s32 func_020f7184(ItemObject *a, s32 b, s32 c) {
     }
     a->mFlags |= 0x80001;
     func_020f9c40((s32) a);
-    r = Vec3DotUnrounded(v, (Vec3 *) func_020e6b28());
+    r = Vec3DotUnrounded(v, func_020e6b28());
     if (r > 1) {
         a->mUnk_108.x = 1;
     } else {
@@ -180,7 +180,7 @@ void func_020f6f10(ItemObject *a, s32 b, s32 c) {
 void func_020f6e58(ItemObject *a) {
     Vec3 v;
 
-    Vec3CrossUnrounded(&a->mUnk_f0, (Vec3 *) func_020e6b14(), &v);
+    Vec3CrossUnrounded(&a->mUnk_f0, func_020e6b14(), &v);
     VEC_MultAdd(a->mUnk_108.x != 0 ? a->mUnk_108.y : -a->mUnk_108.y, &v, &a->mUnk_f0, &a->mUnk_f0);
     a->mFlags |= 0x80;
     a->mVelocity.y -= 0x400;

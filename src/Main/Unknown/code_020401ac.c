@@ -27,7 +27,7 @@ s64 func_02040d24(const UnkPair020b502c *a, const UnkPair020b502c *b) {
 
 static inline s32 func_02040bc0_inline(s8 i) {
     BOOL f = FALSE;
-    if ((u32) data_021759c0->mCurrentEntries[(u16) i].mPlayer.mKind <= 3 &&
+    if (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mKind <= 3 &&
         ((1 << data_021759c0->mCurrentEntries[(u16) i].mPlayer.mKind) & 0xd) != 0) {
         f = TRUE;
     }

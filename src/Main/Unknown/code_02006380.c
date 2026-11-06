@@ -12,8 +12,8 @@ static inline u8 *func_0214d1fc_inline(const void *v1, u8 *v2, u32 n) {
     return v2 + n;
 }
 
-u32 func_02006914(s32 a, s32 b) {
-    if (b > 0 && a != 0) {
+u32 func_02006914(u8 *a, s32 b) {
+    if (b > 0 && a != NULL) {
         func_02006b50(a, b);
     }
 }
@@ -24,28 +24,28 @@ void func_020068f4(const u8 *a, u32 b) {
     }
 }
 
-s32 func_020068b4(s32 a, u16 b, u8 c) {
+s32 func_020068b4(u8 *a, u16 b, u8 c) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 1;
     v1 = func_0214d1fc_inline(&v, v1, 1);
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     MI_CpuCopy8(&c, v1, 1);
-    return (s32) v1 + 1 - a;
+    return v1 + 1 - a;
 }
 
-s32 func_02006858(s32 a, u16 b, u8 c, u32 d, u32 e) {
+s32 func_02006858(u8 *a, u16 b, u8 c, u32 d, u32 e) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 2;
     v1 = func_0214d1fc_inline(&v, v1, 1);
@@ -53,16 +53,16 @@ s32 func_02006858(s32 a, u16 b, u8 c, u32 d, u32 e) {
     v1 = func_0214d1fc_inline(&c, v1, 1);
     v1 = func_0214d1fc_inline(&d, v1, 2);
     MI_CpuCopy8(&e, v1, 2);
-    return (s32) v1 + 2 - a;
+    return v1 + 2 - a;
 }
 
-s32 func_020067f0(s32 a, u16 b, u8 c, s16 d, u32 e, u32 f) {
+s32 func_020067f0(u8 *a, u16 b, u8 c, s16 d, u32 e, u32 f) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 3;
     v1 = func_0214d1fc_inline(&v, v1, 1);
@@ -71,16 +71,16 @@ s32 func_020067f0(s32 a, u16 b, u8 c, s16 d, u32 e, u32 f) {
     v1 = func_0214d1fc_inline(&d, v1, 2);
     v1 = func_0214d1fc_inline(&e, v1, 2);
     MI_CpuCopy8(&f, v1, 2);
-    return (s32) v1 + 2 - a;
+    return v1 + 2 - a;
 }
 
-s32 func_02006794(s32 a, u16 b, u8 c, u32 d, u32 e) {
+s32 func_02006794(u8 *a, u16 b, u8 c, u32 d, u32 e) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 4;
     v1 = func_0214d1fc_inline(&v, v1, 1);
@@ -88,16 +88,16 @@ s32 func_02006794(s32 a, u16 b, u8 c, u32 d, u32 e) {
     v1 = func_0214d1fc_inline(&c, v1, 1);
     v1 = func_0214d1fc_inline(&d, v1, 4);
     MI_CpuCopy8(&e, v1, 4);
-    return (s32) v1 + 4 - a;
+    return v1 + 4 - a;
 }
 
-s32 func_0200671c(s32 a, u32 b, u8 c, u32 d, u32 e, u32 f, s32 g) {
+s32 func_0200671c(u8 *a, u32 b, u8 c, u32 d, u32 e, u32 f, s32 g) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 5;
     v1 = func_0214d1fc_inline(&v, v1, 1);
@@ -110,16 +110,16 @@ s32 func_0200671c(s32 a, u32 b, u8 c, u32 d, u32 e, u32 f, s32 g) {
     } else {
         MI_CpuCopy8((void *) f, v1, g);
     }
-    return (s32) v1 + g - a;
+    return v1 + g - a;
 }
 
-s32 func_020066c0(s32 a, u16 b, u8 c, u32 d, u32 e) {
+s32 func_020066c0(u8 *a, u16 b, u8 c, u32 d, u32 e) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 6;
     v1 = func_0214d1fc_inline(&v, v1, 1);
@@ -127,16 +127,16 @@ s32 func_020066c0(s32 a, u16 b, u8 c, u32 d, u32 e) {
     v1 = func_0214d1fc_inline(&c, v1, 1);
     v1 = func_0214d1fc_inline(&d, v1, 4);
     MI_CpuCopy8(&e, v1, 4);
-    return (s32) v1 + 4 - a;
+    return v1 + 4 - a;
 }
 
-s32 func_02006648(s32 a, u32 b, u8 c, u32 d, u32 e, u32 f, u32 g) {
+s32 func_02006648(u8 *a, u32 b, u8 c, u32 d, u32 e, u32 f, u32 g) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 7;
     v1 = func_0214d1fc_inline(&v, v1, 1);
@@ -149,48 +149,48 @@ s32 func_02006648(s32 a, u32 b, u8 c, u32 d, u32 e, u32 f, u32 g) {
     } else {
         MI_CpuCopy8((void *) f, v1, g);
     }
-    return (s32) v1 + g - a;
+    return v1 + g - a;
 }
 
-s32 func_020065f8(s32 a, u16 b, u8 c, u32 d) {
+s32 func_020065f8(u8 *a, u16 b, u8 c, u32 d) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 8;
     v1 = func_0214d1fc_inline(&v, v1, 1);
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     v1 = func_0214d1fc_inline(&c, v1, 1);
     MI_CpuCopy8(&d, v1, 4);
-    return (s32) v1 + 4 - a;
+    return v1 + 4 - a;
 }
 
-s32 func_020065a8(s32 a, u16 b, u8 c, u32 d) {
+s32 func_020065a8(u8 *a, u16 b, u8 c, u32 d) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 9;
     v1 = func_0214d1fc_inline(&v, v1, 1);
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     v1 = func_0214d1fc_inline(&c, v1, 1);
     MI_CpuCopy8(&d, v1, 4);
-    return (s32) v1 + 4 - a;
+    return v1 + 4 - a;
 }
 
-s32 func_0200654c(s32 a, u16 b, u8 c, u32 *d, u32 e) {
+s32 func_0200654c(u8 *a, u16 b, u8 c, u32 *d, u32 e) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 0xa;
     v1 = func_0214d1fc_inline(&v, v1, 1);
@@ -198,22 +198,22 @@ s32 func_0200654c(s32 a, u16 b, u8 c, u32 *d, u32 e) {
     v1 = func_0214d1fc_inline(&c, v1, 1);
     v1 = func_0214d1fc_inline(&e, v1, 1);
     MI_CpuCopy8(d, v1, 9);
-    return (s32) v1 + 9 - a;
+    return v1 + 9 - a;
 }
 
-s32 func_02006508(s32 a, u16 b, u8 c) {
+s32 func_02006508(u8 *a, u16 b, u8 c) {
     struct {
         u8 m0;
         u16 m2;
     } v;
     u8 *v1;
-    v1 = (u8 *) a;
+    v1 = a;
     v.m2 = b;
     v.m0 = 0xb;
     v1 = func_0214d1fc_inline(&v, v1, 1);
     v1 = func_0214d1fc_inline(&v.m2, v1, 2);
     MI_CpuCopy8(&c, v1, 1);
-    return (s32) v1 + 1 - a;
+    return v1 + 1 - a;
 }
 
 s32 func_02006458(u32 a, s32 b) {

@@ -6,4 +6,4 @@
 typedef struct Unk0210b7a8 Unk0210b7a8;
 
 void func_0210b708(Unk0210b7a8 *p0, NNSSndSeqPlayer **p1);
-void func_0210b734(void *p0, unsigned int p1);
+void func_0210b734(void *p0, NNSSndSeqPlayer **p1);

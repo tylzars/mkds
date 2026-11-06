@@ -8,7 +8,7 @@ void GXS_SetGraphicsMode(u32 bgMode) {
 
 // Writes the master brightness register: 0 for no change, 0x4000 | brightness to brighten, 0x8000 | -brightness to
 // darken.
-void GXx_SetMasterBrightness_(u16 *reg, s32 brightness) {
+void GXx_SetMasterBrightness_(vu16 *reg, s32 brightness) {
     if (brightness == 0) {
         *reg = 0;
         return;

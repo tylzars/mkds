@@ -24,6 +24,28 @@ typedef struct NNSG2dCallBackFunctor {
     /* 0c */ u16 mFrameIdx;
 } NNSG2dCallBackFunctor;
 
+typedef struct Unk020224e0_s {
+    /* 00 */ u16 mUnk_00;
+    /* 02 */ u16 mUnk_02;
+    /* 04 */ u16 mUnk_04;
+} Unk020224e0_s;
+
+typedef struct Unk020224e0_o {
+    /* 00 */ u16 mUnk_00[4];
+} Unk020224e0_o;
+
+// Cell of a cell bank: the count, the attribute entries, then the bounds (absent when bit 0 of the bank's mUnk_02 is
+// clear).
+typedef struct Unk020224e0_c {
+    /* 00 */ u16 mUnk_00;
+    /* 02 */ u16 mUnk_02;
+    /* 04 */ Unk020224e0_s *mUnk_04;
+    /* 08 */ s16 mUnk_08;
+    /* 0a */ s16 mUnk_0a;
+    /* 0c */ s16 mUnk_0c;
+    /* 0e */ s16 mUnk_0e;
+} Unk020224e0_c;
+
 typedef struct Unk02022030 {
     /* 00 */ Unk02021e40 *mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -33,7 +55,7 @@ typedef struct Unk02022030 {
     /* 14 */ u32 mUnk_14;
     /* 18 */ Unk02021dc8 *mUnk_18;
     /* 1c */ NNSG2dCallBackFunctor mCallbackFunctor;
-    /* 2c */ Unk02021e40 *mUnk_2c;
+    /* 2c */ Unk020224e0_c *mUnk_2c;
     /* 30 */ Unk02021dc8 *mUnk_30;
     /* 34 */ s32 mUnk_34;
     /* 38 */ Unk02022438 mUnk_38;
@@ -63,22 +85,6 @@ typedef struct Unk020229b4 {
     /* 04 */ s16 mUnk_04;
     /* 06 */ s16 mUnk_06;
 } Unk020229b4;
-
-typedef struct Unk020224e0_s {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
-} Unk020224e0_s;
-
-typedef struct Unk020224e0_o {
-    /* 00 */ u16 mUnk_00[4];
-} Unk020224e0_o;
-
-typedef struct Unk020224e0_c {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ Unk020224e0_s *mUnk_04;
-} Unk020224e0_c;
 
 void NNS_G2dBindAnimCtrl(Unk02022030 *pAnimCtrl, Unk02021dc8 *pAnimSequence);
 void NNS_G2dResetAnimCtrlState(Unk02022030 *pAnimCtrl);

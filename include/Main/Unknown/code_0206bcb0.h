@@ -566,7 +566,7 @@ void func_0206cc60(Kart *p, int arg);
 #include "Main/Unknown/code_0210ab48.h"
 void func_0206cdd4(Kart *p);
 void func_0206ceb4(s32 *out, Kart *p);
-extern Unk0217d26c data_0217d26c;
+extern Unk0217d26c data_0217d26c[7];
 extern Unk0217d26c data_0217d274;
 extern Unk0217d26c data_0217d284;
 extern Unk0217d26c data_0217d28c;

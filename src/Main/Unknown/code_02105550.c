@@ -433,7 +433,7 @@ void func_0210823c(void) {
     func_0210fa28();
     func_0210bac0();
     for (i = 0; i < 7; i++) {
-        func_0210dd44((Unk0217d26c *) ((u8 *) &data_0217d26c + i * sizeof(Unk0217d26c)));
+        func_0210dd44((Unk0217d26c *) ((u8 *) data_0217d26c + i * sizeof(Unk0217d26c)));
     }
     func_0210e280(&data_0217c7c4);
     func_0210d2cc();
@@ -751,7 +751,7 @@ void func_021074ac(s32 e) {
 
 void func_021073ec(u32 a, Unk021073ec b, Unk0217c814 *c) {
     c->mUnk_15 = 0;
-    NNS_SndHandleInit((NNSSndSeqPlayer **) &c->mUnk_08);
+    NNS_SndHandleInit(&c->mUnk_08);
     c->mUnk_16 = 0;
     c->mUnk_10 = 0;
     c->mUnk_17 = 0;
@@ -1011,7 +1011,7 @@ void func_02106ab8(void) {
         data_0217c814.mUnk_16 = 1;
         data_0217c814.mUnk_10 = 1;
         func_0210d590(&data_0217d070, 0);
-        if (data_0217c814.mUnk_08 != 0) {
+        if (data_0217c814.mUnk_08 != NULL) {
             NNS_SndPlayerSetTrackMuteEx(&data_0217c81c, 0xffff, 1);
         }
         func_0210d614(&data_0217d070, 0x3e, NULL);
@@ -1196,7 +1196,7 @@ void func_02106580(void) {
                 }
                 data_0217c7a8 = 0;
                 data_0217c78c = 1;
-            } else if (data_0217c814.mUnk_08 != 0) {
+            } else if (data_0217c814.mUnk_08 != NULL) {
                 NNS_SndPlayerSetTrackMuteEx(&data_0217c81c, 0xffff, 0);
                 data_0217c78c = 1;
             } else if (data_0217c814.mUnk_0c == 1) {
@@ -1414,7 +1414,7 @@ void func_02105ec0(void) {
     }
     data_0217c7f0.mUnk_0c = 0;
     data_0217c7f0.mUnk_08 = 0;
-    func_0210d570((u32 *) &data_0217d070, 1);
+    func_0210d570(&data_0217d070, 1);
     func_0210d9a0(&data_0217d084, 0);
     for (i = 0; i < 12; i++) {
         NNS_SndPlayerStopSeq(data_0217c838 + i, 0);
