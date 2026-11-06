@@ -108,11 +108,11 @@ Vec3 *GetMissionRunPrevKartPos(void) {
 }
 
 u16 GetMissionRunKartHeadingAngle(void) {
-    return (u16) ((u32) gMissionRunData->mKartHeadingAngle);
+    return (gMissionRunData->mKartHeadingAngle);
 }
 
 u16 GetMissionRunPrevKartHeadingAngle(void) {
-    return (u16) ((u32) gMissionRunData->mPrevKartHeadingAngle);
+    return (gMissionRunData->mPrevKartHeadingAngle);
 }
 
 void CreateMissionRunData(void) {
@@ -144,11 +144,11 @@ void UpdateMissionRunData(void) {
     }
     if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
         if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
-            if (GetBalloonOrShineCount((u16) data_021759c0->mEntryIndex)) {
+            if (GetBalloonOrShineCount(data_021759c0->mEntryIndex)) {
                 gMissionRunData->mUnk_00 += 1;
                 if (gMissionRunData->mUnk_00 > 0xf) {
                     gMissionRunData->mUnk_00 = 0;
-                    func_020a1748((u16) data_021759c0->mEntryIndex);
+                    func_020a1748(data_021759c0->mEntryIndex);
                     return;
                 }
             }
@@ -211,15 +211,15 @@ void func_ov001_02181844(u16 a, u16 b, u16 c, u16 d) {
 }
 
 u32 func_ov001_02181838(void) {
-    return ((u32) gMissionRunData->mUnk_0e);
+    return (gMissionRunData->mUnk_0e);
 }
 
 void func_ov001_0218182c(u32 p0) {
-    gMissionRunData->mUnk_0e = (u16) p0;
+    gMissionRunData->mUnk_0e = p0;
 }
 
 u32 GetMissionRunCount(void) {
-    return ((u32) gMissionRunData->mCount);
+    return (gMissionRunData->mCount);
 }
 
 u32 func_ov001_0218180c(void) {
@@ -231,7 +231,7 @@ u32 func_ov001_0218180c(void) {
 }
 
 u32 func_ov001_02181800(void) {
-    return ((u32) gMissionRunData->mUnk_06);
+    return (gMissionRunData->mUnk_06);
 }
 
 void func_ov001_021817e0(void) {
@@ -257,9 +257,8 @@ void func_ov001_0218175c(s32 b) {
 
 void func_ov001_0218173c(void) {
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        func_ov001_02181678((u32) (5));
+        func_ov001_02181678(5);
     }
-    return;
 }
 
 void func_ov001_0218171c(void) {

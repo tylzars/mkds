@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02022030.h"
 
 // Object at Unk021a5a58_2c.mUnk_2c.
 typedef struct Unk021a5a58_2c_2c {
@@ -35,7 +36,7 @@ typedef struct Unk021a5a58 {
     /* 20 */ s32 mUnk_20;
     /* 24 */ s32 mUnk_24;
     /* 28 */ s32 mUnk_28;
-    /* 2c */ Unk021a5a58_2c mUnk_2c;
+    /* 2c */ Unk02022030 mUnk_2c;
     /* 80 */ struct Unk021ca41c_085c *mUnk_80;
     /* 84 */ s32 (*mUnk_84)(struct Unk021a5a58 *);
 } Unk021a5a58;

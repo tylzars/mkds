@@ -1,6 +1,7 @@
 #include "01/code_0218b2dc.h"
 #include "01/code_021882b8.h"
 #include "01/code_02188cd8.h"
+#include "Main/Unknown/code_02042044.h"
 
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0208b484.h"
@@ -73,7 +74,7 @@ void func_ov001_0218b928(Unk02188950 *a) {
 
 void func_ov001_0218b8f8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_070), (s32) (a->mPrm->mUnk_074));
+    func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
     func_ov001_02188e24(a, 0x3c, &func_ov001_0218b928);
 }
 
@@ -95,16 +96,14 @@ s32 func_ov001_0218b850(Unk02188950 *a) {
     v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd);
     if (v1 == 0x4d) {
         func_ov001_02187af4(a);
-        func_ov001_02187518(a, (u32) (((u32) 0xfffff99au)), (u32) 0, (u32) (((u32) 0xfffff99au)),
-                            (u32) (((u32) 0x0000042bu)), (u32) 0);
-        StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x0000021eu)));
+        func_ov001_02187518(a, (0xfffff99au), 0, (0xfffff99au), (0x0000042bu), 0);
+        StartMapObjectSound(&a->mUnk_000, (0x0000021eu));
     } else {
         v1 = GetMapObjectModelNsbcaFrameIndex(a->mNsbmd);
         if (v1 == 0x68) {
             func_ov001_02187af4(a);
-            func_ov001_02187518(a, (u32) (((u32) 0xfffff99au)), (u32) 0, (u32) (((u32) 0xfffff99au)),
-                                (u32) (((u32) 0x0000042cu)), (u32) 0);
-            StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x0000021fu)));
+            func_ov001_02187518(a, (0xfffff99au), 0, (0xfffff99au), (0x0000042cu), 0);
+            StartMapObjectSound(&a->mUnk_000, (0x0000021fu));
         }
     }
     return 0;
@@ -117,12 +116,12 @@ void func_ov001_0218b828(Unk02188950 *a) {
 
 void func_ov001_0218b7fc(Unk02188950 *a) {
     func_ov001_02187218(a, 8, func_ov001_0218b850);
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_058), (s32) (a->mPrm->mUnk_05c), (UnkFunc *) &func_ov001_0218b828);
+    func_ov001_02188d30(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, &func_ov001_0218b828);
 }
 
 void func_ov001_0218b7c8(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_04c), (s32) (a->mPrm->mUnk_050));
+    func_ov001_02188d64(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
     func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218b7fc);
 }
 
@@ -133,21 +132,21 @@ void func_ov001_0218b7a4(Unk02188950 *a) {
 
 void func_ov001_0218b770(Unk02188950 *a) {
     func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_034), (s32) (a->mPrm->mUnk_038));
+    func_ov001_02188d64(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218b7a4);
 }
 
 void func_ov001_0218b72c(Unk02188950 *a) {
-    CreateParkedMapObjects((u32) MAP_OBJECT_KIND_KURIBO, 0x32, a);
+    CreateParkedMapObjects(MAP_OBJECT_KIND_KURIBO, 0x32, a);
     a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) (a->mUnk_000.mSound), (u32) 0xf, (&a->mUnk_000.mPos));
+    InitSoundSource(&a->mUnk_000.mSound->mSoundSource, 0xf, &a->mUnk_000.mPos);
     a->mUnk_000.mFarDistanceSquared = data_0217cc6c[15];
 }
 
 void func_ov001_0218b6f8(Unk02188950 *a, void *b) {
     func_ov001_02188200(a, func_ov001_0218b6f8);
     if (a->mTimer == 0) {
-        func_020d26ec(b, (u32) 0x224);
+        func_020d26ec(b, 0x224);
     }
 }
 
@@ -159,7 +158,7 @@ void func_ov001_0218b640(Unk02188950 *a, void *b) {
     func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_ov001_02188200(a, func_ov001_0218b6f8);
     if (a->mTimer == 0) {
-        func_020d26ec(b, (u32) 0x224);
+        func_020d26ec(b, 0x224);
     }
 }
 
@@ -192,7 +191,7 @@ void UpdateKuriking(u32 a, Unk02188950 *b) {
             }
         }
     } else {
-        if (func_ov001_021881a8(b, (Vec3 *) func_ov001_02187fc0(b), (s32) (b->mPrm->mUnk_0b4), 0)) {
+        if (func_ov001_021881a8(b, &func_ov001_02187fc0(b)->mUnk_00, b->mPrm->mUnk_0b4, 0)) {
             var = func_ov001_02187f7c(b);
             if (var >= 200) {
                 if (func_ov001_021871f8(b, 8)) {
@@ -271,7 +270,7 @@ void func_ov001_0218b310(void) {
     void *v7 = &func_ov001_02185fb0;
     void *v8 = &func_ov001_02185f04;
     void *v9 = &func_ov001_021860cc;
-    void *v11 = func_ov001_0219b510(v7, v8, v9, (u32) 0x2u, (u16) ((u32) 0x1u), (u16) ((u32) 0x0u), (u16) ((u32) 0x0u));
+    void *v11 = func_ov001_0219b510(v7, v8, v9, 0x2u, 0x1u, 0x0u, 0x0u);
 }
 
 void *func_ov001_0218b2f4(void) {

@@ -19,13 +19,13 @@ void func_ov001_0218f9a8(Unk02188950 *a) {
 }
 
 void func_ov001_0218f900(Unk02188950 *a) {
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_198), (s32) (a->mPrm->mUnk_19c));
-    func_ov001_02188d1c(a, (s32) (a->mPrm->mUnk_1ac), (s32) (a->mPrm->mUnk_1b0));
+    func_ov001_02188d64(a, a->mPrm->mUnk_198, a->mPrm->mUnk_19c);
+    func_ov001_02188d1c(a, a->mPrm->mUnk_1ac, a->mPrm->mUnk_1b0);
     func_ov001_02188cec(a, 0);
     func_ov001_02188c90(a);
     func_ov001_021875c0(a, 0, 0, 0, 0x41b, 0);
     func_ov001_021875c0(a, 0, 0, 0, 0x41c, 0);
     func_ov001_021875c0(a, 0, 0, 0, 0x41d, 0);
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x22e));
+    StartMapObjectSound(&a->mUnk_000, 0x22e);
     a->mUnk_000.mFlags &= ~1;
 }

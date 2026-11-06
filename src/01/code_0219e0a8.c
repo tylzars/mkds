@@ -57,18 +57,17 @@ void CreateEndingScene(void *heap) {
 }
 
 void func_ov001_0219e6e0(void) {
-    *(u32 *) &gEndingScene = 0;
-    return;
+    *&gEndingScene = 0;
 }
 
 void func_ov001_0219e660(void) {
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x100;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | 0x100;
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0x1f00;
-    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & 0x43) | 0x1000;
-    *(vu32 *) 0x4000018 = 0;
-    *(vu32 *) 0x4001010 = 0;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x100;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x100;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 3;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x1f00;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x1000;
+    reg_G2_BG2OFS = 0;
+    reg_G2S_DB_BG0OFS = 0;
     *(vu16 *) 0x5000000 = 0;
     *(vu16 *) 0x5000400 = 0;
 }
@@ -89,10 +88,9 @@ void QueueEndingSceneNcgrNscrNclr(int i) {
 }
 
 void func_ov001_0219e5a0(void) {
-    reg_G2_BG0CNT = reg_G2_BG0CNT & 0x43 | (u16) 0x00001f80u;
+    reg_G2_BG0CNT = reg_G2_BG0CNT & 0x43 | 0x00001f80u;
     QueueEndingSceneNcgrNscrNclr(1);
     gEndingScene->mIndex1Queued = TRUE;
-    return;
 }
 
 void LoadAndQueueEndingSceneData(void) {
@@ -173,7 +171,7 @@ void AdvanceEndingSceneState1(void) {
     if (gEndingScene->mUnk_008 > gEndingSceneStateTable[gEndingScene->mState]) {
         gEndingScene->mNextState = 2;
         gEndingScene->mUnk_008 = 0;
-        StartFadeToFadedNegative((s16) (gEndingSceneStateTable[2]));
+        StartFadeToFadedNegative(gEndingSceneStateTable[2]);
     }
 }
 
@@ -183,7 +181,6 @@ void AdvanceEndingSceneState2(void) {
     if (v1 != 0) {
         gEndingScene->mNextState = 3;
     }
-    return;
 }
 
 void AdvanceEndingSceneState3(void) {
@@ -205,7 +202,6 @@ void AdvanceEndingSceneState4(void) {
     if (v1 != 0) {
         gEndingScene->mNextState = 5;
     }
-    return;
 }
 
 void AdvanceEndingSceneState5(void) {
@@ -235,7 +231,7 @@ void AdvanceEndingSceneState5(void) {
         }
         gEndingScene->mNextState = 6;
         gEndingScene->mUnk_008 = 0;
-        StartFadeToFadedNegative((s16) (gEndingSceneStateTable[6]));
+        StartFadeToFadedNegative(gEndingSceneStateTable[6]);
     }
 }
 
@@ -291,8 +287,8 @@ void func_ov001_0219e0d4(void) {
     u32 bits;
 
     if (gEndingScene->mIndex1Queued != FALSE) {
-        bits = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
-        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | ((bits | 0x10) << 8);
+        bits = (reg_GX_DISPCNT & 0x1f00) >> 8;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((bits | 0x10) << 8);
     }
     func_020ae5f0(gEndingScene->mMainOam, NULL);
 }

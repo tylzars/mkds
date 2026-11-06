@@ -18,14 +18,14 @@ void func_ov001_02184d9c(Unk02188950 *a) {
         func_ov001_02187218(a, 5, NULL);
         func_ov001_02188d64(a, a->mPrm->mUnk_1ec, a->mPrm->mUnk_1f0);
         SetVelocity(a, &sp);
-        func_ov001_02188db8(a, (UnkFunc *) func_ov001_02184d9c);
+        func_ov001_02188db8(a, func_ov001_02184d9c);
     } else {
         func_ov001_02187218(a, 0, NULL);
     }
 }
 
 void func_ov001_02184d70(Unk02188950 *a) {
-    func_ov001_02188218(a, (s32) ((u16) a->mPrm->mUnk_1f8));
+    func_ov001_02188218(a, (u16) a->mPrm->mUnk_1f8);
     func_ov001_02188c90(a);
     func_ov001_02184d9c(a);
 }
@@ -38,14 +38,14 @@ void func_ov001_02184cf4(Unk02188950 *a) {
         func_ov001_02187218(a, 5, NULL);
         func_ov001_02188d64(a, a->mPrm->mUnk_11c, a->mPrm->mUnk_120);
         SetVelocity(a, &sp);
-        func_ov001_02188db8(a, (UnkFunc *) func_ov001_02184cf4);
+        func_ov001_02188db8(a, func_ov001_02184cf4);
     } else {
         func_ov001_02187218(a, 0, NULL);
     }
 }
 
 void func_ov001_02184cc8(Unk02188950 *a) {
-    func_ov001_02188218(a, (s32) ((u16) a->mPrm->mUnk_128));
+    func_ov001_02188218(a, (u16) a->mPrm->mUnk_128);
     func_ov001_02188c90(a);
     func_ov001_02184cf4(a);
 }

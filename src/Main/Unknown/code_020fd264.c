@@ -456,16 +456,16 @@ u32 func_020fd7f0(void) {
 
 #pragma thumb off
 
-u32 func_020fd7a4(int a) {
+ItemBomb *func_020fd7a4(int a) {
     ItemBomb *e;
     u32 f;
 
     e = (ItemBomb *) gItemPools[9].mObjects[a];
     f = e->mUnk_000.mUnk_000.mFlags;
     if ((f & 0x8000) && (f & 0x180000) == 0 && e->mState != 3 && e->mUnk_198 == NULL) {
-        return (u32) e;
+        return e;
     }
-    return 0;
+    return NULL;
 }
 
 void func_020fd754(void *a) {

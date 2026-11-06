@@ -605,17 +605,17 @@ void func_ov001_02198878(void) {
     u32 plane;
 
     if (gOptionSelectMenu->mUnk_3c != FALSE) {
-        plane = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
+        plane = (reg_GX_DISPCNT & 0x1f00) >> 8;
         plane |= 2;
-        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (plane << 8);
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (plane << 8);
     } else {
-        plane = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
+        plane = (reg_GX_DISPCNT & 0x1f00) >> 8;
         plane &= ~2;
-        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (plane << 8);
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (plane << 8);
     }
     G2x_SetBlendAlpha_((u32 *) 0x4001050, 0, 2, 6, 10);
-    *(vu32 *) 0x4000010 = (-gOptionSelectMenu->mUnk_24 << 16) & 0x1ff0000;
-    *(vu32 *) 0x4000014 = (-gOptionSelectMenu->mUnk_24 << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-gOptionSelectMenu->mUnk_24 << 16) & 0x1ff0000;
+    reg_G2_BG1OFS = (-gOptionSelectMenu->mUnk_24 << 16) & 0x1ff0000;
 }
 
 void RegisterOptionSelectMenuCallbacks(void) {

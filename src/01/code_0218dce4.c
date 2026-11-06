@@ -14,26 +14,26 @@
 
 void func_ov001_0218dd9c(Unk02188950 *a) {
     a->mUnk_2e0 = 0;
-    func_ov001_021881f4(a, (UnkFunc *) func_ov001_0218dd9c);
+    func_ov001_021881f4(a, func_ov001_0218dd9c);
 }
 
 void func_ov001_0218dd50(Unk02188950 *a) {
     if (func_ov001_02188220(a) >= 2) {
-        StartMapObjectSound(&a->mUnk_000, (u32) (0x248));
+        StartMapObjectSound(&a->mUnk_000, 0x248);
     } else if (func_ov001_02188220(a) >= 1) {
-        StartMapObjectSound(&a->mUnk_000, (u32) (0x249));
+        StartMapObjectSound(&a->mUnk_000, 0x249);
     } else {
-        StartMapObjectSound(&a->mUnk_000, (u32) (0x24a));
+        StartMapObjectSound(&a->mUnk_000, 0x24a);
     }
 }
 
 void func_ov001_0218dd04(Unk02188950 *a) {
     if (func_ov001_02188220(a) >= 2) {
-        StartMapObjectSound(&a->mUnk_000, (u32) (0x248));
+        StartMapObjectSound(&a->mUnk_000, 0x248);
     } else if (func_ov001_02188220(a) >= 1) {
-        StartMapObjectSound(&a->mUnk_000, (u32) (0x249));
+        StartMapObjectSound(&a->mUnk_000, 0x249);
     } else {
-        StartMapObjectSound(&a->mUnk_000, (u32) (0x24a));
+        StartMapObjectSound(&a->mUnk_000, 0x24a);
     }
 }
 

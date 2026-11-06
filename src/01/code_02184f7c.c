@@ -36,10 +36,10 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c) {
     Unk021852f8_02 *rec;
     Unk021a5a58_2c_2c *cell;
 
-    list = HeapAlloc(GetHeap(func_020364e8()), (u32) (0x18));
+    list = HeapAlloc(GetHeap(func_020364e8()), 0x18);
     data = FindSceneFile((a));
     list->mUnk_00 = data->mUnk_00;
-    list->mUnk_04 = HeapAlloc(GetHeap(func_020364e8()), (u32) (list->mUnk_00 * 0x88));
+    list->mUnk_04 = HeapAlloc(GetHeap(func_020364e8()), list->mUnk_00 * 0x88);
     list->mUnk_08 = b;
     list->mUnk_0c = c;
     rec = data->mUnk_02;
@@ -47,19 +47,17 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c) {
         entry = &list->mUnk_04[i];
         entry->mUnk_80 = list;
         entry->mUnk_00 = rec[i].mUnk_00;
-        entry->mUnk_04 =
-            (s32) (rec[i].mUnk_02 > 0 ? 0.5f + (float) (rec[i].mUnk_02 << 12) : (float) (rec[i].mUnk_02 << 12) - 0.5f);
-        entry->mUnk_08 =
-            (s32) (rec[i].mUnk_04 > 0 ? 0.5f + (float) (rec[i].mUnk_04 << 12) : (float) (rec[i].mUnk_04 << 12) - 0.5f);
+        entry->mUnk_04 = rec[i].mUnk_02 > 0 ? 0.5f + (rec[i].mUnk_02 << 12) : (rec[i].mUnk_02 << 12) - 0.5f;
+        entry->mUnk_08 = rec[i].mUnk_04 > 0 ? 0.5f + (rec[i].mUnk_04 << 12) : (rec[i].mUnk_04 << 12) - 0.5f;
         entry->mUnk_18 = 0x1000;
         entry->mUnk_0c = rec[i].mUnk_06 != 0;
-        NNS_G2dInitCellAnimation((Unk02022030 *) &entry->mUnk_2c, NNS_G2dGetAnimSequenceByIdx(c, rec[i].mUnk_00), b);
+        NNS_G2dInitCellAnimation(&entry->mUnk_2c, NNS_G2dGetAnimSequenceByIdx(c, rec[i].mUnk_00), b);
         if (rec[i].mUnk_06 > 1) {
             entry->mUnk_2c.mUnk_08 = TRUE;
         } else {
             entry->mUnk_2c.mUnk_08 = FALSE;
         }
-        cell = entry->mUnk_2c.mUnk_2c;
+        cell = (Unk021a5a58_2c_2c *) entry->mUnk_2c.mUnk_2c;
         if ((cell->mUnk_02 >> 11) & 1) {
             box = cell->mUnk_08;
             entry->mUnk_1c = box[2] << 12;
@@ -74,7 +72,7 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c) {
 void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
     s32 i;
     Unk021a5a58 *entry;
-    Unk021a5a58_2c *sub;
+    Unk02022030 *sub;
     s32 x;
     s32 y;
     s32 pos_a[2];
@@ -105,14 +103,14 @@ void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
                     ((Unk0218516c_000 *) b->mUnk_000)[idx].mUnk_1e = mtx[3] >> 4;
                     mtx[0] = entry->mUnk_18;
                     mtx[3] = entry->mUnk_18;
-                    cell = entry->mUnk_2c.mUnk_2c;
+                    cell = (Unk021a5a58_2c_2c *) entry->mUnk_2c.mUnk_2c;
                     pos_a[0] = x << 12;
                     pos_a[1] = y << 12;
                     b->mUnk_400 +=
                         NNS_G2dMakeCellToOams((Unk020224e0_o *) &b->mUnk_000[b->mUnk_400 * 8], 0x80 - b->mUnk_400,
                                               (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
                 } else {
-                    cell = entry->mUnk_2c.mUnk_2c;
+                    cell = (Unk021a5a58_2c_2c *) entry->mUnk_2c.mUnk_2c;
                     pos_b[0] = x << 12;
                     pos_b[1] = y << 12;
                     b->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &b->mUnk_000[b->mUnk_400 * 8],
@@ -121,8 +119,8 @@ void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
             }
         }
         if (sub->mUnk_08 != FALSE) {
-            NNS_G2dSetCellAnimationSpeed((Unk02022030 *) &entry->mUnk_2c, 0x1000);
-            NNS_G2dTickCellAnimation((Unk02022030 *) &entry->mUnk_2c, 0x1000);
+            NNS_G2dSetCellAnimationSpeed(&entry->mUnk_2c, 0x1000);
+            NNS_G2dTickCellAnimation(&entry->mUnk_2c, 0x1000);
         }
     }
 }
@@ -137,8 +135,8 @@ s32 func_ov001_021850b4(Unk021ca41c_085c *a, s32 b, s32 c, s32 d) {
     u16 count;
     Unk021a5a58 *entry;
 
-    fx = (s32) (c > 0 ? 0.5f + (float) (c << 12) : (float) (c << 12) - 0.5f);
-    fy = (s32) (d > 0 ? 0.5f + (float) (d << 12) : (float) (d << 12) - 0.5f);
+    fx = c > 0 ? 0.5f + (c << 12) : (c << 12) - 0.5f;
+    fy = d > 0 ? 0.5f + (d << 12) : (d << 12) - 0.5f;
     count = a->mUnk_00;
     for (; b < count; b++) {
         entry = &a->mUnk_04[b];
@@ -157,13 +155,13 @@ void func_ov001_021850a4(Unk021a5a58 *a, s32 (*b)(Unk021a5a58 *)) {
 }
 
 void func_ov001_02185018(Unk021a5a58 *a, s32 b) {
-    Unk021a5a58_2c *sub = &a->mUnk_2c;
+    Unk02022030 *sub = &a->mUnk_2c;
 
     if (b == -1) {
         sub->mUnk_14 = 2;
         a->mUnk_2c.mUnk_08 = TRUE;
     } else if (b == -2) {
-        NNS_G2dResetAnimCtrlState((Unk02022030 *) sub);
+        NNS_G2dResetAnimCtrlState(sub);
         sub->mUnk_14 = 1;
         a->mUnk_2c.mUnk_08 = TRUE;
     } else if (b == -3) {
@@ -174,13 +172,13 @@ void func_ov001_02185018(Unk021a5a58 *a, s32 b) {
         a->mUnk_0c = FALSE;
     } else if (b >= 0) {
         a->mUnk_0c = TRUE;
-        NNS_G2dSetCellAnimationCurrentFrame((Unk02022030 *) sub, b);
+        NNS_G2dSetCellAnimationCurrentFrame(sub, b);
     }
 }
 
 s32 func_ov001_02184ff8(Unk021a5a58 *a) {
     if (a->mUnk_0c != FALSE) {
-        return NNS_G2dGetAnimCtrlCurrentFrame((Unk02022030 *) &a->mUnk_2c);
+        return NNS_G2dGetAnimCtrlCurrentFrame(&a->mUnk_2c);
     }
     return -5;
 }
@@ -214,9 +212,9 @@ void func_ov001_02184f9c(Unk021a5a58 *a, s32 b, s32 c, s32 d, s32 e) {
 }
 
 void func_ov001_02184f8c(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x210));
+    StartMapObjectSound(&a->mUnk_000, 0x210);
 }
 
 void func_ov001_02184f7c(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x210));
+    StartMapObjectSound(&a->mUnk_000, 0x210);
 }

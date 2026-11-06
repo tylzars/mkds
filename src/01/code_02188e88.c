@@ -110,14 +110,14 @@ u32 func_ov001_02188f04(Unk02188950 *a, Vec3 *b, s32 c) {
         dx = a->mUnk_000.mPos.x - b->x;
         dz = a->mUnk_000.mPos.z - b->z;
         if (c > 0) {
-            f1 = 0.5f + (float) (c << 12);
+            f1 = 0.5f + (c << 12);
         } else {
-            f1 = (float) (c << 12) - 0.5f;
+            f1 = (c << 12) - 0.5f;
         }
         if (c > 0) {
-            f2 = 0.5f + (float) (c << 12);
+            f2 = 0.5f + (c << 12);
         } else {
-            f2 = (float) (c << 12) - 0.5f;
+            f2 = (c << 12) - 0.5f;
         }
         if ((s64) dx * dx + (s64) dz * dz < (s64) (s32) f2 * (s32) f1) {
             return 1;

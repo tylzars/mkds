@@ -21,7 +21,7 @@ Unk0219b250 *gStopSign;
 void InitStopSign(Unk02188950 *a) {
     s32 m[9];
     func_020d2450(a);
-    a->mUnk_000.mAngle = (u16) (((s64) a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
+    a->mUnk_000.mAngle = (a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44;
     MTX_RotY33_(m, gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2], gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2 + 1]);
     MTX_Concat33(m, &a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_000.mMatrix.mUnk_00[0].x);
 }
@@ -45,8 +45,7 @@ void DrawStopSign(void *a, StopSignObject *b) {
 }
 
 void func_ov001_02192d60(void) {
-    func_0209bfa8(NULL, NULL, NULL, (u32) (0), (u16) (1));
-    return;
+    func_0209bfa8(NULL, NULL, NULL, 0, 1);
 }
 
 void *func_ov001_02192d48(void) {

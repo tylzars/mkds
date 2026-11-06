@@ -5,7 +5,7 @@
 typedef struct Kart Kart;
 typedef struct ItemBomb ItemBomb;
 
-u32 func_020fd7a4(int a);
+ItemBomb *func_020fd7a4(int a);
 void func_020fd754(void *a);
 void func_020fd684(void *c, Vec3 *d, Vec3 *f);
 void func_020fd540(void **b, Vec3 *param_2, s32 param_3);

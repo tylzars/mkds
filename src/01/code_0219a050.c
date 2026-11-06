@@ -33,6 +33,7 @@
 #include "Main/Unknown/code_02087000.h"
 #include "Main/Unknown/code_0212b000.h"
 #include "Main/Unknown/code_02047104.h"
+#include "registers.h"
 
 RecordTopMenu *gRecordTopMenu;
 
@@ -120,15 +121,13 @@ void func_ov001_0219ae88(void) {
     }
 }
 
-// Requests state 1: stores mNextState = 1 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
-// mState and runs AdvanceRecordTopMenuState1.
+// Requests state 1 for the next update.
 void RequestRecordTopMenuState1(void) {
     gRecordTopMenu->mNextState = 1;
     gRecordTopMenu->mStateFrames = 0;
 }
 
-// Requests state 2: stores mNextState = 2 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
-// mState and runs AdvanceRecordTopMenuState2.
+// Requests state 2 for the next update.
 void RequestRecordTopMenuState2(void) {
     gRecordTopMenu->mNextState = 2;
     gRecordTopMenu->mStateFrames = 0;
@@ -140,8 +139,7 @@ void func_ov001_0219ae44(void) {
     func_02128374();
 }
 
-// Requests state 4: stores mNextState = 4 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
-// mState and runs AdvanceRecordTopMenuState4.
+// Requests state 4 for the next update.
 void RequestRecordTopMenuState4(void) {
     gRecordTopMenu->mNextState = 4;
     gRecordTopMenu->mStateFrames = 0;
@@ -153,15 +151,13 @@ void func_ov001_0219ae10(void) {
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
-// Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
-// mState and runs AdvanceRecordTopMenuState6.
+// Requests state 6 for the next update.
 void RequestRecordTopMenuState6(void) {
     gRecordTopMenu->mNextState = 6;
     gRecordTopMenu->mStateFrames = 0;
 }
 
-// Requests state 7: stores mNextState = 7 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
-// mState and runs AdvanceRecordTopMenuState7.
+// Requests state 7 for the next update.
 void RequestRecordTopMenuState7(void) {
     gRecordTopMenu->mNextState = 7;
     gRecordTopMenu->mStateFrames = 0;
@@ -185,8 +181,7 @@ void func_ov001_0219ad7c(void) {
     RequestTxtSystemClose();
 }
 
-// Requests state 11: stores mNextState = 11 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
-// mState and runs AdvanceRecordTopMenuState11.
+// Requests state 11 for the next update.
 void RequestRecordTopMenuState11(void) {
     gRecordTopMenu->mNextState = 11;
     gRecordTopMenu->mStateFrames = 0;
@@ -243,9 +238,9 @@ void InitRecordTopMenu(void *heap) {
     s32 j;
     Unk0217aa08_00 **pp;
 
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 1;
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0x8800;
-    *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & 0x43) | 0x1018;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x8800;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0x1018;
     gRecordTopMenu = HeapAlloc(heap, 0x48);
     gRecordTopMenu->mHeap = heap;
     gRecordTopMenu->mState = 0;
@@ -325,12 +320,12 @@ void func_ov001_0219a950(void) {
     u32 b;
 
     gRecordTopMenu = NULL;
-    a = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
+    a = (reg_GX_DISPCNT & 0x1f00) >> 8;
     a &= ~0x11;
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (a << 8);
-    b = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (a << 8);
+    b = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     b &= ~0x1;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (b << 8);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (b << 8);
 }
 
 void AdvanceRecordTopMenuState0(void) {
@@ -339,7 +334,6 @@ void AdvanceRecordTopMenuState0(void) {
     if (v1 != 0) {
         RequestRecordTopMenuState1();
     }
-    return;
 }
 
 void AdvanceRecordTopMenuState1(void) {
@@ -401,7 +395,6 @@ void AdvanceRecordTopMenuState3(void) {
     if (v1 != 0) {
         RequestRecordTopMenuState4();
     }
-    return;
 }
 
 void AdvanceRecordTopMenuState4(void) {
@@ -563,7 +556,6 @@ void AdvanceRecordTopMenuState8(void) {
     if (v1 != 0) {
         func_ov001_0219ad98();
     }
-    return;
 }
 
 void AdvanceRecordTopMenuState9(void) {
@@ -600,7 +592,6 @@ void AdvanceRecordTopMenuState10(void) {
     if (v1 != 0) {
         RequestRecordTopMenuState11();
     }
-    return;
 }
 
 void AdvanceRecordTopMenuState11(void) {
@@ -668,17 +659,17 @@ void AdvanceRecordTopMenu(void) {
 }
 
 void func_ov001_0219a0c0(void) {
-    *(vu32 *) 0x4000010 = (-gRecordTopMenu->mBg0Offset << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-gRecordTopMenu->mBg0Offset << 16) & 0x1ff0000;
     func_02111428();
 }
 
 void func_ov001_0219a078(void) {
     u32 a;
     u32 b;
-    a = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | ((a | 0x11) << 8);
-    b = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((b | 0x1) << 8);
+    a = (reg_GX_DISPCNT & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((a | 0x11) << 8);
+    b = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((b | 0x1) << 8);
 }
 
 void RegisterRecordTopMenuCallbacks(void) {

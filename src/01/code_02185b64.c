@@ -31,11 +31,11 @@ void InitMissionGate(MissionGateObject *a) {
     s16 saved;
 
     func_020d2450(a);
-    a->mUnk_000.mAngle = (s32) (((s64) a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xB60B60B60BLL + 0x80000000000LL) >> 44);
+    a->mUnk_000.mAngle = (a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     MTX_RotY33_(mtx, gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2], gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2 + 1]);
     MTX_Concat33(mtx, &a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_000.mMatrix.mUnk_00[0].x);
-    r4 = (s32) (((s64) a->mUnk_000.mScale.x * 0xA000LL) >> 12);
-    r6 = (s32) (((s64) a->mUnk_000.mScale.y * 0xF000LL) >> 12);
+    r4 = (a->mUnk_000.mScale.x * 0xA000LL) >> 12;
+    r6 = (a->mUnk_000.mScale.y * 0xF000LL) >> 12;
     saved = a->mUnk_000.mCourseMapRow->mUnk_28;
     a->mUnk_000.mCourseMapRow->mUnk_28 = 0x12;
     a->mUnk_0a0 = CreateMapObjectFromObject(&a->mUnk_000, 0x66);
@@ -79,13 +79,13 @@ void DrawMissionGate(void *a, MissionGateObject *b) {
     s32 buf;
 
     buf = 0x1e;
-    func_01ff9048((u32) (0x14), (void *) ((u32) &buf), 1);
+    func_01ff9048(0x14, &buf, 1);
     b->mUnk_000.mMatrix.mUnk_00[3].x = b->mUnk_000.mPos.x >> 4;
     b->mUnk_000.mMatrix.mUnk_00[3].y = b->mUnk_000.mPos.y >> 4;
     b->mUnk_000.mMatrix.mUnk_00[3].z = b->mUnk_000.mPos.z >> 4;
-    func_01ff9048((u32) (0x19), (void *) ((u32) &b->mUnk_000.mMatrix), 0xc);
-    func_01ff9048((u32) (0x1b), (void *) ((u32) &b->mUnk_000.mScale), 3);
-    func_0209b688(gMissionGate, (u16) b->mUnk_000.mCourseMapRow->mUnk_28);
+    func_01ff9048(0x19, &b->mUnk_000.mMatrix, 0xc);
+    func_01ff9048(0x1b, &b->mUnk_000.mScale, 3);
+    func_0209b688(gMissionGate, b->mUnk_000.mCourseMapRow->mUnk_28);
     SetMapObjectModelNsbmaFrameIndex(gMissionGate, b->mUnk_0a8);
     DrawMapObjectModel(a, gMissionGate, b);
 }
@@ -130,8 +130,7 @@ void UpdateMissionGate(void *a, MissionGateObject *b) {
 }
 
 void func_ov001_02185b98(void) {
-    func_0209bfa8(&func_ov001_02185d74, NULL, NULL, (u32) (0), (u16) (1));
-    return;
+    func_0209bfa8(&func_ov001_02185d74, NULL, NULL, 0, 1);
 }
 
 void func_ov001_02185b7c(void) {
