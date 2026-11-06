@@ -24,17 +24,16 @@ extern const char gArchiveColonSlashFormat[];
 extern const u8 data_usa_021651d0[];
 
 // Objects whose layout isn't known yet.
-// A function and three numbers; func_02050650 takes the address of data_021652a0.
-typedef struct Unk021652a0 {
-    /* 00 */ void (*mUnk_00)();
-    /* 04 */ u16 mUnk_04;
+typedef struct QueueMPDataToPortParams {
+    /* 00 */ void (*mCallback)();
+    /* 04 */ u16 mMaxDataSize;
     /* 06 */ u8 mUnk_06[2];
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ u16 mUnk_0c;
+    /* 08 */ s32 mPort;
+    /* 0c */ u16 mPriority;
     /* 0e */ u8 mUnk_0e[2];
-} Unk021652a0;
+} QueueMPDataToPortParams;
 
-extern Unk021652a0 data_0216523c;
+extern QueueMPDataToPortParams data_0216523c;
 extern const s32 data_02165510[2];
 extern const Vec3 data_02165524;
 extern const Vec3 data_0216553c;
@@ -43,9 +42,9 @@ extern const SceneCallbacks gRecordSceneCallbacks;
 extern const SceneCallbacks data_02164838;
 extern const SceneCallbacks gEmblemSceneCallbacks;
 extern const SceneCallbacks data_02165280;
-extern Unk021652a0 data_021652a0;
+extern QueueMPDataToPortParams data_021652a0;
 extern u16 data_usa_02165228;
-extern Unk021652a0 data_usa_0216522c;
+extern QueueMPDataToPortParams data_usa_0216522c;
 extern UnkFunc *const data_021652b0[];
 extern UnkFunc *const data_02165388[];
 struct Kart;

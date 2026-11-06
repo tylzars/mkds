@@ -224,7 +224,7 @@ s32 func_02055030(void) {
         case 12:
         case 13:
         case 17:
-            func_0205146c();
+            EndMP();
             break;
         case 6:
         case 10:
@@ -232,17 +232,17 @@ s32 func_02055030(void) {
         case 18:
             switch (func_02055030_inline()) {
                 case 1:
-                    func_020513ac();
+                    EndParent();
                     break;
                 case 2:
-                    func_02051230();
+                    Disconnect();
                     break;
             }
             break;
         case 14:
         case 15:
         case 37:
-            func_020514c0();
+            EndDataSharing();
             break;
         case 22:
         case 23:
@@ -268,7 +268,7 @@ s32 func_02055030(void) {
             func_0204eca0();
             break;
         case 45:
-            func_0205146c();
+            EndMP();
             break;
         default:
             func_020533a0();

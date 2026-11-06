@@ -16,7 +16,7 @@ void func_02058338(void);
 void func_020583c4(void);
 void func_020584f0(void);
 void func_02058528(void);
-BOOL func_0205867c(u8 *a, s32 b, s32 c, u8 **d, u16 *e);
+BOOL GetEntryChunk(u8 *entry, s32 chunkIndex, s32 chunkSize, u8 **outChunk, u16 *outSize);
 BOOL func_020586ac(u8 a, u8 *b, u16 c, u8 d, u8 e);
 u32 func_02058754(void);
 void func_02058770(void);

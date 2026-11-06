@@ -297,7 +297,7 @@ void func_020533a0(void) {
     }
     data_0217aa00->mUnk_000c = 0x15;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_End(func_02050e80) == 2) {
+    if (WM_End(EndCallback) == 2) {
         return;
     }
     if ((data_0217aa00->mUnk_0454 & 0x100) != 0) {
@@ -326,7 +326,7 @@ void func_020533a0(void) {
     }
     data_0217aa00->mUnk_000c = 0x15;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_End(func_02050e80) == 2) {
+    if (WM_End(EndCallback) == 2) {
         return;
     }
     if ((data_0217aa00->mUnk_0454 & 0x100) != 0) {

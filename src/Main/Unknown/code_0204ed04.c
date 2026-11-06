@@ -57,17 +57,17 @@ void func_0204ed84(void) {
         }
         switch (v) {
             case 1:
-                data_usa_0216522c.mUnk_04 = 0x192;
+                data_usa_0216522c.mMaxDataSize = 0x192;
                 b = func_02006954(data_0217aa00->mUnk_1e30, 0x192);
                 c = data_0217aa00->mUnk_0044.mUnk_43;
                 break;
             case 2:
-                data_usa_0216522c.mUnk_04 = 0xe;
+                data_usa_0216522c.mMaxDataSize = 0xe;
                 b = func_02006914(data_0217aa00->mUnk_1e30, 0xe);
                 c = 1;
                 break;
         }
-        if (func_02050650((void *) data_0217aa00->mUnk_1e30, b, c, NULL, &data_usa_0216522c) == FALSE) {
+        if (QueueMPDataToPort((void *) data_0217aa00->mUnk_1e30, b, c, NULL, &data_usa_0216522c) == FALSE) {
             data_0217aa00->mUnk_1e42 = data_usa_02165228;
             data_0217aa00->mUnk_1e44 &= ~1;
         }

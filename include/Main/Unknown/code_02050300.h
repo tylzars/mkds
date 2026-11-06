@@ -35,7 +35,7 @@ typedef struct Unk020504a4 {
     /* 17 */ u8 mUnk_17;
 } Unk020504a4;
 
-#include "Main/Unknown/unk_02165000.h" // Unk021652a0
+#include "Main/Unknown/unk_02165000.h" // QueueMPDataToPortParams
 #include "code_02142eac.h" // Unk021425e8
 
 typedef struct Unk0217aa00_45c Unk0217aa00_45c;
@@ -45,24 +45,24 @@ BOOL func_02050320(s32 a, u16 b, s32 c);
 BOOL func_020503cc(s32 a, u16 b);
 BOOL func_020504a4(s32 a, u16 b);
 BOOL func_020505a8(s32 a, u16 b);
-BOOL func_02050650(void *a, s32 b, u16 c, void *d, Unk021652a0 *e);
+BOOL QueueMPDataToPort(void *a, s32 b, u16 c, void *d, QueueMPDataToPortParams *e);
 void func_02050764(Unk021425e8 *a);
 void func_0205081c(u32 a, Unk0205081c *b);
 void func_02050b88(u32 a);
 void func_02050d80(u32 a, u8 *b, Unk0217aa00_45c *c);
 void func_02050e60(s32 a);
-void func_02050e80(Unk021425e8 *a);
+void EndCallback(Unk021425e8 *a);
 void func_02050ec0(void);
 void func_0205108c(s32 a);
 BOOL func_020510ac(void);
 s32 func_020510c8(void);
 BOOL func_020510e4(void);
-void func_02051108(Unk021425e8 *a);
-void func_02051230(void);
-void func_02051364(Unk021425e8 *a);
-void func_020513ac(void);
-void func_02051400(Unk021425e8 *a);
-void func_0205146c(void);
-void func_020514c0(void);
-void func_02051528(Unk021425e8 *a);
-void func_020515b0(u32 a);
+void DisconnectCallback(Unk021425e8 *a);
+void Disconnect(void);
+void EndParentCallback(Unk021425e8 *a);
+void EndParent(void);
+void EndMPCallback(Unk021425e8 *a);
+void EndMP(void);
+void EndDataSharing(void);
+void DisconnectChildrenCallback(Unk021425e8 *a);
+void DisconnectChildren(u32 a);

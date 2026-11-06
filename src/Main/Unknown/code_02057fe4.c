@@ -305,26 +305,26 @@ BOOL func_020586ac(u8 a, u8 *b, u16 c, u8 d, u8 e) {
     }
     DC_StoreRange(q, c + 4);
     data_0217aa00->mUnk_1608.mUnk_1a &= ~1;
-    if (func_02050650(data_0217aa00->mUnk_1624, c + 4, e, NULL, &data_021652a0) == 0) {
+    if (QueueMPDataToPort(data_0217aa00->mUnk_1624, c + 4, e, NULL, &data_021652a0) == 0) {
         data_0217aa00->mUnk_1608.mUnk_1a |= 1;
         return FALSE;
     }
     return TRUE;
 }
 
-BOOL func_0205867c(u8 *a, s32 b, s32 c, u8 **d, u16 *e) {
+BOOL GetEntryChunk(u8 *entry, s32 chunkIndex, s32 chunkSize, u8 **outChunk, u16 *outSize) {
     s32 n;
 
-    b = b * c;
-    n = 0x22c - b;
+    chunkIndex = chunkIndex * chunkSize;
+    n = 0x22c - chunkIndex;
     if (n <= 0) {
         return FALSE;
     }
-    if (n > c) {
-        n = c;
+    if (n > chunkSize) {
+        n = chunkSize;
     }
-    *e = n;
-    *d = a + b;
+    *outSize = n;
+    *outChunk = entry + chunkIndex;
     return TRUE;
 }
 
@@ -360,7 +360,7 @@ void func_02058528(void) {
         if ((data_0217aa00->mUnk_1608.mUnk_1a & 1) != 0) {
             c = data_0217aa00->mUnk_1628;
             v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
-            if (func_0205867c((u8 *) &data_0217aa00->mUnk_045c[v], c, 0x20, &d, &v1) != FALSE) {
+            if (GetEntryChunk((u8 *) &data_0217aa00->mUnk_045c[v], c, 0x20, &d, &v1) != FALSE) {
                 v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
                 func_020586ac(c, d, v1, v, 1);
                 data_0217aa00->mUnk_1628 = c + 1;
@@ -393,7 +393,7 @@ void func_020583c4(void) {
             b = data_0217aa00->mUnk_1629;
             if (((u8) (data_0217aa00->mUnk_0044.mUnk_43 | 1) & (1 << b)) != 0) {
                 a = data_0217aa00->mUnk_1628;
-                if (func_0205867c((u8 *) &data_0217aa00->mUnk_045c[b], a, 0x168, &d, &v1) != FALSE) {
+                if (GetEntryChunk((u8 *) &data_0217aa00->mUnk_045c[b], a, 0x168, &d, &v1) != FALSE) {
                     func_020586ac(a, d, v1, b, data_0217aa00->mUnk_0044.mUnk_43);
                     data_0217aa00->mUnk_1628 = a + 1;
                     f = 0;

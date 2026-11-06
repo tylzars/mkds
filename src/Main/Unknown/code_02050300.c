@@ -30,10 +30,10 @@ static inline u32 func_02050650_inline(void) {
     return data_0217aa00->mUnk_0000;
 }
 
-void func_020515b0(u32 a) {
+void DisconnectChildren(u32 a) {
     data_0217aa00->mUnk_000c = 0x10;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_DisconnectChildren(func_02051528, a) != 7) {
+    if (WM_DisconnectChildren(DisconnectChildrenCallback, a) != 7) {
         return;
     }
     if (data_0217aa00->mUnk_0004 == 9) {
@@ -44,7 +44,7 @@ void func_020515b0(u32 a) {
     data_0217aa00->mUnk_0010 = 0;
 }
 
-void func_02051528(Unk021425e8 *a) {
+void DisconnectChildrenCallback(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
     if (a->mResultCode != 0 && a->mResultCode != 7) {
         return;
@@ -60,7 +60,7 @@ void func_02051528(Unk021425e8 *a) {
     data_0217aa00->mUnk_008a = 0;
 }
 
-void func_020514c0(void) {
+void EndDataSharing(void) {
     s32 r;
 
     data_0217aa00->mUnk_000c = 0x11;
@@ -73,16 +73,16 @@ void func_020514c0(void) {
     func_020533a0();
 }
 
-void func_0205146c(void) {
+void EndMP(void) {
     data_0217aa00->mUnk_000c = 0x12;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_EndMP(func_02051400) == 2) {
+    if (WM_EndMP(EndMPCallback) == 2) {
         return;
     }
     func_020533a0();
 }
 
-void func_02051400(Unk021425e8 *a) {
+void EndMPCallback(Unk021425e8 *a) {
     Unk0217aa00 *p;
 
     data_0217aa00->mUnk_0010 = 0;
@@ -97,16 +97,16 @@ void func_02051400(Unk021425e8 *a) {
     }
 }
 
-void func_020513ac(void) {
+void EndParent(void) {
     data_0217aa00->mUnk_000c = 0x13;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_EndParent(func_02051364) == 2) {
+    if (WM_EndParent(EndParentCallback) == 2) {
         return;
     }
     func_020533a0();
 }
 
-void func_02051364(Unk021425e8 *a) {
+void EndParentCallback(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
     if (a->mResultCode != 0) {
         func_020533a0();
@@ -115,7 +115,7 @@ void func_02051364(Unk021425e8 *a) {
     }
 }
 
-void func_02051230(void) {
+void Disconnect(void) {
     s32 r;
     s32 i;
     Unk0217aa00_44 *p;
@@ -130,7 +130,7 @@ void func_02051230(void) {
                     data_0217aa00->mUnk_0044.mUnk_41 = i;
                     data_0217aa00->mUnk_000c = 0x14;
                     data_0217aa00->mUnk_0010 = 1;
-                    r = WM_Disconnect(func_02051108, e->mUnk_06);
+                    r = WM_Disconnect(DisconnectCallback, e->mUnk_06);
                     break;
                 }
             }
@@ -138,7 +138,7 @@ void func_02051230(void) {
         case 2:
             data_0217aa00->mUnk_000c = 0x14;
             data_0217aa00->mUnk_0010 = 1;
-            r = WM_Disconnect(func_02051108, 0);
+            r = WM_Disconnect(DisconnectCallback, 0);
             break;
     }
     switch (r) {
@@ -157,7 +157,7 @@ void func_02051230(void) {
     }
 }
 
-void func_02051108(Unk021425e8 *a) {
+void DisconnectCallback(Unk021425e8 *a) {
     u16 v;
 
     switch (a->mResultCode) {
@@ -226,7 +226,7 @@ void func_02050ec0(void) {
 
     data_0217aa00->mUnk_000c = 0x15;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_End(func_02050e80) == 2) {
+    if (WM_End(EndCallback) == 2) {
         return;
     }
     p = data_0217aa00;
@@ -252,7 +252,7 @@ void func_02050ec0(void) {
     }
     data_0217aa00->mUnk_000c = 0x15;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_End(func_02050e80) == 2) {
+    if (WM_End(EndCallback) == 2) {
         return;
     }
     if ((data_0217aa00->mUnk_0454 & 0x100) != 0) {
@@ -270,7 +270,7 @@ void func_02050ec0(void) {
     func_02050ec0();
 }
 
-void func_02050e80(Unk021425e8 *a) {
+void EndCallback(Unk021425e8 *a) {
     data_0217aa00->mUnk_0010 = 0;
     if (a->mResultCode != 0) {
         data_0217aa00->mUnk_0008 = 8;
@@ -470,7 +470,7 @@ void func_02050764(Unk021425e8 *a) {
     func_0205081c(a->mUnk_12, &v1);
 }
 
-BOOL func_02050650(void *a, s32 b, u16 c, void *d, Unk021652a0 *e) {
+BOOL QueueMPDataToPort(void *a, s32 b, u16 c, void *d, QueueMPDataToPortParams *e) {
     u16 n;
 
     n = b;
@@ -486,8 +486,8 @@ BOOL func_02050650(void *a, s32 b, u16 c, void *d, Unk021652a0 *e) {
             }
             break;
     }
-    if (n > e->mUnk_04) {
-        n = e->mUnk_04;
+    if (n > e->mMaxDataSize) {
+        n = e->mMaxDataSize;
     }
     DC_FlushRange(a, n);
     if (d == NULL) {
@@ -496,7 +496,7 @@ BOOL func_02050650(void *a, s32 b, u16 c, void *d, Unk021652a0 *e) {
         MI_CpuCopy8(a, d, n);
         DC_FlushRange(d, n);
     }
-    if (WM_SetMPDataToPortEx(e->mUnk_00, NULL, d, n, c, e->mUnk_08, e->mUnk_0c) != 2) {
+    if (WM_SetMPDataToPortEx(e->mCallback, NULL, d, n, c, e->mPort, e->mPriority) != 2) {
         return FALSE;
     }
     return TRUE;
@@ -509,9 +509,9 @@ BOOL func_020505a8(s32 a, u16 b) {
     if ((data_0217aa00->mUnk_0454 & 1) == 0) {
         return FALSE;
     }
-    data_0216523c.mUnk_04 = 0x18;
+    data_0216523c.mMaxDataSize = 0x18;
     data_0217aa00->mUnk_0454 &= ~1;
-    if (func_02050650(&v1, 2, b, data_0217aa00->mUnk_0040, &data_0216523c) != FALSE) {
+    if (QueueMPDataToPort(&v1, 2, b, data_0217aa00->mUnk_0040, &data_0216523c) != FALSE) {
         return TRUE;
     }
     data_0217aa00->mUnk_0454 |= 1;
@@ -532,9 +532,9 @@ BOOL func_020504a4(s32 a, u16 b) {
     if ((data_0217aa00->mUnk_0454 & 1) == 0) {
         return FALSE;
     }
-    data_0216523c.mUnk_04 = 0x18;
+    data_0216523c.mMaxDataSize = 0x18;
     data_0217aa00->mUnk_0454 &= ~1;
-    if (func_02050650(&v1, 0x18, b, data_0217aa00->mUnk_0040, &data_0216523c) != FALSE) {
+    if (QueueMPDataToPort(&v1, 0x18, b, data_0217aa00->mUnk_0040, &data_0216523c) != FALSE) {
         return TRUE;
     }
     data_0217aa00->mUnk_0454 |= 1;
@@ -550,9 +550,9 @@ BOOL func_020503cc(s32 a, u16 b) {
     if ((data_0217aa00->mUnk_0454 & 1) == 0) {
         return FALSE;
     }
-    data_0216523c.mUnk_04 = 0x18;
+    data_0216523c.mMaxDataSize = 0x18;
     data_0217aa00->mUnk_0454 &= ~1;
-    if (func_02050650(&v1, 0x12, b, data_0217aa00->mUnk_0040, &data_0216523c) != FALSE) {
+    if (QueueMPDataToPort(&v1, 0x12, b, data_0217aa00->mUnk_0040, &data_0216523c) != FALSE) {
         return TRUE;
     }
     data_0217aa00->mUnk_0454 |= 1;
@@ -567,9 +567,9 @@ BOOL func_02050320(s32 a, u16 b, s32 c) {
     if ((data_0217aa00->mUnk_0454 & 1) == 0) {
         return FALSE;
     }
-    data_0216523c.mUnk_04 = 0x18;
+    data_0216523c.mMaxDataSize = 0x18;
     data_0217aa00->mUnk_0454 &= ~1;
-    if (func_02050650(&v1, 8, b, data_0217aa00->mUnk_0040, &data_0216523c) != FALSE) {
+    if (QueueMPDataToPort(&v1, 8, b, data_0217aa00->mUnk_0040, &data_0216523c) != FALSE) {
         return TRUE;
     }
     data_0217aa00->mUnk_0454 |= 1;

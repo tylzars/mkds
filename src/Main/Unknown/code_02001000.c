@@ -17,5 +17,5 @@ void func_02001000(void) {
     if (func_02050320(7, data_0217aa00->mUnk_0044.mUnk_43, v1) == FALSE) {
         return;
     }
-    func_020515b0(v1);
+    DisconnectChildren(v1);
 }
