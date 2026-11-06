@@ -314,7 +314,7 @@ u32 TryLockVramBanks(u32 m, u16 v) {
     u32 t;
     s32 k;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     t = m & gVramBankLockedMask;
     while (1) {
         k = 31 - CountLeadingZeros(t);
@@ -323,7 +323,7 @@ u32 TryLockVramBanks(u32 m, u16 v) {
         }
         t &= ~(1 << k);
         if (v != gVramBankLockIds[k]) {
-            IrqRestore(s);
+            OS_RestoreInterrupts(s);
             return 0;
         }
     }
@@ -337,7 +337,7 @@ u32 TryLockVramBanks(u32 m, u16 v) {
         gVramBankLockIds[k] = v;
         gVramBankLockedMask |= 1 << k;
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return 1;
 }
 
@@ -346,7 +346,7 @@ void UnlockVramBanks(u32 m, u16 v) {
     u32 s;
     s32 k;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     t = m & gVramBankLockedMask & 0x1ff;
     while (1) {
         k = 31 - CountLeadingZeros(t);
@@ -359,7 +359,7 @@ void UnlockVramBanks(u32 m, u16 v) {
             gVramBankLockedMask &= ~(1 << k);
         }
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 // clang-format off

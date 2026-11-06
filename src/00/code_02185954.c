@@ -572,21 +572,21 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     if (RTC_GetDate(o) != 0 || RTC_GetTime(p) != 0) {
         return 5;
     }
-    h = IrqDisable();
+    h = OS_DisableInterrupts();
     i = func_ov000_021a6b10();
     if (i == NULL) {
-        IrqRestore(h);
+        OS_RestoreInterrupts(h);
         return 3;
     }
     MemCopy(i, g.mUnk_08, 6);
     MemFill(v, 0, 0x21);
     j = func_ov000_021a6abc((u16 *) &g);
     if (j == NULL) {
-        IrqRestore(h);
+        OS_RestoreInterrupts(h);
         return 3;
     }
     MemCopy(j, v, g.mUnk_00);
-    IrqRestore(h);
+    OS_RestoreInterrupts(h);
     MemCopy((const void *) 0x27ffe0c, g.mUnk_0e, 4);
     g.mUnk_0e[4] = 0;
     MemCopy((const void *) 0x27ffe10, g.mUnk_13, 2);

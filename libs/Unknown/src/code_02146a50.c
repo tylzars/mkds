@@ -10,7 +10,7 @@ void CARD_TerminateForPulledOut(void) {
         PM_ForceToPowerOff();
     }
     SendTag14WordUntilAccepted(1, 1);
-    IrqDisableLoopForever();
+    OS_Terminate();
 }
 
 void SendTag14WordUntilAccepted(u32 a, s32 b) {

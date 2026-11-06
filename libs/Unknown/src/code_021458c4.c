@@ -33,12 +33,12 @@ void WorkerTaskLoop(void *a) {
 
     p = &gAccessState;
     for (;;) {
-        s = IrqDisable();
+        s = OS_DisableInterrupts();
         while ((p->mUnk_114 & 8) == 0) {
             p->mUnk_104 = &p->mUnk_44;
             OS_SleepThread(0);
         }
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         p->mUnk_40(p);
     }
 }
@@ -52,7 +52,7 @@ int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b) {
         p->mUnk_114 |= 2;
         if (PxiCallbackBitIsSet(11, 1) == 0) {
             do {
-                func_0200fd10(100);
+                OS_SpinWait(100);
             } while (PxiCallbackBitIsSet(11, 1) == 0);
         }
         SendRequestWithRetries(p, 0, 1);
@@ -69,11 +69,11 @@ int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b) {
             while (PxiSendFifoWord(11, (u32) q, 1) < 0) {
             }
         }
-        s = IrqDisable();
+        s = OS_DisableInterrupts();
         while (p->mUnk_114 & 0x20) {
             OS_SleepThread(0);
         }
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         v = p->mUnk_00->mUnk_00;
     } while (v == 4 && --b > 0);
     return v == 0;
@@ -141,13 +141,13 @@ void AdvanceRomDmaRead(void) {
         p->mUnk_00->mUnk_00 = 0;
         cb = p->mUnk_38;
         arg = p->mUnk_3c;
-        s = IrqDisable();
+        s = OS_DisableInterrupts();
         p->mUnk_114 &= ~0x4c;
         OS_WakeupThread(&p->mUnk_10c);
         if (p->mUnk_114 & 0x10) {
             OS_WakeupThreadDirect(&p->mUnk_44);
         }
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         if (cb != 0) {
             cb(arg);
         }
@@ -207,7 +207,7 @@ int TryStartRomDmaRead(Unk02146154 *p) {
     }
     p->mUnk_04 = (*(u32 *) 0x027ffe60 & ~0x07000000) | 0xa1000000;
     if (r != 0) {
-        s = IrqDisable();
+        s = OS_DisableInterrupts();
         IC_InvalidateRange((void *) addr, len);
         rem = addr & 31;
         if (rem != 0) {
@@ -221,7 +221,7 @@ int TryStartRomDmaRead(Unk02146154 *p) {
         OS_SetIrqFunction(0x80000, AdvanceRomDmaRead);
         OS_ResetRequestIrqMask(0x80000);
         OS_EnableIrqMask(0x80000);
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         StartRomPageDma();
     }
     return r;
@@ -285,13 +285,13 @@ void RunRomRead(Unk021458c4 *a) {
     p->mUnk_00->mUnk_00 = 0;
     cb = p->mUnk_38;
     arg = p->mUnk_3c;
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     p->mUnk_114 &= ~0x4c;
     OS_WakeupThread(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
         OS_WakeupThreadDirect(&p->mUnk_44);
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     if (cb != 0) {
         cb(arg);
     }
@@ -305,14 +305,14 @@ void StartRomRead(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     p = (Unk021458c4 *) (u32) &gAccessState;
     q = &gRomReadState;
     CARD_CheckEnabled();
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     while (p->mUnk_114 & 4) {
         OS_SleepThread(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = e;
     p->mUnk_3c = f;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     p->mUnk_28 = a;
     p->mUnk_1c = b + gRomBaseOffset;
     p->mUnk_20 = c;
@@ -410,13 +410,13 @@ void RunBackupTransfer(Unk021458c4 *p) {
     } while (p->mUnk_24 != 0);
     cb = p->mUnk_38;
     arg = p->mUnk_3c;
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     p->mUnk_114 &= ~0x4c;
     OS_WakeupThread(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
         OS_WakeupThreadDirect(&p->mUnk_44);
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     if (cb != 0) {
         cb(arg);
     }
@@ -428,14 +428,14 @@ int StartBackupTransfer(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, 
 
     p = (Unk021458c4 *) (u32) &gAccessState;
     func_02000b44((u32) (BuildInfo + 0x24));
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     while (p->mUnk_114 & 4) {
         OS_SleepThread(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = d;
     p->mUnk_3c = (u32) e;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     p->mUnk_1c = a;
     p->mUnk_20 = b;
     p->mUnk_24 = c;
@@ -460,17 +460,17 @@ int CARD_IdentifyBackup(s32 a) {
     p = &gAccessState;
     func_02000b44((u32) (BuildInfo + 0x24));
     if (a == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     CARD_CheckEnabled();
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     while (p->mUnk_114 & 4) {
         OS_SleepThread(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = 0;
     p->mUnk_3c = 0;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     SetupBackupSpec(a);
     gAccessState.mUnk_104 = data_0216ff5c.mCurrentThread;
     SendRequestWithRetries(p, 2, 1);
@@ -480,13 +480,13 @@ int CARD_IdentifyBackup(s32 a) {
     SendRequestWithRetries(p, 6, 1);
     cb = p->mUnk_38;
     arg = p->mUnk_3c;
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     p->mUnk_114 &= ~0x4c;
     OS_WakeupThread(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
         OS_WakeupThreadDirect(&p->mUnk_44);
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     if (cb != 0) {
         cb(arg);
     }
@@ -586,10 +586,10 @@ void LockAccessTarget(u32 a, u32 b) {
     u32 s;
 
     p = (Unk021458c4 *) (u32) &gAccessState;
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (p->mUnk_08 == a) {
         if (p->mUnk_18 != b) {
-            IrqDisableLoopForever();
+            OS_Terminate();
         }
     } else {
         while (p->mUnk_08 != -3) {
@@ -600,7 +600,7 @@ void LockAccessTarget(u32 a, u32 b) {
     }
     p->mUnk_0c++;
     p->mUnk_00->mUnk_00 = 0;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 void UnlockAccessTarget(u32 a, u32 b) {
@@ -608,12 +608,12 @@ void UnlockAccessTarget(u32 a, u32 b) {
     u32 s;
 
     p = &gAccessState;
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (p->mUnk_08 != a || p->mUnk_0c == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     } else {
         if (p->mUnk_18 != b) {
-            IrqDisableLoopForever();
+            OS_Terminate();
         }
         p->mUnk_0c--;
         if (p->mUnk_0c == 0) {
@@ -623,7 +623,7 @@ void UnlockAccessTarget(u32 a, u32 b) {
         }
     }
     p->mUnk_00->mUnk_00 = 0;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 void InitBackupAndRomAccess(void) {

@@ -467,13 +467,13 @@ void func_0212e04c(void *a, Unk0212d5f8 *b, u32 c) {
     if (b == 0) {
         return;
     }
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     p = func_0212d5e0(b);
     if (a == func_0212d254(c)) {
         func_0212d238(c, 0);
     }
     func_0212d5e0(p);
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
 }
 
 void func_0212e018(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {

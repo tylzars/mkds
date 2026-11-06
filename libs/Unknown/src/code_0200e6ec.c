@@ -26,7 +26,7 @@ void OS_LockMutex(OSMutex *mutex) {
     u32 enabled;
     OSThread *current;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     current = data_0216ff5c.mCurrentThread;
     while (1) {
         if (mutex->mHolder == 0) {
@@ -43,7 +43,7 @@ void OS_LockMutex(OSMutex *mutex) {
             current->mMutex = 0;
         }
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Lowers OSMutex.mLockCount for the holding thread; at 0 the mutex is unlinked, released and its waiters wake up.
@@ -51,7 +51,7 @@ void OS_UnlockMutex(OSMutex *mutex) {
     u32 enabled;
     OSThread *current;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     current = data_0216ff5c.mCurrentThread;
     if (mutex->mHolder == current) {
         mutex->mLockCount = mutex->mLockCount - 1;
@@ -61,7 +61,7 @@ void OS_UnlockMutex(OSMutex *mutex) {
             OS_WakeupThread(&mutex->mQueue);
         }
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Releases every mutex in the mutex list of thread and wakes the threads waiting on them.
@@ -86,7 +86,7 @@ BOOL OS_TryLockMutex(OSMutex *mutex) {
     BOOL locked;
     OSThread *current;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     current = data_0216ff5c.mCurrentThread;
     if (mutex->mHolder == 0) {
         mutex->mHolder = current;
@@ -99,7 +99,7 @@ BOOL OS_TryLockMutex(OSMutex *mutex) {
     } else {
         locked = 0;
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return locked;
 }
 
@@ -154,11 +154,11 @@ void OS_InitMessageQueue(OSMessageQueue *queue, OSMessage *messages, s32 count) 
 BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
     u32 enabled;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     if (queue->mCapacity <= queue->mCount) {
         do {
             if ((flags & 1) == 0) {
-                IrqRestore(enabled);
+                OS_RestoreInterrupts(enabled);
                 return 0;
             }
             OS_SleepThread(&queue->mFullWaiters);
@@ -167,7 +167,7 @@ BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
     queue->mBuffer[(queue->mHeadIndex + queue->mCount) % queue->mCapacity] = message;
     queue->mCount = queue->mCount + 1;
     OS_WakeupThread(&queue->mEmptyWaiters);
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return 1;
 }
 
@@ -176,11 +176,11 @@ BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
 BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
     u32 enabled;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     if (queue->mCount == 0) {
         do {
             if ((flags & 1) == 0) {
-                IrqRestore(enabled);
+                OS_RestoreInterrupts(enabled);
                 return 0;
             }
             OS_SleepThread(&queue->mEmptyWaiters);
@@ -192,7 +192,7 @@ BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
     queue->mHeadIndex = (queue->mHeadIndex + 1) % queue->mCapacity;
     queue->mCount = queue->mCount - 1;
     OS_WakeupThread(&queue->mFullWaiters);
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return 1;
 }
 
@@ -201,11 +201,11 @@ BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
 BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
     u32 enabled;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     if (queue->mCapacity <= queue->mCount) {
         do {
             if ((flags & 1) == 0) {
-                IrqRestore(enabled);
+                OS_RestoreInterrupts(enabled);
                 return 0;
             }
             OS_SleepThread(&queue->mFullWaiters);
@@ -215,7 +215,7 @@ BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
     queue->mBuffer[queue->mHeadIndex] = message;
     queue->mCount = queue->mCount + 1;
     OS_WakeupThread(&queue->mEmptyWaiters);
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return 1;
 }
 
@@ -224,11 +224,11 @@ BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
 BOOL OS_ReadMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
     u32 enabled;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     if (queue->mCount == 0) {
         do {
             if ((flags & 1) == 0) {
-                IrqRestore(enabled);
+                OS_RestoreInterrupts(enabled);
                 return 0;
             }
             OS_SleepThread(&queue->mEmptyWaiters);
@@ -237,7 +237,7 @@ BOOL OS_ReadMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
     if (message != 0) {
         *message = queue->mBuffer[queue->mHeadIndex];
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return 1;
 }
 
@@ -270,9 +270,9 @@ u32 OS_GetConsoleType(void) {
     return gConsoleType;
 }
 
-// Repeats, each pass between IrqDisable and IrqRestore, until OS_UnlockCartridge has been called (it is when
-// OS_TryLockCartridge returns 0). The result has bit 24 set when two words at fixed addresses are 0x544e494e and
-// 0x4f444e45, else bit 25.
+// Repeats, each pass between OS_DisableInterrupts and OS_RestoreInterrupts, until OS_UnlockCartridge has been called
+// (it is when OS_TryLockCartridge returns 0). The result has bit 24 set when two words at fixed addresses are
+// 0x544e494e and 0x4f444e45, else bit 25.
 u32 ReadCartridgeMarkerBits(void) {
     u32 a;
     s32 d;
@@ -285,7 +285,7 @@ u32 ReadCartridgeMarkerBits(void) {
     a = 0;
     do {
         v = -1;
-        s = IrqDisable();
+        s = OS_DisableInterrupts();
         if ((OS_ReadOwnerOfLockWord((OSLockWord *) 0x27fffe8) & 0x40) != 0 || (v = OS_TryLockCartridge(h)) == 0) {
             if (*(u32 *) 0x8000000 == 0x544e494e && *(u32 *) 0x8000004 == 0x4f444e45) {
                 a = 0x1000000;
@@ -297,7 +297,7 @@ u32 ReadCartridgeMarkerBits(void) {
                 d = 1;
             }
         }
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
     } while (d == 0);
     return a;
 }

@@ -31,7 +31,7 @@ void CARD_CheckEnabled(void) {
     if (compareLeft0 != compareRight0) {
         return;
     }
-    IrqDisableLoopForever();
+    OS_Terminate();
 }
 
 void CARD_Enable(u32 arg0) {
@@ -47,11 +47,11 @@ int WaitForTransferEnd(void) {
     u32 s;
 
     p = (Unk021458c4 *) (u32) &gAccessState;
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     while (p->mUnk_114 & 4) {
         OS_SleepThread(&p->mUnk_10c);
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return p->mUnk_00->mUnk_00 == 0;
 }
 

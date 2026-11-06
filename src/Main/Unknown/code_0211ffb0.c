@@ -10,9 +10,9 @@ void *WiFiSessionHeapAlloc(u32 a, u32 b, s32 c) {
     u32 v;
     void *p;
 
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     p = HeapAllocAligned(gWiFiSession->mHeap, b, c);
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
     return p;
 }
 
@@ -22,7 +22,7 @@ void WiFiSessionHeapFree(u32 a, void *b) {
     if (b == NULL) {
         return;
     }
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     HeapFree(gWiFiSession->mHeap, b);
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
 }

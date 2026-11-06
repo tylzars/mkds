@@ -54,7 +54,7 @@ void func_ov003_021cf978(u32 a, u32 b) {
     *(Unk021cf5ac *) data_ov003_021da288 = z;
     data_ov003_021da288->mUnk_1b140 = data_ov003_021da288->mUnk_10040;
     if (func_02009ff4(data_ov003_021da288->mUnk_1b140, &x, a, b, 2) != 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     func_02009f38(0x100, 1);
     func_02007ea0(func_ov003_021cf378);
@@ -68,7 +68,7 @@ void func_ov003_021cf93c(Unk021cf8ac *a, u16 b) {
         return;
     }
     if (func_ov003_021cf8ac(a) == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
 }
 
@@ -109,14 +109,14 @@ void func_ov003_021cf844(u32 a) {
 
     if (func_02007d50(a, 1) == 0) {
         m = ~(1 << a);
-        t = IrqDisable();
+        t = OS_DisableInterrupts();
         data_ov003_021da288->mMask &= m;
         data_ov003_021da288->mUnk_04 &= m;
         data_ov003_021da288->mUnk_06 &= m;
         data_ov003_021da288->mUnk_08 &= m;
         data_ov003_021da288->mUnk_0a &= m;
         data_ov003_021da288->mUnk_0c &= m;
-        IrqRestore(t);
+        OS_RestoreInterrupts(t);
         func_02009ae8(a);
     }
 }
@@ -128,21 +128,21 @@ void func_ov003_021cf7b8(u32 a) {
 
     if (func_02007d50(a, 0) == 0) {
         m = ~(1 << a);
-        t = IrqDisable();
+        t = OS_DisableInterrupts();
         data_ov003_021da288->mMask &= m;
         data_ov003_021da288->mUnk_04 &= m;
         data_ov003_021da288->mUnk_06 &= m;
         data_ov003_021da288->mUnk_08 &= m;
         data_ov003_021da288->mUnk_0a &= m;
         data_ov003_021da288->mUnk_0c &= m;
-        IrqRestore(t);
+        OS_RestoreInterrupts(t);
         func_02009ae8(a);
     } else {
-        t = IrqDisable();
+        t = OS_DisableInterrupts();
         v1 = 1 << a;
         data_ov003_021da288->mUnk_04 &= ~v1;
         data_ov003_021da288->mMask &= ~v1;
-        IrqRestore(t);
+        OS_RestoreInterrupts(t);
     }
 }
 
@@ -153,21 +153,21 @@ void func_ov003_021cf72c(u32 a) {
 
     if (func_02007d50(a, 2) == 0) {
         m = ~(1 << a);
-        t = IrqDisable();
+        t = OS_DisableInterrupts();
         data_ov003_021da288->mMask &= m;
         data_ov003_021da288->mUnk_04 &= m;
         data_ov003_021da288->mUnk_06 &= m;
         data_ov003_021da288->mUnk_08 &= m;
         data_ov003_021da288->mUnk_0a &= m;
         data_ov003_021da288->mUnk_0c &= m;
-        IrqRestore(t);
+        OS_RestoreInterrupts(t);
         func_02009ae8(a);
     } else {
-        t = IrqDisable();
+        t = OS_DisableInterrupts();
         v1 = 1 << a;
         data_ov003_021da288->mUnk_06 &= ~v1;
         data_ov003_021da288->mUnk_08 |= v1;
-        IrqRestore(t);
+        OS_RestoreInterrupts(t);
     }
 }
 
@@ -184,14 +184,14 @@ void func_ov003_021cf69c(void) {
             if ((data_ov003_021da288->mUnk_04 & v1) == 0) {
                 if ((data_ov003_021da288->mUnk_06 & v1) == 0) {
                     m = ~v1;
-                    t = IrqDisable();
+                    t = OS_DisableInterrupts();
                     data_ov003_021da288->mMask &= m;
                     data_ov003_021da288->mUnk_04 &= m;
                     data_ov003_021da288->mUnk_06 &= m;
                     data_ov003_021da288->mUnk_08 &= m;
                     data_ov003_021da288->mUnk_0a &= m;
                     data_ov003_021da288->mUnk_0c &= m;
-                    IrqRestore(t);
+                    OS_RestoreInterrupts(t);
                     func_02009ae8(i);
                 } else {
                     func_ov003_021cf72c(i);
@@ -231,14 +231,14 @@ void func_ov003_021cf5ac(void) {
         if ((data_ov003_021da288->mUnk_0a & v1) != 0) {
             if (func_02007d50(i, 3) == 0) {
                 m = ~v1;
-                t = IrqDisable();
+                t = OS_DisableInterrupts();
                 data_ov003_021da288->mMask &= m;
                 data_ov003_021da288->mUnk_04 &= m;
                 data_ov003_021da288->mUnk_06 &= m;
                 data_ov003_021da288->mUnk_08 &= m;
                 data_ov003_021da288->mUnk_0a &= m;
                 data_ov003_021da288->mUnk_0c &= m;
-                IrqRestore(t);
+                OS_RestoreInterrupts(t);
                 func_02009ae8(i);
             } else {
                 r |= v1;
@@ -268,9 +268,9 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
         case 2:
             if (func_ov003_021cf360() == 2) {
                 s = data_ov003_021da288;
-                t = IrqDisable();
+                t = OS_DisableInterrupts();
                 s->mMask |= 1 << a;
-                IrqRestore(t);
+                OS_RestoreInterrupts(t);
                 p = data_ov003_021da288->mRecords[a - 1].mUnk_16;
                 p[0] = c->mUnk_0a[0];
                 p[1] = c->mUnk_0a[1];
@@ -284,14 +284,14 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
         case 3:
             if (func_ov003_021cf284(a) != 6) {
                 m = ~(1 << a);
-                t = IrqDisable();
+                t = OS_DisableInterrupts();
                 data_ov003_021da288->mMask &= m;
                 data_ov003_021da288->mUnk_04 &= m;
                 data_ov003_021da288->mUnk_06 &= m;
                 data_ov003_021da288->mUnk_08 &= m;
                 data_ov003_021da288->mUnk_0a &= m;
                 data_ov003_021da288->mUnk_0c &= m;
-                IrqRestore(t);
+                OS_RestoreInterrupts(t);
             }
             break;
         case 10:
@@ -356,7 +356,7 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
         case 11:
             break;
         default:
-            IrqDisableLoopForever();
+            OS_Terminate();
             break;
     }
 }
@@ -388,14 +388,14 @@ u32 func_ov003_021cf284(u32 a) {
     u16 b;
     u16 s[7];
 
-    t = IrqDisable();
+    t = OS_DisableInterrupts();
     b = 1 << a;
     if ((data_ov003_021da288->mMask & b) == 0) {
-        IrqRestore(t);
+        OS_RestoreInterrupts(t);
         return 0;
     }
     MemCopy(data_ov003_021da288, s, 0xe);
-    IrqRestore(t);
+    OS_RestoreInterrupts(t);
     if ((s[2] & b) != 0) {
         return 2;
     }

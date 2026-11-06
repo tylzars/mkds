@@ -9,7 +9,7 @@ void func_ov003_021d1d0c(Unk021d1d88 *c, void *d) {
     u32 b = Div32Remainder(c->mUnk_03 + 1, c->mUnk_00);
 
     if (b == c->mUnk_02) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     c->mUnk_04[c->mUnk_03] = d;
     c->mUnk_03 = b;

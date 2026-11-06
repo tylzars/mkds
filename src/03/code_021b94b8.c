@@ -71,10 +71,10 @@ s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
     if (alloc == NULL || release == NULL) {
         return -1;
     }
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     data_ov003_021d8a0c = alloc;
     data_ov003_021d8a18 = release;
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     buffer = data_ov003_021d8a0c(0x5890);
     data_ov003_021d8a14 = buffer;
     if (buffer == NULL) {
@@ -144,10 +144,10 @@ s32 func_ov003_021ba560(void) {
                 break;
         }
     } while (running != FALSE);
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     data_ov003_021d8a0c = NULL;
     data_ov003_021d8a18 = NULL;
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return result;
 }
 

@@ -16,12 +16,12 @@ typedef struct Unk0214ccd4 {
 
 extern Unk0214ccd4 data_02180308;
 
-// Does nothing unless the channel is 0. For channel 0 it calls IrqDisableLoopForever when the top byte of the
+// Does nothing unless the channel is 0. For channel 0 it calls OS_Terminate when the top byte of the
 // source address, or of the address at the other end of the range (source + length, source - length when the mode
 // word is 0x800000, the source itself for any other nonzero mode word), is 0x04 or at least 0x08.
 void CheckDma0SourceOrLoopForever(u32 a, const void *b, u32 c, u32 d);
 // Looks at the control word of each of channels 0-2 other than the given one. When one is enabled (bit 31) and its
-// start-timing bits (mask 0x38000000) differ from the wanted timing, it calls IrqDisableLoopForever for any nonzero
+// start-timing bits (mask 0x38000000) differ from the wanted timing, it calls OS_Terminate for any nonzero
 // timing; 0x08000000 and 0x10000000 count as the same timing.
 void CheckDmaTimingConflictOrLoopForever(u32 a, u32 b);
 // Disables interrupts, clears bits 9, 11, 12 and 13 and then bit 15 of the control halfword of the channel

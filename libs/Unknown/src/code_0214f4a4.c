@@ -19,13 +19,13 @@ PowerRegisterSlot gPowerRegisterSlots[4];
 int TryLockPowerCommand(void) {
     u32 v;
 
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     if (gPowerCommand.mLocked != 0) {
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 0;
     }
     gPowerCommand.mLocked = 1;
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
     return 1;
 }
 
@@ -336,10 +336,10 @@ void PM_GoSleepMode(u32 a, u32 b, u32 c) {
     CallbackListRun(gPowerPreSleepCallbacks);
     saved = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 0;
-    v0 = IrqDisable();
+    v0 = OS_DisableInterrupts();
     v1 = OS_DisableIrqMask(0x3fffff);
     OS_SetIrqMask(0x40000);
-    IrqRestore(v0);
+    OS_RestoreInterrupts(v0);
     tmp = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
     if ((a & 8) != 0) {
@@ -372,7 +372,7 @@ void PM_GoSleepMode(u32 a, u32 b, u32 c) {
     while (SendPowerSleepRequest(g, (u16) (b | c)) != 0) {
     }
     OS_Halt();
-    func_0200fd10(0x332340);
+    OS_SpinWait(0x332340);
     if ((a & 8) != 0) {
         if ((*(vu32 *) 0x4000214 & 0x100000) != 0) {
             d = 1;
@@ -387,9 +387,9 @@ void PM_GoSleepMode(u32 a, u32 b, u32 c) {
         *(vu32 *) 0x4000000 = k0;
         *(vu32 *) 0x4001000 = k1;
     }
-    IrqDisable();
+    OS_DisableInterrupts();
     OS_SetIrqMask(v1);
-    IrqRestore(v0);
+    OS_RestoreInterrupts(v0);
     tmp = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = saved;
     if (d != 0) {

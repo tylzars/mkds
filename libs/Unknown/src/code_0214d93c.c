@@ -42,13 +42,13 @@ void RTC_Init(void) {
 u32 RTC_GetDateAsync(u32 *a, UnkFunc *b, u32 c) {
     u32 s;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (gClockRequest.mLocked != 0) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return 1;
     }
     gClockRequest.mLocked = 1;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     gClockRequest.mKind = 0;
     gClockRequest.mWriteReplyPending = 0;
     gClockRequest.mOutput = a;
@@ -68,13 +68,13 @@ u32 RTC_GetDate(u32 *a) {
 u32 RTC_GetTimeAsync(u32 *a, UnkFunc *b, u32 c) {
     u32 s;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (gClockRequest.mLocked != 0) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return 1;
     }
     gClockRequest.mLocked = 1;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     gClockRequest.mKind = 1;
     gClockRequest.mWriteReplyPending = 0;
     gClockRequest.mOutput = a;

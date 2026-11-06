@@ -24,19 +24,19 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             data_02173278 = n;
         } while (data_02173278 == 0);
     }
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     if (data_02173284 != 0) {
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 5;
     }
     if (data_0217327c != 0) {
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 5;
     }
     switch (a) {
         case 4:
             if (TryLockVramBanks(4, data_02173278) == 0) {
-                IrqRestore(v);
+                OS_RestoreInterrupts(v);
                 return 6;
             }
             data_0217327c = 4;
@@ -44,7 +44,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             break;
         case 8:
             if (TryLockVramBanks(8, data_02173278) == 0) {
-                IrqRestore(v);
+                OS_RestoreInterrupts(v);
                 return 6;
             }
             data_0217327c = 8;
@@ -52,7 +52,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             break;
         case 12:
             if (TryLockVramBanks(12, data_02173278) == 0) {
-                IrqRestore(v);
+                OS_RestoreInterrupts(v);
                 return 6;
             }
             data_0217327c = 12;
@@ -60,7 +60,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             *(vu8 *) 0x4000243 = 0x8a;
             break;
         default:
-            IrqRestore(v);
+            OS_RestoreInterrupts(v);
             return 3;
     }
     if (PxiCallbackBitIsSet(0xf, 0) == 0) {
@@ -76,10 +76,10 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
         UnlockVramBanks(data_0217327c, data_02173278);
         data_0217327c = 0;
         data_02173284 = 0;
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 4;
     }
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
     return 1;
 }
 
@@ -90,9 +90,9 @@ s32 func_0201e6b8(UnkFunc *a, u32 b) {
     if (PxiCallbackBitIsSet(0xf, 1) == 0) {
         return 2;
     }
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     if (data_02173284 != 0) {
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 5;
     }
     if (PxiCallbackBitIsSet(0xf, 0) == 0) {
@@ -106,10 +106,10 @@ s32 func_0201e6b8(UnkFunc *a, u32 b) {
     data_02173280 = b;
     if (PxiSendFifoWord(0xf, 0x20000, 0) < 0) {
         data_02173284 = 0;
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 4;
     }
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
     return 1;
 }
 

@@ -111,11 +111,11 @@ extern u32 gVramBankLockedMask;
 // Id that locked bank k; 0 when the bank is not locked.
 extern u16 gVramBankLockIds[9];
 
-// Under IrqDisable: for each locked bank of mask m & 0x1ff whose stored id equals v, clears its lock bit and its id.
-// Other banks are left alone.
+// Under OS_DisableInterrupts: for each locked bank of mask m & 0x1ff whose stored id equals v, clears its lock bit and
+// its id. Other banks are left alone.
 void UnlockVramBanks(u32 m, u16 v);
-// Under IrqDisable: returns 0 and changes nothing when a bank of mask m is already locked with an id other than v.
-// Otherwise marks every bank of m & 0x1ff locked with id v and returns 1.
+// Under OS_DisableInterrupts: returns 0 and changes nothing when a bank of mask m is already locked with an id other
+// than v. Otherwise marks every bank of m & 0x1ff locked with id v and returns 1.
 u32 TryLockVramBanks(u32 m, u16 v);
 // Sets gVramBankLockedMask and the nine halfwords of gVramBankLockIds to 0. Called once by the start-up function.
 void InitVramLocks(void);

@@ -10,7 +10,7 @@ void func_ov003_021d28b0(void *buffer) {
     MemFill(buffer, 0, 0x40000);
     data_ov003_021da2c8 = ExpHeapCreate(buffer, 0x40000, 0);
     if (data_ov003_021da2c8 == NULL) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
 }
 
@@ -24,7 +24,7 @@ void *func_ov003_021d285c(u32 size, s32 alignment) {
     void *block = ExpHeapAlloc(data_ov003_021da2c8, size, alignment);
 
     if (block == NULL) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     OS_EnableIrqMask(interrupts);
     return block;

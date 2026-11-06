@@ -32,7 +32,7 @@ void func_ov003_021d1654(void) {
     data_ov003_021da2b0 = func_ov003_021d283c(0xe8, 4);
     FS_InitFile(&a);
     if (FS_OpenFile(&a, data_ov003_021d7be0) == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     data_ov003_021da2b0->mUnk_e4 = OS_GetLockID();
     e = a.mUnk_20.w.mUnk_04;
@@ -41,13 +41,13 @@ void func_ov003_021d1654(void) {
     FS_CloseFile(&a);
     FS_InitArchive(&data_ov003_021da2b0->mUnk_88);
     if (FS_RegisterArchiveName(&data_ov003_021da2b0->mUnk_88, data_ov003_021d67d8, 3) == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     FS_SetArchiveProc(&data_ov003_021da2b0->mUnk_88, func_ov003_021d15a4, 0x602);
     if (FS_LoadArchive(&data_ov003_021da2b0->mUnk_88, (u8 *) e, c[0], c[1], b[0], b[1],
                        (s32(*)(Unk02003a6c *, void *, u32, u32)) func_ov003_021d1574,
                        (s32(*)(Unk02003a6c *, void *, u32, u32)) func_ov003_021d1564) == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     f = FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, 0, 0);
     data_ov003_021da2b0->mUnk_00 = func_ov003_021d285c(f, 4);
@@ -106,7 +106,7 @@ void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
     func_ov003_021d1cd4(data_ov003_021da2b0->mUnk_84);
     FS_InitFile(&a);
     if (FS_OpenFile(&a, f) == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     c = a.mUnk_20.w.mUnk_08 - a.mUnk_20.w.mUnk_04;
     if (g != NULL) {

@@ -85,7 +85,7 @@ void ReceiveTouchPanelReply(u32 a, u32 b, u32 c) {
     }
     return;
 fail:
-    IrqDisableLoopForever();
+    OS_Terminate();
 }
 
 void TP_Init(void) {
@@ -145,7 +145,7 @@ void TP_SetCalibrateParam(Unk0214e334 *p) {
         gTouchPanelState.mCalibrated = 0;
         return;
     }
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     a = p->mUnk_04;
     if (a != 0) {
         *(vu16 *) 0x4000280 = 0;
@@ -180,17 +180,17 @@ void TP_SetCalibrateParam(Unk0214e334 *p) {
         gTouchPanelState.mCalibration.mUnk_10 = 0;
         gTouchPanelState.mCalibration.mUnk_14 = 0;
     }
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
     gTouchPanelState.mCalibrated = 1;
 }
 
 void TP_RequestSamplingAsync(void) {
-    u32 v = IrqDisable();
+    u32 v = OS_DisableInterrupts();
     s32 r = PxiSendFifoWord(6, 0x3000000, 0);
     u32 ok = r >= 0 ? 1 : 0;
 
     if (ok == 0) {
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         gTouchPanelState.mErrorFlags |= 1;
         if (gTouchPanelState.mCallback != 0) {
             gTouchPanelState.mCallback(0, 4, 0);
@@ -198,7 +198,7 @@ void TP_RequestSamplingAsync(void) {
     } else {
         gTouchPanelState.mBusyFlags |= 1;
         gTouchPanelState.mErrorFlags &= ~1;
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
     }
 }
 
@@ -224,7 +224,7 @@ void TP_RequestAutoSamplingStartAsync(u32 a, u32 b, TouchSample *p, u32 n) {
     for (i = 0; i < n; i++) {
         gTouchPanelState.mAutoSampleBuffer[i].mTouched = 0;
     }
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (PxiSendFifoWord(6, (b & 0xff) | 0x2000100, 0) < 0) {
         ok = 0;
     } else {
@@ -235,7 +235,7 @@ void TP_RequestAutoSamplingStartAsync(u32 a, u32 b, TouchSample *p, u32 n) {
         }
     }
     if ((ok & 0xff) == 0) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         gTouchPanelState.mErrorFlags |= 2;
         f = gTouchPanelState.mCallback;
         if (f != 0) {
@@ -244,7 +244,7 @@ void TP_RequestAutoSamplingStartAsync(u32 a, u32 b, TouchSample *p, u32 n) {
     } else {
         gTouchPanelState.mBusyFlags |= 2;
         gTouchPanelState.mErrorFlags &= ~2;
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
     }
 }
 
@@ -253,10 +253,10 @@ void TP_RequestAutoSamplingStopAsync(void) {
     s32 ok;
     void (*f)(u32, u8, u8);
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     ok = PxiSendFifoWord(6, 0x3000200, 0) >= 0;
     if ((ok & 0xff) == 0) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         gTouchPanelState.mErrorFlags |= 4;
         f = gTouchPanelState.mCallback;
         if (f != 0) {
@@ -265,7 +265,7 @@ void TP_RequestAutoSamplingStopAsync(void) {
     } else {
         gTouchPanelState.mBusyFlags |= 4;
         gTouchPanelState.mErrorFlags &= ~4;
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
     }
 }
 
@@ -290,7 +290,7 @@ u32 TP_CalcCalibrateParam(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u
     if (c == g || d == h || a == e || b == f) {
         return 1;
     }
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     reg_CP_DIVCNT = 0;
     *(vu32 *) 0x04000290 = (a - e) << 8;
     reg_CP_DIV_DENOM = (u32) (c - g);
@@ -303,20 +303,20 @@ u32 TP_CalcCalibrateParam(Unk0214e334 *out, u16 a, u16 b, u16 c, u16 d, u16 e, u
     *(vu32 *) 0x04000290 = z << 8;
     reg_CP_DIV_DENOM = (u32) w;
     if (q >= 0x8000 || q < -0x8000) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return 1;
     }
     out->mUnk_04 = q;
     q = (s16) ((((a + e) << 8) - out->mUnk_04 * (c + g)) >> 7);
     if (q >= 0x8000 || q < -0x8000) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return 1;
     }
     out->mUnk_00 = q;
     while (reg_CP_DIVCNT & 0x8000) {
     }
     q = *(vs32 *) 0x040002a0;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     if (q >= 0x8000 || q < -0x8000) {
         return 1;
     }

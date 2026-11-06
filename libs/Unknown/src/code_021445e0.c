@@ -315,7 +315,7 @@ void ReceiveParentPortMessage(Unk02144920 *a) {
             case 9:
                 t = a->mUnk_12;
                 d = 1;
-                s = IrqDisable();
+                s = OS_DisableInterrupts();
                 n = p->mUnk_808;
                 m = ~(d << t);
                 p->mUnk_000[n].mUnk_00 &= m;
@@ -323,7 +323,7 @@ void ReceiveParentPortMessage(Unk02144920 *a) {
                     k = (n + 1) & 3;
                     p->mUnk_000[k].mUnk_00 &= m;
                 }
-                IrqRestore(s);
+                OS_RestoreInterrupts(s);
                 SendBlockIfComplete(p, 0);
                 if (p->mUnk_818 == 1) {
                     SendBlockIfComplete(p, 0);
@@ -414,10 +414,10 @@ void SetMemberData(Unk021450ec *p, u32 bit, const void *src) {
         z = 0;
         MemFillHalfwords(z, dst, p->mMemberDataSize);
     }
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     p->mUnk_000[n].mUnk_00 &= ~m;
     p->mUnk_000[n].mArrivedMembers |= m;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 // When the block at mUnk_808 starts with 0: advances mUnk_808, clears the block two ahead (one ahead when mUnk_818
@@ -433,7 +433,7 @@ void SendBlockIfComplete(Unk021450ec *p, u32 f) {
     volatile u16 z;
 
     q = GetWorkBuffer()->mStatusArea;
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (p->mUnk_000[p->mUnk_808].mUnk_00 == 0) {
         DC_InvalidateRange(&q->mUnk_086, 2);
         i = p->mUnk_808;
@@ -452,7 +452,7 @@ void SendBlockIfComplete(Unk021450ec *p, u32 f) {
         if (f == 1) {
             p->mUnk_000[i].mUnk_00 &= ~1;
         }
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         r = WM_SetMPDataToPortEx((UnkFunc *) ReceiveBlockSendResult, p, &p->mUnk_000[i], p->mUnk_814,
                                  p->mMemberMask & w, p->mPort, 1);
         if (r == 7) {
@@ -464,7 +464,7 @@ void SendBlockIfComplete(Unk021450ec *p, u32 f) {
             }
         }
     } else {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
     }
 }
 

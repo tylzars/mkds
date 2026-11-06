@@ -27,7 +27,7 @@ void func_ov003_021c2840(u32 a) {
     b.mUnk_18 = func_ov003_021c20d0() + 0x31;
     func_ov003_021d1358((Unk021da2ac *) data_ov003_021da194, (Unk021d1358 *) &b);
     if (func_ov003_021d11d4() == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     data_ov003_021da194->mUnk_1e29c = func_ov003_021d3544(0, func_ov003_021c25e0, NULL, 0x78);
 }

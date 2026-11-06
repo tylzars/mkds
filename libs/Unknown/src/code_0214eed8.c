@@ -62,13 +62,13 @@ u32 MIC_StartAutoSamplingAsync(Unk0214f2a8 *p, void (*fn)(), u32 arg) {
             return 2;
     }
     g = p->mUnk_10 != 0 ? (f | 0x10) & 0xff : f & 0xff;
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     if (gMicrophoneCommand.mUnk_00 != 0) {
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 1;
     }
     gMicrophoneCommand.mUnk_00 = 1;
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
     gMicrophoneCommand.mUnk_04 = fn;
     gMicrophoneCommand.mUnk_08 = arg;
     gMicrophoneCommand.mUnk_10 = p->mUnk_14;
@@ -85,14 +85,14 @@ u32 MIC_StartAutoSampling(Unk0214f2a8 *p) {
 }
 
 u32 MIC_StopAutoSamplingAsync(void (*fn)(), u32 arg) {
-    u32 v = IrqDisable();
+    u32 v = OS_DisableInterrupts();
 
     if (gMicrophoneCommand.mUnk_00 != 0) {
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 1;
     }
     gMicrophoneCommand.mUnk_00 = 1;
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
     gMicrophoneCommand.mUnk_04 = fn;
     gMicrophoneCommand.mUnk_08 = arg;
     return TrySendMicrophoneStopCommand() != 0 ? 0 : 3;

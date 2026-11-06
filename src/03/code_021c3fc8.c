@@ -53,7 +53,7 @@ void func_ov003_021c4084(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
-        func_0200fd10((u32) (((u32) 0x01000000u)));
+        OS_SpinWait((u32) (((u32) 0x01000000u)));
         PM_ForceToPowerOff();
     }
 }

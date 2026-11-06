@@ -1193,7 +1193,7 @@ void func_ov000_021a9ca8(u8 *a, s32 n) {
     while (j < n) {
         if (i == 0x14) {
             func_ov000_021abd2c((Unk021abca0 *) d);
-            g = IrqDisable();
+            g = OS_DisableInterrupts();
             func_ov000_021abca0(d, data_ov000_021b6184, 0x14);
             func_ov000_021abc24((Unk021abca0 *) d, b);
             h = 1;
@@ -1208,7 +1208,7 @@ void func_ov000_021a9ca8(u8 *a, s32 n) {
                 f--;
             }
             c = q;
-            IrqRestore(g);
+            OS_RestoreInterrupts(g);
             i = 0;
         }
         if (b[i] != 0) {
@@ -1223,11 +1223,11 @@ void func_ov000_021a9c5c(void *a, u32 n) {
     u8 b[0x60];
     u32 c;
     func_ov000_021abd2c((Unk021abca0 *) b);
-    c = IrqDisable();
+    c = OS_DisableInterrupts();
     func_ov000_021abca0(b, data_ov000_021b6184, 0x14);
     func_ov000_021abca0(b, a, n);
     func_ov000_021abc4c((Unk021abca0 *) b, data_ov000_021b6184);
-    IrqRestore(c);
+    OS_RestoreInterrupts(c);
     data_ov000_021b617c = 1;
 }
 

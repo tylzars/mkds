@@ -114,14 +114,14 @@ void OS_SetAlarm(OSAlarm *alarm, u64 tick, OSAlarmHandler handler, void *arg) {
     u32 enabled;
 
     if (alarm == 0 || alarm->mHandler != 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     alarm->mPeriod = 0;
     alarm->mHandler = handler;
     alarm->mArg = arg;
     OSi_InsertAlarm(alarm, tick + OS_GetTick());
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Unlinks an armed alarm from gAlarmList and clears OSAlarm.mHandler and OSAlarm.mPeriod.
@@ -129,9 +129,9 @@ void OS_CancelAlarm(OSAlarm *alarm) {
     u32 enabled;
     OSAlarm *next;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     if (alarm->mHandler == 0) {
-        IrqRestore(enabled);
+        OS_RestoreInterrupts(enabled);
         return;
     }
     next = alarm->mNext;
@@ -150,7 +150,7 @@ void OS_CancelAlarm(OSAlarm *alarm) {
     }
     alarm->mHandler = 0;
     alarm->mPeriod = 0;
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Timer 1 interrupt body: runs the first alarm when it is due and starts the timer for the next one.

@@ -30,7 +30,7 @@ void func_0212f638(s32 a) {
     if (data_0216eaa4.mUnk_00 == 1) {
         func_02020844(0);
     }
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     z = 0;
     MemFillHalfwords(z, &data_0216eaa4.mUnk_18, 0xc0);
     data_0216eaa4.mUnk_00 = a;
@@ -51,7 +51,7 @@ void func_0212f638(s32 a) {
             data_0216eaa4.mUnk_04 = func_0212f59c;
             break;
     }
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
     if (a == 1) {
         func_02020844(0x3000);
     }

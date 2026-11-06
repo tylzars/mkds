@@ -118,7 +118,7 @@ void func_ov003_021cbaa0(void) {
         b.mUnk_0a = c->mUnk_f4 + 1;
     }
     if (func_ov000_02188868(&b) == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     if (a == 0) {
         func_ov000_021886fc(c->mUnk_f4, c);

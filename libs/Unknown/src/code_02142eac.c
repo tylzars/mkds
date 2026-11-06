@@ -580,14 +580,14 @@ s32 WM_SetIndCallback(Unk021425e8Func a) {
     u32 s;
     s32 r;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     r = GetErrorUnlessInitialized();
     if (r != 0) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return r;
     }
     GetWorkBuffer()->mIndicationCallback = a;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return 0;
 }
 
@@ -596,16 +596,16 @@ s32 WM_SetPortCallback(u32 n, UnkFunc *f, Unk021450ec *arg) {
     s32 r;
     Unk02142aa8 *p;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     r = GetErrorUnlessInitialized();
     if (r != 0) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return r;
     }
     p = GetWorkBuffer();
     p->mPortCallbacks[n] = f;
     p->mPortCallbackArgs[n] = arg;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return 0;
 }
 

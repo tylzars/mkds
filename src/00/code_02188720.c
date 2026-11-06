@@ -279,10 +279,10 @@ s32 func_ov000_021887cc(void) {
     if (a == 1) {
         a = func_ov000_02189f00();
     } else if (a < 7) {
-        b = IrqDisable();
+        b = OS_DisableInterrupts();
         a = ((u8(*)(void)) func_ov000_02189e80)();
         func_ov000_02188534(a);
-        IrqRestore(b);
+        OS_RestoreInterrupts(b);
     } else if (a < 9) {
         a = ((u8(*)(void)) func_ov000_0218922c)();
     } else if (a < 10) {

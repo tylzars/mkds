@@ -678,7 +678,7 @@ void GX_Init(void) {
     while (*(vu16 *) &gVramLockId == 0) {
         r = OS_GetLockID();
         if (r == -3) {
-            IrqDisableLoopForever();
+            OS_Terminate();
         }
         *(vu16 *) &gVramLockId = r;
     }

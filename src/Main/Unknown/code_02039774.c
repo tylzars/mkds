@@ -70,7 +70,7 @@ void func_02039b24(void) {
 
 void func_02039abc(u32 a, s32 b) {
     if (b != 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     data_02175614.mUnk_00 = a;
     if (data_02175614.mUnk_04 == NULL) {
@@ -93,7 +93,7 @@ void func_02039a1c(void) {
         MemFillWordsByBlock_inline((void *) 0x6860000, 0x20000);
         GX_DisableBankForLCDC();
         if (func_0201e7a8(8, func_02039abc, 0) != 1) {
-            IrqDisableLoopForever();
+            OS_Terminate();
         }
     }
     while (func_020399a8_inline() != 0) {
@@ -104,7 +104,7 @@ void func_020399a8(void) {
     if (data_02175614.mUnk_00 != 1 && data_02175614.mUnk_00 != 3) {
         data_02175614.mUnk_00 = 2;
         if (func_0201e6b8(func_02039abc, 1) != 1) {
-            IrqDisableLoopForever();
+            OS_Terminate();
         }
     }
     while (func_020399a8_inline() != 0) {

@@ -95,7 +95,7 @@ void ReceiveCartridgeHeaderReply(u32 a, u32 b) {
     if ((b & 0x3f) == 1) {
         gCartridgeState.mReplyReceived = 1;
     } else {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
 }
 
@@ -112,13 +112,13 @@ void ReceiveCartridgeRemovalMessage(u32 a, u32 b) {
             return;
         }
     } else {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
 }
 
 void CTRDG_TerminateForPulledOut(void) {
     SendTag13WordUntilAccepted(2);
-    IrqDisableLoopForever();
+    OS_Terminate();
 }
 
 void InitCartridgeState(void) {
@@ -177,7 +177,7 @@ void RestoreExMemControlBits(Unk0200c4a4 *p) {
 
 void LockCartridgeAndDisableIrq(u16 lockID, Unk0200c4a4 *p) {
     for (;;) {
-        p->mUnk_04 = IrqDisable();
+        p->mUnk_04 = OS_DisableInterrupts();
         p->mUnk_00 = OS_ReadOwnerOfLockWord((OSLockWord *) 0x027fffe8) & 0x40;
         if (p->mUnk_00 != 0) {
             break;
@@ -185,7 +185,7 @@ void LockCartridgeAndDisableIrq(u16 lockID, Unk0200c4a4 *p) {
         if (OS_TryLockCartridge(lockID) == 0) {
             break;
         }
-        IrqRestore(p->mUnk_04);
+        OS_RestoreInterrupts(p->mUnk_04);
         WaitByLoop(1);
     }
 }
@@ -194,5 +194,5 @@ void UnlockCartridgeAndRestoreIrq(u16 lockID, Unk0200c4a4 *p) {
     if (p->mUnk_00 == 0) {
         OS_UnLockCartridge(lockID);
     }
-    IrqRestore(p->mUnk_04);
+    OS_RestoreInterrupts(p->mUnk_04);
 }

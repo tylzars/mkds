@@ -78,11 +78,11 @@ extern Unk02146154 gRomReadState;
 // Starts the worker thread (stack of 0x400 bytes at +0x220, priority 4, entry WorkerTaskLoop), installs
 // ReceiveRequestReply as the tag 11 callback and, unless that halfword is 2, calls CARD_Enable(1).
 void InitBackupAndRomAccess(void);
-// With interrupts off: calls IrqDisableLoopForever unless the id is the owner and the lock count is not 0, and when
+// With interrupts off: calls OS_Terminate unless the id is the owner and the lock count is not 0, and when
 // the target differs from the argument. Subtracts 1 from the count; at 0 sets the owner to -3, clears the target and
 // makes the threads waiting on the queue at +0x10 runnable. Sets the first word of the request block to 0.
 void UnlockAccessTarget(u32 a, u32 b);
-// With interrupts off: when the owner is the id the target must equal the argument (else IrqDisableLoopForever); when
+// With interrupts off: when the owner is the id the target must equal the argument (else OS_Terminate); when
 // another id owns the lock, waits on the queue at +0x10 until the owner is -3, then stores the id as owner and the
 // target. Adds 1 to the lock count and sets the first word of the request block to 0.
 void LockAccessTarget(u32 a, u32 b);
@@ -98,7 +98,7 @@ int CARD_TryWaitBackupAsync(void);
 // Calls WaitForTransferEnd. Called by the save-data code after its backup requests. Has the same body as
 // CARD_WaitRomAsync, so only the callers tell the two apart.
 int CARD_WaitBackupAsync(void);
-// Takes the device type; calls IrqDisableLoopForever when it is 0. Waits until no transfer is running and marks one
+// Takes the device type; calls OS_Terminate when it is 0. Waits until no transfer is running and marks one
 // running, calls SetupBackupSpec with the type, sends request 2, then request 6 with one try for 1 byte at offset 0
 // into the buffer at +0x120, ends the transfer (clears flag values 0x4, 0x8 and 0x40, wakes the waiting threads,
 // wakes the worker when value 0x10 is set, calls the callback when set) and returns 1 when the first word of the

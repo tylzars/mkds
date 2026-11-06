@@ -439,13 +439,13 @@ void *func_02052fa4(u32 a, u32 b, void *c) {
     void *r;
 
     r = NULL;
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     if (c != NULL) {
         HeapFree(data_0217aa00->mHeap, c);
     } else {
         r = HeapAllocAligned(data_0217aa00->mHeap, b, -0x20);
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return r;
 }
 

@@ -79,15 +79,15 @@ PxiCommand *PxiCommandReclaim(u32 a) {
     PxiCommand *q;
     s32 i;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if ((a & 1) != 0) {
         while (data_021732cc == func_02021834()) {
-            IrqRestore(s);
-            func_0200fd10(0x64);
-            s = IrqDisable();
+            OS_RestoreInterrupts(s);
+            OS_SpinWait(0x64);
+            s = OS_DisableInterrupts();
         }
     } else if (data_021732cc == func_02021834()) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return 0;
     }
     i = data_021732dc;
@@ -108,7 +108,7 @@ PxiCommand *PxiCommandReclaim(u32 a) {
     data_021732d8 = q;
     data_021732e4--;
     data_021732cc++;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return p;
 }
 
@@ -147,7 +147,7 @@ void PxiCommandPendingAppend(PxiCommand *p) {
     u32 s;
     PxiCommand *t;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     t = data_021732d4;
     if (t == 0) {
         data_021732d4 = p;
@@ -157,20 +157,20 @@ void PxiCommandPendingAppend(PxiCommand *p) {
         data_021732d4 = p;
     }
     p->mNext = 0;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 u32 PxiCommandSendPending(u32 a) {
     u32 s;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (data_021732d0 == 0) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return 1;
     }
     if (data_021732e4 >= 8) {
         if ((a & 1) == 0) {
-            IrqRestore(s);
+            OS_RestoreInterrupts(s);
             return 0;
         }
         do {
@@ -180,14 +180,14 @@ u32 PxiCommandSendPending(u32 a) {
     DC_FlushRange(data_021735a0, 0x1800);
     if (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0) {
         if ((a & 1) == 0) {
-            IrqRestore(s);
+            OS_RestoreInterrupts(s);
             return 0;
         }
         if (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0) {
             do {
-                IrqRestore(s);
-                func_0200fd10(0x64);
-                s = IrqDisable();
+                OS_RestoreInterrupts(s);
+                OS_SpinWait(0x64);
+                s = OS_DisableInterrupts();
             } while (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0);
         }
     }
@@ -203,7 +203,7 @@ u32 PxiCommandSendPending(u32 a) {
     data_021732d4 = 0;
     data_021732e4++;
     data_021732e8++;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return 1;
 }
 
@@ -229,13 +229,13 @@ u32 SND_GetCurrentCommandTag(void) {
     u32 s;
     u32 v;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (data_021732d0 == 0) {
         v = data_021732cc;
     } else {
         v = data_021732e8;
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return v;
 }
 
@@ -244,7 +244,7 @@ u32 PxiCommandSequenceReached(u32 a) {
     u32 c;
     u32 r;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     c = data_021732cc;
     if (a > c) {
         if ((a - c) < 0x80000000u) {
@@ -259,7 +259,7 @@ u32 PxiCommandSequenceReached(u32 a) {
             r = 0;
         }
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return r;
 }
 
@@ -268,12 +268,12 @@ s32 SND_CountFreeCommand(void) {
     PxiCommand *p;
     s32 n;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     n = 0;
     for (p = data_021732c8; p != 0; p = p->mNext) {
         n++;
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return n;
 }
 
@@ -282,12 +282,12 @@ s32 SND_CountReservedCommand(void) {
     PxiCommand *p;
     s32 n;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     n = 0;
     for (p = data_021732d0; p != 0; p = p->mNext) {
         n++;
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return n;
 }
 
@@ -301,9 +301,9 @@ s32 SND_CountWaitingCommand(void) {
 void func_02020ff0(u32 a, u32 b) {
     u32 s;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     PxiCommandCallbackRun(b);
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 void func_02020f84(void) {
@@ -315,7 +315,7 @@ void func_02020f84(void) {
         return;
     }
     do {
-        func_0200fd10(0x64);
+        OS_SpinWait(0x64);
     } while (PxiCallbackBitIsSet(7, 1) == 0);
 }
 
@@ -329,10 +329,10 @@ PxiCommand *PxiCommandPoolRemoveHead(void) {
     PxiCommand *p;
     PxiCommand *n;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     p = data_021732c8;
     if (p == 0) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return 0;
     }
     n = p->mNext;
@@ -340,7 +340,7 @@ PxiCommand *PxiCommandPoolRemoveHead(void) {
     if (n == 0) {
         data_021732d8 = 0;
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return p;
 }
 
@@ -351,9 +351,9 @@ u32 func_02020eb0(void) {
     if (OS_IsRunOnEmulator() == 0) {
         return 1;
     }
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     *(vu32 *) 0x04fff200 = 0x10;
     v = *(vu32 *) 0x04fff200;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return v != 0;
 }

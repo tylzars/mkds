@@ -27,11 +27,11 @@
 void func_0200ae60(Unk0200adfc *a, u32 b, u32 c, u8 *d, u32 e) {
     u32 v1;
     Unk0200adfc_30 *v2;
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     v2 = a->mUnk_30;
     for (;;) {
         if (v2 >= a->mUnk_30 + 4) {
-            IrqDisableLoopForever();
+            OS_Terminate();
         }
         if (v2->mUnk_0c == 0) {
             v2->mUnk_00 = b;
@@ -42,7 +42,7 @@ void func_0200ae60(Unk0200adfc *a, u32 b, u32 c, u8 *d, u32 e) {
         }
         v2++;
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
 }
 
 u32 func_0200adfc(Unk0200adfc *a, u32 b, void *c, u32 d) {
@@ -51,7 +51,7 @@ u32 func_0200adfc(Unk0200adfc *a, u32 b, void *c, u32 d) {
     Unk0200adfc_30 *v3;
     s32 v4;
     v2 = 0;
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     for (v3 = a->mUnk_30; v3 < a->mUnk_30 + 4; v3++) {
         if (v3->mUnk_0c >= 2) {
             v4 = b - v3->mUnk_00;
@@ -63,7 +63,7 @@ u32 func_0200adfc(Unk0200adfc *a, u32 b, void *c, u32 d) {
             }
         }
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return v2;
 }
 
@@ -238,7 +238,7 @@ void func_0200a7b0(Unk021425e8 *a) {
                     }
                 }
                 if (n == 1) {
-                    func_0200fd10(0x32c8);
+                    OS_SpinWait(0x32c8);
                 }
             }
             data_0216fda8->mUnk_50c = 0;
@@ -298,7 +298,7 @@ void func_0200a7b0(Unk021425e8 *a) {
                     data_0216fda8->mUnk_51c(0x21, a);
                     return;
                 case 0x16:
-                    IrqDisableLoopForever();
+                    OS_Terminate();
                     break;
                 case 0x17:
                     break;
@@ -523,7 +523,7 @@ void func_0200a1bc(Unk021425e8 *a) {
         case 0x80:
             switch (a->mUnk_04) {
                 case 0x16:
-                    IrqDisableLoopForever();
+                    OS_Terminate();
                     break;
                 case 0x17:
                     break;
@@ -564,7 +564,7 @@ s32 func_02009ff4(void *a, Unk02009ff4 *b, u32 c, u32 d, u32 e) {
     if (d == 0x10000) {
         d = WM_GetNextTgid();
     }
-    v3 = IrqDisable();
+    v3 = OS_DisableInterrupts();
     data_usa_0216fd80 = e;
     data_0216fda8 = v1;
     data_0216fdac = v2;
@@ -607,7 +607,7 @@ s32 func_02009ff4(void *a, Unk02009ff4 *b, u32 c, u32 d, u32 e) {
     v1->mUnk_50d = 0;
     v2->mUnk_1316 = 1;
     v2->mUnk_131c = 0;
-    IrqRestore(v3);
+    OS_RestoreInterrupts(v3);
     return 0;
 }
 
@@ -628,19 +628,19 @@ u32 func_02009fac(u32 a, u32 b, u32 c) {
 
 u32 func_02009f38(u32 a, u32 b) {
     u32 v;
-    v = IrqDisable();
+    v = OS_DisableInterrupts();
     if (data_0216fda8->mUnk_50d != 0) {
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 0;
     }
     if (func_02009fac(a, 8, b) == 0) {
-        IrqRestore(v);
+        OS_RestoreInterrupts(v);
         return 0;
     }
     data_0216fda8->mUnk_010 = b;
     data_0216fda8->mUnk_500 = a;
     data_0216fda8->mUnk_502 = 8;
-    IrqRestore(v);
+    OS_RestoreInterrupts(v);
     return 1;
 }
 
@@ -675,7 +675,7 @@ s32 func_02009ce4(u16 a) {
     s32 i;
     Unk0216fdac *v5;
     Unk0216fda8 *v6;
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     data_0216fda8->mUnk_032 = a;
     v5 = data_0216fdac;
     data_usa_0216fd84 = (void *) (((u32) v5 + 0x7d1f) & ~0x1f);
@@ -705,7 +705,7 @@ s32 func_02009ce4(u16 a) {
     v6->mUnk_51a = (((v6->mUnk_036 + 0xe) * 0xf + 0x29) & ~0x1f) << 1;
     func_020096d4();
     v4 = func_02009e70();
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     data_0216fdac->mUnk_74c8 = PxiCallbackBitIsSet(0xf, 1);
     return v4;
 }
@@ -747,7 +747,7 @@ u32 func_02009c34(void) {
     u32 v1;
     u32 v2;
     v1 = 1;
-    v2 = IrqDisable();
+    v2 = OS_DisableInterrupts();
     if (data_0216fda8->mUnk_526 == 0) {
         v1 = 0;
         // the address of mUnk_5e4 is computed with a 64-bit add; its low half is the same address, and the leftover
@@ -760,7 +760,7 @@ u32 func_02009c34(void) {
             v1 = func_02009c98();
         }
     }
-    IrqRestore(v2);
+    OS_RestoreInterrupts(v2);
     return v1;
 }
 
@@ -770,12 +770,12 @@ u32 func_02009c34(void) {
 
 void func_02009c04(void) {
     u32 v1;
-    v1 = ((s64) IrqDisable());
+    v1 = ((s64) OS_DisableInterrupts());
     if (data_0216fdac->mUnk_1320 == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     func_02009c34();
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
 }
 
 #pragma thumb off

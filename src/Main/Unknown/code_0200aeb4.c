@@ -43,7 +43,7 @@ void func_0200b08c(void *param_1) {
     a = param_1;
     v6 = 0;
     for (;;) {
-        v2 = IrqDisable();
+        v2 = OS_DisableInterrupts();
         while (a->mUnk_c0 == NULL) {
             OS_SetThreadPriority(&a->mUnk_00, v6);
             OS_SleepThread(NULL);
@@ -51,11 +51,11 @@ void func_0200b08c(void *param_1) {
         v1 = a->mUnk_c0;
         a->mUnk_c0 = a->mUnk_c0->mUnk_00;
         OS_SetThreadPriority(&a->mUnk_00, v1->mUnk_04_1);
-        IrqRestore(v2);
+        OS_RestoreInterrupts(v2);
         if (v1->mUnk_08 != NULL) {
             ((void (*)(Unk0200aeec *)) v1->mUnk_08)(v1);
         }
-        v3 = IrqDisable();
+        v3 = OS_DisableInterrupts();
         v4 = (void (*)(Unk0200aeec *)) v1->mUnk_0c;
         v5 = OS_GetThreadPriority(&a->mUnk_00);
         if (a->mUnk_c0 == NULL) {
@@ -76,7 +76,7 @@ void func_0200b08c(void *param_1) {
         if (v1 == &a->mUnk_c4) {
             break;
         }
-        IrqRestore(v3);
+        OS_RestoreInterrupts(v3);
     }
     OS_ExitThread();
 }
@@ -84,7 +84,7 @@ void func_0200b08c(void *param_1) {
 void func_0200b02c(Unk0200aeec_head *a, u32 b) {
     u32 v1;
     u32 v2;
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     if (data_0216fde0 == NULL) {
         data_0216fde0 = a;
         func_0200b00c(&a->mUnk_c4);
@@ -93,7 +93,7 @@ void func_0200b02c(Unk0200aeec_head *a, u32 b) {
         OS_CreateThread(&a->mUnk_00, func_0200b08c, a, (u8 *) a + 0xe4 + v2, v2, 0);
         OS_WakeupThreadDirect(&a->mUnk_00);
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
 }
 
 #pragma thumb off
@@ -138,10 +138,10 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
     Unk0200aeec *v5;
     v1 = data_0216fde0;
     if (func_0200b018() == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     if (a->mUnk_04_0 != 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     if (d > 31) {
         v2 = OS_GetThreadPriority(&v1->mUnk_00);
@@ -163,7 +163,7 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
             d = 31;
         }
     }
-    v3 = IrqDisable();
+    v3 = OS_DisableInterrupts();
     a->mUnk_04_0 = 1;
     a->mUnk_04_1 = d;
     a->mUnk_08 = b;
@@ -195,7 +195,7 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
             v4->mUnk_00 = a;
         }
     }
-    IrqRestore(v3);
+    OS_RestoreInterrupts(v3);
 }
 
 #pragma thumb off
@@ -205,12 +205,12 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
 void func_0200aeb4(void *a) {
     u32 v1;
     int v2;
-    v1 = ((s64) IrqDisable());
+    v1 = ((s64) OS_DisableInterrupts());
     v2 = func_0200b018();
     if (v2 != 0) {
         func_0200aeec(&data_0216fde0->mUnk_c4, NULL, a, 0);
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
 }
 
 #pragma thumb off

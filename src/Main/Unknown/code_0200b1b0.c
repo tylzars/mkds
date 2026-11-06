@@ -11,14 +11,14 @@ u32 func_0200b1b0(u32 a, struct Unk0217aa00_24 *b) {
     if (16 <= a) {
         return 0;
     }
-    v1 = ((s64) IrqDisable());
+    v1 = ((s64) OS_DisableInterrupts());
     v2 = func_02008934(a);
     if (v2 == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 0;
     }
     MemCopy(v2->mUnk_4c0, ((u32 *) (u32) b), (u32) 0xc0);
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return 1;
 }
 

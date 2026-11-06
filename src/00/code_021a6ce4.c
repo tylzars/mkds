@@ -11,12 +11,12 @@ u32 func_ov000_021a6ce4(void) {
     Unk021b5f50 *b;
     u32 c;
 
-    a = IrqDisable();
+    a = OS_DisableInterrupts();
     b = func_ov000_021a5b30();
     c = 0;
     if (b != NULL && b->mUnk_2260 == 9) {
         c = func_ov000_021a6c68();
     }
-    IrqRestore(a);
+    OS_RestoreInterrupts(a);
     return c;
 }

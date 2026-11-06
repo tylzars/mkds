@@ -16,19 +16,19 @@ u32 func_02008310(void *a, Unk02008188 *b) {
     Unk020082b4 *v5;
     u8 i;
     v2 = 0xff;
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     if (func_02009958() == 0) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 0;
     }
     v4 = data_0216fdac;
     if (v4->mUnk_1524 + 1 > 0x10) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 0;
     }
     for (i = 0; i < 0x10; i++) {
         if (((Unk0216fdac *) ((u8 *) v4 + i * 0x5d4))->mUnk_1d40 == a) {
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 0;
         }
         if (((Unk0216fdac *) ((u8 *) v4 + i * 0x5d4))->mUnk_1d52 == 0) {
@@ -37,7 +37,7 @@ u32 func_02008310(void *a, Unk02008188 *b) {
         }
     }
     if (i == 0x10) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 0;
     }
     v3 = v2 * 0x5d4;
@@ -46,7 +46,7 @@ u32 func_02008310(void *a, Unk02008188 *b) {
     func_020082b4(v5, b);
     MemCopy((u8 *) a + 0x1c, v5->mUnk_c4, 0x20);
     if (func_020080e8((Unk0200806c_b *) (data_0216fdac->mUnk_1d2c + v3), v5) == 0) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 0;
     }
     func_02009828((Unk0200b610 *) (data_0216fdac->mUnk_1788 + 0xe4 + v3), a, (const u8 *) &data_0216fdac->mUnk_1300);
@@ -65,7 +65,7 @@ u32 func_02008310(void *a, Unk02008188 *b) {
     }
     ((Unk0216fdac *) ((u8 *) data_0216fdac + v3))->mUnk_1d52 = 1;
     data_0216fdac->mUnk_1524++;
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return 1;
 }
 
@@ -104,7 +104,7 @@ void func_02008188(Unk02008188 *a, u32 *b, Unk020082b4_0c *c, u32 *d) {
                 c->mUnk_0c &= ~1;
                 return;
             }
-            IrqDisableLoopForever();
+            OS_Terminate();
             return;
         case 1:
             v1 = 0;
@@ -129,7 +129,7 @@ void func_02008188(Unk02008188 *a, u32 *b, Unk020082b4_0c *c, u32 *d) {
                 v1 = 1;
             }
             if (v1 == 1) {
-                IrqDisableLoopForever();
+                OS_Terminate();
             }
             c->mUnk_08 = v3[1];
             c->mUnk_04 = v3[0];

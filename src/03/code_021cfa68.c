@@ -460,7 +460,7 @@ u16 func_ov003_021cfed8(void) {
     Unk021da2a8 **v1;
     u16 v2;
     if (data_ov003_021da2a8->mUnk_40 != 7) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     func_ov003_021d07b0(1);
     v2 = func_ov003_021cfe40((u32) (data_ov003_021da2a8->mUnk_60));
@@ -523,7 +523,7 @@ BOOL func_ov003_021cfde4(void) {
 void func_ov003_021cfdc8(Unk021425e8 *event) {
     if (event->mResultCode == 8) {
         func_ov003_021d07b0(9);
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
 }
 
@@ -556,7 +556,7 @@ void func_ov003_021cfd44(Unk021425e8 *a) {
 
 BOOL func_ov003_021cfc4c(u32 a, u16 b, u16 c) {
     if (data_ov003_021da2a8->mUnk_40 != 1) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     data_ov003_021da2a8->mUnk_12a4 = 0x180;
     data_ov003_021da2a8->mUnk_12a0 = 0xe0;
@@ -673,7 +673,7 @@ void func_ov003_021cfaa8(void) {
 u32 func_ov003_021cfa68(void) {
     int v1;
     if (data_ov003_021da2a8->mUnk_40 != 1) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     func_ov003_021d07b0(3);
     v1 = WM_End(func_ov003_021d0134);

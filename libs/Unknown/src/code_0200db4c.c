@@ -182,7 +182,7 @@ void OS_CreateThread(OSThread *thread, void (*func)(void *), void *arg, u8 *stac
     u8 *stackTop;
     volatile u32 fill;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     id = OSi_GetUnusedThreadId();
     thread->mPriority = prio;
     thread->mId = id;
@@ -207,12 +207,12 @@ void OS_CreateThread(OSThread *thread, void (*func)(void *), void *arg, u8 *stac
     thread->mLinkNext = 0;
     thread->mLinkPrev = thread->mLinkNext;
     thread->mAlarmForSleep = 0;
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Ends the current thread.
 void OS_ExitThread(void) {
-    IrqDisable();
+    OS_DisableInterrupts();
     OSi_ExitThread_ArgSpecified(data_0216ff5c.mCurrentThread, 0);
 }
 
@@ -239,7 +239,7 @@ void OSi_ExitThread(void *arg) {
     if (destructor != 0) {
         current->mDestructor = 0;
         destructor(arg);
-        IrqDisable();
+        OS_DisableInterrupts();
     }
     OSi_ExitThread_Destroy();
 }
@@ -257,7 +257,7 @@ void OSi_ExitThread_Destroy(void) {
     OS_WakeupThread(&current->mJoinQueue);
     OS_EnableScheduler();
     OSi_RescheduleThread();
-    IrqDisableLoopForever();
+    OS_Terminate();
 }
 
 // Ends thread: the current thread exits; any other one has its mutexes released and its sleep alarm cancelled, is
@@ -265,7 +265,7 @@ void OSi_ExitThread_Destroy(void) {
 void OS_DestroyThread(OSThread *thread) {
     u32 enabled;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     if (data_0216ff5c.mCurrentThread == thread) {
         OSi_ExitThread_Destroy();
     }
@@ -276,7 +276,7 @@ void OS_DestroyThread(OSThread *thread) {
     thread->mState = 2;
     OS_WakeupThread(&thread->mJoinQueue);
     OS_EnableScheduler();
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     OSi_RescheduleThread();
 }
 
@@ -291,11 +291,11 @@ void OSi_CancelThreadAlarmForSleep(OSThread *thread) {
 void OS_JoinThread(OSThread *thread) {
     u32 enabled;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     if (thread->mState != 2) {
         OS_SleepThread(&thread->mJoinQueue);
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Returns whether OSThread.mState of thread is terminated.
@@ -308,7 +308,7 @@ void OS_SleepThread(OSThreadQueue *queue) {
     u32 enabled;
     OSThread *current;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     current = *data_0216ff54;
     if (queue != 0) {
         current->mQueue = queue;
@@ -316,7 +316,7 @@ void OS_SleepThread(OSThreadQueue *queue) {
     }
     current->mState = 0;
     OSi_RescheduleThread();
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Makes every thread on queue ready and empties the queue.
@@ -324,7 +324,7 @@ void OS_WakeupThread(OSThreadQueue *queue) {
     u32 enabled;
     OSThread *thread;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     if (queue->mHead != 0) {
         while (queue->mHead != 0) {
             thread = OSi_RemoveLinkFromQueue(queue);
@@ -337,17 +337,17 @@ void OS_WakeupThread(OSThreadQueue *queue) {
         queue->mHead = queue->mTail;
         OSi_RescheduleThread();
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Makes thread ready.
 void OS_WakeupThreadDirect(OSThread *thread) {
     u32 enabled;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     thread->mState = 1;
     OSi_RescheduleThread();
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Returns the first ready thread of the thread list, or 0.
@@ -372,7 +372,7 @@ void OSi_RescheduleThread(void) {
     if (data_0216ff48 != 0) {
         return;
     }
-    if (system->mUnk_02 != 0 || ProcessorModeGet() == 0x12) {
+    if (system->mUnk_02 != 0 || OS_GetProcMode() == 0x12) {
         system->mUnk_00 = 1;
         return;
     }
@@ -413,7 +413,7 @@ void OS_YieldThread(void) {
     lastEqual = 0;
     count = 0;
     current = data_0216ff5c.mCurrentThread;
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     prev = 0;
     for (thread = data_0216ff5c.mListHead; thread != 0; thread = thread->mNext) {
         if (thread == current) {
@@ -426,7 +426,7 @@ void OS_YieldThread(void) {
         prev = thread;
     }
     if (count <= 1 || lastEqual == current) {
-        IrqRestore(enabled);
+        OS_RestoreInterrupts(enabled);
         return;
     }
     if (currentPrev == 0) {
@@ -437,7 +437,7 @@ void OS_YieldThread(void) {
     current->mNext = lastEqual->mNext;
     lastEqual->mNext = current;
     OSi_RescheduleThread();
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Gives thread the priority prio and relists it. Returns 0 for the idle thread and for a thread that is not listed.
@@ -448,13 +448,13 @@ s32 OS_SetThreadPriority(OSThread *thread, u32 prio) {
 
     current = data_0216ff5c.mListHead;
     prev = 0;
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     while (current != 0 && current != thread) {
         prev = current;
         current = current->mNext;
     }
     if (current == 0 || current == &data_0216ff6c) {
-        IrqRestore(enabled);
+        OS_RestoreInterrupts(enabled);
         return 0;
     }
     if (current->mPriority != prio) {
@@ -467,7 +467,7 @@ s32 OS_SetThreadPriority(OSThread *thread, u32 prio) {
         OSi_InsertThreadToList(thread);
         OSi_RescheduleThread();
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return 1;
 }
 
@@ -484,13 +484,13 @@ void OS_Sleep(u32 msec) {
 
     OS_CreateAlarm(&alarm);
     thread = *data_0216ff54;
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     thread->mAlarmForSleep = &alarm;
     OS_SetAlarm(&alarm, msec * 0x82ea >> 6, (void (*)(void *)) OSi_SleepAlarmCallback, &thread);
     while (thread != 0) {
         OS_SleepThread(0);
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
 }
 
 // Alarm callback of OS_Sleep: clears the thread pointer arg points to and the thread's OSThread.mAlarmForSleep, then
@@ -508,16 +508,16 @@ OSSwitchThreadCallback OS_SetSwitchThreadCallback(OSSwitchThreadCallback callbac
     u32 enabled;
     OSSwitchThreadCallback previous;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     previous = data_0216ff5c.mSwitchCallback;
     data_0216ff5c.mSwitchCallback = callback;
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return previous;
 }
 
 // Thread function of the idle thread: enables interrupts, then halts in an endless loop.
 void OSi_IdleThreadProc(void *arg) {
-    IrqEnable();
+    OS_EnableInterrupts();
     for (;;) {
         OS_Halt();
     }
@@ -528,12 +528,12 @@ u32 OS_DisableScheduler(void) {
     u32 enabled;
     u32 count;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     if (data_0216ff48 < 0xffffffff) {
         count = data_0216ff48;
         data_0216ff48 = count + 1;
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return count;
 }
 
@@ -542,13 +542,13 @@ u32 OS_EnableScheduler(void) {
     u32 enabled;
     u32 count;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     count = 0;
     if (data_0216ff48 != 0) {
         count = data_0216ff48;
         data_0216ff48 = count - 1;
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return count;
 }
 

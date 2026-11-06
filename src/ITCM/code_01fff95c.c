@@ -13,19 +13,19 @@
 
 void StartDmaTransfer(u32 a, const void *b, void *c, u32 d) {
     vu32 *e;
-    u32 s = IrqDisable();
+    u32 s = OS_DisableInterrupts();
 
     *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
     e = (vu32 *) ((u32) 0x40000b0 + a * 12);
     e[1] = (u32) c;
     e[2] = d;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 void StartDmaTransferAndChannel0Dummy(u32 a, const void *b, void *c, u32 d) {
     vu32 *r = (vu32 *) 0x40000b0;
     vu32 *e;
-    u32 s = IrqDisable();
+    u32 s = OS_DisableInterrupts();
 
     *(vu32 *) (0x4000000 + a * 12 + 0xb0) = (u32) b;
     e = (vu32 *) ((u32) r + a * 12);
@@ -38,7 +38,7 @@ void StartDmaTransferAndChannel0Dummy(u32 a, const void *b, void *c, u32 d) {
         e[1] = 0;
         e[2] = 0x81400001;
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 void StartDmaTransferWithoutIrqDisable(u32 a, const void *b, void *c, u32 d) {

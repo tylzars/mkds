@@ -211,7 +211,7 @@ void ReceiveCommandReply(u32 a, Unk021425e8 *m, s32 c) {
     if (m->mCommand >= 0x2a) {
         if (m->mCommand == 0x80) {
             if (m->mResultCode == 0x13) {
-                IrqDisableLoopForever();
+                OS_Terminate();
             }
             cb = data_0217eed4->mIndicationCallback;
             if (cb != 0) {

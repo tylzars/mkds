@@ -29,7 +29,7 @@ void ReceiveRemovalMessage(u32 a, u32 b) {
             CARD_TerminateForPulledOut();
         }
     } else {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
 }
 

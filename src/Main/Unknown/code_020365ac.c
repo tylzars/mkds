@@ -38,7 +38,7 @@ void func_02036778(void) {
     OS_EnableIrqMask(1);
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
-    IrqEnable();
+    OS_EnableInterrupts();
     GX_VBlankIntr(1);
 }
 
@@ -58,7 +58,7 @@ void func_020366bc(void) {
     OS_EnableIrqMask(1);
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
-    IrqEnable();
+    OS_EnableInterrupts();
     GX_VBlankIntr(1);
     FS_Init(-1);
     func_02039774();

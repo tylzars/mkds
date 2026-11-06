@@ -42,13 +42,13 @@ void FileReadTableBytes(Unk02003ad8 *a, void *b, u32 c) {
             o->mUnk_1c &= ~0x200;
             break;
         case 6:
-            s = IrqDisable();
+            s = OS_DisableInterrupts();
             if (o->mUnk_1c & 0x200) {
                 do {
                     OS_SleepThread(&o->mUnk_0c);
                 } while (o->mUnk_1c & 0x200);
             }
-            IrqRestore(s);
+            OS_RestoreInterrupts(s);
             break;
     }
     a->mUnk_04 += c;
@@ -417,7 +417,7 @@ void FileFinishCommand(Unk02003024 *a, s32 b) {
     Unk02003024 *p;
     Unk02003024 *q;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     p = a->mUnk_00;
     q = a->mUnk_04;
     if (p != 0) {
@@ -431,7 +431,7 @@ void FileFinishCommand(Unk02003024 *a, s32 b) {
     a->mUnk_0c &= ~0x4f;
     a->mUnk_14 = b;
     OS_WakeupThread(&a->mUnk_18);
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 s32 FileDispatchCommand(Unk02003024 *a, u32 b) {
@@ -468,14 +468,14 @@ s32 FileDispatchCommand(Unk02003024 *a, u32 b) {
     }
     if (r == 6) {
         if (((a->mUnk_0c & 4) ? 1 : 0) != 0) {
-            s = IrqDisable();
+            s = OS_DisableInterrupts();
             if (p->mUnk_1c & 0x200) {
                 do {
                     OS_SleepThread(&p->mUnk_0c);
                 } while (p->mUnk_1c & 0x200);
             }
             r = a->mUnk_14;
-            IrqRestore(s);
+            OS_RestoreInterrupts(s);
         }
     } else if (((a->mUnk_0c & 4) ? 1 : 0) != 0) {
         p->mUnk_1c &= ~0x200;

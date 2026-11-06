@@ -81,12 +81,12 @@ extern s32 (*gCartridgeRemovalCallback)(void);
 // 0x08000080, reads four fields from the second part, and sends the block's address on tag 13.
 extern Unk0216fe20 gCartridgeHeaderCopy;
 
-// Calls OS_UnLockCartridge(lockID) when the first word of p is 0, then IrqRestore with the second word of p.
+// Calls OS_UnLockCartridge(lockID) when the first word of p is 0, then OS_RestoreInterrupts with the second word of p.
 void UnlockCartridgeAndRestoreIrq(u16 lockID, Unk0200c4a4 *p);
-// Loops: stores IrqDisable() in the second word of p and the owner id of the lock word at 0x027fffe8
+// Loops: stores OS_DisableInterrupts() in the second word of p and the owner id of the lock word at 0x027fffe8
 // (OS_ReadOwnerOfLockWord) & 0x40 in the first word, and returns when that is not 0; otherwise calls
-// OS_TryLockCartridge(lockID) and returns when it gives 0; else calls IrqRestore, WaitByLoop(1) and tries again.
-// Returns with the interrupts disabled.
+// OS_TryLockCartridge(lockID) and returns when it gives 0; else calls OS_RestoreInterrupts, WaitByLoop(1) and tries
+// again. Returns with the interrupts disabled.
 void LockCartridgeAndDisableIrq(u16 lockID, Unk0200c4a4 *p);
 // Writes the first word of p (shifted left by 2) into bits 2 and 3 and the second word (shifted left by 4) into bit 4
 // of the halfword at 0x04000204.
@@ -102,15 +102,15 @@ void SaveAndSetExMemControlBits(Unk0200c4a4 *p);
 s32 CTRDG_IsExisting(void);
 // Zero-fills the 4 bytes of gCartridgeState (CpuSet, one word) and stores OS_GetLockID() in gCartridgeState.mLockId.
 void InitCartridgeState(void);
-// Sends the word 2 with SendTag13WordUntilAccepted, then calls IrqDisableLoopForever. Its only caller is
+// Sends the word 2 with SendTag13WordUntilAccepted, then calls OS_Terminate. Its only caller is
 // ReceiveCartridgeRemovalMessage.
 void CTRDG_TerminateForPulledOut(void);
 // Tag 13 callback after CTRDG_Init: when the low 6 bits of the second argument are 0x11 calls gCartridgeRemovalCallback
 // if it is not 0 (nothing in the game sets it, so the result is 0) and calls CTRDG_TerminateForPulledOut when the
-// result is not 0; for any other value calls IrqDisableLoopForever. "Removal" rests on the name of its callee.
+// result is not 0; for any other value calls OS_Terminate. "Removal" rests on the name of its callee.
 void ReceiveCartridgeRemovalMessage(u32 a, u32 b);
 // Tag 13 callback while InitCartridgeHeaderCopy waits: when the low 6 bits of the second argument are 1 sets
-// gCartridgeState.mReplyReceived to 1, otherwise calls IrqDisableLoopForever.
+// gCartridgeState.mReplyReceived to 1, otherwise calls OS_Terminate.
 void ReceiveCartridgeHeaderReply(u32 a, u32 b);
 // Runs once (gHeaderCopyStarted); returns when bit 0 of the halfword at 0x04000300 is 0. Under the cartridge lock
 // copies the 0x40 bytes at 0x08000080 to the copy plus 0x80 (MI_DmaCopy16, channel 1), then fills the record from the

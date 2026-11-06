@@ -6,13 +6,13 @@
 
 void *func_02007e38(u32 a) {
     u32 v1;
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0) {
         MemCopy(data_0216fdac->mUnk_1340 + (a - 1) * 0x16, data_0216fdac->mUnk_1772, 0x16);
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return data_0216fdac->mUnk_1772;
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return NULL;
 }
 
@@ -27,7 +27,7 @@ u32 func_02007d50(u32 a, u32 b) {
     u32 v1;
     u32 v3;
     u32 v2;
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     switch (b) {
         case 0:
             v2 = 0xa;
@@ -46,15 +46,15 @@ u32 func_02007d50(u32 a, u32 b) {
             v3 = 5;
             break;
         default:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 0;
     }
     if (*(u32 *) &data_0216fdac != 0 && func_02007138(a) != 0 && v2 == data_0216fdac->mUnk_14e8[a - 1]) {
         data_0216fdac->mUnk_1754[a - 1] = v3;
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return 0;
 }
 

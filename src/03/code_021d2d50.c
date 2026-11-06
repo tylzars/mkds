@@ -17,7 +17,7 @@ void func_ov003_021d2dfc(void) {
     OS_SetIrqFunction(1, func_ov003_021d2da4);
     a = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
-    IrqEnable();
+    OS_EnableInterrupts();
 }
 
 void func_ov003_021d2dcc(void) {
@@ -39,13 +39,13 @@ void func_ov003_021d2d50(void) {
 
     data_ov003_021da2d4 = func_ov003_021d283c(0x3a, 4);
     if (TP_GetUserInfo(&a) == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     TP_SetCalibrateParam(&a);
     TP_RequestAutoSamplingStartAsync(0, 4, data_ov003_021da2d4->mUnk_00, 5);
     TP_WaitBusy(2);
     if (TP_CheckError(2) != 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     func_ov003_021d2d14();
 }

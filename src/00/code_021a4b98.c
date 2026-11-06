@@ -106,21 +106,21 @@ void func_ov000_021a6558(Unk021b5f50_2270_0c *a) {
 s32 func_ov000_021a6470(Unk021b5f50 *a, u32 b) {
     u32 v1;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     if (data_ov000_021b5f50 != NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     if (a == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     if (((u32) a & 0x1f) != 0) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     if (b < sizeof(Unk021b5f50)) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 6;
     }
     data_ov000_021b5f50 = a;
@@ -140,7 +140,7 @@ s32 func_ov000_021a6470(Unk021b5f50 *a, u32 b) {
         OS_InitAlarm();
     }
     OS_CreateAlarm(&data_ov000_021b5f50->mUnk_22cc);
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return 0;
 }
 
@@ -148,18 +148,18 @@ BOOL func_ov000_021a6428(void) {
     u32 v1;
     Unk021b5f50 *g;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return TRUE;
     }
     if (g->mUnk_2260 != 1) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return TRUE;
     }
     data_ov000_021b5f50 = NULL;
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return FALSE;
 }
 
@@ -168,10 +168,10 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
@@ -179,22 +179,22 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
             func_ov000_021a5a78(a, b);
             break;
         case 2:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 2;
         case 3:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 0;
         default:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 1;
     }
     switch (WM_Init(data_ov000_021b5f50, (u16) data_ov000_021b5f50->mUnk_226c)) {
         case 3:
             func_ov000_021a57fc(0xb);
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 7;
         case 4:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 5;
         case 1:
         case 2:
@@ -202,7 +202,7 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
         case 6:
         default:
             func_ov000_021a57fc(0xb);
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 7;
         case 0:
             break;
@@ -210,15 +210,15 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
     if (WM_GetAllowedChannel() == 0) {
         if (WM_Finish() != 0) {
             func_ov000_021a57fc(0xb);
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 7;
         }
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 5;
     }
     if (WM_SetIndCallback(func_ov000_021a56e4) != 0) {
         func_ov000_021a57fc(0xb);
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 7;
     }
     r = WM_Enable(func_ov000_021a54b0);
@@ -229,15 +229,15 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
             break;
         case 8:
             func_ov000_021a57fc(0xc);
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 1;
         case 3:
         default:
             func_ov000_021a57fc(0xb);
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 7;
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return 3;
 }
 
@@ -246,21 +246,21 @@ s32 func_ov000_021a61e4(void) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 4:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 2;
         case 1:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 0;
         default:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 1;
         case 3:
             r = WM_PowerOff(func_ov000_021a54b0);
@@ -270,15 +270,15 @@ s32 func_ov000_021a61e4(void) {
                     data_ov000_021b5f50->mUnk_2280 = 2;
                     break;
                 case 8:
-                    IrqRestore(v1);
+                    OS_RestoreInterrupts(v1);
                     return 4;
                 case 3:
                 default:
                     func_ov000_021a57fc(0xb);
-                    IrqRestore(v1);
+                    OS_RestoreInterrupts(v1);
                     return 7;
             }
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 3;
     }
 }
@@ -295,23 +295,23 @@ s32 func_ov000_021a60a4(const void *a, const u8 *b, u32 c) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 5:
             func_ov000_021a5948(a, b, c);
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 2;
         case 6:
             func_ov000_021a5948(a, b, c);
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 0;
         default:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 1;
         case 3:
             func_ov000_021a5948(a, b, c);
@@ -324,15 +324,15 @@ s32 func_ov000_021a60a4(const void *a, const u8 *b, u32 c) {
                     data_ov000_021b5f50->mUnk_2280 = 3;
                     break;
                 case 8:
-                    IrqRestore(v1);
+                    OS_RestoreInterrupts(v1);
                     return 4;
                 case 3:
                 default:
                     func_ov000_021a57fc(0xb);
-                    IrqRestore(v1);
+                    OS_RestoreInterrupts(v1);
                     return 7;
             }
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 3;
     }
 }
@@ -341,10 +341,10 @@ s32 func_ov000_021a6024(void) {
     u32 v1;
     Unk021b5f50 *g;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
@@ -353,16 +353,16 @@ s32 func_ov000_021a6024(void) {
             data_ov000_021b5f50->mUnk_2280 = 4;
             break;
         case 7:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 2;
         case 3:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 0;
         default:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 1;
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return 3;
 }
 
@@ -371,25 +371,25 @@ s32 func_ov000_021a5e84(Unk021a5e84 *a, Unk02188de4 *b, u32 c) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 3:
             if (a == NULL) {
-                IrqRestore(v1);
+                OS_RestoreInterrupts(v1);
                 return 1;
             }
             if (a->mUnk_3c != 0) {
-                IrqRestore(v1);
+                OS_RestoreInterrupts(v1);
                 return 1;
             }
             if (b != NULL) {
                 if (b->mUnk_00 >= 4 || b->mUnk_01 >= 4) {
-                    IrqRestore(v1);
+                    OS_RestoreInterrupts(v1);
                     return 1;
                 }
                 g->mUnk_2250 = b->mUnk_00;
@@ -407,13 +407,13 @@ s32 func_ov000_021a5e84(Unk021a5e84 *a, Unk02188de4 *b, u32 c) {
             func_ov000_021a5b3c(c);
             break;
         case 8:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 2;
         case 9:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 0;
         default:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 1;
     }
     r = WM_SetLifeTime(func_ov000_021a54b0, 0xffff, 0x50, 0xffff, 0xffff);
@@ -423,15 +423,15 @@ s32 func_ov000_021a5e84(Unk021a5e84 *a, Unk02188de4 *b, u32 c) {
             data_ov000_021b5f50->mUnk_2280 = 5;
             break;
         case 8:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 4;
         case 3:
         default:
             func_ov000_021a57fc(0xb);
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 7;
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return 3;
 }
 
@@ -440,21 +440,21 @@ s32 func_ov000_021a5db0(void) {
     s32 r;
     Unk021b5f50 *g;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 10:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 2;
         case 3:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 0;
         default:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 1;
         case 9:
             break;
@@ -470,16 +470,16 @@ s32 func_ov000_021a5db0(void) {
                 data_ov000_021b5f50->mUnk_2280 = 6;
                 break;
             case 8:
-                IrqRestore(v1);
+                OS_RestoreInterrupts(v1);
                 return 4;
             case 3:
             default:
                 func_ov000_021a57fc(0xb);
-                IrqRestore(v1);
+                OS_RestoreInterrupts(v1);
                 return 7;
         }
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return 3;
 }
 
@@ -489,30 +489,30 @@ s32 func_ov000_021a5c24(void) {
     Unk021b5f50 *g;
     Unk02142988 *p;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     g = data_ov000_021b5f50;
     if (g == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 1;
     }
     switch (g->mUnk_2260) {
         case 13:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 2;
         case 1:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 0;
         case 6:
             func_ov000_021a57fc(0xd);
             data_ov000_021b5f50->mUnk_2280 = 9;
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 3;
         case 3:
         case 9:
         case 12:
             break;
         default:
-            IrqRestore(v1);
+            OS_RestoreInterrupts(v1);
             return 1;
     }
     if (g->mUnk_226b == 1) {
@@ -527,7 +527,7 @@ s32 func_ov000_021a5c24(void) {
                 if (r == 0) {
                     func_ov000_021a57fc(1);
                     data_ov000_021b5f50->mUnk_2280 = 0;
-                    IrqRestore(v1);
+                    OS_RestoreInterrupts(v1);
                     return 0;
                 }
                 break;
@@ -548,16 +548,16 @@ s32 func_ov000_021a5c24(void) {
                 data_ov000_021b5f50->mUnk_2280 = 9;
                 break;
             case 8:
-                IrqRestore(v1);
+                OS_RestoreInterrupts(v1);
                 return 4;
             case 3:
             default:
                 func_ov000_021a57fc(0xb);
-                IrqRestore(v1);
+                OS_RestoreInterrupts(v1);
                 return 7;
         }
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return 3;
 }
 
@@ -566,13 +566,13 @@ u32 func_ov000_021a5bfc(void) {
     u32 r;
     Unk021b5f50 *g;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     r = 0;
     g = data_ov000_021b5f50;
     if (g != NULL) {
         r = g->mUnk_2260;
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return r;
 }
 
@@ -582,12 +582,12 @@ u32 func_ov000_021a5b3c(u32 a) {
     u32 v2;
     Unk021b5f50 *g;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     b = 0;
     g = data_ov000_021b5f50;
     v2 = g->mUnk_2264;
     if (g == NULL) {
-        IrqRestore(v1);
+        OS_RestoreInterrupts(v1);
         return 0;
     }
     if (a & 0x8000) {
@@ -609,7 +609,7 @@ u32 func_ov000_021a5b3c(u32 a) {
         b |= 0x400000;
     }
     g->mUnk_2264 = a | (v2 & ~b);
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     return v2;
 }
 
@@ -722,7 +722,7 @@ void func_ov000_021a586c(s16 a, u32 b, void *c, u32 d, u32 e) {
 void func_ov000_021a57fc(u32 a) {
     u32 b;
 
-    b = IrqDisable();
+    b = OS_DisableInterrupts();
     if (data_ov000_021b5f50->mUnk_2260 == 9 && a != 9) {
         OS_CancelAlarm(&data_ov000_021b5f50->mUnk_22cc);
     }
@@ -732,18 +732,18 @@ void func_ov000_021a57fc(u32 a) {
     if (a == 9) {
         OS_SetAlarm(&data_ov000_021b5f50->mUnk_22cc, 0x22f5341, func_ov000_021a5794, NULL);
     }
-    IrqRestore(b);
+    OS_RestoreInterrupts(b);
 }
 
 void func_ov000_021a57a8(void) {
     u32 a;
 
-    a = IrqDisable();
+    a = OS_DisableInterrupts();
     OS_CancelAlarm(&data_ov000_021b5f50->mUnk_22cc);
     if (data_ov000_021b5f50->mUnk_2260 == 9) {
         OS_SetAlarm(&data_ov000_021b5f50->mUnk_22cc, 0x22f5341, func_ov000_021a5794, NULL);
     }
-    IrqRestore(a);
+    OS_RestoreInterrupts(a);
 }
 
 void func_ov000_021a5794(void *a) {

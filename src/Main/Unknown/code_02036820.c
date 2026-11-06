@@ -27,9 +27,9 @@ void *HeapAllocAligned(void *a, u32 b, s32 c) {
             d = ExpHeapAlloc(a, b, c);
             break;
         case 0x46524d48:
-            e = IrqDisable();
+            e = OS_DisableInterrupts();
             d = FrmHeapAlloc(a, b, c);
-            IrqRestore(e);
+            OS_RestoreInterrupts(e);
             break;
     }
     return d;
@@ -141,9 +141,9 @@ void *CreateFrmHeapFromBack(void *a, u32 b) {
             c = ExpHeapAlloc(a, b, -4);
             break;
         case 0x46524d48:
-            d = IrqDisable();
+            d = OS_DisableInterrupts();
             c = FrmHeapAlloc(a, b, -4);
-            IrqRestore(d);
+            OS_RestoreInterrupts(d);
             break;
     }
     return FrmHeapCreate(c, b, 1);

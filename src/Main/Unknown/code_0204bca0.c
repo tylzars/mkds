@@ -128,9 +128,9 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
             v7 = v7 + v13;
         }
     }
-    v13 = IrqDisable();
+    v13 = OS_DisableInterrupts();
     v6 = (u32 *) data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, v7, NULL);
-    IrqRestore(v13);
+    OS_RestoreInterrupts(v13);
     *v6 = v10;
     v11 = 0;
     k = FALSE;
@@ -331,7 +331,7 @@ void func_0204d18c(Unk02175ec0_440s *a, Unk0204c090 *b, s32 c) {
     s32 v4;
     Unk02175ec0_440 *v5;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     if (data_02175ec0.mUnk_000c != 0) {
         v2 = b->mUnk_088;
         b->mUnk_088 = 0;
@@ -355,7 +355,7 @@ void func_0204d18c(Unk02175ec0_440s *a, Unk0204c090 *b, s32 c) {
             v5++;
         }
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
 }
 
 void func_0204d110(Unk0204c090 **a, Unk0204c090 **b, Unk0204c090 *c) {
@@ -363,7 +363,7 @@ void func_0204d110(Unk0204c090 **a, Unk0204c090 **b, Unk0204c090 *c) {
     Unk0204c090 *v2;
     Unk0204c090 *v3;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     v2 = *a;
     if (v2 == c) {
         *a = c->mUnk_000;
@@ -381,7 +381,7 @@ void func_0204d110(Unk0204c090 **a, Unk0204c090 **b, Unk0204c090 *c) {
             v2 = v3;
         } while (v3 != NULL);
     }
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
 }
 
 void func_0204d0bc(Unk02175ec0_440s *a, Unk0204c090 *b) {
@@ -411,15 +411,15 @@ void func_0204cf5c(Unk02003024 *a) {
         s->mUnk_b04 = v2;
         v4 = s->mUnk_afc;
         if (v4 != NULL) {
-            v5 = IrqDisable();
+            v5 = OS_DisableInterrupts();
             data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, 0, v4);
-            IrqRestore(v5);
+            OS_RestoreInterrupts(v5);
         }
         v3 = (s->mUnk_b04 + (data_02175ec0.mUnk_0028 - 0xe) - 1) / (data_02175ec0.mUnk_0028 - 0xe);
         v3 = ((v3 + 0x1f) >> 2) << 4;
-        v7 = IrqDisable();
+        v7 = OS_DisableInterrupts();
         v6 = data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, v3, NULL);
-        IrqRestore(v7);
+        OS_RestoreInterrupts(v7);
         s->mUnk_afc = v6;
         s->mUnk_080[0] = s->mUnk_afc;
     }
@@ -433,7 +433,7 @@ void func_0204cf5c(Unk02003024 *a) {
     if (func_02006d3c(1, &v1, 9, func_0204d5bc) != 0) {
         return;
     }
-    IrqDisableLoopForever();
+    OS_Terminate();
 }
 
 void func_0204ce60(void) {
@@ -613,7 +613,7 @@ void func_0204c7e4(Unk0204c320 *a) {
                     z->mUnk_46dc = z->mUnk_46dc | (1 << i);
                     return;
                 case 2:
-                    v12 = IrqDisable();
+                    v12 = OS_DisableInterrupts();
                     z->mUnk_46cc = z->mUnk_46cc | (1 << i);
                     v15 = p->mUnk_m.mUnk_04;
                     for (v3 = z->mUnk_46c4; v3 != NULL; v3 = v3->mUnk_000) {
@@ -631,7 +631,7 @@ void func_0204c7e4(Unk0204c320 *a) {
                             func_0204bca0();
                         }
                     }
-                    IrqRestore(v12);
+                    OS_RestoreInterrupts(v12);
                     return;
             }
             return;
@@ -743,15 +743,15 @@ void func_0204c320(Unk0204c320 *a) {
                 s->mUnk_b04 = v1;
                 v4 = s->mUnk_afc;
                 if (v4 != NULL) {
-                    v5 = IrqDisable();
+                    v5 = OS_DisableInterrupts();
                     data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, 0, v4);
-                    IrqRestore(v5);
+                    OS_RestoreInterrupts(v5);
                 }
                 v3 = (s->mUnk_b04 + (data_02175ec0.mUnk_0028 - 0xe) - 1) / (data_02175ec0.mUnk_0028 - 0xe);
                 v3 = ((v3 + 0x1f) >> 2) << 4;
-                v10 = IrqDisable();
+                v10 = OS_DisableInterrupts();
                 v11 = data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, v3, NULL);
-                IrqRestore(v10);
+                OS_RestoreInterrupts(v10);
                 s->mUnk_afc = v11;
                 s->mUnk_080[0] = s->mUnk_afc;
             }
@@ -760,9 +760,9 @@ void func_0204c320(Unk0204c320 *a) {
         case 6:
             v2 = s->mUnk_000[i]->mUnk_04;
             data_02175ec0.mUnk_0024 = v2;
-            v5 = IrqDisable();
+            v5 = OS_DisableInterrupts();
             v4 = data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, v2, NULL);
-            IrqRestore(v5);
+            OS_RestoreInterrupts(v5);
             data_02175ec0.mUnk_0020 = v4;
             v2 = data_02175ec0.mUnk_0024;
             if (v2 < 0) {
@@ -773,15 +773,15 @@ void func_0204c320(Unk0204c320 *a) {
                 s->mUnk_b04 = v2;
                 v4 = s->mUnk_afc;
                 if (v4 != NULL) {
-                    v5 = IrqDisable();
+                    v5 = OS_DisableInterrupts();
                     data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, 0, v4);
-                    IrqRestore(v5);
+                    OS_RestoreInterrupts(v5);
                 }
                 v3 = (s->mUnk_b04 + (data_02175ec0.mUnk_0028 - 0xe) - 1) / (data_02175ec0.mUnk_0028 - 0xe);
                 v3 = ((v3 + 0x1f) >> 2) << 4;
-                v10 = IrqDisable();
+                v10 = OS_DisableInterrupts();
                 v11 = data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, v3, NULL);
-                IrqRestore(v10);
+                OS_RestoreInterrupts(v10);
                 s->mUnk_afc = v11;
                 s->mUnk_080[0] = s->mUnk_afc;
             }
@@ -811,7 +811,7 @@ void func_0204c320(Unk0204c320 *a) {
             if (func_02006d3c(1, &v6, 9, func_0204d5bc) != 0) {
                 return;
             }
-            IrqDisableLoopForever();
+            OS_Terminate();
             return;
         case 12:
             if (a->mUnk_04 != 0xa) {
@@ -861,7 +861,7 @@ void func_0204c28c(u32 a, u32 b, u32 c, u32 d) {
     v1->mUnk_002c = 0xe;
     data_usa_02175e80 = 0;
     if (WM_SetPortCallback(v2, func_0204cc94, NULL) != 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
 }
 
@@ -872,13 +872,13 @@ void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g) {
     Unk0204c090 *v4;
     Unk0204c090 *v7;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     if (data_usa_02175e84 != 0) {
         return;
     }
     data_usa_02175e84 = 1;
     func_0204c28c(a, b, c, d);
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     v2 = &data_02175ec0;
     v2->mUnk_0000 = 1;
     v3 = (Unk02175ec0_440s *) ((u8 *) v2 + 0x440);
@@ -930,13 +930,13 @@ void func_0204bfac(u32 a, u32 b, u32 c, u32 d) {
     Unk0204bfac *v3;
     s32 i;
 
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     if (data_usa_02175e84 != 0) {
         return;
     }
     data_usa_02175e84 = 1;
     func_0204c28c(a, b, c, d);
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     v2 = &data_02175ec0;
     v2->mUnk_0000 = 0;
     v3 = (Unk0204bfac *) ((u8 *) v2 + 0x440);
@@ -967,9 +967,9 @@ void func_0204bf48(int a, u32 b, u32 c, void *d, void *e, u32 f) {
 static inline void func_0204bcec_inline(Unk02175ec0 *a, void *p) {
     u32 t;
     if (p != NULL) {
-        t = IrqDisable();
+        t = OS_DisableInterrupts();
         a->mUnk_0014(a->mUnk_0018, 0, p);
-        IrqRestore(t);
+        OS_RestoreInterrupts(t);
     }
 }
 
@@ -1019,7 +1019,7 @@ void func_0204bcec(void) {
     void *p;
     Unk02003a6c *u;
     g = &data_02175ec0;
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (data_usa_02175e84 != 0) {
         p = g->mUnk_0020;
         if (p != NULL) {
@@ -1043,7 +1043,7 @@ void func_0204bcec(void) {
         WM_SetPortCallback(data_02175ec0.mUnk_0030, NULL, NULL);
         data_usa_02175e84 = 0;
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 u32 func_0204bcdc(void) {
@@ -1058,11 +1058,11 @@ u32 func_0204bcb4(u32 arg0) {
     u32 value2;
     u32 value4;
     value4 = value0;
-    value0 = (u32) IrqDisable();
+    value0 = (u32) OS_DisableInterrupts();
     value1 = (u32) &data_02179ec0;
     value2 = (value4) & ~(1u);
     data_02179ec0.mUnk_b10 = value2;
-    value0 = (u32) IrqRestore(value0);
+    value0 = (u32) OS_RestoreInterrupts(value0);
     return value0;
 }
 

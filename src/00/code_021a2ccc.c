@@ -205,7 +205,7 @@ void func_ov000_021a2eec(Unk0219887c *a, void *b, s32 c) {
             gWiFiMessageLayer->mPeers[v1].mReceiveSize = 0;
             break;
         default:
-            IrqDisableLoopForever();
+            OS_Terminate();
             break;
     }
 }
@@ -262,7 +262,7 @@ void func_ov000_021a2d68(int a, void *b, s32 c) {
     s32 n;
     if (func_ov000_021a2fb4(a) == 2) {
         if (e->mReceivedSize + c > e->mReceiveBufferSize) {
-            IrqDisableLoopForever();
+            OS_Terminate();
         }
         MemCopy(b, e->mReceiveBuffer + e->mReceivedSize, c);
     }

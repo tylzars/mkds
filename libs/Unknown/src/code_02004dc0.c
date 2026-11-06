@@ -200,7 +200,7 @@ void FS_StartOverlay(Unk020055f0 *rec) {
         }
         if (ok == 0) {
             MemFill(rec->mUnk_04, 0, n);
-            IrqDisableLoopForever();
+            OS_Terminate();
             return;
         }
     }
@@ -239,7 +239,7 @@ void FS_EndOverlay(Unk020055f0 *rec) {
         hi = lo + (rec->mUnk_08 + rec->mUnk_0c);
         found = 0;
         last = 0;
-        irq = IrqDisable();
+        irq = OS_DisableInterrupts();
         prev = 0;
         head = data_0217eeb0;
         cur = head;
@@ -269,7 +269,7 @@ void FS_EndOverlay(Unk020055f0 *rec) {
                 cur = next;
             } while (cur != 0);
         }
-        IrqRestore(irq);
+        OS_RestoreInterrupts(irq);
         if (found == 0) {
             return;
         }
@@ -314,7 +314,7 @@ void FS_AttachOverlayTable(u32 sel, u8 *data, u32 n) {
     if (data != 0 && sel == 0) {
         irq = func_02150dc8(1);
         if (FileCheckHmac(data_0216f2dc, data, n) == 0) {
-            IrqDisableLoopForever();
+            OS_Terminate();
         }
         func_02150dc8(irq);
     }
@@ -323,10 +323,10 @@ void FS_AttachOverlayTable(u32 sel, u8 *data, u32 n) {
     } else {
         dst = &data_0216f364;
     }
-    irq = IrqDisable();
+    irq = OS_DisableInterrupts();
     dst->mUnk_00 = data;
     dst->mUnk_04 = n;
-    IrqRestore(irq);
+    OS_RestoreInterrupts(irq);
 }
 
 void FileFinishCardRead(Unk02003a6c *p) {

@@ -19,7 +19,7 @@ void PxiInitOnce(void) {
     s32 j;
     Unk027ffc00 *p;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (data_02180328 == 0) {
         data_02180328 = 1;
         p = (Unk027ffc00 *) 0x027ffc00;
@@ -49,7 +49,7 @@ void PxiInitOnce(void) {
             j++;
         }
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 // Stores fn in entry a of the table and sets or clears bit a of the first word at mUnk_388.
@@ -57,7 +57,7 @@ void PxiCallbackSet(u32 a, UnkFunc *fn) {
     u32 s;
     Unk027ffc00 *p;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     data_0218032c[a] = fn;
     p = (Unk027ffc00 *) 0x027ffc00;
     if (fn != 0) {
@@ -65,7 +65,7 @@ void PxiCallbackSet(u32 a, UnkFunc *fn) {
     } else {
         p->mUnk_388[0] &= ~(1 << a);
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 // Returns whether bit a of word b at mUnk_388 is set.
@@ -89,13 +89,13 @@ s32 PxiSendFifoWord(u32 a, u32 b, u32 c) {
         reg_PXI_SUBP_FIFO_CNT |= 0xc000;
         return -1;
     }
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     if (reg_PXI_SUBP_FIFO_CNT & 2) {
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         return -2;
     }
     reg_PXI_SEND_FIFO = *(u32 *) &v;
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     return 0;
 }
 
@@ -112,13 +112,13 @@ void PxiReceiveDispatch(void) {
             reg_PXI_SUBP_FIFO_CNT |= 0xc000;
             r = -3;
         } else {
-            s = IrqDisable();
+            s = OS_DisableInterrupts();
             if (reg_PXI_SUBP_FIFO_CNT & 0x100) {
-                IrqRestore(s);
+                OS_RestoreInterrupts(s);
                 r = -4;
             } else {
                 *(u32 *) &v = reg_PXI_RECV_FIFO;
-                IrqRestore(s);
+                OS_RestoreInterrupts(s);
                 r = 0;
             }
         }
@@ -142,12 +142,12 @@ void PxiReceiveDispatch(void) {
                 reg_PXI_SUBP_FIFO_CNT |= 0xc000;
                 continue;
             }
-            s = IrqDisable();
+            s = OS_DisableInterrupts();
             if (reg_PXI_SUBP_FIFO_CNT & 2) {
-                IrqRestore(s);
+                OS_RestoreInterrupts(s);
             } else {
                 reg_PXI_SEND_FIFO = *(u32 *) &v;
-                IrqRestore(s);
+                OS_RestoreInterrupts(s);
             }
         }
     }

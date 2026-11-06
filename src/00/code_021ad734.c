@@ -142,13 +142,13 @@ s32 func_ov000_021b02bc(void) {
     u32 a;
     s32 b;
 
-    a = IrqDisable();
+    a = OS_DisableInterrupts();
     b = OS_IsThreadTerminated(&data_ov000_021b655c);
     if (b == 0 && data_ov000_021b63b0 == 0) {
         data_ov000_021b63b0 = 1;
         OS_WakeupThreadDirect(&data_ov000_021b655c);
     }
-    IrqRestore(a);
+    OS_RestoreInterrupts(a);
     return b;
 }
 
@@ -393,14 +393,14 @@ void func_ov000_021afd8c(void) {
     u32 b;
     u8 *c;
 
-    a = IrqDisable();
+    a = OS_DisableInterrupts();
     b = data_ov000_021b63cc;
     c = data_ov000_021b63c4;
     data_ov000_021b63cc = b + (c[b] + ((c + b)[1] << 8));
     if (data_ov000_021b63cc >= data_ov000_021b63c8) {
         data_ov000_021b63cc = 0;
     }
-    IrqRestore(a);
+    OS_RestoreInterrupts(a);
 }
 
 u8 *func_ov000_021afd00(u32 a) {
@@ -409,7 +409,7 @@ u8 *func_ov000_021afd00(u32 a) {
     u32 d;
     u16 e;
 
-    b = IrqDisable();
+    b = OS_DisableInterrupts();
     c = NULL;
     if (a == 0x7f000001 || a == data_ov000_021b63b4) {
         c = (u8 *) data_ov000_021b63d0;
@@ -425,7 +425,7 @@ u8 *func_ov000_021afd00(u32 a) {
             }
         }
     }
-    IrqRestore(b);
+    OS_RestoreInterrupts(b);
     return c;
 }
 
@@ -550,9 +550,9 @@ void func_ov000_021af9d0(u8 *a, u32 b, void *c, u32 d, u32 e, u32 f) {
     }
     if (e == 0x7f000001 || e == data_ov000_021b63b4 || func_ov000_021b0094(e) != FALSE) {
         MemCopy(data_ov000_021b4c40, a - 0x1c, 8);
-        h = IrqDisable();
+        h = OS_DisableInterrupts();
         func_ov000_021afe84(data_ov000_021b63d0, data_ov000_021b63d0, a - 0x1c, b + 0x1c, c, d);
-        IrqRestore(h);
+        OS_RestoreInterrupts(h);
     }
 }
 
@@ -1135,12 +1135,12 @@ void func_ov000_021aea34(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
                 c = 1;
             }
             if (param_3 != 0) {
-                g = IrqDisable();
+                g = OS_DisableInterrupts();
                 MemCopy((u8 *) param_2 + (param_2->mUnk_0c & 0xf0) / 4,
                         (u8 *) a->mReceiveBuffer + a->mReceiveBufferLength, param_3);
                 a->mReceiveBufferLength += param_3;
                 a->mUnk_24 += param_3;
-                IrqRestore(g);
+                OS_RestoreInterrupts(g);
                 if (a->mUnk_04 == 2) {
                     a->mUnk_04 = 0;
                     OS_WakeupThreadDirect(a->mThread);
@@ -1630,12 +1630,12 @@ u32 func_ov000_021ae16c(Unk021a998c *b) {
         b->mState = 2;
         b->mStateStartTime = OS_GetTick() >> 16;
         func_ov000_021aefc0(b, 2, 24);
-        s = IrqDisable();
+        s = OS_DisableInterrupts();
         if (data_ov000_021b63b4 != 0) {
             b->mUnk_04 = 1;
             OS_SleepThread(NULL);
         }
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         if (b->mState == 4) {
             return 0;
         }
@@ -1763,7 +1763,7 @@ void func_ov000_021adf30(u32 a, Unk021a998c *b) {
     u8 *e;
     u8 *f;
 
-    c = IrqDisable();
+    c = OS_DisableInterrupts();
     d = b->mReceiveBufferLength;
     if (a >= d) {
         b->mReceiveBufferLength = 0;
@@ -1774,7 +1774,7 @@ void func_ov000_021adf30(u32 a, Unk021a998c *b) {
         b->mReceiveBufferLength = (d -= a);
         memmove(e, &(*f), d);
     }
-    IrqRestore(c);
+    OS_RestoreInterrupts(c);
     if (b->mState != 0xa && b->mState != 0xb && b->mReceiveBufferLength == 0) {
         func_ov000_021aefb4(b, 0x1b);
     }

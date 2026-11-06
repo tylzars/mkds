@@ -28,20 +28,20 @@ void func_0204bb34(void *a) {
     o = FS_FindArchive(data_usa_021651d0, 3);
     g = &data_02175ec0;
     while (1) {
-        s = IrqDisable();
+        s = OS_DisableInterrupts();
         b = (Unk021762e0 *) &data_usa_021762e0;
         r = b->mUnk_46c8;
         if (r == NULL) {
             do {
                 if (g->mUnk_000c == 0) {
-                    IrqRestore(s);
+                    OS_RestoreInterrupts(s);
                     return;
                 }
                 OS_SleepThread(NULL);
                 r = b->mUnk_46c8;
             } while (r == NULL);
         }
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
         if (r->mUnk_080 == 1) {
             FS_OpenFileDirect(&r->mUnk_038, o, r->mUnk_090, r->mUnk_090 + r->mUnk_094, r->mUnk_08c);
             i = 0;
@@ -56,14 +56,14 @@ void func_0204bb34(void *a) {
             r->mUnk_098 = 0;
             r->mUnk_0a0 = 1;
             r->mUnk_09c = 2;
-            s2 = IrqDisable();
+            s2 = OS_DisableInterrupts();
             func_0204d18c(&data_usa_021762e0, r, 1);
-            IrqRestore(s2);
+            OS_RestoreInterrupts(s2);
         } else {
             FS_CloseFile(&r->mUnk_038);
-            s2 = IrqDisable();
+            s2 = OS_DisableInterrupts();
             func_0204d0bc(&data_usa_021762e0, r);
-            IrqRestore(s2);
+            OS_RestoreInterrupts(s2);
         }
     }
 }

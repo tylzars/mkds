@@ -106,24 +106,24 @@ static inline void func_020487fc_inline7(void) {
     if (func_02049820() == 1) {
         if (!func_02049aa4()) {
             if (PM_GetLCDPower() == 1) {
-                t = IrqDisable();
+                t = OS_DisableInterrupts();
                 data_021759cc->mUnk_110 = TRUE;
                 PM_SetLCDPower(0);
-                IrqRestore(t);
+                OS_RestoreInterrupts(t);
             }
         } else {
             PM_GoSleepMode(12, 0, 0);
         }
     } else {
         if (PM_GetLCDPower() == 0) {
-            t = IrqDisable();
+            t = OS_DisableInterrupts();
             PM_SetLCDPower(1);
             if (func_02036c5c()) {
                 func_02049808(0);
                 func_020497f0(0);
             }
             data_021759cc->mUnk_110 = FALSE;
-            IrqRestore(t);
+            OS_RestoreInterrupts(t);
         }
     }
 }
@@ -196,13 +196,13 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     data_021759cc->mUnk_120 = 0;
     data_021759cc->mUnk_118 = -1;
     data_021759cc->mUnk_11c = 0;
-    t = IrqDisable();
+    t = OS_DisableInterrupts();
     if (PM_GetLCDPower() == 1) {
         data_021759cc->mUnk_110 = FALSE;
     } else {
         data_021759cc->mUnk_110 = TRUE;
     }
-    IrqRestore(t);
+    OS_RestoreInterrupts(t);
     data_021759cc->mUnk_10c = 0;
     func_02047b6c(0);
     func_02047ba0(a->mScene);

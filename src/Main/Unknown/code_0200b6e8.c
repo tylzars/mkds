@@ -40,12 +40,12 @@ u32 func_0200c0ac(u32 arg0) {
 
 void func_0200c090(u32 p0) {
     u32 v1 = ((p0) + (0x0u));
-    u32 v2 = ((u32) IrqDisable());
+    u32 v2 = ((u32) OS_DisableInterrupts());
     u32 v3 = ((u32) (&data_0216fdec));
     u32 v4 = ((u32) * (u32 *) ((v3) + (0)));
     u32 v6;
     *(u32 *) ((v4) + (0)) = v1;
-    v6 = ((u32) IrqRestore(v2));
+    v6 = ((u32) OS_RestoreInterrupts(v2));
 }
 
 #pragma thumb off
@@ -359,7 +359,7 @@ void func_0200bae0(void) {
                 func_0200bab0();
                 break;
             default:
-                IrqDisableLoopForever();
+                OS_Terminate();
                 break;
         }
     }
@@ -382,13 +382,13 @@ u32 func_0200baa8(void) {
 
 void func_0200ba84(UnkFunc *p0) {
     u32 v1 = (u32) p0;
-    u32 v2 = ((u32) IrqDisable());
+    u32 v2 = ((u32) OS_DisableInterrupts());
     u32 v3 = ((u32) (&data_0216fde8));
     u32 v4 = ((u32) * (u32 *) ((v3) + (0)));
     u32 v5 = 0x5e0u;
     u32 v7;
     *(u32 *) ((v4) + (0 + (v5))) = v1;
-    v7 = ((u32) IrqRestore(v2));
+    v7 = ((u32) OS_RestoreInterrupts(v2));
 }
 
 #pragma thumb off
@@ -397,9 +397,9 @@ void func_0200ba84(UnkFunc *p0) {
 
 void func_0200ba44(u32 a, void *b) {
     u32 v1;
-    v1 = IrqDisable();
+    v1 = OS_DisableInterrupts();
     data_0216fde8->mUnk_5f0e = a;
-    IrqRestore(v1);
+    OS_RestoreInterrupts(v1);
     if (data_0216fde8->mUnk_05e0 != NULL) {
         data_0216fde8->mUnk_05e0(a, b);
     }

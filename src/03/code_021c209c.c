@@ -78,10 +78,10 @@ void func_ov003_021c2398(void) {
     GX_DispOff();
     *(u32 *) 0x4001000 &= 0xfffeffff;
     if (OS_IsTickAvailable() == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     if (OS_IsAlarmAvailable() == 0) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     GX_VBlankIntr(0);
     func_02148904();

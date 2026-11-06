@@ -51,12 +51,12 @@ u64 OS_GetTick(void) {
     volatile u16 count;
     volatile u64 overflows;
 
-    enabled = IrqDisable();
+    enabled = OS_DisableInterrupts();
     count = *(vu16 *) 0x4000100;
     overflows = gTickOverflowCount & 0xffffffffffffULL;
     if ((*(vu32 *) 0x4000214 & 8) && !(count & 0x8000)) {
         overflows++;
     }
-    IrqRestore(enabled);
+    OS_RestoreInterrupts(enabled);
     return (overflows << 16) | count;
 }

@@ -51,11 +51,11 @@ u8 *func_ov000_021a6b10(void) {
     u32 c;
 
     b = func_ov000_021a5b30();
-    c = IrqDisable();
+    c = OS_DisableInterrupts();
     if (b != NULL && b->mUnk_2260 == 9 && b->mUnk_226b == 0) {
         a = b->mUnk_2144;
     }
-    IrqRestore(c);
+    OS_RestoreInterrupts(c);
     return a;
 }
 
@@ -66,12 +66,12 @@ u8 *func_ov000_021a6abc(u16 *e) {
     u32 d;
 
     c = func_ov000_021a5b30();
-    d = IrqDisable();
+    d = OS_DisableInterrupts();
     if (c != NULL && c->mUnk_2260 == 9 && c->mUnk_226b == 0) {
         a = c->mUnk_214c;
         b = c->mUnk_214a;
     }
-    IrqRestore(d);
+    OS_RestoreInterrupts(d);
     if (e != NULL) {
         *e = b;
     }
@@ -83,10 +83,10 @@ u32 func_ov000_021a6aa0(Unk021b5f54Func arg0) {
     u32 value1;
     u32 value4;
     value4 = (value0) + (0u);
-    value0 = (u32) IrqDisable();
+    value0 = (u32) OS_DisableInterrupts();
     value1 = (u32) &data_ov000_021b5f54;
     *(u32 *) ((value1) + 40u) = value4;
-    value0 = (u32) IrqRestore(value0);
+    value0 = (u32) OS_RestoreInterrupts(value0);
     return value0;
 }
 
@@ -95,21 +95,21 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
     Unk021b5f50 *b;
     s32 c;
 
-    a = IrqDisable();
+    a = OS_DisableInterrupts();
     if (func_ov000_021a5b30() == NULL) {
-        IrqRestore(a);
+        OS_RestoreInterrupts(a);
         return -1;
     }
     OS_LockMutex(&data_ov000_021b5f54.mUnk_0c);
     b = func_ov000_021a5b30();
     if (b == NULL) {
         OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
-        IrqRestore(a);
+        OS_RestoreInterrupts(a);
         return -1;
     }
     if (b->mUnk_2260 != 9 || b->mUnk_226b == 1) {
         OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
-        IrqRestore(a);
+        OS_RestoreInterrupts(a);
         return -4;
     }
     MemCopy(e, b->mUnk_0f00, f);
@@ -125,7 +125,7 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
         case 8:
         default:
             OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
-            IrqRestore(a);
+            OS_RestoreInterrupts(a);
             return -5;
         case 2:
             OS_SleepThread(&data_ov000_021b5f54.mUnk_04);
@@ -133,11 +133,11 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
                 case 1:
                 default:
                     OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
-                    IrqRestore(a);
+                    OS_RestoreInterrupts(a);
                     return -5;
                 case 0:
                     OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
-                    IrqRestore(a);
+                    OS_RestoreInterrupts(a);
                     return f;
             }
     }

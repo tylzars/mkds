@@ -156,7 +156,7 @@ u32 FS_WaitAsync(Unk02003024 *p0) {
     u32 state;
 
     r = 0;
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     if (((p0->mUnk_0c & 1) ? 1 : 0) != 0) {
         r = (p0->mUnk_0c & 0x44) == 0;
         if (r) {
@@ -170,7 +170,7 @@ u32 FS_WaitAsync(Unk02003024 *p0) {
             } while (((p0->mUnk_0c & 1) ? 1 : 0) != 0);
         }
     }
-    IrqRestore(state);
+    OS_RestoreInterrupts(state);
     if (r) {
         return FileRunCommandBlocking(p0);
     }
@@ -180,12 +180,12 @@ u32 FS_WaitAsync(Unk02003024 *p0) {
 void FS_CancelFile(Unk02003024 *p0) {
     u32 state;
 
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     if (((p0->mUnk_0c & 1) ? 1 : 0) != 0) {
         p0->mUnk_0c |= 2;
         p0->mUnk_08->mUnk_1c |= 0x20;
     }
-    IrqRestore(state);
+    OS_RestoreInterrupts(state);
 }
 
 s32 FS_ReadFileAsync(Unk02003024 *p0, void *p1, s32 p2) {
@@ -272,7 +272,7 @@ Unk02003024 *FilePickNextCommand(Unk02003a6c *p0) {
     u32 state;
     u32 r;
 
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     if (p0->mUnk_1c & 0x20) {
         p0->mUnk_1c &= ~0x20;
         p = p0->mUnk_24;
@@ -297,18 +297,18 @@ Unk02003024 *FilePickNextCommand(Unk02003a6c *p0) {
         if (r != 0) {
             p0->mUnk_1c |= 0x10;
         }
-        IrqRestore(state);
+        OS_RestoreInterrupts(state);
         if (r != 0 && (p0->mUnk_58 & 0x200)) {
             p0->mUnk_54(p, 9);
         }
-        state = IrqDisable();
+        state = OS_DisableInterrupts();
         p->mUnk_0c |= 0x40;
         if (((p->mUnk_0c & 4) ? 1 : 0) != 0) {
             OS_WakeupThread(&p->mUnk_18);
-            IrqRestore(state);
+            OS_RestoreInterrupts(state);
             return 0;
         }
-        IrqRestore(state);
+        OS_RestoreInterrupts(state);
         return p;
     }
     if (p0->mUnk_1c & 0x10) {
@@ -324,7 +324,7 @@ Unk02003024 *FilePickNextCommand(Unk02003a6c *p0) {
         p0->mUnk_1c |= 8;
         OS_WakeupThread(&p0->mUnk_14);
     }
-    IrqRestore(state);
+    OS_RestoreInterrupts(state);
     return 0;
 }
 
@@ -337,15 +337,15 @@ void FileRunQueueAsync(Unk02003024 *p0) {
         return;
     }
     do {
-        state = IrqDisable();
+        state = OS_DisableInterrupts();
         p0->mUnk_0c |= 0x40;
         if (((p0->mUnk_0c & 4) ? 1 : 0) != 0) {
             OS_WakeupThread(&p0->mUnk_18);
-            IrqRestore(state);
+            OS_RestoreInterrupts(state);
             return;
         }
         p0->mUnk_0c |= 8;
-        IrqRestore(state);
+        OS_RestoreInterrupts(state);
         if (FileDispatchCommand(p0, p0->mUnk_10) == 6) {
             return;
         }
@@ -377,10 +377,10 @@ u32 FileQueueCommand(Unk02003024 *p0, u32 p1) {
     m = 1 << p1;
     p0->mUnk_14 = 2;
     p0->mUnk_0c |= 1;
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     if (a->mUnk_1c & 0x80) {
         FileFinishCommand(p0, 3);
-        IrqRestore(state);
+        OS_RestoreInterrupts(state);
         return 0;
     }
     if (m & 0x1fc) {
@@ -403,27 +403,27 @@ u32 FileQueueCommand(Unk02003024 *p0, u32 p1) {
     p0->mUnk_04 = 0;
     if (((a->mUnk_1c & 8) ? 1 : 0) == 0 && (a->mUnk_1c & 0x10) == 0) {
         a->mUnk_1c |= 0x10;
-        IrqRestore(state);
+        OS_RestoreInterrupts(state);
         if (a->mUnk_58 & 0x200) {
             a->mUnk_54(p0, 9);
         }
-        state = IrqDisable();
+        state = OS_DisableInterrupts();
         p0->mUnk_0c |= 0x40;
         if (((p0->mUnk_0c & 4) ? 1 : 0) == 0) {
-            IrqRestore(state);
+            OS_RestoreInterrupts(state);
             FileRunQueueAsync(p0);
             return 1;
         }
-        IrqRestore(state);
+        OS_RestoreInterrupts(state);
     } else {
         if (((p0->mUnk_0c & 4) ? 1 : 0) == 0) {
-            IrqRestore(state);
+            OS_RestoreInterrupts(state);
             return 1;
         }
         do {
             OS_SleepThread(&p0->mUnk_18);
         } while ((p0->mUnk_0c & 0x40) == 0);
-        IrqRestore(state);
+        OS_RestoreInterrupts(state);
     }
     return FileRunCommandBlocking(p0);
 }
@@ -452,12 +452,12 @@ Unk02003a6c *FS_FindArchive(const u8 *p0, s32 p1) {
     Unk02003a6c *p;
 
     name = FilePackLowercaseName(p0, p1);
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     p = data_0216f340;
     while (p != 0 && p->mUnk_00 != name) {
         p = p->mUnk_04;
     }
-    IrqRestore(state);
+    OS_RestoreInterrupts(state);
     return p;
 }
 
@@ -467,7 +467,7 @@ u32 FS_RegisterArchiveName(Unk02003a6c *p0, const u8 *p1, s32 p2) {
     Unk02003a6c *p;
 
     ok = 0;
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     if (FS_FindArchive(p1, p2) == 0) {
         if (data_0216f340 == 0) {
             data_0216f340 = p0;
@@ -487,7 +487,7 @@ u32 FS_RegisterArchiveName(Unk02003a6c *p0, const u8 *p1, s32 p2) {
         ok = 1;
         p0->mUnk_1c |= 1;
     }
-    IrqRestore(state);
+    OS_RestoreInterrupts(state);
     return ok;
 }
 
@@ -497,7 +497,7 @@ void FS_ReleaseArchiveName(Unk02003a6c *p0) {
     if (p0->mUnk_00 == 0) {
         return;
     }
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     if (p0->mUnk_04 != 0) {
         p0->mUnk_04->mUnk_08 = p0->mUnk_08;
     }
@@ -514,7 +514,7 @@ void FS_ReleaseArchiveName(Unk02003a6c *p0) {
         data_0216f344.h.mUnk_00 = data_0216f340;
         data_0216f344.h.mUnk_04 = 0;
     }
-    IrqRestore(state);
+    OS_RestoreInterrupts(state);
 }
 
 u32 FS_LoadArchive(Unk02003a6c *p0, u8 *p1, u32 p2, u32 p3, u32 p4, u32 p5, s32 (*p6)(Unk02003a6c *, void *, u32, u32),
@@ -540,7 +540,7 @@ u32 FS_UnloadArchive(Unk02003a6c *p0) {
     Unk02003024 *n;
     u32 s;
 
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     if (((p0->mUnk_1c & 2) ? 1 : 0) != 0) {
         p0->mUnk_1c;
         s = FS_SuspendArchive(p0);
@@ -566,7 +566,7 @@ u32 FS_UnloadArchive(Unk02003a6c *p0) {
         p0->mUnk_3c = p0->mUnk_40;
         p0->mUnk_1c &= ~0xa2;
     }
-    IrqRestore(state);
+    OS_RestoreInterrupts(state);
     return 1;
 }
 
@@ -628,7 +628,7 @@ u32 FS_SuspendArchive(Unk02003a6c *p0) {
     u32 state;
     u32 r;
 
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     r = ((p0->mUnk_1c & 8) ? 1 : 0) == 0;
     if (r) {
         if (p0->mUnk_1c & 0x10) {
@@ -640,7 +640,7 @@ u32 FS_SuspendArchive(Unk02003a6c *p0) {
             p0->mUnk_1c |= 8;
         }
     }
-    IrqRestore(state);
+    OS_RestoreInterrupts(state);
     return r;
 }
 
@@ -650,13 +650,13 @@ u32 FS_ResumeArchive(Unk02003a6c *p0) {
     u32 r;
 
     p = 0;
-    state = IrqDisable();
+    state = OS_DisableInterrupts();
     r = ((p0->mUnk_1c & 8) ? 1 : 0) == 0;
     if (!r) {
         p0->mUnk_1c &= ~8;
         p = FilePickNextCommand(p0);
     }
-    IrqRestore(state);
+    OS_RestoreInterrupts(state);
     if (p != 0) {
         FileRunQueueAsync(p);
     }
@@ -687,10 +687,10 @@ void FS_NotifyArchiveAsyncEnd(Unk02003a6c *p0, u32 p1) {
         }
     } else {
         p = p0->mUnk_24;
-        state = IrqDisable();
+        state = OS_DisableInterrupts();
         p->mUnk_14 = p1;
         p0->mUnk_1c &= ~0x200;
         OS_WakeupThread(&p0->mUnk_0c);
-        IrqRestore(state);
+        OS_RestoreInterrupts(state);
     }
 }

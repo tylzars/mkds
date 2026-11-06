@@ -34,14 +34,14 @@ void GxFifoSendWordsInPieces(u32 a, const void *b, u32 c, UnkFunc *f, u32 arg) {
     data_02180308.mUnk_14 = arg;
     CheckDma0SourceOrLoopForever(a, b, c, 0);
     MI_WaitDma(a);
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     data_02180308.mUnk_18 = (*(u32 *) 0x4000600 & 0xc0000000) >> 0x1e;
     data_02180308.mUnk_1c = OS_GetIrqFunction(0x200000);
     *(u32 *) 0x4000600 = (*(u32 *) 0x4000600 & ~0xc0000000) | 0x40000000;
     OS_SetIrqFunction(0x200000, GxFifoSendNextPiece);
     OS_EnableIrqMask(0x200000);
     GxFifoSendNextPiece();
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 // Does nothing when data_02180308.mUnk_0c is 0. Otherwise takes n = min(mUnk_0c, 0x1d8), advances mUnk_08 by n and
@@ -130,10 +130,10 @@ void MI_DmaFill32(u32 a, void *b, u32 c, u32 d) {
     }
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     *(vu32 *) (0x4000000 + a * 4 + 0xe0) = c;
     StartDmaTransferAndChannel0DummyWithoutIrqDisable(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0x85000000);
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
 }
@@ -174,15 +174,15 @@ void MI_DmaFill32Async(u32 a, void *b, u32 c, u32 d, UnkFunc *f, u32 arg) {
     MI_WaitDma(a);
     if (f != 0) {
         OSi_EnterDmaCallback(a, f, arg);
-        s = IrqDisable();
+        s = OS_DisableInterrupts();
         *(vu32 *) (0x4000000 + a * 4 + 0xe0) = c;
         StartDmaTransferWithoutIrqDisable(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0xc5000000);
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
     } else {
-        s = IrqDisable();
+        s = OS_DisableInterrupts();
         *(vu32 *) (0x4000000 + a * 4 + 0xe0) = c;
         StartDmaTransferWithoutIrqDisable(a, (const void *) (0x40000e0 + a * 4), b, (d >> 2) | 0x85000000);
-        IrqRestore(s);
+        OS_RestoreInterrupts(s);
     }
 }
 
@@ -207,7 +207,7 @@ void MI_WaitDma(u32 a) {
     u32 s;
     vu32 *d;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     while (*(vu32 *) (0x40000b0 + (a * 3 + 2) * 4) & 0x80000000) {
     }
     if (a == 0) {
@@ -216,14 +216,14 @@ void MI_WaitDma(u32 a) {
         d[1] = 0;
         d[2] = 0x81400001;
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 void MI_StopDma(u32 a) {
     u32 s;
     vu32 *d;
 
-    s = IrqDisable();
+    s = OS_DisableInterrupts();
     *(vu16 *) (0x4000000 + (a * 6 + 5) * 2 + 0xb0) &= ~0x3a00;
     *(vu16 *) (0x4000000 + (a * 6 + 5) * 2 + 0xb0) &= ~0x8000;
     *(vu16 *) (0x4000000 + (a * 6 + 5) * 2 + 0xb0);
@@ -234,7 +234,7 @@ void MI_StopDma(u32 a) {
         d[1] = 0;
         d[2] = 0x81400001;
     }
-    IrqRestore(s);
+    OS_RestoreInterrupts(s);
 }
 
 void CheckDmaTimingConflictOrLoopForever(u32 a, u32 b) {
@@ -264,7 +264,7 @@ void CheckDmaTimingConflictOrLoopForever(u32 a, u32 b) {
         }
         if (v == 0x18000000 || v == 0x20000000 || v == 0x28000000 || v == 0x30000000 || v == 0x38000000 ||
             v == 0x8000000 || v == 0x10000000) {
-            IrqDisableLoopForever();
+            OS_Terminate();
         }
     }
 }
@@ -286,6 +286,6 @@ void CheckDma0SourceOrLoopForever(u32 a, const void *b, u32 c, u32 d) {
         x = x + c;
     }
     if (y == 0x4000000 || y >= 0x8000000 || (x & 0xff000000) == 0x4000000 || (x & 0xff000000) >= 0x8000000) {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
 }

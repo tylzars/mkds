@@ -45,10 +45,10 @@ typedef struct OSMessageQueue {
 extern u32 gConsoleType;
 
 u32 func_0200e77c(void);
-// Gets an id, then repeats under IrqDisable until it has either seen that the holder of the lock word at 0x027fffe8
-// has bit 0x40 set or taken the lock: compares the words at 0x08000000 and 0x08000004 with 0x544e494e and 0x4f444e45
-// (the text NINTENDO) and returns 0x01000000 when both match, else 0x02000000. Releases the lock again when it took
-// it.
+// Gets an id, then repeats under OS_DisableInterrupts until it has either seen that the holder of the lock word at
+// 0x027fffe8 has bit 0x40 set or taken the lock: compares the words at 0x08000000 and 0x08000004 with 0x544e494e and
+// 0x4f444e45 (the text NINTENDO) and returns 0x01000000 when both match, else 0x02000000. Releases the lock again when
+// it took it.
 u32 ReadCartridgeMarkerBits(void);
 // On the first call builds the value from ReadCartridgeMarkerBits (bit 24 or bit 25), adds 0x10000000 when
 // OS_IsRunOnEmulator is nonzero, else 0x40000000 when func_0200e77c is nonzero, else 0x20000000 when bit 24 is set,

@@ -106,7 +106,7 @@ u32 func_0202469c(Unk02021f9c *a, Unk02022ce4 **b) {
     } else if (func_0202469c_inline3(a, 1)) {
         r = 1;
     } else {
-        IrqDisableLoopForever();
+        OS_Terminate();
     }
     func_020245a4(a);
     p = FindPartByTag(a, 0x46494e46);

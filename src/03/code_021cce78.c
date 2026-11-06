@@ -28,7 +28,7 @@ void func_ov003_021cd080(Unk021425e8 *a) {
                 func_ov003_021cd190();
                 break;
             default:
-                IrqDisableLoopForever();
+                OS_Terminate();
                 break;
         }
     }
