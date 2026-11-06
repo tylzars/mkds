@@ -57,7 +57,7 @@ extern Unk021d6974 data_ov003_021d75c0;
 extern Unk021d6974 data_ov003_021d75c4;
 extern u8 data_ov003_021d7030[];
 extern u8 data_ov003_021d7044[];
-extern u8 data_ov003_021d70e4[];
+extern u8 gJb5InfoNscName[];
 extern u8 data_ov003_021d7158[];
 extern u8 data_ov003_021d716c[];
 extern u8 data_ov003_021d7180[];

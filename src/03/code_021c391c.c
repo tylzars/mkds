@@ -204,7 +204,7 @@ void func_ov003_021c39a4(void) {
             switch (gOptMenuSelectedIndex) {
                 case 0:
                     func_ov003_021c2120(0, 1);
-                    func_ov003_021c212c(func_ov003_021c38f0);
+                    func_ov003_021c212c(SetupJb5Info);
                     break;
                 case 1:
                     func_ov003_021c2120(0, 1);

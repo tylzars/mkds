@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_ov003_021c38f0(void);
+void SetupJb5Info(void);

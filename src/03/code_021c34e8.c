@@ -13,7 +13,7 @@
 #include "03/unk_021d7000.h"
 #include "code_0214b824.h"
 
-void func_ov003_021c3694(void) {
+void UpdateJb5InfoInput(void) {
     int v1;
     v1 = func_ov003_021d2b04((u32) 2);
     if (v1 != 0) {

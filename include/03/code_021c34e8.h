@@ -11,4 +11,4 @@ void func_ov003_021c3610(void);
 void func_ov003_021c364c(void);
 void func_ov003_021c366c(void);
 void func_ov003_021c3690(void);
-void func_ov003_021c3694(void);
+void UpdateJb5InfoInput(void);

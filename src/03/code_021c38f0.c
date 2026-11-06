@@ -11,10 +11,10 @@
 #include "03/code_021c3758.h"
 #include "03/code_021c388c.h"
 
-void func_ov003_021c38f0(void) {
-    func_ov003_021c388c();
+void SetupJb5Info(void) {
+    LoadJb5InfoFileAndSetBgCnt();
     func_ov003_021bf86c(0x11);
     func_ov003_021bf43c(0x89, -1, 0);
-    func_ov003_021c3758();
+    PrintJb5Info();
     func_ov003_021c212c(func_ov003_021c371c);
 }

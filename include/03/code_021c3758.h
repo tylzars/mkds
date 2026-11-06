@@ -4,10 +4,10 @@
 
 typedef struct Unk021d299c Unk021d299c;
 
-extern u16 data_ov003_021d7058[];
-extern u16 data_ov003_021d7094[];
-extern u16 data_ov003_021d70bc[];
+extern u16 gMacAddressFormat[];
+extern u16 gDashSeparatedNumbersFormat[];
+extern u16 gDashesFormat[];
 extern Unk021d299c data_ov003_021d6338;
 extern Unk021d299c data_ov003_021d6340;
 
-void func_ov003_021c3758(void);
+void PrintJb5Info(void);

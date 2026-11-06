@@ -3,8 +3,8 @@
 #include "03/unk_021d7000.h"
 #include "code_0214b824.h"
 
-void func_ov003_021c388c(void) {
-    void *v2 = &data_ov003_021d70e4;
+void LoadJb5InfoFileAndSetBgCnt(void) {
+    void *v2 = &gJb5InfoNscName;
     void *v3 = &GX_LoadBG2Scr;
     u32 v4 = func_ov003_021bf620(v2, v3);
     u32 v5 = 0x4001008u;
