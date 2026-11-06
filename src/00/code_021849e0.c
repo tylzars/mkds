@@ -23,7 +23,7 @@ void InitWiFiSelectKartState(void *a) {
     InitSelectKart(a, 2, b, c);
 }
 
-void func_ov000_02184a54(void) {
+void ReleaseWiFiSelectKartState(void) {
     ReleaseSelectKart();
     *(u32 *) &data_ov000_021b4c7c = 0;
     return;

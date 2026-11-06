@@ -51,12 +51,12 @@
 
 void ClearWiFiStateCallbacks(void) {
     gWiFiStates->mCallbacks.mInit = NULL;
-    gWiFiStates->mCallbacks.mUnk_04 = NULL;
+    gWiFiStates->mCallbacks.mRelease = NULL;
     gWiFiStates->mCallbacks.mAdvance = NULL;
     gWiFiStates->mCallbacks.mUnk_0c = NULL;
 }
 
-void func_ov000_02180a54(void) {
+void LoadWiFiMenuSceneData(void) {
     Unk02111684_v v;
     LoadNcgrData(&v.mNcgr, FindSceneFile("WiFi_VS_setting_s_b.ncgr"));
     LoadNclrData(&v.mNclr, FindSceneFile("WiFi_VS_setting_s_b.nclr"));
@@ -106,7 +106,7 @@ void InitWiFiStates(void *heap, s32 b) {
     c.mUnk_24 = 1;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(heap, &c);
-    func_ov000_02180a54();
+    LoadWiFiMenuSceneData();
     func_0202c65c(heap, func_ov000_021804f4());
     func_02078d64(GetHeap(func_020364e8()));
     func_02078a9c(-1);
@@ -184,9 +184,9 @@ void InitWiFiStates(void *heap, s32 b) {
     data_0217b488->mUnk_78 = 1;
 }
 
-void func_ov000_02180814(void) {
-    if (gWiFiStates->mCallbacks.mUnk_04 != NULL) {
-        gWiFiStates->mCallbacks.mUnk_04();
+void ReleaseWiFiStates(void) {
+    if (gWiFiStates->mCallbacks.mRelease != NULL) {
+        gWiFiStates->mCallbacks.mRelease();
     }
     ClearWiFiStateCallbacks();
     func_0202bb60();
@@ -200,7 +200,7 @@ void AdvanceWiFiStates(void) {
         gWiFiStates->mCallbacks.mAdvance();
     }
     if (gWiFiStates->mNextState != -1) {
-        gWiFiStates->mCallbacks.mUnk_04();
+        gWiFiStates->mCallbacks.mRelease();
         ClearWiFiStateCallbacks();
         HeapDestroy(gWiFiStates->mStateHeap);
         gWiFiStates->mStateHeap = CreateExpHeapFromMaxFree(gWiFiStates->mHeap);

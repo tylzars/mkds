@@ -26,7 +26,7 @@ typedef struct WiFiVSSetting {
     /* 0008 */ s32 mRow;
     /* 000c */ s32 mSettingIndex;
     /* 0010 */ s32 mStateFrames;
-    /* 0014 */ s16 mUnk_14[3][2];
+    /* 0014 */ s16 mRowOffsets[3][2];
     /* 0020 */ s32 mPendingWiFiState;
     /* 0024 */ BOOL mUnk_24;
     /* 0028 */ BOOL mUnk_28;
@@ -34,7 +34,7 @@ typedef struct WiFiVSSetting {
     // they drive stop there.
     /* 002c */ s32 mIndexDecrementTimer;
     /* 0030 */ s32 mIndexIncrementTimer;
-    /* 0034 */ BOOL mUnk_34;
+    /* 0034 */ BOOL mConnectionReleased;
     /* 0038 */ u8 mNscrCopy[0x1000];
     /* 1038 */ void *mHeap;
     // Table of cells built from the Bncl / Bnll by func_02124ed0.
@@ -55,7 +55,7 @@ typedef struct WiFiVSMatching {
     /* 0004 */ s32 mNextState;
     /* 0008 */ s32 mUnk_08;
     /* 000c */ s32 mUnk_0c;
-    /* 0010 */ s16 mUnk_10;
+    /* 0010 */ s16 mOffset;
     /* 0012 */ s16 mUnk_12[3];
     /* 0018 */ s16 mUnk_18[4];
     /* 0020 */ s32 mPendingWiFiState;
@@ -68,17 +68,17 @@ typedef struct WiFiVSMatching {
     /* 0038 */ s32 mUnk_38;
     /* 003c */ BOOL mUnk_3c;
     /* 0040 */ BOOL mUnk_40;
-    /* 0044 */ s32 mUnk_44;
-    /* 0048 */ s32 mUnk_48;
-    /* 004c */ u16 mUnk_4c[5];
+    /* 0044 */ s32 mCurrentOtherIndex;
+    /* 0048 */ s32 mBlendFrames;
+    /* 004c */ u16 mBlendedColors[5];
     /* 0056 */ u8 pad_56[2];
-    /* 0058 */ s32 mUnk_58[5][3];
-    /* 0094 */ s32 mUnk_94[5][3];
-    /* 00d0 */ void *mUnk_d0;
-    /* 00d4 */ u8 mUnk_d4[0x1000];
+    /* 0058 */ s32 mFromChannels[5][3];
+    /* 0094 */ s32 mToChannels[5][3];
+    /* 00d0 */ void *mHeap;
+    /* 00d4 */ u8 mNscrCopy[0x1000];
     // Table of cells built from the Bncl / Bnll by func_02124ed0.
     /* 10d4 */ Unk02124b1c *mWiFiVSMatchingTable;
-    /* 10d8 */ u8 mUnk_10d8[3][0x200];
+    /* 10d8 */ u8 mOtherEmblems[3][0x200];
     /* 16d8 */ s32 mUnk_16d8[3];
     /* 16e4 */ struct Unk02021dc8 *mWiFiVSMatchingSNcer;
     /* 16e8 */ Ncgr *mWiFiVSMatchingSNcgr;
@@ -90,8 +90,6 @@ typedef struct WiFiVSMatching {
     /* 1700 */ void *mCommonMessages;
     /* 1704 */ u8 pad_1704[8];
 } WiFiVSMatching;
-
-// Four callbacks, passed to SetWiFiStateCallbacks by RegisterWiFiVSMatchingCallbacks.
 
 // 0xc-byte element of the array at member 0x20 of Unk0217b488.
 typedef struct Unk0217b488_20 {
@@ -374,6 +372,6 @@ void AdvanceWiFiVSSettingState2(void);
 void AdvanceWiFiVSSettingState1(void);
 void AdvanceWiFiVSSettingState0(void);
 void func_ov000_02182de8(void);
-void func_ov000_02182e18(void);
+void LocateAndQueueWiFiVSSetting(void);
 void func_ov000_02182f88(void);
 BOOL func_ov000_021832f0(void);

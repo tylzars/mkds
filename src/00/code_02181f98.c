@@ -55,7 +55,7 @@ void InitWiFiVSSetting(void *heap) {
     gWiFiVSSetting->mStateFrames = 0;
     gWiFiVSSetting->mUnk_24 = TRUE;
     func_ov000_02180638(0);
-    func_ov000_02182e18();
+    LocateAndQueueWiFiVSSetting();
     func_0212b928(heap, gWiFiVSSetting->mWiFiVSSettingSONclr, 3);
     for (i = 0; i < 2; i++) {
         func_02124a98(data_ov000_021b060c[i][0], 1, gWiFiVSSetting->mWiFiVSSettingSNcer,
@@ -111,14 +111,14 @@ void InitWiFiVSSetting(void *heap) {
     }
     for (i = 0; i < 3; i++) {
         if (i == 2) {
-            gWiFiVSSetting->mUnk_14[i][0] = 0;
-            gWiFiVSSetting->mUnk_14[i][1] = 0x28;
+            gWiFiVSSetting->mRowOffsets[i][0] = 0;
+            gWiFiVSSetting->mRowOffsets[i][1] = 0x28;
         } else if (i == 1) {
-            gWiFiVSSetting->mUnk_14[i][0] = -0x100;
-            gWiFiVSSetting->mUnk_14[i][1] = 0;
+            gWiFiVSSetting->mRowOffsets[i][0] = -0x100;
+            gWiFiVSSetting->mRowOffsets[i][1] = 0;
         } else {
-            gWiFiVSSetting->mUnk_14[i][0] = 0x100;
-            gWiFiVSSetting->mUnk_14[i][1] = 0;
+            gWiFiVSSetting->mRowOffsets[i][0] = 0x100;
+            gWiFiVSSetting->mRowOffsets[i][1] = 0;
         }
     }
     gWiFiVSSetting->mIndexDecrementTimer = 0;
@@ -138,15 +138,15 @@ void func_ov000_02182f88(void) {
     gWiFiVSSetting = NULL;
 }
 
-void func_ov000_02182e18(void) {
-    Ncgr *v1;
-    Nscr *v2;
-    Nclr *v3;
-    vu16 v4;
+void LocateAndQueueWiFiVSSetting(void) {
+    Ncgr *chr;
+    Nscr *scrn;
+    Nclr *pltt;
+    vu16 zero;
 
-    LocateNcgr(&v1, FindSceneFile("WiFi_VS_setting_s_b.ncgr"));
-    LocateNscr(&v2, FindSceneFile("WiFi_VS_s_setting.nscr"));
-    LocateNclr(&v3, FindSceneFile("WiFi_VS_setting_s_b.nclr"));
+    LocateNcgr(&chr, FindSceneFile("WiFi_VS_setting_s_b.ncgr"));
+    LocateNscr(&scrn, FindSceneFile("WiFi_VS_s_setting.nscr"));
+    LocateNclr(&pltt, FindSceneFile("WiFi_VS_setting_s_b.nclr"));
     gWiFiVSSetting->mWiFiVSSettingBncl = FindSceneFile("WiFi_VS_setting.bncl");
     gWiFiVSSetting->mWiFiVSSettingBnbl = FindSceneFile("WiFi_VS_setting.bnbl");
     gWiFiVSSetting->mWiFiVSSettingBnll = FindSceneFile("WiFi_VS_setting.bnll");
@@ -154,12 +154,12 @@ void func_ov000_02182e18(void) {
     LocateNcer(&gWiFiVSSetting->mWiFiVSSettingSNcer, FindSceneFile("WiFi_VS_setting_s.nce.ncer"));
     LocateNclr(&gWiFiVSSetting->mWiFiVSSettingSONclr, FindSceneFile("WiFi_VS_setting_s_o.nclr"));
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x4400;
-    v4 = 0;
-    MIi_CpuClear16(v4, gWiFiVSSetting->mNscrCopy, 0x1000);
-    MIi_CpuCopy16(v2->mData, gWiFiVSSetting->mNscrCopy, 0x800);
-    CallQueueAppend(0x17, 0, v1->mData, v1->mDataSize);
+    zero = 0;
+    MIi_CpuClear16(zero, gWiFiVSSetting->mNscrCopy, 0x1000);
+    MIi_CpuCopy16(scrn->mData, gWiFiVSSetting->mNscrCopy, 0x800);
+    CallQueueAppend(0x17, 0, chr->mData, chr->mDataSize);
     CallQueueAppend(0x1b, 0, gWiFiVSSetting->mNscrCopy, 0x1000);
-    CallQueueAppend(0x1f, 0, v3->mData, 0x80);
+    CallQueueAppend(0x1f, 0, pltt->mData, 0x80);
     CallQueueAppend(0x23, 0, gWiFiVSSetting->mWiFiVSSettingSNcgr->mData,
                     gWiFiVSSetting->mWiFiVSSettingSNcgr->mDataSize);
     CallQueueAppend(0x1e, 0, gWiFiVSSetting->mWiFiVSSettingSONclr->mData,
@@ -214,9 +214,9 @@ void AdvanceWiFiVSSettingState2(void) {
     v = func_020ae4c0(1, 0x100, 0, gWiFiVSSetting->mStateFrames, 10);
     for (i = 0; i < 2; i++) {
         if (i == 0) {
-            gWiFiVSSetting->mUnk_14[i][0] = v;
+            gWiFiVSSetting->mRowOffsets[i][0] = v;
         } else {
-            gWiFiVSSetting->mUnk_14[i][0] = -v;
+            gWiFiVSSetting->mRowOffsets[i][0] = -v;
         }
     }
     if (gWiFiVSSetting->mStateFrames >= 10) {
@@ -235,7 +235,7 @@ void AdvanceWiFiVSSettingState3(void) {
     } else {
         v = -func_0212825c(gWiFiVSSetting->mStateFrames - 3);
     }
-    gWiFiVSSetting->mUnk_14[2][1] = v;
+    gWiFiVSSetting->mRowOffsets[2][1] = v;
     if (gWiFiVSSetting->mStateFrames >= 10 && gWiFiVSSetting->mStateFrames >= 13) {
         gWiFiVSSetting->mNextState = 4;
         gWiFiVSSetting->mStateFrames = 0;
@@ -402,9 +402,9 @@ void AdvanceWiFiVSSettingState6(void) {
     }
     for (i = 0; i < 2; i++) {
         if (i == 0) {
-            gWiFiVSSetting->mUnk_14[i][0] = v;
+            gWiFiVSSetting->mRowOffsets[i][0] = v;
         } else {
-            gWiFiVSSetting->mUnk_14[i][0] = -v;
+            gWiFiVSSetting->mRowOffsets[i][0] = -v;
         }
     }
     if (gWiFiVSSetting->mStateFrames < 3) {
@@ -413,7 +413,7 @@ void AdvanceWiFiVSSettingState6(void) {
         u = -func_02128244(gWiFiVSSetting->mStateFrames - 3);
     }
     for (i = 0; i < data_ov000_021b0600[2]; i++) {
-        gWiFiVSSetting->mUnk_14[2][1] = u;
+        gWiFiVSSetting->mRowOffsets[2][1] = u;
     }
     if (gWiFiVSSetting->mStateFrames >= 10 && gWiFiVSSetting->mStateFrames >= 13 && func_02125f88() != 0 &&
         ((gWiFiVSSetting->mUnk_28 != FALSE && IsSelectReturnState0NoState1Request() != 0) ||
@@ -441,7 +441,7 @@ void AdvanceWiFiVSSettingState6(void) {
 
             gWiFiVSSetting->mNextState = 9;
             gWiFiVSSetting->mStateFrames = 0;
-            gWiFiVSSetting->mUnk_34 = FALSE;
+            gWiFiVSSetting->mConnectionReleased = FALSE;
             a = GetBmgEntry(gWiFiVSSetting->mWiFiMessages, 0x17);
             b = GetBmgEntry(gWiFiVSSetting->mCommonMessages, 0);
             c = GetBmgEntry(gWiFiVSSetting->mCommonMessages, 1);
@@ -549,11 +549,11 @@ void AdvanceWiFiVSSettingState9(void) {
 
 void AdvanceWiFiVSSettingState10(void) {
     gWiFiVSSetting->mStateFrames = gWiFiVSSetting->mStateFrames + 1;
-    if (func_02125fa4() != 0 && gWiFiVSSetting->mUnk_34 == FALSE) {
-        gWiFiVSSetting->mUnk_34 = TRUE;
+    if (func_02125fa4() != 0 && gWiFiVSSetting->mConnectionReleased == FALSE) {
+        gWiFiVSSetting->mConnectionReleased = TRUE;
         func_0211fe18();
     }
-    if (gWiFiVSSetting->mUnk_34 != FALSE && func_0211fda8() != 0 && gWiFiVSSetting->mStateFrames > 90 &&
+    if (gWiFiVSSetting->mConnectionReleased != FALSE && func_0211fda8() != 0 && gWiFiVSSetting->mStateFrames > 90 &&
         func_02125fa4() != 0) {
         void *t;
 
@@ -586,17 +586,17 @@ void func_ov000_02182270(void) {
     v = gWiFiVSSetting->mWiFiVSSettingBncl->mUnk_06;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < data_ov000_021b0600[i]; j++) {
-            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mUnk_04 = gWiFiVSSetting->mUnk_14[i][0];
-            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mUnk_06 = gWiFiVSSetting->mUnk_14[i][1];
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mUnk_04 = gWiFiVSSetting->mRowOffsets[i][0];
+            gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b060c[i][j]].mUnk_06 = gWiFiVSSetting->mRowOffsets[i][1];
         }
     }
     for (i = 0; i < 3; i++) {
-        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mUnk_04 = gWiFiVSSetting->mUnk_14[i][0];
-        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mUnk_06 = gWiFiVSSetting->mUnk_14[i][1];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mUnk_04 = gWiFiVSSetting->mRowOffsets[i][0];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[data_ov000_021b05e8[i]].mUnk_06 = gWiFiVSSetting->mRowOffsets[i][1];
     }
     for (k = 0; k < 3; k++) {
-        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mUnk_04 = gWiFiVSSetting->mUnk_14[1][0];
-        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mUnk_06 = gWiFiVSSetting->mUnk_14[1][1];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mUnk_04 = gWiFiVSSetting->mRowOffsets[1][0];
+        (gWiFiVSSetting->mWiFiVSSettingTable + v)[1].mUnk_06 = gWiFiVSSetting->mRowOffsets[1][1];
     }
     for (i = 0; i < 3; i++) {
         gWiFiVSSetting->mWiFiVSSettingTable[data_ov000_021b05f8[i][0]].mUnk_04 -=
@@ -705,7 +705,7 @@ void func_ov000_02181ff0(void) {
     b |= 9;
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (b << 8);
     G2x_SetBlendAlpha_((u32 *) 0x4000050, 0, 2, 6, 10);
-    v = -gWiFiVSSetting->mUnk_14[1][0];
+    v = -gWiFiVSSetting->mRowOffsets[1][0];
     if (v <= -256) {
         v = -256;
     }

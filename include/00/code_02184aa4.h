@@ -10,5 +10,5 @@ void RegisterWiFiVSCourseSelectCallbacks(void);
 void func_ov000_02184ac8(void);
 void AdvanceWiFiVSCourseSelectState(void);
 void func_ov000_02184b4c(void);
-void func_ov000_02184b50(void);
+void ReleaseWiFiVSCourseSelectState(void);
 void InitWiFiVSCourseSelectState(u32 a);

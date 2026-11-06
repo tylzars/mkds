@@ -20,7 +20,7 @@ void InitWiFiMenuScene(s16 *a) {
 }
 
 void ReleaseWiFiMenuScene(void) {
-    func_ov000_02180814();
+    ReleaseWiFiStates();
     data_ov000_021b4c60 = NULL;
 }
 

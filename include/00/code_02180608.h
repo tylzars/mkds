@@ -5,7 +5,7 @@
 // Four callbacks of a WiFi state: mInit gets WiFiStates.mStateHeap, mAdvance runs every frame.
 typedef struct WiFiStateCallbacks {
     /* 00 */ void (*mInit)(void *);
-    /* 04 */ void (*mUnk_04)(void);
+    /* 04 */ void (*mRelease)(void);
     /* 08 */ void (*mAdvance)(void);
     /* 0c */ void (*mUnk_0c)(void);
 } WiFiStateCallbacks;
@@ -44,5 +44,5 @@ void SetWiFiStateCallbacks(const WiFiStateCallbacks *callbacks);
 void func_ov000_02180704(void);
 void AdvanceWiFiStates(void);
 void InitWiFiStates(void *heap, s32 b);
-void func_ov000_02180a54(void);
+void LoadWiFiMenuSceneData(void);
 void ClearWiFiStateCallbacks(void);

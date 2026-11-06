@@ -10,5 +10,5 @@ void RegisterSelectCharacterCallbacks(void);
 void func_ov000_021848ec(void);
 void AdvanceWiFiSelectCharacterState(void);
 void func_ov000_02184934(void);
-void func_ov000_02184938(void);
+void ReleaseWiFiSelectCharacterState(void);
 void InitWiFiSelectCharacterState(void *a);
