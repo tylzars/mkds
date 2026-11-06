@@ -81,7 +81,7 @@ int AdvanceSelectKart(void) {
     func_02025edc(&gSelectKart->mUnk_0ac[4]);
     func_02029008();
     if (func_020280dc() == 0) {
-        func_0212b80c();
+        AdvancePaletteBlend();
     }
     if (func_020280dc() == 0) {
         gSelectKart->mUnk_110 = func_020290fc();
@@ -119,7 +119,7 @@ int AdvanceSelectKart(void) {
                 func_02124100(data_usa_02153834[4], 0, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
                 func_021106a8(func_02025eb0(gSelectKart->mCharacterIndex), 1);
                 func_02077f48(1);
-                func_0212b7e8();
+                StopPaletteBlend();
             } else if (func_020286f4(t, 2) != 0 || x != 0) {
                 gSelectKart->mStateFrames = 0;
                 gSelectKart->mResult = 2;

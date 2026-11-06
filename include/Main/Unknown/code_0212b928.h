@@ -4,4 +4,4 @@
 
 typedef struct Nclr Nclr;
 
-void func_0212b928(void *a, Nclr *b, u32 c);
+void InitPaletteBlend(void *heap, Nclr *nclr, u32 paletteIndex);

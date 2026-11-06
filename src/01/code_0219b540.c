@@ -139,7 +139,7 @@ void RequestSelectGhostState2(void) {
 void func_ov001_0219c428(void) {
     gSelectGhost->mNextState = 3;
     gSelectGhost->mStateFrames = 0;
-    func_0212b7e8();
+    StopPaletteBlend();
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
@@ -398,8 +398,8 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
                   gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable);
     func_0211de40(gSelectGhost->mHeap);
     CreateCommonCupMark(gSelectGhost->mHeap);
-    func_0212b928(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSONclr, 4);
-    func_0212b7fc();
+    InitPaletteBlend(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSONclr, 4);
+    ResetPaletteBlendCycle();
     func_ov001_0219be5c();
     func_ov001_0219c480();
     for (i = 3; i >= 0; i--) {
@@ -576,7 +576,7 @@ void AdvanceSelectGhostState6(void) {
             break;
         case -1:
         case 1:
-            func_0212b7d8();
+            StartPaletteBlend();
             RequestSelectGhostState2();
             break;
     }
@@ -654,7 +654,7 @@ int AdvanceSelectGhost(void) {
             AdvanceSelectGhostState7();
             break;
     }
-    func_0212b80c();
+    AdvancePaletteBlend();
     func_ov001_0219c358();
     func_02124c30(gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseMNcer,
                   gSelectGhost->mSelectCupCourseTaMBnll, (void *) gSelectGhost->mUnk_64,

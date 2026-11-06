@@ -202,7 +202,7 @@ s32 AdvanceSelectRaceRule(void) {
     }
     func_0202bb80();
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_0212b80c();
+        AdvancePaletteBlend();
     }
     func_0211d9dc();
     func_0211d66c();

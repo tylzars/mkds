@@ -56,7 +56,7 @@ void InitWiFiVSSetting(void *heap) {
     gWiFiVSSetting->mUnk_24 = TRUE;
     func_ov000_02180638(0);
     LocateAndQueueWiFiVSSetting();
-    func_0212b928(heap, gWiFiVSSetting->mWiFiVSSettingSONclr, 3);
+    InitPaletteBlend(heap, gWiFiVSSetting->mWiFiVSSettingSONclr, 3);
     for (i = 0; i < 2; i++) {
         func_02124a98(data_ov000_021b060c[i][0], 1, gWiFiVSSetting->mWiFiVSSettingSNcer,
                       gWiFiVSSetting->mWiFiVSSettingBncl);
@@ -364,7 +364,7 @@ end:
                       gWiFiVSSetting->mWiFiVSSettingTable);
     }
     if (gWiFiVSSetting->mRow == 2 && v1 != 2) {
-        func_0212b7fc();
+        ResetPaletteBlendCycle();
     }
 }
 
@@ -685,7 +685,7 @@ void AdvanceWiFiVSSetting(void) {
             AdvanceWiFiVSSettingState11();
             break;
     }
-    func_0212b80c();
+    AdvancePaletteBlend();
     func_ov000_02182270();
     func_ov000_021821e0();
     func_ov000_02182150();

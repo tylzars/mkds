@@ -68,7 +68,7 @@ u16 UpdateEndingStaffRoll(void) {
         gEndingStaffRoll->mUnk_00++;
     }
     if (gEndingStaffRoll->mUnk_00 == 0x30c) {
-        func_0212b1a8();
+        StartStaffRollText();
     }
     return *(vu16 *) 0x4000304;
 }

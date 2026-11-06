@@ -84,7 +84,7 @@ void InitOptionSelectMenu(void *a) {
     gOptionSelectMenu->mStateFrames = 0;
     gOptionSelectMenu->mUnk_38 = TRUE;
     LocateAndQueueOptionSelectMenu();
-    func_0212b928(a, gOptionSelectMenu->mOptionSelectMenuSONclr, 3);
+    InitPaletteBlend(a, gOptionSelectMenu->mOptionSelectMenuSONclr, 3);
     for (i = 0; i < 2; i++) {
         func_02124a98(data_ov001_021a6a28[i], 1, gOptionSelectMenu->mOptionSelectMenuSNcer,
                       gOptionSelectMenu->mOptionSelectMenuSBncl);
@@ -312,7 +312,7 @@ void AdvanceOptionSelectMenuState2(void) {
         gOptionSelectMenu->mNextOptionState = 0;
         gOptionSelectMenu->mIndex = 2;
         gOptionSelectMenu->mUnk_1c = TRUE;
-        func_0212b7e8();
+        StopPaletteBlend();
         func_02105ac0(5);
     } else if (r5 == 0) {
         gOptionSelectMenu->mIndex = 0;
@@ -388,7 +388,7 @@ end:
         gOptionSelectMenu->mUnk_0c[1] = 0;
     }
     if (gOptionSelectMenu->mIndex == 2 && sel != 2) {
-        func_0212b7fc();
+        ResetPaletteBlendCycle();
     }
     func_ov001_02199420();
 }
@@ -588,7 +588,7 @@ void AdvanceOptionSelectMenu(void) {
             AdvanceOptionSelectMenuState5();
             break;
     }
-    func_0212b80c();
+    AdvancePaletteBlend();
     func_ov001_02198bbc();
     func_ov001_02198b58();
     func_ov001_02198a6c();

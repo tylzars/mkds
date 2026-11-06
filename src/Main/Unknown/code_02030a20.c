@@ -491,7 +491,7 @@ void func_0203154c(void *a, void *b, void *c) {
         r -= func_02025a00(1, data_02174e58->mHeap, q, &data_usa_02153d7c[i], r);
     }
     func_02025f80(&data_02174e58->mUnk_a0[3], 3, 10, 0x40, 0);
-    func_0212b928(data_02174e58->mHeap, q->mUnk_04, 3);
+    InitPaletteBlend(data_02174e58->mHeap, q->mUnk_04, 3);
     func_02031b30(1);
     func_02025f80(&data_02174e58->mUnk_a0[0], 0, 10, -0x40, 0);
     func_02025f80(&data_02174e58->mUnk_a0[1], 0, 10, 0x40, 0);
@@ -675,7 +675,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
     }
     func_02031b6c();
     func_02031ba4();
-    func_0212b80c();
+    AdvancePaletteBlend();
     if (data_02174e58->mUnk_148 != FALSE) {
         data_02174e58->mUnk_14c = data_02174e58->mUnk_14c + 1;
         if (data_02174e58->mUnk_14c > 0x96) {
@@ -713,7 +713,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 if (data_02174e58->mUnk_74 > 0 && data_02174e58->mUnk_a0[3].mUnk_00 == 1) {
                     func_02031b30(0);
                     func_021282c8();
-                    func_0212b7e8();
+                    StopPaletteBlend();
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 6);
                     NNS_SndArcSetCurrent(&data_0217d0a0);

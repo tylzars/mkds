@@ -20,21 +20,21 @@ typedef struct Unk0217d410_2c {
     /* 08 */ s32 mUnk_08;
 } Unk0217d410_2c;
 
-// Object behind data_0217d410: 0x90 bytes allocated by func_0212b928.
-typedef struct Unk0217d410 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ BOOL mUnk_04;
-    /* 08 */ u8 mUnk_08;
+// 0x90 bytes.
+typedef struct PaletteBlend {
+    /* 00 */ s32 mCycleFrames;
+    /* 04 */ BOOL mStopped;
+    /* 08 */ u8 mPaletteIndex;
     /* 09 */ u8 mUnk_09;
     /* 0a */ u16 mUnk_0a[5];
     /* 14 */ u16 mUnk_14[4];
     /* 1c */ u16 mUnk_1c[4];
     /* 24 */ u16 mUnk_24[3];
     /* 2a */ u8 mUnk_2a[2];
-    /* 2c */ Unk0217d410_2c mUnk_2c[4];
-    /* 5c */ Unk0217d410_2c mUnk_5c[4];
-    /* 8c */ BOOL mUnk_8c;
-} Unk0217d410;
+    /* 2c */ Unk0217d410_2c mBlendFrom[4];
+    /* 5c */ Unk0217d410_2c mBlendTo[4];
+    /* 8c */ BOOL mFirstBlend;
+} PaletteBlend;
 
 // Object behind data_0217d358.
 typedef struct Unk0217d358 {
@@ -682,7 +682,7 @@ typedef struct Unk0217d408 {
     /* 1444 */ u16 mUnk_1444[0x300];
 } Unk0217d408;
 
-// Records of 8 bytes in the stream at member 0x18 of Unk0217d40c.
+// Records of 8 bytes in the stream at member 0x18 of StaffRollText.
 typedef struct Unk0217d40c_18 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02;
@@ -691,16 +691,15 @@ typedef struct Unk0217d40c_18 {
     /* 06 */ u16 mUnk_06;
 } Unk0217d40c_18;
 
-// Object behind data_0217d40c: 0x85c bytes allocated by func_0212b5ec; the 0x20 bytes at 0x20 are set up by
-// NNS_G2dCharCanvasInitForBG.
-typedef struct Unk0217d40c {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
-    /* 008 */ s32 mUnk_008;
-    /* 00c */ s32 mUnk_00c;
-    /* 010 */ s32 mUnk_010;
-    /* 014 */ s32 mUnk_014;
-    /* 018 */ u8 *mUnk_018;
+// 0x85c bytes; the 0x20 bytes at 0x20 are set up by NNS_G2dCharCanvasInitForBG.
+typedef struct StaffRollText {
+    /* 000 */ s32 mState;
+    /* 004 */ s32 mNextState;
+    /* 008 */ s32 mScrollYFixed;
+    /* 00c */ s32 mScrollYPerFrame;
+    /* 010 */ s32 mNextReadScrollY;
+    /* 014 */ s32 mScrollYRemaining;
+    /* 018 */ u8 *mTextPosition;
     /* 01c */ s8 mUnk_01c;
     /* 01d */ u8 mUnk_01d[3];
     /* 020 */ u8 mUnk_020[0x20];
@@ -709,8 +708,8 @@ typedef struct Unk0217d40c {
     /* 850 */ s8 mUnk_850;
     /* 851 */ u8 mUnk_851[3];
     /* 854 */ s32 mUnk_854;
-    /* 858 */ void *mUnk_858;
-} Unk0217d40c;
+    /* 858 */ void *mHeap;
+} StaffRollText;
 
 typedef struct Unk0210bcf4 Unk0210bcf4;
 
@@ -752,7 +751,7 @@ extern s32 data_0217d22c[];
 extern s32 data_0217d320;
 extern s32 data_0217d324;
 extern s32 data_0217d328;
-extern Unk0217d40c *data_0217d40c;
+extern StaffRollText *gStaffRollText;
 extern u32 data_0217dda8;
 extern CaptureParam data_0217ddd0;
 extern NNSSndSeqPlayer data_0217d45c[16];
@@ -781,7 +780,7 @@ extern s32 data_0217d2dc[];
 extern void *data_0217d33c;
 extern void *data_0217d340;
 extern Unk0217d404 *data_0217d404;
-extern Unk0217d410 *data_0217d410;
+extern PaletteBlend *gPaletteBlend;
 extern struct NNSSndStrmThread *data_0217df04;
 extern u8 data_0217df08[];
 extern NNSSndHeap *data_0217d130;

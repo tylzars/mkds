@@ -268,7 +268,7 @@ void func_0211d56c(void) {
             gSelectRaceRule->mOnButton = a;
             v = (Unk027ffc40 *) 0x027ffc40;
             if (v->mUnk_00 != 2) {
-                func_0212b7fc();
+                ResetPaletteBlendCycle();
             }
         } else if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mUnk_00 == 0 ||
                    (func_0211d650() == 8 && gSelectRaceRule->mRow == 1)) {
@@ -301,7 +301,7 @@ void func_0211d4a8(void) {
             gSelectRaceRule->mOnButton = a;
             v = (Unk027ffc40 *) 0x027ffc40;
             if (v->mUnk_00 != 2) {
-                func_0212b7fc();
+                ResetPaletteBlendCycle();
             }
         } else if (gSelectRaceRule->mTable[h + data_0215cd4c[gSelectRaceRule->mRow].mUnk_00[0]].mUnk_00 == 0 ||
                    (func_0211d650() == 8 && gSelectRaceRule->mRow == 1)) {
@@ -1289,7 +1289,7 @@ void func_0211ba58(void) {
     gSelectRaceRule->mNextState = 4;
     gSelectRaceRule->mStateFrames = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_0212b7e8();
+        StopPaletteBlend();
     }
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
     func_0211c474();
@@ -1534,7 +1534,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     p = gSelectRaceRule;
     CreateWait(p->mHeap, p->mNcer, p->mBncl, 0x2a, 0xe, 1);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_0212b928(gSelectRaceRule->mHeap, gSelectRaceRule->mNclr, 9);
+        InitPaletteBlend(gSelectRaceRule->mHeap, gSelectRaceRule->mNclr, 9);
     }
     FrmHeapShrinkInParent(gSelectRaceRule->mHeap);
     func_0211d9dc();

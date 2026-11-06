@@ -360,7 +360,7 @@ void func_020b03bc(void) {
     }
     if (v == 6) {
         InitEndingStaffRoll();
-        func_0212b5ec(GetHeap(func_020364e8()));
+        InitStaffRollText(GetHeap(func_020364e8()));
         return;
     }
     gRaceHud = HeapAlloc(GetHeap(func_020364e8()), 0x914);
@@ -751,7 +751,7 @@ void func_020af66c(void) {
     }
     if (v == 6) {
         UpdateEndingStaffRoll();
-        func_0212b204();
+        AdvanceStaffRollText();
         return;
     }
     if (gRaceHud->mEnabled == FALSE) {
