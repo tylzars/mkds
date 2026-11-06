@@ -472,7 +472,7 @@ void func_ov003_021c8c14(void) {
         case 1:
             func_ov003_021c20f8(v, 0);
             func_ov003_021c2120(2, 0);
-            func_ov003_021c212c(func_ov003_021c6e38);
+            func_ov003_021c212c(CreateEdit);
             break;
         case 4:
         case 5:

@@ -522,19 +522,19 @@ func_ov003_021c6764 kind:function(thumb,size=0xf0) addr:0x021c6724
 func_ov003_021c6854 kind:function(thumb,size=0x74) addr:0x021c6814
 func_ov003_021c68c8 kind:function(thumb,size=0x4c) addr:0x021c6888
 func_ov003_021c6914 kind:function(thumb,size=0x58) addr:0x021c68d4
-func_ov003_021c696c kind:function(thumb,size=0xac) addr:0x021c692c
+PrintEditText kind:function(thumb,size=0xac) addr:0x021c692c
 func_ov003_021c6a18 kind:function(thumb,size=0xb4) addr:0x021c69d8
 func_ov003_021c6acc kind:function(thumb,size=0x8c) addr:0x021c6a8c
 func_ov003_021c6b58 kind:function(thumb,size=0x28) addr:0x021c6b18
 func_ov003_021c6b80 kind:function(thumb,size=0x1c) addr:0x021c6b40
 func_ov003_021c6b9c kind:function(thumb,size=0x2) addr:0x021c6b5c
-func_ov003_021c6ba0 kind:function(thumb,size=0x13c) addr:0x021c6b60
-func_ov003_021c6cdc kind:function(thumb,size=0x12) addr:0x021c6c9c
+UpdateEditInput kind:function(thumb,size=0x13c) addr:0x021c6b60
+UpdateEdit kind:function(thumb,size=0x12) addr:0x021c6c9c
 func_ov003_021c6cf0 kind:function(thumb,size=0x1c) addr:0x021c6cb0
 func_ov003_021c6d0c kind:function(thumb,size=0x5c) addr:0x021c6ccc
 func_ov003_021c6d68 kind:function(thumb,size=0x3c) addr:0x021c6d28
-func_ov003_021c6da4 kind:function(thumb,size=0x94) addr:0x021c6d64
-func_ov003_021c6e38 kind:function(thumb,size=0xd0) addr:0x021c6df8
+LoadEditFilesAndSetBgCnt kind:function(thumb,size=0x94) addr:0x021c6d64
+CreateEdit kind:function(thumb,size=0xd0) addr:0x021c6df8
 func_ov003_021c6f08 kind:function(thumb,size=0x34) addr:0x021c6ec8
 func_ov003_021c6f3c kind:function(thumb,size=0x28) addr:0x021c6efc
 func_ov003_021c6f64 kind:function(thumb,size=0xec) addr:0x021c6f24
@@ -1195,9 +1195,9 @@ gApListRowRects kind:data(any) addr:0x021d6350
 data_ov003_021d63b8 kind:data(any) addr:0x021d6378
 data_ov003_021d63ba kind:data(any) addr:0x021d637a
 data_ov003_021d63bc kind:data(any) addr:0x021d637c
-data_ov003_021d63e0 kind:data(any) addr:0x021d63a0
+gEditLineY kind:data(any) addr:0x021d63a0
 data_ov003_021d63e4 kind:data(any) addr:0x021d63a4
-data_ov003_021d63e8 kind:data(any) addr:0x021d63a8
+gEditColumnX kind:data(any) addr:0x021d63a8
 data_ov003_021d63f8 kind:data(any) addr:0x021d63b8
 data_ov003_021d63fc kind:data(any) addr:0x021d63bc
 data_ov003_021d6408 kind:data(any) addr:0x021d63c8
@@ -1388,11 +1388,11 @@ gJb4ApListNscName kind:data(any) addr:0x021d7220
 data_ov003_021d7278 kind:data(any) addr:0x021d7238
 @1213 kind:data(any) addr:0x021d723c local
 @1732 kind:data(any) addr:0x021d7244 local
-data_ov003_021d728c kind:data(any) addr:0x021d724c
-data_ov003_021d72a4 kind:data(any) addr:0x021d7264
-data_ov003_021d72b8 kind:data(any) addr:0x021d7278
-data_ov003_021d72d0 kind:data(any) addr:0x021d7290
-data_ov003_021d72e8 kind:data(any) addr:0x021d72a8
+gYbObjMainNclName2 kind:data(any) addr:0x021d724c
+gYbObjKbNclName kind:data(any) addr:0x021d7264
+gJbBgStep3NcgName2 kind:data(any) addr:0x021d7278
+gYbBgStep3NclName2 kind:data(any) addr:0x021d7290
+gXb4EditNscName kind:data(any) addr:0x021d72a8
 data_ov003_021d72fc kind:data(any) addr:0x021d72bc
 data_ov003_021d7300 kind:data(any) addr:0x021d72c0
 data_ov003_021d7308 kind:data(any) addr:0x021d72c8
@@ -1637,7 +1637,7 @@ data_ov003_021da1e8 kind:bss addr:0x021da1a8
 gApListSelectedRow kind:bss addr:0x021da1ac
 gApListScrollY kind:bss addr:0x021da1b0
 gApList kind:bss addr:0x021da1b4
-data_ov003_021da1f8 kind:bss addr:0x021da1b8
+gEdit kind:bss addr:0x021da1b8
 data_ov003_021da1fc kind:bss addr:0x021da1bc
 data_ov003_021da200 kind:bss addr:0x021da1c0
 data_ov003_021da204 kind:bss addr:0x021da1c4
