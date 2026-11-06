@@ -601,7 +601,7 @@ Expression shapes:
   0/1 flag set by if/else right before the loop jumps into the header from its then arm, so write `d = b == 0;`
   (func_ov000_0219fbec).
 - Every field reloaded after a free-room test while ours reuses the loads: declare the pointer locals loaded from the
-  tables `volatile`, and only those (hand-picked; the only spelling that matched; func_02015fa0).
+  tables `volatile`, and only those (hand-picked; the only spelling that matched; NNS_GfdAllocFrmTexVram).
 - A loop bound reloaded each pass while the guard's load is reused after the loop (signed `ble`): no named copy of the
   bound; write the condition and the after-loop test through the global (func_ov000_0219fbec).
 
@@ -746,9 +746,9 @@ Expression shapes:
 - A sign flag and its source swapped: write abs as `a = a > 0 ? a : -a;`, not `if (a <= 0) a = -a;` (LimitKartForwardSpeedAndGetScaled).
 - `streq` of the zero arm before the other arm's store: negate the `||` chain to `&&` and swap the arms (LimitKartForwardSpeedAndGetScaled).
 - An early `popeq`/`bxeq` return of 0 where ours if-converts the tail: `if (ok != 0) { return expr; } return 0;`
-  (func_02015fa0).
+  (NNS_GfdAllocFrmTexVram).
 - Two failure paths sharing one `flag = 0` block: `goto done` after the success test with a single `flag = 0` below, and
-  carry the 0/1 flag in a variable whose first use is elsewhere (func_020162d4).
+  carry the 0/1 flag in a variable whose first use is elsewhere (NNS_GfdAllocFrmPlttVram).
 - A predicated arm that forms its address in `ip` alone where ours goes through r4: write the multi-statement arm first,
   with the `!= 0` test (func_02050080).
 - A one-argument call whose other copy of the declaration is unprototyped: pass the missing `0` argument

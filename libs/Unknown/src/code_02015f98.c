@@ -1,121 +1,122 @@
 #include "code_02015f98.h"
 #include "Main/Unknown/unk_02161000.h"
 
-void func_0201625c(u32 a, u32 b, u32 c, u32 d, u32 e) {
-    data_02161a04[0] = &data_02161a18[a];
-    data_02161a04[1] = &data_02161a18[b];
-    data_02161a04[2] = &data_02161a18[c];
-    data_02161a04[3] = &data_02161a18[d];
-    data_02161a04[4] = &data_02161a18[e];
+void NNSi_GfdSetTexNrmSearchArray(int idx1st, int idx2nd, int idx3rd, int idx4th, int idx5th) {
+    data_02161a04[0] = &data_02161a18[idx1st];
+    data_02161a04[1] = &data_02161a18[idx2nd];
+    data_02161a04[2] = &data_02161a18[idx3rd];
+    data_02161a04[3] = &data_02161a18[idx4th];
+    data_02161a04[4] = &data_02161a18[idx5th];
 }
 
-void func_020161b4(u32 a, u32 b) {
-    if (a <= 2) {
-        func_0201625c(4, 3, 2, 0, 1);
+void NNS_GfdInitFrmTexVramManager(u16 numBanks, BOOL useAsDefault) {
+    if (numBanks <= 2) {
+        NNSi_GfdSetTexNrmSearchArray(4, 3, 2, 0, 1);
     } else {
-        func_0201625c(4, 3, 0, 2, 1);
+        NNSi_GfdSetTexNrmSearchArray(4, 3, 0, 2, 1);
     }
-    data_02173210 = a;
-    func_02016134();
-    if (b != 0) {
-        data_021619ec = (u32(*)(s32, s32, s32)) func_02015fa0;
-        data_021619f0 = (void (*)(void *)) func_02015f98;
+    data_02173210 = numBanks;
+    NNS_GfdResetFrmTexVramState();
+    if (useAsDefault != 0) {
+        data_021619ec = (u32(*)(s32, s32, s32)) NNS_GfdAllocFrmTexVram;
+        data_021619f0 = (void (*)(void *)) NNS_GfdFreeFrmTexVram;
     }
 }
 
-void func_02016134(void) {
-    u32 n;
+void NNS_GfdResetFrmTexVramState(void) {
+    u32 numBanks;
     s32 i;
-    Unk02015fa0 *p;
+    NNSGfdFrmTexRegionState *region;
 
-    n = data_02173210;
-    p = data_02161a18;
-    if (n > 1) {
-        n++;
+    numBanks = data_02173210;
+    region = data_02161a18;
+    if (numBanks > 1) {
+        numBanks++;
     }
     for (i = 0; i < 5; i++) {
-        if (i < (s32) n) {
-            p->mUnk_08 = 1;
+        if (i < (s32) numBanks) {
+            region->mBActive = 1;
         } else {
-            p->mUnk_08 = 0;
+            region->mBActive = 0;
         }
-        if (p->mUnk_0c != 0) {
-            p->mUnk_00 = 0;
-            p->mUnk_04 = 0x10000;
+        if (region->mBHalfSize != 0) {
+            region->mHead = 0;
+            region->mTail = 0x10000;
         } else {
-            p->mUnk_00 = 0;
-            p->mUnk_04 = 0x20000;
+            region->mHead = 0;
+            region->mTail = 0x20000;
         }
-        p++;
+        region++;
     }
 }
 
-u32 func_02015fa0(u32 a, u32 b) {
-    u32 base;
-    u32 s;
-    u32 ok;
+u32 NNS_GfdAllocFrmTexVram(u32 szByte, u32 is4x4comp, u32 opt) {
+    u32 addr;
+    u32 size;
+    u32 found;
     s32 i;
-    volatile Unk02015fa0 *e;
-    Unk02015fa0 *t;
-    u32 h;
+    volatile NNSGfdFrmTexRegionState *region;
+    NNSGfdFrmTexRegionState *palRegion;
+    u32 halfSize;
 
-    if (a == 0) {
-        s = 0x10;
+    if (szByte == 0) {
+        size = 0x10;
     } else {
-        s = (a + 0xf) & ~0xf;
+        size = (szByte + 0xf) & ~0xf;
     }
-    if (s >= 0x7fff0) {
+    if (size >= 0x7fff0) {
         return 0;
     }
-    if (b != 0) {
-        h = s >> 1;
+    if (is4x4comp != 0) {
+        halfSize = size >> 1;
         for (i = 0; i < 2; i++) {
-            e = data_021619fc[i];
-            if (e->mUnk_08 != 0 && e->mUnk_04 - e->mUnk_00 >= s) {
-                switch (e->mUnk_10) {
+            region = data_021619fc[i];
+            if (region->mBActive != 0 && region->mTail - region->mHead >= size) {
+                switch (region->mIndex) {
                     case 0:
-                        t = &data_02161a18[1];
+                        palRegion = &data_02161a18[1];
                         break;
                     case 3:
-                        t = &data_02161a18[2];
+                        palRegion = &data_02161a18[2];
                         break;
                     default:
-                        t = 0;
+                        palRegion = 0;
                         break;
                 }
-                if (t->mUnk_08 != 0 && t->mUnk_04 - t->mUnk_00 >= h) {
-                    ok = 1;
-                    base = e->mUnk_00;
-                    e->mUnk_00 = base + s;
-                    t->mUnk_00 += h;
-                    base += e->mUnk_14;
+                if (palRegion->mBActive != 0 && palRegion->mTail - palRegion->mHead >= halfSize) {
+                    found = 1;
+                    addr = region->mHead;
+                    region->mHead = addr + size;
+                    palRegion->mHead += halfSize;
+                    addr += region->mBaseAddress;
                     goto done;
                 }
             }
         }
-        ok = 0;
+        found = 0;
     } else {
         s32 j;
-        volatile Unk02015fa0 *q;
+        volatile NNSGfdFrmTexRegionState *normRegion;
 
         for (j = 0; j < 5; j++) {
-            q = data_02161a04[j];
-            if (q->mUnk_08 != 0 && q->mUnk_04 - q->mUnk_00 >= s) {
-                q->mUnk_04 -= s;
-                ok = 1;
-                base = q->mUnk_04 + q->mUnk_14;
+            normRegion = data_02161a04[j];
+            if (normRegion->mBActive != 0 && normRegion->mTail - normRegion->mHead >= size) {
+                normRegion->mTail -= size;
+                found = 1;
+                addr = normRegion->mTail + normRegion->mBaseAddress;
                 goto done;
             }
         }
-        ok = 0;
+        found = 0;
     }
 done:
-    if (ok != 0) {
-        return ((base >> 3) & 0xffff) | ((s >> 4) << 16) | (b << 31);
+    if (found != 0) {
+        return ((addr >> 3) & 0xffff) | ((size >> 4) << 16) | (is4x4comp << 31);
     }
     return 0;
 }
 
-s32 func_02015f98(void) {
+// Frame managers do not free single blocks.
+s32 NNS_GfdFreeFrmTexVram(u32 texKey) {
     return 0;
 }

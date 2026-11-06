@@ -4,34 +4,31 @@
 
 typedef struct RangeEntry RangeEntry;
 
-// Object at data_02173234: three pointers to RangeEntry and four words at 0c to 18 stored by func_02017070.
-typedef struct Unk02016d34 {
-    /* 00 */ RangeEntry *mUnk_00;
-    /* 04 */ RangeEntry *mUnk_04;
-    /* 08 */ RangeEntry *mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ u32 mUnk_10;
-    /* 14 */ RangeEntry *mUnk_14;
-    /* 18 */ u32 mUnk_18;
-} Unk02016d34;
+typedef struct NNS_GfdLnkTexVramManager {
+    /* 00 */ RangeEntry *mMgrNrm;
+    /* 04 */ RangeEntry *mMgr4x4;
+    /* 08 */ RangeEntry *mBlockList;
+    /* 0c */ u32 mSzByte;
+    /* 10 */ u32 mSzByteFor4x4;
+    /* 14 */ RangeEntry *mWorkHead;
+    /* 18 */ u32 mSzByteManagementWork;
+} NNS_GfdLnkTexVramManager;
 
-// Object at data_02173250: two pointers to RangeEntry at 00 and 04 and three words at 08, 0c and 10.
-typedef struct Unk020170e4 {
-    /* 00 */ RangeEntry *mUnk_00;
-    /* 04 */ RangeEntry *mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ RangeEntry *mUnk_0c;
-    /* 10 */ u32 mUnk_10;
-} Unk020170e4;
+typedef struct NNS_GfdLnkPlttVramManager {
+    /* 00 */ RangeEntry *mMgr;
+    /* 04 */ RangeEntry *mBlockList;
+    /* 08 */ u32 mSzByte;
+    /* 0c */ RangeEntry *mWorkHead;
+    /* 10 */ u32 mSzByteManagementWork;
+} NNS_GfdLnkPlttVramManager;
 
-// Three words; func_02016d34 keeps four of them, initialised from data_02161a90.
-typedef struct Unk02161a90 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-} Unk02161a90;
+typedef struct LnkTexBankData {
+    /* 00 */ u32 mSzFree;
+    /* 04 */ u32 mSzNrm;
+    /* 08 */ u32 mSz4x4;
+} LnkTexBankData;
 
-void func_020170e4(void);
-s32 func_02017138(u32 v);
-u32 func_02017190(u32 a, s32 b);
-void func_02017274(u32 a, RangeEntry *b, u32 c, int d);
+void NNS_GfdResetLnkPlttVramState(void);
+s32 NNS_GfdFreeLnkPlttVram(u32 plttKey);
+u32 NNS_GfdAllocLnkPlttVram(u32 szByte, s32 b4Pltt, u32 opt);
+void NNS_GfdInitLnkPlttVramManager(u32 szByte, void *pManagementWork, u32 szByteManagementWork, int useAsDefault);

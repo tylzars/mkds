@@ -5,7 +5,7 @@
 #include "code_0201ec30.h" // Unk02173290
 
 typedef struct Unk01ff9048 Unk01ff9048;
-typedef struct Unk020162b0 Unk020162b0;
+typedef struct NNSGfdFrmPlttVramManager NNSGfdFrmPlttVramManager;
 typedef struct CallQueue CallQueue;
 
 extern u32 data_02173274;
@@ -13,11 +13,11 @@ extern u32 data_02173274;
 extern BOOL data_0217320c;
 
 extern CallQueue data_02173220;
-extern Unk020162b0 data_02173214;
-extern Unk02016d34 data_02173234;
+extern NNSGfdFrmPlttVramManager data_02173214;
+extern NNS_GfdLnkTexVramManager data_02173234;
 extern RangeEntry *data_02173238;
 extern RangeEntry *data_0217323c;
-extern Unk020170e4 data_02173250;
+extern NNS_GfdLnkPlttVramManager data_02173250;
 extern RangeEntry *data_02173254;
 
 extern vu16 data_02173278;

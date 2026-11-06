@@ -120,8 +120,8 @@ void InitRace(void) {
     gRace = HeapAlloc(a, 72);
     func_02062a0c();
     b = GX_GetBankForTex();
-    func_020161b4((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
-    func_02016414(0x10000, 1);
+    NNS_GfdInitFrmTexVramManager((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
+    NNS_GfdInitFrmPlttVramManager(0x10000, 1);
     func_0208533c();
     func_02077998();
     func_02047b6c(1);
@@ -233,8 +233,8 @@ void func_020629a4(void) {
     u16 b;
 
     b = GX_GetBankForTex();
-    func_020161b4((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
-    func_02016414(0x10000, 1);
+    NNS_GfdInitFrmTexVramManager((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
+    NNS_GfdInitFrmPlttVramManager(0x10000, 1);
     func_0208533c();
 }
 

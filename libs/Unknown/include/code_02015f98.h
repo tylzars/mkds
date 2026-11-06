@@ -2,24 +2,24 @@
 
 #include "types.h"
 
-// 0x18-byte entry of the table at data_02161a18.
-typedef struct Unk02015fa0 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
-    /* 14 */ u32 mUnk_14;
-} Unk02015fa0;
+// One texture VRAM region of the frame manager.
+typedef struct NNSGfdFrmTexRegionState {
+    /* 00 */ u32 mHead;
+    /* 04 */ u32 mTail;
+    /* 08 */ u32 mBActive;
+    /* 0c */ u32 mBHalfSize;
+    /* 10 */ u16 mIndex;
+    /* 12 */ u16 mPad16;
+    /* 14 */ u32 mBaseAddress;
+} NNSGfdFrmTexRegionState;
 
-extern Unk02015fa0 *data_021619fc[2];
-extern Unk02015fa0 *data_02161a04[5];
-extern Unk02015fa0 data_02161a18[5];
+extern NNSGfdFrmTexRegionState *data_021619fc[2];
+extern NNSGfdFrmTexRegionState *data_02161a04[5];
+extern NNSGfdFrmTexRegionState data_02161a18[5];
 extern u16 data_02173210;
 
-s32 func_02015f98(void);
-u32 func_02015fa0(u32 a, u32 b);
-void func_02016134(void);
-void func_020161b4(u32 a, u32 b);
-void func_0201625c(u32 a, u32 b, u32 c, u32 d, u32 e);
+s32 NNS_GfdFreeFrmTexVram(u32 texKey);
+u32 NNS_GfdAllocFrmTexVram(u32 szByte, u32 is4x4comp, u32 opt);
+void NNS_GfdResetFrmTexVramState(void);
+void NNS_GfdInitFrmTexVramManager(u16 numBanks, BOOL useAsDefault);
+void NNSi_GfdSetTexNrmSearchArray(int idx1st, int idx2nd, int idx3rd, int idx4th, int idx5th);

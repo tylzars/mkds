@@ -2,47 +2,47 @@
 #include "ITCM/code_01ff8000.h"
 #include "ITCM/code_01ff9000.h"
 
-s32 func_02015f90(void) {
+u32 AllocPlttVram_(u32 szByte, BOOL b4Pltt, u32 opt) {
     return 0;
 }
 
-s32 func_02015f88(void) {
+s32 FreePlttVram_(u32 plttKey) {
     return -1;
 }
 
-s32 func_02015f80(void) {
+u32 AllocTexVram_(u32 szByte, BOOL is4x4comp, u32 opt) {
     return 0;
 }
 
-s32 func_02015f78(void) {
+s32 FreeTexVram_(u32 texKey) {
     return -1;
 }
 
-void func_02015ef4(Unk02015eb8 *a) {
-    u32 v;
+void NNSi_G3dSendJointSRTBasic(const NNSG3dJntAnmResult *result) {
+    u32 flag;
 
-    v = a->mUnk_00;
-    if ((v & 4) == 0) {
-        if ((v & 2) == 0) {
-            func_01ff9048(0x19, a->mUnk_28, 0xc);
+    flag = result->mFlag;
+    if ((flag & 4) == 0) {
+        if ((flag & 2) == 0) {
+            func_01ff9048(0x19, result->mRot, 0xc);
         } else {
-            func_01ff9048(0x1c, a->mUnk_4c, 3);
+            func_01ff9048(0x1c, &result->mTrans, 3);
         }
-    } else if ((v & 2) == 0) {
-        func_01ff9048(0x1a, a->mUnk_28, 9);
+    } else if ((flag & 2) == 0) {
+        func_01ff9048(0x1a, result->mRot, 9);
     }
-    if ((a->mUnk_00 & 1) == 0) {
-        func_01ff9048(0x1b, &a->mUnk_04, 3);
+    if ((result->mFlag & 1) == 0) {
+        func_01ff9048(0x1b, &result->mScale, 3);
     }
 }
 
-void func_02015eb8(Unk02015eb8 *a, u32 *b, u32 c, u32 d) {
-    if (d & 4) {
-        a->mUnk_00 |= 1;
+void NNSi_G3dGetJointScaleBasic(NNSG3dJntAnmResult *pResult, const s32 *p, const u8 *cmd, u32 srtflag) {
+    if (srtflag & 4) {
+        pResult->mFlag |= 1;
     } else {
-        a->mUnk_04 = b[0];
-        a->mUnk_08 = b[1];
-        a->mUnk_0c = b[2];
+        pResult->mScale.x = p[0];
+        pResult->mScale.y = p[1];
+        pResult->mScale.z = p[2];
     }
-    a->mUnk_00 |= 0x18;
+    pResult->mFlag |= 0x18;
 }

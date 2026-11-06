@@ -2056,12 +2056,12 @@ void func_02077bc0(void *a) {
     u32 v2;
     RangeEntry *v3;
     RangeEntry *v4;
-    v1 = func_020170dc(0x20);
+    v1 = NNS_GfdGetLnkTexVramManagerWorkSize(0x20);
     v2 = func_020172d0(0x20);
     v3 = HeapAlloc(a, v1);
     v4 = HeapAlloc(a, v2);
-    func_02017070((u32) 0x00040000u, (u32) 0x00020000u, v3, v1, 1);
-    func_02017274((u32) 0x00010000u, v4, v2, 1);
+    NNS_GfdInitLnkTexVramManager((u32) 0x00040000u, (u32) 0x00020000u, v3, v1, 1);
+    NNS_GfdInitLnkPlttVramManager((u32) 0x00010000u, v4, v2, 1);
 }
 
 #pragma thumb off

@@ -7,62 +7,63 @@
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/unk_02173000.h"
 
-int func_020170dc(int v) {
-    return v << 4;
+int NNS_GfdGetLnkTexVramManagerWorkSize(int numMemBlk) {
+    return numMemBlk << 4;
 }
 
-void func_02017070(u32 a, u32 b, RangeEntry *c, u32 d, int e) {
-    data_02173234.mUnk_0c = a;
-    data_02173234.mUnk_10 = b;
-    data_02173234.mUnk_14 = c;
-    data_02173234.mUnk_18 = d;
-    func_02016d34();
-    if (e != 0) {
-        data_021619ec = (u32(*)(s32, s32, s32)) func_02016fbc;
-        data_021619f0 = (void (*)(void *)) func_02016f2c;
+void NNS_GfdInitLnkTexVramManager(u32 szByte, u32 szByteFor4x4, void *pManagementWork, u32 szByteManagementWork,
+                                  int useAsDefault) {
+    data_02173234.mSzByte = szByte;
+    data_02173234.mSzByteFor4x4 = szByteFor4x4;
+    data_02173234.mWorkHead = pManagementWork;
+    data_02173234.mSzByteManagementWork = szByteManagementWork;
+    NNS_GfdResetLnkTexVramState();
+    if (useAsDefault != 0) {
+        data_021619ec = (u32(*)(s32, s32, s32)) NNS_GfdAllocLnkTexVram;
+        data_021619f0 = (void (*)(void *)) NNS_GfdFreeLnkTexVram;
     }
 }
 
-u32 func_02016fbc(u32 a, s32 b) {
-    u32 n;
-    u32 out;
-    s32 r;
+u32 NNS_GfdAllocLnkTexVram(u32 szByte, s32 is4x4comp, u32 opt) {
+    u32 size;
+    u32 addr;
+    s32 result;
 
-    if (a == 0) {
-        n = 0x10;
+    if (szByte == 0) {
+        size = 0x10;
     } else {
-        n = (a + 0xf) & ~0xf;
+        size = (szByte + 0xf) & ~0xf;
     }
-    if (n >= 0x7fff0) {
+    if (size >= 0x7fff0) {
         return 0;
     }
-    if (b != 0) {
-        r = RangeListAlloc(&data_02173238, &data_0217323c, &out, n);
+    if (is4x4comp != 0) {
+        result = RangeListAlloc(&data_02173238, &data_0217323c, &addr, size);
     } else {
-        r = RangeListAlloc(&data_02173234.mUnk_00, &data_0217323c, &out, n);
+        result = RangeListAlloc(&data_02173234.mMgrNrm, &data_0217323c, &addr, size);
     }
-    if (r == 0) {
+    if (result == 0) {
         return 0;
     }
-    return ((n >> 4) << 16) | ((out >> 3) & 0xffff) | (b << 31);
+    return ((size >> 4) << 16) | ((addr >> 3) & 0xffff) | (is4x4comp << 31);
 }
 
-s32 func_02016f2c(u32 v) {
-    u32 start;
-    u32 len;
-    u32 hi;
-    s32 r;
+s32 NNS_GfdFreeLnkTexVram(u32 texKey) {
+    u32 addr;
+    u32 size;
+    u32 is4x4;
+    s32 result;
 
-    start = (v & 0xffff) << 3;
-    len = ((v & 0x7fff0000) >> 16) << 4;
-    hi = (v & 0x80000000) >> 31;
-    if (len != 0) {
-        if (hi != 0) {
-            r = RangeListFree(&data_02173238, &data_0217323c, start, len);
+    addr = (texKey & 0xffff) << 3;
+    size = ((texKey & 0x7fff0000) >> 16) << 4;
+    is4x4 = (texKey & 0x80000000) >> 31;
+    if (size != 0) {
+        if (is4x4 != 0) {
+            result = RangeListFree(&data_02173238, &data_0217323c, addr, size);
         } else {
-            r = RangeListFree(&data_02173234.mUnk_00, &data_0217323c, start, len);
+            result = RangeListFree(&data_02173234.mMgrNrm, &data_0217323c, addr, size);
         }
-        if (r != 0) {
+        if (result != 0) {
             return 0;
         }
         return 1;
@@ -70,73 +71,73 @@ s32 func_02016f2c(u32 v) {
     return 2;
 }
 
-void func_02016d34(void) {
-    Unk02161a90 t[4] = {{0x20000, 0, 0}, {0x20000, 0, 0}, {0x20000, 0, 0}, {0x20000, 0, 0}};
-    u32 a;
-    Unk02161a90 *p;
-    u32 i;
-    u32 b;
-    u32 h;
-    u32 n;
-    u32 x;
-    u32 y;
-    u32 z;
+void NNS_GfdResetLnkTexVramState(void) {
+    LnkTexBankData t[4] = {{0x20000, 0, 0}, {0x20000, 0, 0}, {0x20000, 0, 0}, {0x20000, 0, 0}};
+    u32 rest4x4;
+    LnkTexBankData *bank;
+    u32 bankNo;
+    u32 restNrm;
+    u32 indexSize;
+    u32 amount;
+    u32 bank0NrmAddr;
+    u32 bank2NrmAddr;
+    u32 bank2Nrm;
 
-    a = data_02173234.mUnk_10;
-    b = data_02173234.mUnk_0c;
-    h = a >> 1;
-    b = b - (a + h);
-    p = t;
-    for (i = 0; i < 4; i++) {
-        if (i == 0 || i == 2) {
-            if (p->mUnk_00 != 0 && a != 0) {
-                n = p->mUnk_00;
-                if (n > a) {
-                    n = a;
+    rest4x4 = data_02173234.mSzByteFor4x4;
+    restNrm = data_02173234.mSzByte;
+    indexSize = rest4x4 >> 1;
+    restNrm = restNrm - (rest4x4 + indexSize);
+    bank = t;
+    for (bankNo = 0; bankNo < 4; bankNo++) {
+        if (bankNo == 0 || bankNo == 2) {
+            if (bank->mSzFree != 0 && rest4x4 != 0) {
+                amount = bank->mSzFree;
+                if (amount > rest4x4) {
+                    amount = rest4x4;
                 }
-                p->mUnk_08 += n;
-                a -= n;
-                p->mUnk_00 -= n;
+                bank->mSz4x4 += amount;
+                rest4x4 -= amount;
+                bank->mSzFree -= amount;
             }
         }
-        p++;
+        bank++;
     }
-    t[1].mUnk_00 -= h;
-    p = t;
-    for (i = 0; i < 4; i++) {
-        if (p->mUnk_00 != 0 && b != 0) {
-            n = p->mUnk_00;
-            if (n > b) {
-                n = b;
+    t[1].mSzFree -= indexSize;
+    bank = t;
+    for (bankNo = 0; bankNo < 4; bankNo++) {
+        if (bank->mSzFree != 0 && restNrm != 0) {
+            amount = bank->mSzFree;
+            if (amount > restNrm) {
+                amount = restNrm;
             }
-            p->mUnk_04 += n;
-            b -= n;
-            p->mUnk_00 -= n;
+            bank->mSzNrm += amount;
+            restNrm -= amount;
+            bank->mSzFree -= amount;
         }
-        p++;
+        bank++;
     }
-    RangeListInit(&data_02173234.mUnk_00);
+    RangeListInit(&data_02173234.mMgrNrm);
     RangeListInit(&data_02173238);
-    data_02173234.mUnk_08 = RangeEntryPoolInit(data_02173234.mUnk_14, data_02173234.mUnk_18 >> 4);
-    if (t[0].mUnk_08 != 0) {
-        RangeListAdd(&data_02173238, &data_0217323c, 0, t[0].mUnk_08);
+    data_02173234.mBlockList = RangeEntryPoolInit(data_02173234.mWorkHead, data_02173234.mSzByteManagementWork >> 4);
+    if (t[0].mSz4x4 != 0) {
+        RangeListAdd(&data_02173238, &data_0217323c, 0, t[0].mSz4x4);
     }
-    x = t[0].mUnk_08;
-    if (t[0].mUnk_04 != 0) {
-        RangeListAdd(&data_02173234.mUnk_00, &data_0217323c, x, t[0].mUnk_04);
+    bank0NrmAddr = t[0].mSz4x4;
+    if (t[0].mSzNrm != 0) {
+        RangeListAdd(&data_02173234.mMgrNrm, &data_0217323c, bank0NrmAddr, t[0].mSzNrm);
     }
-    if (t[2].mUnk_08 != 0) {
-        RangeListAdd(&data_02173238, &data_0217323c, 0x40000, t[2].mUnk_08);
+    if (t[2].mSz4x4 != 0) {
+        RangeListAdd(&data_02173238, &data_0217323c, 0x40000, t[2].mSz4x4);
     }
-    z = t[2].mUnk_04;
-    y = t[2].mUnk_08 + 0x40000;
-    if (z != 0) {
-        RangeListAdd(&data_02173234.mUnk_00, &data_0217323c, y, z);
+    bank2Nrm = t[2].mSzNrm;
+    bank2NrmAddr = t[2].mSz4x4 + 0x40000;
+    if (bank2Nrm != 0) {
+        RangeListAdd(&data_02173234.mMgrNrm, &data_0217323c, bank2NrmAddr, bank2Nrm);
     }
-    if (t[3].mUnk_04 != 0) {
-        RangeListAdd(&data_02173234.mUnk_00, &data_0217323c, 0x60000, t[3].mUnk_04);
+    if (t[3].mSzNrm != 0) {
+        RangeListAdd(&data_02173234.mMgrNrm, &data_0217323c, 0x60000, t[3].mSzNrm);
     }
-    if (t[1].mUnk_04 != 0) {
-        RangeListAdd(&data_02173234.mUnk_00, &data_0217323c, h + 0x20000, t[1].mUnk_04);
+    if (t[1].mSzNrm != 0) {
+        RangeListAdd(&data_02173234.mMgrNrm, &data_0217323c, indexSize + 0x20000, t[1].mSzNrm);
     }
 }

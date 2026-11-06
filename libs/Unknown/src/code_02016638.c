@@ -19,224 +19,164 @@ s32 CallQueueIsEmpty(CallQueue *p) {
     return p->mCount == 0;
 }
 
-void func_0201691c(const void *a, u32 b, u32 c) {
+void DoTransfer3dTex(const void *pSrc, u32 offset, u32 szByte) {
     GX_BeginLoadTex();
-    GX_LoadTex(a, b, c);
+    GX_LoadTex(pSrc, offset, szByte);
     GX_EndLoadTex();
 }
 
-void func_020168ec(const void *a, u32 b, u32 c) {
+void DoTransfer3dTexPltt(const void *pSrc, u32 offset, u32 szByte) {
     GX_BeginLoadTexPltt();
-    GX_LoadTexPltt(a, b, c);
+    GX_LoadTexPltt(pSrc, offset, szByte);
     GX_EndLoadTexPltt();
 }
 
-void func_020168bc(const void *a, u32 b, u32 c) {
+void DoTransfer3dClearImageColor(const void *pSrc, u32 offset, u32 szByte) {
     GX_BeginLoadClearImage();
-    GX_LoadClearImageColor(a, c);
+    GX_LoadClearImageColor(pSrc, szByte);
     GX_EndLoadClearImage();
 }
 
-void func_0201688c(const void *a, u32 b, u32 c) {
+void DoTransfer3dClearImageDepth(const void *pSrc, u32 offset, u32 szByte) {
     GX_BeginLoadClearImage();
-    GX_LoadClearImageDepth(a, c);
+    GX_LoadClearImageDepth(pSrc, szByte);
     GX_EndLoadClearImage();
 }
 
-void func_02016880(const void *a, u32 b, u32 c) {
-    GX_LoadBG0Char(a, b, c);
+void DoTransfer2dBG0CharMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG0Char(pSrc, offset, szByte);
 }
 
-void func_02016874(const void *a, u32 b, u32 c) {
-    GX_LoadBG1Char(a, b, c);
+void DoTransfer2dBG1CharMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG1Char(pSrc, offset, szByte);
 }
 
-void func_02016868(const void *a, u32 b, u32 c) {
-    GX_LoadBG2Char(a, b, c);
+void DoTransfer2dBG2CharMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG2Char(pSrc, offset, szByte);
 }
 
-void func_0201685c(const void *a, u32 b, u32 c) {
-    GX_LoadBG3Char(a, b, c);
+void DoTransfer2dBG3CharMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG3Char(pSrc, offset, szByte);
 }
 
-void func_02016850(const void *a, u32 b, u32 c) {
-    GX_LoadBG0Scr(a, b, c);
+void DoTransfer2dBG0ScrMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG0Scr(pSrc, offset, szByte);
 }
 
-void func_02016844(const void *a, u32 b, u32 c) {
-    GX_LoadBG1Scr(a, b, c);
+void DoTransfer2dBG1ScrMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG1Scr(pSrc, offset, szByte);
 }
 
-void func_02016838(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GX_LoadBG2Scr((const void *) value0, (int) value1, value2);
+void DoTransfer2dBG2ScrMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG2Scr(pSrc, offset, szByte);
 }
 
-void func_0201682c(const void *a, u32 b, u32 c) {
-    GX_LoadBG3Scr(a, b, c);
+void DoTransfer2dBG3ScrMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG3Scr(pSrc, offset, szByte);
 }
 
-void func_02016820(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GX_LoadBG2Scr((const void *) value0, (int) value1, value2);
+void DoTransfer2dBG2BmpMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG2Scr(pSrc, offset, szByte);
 }
 
-void func_02016814(const void *a, u32 b, u32 c) {
-    GX_LoadBG3Scr(a, b, c);
+void DoTransfer2dBG3BmpMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBG3Scr(pSrc, offset, szByte);
 }
 
-void func_02016808(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GX_LoadOBJPltt((const void *) value0, (int) value1, value2);
+void DoTransfer2dObjPlttMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadOBJPltt(pSrc, offset, szByte);
 }
 
-void func_020167fc(const void *a, u32 b, u32 c) {
-    GX_LoadBGPltt(a, b, c);
+void DoTransfer2dBGPlttMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadBGPltt(pSrc, offset, szByte);
 }
 
-void func_020167cc(const void *a, u32 b, u32 c) {
+void DoTransfer2dObjExtPlttMain(const void *pSrc, u32 offset, u32 szByte) {
     GX_BeginLoadOBJExtPltt();
-    GX_LoadOBJExtPltt(a, b, c);
+    GX_LoadOBJExtPltt(pSrc, offset, szByte);
     GX_EndLoadOBJExtPltt();
 }
 
-void func_0201679c(const void *a, u32 b, u32 c) {
+void DoTransfer2dBGExtPlttMain(const void *pSrc, u32 offset, u32 szByte) {
     GX_BeginLoadBGExtPltt();
-    GX_LoadBGExtPltt(a, b, c);
+    GX_LoadBGExtPltt(pSrc, offset, szByte);
     GX_EndLoadBGExtPltt();
 }
 
-void func_02016790(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GX_LoadOAM((const void *) value0, (int) value1, value2);
+void DoTransfer2dObjOamMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadOAM(pSrc, offset, szByte);
 }
 
-void func_02016784(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GX_LoadOBJ((const void *) value0, (int) value1, value2);
+void DoTransfer2dObjCharMain(const void *pSrc, u32 offset, u32 szByte) {
+    GX_LoadOBJ(pSrc, offset, szByte);
 }
 
-void func_02016778(const void *a, u32 b, u32 c) {
-    GXS_LoadBG0Char(a, b, c);
+void DoTransfer2dBG0CharSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG0Char(pSrc, offset, szByte);
 }
 
-void func_0201676c(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadBG1Char((const void *) value0, (int) value1, value2);
+void DoTransfer2dBG1CharSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG1Char(pSrc, offset, szByte);
 }
 
-void func_02016760(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadBG2Char((const void *) value0, (int) value1, value2);
+void DoTransfer2dBG2CharSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG2Char(pSrc, offset, szByte);
 }
 
-void func_02016754(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadBG3Char((const void *) value0, (int) value1, value2);
+void DoTransfer2dBG3CharSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG3Char(pSrc, offset, szByte);
 }
 
-void func_02016748(const void *a, u32 b, u32 c) {
-    GXS_LoadBG0Scr(a, b, c);
+void DoTransfer2dBG0ScrSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG0Scr(pSrc, offset, szByte);
 }
 
-void func_0201673c(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadBG1Scr((const void *) value0, (int) value1, value2);
+void DoTransfer2dBG1ScrSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG1Scr(pSrc, offset, szByte);
 }
 
-void func_02016730(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadBG2Scr((const void *) value0, (int) value1, value2);
+void DoTransfer2dBG2ScrSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG2Scr(pSrc, offset, szByte);
 }
 
-void func_02016724(const void *a, u32 b, u32 c) {
-    GXS_LoadBG3Scr(a, b, c);
+void DoTransfer2dBG3ScrSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG3Scr(pSrc, offset, szByte);
 }
 
-void func_02016718(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadBG2Scr((const void *) value0, (int) value1, value2);
+void DoTransfer2dBG2BmpSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG2Scr(pSrc, offset, szByte);
 }
 
-void func_0201670c(const void *a, u32 b, u32 c) {
-    GXS_LoadBG3Scr(a, b, c);
+void DoTransfer2dBG3BmpSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBG3Scr(pSrc, offset, szByte);
 }
 
-void func_02016700(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadOBJPltt((const void *) value0, (int) value1, value2);
+void DoTransfer2dObjPlttSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadOBJPltt(pSrc, offset, szByte);
 }
 
-void func_020166f4(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadBGPltt((const void *) value0, (int) value1, value2);
+void DoTransfer2dBGPlttSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadBGPltt(pSrc, offset, szByte);
 }
 
-void func_020166c4(const void *a, u32 b, u32 c) {
+void DoTransfer2dObjExtPlttSub(const void *pSrc, u32 offset, u32 szByte) {
     GXS_BeginLoadOBJExtPltt();
-    GXS_LoadOBJExtPltt(a, b, c);
+    GXS_LoadOBJExtPltt(pSrc, offset, szByte);
     GXS_EndLoadOBJExtPltt();
 }
 
-void func_02016694(const void *a, u32 b, u32 c) {
+void DoTransfer2dBGExtPlttSub(const void *pSrc, u32 offset, u32 szByte) {
     GXS_BeginLoadBGExtPltt();
-    GXS_LoadBGExtPltt(a, b, c);
+    GXS_LoadBGExtPltt(pSrc, offset, szByte);
     GXS_EndLoadBGExtPltt();
 }
 
-void func_02016688(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadOAM((const void *) value0, (int) value1, value2);
+void DoTransfer2dObjOamSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadOAM(pSrc, offset, szByte);
 }
 
-void func_0201667c(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value12;
-    GXS_LoadOBJ((const void *) value0, (int) value1, value2);
+void DoTransfer2dObjCharSub(const void *pSrc, u32 offset, u32 szByte) {
+    GXS_LoadOBJ(pSrc, offset, szByte);
 }
 
 void CallQueueRunEntry(CallQueueEntry *p) {
