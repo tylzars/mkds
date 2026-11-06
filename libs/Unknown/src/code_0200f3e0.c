@@ -3,11 +3,12 @@
 #include "Main/Unknown/code_0200f000.h"
 
 // clang-format off
+// Saves the exception context with OSi_SetExContext, then shows it with OSi_DisplayExContext.
 // Hand-written asm: pushes only lr, which the compiler never does (it always pads the frame to 8 bytes).
-asm void func_0200f3e0(u32 a) {
+asm void OSi_GetAndDisplayContext(u32 exinfo) {
     stmfd sp!, {lr}
-    bl func_0200f3f4
-    bl func_0200f484
+    bl OSi_SetExContext
+    bl OSi_DisplayExContext
     ldmfd sp!, {lr}
     bx lr
 }

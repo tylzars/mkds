@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0200f3e0(u32 a);
+void OSi_GetAndDisplayContext(u32 exinfo);

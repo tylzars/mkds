@@ -30,26 +30,27 @@ asm void OS_DisableProtectionUnit(void) {
     bx lr
 }
 
-// Writes r0 to a coprocessor 15 register.
+// Writes param to protection region 1 (coprocessor 15 register c6,c1).
 // Not compiled code: C has no way to read or write a coprocessor 15 register (mrc/mcr).
-asm void OS_SetProtectionRegion1(u32 a) {
+asm void OS_SetProtectionRegion1(u32 param) {
     mcr p15, 0, r0, c6, c1, 0
     bx lr
 }
 
-// Writes r0 to a coprocessor 15 register.
+// Writes param to protection region 2 (coprocessor 15 register c6,c2).
 // Not compiled code: C has no way to read or write a coprocessor 15 register (mrc/mcr).
-asm void OS_SetProtectionRegion2(u32 a) {
+asm void OS_SetProtectionRegion2(u32 param) {
     mcr p15, 0, r0, c6, c2, 0
     bx lr
 }
 
-// Calls the function in data_021701c4 when it is set, then saves r0-r3, sp and lr just below main memory, switches
-// the stack there and calls func_0200f3e0 when the mode is 0x17 or 0x1b, then waits for data_021701c4 to be set.
+// Exception vector handler: calls the debugger handler in OSi_DebuggerHandler when it is set, saves r0-r3, sp and lr just
+// below main memory and switches the stack there. In mode 0x17 or 0x1b it calls OSi_GetAndDisplayContext, then waits
+// for OSi_DebuggerHandler to be set.
 // Not compiled code: it reads the status register (mrs), saves registers with `stmdb ip!` in the middle of
 // the body and sets sp directly; C has no way to do any of these.
-asm void func_0200f36c(void) {
-    ldr ip, =data_021701c4
+asm void OSi_ExceptionHandler(void) {
+    ldr ip, =OSi_DebuggerHandler
     ldr ip, [ip, #0x0]
     cmp ip, #0x0
     movne lr, pc
@@ -62,14 +63,14 @@ asm void func_0200f36c(void) {
     and r1, r1, #0x1f
     teq r1, #0x17
     bne check_mode_1b
-    bl func_0200f3e0
+    bl OSi_GetAndDisplayContext
     b wait_for_handler
 check_mode_1b:
     teq r1, #0x1b
     bne wait_for_handler
-    bl func_0200f3e0
+    bl OSi_GetAndDisplayContext
 wait_for_handler:
-    ldr ip, =data_021701c4
+    ldr ip, =OSi_DebuggerHandler
     ldr ip, [ip, #0x0]
     cmp ip, #0x0
 wait_zero:

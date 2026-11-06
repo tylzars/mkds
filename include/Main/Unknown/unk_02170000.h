@@ -11,10 +11,10 @@ extern OSThread data_0217002c;
 extern u32 data_021701b4;
 // Gate of arena index 2. Zero in this game: the only store writes 0.
 extern u32 gArena2Enabled;
-extern UnkFunc *data_021701bc;
-extern u32 data_021701c0;
-extern u8 data_021701c8[];
-extern UnkFunc *data_021701c4;
+extern UnkFunc *OSi_UserExceptionHandler;
+extern u32 OSi_UserExceptionHandlerArg;
+extern u8 OSi_ExContext[];
+extern UnkFunc *OSi_DebuggerHandler;
 extern u16 data_02170248;
 // Halfword set to 1 by OS_InitTick.
 extern u16 gTickInitialized;

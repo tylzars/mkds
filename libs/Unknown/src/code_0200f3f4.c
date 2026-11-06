@@ -5,36 +5,36 @@
 #include "code_0200e77c.h"
 #include "Main/Unknown/code_0200f000.h"
 
-UnkFunc *data_021701bc;
-UnkFunc *data_021701c4;
-u32 data_021701c0;
-u8 data_021701c8[0x80];
+UnkFunc *OSi_UserExceptionHandler;
+UnkFunc *OSi_DebuggerHandler;
+u32 OSi_UserExceptionHandlerArg;
+u8 OSi_ExContext[0x80];
 
 void OS_InitException(void) {
-    u32 v;
+    u32 handler;
     Unk0200f4f0 *p;
 
-    v = *(u32 *) 0x027ffd9c;
-    if (v >= 0x2600000 && v < 0x2800000) {
-        data_021701c4 = (UnkFunc *) v;
+    handler = *(u32 *) 0x027ffd9c;
+    if (handler >= 0x2600000 && handler < 0x2800000) {
+        OSi_DebuggerHandler = (UnkFunc *) handler;
     } else {
-        data_021701c4 = 0;
+        OSi_DebuggerHandler = 0;
     }
     p = (Unk0200f4f0 *) 0x027e3000;
-    if (data_021701c4 == 0 || (OS_GetConsoleType() & 0x40000000) == 0) {
-        *(UnkFunc **) 0x027ffd9c = (UnkFunc *) func_0200f36c;
-        p->mUnk_fdc = (UnkFunc *) func_0200f36c;
+    if (OSi_DebuggerHandler == 0 || (OS_GetConsoleType() & 0x40000000) == 0) {
+        *(UnkFunc **) 0x027ffd9c = (UnkFunc *) OSi_ExceptionHandler;
+        p->mUnk_fdc = (UnkFunc *) OSi_ExceptionHandler;
     }
-    data_021701bc = 0;
+    OSi_UserExceptionHandler = 0;
 }
 
 // clang-format off
-// Stores r0 and the registers saved at the address in ip into data_021701c8 (0x80 bytes), and the banked sp, lr and
-// spsr of the mode in the saved status word.
+// Stores exinfo and the registers saved at the address in ip into the exception context OSi_ExContext (0x80 bytes),
+// and the banked sp, lr and spsr of the mode in the saved status word.
 // Not compiled code: it reads and writes the status registers (mrs/msr, spsr) and stores ip and r4-r11 as the
 // caller left them; C has no way to do either.
-asm void func_0200f3f4(u32 a) {
-    ldr r1, =data_021701c8
+asm void OSi_SetExContext(u32 exinfo) {
+    ldr r1, =OSi_ExContext
     mrs r2, cpsr
     str r2, [r1, #0x74]
     str r0, [r1, #0x6c]
@@ -71,14 +71,14 @@ asm void func_0200f3f4(u32 a) {
     bx lr
 }
 
-// Does nothing while data_021701bc is zero; otherwise switches to mode 0x9f with the current sp, sets bit 0 of
-// coprocessor 15 register c1, calls the function in data_021701bc with data_021701c8 and the word data_021701c0, and
+// Calls the user exception handler. Does nothing while OSi_UserExceptionHandler is zero; otherwise switches to mode 0x9f with the current sp, sets bit 0 of
+// coprocessor 15 register c1, calls the function in OSi_UserExceptionHandler with OSi_ExContext and the word OSi_UserExceptionHandlerArg, and
 // clears the bit again.
 // Not compiled code: it switches the processor mode with msr, which C has no way to do.
-asm void func_0200f484(void) {
+asm void OSi_DisplayExContext(void) {
     stmdb sp!, {lr}
     sub sp, sp, #0x4
-    ldr r0, =data_021701bc
+    ldr r0, =OSi_UserExceptionHandler
     ldr r0, [r0, #0x0]
     cmp r0, #0x0
     addeq sp, sp, #0x4
@@ -89,11 +89,11 @@ asm void func_0200f484(void) {
     msr cpsr_fsxc, r1
     mov sp, r0
     bl OS_EnableProtectionUnit
-    ldr r1, =data_021701c0
-    ldr r0, =data_021701bc
+    ldr r1, =OSi_UserExceptionHandlerArg
+    ldr r0, =OSi_UserExceptionHandler
     ldr r1, [r1, #0x0]
     ldr r2, [r0, #0x0]
-    ldr r0, =data_021701c8
+    ldr r0, =OSi_ExContext
     blx r2
     bl OS_DisableProtectionUnit
     add sp, sp, #0x4

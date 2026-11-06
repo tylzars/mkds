@@ -8,9 +8,10 @@ typedef struct Unk0200f4f0 {
     /* fdc */ UnkFunc *mUnk_fdc;
 } Unk0200f4f0;
 
-void func_0200f3f4(u32 a);
-void func_0200f484(void);
+void OSi_SetExContext(u32 exinfo);
+void OSi_DisplayExContext(void);
 // Keeps the word at 0x027ffd9c as a saved handler when it lies in 0x02600000-0x027fffff (else clears it). Stores
-// func_0200f36c at 0x027ffd9c and at 0x027e3fdc unless a saved handler exists and bit 30 of OS_GetConsoleType() is set.
+// OSi_ExceptionHandler at 0x027ffd9c and at 0x027e3fdc unless a saved handler exists and bit 30 of
+// OS_GetConsoleType() is set.
 // Clears the flag word OSi_UserExceptionHandler.
 void OS_InitException(void);
