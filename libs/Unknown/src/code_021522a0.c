@@ -63,24 +63,27 @@ void func_02152324(void *a) {
     func_02152340(a, (u8 *) a + 0x10);
 }
 
-u32 IsMultipleOf4(u32 a) {
-    if ((a & 3) == 0) {
+// Nonzero when year (years since 2000, 0 to 99) is a leap year.
+u32 IsMultipleOf4(u32 year) {
+    if ((year & 3) == 0) {
         return 1;
     }
     return 0;
 }
 
-s32 func_021522a0(const u32 *a) {
-    s32 b;
-    if (a[0] >= 100 || a[1] < 1 || a[1] > 12 || a[2] < 1 || a[2] > 31 || (s32) a[3] >= 7 || a[1] < 1 || a[1] > 12) {
+// Days from 2000-01-01 to date (words: year, month, day, week), or -1 when a field is out of range.
+s32 func_021522a0(const u32 *date) {
+    s32 dayNum;
+    if (date[0] >= 100 || date[1] < 1 || date[1] > 12 || date[2] < 1 || date[2] > 31 || (s32) date[3] >= 7 ||
+        date[1] < 1 || date[1] > 12) {
         return -1;
     }
-    b = a[2] - 1 + ((const u32 *) &data_0216f26c)[a[1]];
-    if (a[1] >= 3 && IsMultipleOf4(a[0]) != 0) {
-        b++;
+    dayNum = date[2] - 1 + ((const u32 *) &data_0216f26c)[date[1]];
+    if (date[1] >= 3 && IsMultipleOf4(date[0]) != 0) {
+        dayNum++;
     }
-    b = b + a[0] * 365;
-    return b + ((a[0] + 3) >> 2);
+    dayNum = dayNum + date[0] * 365;
+    return dayNum + ((date[0] + 3) >> 2);
 }
 
 #pragma thumb off

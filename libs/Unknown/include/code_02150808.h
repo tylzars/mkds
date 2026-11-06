@@ -15,12 +15,12 @@ typedef struct Hash20State {
 
 typedef struct Hash20State Hash20State;
 
-// Function pointer that func_02150dc8 switches between func_02150994 and func_02150e1c.
-extern void (*data_0216f26c)(Hash20State *ctx, u8 *data, int n);
+// Function pointer that DGT_SetOverlayTableMode switches between DGTi_Hash2ProcessMessageBlock and func_02150e1c.
+extern void (*data_0216f26c)(Hash20State *ctx, u8 *source, int length);
 
-void Hash20Hmac(u8 *a, const u8 *b, u32 n, const u8 *c, s32 m);
-void func_02150994(Hash20State *ctx, u8 *data, int n);
-void Hash20Final(Hash20State *ctx, u8 *out, ...);
-void Hash20Update(Hash20State *ctx, u8 *src, u32 n);
-void Hash20Init(Hash20State *p0);
-u32 func_02150dc8(u32 v);
+void DGT_Hash2CalcHmac(u8 *digest, const u8 *bin, u32 binLen, const u8 *key, s32 keyLen);
+void DGTi_Hash2ProcessMessageBlock(Hash20State *ctx, u8 *source, int length);
+void DGT_Hash2GetDigest(Hash20State *ctx, u8 *digest, ...);
+void DGT_Hash2SetSource(Hash20State *ctx, const u8 *input, u32 length);
+void DGT_Hash2Reset(Hash20State *ctx);
+u32 DGT_SetOverlayTableMode(u32 flag);

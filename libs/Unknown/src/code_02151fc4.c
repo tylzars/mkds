@@ -11,15 +11,17 @@
 
 #pragma thumb on
 
-s64 func_02152244(const u32 *a, const u32 *b) {
-    s32 c;
-    s32 d;
-    c = func_021522a0(a);
-    if (c == -1) {
+// Seconds from 2000-01-01 00:00:00 to date (year, month, day, week) and time (hour, minute, second), or -1 when the
+// date is out of range.
+s64 func_02152244(const u32 *date, const u32 *time) {
+    s32 day;
+    s32 sec;
+    day = func_021522a0(date);
+    if (day == -1) {
         return -1;
     }
-    d = func_0215228c(b);
-    return (s64) d + (s64) c * 0x15180;
+    sec = func_0215228c(time);
+    return (s64) sec + (s64) day * 0x15180;
 }
 
 u64 func_0215211c(u32 a, u32 b, u32 c, u32 d) {

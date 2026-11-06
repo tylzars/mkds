@@ -175,7 +175,7 @@ u32 FileCheckHmac(const u8 *expected, const u8 *data, u32 n) {
 
     MI_CpuFill8(d, 0, 0x14);
     MI_CpuCopy8(data_02161768, k, data_0216176c);
-    Hash20Hmac(d, data, n, k, data_0216176c);
+    DGT_Hash2CalcHmac(d, data, n, k, data_0216176c);
     for (i = 0; i < 0x14; i += 4) {
         if (*(u32 *) (d + i) != *(u32 *) (expected + i)) {
             break;
@@ -312,11 +312,11 @@ void FS_AttachOverlayTable(u32 sel, u8 *data, u32 n) {
     u32 irq;
 
     if (data != 0 && sel == 0) {
-        irq = func_02150dc8(1);
+        irq = DGT_SetOverlayTableMode(1);
         if (FileCheckHmac(data_0216f2dc, data, n) == 0) {
             OS_Terminate();
         }
-        func_02150dc8(irq);
+        DGT_SetOverlayTableMode(irq);
     }
     if (sel == 0) {
         dst = &data_0216f35c;

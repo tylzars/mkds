@@ -7,210 +7,217 @@
 
 u32 data_02180490;
 
-u32 func_02150dc8(u32 v) {
-    u32 old;
+// Selects the block routine DGT_Hash2SetSource and DGT_Hash2GetDigest call: the overlay-table one when flag is
+// nonzero. Returns the previous flag.
+u32 DGT_SetOverlayTableMode(u32 flag) {
+    u32 prev;
 
-    old = data_02180490;
-    data_02180490 = v;
-    if (v != 0) {
-        data_0216f26c = func_02150994;
+    prev = data_02180490;
+    data_02180490 = flag;
+    if (flag != 0) {
+        data_0216f26c = DGTi_Hash2ProcessMessageBlock;
     } else {
         data_0216f26c = func_02150e1c;
     }
-    return old;
+    return prev;
 }
 
-void Hash20Init(Hash20State *p0) {
-    p0->mWords[0] = (u32) 0x67452301u;
-    p0->mWords[1] = (u32) 0xefcdab89u;
-    p0->mWords[2] = (u32) 0x98badcfeu;
-    p0->mWords[3] = (u32) 0x10325476u;
-    p0->mWords[4] = (u32) 0xc3d2e1f0u;
-    p0->mBitCountLow = (u32) 0x0u;
-    p0->mBitCountHigh = (u32) 0x0u;
-    p0->mBufferLen = (u32) 0x0u;
+// Starts a SHA-1 computation.
+void DGT_Hash2Reset(Hash20State *ctx) {
+    ctx->mWords[0] = (u32) 0x67452301u;
+    ctx->mWords[1] = (u32) 0xefcdab89u;
+    ctx->mWords[2] = (u32) 0x98badcfeu;
+    ctx->mWords[3] = (u32) 0x10325476u;
+    ctx->mWords[4] = (u32) 0xc3d2e1f0u;
+    ctx->mBitCountLow = (u32) 0x0u;
+    ctx->mBitCountHigh = (u32) 0x0u;
+    ctx->mBufferLen = (u32) 0x0u;
 }
 
-void Hash20Update(Hash20State *ctx, u8 *src, u32 n) {
-    u8 *buf;
-    u32 t;
-    u32 f;
-    u32 k;
+// Adds length bytes of input to the SHA-1 computation, hashing each full 64-byte block as it fills.
+void DGT_Hash2SetSource(Hash20State *ctx, const u8 *input, u32 length) {
+    u8 *buffer;
+    u32 newLow;
+    u32 num;
+    u32 chunk;
 
-    buf = ctx->mBlock;
-    if (n == 0) {
+    buffer = ctx->mBlock;
+    if (length == 0) {
         return;
     }
-    t = ctx->mBitCountLow + (n << 3);
-    if (t < ctx->mBitCountLow) {
+    newLow = ctx->mBitCountLow + (length << 3);
+    if (newLow < ctx->mBitCountLow) {
         ctx->mBitCountHigh++;
     }
-    ctx->mBitCountHigh += n >> 29;
-    ctx->mBitCountLow = t;
-    f = ctx->mBufferLen;
-    if (f != 0) {
-        if (f + n >= 0x40) {
-            k = 0x40 - f;
-            MI_CpuCopy8(src, buf + f, k);
-            n -= k;
-            src += k;
-            data_0216f26c(ctx, buf, 0x40);
+    ctx->mBitCountHigh += length >> 29;
+    ctx->mBitCountLow = newLow;
+    num = ctx->mBufferLen;
+    if (num != 0) {
+        if (num + length >= 0x40) {
+            chunk = 0x40 - num;
+            MI_CpuCopy8(input, buffer + num, chunk);
+            length -= chunk;
+            input += chunk;
+            data_0216f26c(ctx, buffer, 0x40);
             ctx->mBufferLen = 0;
         } else {
-            MI_CpuCopy8(src, buf + f, n);
-            ctx->mBufferLen += n;
+            MI_CpuCopy8(input, buffer + num, length);
+            ctx->mBufferLen += length;
             return;
         }
     }
-    if (n >= 0x40) {
-        k = n & ~0x3f;
-        n -= k;
-        if (((u32) src & 3) == 0) {
-            data_0216f26c(ctx, src, k);
-            src += k;
+    if (length >= 0x40) {
+        chunk = length & ~0x3f;
+        length -= chunk;
+        if (((u32) input & 3) == 0) {
+            data_0216f26c(ctx, (u8 *) input, chunk);
+            input += chunk;
         } else {
             do {
-                MI_CpuCopy8(src, buf, 0x40);
-                src += 0x40;
-                data_0216f26c(ctx, buf, 0x40);
-                k -= 0x40;
-            } while ((int) k > 0);
+                MI_CpuCopy8(input, buffer, 0x40);
+                input += 0x40;
+                data_0216f26c(ctx, buffer, 0x40);
+                chunk -= 0x40;
+            } while ((int) chunk > 0);
         }
     }
-    ctx->mBufferLen = n;
-    if (n == 0) {
+    ctx->mBufferLen = length;
+    if (length == 0) {
         return;
     }
-    MI_CpuCopy8(src, buf, n);
+    MI_CpuCopy8(input, buffer, length);
 }
 
-// Callers pass ctx and out only. The prologue pushes r0-r3 (the form 1.2 gives a variadic function), and the call
+// Callers pass ctx and digest only. The prologue pushes r0-r3 (the form 1.2 gives a variadic function), and the call
 // to MIi_CpuClear32 at the end clears the pushed ctx.
-void Hash20Final(Hash20State *ctx, u8 *out, ...) {
+void DGT_Hash2GetDigest(Hash20State *ctx, u8 *digest, ...) {
     volatile u32 z;
-    u32 *w;
-    u8 *b;
-    int n;
-    int i;
-    u32 x;
+    u32 *blockWords;
+    u8 *blockBytes;
+    int len;
+    int wordIndex;
+    u32 value;
 
-    n = ctx->mBufferLen;
-    w = (u32 *) ctx->mBlock;
-    i = n >> 2;
-    if ((n & 3) == 0) {
-        w[i] = 0;
+    len = ctx->mBufferLen;
+    blockWords = (u32 *) ctx->mBlock;
+    wordIndex = len >> 2;
+    if ((len & 3) == 0) {
+        blockWords[wordIndex] = 0;
     }
-    b = ctx->mBlock;
-    b[n] = 0x80;
-    n++;
-    while ((n & 3) != 0) {
-        b[n] = 0;
-        n++;
+    blockBytes = ctx->mBlock;
+    blockBytes[len] = 0x80;
+    len++;
+    while ((len & 3) != 0) {
+        blockBytes[len] = 0;
+        len++;
     }
-    i++;
+    wordIndex++;
     if (ctx->mBufferLen >= 0x38) {
-        for (; i < 16; i++) {
-            w[i] = 0;
+        for (; wordIndex < 16; wordIndex++) {
+            blockWords[wordIndex] = 0;
         }
-        data_0216f26c(ctx, (u8 *) w, 0x40);
-        i = 0;
+        data_0216f26c(ctx, (u8 *) blockWords, 0x40);
+        wordIndex = 0;
     }
-    for (; i < 14; i++) {
-        w[i] = 0;
+    for (; wordIndex < 14; wordIndex++) {
+        blockWords[wordIndex] = 0;
     }
-    x = ctx->mBitCountLow;
-    b[0x3f] = x;
-    b[0x3e] = x >> 8;
-    b[0x3d] = x >> 16;
-    b[0x3c] = x >> 24;
-    x = ctx->mBitCountHigh;
-    b[0x3b] = x;
-    b[0x3a] = x >> 8;
-    b[0x39] = x >> 16;
-    b[0x38] = x >> 24;
-    data_0216f26c(ctx, (u8 *) w, 0x40);
-    x = ctx->mWords[0];
-    out[0] = x >> 24;
-    out[1] = x >> 16;
-    out[2] = x >> 8;
-    out[3] = x;
-    x = ctx->mWords[1];
-    out[4] = x >> 24;
-    out[5] = x >> 16;
-    out[6] = x >> 8;
-    out[7] = x;
-    x = ctx->mWords[2];
-    out[8] = x >> 24;
-    out[9] = x >> 16;
-    out[10] = x >> 8;
-    out[11] = x;
-    x = ctx->mWords[3];
-    out[12] = x >> 24;
-    out[13] = x >> 16;
-    out[14] = x >> 8;
-    out[15] = x;
-    x = ctx->mWords[4];
-    out[16] = x >> 24;
-    out[17] = x >> 16;
-    out[18] = x >> 8;
-    out[19] = x;
+    value = ctx->mBitCountLow;
+    blockBytes[0x3f] = value;
+    blockBytes[0x3e] = value >> 8;
+    blockBytes[0x3d] = value >> 16;
+    blockBytes[0x3c] = value >> 24;
+    value = ctx->mBitCountHigh;
+    blockBytes[0x3b] = value;
+    blockBytes[0x3a] = value >> 8;
+    blockBytes[0x39] = value >> 16;
+    blockBytes[0x38] = value >> 24;
+    data_0216f26c(ctx, (u8 *) blockWords, 0x40);
+    value = ctx->mWords[0];
+    digest[0] = value >> 24;
+    digest[1] = value >> 16;
+    digest[2] = value >> 8;
+    digest[3] = value;
+    value = ctx->mWords[1];
+    digest[4] = value >> 24;
+    digest[5] = value >> 16;
+    digest[6] = value >> 8;
+    digest[7] = value;
+    value = ctx->mWords[2];
+    digest[8] = value >> 24;
+    digest[9] = value >> 16;
+    digest[10] = value >> 8;
+    digest[11] = value;
+    value = ctx->mWords[3];
+    digest[12] = value >> 24;
+    digest[13] = value >> 16;
+    digest[14] = value >> 8;
+    digest[15] = value;
+    value = ctx->mWords[4];
+    digest[16] = value >> 24;
+    digest[17] = value >> 16;
+    digest[18] = value >> 8;
+    digest[19] = value;
     ctx->mBufferLen = 0;
     z = 0;
     MIi_CpuClear32(z, &ctx, 4);
 }
 
-void func_02150994(Hash20State *ctx, u8 *data, int n) {
-    u32 a;
-    u32 b;
+// Hashes length bytes of source in 64-byte blocks, clearing the words at offsets 0x18 and 0x38 of each block while it
+// is hashed.
+void DGTi_Hash2ProcessMessageBlock(Hash20State *ctx, u8 *source, int length) {
+    u32 saved18;
+    u32 saved38;
     int i;
     int blocks;
 
-    blocks = n / 64;
+    blocks = length / 64;
     for (i = 0; i < blocks; i++) {
-        a = *(u32 *) (data + 0x18);
-        b = *(u32 *) (data + 0x38);
-        *(u32 *) (data + 0x18) = 0;
-        *(u32 *) (data + 0x38) = 0;
-        func_02150e1c(ctx, data, 0x40);
-        *(u32 *) (data + 0x18) = a;
-        *(u32 *) (data + 0x38) = b;
-        data += 0x40;
+        saved18 = *(u32 *) (source + 0x18);
+        saved38 = *(u32 *) (source + 0x38);
+        *(u32 *) (source + 0x18) = 0;
+        *(u32 *) (source + 0x38) = 0;
+        func_02150e1c(ctx, source, 0x40);
+        *(u32 *) (source + 0x18) = saved18;
+        *(u32 *) (source + 0x38) = saved38;
+        source += 0x40;
     }
 }
 
-void Hash20Hmac(u8 *a, const u8 *b, u32 n, const u8 *c, s32 m) {
-    u8 buf0[0x40];
-    u8 buf1[0x40];
-    u8 buf2[0x14];
-    Hash20State v;
-    u8 *p;
+// HMAC-SHA-1 of bin with key, written to digest. A key longer than 64 bytes is hashed down first.
+void DGT_Hash2CalcHmac(u8 *digest, const u8 *bin, u32 binLen, const u8 *key, s32 keyLen) {
+    u8 ipad[0x40];
+    u8 opad[0x40];
+    u8 inner[0x14];
+    Hash20State ctx;
+    u8 *innerPtr;
     s32 i;
 
-    p = buf2;
-    if (a == 0 || b == 0 || n == 0 || c == 0 || m == 0) {
+    innerPtr = inner;
+    if (digest == 0 || bin == 0 || binLen == 0 || key == 0 || keyLen == 0) {
         return;
     }
-    if (m > 0x40) {
-        Hash20Init(&v);
-        Hash20Update(&v, (u8 *) c, m);
-        Hash20Final(&v, p);
-        c = p;
-        m = 0x14;
+    if (keyLen > 0x40) {
+        DGT_Hash2Reset(&ctx);
+        DGT_Hash2SetSource(&ctx, key, keyLen);
+        DGT_Hash2GetDigest(&ctx, innerPtr);
+        key = innerPtr;
+        keyLen = 0x14;
     }
-    for (i = 0; i < m; i++) {
-        buf0[i] = *c ^ 0x36;
-        buf1[i] = *c++ ^ 0x5c;
+    for (i = 0; i < keyLen; i++) {
+        ipad[i] = *key ^ 0x36;
+        opad[i] = *key++ ^ 0x5c;
     }
     for (; i < 0x40; i++) {
-        buf0[i] = 0x36;
-        buf1[i] = 0x5c;
+        ipad[i] = 0x36;
+        opad[i] = 0x5c;
     }
-    Hash20Init(&v);
-    Hash20Update(&v, buf0, 0x40);
-    Hash20Update(&v, (u8 *) b, n);
-    Hash20Final(&v, p);
-    Hash20Init(&v);
-    Hash20Update(&v, buf1, 0x40);
-    Hash20Update(&v, p, 0x14);
-    Hash20Final(&v, a);
+    DGT_Hash2Reset(&ctx);
+    DGT_Hash2SetSource(&ctx, ipad, 0x40);
+    DGT_Hash2SetSource(&ctx, bin, binLen);
+    DGT_Hash2GetDigest(&ctx, innerPtr);
+    DGT_Hash2Reset(&ctx);
+    DGT_Hash2SetSource(&ctx, opad, 0x40);
+    DGT_Hash2SetSource(&ctx, innerPtr, 0x14);
+    DGT_Hash2GetDigest(&ctx, digest);
 }
