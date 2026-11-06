@@ -1,29 +1,14 @@
 #include "code_02010878.h"
 
-void func_02010884(u32 arg0, u32 arg1, u32 arg2) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value3;
-    u32 value12;
-    value12 = (u32) * (const u16 *) ((value0) + (16));
-    value3 = 0u;
-    value12 = (value12) & ~(1u);
-    *(u16 *) ((value0) + (16)) = (u16) value12;
-    value12 = (u32) * (const u16 *) ((value0) + (32));
-    value12 = (value12) & ~(1u);
-    *(u16 *) ((value0) + (32)) = (u16) value12;
-    value12 = (u32) * (const u32 *) ((value0) + (8));
-    *(u32 *) ((value1) + (0)) = value12;
-    *(u32 *) ((value0) + (8)) = value3;
-    value1 = (u32) * (const u32 *) ((value0) + (24));
-    *(u32 *) ((value2) + (0)) = value1;
-    *(u32 *) ((value0) + (24)) = value3;
+void NNS_G3dTexReleaseTexKey(NNSG3dResTex *pTex, NNSG3dTexKey *texKey, NNSG3dTexKey *tex4x4Key) {
+    pTex->mTexInfo.mFlag &= ~1;
+    pTex->mTex4x4Info.mFlag &= ~1;
+    *texKey = pTex->mTexInfo.mVramKey;
+    pTex->mTexInfo.mVramKey = 0;
+    *tex4x4Key = pTex->mTex4x4Info.mVramKey;
+    pTex->mTex4x4Info.mVramKey = 0;
 }
 
-u32 func_02010878(u32 arg0) {
-    u32 value0 = arg0;
-    value0 = (u32) * (const u16 *) ((value0) + (48));
-    value0 = (value0 << 3);
-    return value0;
+u32 NNS_G3dPlttGetRequiredSize(const NNSG3dResTex *pTex) {
+    return pTex->mPlttInfo.mSizePltt << 3;
 }

@@ -17,17 +17,17 @@
 #include "code_02147954.h"
 
 // Returns the texture block of a model or texture file, or NULL when the file has none.
-void *NNS_G3dGetTex(NNSG3dResFileHeader *file) {
+NNSG3dResTex *NNS_G3dGetTex(NNSG3dResFileHeader *file) {
     u32 *blocks;
 
     blocks = (u32 *) ((u8 *) file + file->mHeaderSize);
     if (file->mDataBlocks == 1) {
         if (file->mSigVal == 0x30585442) {
-            return (u8 *) file + blocks[0];
+            return (NNSG3dResTex *) ((u8 *) file + blocks[0]);
         }
         return 0;
     }
-    return (u8 *) file + blocks[1];
+    return (NNSG3dResTex *) ((u8 *) file + blocks[1]);
 }
 
 // Sets the diffuse color of one material.
@@ -349,13 +349,13 @@ void NNS_G3dInit(void) {
 // variables first hold the required size.
 s32 NNS_G3dResDefaultSetup(NNSG3dResFileHeader *file) {
     s32 texOk;
-    u32 tex;
+    NNSG3dResTex *tex;
     u32 texKey;
     u32 tex4x4Key;
     u32 plttKey;
     s32 tex4x4Ok;
     s32 plttOk;
-    u32 mdlSet;
+    NNSG3dResMdlSet *mdlSet;
 
     switch (file->mSigVal) {
         case 0x30444d42:
@@ -363,11 +363,11 @@ s32 NNS_G3dResDefaultSetup(NNSG3dResFileHeader *file) {
             texOk = 1;
             tex4x4Ok = 1;
             plttOk = 1;
-            tex = (u32) NNS_G3dGetTex(file);
+            tex = NNS_G3dGetTex(file);
             if (tex != 0) {
-                texKey = func_020109b8(tex);
-                tex4x4Key = func_020109ac(tex);
-                plttKey = func_02010878(tex);
+                texKey = NNS_G3dTexGetRequiredSize(tex);
+                tex4x4Key = NNS_G3dTex4x4GetRequiredSize(tex);
+                plttKey = NNS_G3dPlttGetRequiredSize(tex);
                 if (texKey != 0) {
                     texKey = data_021619ec(texKey, 0, 0);
                     if (texKey == 0) {
@@ -385,7 +385,7 @@ s32 NNS_G3dResDefaultSetup(NNSG3dResFileHeader *file) {
                     tex4x4Key = 0;
                 }
                 if (plttKey != 0) {
-                    plttKey = data_021619f4(plttKey, *(u16 *) (tex + 0x20) & 0x8000, 0);
+                    plttKey = data_021619f4(plttKey, tex->mTex4x4Info.mFlag & 0x8000, 0);
                     if (plttKey == 0) {
                         plttOk = 0;
                     }
@@ -398,15 +398,15 @@ s32 NNS_G3dResDefaultSetup(NNSG3dResFileHeader *file) {
                     data_021619f0((void *) texKey);
                     return 0;
                 }
-                func_02010998(tex, texKey, tex4x4Key);
-                func_02010870((Unk02010804 *) tex, plttKey);
-                func_020108bc((Unk020108bc *) tex, 1);
-                func_02010804((Unk02010804 *) tex, 1);
+                NNS_G3dTexSetTexKey(tex, texKey, tex4x4Key);
+                NNS_G3dPlttSetPlttKey(tex, plttKey);
+                NNS_G3dTexLoad(tex, 1);
+                NNS_G3dPlttLoad(tex, 1);
             }
             if (file->mSigVal == 0x30444d42) {
-                mdlSet = func_02013730((u32) file);
+                mdlSet = NNS_G3dGetMdlSet(file);
                 if (tex != 0) {
-                    NNS_G3dBindMdlSet((Unk02010168 *) mdlSet, (Unk02010294 *) tex);
+                    NNS_G3dBindMdlSet(mdlSet, tex);
                 }
             }
             return 1;
@@ -423,10 +423,10 @@ s32 NNS_G3dResDefaultSetup(NNSG3dResFileHeader *file) {
 
 // Frees the texture and palette memory of a model or texture file and releases the models bound to it.
 void NNS_G3dResDefaultRelease(NNSG3dResFileHeader *file) {
-    u32 mdlSet;
-    u32 tex;
-    void *texKey;
-    void *tex4x4Key;
+    NNSG3dResMdlSet *mdlSet;
+    NNSG3dResTex *tex;
+    NNSG3dTexKey texKey;
+    NNSG3dTexKey tex4x4Key;
     u32 plttKey;
 
     switch (file->mSigVal) {
@@ -437,9 +437,9 @@ void NNS_G3dResDefaultRelease(NNSG3dResFileHeader *file) {
         case 0x30505442:
             return;
         case 0x30444d42:
-            mdlSet = func_02013730((u32) file);
+            mdlSet = NNS_G3dGetMdlSet(file);
             if (NNS_G3dGetTex(file) != 0) {
-                NNS_G3dReleaseMdlSet((Unk02010168 *) mdlSet);
+                NNS_G3dReleaseMdlSet(mdlSet);
             }
             break;
         case 0x30585442:
@@ -447,19 +447,19 @@ void NNS_G3dResDefaultRelease(NNSG3dResFileHeader *file) {
         default:
             return;
     }
-    tex = (u32) NNS_G3dGetTex(file);
+    tex = NNS_G3dGetTex(file);
     if (tex == 0) {
         return;
     }
-    plttKey = func_020107e4(tex);
-    func_02010884(tex, (u32) &texKey, (u32) &tex4x4Key);
+    plttKey = NNS_G3dPlttReleasePlttKey(tex);
+    NNS_G3dTexReleaseTexKey(tex, &texKey, &tex4x4Key);
     if (plttKey != 0) {
         data_021619f8((void *) plttKey);
     }
     if (tex4x4Key != 0) {
-        data_021619f0(tex4x4Key);
+        data_021619f0((void *) tex4x4Key);
     }
     if (texKey != 0) {
-        data_021619f0(texKey);
+        data_021619f0((void *) texKey);
     }
 }

@@ -1,20 +1,21 @@
 #include "code_02013b3c.h"
 #include "code_02013b20.h"
 
-Unk02013b3c_t *func_02013b3c(const void *a, u16 b, u32 c) {
-    Unk02013b3c_e *p;
-    Unk02013b3c_t *tab;
-    u32 i;
+// Starts at the entry the ratio estimates, then steps to the frame.
+NNSG3dResTexPatAnmFV *NNSi_G3dGetTexPatAnmFV(const NNSG3dResTexPatAnm *pPatAnm, u32 idx, u32 frame) {
+    NNSG3dResDictTexPatAnmData *patData;
+    NNSG3dResTexPatAnmFV *frames;
+    u32 cur;
 
-    p = func_02013b20(a, b);
-    i = p->mUnk_04;
-    tab = (Unk02013b3c_t *) ((const u8 *) a + p->mUnk_06);
-    i = (i * c) >> 12;
-    while (i != 0 && tab[i].mUnk_00 >= c) {
-        i--;
+    patData = NNSi_G3dGetTexPatAnmDataByIdx(pPatAnm, idx);
+    cur = patData->mRatioDataFrame;
+    frames = (NNSG3dResTexPatAnmFV *) ((const u8 *) pPatAnm + patData->mOffset);
+    cur = (cur * frame) >> 12;
+    while (cur != 0 && frames[cur].mIdxFrame >= frame) {
+        cur--;
     }
-    while (i + 1 < p->mUnk_00 && (&tab[i])[1].mUnk_00 <= c) {
-        i++;
+    while (cur + 1 < patData->mNumFV && (&frames[cur])[1].mIdxFrame <= frame) {
+        cur++;
     }
-    return &tab[i];
+    return &frames[cur];
 }

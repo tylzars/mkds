@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02013740.h"
 
-u32 *func_02013bbc(const void *a, u32 b);
-u32 *func_02013bcc(const void *a, u32 b);
+const u32 *NNSi_G3dGetTexPatAnmPlttNameByIdx(const NNSG3dResTexPatAnm *pPatAnm, u8 plttIdx);
+const u32 *NNSi_G3dGetTexPatAnmTexNameByIdx(const NNSG3dResTexPatAnm *pPatAnm, u8 texIdx);

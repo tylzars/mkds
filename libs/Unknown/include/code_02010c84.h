@@ -5,6 +5,7 @@
 
 typedef struct NNSG3dAnmObj NNSG3dAnmObj;
 typedef struct NNSG3dRS NNSG3dRS;
+typedef struct NNSG3dResTex NNSG3dResTex;
 typedef struct NNSG3dMatAnmResult NNSG3dMatAnmResult;
 
 // Result of a visibility animation.
@@ -53,7 +54,7 @@ struct NNSG3dAnmObj {
     /* 08 */ void *mResAnm;
     /* 0c */ void (*mFuncAnm)(void *, NNSG3dAnmObj *, u32);
     /* 10 */ NNSG3dAnmObj *mNext;
-    /* 14 */ void *mResTex;
+    /* 14 */ const NNSG3dResTex *mResTex;
     /* 18 */ u8 mPriority;
     /* 19 */ u8 mNumMapData;
     /* 1a */ u16 mMapData[1];
@@ -81,6 +82,10 @@ typedef struct NNSG3dRenderObj {
     /* 3c */ u32 mHintMatAnmExist[2];
     /* 44 */ u32 mHintJntAnmExist[2];
     /* 4c */ u32 mHintVisAnmExist[2];
+    /* 54 */ u8 mUnk_54[4];
+    /* 58 */ s32 mUnk_58;
+    /* 5c */ u8 mUnk_5c[0xc];
+    /* 68 */ u32 mUnk_68;
 } NNSG3dRenderObj;
 
 // Render state of the SBC interpreter. mC points into the byte sequence that the SBC functions advance.

@@ -144,19 +144,19 @@ void func_01ff8e64(Unk02170500 *s, Unk02170500_04 *i) {
     i->mUnk_00 &= ~1;
 }
 
-void func_01ff8dec(u32 *a, Unk020152bc *b) {
+void func_01ff8dec(u32 *a, NNSG3dAnmObj *b) {
     s32 i;
 
     if (b == 0) {
         return;
     }
     do {
-        for (i = 0; i < b->mUnk_19; i++) {
-            if (b->mUnk_1a[i] & 0x100) {
+        for (i = 0; i < b->mNumMapData; i++) {
+            if (b->mMapData[i] & 0x100) {
                 a[i >> 5] |= 1 << (i & 0x1f);
             }
         }
-        b = b->mUnk_10;
+        b = b->mNext;
     } while (b != 0);
 }
 
@@ -450,7 +450,7 @@ void func_01ff8220(Unk02170500 *s, u32 a) {
     u32 q;
     u32 t2;
     u32 n;
-    Unk02014c5c_out *o;
+    NNSG3dJntAnmResult *o;
     u16 *r;
     s32 k;
     u32 v1;
@@ -508,7 +508,7 @@ void func_01ff8220(Unk02170500 *s, u32 a) {
         c = 0;
     }
     if (c == 0) {
-        o->mUnk_00 = 0;
+        o->mFlag = 0;
         i = s->mUnk_04;
         if (i->mUnk_10 != 0) {
             if (i->mUnk_14(o, i->mUnk_10, v1) != 0) {
@@ -521,44 +521,44 @@ void func_01ff8220(Unk02170500 *s, u32 a) {
         p = (u16 *) e;
         r = (u16 *) (e + 4);
         if (!(*p & 1)) {
-            o->mUnk_4c[0] = ((s32 *) r)[0];
-            o->mUnk_4c[1] = ((s32 *) r)[1];
-            o->mUnk_4c[2] = ((s32 *) r)[2];
+            o->mTrans.x = ((s32 *) r)[0];
+            o->mTrans.y = ((s32 *) r)[1];
+            o->mTrans.z = ((s32 *) r)[2];
             r += 6;
         } else {
-            o->mUnk_00 |= 4;
+            o->mFlag |= 4;
         }
         v2 = *p;
         if (v2 & 2) {
-            o->mUnk_00 |= 2;
+            o->mFlag |= 2;
         } else if (v2 & 8) {
             k = (v2 & 0xf0) >> 4;
             b1 = ((s16 *) r)[1];
             b0 = ((s16 *) r)[0];
-            MI_Zero36B(o->mUnk_28);
+            MI_Zero36B((s32 *) o->mRot);
             r += 2;
             m = (*p & 0x100) ? -0x1000 : 0x1000;
-            o->mUnk_28[k] = m;
-            o->mUnk_28[data_usa_02152c0c[k][0]] = b0;
-            o->mUnk_28[data_usa_02152c0d[k][0]] = b1;
+            ((s32 *) o->mRot)[k] = m;
+            ((s32 *) o->mRot)[data_usa_02152c0c[k][0]] = b0;
+            ((s32 *) o->mRot)[data_usa_02152c0d[k][0]] = b1;
             if (*p & 0x200) {
                 b1 = -b1;
             }
-            o->mUnk_28[data_usa_02152c0e[k][0]] = b1;
+            ((s32 *) o->mRot)[data_usa_02152c0e[k][0]] = b1;
             if (*p & 0x400) {
                 b0 = -b0;
             }
-            o->mUnk_28[data_usa_02152c0f[k][0]] = b0;
+            ((s32 *) o->mRot)[data_usa_02152c0f[k][0]] = b0;
         } else {
-            o->mUnk_28[0] = ((s16 *) p)[1];
-            o->mUnk_28[1] = ((s16 *) r)[0];
-            o->mUnk_28[2] = ((s16 *) r)[1];
-            o->mUnk_28[3] = ((s16 *) r)[2];
-            o->mUnk_28[4] = ((s16 *) r)[3];
-            o->mUnk_28[5] = ((s16 *) r)[4];
-            o->mUnk_28[6] = ((s16 *) r)[5];
-            o->mUnk_28[7] = ((s16 *) r)[6];
-            o->mUnk_28[8] = ((s16 *) r)[7];
+            ((s32 *) o->mRot)[0] = ((s16 *) p)[1];
+            ((s32 *) o->mRot)[1] = ((s16 *) r)[0];
+            ((s32 *) o->mRot)[2] = ((s16 *) r)[1];
+            ((s32 *) o->mRot)[3] = ((s16 *) r)[2];
+            ((s32 *) o->mRot)[4] = ((s16 *) r)[3];
+            ((s32 *) o->mRot)[5] = ((s16 *) r)[4];
+            ((s32 *) o->mRot)[6] = ((s16 *) r)[5];
+            ((s32 *) o->mRot)[7] = ((s16 *) r)[6];
+            ((s32 *) o->mRot)[8] = ((s16 *) r)[7];
             r += 8;
         }
         s->mUnk_e8(o, r, s->mUnk_00, *p);

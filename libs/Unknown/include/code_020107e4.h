@@ -1,5 +1,6 @@
 #pragma once
 
 #include "types.h"
+#include "code_02010804.h"
 
-u32 func_020107e4(u32 arg0);
+NNSG3dPlttKey NNS_G3dPlttReleasePlttKey(NNSG3dResTex *pTex);

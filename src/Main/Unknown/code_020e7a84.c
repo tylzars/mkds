@@ -677,12 +677,12 @@ void func_020e8790(void) {
         p = data_0217baec[data_0217b890].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
+            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
         p = data_0217baf0[data_0217b890].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
+            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
     }
     data_0217b9cc[0] = &data_0217bb7c;
@@ -849,12 +849,12 @@ void func_020e7fa8(void) {
         p = data_0217baec[data_0217b890].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
+            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
         p = data_0217baf0[data_0217b890].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
+            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
     }
     data_0217ba2c.mUnk_18 = 1;
@@ -969,12 +969,12 @@ void func_020e7b7c(void) {
         p = data_0217baec[data_0217b890].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
+            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
         p = data_0217baf0[data_0217b890].mUnk_00;
         if (p != NULL) {
             p->mUnk_00c = 0;
-            p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_00c;
+            p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_00c;
         }
     }
     MTX_MultVec43(&data_0217b9c0, &data_0217ba88, &data_0217b96c);

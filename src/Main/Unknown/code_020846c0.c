@@ -21,10 +21,10 @@
 #include "code_020172d0.h"
 
 void func_0208526c(Unk0208526c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
-    u32 v1;
-    Unk020850c4 *v2;
+    NNSG3dResMdlSet *v1;
+    NNSG3dResTex *v2;
 
-    v1 = func_02013730((u32) b);
+    v1 = NNS_G3dGetMdlSet(b);
     v2 = NNS_G3dGetTex(c);
     a->mUnk_0c = NULL;
     a->mUnk_08 = NULL;
@@ -33,20 +33,20 @@ void func_0208526c(Unk0208526c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *
     if (v2 == NULL) {
         return;
     }
-    v2->mUnk_10 &= ~1;
-    v2->mUnk_20 &= ~1;
-    v2->mUnk_08 = 0;
-    v2->mUnk_18 = 0;
-    v2->mUnk_32 &= ~1;
-    v2->mUnk_2c = 0;
+    v2->mTexInfo.mFlag &= ~1;
+    v2->mTex4x4Info.mFlag &= ~1;
+    v2->mTexInfo.mVramKey = 0;
+    v2->mTex4x4Info.mVramKey = 0;
+    v2->mPlttInfo.mFlag &= ~1;
+    v2->mPlttInfo.mVramKey = 0;
     func_020850c4(v2);
     a->mUnk_0c = v2;
-    if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
-        NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
+    if (v1->mHeader.mSignature == 0x304c444d) {
+        NNS_G3dBindMdlSet(v1, v2);
     }
 }
 
-u32 func_020850c4(Unk020850c4 *a) {
+u32 func_020850c4(NNSG3dResTex *a) {
     u32 v1;
     u32 v0;
     u32 v2;
@@ -55,12 +55,12 @@ u32 func_020850c4(Unk020850c4 *a) {
     u32 f1 = 1;
     u32 f2 = 1;
 
-    if ((a->mUnk_10 & 1) != 0 || (a->mUnk_20 & 1) != 0 || (a->mUnk_32 & 1) != 0) {
+    if ((a->mTexInfo.mFlag & 1) != 0 || (a->mTex4x4Info.mFlag & 1) != 0 || (a->mPlttInfo.mFlag & 1) != 0) {
         v3 = 0;
     } else {
-        v0 = func_020109b8((u32) a);
-        v1 = func_020109ac((u32) a);
-        v2 = func_02010878((u32) a);
+        v0 = NNS_G3dTexGetRequiredSize(a);
+        v1 = NNS_G3dTex4x4GetRequiredSize(a);
+        v2 = NNS_G3dPlttGetRequiredSize(a);
         if (v0 != 0) {
             v0 = data_021619ec(v0, 0, 0);
             if (v0 == 0) {
@@ -78,7 +78,7 @@ u32 func_020850c4(Unk020850c4 *a) {
             v1 = 0;
         }
         if (v2 != 0) {
-            v2 = data_021619f4(v2, a->mUnk_20 & 0x8000, 0);
+            v2 = data_021619f4(v2, a->mTex4x4Info.mFlag & 0x8000, 0);
             if (v2 == 0) {
                 f2 = 0;
             }
@@ -91,10 +91,10 @@ u32 func_020850c4(Unk020850c4 *a) {
             data_021619f0((void *) v0);
             return 0;
         }
-        func_02010998((u32) a, v0, v1);
-        func_02010870((Unk02010804 *) a, v2);
-        func_020108bc((Unk020108bc *) a, 1);
-        func_02010804((Unk02010804 *) a, 1);
+        NNS_G3dTexSetTexKey(a, v0, v1);
+        NNS_G3dPlttSetPlttKey(a, v2);
+        NNS_G3dTexLoad(a, 1);
+        NNS_G3dPlttLoad(a, 1);
     }
     return v3;
 }
@@ -153,30 +153,30 @@ void func_02084f10(Unk02084b2c *a, NNSG3dResMdl *b) {
 NNSG3dResMdl *func_02084e28(void *a, NNSG3dResFileHeader *b) {
     Unk02084b2c *o = a;
 
-    u32 v1;
-    Unk020850c4 *v2;
-    u32 v3;
+    NNSG3dResMdlSet *v1;
+    NNSG3dResTex *v2;
+    u8 *v3;
 
-    v1 = func_02013730((u32) b);
+    v1 = NNS_G3dGetMdlSet(b);
     v2 = NNS_G3dGetTex(b);
     o->mUnk_5c.mUnk_0c = NULL;
     o->mUnk_5c.mUnk_08 = NULL;
     NNS_FndAppendListObject(&data_0217aeb0, &o->mUnk_5c);
     o->mUnk_5c.mUnk_08 = b;
     if (v2 != NULL) {
-        v2->mUnk_10 &= ~1;
-        v2->mUnk_20 &= ~1;
-        v2->mUnk_08 = 0;
-        v2->mUnk_18 = 0;
-        v2->mUnk_32 &= ~1;
-        v2->mUnk_2c = 0;
+        v2->mTexInfo.mFlag &= ~1;
+        v2->mTex4x4Info.mFlag &= ~1;
+        v2->mTexInfo.mVramKey = 0;
+        v2->mTex4x4Info.mVramKey = 0;
+        v2->mPlttInfo.mFlag &= ~1;
+        v2->mPlttInfo.mVramKey = 0;
         func_020850c4(v2);
         o->mUnk_5c.mUnk_0c = v2;
-        if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
-            NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
+        if (v1->mHeader.mSignature == 0x304c444d) {
+            NNS_G3dBindMdlSet(v1, v2);
         }
     }
-    v3 = func_02013730((u32) b);
+    v3 = (u8 *) NNS_G3dGetMdlSet(b);
     func_02084fb0(o, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
     return o->mUnk_04;
 }
@@ -184,98 +184,98 @@ NNSG3dResMdl *func_02084e28(void *a, NNSG3dResFileHeader *b) {
 NNSG3dResMdl *func_02084d3c(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
     Unk02084b2c *o = a;
 
-    u32 v1;
-    Unk020850c4 *v2;
-    u32 v3;
+    NNSG3dResMdlSet *v1;
+    NNSG3dResTex *v2;
+    u8 *v3;
 
-    v1 = func_02013730((u32) b);
+    v1 = NNS_G3dGetMdlSet(b);
     v2 = NNS_G3dGetTex(c);
     o->mUnk_5c.mUnk_0c = NULL;
     o->mUnk_5c.mUnk_08 = NULL;
     NNS_FndAppendListObject(&data_0217aeb0, &o->mUnk_5c);
     o->mUnk_5c.mUnk_08 = b;
     if (v2 != NULL) {
-        v2->mUnk_10 &= ~1;
-        v2->mUnk_20 &= ~1;
-        v2->mUnk_08 = 0;
-        v2->mUnk_18 = 0;
-        v2->mUnk_32 &= ~1;
-        v2->mUnk_2c = 0;
+        v2->mTexInfo.mFlag &= ~1;
+        v2->mTex4x4Info.mFlag &= ~1;
+        v2->mTexInfo.mVramKey = 0;
+        v2->mTex4x4Info.mVramKey = 0;
+        v2->mPlttInfo.mFlag &= ~1;
+        v2->mPlttInfo.mVramKey = 0;
         func_020850c4(v2);
         o->mUnk_5c.mUnk_0c = v2;
-        if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
-            NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
+        if (v1->mHeader.mSignature == 0x304c444d) {
+            NNS_G3dBindMdlSet(v1, v2);
         }
     }
-    v3 = func_02013730((u32) b);
+    v3 = (u8 *) NNS_G3dGetMdlSet(b);
     func_02084fb0(o, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
     return o->mUnk_04;
 }
 
 NNSG3dResMdl *func_02084c54(Unk02084b2c *a, NNSG3dResFileHeader *b) {
-    u32 v1;
-    Unk020850c4 *v2;
-    u32 v3;
+    NNSG3dResMdlSet *v1;
+    NNSG3dResTex *v2;
+    u8 *v3;
 
-    v1 = func_02013730((u32) b);
+    v1 = NNS_G3dGetMdlSet(b);
     v2 = NNS_G3dGetTex(b);
     a->mUnk_5c.mUnk_0c = NULL;
     a->mUnk_5c.mUnk_08 = NULL;
     NNS_FndAppendListObject(&data_0217aeb0, &a->mUnk_5c);
     a->mUnk_5c.mUnk_08 = b;
     if (v2 != NULL) {
-        v2->mUnk_10 &= ~1;
-        v2->mUnk_20 &= ~1;
-        v2->mUnk_08 = 0;
-        v2->mUnk_18 = 0;
-        v2->mUnk_32 &= ~1;
-        v2->mUnk_2c = 0;
+        v2->mTexInfo.mFlag &= ~1;
+        v2->mTex4x4Info.mFlag &= ~1;
+        v2->mTexInfo.mVramKey = 0;
+        v2->mTex4x4Info.mVramKey = 0;
+        v2->mPlttInfo.mFlag &= ~1;
+        v2->mPlttInfo.mVramKey = 0;
         func_020850c4(v2);
         a->mUnk_5c.mUnk_0c = v2;
-        if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
-            NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
+        if (v1->mHeader.mSignature == 0x304c444d) {
+            NNS_G3dBindMdlSet(v1, v2);
         }
     }
-    v3 = func_02013730((u32) b);
+    v3 = (u8 *) NNS_G3dGetMdlSet(b);
     func_02084fb0(a, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 0);
     return a->mUnk_04;
 }
 
 NNSG3dResMdl *func_02084b2c(void *a, Unk02084b2c *b, NNSG3dResFileHeader *c, NNSG3dResFileHeader *d) {
-    u32 v1;
-    Unk020850c4 *v2;
-    u32 v3;
-    Unk020850c4 *m;
+    NNSG3dResMdlSet *v1;
+    NNSG3dResTex *v2;
+    u8 *v3;
+    NNSG3dResTex *m;
     u32 v4;
     Unk0208526c *e;
     NNSG3dResMdl *q;
 
-    v1 = func_02013730((u32) c);
+    v1 = NNS_G3dGetMdlSet(c);
     v2 = NNS_G3dGetTex(d);
     b->mUnk_5c.mUnk_0c = NULL;
     b->mUnk_5c.mUnk_08 = NULL;
     NNS_FndAppendListObject(&data_0217aeb0, &b->mUnk_5c);
     b->mUnk_5c.mUnk_08 = c;
     if (v2 != NULL) {
-        v2->mUnk_10 &= ~1;
-        v2->mUnk_20 &= ~1;
-        v2->mUnk_08 = 0;
-        v2->mUnk_18 = 0;
-        v2->mUnk_32 &= ~1;
-        v2->mUnk_2c = 0;
+        v2->mTexInfo.mFlag &= ~1;
+        v2->mTex4x4Info.mFlag &= ~1;
+        v2->mTexInfo.mVramKey = 0;
+        v2->mTex4x4Info.mVramKey = 0;
+        v2->mPlttInfo.mFlag &= ~1;
+        v2->mPlttInfo.mVramKey = 0;
         func_020850c4(v2);
         b->mUnk_5c.mUnk_0c = v2;
-        if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
-            NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
+        if (v1->mHeader.mSignature == 0x304c444d) {
+            NNS_G3dBindMdlSet(v1, v2);
         }
     }
-    v3 = func_02013730((u32) c);
+    v3 = (u8 *) NNS_G3dGetMdlSet(c);
     func_02084fb0(b, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
     e = &b->mUnk_5c;
     m = e->mUnk_0c;
     q = b->mUnk_04;
     if (m != NULL) {
-        v4 = m->mUnk_14;
+        v4 = m->mTexInfo.mOfsTex;
         e->mUnk_0c = HeapAlloc(a, v4);
         MI_CpuCopy8(m, e->mUnk_0c, v4);
     }

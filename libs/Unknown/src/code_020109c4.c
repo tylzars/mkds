@@ -1,114 +1,120 @@
 #include "code_020109c4.h"
 
-void func_02010bc8(Unk02010b50 **a, Unk02010b50 *b) {
-    Unk02010b50 *cur;
-    Unk02010b50 *next;
-    Unk02010b50 *t;
+// Keeps the chain ordered by priority.
+void addLink_(NNSG3dAnmObj **l, NNSG3dAnmObj *item) {
+    NNSG3dAnmObj *prev;
+    NNSG3dAnmObj *next;
+    NNSG3dAnmObj *tail;
 
-    cur = *a;
-    if (cur == 0) {
-        *a = b;
+    prev = *l;
+    if (prev == 0) {
+        *l = item;
         return;
     }
-    next = cur->mUnk_10;
+    next = prev->mNext;
     if (next == 0) {
-        if (cur->mUnk_18 > b->mUnk_18) {
-            t = b;
-            if (b->mUnk_10 != 0) {
+        if (prev->mPriority > item->mPriority) {
+            tail = item;
+            if (item->mNext != 0) {
                 do {
-                    t = t->mUnk_10;
-                } while (t->mUnk_10 != 0);
+                    tail = tail->mNext;
+                } while (tail->mNext != 0);
             }
-            t->mUnk_10 = cur;
-            *a = b;
+            tail->mNext = prev;
+            *l = item;
             return;
         }
-        cur->mUnk_10 = b;
+        prev->mNext = item;
         return;
     }
     while (next != 0) {
-        if (next->mUnk_18 >= b->mUnk_18) {
-            t = b;
-            if (b->mUnk_10 != 0) {
+        if (next->mPriority >= item->mPriority) {
+            tail = item;
+            if (item->mNext != 0) {
                 do {
-                    t = t->mUnk_10;
-                } while (t->mUnk_10 != 0);
+                    tail = tail->mNext;
+                } while (tail->mNext != 0);
             }
-            cur->mUnk_10 = b;
-            t->mUnk_10 = next;
+            prev->mNext = item;
+            tail->mNext = next;
             return;
         }
-        cur = next;
-        next = next->mUnk_10;
+        prev = next;
+        next = next->mNext;
     }
-    cur->mUnk_10 = b;
+    prev->mNext = item;
 }
 
-void func_02010b50(u32 *a, Unk02010b50 *b) {
+// Marks the entries the chain maps.
+void updateHintVec_(u32 *pVec, const NNSG3dAnmObj *pAnmObj) {
     int i;
 
-    while (b != 0) {
-        for (i = 0; i < b->mUnk_19; i++) {
-            if ((b->mUnk_1a[i] & 0x100) != 0) {
-                a[i >> 5] |= 1 << (i & 31);
+    while (pAnmObj != 0) {
+        for (i = 0; i < pAnmObj->mNumMapData; i++) {
+            if ((pAnmObj->mMapData[i] & 0x100) != 0) {
+                pVec[i >> 5] |= 1 << (i & 31);
             }
         }
-        b = b->mUnk_10;
+        pAnmObj = pAnmObj->mNext;
     }
 }
 
-void func_02010ab4(Unk02010ab4 *a, Unk02010b50 *b) {
-    switch (b->mUnk_08[0]) {
-        case 0x4d:
-            func_02010b50(a->mUnk_3c, b);
-            func_02010bc8(&a->mUnk_08, b);
+void NNS_G3dRenderObjAddAnmObj(NNSG3dRenderObj *pRenderObj, NNSG3dAnmObj *pAnmObj) {
+    NNSG3dResAnmHeader *header;
+
+    header = pAnmObj->mResAnm;
+    switch (header->mCategory0) {
+        case 'M':
+            updateHintVec_(pRenderObj->mHintMatAnmExist, pAnmObj);
+            addLink_(&pRenderObj->mAnmMat, pAnmObj);
             break;
-        case 0x4a:
-            func_02010b50(a->mUnk_44, b);
-            func_02010bc8(&a->mUnk_10, b);
+        case 'J':
+            updateHintVec_(pRenderObj->mHintJntAnmExist, pAnmObj);
+            addLink_(&pRenderObj->mAnmJnt, pAnmObj);
             break;
-        case 0x56:
-            func_02010b50(a->mUnk_4c, b);
-            func_02010bc8(&a->mUnk_18, b);
+        case 'V':
+            updateHintVec_(pRenderObj->mHintVisAnmExist, pAnmObj);
+            addLink_(&pRenderObj->mAnmVis, pAnmObj);
             break;
     }
 }
 
-int func_02010a40(Unk02010b50 **a, Unk02010b50 *b) {
-    Unk02010b50 *next;
-    Unk02010b50 *cur;
+int removeLink_(NNSG3dAnmObj **l, NNSG3dAnmObj *item) {
+    NNSG3dAnmObj *next;
+    NNSG3dAnmObj *cur;
 
-    cur = *a;
+    cur = *l;
     if (cur == 0) {
         return 0;
     }
-    if (cur == b) {
-        *a = cur->mUnk_10;
-        b->mUnk_10 = 0;
+    if (cur == item) {
+        *l = cur->mNext;
+        item->mNext = 0;
         return 1;
     }
-    next = cur->mUnk_10;
+    next = cur->mNext;
     while (next != 0) {
-        if (next == b) {
-            cur->mUnk_10 = next->mUnk_10;
-            next->mUnk_10 = 0;
+        if (next == item) {
+            cur->mNext = next->mNext;
+            next->mNext = 0;
             return 1;
         }
         cur = next;
-        next = next->mUnk_10;
+        next = next->mNext;
     }
     return 0;
 }
 
-void func_020109d8(Unk02010ab4 *a, Unk02010b50 *b) {
-    if (func_02010a40(&a->mUnk_08, b) != 0 || func_02010a40(&a->mUnk_10, b) != 0 ||
-        func_02010a40(&a->mUnk_18, b) != 0) {
-        a->mUnk_00 |= 0x10;
+void NNS_G3dRenderObjRemoveAnmObj(NNSG3dRenderObj *pRenderObj, NNSG3dAnmObj *pAnmObj) {
+    if (removeLink_(&pRenderObj->mAnmMat, pAnmObj) != 0 || removeLink_(&pRenderObj->mAnmJnt, pAnmObj) != 0 ||
+        removeLink_(&pRenderObj->mAnmVis, pAnmObj) != 0) {
+        pRenderObj->mFlag |= 0x10;
     }
 }
 
-void func_020109c4(Unk020109c4 *a, void (*b)(void *), u32 c, u32 d, u32 e) {
-    a->mUnk_20 = b;
-    a->mUnk_24 = d;
-    a->mUnk_25 = e;
+void NNS_G3dRenderObjSetCallBack(NNSG3dRenderObj *pRenderObj, NNSG3dSbcCallBackFunc func, u8 *unused, u8 cmd,
+                                 u32 timing) {
+    pRenderObj->mCbFunc = func;
+    pRenderObj->mCbCmd = cmd;
+    pRenderObj->mCbTiming = timing;
 }

@@ -82,16 +82,16 @@ typedef struct Unk020e6514 {
     /* 00c */ u32 mUnk_00c;
     /* 010 */ u8 mUnk_010[0x0a];
     /* 01a */ u16 mUnk_1a;
-    /* 01c */ Unk02015b9c_b **mUnk_1c;
+    /* 01c */ NNSG3dAnmObj **mUnk_1c;
     /* 020 */ u8 mUnk_020[0x18];
 } Unk020e6514;
 
 // Work area of func_020e6514 on the stack: two words, then the object
-// func_02015b9c fills in.
+// NNSi_G3dAnmCalcNsBtp fills in.
 typedef struct Unk020e6514_8 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
-    /* 08 */ Unk02015b9c mUnk_08;
+    /* 08 */ NNSG3dMatAnmResult mUnk_08;
 } Unk020e6514_8;
 
 void func_020e5d0c(void);

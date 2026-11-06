@@ -71,8 +71,8 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
             x.mUnk_04 = 0;
             do {
                 param_2->mUnk_00c = i << 12;
-                param_2->mUnk_1c[param_2->mUnk_1a]->mUnk_00 = param_2->mUnk_00c;
-                func_02015b9c(&x.mUnk_08, param_2->mUnk_1c[0], x.mUnk_04);
+                param_2->mUnk_1c[param_2->mUnk_1a]->mFrame = param_2->mUnk_00c;
+                NNSi_G3dAnmCalcNsBtp(&x.mUnk_08, param_2->mUnk_1c[0], x.mUnk_04);
                 p->mUnk_1c[i] = x.mUnk_08.mUnk_10 & 0x3ff0ffff;
                 p->mUnk_1c[i] |= x.mUnk_00;
                 p->mUnk_20[i] = x.mUnk_08.mUnk_14;

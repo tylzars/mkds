@@ -844,7 +844,7 @@ void func_020ea670(Unk020ea670 *param_1, s32 param_2) {
     q = (u8 *) p + ((Unk020ea670_08 *) p)->mUnk_008;
     data_0217bbe8 =
         ((Unk020ea670_0c *) (q + ((Unk020ea670_08 *) (q + ((Unk020ea670_0a *) q)->mUnk_00a))->mUnk_008))->mUnk_00c;
-    func_020109c4((Unk020109c4 *) param_1, (void (*)(void *)) func_020ea84c, 0, 4, 3);
+    NNS_G3dRenderObjSetCallBack((NNSG3dRenderObj *) param_1, (NNSG3dSbcCallBackFunc) func_020ea84c, 0, 4, 3);
     func_020849d0(param_1);
     m = data_0216c3d4;
     if (param_2 < m) {

@@ -1297,7 +1297,7 @@ typedef struct Unk0217ad08_058 {
     /* 20 */ Unk0217ad08_058_20 *mUnk_20;
     /* 24 */ u8 mUnk_24[0x8c];
     /* b0 */ s32 mUnk_b0;
-    /* b4 */ struct Unk02010294 *mUnk_b4;
+    /* b4 */ struct NNSG3dResTex *mUnk_b4;
 } Unk0217ad08_058;
 
 struct NNSG3dResFileHeader;

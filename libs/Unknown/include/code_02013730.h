@@ -1,5 +1,8 @@
 #pragma once
 
 #include "types.h"
+#include "code_02013740.h"
 
-u32 func_02013730(u32 arg0);
+typedef struct NNSG3dResMdlSet NNSG3dResMdlSet;
+
+NNSG3dResMdlSet *NNS_G3dGetMdlSet(const NNSG3dResFileHeader *header);

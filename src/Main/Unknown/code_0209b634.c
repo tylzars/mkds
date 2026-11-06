@@ -205,7 +205,7 @@ void SetMapObjectModelNsbcaFrameIndex(MapObjectModel *a, u16 b) {
     Unk02087d0c *p = o->mAnimations[0];
 
     p->mUnk_0c = b << 12;
-    p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_0c;
+    p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
 }
 
 // Number of frames of the animation in slot 0 (its length, not the current frame).
@@ -221,7 +221,7 @@ void SetMapObjectModelNsbmaFrameIndex(void *a, u32 b) {
     Unk02087d0c *p = o->mAnimations[2];
 
     p->mUnk_0c = b << 12;
-    p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_0c;
+    p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
 }
 
 // Number of frames of the animation in slot 2 (its length, not the current frame).
@@ -244,7 +244,7 @@ void SetMapObjectModelNsbtaFrameIndex(void *a, s32 b) {
     Unk02087d0c *p = o->mAnimations[3];
 
     p->mUnk_0c = b << 12;
-    p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_0c;
+    p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
 }
 
 void func_0209b688(void *a, u16 b) {
@@ -260,7 +260,7 @@ void func_0209b688(void *a, u16 b) {
     }
     p = o->mAnimations[1];
     p->mUnk_0c = b << 12;
-    p->mUnk_1c[p->mUnk_1a]->mUnk_00 = p->mUnk_0c;
+    p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
 }
 
 u16 func_0209b634(void *a) {

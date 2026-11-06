@@ -1,15 +1,9 @@
 #include "code_020109ac.h"
 
-u32 func_020109b8(u32 arg0) {
-    u32 value0 = arg0;
-    value0 = (u32) * (const u16 *) ((value0) + (12));
-    value0 = (value0 << 3);
-    return value0;
+u32 NNS_G3dTexGetRequiredSize(const NNSG3dResTex *pTex) {
+    return pTex->mTexInfo.mSizeTex << 3;
 }
 
-u32 func_020109ac(u32 arg0) {
-    u32 value0 = arg0;
-    value0 = (u32) * (const u16 *) ((value0) + (28));
-    value0 = (value0 << 3);
-    return value0;
+u32 NNS_G3dTex4x4GetRequiredSize(const NNSG3dResTex *pTex) {
+    return pTex->mTex4x4Info.mSizeTex << 3;
 }

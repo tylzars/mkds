@@ -432,7 +432,7 @@ void func_0208f0f8(void *a) {
     u16 i;
     u16 n;
     u16 m;
-    Unk020850c4 *q;
+    NNSG3dResTex *q;
     s32 t;
 
     s = FindMainRaceOrMainEffectFile(data_021759c0->mUnk_00c == 5 ? data_02166514 : data_02166530);
@@ -475,10 +475,10 @@ void func_0208f0f8(void *a) {
     }
     func_0208526c(&data_0217b08c->mUnk_24, s, s);
     q = data_0217b08c->mUnk_24.mUnk_0c;
-    t = (q->mUnk_08 & 0xffff) << 3;
+    t = (q->mTexInfo.mVramKey & 0xffff) << 3;
     data_021663f4.mUnk_00 = data_021663f4.mUnk_00 & 0xffff0000;
     data_021663f4.mUnk_00 = data_021663f4.mUnk_00 | (((u32) t >> 3) & 0xffff);
-    data_021663f4.mUnk_18 = (q->mUnk_2c & 0xffff) << 3;
+    data_021663f4.mUnk_18 = (q->mPlttInfo.mVramKey & 0xffff) << 3;
     data_021663f4.mUnk_1c = 0x10000;
     data_021663f4.mUnk_20 = 0x8000;
     data_0217b08c->mUnk_34 = data_021759c0->mCourseId == COURSE_ID_RAINBOW ? 0 : 0x8000;

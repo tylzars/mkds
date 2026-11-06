@@ -10,75 +10,75 @@
 u32 gVramBankLockedMask;
 u16 gVramBankLockIds[9];
 
-// Binds the texture to the materials of one entry of the texture-to-material list: sets the texture offset in
-// each material and the scale from the texture size. Sets bit 0 of the flag.
-void bindMdlTex_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data, Unk02010294 *tex, Unk020106c8_0c *texData) {
-    u32 vramOffset;
+// Sets the texture offset and size ratio of each material in the list.
+void bindMdlTex_Internal_(NNSG3dResMat *mat, NNSG3dResDictTexToMatIdxData *data, NNSG3dResTex *tex,
+                          NNSG3dResDictTexData *texData) {
+    u32 keyOffset;
     u32 i;
     u8 *matIndices;
     u32 width;
     u32 height;
-    Unk020106c8_14 *matData;
+    NNSG3dResMatData *matEntry;
 
-    matIndices = (u8 *) mat + data->mUnk_00;
-    if ((texData->mUnk_00 & 0x1c000000) != 0x14000000) {
-        vramOffset = tex->mUnk_08 & 0xffff;
+    matIndices = (u8 *) mat + data->mOffset;
+    if ((texData->mTexImageParam & 0x1c000000) != 0x14000000) {
+        keyOffset = tex->mTexInfo.mVramKey & 0xffff;
     } else {
-        vramOffset = tex->mUnk_18 & 0xffff;
+        keyOffset = tex->mTex4x4Info.mVramKey & 0xffff;
     }
-    for (i = 0; i < data->mUnk_02; i++) {
+    for (i = 0; i < data->mNumIdx; i++) {
         u8 *table;
-        table = (u8 *) mat + 4 + mat->mUnk_0a;
-        matData = (Unk020106c8_14 *) ((u8 *) mat + *(u32 *) (table + *(u16 *) table * matIndices[i] + 4));
-        matData->mUnk_14 |= texData->mUnk_00 + vramOffset;
-        width = texData->mUnk_04 & 0x7ff;
-        height = (texData->mUnk_04 >> 11) & 0x7ff;
-        matData->mUnk_24 = (width == matData->mUnk_20) ? 0x1000 : FX_Div(width << 12, matData->mUnk_20 << 12);
-        matData->mUnk_28 = (height == matData->mUnk_22) ? 0x1000 : FX_Div(height << 12, matData->mUnk_22 << 12);
+        table = (u8 *) mat + 4 + mat->mDict.mOfsEntry;
+        matEntry = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (table + *(u16 *) table * matIndices[i] + 4));
+        matEntry->mTexImageParam |= texData->mTexImageParam + keyOffset;
+        width = texData->mExtraParam & 0x7ff;
+        height = (texData->mExtraParam >> 11) & 0x7ff;
+        matEntry->mMagW = (width == matEntry->mOrigWidth) ? 0x1000 : FX_Div(width << 12, matEntry->mOrigWidth << 12);
+        matEntry->mMagH =
+            (height == matEntry->mOrigHeight) ? 0x1000 : FX_Div(height << 12, matEntry->mOrigHeight << 12);
     }
-    data->mUnk_03 |= 1;
+    data->mFlag |= 1;
 }
 
-// Undoes bindMdlTex_Internal_ for one entry: clears the texture offset and resets the scale. Clears bit 0 of the flag.
-void releaseMdlTex_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data) {
+// Resets the texture offset and size ratio of each material in the list.
+void releaseMdlTex_Internal_(NNSG3dResMat *mat, NNSG3dResDictTexToMatIdxData *data) {
     u8 *matIndices;
     u32 i;
-    Unk020106c8_14 *matData;
+    NNSG3dResMatData *matEntry;
 
-    matIndices = (u8 *) mat + data->mUnk_00;
-    for (i = 0; i < data->mUnk_02; i++) {
+    matIndices = (u8 *) mat + data->mOffset;
+    for (i = 0; i < data->mNumIdx; i++) {
         u8 *table;
-        table = (u8 *) mat + 4 + mat->mUnk_0a;
-        matData = (Unk020106c8_14 *) ((u8 *) mat + *(u32 *) (table + *(u16 *) table * matIndices[i] + 4));
-        matData->mUnk_14 &= 0xc00f0000;
-        matData->mUnk_24 = 0x1000;
-        matData->mUnk_28 = matData->mUnk_24;
+        table = (u8 *) mat + 4 + mat->mDict.mOfsEntry;
+        matEntry = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (table + *(u16 *) table * matIndices[i] + 4));
+        matEntry->mTexImageParam &= 0xc00f0000;
+        matEntry->mMagW = 0x1000;
+        matEntry->mMagH = matEntry->mMagW;
     }
-    data->mUnk_03 &= ~1;
+    data->mFlag &= ~1;
 }
 
-// Binds the texture to every texture-to-material entry of the model that is not bound yet. Returns 0 when the texture
-// has no texture for one of the names.
-int NNS_G3dBindMdlTex(Unk020101e8 *mdl, Unk02010294 *tex) {
-    Unk020101e8_08 *materials;
-    Unk02010294_t *dict;
+// Returns 0 when the texture has no entry for one of the names.
+int NNS_G3dBindMdlTex(NNSG3dResMdl *mdl, NNSG3dResTex *tex) {
+    NNSG3dResMat *materials;
+    NNSG3dResDict *list;
     int result;
     u32 i;
-    void *texData;
+    void *texEntry;
     u8 *table;
-    Unk020103c0_e *data;
+    NNSG3dResDictTexToMatIdxData *binding;
 
-    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
-    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_00);
+    materials = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    list = (NNSG3dResDict *) ((u8 *) materials + materials->mOfsDictTexToMatList);
     result = 1;
-    for (i = 0; i < dict->mUnk_01; i++) {
-        table = (u8 *) dict + dict->mUnk_06;
-        texData = func_020138b4(tex->mUnk_3c, (const u32 *) (table + *(u16 *) (table + 2) + i * 16));
-        if (texData != 0) {
-            table = (u8 *) dict + dict->mUnk_06;
-            data = (Unk020103c0_e *) (table + 4 + *(u16 *) table * i);
-            if ((data->mUnk_03 & 1) == 0) {
-                bindMdlTex_Internal_(materials, data, tex, texData);
+    for (i = 0; i < list->mNumEntry; i++) {
+        table = (u8 *) list + list->mOfsEntry;
+        texEntry = NNS_G3dGetResDataByName(&tex->mDict, (const u32 *) (table + *(u16 *) (table + 2) + i * 16));
+        if (texEntry != 0) {
+            table = (u8 *) list + list->mOfsEntry;
+            binding = (NNSG3dResDictTexToMatIdxData *) (table + 4 + *(u16 *) table * i);
+            if ((binding->mFlag & 1) == 0) {
+                bindMdlTex_Internal_(materials, binding, tex, texEntry);
             }
         } else {
             result = 0;
@@ -87,107 +87,104 @@ int NNS_G3dBindMdlTex(Unk020101e8 *mdl, Unk02010294 *tex) {
     return result;
 }
 
-// Binds the texture of the given name to the model if it is not bound yet. Returns 1 when it was bound.
-int NNS_G3dBindMdlTexEx(Unk020101e8 *mdl, Unk02010294 *tex, const u32 *name) {
-    Unk02010294_t *dict;
-    Unk020101e8_08 *materials;
-    void *texData;
-    Unk020103c0_e *data;
+int NNS_G3dBindMdlTexEx(NNSG3dResMdl *mdl, NNSG3dResTex *tex, const u32 *name) {
+    NNSG3dResDict *list;
+    NNSG3dResMat *materials;
+    void *texEntry;
+    NNSG3dResDictTexToMatIdxData *binding;
 
-    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
-    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_00);
-    texData = func_020138b4(tex->mUnk_3c, name);
-    if (texData != 0) {
-        data = func_020138b4(dict, name);
-        if (data != 0 && (data->mUnk_03 & 1) == 0) {
-            bindMdlTex_Internal_(materials, data, tex, texData);
+    materials = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    list = (NNSG3dResDict *) ((u8 *) materials + materials->mOfsDictTexToMatList);
+    texEntry = NNS_G3dGetResDataByName(&tex->mDict, name);
+    if (texEntry != 0) {
+        binding = NNS_G3dGetResDataByName(list, name);
+        if (binding != 0 && (binding->mFlag & 1) == 0) {
+            bindMdlTex_Internal_(materials, binding, tex, texEntry);
             return 1;
         }
     }
     return 0;
 }
 
-// Releases every texture binding of the model.
-void NNS_G3dReleaseMdlTex(Unk020101e8 *mdl) {
-    Unk020101e8_08 *materials;
-    Unk02010294_t *dict;
+void NNS_G3dReleaseMdlTex(NNSG3dResMdl *mdl) {
+    NNSG3dResMat *materials;
+    NNSG3dResDict *list;
     u8 *table;
-    Unk020103c0_e *data;
+    NNSG3dResDictTexToMatIdxData *binding;
     u32 i;
 
-    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
-    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_00);
-    for (i = 0; i < dict->mUnk_01; i++) {
-        table = (u8 *) dict + dict->mUnk_06;
-        data = (Unk020103c0_e *) (table + 4 + *(u16 *) table * i);
-        if ((data->mUnk_03 & 1) != 0) {
-            releaseMdlTex_Internal_(materials, data);
+    materials = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    list = (NNSG3dResDict *) ((u8 *) materials + materials->mOfsDictTexToMatList);
+    for (i = 0; i < list->mNumEntry; i++) {
+        table = (u8 *) list + list->mOfsEntry;
+        binding = (NNSG3dResDictTexToMatIdxData *) (table + 4 + *(u16 *) table * i);
+        if ((binding->mFlag & 1) != 0) {
+            releaseMdlTex_Internal_(materials, binding);
         }
     }
 }
 
-// Releases the texture binding of the given name. Returns 1 when a binding was released.
-u32 NNS_G3dReleaseMdlTexEx(Unk020101e8 *mdl, const u32 *name) {
-    Unk020101e8_08 *materials;
-    Unk020103c0_e *data;
+u32 NNS_G3dReleaseMdlTexEx(NNSG3dResMdl *mdl, const u32 *name) {
+    NNSG3dResMat *materials;
+    NNSG3dResDictTexToMatIdxData *binding;
 
-    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
-    data = func_020138b4((u8 *) materials + materials->mUnk_00, name);
-    if (data != 0 && (data->mUnk_03 & 1) != 0) {
-        releaseMdlTex_Internal_(materials, data);
+    materials = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    binding = NNS_G3dGetResDataByName((u8 *) materials + materials->mOfsDictTexToMatList, name);
+    if (binding != 0 && (binding->mFlag & 1) != 0) {
+        releaseMdlTex_Internal_(materials, binding);
         return 1;
     }
     return 0;
 }
 
-// Binds the palette to the materials of one entry of the palette-to-material list. Sets bit 0 of the flag.
-void bindMdlPltt_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data, Unk02010294 *tex, Unk020103c0_d *plttData) {
+// Sets the palette offset of each material in the list.
+void bindMdlPltt_Internal_(NNSG3dResMat *mat, NNSG3dResDictTexToMatIdxData *data, NNSG3dResTex *tex,
+                           NNSG3dResDictPlttData *plttData) {
     u8 *matIndices;
     u32 base;
-    u32 vramOffset;
+    u32 keyOffset;
     u32 i;
     u8 *table;
-    Unk020103c0_o *matData;
+    NNSG3dResMatData *matEntry;
 
-    matIndices = (u8 *) mat + data->mUnk_00;
-    base = (u16) tex->mUnk_2c;
-    vramOffset = plttData->mUnk_00;
-    if ((plttData->mUnk_02 & 1) == 0) {
+    matIndices = (u8 *) mat + data->mOffset;
+    base = (u16) tex->mPlttInfo.mVramKey;
+    keyOffset = plttData->mOffset;
+    if ((plttData->mFlag & 1) == 0) {
         base = (base << 15) >> 16;
-        vramOffset = (vramOffset << 15) >> 16;
+        keyOffset = (keyOffset << 15) >> 16;
     }
-    for (i = 0; i < data->mUnk_02; i++) {
-        table = (u8 *) mat + 4 + mat->mUnk_0a;
-        matData = (Unk020103c0_o *) ((u8 *) mat + *(u32 *) (table + *(u16 *) table * matIndices[i] + 4));
-        matData->mUnk_1c = vramOffset + base;
+    for (i = 0; i < data->mNumIdx; i++) {
+        table = (u8 *) mat + 4 + mat->mDict.mOfsEntry;
+        matEntry = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (table + *(u16 *) table * matIndices[i] + 4));
+        matEntry->mTexPlttBase = keyOffset + base;
     }
-    data->mUnk_03 |= 1;
+    data->mFlag |= 1;
 }
 
-// Binds the palette to every palette-to-material entry of the model that is not bound yet. Returns 0 when the texture
-// has no palette for one of the names.
-u32 NNS_G3dBindMdlPltt(Unk020101e8 *mdl, Unk02010294 *tex) {
-    Unk020101e8_08 *materials;
-    Unk02010294_t *dict;
+// Returns 0 when the texture has no palette for one of the names.
+u32 NNS_G3dBindMdlPltt(NNSG3dResMdl *mdl, NNSG3dResTex *tex) {
+    NNSG3dResMat *materials;
+    NNSG3dResDict *list;
     u8 *table;
     u32 i;
     u32 result;
-    void *plttData;
-    Unk020103c0_e *data;
+    void *plttEntry;
+    NNSG3dResDictTexToMatIdxData *binding;
 
-    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
+    materials = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
     result = 1;
     i = 0;
-    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_02);
-    for (; i < dict->mUnk_01; i++) {
-        table = (u8 *) dict + dict->mUnk_06;
-        plttData =
-            func_020138b4((u8 *) tex + tex->mUnk_34, (u32 *) (table + ((Unk02010310_d *) table)->mUnk_02 + i * 16));
-        if (plttData != 0) {
-            table = (u8 *) dict + dict->mUnk_06;
-            data = (Unk020103c0_e *) (table + 4 + *(u16 *) table * i);
-            if ((data->mUnk_03 & 1) == 0) {
-                bindMdlPltt_Internal_(materials, data, tex, plttData);
+    list = (NNSG3dResDict *) ((u8 *) materials + materials->mOfsDictPlttToMatList);
+    for (; i < list->mNumEntry; i++) {
+        table = (u8 *) list + list->mOfsEntry;
+        plttEntry = NNS_G3dGetResDataByName((u8 *) tex + tex->mPlttInfo.mOfsDict,
+                                            (u32 *) (table + ((NNSG3dResDictEntryHeader *) table)->mOfsName + i * 16));
+        if (plttEntry != 0) {
+            table = (u8 *) list + list->mOfsEntry;
+            binding = (NNSG3dResDictTexToMatIdxData *) (table + 4 + *(u16 *) table * i);
+            if ((binding->mFlag & 1) == 0) {
+                bindMdlPltt_Internal_(materials, binding, tex, plttEntry);
             }
         } else {
             result = 0;
@@ -196,103 +193,99 @@ u32 NNS_G3dBindMdlPltt(Unk020101e8 *mdl, Unk02010294 *tex) {
     return result;
 }
 
-// Binds the palette of the given name to the model if it is not bound yet. Returns 1 when it was bound.
-u32 NNS_G3dBindMdlPlttEx(Unk020101e8 *mdl, Unk02010294 *tex, const u32 *name) {
-    Unk02010294_t *dict;
-    Unk020101e8_08 *materials;
-    void *plttData;
-    Unk020103c0_e *data;
+u32 NNS_G3dBindMdlPlttEx(NNSG3dResMdl *mdl, NNSG3dResTex *tex, const u32 *name) {
+    NNSG3dResDict *list;
+    NNSG3dResMat *materials;
+    void *plttEntry;
+    NNSG3dResDictTexToMatIdxData *binding;
 
-    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
-    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_02);
-    plttData = func_020138b4((u8 *) tex + tex->mUnk_34, name);
-    if (plttData != 0) {
-        data = func_020138b4(dict, name);
-        if (data != 0 && (data->mUnk_03 & 1) == 0) {
-            bindMdlPltt_Internal_(materials, data, tex, plttData);
+    materials = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    list = (NNSG3dResDict *) ((u8 *) materials + materials->mOfsDictPlttToMatList);
+    plttEntry = NNS_G3dGetResDataByName((u8 *) tex + tex->mPlttInfo.mOfsDict, name);
+    if (plttEntry != 0) {
+        binding = NNS_G3dGetResDataByName(list, name);
+        if (binding != 0 && (binding->mFlag & 1) == 0) {
+            bindMdlPltt_Internal_(materials, binding, tex, plttEntry);
             return 1;
         }
     }
     return 0;
 }
 
-// Releases every palette binding of the model.
-void NNS_G3dReleaseMdlPltt(Unk020101e8 *mdl) {
-    Unk020101e8_08 *materials;
-    Unk02010294_t *dict;
+void NNS_G3dReleaseMdlPltt(NNSG3dResMdl *mdl) {
+    NNSG3dResMat *materials;
+    NNSG3dResDict *list;
     u8 *table;
-    Unk020103c0_e *data;
+    NNSG3dResDictTexToMatIdxData *binding;
     u32 i;
 
-    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
-    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_02);
-    for (i = 0; i < dict->mUnk_01; i++) {
-        table = (u8 *) dict + dict->mUnk_06;
-        data = (Unk020103c0_e *) (table + 4 + *(u16 *) table * i);
-        if ((data->mUnk_03 & 1) != 0) {
-            data->mUnk_03 &= ~1;
+    materials = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    list = (NNSG3dResDict *) ((u8 *) materials + materials->mOfsDictPlttToMatList);
+    for (i = 0; i < list->mNumEntry; i++) {
+        table = (u8 *) list + list->mOfsEntry;
+        binding = (NNSG3dResDictTexToMatIdxData *) (table + 4 + *(u16 *) table * i);
+        if ((binding->mFlag & 1) != 0) {
+            binding->mFlag &= ~1;
         }
     }
 }
 
-// Releases the palette binding of the given name. Returns 1 when a binding was released.
-u32 NNS_G3dReleaseMdlPlttEx(Unk020101e8 *mdl, const u32 *name) {
-    Unk020101e8_08 *materials;
-    Unk020103c0_e *data;
+u32 NNS_G3dReleaseMdlPlttEx(NNSG3dResMdl *mdl, const u32 *name) {
+    NNSG3dResMat *materials;
+    NNSG3dResDictTexToMatIdxData *binding;
 
-    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
-    data = func_020138b4((u8 *) materials + materials->mUnk_02, name);
-    if (data != 0 && (data->mUnk_03 & 1) != 0) {
-        data->mUnk_03 &= ~1;
+    materials = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    binding = NNS_G3dGetResDataByName((u8 *) materials + materials->mOfsDictPlttToMatList, name);
+    if (binding != 0 && (binding->mFlag & 1) != 0) {
+        binding->mFlag &= ~1;
         return 1;
     }
     return 0;
 }
 
-// Binds the textures and palettes of tex to every model of the model set. Returns 0 when one name is missing.
-u32 NNS_G3dBindMdlSet(Unk02010168 *mdlSet, Unk02010294 *tex) {
+// Returns 0 when a name is missing.
+u32 NNS_G3dBindMdlSet(NNSG3dResMdlSet *mdlSet, NNSG3dResTex *tex) {
     u32 i;
     u32 result;
     u8 *table;
     u16 offset;
     u16 stride;
-    Unk020101e8 *model;
+    NNSG3dResMdl *model;
 
     result = 1;
     i = 0;
-    if (i < mdlSet->mUnk_09) {
+    if (i < mdlSet->mDict.mNumEntry) {
         table = (u8 *) mdlSet + 8;
         do {
-            offset = mdlSet->mUnk_0e;
+            offset = mdlSet->mDict.mOfsEntry;
             stride = *(u16 *) (table + offset);
-            model = (Unk020101e8 *) ((u8 *) mdlSet + *(u32 *) (table + offset + stride * i + 4));
+            model = (NNSG3dResMdl *) ((u8 *) mdlSet + *(u32 *) (table + offset + stride * i + 4));
             result &= NNS_G3dBindMdlTex(model, tex);
             result &= NNS_G3dBindMdlPltt(model, tex);
             i++;
-        } while (i < mdlSet->mUnk_09);
+        } while (i < mdlSet->mDict.mNumEntry);
     }
     return result;
 }
 
-// Releases the texture and palette bindings of every model of the model set.
-void NNS_G3dReleaseMdlSet(Unk02010168 *mdlSet) {
+void NNS_G3dReleaseMdlSet(NNSG3dResMdlSet *mdlSet) {
     u32 i;
     u8 *table;
     u16 offset;
     u16 stride;
-    Unk020101e8 *model;
+    NNSG3dResMdl *model;
 
     i = 0;
-    if (i < mdlSet->mUnk_09) {
+    if (i < mdlSet->mDict.mNumEntry) {
         table = (u8 *) mdlSet + 8;
         do {
-            offset = mdlSet->mUnk_0e;
+            offset = mdlSet->mDict.mOfsEntry;
             stride = *(u16 *) (table + offset);
-            model = (Unk020101e8 *) ((u8 *) mdlSet + *(u32 *) (table + offset + stride * i + 4));
+            model = (NNSG3dResMdl *) ((u8 *) mdlSet + *(u32 *) (table + offset + stride * i + 4));
             NNS_G3dReleaseMdlTex(model);
             NNS_G3dReleaseMdlPltt(model);
             i++;
-        } while (i < mdlSet->mUnk_09);
+        } while (i < mdlSet->mDict.mNumEntry);
     }
 }
 

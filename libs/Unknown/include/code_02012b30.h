@@ -101,6 +101,8 @@ typedef struct NNSG3dResMdl {
 } NNSG3dResMdl;
 
 // File file of a model or texture resource: signature, then at headerSize the table of data block offsets.
+typedef struct NNSG3dResTex NNSG3dResTex;
+
 typedef struct NNSG3dResFileHeader {
     /* 00 */ u32 mSigVal;
     /* 04 */ u16 mByteOrder;
@@ -109,6 +111,12 @@ typedef struct NNSG3dResFileHeader {
     /* 0c */ u16 mHeaderSize;
     /* 0e */ u16 mDataBlocks;
 } NNSG3dResFileHeader;
+
+// Header of a data block of a resource file.
+typedef struct NNSG3dResDataBlockHeader {
+    /* 00 */ u32 mSignature;
+    /* 04 */ u32 mSize;
+} NNSG3dResDataBlockHeader;
 
 void NNS_G3dResDefaultRelease(NNSG3dResFileHeader *file);
 s32 NNS_G3dResDefaultSetup(NNSG3dResFileHeader *file);
@@ -140,4 +148,4 @@ void NNS_G3dMdlSetMdlEmi(NNSG3dResMdl *mdl, u32 matId, u32 color);
 void NNS_G3dMdlSetMdlSpec(NNSG3dResMdl *mdl, u32 matId, u32 color);
 void NNS_G3dMdlSetMdlAmb(NNSG3dResMdl *mdl, u32 matId, u32 color);
 void NNS_G3dMdlSetMdlDiff(NNSG3dResMdl *mdl, u32 matId, u32 color);
-void *NNS_G3dGetTex(NNSG3dResFileHeader *file);
+NNSG3dResTex *NNS_G3dGetTex(NNSG3dResFileHeader *file);

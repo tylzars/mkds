@@ -6,7 +6,7 @@
 typedef struct NNSG3dResShpData NNSG3dResShpData;
 typedef struct Unk02170500_04 Unk02170500_04;
 typedef struct Unk02170500 Unk02170500;
-typedef struct Unk020152bc Unk020152bc;
+typedef struct NNSG3dAnmObj NNSG3dAnmObj;
 
 // Command buffer: the number of words stored from mUnk_04, then the words.
 typedef struct Unk01ff9048 {
@@ -27,7 +27,7 @@ void func_01ff8b98(Unk02170500 *s, u32 a);
 void func_01ff8c98(Unk02170500 *s, u32 a);
 void func_01ff8cc4(Unk02170500 *s, u32 a);
 void func_01ff8cf0(void *a);
-void func_01ff8dec(u32 *a, Unk020152bc *b);
+void func_01ff8dec(u32 *a, NNSG3dAnmObj *b);
 void func_01ff8e64(Unk02170500 *s, Unk02170500_04 *i);
 void func_01ff8ff8(Unk02170500 *s);
 void func_01ff9048(u32 a, const void *b, u32 n);

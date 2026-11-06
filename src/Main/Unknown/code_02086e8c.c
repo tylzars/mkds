@@ -388,7 +388,7 @@ void func_020870ec(Unk02086098 *a, u16 b) {
 void func_02087000(void) {
     u16 i;
     Nclr *o;
-    u8 *p;
+    NNSG3dResTex *p;
     char *s;
     u8 *q;
     u8 *r;
@@ -402,8 +402,8 @@ void func_02087000(void) {
                 s = BuildEmblemNsbtxPath((u16) data_021759c0->mCurrentEntries[i].mCharacterIndex);
             }
             p = NNS_G3dGetTex(func_02047950(s));
-            q = p + *(u32 *) (p + 0x38);
-            r = p + *(u32 *) (p + 0x14);
+            q = (u8 *) p + p->mPlttInfo.mOfsPlttData;
+            r = (u8 *) p + p->mTexInfo.mOfsTex;
             data_0217aed0->mUnk_144[i] = r;
             data_0217aed0->mUnk_164[i] = q;
         } else {
@@ -433,7 +433,7 @@ void func_02086f24(u32 a, void *b, void *c) {
     u32 d;
     u32 f;
     p = func_02079bcc((u16) a);
-    n = func_02013754(p + *(u32 *) (p + 8) + 4, &data_02155a54);
+    n = NNS_G3dGetResDictIdxByName(p + *(u32 *) (p + 8) + 4, &data_02155a54);
     q = p + *(u32 *) (p + 8);
     r = q + 4;
     h = *(u16 *) (r + *(u16 *) (q + 0xa));

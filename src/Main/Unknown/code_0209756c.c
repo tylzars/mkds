@@ -129,10 +129,10 @@ void DrawFlipper(void *a, Flipper *p) {
     func_0209b7a0(gFlipper, p->mUnk_a4, 0);
     s = gFlipper->mAnimations[1];
     s->mUnk_0c = p->mUnk_ec4 << 12;
-    s->mUnk_1c[s->mUnk_1a]->mUnk_00 = s->mUnk_0c;
+    s->mUnk_1c[s->mUnk_1a]->mFrame = s->mUnk_0c;
     s = gFlipper->mAnimations[3];
     s->mUnk_0c = p->mUnk_ec6 << 12;
-    s->mUnk_1c[s->mUnk_1a]->mUnk_00 = s->mUnk_0c;
+    s->mUnk_1c[s->mUnk_1a]->mFrame = s->mUnk_0c;
     DrawMapObjectModel(a, gFlipper, p);
 }
 

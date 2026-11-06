@@ -76,7 +76,7 @@ void func_0206390c(Unk0206390c *a) {
     s32 k;
 
     b = func_0207a31c();
-    k = func_02013754(a->mUnk_04->mUnk_04 + 0x40, data_02154a2c);
+    k = NNS_G3dGetResDictIdxByName(a->mUnk_04->mUnk_04 + 0x40, data_02154a2c);
     if (k != ((a->mUnk_08 & 0x10) != 0 ? a->mUnk_ae : -1)) {
         return;
     }

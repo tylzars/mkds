@@ -1,5 +1,6 @@
 #pragma once
 
 #include "types.h"
+#include "code_02010804.h"
 
-void func_02010998(u32 arg0, u32 arg1, u32 arg2);
+void NNS_G3dTexSetTexKey(NNSG3dResTex *pTex, NNSG3dTexKey texKey, NNSG3dTexKey tex4x4Key);

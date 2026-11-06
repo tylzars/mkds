@@ -107,7 +107,7 @@ void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16
         func_0208823c(2, g, b->mNsbmds, c->mNsbtpCount, a, n);
         for (k = 0; k < c->mNsbtpCount; k++) {
             snprintf(s, 0x80, "%s.nsbtp", c->mStems[k]);
-            func_020881b0(g, k, func_02013b00(func_02013ae4(FindSceneFile(s)), 0), 0, a);
+            func_020881b0(g, k, NNS_G3dGetTexPatAnmByIdx(NNS_G3dGetTexPatAnmSet(FindSceneFile(s)), 0), 0, a);
         }
         func_02087f84(g, 0);
     }

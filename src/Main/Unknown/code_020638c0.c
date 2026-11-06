@@ -3,7 +3,7 @@
 #include "code_020109c4.h"
 
 void func_020638dc(void *a) {
-    func_020109c4(a, (void (*)(void *))(((u32) (&func_0206390c))), (u32) 0, (u8) 6, (u8) 3);
+    NNS_G3dRenderObjSetCallBack(a, (NNSG3dSbcCallBackFunc) func_0206390c, (u32) 0, (u8) 6, (u8) 3);
 }
 
 void func_020638c0(struct Kart *p0) {

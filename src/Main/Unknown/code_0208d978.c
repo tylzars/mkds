@@ -335,7 +335,7 @@ void func_0208ddf4(void *a, s32 b, NNSG3dResFileHeader *c, void *d, void *e, voi
     if (b == 2) {
         data_0217b07c = 1;
     }
-    t = (u8 *) func_02013730((u32) c);
+    t = (u8 *) NNS_G3dGetMdlSet(c);
     h = (NNSG3dResMdl *) (t + *(u32 *) (t + *(u16 *) (t + 0xe) + 0xc));
     for (i = 0; i < g->mUnk_00; i++) {
         p = data_0217b080->mUnk_48[b][i];

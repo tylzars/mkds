@@ -1004,7 +1004,7 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
         do {
             s = func_02047950(BuildCharacterNsbcaPath(e8, i));
             if (s != NULL) {
-                void *w = func_02013a4c(func_02013a30(s), 0);
+                void *w = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(s), 0);
                 func_020881b0(a->mUnk_008, i, w, func_0207b8dc(i), b);
                 if (i == 0) {
                     d = TRUE;
@@ -1039,7 +1039,7 @@ void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
     func_020849c0(a->mUnk_010[1], 3);
     func_0207a14c(r4, 0);
     if (c != 0) {
-        i = func_02013754((u8 *) r4 + r4->mOfsMat + 4, data_usa_021550b8);
+        i = NNS_G3dGetResDictIdxByName((u8 *) r4 + r4->mOfsMat + 4, data_usa_021550b8);
         NNS_G3dMdlSetMdlAlpha(r4, i, 0);
         gKartModels->mUnk_00c = i;
     }
@@ -1071,7 +1071,7 @@ void func_0207940c(Unk02084b2c *a, s32 b, void *c) {
         p = (u8 *) a->mUnk_04;
         d = (u8 *) c + b / 3 * 0x20;
         DC_FlushRange(d, 0x10);
-        i = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155088);
+        i = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155088);
         q = p + *(s32 *) (p + 8);
         t = q + 4 + *(u16 *) (q + 0xa);
         k = *(u16 *) (q + *(s32 *) (t + *(u16 *) t * i + 4) + 0x1c) << 4;
@@ -1106,7 +1106,7 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
                     c = data_usa_02155108;
                     break;
             }
-            i = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155008);
+            i = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155008);
             q = p + *(s32 *) (p + 8);
             t = q + 4 + *(u16 *) (q + 0xa);
             e = q + *(s32 *) (t + *(u16 *) t * i + 4);
@@ -1119,14 +1119,14 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
         if (a->mUnk_000 == 0xb) {
             p = (u8 *) a->mUnk_010[0]->mUnk_04;
             if (b != 0) {
-                i = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155028);
-                j = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155038);
+                i = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155028);
+                j = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155038);
                 c = data_usa_02155128;
                 h = data_usa_02155148;
                 m = 0x40;
             } else {
-                i = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155058);
-                j = func_02013754(p + *(s32 *) (p + 8) + 4, data_usa_02155078);
+                i = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155058);
+                j = NNS_G3dGetResDictIdxByName(p + *(s32 *) (p + 8) + 4, data_usa_02155078);
                 c = data_usa_021550c8;
                 h = data_usa_02154fe8;
                 m = 0x10;
@@ -1166,7 +1166,7 @@ void CreateKartShadow(Unk0206bcb0_590 *a, void *b) {
     v6 = func_02047950(BuildKartShadowNsbmdPath((u16) a->mUnk_004));
     a->mUnk_01c = HeapAlloc(b, 0x74);
     func_0208526c(&a->mUnk_01c->mUnk_00.mUnk_5c, v6, v6);
-    p = (u8 *) func_02013730((u32) v6);
+    p = (u8 *) NNS_G3dGetMdlSet(v6);
     func_0207b000(&a->mUnk_01c->mUnk_00, p + *(s32 *) (p + *(u16 *) (p + 0xe) + 0xc), 3);
 }
 
@@ -1214,7 +1214,7 @@ void func_02079078(void *a, Unk02084b2c *b, void *c, NNSG3dResFileHeader *d, NNS
     func_020849c0(b, 3);
     func_0207a14c(v2, (u32) 1);
     func_0208823c(0, c, b, 1, a, NULL);
-    v1 = func_02013a4c(func_02013a30(f), 0);
+    v1 = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(f), 0);
     v3 = func_0207b8dc(2);
     func_020881b0(c, 0, v1, v3, a);
     func_02087f84(c, 0);
@@ -1226,7 +1226,7 @@ void func_02079038(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *
     v1 = func_02084d3c(a, b, c);
     func_020849c0(a, 3);
     func_0207a14c(v1, 1);
-    v2 = func_02013754((u8 *) v1 + v1->mOfsMat + 4, data_02155098);
+    v2 = NNS_G3dGetResDictIdxByName((u8 *) v1 + v1->mOfsMat + 4, data_02155098);
     NNS_G3dMdlSetMdlAlpha(v1, v2, 0);
 }
 
@@ -1317,7 +1317,7 @@ void func_02078e4c(void *param_1, void *param_2) {
     s16 i = d->mUnk_264;
     if (i >= 0 && p->mUnk_2c == FALSE) {
         e = d->mUnk_058[i].mUnk_14->mUnk_04;
-        k = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02155018);
+        k = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02155018);
         t = (u8 *) e + e->mOfsMat;
         u = t + 4;
         w = u + *(u16 *) (t + 0xa);
@@ -1658,10 +1658,10 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
 
 void func_0207851c(Unk0217ad08_058 *a) {
     if ((data_0217ad08->mUnk_1e0 != FALSE) && (a->mUnk_b4 != NULL)) {
-        NNS_G3dReleaseMdlTexEx((Unk020101e8 *) a->mUnk_14->mUnk_04, data_02155048);
-        NNS_G3dReleaseMdlPlttEx((Unk020101e8 *) a->mUnk_14->mUnk_04, data_021550a8);
-        NNS_G3dBindMdlTexEx((Unk020101e8 *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_02155048);
-        NNS_G3dBindMdlPlttEx((Unk020101e8 *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_021550a8);
+        NNS_G3dReleaseMdlTexEx((NNSG3dResMdl *) a->mUnk_14->mUnk_04, data_02155048);
+        NNS_G3dReleaseMdlPlttEx((NNSG3dResMdl *) a->mUnk_14->mUnk_04, data_021550a8);
+        NNS_G3dBindMdlTexEx((NNSG3dResMdl *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_02155048);
+        NNS_G3dBindMdlPlttEx((NNSG3dResMdl *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_021550a8);
     }
 }
 
@@ -1876,9 +1876,9 @@ void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3) {
     e = param_2->mUnk_010[0]->mUnk_04;
     DC_FlushRange(param_3, 0x20);
     if (func_020799a0(param_1) != 0) {
-        k = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02154ff8);
+        k = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02154ff8);
     } else {
-        k = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02155068);
+        k = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02155068);
     }
     t = (u8 *) e + e->mOfsMat;
     u = t + 4;

@@ -115,18 +115,18 @@ void InitCourseModels(void *a) {
     NNS_G3dMdlSetMdlXLDepthUpdateAll(e, 1);
     switch (data_021759c0->mCourseId) {
         case COURSE_ID_OLD_KOOPA_AGB:
-            f = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02154a00);
+            f = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02154a00);
             if (f >= 0) {
                 NNS_G3dMdlSetMdlAlpha(e, f, 0x1e);
                 NNS_G3dMdlSetMdlXLDepthUpdate(e, f, 0);
             }
             break;
         case COURSE_ID_BANK:
-            f = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02154990);
+            f = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02154990);
             if (f >= 0) {
                 NNS_G3dMdlSetMdlXLDepthUpdate(e, f, 0);
             }
-            f = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02154a10);
+            f = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02154a10);
             if (f >= 0) {
                 NNS_G3dMdlSetMdlXLDepthUpdate(e, f, 0);
             }
@@ -142,12 +142,12 @@ void InitCourseModels(void *a) {
         d = FindCourseFile(data_usa_02165484);
         func_0206331c_inline(1, data_usa_0217ab74, gCourseModels.mVNsbmd, a, b, d, &gCourseModels.mUnk_90);
     }
-    g[0] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549f0);
-    g[1] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549c0);
-    g[2] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549d0);
-    g[3] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549e0);
-    g[4] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549b0);
-    g[5] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549a0);
+    g[0] = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_021549f0);
+    g[1] = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_021549c0);
+    g[2] = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_021549d0);
+    g[3] = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_021549e0);
+    g[4] = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_021549b0);
+    g[5] = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_021549a0);
     for (i = 0; i < 6; i++) {
         if (g[i] >= 0) {
             NNS_G3dMdlSetMdlPolygonID(e, g[i], 7);

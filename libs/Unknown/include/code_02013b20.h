@@ -1,5 +1,6 @@
 #pragma once
 
 #include "types.h"
+#include "code_02013740.h"
 
-void *func_02013b20(const void *a, u32 b);
+NNSG3dResDictTexPatAnmData *NNSi_G3dGetTexPatAnmDataByIdx(const NNSG3dResTexPatAnm *pPatAnm, u32 idx);

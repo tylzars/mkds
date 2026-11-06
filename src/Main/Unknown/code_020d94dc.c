@@ -299,7 +299,7 @@ void InitWaterModels(Water *a) {
         NNS_G3dMdlSetMdlPolygonID(p, i, 2);
     }
     q = a->mUnk_d4.mUnk_04;
-    r = func_02013754((u8 *) q + q->mOfsMat + 4, data_02158094);
+    r = NNS_G3dGetResDictIdxByName((u8 *) q + q->mOfsMat + 4, data_02158094);
     if (a->mModelAFile != NULL) {
         n = a->mUnk_58;
         i = 0;

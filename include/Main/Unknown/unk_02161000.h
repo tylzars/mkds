@@ -2,7 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk02014c5c_out Unk02014c5c_out;
 typedef struct Unk02170500 Unk02170500;
 typedef struct NNSG3dAnmObj NNSG3dAnmObj;
 typedef struct NNSG3dAnmObjInitFunc NNSG3dAnmObjInitFunc;
@@ -104,8 +103,8 @@ extern const char gSelectCharacterSONclrName[];
 extern const char gSelectCharacterSBnclName[];
 extern const char gSelectCharacterSBnblName[];
 
-extern void (*data_usa_02161844[])(Unk02014c5c_out *);
-extern void (*data_usa_02161850[])(Unk02014c5c_out *, void *, u8 *, u32);
+extern void (*data_usa_02161844[])(NNSG3dJntAnmResult *);
+extern void (*data_usa_02161850[])(NNSG3dJntAnmResult *, void *, u8 *, u32);
 extern void (*data_usa_0216187c[])(Unk02170500 *, u32, void *, u32);
 extern void (*data_usa_0216188c[])(Unk02170500 *, u32, void *, u32);
 extern void (*data_usa_0216196c[])(Unk02170500 *, u32);

@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk02010b50 Unk02010b50;
-typedef struct Unk02010ab4 Unk02010ab4;
+typedef struct NNSG3dAnmObj NNSG3dAnmObj;
+typedef struct NNSG3dRenderObj NNSG3dRenderObj;
 
 // 0x38-byte object: a table of pointers at 0x1c (count at 0x18, current index at 0x1a) and a table of words at 0x20,
 // both with one entry per element.
@@ -15,19 +15,19 @@ typedef struct Unk02087d0c {
     /* 0c */ s32 mUnk_0c;
     /* 10 */ u16 mUnk_10;
     /* 12 */ u16 mUnk_12;
-    /* 14 */ Unk02010ab4 *mUnk_14;
+    /* 14 */ NNSG3dRenderObj *mUnk_14;
     /* 18 */ u16 mUnk_18;
     /* 1a */ u16 mUnk_1a;
-    /* 1c */ Unk02010b50 **mUnk_1c;
+    /* 1c */ NNSG3dAnmObj **mUnk_1c;
     /* 20 */ u32 *mUnk_20;
     /* 24 */ u8 mUnk_24[4];
     /* 28 */ u32 mUnk_28;
     /* 2c */ BOOL mUnk_2c;
     /* 30 */ s32 mUnk_30;
-    /* 34 */ Unk02010b50 *mUnk_34;
+    /* 34 */ NNSG3dAnmObj *mUnk_34;
 } Unk02087d0c;
 
-extern s32 (*data_02155cd8[])(Unk02010b50 *a);
+extern s32 (*data_02155cd8[])(NNSG3dAnmObj *a);
 
 typedef struct Unk020882fc_08 {
     /* 00 */ u8 mUnk_00[4];

@@ -1,171 +1,157 @@
 #include "code_02013740.h"
 #include "code_02013bdc.h"
 
-void *func_02013b00(void *a, u32 b) {
-    u8 *p;
-    u8 *t;
+NNSG3dResTexPatAnm *NNS_G3dGetTexPatAnmByIdx(NNSG3dResTexPatAnmSet *pAnmSet, u8 idx) {
+    NNSG3dResDictEntryHeader *dictEntries;
+    NNSG3dResDictAnmSetData *setEntry;
 
-    p = (u8 *) a + 8;
-    t = p + *(u16 *) ((u8 *) a + 0xe);
-    return (u8 *) a + *(u32 *) (t + *(u16 *) t * b + 4);
+    dictEntries = (NNSG3dResDictEntryHeader *) ((u8 *) &pAnmSet->mDict + pAnmSet->mDict.mOfsEntry);
+    setEntry = (NNSG3dResDictAnmSetData *) (dictEntries->mData + dictEntries->mSizeUnit * idx);
+    return (NNSG3dResTexPatAnm *) ((u8 *) pAnmSet + setEntry->mOffset);
 }
 
-void *func_02013ae4(void *a) {
-    return func_02013c18(a, 0x30505442, 0x30544150);
+NNSG3dResTexPatAnmSet *NNS_G3dGetTexPatAnmSet(const u8 *pFileHead) {
+    return NNSi_G3dGetBinaryBlockFromFile(pFileHead, 0x30505442, 0x30544150);
 }
 
-void *func_02013ac4(void *a, u32 b) {
-    u8 *p;
-    u8 *t;
+NNSG3dResTexSRTAnm *NNS_G3dGetTexSRTAnmByIdx(NNSG3dResTexSRTAnmSet *pTexSRTSet, u8 idx) {
+    NNSG3dResDictEntryHeader *dictEntries;
+    NNSG3dResDictAnmSetData *setEntry;
 
-    p = (u8 *) a + 8;
-    t = p + *(u16 *) ((u8 *) a + 0xe);
-    return (u8 *) a + *(u32 *) (t + *(u16 *) t * b + 4);
+    dictEntries = (NNSG3dResDictEntryHeader *) ((u8 *) &pTexSRTSet->mDict + pTexSRTSet->mDict.mOfsEntry);
+    setEntry = (NNSG3dResDictAnmSetData *) (dictEntries->mData + dictEntries->mSizeUnit * idx);
+    return (NNSG3dResTexSRTAnm *) ((u8 *) pTexSRTSet + setEntry->mOffset);
 }
 
-void *func_02013aa8(void *a) {
-    return func_02013c18(a, 0x30415442, 0x30545253);
+NNSG3dResTexSRTAnmSet *NNS_G3dGetTexSRTAnmSet(const u8 *pFileHead) {
+    return NNSi_G3dGetBinaryBlockFromFile(pFileHead, 0x30415442, 0x30545253);
 }
 
-void *func_02013a88(void *a, u32 b) {
-    u8 *p;
-    u8 *t;
+NNSG3dResMatCAnm *NNS_G3dGetMatCAnmByIdx(NNSG3dResMatCAnmSet *pAnmSet, u8 idx) {
+    NNSG3dResDictEntryHeader *dictEntries;
+    NNSG3dResDictAnmSetData *setEntry;
 
-    p = (u8 *) a + 8;
-    t = p + *(u16 *) ((u8 *) a + 0xe);
-    return (u8 *) a + *(u32 *) (t + *(u16 *) t * b + 4);
+    dictEntries = (NNSG3dResDictEntryHeader *) ((u8 *) &pAnmSet->mDict + pAnmSet->mDict.mOfsEntry);
+    setEntry = (NNSG3dResDictAnmSetData *) (dictEntries->mData + dictEntries->mSizeUnit * idx);
+    return (NNSG3dResMatCAnm *) ((u8 *) pAnmSet + setEntry->mOffset);
 }
 
-void *func_02013a6c(void *a) {
-    return func_02013c18(a, 0x30414d42, 0x3054414d);
+NNSG3dResMatCAnmSet *NNS_G3dGetMatCAnmSet(const u8 *pFileHead) {
+    return NNSi_G3dGetBinaryBlockFromFile(pFileHead, 0x30414d42, 0x3054414d);
 }
 
-void *func_02013a4c(void *a, u32 b) {
-    u8 *p;
-    u8 *t;
+NNSG3dResJntAnm *NNS_G3dGetJntAnmByIdx(NNSG3dResJntAnmSet *pJntAnmSet, int idx) {
+    NNSG3dResDictEntryHeader *dictEntries;
+    NNSG3dResDictAnmSetData *setEntry;
 
-    p = (u8 *) a + 8;
-    t = p + *(u16 *) ((u8 *) a + 0xe);
-    return (u8 *) a + *(u32 *) (t + *(u16 *) t * b + 4);
+    dictEntries = (NNSG3dResDictEntryHeader *) ((u8 *) &pJntAnmSet->mDict + pJntAnmSet->mDict.mOfsEntry);
+    setEntry = (NNSG3dResDictAnmSetData *) (dictEntries->mData + dictEntries->mSizeUnit * idx);
+    return (NNSG3dResJntAnm *) ((u8 *) pJntAnmSet + setEntry->mOffset);
 }
 
-void *func_02013a30(void *a) {
-    return func_02013c18(a, 0x30414342, 0x30544e4a);
+NNSG3dResJntAnmSet *NNS_G3dGetJntAnmSet(const u8 *pFileHead) {
+    return NNSi_G3dGetBinaryBlockFromFile(pFileHead, 0x30414342, 0x30544e4a);
 }
 
-void *func_020138b4(const void *a, const u32 *key) {
-    const Unk02013754 *p;
-    const u8 *t;
-    const u8 *n;
-    const u8 *e;
-    const u8 *tab;
+// Dictionaries of 16 or more entries are searched through their tree.
+void *NNS_G3dGetResDataByName(const void *dict, const u32 *name) {
+    const NNSG3dResDict *p;
+    const NNSG3dResDictEntryHeader *dictEntries;
+    const NNSG3dResDictTreeNode *base;
+    const NNSG3dResDictTreeNode *prev;
+    const NNSG3dResDictTreeNode *node;
+    const u32 *entryName;
     u32 i;
-    u32 j;
-    u8 c;
-    u8 d;
     u32 k0;
     u32 k1;
     u32 k2;
     u32 k3;
 
-    p = a;
-    if (p->mUnk_01 < 0x10) {
-        k0 = key[0];
-        k1 = key[1];
-        k2 = key[2];
-        k3 = key[3];
-        for (i = 0; i < p->mUnk_01; i++) {
-            e = (const u8 *) p + p->mUnk_06;
-            tab = e + *(u16 *) (e + 2);
-            e = tab + i * 16;
-            if (*(u32 *) e == k0 && *(u32 *) (e + 4) == k1 && *(u32 *) (e + 8) == k2 && *(u32 *) (e + 12) == k3) {
-                tab = (const u8 *) p + p->mUnk_06;
-                return (void *) (tab + 4 + *(u16 *) tab * i);
+    p = dict;
+    if (p->mNumEntry < 0x10) {
+        k0 = name[0];
+        k1 = name[1];
+        k2 = name[2];
+        k3 = name[3];
+        for (i = 0; i < p->mNumEntry; i++) {
+            dictEntries = (const NNSG3dResDictEntryHeader *) ((const u8 *) p + p->mOfsEntry);
+            entryName = (const u32 *) ((const u8 *) dictEntries + dictEntries->mOfsName + i * 16);
+            if (entryName[0] == k0 && entryName[1] == k1 && entryName[2] == k2 && entryName[3] == k3) {
+                dictEntries = (const NNSG3dResDictEntryHeader *) ((const u8 *) p + p->mOfsEntry);
+                return (void *) (dictEntries->mData + dictEntries->mSizeUnit * i);
             }
         }
     } else {
-        t = p->mUnk_08;
-        i = t[1];
-        if (i != 0) {
-            n = t + i * 4;
-            c = n[0];
-            d = t[0];
-            while (d > c) {
-                j = (n + ((key[c >> 5] >> (c & 0x1f)) & 1))[1];
-                c = t[j * 4];
-                d = n[0];
-                n = t + j * 4;
+        base = p->mNode;
+        prev = base;
+        if (prev->mIdxLeft != 0) {
+            node = base + prev->mIdxLeft;
+            while (prev->mRefBit > node->mRefBit) {
+                prev = node;
+                node = base + (&node->mIdxLeft)[(name[node->mRefBit >> 5] >> (node->mRefBit & 0x1f)) & 1];
             }
-            tab = (const u8 *) p + p->mUnk_06;
-            tab += *(u16 *) (tab + 2);
-            e = tab + n[3] * 16;
-            if (*(u32 *) e == key[0] && *(u32 *) (e + 4) == key[1] && *(u32 *) (e + 8) == key[2] &&
-                *(u32 *) (e + 12) == key[3]) {
-                tab = (const u8 *) p + p->mUnk_06;
-                return (void *) (tab + 4 + *(u16 *) tab * n[3]);
+            dictEntries = (const NNSG3dResDictEntryHeader *) ((const u8 *) p + p->mOfsEntry);
+            entryName = (const u32 *) ((const u8 *) dictEntries + dictEntries->mOfsName + node->mIdxEntry * 16);
+            if (entryName[0] == name[0] && entryName[1] == name[1] && entryName[2] == name[2] &&
+                entryName[3] == name[3]) {
+                dictEntries = (const NNSG3dResDictEntryHeader *) ((const u8 *) p + p->mOfsEntry);
+                return (void *) (dictEntries->mData + dictEntries->mSizeUnit * node->mIdxEntry);
             }
         }
     }
     return 0;
 }
 
-int func_02013754(const void *a, const u32 *key) {
-    const Unk02013754 *p;
-    const u8 *t;
-    const u8 *n;
-    const u8 *e;
-    const u8 *tab;
+// Dictionaries of 16 or more entries are searched through their tree.
+int NNS_G3dGetResDictIdxByName(const void *dict, const u32 *name) {
+    const NNSG3dResDict *p;
+    const NNSG3dResDictEntryHeader *dictEntries;
+    const NNSG3dResDictTreeNode *base;
+    const NNSG3dResDictTreeNode *prev;
+    const NNSG3dResDictTreeNode *node;
+    const u32 *entryName;
     u32 i;
-    u32 j;
-    u8 c;
-    u8 d;
     u32 k0;
     u32 k1;
     u32 k2;
     u32 k3;
 
-    p = a;
-    if (p->mUnk_01 < 0x10) {
-        k0 = key[0];
-        k1 = key[1];
-        k2 = key[2];
-        k3 = key[3];
-        for (i = 0; i < p->mUnk_01; i++) {
-            e = (const u8 *) p + p->mUnk_06;
-            tab = e + *(u16 *) (e + 2);
-            e = tab + i * 16;
-            if (*(u32 *) e == k0 && *(u32 *) (e + 4) == k1 && *(u32 *) (e + 8) == k2 && *(u32 *) (e + 12) == k3) {
+    p = dict;
+    if (p->mNumEntry < 0x10) {
+        k0 = name[0];
+        k1 = name[1];
+        k2 = name[2];
+        k3 = name[3];
+        for (i = 0; i < p->mNumEntry; i++) {
+            dictEntries = (const NNSG3dResDictEntryHeader *) ((const u8 *) p + p->mOfsEntry);
+            entryName = (const u32 *) ((const u8 *) dictEntries + dictEntries->mOfsName + i * 16);
+            if (entryName[0] == k0 && entryName[1] == k1 && entryName[2] == k2 && entryName[3] == k3) {
                 return i;
             }
         }
     } else {
-        t = p->mUnk_08;
-        i = t[1];
-        if (i != 0) {
-            n = t + i * 4;
-            c = n[0];
-            d = t[0];
-            while (d > c) {
-                j = (n + ((key[c >> 5] >> (c & 0x1f)) & 1))[1];
-                c = t[j * 4];
-                d = n[0];
-                n = t + j * 4;
+        base = p->mNode;
+        prev = base;
+        if (prev->mIdxLeft != 0) {
+            node = base + prev->mIdxLeft;
+            while (prev->mRefBit > node->mRefBit) {
+                prev = node;
+                node = base + (&node->mIdxLeft)[(name[node->mRefBit >> 5] >> (node->mRefBit & 0x1f)) & 1];
             }
-            tab = (const u8 *) p + p->mUnk_06;
-            tab += *(u16 *) (tab + 2);
-            e = tab + n[3] * 16;
-            if (*(u32 *) e == key[0] && *(u32 *) (e + 4) == key[1] && *(u32 *) (e + 8) == key[2] &&
-                *(u32 *) (e + 12) == key[3]) {
-                return n[3];
+            dictEntries = (const NNSG3dResDictEntryHeader *) ((const u8 *) p + p->mOfsEntry);
+            entryName = (const u32 *) ((const u8 *) dictEntries + dictEntries->mOfsName + node->mIdxEntry * 16);
+            if (entryName[0] == name[0] && entryName[1] == name[1] && entryName[2] == name[2] &&
+                entryName[3] == name[3]) {
+                return node->mIdxEntry;
             }
         }
     }
     return -1;
 }
 
-void *func_02013740(void *a, u32 b) {
-    u8 *p;
+NNSG3dResDataBlockHeader *NNS_G3dGetDataBlockHeaderByIdx(const NNSG3dResFileHeader *header, u32 idx) {
+    u32 *blockOffsets;
 
-    p = (u8 *) a + *(u16 *) ((u8 *) a + 0xc);
-    return (u8 *) a + *(u32 *) (p + b * 4);
+    blockOffsets = (u32 *) ((u8 *) header + header->mHeaderSize);
+    return (NNSG3dResDataBlockHeader *) ((u8 *) header + blockOffsets[idx]);
 }
