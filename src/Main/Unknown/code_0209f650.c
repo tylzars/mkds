@@ -130,11 +130,11 @@ void UpdateAirship(void *a, Airship *p) {
 }
 
 void *func_0209fd94(void) {
-    return (void *) func_0209bf1c(CreateAirship, DrawAirship, NULL);
+    return func_0209bf1c(CreateAirship, DrawAirship, NULL);
 }
 
 void *func_0209fd74(void) {
-    return (void *) func_0209bf48(func_020a0064, UpdateAirship, NULL);
+    return func_0209bf48(func_020a0064, UpdateAirship, NULL);
 }
 
 void func_0209fc78(MapObject *p) {
@@ -273,7 +273,7 @@ void *func_0209f6b8(void) {
 }
 
 void *func_0209f698(void) {
-    return (void *) func_0209bf48(func_0209f800, UpdateTownMonte, NULL);
+    return func_0209bf48(func_0209f800, UpdateTownMonte, NULL);
 }
 
 void CreateChandelier(void *a) {

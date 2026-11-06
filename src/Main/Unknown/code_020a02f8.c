@@ -1092,6 +1092,6 @@ void func_020a0318(void *a, Unk020a0318 *p) {
     func_02105b28(func_02108e6c(9), p->mUnk_a4 >> 12);
 }
 
-u32 func_020a02f8(void) {
+void *func_020a02f8(void) {
     return func_0209bf48(func_020a066c, func_020a0318, NULL);
 }

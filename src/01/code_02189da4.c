@@ -250,9 +250,9 @@ void func_ov001_02189dd8(void) {
 }
 
 void *func_ov001_02189dbc(void) {
-    return (void *) func_0209bf1c(func_ov001_02189e2c, func_ov001_02189e0c, func_ov001_02187098);
+    return func_0209bf1c(func_ov001_02189e2c, func_ov001_02189e0c, func_ov001_02187098);
 }
 
 void *func_ov001_02189da4(void) {
-    return (void *) func_0209bf48(func_ov001_0218a120, func_ov001_0218a074, NULL);
+    return func_0209bf48(func_ov001_0218a120, func_ov001_0218a074, NULL);
 }

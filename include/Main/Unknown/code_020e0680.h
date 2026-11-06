@@ -13,10 +13,17 @@ typedef struct Unk020e0340 {
     /* 00 */ u32 mUnk_00[10];
 } Unk020e0340;
 
+extern const Unk020e0340 data_02158a54;
+
 // Block of sixteen words.
 typedef struct Unk020e03f8 {
     /* 00 */ u32 mUnk_00[16];
 } Unk020e03f8;
+
+extern const Unk020e03f8 data_02158a7c;
+extern const Unk020e03f8 data_02158abc;
+extern const Unk020e03f8 data_02158afc;
+extern const Unk020e03f8 data_02158b3c;
 
 // Three vectors of twelve bytes each.
 typedef struct Unk020e38a0_28 {

@@ -49,5 +49,5 @@ void func_ov001_02192d60(void) {
 }
 
 void *func_ov001_02192d48(void) {
-    return (void *) func_0209bf1c(LoadStopSign, DrawStopSign, NULL);
+    return func_0209bf1c(LoadStopSign, DrawStopSign, NULL);
 }

@@ -59,8 +59,8 @@ typedef struct Unk0209753c {
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 
 BOOL func_02095f38(Unk0217b498_00 *a);
-u32 func_02095f5c(void);
-u32 func_02095f7c(void);
+void *func_02095f5c(void);
+void *func_02095f7c(void);
 void func_02095f9c(void);
 void UpdateCoverPooHole(void *a, CoverPooHole *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 s32 func_020968c0(s32 a, s32 b);

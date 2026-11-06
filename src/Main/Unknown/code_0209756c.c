@@ -321,9 +321,9 @@ void func_020975ac(void) {
 }
 
 void *func_0209758c(void) {
-    return (void *) func_0209bf1c(CreateFlipper, DrawFlipper, NULL);
+    return func_0209bf1c(CreateFlipper, DrawFlipper, NULL);
 }
 
 void *func_0209756c(void) {
-    return (void *) func_0209bf48(func_020979c8, UpdateFlipper, NULL);
+    return func_0209bf48(func_020979c8, UpdateFlipper, NULL);
 }

@@ -22,7 +22,7 @@ void SetMapObjectModelPolygonId(void *a, u32 b);
 void func_0209b9a4(void *a, u16 b);
 void func_0209ba08(void *a, u32 b);
 void func_0209ba58(void *a, void *b, void *c);
-void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, int d);
+void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, MapObject *c);
 void DrawMapObjectModel(Unk02100094 *a, void *b, void *d);
 void func_0209bbd0(void *a, void *b);
 void *UnparkFirstParkedMapObject(void *b);

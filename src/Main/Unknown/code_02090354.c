@@ -226,15 +226,15 @@ static inline BOOL func_02090940_inline(void) {
     return TRUE;
 }
 
-u32 func_02091238(void) {
+void *func_02091238(void) {
     return func_0209bef0(CreateSmanTop, DrawSmanTop, func_02091784);
 }
 
-u32 func_02091214(void) {
+void *func_02091214(void) {
     return func_0209bef0(CreateSmanBottom, DrawSmanBottom, func_02091654);
 }
 
-u32 func_020911f4(void) {
+void *func_020911f4(void) {
     return func_0209bf48(func_0209151c, UpdateSman, NULL);
 }
 

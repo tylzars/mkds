@@ -105,11 +105,11 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
 }
 
 void *func_0209f318(void) {
-    return (void *) func_0209bf1c(CreateChandelier, DrawChandelier, NULL);
+    return func_0209bf1c(CreateChandelier, DrawChandelier, NULL);
 }
 
 void *func_0209f2f8(void) {
-    return (void *) func_0209bf48(func_0209f514, UpdateChandelier, NULL);
+    return func_0209bf48(func_0209f514, UpdateChandelier, NULL);
 }
 
 void CreateRainStar(void *a) {
@@ -151,9 +151,9 @@ void UpdateRainStar(void *a, Unk0209f1c8 *b) {
 }
 
 void *func_0209f158(void) {
-    return (void *) func_0209bf1c(CreateRainStar, DrawRainStar, NULL);
+    return func_0209bf1c(CreateRainStar, DrawRainStar, NULL);
 }
 
 void *func_0209f13c(void) {
-    return (void *) func_0209bf48(NULL, UpdateRainStar, NULL);
+    return func_0209bf48(NULL, UpdateRainStar, NULL);
 }

@@ -55,9 +55,9 @@ u32 func_0210ed20(u32 a, u32 b) {
             NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
             NNS_SndArcSetFileAddress(v, NULL);
             ok = 1;
-            n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
-            ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
-            ((Unk0217d178 *) data_0217d178)->mUnk_00[n] = w;
+            n = data_0217d178.mUnk_40;
+            data_0217d178.mUnk_40 = n + 1;
+            data_0217d178.mUnk_00[n] = w;
         }
         if (ok == 0) {
             return 0;
@@ -77,9 +77,9 @@ u32 func_0210ed20(u32 a, u32 b) {
             NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
             NNS_SndArcSetFileAddress(v, NULL);
             ok = 1;
-            n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
-            ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
-            ((Unk0217d178 *) data_0217d178)->mUnk_00[n] = w;
+            n = data_0217d178.mUnk_40;
+            data_0217d178.mUnk_40 = n + 1;
+            data_0217d178.mUnk_00[n] = w;
         }
         if (ok == 0) {
             return 0;
@@ -133,11 +133,11 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
         return 1;
     }
     func_0210e434(func_02108950());
-    p = (Unk0217d134 *) data_0217d134;
+    p = &data_0217d134;
     for (i = 0; i < p->mUnk_40; i++) {
         NNS_SndArcSetFileAddress(p->mUnk_00[i], NULL);
     }
-    t = (Unk0217d134 *) data_0217d134;
+    t = &data_0217d134;
     for (i = 0; i < 16; i++) {
         t->mUnk_00[i] = 0;
     }
@@ -160,9 +160,9 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                     NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
-                    n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
-                    ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
-                    ((Unk0217d134 *) data_0217d134)->mUnk_00[n] = b;
+                    n = data_0217d134.mUnk_40;
+                    data_0217d134.mUnk_40 = n + 1;
+                    data_0217d134.mUnk_00[n] = b;
                 }
                 if (ok == 0) {
                     return 0;
@@ -184,9 +184,9 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                     NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
-                    n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
-                    ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
-                    ((Unk0217d134 *) data_0217d134)->mUnk_00[n] = b;
+                    n = data_0217d134.mUnk_40;
+                    data_0217d134.mUnk_40 = n + 1;
+                    data_0217d134.mUnk_00[n] = b;
                 }
                 if (ok == 0) {
                     return 0;
@@ -208,9 +208,9 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                     NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
-                    n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
-                    ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
-                    ((Unk0217d134 *) data_0217d134)->mUnk_00[n] = b;
+                    n = data_0217d134.mUnk_40;
+                    data_0217d134.mUnk_40 = n + 1;
+                    data_0217d134.mUnk_00[n] = b;
                 }
                 if (ok == 0) {
                     return 0;
@@ -233,9 +233,9 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
                 NNS_SndArcSetFileAddress(a, NULL);
                 ok = 1;
-                n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
-                ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
-                ((Unk0217d134 *) data_0217d134)->mUnk_00[n] = b;
+                n = data_0217d134.mUnk_40;
+                data_0217d134.mUnk_40 = n + 1;
+                data_0217d134.mUnk_00[n] = b;
             }
             if (ok == 0) {
                 return 0;
@@ -297,9 +297,9 @@ u32 func_0210e680(void) {
     b = *q;
     NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
     NNS_SndArcSetFileAddress(a, NULL);
-    n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
-    ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
-    ((Unk0217d178 *) data_0217d178)->mUnk_00[n] = b;
+    n = data_0217d178.mUnk_40;
+    data_0217d178.mUnk_40 = n + 1;
+    data_0217d178.mUnk_00[n] = b;
     if (NNS_SndArcLoadWaveArc(0x3e, data_0217d130) != 0) {
         p = (u32 *) NNS_SndArcGetWaveArcInfo(0x3e);
         q = (u32 *) NNS_SndArcGetWaveArcInfo(0x3d);
@@ -308,9 +308,9 @@ u32 func_0210e680(void) {
         NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
         NNS_SndArcSetFileAddress(a, NULL);
         ok = 1;
-        n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
-        ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
-        ((Unk0217d178 *) data_0217d178)->mUnk_00[n] = b;
+        n = data_0217d178.mUnk_40;
+        data_0217d178.mUnk_40 = n + 1;
+        data_0217d178.mUnk_00[n] = b;
     } else {
         ok = 0;
     }

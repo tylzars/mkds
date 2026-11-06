@@ -149,8 +149,8 @@ MtxFx43 *func_020e6b58(Vec3 *a) {
     return data_0217b844;
 }
 
-u32 func_020e6b48(void) {
-    return ((u32) data_0217b860);
+MtxFx43 *func_020e6b48(void) {
+    return data_0217b860;
 }
 
 void *func_020e6b38(void) {

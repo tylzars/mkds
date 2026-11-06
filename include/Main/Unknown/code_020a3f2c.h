@@ -51,7 +51,7 @@ typedef struct Shine16 {
 
 #include "Main/Unknown/code_020a3fa8.h" // Unk020a3fa8
 
-u32 func_020a3f2c(void);
+void *func_020a3f2c(void);
 u32 func_020a3f48(void);
 void InitKartBalloons(Unk020a3fa8 *a);
 void func_020a4b70(u16 a, Vec3 *b);
@@ -63,8 +63,8 @@ BOOL func_020a5268(u16 a, u16 b);
 void func_020a5608(Kart *a, Kart *b);
 void func_020a5744(Vec3 *a, s32 b, s32 c);
 void ParkShine16Objects(void);
-u32 func_020a58b4(void);
-u32 func_020a58d0(void);
-u32 func_020a58f4(void);
+void *func_020a58b4(void);
+void *func_020a58d0(void);
+void *func_020a58f4(void);
 void func_020a5918(void);
 void UpdateShine16(void *a, Shine16 *p); /* skipped for objects with mFlags & 4 (parked pool objects) */

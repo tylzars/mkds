@@ -718,8 +718,6 @@ extern u32 (*data_0217d018)(Unk0210bcf4 *);
 extern s32 (*data_0217d01c)(Unk0210bcf4 *);
 extern NNSFndList data_0217d028;
 extern u32 data_0217d064;
-extern u8 data_0217d134[];
-extern u8 data_0217d178[];
 extern s32 data_0217d1f4;
 extern s32 data_0217d20c;
 extern s32 data_0217d21c;

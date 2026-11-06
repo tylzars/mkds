@@ -39,7 +39,7 @@ typedef struct Unk020a066c {
 #include "Main/Unknown/code_0207a880.h"
 #include "Main/Unknown/code_020b502c.h" // Unk02175620_84
 
-u32 func_020a02f8(void);
+void *func_020a02f8(void);
 void func_020a0318(void *a, Unk020a0318 *p);
 void func_020a066c(Unk020a066c *p);
 void func_020a089c(Unk020a0318 *p);

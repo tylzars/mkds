@@ -665,8 +665,7 @@ void func_020e8790(void) {
     Unk020e6514 *p;
     s32 t;
 
-    // Stored through a pointer cast: as a plain store the compiler folds the test of data_0217b890 below,
-    // which the original keeps.
+    // Written through a cast: a plain store changes the test below.
     *(s32 *) &data_0217b890 = 2;
     data_0217b8e4 = 1;
     data_0217b8c4 = 0;
@@ -732,7 +731,7 @@ void func_020e84b0(void) {
     s32 s;
     s32 c;
     s32 t;
-    u32 *q;
+    NNSSndSeqPlayer **q;
     s32 b;
     enum { K0 } d;
 
@@ -768,10 +767,10 @@ void func_020e84b0(void) {
         }
     }
     if (a == 0xa || a == 0x28) {
-        q = (u32 *) func_02108e6c(4);
+        q = func_02108e6c(4);
         data_0217b9dc.mUnk_0c = func_020d4ef4(&data_0217b930);
-        NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
-        func_0210b760(&data_0217b9dc, (NNSSndSeqPlayer **) q);
+        NNS_SndPlayerStopSeq(q, 0);
+        func_0210b760(&data_0217b9dc, q);
     }
     if (IsKartEnded(data_0217b888) != 0 || (data_0217b8c8->mUnk_48 & 0x800) != 0) {
         func_02046bcc(&data_0217b9ec, 5);
@@ -834,11 +833,11 @@ void func_020e827c(void) {
 
 void func_020e7fa8(void) {
     Unk020e6514 *p;
-    u32 *q;
+    NNSSndSeqPlayer **q;
+    MtxFx43 *m;
 
     data_0217b8c4 = 0;
-    // Stored through a pointer cast: as a plain store the compiler folds the test of data_0217b890 below,
-    // which the original keeps.
+    // Written through a cast: a plain store changes the test below.
     *(s32 *) &data_0217b890 = 4;
     data_0217b8e4 = 1;
     data_0217b874 = 0x1f;
@@ -860,9 +859,9 @@ void func_020e7fa8(void) {
     data_0217ba2c.mUnk_18 = 1;
     data_0217b8b4 = 0;
     if (func_0203c5e4() != 0) {
-        q = (u32 *) func_020e6b48();
-        ((MtxFx43 *) q)->mUnk_00[3] = data_0217b954;
-        MTX_MultVec43(&data_0217b960, (MtxFx43 *) q, &data_0217b9c0);
+        m = func_020e6b48();
+        m->mUnk_00[3] = data_0217b954;
+        MTX_MultVec43(&data_0217b960, m, &data_0217b9c0);
     } else {
         MTX_MultVec43(&data_0217b960, &data_0217bab8, &data_0217b9c0);
     }
@@ -887,24 +886,24 @@ void func_020e7fa8(void) {
     data_0217b8bc = 1;
     data_0217b894 = 0;
     NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
-    q = (u32 *) func_02108e6c(4);
+    q = func_02108e6c(4);
     if ((data_0217c780 & 1) == 0) {
         return;
     }
     if (data_0217d084.mUnk_0c == 0) {
         return;
     }
-    if (q[0] != 0) {
-        NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
+    if (*q != NULL) {
+        NNS_SndPlayerStopSeq(q, 0);
     }
-    if (q[0] != 0) {
-        NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
+    if (*q != NULL) {
+        NNS_SndPlayerStopSeq(q, 0);
     }
-    NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) q, 0, 0x102);
+    NNS_SndArcPlayerStartSeqArc(q, 0, 0x102);
 }
 
 void func_020e7ed0(void) {
-    void *p;
+    MtxFx43 *p;
 
     if (data_0217b8b4 == 0) {
         data_0217b954 = data_0217b8c8->mPos;
@@ -913,8 +912,8 @@ void func_020e7ed0(void) {
         func_02046bcc(&data_0217b9ec, 5);
     }
     if (func_0203c5e4() != 0) {
-        p = (void *) func_020e6b48();
-        ((MtxFx43 *) p)->mUnk_00[3] = data_0217b954;
+        p = func_020e6b48();
+        p->mUnk_00[3] = data_0217b954;
         MTX_MultVec43(&data_0217b960, p, &data_0217b9c0);
     } else {
         MTX_MultVec43(&data_0217b960, &data_0217bab8, &data_0217b9c0);

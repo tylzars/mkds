@@ -349,5 +349,5 @@ void *func_0209a768(void) {
 }
 
 void *func_0209a748(void) {
-    return (void *) func_0209bf48(func_0209af98, UpdateCrab, NULL);
+    return func_0209bf48(func_0209af98, UpdateCrab, NULL);
 }

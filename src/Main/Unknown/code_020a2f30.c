@@ -406,11 +406,11 @@ void UpdateBalloon(void *p, Balloon *a) {
     }
 }
 
-u32 func_020a3130(void) {
+void *func_020a3130(void) {
     return func_0209bef0(CreateBalloon, DrawBalloon, func_020a3e38);
 }
 
-u32 func_020a3114(void) {
+void *func_020a3114(void) {
     return func_0209bf48(NULL, UpdateBalloon, NULL);
 }
 

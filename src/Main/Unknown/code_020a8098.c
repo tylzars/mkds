@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_020d22c0.h"
 #include "Main/Unknown/unk_0215d000.h"
 
-u32 func_020a824c(void) {
+void *func_020a824c(void) {
     return func_0209bf48(func_020a8a6c, func_020a826c, NULL);
 }
 

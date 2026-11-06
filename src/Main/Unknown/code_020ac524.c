@@ -145,7 +145,7 @@ void *func_020ac658(void) {
 }
 
 void *func_020ac63c(void) {
-    return (void *) func_0209bf48(NULL, UpdateShineBalloon, NULL);
+    return func_0209bf48(NULL, UpdateShineBalloon, NULL);
 }
 
 void func_020ac5e4(Kart *a) {

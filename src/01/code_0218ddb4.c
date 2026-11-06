@@ -775,9 +775,9 @@ void func_ov001_0218dde8(void) {
 }
 
 void *func_ov001_0218ddcc(void) {
-    return (void *) func_0209bf1c(func_ov001_0218de50, func_ov001_0218de14, func_ov001_02187098);
+    return func_0209bf1c(func_ov001_0218de50, func_ov001_0218de14, func_ov001_02187098);
 }
 
 void *func_ov001_0218ddb4(void) {
-    return (void *) func_0209bf48(func_ov001_0218e208, func_ov001_0218df20, NULL);
+    return func_0209bf48(func_ov001_0218e208, func_ov001_0218df20, NULL);
 }

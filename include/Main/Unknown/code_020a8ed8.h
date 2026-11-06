@@ -45,9 +45,9 @@ typedef struct Unk020a9224 {
 #include "Main/Unknown/code_020a826c.h" // Unk020a826c_a0
 
 void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b);
-u32 func_020a91c0(void);
-u32 func_020a91e0(void);
-u32 func_020a9204(void);
+void *func_020a91c0(void);
+void *func_020a91e0(void);
+void *func_020a9204(void);
 void func_020a9224(void);
 void UpdateIronBall(void *a, IronBall *p); /* kind 0x1b0 only */
 void func_020a9a5c(Unk020a9a5c *p);

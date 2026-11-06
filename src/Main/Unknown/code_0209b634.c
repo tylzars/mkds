@@ -64,9 +64,8 @@ void DrawMapObjectModel(Unk02100094 *a, void *b, void *d) {
 
 // Like DrawMapObjectModel but passes the object's position to the model draw, which lowers the alpha of an object whose
 // camera depth is below its alpha level (near fade) and picks a polygon id for it.
-void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, int d) {
+void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, MapObject *c) {
     MapObjectModel *o = b;
-    MapObject *c = (MapObject *) d;
 
     func_01ff9048(0x1b, o, 3);
     if (o->mNsbmdModel != NULL) {

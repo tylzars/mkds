@@ -92,30 +92,30 @@ void func_0210465c(Unk021035ac *p) {
     s32 d;
     s32 i;
     s32 k;
-    u32 *r;
+    NNSSndSeqPlayer **r;
     s16 x;
     s16 y;
     s32 b;
 
     q = p->mUnk_10;
-    d = *(s32 *) data_0217c650 - *(s32 *) data_0217c648;
+    d = data_0217c650 - data_0217c648;
     if (d < 0) {
         for (i = 0; i < 4; i++) {
             p->mUnk_00[i][1] -= 2;
         }
         return;
     }
-    if (d == 0 && data_0217c64c == 0 && p == (Unk021035ac *) data_0217c654) {
-        r = (u32 *) func_02108e6c(6);
-        NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) r, 1);
+    if (d == 0 && data_0217c64c == 0 && p == data_0217c654) {
+        r = func_02108e6c(6);
+        NNS_SndPlayerStopSeq(r, 1);
         if ((data_0217c780 & 1) != 0 && data_0217d084.mUnk_0c != 0) {
-            if (*r != 0) {
-                NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) r, 0);
+            if (*r != NULL) {
+                NNS_SndPlayerStopSeq(r, 0);
             }
-            if (*r != 0) {
-                NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) r, 0);
+            if (*r != NULL) {
+                NNS_SndPlayerStopSeq(r, 0);
             }
-            NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) r, 0, 0xef);
+            NNS_SndArcPlayerStartSeqArc(r, 0, 0xef);
         }
     }
     if (p->mUnk_28 != 0) {
@@ -189,19 +189,19 @@ void func_021045a4(Unk021035ac *p) {
     }
     p->mUnk_2c = p->mUnk_2c - 1;
     if (p->mUnk_2c == -13) {
-        p->mUnk_24 = (void *) func_0210465c;
+        p->mUnk_24 = func_0210465c;
     }
 }
 
 void func_0210449c(Unk021035ac *p) {
-    void *r;
+    NNSSndSeqPlayer **r;
     u32 v;
 
     p->mUnk_2c = p->mUnk_2c - 1;
     if (p->mUnk_2c != 0) {
         return;
     }
-    p->mUnk_24 = (void *) func_021045a4;
+    p->mUnk_24 = func_021045a4;
     if (func_0203c5e4() != 0) {
         return;
     }
@@ -216,10 +216,10 @@ void func_0210449c(Unk021035ac *p) {
     if (data_0217d084.mUnk_0c == 0) {
         return;
     }
-    if (*(u32 *) r != 0) {
+    if (*r != NULL) {
         NNS_SndPlayerStopSeq(r, 0);
     }
-    if (*(u32 *) r != 0) {
+    if (*r != NULL) {
         NNS_SndPlayerStopSeq(r, 0);
     }
     NNS_SndArcPlayerStartSeqArc(r, 0, (u16) v);
@@ -231,17 +231,17 @@ void func_02104368(void) {
     s32 n;
     u16 h;
 
-    if (*(s32 *) data_0217c658 == 0) {
+    if (data_0217c658 == 0) {
         return;
     }
-    for (i = 0; i < *(s32 *) data_0217c658; i++) {
-        Unk021035ac *e = &((Unk021035ac *) data_0217c654)[i];
+    for (i = 0; i < data_0217c658; i++) {
+        Unk021035ac *e = &data_0217c654[i];
 
-        ((void (*)(Unk021035ac *)) e->mUnk_24)(e);
+        e->mUnk_24(e);
     }
-    n = *(s32 *) data_0217c650 + 1;
-    *(s32 *) data_0217c650 = n;
-    if (n <= *(s32 *) data_0217c644) {
+    n = data_0217c650 + 1;
+    data_0217c650 = n;
+    if (n <= data_0217c644) {
         return;
     }
     if (n & 1) {
@@ -251,8 +251,8 @@ void func_02104368(void) {
     data_0217c640 = h - 1;
     h = data_0217c640;
     if (h == 0) {
-        *(u32 *) data_0217c658 = 0;
-        data_0217c64c = 0;
+        data_0217c658 = 0;
+        data_0217c64c = FALSE;
         NNS_SndPlayerStopSeq(func_02108e6c(6), 1);
         return;
     }
@@ -264,7 +264,7 @@ void func_02104368(void) {
 void func_02104144(Unk0210340c *p) {
     s32 i;
 
-    if (*(u32 *) data_0217c658 == 0) {
+    if (data_0217c658 == 0) {
         return;
     }
     if (func_0203c5e4() != 0) {
@@ -285,11 +285,11 @@ void func_02104144(Unk0210340c *p) {
     reg_G3_MTX_SCALE = 0x64000;
     reg_G3_MTX_SCALE = 0x64000;
     i = 0;
-    if (*(s32 *) data_0217c658 <= 0) {
+    if (data_0217c658 <= 0) {
         return;
     }
     do {
-        Unk021035ac *e = &((Unk021035ac *) data_0217c654)[i];
+        Unk021035ac *e = &data_0217c654[i];
 
         reg_G3_POLYGON_ATTR = p->mUnk_04 | (data_0217c63c + i) << 24;
         reg_G3_BEGIN_VTXS = 1;
@@ -304,7 +304,7 @@ void func_02104144(Unk0210340c *p) {
         *(u32 *) 0x4000494 = *(u32 *) &e->mUnk_00[3];
         reg_G3_END_VTXS = 0;
         i++;
-    } while (i < *(s32 *) data_0217c658);
+    } while (i < data_0217c658);
 }
 
 void func_02104118(void) {
@@ -354,7 +354,7 @@ void func_02103db0(s32 v1, Unk021035ac_Pair param_2, s32 param_3) {
     s16 f1;
 
     b = gRaceProgress;
-    e = &((Unk021035ac *) data_0217c654)[v1];
+    e = &data_0217c654[v1];
     a = &b->mLocalRandom;
     q = e->mUnk_10;
     a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
@@ -389,7 +389,7 @@ void func_02103db0(s32 v1, Unk021035ac_Pair param_2, s32 param_3) {
         *(Unk021035ac_Pair *) e->mUnk_00[(u32) i] = param_2;
     }
     *(Unk021035ac_Pair *) e->mUnk_20 = param_2;
-    e->mUnk_24 = (void *) func_0210449c;
+    e->mUnk_24 = func_0210449c;
     e->mUnk_30 = -1;
     e->mUnk_28 = 0;
 }
@@ -409,13 +409,13 @@ void func_02103900(s32 v1, s32 n, s32 v2) {
         return;
     }
     data_0217c638 = v1;
-    if (*(s32 *) data_0217c658 != 0) {
+    if (data_0217c658 != 0) {
         if (v2 != 0) {
             return;
         }
     }
-    *(s32 *) data_0217c658 = 0;
-    data_0217c64c = 0;
+    data_0217c658 = 0;
+    data_0217c64c = FALSE;
     NNS_SndPlayerStopSeq(func_02108e6c(6), 1);
     data_0217c64c = v2;
     for (i = 0; i < 8; i++) {
@@ -428,7 +428,7 @@ void func_02103900(s32 v1, s32 n, s32 v2) {
             v.mHalf.mUnk_00 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32) * 2;
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
             v.mHalf.mUnk_02 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32) * 2;
-        } else if (*(s32 *) data_0217c658 == 0) {
+        } else if (data_0217c658 == 0) {
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
             v.mHalf.mUnk_00 = ((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32;
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
@@ -456,17 +456,17 @@ void func_02103900(s32 v1, s32 n, s32 v2) {
             }
         }
     }
-    *(s32 *) data_0217c658 = j;
-    *(u32 *) data_0217c650 = 0;
+    data_0217c658 = j;
+    data_0217c650 = 0;
     data_0217c640 = 0x1f;
     if (data_0217c64c != 0) {
-        *(u32 *) data_0217c644 = 0x96;
-        *(u32 *) data_0217c648 = 0x1e;
+        data_0217c644 = 0x96;
+        data_0217c648 = 0x1e;
         data_0217c664.mUnk_04 &= ~0x1f0000;
         data_0217c664.mUnk_04 |= 0x1f0000;
     } else {
-        *(u32 *) data_0217c644 = 0x184;
-        *(u32 *) data_0217c648 = 0x2d;
+        data_0217c644 = 0x184;
+        data_0217c648 = 0x2d;
         data_0217c684.mUnk_04 &= ~0x1f0000;
         data_0217c684.mUnk_04 |= 0x1f0000;
     }
@@ -480,8 +480,8 @@ void func_02103890(int v1) {
     if (v1 != data_021759c0->mEntryIndex) {
         return;
     }
-    *(u32 *) data_0217c658 = 0;
-    data_0217c64c = 0;
+    data_0217c658 = 0;
+    data_0217c64c = FALSE;
     NNS_SndPlayerStopSeq(func_02108e6c(6), 1);
 }
 
@@ -590,26 +590,26 @@ void func_021035ac(int b2) {
     if (b2 != data_021759c0->mEntryIndex) {
         return;
     }
-    n = *(s32 *) data_0217c658;
+    n = data_0217c658;
     if (n == 0) {
         return;
     }
-    a = *(s32 *) data_0217c644;
-    b = *(s32 *) data_0217c650;
+    a = data_0217c644;
+    b = data_0217c650;
     if (b < a) {
-        *(s32 *) data_0217c650 = a;
+        data_0217c650 = a;
     }
     i = 0;
     if (n <= 0) {
         return;
     }
     do {
-        e = &((Unk021035ac *) data_0217c654)[i];
-        if (e->mUnk_28 == 0 && e->mUnk_24 == (void *) func_0210465c) {
+        e = &data_0217c654[i];
+        if (e->mUnk_28 == 0 && e->mUnk_24 == func_0210465c) {
             func_0210366c(e);
         }
         i++;
-    } while (i < *(s32 *) data_0217c658);
+    } while (i < data_0217c658);
 }
 
 u32 func_02103598(void) {
@@ -640,8 +640,8 @@ void func_02103468(void) {
 
     data_0217c654 = HeapAlloc(GetHeap(func_020364e8()), 0xd0);
     data_0217c638 = 0xffff;
-    *(u32 *) data_0217c658 = 0;
-    data_0217c64c = 0;
+    data_0217c658 = 0;
+    data_0217c64c = FALSE;
     NNS_SndPlayerStopSeq(func_02108e6c(6), 1);
     q = func_020ed4d0(data_0216c7b4, NULL, data_0216c7c4);
     func_0210340c(&data_0217c684, q);

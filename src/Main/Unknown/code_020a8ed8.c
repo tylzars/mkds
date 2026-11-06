@@ -326,15 +326,15 @@ void func_020a9224(void) {
     p->mUnk_3c = -0x1f4000;
 }
 
-u32 func_020a9204(void) {
+void *func_020a9204(void) {
     return func_0209bf1c(func_020a9cd0, func_020a9c54, NULL);
 }
 
-u32 func_020a91e0(void) {
+void *func_020a91e0(void) {
     return func_0209bef0(CreateIronBall, DrawIronBall, func_020a9d98);
 }
 
-u32 func_020a91c0(void) {
+void *func_020a91c0(void) {
     return func_0209bf48(func_020a9a5c, UpdateIronBall, NULL);
 }
 

@@ -274,9 +274,9 @@ void func_ov001_0218b310(void) {
 }
 
 void *func_ov001_0218b2f4(void) {
-    return (void *) func_0209bf1c(InitKuriking, DrawKuriking, func_ov001_02187098);
+    return func_0209bf1c(InitKuriking, DrawKuriking, func_ov001_02187098);
 }
 
 void *func_ov001_0218b2dc(void) {
-    return (void *) func_0209bf48(func_ov001_0218b5d8, UpdateKuriking, NULL);
+    return func_0209bf48(func_ov001_0218b5d8, UpdateKuriking, NULL);
 }

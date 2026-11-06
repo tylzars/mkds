@@ -147,11 +147,11 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
     }
 }
 
-u32 func_0209ec60(void) {
+void *func_0209ec60(void) {
     return func_0209bf1c(CreatePicture1AndPicture2, DrawPicture, NULL);
 }
 
-u32 func_0209ec44(void) {
+void *func_0209ec44(void) {
     return func_0209bf48(NULL, UpdatePicture, NULL);
 }
 

@@ -1090,7 +1090,7 @@ void func_02081f10(Unk02081e3c *p0, u32 p1, u32 p2) {
     p0->mUnk_9a = 0x0u;
     p0->mUnk_99 = p2;
     p0->mUnk_9b = p1;
-    p0->mUnk_90 = ((u32) (&func_02081e5c));
+    p0->mUnk_90 = func_02081e5c;
 }
 
 void func_02081e5c(Unk0201ca6c *p, s32 a) {
@@ -1128,7 +1128,7 @@ void func_02081e3c(Unk02081e3c *p0, u32 p1, u32 p2) {
     p0->mUnk_9a = 0x0u;
     p0->mUnk_99 = p2;
     p0->mUnk_9b = p1;
-    p0->mUnk_90 = ((u32) (&func_02081d78));
+    p0->mUnk_90 = func_02081d78;
 }
 
 void func_02081d78(Unk0201ca6c *p, s32 a) {

@@ -43,7 +43,7 @@ void func_02108edc(s32 a, s32 b) {
         if (!(data_0217c780 & 1)) {
             return;
         }
-        p = func_0210e128((Unk0217c7c4 *) data_0217c7c4);
+        p = func_0210e128(&data_0217c7c4);
         if (data_0217d084.mUnk_0c == 0) {
             return;
         }

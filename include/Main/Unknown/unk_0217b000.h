@@ -1027,7 +1027,7 @@ extern void *gCarANsbtp;
 extern void *gCarTire;
 extern void *gTruckA;
 extern void *gTruckAShadow;
-extern void *data_0217b79c;
+extern struct Unk0217b79c *data_0217b79c;
 extern void *gCarA;
 extern void *data_0217b7a4;
 extern void *gTruckANsbtp;

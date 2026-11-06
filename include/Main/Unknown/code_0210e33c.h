@@ -25,18 +25,18 @@ typedef struct Unk0210e524 {
     /* 03 */ u8 mUnk_03;
 } Unk0210e524;
 
-// Object data_0217d134: 16 words from 0x00 and a signed number at 0x40; func_0210e98c walks it and resets it.
-typedef struct Unk0217d134 {
-    /* 00 */ u32 mUnk_00[16];
-    /* 40 */ s32 mUnk_40;
-} Unk0217d134;
-
 // Object data_0217d178: 16 words from 0x00 and a signed number at 0x40; func_0210e680 and func_0210ed20 add a
 // word to it, func_0210ef68 walks it and func_0210efac resets it.
 typedef struct Unk0217d178 {
     /* 00 */ u32 mUnk_00[16];
     /* 40 */ s32 mUnk_40;
 } Unk0217d178;
+
+// data_0217d134 has the same layout and goes through the same functions.
+typedef Unk0217d178 Unk0217d134;
+
+extern Unk0217d134 data_0217d134;
+extern Unk0217d178 data_0217d178;
 
 extern const Unk0215c380 data_0215c380;
 extern const Unk0215c380 data_0215c38c;

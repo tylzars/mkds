@@ -51,7 +51,7 @@ void func_ov001_021a2284(void *p0, Unk021a2048 *p1) {
 }
 
 void *func_ov001_021a226c(void) {
-    return (void *) func_0209bf48(func_ov001_021a2300, func_ov001_021a2284, NULL);
+    return func_0209bf48(func_ov001_021a2300, func_ov001_021a2284, NULL);
 }
 
 void ComputePointAheadOfCamera(Unk021a2048 *o, Camera *g, Vec3 *out) {
@@ -117,5 +117,5 @@ void func_ov001_021a2048(void *p0, Unk021a2048 *p1) {
 }
 
 void *func_ov001_021a2034(void) {
-    return (void *) func_0209bf48(NULL, func_ov001_021a2048, NULL);
+    return func_0209bf48(NULL, func_ov001_021a2048, NULL);
 }

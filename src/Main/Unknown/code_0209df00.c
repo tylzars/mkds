@@ -33,7 +33,7 @@
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-u32 func_0209eb04(void) {
+void *func_0209eb04(void) {
     return func_0209bef0(CreatePuddle, DrawPuddle, func_0209ec00);
 }
 
@@ -300,10 +300,10 @@ void func_0209df44(void) {
     func_0209bf70(func_0209ea10, NULL, func_0209e988, 0, 0, 0x18d);
 }
 
-u32 func_0209df20(void) {
+void *func_0209df20(void) {
     return func_0209bef0(CreateFireball2, DrawFireball2, func_0209e938);
 }
 
-u32 func_0209df00(void) {
+void *func_0209df00(void) {
     return func_0209bf48(func_0209e310, UpdateFireball2, NULL);
 }

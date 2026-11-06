@@ -710,13 +710,13 @@ void func_ov001_02181c20(void) {
 }
 
 void *func_ov001_02181c08(void) {
-    return (void *) func_0209bf1c(func_ov001_021826fc, func_ov001_0218263c, NULL);
+    return func_0209bf1c(func_ov001_021826fc, func_ov001_0218263c, NULL);
 }
 
 void *func_ov001_02181bec(void) {
-    return (void *) func_0209bf1c(func_ov001_021830a8, func_ov001_02182f98, func_ov001_02183090);
+    return func_0209bf1c(func_ov001_021830a8, func_ov001_02182f98, func_ov001_02183090);
 }
 
 void *func_ov001_02181bd0(void) {
-    return (void *) func_0209bf48(func_ov001_02182550, func_ov001_02181c3c, func_ov001_0218254c);
+    return func_0209bf48(func_ov001_02182550, func_ov001_02181c3c, func_ov001_0218254c);
 }

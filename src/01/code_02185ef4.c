@@ -958,5 +958,5 @@ s32 func_ov001_02185f04(Unk02188950 *a, Unk02185f04_1 *b, u8 *c, u8 *d) {
 }
 
 void *func_ov001_02185ef4(void) {
-    return (void *) func_0209bf48(NULL, NULL, NULL);
+    return func_0209bf48(NULL, NULL, NULL);
 }

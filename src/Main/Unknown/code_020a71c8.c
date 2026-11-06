@@ -397,11 +397,11 @@ void func_020a737c(void) {
     func_0209bfa8(&func_020a7fc4, &func_020a7f18, NULL, 1, 1);
 }
 
-u32 func_020a7358(void) {
+void *func_020a7358(void) {
     return func_0209bef0(CreateSanboHAndSanboB, DrawSanbo, func_020a7eb0);
 }
 
-u32 func_020a7338(void) {
+void *func_020a7338(void) {
     return func_0209bf48(func_020a78c8, UpdateSanbo, NULL);
 }
 

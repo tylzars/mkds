@@ -2,9 +2,11 @@
 
 #include "types.h"
 
+struct Unk0201ca6c;
+
 typedef struct Unk02081e3c {
     /* 00 */ u8 mUnk_00[0x90];
-    /* 90 */ u32 mUnk_90;
+    /* 90 */ void (*mUnk_90)(struct Unk0201ca6c *p, s32 a);
     /* 94 */ u8 mUnk_94[0x5];
     /* 99 */ u8 mUnk_99;
     /* 9a */ u8 mUnk_9a;

@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_02036820.h"
 
 #pragma thumb on
-u32 func_0209bf48(void *arg0, void *arg1, void *arg2) {
+void *func_0209bf48(void *arg0, void *arg1, void *arg2) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2 = (u32) arg2;
@@ -22,12 +22,12 @@ u32 func_0209bf48(void *arg0, void *arg1, void *arg2) {
     *(u32 *) ((value0) + 16u) = value4;
     value1 = 0u;
     *(u32 *) ((value0) + 20u) = value1;
-    return value0;
+    return (void *) value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-u32 func_0209bf1c(void *arg0, void *arg1, void *arg2) {
+void *func_0209bf1c(void *arg0, void *arg1, void *arg2) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2 = (u32) arg2;
@@ -48,12 +48,12 @@ u32 func_0209bf1c(void *arg0, void *arg1, void *arg2) {
     *(u32 *) ((value0) + 16u) = value4;
     value1 = 0u;
     *(u32 *) ((value0) + 20u) = value1;
-    return value0;
+    return (void *) value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-u32 func_0209bef0(void *arg0, void *arg1, void *arg2) {
+void *func_0209bef0(void *arg0, void *arg1, void *arg2) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2 = (u32) arg2;
@@ -74,6 +74,6 @@ u32 func_0209bef0(void *arg0, void *arg1, void *arg2) {
     *(u32 *) ((value0) + 16u) = value4;
     value1 = 0u;
     *(u32 *) ((value0) + 20u) = value1;
-    return value0;
+    return (void *) value0;
 }
 #pragma thumb off

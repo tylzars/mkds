@@ -20,8 +20,8 @@ typedef struct Unk0209ec80 {
 void DrawPuddle(void *a, Unk0209ec80 *b);
 void func_0209ec00(void *a);
 void CreatePuddle(void *a);
-u32 func_0209ec44(void);
-u32 func_0209ec60(void);
+void *func_0209ec44(void);
+void *func_0209ec60(void);
 void UpdatePicture(void *a, Unk0209ec80 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void DrawPicture(void *a, Unk0209ec80 *b);
 void CreatePicture1AndPicture2(void *a);

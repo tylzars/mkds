@@ -816,7 +816,7 @@ void EnterItemTeresaState5(ItemTeresa *p) {
     } else {
         i = 8;
     }
-    e = &(gKartItems)[(u16) i];
+    e = &gKartItems[(u16) i];
     p->mKart = e->mKart;
     p->mUnk_144 = FALSE;
     if (p->mUnk_24c != FALSE) {
@@ -863,7 +863,7 @@ void UpdateItemTeresaState5(ItemTeresa *p) {
     } else {
         i = 8;
     }
-    e = &(gKartItems)[(u16) i];
+    e = &gKartItems[(u16) i];
     if (p->mUnk_24c != FALSE && e->mActiveItem != 0x10 && p->mItemCount != -0x40) {
         p->mUnk_144 = TRUE;
         if (p->mUnk_000.mFlags & 0x8000000) {
@@ -1007,7 +1007,7 @@ void func_0210050c(ItemTeresa *p) {
     } else {
         i = 8;
     }
-    e = &(gKartItems)[(u16) i];
+    e = &gKartItems[(u16) i];
     if (e->mActiveItem != 0x10) {
         return;
     }

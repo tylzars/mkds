@@ -920,7 +920,7 @@ void func_020fa9e4(void) {
         TryReleaseFirstItemObject(&gItemPools[i]);
     }
     for (j = 0; j < gKartItemsCount; j++) {
-        func_020f0044(&(gKartItems)[j]);
+        func_020f0044(&gKartItems[j]);
     }
 }
 
@@ -938,7 +938,7 @@ void UpdateItems(void) {
         }
     }
     for (j = 0; j < gKartItemsCount; j++) {
-        UpdateKartItems(&(gKartItems)[j]);
+        UpdateKartItems(&gKartItems[j]);
     }
     func_020f8258();
     func_02104368();
@@ -962,7 +962,7 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
     s32 v;
     BOOL c;
 
-    if ((gKartItems)[param_1].mHeldItem.mUnk_00 != 0x13) {
+    if (gKartItems[param_1].mHeldItem.mUnk_00 != 0x13) {
         return;
     }
     v = data_021759c0->mCurrentEntries[param_1].mPlayer.mKind;
@@ -975,14 +975,14 @@ void func_020fa78c(s32 param_1, s32 param_2, s32 param_3) {
         } else if ((1 << v) & 0xd) {
             c = TRUE;
         }
-        StartItemSlot(&(gKartItems)[param_1], param_2, func_020a1cd8(param_1), c ? 1 : 0, param_3);
+        StartItemSlot(&gKartItems[param_1], param_2, func_020a1cd8(param_1), c ? 1 : 0, param_3);
     } else {
         c = FALSE;
         if ((u32) v > 3) {
         } else if ((1 << v) & 0xd) {
             c = TRUE;
         }
-        StartItemSlot(&(gKartItems)[param_1], param_2, GetKartRank(param_1), c ? 1 : 0, param_3);
+        StartItemSlot(&gKartItems[param_1], param_2, GetKartRank(param_1), c ? 1 : 0, param_3);
     }
 }
 
@@ -1051,7 +1051,7 @@ s32 func_020fa4c8(Kart *param_1) {
         }
         data_0217bd30[n++] = e;
         if (e->mFlags & 0x1000) {
-            func_020eda5c(&(gKartItems)[(u16) (e->mUnk_78 & ~0xff00)].mItemInUse, e);
+            func_020eda5c(&gKartItems[(u16) (e->mUnk_78 & ~0xff00)].mItemInUse, e);
         }
         k = e->mKind;
         if (gItemKinds[k].mUnk_88 != 0) {
@@ -1171,9 +1171,9 @@ void InitItems(void) {
     func_020f357c();
     v = data_021759c0->mKartCount;
     gKartItemsCount = v;
-    (void *) gKartItems = HeapAlloc(b, v * 0x210);
+    gKartItems = HeapAlloc(b, v * 0x210);
     for (i = 0; i < gKartItemsCount; i++) {
-        InitKartItems(&(gKartItems)[i], (u16) i);
+        InitKartItems(&gKartItems[i], (u16) i);
     }
     gItemPools = HeapAlloc(b, 0x3b8);
     for (j = 0; j < 0xe; j++) {
@@ -1186,7 +1186,7 @@ void InitItems(void) {
     }
     if (data_021759c0->mMode == MODE_TIME_ATTACK) {
         for (i = 0; i < gKartItemsCount; i++) {
-            p = &(gKartItems)[i].mHeldItem;
+            p = &gKartItems[i].mHeldItem;
             func_020f47e4(p, 5);
             switch (func_02079b40((u16) i)) {
                 case 0:

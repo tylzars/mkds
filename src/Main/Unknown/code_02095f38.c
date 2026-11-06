@@ -608,11 +608,11 @@ void func_02095f9c(void) {
     o->mUnk_28 = 0x1b0;
 }
 
-u32 func_02095f7c(void) {
+void *func_02095f7c(void) {
     return func_0209bef0(CreateCoverPooHole, DrawCoverPooHole, NULL);
 }
 
-u32 func_02095f5c(void) {
+void *func_02095f5c(void) {
     return func_0209bf48(func_020968f4, UpdateCoverPooHole, NULL);
 }
 

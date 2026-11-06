@@ -156,7 +156,7 @@ void ResetKartToRespawnPoint(Kart *p) {
     MTX_RotY33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     MTX_MultVec33(&data_02154f70, m, &b);
     if (data_021759c0->mMode != MODE_BATTLE && gCourseMap->mItemRouteCount != 0) {
-        (e = &(gKartItems)[p->mIndex])->mUnk_1f0.mUnk_00 = GetCourseMapRespawnItemPointLink((u16) p->mRespawnSlot);
+        (e = &gKartItems[p->mIndex])->mUnk_1f0.mUnk_00 = GetCourseMapRespawnItemPointLink((u16) p->mRespawnSlot);
         e->mUnk_1f0.mUnk_04 = 1;
     }
     if (data_021759c0->mMode != MODE_TIME_ATTACK) {
@@ -284,7 +284,7 @@ void func_02072930(Kart *p) {
     s32 i;
     Unk02165560 v;
 
-    func_020f0044(&(gKartItems)[p->mIndex]);
+    func_020f0044(&gKartItems[p->mIndex]);
     func_02083834(p);
     func_02081768(p->mIndex);
     func_020815a0(p->mIndex);

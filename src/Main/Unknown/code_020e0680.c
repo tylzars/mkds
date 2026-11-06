@@ -80,40 +80,40 @@ void func_020e2f0c(Unk020e1e98 *a, struct CourseMapRow *b) {
 #pragma thumb off
 
 void *func_020e2ebc(void) {
-    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
-    *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_02158b3c;
+    *p = data_02158b3c;
     return p;
 }
 
 void *func_020e2e6c(void) {
-    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
-    *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_02158afc;
+    *p = data_02158afc;
     return p;
 }
 
 void *func_020e2e1c(void) {
-    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
-    *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_02158abc;
+    *p = data_02158abc;
     return p;
 }
 
 void *func_020e2db8(void) {
-    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
+    Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
-    data_0217b79c = p;
-    *(Unk020e03f8 *) p = *(const Unk020e03f8 *) data_02158a7c;
+    data_0217b79c = (Unk0217b79c *) p;
+    *p = data_02158a7c;
     func_020d49d8(&data_0217b79c);
     return data_0217b79c;
 }
 
 void *func_020e2d5c(void) {
-    void *p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+    Unk020e0340 *p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
 
     data_0217b7a4 = p;
-    *(Unk020e0340 *) p = *(const Unk020e0340 *) data_02158a54;
+    *p = data_02158a54;
     func_020e6f50(&data_0217b7a4);
     return data_0217b7a4;
 }
@@ -478,9 +478,9 @@ void func_020e20a8(Unk020e20a8 *a) {
         NNS_G3dMdlSetMdlPolygonID(y4, k4, 7);
     }
     func_020849b0(gCarTire, 0);
-    n = ((Unk0217b79c *) data_0217b79c)->mUnk_04;
+    n = data_0217b79c->mUnk_04;
     for (i = 0; i < n; i++) {
-        e = ((Unk0217b79c *) data_0217b79c)->mUnk_00[i];
+        e = data_0217b79c->mUnk_00[i];
         q = e->mUnk_154->mUnk_20;
         e->mUnk_124 = q != NULL ? *q : 0;
         q = e->mUnk_154->mUnk_24;

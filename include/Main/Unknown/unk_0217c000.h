@@ -3,6 +3,7 @@
 #include "types.h"
 #include "code_0212bcac.h"
 #include "code_0212d214.h"
+#include "Main/Unknown/code_021035ac.h"
 
 typedef struct NNSSndSeqPlayer NNSSndSeqPlayer;
 typedef struct NNSSndHeap NNSSndHeap;
@@ -32,40 +33,39 @@ extern SoundFalloff gOtherKartSoundFalloff;
 
 // Objects whose layout isn't known yet.
 extern NNSSndSeqPlayer *data_0217c778;
-extern u8 data_0217c784[];
+extern u32 data_0217c784;
 extern NNSSndSeqPlayer *data_0217c788;
 extern s32 data_0217c7a4;
 extern NNSSndSeqPlayer *data_0217c838[];
-extern u8 data_0217c83c[];
-extern u8 data_0217c840[];
+extern NNSSndSeqPlayer *data_0217c83c;
+extern NNSSndSeqPlayer *data_0217c840;
 extern struct NNSSndArc data_0217c868;
 extern u8 data_0217c91c[];
 extern u32 data_0217cbec[];
 extern u32 data_0217c780;
 extern u32 data_0217cc6c[];
-extern u8 data_0217c7fc[];
+extern u32 data_0217c7fc[];
 extern u8 data_0217ccac[];
 extern u32 data_0217cd30[];
-extern u8 data_0217c644[];
-extern u8 data_0217c650[];
-extern u8 data_0217c658[];
-extern u8 data_0217c7c4[];
+extern s32 data_0217c644;
+extern s32 data_0217c650;
+extern s32 data_0217c658;
 extern s32 data_0217ccb0;
 extern s32 data_0217ccb4;
 extern u8 data_0217ccb8[];
 extern s32 data_0217ccbc;
 extern u16 *data_0217c630;
 extern s32 data_0217c634;
-extern void *data_0217c654;
+extern Unk021035ac *data_0217c654;
 extern u16 data_0217c638;
-extern u32 data_0217c64c;
+extern BOOL data_0217c64c;
 extern u16 data_0217c63c;
 extern u8 data_0217c6a4[];
 extern u16 data_0217c640;
 extern u8 data_0217c65c[];
 extern u32 data_0217c6e4[];
 extern u32 data_0217c704[];
-extern u8 data_0217c648[];
+extern s32 data_0217c648;
 extern u16 data_0217c76c[];
 extern u16 data_0217c770[];
 extern NNSSndHeap *data_0217c77c;

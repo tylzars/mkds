@@ -62,6 +62,8 @@ typedef struct Unk0217c7c4 {
     /* 10 */ s32 mUnk_10;
 } Unk0217c7c4;
 
+extern Unk0217c7c4 data_0217c7c4;
+
 // The first eight bytes of each element of the table an Unk0217c7c4 describes: a handle at 0 and a word at 4.
 typedef struct Unk0210e2c4 {
     /* 00 */ NNSSndSeqPlayer *mUnk_00;
@@ -88,14 +90,7 @@ typedef struct Unk0217c814 {
 
 extern Unk0217c814 data_0217c814;
 
-// Object data_0217c854 points to.
-typedef struct Unk0217c854 {
-    /* 00 */ u8 mUnk_00[0x38];
-    /* 38 */ u16 mUnk_38;
-    /* 3a */ u16 mUnk_3a;
-} Unk0217c854;
-
-extern Unk0217c854 *data_0217c854;
+extern NNSSndSeqPlayer *data_0217c854;
 
 // Object data_0217d060 points to.
 typedef struct Unk0217d060 {

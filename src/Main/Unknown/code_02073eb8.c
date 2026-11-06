@@ -76,8 +76,7 @@ void func_02076bcc(Camera *a) {
     data_0217029c.mFlag &= ~0xe8;
 }
 
-// Chase camera (gChaseCamera) only. Runs SetupCamera, then places the camera behind the selected Kart (as
-// ResetCameraBehind does) and points the look-at at the Kart.
+// Chase camera only: sets up the camera, then puts it behind the selected Kart.
 void SetupCameraBehindKart(void) {
     Kart *q;
     Camera *p;
@@ -89,7 +88,7 @@ void SetupCameraBehindKart(void) {
     SetupCamera(gChaseCamera);
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         if (data_021759c0->mUnk_044 & 0x20) {
-            (gChaseCamera)->mFollowDirectionSign = -0x1000;
+            gChaseCamera->mFollowDirectionSign = -0x1000;
         }
     }
     p = gChaseCamera;
@@ -103,10 +102,10 @@ void SetupCameraBehindKart(void) {
     p->mBaseUp = data_usa_02154fc4;
     p->mPrevPos = p->mPos;
     p->mKartMoveScale = 0x1000;
-    (gChaseCamera)->mHeightHold = 0;
+    gChaseCamera->mHeightHold = 0;
     func_020d4f94((Unk020d4f94 *) &p->mViewMatrix);
     func_020d50c4();
-    (gChaseCamera)->mLookAt.y = q->mPos.y + (gChaseCamera)->mLookAtHeight;
+    gChaseCamera->mLookAt.y = q->mPos.y + gChaseCamera->mLookAtHeight;
 }
 
 void UpdateChaseCamera(Camera *a, Kart *b) {
@@ -922,8 +921,7 @@ void ResetCameraHalfFovAngleGoal(void) {
     gChaseCamera->mHalfFovAngleGoal = value1;
 }
 
-// Chase camera (gChaseCamera) only. Sets the angle goal to its default and the angle to default + 5, as SetupCamera
-// does. The caller hands the leftover r0 (the Camera pointer) to a no-op function.
+// Chase camera only: resets the field-of-view angle goal to its default and the angle to default + 5.
 void ResetCameraHalfFovAngle(void) {
     s32 t;
 

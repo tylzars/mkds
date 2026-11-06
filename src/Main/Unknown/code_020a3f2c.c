@@ -571,15 +571,15 @@ void func_020a5918(void) {
     p->mUnk_3c = -0x190000;
 }
 
-u32 func_020a58f4(void) {
+void *func_020a58f4(void) {
     return func_0209bef0(CreateShine16, DrawShine16, func_020a6a90);
 }
 
-u32 func_020a58d0(void) {
+void *func_020a58d0(void) {
     return func_0209bf1c(func_020a69a0, func_020a683c, func_020a697c);
 }
 
-u32 func_020a58b4(void) {
+void *func_020a58b4(void) {
     return func_0209bf48(NULL, UpdateShine16, NULL);
 }
 
@@ -1224,6 +1224,6 @@ u32 func_020a3f48(void) {
     return func_0209bf8c();
 }
 
-u32 func_020a3f2c(void) {
+void *func_020a3f2c(void) {
     return func_0209bf48(NULL, UpdateKartBalloons, NULL);
 }

@@ -53,9 +53,9 @@ u32 func_02090cf8(void);
 u32 func_02090ff4(void);
 u32 func_0209119c(void);
 u32 func_020911a8(void);
-u32 func_020911f4(void);
-u32 func_02091214(void);
-u32 func_02091238(void);
+void *func_020911f4(void);
+void *func_02091214(void);
+void *func_02091238(void);
 void func_0209125c(void);
 void UpdateSman(void *a, Sman *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_0209151c(Unk0209151c *a);
