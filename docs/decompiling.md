@@ -819,7 +819,7 @@ Expression shapes:
   (UpdateKanoke64).
 - A by-value struct parameter read through a `volatile T *p = &b;` local keeps an `add r0, sp, #4` in a register;
   the ROM re-reads from the frame. Make the parameter itself volatile (`volatile Unk b`; the header prototype stays
-  without it), func_020ab660.
+  without it), AdvanceKeyboardInput.
 - A nibble store that loads the byte, clears it with `bic`, then ors `(v & 0xf) << 4` is a bit-field member
   (func_02007698).
 - A halfword stored through `lsl 8; asr 16; lsl 16; lsr 16` with the x/y chains in crossed registers: `x = m >> 4; ...`

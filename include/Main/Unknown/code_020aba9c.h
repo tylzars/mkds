@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020aba9c(void);
+void UploadKeyboardBg2Data(void);

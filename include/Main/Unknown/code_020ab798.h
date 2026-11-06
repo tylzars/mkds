@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u16 *func_020ab798(void);
+u16 *GetKeyboardText(void);

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ab72c(void);
+void ClearKeyboardInput(void);

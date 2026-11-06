@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ab714(void);
+void InitKeyboardInput(void);

@@ -23,28 +23,28 @@
 
 #pragma thumb on
 
-void func_020a9ea0(u16 a) {
-    Unk0217b278_10 *p;
+void MoveKeyboardCursorToValue(u16 a) {
+    KeyboardRect *p;
     u16 v;
 
-    p = func_020ab338(a);
+    p = FindKeyboardRectByValue(a);
     if (p != NULL) {
-        data_0217b278.mUnk_44 = p;
-        if (data_0217b278.mUnk_4c != NULL) {
-            v = data_0217b278.mUnk_4c(func_020ab2a4(p), 0);
+        gKeyboardKeys.mCursorRect = p;
+        if (gKeyboardKeys.mCursorCallback != NULL) {
+            v = gKeyboardKeys.mCursorCallback(GetKeyboardRectValue(p), 0);
             if (v != 0) {
-                data_0217b278.mUnk_44 = func_020ab338(v);
+                gKeyboardKeys.mCursorRect = FindKeyboardRectByValue(v);
             }
         }
     }
 }
 
-s32 func_020a9e90(void) {
-    return func_020ab2a4(data_0217b278.mUnk_44);
+s32 GetKeyboardCursorValue(void) {
+    return GetKeyboardRectValue(gKeyboardKeys.mCursorRect);
 }
 
-s32 func_020a9e80(void) {
-    return func_020ab1d0(data_0217b2b8[0]);
+s32 GetKeyboardChosenKeyValue(void) {
+    return GetKeyboardValueForKeyId(data_0217b2b8[0]);
 }
 
 #pragma thumb off

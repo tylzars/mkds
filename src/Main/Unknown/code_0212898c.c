@@ -78,8 +78,8 @@
 #pragma thumb on
 
 void func_0212a700(void) {
-    func_020ab910((u32) 0x24, (u32) 0x7a, (u32) 0x7e, (u32) 0x8e);
-    func_020ab8d4((u32) 0x82, (u32) 0x7a, (u32) 0xdc, (u32) 0x8e);
+    SetKeyboardButton0Corners((u32) 0x24, (u32) 0x7a, (u32) 0x7e, (u32) 0x8e);
+    SetKeyboardButton1Corners((u32) 0x82, (u32) 0x7a, (u32) 0xdc, (u32) 0x8e);
 }
 
 #pragma thumb off
@@ -146,7 +146,7 @@ void func_0212a4bc(void) {
     a[0] = 0;
     MIi_CpuClear16(a[0], &a[1], 0x1a);
     MIi_CpuCopy16(&gKeyboard->mUnk_2c[0], &a[1], 0x18);
-    func_020ab7a4(&a[1]);
+    SetKeyboardText(&a[1]);
 }
 
 void func_0212a484(void) {
@@ -154,7 +154,7 @@ void func_0212a484(void) {
     a[0] = 0;
     MIi_CpuClear16(a[0], &a[1], 0x16);
     MIi_CpuCopy16(&gKeyboard->mUnk_2c[1], &a[1], 0x14);
-    func_020ab7a4(&a[1]);
+    SetKeyboardText(&a[1]);
 }
 
 void func_0212a448(void) {
@@ -162,7 +162,7 @@ void func_0212a448(void) {
     a[0] = 0;
     MIi_CpuClear16(a[0], &a[1], 0x16);
     MIi_CpuCopy16(data_0217aa08->mUnk_00->mUnk_0c, &a[1], 0x14);
-    func_020ab7a4(&a[1]);
+    SetKeyboardText(&a[1]);
 }
 
 void func_0212a410(void) {
@@ -201,8 +201,8 @@ void InitKeyboard(void *a, s32 b) {
     func_02129c18();
     func_02129cbc();
     func_020ae6d4(func_02128898(), func_02128884());
-    func_020abcf4(0x20, 0x40, 0xc);
-    func_020ab94c(0, 0x28);
+    InitKeyboardTextEntry(0x20, 0x40, 0xc);
+    SetKeyboardOffset(0, 0x28);
     func_0212a700();
     func_020aba94(0);
     gKeyboard->mUnk_2c[2].mMode = b;
@@ -225,16 +225,16 @@ void InitKeyboard(void *a, s32 b) {
     }
     if (gKeyboard->mKind == 0) {
         gKeyboard->mUnk_08 = 0;
-        func_020ab758(data_0215d0e0[0]);
+        SetKeyboardTextLimit(data_0215d0e0[0]);
     } else {
         if (data_021759d0->mUnk_00 == 0) {
             gKeyboard->mUnk_08 = 1;
         } else {
             gKeyboard->mUnk_08 = 2;
         }
-        func_020ab758(data_0215d0e0[1]);
+        SetKeyboardTextLimit(data_0215d0e0[1]);
     }
-    func_020ab9d0(gKeyboard->mUnk_08);
+    SelectKeyboardLayout(gKeyboard->mUnk_08);
     func_02129e78();
     for (i = 0; i < 2; i++) {
         gKeyboard->mUnk_14[i] = 0;
@@ -311,7 +311,7 @@ void func_02129ea4(void) {
                 (gKeyboard->mTables[i][j] + e[i])[data_0215d0e4[i][m]].mUnk_06 = v;
             }
             w = gKeyboard->mOffsetY;
-            func_020ab848(&a, &b, &c, &d);
+            GetKeyboardCursorBoundsRelative(&a, &b, &c, &d);
             gKeyboard->mTables[i][j][data_0215d0f8[i][0]].mUnk_0c = a;
             gKeyboard->mTables[i][j][data_0215d0f8[i][0]].mUnk_0e = w + b + 0x28;
             gKeyboard->mTables[i][j][data_0215d0f8[i][1]].mUnk_0c = a;
@@ -419,17 +419,17 @@ void AdvanceKeyboardState0(void) {
 void func_02129b60(void) {
     s32 n;
     n = data_0215d0e0[0] - 1;
-    if (n == func_020ab748() && gKeyboard->mUnk_2c[gKeyboard->mKind].mUnk_00[n] != 0) {
+    if (n == GetKeyboardTextIndex() && gKeyboard->mUnk_2c[gKeyboard->mKind].mUnk_00[n] != 0) {
         gKeyboard->mButtonEnabled[0] = 1;
     } else {
         gKeyboard->mButtonEnabled[0] = 0;
     }
-    if (func_020ab8c4() == 1) {
+    if (GetKeyboardCursorValueWrapper() == 1) {
         gKeyboard->mUnk_14[0] = 1;
     } else {
         gKeyboard->mUnk_14[0] = 0;
     }
-    if (func_020ab8c4() == 2) {
+    if (GetKeyboardCursorValueWrapper() == 2) {
         gKeyboard->mUnk_14[1] = 1;
     } else {
         gKeyboard->mUnk_14[1] = 0;
@@ -475,26 +475,26 @@ void AdvanceKeyboardState2(void) {
     }
     p = gKeyboard;
     q = &p->mUnk_2c[p->mKind];
-    w = func_020ab798();
+    w = GetKeyboardText();
     MIi_CpuCopy16(w, q, 0x18);
     func_02129b60();
-    if (v == 1 || (func_020ab8c4() == 1 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
+    if (v == 1 || (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
         p = gKeyboard;
         if (p->mButtonEnabled[0] != 0) {
             p->mNextState = 3;
             gKeyboard->mUnk_2c[2].mUnk_10 = 1;
             func_02125fc0();
-            func_020ab8cc(1);
+            MoveKeyboardCursorToValueWrapper(1);
             gKeyboard->mUnk_24 = FALSE;
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
         } else {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
-    } else if (v == 0 || (func_020ab8c4() == 2 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
+    } else if (v == 0 || (GetKeyboardCursorValueWrapper() == 2 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
         gKeyboard->mNextState = 3;
         gKeyboard->mUnk_2c[2].mUnk_10 = 0;
         func_02125fc0();
-        func_020ab8cc(2);
+        MoveKeyboardCursorToValueWrapper(2);
         gKeyboard->mUnk_24 = FALSE;
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0xe);
     }
@@ -533,8 +533,8 @@ void AdvanceKeyboardState3(void) {
                     } else {
                         gKeyboard->mUnk_08 = 2;
                     }
-                    func_020ab9d0(gKeyboard->mUnk_08);
-                    func_020ab758(data_0215d0e0[1]);
+                    SelectKeyboardLayout(gKeyboard->mUnk_08);
+                    SetKeyboardTextLimit(data_0215d0e0[1]);
                     func_0212a484();
                     func_02129e78();
                     func_02128b0c();
@@ -576,24 +576,24 @@ void func_021296b4(void) {
     u8 n;
     i = 0;
     gKeyboard->mButtonEnabled[0] = 0;
-    for (; i < func_020ab748(); i++) {
-        if (func_020ab798()[i] != 0x20 && func_020ab798()[i] != 0x3000) {
+    for (; i < GetKeyboardTextIndex(); i++) {
+        if (GetKeyboardText()[i] != 0x20 && GetKeyboardText()[i] != 0x3000) {
             gKeyboard->mButtonEnabled[0] = 1;
         }
     }
     n = data_0215d0e0[1];
-    if (n - 1 == func_020ab748()) {
-        if ((func_020ab798() + n)[-1] != 0x20 && (func_020ab798() + n)[-1] != 0x3000 &&
-            (func_020ab798() + n)[-1] != 0) {
+    if (n - 1 == GetKeyboardTextIndex()) {
+        if ((GetKeyboardText() + n)[-1] != 0x20 && (GetKeyboardText() + n)[-1] != 0x3000 &&
+            (GetKeyboardText() + n)[-1] != 0) {
             gKeyboard->mButtonEnabled[0] = 1;
         }
     }
-    if (func_020ab8c4() == 1) {
+    if (GetKeyboardCursorValueWrapper() == 1) {
         gKeyboard->mUnk_14[0] = 1;
     } else {
         gKeyboard->mUnk_14[0] = 0;
     }
-    if (func_020ab8c4() == 2) {
+    if (GetKeyboardCursorValueWrapper() == 2) {
         gKeyboard->mUnk_14[1] = 1;
         return;
     }
@@ -649,28 +649,28 @@ void AdvanceKeyboardState7(void) {
     }
     p = gKeyboard;
     q = &p->mUnk_2c[p->mKind];
-    w = func_020ab798();
+    w = GetKeyboardText();
     MIi_CpuCopy16(w, q, 0x18);
     func_021296b4();
-    if (v == 5 || (func_020ab8c4() == 1 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
+    if (v == 5 || (GetKeyboardCursorValueWrapper() == 1 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
         p = gKeyboard;
         if (p->mButtonEnabled[0] != 0) {
             p->mNextState = 8;
             gKeyboard->mUnk_2c[2].mUnk_10 = 1;
             func_02125fc0();
-            func_020ab8cc(1);
+            MoveKeyboardCursorToValueWrapper(1);
             gKeyboard->mUnk_24 = FALSE;
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
         } else {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
-    } else if (v == 6 || (func_020ab8c4() == 2 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
+    } else if (v == 6 || (GetKeyboardCursorValueWrapper() == 2 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
         p = gKeyboard;
         if (p->mButtonEnabled[1] != 0) {
             p->mNextState = 8;
             gKeyboard->mUnk_2c[2].mUnk_10 = 0;
             func_02125fc0();
-            func_020ab8cc(2);
+            MoveKeyboardCursorToValueWrapper(2);
             gKeyboard->mUnk_24 = FALSE;
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0xe);
         } else {
@@ -682,7 +682,7 @@ void AdvanceKeyboardState7(void) {
         } else {
             gKeyboard->mUnk_08 = data_0215d122[gKeyboard->mUnk_08];
         }
-        func_020ab9d0(gKeyboard->mUnk_08);
+        SelectKeyboardLayout(gKeyboard->mUnk_08);
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1e5);
     } else {
         p = gKeyboard;
@@ -691,27 +691,27 @@ void AdvanceKeyboardState7(void) {
         switch (v) {
             case 0:
                 p->mUnk_08 = 1;
-                func_020ab9d0(gKeyboard->mUnk_08);
+                SelectKeyboardLayout(gKeyboard->mUnk_08);
                 f = TRUE;
                 break;
             case 1:
                 p->mUnk_08 = 2;
-                func_020ab9d0(gKeyboard->mUnk_08);
+                SelectKeyboardLayout(gKeyboard->mUnk_08);
                 f = TRUE;
                 break;
             case 2:
                 p->mUnk_08 = 3;
-                func_020ab9d0(gKeyboard->mUnk_08);
+                SelectKeyboardLayout(gKeyboard->mUnk_08);
                 f = TRUE;
                 break;
             case 3:
                 p->mUnk_08 = 4;
-                func_020ab9d0(gKeyboard->mUnk_08);
+                SelectKeyboardLayout(gKeyboard->mUnk_08);
                 f = TRUE;
                 break;
             case 4:
                 p->mUnk_08 = 5;
-                func_020ab9d0(gKeyboard->mUnk_08);
+                SelectKeyboardLayout(gKeyboard->mUnk_08);
                 f = TRUE;
                 break;
         }
@@ -766,8 +766,8 @@ void AdvanceKeyboardState8(void) {
         } else if (p->mUnk_2c[2].mMode == 0xc) {
             p->mKind = 0;
             gKeyboard->mUnk_08 = 0;
-            func_020ab9d0(gKeyboard->mUnk_08);
-            func_020ab758(data_0215d0e0[0]);
+            SelectKeyboardLayout(gKeyboard->mUnk_08);
+            SetKeyboardTextLimit(data_0215d0e0[0]);
             func_02129e78();
             func_0212a4bc();
             gKeyboard->mNextState = 1;
@@ -966,7 +966,7 @@ void func_02128bd4(void) {
     for (i = 0; i < data_0215d0e0[gKeyboard->mKind]; i++) {
         gKeyboard->mTables[gKeyboard->mKind][1][data_0215d14c[gKeyboard->mKind][i]].mUnk_00 = 0;
     }
-    gKeyboard->mTables[gKeyboard->mKind][1][data_0215d14c[gKeyboard->mKind][func_020ab748()]].mUnk_00 = 1;
+    gKeyboard->mTables[gKeyboard->mKind][1][data_0215d14c[gKeyboard->mKind][GetKeyboardTextIndex()]].mUnk_00 = 1;
 }
 
 void func_02128b54(void) {
@@ -1024,7 +1024,7 @@ void AdvanceKeyboard(void) {
     func_02125928();
     gKeyboard->mState = gKeyboard->mNextState;
     if (gKeyboard->mUnk_24 != FALSE) {
-        func_020abae0();
+        AdvanceKeyboardTextEntry();
     }
     switch (gKeyboard->mState) {
         case 0:
@@ -1085,9 +1085,9 @@ void AdvanceKeyboard(void) {
 }
 
 void func_0212899c(void) {
-    func_020ab94c(0, gKeyboard->mOffsetY + 0x28);
+    SetKeyboardOffset(0, gKeyboard->mOffsetY + 0x28);
     *(vu32 *) 0x400101c = (-gKeyboard->mOffsetY << 16) & 0x1ff0000;
-    func_020aba9c();
+    UploadKeyboardBg2Data();
     func_021258f0();
 }
 #pragma thumb off

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020aa810(void);
+u32 GetKeyboardKeyValue(void);

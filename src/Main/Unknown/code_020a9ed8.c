@@ -13,78 +13,78 @@
 #include "Main/Unknown/code_020aa810.h"
 
 #pragma thumb on
-u32 func_020aa810(void) {
+u32 GetKeyboardKeyValue(void) {
     u32 value0;
-    value0 = (u32) data_0217b278.mUnk_3e;
+    value0 = (u32) gKeyboardKeys.mKeyValue;
     return value0;
 }
 #pragma thumb off
 
 #pragma thumb on
 
-u16 func_020aa790(u16 a) {
+u16 ConvertCharPair1(u16 a) {
     u16 r;
     u16 t;
 
     if (a == 0 || a == 0x3000) {
         return a;
     }
-    if (func_020aa600(a) != 0) {
-        r = func_020aa738(a);
-        t = func_020aa094(data_0217b24c, r);
+    if (IsCharInTable2(a) != 0) {
+        r = ConvertCharPair2(a);
+        t = LookupCharInTablePair(gCharTablePair1, r);
         if (t != r) {
             return t;
         }
         return a;
     }
-    if (func_020aa5d8(a) != 0) {
-        r = func_020aa6e0(a);
-        t = func_020aa094(data_0217b24c, r);
+    if (IsCharInTable3(a) != 0) {
+        r = ConvertCharPair3(a);
+        t = LookupCharInTablePair(gCharTablePair1, r);
         if (t != r) {
             return t;
         }
         return a;
     }
-    return func_020aa094(data_0217b24c, a);
+    return LookupCharInTablePair(gCharTablePair1, a);
 }
 
-u16 func_020aa738(u16 a) {
+u16 ConvertCharPair2(u16 a) {
     u16 r;
     u16 t;
 
     if (a == 0 || a == 0x3000) {
         return a;
     }
-    if (func_020aa628(a) != 0) {
-        r = func_020aa790(a);
-        t = func_020aa094(data_0217b244, r);
+    if (IsCharInTable1(a) != 0) {
+        r = ConvertCharPair1(a);
+        t = LookupCharInTablePair(gCharTablePair2, r);
         if (t != r) {
             return t;
         }
         return a;
     }
-    return func_020aa094(data_0217b244, a);
+    return LookupCharInTablePair(gCharTablePair2, a);
 }
 
-u16 func_020aa6e0(u16 a) {
+u16 ConvertCharPair3(u16 a) {
     u16 r;
     u16 t;
 
     if (a == 0 || a == 0x3000) {
         return a;
     }
-    if (func_020aa628(a) != 0) {
-        r = func_020aa790(a);
-        t = func_020aa094(data_0217b23c, r);
+    if (IsCharInTable1(a) != 0) {
+        r = ConvertCharPair1(a);
+        t = LookupCharInTablePair(gCharTablePair3, r);
         if (t != r) {
             return t;
         }
         return a;
     }
-    return func_020aa094(data_0217b23c, a);
+    return LookupCharInTablePair(gCharTablePair3, a);
 }
 
-u16 func_020aa650(u16 a) {
+u16 CycleCharTables(u16 a) {
     s32 i;
     s32 j;
     s32 n;
@@ -95,16 +95,16 @@ u16 func_020aa650(u16 a) {
     if (a == 0 || a == 0x3000) {
         return a;
     }
-    for (i = 0, p = data_02167a04; i < 4; p++, i++) {
+    for (i = 0, p = gCharTables; i < 4; p++, i++) {
         q = wcschr(*p, a);
         if (q != NULL) {
-            n = q - data_02167a04[i];
+            n = q - gCharTables[i];
             break;
         }
     }
     if (i < 4) {
         for (j = 1; j < 4; j++) {
-            s = data_02167a04[(i + j) % 4];
+            s = gCharTables[(i + j) % 4];
             if (s[n] != 0x3000) {
                 return s[n];
             }
@@ -115,28 +115,28 @@ u16 func_020aa650(u16 a) {
     return a;
 }
 
-u32 func_020aa628(u16 a) {
-    if (wcschr(data_0217b24c[1], a) != NULL) {
+u32 IsCharInTable1(u16 a) {
+    if (wcschr(gCharTablePair1[1], a) != NULL) {
         return 1;
     }
     return 0;
 }
 
-u32 func_020aa600(u16 a) {
-    if (wcschr(data_0217b244[1], a) != NULL) {
+u32 IsCharInTable2(u16 a) {
+    if (wcschr(gCharTablePair2[1], a) != NULL) {
         return 1;
     }
     return 0;
 }
 
-u32 func_020aa5d8(u16 a) {
-    if (wcschr(data_0217b23c[1], a) != NULL) {
+u32 IsCharInTable3(u16 a) {
+    if (wcschr(gCharTablePair3[1], a) != NULL) {
         return 1;
     }
     return 0;
 }
 
-void func_020aa4e8(u32 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
+void AddToNonzeroNibblesInTile(u32 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     u32 v1;
     u32 m;
     u32 *p;
@@ -184,14 +184,14 @@ void func_020aa4e8(u32 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
     }
 }
 
-void func_020aa47c(u32 (*a)[8], s32 b, u32 c, s32 d, s32 e, s32 f, s32 g) {
-    func_020aa3a0(a, b, c, d, e, f, e + 1);
-    func_020aa3a0(a, b, c, d, g - 1, f, g);
-    func_020aa3a0(a, b, c, d, e + 1, d + 1, g - 1);
-    func_020aa3a0(a, b, c, f - 1, e + 1, f, g - 1);
+void AddToNonzeroNibblesOnRectEdge(u32 (*a)[8], s32 b, u32 c, s32 d, s32 e, s32 f, s32 g) {
+    AddToNonzeroNibblesInRect(a, b, c, d, e, f, e + 1);
+    AddToNonzeroNibblesInRect(a, b, c, d, g - 1, f, g);
+    AddToNonzeroNibblesInRect(a, b, c, d, e + 1, d + 1, g - 1);
+    AddToNonzeroNibblesInRect(a, b, c, f - 1, e + 1, f, g - 1);
 }
 
-void func_020aa3a0(u32 (*a)[8], s32 b, u32 c, s32 d, s32 e, s32 f, s32 g) {
+void AddToNonzeroNibblesInRect(u32 (*a)[8], s32 b, u32 c, s32 d, s32 e, s32 f, s32 g) {
     s32 y;
     s32 x0;
     s32 x1;
@@ -228,7 +228,7 @@ void func_020aa3a0(u32 (*a)[8], s32 b, u32 c, s32 d, s32 e, s32 f, s32 g) {
                         u = 8;
                     }
                     v = g - v1 > 8 ? 8 : g - v1;
-                    func_020aa4e8(a[x + v2], c, s, t, u, v);
+                    AddToNonzeroNibblesInTile(a[x + v2], c, s, t, u, v);
                 }
                 v1 += 8;
                 v2 += w;
@@ -238,33 +238,33 @@ void func_020aa3a0(u32 (*a)[8], s32 b, u32 c, s32 d, s32 e, s32 f, s32 g) {
     }
 }
 
-void func_020aa300(Unk0217b278 *a) {
-    Unk0217b278_10 *q;
-    Unk0217b278_10 *r;
+void RefreshKeyboardCursor(KeyboardKeys *a) {
+    KeyboardRect *q;
+    KeyboardRect *r;
     s32 x;
     s32 y;
 
-    q = a->mUnk_44;
+    q = a->mCursorRect;
     if (q == NULL) {
-        a->mUnk_44 = a->mUnk_2c->mUnk_00 + a->mUnk_2c->mUnk_0c;
+        a->mCursorRect = a->mCurrentLayout->mRects + a->mCurrentLayout->mFixedKeyCount;
         return;
     }
-    if (q->mUnk_06 <= 0xff) {
-        x = data_0217b234 + ((q->mUnk_00 << 1) + q->mUnk_02) / 2 + 3;
-        y = data_0217b238 + ((q->mUnk_01 << 1) + q->mUnk_03) / 2 - 3;
+    if (q->mKeyId <= 0xff) {
+        x = gKeyboardOffsetX + ((q->mX << 1) + q->mWidth) / 2 + 3;
+        y = gKeyboardOffsetY + ((q->mY << 1) + q->mHeight) / 2 - 3;
     } else {
-        x = ((q->mUnk_00 << 1) + q->mUnk_02) / 2 + 3;
-        y = ((q->mUnk_01 << 1) + q->mUnk_03) / 2 - 3;
+        x = ((q->mX << 1) + q->mWidth) / 2 + 3;
+        y = ((q->mY << 1) + q->mHeight) / 2 - 3;
     }
-    r = func_020aaea0(a, x, y);
+    r = FindKeyboardRectAt(a, x, y);
     if (r != NULL) {
-        a->mUnk_44 = r;
+        a->mCursorRect = r;
         return;
     }
-    a->mUnk_44 = a->mUnk_2c->mUnk_00 + a->mUnk_2c->mUnk_0c;
+    a->mCursorRect = a->mCurrentLayout->mRects + a->mCurrentLayout->mFixedKeyCount;
 }
 
-Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c) {
+KeyboardRect *FindKeyboardRectInDirection(u32 a, KeyboardRect *b, KeyboardRect *c) {
     s32 x0;
     s32 x1;
     s32 y0;
@@ -283,22 +283,22 @@ Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c) {
     s32 h8;
     s32 w8;
     u16 r;
-    Unk0217b278_10 *q;
-    Unk0217b278_10 *e;
+    KeyboardRect *q;
+    KeyboardRect *e;
     Ncgr *g;
 
-    if (data_0217b278.mUnk_4c != NULL) {
-        r = data_0217b278.mUnk_4c(func_020ab2a4(b), a);
+    if (gKeyboardKeys.mCursorCallback != NULL) {
+        r = gKeyboardKeys.mCursorCallback(GetKeyboardRectValue(b), a);
         if (r != 0) {
-            q = func_020ab338(r);
+            q = FindKeyboardRectByValue(r);
             if (q != NULL) {
                 return q;
             }
         }
     }
-    if (b->mUnk_06 <= 0xff) {
-        v3 = data_0217b234;
-        v4 = data_0217b238;
+    if (b->mKeyId <= 0xff) {
+        v3 = gKeyboardOffsetX;
+        v4 = gKeyboardOffsetY;
     } else {
         v3 = 0;
         v4 = 0;
@@ -306,30 +306,30 @@ Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c) {
     if ((a & 0x40) != 0) {
         v1 = -8;
         v2 = -8;
-        x0 = x1 = v3 + (b->mUnk_00 + b->mUnk_00 + b->mUnk_02) / 2;
+        x0 = x1 = v3 + (b->mX + b->mX + b->mWidth) / 2;
         x1 -= 0x10;
-        y0 = v4 + b->mUnk_01;
+        y0 = v4 + b->mY;
         y1 = y0 - 0x120;
     } else if ((a & 0x80) != 0) {
         v1 = 8;
         v2 = 8;
-        x0 = x1 = v3 + (b->mUnk_00 + b->mUnk_00 + b->mUnk_02) / 2;
+        x0 = x1 = v3 + (b->mX + b->mX + b->mWidth) / 2;
         x1 += 0x10;
-        y0 = v4 + (b->mUnk_01 + b->mUnk_03);
+        y0 = v4 + (b->mY + b->mHeight);
         y1 = y0 + 0x120;
     } else if ((a & 0x20) != 0) {
         v1 = -8;
         v2 = 8;
-        x0 = v3 + b->mUnk_00;
+        x0 = v3 + b->mX;
         x1 = x0 - 0x120;
-        y0 = y1 = v4 + (b->mUnk_01 + b->mUnk_01 + b->mUnk_03) / 2;
+        y0 = y1 = v4 + (b->mY + b->mY + b->mHeight) / 2;
         y1 += 0x10;
     } else if ((a & 0x10) != 0) {
         v1 = 8;
         v2 = 8;
-        x0 = v3 + (b->mUnk_00 + b->mUnk_02);
+        x0 = v3 + (b->mX + b->mWidth);
         x1 = x0 + 0x120;
-        y0 = y1 = v4 + (b->mUnk_01 + b->mUnk_01 + b->mUnk_03) / 2;
+        y0 = y1 = v4 + (b->mY + b->mY + b->mHeight) / 2;
         y1 += 0x10;
     }
     for (; y0 != y1; y0 += v2) {
@@ -339,7 +339,7 @@ Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c) {
             do {
                 x2 = x;
                 y2 = y0;
-                g = data_0217b278.mUnk_2c->mUnk_04;
+                g = gKeyboardKeys.mCurrentLayout->mNcgr;
                 h8 = g->mUnk_02 << 3;
                 w8 = g->mUnk_00 << 3;
                 v5 = x - v3;
@@ -355,7 +355,7 @@ Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c) {
                 } else if (v6 > w8 + k) {
                     y2 = y2 - (w8 + k * 2);
                 }
-                e = func_020aaea0(&data_0217b278, x2, y2);
+                e = FindKeyboardRectAt(&gKeyboardKeys, x2, y2);
                 if (e != NULL && e != b) {
                     return e;
                 }
@@ -366,7 +366,7 @@ Unk0217b278_10 *func_020aa0ec(u32 a, Unk0217b278_10 *b, Unk0217b278_10 *c) {
     return b;
 }
 
-u16 func_020aa094(u16 **a, u16 b) {
+u16 LookupCharInTablePair(u16 **a, u16 b) {
     s32 i;
     u16 *p;
     u16 r;
@@ -384,82 +384,82 @@ u16 func_020aa094(u16 **a, u16 b) {
     return b;
 }
 
-void func_020aa028(Unk0217b278_10 *a, Ncgr *b, void (*c)(Unk0217b278 *), s32 d, u32 e, u16 *f) {
+void SetupKeyboardLayout(KeyboardRect *a, Ncgr *b, void (*c)(KeyboardKeys *), s32 d, u32 e, u16 *f) {
     u32 x;
     u32 y;
 
-    data_0217b278.mUnk_2c = &data_0217b294;
-    data_0217b278.mUnk_2c->mUnk_00 = a;
-    data_0217b278.mUnk_2c->mUnk_04 = b;
-    data_0217b278.mUnk_2c->mUnk_08 = c;
-    data_0217b278.mUnk_2c->mUnk_0c = d - 1;
-    data_0217b278.mUnk_2c->mUnk_0e = e;
-    data_0217b278.mUnk_30 = f + 1;
-    if (data_0217b278.mUnk_10 != NULL) {
-        x = func_020ab61c();
-        y = func_020ab610();
-        data_0217b278.mUnk_10 = func_020aaea0(&data_0217b278, x, y);
+    gKeyboardKeys.mCurrentLayout = &data_0217b294;
+    gKeyboardKeys.mCurrentLayout->mRects = a;
+    gKeyboardKeys.mCurrentLayout->mNcgr = b;
+    gKeyboardKeys.mCurrentLayout->mCallback = c;
+    gKeyboardKeys.mCurrentLayout->mFixedKeyCount = d - 1;
+    gKeyboardKeys.mCurrentLayout->mRectCount = e;
+    gKeyboardKeys.mCharMap = f + 1;
+    if (gKeyboardKeys.mTouchStartRect != NULL) {
+        x = GetKeyboardLastTouchX();
+        y = GetKeyboardLastTouchY();
+        gKeyboardKeys.mTouchStartRect = FindKeyboardRectAt(&gKeyboardKeys, x, y);
     }
-    func_020aafa8(&data_0217b278);
-    func_020aad9c(&data_0217b278);
-    func_020aab70(&data_0217b278);
-    func_020aa300(&data_0217b278);
+    FillKeyboardBg2Scr(&gKeyboardKeys);
+    DrawKeyboardGlyphs(&gKeyboardKeys);
+    MarkKeyboardRects(&gKeyboardKeys);
+    RefreshKeyboardCursor(&gKeyboardKeys);
 }
 
-void func_020a9ff4(Unk0217b278_10 *a, Ncgr *b, u32 c) {
+void SetupKeyboardLayoutHiragana(KeyboardRect *a, Ncgr *b, u32 c) {
     data_0217b2b8[0] = 4;
     data_0217b2b8[1] = 0;
-    func_020aa028(a, b, func_020ab3ec, 9, c, data_0217b338);
+    SetupKeyboardLayout(a, b, HiraganaKatakanaLayoutCallback, 9, c, gKbdmapHiragana);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_020a9fc4(Unk0217b278_10 *a, struct Ncgr *b, u32 c) {
+void SetupKeyboardLayoutAscii(KeyboardRect *a, struct Ncgr *b, u32 c) {
     u16 *v1;
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
     v1[1] = 0;
-    func_020aa028(a, b, func_020ab45c, 6, c, data_0217b318);
+    SetupKeyboardLayout(a, b, AsciiLayoutCallback, 6, c, gKbdmapAscii);
 }
 
-void func_020a9f98(Unk0217b278_10 *a, struct Ncgr *b, u32 c) {
+void SetupKeyboardLayoutOther1(KeyboardRect *a, struct Ncgr *b, u32 c) {
     u16 *v1;
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
     v1[1] = 0;
-    func_020aa028(a, b, NULL, 4, c, data_0217b328);
+    SetupKeyboardLayout(a, b, NULL, 4, c, gKbdmapOther1);
 }
 
-void func_020a9f6c(Unk0217b278_10 *a, struct Ncgr *b, u32 c) {
+void SetupKeyboardLayoutOther2(KeyboardRect *a, struct Ncgr *b, u32 c) {
     u16 *v1;
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
     v1[1] = 0;
-    func_020aa028(a, b, NULL, 4, c, data_0217b32c);
+    SetupKeyboardLayout(a, b, NULL, 4, c, gKbdmapOther2);
 }
 
-void func_020a9f40(Unk0217b278_10 *a, struct Ncgr *b, u32 c) {
+void SetupKeyboardLayoutOther3(KeyboardRect *a, struct Ncgr *b, u32 c) {
     u16 *v1;
     v1 = (u16 *) &data_0217b2b8;
     *(u16 *) &data_0217b2b8 = 0;
     v1[1] = 0;
-    func_020aa028(a, b, NULL, 4, c, data_0217b330);
+    SetupKeyboardLayout(a, b, NULL, 4, c, gKbdmapOther3);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_020a9f20(Unk0217b278_10 *p, u32 a, u32 b, u32 c, u32 d) {
+void SetKeyboardRect(KeyboardRect *p, u32 a, u32 b, u32 c, u32 d) {
     if (p != NULL) {
-        p->mUnk_00 = a;
-        p->mUnk_01 = b;
-        p->mUnk_02 = c - a;
-        p->mUnk_03 = d - b;
-        p->mUnk_04 = 0;
-        p->mUnk_06 = 0xff00;
+        p->mX = a;
+        p->mY = b;
+        p->mWidth = c - a;
+        p->mHeight = d - b;
+        p->mNextRectOffset = 0;
+        p->mKeyId = 0xff00;
     }
 }
 
@@ -467,12 +467,12 @@ void func_020a9f20(Unk0217b278_10 *p, u32 a, u32 b, u32 c, u32 d) {
 
 #pragma thumb on
 
-void func_020a9efc(u32 a, u32 b, u32 c, u32 d) {
-    func_020a9f20(&data_0217b278.mUnk_00, a, b, c, d);
+void SetKeyboardButton0Rect(u32 a, u32 b, u32 c, u32 d) {
+    SetKeyboardRect(&gKeyboardKeys.mButton0Rect, a, b, c, d);
 }
 
-void func_020a9ed8(u32 a, u32 b, u32 c, u32 d) {
-    func_020a9f20(&data_0217b278.mUnk_08, a, b, c, d);
+void SetKeyboardButton1Rect(u32 a, u32 b, u32 c, u32 d) {
+    SetKeyboardRect(&gKeyboardKeys.mButton1Rect, a, b, c, d);
 }
 
 #pragma thumb off

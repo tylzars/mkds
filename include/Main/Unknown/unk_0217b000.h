@@ -382,133 +382,134 @@ extern Standings *gStandings;
 extern void *gBalloon;
 extern Vec3 data_0217b208;
 extern Vec3 data_0217b214;
-// 8-byte entries of the tables Unk0217b278 points to (func_020ab338 returns one).
-typedef struct Unk0217b278_10 {
-    /* 00 */ u8 mUnk_00;
-    /* 01 */ u8 mUnk_01;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
-    /* 04 */ s16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
-} Unk0217b278_10;
+// 8-byte entries of the tables KeyboardKeys points to (FindKeyboardRectByValue returns one).
+typedef struct KeyboardRect {
+    /* 00 */ u8 mX;
+    /* 01 */ u8 mY;
+    /* 02 */ u8 mWidth;
+    /* 03 */ u8 mHeight;
+    /* 04 */ s16 mNextRectOffset;
+    /* 06 */ u16 mKeyId;
+} KeyboardRect;
 
 struct Ncgr;
-struct Unk0217b278;
+struct KeyboardKeys;
 
-// Set up by func_020aa028 (at 0x1c of Unk0217b278, which mUnk_2c then points to); mUnk_08 is called with the
-// Unk0217b278 (func_020ab45c is one).
-typedef struct Unk0217b278_1c {
-    /* 00 */ Unk0217b278_10 *mUnk_00;
-    /* 04 */ struct Ncgr *mUnk_04;
-    /* 08 */ void (*mUnk_08)(struct Unk0217b278 *);
-    /* 0c */ u16 mUnk_0c;
-    /* 0e */ u16 mUnk_0e;
-} Unk0217b278_1c;
+// Set up by SetupKeyboardLayout (at 0x1c of KeyboardKeys, which mUnk_2c then points to); mUnk_08 is called with the
+// KeyboardKeys (AsciiLayoutCallback is one).
+typedef struct KeyboardLayout {
+    /* 00 */ KeyboardRect *mRects;
+    /* 04 */ struct Ncgr *mNcgr;
+    /* 08 */ void (*mCallback)(struct KeyboardKeys *);
+    /* 0c */ u16 mFixedKeyCount;
+    /* 0e */ u16 mRectCount;
+} KeyboardLayout;
 
-// Four halfwords at 0x34 of Unk0217b278 (func_020ab59c, func_020ab5bc).
-typedef struct Unk0217b278_34 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
+// Four halfwords at 0x34 of KeyboardKeys (IsRepeatCounterFiring, AdvanceRepeatCounter).
+typedef struct RepeatCounter {
+    /* 00 */ u16 mRepeatFrames;
+    /* 02 */ u16 mFirstFireFrame;
+    /* 04 */ u16 mRepeatFireFrame;
     /* 06 */ u16 mUnk_06;
-} Unk0217b278_34;
+} RepeatCounter;
 
-// Object at data_0217b2cc: an Unk0217b278_34 followed by two halfwords (func_020ab528, func_020ab580).
-typedef struct Unk0217b2ac {
-    /* 00 */ Unk0217b278_34 mUnk_00;
-    /* 08 */ u16 mUnk_08;
-    /* 0a */ u16 mUnk_0a;
-} Unk0217b2ac;
+// Object at gKeyboardKeyRepeat: an RepeatCounter followed by two halfwords (AdvanceKeyboardKeyRepeat,
+// SetupKeyboardKeyRepeat).
+typedef struct KeyboardKeyRepeat {
+    /* 00 */ RepeatCounter mCounter;
+    /* 08 */ u16 mKeyMask;
+    /* 0a */ u16 mRepeatKeys;
+} KeyboardKeyRepeat;
 
-// Object at data_0217b278, 0x54 bytes. data_0217b280, data_0217b294, data_0217b2ac and data_0217b2b8 are the
+// Object at gKeyboardKeys, 0x54 bytes. data_0217b280, data_0217b294, data_0217b2ac and data_0217b2b8 are the
 // addresses of its members at 0x08, 0x1c, 0x34 and 0x40.
-typedef struct Unk0217b278 {
-    /* 00 */ Unk0217b278_10 mUnk_00;
-    /* 08 */ Unk0217b278_10 mUnk_08;
-    /* 10 */ Unk0217b278_10 *mUnk_10;
-    /* 14 */ Unk0217b278_10 *mUnk_14;
-    /* 18 */ Unk0217b278_10 *mUnk_18;
-    /* 1c */ Unk0217b278_1c mUnk_1c;
-    /* 2c */ Unk0217b278_1c *mUnk_2c;
-    /* 30 */ u16 *mUnk_30;
-    /* 34 */ Unk0217b278_34 mUnk_34;
-    /* 3c */ u16 mUnk_3c;
-    /* 3e */ u16 mUnk_3e;
-    /* 40 */ u16 mUnk_40;
-    /* 42 */ u16 mUnk_42;
-    /* 44 */ Unk0217b278_10 *mUnk_44;
+typedef struct KeyboardKeys {
+    /* 00 */ KeyboardRect mButton0Rect;
+    /* 08 */ KeyboardRect mButton1Rect;
+    /* 10 */ KeyboardRect *mTouchStartRect;
+    /* 14 */ KeyboardRect *mTouchRect;
+    /* 18 */ KeyboardRect *mKeyDownRect;
+    /* 1c */ KeyboardLayout mLayout;
+    /* 2c */ KeyboardLayout *mCurrentLayout;
+    /* 30 */ u16 *mCharMap;
+    /* 34 */ RepeatCounter mTouchRepeat;
+    /* 3c */ u16 mKeyId;
+    /* 3e */ u16 mKeyValue;
+    /* 40 */ u16 mChosenKeyId;
+    /* 42 */ u16 mToggledKeyId;
+    /* 44 */ KeyboardRect *mCursorRect;
     /* 48 */ u8 mUnk_48[4];
-    /* 4c */ u16 (*mUnk_4c)(s32, u16);
-    /* 50 */ s32 (*mUnk_50)(u32, s32);
-} Unk0217b278;
+    /* 4c */ u16 (*mCursorCallback)(s32, u16);
+    /* 50 */ s32 (*mKeyCallback)(u32, s32);
+} KeyboardKeys;
 
-extern Unk0217b278 data_0217b278;
-extern Unk0217b2ac data_0217b2cc;
+extern KeyboardKeys gKeyboardKeys;
+extern KeyboardKeyRepeat gKeyboardKeyRepeat;
 extern u8 data_0217b280[];
 extern u16 data_0217b2b8[2];
-extern Unk0217b278_1c data_0217b294;
-extern Unk0217b278_34 data_0217b2ac;
-// Object at data_0217b2d8, 0x28 bytes (func_020ab660 updates it, func_020ab72c clears it).
-typedef struct Unk0217b2d8 {
+extern KeyboardLayout data_0217b294;
+extern RepeatCounter data_0217b2ac;
+// Object at gKeyboardInput, 0x28 bytes (AdvanceKeyboardInput updates it, ClearKeyboardInput clears it).
+typedef struct KeyboardInput {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ u16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
-    /* 08 */ u16 mUnk_08;
+    /* 04 */ u16 mKeysPressed;
+    /* 06 */ u16 mKeysDown;
+    /* 08 */ u16 mKeysReleased;
     /* 0a */ u16 mUnk_0a;
-    /* 0c */ u16 mUnk_0c[4];
-    /* 14 */ u16 mUnk_14;
-    /* 16 */ u16 mUnk_16;
+    /* 0c */ u16 mPrevSample[4];
+    /* 14 */ u16 mLastTouchX;
+    /* 16 */ u16 mLastTouchY;
     /* 18 */ s32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ u16 mUnk_20;
+    /* 1c */ s32 mTouchStatus;
+    /* 20 */ u16 mTouchDown;
     /* 22 */ u16 mUnk_22;
-    /* 24 */ BOOL mUnk_24;
-} Unk0217b2d8;
+    /* 24 */ BOOL mTouchEnabled;
+} KeyboardInput;
 
-extern Unk0217b2d8 data_0217b2d8;
-extern u16 *data_0217b318;
-extern u16 *data_0217b328;
-extern u16 *data_0217b32c;
-extern u16 *data_0217b330;
-extern u16 *data_0217b300;
-extern u16 *data_0217b304;
-extern u16 *data_0217b308;
-extern u16 *data_0217b30c;
-extern u16 *data_0217b310;
-extern u16 *data_0217b314;
-extern u16 *data_0217b31c;
-extern u16 *data_0217b320;
-extern u16 *data_0217b324;
-// Object behind data_0217b334, 0x78 bytes, allocated in func_020abcf4. func_020aba9c passes the pointers at 0x00
-// and 0x04 to DC_FlushRange with the words at 0x08 and 0x0c.
-typedef struct Unk0217b334 {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ struct Ncgr *mUnk_10[5];
+extern KeyboardInput gKeyboardInput;
+extern u16 *gKbdmapAscii;
+extern u16 *gKbdmapOther1;
+extern u16 *gKbdmapOther2;
+extern u16 *gKbdmapOther3;
+extern u16 *gKbdmapKatakana;
+extern u16 *gKbdmapAsciiShift;
+extern u16 *gKbdmapKatakanaDakuten;
+extern u16 *gKbdmapHiraganaDakuten;
+extern u16 *gKbdmapHiraganaHandaku;
+extern u16 *gKbdmapHiraganaSmall;
+extern u16 *gKbdmapAsciiCaps;
+extern u16 *gKbdmapKatakanaHandaku;
+extern u16 *gKbdmapKatakanaSmall;
+// Object behind gKeyboardTextEntry, 0x78 bytes, allocated in InitKeyboardTextEntry. UploadKeyboardBg2Data passes the
+// pointers at 0x00 and 0x04 to DC_FlushRange with the words at 0x08 and 0x0c.
+typedef struct KeyboardTextEntry {
+    /* 00 */ void *mBg2Char;
+    /* 04 */ void *mBg2Scr;
+    /* 08 */ s32 mBg2CharSize;
+    /* 0c */ s32 mBg2ScrSize;
+    /* 10 */ struct Ncgr *mNcgrs[5];
     /* 24 */ struct Ncgr *mUnk_24;
-    /* 28 */ void *mUnk_28[6];
-    /* 40 */ u16 *mUnk_40;
-    /* 44 */ u16 mUnk_44;
-    /* 46 */ u16 mUnk_46;
+    /* 28 */ void *mKbds[6];
+    /* 40 */ u16 *mText;
+    /* 44 */ u16 mTextCapacity;
+    /* 46 */ u16 mTextIndex;
     /* 48 */ u16 mUnk_48;
-    /* 4a */ u16 mUnk_4a;
-    /* 4c */ s32 mUnk_4c;
-    /* 50 */ s32 mUnk_50;
-    /* 54 */ s32 mUnk_54;
-    /* 58 */ s32 mUnk_58;
-    /* 5c */ s32 mUnk_5c;
-    /* 60 */ s32 mUnk_60;
-    /* 64 */ s32 mUnk_64;
-    /* 68 */ s32 mUnk_68;
-    /* 6c */ s32 mUnk_6c;
-    /* 70 */ s32 mUnk_70;
-    /* 74 */ s32 mUnk_74;
-} Unk0217b334;
+    /* 4a */ u16 mTextLimit;
+    /* 4c */ s32 mLayoutIndex;
+    /* 50 */ s32 mOffsetX;
+    /* 54 */ s32 mOffsetY;
+    /* 58 */ s32 mButton0X0;
+    /* 5c */ s32 mButton0Y0;
+    /* 60 */ s32 mButton0X1;
+    /* 64 */ s32 mButton0Y1;
+    /* 68 */ s32 mButton1X0;
+    /* 6c */ s32 mButton1Y0;
+    /* 70 */ s32 mButton1X1;
+    /* 74 */ s32 mButton1Y1;
+} KeyboardTextEntry;
 
-extern Unk0217b334 *data_0217b334;
-extern u16 *data_0217b338;
+extern KeyboardTextEntry *gKeyboardTextEntry;
+extern u16 *gKbdmapHiragana;
 extern void *gShineBalloon;
 typedef struct TitleStateHandlers {
     /* 00 */ UnkFunc *mUnk_00;
@@ -926,25 +927,25 @@ struct ItemObject;
 extern struct ItemObject **data_0217bd30;
 
 extern void *data_0217b040;
-extern s32 data_0217b234;
-extern s32 data_0217b238;
-extern u16 *data_0217b23c[2];
-extern u16 *data_0217b244[2];
-extern u16 *data_0217b24c[2];
-// Object at data_0217b254, 0x24 bytes.
-typedef struct Unk0217b254 {
-    /* 00 */ struct Unk02022aa8 *mUnk_00;
-    /* 04 */ void *mUnk_04;
+extern s32 gKeyboardOffsetX;
+extern s32 gKeyboardOffsetY;
+extern u16 *gCharTablePair3[2];
+extern u16 *gCharTablePair2[2];
+extern u16 *gCharTablePair1[2];
+// Object at gKeyboardCanvas, 0x24 bytes.
+typedef struct KeyboardCanvas {
+    /* 00 */ struct Unk02022aa8 *mFont;
+    /* 04 */ void *mBg2Char;
     /* 08 */ void *mUnk_08;
-    /* 0c */ u16 *mUnk_0c;
+    /* 0c */ u16 *mBg2Scr;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
-} Unk0217b254;
+} KeyboardCanvas;
 
-extern Unk0217b254 data_0217b254;
+extern KeyboardCanvas gKeyboardCanvas;
 struct Unk0217b340;
 struct Unk0217b344;
 struct Nclr;

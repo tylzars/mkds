@@ -35,7 +35,7 @@ typedef struct Unk02022dd8 {
     /* 0c */ Unk02022dd8_s mUnk_0c;
 } Unk02022dd8;
 
-// Object behind Unk02022ce4.mUnk_08: a byte at 0x01, a halfword at 0x02 and bytes from 0x08 (func_020aad9c).
+// Object behind Unk02022ce4.mUnk_08: a byte at 0x01, a halfword at 0x02 and bytes from 0x08 (DrawKeyboardGlyphs).
 typedef struct Unk02022ce4_08 {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;
