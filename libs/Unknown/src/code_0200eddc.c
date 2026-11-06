@@ -26,28 +26,30 @@
 
 u32 gArena2Enabled;
 
+// Fills in the arena bounds on the first call only; the extra main memory arena starts out empty.
 void OS_InitArena(void) {
     if (data_021701b4 != 0) {
         return;
     }
     data_021701b4 = 1;
-    OS_SetArenaHi(0, OS_GetInitArenaHi(0));
-    OS_SetArenaLo(0, OS_GetInitArenaLo(0));
-    OS_SetArenaLo(2, 0);
-    OS_SetArenaHi(2, 0);
-    OS_SetArenaHi(3, OS_GetInitArenaHi(3));
-    OS_SetArenaLo(3, OS_GetInitArenaLo(3));
-    OS_SetArenaHi(4, OS_GetInitArenaHi(4));
-    OS_SetArenaLo(4, OS_GetInitArenaLo(4));
-    OS_SetArenaHi(5, OS_GetInitArenaHi(5));
-    OS_SetArenaLo(5, OS_GetInitArenaLo(5));
-    OS_SetArenaHi(6, OS_GetInitArenaHi(6));
-    OS_SetArenaLo(6, OS_GetInitArenaLo(6));
+    OS_SetArenaHi(OS_ARENA_MAIN, OS_GetInitArenaHi(OS_ARENA_MAIN));
+    OS_SetArenaLo(OS_ARENA_MAIN, OS_GetInitArenaLo(OS_ARENA_MAIN));
+    OS_SetArenaLo(OS_ARENA_MAINEX, NULL);
+    OS_SetArenaHi(OS_ARENA_MAINEX, NULL);
+    OS_SetArenaHi(OS_ARENA_ITCM, OS_GetInitArenaHi(OS_ARENA_ITCM));
+    OS_SetArenaLo(OS_ARENA_ITCM, OS_GetInitArenaLo(OS_ARENA_ITCM));
+    OS_SetArenaHi(OS_ARENA_DTCM, OS_GetInitArenaHi(OS_ARENA_DTCM));
+    OS_SetArenaLo(OS_ARENA_DTCM, OS_GetInitArenaLo(OS_ARENA_DTCM));
+    OS_SetArenaHi(OS_ARENA_SHARED, OS_GetInitArenaHi(OS_ARENA_SHARED));
+    OS_SetArenaLo(OS_ARENA_SHARED, OS_GetInitArenaLo(OS_ARENA_SHARED));
+    OS_SetArenaHi(OS_ARENA_WRAM_MAIN, OS_GetInitArenaHi(OS_ARENA_WRAM_MAIN));
+    OS_SetArenaLo(OS_ARENA_WRAM_MAIN, OS_GetInitArenaLo(OS_ARENA_WRAM_MAIN));
 }
 
+// Sets up the extra main memory arena, and the memory protection regions when that arena is off.
 void OS_InitArenaEx(void) {
-    OS_SetArenaHi(2, OS_GetInitArenaHi(2));
-    OS_SetArenaLo(2, OS_GetInitArenaLo(2));
+    OS_SetArenaHi(OS_ARENA_MAINEX, OS_GetInitArenaHi(OS_ARENA_MAINEX));
+    OS_SetArenaLo(OS_ARENA_MAINEX, OS_GetInitArenaLo(OS_ARENA_MAINEX));
     if (gArena2Enabled != 0 && (OS_GetConsoleType() & 3) != 1) {
         return;
     }
@@ -55,96 +57,90 @@ void OS_InitArenaEx(void) {
     OS_SetProtectionRegion2(0x23e0021);
 }
 
-u32 OS_GetArenaHi(int arg0) {
-    u32 value0 = (u32) arg0;
-    value0 = (value0 << 2);
-    value0 = (value0) + (0x2700000u);
-    value0 = (value0) + (0xff000u);
-    value0 = (u32) * (const u32 *) ((value0) + (3524));
-    return value0;
+// Returns the Hi bound of the arena.
+void *OS_GetArenaHi(OSArenaId id) {
+    return ((OSArenaInfo *) 0x027ffda0)->hi[id];
 }
 
-u32 OS_GetArenaLo(int arg0) {
-    u32 value0 = (u32) arg0;
-    value0 = (value0 << 2);
-    value0 = (value0) + (0x2700000u);
-    value0 = (value0) + (0xff000u);
-    value0 = (u32) * (const u32 *) ((value0) + (3488));
-    return value0;
+// Returns the Lo bound of the arena.
+void *OS_GetArenaLo(OSArenaId id) {
+    return ((OSArenaInfo *) 0x027ffda0)->lo[id];
 }
 
-u32 OS_GetInitArenaHi(u32 i) {
-    u32 a;
-    s32 n;
-    u32 c;
+// Returns the Hi bound an arena starts out with.
+void *OS_GetInitArenaHi(OSArenaId id) {
+    u32 dtcmStart;
+    s32 sysStackSize;
+    u32 irqStackBottom;
 
-    switch (i) {
-        case 0:
-            return 0x23e0000;
-        case 2:
+    switch (id) {
+        case OS_ARENA_MAIN:
+            return (void *) 0x23e0000;
+        case OS_ARENA_MAINEX:
             if (gArena2Enabled == 0 || (OS_GetConsoleType() & 3) == 1) {
-                return 0;
+                return NULL;
             }
-            return 0x2700000;
-        case 3:
-            return 0x2000000;
-        case 4:
-            a = (u32) &data_027e0000;
-            c = a + 0x3f80 - (u32) data_00000c00;
-            n = (s32) data_00002800;
-            if (n == 0) {
-                return a < 0x27e00e0 ? 0x27e00e0 : a;
+            return (void *) 0x2700000;
+        case OS_ARENA_ITCM:
+            return (void *) 0x2000000;
+        case OS_ARENA_DTCM:
+            dtcmStart = (u32) &data_027e0000;
+            irqStackBottom = dtcmStart + 0x3f80 - (u32) data_00000c00;
+            sysStackSize = (s32) data_00002800;
+            if (sysStackSize == 0) {
+                return (void *) (dtcmStart < 0x27e00e0 ? 0x27e00e0 : dtcmStart);
             }
-            if (n < 0) {
-                return 0x27e00e0 - n;
+            if (sysStackSize < 0) {
+                return (void *) (0x27e00e0 - sysStackSize);
             }
-            return c - n;
-        case 5:
-            return 0x27ff680;
-        case 6:
-            return 0x37f8000;
+            return (void *) (irqStackBottom - sysStackSize);
+        case OS_ARENA_SHARED:
+            return (void *) 0x27ff680;
+        case OS_ARENA_WRAM_MAIN:
+            return (void *) 0x37f8000;
     }
-    return 0;
+    return NULL;
 }
 
-u32 OS_GetInitArenaLo(u32 i) {
-    switch (i) {
-        case 0:
-            return 0x21da300;
-        case 2:
+// Returns the Lo bound an arena starts out with.
+void *OS_GetInitArenaLo(OSArenaId id) {
+    switch (id) {
+        case OS_ARENA_MAIN:
+            return (void *) 0x21da300;
+        case OS_ARENA_MAINEX:
             if (gArena2Enabled == 0 || (OS_GetConsoleType() & 3) == 1) {
-                return 0;
+                return NULL;
             }
-            return (u32) data_02400000;
-        case 3:
-            return 0x1ffffa0;
-        case 4:
-            return 0x27e00e0;
-        case 5:
-            return 0x27ff000;
-        case 6:
-            return 0x37f8000;
+            return data_02400000;
+        case OS_ARENA_ITCM:
+            return (void *) 0x1ffffa0;
+        case OS_ARENA_DTCM:
+            return (void *) 0x27e00e0;
+        case OS_ARENA_SHARED:
+            return (void *) 0x27ff000;
+        case OS_ARENA_WRAM_MAIN:
+            return (void *) 0x37f8000;
     }
-    return 0;
+    return NULL;
 }
 
-void OS_SetArenaHi(u32 i, u32 v) {
-    ((vu32 *) 0x027ffdc4)[i] = v;
+// Stores the Hi bound of the arena.
+void OS_SetArenaHi(OSArenaId id, void *newHi) {
+    ((OSArenaInfo *) 0x027ffda0)->hi[id] = newHi;
 }
 
-void OS_SetArenaLo(u32 i, u32 v) {
-    ((vu32 *) 0x027ffda0)[i] = v;
+// Stores the Lo bound of the arena.
+void OS_SetArenaLo(OSArenaId id, void *newLo) {
+    ((OSArenaInfo *) 0x027ffda0)->lo[id] = newLo;
 }
 
-u32 OS_DisableMainExArena(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &gArena2Enabled;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    return value0;
+// Turns the extra main memory arena off; must run before OS_Init.
+void OS_DisableMainExArena(void) {
+    gArena2Enabled = 0;
 }
 
+// Starts up the OS: arenas, PXI, locks, interrupts, exceptions, memory, threads, reset, cartridge, card and power
+// management.
 void OS_Init(void) {
     OS_InitArena();
     PxiInit();
@@ -213,7 +209,7 @@ loop:
 }
 
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void DC_StoreRange(void *p, u32 n) {
+asm void DC_StoreRange(const void *p, u32 n) {
     add r1, r1, r0
     bic r0, r0, #0x1f
 loop:
@@ -225,7 +221,7 @@ loop:
 }
 
 // Not compiled code: C has no way to write a coprocessor 15 register (mcr).
-asm void DC_FlushRange(const void *a, int b) {
+asm void DC_FlushRange(const void *p, int n) {
     mov ip, #0x0
     add r1, r1, r0
     bic r0, r0, #0x1f

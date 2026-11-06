@@ -76,14 +76,14 @@ void func_02036678(void) {
 }
 
 void func_020365f0(void) {
-    u32 a;
+    u8 *a;
     func_020366bc();
     func_0203907c();
     data_02174e78.mUnk_04 = (u32) ARM9_TEXT_START;
     data_02174e78.mUnk_08 = OS_GetArenaLo(0);
     func_02036678();
     a = OS_GetArenaLo(0);
-    data_02174e78.mHeap = func_02036c4c(a, OS_GetArenaHi(0) - a);
+    data_02174e78.mHeap = func_02036c4c(a, (u8 *) OS_GetArenaHi(0) - a);
     func_02036590(&data_02174e88, 0);
     data_02174e78.mUnk_10 = data_usa_021646ec;
     func_020394cc();

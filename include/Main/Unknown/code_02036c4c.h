@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void *func_02036c4c(u32 arg0, u32 arg1);
+void *func_02036c4c(void *arg0, u32 arg1);

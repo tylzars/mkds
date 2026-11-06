@@ -373,7 +373,7 @@ extern Unk02036590 *data_02174e70;
 typedef struct Unk02174e78 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
+    /* 08 */ void *mUnk_08;
     /* 0c */ void *mHeap;
     /* 10 */ const char *mUnk_10;
 } Unk02174e78;

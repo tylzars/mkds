@@ -1,6 +1,6 @@
 #include "Main/Unknown/code_02036c4c.h"
 #include "code_020176c0.h"
 
-void *func_02036c4c(u32 arg0, u32 arg1) {
-    return ExpHeapCreate((void *) arg0, arg1, 1);
+void *func_02036c4c(void *arg0, u32 arg1) {
+    return ExpHeapCreate(arg0, arg1, 1);
 }
