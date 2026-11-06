@@ -260,23 +260,23 @@ typedef struct Unk02174e40_24 {
     /* 20 */ u8 *mUnk_20;
 } Unk02174e40_24;
 
-// Object behind data_02174e40, 0xe0 bytes.
-typedef struct Unk02174e40 {
+// 0xe0 bytes.
+typedef struct TimeAttackGhostSend {
     /* 000 */ u8 mUnk_000[0x24];
     /* 024 */ Unk02174e40_24 mUnk_024;
     /* 048 */ void *mUnk_048[2];
     /* 050 */ Unk02174e14_00 mUnk_050[3];
     /* 0a4 */ s32 mUnk_0a4;
-    /* 0a8 */ Bmg *mUnk_0a8;
-    /* 0ac */ Bmg *mUnk_0ac;
-    /* 0b0 */ s32 mUnk_0b0;
+    /* 0a8 */ Bmg *mCommonMessages;
+    /* 0ac */ Bmg *mGhostMessages;
+    /* 0b0 */ s32 mState;
     /* 0b4 */ s32 mUnk_0b4;
     /* 0b8 */ u8 mUnk_0b8[0x14];
     /* 0cc */ Unk02025ebc mUnk_0cc;
     /* 0dc */ void *mHeap;
-} Unk02174e40;
+} TimeAttackGhostSend;
 
-extern Unk02174e40 *data_02174e40;
+extern TimeAttackGhostSend *gTimeAttackGhostSend;
 
 struct Unk02174e44;
 

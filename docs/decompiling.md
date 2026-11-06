@@ -629,7 +629,7 @@ Expression shapes:
 - A loop counter set to 0 before earlier calls and kept in a callee-saved register across them was initialised at
   its declaration: `u16 i = 0;` with `for (; i < n; i++)` (func_0206c354).
 - Two induction pointers for one row address, both set after the guard: an explicit same-type array cast on one access,
-  `(s16 (*)[4]) tbl + i` (the only spelling that matched; func_0202d210).
+  `(s16 (*)[4]) tbl + i` (the only spelling that matched; InitTimeAttackGhostSend).
 - A struct-member step placed after the counter increments is in the for update, after `k++`; its reset is in the for
   init, after `k = 0` (func_ov003_021c1cd8).
 - Thumb: `movs rX, rY` copying a shared zero for a loop's induction variable, or a loop counter's constant stored before
@@ -912,7 +912,7 @@ Expression shapes:
   addresses at every call, `f(p, (u32 *) &x, (u32 *) &y)` (RefreshJb3ListRowPositions).
 - A frame about 0x200 too big with a separate scratch buffer: make the buffer an array member of a local struct
   (`h.mUnk_008`; func_ov000_0219fbec).
-- Thumb: values read before a call and kept across it: read them into locals before the call (func_0202d210).
+- Thumb: values read before a call and kept across it: read them into locals before the call (InitTimeAttackGhostSend).
 - Thumb: a `movs` copy of `b - 1` right after a call, used for an index and then times `0x16`: `v = b - 1; ... a[v] ...;
   v *= 0x16;` (func_02007698).
 
