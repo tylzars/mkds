@@ -147,7 +147,7 @@ BOOL func_0205373c(void) {
     u16 v;
 
     q = &data_0217aa00->mUnk_15bc_view;
-    data_0217aa00->mUnk_1606 = data_0217aa00->mUnk_15bc->mUnk_000[data_0217aa00->mUnk_15bc->mUnk_808].mArrivedMembers;
+    data_0217aa00->mUnk_1606 = data_0217aa00->mUnk_15bc->mDs[data_0217aa00->mUnk_15bc->mWriteIndex].mArrivedMembers;
     data_0217aa00->mUnk_0454 &= ~0x10;
     switch (data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) {
         case 1:

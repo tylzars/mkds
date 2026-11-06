@@ -12,14 +12,16 @@ struct Unk02005210;
 struct Unk02142aa8;
 struct Unk021425e8;
 
-// The object that InitWorkBufferWithSize sets up.
+// System work area set up by WmInitCore.
 extern struct Unk02142aa8 *data_0217eed4;
+// Nonzero while the library is set up.
 extern u16 data_0217eed0;
+// Ring of free command messages.
 extern OSMessageQueue data_0217eed8;
-// Word array that InitWorkBufferWithSize gives data_0217eed8, an object ReceiveCommandReply fills in before calling the
-// function pointers, and the ten 0x100-byte buffers InitWorkBufferWithSize passes to OS_SendMessage.
 extern void *data_0217eef8[10];
+// Message WmReceiveFifo builds for the port callbacks on connect and disconnect.
 extern struct Unk021425e8 data_0217ef20;
+// The ten 0x100-byte command messages.
 extern u8 data_0217ef60[10][0x100];
 extern struct Unk02005210 *data_0217eeb0;
 // Function pointers called and cleared by ExitTail (data_0217e984) and exit (data_0217e988).

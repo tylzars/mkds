@@ -188,7 +188,7 @@ s32 func_ov000_021a629c(Unk021a5a78 *a, void (*b)(Unk021a586c *)) {
             OS_RestoreInterrupts(v1);
             return 1;
     }
-    switch (WM_Init(data_ov000_021b5f50, (u16) data_ov000_021b5f50->mUnk_226c)) {
+    switch (WM_Init(data_ov000_021b5f50, data_ov000_021b5f50->mUnk_226c)) {
         case 3:
             func_ov000_021a57fc(0xb);
             OS_RestoreInterrupts(v1);
@@ -519,7 +519,7 @@ s32 func_ov000_021a5c24(void) {
         func_ov000_021a57fc(0xd);
         data_ov000_021b5f50->mUnk_2280 = 9;
     } else {
-        p = GetStatusArea();
+        p = WMi_GetStatusAddress();
         DC_InvalidateRange(p, 2);
         switch (p->mState) {
             case 0:
@@ -813,7 +813,7 @@ void func_ov000_021a54b0(Unk021425e8 *v1) {
                     break;
                 case 0x19:
                     g = data_ov000_021b5f50;
-                    r = WM_SetWEPKeyEx((u32) func_ov000_021a54b0, g->mUnk_2250, g->mUnk_2251, g->mUnk_2200);
+                    r = WM_SetWEPKeyEx(func_ov000_021a54b0, g->mUnk_2250, g->mUnk_2251, g->mUnk_2200);
                     break;
                 case 0x27: {
                     u32 v;

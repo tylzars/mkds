@@ -9,792 +9,838 @@
 #include "code_0214d93c.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-s32 WM_StartDCF(Unk021425e8Func a, void *b, u32 c) {
-    Unk02142aa8 *p;
-    s32 r;
+// Starts DCF reception into recvBuf (command 17). Needs state 8 and DCF not running; recvBufSize must be at least 0x10.
+s32 WM_StartDCF(Unk021425e8Func callback, void *recvBuf, u16 recvBufSize) {
+    Unk02142aa8 *work;
+    s32 result;
 
-    p = GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(1, 8);
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckStateEx(1, 8);
+    if (result != 0) {
+        return result;
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_010, 4);
-    if (p->mStatusArea->mUnk_010 == 1) {
+    DC_InvalidateRange(&work->mStatusArea->mDcfFlag, 4);
+    if (work->mStatusArea->mDcfFlag == 1) {
         return 3;
     }
-    if (c < 0x10) {
+    if (recvBufSize < 0x10) {
         return 6;
     }
-    if (b == 0) {
+    if (recvBuf == 0) {
         return 6;
     }
-    DC_StoreRange(b, c);
-    SetCommandCallback(0x11, (u32) a);
-    r = SendCommandMessage(0x11, 2, b, c);
-    if (r == 0) {
+    DC_StoreRange(recvBuf, recvBufSize);
+    WMi_SetCallbackTable(0x11, callback);
+    result = WMi_SendCommand(0x11, 2, recvBuf, recvBufSize);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_SetDCFData(Unk021425e8Func a, const void *b, void *c, u32 d) {
-    Unk02142aa8 *p;
-    s32 r;
-    u32 w[2];
+// Sends sendDataSize bytes (at most 0x5e4) of sendData to the station destAdr (command 18). Needs state 11 and DCF
+// running.
+s32 WM_SetDCFData(Unk021425e8Func callback, const void *destAdr, void *sendData, u16 sendDataSize) {
+    Unk02142aa8 *work;
+    s32 result;
+    u32 address[2];
 
-    p = GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(1, 11);
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckStateEx(1, 11);
+    if (result != 0) {
+        return result;
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_010, 4);
-    if (p->mStatusArea->mUnk_010 == 0) {
+    DC_InvalidateRange(&work->mStatusArea->mDcfFlag, 4);
+    if (work->mStatusArea->mDcfFlag == 0) {
         return 3;
     }
-    if (d > 0x5e4) {
+    if (sendDataSize > 0x5e4) {
         return 6;
     }
-    DC_StoreRange(c, d);
-    SetCommandCallback(0x12, (u32) a);
-    MI_CpuCopy8(b, w, 6);
-    r = SendCommandMessage(0x12, 4, w[0], w[1], c, d);
-    if (r == 0) {
+    DC_StoreRange(sendData, sendDataSize);
+    WMi_SetCallbackTable(0x12, callback);
+    MI_CpuCopy8(destAdr, address, 6);
+    result = WMi_SendCommand(0x12, 4, address[0], address[1], sendData, sendDataSize);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_EndDCF(Unk021425e8Func a) {
-    Unk02142aa8 *p;
-    s32 r;
+// Ends DCF (command 19). Needs state 11 and DCF running.
+s32 WM_EndDCF(Unk021425e8Func callback) {
+    Unk02142aa8 *work;
+    s32 result;
 
-    p = GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(1, 11);
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckStateEx(1, 11);
+    if (result != 0) {
+        return result;
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_010, 4);
-    if (p->mStatusArea->mUnk_010 == 0) {
+    DC_InvalidateRange(&work->mStatusArea->mDcfFlag, 4);
+    if (work->mStatusArea->mDcfFlag == 0) {
         return 3;
     }
-    SetCommandCallback(0x13, (u32) a);
-    r = SendCommandMessage(0x13, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(0x13, callback);
+    result = WMi_SendCommand(0x13, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_StartMPEx(Unk021425e8Func a, u32 b, s32 c, u32 d, u16 e, u16 f, u16 g, u32 h, u32 i, u32 j, u32 k) {
-    Unk02142aa8 *p;
-    s32 r;
-    s32 w;
+// Starts the MP protocol (command 14). Needs state 7 or 8 and MP not running; the buffer sizes are checked against
+// WM_GetMPReceiveBufferSize and WM_GetMPSendBufferSize.
+s32 WM_StartMPEx(Unk021425e8Func callback, u32 recvBuf, u16 recvBufSize, u32 sendBuf, u16 sendBufSize, u16 mpFreq,
+                 u16 defaultRetryCount, BOOL minPollBmpMode, BOOL singlePacketMode, BOOL fixFreqMode,
+                 BOOL ignoreFatalError) {
+    Unk02142aa8 *work;
+    s32 result;
+    s32 sendSize;
 
-    p = GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(2, 7, 8);
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckStateEx(2, 7, 8);
+    if (result != 0) {
+        return result;
     }
-    DC_InvalidateRange(&p->mStatusArea->mOwnMemberIndex, 2);
-    DC_InvalidateRange(&p->mStatusArea->mUnk_0c2, 2);
-    if (p->mStatusArea->mOwnMemberIndex != 0) {
-        if (p->mStatusArea->mUnk_0c2 != 1) {
+    DC_InvalidateRange(&work->mStatusArea->mOwnMemberIndex, 2);
+    DC_InvalidateRange(&work->mStatusArea->mPwrMgtMode, 2);
+    if (work->mStatusArea->mOwnMemberIndex != 0) {
+        if (work->mStatusArea->mPwrMgtMode != 1) {
             return 3;
         }
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_00c, 4);
-    if (p->mStatusArea->mUnk_00c == 1) {
+    DC_InvalidateRange(&work->mStatusArea->mMpFlag, 4);
+    if (work->mStatusArea->mMpFlag == 1) {
         return 3;
     }
-    if (c < WM_GetMPReceiveBufferSize()) {
+    if (recvBufSize < WM_GetMPReceiveBufferSize()) {
         return 6;
     }
-    if ((c & 0x3f) != 0) {
+    if ((recvBufSize & 0x3f) != 0) {
         return 6;
     }
-    w = e;
-    if (w < WM_GetMPSendBufferSize()) {
+    sendSize = sendBufSize;
+    if (sendSize < WM_GetMPSendBufferSize()) {
         return 6;
     }
-    if ((w & 0x1f) != 0) {
+    if ((sendSize & 0x1f) != 0) {
         return 6;
     }
-    SetCommandCallback(0xe, (u32) a);
-    r = SendCommandMessage(0xe, 10, b, (u32) c >> 1, d, e, f, g, h, i, j, k);
-    if (r == 0) {
+    WMi_SetCallbackTable(0xe, callback);
+    result = WMi_SendCommand(0xe, 10, recvBuf, (u32) recvBufSize >> 1, sendBuf, sendBufSize, mpFreq, defaultRetryCount,
+                             minPollBmpMode, singlePacketMode, fixFreqMode, ignoreFatalError);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 func_021441d0(Unk021425e8Func a, u32 b) {
-    s32 r;
+// Sets the MP frequency (command 35). Needs state 9.
+s32 WM_SetMPFrequency(Unk021425e8Func callback, u32 mpFreq) {
+    s32 result;
 
-    GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(1, 9);
-    if (r != 0) {
-        return r;
+    WMi_GetSystemWork();
+    result = WMi_CheckStateEx(1, 9);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(0x23, (u32) a);
-    r = SendCommandMessage(0x23, 1, b);
-    if (r == 0) {
+    WMi_SetCallbackTable(0x23, callback);
+    result = WMi_SendCommand(0x23, 1, mpFreq);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_SetMPDataToPortEx(UnkFunc *a, Unk021450ec *b, void *c, s32 d, u16 e, u16 f, u16 g) {
-    u16 v;
-    u32 w;
-    Unk02142988 *q;
-    s32 r;
-    s32 flag;
+// Queues sendDataSize bytes of sendData for the stations in destBitmap on port with priority prio (command 15).
+// Needs state 9 or 10; returns 7 when a parent has no child connected. callback is called with arg when it is sent.
+s32 WM_SetMPDataToPortEx(UnkFunc *callback, void *arg, void *sendData, s32 sendDataSize, u16 destBitmap, u16 port,
+                         u16 prio) {
+    u16 limit;
+    u32 children;
+    Unk02142988 *status;
+    s32 result;
+    s32 parent;
 
-    w = 1;
-    q = GetWorkBuffer()->mStatusArea;
-    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
-    if (r != 0) {
-        return r;
+    children = 1;
+    status = WMi_GetSystemWork()->mStatusArea;
+    result = WMi_CheckStateEx(2, 9, 10);
+    if (result != 0) {
+        return result;
     }
-    DC_InvalidateRange(&q->mUnk_18e, 2);
-    v = q->mUnk_18e;
-    DC_InvalidateRange(&q->mOwnMemberIndex, 2);
-    flag = q->mOwnMemberIndex == 0 ? w : 0;
-    if (flag == 1) {
-        DC_InvalidateRange(&q->mConnectedChildren, 2);
-        w = q->mConnectedChildren;
-        DC_InvalidateRange(&q->mUnk_086, 2);
+    DC_InvalidateRange(&status->mMpMaxSendSize, 2);
+    limit = status->mMpMaxSendSize;
+    DC_InvalidateRange(&status->mOwnMemberIndex, 2);
+    parent = status->mOwnMemberIndex == 0 ? children : 0;
+    if (parent == 1) {
+        DC_InvalidateRange(&status->mConnectedChildren, 2);
+        children = status->mConnectedChildren;
+        DC_InvalidateRange(&status->mMpReadyBitmap, 2);
     }
-    if (c == 0) {
+    if (sendData == 0) {
         return 6;
     }
-    if (w == 0) {
+    if (children == 0) {
         return 7;
     }
-    DC_InvalidateRange(&q->mUnk_050, 2);
-    if (c == q->mUnk_050) {
+    DC_InvalidateRange(&status->mMpSendBuf, 2);
+    if (sendData == status->mMpSendBuf) {
         return 6;
     }
-    if (d + (flag != 0 ? 4 : 2) > v) {
+    if (sendDataSize + (parent != 0 ? 4 : 2) > limit) {
         return 6;
     }
-    if (d == 0) {
+    if (sendDataSize == 0) {
         return 6;
     }
-    DC_StoreRange(c, d);
-    r = SendCommandMessage(0xf, 7, c, d, e, f, g, a, b);
-    if (r == 0) {
+    DC_StoreRange(sendData, sendDataSize);
+    result = WMi_SendCommand(0xf, 7, sendData, sendDataSize, destBitmap, port, prio, callback, arg);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_EndMP(Unk021425e8Func a) {
-    Unk02142aa8 *p;
-    s32 r;
+// Ends the MP protocol (command 16). Needs state 9 or 10 and MP running.
+s32 WM_EndMP(Unk021425e8Func callback) {
+    Unk02142aa8 *work;
+    s32 result;
 
-    p = GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckStateEx(2, 9, 10);
+    if (result != 0) {
+        return result;
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_00c, 4);
-    if (p->mStatusArea->mUnk_00c == 0) {
+    DC_InvalidateRange(&work->mStatusArea->mMpFlag, 4);
+    if (work->mStatusArea->mMpFlag == 0) {
         return 3;
     }
-    SetCommandCallback(0x10, (u32) a);
-    r = SendCommandMessage(0x10, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(0x10, callback);
+    result = WMi_SendCommand(0x10, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_Enable(Unk021425e8Func a) {
-    Unk02142aa8 *p;
-    s32 r;
+// Enables the wireless hardware (command 3). Needs state 0.
+s32 WM_Enable(Unk021425e8Func callback) {
+    Unk02142aa8 *work;
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 0);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 0);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(3, (u32) a);
-    p = GetWorkBuffer();
-    r = SendCommandMessage(3, 3, p->mUnk_000, p->mStatusArea, p->mMessageArea);
-    if (r == 0) {
+    WMi_SetCallbackTable(3, callback);
+    work = WMi_GetSystemWork();
+    result = WMi_SendCommand(3, 3, work->mWM7, work->mStatusArea, work->mMessageArea);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_Disable(Unk021425e8Func a) {
-    s32 r;
+// Disables the wireless hardware (command 4). Needs state 1.
+s32 WM_Disable(Unk021425e8Func callback) {
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 1);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 1);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(4, (u32) a);
-    r = SendCommandMessage(4, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(4, callback);
+    result = WMi_SendCommand(4, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_PowerOn(Unk021425e8Func a) {
-    s32 r;
+// Powers the wireless hardware on (command 5). Needs state 1.
+s32 WM_PowerOn(Unk021425e8Func callback) {
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 1);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 1);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(5, (u32) a);
-    r = SendCommandMessage(5, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(5, callback);
+    result = WMi_SendCommand(5, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_PowerOff(Unk021425e8Func a) {
-    s32 r;
+// Powers the wireless hardware off (command 6). Needs state 2.
+s32 WM_PowerOff(Unk021425e8Func callback) {
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 2);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 2);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(6, (u32) a);
-    r = SendCommandMessage(6, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(6, callback);
+    result = WMi_SendCommand(6, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_Initialize(void *a, Unk021425e8Func b, u32 c) {
-    Unk02142aa8 *p;
-    s32 r;
+// Sets up the system buffer with WM_Init, then starts the wireless hardware (command 0).
+s32 WM_Initialize(void *wmSysBuf, Unk021425e8Func callback, u16 dmaNo) {
+    Unk02142aa8 *work;
+    s32 result;
 
-    r = WM_Init(a, c);
-    if (r != 0) {
-        return r;
+    result = WM_Init(wmSysBuf, dmaNo);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(0, (u32) b);
-    p = GetWorkBuffer();
-    r = SendCommandMessage(0, 3, p->mUnk_000, p->mStatusArea, p->mMessageArea);
-    if (r == 0) {
+    WMi_SetCallbackTable(0, callback);
+    work = WMi_GetSystemWork();
+    result = WMi_SendCommand(0, 3, work->mWM7, work->mStatusArea, work->mMessageArea);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_Reset(Unk021425e8Func a) {
-    s32 r;
+// Resets the wireless state back to idle (command 1). Needs state 2 or later.
+s32 WM_Reset(Unk021425e8Func callback) {
+    s32 result;
 
-    r = GetErrorUnlessStateAtLeast2();
-    if (r != 0) {
-        return r;
+    result = WMi_CheckIdle();
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(1, (u32) a);
-    r = SendCommandMessage(1, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(1, callback);
+    result = WMi_SendCommand(1, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_End(Unk021425e8Func a) {
-    s32 r;
+// Shuts the wireless hardware down (command 2). Needs state 2.
+s32 WM_End(Unk021425e8Func callback) {
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 2);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 2);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(2, (u32) a);
-    r = SendCommandMessage(2, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(2, callback);
+    result = WMi_SendCommand(2, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_SetParentParameter(Unk021425e8Func a, Unk02143c30 *b) {
-    s32 r;
+// Sets the parent parameters (command 7). Needs state 2; game info and beacon data sizes are limited to 0x200 bytes.
+s32 WM_SetParentParameter(Unk021425e8Func callback, Unk02143c30 *pparaBuf) {
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 2);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 2);
+    if (result != 0) {
+        return result;
     }
-    if (b == 0) {
+    if (pparaBuf == 0) {
         return 6;
     }
-    if (b->mUnk_04 != 0) {
-        if (b->mUnk_00 == 0) {
+    if (pparaBuf->mUnk_04 != 0) {
+        if (pparaBuf->mUnk_00 == 0) {
             return 6;
         }
     }
-    if (b->mUnk_34 + (b->mUnk_14 != 0 ? 0x2a : 0) > 0x200 || b->mUnk_36 + (b->mUnk_14 != 0 ? 6 : 0) > 0x200) {
+    if (pparaBuf->mUnk_34 + (pparaBuf->mUnk_14 != 0 ? 0x2a : 0) > 0x200 ||
+        pparaBuf->mUnk_36 + (pparaBuf->mUnk_14 != 0 ? 6 : 0) > 0x200) {
         return 6;
     }
-    IsParentParameterInRange(b);
-    SetCommandCallback(7, (u32) a);
-    DC_StoreRange(b, 0x40);
-    if (b->mUnk_04 != 0) {
-        DC_StoreRange(b->mUnk_00, b->mUnk_04);
+    WmCheckParentParameter(pparaBuf);
+    WMi_SetCallbackTable(7, callback);
+    DC_StoreRange(pparaBuf, 0x40);
+    if (pparaBuf->mUnk_04 != 0) {
+        DC_StoreRange(pparaBuf->mUnk_00, pparaBuf->mUnk_04);
     }
-    r = SendCommandMessage(7, 1, b);
-    if (r == 0) {
+    result = WMi_SendCommand(7, 1, pparaBuf);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-u32 IsParentParameterInRange(const Unk02143c30 *a) {
-    if (a->mUnk_04 > 0x70) {
+// Returns 1 when the game info length, beacon period and channel of param are in range, otherwise 0.
+u32 WmCheckParentParameter(const Unk02143c30 *param) {
+    if (param->mUnk_04 > 0x70) {
         return 0;
     }
-    if (a->mUnk_18 < 10 || a->mUnk_18 > 0x3e8) {
+    if (param->mUnk_18 < 10 || param->mUnk_18 > 0x3e8) {
         return 0;
     }
-    if (a->mUnk_32 < 1 || a->mUnk_32 > 0xe) {
+    if (param->mUnk_32 < 1 || param->mUnk_32 > 0xe) {
         return 0;
     }
     return 1;
 }
 
-s32 StartParentWithArgument(Unk021425e8Func a, u32 b) {
-    s32 r;
+// Starts the parent (command 8). Needs state 2.
+s32 WMi_StartParentEx(Unk021425e8Func callback, BOOL powerSave) {
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 2);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 2);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(8, (u32) a);
-    r = SendCommandMessage(8, 1, b);
-    if (r == 0) {
+    WMi_SetCallbackTable(8, callback);
+    result = WMi_SendCommand(8, 1, powerSave);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_StartParent(Unk021425e8Func a) {
-    return StartParentWithArgument(a, 1);
+// Starts the parent with power save on.
+s32 WM_StartParent(Unk021425e8Func callback) {
+    return WMi_StartParentEx(callback, 1);
 }
 
-s32 WM_EndParent(Unk021425e8Func a) {
-    s32 r;
+// Ends the parent (command 9). Needs state 7.
+s32 WM_EndParent(Unk021425e8Func callback) {
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 7);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 7);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(9, (u32) a);
-    r = SendCommandMessage(9, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(9, callback);
+    result = WMi_SendCommand(9, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_StartScan(Unk021425e8Func a, Unk02143a78 *b) {
-    Unk02143a78_0c *pk;
-    s32 r;
+// Starts a scan (command 10). Needs state 2, 3 or 5; the channel must be 1 to 14.
+s32 WM_StartScan(Unk021425e8Func callback, Unk02143a78 *param) {
+    Unk02143a78_0c *request;
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(3, 2, 3, 5);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(3, 2, 3, 5);
+    if (result != 0) {
+        return result;
     }
-    if (b == 0) {
+    if (param == 0) {
         return 6;
     }
-    if (b->mUnk_00 == 0) {
+    if (param->mUnk_00 == 0) {
         return 6;
     }
-    if (b->mUnk_04 < 1 || b->mUnk_04 > 0xe) {
+    if (param->mUnk_04 < 1 || param->mUnk_04 > 0xe) {
         return 6;
     }
-    SetCommandCallback(0xa, (u32) a);
-    pk = (Unk02143a78_0c *) GetWorkBuffer()->mRequestArea;
-    pk->mUnk_00 = 0xa;
-    pk->mUnk_02 = b->mUnk_04;
-    pk->mUnk_04 = b->mUnk_00;
-    pk->mUnk_08 = b->mUnk_06;
-    pk->mUnk_0a[0] = b->mUnk_08[0];
-    pk->mUnk_0a[1] = b->mUnk_08[1];
-    pk->mUnk_0a[2] = b->mUnk_08[2];
-    pk->mUnk_0a[3] = b->mUnk_08[3];
-    pk->mUnk_0a[4] = b->mUnk_08[4];
-    pk->mUnk_0a[5] = b->mUnk_08[5];
-    r = SendCommandMessage(0xa, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(0xa, callback);
+    request = (Unk02143a78_0c *) WMi_GetSystemWork()->mRequestArea;
+    request->mApiid = 0xa;
+    request->mChannel = param->mUnk_04;
+    request->mScanBuf = param->mUnk_00;
+    request->mMaxChannelTime = param->mUnk_06;
+    request->mBssid[0] = param->mUnk_08[0];
+    request->mBssid[1] = param->mUnk_08[1];
+    request->mBssid[2] = param->mUnk_08[2];
+    request->mBssid[3] = param->mUnk_08[3];
+    request->mBssid[4] = param->mUnk_08[4];
+    request->mBssid[5] = param->mUnk_08[5];
+    result = WMi_SendCommand(0xa, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_StartScanEx(Unk021425e8Func a, Unk021438f0 *b) {
-    Unk021438f0_0c *pk;
-    s32 r;
-    u16 t;
+// Starts a scan with a scan type and SSID (command 38). Needs state 2, 3 or 5.
+s32 WM_StartScanEx(Unk021425e8Func callback, Unk021438f0 *param) {
+    Unk021438f0_0c *request;
+    s32 result;
+    u16 scanType;
 
-    r = GetErrorUnlessStateIsOneOf(3, 2, 3, 5);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(3, 2, 3, 5);
+    if (result != 0) {
+        return result;
     }
-    if (b == 0) {
+    if (param == 0) {
         return 6;
     }
-    if (b->mUnk_00 == 0) {
+    if (param->mUnk_00 == 0) {
         return 6;
     }
-    if (b->mUnk_04 > 0x400) {
+    if (param->mUnk_04 > 0x400) {
         return 6;
     }
-    if (b->mUnk_12 > 0x20) {
+    if (param->mUnk_12 > 0x20) {
         return 6;
     }
-    t = b->mUnk_10;
-    if (t != 0 && t != 1 && t != 2 && t != 3) {
+    scanType = param->mUnk_10;
+    if (scanType != 0 && scanType != 1 && scanType != 2 && scanType != 3) {
         return 6;
     }
-    if ((u16) (t + 0xfffe) <= 1) {
-        if (b->mUnk_34 > 0x20) {
+    if ((u16) (scanType + 0xfffe) <= 1) {
+        if (param->mUnk_34 > 0x20) {
             return 6;
         }
     }
-    SetCommandCallback(0x26, (u32) a);
-    pk = (Unk021438f0_0c *) GetWorkBuffer()->mRequestArea;
-    pk->mUnk_00 = 0x26;
-    pk->mUnk_02 = b->mUnk_06;
-    pk->mUnk_04 = b->mUnk_00;
-    pk->mUnk_08 = b->mUnk_04;
-    pk->mUnk_0a = b->mUnk_08;
-    MI_CpuCopy8(b->mUnk_0a, pk->mUnk_0c, 6);
-    pk->mUnk_12 = b->mUnk_10;
-    pk->mUnk_36 = b->mUnk_34;
-    pk->mUnk_14 = b->mUnk_12;
-    MI_CpuCopy8(b->mUnk_14, pk->mUnk_16, 0x20);
-    r = SendCommandMessage(0x26, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(0x26, callback);
+    request = (Unk021438f0_0c *) WMi_GetSystemWork()->mRequestArea;
+    request->mApiid = 0x26;
+    request->mChannelList = param->mUnk_06;
+    request->mScanBuf = param->mUnk_00;
+    request->mScanBufSize = param->mUnk_04;
+    request->mMaxChannelTime = param->mUnk_08;
+    MI_CpuCopy8(param->mUnk_0a, request->mBssid, 6);
+    request->mScanType = param->mUnk_10;
+    request->mSsidMatchLength = param->mUnk_34;
+    request->mSsidLength = param->mUnk_12;
+    MI_CpuCopy8(param->mUnk_14, request->mSsid, 0x20);
+    result = WMi_SendCommand(0x26, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_EndScan(Unk021425e8Func a) {
-    s32 r;
+// Ends the scan (command 11). Needs state 5.
+s32 WM_EndScan(Unk021425e8Func callback) {
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 5);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 5);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(0xb, (u32) a);
-    r = SendCommandMessage(0xb, 0);
-    if (r == 0) {
+    WMi_SetCallbackTable(0xb, callback);
+    result = WMi_SendCommand(0xb, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_StartConnectEx(Unk021425e8Func a, u16 *b, void *c, u32 d, u16 e) {
-    Unk021437d8 *pk;
-    s32 r;
+// Connects to the parent described by pInfo (command 12). Needs state 2.
+s32 WM_StartConnectEx(Unk021425e8Func callback, u16 *pInfo, void *ssid, BOOL powerSave, u16 authMode) {
+    Unk021437d8 *request;
+    s32 result;
 
-    r = GetErrorUnlessStateIsOneOf(1, 2);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(1, 2);
+    if (result != 0) {
+        return result;
     }
-    if (b == 0) {
+    if (pInfo == 0) {
         return 6;
     }
-    DC_StoreRange(b, b[0] * 2);
-    SetCommandCallback(0xc, (u32) a);
-    pk = (Unk021437d8 *) GetWorkBuffer()->mRequestArea;
-    pk->mUnk_00 = 0xc;
-    pk->mUnk_04 = b;
-    if (c != 0) {
-        MI_CpuCopy8(c, pk->mUnk_08, 0x18);
+    DC_StoreRange(pInfo, pInfo[0] * 2);
+    WMi_SetCallbackTable(0xc, callback);
+    request = (Unk021437d8 *) WMi_GetSystemWork()->mRequestArea;
+    request->mApiid = 0xc;
+    request->mPInfo = pInfo;
+    if (ssid != 0) {
+        MI_CpuCopy8(ssid, request->mSsid, 0x18);
     } else {
-        MI_CpuFill8(pk->mUnk_08, 0, 0x18);
+        MI_CpuFill8(request->mSsid, 0, 0x18);
     }
-    pk->mUnk_20 = d;
-    pk->mUnk_26 = e;
-    r = SendCommandMessage(0xc, 0);
-    if (r == 0) {
+    request->mPowerSave = powerSave;
+    request->mAuthMode = authMode;
+    result = WMi_SendCommand(0xc, 0);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_Disconnect(Unk021425e8Func a, u32 b) {
-    Unk02142aa8 *p;
-    s32 r;
+// Disconnects the station aid (command 13): a child from a parent, or the parent itself when aid is 0 on a child.
+s32 WM_Disconnect(Unk021425e8Func callback, u32 aid) {
+    Unk02142aa8 *work;
+    s32 result;
 
-    p = GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(5, 7, 9, 8, 10, 11);
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckStateEx(5, 7, 9, 8, 10, 11);
+    if (result != 0) {
+        return result;
     }
-    if (p->mStatusArea->mState == 7 || p->mStatusArea->mState == 9) {
-        if (b < 1 || b > 0xf) {
+    if (work->mStatusArea->mState == 7 || work->mStatusArea->mState == 9) {
+        if (aid < 1 || aid > 0xf) {
             return 6;
         }
-        DC_InvalidateRange(&p->mStatusArea->mConnectedChildren, 2);
-        if ((p->mStatusArea->mConnectedChildren & (1 << b)) == 0) {
+        DC_InvalidateRange(&work->mStatusArea->mConnectedChildren, 2);
+        if ((work->mStatusArea->mConnectedChildren & (1 << aid)) == 0) {
             return 7;
         }
-    } else if (b != 0) {
+    } else if (aid != 0) {
         return 6;
     }
-    SetCommandCallback(0xd, (u32) a);
-    r = SendCommandMessage(0xd, 1, 1 << b);
-    if (r == 0) {
+    WMi_SetCallbackTable(0xd, callback);
+    result = WMi_SendCommand(0xd, 1, 1 << aid);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_DisconnectChildren(Unk021425e8Func a, u32 b) {
-    Unk02142aa8 *p;
-    s32 r;
+// Disconnects the children in aidBitmap (command 13). Needs state 7 or 9; returns 7 when none of them is connected.
+s32 WM_DisconnectChildren(Unk021425e8Func callback, u32 aidBitmap) {
+    Unk02142aa8 *work;
+    s32 result;
 
-    p = GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(2, 7, 9);
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckStateEx(2, 7, 9);
+    if (result != 0) {
+        return result;
     }
-    DC_InvalidateRange(&p->mStatusArea->mConnectedChildren, 2);
-    if ((p->mStatusArea->mConnectedChildren & b & 0xfffe) == 0) {
+    DC_InvalidateRange(&work->mStatusArea->mConnectedChildren, 2);
+    if ((work->mStatusArea->mConnectedChildren & aidBitmap & 0xfffe) == 0) {
         return 7;
     }
-    SetCommandCallback(0xd, (u32) a);
-    r = SendCommandMessage(0xd, 1, b);
-    if (r == 0) {
+    WMi_SetCallbackTable(0xd, callback);
+    result = WMi_SendCommand(0xd, 1, aidBitmap);
+    if (result == 0) {
         return 2;
     }
-    return r;
+    return result;
 }
 
-s32 WM_SetIndCallback(Unk021425e8Func a) {
-    u32 s;
-    s32 r;
+// Sets the callback for indications.
+s32 WM_SetIndCallback(Unk021425e8Func callback) {
+    u32 enabled;
+    s32 result;
 
-    s = OS_DisableInterrupts();
-    r = GetErrorUnlessInitialized();
-    if (r != 0) {
-        OS_RestoreInterrupts(s);
-        return r;
+    enabled = OS_DisableInterrupts();
+    result = WMi_CheckInitialized();
+    if (result != 0) {
+        OS_RestoreInterrupts(enabled);
+        return result;
     }
-    GetWorkBuffer()->mIndicationCallback = a;
-    OS_RestoreInterrupts(s);
+    WMi_GetSystemWork()->mIndicationCallback = callback;
+    OS_RestoreInterrupts(enabled);
     return 0;
 }
 
-s32 WM_SetPortCallback(u32 n, UnkFunc *f, Unk021450ec *arg) {
-    u32 s;
-    s32 r;
-    Unk02142aa8 *p;
+// Sets the callback and argument for data received on port (stored in Unk02142aa8.mPortCallbacks and
+// Unk02142aa8.mPortCallbackArgs).
+s32 WM_SetPortCallback(u16 port, UnkFunc *callback, void *arg) {
+    u32 enabled;
+    s32 result;
+    Unk02142aa8 *work;
 
-    s = OS_DisableInterrupts();
-    r = GetErrorUnlessInitialized();
-    if (r != 0) {
-        OS_RestoreInterrupts(s);
-        return r;
+    enabled = OS_DisableInterrupts();
+    result = WMi_CheckInitialized();
+    if (result != 0) {
+        OS_RestoreInterrupts(enabled);
+        return result;
     }
-    p = GetWorkBuffer();
-    p->mPortCallbacks[n] = f;
-    p->mPortCallbackArgs[n] = arg;
-    OS_RestoreInterrupts(s);
+    work = WMi_GetSystemWork();
+    work->mPortCallbacks[port] = callback;
+    work->mPortCallbackArgs[port] = arg;
+    OS_RestoreInterrupts(enabled);
     return 0;
 }
 
-s32 WM_ReadStatus(void *a) {
-    Unk02142aa8 *p;
-    s32 r;
+// Copies the status area into statusBuf.
+s32 WM_ReadStatus(void *statusBuf) {
+    Unk02142aa8 *work;
+    s32 result;
 
-    p = GetWorkBuffer();
-    r = GetErrorUnlessInitialized();
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckInitialized();
+    if (result != 0) {
+        return result;
     }
-    if (a == 0) {
+    if (statusBuf == 0) {
         return 6;
     }
-    DC_InvalidateRange(p->mStatusArea, 0x7bc);
-    MIi_CpuCopyFast(p->mStatusArea, a, 0x7bc);
+    DC_InvalidateRange(work->mStatusArea, 0x7bc);
+    MIi_CpuCopyFast(work->mStatusArea, statusBuf, 0x7bc);
     return 0;
 }
 
+// Returns the send buffer size WM_StartMPEx needs, or 0 when the state does not allow it.
 s32 WM_GetMPSendBufferSize(void) {
-    Unk02142aa8 *p;
+    Unk02142aa8 *work;
 
-    p = GetWorkBuffer();
-    if (GetErrorUnlessStateIsOneOf(2, 7, 8) != 0) {
+    work = WMi_GetSystemWork();
+    if (WMi_CheckStateEx(2, 7, 8) != 0) {
         return 0;
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_00c, 4);
-    if (p->mStatusArea->mUnk_00c == 1) {
+    DC_InvalidateRange(&work->mStatusArea->mMpFlag, 4);
+    if (work->mStatusArea->mMpFlag == 1) {
         return 0;
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_18e, 4);
-    return (p->mStatusArea->mUnk_18e + 0x1f) & ~0x1f;
+    DC_InvalidateRange(&work->mStatusArea->mMpMaxSendSize, 4);
+    return (work->mStatusArea->mMpMaxSendSize + 0x1f) & ~0x1f;
 }
 
+// Returns the receive buffer size WM_StartMPEx needs, or 0 when the state does not allow it.
 s32 WM_GetMPReceiveBufferSize(void) {
-    Unk02142aa8 *p;
-    s32 f;
-    u16 v;
+    Unk02142aa8 *work;
+    s32 isHost;
+    u16 maxRecvSize;
 
-    p = GetWorkBuffer();
-    if (GetErrorUnlessStateIsOneOf(2, 7, 8) != 0) {
+    work = WMi_GetSystemWork();
+    if (WMi_CheckStateEx(2, 7, 8) != 0) {
         return 0;
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_00c, 4);
-    if (p->mStatusArea->mUnk_00c == 1) {
+    DC_InvalidateRange(&work->mStatusArea->mMpFlag, 4);
+    if (work->mStatusArea->mMpFlag == 1) {
         return 0;
     }
-    DC_InvalidateRange(&p->mStatusArea->mOwnMemberIndex, 2);
-    if (p->mStatusArea->mOwnMemberIndex == 0) {
-        f = 1;
+    DC_InvalidateRange(&work->mStatusArea->mOwnMemberIndex, 2);
+    if (work->mStatusArea->mOwnMemberIndex == 0) {
+        isHost = 1;
     } else {
-        f = 0;
+        isHost = 0;
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_190, 2);
-    v = p->mStatusArea->mUnk_190;
-    if (f != 1) {
-        return ((v + 0x51) & ~0x1f) << 1;
+    DC_InvalidateRange(&work->mStatusArea->mMpMaxRecvSize, 2);
+    maxRecvSize = work->mStatusArea->mMpMaxRecvSize;
+    if (isHost != 1) {
+        return ((maxRecvSize + 0x51) & ~0x1f) << 1;
     }
-    DC_InvalidateRange(&p->mStatusArea->mUnk_0f4, 2);
-    return (((v + 0xc) * p->mStatusArea->mUnk_0f4 + 0x29) & ~0x1f) << 1;
+    DC_InvalidateRange(&work->mStatusArea->mUnk_0f4, 2);
+    return (((maxRecvSize + 0xc) * work->mStatusArea->mUnk_0f4 + 0x29) & ~0x1f) << 1;
 }
 
-void *WM_ReadMPData(const Unk021432ac *a, u32 b) {
-    Unk02142aa8 *p;
-    u32 ptrs[16];
+// Returns the record of station aid in the MP receive data header, or NULL when there is none.
+void *WM_ReadMPData(const Unk021432ac *header, u16 aid) {
+    Unk02142aa8 *work;
+    u32 records[16];
     s32 i;
 
-    p = GetWorkBuffer();
-    if (GetErrorUnlessInitialized() != 0) {
+    work = WMi_GetSystemWork();
+    if (WMi_CheckInitialized() != 0) {
         return 0;
     }
-    if (b < 1 || b > 0xf) {
+    if (aid < 1 || aid > 0xf) {
         return 0;
     }
-    DC_InvalidateRange(&p->mStatusArea->mConnectedChildren, 2);
-    if ((p->mStatusArea->mConnectedChildren & (1 << b)) == 0) {
+    DC_InvalidateRange(&work->mStatusArea->mConnectedChildren, 2);
+    if ((work->mStatusArea->mConnectedChildren & (1 << aid)) == 0) {
         return 0;
     }
-    if (a->mUnk_04 == 0) {
+    if (header->mUnk_04 == 0) {
         return 0;
     }
-    ptrs[0] = (u32) a->mUnk_0a;
+    records[0] = (u32) header->mUnk_0a;
     i = 0;
     do {
-        if (b == *(u16 *) (ptrs[i] + 4)) {
-            return (void *) ptrs[i];
+        if (aid == *(u16 *) (records[i] + 4)) {
+            return (void *) records[i];
         }
         i++;
-        ptrs[i] = a->mUnk_06 + ptrs[i - 1];
-    } while (i < a->mUnk_04);
+        records[i] = header->mUnk_06 + records[i - 1];
+    } while (i < header->mUnk_04);
     return 0;
 }
 
+// Returns the bitmap of allowed channels, or 0x8000 when the library is not set up.
 u16 WM_GetAllowedChannel(void) {
-    if (GetErrorUnlessInitialized() != 0) {
+    if (WMi_CheckInitialized() != 0) {
         return 0x8000;
     }
     return *(u16 *) 0x27ffcfa;
 }
 
+// Returns the signal strength of the link, 0 when there is no link.
 u16 WM_GetLinkLevel(void) {
-    Unk02142aa8 *p;
+    Unk02142aa8 *work;
 
-    p = GetWorkBuffer();
-    if (GetErrorUnlessInitialized() != 0) {
+    work = WMi_GetSystemWork();
+    if (WMi_CheckInitialized() != 0) {
         return 0;
     }
-    DC_InvalidateRange(p->mStatusArea, 2);
-    switch (p->mStatusArea->mState) {
+    DC_InvalidateRange(work->mStatusArea, 2);
+    switch (work->mStatusArea->mState) {
         case 9:
-            DC_InvalidateRange(&p->mStatusArea->mConnectedChildren, 2);
-            if (p->mStatusArea->mConnectedChildren == 0) {
+            DC_InvalidateRange(&work->mStatusArea->mConnectedChildren, 2);
+            if (work->mStatusArea->mConnectedChildren == 0) {
                 return 0;
             }
         case 10:
         case 11:
-            DC_InvalidateRange(&p->mStatusArea->mUnk_0b8, 2);
-            return p->mStatusArea->mUnk_0b8;
+            DC_InvalidateRange(&work->mStatusArea->mLinkLevel, 2);
+            return work->mStatusArea->mLinkLevel;
         default:
             return 0;
     }
 }
 
+// Returns a beacon period from 200 that depends on the MAC address and the system work value at 0x027ffc3c.
 u16 WM_GetDispersionBeaconPeriod(void) {
-    u8 buf[6];
+    u8 address[6];
     s32 i;
     u16 sum;
 
-    OS_GetMacAddress(buf);
+    OS_GetMacAddress(address);
     for (i = 0, sum = 0; i < 6; i++) {
-        sum = sum + buf[i];
+        sum = sum + address[i];
     }
     sum = sum + *(u32 *) 0x27ffc3c;
     sum = sum * 7;
     return sum % 20 + 200;
 }
 
+// Returns a scan period from 30 that depends on the MAC address and the system work value at 0x027ffc3c.
 u16 WM_GetDispersionScanPeriod(void) {
-    u8 buf[6];
+    u8 address[6];
     s32 i;
     u16 sum;
 
-    OS_GetMacAddress(buf);
+    OS_GetMacAddress(address);
     for (i = 0, sum = 0; i < 6; i++) {
-        sum = sum + buf[i];
+        sum = sum + address[i];
     }
     sum = sum + *(u32 *) 0x27ffc3c;
     sum = sum * 13;
     return sum % 10 + 30;
 }
 
-Unk02142f24 WM_GetOtherElements(const u16 *a) {
-    Unk02142f24 s;
-    const u8 *p;
+// Collects the extra information elements that follow the game info of a scanned parent.
+Unk02142f24 WM_GetOtherElements(const u16 *bssDesc) {
+    Unk02142f24 elements;
+    const u8 *body;
     s32 i;
-    u8 len;
-    u8 sum;
-    u8 n;
+    u8 bodyLength;
+    u8 total;
+    u8 size;
 
-    if (a[0x1e] != 0) {
-        s.mUnk_00 = 0;
-        return s;
+    if (bssDesc[0x1e] != 0) {
+        elements.mUnk_00 = 0;
+        return elements;
     }
-    s.mUnk_00 = a[0x1f];
-    if (s.mUnk_00 == 0) {
-        return s;
+    elements.mUnk_00 = bssDesc[0x1f];
+    if (elements.mUnk_00 == 0) {
+        return elements;
     }
-    if (s.mUnk_00 > 0x10) {
-        s.mUnk_00 = 0x10;
+    if (elements.mUnk_00 > 0x10) {
+        elements.mUnk_00 = 0x10;
     }
-    p = (const u8 *) a + 0x40;
-    len = a[0] * 2 - 0x40;
-    sum = 0;
-    for (i = 0; i < s.mUnk_00; i++) {
-        s.mUnk_04[i].mUnk_00 = p[0];
-        s.mUnk_04[i].mUnk_01 = p[1];
-        s.mUnk_04[i].mUnk_04 = p + 2;
-        n = s.mUnk_04[i].mUnk_01 + 2;
-        sum = sum + n;
-        if (sum > len) {
-            s.mUnk_00 = 0;
-            return s;
+    body = (const u8 *) bssDesc + 0x40;
+    bodyLength = bssDesc[0] * 2 - 0x40;
+    total = 0;
+    for (i = 0; i < elements.mUnk_00; i++) {
+        elements.mUnk_04[i].mUnk_00 = body[0];
+        elements.mUnk_04[i].mUnk_01 = body[1];
+        elements.mUnk_04[i].mUnk_04 = body + 2;
+        size = elements.mUnk_04[i].mUnk_01 + 2;
+        total = total + size;
+        if (total > bodyLength) {
+            elements.mUnk_00 = 0;
+            return elements;
         }
-        p = p + n;
+        body = body + size;
     }
-    return s;
+    return elements;
 }
 
+// Returns the next TGID, starting from the RTC time the first time.
 u16 WM_GetNextTgid(void) {
     RTCTime time;
 

@@ -67,7 +67,7 @@ BOOL func_ov003_021d06b0(void) {
 
     func_ov003_021d07b0(3);
     a = data_ov003_021da2a8->mUnk_13ac(data_ov003_021da2a8->mUnk_13c0, data_ov003_021da2a8);
-    r = WM_SetWEPKey((u32) func_ov003_021d0680, a, data_ov003_021da2a8->mUnk_13c0);
+    r = WM_SetWEPKey(func_ov003_021d0680, a, data_ov003_021da2a8->mUnk_13c0);
     if (r != 2) {
         func_ov003_021d079c(r);
         func_ov003_021d07b0(9);

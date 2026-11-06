@@ -7,145 +7,153 @@
 
 u8 data_0217f960[0x80];
 
-int WM_SetWEPKey(u32 a, u32 b, void *c) {
-    int r;
+// Sets the WEP mode (0 to 3) and key (command 20). Needs state 2 or later; the key is required for a mode above 0.
+int WM_SetWEPKey(Unk021425e8Func callback, u32 wepmode, void *wepkey) {
+    int result;
 
-    r = GetErrorUnlessStateAtLeast2();
-    if (r != 0) {
-        return r;
+    result = WMi_CheckIdle();
+    if (result != 0) {
+        return result;
     }
-    if (b > 3) {
+    if (wepmode > 3) {
         return 6;
     }
-    if (b != 0) {
-        if (c == 0) {
+    if (wepmode != 0) {
+        if (wepkey == 0) {
             return 6;
         }
-        DC_StoreRange(c, 0x50);
+        DC_StoreRange(wepkey, 0x50);
     }
-    SetCommandCallback(0x14, a);
-    r = SendCommandMessage(0x14, 2, b, c);
-    if (r == 0) {
-        r = 2;
+    WMi_SetCallbackTable(0x14, callback);
+    result = WMi_SendCommand(0x14, 2, wepmode, wepkey);
+    if (result == 0) {
+        result = 2;
     }
-    return r;
+    return result;
 }
 
-int WM_SetWEPKeyEx(u32 a, u32 b, u32 c, void *d) {
-    int r;
+// Same as WM_SetWEPKey with a key id (command 39).
+int WM_SetWEPKeyEx(Unk021425e8Func callback, u16 wepmode, u16 wepkeyid, void *wepkey) {
+    int result;
 
-    r = GetErrorUnlessStateAtLeast2();
-    if (r != 0) {
-        return r;
+    result = WMi_CheckIdle();
+    if (result != 0) {
+        return result;
     }
-    if (b > 3) {
+    if (wepmode > 3) {
         return 6;
     }
-    if (b != 0) {
-        if (d == 0) {
+    if (wepmode != 0) {
+        if (wepkey == 0) {
             return 6;
         }
-        DC_StoreRange(d, 0x50);
+        DC_StoreRange(wepkey, 0x50);
     }
-    SetCommandCallback(0x27, a);
-    r = SendCommandMessage(0x27, 3, b, d, c);
-    if (r == 0) {
-        r = 2;
+    WMi_SetCallbackTable(0x27, callback);
+    result = WMi_SendCommand(0x27, 3, wepmode, wepkey, wepkeyid);
+    if (result == 0) {
+        result = 2;
     }
-    return r;
+    return result;
 }
 
-int WM_SetGameInfo(Unk021425e8Func a, const void *b, u32 c, u32 d, u16 e, u8 f) {
-    int r;
+// Sets the game info the parent sends in its beacon (command 24); at most 0x70 bytes. Needs state 7 or 9.
+int WM_SetGameInfo(Unk021425e8Func callback, const void *userGameInfo, u16 userGameInfoSize, u32 ggid, u16 tgid,
+                   u8 attr) {
+    int result;
 
-    r = GetErrorUnlessStateIsOneOf(2, 7, 9);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(2, 7, 9);
+    if (result != 0) {
+        return result;
     }
-    if (b == 0) {
+    if (userGameInfo == 0) {
         return 6;
     }
-    if (c > 0x70) {
+    if (userGameInfoSize > 0x70) {
         return 6;
     }
-    MIi_CpuCopy16(b, data_0217f960, c);
-    DC_StoreRange(data_0217f960, c);
-    SetCommandCallback(0x18, (u32) a);
-    r = SendCommandMessage(0x18, 5, data_0217f960, c, d, e, f);
-    if (r == 0) {
-        r = 2;
+    MIi_CpuCopy16(userGameInfo, data_0217f960, userGameInfoSize);
+    DC_StoreRange(data_0217f960, userGameInfoSize);
+    WMi_SetCallbackTable(0x18, callback);
+    result = WMi_SendCommand(0x18, 5, data_0217f960, userGameInfoSize, ggid, tgid, attr);
+    if (result == 0) {
+        result = 2;
     }
-    return r;
+    return result;
 }
 
-int WM_SetBeaconIndication(Unk021425e8Func a, u32 b) {
-    int r;
+// Turns the beacon indication on or off (command 25). Needs state 2 or later.
+int WM_SetBeaconIndication(Unk021425e8Func callback, u16 flag) {
+    int result;
 
-    r = GetErrorUnlessStateAtLeast2();
-    if (r != 0) {
-        return r;
+    result = WMi_CheckIdle();
+    if (result != 0) {
+        return result;
     }
-    if (b != 0 && b != 1) {
+    if (flag != 0 && flag != 1) {
         return 6;
     }
-    SetCommandCallback(0x19, (u32) a);
-    r = SendCommandMessage(0x19, 1, b);
-    if (r == 0) {
-        r = 2;
+    WMi_SetCallbackTable(0x19, callback);
+    result = WMi_SendCommand(0x19, 1, flag);
+    if (result == 0) {
+        result = 2;
     }
-    return r;
+    return result;
 }
 
-int WM_SetLifeTime(Unk021425e8Func a, u32 b, u32 c, u32 d, u16 e) {
-    int r;
+// Sets the connection life times (command 29). Needs state 2 or later.
+int WM_SetLifeTime(Unk021425e8Func callback, u32 tableNumber, u32 camLifeTime, u32 frameLifeTime, u16 mpLifeTime) {
+    int result;
 
-    r = GetErrorUnlessStateAtLeast2();
-    if (r != 0) {
-        return r;
+    result = WMi_CheckIdle();
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(0x1d, (u32) a);
-    r = SendCommandMessage(0x1d, 4, b, c, d, e);
-    if (r == 0) {
-        r = 2;
+    WMi_SetCallbackTable(0x1d, callback);
+    result = WMi_SendCommand(0x1d, 4, tableNumber, camLifeTime, frameLifeTime, mpLifeTime);
+    if (result == 0) {
+        result = 2;
     }
-    return r;
+    return result;
 }
 
-int WM_MeasureChannel(Unk021425e8Func a, u16 b, u16 c, u16 d, u16 e) {
-    Unk02142aa8 *p;
-    u16 *q;
-    int r;
+// Measures the radio use of a channel (command 30). Needs state 2.
+int WM_MeasureChannel(Unk021425e8Func callback, u16 ccaMode, u16 edThreshold, u16 channel, u16 measureTime) {
+    Unk02142aa8 *work;
+    u16 *request;
+    int result;
 
-    p = GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(1, 2);
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckStateEx(1, 2);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(0x1e, (u32) a);
-    q = p->mRequestArea;
-    q[0] = 0x1e;
-    q[1] = b;
-    q[2] = c;
-    q[3] = d;
-    q[4] = e;
-    r = SendCommandMessage(0x1e, 0);
-    if (r == 0) {
-        r = 2;
+    WMi_SetCallbackTable(0x1e, callback);
+    request = work->mRequestArea;
+    request[0] = 0x1e;
+    request[1] = ccaMode;
+    request[2] = edThreshold;
+    request[3] = channel;
+    request[4] = measureTime;
+    result = WMi_SendCommand(0x1e, 0);
+    if (result == 0) {
+        result = 2;
     }
-    return r;
+    return result;
 }
 
-int WM_SetEntry(Unk021425e8Func a, u32 b) {
-    int r;
+// Allows or refuses new children (command 33). Needs state 7 or 9.
+int WM_SetEntry(Unk021425e8Func callback, BOOL enabled) {
+    int result;
 
-    r = GetErrorUnlessStateIsOneOf(2, 7, 9);
-    if (r != 0) {
-        return r;
+    result = WMi_CheckStateEx(2, 7, 9);
+    if (result != 0) {
+        return result;
     }
-    SetCommandCallback(0x21, (u32) a);
-    r = SendCommandMessage(0x21, 1, b);
-    if (r == 0) {
-        r = 2;
+    WMi_SetCallbackTable(0x21, callback);
+    result = WMi_SendCommand(0x21, 1, enabled);
+    if (result == 0) {
+        result = 2;
     }
-    return r;
+    return result;
 }

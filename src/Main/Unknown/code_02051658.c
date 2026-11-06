@@ -504,7 +504,7 @@ void func_020518c8(u32 a) {
 
     data_0217aa00->mUnk_000c = 0xc;
     data_0217aa00->mUnk_0010 = 1;
-    r = func_021441d0(func_02051894, a);
+    r = WM_SetMPFrequency(func_02051894, a);
     if (r == 0) {
         data_0217aa00->mUnk_0010 = 0;
         return;

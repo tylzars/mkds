@@ -163,7 +163,7 @@ void func_0200a7b0(Unk021425e8 *a) {
                 data_0216fda8->mUnk_51c(0x100, a);
                 return;
             }
-            func_02009928(8, StartParentWithArgument(func_0200a7b0, data_usa_021617a4));
+            func_02009928(8, WMi_StartParentEx(func_0200a7b0, data_usa_021617a4));
             return;
         case 8:
             if (a->mResultCode != 0) {

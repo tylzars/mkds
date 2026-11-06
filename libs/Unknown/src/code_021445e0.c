@@ -11,488 +11,490 @@
 #include "code_0202056c.h"
 #include "code_0214d018.h"
 
-int WM_StartKeySharing(Unk021450ec *p, u32 n) {
-    return WM_StartDataSharing(p, n, 0xffff, 2, 1);
+// Starts key sharing on port: data sharing of 2 bytes per station for all stations in double mode.
+int WM_StartKeySharing(Unk021450ec *buf, u16 port) {
+    return WM_StartDataSharing(buf, port, 0xffff, 2, 1);
 }
 
-int WM_EndKeySharing(Unk021450ec *p) {
-    return WM_EndDataSharing(p);
+// Ends key sharing.
+int WM_EndKeySharing(Unk021450ec *buf) {
+    return WM_EndDataSharing(buf);
 }
 
-// Fills in the object p (0x820 bytes) for n and stores ReceiveParentPortMessage (ReceiveChildPortMessage when mUnk_184
-// is not 0) for it; returns 6 for bad arguments.
-int WM_StartDataSharing(Unk021450ec *p, u32 n, u32 mask, u32 k, u32 flag) {
-    u32 w;
-    u32 u5;
-    Unk02142988 *q;
-    int r;
+// Starts sharing dataLength bytes per station on port between the stations in aidBitmap, using dsInfo as the work area.
+// The parent sends the first data sets itself; a child waits for them.
+int WM_StartDataSharing(Unk021450ec *dsInfo, u16 port, u16 aidBitmap, u16 dataLength, BOOL doubleMode) {
+    u32 readyMembers;
+    u32 ownIndex;
+    Unk02142988 *status;
+    int result;
     int i;
-    u16 v;
-    u32 c;
-    Unk0214461c *e;
+    u16 mask;
+    u32 count;
+    Unk0214461c *block;
 
-    w = 1;
-    q = GetWorkBuffer()->mStatusArea;
-    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
-    if (r != 0) {
-        return r;
+    readyMembers = 1;
+    status = WMi_GetSystemWork()->mStatusArea;
+    result = WMi_CheckStateEx(2, 9, 10);
+    if (result != 0) {
+        return result;
     }
-    DC_InvalidateRange(&q->mUnk_00c, 4);
-    if (q->mUnk_00c == 0) {
+    DC_InvalidateRange(&status->mMpFlag, 4);
+    if (status->mMpFlag == 0) {
         return 3;
     }
-    if (p == 0) {
+    if (dsInfo == 0) {
         return 6;
     }
-    if (n >= 16) {
+    if (port >= 16) {
         return 6;
     }
-    if (mask == 0) {
+    if (aidBitmap == 0) {
         return 6;
     }
-    DC_InvalidateRange(&q->mOwnMemberIndex, 2);
-    u5 = q->mOwnMemberIndex;
-    if (u5 == 0) {
-        DC_InvalidateRange(&q->mUnk_086, 2);
-        w = q->mUnk_086;
+    DC_InvalidateRange(&status->mOwnMemberIndex, 2);
+    ownIndex = status->mOwnMemberIndex;
+    if (ownIndex == 0) {
+        DC_InvalidateRange(&status->mMpReadyBitmap, 2);
+        readyMembers = status->mMpReadyBitmap;
     }
-    MemFillWordsByBlock_inline(p, 0x820);
-    p->mUnk_808 = 0;
-    p->mUnk_80a = 0;
-    p->mUnk_80c = 0;
-    p->mMemberDataSize = k;
-    p->mPort = n;
-    p->mMemberMask = 0;
-    p->mUnk_818 = flag != 0;
-    v = mask | (1 << u5);
-    p->mMemberMask = v;
-    c = CountSetBits(v);
-    p->mUnk_812 = c;
-    p->mUnk_814 = k * c;
-    if (p->mUnk_814 > 0x1fc) {
-        p->mMemberMask = 0;
+    MemFillWordsByBlock_inline(dsInfo, 0x820);
+    dsInfo->mWriteIndex = 0;
+    dsInfo->mSendIndex = 0;
+    dsInfo->mReadIndex = 0;
+    dsInfo->mMemberDataSize = dataLength;
+    dsInfo->mPort = port;
+    dsInfo->mMemberMask = 0;
+    dsInfo->mDoubleMode = doubleMode != 0;
+    mask = aidBitmap | (1 << ownIndex);
+    dsInfo->mMemberMask = mask;
+    count = CountSetBits(mask);
+    dsInfo->mStationNumber = count;
+    dsInfo->mDataSetLength = dataLength * count;
+    if (dsInfo->mDataSetLength > 0x1fc) {
+        dsInfo->mMemberMask = 0;
         return 6;
     }
-    p->mUnk_814 += 4;
-    p->mStatus = 1;
-    if (u5 == 0) {
+    dsInfo->mDataSetLength += 4;
+    dsInfo->mStatus = 1;
+    if (ownIndex == 0) {
         for (i = 0; i < 4; i++) {
-            p->mUnk_000[i].mUnk_00 = p->mMemberMask & (w | 1);
+            dsInfo->mDs[i].mAidBitmap = dsInfo->mMemberMask & (readyMembers | 1);
         }
-        WM_SetPortCallback(n, (UnkFunc *) ReceiveParentPortMessage, p);
-        e = p->mUnk_000;
-        for (i = 0; i < (p->mUnk_818 == 1 ? 2 : 1); e++, i++) {
-            p->mUnk_808 = (p->mUnk_808 + 1) & 3;
-            r = WM_SetMPDataToPortEx((UnkFunc *) ReceiveBlockSendResult, p, e, p->mUnk_814, p->mMemberMask & w,
-                                     p->mPort, 1);
-            if (r == 7) {
-                p->mUnk_800[i] = 0xffff;
-                p->mUnk_80a = (p->mUnk_80a + 1) & 3;
-            } else if (r != 0 && r != 2) {
-                p->mStatus = 5;
+        WM_SetPortCallback(port, (UnkFunc *) WmDataSharingReceiveCallback_Parent, dsInfo);
+        block = dsInfo->mDs;
+        for (i = 0; i < (dsInfo->mDoubleMode == 1 ? 2 : 1); block++, i++) {
+            dsInfo->mWriteIndex = (dsInfo->mWriteIndex + 1) & 3;
+            result = WM_SetMPDataToPortEx((UnkFunc *) WmDataSharingSetDataCallback, dsInfo, block,
+                                          dsInfo->mDataSetLength, dsInfo->mMemberMask & readyMembers, dsInfo->mPort, 1);
+            if (result == 7) {
+                dsInfo->mSeqNum[i] = 0xffff;
+                dsInfo->mSendIndex = (dsInfo->mSendIndex + 1) & 3;
+            } else if (result != 0 && result != 2) {
+                dsInfo->mStatus = 5;
                 return 1;
             }
         }
     } else {
-        p->mUnk_80a = 3;
-        WM_SetPortCallback(n, (UnkFunc *) ReceiveChildPortMessage, p);
+        dsInfo->mSendIndex = 3;
+        WM_SetPortCallback(port, (UnkFunc *) WmDataSharingReceiveCallback_Child, dsInfo);
     }
     return 0;
 }
 
-// Clears the object p when ReceiveParentPortMessage or ReceiveChildPortMessage is stored for it; returns 3 otherwise.
-int WM_EndDataSharing(Unk021450ec *p) {
-    Unk02142aa8 *pp;
-    UnkFunc *f;
-    int r;
+// Ends data sharing and removes the port callback; returns 3 when dsInfo is not running data sharing.
+int WM_EndDataSharing(Unk021450ec *dsInfo) {
+    Unk02142aa8 *work;
+    UnkFunc *registered;
+    int result;
 
-    pp = GetWorkBuffer();
-    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
-    if (r != 0) {
-        return r;
+    work = WMi_GetSystemWork();
+    result = WMi_CheckStateEx(2, 9, 10);
+    if (result != 0) {
+        return result;
     }
-    if (p == 0) {
+    if (dsInfo == 0) {
         return 6;
     }
-    if (p->mMemberMask == 0 || ((f = pp->mPortCallbacks[p->mPort]) != (UnkFunc *) ReceiveParentPortMessage &&
-                                f != (UnkFunc *) ReceiveChildPortMessage)) {
+    if (dsInfo->mMemberMask == 0 ||
+        ((registered = work->mPortCallbacks[dsInfo->mPort]) != (UnkFunc *) WmDataSharingReceiveCallback_Parent &&
+         registered != (UnkFunc *) WmDataSharingReceiveCallback_Child)) {
         return 3;
     }
-    WM_SetPortCallback(p->mPort, 0, 0);
-    p->mMemberMask = 0;
-    p->mStatus = 0;
+    WM_SetPortCallback(dsInfo->mPort, 0, 0);
+    dsInfo->mMemberMask = 0;
+    dsInfo->mStatus = 0;
     return 0;
 }
 
-// Returns 1 when mStatus is 5 and 3 when it is neither 1 nor 4; otherwise takes the next block into b, passes a to
-// SetMemberData and returns 0.
-int WM_StepDataSharing(Unk021450ec *p, void *a, Unk0214461c *b) {
-    int f2;
-    int r;
-    Unk02142988 *q;
-    u32 w;
-    u32 st;
-    int f1;
-    u32 u5;
-    int t;
-    int rr;
-    u16 k;
-    u8 *e7;
+// Takes the next complete data set of all stations into receiveData and sends sendData for the next round. Returns 0
+// when a data set was delivered, 5 when there is none yet and 1 after a send failure.
+int WM_StepDataSharing(Unk021450ec *dsInfo, void *sendData, Unk0214461c *receiveData) {
+    int late;
+    int result;
+    Unk02142988 *status;
+    u32 readyMembers;
+    u32 mode;
+    int delivered;
+    u32 ownIndex;
+    int sendOwn;
+    int sendResult;
+    u16 previous;
+    u8 *outgoing;
 
-    q = GetWorkBuffer()->mStatusArea;
-    r = GetErrorUnlessStateIsOneOf(2, 9, 10);
-    if (r != 0) {
-        return r;
+    status = WMi_GetSystemWork()->mStatusArea;
+    result = WMi_CheckStateEx(2, 9, 10);
+    if (result != 0) {
+        return result;
     }
-    DC_InvalidateRange(&q->mUnk_00c, 4);
-    if (q->mUnk_00c == 0) {
+    DC_InvalidateRange(&status->mMpFlag, 4);
+    if (status->mMpFlag == 0) {
         return 3;
     }
-    if (p == 0) {
+    if (dsInfo == 0) {
         return 6;
     }
-    if (a == 0) {
+    if (sendData == 0) {
         return 6;
     }
-    if (b == 0) {
+    if (receiveData == 0) {
         return 6;
     }
-    DC_InvalidateRange(&q->mOwnMemberIndex, 2);
-    u5 = q->mOwnMemberIndex;
-    if (u5 == 0) {
-        DC_InvalidateRange(&q->mUnk_086, 2);
-        w = q->mUnk_086;
+    DC_InvalidateRange(&status->mOwnMemberIndex, 2);
+    ownIndex = status->mOwnMemberIndex;
+    if (ownIndex == 0) {
+        DC_InvalidateRange(&status->mMpReadyBitmap, 2);
+        readyMembers = status->mMpReadyBitmap;
     }
-    st = p->mStatus;
-    if (st == 5) {
+    mode = dsInfo->mStatus;
+    if (mode == 5) {
         return 1;
     }
-    if (st != 1) {
-        if (st != 4) {
+    if (mode != 1) {
+        if (mode != 4) {
             return 3;
         }
     }
-    r = 5;
-    if (u5 == 0) {
-        f1 = 0;
-        f2 = 0;
-        if (st == 4) {
-            p->mStatus = 1;
-            k = (p->mUnk_808 + 3) & 3;
-            rr = WM_SetMPDataToPortEx((UnkFunc *) ReceiveBlockSendResult, p, &p->mUnk_000[k], p->mUnk_814,
-                                      p->mMemberMask & w, p->mPort, 1);
-            if (rr == 7) {
-                p->mUnk_800[k] = 0xffff;
-                p->mUnk_80a = (p->mUnk_80a + 1) & 3;
-            } else if (rr != 0) {
-                if (rr != 2) {
-                    p->mStatus = r;
+    result = 5;
+    if (ownIndex == 0) {
+        delivered = 0;
+        late = 0;
+        if (mode == 4) {
+            dsInfo->mStatus = 1;
+            previous = (dsInfo->mWriteIndex + 3) & 3;
+            sendResult =
+                WM_SetMPDataToPortEx((UnkFunc *) WmDataSharingSetDataCallback, dsInfo, &dsInfo->mDs[previous],
+                                     dsInfo->mDataSetLength, dsInfo->mMemberMask & readyMembers, dsInfo->mPort, 1);
+            if (sendResult == 7) {
+                dsInfo->mSeqNum[previous] = 0xffff;
+                dsInfo->mSendIndex = (dsInfo->mSendIndex + 1) & 3;
+            } else if (sendResult != 0) {
+                if (sendResult != 2) {
+                    dsInfo->mStatus = result;
                     return 1;
                 }
             }
         }
-        if (p->mUnk_80c != p->mUnk_80a) {
-            p->mUnk_000[p->mUnk_80c].mUnk_00 |= 1;
-            MIi_CpuCopy16(&p->mUnk_000[p->mUnk_80c], b, 0x200);
-            p->mUnk_81a = p->mUnk_800[p->mUnk_80c];
-            p->mUnk_80c = (p->mUnk_80c + 1) & 3;
-            f1 = 1;
-            r = 0;
-            if (p->mUnk_818 == 0 && w != 0 && p->mUnk_000[p->mUnk_808].mUnk_00 == 1) {
-                f2 = f1;
+        if (dsInfo->mReadIndex != dsInfo->mSendIndex) {
+            dsInfo->mDs[dsInfo->mReadIndex].mAidBitmap |= 1;
+            MIi_CpuCopy16(&dsInfo->mDs[dsInfo->mReadIndex], receiveData, 0x200);
+            dsInfo->mCurrentSeqNum = dsInfo->mSeqNum[dsInfo->mReadIndex];
+            dsInfo->mReadIndex = (dsInfo->mReadIndex + 1) & 3;
+            delivered = 1;
+            result = 0;
+            if (dsInfo->mDoubleMode == 0 && readyMembers != 0 && dsInfo->mDs[dsInfo->mWriteIndex].mAidBitmap == 1) {
+                late = delivered;
             } else {
-                f2 = 0;
+                late = 0;
             }
         }
-        SendBlockIfComplete(p, 0);
-        if (f1 != 0) {
-            SetMemberData(p, 0, a);
-            if (p->mUnk_818 == 0) {
-                SendBlockIfComplete(p, f2);
+        WmDataSharingSendDataSet(dsInfo, 0);
+        if (delivered != 0) {
+            WmDataSharingReceiveData(dsInfo, 0, sendData);
+            if (dsInfo->mDoubleMode == 0) {
+                WmDataSharingSendDataSet(dsInfo, late);
             }
         }
     } else {
-        t = 0;
-        if (st == 4) {
-            p->mStatus = 1;
-            t = 1;
-        } else if (p->mUnk_80c != p->mUnk_808) {
-            if ((p->mUnk_000[p->mUnk_80c].mUnk_00 & 1) == 0) {
-                p->mUnk_000[p->mUnk_80c].mUnk_00 |= 1;
+        sendOwn = 0;
+        if (mode == 4) {
+            dsInfo->mStatus = 1;
+            sendOwn = 1;
+        } else if (dsInfo->mReadIndex != dsInfo->mWriteIndex) {
+            if ((dsInfo->mDs[dsInfo->mReadIndex].mAidBitmap & 1) == 0) {
+                dsInfo->mDs[dsInfo->mReadIndex].mAidBitmap |= 1;
             } else {
-                MIi_CpuCopy16(&p->mUnk_000[p->mUnk_80c], b, 0x200);
-                p->mUnk_81a = p->mUnk_800[p->mUnk_80c];
-                p->mUnk_80c = (p->mUnk_80c + 1) & 3;
-                t = 1;
-                r = 0;
+                MIi_CpuCopy16(&dsInfo->mDs[dsInfo->mReadIndex], receiveData, 0x200);
+                dsInfo->mCurrentSeqNum = dsInfo->mSeqNum[dsInfo->mReadIndex];
+                dsInfo->mReadIndex = (dsInfo->mReadIndex + 1) & 3;
+                sendOwn = 1;
+                result = 0;
             }
         }
-        if (t != 0) {
-            e7 = &p->mUnk_000[p->mUnk_80a].mUnk_04[0x1c];
-            MIi_CpuCopy16(a, e7, p->mMemberDataSize);
-            rr = WM_SetMPDataToPortEx((UnkFunc *) ReceiveBlockSendResult, p, e7, p->mMemberDataSize, p->mMemberMask,
-                                      p->mPort, 1);
-            p->mUnk_80a = (p->mUnk_80a + 1) & 3;
-            if (rr != 2) {
-                if (rr != 0) {
-                    p->mStatus = 5;
-                    r = 1;
+        if (sendOwn != 0) {
+            outgoing = &dsInfo->mDs[dsInfo->mSendIndex].mData[0x1c];
+            MIi_CpuCopy16(sendData, outgoing, dsInfo->mMemberDataSize);
+            sendResult = WM_SetMPDataToPortEx((UnkFunc *) WmDataSharingSetDataCallback, dsInfo, outgoing,
+                                              dsInfo->mMemberDataSize, dsInfo->mMemberMask, dsInfo->mPort, 1);
+            dsInfo->mSendIndex = (dsInfo->mSendIndex + 1) & 3;
+            if (sendResult != 2) {
+                if (sendResult != 0) {
+                    dsInfo->mStatus = 5;
+                    result = 1;
                 }
             }
         }
     }
-    return r;
+    return result;
 }
 
-// Passed to WM_SetMPDataToPortEx; accepts only objects that ReceiveParentPortMessage or ReceiveChildPortMessage are
-// stored for and records the result in the object at mUnk_20.
-void ReceiveBlockSendResult(Unk02144920 *a) {
-    Unk02142aa8 *pp;
-    Unk02142988 *q;
-    Unk021450ec *p;
-    UnkFunc *f;
-    u32 x;
-    u32 y;
+// Send result callback of the data sharing sends: records the sequence number on success and the retry or error state
+// otherwise.
+void WmDataSharingSetDataCallback(Unk02144920 *callback) {
+    Unk02142aa8 *work;
+    Unk02142988 *status;
+    Unk021450ec *share;
+    UnkFunc *registered;
+    u32 code;
+    u32 ownIndex;
 
-    pp = GetWorkBuffer();
-    q = pp->mStatusArea;
-    f = pp->mPortCallbacks[a->mUnk_0a];
-    p = pp->mPortCallbackArgs[a->mUnk_0a];
-    if (f != (UnkFunc *) ReceiveParentPortMessage && f != (UnkFunc *) ReceiveChildPortMessage) {
+    work = WMi_GetSystemWork();
+    status = work->mStatusArea;
+    registered = work->mPortCallbacks[callback->mUnk_0a];
+    share = work->mPortCallbackArgs[callback->mUnk_0a];
+    if (registered != (UnkFunc *) WmDataSharingReceiveCallback_Parent &&
+        registered != (UnkFunc *) WmDataSharingReceiveCallback_Child) {
         return;
     }
-    if (p == 0) {
+    if (share == 0) {
         return;
     }
-    if (p != a->mUnk_20) {
+    if (share != callback->mUnk_20) {
         return;
     }
-    DC_InvalidateRange(&q->mOwnMemberIndex, 2);
-    x = a->mResultCode;
-    y = q->mOwnMemberIndex;
-    if (x == 0) {
-        if (y != 0) {
+    DC_InvalidateRange(&status->mOwnMemberIndex, 2);
+    code = callback->mResultCode;
+    ownIndex = status->mOwnMemberIndex;
+    if (code == 0) {
+        if (ownIndex != 0) {
             return;
         }
-        p->mUnk_800[p->mUnk_80a] = a->mUnk_1a >> 1;
-        p->mUnk_80a = (p->mUnk_80a + 1) & 3;
+        share->mSeqNum[share->mSendIndex] = callback->mUnk_1a >> 1;
+        share->mSendIndex = (share->mSendIndex + 1) & 3;
         return;
     }
-    if (x == 10) {
-        if (y != 0) {
-            p->mUnk_80a = (p->mUnk_80a + 3) & 3;
+    if (code == 10) {
+        if (ownIndex != 0) {
+            share->mSendIndex = (share->mSendIndex + 3) & 3;
         }
-        p->mStatus = 4;
+        share->mStatus = 4;
         return;
     }
-    p->mStatus = 5;
+    share->mStatus = 5;
 }
 
-// Function stored in mUnk_0c4 by WM_StartDataSharing; messages 7, 9 and 0x15 pass the object to SendBlockIfComplete (9
-// clears bit mUnk_12 first, 0x15 calls SetMemberData).
-void ReceiveParentPortMessage(Unk02144920 *a) {
-    Unk021450ec *p;
-    u32 s;
-    enum { K0 } d;
-    u32 t;
-    u32 n;
-    u32 m;
-    u16 k;
+// Port callback of a parent: sends the next data set when the previous send finished (7), a child's data arrived (0x15)
+// or a child dropped out (9).
+void WmDataSharingReceiveCallback_Parent(Unk02144920 *callback) {
+    Unk021450ec *share;
+    u32 enabled;
+    enum { K0 } bit;
+    u32 member;
+    u32 current;
+    u32 mask;
+    u16 next;
 
-    p = a->mUnk_1c;
-    if (p == 0) {
+    share = callback->mUnk_1c;
+    if (share == 0) {
         return;
     }
-    if (a->mResultCode == 0) {
-        switch (a->mUnk_04) {
+    if (callback->mResultCode == 0) {
+        switch (callback->mUnk_04) {
             case 0x15:
-                SetMemberData(p, a->mUnk_12, a->mUnk_0c);
-                SendBlockIfComplete(p, 0);
+                WmDataSharingReceiveData(share, callback->mUnk_12, callback->mUnk_0c);
+                WmDataSharingSendDataSet(share, 0);
                 return;
             case 7:
-                SendBlockIfComplete(p, 0);
+                WmDataSharingSendDataSet(share, 0);
                 return;
             case 9:
-                t = a->mUnk_12;
-                d = 1;
-                s = OS_DisableInterrupts();
-                n = p->mUnk_808;
-                m = ~(d << t);
-                p->mUnk_000[n].mUnk_00 &= m;
-                if (p->mUnk_818 == 1) {
-                    k = (n + 1) & 3;
-                    p->mUnk_000[k].mUnk_00 &= m;
+                member = callback->mUnk_12;
+                bit = 1;
+                enabled = OS_DisableInterrupts();
+                current = share->mWriteIndex;
+                mask = ~(bit << member);
+                share->mDs[current].mAidBitmap &= mask;
+                if (share->mDoubleMode == 1) {
+                    next = (current + 1) & 3;
+                    share->mDs[next].mAidBitmap &= mask;
                 }
-                OS_RestoreInterrupts(s);
-                SendBlockIfComplete(p, 0);
-                if (p->mUnk_818 == 1) {
-                    SendBlockIfComplete(p, 0);
+                OS_RestoreInterrupts(enabled);
+                WmDataSharingSendDataSet(share, 0);
+                if (share->mDoubleMode == 1) {
+                    WmDataSharingSendDataSet(share, 0);
                 }
                 return;
         }
     } else {
-        p->mStatus = 5;
+        share->mStatus = 5;
     }
 }
 
-// Function stored in mUnk_0c4 by WM_StartDataSharing; when a->mUnk_04 is 0x15, copies mUnk_10 bytes from mUnk_0c into
-// the block at mUnk_808 and advances mUnk_808.
-void ReceiveChildPortMessage(Unk02144920 *a) {
-    Unk02142988 *q;
-    Unk021450ec *p;
-    u32 n;
-    u32 v;
-    u32 g;
-    u16 *d;
+// Port callback of a child: stores the data set the parent sent (0x15) as the next one to read.
+void WmDataSharingReceiveCallback_Child(Unk02144920 *callback) {
+    Unk02142988 *status;
+    Unk021450ec *share;
+    u32 size;
+    u32 blockMask;
+    u32 ownIndex;
+    u16 *data;
 
-    q = GetWorkBuffer()->mStatusArea;
-    p = a->mUnk_1c;
-    if (p == 0) {
+    status = WMi_GetSystemWork()->mStatusArea;
+    share = callback->mUnk_1c;
+    if (share == 0) {
         return;
     }
-    if (a->mResultCode == 0) {
-        if (a->mUnk_04 == 7) {
+    if (callback->mResultCode == 0) {
+        if (callback->mUnk_04 == 7) {
             return;
         }
-        if (a->mUnk_04 == 9) {
+        if (callback->mUnk_04 == 9) {
             return;
         }
-        if (a->mUnk_04 != 0x15) {
+        if (callback->mUnk_04 != 0x15) {
             return;
         }
-        d = a->mUnk_0c;
-        v = *d;
-        n = a->mUnk_10;
-        DC_InvalidateRange(&q->mOwnMemberIndex, 2);
-        g = q->mOwnMemberIndex;
-        if (n != p->mUnk_814) {
-            if (n > 0x200) {
-                n = 0x200;
+        data = callback->mUnk_0c;
+        blockMask = *data;
+        size = callback->mUnk_10;
+        DC_InvalidateRange(&status->mOwnMemberIndex, 2);
+        ownIndex = status->mOwnMemberIndex;
+        if (size != share->mDataSetLength) {
+            if (size > 0x200) {
+                size = 0x200;
             }
         }
-        if (n < 4) {
+        if (size < 4) {
             return;
         }
-        if ((v & (1 << g)) == 0) {
+        if ((blockMask & (1 << ownIndex)) == 0) {
             return;
         }
-        MIi_CpuCopy16(d, &p->mUnk_000[p->mUnk_808], n);
-        p->mUnk_800[p->mUnk_808] = a->mUnk_1a >> 1;
-        p->mUnk_808 = (p->mUnk_808 + 1) & 3;
+        MIi_CpuCopy16(data, &share->mDs[share->mWriteIndex], size);
+        share->mSeqNum[share->mWriteIndex] = callback->mUnk_1a >> 1;
+        share->mWriteIndex = (share->mWriteIndex + 1) & 3;
     } else {
-        p->mStatus = 5;
+        share->mStatus = 5;
     }
 }
 
-// Copies mUnk_810 bytes from src (zeros when src is 0) to the data of the block that holds bit, then moves bit from
-// the first mask of that block to its second mask.
-void SetMemberData(Unk021450ec *p, u32 bit, const void *src) {
-    u32 m;
-    u16 n;
-    u32 s;
-    u8 *dst;
-    volatile u16 z;
+// Stores the data of station aid (zero when data is NULL) in the current data set and marks the station as arrived.
+void WmDataSharingReceiveData(Unk021450ec *dsInfo, u32 aid, const void *data) {
+    u32 mask;
+    u16 block;
+    u32 enabled;
+    u8 *target;
+    volatile u16 zero;
 
-    m = (u16) (1 << bit);
-    if ((p->mMemberMask & m) == 0) {
+    mask = (u16) (1 << aid);
+    if ((dsInfo->mMemberMask & mask) == 0) {
         return;
     }
-    n = p->mUnk_808;
-    if ((m & p->mUnk_000[n].mUnk_00) == 0) {
-        if (p->mUnk_818 != 1) {
+    block = dsInfo->mWriteIndex;
+    if ((mask & dsInfo->mDs[block].mAidBitmap) == 0) {
+        if (dsInfo->mDoubleMode != 1) {
             return;
         }
-        n = (n + 1) & 3;
-        if ((m & p->mUnk_000[n].mUnk_00) == 0) {
+        block = (block + 1) & 3;
+        if ((mask & dsInfo->mDs[block].mAidBitmap) == 0) {
             return;
         }
     }
-    dst = GetMemberDataInBlock(p, p->mMemberMask, p->mUnk_000[n].mUnk_04, bit);
-    if (src != 0) {
-        MIi_CpuCopy16(src, dst, p->mMemberDataSize);
+    target = WmGetSharedDataAddress(dsInfo, dsInfo->mMemberMask, dsInfo->mDs[block].mData, aid);
+    if (data != 0) {
+        MIi_CpuCopy16(data, target, dsInfo->mMemberDataSize);
     } else {
-        z = 0;
-        MIi_CpuClear16(z, dst, p->mMemberDataSize);
+        zero = 0;
+        MIi_CpuClear16(zero, target, dsInfo->mMemberDataSize);
     }
-    s = OS_DisableInterrupts();
-    p->mUnk_000[n].mUnk_00 &= ~m;
-    p->mUnk_000[n].mArrivedMembers |= m;
-    OS_RestoreInterrupts(s);
+    enabled = OS_DisableInterrupts();
+    dsInfo->mDs[block].mAidBitmap &= ~mask;
+    dsInfo->mDs[block].mArrivedMembers |= mask;
+    OS_RestoreInterrupts(enabled);
 }
 
-// When the block at mUnk_808 starts with 0: advances mUnk_808, clears the block two ahead (one ahead when mUnk_818
-// is not 1), then passes the block to WM_SetMPDataToPortEx.
-void SendBlockIfComplete(Unk021450ec *p, u32 f) {
-    u32 s;
-    u16 i;
-    u32 w;
-    Unk02142988 *q;
-    u16 n1;
-    u16 n2;
-    int r;
-    volatile u16 z;
+// When the current data set is complete, makes the next one current and sends the finished one to the other stations.
+void WmDataSharingSendDataSet(Unk021450ec *dsInfo, u32 delayed) {
+    u32 enabled;
+    u16 done;
+    u32 ready;
+    Unk02142988 *status;
+    u16 next;
+    u16 ahead;
+    int result;
+    volatile u16 zero;
 
-    q = GetWorkBuffer()->mStatusArea;
-    s = OS_DisableInterrupts();
-    if (p->mUnk_000[p->mUnk_808].mUnk_00 == 0) {
-        DC_InvalidateRange(&q->mUnk_086, 2);
-        i = p->mUnk_808;
-        w = q->mUnk_086;
-        n1 = (i + 1) & 3;
-        if (p->mUnk_818 == 1) {
-            n2 = (n1 + 1) & 3;
+    status = WMi_GetSystemWork()->mStatusArea;
+    enabled = OS_DisableInterrupts();
+    if (dsInfo->mDs[dsInfo->mWriteIndex].mAidBitmap == 0) {
+        DC_InvalidateRange(&status->mMpReadyBitmap, 2);
+        done = dsInfo->mWriteIndex;
+        ready = status->mMpReadyBitmap;
+        next = (done + 1) & 3;
+        if (dsInfo->mDoubleMode == 1) {
+            ahead = (next + 1) & 3;
         } else {
-            n2 = n1;
+            ahead = next;
         }
-        z = 0;
-        MIi_CpuClear16(z, &p->mUnk_000[n2], 0x200);
-        p->mUnk_000[n2].mUnk_00 = p->mMemberMask & (w | 1);
-        p->mUnk_808 = n1;
-        p->mUnk_000[i].mUnk_00 = p->mMemberMask;
-        if (f == 1) {
-            p->mUnk_000[i].mUnk_00 &= ~1;
+        zero = 0;
+        MIi_CpuClear16(zero, &dsInfo->mDs[ahead], 0x200);
+        dsInfo->mDs[ahead].mAidBitmap = dsInfo->mMemberMask & (ready | 1);
+        dsInfo->mWriteIndex = next;
+        dsInfo->mDs[done].mAidBitmap = dsInfo->mMemberMask;
+        if (delayed == 1) {
+            dsInfo->mDs[done].mAidBitmap &= ~1;
         }
-        OS_RestoreInterrupts(s);
-        r = WM_SetMPDataToPortEx((UnkFunc *) ReceiveBlockSendResult, p, &p->mUnk_000[i], p->mUnk_814,
-                                 p->mMemberMask & w, p->mPort, 1);
-        if (r == 7) {
-            p->mUnk_800[i] = 0xffff;
-            p->mUnk_80a = (p->mUnk_80a + 1) & 3;
-        } else if (r != 0) {
-            if (r != 2) {
-                p->mStatus = 5;
+        OS_RestoreInterrupts(enabled);
+        result = WM_SetMPDataToPortEx((UnkFunc *) WmDataSharingSetDataCallback, dsInfo, &dsInfo->mDs[done],
+                                      dsInfo->mDataSetLength, dsInfo->mMemberMask & ready, dsInfo->mPort, 1);
+        if (result == 7) {
+            dsInfo->mSeqNum[done] = 0xffff;
+            dsInfo->mSendIndex = (dsInfo->mSendIndex + 1) & 3;
+        } else if (result != 0) {
+            if (result != 2) {
+                dsInfo->mStatus = 5;
             }
         }
     } else {
-        OS_RestoreInterrupts(s);
+        OS_RestoreInterrupts(enabled);
     }
 }
 
-// Returns GetMemberDataInBlock for the data of q, or 0 when p or q is 0 or bit is not set in both masks of q.
-u8 *WM_GetSharedDataAddress(Unk021450ec *p, Unk0214461c *q, u32 bit) {
-    u32 m;
-    u32 a;
-    u32 b;
+// Returns the data of station aid in receiveData, or NULL when the station has no data in it.
+u8 *WM_GetSharedDataAddress(Unk021450ec *dsInfo, Unk0214461c *receiveData, u32 aid) {
+    u32 mask;
+    u32 held;
+    u32 arrived;
 
-    b = q->mArrivedMembers;
-    m = 1 << bit;
-    a = q->mUnk_00;
-    if (p == 0) {
+    arrived = receiveData->mArrivedMembers;
+    mask = 1 << aid;
+    held = receiveData->mAidBitmap;
+    if (dsInfo == 0) {
         return 0;
     }
-    if (q == 0) {
+    if (receiveData == 0) {
         return 0;
     }
-    if ((a & m) == 0) {
+    if ((held & mask) == 0) {
         return 0;
     }
-    if ((b & m) == 0) {
+    if ((arrived & mask) == 0) {
         return 0;
     }
-    return GetMemberDataInBlock(p, a, q->mUnk_04, bit);
+    return WmGetSharedDataAddress(dsInfo, held, receiveData->mData, aid);
 }
 
-// Returns base plus mUnk_810 times the number of set bits of mask below bit.
-u8 *GetMemberDataInBlock(Unk021450ec *p, u32 mask, u8 *base, u32 bit) {
-    return base + p->mMemberDataSize * CountSetBits(mask & ((1 << bit) - 1));
+// Returns the data of station aid in receiveBuf: the data of the stations in aidBitmap that come before it are skipped.
+u8 *WmGetSharedDataAddress(Unk021450ec *dsInfo, u32 aidBitmap, u8 *receiveBuf, u32 aid) {
+    return receiveBuf + dsInfo->mMemberDataSize * CountSetBits(aidBitmap & ((1 << aid) - 1));
 }
