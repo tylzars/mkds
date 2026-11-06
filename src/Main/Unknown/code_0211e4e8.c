@@ -131,8 +131,8 @@ void InitSelectCupMCellsAndRequestCupPicture(void) {
     gSelectCupM->mMainTable[19].mUnk_00 = 1;
     gSelectCupM->mSubTable[20].mUnk_00 = 0;
     gSelectCupM->mSubTable[19].mUnk_00 = 1;
-    func_0211de00(data_0215cf2c[func_0202968c()], gSelectCupM->mMainNcer, gSelectCupM->mMainBncl, 0x13, 0);
-    func_0211de00(data_0215cf2c[func_0202968c()], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl, 0x13, 1);
+    QueueSelectCupNameM(data_0215cf2c[func_0202968c()], gSelectCupM->mMainNcer, gSelectCupM->mMainBncl, 0x13, 0);
+    QueueSelectCupNameM(data_0215cf2c[func_0202968c()], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl, 0x13, 1);
     n = FALSE;
     for (j = 0; j < 4; j++) {
         func_0212426c(n, data_0215cf0c[j], gSelectCupM->mMainBnll,
@@ -276,7 +276,7 @@ void InitSelectCupM(void *a, void *b, void *c) {
                                data_0215cf14[m], data_0215cf04[m], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl,
                                gSelectCupM->mSubTable, i);
         }
-        func_0211de40(gSelectCupM->mHeap);
+        CreateSelectCupNameM(gSelectCupM->mHeap);
     } else {
         func_0211f4b0(gSelectCupM->mHeap, gSelectCupM->mUnk_4c);
         func_0211f380();

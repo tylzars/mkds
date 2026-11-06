@@ -5,10 +5,10 @@
 #include "code_0212f1ac.h" // CallbackInfo
 
 // Objects whose layout isn't known yet.
-extern const char *data_0216e0a8;
-extern const char *data_0216e0ac;
-extern const char *data_0216e0b0;
-extern const char *data_0216e0b4;
+extern const char *gTrophyIconNcgrName;
+extern const char *gTrophyIconNcerName;
+extern const char *gTrophyIconBnclName;
+extern const char *gTrophyIconNclrName;
 extern const char *data_0216e124;
 extern const char *data_0216e128;
 extern const char *data_0216e12c;

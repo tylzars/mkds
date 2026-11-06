@@ -278,7 +278,7 @@ void InitSelectCupCourse(void *b, void *c, void *d, s32 e) {
                                data_0215cabc[i], data_0215cac4[i], data_0215caa4[i], gSelectCupCourse->mSelectCupMNcer,
                                gSelectCupCourse->mSelectCupMBncl, gSelectCupCourse->mSelectCupMTable, v);
         }
-        func_0211de40(gSelectCupCourse->mHeap);
+        CreateSelectCupNameM(gSelectCupCourse->mHeap);
         CreateCommonCupMark(gSelectCupCourse->mHeap);
     } else {
         gSelectCupCourse->mGhostMessages = FindSceneFile("ghost.bmg");

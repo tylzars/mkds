@@ -346,9 +346,10 @@ void func_0211a100(void) {
         gSelectCupCourse->mSelectCupMTable[0x14].mUnk_00 = 0;
         gSelectCupCourse->mSelectCupMTable[0x13].mUnk_00 = 1;
         p = gSelectCupCourse;
-        func_0211de00(data_0215cadc[func_0202968c()], p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl, 0, 0);
+        QueueSelectCupNameM(data_0215cadc[func_0202968c()], p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl, 0,
+                            0);
         p = gSelectCupCourse;
-        func_0211de00(data_0215cadc[func_0202968c()], p->mSelectCupMNcer, p->mSelectCupMBncl, 0x13, 1);
+        QueueSelectCupNameM(data_0215cadc[func_0202968c()], p->mSelectCupMNcer, p->mSelectCupMBncl, 0x13, 1);
         p = gSelectCupCourse;
         i = func_0202968c();
         QueueCupMark(data_0215cadc[i], p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl, 5,

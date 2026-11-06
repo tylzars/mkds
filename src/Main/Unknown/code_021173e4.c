@@ -165,7 +165,8 @@ void SetupSelectCupGridIndex(void) {
     if (*(vu16 *) 0x027ffc40 == 2) {
         return;
     }
-    func_0211de00(gSelectCupGrid->mIndex, gSelectCupGrid->mSelectCupMNcer, gSelectCupGrid->mSelectCupMBncl, 0x13, a);
+    QueueSelectCupNameM(gSelectCupGrid->mIndex, gSelectCupGrid->mSelectCupMNcer, gSelectCupGrid->mSelectCupMBncl, 0x13,
+                        a);
     j = 0;
     for (i = 0; i < 4; i++) {
         p = gSelectCupGrid;
@@ -210,7 +211,7 @@ void SetupSelectCupGridIndex(void) {
             gSelectCupGrid->mSelectCupMTable[a].mUnk_00 = 1;
             c = func_020603bc(data_0215c85c[gSelectCupGrid->mIndex], b);
             p = gSelectCupGrid;
-            func_0211f244(data_0215c85c[p->mIndex], c, p->mSelectCupMNcer, p->mSelectCupMBncl, a, 4, 0);
+            QueueTrophyIcon(data_0215c85c[p->mIndex], c, p->mSelectCupMNcer, p->mSelectCupMBncl, a, 4, 0);
         }
     }
     RequestSelectCupGridCupPicture();
@@ -508,9 +509,9 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
                                  data_0215c7e0[i], data_0215c7e8[i], data_0215c7d0[i], gSelectCupGrid->mSelectCupMNcer,
                                  gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMTable, rem);
         }
-        func_0211de40(gSelectCupGrid->mHeap);
+        CreateSelectCupNameM(gSelectCupGrid->mHeap);
         CreateCommonCupMark(gSelectCupGrid->mHeap);
-        func_0211f2b8(gSelectCupGrid->mHeap);
+        CreateTrophyIcon(gSelectCupGrid->mHeap);
     } else {
         func_0211f4b0(gSelectCupGrid->mHeap, gSelectCupGrid->mUnk_84);
         if (func_020cccb4() != 0xc) {

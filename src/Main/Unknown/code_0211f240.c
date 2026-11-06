@@ -12,7 +12,7 @@
 
 #pragma thumb on
 
-void func_0211f328(void) {
+void LoadTrophyIconData(void) {
     void *v1;
     Ncgr *v2;
     Unk02021dc8 *v3;
@@ -20,27 +20,27 @@ void func_0211f328(void) {
     v2 = NULL;
     v3 = NULL;
     v4[0] = NULL;
-    v1 = FindSceneFile(data_0216e0a8);
+    v1 = FindSceneFile(gTrophyIconNcgrName);
     LoadNcgrData(&v2, v1);
-    v1 = FindSceneFile(data_0216e0ac);
+    v1 = FindSceneFile(gTrophyIconNcerName);
     LoadNcerData(&v3, v1);
-    v1 = FindSceneFile(data_0216e0b4);
+    v1 = FindSceneFile(gTrophyIconNclrName);
     LoadNclrData(v4, v1);
 }
 
-void func_0211f2b8(void *a) {
+void CreateTrophyIcon(void *a) {
     int v1;
     void *v2;
     v1 = ((u32) HeapAlloc(a, (u32) 0x10));
-    *(s32 *) &data_0217d37c = v1;
-    v2 = FindSceneFile(data_0216e0a8);
-    LocateNcgr2(&data_0217d37c->mUnk_00, v2);
-    v2 = FindSceneFile(data_0216e0ac);
-    LocateNcer(&data_0217d37c->mUnk_04, v2);
-    v2 = FindSceneFile(data_0216e0b4);
-    LocateNclr(&data_0217d37c->mUnk_08, v2);
-    v2 = FindSceneFile(data_0216e0b0);
-    data_0217d37c->mUnk_0c = v2;
+    *(s32 *) &gTrophyIcon = v1;
+    v2 = FindSceneFile(gTrophyIconNcgrName);
+    LocateNcgr2(&gTrophyIcon->mNcgr, v2);
+    v2 = FindSceneFile(gTrophyIconNcerName);
+    LocateNcer(&gTrophyIcon->mNcer, v2);
+    v2 = FindSceneFile(gTrophyIconNclrName);
+    LocateNclr(&gTrophyIcon->mNclr, v2);
+    v2 = FindSceneFile(gTrophyIconBnclName);
+    gTrophyIcon->mBncl = v2;
 }
 
 #pragma thumb off
@@ -48,23 +48,23 @@ void func_0211f2b8(void *a) {
 #pragma thumb on
 
 void func_0211f2ac(void) {
-    data_0217d37c = NULL;
+    gTrophyIcon = NULL;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0211f244(int a, int b, void *c, void *d, u32 e, u16 f, int g) {
+void QueueTrophyIcon(int a, int b, void *c, void *d, u32 e, u16 f, int g) {
     u32 v1;
-    Unk0217d37c *v2;
+    TrophyIcon *v2;
     v1 = 0xe;
     if ((g != 0) && (g == 1)) {
         v1 = 0x1e;
     }
-    v2 = data_0217d37c;
-    func_02124748(data_0215d014[a], v2->mUnk_04, v2->mUnk_00, v2->mUnk_0c, g, e, c, d);
-    CallQueueAppend(v1, (u32) ((u32) f << 5), (u8 *) data_0217d37c->mUnk_08->mData + data_0215d00c[b] * 0x20,
+    v2 = gTrophyIcon;
+    func_02124748(gTrophyIconBnclIndices[a], v2->mNcer, v2->mNcgr, v2->mBncl, g, e, c, d);
+    CallQueueAppend(v1, (u32) ((u32) f << 5), (u8 *) gTrophyIcon->mNclr->mData + gTrophyIconNclrStarts[b] * 0x20,
                     (u32) 0x20);
 }
 

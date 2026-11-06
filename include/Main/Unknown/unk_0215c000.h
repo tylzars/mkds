@@ -30,7 +30,7 @@ extern u16 data_0215c544[3][3];
 extern u16 data_0215c558[3][3];
 extern u16 data_0215c56c[];
 extern u16 data_0215c59c[];
-extern u16 data_0215ced4[];
+extern u16 gSelectCupNameMBnclIndices[];
 extern u32 data_0215cca4[];
 extern u16 data_0215cf1c[];
 extern u16 data_0215cefc[];

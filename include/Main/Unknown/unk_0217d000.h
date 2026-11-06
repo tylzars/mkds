@@ -122,12 +122,11 @@ typedef struct RecordVSErase {
     /* a0 */ s32 mUnk_a0;
 } RecordVSErase;
 
-// Object behind data_0217d36c.
-typedef struct Unk0217d36c {
-    /* 00 */ void *mUnk_00;
-    /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ void *mUnk_08;
-} Unk0217d36c;
+typedef struct SelectCupNameM {
+    /* 00 */ void *mNcgr;
+    /* 04 */ struct Unk02021dc8 *mNcer;
+    /* 08 */ void *mBncl;
+} SelectCupNameM;
 
 // 0x10 bytes.
 typedef struct CupMark {
@@ -368,13 +367,13 @@ typedef struct SelectRaceRule {
     /* b8 */ vu32 mResult;
 } SelectRaceRule;
 
-// Object behind data_0217d37c (0x10 bytes), allocated by func_0211f2b8.
-typedef struct Unk0217d37c {
-    /* 00 */ struct Ncgr *mUnk_00;
-    /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ struct Nclr *mUnk_08;
-    /* 0c */ void *mUnk_0c;
-} Unk0217d37c;
+// 0x10 bytes.
+typedef struct TrophyIcon {
+    /* 00 */ struct Ncgr *mNcgr;
+    /* 04 */ struct Unk02021dc8 *mNcer;
+    /* 08 */ struct Nclr *mNclr;
+    /* 0c */ void *mBncl;
+} TrophyIcon;
 
 // Object behind data_0217d380 (0x28 bytes), allocated by func_0211f4b0.
 typedef struct Unk0217d380 {
@@ -732,11 +731,11 @@ extern Wait *gWait;
 extern Unk0217d358 *data_0217d358;
 extern KartIcon *gKartIcon;
 extern SelectRaceRule *gSelectRaceRule;
-extern Unk0217d36c *data_0217d36c;
+extern SelectCupNameM *gSelectCupNameM;
 extern CupMark *gCupMark;
 extern Unk0217d374 *data_0217d374;
 extern SelectCupM *gSelectCupM;
-extern Unk0217d37c *data_0217d37c;
+extern TrophyIcon *gTrophyIcon;
 extern Unk0217d380 *data_0217d380;
 extern char gKartFilterString[0x64];
 extern Unk0217d3ec *data_0217d3ec;

@@ -386,9 +386,9 @@ void func_02118d44(void) {
         LoadNcgrData2(&d, FindSceneFile(data_0216d69c));
         LoadNcerData(&e, FindSceneFile(data_0216d6b4));
         LoadNclrData(&f, FindSceneFile(data_0216d68c));
-        func_0211de98();
+        LoadSelectCupNameMData();
         LoadCommonCupMarkData();
-        func_0211f328();
+        LoadTrophyIconData();
     }
 }
 

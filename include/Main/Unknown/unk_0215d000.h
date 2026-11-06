@@ -24,8 +24,8 @@ extern Unk0215d064 gSelectChoisesPaletteRects[];
 extern const s16 gPairsByAngle[];
 extern s16 data_0215d6b4[];
 
-extern u16 data_0215d00c[];
-extern u16 data_0215d014[];
+extern u16 gTrophyIconNclrStarts[];
+extern u16 gTrophyIconBnclIndices[];
 extern u8 data_0215d024[];
 extern u8 gBackScreenSNclrStarts[];
 extern u8 gBackScreenMNclrStarts[];
