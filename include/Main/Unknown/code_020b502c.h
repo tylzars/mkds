@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_02073eb8.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-// Two words (the elements at member 0xc of Unk0217b498).
+// Two words (the elements at member 0xc of RaceHudSubScreenCells).
 typedef Unk0217b498_0c UnkPair020b502c;
 
 // Object returned by func_020b57e4.

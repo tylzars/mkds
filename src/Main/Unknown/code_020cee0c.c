@@ -51,5 +51,5 @@ void func_020cee28(void) {
 #pragma thumb off
 
 s32 func_020cee0c(void) {
-    return func_020c0c2c(&data_0217b484, 0x1ab);
+    return CreateRaceHudSubScreenCells(&data_0217b484, 0x1ab);
 }

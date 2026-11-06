@@ -39,5 +39,5 @@ void *GetCupPictureNscrData(void) {
 #pragma thumb off
 
 s32 func_020d0e3c(void) {
-    return func_020c0c2c(&data_0217b4a0, MAP_OBJECT_KIND_FIREBALL2);
+    return CreateRaceHudSubScreenCells(&data_0217b4a0, MAP_OBJECT_KIND_FIREBALL2);
 }

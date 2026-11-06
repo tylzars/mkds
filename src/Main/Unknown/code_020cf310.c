@@ -108,7 +108,7 @@ void func_020cf340(Unk020cf340 *a) {
             if (p != NULL) {
                 q = (Unk0217b498_00 **) func_02100084(p);
                 for (i = 0; i < 5; i++) {
-                    w = q[i]->mUnk_7e;
+                    w = q[i]->mAngle;
                     if (i == 4) {
                         m = (w * 0xb4) >> 16;
                     } else {
@@ -201,11 +201,11 @@ void func_020cf340(Unk020cf340 *a) {
             p = func_021000d0(0xd0);
             if (p != NULL) {
                 q = (Unk0217b498_00 **) func_02100084(p);
-                v = (q[1]->mUnk_7e * 0x48) >> 16;
+                v = (q[1]->mAngle * 0x48) >> 16;
                 for (i = 0; i < 6; i++) {
                     a->mUnk_00[i + 0x54] = data_0217b490->mUnk_02.mUnk_03.mUnk_00[(i + 0x48 - v) % 6];
                 }
-                k = (q[0]->mUnk_7e << 5) >> 16;
+                k = (q[0]->mAngle << 5) >> 16;
                 for (i = 0; i < 2; i++) {
                     for (j = 0; j < 3; j++) {
                         a->mUnk_00[j + i * 3 + 0x5a] = data_0217b490->mUnk_02.mUnk_03.mUnk_0c[i][(j + 0x20 - k) % 3];
@@ -292,5 +292,5 @@ s32 func_020cf310(void) {
     v = 0;
     v += gItemKinds[5].mObjectCount;
     v += gItemKinds[9].mObjectCount;
-    return func_020c0ba8(&data_0217b48c, v);
+    return CreateRaceHudSubScreenCellsWithCount(&data_0217b48c, v);
 }

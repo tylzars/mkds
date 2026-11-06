@@ -46,31 +46,29 @@ typedef struct Unk020de84c_08 {
     /* 04 */ s32 mUnk_04;
 } Unk020de84c_08;
 
-// 8-byte elements of the table at member 0xc of Unk0217b498 (UnkPair020b502c of code_020b502c.h is this type).
+// UnkPair020b502c of code_020b502c.h is this type.
 typedef struct Unk0217b498_0c {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
 } Unk0217b498_0c;
 
-// 0x14-byte elements of the table at member 0x10 of Unk0217b498.
-typedef struct Unk0217b498_10 {
+typedef struct RaceHudSubScreenCell {
     /* 00 */ Unk0217b498_0c mUnk_00;
     /* 08 */ struct Unk020224e0_c *mUnk_08;
     /* 0c */ u16 mUnk_0c;
     /* 0e */ u16 mUnk_0e;
     /* 10 */ u16 mUnk_10;
     /* 12 */ u8 mUnk_12[2];
-} Unk0217b498_10;
+} RaceHudSubScreenCell;
 
-// Elements of the table at member 0 of Unk0217b498.
 typedef struct Unk0217b498_00 {
     /* 00 */ u8 mUnk_00[2];
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ Vec3 mUnk_04;
+    /* 02 */ u16 mFlags;
+    /* 04 */ Vec3 mPos;
     /* 10 */ u8 mUnk_10[0xc];
     /* 1c */ s32 mUnk_1c;
     /* 20 */ u8 mUnk_20[0x5e];
-    /* 7e */ u16 mUnk_7e;
+    /* 7e */ u16 mAngle;
     /* 80 */ u8 mUnk_80[0x28];
     /* a8 */ s32 mUnk_a8;
     /* ac */ s32 mUnk_ac;
@@ -81,16 +79,14 @@ typedef struct Unk0217b498_00 {
     /* c0 */ u16 mUnk_c0;
 } Unk0217b498_00;
 
-// Object behind data_0217b3fc to data_0217b420, data_0217b42c to data_0217b434, data_0217b440 to data_0217b484,
-// data_0217b48c, data_0217b494, data_0217b498, data_0217b4a0 and the ov001 pointers data_ov001_021a9b8c and
-// data_ov001_021a9ba4 to data_ov001_021a9bc4 (func_020c0c2c and func_020c0ba8 allocate it, func_020c0b84 clears it).
-typedef struct Unk0217b498 {
-    /* 00 */ Unk0217b498_00 **mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+// Shared by the data_0217b3fc..data_0217b4a0 lists and the ov001 pointers.
+typedef struct RaceHudSubScreenCells {
+    /* 00 */ Unk0217b498_00 **mObjects;
+    /* 04 */ s32 mCellCount;
+    /* 08 */ s32 mObjectCount;
     /* 0c */ Unk0217b498_0c *mUnk_0c;
-    /* 10 */ Unk0217b498_10 *mUnk_10;
-} Unk0217b498;
+    /* 10 */ RaceHudSubScreenCell *mCells;
+} RaceHudSubScreenCells;
 
 // Halfwords from 0x02 of Unk0217b490 read by func_020cf340 when data_021759c0->mUnk_00 is 0x20: six, two rows
 // of three and two.
@@ -671,18 +667,18 @@ typedef struct Unk0217b3d8 {
 } Unk0217b3d8;
 
 extern Unk0217b3d8 *data_0217b3d8;
-// Object behind data_0217b3dc, 0x25c bytes, allocated by func_020beb9c.
-typedef struct Unk0217b3dc {
+// Object behind gRaceHudSubScreenCellGroups, 0x25c bytes, allocated by InitRaceHudSubScreenCellGroups.
+typedef struct RaceHudSubScreenCellGroups {
     /* 000 */ u16 mUnk_000;
     /* 004 */ s32 mUnk_004;
     /* 008 */ s32 mUnk_008;
-    /* 00c */ s32 mUnk_00c;
-    /* 010 */ void (*mUnk_010[49])(void);
-    /* 0d4 */ void (*mUnk_0d4[49])(void);
-    /* 198 */ void (*mUnk_198[49])(void *);
-} Unk0217b3dc;
+    /* 00c */ s32 mGroupCount;
+    /* 010 */ void (*mClearFunctions[49])(void);
+    /* 0d4 */ void (*mUpdateFunctions[49])(void);
+    /* 198 */ void (*mDrawFunctions[49])(void *);
+} RaceHudSubScreenCellGroups;
 
-extern Unk0217b3dc *data_0217b3dc;
+extern RaceHudSubScreenCellGroups *gRaceHudSubScreenCellGroups;
 // Object behind gRaceGoalS, 0x20e4 bytes, allocated by InitRaceGoalS.
 typedef struct RaceGoalS {
     /* 0000 */ s32 mUnk_0000[8];
@@ -882,7 +878,7 @@ typedef struct Unk0217b3ec {
 extern Unk0217b3ec *data_0217b3ec;
 extern Unk0217b3ec *data_0217b3d4;
 // Object behind data_0217b424, 0x44 bytes allocated by func_020c8d30: a table of object pointers and two counts
-// (as in Unk0217b498), three halfwords and two arrays of three pairs.
+// (as in RaceHudSubScreenCells), three halfwords and two arrays of three pairs.
 typedef struct Unk0217b424 {
     /* 00 */ struct Unk020e1e98 **mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -893,8 +889,8 @@ typedef struct Unk0217b424 {
     /* 2c */ Unk0217b498_0c mUnk_2c[3];
 } Unk0217b424;
 
-// Object behind data_0217b428, 0x194 bytes allocated by func_020c9fb8: arrays of eight entries and an Unk0217b498
-// pointer at 0x190.
+// Object behind data_0217b428, 0x194 bytes allocated by func_020c9fb8: arrays of eight entries and an
+// RaceHudSubScreenCells pointer at 0x190.
 typedef struct Unk0217b428 {
     /* 000 */ s32 mUnk_000[8];
     /* 020 */ s32 mUnk_020[8];
@@ -906,7 +902,7 @@ typedef struct Unk0217b428 {
     /* 130 */ s32 mUnk_130[8];
     /* 150 */ s32 mUnk_150[8];
     /* 170 */ s32 mUnk_170[8];
-    /* 190 */ Unk0217b498 *mUnk_190;
+    /* 190 */ RaceHudSubScreenCells *mUnk_190;
 } Unk0217b428;
 
 extern Unk0217b424 *data_0217b424;
@@ -969,42 +965,42 @@ extern struct Unk02022aa8 *gFontTable[3];
 extern struct Unk02022aa8 gLCFontS;
 extern struct Unk02022aa8 gLCFontM;
 extern struct Unk02022aa8 gMarioFont;
-extern Unk0217b498 *data_0217b3fc;
-extern Unk0217b498 *data_0217b400;
-extern Unk0217b498 *data_0217b404;
-extern Unk0217b498 *data_0217b408;
-extern Unk0217b498 *data_0217b40c;
-extern Unk0217b498 *data_0217b410;
-extern Unk0217b498 *data_0217b414;
-extern Unk0217b498 *data_0217b418;
-extern Unk0217b498 *data_0217b41c;
-extern Unk0217b498 *data_0217b420;
-extern Unk0217b498 *data_0217b42c;
-extern Unk0217b498 *data_0217b430;
-extern Unk0217b498 *data_0217b434;
-extern Unk0217b498 *data_0217b440;
-extern Unk0217b498 *data_0217b444;
-extern Unk0217b498 *data_0217b448;
-extern Unk0217b498 *data_0217b44c;
-extern Unk0217b498 *data_0217b450;
-extern Unk0217b498 *data_0217b454;
-extern Unk0217b498 *data_0217b458;
-extern Unk0217b498 *data_0217b45c;
-extern Unk0217b498 *data_0217b460;
-extern Unk0217b498 *data_0217b464;
-extern Unk0217b498 *data_0217b468;
-extern Unk0217b498 *data_0217b46c;
-extern Unk0217b498 *data_0217b470;
-extern Unk0217b498 *data_0217b474;
-extern Unk0217b498 *data_0217b478;
-extern Unk0217b498 *data_0217b47c;
-extern Unk0217b498 *data_0217b480;
-extern Unk0217b498 *data_0217b484;
-extern Unk0217b498 *data_0217b48c;
+extern RaceHudSubScreenCells *data_0217b3fc;
+extern RaceHudSubScreenCells *data_0217b400;
+extern RaceHudSubScreenCells *data_0217b404;
+extern RaceHudSubScreenCells *data_0217b408;
+extern RaceHudSubScreenCells *data_0217b40c;
+extern RaceHudSubScreenCells *data_0217b410;
+extern RaceHudSubScreenCells *data_0217b414;
+extern RaceHudSubScreenCells *data_0217b418;
+extern RaceHudSubScreenCells *data_0217b41c;
+extern RaceHudSubScreenCells *data_0217b420;
+extern RaceHudSubScreenCells *data_0217b42c;
+extern RaceHudSubScreenCells *data_0217b430;
+extern RaceHudSubScreenCells *data_0217b434;
+extern RaceHudSubScreenCells *data_0217b440;
+extern RaceHudSubScreenCells *gRaceHudSubScreenNsKiller2Cells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenFlipperCells;
+extern RaceHudSubScreenCells *data_0217b44c;
+extern RaceHudSubScreenCells *data_0217b450;
+extern RaceHudSubScreenCells *gRaceHudSubScreenSanboCells;
+extern RaceHudSubScreenCells *data_0217b458;
+extern RaceHudSubScreenCells *gRaceHudSubScreenCoverPooHoleCells;
+extern RaceHudSubScreenCells *data_0217b460;
+extern RaceHudSubScreenCells *gRaceHudSubScreenKuriboCells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenIronBallCells;
+extern RaceHudSubScreenCells *data_0217b46c;
+extern RaceHudSubScreenCells *gRaceHudSubScreenMkdEfBurnerCells;
+extern RaceHudSubScreenCells *data_0217b474;
+extern RaceHudSubScreenCells *gRaceHudSubScreenMkdEfBubbleCells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenBasabasaCells;
+extern RaceHudSubScreenCells *data_0217b480;
+extern RaceHudSubScreenCells *data_0217b484;
+extern RaceHudSubScreenCells *data_0217b48c;
 extern Unk0217b490 *data_0217b490;
-extern Unk0217b498 *data_0217b494;
-extern Unk0217b498 *data_0217b498;
-extern Unk0217b498 *data_0217b4a0;
+extern RaceHudSubScreenCells *data_0217b494;
+extern RaceHudSubScreenCells *data_0217b498;
+extern RaceHudSubScreenCells *data_0217b4a0;
 extern s32 data_0217b890;
 extern s32 data_0217b8ac;
 extern s32 data_0217b8c4;

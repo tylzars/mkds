@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0217b498 Unk0217b498;
+typedef struct RaceHudSubScreenCells RaceHudSubScreenCells;
 
 // 8-byte elements of the first table of Unk020c06c4: two words, each with a two-bit part at bit 10.
 typedef struct Unk020c06c4_08 {
@@ -39,5 +39,5 @@ typedef struct Unk020c06c4 {
     /* 400 */ u16 mUnk_400;
 } Unk020c06c4;
 
-void func_020c092c(Unk020c06c4 *a, Unk0217b498 *b, s32 c);
-void func_020c06c4(Unk020c06c4 *a, Unk0217b498 *b, s32 c);
+void DrawRaceHudSubScreenCells(Unk020c06c4 *a, RaceHudSubScreenCells *b, s32 c);
+void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *a, RaceHudSubScreenCells *b, s32 c);

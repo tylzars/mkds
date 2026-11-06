@@ -396,12 +396,12 @@ void func_020aeb7c(void) {
     if (gRaceHud->mUnk_82c != FALSE) {
         switch (gRaceHud->mSubScreenState) {
             case 0:
-                func_020be9d4();
+                UpdateRaceHudSubScreenCellGroups();
                 break;
             case 1:
             case 2:
             case 3:
-                func_020be9d4();
+                UpdateRaceHudSubScreenCellGroups();
                 func_020c43c4();
                 break;
             case 4:

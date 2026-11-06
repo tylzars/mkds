@@ -24,26 +24,26 @@ void func_020ca568(void) {
 
     n = 0;
     v = func_020c0db0();
-    for (i = 0; i < data_0217b434->mUnk_08; i++) {
+    for (i = 0; i < data_0217b434->mObjectCount; i++) {
         Unk0217b498_00 *p;
 
-        p = data_0217b434->mUnk_00[i];
-        if (!(p->mUnk_02 & 1)) {
-            if (func_020b5ae8(&p->mUnk_04, &data_0217b434->mUnk_10[n].mUnk_00, v, 1, 1)) {
-                data_0217b434->mUnk_10[n].mUnk_08 = GetRaceSNcerEntry(0xb6);
-                data_0217b434->mUnk_10[n].mUnk_0c = (p->mUnk_02 & 0x20) ? 2 : 1;
-                data_0217b434->mUnk_10[n].mUnk_0e = p->mUnk_02 & 0x20;
+        p = data_0217b434->mObjects[i];
+        if (!(p->mFlags & 1)) {
+            if (func_020b5ae8(&p->mPos, &data_0217b434->mCells[n].mUnk_00, v, 1, 1)) {
+                data_0217b434->mCells[n].mUnk_08 = GetRaceSNcerEntry(0xb6);
+                data_0217b434->mCells[n].mUnk_0c = (p->mFlags & 0x20) ? 2 : 1;
+                data_0217b434->mCells[n].mUnk_0e = p->mFlags & 0x20;
                 n++;
             }
         }
     }
-    data_0217b434->mUnk_04 = n;
+    data_0217b434->mCellCount = n;
 }
 
 void func_020ca54c(Unk020c06c4 *a) {
-    func_020c092c(a, data_0217b434, 0);
+    DrawRaceHudSubScreenCells(a, data_0217b434, 0);
 }
 
 s32 func_020ca534(void) {
-    return func_020c0c2c(&data_0217b430, MAP_OBJECT_KIND_CRAB);
+    return CreateRaceHudSubScreenCells(&data_0217b430, MAP_OBJECT_KIND_CRAB);
 }

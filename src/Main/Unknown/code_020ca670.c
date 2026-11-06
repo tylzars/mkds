@@ -13,5 +13,5 @@ void func_020ca688(u32 a) {
 #pragma thumb off
 
 s32 func_020ca670(void) {
-    return func_020c0c2c(&data_0217b434, MAP_OBJECT_KIND_SHINE16);
+    return CreateRaceHudSubScreenCells(&data_0217b434, MAP_OBJECT_KIND_SHINE16);
 }

@@ -381,7 +381,7 @@ void func_020b03bc(void) {
     InitRaceMNumberPair();
     func_020d0bd0();
     func_020be7fc();
-    func_020beb9c();
+    InitRaceHudSubScreenCellGroups();
     InitRaceGoalS();
     InitRaceNewRecordTa();
     func_020c4780();
@@ -727,7 +727,7 @@ void func_020af86c(void) {
     func_020d2094();
     func_020d0bbc();
     func_020be7e8();
-    func_020beb40();
+    ClearRaceHudSubScreenCellGroups();
     func_020c31ec();
     func_020c6f84();
     func_020c476c();
@@ -792,7 +792,7 @@ void func_020af66c(void) {
         case 1:
         case 2:
         case 3:
-            func_020be9d4();
+            UpdateRaceHudSubScreenCellGroups();
             func_020c43c4();
             break;
         case 4:

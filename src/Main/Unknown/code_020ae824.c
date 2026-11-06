@@ -84,12 +84,12 @@ void func_020ae824(void) {
     MI_DmaFill32(3, gRaceHud->mUnk_408 + gRaceHud->mUnk_808 * 8, 0xc0, (0x80 - gRaceHud->mUnk_808) << 3);
     switch (gRaceHud->mSubScreenState) {
         case 0:
-            func_020be950(gRaceHud->mUnk_408);
+            DrawRaceHudSubScreenCellGroups(gRaceHud->mUnk_408);
             break;
         case 1:
         case 2:
         case 3:
-            func_020be950(gRaceHud->mUnk_408);
+            DrawRaceHudSubScreenCellGroups(gRaceHud->mUnk_408);
             func_020c3e44((Unk020c06c4 *) gRaceHud->mUnk_408);
             break;
         case 4:
