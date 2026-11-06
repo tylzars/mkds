@@ -69,7 +69,7 @@ void func_020cbb10(void) {
 
     data_0217b43c = HeapAlloc(func_020cb99c(), 0x960);
     func_02029a70(func_020cb99c());
-    r = func_02038d88(func_020cb99c(), data_0215688c);
+    r = CreateDisplaySettings(func_020cb99c(), data_0215688c);
     func_020cc330(r, 1, 0, 0, 0, 0xd, 2, 0);
     func_020cc2f4(r, 0, 0, 0, 0, 0xc, 0, 0);
     func_020cc2c0(r, 0, 0, 0, 0, 0x1e, 6);
@@ -78,7 +78,7 @@ void func_020cbb10(void) {
     func_020cc214(r, 3, 0, 0, 0, 0xd, 0, 0);
     func_020cc1e0(r, 0, 0, 0, 0, 0xe, 0);
     func_020cc1ac(r, 2, 0, 0, 0, 0xf, 0);
-    func_02037abc(r);
+    InitDisplayFromSettings(r);
     data_0217b43c->mUnk_000 = 0;
     data_0217b43c->mUnk_004 = 1;
     data_0217b43c->mUnk_008 = 0x1f;

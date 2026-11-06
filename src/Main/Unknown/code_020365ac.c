@@ -24,10 +24,10 @@
 #include "code_02004dc0.h"
 
 void func_020367c4(void) {
-    if (data_021755a0 != NULL) {
-        func_02037a04();
-        if (data_021755a0->mUnk_b8 != NULL) {
-            data_021755a0->mUnk_b8();
+    if (gDisplaySettings != NULL) {
+        ClearFrameFinishedFlag();
+        if (gDisplaySettings->mIrqCallback != NULL) {
+            gDisplaySettings->mIrqCallback();
         }
     }
     *(u32 *) ((u8 *) &data_027e0000 + 0x3ff8) |= 1;
@@ -78,7 +78,7 @@ void func_02036678(void) {
 void func_020365f0(void) {
     u8 *a;
     func_020366bc();
-    func_0203907c();
+    InitBrightnessFades();
     data_02174e78.mUnk_04 = (u32) ARM9_TEXT_START;
     data_02174e78.mUnk_08 = OS_GetArenaLo(0);
     func_02036678();

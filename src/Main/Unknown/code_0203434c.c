@@ -109,7 +109,7 @@ s32 func_02034370(Unk02034370 *a) {
     func_02025edc(&data_02174e64->mUnk_194);
     switch (data_02174e64->mUnk_094) {
         case 0:
-            if (func_02036c5c() == 0) {
+            if (AreBrightnessFadesClear() == 0) {
                 func_02128374();
                 func_02035378();
                 func_02025f14(&data_02174e64->mUnk_194, 0);

@@ -30,7 +30,7 @@ void InitEmblem(void) {
     Unk0217aa08_04 *p;
 
     gEmblem = HeapAlloc(GetHeap(func_020364e8()), 0x10c0);
-    func_020391d4(&unk);
+    InitDisplaySettingsDesc(&unk);
     unk.mUnk_06 = 1;
     unk.mUnk_08 = 0;
     unk.mUnk_0a = 1;
@@ -43,7 +43,7 @@ void InitEmblem(void) {
     unk.mUnk_04 = 0x10;
     unk.mUnk_1c = 4;
     unk.mUnk_1e = 8;
-    func_02037abc(func_02038d88(GetHeap(func_020364e8()), &unk));
+    InitDisplayFromSettings(CreateDisplaySettings(GetHeap(func_020364e8()), &unk));
     LoadNclrData(&gEmblem->mEmblemMONclr, (FindSceneFile("emblem_m_o.NCLR")));
     LoadNcgrData2(&gEmblem->mEmblemMONcgr, (FindSceneFile("emblem_m_o.NCGR")));
     LoadNcerData(&gEmblem->mEmblemMNcer, FindSceneFile("emblem_m.NCER"));

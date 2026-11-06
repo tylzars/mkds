@@ -19,7 +19,7 @@ void func_ov000_0218592c(void *a) {
     data_ov000_021b4c8c = HeapAlloc(a, 8);
     data_ov000_021b4c8c->mUnk_00 = 0;
     data_ov000_021b4c8c->mUnk_04 = 0;
-    func_02036f10(0x1e);
+    StartFadeToFadedNegative(0x1e);
 }
 
 void func_ov000_02185920(void) {
@@ -31,9 +31,9 @@ void func_ov000_0218583c(void) {
     Unk0217aa08_00 *p;
     s8 b;
 
-    if (func_02036d08() != 0) {
+    if (AreBrightnessFadesFaded() != 0) {
         data_ov000_021b4c8c->mUnk_04 = 1;
-        func_02037288(0x1e);
+        StartFadeToClear(0x1e);
         reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x1208;
         reg_G2_BG1CNT = reg_G2_BG1CNT & ~3;
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1f00;
@@ -64,7 +64,7 @@ void func_ov000_0218583c(void) {
 
 void func_ov000_02185818(void) {
     int v1;
-    v1 = func_02036c5c();
+    v1 = AreBrightnessFadesClear();
     if (v1 != 0) {
         RequestWiFiState(2);
         data_0217b488->mUnk_1c = 1;

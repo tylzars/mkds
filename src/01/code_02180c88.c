@@ -4,7 +4,7 @@
 #pragma thumb off
 
 u32 func_ov001_02180ca4(void) {
-    return ((u32) data_021755a0);
+    return ((u32) gDisplaySettings);
 }
 
 void func_ov001_02180c88(s32 *p0) {

@@ -160,7 +160,7 @@ void func_ov001_0219e38c(void) {
 }
 
 void func_ov001_0219e34c(void) {
-    if (func_02036c5c() != 0) {
+    if (AreBrightnessFadesClear() != 0) {
         if (data_0217b488->mUnk_70 != 0) {
             data_ov001_021ca400->mNextState = 5;
             data_0217b488->mUnk_70 = 0;
@@ -175,13 +175,13 @@ void func_ov001_0219e310(void) {
     if (data_ov001_021ca400->mUnk_008 > data_ov001_021a6c50[data_ov001_021ca400->mState]) {
         data_ov001_021ca400->mNextState = 2;
         data_ov001_021ca400->mUnk_008 = 0;
-        func_02036f10((s16) (data_ov001_021a6c50[2]));
+        StartFadeToFadedNegative((s16) (data_ov001_021a6c50[2]));
     }
 }
 
 void func_ov001_0219e2f0(void) {
     int v1;
-    v1 = func_02036d08();
+    v1 = AreBrightnessFadesFaded();
     if (v1 != 0) {
         data_ov001_021ca400->mNextState = 3;
     }
@@ -196,14 +196,14 @@ void func_ov001_0219e2b4(void) {
     if (p->mUnk_008 > data_ov001_021a6c50[3]) {
         p->mNextState = 4;
         data_ov001_021ca400->mUnk_008 = 0;
-        func_020370d4(data_ov001_021a6c50[4]);
+        StartFadeToClearNegative(data_ov001_021a6c50[4]);
         func_ov001_0219e5a0();
     }
 }
 
 void func_ov001_0219e294(void) {
     int v1;
-    v1 = func_02036c5c();
+    v1 = AreBrightnessFadesClear();
     if (v1 != 0) {
         data_ov001_021ca400->mNextState = 5;
     }
@@ -237,12 +237,12 @@ void func_ov001_0219e1f8(void) {
         }
         data_ov001_021ca400->mNextState = 6;
         data_ov001_021ca400->mUnk_008 = 0;
-        func_02036f10((s16) (data_ov001_021a6c50[6]));
+        StartFadeToFadedNegative((s16) (data_ov001_021a6c50[6]));
     }
 }
 
 void func_ov001_0219e1d4(void) {
-    if (func_02036d08() != 0) {
+    if (AreBrightnessFadesFaded() != 0) {
         data_ov001_021ca400->mNextState = 7;
         data_ov001_021ca400->mUnk_008 = 0;
     }

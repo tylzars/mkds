@@ -80,7 +80,7 @@ void func_0205dee0(void) {
     HeapDestroy(b);
     GXx_SetMasterBrightness_((u16 *) 0x400006c, 0x10);
     GXx_SetMasterBrightness_((u16 *) 0x400106c, 0x10);
-    func_02039044();
+    WaitIrqAndTurnOnDisplays();
     func_02108ec4();
     a = HeapAlloc(a, func_021087d4(1));
     func_02108598(1, (u32) a);

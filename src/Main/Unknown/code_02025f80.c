@@ -349,10 +349,10 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
         func_021281c8(0xe);
         func_02128374();
     }
-    if (func_02036c5c() != 0) {
+    if (AreBrightnessFadesClear() != 0) {
         gSelectCharacter->mUnk_06c = 1;
     } else {
-        func_02037288(10);
+        StartFadeToClear(10);
         func_0202734c(0);
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
@@ -404,7 +404,7 @@ int AdvanceSelectCharacter(void) {
     s = &g->mUnk_01c;
     switch (g->mUnk_06c) {
         case 0:
-            if (func_02036c5c() != 0) {
+            if (AreBrightnessFadesClear() != 0) {
                 gSelectCharacter->mUnk_06c = 1;
             }
             break;

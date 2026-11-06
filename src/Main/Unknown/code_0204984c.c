@@ -224,7 +224,7 @@ void func_0204a1a8(void *a) {
         OS_SleepThread(&data_021759cc->mUnk_0c4);
         data_021759cc->mUnk_120 = 0;
         func_0212b144();
-        if (data_021755a0 != NULL) {
+        if (gDisplaySettings != NULL) {
             c = TRUE;
         }
         func_02039478();
@@ -253,25 +253,25 @@ void func_0204a1a8(void *a) {
         }
         do {
             if (c != FALSE) {
-                func_02037a40();
+                PrepareDisplayFrame();
             }
             d = b == FALSE ? func_02054f58() == 1 : 1;
             func_0210823c();
             VBlankIntrWait();
             if (c != FALSE) {
-                func_020373ec();
+                RecordFrameTimes();
             }
         } while (d == 0);
         do {
             if (c != FALSE) {
-                func_02037a40();
+                PrepareDisplayFrame();
             }
             func_0203940c();
             d = func_0212b0b8();
             func_0210823c();
             VBlankIntrWait();
             if (c != FALSE) {
-                func_020373ec();
+                RecordFrameTimes();
             }
         } while (d == -1);
         switch (d) {
@@ -297,7 +297,7 @@ void func_02049f60(void) {
     b = FALSE;
     data_021759cc->mUnk_120 = 0;
     func_0212b144();
-    if (data_021755a0 != NULL) {
+    if (gDisplaySettings != NULL) {
         b = TRUE;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
@@ -336,7 +336,7 @@ void func_02049f60(void) {
     do {
         func_0203940c();
         if (d == FALSE) {
-            func_02037a40();
+            PrepareDisplayFrame();
         }
         if (a == FALSE) {
             e = func_02054f58() == 1;
@@ -352,7 +352,7 @@ void func_02049f60(void) {
         func_0210823c();
         VBlankIntrWait();
         if (b != FALSE) {
-            func_020373ec();
+            RecordFrameTimes();
         }
     } while (e == FALSE || g == -1);
     switch (g) {
@@ -370,7 +370,7 @@ void func_02049e38(s32 a) {
     BOOL c;
 
     c = FALSE;
-    b = data_021755a0 != NULL;
+    b = gDisplaySettings != NULL;
     switch (a) {
         case 0:
             if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
@@ -398,14 +398,14 @@ void func_02049e38(s32 a) {
         func_02049e38_inline(0);
     }
     if (b != FALSE) {
-        func_02036c90();
-        func_02036f10(10);
+        SetBrightnessFadesClear();
+        StartFadeToFadedNegative(10);
         do {
-            func_02037a40();
+            PrepareDisplayFrame();
             func_0210823c();
-            func_02037850();
-            func_020373ec();
-        } while (func_02036d08() == 0);
+            FinishDisplayFrame();
+            RecordFrameTimes();
+        } while (AreBrightnessFadesFaded() == 0);
     } else {
         GXx_SetMasterBrightness_((u16 *) 0x400006c, 0x10);
     }
@@ -417,7 +417,7 @@ void func_02049d8c(void *a) {
     BOOL d;
 
     do {
-        func_02037a40();
+        PrepareDisplayFrame();
         b = func_02054f58() != 1;
         c = func_0204984c_inline8();
         if (b == FALSE && c == 0) {
@@ -425,8 +425,8 @@ void func_02049d8c(void *a) {
         } else {
             d = FALSE;
         }
-        func_02037850();
-        func_020373ec();
+        FinishDisplayFrame();
+        RecordFrameTimes();
     } while (d == FALSE);
     if (data_021759cc->mSceneCallbacks.mUnk_10 != NULL) {
         data_021759cc->mSceneCallbacks.mUnk_10();

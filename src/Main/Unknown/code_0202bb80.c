@@ -395,7 +395,7 @@ void func_0202bb80(void) {
     s32 e;
     s32 f;
     BOOL g;
-    if (func_02036c5c() == 0) {
+    if (AreBrightnessFadesClear() == 0) {
         return;
     }
     if (data_02174e3c->mUnk_200 != 0) {

@@ -16,7 +16,7 @@ s32 Vec3NormalizeAndGetLengthUnchecked(const Vec3 *v, Vec3 *dst);
 void func_020399a8(void);
 void func_02039a1c(void);
 void func_02039abc(u32 a, s32 b);
-void func_02039b24(void);
+void DisableAllBanks(void);
 void func_02039b94(u32 a);
 void func_02039bd4(void);
 void func_02039c7c(void);

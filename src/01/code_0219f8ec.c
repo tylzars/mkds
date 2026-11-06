@@ -576,7 +576,7 @@ void ReleaseMissionRunMSsel(void) {
 
 void AdvanceMissionRunMSselState0(void) {
     func_021055b0(gMissionRunMSsel->mUnk_a8);
-    if (func_02036c5c() != 0) {
+    if (AreBrightnessFadesClear() != 0) {
         RequestMissionRunMSselState1();
     }
 }

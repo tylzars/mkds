@@ -54,19 +54,19 @@ u32 func_020ad9fc(void) {
 }
 
 void func_020ad9c0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    func_02038d28(a->mUnk_28, b, c, d, e, f, g, h);
+    SetBg1Record(a->mUnk_28, b, c, d, e, f, g, h);
 }
 
 void func_020ad98c(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    func_02038d00(a->mUnk_28, b, c, d, e, f, g);
+    SetBg2RecordParams(a->mUnk_28, b, c, d, e, f, g);
 }
 
 void func_020ad958(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    func_02038cd8(a->mUnk_28, b, c, d, e, f, g);
+    SetBg3RecordParams(a->mUnk_28, b, c, d, e, f, g);
 }
 
 void func_020ad924(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    func_02038cd8(a->mUnk_70, b, c, d, e, f, g);
+    SetBg3RecordParams(a->mUnk_70, b, c, d, e, f, g);
 }
 
 void func_020ad904(u32 a) {
@@ -159,12 +159,12 @@ void func_020ad344(void) {
     data_0217b340->mUnk_6c = FindSceneFileWrapper(data_02167f6c);
     data_0217b340->mUnk_70 = FindSceneFileWrapper(data_02167f7c);
     data_0217b340->mUnk_74 = FindSceneFileWrapper(data_02167f8c);
-    h = func_02038d88((void *) func_020ada10(), data_02156840);
+    h = CreateDisplaySettings((void *) func_020ada10(), data_02156840);
     func_020ad9c0(h, 0, 0, 0, 0, 2, 0, 0);
     func_020ad98c(h, 2, 0, 0, 1, 14, 4);
     func_020ad958(h, 3, 0, 0, 1, 15, 4);
     func_020ad924(h, 3, 0, 0, 0, 1, 6);
-    func_02037abc(h);
+    InitDisplayFromSettings(h);
     func_02124ed0((void *) func_020ada10(), data_0217b340->mUnk_6c, data_0217b340->mUnk_74, &data_0217b340->mUnk_68);
     func_02124a98(0, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);
     func_02124a98(1, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);

@@ -100,7 +100,7 @@ u32 func_ov000_02185184(void) {
 
 void AdvanceWiFiAikotobaState0(void) {
     int v1;
-    v1 = func_02036c5c();
+    v1 = AreBrightnessFadesClear();
     if (v1 != 0) {
         gWiFiAikotoba->mNextState = 1;
     }

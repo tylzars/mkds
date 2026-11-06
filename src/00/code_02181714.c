@@ -106,7 +106,7 @@ s32 func_ov000_02181df0(void) {
 
 void AdvanceWiFiTopMenuState0(void) {
     int v1;
-    v1 = func_02036c5c();
+    v1 = AreBrightnessFadesClear();
     if (v1 != 0) {
         gWiFiTopMenu->mNextState = 1;
     }

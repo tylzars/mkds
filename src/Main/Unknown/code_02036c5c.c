@@ -20,63 +20,63 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02036820.h"
 
-void func_020390f0(Unk021755a8 *a) {
-    switch (a->mUnk_00) {
+void UpdateBrightnessFade(BrightnessFade *a) {
+    switch (a->mState) {
         case 0:
             break;
         case 1:
-            a->mUnk_04++;
-            if (a->mUnk_04 >= a->mUnk_06) {
-                a->mUnk_00 = 2;
-                a->mUnk_08 = 0;
+            a->mFadeFrames++;
+            if (a->mFadeFrames >= a->mFadeFrameCount) {
+                a->mState = 2;
+                a->mBrightness = 0;
             } else {
-                a->mUnk_08 = 0x10 - (a->mUnk_04 << 4) / a->mUnk_06;
+                a->mBrightness = 0x10 - (a->mFadeFrames << 4) / a->mFadeFrameCount;
             }
-            if (a->mUnk_02 == 0) {
-                a->mUnk_08 = -a->mUnk_08;
+            if (a->mPositive == 0) {
+                a->mBrightness = -a->mBrightness;
             }
             break;
         case 2:
-            a->mUnk_08 = 0;
+            a->mBrightness = 0;
             break;
         case 3:
-            a->mUnk_04++;
-            if (a->mUnk_04 >= a->mUnk_06) {
-                a->mUnk_00 = 0;
-                a->mUnk_08 = 0x10;
+            a->mFadeFrames++;
+            if (a->mFadeFrames >= a->mFadeFrameCount) {
+                a->mState = 0;
+                a->mBrightness = 0x10;
             } else {
-                a->mUnk_08 = (a->mUnk_04 << 4) / a->mUnk_06;
+                a->mBrightness = (a->mFadeFrames << 4) / a->mFadeFrameCount;
             }
-            if (a->mUnk_02 == 0) {
-                a->mUnk_08 = -a->mUnk_08;
+            if (a->mPositive == 0) {
+                a->mBrightness = -a->mBrightness;
             }
             break;
     }
 }
 
-void func_0203907c(void) {
-    data_021755b4.mUnk_00 = 0;
-    data_021755b4.mUnk_02 = 1;
-    data_021755b4.mUnk_04 = 0;
-    data_021755b4.mUnk_06 = 0;
-    data_021755b4.mUnk_08 = 0x10;
-    data_021755a8.mUnk_00 = 0;
-    data_021755a8.mUnk_02 = 1;
-    data_021755a8.mUnk_04 = 0;
-    data_021755a8.mUnk_06 = 0;
-    data_021755a8.mUnk_08 = 0x10;
-    GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
-    GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
+void InitBrightnessFades(void) {
+    gMainBrightnessFade.mState = 0;
+    gMainBrightnessFade.mPositive = 1;
+    gMainBrightnessFade.mFadeFrames = 0;
+    gMainBrightnessFade.mFadeFrameCount = 0;
+    gMainBrightnessFade.mBrightness = 0x10;
+    gSubBrightnessFade.mState = 0;
+    gSubBrightnessFade.mPositive = 1;
+    gSubBrightnessFade.mFadeFrames = 0;
+    gSubBrightnessFade.mFadeFrameCount = 0;
+    gSubBrightnessFade.mBrightness = 0x10;
+    GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
+    GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
 }
 
-void func_02039044(void) {
+void WaitIrqAndTurnOnDisplays(void) {
     OS_WaitIrq(1, 1);
     GX_DispOn();
     *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 | 0x10000;
 }
 
-void func_02038e6c(void *a, u32 b) {
-    Unk02038e6c *p = a;
+void InitDisplayBgRecords(void *a, u32 b) {
+    DisplayBgRecords *p = a;
     u32 c;
     p->mUnk_00 = 0;
     p->mUnk_02 = 0;
@@ -182,38 +182,38 @@ void func_02038e6c(void *a, u32 b) {
     p->mUnk_42 = 0;
 }
 
-void func_02038de4(Unk021755a0 *a, void *b) {
-    Unk02038de4 *c = b;
-    *(Unk02038de4 *) a = *c;
-    func_02038e6c(&a->mUnk_28, c->mUnk_08);
-    func_02038e6c(&a->mUnk_70, c->mUnk_0c);
-    a->mUnk_6c = NULL;
-    a->mUnk_bc = 0;
-    a->mUnk_c4 = 0;
-    a->mUnk_cc = 0;
-    a->mUnk_d0 = 0;
-    a->mUnk_d4 = 0;
+void InitDisplaySettings(DisplaySettings *a, void *b) {
+    DisplaySettingsDesc *c = b;
+    *(DisplaySettingsDesc *) a = *c;
+    InitDisplayBgRecords(&a->mMainBg0, c->mMainBgMode);
+    InitDisplayBgRecords(&a->mSubBg0, c->mSubBgMode);
+    a->mG3xParams = NULL;
+    a->mFrameStartTick = 0;
+    a->mWaitEndTick = 0;
+    a->mTimeBeforeWait = 0;
+    a->mTimeSinceWaitEnd = 0;
+    a->mTimeSinceFrameStart = 0;
     a->mUnk_b4 = 0;
-    a->mUnk_b8 = NULL;
-    a->mUnk_d8 = 0;
+    a->mIrqCallback = NULL;
+    a->mFrameFlags = 0;
 }
 
-void *func_02038d88(void *a, void *b) {
-    Unk021755a0 *p = HeapAlloc(a, 0xdc);
-    Unk021755a0_6c *q;
-    func_02038de4(p, b);
-    if (p->mUnk_0a == 1) {
+void *CreateDisplaySettings(void *a, void *b) {
+    DisplaySettings *p = HeapAlloc(a, 0xdc);
+    G3xParams *q;
+    InitDisplaySettings(p, b);
+    if (p->mBg0As == 1) {
         q = HeapAlloc(a, 8);
-        q->mUnk_00 = 0x5000;
-        q->mUnk_02 = 1;
-        q->mUnk_03 = 1;
-        p->mUnk_6c = q;
+        q->mClearColor = 0x5000;
+        q->mSwapBit0 = 1;
+        q->mSwapBit1 = 1;
+        p->mG3xParams = q;
     }
     return p;
 }
 
-void func_02038d58(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    Unk02038e6c *p = a;
+void SetBg0Record(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
+    DisplayBgRecords *p = a;
     p->mUnk_00 = b;
     p->mUnk_04 = d;
     p->mUnk_06 = e;
@@ -223,8 +223,8 @@ void func_02038d58(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
     p->mUnk_0c = h;
 }
 
-void func_02038d28(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    Unk02038e6c *p = a;
+void SetBg1Record(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
+    DisplayBgRecords *p = a;
     p->mUnk_10 = b;
     p->mUnk_14 = d;
     p->mUnk_16 = e;
@@ -234,8 +234,8 @@ void func_02038d28(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
     p->mUnk_1c = h;
 }
 
-void func_02038d00(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    Unk02038e6c *p = a;
+void SetBg2RecordParams(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+    DisplayBgRecords *p = a;
     p->mUnk_24 = b;
     p->mUnk_26 = c;
     p->mUnk_28 = d;
@@ -244,8 +244,8 @@ void func_02038d00(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
     p->mUnk_2e = g;
 }
 
-void func_02038cd8(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    Unk02038e6c *p = a;
+void SetBg3RecordParams(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
+    DisplayBgRecords *p = a;
     p->mUnk_34 = b;
     p->mUnk_36 = c;
     p->mUnk_38 = d;
@@ -254,8 +254,8 @@ void func_02038cd8(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
     p->mUnk_3e = g;
 }
 
-void func_02038cb0(void *a, u32 b, u32 c, u32 d, u32 e, u32 f) {
-    Unk02038e6c *p = a;
+void SetBg2RecordMode5(void *a, u32 b, u32 c, u32 d, u32 e, u32 f) {
+    DisplayBgRecords *p = a;
     p->mUnk_20 = 5;
     p->mUnk_24 = b;
     p->mUnk_26 = c;
@@ -264,19 +264,19 @@ void func_02038cb0(void *a, u32 b, u32 c, u32 d, u32 e, u32 f) {
     p->mUnk_2c = f;
 }
 
-u32 func_02038c9c(Unk021755a0 *arg0, u32 arg1, u32 arg2) {
+u32 SetG3xSwapBits(DisplaySettings *arg0, u32 arg1, u32 arg2) {
     u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value3;
     value3 = (u32) * (const u32 *) ((value0) + (108));
-    arg0->mUnk_6c->mUnk_02 = (u8) value1;
+    arg0->mG3xParams->mSwapBit0 = (u8) value1;
     value0 = (u32) * (const u32 *) ((value0) + (108));
     *(u8 *) ((value0) + (3)) = (u8) value2;
     return value0;
 }
 
-void func_02038c94(Unk021755a0 *p0, u32 p1) {
+void func_02038c94(DisplaySettings *p0, u32 p1) {
     p0->mUnk_b2 = (u16) p1;
 }
 
@@ -284,7 +284,7 @@ void func_02038c94(Unk021755a0 *p0, u32 p1) {
 typedef enum { UNK_0203810C_ARG_0 } Unk0203810c_Arg;
 
 // Sets the low two bits of the halfword register r and its bit 6 from the first two halfwords of q.
-static inline void func_0203810c_inline(vu16 *r, Unk0203810c_04 *q) {
+static inline void func_0203810c_inline(vu16 *r, Bg23CntFields *q) {
     *r = (*r & ~3) | q->mUnk_00;
     if (q->mUnk_02 != 0) {
         *r |= 0x40;
@@ -321,7 +321,7 @@ static inline void func_0203810c_inline6(vu16 *r, Unk0203810c_Arg b, Unk0203810c
 }
 
 // Sets the low two bits of the halfword register r and its bit 6 from the first two halfwords of q.
-static inline void func_020386d0_inline(vu16 *r, Unk0203810c_04 *q) {
+static inline void func_020386d0_inline(vu16 *r, Bg23CntFields *q) {
     *r = (*r & ~3) | q->mUnk_00;
     if (q->mUnk_02 != 0) {
         *r |= 0x40;
@@ -357,16 +357,16 @@ static inline void func_020386d0_inline6(vu16 *r, Unk0203810c_Arg b, Unk0203810c
     *r = (*r & 0x43) | (b << 14) | 0x84 | (d << 8) | (c << 13);
 }
 
-void func_020386d0(Unk0203810c *a, s32 b) {
+void ApplyBg2Cnt(Bg23Cnt *a, s32 b) {
     s32 m[4];
-    Unk0203810c_04 *q;
+    Bg23CntFields *q;
 
     m[1] = 0;
     m[2] = 0;
     m[0] = 0x1000;
     m[3] = 0x1000;
-    q = &a->mUnk_04;
-    switch (a->mUnk_00) {
+    q = &a->mFields;
+    switch (a->mMode) {
         case 1:
             if (b != 0) {
                 reg_G2_BG2OFS = 0;
@@ -437,16 +437,16 @@ void func_020386d0(Unk0203810c *a, s32 b) {
     }
 }
 
-void func_0203810c(Unk0203810c *a, s32 b) {
+void ApplyBg3Cnt(Bg23Cnt *a, s32 b) {
     s32 m[4];
-    Unk0203810c_04 *q;
+    Bg23CntFields *q;
 
     m[1] = 0;
     m[2] = 0;
     m[0] = 0x1000;
     m[3] = 0x1000;
-    q = &a->mUnk_04;
-    switch (a->mUnk_00) {
+    q = &a->mFields;
+    switch (a->mMode) {
         case 1:
             if (b != 0) {
                 reg_G2_BG3OFS = 0;
@@ -527,9 +527,9 @@ static inline void func_02037abc_inline(u32 v, void *p, u32 n) {
 }
 
 // Sets the low two bits of the halfword register r and its bit 6 from the first two halfwords of q.
-static inline void func_02037abc_inline2(vu16 *r, Unk021755a0_28 *q) {
-    *r = (*r & ~3) | q->mUnk_00;
-    if (q->mUnk_02 != 0) {
+static inline void func_02037abc_inline2(vu16 *r, Bg01Cnt *q) {
+    *r = (*r & ~3) | q->mBgCntLow2;
+    if (q->mBgCntBit6 != 0) {
         *r |= 0x40;
     } else {
         *r &= ~0x40;
@@ -557,63 +557,63 @@ static inline void func_02037abc_inline6(vu16 *r, Unk02037abc_Arg b, Unk02037abc
     *r = (*r & 0x43) | (b << 14) | (c << 7) | (d << 8) | (e << 2) | (f << 13);
 }
 
-void func_02037abc(void *a) {
-    Unk021755a0 *p;
-    Unk021755a0_28 *q;
+void InitDisplayFromSettings(void *a) {
+    DisplaySettings *p;
+    Bg01Cnt *q;
     u16 v;
 
     p = a;
-    data_021755a0 = p;
+    gDisplaySettings = p;
     func_02039bd4();
     func_02037abc_inline(0xc0, (void *) 0x07000000, 0x400);
     func_02037abc_inline(0xc0, (void *) 0x07000400, 0x400);
     func_02037abc_inline(0, (void *) 0x05000000, 0x400);
     func_02037abc_inline(0, (void *) 0x05000400, 0x400);
-    if (data_021755a0->mUnk_0e != 0) {
-        GX_SetBankForBG(data_021755a0->mUnk_0e);
+    if (gDisplaySettings->mBankForBG != 0) {
+        GX_SetBankForBG(gDisplaySettings->mBankForBG);
     }
-    if (data_021755a0->mUnk_10 != 0) {
-        GX_SetBankForOBJ(data_021755a0->mUnk_10);
+    if (gDisplaySettings->mBankForOBJ != 0) {
+        GX_SetBankForOBJ(gDisplaySettings->mBankForOBJ);
     }
-    if (data_021755a0->mUnk_12 != 0) {
-        GX_SetBankForBGExtPltt(data_021755a0->mUnk_12);
+    if (gDisplaySettings->mBankForBGExtPltt != 0) {
+        GX_SetBankForBGExtPltt(gDisplaySettings->mBankForBGExtPltt);
     }
-    if (data_021755a0->mUnk_14 != 0) {
-        GX_SetBankForOBJExtPltt(data_021755a0->mUnk_14);
+    if (gDisplaySettings->mBankForOBJExtPltt != 0) {
+        GX_SetBankForOBJExtPltt(gDisplaySettings->mBankForOBJExtPltt);
     }
-    if (data_021755a0->mUnk_16 != 0) {
-        GX_SetBankForTex(data_021755a0->mUnk_16);
+    if (gDisplaySettings->mBankForTex != 0) {
+        GX_SetBankForTex(gDisplaySettings->mBankForTex);
     }
-    if (data_021755a0->mUnk_18 != 0) {
-        GX_SetBankForTexPltt(data_021755a0->mUnk_18);
+    if (gDisplaySettings->mBankForTexPltt != 0) {
+        GX_SetBankForTexPltt(gDisplaySettings->mBankForTexPltt);
     }
-    if (data_021755a0->mUnk_1a != 0) {
-        GX_SetBankForClearImage(data_021755a0->mUnk_1a);
+    if (gDisplaySettings->mBankForClearImage != 0) {
+        GX_SetBankForClearImage(gDisplaySettings->mBankForClearImage);
     }
-    if (data_021755a0->mUnk_1c != 0) {
-        GX_SetBankForSubBG(data_021755a0->mUnk_1c);
+    if (gDisplaySettings->mBankForSubBG != 0) {
+        GX_SetBankForSubBG(gDisplaySettings->mBankForSubBG);
     }
-    if (data_021755a0->mUnk_1e != 0) {
-        GX_SetBankForSubOBJ(data_021755a0->mUnk_1e);
+    if (gDisplaySettings->mBankForSubOBJ != 0) {
+        GX_SetBankForSubOBJ(gDisplaySettings->mBankForSubOBJ);
     }
-    if (data_021755a0->mUnk_20 != 0) {
-        GX_SetBankForSubBGExtPltt(data_021755a0->mUnk_20);
+    if (gDisplaySettings->mBankForSubBGExtPltt != 0) {
+        GX_SetBankForSubBGExtPltt(gDisplaySettings->mBankForSubBGExtPltt);
     }
-    if (data_021755a0->mUnk_22 != 0) {
-        GX_SetBankForSubOBJExtPltt(data_021755a0->mUnk_22);
+    if (gDisplaySettings->mBankForSubOBJExtPltt != 0) {
+        GX_SetBankForSubOBJExtPltt(gDisplaySettings->mBankForSubOBJExtPltt);
     }
-    if (data_021755a0->mUnk_24 != 0) {
-        func_02039b94(data_021755a0->mUnk_24);
+    if (gDisplaySettings->mBankForARM7 != 0) {
+        func_02039b94(gDisplaySettings->mBankForARM7);
     }
-    if (data_021755a0->mUnk_26 != 0) {
-        GX_SetBankForLCDC(data_021755a0->mUnk_26);
+    if (gDisplaySettings->mBankForLCDC != 0) {
+        GX_SetBankForLCDC(gDisplaySettings->mBankForLCDC);
     }
     data_02175614.mUnk_00;
-    GX_SetGraphicsMode(p->mUnk_06, p->mUnk_08, p->mUnk_0a);
-    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (p->mUnk_02 << 8);
-    GXS_SetGraphicsMode(p->mUnk_0c);
-    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (p->mUnk_04 << 8);
-    if (p->mUnk_0a == 1) {
+    GX_SetGraphicsMode(p->mDispMode, p->mMainBgMode, p->mBg0As);
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | (p->mMainDisplayMask << 8);
+    GXS_SetGraphicsMode(p->mSubBgMode);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (p->mSubDisplayMask << 8);
+    if (p->mBg0As == 1) {
         G3X_Init();
         G3X_InitTable();
         G3X_InitMtxStack();
@@ -623,198 +623,201 @@ void func_02037abc(void *a) {
         reg_G3X_ALPHA_TEST_REF = 0;
         reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
         reg_G2_BLDCNT = 0;
-        reg_G3_SWAP_BUFFERS = (p->mUnk_6c->mUnk_03 << 1) | p->mUnk_6c->mUnk_02;
-        v = p->mUnk_6c->mUnk_00;
+        reg_G3_SWAP_BUFFERS = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
+        v = p->mG3xParams->mClearColor;
         G3X_SetClearColor((u16) (v & 0x7fff), (u8) ((v & 0x8000) >> 15), 0x7fff, 0x3f, 0);
     }
-    if (p->mUnk_02 & 1) {
-        q = &p->mUnk_28;
+    if (p->mMainDisplayMask & 1) {
+        q = &p->mMainBg0;
         func_02037abc_inline2(&reg_G2_BG0CNT, q);
-        if (p->mUnk_0a == 1) {
+        if (p->mBg0As == 1) {
             G2Bg0OfsWrite(0);
         } else {
             reg_G2_BG0OFS = 0;
-            func_02037abc_inline6(&reg_G2_BG0CNT, (Unk02037abc_Arg) q->mUnk_04, (Unk02037abc_Arg) q->mUnk_06,
-                                  (Unk02037abc_Arg) q->mUnk_08, (Unk02037abc_Arg) q->mUnk_0a,
-                                  (Unk02037abc_Arg) q->mUnk_0c);
+            func_02037abc_inline6(&reg_G2_BG0CNT, (Unk02037abc_Arg) q->mBgCntVal14, (Unk02037abc_Arg) q->mBgCntVal7,
+                                  (Unk02037abc_Arg) q->mBgCntVal8, (Unk02037abc_Arg) q->mBgCntVal2,
+                                  (Unk02037abc_Arg) q->mBgCntVal13);
         }
     }
-    if (p->mUnk_04 & 1) {
+    if (p->mSubDisplayMask & 1) {
         reg_G2S_DB_BG0OFS = 0;
-        q = &p->mUnk_70;
+        q = &p->mSubBg0;
         func_02037abc_inline2(&reg_G2S_DB_BG0CNT, q);
-        func_02037abc_inline6(&reg_G2S_DB_BG0CNT, (Unk02037abc_Arg) q->mUnk_04, (Unk02037abc_Arg) q->mUnk_06,
-                              (Unk02037abc_Arg) q->mUnk_08, (Unk02037abc_Arg) q->mUnk_0a, (Unk02037abc_Arg) q->mUnk_0c);
+        func_02037abc_inline6(&reg_G2S_DB_BG0CNT, (Unk02037abc_Arg) q->mBgCntVal14, (Unk02037abc_Arg) q->mBgCntVal7,
+                              (Unk02037abc_Arg) q->mBgCntVal8, (Unk02037abc_Arg) q->mBgCntVal2,
+                              (Unk02037abc_Arg) q->mBgCntVal13);
     }
-    if (p->mUnk_02 & 2) {
+    if (p->mMainDisplayMask & 2) {
         reg_G2_BG1OFS = 0;
-        q = &p->mUnk_38;
+        q = &p->mMainBg1;
         func_02037abc_inline2(&reg_G2_BG1CNT, q);
-        func_02037abc_inline6(&reg_G2_BG1CNT, (Unk02037abc_Arg) q->mUnk_04, (Unk02037abc_Arg) q->mUnk_06,
-                              (Unk02037abc_Arg) q->mUnk_08, (Unk02037abc_Arg) q->mUnk_0a, (Unk02037abc_Arg) q->mUnk_0c);
+        func_02037abc_inline6(&reg_G2_BG1CNT, (Unk02037abc_Arg) q->mBgCntVal14, (Unk02037abc_Arg) q->mBgCntVal7,
+                              (Unk02037abc_Arg) q->mBgCntVal8, (Unk02037abc_Arg) q->mBgCntVal2,
+                              (Unk02037abc_Arg) q->mBgCntVal13);
     }
-    if (p->mUnk_04 & 2) {
+    if (p->mSubDisplayMask & 2) {
         reg_G2S_DB_BG1OFS = 0;
-        q = &p->mUnk_80;
+        q = &p->mSubBg1;
         func_02037abc_inline2(&reg_G2S_DB_BG1CNT, q);
-        func_02037abc_inline6(&reg_G2S_DB_BG1CNT, (Unk02037abc_Arg) q->mUnk_04, (Unk02037abc_Arg) q->mUnk_06,
-                              (Unk02037abc_Arg) q->mUnk_08, (Unk02037abc_Arg) q->mUnk_0a, (Unk02037abc_Arg) q->mUnk_0c);
+        func_02037abc_inline6(&reg_G2S_DB_BG1CNT, (Unk02037abc_Arg) q->mBgCntVal14, (Unk02037abc_Arg) q->mBgCntVal7,
+                              (Unk02037abc_Arg) q->mBgCntVal8, (Unk02037abc_Arg) q->mBgCntVal2,
+                              (Unk02037abc_Arg) q->mBgCntVal13);
     }
-    if (p->mUnk_02 & 4) {
-        func_020386d0(&p->mUnk_48, 1);
+    if (p->mMainDisplayMask & 4) {
+        ApplyBg2Cnt(&p->mMainBg2, 1);
     }
-    if (p->mUnk_04 & 4) {
-        func_020386d0(&p->mUnk_90, 0);
+    if (p->mSubDisplayMask & 4) {
+        ApplyBg2Cnt(&p->mSubBg2, 0);
     }
-    if (p->mUnk_02 & 8) {
-        func_0203810c(&p->mUnk_58, 1);
+    if (p->mMainDisplayMask & 8) {
+        ApplyBg3Cnt(&p->mMainBg3, 1);
     }
-    if (p->mUnk_04 & 8) {
-        func_0203810c(&p->mUnk_a0, 0);
+    if (p->mSubDisplayMask & 8) {
+        ApplyBg3Cnt(&p->mSubBg3, 0);
     }
-    if (p->mUnk_02 & 0x10) {
+    if (p->mMainDisplayMask & 0x10) {
         func_02037abc_inline3(&reg_GX_DISPCNT, (Unk02037abc_Arg) p->mUnk_68);
         func_02037abc_inline4((Unk02037abc_Arg) p->mUnk_6a);
     }
-    if (p->mUnk_04 & 0x10) {
+    if (p->mSubDisplayMask & 0x10) {
         func_02037abc_inline3(&reg_GXS_DB_DISPCNT, (Unk02037abc_Arg) p->mUnk_b0);
         func_02037abc_inline5((Unk02037abc_Arg) p->mUnk_b2);
     }
     reg_GX_POWCNT |= 0x8000;
 }
 
-void func_02037a94(void) {
-    func_02039b24();
-    data_021755a0 = NULL;
+void DisableAllBanksAndNullDisplaySettings(void) {
+    DisableAllBanks();
+    gDisplaySettings = NULL;
 }
 
-void func_02037a40(void) {
-    Unk021755a0 *p;
+void PrepareDisplayFrame(void) {
+    DisplaySettings *p;
     u64 t;
-    p = data_021755a0;
+    p = gDisplaySettings;
     t = OS_GetTick();
-    p->mUnk_bc = t;
-    if (p->mUnk_0a == 1) {
+    p->mFrameStartTick = t;
+    if (p->mBg0As == 1) {
         G3X_Reset();
     }
-    if (data_usa_02175584 != NULL) {
-        data_usa_02175584(0);
+    if (gFrameCallback != NULL) {
+        gFrameCallback(0);
     }
 }
 
 u32 func_02037a20(void) {
-    return (data_021755a0->mUnk_d8 & 2) ? 1 : 0;
+    return (gDisplaySettings->mFrameFlags & 2) ? 1 : 0;
 }
 
-u32 func_02037a04(void) {
+u32 ClearFrameFinishedFlag(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_021755a0;
+    value0 = (u32) &gDisplaySettings;
     value1 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) data_021755a0->mUnk_d8;
+    value0 = (u32) gDisplaySettings->mFrameFlags;
     value0 = (value0) & ~(1u);
-    data_021755a0->mUnk_d8 = (u8) value0;
+    gDisplaySettings->mFrameFlags = (u8) value0;
     return value0;
 }
 
-static inline void func_02036d3c_inline(Unk021755a8 *p, s16 a) {
-    if (p->mUnk_00 == 0 || (p->mUnk_00 == 3 && p->mUnk_02 == 1)) {
+static inline void func_02036d3c_inline(BrightnessFade *p, s16 a) {
+    if (p->mState == 0 || (p->mState == 3 && p->mPositive == 1)) {
         return;
     }
-    p->mUnk_02 = 1;
-    if (p->mUnk_00 != 1) {
-        p->mUnk_04 = 0;
+    p->mPositive = 1;
+    if (p->mState != 1) {
+        p->mFadeFrames = 0;
     } else {
-        p->mUnk_04 = (a * p->mUnk_08) / 16;
+        p->mFadeFrames = (a * p->mBrightness) / 16;
     }
-    p->mUnk_00 = 3;
-    p->mUnk_06 = a;
+    p->mState = 3;
+    p->mFadeFrameCount = a;
 }
 
-static inline void func_02036f10_inline(Unk021755a8 *p, s16 a) {
-    if (p->mUnk_00 == 0 || (p->mUnk_00 == 3 && p->mUnk_02 == 0)) {
+static inline void func_02036f10_inline(BrightnessFade *p, s16 a) {
+    if (p->mState == 0 || (p->mState == 3 && p->mPositive == 0)) {
         return;
     }
-    p->mUnk_02 = 0;
-    if (p->mUnk_00 != 1) {
-        p->mUnk_04 = 0;
+    p->mPositive = 0;
+    if (p->mState != 1) {
+        p->mFadeFrames = 0;
     } else {
-        p->mUnk_04 = (a * p->mUnk_08) / 16;
+        p->mFadeFrames = (a * p->mBrightness) / 16;
     }
-    p->mUnk_00 = 3;
-    p->mUnk_06 = a;
+    p->mState = 3;
+    p->mFadeFrameCount = a;
 }
 
-static inline void func_020370d4_inline(Unk021755a8 *p, s16 a) {
-    if (p->mUnk_00 == 2 || p->mUnk_00 == 1) {
+static inline void func_020370d4_inline(BrightnessFade *p, s16 a) {
+    if (p->mState == 2 || p->mState == 1) {
         return;
     }
-    p->mUnk_02 = 0;
-    if (p->mUnk_00 == 2 || p->mUnk_00 == 1) {
+    p->mPositive = 0;
+    if (p->mState == 2 || p->mState == 1) {
         return;
     }
-    if (p->mUnk_00 != 3) {
-        p->mUnk_04 = 0;
+    if (p->mState != 3) {
+        p->mFadeFrames = 0;
     } else {
-        p->mUnk_04 = (a * p->mUnk_08) / 16;
+        p->mFadeFrames = (a * p->mBrightness) / 16;
     }
-    p->mUnk_00 = 1;
-    p->mUnk_06 = a;
+    p->mState = 1;
+    p->mFadeFrameCount = a;
 }
 
-static inline void func_02037288_inline(Unk021755a8 *p, s16 a) {
-    if (p->mUnk_00 == 2 || p->mUnk_00 == 1) {
+static inline void func_02037288_inline(BrightnessFade *p, s16 a) {
+    if (p->mState == 2 || p->mState == 1) {
         return;
     }
-    if (p->mUnk_00 != 3) {
-        p->mUnk_04 = 0;
+    if (p->mState != 3) {
+        p->mFadeFrames = 0;
     } else {
-        p->mUnk_04 = (a * p->mUnk_08) / 16;
+        p->mFadeFrames = (a * p->mBrightness) / 16;
     }
-    p->mUnk_00 = 1;
-    p->mUnk_06 = a;
+    p->mState = 1;
+    p->mFadeFrameCount = a;
 }
 
-void func_02037850(void) {
-    Unk021755a0 *p;
+void FinishDisplayFrame(void) {
+    DisplaySettings *p;
     u64 t;
     s16 c;
     s16 d;
     u16 i;
-    c = data_021755b4.mUnk_08;
-    d = data_021755a8.mUnk_08;
-    if (data_usa_02175584 != NULL) {
-        data_usa_02175584(1);
+    c = gMainBrightnessFade.mBrightness;
+    d = gSubBrightnessFade.mBrightness;
+    if (gFrameCallback != NULL) {
+        gFrameCallback(1);
     }
-    func_020390f0(&data_021755b4);
-    func_020390f0(&data_021755a8);
+    UpdateBrightnessFade(&gMainBrightnessFade);
+    UpdateBrightnessFade(&gSubBrightnessFade);
     DC_StoreAll();
-    p = data_021755a0;
-    if (p->mUnk_0a == 1) {
-        *(vu32 *) 0x4000540 = (p->mUnk_6c->mUnk_03 << 1) | p->mUnk_6c->mUnk_02;
+    p = gDisplaySettings;
+    if (p->mBg0As == 1) {
+        *(vu32 *) 0x4000540 = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
     }
-    if ((data_021755a0->mUnk_d8 & 1) == 0) {
-        data_021755a0->mUnk_d8 |= 2;
+    if ((gDisplaySettings->mFrameFlags & 1) == 0) {
+        gDisplaySettings->mFrameFlags |= 2;
     } else {
-        data_021755a0->mUnk_d8 &= ~2;
-        data_021755a0->mUnk_d8 &= ~1;
+        gDisplaySettings->mFrameFlags &= ~2;
+        gDisplaySettings->mFrameFlags &= ~1;
     }
-    p = data_021755a0;
+    p = gDisplaySettings;
     t = OS_GetTick();
-    p->mUnk_cc = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
-    for (i = 0; i < data_021755a0->mUnk_00; i++) {
+    p->mTimeBeforeWait = (t - p->mFrameStartTick) * 0xfa00 / 0x82ea;
+    for (i = 0; i < gDisplaySettings->mWaitIrqCount; i++) {
         OS_WaitIrq(1, 1);
     }
-    data_021755a0->mUnk_d8 |= 1;
-    data_021755a0->mUnk_c4 = OS_GetTick();
-    if (c != data_021755b4.mUnk_08) {
-        GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
+    gDisplaySettings->mFrameFlags |= 1;
+    gDisplaySettings->mWaitEndTick = OS_GetTick();
+    if (c != gMainBrightnessFade.mBrightness) {
+        GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
     }
-    if (d != data_021755a8.mUnk_08) {
-        GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
+    if (d != gSubBrightnessFade.mBrightness) {
+        GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
     }
-    if (data_usa_02175584 != NULL) {
-        data_usa_02175584(2);
+    if (gFrameCallback != NULL) {
+        gFrameCallback(2);
     }
 }
 
@@ -824,183 +827,183 @@ void func_02037658(s32 a) {
     s16 d;
     u16 i;
     BOOL e;
-    Unk021755a0 *p;
-    c = data_021755b4.mUnk_08;
-    d = data_021755a8.mUnk_08;
-    if (data_usa_02175584 != NULL) {
-        data_usa_02175584(1);
+    DisplaySettings *p;
+    c = gMainBrightnessFade.mBrightness;
+    d = gSubBrightnessFade.mBrightness;
+    if (gFrameCallback != NULL) {
+        gFrameCallback(1);
     }
-    func_020390f0(&data_021755b4);
-    func_020390f0(&data_021755a8);
+    UpdateBrightnessFade(&gMainBrightnessFade);
+    UpdateBrightnessFade(&gSubBrightnessFade);
     DC_StoreAll();
-    if ((data_021755a0->mUnk_d8 & 1) == 0) {
-        data_021755a0->mUnk_d8 |= 2;
+    if ((gDisplaySettings->mFrameFlags & 1) == 0) {
+        gDisplaySettings->mFrameFlags |= 2;
     } else {
-        data_021755a0->mUnk_d8 &= ~2;
-        data_021755a0->mUnk_d8 &= ~1;
+        gDisplaySettings->mFrameFlags &= ~2;
+        gDisplaySettings->mFrameFlags &= ~1;
     }
-    if (a == 0 || (data_021755a0->mUnk_d8 & 2) == 0) {
+    if (a == 0 || (gDisplaySettings->mFrameFlags & 2) == 0) {
         e = TRUE;
     } else {
         e = FALSE;
     }
-    p = data_021755a0;
-    if (p->mUnk_0a == 1 && e != FALSE) {
-        *(vu32 *) 0x4000540 = (p->mUnk_6c->mUnk_03 << 1) | p->mUnk_6c->mUnk_02;
+    p = gDisplaySettings;
+    if (p->mBg0As == 1 && e != FALSE) {
+        *(vu32 *) 0x4000540 = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
     }
-    p = data_021755a0;
+    p = gDisplaySettings;
     t = OS_GetTick();
-    p->mUnk_cc = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
+    p->mTimeBeforeWait = (t - p->mFrameStartTick) * 0xfa00 / 0x82ea;
     if (e != FALSE) {
-        for (i = 0; i < data_021755a0->mUnk_00; i++) {
+        for (i = 0; i < gDisplaySettings->mWaitIrqCount; i++) {
             OS_WaitIrq(1, 1);
         }
     }
-    data_021755a0->mUnk_d8 |= 1;
-    data_021755a0->mUnk_c4 = OS_GetTick();
-    if (c != data_021755b4.mUnk_08) {
-        GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
+    gDisplaySettings->mFrameFlags |= 1;
+    gDisplaySettings->mWaitEndTick = OS_GetTick();
+    if (c != gMainBrightnessFade.mBrightness) {
+        GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
     }
-    if (d != data_021755a8.mUnk_08) {
-        GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
+    if (d != gSubBrightnessFade.mBrightness) {
+        GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
     }
-    if (data_usa_02175584 != NULL) {
-        data_usa_02175584(2);
+    if (gFrameCallback != NULL) {
+        gFrameCallback(2);
     }
 }
 
-void func_02037498(s32 a) {
-    Unk021755a0 *p;
+void FinishDisplayFrameSwapIf(s32 a) {
+    DisplaySettings *p;
     u64 t;
     s16 c;
     s16 d;
     u16 i;
-    c = data_021755b4.mUnk_08;
-    d = data_021755a8.mUnk_08;
-    if (data_usa_02175584 != NULL) {
-        data_usa_02175584(1);
+    c = gMainBrightnessFade.mBrightness;
+    d = gSubBrightnessFade.mBrightness;
+    if (gFrameCallback != NULL) {
+        gFrameCallback(1);
     }
-    func_020390f0(&data_021755b4);
-    func_020390f0(&data_021755a8);
+    UpdateBrightnessFade(&gMainBrightnessFade);
+    UpdateBrightnessFade(&gSubBrightnessFade);
     DC_StoreAll();
-    if ((data_021755a0->mUnk_d8 & 1) == 0) {
-        data_021755a0->mUnk_d8 |= 2;
+    if ((gDisplaySettings->mFrameFlags & 1) == 0) {
+        gDisplaySettings->mFrameFlags |= 2;
     } else {
-        data_021755a0->mUnk_d8 &= ~2;
-        data_021755a0->mUnk_d8 &= ~1;
+        gDisplaySettings->mFrameFlags &= ~2;
+        gDisplaySettings->mFrameFlags &= ~1;
     }
-    p = data_021755a0;
-    if (p->mUnk_0a == 1 && a != 0) {
-        *(vu32 *) 0x4000540 = (p->mUnk_6c->mUnk_03 << 1) | p->mUnk_6c->mUnk_02;
+    p = gDisplaySettings;
+    if (p->mBg0As == 1 && a != 0) {
+        *(vu32 *) 0x4000540 = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
     }
-    p = data_021755a0;
+    p = gDisplaySettings;
     t = OS_GetTick();
-    p->mUnk_cc = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
-    for (i = 0; i < data_021755a0->mUnk_00; i++) {
+    p->mTimeBeforeWait = (t - p->mFrameStartTick) * 0xfa00 / 0x82ea;
+    for (i = 0; i < gDisplaySettings->mWaitIrqCount; i++) {
         OS_WaitIrq(1, 1);
     }
-    data_021755a0->mUnk_d8 |= 1;
-    data_021755a0->mUnk_c4 = OS_GetTick();
-    if (c != data_021755b4.mUnk_08) {
-        GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
+    gDisplaySettings->mFrameFlags |= 1;
+    gDisplaySettings->mWaitEndTick = OS_GetTick();
+    if (c != gMainBrightnessFade.mBrightness) {
+        GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
     }
-    if (d != data_021755a8.mUnk_08) {
-        GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
+    if (d != gSubBrightnessFade.mBrightness) {
+        GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
     }
-    if (data_usa_02175584 != NULL) {
-        data_usa_02175584(2);
+    if (gFrameCallback != NULL) {
+        gFrameCallback(2);
     }
 }
 
-void func_020373ec(void) {
+void RecordFrameTimes(void) {
     u64 t;
-    Unk021755a0 *p;
+    DisplaySettings *p;
     t = OS_GetTick();
-    if (data_usa_02175584 != NULL) {
-        data_usa_02175584(3);
+    if (gFrameCallback != NULL) {
+        gFrameCallback(3);
     }
-    p = data_021755a0;
-    p->mUnk_d0 = (t - p->mUnk_c4) * 0xfa00 / 0x82ea;
-    p = data_021755a0;
-    p->mUnk_d4 = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
+    p = gDisplaySettings;
+    p->mTimeSinceWaitEnd = (t - p->mWaitEndTick) * 0xfa00 / 0x82ea;
+    p = gDisplaySettings;
+    p->mTimeSinceFrameStart = (t - p->mFrameStartTick) * 0xfa00 / 0x82ea;
 }
 
-void func_02037334(s16 a, s32 b) {
+void StartFadeToClearOneScreen(s16 a, s32 b) {
     if (b != 0) {
-        func_02037288_inline(&data_021755b4, a);
+        func_02037288_inline(&gMainBrightnessFade, a);
     } else {
-        func_02037288_inline(&data_021755a8, a);
+        func_02037288_inline(&gSubBrightnessFade, a);
     }
 }
 
-void func_02037288(s16 a) {
-    func_02037288_inline(&data_021755b4, a);
-    func_02037288_inline(&data_021755a8, a);
+void StartFadeToClear(s16 a) {
+    func_02037288_inline(&gMainBrightnessFade, a);
+    func_02037288_inline(&gSubBrightnessFade, a);
 }
 
-void func_020371a8(s32 a, s32 b) {
+void StartFadeToClearNegativeOneScreen(s32 a, s32 b) {
     if (b != 0) {
-        func_020370d4_inline(&data_021755b4, a);
+        func_020370d4_inline(&gMainBrightnessFade, a);
     } else {
-        func_020370d4_inline(&data_021755a8, a);
+        func_020370d4_inline(&gSubBrightnessFade, a);
     }
 }
 
-void func_020370d4(s16 a) {
-    func_020370d4_inline(&data_021755b4, a);
-    func_020370d4_inline(&data_021755a8, a);
+void StartFadeToClearNegative(s16 a) {
+    func_020370d4_inline(&gMainBrightnessFade, a);
+    func_020370d4_inline(&gSubBrightnessFade, a);
 }
 
-void func_02036fec(s32 a, s32 b) {
+void StartFadeToFadedNegativeOneScreen(s32 a, s32 b) {
     if (b != 0) {
-        func_02036f10_inline(&data_021755b4, a);
+        func_02036f10_inline(&gMainBrightnessFade, a);
     } else {
-        func_02036f10_inline(&data_021755a8, a);
+        func_02036f10_inline(&gSubBrightnessFade, a);
     }
 }
 
-void func_02036f10(s16 a) {
-    func_02036f10_inline(&data_021755b4, a);
-    func_02036f10_inline(&data_021755a8, a);
+void StartFadeToFadedNegative(s16 a) {
+    func_02036f10_inline(&gMainBrightnessFade, a);
+    func_02036f10_inline(&gSubBrightnessFade, a);
 }
 
-void func_02036e20(s16 a, s32 b) {
+void StartFadeToFadedPositiveOneScreen(s16 a, s32 b) {
     if (b != 0) {
-        func_02036d3c_inline(&data_021755b4, a);
+        func_02036d3c_inline(&gMainBrightnessFade, a);
     } else {
-        func_02036d3c_inline(&data_021755a8, a);
+        func_02036d3c_inline(&gSubBrightnessFade, a);
     }
 }
 
-void func_02036d3c(s16 a) {
-    func_02036d3c_inline(&data_021755b4, a);
-    func_02036d3c_inline(&data_021755a8, a);
+void StartFadeToFadedPositive(s16 a) {
+    func_02036d3c_inline(&gMainBrightnessFade, a);
+    func_02036d3c_inline(&gSubBrightnessFade, a);
 }
 
-u32 func_02036d08(void) {
-    if (data_021755b4.mUnk_00 == 0 && data_021755a8.mUnk_00 == 0) {
+u32 AreBrightnessFadesFaded(void) {
+    if (gMainBrightnessFade.mState == 0 && gSubBrightnessFade.mState == 0) {
         return 1;
     }
     return 0;
 }
 
-void func_02036c90(void) {
-    data_021755b4.mUnk_00 = 2;
-    data_021755b4.mUnk_02 = 0;
-    data_021755b4.mUnk_04 = 0;
-    data_021755b4.mUnk_06 = 0;
-    data_021755b4.mUnk_08 = 0;
-    data_021755a8.mUnk_00 = 2;
-    data_021755a8.mUnk_02 = 0;
-    data_021755a8.mUnk_04 = 0;
-    data_021755a8.mUnk_06 = 0;
-    data_021755a8.mUnk_08 = 0;
-    GXx_SetMasterBrightness_((u16 *) 0x400006c, data_021755b4.mUnk_08);
-    GXx_SetMasterBrightness_((u16 *) 0x400106c, data_021755a8.mUnk_08);
+void SetBrightnessFadesClear(void) {
+    gMainBrightnessFade.mState = 2;
+    gMainBrightnessFade.mPositive = 0;
+    gMainBrightnessFade.mFadeFrames = 0;
+    gMainBrightnessFade.mFadeFrameCount = 0;
+    gMainBrightnessFade.mBrightness = 0;
+    gSubBrightnessFade.mState = 2;
+    gSubBrightnessFade.mPositive = 0;
+    gSubBrightnessFade.mFadeFrames = 0;
+    gSubBrightnessFade.mFadeFrameCount = 0;
+    gSubBrightnessFade.mBrightness = 0;
+    GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
+    GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
 }
 
-u32 func_02036c5c(void) {
-    if (((*(u16 *) &data_021755b4) == 2) && ((*(u16 *) &data_021755a8) == 2)) {
+u32 AreBrightnessFadesClear(void) {
+    if (((*(u16 *) &gMainBrightnessFade) == 2) && ((*(u16 *) &gSubBrightnessFade) == 2)) {
         return 1;
     }
     return 0;

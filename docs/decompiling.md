@@ -470,7 +470,7 @@ Memory and aliasing:
   (tick counter, file flags). A store followed by a reload is not by itself a sign. In Thumb code `strb; ldrb` is
   normal; in ARM code look for what sits between (a call, an aliasing store) first.
 - A register loaded from a volatile global just before a call that doesn't take it is a discarded volatile read
-  statement (`data_02175614.mUnk_00;`), not an extra argument (func_02037abc).
+  statement (`data_02175614.mUnk_00;`), not an extra argument (InitDisplayFromSettings).
 - A volatile field read once for two tests (bits 0x10 and 0x20) is one local read: `c = a->mUnk_4c; b = (c & 0x10)
   != 0;` (DrawKart).
 - Arguments with side effects (volatile read, `x++`) are evaluated before stack-argument stores and other

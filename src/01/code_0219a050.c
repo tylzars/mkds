@@ -335,7 +335,7 @@ void func_ov001_0219a950(void) {
 
 void AdvanceRecordTopMenuState0(void) {
     int v1;
-    v1 = func_02036c5c();
+    v1 = AreBrightnessFadesClear();
     if (v1 != 0) {
         RequestRecordTopMenuState1();
     }

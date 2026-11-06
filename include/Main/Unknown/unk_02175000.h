@@ -48,7 +48,7 @@ typedef struct Unk021759d0 {
 // once, then mUpdate and the unnamed slot 0x0c every frame, then mRelease once. 0x0c is the second
 // per-frame slot (it runs after mUpdate in the same pass and mostly copies the two 2D lists). 0x10
 // and 0x14 are called from two library callbacks registered in func_02049c3c; 0x18 and 0x1a are
-// fade lengths passed to func_02037288 / func_02036d3c; 0x1c is a flag for func_02037658; all stay
+// fade lengths passed to StartFadeToClear / StartFadeToFadedPositive; 0x1c is a flag for func_02037658; all stay
 // unnamed. One instance per scene (the 16 entries of gSceneFuncs): seven tables are named, the
 // others are unnamed tables or stack literals.
 typedef struct SceneCallbacks {
@@ -97,72 +97,72 @@ typedef struct Unk021759cc {
     /* 120 */ s8 mUnk_120;
 } Unk021759cc;
 
-// Part of Unk021755a0 at 0x28, 0x38, 0x70 and 0x80: seven halfwords.
-typedef struct Unk021755a0_28 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
-    /* 08 */ u16 mUnk_08;
-    /* 0a */ u16 mUnk_0a;
-    /* 0c */ u16 mUnk_0c;
+// Part of DisplaySettings at 0x28, 0x38, 0x70 and 0x80: seven halfwords.
+typedef struct Bg01Cnt {
+    /* 00 */ u16 mBgCntLow2;
+    /* 02 */ u16 mBgCntBit6;
+    /* 04 */ u16 mBgCntVal14;
+    /* 06 */ u16 mBgCntVal7;
+    /* 08 */ u16 mBgCntVal8;
+    /* 0a */ u16 mBgCntVal2;
+    /* 0c */ u16 mBgCntVal13;
     /* 0e */ u8 mUnk_0e[0x2];
-} Unk021755a0_28;
+} Bg01Cnt;
 
-// Object behind member 0x6c of Unk021755a0.
-typedef struct Unk021755a0_6c {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
-} Unk021755a0_6c;
+// Object behind member 0x6c of DisplaySettings.
+typedef struct G3xParams {
+    /* 00 */ u16 mClearColor;
+    /* 02 */ u8 mSwapBit0;
+    /* 03 */ u8 mSwapBit1;
+} G3xParams;
 
-// Object behind data_021755a0.
-typedef struct Unk021755a0 {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u16 mUnk_04;
-    /* 06 */ u16 mUnk_06;
-    /* 08 */ u16 mUnk_08;
-    /* 0a */ u16 mUnk_0a;
-    /* 0c */ u16 mUnk_0c;
-    /* 0e */ u16 mUnk_0e;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
-    /* 14 */ u16 mUnk_14;
-    /* 16 */ u16 mUnk_16;
-    /* 18 */ u16 mUnk_18;
-    /* 1a */ u16 mUnk_1a;
-    /* 1c */ u16 mUnk_1c;
-    /* 1e */ u16 mUnk_1e;
-    /* 20 */ u16 mUnk_20;
-    /* 22 */ u16 mUnk_22;
-    /* 24 */ u16 mUnk_24;
-    /* 26 */ u16 mUnk_26;
-    /* 28 */ Unk021755a0_28 mUnk_28;
-    /* 38 */ Unk021755a0_28 mUnk_38;
-    /* 48 */ Unk0203810c mUnk_48;
-    /* 58 */ Unk0203810c mUnk_58;
+// Object behind gDisplaySettings.
+typedef struct DisplaySettings {
+    /* 00 */ u16 mWaitIrqCount;
+    /* 02 */ u16 mMainDisplayMask;
+    /* 04 */ u16 mSubDisplayMask;
+    /* 06 */ u16 mDispMode;
+    /* 08 */ u16 mMainBgMode;
+    /* 0a */ u16 mBg0As;
+    /* 0c */ u16 mSubBgMode;
+    /* 0e */ u16 mBankForBG;
+    /* 10 */ u16 mBankForOBJ;
+    /* 12 */ u16 mBankForBGExtPltt;
+    /* 14 */ u16 mBankForOBJExtPltt;
+    /* 16 */ u16 mBankForTex;
+    /* 18 */ u16 mBankForTexPltt;
+    /* 1a */ u16 mBankForClearImage;
+    /* 1c */ u16 mBankForSubBG;
+    /* 1e */ u16 mBankForSubOBJ;
+    /* 20 */ u16 mBankForSubBGExtPltt;
+    /* 22 */ u16 mBankForSubOBJExtPltt;
+    /* 24 */ u16 mBankForARM7;
+    /* 26 */ u16 mBankForLCDC;
+    /* 28 */ Bg01Cnt mMainBg0;
+    /* 38 */ Bg01Cnt mMainBg1;
+    /* 48 */ Bg23Cnt mMainBg2;
+    /* 58 */ Bg23Cnt mMainBg3;
     /* 68 */ u16 mUnk_68;
     /* 6a */ u16 mUnk_6a;
-    /* 6c */ Unk021755a0_6c *mUnk_6c;
-    /* 70 */ Unk021755a0_28 mUnk_70;
-    /* 80 */ Unk021755a0_28 mUnk_80;
-    /* 90 */ Unk0203810c mUnk_90;
-    /* a0 */ Unk0203810c mUnk_a0;
+    /* 6c */ G3xParams *mG3xParams;
+    /* 70 */ Bg01Cnt mSubBg0;
+    /* 80 */ Bg01Cnt mSubBg1;
+    /* 90 */ Bg23Cnt mSubBg2;
+    /* a0 */ Bg23Cnt mSubBg3;
     /* b0 */ u16 mUnk_b0;
     /* b2 */ u16 mUnk_b2;
     /* b4 */ u32 mUnk_b4;
-    /* b8 */ void (*mUnk_b8)(void);
-    /* bc */ u64 mUnk_bc;
-    /* c4 */ u64 mUnk_c4;
-    /* cc */ u32 mUnk_cc;
-    /* d0 */ u32 mUnk_d0;
-    /* d4 */ u32 mUnk_d4;
-    /* d8 */ u8 mUnk_d8;
-} Unk021755a0;
+    /* b8 */ void (*mIrqCallback)(void);
+    /* bc */ u64 mFrameStartTick;
+    /* c4 */ u64 mWaitEndTick;
+    /* cc */ u32 mTimeBeforeWait;
+    /* d0 */ u32 mTimeSinceWaitEnd;
+    /* d4 */ u32 mTimeSinceFrameStart;
+    /* d8 */ u8 mFrameFlags;
+} DisplaySettings;
 
 // Objects whose layout isn't known yet.
-extern Unk021755a0 *data_021755a0;
+extern DisplaySettings *gDisplaySettings;
 extern Unk02175628 data_021755dc;
 typedef struct Unk02175624 {
     /* 00 */ u8 mUnk_00[2];
@@ -371,6 +371,6 @@ typedef struct Unk02175ec0 {
 } Unk02175ec0;
 
 extern Unk02175ec0 data_02175ec0;
-extern void (*data_usa_02175584)(s32);
+extern void (*gFrameCallback)(s32);
 extern s32 data_usa_02175e84;
 extern s32 data_usa_02175e80;

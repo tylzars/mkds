@@ -46,10 +46,10 @@ void func_0202f2b4(void *a) {
 
     data_02174e4c = HeapAllocAligned(a, 0x874, 0x20);
     func_0202f51c(data_02174e4c, 0x874);
-    b = func_02038d88(a, data_02154818);
+    b = CreateDisplaySettings(a, data_02154818);
     func_0202f4e0(b, 0, 0, 0, 0, 0xc, 0, 0);
     func_0202f4ac(b, 2, 0, 0, 0, 0xf, 6);
-    func_02037abc(b);
+    InitDisplayFromSettings(b);
     if (func_0202f19c() == 0) {
         v1.mUnk_00 = 1;
         v1.mUnk_04 = func_020b403c(1);

@@ -109,13 +109,13 @@ void func_02032f94(void *a, s32 b, s32 c) {
         func_02123a48(3);
     }
     func_02062860();
-    r = func_02038d88(a, data_021547f0);
-    func_02038d58(r->mUnk_28, 3, 0, 0, 0, 0xd, 2, 0);
-    func_02038d28(r->mUnk_28, 0, 0, 0, 0, 0xc, 0, 0);
-    func_02038d00(r->mUnk_28, 2, 0, 0, 0, 0x1e, 6);
-    func_02038cd8(r->mUnk_28, 3, 0, 0, 0, 0x1d, 6);
-    func_02038cd8(r->mUnk_70, 3, 0, 0, 0, 1, 6);
-    func_02037abc(r);
+    r = CreateDisplaySettings(a, data_021547f0);
+    SetBg0Record(r->mUnk_28, 3, 0, 0, 0, 0xd, 2, 0);
+    SetBg1Record(r->mUnk_28, 0, 0, 0, 0, 0xc, 0, 0);
+    SetBg2RecordParams(r->mUnk_28, 2, 0, 0, 0, 0x1e, 6);
+    SetBg3RecordParams(r->mUnk_28, 3, 0, 0, 0, 0x1d, 6);
+    SetBg3RecordParams(r->mUnk_70, 3, 0, 0, 0, 1, 6);
+    InitDisplayFromSettings(r);
     v.mUnk_00 = 0;
     v.mUnk_04 = NULL;
     v.mUnk_08 = 0;

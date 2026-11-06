@@ -153,15 +153,15 @@ void *func_ov001_021807e4(void) {
 }
 
 void func_ov001_021807a8(Unk02180774 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6, u32 p7) {
-    func_02038d28(p0->mUnk_28, p1, p2, p3, p4, p5, p6, p7);
+    SetBg1Record(p0->mUnk_28, p1, p2, p3, p4, p5, p6, p7);
 }
 
 void func_ov001_02180774(Unk02180774 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6) {
-    func_02038d00(p0->mUnk_28, p1, p2, p3, p4, p5, p6);
+    SetBg2RecordParams(p0->mUnk_28, p1, p2, p3, p4, p5, p6);
 }
 
 void func_ov001_02180740(Unk02180774 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5, u32 p6) {
-    func_02038d00(p0->mUnk_70, p1, p2, p3, p4, p5, p6);
+    SetBg2RecordParams(p0->mUnk_70, p1, p2, p3, p4, p5, p6);
 }
 
 void func_ov001_02180728(Unk02180728 *p0, void *p1, void *p2, s32 p3, s32 p4) {
@@ -184,11 +184,11 @@ void func_ov001_02180610(void) {
     data_ov001_021a99e4->mUnk_0008 = 1;
     func_ov001_02180ccc(data_ov001_021a99e4->mUnk_00a8);
     func_ov001_02180cb4(data_ov001_021a99e4->mUnk_60a8);
-    x = func_02038d88(func_ov001_021807e4(), &v);
+    x = CreateDisplaySettings(func_ov001_021807e4(), &v);
     func_ov001_021807a8(x, 0, 0, 0, 0, 4, 0, 0);
     func_ov001_02180774(x, 2, 0, 0, 0, 0xe, 1);
     func_ov001_02180740(x, 2, 0, 0, 0, 4, 4);
-    func_02037abc(x);
+    InitDisplayFromSettings(x);
     data_ov001_021a99e4->mUnk_000c[0] = func_020b403c(0);
     data_ov001_021a99e4->mUnk_000c[1] = func_020b403c(1);
     data_ov001_021a99e4->mUnk_000c[2] = func_020b403c(2);

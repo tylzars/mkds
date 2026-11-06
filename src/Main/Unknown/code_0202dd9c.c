@@ -48,10 +48,10 @@ void func_0202dfd4(void *a) {
     MemFillWordsByBlock_inline(data_02174e44, 0x8dc);
     data_02174e44->mUnk_8d0 = HeapAllocAligned(a, 0xe00, 0x20);
     data_02174e44->mUnk_8d4 = HeapAllocAligned(a, 0x1000, 0x20);
-    q = func_02038d88(a, data_usa_02154840);
-    func_02038d58(q + 0x28, 1, 0, 0, 0, 0, 1, 0);
-    func_02038cd8(q + 0x70, 2, 0, 0, 0, 0xf, 0);
-    func_02037abc(q);
+    q = CreateDisplaySettings(a, data_usa_02154840);
+    SetBg0Record(q + 0x28, 1, 0, 0, 0, 0, 1, 0);
+    SetBg3RecordParams(q + 0x70, 2, 0, 0, 0, 0xf, 0);
+    InitDisplayFromSettings(q);
     func_0202e274();
     v.mUnk_00 = 1;
     v.mUnk_04 = func_020b403c(1);

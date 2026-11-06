@@ -94,7 +94,7 @@ void func_0203c07c(void) {
 }
 
 void func_0203c060(s32 a) {
-    func_02037a40();
+    PrepareDisplayFrame();
     func_020ada2c(a);
 }
 

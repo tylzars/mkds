@@ -173,10 +173,10 @@ void func_ov000_02182de8(void) {
 }
 
 void AdvanceWiFiVSSettingState0(void) {
-    if (func_02036d08() != 0) {
-        func_02037288(10);
+    if (AreBrightnessFadesFaded() != 0) {
+        StartFadeToClear(10);
     }
-    if (func_02036c5c() != 0) {
+    if (AreBrightnessFadesClear() != 0) {
         if (func_02122ae4() != 0) {
             gWiFiVSSetting->mNextState = 1;
             func_02126638(GetBmgEntry(gWiFiVSSetting->mWiFiMessages, 0x1b), 0, 0, 1, 0, 0, 0);

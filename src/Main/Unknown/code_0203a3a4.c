@@ -89,40 +89,40 @@ u32 func_0203afe4(u32 a) {
 }
 
 void func_0203ad58(void *a) {
-    Unk021755a0 *b;
-    b = func_02038d88(a, data_usa_02164718[data_021759c0->mUnk_00c]);
-    func_02038c9c(b, 1, 1);
-    func_02038d58(&b->mUnk_28, 1, 0, 0, 1, 0, 0, 0);
+    DisplaySettings *b;
+    b = CreateDisplaySettings(a, data_usa_02164718[data_021759c0->mUnk_00c]);
+    SetG3xSwapBits(b, 1, 1);
+    SetBg0Record(&b->mMainBg0, 1, 0, 0, 1, 0, 0, 0);
     switch (data_021759c0->mUnk_00c) {
         case 0:
         case 2:
         case 6:
-            func_02038d00(&b->mUnk_28, 1, 0, 0, 0, 7, 0);
-            func_02038d58(&b->mUnk_70, 0, 0, 0, 0, 0xd, 0, 0);
-            func_02038d28(&b->mUnk_70, 1, 0, 0, 0, 0xe, 0, 0);
-            func_02038d00(&b->mUnk_70, 2, 0, 0, 0, 0xf, 0);
+            SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
+            SetBg0Record(&b->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
+            SetBg1Record(&b->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
+            SetBg2RecordParams(&b->mSubBg0, 2, 0, 0, 0, 0xf, 0);
             func_02056114(0);
             break;
         case 1:
-            func_02038d00(&b->mUnk_28, 1, 0, 0, 0, 7, 0);
-            func_02038d58(&b->mUnk_70, 0, 0, 0, 0, 0xd, 0, 0);
-            func_02038d28(&b->mUnk_70, 1, 0, 0, 0, 0xe, 0, 0);
-            func_02038d00(&b->mUnk_70, 2, 0, 0, 0, 0xf, 0);
+            SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
+            SetBg0Record(&b->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
+            SetBg1Record(&b->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
+            SetBg2RecordParams(&b->mSubBg0, 2, 0, 0, 0, 0xf, 0);
             func_02056114(0);
             break;
         case 3:
         case 5:
-            func_02038d00(&b->mUnk_28, 1, 0, 0, 0, 7, 0);
-            func_02038cb0(&b->mUnk_70, 0, 0, 1, 0, 0);
+            SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
+            SetBg2RecordMode5(&b->mSubBg0, 0, 0, 1, 0, 0);
             func_02038c94(b, 0x20);
             func_02056114(1);
             break;
         case 4:
-            func_02038d00(&b->mUnk_28, 1, 0, 0, 0, 7, 0);
+            SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
             func_02056114(0);
             break;
     }
-    func_02037abc(b);
+    InitDisplayFromSettings(b);
     func_02055f68();
     *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 2;
 }
@@ -247,7 +247,7 @@ u32 func_0203a9ec(u32 a) {
     if (a > 0x564) {
         return 1;
     }
-    if (func_02036c5c() == 0) {
+    if (AreBrightnessFadesClear() == 0) {
         return 0;
     }
     if (func_0203a9ec_inline() != 0) {

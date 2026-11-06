@@ -53,7 +53,7 @@ void func_020cb51c(u32 a) {
         }
         func_02125928();
         func_0212a920();
-        if (func_02036c5c() != 0) {
+        if (AreBrightnessFadesClear() != 0) {
             func_020cb600(&data_0217b43c->mUnk_000);
         }
     }

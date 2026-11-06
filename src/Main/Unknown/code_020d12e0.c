@@ -22,13 +22,13 @@ void func_020d159c(void) {
     DC_FlushRange(&gEndingStaffRoll->mUnk_10, 0x400);
     GX_LoadOAM(&gEndingStaffRoll->mUnk_10, 0, 0x400);
     if (gEndingStaffRoll->mUnk_00 == 0x1a4) {
-        func_02036fec(0x78, 1);
+        StartFadeToFadedNegativeOneScreen(0x78, 1);
         return;
     }
     if (gEndingStaffRoll->mUnk_00 != 0x77a) {
         return;
     }
-    func_020371a8(0x78, 1);
+    StartFadeToClearNegativeOneScreen(0x78, 1);
 }
 
 void InitEndingStaffRoll(void) {

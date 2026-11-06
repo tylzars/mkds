@@ -84,11 +84,11 @@ void func_02029dcc(void *a, void *b, void *c) {
     }
     data_usa_02174e00->mUnk_44 = data_0217b488->mUnk_80;
     func_02062860();
-    w = func_02038d88(a, data_021547f0);
-    func_02038d28(&w->mUnk_28, 2, 0, 0, 0, 0x10, 6, 0);
-    func_02038cd8(&w->mUnk_28, 3, 0, 0, 0, 2, 6);
-    func_02038cd8(&w->mUnk_70, 3, 0, 0, 0, 1, 6);
-    func_02037abc(w);
+    w = CreateDisplaySettings(a, data_021547f0);
+    SetBg1Record(&w->mUnk_28, 2, 0, 0, 0, 0x10, 6, 0);
+    SetBg3RecordParams(&w->mUnk_28, 3, 0, 0, 0, 2, 6);
+    SetBg3RecordParams(&w->mUnk_70, 3, 0, 0, 0, 1, 6);
+    InitDisplayFromSettings(w);
     s.mUnk_00 = 1;
     s.mUnk_04 = func_020b403c(1);
     s.mUnk_08 = 0;

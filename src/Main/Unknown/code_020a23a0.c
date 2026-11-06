@@ -64,7 +64,7 @@ void func_020a29cc(void) {
         data_021704dc[2] = v1;
         G3i_LookAt_(&v3, &v2, &v1, 0, &data_0217029c.mCameraMtx);
         data_0217029c.mFlag &= ~0xe8;
-        func_02038c9c(data_021755a0, 1, 1);
+        SetG3xSwapBits(gDisplaySettings, 1, 1);
         data_0217029c.mPrmViewPort = 0xbfff0000;
         NNS_G3dGlbFlushP();
         if (data_0217b200->mUnk_002 >= 3) {

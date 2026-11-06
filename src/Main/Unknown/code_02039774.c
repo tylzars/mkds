@@ -44,7 +44,7 @@ void func_02039b94(u32 a) {
     }
 }
 
-void func_02039b24(void) {
+void DisableAllBanks(void) {
     GX_DisableBankForBG();
     GX_DisableBankForOBJ();
     GX_DisableBankForBGExtPltt();

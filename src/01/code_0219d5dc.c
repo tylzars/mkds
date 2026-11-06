@@ -94,7 +94,7 @@ BOOL func_ov001_0219de38(void) {
 
 void AdvanceOptionEmbremSelectState0(void) {
     int v1;
-    v1 = func_02036c5c();
+    v1 = AreBrightnessFadesClear();
     if (v1 != 0) {
         gOptionEmbremSelect->mNextState = 1;
     }

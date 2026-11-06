@@ -349,10 +349,10 @@ void *func_021250b0(void *a) {
     Unk020391d4 t = {1, 0x12, 0x18, 1, 0, 0, 0, 2, 1, 0, 0, 0, 0, 0, 4, 0x100, 0, 0, 8, 0};
     Unk02180774 *p;
 
-    p = func_02038d88(a, &t);
-    func_02038d28(p->mUnk_28, 0, 0, 0, 0, 0x12, 2, 0);
-    func_02038cd8(p->mUnk_70, 1, 0, 0, 0, 0x10, 4);
-    func_02037abc(p);
+    p = CreateDisplaySettings(a, &t);
+    SetBg1Record(p->mUnk_28, 0, 0, 0, 0, 0x12, 2, 0);
+    SetBg3RecordParams(p->mUnk_70, 1, 0, 0, 0, 0x10, 4);
+    InitDisplayFromSettings(p);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     return p;
@@ -362,10 +362,10 @@ void *func_02125028(void *a) {
     Unk020391d4 t = {1, 0x13, 0x18, 1, 0, 1, 0, 4, 0x60, 0, 0, 3, 0x10, 0, 0x80, 0x100, 0, 0, 8, 0};
     Unk02180774 *p;
 
-    p = func_02038d88(a, &t);
-    func_02038d28(p->mUnk_28, 0, 0, 0, 0, 0x12, 2, 0);
-    func_02038cd8(p->mUnk_70, 1, 0, 0, 0, 0xf, 0);
-    func_02037abc(p);
+    p = CreateDisplaySettings(a, &t);
+    SetBg1Record(p->mUnk_28, 0, 0, 0, 0, 0x12, 2, 0);
+    SetBg3RecordParams(p->mUnk_70, 1, 0, 0, 0, 0xf, 0);
+    InitDisplayFromSettings(p);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     return p;

@@ -10,7 +10,7 @@ typedef struct Unk0218052c {
     /* 04 */ u16 mUnk_04;
 } Unk0218052c;
 
-// Object at the start of a 0xdc-byte allocation made by func_02038d88.
+// Object at the start of a 0xdc-byte allocation made by CreateDisplaySettings.
 typedef struct Unk02180774 {
     /* 00 */ u8 mUnk_00[0x28];
     /* 28 */ u8 mUnk_28[0x48];

@@ -410,7 +410,7 @@ void func_02129c18(void) {
 }
 
 void AdvanceKeyboardState0(void) {
-    if (func_02036c5c() != 0) {
+    if (AreBrightnessFadesClear() != 0) {
         gKeyboard->mNextState = 1;
         func_02126638(GetBmgEntry(gKeyboard->mCommonMessages, 7), 0, 0, 0, 0, 0, 0);
     }
@@ -561,7 +561,7 @@ void AdvanceKeyboardState4(void) {
 }
 
 void AdvanceKeyboardState5(void) {
-    if (func_02036c5c() != 0) {
+    if (AreBrightnessFadesClear() != 0) {
         gKeyboard->mNextState = 6;
         func_02126638(GetBmgEntry(gKeyboard->mCommonMessages, 0xf), 0, 0, 0, 0, 0, 0);
         gKeyboard->mUnk_2c[2].mUnk_10 = 1;

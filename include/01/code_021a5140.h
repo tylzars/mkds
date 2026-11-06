@@ -72,7 +72,7 @@ typedef struct Emblem {
     /* 10bc */ s32 mUnk_10bc;
 } Emblem;
 
-// Block of 20 halfwords that func_020391d4 fills with defaults and func_02038d88 reads.
+// Block of 20 halfwords that InitDisplaySettingsDesc fills with defaults and CreateDisplaySettings reads.
 typedef struct Unk020391d4 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;

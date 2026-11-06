@@ -56,10 +56,10 @@ void func_02001ba0(void *a) {
     Unk02125de0Arg v1;
     u8 *v2;
     data_usa_ov001_021a99c0 = HeapAlloc(a, 60);
-    v2 = func_02038d88(a, data_usa_021547c8);
-    func_02038d28(v2 + 0x28, 1, 0, 0, 0, 0, 1, 0);
-    func_02038d28(v2 + 0x70, 1, 0, 0, 0, 0, 2, 0);
-    func_02037abc(v2);
+    v2 = CreateDisplaySettings(a, data_usa_021547c8);
+    SetBg1Record(v2 + 0x28, 1, 0, 0, 0, 0, 1, 0);
+    SetBg1Record(v2 + 0x70, 1, 0, 0, 0, 0, 2, 0);
+    InitDisplayFromSettings(v2);
     func_02001d30(&data_usa_ov001_021a99c0->mUnk_00, 1, data_usa_ov001_021a768c, data_usa_ov001_021a76a8,
                   data_usa_ov001_021a76c4);
     func_02001d30(&data_usa_ov001_021a99c0->mUnk_0c, 0, data_usa_ov001_021a76dc, data_usa_ov001_021a76f4,

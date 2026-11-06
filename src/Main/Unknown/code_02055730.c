@@ -247,7 +247,7 @@ void func_02055cbc(s32 a) {
     if (!(data_0217aa04->mUnk_08 & 4)) {
         return;
     }
-    if (func_02036c5c() == 0) {
+    if (AreBrightnessFadesClear() == 0) {
         return;
     }
     data_0217aa04->mUnk_08 &= ~4;
@@ -289,7 +289,7 @@ void func_02055c18(u32 a) {
         return;
     }
     data_0217aa04->mUnk_08 |= 4;
-    func_02036fec(a, 1);
+    StartFadeToFadedNegativeOneScreen(a, 1);
 }
 
 void func_02055bd4(u32 a) {
@@ -297,7 +297,7 @@ void func_02055bd4(u32 a) {
         return;
     }
     data_0217aa04->mUnk_08 |= 4;
-    func_020371a8(a, 1);
+    StartFadeToClearNegativeOneScreen(a, 1);
 }
 
 BOOL func_02055b1c(void) {

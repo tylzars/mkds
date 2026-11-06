@@ -118,7 +118,7 @@ static inline void func_020487fc_inline7(void) {
         if (PM_GetLCDPower() == 0) {
             t = OS_DisableInterrupts();
             PM_SetLCDPower(1);
-            if (func_02036c5c()) {
+            if (AreBrightnessFadesClear()) {
                 func_02049808(0);
                 func_020497f0(0);
             }
@@ -142,7 +142,7 @@ static inline BOOL func_020487fc_inline12(void) {
 static inline void func_020487fc_inline9(const SceneCallbacks *b) {
     int v = GetCurrentSceneNumber();
     if (v == 1 || v == 10) {
-        func_02037498(!func_020487fc_inline12() || !func_020487fc_inline6());
+        FinishDisplayFrameSwapIf(!func_020487fc_inline12() || !func_020487fc_inline6());
     } else {
         func_02037658(b->mUnk_1c);
     }
@@ -225,13 +225,13 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         b->mInit(a);
     }
     func_02047274();
-    data_021755a0->mUnk_b8 = func_0204a4d8;
+    gDisplaySettings->mIrqCallback = func_0204a4d8;
     func_0204ac60();
     func_02107010();
-    func_02039044();
+    WaitIrqAndTurnOnDisplays();
     data_021759cc->mUnk_10c = 1;
     do {
-        func_02037a40();
+        PrepareDisplayFrame();
         func_020487fc_inline7();
         func_0210823c();
         func_020487fc_inline8();
@@ -244,13 +244,13 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         }
         UpdateWiFiSession();
         data_021759cc->mUnk_0e8++;
-        func_020373ec();
+        RecordFrameTimes();
     } while (func_02054754() != 1);
     func_02043b04();
-    func_02037288(b->mUnk_18);
+    StartFadeToClear(b->mUnk_18);
     data_021759cc->mUnk_10c = 2;
     do {
-        func_02037a40();
+        PrepareDisplayFrame();
         func_020487fc_inline7();
         if (b->mUpdate != NULL) {
             b->mUpdate(a, data_021759cc->mSceneFrames);
@@ -272,7 +272,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
             data_021759cc->mSceneFrames++;
         }
         data_021759cc->mUnk_0e8++;
-        func_020373ec();
+        RecordFrameTimes();
     } while (a->mNextScene == -1 && v == 0);
     data_021759cc->mUnk_10c = 3;
     func_02105fcc();
@@ -285,12 +285,12 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         func_02049e38(0);
     }
     if (data_021759d0->mUnk_20 == 4) {
-        func_02036d3c(b->mUnk_1a);
+        StartFadeToFadedPositive(b->mUnk_1a);
     } else {
-        func_02036f10(b->mUnk_1a);
+        StartFadeToFadedNegative(b->mUnk_1a);
     }
     do {
-        func_02037a40();
+        PrepareDisplayFrame();
         func_020487fc_inline7();
         if (b->mUpdate != NULL) {
             b->mUpdate(0, data_021759cc->mSceneFrames);
@@ -308,8 +308,8 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
             data_021759cc->mSceneFrames++;
         }
         data_021759cc->mUnk_0e8++;
-        func_020373ec();
-    } while (!func_02036d08());
+        RecordFrameTimes();
+    } while (!AreBrightnessFadesFaded());
 end:
     func_02043ae0();
     if (func_020487fc_inline13() && (v != 0 || GetNextSceneNumber() == 0)) {
@@ -318,7 +318,7 @@ end:
         c = FALSE;
         func_0204f7f4();
         do {
-            func_02037a40();
+            PrepareDisplayFrame();
             func_0210823c();
             func_020487fc_inline8();
             func_020487fc_inline9(b);
@@ -330,11 +330,11 @@ end:
             func_0204984c(a, data_021759cc->mUnk_10c != 4);
             CallQueueDrain();
             UpdateWiFiSession();
-            func_020373ec();
+            RecordFrameTimes();
         } while (!c);
     }
     data_021759cc->mUnk_10c = 5;
-    data_021755a0->mUnk_b8 = NULL;
+    gDisplaySettings->mIrqCallback = NULL;
     if (func_020487fc_inline2()) {
         data_0217aa00->mUnk_0454 &= ~4;
     }
@@ -344,8 +344,8 @@ end:
         b->mRelease(a);
     }
     CARD_SetPulledOutCallback(func_0204a548);
-    if (data_021755a0 != NULL) {
-        func_02037a94();
+    if (gDisplaySettings != NULL) {
+        DisableAllBanksAndNullDisplaySettings();
     }
     func_02043b3c();
     ClearFontAndPlayerCharacterTables();

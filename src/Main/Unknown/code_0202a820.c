@@ -358,7 +358,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
     func_0202b100();
     switch (gWiFiVSCourseSelect->mState) {
         case 0:
-            if (func_02036c5c() == 0) {
+            if (AreBrightnessFadesClear() == 0) {
                 break;
             }
             if (gWiFiVSCourseSelect->mUnk_0cc[0].mUnk_00 == 1) {
@@ -393,7 +393,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
         case 3:
             gWiFiVSCourseSelect->mStateFrames++;
             if (gWiFiVSCourseSelect->mStateFrames > 0x3c) {
-                func_02036e20(0x3c, 1);
+                StartFadeToFadedPositiveOneScreen(0x3c, 1);
                 gWiFiVSCourseSelect->mState = 4;
                 gWiFiVSCourseSelect->mStateFrames = 0;
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x209);
@@ -404,7 +404,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             if (gWiFiVSCourseSelect->mStateFrames <= 0x3c) {
                 func_0202b3f4();
             } else {
-                func_02037334(10, 1);
+                StartFadeToClearOneScreen(10, 1);
                 gWiFiVSCourseSelect->mState = 5;
                 gWiFiVSCourseSelect->mStateFrames = 0;
                 func_0202b2bc();
@@ -413,7 +413,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
         case 5:
             gWiFiVSCourseSelect->mStateFrames++;
             if (gWiFiVSCourseSelect->mStateFrames > 0x3c) {
-                func_02036f10(10);
+                StartFadeToFadedNegative(10);
                 gWiFiVSCourseSelect->mState = 6;
                 gWiFiVSCourseSelect->mStateFrames = 0;
             }

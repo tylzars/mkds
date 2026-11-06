@@ -110,35 +110,35 @@ void func_020cc36c(void) {
 #pragma thumb off
 
 void func_020cc330(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    func_02038d58(a->mUnk_28, b, c, d, e, f, g, h);
+    SetBg0Record(a->mUnk_28, b, c, d, e, f, g, h);
 }
 
 void func_020cc2f4(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    func_02038d28(a->mUnk_28, b, c, d, e, f, g, h);
+    SetBg1Record(a->mUnk_28, b, c, d, e, f, g, h);
 }
 
 void func_020cc2c0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    func_02038d00(a->mUnk_28, b, c, d, e, f, g);
+    SetBg2RecordParams(a->mUnk_28, b, c, d, e, f, g);
 }
 
 void func_020cc28c(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    func_02038cd8(a->mUnk_28, b, c, d, e, f, g);
+    SetBg3RecordParams(a->mUnk_28, b, c, d, e, f, g);
 }
 
 void func_020cc250(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    func_02038d58(a->mUnk_70, b, c, d, e, f, g, h);
+    SetBg0Record(a->mUnk_70, b, c, d, e, f, g, h);
 }
 
 void func_020cc214(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
-    func_02038d28(a->mUnk_70, b, c, d, e, f, g, h);
+    SetBg1Record(a->mUnk_70, b, c, d, e, f, g, h);
 }
 
 void func_020cc1e0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    func_02038d00(a->mUnk_70, b, c, d, e, f, g);
+    SetBg2RecordParams(a->mUnk_70, b, c, d, e, f, g);
 }
 
 void func_020cc1ac(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
-    func_02038cd8(a->mUnk_70, b, c, d, e, f, g);
+    SetBg3RecordParams(a->mUnk_70, b, c, d, e, f, g);
 }
 
 void func_020cc18c(u32 a) {

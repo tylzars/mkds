@@ -354,7 +354,7 @@ s32 func_0202f764(Unk0202f764 *a) {
     }
     switch (data_02174e50->mUnk_4c) {
         case 0:
-            if (func_02036c5c() == 0) {
+            if (AreBrightnessFadesClear() == 0) {
                 break;
             }
             if (data_02174e50->mUnk_8c == 0) {

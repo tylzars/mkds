@@ -165,12 +165,12 @@ void func_0203a05c(void) {
     }
     func_02046e84();
     while ((u32) data_0217c7ac != 0) {
-        func_02037a40();
+        PrepareDisplayFrame();
         func_020b2574();
         func_0210823c();
-        func_02037850();
+        FinishDisplayFrame();
         func_020b255c();
-        func_020373ec();
+        RecordFrameTimes();
     }
 }
 

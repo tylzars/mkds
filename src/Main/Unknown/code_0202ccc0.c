@@ -346,7 +346,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
             }
             break;
         case 1:
-            if (func_02036c5c() == 0) {
+            if (AreBrightnessFadesClear() == 0) {
                 if (func_0202ddc4() == 0) {
                     func_02126230(GetBmgEntry(data_02174e40->mUnk_0ac, 0x53), GetBmgEntry(data_02174e40->mUnk_0a8, 4));
                     data_02174e40->mUnk_0b0 = 0;

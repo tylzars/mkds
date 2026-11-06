@@ -61,7 +61,7 @@ void func_ov001_02198768(void) {
     void *a;
     void *b;
     void *c;
-    if (func_02036c5c() != 0) {
+    if (AreBrightnessFadesClear() != 0) {
         data_ov001_021a9be4->mUnk_04 = 1;
         a = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0xc);
         b = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0);

@@ -4,4 +4,4 @@
 
 typedef struct Unk020391d4 Unk020391d4;
 
-void func_020391d4(Unk020391d4 *p0);
+void InitDisplaySettingsDesc(Unk020391d4 *p0);

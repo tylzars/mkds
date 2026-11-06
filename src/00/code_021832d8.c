@@ -553,7 +553,7 @@ void AdvanceWiFiVSMatchingState8(void) {
             gWiFiVSMatching->mPendingWiFiState = 4;
             gWiFiVSMatching->mUnk_08 = 0;
             func_02125fc0();
-            func_02036f10((s16) (30));
+            StartFadeToFadedNegative((s16) (30));
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x20c);
         }
     }
@@ -612,7 +612,7 @@ void AdvanceWiFiVSMatchingState10(void) {
 }
 
 void AdvanceWiFiVSMatchingState11(void) {
-    if (func_02036d08() != 0) {
+    if (AreBrightnessFadesFaded() != 0) {
         if (func_02125f88() != 0) {
             RequestWiFiState(gWiFiVSMatching->mPendingWiFiState);
         }
