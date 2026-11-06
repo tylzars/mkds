@@ -5,14 +5,13 @@
 typedef struct Unk021d2188 Unk021d2188;
 typedef struct Unk021da1f8_04 Unk021da1f8_04;
 
-// Object behind data_ov003_021da1fc.
-typedef struct Unk021da1fc {
+typedef struct EditAddr {
     /* 00 */ Unk021d2188 *mUnk_00;
     /* 04 */ Unk021da1f8_04 *mUnk_04;
-    /* 08 */ u8 mUnk_08[0xc];
-    /* 14 */ u8 mUnk_14;
+    /* 08 */ u8 mText[0xc];
+    /* 14 */ u8 mGroupIndex;
     /* 15 */ u8 mUnk_15;
-} Unk021da1fc;
+} EditAddr;
 
 // Five functions called with the object at 0x08.
 typedef struct Unk021d7324 {
@@ -25,8 +24,8 @@ typedef struct Unk021d7310 {
 } Unk021d7310;
 
 extern u16 data_ov003_021d63f8[];
-extern u8 data_ov003_021d63fc[];
-extern u8 data_ov003_021d72fc[];
+extern u8 gEditAddrCharX[];
+extern u8 gEditAddrGroupMax[];
 extern u8 data_ov003_021d7300[];
 extern u16 data_ov003_021d7308[];
 extern Unk021d7310 data_ov003_021d7310;
@@ -40,17 +39,17 @@ void func_ov003_021c7050(void);
 void func_ov003_021c70a4(void);
 void func_ov003_021c7118(void);
 void func_ov003_021c7160(void);
-void func_ov003_021c71a0(void);
+void PrintEditAddrText(void);
 void func_ov003_021c722c(void);
 void func_ov003_021c72a4(void);
 void func_ov003_021c7314(void);
 void func_ov003_021c733c(void);
 void func_ov003_021c7358(void);
 u32 func_ov003_021c735c(s32 param_0);
-void func_ov003_021c73cc(void);
-void func_ov003_021c75e4(void);
+void UpdateEditAddrInput(void);
+void UpdateEditAddr(void);
 void func_ov003_021c75f8(void);
 void func_ov003_021c7614(void);
 void func_ov003_021c7678(void);
-void func_ov003_021c76b4(void);
-void func_ov003_021c7748(void);
+void LoadEditAddrFilesAndSetBgCnt(void);
+void CreateEditAddr(void);

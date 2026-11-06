@@ -1128,7 +1128,7 @@ Link order and linking:
   (DWC_StringToFriendKey).
 - A byte loaded, moved to a second register for `muls` and used again after, with the two registers swapped: read the
   field inside the index expression and write the update as `x--` or `x -= 1`, not a local or `x = x - 1`
-  (func_ov003_021c73cc).
+  (UpdateEditAddrInput).
 - Two byte stores whose address is shared with the halfword read that follows: `__memcpy(t.m, v, 2)`
   (func_ov000_0218b010).
 

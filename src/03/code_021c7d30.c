@@ -485,7 +485,7 @@ void func_ov003_021c8c14(void) {
             }
             func_ov003_021c2120(2, 0);
             func_ov003_021c20f8(i, 0);
-            func_ov003_021c212c(func_ov003_021c7748);
+            func_ov003_021c212c(CreateEditAddr);
             break;
         case 11:
             r = func_ov003_021cdb6c();

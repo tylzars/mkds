@@ -37,50 +37,50 @@
 #include "string.h"
 #include "code_02134398.h"
 
-void func_ov003_021c7748(void) {
+void CreateEditAddr(void) {
     Unk021d7310 a;
     u8 b[5];
     s32 c;
-    Unk021da1fc *d;
+    EditAddr *d;
     a = data_ov003_021d7310;
     b[0] = data_ov003_021d7300[0];
     b[1] = data_ov003_021d7300[1];
     b[2] = data_ov003_021d7300[2];
     b[3] = data_ov003_021d7300[3];
     b[4] = data_ov003_021d7300[4];
-    data_ov003_021da1fc = func_ov003_021d283c(0x18, 4);
+    gEditAddr = func_ov003_021d283c(0x18, 4);
     func_ov003_021c20dc(&c, NULL);
-    a.mUnk_00[c](data_ov003_021da1fc->mUnk_08);
-    d = data_ov003_021da1fc;
-    if (memcmp(d->mUnk_08, data_ov003_021d73ac, 3) != 0) {
-        d->mUnk_14 = 3;
+    a.mUnk_00[c](gEditAddr->mText);
+    d = gEditAddr;
+    if (memcmp(d->mText, data_ov003_021d73ac, 3) != 0) {
+        d->mGroupIndex = 3;
     } else {
-        MI_CpuFill8(d->mUnk_08, 0, 0xc);
-        data_ov003_021da1fc->mUnk_14 = 0;
+        MI_CpuFill8(d->mText, 0, 0xc);
+        gEditAddr->mGroupIndex = 0;
     }
-    func_ov003_021c76b4();
+    LoadEditAddrFilesAndSetBgCnt();
     func_ov003_021bf86c(c + 0xb);
     func_ov003_021bf43c(b[c], -1, 0);
     func_ov003_021bf5ec(2);
-    data_ov003_021da1fc->mUnk_00 = func_ov003_021d2288(0, 0);
-    data_ov003_021da1fc->mUnk_04 = func_ov003_021d1c18(0, 0x3f);
-    data_ov003_021da1fc->mUnk_04->mUnk_04 = (data_ov003_021da1fc->mUnk_04->mUnk_04 & 0xfffff3ff) | 0xc00;
+    gEditAddr->mUnk_00 = func_ov003_021d2288(0, 0);
+    gEditAddr->mUnk_04 = func_ov003_021d1c18(0, 0x3f);
+    gEditAddr->mUnk_04->mUnk_04 = (gEditAddr->mUnk_04->mUnk_04 & 0xfffff3ff) | 0xc00;
     func_ov003_021c7160();
-    func_ov003_021c71a0();
+    PrintEditAddrText();
     func_ov003_021c212c(func_ov003_021c7678);
 }
 
-void func_ov003_021c76b4(void) {
-    void *v2 = &data_ov003_021d7350;
+void LoadEditAddrFilesAndSetBgCnt(void) {
+    void *v2 = &gYbObjKbNclName2;
     void *v3 = &GX_LoadOBJPltt;
     u32 v4 = func_ov003_021bf620(v2, v3);
-    void *v5 = &data_ov003_021d7364;
+    void *v5 = &gJbBgStep3NcgName3;
     void *v6 = &GX_LoadBG2Char;
     u32 v7 = func_ov003_021bf620(v5, v6);
-    void *v8 = &data_ov003_021d737c;
+    void *v8 = &gYbBgStep3NclName3;
     void *v9 = &GX_LoadBGPltt;
     u32 v10 = func_ov003_021bf620(v8, v9);
-    void *v11 = &data_ov003_021d7394;
+    void *v11 = &gXb4EditAddrNscName;
     void *v12 = &GX_LoadBG2Scr;
     u32 v13 = func_ov003_021bf620(v11, v12);
     u32 v14 = 0x4001008u;
@@ -140,7 +140,7 @@ void func_ov003_021c7614(void) {
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021c1cd8();
         func_ov003_021cdc10((u32) 0x14);
-        if (data_ov003_021da1fc->mUnk_14 == 0) {
+        if (gEditAddr->mGroupIndex == 0) {
             func_ov003_021c1c90((u8) 0);
             func_ov003_021c1c70((u8) 0);
         } else {
@@ -156,116 +156,116 @@ void func_ov003_021c7614(void) {
 
 void func_ov003_021c75f8(void) {
     if (func_ov003_021c1ca0() != 31) {
-        func_ov003_021c212c(func_ov003_021c75e4);
+        func_ov003_021c212c(UpdateEditAddr);
     }
 }
 
-void func_ov003_021c75e4(void) {
-    func_ov003_021c73cc();
+void UpdateEditAddr(void) {
+    UpdateEditAddrInput();
     func_ov003_021c7358();
     return;
 }
 
-void func_ov003_021c73cc(void) {
+void UpdateEditAddrInput(void) {
     s32 a;
     u8 *b;
     s32 k;
-    Unk021da1fc *h;
-    Unk021da1fc **g;
+    EditAddr *h;
+    EditAddr **g;
     u8 e;
     a = func_ov003_021c1ca0();
     switch (a) {
         case 0:
             return;
         case 0x10:
-            if (data_ov003_021da1fc->mUnk_14 == 0 && data_ov003_021da1fc->mUnk_08[2] == 0) {
+            if (gEditAddr->mGroupIndex == 0 && gEditAddr->mText[2] == 0) {
                 break;
             }
             func_ov003_021cdc10(3);
-            if (data_ov003_021da1fc->mUnk_08[data_ov003_021da1fc->mUnk_14 * 3 + 2] == 0) {
-                data_ov003_021da1fc->mUnk_14--;
+            if (gEditAddr->mText[gEditAddr->mGroupIndex * 3 + 2] == 0) {
+                gEditAddr->mGroupIndex--;
             }
-            MI_CpuFill8(data_ov003_021da1fc->mUnk_08 + data_ov003_021da1fc->mUnk_14 * 3, 0, 3);
-            if (data_ov003_021da1fc->mUnk_14 == 0 && data_ov003_021da1fc->mUnk_08[2] == 0) {
+            MI_CpuFill8(gEditAddr->mText + gEditAddr->mGroupIndex * 3, 0, 3);
+            if (gEditAddr->mGroupIndex == 0 && gEditAddr->mText[2] == 0) {
                 func_ov003_021c1c90(0);
             }
             func_ov003_021c1c80(1);
             func_ov003_021c1c70(0);
             break;
         case 0x11:
-            e = data_ov003_021da1fc->mUnk_14;
+            e = gEditAddr->mGroupIndex;
             if (e >= 3) {
                 break;
             }
-            if (data_ov003_021da1fc->mUnk_08[e * 3 + 2] == 0) {
+            if (gEditAddr->mText[e * 3 + 2] == 0) {
                 break;
             }
             func_ov003_021cdc10(1);
-            data_ov003_021da1fc->mUnk_14 = data_ov003_021da1fc->mUnk_14 + 1;
+            gEditAddr->mGroupIndex = gEditAddr->mGroupIndex + 1;
             func_ov003_021c1c70(0);
             break;
         case 0x12:
-            data_ov003_021da1fc->mUnk_15 = 0;
+            gEditAddr->mUnk_15 = 0;
             func_ov003_021cdc10(7);
             func_ov003_021c212c(func_ov003_021c733c);
             return;
         case 0x13:
             if (func_ov003_021c6f64() != FALSE) {
                 func_ov003_021cdc10(6);
-                data_ov003_021da1fc->mUnk_15 = 1;
+                gEditAddr->mUnk_15 = 1;
             } else {
-                data_ov003_021da1fc->mUnk_15 = 2;
+                gEditAddr->mUnk_15 = 2;
                 func_ov003_021cdc10(9);
             }
-            data_ov003_021da1fc->mUnk_14 = 3;
-            data_ov003_021da1fc->mUnk_04->mUnk_00 = (data_ov003_021da1fc->mUnk_04->mUnk_00 & 0xc1fffcff) | 0x200;
+            gEditAddr->mGroupIndex = 3;
+            gEditAddr->mUnk_04->mUnk_00 = (gEditAddr->mUnk_04->mUnk_00 & 0xc1fffcff) | 0x200;
             func_ov003_021c7160();
             func_ov003_021c7050();
             func_ov003_021c212c(func_ov003_021c733c);
             return;
         default:
-            if (data_ov003_021da1fc->mUnk_14 == 3) {
+            if (gEditAddr->mGroupIndex == 3) {
                 if (func_ov003_021c735c(0x1a) != 0) {
                     break;
                 }
             }
             func_ov003_021cdc10(1);
-            g = &data_ov003_021da1fc;
-            b = (*g)->mUnk_08;
-            k = (*g)->mUnk_14 * 3;
+            g = &gEditAddr;
+            b = (*g)->mText;
+            k = (*g)->mGroupIndex * 3;
             if (b[k + 2] == 0) {
                 b[k + 2] = a;
             } else if (b[k + 1] == 0) {
                 b[k + 1] = b[k + 2];
                 b[k + 2] = a;
                 if (func_ov003_021c735c(0x1a) != 0) {
-                    h = data_ov003_021da1fc;
-                    if (h->mUnk_14 < 3) {
-                        h->mUnk_14 = h->mUnk_14 + 1;
+                    h = gEditAddr;
+                    if (h->mGroupIndex < 3) {
+                        h->mGroupIndex = h->mGroupIndex + 1;
                     }
                 }
             } else {
                 b[k] = b[k + 1];
                 b[k + 1] = b[k + 2];
                 b[k + 2] = a;
-                if ((*g)->mUnk_14 < 3) {
-                    (*g)->mUnk_14 = (*g)->mUnk_14 + 1;
+                if ((*g)->mGroupIndex < 3) {
+                    (*g)->mGroupIndex = (*g)->mGroupIndex + 1;
                 }
             }
             func_ov003_021c1c90(1);
-            if (data_ov003_021da1fc->mUnk_14 < 3) {
+            if (gEditAddr->mGroupIndex < 3) {
                 func_ov003_021c1c70(1);
             } else {
                 func_ov003_021c1c70(0);
             }
-            if (data_ov003_021da1fc->mUnk_14 == 3) {
+            if (gEditAddr->mGroupIndex == 3) {
                 if (func_ov003_021c735c(0x1a) != 0) {
                     func_ov003_021c1c80(0);
                 }
             }
             break;
     }
-    func_ov003_021c71a0();
+    PrintEditAddrText();
     func_ov003_021c7160();
 }
 
@@ -275,8 +275,8 @@ u32 func_ov003_021c735c(s32 a) {
     u8 *d;
     s32 e;
     u8 f;
-    d = data_ov003_021da1fc->mUnk_08;
-    c = d + data_ov003_021da1fc->mUnk_14 * 3;
+    d = gEditAddr->mText;
+    c = d + gEditAddr->mGroupIndex * 3;
     f = *c;
     if (f != 0 && f != 0x20) {
         return 1;
@@ -321,7 +321,7 @@ void func_ov003_021c7314(void) {
 void func_ov003_021c72a4(void) {
     u8 a;
     if (func_ov003_021c1c5c() == 0) {
-        a = data_ov003_021da1fc->mUnk_15;
+        a = gEditAddr->mUnk_15;
         if (a == 0) {
             func_ov003_021c212c(func_ov003_021c722c);
             return;
@@ -339,9 +339,9 @@ void func_ov003_021c72a4(void) {
 void func_ov003_021c722c(void) {
     int v1[1];
     func_ov003_021bf410();
-    func_ov003_021d2f00((u32 *) (u32) (data_ov003_021da1fc->mUnk_04));
+    func_ov003_021d2f00((u32 *) (u32) (gEditAddr->mUnk_04));
     func_ov003_021d2168(0);
-    func_ov003_021bf620(&data_ov003_021d7338, &GX_LoadOBJPltt);
+    func_ov003_021bf620(&gYbObjMainNclName3, &GX_LoadOBJPltt);
     func_ov003_021d272c(1, (u32) 1);
     func_ov003_021d272c(0, (u32) 0x15);
     func_ov003_021c20dc(v1, NULL);
@@ -351,14 +351,14 @@ void func_ov003_021c722c(void) {
     func_ov003_021c2120((u32) 2, (u32) 1);
     func_ov003_021c20f8((u32) 0, (u32) (v1[0] + 3));
     func_ov003_021c212c(func_ov003_021c965c);
-    func_ov003_021d2808(&data_ov003_021da1fc);
+    func_ov003_021d2808(&gEditAddr);
 }
 
-void func_ov003_021c71a0(void) {
+void PrintEditAddrText(void) {
     u16 a[6];
     s32 b;
     u8 *c;
-    Unk021da1fc *s;
+    EditAddr *s;
     u16 d;
     a[0] = data_ov003_021d7308[0];
     a[1] = data_ov003_021d7308[1];
@@ -366,40 +366,40 @@ void func_ov003_021c71a0(void) {
     a[3] = data_ov003_021d7308[3];
     a[2] = data_ov003_021d63f8[0];
     a[3] = data_ov003_021d63f8[1];
-    func_ov003_021d2060(data_ov003_021da1fc->mUnk_00, 0);
+    func_ov003_021d2060(gEditAddr->mUnk_00, 0);
     b = 0;
     a[5] = 0;
-    c = data_ov003_021d63fc;
+    c = gEditAddrCharX;
     do {
-        s = data_ov003_021da1fc;
-        a[4] = s->mUnk_08[b];
+        s = gEditAddr;
+        a[4] = s->mText[b];
         d = *c;
         a[0] = d;
         func_ov003_021d2070(s->mUnk_00, d, a[1], a[2], a[3], 2, 0x480, &a[4]);
         c++;
         b++;
     } while (b < 12);
-    func_ov003_021d1fd0(data_ov003_021da1fc->mUnk_00);
+    func_ov003_021d1fd0(gEditAddr->mUnk_00);
 }
 
 void func_ov003_021c7160(void) {
-    Unk021da1fc *a;
+    EditAddr *a;
     Unk021da1f8_04 *p;
     u32 t;
     s32 b;
-    a = data_ov003_021da1fc;
-    b = a->mUnk_14;
+    a = gEditAddr;
+    b = a->mGroupIndex;
     if (b > 3) {
         b = 3;
     }
     p = a->mUnk_04;
-    t = (data_ov003_021d63fc[b * 3 + 2] & 0x1ff) << 16;
+    t = (gEditAddrCharX[b * 3 + 2] & 0x1ff) << 16;
     p->mUnk_00 = t | ((p->mUnk_00 & 0xfe00ff00) | 0x28);
 }
 
 void func_ov003_021c7118(void) {
-    data_ov003_021da1fc->mUnk_15 = func_ov003_021cef80();
-    switch (data_ov003_021da1fc->mUnk_15) {
+    gEditAddr->mUnk_15 = func_ov003_021cef80();
+    switch (gEditAddr->mUnk_15) {
         case 0:
             func_ov003_021cdc10(7);
             break;
@@ -418,13 +418,13 @@ void func_ov003_021c70a4(void) {
     s32 b;
     a = data_ov003_021d7324;
     if (func_ov003_021cef6c() == 0) {
-        if (data_ov003_021da1fc->mUnk_15 == 0) {
-            data_ov003_021da1fc->mUnk_04->mUnk_00 = data_ov003_021da1fc->mUnk_04->mUnk_00 & 0xc1fffcff;
+        if (gEditAddr->mUnk_15 == 0) {
+            gEditAddr->mUnk_04->mUnk_00 = gEditAddr->mUnk_04->mUnk_00 & 0xc1fffcff;
             func_ov003_021c212c(func_ov003_021c7614);
             return;
         }
         func_ov003_021c20dc(&b, NULL);
-        a.mUnk_00[b](data_ov003_021da1fc->mUnk_08);
+        a.mUnk_00[b](gEditAddr->mText);
         func_ov003_021c212c(func_ov003_021c722c);
     }
 }
@@ -439,7 +439,7 @@ void func_ov003_021c7050(void) {
     v1 = 0;
     v4 = 0;
     do {
-        v2 = (s32) data_ov003_021da1fc + 8 + v4;
+        v2 = (s32) gEditAddr + 8 + v4;
         v3 = 0;
         do {
             v6 = *(s8 *) (v2 + v3);
@@ -457,7 +457,7 @@ void func_ov003_021c7050(void) {
         v4 = v4 + 3;
         v1 = v1 + 1;
     } while (v1 < 4);
-    func_ov003_021c71a0();
+    PrintEditAddrText();
 }
 
 BOOL func_ov003_021c6f64(void) {
@@ -473,13 +473,13 @@ BOOL func_ov003_021c6f64(void) {
     BOOL g;
     s32 h;
     u8 *m;
-    a[0] = data_ov003_021d72fc[0];
-    a[1] = data_ov003_021d72fc[1];
-    a[2] = data_ov003_021d72fc[2];
-    a[3] = data_ov003_021d72fc[3];
+    a[0] = gEditAddrGroupMax[0];
+    a[1] = gEditAddrGroupMax[1];
+    a[2] = gEditAddrGroupMax[2];
+    a[3] = gEditAddrGroupMax[3];
     c = 0;
     d = 0;
-    k = (u8 *) data_ov003_021da1fc;
+    k = (u8 *) gEditAddr;
     do {
         j = k + 8 + d;
         if (*j != 0x20) {
@@ -539,7 +539,7 @@ void func_ov003_021c6f08(void) {
     int v1;
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
-        data_ov003_021da1fc->mUnk_04->mUnk_00 = data_ov003_021da1fc->mUnk_04->mUnk_00 & ((u32) 0xc1fffcffu);
+        gEditAddr->mUnk_04->mUnk_00 = gEditAddr->mUnk_04->mUnk_00 & ((u32) 0xc1fffcffu);
         func_ov003_021c212c(func_ov003_021c7614);
     }
     return;
