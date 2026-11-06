@@ -236,11 +236,11 @@ typedef struct Unk02174e64 {
     /* 02c */ Unk02174e14_00 mUnk_02c[2];
     /* 064 */ u8 mUnk_064[0x1c];
     /* 080 */ s32 mUnk_080;
-    /* 084 */ Bmg *mUnk_084;
-    /* 088 */ Bmg *mUnk_088;
+    /* 084 */ Bmg *mCommonMessages;
+    /* 088 */ Bmg *mGhostMessages;
     /* 08c */ s32 mUnk_08c;
     /* 090 */ s32 mUnk_090;
-    /* 094 */ s32 mUnk_094;
+    /* 094 */ s32 mState;
     /* 098 */ s32 mUnk_098;
     /* 09c */ Unk02174e64_9c mUnk_09c[4];
     /* 18c */ BOOL mUnk_18c;

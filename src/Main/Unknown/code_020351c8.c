@@ -415,12 +415,12 @@ void func_020353a4(void) {
     void *e;
     void *f;
 
-    e = GetBmgEntry(data_02174e64->mUnk_088, 0x11);
-    f = GetBmgEntry(data_02174e64->mUnk_084, 4);
+    e = GetBmgEntry(data_02174e64->mGhostMessages, 0x11);
+    f = GetBmgEntry(data_02174e64->mCommonMessages, 4);
     func_02125ed0(0, 5);
     func_02126230(e, f);
     data_02174e64->mUnk_090 = 0;
-    data_02174e64->mUnk_094 = 15;
+    data_02174e64->mState = 15;
 }
 
 #pragma thumb off
@@ -429,7 +429,7 @@ void func_020353a4(void) {
 
 void func_02035378(void) {
     void *v1;
-    v1 = GetBmgEntry(data_02174e64->mUnk_088, 1);
+    v1 = GetBmgEntry(data_02174e64->mGhostMessages, 1);
     func_0212658c(v1, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0);
 }
 
@@ -538,9 +538,9 @@ void func_020351c8(void) {
     void *v1;
     void *v2;
     void *v3;
-    v1 = GetBmgEntry(data_02174e64->mUnk_088, 8);
-    v2 = GetBmgEntry(data_02174e64->mUnk_084, 0);
-    v3 = GetBmgEntry(data_02174e64->mUnk_084, 1);
+    v1 = GetBmgEntry(data_02174e64->mGhostMessages, 8);
+    v2 = GetBmgEntry(data_02174e64->mCommonMessages, 0);
+    v3 = GetBmgEntry(data_02174e64->mCommonMessages, 1);
     func_02125ed0(0, (u32) 5);
     func_02125fd4(v1, v2, v3, (u32) 0, (u32) 0, (u32) 1, (u32) 1, (u32) 0);
 }
