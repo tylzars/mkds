@@ -103,7 +103,7 @@ static inline s32 func_0204984c_inline9(void) {
     return r;
 }
 
-static inline void func_02049c3c_inline(ThreadQueue *q) {
+static inline void func_02049c3c_inline(OSThreadQueue *q) {
     q->mHead = q->mTail = NULL;
 }
 
@@ -221,7 +221,7 @@ void func_0204a1a8(void *a) {
     while (1) {
         b = FALSE;
         c = FALSE;
-        ThreadWait(&data_021759cc->mUnk_0c4);
+        OS_SleepThread(&data_021759cc->mUnk_0c4);
         data_021759cc->mUnk_120 = 0;
         func_0212b144();
         if (data_021755a0 != NULL) {
@@ -447,9 +447,9 @@ void func_02049c3c(void *a) {
     data_021759cc->mUnk_118 = -1;
     data_021759cc->mUnk_11c = 0;
     func_02049c3c_inline(&data_021759cc->mUnk_0c4);
-    ThreadInit(&data_021759cc->mUnk_004, (void (*)(void *)) func_0204a1a8, NULL, (u8 *) data_021759cc->mUnk_000 + 0x400,
-               0x400, 15);
-    ThreadSetRunnable(&data_021759cc->mUnk_004);
+    OS_CreateThread(&data_021759cc->mUnk_004, (void (*)(void *)) func_0204a1a8, NULL,
+                    (u8 *) data_021759cc->mUnk_000 + 0x400, 0x400, 15);
+    OS_WakeupThreadDirect(&data_021759cc->mUnk_004);
     func_02049c3c_inline2(&data_021759cc->mUnk_0cc, func_02049d8c);
     func_02049c3c_inline2(&data_021759cc->mUnk_0d8, (void (*)(void *)) func_02049d54);
     PM_AppendPreSleepCallback(&data_021759cc->mUnk_0cc);

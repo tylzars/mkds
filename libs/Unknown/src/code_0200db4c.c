@@ -15,540 +15,549 @@
 #include "00/code_02188720.h"
 #include "code_0200e6ec.h"
 
-u32 AllocThreadId(void) {
-    u32 value0;
-    u32 value1;
-    value1 = (u32) &gThreadIdCount;
-    value0 = (u32) * (const u32 *) ((value1) + (0));
-    value0 = (value0) + (1u);
-    *(u32 *) ((value1) + (0)) = value0;
-    return value0;
+// Adds 1 to the thread id counter and returns the new value.
+u32 OSi_GetUnusedThreadId(void) {
+    gThreadIdCount = gThreadIdCount + 1;
+    return gThreadIdCount;
 }
 
-void ThreadQueueInsert(ThreadQueue *q, Thread *t) {
-    Thread *p;
-    Thread *b;
+// Inserts thread into queue behind the threads of equal or lower OSThread.mPriority value, and does nothing when it is
+// already in it.
+void OSi_InsertLinkToQueue(OSThreadQueue *queue, OSThread *thread) {
+    OSThread *next;
+    OSThread *prev;
 
-    p = q->mHead;
-    while (p != 0 && p->mSortKey <= t->mSortKey) {
-        if (p == t) {
+    next = queue->mHead;
+    while (next != 0 && next->mPriority <= thread->mPriority) {
+        if (next == thread) {
             return;
         }
-        p = p->mQueueNext;
+        next = next->mLinkNext;
     }
-    if (p == 0) {
-        b = q->mTail;
-        if (b == 0) {
-            q->mHead = t;
+    if (next == 0) {
+        prev = queue->mTail;
+        if (prev == 0) {
+            queue->mHead = thread;
         } else {
-            b->mQueueNext = t;
+            prev->mLinkNext = thread;
         }
-        t->mQueuePrev = b;
-        t->mQueueNext = 0;
-        q->mTail = t;
+        thread->mLinkPrev = prev;
+        thread->mLinkNext = 0;
+        queue->mTail = thread;
     } else {
-        b = p->mQueuePrev;
-        if (b == 0) {
-            q->mHead = t;
+        prev = next->mLinkPrev;
+        if (prev == 0) {
+            queue->mHead = thread;
         } else {
-            b->mQueueNext = t;
+            prev->mLinkNext = thread;
         }
-        t->mQueuePrev = b;
-        t->mQueueNext = p;
-        p->mQueuePrev = t;
+        thread->mLinkPrev = prev;
+        thread->mLinkNext = next;
+        next->mLinkPrev = thread;
     }
 }
 
-Thread *ThreadQueueRemoveFront(ThreadQueue *q) {
-    Thread *h;
-    Thread *n;
+// Takes the first thread out of queue and returns it, or returns 0 when the queue is empty.
+OSThread *OSi_RemoveLinkFromQueue(OSThreadQueue *queue) {
+    OSThread *thread;
+    OSThread *next;
 
-    h = q->mHead;
-    if (h != 0) {
-        n = h->mQueueNext;
-        q->mHead = n;
-        if (n != 0) {
-            n->mQueuePrev = 0;
+    thread = queue->mHead;
+    if (thread != 0) {
+        next = thread->mLinkNext;
+        queue->mHead = next;
+        if (next != 0) {
+            next->mLinkPrev = 0;
         } else {
-            q->mTail = 0;
-            h->mWaitQueue = 0;
+            queue->mTail = 0;
+            thread->mQueue = 0;
         }
     }
-    return h;
+    return thread;
 }
 
-OSMutex *ThreadLockListRemoveFront(ThreadLockList *q) {
-    OSMutex *h;
-    OSMutex *n;
+// Takes the first mutex out of queue and returns it, or returns 0 when the queue is empty.
+OSMutex *OSi_RemoveMutexLinkFromQueue(OSMutexQueue *queue) {
+    OSMutex *mutex;
+    OSMutex *next;
 
-    h = q->mHead;
-    if (h != 0) {
-        n = h->mNext;
-        q->mHead = n;
-        if (n != 0) {
-            n->mPrev = 0;
+    mutex = queue->mHead;
+    if (mutex != 0) {
+        next = mutex->mNext;
+        queue->mHead = next;
+        if (next != 0) {
+            next->mPrev = 0;
         } else {
-            q->mTail = 0;
+            queue->mTail = 0;
         }
     }
-    return h;
+    return mutex;
 }
 
-void ThreadListInsert(Thread *t) {
-    Thread *p;
-    Thread *b;
-    Thread *h;
+// Links thread into the thread list in increasing OSThread.mPriority.
+void OSi_InsertThreadToList(OSThread *thread) {
+    OSThread *current;
+    OSThread *prev;
+    OSThread *head;
 
-    b = 0;
-    h = data_0216ff5c.mListHead;
-    p = h;
-    while (p != 0 && p->mSortKey < t->mSortKey) {
-        b = p;
-        p = p->mListNext;
+    prev = 0;
+    head = data_0216ff5c.mListHead;
+    current = head;
+    while (current != 0 && current->mPriority < thread->mPriority) {
+        prev = current;
+        current = current->mNext;
     }
-    if (b == 0) {
-        t->mListNext = h;
-        data_0216ff5c.mListHead = t;
+    if (prev == 0) {
+        thread->mNext = head;
+        data_0216ff5c.mListHead = thread;
     } else {
-        t->mListNext = b->mListNext;
-        b->mListNext = t;
+        thread->mNext = prev->mNext;
+        prev->mNext = thread;
     }
 }
 
-void ThreadListRemove(Thread *t) {
-    Thread *p;
-    Thread *b;
+// Unlinks thread from the thread list.
+void OSi_RemoveThreadFromList(OSThread *thread) {
+    OSThread *current;
+    OSThread *prev;
 
-    b = 0;
-    p = data_0216ff5c.mListHead;
-    while (p != 0 && p != t) {
-        b = p;
-        p = p->mListNext;
+    prev = 0;
+    current = data_0216ff5c.mListHead;
+    while (current != 0 && current != thread) {
+        prev = current;
+        current = current->mNext;
     }
-    if (b == 0) {
-        data_0216ff5c.mListHead = t->mListNext;
+    if (prev == 0) {
+        data_0216ff5c.mListHead = thread->mNext;
     } else {
-        b->mListNext = t->mListNext;
+        prev->mNext = thread->mNext;
     }
 }
 
-void ThreadSystemInit(void) {
-    s32 n;
-    u8 *l;
-    u8 *h;
+// Sets up the thread system once: the main thread record and the idle thread.
+void OS_InitThread(void) {
+    s32 stackSize;
+    u8 *stackTop;
+    u8 *stackBottom;
 
     if (data_0216ff58 != 0) {
         return;
     }
     data_0216ff58 = 1;
     data_0216ff54 = &data_0216ff5c.mCurrentThread;
-    data_0217002c.mSortKey = 0x10;
+    data_0217002c.mPriority = 0x10;
     data_0217002c.mId = 0;
-    data_0217002c.mUnk_64 = 1;
-    data_0217002c.mListNext = 0;
-    data_0217002c.mUnk_74 = 0;
+    data_0217002c.mState = 1;
+    data_0217002c.mNext = 0;
+    data_0217002c.mProfiler = 0;
     data_0216ff5c.mListHead = &data_0217002c;
     data_0216ff5c.mCurrentThread = &data_0217002c;
-    n = (s32) data_00002800;
-    if (n <= 0) {
-        l = (u8 *) 0x27e00e0 - n;
+    stackSize = (s32) data_00002800;
+    if (stackSize <= 0) {
+        stackTop = (u8 *) 0x27e00e0 - stackSize;
     } else {
-        l = (u8 *) &data_027e0000 + 0x3f80 - (u32) data_00000c00 - n;
+        stackTop = (u8 *) &data_027e0000 + 0x3f80 - (u32) data_00000c00 - stackSize;
     }
-    h = (u8 *) &data_027e0000 + 0x3f80 - (u32) data_00000c00;
-    data_0217002c.mStackHigh = h;
-    data_0217002c.mStackLow = l;
-    data_0217002c.mUnk_98 = 0;
-    *(u32 *) (h - 4) = 0xfddb597d;
-    *(u32 *) data_0217002c.mStackLow = 0x7bf9dd5b;
-    data_0217002c.mEndQueue.mTail = 0;
-    data_0217002c.mEndQueue.mHead = 0;
+    stackBottom = (u8 *) &data_027e0000 + 0x3f80 - (u32) data_00000c00;
+    data_0217002c.mStackBottom = stackBottom;
+    data_0217002c.mStackTop = stackTop;
+    data_0217002c.mStackWarningOffset = 0;
+    *(u32 *) (stackBottom - 4) = 0xfddb597d;
+    *(u32 *) data_0217002c.mStackTop = 0x7bf9dd5b;
+    data_0217002c.mJoinQueue.mTail = 0;
+    data_0217002c.mJoinQueue.mHead = 0;
     data_0216ff5c.mUnk_00 = 0;
     data_0216ff5c.mUnk_02 = 0;
     *(ThreadSystem **) 0x027fffa0 = &data_0216ff5c;
-    ThreadSetSwitchCallback(0);
-    ThreadInit(&data_0216ff6c, ThreadHaltLoop, 0, (u8 *) &data_021701b4, 0xc8, 0x1f);
-    data_0216ff6c.mSortKey = 0x20;
-    data_0216ff6c.mUnk_64 = 1;
+    OS_SetSwitchThreadCallback(0);
+    OS_CreateThread(&data_0216ff6c, OSi_IdleThreadProc, 0, (u8 *) &data_021701b4, 0xc8, 0x1f);
+    data_0216ff6c.mPriority = 0x20;
+    data_0216ff6c.mState = 1;
 }
 
-void ThreadInit(Thread *t, void (*f)(void *), void *a, u8 *p, u32 n, u32 v) {
-    u32 s;
-    u32 k;
-    u8 *l;
-    volatile u32 z;
+// Sets up thread to run func with arg on the given stack at priority prio, and links it into the thread list.
+void OS_CreateThread(OSThread *thread, void (*func)(void *), void *arg, u8 *stack, u32 stackSize, u32 prio) {
+    u32 enabled;
+    u32 id;
+    u8 *stackTop;
+    volatile u32 fill;
 
-    s = IrqDisable();
-    k = AllocThreadId();
-    t->mSortKey = v;
-    t->mId = k;
-    t->mUnk_64 = 0;
-    t->mUnk_74 = 0;
-    ThreadListInsert(t);
-    t->mStackHigh = p;
-    l = p - n;
-    t->mStackLow = l;
-    t->mUnk_98 = 0;
-    *(u32 *) (t->mStackHigh - 4) = 0xfddb597d;
-    *(u32 *) t->mStackLow = 0x7bf9dd5b;
-    t->mEndQueue.mTail = 0;
-    t->mEndQueue.mHead = t->mEndQueue.mTail;
-    ThreadInitContext(t, f, (u32) p - 4);
-    t->mUnk_04 = a;
-    t->mUnk_3c = OS_ExitThread;
-    z = 0;
-    MemFillWords(z, l + 4, n - 8);
-    OS_SetThreadDestructor(t, 0);
-    t->mWaitQueue = 0;
-    t->mQueueNext = 0;
-    t->mQueuePrev = t->mQueueNext;
-    t->mSleepAlarm = 0;
-    IrqRestore(s);
+    enabled = IrqDisable();
+    id = OSi_GetUnusedThreadId();
+    thread->mPriority = prio;
+    thread->mId = id;
+    thread->mState = 0;
+    thread->mProfiler = 0;
+    OSi_InsertThreadToList(thread);
+    thread->mStackBottom = stack;
+    stackTop = stack - stackSize;
+    thread->mStackTop = stackTop;
+    thread->mStackWarningOffset = 0;
+    *(u32 *) (thread->mStackBottom - 4) = 0xfddb597d;
+    *(u32 *) thread->mStackTop = 0x7bf9dd5b;
+    thread->mJoinQueue.mTail = 0;
+    thread->mJoinQueue.mHead = thread->mJoinQueue.mTail;
+    ThreadInitContext(thread, func, (u32) stack - 4);
+    thread->mUnk_04 = arg;
+    thread->mUnk_3c = OS_ExitThread;
+    fill = 0;
+    MemFillWords(fill, stackTop + 4, stackSize - 8);
+    OS_SetThreadDestructor(thread, 0);
+    thread->mQueue = 0;
+    thread->mLinkNext = 0;
+    thread->mLinkPrev = thread->mLinkNext;
+    thread->mAlarmForSleep = 0;
+    IrqRestore(enabled);
 }
 
+// Ends the current thread.
 void OS_ExitThread(void) {
     IrqDisable();
-    ThreadEndWithArg(data_0216ff5c.mCurrentThread, 0);
+    OSi_ExitThread_ArgSpecified(data_0216ff5c.mCurrentThread, 0);
 }
 
-void ThreadEndWithArg(Thread *t, void *a) {
+// When data_0216ff44 is set, restarts thread on that stack in OSi_ExitThread with arg; otherwise calls OSi_ExitThread.
+void OSi_ExitThread_ArgSpecified(OSThread *thread, void *arg) {
     if (data_0216ff44 != 0) {
-        ThreadInitContext(t, RunExitCallbackThenEndThread, data_0216ff44);
-        t->mUnk_04 = a;
-        t->mUnk_00 = t->mUnk_00 | 0x80;
-        t->mUnk_64 = 1;
-        OS_LoadContext(t);
+        ThreadInitContext(thread, OSi_ExitThread, data_0216ff44);
+        thread->mUnk_04 = arg;
+        thread->mUnk_00 = thread->mUnk_00 | 0x80;
+        thread->mState = 1;
+        OS_LoadContext(thread);
     } else {
-        RunExitCallbackThenEndThread(a);
+        OSi_ExitThread(arg);
     }
 }
 
-void RunExitCallbackThenEndThread(void *a) {
-    Thread *t;
-    void (*f)(void *);
+// Runs and clears OSThread.mDestructor of the current thread with arg, then ends the thread.
+void OSi_ExitThread(void *arg) {
+    OSThread *current;
+    OSThreadDestructor destructor;
 
-    t = *data_0216ff54;
-    f = t->mExitCallback;
-    if (f != 0) {
-        t->mExitCallback = 0;
-        f(a);
+    current = *data_0216ff54;
+    destructor = current->mDestructor;
+    if (destructor != 0) {
+        current->mDestructor = 0;
+        destructor(arg);
         IrqDisable();
     }
-    ThreadEndCurrent();
+    OSi_ExitThread_Destroy();
 }
 
-void ThreadEndCurrent(void) {
-    Thread *t;
+// Releases the mutexes of the current thread, unlists it, marks it terminated, wakes the threads joining it and
+// switches away for good.
+void OSi_ExitThread_Destroy(void) {
+    OSThread *current;
 
-    t = *data_0216ff54;
-    ThreadSwitchDisable();
-    OSi_UnlockAllMutex(t);
-    ThreadListRemove(t);
-    t->mUnk_64 = 2;
-    ThreadQueueSetAllRunnable(&t->mEndQueue);
-    ThreadSwitchEnable();
-    ThreadSwitch();
+    current = *data_0216ff54;
+    OS_DisableScheduler();
+    OSi_UnlockAllMutex(current);
+    OSi_RemoveThreadFromList(current);
+    current->mState = 2;
+    OS_WakeupThread(&current->mJoinQueue);
+    OS_EnableScheduler();
+    OSi_RescheduleThread();
     IrqDisableLoopForever();
 }
 
-void ThreadEnd(Thread *t) {
-    u32 s;
+// Ends thread: the current thread exits; any other one has its mutexes released and its sleep alarm cancelled, is
+// unlisted and marked terminated, and the threads joining it wake up.
+void OS_DestroyThread(OSThread *thread) {
+    u32 enabled;
 
-    s = IrqDisable();
-    if (data_0216ff5c.mCurrentThread == t) {
-        ThreadEndCurrent();
+    enabled = IrqDisable();
+    if (data_0216ff5c.mCurrentThread == thread) {
+        OSi_ExitThread_Destroy();
     }
-    ThreadSwitchDisable();
-    OSi_UnlockAllMutex(t);
-    CancelThreadSleepAlarm(t);
-    ThreadListRemove(t);
-    t->mUnk_64 = 2;
-    ThreadQueueSetAllRunnable(&t->mEndQueue);
-    ThreadSwitchEnable();
-    IrqRestore(s);
-    ThreadSwitch();
+    OS_DisableScheduler();
+    OSi_UnlockAllMutex(thread);
+    OSi_CancelThreadAlarmForSleep(thread);
+    OSi_RemoveThreadFromList(thread);
+    thread->mState = 2;
+    OS_WakeupThread(&thread->mJoinQueue);
+    OS_EnableScheduler();
+    IrqRestore(enabled);
+    OSi_RescheduleThread();
 }
 
-void CancelThreadSleepAlarm(Thread *arg0) {
-    u32 value0 = (u32) arg0;
-    u32 compareLeft0;
-    u32 compareRight0;
-    value0 = (u32) * (const u32 *) ((value0) + (176));
-    compareLeft0 = value0;
-    compareRight0 = 0u;
-    if (compareLeft0 == compareRight0) {
+// Cancels OSThread.mAlarmForSleep when it is set.
+void OSi_CancelThreadAlarmForSleep(OSThread *thread) {
+    if (thread->mAlarmForSleep != 0) {
+        OS_CancelAlarm(thread->mAlarmForSleep);
     }
-    if (compareLeft0 == compareRight0) {
-    }
-    if (compareLeft0 == compareRight0) {
-        return;
-    }
-    OS_CancelAlarm((Unk0200fb08 *) value0);
 }
 
-void ThreadWaitForEnd(Thread *t) {
-    u32 s;
+// Sleeps until thread is terminated.
+void OS_JoinThread(OSThread *thread) {
+    u32 enabled;
 
-    s = IrqDisable();
-    if (t->mUnk_64 != 2) {
-        ThreadWait(&t->mEndQueue);
+    enabled = IrqDisable();
+    if (thread->mState != 2) {
+        OS_SleepThread(&thread->mJoinQueue);
     }
-    IrqRestore(s);
+    IrqRestore(enabled);
 }
 
-s32 ThreadHasEnded(Thread *t) {
-    return t->mUnk_64 == 2;
+// Returns whether OSThread.mState of thread is terminated.
+s32 OS_IsThreadTerminated(OSThread *thread) {
+    return thread->mState == 2;
 }
 
-void ThreadWait(ThreadQueue *q) {
-    u32 s;
-    Thread *t;
+// Puts the current thread to sleep, on queue when there is one, and switches to another thread.
+void OS_SleepThread(OSThreadQueue *queue) {
+    u32 enabled;
+    OSThread *current;
 
-    s = IrqDisable();
-    t = *data_0216ff54;
-    if (q != 0) {
-        t->mWaitQueue = q;
-        ThreadQueueInsert(q, t);
+    enabled = IrqDisable();
+    current = *data_0216ff54;
+    if (queue != 0) {
+        current->mQueue = queue;
+        OSi_InsertLinkToQueue(queue, current);
     }
-    t->mUnk_64 = 0;
-    ThreadSwitch();
-    IrqRestore(s);
+    current->mState = 0;
+    OSi_RescheduleThread();
+    IrqRestore(enabled);
 }
 
-void ThreadQueueSetAllRunnable(ThreadQueue *q) {
-    u32 s;
-    Thread *t;
+// Makes every thread on queue ready and empties the queue.
+void OS_WakeupThread(OSThreadQueue *queue) {
+    u32 enabled;
+    OSThread *thread;
 
-    s = IrqDisable();
-    if (q->mHead != 0) {
-        while (q->mHead != 0) {
-            t = ThreadQueueRemoveFront(q);
-            t->mUnk_64 = 1;
-            t->mWaitQueue = 0;
-            t->mQueueNext = 0;
-            t->mQueuePrev = t->mQueueNext;
+    enabled = IrqDisable();
+    if (queue->mHead != 0) {
+        while (queue->mHead != 0) {
+            thread = OSi_RemoveLinkFromQueue(queue);
+            thread->mState = 1;
+            thread->mQueue = 0;
+            thread->mLinkNext = 0;
+            thread->mLinkPrev = thread->mLinkNext;
         }
-        q->mTail = 0;
-        q->mHead = q->mTail;
-        ThreadSwitch();
+        queue->mTail = 0;
+        queue->mHead = queue->mTail;
+        OSi_RescheduleThread();
     }
-    IrqRestore(s);
+    IrqRestore(enabled);
 }
 
-void ThreadSetRunnable(Thread *t) {
-    u32 s;
+// Makes thread ready.
+void OS_WakeupThreadDirect(OSThread *thread) {
+    u32 enabled;
 
-    s = IrqDisable();
-    t->mUnk_64 = 1;
-    ThreadSwitch();
-    IrqRestore(s);
+    enabled = IrqDisable();
+    thread->mState = 1;
+    OSi_RescheduleThread();
+    IrqRestore(enabled);
 }
 
-Thread *ThreadFindFirstRunnable(void) {
-    Thread *p;
+// Returns the first ready thread of the thread list, or 0.
+OSThread *OS_SelectThread(void) {
+    OSThread *thread;
 
-    p = data_0216ff5c.mListHead;
-    while (p != 0 && p->mUnk_64 != 1) {
-        p = p->mListNext;
+    thread = data_0216ff5c.mListHead;
+    while (thread != 0 && thread->mState != 1) {
+        thread = thread->mNext;
     }
-    return p;
+    return thread;
 }
 
-void ThreadSwitch(void) {
-    ThreadSystem *s;
-    Thread *a;
-    Thread *b;
+// Switches to the first ready thread when that is not the current one. Inside an interrupt, or with the scheduler
+// disabled, it only notes that a switch is due.
+void OSi_RescheduleThread(void) {
+    ThreadSystem *system;
+    OSThread *current;
+    OSThread *next;
 
-    s = &data_0216ff5c;
+    system = &data_0216ff5c;
     if (data_0216ff48 != 0) {
         return;
     }
-    if (s->mUnk_02 != 0 || ProcessorModeGet() == 0x12) {
-        s->mUnk_00 = 1;
+    if (system->mUnk_02 != 0 || ProcessorModeGet() == 0x12) {
+        system->mUnk_00 = 1;
         return;
     }
-    a = *data_0216ff54;
-    b = ThreadFindFirstRunnable();
-    if (a == b) {
+    current = *data_0216ff54;
+    next = OS_SelectThread();
+    if (current == next) {
         return;
     }
-    if (b == 0) {
+    if (next == 0) {
         return;
     }
-    if (a->mUnk_64 != 2) {
-        if (OS_SaveContext(a) != 0) {
+    if (current->mState != 2) {
+        if (OS_SaveContext(current) != 0) {
             return;
         }
     }
     if (data_0216ff50 != 0) {
-        data_0216ff50(a, b);
+        data_0216ff50(current, next);
     }
-    if (s->mSwitchCallback != 0) {
-        s->mSwitchCallback(a, b);
+    if (system->mSwitchCallback != 0) {
+        system->mSwitchCallback(current, next);
     }
-    data_0216ff5c.mCurrentThread = b;
-    OS_LoadContext(b);
+    data_0216ff5c.mCurrentThread = next;
+    OS_LoadContext(next);
 }
 
-void ThreadMoveCurrentAfterEqualSortKeys(void) {
-    Thread *t;
-    Thread *c;
-    Thread *e;
-    Thread *p;
-    Thread *b;
-    int n;
-    u32 s;
+// Moves the current thread behind the last thread of equal OSThread.mPriority in the thread list and reschedules.
+void OS_YieldThread(void) {
+    OSThread *current;
+    OSThread *currentPrev;
+    OSThread *lastEqual;
+    OSThread *thread;
+    OSThread *prev;
+    int count;
+    u32 enabled;
 
-    c = 0;
-    e = 0;
-    n = 0;
-    t = data_0216ff5c.mCurrentThread;
-    s = IrqDisable();
-    b = 0;
-    for (p = data_0216ff5c.mListHead; p != 0; p = p->mListNext) {
-        if (p == t) {
-            c = b;
+    currentPrev = 0;
+    lastEqual = 0;
+    count = 0;
+    current = data_0216ff5c.mCurrentThread;
+    enabled = IrqDisable();
+    prev = 0;
+    for (thread = data_0216ff5c.mListHead; thread != 0; thread = thread->mNext) {
+        if (thread == current) {
+            currentPrev = prev;
         }
-        if (t->mSortKey == p->mSortKey) {
-            e = p;
-            n++;
+        if (current->mPriority == thread->mPriority) {
+            lastEqual = thread;
+            count++;
         }
-        b = p;
+        prev = thread;
     }
-    if (n <= 1 || e == t) {
-        IrqRestore(s);
+    if (count <= 1 || lastEqual == current) {
+        IrqRestore(enabled);
         return;
     }
-    if (c == 0) {
-        data_0216ff5c.mListHead = t->mListNext;
+    if (currentPrev == 0) {
+        data_0216ff5c.mListHead = current->mNext;
     } else {
-        c->mListNext = t->mListNext;
+        currentPrev->mNext = current->mNext;
     }
-    t->mListNext = e->mListNext;
-    e->mListNext = t;
-    ThreadSwitch();
-    IrqRestore(s);
+    current->mNext = lastEqual->mNext;
+    lastEqual->mNext = current;
+    OSi_RescheduleThread();
+    IrqRestore(enabled);
 }
 
-s32 ThreadSetSortKey(Thread *t, u32 v) {
-    Thread *p;
-    Thread *b;
-    u32 s;
+// Gives thread the priority prio and relists it. Returns 0 for the idle thread and for a thread that is not listed.
+s32 OS_SetThreadPriority(OSThread *thread, u32 prio) {
+    OSThread *current;
+    OSThread *prev;
+    u32 enabled;
 
-    p = data_0216ff5c.mListHead;
-    b = 0;
-    s = IrqDisable();
-    while (p != 0 && p != t) {
-        b = p;
-        p = p->mListNext;
+    current = data_0216ff5c.mListHead;
+    prev = 0;
+    enabled = IrqDisable();
+    while (current != 0 && current != thread) {
+        prev = current;
+        current = current->mNext;
     }
-    if (p == 0 || p == &data_0216ff6c) {
-        IrqRestore(s);
+    if (current == 0 || current == &data_0216ff6c) {
+        IrqRestore(enabled);
         return 0;
     }
-    if (p->mSortKey != v) {
-        if (b == 0) {
-            data_0216ff5c.mListHead = t->mListNext;
+    if (current->mPriority != prio) {
+        if (prev == 0) {
+            data_0216ff5c.mListHead = thread->mNext;
         } else {
-            b->mListNext = t->mListNext;
+            prev->mNext = thread->mNext;
         }
-        t->mSortKey = v;
-        ThreadListInsert(t);
-        ThreadSwitch();
+        thread->mPriority = prio;
+        OSi_InsertThreadToList(thread);
+        OSi_RescheduleThread();
     }
-    IrqRestore(s);
+    IrqRestore(enabled);
     return 1;
 }
 
-u32 ThreadGetSortKey(Thread *t) {
-    return t->mSortKey;
+// Returns OSThread.mPriority of thread.
+u32 OS_GetThreadPriority(OSThread *thread) {
+    return thread->mPriority;
 }
 
-void OS_Sleep(u32 n) {
-    Thread *t;
-    Unk0200fb08 a;
-    u32 s;
+// Sleeps the current thread for msec milliseconds: an alarm wakes it up again.
+void OS_Sleep(u32 msec) {
+    OSThread *thread;
+    Unk0200fb08 alarm;
+    u32 enabled;
 
-    OS_CreateAlarm(&a);
-    t = *data_0216ff54;
-    s = IrqDisable();
-    t->mSleepAlarm = &a;
-    OS_SetAlarm(&a, n * 0x82ea >> 6, (void (*)(void *)) WakeSleepingThread, &t);
-    while (t != 0) {
-        ThreadWait(0);
+    OS_CreateAlarm(&alarm);
+    thread = *data_0216ff54;
+    enabled = IrqDisable();
+    thread->mAlarmForSleep = &alarm;
+    OS_SetAlarm(&alarm, msec * 0x82ea >> 6, (void (*)(void *)) OSi_SleepAlarmCallback, &thread);
+    while (thread != 0) {
+        OS_SleepThread(0);
     }
-    IrqRestore(s);
+    IrqRestore(enabled);
 }
 
-void WakeSleepingThread(Thread **arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    u32 value2;
-    u32 value12;
-    value2 = (u32) * (const u32 *) ((value0) + (0));
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    value0 = value2;
-    *(u32 *) ((value2) + (176)) = value1;
-    ThreadSetRunnable((Thread *) value0);
+// Alarm callback of OS_Sleep: clears the thread pointer arg points to and the thread's OSThread.mAlarmForSleep, then
+// makes the thread ready.
+void OSi_SleepAlarmCallback(OSThread **arg) {
+    OSThread *thread;
+
+    thread = *arg;
+    *arg = 0;
+    thread->mAlarmForSleep = 0;
+    OS_WakeupThreadDirect(thread);
 }
 
-void (*ThreadSetSwitchCallback(void (*arg0)(Thread *, Thread *)))(Thread *, Thread *) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    u32 value4;
-    u32 value5;
-    value5 = value0;
-    value0 = (u32) IrqDisable();
-    value1 = (u32) &data_0216ff5c;
-    value4 = (u32) * (const u32 *) ((value1) + (12));
-    *(u32 *) ((value1) + (12)) = value5;
-    value0 = (u32) IrqRestore(value0);
-    value0 = value4;
-    return (void (*)(Thread *, Thread *)) value0;
+OSSwitchThreadCallback OS_SetSwitchThreadCallback(OSSwitchThreadCallback callback) {
+    u32 enabled;
+    OSSwitchThreadCallback previous;
+
+    enabled = IrqDisable();
+    previous = data_0216ff5c.mSwitchCallback;
+    data_0216ff5c.mSwitchCallback = callback;
+    IrqRestore(enabled);
+    return previous;
 }
 
-void ThreadHaltLoop(void *a) {
+// Thread function of the idle thread: enables interrupts, then halts in an endless loop.
+void OSi_IdleThreadProc(void *arg) {
     IrqEnable();
     for (;;) {
         OS_Halt();
     }
 }
 
-u32 ThreadSwitchDisable(void) {
-    u32 s;
-    u32 r;
+// Raises the scheduler disable count and returns its previous value.
+u32 OS_DisableScheduler(void) {
+    u32 enabled;
+    u32 count;
 
-    s = IrqDisable();
+    enabled = IrqDisable();
     if (data_0216ff48 < 0xffffffff) {
-        r = data_0216ff48;
-        data_0216ff48 = r + 1;
+        count = data_0216ff48;
+        data_0216ff48 = count + 1;
     }
-    IrqRestore(s);
-    return r;
+    IrqRestore(enabled);
+    return count;
 }
 
-u32 ThreadSwitchEnable(void) {
-    u32 s;
-    u32 r;
+// Lowers the scheduler disable count when it is not 0 and returns its previous value.
+u32 OS_EnableScheduler(void) {
+    u32 enabled;
+    u32 count;
 
-    s = IrqDisable();
-    r = 0;
+    enabled = IrqDisable();
+    count = 0;
     if (data_0216ff48 != 0) {
-        r = data_0216ff48;
-        data_0216ff48 = r - 1;
+        count = data_0216ff48;
+        data_0216ff48 = count - 1;
     }
-    IrqRestore(s);
-    return r;
+    IrqRestore(enabled);
+    return count;
 }
 
-void OS_SetThreadDestructor(Thread *t, void (*f)(void *)) {
-    t->mExitCallback = f;
+// Stores dtor in OSThread.mDestructor.
+void OS_SetThreadDestructor(OSThread *thread, OSThreadDestructor dtor) {
+    thread->mDestructor = dtor;
 }
 
-u32 ThreadSystemIsInit(void) {
-    u32 value0;
-    value0 = (u32) &data_0216ff58;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    return value0;
+// Returns whether OS_InitThread has run.
+u32 OS_IsThreadAvailable(void) {
+    return data_0216ff58;
 }

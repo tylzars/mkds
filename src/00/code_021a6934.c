@@ -128,7 +128,7 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
             IrqRestore(a);
             return -5;
         case 2:
-            ThreadWait(&data_ov000_021b5f54.mUnk_04);
+            OS_SleepThread(&data_ov000_021b5f54.mUnk_04);
             switch (data_ov000_021b5f54.mUnk_24) {
                 case 1:
                 default:
@@ -149,7 +149,7 @@ void func_ov000_021a6944(Unk021425e8 *a) {
         if (a->mResultCode == 0) {
             func_ov000_021a57a8();
         }
-        ThreadQueueSetAllRunnable(&data_ov000_021b5f54.mUnk_04);
+        OS_WakeupThread(&data_ov000_021b5f54.mUnk_04);
     }
 }
 

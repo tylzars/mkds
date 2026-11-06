@@ -29,7 +29,7 @@ typedef struct Unk021458c4 {
     /* 004 */ s32 mUnk_04;
     /* 008 */ vs32 mUnk_08;
     /* 00c */ vs32 mUnk_0c;
-    /* 010 */ ThreadQueue mUnk_10;
+    /* 010 */ OSThreadQueue mUnk_10;
     /* 018 */ u32 mUnk_18;
     /* 01c */ u32 mUnk_1c;
     /* 020 */ u32 mUnk_20;
@@ -41,11 +41,11 @@ typedef struct Unk021458c4 {
     /* 038 */ UnkFunc *mUnk_38;
     /* 03c */ u32 mUnk_3c;
     /* 040 */ UnkFunc *mUnk_40;
-    /* 044 */ Thread mUnk_44;
+    /* 044 */ OSThread mUnk_44;
     /* 0fc */ u8 mUnk_fc[8];
-    /* 104 */ Thread *mUnk_104;
+    /* 104 */ OSThread *mUnk_104;
     /* 108 */ u32 mUnk_108;
-    /* 10c */ ThreadQueue mUnk_10c;
+    /* 10c */ OSThreadQueue mUnk_10c;
     /* 114 */ vu32 mUnk_114;
     /* 118 */ u8 mUnk_118[8];
     /* 120 */ u8 mUnk_120[0x100];
@@ -168,6 +168,6 @@ int CopyFromRomPageBuffer(Unk02146154 *p);
 // request block is 0. On the first call it waits until PxiCallbackBitIsSet(11, 1) is non-zero and sends command 0
 // first (command 0 also sends the address of the request block). Repeats while that word is 4 and tries remain.
 int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b);
-// Thread entry that never returns: with interrupts off, sleeps (storing its thread at +0x104) until value 8 of the
+// OSThread entry that never returns: with interrupts off, sleeps (storing its thread at +0x104) until value 8 of the
 // flag word is set, then calls the task at +0x40 with the state and starts again.
 void WorkerTaskLoop(void *a);

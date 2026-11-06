@@ -66,7 +66,7 @@ typedef struct Unk02186d7c {
     /* 948 */ OSMutex mUnk_948;
     /* 960 */ s32 mContentLength;
     /* 964 */ const char *mBodyStart;
-    /* 968 */ Thread mThread;
+    /* 968 */ OSThread mThread;
     /* a20 */ u8 pad_a20[8];
     /* a28 */ OSMutex mUnk_a28;
     /* a40 */ BOOL mUnk_a40;

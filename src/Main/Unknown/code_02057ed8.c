@@ -35,8 +35,8 @@ void func_02057ed8(void *a) {
     s32 i;
     data_0217aa0c = HeapAlloc(a, 0xfc);
     data_0217aa0c->mUnk_f4 = HeapAllocAligned(a, 0x800, 0x20);
-    ThreadInit(&data_0217aa0c->mUnk_2c, func_02057e8c, NULL, (u8 *) data_0217aa0c->mUnk_f4 + 0x800, 0x800, 0x11);
-    ThreadSetRunnable(&data_0217aa0c->mUnk_2c);
+    OS_CreateThread(&data_0217aa0c->mUnk_2c, func_02057e8c, NULL, (u8 *) data_0217aa0c->mUnk_f4 + 0x800, 0x800, 0x11);
+    OS_WakeupThreadDirect(&data_0217aa0c->mUnk_2c);
     data_0217aa0c->mUnk_f8 = 0;
     p = data_0217aa0c;
     for (i = 0; i < 10; i++) {

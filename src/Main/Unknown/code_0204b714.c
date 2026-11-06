@@ -37,7 +37,7 @@ void func_0204bb34(void *a) {
                     IrqRestore(s);
                     return;
                 }
-                ThreadWait(NULL);
+                OS_SleepThread(NULL);
                 r = b->mUnk_46c8;
             } while (r == NULL);
         }
@@ -73,20 +73,20 @@ void func_0204bad8(void) {
     t = (Unk021759b8 *) &data_usa_021759b8;
     t->mUnk_4c4 = 0;
     t->mUnk_4c0 = t->mUnk_4c4;
-    ThreadInit(&t->mUnk_400, (void (*)(void *)) func_0204bb34, t, (u8 *) &t->mUnk_400, 0x400, 15);
-    ThreadSetRunnable(&t->mUnk_400);
+    OS_CreateThread(&t->mUnk_400, (void (*)(void *)) func_0204bb34, t, (u8 *) &t->mUnk_400, 0x400, 15);
+    OS_WakeupThreadDirect(&t->mUnk_400);
 }
 
 void func_0204ba8c(void) {
     Unk021759b8 *t;
     t = (Unk021759b8 *) &data_usa_021759b8;
-    if (ThreadHasEnded(&t->mUnk_400) != 0) {
+    if (OS_IsThreadTerminated(&t->mUnk_400) != 0) {
         return;
     }
     do {
-        ThreadSetRunnable(&t->mUnk_400);
-        ThreadWaitForEnd(&t->mUnk_400);
-    } while (ThreadHasEnded(&t->mUnk_400) == 0);
+        OS_WakeupThreadDirect(&t->mUnk_400);
+        OS_JoinThread(&t->mUnk_400);
+    } while (OS_IsThreadTerminated(&t->mUnk_400) == 0);
 }
 
 #pragma thumb on

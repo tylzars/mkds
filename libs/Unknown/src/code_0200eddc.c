@@ -156,7 +156,7 @@ void OS_Init(void) {
     MI_Init();
     OS_InitVAlarm();
     InitVramLocks();
-    ThreadSystemInit();
+    OS_InitThread();
     OS_InitReset();
     CTRDG_Init();
     CARD_Init();

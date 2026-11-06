@@ -636,7 +636,7 @@ L_loop:
 // clang-format on
 
 // clang-format off
-// Thread switch after an interrupt: clears the pending flags of the thread list at data_027e0000, then saves the
+// OSThread switch after an interrupt: clears the pending flags of the thread list at data_027e0000, then saves the
 // registers of the running thread in its context and loads those of the first runnable thread.
 // Not compiled code: it switches processor modes and moves the whole register set with the user-bank forms of stm and
 // ldm (msr, mrs, ^).

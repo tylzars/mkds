@@ -24,6 +24,6 @@ void InterruptClearAndWait(u32 a, u32 b) {
     }
     q = &p->mUnk_3ff8;
     do {
-        ThreadWait(&data_027e0000.mUnk_0000);
+        OS_SleepThread(&data_027e0000.mUnk_0000);
     } while ((b & *q) == 0);
 }

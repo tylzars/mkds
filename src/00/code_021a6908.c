@@ -3,11 +3,11 @@
 
 u32 func_ov000_021a6908(OSMutex *a) {
     if (a->mHolder == NULL) {
-        a->mHolder = (struct Thread *) func_01ff8000;
+        a->mHolder = (struct OSThread *) func_01ff8000;
         a->mLockCount = a->mLockCount + 1;
         return 1;
     }
-    if (a->mHolder == (struct Thread *) func_01ff8000) {
+    if (a->mHolder == (struct OSThread *) func_01ff8000) {
         a->mLockCount = a->mLockCount + 1;
         return 1;
     }

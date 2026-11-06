@@ -33,5 +33,5 @@ void ReceiveRequestReply(u32 arg0, u32 arg1, u32 arg2) {
     value0 = (value0) & ~(0x20u);
     *(u32 *) ((value1) + (276)) = value0;
     value0 = (u32) * (const u32 *) ((value1) + (260));
-    ThreadSetRunnable((Thread *) value0);
+    OS_WakeupThreadDirect((OSThread *) value0);
 }

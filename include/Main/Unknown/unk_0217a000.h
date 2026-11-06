@@ -757,12 +757,12 @@ typedef struct Unk0217aa00 {
 
 extern Unk0217aa00 *data_0217aa00;
 extern Unk0217aa08 *data_0217aa08;
-// Object behind data_0217aa0c; the Thread at 0x2c is passed to ThreadInit and ThreadSetRunnable.
+// Object behind data_0217aa0c; the OSThread at 0x2c is passed to OS_CreateThread and OS_WakeupThreadDirect.
 typedef struct Unk0217aa0c {
     /* 00 */ void (*mUnk_00[10])(void);
     /* 28 */ u8 mUnk_28;
     /* 29 */ u8 mUnk_29[3];
-    /* 2c */ Thread mUnk_2c;
+    /* 2c */ OSThread mUnk_2c;
     /* e4 */ u8 mUnk_e4[0x10];
     /* f4 */ void *mUnk_f4;
     /* f8 */ s32 mUnk_f8;

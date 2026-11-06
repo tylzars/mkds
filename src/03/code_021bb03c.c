@@ -1896,18 +1896,18 @@ s32 func_ov003_021bb168(u32 a, s32 b, UnkFunc *c, UnkWordFunc *d, UnkFunc *e, u3
         data_ov003_021d8c48 = -1;
         return -1;
     }
-    if (ThreadSystemIsInit() != 1) {
+    if (OS_IsThreadAvailable() != 1) {
         data_ov003_021d8c48 = -9;
         return -9;
     }
-    ThreadInit(&data_ov003_021d8d08, (void (*)(void *)) func_ov003_021bcedc, NULL,
-               (u8 *) data_ov003_021d8c00 + (data_ov003_021d68b4 & ~7), data_ov003_021d68b4, a);
+    OS_CreateThread(&data_ov003_021d8d08, (void (*)(void *)) func_ov003_021bcedc, NULL,
+                    (u8 *) data_ov003_021d8c00 + (data_ov003_021d68b4 & ~7), data_ov003_021d68b4, a);
     data_ov003_021d8c08 = 1;
     data_ov003_021d68b8 = func_ov003_021bb354() + 60000;
     data_ov003_021d8be0 = 0;
     __clear(&data_ov003_021d8dc8, 0xe8);
     func_ov003_021bb03c();
-    ThreadSetRunnable(&data_ov003_021d8d08);
+    OS_WakeupThreadDirect(&data_ov003_021d8d08);
     data_ov003_021d8c34 = 1;
     return 1;
 }
@@ -1921,11 +1921,11 @@ s32 func_ov003_021bb0b0(void) {
             OS_Sleep(100);
         }
         OS_Sleep(500);
-        if (ThreadHasEnded(&data_ov003_021d8d08) == 0) {
+        if (OS_IsThreadTerminated(&data_ov003_021d8d08) == 0) {
             do {
-                ThreadSetRunnable(&data_ov003_021d8d08);
-                ThreadWaitForEnd(&data_ov003_021d8d08);
-            } while (ThreadHasEnded(&data_ov003_021d8d08) == 0);
+                OS_WakeupThreadDirect(&data_ov003_021d8d08);
+                OS_JoinThread(&data_ov003_021d8d08);
+            } while (OS_IsThreadTerminated(&data_ov003_021d8d08) == 0);
         }
         if (data_ov003_021d8c00 != NULL) {
             data_ov003_021d8bdc(data_ov003_021d8c00);

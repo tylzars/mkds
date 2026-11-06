@@ -8,11 +8,11 @@
 #include "Main/Unknown/code_02000800.h"
 
 void func_ov000_021a68dc(OSMutex *a) {
-    if (a->mHolder == (struct Thread *) func_01ff8000) {
+    if (a->mHolder == (struct OSThread *) func_01ff8000) {
         a->mLockCount--;
         if (a->mLockCount == 0) {
             a->mHolder = NULL;
-            ThreadQueueSetAllRunnable(&a->mQueue);
+            OS_WakeupThread(&a->mQueue);
         }
     }
 }

@@ -67,7 +67,7 @@ typedef struct Unk02003024 {
     /* 0c */ volatile u32 mUnk_0c; // bit 2 selects the path in FileDispatchCommand; FileFinishCommand clears 0x4f
     /* 10 */ u32 mUnk_10; // index passed to FileDispatchCommand by FileRunCommandBlocking and FileRunQueueAsync
     /* 14 */ s32 mUnk_14; // set from a return value in FileDispatchCommand and FileFinishCommand
-    /* 18 */ ThreadQueue mUnk_18;
+    /* 18 */ OSThreadQueue mUnk_18;
     /* 20 */ Unk02003024U mUnk_20;
     /* 2c */ u32 mUnk_2c;
     /* 30 */ Unk02003024U mUnk_30;
@@ -78,15 +78,15 @@ typedef struct Unk02003024 {
 
 // 0x5c-byte object (FS_InitArchive clears 0x5c bytes; data_0216f36c) at mUnk_08 of Unk02003024. Links at mUnk_04 and
 // mUnk_08 (FS_RegisterArchiveName, FS_ReleaseArchiveName), flags at mUnk_1c, the list of Unk02003024 at mUnk_24; the
-// addresses of mUnk_0c and mUnk_14 go to ThreadQueueSetAllRunnable and ThreadWait; mUnk_48 to mUnk_54 are called from
+// addresses of mUnk_0c and mUnk_14 go to OS_WakeupThread and OS_SleepThread; mUnk_48 to mUnk_54 are called from
 // FileDispatchCommand, FileWriteViaArchive, FileReadViaArchive, FileReadTableBytes, FileQueueCommand and
 // FilePickNextCommand.
 typedef struct Unk02003a6c {
     /* 00 */ u32 mUnk_00;
     /* 04 */ struct Unk02003a6c *mUnk_04;
     /* 08 */ struct Unk02003a6c *mUnk_08;
-    /* 0c */ ThreadQueue mUnk_0c;
-    /* 14 */ ThreadQueue mUnk_14;
+    /* 0c */ OSThreadQueue mUnk_0c;
+    /* 14 */ OSThreadQueue mUnk_14;
     /* 1c */ volatile u32 mUnk_1c;
     /* 20 */ u32 mUnk_20;
     /* 24 */ struct Unk02003024 *mUnk_24;

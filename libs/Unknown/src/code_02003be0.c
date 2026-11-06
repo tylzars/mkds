@@ -162,11 +162,11 @@ u32 FS_WaitAsync(Unk02003024 *p0) {
         if (r) {
             p0->mUnk_0c |= 4;
             do {
-                ThreadWait(&p0->mUnk_18);
+                OS_SleepThread(&p0->mUnk_18);
             } while ((p0->mUnk_0c & 0x40) == 0);
         } else {
             do {
-                ThreadWait(&p0->mUnk_18);
+                OS_SleepThread(&p0->mUnk_18);
             } while (((p0->mUnk_0c & 1) ? 1 : 0) != 0);
         }
     }
@@ -304,7 +304,7 @@ Unk02003024 *FilePickNextCommand(Unk02003a6c *p0) {
         state = IrqDisable();
         p->mUnk_0c |= 0x40;
         if (((p->mUnk_0c & 4) ? 1 : 0) != 0) {
-            ThreadQueueSetAllRunnable(&p->mUnk_18);
+            OS_WakeupThread(&p->mUnk_18);
             IrqRestore(state);
             return 0;
         }
@@ -322,7 +322,7 @@ Unk02003024 *FilePickNextCommand(Unk02003a6c *p0) {
     if (p0->mUnk_1c & 0x40) {
         p0->mUnk_1c &= ~0x40;
         p0->mUnk_1c |= 8;
-        ThreadQueueSetAllRunnable(&p0->mUnk_14);
+        OS_WakeupThread(&p0->mUnk_14);
     }
     IrqRestore(state);
     return 0;
@@ -340,7 +340,7 @@ void FileRunQueueAsync(Unk02003024 *p0) {
         state = IrqDisable();
         p0->mUnk_0c |= 0x40;
         if (((p0->mUnk_0c & 4) ? 1 : 0) != 0) {
-            ThreadQueueSetAllRunnable(&p0->mUnk_18);
+            OS_WakeupThread(&p0->mUnk_18);
             IrqRestore(state);
             return;
         }
@@ -421,7 +421,7 @@ u32 FileQueueCommand(Unk02003024 *p0, u32 p1) {
             return 1;
         }
         do {
-            ThreadWait(&p0->mUnk_18);
+            OS_SleepThread(&p0->mUnk_18);
         } while ((p0->mUnk_0c & 0x40) == 0);
         IrqRestore(state);
     }
@@ -634,7 +634,7 @@ u32 FS_SuspendArchive(Unk02003a6c *p0) {
         if (p0->mUnk_1c & 0x10) {
             p0->mUnk_1c |= 0x40;
             do {
-                ThreadWait(&p0->mUnk_14);
+                OS_SleepThread(&p0->mUnk_14);
             } while (p0->mUnk_1c & 0x40);
         } else {
             p0->mUnk_1c |= 8;
@@ -690,7 +690,7 @@ void FS_NotifyArchiveAsyncEnd(Unk02003a6c *p0, u32 p1) {
         state = IrqDisable();
         p->mUnk_14 = p1;
         p0->mUnk_1c &= ~0x200;
-        ThreadQueueSetAllRunnable(&p0->mUnk_0c);
+        OS_WakeupThread(&p0->mUnk_0c);
         IrqRestore(state);
     }
 }

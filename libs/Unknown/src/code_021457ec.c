@@ -49,7 +49,7 @@ int WaitForTransferEnd(void) {
     p = (Unk021458c4 *) (u32) &gAccessState;
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
-        ThreadWait(&p->mUnk_10c);
+        OS_SleepThread(&p->mUnk_10c);
     }
     IrqRestore(s);
     return p->mUnk_00->mUnk_00 == 0;

@@ -30,7 +30,7 @@ void func_ov000_02187fb8(void) {
         }
         func_ov000_02186474();
         if (data_ov000_021b4cb0->mUnk_11c.mId != 0) {
-            ThreadWaitForEnd(&data_ov000_021b4cb0->mUnk_11c);
+            OS_JoinThread(&data_ov000_021b4cb0->mUnk_11c);
         }
         data_ov000_021b4cb0->mUnk_04 = 0xfffffff9;
     }
@@ -81,7 +81,7 @@ void func_ov000_021874ec(void) {
         }
         func_ov000_021872bc(gHttp);
         if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-            ThreadWaitForEnd((Thread *) ((Unk021b4cac *) gHttp)->mThread);
+            OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
         }
         o = (Unk021b4cac *) gHttp;
         switch (o->mResult) {
@@ -162,7 +162,7 @@ void func_ov000_021874ec(void) {
                     }
                     func_ov000_021872bc(gHttp);
                     if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-                        ThreadWaitForEnd((Thread *) ((Unk021b4cac *) gHttp)->mThread);
+                        OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
                     }
                     o = (Unk021b4cac *) gHttp;
                     switch (o->mResult) {
@@ -282,7 +282,7 @@ void func_ov000_021874ec(void) {
         }
         func_ov000_021872bc(gHttp);
         if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-            ThreadWaitForEnd((Thread *) ((Unk021b4cac *) gHttp)->mThread);
+            OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
         }
         o = (Unk021b4cac *) gHttp;
         switch (o->mResult) {
@@ -420,7 +420,7 @@ void func_ov000_021874ec(void) {
         }
         func_ov000_021872bc(gHttp);
         if (((Unk021b4cac *) gHttp)->mUnk_9d4 != 0) {
-            ThreadWaitForEnd((Thread *) ((Unk021b4cac *) gHttp)->mThread);
+            OS_JoinThread((OSThread *) ((Unk021b4cac *) gHttp)->mThread);
         }
         o = (Unk021b4cac *) gHttp;
         switch (o->mResult) {
@@ -525,7 +525,7 @@ u32 func_ov000_0218735c(Unk02186d7c *p) {
 
 void func_ov000_021872bc(Unk02186d7c *p) {
     u32 n;
-    n = ThreadGetSortKey(data_0216ff5c.mCurrentThread);
+    n = OS_GetThreadPriority(data_0216ff5c.mCurrentThread);
     p->mUnk_a40 = FALSE;
     OS_InitMutex(&p->mUnk_a28);
     OS_InitMutex(&p->mUnk_948);
@@ -534,9 +534,9 @@ void func_ov000_021872bc(Unk02186d7c *p) {
     } else {
         data_ov000_021b4ca8 = 0;
     }
-    if (p->mThread.mId == 0 || ThreadHasEnded(&p->mThread) != 0) {
-        ThreadInit(&p->mThread, func_ov000_02186d7c, p, p->mUnk_1a60, 0x1000, n - 1);
-        ThreadSetRunnable(&p->mThread);
+    if (p->mThread.mId == 0 || OS_IsThreadTerminated(&p->mThread) != 0) {
+        OS_CreateThread(&p->mThread, func_ov000_02186d7c, p, p->mUnk_1a60, 0x1000, n - 1);
+        OS_WakeupThreadDirect(&p->mThread);
     }
 }
 
@@ -546,7 +546,7 @@ void func_ov000_02187274(Unk02186d7c *p) {
         p->mUnk_a40 = TRUE;
         OS_UnlockMutex(&p->mUnk_a28);
         if (p->mThread.mId != 0) {
-            ThreadWaitForEnd(&p->mThread);
+            OS_JoinThread(&p->mThread);
         }
     }
 }

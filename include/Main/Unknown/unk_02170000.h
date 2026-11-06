@@ -7,7 +7,7 @@
 
 typedef struct Unk0217029c Unk0217029c;
 
-extern Thread data_0217002c;
+extern OSThread data_0217002c;
 extern u32 data_021701b4;
 // Gate of arena index 2. Zero in this game: the only store writes 0.
 extern u32 gArena2Enabled;

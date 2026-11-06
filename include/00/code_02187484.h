@@ -13,7 +13,7 @@
 #include "00/code_02185954.h"
 #include "00/code_02188008.h"
 
-typedef struct Thread Thread;
+typedef struct OSThread OSThread;
 
 // Object behind data_ov000_021b4cb0.
 typedef struct Unk02187490 {
@@ -23,7 +23,7 @@ typedef struct Unk02187490 {
     /* 108 */ Unk02188114 mUnk_108;
     /* 114 */ void *mUnk_114;
     /* 118 */ void *mUnk_118;
-    /* 11c */ Thread mUnk_11c;
+    /* 11c */ OSThread mUnk_11c;
     /* 1d4 */ u8 pad_1d4[8];
     /* 1dc */ OSMutex mUnk_1dc;
     /* 1f4 */ u8 pad_1f4[0x100c];

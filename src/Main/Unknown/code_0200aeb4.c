@@ -45,19 +45,19 @@ void func_0200b08c(void *param_1) {
     for (;;) {
         v2 = IrqDisable();
         while (a->mUnk_c0 == NULL) {
-            ThreadSetSortKey(&a->mUnk_00, v6);
-            ThreadWait(NULL);
+            OS_SetThreadPriority(&a->mUnk_00, v6);
+            OS_SleepThread(NULL);
         }
         v1 = a->mUnk_c0;
         a->mUnk_c0 = a->mUnk_c0->mUnk_00;
-        ThreadSetSortKey(&a->mUnk_00, v1->mUnk_04_1);
+        OS_SetThreadPriority(&a->mUnk_00, v1->mUnk_04_1);
         IrqRestore(v2);
         if (v1->mUnk_08 != NULL) {
             ((void (*)(Unk0200aeec *)) v1->mUnk_08)(v1);
         }
         v3 = IrqDisable();
         v4 = (void (*)(Unk0200aeec *)) v1->mUnk_0c;
-        v5 = ThreadGetSortKey(&a->mUnk_00);
+        v5 = OS_GetThreadPriority(&a->mUnk_00);
         if (a->mUnk_c0 == NULL) {
             v2 = v6;
         } else if (v5 < a->mUnk_c0->mUnk_04_1) {
@@ -66,7 +66,7 @@ void func_0200b08c(void *param_1) {
             v2 = v5;
         }
         if (v2 != v5) {
-            ThreadSetSortKey(&a->mUnk_00, v2);
+            OS_SetThreadPriority(&a->mUnk_00, v2);
         }
         v1->mUnk_00 = NULL;
         v1->mUnk_04_0 = 0;
@@ -90,8 +90,8 @@ void func_0200b02c(Unk0200aeec_head *a, u32 b) {
         func_0200b00c(&a->mUnk_c4);
         a->mUnk_c0 = NULL;
         v2 = (b - 0xe4) & ~3;
-        ThreadInit(&a->mUnk_00, func_0200b08c, a, (u8 *) a + 0xe4 + v2, v2, 0);
-        ThreadSetRunnable(&a->mUnk_00);
+        OS_CreateThread(&a->mUnk_00, func_0200b08c, a, (u8 *) a + 0xe4 + v2, v2, 0);
+        OS_WakeupThreadDirect(&a->mUnk_00);
     }
     IrqRestore(v1);
 }
@@ -144,7 +144,7 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
         IrqDisableLoopForever();
     }
     if (d > 31) {
-        v2 = ThreadGetSortKey(&v1->mUnk_00);
+        v2 = OS_GetThreadPriority(&v1->mUnk_00);
         if (d == 32) {
             if (v2 != 0) {
                 d = v2 - 1;
@@ -173,7 +173,7 @@ void func_0200aeec(Unk0200aeec *a, void *b, void *c, u32 d) {
             data_0216fde0 = NULL;
         }
         v1->mUnk_c0 = a;
-        ThreadSetRunnable(&v1->mUnk_00);
+        OS_WakeupThreadDirect(&v1->mUnk_00);
     } else {
         v4 = v1->mUnk_c0;
         if (a == &v1->mUnk_c4) {

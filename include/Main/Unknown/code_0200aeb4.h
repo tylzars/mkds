@@ -17,9 +17,9 @@ typedef struct Unk0200aeec {
     /* 0c */ void *mUnk_0c;
 } Unk0200aeec;
 
-// What data_0216fde0 points to: the Thread, then the first and the last object of the list.
+// What data_0216fde0 points to: the OSThread, then the first and the last object of the list.
 typedef struct Unk0200aeec_head {
-    /* 00 */ Thread mUnk_00;
+    /* 00 */ OSThread mUnk_00;
     /* b8 */ u8 mUnk_b8[8];
     /* c0 */ Unk0200aeec *volatile mUnk_c0;
     /* c4 */ Unk0200aeec mUnk_c4;

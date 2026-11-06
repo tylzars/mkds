@@ -2,38 +2,39 @@
 
 #include "types.h"
 
-struct Thread;
+struct OSThread;
 
-// Two Thread pointers; ThreadQueueInsert and ThreadQueueRemoveFront link the objects through their mQueueNext and
-// mQueuePrev. ThreadQueueSetAllRunnable and ThreadWait take it.
-typedef struct ThreadQueue {
-    /* 00 */ struct Thread *mHead;
-    /* 04 */ struct Thread *mTail;
-} ThreadQueue;
+// Head and tail of a list of threads, linked through OSThread.mLinkNext and OSThread.mLinkPrev by OSi_InsertLinkToQueue
+// and OSi_RemoveLinkFromQueue. OS_WakeupThread and OS_SleepThread take it.
+typedef struct OSThreadQueue {
+    /* 00 */ struct OSThread *mHead;
+    /* 04 */ struct OSThread *mTail;
+} OSThreadQueue;
 
 // 0x18 bytes; OS_InitMutex clears mQueue to mLockCount. OSi_EnqueueTail and OSi_DequeueItem link it through
-// mNext and mPrev into the ThreadLockList at mLockList of a Thread.
+// OSMutex.mNext and OSMutex.mPrev into OSThread.mMutexQueue of the holder.
 typedef struct OSMutex {
-    /* 00 */ ThreadQueue mQueue;
-    /* 08 */ struct Thread *mHolder; // set by OS_TryLockMutex and OS_LockMutex
+    /* 00 */ OSThreadQueue mQueue;
+    /* 08 */ struct OSThread *mHolder; // set by OS_TryLockMutex and OS_LockMutex
     /* 0c */ u32 mLockCount; // raised by OS_TryLockMutex and OS_LockMutex, lowered by OS_UnlockMutex
     /* 10 */ struct OSMutex *mNext;
     /* 14 */ struct OSMutex *mPrev;
 } OSMutex;
 
-typedef struct ThreadLockList {
+// Head and tail of the mutexes a thread holds.
+typedef struct OSMutexQueue {
     /* 00 */ OSMutex *mHead;
     /* 04 */ OSMutex *mTail;
-} ThreadLockList;
+} OSMutexQueue;
 
 // Set up by OS_InitMessageQueue. OS_SendMessage stores a word at mBuffer[(mHeadIndex + mCount) % mCapacity] and raises
 // mCount; OS_ReceiveMessage reads mBuffer[mHeadIndex], advances mHeadIndex modulo mCapacity and lowers mCount. Each
-// calls ThreadWait on one of mFullWaiters and mEmptyWaiters and ThreadQueueSetAllRunnable on the other.
+// calls OS_SleepThread on one of mFullWaiters and mEmptyWaiters and OS_WakeupThread on the other.
 typedef void *OSMessage;
 
 typedef struct OSMessageQueue {
-    /* 00 */ ThreadQueue mFullWaiters;
-    /* 08 */ ThreadQueue mEmptyWaiters;
+    /* 00 */ OSThreadQueue mFullWaiters;
+    /* 08 */ OSThreadQueue mEmptyWaiters;
     /* 10 */ OSMessage *mBuffer;
     /* 14 */ s32 mCapacity;
     /* 18 */ s32 mHeadIndex;
@@ -61,9 +62,9 @@ BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage message, s32 flags);
 BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *message, s32 flags);
 BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage message, s32 flags);
 void OS_InitMessageQueue(OSMessageQueue *queue, OSMessage *messages, s32 count);
-void OSi_DequeueItem(struct Thread *thread, OSMutex *mutex);
-void OSi_EnqueueTail(struct Thread *thread, OSMutex *mutex);
+void OSi_DequeueItem(struct OSThread *thread, OSMutex *mutex);
+void OSi_EnqueueTail(struct OSThread *thread, OSMutex *mutex);
 BOOL OS_TryLockMutex(OSMutex *mutex);
-void OSi_UnlockAllMutex(struct Thread *thread);
+void OSi_UnlockAllMutex(struct OSThread *thread);
 void OS_UnlockMutex(OSMutex *mutex);
 void OS_LockMutex(OSMutex *mutex);

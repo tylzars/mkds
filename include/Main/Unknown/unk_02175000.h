@@ -75,9 +75,9 @@ typedef struct SceneCallbacks {
 // Object behind data_021759cc.
 typedef struct Unk021759cc {
     /* 000 */ void *mUnk_000;
-    /* 004 */ Thread mUnk_004;
+    /* 004 */ OSThread mUnk_004;
     /* 0bc */ u8 mUnk_0bc[8];
-    /* 0c4 */ ThreadQueue mUnk_0c4;
+    /* 0c4 */ OSThreadQueue mUnk_0c4;
     /* 0cc */ CallbackEntry mUnk_0cc;
     /* 0d8 */ CallbackEntry mUnk_0d8;
     // Passes of RunScene's update loop and fade-out loop since they began (RunScene zeroes it at
@@ -267,10 +267,10 @@ extern Unk021759c8 *data_021759c8;
 extern Unk021759cc *data_021759cc;
 extern Unk021759d0 *data_021759d0;
 
-// Object at data_usa_021759b8: 0x400 bytes (the end of them is the top of the stack of the Thread) and two words.
+// Object at data_usa_021759b8: 0x400 bytes (the end of them is the top of the stack of the OSThread) and two words.
 typedef struct Unk021759b8 {
     /* 000 */ u8 mUnk_000[0x400];
-    /* 400 */ Thread mUnk_400;
+    /* 400 */ OSThread mUnk_400;
     /* 4b8 */ u8 mUnk_4b8[8];
     /* 4c0 */ s32 mUnk_4c0;
     /* 4c4 */ s32 mUnk_4c4;

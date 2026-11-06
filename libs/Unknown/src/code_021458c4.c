@@ -36,7 +36,7 @@ void WorkerTaskLoop(void *a) {
         s = IrqDisable();
         while ((p->mUnk_114 & 8) == 0) {
             p->mUnk_104 = &p->mUnk_44;
-            ThreadWait(0);
+            OS_SleepThread(0);
         }
         IrqRestore(s);
         p->mUnk_40(p);
@@ -71,7 +71,7 @@ int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b) {
         }
         s = IrqDisable();
         while (p->mUnk_114 & 0x20) {
-            ThreadWait(0);
+            OS_SleepThread(0);
         }
         IrqRestore(s);
         v = p->mUnk_00->mUnk_00;
@@ -143,9 +143,9 @@ void AdvanceRomDmaRead(void) {
         arg = p->mUnk_3c;
         s = IrqDisable();
         p->mUnk_114 &= ~0x4c;
-        ThreadQueueSetAllRunnable(&p->mUnk_10c);
+        OS_WakeupThread(&p->mUnk_10c);
         if (p->mUnk_114 & 0x10) {
-            ThreadSetRunnable(&p->mUnk_44);
+            OS_WakeupThreadDirect(&p->mUnk_44);
         }
         IrqRestore(s);
         if (cb != 0) {
@@ -287,9 +287,9 @@ void RunRomRead(Unk021458c4 *a) {
     arg = p->mUnk_3c;
     s = IrqDisable();
     p->mUnk_114 &= ~0x4c;
-    ThreadQueueSetAllRunnable(&p->mUnk_10c);
+    OS_WakeupThread(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
-        ThreadSetRunnable(&p->mUnk_44);
+        OS_WakeupThreadDirect(&p->mUnk_44);
     }
     IrqRestore(s);
     if (cb != 0) {
@@ -307,7 +307,7 @@ void StartRomRead(u32 a, u32 b, u32 c, u32 d, UnkFunc *e, u32 f, u32 g) {
     CARD_CheckEnabled();
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
-        ThreadWait(&p->mUnk_10c);
+        OS_SleepThread(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = e;
@@ -412,9 +412,9 @@ void RunBackupTransfer(Unk021458c4 *p) {
     arg = p->mUnk_3c;
     s = IrqDisable();
     p->mUnk_114 &= ~0x4c;
-    ThreadQueueSetAllRunnable(&p->mUnk_10c);
+    OS_WakeupThread(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
-        ThreadSetRunnable(&p->mUnk_44);
+        OS_WakeupThreadDirect(&p->mUnk_44);
     }
     IrqRestore(s);
     if (cb != 0) {
@@ -430,7 +430,7 @@ int StartBackupTransfer(u32 a, u32 b, u32 c, UnkFunc *d, void *e, u32 f, u32 g, 
     func_02000b44((u32) (BuildInfo + 0x24));
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
-        ThreadWait(&p->mUnk_10c);
+        OS_SleepThread(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = d;
@@ -465,7 +465,7 @@ int CARD_IdentifyBackup(s32 a) {
     CARD_CheckEnabled();
     s = IrqDisable();
     while (p->mUnk_114 & 4) {
-        ThreadWait(&p->mUnk_10c);
+        OS_SleepThread(&p->mUnk_10c);
     }
     p->mUnk_114 |= 4;
     p->mUnk_38 = 0;
@@ -482,9 +482,9 @@ int CARD_IdentifyBackup(s32 a) {
     arg = p->mUnk_3c;
     s = IrqDisable();
     p->mUnk_114 &= ~0x4c;
-    ThreadQueueSetAllRunnable(&p->mUnk_10c);
+    OS_WakeupThread(&p->mUnk_10c);
     if (p->mUnk_114 & 0x10) {
-        ThreadSetRunnable(&p->mUnk_44);
+        OS_WakeupThreadDirect(&p->mUnk_44);
     }
     IrqRestore(s);
     if (cb != 0) {
@@ -574,11 +574,11 @@ void StartWorkerTask(UnkFunc *f) {
     Unk021458c4 *p;
 
     p = (Unk021458c4 *) (u32) &gAccessState;
-    ThreadSetSortKey(&p->mUnk_44, p->mUnk_108);
+    OS_SetThreadPriority(&p->mUnk_44, p->mUnk_108);
     p->mUnk_104 = &p->mUnk_44;
     p->mUnk_40 = f;
     p->mUnk_114 |= 8;
-    ThreadSetRunnable(&p->mUnk_44);
+    OS_WakeupThreadDirect(&p->mUnk_44);
 }
 
 void LockAccessTarget(u32 a, u32 b) {
@@ -593,7 +593,7 @@ void LockAccessTarget(u32 a, u32 b) {
         }
     } else {
         while (p->mUnk_08 != -3) {
-            ThreadWait(&p->mUnk_10);
+            OS_SleepThread(&p->mUnk_10);
         }
         p->mUnk_08 = a;
         p->mUnk_18 = b;
@@ -619,7 +619,7 @@ void UnlockAccessTarget(u32 a, u32 b) {
         if (p->mUnk_0c == 0) {
             p->mUnk_08 = -3;
             p->mUnk_18 = 0;
-            ThreadQueueSetAllRunnable(&p->mUnk_10);
+            OS_WakeupThread(&p->mUnk_10);
         }
     }
     p->mUnk_00->mUnk_00 = 0;
@@ -644,8 +644,8 @@ void InitBackupAndRomAccess(void) {
     p->mUnk_10c.mTail = 0;
     p->mUnk_10c.mHead = p->mUnk_10c.mTail;
     p->mUnk_108 = 4;
-    ThreadInit(&p->mUnk_44, WorkerTaskLoop, 0, (u8 *) &gRomBaseOffset, 0x400, p->mUnk_108);
-    ThreadSetRunnable(&p->mUnk_44);
+    OS_CreateThread(&p->mUnk_44, WorkerTaskLoop, 0, (u8 *) &gRomBaseOffset, 0x400, p->mUnk_108);
+    OS_WakeupThreadDirect(&p->mUnk_44);
     PxiCallbackSet(11, ReceiveRequestReply);
     if (*(u16 *) 0x027ffc40 != 2) {
         CARD_Enable(1);

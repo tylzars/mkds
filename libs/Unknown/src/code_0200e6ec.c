@@ -24,7 +24,7 @@ void OS_InitMutex(OSMutex *mutex) {
 // the thread sleep on OSMutex.mQueue until the mutex is free.
 void OS_LockMutex(OSMutex *mutex) {
     u32 enabled;
-    Thread *current;
+    OSThread *current;
 
     enabled = IrqDisable();
     current = data_0216ff5c.mCurrentThread;
@@ -38,9 +38,9 @@ void OS_LockMutex(OSMutex *mutex) {
             mutex->mLockCount = mutex->mLockCount + 1;
             break;
         } else {
-            current->mUnk_84 = mutex;
-            ThreadWait(&mutex->mQueue);
-            current->mUnk_84 = 0;
+            current->mMutex = mutex;
+            OS_SleepThread(&mutex->mQueue);
+            current->mMutex = 0;
         }
     }
     IrqRestore(enabled);
@@ -49,7 +49,7 @@ void OS_LockMutex(OSMutex *mutex) {
 // Lowers OSMutex.mLockCount for the holding thread; at 0 the mutex is unlinked, released and its waiters wake up.
 void OS_UnlockMutex(OSMutex *mutex) {
     u32 enabled;
-    Thread *current;
+    OSThread *current;
 
     enabled = IrqDisable();
     current = data_0216ff5c.mCurrentThread;
@@ -58,25 +58,25 @@ void OS_UnlockMutex(OSMutex *mutex) {
         if (mutex->mLockCount == 0) {
             OSi_DequeueItem(current, mutex);
             mutex->mHolder = 0;
-            ThreadQueueSetAllRunnable(&mutex->mQueue);
+            OS_WakeupThread(&mutex->mQueue);
         }
     }
     IrqRestore(enabled);
 }
 
 // Releases every mutex in the mutex list of thread and wakes the threads waiting on them.
-void OSi_UnlockAllMutex(struct Thread *thread) {
+void OSi_UnlockAllMutex(struct OSThread *thread) {
     OSMutex *mutex;
 
-    if (thread->mLockList.mHead == 0) {
+    if (thread->mMutexQueue.mHead == 0) {
         return;
     }
     do {
-        mutex = ThreadLockListRemoveFront(&thread->mLockList);
+        mutex = OSi_RemoveMutexLinkFromQueue(&thread->mMutexQueue);
         mutex->mLockCount = 0;
         mutex->mHolder = 0;
-        ThreadQueueSetAllRunnable(&mutex->mQueue);
-    } while (thread->mLockList.mHead != 0);
+        OS_WakeupThread(&mutex->mQueue);
+    } while (thread->mMutexQueue.mHead != 0);
 }
 
 // Takes the mutex for the current thread like OS_LockMutex but returns 0 instead of sleeping; returns 1 when the
@@ -84,7 +84,7 @@ void OSi_UnlockAllMutex(struct Thread *thread) {
 BOOL OS_TryLockMutex(OSMutex *mutex) {
     u32 enabled;
     BOOL locked;
-    Thread *current;
+    OSThread *current;
 
     enabled = IrqDisable();
     current = data_0216ff5c.mCurrentThread;
@@ -104,34 +104,34 @@ BOOL OS_TryLockMutex(OSMutex *mutex) {
 }
 
 // Links mutex at the tail of the mutex list of thread.
-void OSi_EnqueueTail(struct Thread *thread, OSMutex *mutex) {
+void OSi_EnqueueTail(struct OSThread *thread, OSMutex *mutex) {
     OSMutex *tail;
 
-    tail = thread->mLockList.mTail;
+    tail = thread->mMutexQueue.mTail;
     if (tail == 0) {
-        thread->mLockList.mHead = mutex;
+        thread->mMutexQueue.mHead = mutex;
     } else {
         tail->mNext = mutex;
     }
     mutex->mPrev = tail;
     mutex->mNext = 0;
-    thread->mLockList.mTail = mutex;
+    thread->mMutexQueue.mTail = mutex;
 }
 
 // Takes mutex out of the mutex list of thread.
-void OSi_DequeueItem(struct Thread *thread, OSMutex *mutex) {
+void OSi_DequeueItem(struct OSThread *thread, OSMutex *mutex) {
     OSMutex *prev;
     OSMutex *next;
 
     next = mutex->mNext;
     prev = mutex->mPrev;
     if (next == 0) {
-        thread->mLockList.mTail = prev;
+        thread->mMutexQueue.mTail = prev;
     } else {
         next->mPrev = prev;
     }
     if (prev == 0) {
-        thread->mLockList.mHead = next;
+        thread->mMutexQueue.mHead = next;
     } else {
         prev->mNext = next;
     }
@@ -161,12 +161,12 @@ BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
                 IrqRestore(enabled);
                 return 0;
             }
-            ThreadWait(&queue->mFullWaiters);
+            OS_SleepThread(&queue->mFullWaiters);
         } while (queue->mCapacity <= queue->mCount);
     }
     queue->mBuffer[(queue->mHeadIndex + queue->mCount) % queue->mCapacity] = message;
     queue->mCount = queue->mCount + 1;
-    ThreadQueueSetAllRunnable(&queue->mEmptyWaiters);
+    OS_WakeupThread(&queue->mEmptyWaiters);
     IrqRestore(enabled);
     return 1;
 }
@@ -183,7 +183,7 @@ BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
                 IrqRestore(enabled);
                 return 0;
             }
-            ThreadWait(&queue->mEmptyWaiters);
+            OS_SleepThread(&queue->mEmptyWaiters);
         } while (queue->mCount == 0);
     }
     if (message != 0) {
@@ -191,7 +191,7 @@ BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
     }
     queue->mHeadIndex = (queue->mHeadIndex + 1) % queue->mCapacity;
     queue->mCount = queue->mCount - 1;
-    ThreadQueueSetAllRunnable(&queue->mFullWaiters);
+    OS_WakeupThread(&queue->mFullWaiters);
     IrqRestore(enabled);
     return 1;
 }
@@ -208,13 +208,13 @@ BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
                 IrqRestore(enabled);
                 return 0;
             }
-            ThreadWait(&queue->mFullWaiters);
+            OS_SleepThread(&queue->mFullWaiters);
         } while (queue->mCapacity <= queue->mCount);
     }
     queue->mHeadIndex = (queue->mHeadIndex + queue->mCapacity - 1) % queue->mCapacity;
     queue->mBuffer[queue->mHeadIndex] = message;
     queue->mCount = queue->mCount + 1;
-    ThreadQueueSetAllRunnable(&queue->mEmptyWaiters);
+    OS_WakeupThread(&queue->mEmptyWaiters);
     IrqRestore(enabled);
     return 1;
 }
@@ -231,7 +231,7 @@ BOOL OS_ReadMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
                 IrqRestore(enabled);
                 return 0;
             }
-            ThreadWait(&queue->mEmptyWaiters);
+            OS_SleepThread(&queue->mEmptyWaiters);
         } while (queue->mCount == 0);
     }
     if (message != 0) {
@@ -317,7 +317,7 @@ u32 func_0200e77c(void) {
 // clang-format off
 // Calls DivSqrtRegistersSave with the address of mUnk_48, stores the status register and the registers (r0 = 1 saved) into
 // the words from 0, the banked sp of mode 0xd3 at 0x44 and the address of the return point at 0x3c, and returns 0.
-asm BOOL OS_SaveContext(Thread *t) {
+asm BOOL OS_SaveContext(OSThread *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
     ldr r1, =DivSqrtRegistersSave
@@ -340,7 +340,7 @@ asm BOOL OS_SaveContext(Thread *t) {
 
 // Calls DivSqrtRegistersRestore with the address of mUnk_48, then switches to mode 0xd3 and restores the registers and the
 // status word saved by OS_SaveContext.
-asm void OS_LoadContext(Thread *t) {
+asm void OS_LoadContext(OSThread *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
     ldr r1, =DivSqrtRegistersRestore

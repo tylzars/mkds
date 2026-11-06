@@ -23,7 +23,7 @@ typedef void (*Unk021b5f54Func)(void *param_1, void *param_2, void *param_3, u16
 
 typedef struct Unk021b5f54 {
     /* 00 */ u8 mUnk_00;
-    /* 04 */ ThreadQueue mUnk_04;
+    /* 04 */ OSThreadQueue mUnk_04;
     /* 0c */ OSMutex mUnk_0c;
     /* 24 */ s32 mUnk_24;
     /* 28 */ Unk021b5f54Func mUnk_28;

@@ -713,7 +713,7 @@ s32 func_ov000_021a8580(Unk021a7064 *a) {
     void *c;
     u32 d;
     if (func_ov000_021a7c4c_inline(b) != 0) {
-        ThreadWaitForEnd(&((Unk021a722a *) b->mSendBlock)->mUnk_00.mUnk_20);
+        OS_JoinThread(&((Unk021a722a *) b->mSendBlock)->mUnk_00.mUnk_20);
         func_ov000_021ae094();
         func_ov000_021ae048();
         func_ov000_021ae258();
@@ -753,7 +753,7 @@ void func_ov000_021a84c4(Unk021a6fa8 *a) {
             ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_108 = 0;
             ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_100 = NULL;
             ((Unk021a71c0 *) a->mReceiveBlock)->mUnk_104 = NULL;
-            ThreadQueueSetAllRunnable(&((Unk021a71c0 *) a->mReceiveBlock)->mUnk_10c);
+            OS_WakeupThread(&((Unk021a71c0 *) a->mReceiveBlock)->mUnk_10c);
             func_ov000_021a8454(a->mReceiveBlock);
         } else if (a->mUnk_73 == 2) {
             func_ov000_021a8454(a->mSendBlock);
@@ -770,9 +770,9 @@ void func_ov000_021a8454(Unk021a7154 *a) {
     Unk021a7064 *b;
     u32 c;
     if (a != NULL) {
-        ThreadWaitForEnd(&a->mUnk_20);
+        OS_JoinThread(&a->mUnk_20);
         c = IrqDisable();
-        ThreadSwitchDisable();
+        OS_DisableScheduler();
         if (OS_ReceiveMessage(&a->mUnk_00, (void **) &b, 0) != 0) {
             do {
                 if (b != NULL) {
@@ -783,9 +783,9 @@ void func_ov000_021a8454(Unk021a7154 *a) {
                 }
             } while (OS_ReceiveMessage(&a->mUnk_00, (void **) &b, 0) != 0);
         }
-        ThreadSwitchEnable();
+        OS_EnableScheduler();
         IrqRestore(c);
-        ThreadSwitch();
+        OSi_RescheduleThread();
     }
 }
 
@@ -924,7 +924,7 @@ s32 func_ov000_021a813c(Unk021a6fa8 *a, s32 b, s32 c, u32 *d, s32 e) {
             g = 0;
             break;
         }
-        ThreadWait((ThreadQueue *) &f->mUnk_104);
+        OS_SleepThread((OSThreadQueue *) &f->mUnk_104);
     }
     IrqRestore(h);
     return g;
@@ -1035,7 +1035,7 @@ s32 func_ov000_021a7f48(Unk021a7064 *param_1) {
         d = -0x4c;
     }
     c->mUnk_102 = a->mUnk_20;
-    ThreadQueueSetAllRunnable((ThreadQueue *) &c->mUnk_104);
+    OS_WakeupThread((OSThreadQueue *) &c->mUnk_104);
     return d;
 }
 
@@ -1330,7 +1330,7 @@ s32 func_ov000_021a797c(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f) {
             g = -6;
             break;
         }
-        ThreadWait(&h->mUnk_10c);
+        OS_SleepThread(&h->mUnk_10c);
         if (func_ov000_021a8a80(a) != 0 || func_ov000_021a797c_inline(a) == 0) {
             g = -0x38;
             break;
@@ -1392,7 +1392,7 @@ s32 func_ov000_021a78a4(void *param_1, u32 param_2, Unk021a6fa8 *param_3) {
     } else {
         data_ov000_021b5ffc[1]++;
     }
-    ThreadQueueSetAllRunnable(&d->mUnk_10c);
+    OS_WakeupThread(&d->mUnk_10c);
     IrqRestore(e);
     return 1;
 }
@@ -1770,8 +1770,8 @@ u8 *func_ov000_021a7154(u8 *b, Unk021a7154 *c, Unk021a72a4 *d) {
     a = b + func_ov000_021a72a4(d);
     OS_InitMessageQueue(&c->mUnk_00, (void **) b, d->mUnk_03);
     OS_InitMutex(&c->mUnk_e0);
-    ThreadInit(&c->mUnk_20, func_ov000_021a6f18, c, a, d->mUnk_00, d->mUnk_02);
-    ThreadSetRunnable(&c->mUnk_20);
+    OS_CreateThread(&c->mUnk_20, func_ov000_021a6f18, c, a, d->mUnk_00, d->mUnk_02);
+    OS_WakeupThreadDirect(&c->mUnk_20);
     return a;
 }
 
@@ -1897,7 +1897,7 @@ void func_ov000_021a6f18(void *param_1) {
         }
         c = b->mUnk_00(b);
         d = IrqDisable();
-        ThreadSwitchDisable();
+        OS_DisableScheduler();
         OS_ReceiveMessage(a, NULL, 0);
         if (b->mUnk_04 != NULL) {
             b->mUnk_04->mEntryResult = c;
@@ -1906,9 +1906,9 @@ void func_ov000_021a6f18(void *param_1) {
             OS_SendMessage(b->mUnk_08, (void *) c, 0);
         }
         func_ov000_021a7048(b);
-        ThreadSwitchEnable();
+        OS_EnableScheduler();
         IrqRestore(d);
-        ThreadSwitch();
+        OSi_RescheduleThread();
     }
 }
 

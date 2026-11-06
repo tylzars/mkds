@@ -9,7 +9,7 @@ struct Unk021a998c;
 typedef s32 (*Unk021a998cFunc)(void *param_1, u32 param_2, struct Unk021a998c *param_3);
 
 typedef struct Unk021a998c {
-    /* 00 */ struct Thread *mThread;
+    /* 00 */ struct OSThread *mThread;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u8 mState;
     /* 09 */ u8 mUnk_09;

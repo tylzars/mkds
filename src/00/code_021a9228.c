@@ -380,7 +380,7 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
     u16 *e;
     u16 *f;
     u32 g;
-    Thread *t;
+    OSThread *t;
     u32 r;
     enum { K0 } i;
     if (a->mUnk_578 == NULL || a->mUnk_57c == 0 || b->mUnk_10 == NULL || b->mUnk_0c == 0 || b->mUnk_08 == NULL ||
@@ -401,10 +401,10 @@ u32 func_ov000_021aaf38(Unk021a998c_0c *a, Unk021aaf38 *b) {
     func_ov000_021ac4b8(f, b->mUnk_08, b->mUnk_04, n);
     if (data_ov000_021b49f4 < 0x20) {
         t = data_0216ff5c.mCurrentThread;
-        g = ThreadGetSortKey(t);
-        ThreadSetSortKey(t, data_ov000_021b49f4);
+        g = OS_GetThreadPriority(t);
+        OS_SetThreadPriority(t, data_ov000_021b49f4);
         func_ov000_021ac7e8(c, d, e, n, f);
-        ThreadSetSortKey(t, g);
+        OS_SetThreadPriority(t, g);
     } else {
         func_ov000_021ac7e8(c, d, e, n, f);
     }
@@ -1465,11 +1465,11 @@ void func_ov000_021a9640(Unk021a998c *a) {
     func_ov000_021ac4b8(h, c->mUnk_56c, c->mUnk_574, d);
     func_ov000_021ac4b8(i, c->mUnk_468, b, d);
     if (data_ov000_021b49f4 < 0x20) {
-        Thread *n = data_0216ff5c.mCurrentThread;
-        u32 o = ThreadGetSortKey(n);
-        ThreadSetSortKey(n, data_ov000_021b49f4);
+        OSThread *n = data_0216ff5c.mCurrentThread;
+        u32 o = OS_GetThreadPriority(n);
+        OS_SetThreadPriority(n, data_ov000_021b49f4);
         func_ov000_021ac7e8(f, g, h, d, i);
-        ThreadSetSortKey(n, o);
+        OS_SetThreadPriority(n, o);
     } else {
         func_ov000_021ac7e8(f, g, h, d, i);
     }
