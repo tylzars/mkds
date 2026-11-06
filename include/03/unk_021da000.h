@@ -241,7 +241,7 @@ typedef struct Unk021da2b8 {
 
 extern Unk021da2b8 *data_ov003_021da2b8[];
 extern Unk021d1da8 *data_ov003_021da2c0;
-extern u8 data_ov003_021da2c4[];
+extern Unk021d1fd0 *data_ov003_021da2c4;
 extern u8 data_ov003_021da2cc;
 extern u8 data_ov003_021da2d0;
 extern Unk021da2d4Input *data_ov003_021da2d4;

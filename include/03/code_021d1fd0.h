@@ -25,15 +25,6 @@ typedef struct Unk021d2188 {
 
 #include "03/code_021d1d88.h"
 
-typedef struct Unk021d1fd0 {
-    /* 000 */ u8 mUnk_000[0x718];
-    /* 718 */ Unk021d2188 mUnk_718[2];
-    /* 788 */ Unk021d1d88 *mUnk_788;
-    /* 78c */ u8 mUnk_78c[8];
-    /* 794 */ u8 mUnk_794;
-    /* 795 */ u8 mUnk_795;
-} Unk021d1fd0;
-
 void func_ov003_021d2070(Unk021d2188 *a, s32 b, s32 c, s32 d, s32 e, u32 f, u32 g, void *h);
 
 #include "03/code_021d2fa0.h"
@@ -52,13 +43,14 @@ typedef struct Unk021d23b0 {
     /* 37 */ u8 mUnk_37;
 } Unk021d23b0;
 
-typedef struct Unk021d2490 {
+typedef struct Unk021d1fd0 {
     /* 000 */ Unk02022aa8 mUnk_000[2];
-    /* 018 */ u8 mUnk_018[0x770];
+    /* 018 */ u8 mUnk_018[0x700];
+    /* 718 */ Unk021d2188 mUnk_718[2];
     /* 788 */ Unk021d1d88 *mUnk_788;
     /* 78c */ Unk02021f9c *mUnk_78c[2];
     /* 794 */ u8 mUnk_794[4];
-} Unk021d2490;
+} Unk021d1fd0;
 
 #include "03/code_021d1770.h"
 #include "03/unk_021da000.h"
