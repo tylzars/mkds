@@ -6354,9 +6354,9 @@ func_02116cb0 kind:function(thumb,size=0x1c) addr:0x02116cb0
 func_02116ccc kind:function(thumb,size=0x1c) addr:0x02116ccc
 func_02116ce8 kind:function(thumb,size=0x26) addr:0x02116ce8
 func_02116d10 kind:function(thumb,size=0x14) addr:0x02116d10
-func_02116d24 kind:function(thumb,size=0xa4) addr:0x02116d24
+AdvanceWait kind:function(thumb,size=0xa4) addr:0x02116d24
 func_02116dc8 kind:function(thumb,size=0xc) addr:0x02116dc8
-func_02116dd4 kind:function(thumb,size=0x9c) addr:0x02116dd4
+CreateWait kind:function(thumb,size=0x9c) addr:0x02116dd4
 func_02116e70 kind:function(thumb,size=0x50) addr:0x02116e70
 func_02116ec0 kind:function(thumb,size=0x38) addr:0x02116ec0
 func_02116ef8 kind:function(thumb,size=0xb8) addr:0x02116ef8
@@ -8715,7 +8715,7 @@ data_0215c56c kind:data(any) addr:0x0215c56c
 data_0215c584 kind:data(any) addr:0x0215c584
 data_0215c59c kind:data(any) addr:0x0215c59c
 data_0215c5b4 kind:data(any) addr:0x0215c5b4
-data_0215c5d0 kind:data(any) addr:0x0215c5d0
+gWaitBnclIndices kind:data(any) addr:0x0215c5d0
 data_0215c5d8 kind:data(any) addr:0x0215c5d8
 data_0215c60c kind:data(any) addr:0x0215c60c
 data_usa_0215c610 kind:data(any) addr:0x0215c610
@@ -10702,10 +10702,10 @@ data_usa_0216d454 kind:data(any) addr:0x0216d454
 data_usa_0216d46c kind:data(any) addr:0x0216d46c
 data_0216d4a4 kind:data(any) addr:0x0216d484
 data_0216d4b0 kind:data(any) addr:0x0216d490
-data_0216d4bc kind:data(any) addr:0x0216d49c
-data_0216d4c0 kind:data(any) addr:0x0216d4a0
-data_0216d4c4 kind:data(any) addr:0x0216d4a4
-data_0216d4c8 kind:data(any) addr:0x0216d4a8
+gWaitNcgrName kind:data(any) addr:0x0216d49c
+gWaitNclrName kind:data(any) addr:0x0216d4a0
+gWaitNcerName kind:data(any) addr:0x0216d4a4
+gWaitBnclName kind:data(any) addr:0x0216d4a8
 data_usa_0216d4ac kind:data(any) addr:0x0216d4ac
 data_usa_0216d4c0 kind:data(any) addr:0x0216d4c0
 data_usa_0216d4d4 kind:data(any) addr:0x0216d4d4
@@ -12031,7 +12031,7 @@ data_0217d344 kind:bss addr:0x0217d324
 gRecordVS kind:bss addr:0x0217d328
 data_0217d34c kind:bss addr:0x0217d32c
 gRecordVSErase kind:bss addr:0x0217d330
-data_0217d354 kind:bss addr:0x0217d334
+gWait kind:bss addr:0x0217d334
 data_0217d358 kind:bss addr:0x0217d338
 data_0217d35c kind:bss addr:0x0217d33c
 gSelectCupGrid kind:bss addr:0x0217d340

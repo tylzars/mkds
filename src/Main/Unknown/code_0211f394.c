@@ -27,15 +27,15 @@ void func_0211f61c(void) {
     v2 = NULL;
     v3[0] = NULL;
     v1 = FindSceneFile(data_0216e128);
-    LocateNcer(&data_0217d380->mUnk_00, v1);
+    LocateNcer(&data_0217d380->mNcer, v1);
     v1 = FindSceneFile(data_0216e134);
     LocateNcgr2(&v2, v1);
     v1 = FindSceneFile(data_0216e130);
     LocateNclr(v3, v1);
     v1 = FindSceneFile(data_0216e124);
-    data_0217d380->mUnk_04 = v1;
+    data_0217d380->mBncl = v1;
     v1 = FindSceneFile(data_0216e12c);
-    data_0217d380->mUnk_0c = v1;
+    data_0217d380->mBnll = v1;
     CallQueueAppend((u32) 0x23, (u32) 0, v2->mData, v2->mDataSize);
     CallQueueAppend((u32) 0x1e, (u32) 0, v3[0]->mData, v3[0]->mDataSize);
 }
@@ -47,26 +47,26 @@ void func_0211f61c(void) {
 void func_0211f5e4(void) {
     u16 a;
 
-    data_0217d380->mUnk_20 = 0;
-    data_0217d380->mUnk_24 = 0;
-    a = data_0217d380->mUnk_04->mUnk_06;
-    data_0217d380->mUnk_10[0x2a].mUnk_06 = 0xc0;
-    data_0217d380->mUnk_10[a + 0xe].mUnk_06 = 0xc0;
+    data_0217d380->mNextState = 0;
+    data_0217d380->mStateFrames = 0;
+    a = data_0217d380->mBncl->mUnk_06;
+    data_0217d380->mTable[0x2a].mUnk_06 = 0xc0;
+    data_0217d380->mTable[a + 0xe].mUnk_06 = 0xc0;
 }
 
 void func_0211f5d0(void) {
-    data_0217d380->mUnk_20 = 1;
-    data_0217d380->mUnk_24 = 0;
+    data_0217d380->mNextState = 1;
+    data_0217d380->mStateFrames = 0;
 }
 
 void func_0211f598(void) {
     u16 a;
 
-    data_0217d380->mUnk_20 = 2;
-    data_0217d380->mUnk_24 = 0;
-    a = data_0217d380->mUnk_04->mUnk_06;
-    data_0217d380->mUnk_10[0x2a].mUnk_06 = 0;
-    data_0217d380->mUnk_10[a + 0xe].mUnk_06 = 0;
+    data_0217d380->mNextState = 2;
+    data_0217d380->mStateFrames = 0;
+    a = data_0217d380->mBncl->mUnk_06;
+    data_0217d380->mTable[0x2a].mUnk_06 = 0;
+    data_0217d380->mTable[a + 0xe].mUnk_06 = 0;
 }
 
 void func_0211f4b0(void *a, void *b) {
@@ -76,23 +76,23 @@ void func_0211f4b0(void *a, void *b) {
     u32 v;
 
     data_0217d380 = HeapAlloc(a, 0x28);
-    data_0217d380->mUnk_1c = 1;
+    data_0217d380->mState = 1;
     data_0217d380->mUnk_18 = b;
     func_0211f61c();
-    func_02124ed0(a, data_0217d380->mUnk_04, data_0217d380->mUnk_0c, &data_0217d380->mUnk_10);
-    data_0217d380->mUnk_14 = func_02047a28("common.bmg");
+    func_02124ed0(a, data_0217d380->mBncl, data_0217d380->mBnll, &data_0217d380->mTable);
+    data_0217d380->mCommonMessages = func_02047a28("common.bmg");
     v = GX_GetSizeOfSubOBJ();
-    func_021243ac(a, 0xe, data_0217d380->mUnk_0c, 0xc8, 0xd, 0, data_0217d380->mUnk_00, data_0217d380->mUnk_04,
-                  data_0217d380->mUnk_10, v);
+    func_021243ac(a, 0xe, data_0217d380->mBnll, 0xc8, 0xd, 0, data_0217d380->mNcer, data_0217d380->mBncl,
+                  data_0217d380->mTable, v);
     p = data_0217d380;
-    func_0212426c(1, 0xe, data_0217d380->mUnk_0c, GetBmgEntry(p->mUnk_14, 0x79), p->mUnk_04, p->mUnk_10);
+    func_0212426c(1, 0xe, data_0217d380->mBnll, GetBmgEntry(p->mCommonMessages, 0x79), p->mBncl, p->mTable);
     i = 0;
-    n = data_0217d380->mUnk_04->mUnk_06;
+    n = data_0217d380->mBncl->mUnk_06;
     for (; i < n; i++) {
-        data_0217d380->mUnk_10[i].mUnk_00 = 0;
+        data_0217d380->mTable[i].mUnk_00 = 0;
     }
-    data_0217d380->mUnk_10[0x2a].mUnk_00 = 1;
-    func_02116dd4(a, data_0217d380->mUnk_00, data_0217d380->mUnk_04, 0x2a, 0xe, 1);
+    data_0217d380->mTable[0x2a].mUnk_00 = 1;
+    CreateWait(a, data_0217d380->mNcer, data_0217d380->mBncl, 0x2a, 0xe, 1);
     func_0211f5e4();
     func_0211f5d0();
     func_0211f39c();
@@ -115,12 +115,12 @@ void func_0211f440(void) {
     u16 a;
     s16 v;
 
-    a = data_0217d380->mUnk_04->mUnk_06;
-    data_0217d380->mUnk_24++;
-    v = func_020ae4c0(1, 0xc0, 0, data_0217d380->mUnk_24, 10);
-    data_0217d380->mUnk_10[0x2a].mUnk_06 = v;
-    data_0217d380->mUnk_10[a + 0xe].mUnk_06 = v;
-    if (data_0217d380->mUnk_24 >= 10) {
+    a = data_0217d380->mBncl->mUnk_06;
+    data_0217d380->mStateFrames++;
+    v = func_020ae4c0(1, 0xc0, 0, data_0217d380->mStateFrames, 10);
+    data_0217d380->mTable[0x2a].mUnk_06 = v;
+    data_0217d380->mTable[a + 0xe].mUnk_06 = v;
+    if (data_0217d380->mStateFrames >= 10) {
         func_0211f5d0();
     }
 }
@@ -129,19 +129,19 @@ void func_0211f3e8(void) {
     u16 a;
     s16 v;
 
-    a = data_0217d380->mUnk_04->mUnk_06;
-    data_0217d380->mUnk_24++;
-    v = func_020ae4c0(1, 0, 0xc0, data_0217d380->mUnk_24, 10);
-    data_0217d380->mUnk_10[0x2a].mUnk_06 = v;
-    data_0217d380->mUnk_10[a + 0xe].mUnk_06 = v;
-    if (data_0217d380->mUnk_24 >= 10) {
+    a = data_0217d380->mBncl->mUnk_06;
+    data_0217d380->mStateFrames++;
+    v = func_020ae4c0(1, 0, 0xc0, data_0217d380->mStateFrames, 10);
+    data_0217d380->mTable[0x2a].mUnk_06 = v;
+    data_0217d380->mTable[a + 0xe].mUnk_06 = v;
+    if (data_0217d380->mStateFrames >= 10) {
         func_0211f5d0();
     }
 }
 
 void func_0211f39c(void) {
-    data_0217d380->mUnk_1c = data_0217d380->mUnk_20;
-    switch (data_0217d380->mUnk_1c) {
+    data_0217d380->mState = data_0217d380->mNextState;
+    switch (data_0217d380->mState) {
         case 0:
             func_0211f440();
             break;
@@ -151,9 +151,9 @@ void func_0211f39c(void) {
             func_0211f3e8();
             break;
     }
-    func_02116d24();
-    func_02124c30(data_0217d380->mUnk_04, data_0217d380->mUnk_00, data_0217d380->mUnk_0c, data_0217d380->mUnk_18,
-                  data_0217d380->mUnk_10);
+    AdvanceWait();
+    func_02124c30(data_0217d380->mBncl, data_0217d380->mNcer, data_0217d380->mBnll, data_0217d380->mUnk_18,
+                  data_0217d380->mTable);
 }
 
 void func_0211f394(void) {

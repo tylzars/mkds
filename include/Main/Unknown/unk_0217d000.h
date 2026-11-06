@@ -58,25 +58,25 @@ struct Ncgr;
 struct Nclr;
 struct Nscr;
 
-// Object behind data_0217d354; the object at its member 0x8 has 0xc added to it.
+// Member 0x8 of Wait; 0xc is added to it.
 typedef struct Unk0217d354_08 {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ u8 *mUnk_0c;
 } Unk0217d354_08;
 
-typedef struct Unk0217d354 {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ Unk0217d354_08 *mUnk_08;
-    /* 0c */ void *mUnk_0c;
-    /* 10 */ struct Unk02021dc8 *mUnk_10;
-    /* 14 */ struct Unk0201ea30 *mUnk_14;
-    /* 18 */ u32 mUnk_18;
+typedef struct Wait {
+    /* 00 */ struct Unk02021dc8 *mNcer;
+    /* 04 */ void *mNcgr;
+    /* 08 */ Unk0217d354_08 *mNclr;
+    /* 0c */ void *mBncl;
+    /* 10 */ struct Unk02021dc8 *mDestinationNcer;
+    /* 14 */ struct Unk0201ea30 *mDestinationBncl;
+    /* 18 */ u32 mDestinationBnclIndex;
     /* 1c */ u16 mUnk_1c;
     /* 20 */ s32 mUnk_20;
-    /* 24 */ u16 mUnk_24;
-    /* 28 */ s32 mUnk_28;
-} Unk0217d354;
+    /* 24 */ u16 mFrameIndex;
+    /* 28 */ s32 mFrameIndexFrames;
+} Wait;
 
 typedef struct RecordVSErase {
     /* 00 */ u8 mRecordVSMNcgr[4];
@@ -379,16 +379,16 @@ typedef struct Unk0217d37c {
 
 // Object behind data_0217d380 (0x28 bytes), allocated by func_0211f4b0.
 typedef struct Unk0217d380 {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ Unk0201ea30 *mUnk_04;
+    /* 00 */ struct Unk02021dc8 *mNcer;
+    /* 04 */ Unk0201ea30 *mBncl;
     /* 08 */ u8 mUnk_08[0x4];
-    /* 0c */ struct Unk0201ea30 *mUnk_0c;
-    /* 10 */ Unk02124b1c *mUnk_10;
-    /* 14 */ void *mUnk_14;
+    /* 0c */ struct Unk0201ea30 *mBnll;
+    /* 10 */ Unk02124b1c *mTable;
+    /* 14 */ void *mCommonMessages;
     /* 18 */ void *mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
-    /* 24 */ s32 mUnk_24;
+    /* 1c */ s32 mState;
+    /* 20 */ s32 mNextState;
+    /* 24 */ s32 mStateFrames;
 } Unk0217d380;
 
 // Object at data_0217d244 (0x10 bytes).
@@ -731,7 +731,7 @@ extern u32 data_0217d220;
 extern Unk0217d244 data_0217d244;
 extern struct Unk0217d344 *data_0217d344;
 extern RecordVSErase *gRecordVSErase;
-extern Unk0217d354 *data_0217d354;
+extern Wait *gWait;
 extern Unk0217d358 *data_0217d358;
 extern Unk0217d35c *data_0217d35c;
 extern SelectRaceRule *gSelectRaceRule;

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-extern const u16 data_0215c5d0[4];
+extern const u16 gWaitBnclIndices[4];
 
-void func_02116d24(void);
+void AdvanceWait(void);

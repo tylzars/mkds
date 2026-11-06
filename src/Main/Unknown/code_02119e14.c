@@ -189,7 +189,7 @@ s32 AdvanceSelectRaceRule(void) {
             break;
     }
     if (data_021759d0->mUnk_20 == 2) {
-        func_02116d24();
+        AdvanceWait();
     }
     switch (gSelectRaceRule->mRowValues[4]) {
         case 0:

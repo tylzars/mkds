@@ -1532,7 +1532,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
     }
     func_0211baec();
     p = gSelectRaceRule;
-    func_02116dd4(p->mHeap, p->mNcer, p->mBncl, 0x2a, 0xe, 1);
+    CreateWait(p->mHeap, p->mNcer, p->mBncl, 0x2a, 0xe, 1);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_0212b928(gSelectRaceRule->mHeap, gSelectRaceRule->mNclr, 9);
     }
