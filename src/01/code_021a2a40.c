@@ -94,8 +94,8 @@ void func_ov001_021a4d10(void) {
     GXS_LoadBGPltt(gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSBNcgr->mData, gEmblem->mEmblemSBNcgr->mDataSize);
     GXS_LoadBG1Char((gEmblem->mEmblemSBNcgr->mData), 0, gEmblem->mEmblemSBNcgr->mDataSize);
-    DC_FlushRange((const void *) func_ov001_02181174(), func_ov001_02181180());
-    GXS_LoadBG3Char((const void *) (func_ov001_02181174()), func_ov001_02181194(), func_ov001_02181180());
+    DC_FlushRange((const void *) GetEmblemGridCells(), GetEmblemGridCharSize());
+    GXS_LoadBG3Char((const void *) (GetEmblemGridCells()), func_ov001_02181194(), GetEmblemGridCharSize());
     DC_FlushRange(gEmblem->mEmblemSTemplateFrameNscr->mData, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
     GXS_LoadBG0Scr(gEmblem->mEmblemSTemplateFrameNscr->mData, 0, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSToolNscr->mData, gEmblem->mEmblemSToolNscr->mDataSize);
@@ -106,8 +106,8 @@ void func_ov001_021a4d10(void) {
     DC_FlushRange(gEmblem->mEmblemSTemplateDarkNscr->mData, gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
     GXS_LoadBG3Scr(gEmblem->mEmblemSTemplateDarkNscr->mData, 0, gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1218;
-    DC_FlushRange((const void *) func_ov001_021811bc(), func_ov001_02181198());
-    GXS_LoadBG3Scr((const void *) (func_ov001_021811bc()), func_ov001_021811b8(), func_ov001_02181198());
+    DC_FlushRange((const void *) GetEmblemGridScr(), GetEmblemGridScrSize());
+    GXS_LoadBG3Scr((const void *) (GetEmblemGridScr()), func_ov001_021811b8(), GetEmblemGridScrSize());
 }
 
 void func_ov001_021a4ba0(void) {
@@ -343,13 +343,13 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                     gEmblem->mUnk_1094 = 3;
                     return;
                 case 0x17:
-                    if (func_ov001_02181070()) {
-                        if (func_ov001_0218108c()) {
+                    if (IsEmblemGridChanged()) {
+                        if (IsEmblemGridSwapped()) {
                             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1fb);
                         } else {
                             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1fc);
                         }
-                        func_ov001_02181098();
+                        SwapEmblemGridCells();
                         func_ov001_021a5d00((gEmblem->mEmblemSLld), (s32) (a));
                     }
                     if (b) {
@@ -419,14 +419,14 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0x1e:
                 case 0x1f:
                     if (gEmblem->mUnk_108c == NULL) {
-                        n = (s32) (func_ov001_02181268() * func_ov001_02181268()) / 2;
+                        n = (s32) (GetEmblemGridSide() * GetEmblemGridSide()) / 2;
                         p = (u8 *) gEmblem->mEmblemTemplateBNcgr->mData + (a - 3) * n;
                         buf[0] = 0;
                         buf[1] = (func_ov001_021a63b4() == 1) ? 2 : 1;
                         buf[2] = func_ov001_021a63b4();
-                        SplitBytesIntoNibbles(p, gEmblem->mUnk_0c7c, func_ov001_02181268());
-                        func_ov001_021810bc((gEmblem->mUnk_0c7c), (buf));
-                        func_ov001_0218107c();
+                        SplitBytesIntoNibbles(p, gEmblem->mUnk_0c7c, GetEmblemGridSide());
+                        SetEmblemGridCellsFromTable((gEmblem->mUnk_0c7c), (buf));
+                        ClearEmblemGridCopied();
                         gEmblem->mUnk_108c = func_ov001_021a4914;
                         func_ov001_021a5d00((gEmblem->mEmblemTemplateSLld), (s32) (a));
                         gEmblem->mUnk_1084 = a - 3;
@@ -582,7 +582,7 @@ void func_ov001_021a30e0(void) {
                     func_ov001_02185018(entry8, -5);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1ee);
                 } else if (func_ov001_02192a14(1)) {
-                    if (data_ov001_021a6fe8[gEmblem->mUnk_107c] != 0x17 || func_ov001_02181070()) {
+                    if (data_ov001_021a6fe8[gEmblem->mUnk_107c] != 0x17 || IsEmblemGridChanged()) {
                         func_ov001_021a41c8(data_ov001_021a6fe8[gEmblem->mUnk_107c], 0);
                     }
                 } else {
@@ -794,7 +794,7 @@ void func_ov001_021a30e0(void) {
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 7), 0);
     }
 
-    if (func_ov001_02181070() && func_ov001_02184ff8(func_ov001_02185160(gEmblem->mEmblemSLld, 0x17)) == 2) {
+    if (IsEmblemGridChanged() && func_ov001_02184ff8(func_ov001_02185160(gEmblem->mEmblemSLld, 0x17)) == 2) {
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0x17), 0);
     }
 }
@@ -916,7 +916,7 @@ void func_ov001_021a2cf0(void) {
             break;
         case 1:
             func_020ca688(0);
-            func_020ac390((void *) func_ov001_02181174(), gEmblem->mUnk_087c, func_ov001_02181268());
+            func_020ac390((void *) GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
             func_020569a8(gEmblem->mUnk_087c);
             gEmblem->mUnk_1090 = 0xb;
             gEmblem->mUnk_1098 = 1;
@@ -1030,6 +1030,6 @@ void func_ov001_021a2a40(void) {
     func_020ae630(gEmblem, gEmblem->mUnk_0404);
     func_020783c8();
     func_020780b0();
-    func_020ac390((void *) func_ov001_02181174(), gEmblem->mUnk_087c, func_ov001_02181268());
-    func_020ac2c4((const u8 *) func_ov001_02181174(), gEmblem->mUnk_0a7c, func_ov001_02181268());
+    func_020ac390((void *) GetEmblemGridCells(), gEmblem->mUnk_087c, GetEmblemGridSide());
+    func_020ac2c4((const u8 *) GetEmblemGridCells(), gEmblem->mUnk_0a7c, GetEmblemGridSide());
 }

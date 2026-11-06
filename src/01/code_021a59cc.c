@@ -100,12 +100,12 @@ BOOL func_ov001_021a62c4(s32 x, s32 y) {
 }
 
 s32 func_ov001_021a62ac(void) {
-    return func_ov001_02180ce8(data_ov001_021ca420->mUnk_34, data_ov001_021ca420->mUnk_38,
-                               data_ov001_021ca420->mUnk_08);
+    return FillEmblemGridRegion(data_ov001_021ca420->mUnk_34, data_ov001_021ca420->mUnk_38,
+                                data_ov001_021ca420->mUnk_08);
 }
 
 BOOL func_ov001_021a6278(void) {
-    u8 v = func_ov001_02181004(data_ov001_021ca420->mUnk_34, data_ov001_021ca420->mUnk_38);
+    u8 v = GetEmblemGridCellValue(data_ov001_021ca420->mUnk_34, data_ov001_021ca420->mUnk_38);
 
     if (v != 0 && v != data_ov001_021ca420->mUnk_08) {
         data_ov001_021ca420->mUnk_08 = v;
@@ -119,7 +119,7 @@ void func_ov001_021a6238(s32 a, s32 b, s32 c, s32 d, s32 e) {
     data_ov001_021ca420->mUnk_10 = a;
     data_ov001_021ca420->mUnk_14 = b;
     data_ov001_021ca420->mUnk_18 = c;
-    func_ov001_02181274(c, d, e);
+    CreateEmblemGrid(c, d, e);
 }
 
 s32 func_ov001_021a5f70(s32 a, s32 x, s32 y, s32 d, s32 dx, s32 dy) {
@@ -185,7 +185,7 @@ s32 func_ov001_021a5f70(s32 a, s32 x, s32 y, s32 d, s32 dx, s32 dy) {
                 if (data_ov001_021ca420->mUnk_30 != 0) {
                     switch (data_ov001_021ca420->mUnk_04) {
                         case 0:
-                            if (func_ov001_02180eec(ax, ay, bx, by, col) != 0) {
+                            if (SetEmblemGridLine(ax, ay, bx, by, col) != 0) {
                                 result = 1;
                             } else {
                                 result = 0;
@@ -194,7 +194,7 @@ s32 func_ov001_021a5f70(s32 a, s32 x, s32 y, s32 d, s32 dx, s32 dy) {
                         case 1:
                             for (i = 0; i < 0x2000; i += 0x1000) {
                                 for (j = 0; j < 0x2000; j += 0x1000) {
-                                    if (func_ov001_02180eec(ax + i, ay + j, bx + i, by + j, col) != 0) {
+                                    if (SetEmblemGridLine(ax + i, ay + j, bx + i, by + j, col) != 0) {
                                         result = 1;
                                     }
                                 }
@@ -203,7 +203,7 @@ s32 func_ov001_021a5f70(s32 a, s32 x, s32 y, s32 d, s32 dx, s32 dy) {
                         case 2:
                             for (i = -0x1000; i < 0x2000; i += 0x1000) {
                                 for (j = -0x1000; j < 0x2000; j += 0x1000) {
-                                    if (func_ov001_02180eec(ax + i, ay + j, bx + i, by + j, col) != 0) {
+                                    if (SetEmblemGridLine(ax + i, ay + j, bx + i, by + j, col) != 0) {
                                         result = 1;
                                     }
                                 }
@@ -231,15 +231,16 @@ s32 func_ov001_021a5f70(s32 a, s32 x, s32 y, s32 d, s32 dx, s32 dy) {
             case 1:
                 switch (data_ov001_021ca420->mUnk_04) {
                     case 0:
-                        if (func_ov001_02181020(data_ov001_021ca420->mUnk_34, data_ov001_021ca420->mUnk_38, col) != 0) {
+                        if (SetEmblemGridCellValue(data_ov001_021ca420->mUnk_34, data_ov001_021ca420->mUnk_38, col) !=
+                            0) {
                             result = 1;
                         }
                         break;
                     case 1:
                         for (i = 0; i < 2; i++) {
                             for (j = 0; j < 2; j++) {
-                                if (func_ov001_02181020(data_ov001_021ca420->mUnk_34 + i,
-                                                        data_ov001_021ca420->mUnk_38 + j, col) != 0) {
+                                if (SetEmblemGridCellValue(data_ov001_021ca420->mUnk_34 + i,
+                                                           data_ov001_021ca420->mUnk_38 + j, col) != 0) {
                                     result = 1;
                                 }
                             }
@@ -248,8 +249,8 @@ s32 func_ov001_021a5f70(s32 a, s32 x, s32 y, s32 d, s32 dx, s32 dy) {
                     case 2:
                         for (i = -1; i < 2; i++) {
                             for (j = -1; j < 2; j++) {
-                                if (func_ov001_02181020(data_ov001_021ca420->mUnk_34 + i,
-                                                        data_ov001_021ca420->mUnk_38 + j, col) != 0) {
+                                if (SetEmblemGridCellValue(data_ov001_021ca420->mUnk_34 + i,
+                                                           data_ov001_021ca420->mUnk_38 + j, col) != 0) {
                                     result = 1;
                                 }
                             }
@@ -271,7 +272,7 @@ s32 func_ov001_021a5f70(s32 a, s32 x, s32 y, s32 d, s32 dx, s32 dy) {
     data_ov001_021ca420->mUnk_3c = saveX;
     data_ov001_021ca420->mUnk_40 = saveY;
     if (a == 0 && d == 0) {
-        func_ov001_0218107c();
+        ClearEmblemGridCopied();
     }
     return result;
 }

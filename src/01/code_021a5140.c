@@ -83,11 +83,11 @@ void InitEmblem(void) {
     p = data_0217aa08->mUnk_04;
     if (p->mUnk_004) {
         MI_CpuCopy8(p->mUnk_008, gEmblem->mUnk_087c, 0x200);
-        func_020ac454(gEmblem->mUnk_087c, gEmblem->mUnk_0c7c, func_ov001_02181268());
-        func_ov001_02181124(gEmblem->mUnk_0c7c);
-        func_ov001_02181098();
-        func_ov001_02181124(gEmblem->mUnk_0c7c);
-        func_ov001_02181048();
+        func_020ac454(gEmblem->mUnk_087c, gEmblem->mUnk_0c7c, GetEmblemGridSide());
+        SetEmblemGridCells(gEmblem->mUnk_0c7c);
+        SwapEmblemGridCells();
+        SetEmblemGridCells(gEmblem->mUnk_0c7c);
+        ResetEmblemGridChanges();
     }
     func_ov001_021a63cc(2);
     func_ov001_021a63c0((u8) 1);

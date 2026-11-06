@@ -107,13 +107,13 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                     gEmblem->mUnk_1094 = 3;
                     return;
                 case 0x17:
-                    if (func_ov001_02181070()) {
-                        if (func_ov001_0218108c()) {
+                    if (IsEmblemGridChanged()) {
+                        if (IsEmblemGridSwapped()) {
                             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1fb);
                         } else {
                             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1fc);
                         }
-                        func_ov001_02181098();
+                        SwapEmblemGridCells();
                         func_ov001_021a5d00((gEmblem->mEmblemSLld), (s32) (a));
                     }
                     if (b) {
@@ -183,14 +183,14 @@ void func_ov001_021a41c8(s32 a, s32 b) {
                 case 0x1e:
                 case 0x1f:
                     if (gEmblem->mUnk_108c == NULL) {
-                        n = (s32) (func_ov001_02181268() * func_ov001_02181268()) / 2;
+                        n = (s32) (GetEmblemGridSide() * GetEmblemGridSide()) / 2;
                         p = (u8 *) gEmblem->mEmblemTemplateBNcgr->mData + (a - 3) * n;
                         buf[0] = 0;
                         buf[1] = (func_ov001_021a63b4() == 1) ? 2 : 1;
                         buf[2] = func_ov001_021a63b4();
-                        SplitBytesIntoNibbles(p, gEmblem->mUnk_0c7c, func_ov001_02181268());
-                        func_ov001_021810bc((gEmblem->mUnk_0c7c), (buf));
-                        func_ov001_0218107c();
+                        SplitBytesIntoNibbles(p, gEmblem->mUnk_0c7c, GetEmblemGridSide());
+                        SetEmblemGridCellsFromTable((gEmblem->mUnk_0c7c), (buf));
+                        ClearEmblemGridCopied();
                         gEmblem->mUnk_108c = func_ov001_021a4914;
                         func_ov001_021a5d00((gEmblem->mEmblemTemplateSLld), (s32) (a));
                         gEmblem->mUnk_1084 = a - 3;

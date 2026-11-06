@@ -81,17 +81,17 @@ typedef struct MissionRunData {
     /* 48 */ struct Unk02188950 *mMapObjects[8];
 } MissionRunData;
 
-// Object behind data_ov001_021a9b88: a square grid of mUnk_00 by mUnk_00 cells.
-typedef struct Unk021a9b88 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ BOOL mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
+// A square grid of mSide by mSide cells.
+typedef struct EmblemGrid {
+    /* 00 */ s32 mSide;
+    /* 04 */ s32 mScrSide;
+    /* 08 */ s32 mTableCount;
+    /* 0c */ BOOL mCopied;
+    /* 10 */ s32 mChanged;
+    /* 14 */ s32 mSwapped;
     /* 18 */ u16 *mUnk_18;
-    /* 1c */ u8 *mUnk_1c[5];
-} Unk021a9b88;
+    /* 1c */ u8 *mBuffers[5];
+} EmblemGrid;
 
 // Allocated by InitSelectBattleStage and held in gSelectBattleStage.
 typedef struct SelectBattleStage {

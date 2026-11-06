@@ -119,7 +119,7 @@ void func_ov001_021a30e0(void) {
                     func_ov001_02185018(entry8, -5);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1ee);
                 } else if (func_ov001_02192a14(1)) {
-                    if (data_ov001_021a6fe8[gEmblem->mUnk_107c] != 0x17 || func_ov001_02181070()) {
+                    if (data_ov001_021a6fe8[gEmblem->mUnk_107c] != 0x17 || IsEmblemGridChanged()) {
                         func_ov001_021a41c8(data_ov001_021a6fe8[gEmblem->mUnk_107c], 0);
                     }
                 } else {
@@ -331,7 +331,7 @@ void func_ov001_021a30e0(void) {
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 7), 0);
     }
 
-    if (func_ov001_02181070() && func_ov001_02184ff8(func_ov001_02185160(gEmblem->mEmblemSLld, 0x17)) == 2) {
+    if (IsEmblemGridChanged() && func_ov001_02184ff8(func_ov001_02185160(gEmblem->mEmblemSLld, 0x17)) == 2) {
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0x17), 0);
     }
 }

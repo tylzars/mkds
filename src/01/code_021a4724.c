@@ -68,8 +68,8 @@ void func_ov001_021a4d10(void) {
     GXS_LoadBGPltt(gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSBNcgr->mData, gEmblem->mEmblemSBNcgr->mDataSize);
     GXS_LoadBG1Char((gEmblem->mEmblemSBNcgr->mData), 0, gEmblem->mEmblemSBNcgr->mDataSize);
-    DC_FlushRange((const void *) func_ov001_02181174(), func_ov001_02181180());
-    GXS_LoadBG3Char((const void *) (func_ov001_02181174()), func_ov001_02181194(), func_ov001_02181180());
+    DC_FlushRange((const void *) GetEmblemGridCells(), GetEmblemGridCharSize());
+    GXS_LoadBG3Char((const void *) (GetEmblemGridCells()), func_ov001_02181194(), GetEmblemGridCharSize());
     DC_FlushRange(gEmblem->mEmblemSTemplateFrameNscr->mData, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
     GXS_LoadBG0Scr(gEmblem->mEmblemSTemplateFrameNscr->mData, 0, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSToolNscr->mData, gEmblem->mEmblemSToolNscr->mDataSize);
@@ -80,8 +80,8 @@ void func_ov001_021a4d10(void) {
     DC_FlushRange(gEmblem->mEmblemSTemplateDarkNscr->mData, gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
     GXS_LoadBG3Scr(gEmblem->mEmblemSTemplateDarkNscr->mData, 0, gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1218;
-    DC_FlushRange((const void *) func_ov001_021811bc(), func_ov001_02181198());
-    GXS_LoadBG3Scr((const void *) (func_ov001_021811bc()), func_ov001_021811b8(), func_ov001_02181198());
+    DC_FlushRange((const void *) GetEmblemGridScr(), GetEmblemGridScrSize());
+    GXS_LoadBG3Scr((const void *) (GetEmblemGridScr()), func_ov001_021811b8(), GetEmblemGridScrSize());
 }
 
 void func_ov001_021a4ba0(void) {
