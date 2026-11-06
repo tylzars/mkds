@@ -251,12 +251,12 @@ void UpdateTownMonte(void *a, TownMonte *p) {
         return;
     }
     w = p->mUnk_a2;
-    if (p->mUnk_00.mUnk_78 & 4) {
+    if (p->mUnk_00.mDistanceSquaredAndFlags & 4) {
         return;
     }
-    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
         t = 2;
-    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
         t = 3;
     } else {
         t = 4;

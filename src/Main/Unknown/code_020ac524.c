@@ -92,7 +92,7 @@ void UpdateShineBalloon(void *a, ShineBalloonObject *b) {
             b->mState = 1;
             b->mUnk_00.mFlags &= ~2;
             b->mUnk_00.mFlags &= ~8;
-            b->mUnk_00.mUnk_66 = 0x1f;
+            b->mUnk_00.mAlpha = 0x1f;
             break;
         case 1:
             if (b->mTimer-- > 0) {

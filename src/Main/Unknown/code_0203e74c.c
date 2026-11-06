@@ -366,7 +366,7 @@ void func_0203e788(s32 a, s32 b) {
     ComputeRaceTime(&t.mUnk_02, &t.mUnk_03, &t.mUnk_00, 0, gRaceProgress->mUnk_000[0].mElapsedFrames);
     e->mLapTimes[5] = t;
     if ((e->mFlags & 1) != 0) {
-        gRaceProgress->mUnk_4e0 = b;
+        gRaceProgress->mEntryEndKind = b;
         q->mUnk_7c |= 0x20000000;
         q->mUnk_48 &= ~0x2000000;
         if (b == 0) {
@@ -377,7 +377,7 @@ void func_0203e788(s32 a, s32 b) {
             }
         } else {
             e->mFlags |= 0x20;
-            gRaceProgress->mUnk_4fc = 0;
+            gRaceProgress->mFramesSinceFailure = 0;
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 ((void (*)(s32)) func_020a16d0)(a);
             }

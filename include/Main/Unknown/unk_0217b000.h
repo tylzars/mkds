@@ -332,9 +332,15 @@ typedef struct KartStanding {
 typedef struct Standings {
     // One KartStanding per kart index; the entries past the kart count are unused slots.
     /* 000 */ KartStanding mKarts[8];
-    /* 380 */ s32 (*mUnk_380)(s32, s32);
-    /* 384 */ void (*mUnk_384)(s32, s32);
-    /* 388 */ s32 (*mUnk_388)(u16, u16);
+    // Called when a kart touches another kart in Battle and only the other kart has attacked, with the hit kart index
+    // and the other kart index; set by the balloon object, its result is returned to the collision code.
+    /* 380 */ s32 (*mKartHitByKartCallback)(s32, s32);
+    // Called when two karts touch in Battle and both have attacked, with both kart indices; set by the balloon object.
+    /* 384 */ void (*mKartsHitEachOtherCallback)(s32, s32);
+    // Called with the hit kart index and the index of the kart that hit it (8 when none) when a hit of the kart ends,
+    // and for a kart that hit itself; set by the balloon object and the shine mode, which take a balloon or shine from
+    // the first kart.
+    /* 388 */ s32 (*mKartHitCallback)(u16, u16);
     // Called with the kart index at the start of an elimination. Set by the balloon object (releases the kart's
     // balloons) and by the shine mode (drops the kart's shines).
     /* 38c */ void (*mKartEliminatedCallback)(u16);
@@ -342,7 +348,11 @@ typedef struct Standings {
     // overlay 1 objects.
     /* 390 */ void (*mEndCallback)(void);
     /* 394 */ u8 mUnk_394[8];
-    /* 39c */ void (*mUnk_39c)(s32, s32);
+    // Called in Battle with the kart index and the address of a Vec3 when a kart is placed or pushed: the position
+    // change of a kart set to a checkpoint position, the position change in func_02068494, and the push vector of a map
+    // object that a kart pushed; set by the balloon object, which adds that Vec3 to the positions of the kart's
+    // balloons.
+    /* 39c */ void (*mKartOffsetCallback)(s32, s32);
     // Number of Shine16 objects placed and not yet finished: AddShineCount changes it (+1 placed, -1 finished); the
     // spawner stops placing at 3. Parking every shine at once, as the shine mode's end callback does, does not
     // subtract.
@@ -354,8 +364,12 @@ typedef struct Standings {
     // becomes -1 and the callback runs. A value below 0 means the end is reached. Mode 4 stores 0 and ends through the
     // race-progress end step, which sets -1 and runs the callback.
     /* 3a8 */ s32 mEndTimer;
-    /* 3ac */ s32 mUnk_3ac;
-    /* 3b0 */ s32 mUnk_3b0;
+    // Highest KartStanding.mBalloonOrShineCount over the karts, as of the last rank re-sort (the two functions that
+    // swap ranks recompute it; func_020a10f0, which adds to a count, does not).
+    /* 3ac */ s32 mHighestBalloonOrShineCount;
+    // Lowest non-negative KartStanding.mBalloonOrShineCount over the karts, as of the last rank re-sort; 0xffff when no
+    // kart has a non-negative count.
+    /* 3b0 */ s32 mLowestBalloonOrShineCount;
     // Side id (KartStanding.mTeamId) of the winning side, -1 until a winner is decided. Set once every kart still in
     // play has the id of the rank 0 kart. In mode 4 the ids are kart indices (it is compared with the local entry
     // index).

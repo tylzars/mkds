@@ -49,10 +49,10 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
             return;
     }
     if (b->mUnk_a0 == 0 || b->mUnk_a0 == 0x7d) {
-        if ((b->mUnk_00.mUnk_78 & 4) == 0) {
-            if (b->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+        if ((b->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+            if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                 t = 2;
-            } else if (b->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+            } else if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                 t = 3;
             } else {
                 t = 4;
@@ -64,10 +64,10 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
             func_0210b7a8(&s1);
         }
     } else if (b->mUnk_a0 == 0x46 || b->mUnk_a0 == 0xaf) {
-        if ((b->mUnk_00.mUnk_78 & 4) == 0) {
-            if (b->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+        if ((b->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+            if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                 t = 2;
-            } else if (b->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+            } else if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                 t = 3;
             } else {
                 t = 4;
@@ -79,10 +79,10 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
             func_0210b7a8(&s2);
         }
     } else if (b->mUnk_a0 == 0xfa) {
-        if ((b->mUnk_00.mUnk_78 & 4) == 0) {
-            if (b->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+        if ((b->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+            if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                 t = 2;
-            } else if (b->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+            } else if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                 t = 3;
             } else {
                 t = 4;

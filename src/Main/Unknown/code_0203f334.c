@@ -175,7 +175,7 @@ BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     m = 1 << (e & 0x1f);
     r = FALSE;
     t = gCourseMap->mCheckpoints[e].mUnk_1c;
-    f = a->mUnk_4c[w];
+    f = a->mCheckpointTestedBits[w];
     if ((f & m) != 0) {
         return FALSE;
     }
@@ -213,7 +213,7 @@ BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e) {
             r = TRUE;
         }
     }
-    a->mUnk_4c[w] |= m;
+    a->mCheckpointTestedBits[w] |= m;
     return r;
 }
 

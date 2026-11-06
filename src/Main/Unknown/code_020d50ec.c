@@ -42,7 +42,7 @@ void func_020d634c(Unk020d5bf0 *p, s32 b) {
     s16 h;
     s32 i;
 
-    fl = p->mUnk_000.mUnk_78;
+    fl = p->mUnk_000.mDistanceSquaredAndFlags;
     y = p->mUnk_000.mScale.y;
     if (!(fl & 1)) {
         if (b != 0 || !(fl & 3)) {
@@ -98,7 +98,7 @@ void func_020d5fb4(void *a, Unk020d5bf0 *p) {
         }
         p->mUnk_000.mFlags &= ~2;
         p->mUnk_000.mFlags &= ~8;
-        p->mUnk_000.mUnk_66 = 1;
+        p->mUnk_000.mAlpha = 1;
         return;
     }
     x = p->mUnk_0e4.x;
@@ -159,11 +159,11 @@ void func_020d5fb4(void *a, Unk020d5bf0 *p) {
         w->y = r;
         w->z = r;
         p->mUnk_11c = u;
-        p->mUnk_000.mUnk_58.x = (r * 0x1b000) >> 12;
-        if (p->mUnk_000.mUnk_64 >= 0) {
-            func_020d5148(p->mUnk_000.mUnk_64, p->mUnk_000.mUnk_58.x);
+        p->mUnk_000.mExtent.x = (r * 0x1b000) >> 12;
+        if (p->mUnk_000.mCollisionSlotIndex >= 0) {
+            func_020d5148(p->mUnk_000.mCollisionSlotIndex, p->mUnk_000.mExtent.x);
         }
-        p->mUnk_000.mUnk_68 = ((s64) p->mUnk_000.mKindData->mUnk_2c * r) >> 12;
+        p->mUnk_000.mViewRadius = ((s64) p->mUnk_000.mKindData->mUnk_2c * r) >> 12;
         p->mUnk_118 = DivFixed12Result();
     }
     if (p->mUnk_0a4.mUnk_00.mUnk_18 == 0) {
@@ -220,11 +220,11 @@ void func_020d5dd0(Unk020d5bf0 *p) {
     v->y = r;
     v->z = r;
     p->mUnk_11c = u;
-    p->mUnk_000.mUnk_58.x = (r * 0x1b000) >> 12;
-    if (p->mUnk_000.mUnk_64 >= 0) {
-        func_020d5148(p->mUnk_000.mUnk_64, p->mUnk_000.mUnk_58.x);
+    p->mUnk_000.mExtent.x = (r * 0x1b000) >> 12;
+    if (p->mUnk_000.mCollisionSlotIndex >= 0) {
+        func_020d5148(p->mUnk_000.mCollisionSlotIndex, p->mUnk_000.mExtent.x);
     }
-    p->mUnk_000.mUnk_68 = ((s64) p->mUnk_000.mKindData->mUnk_2c * r) >> 12;
+    p->mUnk_000.mViewRadius = ((s64) p->mUnk_000.mKindData->mUnk_2c * r) >> 12;
     p->mUnk_118 = DivFixed12Result();
 }
 
@@ -284,7 +284,7 @@ void func_020d5bf0(Unk020d5bf0 *p, struct CourseMapRow *q) {
     } else {
         p->mUnk_000.mFlags &= ~2;
         p->mUnk_000.mFlags &= ~8;
-        p->mUnk_000.mUnk_66 = 0x1f;
+        p->mUnk_000.mAlpha = 0x1f;
     }
     p->mUnk_120 = (q->mUnk_2c << 12) / 100;
     if (p->mUnk_000.mKind == 0x192) {

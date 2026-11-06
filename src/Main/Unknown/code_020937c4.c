@@ -86,7 +86,7 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
             break;
         case 2:
             if (p->mUnk_a0 == 0x2d) {
-                if ((p->mUnk_00.mUnk_78 & 4) == 0) {
+                if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
                     func_0212c6f0(func_02108e6c(8), 0);
                     s = data_0216676c;
                     s.mUnk_04 = &p->mUnk_00.mPos;
@@ -125,7 +125,7 @@ void InitNsKiller2(NsKiller2 *p) {
     ParkMapObject(&p->mUnk_00);
     p->mUnk_a8 = func_020d286c(&p->mUnk_00);
     func_0210b850(p->mUnk_a8);
-    p->mUnk_00.mUnk_94->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
+    p->mUnk_00.mSound->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6b4;
 }
 
 u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d) {
@@ -143,7 +143,7 @@ u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d) {
         a->mUnk_00.mUnk_10.y = 0x4000;
         a->mUnk_00.mFlags |= data_021564ac;
         if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
-            a->mUnk_00.mUnk_78 |= data_021564b0;
+            a->mUnk_00.mDistanceSquaredAndFlags |= data_021564b0;
         }
         func_020d26f8(&a->mUnk_00, b);
     }
@@ -176,7 +176,7 @@ void DrawNsKiller2(void *a, NsKiller2 *p) {
 }
 
 void UpdateNsKiller2(void *a, NsKiller2 *p) {
-    if ((func_0207a780() & p->mUnk_00.mUnk_74) != 0) {
+    if ((func_0207a780() & p->mUnk_00.mDigitMask) != 0) {
         p->mUnk_00.mFlags |= data_021564a8;
     } else {
         p->mUnk_00.mFlags &= ~2;
@@ -184,8 +184,8 @@ void UpdateNsKiller2(void *a, NsKiller2 *p) {
     switch (p->mUnk_a4) {
         case 0:
             if (p->mUnk_a0-- > 0) {
-                if ((p->mUnk_00.mFlags & 2) == 0 && (p->mUnk_00.mUnk_78 & 8) != 0) {
-                    func_0210b7ec(p->mUnk_a8, p->mUnk_00.mUnk_78 & ~0xc000001f);
+                if ((p->mUnk_00.mFlags & 2) == 0 && (p->mUnk_00.mDistanceSquaredAndFlags & 8) != 0) {
+                    func_0210b7ec(p->mUnk_a8, p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f);
                 } else {
                     func_0210b7ec(p->mUnk_a8, func_020d4ef4(&p->mUnk_00.mPos));
                 }

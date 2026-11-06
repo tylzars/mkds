@@ -45,7 +45,7 @@ void InitFireball2(Fireball2 *a) {
     a->mUnk_00.mFlags &= ~1;
     a->mUnk_00.mFlags &= ~2;
     a->mUnk_00.mFlags &= ~8;
-    a->mUnk_00.mUnk_66 = 0x1f;
+    a->mUnk_00.mAlpha = 0x1f;
 }
 
 u8 func_0209ea10(Fireball2 *a, Kart *b, u8 *c, u8 *d) {
@@ -54,7 +54,7 @@ u8 func_0209ea10(Fireball2 *a, Kart *b, u8 *c, u8 *d) {
     v = *d;
     if (a->mUnk_19c4[b->mIndex] == 0) {
         if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
-            a->mUnk_00.mUnk_78 |= data_usa_021565e8;
+            a->mUnk_00.mDistanceSquaredAndFlags |= data_usa_021565e8;
         }
         func_020d26f8(&a->mUnk_00, b);
     }

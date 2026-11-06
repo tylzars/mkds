@@ -177,7 +177,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
             if (data_0217b4e0 != 0) {
                 object->mFlags |= data_021568c8;
             }
-            object->mUnk_64 = -1;
+            object->mCollisionSlotIndex = -1;
             if (courseRow != NULL) {
                 object->mPos.x = courseRow->mUnk_00.x;
                 object->mPos.y = courseRow->mUnk_00.y;
@@ -210,7 +210,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                 SetMapObjectScale(object, &source->mScale);
             }
             func_020d24d8(object, kindData->mUnk_30);
-            object->mUnk_7c = kindData->mUnk_34;
+            object->mUseTwoPlaneViewTest = kindData->mUnk_34;
             if (kindData->mUnk_08 != 0) {
                 object->mFlags &= ~1;
             } else {
@@ -226,13 +226,13 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                 (a->mUnk_24[2] != NULL && a->mUnk_24[2]->mUnk_10 != NULL)) {
                 object->mFlags &= ~2;
                 object->mFlags &= ~8;
-                object->mUnk_66 = 0x1f;
+                object->mAlpha = 0x1f;
             } else {
                 object->mFlags |= data_021568d4;
                 object->mFlags |= data_021568d8;
             }
             if (source != NULL) {
-                object->mUnk_74 = source->mUnk_74;
+                object->mDigitMask = source->mDigitMask;
                 object->mFlags |= source->mFlags & 0x80;
             } else if (courseRow != NULL) {
                 if (courseRow->mUnk_36 != 0) {
@@ -244,7 +244,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
             } else {
                 object->mFlags |= data_021568dc;
             }
-            object->mUnk_70 = gSoundFalloffs[2].mUnk_20;
+            object->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
             if (courseRow != NULL) {
                 if (a->mInitObject != NULL) {
                     a->mInitObject(object, courseRow, data_0216b288[i].mUnk_08);
@@ -263,7 +263,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     func_020e3af0(object->mKind) != FALSE || func_020ffabc(object->mKind) != FALSE) {
                     m |= data_021568e4;
                 }
-                object->mUnk_64 = func_020d555c(&object->mPos, func_020d252c(object), m, object);
+                object->mCollisionSlotIndex = func_020d555c(&object->mPos, func_020d252c(object), m, object);
             }
             j = data_0217b4f0->mMapObjectCount;
             data_0217b4f0->mMapObjectCount = j + 1;

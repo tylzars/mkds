@@ -69,9 +69,9 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                 if (b->mUnk_a0 == 0 || b->mUnk_a0 == 0xf || b->mUnk_a0 == 0x1f || b->mUnk_a0 == 0x37 ||
                     b->mUnk_a0 == 0x51) {
                     if (func_020d4ddc(&b->mUnk_00) == FALSE) {
-                        if (b->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                        if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
-                        } else if (b->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                        } else if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;
@@ -84,9 +84,9 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                     }
                 } else if (b->mUnk_a0 == 8 || b->mUnk_a0 == 0x14 || b->mUnk_a0 == 0x2c || b->mUnk_a0 == 0x44) {
                     if (func_020d4ddc(&b->mUnk_00) == FALSE) {
-                        if (b->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                        if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
-                        } else if (b->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                        } else if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;
@@ -99,9 +99,9 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                     }
                 } else if (b->mUnk_a0 == 0x78) {
                     if (func_020d4ddc(&b->mUnk_00) == FALSE) {
-                        if (b->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                        if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
-                        } else if (b->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                        } else if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;
@@ -121,9 +121,9 @@ void UpdatePicture(void *a, Unk0209ec80 *b) {
                 b->mUnk_a0 = n;
                 if (b->mUnk_a0 == 0) {
                     if (func_020d4ddc(&b->mUnk_00) == FALSE) {
-                        if (b->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                        if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
-                        } else if (b->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                        } else if (b->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;

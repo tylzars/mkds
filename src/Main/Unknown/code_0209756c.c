@@ -63,7 +63,7 @@ u32 func_020980ec(Flipper *p, Kart *q, void *b, u8 *c) {
             p->mUnk_00.mUnk_10.x = (s32) (((s64) e->x * f) >> 12);
             p->mUnk_00.mUnk_10.y = (s32) (((s64) e->y * f) >> 12);
             p->mUnk_00.mUnk_10.z = (s32) (((s64) e->z * f) >> 12);
-            p->mUnk_00.mUnk_78 = p->mUnk_00.mUnk_78 | data_usa_02156588;
+            p->mUnk_00.mDistanceSquaredAndFlags = p->mUnk_00.mDistanceSquaredAndFlags | data_usa_02156588;
             func_020d26ec(q, 0x1d1);
         }
         if (p->mUnk_ec8 != 0) {

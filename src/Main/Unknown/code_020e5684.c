@@ -45,7 +45,7 @@
 void func_020e5c6c(u32 a, Unk020e43a8 *b, u32 c, u16 d) {
     Unk02012f58 *v1;
     gObPakkunSf->mUnk_18 = ((*(u16 *) &b->mUnk_a0.mUnk_18.x & 0x10) >> 4);
-    if (b->mUnk_00.mUnk_80.mState == 0) {
+    if (b->mUnk_00.mStateMachine.mState == 0) {
         v1 = func_020e6cbc(&b->mUnk_00.mPos);
         func_020e67c4(gObPakkunSf, v1, &b->mUnk_00.mScale, 0, d);
         return;
@@ -59,10 +59,10 @@ void func_020e5bd4(u32 a, Unk020e43a8 *p) {
     s32 n;
 
     *(u16 *) &p->mUnk_a0.mUnk_18 = *(u16 *) &p->mUnk_a0.mUnk_18 + 1;
-    if ((*(u16 *) &p->mUnk_a0.mUnk_18 & 0x1f) == 0 && (p->mUnk_00.mUnk_78 & 4) == 0) {
-        if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+    if ((*(u16 *) &p->mUnk_a0.mUnk_18 & 0x1f) == 0 && (p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+        if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
             n = 2;
-        } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+        } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
             n = 3;
         } else {
             n = 4;
@@ -73,7 +73,7 @@ void func_020e5bd4(u32 a, Unk020e43a8 *p) {
         s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);
         func_0210b7a8(&s);
     }
-    func_02046b40(&p->mUnk_00.mUnk_80);
+    func_02046b40(&p->mUnk_00.mStateMachine);
 }
 
 u8 func_020e5ba0(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
@@ -145,7 +145,7 @@ void func_020e5990(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
 }
 
 void func_020e595c(u32 a, Unk020e43a8 *p) {
-    func_02046b40(&p->mUnk_00.mUnk_80);
+    func_02046b40(&p->mUnk_00.mStateMachine);
     func_020d77e0(&p->mUnk_a0.mUnk_0c.y, p->mUnk_00.mAngle, &p->mUnk_a0);
     Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_a0);
 }
@@ -157,9 +157,9 @@ void func_020e5950(Unk020e5950 *p0) {
 void func_020e5900(Unk020e43a8 *p) {
     p->mUnk_c8 = p->mUnk_c8 + p->mUnk_cc;
     p->mUnk_00.mAngle = p->mUnk_00.mAngle + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
-    if (p->mUnk_00.mUnk_80.mStateFrames > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
-        p->mUnk_00.mUnk_80.mNextState = 1;
-        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    if (p->mUnk_00.mStateMachine.mStateFrames > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
+        p->mUnk_00.mStateMachine.mNextState = 1;
+        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -172,9 +172,9 @@ void func_020e58c4(Unk020e43a8 *p) {
     if (*((u16 *) &p->mUnk_a0.mUnk_18.z + 1) == 0) {
         return;
     }
-    if (p->mUnk_00.mUnk_80.mStateFrames > *((u16 *) &p->mUnk_a0.mUnk_18.z + 1)) {
-        p->mUnk_00.mUnk_80.mNextState = 2;
-        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    if (p->mUnk_00.mStateMachine.mStateFrames > *((u16 *) &p->mUnk_a0.mUnk_18.z + 1)) {
+        p->mUnk_00.mStateMachine.mNextState = 2;
+        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -185,10 +185,10 @@ void func_020e58b8(Unk020e58b8 *p0) {
 void func_020e5854(Unk020e43a8 *p) {
     p->mUnk_c8 = p->mUnk_c8 - p->mUnk_cc;
     p->mUnk_00.mAngle = p->mUnk_00.mAngle + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
-    if (p->mUnk_00.mUnk_80.mStateFrames > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
+    if (p->mUnk_00.mStateMachine.mStateFrames > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
         p->mUnk_c6 = -p->mUnk_c6;
-        p->mUnk_00.mUnk_80.mNextState = 3;
-        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+        p->mUnk_00.mStateMachine.mNextState = 3;
+        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -197,9 +197,9 @@ u32 func_020e5850(u32 p0) {
 }
 
 void func_020e5830(Unk020e43a8 *p) {
-    if (p->mUnk_00.mUnk_80.mStateFrames > p->mUnk_c4) {
-        p->mUnk_00.mUnk_80.mNextState = 0;
-        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_c4) {
+        p->mUnk_00.mStateMachine.mNextState = 0;
+        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -208,7 +208,7 @@ s32 func_020e57fc(Unk020e43a8 *p, Unk020e57fc *q, s32 a, u8 *b) {
 
     x = q->mUnk_29c;
     if (x == 1 || x == 3) {
-        p->mUnk_00.mUnk_78 |= data_021590e8;
+        p->mUnk_00.mDistanceSquaredAndFlags |= data_021590e8;
     }
     return *b;
 }
@@ -221,11 +221,11 @@ void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c) {
     Vec3 s;
     s32 y;
 
-    y = p->mUnk_00.mUnk_58.y;
-    s.x = p->mUnk_00.mUnk_58.x;
+    y = p->mUnk_00.mExtent.y;
+    s.x = p->mUnk_00.mExtent.x;
     s.y = y;
     s.z = 0;
-    func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[0], &p->mUnk_00.mUnk_58, &s, b, c);
+    func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[0], &p->mUnk_00.mExtent, &s, b, c);
 }
 
 #pragma thumb on
@@ -236,8 +236,8 @@ void CreateSecondHand(void) {
 }
 
 void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q) {
-    p->mUnk_00.mUnk_58.y = (s32) (((s64) p->mUnk_00.mScale.x * 0x4b000) >> 12);
-    func_02046be8(&p->mUnk_00.mUnk_80, (UnkFunc *const *) data_0216c240, 4, p);
+    p->mUnk_00.mExtent.y = (s32) (((s64) p->mUnk_00.mScale.x * 0x4b000) >> 12);
+    func_02046be8(&p->mUnk_00.mStateMachine, (UnkFunc *const *) data_0216c240, 4, p);
     func_020d720c(&q->mUnk_0c, (u32 *) &p->mUnk_a0.mUnk_00);
     *(Unk020d7b88 *) &p->mUnk_a0.mUnk_0c.y = *(Unk020d7b88 *) &p->mUnk_a0.mUnk_00;
     *(s16 *) &p->mUnk_a0.mUnk_18.z = q->mUnk_2c;
@@ -254,8 +254,8 @@ void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q) {
         p->mUnk_cc = 0;
     }
     p->mUnk_c8 = 0;
-    p->mUnk_00.mUnk_80.mNextState = 0;
-    p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    p->mUnk_00.mStateMachine.mNextState = 0;
+    p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     p->mUnk_00.mFlags |= data_021590b0;
 }
 

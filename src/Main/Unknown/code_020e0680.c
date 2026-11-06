@@ -65,14 +65,14 @@
 #pragma thumb on
 
 void func_020e2f0c(Unk020e1e98 *a, struct CourseMapRow *b) {
-    func_02046be8(&a->mUnk_000.mUnk_80, (UnkFunc *const *) data_0216c0e8, 8, a);
+    func_02046be8(&a->mUnk_000.mStateMachine, (UnkFunc *const *) data_0216c0e8, 8, a);
     a->mUnk_0a8 = a->mUnk_000.mPos.y;
     a->mUnk_0ac = a->mUnk_000.mPos.y - 0x12000;
     a->mUnk_0b0 = a->mUnk_000.mPos.y - 0x18000;
     a->mUnk_0a4 = b->mUnk_28;
     a->mUnk_0a0 = b->mUnk_2a;
-    a->mUnk_000.mUnk_80.mNextState = 0;
-    a->mUnk_000.mUnk_80.mNextStateRequested = 1;
+    a->mUnk_000.mStateMachine.mNextState = 0;
+    a->mUnk_000.mStateMachine.mNextStateRequested = 1;
     func_020e516c(&a->mUnk_0b4.mUnk_08, &a->mUnk_000.mPos, (s32) (((s64) a->mUnk_000.mScale.x * 0x1b000) >> 12), 0x1e);
     a->mUnk_000.mFlags |= data_02158b7c;
 }
@@ -158,7 +158,7 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
             return;
         }
     }
-    f = (s32) (b->mUnk_000.mUnk_78 & 0x3FFFFFE0) > 0x77A10 && func_0203c5e4() == 0;
+    f = (s32) (b->mUnk_000.mDistanceSquaredAndFlags & 0x3FFFFFE0) > 0x77A10 && func_0203c5e4() == 0;
     if (!f) {
         if (b->mUnk_128 != 0) {
             m = b->mUnk_0fe > 0xF ? &b->mUnk_144 : &b->mUnk_000.mPos;
@@ -307,8 +307,8 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
     func_020d759c(&b->mUnk_0a4, &m, &b->mUnk_0a4, b->mUnk_152);
     Matrix3x3FromQuaternion(&b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_0a4);
     b->mUnk_10c += 0x600;
-    if (b->mUnk_000.mUnk_78 & 8) {
-        func_0210b7ec(b->mUnk_158, b->mUnk_000.mUnk_78 & 0x3FFFFFE0);
+    if (b->mUnk_000.mDistanceSquaredAndFlags & 8) {
+        func_0210b7ec(b->mUnk_158, b->mUnk_000.mDistanceSquaredAndFlags & 0x3FFFFFE0);
     }
     StartMapObjectSoundWhileRequested(&b->mUnk_000, b->mUnk_15c);
     if (b->mUnk_000.mPos.y < 0) {
@@ -511,7 +511,7 @@ void func_020e1f54(Unk020e1e98 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
     a->mUnk_15c = c->mUnk_2c;
     a->mUnk_158 = func_020d286c(&a->mUnk_000);
     func_0210b850(a->mUnk_158);
-    a->mUnk_000.mUnk_94->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6ec;
+    a->mUnk_000.mSound->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a6ec;
     a->mUnk_160 = c->mUnk_30;
 }
 
@@ -542,8 +542,8 @@ void func_020e1e38(Unk020e1dc0 *a, void *b, void (*c)(Unk020e3ef4 *, void *, u32
     for (i = 0; i < n; i++) {
         Unk020e3ef4 *e = a->mUnk_00[i];
 
-        if ((e->mUnk_000.mFlags & 0x12) == 0 && e->mUnk_000.mUnk_66 != 0) {
-            c(e, b, e->mUnk_000.mUnk_66);
+        if ((e->mUnk_000.mFlags & 0x12) == 0 && e->mUnk_000.mAlpha != 0) {
+            c(e, b, e->mUnk_000.mAlpha);
         }
     }
 }
@@ -1228,7 +1228,7 @@ void func_020e0680(Unk020e005c *a, Vec3 *b, Vec3 *c, Vec3 *d, u16 *e) {
         d->x = -a->mUnk_010.x;
         d->y = -a->mUnk_010.y;
         d->z = -a->mUnk_010.z;
-        Vec3Sub(b, &a->mUnk_004, &f);
+        Vec3Sub(b, &a->mPos, &f);
         Vec3AddScaled(Vec3DotUnrounded(&f, &a->mUnk_028), &a->mUnk_0a0, d, d);
         Vec3AddScaled(Vec3DotUnrounded(&f, &a->mUnk_034), &a->mUnk_0ac, d, d);
         Vec3AddScaled(Vec3DotUnrounded(&f, &a->mUnk_040), &a->mUnk_0b8, d, d);

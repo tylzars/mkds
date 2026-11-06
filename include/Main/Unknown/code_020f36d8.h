@@ -130,8 +130,14 @@ typedef struct RaceProgressKart {
     // local entry ended by the goal and the post-goal wait runs, 0x20 same for a failure kind, 0x40 finish pending.
     /* 30 */ u16 mFlags;
     /* 32 */ u16 mCheckpoint;
-    /* 34 */ s16 mUnk_34;
-    /* 36 */ s16 mUnk_36;
+    // Number of the last numbered checkpoint the kart has passed in sequence in this lap: set to the entered number
+    // while that is at most one more than the value (so it also falls back when the kart drives back), -1 when the lap
+    // count advances, the last number at set-up and when the kart crosses the line backwards; the lap completes when it
+    // is the last number and the kart reaches checkpoint 0.
+    /* 34 */ s16 mInOrderCheckpointNumber;
+    // Number of the last numbered checkpoint the kart entered (not required to be in sequence), -1 when the lap count
+    // advances, the last number at set-up. Written only.
+    /* 36 */ s16 mCheckpointNumber;
     /* 38 */ u16 mRoute;
     /* 3a */ u16 mHighestLap;
     /* 3c */ union {
@@ -144,12 +150,16 @@ typedef struct RaceProgressKart {
     };
     // Set by FinishRaceProgressKart for the local entry in modes 0 and 4; 0 otherwise.
     /* 3e */ s16 mScore;
-    /* 40 */ s32 mUnk_40;
+    // Position between the kart's checkpoint and the next one as of the last update, fixed point about 0 to 0x1000 (the
+    // tests accept -2 to 0x1002); it is used again as the position when the checkpoint search found no new one.
+    /* 40 */ s32 mCheckpointProgress;
     // ((mLap - 1) << 12 + mLapProgress) scaled by 1/laps, fixed point; the rank sort uses it after mLap.
     /* 44 */ s32 mRaceProgress;
     // Position within the lap, fixed point, scaled by 1/(gCourseMap->mUnk_9c + 1).
     /* 48 */ s32 mLapProgress;
-    /* 4c */ s32 mUnk_4c[0x10];
+    // One bit per checkpoint index over 16 words: set when the checkpoint was already tested in this update's search,
+    // tested to skip it, cleared for all words before each update.
+    /* 4c */ s32 mCheckpointTestedBits[0x10];
 } RaceProgressKart;
 
 // Second view of the per-kart entries (array at RaceProgress.mUnk_000): its offset X is RaceProgressKart's X - 0x14.
@@ -281,7 +291,9 @@ typedef struct RaceProgress {
     // Random generator seeded from three OS_GetTick calls, not from mSeed. Local means this console, not the local
     // player (mFlags bit 1 is the local entry). Mode 1 uses it where the other modes use mRandom.
     /* 498 */ Unk020f41c4_B mLocalRandom;
-    /* 4b0 */ Unk020f41c4_B mUnk_4b0;
+    // Random generator seeded with the constant 0xa094a2f; the map objects draw from it in mode 5 (from mRandom
+    // otherwise).
+    /* 4b0 */ Unk020f41c4_B mFixedSeedRandom;
     /* 4c8 */ RankTimeGp *mRankTimeGpFile;
     // Set once per race in every mode; read by HUD and net code.
     /* 4cc */ s32 mRaceDone;
@@ -290,9 +302,15 @@ typedef struct RaceProgress {
     /* 4d4 */ s32 *mCheckpointLapProgress;
     /* 4d8 */ u8 mUnk_4d8[0x4];
     /* 4dc */ RankPointRow *mRankPointFile;
-    /* 4e0 */ s32 mUnk_4e0;
-    /* 4e4 */ s32 mUnk_4e4;
-    /* 4e8 */ s32 mUnk_4e8;
+    // How the race of the entry flagged local in RaceProgressKart.mFlags ended: the second argument of func_0203e788 (0
+    // goal reached, other values the other ends), 6 until it has ended.
+    /* 4e0 */ s32 mEntryEndKind;
+    // Reciprocal of one more than gCourseMap's mUnk_9c, as a fixed-point factor: multiplied with a position in the
+    // route to get RaceProgressKart.mLapProgress and mCheckpointLapProgress.
+    /* 4e4 */ s32 mLapProgressScale;
+    // Reciprocal of the lap count as a fixed-point factor: multiplied with (mLap - 1, mLapProgress) to get
+    // RaceProgressKart.mRaceProgress.
+    /* 4e8 */ s32 mRaceProgressScale;
     // Read only by ComputeRaceTime: when set, the clock counts down from mTimeLimitFrameCount. Set at init in mode 4
     // (unless mUnk_2f is 6) and in mode 2 when mUnk_18 is 1.
     /* 4ec */ BOOL mTimeCountsDown;
@@ -304,7 +322,9 @@ typedef struct RaceProgress {
     // Mode 4 only: counted while the local entry ended with flag 0x10, zeroed by func_0203e788. No init write (zero
     // from the allocation).
     /* 4fa */ u16 mFramesSinceFinish;
-    /* 4fc */ u16 mUnk_4fc;
+    // Calls of the end step, counted while func_0207a218 returns non-zero, since the selected entry ended without the
+    // goal; the step waits for 0x3c and then takes the entry out.
+    /* 4fc */ u16 mFramesSinceFailure;
     /* 4fe */ u16 mUnk_4fe;
     /* 500 */ Unk0217561c_500 mUnk_500;
 } RaceProgress;

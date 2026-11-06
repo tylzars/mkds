@@ -236,7 +236,7 @@ void func_020b3728(void) {
                         case 4:
                         case 6:
                         case 10:
-                            if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mUnk_4e0 : 6) != 0) {
+                            if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) != 0) {
                                 f = FALSE;
                             }
                             break;
@@ -270,7 +270,7 @@ void func_020b3728(void) {
                     func_02089ef4((GetKart(d->mEntryIndex)->mUnk_7c & 0x2000000) ? 4 : 5);
                     break;
                 case MODE_MISSION_RUN:
-                    if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mUnk_4e0 : 6) != 0) {
+                    if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) != 0) {
                         func_02089ef4(7);
                     }
                     break;
@@ -292,7 +292,7 @@ void func_020b3728(void) {
     d = data_021759c0;
     switch (d->mMode) {
         case MODE_MISSION_RUN:
-            if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mUnk_4e0 : 6) == 0) {
+            if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) == 0) {
                 func_02089ef4(6);
             }
             break;

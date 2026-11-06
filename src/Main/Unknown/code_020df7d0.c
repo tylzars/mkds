@@ -12,9 +12,9 @@ void EnterMkdEfBubbleState1(Unk020df85c *p0) {
 }
 
 void UpdateMkdEfBubbleState1(MkdEfBubbleObject *a) {
-    if (a->mUnk_00.mUnk_80.mStateFrames >= a->mUnk_a0) {
-        a->mUnk_00.mUnk_80.mNextState = 0;
-        a->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    if (a->mUnk_00.mStateMachine.mStateFrames >= a->mUnk_a0) {
+        a->mUnk_00.mStateMachine.mNextState = 0;
+        a->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -24,7 +24,7 @@ u8 func_020df7d8(MkdEfBubbleObject *a, Unk020dea50_1 *b, void *c, u8 *d) {
     m = (1 << b->mUnk_74) & 0xff;
     if ((a->mUnk_e4 & m) == 0) {
         if (func_020d26f8(&a->mUnk_00, (Kart *) b) != 0) {
-            a->mUnk_00.mUnk_78 |= data_02158778;
+            a->mUnk_00.mDistanceSquaredAndFlags |= data_02158778;
             a->mUnk_e4 |= m;
         }
     }

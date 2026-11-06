@@ -135,7 +135,7 @@ u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
         r = o->mIndex == data_021759c0->mEntryIndex ? 1 : 0;
         c = func_020a1180();
         n = GetBalloonOrShineCount(o->mIndex);
-        func_0210b98c(p->mUnk_00.mUnk_94, func_02024974(0, r, c, n));
+        func_0210b98c(p->mUnk_00.mSound, func_02024974(0, r, c, n));
         p->mUnk_e4 = StartEffect(0x7d, &p->mUnk_00.mPos);
         p->mUnk_e8 = 0xe;
     }
@@ -279,7 +279,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                 p->mUnk_00.mUnk_10.y = 0;
                 p->mState = 1;
             }
-            func_0210b98c(p->mUnk_00.mUnk_94, 0x139);
+            func_0210b98c(p->mUnk_00.mSound, 0x139);
             return;
         case 1:
             p->mUnk_b4 += 1;
@@ -299,7 +299,7 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mUnk_a8 >= 0x1000) {
                 p->mUnk_a8 = 0x1000;
             }
-            func_0210ba38(p->mUnk_00.mUnk_94, 0x14e);
+            func_0210ba38(p->mUnk_00.mSound, 0x14e);
             return;
         case 6:
             p->mUnk_b4 += 4;
@@ -500,7 +500,7 @@ void UpdateShine16(void *a, Shine16 *p) {
             }
             p->mUnk_00.mUnk_10.y -= 0x19a;
             Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
-            if (p->mUnk_00.mUnk_10.y < 0 && p->mUnk_00.mPos.y <= p->mUnk_cc.y + p->mUnk_00.mUnk_58.x) {
+            if (p->mUnk_00.mUnk_10.y < 0 && p->mUnk_00.mPos.y <= p->mUnk_cc.y + p->mUnk_00.mExtent.x) {
                 if (func_020d3c94(&p->mUnk_00, 0, &b)) {
                     t = p->mUnk_00.mUnk_10.y;
                     Vec3Add(&p->mUnk_00.mPos, &b, &p->mUnk_00.mPos);
@@ -518,9 +518,9 @@ void UpdateShine16(void *a, Shine16 *p) {
                     p->mUnk_00.mUnk_10.y = t;
                 }
                 c.x = p->mUnk_00.mPos.x;
-                c.y = p->mUnk_00.mUnk_58.x + (p->mUnk_00.mPos.y - 0x14000);
+                c.y = p->mUnk_00.mExtent.x + (p->mUnk_00.mPos.y - 0x14000);
                 c.z = p->mUnk_00.mPos.z;
-                if (func_01ffdee4(&c, NULL, 0, p->mUnk_00.mUnk_58.x, 8, -2, &b, &d, &e.x, &f, NULL, NULL, NULL, NULL)) {
+                if (func_01ffdee4(&c, NULL, 0, p->mUnk_00.mExtent.x, 8, -2, &b, &d, &e.x, &f, NULL, NULL, NULL, NULL)) {
                     Vec3Add(&p->mUnk_00.mPos, &b, &p->mUnk_00.mPos);
                     if (f & 0x214300) {
                         t = p->mUnk_00.mUnk_10.y;
@@ -545,7 +545,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                             p->mUnk_00.mUnk_10.y = 0;
                             p->mState = 1;
                         }
-                        func_0210b98c(p->mUnk_00.mUnk_94, 0x139);
+                        func_0210b98c(p->mUnk_00.mSound, 0x139);
                     }
                     if (f & 0x1000000) {
                         p->mUnk_00.mFlags |= data_021567ac;
@@ -634,7 +634,7 @@ void func_020a5744(Vec3 *a, s32 b, s32 c) {
     p->mUnk_00.mFlags &= ~1;
     p->mUnk_00.mFlags &= ~0x20;
     AddShineCount(1);
-    func_0210b98c(p->mUnk_00.mUnk_94, 0x138);
+    func_0210b98c(p->mUnk_00.mSound, 0x138);
 }
 
 void func_020a5608(Kart *a, Kart *b) {
@@ -674,7 +674,7 @@ void func_020a5608(Kart *a, Kart *b) {
     r = a->mIndex == data_021759c0->mEntryIndex ? 1 : 0;
     c = func_020a1180();
     n = GetBalloonOrShineCount(a->mIndex);
-    func_0210b98c(p->mUnk_00.mUnk_94, func_02024974(1, r, c, n));
+    func_0210b98c(p->mUnk_00.mSound, func_02024974(1, r, c, n));
 }
 
 BOOL func_020a5268(u16 a, u16 b) {
@@ -710,7 +710,7 @@ BOOL func_020a5268(u16 a, u16 b) {
                 l->mUnk_00.mFlags &= ~4;
                 l->mUnk_00.mFlags &= ~2;
                 l->mUnk_00.mFlags &= ~8;
-                l->mUnk_00.mUnk_66 = 0x1f;
+                l->mUnk_00.mAlpha = 0x1f;
                 func_020a2ebc(l, &v);
             }
             func_020d26ec(o, 0x153);
@@ -858,7 +858,7 @@ BOOL func_020a4d94(u16 a, u16 b) {
             l->mUnk_00.mFlags &= ~4;
             l->mUnk_00.mFlags &= ~2;
             l->mUnk_00.mFlags &= ~8;
-            l->mUnk_00.mUnk_66 = 0x1f;
+            l->mUnk_00.mAlpha = 0x1f;
             func_020a2ebc(l, &v);
         }
         func_020d26ec(o, 0x153);
@@ -1184,7 +1184,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                 o->mUnk_00.mFlags &= ~4;
                 o->mUnk_00.mFlags &= ~2;
                 o->mUnk_00.mFlags &= ~8;
-                o->mUnk_00.mUnk_66 = 0x1f;
+                o->mUnk_00.mAlpha = 0x1f;
             }
         } else {
             m = GetBalloonOrShineCount(i) + (func_020a2204(i) != 0 ? 1 : 0);
@@ -1197,7 +1197,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                     o->mUnk_00.mFlags &= ~4;
                     o->mUnk_00.mFlags &= ~2;
                     o->mUnk_00.mFlags &= ~8;
-                    o->mUnk_00.mUnk_66 = 0x1f;
+                    o->mUnk_00.mAlpha = 0x1f;
                 } else {
                     SetBalloonDrawCountAndList(o, 0, NULL);
                     o->mUnk_00.mFlags |= data_02156794;

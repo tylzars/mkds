@@ -147,7 +147,7 @@ void func_020d4e28(ItemObject *p, Vec3 *v, u32 a) {
 BOOL func_020d4ddc(MapObject *p) {
     s32 d;
 
-    if (p->mUnk_78 & 4) {
+    if (p->mDistanceSquaredAndFlags & 4) {
         return TRUE;
     }
     d = data_0217b4f8.mUnk_08.y - p->mPos.y;
@@ -163,7 +163,7 @@ BOOL func_020d4d60(MapObject *p, s32 a) {
     MapObjectKindData *q;
 
     v = &p->mPos;
-    if (a > p->mUnk_70) {
+    if (a > p->mFarDistanceSquared) {
         return TRUE;
     }
     q = p->mKindData;
@@ -171,7 +171,7 @@ BOOL func_020d4d60(MapObject *p, s32 a) {
     if (h < q->mUnk_3c || q->mUnk_38 < h) {
         return TRUE;
     }
-    return (func_0207a780() & p->mUnk_74) != 0;
+    return (func_0207a780() & p->mDigitMask) != 0;
 }
 
 void func_020d4d44(Unk02012f58 *p) {
@@ -198,9 +198,10 @@ void func_020d4c28(Unk020e6fd4 *p, Unk02012f58 *a) {
         b = NULL;
         for (i = 0; i < n; i++) {
             e = t[i];
-            if (!(e->mFlags & 0x12) && e->mUnk_66 != 0) {
-                f(p, e, a, e->mUnk_66);
-                if (b != NULL && (s32) (e->mUnk_78 & ~0xc000001f) > (s32) (b->mUnk_78 & ~0xc000001f)) {
+            if (!(e->mFlags & 0x12) && e->mAlpha != 0) {
+                f(p, e, a, e->mAlpha);
+                if (b != NULL && (s32) (e->mDistanceSquaredAndFlags & ~0xc000001f) >
+                                     (s32) (b->mDistanceSquaredAndFlags & ~0xc000001f)) {
                     t[m] = e;
                     t[i] = b;
                 } else {
@@ -212,8 +213,8 @@ void func_020d4c28(Unk020e6fd4 *p, Unk02012f58 *a) {
     } else {
         for (i = 0; i < n; i++) {
             e = t[i];
-            if (!(e->mFlags & 0x12) && e->mUnk_66 != 0) {
-                f(p, e, a, e->mUnk_66);
+            if (!(e->mFlags & 0x12) && e->mAlpha != 0) {
+                f(p, e, a, e->mAlpha);
             }
         }
     }
@@ -397,31 +398,33 @@ void func_020d47e0(void) {
     b = data_021568f0;
     do {
         e = t[i];
-        e->mUnk_78 &= ~8;
+        e->mDistanceSquaredAndFlags &= ~8;
         if (!(e->mFlags & 2)) {
-            if (e->mUnk_78 & 1) {
-                if (e->mUnk_66 != 0) {
-                    e->mUnk_66 -= 1;
+            if (e->mDistanceSquaredAndFlags & 1) {
+                if (e->mAlpha != 0) {
+                    e->mAlpha -= 1;
                 }
             } else {
-                if (e->mUnk_66 < 0x1f) {
-                    e->mUnk_66 += 1;
+                if (e->mAlpha < 0x1f) {
+                    e->mAlpha += 1;
                 }
             }
             if ((i & 3) == g) {
-                if (e->mUnk_74 & f) {
-                    e->mUnk_78 = (e->mUnk_78 & 0x10) | 0x5f592e7;
+                if (e->mDigitMask & f) {
+                    e->mDistanceSquaredAndFlags = (e->mDistanceSquaredAndFlags & 0x10) | 0x5f592e7;
                     e->mFlags |= a;
                 } else {
-                    if (e->mUnk_7c != 0) {
-                        e->mUnk_78 = (e->mUnk_78 & 0x10) |
-                                     func_01ffd648(&e->mPos, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
+                    if (e->mUseTwoPlaneViewTest != 0) {
+                        e->mDistanceSquaredAndFlags = (e->mDistanceSquaredAndFlags & 0x10) |
+                                                      func_01ffd648(&e->mPos, e->mViewRadius, e->mDrawDistance,
+                                                                    e->mFarDistanceSquared, e->mAlpha);
                     } else {
-                        e->mUnk_78 = (e->mUnk_78 & 0x10) |
-                                     func_01ffd778(&e->mPos, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
+                        e->mDistanceSquaredAndFlags = (e->mDistanceSquaredAndFlags & 0x10) |
+                                                      func_01ffd778(&e->mPos, e->mViewRadius, e->mDrawDistance,
+                                                                    e->mFarDistanceSquared, e->mAlpha);
                     }
-                    e->mUnk_78 |= b;
-                    if (e->mUnk_78 & 2) {
+                    e->mDistanceSquaredAndFlags |= b;
+                    if (e->mDistanceSquaredAndFlags & 2) {
                         e->mFlags |= a;
                     } else {
                         e->mFlags &= ~0x10;
@@ -452,25 +455,27 @@ void func_020d4698(void) {
     b = data_021568f0;
     do {
         e = t[i];
-        e->mUnk_78 &= ~8;
+        e->mDistanceSquaredAndFlags &= ~8;
         if (!(e->mFlags & 2)) {
-            if (e->mUnk_74 & f) {
+            if (e->mDigitMask & f) {
                 e->mFlags |= a;
             } else {
-                if (e->mUnk_7c != 0) {
-                    e->mUnk_78 =
-                        (e->mUnk_78 & 0x10) | func_01ffd648(&e->mPos, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
+                if (e->mUseTwoPlaneViewTest != 0) {
+                    e->mDistanceSquaredAndFlags =
+                        (e->mDistanceSquaredAndFlags & 0x10) |
+                        func_01ffd648(&e->mPos, e->mViewRadius, e->mDrawDistance, e->mFarDistanceSquared, e->mAlpha);
                 } else {
-                    e->mUnk_78 =
-                        (e->mUnk_78 & 0x10) | func_01ffd778(&e->mPos, e->mUnk_68, e->mUnk_6c, e->mUnk_70, e->mUnk_66);
+                    e->mDistanceSquaredAndFlags =
+                        (e->mDistanceSquaredAndFlags & 0x10) |
+                        func_01ffd778(&e->mPos, e->mViewRadius, e->mDrawDistance, e->mFarDistanceSquared, e->mAlpha);
                 }
-                e->mUnk_78 |= b;
-                if (e->mUnk_78 & 1) {
-                    e->mUnk_66 = 0;
+                e->mDistanceSquaredAndFlags |= b;
+                if (e->mDistanceSquaredAndFlags & 1) {
+                    e->mAlpha = 0;
                 } else {
-                    e->mUnk_66 = 0x1f;
+                    e->mAlpha = 0x1f;
                 }
-                if (e->mUnk_78 & 2) {
+                if (e->mDistanceSquaredAndFlags & 2) {
                     e->mFlags |= a;
                 } else {
                     e->mFlags &= ~0x10;
@@ -610,7 +615,7 @@ s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
     for (i = 0; i < data_0217b5a8; i++) {
         if (data_0217b5bc[i] & 0x2000) {
             e = data_0217b5c4[i];
-            if (k != FALSE && !(e->mUnk_78 & 0x10)) {
+            if (k != FALSE && !(e->mDistanceSquaredAndFlags & 0x10)) {
                 continue;
             }
             if (func_020d3e34(&v, q, e, p) != FALSE) {
@@ -695,7 +700,7 @@ BOOL func_020d3e34(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
     }
     switch (c->mKindData->mUnk_08) {
         case 1:
-            t = b + c->mUnk_58.x;
+            t = b + c->mExtent.x;
             n = -t;
             dz = a->z - c->mPos.z;
             if (dz > t || dz < n) {
@@ -719,8 +724,8 @@ BOOL func_020d3e34(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
             func_020eb3f0(a, &c->mPos, t, d);
             return TRUE;
         case 2:
-            t = b + c->mUnk_58.x;
-            u = b + c->mUnk_58.y;
+            t = b + c->mExtent.x;
+            u = b + c->mExtent.y;
             n = -t;
             dz = a->z - c->mPos.z;
             if (dz > t || dz < n) {
@@ -744,10 +749,10 @@ BOOL func_020d3e34(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
             func_020eb2a0(a, &c->mPos, t, u, d);
             return TRUE;
         case 3:
-            return func_020ead80(a, &c->mPos, &c->mMatrix.mUnk_00[0], c->mUnk_58.x, c->mUnk_58.y, c->mUnk_58.y, b, d) !=
+            return func_020ead80(a, &c->mPos, &c->mMatrix.mUnk_00[0], c->mExtent.x, c->mExtent.y, c->mExtent.y, b, d) !=
                    0;
         case 4:
-            return func_020eafc4(a, &c->mPos, &c->mMatrix.mUnk_00[0], &c->mUnk_58, &c->mUnk_58, b, d) != 0;
+            return func_020eafc4(a, &c->mPos, &c->mMatrix.mUnk_00[0], &c->mExtent, &c->mExtent, b, d) != 0;
         case 0:
             return FALSE;
         case 5:
@@ -842,7 +847,7 @@ void func_020d3cc8(void) {
 }
 
 s32 func_020d3c94(MapObject *a, s32 b, Vec3 *c) {
-    return func_020d2c2c(&a->mPos, &a->mUnk_10, a->mUnk_58.x, a->mUnk_64, b, c);
+    return func_020d2c2c(&a->mPos, &a->mUnk_10, a->mExtent.x, a->mCollisionSlotIndex, b, c);
 }
 
 u32 func_020d3c7c(void) {
@@ -898,8 +903,8 @@ void func_020d3b74(void) {
                 q->mFlags &= ~0xf000;
                 q->mFlags |= (q->mFlags & 0xf) << 12;
                 q->mFlags |= data_021568dc;
-                if (q->mUnk_64 != -1) {
-                    func_020d5114(q->mUnk_64);
+                if (q->mCollisionSlotIndex != -1) {
+                    func_020d5114(q->mCollisionSlotIndex);
                 }
             }
         }
@@ -920,8 +925,8 @@ void func_020d3b10(void) {
             q->mFlags &= ~0x80;
             q->mFlags &= ~0xf;
             q->mFlags |= (q->mFlags & 0xf000) >> 12;
-            if (q->mUnk_64 != -1) {
-                func_020d50ec(q->mUnk_64);
+            if (q->mCollisionSlotIndex != -1) {
+                func_020d50ec(q->mCollisionSlotIndex);
             }
         }
         p++;
@@ -943,7 +948,7 @@ void SetMapObjectMaskAndFlagFromNumber(s32 a, MapObject *b) {
         a = (a - v1) * 0x10000 >> 0x10;
     }
     v2 = DecimalNonZeroDigitsToBitMask((u32) a);
-    b->mUnk_74 = v2;
+    b->mDigitMask = v2;
 }
 
 #pragma thumb off

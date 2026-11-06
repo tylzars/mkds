@@ -26,11 +26,11 @@ void func_020d2668(MapObject *b, SoundSource *c, s32 d, s32 e) {
     if (a == -1) {
         return;
     }
-    if (b->mUnk_78 & 0x40000000) {
+    if (b->mDistanceSquaredAndFlags & 0x40000000) {
         return;
     }
-    if (b->mUnk_94 != NULL) {
-        func_02024a28(&b->mUnk_94->mSoundSource, a, e, d);
+    if (b->mSound != NULL) {
+        func_02024a28(&b->mSound->mSoundSource, a, e, d);
     } else {
         func_02024a28(c, a, e, d);
     }
@@ -52,24 +52,24 @@ void func_020d2600(s32 c, Vec3 *d, s32 e) {
 
 void func_020d2584(MapObject *b, s32 c) {
     s32 a;
-    b->mUnk_58.y = (s64) c * b->mScale.y >> 12;
-    if (b->mUnk_64 < 0) {
+    b->mExtent.y = (s64) c * b->mScale.y >> 12;
+    if (b->mCollisionSlotIndex < 0) {
         return;
     }
     switch (b->mKindData->mUnk_08) {
         case 3:
         case 4:
         case 5:
-            a = Vec3Length(&b->mUnk_58);
+            a = Vec3Length(&b->mExtent);
             break;
         case 0:
         case 1:
         case 2:
         default:
-            a = b->mUnk_58.x;
+            a = b->mExtent.x;
             break;
     }
-    func_020d5148(b->mUnk_64, a);
+    func_020d5148(b->mCollisionSlotIndex, a);
 }
 
 s32 func_020d252c(MapObject *a) {
@@ -77,27 +77,27 @@ s32 func_020d252c(MapObject *a) {
         case 3:
         case 4:
         case 5:
-            return Vec3Length(&a->mUnk_58);
+            return Vec3Length(&a->mExtent);
         case 0:
         case 1:
         case 2:
         default:
-            return a->mUnk_58.x;
+            return a->mExtent.x;
     }
 }
 
 void func_020d24d8(MapObject *b, s32 c) {
     s32 a;
-    b->mUnk_6c = c;
+    b->mDrawDistance = c;
     if (data_021759c0->mUnk_00c == 3) {
-        b->mUnk_6c = 0x270f000;
+        b->mDrawDistance = 0x270f000;
         return;
     }
     a = gCourseMap->mSettings->mUnk_20;
     if (a == 0) {
         return;
     }
-    if (b->mUnk_6c > a) {
-        b->mUnk_6c = a;
+    if (b->mDrawDistance > a) {
+        b->mDrawDistance = a;
     }
 }

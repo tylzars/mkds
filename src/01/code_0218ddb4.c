@@ -586,9 +586,9 @@ void func_ov001_0218e4ac(Unk02188950 *a) {
 }
 
 void func_ov001_0218e474(Unk02188950 *a) {
-    a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) (a->mUnk_000.mUnk_94), (u32) (0xe), (&a->mUnk_000.mPos));
-    a->mUnk_000.mUnk_70 = data_0217cc6c[6];
+    a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    InitSoundSource((SoundSource *) (a->mUnk_000.mSound), (u32) (0xe), (&a->mUnk_000.mPos));
+    a->mUnk_000.mFarDistanceSquared = data_0217cc6c[6];
 }
 
 void func_ov001_0218e38c(Unk02188950 *a, Kart *b) {
@@ -626,7 +626,7 @@ void func_ov001_0218e298(Unk02188950 *a, Kart *b) {
     a->mUnk_2d8 = 0xc;
     a->mUnk_158 = func_ov001_0218f3ec;
     func_ov001_02188200(a, func_ov001_0218f9a8);
-    func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
+    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_02068a10(b);
     func_ov001_021888a4(a, 0, 0x32000);
     a->mUnk_0a8 = 1;
@@ -729,7 +729,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
             }
         }
         if (data_0217d20c == 0) {
-            func_02110350(b->mUnk_000.mUnk_94);
+            func_02110350(b->mUnk_000.mSound);
         } else if (func_02110324() != 0) {
             StartMapObjectSoundWhileRequested(&b->mUnk_000, (u32) (0x22a));
         } else if (data_0217d20c == 4) {

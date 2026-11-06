@@ -66,10 +66,10 @@ u32 func_0210543c(void) {
 
 void func_021053e4(Unk021052fc *p) {
     UnparkMapObject(&p->mUnk_00);
-    p->mUnk_00.mUnk_66 = 0x1f;
+    p->mUnk_00.mAlpha = 0x1f;
     p->mUnk_00.mFlags &= ~2;
     p->mUnk_00.mFlags &= ~8;
-    p->mUnk_00.mUnk_66 = 0x1f;
+    p->mUnk_00.mAlpha = 0x1f;
     p->mUnk_00.mScale.x = 0;
     p->mUnk_00.mScale.y = 0;
     p->mUnk_00.mScale.z = 0;

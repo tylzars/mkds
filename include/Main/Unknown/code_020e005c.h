@@ -47,8 +47,10 @@ typedef struct Unk020e005c_080 {
 
 typedef struct Unk020e005c {
     /* 000 */ u16 mUnk_000;
-    /* 002 */ u16 mUnk_002;
-    /* 004 */ Vec3 mUnk_004;
+    // Flags of the map object, the same bytes as MapObject.mFlags.
+    /* 002 */ u16 mFlags;
+    // Position, the same bytes as MapObject.mPos.
+    /* 004 */ Vec3 mPos;
     /* 010 */ Vec3 mUnk_010;
     /* 01c */ s32 mUnk_01c;
     /* 020 */ s32 mUnk_020;
@@ -57,13 +59,18 @@ typedef struct Unk020e005c {
     /* 034 */ Vec3 mUnk_034;
     /* 040 */ Vec3 mUnk_040;
     /* 04c */ u8 mUnk_04c[0x1a];
-    /* 066 */ u16 mUnk_066;
+    // Alpha of the object, the same bytes as MapObject.mAlpha.
+    /* 066 */ u16 mAlpha;
     /* 068 */ u8 mUnk_068[8];
-    /* 070 */ s32 mUnk_070;
+    // Squared distance beyond which bit 2 of mDistanceSquaredAndFlags is set, the same bytes as
+    // MapObject.mFarDistanceSquared.
+    /* 070 */ s32 mFarDistanceSquared;
     /* 074 */ u8 mUnk_074[0x4];
-    /* 078 */ u32 mUnk_078;
+    // Squared distance and flags word, the same bytes as MapObject.mDistanceSquaredAndFlags.
+    /* 078 */ u32 mDistanceSquaredAndFlags;
     /* 07c */ u8 mUnk_07c[0x4];
-    /* 080 */ Unk020e005c_080 mUnk_080;
+    // State machine of the kind, the same bytes as MapObject.mStateMachine.
+    /* 080 */ Unk020e005c_080 mStateMachine;
     /* 094 */ u8 mUnk_094[0xc];
     /* 0a0 */ Vec3 mUnk_0a0;
     /* 0ac */ Vec3 mUnk_0ac;

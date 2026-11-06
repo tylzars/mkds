@@ -78,7 +78,7 @@ Unk020dd7a8 *func_020dd7a8(void) {
 void func_020dd6c8(void *a, Wanwan *p, void *b, u32 c) {
     Unk02012f58 s;
 
-    if (p->mUnk_00.mUnk_80.mState == 4) {
+    if (p->mUnk_00.mStateMachine.mState == 4) {
         if (func_020b2ec0() == 0) {
             p->mUnk_00.mPos.x += p->mUnk_00.mUnk_10.x;
             p->mUnk_00.mPos.z += p->mUnk_00.mUnk_10.z;
@@ -112,7 +112,7 @@ void UpdateWanwan(void *a, Wanwan *p) {
     s32 y;
 
     h = p->mUnk_b0;
-    func_02046b40(&p->mUnk_00.mUnk_80);
+    func_02046b40(&p->mUnk_00.mStateMachine);
     p->mUnk_00.mUnk_10.y -= 0x400;
     p->mUnk_00.mPos.y += p->mUnk_00.mUnk_10.y;
     k = FALSE;
@@ -126,10 +126,10 @@ void UpdateWanwan(void *a, Wanwan *p) {
             w.x = 0;
             w.z = 0;
             if (p->mUnk_fc != 0) {
-                if (!(p->mUnk_00.mUnk_78 & 4)) {
-                    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                if (!(p->mUnk_00.mDistanceSquaredAndFlags & 4)) {
+                    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                         y = 2;
-                    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                         y = 3;
                     } else {
                         y = 4;
@@ -146,10 +146,10 @@ void UpdateWanwan(void *a, Wanwan *p) {
         if (func_01ffdee4(&v, NULL, 0, 0xd000, 8, -2, &w, &u, NULL, &f, NULL, NULL, NULL, NULL) != 0) {
             k = TRUE;
             if (p->mUnk_fc != 0) {
-                if (!(p->mUnk_00.mUnk_78 & 4)) {
-                    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                if (!(p->mUnk_00.mDistanceSquaredAndFlags & 4)) {
+                    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                         y = 2;
-                    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                         y = 3;
                     } else {
                         y = 4;
@@ -165,8 +165,8 @@ void UpdateWanwan(void *a, Wanwan *p) {
     }
     if (k != FALSE) {
         k = TRUE;
-        if (p->mUnk_00.mUnk_80.mState == 2) {
-            if (p->mUnk_00.mUnk_80.mStateFrames < 0x78) {
+        if (p->mUnk_00.mStateMachine.mState == 2) {
+            if (p->mUnk_00.mStateMachine.mStateFrames < 0x78) {
                 k = FALSE;
             }
         }
@@ -202,10 +202,10 @@ void UpdateWanwan(void *a, Wanwan *p) {
                 func_020d7b88(&u, &p->mUnk_c4);
             }
         }
-        if (p->mUnk_fc == 0 && !(p->mUnk_00.mUnk_78 & 4) && k != FALSE) {
+        if (p->mUnk_fc == 0 && !(p->mUnk_00.mDistanceSquaredAndFlags & 4) && k != FALSE) {
             b = data_0216bedc;
             b.mUnk_04 = &p->mUnk_00.mPos;
-            b.mUnk_0c = p->mUnk_00.mUnk_78 & ~0xc000001f;
+            b.mUnk_0c = p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
             func_0210b7a8(&b);
         }
     }
@@ -229,9 +229,9 @@ void UpdateWanwan(void *a, Wanwan *p) {
 
 u8 func_020dd230(Wanwan *p, void *a, u8 *b, u8 *c) {
     if (*b == 1) {
-        if (p->mUnk_00.mUnk_80.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
-            p->mUnk_00.mUnk_80.mNextState = 2;
-            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+        if (p->mUnk_00.mStateMachine.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
+            p->mUnk_00.mStateMachine.mNextState = 2;
+            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
             func_020d26f8(&p->mUnk_00, a);
         }
     }
@@ -240,9 +240,9 @@ u8 func_020dd230(Wanwan *p, void *a, u8 *b, u8 *c) {
 
 u8 func_020dd1f4(Wanwan *p, void *a, u8 *b, u8 *c) {
     if (*b == 1) {
-        if (p->mUnk_00.mUnk_80.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
-            p->mUnk_00.mUnk_80.mNextState = 2;
-            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+        if (p->mUnk_00.mStateMachine.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
+            p->mUnk_00.mStateMachine.mNextState = 2;
+            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
         }
     }
     return *c;
@@ -360,8 +360,8 @@ void UpdateWanwanState0(Wanwan *p) {
                 (s64) e * e) {
                 p->mUnk_1f0 = &GetKart(u)->mPos;
                 p->mUnk_1f4 = &GetKart(u)->mVelocity;
-                p->mUnk_00.mUnk_80.mNextState = 1;
-                p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+                p->mUnk_00.mStateMachine.mNextState = 1;
+                p->mUnk_00.mStateMachine.mNextStateRequested = 1;
             }
         }
     }
@@ -373,7 +373,7 @@ void UpdateWanwanState0(Wanwan *p) {
                              44),
                       &p->mUnk_d4);
     }
-    if (p->mUnk_00.mUnk_80.mStateFrames < 0x40) {
+    if (p->mUnk_00.mStateMachine.mStateFrames < 0x40) {
         p->mUnk_ec += 0x1c;
     }
 }
@@ -387,12 +387,12 @@ void EnterWanwanState1(Wanwan *p) {
     p->mUnk_1e0 = p->mUnk_00.mPos;
     p->mUnk_1d8->mUnk_a8 = 0x219;
     p->mUnk_1f8 = 0;
-    if (p->mUnk_00.mUnk_78 & 4) {
+    if (p->mUnk_00.mDistanceSquaredAndFlags & 4) {
         return;
     }
-    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
         k = 2;
-    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
         k = 3;
     } else {
         k = 4;
@@ -411,7 +411,7 @@ void UpdateWanwanState1(Wanwan *p) {
     s32 k;
     s32 m;
 
-    if (p->mUnk_00.mUnk_80.mStateFrames > p->mUnk_1f8) {
+    if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_1f8) {
         Vec3Sub(p->mUnk_1f0, &p->mUnk_00.mPos, &a);
         t = (s32) (((s64) p->mUnk_1f4->x * a.z - (s64) p->mUnk_1f4->z * a.x) >> 12);
         t = -t >> 12;
@@ -469,9 +469,9 @@ void UpdateWanwanState1(Wanwan *p) {
             p->mUnk_00.mUnk_10.z -= (s32) (((s64) m * a.z) >> 12);
         }
     }
-    if (p->mUnk_00.mUnk_80.mStateFrames >= 0xb4) {
-        p->mUnk_00.mUnk_80.mNextState = 3;
-        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    if (p->mUnk_00.mStateMachine.mStateFrames >= 0xb4) {
+        p->mUnk_00.mStateMachine.mNextState = 3;
+        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -501,28 +501,28 @@ void UpdateWanwanState2(Wanwan *p) {
                                  44),
                           &p->mUnk_d4);
         }
-        if (p->mUnk_00.mUnk_80.mStateFrames < 0x40) {
+        if (p->mUnk_00.mStateMachine.mStateFrames < 0x40) {
             p->mUnk_ec += 0x1c;
         }
-        if (p->mUnk_00.mUnk_80.mStateFrames >= 0x28) {
+        if (p->mUnk_00.mStateMachine.mStateFrames >= 0x28) {
             p->mUnk_e8 += 0x200;
         } else {
             p->mUnk_00.mUnk_10.y -= 0x266;
         }
         if (p->mUnk_e8 > 0x10555) {
-            p->mUnk_00.mUnk_80.mNextState = 5;
-            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+            p->mUnk_00.mStateMachine.mNextState = 5;
+            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
         }
     } else {
         if (p->mUnk_e8 == 0xd000) {
             p->mUnk_00.mUnk_10.y -= 0x19a;
         }
-        if (p->mUnk_00.mUnk_80.mStateFrames >= 0x78) {
+        if (p->mUnk_00.mStateMachine.mStateFrames >= 0x78) {
             p->mUnk_e8 += 0x100;
         }
         if (p->mUnk_e8 > 0x10555) {
-            p->mUnk_00.mUnk_80.mNextState = 3;
-            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+            p->mUnk_00.mStateMachine.mNextState = 3;
+            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
         }
     }
 }
@@ -555,9 +555,9 @@ void UpdateWanwanState3(Wanwan *p) {
         p->mUnk_00.mPos.x += p->mUnk_00.mUnk_10.x;
         p->mUnk_00.mPos.z += p->mUnk_00.mUnk_10.z;
     }
-    if (p->mUnk_00.mUnk_80.mStateFrames >= 0xb4) {
-        p->mUnk_00.mUnk_80.mNextState = 0;
-        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    if (p->mUnk_00.mStateMachine.mStateFrames >= 0xb4) {
+        p->mUnk_00.mStateMachine.mNextState = 0;
+        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 

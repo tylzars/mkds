@@ -228,7 +228,7 @@ void func_020688a0(Kart *a) {
     a->mUnk_48 = a->mUnk_48 | 0x2000;
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
-            b = gRaceProgress->mUnk_4e0;
+            b = gRaceProgress->mEntryEndKind;
         } else {
             b = 6;
         }

@@ -66,10 +66,10 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
             if (v1 == 0 || v1 == 3) {
                 p->mUnk_108 = p->mUnk_108 | m;
                 if (data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind != 2) {
-                    if ((p->mUnk_00.mUnk_78 & 4) == 0) {
-                        if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                    if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+                        if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
-                        } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                        } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;
@@ -81,7 +81,7 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                         func_0210b7a8(&s);
                     }
                 }
-                p->mUnk_00.mUnk_78 = p->mUnk_00.mUnk_78 | data_021564bc;
+                p->mUnk_00.mDistanceSquaredAndFlags = p->mUnk_00.mDistanceSquaredAndFlags | data_021564bc;
                 return 0;
             }
             if (g == 1 && (v1 == 4 || (v1 == 5 && p->mUnk_a0 > 0x7800) || v1 == 1)) {
@@ -148,11 +148,11 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                     p->mUnk_f8 = -0x30;
                     p->mUnk_fc = 0x800;
                     p->mUnk_100 = 0x100;
-                    p->mUnk_00.mUnk_78 = p->mUnk_00.mUnk_78 | data_021564bc;
-                    if ((p->mUnk_00.mUnk_78 & 4) == 0) {
-                        if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                    p->mUnk_00.mDistanceSquaredAndFlags = p->mUnk_00.mDistanceSquaredAndFlags | data_021564bc;
+                    if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+                        if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
-                        } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                        } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                             t = 3;
                         } else {
                             t = 4;
@@ -175,7 +175,7 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
             }
         }
     }
-    p->mUnk_00.mUnk_78 = p->mUnk_00.mUnk_78 | data_021564bc;
+    p->mUnk_00.mDistanceSquaredAndFlags = p->mUnk_00.mDistanceSquaredAndFlags | data_021564bc;
     p->mUnk_00.mUnk_10.x = 0;
     p->mUnk_00.mUnk_10.y = 0;
     p->mUnk_00.mUnk_10.z = 0;
@@ -209,7 +209,7 @@ u32 func_02096f54(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
         p->mUnk_f8 = -0x30;
         p->mUnk_fc = 0x800;
         p->mUnk_100 = 0x100;
-        p->mUnk_00.mUnk_78 = p->mUnk_00.mUnk_78 | data_021564b8;
+        p->mUnk_00.mDistanceSquaredAndFlags = p->mUnk_00.mDistanceSquaredAndFlags | data_021564b8;
         if ((p->mUnk_00.mFlags & 0x800) == 0) {
             p->mState = 7;
         }
@@ -225,7 +225,7 @@ BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
         return FALSE;
     }
     d = Vec3Length(&s);
-    if (d >= p->mUnk_00.mUnk_58.x + b) {
+    if (d >= p->mUnk_00.mExtent.x + b) {
         return FALSE;
     }
     if (p->mState == 1) {
@@ -238,7 +238,7 @@ BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
         if ((s64) s.x * s.x + (s64) s.y * s.y + (s64) s.z * s.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&s, &s);
         }
-        d = p->mUnk_00.mUnk_58.x + b - d;
+        d = p->mUnk_00.mExtent.x + b - d;
         c->x = (s32) (((s64) s.x * d) >> 12);
         c->y = (s32) (((s64) s.y * d) >> 12);
         c->z = (s32) (((s64) s.z * d) >> 12);
@@ -399,12 +399,12 @@ static inline void func_02095fec_inline_2(CoverPooHole *p, s32 n) {
     Unk0210b7a8 s;
     s32 v;
 
-    if (p->mUnk_00.mUnk_78 & 4) {
+    if (p->mUnk_00.mDistanceSquaredAndFlags & 4) {
         return;
     }
-    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
         v = 2;
-    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
         v = 3;
     } else {
         v = 4;

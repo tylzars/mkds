@@ -49,7 +49,7 @@ void func_ov001_0218ae60(Unk02188950 *a) {
     func_ov001_02188cec(a, 0);
     func_ov001_02187518(a, (u32) (0), (u32) (0), (u32) (0), (u32) (0x411), (u32) (0));
     func_ov001_02187518(a, (u32) (0), (u32) (0), (u32) (0), (u32) (0x412), (u32) (0));
-    func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
+    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     a->mUnk_000.mFlags &= ~0x20;
     func_ov001_02188200(a, NULL);
 }

@@ -67,7 +67,7 @@ void func_020a2350(u32 p0) {
 }
 
 void func_020a233c(s32 (*p0)(u16 a, u16 b)) {
-    gStandings->mUnk_388 = p0;
+    gStandings->mKartHitCallback = p0;
 }
 
 // Stores the kart-eliminated callback.
@@ -140,8 +140,8 @@ void func_020a21bc(s32 a, s32 b) {
     if (b == 0) {
         return;
     }
-    if (gStandings->mUnk_39c != NULL) {
-        gStandings->mUnk_39c(a, b);
+    if (gStandings->mKartOffsetCallback != NULL) {
+        gStandings->mKartOffsetCallback(a, b);
     }
 }
 
@@ -193,22 +193,22 @@ s32 func_020a1ee4(s32 a, s32 b) {
         v4->mUnk_24[a] = 1;
     }
     if (f11 == FALSE && t == FALSE && f5 != FALSE && f4 != 0) {
-        if (gStandings->mUnk_384 != NULL) {
-            gStandings->mUnk_384(a, b);
+        if (gStandings->mKartsHitEachOtherCallback != NULL) {
+            gStandings->mKartsHitEachOtherCallback(a, b);
             return 1;
         }
     } else if (f11 == FALSE && f4 != 0) {
         f4 = 0;
         if (func_0207a8a4(b) == 1) {
             v3->mUnk_20 = TRUE;
-            if (gStandings->mUnk_380 != NULL) {
-                f4 = gStandings->mUnk_380(a, b);
+            if (gStandings->mKartHitByKartCallback != NULL) {
+                f4 = gStandings->mKartHitByKartCallback(a, b);
                 if ((v1->mUnk_4c & 0x400000) == 0) {
                     func_0206c17c(v1);
                 }
             }
-        } else if (gStandings->mUnk_380 != NULL) {
-            f4 = gStandings->mUnk_380(a, b);
+        } else if (gStandings->mKartHitByKartCallback != NULL) {
+            f4 = gStandings->mKartHitByKartCallback(a, b);
             if ((v1->mUnk_4c & 0x400000) == 0) {
                 func_0206c17c(v1);
             }
@@ -218,14 +218,14 @@ s32 func_020a1ee4(s32 a, s32 b) {
         f4 = 0;
         if (func_0207a8a4(a) == 1) {
             v4->mUnk_20 = TRUE;
-            if (gStandings->mUnk_380 != NULL) {
-                f4 = gStandings->mUnk_380(b, a);
+            if (gStandings->mKartHitByKartCallback != NULL) {
+                f4 = gStandings->mKartHitByKartCallback(b, a);
                 if ((v2->mUnk_4c & 0x400000) == 0) {
                     func_0206c17c(v2);
                 }
             }
-        } else if (gStandings->mUnk_380 != NULL) {
-            f4 = gStandings->mUnk_380(b, a);
+        } else if (gStandings->mKartHitByKartCallback != NULL) {
+            f4 = gStandings->mKartHitByKartCallback(b, a);
             if ((v2->mUnk_4c & 0x400000) == 0) {
                 func_0206c17c(v2);
             }
@@ -335,13 +335,15 @@ void func_020a1b6c(u16 a) {
         }
     }
     n = data_021759c0->mKartCount;
-    gStandings->mUnk_3b0 = 0xffff;
-    gStandings->mUnk_3ac = 0;
+    gStandings->mLowestBalloonOrShineCount = 0xffff;
+    gStandings->mHighestBalloonOrShineCount = 0;
     for (j = 0; j < n; j++) {
         v = gStandings->mKarts[j].mBalloonOrShineCount;
-        gStandings->mUnk_3b0 = (v < gStandings->mUnk_3b0 && v >= 0) ? v : gStandings->mUnk_3b0;
+        gStandings->mLowestBalloonOrShineCount =
+            (v < gStandings->mLowestBalloonOrShineCount && v >= 0) ? v : gStandings->mLowestBalloonOrShineCount;
         v = gStandings->mKarts[j].mBalloonOrShineCount;
-        gStandings->mUnk_3ac = (v > gStandings->mUnk_3ac) ? v : gStandings->mUnk_3ac;
+        gStandings->mHighestBalloonOrShineCount =
+            (v > gStandings->mHighestBalloonOrShineCount) ? v : gStandings->mHighestBalloonOrShineCount;
     }
 }
 
@@ -369,13 +371,15 @@ void func_020a19f8(u16 a) {
         }
     }
     n = data_021759c0->mKartCount;
-    gStandings->mUnk_3b0 = 0xffff;
-    gStandings->mUnk_3ac = 0;
+    gStandings->mLowestBalloonOrShineCount = 0xffff;
+    gStandings->mHighestBalloonOrShineCount = 0;
     for (j = 0; j < n; j++) {
         v = gStandings->mKarts[j].mBalloonOrShineCount;
-        gStandings->mUnk_3b0 = (v < gStandings->mUnk_3b0 && v >= 0) ? v : gStandings->mUnk_3b0;
+        gStandings->mLowestBalloonOrShineCount =
+            (v < gStandings->mLowestBalloonOrShineCount && v >= 0) ? v : gStandings->mLowestBalloonOrShineCount;
         v = gStandings->mKarts[j].mBalloonOrShineCount;
-        gStandings->mUnk_3ac = (v > gStandings->mUnk_3ac) ? v : gStandings->mUnk_3ac;
+        gStandings->mHighestBalloonOrShineCount =
+            (v > gStandings->mHighestBalloonOrShineCount) ? v : gStandings->mHighestBalloonOrShineCount;
     }
 }
 
@@ -466,7 +470,7 @@ void func_020a1748(u16 a) {
     e->mUnk_1c = -2;
     e->mUnk_18 = -2;
     e->mUnk_44 = a;
-    gStandings->mUnk_388(a, a);
+    gStandings->mKartHitCallback(a, a);
 }
 
 void func_020a1728(int a) {
@@ -513,8 +517,8 @@ u16 func_020a1520(void) {
     }
     gStandings->mUnk_3a4 = v;
     gStandings->mUnk_3a2 = data_021565f0[gStandings->mUnk_3a4];
-    a = gStandings->mUnk_3b0;
-    if (a != gStandings->mUnk_3ac) {
+    a = gStandings->mLowestBalloonOrShineCount;
+    if (a != gStandings->mHighestBalloonOrShineCount) {
         n = data_021759c0->mKartCount;
         for (m = 0; m <= a; m++) {
             for (i = n - 1; i >= 0; i--) {
@@ -671,7 +675,7 @@ u16 func_020a119c(void) {
 }
 
 u16 func_020a1180(void) {
-    return gStandings->mUnk_3ac;
+    return gStandings->mHighestBalloonOrShineCount;
 }
 
 // Returns the kart's count, 0 when it is negative.
@@ -726,8 +730,8 @@ s32 func_020a1048(u16 a) {
     d = gStandings;
     r = FALSE;
     v = d->mKarts[a].mBalloonOrShineCount;
-    if (d->mUnk_3b0 == v) {
-        if (d->mUnk_3ac != v) {
+    if (d->mLowestBalloonOrShineCount == v) {
+        if (d->mHighestBalloonOrShineCount != v) {
             r = TRUE;
         }
     }
@@ -877,7 +881,7 @@ void UpdateStandings(void) {
                     gStandings->mKarts[i].mUnk_64 = 10;
                 }
             }
-            if (gStandings->mUnk_388 != NULL) {
+            if (gStandings->mKartHitCallback != NULL) {
                 b = TRUE;
                 f = o->mUnk_48;
                 a = (f & 0x200) != 0;
@@ -906,7 +910,7 @@ void UpdateStandings(void) {
                 }
                 if (e->mUnk_1c == 0) {
                     e->mUnk_1c = -2;
-                    gStandings->mUnk_388((u16) i, 8);
+                    gStandings->mKartHitCallback((u16) i, 8);
                     e->mUnk_44 = i;
                 } else if (e->mUnk_1c >= 0) {
                     e->mUnk_1c = e->mUnk_1c + 1;
@@ -932,7 +936,7 @@ void UpdateStandings(void) {
                 }
                 if (e->mUnk_18 == 0) {
                     e->mUnk_18 = -2;
-                    gStandings->mUnk_388((u16) i, e->mUnk_44);
+                    gStandings->mKartHitCallback((u16) i, e->mUnk_44);
                     e->mUnk_44 = i;
                 } else if (e->mUnk_18 >= 0) {
                     e->mUnk_18 = e->mUnk_18 + 1;

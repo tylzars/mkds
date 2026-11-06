@@ -45,7 +45,7 @@ void InitKuribo(Kuribo *a, CourseMapRow *b) {
         a->mUnk_a0 = e->mUnk_00.y;
         a->mUnk_f8 = b->mUnk_28 * 0xb4 / 100;
         a->mUnk_fc = b->mUnk_2a == 0;
-        func_02046be8(&a->mUnk_00.mUnk_80, data_0216be68, 6, a);
+        func_02046be8(&a->mUnk_00.mStateMachine, data_0216be68, 6, a);
         func_020d90a8(&a->mUnk_cc, a->mUnk_00.mCourseMapRow->mUnk_2e, 1);
         func_020d8b88(&a->mUnk_cc, &a->mUnk_00.mPos);
         a->mUnk_00.mPos.y = a->mUnk_a0;
@@ -63,14 +63,14 @@ void InitKuribo(Kuribo *a, CourseMapRow *b) {
         }
         a->mUnk_f0 = 0;
         a->mUnk_f4 = 0;
-        o = &a->mUnk_00.mUnk_80;
+        o = &a->mUnk_00.mStateMachine;
         o->mNextState = 0;
         o->mNextStateRequested = 1;
     } else {
         a->mUnk_cc.mUnk_08 = 0xffff;
         a->mUnk_a0 = 0;
         a->mUnk_fc = 0;
-        func_02046be8(&a->mUnk_00.mUnk_80, data_0216be68, 6, a);
+        func_02046be8(&a->mUnk_00.mStateMachine, data_0216be68, 6, a);
         a->mUnk_f8 = 0x1000;
         {
             Unk020d7b88 x = {0, 0, 0, 0x1000};
@@ -80,7 +80,7 @@ void InitKuribo(Kuribo *a, CourseMapRow *b) {
             Unk020d7b88 y = {0, 0, 0, 0x1000};
             a->mUnk_b4 = y;
         }
-        func_02046bcc(&a->mUnk_00.mUnk_80, 1);
+        func_02046bcc(&a->mUnk_00.mStateMachine, 1);
         a->mUnk_00.mUnk_10.x = 0;
         a->mUnk_00.mUnk_10.y = 0;
         a->mUnk_00.mUnk_10.z = 0;

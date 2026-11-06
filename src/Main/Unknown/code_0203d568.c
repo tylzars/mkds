@@ -114,7 +114,7 @@ static inline s32 func_0203df74_c_inline(CourseMapRoute *r, u16 c, s32 v) {
         x = DivFixed12(t + v, r->mEntryCount << 12);
     }
     t = x + (r->mUnk_0a << 12);
-    return (s32) (((s64) t * gRaceProgress->mUnk_4e4 + 0x800) >> 12);
+    return (s32) (((s64) t * gRaceProgress->mLapProgressScale + 0x800) >> 12);
 }
 
 static inline void func_0203e550_inline(s32 a) {
@@ -132,8 +132,8 @@ void func_0203e550(RaceProgressKart *a) {
     if (a->mLap < 0x7fffffff) {
         a->mLap = a->mLap + 1;
     }
-    a->mUnk_36 = -1;
-    a->mUnk_34 = -1;
+    a->mCheckpointNumber = -1;
+    a->mInOrderCheckpointNumber = -1;
     f = FALSE;
     switch (a->mStatus) {
         case 1:
@@ -222,19 +222,19 @@ void func_0203e370(RaceProgressKart *a, s32 b) {
 
     c = gCourseMap->mCheckpoints[a->mCheckpoint].mNumber;
     if (c != -1) {
-        a->mUnk_36 = c;
-        if (a->mUnk_34 + 1 >= c) {
-            a->mUnk_34 = c;
+        a->mCheckpointNumber = c;
+        if (a->mInOrderCheckpointNumber + 1 >= c) {
+            a->mInOrderCheckpointNumber = c;
         }
     }
-    if (b == 0 && a->mUnk_34 >= gCourseMap->mNumberedCheckpointCount - 1) {
+    if (b == 0 && a->mInOrderCheckpointNumber >= gCourseMap->mNumberedCheckpointCount - 1) {
         func_0203e550(a);
     } else if (a->mCheckpoint == 0 && b == gCourseMap->mLastCheckpoint) {
         if (a->mLap > -100) {
             a->mLap = a->mLap - 1;
         }
-        a->mUnk_36 = gCourseMap->mNumberedCheckpointCount - 1;
-        a->mUnk_34 = gCourseMap->mNumberedCheckpointCount - 1;
+        a->mCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
+        a->mInOrderCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
     }
     a->mCheckpoint = b;
     a->mRoute = func_0203df74_inline(b);
@@ -283,19 +283,19 @@ void UpdateRaceProgressKart(Vec3 *a, RaceProgressKart *b) {
         if (gCourseMap->mNumberedCheckpointCount >= 1) {
             k = gRaceProgress->mCheckpointLapProgress[gCourseMap->mNumberedCheckpointCount - 1];
         }
-        if (w <= gRaceProgress->mCheckpointLapProgress[b->mUnk_34 + 1]) {
+        if (w <= gRaceProgress->mCheckpointLapProgress[b->mInOrderCheckpointNumber + 1]) {
             func_0203e370(b, p);
         } else if (b->mCheckpoint == 0 && w > k) {
             func_0203e370(b, p);
         } else {
-            v = b->mUnk_40;
+            v = b->mCheckpointProgress;
             w = func_0203df74_c_inline(r, b->mCheckpoint, v);
         }
     }
-    b->mUnk_40 = v;
+    b->mCheckpointProgress = v;
     b->mLapProgress = w;
     k = ((b->mLap - 1) << 12) + b->mLapProgress;
-    b->mRaceProgress = (s32) (((s64) k * gRaceProgress->mUnk_4e8 + 0x800) >> 12);
+    b->mRaceProgress = (s32) (((s64) k * gRaceProgress->mRaceProgressScale + 0x800) >> 12);
 }
 
 void UpdateRaceProgressKarts(void) {
@@ -327,7 +327,7 @@ void UpdateRaceProgressKarts(void) {
         e = &gRaceProgress->mKarts[i];
         if (e->mStatus != 4 && data_021759c0->mUnk_00c != 6) {
             for (k = 0; k < 16; k++) {
-                e->mUnk_4c[k] = 0;
+                e->mCheckpointTestedBits[k] = 0;
             }
             GetKartPos(&v, i);
             GetKartForward(GetKart(i), &w);

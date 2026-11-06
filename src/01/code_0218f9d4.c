@@ -67,9 +67,9 @@
 #include "Main/Unknown/code_02061654.h"
 
 void func_ov001_02192890(Unk02188950 *a) {
-    a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) (a->mUnk_000.mUnk_94), (u32) (0xc), (&a->mUnk_000.mPos));
-    a->mUnk_000.mUnk_70 = data_0217cbec[0x14];
+    a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    InitSoundSource((SoundSource *) (a->mUnk_000.mSound), (u32) (0xc), (&a->mUnk_000.mPos));
+    a->mUnk_000.mFarDistanceSquared = data_0217cbec[0x14];
 }
 
 void func_ov001_02192878(Unk02188950 *a) {
@@ -88,13 +88,13 @@ void func_ov001_021927c0(Unk02188950 *a) {
     a->mUnk_000.mUnk_10.z = ((s64) a->mPrm->mUnk_144 * gPairsByAngle[((u16) a->mMoveAngle >> 4 << 1) + 1]) >> 12;
     a->mUnk_2d8 = 0xd;
     func_ov001_02188200(a, func_ov001_021927c0);
-    func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
+    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
 }
 
 void func_ov001_02192794(Unk02188950 *a) {
     a->mUnk_2d8 = 0xb;
     func_ov001_02188200(a, func_ov001_02192878);
-    a->mUnk_000.mUnk_78 = a->mUnk_000.mUnk_78 | (*(u32 *) &data_ov001_021a65d4);
+    a->mUnk_000.mDistanceSquaredAndFlags = a->mUnk_000.mDistanceSquaredAndFlags | (*(u32 *) &data_ov001_021a65d4);
 }
 
 void func_ov001_02192694(void) {
@@ -463,7 +463,7 @@ void func_ov001_02191618(Unk02188950 *a) {
     func_ov001_02188cec(a, 0);
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
-    func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
+    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x414), (u32) (0));
     func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x415), (u32) (0));
     StartMapObjectSound(&a->mUnk_000, (u32) (0x218));
@@ -479,7 +479,7 @@ void func_ov001_02191550(Unk02188950 *a) {
     func_ov001_02188cec(a, 0);
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
-    func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
+    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x414), (u32) (0));
     func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x415), (u32) (0));
     StartMapObjectSound(&a->mUnk_000, (u32) (0x218));
@@ -550,7 +550,7 @@ void func_ov001_02191258(Unk02188950 *a) {
     func_ov001_02188cec(a, 0);
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
-    func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
+    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x414), (u32) (0));
     func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x415), (u32) (0));
     StartMapObjectSound(&a->mUnk_000, (u32) (0x218));
@@ -1245,7 +1245,7 @@ void func_ov001_0218fd20(Unk02188950 *a, Unk0218fd20 *b) {
         StartEffect(0x3eb, &b->mUnk_50);
         StartEffect(0x3ec, &b->mUnk_50);
         StartEffect(0x3ed, &b->mUnk_50);
-        a->mUnk_000.mUnk_78 |= data_ov001_021a65c4;
+        a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a65c4;
         func_ov001_0219006c(data_021759c0->mMode == MODE_MISSION_RUN
                                 ? func_ov001_02181b68((
                                       u16) ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0) + 2))

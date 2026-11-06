@@ -139,9 +139,9 @@ void func_ov001_0218b770(Unk02188950 *a) {
 
 void func_ov001_0218b72c(Unk02188950 *a) {
     CreateParkedMapObjects((u32) MAP_OBJECT_KIND_KURIBO, 0x32, a);
-    a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) (a->mUnk_000.mUnk_94), (u32) 0xf, (&a->mUnk_000.mPos));
-    a->mUnk_000.mUnk_70 = data_0217cc6c[15];
+    a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    InitSoundSource((SoundSource *) (a->mUnk_000.mSound), (u32) 0xf, (&a->mUnk_000.mPos));
+    a->mUnk_000.mFarDistanceSquared = data_0217cc6c[15];
 }
 
 void func_ov001_0218b6f8(Unk02188950 *a, void *b) {
@@ -156,7 +156,7 @@ void func_ov001_0218b640(Unk02188950 *a, void *b) {
     a->mUnk_000.mUnk_10.y = 0;
     a->mUnk_000.mUnk_10.z = (s64) a->mPrm->mUnk_130 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2 + 1] >> 12;
     a->mUnk_2d8 = 0xd;
-    func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
+    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
     func_ov001_02188200(a, func_ov001_0218b6f8);
     if (a->mTimer == 0) {
         func_020d26ec(b, (u32) 0x224);

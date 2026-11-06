@@ -97,7 +97,7 @@ void func_020dff08(void) {
 }
 
 void func_020dfd64(Unk020e005c *a, CourseMapRow *b) {
-    func_02046be8(&a->mUnk_080, data_0216bff8, 3, a);
+    func_02046be8(&a->mStateMachine, data_0216bff8, 3, a);
     a->mUnk_168 = (b->mUnk_28 << 12) / 100;
     func_020d7da8(&a->mUnk_144, b, a->mUnk_168);
     a->mUnk_16c = 0;
@@ -116,17 +116,17 @@ void func_020dfd64(Unk020e005c *a, CourseMapRow *b) {
     a->mUnk_114.z = 0;
     a->mUnk_120 = 0x800;
     func_020d90a8(&a->mUnk_144, 0, 1);
-    func_020d8918(&a->mUnk_144, &a->mUnk_004, &a->mUnk_010);
-    a->mUnk_0e8 = a->mUnk_004;
+    func_020d8918(&a->mUnk_144, &a->mPos, &a->mUnk_010);
+    a->mUnk_0e8 = a->mPos;
     a->mUnk_134 = 0;
     a->mUnk_138 = 0;
-    a->mUnk_002 |= data_0215881c;
-    a->mUnk_002 &= ~2;
-    a->mUnk_002 &= ~8;
-    a->mUnk_066 = 0x1f;
-    a->mUnk_080.mNextState = 0;
-    a->mUnk_080.mNextStateRequested = 1;
-    a->mUnk_070 = gSoundFalloffs[3].mUnk_20;
+    a->mFlags |= data_0215881c;
+    a->mFlags &= ~2;
+    a->mFlags &= ~8;
+    a->mAlpha = 0x1f;
+    a->mStateMachine.mNextState = 0;
+    a->mStateMachine.mNextStateRequested = 1;
+    a->mFarDistanceSquared = gSoundFalloffs[3].mUnk_20;
 }
 #pragma thumb off
 
@@ -159,7 +159,7 @@ void DrawMkdEfBubble(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
     s32 m[9];
     s32 n;
 
-    if (b->mUnk_00.mUnk_80.mState != 0) {
+    if (b->mUnk_00.mStateMachine.mState != 0) {
         return;
     }
     w = 0x1e;
@@ -195,7 +195,7 @@ void func_020dfae4(void) {
 }
 
 void UpdateMkdEfBubble(void *a, MkdEfBubbleObject *b) {
-    func_02046b40(&b->mUnk_00.mUnk_80);
+    func_02046b40(&b->mUnk_00.mStateMachine);
     if (b->mUnk_f0 != 0) {
         return;
     }
@@ -220,11 +220,11 @@ void EnterMkdEfBubbleState0(MkdEfBubbleObject *a) {
     a->mUnk_00.mUnk_10.y = 0x4b33;
     a->mUnk_00.mFlags &= ~2;
     a->mUnk_00.mFlags &= ~8;
-    a->mUnk_00.mUnk_66 = 0x1f;
-    if ((a->mUnk_00.mUnk_78 & 4) == 0) {
-        if (a->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+    a->mUnk_00.mAlpha = 0x1f;
+    if ((a->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+        if (a->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
             n = 2;
-        } else if (a->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+        } else if (a->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
             n = 3;
         } else {
             n = 4;
@@ -264,7 +264,7 @@ void UpdateMkdEfBubbleState0(MkdEfBubbleObject *a) {
     }
     a->mUnk_00.mPos.y += a->mUnk_00.mUnk_10.y;
     if (a->mUnk_00.mPos.y < a->mUnk_a4) {
-        a->mUnk_00.mUnk_80.mNextState = 1;
-        a->mUnk_00.mUnk_80.mNextStateRequested = 1;
+        a->mUnk_00.mStateMachine.mNextState = 1;
+        a->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }

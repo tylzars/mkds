@@ -44,7 +44,7 @@ void func_020a9c54(void *a, IronBall *p, u32 c, u32 d) {
     if (p->mUnk_12c == 0) {
         return;
     }
-    if (((s32) p->mUnk_000.mUnk_78 & 0x3fffffe0) >= 1000000) {
+    if (((s32) p->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0) >= 1000000) {
         return;
     }
     v = p->mUnk_0e8.mUnk_030;
@@ -88,12 +88,12 @@ void func_020a9a5c(Unk020a9a5c *p) {
         o->mUnk_11c = o->mUnk_000.mCourseMapRow->mUnk_00;
         o->mUnk_000.mPos = o->mUnk_11c;
         o->mUnk_11c.y += 0x1000;
-        func_020e516c(&o->mUnk_0e8, &o->mUnk_11c, o->mUnk_000.mUnk_58.x << 1, k);
+        func_020e516c(&o->mUnk_0e8, &o->mUnk_11c, o->mUnk_000.mExtent.x << 1, k);
         func_020d2450(&o->mUnk_000);
         func_020d7da8(&o->mUnk_0c4, o->mUnk_000.mCourseMapRow, z0);
         func_020d8918(&o->mUnk_0c4, &o->mUnk_11c, &o->mUnk_000.mUnk_10);
         o->mUnk_11c.y += 0x1000;
-        Vec3AddScaled(o->mUnk_000.mUnk_58.x, &o->mUnk_000.mMatrix.mUnk_00[1], &o->mUnk_11c, &o->mUnk_000.mPos);
+        Vec3AddScaled(o->mUnk_000.mExtent.x, &o->mUnk_000.mMatrix.mUnk_00[1], &o->mUnk_11c, &o->mUnk_000.mPos);
         if (o->mUnk_000.mFlags & 0x800) {
             o->mUnk_0a8 = (u16) o->mUnk_000.mCourseMapRow->mUnk_2a;
             o->mUnk_130 = z2;
@@ -155,7 +155,7 @@ void UpdateIronBall(void *a, IronBall *p) {
             p->mUnk_000.mFlags &= ~1;
             p->mUnk_000.mFlags &= ~2;
             p->mUnk_000.mFlags &= ~8;
-            p->mUnk_000.mUnk_66 = 0x1f;
+            p->mUnk_000.mAlpha = 0x1f;
             p->mUnk_130 = 2;
             return;
         case 2:
@@ -163,8 +163,8 @@ void UpdateIronBall(void *a, IronBall *p) {
         default:
             return;
     }
-    if (!(func_0207a780() & p->mUnk_128) && !(p->mUnk_000.mUnk_78 & 4)) {
-        func_0210b874(p->mUnk_000.mUnk_94, p->mUnk_0b0);
+    if (!(func_0207a780() & p->mUnk_128) && !(p->mUnk_000.mDistanceSquaredAndFlags & 4)) {
+        func_0210b874(p->mUnk_000.mSound, p->mUnk_0b0);
     }
     v = p->mUnk_0b0;
     p->mUnk_0c4.mUnk_04 = v;
@@ -253,8 +253,8 @@ void UpdateIronBall(void *a, IronBall *p) {
             p->mUnk_0c0 = (s32) (((s64) p->mUnk_0c0 * -0x800) >> 12);
             if (p->mUnk_0c0 < 0x1000) {
                 p->mUnk_0c0 = 0;
-            } else if (!(func_0207a780() & p->mUnk_128) && !(p->mUnk_000.mUnk_78 & 4)) {
-                func_0210b8bc(p->mUnk_000.mUnk_94, p->mUnk_0c0);
+            } else if (!(func_0207a780() & p->mUnk_128) && !(p->mUnk_000.mDistanceSquaredAndFlags & 4)) {
+                func_0210b8bc(p->mUnk_000.mSound, p->mUnk_0c0);
             }
             p->mUnk_0bc = p->mUnk_0c0;
         }
@@ -278,7 +278,7 @@ void UpdateIronBall(void *a, IronBall *p) {
         func_020d8918(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
         p->mUnk_11c.y += 0x1000;
     }
-    Vec3AddScaled(p->mUnk_000.mUnk_58.x, &p->mUnk_000.mMatrix.mUnk_00[1], &p->mUnk_11c, &p->mUnk_000.mPos);
+    Vec3AddScaled(p->mUnk_000.mExtent.x, &p->mUnk_000.mMatrix.mUnk_00[1], &p->mUnk_11c, &p->mUnk_000.mPos);
     p->mUnk_000.mPos.y = p->mUnk_000.mPos.y + p->mUnk_0bc;
     if (p->mUnk_0a0 < 0) {
         if (p->mUnk_0a0 == -1) {
@@ -295,12 +295,12 @@ void UpdateIronBall(void *a, IronBall *p) {
     }
     p->mUnk_0a0 = v;
     if (p->mUnk_12c == 2) {
-        func_020e516c(&p->mUnk_0e8, &p->mUnk_11c, p->mUnk_000.mUnk_58.x << 1, 0x1c);
+        func_020e516c(&p->mUnk_0e8, &p->mUnk_11c, p->mUnk_000.mExtent.x << 1, 0x1c);
         p->mUnk_11c.y += 0x1000;
         p->mUnk_12c = 1;
     }
     if (p->mUnk_12c != 0) {
-        if (((s32) p->mUnk_000.mUnk_78 & 0x3fffffe0) < 1000000) {
+        if (((s32) p->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0) < 1000000) {
             w = (p->mUnk_0bc >> 14) - 7;
             if (w < 0) {
                 v = 0x1c;

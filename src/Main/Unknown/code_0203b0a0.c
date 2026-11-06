@@ -135,7 +135,7 @@ u32 func_0203b230(void) {
     a = (data_021759c0->mMode == MODE_MISSION_RUN) ? data_021759c0->mMissionTableRow : -1;
     b = (data_021759c0->mMode == MODE_MISSION_RUN) ? data_021759c0->mMissionTableColumn : -1;
     t = IsKartEnded((u16) data_021759c0->mEntryIndex);
-    t = (t != 0) ? gRaceProgress->mUnk_4e0 : 6;
+    t = (t != 0) ? gRaceProgress->mEntryEndKind : 6;
     if (t != 0) {
         return 0;
     }

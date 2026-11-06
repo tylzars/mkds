@@ -222,22 +222,22 @@ void func_020f944c(ItemObject *param_1, MapObject *param_2) {
             t.y = p->mPos.y;
             t.z = r->mPos.z;
             a = t;
-            if (b == 1 || (r->mUnk_78 & 0x80000000) != 0) {
-                r->mUnk_78 &= ~0x80000000;
+            if (b == 1 || (r->mDistanceSquaredAndFlags & 0x80000000) != 0) {
+                r->mDistanceSquaredAndFlags &= ~0x80000000;
                 q = r;
             } else {
-                r->mUnk_78 &= ~0x80000000;
+                r->mDistanceSquaredAndFlags &= ~0x80000000;
                 q = NULL;
             }
             func_020f77f8(p, 1, &a, &r->mUnk_10, q);
             p->mUnk_78 &= ~0x4000;
             return;
         case 2:
-            if (b == 1 || (r->mUnk_78 & 0x80000000) != 0) {
-                r->mUnk_78 &= ~0x80000000;
+            if (b == 1 || (r->mDistanceSquaredAndFlags & 0x80000000) != 0) {
+                r->mDistanceSquaredAndFlags &= ~0x80000000;
                 q = r;
             } else {
-                r->mUnk_78 &= ~0x80000000;
+                r->mDistanceSquaredAndFlags &= ~0x80000000;
                 q = NULL;
             }
             func_020f77f8(p, 2, &r->mPos, &r->mUnk_10, q);

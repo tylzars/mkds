@@ -52,18 +52,50 @@ typedef struct MapObject {
     /* 10 */ Vec3 mUnk_10;
     /* 1c */ Vec3 mScale;
     /* 28 */ Unk02012f58 mMatrix;
-    /* 58 */ Vec3 mUnk_58;
-    /* 64 */ s16 mUnk_64;
-    /* 66 */ u16 mUnk_66;
-    /* 68 */ s32 mUnk_68;
-    /* 6c */ s32 mUnk_6c;
-    /* 70 */ s32 mUnk_70;
-    /* 74 */ u32 mUnk_74;
-    /* 78 */ u32 mUnk_78;
-    /* 7c */ u16 mUnk_7c;
+    // Size of the collision shape along the object's local axes: the kind's size times mScale (a few kinds set a
+    // component directly). x is the radius given to the collision slot, and the Vec3 length is the bounding radius.
+    /* 58 */ Vec3 mExtent;
+    // Index of the object's entry in the table of collision shapes (0x100 entries of position, radius, mask and
+    // object), or -1 when its kind record word at 0x08 is 0 or the table was full. func_020e4ea8 also reads its lowest
+    // bit as a mirror flag for the model.
+    /* 64 */ s16 mCollisionSlotIndex;
+    // Alpha of the object, 0 to 0x1f. The visibility pass lowers it by 1 per call while mDistanceSquaredAndFlags bit 0
+    // is set and raises it by 1 up to 0x1f otherwise (func_020d4698 sets 0 or 0x1f at once); the draw group skips the
+    // object at 0, the view test counts 1 or less as not drawn, and the model draw lowers the model's polygon alpha to
+    // it.
+    /* 66 */ u16 mAlpha;
+    // Radius of the sphere that the view test checks against the view planes and adds to mDrawDistance: the kind's
+    // value times the largest of mScale x, y, z (two kinds use their own factor).
+    /* 68 */ s32 mViewRadius;
+    // Horizontal distance from the camera, plus mViewRadius, beyond which the view test sets mDistanceSquaredAndFlags
+    // bit 0 (the object fades out). The kind's value, capped by the course settings, and 0x270f000 when the game
+    // record's mUnk_00c is 3.
+    /* 6c */ s32 mDrawDistance;
+    // Squared horizontal distance from the camera beyond which the view test sets mDistanceSquaredAndFlags bit 2.
+    // Copied from the word at 0x20 of a volume curve of gSoundFalloffs (curve 2 at creation); the kinds compare it with
+    // the words of curves 2 and 3 to find which curve they use.
+    /* 70 */ s32 mFarDistanceSquared;
+    // Mask of the non-zero decimal digits of the course row's number (bit d is digit d; a number of 10000 or more first
+    // sets flag 0x80 in mFlags), or copied from the source object. The visibility pass and the kinds that test it treat
+    // the object as out of view while a bit is shared with the word func_0207a780 returns.
+    /* 74 */ u32 mDigitMask;
+    // Result of the last view test of the object plus bits added by kinds. Bit 0: beyond mDrawDistance; bit 1: outside
+    // the view planes (set with bit 0 when mAlpha is 1 or less); bit 2: beyond mFarDistanceSquared (func_020e71a0 also
+    // sets it); bit 3: set when the object was tested in this pass; bit 4: set by kinds and kept by the test. Bits 5 to
+    // 29: the squared horizontal distance to the camera in whole units (read with the mask 0x3fffffe0; a far constant
+    // while mDigitMask is shared). Bit 30 is set by kinds and makes func_020d2668 skip the kind's sound; bit 31 is set
+    // by kinds and cleared by ItemObject code, which passes the object on as the one hit.
+    /* 78 */ u32 mDistanceSquaredAndFlags;
+    // Non-zero when the view test of the object uses only two view planes (func_01ffd648) instead of five
+    // (func_01ffd778). Copied from the kind's data at creation.
+    /* 7c */ u16 mUseTwoPlaneViewTest;
     /* 7e */ u16 mAngle;
-    /* 80 */ Unk020e005c_080 mUnk_80;
-    /* 94 */ Unk020e71a0_94 *mUnk_94;
+    // State machine of the kind: the table of state handlers, its size and the owner, with the current state, the next
+    // state and the frames spent in the state.
+    /* 80 */ Unk020e005c_080 mStateMachine;
+    // The sound object of the map object, tested against NULL before use: a SoundSource at 0 (so the pointer also
+    // serves as the source) and, in the 0x60-byte variant, an Unk0210b7ec behind it.
+    /* 94 */ Unk020e71a0_94 *mSound;
     /* 98 */ MapObjectKindData *mKindData;
     /* 9c */ struct CourseMapRow *mCourseMapRow;
 } MapObject;

@@ -173,9 +173,9 @@ void func_ov001_0218a074(u32 a, Unk02188950 *b) {
 
 void func_ov001_0218a034(Unk02188950 *a) {
     CreateParkedMapObjects((u32) (0xc9), 0xa, a);
-    a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) (a->mUnk_000.mUnk_94), (u32) (0xc), (&a->mUnk_000.mPos));
-    a->mUnk_000.mUnk_70 = data_0217cbec[0x50 / 4];
+    a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    InitSoundSource((SoundSource *) (a->mUnk_000.mSound), (u32) (0xc), (&a->mUnk_000.mPos));
+    a->mUnk_000.mFarDistanceSquared = data_0217cbec[0x50 / 4];
 }
 
 void func_ov001_0218a028(Unk0206c1ac *a) {

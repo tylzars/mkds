@@ -55,7 +55,7 @@ BOOL func_02040bc0(void) {
                     break;
             }
             if (g == FALSE) {
-                if (gRaceProgress->mUnk_4e0 != 0) {
+                if (gRaceProgress->mEntryEndKind != 0) {
                     return r;
                 }
             }
@@ -178,14 +178,14 @@ void InitRaceProgressKart(RaceProgressKart *a, s32 b) {
     a->mLap = 0;
     a->mStatus = 0;
     a->mFlags = 0;
-    a->mUnk_34 = gCourseMap->mNumberedCheckpointCount - 1;
-    a->mUnk_36 = gCourseMap->mNumberedCheckpointCount - 1;
+    a->mInOrderCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
+    a->mCheckpointNumber = gCourseMap->mNumberedCheckpointCount - 1;
     a->mUnk_3c = (a->mUnk_3c & ~0xf0) | (((u16) b & 0xf) << 4);
     a->mRaceProgress = 0;
     a->mLapProgress = 0;
     a->mScore = 0;
     a->mFirstPlaceFrames = 0;
-    a->mUnk_40 = 0;
+    a->mCheckpointProgress = 0;
     a->mUnk_3c = a->mUnk_3c & ~0x300;
     p = a->mLapTimes;
     for (i = 0; i < 5; i++) {
@@ -263,7 +263,7 @@ void InitRaceProgress(void) {
             break;
     }
     gRaceProgress->mUnk_4f0 = f;
-    gRaceProgress->mUnk_4e0 = 6;
+    gRaceProgress->mEntryEndKind = 6;
     gRaceProgress->mTimeCountsDown = FALSE;
     gRaceProgress->mTimeLimitFrameCount = 0;
     switch (data_021759c0->mMode) {
@@ -332,13 +332,13 @@ void InitRaceProgress(void) {
     c = OS_GetTick();
     d = OS_GetTick();
     func_020401ac_inline4(&gRaceProgress->mLocalRandom, a + ((c << 24) + (d << 8)));
-    func_020401ac_inline4(&gRaceProgress->mUnk_4b0, 0xa094a2f);
+    func_020401ac_inline4(&gRaceProgress->mFixedSeedRandom, 0xa094a2f);
     if (data_021759c0->mMode == MODE_BATTLE) {
         ShuffleCourseMapRespawnSlots(&gRaceProgress->mRandom);
     }
     gRaceProgress->mUnk_4d0 = 0;
-    gRaceProgress->mUnk_4e4 = ReciprocalFixed12((gCourseMap->mUnk_9c + 1) << 12);
-    gRaceProgress->mUnk_4e8 = ReciprocalFixed12(func_02044618() << 12);
+    gRaceProgress->mLapProgressScale = ReciprocalFixed12((gCourseMap->mUnk_9c + 1) << 12);
+    gRaceProgress->mRaceProgressScale = ReciprocalFixed12(func_02044618() << 12);
     for (i = 0; i < gCourseMap->mNumberedCheckpointCount + 1; i++) {
         v1 = i % (gCourseMap->mNumberedCheckpointCount + 1);
         if (v1 == gCourseMap->mNumberedCheckpointCount) {
@@ -352,7 +352,8 @@ void InitRaceProgress(void) {
                     if (q->mNumber == v1) {
                         v = func_020401ac_inline5((v2 - e->mFirstEntry) << 12, e->mEntryCount);
                         v += e->mUnk_0a << 12;
-                        gRaceProgress->mCheckpointLapProgress[i] = ((s64) v * gRaceProgress->mUnk_4e4 + 0x800) >> 12;
+                        gRaceProgress->mCheckpointLapProgress[i] =
+                            ((s64) v * gRaceProgress->mLapProgressScale + 0x800) >> 12;
                     }
                 }
             }

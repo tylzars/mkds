@@ -535,7 +535,7 @@ void func_020c8bdc(void) {
     a = func_020c0db0();
     for (i = 0; i < data_0217b424->mUnk_08; i++) {
         p = data_0217b424->mUnk_00[i];
-        s = p->mUnk_000.mUnk_58.z;
+        s = p->mUnk_000.mExtent.z;
         v = &p->mUnk_000.mPos;
         x = (s64) p->mUnk_000.mMatrix.mUnk_00[2].x * s >> 12;
         y = (s64) p->mUnk_000.mMatrix.mUnk_00[2].z * s >> 12;

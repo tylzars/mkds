@@ -102,7 +102,7 @@ void DrawSun(void *a, Unk0209d3fc *b) {
         func_0209bbd0(a, gSun);
         SetMapObjectModelNsbcaFrameIndex(gSun, b->mUnk_b2);
         DrawMapObjectModel(a, gSun, b);
-    } else if ((s32) (b->mUnk_00.mUnk_78 & 0x3fffffe0) < 0x3d0900) {
+    } else if ((s32) (b->mUnk_00.mDistanceSquaredAndFlags & 0x3fffffe0) < 0x3d0900) {
         func_0209bbd0(a, gSun);
         SetMapObjectModelNsbcaFrameIndex(gSun, b->mUnk_b2);
         DrawMapObjectModel(a, gSun, b);
@@ -247,7 +247,7 @@ void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
             }
             break;
     }
-    if ((s32) (p->mUnk_000.mUnk_78 & ~0xc000001f) >= 0x3d0900) {
+    if ((s32) (p->mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f) >= 0x3d0900) {
         return;
     }
     if (p->mUnk_0dc == 3) {
@@ -400,7 +400,7 @@ u8 func_0209c964(Unk0209c220 *p, void *a, u8 *b, u8 *c) {
         p->mUnk_0f0 = 0x1000;
         p->mUnk_0f4 = 0;
         p->mUnk_11c = TRUE;
-        p->mUnk_000.mUnk_78 |= data_usa_021565d0;
+        p->mUnk_000.mDistanceSquaredAndFlags |= data_usa_021565d0;
     }
     return d;
 }
@@ -408,10 +408,10 @@ u8 func_0209c964(Unk0209c220 *p, void *a, u8 *b, u8 *c) {
 BOOL func_0209c8b0(Unk0209c220 *p, Vec3 *a, s32 b, Vec3 *c) {
     if ((p->mUnk_000.mFlags & 0x800) == 0 && p->mUnk_11c == TRUE) {
         p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0],
-                                    ((s64) p->mUnk_000.mUnk_58.x * p->mUnk_0bc) >> 12, p->mUnk_000.mUnk_58.y, 0, b, c);
+                                    ((s64) p->mUnk_000.mExtent.x * p->mUnk_0bc) >> 12, p->mUnk_000.mExtent.y, 0, b, c);
     } else {
-        p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0], p->mUnk_000.mUnk_58.x,
-                                    p->mUnk_000.mUnk_58.y, 0, b, c);
+        p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0], p->mUnk_000.mExtent.x,
+                                    p->mUnk_000.mExtent.y, 0, b, c);
     }
     return p->mUnk_0a4 != 0;
 }
@@ -682,10 +682,10 @@ BOOL func_0209bfe0(s32 a) {
         p->mUnk_0f0 = 0x1000;
         p->mUnk_0f4 = 0;
         p->mUnk_11c = TRUE;
-        if ((p->mUnk_000.mUnk_78 & 4) == 0) {
-            if (p->mUnk_000.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+        if ((p->mUnk_000.mDistanceSquaredAndFlags & 4) == 0) {
+            if (p->mUnk_000.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                 k = 2;
-            } else if (p->mUnk_000.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+            } else if (p->mUnk_000.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                 k = 3;
             } else {
                 k = 4;

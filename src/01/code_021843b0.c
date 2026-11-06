@@ -64,8 +64,8 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                 }
                 Vec3AddScaled(e->mRadius, &b, &e->mCollisionCenter, &b);
                 if (d->mUnk_000.mKind == 0x1f5) {
-                    d->mUnk_000.mUnk_78 |= data_ov001_021a657c;
-                    StopSound(&d->mUnk_000.mUnk_94->mSoundSource, 0x214);
+                    d->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
+                    StopSound(&d->mUnk_000.mSound->mSoundSource, 0x214);
                     StartMapObjectSound(&d->mUnk_000, (u32) (0x211));
                     StartEffect(0x3e9, &b);
                     StartEffect(0x3e8, &b);
@@ -73,8 +73,8 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                     func_ov001_02187518(d, 0x99a, 0, 0x75c, 0x3f3, 0);
                     func_ov001_02187518(d, -0x99a, 0, 0x75c, 0x3f3, 0);
                 } else if (d->mUnk_000.mKind == 0x1f6) {
-                    d->mUnk_000.mUnk_78 |= data_ov001_021a657c;
-                    StopSound(&d->mUnk_000.mUnk_94->mSoundSource, 0x245);
+                    d->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
+                    StopSound(&d->mUnk_000.mSound->mSoundSource, 0x245);
                     StartMapObjectSound(&d->mUnk_000, (u32) (0x23f));
                     StartEffect(0x3fa, &b);
                     StartEffect(0x3fb, &b);
@@ -133,8 +133,8 @@ void func_ov001_021843b0(Unk02188950 *a, Kart *b) {
             }
             Vec3AddScaled(b->mRadius, &vec2, &b->mCollisionCenter, &vec2);
             if (a->mUnk_000.mKind == 0x1f5) {
-                a->mUnk_000.mUnk_78 |= data_ov001_021a657c;
-                StopSound(&a->mUnk_000.mUnk_94->mSoundSource, 0x214);
+                a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
+                StopSound(&a->mUnk_000.mSound->mSoundSource, 0x214);
                 StartMapObjectSound(&a->mUnk_000, (u32) (0x211));
                 StartEffect(0x3e9, &vec2);
                 StartEffect(0x3e8, &vec2);
@@ -142,8 +142,8 @@ void func_ov001_021843b0(Unk02188950 *a, Kart *b) {
                 func_ov001_02187518(a, 0x99a, 0, 0x75c, 0x3f3, 0);
                 func_ov001_02187518(a, -0x99a, 0, 0x75c, 0x3f3, 0);
             } else if (a->mUnk_000.mKind == 0x1f6) {
-                a->mUnk_000.mUnk_78 |= data_ov001_021a657c;
-                StopSound(&a->mUnk_000.mUnk_94->mSoundSource, 0x245);
+                a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
+                StopSound(&a->mUnk_000.mSound->mSoundSource, 0x245);
                 StartMapObjectSound(&a->mUnk_000, (u32) (0x23f));
                 StartEffect(0x3fa, &vec2);
                 StartEffect(0x3fb, &vec2);
@@ -179,10 +179,10 @@ void func_ov001_021843b0(Unk02188950 *a, Kart *b) {
         a->mUnk_000.mPos.x -= a->mUnk_000.mUnk_10.x;
         a->mUnk_000.mPos.y -= a->mUnk_000.mUnk_10.y;
         a->mUnk_000.mPos.z -= a->mUnk_000.mUnk_10.z;
-        a->mUnk_000.mUnk_78 |= data_ov001_021a657c;
+        a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
         StartMapObjectSound(&a->mUnk_000, (u32) (0x213));
     }
     func_ov001_02188200(a, func_ov001_02184874);
     a->mUnk_2d8 = 0xd;
-    func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
+    func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
 }

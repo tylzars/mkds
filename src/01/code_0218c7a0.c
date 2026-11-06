@@ -239,7 +239,8 @@ void func_ov001_0218cedc(u32 a, Unk02188950 *b) {
             func_ov001_0218d3ec(b);
         }
     }
-    if (func_020d2c2c(&b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mUnk_64, 9, NULL) == 2) {
+    if (func_020d2c2c(&b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mCollisionSlotIndex, 9,
+                      NULL) == 2) {
         StartMapObjectSound(&b->mUnk_000, (u32) (0x253));
     }
     func_ov001_021864ac(a, b);
@@ -266,7 +267,7 @@ void func_ov001_0218ce30(u32 a, Unk02188950 *b) {
     int v1;
     func_ov001_0218dc20(b);
     func_ov001_0218dba8(b);
-    v1 = func_020d2c2c(&b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mUnk_64, 9, NULL);
+    v1 = func_020d2c2c(&b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mCollisionSlotIndex, 9, NULL);
     if (v1 == 2) {
         StartMapObjectSound(&b->mUnk_000, 0x253);
     }
@@ -287,15 +288,15 @@ void func_ov001_0218cdb8(Unk02188950 *e) {
     b->mUnk_0a4 = (struct Unk0218dabc *) a;
     c->mUnk_0a4 = (struct Unk0218dabc *) b;
     d->mUnk_0a4 = (struct Unk0218dabc *) c;
-    e->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) (e->mUnk_000.mUnk_94), (u32) (0xd), (&e->mUnk_000.mPos));
-    e->mUnk_000.mUnk_70 = data_0217cbec[0x1d];
+    e->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    InitSoundSource((SoundSource *) (e->mUnk_000.mSound), (u32) (0xd), (&e->mUnk_000.mPos));
+    e->mUnk_000.mFarDistanceSquared = data_0217cbec[0x1d];
 }
 
 void func_ov001_0218cd80(Unk02188950 *a) {
-    a->mUnk_000.mUnk_94 = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) (a->mUnk_000.mUnk_94), (u32) (0xd), (&a->mUnk_000.mPos));
-    a->mUnk_000.mUnk_70 = data_0217cbec[0x1d];
+    a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    InitSoundSource((SoundSource *) (a->mUnk_000.mSound), (u32) (0xd), (&a->mUnk_000.mPos));
+    a->mUnk_000.mFarDistanceSquared = data_0217cbec[0x1d];
 }
 
 void func_ov001_0218cbdc(Unk02188950 *a, Unk02188950_a0 *b) {
@@ -323,14 +324,14 @@ void func_ov001_0218cbdc(Unk02188950 *a, Unk02188950_a0 *b) {
                     ((s64) a->mPrm->mUnk_0fc * gPairsByAngle[(((u16) a->mMoveAngle - 0x4000) >> 4) * 2 + 1]) >> 12;
             }
             a->mUnk_2d8 = 0xc;
-            func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
-            a->mUnk_000.mUnk_78 |= data_ov001_021a65ac;
+            func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+            a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a65ac;
             func_020d26ec(b, (u32) (0x252));
         }
     } else {
         a->mUnk_2d8 = 0xa;
-        func_02073fb0(a->mUnk_000.mUnk_78 & 0x3fffffe0, 0x1000);
-        a->mUnk_000.mUnk_78 |= data_ov001_021a65ac;
+        func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
+        a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a65ac;
         func_020d26ec(b, (u32) (0x251));
     }
     func_ov001_02188200(a, func_ov001_0218cbdc);

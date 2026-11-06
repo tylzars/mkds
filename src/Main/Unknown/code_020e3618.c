@@ -76,7 +76,7 @@ void InitBridge(Bridge *a, struct CourseMapRow *b) {
     a->mUnk_000.mFlags |= data_02158c88;
     a->mUnk_000.mFlags &= ~2;
     a->mUnk_000.mFlags &= ~8;
-    a->mUnk_000.mUnk_66 = 0x1f;
+    a->mUnk_000.mAlpha = 0x1f;
     if (b->mUnk_0c.y < 0) {
         CreateMapObjectSoundSourceFalloff4(&a->mUnk_000);
     }
@@ -129,7 +129,7 @@ void func_020e3724(void) {
 void func_020e3618(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
     Unk02012f58 *p;
 
-    switch (b->mUnk_000.mUnk_80.mState) {
+    switch (b->mUnk_000.mStateMachine.mState) {
         case 4:
             gChoropu->mUnk_18 = 1;
             p = func_020e6cf8(&b->mUnk_000.mPos);

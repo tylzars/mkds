@@ -76,7 +76,7 @@ void UpdateWanwanState5(Wanwan *p) {
                              44),
                       &p->mUnk_d4);
     }
-    if (p->mUnk_00.mUnk_80.mStateFrames < 0x40) {
+    if (p->mUnk_00.mStateMachine.mStateFrames < 0x40) {
         p->mUnk_ec = p->mUnk_ec + 0x1c;
     }
 }
@@ -103,12 +103,12 @@ void func_020dc1d8(Wanwan *p, CourseMapRow *a) {
     p->mUnk_1d8 = (Unk020dc474_1d8 *) CreateMapObjectFromObject(&p->mUnk_00, 0x197);
     p->mUnk_ac = p->mUnk_a0.y;
     p->mUnk_a0.y = p->mUnk_a0.y + p->mUnk_f0;
-    func_02046be8(&p->mUnk_00.mUnk_80, data_0216befc, 6, p);
-    func_02046bcc(&p->mUnk_00.mUnk_80, 0);
+    func_02046be8(&p->mUnk_00.mStateMachine, data_0216befc, 6, p);
+    func_02046bcc(&p->mUnk_00.mStateMachine, 0);
     p->mUnk_200 = p->mUnk_00.mMatrix.mUnk_00[2];
     func_020dbf7c(p);
     p->mUnk_1fa = func_020d555c(&p->mUnk_00.mPos, p->mUnk_1ec, 0x400, p);
-    p->mUnk_00.mUnk_70 = gSoundFalloffs[4].mUnk_20;
+    p->mUnk_00.mFarDistanceSquared = gSoundFalloffs[4].mUnk_20;
 }
 #pragma thumb off
 
@@ -121,8 +121,8 @@ void func_020dc11c(Wanwan *p, CourseMapRow *a) {
     p->mUnk_b0 = a->mUnk_2a;
     p->mUnk_ac = p->mUnk_a0.y;
     p->mUnk_a0.y = p->mUnk_a0.y + p->mUnk_f0;
-    func_02046be8(&p->mUnk_00.mUnk_80, data_0216befc, 6, p);
-    func_02046bcc(&p->mUnk_00.mUnk_80, 5);
+    func_02046be8(&p->mUnk_00.mStateMachine, data_0216befc, 6, p);
+    func_02046bcc(&p->mUnk_00.mStateMachine, 5);
     func_020d7d4c(&p->mUnk_1a0, a, data_02158908, a->mUnk_28);
     func_020dbf7c(p);
 }
@@ -159,11 +159,11 @@ void func_020dbf7c(Wanwan *p) {
                                   0x80000000000LL) >>
                                  44),
                           &p->mUnk_d4);
-            p->mUnk_00.mUnk_80.mNextState = 4;
-            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+            p->mUnk_00.mStateMachine.mNextState = 4;
+            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
         } else {
-            p->mUnk_00.mUnk_80.mNextState = 0;
-            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+            p->mUnk_00.mStateMachine.mNextState = 0;
+            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
         }
     }
 }

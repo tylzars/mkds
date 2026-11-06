@@ -31,7 +31,7 @@ void CreateMkdEfBubble(void) {
 }
 
 void InitMkdEfBubble(MkdEfBubbleObject *a, CourseMapRow *b) {
-    func_02046be8(&a->mUnk_00.mUnk_80, data_0216bfc0, 2, a);
+    func_02046be8(&a->mUnk_00.mStateMachine, data_0216bfc0, 2, a);
     a->mUnk_a0 = b->mUnk_28;
     a->mUnk_ac = a->mUnk_00.mPos.y;
     a->mUnk_a4 = a->mUnk_00.mPos.y - 0x10000;
@@ -39,8 +39,8 @@ void InitMkdEfBubble(MkdEfBubbleObject *a, CourseMapRow *b) {
     a->mUnk_00.mUnk_10.y = 0;
     a->mUnk_00.mUnk_10.z = 0;
     a->mUnk_a8 = 0;
-    a->mUnk_00.mUnk_80.mNextState = 0;
-    a->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    a->mUnk_00.mStateMachine.mNextState = 0;
+    a->mUnk_00.mStateMachine.mNextStateRequested = 1;
     func_020e516c(&a->mUnk_b0, &a->mUnk_00.mPos, (s32) (((s64) a->mUnk_00.mScale.x * 0x18000) >> 12), 0xd);
     a->mUnk_00.mFlags |= data_02158740;
 }

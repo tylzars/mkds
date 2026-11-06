@@ -240,9 +240,9 @@ void func_0203cd14(void) {
             p->mFlags &= ~0x10;
         } else if ((p->mFlags & 0x20) != 0) {
             if (func_0207a218() != 0) {
-                gRaceProgress->mUnk_4fc++;
+                gRaceProgress->mFramesSinceFailure++;
             }
-            if (gRaceProgress->mUnk_4fc <= 0x3c) {
+            if (gRaceProgress->mFramesSinceFailure <= 0x3c) {
                 return;
             }
             func_020688a0(GetKart(v));

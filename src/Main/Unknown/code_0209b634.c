@@ -44,22 +44,22 @@ void DrawMapObjectModel(Unk02100094 *a, void *b, void *d) {
 
     func_01ff9048(0x1b, o, 3);
     if (o->mNsbmdModel != NULL) {
-        func_020ea5b0(o->mNsbmdModel, c->mUnk_66, NULL);
+        func_020ea5b0(o->mNsbmdModel, c->mAlpha, NULL);
     }
     if (o->mAnimatedModel == NULL && o->mShadowModel == NULL) {
         return;
     }
     if (o->mAnimatedModel != NULL) {
         if (o->mAnimations[2] != NULL) {
-            func_020ea670(o->mAnimatedModel, c->mUnk_66);
+            func_020ea670(o->mAnimatedModel, c->mAlpha);
         } else {
-            func_020ea7cc(o->mAnimatedModel, c->mUnk_66);
+            func_020ea7cc(o->mAnimatedModel, c->mAlpha);
         }
     }
     if (o->mShadowModel == NULL) {
         return;
     }
-    func_020ea618(o->mShadowModel, c->mUnk_66);
+    func_020ea618(o->mShadowModel, c->mAlpha);
 }
 
 // Like DrawMapObjectModel but passes the object's position to the model draw, which lowers the alpha of an object whose
@@ -70,22 +70,22 @@ void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, int d) {
 
     func_01ff9048(0x1b, o, 3);
     if (o->mNsbmdModel != NULL) {
-        func_020ea5b0(o->mNsbmdModel, c->mUnk_66, &c->mPos);
+        func_020ea5b0(o->mNsbmdModel, c->mAlpha, &c->mPos);
     }
     if (o->mAnimatedModel == NULL && o->mShadowModel == NULL) {
         return;
     }
     if (o->mAnimatedModel != NULL) {
         if (o->mAnimations[2] != NULL) {
-            func_020ea670(o->mAnimatedModel, c->mUnk_66);
+            func_020ea670(o->mAnimatedModel, c->mAlpha);
         } else {
-            func_020ea7cc(o->mAnimatedModel, c->mUnk_66);
+            func_020ea7cc(o->mAnimatedModel, c->mAlpha);
         }
     }
     if (o->mShadowModel == NULL) {
         return;
     }
-    func_020ea618(o->mShadowModel, c->mUnk_66);
+    func_020ea618(o->mShadowModel, c->mAlpha);
 }
 
 void func_0209ba58(void *a, void *b, void *c) {
@@ -94,7 +94,7 @@ void func_0209ba58(void *a, void *b, void *c) {
     if (o->mAnimatedModel == NULL) {
         return;
     }
-    func_020ea740(o->mAnimatedModel, ((MapObject *) c)->mUnk_66);
+    func_020ea740(o->mAnimatedModel, ((MapObject *) c)->mAlpha);
 }
 
 void func_0209ba08(void *a, u32 b) {

@@ -51,7 +51,7 @@ void func_02098f18(Unk020e0144 *a, s32 b) {
     p->mUnk_00.mFlags = p->mUnk_00.mFlags & ~8;
     p->mUnk_00.mFlags = p->mUnk_00.mFlags & ~2;
     p->mUnk_00.mFlags = p->mUnk_00.mFlags & ~8;
-    p->mUnk_00.mUnk_66 = 0x1f;
+    p->mUnk_00.mAlpha = 0x1f;
     p->mUnk_a0.mUnk_08 = a->mUnk_08;
     p->mUnk_a0.mUnk_00 = a->mUnk_00;
     func_020d90a8(&p->mUnk_a0, 0, 1);
@@ -336,10 +336,10 @@ void UpdatePakkun(void *a, Pakkun *p) {
             }
             if ((p->mUnk_0a4 >> 12) == 10) {
                 func_02098f18(&p->mUnk_0b8[p->mUnk_1b8], p->mUnk_1fc + 0x46000);
-                if ((p->mUnk_000.mUnk_78 & 4) == 0) {
-                    if (p->mUnk_000.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                if ((p->mUnk_000.mDistanceSquaredAndFlags & 4) == 0) {
+                    if (p->mUnk_000.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                         t = 2;
-                    } else if (p->mUnk_000.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                    } else if (p->mUnk_000.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                         t = 3;
                     } else {
                         t = 4;

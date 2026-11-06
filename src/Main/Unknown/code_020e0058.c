@@ -31,7 +31,7 @@ void func_020e0584(Unk020e005c *a, Vec3 *b, Vec3 *c, Unk020e04b0 *d) {
     s32 f;
     s32 g;
 
-    Vec3Sub(b, &a->mUnk_004, &e);
+    Vec3Sub(b, &a->mPos, &e);
     f = Vec3DotUnrounded(&e, &a->mUnk_040);
     g = Vec3DotUnrounded(&e, &a->mUnk_034);
     d->mUnk_04.x = Vec3DotUnrounded(&e, &a->mUnk_028);
@@ -58,7 +58,7 @@ void func_020e0538(Unk020e04b0 *a, Vec3 *b) {
         return;
     }
     Vec3MultiplyMatrix3x3(&a->mUnk_04, &c->mUnk_028.x, b);
-    Vec3Add(&c->mUnk_004, b, b);
+    Vec3Add(&c->mPos, b, b);
 }
 
 BOOL func_020e04b0(Unk020e04b0 *a, Vec3 *b, Vec3 *c) {
@@ -66,7 +66,7 @@ BOOL func_020e04b0(Unk020e04b0 *a, Vec3 *b, Vec3 *c) {
 
     if (d != NULL) {
         Vec3MultiplyMatrix3x3(&a->mUnk_04, &d->mUnk_028.x, b);
-        Vec3Add(&d->mUnk_004, b, b);
+        Vec3Add(&d->mPos, b, b);
         if (d->mUnk_130 != FALSE) {
             Vec3MultiplyMatrix3x3(&a->mUnk_10, &d->mUnk_028.x, c);
             if (c->y < d->mUnk_120) {
@@ -129,29 +129,31 @@ void func_020e01f0(void *a0, Unk020e005c *a1) {
         if (a1->mUnk_16c != 0) {
             return;
         }
-        if ((a1->mUnk_078 & 4) != 0) {
+        if ((a1->mDistanceSquaredAndFlags & 4) != 0) {
             return;
         }
-        k = a1->mUnk_070 == gSoundFalloffs[2].mUnk_20 ? 2 : (a1->mUnk_070 == gSoundFalloffs[3].mUnk_20 ? 3 : 4);
+        k = a1->mFarDistanceSquared == gSoundFalloffs[2].mUnk_20
+                ? 2
+                : (a1->mFarDistanceSquared == gSoundFalloffs[3].mUnk_20 ? 3 : 4);
         buf.mUnk_00 = 0x17e;
-        buf.mUnk_04 = &a1->mUnk_004;
+        buf.mUnk_04 = &a1->mPos;
         buf.mUnk_08 = k;
-        buf.mUnk_0c = func_020d4ef4(&a1->mUnk_004);
+        buf.mUnk_0c = func_020d4ef4(&a1->mPos);
         func_0210b7a8(&buf);
         return;
     }
     if (func_020d8cc8(b) != FALSE) {
-        if (a1->mUnk_080.mState == 2) {
-            a1->mUnk_080.mNextState = 0;
-            a1->mUnk_080.mNextStateRequested = 1;
+        if (a1->mStateMachine.mState == 2) {
+            a1->mStateMachine.mNextState = 0;
+            a1->mStateMachine.mNextStateRequested = 1;
         }
         a1->mUnk_16c = b->mUnk_1c->mUnk_0e;
     }
-    a1->mUnk_0e8 = a1->mUnk_004;
-    func_020d8a5c(b, &a1->mUnk_004);
-    func_02046b40(&a1->mUnk_080);
-    Vec3Sub(&a1->mUnk_004, &a1->mUnk_0e8, &a1->mUnk_010);
-    Vec3AddScaled(-a1->mUnk_104, &a1->mUnk_034, &a1->mUnk_004, &a1->mUnk_0f4);
+    a1->mUnk_0e8 = a1->mPos;
+    func_020d8a5c(b, &a1->mPos);
+    func_02046b40(&a1->mStateMachine);
+    Vec3Sub(&a1->mPos, &a1->mUnk_0e8, &a1->mUnk_010);
+    Vec3AddScaled(-a1->mUnk_104, &a1->mUnk_034, &a1->mPos, &a1->mUnk_0f4);
 }
 
 u32 func_020e01ec(u32 p0) {
@@ -173,8 +175,8 @@ void func_020e012c(Unk020e005c *a) {
     }
     b->mUnk_10 = (s32) (((s64) p * m) >> 12);
     if (func_020d8cac(b) >= 0x100) {
-        a->mUnk_080.mNextState = 1;
-        a->mUnk_080.mNextStateRequested = 1;
+        a->mStateMachine.mNextState = 1;
+        a->mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -208,8 +210,8 @@ void func_020e005c(Unk020e005c *a) {
         }
     }
     if (func_020d8cac(b) >= 0xf00) {
-        a->mUnk_080.mNextState = 2;
-        a->mUnk_080.mNextStateRequested = 1;
+        a->mStateMachine.mNextState = 2;
+        a->mStateMachine.mNextStateRequested = 1;
     }
 }
 

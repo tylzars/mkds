@@ -25,9 +25,9 @@
 #pragma thumb off
 
 void func_020e4380(Unk020e3ef4 *a) {
-    if (a->mUnk_000.mUnk_80.mStateFrames > a->mUnk_148) {
-        a->mUnk_000.mUnk_80.mNextState = 0;
-        a->mUnk_000.mUnk_80.mNextStateRequested = 1;
+    if (a->mUnk_000.mStateMachine.mStateFrames > a->mUnk_148) {
+        a->mUnk_000.mStateMachine.mNextState = 0;
+        a->mUnk_000.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -139,7 +139,7 @@ void func_020e410c(Unk020e1dc0 *a) {
                 Vec3Sub(&p[j]->mUnk_000.mPos, &e->mUnk_000.mPos, &v);
                 v.y = z2;
                 e->mUnk_154 = Vec3Length(&v);
-                e->mUnk_154 -= p[j]->mUnk_000.mUnk_58.x;
+                e->mUnk_154 -= p[j]->mUnk_000.mExtent.x;
             }
             j = i;
         }
@@ -147,7 +147,7 @@ void func_020e410c(Unk020e1dc0 *a) {
 }
 
 void func_020e3ef4(Unk020e3ef4 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
-    func_02046be8(&a->mUnk_000.mUnk_80, (UnkFunc *const *) data_0216c168, 4, a);
+    func_02046be8(&a->mUnk_000.mStateMachine, (UnkFunc *const *) data_0216c168, 4, a);
     a->mUnk_0e8 = a->mUnk_000.mPos;
     a->mUnk_0a0 = *(Unk020e38a0_28 *) &a->mUnk_000.mMatrix;
     a->mUnk_0c4 = *(Unk020e38a0_28 *) &a->mUnk_000.mMatrix;
@@ -183,15 +183,15 @@ void func_020e3ef4(Unk020e3ef4 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
     a->mUnk_134 = 1;
     a->mUnk_138 = c->mUnk_14;
     a->mUnk_000.mFlags |= data_02158d58;
-    a->mUnk_000.mUnk_80.mNextState = 0;
-    a->mUnk_000.mUnk_80.mNextStateRequested = 1;
+    a->mUnk_000.mStateMachine.mNextState = 0;
+    a->mUnk_000.mStateMachine.mNextStateRequested = 1;
     a->mUnk_158 = c->mUnk_0c;
     if (a->mUnk_158 == 1 && b->mUnk_32 == 0) {
         a->mUnk_158 = 2;
     }
     a->mUnk_000.mFlags &= ~2;
     a->mUnk_000.mFlags &= ~8;
-    a->mUnk_000.mUnk_66 = 0x1f;
+    a->mUnk_000.mAlpha = 0x1f;
     if (c->mUnk_0c == 0) {
         a->mUnk_15c = b->mUnk_0c.x > 0 ? 0x175 : 0x176;
     } else {
@@ -260,7 +260,7 @@ void UpdateBridge(s32 a, Bridge *b) {
         b->mUnk_150--;
         return;
     }
-    if (b->mUnk_000.mUnk_94 != NULL) {
+    if (b->mUnk_000.mSound != NULL) {
         StartMapObjectSoundWhileRequested(&b->mUnk_000, 0x189);
     }
     b->mUnk_148 += b->mUnk_146;

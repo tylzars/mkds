@@ -335,9 +335,9 @@ void func_020e71a0(MapObject *p) {
     BOOL a;
     BOOL b;
 
-    q = p->mUnk_94;
+    q = p->mSound;
     if ((p->mFlags & 2) == 0) {
-        q->mSoundSource.mDistanceSquared = p->mUnk_78 & ~0xc000001f;
+        q->mSoundSource.mDistanceSquared = p->mDistanceSquaredAndFlags & ~0xc000001f;
         a = (func_020d4ddc(p) == FALSE);
         b = (q->mSoundSource.mUnk_34 & 1) != 0;
         if (a != FALSE) {
@@ -361,7 +361,7 @@ void func_020e71a0(MapObject *p) {
         v = func_020d4ef4(&p->mPos);
         q->mSoundSource.mDistanceSquared = v;
         if (func_020d4d60(p, v) != FALSE) {
-            p->mUnk_78 |= data_02159310;
+            p->mDistanceSquaredAndFlags |= data_02159310;
             if ((q->mSoundSource.mUnk_34 & 1) != 0) {
                 func_0210cfbc(&q->mSoundSource, 2, 1);
             }
@@ -386,7 +386,7 @@ void func_020e705c(Unk020e6fd4 *p) {
 
         for (i = 0; i < n; i++) {
             e = arr[i];
-            if (e->mUnk_94 != NULL) {
+            if (e->mSound != NULL) {
                 func_020e71a0(e);
             }
         };
@@ -401,7 +401,7 @@ void func_020e705c(Unk020e6fd4 *p) {
                 t = e->mPos;
                 cb(p, e);
                 Vec3Sub(&e->mPos, &t, &e->mUnk_10);
-                if (e->mUnk_94 != NULL) {
+                if (e->mSound != NULL) {
                     func_020e71a0(e);
                 }
             }
@@ -415,7 +415,7 @@ void func_020e705c(Unk020e6fd4 *p) {
             e = arr[i];
             if ((e->mFlags & 4) == 0) {
                 cb(p, e);
-                if (e->mUnk_94 != NULL) {
+                if (e->mSound != NULL) {
                     func_020e71a0(e);
                 }
             }

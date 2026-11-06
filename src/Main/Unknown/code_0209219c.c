@@ -116,7 +116,7 @@ void UpdateBasabasa(void *a, Basabasa *b) {
             b->mUnk_00.mFlags &= ~1;
             b->mUnk_00.mFlags &= ~2;
             b->mUnk_00.mFlags &= ~8;
-            b->mUnk_00.mUnk_66 = 0x1f;
+            b->mUnk_00.mAlpha = 0x1f;
             b->mUnk_a0.x += (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].x * 0x19a) >> 12);
             b->mUnk_a0.y += -0x19a;
             b->mUnk_a0.z += (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[2].z * 0x19a) >> 12);

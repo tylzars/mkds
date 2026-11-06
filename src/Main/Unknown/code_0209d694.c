@@ -54,7 +54,7 @@ u8 func_0209ddec(Unk0209d694 *a, Kart *b, u8 *c, u8 *d) {
         a->mUnk_bc->mUnk_80 = 5;
         a->mUnk_c0->mUnk_80 = 5;
         if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
-            a->mUnk_00.mUnk_78 |= data_usa_021565e0;
+            a->mUnk_00.mDistanceSquaredAndFlags |= data_usa_021565e0;
         }
         func_020d26f8(&a->mUnk_00, b);
     }
@@ -120,7 +120,7 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
                 p->mUnk_00.mUnk_10.y = t;
                 Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
                 if (p->mUnk_a0 > 0x78 && p->mUnk_00.mUnk_10.y < 0) {
-                    if (func_01ffdee4(&p->mUnk_00.mPos, NULL, 0, p->mUnk_00.mUnk_58.x, 8, -2, &v, NULL, NULL, &f, NULL,
+                    if (func_01ffdee4(&p->mUnk_00.mPos, NULL, 0, p->mUnk_00.mExtent.x, 8, -2, &v, NULL, NULL, &f, NULL,
                                       NULL, NULL, NULL) != 0 &&
                         (f & 0x3f77ef) != 0) {
                         Vec3Add(&p->mUnk_00.mPos, &v, &p->mUnk_00.mPos);
@@ -246,5 +246,5 @@ void func_0209d694(Vec3 *a, Vec3 *b) {
     p->mUnk_00.mFlags &= ~8;
     p->mUnk_00.mFlags &= ~2;
     p->mUnk_00.mFlags &= ~8;
-    p->mUnk_00.mUnk_66 = 0x1f;
+    p->mUnk_00.mAlpha = 0x1f;
 }

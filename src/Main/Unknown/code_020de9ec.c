@@ -172,7 +172,7 @@ void func_020def00(void *a, Unk020de6a8 *b, void *c, u16 d) {
     if (b->mUnk_100 != NULL) {
         return;
     }
-    if ((s32) (b->mUnk_000.mUnk_78 & 0x3fffffe0) > 0x27100) {
+    if ((s32) (b->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0) > 0x27100) {
         if (func_0203c5e4() == 0) {
             return;
         }
@@ -247,7 +247,7 @@ void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {
         b->mUnk_0e8 = x;
         b->mUnk_0ec = y;
     }
-    if ((s32) (b->mUnk_000.mUnk_78 & ~0xc000001f) > 0x27100) {
+    if ((s32) (b->mUnk_000.mDistanceSquaredAndFlags & ~0xc000001f) > 0x27100) {
         if (func_0203c5e4() == 0) {
             return;
         }
@@ -342,7 +342,7 @@ u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
     n = FALSE;
     a->mUnk_0a4 = 0;
     a->mUnk_000.mFlags |= data_021585a4;
-    m = a->mUnk_000.mUnk_78 & 3;
+    m = a->mUnk_000.mDistanceSquaredAndFlags & 3;
     v = data_021759c0->mCurrentEntries[b->mUnk_74].mPlayer.mKind;
     if ((u32) v <= 3) {
         if (((1 << v) & 0xd) != 0) {

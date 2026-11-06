@@ -100,8 +100,8 @@ void EnterKuriboState2(Kuribo *p0) {
 void UpdateKuriboState2(Kuribo *p) {
     p->mUnk_c4 = (s32) (((s64) p->mUnk_c4 * 0x1266) >> 12);
     if (p->mUnk_c4 > 0x1800) {
-        p->mUnk_00.mUnk_80.mNextState = 3;
-        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+        p->mUnk_00.mStateMachine.mNextState = 3;
+        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -112,8 +112,8 @@ u32 func_020dabfc(u32 p0) {
 void UpdateKuriboState3(Kuribo *p) {
     p->mUnk_c4 = (s32) (((s64) p->mUnk_c4 * 0xd99) >> 12);
     if (p->mUnk_c4 < 0x333) {
-        p->mUnk_00.mUnk_80.mNextState = 4;
-        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+        p->mUnk_00.mStateMachine.mNextState = 4;
+        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -123,9 +123,9 @@ u32 func_020dab98(u32 p0) {
 
 void UpdateKuriboState4(Kuribo *p) {
     if (p->mUnk_fc != 0) {
-        if (p->mUnk_00.mUnk_80.mStateFrames > 0x12c) {
-            p->mUnk_00.mUnk_80.mNextState = 5;
-            p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+        if (p->mUnk_00.mStateMachine.mStateFrames > 0x12c) {
+            p->mUnk_00.mStateMachine.mNextState = 5;
+            p->mUnk_00.mStateMachine.mNextStateRequested = 1;
         }
         return;
     }
@@ -138,10 +138,10 @@ void UpdateKuriboState4(Kuribo *p) {
 void EnterKuriboState5(Kuribo *p) {
     Unk0210b7a8 s;
     s32 a;
-    if ((p->mUnk_00.mUnk_78 & 4) == 0) {
-        if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+    if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+        if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
             a = 2;
-        } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+        } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
             a = 3;
         } else {
             a = 4;
@@ -160,9 +160,9 @@ void UpdateKuriboState5(Kuribo *p) {
     p->mUnk_c8 += (s32) (((s64) (0x1000 - p->mUnk_c4) * 0x200) >> 12);
     p->mUnk_c8 = (s32) (((s64) p->mUnk_c8 * 0xd99) >> 12);
     p->mUnk_c4 += p->mUnk_c8;
-    if (p->mUnk_00.mUnk_80.mStateFrames > 0x3c) {
-        p->mUnk_00.mUnk_80.mNextState = 0;
-        p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+    if (p->mUnk_00.mStateMachine.mStateFrames > 0x3c) {
+        p->mUnk_00.mStateMachine.mNextState = 0;
+        p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
@@ -215,9 +215,10 @@ u32 func_020da73c(Kuribo *p, Kart *a, u8 *b, u8 *c) {
             }
             break;
         case 1:
-            if (p->mUnk_00.mUnk_80.mState == 0 || p->mUnk_00.mUnk_80.mState == 5 || p->mUnk_00.mUnk_80.mState == 1) {
-                p->mUnk_00.mUnk_80.mNextState = 2;
-                p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+            if (p->mUnk_00.mStateMachine.mState == 0 || p->mUnk_00.mStateMachine.mState == 5 ||
+                p->mUnk_00.mStateMachine.mState == 1) {
+                p->mUnk_00.mStateMachine.mNextState = 2;
+                p->mUnk_00.mStateMachine.mNextStateRequested = 1;
                 func_020d26ec(&a->mSoundSource, 0x185);
                 func_020d26f8(&p->mUnk_00, a);
                 func_020da820(p, &a->mVelocity);
@@ -238,9 +239,10 @@ u32 func_020da684(Kuribo *p, Kart *a, u8 *b, u8 *c) {
             }
             break;
         case 1:
-            if (p->mUnk_00.mUnk_80.mState == 0 || p->mUnk_00.mUnk_80.mState == 5 || p->mUnk_00.mUnk_80.mState == 1) {
-                p->mUnk_00.mUnk_80.mNextState = 2;
-                p->mUnk_00.mUnk_80.mNextStateRequested = 1;
+            if (p->mUnk_00.mStateMachine.mState == 0 || p->mUnk_00.mStateMachine.mState == 5 ||
+                p->mUnk_00.mStateMachine.mState == 1) {
+                p->mUnk_00.mStateMachine.mNextState = 2;
+                p->mUnk_00.mStateMachine.mNextStateRequested = 1;
                 func_020f8ddc(a);
                 if (a != NULL) {
                     func_020da820(p, &a->mUnk_05c);
@@ -256,7 +258,7 @@ void func_020da628(Kuribo *p) {
     p->mUnk_f8 = 0x1000;
     p->mUnk_a4 = data_02158140;
     p->mUnk_b4 = data_02158150;
-    func_02046bcc(&p->mUnk_00.mUnk_80, 1);
+    func_02046bcc(&p->mUnk_00.mStateMachine, 1);
     p->mUnk_00.mUnk_10.x = 0;
     p->mUnk_00.mUnk_10.y = 0;
     p->mUnk_00.mUnk_10.z = 0;

@@ -33,7 +33,7 @@ u8 func_02093754(MkdEfBurner *a, Kart *b, u8 *c, u8 *d) {
 
     v = *d;
     if (a->mUnk_d4[b->mIndex] == 0 && func_020d26f8(&a->mUnk_00, b) != 0) {
-        a->mUnk_00.mUnk_78 |= data_usa_02156470;
+        a->mUnk_00.mDistanceSquaredAndFlags |= data_usa_02156470;
         a->mUnk_d4[b->mIndex] = 0x1f;
     }
     return v;
@@ -62,7 +62,7 @@ void DrawMkdEfBurner(void *a, MkdEfBurner *p) {
     s0 = 0x1e;
     func_01ff9048(0x14, &s0, 1);
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 0xc);
-    s4.y = p->mUnk_00.mUnk_58.y >> 4;
+    s4.y = p->mUnk_00.mExtent.y >> 4;
     s4.x = 0;
     s4.z = 0;
     func_01ff9048(0x1c, &s4, 3);
@@ -88,7 +88,7 @@ void func_02093484(Unk020e6fd4 *p) {
     z = FALSE;
     f = data_usa_0215646c;
     for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
-        e->mUnk_00.mPos.y = e->mUnk_00.mCourseMapRow->mUnk_00.y - e->mUnk_00.mUnk_58.y;
+        e->mUnk_00.mPos.y = e->mUnk_00.mCourseMapRow->mUnk_00.y - e->mUnk_00.mExtent.y;
         if (e->mUnk_00.mCourseMapRow->mUnk_26 < 0) {
             e->mUnk_b0.mUnk_08 = 0xffff;
         } else {
@@ -108,7 +108,7 @@ void func_02093484(Unk020e6fd4 *p) {
                 e->mUnk_a0 = 0;
                 e->mState = 1;
                 e->mUnk_00.mFlags |= f;
-                e->mUnk_00.mUnk_58.y = 0;
+                e->mUnk_00.mExtent.y = 0;
             }
         }
     }
@@ -134,7 +134,7 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
                 p->mUnk_a8 = 0x1000;
                 p->mState = 2;
             }
-            p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mKindData->mUnk_10 * p->mUnk_a8) >> 12;
+            p->mUnk_00.mExtent.y = ((s64) p->mUnk_00.mKindData->mUnk_10 * p->mUnk_a8) >> 12;
             break;
         case 2:
             p->mUnk_a0++;
@@ -151,7 +151,7 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
                 p->mState = 0;
                 p->mUnk_00.mFlags |= data_usa_0215646c;
             }
-            p->mUnk_00.mUnk_58.y = ((s64) p->mUnk_00.mKindData->mUnk_10 * p->mUnk_a8) >> 12;
+            p->mUnk_00.mExtent.y = ((s64) p->mUnk_00.mKindData->mUnk_10 * p->mUnk_a8) >> 12;
             break;
         case 4:
             StartMapObjectSoundWhileRequested(&p->mUnk_00, 0x170);
@@ -165,9 +165,9 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
     if (p->mUnk_b0.mUnk_08 != 0xffff) {
         func_020d8cc8(&p->mUnk_b0);
         func_020d8a5c(&p->mUnk_b0, &p->mUnk_00.mPos);
-        p->mUnk_00.mPos.y = p->mUnk_00.mPos.y - p->mUnk_00.mUnk_58.y;
+        p->mUnk_00.mPos.y = p->mUnk_00.mPos.y - p->mUnk_00.mExtent.y;
     } else {
-        p->mUnk_00.mPos.y = p->mUnk_00.mCourseMapRow->mUnk_00.y - p->mUnk_00.mUnk_58.y;
+        p->mUnk_00.mPos.y = p->mUnk_00.mCourseMapRow->mUnk_00.y - p->mUnk_00.mExtent.y;
     }
     c = data_021759c0->mKartCount;
     for (i = 0; i < c; i++) {

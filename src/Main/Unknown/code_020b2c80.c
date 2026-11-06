@@ -14,7 +14,7 @@
 
 s32 func_020b2d54(void) {
     if (IsKartEnded((u16) func_020b2d90()) != 0) {
-        return gRaceProgress->mUnk_4e0;
+        return gRaceProgress->mEntryEndKind;
     }
     return 6;
 }

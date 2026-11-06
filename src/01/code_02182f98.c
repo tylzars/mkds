@@ -33,7 +33,7 @@ void func_ov001_02182f98(void *f, Unk02181c3c *g, void *h, u32 l) {
     Vec3 d;
 
     if (g->mUnk_0b0 > 0 && g->mUnk_0a0 != 0 && (g->mUnk_000.mFlags & 1) == 0 &&
-        (s32) (g->mUnk_000.mUnk_78 & 0x3fffffe0) < 0x3d090) {
+        (s32) (g->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0) < 0x3d090) {
         b.x = g->mUnk_000.mPos.x;
         b.y = g->mUnk_000.mPos.y - 0x16000;
         b.z = g->mUnk_000.mPos.z;

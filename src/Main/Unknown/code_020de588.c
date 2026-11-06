@@ -111,7 +111,7 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
             a->mUnk_000.mFlags |= data_02158568;
         }
     }
-    a->mUnk_000.mUnk_78 |= data_0215856c;
+    a->mUnk_000.mDistanceSquaredAndFlags |= data_0215856c;
 }
 #pragma thumb off
 

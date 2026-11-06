@@ -294,8 +294,8 @@ void func_020fdc08(Unk020fdae8 *e, Unk020fdae8 *b, Unk021052fc *c) {
         return;
     }
     e->mUnk_170--;
-    if (e->mUnk_170 < c->mUnk_00.mUnk_66) {
-        c->mUnk_00.mUnk_66 = e->mUnk_170;
+    if (e->mUnk_170 < c->mUnk_00.mAlpha) {
+        c->mUnk_00.mAlpha = e->mUnk_170;
     }
     if (e->mUnk_170 < 0x10) {
         c->mUnk_00.mFlags |= data_02159f18;
@@ -512,7 +512,7 @@ void func_020fd684(void *c, Vec3 *d, Vec3 *f) {
     v1 = e->mUnk_198;
     v1->mUnk_00.mFlags &= ~2;
     v1->mUnk_00.mFlags &= ~8;
-    v1->mUnk_00.mUnk_66 = 0x1f;
+    v1->mUnk_00.mAlpha = 0x1f;
 }
 
 void func_020fd540(void **b, Vec3 *v, s32 a) {
@@ -545,7 +545,7 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
     if (v1 != NULL) {
         v1->mUnk_00.mFlags &= ~2;
         v1->mUnk_00.mFlags &= ~8;
-        v1->mUnk_00.mUnk_66 = 0x1f;
+        v1->mUnk_00.mAlpha = 0x1f;
         v1->mUnk_00.mFlags &= ~4;
         if (v1->mUnk_00.mKind != MAP_OBJECT_KIND_KURIBO) {
             v1->mUnk_00.mFlags &= ~1;

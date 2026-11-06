@@ -13,7 +13,7 @@ u16 func_ov001_0218b2d4(Unk02188950 *a) {
 
 void func_ov001_0218b2b8(Unk02188950 *a) {
     a->mUnk_2d8 = 0xb;
-    a->mUnk_000.mUnk_78 |= data_ov001_021a6598;
+    a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a6598;
 }
 
 void func_ov001_0218b2a8(Unk02188950 *a) {

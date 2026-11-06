@@ -46,12 +46,12 @@ static inline void func_020919e8_inline_3(Unk020919e8 *p, s32 n) {
     Unk0210b7a8 s;
     s32 v;
 
-    if (p->mUnk_00.mUnk_78 & 4) {
+    if (p->mUnk_00.mDistanceSquaredAndFlags & 4) {
         return;
     }
-    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
         v = 2;
-    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
         v = 3;
     } else {
         v = 4;

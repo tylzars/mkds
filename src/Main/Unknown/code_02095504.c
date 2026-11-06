@@ -52,13 +52,13 @@ void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d) {
     func_01ff9048(0x14, &t, 1);
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
-    if ((s32) (p->mUnk_00.mUnk_78 & ~0xc000001f) < 0xc5c10) {
+    if ((s32) (p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f) < 0xc5c10) {
         SetMapObjectModelNsbcaFrameIndex(gMoveTree, p->mUnk_ac);
         DrawMapObjectModel(a, gMoveTree, p);
     } else {
         func_0209ba58(a, gMoveTree, p);
     }
-    if ((s32) (p->mUnk_00.mUnk_78 & ~0xc000001f) >= 0x27100) {
+    if ((s32) (p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f) >= 0x27100) {
         return;
     }
     func_020e5668(&p->mUnk_dc, &p->mUnk_00.mPos);
@@ -91,7 +91,7 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             if (p->mUnk_a0-- <= 0) {
                 p->mState = 1;
             }
-            if ((s32) (p->mUnk_00.mUnk_78 & ~0xc000001f) >= 0xc5c10) {
+            if ((s32) (p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f) >= 0xc5c10) {
                 return;
             }
             if (p->mUnk_a4-- > 0) {
@@ -112,12 +112,12 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             if (p->mUnk_ac != 0 && p->mUnk_ac != 0x1e) {
                 return;
             }
-            if ((p->mUnk_00.mUnk_78 & 4) != 0) {
+            if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) != 0) {
                 return;
             }
-            if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+            if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                 k = 2;
-            } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+            } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                 k = 3;
             } else {
                 k = 4;
@@ -137,7 +137,7 @@ void UpdateMoveTree(void *a, MoveTree *p) {
                 p->mState = 0;
             }
             func_020d879c(&p->mUnk_b4, &p->mUnk_00.mPos);
-            if ((s32) (p->mUnk_00.mUnk_78 & ~0xc000001f) >= 0xc5c10) {
+            if ((s32) (p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f) >= 0xc5c10) {
                 return;
             }
             if (p->mUnk_a4-- > 0) {
@@ -152,12 +152,12 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             if (p->mUnk_ac != 0 && p->mUnk_ac != 0x1e) {
                 return;
             }
-            if ((p->mUnk_00.mUnk_78 & 4) != 0) {
+            if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) != 0) {
                 return;
             }
-            if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+            if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                 k = 2;
-            } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+            } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                 k = 3;
             } else {
                 k = 4;

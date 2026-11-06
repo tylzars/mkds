@@ -35,7 +35,7 @@ u32 func_02099208(Unk0209905c *a, Kart *b, u8 *c, u8 *d) {
         a->mUnk_00.mFlags = a->mUnk_00.mFlags | data_usa_02156590;
         a->mUnk_cc = 1;
         if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
-            a->mUnk_00.mUnk_78 = a->mUnk_00.mUnk_78 | data_usa_02156594;
+            a->mUnk_00.mDistanceSquaredAndFlags = a->mUnk_00.mDistanceSquaredAndFlags | data_usa_02156594;
         }
         func_020d26f8(&a->mUnk_00, b);
     }
@@ -53,10 +53,10 @@ void func_0209905c(void *a, Unk0209905c *p) {
             if (p->mUnk_c4 <= 0) {
                 p->mUnk_c4 = 0;
                 p->mUnk_c8 = 0x5800;
-                if ((p->mUnk_00.mUnk_78 & 4) == 0) {
-                    if (p->mUnk_00.mUnk_70 == gSoundFalloffs[2].mUnk_20) {
+                if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
+                    if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                         t = 2;
-                    } else if (p->mUnk_00.mUnk_70 == gSoundFalloffs[3].mUnk_20) {
+                    } else if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[3].mUnk_20) {
                         t = 3;
                     } else {
                         t = 4;

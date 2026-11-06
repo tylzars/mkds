@@ -122,7 +122,7 @@ void func_020c5940(void) {
         return;
     }
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        if ((IsKartEnded((u16) data_021759c0->mEntryIndex) != 0 ? gRaceProgress->mUnk_4e0 : 6) != 0 &&
+        if ((IsKartEnded((u16) data_021759c0->mEntryIndex) != 0 ? gRaceProgress->mEntryEndKind : 6) != 0 &&
             func_0207a218() == 0 && n == 0) {
             return;
         }
@@ -162,12 +162,12 @@ void func_020c5940(void) {
             }
             break;
         case MODE_MISSION_RUN:
-            if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0 ? gRaceProgress->mUnk_4e0 : 6) {
+            if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0 ? gRaceProgress->mEntryEndKind : 6) {
                 data_0217b3f0->mUnk_18 = 9;
             } else {
                 data_0217b3f0->mUnk_18 = func_0205d140();
             }
-            if ((IsKartEnded((u16) data_021759c0->mEntryIndex) != 0 ? gRaceProgress->mUnk_4e0 : 6) == 0) {
+            if ((IsKartEnded((u16) data_021759c0->mEntryIndex) != 0 ? gRaceProgress->mEntryEndKind : 6) == 0) {
                 if (n == 1) {
                     switch (data_0217b3f0->mUnk_18) {
                         case 0:

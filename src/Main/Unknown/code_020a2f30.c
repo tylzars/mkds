@@ -91,7 +91,7 @@ void DrawBalloon(void *p, Balloon *a) {
     }
     n = a->mDrawCount;
     if (n == 1 && a->mDrawList == NULL) {
-        m = a->mUnk_00.mUnk_78 & ~0xc000001f;
+        m = a->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
         if (m < 0x2710) {
             a->mUnk_e8.x = data_0217b214.x + (a->mUnk_00.mPos.x >> 1);
             a->mUnk_e8.y = data_0217b214.y + (a->mUnk_00.mPos.y >> 1);
@@ -130,7 +130,7 @@ void DrawBalloon(void *p, Balloon *a) {
         func_0209b688(gBalloon, a->mNsbtpFrameIndex);
         DrawMapObjectModel(p, gBalloon, a);
     } else if (n > 0) {
-        m = a->mUnk_00.mUnk_78 & ~0xc000001f;
+        m = a->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f;
         if (m < 0x2710) {
             a->mUnk_e8.x = data_0217b214.x + (a->mTargetPos.x >> 1);
             a->mUnk_e8.y = data_0217b214.y + (a->mTargetPos.y >> 1);
@@ -252,7 +252,7 @@ u32 func_020a369c(Balloon *p) {
 }
 
 u32 func_020a3690(Balloon *p) {
-    return p->mUnk_00.mUnk_78 & ~0xc000001fu;
+    return p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001fu;
 }
 
 void func_020a35b0(Balloon *a) {

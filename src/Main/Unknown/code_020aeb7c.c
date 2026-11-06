@@ -369,7 +369,7 @@ void func_020aeb7c(void) {
                     gRaceHud->mUnk_83c = TRUE;
                     gRaceHud->mUnk_840 = TRUE;
                     if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
-                        v = gRaceProgress->mUnk_4e0;
+                        v = gRaceProgress->mEntryEndKind;
                     } else {
                         v = 6;
                     }
@@ -379,7 +379,7 @@ void func_020aeb7c(void) {
                 }
             } else if (gRaceProgress->mRaceDone != 0) {
                 if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
-                    v = gRaceProgress->mUnk_4e0;
+                    v = gRaceProgress->mEntryEndKind;
                 } else {
                     v = 6;
                 }

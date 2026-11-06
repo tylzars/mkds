@@ -16,8 +16,8 @@ void ParkMapObject(MapObject *a) {
     a->mFlags |= data_021568b8;
     a->mFlags |= data_021568bc;
     a->mFlags |= data_021568c0;
-    if (a->mUnk_64 != -1) {
-        func_020d5114(a->mUnk_64);
+    if (a->mCollisionSlotIndex != -1) {
+        func_020d5114(a->mCollisionSlotIndex);
     }
     a->mFlags |= data_021568c4;
 }
@@ -28,16 +28,16 @@ void UnparkMapObject(MapObject *a) {
     a->mFlags &= ~0xf;
     a->mFlags |= (a->mFlags & 0xf000) >> 12;
     if (!(a->mFlags & 2)) {
-        a->mUnk_66 = 0x1f;
+        a->mAlpha = 0x1f;
     }
-    if (a->mUnk_64 != -1) {
-        func_020d50ec(a->mUnk_64);
+    if (a->mCollisionSlotIndex != -1) {
+        func_020d50ec(a->mCollisionSlotIndex);
     }
     a->mFlags &= ~0x100;
 }
 
 void func_020d22e0(void) {
-    data_0217b4bc = data_021759c0->mMode == 5 ? &gRaceProgress->mUnk_4b0 : &gRaceProgress->mRandom;
+    data_0217b4bc = data_021759c0->mMode == 5 ? &gRaceProgress->mFixedSeedRandom : &gRaceProgress->mRandom;
     data_0217b4b8 = &gRaceProgress->mRandom;
 }
 
