@@ -61,9 +61,9 @@ extern const char data_0216362c[];
 extern const char data_02163638[];
 extern const char data_02163654[];
 extern const char data_02163670[];
-extern const char data_0216368c[];
-extern const char data_021636a4[];
-extern const char data_021636bc[];
+extern const char gMultiSelectNSSBnclName[];
+extern const char gMultiSelectNSSBnblName[];
+extern const char gMultiSelectNSSBnllName[];
 
 // Strings passed to FindSceneFile, func_02047a28, func_02025b20 and func_020258d4.
 extern char data_usa_021636f4[];

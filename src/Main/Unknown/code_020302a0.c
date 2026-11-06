@@ -13,15 +13,15 @@ void func_020302f0(u32 a, u32 b, u32 c, u32 d) {
 #pragma thumb on
 
 void func_020302a0(void) {
-    Unk02174e54 *o;
+    MultiSelectNS *o;
 
     func_020303a8(0x16);
-    o = data_02174e54;
+    o = gMultiSelectNS;
     if (o->mUnk_38 != 0) {
         func_0203038c(1);
         func_02030364(0x1f, 1);
         func_0203033c(7, 1);
-        func_020302f0(0, 0, 0xff, data_02174e54->mUnk_38 + 0xc0);
+        func_020302f0(0, 0, 0xff, gMultiSelectNS->mUnk_38 + 0xc0);
     } else {
         func_0203038c(0);
     }

@@ -103,8 +103,8 @@ void func_0203062c(u32 arg0) {
 
 #pragma thumb on
 
-s32 func_020303e8(void) {
-    Unk02174e54 *o;
+s32 AdvanceMultiSelectNS(void) {
+    MultiSelectNS *o;
     s32 r;
     s32 a;
     s32 b;
@@ -113,16 +113,16 @@ s32 func_020303e8(void) {
 
     r = -1;
     i = func_020435bc();
-    o = data_02174e54;
-    switch (o->mUnk_30) {
+    o = gMultiSelectNS;
+    switch (o->mState) {
         case 0:
-            o->mUnk_34++;
-            if (data_02174e54->mUnk_34 < 10) {
-                data_02174e54->mUnk_38 = func_020ae4c0(1, -0xc0, 0, data_02174e54->mUnk_34, 10);
+            o->mStateFrames++;
+            if (gMultiSelectNS->mStateFrames < 10) {
+                gMultiSelectNS->mUnk_38 = func_020ae4c0(1, -0xc0, 0, gMultiSelectNS->mStateFrames, 10);
             } else {
-                data_02174e54->mUnk_34 = 0;
-                data_02174e54->mUnk_38 = 0;
-                data_02174e54->mUnk_30 = 1;
+                gMultiSelectNS->mStateFrames = 0;
+                gMultiSelectNS->mUnk_38 = 0;
+                gMultiSelectNS->mState = 1;
             }
             func_020309d8();
             break;
@@ -133,57 +133,57 @@ s32 func_020303e8(void) {
                 b = func_020306e0(i);
                 c = func_020306b8(i);
                 a = IsSelectReturnState2NoState3Or4RequestAndInRect(b, c);
-                b = func_020291c4(b, c, o->mUnk_10);
+                b = func_020291c4(b, c, o->mBnbl);
             }
             if (func_02030688(i, 1) != 0) {
-                func_0204aa28(data_02174e54->mUnk_28 == 1 ? 1 : 0);
-                data_02174e54->mUnk_2c = 2;
-                data_02174e54->mUnk_30 = 2;
+                func_0204aa28(gMultiSelectNS->mIndex == 1 ? 1 : 0);
+                gMultiSelectNS->mUnk_2c = 2;
+                gMultiSelectNS->mState = 2;
                 func_02030954(0);
                 func_02030654(4);
             } else if (func_02030688(i, 2) != 0 || a != 0) {
-                data_02174e54->mUnk_2c = 0;
-                data_02174e54->mUnk_30 = 3;
+                gMultiSelectNS->mUnk_2c = 0;
+                gMultiSelectNS->mState = 3;
                 func_02128310(0);
-            } else if (func_02030688(i, 0x40) != 0 && data_02174e54->mUnk_28 > 0) {
-                data_02174e54->mUnk_28--;
+            } else if (func_02030688(i, 0x40) != 0 && gMultiSelectNS->mIndex > 0) {
+                gMultiSelectNS->mIndex--;
                 func_02030954(1);
                 func_0203062c(0);
-            } else if (func_02030688(i, 0x80) != 0 && data_02174e54->mUnk_28 < 1) {
-                data_02174e54->mUnk_28++;
+            } else if (func_02030688(i, 0x80) != 0 && gMultiSelectNS->mIndex < 1) {
+                gMultiSelectNS->mIndex++;
                 func_02030954(1);
                 func_0203062c(0);
             } else if (b == 0) {
-                data_02174e54->mUnk_30 = 2;
-                func_02030954(data_02174e54->mUnk_28 != 0 ? 1 : 0);
+                gMultiSelectNS->mState = 2;
+                func_02030954(gMultiSelectNS->mIndex != 0 ? 1 : 0);
                 func_02030654(4);
-                data_02174e54->mUnk_28 = 0;
+                gMultiSelectNS->mIndex = 0;
                 func_0204aa28(0);
-                data_02174e54->mUnk_2c = 2;
+                gMultiSelectNS->mUnk_2c = 2;
             } else if (b == 1) {
-                data_02174e54->mUnk_30 = 2;
-                func_02030954(data_02174e54->mUnk_28 != 1 ? 1 : 0);
+                gMultiSelectNS->mState = 2;
+                func_02030954(gMultiSelectNS->mIndex != 1 ? 1 : 0);
                 func_02030654(4);
-                data_02174e54->mUnk_28 = 1;
+                gMultiSelectNS->mIndex = 1;
                 func_0204aa28(1);
-                data_02174e54->mUnk_2c = 2;
+                gMultiSelectNS->mUnk_2c = 2;
             }
             break;
         case 2:
-            o->mUnk_34++;
-            if (data_02174e54->mUnk_34 >= 5) {
-                data_02174e54->mUnk_34 = 0;
-                data_02174e54->mUnk_30 = 3;
+            o->mStateFrames++;
+            if (gMultiSelectNS->mStateFrames >= 5) {
+                gMultiSelectNS->mStateFrames = 0;
+                gMultiSelectNS->mState = 3;
                 func_02030954(1);
             }
             break;
         case 3:
-            o->mUnk_34++;
-            if (data_02174e54->mUnk_34 < 10) {
-                data_02174e54->mUnk_38 = func_020ae4c0(1, 0, -0xc0, data_02174e54->mUnk_34, 10);
+            o->mStateFrames++;
+            if (gMultiSelectNS->mStateFrames < 10) {
+                gMultiSelectNS->mUnk_38 = func_020ae4c0(1, 0, -0xc0, gMultiSelectNS->mStateFrames, 10);
             } else {
-                data_02174e54->mUnk_38 = 0;
-                data_02174e54->mUnk_30 = 4;
+                gMultiSelectNS->mUnk_38 = 0;
+                gMultiSelectNS->mState = 4;
             }
             func_020309d8();
             break;
@@ -191,8 +191,8 @@ s32 func_020303e8(void) {
             r = o->mUnk_2c;
             break;
     }
-    if (data_02174e54->mUnk_30 != 4) {
-        func_02124c30(o->mUnk_0c, o->mUnk_08, o->mUnk_14, data_02174e54->mUnk_20, o->mUnk_18);
+    if (gMultiSelectNS->mState != 4) {
+        func_02124c30(o->mBncl, o->mNcer, o->mBnll, gMultiSelectNS->mUnk_20, o->mUnk_18);
     }
     return r;
 }
@@ -201,10 +201,10 @@ s32 func_020303e8(void) {
 
 #pragma thumb on
 
-void func_020303c4(void) {
+void ReleaseMultiSelectNS(void) {
     func_0204f7f4();
-    HeapDestroy(data_02174e54->mHeap);
-    data_02174e54 = NULL;
+    HeapDestroy(gMultiSelectNS->mHeap);
+    gMultiSelectNS = NULL;
     return;
 }
 

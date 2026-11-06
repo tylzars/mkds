@@ -1340,8 +1340,8 @@ func_0203033c kind:function(arm,size=0x28) addr:0x0203033c
 func_02030364 kind:function(arm,size=0x28) addr:0x02030364
 func_0203038c kind:function(arm,size=0x1c) addr:0x0203038c
 func_020303a8 kind:function(arm,size=0x1c) addr:0x020303a8
-func_020303c4 kind:function(thumb,size=0x24) addr:0x020303c4
-func_020303e8 kind:function(thumb,size=0x244) addr:0x020303e8
+ReleaseMultiSelectNS kind:function(thumb,size=0x24) addr:0x020303c4
+AdvanceMultiSelectNS kind:function(thumb,size=0x244) addr:0x020303e8
 func_0203062c kind:function(arm,size=0x10) addr:0x0203062c
 func_0203063c kind:function(arm,size=0x18) addr:0x0203063c
 func_02030654 kind:function(arm,size=0x34) addr:0x02030654
@@ -1356,7 +1356,7 @@ func_02030728 kind:function(arm,size=0x34) addr:0x02030728
 func_0203075c kind:function(arm,size=0x24) addr:0x0203075c
 func_02030780 kind:function(arm,size=0x30) addr:0x02030780
 func_020307b0 kind:function(arm,size=0x8) addr:0x020307b0
-func_020307b8 kind:function(thumb,size=0x164) addr:0x020307b8
+InitMultiSelectNS kind:function(thumb,size=0x164) addr:0x020307b8
 func_0203091c kind:function(arm,size=0x14) addr:0x0203091c
 func_02030930 kind:function(arm,size=0x24) addr:0x02030930
 func_02030954 kind:function(thumb,size=0x84) addr:0x02030954
@@ -9171,9 +9171,9 @@ data_0216362c kind:data(any) addr:0x0216362c
 data_02163638 kind:data(any) addr:0x02163638
 data_02163654 kind:data(any) addr:0x02163654
 data_02163670 kind:data(any) addr:0x02163670
-data_0216368c kind:data(any) addr:0x0216368c
-data_021636a4 kind:data(any) addr:0x021636a4
-data_021636bc kind:data(any) addr:0x021636bc
+gMultiSelectNSSBnclName kind:data(any) addr:0x0216368c
+gMultiSelectNSSBnblName kind:data(any) addr:0x021636a4
+gMultiSelectNSSBnllName kind:data(any) addr:0x021636bc
 data_usa_021636d4 kind:data(any) addr:0x021636d4
 data_usa_021636e4 kind:data(any) addr:0x021636e4
 data_usa_021636f4 kind:data(any) addr:0x021636f4
@@ -11232,7 +11232,7 @@ data_02174e44 kind:bss addr:0x02174e24
 data_02174e48 kind:bss addr:0x02174e28
 data_02174e4c kind:bss addr:0x02174e2c
 gMultiSelectMemberGroup kind:bss addr:0x02174e30
-data_02174e54 kind:bss addr:0x02174e34
+gMultiSelectNS kind:bss addr:0x02174e34
 gMultiSelectMember kind:bss addr:0x02174e38
 gSelectGame kind:bss addr:0x02174e3c
 data_02174e60 kind:bss addr:0x02174e40
