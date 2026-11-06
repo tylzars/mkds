@@ -64,7 +64,7 @@ void func_020249b8(Kart *a, s32 b, s32 c);
 void func_02024a28(SoundSource *p, u16 a, s32 b, s32 c);
 void func_02024a88(Kart *a);
 s32 func_02024eec(Unk02024eec *a, s32 b, s32 c);
-void func_02024fc0(u32 arg0, u32 arg1);
+void func_02024fc0(Kart *a, Unk02024eec *b);
 void func_02024fe8(Kart *a, Unk02024eec *b);
 void func_02025030(Kart *a, Unk02024eec *b);
 void func_0202506c(Kart *a, Unk02024eec *b);

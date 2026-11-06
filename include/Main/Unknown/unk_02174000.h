@@ -383,6 +383,6 @@ extern Unk02174e78 data_02174e78;
 extern u8 data_usa_02174e80[];
 
 extern NNSG2dCellTransferState *data_02174e04; // first word of the cell transfer state manager
-extern u8 data_02174e08[];
-extern u8 data_02174e0c[];
-extern u8 data_02174e10[];
+extern s32 data_02174e08;
+extern s32 data_02174e0c;
+extern s32 data_02174e10;

@@ -268,9 +268,9 @@ void func_020da628(Kuribo *p) {
 
 void CreateKuribo(void) {
     void *v1;
-    u32 v2;
+    void *v2;
     v1 = FindCourseMapObjFile(gKuriboNsbmdName);
-    v2 = (u32) FindCourseMapObjFile(gKuriboNsbtpName);
+    v2 = FindCourseMapObjFile(gKuriboNsbtpName);
     func_020e6488((Unk020e6488 **) (((u32 *) &gKuribo)), v1, v2, 0);
     func_020e6ab8(gKuribo);
 }

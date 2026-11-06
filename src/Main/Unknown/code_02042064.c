@@ -59,9 +59,9 @@ s32 LoadCourseMapEntryGroupsData(void *a, ...) {
 s32 LoadCourseMapGroupEntriesData(void *a, ...) {
     gCourseMap->mGroupEntryCount = ReadCourseMapSectionCount(&a);
     if (gCourseMap->mGroupEntryCount == 0) {
-        gCourseMap->mGroupEntries = 0;
+        gCourseMap->mGroupEntries = NULL;
     } else {
-        gCourseMap->mGroupEntries = (s32) a;
+        gCourseMap->mGroupEntries = a;
     }
     return 1;
 }
@@ -117,7 +117,7 @@ void func_02042fd8(void *a) {
     CourseMap *g;
     Unk02175620_94 *t;
     u16 n;
-    s32 d;
+    Unk02042044 *d;
     u32 z;
     u16 i;
     CourseMapEntryGroup *r;
@@ -132,8 +132,8 @@ void func_02042fd8(void *a) {
         for (i = 0; i < n; i++) {
             r = gCourseMap->mEntryGroups + i;
             t->mUnk_00 = r;
-            t->mUnk_04 = (void *) d;
-            d += r->mEntryCount * 0x14;
+            t->mUnk_04 = d;
+            d += r->mEntryCount;
             t++;
         }
     } else {
@@ -145,8 +145,8 @@ void func_02042fd8(void *a) {
 
 #pragma thumb on
 
-u32 func_02042fc4(u32 p0) {
-    return ((u32) gCourseMap->mEntryGroupTable) + (((p0) << 3));
+Unk02175620_94 *func_02042fc4(u32 p0) {
+    return gCourseMap->mEntryGroupTable + p0;
 }
 
 #pragma thumb off
@@ -169,7 +169,7 @@ void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c) {
             return;
         }
     }
-    n->mUnk_18 = (Vec3 *) p;
+    n->mUnk_18 = &p->mUnk_00;
     n->mUnk_1c = p->mUnk_0c;
     if (gCourseMap->mVersion < 0x21) {
         n->mUnk_20 = 0;
@@ -395,9 +395,9 @@ void BuildCourseMapBattlePointLinks(void *a) {
             d->mUnk_00[n++] = d + 1;
             d->mUnk_00[n++] = d - 1;
         }
-        d->mUnk_20 = (Vec3 *) s;
+        d->mUnk_20 = &s->mUnk_00;
         d->mUnk_24 = s->mUnk_0c;
-        d->mUnk_28 = (s16 *) s->mUnk_10;
+        d->mUnk_28 = s->mUnk_10;
         d->mUnk_2c = n;
     }
 }
@@ -415,15 +415,9 @@ void BuildCourseMapPointLinks(void *a) {
 #pragma thumb off
 
 #pragma thumb on
-u32 LoadCourseMapSettingsData(u32 arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    value1 = (value0) + (4u);
-    value0 = (u32) &gCourseMap;
-    value0 = *(const u32 *) ((value0) + 0u);
-    *(u32 *) ((value0) + 24u) = value1;
-    value0 = 1u;
-    return value0;
+u32 LoadCourseMapSettingsData(void *arg0) {
+    gCourseMap->mSettings = OFFSET_PTR(CourseMapSettings, arg0, 4);
+    return 1;
 }
 #pragma thumb off
 
@@ -812,7 +806,7 @@ void CreateCourseMap(void *a) {
             header = FindCourseFile("/course_map.nkm");
             break;
     }
-    courseMap = AllocCourseMap((u32) a);
+    courseMap = AllocCourseMap(a);
     gCourseMap = courseMap;
     courseMap->mVersion = header->mVersion;
     offset = header->mSectionOffsets;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/code_02042044.h"
 #include "Main/Unknown/code_02073eb8.h"
 #include "Main/Unknown/unk_0217b000.h"
 
@@ -77,7 +78,7 @@ typedef struct CourseMapShape {
 typedef struct {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ s32 mUnk_0c;
-    /* 10 */ u8 mUnk_10[8];
+    /* 10 */ s16 mUnk_10[4];
 } Unk02175620_84;
 
 // 0x30-byte entries of the table at CourseMap.mUnk_bc (func_02080908 searches it).
@@ -183,7 +184,7 @@ typedef struct CourseMapRoute {
 
 // 0x14-byte entries of the table at CourseMap.mItemPoints.
 typedef struct {
-    /* 00 */ u8 mUnk_00[0xc];
+    /* 00 */ Vec3 mUnk_00;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ u8 mUnk_10;
     /* 11 */ u8 mUnk_11[3];
@@ -209,7 +210,7 @@ typedef struct {
 // 8-byte entries of the table at CourseMap.mEntryGroupTable.
 typedef struct {
     /* 00 */ CourseMapEntryGroup *mUnk_00;
-    /* 04 */ void *mUnk_04;
+    /* 04 */ Unk02042044 *mUnk_04;
 } Unk02175620_94;
 
 // 0x28-byte nodes of the table at CourseMap.mRacePointLinks: two lists of node pointers.
@@ -218,7 +219,7 @@ typedef struct Unk02175620_a0 {
     /* 0c */ struct Unk02175620_a0 *mUnk_0c[3];
     /* 18 */ Unk02175620_84 *mUnk_18;
     /* 1c */ s32 mUnk_1c;
-    /* 20 */ u8 *mUnk_20;
+    /* 20 */ s16 *mUnk_20;
     /* 24 */ u16 mUnk_24;
     /* 26 */ u16 mUnk_26;
 } Unk02175620_a0;
@@ -245,7 +246,7 @@ typedef struct CourseMap {
     /* 08 */ CourseMapEntryGroup *mEntryGroups;
     /* 0c */ u16 mEntryGroupCount;
     /* 00e */ u8 mUnk_00e[0x2];
-    /* 010 */ s32 mGroupEntries;
+    /* 010 */ Unk02042044 *mGroupEntries;
     /* 014 */ u16 mGroupEntryCount;
     /* 016 */ u8 mUnk_016[0x2];
     /* 018 */ CourseMapSettings *mSettings;

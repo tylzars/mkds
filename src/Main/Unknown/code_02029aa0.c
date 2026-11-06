@@ -50,7 +50,7 @@
 
 void func_02029dcc(void *a, void *b, void *c) {
     s16 v1[10];
-    Unk02125de0 s;
+    Unk02125de0Arg s;
     Unk02174e60_00 t1;
     u16 v2[11];
     Unk02174e14_00 w3;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "code_02012b30.h"
 
 // Object at Unk0219b250.mNsbcaAnimation and mNsbtpAnimation (a 0x38-byte allocation).
 typedef struct Unk0219b250_Item {
@@ -14,16 +15,10 @@ typedef struct Unk0219b250_Item {
     /* 1c */ s32 **mUnk_1c;
 } Unk0219b250_Item;
 
-// Object at Unk0219b250_10.mUnk_04.
-typedef struct Unk0219b250_10_04 {
-    /* 00 */ u8 mUnk_00[0x18];
-    /* 18 */ u8 mUnk_18;
-} Unk0219b250_10_04;
-
 // Object at Unk0219b250.mAnimatedModel (a 0x6c-byte allocation).
 typedef struct Unk0219b250_10 {
     /* 00 */ u8 mUnk_00[0x4];
-    /* 04 */ Unk0219b250_10_04 *mUnk_04;
+    /* 04 */ NNSG3dResMdl *mUnk_04;
     /* 08 */ u8 mUnk_08[0x24];
     /* 2c */ struct Unk02188950 *mUnk_2c;
 } Unk0219b250_10;
@@ -61,11 +56,11 @@ typedef struct Unk0219b478 {
 void func_ov001_0219b250(Unk0219b250 *p0);
 void func_ov001_0219b25c(Unk0219b250 *p0, void *p1);
 void func_ov001_0219b28c(Unk0219b250 *p0, void *p1);
-void LoadMapObjectModelNsbtpAnimation(Unk0219b250 *p0, char *p1);
-void LoadMapObjectModelNsbtaAnimation(Unk0219b250 *p0, char *p1);
-void LoadMapObjectModelNsbmaAnimation(Unk0219b250 *p0, char *p1);
-void LoadMapObjectModelNsbcaAnimation(Unk0219b250 *p0, char *p1);
-Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, char *p1);
-Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, char *p1);
-void *LoadMissionRunFile(char *p0);
+void LoadMapObjectModelNsbtpAnimation(Unk0219b250 *p0, const char *p1);
+void LoadMapObjectModelNsbtaAnimation(Unk0219b250 *p0, const char *p1);
+void LoadMapObjectModelNsbmaAnimation(Unk0219b250 *p0, const char *p1);
+void LoadMapObjectModelNsbcaAnimation(Unk0219b250 *p0, const char *p1);
+Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, const char *p1);
+Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, const char *p1);
+void *LoadMissionRunFile(const char *p0);
 void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, u16 p6);

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-s32 InitSelectChoises(void *a, s32 b, s32 c);
+s32 InitSelectChoises(void *a, void *b, s32 c);

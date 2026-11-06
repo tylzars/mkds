@@ -28,25 +28,16 @@
 u32 func_020250a8(void) {
     u32 value0;
     u32 value1;
-    u32 value2;
-    value1 = (u32) &data_02161ae4;
-    value0 = 0x1000u;
-    value1 = *(const u32 *) ((value1) + (0));
-    value0 = FX_Div(value0, value1);
-    value1 = (u32) &data_02161ae0;
-    value2 = (u32) &data_02174e10;
-    value1 = *(const u32 *) ((value1) + (0));
-    *(u32 *) ((value2) + (0)) = value0;
-    value0 = 0x1000u;
-    value0 = FX_Div(value0, value1);
-    value1 = (u32) &data_02161adc;
-    value2 = (u32) &data_02174e0c;
-    value1 = *(const u32 *) ((value1) + (0));
-    *(u32 *) ((value2) + (0)) = value0;
-    value0 = 0x1000u;
-    value0 = FX_Div(value0, value1);
-    value1 = (u32) &data_02174e08;
-    *(u32 *) ((value1) + (0)) = value0;
+
+    value1 = *(const u32 *) &data_02161ae4;
+    value0 = FX_Div(0x1000, value1);
+    value1 = *(const u32 *) &data_02161ae0;
+    data_02174e10 = value0;
+    value0 = FX_Div(0x1000, value1);
+    value1 = *(const u32 *) &data_02161adc;
+    data_02174e0c = value0;
+    value0 = FX_Div(0x1000, value1);
+    data_02174e08 = value0;
     return value0;
 }
 
@@ -75,25 +66,14 @@ void func_02024fe8(Kart *a, Unk02024eec *b) {
     StartSoundWhileRequested(&a->mSoundSource, v, b->mUnk_04, (b->mUnk_08 << 4) >> 16);
 }
 
-void func_02024fc0(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    u32 value3;
-    u32 value12;
-    u32 compareLeft0;
-    u32 compareRight0;
-    value3 = *(const u32 *) ((value1) + (8));
-    value2 = *(const u8 *) ((value1) + (4));
-    compareLeft0 = value3;
-    compareRight0 = 0x440000u;
-    if ((s32) compareLeft0 > (s32) compareRight0) {
-        value3 = 0x440000u;
+void func_02024fc0(Kart *a, Unk02024eec *b) {
+    s32 v;
+
+    v = b->mUnk_08;
+    if (v > 0x440000) {
+        v = 0x440000;
     }
-    value3 = (value3 << 4);
-    value1 = *(const u32 *) ((value1) + (92));
-    value3 = ((s32) value3 >> 16);
-    StartSoundWhileRequested((SoundSource *) value0, value1, value2, value3);
+    StartSoundWhileRequested(&a->mSoundSource, b->mUnk_5c, b->mUnk_04, (v << 4) >> 16);
 }
 
 s32 func_02024eec(Unk02024eec *a, s32 b, s32 c) {
@@ -118,11 +98,11 @@ s32 func_02024eec(Unk02024eec *a, s32 b, s32 c) {
         } else if ((e & 0x7fff0000) != g) {
             a->mUnk_0c = b;
             if (b < d) {
-                h = *(s32 *) data_02174e0c;
+                h = data_02174e0c;
             } else if (c != 0) {
-                h = *(s32 *) data_02174e08;
+                h = data_02174e08;
             } else {
-                h = *(s32 *) data_02174e10;
+                h = data_02174e10;
             }
             f = ((s64) h * (b - d) + 0x800) >> 12;
             b = f + d;

@@ -307,8 +307,8 @@ void func_020092d0(u32 a, u16 b, u32 c) {
 }
 
 void func_020092a4(void) {
-    MemFillWordsByBlock_inline((Unk0216fc40 *) data_0216fc40, 0x5910);
-    ((Unk0216fc40 *) data_0216fc40)->mUnk_0c = 1;
+    MemFillWordsByBlock_inline(data_0216fc40, 0x5910);
+    data_0216fc40->mUnk_0c = 1;
 }
 
 u32 func_0200921c(Unk02008f00Func a, u32 b, Unk02007ec4 *c) {
@@ -319,7 +319,7 @@ u32 func_0200921c(Unk02008f00Func a, u32 b, Unk02007ec4 *c) {
     MIi_CpuCopy16(c, data_0216fce0, 0xc0);
     c = (Unk02007ec4 *) data_0216fce0;
     data_0216fc3c = data_0216fd30;
-    if (func_020088dc((u16 *) ((u8 *) data_0216fc3c + 8), 0x68) != 0) {
+    if (func_020088dc(OFFSET_PTR(u16, data_0216fc3c, 8), 0x68) != 0) {
         return 0;
     }
     v1 = func_02009098((u8 *) c, a);

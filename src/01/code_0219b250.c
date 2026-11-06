@@ -31,7 +31,7 @@ void *func_ov001_0219b510(void *p0, void *p1, void *p2, u32 p3, u16 p4, u16 p5, 
     return r;
 }
 
-void *LoadMissionRunFile(char *p0) {
+void *LoadMissionRunFile(const char *p0) {
     char buf[0x100];
     void *out = NULL;
     snprintf(buf, 0x100, "data/MissionRun/%s", p0);
@@ -40,7 +40,7 @@ void *LoadMissionRunFile(char *p0) {
 }
 
 // Overlay-1 version of CreateMapObjectModelAnimated; the file comes from LoadMissionRunFile.
-Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, char *p1) {
+Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, const char *p1) {
     Unk0219b250 *o = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     if (p0 != NULL) {
         p0->mUnk_18 = 1;
@@ -54,7 +54,7 @@ Unk0219b250 *LoadMapObjectModelAnimated(Unk0219b478 *p0, char *p1) {
 }
 
 // Overlay-1 version of CreateMapObjectModelShadow; the file comes from LoadMissionRunFile.
-Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, char *p1) {
+Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, const char *p1) {
     Unk0219b250 *o = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     void *r = LoadMissionRunFile((p1));
     if (p0 != NULL) {
@@ -67,7 +67,7 @@ Unk0219b250 *LoadMapObjectModelShadow(Unk0219b478 *p0, char *p1) {
     return o;
 }
 
-void LoadMapObjectModelNsbcaAnimation(Unk0219b250 *p0, char *p1) {
+void LoadMapObjectModelNsbcaAnimation(Unk0219b250 *p0, const char *p1) {
     void *r = LoadMissionRunFile((p1));
     u8 v;
     p0->mNsbcaAnimation = HeapAlloc(GetHeap(func_020364e8()), 0x38);
@@ -77,13 +77,13 @@ void LoadMapObjectModelNsbcaAnimation(Unk0219b250 *p0, char *p1) {
     func_02087f84(p0->mNsbcaAnimation, 0);
 }
 
-void LoadMapObjectModelNsbmaAnimation(Unk0219b250 *p0, char *p1) {
+void LoadMapObjectModelNsbmaAnimation(Unk0219b250 *p0, const char *p1) {
     void *r = LoadMissionRunFile((p1));
     p0->mNsbmaAnimation = HeapAlloc(GetHeap(func_020364e8()), 0x38);
     func_020ea514(4, (p0->mAnimatedModel), (p0->mNsbmaAnimation), (p0->mNsbmdFile), (r));
 }
 
-void LoadMapObjectModelNsbtaAnimation(Unk0219b250 *p0, char *p1) {
+void LoadMapObjectModelNsbtaAnimation(Unk0219b250 *p0, const char *p1) {
     void *r = LoadMissionRunFile((p1));
     u8 v;
     p0->mNsbtaAnimation = HeapAlloc(GetHeap(func_020364e8()), 0x38);
@@ -93,7 +93,7 @@ void LoadMapObjectModelNsbtaAnimation(Unk0219b250 *p0, char *p1) {
     func_02087f84(p0->mNsbtaAnimation, 0);
 }
 
-void LoadMapObjectModelNsbtpAnimation(Unk0219b250 *p0, char *p1) {
+void LoadMapObjectModelNsbtpAnimation(Unk0219b250 *p0, const char *p1) {
     void *r = LoadMissionRunFile((p1));
     p0->mNsbtpAnimation = HeapAlloc(GetHeap(func_020364e8()), 0x38);
     func_020ea514(2, (p0->mAnimatedModel), (p0->mNsbtpAnimation), (p0->mNsbmdFile), (r));

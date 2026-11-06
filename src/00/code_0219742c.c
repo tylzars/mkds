@@ -81,7 +81,7 @@ s32 GstatsStartConnect(s32 a, s32 b) {
 }
 
 s32 GstatsUpdateConnect(void) {
-    s32 a[2];
+    u32 a[2];
     s32 b;
     s32 c;
     switch (data_ov000_021b4e60) {
@@ -90,7 +90,7 @@ s32 GstatsUpdateConnect(void) {
         case 2:
             a[0] = 0;
             a[1] = 0;
-            b = func_ov000_0218e68c(data_ov000_021b3b2c, NULL, (u32 *) &a[0], (u32 *) &a[1]);
+            b = func_ov000_0218e68c(data_ov000_021b3b2c, NULL, &a[0], &a[1]);
             if (b == -1 || (b == 1 && a[1] == 1)) {
                 data_ov000_021b4e60 = 1;
                 GstatsClose();
@@ -264,9 +264,9 @@ BOOL func_ov000_0219746c(void) {
 
 void func_ov000_0219742c(void) {
     *(u32 *) &data_ov000_021b4e50 = 1;
-    *(u8 *) &data_ov000_021b3b88 = 0x47;
-    *(u8 *) &data_ov000_021b3b58 = 0x49;
-    *(u8 *) &data_ov000_021b3b98 = 0x50;
-    *(u8 *) &data_ov000_021b3ba8 = 0x67;
-    *(u8 *) &data_ov000_021b3b4c = 0x5c;
+    data_ov000_021b3b88[0] = 0x47;
+    data_ov000_021b3b58[0] = 0x49;
+    data_ov000_021b3b98[0] = 0x50;
+    data_ov000_021b3ba8[0] = 0x67;
+    data_ov000_021b3b4c[0] = 0x5c;
 }

@@ -210,7 +210,7 @@ void func_ov001_02181844(u16 a, u16 b, u16 c, u16 d) {
     gMissionRunData->mUnk_16 = d;
 }
 
-u32 func_ov001_02181838(void) {
+s32 func_ov001_02181838(void) {
     return (gMissionRunData->mUnk_0e);
 }
 
@@ -230,7 +230,7 @@ u32 func_ov001_0218180c(void) {
     return v;
 }
 
-u32 func_ov001_02181800(void) {
+s32 func_ov001_02181800(void) {
     return (gMissionRunData->mUnk_06);
 }
 

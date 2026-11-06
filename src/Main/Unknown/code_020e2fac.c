@@ -264,9 +264,9 @@ u8 func_020e2fe4(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d) {
 
 void CreateChoropu(void) {
     void *v1;
-    u32 v2;
+    void *v2;
     v1 = FindCourseMapObjFile(gChoropuNsbmdName);
-    v2 = (u32) FindCourseMapObjFile(gChoropuNsbtpName);
+    v2 = FindCourseMapObjFile(gChoropuNsbtpName);
     func_020e6488((Unk020e6488 **) (((u32 *) &gChoropu)), v1, v2, 0);
     func_020e6ab8(gChoropu);
 }

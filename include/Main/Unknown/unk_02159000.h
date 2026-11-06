@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "Main/Unknown/code_020e5684.h"
 
 // Objects whose layout isn't known yet.
 extern u16 data_021594d8;
@@ -36,12 +37,12 @@ extern u8 data_02159070[];
 extern u16 data_021590b0;
 extern u32 data_021590e8;
 extern u8 data_021590ec[];
-extern u8 data_021591b4[];
-extern u8 data_021591dc[];
-extern u8 data_02159208[];
-extern u8 data_0215927c[];
-extern u8 data_021592a4[];
-extern u8 data_021592d0[];
+extern Unk020e59e4 data_021591b4;
+extern Unk020e5a40 data_021591dc;
+extern Unk020e5a9c data_02159208;
+extern Unk020e59e4 data_0215927c;
+extern Unk020e5a40 data_021592a4;
+extern Unk020e5a9c data_021592d0;
 extern u32 data_02159310;
 extern u8 data_02159348[];
 extern u8 data_02159370[];

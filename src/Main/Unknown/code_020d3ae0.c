@@ -226,10 +226,10 @@ void func_020d4bf0(void) {
     data_0217b4f8.mUnk_50 = TRUE;
     data_0217b4f8.mUnk_54 = FALSE;
     if (data_021759c0->mUnk_00c == 2) {
-        *(u32 *) &data_0217b4f4 = (0x00258000u);
+        data_0217b4f4 = 0x258000;
         return;
     }
-    *(u32 *) &data_0217b4f4 = (0x0012c000u);
+    data_0217b4f4 = 0x12c000;
 }
 
 #pragma thumb off
@@ -295,11 +295,8 @@ void func_020d4a20(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
 
 #pragma thumb on
 void ClearMapObjectList(MapObjectList *arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    value1 = 0u;
-    *(u32 *) ((value0) + 0u) = value1;
-    arg0->mMapObjectCount = value1;
+    arg0->mMapObjects = NULL;
+    arg0->mMapObjectCount = 0;
 }
 #pragma thumb off
 
@@ -311,35 +308,18 @@ void func_020d4a10(MapObjectList *p, s32 a) {
 
 #pragma thumb on
 u32 InitMapObjectDrawList(MapObjectList *arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    u32 value4;
-    value4 = (value0) + (0u);
-    value0 = (u32) func_020364e8();
-    value0 = (u32) GetHeap((void *) value0);
-    value1 = *(const u16 *) ((value4) + 4u);
-    value1 = (value1 << 2);
-    value0 = (u32) HeapAlloc((void *) value0, value1);
-    *(u32 *) ((value4) + 0u) = value0;
-    value0 = 0u;
-    *(u16 *) ((value4) + 4u) = value0;
-    return value0;
+    arg0->mMapObjects = HeapAlloc(GetHeap(func_020364e8()), arg0->mMapObjectCount << 2);
+    arg0->mMapObjectCount = 0;
+    return 0;
 }
 #pragma thumb off
 
 #pragma thumb on
 u32 AddMapObjectToDrawList(MapObjectList *arg0, MapObject *arg1) {
-    u32 value0 = (u32) arg0;
-    u32 value1 = (u32) arg1;
-    u32 value2;
-    u32 value3;
-    value3 = arg0->mMapObjectCount;
-    value2 = (value3) + (1u);
-    arg0->mMapObjectCount = value2;
-    value2 = *(const u32 *) ((value0) + 0u);
-    value0 = (value3 << 2);
-    *(u32 *) ((value2) + (value0)) = value1;
-    return value0;
+    u32 n = arg0->mMapObjectCount;
+    arg0->mMapObjectCount = n + 1;
+    arg0->mMapObjects[n] = arg1;
+    return n << 2;
 }
 #pragma thumb off
 
@@ -675,14 +655,7 @@ MapObject *GetFoundMapObject(u32 arg0) {
 }
 
 Vec3 *func_020d4104(int arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &data_0217b4dc;
-    value1 = 0xcu;
-    value2 = *(const u32 *) ((value2) + (0));
-    value0 = (value1) * (value0) + (value2);
-    return (Vec3 *) value0;
+    return data_0217b4dc + arg0;
 }
 
 BOOL func_020d3e34(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
@@ -786,27 +759,14 @@ u32 GetWaterHeightAngle(void) {
 }
 
 u32 func_020d3d94(void) {
-    u32 value0;
-    u32 value1;
-    u32 compareLeft0;
-    u32 compareRight0;
-    u32 compareLeft1;
-    u32 compareRight1;
-    value1 = (u32) &gCourseWater;
-    value0 = 0u;
-    value1 = *(const u32 *) ((value1) + (0));
-    compareLeft0 = value1;
-    compareRight0 = 0u;
-    if (compareLeft0 == compareRight0) {
-        return value0;
+    u32 r = 0;
+    if (gCourseWater == NULL) {
+        return r;
     }
-    value1 = *(const u32 *) ((value1) + (368));
-    compareLeft1 = value1;
-    compareRight1 = 0u;
-    if (compareLeft1 != compareRight1) {
-        value0 = 1u;
+    if (gCourseWater->mUnk_170 != 0) {
+        r = 1;
     }
-    return value0;
+    return r;
 }
 
 // Y minus mHeight when the Water exists and mUnk_170 is non-zero (mini stage 3, beach), else y minus WaterEfct.mHeight,
@@ -848,14 +808,8 @@ s32 func_020d3c94(MapObject *a, s32 b, Vec3 *c) {
     return func_020d2c2c(&a->mPos, &a->mUnk_10, a->mExtent.x, a->mCollisionSlotIndex, b, c);
 }
 
-u32 func_020d3c7c(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &gMapObjects;
-    value1 = 1u;
-    value0 = *(const u32 *) ((value0) + (0));
-    *(u32 *) ((value0) + (696)) = value1;
-    return value0;
+void func_020d3c7c(void) {
+    gMapObjects->mRunUpdateLists = 1;
 }
 
 u16 AllocPolygonIdWrapping(void) {
@@ -942,10 +896,10 @@ void SetMapObjectMaskAndFlagFromNumber(s32 a, MapObject *b) {
     u32 v2;
     v1 = 0x2710;
     if (0x2710 <= a) {
-        b->mFlags = b->mFlags | (*(u16 *) &data_021568e8);
+        b->mFlags = b->mFlags | data_021568e8;
         a = (a - v1) * 0x10000 >> 0x10;
     }
-    v2 = DecimalNonZeroDigitsToBitMask((u32) a);
+    v2 = DecimalNonZeroDigitsToBitMask(a);
     b->mDigitMask = v2;
 }
 

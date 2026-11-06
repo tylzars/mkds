@@ -2,4 +2,6 @@
 
 #include "types.h"
 
-void InitShine16(u32 arg0); /* parks the pooled object, then allocates its 0x44 effect record */
+typedef struct MapObject MapObject;
+
+void InitShine16(MapObject *p); /* parks the pooled object, then allocates its 0x44 effect record */

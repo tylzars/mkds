@@ -16,7 +16,7 @@
 
 #pragma thumb on
 
-void func_02125de0(void *a, void *b) {
+void func_02125de0(void *a, Unk02125de0Arg *b) {
     Unk021274ec t;
 
     data_0217d3ec = HeapAlloc(a, 0x814);
@@ -24,25 +24,25 @@ void func_02125de0(void *a, void *b) {
     data_0217d3ec->mUnk_00 = FALSE;
     data_0217d3ec->mUnk_04 = FALSE;
     data_0217d3ec->mUnk_08 = FALSE;
-    if (((Unk02125de0Arg *) b)->mUnk_00 != FALSE) {
-        t.mUnk_00 = (u32) ((Unk02125de0Arg *) b)->mUnk_04;
-        t.mUnk_04 = ((Unk02125de0Arg *) b)->mUnk_08;
-        t.mUnk_08 = ((Unk02125de0Arg *) b)->mUnk_0c;
-        t.mUnk_0c = ((Unk02125de0Arg *) b)->mUnk_10;
+    if (b->mUnk_00 != FALSE) {
+        t.mUnk_00 = (u32) b->mUnk_04;
+        t.mUnk_04 = b->mUnk_08;
+        t.mUnk_08 = b->mUnk_0c;
+        t.mUnk_0c = b->mUnk_10;
         t.mUnk_10 = data_0217d3ec->mUnk_810;
         data_0217d3ec->mUnk_00 = TRUE;
         data_0217d3ec->mUnk_810 = InitTxtSystem(a, &t);
     }
-    if (((Unk02125de0Arg *) b)->mUnk_14 != FALSE) {
+    if (b->mUnk_14 != FALSE) {
         data_0217d3ec->mUnk_04 = TRUE;
-        data_0217d3ec->mUnk_810 = InitSelectChoises(a, ((Unk02125de0Arg *) b)->mUnk_18, data_0217d3ec->mUnk_810);
+        data_0217d3ec->mUnk_810 = InitSelectChoises(a, b->mUnk_18, data_0217d3ec->mUnk_810);
     }
-    if (((Unk02125de0Arg *) b)->mUnk_1c != FALSE) {
+    if (b->mUnk_1c != FALSE) {
         data_0217d3ec->mUnk_08 = TRUE;
         data_0217d3ec->mUnk_810 = InitSelectReturn(a, data_0217d3ec->mUnk_810);
     }
-    if (((Unk02125de0Arg *) b)->mUnk_20 != FALSE) {
-        data_0217d3ec->mBackScreenKind = ((Unk02125de0Arg *) b)->mUnk_24;
+    if (b->mUnk_20 != FALSE) {
+        data_0217d3ec->mBackScreenKind = b->mUnk_24;
         func_02125ba4();
         data_0217d3ec->mUnk_810 = func_02125960(data_0217d3ec->mUnk_810);
     }

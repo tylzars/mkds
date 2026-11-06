@@ -353,13 +353,13 @@ BOOL func_ov001_021871d0(Unk02188950 *a) {
 
 void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, const char *e) {
     if (a != NULL && c != NULL) {
-        b->mNsbmd = LoadMapObjectModelAnimated(a, (char *) c);
+        b->mNsbmd = LoadMapObjectModelAnimated(a, c);
         if (d != NULL) {
-            LoadMapObjectModelNsbcaAnimation((Unk0219b250 *) b->mNsbmd, (char *) d);
+            LoadMapObjectModelNsbcaAnimation(b->mNsbmd, d);
         }
     }
     if (e != NULL) {
-        b->mPrm = LoadMissionRunFile((char *) e);
+        b->mPrm = LoadMissionRunFile(e);
     }
     b->mAngle = (u16) (((s64) b->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
     b->mUnk_168 = 0x1f000;
@@ -377,7 +377,7 @@ void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, 
 
 void func_ov001_021870b0(void *a, Unk02188950 *b, const char *c) {
     if (a != NULL && c != NULL) {
-        b->mShadowNsbmd = LoadMapObjectModelShadow(a, (char *) c);
+        b->mShadowNsbmd = LoadMapObjectModelShadow(a, c);
         SetMapObjectModelPolygonId(b->mShadowNsbmd, 0x3f);
         data_ov001_021a9ba0 = 0;
     }
@@ -582,14 +582,14 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         b->mSpeed = func_ov001_02187074(b->mUnk_178, b->mUnk_17c, b->mSpeed);
     }
     if (b->mUnk_274 > 0) {
-        b->mUnk_244 = func_ov001_02187074(b->mUnk_250, b->mUnk_274, b->mUnk_244);
-        b->mUnk_248 = func_ov001_02187074(b->mUnk_254, b->mUnk_274, b->mUnk_248);
-        b->mUnk_24c = func_ov001_02187074(b->mUnk_258, b->mUnk_274, b->mUnk_24c);
+        b->mUnk_244.x = func_ov001_02187074(b->mUnk_250, b->mUnk_274, b->mUnk_244.x);
+        b->mUnk_244.y = func_ov001_02187074(b->mUnk_254, b->mUnk_274, b->mUnk_244.y);
+        b->mUnk_244.z = func_ov001_02187074(b->mUnk_258, b->mUnk_274, b->mUnk_244.z);
     }
     if (b->mUnk_278 > 0) {
-        b->mUnk_25c = func_ov001_02187074(b->mUnk_268, b->mUnk_278, b->mUnk_25c);
-        b->mUnk_260 = func_ov001_02187074(b->mUnk_26c, b->mUnk_278, b->mUnk_260);
-        b->mUnk_264 = func_ov001_02187074(b->mUnk_270, b->mUnk_278, b->mUnk_264);
+        b->mUnk_25c.x = func_ov001_02187074(b->mUnk_268, b->mUnk_278, b->mUnk_25c.x);
+        b->mUnk_25c.y = func_ov001_02187074(b->mUnk_26c, b->mUnk_278, b->mUnk_25c.y);
+        b->mUnk_25c.z = func_ov001_02187074(b->mUnk_270, b->mUnk_278, b->mUnk_25c.z);
     }
     if (b->mUnk_2b0 > 0) {
         b->mUnk_280 = func_ov001_02187074(b->mUnk_28c, b->mUnk_2b0, b->mUnk_280);
@@ -682,12 +682,12 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     if (b->mUnk_234 == 1) {
         MTX_RotY33_(&b->mUnk_000.mMatrix.mUnk_00[0].x, gPairsByAngle[((u16) b->mAngle >> 4) * 2],
                     gPairsByAngle[((u16) b->mAngle >> 4) * 2 + 1]);
-        MTX_MultVec33((Vec3 *) &b->mUnk_244, &b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_238);
+        MTX_MultVec33(&b->mUnk_244, &b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_238);
         VEC_Add(&b->mUnk_238, &b->mUnk_000.mPos, &b->mUnk_238);
     } else {
-        b->mUnk_238.x = b->mUnk_000.mPos.x + b->mUnk_244;
-        b->mUnk_238.y = b->mUnk_000.mPos.y + b->mUnk_248;
-        b->mUnk_238.z = b->mUnk_000.mPos.z + b->mUnk_24c;
+        b->mUnk_238.x = b->mUnk_000.mPos.x + b->mUnk_244.x;
+        b->mUnk_238.y = b->mUnk_000.mPos.y + b->mUnk_244.y;
+        b->mUnk_238.z = b->mUnk_000.mPos.z + b->mUnk_244.z;
     }
     b->mUnk_000.mAngle = b->mAngle;
 
@@ -760,7 +760,7 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
 void func_ov001_02186368(void *a, Unk02188950 *b) {
     s32 i;
     s32 depth;
-    Unk0219b250_10_04 *obj;
+    NNSG3dResMdl *obj;
     s32 level;
     s32 value;
     Vec3 v;
@@ -780,15 +780,15 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
             level = 0x1f;
         }
         if (level >= 0x1f) {
-            NNS_G3dMdlSetMdlXLDepthUpdateAll((NNSG3dResMdl *) b->mNsbmd->mAnimatedModel->mUnk_04, 1);
+            NNS_G3dMdlSetMdlXLDepthUpdateAll(b->mNsbmd->mAnimatedModel->mUnk_04, 1);
             SetMapObjectModelPolygonId(b->mNsbmd, 3);
         } else if (b->mUnk_27c <= 1) {
-            NNS_G3dMdlSetMdlXLDepthUpdateAll((NNSG3dResMdl *) b->mNsbmd->mAnimatedModel->mUnk_04, 1);
+            NNS_G3dMdlSetMdlXLDepthUpdateAll(b->mNsbmd->mAnimatedModel->mUnk_04, 1);
             SetMapObjectModelPolygonId(b->mNsbmd, 3);
         } else {
             obj = b->mNsbmd->mAnimatedModel->mUnk_04;
-            NNS_G3dMdlSetMdlXLDepthUpdateAll((NNSG3dResMdl *) obj, 1);
-            for (i = 0; i < obj->mUnk_18; i++) {
+            NNS_G3dMdlSetMdlXLDepthUpdateAll(obj, 1);
+            for (i = 0; i < obj->mInfo.mNumMat; i++) {
                 func_0209b904(b->mNsbmd, AllocPolygonIdWrapping(), i);
             }
         }
@@ -882,7 +882,7 @@ s32 func_ov001_021860cc(Unk02188950 *a, Vec3 *b, s32 c, Vec3 *d) {
 
     switch (a->mUnk_234) {
         case 0:
-            c += a->mUnk_25c;
+            c += a->mUnk_25c.x;
             d1 = b->x - a->mUnk_238.x;
             d2 = b->y - a->mUnk_238.y;
             d3 = b->z - a->mUnk_238.z;
@@ -892,11 +892,10 @@ s32 func_ov001_021860cc(Unk02188950 *a, Vec3 *b, s32 c, Vec3 *d) {
             }
             return 0;
         case 2:
-            return func_020ead80(b, &a->mUnk_238, &a->mUnk_000.mMatrix.mUnk_00[0], a->mUnk_25c, a->mUnk_260,
-                                 a->mUnk_260, c, d);
+            return func_020ead80(b, &a->mUnk_238, &a->mUnk_000.mMatrix.mUnk_00[0], a->mUnk_25c.x, a->mUnk_25c.y,
+                                 a->mUnk_25c.y, c, d);
         case 1:
-            return func_020eafc4(b, &a->mUnk_238, &a->mUnk_000.mMatrix.mUnk_00[0], (Vec3 *) &a->mUnk_25c,
-                                 (Vec3 *) &a->mUnk_25c, c, d);
+            return func_020eafc4(b, &a->mUnk_238, &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_25c, &a->mUnk_25c, c, d);
         default:
             return 0;
     }

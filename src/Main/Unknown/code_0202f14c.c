@@ -42,7 +42,7 @@ void func_0202f454(u32 v) {
 
 void func_0202f2b4(void *a) {
     Unk02180774 *b;
-    Unk02125de0 v1;
+    Unk02125de0Arg v1;
 
     data_02174e4c = HeapAllocAligned(a, 0x874, 0x20);
     func_0202f51c(data_02174e4c, 0x874);

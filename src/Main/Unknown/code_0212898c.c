@@ -176,7 +176,7 @@ void func_0212a410(void) {
 
 void InitKeyboard(void *a, s32 b) {
     volatile u16 d;
-    Unk0212a1e0 c;
+    Unk02125de0Arg c;
     s32 i;
     s32 j;
     gKeyboard = HeapAlloc(a, 0xc4);
@@ -189,7 +189,7 @@ void InitKeyboard(void *a, s32 b) {
     c.mUnk_0c = 1;
     c.mUnk_10 = 0;
     c.mUnk_14 = 0;
-    c.mUnk_18 = 0;
+    c.mUnk_18 = NULL;
     c.mUnk_1c = 0;
     c.mUnk_20 = 1;
     if (b == 0xc) {

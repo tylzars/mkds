@@ -77,13 +77,6 @@ typedef struct Unk0216fc60 {
     /* 68 */ u8 mUnk_68[8];
 } Unk0216fc60;
 
-// Object behind data_0216fc40 (0x5910 bytes cleared by func_020092a4).
-typedef struct Unk0216fc40 {
-    /* 00 */ u8 mUnk_00[0xc];
-    /* 0c */ u16 mUnk_0c;
-    /* 0e */ u8 mUnk_0e[0x5910 - 0xe];
-} Unk0216fc40;
-
 // Fields func_02009828 reads.
 typedef struct Unk02009828 {
     /* 00 */ u8 mUnk_00[4];

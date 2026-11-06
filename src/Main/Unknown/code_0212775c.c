@@ -382,7 +382,7 @@ u32 func_021281b4(void) {
 #pragma thumb off
 
 #pragma thumb on
-s32 InitSelectChoises(void *a, s32 b, s32 c) {
+s32 InitSelectChoises(void *a, void *b, s32 c) {
     s32 i;
     s32 r;
     Unk0217d3f0_2098 *q;
@@ -407,7 +407,7 @@ s32 InitSelectChoises(void *a, s32 b, s32 c) {
         r = func_020b4acc();
         e = &gSelectChoises->mUnk_874[i];
         e->mUnk_00 = &gSelectChoises->mCharCanvases[i];
-        e->mUnk_04 = b;
+        e->mUnk_04 = (u32) b;
         e->mUnk_08 = r;
         e->mUnk_0c = 0;
     }

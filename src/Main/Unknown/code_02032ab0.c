@@ -97,7 +97,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     u16 i;
     u16 m;
     u16 w[11];
-    Unk02125de0 v;
+    Unk02125de0Arg v;
     s32 f[8];
 
     gResultsBattle = HeapAlloc(a, 0x154);

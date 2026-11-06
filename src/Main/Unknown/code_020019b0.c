@@ -74,7 +74,7 @@ void func_02001ba0(void *a) {
     v1.mUnk_08 = 0;
     v1.mUnk_10 = 0;
     v1.mUnk_14 = FALSE;
-    v1.mUnk_18 = 0;
+    v1.mUnk_18 = NULL;
     v1.mUnk_1c = FALSE;
     v1.mUnk_20 = FALSE;
     v1.mUnk_24 = 0;

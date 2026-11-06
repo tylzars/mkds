@@ -43,11 +43,8 @@
 #include "code_0214b824.h"
 #include "Main/Unknown/code_02044618.h"
 
-u32 func_020ada10(void) {
-    u32 value0;
-    value0 = (u32) func_020364e8();
-    value0 = (u32) GetHeap((void *) value0);
-    return value0;
+void *func_020ada10(void) {
+    return GetHeap(func_020364e8());
 }
 
 u32 func_020ad9fc(void) {
@@ -82,28 +79,16 @@ void func_020ad8a4(u32 a, u32 b, u32 c, u32 d) {
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, a, b, c, d);
 }
 
-u32 func_020ad88c(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = 0x4000000u;
-    value1 = *(const u32 *) ((value2) + (0));
-    value1 = (value1) & ~(0xe000u);
-    value0 = (value1) | ((value0 << 13));
-    *(u32 *) ((value2) + (0)) = value0;
-    return value0;
+u32 func_020ad88c(u32 a) {
+    u32 v = (reg_GX_DISPCNT & ~0xe000u) | (a << 13);
+    reg_GX_DISPCNT = v;
+    return v;
 }
 
-u32 func_020ad870(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = 0x4001000u;
-    value1 = *(const u32 *) ((value2) + (0));
-    value1 = (value1) & ~(0xe000u);
-    value0 = (value1) | ((value0 << 13));
-    *(u32 *) ((value2) + (0)) = value0;
-    return value0;
+u32 func_020ad870(u32 a) {
+    u32 v = (reg_GXS_DB_DISPCNT & ~0xe000u) | (a << 13);
+    reg_GXS_DB_DISPCNT = v;
+    return v;
 }
 
 void func_020ad85c(u32 p0) {
@@ -128,10 +113,10 @@ void CreateTitleScene(void) {
     s32 r;
     s32 d;
     void *h;
-    Unk02125de0 s;
+    Unk02125de0Arg s;
 
     r = func_02090940();
-    gTitleScene = HeapAlloc((void *) func_020ada10(), 0x8bc);
+    gTitleScene = HeapAlloc(func_020ada10(), 0x8bc);
     gTitleScene->mStateFrames = 0;
     gTitleScene->mUnk_04 = TRUE;
     gTitleScene->mPrevState = 0;
@@ -164,23 +149,22 @@ void CreateTitleScene(void) {
     gTitleScene->mTitleSBncl = FindSceneFileWrapper(gTitleSBnclName);
     gTitleScene->mTitleSBnbl = FindSceneFileWrapper(gTitleSBnblName);
     gTitleScene->mTitleSBnll = FindSceneFileWrapper(gTitleSBnllName);
-    h = CreateDisplaySettings((void *) func_020ada10(), data_02156840);
+    h = CreateDisplaySettings(func_020ada10(), data_02156840);
     func_020ad9c0(h, 0, 0, 0, 0, 2, 0, 0);
     func_020ad98c(h, 2, 0, 0, 1, 14, 4);
     func_020ad958(h, 3, 0, 0, 1, 15, 4);
     func_020ad924(h, 3, 0, 0, 0, 1, 6);
     InitDisplayFromSettings(h);
-    func_02124ed0((void *) func_020ada10(), gTitleScene->mTitleSBncl, gTitleScene->mTitleSBnll,
-                  &gTitleScene->mTitleTable);
+    func_02124ed0(func_020ada10(), gTitleScene->mTitleSBncl, gTitleScene->mTitleSBnll, &gTitleScene->mTitleTable);
     func_02124a98(0, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(1, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(2, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(3, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(4, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     d = GX_GetSizeOfSubOBJ();
-    d -= func_021243ac((void *) func_020ada10(), 0, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xd,
-                       gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
-    func_021243ac((void *) func_020ada10(), 1, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xe, gTitleScene->mTitleSNceNcer,
+    d -= func_021243ac(func_020ada10(), 0, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xd, gTitleScene->mTitleSNceNcer,
+                       gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
+    func_021243ac(func_020ada10(), 1, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xe, gTitleScene->mTitleSNceNcer,
                   gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
     func_0212426c(1, 0, gTitleScene->mTitleSBnll, GetBmgEntry(FindSceneFileWrapper(gTitleBmgName), 1),
                   gTitleScene->mTitleSBncl, gTitleScene->mTitleTable);
@@ -215,8 +199,8 @@ void CreateTitleScene(void) {
     s.mUnk_20 = 0;
     s.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
-    func_02125de0((void *) func_020ada10(), &s);
-    gTitleScene->mUnk_8b8 = func_0203bedc((void *) func_020ada10());
+    func_02125de0(func_020ada10(), &s);
+    gTitleScene->mUnk_8b8 = func_0203bedc(func_020ada10());
     func_020acab8(0);
     func_0204aa28(0);
     func_020cee28();

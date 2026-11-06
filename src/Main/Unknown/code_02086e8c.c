@@ -313,19 +313,19 @@ void func_02087228(Unk02086098 *a, u16 b) {
 void func_020871c0(Unk02086098 *a, u32 b) {
     u16 v1;
     u16 *v2;
-    u32 v3;
-    v3 = *(u32 *) &data_0217aec4;
-    v2 = (u16 *) (u32) data_0217aec8;
+    u8 *v3;
+    v3 = data_0217aec4;
+    v2 = data_0217aec8;
     *v2 = (0x00007c00u);
     v1 = func_020873e4(b);
     v2[1] = v1;
     v2[2] = 0;
     v2[3] = 0x1f;
     DC_FlushRange(v2, 8);
-    MI_CpuFill8(((u32 *) v3), 0, a->mUnk_04);
+    MI_CpuFill8(v3, 0, a->mUnk_04);
     func_020adddc(b, v3, 1, 2);
-    DC_FlushRange((const void *) v3, (0x00000100u));
-    a->mUnk_0c = (void *) v3;
+    DC_FlushRange(v3, 0x100);
+    a->mUnk_0c = v3;
     a->mUnk_10 = v2;
 }
 
@@ -403,8 +403,8 @@ void func_02087000(void) {
                 s = BuildEmblemNsbtxPath(data_021759c0->mCurrentEntries[i].mCharacterIndex);
             }
             p = NNS_G3dGetTex(func_02047950(s));
-            q = (u8 *) p + p->mPlttInfo.mOfsPlttData;
-            r = (u8 *) p + p->mTexInfo.mOfsTex;
+            q = OFFSET_PTR(u8, p, p->mPlttInfo.mOfsPlttData);
+            r = OFFSET_PTR(u8, p, p->mTexInfo.mOfsTex);
             data_0217aed0->mUnk_144[i] = r;
             data_0217aed0->mUnk_164[i] = q;
         } else {

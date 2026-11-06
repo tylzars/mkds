@@ -92,9 +92,9 @@ u8 func_020e5b88(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 
 void CreateObPakkunSf(void) {
     void *v1;
-    u32 v2;
+    void *v2;
     v1 = FindCourseMapObjFile(gObPakkunSfNsbmdName);
-    v2 = (u32) FindCourseMapObjFile(gObPakkunSfNsbtpName);
+    v2 = FindCourseMapObjFile(gObPakkunSfNsbtpName);
     func_020e6488((Unk020e6488 **) (((u32 *) &gObPakkunSf)), v1, v2, 0);
     func_020e6ab8(gObPakkunSf);
 }

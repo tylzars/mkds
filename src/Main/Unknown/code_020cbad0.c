@@ -64,7 +64,7 @@
 #pragma optimize_for_size on
 void func_020cbb10(void) {
     Unk0217b43c *p;
-    Unk02125de0 s;
+    Unk02125de0Arg s;
     Unk02180774 *r;
 
     data_0217b43c = HeapAlloc(func_020cb99c(), 0x960);

@@ -30,7 +30,7 @@ BOOL func_ov000_02198c58(Gt2Connection *a, u8 *b, int c) {
     int d;
     u8 *e;
     if (c < 2 || memcmp(b, data_ov000_021b3fa4, 2) != 0) {
-        if (func_ov000_02198714((u32 *) a, (u32) b, c) == 0) {
+        if (func_ov000_02198714(a, b, c) == 0) {
             return FALSE;
         }
         return TRUE;
@@ -42,7 +42,7 @@ BOOL func_ov000_02198c58(Gt2Connection *a, u8 *b, int c) {
     e = a->mSendBuffer.mData + a->mSendBuffer.mLength;
     AppendBufferBytes(&a->mSendBuffer, data_ov000_021b3fa4, 2);
     AppendBufferBytes(&a->mSendBuffer, b, c);
-    if (func_ov000_02198714((u32 *) a, (u32) e, d) == 0) {
+    if (func_ov000_02198714(a, e, d) == 0) {
         return FALSE;
     }
     RemoveBufferBytes(&a->mSendBuffer, -1, d);
@@ -54,7 +54,7 @@ BOOL func_ov000_02198c08(Gt2Connection *a) {
     func_ov000_02198ba8_inline(b, data_ov000_021b3fa4);
     b[2] = 0x64;
     func_ov000_0219a01c(b, 3, a->mUnk_66);
-    if (func_ov000_02198714((u32 *) a, (u32) b, 5) == 0) {
+    if (func_ov000_02198714(a, b, 5) == 0) {
         return FALSE;
     }
     a->mUnk_90 = 0;
@@ -73,7 +73,7 @@ BOOL func_ov000_02198ba8(Gt2Connection *a, u16 b, u16 c) {
         func_ov000_0219a01c(d, e, c);
         e += 2;
     }
-    if (func_ov000_02198714((u32 *) a, (u32) d, e) == 0) {
+    if (func_ov000_02198714(a, d, e) == 0) {
         return FALSE;
     }
     return TRUE;
@@ -87,7 +87,7 @@ u32 func_ov000_02198b9c(u32 arg0, u32 arg1, u32 arg2) {
     value3 = 103u;
     *(u8 *) ((value1) + 2u) = value3;
     value3 = (u32) &func_ov000_02198714;
-    value0 = func_ov000_02198714((u32 *) value0, value1, value2);
+    value0 = func_ov000_02198714((Gt2Connection *) value0, (u8 *) value1, value2);
     return value0;
 }
 
@@ -108,7 +108,7 @@ BOOL func_ov000_02198b50(Gt2Socket *a, u32 b, int c) {
 
 BOOL func_ov000_02198af4(Gt2Connection *a, Unk02198af4 *b) {
     func_ov000_0219a01c(a->mSendBuffer.mData, b->mUnk_00 + 5, a->mUnk_66);
-    if (func_ov000_02198714((u32 *) a, (u32) (a->mSendBuffer.mData + b->mUnk_00), b->mUnk_04) == 0) {
+    if (func_ov000_02198714(a, a->mSendBuffer.mData + b->mUnk_00, b->mUnk_04) == 0) {
         return FALSE;
     }
     b->mUnk_0c = a->mLastSendTime;

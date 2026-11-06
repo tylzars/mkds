@@ -9,10 +9,10 @@ void NNS_FndAppendListObject(NNSFndList *list, void *object) {
         SetFirstObject(list, object);
         return;
     }
-    links = (NNSFndLink *) ((u8 *) object + list->mLinkOffset);
+    links = OFFSET_PTR(NNSFndLink, object, list->mLinkOffset);
     links->mPrevObject = list->mTail;
     links->mNextObject = 0;
-    ((NNSFndLink *) ((u8 *) list->mTail + list->mLinkOffset))->mNextObject = object;
+    (OFFSET_PTR(NNSFndLink, list->mTail, list->mLinkOffset))->mNextObject = object;
     list->mTail = object;
     list->mCount++;
 }
@@ -25,10 +25,10 @@ void NNS_FndPrependListObject(NNSFndList *list, void *object) {
         SetFirstObject(list, object);
         return;
     }
-    links = (NNSFndLink *) ((u8 *) object + list->mLinkOffset);
+    links = OFFSET_PTR(NNSFndLink, object, list->mLinkOffset);
     links->mPrevObject = 0;
     links->mNextObject = list->mHead;
-    ((NNSFndLink *) ((u8 *) list->mHead + list->mLinkOffset))->mPrevObject = object;
+    (OFFSET_PTR(NNSFndLink, list->mHead, list->mLinkOffset))->mPrevObject = object;
     list->mHead = object;
     list->mCount++;
 }
@@ -48,12 +48,12 @@ void NNS_FndInsertListObject(NNSFndList *list, void *target, void *object) {
         return;
     }
     linkOffset = list->mLinkOffset;
-    links = (NNSFndLink *) ((u8 *) object + linkOffset);
-    prevElement = ((NNSFndLink *) ((u8 *) target + linkOffset))->mPrevObject;
+    links = OFFSET_PTR(NNSFndLink, object, linkOffset);
+    prevElement = (OFFSET_PTR(NNSFndLink, target, linkOffset))->mPrevObject;
     links->mPrevObject = prevElement;
     links->mNextObject = target;
-    ((NNSFndLink *) ((u8 *) prevElement + linkOffset))->mNextObject = object;
-    ((NNSFndLink *) ((u8 *) target + list->mLinkOffset))->mPrevObject = object;
+    (OFFSET_PTR(NNSFndLink, prevElement, linkOffset))->mNextObject = object;
+    (OFFSET_PTR(NNSFndLink, target, list->mLinkOffset))->mPrevObject = object;
     list->mCount++;
 }
 
@@ -62,18 +62,18 @@ void NNS_FndRemoveListObject(NNSFndList *list, void *object) {
     NNSFndLink *links;
     void *neighbor;
 
-    links = (NNSFndLink *) ((u8 *) object + list->mLinkOffset);
+    links = OFFSET_PTR(NNSFndLink, object, list->mLinkOffset);
     neighbor = links->mPrevObject;
     if (neighbor == 0) {
         list->mHead = links->mNextObject;
     } else {
-        ((NNSFndLink *) ((u8 *) neighbor + list->mLinkOffset))->mNextObject = links->mNextObject;
+        (OFFSET_PTR(NNSFndLink, neighbor, list->mLinkOffset))->mNextObject = links->mNextObject;
     }
     neighbor = links->mNextObject;
     if (neighbor == 0) {
         list->mTail = links->mPrevObject;
     } else {
-        ((NNSFndLink *) ((u8 *) neighbor + list->mLinkOffset))->mPrevObject = links->mPrevObject;
+        (OFFSET_PTR(NNSFndLink, neighbor, list->mLinkOffset))->mPrevObject = links->mPrevObject;
     }
     links->mPrevObject = 0;
     links->mNextObject = 0;
@@ -85,7 +85,7 @@ void *NNS_FndGetNextListObject(NNSFndList *list, void *object) {
     if (object == 0) {
         return list->mHead;
     }
-    return ((NNSFndLink *) ((u8 *) object + list->mLinkOffset))->mNextObject;
+    return (OFFSET_PTR(NNSFndLink, object, list->mLinkOffset))->mNextObject;
 }
 
 // Returns the element before object, or the last element when object is NULL.
@@ -93,7 +93,7 @@ void *NNS_FndGetPrevListObject(NNSFndList *list, void *object) {
     if (object == 0) {
         return list->mTail;
     }
-    return ((NNSFndLink *) ((u8 *) object + list->mLinkOffset))->mPrevObject;
+    return (OFFSET_PTR(NNSFndLink, object, list->mLinkOffset))->mPrevObject;
 }
 
 // Returns the element at position index counted from the start of list, or NULL.

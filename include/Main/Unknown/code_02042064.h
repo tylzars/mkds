@@ -69,7 +69,7 @@ s32 func_020427ac(void *a, ...);
 void ShuffleCourseMapRespawnSlots(Unk020f41c4_B *a);
 s32 LoadCourseMapRespawnsData(void *a, ...);
 s32 LoadCourseMapStartPlacementsData(void *a, ...);
-u32 LoadCourseMapSettingsData(u32 arg0);
+u32 LoadCourseMapSettingsData(void *arg0);
 // Called once by CreateCourseMap after the sections are loaded: builds mItemPointLinks when mItemRouteCount is not 0,
 // and mRacePointLinks when mRaceRouteCount is not 0, else mBattlePointLinks when mBattleRouteCount is not 0.
 void BuildCourseMapPointLinks(void *a);
@@ -94,7 +94,7 @@ void BuildCourseMapItemPointLinks(void *a);
 // (skipped when already joined), then goes on with the next point of the route and, at the route end, with the first
 // point of each following route other than route 0 and 255.
 void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c);
-unsigned int func_02042fc4(unsigned int p0);
+Unk02175620_94 *func_02042fc4(unsigned int p0);
 void func_02042fd8(void *a);
 void func_02043038(void);
 s32 func_02043078(u16 a);

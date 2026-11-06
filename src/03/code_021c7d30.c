@@ -71,14 +71,14 @@ void CreateJb3List(void) {
     gJb3List->mReturnId = 0xc;
     func_ov003_021c94c8();
     LoadJb3ListFilesAndSetBgCnt();
-    if (*(u8 *) &gJb3ListMode == 0) {
+    if (gJb3ListMode == 0) {
         func_ov003_021bf43c(0x7c, data_ov003_021d6434[func_ov003_021c20d0()], b->mUnk_f4 + 1);
     } else {
         func_ov003_021bf43c(0x97, -1, 0);
     }
     func_ov003_021bf5ec(1);
     LoadHlListScr();
-    func_ov003_021ccea4(2, 0x55, 0xf1, 0x41, _s32_div_f(*(u16 *) &gJb3ListScrollY * 0x37, 0x91));
+    func_ov003_021ccea4(2, 0x55, 0xf1, 0x41, _s32_div_f(gJb3ListScrollY * 0x37, 0x91));
     gJb3List->mUnk_14 = func_ov003_021d2288(0, 1);
     for (i = 0; i < 7; i++) {
         gJb3List->mUnk_18[i] = func_ov003_021d1c18(0, data_ov003_021d6478[0][1]);
@@ -131,9 +131,9 @@ void func_ov003_021c94c8(void) {
     func_ov003_021cdb6c();
     func_ov003_021c20dc(NULL, v1);
     if (v1[0] == 0) {
-        *(u16 *) &gJb3ListScrollY = 0;
-        *(u8 *) &gJb3ListSelectedId = 0;
-        *(u8 *) &gJb3ListSelectedRow = 0;
+        gJb3ListScrollY = 0;
+        gJb3ListSelectedId = 0;
+        gJb3ListSelectedRow = 0;
     }
 }
 
@@ -169,7 +169,7 @@ void UpdateJb3ListInput(void) {
         return;
     }
     if (func_ov003_021d2b04(1) != 0) {
-        func_ov003_021c90dc(gJb3ListSelectedId[0]);
+        func_ov003_021c90dc(gJb3ListSelectedId);
         return;
     }
     if (func_ov003_021d2b04(2) != 0) {
@@ -179,7 +179,7 @@ void UpdateJb3ListInput(void) {
         return;
     }
     if (func_ov003_021d2ae8(0x200) != 0) {
-        if (*(u16 *) &gJb3ListScrollY == 0x91) {
+        if (gJb3ListScrollY == 0x91) {
             if (gJb3List->mUnk_47 != 0) {
                 return;
             }
@@ -196,7 +196,7 @@ void UpdateJb3ListInput(void) {
         return;
     }
     if (func_ov003_021d2ae8(0x100) != 0) {
-        if (*(u16 *) &gJb3ListScrollY == 0) {
+        if (gJb3ListScrollY == 0) {
             if (gJb3List->mUnk_47 != 0) {
                 return;
             }
@@ -353,16 +353,16 @@ void UpdateJb3ListScrollInput(void) {
                     return;
                 }
                 func_ov003_021bf698();
-                *(u16 *) &gJb3ListScrollY = _s32_div_f(func_ov003_021cce6c() * 0x91, 0x37);
+                gJb3ListScrollY = _s32_div_f(func_ov003_021cce6c() * 0x91, 0x37);
                 RefreshJb3List();
                 gJb3List->mScrollTimer = 4;
                 break;
             case 3:
                 gJb3List->mUnk_45 = 0;
-                *(u16 *) &gJb3ListScrollY = _s32_div_f(func_ov003_021cce6c() * 0x91, 0x37);
+                gJb3ListScrollY = _s32_div_f(func_ov003_021cce6c() * 0x91, 0x37);
                 StartSoundSeq(0x13);
                 RefreshJb3List();
-                a = FX_ModS32(*(u16 *) &gJb3ListScrollY, 0x1d);
+                a = FX_ModS32(gJb3ListScrollY, 0x1d);
                 if (a == 0) {
                     SetJb3ListSelectedIdFromRow();
                     return;
@@ -374,7 +374,7 @@ void UpdateJb3ListScrollInput(void) {
                 }
                 break;
             case 4:
-                if (*(u16 *) &gJb3ListScrollY == 0) {
+                if (gJb3ListScrollY == 0) {
                     if (gJb3List->mUnk_46 != 0) {
                         return;
                     }
@@ -386,7 +386,7 @@ void UpdateJb3ListScrollInput(void) {
                 }
                 break;
             case 6:
-                if (*(u16 *) &gJb3ListScrollY == 0x91) {
+                if (gJb3ListScrollY == 0x91) {
                     if (gJb3List->mUnk_46 != 0) {
                         return;
                     }
@@ -503,7 +503,7 @@ void func_ov003_021c8c14(void) {
             func_ov003_021c212c(func_ov003_021c9944);
             break;
         case 13:
-            if (*(u8 *) &gJb3ListMode == 0) {
+            if (gJb3ListMode == 0) {
                 func_ov003_021c2120(2, 1);
                 func_ov003_021c212c(CreateAp);
             } else {
@@ -520,7 +520,7 @@ void RefreshJb3List(void) {
     int a;
     int i;
     int j;
-    a = FX_DivS32(*(u16 *) &gJb3ListScrollY, 0x1d);
+    a = FX_DivS32(gJb3ListScrollY, 0x1d);
     func_ov003_021d2060(gJb3List->mUnk_14, 0);
     for (i = 0, j = a; i < 5; i++, j++) {
         PrintJb3ListEntryText(j, i);
@@ -795,8 +795,8 @@ void RefreshJb3ListRowPositions(void) {
     int i;
     u32 x;
     u32 y;
-    a = FX_DivS32(*(u16 *) &gJb3ListScrollY, 0x1d);
-    b = 0x34 - FX_ModS32(*(u16 *) &gJb3ListScrollY, 0x1d);
+    a = FX_DivS32(gJb3ListScrollY, 0x1d);
+    b = 0x34 - FX_ModS32(gJb3ListScrollY, 0x1d);
     if (gJb3List->mUnk_34 != NULL) {
         if (a == 0) {
             x = 0x26;
@@ -837,7 +837,7 @@ u32 GetJb3ListHitId(void) {
     if (func_ov003_021d2a34(&data_ov003_021d67e8) == 0) {
         return 0xe;
     }
-    c = FX_DivS32(*(u16 *) gJb3ListScrollY, 0x1d);
+    c = FX_DivS32(gJb3ListScrollY, 0x1d);
     b = &a;
     a = gJb3ListCellRect;
     for (d = 0; d < 4; d++, c++, a.mUnk_02 += 0x1d) {
@@ -847,7 +847,7 @@ u32 GetJb3ListHitId(void) {
             }
         }
     }
-    e = FX_DivS32(*(u16 *) gJb3ListScrollY, 0x1d);
+    e = FX_DivS32(gJb3ListScrollY, 0x1d);
     for (d = 0; d < 4; d++, e++) {
         if (e == 2) {
             a = data_ov003_021d644c;
@@ -864,7 +864,7 @@ u32 GetJb3ListHitId(void) {
             break;
         }
     }
-    e = FX_DivS32(*(u16 *) gJb3ListScrollY, 0x1d);
+    e = FX_DivS32(gJb3ListScrollY, 0x1d);
     for (d = 0; d < 4; d++, e++) {
         if (e == 6) {
             a = data_ov003_021d644c;
@@ -895,7 +895,7 @@ u32 GetJb3ListHitId(void) {
 int GetJb3ListRowOfEntryIndex(int a) {
     int v1;
     int v2;
-    v1 = FX_DivS32((u32) ((*(u16 *) &gJb3ListScrollY)), 0x1d);
+    v1 = FX_DivS32(gJb3ListScrollY, 0x1d);
     v2 = 0;
     do {
         if (v1 == a) {
@@ -909,7 +909,7 @@ int GetJb3ListRowOfEntryIndex(int a) {
 
 int GetJb3ListEntryIndexOfRow(int a) {
     int v1;
-    v1 = FX_DivS32((u32) ((*(u16 *) &gJb3ListScrollY)), 0x1d);
+    v1 = FX_DivS32(gJb3ListScrollY, 0x1d);
     return v1 + a;
 }
 
@@ -917,23 +917,23 @@ void AdvanceJb3ListScrollYDecrease(u32 b) {
     s32 a;
     func_ov003_021cce38();
     func_ov003_021bf698();
-    if (*(u16 *) gJb3ListScrollY > 6) {
-        *(u16 *) gJb3ListScrollY = *(u16 *) gJb3ListScrollY - 6;
+    if (gJb3ListScrollY > 6) {
+        gJb3ListScrollY = gJb3ListScrollY - 6;
     } else {
-        *(u16 *) gJb3ListScrollY = 0;
+        gJb3ListScrollY = 0;
     }
-    a = FX_ModS32(*(u16 *) gJb3ListScrollY, 0x1d);
+    a = FX_ModS32(gJb3ListScrollY, 0x1d);
     if (a == 0x17) {
         RefreshJb3List();
         return;
     }
     if (a > 0x17) {
-        *(u16 *) gJb3ListScrollY = *(u16 *) gJb3ListScrollY + (0x1d - a);
+        gJb3ListScrollY = gJb3ListScrollY + (0x1d - a);
         a = 0;
     }
     RefreshJb3ListRowPositions();
     if (a == 0) {
-        func_ov003_021cce58(_s32_div_f(*(u16 *) gJb3ListScrollY * 0x37, 0x91));
+        func_ov003_021cce58(_s32_div_f(gJb3ListScrollY * 0x37, 0x91));
         func_ov003_021cce48();
         SetJb3ListSelectedIdFromRow();
         gJb3List->mScrollTask = 0;
@@ -945,15 +945,15 @@ void AdvanceJb3ListScrollYIncrease(u32 b) {
     s32 a;
     func_ov003_021cce38();
     func_ov003_021bf698();
-    *(u16 *) gJb3ListScrollY = *(u16 *) gJb3ListScrollY + 6;
-    a = FX_ModS32(*(u16 *) gJb3ListScrollY, 0x1d);
+    gJb3ListScrollY = gJb3ListScrollY + 6;
+    a = FX_ModS32(gJb3ListScrollY, 0x1d);
     if (a >= 6) {
         RefreshJb3ListRowPositions();
         return;
     }
-    *(u16 *) gJb3ListScrollY = *(u16 *) gJb3ListScrollY - a;
+    gJb3ListScrollY = gJb3ListScrollY - a;
     RefreshJb3List();
-    func_ov003_021cce58(_s32_div_f(*(u16 *) gJb3ListScrollY * 0x37, 0x91));
+    func_ov003_021cce58(_s32_div_f(gJb3ListScrollY * 0x37, 0x91));
     func_ov003_021cce48();
     SetJb3ListSelectedIdFromRow();
     gJb3List->mScrollTask = 0;
@@ -964,8 +964,8 @@ void WriteJb3ListBgOffset(void) {
     u32 a;
     s32 b;
     if (gJb3List->mBgOffsetPending != 0) {
-        a = FX_DivS32(*(u16 *) gJb3ListScrollY, 0x1d);
-        b = FX_ModS32(*(u16 *) gJb3ListScrollY, 0x1d) - 0x33;
+        a = FX_DivS32(gJb3ListScrollY, 0x1d);
+        b = FX_ModS32(gJb3ListScrollY, 0x1d) - 0x33;
         reg_G2_BG0OFS = (b << 16) & 0x1ff0000;
         reg_G2_BG2OFS = ((b + data_ov003_021d6460[a]) << 16) & 0x1ff0000;
         gJb3List->mBgOffsetPending = 0;
@@ -977,51 +977,51 @@ void func_ov003_021c81b8(void) {
     Unk021d299c b;
     s32 d;
     a = data_ov003_021d73d0;
-    d = a.mUnk_00[gJb3ListSelectedId[0]];
+    d = a.mUnk_00[gJb3ListSelectedId];
     if (d >= 3) {
         func_ov003_021bf760(3, data_ov003_021d64b4[d].mUnk_00, data_ov003_021d64b4[d].mUnk_04,
                             data_ov003_021d64b4[d].mUnk_02);
         return;
     }
     b = data_ov003_021d64b4[d];
-    b.mUnk_02 = b.mUnk_02 + gJb3ListSelectedRow[0] * 0x1d;
+    b.mUnk_02 = b.mUnk_02 + gJb3ListSelectedRow * 0x1d;
     func_ov003_021bf760(1, b.mUnk_00, b.mUnk_04, b.mUnk_02);
 }
 
 void SetJb3ListSelectedIdFromRow(void) {
     Unk021cd5e0_400 *a;
     s32 b;
-    if ((u8) (gJb3ListSelectedId[0] + 0xf5) <= 2) {
+    if ((u8) (gJb3ListSelectedId + 0xf5) <= 2) {
         func_ov003_021c81b8();
         return;
     }
     a = func_ov003_021cdb6c();
-    b = gJb3ListSelectedRow[0] + FX_DivS32(*(u16 *) gJb3ListScrollY, 0x1d);
+    b = gJb3ListSelectedRow + FX_DivS32(gJb3ListScrollY, 0x1d);
     switch (b) {
         case 2:
             if (a->mUnk_f5 != 0) {
-                gJb3ListSelectedId[0] = 2;
+                gJb3ListSelectedId = 2;
             } else {
-                gJb3ListSelectedId[0] = 3;
+                gJb3ListSelectedId = 3;
             }
             break;
         case 6:
             if (a->mUnk_f6 != 0) {
-                gJb3ListSelectedId[0] = 7;
+                gJb3ListSelectedId = 7;
             } else {
-                gJb3ListSelectedId[0] = 8;
+                gJb3ListSelectedId = 8;
             }
             break;
         default:
-            gJb3ListSelectedId[0] = gJb3ListIdByEntryIndex[b];
+            gJb3ListSelectedId = gJb3ListIdByEntryIndex[b];
             break;
     }
     func_ov003_021c81b8();
 }
 
 void SetJb3ListSelectedId(u32 a) {
-    gJb3ListSelectedId[0] = a;
-    gJb3ListSelectedRow[0] = GetJb3ListRowOfEntryIndex(gJb3ListEntryIndexById[a]);
+    gJb3ListSelectedId = a;
+    gJb3ListSelectedRow = GetJb3ListRowOfEntryIndex(gJb3ListEntryIndexById[a]);
     func_ov003_021c81b8();
 }
 
@@ -1031,7 +1031,7 @@ void MoveJb3ListSelection(s32 d) {
     s32 c;
     a = func_ov003_021cdb6c();
     b = 0;
-    c = gJb3ListSelectedId[0];
+    c = gJb3ListSelectedId;
     if (c == 8 && a->mUnk_f5 == 0) {
         if (d == 0) {
             return;
@@ -1043,18 +1043,18 @@ void MoveJb3ListSelection(s32 d) {
     switch (c) {
         case 0:
             if (d == 1) {
-                gJb3ListSelectedId[0] = 0xb;
+                gJb3ListSelectedId = 0xb;
             } else if (d == 3) {
-                gJb3ListSelectedRow[0] = gJb3ListSelectedRow[0] + 1;
+                gJb3ListSelectedRow = gJb3ListSelectedRow + 1;
             } else {
                 b = 2;
             }
             break;
         case 0xa:
             if (d == 1) {
-                gJb3ListSelectedRow[0] = gJb3ListSelectedRow[0] - 1;
+                gJb3ListSelectedRow = gJb3ListSelectedRow - 1;
             } else if (d == 3) {
-                gJb3ListSelectedId[0] = gJb3List->mReturnId;
+                gJb3ListSelectedId = gJb3List->mReturnId;
             } else {
                 b = 2;
             }
@@ -1068,9 +1068,9 @@ void MoveJb3ListSelection(s32 d) {
                 gJb3List->mUnk_47 = 1;
                 return;
             } else if (d == 3) {
-                gJb3ListSelectedId[0] = 0;
-                gJb3ListSelectedRow[0] = 0;
-                *(u16 *) gJb3ListScrollY = 0;
+                gJb3ListSelectedId = 0;
+                gJb3ListSelectedRow = 0;
+                gJb3ListScrollY = 0;
                 RefreshJb3List();
                 func_ov003_021cce58(0);
             } else {
@@ -1081,9 +1081,9 @@ void MoveJb3ListSelection(s32 d) {
         case 0xd:
             gJb3List->mReturnId = c;
             if (d == 1) {
-                gJb3ListSelectedId[0] = 0xa;
-                gJb3ListSelectedRow[0] = 3;
-                *(u16 *) gJb3ListScrollY = 0x91;
+                gJb3ListSelectedId = 0xa;
+                gJb3ListSelectedRow = 3;
+                gJb3ListScrollY = 0x91;
                 RefreshJb3List();
                 func_ov003_021cce58(0x37);
             } else if (d == 3) {
@@ -1094,23 +1094,23 @@ void MoveJb3ListSelection(s32 d) {
                 gJb3List->mUnk_47 = 1;
                 return;
             } else if (c == 0xc) {
-                gJb3ListSelectedId[0] = 0xd;
+                gJb3ListSelectedId = 0xd;
             } else {
-                gJb3ListSelectedId[0] = 0xc;
+                gJb3ListSelectedId = 0xc;
             }
             break;
         default:
             if (d == 1) {
-                if (gJb3ListSelectedRow[0] != 0) {
-                    gJb3ListSelectedRow[0] = gJb3ListSelectedRow[0] - 1;
+                if (gJb3ListSelectedRow != 0) {
+                    gJb3ListSelectedRow = gJb3ListSelectedRow - 1;
                     break;
                 }
                 StartSoundSeq(0x13);
                 gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
                 return;
             } else if (d == 3) {
-                if (gJb3ListSelectedRow[0] < 3) {
-                    gJb3ListSelectedRow[0] = gJb3ListSelectedRow[0] + 1;
+                if (gJb3ListSelectedRow < 3) {
+                    gJb3ListSelectedRow = gJb3ListSelectedRow + 1;
                     break;
                 }
                 StartSoundSeq(0x13);
@@ -1119,13 +1119,13 @@ void MoveJb3ListSelection(s32 d) {
             } else {
                 b = 2;
                 if (c == 2) {
-                    gJb3ListSelectedId[0] = 3;
+                    gJb3ListSelectedId = 3;
                 } else if (c == 3) {
-                    gJb3ListSelectedId[0] = b;
+                    gJb3ListSelectedId = b;
                 } else if (c == 7) {
-                    gJb3ListSelectedId[0] = 8;
+                    gJb3ListSelectedId = 8;
                 } else if (c == 8) {
-                    gJb3ListSelectedId[0] = 7;
+                    gJb3ListSelectedId = 7;
                 } else {
                     break;
                 }
@@ -1144,7 +1144,7 @@ void MoveJb3ListSelection(s32 d) {
 
 void func_ov003_021c7ec4(void) {
     u8 a;
-    a = data_ov003_021d6430[gJb3ListSelectedId[0] - 0xb];
+    a = data_ov003_021d6430[gJb3ListSelectedId - 0xb];
     func_ov003_021cc948(gJb3List->mYbBgStep2NclFiles[1], a, a);
 }
 
@@ -1171,7 +1171,7 @@ void StartJb3ListIdTimer(void) {
     a[2] = gJb3ListTimerIds[2];
     a[3] = gJb3ListTimerIds[3];
     c = 0;
-    d = gJb3ListSelectedId[0];
+    d = gJb3ListSelectedId;
     for (; c < 4; c++) {
         if (d == *b) {
             gJb3List->mIdTimer[c] = 0x14;
@@ -1231,5 +1231,5 @@ void func_ov003_021c7d3c(void) {
 }
 
 void SetJb3ListMode(u8 a) {
-    *(u8 *) &gJb3ListMode = a;
+    gJb3ListMode = a;
 }

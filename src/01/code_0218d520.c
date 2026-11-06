@@ -109,8 +109,8 @@ void func_ov001_0218dabc(Unk02188950 *a) {
 
 void func_ov001_0218da1c(Unk02188950 *a) {
     func_ov001_02187af4(a);
-    func_ov001_021875c0(a, 0, a->mUnk_248 >> 4, 0, 0x427, 0xf);
-    func_ov001_021875c0(a, 0, a->mUnk_248 >> 4, 0, 0x426, 0xf);
+    func_ov001_021875c0(a, 0, a->mUnk_244.y >> 4, 0, 0x427, 0xf);
+    func_ov001_021875c0(a, 0, a->mUnk_244.y >> 4, 0, 0x426, 0xf);
     StartMapObjectSound(&a->mUnk_000, 0x24d);
     func_ov001_02188230(a);
     if (func_ov001_02188220(a) == 2) {

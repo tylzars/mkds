@@ -100,7 +100,7 @@ void InitWiFiStates(void *heap, s32 b) {
     c.mUnk_0c = 0;
     c.mUnk_10 = 0;
     c.mUnk_14 = FALSE;
-    c.mUnk_18 = 0;
+    c.mUnk_18 = NULL;
     c.mUnk_1c = TRUE;
     c.mUnk_20 = TRUE;
     c.mUnk_24 = 1;

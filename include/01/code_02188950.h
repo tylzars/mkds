@@ -264,15 +264,11 @@ typedef struct Unk02188950 {
     /* 230 */ UnkFunc *mUnk_230;
     /* 234 */ s32 mUnk_234;
     /* 238 */ Vec3 mUnk_238;
-    /* 244 */ s32 mUnk_244;
-    /* 248 */ s32 mUnk_248;
-    /* 24c */ s32 mUnk_24c;
+    /* 244 */ Vec3 mUnk_244;
     /* 250 */ s32 mUnk_250;
     /* 254 */ s32 mUnk_254;
     /* 258 */ s32 mUnk_258;
-    /* 25c */ s32 mUnk_25c;
-    /* 260 */ s32 mUnk_260;
-    /* 264 */ s32 mUnk_264;
+    /* 25c */ Vec3 mUnk_25c;
     /* 268 */ s32 mUnk_268;
     /* 26c */ s32 mUnk_26c;
     /* 270 */ s32 mUnk_270;

@@ -83,7 +83,7 @@ void func_ov001_02182d30(void) {
     Unk0210b7a8 arg;
 
     c = GetKart((u16) data_021759c0->mEntryIndex);
-    o = UnparkFirstParkedMapObject((Unk02181c3c_list *) func_02100138(0x68));
+    o = UnparkFirstParkedMapObject(func_02100138(0x68));
     if (o != NULL) {
         rnd = func_020d22d0();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
@@ -120,7 +120,7 @@ void func_ov001_02182bdc(void) {
     Unk0210b7a8 arg;
 
     c = GetKart((u16) data_021759c0->mEntryIndex);
-    o = UnparkFirstParkedMapObject((Unk02181c3c_list *) func_02100138(0x68));
+    o = UnparkFirstParkedMapObject(func_02100138(0x68));
     if (o != NULL) {
         rnd = func_020d22d0();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
@@ -244,7 +244,7 @@ void func_ov001_021828f0(void) {
     int i;
     Unk02181c3c *p;
     Unk02181c3c_list *list;
-    u32 *q;
+    NNSSndSeqPlayer **q;
 
     list = func_02100138(0x68);
     if (list != NULL) {
@@ -257,15 +257,15 @@ void func_ov001_021828f0(void) {
             }
         }
     }
-    q = (u32 *) func_02108e6c(2);
+    q = func_02108e6c(2);
     if ((data_0217c780 & 1) && data_0217d084.mUnk_0c != 0) {
         if (*q != 0) {
-            NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
+            NNS_SndPlayerStopSeq(q, 0);
         }
         if (*q != 0) {
-            NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
+            NNS_SndPlayerStopSeq(q, 0);
         }
-        NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) q, 0, 0x233);
+        NNS_SndArcPlayerStartSeqArc(q, 0, 0x233);
     }
 }
 
@@ -273,7 +273,7 @@ void func_ov001_021827f0(void) {
     int i;
     Unk02181c3c *p;
     Unk02181c3c_list *list;
-    u32 *q;
+    NNSSndSeqPlayer **q;
 
     list = func_02100138(0x68);
     if (list != NULL) {
@@ -293,15 +293,15 @@ void func_ov001_021827f0(void) {
             }
         }
     }
-    q = (u32 *) func_02108e6c(2);
+    q = func_02108e6c(2);
     if ((data_0217c780 & 1) && data_0217d084.mUnk_0c != 0) {
         if (*q != 0) {
-            NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
+            NNS_SndPlayerStopSeq(q, 0);
         }
         if (*q != 0) {
-            NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
+            NNS_SndPlayerStopSeq(q, 0);
         }
-        NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) q, 0, 0x232);
+        NNS_SndArcPlayerStartSeqArc(q, 0, 0x232);
     }
 }
 
@@ -502,7 +502,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
             b->mUnk_000.mPos.z = e->mPos.z;
             b->mUnk_000.mUnk_10.y -= 0x333;
             if (b->mUnk_0ac-- <= 0) {
-                ParkMapObject((void *) ((u32) b));
+                ParkMapObject(&b->mUnk_000);
             } else if (b->mUnk_0ac == 3) {
                 func_02081f10(StartEffect(0x3f4, &e->mPos), e->mIndex, 0x18);
             }

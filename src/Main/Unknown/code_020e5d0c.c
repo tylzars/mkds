@@ -46,10 +46,10 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
     enum { K0 } k;
 
     a = param_1->mUnk_004;
-    b = (Unk020e52bc_8 *) &a->mUnk_000[a->mUnk_008];
-    d = (Unk020e53ac *) &b->mUnk_000[((u32 *) &b->mUnk_000[b->mUnk_00a])[2]];
-    c = (Unk020e52bc_c *) &a->mUnk_000[a->mUnk_00c];
-    e = (Unk020e54e4 *) &c->mUnk_000[((u32 *) &c->mUnk_000[c->mUnk_006])[1]];
+    b = OFFSET_PTR(Unk020e52bc_8, a->mUnk_000, a->mUnk_008);
+    d = OFFSET_PTR(Unk020e53ac, b->mUnk_000, ((u32 *) &b->mUnk_000[b->mUnk_00a])[2]);
+    c = OFFSET_PTR(Unk020e52bc_c, a->mUnk_000, a->mUnk_00c);
+    e = OFFSET_PTR(Unk020e54e4, c->mUnk_000, ((u32 *) &c->mUnk_000[c->mUnk_006])[1]);
     p->mUnk_00 = &e->mUnk_000[e->mUnk_008];
     p->mUnk_04 = e->mUnk_00c;
     p->mUnk_08 = param_1->mUnk_004->mUnk_01c;
@@ -90,20 +90,20 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
 }
 
 void func_020e64b8(Unk020e6488 *p, void *a, void *b, s32 c) {
-    ((Unk020e6488 *) p)->mUnk_24 = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
-    func_02084e28(((Unk020e6488 *) p)->mUnk_24, a);
+    p->mUnk_24 = HeapAlloc(GetHeap(func_020364e8()), 0x6c);
+    func_02084e28(p->mUnk_24, a);
     if (b != NULL) {
-        ((Unk020e6488 *) p)->mUnk_28 = HeapAlloc(GetHeap(func_020364e8()), 0x38);
-        func_020ea514(2, ((Unk020e6488 *) p)->mUnk_24, ((Unk020e6488 *) p)->mUnk_28, a, b);
+        p->mUnk_28 = HeapAlloc(GetHeap(func_020364e8()), 0x38);
+        func_020ea514(2, p->mUnk_24, p->mUnk_28, a, b);
     } else {
-        ((Unk020e6488 *) p)->mUnk_28 = NULL;
+        p->mUnk_28 = NULL;
     }
-    func_020e6514(((Unk020e6488 *) p)->mUnk_24, ((Unk020e6488 *) p)->mUnk_28, p);
+    func_020e6514(p->mUnk_24, p->mUnk_28, p);
 }
 
-void func_020e6488(Unk020e6488 **param_1, void *param_2, u32 param_3, u32 param_4) {
+void func_020e6488(Unk020e6488 **param_1, void *param_2, void *param_3, u32 param_4) {
     *param_1 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
-    func_020e64b8(*param_1, param_2, (void *) param_3, param_4);
+    func_020e64b8(*param_1, param_2, param_3, param_4);
 }
 
 #pragma thumb off
@@ -111,7 +111,7 @@ void func_020e6488(Unk020e6488 **param_1, void *param_2, u32 param_3, u32 param_
 Unk020e5a9c *func_020e6438(void) {
     Unk020e5a9c *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
-    *p = *(Unk020e5a9c *) data_021592d0;
+    *p = data_021592d0;
     return p;
 }
 
@@ -119,7 +119,7 @@ Unk020e5a40 *func_020e63dc(void) {
     Unk020e5a40 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b840 = p;
-    *p = *(Unk020e5a40 *) data_021592a4;
+    *p = data_021592a4;
     func_020d49d8(&data_0217b840);
     return data_0217b840;
 }
@@ -128,7 +128,7 @@ Unk020e59e4 *func_020e6380(void) {
     Unk020e59e4 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b834 = p;
-    *p = *(Unk020e59e4 *) data_0215927c;
+    *p = data_0215927c;
     func_020e6f50(&data_0217b834);
     return data_0217b834;
 }
@@ -266,7 +266,7 @@ void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q) {
 Unk020e5a9c *func_020e5dd4(void) {
     Unk020e5a9c *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
-    *p = *(Unk020e5a9c *) data_02159208;
+    *p = data_02159208;
     return p;
 }
 
@@ -274,7 +274,7 @@ Unk020e5a40 *func_020e5d78(void) {
     Unk020e5a40 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b82c = p;
-    *p = *(Unk020e5a40 *) data_021591dc;
+    *p = data_021591dc;
     func_020d49d8(&data_0217b82c);
     return data_0217b82c;
 }
@@ -283,7 +283,7 @@ Unk020e59e4 *func_020e5d24(void) {
     Unk020e59e4 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b828 = p;
-    *p = *(Unk020e59e4 *) data_021591b4;
+    *p = data_021591b4;
     return p;
 }
 

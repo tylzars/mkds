@@ -39,7 +39,7 @@
 #pragma thumb on
 
 void func_0202dfd4(void *a) {
-    Unk02125de0 v;
+    Unk02125de0Arg v;
     u8 *q;
     s32 i;
     u32 e;

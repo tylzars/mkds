@@ -106,6 +106,6 @@ void func_020e630c(u32 param_1, Unk020e5e24 *a, u32 param_3, u32 param_4);
 Unk020e59e4 *func_020e6380(void);
 Unk020e5a40 *func_020e63dc(void);
 Unk020e5a9c *func_020e6438(void);
-void func_020e6488(Unk020e6488 **param_1, void *param_2, u32 param_3, u32 param_4);
+void func_020e6488(Unk020e6488 **param_1, void *param_2, void *param_3, u32 param_4);
 void func_020e64b8(Unk020e6488 *p, void *a, void *b, s32 c);
 void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p);

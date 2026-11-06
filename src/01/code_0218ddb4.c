@@ -154,7 +154,7 @@ void func_ov001_0218f57c(Unk02188950 *a) {
 void func_ov001_0218f51c(Unk02188950 *a) {
     GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
-    func_ov001_02188d30(a, a->mPrm->mUnk_1f4, a->mPrm->mUnk_1f8, (UnkFunc *) func_ov001_0218f57c);
+    func_ov001_02188d30(a, a->mPrm->mUnk_1f4, a->mPrm->mUnk_1f8, func_ov001_0218f57c);
     func_ov001_02188200(a, func_ov001_0218f9a8);
     func_ov001_021828f0();
 }
@@ -169,7 +169,7 @@ void func_ov001_0218f454(Unk02188950 *a) {
     func_ov001_02188c48(a, a->mPrm->mUnk_1e8, a->mPrm->mUnk_1ec);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     func_ov001_021889c8(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1f0, (UnkFunc *) func_ov001_0218f51c);
+    func_ov001_02188e24(a, a->mPrm->mUnk_1f0, func_ov001_0218f51c);
     func_ov001_02188200(a, func_ov001_0218f9a8);
     StartMapObjectSound(&a->mUnk_000, 0x229);
 }
@@ -268,20 +268,18 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
         a->mUnk_1c4 = 0;
     }
     a->mUnk_170 = a->mPrm->mUnk_09c;
-    if (a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0) > 0) {
-        f = 0.5f +
-            ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0)) << 12);
+    if (a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) > 0) {
+        f = 0.5f + ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0)) << 12);
     } else {
-        f = ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0)) << 12) -
-            0.5f;
+        f = ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0)) << 12) - 0.5f;
     }
     a->mUnk_16c = (s32) f / a->mPrm->mUnk_1d4;
-    if ((data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0) <= a->mPrm->mUnk_1d0 &&
+    if ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) <= a->mPrm->mUnk_1d0 &&
         func_ov001_02188000(a, 0, a->mPrm->mUnk_0bc) != NULL) {
         func_ov001_02188200(a, func_ov001_0218f9a8);
         a->mUnk_000.mFlags |= data_ov001_021a65b0;
         func_ov001_0218f16c(a);
-    } else if ((data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0) > a->mPrm->mUnk_1cc) {
+    } else if ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) > a->mPrm->mUnk_1cc) {
         func_ov001_02188e88(a);
     }
     return 0;
@@ -379,7 +377,7 @@ void func_ov001_0218ead0(Unk02188950 *a) {
 
     func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_0218f850(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1a8, (UnkFunc *) func_ov001_0218eb94);
+    func_ov001_02188e24(a, a->mPrm->mUnk_1a8, func_ov001_0218eb94);
     func_ov001_02182a3c(0);
     func_ov001_02187e48(a, a->mPrm->mUnk_140);
     v1 = a->mUnk_0a8;
@@ -398,9 +396,9 @@ void func_ov001_0218ead0(Unk02188950 *a) {
     }
     data_0217d20c = 3;
     a->mUnk_270 = a->mPrm->mUnk_00c;
-    a->mUnk_264 = a->mUnk_270;
-    a->mUnk_268 = a->mUnk_264;
-    a->mUnk_25c = a->mUnk_268;
+    a->mUnk_25c.z = a->mUnk_270;
+    a->mUnk_268 = a->mUnk_25c.z;
+    a->mUnk_25c.x = a->mUnk_268;
 }
 
 u32 func_ov001_0218ea98(Unk02188950 *a) {
@@ -432,15 +430,15 @@ void func_ov001_0218e92c(Unk02188950 *p) {
     data_0217d20c = 4;
     func_ov001_02188200(p, func_ov001_0218e38c);
     p->mUnk_000.mFlags |= data_ov001_021a65b0;
-    func_ov001_02182a3c(p->mPrm->mUnk_18c < (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181800() : 0)
+    func_ov001_02182a3c(p->mPrm->mUnk_18c < (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181800() : 0)
                             ? p->mPrm->mUnk_18c
                             : (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181800() : 0));
-    p->mUnk_25c = p->mUnk_268 = p->mUnk_264 = p->mUnk_270 = p->mPrm->mUnk_00c / 2;
+    p->mUnk_25c.x = p->mUnk_268 = p->mUnk_25c.z = p->mUnk_270 = p->mPrm->mUnk_00c / 2;
 }
 
 void func_ov001_0218e8d8(Unk02188950 *a) {
     func_ov001_02187218(a, 5, NULL);
-    func_ov001_02188d30(a, a->mPrm->mUnk_168, a->mPrm->mUnk_16c, (UnkFunc *) &func_ov001_0218e92c);
+    func_ov001_02188d30(a, a->mPrm->mUnk_168, a->mPrm->mUnk_16c, func_ov001_0218e92c);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02182a3c(0);
@@ -457,7 +455,7 @@ void func_ov001_0218e8b0(Unk02188950 *a) {
 void func_ov001_0218e860(Unk02188950 *a) {
     func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *)) func_ov001_0218f688);
     func_ov001_0218f850(a);
-    func_ov001_02188e24(a, a->mPrm->mUnk_1a8, (UnkFunc *) func_ov001_0218e8b0);
+    func_ov001_02188e24(a, a->mPrm->mUnk_1a8, func_ov001_0218e8b0);
     if (data_0217d20c != 3) {
         data_0217d21c = data_0217d20c;
     }
@@ -583,7 +581,7 @@ void func_ov001_0218e4ac(Unk02188950 *a) {
 
 void func_ov001_0218e474(Unk02188950 *a) {
     a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) a->mUnk_000.mSound, 0xe, &a->mUnk_000.mPos);
+    InitSoundSource(&a->mUnk_000.mSound->mSoundSource, 0xe, &a->mUnk_000.mPos);
     a->mUnk_000.mFarDistanceSquared = data_0217cc6c[6];
 }
 
@@ -598,7 +596,7 @@ void func_ov001_0218e38c(Unk02188950 *a, Kart *b) {
     func_ov001_0218e860(a);
     a->mUnk_0a8 = 0;
     StartMapObjectSound(&a->mUnk_000, 0x22c);
-    a->mUnk_25c = a->mUnk_268 = a->mUnk_264 = a->mUnk_270 = a->mPrm->mUnk_00c;
+    a->mUnk_25c.x = a->mUnk_268 = a->mUnk_25c.z = a->mUnk_270 = a->mPrm->mUnk_00c;
 }
 
 void func_ov001_0218e344(Unk02188950 *a) {
@@ -705,8 +703,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
             }
             if (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) {
                 if (func_ov001_021871f8(b, 3) != 0) {
-                    if ((s32) (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) <
-                        b->mPrm->mUnk_1c8) {
+                    if ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) < b->mPrm->mUnk_1c8) {
                         if (b->mUnk_000.mFlags & 1) {
                             func_ov001_02188200(b, func_ov001_0218f9a8);
                             b->mUnk_000.mFlags |= data_ov001_021a65b0;

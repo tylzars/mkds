@@ -75,27 +75,12 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void InitShine16(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    u32 value4;
-    value4 = value0;
-    ParkMapObject((void *) value0);
-    value0 = (u32) func_020364e8();
-    value0 = (u32) GetHeap((void *) value0);
-    value1 = 0x44u;
-    value0 = (u32) HeapAlloc((void *) value0, value1);
-    *(u32 *) ((value4) + (148)) = value0;
-    value0 = *(const u32 *) ((value4) + (148));
-    value2 = (value4) + (4u);
-    value1 = 0xbu;
-    InitSoundSource((SoundSource *) value0, value1, (Vec3 *) value2);
-    value0 = *(const u32 *) ((value4) + (148));
-    func_0210bae8((SoundSource *) value0);
-    value0 = (u32) &gSoundFalloffs;
-    value0 = *(const u32 *) ((value0) + (428));
-    *(u32 *) ((value4) + (112)) = value0;
+void InitShine16(MapObject *p) {
+    ParkMapObject(p);
+    p->mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
+    InitSoundSource(&p->mSound->mSoundSource, 0xb, &p->mPos);
+    func_0210bae8(&p->mSound->mSoundSource);
+    p->mFarDistanceSquared = gSoundFalloffs[0xb].mUnk_20;
 }
 
 u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
@@ -176,12 +161,8 @@ void DrawShine16(void *a, Shine16 *p) {
 }
 
 u32 func_020a69a0(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &data_0217b220;
-    value1 = 0u;
-    *(u16 *) ((value0) + (0)) = value1;
-    return value0;
+    data_0217b220 = 0;
+    return (u32) &data_0217b220;
 }
 
 void func_020a697c(void) {

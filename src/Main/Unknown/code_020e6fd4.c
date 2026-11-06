@@ -254,7 +254,7 @@ void func_020e7460(void) {
         s++;
         q++;
     }
-    func_020e6488((Unk020e6488 **) data_0217baf4, FindSceneFile(data_0216c3a4), (u32) FindSceneFile(data_0216c3b4), 0);
+    func_020e6488((Unk020e6488 **) data_0217baf4, FindSceneFile(data_0216c3a4), FindSceneFile(data_0216c3b4), 0);
     func_020e6ab8(data_0217bae8[0].mUnk_0c);
     data_0217bae8[0].mUnk_0c->mUnk_14 |= 0xc0;
     func_020e6488((Unk020e6488 **) data_0217bb04, FindSceneFile(data_0216c3c4), 0, 0);

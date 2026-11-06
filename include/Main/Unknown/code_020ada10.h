@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_020ada10(void);
+void *func_020ada10(void);
