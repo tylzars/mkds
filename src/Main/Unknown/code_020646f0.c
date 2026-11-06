@@ -83,7 +83,7 @@ void func_020646f0(Kart *a, s32 b) {
     a->mUnk_278.y = m->mUnk_00[2].y;
     a->mUnk_278.z = m->mUnk_00[2].z;
     a->mUnk_50 = a->mUnk_278;
-    a->mUnk_1b4 = &a->mUnk_150_m;
+    a->mDrawMatrix = &a->mUnk_150_m;
     i = a->mKartModelsEntry->mUnk_008;
     if (i == NULL) {
         return;

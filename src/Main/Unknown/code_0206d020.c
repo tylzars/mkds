@@ -277,16 +277,16 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
         t = -v2;
     }
     q->mUnk_4c |= 0x2000000;
-    if (t <= q->mUnk_594) {
+    if (t <= q->mWobbleAmplitude) {
         return;
     }
-    q->mUnk_594 = t;
+    q->mWobbleAmplitude = t;
     if (v2 > 0) {
         t = 1;
     } else {
         t = -1;
     }
-    q->mUnk_598 = t;
+    q->mWobbleDirection = t;
 }
 
 void func_0206d578(Kart *p) {

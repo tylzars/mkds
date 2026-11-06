@@ -412,40 +412,40 @@ void func_02066fe0(Kart *a) {
     func_0210af40(a, a->mUnk_3cc, d);
 }
 
-void func_02066de8(Kart *a) {
+void AdvanceKartWobble(Kart *a) {
     MtxFx43 b;
     s32 c;
     s32 d;
     u16 e;
     s32 f;
 
-    a->mUnk_5a0 = a->mUnk_5a0 + data_021654c8;
-    a->mUnk_5a4 = gPairsByAngle[(a->mUnk_5a0 >> 4) * 2];
-    if (a->mUnk_594 > 0) {
-        a->mUnk_594 = (s64) a->mUnk_594 * data_021654fc + 0x800 >> 12;
-        a->mUnk_594 = a->mUnk_594 - 0x64;
+    a->mWobbleAngle = a->mWobbleAngle + data_021654c8;
+    a->mUnk_5a4 = gPairsByAngle[(a->mWobbleAngle >> 4) * 2];
+    if (a->mWobbleAmplitude > 0) {
+        a->mWobbleAmplitude = (s64) a->mWobbleAmplitude * data_021654fc + 0x800 >> 12;
+        a->mWobbleAmplitude = a->mWobbleAmplitude - 0x64;
         if ((a->mUnk_44 & 0x10) == 0 || (a->mForwardSpeed > 0 ? a->mForwardSpeed : -a->mForwardSpeed) < 0x3000) {
-            a->mUnk_594 = (s64) a->mUnk_594 * 0xe66 + 0x800 >> 12;
+            a->mWobbleAmplitude = (s64) a->mWobbleAmplitude * 0xe66 + 0x800 >> 12;
         }
-        if (a->mUnk_594 < 0) {
-            a->mUnk_594 = 0;
+        if (a->mWobbleAmplitude < 0) {
+            a->mWobbleAmplitude = 0;
         }
     }
-    f = a->mUnk_598 * a->mUnk_594 - a->mUnk_59c;
+    f = a->mWobbleDirection * a->mWobbleAmplitude - a->mUnk_59c;
     a->mUnk_59c = a->mUnk_59c + (s32) ((s64) f * data_021654f8 + 0x800 >> 12);
     c = (s64) a->mUnk_59c * data_021654cc + 0x800 >> 12;
     d = (s64) c * a->mUnk_5a4 + 0x800 >> 12;
     e = d;
     MTX_RotY43_(&b, gPairsByAngle[(e >> 4) * 2], gPairsByAngle[(e >> 4) * 2 + 1]);
-    MTX_Concat43(&b, &a->mUnk_150_m, &a->mUnk_184_m);
+    MTX_Concat43(&b, &a->mUnk_150_m, &a->mWobbleMatrix);
     if ((a->mUnk_59c > 0 ? a->mUnk_59c : -a->mUnk_59c) >= 0x29) {
         return;
     }
     a->mUnk_4c = a->mUnk_4c & ~0x2000000;
-    a->mUnk_5a0 = 0;
+    a->mWobbleAngle = 0;
     a->mUnk_5a4 = 0;
-    a->mUnk_594 = 0;
-    a->mUnk_598 = 0;
+    a->mWobbleAmplitude = 0;
+    a->mWobbleDirection = 0;
 }
 
 void func_02066ac0(Kart *a) {

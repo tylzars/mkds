@@ -85,10 +85,10 @@ void func_020641f0(Kart *a) {
     a->mUnk_174.y = a->mUnk_174.y >> 4;
     a->mUnk_174.z = a->mUnk_174.z >> 4;
     if ((a->mUnk_4c & 0x2000000) == 0) {
-        a->mUnk_1b4 = &a->mUnk_150_m;
+        a->mDrawMatrix = &a->mUnk_150_m;
     } else {
-        func_02066de8(a);
-        a->mUnk_1b4 = &a->mUnk_184_m;
+        AdvanceKartWobble(a);
+        a->mDrawMatrix = &a->mWobbleMatrix;
     }
     b = a->mKartModelsEntry;
     if (b->mUnk_010[2] != NULL) {

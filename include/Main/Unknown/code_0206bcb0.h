@@ -270,8 +270,8 @@ typedef struct Kart {
         MtxFx43 mUnk_150_m;
     };
     /* 180 */ vs32 mState;
-    /* 184 */ MtxFx43 mUnk_184_m;
-    /* 1b4 */ MtxFx43 *mUnk_1b4;
+    /* 184 */ MtxFx43 mWobbleMatrix;
+    /* 1b4 */ MtxFx43 *mDrawMatrix;
     // Collision center of the Kart: the position moved up by mRadius plus 0x400 along the up vector. The
     // collision sweep ends here; Kart.mPrevCollisionCenter is where it starts.
     /* 1b8 */ Vec3 mCollisionCenter;
@@ -505,11 +505,11 @@ typedef struct Kart {
     /* 534 */ Vec3 *mUnk_534;
     /* 538 */ Unk0206ceb4 mUnk_538;
     /* 590 */ struct Unk0206bcb0_590 *mKartModelsEntry;
-    /* 594 */ s32 mUnk_594;
-    /* 598 */ s16 mUnk_598;
+    /* 594 */ s32 mWobbleAmplitude;
+    /* 598 */ s16 mWobbleDirection;
     /* 59a */ u8 mUnk_59a[2];
     /* 59c */ s32 mUnk_59c;
-    /* 5a0 */ u16 mUnk_5a0;
+    /* 5a0 */ u16 mWobbleAngle;
     /* 5a2 */ u8 mUnk_5a2[2];
     /* 5a4 */ s32 mUnk_5a4;
 } Kart;

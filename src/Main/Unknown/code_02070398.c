@@ -471,7 +471,7 @@ void ResetKart(Kart *p) {
     func_02071ddc(&p->mUnk_538);
     MTX_Identity43_(&p->mUnk_120_m);
     MTX_Identity43_(&p->mUnk_150_m);
-    MTX_Identity43_(&p->mUnk_184_m);
+    MTX_Identity43_(&p->mWobbleMatrix);
     p->mUnk_1d8 = v;
     p->mUnk_1e4 = p->mUnk_1d8;
     p->mPrevCollisionCenter = p->mUnk_1e4;
@@ -600,8 +600,8 @@ void ResetKart(Kart *p) {
     p->mUnk_506 = 0;
     p->mUnk_504 = p->mUnk_506;
     p->mUnk_59c = 0;
-    p->mUnk_594 = p->mUnk_59c;
-    p->mUnk_5a0 = 0;
+    p->mWobbleAmplitude = p->mUnk_59c;
+    p->mWobbleAngle = 0;
     p->mUnk_3d8 = 0;
     func_02068a64(p, 0, 0);
     p->mUnk_4cc = 0;

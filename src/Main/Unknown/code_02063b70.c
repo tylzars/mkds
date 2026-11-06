@@ -85,7 +85,7 @@ void DrawKart(Kart *a) {
         func_0207ae58(e->mUnk_01c);
         func_02063cc4_inline(0x14, 0x1e);
     }
-    func_01ff9048(0x19, a->mUnk_1b4, 0xc);
+    func_01ff9048(0x19, a->mDrawMatrix, 0xc);
     func_01ff9048(0x1b, &a->mScale, 3);
     func_02063cc4_inline(0x13, 0x1d);
     func_02063cc4_inline2(0x1b, a->mUnk_414, a->mUnk_404, a->mUnk_418);
@@ -155,7 +155,7 @@ s32 func_02063b70(Kart *a) {
     d = b->mUnk_058 == 0;
     if (d != FALSE) {
         t = a->mRadius + 0x5000;
-        g = *a->mUnk_1b4;
+        g = *a->mDrawMatrix;
         VEC_MultAdd(t, &a->mUnk_12c, a->mPosSource, &h);
         g.mUnk_00[3].x = h.x >> 4;
         g.mUnk_00[3].y = h.y >> 4;

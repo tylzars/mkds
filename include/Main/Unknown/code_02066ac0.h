@@ -41,7 +41,7 @@ extern const s32 data_021655b0[];
 extern Unk02175664 data_02175664[];
 
 void func_02066ac0(Kart *a);
-void func_02066de8(Kart *a);
+void AdvanceKartWobble(Kart *a);
 void func_02066fe0(Kart *a);
 void func_02067488(Kart *a);
 // 1 when the turn start group, the level 3 group or the level 4 group (not while mLevel4StopRequested is TRUE) exists,
