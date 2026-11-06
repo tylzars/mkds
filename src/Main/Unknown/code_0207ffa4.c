@@ -244,7 +244,7 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
     v3[0] = v3[1] = v3[2] = 0xc8000;
     m = -0x1000;
     for (i = 0; i < gCourseMap->mBattlePointCount; i++) {
-        VEC_Subtract(&gCourseMap->mBattlePoints[i].mUnk_00, a, &v);
+        VEC_Subtract(&gCourseMap->mBattlePoints[i].mPos, a, &v);
         d = VEC_Mag(&v);
         if (d < 0xc8000) {
             for (k = 0; k < 3; k++) {

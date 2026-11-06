@@ -237,7 +237,7 @@ void func_ov001_0218cedc(u32 a, Unk02188950 *b) {
             func_ov001_0218d3ec(b);
         }
     }
-    if (func_020d2c2c(&b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mCollisionSlotIndex, 9,
+    if (func_020d2c2c(&b->mPosWithOffset, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mCollisionSlotIndex, 9,
                       NULL) == 2) {
         StartMapObjectSound(&b->mUnk_000, 0x253);
     }
@@ -265,7 +265,8 @@ void func_ov001_0218ce30(u32 a, Unk02188950 *b) {
     int v1;
     func_ov001_0218dc20(b);
     func_ov001_0218dba8(b);
-    v1 = func_020d2c2c(&b->mUnk_238, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mCollisionSlotIndex, 9, NULL);
+    v1 = func_020d2c2c(&b->mPosWithOffset, &b->mUnk_000.mUnk_10, b->mPrm->mUnk_100, b->mUnk_000.mCollisionSlotIndex, 9,
+                       NULL);
     if (v1 == 2) {
         StartMapObjectSound(&b->mUnk_000, 0x253);
     }

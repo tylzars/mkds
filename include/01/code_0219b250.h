@@ -18,7 +18,7 @@ typedef struct Unk0219b250_Item {
 // Object at Unk0219b250.mAnimatedModel (a 0x6c-byte allocation).
 typedef struct Unk0219b250_10 {
     /* 00 */ u8 mUnk_00[0x4];
-    /* 04 */ NNSG3dResMdl *mUnk_04;
+    /* 04 */ NNSG3dResMdl *mResMdl;
     /* 08 */ u8 mUnk_08[0x24];
     /* 2c */ struct Unk02188950 *mUnk_2c;
 } Unk0219b250_10;

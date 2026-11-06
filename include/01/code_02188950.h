@@ -263,8 +263,8 @@ typedef struct Unk02188950 {
     /* 22c */ UnkFunc *mUnk_22c;
     /* 230 */ UnkFunc *mUnk_230;
     /* 234 */ s32 mUnk_234;
-    /* 238 */ Vec3 mUnk_238;
-    /* 244 */ Vec3 mUnk_244;
+    /* 238 */ Vec3 mPosWithOffset;
+    /* 244 */ Vec3 mOffset;
     /* 250 */ s32 mUnk_250;
     /* 254 */ s32 mUnk_254;
     /* 258 */ s32 mUnk_258;

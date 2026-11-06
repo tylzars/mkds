@@ -2,7 +2,7 @@
 #include "00/code_0218e2dc.h"
 #include "00/code_0219a0d0.h"
 
-u32 func_ov000_02198714(Gt2Connection *a, u8 *b, u32 c) {
+u32 SendConnectionBytes(Gt2Connection *a, u8 *b, u32 c) {
     int v1;
     u32 v2;
     v1 = func_ov000_0219a110((u32 *) a->mSocket, a->mAddress, a->mPort, (u32) b, c);

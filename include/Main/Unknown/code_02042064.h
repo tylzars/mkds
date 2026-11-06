@@ -94,7 +94,7 @@ void BuildCourseMapItemPointLinks(void *a);
 // (skipped when already joined), then goes on with the next point of the route and, at the route end, with the first
 // point of each following route other than route 0 and 255.
 void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c);
-Unk02175620_94 *func_02042fc4(unsigned int p0);
+Unk02175620_94 *GetCourseMapEntryGroupTableRow(unsigned int p0);
 void func_02042fd8(void *a);
 void func_02043038(void);
 s32 func_02043078(u16 a);

@@ -76,7 +76,7 @@ typedef struct CourseMapShape {
 
 // 0x18-byte entries of the table at CourseMap.mBattlePoints and mRacePoints (func_020a0f0c returns one).
 typedef struct {
-    /* 00 */ Vec3 mUnk_00;
+    /* 00 */ Vec3 mPos;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ s16 mUnk_10[4];
 } Unk02175620_84;
@@ -184,7 +184,7 @@ typedef struct CourseMapRoute {
 
 // 0x14-byte entries of the table at CourseMap.mItemPoints.
 typedef struct {
-    /* 00 */ Vec3 mUnk_00;
+    /* 00 */ Vec3 mPos;
     /* 0c */ s32 mUnk_0c;
     /* 10 */ u8 mUnk_10;
     /* 11 */ u8 mUnk_11[3];
@@ -209,8 +209,8 @@ typedef struct {
 
 // 8-byte entries of the table at CourseMap.mEntryGroupTable.
 typedef struct {
-    /* 00 */ CourseMapEntryGroup *mUnk_00;
-    /* 04 */ Unk02042044 *mUnk_04;
+    /* 00 */ CourseMapEntryGroup *mGroup;
+    /* 04 */ Unk02042044 *mEntries;
 } Unk02175620_94;
 
 // 0x28-byte nodes of the table at CourseMap.mRacePointLinks: two lists of node pointers.
@@ -317,7 +317,7 @@ typedef struct CourseMap {
     /* 90 */ u16 mBattleRouteCount;
     /* 92 */ u8 mUnk_92[2];
     // One 8-byte record per element of mEntryGroups: the group record and the address of its first 0x14-byte entry in
-    // mGroupEntries; built by func_02042fd8, read through func_02042fc4.
+    // mGroupEntries; built by func_02042fd8, read through GetCourseMapEntryGroupTableRow.
     /* 94 */ Unk02175620_94 *mEntryGroupTable;
     /* 98 */ u16 mNumberedCheckpointCount;
     // Last entry of the run that comes just before entry 0: first entry + count - 1 of the run named by the first back

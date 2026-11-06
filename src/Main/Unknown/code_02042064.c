@@ -131,8 +131,8 @@ void func_02042fd8(void *a) {
         gCourseMap->mEntryGroupTable = t;
         for (i = 0; i < n; i++) {
             r = gCourseMap->mEntryGroups + i;
-            t->mUnk_00 = r;
-            t->mUnk_04 = d;
+            t->mGroup = r;
+            t->mEntries = d;
             d += r->mEntryCount;
             t++;
         }
@@ -145,7 +145,7 @@ void func_02042fd8(void *a) {
 
 #pragma thumb on
 
-Unk02175620_94 *func_02042fc4(u32 p0) {
+Unk02175620_94 *GetCourseMapEntryGroupTableRow(u32 p0) {
     return gCourseMap->mEntryGroupTable + p0;
 }
 
@@ -169,7 +169,7 @@ void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c) {
             return;
         }
     }
-    n->mUnk_18 = &p->mUnk_00;
+    n->mUnk_18 = &p->mPos;
     n->mUnk_1c = p->mUnk_0c;
     if (gCourseMap->mVersion < 0x21) {
         n->mUnk_20 = 0;
@@ -395,7 +395,7 @@ void BuildCourseMapBattlePointLinks(void *a) {
             d->mUnk_00[n++] = d + 1;
             d->mUnk_00[n++] = d - 1;
         }
-        d->mUnk_20 = &s->mUnk_00;
+        d->mUnk_20 = &s->mPos;
         d->mUnk_24 = s->mUnk_0c;
         d->mUnk_28 = s->mUnk_10;
         d->mUnk_2c = n;

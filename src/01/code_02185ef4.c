@@ -369,7 +369,7 @@ void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, 
         b->mUnk_000.mScale.y = b->mPrm->mUnk_004;
         b->mUnk_000.mScale.z = b->mPrm->mUnk_004;
     }
-    b->mUnk_238 = b->mUnk_000.mPos;
+    b->mPosWithOffset = b->mUnk_000.mPos;
     b->mUnk_2bc = FALSE;
     b->mUnk_2c0 = TRUE;
     b->mUnk_148 = b->mUnk_000.mCourseMapRow->mUnk_26;
@@ -582,9 +582,9 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         b->mSpeed = func_ov001_02187074(b->mUnk_178, b->mUnk_17c, b->mSpeed);
     }
     if (b->mUnk_274 > 0) {
-        b->mUnk_244.x = func_ov001_02187074(b->mUnk_250, b->mUnk_274, b->mUnk_244.x);
-        b->mUnk_244.y = func_ov001_02187074(b->mUnk_254, b->mUnk_274, b->mUnk_244.y);
-        b->mUnk_244.z = func_ov001_02187074(b->mUnk_258, b->mUnk_274, b->mUnk_244.z);
+        b->mOffset.x = func_ov001_02187074(b->mUnk_250, b->mUnk_274, b->mOffset.x);
+        b->mOffset.y = func_ov001_02187074(b->mUnk_254, b->mUnk_274, b->mOffset.y);
+        b->mOffset.z = func_ov001_02187074(b->mUnk_258, b->mUnk_274, b->mOffset.z);
     }
     if (b->mUnk_278 > 0) {
         b->mUnk_25c.x = func_ov001_02187074(b->mUnk_268, b->mUnk_278, b->mUnk_25c.x);
@@ -682,12 +682,12 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
     if (b->mUnk_234 == 1) {
         MTX_RotY33_(&b->mUnk_000.mMatrix.mUnk_00[0].x, gPairsByAngle[((u16) b->mAngle >> 4) * 2],
                     gPairsByAngle[((u16) b->mAngle >> 4) * 2 + 1]);
-        MTX_MultVec33(&b->mUnk_244, &b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_238);
-        VEC_Add(&b->mUnk_238, &b->mUnk_000.mPos, &b->mUnk_238);
+        MTX_MultVec33(&b->mOffset, &b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mPosWithOffset);
+        VEC_Add(&b->mPosWithOffset, &b->mUnk_000.mPos, &b->mPosWithOffset);
     } else {
-        b->mUnk_238.x = b->mUnk_000.mPos.x + b->mUnk_244.x;
-        b->mUnk_238.y = b->mUnk_000.mPos.y + b->mUnk_244.y;
-        b->mUnk_238.z = b->mUnk_000.mPos.z + b->mUnk_244.z;
+        b->mPosWithOffset.x = b->mUnk_000.mPos.x + b->mOffset.x;
+        b->mPosWithOffset.y = b->mUnk_000.mPos.y + b->mOffset.y;
+        b->mPosWithOffset.z = b->mUnk_000.mPos.z + b->mOffset.z;
     }
     b->mUnk_000.mAngle = b->mAngle;
 
@@ -780,13 +780,13 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
             level = 0x1f;
         }
         if (level >= 0x1f) {
-            NNS_G3dMdlSetMdlXLDepthUpdateAll(b->mNsbmd->mAnimatedModel->mUnk_04, 1);
+            NNS_G3dMdlSetMdlXLDepthUpdateAll(b->mNsbmd->mAnimatedModel->mResMdl, 1);
             SetMapObjectModelPolygonId(b->mNsbmd, 3);
         } else if (b->mUnk_27c <= 1) {
-            NNS_G3dMdlSetMdlXLDepthUpdateAll(b->mNsbmd->mAnimatedModel->mUnk_04, 1);
+            NNS_G3dMdlSetMdlXLDepthUpdateAll(b->mNsbmd->mAnimatedModel->mResMdl, 1);
             SetMapObjectModelPolygonId(b->mNsbmd, 3);
         } else {
-            obj = b->mNsbmd->mAnimatedModel->mUnk_04;
+            obj = b->mNsbmd->mAnimatedModel->mResMdl;
             NNS_G3dMdlSetMdlXLDepthUpdateAll(obj, 1);
             for (i = 0; i < obj->mInfo.mNumMat; i++) {
                 func_0209b904(b->mNsbmd, AllocPolygonIdWrapping(), i);
@@ -883,19 +883,20 @@ s32 func_ov001_021860cc(Unk02188950 *a, Vec3 *b, s32 c, Vec3 *d) {
     switch (a->mUnk_234) {
         case 0:
             c += a->mUnk_25c.x;
-            d1 = b->x - a->mUnk_238.x;
-            d2 = b->y - a->mUnk_238.y;
-            d3 = b->z - a->mUnk_238.z;
+            d1 = b->x - a->mPosWithOffset.x;
+            d2 = b->y - a->mPosWithOffset.y;
+            d3 = b->z - a->mPosWithOffset.z;
             if ((s64) d3 * d3 + ((s64) d1 * d1 + (s64) d2 * d2) < (s64) c * c) {
-                func_020eb3f0(b, &a->mUnk_238, c, d);
+                func_020eb3f0(b, &a->mPosWithOffset, c, d);
                 return 1;
             }
             return 0;
         case 2:
-            return func_020ead80(b, &a->mUnk_238, &a->mUnk_000.mMatrix.mUnk_00[0], a->mUnk_25c.x, a->mUnk_25c.y,
+            return func_020ead80(b, &a->mPosWithOffset, &a->mUnk_000.mMatrix.mUnk_00[0], a->mUnk_25c.x, a->mUnk_25c.y,
                                  a->mUnk_25c.y, c, d);
         case 1:
-            return func_020eafc4(b, &a->mUnk_238, &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_25c, &a->mUnk_25c, c, d);
+            return func_020eafc4(b, &a->mPosWithOffset, &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_25c, &a->mUnk_25c, c,
+                                 d);
         default:
             return 0;
     }

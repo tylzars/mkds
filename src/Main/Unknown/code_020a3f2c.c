@@ -373,28 +373,28 @@ void UpdateShine16(void *a, Shine16 *p) {
             }
             for (i = 0; i < 2; i++) {
                 q = func_020a0f0c();
-                n = q->mUnk_00.y - GetKartStandingPos(p->mKartIndex)->y;
+                n = q->mPos.y - GetKartStandingPos(p->mKartIndex)->y;
                 if (n <= 0) {
                     n = -n;
                 }
                 if (n < 0x14000) {
-                    x = (q->mUnk_00.x - GetKartStandingPos(p->mUnk_ca)->x) >> 12;
-                    z = (q->mUnk_00.z - GetKartStandingPos(p->mUnk_ca)->z) >> 12;
+                    x = (q->mPos.x - GetKartStandingPos(p->mUnk_ca)->x) >> 12;
+                    z = (q->mPos.z - GetKartStandingPos(p->mUnk_ca)->z) >> 12;
                     n = x * x + z * z;
                     if (p->mUnk_ca == p->mKartIndex) {
                         if (n < 0x9c400 && n > p->mUnk_d8) {
                             p->mUnk_d8 = n;
-                            p->mUnk_cc.x = q->mUnk_00.x;
-                            p->mUnk_cc.y = q->mUnk_00.y;
-                            p->mUnk_cc.z = q->mUnk_00.z;
+                            p->mUnk_cc.x = q->mPos.x;
+                            p->mUnk_cc.y = q->mPos.y;
+                            p->mUnk_cc.z = q->mPos.z;
                             p->mUnk_dc++;
                         }
                     } else {
                         if (n < 0x9c400 && n < p->mUnk_d8) {
                             p->mUnk_d8 = n;
-                            p->mUnk_cc.x = q->mUnk_00.x;
-                            p->mUnk_cc.y = q->mUnk_00.y;
-                            p->mUnk_cc.z = q->mUnk_00.z;
+                            p->mUnk_cc.x = q->mPos.x;
+                            p->mUnk_cc.y = q->mPos.y;
+                            p->mUnk_cc.z = q->mPos.z;
                             p->mUnk_dc++;
                         }
                     }
