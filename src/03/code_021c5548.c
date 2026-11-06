@@ -43,7 +43,7 @@ void func_ov003_021c56d8(void) {
     if (v1 == 0) {
         func_ov003_021bf2e0();
         func_ov003_021cce48();
-        func_ov003_021c212c(func_ov003_021c6358);
+        func_ov003_021c212c(UpdateApList);
     }
 }
 

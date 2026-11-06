@@ -230,7 +230,7 @@ void func_ov003_021ca5b0(void) {
         }
         func_ov003_021c2120((u32) 0, (u32) 1);
         func_ov003_021c20f8((u32) 0, (u32) 0);
-        func_ov003_021c212c(func_ov003_021c6668);
+        func_ov003_021c212c(CreateApList);
     }
 }
 
