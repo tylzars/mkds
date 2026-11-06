@@ -86,7 +86,6 @@ void LocateAndUploadWiFiAikotoba(void) {
     LocateNclr(&gWiFiAikotoba->mWiFiAikotobaSONclr, v1);
     GXS_LoadOBJ(gWiFiAikotoba->mWiFiAikotobaSNcgr->mData, 0, gWiFiAikotoba->mWiFiAikotobaSNcgr->mDataSize);
     GXS_LoadOBJPltt(gWiFiAikotoba->mWiFiAikotobaSONclr->mData, 0, gWiFiAikotoba->mWiFiAikotobaSONclr->mDataSize);
-    return;
 }
 
 u32 func_ov000_02185184(void) {
@@ -104,7 +103,6 @@ void AdvanceWiFiAikotobaState0(void) {
     if (v1 != 0) {
         gWiFiAikotoba->mNextState = 1;
     }
-    return;
 }
 
 void AdvanceWiFiAikotobaState1(void) {
@@ -136,7 +134,6 @@ void AdvanceWiFiAikotobaState2(void) {
     if (v1 != 0) {
         gWiFiAikotoba->mNextState = 3;
     }
-    return;
 }
 
 void AdvanceWiFiAikotobaState3(void) {
@@ -363,7 +360,6 @@ void AdvanceWiFiAikotoba(void) {
 
 void func_ov000_02184bcc(void) {
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 2, 6, 10);
-    return;
 }
 
 void RegisterWiFiAikotobaCallbacks(void) {

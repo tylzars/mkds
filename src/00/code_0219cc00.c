@@ -154,5 +154,4 @@ void func_ov000_0219cc30(u32 a, u32 b, u32 c) {
 void func_ov000_0219cc00(u32 a, u32 b, u32 c, u32 d) {
     AddPendingStatsRequest();
     func_ov000_02197558(0, a, b, 0, c, (u32) &func_ov000_0219cb64, d);
-    return;
 }

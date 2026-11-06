@@ -96,7 +96,6 @@ void func_ov000_021ab7b4(Unk021ab728 *a) {
     a->mUnk_04 = (0xefcdab89u);
     a->mUnk_08 = (0x98badcfeu);
     a->mUnk_0c = (0x10325476u);
-    return;
 }
 
 void func_ov000_021ab728(void *f, const u8 *b, u32 c) {
@@ -136,5 +135,4 @@ void func_ov000_021ab6d4(Unk021ab728 *a, u8 *b) {
     func_ov000_021ab728(a, data_ov000_021b4aa4, v2);
     func_ov000_021ab728(a, b, 8);
     func_ov000_021abc14((u32) b, (u32) a, 0x10);
-    return;
 }

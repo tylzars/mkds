@@ -6,7 +6,6 @@ void func_ov001_02188dcc(Unk02188950 *a, UnkFunc *b) {
         b = (UnkFunc *) func_ov001_02188e88;
     }
     a->mUnk_228 = b;
-    return;
 }
 
 void func_ov001_02188db8(Unk02188950 *a, void (*b)(Unk02188950 *)) {
@@ -14,7 +13,6 @@ void func_ov001_02188db8(Unk02188950 *a, void (*b)(Unk02188950 *)) {
         b = (UnkFunc *) func_ov001_02188e88;
     }
     a->mUnk_22c = b;
-    return;
 }
 
 void func_ov001_02188da4(Unk02188950 *a, UnkFunc *b) {
@@ -22,5 +20,4 @@ void func_ov001_02188da4(Unk02188950 *a, UnkFunc *b) {
         b = (UnkFunc *) func_ov001_02188e88;
     }
     a->mUnk_230 = b;
-    return;
 }

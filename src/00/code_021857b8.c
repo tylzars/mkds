@@ -69,7 +69,6 @@ void func_ov000_02185818(void) {
         RequestWiFiState(2);
         data_0217b488->mUnk_1c = 1;
     }
-    return;
 }
 
 void func_ov000_021857e0(void) {

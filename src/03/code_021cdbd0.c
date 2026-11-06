@@ -27,7 +27,6 @@ void CreateSoundData(void) {
 void func_ov003_021cdc28(void) {
     func_ov003_021d34c8(0, gSoundData->mTask);
     func_ov003_021d2808(&gSoundData);
-    return;
 }
 
 void StartSoundSeq(u32 index) {
@@ -40,9 +39,7 @@ void StartSoundSeq(u32 index) {
     value0 = *(const u32 *) ((value0) + 0u);
     value0 = (value0) + 144u;
     value1 = 0u;
-    value3 = (u32) &NNS_SndArcPlayerStartSeqArc;
     value0 = NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
-    return;
 }
 
 u32 SetSoundSeqVolume(u32 volume) {

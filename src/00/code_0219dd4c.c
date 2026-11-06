@@ -3045,9 +3045,7 @@ void func_ov000_0219e138(Unk0218b668 *a, s32 b, s32 c) {
     }
 }
 
-void func_ov000_0219e134(s32 a) {
-    return;
-}
+void func_ov000_0219e134(s32 a) {}
 
 BOOL func_ov000_0219dfe4(s32 a) {
     BOOL c;

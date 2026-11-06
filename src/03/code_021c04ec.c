@@ -179,7 +179,6 @@ void func_ov003_021c0a24(void) {
     func_ov003_021c06e0();
     func_ov003_021c0528();
     func_ov003_021c0318();
-    return;
 }
 
 void func_ov003_021c08d0(void) {

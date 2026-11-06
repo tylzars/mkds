@@ -13,7 +13,6 @@ void func_ov003_021c673c(void) {
         func_ov003_021cef90();
         func_ov003_021c212c(func_ov003_021c6708);
     }
-    return;
 }
 
 void func_ov003_021c6708(void) {
@@ -23,5 +22,4 @@ void func_ov003_021c6708(void) {
         gEdit->mUnk_04->mUnk_00 = gEdit->mUnk_04->mUnk_00 & (0xc1fffcffu);
         func_ov003_021c212c(func_ov003_021c6d0c);
     }
-    return;
 }

@@ -73,7 +73,6 @@ void DarrayDelete(void *c) {
     }
     func_ov000_021a3668(array->mList);
     func_ov000_021a3668(array);
-    return;
 }
 
 s32 DarrayGetCount(void *b) {
@@ -129,7 +128,6 @@ void DarrayInsertSorted(Darray *array, void *b, UnkCompare *comparator) {
     v1 = DarraySearchSorted(b, array->mList, array->mCount, array->mElemSize, comparator, v3);
     v2 = _s32_div_f(v1 - array->mList, array->mElemSize);
     DarrayInsert(array, b, v2);
-    return;
 }
 
 void DarrayRemoveWithoutCallback(Darray *array, int n) {

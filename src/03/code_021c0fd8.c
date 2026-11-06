@@ -77,7 +77,6 @@ void func_ov003_021c1cd8(void) {
 void func_ov003_021c1cb0(void) {
     func_ov003_021d197c(data_ov003_021da160->mUnk_58);
     func_ov003_021d34e0(data_ov003_021da160->mUnk_5c, func_ov003_021c118c);
-    return;
 }
 
 u8 func_ov003_021c1ca0(void) {
@@ -86,17 +85,14 @@ u8 func_ov003_021c1ca0(void) {
 
 void func_ov003_021c1c90(u8 a) {
     data_ov003_021da160->mUnk_66 = a;
-    return;
 }
 
 void func_ov003_021c1c80(u8 a) {
     data_ov003_021da160->mUnk_67 = a;
-    return;
 }
 
 void func_ov003_021c1c70(u8 a) {
     data_ov003_021da160->mUnk_68 = a;
-    return;
 }
 
 u32 func_ov003_021c1c5c(void) {
@@ -186,7 +182,6 @@ void func_ov003_021c1a44(void) {
     func_ov003_021c17d4();
     func_ov003_021c1680();
     func_ov003_021c1510();
-    return;
 }
 
 void func_ov003_021c1908(void) {
@@ -347,7 +342,6 @@ void func_ov003_021c1648(int a) {
         func_ov003_021c12cc(data_ov003_021da160->mUnk_62, 0);
         data_ov003_021da160->mUnk_62 = a;
     }
-    return;
 }
 
 static inline void func_ov003_021c105c_inline(Unk021bf920 *p, u32 *x, u32 *y) {
@@ -579,5 +573,4 @@ void func_ov003_021c0fd8(u32 a) {
         v1 = v1 + 1;
     } while (v1 < 10);
     func_ov003_021d2808(&data_ov003_021da160);
-    return;
 }

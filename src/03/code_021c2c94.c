@@ -58,7 +58,6 @@ void func_ov003_021c2f98(void) {
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x14);
     func_ov003_021c212c(func_ov003_021c2f68);
-    return;
 }
 
 void func_ov003_021c2f68(void) {
@@ -68,7 +67,6 @@ void func_ov003_021c2f68(void) {
         func_ov003_021bf5c8(0);
         func_ov003_021c212c(func_ov003_021c2f44);
     }
-    return;
 }
 
 void func_ov003_021c2f44(void) {
@@ -82,7 +80,6 @@ void UpdateJb2Menu(void) {
     UpdateJb2MenuInput();
     func_ov003_021c2e3c();
     func_ov003_021c2df4();
-    return;
 }
 
 void UpdateJb2MenuInput(void) {
@@ -112,9 +109,7 @@ void UpdateJb2MenuInput(void) {
     }
 }
 
-void func_ov003_021c2e3c(void) {
-    return;
-}
+void func_ov003_021c2e3c(void) {}
 
 void func_ov003_021c2df4(void) {
     switch (func_ov003_021bf334()) {
@@ -134,7 +129,6 @@ void func_ov003_021c2dd4(void) {
     func_ov003_021bf2d0();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c2d9c);
-    return;
 }
 
 void func_ov003_021c2d9c(void) {
@@ -145,7 +139,6 @@ void func_ov003_021c2d9c(void) {
         func_ov003_021d1ee0(3, 0, 0x14, 8);
         func_ov003_021c212c(func_ov003_021c2d18);
     }
-    return;
 }
 
 void func_ov003_021c2d18(void) {

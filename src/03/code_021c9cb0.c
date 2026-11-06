@@ -13,7 +13,6 @@ void func_ov003_021c9ccc(void) {
         func_ov003_021cef90();
         func_ov003_021c212c(func_ov003_021c9cb0);
     }
-    return;
 }
 
 void func_ov003_021c9cb0(void) {
@@ -22,5 +21,4 @@ void func_ov003_021c9cb0(void) {
     if (v1 == 0) {
         func_ov003_021c212c(func_ov003_021c9e64);
     }
-    return;
 }

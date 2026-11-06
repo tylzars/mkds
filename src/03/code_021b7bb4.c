@@ -1013,7 +1013,6 @@ void func_ov003_021b7e94(u8 *a, u32 b, u8 *c) {
     func_ov003_021b7d90(c, (a + v1), v1);
     func_ov003_021b7d90((c + v1), a, v1);
     func_ov003_021b7d90(a, c, b);
-    return;
 }
 
 u32 func_ov003_021b7e70(u32 a, int b) {
@@ -1027,7 +1026,6 @@ u32 func_ov003_021b7e70(u32 a, int b) {
 
 void func_ov003_021b7e58(u32 a, u32 b) {
     (*(UnkFunc *) (*(u32 *) &data_ov003_021d8a18))(b);
-    return;
 }
 
 s32 func_ov003_021b7df4(u32 a, u32 b, u32 c) {
@@ -1070,9 +1068,7 @@ void func_ov003_021b7d84(void *arg0, s32 arg1, u32 arg2) {
     u32 value3;
     value1 = (value1 << 24);
     value1 = (value1 >> 24);
-    value3 = (u32) &MI_CpuFill8;
     MI_CpuFill8((void *) value0, value1, value2);
-    return;
 }
 
 s32 func_ov003_021b7d68(s32 v1, void *v2, s32 v3, s32 v4, Unk021b7cec *v5, s32 *v6) {

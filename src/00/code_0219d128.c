@@ -162,7 +162,6 @@ void WiFiGpBuddyRequestCallback(GpConnection *a, u32 *b) {
     if (gWiFiBuddySync->mBuddies != NULL) {
         func_ov000_0218eff8(a, *b, 0, 0, (Unk0218eff8Cb) func_ov000_0219cd74, 0);
     }
-    return;
 }
 
 u32 func_ov000_0219d6c4(GpConnection *a, u32 *b, u32 c) {
@@ -261,7 +260,6 @@ void func_ov000_0219d504(s32 a) {
 
 void func_ov000_0219d4f8(void) {
     *(u32 *) &gWiFiBuddySync = 0;
-    return;
 }
 
 int func_ov000_0219d49c(void) {

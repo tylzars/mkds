@@ -141,7 +141,7 @@ void func_020ac67c(void) {
 }
 
 void *func_020ac658(void) {
-    return (void *) func_0209bef0(CreateShineBalloon, DrawShineBalloon, func_020ac9b0);
+    return func_0209bef0(CreateShineBalloon, DrawShineBalloon, func_020ac9b0);
 }
 
 void *func_020ac63c(void) {

@@ -52,7 +52,6 @@ void func_ov003_021bf5ec(u32 a) {
     if (v1[0] == 2) {
         func_ov003_021ce024(a);
     }
-    return;
 }
 
 void func_ov003_021bf5c8(u32 a) {
@@ -61,7 +60,6 @@ void func_ov003_021bf5c8(u32 a) {
     if (v1[0] == 1) {
         func_ov003_021bf364(a);
     }
-    return;
 }
 
 void func_ov003_021bf578(u32 c) {

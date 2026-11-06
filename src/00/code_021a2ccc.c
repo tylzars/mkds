@@ -28,7 +28,6 @@ void func_ov000_021a3250(u32 (*arg0)(void)) {
     value2 = *(const u32 *) ((value1) + 0u);
     value1 = 0x600u;
     *(u32 *) ((value2) + (value1)) = value0;
-    return;
 }
 
 void func_ov000_021a323c(void (*arg0)(u32, void *, u32)) {
@@ -39,14 +38,12 @@ void func_ov000_021a323c(void (*arg0)(u32, void *, u32)) {
     value2 = *(const u32 *) ((value1) + 0u);
     value1 = 0x604u;
     *(u32 *) ((value2) + (value1)) = value0;
-    return;
 }
 
 void func_ov000_021a321c(Unk021a31e8 *a, u16 b, u32 c) {
     strncpy((char *) a->mUnk_06, data_ov000_021b41f0, 2);
     a->mUnk_04 = b;
     a->mUnk_00 = c;
-    return;
 }
 
 u16 func_ov000_021a31e8(const void *a) {
@@ -153,12 +150,10 @@ void func_ov000_021a2ff8(int a) {
         gWiFiMessageLayer->mPeers[a].mUnk_1c = 0;
         gWiFiMessageLayer->mPeers[a].mMessageKind = 0;
     }
-    return;
 }
 
 void func_ov000_021a2fec(void) {
     gWiFiMessageLayer = NULL;
-    return;
 }
 
 WiFiPeerMessage *func_ov000_021a2fdc(int a) {
@@ -177,7 +172,6 @@ void func_ov000_021a2f98(u32 a, void *b, u32 c, u32 d) {
     void *v1;
     v1 = func_ov000_0219b9d4(a);
     func_ov000_02198914(v1, b, c, d);
-    return;
 }
 
 void func_ov000_021a2eec(Unk0219887c *a, void *b, s32 c) {

@@ -26,12 +26,9 @@ void InitWiFiSelectKartState(void *a) {
 void ReleaseWiFiSelectKartState(void) {
     ReleaseSelectKart();
     *(u32 *) &gWiFiSelectKartState = 0;
-    return;
 }
 
-void func_ov000_02184a50(void) {
-    return;
-}
+void func_ov000_02184a50(void) {}
 
 void AdvanceWiFiSelectKartState(void) {
     s32 a;
@@ -54,9 +51,7 @@ void AdvanceWiFiSelectKartState(void) {
 
 void func_ov000_02184a04(void) {
     u32 value3;
-    value3 = (u32) &func_02027e78;
     func_02027e78();
-    return;
 }
 
 void RegisterSelectKartCallbacks(void) {

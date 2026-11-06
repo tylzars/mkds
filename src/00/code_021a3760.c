@@ -37,7 +37,6 @@ void func_ov000_021a39d8(Unk021b5df4 *a, u16 b, u32 c, u32 d) {
 
 void func_ov000_021a39c4(void *a) {
     func_ov000_021a39d8((a), 3, 1, 0x14);
-    return;
 }
 
 void func_ov000_021a397c(s32 a) {
@@ -134,7 +133,6 @@ void func_ov000_021a37dc(void) {
         }
         *(s32 *) &data_ov000_021b5df4 = 0;
     }
-    return;
 }
 
 BOOL func_ov000_021a377c(void) {

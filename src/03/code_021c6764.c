@@ -156,7 +156,6 @@ void func_ov003_021c6cf0(void) {
 void UpdateEdit(void) {
     UpdateEditInput();
     func_ov003_021c6b9c();
-    return;
 }
 
 void UpdateEditInput(void) {
@@ -216,14 +215,11 @@ void UpdateEditInput(void) {
     func_ov003_021c6914();
 }
 
-void func_ov003_021c6b9c(void) {
-    return;
-}
+void func_ov003_021c6b9c(void) {}
 
 void func_ov003_021c6b80(void) {
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c6b58);
-    return;
 }
 
 void func_ov003_021c6b58(void) {
@@ -234,7 +230,6 @@ void func_ov003_021c6b58(void) {
         StartSoundSeq(0x15);
         func_ov003_021c212c(func_ov003_021c6acc);
     }
-    return;
 }
 
 void func_ov003_021c6acc(void) {

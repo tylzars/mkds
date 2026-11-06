@@ -133,12 +133,9 @@ void func_ov003_021c9eb0(void) {
     if (v1 != 0) {
         func_ov003_021bf31c(0);
     }
-    return;
 }
 
-void func_ov003_021c9eac(void) {
-    return;
-}
+void func_ov003_021c9eac(void) {}
 
 void func_ov003_021c9e84(void) {
     int v1;
@@ -148,14 +145,12 @@ void func_ov003_021c9e84(void) {
         StartSoundSeq(7);
         func_ov003_021c212c(func_ov003_021c9e64);
     }
-    return;
 }
 
 void func_ov003_021c9e64(void) {
     func_ov003_021bf2d0();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c9e1c);
-    return;
 }
 
 void func_ov003_021c9e1c(void) {
@@ -169,7 +164,6 @@ void func_ov003_021c9e1c(void) {
         func_ov003_021d1ee0(3, 0, 0x15, 8);
         func_ov003_021c212c(func_ov003_021c9d94);
     }
-    return;
 }
 
 void func_ov003_021c9d94(void) {
@@ -192,7 +186,6 @@ void func_ov003_021c9d94(void) {
         func_ov003_021c2120(0, 0);
         func_ov003_021c212c(func_ov003_021ca194);
     }
-    return;
 }
 
 void func_ov003_021c9cf4(void) {

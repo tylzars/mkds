@@ -163,9 +163,7 @@ u32 func_ov000_0219c0c8(void) {
     return 0;
 }
 
-void func_ov000_0219c0c4(void) {
-    return;
-}
+void func_ov000_0219c0c4(void) {}
 
 void UpdateWiFiConnection(void) {
     if (func_ov000_0219c0c8() != 0) {
@@ -663,13 +661,11 @@ void WiFiLoginCallback(int a, u32 b) {
     if (v1 != NULL) {
         (*v1)(a, b, gWiFiConnection->mLoginCallbackArg);
     }
-    return;
 }
 
 void WiFiBuddySyncCallback(u32 a, u32 b) {
     SetWiFiConnectionState((u32) (gWiFiConnection->mPrevState));
     gWiFiConnection->mBuddySyncCallback(a, b, gWiFiConnection->mBuddySyncCallbackArg);
-    return;
 }
 
 // Result callback of both starts (the matching object's mResultCallback): result 0 with flag 0 sets state 6 and finds

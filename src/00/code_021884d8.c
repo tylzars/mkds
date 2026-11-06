@@ -73,7 +73,6 @@ void func_ov000_02188534(u8 a) {
 
 u8 func_ov000_02188528(void) {
     u32 value0;
-    value0 = (u32) &data_ov000_021b4d10;
     value0 = data_ov000_021b4d10->mUnk_09;
     return value0;
 }
@@ -89,12 +88,10 @@ void func_ov000_02188508(u32 arg0) {
     *(u32 *) ((value4) + 12u) = value5;
     value0 = func_ov000_02188528();
     *(u8 *) ((value4) + 10u) = value0;
-    return;
 }
 
 u32 func_ov000_021884fc(void) {
     u32 value0;
-    value0 = (u32) &data_ov000_021b4d10;
     value0 = data_ov000_021b4d10->mUnk_0c;
     return value0;
 }

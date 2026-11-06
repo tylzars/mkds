@@ -7,5 +7,4 @@ void GpiSetError(GpConnection *a, u32 b, const char *c) {
     v1 = a->mGpiConnection;
     GpiCopyString(v1->mErrorMessage, c, 0x100);
     v1->mErrorNumber = b;
-    return;
 }

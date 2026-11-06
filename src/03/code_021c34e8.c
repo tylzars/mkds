@@ -21,9 +21,7 @@ void UpdateJb5InfoInput(void) {
     }
 }
 
-void func_ov003_021c3690(void) {
-    return;
-}
+void func_ov003_021c3690(void) {}
 
 void func_ov003_021c366c(void) {
     int v1;

@@ -136,7 +136,6 @@ void func_ov003_021cba54(void) {
         func_ov003_021d2784(1, 1);
     }
     func_ov003_021c212c(func_ov003_021cba2c);
-    return;
 }
 
 void func_ov003_021cba2c(void) {
@@ -149,25 +148,17 @@ void func_ov003_021cba14(void) {
     func_ov003_021cba10();
     func_ov003_021cba0c();
     func_ov003_021cba08();
-    return;
 }
 
-void func_ov003_021cba10(void) {
-    return;
-}
+void func_ov003_021cba10(void) {}
 
-void func_ov003_021cba0c(void) {
-    return;
-}
+void func_ov003_021cba0c(void) {}
 
-void func_ov003_021cba08(void) {
-    return;
-}
+void func_ov003_021cba08(void) {}
 
 void func_ov003_021cb9e8(void) {
     func_ov003_021d1ee0(3, 0, 0x15, 8);
     func_ov003_021c212c(func_ov003_021cb9c8);
-    return;
 }
 
 void func_ov003_021cb9c8(void) {
@@ -176,7 +167,6 @@ void func_ov003_021cb9c8(void) {
     if (v1 == 0) {
         func_ov003_021c212c(func_ov003_021cb948);
     }
-    return;
 }
 
 void func_ov003_021cb948(void) {

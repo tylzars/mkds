@@ -11,7 +11,6 @@
 
 void func_ov003_021bf4d0(void) {
     *(u8 *) &data_ov003_021da10c = 0;
-    return;
 }
 
 u32 func_ov003_021bf43c(u32 v1, s32 v2, u32 v3) {

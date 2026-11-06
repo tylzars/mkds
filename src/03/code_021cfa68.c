@@ -589,7 +589,6 @@ BOOL func_ov003_021cfc4c(u32 a, u16 b, u16 c) {
 
 void func_ov003_021cfc40(u32 a) {
     data_ov003_021da2a8->mUnk_4c = (s32(*)(Unk021425e8 *)) a;
-    return;
 }
 
 u8 *func_ov003_021cfc1c(u32 a) {
@@ -624,7 +623,6 @@ void func_ov003_021cfb80(void) {
     if (v1 == 0) {
         func_ov003_021d07b0(10);
     }
-    return;
 }
 
 void func_ov003_021cfaa8(void) {

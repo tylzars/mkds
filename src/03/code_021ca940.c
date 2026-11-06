@@ -49,7 +49,6 @@ void func_ov003_021cb0e0(void) {
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x14);
     func_ov003_021c212c(func_ov003_021cb0b0);
-    return;
 }
 
 void func_ov003_021cb0b0(void) {
@@ -59,7 +58,6 @@ void func_ov003_021cb0b0(void) {
         func_ov003_021bf5c8(0);
         func_ov003_021c212c(func_ov003_021cb084);
     }
-    return;
 }
 
 void func_ov003_021cb084(void) {
@@ -73,7 +71,6 @@ void UpdateAp(void) {
     UpdateApInput();
     func_ov003_021cafa0();
     func_ov003_021caeb8();
-    return;
 }
 
 void UpdateApInput(void) {
@@ -86,7 +83,7 @@ void UpdateApInput(void) {
     do {
         v1 = func_ov003_021d2a34((const Unk021d299c *) v4);
         if (v1 != 0) {
-            func_ov003_021bf31c((u8) (1));
+            func_ov003_021bf31c((u8) 1);
             *(u8 *) &gApSelectedIndex = (s8) v2;
             func_ov003_021caca8();
             return;
@@ -96,12 +93,12 @@ void UpdateApInput(void) {
     } while (v2 < 7);
     v3 = func_ov003_021d2b04(1);
     if (v3 != 0) {
-        func_ov003_021bf31c((u8) (1));
+        func_ov003_021bf31c((u8) 1);
         return;
     }
     v3 = func_ov003_021d2b04(2);
     if (v3 != 0) {
-        func_ov003_021bf31c((u8) (0));
+        func_ov003_021bf31c((u8) 0);
         return;
     }
     v3 = func_ov003_021d2ae8(0x40);
@@ -123,12 +120,9 @@ void UpdateApInput(void) {
     if (v3 != 0) {
         MoveApSelection(2);
     }
-    return;
 }
 
-void func_ov003_021cafa0(void) {
-    return;
-}
+void func_ov003_021cafa0(void) {}
 
 void func_ov003_021caeb8(void) {
     s32 a;
@@ -389,7 +383,6 @@ void func_ov003_021ca9c8(void) {
         func_ov003_021bf2e0();
         func_ov003_021c212c(UpdateAp);
     }
-    return;
 }
 
 void func_ov003_021ca940(void) {

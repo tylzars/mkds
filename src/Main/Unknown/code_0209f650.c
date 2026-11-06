@@ -269,7 +269,7 @@ void UpdateTownMonte(void *a, TownMonte *p) {
 }
 
 void *func_0209f6b8(void) {
-    return (void *) func_0209bef0(CreateTownMonte, DrawTownMonte, NULL);
+    return func_0209bef0(CreateTownMonte, DrawTownMonte, NULL);
 }
 
 void *func_0209f698(void) {

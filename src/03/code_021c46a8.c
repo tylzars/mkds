@@ -85,18 +85,14 @@ void func_ov003_021c4760(void) {
 void func_ov003_021c474c(void) {
     func_ov003_021c46a8();
     func_ov003_021c4748();
-    return;
 }
 
-void func_ov003_021c4748(void) {
-    return;
-}
+void func_ov003_021c4748(void) {}
 
 void func_ov003_021c471c(void) {
     func_ov003_021d1ee0(3, 1, 1, 8);
     func_ov003_021d1ee0(3, 0, 0x15, 8);
     func_ov003_021c212c(func_ov003_021c46d0);
-    return;
 }
 
 void func_ov003_021c46d0(void) {
@@ -110,7 +106,6 @@ void func_ov003_021c46d0(void) {
         func_ov003_021c2120(0, 1);
         func_ov003_021c212c(SetupOptMenu);
     }
-    return;
 }
 
 void func_ov003_021c46a8(void) {

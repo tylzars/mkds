@@ -146,7 +146,6 @@ void func_ov003_021c63c4(void) {
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x1d);
     func_ov003_021c212c(func_ov003_021c6394);
-    return;
 }
 
 void func_ov003_021c6394(void) {
@@ -156,7 +155,6 @@ void func_ov003_021c6394(void) {
         func_ov003_021bf5c8(0);
         func_ov003_021c212c(func_ov003_021c6370);
     }
-    return;
 }
 
 void func_ov003_021c6370(void) {
@@ -170,7 +168,6 @@ void UpdateApList(void) {
     func_ov003_021c6184();
     func_ov003_021c5f9c();
     func_ov003_021c5ec4();
-    return;
 }
 
 void func_ov003_021c6184(void) {
@@ -370,7 +367,6 @@ void func_ov003_021c5ea4(void) {
     func_ov003_021bf2d0();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c5e54);
-    return;
 }
 
 void func_ov003_021c5e54(void) {
@@ -474,7 +470,6 @@ void RefreshApList(void) {
     }
     func_ov003_021d1fd0(gApList->mUnk_0c);
     RefreshApListRowPositions();
-    return;
 }
 
 void PrintApListEntryText(int param_0, int param_1) {

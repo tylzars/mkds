@@ -21,5 +21,4 @@ void func_ov000_0219210c(Unk021919ac_node *a) {
         func_ov000_021a3668(a->mUnk_0c);
         a->mUnk_0c = NULL;
     }
-    return;
 }

@@ -123,18 +123,15 @@ void UpdateXb3MultiInput(void) {
     int v1;
     v1 = func_ov003_021d2b04(1);
     if (v1 != 0) {
-        func_ov003_021bf31c((u8) (1));
+        func_ov003_021bf31c((u8) 1);
     }
     v1 = func_ov003_021d2b04(2);
     if (v1 != 0) {
-        func_ov003_021bf31c((u8) (0));
+        func_ov003_021bf31c((u8) 0);
     }
-    return;
 }
 
-void func_ov003_021cc274(void) {
-    return;
-}
+void func_ov003_021cc274(void) {}
 
 void func_ov003_021cc234(void) {
     switch (func_ov003_021bf334()) {

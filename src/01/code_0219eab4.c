@@ -349,7 +349,6 @@ void AdvanceMissionRunLVselState0(void) {
     if (v1 != 0) {
         func_ov001_0219f260();
     }
-    return;
 }
 
 void AdvanceMissionRunLVselState1(void) {
@@ -381,7 +380,6 @@ void AdvanceMissionRunLVselState2(void) {
     if (v1 != 0) {
         RequestMissionRunLVselState3();
     }
-    return;
 }
 
 void AdvanceMissionRunLVselState3(void) {

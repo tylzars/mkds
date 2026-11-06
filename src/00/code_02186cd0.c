@@ -784,5 +784,4 @@ void ReleaseHttp(Http *a) {
         }
         MI_CpuFill8(a, 0, 0x1a60);
     }
-    return;
 }

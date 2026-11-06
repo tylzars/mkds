@@ -94,7 +94,6 @@ void func_ov003_021c3c88(void) {
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x14);
     func_ov003_021c212c(func_ov003_021c3c58);
-    return;
 }
 
 void func_ov003_021c3c58(void) {
@@ -104,7 +103,6 @@ void func_ov003_021c3c58(void) {
         func_ov003_021bf5c8(0);
         func_ov003_021c212c(func_ov003_021c3c34);
     }
-    return;
 }
 
 void func_ov003_021c3c34(void) {
@@ -118,7 +116,6 @@ void UpdateOptMenu(void) {
     UpdateOptMenuInput();
     func_ov003_021c3b5c();
     func_ov003_021c3ae4();
-    return;
 }
 
 void UpdateOptMenuInput(void) {
@@ -144,9 +141,7 @@ void UpdateOptMenuInput(void) {
     }
 }
 
-void func_ov003_021c3b5c(void) {
-    return;
-}
+void func_ov003_021c3b5c(void) {}
 
 void func_ov003_021c3ae4(void) {
     DWCWiFiInfo a;

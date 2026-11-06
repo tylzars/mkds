@@ -27,7 +27,6 @@ void AppendBufferByte(Gt2Buffer *buffer, u8 b) {
     v1 = buffer->mLength;
     buffer->mLength = v1 + 1;
     buffer->mData[v1] = b;
-    return;
 }
 
 void AppendBufferU16(Gt2Buffer *buffer, s32 b) {
@@ -41,5 +40,4 @@ void AppendBufferU16(Gt2Buffer *buffer, s32 b) {
     v1 = buffer->mLength;
     buffer->mLength = v1 + 1;
     buffer->mData[v1] = (s8) b;
-    return;
 }

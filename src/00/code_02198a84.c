@@ -3,7 +3,5 @@
 
 void func_ov000_02198a84(void *arg0, void *arg1) {
     u32 value3;
-    value3 = (u32) &SetIncomingConnectionCallback;
     SetIncomingConnectionCallback(arg0, arg1);
-    return;
 }

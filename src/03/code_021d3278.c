@@ -8,5 +8,4 @@ void func_ov003_021d3278(void) {
     if ((v1 == 0) && (v2[0] != 0xf)) {
         PMi_SendLEDPatternCommand(0xf);
     }
-    return;
 }

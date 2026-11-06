@@ -40,13 +40,9 @@ void func_ov003_021cbe44(void) {
     }
 }
 
-void func_ov003_021cbe40(void) {
-    return;
-}
+void func_ov003_021cbe40(void) {}
 
-void func_ov003_021cbe3c(void) {
-    return;
-}
+void func_ov003_021cbe3c(void) {}
 
 void func_ov003_021cbe14(void) {
     int v1;
@@ -127,12 +123,9 @@ void func_ov003_021cbd20(void) {
 void func_ov003_021cbd0c(void) {
     func_ov003_021cbc00();
     func_ov003_021cbd08();
-    return;
 }
 
-void func_ov003_021cbd08(void) {
-    return;
-}
+void func_ov003_021cbd08(void) {}
 
 void func_ov003_021cbcc8(void) {
     int v1[1];
@@ -143,7 +136,6 @@ void func_ov003_021cbcc8(void) {
     func_ov003_021d1ee0(3, 1, 1, 8);
     func_ov003_021d1ee0(3, 0, 0x15, 8);
     func_ov003_021c212c(func_ov003_021cbc50);
-    return;
 }
 
 void func_ov003_021cbc50(void) {
@@ -164,7 +156,6 @@ void func_ov003_021cbc50(void) {
         }
         func_ov003_021c212c(SetupJb2Menu);
     }
-    return;
 }
 
 void func_ov003_021cbc00(void) {

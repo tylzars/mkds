@@ -20,9 +20,7 @@ void func_ov003_021c4130(void) {
     }
 }
 
-void func_ov003_021c412c(void) {
-    return;
-}
+void func_ov003_021c412c(void) {}
 
 void func_ov003_021c4108(void) {
     int v1;

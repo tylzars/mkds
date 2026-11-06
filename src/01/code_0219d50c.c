@@ -28,5 +28,4 @@ void LoadSelectBattleStageData(void) {
     LoadNcerData(&v.mNcer, v1);
     v1 = FindSceneFile(data_ov001_021a8cb0);
     LoadNclrData(&v.mNclr, v1);
-    return;
 }

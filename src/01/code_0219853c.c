@@ -54,7 +54,6 @@ void func_ov001_021987d4(void *heap, s16 a) {
 void func_ov001_021987bc(void) {
     func_02125da0();
     *(u32 *) &data_ov001_021a9be4 = 0;
-    return;
 }
 
 void func_ov001_02198768(void) {

@@ -904,11 +904,9 @@ void func_02071944(void *p, int v1) {
     u32 v4;
     u32 v5;
     u32 v6;
-    v6 = (u32) &StartSound;
     v4 = 0x7fu;
     v5 = 0u;
     StartSound(v2, v3, v4, v5);
-    return;
 }
 
 void func_02071914(void *p, int a) {

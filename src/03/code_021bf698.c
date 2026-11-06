@@ -53,7 +53,6 @@ void func_ov003_021bf6c8(u32 a, u32 b, u32 c, u32 d) {
     func_ov003_021d17d4(data_ov003_021da150[1], 0xffffffff, b, c);
     func_ov003_021d17d4(data_ov003_021da150[2], 0xffffffff, a, d);
     func_ov003_021d17d4(data_ov003_021da150[3], 0xffffffff, b, d);
-    return;
 }
 
 void func_ov003_021bf698(void) {
@@ -71,5 +70,4 @@ void func_ov003_021bf698(void) {
         v2 = v2 + 1;
         v1 = v1 + 1;
     } while (v1 < 4);
-    return;
 }

@@ -96,7 +96,6 @@ void LocateAndQueueWiFiTopMenu(void) {
     LocateNclr(&gWiFiTopMenu->mWiFiTopMenuSONclr, v1);
     CallQueueAppend(0x23, 0, (gWiFiTopMenu->mWiFiTopMenuSNcgr->mData), gWiFiTopMenu->mWiFiTopMenuSNcgr->mDataSize);
     CallQueueAppend(0x1e, 0, (gWiFiTopMenu->mWiFiTopMenuSONclr->mData), gWiFiTopMenu->mWiFiTopMenuSONclr->mDataSize);
-    return;
 }
 
 s32 func_ov000_02181df0(void) {
@@ -109,7 +108,6 @@ void AdvanceWiFiTopMenuState0(void) {
     if (v1 != 0) {
         gWiFiTopMenu->mNextState = 1;
     }
-    return;
 }
 
 void AdvanceWiFiTopMenuState1(void) {
@@ -141,7 +139,6 @@ void AdvanceWiFiTopMenuState2(void) {
         gWiFiTopMenu->mNextState = 3;
         func_021281c8(0xf);
     }
-    return;
 }
 
 void AdvanceWiFiTopMenuState3(void) {
@@ -418,7 +415,6 @@ void AdvanceWiFiTopMenu(void) {
 
 void func_ov000_02181738(void) {
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 2, 6, 10);
-    return;
 }
 
 void RegisterWiFiTopMenuCallbacks(void) {

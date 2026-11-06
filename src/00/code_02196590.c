@@ -8,7 +8,5 @@ void GpiSetErrorMessage(void *arg0, void *arg1) {
     u32 value3;
     value0 = *(const u32 *) ((value0) + 0u);
     value2 = 0x100u;
-    value3 = (u32) &GpiCopyString;
     GpiCopyString((char *) value0, (const char *) value1, value2);
-    return;
 }

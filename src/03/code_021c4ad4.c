@@ -139,13 +139,9 @@ void func_ov003_021c4c0c(void) {
     func_ov003_021c212c(func_ov003_021c4bc4);
 }
 
-void func_ov003_021c4c08(void) {
-    return;
-}
+void func_ov003_021c4c08(void) {}
 
-void func_ov003_021c4c04(void) {
-    return;
-}
+void func_ov003_021c4c04(void) {}
 
 void func_ov003_021c4bc4(void) {
     int v1;
@@ -191,7 +187,6 @@ void func_ov003_021c4ae0(void) {
         }
         func_ov003_021c212c(func_ov003_021c4054);
     }
-    return;
 }
 
 void func_ov003_021c4ad4(void) {

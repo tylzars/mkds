@@ -49,9 +49,7 @@ void func_ov000_021816a4(void) {
     data_ov000_021b4c68 = NULL;
 }
 
-void func_ov000_021816a0(void) {
-    return;
-}
+void func_ov000_021816a0(void) {}
 
 BOOL func_ov000_02181684(void) {
     if (func_02061250() == 0) {

@@ -345,7 +345,7 @@ void func_0209a78c(void) {
 }
 
 void *func_0209a768(void) {
-    return (void *) func_0209bef0(CreateCrabAndCrabHand, DrawCrab, func_0209b1f8);
+    return func_0209bef0(CreateCrabAndCrabHand, DrawCrab, func_0209b1f8);
 }
 
 void *func_0209a748(void) {

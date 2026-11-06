@@ -382,13 +382,13 @@ void *func_02098374(void) {
 }
 
 void *func_02098328(void) {
-    data_usa_0217b0e8 = (void *) func_0209bef0(CreatePakkunBody, DrawPakkunBody, func_020989fc);
+    data_usa_0217b0e8 = func_0209bef0(CreatePakkunBody, DrawPakkunBody, func_020989fc);
     func_020d49d8(&data_usa_0217b0e8);
     return data_usa_0217b0e8;
 }
 
 void *func_020982d4(void) {
-    data_usa_0217b0f0 = (Unk020982d4 *) func_0209bef0(CreatePakkunZHead, DrawPakkunZHead, func_02098b1c);
+    data_usa_0217b0f0 = func_0209bef0(CreatePakkunZHead, DrawPakkunZHead, func_02098b1c);
     data_usa_0217b0f0->mUnk_1c = TRUE;
     func_020d49d8(&data_usa_0217b0f0);
     return data_usa_0217b0f0;

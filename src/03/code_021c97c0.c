@@ -110,13 +110,9 @@ void func_ov003_021c9838(void) {
     }
 }
 
-void func_ov003_021c9834(void) {
-    return;
-}
+void func_ov003_021c9834(void) {}
 
-void func_ov003_021c9830(void) {
-    return;
-}
+void func_ov003_021c9830(void) {}
 
 void func_ov003_021c9804(void) {
     func_ov003_021d1ee0(3, 1, 1, 8);

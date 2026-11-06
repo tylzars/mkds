@@ -47,18 +47,12 @@ u32 func_ov000_0218e8c4(void) {
 void func_ov000_0218e8bc(u32 arg0) {
     u32 value0 = arg0;
     u32 value3;
-    value3 = (u32) &OS_Sleep;
     OS_Sleep(value0);
-    return;
 }
 
-void func_ov000_0218e8b8(void) {
-    return;
-}
+void func_ov000_0218e8b8(void) {}
 
-void func_ov000_0218e8b4(void) {
-    return;
-}
+void func_ov000_0218e8b4(void) {}
 
 void *func_ov000_0218e880(const char *a) {
     void *b;
@@ -167,7 +161,7 @@ u32 func_ov000_0218e668(u32 a) {
     int v1;
     u32 v2[1];
     v2[0] = 0;
-    v1 = func_ov000_0218e68c((u32) (a), (v2), NULL, NULL);
+    v1 = func_ov000_0218e68c((u32) a, (v2), NULL, NULL);
     if (v1 == 1) {
         return v2[0];
     }
@@ -178,7 +172,7 @@ u32 func_ov000_0218e644(u32 a) {
     int v1;
     u32 v2[1];
     v2[0] = 0;
-    v1 = func_ov000_0218e68c((u32) (a), NULL, (v2), NULL);
+    v1 = func_ov000_0218e68c((u32) a, NULL, (v2), NULL);
     if (v1 == 1) {
         return v2[0];
     }

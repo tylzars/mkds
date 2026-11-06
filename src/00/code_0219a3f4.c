@@ -15,10 +15,8 @@ void DeleteSocket(Gt2Socket *a) {
     DarrayDelete(a->mConnectionsToFree);
     func_ov000_021a3668(a);
     func_ov000_0218e8b4();
-    return;
 }
 
 void SetIncomingConnectionCallback(Gt2Socket *a, void *b) {
     a->mIncomingConnectionCallback = b;
-    return;
 }

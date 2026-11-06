@@ -498,7 +498,6 @@ void func_020581f4(void) {
     if (v1 == 1) {
         SetMPFrequency(1);
     }
-    return;
 }
 
 #pragma thumb off

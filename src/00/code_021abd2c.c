@@ -8,5 +8,4 @@ void func_ov000_021abd2c(Unk021abca0 *a) {
     a->mUnk_08 = (0x98badcfeu);
     a->mUnk_0c = (0x10325476u);
     a->mUnk_10 = (0xc3d2e1f0u);
-    return;
 }

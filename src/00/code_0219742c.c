@@ -269,5 +269,4 @@ void func_ov000_0219742c(void) {
     *(u8 *) &data_ov000_021b3b98 = 0x50;
     *(u8 *) &data_ov000_021b3ba8 = 0x67;
     *(u8 *) &data_ov000_021b3b4c = 0x5c;
-    return;
 }

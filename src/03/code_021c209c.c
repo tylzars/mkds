@@ -173,7 +173,6 @@ void func_ov003_021c2138(void) {
     func_ov003_021d35c0();
     func_ov003_021d2894();
     func_ov003_021d332c();
-    return;
 }
 
 void func_ov003_021c212c(void (*callback)(void)) {
@@ -185,7 +184,6 @@ void func_ov003_021c2120(u32 a, u32 b) {
     v1 = (u32 *) &data_ov003_021da180;
     *(u32 *) &data_ov003_021da180 = a;
     v1[1] = b;
-    return;
 }
 
 void func_ov003_021c2104(s32 *first, s32 *second) {
@@ -204,7 +202,6 @@ void func_ov003_021c20f8(u32 arg0, u32 arg1) {
     value2 = (u32) &data_ov003_021da180;
     *(u32 *) ((value2) + 8u) = value0;
     *(u32 *) ((value2) + 12u) = value1;
-    return;
 }
 
 void func_ov003_021c20dc(s32 *first, s32 *second) {
@@ -233,5 +230,4 @@ u32 func_ov003_021c20a8(u32 a) {
 
 void func_ov003_021c209c(void) {
     *(u8 *) &data_ov003_021da170 = 1;
-    return;
 }

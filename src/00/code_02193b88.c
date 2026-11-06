@@ -443,7 +443,6 @@ GpiPeer *func_ov000_02193f2c(GpConnection *object, u32 key) {
 void func_ov000_02193f18(u32 *a) {
     func_ov000_021a3668((void *) (*a));
     *a = 0;
-    return;
 }
 
 GpiPeer *GpiPeerCreate(GpConnection *c, u32 d, u32 e) {

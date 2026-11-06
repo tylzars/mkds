@@ -170,7 +170,6 @@ void func_ov001_02192ec4(void) {
         (*gOptionStates->mCallbacks.mUnk_0c)();
     }
     func_021258f0();
-    return;
 }
 
 void SetOptionStateCallbacks(UnkFunc **a) {
@@ -179,7 +178,6 @@ void SetOptionStateCallbacks(UnkFunc **a) {
 
 void RequestOptionState(u32 a) {
     gOptionStates->mNextState = a;
-    return;
 }
 
 u32 GetOptionPrevState(void) {
@@ -192,5 +190,4 @@ int func_ov001_02192e84(void) {
 
 void func_ov001_02192e78(u16 a) {
     gOptionStates->mUnk_14 = a;
-    return;
 }

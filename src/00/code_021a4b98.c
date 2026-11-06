@@ -749,7 +749,6 @@ void func_ov000_021a57a8(void) {
 void func_ov000_021a5794(void *a) {
     func_ov000_021a6b54();
     func_ov000_021a57a8();
-    return;
 }
 
 void func_ov000_021a574c(void) {

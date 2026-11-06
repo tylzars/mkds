@@ -20,7 +20,6 @@ void GpiCopyString(char *dest, const char *src, s32 c) {
     }
     strncpy(dest, src, c);
     *(dest + c + -1) = 0;
-    return;
 }
 
 void func_ov000_0219690c(GpConnection *a, const char *b, ...) {}
@@ -85,7 +84,7 @@ u32 GpiCheckConnectComplete(GpConnection *a, u32 b, u32 *c) {
     int v3[2];
     v2 = 0;
     v3[0] = 0;
-    v1 = func_ov000_0218e68c((u32) (b), NULL, (u32 *) (&v2), (u32 *) (v3));
+    v1 = func_ov000_0218e68c((u32) b, NULL, (u32 *) (&v2), (u32 *) v3);
     if (v1 == -1) {
         func_ov000_0219690c(a, data_ov000_021b3a58);
         GpiSetError(a, 5, data_ov000_021b3a6c);

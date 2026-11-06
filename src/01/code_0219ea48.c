@@ -22,7 +22,6 @@ void InitEndingScene(void) {
 void ReleaseEndingScene(void) {
     func_ov001_0219e6e0();
     *(u32 *) &data_ov001_021ca40c = 0;
-    return;
 }
 
 void func_ov001_0219ea6c(void) {
@@ -37,5 +36,4 @@ void UpdateEndingScene(int a) {
         v1 = GetEndingSceneNextScene();
         *(u16 *) (a + 4) = v1;
     }
-    return;
 }

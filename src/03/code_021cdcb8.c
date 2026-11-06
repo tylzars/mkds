@@ -21,5 +21,4 @@ void func_ov003_021cdcb8(u32 a) {
     GXS_LoadBG1Scr(data_ov003_021da278, 0, (0x00000600u));
     func_ov003_021d1490(data_ov003_021da278);
     func_ov003_021d34c8(1, a);
-    return;
 }

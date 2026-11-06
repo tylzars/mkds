@@ -46,7 +46,7 @@ u32 GpiUnpackDate(u32 *a, s32 b, u32 *c, u32 *d, u32 *e) {
     }
     v1 = GpiIsValidDate(v2, v3, b);
     if (v1 == 0) {
-        GpiSetErrorMessage((u32 *) (u32) (a), data_ov000_021b3254);
+        GpiSetErrorMessage((u32 *) (u32) a, data_ov000_021b3254);
         return 2;
     }
     *c = v2;

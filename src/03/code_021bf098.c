@@ -160,5 +160,4 @@ void func_ov003_021bf098(Unk021d34e0 *a) {
     if (192 <= v1) {
         func_ov003_021d34e0(a, func_ov003_021bf048);
     }
-    return;
 }

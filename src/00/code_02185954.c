@@ -240,7 +240,6 @@ BOOL DWC_Http_GetRawResult(DWCHttpLabelValue *a, s32 b, const char *c, char *d, 
 
 void func_ov000_02186628(const void *a) {
     data_ov000_021b1040.mUnk_00 = a;
-    return;
 }
 
 s32 DWC_Auth_Create(Unk02186560 *a, Http *b) {

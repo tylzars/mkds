@@ -255,7 +255,6 @@ void func_ov003_021cf5ac(void) {
 void func_ov003_021cf598(void) {
     func_ov003_021cf36c(6);
     func_02009c04();
-    return;
 }
 
 void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
@@ -363,7 +362,6 @@ void func_ov003_021cf378(u32 a, u32 b, Unk021425e8 *c) {
 
 void func_ov003_021cf36c(u16 a) {
     *(u16 *) (*(u32 *) &data_ov003_021da288) = a;
-    return;
 }
 
 u16 func_ov003_021cf360(void) {

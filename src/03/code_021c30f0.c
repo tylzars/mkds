@@ -117,18 +117,15 @@ void UpdateYb5MultiInput(void) {
     int v1;
     v1 = func_ov003_021d2b04(1);
     if (v1 != 0) {
-        func_ov003_021bf31c((u8) (1));
+        func_ov003_021bf31c((u8) 1);
     }
     v1 = func_ov003_021d2b04(2);
     if (v1 != 0) {
-        func_ov003_021bf31c((u8) (0));
+        func_ov003_021bf31c((u8) 0);
     }
-    return;
 }
 
-void func_ov003_021c3270(void) {
-    return;
-}
+void func_ov003_021c3270(void) {}
 
 void func_ov003_021c321c(void) {
     switch (func_ov003_021bf334()) {
@@ -149,7 +146,6 @@ void func_ov003_021c31fc(void) {
     func_ov003_021bf2d0();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c31b4);
-    return;
 }
 
 void func_ov003_021c31b4(void) {
@@ -163,7 +159,6 @@ void func_ov003_021c31b4(void) {
         func_ov003_021d1ee0(3, 0, 0x15, 8);
         func_ov003_021c212c(func_ov003_021c312c);
     }
-    return;
 }
 
 void func_ov003_021c312c(void) {
@@ -185,7 +180,6 @@ void func_ov003_021c312c(void) {
         func_ov003_021c2120(0, 1);
         func_ov003_021c212c(func_ov003_021c3598);
     }
-    return;
 }
 
 void func_ov003_021c30f0(void) {

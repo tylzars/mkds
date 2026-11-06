@@ -1291,7 +1291,6 @@ void func_ov003_021bca90(u8 *a, u8 *b, u8 *c) {
     c[5] = a[5] ^ b[5];
     c[6] = a[6] ^ b[6];
     c[7] = a[7] ^ b[7];
-    return;
 }
 
 int func_ov003_021bc7a8(u32 *a, u8 *b, int c) {
@@ -1958,13 +1957,12 @@ u32 func_ov003_021bb070(u32 *a) {
 }
 
 u32 func_ov003_021bb058(Unk021d8dc8 *a) {
-    memcpy(((u32 *) (u32) (a)), &data_ov003_021d8dc8, 0xe8);
+    memcpy(((u32 *) (u32) a), &data_ov003_021d8dc8, 0xe8);
     return 1;
 }
 
 void func_ov003_021bb03c(void) {
     u8 v1[8];
-    func_ov003_021bb070(((void *) (v1)));
+    func_ov003_021bb070(((void *) v1));
     (*(UnkFunc *) (u32) data_ov003_021d8c4c)(v1);
-    return;
 }

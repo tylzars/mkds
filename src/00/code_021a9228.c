@@ -757,7 +757,6 @@ void func_ov000_021aa7b4(Unk021a998c_0c *a) {
     func_ov000_021aa7f8(v2, data_ov000_021b4a5c, a);
     func_ov000_021aa7f8(v3, data_ov000_021b4a60, a);
     MI_CpuCopy8(v1, a->mUnk_000->mUnk_20, 0x30);
-    return;
 }
 
 void func_ov000_021aa5e0(Unk021a998c_0c *a) {
@@ -1147,8 +1146,8 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                             c->mUnk_429 = 9;
                             break;
                     }
-                    func_ov000_021abca0(&c->mUnk_2c0, r - 4, (u32) (v3 + 4));
-                    func_ov000_021ab728(&c->mUnk_378, r - 4, (u32) (v3 + 4));
+                    func_ov000_021abca0(&c->mUnk_2c0, r - 4, v3 + 4);
+                    func_ov000_021ab728(&c->mUnk_378, r - 4, v3 + 4);
                     r += v3;
                     n -= (v3 + 4);
                     if (n == 0) {

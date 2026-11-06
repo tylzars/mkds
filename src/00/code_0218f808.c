@@ -11,5 +11,4 @@ void func_ov000_0218f808(GpConnection *a) {
     HashtableDelete(v1->mProfileList.mTable);
     func_ov000_021a3668(v1);
     a->mGpiConnection = NULL;
-    return;
 }

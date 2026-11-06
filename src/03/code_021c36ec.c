@@ -11,7 +11,6 @@ void func_ov003_021c371c(void) {
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x15);
     func_ov003_021c212c(func_ov003_021c36ec);
-    return;
 }
 
 void func_ov003_021c36ec(void) {
@@ -21,5 +20,4 @@ void func_ov003_021c36ec(void) {
         func_ov003_021bf5c8(2);
         func_ov003_021c212c(func_ov003_021c36c8);
     }
-    return;
 }

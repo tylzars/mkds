@@ -163,7 +163,6 @@ void func_ov003_021c75f8(void) {
 void UpdateEditAddr(void) {
     UpdateEditAddrInput();
     func_ov003_021c7358();
-    return;
 }
 
 void UpdateEditAddrInput(void) {
@@ -297,14 +296,11 @@ u32 func_ov003_021c735c(s32 a) {
     return 0;
 }
 
-void func_ov003_021c7358(void) {
-    return;
-}
+void func_ov003_021c7358(void) {}
 
 void func_ov003_021c733c(void) {
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c7314);
-    return;
 }
 
 void func_ov003_021c7314(void) {
@@ -315,7 +311,6 @@ void func_ov003_021c7314(void) {
         StartSoundSeq(0x15);
         func_ov003_021c212c(func_ov003_021c72a4);
     }
-    return;
 }
 
 void func_ov003_021c72a4(void) {
@@ -532,7 +527,6 @@ void func_ov003_021c6f3c(void) {
         func_ov003_021cef90();
         func_ov003_021c212c(func_ov003_021c6f08);
     }
-    return;
 }
 
 void func_ov003_021c6f08(void) {
@@ -542,5 +536,4 @@ void func_ov003_021c6f08(void) {
         gEditAddr->mUnk_04->mUnk_00 = gEditAddr->mUnk_04->mUnk_00 & (0xc1fffcffu);
         func_ov003_021c212c(func_ov003_021c7614);
     }
-    return;
 }

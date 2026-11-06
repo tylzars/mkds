@@ -33,7 +33,6 @@ void GpDisconnect(GpConnection *a) {
         GpiCloseConnection(a, 1);
         GpiResetConnection(a);
     }
-    return;
 }
 
 u32 func_ov000_0218f0a8(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, s32 g, u32 h, Unk0218f0a8Cb i, u32 j) {

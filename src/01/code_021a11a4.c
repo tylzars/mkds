@@ -322,7 +322,6 @@ void AdvanceSelectEngineState0(void) {
     if (v1 != 0) {
         RequestSelectEngineState1();
     }
-    return;
 }
 
 void AdvanceSelectEngineState1(void) {
@@ -389,7 +388,6 @@ void AdvanceSelectEngineState3(void) {
     if (v1 != 0) {
         RequestSelectEngineState4();
     }
-    return;
 }
 
 void AdvanceSelectEngineState4(void) {

@@ -20,26 +20,22 @@ void InitWiFiVSCourseSelectState(u32 a) {
     int v1;
     void *v2;
     void *v3;
-    v1 = ((u32) HeapAlloc((void *) (a), 8));
+    v1 = ((u32) HeapAlloc((void *) a, 8));
     *(s32 *) &gWiFiVSCourseSelectState = v1;
     *(u32 *) (v1 + 4) = a;
     func_ov000_02184b4c();
     v2 = func_ov000_021804f4();
     v3 = func_ov000_021804e0();
-    InitWiFiVSCourseSelect((void *) (a), v2, v3);
+    InitWiFiVSCourseSelect((void *) a, v2, v3);
     func_0212a910(1, 1);
-    return;
 }
 
 void ReleaseWiFiVSCourseSelectState(void) {
     ReleaseWiFiVSCourseSelect();
     *(u32 *) &gWiFiVSCourseSelectState = 0;
-    return;
 }
 
-void func_ov000_02184b4c(void) {
-    return;
-}
+void func_ov000_02184b4c(void) {}
 
 void AdvanceWiFiVSCourseSelectState(void) {
     s32 a;

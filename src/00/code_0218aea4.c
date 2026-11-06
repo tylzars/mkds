@@ -138,7 +138,7 @@ int func_ov000_0218d2a8(SbServerList *a, int b, int c) {
         do {
             v4 = DarrayGetElement(a->mUnk_004, v2);
             v1 = *v4;
-            v3 = func_ov000_0218b27c(((u32 *) (u32) (v1)));
+            v3 = func_ov000_0218b27c(((u32 *) (u32) v1));
             if ((b == v3) && (v3 = func_ov000_0218b25c(v1), c == v3)) {
                 return v2;
             }
@@ -392,7 +392,6 @@ void func_ov000_0218cdc4(u8 **a, u8 b, s32 *c) {
     **a = b;
     *c = *c + 1;
     *a = *a + 1;
-    return;
 }
 
 void func_ov000_0218cd94(u8 **a, u32 b, s32 *c) {
@@ -410,7 +409,6 @@ void func_ov000_0218cd74(u8 **arg0, const void *arg1, s32 arg2, s32 *arg3) {
     memcpy(*arg0, arg1, arg2);
     *arg3 = *arg3 + arg2;
     *arg0 = *arg0 + arg2;
-    return;
 }
 
 void func_ov000_0218ccbc(SbServerList *p) {
@@ -866,7 +864,6 @@ s32 func_ov000_0218c468(SbServerList *a, u8 *b, s32 c) {
 
 void func_ov000_0218c45c(SbServerList *a, char *b) {
     a->mUnk_4ac = b;
-    return;
 }
 
 s32 func_ov000_0218c15c(SbServerList *a) {
@@ -1634,9 +1631,7 @@ void func_ov000_0218b434(u32 arg0) {
     u32 value0 = arg0;
     u32 value3;
     value0 = *(const u32 *) ((value0) + 0u);
-    value3 = (u32) &func_ov000_021a3668;
     func_ov000_021a3668((void *) value0);
-    return;
 }
 
 struct Hashtable *func_ov000_0218b3f4(struct SbServerList *p) {
@@ -1654,7 +1649,6 @@ void func_ov000_0218b3c8(void *a) {
         HashtableDelete(data_ov000_021b4d18);
         *(s32 *) &data_ov000_021b4d18 = 0;
     }
-    return;
 }
 
 void func_ov000_0218b3ac(int *a) {
@@ -1662,8 +1656,7 @@ void func_ov000_0218b3ac(int *a) {
     v1 = *a;
     HashtableDelete((s32 *) (*(u32 *) (v1 + 0x18)));
     *(u32 *) (v1 + 0x18) = 0;
-    func_ov000_021a3668((void *) (v1));
-    return;
+    func_ov000_021a3668((void *) v1);
 }
 
 void SbServerSetValue(SbServer *e, const char *v1, const char *v2) {
@@ -1773,7 +1766,6 @@ u32 func_ov000_0218b228(u32 arg0) {
 
 void func_ov000_0218b224(int a, u32 b) {
     *(u32 *) (a + 0x20) = b;
-    return;
 }
 
 u32 func_ov000_0218b220(int a) {
@@ -1926,7 +1918,6 @@ u32 func_ov000_0218afd4(const s8 *v1, u32 v2) {
 void func_ov000_0218afb8(u32 *a) {
     func_ov000_0218d0e4(0, *a);
     func_ov000_0218d0e4(0, a[1]);
-    return;
 }
 
 u32 func_ov000_0218afac(Unk0218afac *entry, u32 modulus) {
@@ -1968,23 +1959,19 @@ SbServer *func_ov000_0218af28(SbServerList *a, u32 b, u16 c) {
 
 void func_ov000_0218af24(SbServer *a, s32 b) {
     a->mUnk_15 = b;
-    return;
 }
 
 void func_ov000_0218af1c(SbServer *a, u32 b, u16 c) {
     a->mUnk_08 = b;
     a->mUnk_0c = c;
-    return;
 }
 
 void func_ov000_0218af18(SbServer *a, u32 b) {
     a->mUnk_10 = b;
-    return;
 }
 
 void func_ov000_0218af14(SbServer *a, u8 b) {
     a->mUnk_14 = b;
-    return;
 }
 
 u8 func_ov000_0218af10(SbServer *a) {
@@ -2008,7 +1995,6 @@ void func_ov000_0218aedc(Unk0218ae68 *a, SbServer *b) {
         a->mUnk_00 = b;
     }
     a->mUnk_08 = a->mUnk_08 + 1;
-    return;
 }
 
 void func_ov000_0218aec4(Unk0218ae68 *a, SbServer *b) {
@@ -2018,7 +2004,6 @@ void func_ov000_0218aec4(Unk0218ae68 *a, SbServer *b) {
         a->mUnk_04 = b;
     }
     a->mUnk_08 = a->mUnk_08 + 1;
-    return;
 }
 
 SbServer *func_ov000_0218aea4(Unk0218ae68 *a) {

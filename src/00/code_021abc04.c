@@ -9,9 +9,7 @@ void func_ov000_021abc14(u32 arg0, u32 arg1, u32 arg2) {
     value3 = (value0) + (0u);
     value0 = (value1) + (0u);
     value1 = (value3) + (0u);
-    value3 = (u32) &MI_CpuCopy8;
     MI_CpuCopy8((const void *) value0, (void *) value1, value2);
-    return;
 }
 
 void func_ov000_021abc04(void *a, const void *b, u32 c) {

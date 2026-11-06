@@ -9,13 +9,11 @@
 
 void func_ov000_0218acf0(Unk0218b668 *a, u32 b) {
     a->mUnk_000.mUnk_28 = b;
-    return;
 }
 
 void func_ov000_0218acd8(Unk0218b668 *a) {
     func_ov000_0218ae5c(&a->mUnk_000.mUnk_14);
     func_ov000_0218ae5c(&a->mUnk_000.mUnk_08);
-    return;
 }
 
 void func_ov000_0218acb0(Unk0218b668 *p) {

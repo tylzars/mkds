@@ -203,7 +203,6 @@ void AdvanceWiFiVSSettingState1(void) {
         func_ov000_02182de8();
         gWiFiVSSetting->mStateFrames = 0;
     }
-    return;
 }
 
 void AdvanceWiFiVSSettingState2(void) {

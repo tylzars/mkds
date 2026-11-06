@@ -17,7 +17,6 @@ u32 GetSocketDescriptor(u32 *a) {
 
 void SetUnmatchedDataCallback(Gt2Socket *a, UnkWordFunc *b) {
     a->mUnmatchedDataCallback = b;
-    return;
 }
 
 void func_ov000_021988a4(Unk0219887c *connection, void *b) {
@@ -25,7 +24,6 @@ void func_ov000_021988a4(Unk0219887c *connection, void *b) {
         AssertionFailed(data_ov000_021b3f8c, data_ov000_021b3f98, NULL, 0x19c);
     }
     connection->mUnk_40 = b;
-    return;
 }
 
 u8 *func_ov000_0219887c(Unk0219887c *object) {

@@ -5,5 +5,4 @@ void func_ov003_021c414c(void) {
     func_ov003_021c4130();
     func_ov003_021c412c();
     func_ov003_021c4108();
-    return;
 }

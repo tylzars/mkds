@@ -157,7 +157,6 @@ void func_ov000_021b02b0(UnkFunc *arg0) {
     u32 value1;
     value1 = (u32) &data_ov000_021b63a8;
     *(u32 *) ((value1) + 0u) = value0;
-    return;
 }
 
 void func_ov000_021b026c(void) {
@@ -1526,7 +1525,6 @@ void func_ov000_021ae304(void *arg0) {
     value1 = *(const u32 *) ((value1) + 4u);
     value1 = (value1) + 164u;
     *(u32 *) ((value1) + 0u) = value0;
-    return;
 }
 
 void func_ov000_021ae2f4(void) {

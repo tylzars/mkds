@@ -18,5 +18,4 @@ void func_ov000_021ac37c(u8 *a, u32 *b, u32 c) {
             v2 = v2 + 1;
         } while (v2 < c >> 2);
     }
-    return;
 }

@@ -30,7 +30,6 @@ void LoadMissionRunBossIconData(void) {
     LoadNcerData(&v3, v1);
     v1 = FindSceneFile(gMissionRunBossIconSONclrName);
     LoadNclrData(v4, v1);
-    return;
 }
 
 void CreateMissionRunBossIcon(void *a) {
@@ -43,7 +42,6 @@ void CreateMissionRunBossIcon(void *a) {
 
 void func_ov001_021a64a0(void) {
     *(u32 *) &gMissionRunBossIcon = 0;
-    return;
 }
 
 void QueueMissionRunBossIcon(s32 a, s32 flagB, void *c, void *d, u32 e, u16 f, s32 flagG) {

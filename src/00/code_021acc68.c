@@ -10,5 +10,4 @@ void func_ov000_021acc68(u16 *a, u32 b, int c, int d) {
         b = b + v1 >> 0x10;
         v2 = v2 + 1;
     }
-    return;
 }

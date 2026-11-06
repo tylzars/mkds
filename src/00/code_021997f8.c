@@ -9,5 +9,4 @@ void func_ov000_021997f8(Gt2Connection *a) {
         v1 = func_ov000_0218e8c4();
         a->mUnk_94 = v1;
     }
-    return;
 }

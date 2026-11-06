@@ -205,7 +205,6 @@ void ReleaseMultiSelectNS(void) {
     func_0204f7f4();
     HeapDestroy(gMultiSelectNS->mHeap);
     gMultiSelectNS = NULL;
-    return;
 }
 
 #pragma thumb off

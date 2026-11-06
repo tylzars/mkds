@@ -135,7 +135,6 @@ void func_ov003_021c94c8(void) {
         *(u8 *) &gJb3ListSelectedId = 0;
         *(u8 *) &gJb3ListSelectedRow = 0;
     }
-    return;
 }
 
 void func_ov003_021c948c(void) {
@@ -144,7 +143,6 @@ void func_ov003_021c948c(void) {
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x1d);
     func_ov003_021c212c(func_ov003_021c9464);
-    return;
 }
 
 void func_ov003_021c9464(void) {
@@ -156,7 +154,6 @@ void func_ov003_021c9464(void) {
 void UpdateJb3List(void) {
     UpdateJb3ListInput();
     UpdateJb3ListScrollInput();
-    return;
 }
 
 void UpdateJb3ListInput(void) {
@@ -337,7 +334,6 @@ void func_ov003_021c9058(u32 a) {
         func_ov003_021cdb44(a);
         RefreshJb3List();
     }
-    return;
 }
 
 void UpdateJb3ListScrollInput(void) {
@@ -413,7 +409,6 @@ void func_ov003_021c8e80(void) {
     func_ov003_021cce38();
     func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c8e48);
-    return;
 }
 
 void func_ov003_021c8e48(void) {
@@ -424,7 +419,6 @@ void func_ov003_021c8e48(void) {
         func_ov003_021d1ee0(3, 0, 0x1d, 8);
         func_ov003_021c212c(func_ov003_021c8c14);
     }
-    return;
 }
 
 static inline void func_ov003_021c85a0_inline(Unk021da104_04 *p, u32 *x, u32 *y) {

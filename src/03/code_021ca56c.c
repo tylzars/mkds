@@ -131,7 +131,6 @@ void func_ov003_021ca7b8(void) {
     func_ov003_021ca6d0();
     func_ov003_021ca6a8();
     func_ov003_021ca6f4();
-    return;
 }
 
 void func_ov003_021ca6f4(void) {
@@ -178,9 +177,7 @@ void func_ov003_021ca6d4(void) {
     }
 }
 
-void func_ov003_021ca6d0(void) {
-    return;
-}
+void func_ov003_021ca6d0(void) {}
 
 void func_ov003_021ca6a8(void) {
     int v1;

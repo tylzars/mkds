@@ -72,7 +72,6 @@ void func_ov003_021cb71c(void) {
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x14);
     func_ov003_021c212c(func_ov003_021cb6ec);
-    return;
 }
 
 void func_ov003_021cb6ec(void) {
@@ -82,7 +81,6 @@ void func_ov003_021cb6ec(void) {
         func_ov003_021bf5c8(0);
         func_ov003_021c212c(func_ov003_021cb6c8);
     }
-    return;
 }
 
 void func_ov003_021cb6c8(void) {
@@ -96,7 +94,6 @@ void UpdateWay(void) {
     UpdateWayInput();
     func_ov003_021cb57c();
     func_ov003_021cb538();
-    return;
 }
 
 void UpdateWayInput(void) {
@@ -127,9 +124,7 @@ void UpdateWayInput(void) {
     }
 }
 
-void func_ov003_021cb57c(void) {
-    return;
-}
+void func_ov003_021cb57c(void) {}
 
 void func_ov003_021cb538(void) {
     switch (func_ov003_021bf334()) {
