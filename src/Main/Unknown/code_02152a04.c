@@ -5,8 +5,8 @@
 
 #pragma thumb on
 
-void func_02152a04(Unk02152490 *a, u32 b) {
-    BitFieldInsert(&a->mUnk_00, b, 0xb, 0x1fffff);
+void func_02152a04(DWCAccFriendData *a, u32 b) {
+    DWCi_Acc_SetMaskBits(&a->mUnk_00, b, 0xb, 0x1fffff);
 }
 
 #pragma thumb off

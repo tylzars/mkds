@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk02152490 Unk02152490;
+typedef struct DWCAccFriendData DWCAccFriendData;
 
-u64 func_02152ac8(const Unk02152490 *a);
-u32 BitFieldInsert(u32 *a, u32 b, u32 c, u32 d);
-u32 func_02152b08(u8 *a);
+u64 DWCi_Acc_GetUserId(const DWCAccFriendData *userdata);
+BOOL DWCi_Acc_SetMaskBits(u32 *ptr, u32 data, u32 shift, u32 mask);
+u32 DWC_Init(u8 *work);

@@ -7,39 +7,39 @@
 
 #pragma thumb on
 
-u32 func_02152b08(u8 *a) {
-    u32 r;
-    s32 s;
+u32 DWC_Init(u8 *work) {
+    u32 created;
+    s32 result;
 
-    r = 0;
+    created = 0;
     func_02000b44(0x2000b88);
-    s = func_02151b38(a);
-    if (func_02151da8() != 0) {
-        func_02151f88((u32) a);
-        r = 1;
+    result = DWC_BM_Init(work);
+    if (DWC_Auth_CheckWiFiIDNeedCreate() != 0) {
+        func_02151f88((u32) work);
+        created = 1;
     }
-    if (s < 0) {
-        if (r != 0) {
+    if (result < 0) {
+        if (created != 0) {
             return 2;
         }
         return 3;
     }
-    if (r != 0) {
+    if (created != 0) {
         return 1;
     }
     return 0;
 }
 
-u32 BitFieldInsert(u32 *a, u32 b, u32 c, u32 d) {
-    if ((b & ~d) != 0) {
+BOOL DWCi_Acc_SetMaskBits(u32 *ptr, u32 data, u32 shift, u32 mask) {
+    if ((data & ~mask) != 0) {
         return 0;
     }
-    *a = *a & ~(d << c) | b << c;
+    *ptr = *ptr & ~(mask << shift) | data << shift;
     return 1;
 }
 
-u64 func_02152ac8(const Unk02152490 *a) {
-    return (u64) (a->mUnk_00 & 0x7ff) << 32 | a->mUnk_04;
+u64 DWCi_Acc_GetUserId(const DWCAccFriendData *userdata) {
+    return (u64) (userdata->mUnk_00 & 0x7ff) << 32 | userdata->mUnk_04;
 }
 
 #pragma thumb off

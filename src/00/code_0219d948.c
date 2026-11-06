@@ -58,7 +58,7 @@ u8 func_ov000_0219d9ec(void *a, u8 *b, u8 *c, char *d) {
 s32 func_ov000_0219d9b0(void *a, s32 b) {
     s32 c;
     s32 i;
-    Unk02152490 *d;
+    DWCAccFriendData *d;
     c = 0;
     d = a;
     if (a == NULL) {
@@ -78,7 +78,7 @@ s32 func_ov000_0219d9b0(void *a, s32 b) {
 void RemoveBuddyEntry(void *a) {
     s32 b;
     if (gWiFiBuddySync != NULL && IsWiFiLoginDone() != 0 && func_ov000_0219c9c4() != NULL) {
-        b = func_02152520(func_ov000_0219c9c4(), a);
+        b = DWC_GetGsProfileId(func_ov000_0219c9c4(), a);
         if (b != 0 && b != -1 && GpIsBuddy(gWiFiBuddySync->mGpConnection, b) != 0) {
             func_ov000_0218eb44(gWiFiBuddySync->mGpConnection, b);
         }

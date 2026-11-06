@@ -3,7 +3,7 @@
 
 #pragma thumb on
 
-u32 func_02152ab0(const Unk02152490 *a) {
+u32 func_02152ab0(const DWCAccFriendData *a) {
     return a->mUnk_04;
 }
 

@@ -15,246 +15,248 @@
 
 #pragma thumb on
 
-u32 func_02151f48(Unk021510a4 *a, u8 *b) {
-    Unk021510a4 c;
-    func_02151910(&c);
-    a->mUnk_00 = a->mUnk_08;
-    a->mUnk_08 = c.mUnk_08;
-    if (func_02151868(a, b) != 0) {
+BOOL DWCi_AUTH_UpDateWiFiID(DWCWiFiInfo *info, u8 *work) {
+    DWCWiFiInfo stored;
+    DWCi_BM_GetWiFiInfo(&stored);
+    info->mAttestedUserId = info->mNotAttestedId;
+    info->mNotAttestedId = stored.mNotAttestedId;
+    if (DWCi_BM_SetWiFiInfo(info, work) != 0) {
         return 1;
     }
     return 0;
 }
 
-u32 func_02151e20(Unk021510a4 *a) {
-    u32 b;
-    u32 c;
-    u8 d[6] = {0, 0, 0, 0, 0, 0};
-    u32 e[4];
-    u32 f[3];
-    s64 g;
-    u32 h;
-    func_02151910(a);
+// Like DWCi_AUTH_GetNewWiFiInfo, but always picks a new random history.
+BOOL DWCi_AUTH_RemakeWiFiID(DWCWiFiInfo *info) {
+    u8 vendor;
+    u32 macLow;
+    u8 mac[6] = {0, 0, 0, 0, 0, 0};
+    u32 date[4];
+    u32 time[3];
+    s64 seconds;
+    u32 seed;
+    DWCi_BM_GetWiFiInfo(info);
     RTC_Init();
-    if (RTC_GetDate((RTCDate *) e) != 0) {
+    if (RTC_GetDate((RTCDate *) date) != 0) {
         return 0;
     }
-    if (RTC_GetTime((RTCTime *) f) != 0) {
+    if (RTC_GetTime((RTCTime *) time) != 0) {
         return 0;
     }
-    g = func_02152244(e, f);
-    h = g;
-    if (g < 0) {
+    seconds = func_02152244(date, time);
+    seed = seconds;
+    if (seconds < 0) {
         return 0;
     }
     if (OS_IsTickAvailable() != 0) {
-        h += (u32) OS_GetTick;
+        seed += (u32) OS_GetTick;
     }
-    OS_GetMacAddress(d);
-    b = (u8) ((d[0] << 16 | d[1] << 8 | d[2]) != 0x9bf);
-    c = d[5];
-    c |= (d[3] << 16 | d[4] << 8);
-    h = h * 0x5d588b65 + 0x269ec3;
-    a->mUnk_10 = ((h >> 16) * 1000) >> 16;
-    a->mUnk_08 = 0;
-    while (a->mUnk_08 == 0) {
-        h = h * 0x5d588b65 + 0x269ec3;
-        while (h == 0 || a->mUnk_12 == (u16) h) {
-            h = h * 0x5d588b65 + 0x269ec3;
+    OS_GetMacAddress(mac);
+    vendor = (u8) ((mac[0] << 16 | mac[1] << 8 | mac[2]) != 0x9bf);
+    macLow = mac[5];
+    macLow |= (mac[3] << 16 | mac[4] << 8);
+    seed = seed * 0x5d588b65 + 0x269ec3;
+    info->mPass = ((seed >> 16) * 1000) >> 16;
+    info->mNotAttestedId = 0;
+    while (info->mNotAttestedId == 0) {
+        seed = seed * 0x5d588b65 + 0x269ec3;
+        while (seed == 0 || info->mRandomHistory == (u16) seed) {
+            seed = seed * 0x5d588b65 + 0x269ec3;
         }
-        a->mUnk_12 = h;
-        a->mUnk_08 = func_0215211c(a->mUnk_12, c, b, 0);
+        info->mRandomHistory = seed;
+        info->mNotAttestedId = DWCi_Util_WiFiId_scrambleUid(info->mRandomHistory, macLow, vendor, 0);
     }
     return 1;
 }
 
-void func_02151ddc(Unk02151ddc *a) {
-    Unk021510a4 b;
-    func_02151910(&b);
-    a->mUnk_00 = b.mUnk_00;
-    a->mUnk_08 = b.mUnk_08;
-    if (b.mUnk_00 == 0) {
-        a->mUnk_10 = 0;
+void DWC_Auth_GetId(DWCAuthWiFiId *id) {
+    DWCWiFiInfo info;
+    DWCi_BM_GetWiFiInfo(&info);
+    id->mUId = info.mAttestedUserId;
+    id->mNotAttestedId = info.mNotAttestedId;
+    if (info.mAttestedUserId == 0) {
+        id->mFlag = 0;
     } else {
-        a->mUnk_10 = 1;
+        id->mFlag = 1;
     }
 }
 
-u32 func_02151da8(void) {
-    Unk021510a4 a;
-    func_02151910(&a);
-    if (a.mUnk_08 == 0 && a.mUnk_00 == 0) {
+BOOL DWC_Auth_CheckWiFiIDNeedCreate(void) {
+    DWCWiFiInfo info;
+    DWCi_BM_GetWiFiInfo(&info);
+    if (info.mNotAttestedId == 0 && info.mAttestedUserId == 0) {
         return 1;
     }
     return 0;
 }
 
-s32 func_02151b38(u8 *a) {
-    u32 b[4];
-    s32 c;
-    u8 *d;
-    u8 *e;
-    u32 *f;
-    u32 g;
-    u32 *m;
-    s32 h;
-    u32 k;
-    if (func_02151830((u16 *) a) == 0) {
+// Checks and repairs the NVRAM backup pages; returns 0 or a negative error code.
+s32 DWC_BM_Init(u8 *work) {
+    u32 valid[4];
+    s32 i;
+    u8 *page;
+    u8 *apPage;
+    u32 *validEntry;
+    u32 dropped;
+    u32 *validCheck;
+    s32 j;
+    u32 crc;
+    if (func_02151830((u16 *) work) == 0) {
         return -10001;
     }
-    Crc16InitTable((u16 *) (a + 0x500), 0xa001);
-    if (func_02151804(a) == 0) {
+    Crc16InitTable((u16 *) (work + 0x500), 0xa001);
+    if (func_02151804(work) == 0) {
         return -10001;
     }
-    MI_CpuFill8(b, 0, 0x10);
-    c = 0;
-    d = a;
-    e = a;
-    f = b;
+    MI_CpuFill8(valid, 0, 0x10);
+    i = 0;
+    page = work;
+    apPage = work;
+    validEntry = valid;
     do {
-        k = Crc16((u16 *) (a + 0x500), d, 0xfe);
-        if (k == *(u16 *) (d + 0xfe)) {
-            if (func_02151a64(e) != 0) {
-                *f = 1;
+        crc = Crc16((u16 *) (work + 0x500), page, 0xfe);
+        if (crc == *(u16 *) (page + 0xfe)) {
+            if (checkAp(apPage) != 0) {
+                *validEntry = 1;
             }
         }
-        d += 0x100;
-        e += 0x100;
-        f++;
-        c++;
-    } while (c < 3);
-    k = Crc16((u16 *) (a + 0x500), a + 0x300, 0xfe);
-    if (k == *(u16 *) (a + 0x3fe)) {
-        b[3] = 1;
+        page += 0x100;
+        apPage += 0x100;
+        validEntry++;
+        i++;
+    } while (i < 3);
+    crc = Crc16((u16 *) (work + 0x500), work + 0x300, 0xfe);
+    if (crc == *(u16 *) (work + 0x3fe)) {
+        valid[3] = 1;
     }
-    if (b[0] != 0 && b[1] != 0 && b[2] != 0 && b[3] != 0) {
-        func_02151708((u32) (a + 0xf0));
+    if (valid[0] != 0 && valid[1] != 0 && valid[2] != 0 && valid[3] != 0) {
+        func_02151708((u32) (work + 0xf0));
         return 0;
     }
-    if (b[0] == 0 && b[1] == 0 && b[2] == 0 && b[3] == 0) {
-        func_02151a00(a);
-        if (func_02151718((int) a) != 0) {
+    if (valid[0] == 0 && valid[1] == 0 && valid[2] == 0 && valid[3] == 0) {
+        init(work);
+        if (func_02151718((int) work) != 0) {
             return 0;
         }
         return -10000;
     }
-    if ((b[0] == 0 || b[1] == 0) && (b[2] == 0 || b[3] == 0)) {
-        func_02151a00(a);
-        if (func_02151718((int) a) != 0) {
+    if ((valid[0] == 0 || valid[1] == 0) && (valid[2] == 0 || valid[3] == 0)) {
+        init(work);
+        if (func_02151718((int) work) != 0) {
             return 0;
         }
         return -10000;
     }
-    if (b[0] == 0 && b[1] == 0) {
-        func_02151a00(a);
-        if (func_02151718((int) a) != 0) {
+    if (valid[0] == 0 && valid[1] == 0) {
+        init(work);
+        if (func_02151718((int) work) != 0) {
             return -10003;
         }
         return -10000;
     }
-    if (b[0] == 0) {
-        func_021519d4(a, 0);
-        MI_CpuCopy8(a + 0x1f0, a + 0xf0, 0xd);
-        a[0xef] = a[0x1ef];
-    } else if (b[1] == 0) {
-        func_021519d4(a, 1);
-        MI_CpuCopy8(a + 0xf0, a + 0x1f0, 0xd);
-        a[0x1ef] = a[0xef];
+    if (valid[0] == 0) {
+        initPage(work, 0);
+        MI_CpuCopy8(work + 0x1f0, work + 0xf0, 0xd);
+        work[0xef] = work[0x1ef];
+    } else if (valid[1] == 0) {
+        initPage(work, 1);
+        MI_CpuCopy8(work + 0xf0, work + 0x1f0, 0xd);
+        work[0x1ef] = work[0xef];
     }
-    func_02151708((u32) (a + 0xf0));
-    if (b[2] == 0) {
-        func_021519d4(a, 2);
+    func_02151708((u32) (work + 0xf0));
+    if (valid[2] == 0) {
+        initPage(work, 2);
     }
-    if (b[3] == 0) {
-        vu16 z = 0;
-        MIi_CpuClear16(z, a + 0x300, 0x100);
+    if (valid[3] == 0) {
+        vu16 zero = 0;
+        MIi_CpuClear16(zero, work + 0x300, 0x100);
     }
-    g = 0;
-    h = 0;
-    m = b;
-    for (; h < 3; m++, h++) {
-        if (*m == 0) {
-            k = 1 << h;
-            if ((a[0xef] & k) != 0) {
-                a[0xef] &= ~k;
-                g = 1;
+    dropped = 0;
+    j = 0;
+    validCheck = valid;
+    for (; j < 3; validCheck++, j++) {
+        if (*validCheck == 0) {
+            crc = 1 << j;
+            if ((work[0xef] & crc) != 0) {
+                work[0xef] &= ~crc;
+                dropped = 1;
             }
         }
     }
-    if (func_02151718((int) a) == 0) {
+    if (func_02151718((int) work) == 0) {
         return -10000;
     }
-    if (g != 0) {
+    if (dropped != 0) {
         return -10002;
     }
     return 0;
 }
 
-u32 func_02151a64(const u8 *a) {
-    u8 b[8];
-    u8 c;
-    c = a[0xe7];
-    if (c == 0xff) {
+BOOL checkAp(const u8 *ap) {
+    u8 netmask[8];
+    u8 setType;
+    setType = ap[0xe7];
+    if (setType == 0xff) {
         return 1;
     }
-    if (c > 2) {
+    if (setType > 2) {
         return 0;
     }
-    if (Bytes32AnyNonzero(a + 0x40) == 0) {
+    if (DWC_BACKUPlCheckSsid(ap + 0x40) == 0) {
         return 0;
     }
-    if (memcmp(a + 0xc0, data_usa_0216172c, 4) != 0) {
-        if (func_02151620(a + 0xc4) == 0) {
+    if (memcmp(ap + 0xc0, data_usa_0216172c, 4) != 0) {
+        if (DWC_BACKUPlCheckAddress(ap + 0xc4) == 0) {
             return 0;
         }
-        if (a[0xd0] > 0x20) {
+        if (ap[0xd0] > 0x20) {
             return 0;
         }
-        Bytes4StoreTopBitsMask(a[0xd0], b);
-        if (func_02151640(a + 0xc0, b) == 0) {
+        DWCi_BACKUPlConvMaskAddr(ap[0xd0], netmask);
+        if (DWC_BACKUPlCheckIp(ap + 0xc0, netmask) == 0) {
             return 0;
         }
     }
-    if (memcmp(a + 0xc8, data_usa_0216172c, 4) != 0) {
-        if (func_02151620(a + 0xc8) == 0 && func_02151620(a + 0xcc) == 0) {
+    if (memcmp(ap + 0xc8, data_usa_0216172c, 4) != 0) {
+        if (DWC_BACKUPlCheckAddress(ap + 0xc8) == 0 && DWC_BACKUPlCheckAddress(ap + 0xcc) == 0) {
             return 0;
         }
     }
     return 1;
 }
 
-s32 func_02151a00(u8 *a) {
-    vu16 b;
-    s32 c;
-    u8 *d;
-    u8 *e;
-    Unk021510a4 f;
-    u8 *g;
-    b = 0;
-    MIi_CpuClear16(b, a, 0x400);
-    c = 0;
-    d = a;
-    for (; c < 3; c++) {
-        d[0xe7] = 0xff;
-        d += 0x100;
+s32 init(u8 *work) {
+    vu16 zero;
+    s32 i;
+    u8 *page;
+    u8 *wifiPage;
+    DWCWiFiInfo info;
+    u8 *packed;
+    zero = 0;
+    MIi_CpuClear16(zero, work, 0x400);
+    i = 0;
+    page = work;
+    for (; i < 3; i++) {
+        page[0xe7] = 0xff;
+        page += 0x100;
     }
-    func_02151fc4(&f);
-    g = func_021510a4(&f);
-    e = a;
-    for (c = 0; c < 2; c++) {
-        MI_CpuCopy8(g, e + 0xf0, 0xe);
-        e += 0x100;
+    DWCi_AUTH_GetNewWiFiInfo(&info);
+    packed = DWCi_BACKUPlConvWifiInfo(&info);
+    wifiPage = work;
+    for (i = 0; i < 2; i++) {
+        MI_CpuCopy8(packed, wifiPage + 0xf0, 0xe);
+        wifiPage += 0x100;
     }
     return 0;
 }
 
-void func_021519d4(u8 *a, u32 b) {
-    vu16 c;
-    u32 d;
-    c = 0;
-    d = b << 8;
-    MIi_CpuClear16(c, a + d, 0x100);
-    (a + d)[0xe7] = 0xff;
+void initPage(u8 *work, u32 page) {
+    vu16 zero;
+    u32 offset;
+    zero = 0;
+    offset = page << 8;
+    MIi_CpuClear16(zero, work + offset, 0x100);
+    (work + offset)[0xe7] = 0xff;
 }
 
 #pragma thumb off

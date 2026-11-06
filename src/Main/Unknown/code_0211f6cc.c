@@ -114,7 +114,7 @@ void func_0211fb44(void) {
     if (func_02061290() != 0) {
         MI_CpuCopy8(&data_0217aa08->mUnk_00->mUnk_4c, &gWiFiSession->mUnk_19b0, 0x40);
     } else {
-        func_02152690(&gWiFiSession->mUnk_19b0, 0x414d434a);
+        DWC_CreateUserData((DWCAccUserData *) &gWiFiSession->mUnk_19b0, 0x414d434a);
     }
     func_02060c38(&gWiFiSession->mBuddies[0]);
     func_ov000_021a39c4(&gWiFiSession->mUnk_1f20);
@@ -163,7 +163,7 @@ u32 func_0211f91c(void) {
             if (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1) {
                 break;
             }
-            func_02152324(&gWiFiSession->mUnk_19b0);
+            DWC_ReportUserData((DWCAccUserData *) &gWiFiSession->mUnk_19b0);
             if (StartWiFiBuddySync(NULL, func_0211f77c, NULL, func_0211f6cc, NULL, func_0211f6e8, NULL) == 0) {
                 gWiFiSession->mUnk_1f20.mStep = 7;
             }
@@ -185,8 +185,8 @@ u32 func_0211f91c(void) {
 
 void func_0211f864(s32 a) {
     if (a == 0) {
-        if (func_021525e0(&gWiFiSession->mUnk_19b0) != 0) {
-            func_021525a8(&gWiFiSession->mUnk_19b0);
+        if (DWCi_Acc_IsDirty((DWCAccUserData *) &gWiFiSession->mUnk_19b0) != 0) {
+            DWCi_Acc_ClearDirty((DWCAccUserData *) &gWiFiSession->mUnk_19b0);
             MI_CpuCopy8(&gWiFiSession->mUnk_19b0, &data_0217aa08->mUnk_00->mUnk_4c, 0x40);
             func_02056d40();
         }
@@ -206,7 +206,8 @@ void func_0211f77c(s32 a, s32 b) {
         i = 0;
         if (func_ov000_0219d9b0(&gWiFiSession->mBuddies[0], 0x3c) > 0) {
             do {
-                func_02152340(&gWiFiSession->mUnk_19b0, &gWiFiSession->mBuddies[i]);
+                DWC_ReportFriendData((DWCAccUserData *) &gWiFiSession->mUnk_19b0,
+                                     (DWCAccFriendData *) &gWiFiSession->mBuddies[i]);
                 i++;
             } while (i < func_ov000_0219d9b0(&gWiFiSession->mBuddies[0], 0x3c));
         }

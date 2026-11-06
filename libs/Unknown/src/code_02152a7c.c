@@ -4,23 +4,23 @@
 
 #pragma thumb on
 
-void func_02152a8c(Unk02152490 *a, u32 b, u32 c) {
-    enum { K0 } d = K0;
-    BitFieldInsert(&a->mUnk_00, c, d, 0x7ff);
-    a->mUnk_04 = b;
+void DWCi_Acc_SetUserId(DWCAccFriendData *loginid, u32 useridLo, u32 useridHi) {
+    enum { K0 } shift = K0;
+    DWCi_Acc_SetMaskBits(&loginid->mUnk_00, useridHi, shift, 0x7ff);
+    loginid->mUnk_04 = useridLo;
 }
 
-void func_02152a88(Unk02152490 *a, u32 b) {
-    a->mUnk_08 = b;
+void DWCi_Acc_SetPlayerId(DWCAccFriendData *loginid, u32 playerid) {
+    loginid->mUnk_08 = playerid;
 }
 
-void func_02152a80(Unk02152490 *a, u32 b, u32 c) {
-    a->mUnk_04 = b;
-    a->mUnk_08 = c;
+void DWCi_Acc_SetFriendKey(DWCAccFriendData *data, u32 friendkeyLo, u32 friendkeyHi) {
+    data->mUnk_04 = friendkeyLo;
+    data->mUnk_08 = friendkeyHi;
 }
 
-void func_02152a7c(Unk02152490 *a, u32 b) {
-    a->mUnk_04 = b;
+void DWCi_Acc_SetGsProfileId(DWCAccFriendData *data, u32 gsProfileId) {
+    data->mUnk_04 = gsProfileId;
 }
 
 #pragma thumb off

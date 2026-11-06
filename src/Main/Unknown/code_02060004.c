@@ -40,7 +40,7 @@ void func_02060b68(void) {
     for (i = 0; i < 60; i++) {
         func_0205ee14(i, &a);
         if (a.mUnk_22_0 == 1 && a.mUnk_22_1 == 1 &&
-            func_02152a24((u8 *) data_0217aa08->mUnk_20 + 0x874 + i * 12) != 0) {
+            DWC_IsBuddyFriendData((DWCAccFriendData *) ((u8 *) data_0217aa08->mUnk_20 + 0x874 + i * 12)) != 0) {
             a.mUnk_22_1 = 0;
             func_0205ee74(i, &a);
         }
@@ -238,7 +238,7 @@ s32 func_02060468(u8 a, void *b) {
         g = FALSE;
     }
     if (g != FALSE) {
-        u64 f = func_02152584(e);
+        u64 f = DWC_GetFriendKey((DWCAccFriendData *) e);
 
         func_02152918((u32) f, (u32) (f >> 32), (u32) b);
         d = TRUE;

@@ -26,7 +26,7 @@ typedef struct WiFiLogin {
     // profile id, arg) when state 2 succeeds.
     /* 18 */ void (*mResultCallback)();
     /* 1c */ void *mResultCallbackArg;
-    /* 20 */ Unk02152500 *mUnk_20;
+    /* 20 */ DWCAccUserData *mUnk_20;
     /* 24 */ u8 pad_24[4];
     // Http (0x1a60 bytes; declared void *) of the running request: made by StartWiFiLoginRequest, freed when the reply
     // or an error ends the request and by ReleaseWiFiLogin.
@@ -40,7 +40,7 @@ typedef struct WiFiLogin {
     /* 34 */ BOOL mConnectPending;
     // OS_GetTick reading when the GP connect started; (ticks << 6) / 0x82ea is ms, limit 60000 ms (UpdateWiFiLogin).
     /* 38 */ u64 mConnectStartTime;
-    /* 40 */ Unk02152490 mUnk_40;
+    /* 40 */ DWCAccFriendData mUnk_40;
     // First string of the HTTP reply (0x100 buffer): given to the GP connect as its first credential, which
     // GpiWriteLogin writes after '\authtoken\' (code_02190ff8.c:233-234); also passed to StartBuddySync (stats login).
     // The reply's second string (mUnk_14c) is the password substitute the library hashes (code_02190ff8.c:206-211), not

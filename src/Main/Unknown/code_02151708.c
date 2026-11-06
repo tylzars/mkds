@@ -10,7 +10,7 @@
 
 u32 func_02151830(u16 *a) {
     int v1;
-    v1 = func_0215122c((u32) 0x20, (u32) 0x20, a);
+    v1 = readNvram((u32) 0x20, (u32) 0x20, a);
     if (v1 == 0) {
         return 0;
     }
@@ -20,7 +20,7 @@ u32 func_02151830(u16 *a) {
 
 u32 func_02151804(void *a) {
     int v1;
-    v1 = func_0215122c((u32) ((*(u32 *) &data_0218049c)), (u32) (((u32) 0x00000400u)), a);
+    v1 = readNvram((u32) ((*(u32 *) &data_0218049c)), (u32) (((u32) 0x00000400u)), a);
     if (v1 != 0) {
         return 1;
     }
@@ -40,8 +40,8 @@ u32 func_02151794(int a, int *b, void *c) {
     do {
         if (*v4 != 0) {
             do {
-                func_021511d8(v3, v2, (void *) a);
-                v1 = func_0215119c((const u8 *) a, v3, v2, c);
+                writeNvram(v3, v2, (void *) a);
+                v1 = verify((const u8 *) a, v3, v2, c);
             } while (v1 == 0);
         }
         v4 = v4 + 1;
@@ -49,7 +49,7 @@ u32 func_02151794(int a, int *b, void *c) {
         v5 = v5 + 1;
         v3 = v3 + v2;
     } while (v5 < 4);
-    v2 = func_02151154();
+    v2 = writeDisable();
     if (v2 != 0) {
         return 1;
     }
@@ -71,14 +71,14 @@ u32 func_02151718(int a) {
         v6 = Crc16((const u16 *) (a + 0x500), (const u8 *) v3, 0xfe);
         *(u16 *) (v3 + 0xfe) = v6;
         do {
-            func_021511d8(v2, v4, (void *) v3);
-            v5 = func_0215119c((const u8 *) v3, v2, v4, (const u8 *) (a + 0x400));
+            writeNvram(v2, v4, (void *) v3);
+            v5 = verify((const u8 *) v3, v2, v4, (const u8 *) (a + 0x400));
         } while (v5 == 0);
         v3 = v3 + v4;
         v1 = v1 + 1;
         v2 = v2 + v4;
     } while (v1 < 4);
-    v4 = func_02151154();
+    v4 = writeDisable();
     if (v4 != 0) {
         return 1;
     }

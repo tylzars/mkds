@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02152490 Unk02152490;
+typedef struct DWCAccFriendData DWCAccFriendData;
 
 struct GpConnection;
 
@@ -27,7 +27,7 @@ typedef struct WiFiBuddySync {
     // those).
     /* 14 */ s32 mBuddyEntryCount;
     // The saved list (WiFiSession.mBuddies, 12-byte entries), mBuddyEntryCount long.
-    /* 18 */ Unk02152490 *mBuddies;
+    /* 18 */ DWCAccFriendData *mBuddies;
     // Entry of the list the sync step is on; advanced by the step loop and by the profile-search reply
     // (func_ov000_0219ce48).
     /* 1c */ u8 mSyncIndex;

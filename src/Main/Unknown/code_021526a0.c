@@ -5,7 +5,7 @@
 
 u32 func_021526a0(const void *a) {
     int v1;
-    v1 = func_02152a58(a);
+    v1 = DWCi_Acc_GetFlag_DataType(a);
     if (v1 != 0) {
         return 1;
     }

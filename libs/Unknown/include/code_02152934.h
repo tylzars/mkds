@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk02152490 Unk02152490;
+typedef struct DWCAccFriendData DWCAccFriendData;
 
-u32 func_02152934(u64 a, u32 b);
-s32 func_02152950(u64 a, u32 b);
-u64 func_02152988(u32 a, u32 b);
-void func_021529bc(Unk02152490 *a);
+int DWC_Acc_FriendKeyToGsProfileId(u64 friendkey, u32 gamecode);
+BOOL DWC_Acc_CheckFriendKey(u64 friendkey, u32 gamecode);
+u64 DWC_Acc_CreateFriendKey(int gsProfileId, u32 gamecode);
+void DWCi_SetBuddyFriendData(DWCAccFriendData *frienddata);

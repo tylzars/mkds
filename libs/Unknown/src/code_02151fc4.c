@@ -11,8 +11,7 @@
 
 #pragma thumb on
 
-// Seconds from 2000-01-01 00:00:00 to date (year, month, day, week) and time (hour, minute, second), or -1 when the
-// date is out of range.
+// Seconds since 2000-01-01, or -1 for a bad date.
 s64 func_02152244(const u32 *date, const u32 *time) {
     s32 day;
     s32 sec;
@@ -24,99 +23,100 @@ s64 func_02152244(const u32 *date, const u32 *time) {
     return (s64) sec + (s64) day * 0x15180;
 }
 
-u64 func_0215211c(u32 a, u32 b, u32 c, u32 d) {
+u64 DWCi_Util_WiFiId_scrambleUid(u16 rand, u32 mac, u8 vend, u8 mainunit) {
     union {
         u64 v;
         u8 b[8];
-    } e;
-    u8 f[8];
-    s32 h;
-    u8 *i;
-    u8 *k;
-    const u8 *j;
-    e.v = (((u64) a & 0xffff) << 27) | ((((u64) b & 0xffffff) << 3) | (((u64) d & 3) | (((u64) c & 1) << 2)));
-    i = e.b;
-    for (h = 0; h < 6; h++) {
-        *i ^= 0xd6;
-        i++;
+    } value;
+    u8 copy[8];
+    s32 i;
+    u8 *src;
+    u8 *dst;
+    const u8 *order;
+    value.v = (((u64) rand & 0xffff) << 27) |
+              ((((u64) mac & 0xffffff) << 3) | (((u64) mainunit & 3) | (((u64) vend & 1) << 2)));
+    src = value.b;
+    for (i = 0; i < 6; i++) {
+        *src ^= 0xd6;
+        src++;
     }
-    h = 0;
-    i = e.b;
-    for (; h < 5; h++) {
-        *i = (data_usa_02161738[(*i >> 4) & 0xf] << 4) | data_usa_02161738[*i & 0xf];
-        i++;
+    i = 0;
+    src = value.b;
+    for (; i < 5; i++) {
+        *src = (data_usa_02161738[(*src >> 4) & 0xf] << 4) | data_usa_02161738[*src & 0xf];
+        src++;
     }
-    MI_CpuCopy8(e.b, f, 8);
-    h = 0;
-    k = f;
-    j = data_usa_02161730;
-    for (; h < 5; h++) {
-        e.b[*j] = *k;
-        k++;
-        j++;
+    MI_CpuCopy8(value.b, copy, 8);
+    i = 0;
+    dst = copy;
+    order = data_usa_02161730;
+    for (; i < 5; i++) {
+        value.b[*order] = *dst;
+        dst++;
+        order++;
     }
-    e.b[7] = 0;
-    e.b[6] = 0;
-    e.b[5] &= 7;
-    e.v <<= 1;
-    e.b[0] |= (e.b[5] >> 3) & 1;
-    i = e.b;
-    for (h = 0; h < 6; h++) {
-        *i ^= 0x67;
-        i++;
+    value.b[7] = 0;
+    value.b[6] = 0;
+    value.b[5] &= 7;
+    value.v <<= 1;
+    value.b[0] |= (value.b[5] >> 3) & 1;
+    src = value.b;
+    for (i = 0; i < 6; i++) {
+        *src ^= 0x67;
+        src++;
     }
-    e.b[7] = 0;
-    e.b[6] = 0;
-    e.b[5] &= 7;
-    return e.v;
+    value.b[7] = 0;
+    value.b[6] = 0;
+    value.b[5] &= 7;
+    return value.v;
 }
 
-u32 func_02151fc4(Unk021510a4 *a) {
-    u32 b;
-    u32 c;
-    u8 d[6];
-    u32 e[4];
-    u32 f[3];
-    s64 g;
-    u32 h;
-    func_02151910(a);
+BOOL DWCi_AUTH_GetNewWiFiInfo(DWCWiFiInfo *info) {
+    u8 vendor;
+    u32 macLow;
+    u8 mac[6];
+    u32 date[4];
+    u32 time[3];
+    s64 seconds;
+    u32 seed;
+    DWCi_BM_GetWiFiInfo(info);
     RTC_Init();
-    if (RTC_GetDate((RTCDate *) e) != 0) {
+    if (RTC_GetDate((RTCDate *) date) != 0) {
         return 0;
     }
-    if (RTC_GetTime((RTCTime *) f) != 0) {
+    if (RTC_GetTime((RTCTime *) time) != 0) {
         return 0;
     }
-    g = func_02152244(e, f);
-    h = g;
-    if (g < 0) {
+    seconds = func_02152244(date, time);
+    seed = seconds;
+    if (seconds < 0) {
         return 0;
     }
     if (OS_IsTickAvailable() != 0) {
-        h += (u32) OS_GetTick;
+        seed += (u32) OS_GetTick;
     }
-    OS_GetMacAddress(d);
-    b = (u8) ((d[0] << 16 | d[1] << 8 | d[2]) != 0x9bf);
-    c = d[5];
-    c |= (d[3] << 16 | d[4] << 8);
-    h = h * 0x5d588b65 + 0x269ec3;
-    a->mUnk_10 = ((h >> 16) * 1000) >> 16;
-    a->mUnk_00 = 0;
-    if (a->mUnk_12 == 0) {
-        a->mUnk_08 = 0;
-        while (a->mUnk_08 == 0) {
-            h = h * 0x5d588b65 + 0x269ec3;
-            while (h == 0) {
-                h = h * 0x5d588b65 + 0x269ec3;
+    OS_GetMacAddress(mac);
+    vendor = (u8) ((mac[0] << 16 | mac[1] << 8 | mac[2]) != 0x9bf);
+    macLow = mac[5];
+    macLow |= (mac[3] << 16 | mac[4] << 8);
+    seed = seed * 0x5d588b65 + 0x269ec3;
+    info->mPass = ((seed >> 16) * 1000) >> 16;
+    info->mAttestedUserId = 0;
+    if (info->mRandomHistory == 0) {
+        info->mNotAttestedId = 0;
+        while (info->mNotAttestedId == 0) {
+            seed = seed * 0x5d588b65 + 0x269ec3;
+            while (seed == 0) {
+                seed = seed * 0x5d588b65 + 0x269ec3;
             }
-            a->mUnk_12 = h;
-            a->mUnk_08 = func_0215211c(a->mUnk_12, c, b, 0);
+            info->mRandomHistory = seed;
+            info->mNotAttestedId = DWCi_Util_WiFiId_scrambleUid(info->mRandomHistory, macLow, vendor, 0);
         }
     } else {
-        a->mUnk_08 = 0;
-        while (a->mUnk_08 == 0) {
-            a->mUnk_12++;
-            a->mUnk_08 = func_0215211c(a->mUnk_12, c, b, 0);
+        info->mNotAttestedId = 0;
+        while (info->mNotAttestedId == 0) {
+            info->mRandomHistory++;
+            info->mNotAttestedId = DWCi_Util_WiFiId_scrambleUid(info->mRandomHistory, macLow, vendor, 0);
         }
     }
     return 1;

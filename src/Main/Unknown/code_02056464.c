@@ -104,7 +104,7 @@ void func_02056464(Unk0217aa00_45c *a) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         MI_CpuFill8(&a->mUnk_218, 0, 0xc);
     } else {
-        func_02152490(data_0217aa08->mUnk_00->mUnk_4c, &a->mUnk_218);
+        DWC_CreateExchangeToken((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c, (DWCAccFriendData *) &a->mUnk_218);
     }
 }
 

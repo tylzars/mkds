@@ -50,7 +50,7 @@ void func_ov000_0219ce48(GpConnection *a, Unk0219c400 *b, u32 c) {
                     AddBuddy(b->mUnk_0c[i].mUnk_00);
                 } else {
                     func_02152468(&gWiFiBuddySync->mBuddies[c], b->mUnk_0c[0].mUnk_00);
-                    func_021529bc(&gWiFiBuddySync->mBuddies[c]);
+                    DWCi_SetBuddyFriendData(&gWiFiBuddySync->mBuddies[c]);
                     func_ov000_0219d504(c);
                     gWiFiBuddySync->mSyncIndex++;
                     gWiFiBuddySync->mUnk_1e = 1;
@@ -85,7 +85,7 @@ void func_ov000_0219cd74(GpConnection *a, Unk0219c400 *b, u32 c) {
     i = 0;
     for (; i < gWiFiBuddySync->mBuddyEntryCount; i++) {
         if (func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 1) {
-            func_02152458(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i], s);
+            DWC_LoginIdToUserName(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i], s);
             if (strcmp(s, (const char *) b->mUnk_8e) == 0) {
                 func_ov000_0218ee1c(h, b->mUnk_04);
                 func_02152468(&gWiFiBuddySync->mBuddies[i], b->mUnk_04);
@@ -94,7 +94,7 @@ void func_ov000_0219cd74(GpConnection *a, Unk0219c400 *b, u32 c) {
         } else if (func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 3 ||
                    func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 2) {
             t = b->mUnk_04;
-            if (t == func_02152520(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i])) {
+            if (t == DWC_GetGsProfileId(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i])) {
                 func_ov000_0218ee1c(h, t);
                 f = TRUE;
             }
@@ -116,18 +116,18 @@ void func_ov000_0219cc94(GpConnection *a, Unk0219c400 *b, u32 c) {
     i = 0;
     for (; i < gWiFiBuddySync->mBuddyEntryCount; i++) {
         if (func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 1) {
-            func_02152458(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i], s);
+            DWC_LoginIdToUserName(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i], s);
             if (strcmp(s, (const char *) b->mUnk_8e) == 0) {
                 func_02152468(&gWiFiBuddySync->mBuddies[i], b->mUnk_04);
-                func_021529bc(&gWiFiBuddySync->mBuddies[i]);
+                DWCi_SetBuddyFriendData(&gWiFiBuddySync->mBuddies[i]);
                 f = TRUE;
             }
         } else if (func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 3 ||
                    func_02152a1c(&gWiFiBuddySync->mBuddies[i]) == 2) {
             t = b->mUnk_04;
-            if (t == func_02152520(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i])) {
+            if (t == DWC_GetGsProfileId(func_ov000_0219c9c4(), &gWiFiBuddySync->mBuddies[i])) {
                 func_02152468(&gWiFiBuddySync->mBuddies[i], t);
-                func_021529bc(&gWiFiBuddySync->mBuddies[i]);
+                DWCi_SetBuddyFriendData(&gWiFiBuddySync->mBuddies[i]);
                 f = TRUE;
             }
         }

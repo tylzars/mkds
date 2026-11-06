@@ -7,7 +7,7 @@
 
 void func_021524d8(void *a, u32 b, u32 c) {
     MI_CpuFill8(a, 0, 0xc);
-    func_02152a80(a, b, c);
+    DWCi_Acc_SetFriendKey(a, b, c);
     func_021529e0(a, 2);
 }
 

@@ -13,218 +13,220 @@
 
 #pragma thumb on
 
-u8 CountSetBitsInBytes4(const u8 *a) {
-    s32 c;
-    s32 b;
-    s32 d;
-    u8 e;
-    b = 0;
-    c = 0;
-    for (; b < 4; b++) {
-        d = 0;
-        e = a[b];
-        for (; d < 8; d++) {
-            if ((e >> d) & 1) {
-                c++;
+u8 DWCi_BACKUPlConvMaskCidr(const u8 *mask) {
+    s32 count;
+    s32 byteIndex;
+    s32 bit;
+    u8 value;
+    byteIndex = 0;
+    count = 0;
+    for (; byteIndex < 4; byteIndex++) {
+        bit = 0;
+        value = mask[byteIndex];
+        for (; bit < 8; bit++) {
+            if ((value >> bit) & 1) {
+                count++;
             }
         }
     }
-    return c;
+    return count;
 }
 
-void Bytes4StoreTopBitsMask(u32 a, u8 *b) {
-    s32 c;
-    u32 d;
-    u32 e;
-    c = 0;
-    d = ((u32) ~c >> a) ^ ~c;
-    e = c;
-    for (; c < 4; c++) {
-        b[c] = d >> (0x18 - e);
-        e += 8;
+void DWCi_BACKUPlConvMaskAddr(u32 mask, u8 *buf) {
+    s32 i;
+    u32 value;
+    u32 shift;
+    i = 0;
+    value = ((u32) ~i >> mask) ^ ~i;
+    shift = i;
+    for (; i < 4; i++) {
+        buf[i] = value >> (0x18 - shift);
+        shift += 8;
     }
 }
 
-u32 Bytes32AnyNonzero(const u8 *a) {
-    s32 b;
-    for (b = 0; b < 0x20; b++) {
-        if (a[b] != 0) {
+BOOL DWC_BACKUPlCheckSsid(const u8 *ssid) {
+    s32 i;
+    for (i = 0; i < 0x20; i++) {
+        if (ssid[i] != 0) {
             return 1;
         }
     }
     return 0;
 }
 
-u32 func_02151640(const u8 *a, const u8 *b) {
-    u32 c[2];
-    if (func_02151620(a) == 0) {
+BOOL DWC_BACKUPlCheckIp(const u8 *ip, const u8 *mask) {
+    u32 words[2];
+    if (DWC_BACKUPlCheckAddress(ip) == 0) {
         return 0;
     }
-    MI_CpuCopy8(a, &c[0], 4);
-    MI_CpuCopy8(b, &c[1], 4);
-    if ((c[0] | c[1]) == 0xfffffffe) {
+    MI_CpuCopy8(ip, &words[0], 4);
+    MI_CpuCopy8(mask, &words[1], 4);
+    if ((words[0] | words[1]) == 0xfffffffe) {
         return 0;
     }
-    if ((c[0] & ~c[1]) == 0) {
+    if ((words[0] & ~words[1]) == 0) {
         return 0;
     }
     return 1;
 }
 
-u32 func_02151620(const u8 *a) {
-    u8 b = *a;
-    if (b == 0x7f) {
+BOOL DWC_BACKUPlCheckAddress(const u8 *address) {
+    u8 first = *address;
+    if (first == 0x7f) {
         return 0;
     }
-    if (b < 1) {
+    if (first < 1) {
         return 0;
     }
-    if (b <= 0xdf) {
+    if (first <= 0xdf) {
         return 1;
     }
     return 0;
 }
 
-static inline u32 func_02151288_inline(u32 f, u32 a, u32 b, u32 c, u32 d, u32 e, u32 g) {
-    if (PXI_SendWordByFifo(f, a, 0) < 0) {
+static inline u32 sendSixWords(u32 tag, u32 w0, u32 w1, u32 w2, u32 w3, u32 w4, u32 w5) {
+    if (PXI_SendWordByFifo(tag, w0, 0) < 0) {
         return 0;
     }
-    if (PXI_SendWordByFifo(f, b, 0) < 0) {
+    if (PXI_SendWordByFifo(tag, w1, 0) < 0) {
         return 0;
     }
-    if (PXI_SendWordByFifo(f, c, 0) < 0) {
+    if (PXI_SendWordByFifo(tag, w2, 0) < 0) {
         return 0;
     }
-    if (PXI_SendWordByFifo(f, d, 0) < 0) {
+    if (PXI_SendWordByFifo(tag, w3, 0) < 0) {
         return 0;
     }
-    if (PXI_SendWordByFifo(f, e, 0) < 0) {
+    if (PXI_SendWordByFifo(tag, w4, 0) < 0) {
         return 0;
     }
-    if (PXI_SendWordByFifo(f, g, 0) < 0) {
-        return 0;
-    }
-    return 1;
-}
-
-static inline u32 func_02151288_inline2(u32 f, u32 a, u32 b, u32 c) {
-    if (PXI_SendWordByFifo(f, a, 0) < 0) {
-        return 0;
-    }
-    if (PXI_SendWordByFifo(f, b, 0) < 0) {
-        return 0;
-    }
-    if (PXI_SendWordByFifo(f, c, 0) < 0) {
+    if (PXI_SendWordByFifo(tag, w5, 0) < 0) {
         return 0;
     }
     return 1;
 }
 
-static inline u32 func_02151288_inline3(u32 f, u32 a) {
-    if (PXI_SendWordByFifo(f, a, 0) >= 0) {
+static inline u32 sendThreeWords(u32 tag, u32 w0, u32 w1, u32 w2) {
+    if (PXI_SendWordByFifo(tag, w0, 0) < 0) {
+        return 0;
+    }
+    if (PXI_SendWordByFifo(tag, w1, 0) < 0) {
+        return 0;
+    }
+    if (PXI_SendWordByFifo(tag, w2, 0) < 0) {
+        return 0;
+    }
+    return 1;
+}
+
+static inline u32 sendOneWord(u32 tag, u32 w0) {
+    if (PXI_SendWordByFifo(tag, w0, 0) >= 0) {
         return 1;
     }
     return 0;
 }
 
-u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
-    u32 e;
-    u32 f;
-    u32 l1;
-    u32 l2;
-    u32 l3;
-    u32 l4;
-    u32 l5;
-    u32 l6;
-    u32 l7;
-    u32 l8;
-    u32 l9;
-    u64 g;
-    e = 0;
-    l5 = (b >> 16) & 0xff;
-    l1 = l5;
-    l1 |= 0x2002300;
-    b &= 0xffff;
-    b |= 0x10000;
-    l2 = c;
-    l2 &= 0xffff;
-    l2 |= 0x30000;
-    l6 = d;
-    l6 >>= 16;
-    l3 = l6;
-    l3 |= 0x40000;
-    d &= 0xffff;
-    l4 = d;
-    l4 |= 0x1050000;
-    l5 |= 0x2002500;
-    l6 |= 0x30000;
-    d |= 0x1040000;
-    l7 = (u32) &data_usa_021804a0 >> 24;
-    l7 |= 0x2002200;
-    l8 = (u32) &data_usa_021804a0 >> 8;
-    l8 &= 0xffff;
-    l8 |= 0x10000;
-    l9 = (u32) &data_usa_021804a0 << 8;
-    l9 &= 0xff00;
-    l9 |= 0x1020000;
-    f = 4;
+BOOL NVRAMm_ExecuteCommand(u32 state, u32 addr, u16 size, u8 *srcp) {
+    u32 sending;
+    u32 tag;
+    u32 bufAddr;
+    u32 readHeader;
+    u32 sizeWord;
+    u32 readBufHigh;
+    u32 readBufLow;
+    u32 writeHeader;
+    u32 writeBufHigh;
+    u32 statusHigh;
+    u32 statusMid;
+    u32 statusLow;
+    u64 start;
+    sending = 0;
+    writeHeader = (addr >> 16) & 0xff;
+    readHeader = writeHeader;
+    readHeader |= 0x2002300;
+    addr &= 0xffff;
+    addr |= 0x10000;
+    sizeWord = size;
+    sizeWord &= 0xffff;
+    sizeWord |= 0x30000;
+    bufAddr = (u32) srcp;
+    writeBufHigh = bufAddr;
+    writeBufHigh >>= 16;
+    readBufHigh = writeBufHigh;
+    readBufHigh |= 0x40000;
+    bufAddr &= 0xffff;
+    readBufLow = bufAddr;
+    readBufLow |= 0x1050000;
+    writeHeader |= 0x2002500;
+    writeBufHigh |= 0x30000;
+    bufAddr |= 0x1040000;
+    statusHigh = (u32) &data_usa_021804a0 >> 24;
+    statusHigh |= 0x2002200;
+    statusMid = (u32) &data_usa_021804a0 >> 8;
+    statusMid &= 0xffff;
+    statusMid |= 0x10000;
+    statusLow = (u32) &data_usa_021804a0 << 8;
+    statusLow &= 0xff00;
+    statusLow |= 0x1020000;
+    tag = 4;
     while (1) {
-        if (e == 0) {
+        if (sending == 0) {
             data_usa_02180478 = 0;
-            switch (a) {
+            switch (state) {
                 case 1:
-                    e = func_02151288_inline(f, l1, b, 0x20000, l2, l3, l4);
+                    sending = sendSixWords(tag, readHeader, addr, 0x20000, sizeWord, readBufHigh, readBufLow);
                     break;
                 case 2:
-                    e = func_02151288_inline3(f, 0x3002000);
+                    sending = sendOneWord(tag, 0x3002000);
                     break;
                 case 3:
-                    if (PXI_SendWordByFifo(f, l5, 0) < 0) {
-                        e = 0;
-                    } else if (PXI_SendWordByFifo(f, b, 0) < 0) {
-                        e = 0;
-                    } else if (PXI_SendWordByFifo(f, c | 0x20000, 0) < 0) {
-                        e = 0;
-                    } else if (PXI_SendWordByFifo(f, l6, 0) < 0) {
-                        e = 0;
-                    } else if (PXI_SendWordByFifo(f, d, 0) < 0) {
-                        e = 0;
+                    if (PXI_SendWordByFifo(tag, writeHeader, 0) < 0) {
+                        sending = 0;
+                    } else if (PXI_SendWordByFifo(tag, addr, 0) < 0) {
+                        sending = 0;
+                    } else if (PXI_SendWordByFifo(tag, size | 0x20000, 0) < 0) {
+                        sending = 0;
+                    } else if (PXI_SendWordByFifo(tag, writeBufHigh, 0) < 0) {
+                        sending = 0;
+                    } else if (PXI_SendWordByFifo(tag, bufAddr, 0) < 0) {
+                        sending = 0;
                     } else {
-                        e = 1;
+                        sending = 1;
                     }
-                    g = OS_GetTick();
+                    start = OS_GetTick();
                     break;
                 case 4:
                 case 5:
-                    e = func_02151288_inline2(f, l7, l8, l9);
+                    sending = sendThreeWords(tag, statusHigh, statusMid, statusLow);
                     break;
                 case 6:
-                    e = func_02151288_inline3(f, 0x3002d00);
+                    sending = sendOneWord(tag, 0x3002d00);
                     break;
                 case 7:
-                    e = func_02151288_inline3(f, 0x3002100);
+                    sending = sendOneWord(tag, 0x3002100);
                     break;
             }
         } else if (data_usa_02180478 == 1) {
-            e = 0;
+            sending = 0;
             if (data_usa_02180474 != 0) {
                 break;
             }
-            switch (a) {
+            switch (state) {
                 case 1:
                     return 1;
                 case 2:
-                    a = f;
+                    state = tag;
                     break;
                 case 3:
-                    a = 5;
+                    state = 5;
                     break;
                 case 4:
                 case 5:
                     DC_InvalidateRange(&data_usa_021804a0, 1);
-                    if (a == 4) {
+                    if (state == 4) {
                         if (data_usa_021804a0 & 2) {
-                            a = 3;
+                            state = 3;
                             break;
                         }
                         return 0;
@@ -232,112 +234,113 @@ u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
                     if ((data_usa_021804a0 & 1) == 0) {
                         return 1;
                     }
-                    if ((data_usa_021804a0 & 0x20) != 0 || ((OS_GetTick() - g) * 64) / 33514 > 4000) {
-                        a = 6;
+                    if ((data_usa_021804a0 & 0x20) != 0 || ((OS_GetTick() - start) * 64) / 33514 > 4000) {
+                        state = 6;
                     } else {
                         WaitByLoop(0x4000);
                     }
                     break;
                 case 6:
-                    return e;
+                    return sending;
                 case 7:
                     return 1;
             }
         }
     }
-    return e;
+    return sending;
 }
 
-u32 func_0215122c(u32 a, u32 b, void *c) {
-    u32 d;
-    DC_InvalidateRange(c, b);
-    d = 4;
-    while (PXI_IsCallbackReady(d, 1) == 0) {
+BOOL readNvram(u32 address, u32 size, void *buf) {
+    u32 tag;
+    DC_InvalidateRange(buf, size);
+    tag = 4;
+    while (PXI_IsCallbackReady(tag, 1) == 0) {
     }
-    PXI_SetFifoRecvCallback(4, (UnkFunc *) func_02151128);
-    d = 1;
+    PXI_SetFifoRecvCallback(4, (UnkFunc *) Callback_NVRAM);
+    tag = 1;
     while (1) {
-        if (func_02151288(d, a, b, (u32) c) == 1) {
+        if (NVRAMm_ExecuteCommand(tag, address, size, buf) == 1) {
             break;
         }
         WaitByLoop(0x40000);
     }
-    DC_InvalidateRange(c, b);
+    DC_InvalidateRange(buf, size);
     return 1;
 }
 
-void func_021511d8(u32 a, u16 b, void *c) {
-    u32 d;
-    d = 4;
-    while (PXI_IsCallbackReady(d, 1) == 0) {
+void writeNvram(u32 address, u16 size, void *data) {
+    u32 tag;
+    tag = 4;
+    while (PXI_IsCallbackReady(tag, 1) == 0) {
     }
-    PXI_SetFifoRecvCallback(4, (UnkFunc *) func_02151128);
-    DC_StoreRange(c, b);
-    d = 2;
+    PXI_SetFifoRecvCallback(4, (UnkFunc *) Callback_NVRAM);
+    DC_StoreRange(data, size);
+    tag = 2;
     while (1) {
-        if (func_02151288(d, a, b, (u32) c) == 1) {
+        if (NVRAMm_ExecuteCommand(tag, address, size, data) == 1) {
             break;
         }
         WaitByLoop(0x40000);
     }
 }
 
-u32 func_0215119c(const u8 *a, u32 b, u32 c, const u8 *d) {
-    if (func_0215122c(b, c, (void *) d) == 0) {
+BOOL verify(const u8 *src, u32 address, u32 size, const u8 *work) {
+    if (readNvram(address, size, (void *) work) == 0) {
         return 0;
     }
-    if (memcmp(a, d, c) == 0) {
+    if (memcmp(src, work, size) == 0) {
         return 1;
     }
     return 0;
 }
 
-u32 func_02151154(void) {
-    u32 a;
-    u32 b;
-    u32 c;
-    a = 4;
-    b = 1;
-    while (PXI_IsCallbackReady(a, b) == 0) {
+BOOL writeDisable(void) {
+    u32 tag;
+    u32 ready;
+    u32 delay;
+    u32 zero;
+    tag = 4;
+    ready = 1;
+    while (PXI_IsCallbackReady(tag, ready) == 0) {
     }
-    PXI_SetFifoRecvCallback(4, (UnkFunc *) func_02151128);
-    b = 0x40000;
-    a = 7;
-    c = 0;
+    PXI_SetFifoRecvCallback(4, (UnkFunc *) Callback_NVRAM);
+    delay = 0x40000;
+    tag = 7;
+    zero = 0;
     while (1) {
-        if (func_02151288(a, c, c, c) == 1) {
+        if (NVRAMm_ExecuteCommand(tag, zero, zero, (u8 *) zero) == 1) {
             break;
         }
-        WaitByLoop(b);
+        WaitByLoop(delay);
     }
     return 1;
 }
 
-u16 func_02151128(u32 a, u32 b, u32 c) {
-    data_usa_02180474 = b & 0xff;
+u16 Callback_NVRAM(u32 tag, u32 data, u32 err) {
+    data_usa_02180474 = data & 0xff;
     data_usa_02180478 = 1;
-    if (c != 0) {
+    if (err != 0) {
         data_usa_02180474 = 0xff;
     }
     return data_usa_02180474;
 }
 
-u8 *func_021510a4(const Unk021510a4 *a) {
-    u64 b;
-    u32 c;
-    u32 d;
-    b = a->mUnk_08;
-    MI_CpuCopy8(a, data_021804a0, 5);
-    c = ((u32) (a->mUnk_00 >> 32) >> 8) & 7;
-    c |= ((u32) b & 0x1f) << 3;
-    data_021804a0[5] = c;
-    b >>= 5;
-    MI_CpuCopy8(&b, data_021804a0 + 6, 4);
-    d = (u32) (b >> 32) & 0x3f;
-    d |= (a->mUnk_10 & 3) << 6;
-    data_021804a0[10] = d;
-    data_021804a0[11] = a->mUnk_10 >> 2;
-    MI_CpuCopy8(&a->mUnk_12, data_021804a0 + 12, 2);
+u8 *DWCi_BACKUPlConvWifiInfo(const DWCWiFiInfo *info) {
+    u64 notAttestedId;
+    u32 byte5;
+    u32 byte10;
+    notAttestedId = info->mNotAttestedId;
+    MI_CpuCopy8(info, data_021804a0, 5);
+    byte5 = ((u32) (info->mAttestedUserId >> 32) >> 8) & 7;
+    byte5 |= ((u32) notAttestedId & 0x1f) << 3;
+    data_021804a0[5] = byte5;
+    notAttestedId >>= 5;
+    MI_CpuCopy8(&notAttestedId, data_021804a0 + 6, 4);
+    byte10 = (u32) (notAttestedId >> 32) & 0x3f;
+    byte10 |= (info->mPass & 3) << 6;
+    data_021804a0[10] = byte10;
+    data_021804a0[11] = info->mPass >> 2;
+    MI_CpuCopy8(&info->mRandomHistory, data_021804a0 + 12, 2);
     return data_021804a0;
 }
 

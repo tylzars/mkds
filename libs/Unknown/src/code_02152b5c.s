@@ -1,4 +1,4 @@
-// Two tables kept in .text after func_02152b08: the nine File functions in the order data_02152b5c is indexed, and the
+// Two tables kept in .text after DWC_Init: the nine File functions in the order data_02152b5c is indexed, and the
 // words of data_02152b80.
 //
 // Not compiled code: a C file can't place data in .text. 1.2 puts C tables in .rodata, also with `#pragma section`

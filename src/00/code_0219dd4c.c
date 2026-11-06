@@ -1765,7 +1765,8 @@ u32 func_ov000_0219fbec(s32 a, s32 b) {
         }
         c = TRUE;
         p = gWiFiMatching;
-        n = func_02152520(func_ov000_0219c9c4(), p->mUnk_2e4 + p->mUnk_2ec[p->mUnk_19d] * 12);
+        n = DWC_GetGsProfileId(func_ov000_0219c9c4(),
+                               (DWCAccFriendData *) (p->mUnk_2e4 + p->mUnk_2ec[p->mUnk_19d] * 12));
         if (n == 0) {
             continue;
         }

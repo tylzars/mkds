@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_02152a6c.h"
 
 #pragma thumb on
-void func_021529e0(Unk02152490 *a, u32 b) {
+void func_021529e0(DWCAccFriendData *a, u32 b) {
     u32 c;
     u32 d;
     c = func_02152a6c(a);

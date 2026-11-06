@@ -16,86 +16,87 @@
 
 #pragma thumb on
 
-u64 Decimal12CharsToValue(const void *a) {
-    const s8 *p = a;
-    u64 s;
-    u64 m;
+u64 DWC_StringToFriendKey(const char *string) {
+    const s8 *p = (const s8 *) string;
+    u64 result;
+    u64 dec;
     s32 i;
 
-    s = 0;
-    m = 1;
+    result = 0;
+    dec = 1;
     for (i = 0; i < 12; i++) {
-        s += m * (s64) (*(p + 11 - i) - 0x30);
-        m *= 10;
+        result += dec * (s64) (*(p + 11 - i) - 0x30);
+        dec *= 10;
     }
-    return s;
+    return result;
 }
 
-void ValueToChars5Bit(u64 a, s32 n, char *c) {
+void DWCi_Acc_U64ToString32(u64 num, s32 bitnum, char *result) {
     s32 i;
     s32 len;
-    const s8 *t;
+    const s8 *table;
 
-    len = (n + 4) / 5;
-    t = data_0216f2b0;
+    len = (bitnum + 4) / 5;
+    table = data_0216f2b0;
     for (i = 0; i < len; i++) {
-        *(c + len - 1 - i) = t[a & 0x1f];
-        a = a >> 5;
+        *(result + len - 1 - i) = table[num & 0x1f];
+        num = num >> 5;
     }
-    c[len] = 0;
+    result[len] = 0;
 }
 
-void func_02152808(const Unk02152490 *a, u32 b, char *c) {
-    char d[0x15];
-    char e[0x15];
+void DWCi_Acc_LoginIdToUserName(const DWCAccFriendData *loginid, u32 gamecode, char *username) {
+    char userid[0x15];
+    char playerid[0x15];
 
-    ValueToChars5Bit(func_02152ac8(a), 0x2b, d);
-    ValueToChars5Bit(func_02152ac4(a), 0x20, e);
-    OS_SNPrintf(c, 0x15, data_0216f2a0, d, (u8) (b >> 24), (u8) (b >> 16), (u8) (b >> 8), (u8) b, e);
+    DWCi_Acc_U64ToString32(DWCi_Acc_GetUserId(loginid), 0x2b, userid);
+    DWCi_Acc_U64ToString32(func_02152ac4(loginid), 0x20, playerid);
+    OS_SNPrintf(username, 0x15, data_0216f2a0, userid, (u8) (gamecode >> 24), (u8) (gamecode >> 16),
+                (u8) (gamecode >> 8), (u8) gamecode, playerid);
 }
 
-void func_021527ac(Unk02152500 *a, u32 b) {
-    u32 t[0x100];
+void DWCi_Acc_CreateUserData(DWCAccUserData *userdata, u32 gamecode) {
+    u32 crcTable[0x100];
 
-    MI_CpuFill8(a, 0, 0x40);
-    a->mUnk_00 = 0x40;
-    a->mUnk_1c = 0;
-    a->mUnk_24 = b;
-    func_02152744(&a->mUnk_04);
-    func_021529e0(&a->mUnk_10, 0);
-    Crc32InitTable(t, 0xedb88320);
-    a->mUnk_3c = Crc32(t, a, 0x3c);
-    a->mUnk_20 |= 1;
+    MI_CpuFill8(userdata, 0, 0x40);
+    userdata->mSize = 0x40;
+    userdata->mGsProfileId = 0;
+    userdata->mGamecode = gamecode;
+    DWCi_Acc_CreateTempLoginId(&userdata->mPseudo);
+    func_021529e0(&userdata->mAuthentic, 0);
+    Crc32InitTable(crcTable, 0xedb88320);
+    userdata->mCrc32 = Crc32(crcTable, userdata, 0x3c);
+    userdata->mFlag |= 1;
 }
 
-void func_02152744(Unk02152490 *a) {
-    u64 t;
-    u64 r;
-    Unk02151ddc s;
+void DWCi_Acc_CreateTempLoginId(DWCAccFriendData *loginid) {
+    u64 tick;
+    u64 rand;
+    DWCAuthWiFiId id;
 
-    t = OS_GetTick();
-    func_02151ddc(&s);
-    if (s.mUnk_10 != 0) {
-        func_02152a8c(a, ((u32 *) &s)[0], ((u32 *) &s)[1]);
+    tick = OS_GetTick();
+    DWC_Auth_GetId(&id);
+    if (id.mFlag != 0) {
+        DWCi_Acc_SetUserId(loginid, ((u32 *) &id)[0], ((u32 *) &id)[1]);
     } else {
-        func_02152a8c(a, ((u32 *) &s)[2], ((u32 *) &s)[3]);
+        DWCi_Acc_SetUserId(loginid, ((u32 *) &id)[2], ((u32 *) &id)[3]);
     }
-    r = t * 0x5d588b656c078965ull + 0x269ec3;
-    func_02152a88(a, r >> 32);
-    func_021529e0(a, 1);
+    rand = tick * 0x5d588b656c078965ull + 0x269ec3;
+    DWCi_Acc_SetPlayerId(loginid, rand >> 32);
+    func_021529e0(loginid, 1);
 }
 
-s32 func_021526e4(const Unk02152490 *a) {
-    Unk02151ddc s;
+BOOL DWCi_Acc_CheckConsoleUserId(const DWCAccFriendData *loginid) {
+    DWCAuthWiFiId id;
 
-    func_02151ddc(&s);
-    if (s.mUnk_10 != 0) {
-        if (func_02152ac8(a) == s.mUnk_00) {
+    DWC_Auth_GetId(&id);
+    if (id.mFlag != 0) {
+        if (DWCi_Acc_GetUserId(loginid) == id.mUId) {
             return 1;
         }
         return 0;
     }
-    if (func_02152ac8(a) == s.mUnk_08) {
+    if (DWCi_Acc_GetUserId(loginid) == id.mNotAttestedId) {
         return 1;
     }
     return 0;

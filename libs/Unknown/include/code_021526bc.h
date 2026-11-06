@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk02152500 Unk02152500;
+typedef struct DWCAccUserData DWCAccUserData;
 
-u32 func_021526bc(const Unk02152500 *a);
+BOOL DWCi_Acc_IsAuthentic(const DWCAccUserData *userdata);

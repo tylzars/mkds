@@ -517,7 +517,7 @@ Expression shapes:
   of its uses (the only spelling that matched; func_020fcf10).
 - A mask computed after the load it is tested against and then reused: write `1U << b` at the test only (func_02007698).
 - `x == f()` compiled with the compare operands the other way round: put the result in a local and write it on the left,
-  `k = f(); if (k == x)` (func_02151b38).
+  `k = f(); if (k == x)` (DWC_BM_Init).
 - `cmp t, reg` with the hardware word read before `t`: read the word through a static inline helper and write `t ==
   helper()` (PM_GoSleepMode).
 - Stores to one global array in a different order than ours, with two shifted values in each other's registers: write
@@ -1125,7 +1125,7 @@ Link order and linking:
   difference, not source: the 1.2 base always emits the `bx` form. Four functions in ov000 use the other form
   (func_ov000_021a9d68, 021ab09c, 021ad898, 021aea34).
 - Thumb `ldrsb` and `ldrsh` have only the register-offset form, so `*(p + 11 - i)` differs from `p[11 - i]`
-  (Decimal12CharsToValue).
+  (DWC_StringToFriendKey).
 - A byte loaded, moved to a second register for `muls` and used again after, with the two registers swapped: read the
   field inside the index expression and write the update as `x--` or `x -= 1`, not a local or `x = x - 1`
   (func_ov003_021c73cc).

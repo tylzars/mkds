@@ -489,7 +489,7 @@ void func_ov003_021c8c14(void) {
             break;
         case 11:
             r = func_ov003_021cdb6c();
-            r->mUnk_00.mUnk_d0 = CountSetBitsInBytes4(r->mUnk_f0);
+            r->mUnk_00.mUnk_d0 = DWCi_BACKUPlConvMaskCidr(r->mUnk_f0);
             if (r->mUnk_f5 != 0) {
                 MI_CpuFill8(r->mUnk_00.mUnk_c0, 0, 4);
                 MI_CpuFill8(r->mUnk_00.mUnk_c4, 0, 4);
@@ -1201,18 +1201,18 @@ u32 func_ov003_021c7d8c(void) {
         return 0;
     }
     if (a->mUnk_f6 == 0) {
-        if (func_02151620(a->mUnk_00.mUnk_c8) == 0 && func_02151620(&a->mUnk_00.mUnk_c8[4]) == 0) {
+        if (DWC_BACKUPlCheckAddress(a->mUnk_00.mUnk_c8) == 0 && DWC_BACKUPlCheckAddress(&a->mUnk_00.mUnk_c8[4]) == 0) {
             return 0;
         }
     }
     if (a->mUnk_f5 == 0) {
-        if (func_02151620(a->mUnk_00.mUnk_c0) == 0) {
+        if (DWC_BACKUPlCheckAddress(a->mUnk_00.mUnk_c0) == 0) {
             return 0;
         }
-        if (func_02151620(a->mUnk_00.mUnk_c4) == 0) {
+        if (DWC_BACKUPlCheckAddress(a->mUnk_00.mUnk_c4) == 0) {
             return 0;
         }
-        if (func_02151640(a->mUnk_00.mUnk_c0, a->mUnk_f0) == 0) {
+        if (DWC_BACKUPlCheckIp(a->mUnk_00.mUnk_c0, a->mUnk_f0) == 0) {
             return 0;
         }
     }

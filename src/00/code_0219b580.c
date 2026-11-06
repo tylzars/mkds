@@ -93,7 +93,7 @@ void InitWiFiConnection(void *a, void *b, s32 c, const char *d, const char *e, s
     gWiFiConnection->mUnk_7c = NULL;
     gWiFiConnection->mUnk_80 = NULL;
     func_ov000_0219b964();
-    InitWiFiLogin(&gWiFiConnection->mLogin, b, &gWiFiConnection->mGpConnection, c, ((Unk02152500 *) b)->mUnk_24,
+    InitWiFiLogin(&gWiFiConnection->mLogin, b, &gWiFiConnection->mGpConnection, c, ((DWCAccUserData *) b)->mGamecode,
                   WiFiLoginCallback, NULL);
     InitBuddySync(&gWiFiConnection->mBuddySync, &gWiFiConnection->mGpConnection, gWiFiConnection->mUnk_34, h, i);
     InitMatching(&gWiFiConnection->mMatching, &gWiFiConnection->mGpConnection, &gWiFiConnection->mSocket,

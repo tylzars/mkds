@@ -2,27 +2,27 @@
 
 #include "types.h"
 
-// Fields read from or written to the 14-byte object at data_021804a0 by func_021510a4 and func_02151910.
-typedef struct Unk021510a4 {
-    /* 00 */ u64 mUnk_00;
-    /* 08 */ u64 mUnk_08;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
-} Unk021510a4;
+// The Wi-Fi ID record.
+typedef struct DWCWiFiInfo {
+    /* 00 */ u64 mAttestedUserId;
+    /* 08 */ u64 mNotAttestedId;
+    /* 10 */ u16 mPass;
+    /* 12 */ u16 mRandomHistory;
+} DWCWiFiInfo;
 
 extern u16 data_usa_02180474;
 extern u32 data_usa_02180478;
 extern u8 data_usa_021804a0;
 
-u8 *func_021510a4(const Unk021510a4 *a);
-u16 func_02151128(u32 a, u32 b, u32 c);
-u32 func_02151154(void);
-u32 func_0215119c(const u8 *a, u32 b, u32 c, const u8 *d);
-void func_021511d8(u32 a, u16 b, void *c);
-u32 func_0215122c(u32 a, u32 b, void *c);
-u32 func_02151288(u32 a, u32 b, u16 c, u32 d);
-u32 func_02151620(const u8 *a);
-u32 func_02151640(const u8 *a, const u8 *b);
-u32 Bytes32AnyNonzero(const u8 *a);
-void Bytes4StoreTopBitsMask(u32 a, u8 *b);
-u8 CountSetBitsInBytes4(const u8 *a);
+u8 *DWCi_BACKUPlConvWifiInfo(const DWCWiFiInfo *info);
+u16 Callback_NVRAM(u32 tag, u32 data, u32 err);
+BOOL writeDisable(void);
+BOOL verify(const u8 *src, u32 address, u32 size, const u8 *work);
+void writeNvram(u32 address, u16 size, void *data);
+BOOL readNvram(u32 address, u32 size, void *buf);
+BOOL NVRAMm_ExecuteCommand(u32 state, u32 addr, u16 size, u8 *srcp);
+BOOL DWC_BACKUPlCheckAddress(const u8 *address);
+BOOL DWC_BACKUPlCheckIp(const u8 *ip, const u8 *mask);
+BOOL DWC_BACKUPlCheckSsid(const u8 *ssid);
+void DWCi_BACKUPlConvMaskAddr(u32 mask, u8 *buf);
+u8 DWCi_BACKUPlConvMaskCidr(const u8 *mask);

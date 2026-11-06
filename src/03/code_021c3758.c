@@ -12,7 +12,7 @@
 void func_ov003_021c3758(void) {
     void *a;
     u8 b[8];
-    Unk021510a4 c;
+    DWCWiFiInfo c;
     u32 d[4];
     u16 f[20];
     u64 g;
@@ -22,8 +22,8 @@ void func_ov003_021c3758(void) {
     swprintf(f, 0x14, data_ov003_021d7058, b[0], b[1], b[2], b[3], b[4], b[5]);
     func_ov003_021d2070(a, data_ov003_021d6338.mUnk_00, data_ov003_021d6338.mUnk_02, data_ov003_021d6338.mUnk_04,
                         data_ov003_021d6338.mUnk_06, 2, 0x480, f);
-    func_02151910(&c);
-    g = c.mUnk_00;
+    DWCi_BM_GetWiFiInfo(&c);
+    g = c.mAttestedUserId;
     if (g != 0) {
         d[3] = (g % 10) * 1000;
         g = g / 10;

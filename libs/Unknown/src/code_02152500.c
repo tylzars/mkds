@@ -14,78 +14,70 @@
 
 #pragma thumb on
 
-void func_02152690(void *a, u32 b) {
-    func_021527ac(a, b);
+void DWC_CreateUserData(DWCAccUserData *userdata, u32 gamecode) {
+    DWCi_Acc_CreateUserData(userdata, gamecode);
 }
 
-s32 func_02152638(const void *a) {
-    const Unk02152500 *p = a;
-    Unk02151ddc s;
+BOOL DWC_CheckValidConsole(const DWCAccUserData *userdata) {
+    DWCAuthWiFiId id;
 
-    if (func_02152a58(&p->mUnk_10) == 0) {
+    if (DWCi_Acc_GetFlag_DataType(&userdata->mAuthentic) == 0) {
         return 1;
     }
-    func_02151ddc(&s);
-    if (s.mUnk_10 == 0) {
+    DWC_Auth_GetId(&id);
+    if (id.mFlag == 0) {
         return 0;
     }
-    if (s.mUnk_00 == func_02152ac8(&p->mUnk_10)) {
+    if (id.mUId == DWCi_Acc_GetUserId(&userdata->mAuthentic)) {
         return 1;
     }
     return 0;
 }
 
-void func_021525f0(Unk02152500 *a, const Unk02152490 *b, u32 c) {
-    u32 t[0x100];
+void DWCi_Acc_SetLoginIdToUserData(DWCAccUserData *userdata, const DWCAccFriendData *loginid, int gsProfileId) {
+    u32 crcTable[0x100];
 
-    a->mUnk_10 = *b;
-    a->mUnk_1c = c;
-    Crc32InitTable(t, 0xedb88320);
-    a->mUnk_3c = Crc32(t, a, 0x3c);
-    a->mUnk_20 |= 1;
+    userdata->mAuthentic = *loginid;
+    userdata->mGsProfileId = gsProfileId;
+    Crc32InitTable(crcTable, 0xedb88320);
+    userdata->mCrc32 = Crc32(crcTable, userdata, 0x3c);
+    userdata->mFlag |= 1;
 }
 
-s32 func_021525e0(void *a) {
-    Unk02152500 *p = a;
-
-    if ((p->mUnk_20 & 1) == 1) {
+BOOL DWCi_Acc_IsDirty(const DWCAccUserData *userdata) {
+    if ((userdata->mFlag & 1) == 1) {
         return 1;
     }
     return 0;
 }
 
-void func_021525a8(void *a) {
-    Unk02152500 *p = a;
-    u32 t[0x100];
+void DWCi_Acc_ClearDirty(DWCAccUserData *userdata) {
+    u32 crcTable[0x100];
 
-    p->mUnk_20 &= ~1;
-    Crc32InitTable(t, 0xedb88320);
-    p->mUnk_3c = Crc32(t, p, 0x3c);
+    userdata->mFlag &= ~1;
+    Crc32InitTable(crcTable, 0xedb88320);
+    userdata->mCrc32 = Crc32(crcTable, userdata, 0x3c);
 }
 
-u64 func_02152584(const void *a) {
-    const Unk02152490 *p = a;
-
-    if (func_02152a58(p) == 2) {
-        return func_02152ab4(p);
+u64 DWC_GetFriendKey(const DWCAccFriendData *frienddata) {
+    if (DWCi_Acc_GetFlag_DataType(frienddata) == 2) {
+        return DWCi_Acc_GetFriendKey(frienddata);
     }
     return 0;
 }
 
-u32 func_02152520(Unk02152500 *a, void *b) {
-    Unk02152500 *p = a;
-    Unk02152490 *q = b;
-    u64 r;
+int DWC_GetGsProfileId(const DWCAccUserData *userdata, const DWCAccFriendData *frienddata) {
+    u64 friendKey;
 
-    switch (func_02152a58(q)) {
+    switch (DWCi_Acc_GetFlag_DataType(frienddata)) {
         case 2:
-            r = func_02152ab4(q);
-            if (func_02152950(r, p->mUnk_24) != 0) {
-                return func_02152934(r, p->mUnk_24);
+            friendKey = DWCi_Acc_GetFriendKey(frienddata);
+            if (DWC_Acc_CheckFriendKey(friendKey, userdata->mGamecode) != 0) {
+                return DWC_Acc_FriendKeyToGsProfileId(friendKey, userdata->mGamecode);
             }
             return 0;
         case 3:
-            return func_02152ab0(q);
+            return func_02152ab0(frienddata);
         case 1:
             return -1;
         default:
@@ -93,15 +85,14 @@ u32 func_02152520(Unk02152500 *a, void *b) {
     }
 }
 
-u64 func_02152500(const void *a) {
-    const Unk02152500 *p = a;
-    u64 r;
+u64 DWC_CreateFriendKey(const DWCAccUserData *userdata) {
+    u64 friendKey;
 
-    r = 0;
-    if (p->mUnk_1c != 0) {
-        r = func_02152988(p->mUnk_1c, p->mUnk_24);
+    friendKey = 0;
+    if (userdata->mGsProfileId != 0) {
+        friendKey = DWC_Acc_CreateFriendKey(userdata->mGsProfileId, userdata->mGamecode);
     }
-    return r;
+    return friendKey;
 }
 
 #pragma thumb off

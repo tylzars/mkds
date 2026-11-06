@@ -3,15 +3,13 @@
 
 #pragma thumb on
 
-u32 func_02152a58(const Unk02152490 *a) {
-    return func_02152a6c(a) & 3;
+u32 DWCi_Acc_GetFlag_DataType(const DWCAccFriendData *frienddata) {
+    return func_02152a6c(frienddata) & 3;
 }
 
-s32 func_02152a24(const void *a) {
-    const Unk02152490 *p = a;
-
-    if (func_02152a58(p) == 3) {
-        if ((func_02152a6c(p) & 4) == 4) {
+BOOL DWC_IsBuddyFriendData(const DWCAccFriendData *frienddata) {
+    if (DWCi_Acc_GetFlag_DataType(frienddata) == 3) {
+        if ((func_02152a6c(frienddata) & 4) == 4) {
             return 1;
         }
         return 0;

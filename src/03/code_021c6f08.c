@@ -518,7 +518,7 @@ BOOL func_ov003_021c6f64(void) {
         } while (h < 4);
         return TRUE;
     }
-    if (func_02151620(b) != 0) {
+    if (DWC_BACKUPlCheckAddress(b) != 0) {
         return TRUE;
     }
     return FALSE;

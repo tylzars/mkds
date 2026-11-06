@@ -3,8 +3,8 @@
 
 #pragma thumb on
 
-u32 func_021526bc(const Unk02152500 *a) {
-    return func_021526c8(&a->mUnk_10);
+BOOL DWCi_Acc_IsAuthentic(const DWCAccUserData *userdata) {
+    return func_021526c8(&userdata->mAuthentic);
 }
 
 #pragma thumb off

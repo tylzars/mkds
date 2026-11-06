@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk02152490 Unk02152490;
+typedef struct DWCAccFriendData DWCAccFriendData;
 
-void func_02152a7c(Unk02152490 *a, u32 b);
-void func_02152a80(Unk02152490 *a, u32 b, u32 c);
-void func_02152a88(Unk02152490 *a, u32 b);
-void func_02152a8c(Unk02152490 *a, u32 b, u32 c);
+void DWCi_Acc_SetGsProfileId(DWCAccFriendData *data, u32 gsProfileId);
+void DWCi_Acc_SetFriendKey(DWCAccFriendData *data, u32 friendkeyLo, u32 friendkeyHi);
+void DWCi_Acc_SetPlayerId(DWCAccFriendData *loginid, u32 playerid);
+void DWCi_Acc_SetUserId(DWCAccFriendData *loginid, u32 useridLo, u32 useridHi);

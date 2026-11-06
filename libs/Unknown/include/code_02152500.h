@@ -2,14 +2,14 @@
 
 #include "types.h"
 
-typedef struct Unk02152490 Unk02152490;
-typedef struct Unk02152500 Unk02152500;
+typedef struct DWCAccFriendData DWCAccFriendData;
+typedef struct DWCAccUserData DWCAccUserData;
 
-u64 func_02152500(const void *a);
-u32 func_02152520(Unk02152500 *a, void *b);
-u64 func_02152584(const void *a);
-void func_021525a8(void *a);
-s32 func_021525e0(void *a);
-void func_021525f0(Unk02152500 *a, const Unk02152490 *b, u32 c);
-s32 func_02152638(const void *a);
-void func_02152690(void *a, u32 b);
+u64 DWC_CreateFriendKey(const DWCAccUserData *userdata);
+int DWC_GetGsProfileId(const DWCAccUserData *userdata, const DWCAccFriendData *frienddata);
+u64 DWC_GetFriendKey(const DWCAccFriendData *frienddata);
+void DWCi_Acc_ClearDirty(DWCAccUserData *userdata);
+BOOL DWCi_Acc_IsDirty(const DWCAccUserData *userdata);
+void DWCi_Acc_SetLoginIdToUserData(DWCAccUserData *userdata, const DWCAccFriendData *loginid, int gsProfileId);
+BOOL DWC_CheckValidConsole(const DWCAccUserData *userdata);
+void DWC_CreateUserData(DWCAccUserData *userdata, u32 gamecode);

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk02152490 Unk02152490;
+typedef struct DWCAccFriendData DWCAccFriendData;
 
-u32 func_02152a6c(const Unk02152490 *a);
+u32 func_02152a6c(const DWCAccFriendData *a);

@@ -40,7 +40,7 @@ void SetBuddyChangedCallback(void *first, void *second) {
 }
 
 // Runs from InitWiFiConnection, per login.
-void InitBuddySync(WiFiBuddySync *a, struct GpConnection *b, char *c, Unk02152490 *d, s32 e) {
+void InitBuddySync(WiFiBuddySync *a, struct GpConnection *b, char *c, DWCAccFriendData *d, s32 e) {
     WiFiBuddySync *q;
     gWiFiBuddySync = a;
     a->mState = 0;
@@ -199,10 +199,10 @@ s32 func_ov000_0219d660(void) {
 
 // 0 when the entry holds no id.
 int GetBuddyEntryProfileId(int a) {
-    Unk02152500 *v1;
+    DWCAccUserData *v1;
     u32 v2;
     v1 = func_ov000_0219c9c4();
-    v2 = func_02152520(v1, &gWiFiBuddySync->mBuddies[a]);
+    v2 = DWC_GetGsProfileId(v1, &gWiFiBuddySync->mBuddies[a]);
     if ((v2 == 0) || (v2 == -1)) {
         v2 = 0;
     }
@@ -281,7 +281,7 @@ void func_ov000_0219d478(void) {
     }
 }
 
-void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
+void func_ov000_0219d2e8(DWCAccFriendData *a, s32 b) {
     s32 c;
     s32 d;
     s32 i;
@@ -294,9 +294,9 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
             ReportBuddySyncGpResult(GpGetBuddyStatus(gWiFiBuddySync->mGpConnection, d, &f));
             for (i = 0; i < b; i++) {
                 if (f.mUnk_000 == GetBuddyEntryProfileId(i)) {
-                    if (func_02152a24((Unk02152490 *) a + i) == 0) {
+                    if (DWC_IsBuddyFriendData((DWCAccFriendData *) a + i) == 0) {
                         func_02152468(&a[i], f.mUnk_000);
-                        func_021529bc(&a[i]);
+                        DWCi_SetBuddyFriendData(&a[i]);
                         gWiFiBuddySync->mBuddiesChanged = 1;
                     }
                     break;
@@ -314,14 +314,14 @@ void func_ov000_0219d2e8(Unk02152490 *a, s32 b) {
         g = GetBuddyEntryProfileId(gWiFiBuddySync->mSyncIndex);
         if (g != 0) {
             if (func_ov000_0219d210(a, gWiFiBuddySync->mSyncIndex, g) == FALSE &&
-                func_02152a24(&a[gWiFiBuddySync->mSyncIndex]) == 0) {
+                DWC_IsBuddyFriendData(&a[gWiFiBuddySync->mSyncIndex]) == 0) {
                 ReportBuddySyncGpResult(GpGetBuddyIndex(gWiFiBuddySync->mGpConnection, g, &d));
                 if (d == -1) {
                     AddBuddy(g);
                 }
             }
-        } else if (func_02152520(func_ov000_0219c9c4(), &a[gWiFiBuddySync->mSyncIndex]) == -1) {
-            func_02152458(func_ov000_0219c9c4(), &a[gWiFiBuddySync->mSyncIndex], e);
+        } else if (DWC_GetGsProfileId(func_ov000_0219c9c4(), &a[gWiFiBuddySync->mSyncIndex]) == -1) {
+            DWC_LoginIdToUserName(func_ov000_0219c9c4(), &a[gWiFiBuddySync->mSyncIndex], e);
             func_ov000_0218f0a8(gWiFiBuddySync->mGpConnection, NULL, NULL, NULL, NULL, (s8 *) e, 0, 0,
                                 (Unk0218f0a8Cb) func_ov000_0219ce48, gWiFiBuddySync->mSyncIndex);
             gWiFiBuddySync->mUnk_1e = 2;
@@ -337,7 +337,7 @@ void FinishBuddySync(void) {
     gWiFiBuddySync->mState = 2;
 }
 
-void func_ov000_0219d288(Unk02152490 *a, s32 b, s32 c) {
+void func_ov000_0219d288(DWCAccFriendData *a, s32 b, s32 c) {
     if (gWiFiBuddySync != NULL) {
         MI_CpuFill8(&a[b], 0, 12);
         if (gWiFiBuddySync->mEntryMergedCallback != NULL) {
@@ -346,13 +346,13 @@ void func_ov000_0219d288(Unk02152490 *a, s32 b, s32 c) {
     }
 }
 
-BOOL func_ov000_0219d210(Unk02152490 *a, s32 b, s32 c) {
+BOOL func_ov000_0219d210(DWCAccFriendData *a, s32 b, s32 c) {
     s32 i;
     s32 j;
     for (i = 0; i < b; i++) {
         j = GetBuddyEntryProfileId(i);
         if (j != 0 && j == c) {
-            if (func_02152a24(&a[b]) != 0 && func_02152a24(&a[i]) == 0) {
+            if (DWC_IsBuddyFriendData(&a[b]) != 0 && DWC_IsBuddyFriendData(&a[i]) == 0) {
                 func_ov000_0219d288(a, i, b);
             } else {
                 func_ov000_0219d288(a, b, i);
@@ -364,14 +364,14 @@ BOOL func_ov000_0219d210(Unk02152490 *a, s32 b, s32 c) {
     return FALSE;
 }
 
-s32 func_ov000_0219d14c(Unk02152490 *a, s32 b, s32 c) {
+s32 func_ov000_0219d14c(DWCAccFriendData *a, s32 b, s32 c) {
     s32 l;
     s32 i;
     s32 j;
     s32 k;
-    Unk02152490 *p;
-    Unk02152490 *q;
-    Unk02152490 *r;
+    DWCAccFriendData *p;
+    DWCAccFriendData *q;
+    DWCAccFriendData *r;
     i = 0;
     l = -1;
     if (b - 1 > 0) {
@@ -391,8 +391,8 @@ s32 func_ov000_0219d14c(Unk02152490 *a, s32 b, s32 c) {
                             if (func_02152a1c(p) == 2 && func_02152a1c(r) == 3) {
                                 func_02152468(q, k);
                             }
-                            if (func_02152a24(r) != 0) {
-                                func_021529bc(q);
+                            if (DWC_IsBuddyFriendData(r) != 0) {
+                                DWCi_SetBuddyFriendData(q);
                             }
                             func_ov000_0219d288(a, j, i);
                             gWiFiBuddySync->mBuddiesChanged = 1;

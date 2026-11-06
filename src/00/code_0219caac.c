@@ -10,7 +10,7 @@ u32 GetPendingStatsRequestCount(void) {
 // Per login (called by InitWiFiConnection after the caller zeroed the connection; not once at boot): stores gWiFiLogin,
 // zeroes the 0x264 bytes and stores the GP connection, product id, saved record and the callback pair. Pair of
 // ReleaseWiFiLogin.
-void InitWiFiLogin(WiFiLogin *a, Unk02152500 *b, GpConnection *c, u32 d, u32 e, void (*f)(), void *g) {
+void InitWiFiLogin(WiFiLogin *a, DWCAccUserData *b, GpConnection *c, u32 d, u32 e, void (*f)(), void *g) {
     gWiFiLogin = a;
     MI_CpuFill8(a, 0, 0x264);
     gWiFiLogin->mGpConnection = c;

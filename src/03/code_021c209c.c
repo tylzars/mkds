@@ -98,7 +98,7 @@ void func_ov003_021c2398(void) {
     func_ov003_021d2d50();
     func_ov003_021d1f98();
     p = func_ov003_021d285c(0x700, 0x20);
-    func_02151b38(p);
+    DWC_BM_Init(p);
     func_ov003_021d2808(&p);
 }
 

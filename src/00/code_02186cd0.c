@@ -38,7 +38,7 @@ void func_ov000_02187fb8(void) {
 
 void func_ov000_021874ec(void) {
     Unk0218635c e;
-    Unk021510a4 c;
+    DWCWiFiInfo c;
     char d[0x24];
     char b2[4];
     u16 b;
@@ -200,8 +200,8 @@ void func_ov000_021874ec(void) {
             }
         }
         ReleaseHttp((Http *) gHttp);
-        func_02151910(&c);
-        if (c.mUnk_00 == 0) {
+        DWCi_BM_GetWiFiInfo(&c);
+        if (c.mAttestedUserId == 0) {
             data_ov000_021b4cb0->mUnk_04 = -3;
             data_ov000_021b4cd4.mUnk_00 = 0;
             data_ov000_021b4cd4.mUnk_15 = 0;

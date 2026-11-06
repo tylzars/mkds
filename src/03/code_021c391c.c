@@ -60,7 +60,7 @@ void func_ov003_021c3cc4(void) {
     u8 *a;
     Unk021d70f8 b;
     Unk021d7110 c;
-    Unk021510a4 d;
+    DWCWiFiInfo d;
     u8 *e;
     u8 *f;
     s32 i;
@@ -70,8 +70,8 @@ void func_ov003_021c3cc4(void) {
     func_ov003_021bf620(data_ov003_021d7140, GX_LoadBG2Scr);
     data_ov003_021da1b4 = func_ov003_021d14b8(func_ov003_021bf650(c.mUnk_00), NULL, 4);
     a = func_ov003_021d14b8(func_ov003_021bf650(b.mUnk_00), NULL, 4);
-    func_02151910(&d);
-    if (d.mUnk_00 == 0) {
+    DWCi_BM_GetWiFiInfo(&d);
+    if (d.mAttestedUserId == 0) {
         e = a + 0xc0;
         f = a + 0x40;
         for (i = 0; i < 2; i++, e += 0x20, f += 0x20) {
@@ -148,14 +148,14 @@ void func_ov003_021c3b5c(void) {
 }
 
 void func_ov003_021c3ae4(void) {
-    Unk021510a4 a;
+    DWCWiFiInfo a;
     switch (func_ov003_021bf334()) {
         case 0:
             func_ov003_021cdc10(7);
             break;
         case 1:
-            func_02151910(&a);
-            if (data_ov003_021da1ac != 0 && a.mUnk_00 == 0) {
+            DWCi_BM_GetWiFiInfo(&a);
+            if (data_ov003_021da1ac != 0 && a.mAttestedUserId == 0) {
                 func_ov003_021cdc10(9);
                 func_ov003_021bf310(-1);
                 return;

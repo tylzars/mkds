@@ -61,14 +61,14 @@ void func_020612b0(void) {
 }
 
 s32 func_02061290(void) {
-    return func_02152638(data_0217aa08->mUnk_00->mUnk_4c);
+    return DWC_CheckValidConsole((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c);
 }
 
 s32 func_02061250(void) {
     u64 a;
     s32 b;
 
-    a = func_02152500(data_0217aa08->mUnk_00->mUnk_4c);
+    a = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c);
     b = 0;
     if (a != b) {
         b = 1;
@@ -79,7 +79,7 @@ s32 func_02061250(void) {
 void func_02061220(u32 a) {
     u64 b;
 
-    b = func_02152500(data_0217aa08->mUnk_00->mUnk_4c);
+    b = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c);
     func_02152918((u32) b, (u32) (b >> 32), a);
 }
 
@@ -91,11 +91,11 @@ s32 func_02061104(const void *a) {
     u8 i;
     u8 *f;
 
-    d = Decimal12CharsToValue(a);
-    if (func_02152950(d, 0x414d434a) == 0) {
+    d = DWC_StringToFriendKey(a);
+    if (DWC_Acc_CheckFriendKey(d, 0x414d434a) == 0) {
         return 1;
     }
-    if (d == func_02152500(data_0217aa08->mUnk_00->mUnk_4c)) {
+    if (d == DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c)) {
         return 1;
     }
     func_021524d8(b, (u32) d, (u32) (d >> 32));
@@ -107,7 +107,7 @@ s32 func_02061104(const void *a) {
         func_0205ee14(i, &c);
         if (c.mUnk_22_0 == 1) {
             g = f + i * 12;
-            if (func_02152698(g) != 0 && func_02152390(g, b) != 0) {
+            if (func_02152698(g) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) g, (DWCAccFriendData *) b) != 0) {
                 e = (s8) i;
                 break;
             }
@@ -133,7 +133,7 @@ s32 func_0206105c(const void *a) {
         func_0205ee14(i, &b);
         if (b.mUnk_22_0 == 1) {
             e = d + i * 12;
-            if (func_02152698(e) != 0 && func_02152390(e, a) != 0) {
+            if (func_02152698(e) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) e, (DWCAccFriendData *) a) != 0) {
                 c = (s8) i;
                 break;
             }
@@ -166,7 +166,8 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     p = a;
     for (i = 0; i < 60; i = (s8) (i + 1), p += 12) {
         func_0205ee14((u8) i, &k);
-        if (k.mUnk_22_0 == 1 && func_02152698(c) != 0 && func_02152698(p) != 0 && func_02152390(p, c) != 0) {
+        if (k.mUnk_22_0 == 1 && func_02152698(c) != 0 && func_02152698(p) != 0 &&
+            DWC_IsEqualFriendData((DWCAccFriendData *) p, (DWCAccFriendData *) c) != 0) {
             m = i;
             n = TRUE;
             break;
@@ -234,7 +235,7 @@ s32 func_02060cb4(const void *a, void *b) {
     u8 c[12];
     u64 d;
 
-    d = Decimal12CharsToValue(a);
+    d = DWC_StringToFriendKey(a);
     func_021524d8(c, (u32) d, (u32) (d >> 32));
     return func_02060d1c((u8 *) data_0217aa08->mUnk_20 + 0x874, b, c, 1, 0, 1);
 }

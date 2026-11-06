@@ -62,7 +62,7 @@ void func_020366bc(void) {
     GX_VBlankIntr(1);
     FS_Init(-1);
     func_02039774();
-    data_usa_02174e54 = func_02152b08(data_usa_02174e80);
+    data_usa_02174e54 = DWC_Init(data_usa_02174e80);
     func_02039a1c();
 }
 

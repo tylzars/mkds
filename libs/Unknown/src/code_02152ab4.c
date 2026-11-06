@@ -3,8 +3,8 @@
 
 #pragma thumb on
 
-u64 func_02152ab4(const Unk02152490 *a) {
-    return (u64) a->mUnk_08 << 32 | a->mUnk_04;
+u64 DWCi_Acc_GetFriendKey(const DWCAccFriendData *data) {
+    return (u64) data->mUnk_08 << 32 | data->mUnk_04;
 }
 
 #pragma thumb off

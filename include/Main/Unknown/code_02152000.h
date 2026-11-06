@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-typedef struct Unk02151ddc Unk02151ddc;
+typedef struct DWCAuthWiFiId DWCAuthWiFiId;

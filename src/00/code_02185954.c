@@ -346,7 +346,7 @@ s32 func_ov000_02186298(s32 a) {
         return 4;
     }
     if (a == 1) {
-        func_02151910((Unk021510a4 *) &data_ov000_021b4c94);
+        DWCi_BM_GetWiFiInfo((DWCWiFiInfo *) &data_ov000_021b4c94);
     }
     data_ov000_021b4c90->mUnk_004 =
         func_ov000_02185984(data_ov000_021b4c90->mUnk_2f8, data_ov000_021b4c90->mUnk_1cc.mUnk_15,
@@ -465,7 +465,7 @@ s32 func_ov000_02185ef4(void) {
                 data_ov000_021b4c90->mUnk_008 = 0x4e84;
                 return 2;
             }
-            if (func_02151f48((Unk021510a4 *) &data_ov000_021b4c94, (u8 *) (((u32) c + 0x1f) & ~0x1f)) != 1) {
+            if (DWCi_AUTH_UpDateWiFiID((DWCWiFiInfo *) &data_ov000_021b4c94, (u8 *) (((u32) c + 0x1f) & ~0x1f)) != 1) {
                 data_ov000_021b4c90->mUnk_1cc.mUnk_28(b, c, 0);
                 data_ov000_021b4c90->mUnk_008 = 0x4e84;
                 return 0xe;
@@ -476,7 +476,7 @@ s32 func_ov000_02185ef4(void) {
     }
     switch (a->mUnk_008) {
         case 0x4e88:
-            if (func_02151e20((Unk021510a4 *) &data_ov000_021b4c94) == 0) {
+            if (DWCi_AUTH_RemakeWiFiID((DWCWiFiInfo *) &data_ov000_021b4c94) == 0) {
                 data_ov000_021b4c90->mUnk_008 = 0x4e88;
                 return 0xe;
             }
@@ -620,7 +620,7 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
             }
         }
     } else {
-        func_02151910((Unk021510a4 *) &data_ov000_021b4c94);
+        DWCi_BM_GetWiFiInfo((DWCWiFiInfo *) &data_ov000_021b4c94);
     }
     func_ov000_021868a4(&q, data_ov000_021b10c0, data_ov000_021b10c8);
     if (data_ov000_021b4c94.mUnk_00 != 0) {

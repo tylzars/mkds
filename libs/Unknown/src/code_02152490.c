@@ -7,16 +7,13 @@
 
 #pragma thumb on
 
-void func_02152490(void *a, void *b) {
-    Unk02152500 *p = a;
-    Unk02152490 *q = b;
-
-    MI_CpuFill8(q, 0, 12);
-    if (func_021526bc(p) != 0) {
-        func_02152a7c(q, p->mUnk_1c);
-        func_021529e0(q, 3);
+void DWC_CreateExchangeToken(const DWCAccUserData *userdata, DWCAccFriendData *token) {
+    MI_CpuFill8(token, 0, 12);
+    if (DWCi_Acc_IsAuthentic(userdata) != 0) {
+        DWCi_Acc_SetGsProfileId(token, userdata->mGsProfileId);
+        func_021529e0(token, 3);
     } else {
-        *q = p->mUnk_04;
+        *token = userdata->mPseudo;
     }
 }
 

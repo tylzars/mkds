@@ -61,7 +61,7 @@ void func_02057304(s32 a) {
     data_0217aa08->mUnk_00->mUnk_31_4 = 0;
     data_0217aa08->mUnk_00->mUnk_24 = 0x1388;
     func_0209119c();
-    func_02152690(data_0217aa08->mUnk_00->mUnk_4c, 0x414d434a);
+    DWC_CreateUserData((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c, 0x414d434a);
 }
 
 #pragma thumb off

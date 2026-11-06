@@ -185,7 +185,7 @@ void func_ov003_021cd790(s32 a) {
     } else {
         data_ov003_021da270->mUnk_400.mUnk_f6 = 1;
     }
-    Bytes4StoreTopBitsMask(q->mUnk_d0, data_ov003_021da270->mUnk_400.mUnk_f0);
+    DWCi_BACKUPlConvMaskAddr(q->mUnk_d0, data_ov003_021da270->mUnk_400.mUnk_f0);
 }
 
 void func_ov003_021cd6d0(void) {
@@ -199,7 +199,7 @@ void func_ov003_021cd6d0(void) {
     } else {
         MI_CpuCopy8(p->mUnk_00.mUnk_c0, q->mUnk_c0, 4);
         MI_CpuCopy8(p->mUnk_00.mUnk_c4, q->mUnk_c4, 4);
-        q->mUnk_d0 = CountSetBitsInBytes4(p->mUnk_f0);
+        q->mUnk_d0 = DWCi_BACKUPlConvMaskCidr(p->mUnk_f0);
     }
     if (p->mUnk_f6 != 0) {
         MI_CpuFill8(q->mUnk_c8, 0, 8);
@@ -377,15 +377,15 @@ void func_ov003_021cd4ac(int a) {
 
 void func_ov003_021cd42c(void) {
     volatile u16 a = 0;
-    Unk021510a4 b;
+    DWCWiFiInfo b;
     u8 *c;
     s32 i;
     MIi_CpuClear16(a, data_ov003_021da270, 0x400);
     for (i = 0; i < 3; i++) {
         data_ov003_021da270->mUnk_000[i].mUnk_00.mUnk_e7 = 0xff;
     }
-    func_02151fc4(&b);
-    c = func_021510a4(&b);
+    DWCi_AUTH_GetNewWiFiInfo(&b);
+    c = DWCi_BACKUPlConvWifiInfo(&b);
     for (i = 0; i < 2; i++) {
         MI_CpuCopy8(c, data_ov003_021da270->mUnk_000[i].mUnk_f0, 0xe);
     }

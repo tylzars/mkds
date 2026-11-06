@@ -7,38 +7,38 @@
 
 #pragma thumb on
 
-void func_02151910(Unk021510a4 *a) {
-    MI_CpuCopy8(data_021804a0, a, 6);
-    a->mUnk_00 &= ~0xfffff80000000000ULL;
-    MI_CpuCopy8(data_021804a0 + 5, &a->mUnk_08, 6);
-    a->mUnk_08 >>= 3;
-    a->mUnk_08 &= ~0xfffff80000000000ULL;
-    MI_CpuCopy8(data_021804a0 + 10, &a->mUnk_10, 2);
-    a->mUnk_10 = a->mUnk_10 >> 6;
-    a->mUnk_10 &= 0x3ff;
-    MI_CpuCopy8(data_021804a0 + 12, &a->mUnk_12, 2);
+void DWCi_BM_GetWiFiInfo(DWCWiFiInfo *info) {
+    MI_CpuCopy8(data_021804a0, info, 6);
+    info->mAttestedUserId &= ~0xfffff80000000000ULL;
+    MI_CpuCopy8(data_021804a0 + 5, &info->mNotAttestedId, 6);
+    info->mNotAttestedId >>= 3;
+    info->mNotAttestedId &= ~0xfffff80000000000ULL;
+    MI_CpuCopy8(data_021804a0 + 10, &info->mPass, 2);
+    info->mPass = info->mPass >> 6;
+    info->mPass &= 0x3ff;
+    MI_CpuCopy8(data_021804a0 + 12, &info->mRandomHistory, 2);
 }
 
-u32 func_02151868(Unk021510a4 *a, u8 *b) {
-    u32 c;
-    s32 d;
-    c = *(u32 *) data_0218049c;
-    func_021510a4(a);
-    Crc16InitTable((u16 *) (b + 0x200), 0xa001);
-    for (d = 0; d < 2;) {
-        if (func_0215122c(c, 0x100, b) == 0) {
+BOOL DWCi_BM_SetWiFiInfo(const DWCWiFiInfo *info, u8 *work) {
+    u32 address;
+    s32 page;
+    address = *(u32 *) data_0218049c;
+    DWCi_BACKUPlConvWifiInfo(info);
+    Crc16InitTable((u16 *) (work + 0x200), 0xa001);
+    for (page = 0; page < 2;) {
+        if (readNvram(address, 0x100, work) == 0) {
             OS_Terminate();
             return 0;
         }
-        MI_CpuCopy8(data_021804a0, b + 0xf0, 0xe);
-        *(u16 *) (b + 0xfe) = Crc16((u16 *) (b + 0x200), b, 0xfe);
+        MI_CpuCopy8(data_021804a0, work + 0xf0, 0xe);
+        *(u16 *) (work + 0xfe) = Crc16((u16 *) (work + 0x200), work, 0xfe);
         do {
-            func_021511d8(c, 0x100, b);
-        } while (func_0215119c(b, c, 0x100, b + 0x100) == 0);
-        d++;
-        c += 0x100;
+            writeNvram(address, 0x100, work);
+        } while (verify(work, address, 0x100, work + 0x100) == 0);
+        page++;
+        address += 0x100;
     }
-    if (func_02151154() != 0) {
+    if (writeDisable() != 0) {
         return 1;
     }
     return 0;

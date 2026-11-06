@@ -3,9 +3,9 @@
 
 #pragma thumb on
 
-u32 func_021526c8(const Unk02152490 *a) {
+u32 func_021526c8(const DWCAccFriendData *a) {
     int v1;
-    v1 = func_02152a58(a);
+    v1 = DWCi_Acc_GetFlag_DataType(a);
     if (v1 == 1) {
         return 1;
     }

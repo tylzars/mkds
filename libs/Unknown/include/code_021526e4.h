@@ -2,12 +2,12 @@
 
 #include "types.h"
 
-typedef struct Unk02152490 Unk02152490;
-typedef struct Unk02152500 Unk02152500;
+typedef struct DWCAccFriendData DWCAccFriendData;
+typedef struct DWCAccUserData DWCAccUserData;
 
-s32 func_021526e4(const Unk02152490 *a);
-void func_02152744(Unk02152490 *a);
-void func_021527ac(Unk02152500 *a, u32 b);
-void func_02152808(const Unk02152490 *a, u32 b, char *c);
-void ValueToChars5Bit(u64 a, s32 n, char *c);
-u64 Decimal12CharsToValue(const void *a);
+BOOL DWCi_Acc_CheckConsoleUserId(const DWCAccFriendData *loginid);
+void DWCi_Acc_CreateTempLoginId(DWCAccFriendData *loginid);
+void DWCi_Acc_CreateUserData(DWCAccUserData *userdata, u32 gamecode);
+void DWCi_Acc_LoginIdToUserName(const DWCAccFriendData *loginid, u32 gamecode, char *username);
+void DWCi_Acc_U64ToString32(u64 num, s32 bitnum, char *result);
+u64 DWC_StringToFriendKey(const char *string);

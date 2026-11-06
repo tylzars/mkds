@@ -7,49 +7,49 @@
 
 #pragma thumb on
 
-void func_021529bc(Unk02152490 *a) {
-    u32 b;
-    if (func_02152a58(a) == 3) {
-        b = func_02152a6c(a) | 4;
-        func_02152a04(a, b);
+void DWCi_SetBuddyFriendData(DWCAccFriendData *frienddata) {
+    u32 flags;
+    if (DWCi_Acc_GetFlag_DataType(frienddata) == 3) {
+        flags = func_02152a6c(frienddata) | 4;
+        func_02152a04(frienddata, flags);
     }
 }
 
-u64 func_02152988(u32 a, u32 b) {
-    u32 s[2];
-    u8 t[0x100];
-    u64 v;
+u64 DWC_Acc_CreateFriendKey(int gsProfileId, u32 gamecode) {
+    u32 code[2];
+    u8 table[0x100];
+    u64 crc;
 
-    s[0] = a;
-    s[1] = b;
-    Crc8InitTable(t, 7);
-    v = Crc8(t, s, 8) & 0x7f;
-    v <<= 32;
-    v |= a;
-    return v;
+    code[0] = gsProfileId;
+    code[1] = gamecode;
+    Crc8InitTable(table, 7);
+    crc = Crc8(table, code, 8) & 0x7f;
+    crc <<= 32;
+    crc |= (u32) gsProfileId;
+    return crc;
 }
 
-s32 func_02152950(u64 a, u32 b) {
-    u32 s[2];
-    u8 t[0x100];
-    s32 c;
+BOOL DWC_Acc_CheckFriendKey(u64 friendkey, u32 gamecode) {
+    u32 code[2];
+    u8 table[0x100];
+    s32 crc;
 
-    s[0] = a;
-    s[1] = b;
-    Crc8InitTable(t, 7);
-    c = Crc8(t, s, 8) & 0x7f;
-    return c == (a >> 32);
+    code[0] = friendkey;
+    code[1] = gamecode;
+    Crc8InitTable(table, 7);
+    crc = Crc8(table, code, 8) & 0x7f;
+    return crc == (friendkey >> 32);
 }
 
-u32 func_02152934(u64 a, u32 b) {
-    u32 r;
+int DWC_Acc_FriendKeyToGsProfileId(u64 friendkey, u32 gamecode) {
+    u32 result;
 
-    if (func_02152950(a, b) != 0) {
-        r = a & ~0xffffffff00000000ull;
+    if (DWC_Acc_CheckFriendKey(friendkey, gamecode) != 0) {
+        result = friendkey & ~0xffffffff00000000ull;
     } else {
-        r = 0;
+        result = 0;
     }
-    return r;
+    return result;
 }
 
 #pragma thumb off
