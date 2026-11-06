@@ -4,7 +4,7 @@
 
 #pragma thumb on
 
-Nclr *func_020b33c4(void) {
+Nclr *GetChoisesSBNclr(void) {
     return (gChoisesS->mChoisesSBNclr);
 }
 

@@ -17,7 +17,7 @@ u32 func_020b29c4(void) {
     u32 c = 0;
     u32 d;
 
-    if (IsRaceStartSequenceDone() != 0 && GetRaceStartSequenceFrames() > 0xf0 && func_020b2a4c() == 0 &&
+    if (IsRaceStartSequenceDone() != 0 && GetRaceStartSequenceFrames() > 0xf0 && GetRaceDone() == 0 &&
         (func_020b252c() != MODE_BATTLE || IsWinnerDecided() == FALSE)) {
         d = 1;
         if (func_020b252c() == MODE_MISSION_RUN) {

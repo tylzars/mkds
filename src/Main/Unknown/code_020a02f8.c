@@ -58,15 +58,15 @@ KartBalloons *GetStandingsKartBalloons(void) {
     return gStandings->mKartBalloons;
 }
 
-void func_020a2364(u32 p0) {
+void SetStandingsKartHitByKartCallback(u32 p0) {
     *(u32 *) ((u8 *) (u32) (((u32) gStandings)) + 896) = p0;
 }
 
-void func_020a2350(u32 p0) {
+void SetStandingsKartsHitEachOtherCallback(u32 p0) {
     *(u32 *) ((u8 *) (u32) (((u32) gStandings)) + 900) = p0;
 }
 
-void func_020a233c(s32 (*p0)(u16 a, u16 b)) {
+void SetStandingsKartHitCallback(s32 (*p0)(u16 a, u16 b)) {
     gStandings->mKartHitCallback = p0;
 }
 
@@ -80,7 +80,7 @@ void SetStandingsEndCallback(void (*a)(void)) {
     gStandings->mEndCallback = a;
 }
 
-void func_020a2300(u32 p0) {
+void SetStandingsKartOffsetCallback(u32 p0) {
     *(u32 *) ((u8 *) (u32) (((u32) gStandings)) + 924) = p0;
 }
 
@@ -674,7 +674,7 @@ u16 func_020a119c(void) {
     return v1;
 }
 
-u16 func_020a1180(void) {
+u16 GetHighestBalloonOrShineCount(void) {
     return gStandings->mHighestBalloonOrShineCount;
 }
 

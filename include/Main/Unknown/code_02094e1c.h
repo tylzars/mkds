@@ -28,7 +28,7 @@ s16 func_0209516c(s32 a);
 s32 func_0209518c(s32 a, s32 b);
 s16 func_0209519c(s32 a);
 u16 func_020951b4(Unk020f41c4_B *a);
-Unk020f41c4_B *func_0209520c(void);
+Unk020f41c4_B *GetRaceLocalRandom(void);
 void func_02095228(Unk02095228 *a);
 void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e);
 void func_020954e4(u32 arg0);

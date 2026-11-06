@@ -145,7 +145,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
             gResultsBattle->mUnk_150 = 0;
             break;
         case 3:
-            gResultsBattle->mUnk_0d0 = func_02122778(func_ov000_0219bb50());
+            gResultsBattle->mUnk_0d0 = GetPackedIndex(func_ov000_0219bb50());
             gResultsBattle->mUnk_0d8 = gWiFiSession->mKartCount;
             gResultsBattle->mUnk_148 = TRUE;
             gResultsBattle->mTimer = 0x384;

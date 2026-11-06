@@ -209,7 +209,7 @@ void func_020b0b8c(void) {
             case 2:
             case 3:
                 func_020b18b0();
-                GXS_LoadBGPltt(func_020b33c4()->mData, 0, 0x200);
+                GXS_LoadBGPltt(GetChoisesSBNclr()->mData, 0, 0x200);
                 break;
             case 4:
             case 5:
@@ -273,8 +273,8 @@ void func_020b0b8c(void) {
                 a = -w & 0x1ff;
                 reg_G2S_DB_BG2OFS = a;
                 reg_G2S_DB_BG3OFS = a;
-                GXS_LoadBG2Scr(func_020c3e14(1)->mData, 0, 0x600);
-                GXS_LoadBG3Scr(func_020c3e14(2)->mData, 0, 0x600);
+                GXS_LoadBG2Scr(GetRaceGoalSNscr(1)->mData, 0, 0x600);
+                GXS_LoadBG3Scr(GetRaceGoalSNscr(2)->mData, 0, 0x600);
             }
             break;
         case 5:
@@ -287,9 +287,9 @@ void func_020b0b8c(void) {
             }
             w = func_020c3e00();
             if (gRaceHud->mUnk_830 != FALSE) {
-                GXS_LoadBG1Scr(func_020c3e14(3)->mData, 0, func_020c3e14(3)->mDataSize);
-                GXS_LoadBG2Scr(func_020c3e14(4)->mData, 0, func_020c3e14(4)->mDataSize);
-                GXS_LoadBG3Scr(func_020c3e14(5)->mData, 0, func_020c3e14(5)->mDataSize);
+                GXS_LoadBG1Scr(GetRaceGoalSNscr(3)->mData, 0, GetRaceGoalSNscr(3)->mDataSize);
+                GXS_LoadBG2Scr(GetRaceGoalSNscr(4)->mData, 0, GetRaceGoalSNscr(4)->mDataSize);
+                GXS_LoadBG3Scr(GetRaceGoalSNscr(5)->mData, 0, GetRaceGoalSNscr(5)->mDataSize);
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(8)->mNclr->mData, 0, 0x20);
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(8)->mNclr->mData + 0xc0, 0x180, 0x80);
                 GXS_LoadOBJ(GetRaceNclrNcgr(8)->mNcgr->mData, 0, 0x4000);
@@ -452,14 +452,14 @@ void func_020b03bc(void) {
         DC_FlushRange(((Ncgr *) gRaceHud->mNscrs[0])->mData, ((Ncgr *) gRaceHud->mNscrs[0])->mDataSize);
         DC_FlushRange(gRaceHud->mNscrs[2]->mData, gRaceHud->mNscrs[2]->mDataSize);
     }
-    p = func_020b33c4()->mData;
+    p = GetChoisesSBNclr()->mData;
     for (i = 0; i < 0x80; i++) {
         data_0217b34c[i + 0x80] = p[i + 0x80];
     }
-    func_020b33c4()->mData[0] = data_0217b34c[0x100];
-    DC_FlushRange(func_020b33c4()->mData, 0x200);
+    GetChoisesSBNclr()->mData[0] = data_0217b34c[0x100];
+    DC_FlushRange(GetChoisesSBNclr()->mData, 0x200);
     for (i = 0; i < 0x20; i++) {
-        w = func_020b33c4()->mData[i + 0xe0];
+        w = GetChoisesSBNclr()->mData[i + 0xe0];
         func_020c3e2c(0)->mUnk_00->mData[i + 0xe0] = w;
     }
     G2x_SetBlendAlpha_((u32 *) 0x04001050, 0, 0x3f, 6, 10);
@@ -671,9 +671,9 @@ void func_020af99c(void) {
     GXS_LoadOBJPltt(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
     GXS_LoadOBJ(GetRaceNclrNcgr(6)->mNcgr->mData, 0, 0x4000);
     func_020b17a4();
-    GXS_LoadBG1Scr(func_020c3e14(0)->mData, 0, func_020c3e14(0)->mDataSize);
-    GXS_LoadBG2Scr(func_020c3e14(1)->mData, 0, func_020c3e14(1)->mDataSize);
-    GXS_LoadBG3Scr(func_020c3e14(2)->mData, 0, func_020c3e14(2)->mDataSize);
+    GXS_LoadBG1Scr(GetRaceGoalSNscr(0)->mData, 0, GetRaceGoalSNscr(0)->mDataSize);
+    GXS_LoadBG2Scr(GetRaceGoalSNscr(1)->mData, 0, GetRaceGoalSNscr(1)->mDataSize);
+    GXS_LoadBG3Scr(GetRaceGoalSNscr(2)->mData, 0, GetRaceGoalSNscr(2)->mDataSize);
     GXS_LoadBGPltt(data_0217b34c + 0x100, 0, 0x200);
     func_020cfca4();
     GX_SetBankForSubBGExtPltt(0x80);
@@ -681,7 +681,7 @@ void func_020af99c(void) {
     GXS_LoadBGExtPltt(data_0217b34c + 0x100, 0x4000, 0x200);
     GXS_LoadBGExtPltt(data_0217b34c + 0x100, 0x6000, 0x200);
     GXS_EndLoadBGExtPltt();
-    GXS_LoadBGPltt(func_020b33c4()->mData, 0, 0x200);
+    GXS_LoadBGPltt(GetChoisesSBNclr()->mData, 0, 0x200);
     reg_G2S_DB_BG0OFS = 0;
     reg_G2S_DB_BG0CNT = reg_G2S_DB_BG0CNT & ~3;
     reg_G2S_DB_BG0CNT &= ~0x40;

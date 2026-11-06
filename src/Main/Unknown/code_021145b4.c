@@ -239,7 +239,7 @@ void InitRecordVSErase(void *a) {
     for (i = 0; i < 2; i++) {
         gRecordVSErase->mOffsetTimers[i] = 0;
     }
-    func_02077a28(a);
+    LoadEmblemSBNclr(a);
     LocateAndQueueRecordVSErase();
     func_02124ed0(a, gRecordVSErase->mRecordVSMBncl, gRecordVSErase->mRecordVSMBnll, &gRecordVSErase->mRecordVSMTable);
     func_02124ed0(a, gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMTransientBnll,

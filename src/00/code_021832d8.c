@@ -436,7 +436,7 @@ void AdvanceWiFiVSMatchingState2(void) {
     gWiFiVSMatching->mUnk_08 = gWiFiVSMatching->mUnk_08 + 1;
     if (gWiFiVSMatching->mUnk_08 >= 0x14) {
         if (func_02125f88() != 0) {
-            q = func_02077f00();
+            q = GetEmblemSBNclr();
             for (i = 0; i < 3; i++) {
                 gWiFiVSMatching->mWiFiVSMatchingTable[data_ov000_021b0668[i]].mUnk_00 = 0;
             }

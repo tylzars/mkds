@@ -48,13 +48,13 @@ extern u8 data_usa_021550e8[];
 extern u8 data_usa_02155108[];
 extern u8 data_usa_02155128[];
 extern u8 data_usa_02155148[];
-extern Nclr *data_usa_0217ace4;
+extern Nclr *gEmblemSBNclr;
 extern u8 *data_usa_0217acec;
 
 void func_02077bc0(void *a);
 void func_02077c1c(void);
 void func_02077eb4(void *a, u32 *b);
-Nclr *func_02077f00(void);
+Nclr *GetEmblemSBNclr(void);
 void func_02077f0c(u16 *a, int b, u32 c);
 void func_02077f48(unsigned int p0);
 void func_02077f5c(void);

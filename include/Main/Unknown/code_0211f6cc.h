@@ -15,4 +15,4 @@ u32 func_0211f91c(void);
 void func_0211f864(s32 a);
 void func_0211f77c(s32 a, s32 b);
 void func_0211f6e8(u32 a, u32 b);
-void func_0211f6cc(u32 a, u8 b);
+void SetBuddyStatus(u32 a, u8 b);

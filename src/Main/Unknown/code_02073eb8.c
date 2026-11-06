@@ -905,7 +905,7 @@ Camera *func_02074898(void) {
     return gEntryCamera;
 }
 
-Camera *func_02074888(void) {
+Camera *GetCurrentChainCamera(void) {
     return gCurrentChainCamera;
 }
 

@@ -32,7 +32,7 @@ s32 func_020b2bf0(void) {
 
 #pragma thumb on
 u32 func_020b2bc8(void) {
-    if (func_020b2a4c() != 0 || (func_020b24e4() == 2 && GetRaceStartSequenceFrames() > 0xf0)) {
+    if (GetRaceDone() != 0 || (func_020b24e4() == 2 && GetRaceStartSequenceFrames() > 0xf0)) {
         return 1;
     }
     return 0;

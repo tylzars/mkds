@@ -68,7 +68,7 @@ void SetCameraHeightHold(s32 a);
 void ResetCameraHalfFovAngle(void);
 void ResetCameraHalfFovAngleGoal(void);
 void SetCameraHalfFovAngleGoal(unsigned int p0);
-Camera *func_02074888(void);
+Camera *GetCurrentChainCamera(void);
 Camera *func_02074898(void);
 // Returns the chase camera (gChaseCamera).
 void *GetChaseCamera(void);

@@ -776,7 +776,7 @@ void func_020bc208(Unk020d029c *a) {
             a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q4, 0, 1);
             break;
     }
-    if (func_020b19f8() == 0) {
+    if (GetUseTimeDifference() == 0) {
         return;
     }
     if (func_020b1a20() == 0) {

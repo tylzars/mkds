@@ -31,7 +31,7 @@ void *func_020b320c(s32 a, s32 b) {
     return GetBmgEntry(func_020b47cc("common.bmg"), c[b]);
 }
 
-void func_020b31e4(void) {
+void ClearChoisesSListValueCounts(void) {
     s32 i;
 
     for (i = 0; i < 4; i++) {

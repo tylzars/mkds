@@ -51,7 +51,7 @@ u32 func_0202a360(void) {
             v = data_0217aa00->mUnk_1e52[(u16) w].mUnk_00;
             break;
         case 3:
-            v = (u16) func_02122778(func_ov000_0219bb50());
+            v = (u16) GetPackedIndex(func_ov000_0219bb50());
             break;
     }
     if (data_021759c0->mUseTeams != 0) {

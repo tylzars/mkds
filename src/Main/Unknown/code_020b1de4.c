@@ -52,7 +52,7 @@ void InitChoisesS(void) {
     gChoisesS->mUnk_02c = 0;
     gChoisesS->mUnk_030 = 0;
     func_020b3008();
-    func_020b31e4();
+    ClearChoisesSListValueCounts();
     switch (func_020b252c()) {
         case MODE_GRAND_PRIX:
             func_020b31b8(0, 0);
@@ -141,7 +141,7 @@ void InitChoisesS(void) {
             break;
         case 5:
             func_020b31b8(0, 0);
-            if (func_020b24f8() != 4) {
+            if (GetCourseNumber() != 4) {
                 func_020b31b8(1, 2);
             } else {
                 func_020b31b8(1, 7);

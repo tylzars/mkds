@@ -33,7 +33,7 @@ u32 func_021202f0(u32 arg0) {
     return value0;
 }
 
-u32 func_021202cc(u32 a) {
+u32 GetPlayerRecordRegion(u32 a) {
     return gWiFiSession->mPlayerRecords[a].mRegion;
 }
 

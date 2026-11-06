@@ -17,6 +17,6 @@ s32 *GetCharPhysicalParam(u32 p0) {
     return (s32 *) (gKartPhysicalParamTable->mCharParams + (p0 << 3));
 }
 
-u32 func_0208ae60(void) {
+u32 GetFirstBaseSpeedLimit(void) {
     return ((u32) gKartPhysicalParamTable->mFirstBaseSpeedLimit);
 }

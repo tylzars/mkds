@@ -4,6 +4,6 @@
 
 struct KartPhysicalParam;
 
-unsigned int func_0208ae60(void);
+unsigned int GetFirstBaseSpeedLimit(void);
 s32 *GetCharPhysicalParam(unsigned int p0);
 struct KartPhysicalParam *GetKartPhysicalParam(u32 arg0);

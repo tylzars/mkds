@@ -62,7 +62,7 @@ void LocateAndQueueRecordVSErase(void) {
     LocateNscr(&gRecordVSErase->mRecordVSM02Nscr, v2);
     v2 = FindSceneFile(gRecordVSM03NscrName);
     LocateNscr(&gRecordVSErase->mRecordVSM03Nscr, v2);
-    v3 = func_02077f00();
+    v3 = GetEmblemSBNclr();
     CallQueueAppend((u32) 0x17, (u32) 0, v4->mData, v4->mDataSize);
     CallQueueAppend((u32) 0x1b, (u32) 0, v6[0]->mData, v6[0]->mDataSize);
     CallQueueAppend((u32) 0x1b, (u32) (((u32) 0x00000800u)), gRecordVSErase->mUnk_4c, (u32) (((u32) 0x00000800u)));

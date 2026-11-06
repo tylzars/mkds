@@ -286,7 +286,7 @@ void func_02113f34(void) {
     gRecordVS->mRecordVSSBnbl = v1;
     v1 = FindSceneFile(gRecordVSSBnllName);
     gRecordVS->mRecordVSSBnll = v1;
-    v2 = func_02077f00();
+    v2 = GetEmblemSBNclr();
     v1 = FindSceneFile(gRecordVSMBNcgrName);
     LocateNcgr(&v5, v1);
     v1 = FindSceneFile(gRecordVSMNscrName);
@@ -823,7 +823,7 @@ void InitRecordVS(void *a) {
     for (i = 0; i < 2; i++) {
         gRecordVS->mUnk_80[i] = 0;
     }
-    func_02077a28(a);
+    LoadEmblemSBNclr(a);
     func_02113f34();
     func_02124ed0(a, gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMBnll, &gRecordVS->mRecordVSMTable);
     func_02124ed0(a, gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientBnll,

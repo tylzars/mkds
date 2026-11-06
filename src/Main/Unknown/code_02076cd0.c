@@ -91,11 +91,11 @@ u16 func_02077a4c(void) {
     return data_0217ad08->mUnk_008;
 }
 
-void func_02077a28(void *a) {
+void LoadEmblemSBNclr(void *a) {
     void *v;
 
     LoadKartModelMenuFile(a, data_usa_02165714, &v);
-    LoadNclrData(&data_usa_0217ace4, v);
+    LoadNclrData(&gEmblemSBNclr, v);
 }
 
 void func_02077998(void) {

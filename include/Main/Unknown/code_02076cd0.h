@@ -43,7 +43,7 @@ void func_020777ac(u32 a);
 // Kart's forward vector in mSavedKartForward and refreshes the projection.
 void CreateChaseCamera(void);
 void func_02077998(void);
-void func_02077a28(void *a);
+void LoadEmblemSBNclr(void *a);
 u16 func_02077a4c(void);
 u16 func_02077a5c(void);
 u32 func_02077a70(s32 *a, u32 b);

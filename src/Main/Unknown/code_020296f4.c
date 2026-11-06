@@ -37,7 +37,7 @@ void func_020297bc(void) {
     func_02029890(0);
     d = 0;
     for (c = 0; c < 4; c++) {
-        if (func_021227f8(c) != 0) {
+        if (GetKartMaskBit(c) != 0) {
             d |= 1 << c;
         }
     }
@@ -61,8 +61,8 @@ void func_020296f4(void) {
     u8 i;
     s32 j;
     for (i = 0; i < 4; i++) {
-        if (func_021227f8(i) != 0) {
-            j = func_02122778(i);
+        if (GetKartMaskBit(i) != 0) {
+            j = GetPackedIndex(i);
             data_02174e1c->mUnk_00[j].mCharacterIndex = data_0217b488->mUnk_20[i].mUnk_00;
             data_02174e1c->mUnk_00[j].mKartIndex = data_0217b488->mUnk_20[i].mUnk_04;
             data_02174e1c->mUnk_00[j].mUnk_08 = data_0217b488->mUnk_20[i].mUnk_08;

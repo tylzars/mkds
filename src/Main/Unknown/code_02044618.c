@@ -216,7 +216,7 @@ void func_02045084(s32 a) {
             *b0 = func_021202b0(v);
             *b1 = func_02120294(v);
             *b2 = func_02120278(v);
-            *b3 = func_021202cc(v);
+            *b3 = GetPlayerRecordRegion(v);
             *b5 = func_021202f0(v);
             *b4 = func_021201e4(v);
             break;

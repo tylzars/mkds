@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-unsigned int func_020b2a4c(void);
+unsigned int GetRaceDone(void);
 void func_020b2a60(unsigned int p0);

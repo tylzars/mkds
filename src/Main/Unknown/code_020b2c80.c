@@ -13,7 +13,7 @@
 #include "Main/Unknown/code_0203c5f8.h"
 
 s32 func_020b2d54(void) {
-    if (IsKartEnded((u16) func_020b2d90()) != 0) {
+    if (IsKartEnded((u16) GetEntryIndex()) != 0) {
         return gRaceProgress->mEntryEndKind;
     }
     return 6;
@@ -22,10 +22,10 @@ s32 func_020b2d54(void) {
 #pragma thumb on
 #pragma optimize_for_size on
 u32 func_020b2d04(void) {
-    if (func_020b24e4() == 2 && func_020b2a4c() == 0) {
+    if (func_020b24e4() == 2 && GetRaceDone() == 0) {
         return 3;
     }
-    if (func_020b2a4c() != 0) {
+    if (GetRaceDone() != 0) {
         if (func_020b252c() == MODE_MISSION_RUN) {
             if (func_020b2d54() == 0) {
                 return 2;

@@ -4,7 +4,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "code_02147cd8.h"
 
-u32 func_02073e88(void) {
+u32 GetCameraEntryChanged(void) {
     return (u32) gCameraEntryChanged;
 }
 

@@ -9,6 +9,6 @@ u32 func_020b1a0c(void) {
     return ((u32) gRaceHud->mUnk_8e0);
 }
 
-u32 func_020b19f8(void) {
+u32 GetUseTimeDifference(void) {
     return ((u32) gRaceHud->mUseTimeDifference);
 }

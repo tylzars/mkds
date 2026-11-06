@@ -133,7 +133,7 @@ u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
         func_020a10ac(o->mIndex, 1);
         func_020a10f0(o->mIndex, 1);
         r = o->mIndex == data_021759c0->mEntryIndex ? 1 : 0;
-        c = func_020a1180();
+        c = GetHighestBalloonOrShineCount();
         n = GetBalloonOrShineCount(o->mIndex);
         func_0210b98c(p->mUnk_00.mSound, func_02024974(0, r, c, n));
         p->mUnk_e4 = StartEffect(0x7d, &p->mUnk_00.mPos);
@@ -672,7 +672,7 @@ void func_020a5608(Kart *a, Kart *b) {
     p->mUnk_c4 = -1;
     AddShineCount(1);
     r = a->mIndex == data_021759c0->mEntryIndex ? 1 : 0;
-    c = func_020a1180();
+    c = GetHighestBalloonOrShineCount();
     n = GetBalloonOrShineCount(a->mIndex);
     func_0210b98c(p->mUnk_00.mSound, func_02024974(1, r, c, n));
 }
@@ -981,12 +981,12 @@ void InitKartBalloons(Unk020a3fa8 *a) {
             a->mStartTimer = 0x3c;
         }
         SetStandingsKartBalloons(a->mKartBalloons);
-        func_020a2364((u32) func_020a5268);
-        func_020a2350((u32) func_020a4f54);
-        func_020a233c(func_020a4d94);
+        SetStandingsKartHitByKartCallback((u32) func_020a5268);
+        SetStandingsKartsHitEachOtherCallback((u32) func_020a4f54);
+        SetStandingsKartHitCallback(func_020a4d94);
         SetStandingsKartEliminatedCallback(func_020a4c58);
         SetStandingsEndCallback(func_020a4c20);
-        func_020a2300((u32) func_020a4b70);
+        SetStandingsKartOffsetCallback((u32) func_020a4b70);
     } else {
         ParkMapObject(&a->mUnk_000);
     }

@@ -1347,7 +1347,7 @@ void func_02078d64(void *param_1) {
     }
     if (data_0217aa08->mUnk_04->mUnk_004 != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
         data_0217ad08->mUnk_1e8 = data_0217aa08->mUnk_04->mUnk_008;
-        data_0217ad08->mUnk_1ec = func_02077f00()->mData;
+        data_0217ad08->mUnk_1ec = GetEmblemSBNclr()->mData;
     }
     func_02047b6c(9);
 }
@@ -1410,7 +1410,7 @@ void func_02078b48(void *param_1) {
     data_0217ad08->mUnk_1f0 = 0;
     data_0217ad08->mUnk_1ec = NULL;
     data_0217ad08->mUnk_1e8 = data_0217ad08->mUnk_1ec;
-    func_02077a28(param_1);
+    LoadEmblemSBNclr(param_1);
     LoadKartModelMenuFile(param_1, data_usa_02165724, (void **) &data_0217ad08->mUnk_1c8);
     for (i = 0; i < 2; i = (u16) (i + 1)) {
         func_02078f18(param_1, &data_0217ad08->mUnk_058[i]);
@@ -1932,8 +1932,8 @@ void func_02077f0c(u16 *a, int b, u32 c) {
 
 #pragma thumb on
 
-Nclr *func_02077f00(void) {
-    return data_usa_0217ace4;
+Nclr *GetEmblemSBNclr(void) {
+    return gEmblemSBNclr;
 }
 
 #pragma thumb off

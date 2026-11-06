@@ -121,7 +121,7 @@ void func_02073630(void) {
                 break;
         }
     }
-    data_usa_021654ec = FX_Div(0x1000, ((s64) (s32) func_0208ae60() * 0xd9aLL) >> 12);
+    data_usa_021654ec = FX_Div(0x1000, ((s64) (s32) GetFirstBaseSpeedLimit() * 0xd9aLL) >> 12);
 }
 
 void func_020733ec(Kart *p) {

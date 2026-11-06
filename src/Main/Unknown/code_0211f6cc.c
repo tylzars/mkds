@@ -164,7 +164,7 @@ u32 func_0211f91c(void) {
                 break;
             }
             DWC_ReportUserData((DWCAccUserData *) &gWiFiSession->mUnk_19b0);
-            if (StartWiFiBuddySync(NULL, func_0211f77c, NULL, func_0211f6cc, NULL, func_0211f6e8, NULL) == 0) {
+            if (StartWiFiBuddySync(NULL, func_0211f77c, NULL, SetBuddyStatus, NULL, func_0211f6e8, NULL) == 0) {
                 gWiFiSession->mUnk_1f20.mStep = 7;
             }
             SetBuddyChangedCallback((void *) func_0211f6b0, NULL);
@@ -228,6 +228,6 @@ void func_0211f6e8(u32 a, u32 b) {
     }
 }
 
-void func_0211f6cc(u32 a, u8 b) {
+void SetBuddyStatus(u32 a, u8 b) {
     gWiFiSession->mBuddyStatuses[a] = b;
 }

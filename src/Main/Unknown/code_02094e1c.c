@@ -82,10 +82,10 @@ void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e) {
             z = 0;
             y = a->mUnk_00.mPos.y;
             x = 0;
-            r = func_02091f6c(func_0209520c(), (s32) f);
-            q = func_020951b4(func_0209520c());
+            r = func_02091f6c(GetRaceLocalRandom(), (s32) f);
+            q = func_020951b4(GetRaceLocalRandom());
             v.x = x + func_0209518c(r, func_0209519c(q));
-            v.y = y + func_02091f6c(func_0209520c(), k);
+            v.y = y + func_02091f6c(GetRaceLocalRandom(), k);
             v.z = z + func_0209518c(r, func_0209516c(q));
             func_02094000(&v);
         }
@@ -105,7 +105,7 @@ void func_02095228(Unk02095228 *a) {
     }
 }
 
-Unk020f41c4_B *func_0209520c(void) {
+Unk020f41c4_B *GetRaceLocalRandom(void) {
     return &gRaceProgress->mLocalRandom;
 }
 
@@ -173,10 +173,10 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
                     z = o->mUnk_00.mPos.z;
                     y = o->mUnk_00.mPos.y;
                     x = o->mUnk_00.mPos.x;
-                    r = func_02091f6c(func_0209520c(), (s32) f);
-                    q = func_020951b4(func_0209520c());
+                    r = func_02091f6c(GetRaceLocalRandom(), (s32) f);
+                    q = func_020951b4(GetRaceLocalRandom());
                     v.x = x + func_0209518c(r, func_0209519c(q));
-                    v.y = y + func_02091f6c(func_0209520c(), k);
+                    v.y = y + func_02091f6c(GetRaceLocalRandom(), k);
                     v.z = z + func_0209518c(r, func_0209516c(q));
                     func_02094000(&v);
                 }

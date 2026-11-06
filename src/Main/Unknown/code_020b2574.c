@@ -167,7 +167,7 @@ void func_020b2574(void) {
     if (func_020b29b0() != 0 && func_020b252c() == 5 && func_020b2bc8() != 0) {
         gChoisesS->mUnk_01c = gChoisesS->mUnk_01c + 1;
         if (gChoisesS->mUnk_01c > 0x384) {
-            gChoisesS->mUnk_024 = func_020b24f8() != 4 ? 2 : 7;
+            gChoisesS->mUnk_024 = GetCourseNumber() != 4 ? 2 : 7;
         }
     }
     if (func_020b2ec0() != 0) {

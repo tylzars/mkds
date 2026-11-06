@@ -70,7 +70,7 @@ void UpdateWiFiSessionKartTimeouts(void) {
     }
 }
 
-u32 func_021227f8(u32 a) {
+u32 GetKartMaskBit(u32 a) {
     return gWiFiSession->mKartMask & (1 << a);
 }
 

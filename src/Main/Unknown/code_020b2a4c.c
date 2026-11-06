@@ -6,6 +6,6 @@ void func_020b2a60(u32 p0) {
     data_0217b488->mUnk_14 = p0;
 }
 
-u32 func_020b2a4c(void) {
+u32 GetRaceDone(void) {
     return ((u32) gRaceProgress->mRaceDone);
 }

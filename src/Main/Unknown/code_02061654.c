@@ -293,7 +293,7 @@ void UpdateRace(void) {
             v = UpdateChainCameraPair();
         }
         data_0217aa7c = v;
-        data_0217aa6c = func_02074888();
+        data_0217aa6c = GetCurrentChainCamera();
     } else if (func_0203c5e4() != 0) {
         UpdateChaseCamera(data_0217aa88, GetKart(data_021759c0->mUnk_063));
         UpdateCameraView(data_0217aa88);
@@ -312,7 +312,7 @@ void UpdateRace(void) {
     }
     RefreshCameraProjection(data_0217aa6c);
     func_020d4f94((Unk020d4f94 *) data_0217aa7c);
-    if (func_02073e88() != 0) {
+    if (GetCameraEntryChanged() != 0) {
         func_020d50c4();
     }
     UpdateItems();

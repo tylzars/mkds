@@ -6,6 +6,6 @@
 #pragma thumb on
 #pragma optimize_for_size on
 BOOL func_020b250c(void) {
-    return func_020b252c() == MODE_GRAND_PRIX && func_020b24f8() == 4;
+    return func_020b252c() == MODE_GRAND_PRIX && GetCourseNumber() == 4;
 }
 #pragma thumb off
