@@ -65,23 +65,23 @@ void func_0202b8d8(void) {
     Nscr *d;
 
     if (*(vu16 *) 0x27ffc40 == 2) {
-        LoadNcgrData(&a, FindSceneFile(data_usa_021626d0));
-        LoadNcgrData2(&a, FindSceneFile(data_usa_021626f8));
-        LoadNcerData(&c, FindSceneFile(data_usa_02162720));
-        LoadNclrData(&b, FindSceneFile(data_usa_02162748));
-        LoadNclrData(&b, FindSceneFile(data_usa_02162770));
-        LoadNscrData(&d, FindSceneFile(data_usa_02162798));
-        LoadNscrData(&d, FindSceneFile(data_usa_021627c4));
+        LoadNcgrData(&a, FindSceneFile(gSelectMenuEtcDownloadMBNcgrName));
+        LoadNcgrData2(&a, FindSceneFile(gSelectMenuEtcDownloadMNcgrName));
+        LoadNcerData(&c, FindSceneFile(gSelectMenuEtcDownloadMNcerName));
+        LoadNclrData(&b, FindSceneFile(gSelectMenuEtcDownloadMONclrName));
+        LoadNclrData(&b, FindSceneFile(gSelectMenuEtcDownloadMBNclrName));
+        LoadNscrData(&d, FindSceneFile(gSelectMenuEtcDownloadMBg00NscrName));
+        LoadNscrData(&d, FindSceneFile(gSelectMenuEtcDownloadMBg01NscrName));
     } else {
-        LoadNcgrData(&a, func_02047a28(data_usa_021627f0));
-        LoadNcgrData2(&a, func_02047a28(data_usa_0216280c));
-        LoadNcgrData2(&a, func_02047a28(data_usa_02162828));
-        LoadNcerData(&c, func_02047a28(data_usa_0216284c));
-        LoadNcerData(&c, func_02047a28(data_usa_02162868));
-        LoadNclrData(&b, func_02047a28(data_usa_0216288c));
-        LoadNclrData(&b, func_02047a28(data_usa_021628a8));
-        LoadNscrData(&d, func_02047a28(data_usa_021628c4));
-        LoadNscrData(&d, func_02047a28(data_usa_021628e4));
+        LoadNcgrData(&a, func_02047a28(gSelectMenuEtcMBNcgrName));
+        LoadNcgrData2(&a, func_02047a28(gSelectMenuEtcMNcgrName));
+        LoadNcgrData2(&a, func_02047a28(gSelectMenuEtcTitleMNcgrName));
+        LoadNcerData(&c, func_02047a28(gSelectMenuEtcMNcerName));
+        LoadNcerData(&c, func_02047a28(gSelectMenuEtcTitleMNcerName));
+        LoadNclrData(&b, func_02047a28(gSelectMenuEtcMONclrName));
+        LoadNclrData(&b, func_02047a28(gSelectMenuEtcMBNclrName));
+        LoadNscrData(&d, func_02047a28(gSelectMenuEtcMBg00NscrName));
+        LoadNscrData(&d, func_02047a28(gSelectMenuEtcMBg01NscrName));
     }
 }
 

@@ -216,11 +216,11 @@ void func_0202c65c(void *a, void *b) {
     r = GX_GetSizeOfOBJ();
     q = &data_02174e3c->mUnk_000;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
-        func_02025b20(q, data_usa_02162aac, data_usa_02162ad4, data_usa_02162afc, data_usa_02162b24, data_usa_02162b48,
-                      NULL, FindSceneFile);
+        func_02025b20(q, data_usa_02162aac, data_usa_02162ad4, data_usa_02162afc, gSelectMenuEtcDownloadMBnclName,
+                      gSelectMenuEtcDownloadMBnllName, NULL, FindSceneFile);
     } else {
-        func_02025b20(q, data_usa_02162b6c, data_usa_02162b88, data_usa_02162ba4, data_usa_02162bc0, data_usa_02162bd8,
-                      NULL, func_02047a28);
+        func_02025b20(q, data_usa_02162b6c, data_usa_02162b88, data_usa_02162ba4, gSelectMenuEtcMBnclName,
+                      gSelectMenuEtcMBnllName, NULL, func_02047a28);
     }
     func_02124ed0(data_02174e3c->mHeap, q->mUnk_0c, q->mUnk_14, &q->mUnk_18);
     for (i = 0; i < 8; i++) {
@@ -235,8 +235,8 @@ void func_0202c65c(void *a, void *b) {
     func_02025f80(&data_02174e3c->mUnk_210[2], 3, 10, 0x60, 0);
     func_02025f80(&data_02174e3c->mUnk_210[3], 3, 10, 0x40, 0);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02025b20(&data_02174e3c->mUnk_01c, data_usa_02162bf0, data_usa_02162c14, NULL, data_usa_02162c38, NULL,
-                      NULL, func_02047a28);
+        func_02025b20(&data_02174e3c->mUnk_01c, data_usa_02162bf0, data_usa_02162c14, NULL,
+                      gSelectMenuEtcTitleMBnclName, NULL, NULL, func_02047a28);
     }
     data_02174e3c->mUnk_1fc = TRUE;
     FrmHeapShrinkInParent(data_02174e3c->mHeap);

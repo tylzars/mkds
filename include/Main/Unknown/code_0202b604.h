@@ -2,22 +2,22 @@
 
 #include "types.h"
 
-extern char data_usa_021626d0[];
-extern char data_usa_021626f8[];
-extern char data_usa_02162720[];
-extern char data_usa_02162748[];
-extern char data_usa_02162770[];
-extern char data_usa_02162798[];
-extern char data_usa_021627c4[];
-extern char data_usa_021627f0[];
-extern char data_usa_0216280c[];
-extern char data_usa_02162828[];
-extern char data_usa_0216284c[];
-extern char data_usa_02162868[];
-extern char data_usa_0216288c[];
-extern char data_usa_021628a8[];
-extern char data_usa_021628c4[];
-extern char data_usa_021628e4[];
+extern char gSelectMenuEtcDownloadMBNcgrName[];
+extern char gSelectMenuEtcDownloadMNcgrName[];
+extern char gSelectMenuEtcDownloadMNcerName[];
+extern char gSelectMenuEtcDownloadMONclrName[];
+extern char gSelectMenuEtcDownloadMBNclrName[];
+extern char gSelectMenuEtcDownloadMBg00NscrName[];
+extern char gSelectMenuEtcDownloadMBg01NscrName[];
+extern char gSelectMenuEtcMBNcgrName[];
+extern char gSelectMenuEtcMNcgrName[];
+extern char gSelectMenuEtcTitleMNcgrName[];
+extern char gSelectMenuEtcMNcerName[];
+extern char gSelectMenuEtcTitleMNcerName[];
+extern char gSelectMenuEtcMONclrName[];
+extern char gSelectMenuEtcMBNclrName[];
+extern char gSelectMenuEtcMBg00NscrName[];
+extern char gSelectMenuEtcMBg01NscrName[];
 
 void func_0202b604(void);
 void func_0202b618(s32 a);
