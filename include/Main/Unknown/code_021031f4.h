@@ -21,7 +21,7 @@ typedef struct {
 extern Unk0210340c data_0217c664;
 extern Unk0210340c data_0217c684;
 
-void func_021031f4(Unk02102674 *p);
+void func_021031f4(ItemGesso *p);
 void func_0210340c(Unk0210340c *p, Unk020e6488 *q);
 void func_02103468(void);
 void func_02103544(u32 a, u32 b);

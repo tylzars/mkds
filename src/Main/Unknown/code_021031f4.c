@@ -670,7 +670,7 @@ void func_0210340c(Unk0210340c *p, Unk020e6488 *q) {
 }
 #pragma thumb off
 
-void func_021031f4(Unk02102674 *p) {
+void func_021031f4(ItemGesso *p) {
     s32 b3;
     s32 a;
     s32 b2;
@@ -722,6 +722,6 @@ void func_021031f4(Unk02102674 *p) {
         return;
     }
     p->mUnk_198 = TRUE;
-    p->mUnk_12c = GetKart(a);
-    func_020f8e3c((u32) p->mUnk_12c, 0xf3);
+    p->mKart = GetKart(a);
+    func_020f8e3c((u32) p->mKart, 0xf3);
 }

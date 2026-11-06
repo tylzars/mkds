@@ -3,7 +3,7 @@
 #include "types.h"
 
 typedef struct ItemObject ItemObject;
-typedef struct Unk020ff438 Unk020ff438;
+typedef struct ItemFBox ItemFBox;
 
 // Element of the two tables data_0217c200 and data_0217be00: 0x14 bytes of
 // bytes passed on followed by three words.
@@ -18,8 +18,8 @@ extern Unk0217be00 data_0217c200[];
 
 extern Unk0217be00 data_0217be00[];
 
-u8 *func_020ff2b0(u8 *a, Unk020ff438 *b, void *c);
-void func_020ff25c(Unk020ff438 *a);
+u8 *func_020ff2b0(u8 *a, ItemFBox *b, void *c);
+void func_020ff25c(ItemFBox *a);
 void func_020ff1d8(void);
 void func_020ff1b8(s32 a, s32 *p);
 void func_020ff1a0(s32 a, s32 *p);

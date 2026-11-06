@@ -26,7 +26,7 @@
 
 #pragma thumb off
 
-u8 *func_020ff2b0(u8 *a, Unk020ff438 *b, void *c) {
+u8 *func_020ff2b0(u8 *a, ItemFBox *b, void *c) {
     u8 *p;
 
     if (b != NULL && c != NULL) {
@@ -42,7 +42,7 @@ u8 *func_020ff2b0(u8 *a, Unk020ff438 *b, void *c) {
     return p;
 }
 
-void func_020ff25c(Unk020ff438 *a) {
+void func_020ff25c(ItemFBox *a) {
     func_020f8e78(a);
     func_020f2d98(&a->mUnk_000, 0);
     if ((a->mUnk_000.mUnk_000.mFlags & 0x10000000) == 0) {
@@ -59,7 +59,7 @@ void func_020ff25c(Unk020ff438 *a) {
 void func_020ff1d8(void) {
     Vec3 v;
     ItemPool *p;
-    Unk020ff438 *o;
+    ItemFBox *o;
     ItemObject **e;
     s32 n;
     s32 i;
@@ -73,7 +73,7 @@ void func_020ff1d8(void) {
     e = p->mObjects;
     n = p->mObjectCount;
     for (i = 0; i < n; i++) {
-        o = (Unk020ff438 *) e[0];
+        o = (ItemFBox *) e[0];
         o->mUnk_140 = (Unk021052fc *) func_0210543c();
         o->mUnk_140->mUnk_fc = &o->mUnk_000.mUnk_000.mPos;
         e++;

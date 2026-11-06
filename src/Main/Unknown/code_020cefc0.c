@@ -55,8 +55,8 @@ void func_020cefdc(void) {
     b = q->mObjects;
     for (i = 0; i < m; i++) {
         e = b[i];
-        if (func_020fd528((Kart *) e) != FALSE) {
-            p = func_020fd308((Unk020fdae8 *) e, &x, &y);
+        if (IsItemBombState2((Kart *) e) != FALSE) {
+            p = func_020fd308((ItemBomb *) e, &x, &y);
             if (func_020b5ae8(p, &data_0217b48c->mCells[n].mUnk_00, v, 1, 1) != FALSE) {
                 data_0217b48c->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x63);
                 data_0217b48c->mCells[n].mUnk_0c = func_020b4e70(p) != 0 ? 2 : 3;

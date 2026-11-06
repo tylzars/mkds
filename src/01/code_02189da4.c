@@ -184,7 +184,7 @@ void func_ov001_0218a028(Unk0206c1ac *a) {
 
 void func_ov001_02189fe0(Unk02188950 *a, Kart *b) {
     if (b->mUnk_44 == 9) {
-        if (func_020fd528(b) == FALSE) {
+        if (IsItemBombState2(b) == FALSE) {
             func_0208b748(0x3a, &b->mUnk_50, NULL, func_ov001_0218a028);
         }
     }

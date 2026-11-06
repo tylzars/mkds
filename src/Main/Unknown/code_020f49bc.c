@@ -328,7 +328,7 @@ void func_020f6264(Unk020eda5c *a, Unk020f40dc *b) {
 }
 
 void func_020f6220(void *a0, s32 b) {
-    Unk020f6150 *a;
+    ItemKouraG *a;
 
     a = a0;
     if (!(a->mUnk_000.mUnk_000.mFlags & 0x400000)) {
@@ -338,7 +338,7 @@ void func_020f6220(void *a0, s32 b) {
     StartSoundWhileRequested(&a->mUnk_000.mUnk_000.mSoundSource, 0xd7, 0x7f, 0);
 }
 
-BOOL func_020f6150(Unk020eda5c *a, Unk020f6150 *b) {
+BOOL func_020f6150(Unk020eda5c *a, ItemKouraG *b) {
     BOOL v;
 
     v = data_021759c0->mMode == MODE_BATTLE;
@@ -353,7 +353,7 @@ BOOL func_020f6150(Unk020eda5c *a, Unk020f6150 *b) {
     return TRUE;
 }
 
-void func_020f60d0(Unk020f6150 *a) {
+void func_020f60d0(ItemKouraG *a) {
     if (a->mUnk_000.mUnk_000.mAgeFrames > 0x258) {
         a->mUnk_000.mUnk_154 = 0;
     }
@@ -364,7 +364,7 @@ void func_020f60d0(Unk020f6150 *a) {
     func_0210ddf4(&data_0217d294, (a->mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f) + 0x9c40, func_020f6220, a, 0);
 }
 
-void *func_020f6038(void *a, Unk020f6150 *b, void *c) {
+void *func_020f6038(void *a, ItemKouraG *b, void *c) {
     void *p;
 
     if (b != NULL && c != NULL) {
@@ -381,7 +381,7 @@ void *func_020f6038(void *a, Unk020f6150 *b, void *c) {
     return p;
 }
 
-void func_020f5ffc(Unk020f6150 *a) {
+void func_020f5ffc(ItemKouraG *a) {
     func_020f8e78(a);
     func_0210b850(&a->mUnk_16c);
     a->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
@@ -816,7 +816,7 @@ BOOL func_020f5324(void *a0, s32 b) {
 // Runs func_020f9114, ors data_02159834 into the 0x78 halfword, then makes one of two
 // func_020f3150 calls depending on the 0x1ec halfword of the 0x0c pointer, and returns the
 // 0x130 word it stores.
-s32 func_020f5240(Unk020eda5c *a, Unk020f5240 *b) {
+s32 func_020f5240(Unk020eda5c *a, ItemBanana *b) {
     KartItems *o;
     s32 n;
 
@@ -836,7 +836,7 @@ s32 func_020f5240(Unk020eda5c *a, Unk020f5240 *b) {
 
 // Calls func_020f2df0 with one of two pairs of numbers, and when the 0x74 bits allow it
 // doubles the 0x60 word and runs StopSound and func_020f6a6c.
-void func_020f518c(Unk020f5240 *a) {
+void func_020f518c(ItemBanana *a) {
     u32 v;
     u32 n;
 
@@ -861,7 +861,7 @@ void func_020f518c(Unk020f5240 *a) {
 
 // Hands the 0x130 word and the 0x60 word to func_020ff1b8/func_020ff1a0 around the
 // func_020fecdc call, and returns func_020fe8ac's value when b and c are both set.
-void *func_020f5108(void *a, Unk020f5240 *b, void *c) {
+void *func_020f5108(void *a, ItemBanana *b, void *c) {
     void *p;
 
     if (b != NULL && c != NULL) {
@@ -878,7 +878,7 @@ void *func_020f5108(void *a, Unk020f5240 *b, void *c) {
 }
 
 // Runs func_020f8e78 and func_020f2d98, then StartSound when the two 0x74/0x130 tests pass.
-void func_020f50b4(Unk020f5240 *a) {
+void func_020f50b4(ItemBanana *a) {
     func_020f8e78(a);
     func_020f2d98(&a->mUnk_000, 0);
     if ((a->mUnk_000.mUnk_000.mFlags & 0x10000000) == 0) {
@@ -902,14 +902,14 @@ void func_020f504c(Unk020eda5c *a, Unk020f40dc *b) {
     func_020fe958(3);
 }
 
-void func_020f5040(Unk020f5008 *p0) {
+void func_020f5040(ItemKinoko *p0) {
     p0->mUnk_134 = TRUE;
 }
 
 #pragma thumb off
 
 // Runs func_020ed5c0 with the last two parameters swapped when the 0x134 word is set.
-void func_020f5008(Unk020f5008 *a, void *b, void *c) {
+void func_020f5008(ItemKinoko *a, void *b, void *c) {
     if (a->mUnk_134 == FALSE) {
         return;
     }
@@ -917,7 +917,7 @@ void func_020f5008(Unk020f5008 *a, void *b, void *c) {
 }
 
 // Decreases the 0x130 word by one; when it goes below zero func_020f7658 runs first.
-void func_020f4fd0(Unk020f5008 *a) {
+void func_020f4fd0(ItemKinoko *a) {
     a->mUnk_130--;
     if (a->mUnk_130 < 0) {
         func_020f7658(&a->mUnk_000.mUnk_000, 0);
@@ -926,7 +926,7 @@ void func_020f4fd0(Unk020f5008 *a) {
 }
 
 // Sets the object up through func_020f2df0 when the 0x74 word allows it.
-void func_020f4f44(Unk020f5008 *a) {
+void func_020f4f44(ItemKinoko *a) {
     u32 n;
 
     func_020f2df0(&a->mUnk_000, 0x385, 0xff8, 0x733, &n);
@@ -944,8 +944,8 @@ void func_020f4f44(Unk020f5008 *a) {
 }
 
 // Returns what StartItemObjectOrZero gives, with its 0x134 and 0x130 words cleared.
-Unk020f5008 *func_020f4ee8(void) {
-    Unk020f5008 *p;
+ItemKinoko *func_020f4ee8(void) {
+    ItemKinoko *p;
 
     p = StartItemObjectOrZero(3, 8, &data_02159764, &data_02159764);
     if (p == NULL) {
@@ -961,7 +961,7 @@ Unk020f5008 *func_020f4ee8(void) {
 }
 
 // Stores the two Vec3s in the object and sets the word at 0x80.
-void func_020f4e78(Unk020f5008 *a, Vec3 *b, Vec3 *c) {
+void func_020f4e78(ItemKinoko *a, Vec3 *b, Vec3 *c) {
     a->mUnk_134 = TRUE;
     func_0208ad74(&a->mUnk_000.mUnk_000.mUnk_7c, 1);
     if (b != NULL) {
@@ -977,7 +977,7 @@ void func_020f4e78(Unk020f5008 *a, Vec3 *b, Vec3 *c) {
 
 // Runs the object's first word and stores the 0x120 and 0x130 words.
 void func_020f4dfc(void **a, Vec3 *b, s32 c) {
-    Unk020f5008 *p;
+    ItemKinoko *p;
 
     p = a[0];
     p->mUnk_000.mUnk_000.mUnk_78 |= data_0215969c;

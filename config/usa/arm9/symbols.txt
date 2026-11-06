@@ -5737,7 +5737,7 @@ func_020fd308 kind:function(arm,size=0x30) addr:0x020fd308
 func_020fd338 kind:function(arm,size=0xf0) addr:0x020fd338
 func_020fd428 kind:function(arm,size=0x6c) addr:0x020fd428
 func_020fd494 kind:function(arm,size=0x94) addr:0x020fd494
-func_020fd528 kind:function(arm,size=0x18) addr:0x020fd528
+IsItemBombState2 kind:function(arm,size=0x18) addr:0x020fd528
 func_020fd540 kind:function(arm,size=0x144) addr:0x020fd540
 func_020fd684 kind:function(arm,size=0xd0) addr:0x020fd684
 func_020fd754 kind:function(arm,size=0x50) addr:0x020fd754
@@ -5753,11 +5753,11 @@ func_020fdae8 kind:function(arm,size=0x120) addr:0x020fdae8
 func_020fdc08 kind:function(arm,size=0x170) addr:0x020fdc08
 func_020fdd78 kind:function(arm,size=0xa0) addr:0x020fdd78
 func_020fde18 kind:function(arm,size=0x14c) addr:0x020fde18
-func_020fdf64 kind:function(arm,size=0xa8) addr:0x020fdf64
-func_020fe00c kind:function(arm,size=0x114) addr:0x020fe00c
-func_020fe120 kind:function(arm,size=0x48) addr:0x020fe120
+UpdateItemBombState2 kind:function(arm,size=0xa8) addr:0x020fdf64
+EnterItemBombState2 kind:function(arm,size=0x114) addr:0x020fe00c
+UpdateItemBombState1 kind:function(arm,size=0x48) addr:0x020fe120
 func_020fe168 kind:function(arm,size=0x4) addr:0x020fe168
-func_020fe16c kind:function(arm,size=0xf8) addr:0x020fe16c
+UpdateItemBombState0 kind:function(arm,size=0xf8) addr:0x020fe16c
 func_020fe264 kind:function(arm,size=0x4) addr:0x020fe264
 func_020fe268 kind:function(arm,size=0x170) addr:0x020fe268
 func_020fe3d8 kind:function(arm,size=0x78) addr:0x020fe3d8
@@ -10482,7 +10482,7 @@ data_0216c6a8 kind:data(any) addr:0x0216c688
 gItemKouraWStateTable kind:data(any) addr:0x0216c694
 data_0216c6f4 kind:data(any) addr:0x0216c6d4
 data_0216c704 kind:data(any) addr:0x0216c6e4
-data_0216c714 kind:data(any) addr:0x0216c6f4
+gItemBombStateTable kind:data(any) addr:0x0216c6f4
 data_0216c734 kind:data(any) addr:0x0216c714
 data_0216c740 kind:data(any) addr:0x0216c720
 gDramNsbmdName kind:data(any) addr:0x0216c750

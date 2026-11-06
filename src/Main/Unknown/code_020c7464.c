@@ -142,7 +142,7 @@ void func_020ca074(void) {
                     }
                 }
             } else if (k == 6) {
-                if (((Unk020fdae8 *) p)->mUnk_1a0 != FALSE && q != NULL) {
+                if (((ItemBomb *) p)->mUnk_1a0 != FALSE && q != NULL) {
                     if (func_020b5ae8(q, &data_0217b42c->mCells[n].mUnk_00, a, 1, 1) != FALSE) {
                         if (func_020d3d10(q->y) == 0) {
                             data_0217b42c->mCells[n].mUnk_08 = c;

@@ -5,10 +5,10 @@
 #include "Main/Unknown/code_020e5d0c.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-// Element of gItemPools[10]: 0x1b4 bytes (the size in gItemKinds[10]), handled by the functions below.
-typedef struct Unk02102674 {
+// Object of item kind 10, element of gItemPools[10].
+typedef struct ItemGesso {
     /* 000 */ ItemObject mUnk_000;
-    /* 12c */ Kart *mUnk_12c;
+    /* 12c */ Kart *mKart;
     /* 130 */ u8 mUnk_130[0x8];
     /* 138 */ s32 mUnk_138;
     /* 13c */ Vec3 mUnk_13c;
@@ -33,7 +33,7 @@ typedef struct Unk02102674 {
     /* 198 */ BOOL mUnk_198;
     /* 19c */ s32 mUnk_19c;
     /* 1a0 */ u8 mUnk_1a0[0x14];
-} Unk02102674;
+} ItemGesso;
 
 // Object returned by GetChaseCamera and passed to the vector helpers by func_0210298c.
 typedef struct Unk020748a8 {
@@ -63,7 +63,7 @@ extern Unk0215a3b0 data_0215a3b0[];
 
 void func_02102674(void);
 void func_02102718(void);
-void func_02102744(Unk02102674 *p);
-void func_02102764(void *param_1, Unk02102674 *param_2, void *param_3);
-void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t);
-void func_0210298c(Unk02102674 *p);
+void func_02102744(ItemGesso *p);
+void func_02102764(void *param_1, ItemGesso *param_2, void *param_3);
+void func_021027ac(ItemGesso *p, s32 param_2, Unk020e6488 *t);
+void func_0210298c(ItemGesso *p);

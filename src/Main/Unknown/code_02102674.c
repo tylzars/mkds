@@ -25,7 +25,7 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_0210298c(Unk02102674 *p) {
+void func_0210298c(ItemGesso *p) {
     Kart *q;
     Unk020748a8 *s;
     s32 a2;
@@ -38,7 +38,7 @@ void func_0210298c(Unk02102674 *p) {
     s32 n;
     s32 f;
 
-    q = p->mUnk_12c;
+    q = p->mKart;
     s = GetChaseCamera();
     a2 = p->mUnk_000.mAgeFrames;
     if (a2 == 0x3f) {
@@ -151,13 +151,13 @@ void func_0210298c(Unk02102674 *p) {
     VEC_Add(&s->mPos, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
 }
 
-void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
+void func_021027ac(ItemGesso *p, s32 param_2, Unk020e6488 *t) {
     Vec3 w;
     MtxFx43 s;
     s32 k;
     s32 d;
 
-    if (p->mUnk_12c == NULL) {
+    if (p->mKart == NULL) {
         return;
     }
     if (p->mUnk_198 == FALSE) {
@@ -193,7 +193,7 @@ void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
     t->mUnk_14 = t->mUnk_14 | 0x1f0000;
 }
 
-void func_02102764(void *param_1, Unk02102674 *param_2, void *param_3) {
+void func_02102764(void *param_1, ItemGesso *param_2, void *param_3) {
     func_020fecdc(param_1, param_2, param_3);
     if (param_2 == NULL) {
         return;
@@ -204,7 +204,7 @@ void func_02102764(void *param_1, Unk02102674 *param_2, void *param_3) {
     func_020fe8ac(param_2->mUnk_000.mKind);
 }
 
-void func_02102744(Unk02102674 *p) {
+void func_02102744(ItemGesso *p) {
     func_020f8e78(p);
     func_02102eb8((u32) p, 1);
 }

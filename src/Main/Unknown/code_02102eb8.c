@@ -19,10 +19,10 @@
 #include "03/code_021b7bb4.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_021031ac(Unk02102674 *p) {
+void func_021031ac(ItemGesso *p) {
     s32 i;
 
-    p->mUnk_12c = NULL;
+    p->mKart = NULL;
     for (i = 0; i < 8; i++) {
         p->mUnk_130[i] = 0;
     }
@@ -32,7 +32,7 @@ void func_021031ac(Unk02102674 *p) {
     p->mUnk_160 = FALSE;
 }
 
-BOOL func_0210300c(Unk02102674 *p) {
+BOOL func_0210300c(ItemGesso *p) {
     Unk0215a3b0 *e;
     s32 i;
     BOOL f;
@@ -79,14 +79,14 @@ BOOL func_0210300c(Unk02102674 *p) {
     }
     p->mUnk_194 = f;
     if (e->mUnk_02 > 0 && p->mUnk_138 != 0 && p->mUnk_138 != 0xe && p->mUnk_198 != FALSE) {
-        func_020f8e3c((u32) p->mUnk_12c, 0xf1);
+        func_020f8e3c((u32) p->mKart, 0xf1);
     }
     return FALSE;
 done:
     return TRUE;
 }
 
-u32 func_02102eb8(Unk02102674 *p, s32 b) {
+u32 func_02102eb8(ItemGesso *p, s32 b) {
     Unk020748a8 *s;
     s32 a;
     s32 b2;
@@ -99,8 +99,8 @@ u32 func_02102eb8(Unk02102674 *p, s32 b) {
     } else {
         b2 = a;
     }
-    p->mUnk_12c = GetKart(b2);
-    p->mUnk_000.mPos = p->mUnk_12c->mUnk_98;
+    p->mKart = GetKart(b2);
+    p->mUnk_000.mPos = p->mKart->mUnk_98;
     VEC_MultAdd(0x5800, &s->mUp, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     VEC_MultAdd(func_0203c5e4() != 0 ? 0x5800 : 0xa800, &s->mForward, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     VEC_Subtract(&p->mUnk_000.mPos, &s->mPos, &p->mUnk_13c);

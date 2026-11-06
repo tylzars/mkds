@@ -57,10 +57,10 @@
 #include "code_021471bc.h"
 #include "Main/Unknown/code_021000d0.h"
 
-void func_020fe3d8(Unk020fdae8 *a) {
+void func_020fe3d8(ItemBomb *a) {
     u32 v1;
     MTX_Identity43_((MtxFx43 *) a->mUnk_13c);
-    func_02046be8(a->mUnk_184, (UnkFunc *const *) &data_0216c714, 4, a);
+    func_02046be8(a->mUnk_184, (UnkFunc *const *) &gItemBombStateTable, 4, a);
     func_02046bcc(a->mUnk_184, (u16) 0);
     a->mUnk_170 = 300;
     a->mUnk_174 = 0;
@@ -73,7 +73,7 @@ void func_020fe3d8(Unk020fdae8 *a) {
     a->mUnk_198 = NULL;
 }
 
-s32 func_020fe268(Unk020eda5c *a, Unk020fdae8 *e) {
+s32 func_020fe268(Unk020eda5c *a, ItemBomb *e) {
     func_020f9114(e);
     e->mUnk_000.mUnk_000.mUnk_78 |= data_02159f3c;
     e->mUnk_134 = (s32) (((s64) a->mUnk_068 * 0x1ec) >> 12) + 0x333;
@@ -100,7 +100,7 @@ u32 func_020fe264(u32 p0) {
     return p0;
 }
 
-void func_020fe16c(Unk020fdae8 *e) {
+void UpdateItemBombState0(ItemBomb *e) {
     s32 v;
 
     if (e->mUnk_130 != 0) {
@@ -125,15 +125,15 @@ void func_020fe16c(Unk020fdae8 *e) {
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
         e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020fdae8;
     }
-    e->mUnk_194 = 1;
-    e->mUnk_196 = 1;
+    e->mNextState = 1;
+    e->mNextStateRequested = 1;
 }
 
 u32 func_020fe168(u32 p0) {
     return p0;
 }
 
-void func_020fe120(Unk020fdae8 *e) {
+void UpdateItemBombState1(ItemBomb *e) {
     u32 f;
 
     f = e->mUnk_000.mUnk_000.mFlags;
@@ -148,7 +148,7 @@ void func_020fe120(Unk020fdae8 *e) {
     }
 }
 
-void func_020fe00c(Unk020fdae8 *e) {
+void EnterItemBombState2(ItemBomb *e) {
     NNSSndSeqPlayer **p;
     Unk0208e490 *q;
 
@@ -181,10 +181,10 @@ void func_020fe00c(Unk020fdae8 *e) {
     func_02073fb0(e->mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f, 0x1000);
 }
 
-void func_020fdf64(Unk020fdae8 *e) {
+void UpdateItemBombState2(ItemBomb *e) {
     s32 t;
 
-    t = e->mUnk_188;
+    t = e->mStateFrames;
     if (func_020fa0b8(e, data_0217bd50, data_0217bd54) != 0) {
         func_020f9fa8(&e->mUnk_000.mUnk_000);
     }
@@ -202,7 +202,7 @@ void func_020fdf64(Unk020fdae8 *e) {
     ReleaseItemPoolObject(gItemPools + e->mUnk_000.mUnk_000.mKind, &e->mUnk_000.mUnk_000);
 }
 
-void func_020fde18(Unk020fdae8 *e) {
+void func_020fde18(ItemBomb *e) {
     u32 v1;
     u16 v2;
     Kart *p;
@@ -243,7 +243,7 @@ void func_020fde18(Unk020fdae8 *e) {
     }
 }
 
-void func_020fdd78(Unk020fdae8 *e) {
+void func_020fdd78(ItemBomb *e) {
     if (e->mUnk_17c > (data_0217bd58 << 6)) {
         return;
     }
@@ -271,7 +271,7 @@ void func_020fdd78(Unk020fdae8 *e) {
     }
 }
 
-void func_020fdc08(Unk020fdae8 *e, Unk020fdae8 *b, Unk021052fc *c) {
+void func_020fdc08(ItemBomb *e, ItemBomb *b, Unk021052fc *c) {
     Unk021052fc *v1;
 
     b->mUnk_000.mUnk_000.mUnk_d4 |= data_02159f2c;
@@ -309,7 +309,7 @@ void func_020fdc08(Unk020fdae8 *e, Unk020fdae8 *b, Unk021052fc *c) {
     }
 }
 
-void func_020fdae8(Unk020fdae8 *e) {
+void func_020fdae8(ItemBomb *e) {
     if (e->mUnk_198 != NULL) {
         func_020fdc08(e, e, e->mUnk_198);
         return;
@@ -350,7 +350,7 @@ void func_020fdae8(Unk020fdae8 *e) {
     }
 }
 
-void *func_020fda50(void *a, Unk020fdae8 *b, void *c) {
+void *func_020fda50(void *a, ItemBomb *b, void *c) {
     void *r;
 
     if (b != NULL && c != NULL) {
@@ -367,10 +367,10 @@ void *func_020fda50(void *a, Unk020fdae8 *b, void *c) {
     return r;
 }
 
-void func_020fd9d8(Unk020fdae8 *e) {
+void func_020fd9d8(ItemBomb *e) {
     func_020f8e78(e);
     func_020f2d98(&e->mUnk_000, e->mUnk_130 != 0 ? 3 : 2);
-    func_02046be8(&e->mUnk_184, (UnkFunc *const *) data_0216c714, 4, e);
+    func_02046be8(&e->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, e);
     if (!(e->mUnk_000.mUnk_000.mFlags & 0x10000000)) {
         return;
     }
@@ -380,11 +380,11 @@ void func_020fd9d8(Unk020fdae8 *e) {
     StartSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
 }
 
-void func_020fd938(Unk020fdae8 *e, Vec3 *a, Unk020e6488 *b) {
+void func_020fd938(ItemBomb *e, Vec3 *a, Unk020e6488 *b) {
     if (e->mUnk_1a0 == FALSE) {
         return;
     }
-    if (e->mUnk_192 != 2) {
+    if (e->mState != 2) {
         if (e->mUnk_174 != 0 && e->mUnk_174 < 6) {
             b->mUnk_18 = 1;
         } else {
@@ -399,11 +399,11 @@ void func_020fd938(Unk020fdae8 *e, Vec3 *a, Unk020e6488 *b) {
     e->mUnk_138->mUnk_b4 = (e->mUnk_000.mUnk_000.mFlags & 0x10000) == 0;
 }
 
-int func_020fd8b0(Unk020fdae8 *e) {
-    if (e->mUnk_192 != 2) {
-        func_02046be8(&e->mUnk_184, (UnkFunc *const *) data_0216c714, 4, e);
-        e->mUnk_194 = 2;
-        e->mUnk_196 = 1;
+int func_020fd8b0(ItemBomb *e) {
+    if (e->mState != 2) {
+        func_02046be8(&e->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, e);
+        e->mNextState = 2;
+        e->mNextStateRequested = 1;
         if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
             e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020fdae8;
         }
@@ -414,16 +414,16 @@ int func_020fd8b0(Unk020fdae8 *e) {
     return 1;
 }
 
-void func_020fd83c(Unk020fdae8 *e) {
+void func_020fd83c(ItemBomb *e) {
     if (e->mUnk_000.mUnk_000.mFlags & 0x80000) {
         return;
     }
-    func_02046be8(&e->mUnk_184, (UnkFunc *const *) data_0216c714, 4, e);
+    func_02046be8(&e->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, e);
     if ((e->mUnk_000.mUnk_000.mFlags & 0x180000) == 0) {
         e->mUnk_000.mUnk_000.mUnk_120 = (void (*)(ItemObject *)) func_020fdae8;
     }
-    e->mUnk_194 = 1;
-    e->mUnk_196 = 1;
+    e->mNextState = 1;
+    e->mNextStateRequested = 1;
     e->mUnk_180 = 0x10e;
     e->mUnk_130 = 0;
     e->mUnk_000.mUnk_12c = 0;
@@ -457,19 +457,19 @@ u32 func_020fd7f0(void) {
 #pragma thumb off
 
 u32 func_020fd7a4(int a) {
-    Unk020fdae8 *e;
+    ItemBomb *e;
     u32 f;
 
-    e = (Unk020fdae8 *) gItemPools[9].mObjects[a];
+    e = (ItemBomb *) gItemPools[9].mObjects[a];
     f = e->mUnk_000.mUnk_000.mFlags;
-    if ((f & 0x8000) && (f & 0x180000) == 0 && e->mUnk_192 != 3 && e->mUnk_198 == NULL) {
+    if ((f & 0x8000) && (f & 0x180000) == 0 && e->mState != 3 && e->mUnk_198 == NULL) {
         return (u32) e;
     }
     return 0;
 }
 
 void func_020fd754(void *a) {
-    Unk020fdae8 *e;
+    ItemBomb *e;
 
     e = a;
     e->mUnk_000.mUnk_000.mFlags &= ~0x8000;
@@ -483,7 +483,7 @@ void func_020fd754(void *a) {
 }
 
 void func_020fd684(void *c, Vec3 *d, Vec3 *f) {
-    Unk020fdae8 *e;
+    ItemBomb *e;
     Vec3 *a;
     Vec3 *b;
     Unk021052fc *v1;
@@ -516,7 +516,7 @@ void func_020fd684(void *c, Vec3 *d, Vec3 *f) {
 }
 
 void func_020fd540(void **b, Vec3 *v, s32 a) {
-    Unk020fdae8 *e;
+    ItemBomb *e;
     Unk021052fc *v1;
 
     e = *b;
@@ -527,7 +527,7 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
         e->mUnk_1a0 = TRUE;
     }
     func_020f9114(e);
-    func_02046be8(&e->mUnk_184, (UnkFunc *const *) data_0216c714, 4, e);
+    func_02046be8(&e->mUnk_184, (UnkFunc *const *) gItemBombStateTable, 4, e);
     func_02046bcc(&e->mUnk_184, 0);
     e->mUnk_170 = 0x12c;
     e->mUnk_174 = 0;
@@ -554,15 +554,15 @@ void func_020fd540(void **b, Vec3 *v, s32 a) {
     *b = NULL;
 }
 
-BOOL func_020fd528(Kart *a) {
-    Unk020fdae8 *e;
+BOOL IsItemBombState2(Kart *a) {
+    ItemBomb *e;
 
-    e = (Unk020fdae8 *) a;
-    return e->mUnk_192 == 2;
+    e = (ItemBomb *) a;
+    return e->mState == 2;
 }
 
 void func_020fd494(void **a) {
-    Unk020fdae8 *e;
+    ItemBomb *e;
     Unk021052fc *v1;
 
     e = *a;
@@ -580,7 +580,7 @@ void func_020fd494(void **a) {
 }
 
 void *func_020fd428(void) {
-    Unk020fdae8 *e;
+    ItemBomb *e;
 
     e = StartItemObjectOrZero(9, 8, data_02159f40, data_02159f40);
     if (e == NULL) {
@@ -597,7 +597,7 @@ void *func_020fd428(void) {
 }
 
 void *func_020fd338(void *b, s32 a) {
-    Unk020fdae8 *e;
+    ItemBomb *e;
     Unk021052fc *v1;
 
     v1 = b;
@@ -626,8 +626,8 @@ void *func_020fd338(void *b, s32 a) {
     return e;
 }
 
-Vec3 *func_020fd308(Unk020fdae8 *e, s32 *a, s32 *b) {
-    *a = e->mUnk_188;
+Vec3 *func_020fd308(ItemBomb *e, s32 *a, s32 *b) {
+    *a = e->mStateFrames;
     *b = (s32) (((s64) e->mUnk_000.mUnk_000.mUnk_68.z * data_0217bd48) >> 12);
     return &e->mUnk_000.mUnk_000.mPos;
 }
