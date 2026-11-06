@@ -107,7 +107,7 @@ typedef struct Unk02174e3c_4c {
 extern Unk02036590 data_02174e88;
 
 // 0x1c-byte part of Unk02174e14, at 0x00, 0x1c and 0x38; InitSelectCharacter has two on the stack, one filled by
-// func_02025b84. Unk02174e60 has four from 0x48.
+// func_02025b84. ResultsBattle has four from 0x48.
 typedef struct Unk02174e14_00 {
     /* 00 */ struct Unk0212463c_c *mUnk_00;
     /* 04 */ struct Unk0212463c_d *mUnk_04;
@@ -173,43 +173,43 @@ typedef struct Unk02174e3c {
 
 extern Unk02174e3c *data_02174e3c;
 
-// 0x24-byte part of Unk02174e60, at 0x00 and 0x24, filled by func_02025884.
+// 0x24-byte part of ResultsBattle, at 0x00 and 0x24, filled by func_02025884.
 typedef struct Unk02174e60_00 {
     /* 00 */ Ncgr *mUnk_00[4];
     /* 10 */ Nclr *mUnk_10;
     /* 14 */ Nscr *mUnk_14[4];
 } Unk02174e60_00;
 
-// 0xc-byte entries from 0xe4 of Unk02174e60.
+// 0xc-byte entries from 0xe4 of ResultsBattle.
 typedef struct Unk02174e60_e4 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ s32 mUnk_08;
 } Unk02174e60_e4;
 
-// Object behind data_02174e60: 0x154 bytes allocated by func_02032f94.
-typedef struct Unk02174e60 {
+// 0x154 bytes.
+typedef struct ResultsBattle {
     /* 000 */ Unk02174e60_00 mUnk_000[2];
     /* 048 */ Unk02174e14_00 mUnk_048[4];
     /* 0b8 */ s32 mUnk_0b8[2];
     /* 0c0 */ Nclr *mUnk_0c0;
     /* 0c4 */ Nclr *mUnk_0c4;
-    /* 0c8 */ struct Bmg *mUnk_0c8;
+    /* 0c8 */ struct Bmg *mCommonMessages;
     /* 0cc */ u16 mUnk_0cc;
     /* 0ce */ u16 mUnk_0ce;
     /* 0d0 */ s32 mUnk_0d0;
     /* 0d4 */ s32 mUnk_0d4;
     /* 0d8 */ s32 mUnk_0d8;
     /* 0dc */ s32 mUnk_0dc;
-    /* 0e0 */ s32 mUnk_0e0;
+    /* 0e0 */ s32 mMode;
     /* 0e4 */ Unk02174e60_e4 mUnk_0e4[8];
     /* 144 */ s32 mUnk_144;
     /* 148 */ BOOL mUnk_148;
-    /* 14c */ s32 mUnk_14c;
+    /* 14c */ s32 mTimer;
     /* 150 */ s32 mUnk_150;
-} Unk02174e60;
+} ResultsBattle;
 
-extern Unk02174e60 *data_02174e60;
+extern ResultsBattle *gResultsBattle;
 
 // 0x28-byte part of the entries from 0x9c of Unk02174e64; func_02034370 fills one on the stack through
 // func_0204ebb8 and func_02034e68 compares two.

@@ -4,14 +4,14 @@
 #include "Main/Unknown/unk_02175000.h" // SceneCallbacks
 
 extern const char data_0216416c[];
-extern const char data_02164178[];
-extern const char data_02164190[];
-extern const char data_021641a8[];
-extern const char data_021641c4[];
-extern const char data_021641e0[];
-extern const char data_021641fc[];
-extern const char data_02164214[];
-extern const char data_0216422c[];
+extern const char gResultsBattleSBNcgrName[];
+extern const char gResultsBattleSBNclrName[];
+extern const char gResultsBattleSBgNscrName[];
+extern const char gResultsBattleSNcgrName[];
+extern const char gResultsBattleSNcerName[];
+extern const char gResultsBattleSONclrName[];
+extern const char gResultsBattleSBnclName[];
+extern const char gResultsBattleSBnllName[];
 extern s16 data_02164254[][4];
 extern const char data_02164294[];
 extern const char data_021642a0[];

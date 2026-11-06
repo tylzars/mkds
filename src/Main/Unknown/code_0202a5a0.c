@@ -32,7 +32,7 @@ void func_0202a658(void *a) {
     if (data_02174e24->mUnk_808 == 0) {
         func_02029dcc(a, data_02174e24, data_02174e24->mUnk_404);
     } else {
-        func_02032f94(a, (s32) data_02174e24, (s32) data_02174e24->mUnk_404);
+        InitResultsBattle(a, (s32) data_02174e24, (s32) data_02174e24->mUnk_404);
     }
     func_0212abdc(a, data_02174e24);
     reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
@@ -55,7 +55,7 @@ void func_0202a604(u32 a) {
         if (data_02174e24->mUnk_808 == 0) {
             func_02029aa0((Unk02029aa0 *) a);
         } else {
-            func_02032ac4((Unk02032ac4 *) a);
+            AdvanceResultsBattle((Unk02032ac4 *) a);
         }
         func_020ae630(data_02174e24, data_02174e24->mUnk_404);
         func_0212a920();

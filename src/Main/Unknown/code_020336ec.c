@@ -29,13 +29,13 @@ void func_02033c80(s32 a) {
     BOOL d;
     BOOL e;
 
-    t = &data_02174e60->mUnk_048[1];
-    if (data_02174e60->mUnk_0d0 == a) {
+    t = &gResultsBattle->mUnk_048[1];
+    if (gResultsBattle->mUnk_0d0 == a) {
         d = TRUE;
     } else {
         d = FALSE;
     }
-    r = data_02174e60->mUnk_0e4[a].mUnk_08;
+    r = gResultsBattle->mUnk_0e4[a].mUnk_08;
     if (data_021759c0->mUseTeams != 0) {
         if (data_021759c0->mCurrentEntries[(u16) a].mPlayer.mTeamIndex == 1) {
             b = TRUE;
@@ -94,9 +94,9 @@ void func_02033b80(s32 a) {
     s32 n;
     u16 w[4];
 
-    t = &data_02174e60->mUnk_048[1];
-    r = data_02174e60->mUnk_0e4[a].mUnk_08;
-    q = data_02174e60->mUnk_0e4[a].mUnk_04;
+    t = &gResultsBattle->mUnk_048[1];
+    r = gResultsBattle->mUnk_0e4[a].mUnk_08;
+    q = gResultsBattle->mUnk_0e4[a].mUnk_04;
     if (data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUseTeams != 0 && data_021759c0->mUnk_1c == 1) {
         t->mUnk_18[r + 0x38].mUnk_00 = 0;
         t->mUnk_18[r + 0x48].mUnk_00 = 0;
@@ -115,7 +115,7 @@ void func_02033b80(s32 a) {
     func_02124224(1, r + 8, t->mUnk_14, w, t->mUnk_0c, t->mUnk_18, 6);
     r += 0x38;
     t->mUnk_18[r].mUnk_00 = 1;
-    func_02025c48(r, data_02174e60->mUnk_0e4[a].mUnk_00 + 0x40, t->mUnk_0c);
+    func_02025c48(r, gResultsBattle->mUnk_0e4[a].mUnk_00 + 0x40, t->mUnk_0c);
 }
 
 void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
@@ -127,19 +127,19 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
     u8 v;
     u32 e;
 
-    s = &data_02174e60->mUnk_048[a];
+    s = &gResultsBattle->mUnk_048[a];
     if (d == 1) {
-        q = &data_02174e60->mUnk_048[2];
+        q = &gResultsBattle->mUnk_048[2];
     } else {
-        q = &data_02174e60->mUnk_048[3];
+        q = &gResultsBattle->mUnk_048[3];
     }
     r = data_021759c0->mCurrentEntries[(u16) b].mCharacterIndex;
     func_0212463c(r, q->mUnk_08, q->mUnk_00, q->mUnk_04, q->mUnk_0c, a, c, s->mUnk_08, s->mUnk_0c);
     if (r == 0xc) {
         if (d == 1) {
-            u = data_02174e60->mUnk_0c0;
+            u = gResultsBattle->mUnk_0c0;
         } else {
-            u = data_02174e60->mUnk_0c4;
+            u = gResultsBattle->mUnk_0c4;
         }
         v = func_02124a68(c, s->mUnk_08, s->mUnk_0c);
         e = data_0217b488->mUnk_10c[b];
@@ -160,9 +160,9 @@ void func_02033a0c(void *a) {
     u16 w[11];
 
     r = GX_GetSizeOfOBJ();
-    t = &data_02174e60->mUnk_048[0];
-    data_02174e60->mUnk_0cc = 1;
-    data_02174e60->mUnk_0ce = 0xb;
+    t = &gResultsBattle->mUnk_048[0];
+    gResultsBattle->mUnk_0cc = 1;
+    gResultsBattle->mUnk_0ce = 0xb;
     j = 0;
     if ((s32) t->mUnk_14->mUnk_06 > 0) {
         p = data_usa_02153e98;
@@ -173,9 +173,9 @@ void func_02033a0c(void *a) {
         } while (j < (s32) t->mUnk_14->mUnk_06);
     }
     func_020338f8_inline(w, 0x16);
-    func_020adff0((u16) data_02174e60->mUnk_0d0, w, 1);
+    func_020adff0((u16) gResultsBattle->mUnk_0d0, w, 1);
     func_0212426c(0, 0, t->mUnk_14, w, t->mUnk_0c, t->mUnk_18);
-    func_02033ab8(0, data_02174e60->mUnk_0d0, 0, 1);
+    func_02033ab8(0, gResultsBattle->mUnk_0d0, 0, 1);
 }
 
 void func_020338f8(void *a) {
@@ -190,12 +190,12 @@ void func_020338f8(void *a) {
     s32 b;
     Unk02124b1c *c;
 
-    t = &data_02174e60->mUnk_048[0];
+    t = &gResultsBattle->mUnk_048[0];
     r = GX_GetSizeOfOBJ();
     n = 0;
     h = t->mUnk_0c->mUnk_06;
-    data_02174e60->mUnk_0cc = 8;
-    data_02174e60->mUnk_0ce = 0x12;
+    gResultsBattle->mUnk_0cc = 8;
+    gResultsBattle->mUnk_0ce = 0x12;
     j = 0;
     b = t->mUnk_14->mUnk_06;
     if (b > 0) {
@@ -206,9 +206,9 @@ void func_020338f8(void *a) {
             j++;
         } while (j < t->mUnk_14->mUnk_06);
     }
-    func_0212426c(0, 0, t->mUnk_14, GetBmgEntry(data_02174e60->mUnk_0c8, 0x7a), t->mUnk_0c, t->mUnk_18);
-    for (m = 0; m < data_02174e60->mUnk_0d8; m++) {
-        if (data_02174e60->mUnk_0e4[m].mUnk_00 == 0) {
+    func_0212426c(0, 0, t->mUnk_14, GetBmgEntry(gResultsBattle->mCommonMessages, 0x7a), t->mUnk_0c, t->mUnk_18);
+    for (m = 0; m < gResultsBattle->mUnk_0d8; m++) {
+        if (gResultsBattle->mUnk_0e4[m].mUnk_00 == 0) {
             func_020338f8_inline(w, 0x16);
             func_020adff0((u16) m, w, 1);
             n++;
@@ -231,30 +231,30 @@ void func_02033840(void *a) {
     BOOL e;
     s32 i;
 
-    t = &data_02174e60->mUnk_048[0];
-    c = data_02174e60->mUnk_0d4;
+    t = &gResultsBattle->mUnk_048[0];
+    c = gResultsBattle->mUnk_0d4;
     d = c + data_usa_02153ea0[c - 2];
     if (c > 4) {
         e = FALSE;
     } else {
         e = TRUE;
     }
-    data_02174e60->mUnk_0cc = 0x46;
-    data_02174e60->mUnk_0ce = 0x50;
+    gResultsBattle->mUnk_0cc = 0x46;
+    gResultsBattle->mUnk_0ce = 0x50;
     for (i = 0; i < 0x46; i++) {
         t->mUnk_18[i].mUnk_00 = 0;
     }
-    for (i = data_usa_02153ea0[data_02174e60->mUnk_0d4 - 2];
-         i < data_usa_02153ea0[data_02174e60->mUnk_0d4 - 2] + data_02174e60->mUnk_0d4 * 2; i++) {
+    for (i = data_usa_02153ea0[gResultsBattle->mUnk_0d4 - 2];
+         i < data_usa_02153ea0[gResultsBattle->mUnk_0d4 - 2] + gResultsBattle->mUnk_0d4 * 2; i++) {
         t->mUnk_18[i].mUnk_00 = 1;
     }
-    for (i = 0; i < data_02174e60->mUnk_0d4; i++) {
+    for (i = 0; i < gResultsBattle->mUnk_0d4; i++) {
         func_02033ab8(0, i, d + i, e);
     }
 }
 
 void func_020336ec(void *a) {
-    Unk02174e60 *o;
+    ResultsBattle *o;
     Unk02174e14_00 *t;
     s32 x;
     s32 c;
@@ -267,7 +267,7 @@ void func_020336ec(void *a) {
     s32 k;
     s32 m;
 
-    o = data_02174e60;
+    o = gResultsBattle;
     t = &o->mUnk_048[0];
     switch (o->mUnk_0dc) {
         case 3:
@@ -288,25 +288,25 @@ void func_020336ec(void *a) {
         f = 0x39;
     }
     o->mUnk_0cc = 0x3a;
-    data_02174e60->mUnk_0ce = 0x44;
+    gResultsBattle->mUnk_0ce = 0x44;
     for (i = 0; i < 0x38; i++) {
         t->mUnk_18[i].mUnk_00 = 0;
     }
-    j = data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1];
+    j = data_usa_02153eb0[gResultsBattle->mUnk_0d4 - 1];
     j = (u32) j;
-    if (j < data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1] + data_02174e60->mUnk_0d4 * 2) {
+    if (j < data_usa_02153eb0[gResultsBattle->mUnk_0d4 - 1] + gResultsBattle->mUnk_0d4 * 2) {
         do {
             t->mUnk_18[j].mUnk_00 = 1;
             j++;
-        } while (j < data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1] + data_02174e60->mUnk_0d4 * 2);
+        } while (j < data_usa_02153eb0[gResultsBattle->mUnk_0d4 - 1] + gResultsBattle->mUnk_0d4 * 2);
     }
-    if (data_02174e60->mUnk_0dc == 3) {
-        for (k = data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1];
-             k < data_02174e60->mUnk_0d4 + data_usa_02153eb0[data_02174e60->mUnk_0d4 - 1]; k++) {
+    if (gResultsBattle->mUnk_0dc == 3) {
+        for (k = data_usa_02153eb0[gResultsBattle->mUnk_0d4 - 1];
+             k < gResultsBattle->mUnk_0d4 + data_usa_02153eb0[gResultsBattle->mUnk_0d4 - 1]; k++) {
             func_02025c48(k, f, t->mUnk_0c);
         }
     }
-    for (m = 0; m < data_02174e60->mUnk_0d8; m++) {
+    for (m = 0; m < gResultsBattle->mUnk_0d8; m++) {
         if (x == data_021759c0->mCurrentEntries[(u16) m].mPlayer.mTeamIndex) {
             func_02033ab8(0, m, d + n, e);
             n++;

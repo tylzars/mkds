@@ -83,11 +83,11 @@ static inline Unk0217aa1c_144 *func_02032f94_inline_3(void) {
     return &data_0217aa1c->mUnk_144[func_0205db28()];
 }
 
-void func_02032f94(void *a, s32 b, s32 c) {
+void InitResultsBattle(void *a, s32 b, s32 c) {
     Unk02180774 *r;
     Unk02174e14_00 *s;
     Unk02174e14_00 *q;
-    Unk02174e60 *p;
+    ResultsBattle *p;
     Unk02174e60_00 *t;
     Unk0201ea30 *u;
     u32 n;
@@ -100,12 +100,12 @@ void func_02032f94(void *a, s32 b, s32 c) {
     Unk02125de0 v;
     s32 f[8];
 
-    data_02174e60 = HeapAlloc(a, 0x154);
-    MemFillWordsByBlock_inline(data_02174e60, 0x154);
-    data_02174e60->mUnk_0b8[0] = b;
-    data_02174e60->mUnk_0b8[1] = c;
-    data_02174e60->mUnk_0e0 = data_021759d0->mUnk_20;
-    if (data_02174e60->mUnk_0e0 == 3) {
+    gResultsBattle = HeapAlloc(a, 0x154);
+    MemFillWordsByBlock_inline(gResultsBattle, 0x154);
+    gResultsBattle->mUnk_0b8[0] = b;
+    gResultsBattle->mUnk_0b8[1] = c;
+    gResultsBattle->mMode = data_021759d0->mUnk_20;
+    if (gResultsBattle->mMode == 3) {
         func_02123a48(3);
     }
     func_02062860();
@@ -129,27 +129,27 @@ void func_02032f94(void *a, s32 b, s32 c) {
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v);
     func_020629a4();
-    data_02174e60->mUnk_0c8 = func_02047a28(data_0216416c);
-    switch (data_02174e60->mUnk_0e0) {
+    gResultsBattle->mCommonMessages = func_02047a28(data_0216416c);
+    switch (gResultsBattle->mMode) {
         case 0:
-            data_02174e60->mUnk_0d0 = 0;
-            data_02174e60->mUnk_0d8 = data_021759c0->mKartCount;
-            data_02174e60->mUnk_150 = 2;
+            gResultsBattle->mUnk_0d0 = 0;
+            gResultsBattle->mUnk_0d8 = data_021759c0->mKartCount;
+            gResultsBattle->mUnk_150 = 2;
             break;
         case 1:
         case 2:
             SetSelectChoisesSoundId(1, 0xf);
-            data_02174e60->mUnk_0d0 =
+            gResultsBattle->mUnk_0d0 =
                 data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0)].mUnk_00;
-            data_02174e60->mUnk_0d8 = data_021759c0->mKartCount;
-            data_02174e60->mUnk_150 = 0;
+            gResultsBattle->mUnk_0d8 = data_021759c0->mKartCount;
+            gResultsBattle->mUnk_150 = 0;
             break;
         case 3:
-            data_02174e60->mUnk_0d0 = func_02122778(func_ov000_0219bb50());
-            data_02174e60->mUnk_0d8 = gWiFiSession->mKartCount;
-            data_02174e60->mUnk_148 = TRUE;
-            data_02174e60->mUnk_14c = 0x384;
-            data_02174e60->mUnk_150 = 2;
+            gResultsBattle->mUnk_0d0 = func_02122778(func_ov000_0219bb50());
+            gResultsBattle->mUnk_0d8 = gWiFiSession->mKartCount;
+            gResultsBattle->mUnk_148 = TRUE;
+            gResultsBattle->mTimer = 0x384;
+            gResultsBattle->mUnk_150 = 2;
             break;
     }
     func_02033e6c();
@@ -167,41 +167,41 @@ void func_02032f94(void *a, s32 b, s32 c) {
                 break;
         }
         if (j == k) {
-            data_02174e60->mUnk_0d4 = data_02174e60->mUnk_0d8;
-            data_02174e60->mUnk_0dc = 2;
+            gResultsBattle->mUnk_0d4 = gResultsBattle->mUnk_0d8;
+            gResultsBattle->mUnk_0dc = 2;
         } else if (j > k) {
-            data_02174e60->mUnk_0d4 = data_021759c0->mTeamKartCounts[0];
-            data_02174e60->mUnk_0dc = 3;
+            gResultsBattle->mUnk_0d4 = data_021759c0->mTeamKartCounts[0];
+            gResultsBattle->mUnk_0dc = 3;
         } else if (k > j) {
-            data_02174e60->mUnk_0d4 = data_021759c0->mTeamKartCounts[1];
-            data_02174e60->mUnk_0dc = 4;
+            gResultsBattle->mUnk_0d4 = data_021759c0->mTeamKartCounts[1];
+            gResultsBattle->mUnk_0dc = 4;
         }
     } else if (func_02033e24() != 0) {
-        data_02174e60->mUnk_0d4 = data_02174e60->mUnk_0d8;
-        data_02174e60->mUnk_0dc = 2;
-    } else if (data_02174e60->mUnk_0e4[data_02174e60->mUnk_0d0].mUnk_00 == 0) {
-        data_02174e60->mUnk_0dc = 0;
+        gResultsBattle->mUnk_0d4 = gResultsBattle->mUnk_0d8;
+        gResultsBattle->mUnk_0dc = 2;
+    } else if (gResultsBattle->mUnk_0e4[gResultsBattle->mUnk_0d0].mUnk_00 == 0) {
+        gResultsBattle->mUnk_0dc = 0;
     } else {
-        data_02174e60->mUnk_0dc = 1;
+        gResultsBattle->mUnk_0dc = 1;
     }
-    func_02025b84(1, &data_02174e60->mUnk_048[2]);
-    func_02025b84(0, &data_02174e60->mUnk_048[3]);
-    data_02174e60->mUnk_0c0 = func_020b4024(1);
-    data_02174e60->mUnk_0c4 = func_020b4024(0);
-    t = &data_02174e60->mUnk_000[0];
-    func_02025884(t, data_02153f80[data_02174e60->mUnk_0dc][0], data_02153f84[data_02174e60->mUnk_0dc][0],
-                  data_02153f8c[data_02174e60->mUnk_0dc][0], 3, FindSceneFile);
-    LoadNscrData(&t->mUnk_14[2], FindSceneFile(data_02153f88[data_02174e60->mUnk_0dc][0]));
+    func_02025b84(1, &gResultsBattle->mUnk_048[2]);
+    func_02025b84(0, &gResultsBattle->mUnk_048[3]);
+    gResultsBattle->mUnk_0c0 = func_020b4024(1);
+    gResultsBattle->mUnk_0c4 = func_020b4024(0);
+    t = &gResultsBattle->mUnk_000[0];
+    func_02025884(t, data_02153f80[gResultsBattle->mUnk_0dc][0], data_02153f84[gResultsBattle->mUnk_0dc][0],
+                  data_02153f8c[gResultsBattle->mUnk_0dc][0], 3, FindSceneFile);
+    LoadNscrData(&t->mUnk_14[2], FindSceneFile(data_02153f88[gResultsBattle->mUnk_0dc][0]));
     GX_LoadBG3Char(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
     GX_LoadBGPltt(t->mUnk_10->mData, 0, 0x140);
     GX_LoadBG2Scr(t->mUnk_14[2]->mData, 0, t->mUnk_14[2]->mDataSize);
     GX_LoadBG3Scr(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
-    s = &data_02174e60->mUnk_048[0];
-    func_02025abc(s, data_02153f90[data_02174e60->mUnk_0dc][0], data_02153f94[data_02174e60->mUnk_0dc][0],
-                  data_02153f98[data_02174e60->mUnk_0dc][0], data_02153f9c[data_02174e60->mUnk_0dc][0],
-                  data_02153fa0[data_02174e60->mUnk_0dc][0], NULL, FindSceneFile);
+    s = &gResultsBattle->mUnk_048[0];
+    func_02025abc(s, data_02153f90[gResultsBattle->mUnk_0dc][0], data_02153f94[gResultsBattle->mUnk_0dc][0],
+                  data_02153f98[gResultsBattle->mUnk_0dc][0], data_02153f9c[gResultsBattle->mUnk_0dc][0],
+                  data_02153fa0[gResultsBattle->mUnk_0dc][0], NULL, FindSceneFile);
     func_02025a50(0, a, s);
-    switch (data_02174e60->mUnk_0dc) {
+    switch (gResultsBattle->mUnk_0dc) {
         case 0:
             func_02033a0c(a);
             break;
@@ -220,15 +220,16 @@ void func_02032f94(void *a, s32 b, s32 c) {
     for (i = 0; i < u->mUnk_06; i++) {
         func_0201ea30(s->mUnk_0c, i);
     }
-    t = &data_02174e60->mUnk_000[1];
-    func_02025884(t, data_02164178, data_02164190, data_021641a8, 3, FindSceneFile);
+    t = &gResultsBattle->mUnk_000[1];
+    func_02025884(t, gResultsBattleSBNcgrName, gResultsBattleSBNclrName, gResultsBattleSBgNscrName, 3, FindSceneFile);
     GXS_LoadBG3Char(t->mUnk_00[3]->mData, 0, t->mUnk_00[3]->mDataSize);
     GXS_LoadBGPltt(t->mUnk_10->mData, 0, 0x140);
     GXS_LoadBG3Scr(t->mUnk_14[3]->mData, 0, t->mUnk_14[3]->mDataSize);
     n = GX_GetSizeOfSubOBJ();
-    p = data_02174e60;
+    p = gResultsBattle;
     q = &p->mUnk_048[1];
-    func_02025abc(q, data_021641c4, data_021641e0, data_021641fc, data_02164214, data_0216422c, NULL, FindSceneFile);
+    func_02025abc(q, gResultsBattleSNcgrName, gResultsBattleSNcerName, gResultsBattleSONclrName,
+                  gResultsBattleSBnclName, gResultsBattleSBnllName, NULL, FindSceneFile);
     func_02124ed0(a, q->mUnk_0c, q->mUnk_14, &q->mUnk_18);
     GXS_LoadOBJ(((Ncgr *) p->mUnk_048[1].mUnk_00)->mData, 0, ((Ncgr *) p->mUnk_048[1].mUnk_00)->mDataSize);
     GXS_LoadOBJPltt(((Nclr *) q->mUnk_04)->mData, 0, ((Nclr *) q->mUnk_04)->mDataSize);
@@ -242,9 +243,9 @@ void func_02032f94(void *a, s32 b, s32 c) {
         f[i] = 0;
     }
     for (m = 0; m < 8; m++) {
-        e = data_02174e60->mUnk_0e4[m].mUnk_08;
+        e = gResultsBattle->mUnk_0e4[m].mUnk_08;
         k = data_021759c0->mCurrentEntries[m].mPlayer.mKind;
-        if ((k == 0 || k == 1 || k == 3) && (data_02174e60->mUnk_0e0 != 3 || data_02174e60->mUnk_0e4[m].mUnk_04 != 0)) {
+        if ((k == 0 || k == 1 || k == 3) && (gResultsBattle->mMode != 3 || gResultsBattle->mUnk_0e4[m].mUnk_04 != 0)) {
             func_02033ab8(1, m, e + 0x30, 1);
             func_02032f94_inline(w, 0x16);
             func_020adff0(m, w, 0);
@@ -267,16 +268,16 @@ void func_02032f94(void *a, s32 b, s32 c) {
             q->mUnk_18[i].mUnk_00 = q->mUnk_18[i + 0x08].mUnk_00;
         }
     }
-    switch (data_02174e60->mUnk_0dc) {
+    switch (gResultsBattle->mUnk_0dc) {
         case 3:
-            if (data_021759c0->mCurrentEntries[(u16) data_02174e60->mUnk_0d0].mPlayer.mTeamIndex == 0) {
+            if (data_021759c0->mCurrentEntries[(u16) gResultsBattle->mUnk_0d0].mPlayer.mTeamIndex == 0) {
                 k = 0;
             } else {
                 k = 7;
             }
             break;
         case 4:
-            if (data_021759c0->mCurrentEntries[(u16) data_02174e60->mUnk_0d0].mPlayer.mTeamIndex == 1) {
+            if (data_021759c0->mCurrentEntries[(u16) gResultsBattle->mUnk_0d0].mPlayer.mTeamIndex == 1) {
                 k = 0;
             } else {
                 k = 7;
@@ -296,7 +297,7 @@ void func_02032f94(void *a, s32 b, s32 c) {
 
 #pragma thumb on
 
-void func_02032ac4(Unk02032ac4 *a) {
+void AdvanceResultsBattle(Unk02032ac4 *a) {
     Unk02174e14_00 *s;
     Unk02174e14_00 *t;
     Unk02175628Index v1;
@@ -309,16 +310,16 @@ void func_02032ac4(Unk02032ac4 *a) {
     s32 i;
     s32 r;
 
-    t = &data_02174e60->mUnk_048[1];
-    s = &data_02174e60->mUnk_048[0];
-    if (data_02174e60->mUnk_148 != FALSE) {
-        if (data_02174e60->mUnk_14c != 0) {
-            data_02174e60->mUnk_14c = data_02174e60->mUnk_14c - 1;
-            x = (data_02174e60->mUnk_14c + 0x3c) / 0x3c;
-            s->mUnk_18[data_02174e60->mUnk_0ce].mUnk_00 = x >= 10 ? 1 : 0;
-            if (data_02174e60->mUnk_14c == 0) {
+    t = &gResultsBattle->mUnk_048[1];
+    s = &gResultsBattle->mUnk_048[0];
+    if (gResultsBattle->mUnk_148 != FALSE) {
+        if (gResultsBattle->mTimer != 0) {
+            gResultsBattle->mTimer = gResultsBattle->mTimer - 1;
+            x = (gResultsBattle->mTimer + 0x3c) / 0x3c;
+            s->mUnk_18[gResultsBattle->mUnk_0ce].mUnk_00 = x >= 10 ? 1 : 0;
+            if (gResultsBattle->mTimer == 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x51);
-            } else if ((data_02174e60->mUnk_14c + 0x3c) % 0x3c == 0 && x <= 4) {
+            } else if ((gResultsBattle->mTimer + 0x3c) % 0x3c == 0 && x <= 4) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x50);
             }
         } else {
@@ -326,44 +327,44 @@ void func_02032ac4(Unk02032ac4 *a) {
         }
         m = s->mUnk_0c;
         n = s->mUnk_08;
-        func_02124748(data_02174e60->mUnk_0cc + (x / 10) % 10, n, s->mUnk_00, m, 0, data_02174e60->mUnk_0ce, n, m);
+        func_02124748(gResultsBattle->mUnk_0cc + (x / 10) % 10, n, s->mUnk_00, m, 0, gResultsBattle->mUnk_0ce, n, m);
         m2 = s->mUnk_0c;
         n2 = s->mUnk_08;
-        func_02124748(data_02174e60->mUnk_0cc + x % 10, n2, s->mUnk_00, m2, 0, data_02174e60->mUnk_0ce + 1, n2, m2);
+        func_02124748(gResultsBattle->mUnk_0cc + x % 10, n2, s->mUnk_00, m2, 0, gResultsBattle->mUnk_0ce + 1, n2, m2);
     } else {
-        s->mUnk_18[data_02174e60->mUnk_0ce + 1].mUnk_00 = 0;
-        s->mUnk_18[data_02174e60->mUnk_0ce].mUnk_00 = s->mUnk_18[data_02174e60->mUnk_0ce + 1].mUnk_00;
+        s->mUnk_18[gResultsBattle->mUnk_0ce + 1].mUnk_00 = 0;
+        s->mUnk_18[gResultsBattle->mUnk_0ce].mUnk_00 = s->mUnk_18[gResultsBattle->mUnk_0ce + 1].mUnk_00;
     }
-    switch (data_02174e60->mUnk_150) {
+    switch (gResultsBattle->mUnk_150) {
         case 0:
-            data_02174e60->mUnk_144 = data_02174e60->mUnk_144 + 1;
+            gResultsBattle->mUnk_144 = gResultsBattle->mUnk_144 + 1;
             if (func_020546d8() == 1) {
-                data_02174e60->mUnk_150 = 1;
+                gResultsBattle->mUnk_150 = 1;
             }
             break;
         case 1:
-            data_02174e60->mUnk_144 = data_02174e60->mUnk_144 + 1;
+            gResultsBattle->mUnk_144 = gResultsBattle->mUnk_144 + 1;
             if (func_02054754() == 1) {
-                data_02174e60->mUnk_150 = 2;
+                gResultsBattle->mUnk_150 = 2;
             }
             break;
         case 2:
             r = func_0210f714();
-            data_02174e60->mUnk_144 = data_02174e60->mUnk_144 + 1;
-            if (data_02174e60->mUnk_144 > r) {
-                data_02174e60->mUnk_144 = 0;
-                data_02174e60->mUnk_150 = 3;
+            gResultsBattle->mUnk_144 = gResultsBattle->mUnk_144 + 1;
+            if (gResultsBattle->mUnk_144 > r) {
+                gResultsBattle->mUnk_144 = 0;
+                gResultsBattle->mUnk_150 = 3;
             }
             break;
         case 3:
-            switch (data_02174e60->mUnk_0e0) {
+            switch (gResultsBattle->mMode) {
                 case 0:
                     if ((u16) (data_02175628[func_020435bc()].mUnk_00 & 1) != 0) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         if (a != NULL) {
                             a->mUnk_04 = 1;
                         }
-                        data_02174e60->mUnk_150 = 7;
+                        gResultsBattle->mUnk_150 = 7;
                     }
                     break;
                 case 1:
@@ -371,24 +372,24 @@ void func_02032ac4(Unk02032ac4 *a) {
                     v1 = UNK_02175628_INDEX_8;
                     if ((u16) (data_02175628[v1].mUnk_00 & 1) != 0) {
                         func_02033d9c();
-                        data_02174e60->mUnk_150 = 4;
+                        gResultsBattle->mUnk_150 = 4;
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                     }
                     break;
                 case 3:
                     if (func_02033dfc() != 0) {
                         func_02121dec(1);
-                        data_02174e60->mUnk_150 = 5;
+                        gResultsBattle->mUnk_150 = 5;
                     } else if ((u16) (data_02175628[func_020435bc()].mUnk_00 & 1) != 0 || func_02033dd0() != 0) {
                         func_02033d9c();
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
-                        data_02174e60->mUnk_150 = 4;
+                        gResultsBattle->mUnk_150 = 4;
                     }
                     break;
             }
             break;
         case 4:
-            switch (data_02174e60->mUnk_0e0) {
+            switch (gResultsBattle->mMode) {
                 case 1:
                 case 2:
                     if (GetSelectChoisesDone() != 0) {
@@ -406,14 +407,14 @@ void func_02032ac4(Unk02032ac4 *a) {
                                         a->mUnk_04 = 1;
                                     }
                                 }
-                                data_02174e60->mUnk_150 = 7;
+                                gResultsBattle->mUnk_150 = 7;
                                 break;
                             case 1:
                                 data_0217aa00->mUnk_0454 = data_0217aa00->mUnk_0454 | 0x80;
-                                data_02174e60->mUnk_150 = 6;
+                                gResultsBattle->mUnk_150 = 6;
                                 break;
                             case -1:
-                                data_02174e60->mUnk_150 = 3;
+                                gResultsBattle->mUnk_150 = 3;
                                 break;
                         }
                         RequestSelectChoisesState0();
@@ -423,7 +424,7 @@ void func_02032ac4(Unk02032ac4 *a) {
                     if (GetSelectChoisesDone() != 0 || func_02033dfc() != 0) {
                         switch (GetSelectChoisesIndex()) {
                             case 0:
-                                data_02174e60->mUnk_150 = 5;
+                                gResultsBattle->mUnk_150 = 5;
                                 func_02121dec(1);
                                 break;
                             case 1:
@@ -432,10 +433,10 @@ void func_02032ac4(Unk02032ac4 *a) {
                                 if (a != NULL) {
                                     a->mUnk_04 = 0xc;
                                 }
-                                data_02174e60->mUnk_150 = 7;
+                                gResultsBattle->mUnk_150 = 7;
                                 break;
                             case -1:
-                                data_02174e60->mUnk_150 = 3;
+                                gResultsBattle->mUnk_150 = 3;
                                 break;
                         }
                         RequestSelectChoisesState0();
@@ -456,7 +457,7 @@ void func_02032ac4(Unk02032ac4 *a) {
                 if (a != NULL) {
                     a->mUnk_04 = 0xc;
                 }
-                data_02174e60->mUnk_150 = 7;
+                gResultsBattle->mUnk_150 = 7;
             }
             break;
         case 6:
@@ -464,22 +465,22 @@ void func_02032ac4(Unk02032ac4 *a) {
                 if (a != NULL) {
                     a->mUnk_04 = 0;
                 }
-                data_02174e60->mUnk_150 = 7;
+                gResultsBattle->mUnk_150 = 7;
             }
             break;
     }
     func_020a2558();
     func_020a23cc();
     for (i = 0; i < 2; i++) {
-        func_02124c30(data_02174e60->mUnk_048[i].mUnk_0c, data_02174e60->mUnk_048[i].mUnk_08,
-                      data_02174e60->mUnk_048[i].mUnk_14, (void *) data_02174e60->mUnk_0b8[i],
-                      data_02174e60->mUnk_048[i].mUnk_18);
+        func_02124c30(gResultsBattle->mUnk_048[i].mUnk_0c, gResultsBattle->mUnk_048[i].mUnk_08,
+                      gResultsBattle->mUnk_048[i].mUnk_14, (void *) gResultsBattle->mUnk_0b8[i],
+                      gResultsBattle->mUnk_048[i].mUnk_18);
     }
     j = t->mUnk_0c->mUnk_06;
     for (i = 0; i < 8; i++) {
         t->mUnk_18[i + j].mUnk_06 = t->mUnk_18[i + j].mUnk_06 + 1;
         func_02124100(i, 0xe, t->mUnk_14, t->mUnk_18, t->mUnk_0c);
-        func_02124bc8(i + j, t->mUnk_0c, t->mUnk_08, t->mUnk_14, (void *) data_02174e60->mUnk_0b8[1], t->mUnk_18);
+        func_02124bc8(i + j, t->mUnk_0c, t->mUnk_08, t->mUnk_14, (void *) gResultsBattle->mUnk_0b8[1], t->mUnk_18);
         func_02124100(i, 0xf, t->mUnk_14, t->mUnk_18, t->mUnk_0c);
         t->mUnk_18[i + j].mUnk_06 = t->mUnk_18[i + j].mUnk_06 - 1;
     }
