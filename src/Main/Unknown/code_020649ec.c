@@ -128,7 +128,7 @@ void func_02064f50(Kart *a) {
     func_01ffc920(a);
     func_01ffc8cc(a);
     if ((a->mUnk_4c & 0x8000) != 0) {
-        func_02084478(a);
+        ComputeKartSidePoints(a);
     }
     if ((a->mUnk_4c & 8) != 0) {
         func_02071788(a);

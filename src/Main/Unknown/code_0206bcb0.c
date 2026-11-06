@@ -82,7 +82,7 @@ void func_0206cdd4(Kart *p) {
     p->mUnk_302 = 0;
     p->mUnk_300 = p->mUnk_302;
     p->mUnk_30c = 0;
-    func_0208c534(func_0208c5b8(p->mIndex));
+    StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
 }
 
 void func_0206cc60(Kart *p, int arg) {
@@ -138,7 +138,7 @@ void func_0206c5e4(Kart *p) {
     u32 f = p->mUnk_44;
     BOOL hasB = (f & 2) != 0;
     u32 g;
-    Unk0208c5b8 *t;
+    KartTurnEffects *t;
     int id;
     enum { K0 } k;
 
@@ -192,9 +192,9 @@ recheck:
                 p->mUnk_308 = &p->mUnk_300;
             }
             if (p->mUnk_4c & 0x8000) {
-                t = func_0208c5b8(p->mIndex);
-                func_0208ccf0(t);
-                func_0208d6b0(t);
+                t = GetKartTurnEffects(p->mIndex);
+                ResetKartLevel4Effects(t);
+                StartKartTurnStartEffects(t);
             }
         } else {
             p->mTurnDirection = 0;
@@ -227,7 +227,7 @@ recheck:
             p->mUnk_302 = 0;
             p->mUnk_300 = p->mUnk_302;
             p->mUnk_30c = 0;
-            func_0208c534(func_0208c5b8(p->mIndex));
+            StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
         } else if (f & 0x10) {
             func_0206cc60(p, 0);
         }
@@ -310,7 +310,7 @@ int func_0206c494(Kart *p) {
     BOOL dir = FALSE;
     int delta;
     u16 bits;
-    Unk0208c5b8 *t;
+    KartTurnEffects *t;
     enum { K0 } k;
 
     if (p->mVelocityLength < 0x1800 && (p->mUnk_48 & 0x80)) {
@@ -329,10 +329,10 @@ int func_0206c494(Kart *p) {
             delta = -500;
         }
         if (p->mUnk_44 & 0x10) {
-            if (func_0208c5b8(p->mIndex)->mUnk_3c == 0 && (p->mUnk_4c & 0x8000)) {
-                t = func_0208c5b8(p->mIndex);
-                func_0208ccf0(t);
-                func_0208d6b0(t);
+            if (GetKartTurnEffects(p->mIndex)->mTurnStartPresent == 0 && (p->mUnk_4c & 0x8000)) {
+                t = GetKartTurnEffects(p->mIndex);
+                ResetKartLevel4Effects(t);
+                StartKartTurnStartEffects(t);
             }
             p->mUnk_48 |= 0x100;
             if (p->mTurnDirection != 0) {
@@ -344,7 +344,7 @@ int func_0206c494(Kart *p) {
         func_0210b4e0(p, dir, p->mSurfaceKind, p->mSurfaceVariant);
     }
     if (pending) {
-        func_0208d650(func_0208c5b8(p->mIndex));
+        StopKartTurnStartEffects(GetKartTurnEffects(p->mIndex));
     }
     return result;
 }
@@ -471,7 +471,7 @@ void func_0206bf88(Kart *p, int mode) {
     p->mUnk_302 = 0;
     p->mUnk_300 = p->mUnk_302;
     p->mUnk_30c = 0;
-    func_0208c534(func_0208c5b8(p->mIndex));
+    StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
     if (p->mUnk_4c & 0x2000) {
         p->mUnk_4c &= ~0x2000;
         p->mUnk_d8 = 0x1000;

@@ -227,7 +227,8 @@ extern UnkFunc *data_0217b068;
 extern UnkFunc *data_0217b06c;
 extern UnkFunc *data_0217b070;
 extern s32 (*data_0217b074)();
-extern struct Unk0208c5b8 *data_0217b078;
+// Table of KartTurnEffects, one per Kart, allocated by InitKartTurnEffects and indexed by Kart.mIndex.
+extern struct KartTurnEffects *gKartTurnEffects;
 struct Unk0208e490;
 
 // Object behind data_0217b080, 0x60 bytes: a list at 0x00 and five lists at 0x0c (12 bytes each), and five pointers

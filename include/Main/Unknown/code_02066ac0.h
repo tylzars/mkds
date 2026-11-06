@@ -44,7 +44,9 @@ void func_02066ac0(Kart *a);
 void func_02066de8(Kart *a);
 void func_02066fe0(Kart *a);
 void func_02067488(Kart *a);
-u32 func_020675b4(Kart *a);
+// 1 when the turn start group, the level 3 group or the level 4 group (not while mLevel4StopRequested is TRUE) exists,
+// else 0; the level 2 group is not counted.
+u32 IsKartTurnEffectsActive(Kart *a);
 // Surface kind 10 (entry 10 of gKartSurfaceFunctions): passes the entry that data_02154b04 gives for mSurfaceVariant to
 // func_02083f6c and returns surface group 0, for which RefreshKartSurface uses the factor 0x1000 instead of an entry of
 // mSurfaceSpeedLimitFactors.

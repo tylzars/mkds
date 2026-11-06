@@ -94,7 +94,7 @@ void func_0208b934(void *a) {
     if (data_0217b03c != NULL) {
         data_0217b03c->mUnk_38_24 = 1;
     }
-    func_0208d758(a);
+    InitKartTurnEffects(a);
     if (data_021759c0->mCourseId != COURSE_ID_RAINBOW) {
         data_0217b044->mUnk_3c = 0x8000;
     } else {

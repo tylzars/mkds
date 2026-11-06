@@ -292,7 +292,7 @@ void func_02072930(Kart *p) {
     func_020810e4(p->mIndex);
     func_02080fb8(p);
     func_02080e9c(p);
-    func_0208c5d0(func_0208c5b8(p->mIndex));
+    ReleaseKartTurnEffects(GetKartTurnEffects(p->mIndex));
     func_020719d0(p);
     if (p->mIndex == data_021759c0->mEntryIndex) {
         func_0210fa74(0);
@@ -338,7 +338,7 @@ void func_02072930(Kart *p) {
         p->mUnk_7c &= ~0xc000;
         p->mUnk_29c = 0;
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
-            func_0208c4e8(func_0208c5b8(p->mIndex));
+            ShowKartTurnEffects(GetKartTurnEffects(p->mIndex));
         } else {
             StartSound(&p->mSoundSource, 0xf9, 0x7f, 0);
         }
@@ -1092,7 +1092,7 @@ void func_020710b0(Kart *p, s32 b) {
     p->mUnk_302 = 0;
     p->mUnk_300 = p->mUnk_302;
     p->mUnk_30c = 0;
-    func_0208c534(func_0208c5b8(p->mIndex));
+    StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
     p->mState = 0;
     p->mUnk_4c &= ~0x30;
     p->mUnk_48 &= ~0x20000;

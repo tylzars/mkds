@@ -56,14 +56,14 @@ void InitKartEffects(u32 a) {
         e->mCurrentEffectId = -1;
         e->mUnk_20 = e->mUnk_24 = 0;
         for (j = 0; j < 2; j++) {
-            e->mUnk_10[j].mUnk_00 = e->mUnk_10[j].mUnk_04 = 0;
-            e->mUnk_04[j] = -1;
+            e->mEffectPairs[j].mUnk_00 = e->mEffectPairs[j].mUnk_04 = 0;
+            e->mEffectIds[j] = -1;
         }
     }
     data_0217ae80 = NULL;
 }
 
-void func_02084478(Kart *p) {
+void ComputeKartSidePoints(Kart *p) {
     u16 i;
     KartEffects *e;
     Vec3 q;
@@ -79,14 +79,14 @@ void func_02084478(Kart *p) {
         q.x = (s32) (((s64) v.x * p->mScale.x) >> 12);
         q.y = (s32) (((s64) v.y * p->mScale.y) >> 12);
         q.z = (s32) (((s64) v.z * p->mScale.z) >> 12);
-        Vec3MultiplyMatrix4x3(&q, &p->mUnk_150_m, &e->mUnk_34[i]);
-        e->mUnk_34[i].x = e->mUnk_34[i].x >> 4;
-        e->mUnk_34[i].y = e->mUnk_34[i].y >> 4;
-        e->mUnk_34[i].z = e->mUnk_34[i].z >> 4;
+        Vec3MultiplyMatrix4x3(&q, &p->mUnk_150_m, &e->mSidePositions[i]);
+        e->mSidePositions[i].x = e->mSidePositions[i].x >> 4;
+        e->mSidePositions[i].y = e->mSidePositions[i].y >> 4;
+        e->mSidePositions[i].z = e->mSidePositions[i].z >> 4;
         Vec3MultiplyMatrix3x3(&data_02155818[i], &p->mUnk_150.x, &w);
-        e->mUnk_4c[i].x = w.x;
-        e->mUnk_4c[i].y = w.y;
-        e->mUnk_4c[i].z = w.z;
+        e->mSideDirections[i].x = w.x;
+        e->mSideDirections[i].y = w.y;
+        e->mSideDirections[i].z = w.z;
     }
 }
 
@@ -252,8 +252,8 @@ void func_02083de8(s32 a, Kart *p) {
     e = &gKartEffects[p->mIndex];
     for (i = 0; i < n->mUnk_00; i++) {
         for (j = 0; j < 2; j++) {
-            if (e->mUnk_10[i].mUnk_00_a[j] != 0) {
-                e->mUnk_10[i].mUnk_00_a[j]->mUnk_72 = data_0217ae6c;
+            if (e->mEffectPairs[i].mUnk_00_a[j] != 0) {
+                e->mEffectPairs[i].mUnk_00_a[j]->mUnk_72 = data_0217ae6c;
             }
         }
     }
@@ -290,17 +290,17 @@ s32 func_02083c18(Unk02155908_00 *a, s32 b, Kart *p) {
     for (; i < a->mUnk_00; i++) {
         e = &gKartEffects[p->mIndex];
         j = 0;
-        if (a->mUnk_04[i] != e->mUnk_04[i]) {
-            if (e->mUnk_10[i].mUnk_00 != 0) {
-                e->mUnk_10[i].mUnk_00->mUnk_98_8 = 1;
+        if (a->mUnk_04[i] != e->mEffectIds[i]) {
+            if (e->mEffectPairs[i].mUnk_00 != 0) {
+                e->mEffectPairs[i].mUnk_00->mUnk_98_8 = 1;
             }
-            if (e->mUnk_10[i].mUnk_04 != 0) {
-                e->mUnk_10[i].mUnk_04->mUnk_98_8 = 1;
+            if (e->mEffectPairs[i].mUnk_04 != 0) {
+                e->mEffectPairs[i].mUnk_04->mUnk_98_8 = 1;
             }
-            e->mUnk_04[i] = a->mUnk_04[i];
+            e->mEffectIds[i] = a->mUnk_04[i];
             do {
-                o = StartEffect(e->mUnk_04[i], &data_02155a14);
-                gKartEffects[p->mIndex].mUnk_10[i].mUnk_00_a[j] = o;
+                o = StartEffect(e->mEffectIds[i], &data_02155a14);
+                gKartEffects[p->mIndex].mEffectPairs[i].mUnk_00_a[j] = o;
                 o->mUnk_94 = p;
                 o->mUnk_98_24 = j;
                 j++;
@@ -323,17 +323,17 @@ s32 func_02083ae0(Unk02155908_00 *a, s32 b, Kart *p) {
     for (; i < a->mUnk_00; i++) {
         e = &gKartEffects[p->mIndex];
         j = 0;
-        if (a->mUnk_04[i] != e->mUnk_04[i]) {
-            if (e->mUnk_10[i].mUnk_00 != 0) {
-                e->mUnk_10[i].mUnk_00->mUnk_98_8 = 1;
+        if (a->mUnk_04[i] != e->mEffectIds[i]) {
+            if (e->mEffectPairs[i].mUnk_00 != 0) {
+                e->mEffectPairs[i].mUnk_00->mUnk_98_8 = 1;
             }
-            if (e->mUnk_10[i].mUnk_04 != 0) {
-                e->mUnk_10[i].mUnk_04->mUnk_98_8 = 1;
+            if (e->mEffectPairs[i].mUnk_04 != 0) {
+                e->mEffectPairs[i].mUnk_04->mUnk_98_8 = 1;
             }
-            e->mUnk_04[i] = a->mUnk_04[i];
+            e->mEffectIds[i] = a->mUnk_04[i];
             do {
-                o = StartEffect(e->mUnk_04[i], &data_02155a14);
-                gKartEffects[p->mIndex].mUnk_10[i].mUnk_00_a[j] = o;
+                o = StartEffect(e->mEffectIds[i], &data_02155a14);
+                gKartEffects[p->mIndex].mEffectPairs[i].mUnk_00_a[j] = o;
                 o->mUnk_94 = p;
                 o->mUnk_98_24 = j;
                 j++;
@@ -384,16 +384,16 @@ void func_02083928(Kart *p, s32 a) {
 
     e = &gKartEffects[p->mIndex];
     for (i = 0; i < 2; i++) {
-        if (e->mUnk_10[i].mUnk_00 != 0 || e->mUnk_10[i].mUnk_04 != 0) {
+        if (e->mEffectPairs[i].mUnk_00 != 0 || e->mEffectPairs[i].mUnk_04 != 0) {
             if (a == 0) {
-                e->mUnk_10[i].mUnk_00->mUnk_98_8 = 1;
-                e->mUnk_10[i].mUnk_04->mUnk_98_8 = 1;
+                e->mEffectPairs[i].mUnk_00->mUnk_98_8 = 1;
+                e->mEffectPairs[i].mUnk_04->mUnk_98_8 = 1;
             } else {
-                func_0208b710(e->mUnk_10[i].mUnk_00);
-                func_0208b710(e->mUnk_10[i].mUnk_04);
+                func_0208b710(e->mEffectPairs[i].mUnk_00);
+                func_0208b710(e->mEffectPairs[i].mUnk_04);
             }
-            e->mUnk_10[i].mUnk_00 = e->mUnk_10[i].mUnk_04 = 0;
-            e->mUnk_04[i] = -1;
+            e->mEffectPairs[i].mUnk_00 = e->mEffectPairs[i].mUnk_04 = 0;
+            e->mEffectIds[i] = -1;
         }
     }
 }
@@ -489,7 +489,7 @@ void func_02083484(Unk0201ca6c *p, s32 a) {
     n = p->mUnk_98_b.mUnk_02;
     m = p->mUnk_98_b.mUnk_01;
     f = 1;
-    if (func_020675b4(q) == 0) {
+    if (IsKartTurnEffectsActive(q) == 0) {
         if (q->mVelocityLength >= 0x119a) {
             f = 0;
         }
@@ -537,7 +537,7 @@ void func_0208335c(Unk0201ca6c *p, s32 a) {
     m = p->mUnk_98_b.mUnk_01;
     r = p->mUnk_98_b.mUnk_03;
     f = 1;
-    if (func_020675b4(q) == 0) {
+    if (IsKartTurnEffectsActive(q) == 0) {
         if (q->mVelocityLength >= 0x119a) {
             f = 0;
         }
@@ -550,12 +550,12 @@ void func_0208335c(Unk0201ca6c *p, s32 a) {
         }
     }
     p->mUnk_98_b.mUnk_02 = n;
-    p->mUnk_50 = e->mUnk_4c[r];
-    x = e->mUnk_34[r].x;
+    p->mUnk_50 = e->mSideDirections[r];
+    x = e->mSidePositions[r].x;
     p->mUnk_28.x = x + p->mUnk_20->mUnk_00->mUnk_04.x;
-    x = e->mUnk_34[r].y;
+    x = e->mSidePositions[r].y;
     p->mUnk_28.y = x + p->mUnk_20->mUnk_00->mUnk_04.y;
-    x = e->mUnk_34[r].z;
+    x = e->mSidePositions[r].z;
     p->mUnk_28.z = x + p->mUnk_20->mUnk_00->mUnk_04.z;
 }
 
@@ -581,7 +581,7 @@ void func_020831bc(Unk0201ca6c *p, s32 a) {
     r = p->mUnk_98_b.mUnk_03;
     k = data_0216596c[p->mUnk_98_b.mUnk_00];
     f = 1;
-    if (func_020675b4(q) == 0) {
+    if (IsKartTurnEffectsActive(q) == 0) {
         if (q->mVelocityLength >= 0x119a) {
             f = 0;
         }
@@ -594,12 +594,12 @@ void func_020831bc(Unk0201ca6c *p, s32 a) {
         }
     }
     p->mUnk_98_b.mUnk_02 = n;
-    p->mUnk_50 = e->mUnk_4c[r];
-    x = e->mUnk_34[r].x;
+    p->mUnk_50 = e->mSideDirections[r];
+    x = e->mSidePositions[r].x;
     p->mUnk_28.x = x + p->mUnk_20->mUnk_00->mUnk_04.x;
-    x = e->mUnk_34[r].y;
+    x = e->mSidePositions[r].y;
     p->mUnk_28.y = x + p->mUnk_20->mUnk_00->mUnk_04.y;
-    x = e->mUnk_34[r].z;
+    x = e->mSidePositions[r].z;
     p->mUnk_28.z = x + p->mUnk_20->mUnk_00->mUnk_04.z;
     v.x = (s32) (((s64) v.x * k) >> 12);
     v.y = (s32) (((s64) v.y * k) >> 12);
@@ -631,7 +631,7 @@ void func_02082fec(Unk0201ca6c *p, s32 a) {
     m = p->mUnk_98_b.mUnk_01;
     r = p->mUnk_98_b.mUnk_03;
     k = data_0216596c[p->mUnk_98_b.mUnk_00];
-    if (func_020675b4(q) == 0) {
+    if (IsKartTurnEffectsActive(q) == 0) {
         if (q->mVelocityLength >= 0x119a) {
             f = 0;
         }
@@ -649,12 +649,12 @@ void func_02082fec(Unk0201ca6c *p, s32 a) {
         }
     }
     p->mUnk_98_b.mUnk_02 = n;
-    p->mUnk_50 = e->mUnk_4c[r];
-    x = e->mUnk_34[r].x;
+    p->mUnk_50 = e->mSideDirections[r];
+    x = e->mSidePositions[r].x;
     p->mUnk_28.x = x + p->mUnk_20->mUnk_00->mUnk_04.x;
-    x = e->mUnk_34[r].y;
+    x = e->mSidePositions[r].y;
     p->mUnk_28.y = x + p->mUnk_20->mUnk_00->mUnk_04.y;
-    x = e->mUnk_34[r].z;
+    x = e->mSidePositions[r].z;
     p->mUnk_28.z = x + p->mUnk_20->mUnk_00->mUnk_04.z;
     p->mUnk_28.y = p->mUnk_28.y + (q->mUnk_500 >> 4);
     v.x = (s32) (((s64) v.x * k) >> 12);

@@ -332,19 +332,19 @@ void func_01ff9c40(Kart *p) {
 }
 
 void func_01ff9b70(Kart *p) {
-    Unk0208c5b8 *a;
+    KartTurnEffects *a;
     KartEffects *b;
     u32 f;
 
     if (p->mUnk_4c & 0x8000) {
-        a = func_0208c5b8(p->mIndex);
+        a = GetKartTurnEffects(p->mIndex);
         b = GetKartEffects(p->mIndex);
-        func_0208cb8c(a, p);
-        func_0208d4c4(a, p);
-        func_0208c930(a, b->mUnk_4c, b->mUnk_34);
-        func_0208c6dc(a, b->mUnk_4c, b->mUnk_34);
+        AdvanceKartLevel4Effects(a, p);
+        AdvanceKartTurnStartEffects(a, p);
+        AdvanceKartLevel3Effects(a, b->mSideDirections, b->mSidePositions);
+        AdvanceKartLevel2Effects(a, b->mSideDirections, b->mSidePositions);
     } else {
-        func_0208c534(func_0208c5b8(p->mIndex));
+        StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
     }
     p->mEffectVelocity = p->mVelocity;
     f = p->mUnk_44;

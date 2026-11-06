@@ -2,8 +2,12 @@
 
 #include "types.h"
 
-typedef struct Unk0208c5b8 Unk0208c5b8;
+typedef struct KartTurnEffects KartTurnEffects;
 
-void func_0208c4e8(Unk0208c5b8 *p0);
-void func_0208c504(Unk0208c5b8 *p0);
-void func_0208c520(Unk0208c5b8 *p0);
+// Calls mShowEffects: shows every present effect object of the Kart set again.
+void ShowKartTurnEffects(KartTurnEffects *p0);
+// Calls mHideEffects: hides every present effect object of the Kart set.
+void HideKartTurnEffects(KartTurnEffects *p0);
+// Asks AdvanceKartLevel4Effects to restart the level 4 group: sets mLevel4RestartFrames to 0 and
+// mLevel4RestartRequested to 1.
+void RequestKartLevel4EffectsRestart(KartTurnEffects *p0);

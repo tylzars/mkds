@@ -117,7 +117,9 @@ void func_02084334(Kart *p);
 void func_02084384(Kart *p);
 void func_020843d8(Kart *p);
 void func_0208442c(Kart *p);
-void func_02084478(Kart *p);
+// Copies the position source of the Kart into the position of its matrix (Kart.mUnk_174), then computes mSidePositions
+// and mSideDirections of the Kart from the model points 2 and 3 and the Kart matrix.
+void ComputeKartSidePoints(Kart *p);
 // Allocates the KartEffects records for a Karts and clears them.
 void InitKartEffects(u32 a);
 // Returns the KartEffects record of Kart number n.

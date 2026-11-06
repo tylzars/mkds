@@ -229,7 +229,7 @@ void func_02069c38(Kart *p) {
         p->mUnk_7c &= ~0xc000;
         p->mUnk_29c = 0;
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
-            func_0208c4e8(func_0208c5b8(p->mIndex));
+            ShowKartTurnEffects(GetKartTurnEffects(p->mIndex));
         } else {
             StartSound(&p->mSoundSource, 0xf9, 0x7f, 0);
         }
@@ -343,7 +343,7 @@ void func_0206988c(Kart *p) {
             s->mUnk_1a = -1;
             s->mUnk_16 = 0;
         }
-        func_0208c504(func_0208c5b8(p->mIndex));
+        HideKartTurnEffects(GetKartTurnEffects(p->mIndex));
     }
     s->mUnk_10++;
     if (s->mUnk_10 > 0x1c2 && (p->mUnk_7c & 0x2000)) {
@@ -351,7 +351,7 @@ void func_0206988c(Kart *p) {
         p->mUnk_7c &= ~0xc000;
         p->mUnk_29c = 0;
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
-            func_0208c4e8(func_0208c5b8(p->mIndex));
+            ShowKartTurnEffects(GetKartTurnEffects(p->mIndex));
         } else {
             StartSound(&p->mSoundSource, 0xf9, 0x7f, 0);
         }
@@ -393,7 +393,7 @@ void func_020695c4(Kart *p) {
         p->mUnk_7c &= ~0xc000;
         p->mUnk_29c = 0;
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
-            func_0208c4e8(func_0208c5b8(p->mIndex));
+            ShowKartTurnEffects(GetKartTurnEffects(p->mIndex));
         } else {
             StartSound(&p->mSoundSource, 0xf9, 0x7f, 0);
         }

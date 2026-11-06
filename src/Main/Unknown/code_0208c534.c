@@ -8,95 +8,95 @@
 #include "Main/Unknown/unk_021759c0.h"
 #include "code_02147cd8.h"
 
-void func_0208d758(void *a) {
+void InitKartTurnEffects(void *a) {
     u16 i;
     u16 j;
-    Unk0208c5b8 *e;
+    KartTurnEffects *e;
 
-    data_0217b078 = HeapAlloc(a, data_021759c0->mKartCount * 0x88);
+    gKartTurnEffects = HeapAlloc(a, data_021759c0->mKartCount * 0x88);
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        e = &data_0217b078[i];
-        e->mUnk_60 = i;
+        e = &gKartTurnEffects[i];
+        e->mIndex = i;
         if (i == data_021759c0->mEntryIndex || data_021759c0->mUnk_00c == 5 ||
             data_021759c0->mMode == MODE_TIME_ATTACK) {
-            e->mUnk_4c = 0x14;
-            e->mUnk_50 = 0x11;
-            e->mUnk_54 = 0x12;
-            e->mUnk_68 = func_0208d46c;
-            e->mUnk_6c = func_0208d3d8;
-            e->mUnk_70 = func_0208d358;
-            e->mUnk_74 = func_0208d2d8;
-            e->mUnk_78 = func_0208d234;
-            e->mUnk_84 = func_0208d0dc;
-            e->mUnk_7c = func_0208cefc;
-            e->mUnk_80 = func_0208cd7c;
+            e->mTurnStartEffectId = 0x14;
+            e->mLevel4FirstEffectId = 0x11;
+            e->mLevel4SecondEffectId = 0x12;
+            e->mStartLevel4Effects = StartKartLevel4EffectsWithSecond;
+            e->mStopLevel4Emission = func_0208d3d8;
+            e->mStartLevel4Emission = func_0208d358;
+            e->mReleaseLevel4Effects = ReleaseKartLevel4EffectsWithSecond;
+            e->mStopLevel4Effects = func_0208d234;
+            e->mPlaceLevel4Effects = PlaceKartLevel4EffectsWithSecond;
+            e->mHideEffects = func_0208cefc;
+            e->mShowEffects = func_0208cd7c;
         } else {
-            e->mUnk_4c = 0x15;
-            e->mUnk_50 = 0x13;
-            e->mUnk_54 = -1;
-            e->mUnk_68 = func_0208d428;
-            e->mUnk_6c = func_0208d3a8;
-            e->mUnk_70 = func_0208d328;
-            e->mUnk_74 = func_0208d298;
-            e->mUnk_78 = func_0208d1ec;
-            e->mUnk_84 = func_0208d02c;
-            e->mUnk_7c = func_0208ceac;
-            e->mUnk_80 = func_0208cd2c;
+            e->mTurnStartEffectId = 0x15;
+            e->mLevel4FirstEffectId = 0x13;
+            e->mLevel4SecondEffectId = -1;
+            e->mStartLevel4Effects = StartKartLevel4EffectsFirstOnly;
+            e->mStopLevel4Emission = func_0208d3a8;
+            e->mStartLevel4Emission = func_0208d328;
+            e->mReleaseLevel4Effects = ReleaseKartLevel4EffectsFirstOnly;
+            e->mStopLevel4Effects = func_0208d1ec;
+            e->mPlaceLevel4Effects = PlaceKartLevel4EffectsFirstOnly;
+            e->mHideEffects = func_0208ceac;
+            e->mShowEffects = func_0208cd2c;
         }
-        e->mUnk_58 = 0x16;
-        e->mUnk_5c = 0x17;
+        e->mLevel3FirstEffectId = 0x16;
+        e->mLevel3SecondEffectId = 0x17;
         for (j = 0; j < 2; j++) {
-            e->mUnk_10[j] = NULL;
-            e->mUnk_18[j] = NULL;
-            e->mUnk_00[j] = NULL;
-            e->mUnk_20[j] = NULL;
-            e->mUnk_28[j] = NULL;
+            e->mLevel4FirstEffects[j] = NULL;
+            e->mLevel4SecondEffects[j] = NULL;
+            e->mTurnStartEffects[j] = NULL;
+            e->mLevel3FirstEffects[j] = NULL;
+            e->mLevel3SecondEffects[j] = NULL;
         }
-        e->mUnk_30 = 0;
-        e->mUnk_34 = FALSE;
-        e->mUnk_38 = 0;
-        e->mUnk_3c = 0;
-        e->mUnk_40 = 0;
-        e->mUnk_44 = FALSE;
-        e->mUnk_48 = 0;
-        e->mUnk_4a = 0;
-        e->mUnk_62 = 0;
-        e->mUnk_64 = 0;
+        e->mLevel4StopFrames = 0;
+        e->mLevel4StopRequested = FALSE;
+        e->mLevel4Present = 0;
+        e->mTurnStartPresent = 0;
+        e->mLevel3Present = 0;
+        e->mLevel2Present = FALSE;
+        e->mLevel3Frames = 0;
+        e->mLevel2Frames = 0;
+        e->mLevel4RestartFrames = 0;
+        e->mLevel4RestartRequested = 0;
     }
 }
 
-void func_0208d6b0(Unk0208c5b8 *p) {
+void StartKartTurnStartEffects(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_3c != 0) {
+    if (p->mTurnStartPresent != 0) {
         for (i = 0; i < 2; i++) {
-            func_0208b6d0(&p->mUnk_00[i]);
+            func_0208b6d0(&p->mTurnStartEffects[i]);
         }
     }
-    p->mUnk_3c = 0;
+    p->mTurnStartPresent = 0;
     for (i = 0; i < 2; i++) {
-        p->mUnk_00[i] = StartEffect(p->mUnk_4c, &data_02155fcc);
-        p->mUnk_00[i]->mUnk_72 = 0x7fff;
-        p->mUnk_00[i]->mUnk_80_8 = 0x1c;
-        p->mUnk_00[i]->mUnk_6c = 0x1000;
+        p->mTurnStartEffects[i] = StartEffect(p->mTurnStartEffectId, &data_02155fcc);
+        p->mTurnStartEffects[i]->mUnk_72 = 0x7fff;
+        p->mTurnStartEffects[i]->mUnk_80_8 = 0x1c;
+        p->mTurnStartEffects[i]->mUnk_6c = 0x1000;
     }
-    p->mUnk_3c = 1;
+    p->mTurnStartPresent = 1;
 }
 
-void func_0208d650(Unk0208c5b8 *p) {
+void StopKartTurnStartEffects(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_3c == 0) {
+    if (p->mTurnStartPresent == 0) {
         return;
     }
     for (i = 0; i < 2; i++) {
-        p->mUnk_00[i]->mUnk_24.mUnk_00_0 = 1;
-        p->mUnk_00[i] = NULL;
+        p->mTurnStartEffects[i]->mUnk_24.mUnk_00_0 = 1;
+        p->mTurnStartEffects[i] = NULL;
     }
-    p->mUnk_3c = 0;
+    p->mTurnStartPresent = 0;
 }
 
-void func_0208d4c4(Unk0208c5b8 *p, Kart *q) {
+void AdvanceKartTurnStartEffects(KartTurnEffects *p, Kart *q) {
     u16 i;
     KartEffects *e;
     Vec3 a;
@@ -104,7 +104,7 @@ void func_0208d4c4(Unk0208c5b8 *p, Kart *q) {
     Vec3 c;
     Unk0201ca6c *f;
 
-    if (p->mUnk_3c == 0) {
+    if (p->mTurnStartPresent == 0) {
         return;
     }
     e = GetKartEffects(q->mIndex);
@@ -112,136 +112,136 @@ void func_0208d4c4(Unk0208c5b8 *p, Kart *q) {
         a.x = (s32) (((s64) q->mEffectVelocity.x * 0xb33) >> 12);
         a.y = (s32) (((s64) q->mEffectVelocity.y * 0xb33) >> 12);
         a.z = (s32) (((s64) q->mEffectVelocity.z * 0xb33) >> 12);
-        p->mUnk_00[i]->mUnk_40 = a;
+        p->mTurnStartEffects[i]->mUnk_40 = a;
         b.x = -a.x;
         b.y = -a.y;
         b.z = -a.z;
-        Vec3Add(&e->mUnk_34[i], &b, &c);
-        f = p->mUnk_00[i];
+        Vec3Add(&e->mSidePositions[i], &b, &c);
+        f = p->mTurnStartEffects[i];
         f->mUnk_28.x = c.x + f->mUnk_20->mUnk_00->mUnk_04.x;
         f->mUnk_28.y = c.y + f->mUnk_20->mUnk_00->mUnk_04.y;
         f->mUnk_28.z = c.z + f->mUnk_20->mUnk_00->mUnk_04.z;
         if ((q->mUnk_44 & 0x10) == 0) {
-            p->mUnk_00[i]->mUnk_24.mUnk_00_1 = 1;
+            p->mTurnStartEffects[i]->mUnk_24.mUnk_00_1 = 1;
         } else {
-            p->mUnk_00[i]->mUnk_24.mUnk_00_1 = 0;
+            p->mTurnStartEffects[i]->mUnk_24.mUnk_00_1 = 0;
         }
     }
 }
 
-void func_0208d46c(Unk0208c5b8 *p) {
+void StartKartLevel4EffectsWithSecond(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i] = StartEffect(p->mUnk_50, &data_02155fcc);
-        p->mUnk_18[i] = StartEffect(p->mUnk_54, &data_02155fcc);
+        p->mLevel4FirstEffects[i] = StartEffect(p->mLevel4FirstEffectId, &data_02155fcc);
+        p->mLevel4SecondEffects[i] = StartEffect(p->mLevel4SecondEffectId, &data_02155fcc);
     }
 }
 
-void func_0208d428(Unk0208c5b8 *p) {
+void StartKartLevel4EffectsFirstOnly(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i] = StartEffect(p->mUnk_50, &data_02155fcc);
+        p->mLevel4FirstEffects[i] = StartEffect(p->mLevel4FirstEffectId, &data_02155fcc);
     }
 }
 
-void func_0208d3d8(Unk0208c5b8 *p) {
+void func_0208d3d8(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i]->mUnk_24.mUnk_00_1 = 1;
-        p->mUnk_18[i]->mUnk_24.mUnk_00_1 = 1;
+        p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_1 = 1;
+        p->mLevel4SecondEffects[i]->mUnk_24.mUnk_00_1 = 1;
     }
 }
 
-void func_0208d3a8(Unk0208c5b8 *p) {
+void func_0208d3a8(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i]->mUnk_24.mUnk_00_1 = 1;
+        p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_1 = 1;
     }
 }
 
-void func_0208d358(Unk0208c5b8 *p) {
+void func_0208d358(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i]->mUnk_24.mUnk_00_1 = 0;
-        p->mUnk_18[i]->mUnk_24.mUnk_00_1 = 0;
+        p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_1 = 0;
+        p->mLevel4SecondEffects[i]->mUnk_24.mUnk_00_1 = 0;
     }
 }
 
-void func_0208d328(Unk0208c5b8 *p) {
+void func_0208d328(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i]->mUnk_24.mUnk_00_1 = 0;
+        p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_1 = 0;
     }
 }
 
-void func_0208d2d8(Unk0208c5b8 *p) {
+void ReleaseKartLevel4EffectsWithSecond(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        func_0208b710(p->mUnk_10[i]);
-        func_0208b710(p->mUnk_18[i]);
-        p->mUnk_10[i] = NULL;
-        p->mUnk_18[i] = NULL;
+        func_0208b710(p->mLevel4FirstEffects[i]);
+        func_0208b710(p->mLevel4SecondEffects[i]);
+        p->mLevel4FirstEffects[i] = NULL;
+        p->mLevel4SecondEffects[i] = NULL;
     }
 }
 
-void func_0208d298(Unk0208c5b8 *p) {
+void ReleaseKartLevel4EffectsFirstOnly(KartTurnEffects *p) {
     u16 i;
 
     for (i = 0; i < 2; i++) {
-        func_0208b710(p->mUnk_10[i]);
-        p->mUnk_10[i] = NULL;
+        func_0208b710(p->mLevel4FirstEffects[i]);
+        p->mLevel4FirstEffects[i] = NULL;
     }
 }
 
-void func_0208d234(Unk0208c5b8 *p) {
+void func_0208d234(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_38 == 0) {
+    if (p->mLevel4Present == 0) {
         return;
     }
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i]->mUnk_24.mUnk_00_1 = 1;
-        p->mUnk_18[i]->mUnk_24.mUnk_00_1 = 1;
+        p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_1 = 1;
+        p->mLevel4SecondEffects[i]->mUnk_24.mUnk_00_1 = 1;
     }
 }
 
-void func_0208d1ec(Unk0208c5b8 *p) {
-    if (p->mUnk_38 == 0) {
+void func_0208d1ec(KartTurnEffects *p) {
+    if (p->mLevel4Present == 0) {
         return;
     }
-    if (p->mUnk_38 != 0) {
-        p->mUnk_74(p);
+    if (p->mLevel4Present != 0) {
+        p->mReleaseLevel4Effects(p);
     }
-    p->mUnk_38 = 0;
-    p->mUnk_30 = 0;
-    p->mUnk_34 = FALSE;
-    p->mUnk_62 = 0;
-    p->mUnk_64 = 0;
+    p->mLevel4Present = 0;
+    p->mLevel4StopFrames = 0;
+    p->mLevel4StopRequested = FALSE;
+    p->mLevel4RestartFrames = 0;
+    p->mLevel4RestartRequested = 0;
 }
 
-void func_0208d0dc(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b) {
+void PlaceKartLevel4EffectsWithSecond(KartTurnEffects *p, Vec3s16 *a, Vec3 *b) {
     u16 i;
     Unk0201ca6c *e;
     s32 n;
 
     for (i = 0; i < 2; i++) {
-        p->mUnk_10[i]->mUnk_50 = a[i];
-        p->mUnk_18[i]->mUnk_50 = a[i];
-        e = p->mUnk_10[i];
+        p->mLevel4FirstEffects[i]->mUnk_50 = a[i];
+        p->mLevel4SecondEffects[i]->mUnk_50 = a[i];
+        e = p->mLevel4FirstEffects[i];
         n = b[i].x;
         e->mUnk_28.x = n + e->mUnk_20->mUnk_00->mUnk_04.x;
         n = b[i].y;
         e->mUnk_28.y = n + e->mUnk_20->mUnk_00->mUnk_04.y;
         n = b[i].z;
         e->mUnk_28.z = n + e->mUnk_20->mUnk_00->mUnk_04.z;
-        e = p->mUnk_18[i];
+        e = p->mLevel4SecondEffects[i];
         n = b[i].x;
         e->mUnk_28.x = n + e->mUnk_20->mUnk_00->mUnk_04.x;
         n = b[i].y;
@@ -251,15 +251,15 @@ void func_0208d0dc(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b) {
     }
 }
 
-void func_0208d02c(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b) {
+void PlaceKartLevel4EffectsFirstOnly(KartTurnEffects *p, Vec3s16 *a, Vec3 *b) {
     u16 i;
     Unk0201ca6c *e;
     s32 t;
 
     for (i = 0; i < 2; i++) {
-        e = p->mUnk_10[i];
+        e = p->mLevel4FirstEffects[i];
         e->mUnk_50 = a[i];
-        e = p->mUnk_10[i];
+        e = p->mLevel4FirstEffects[i];
         t = b[i].x;
         e->mUnk_28.x = t + e->mUnk_20->mUnk_00->mUnk_04.x;
         t = b[i].y;
@@ -269,210 +269,210 @@ void func_0208d02c(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b) {
     }
 }
 
-void func_0208cf5c(Unk0208c5b8 *p) {
+void func_0208cf5c(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_3c != 0) {
+    if (p->mTurnStartPresent != 0) {
         for (i = 0; i < 2; i++) {
-            p->mUnk_00[i]->mUnk_24.mUnk_00_3 = 1;
+            p->mTurnStartEffects[i]->mUnk_24.mUnk_00_3 = 1;
         }
     }
-    if (p->mUnk_40 != 0) {
+    if (p->mLevel3Present != 0) {
         for (i = 0; i < 2; i++) {
-            p->mUnk_20[i]->mUnk_24.mUnk_00_3 = 1;
-            p->mUnk_28[i]->mUnk_24.mUnk_00_3 = 1;
+            p->mLevel3FirstEffects[i]->mUnk_24.mUnk_00_3 = 1;
+            p->mLevel3SecondEffects[i]->mUnk_24.mUnk_00_3 = 1;
         }
     }
-    if (p->mUnk_44 == FALSE) {
+    if (p->mLevel2Present == FALSE) {
         return;
     }
     for (i = 0; i < 2; i++) {
-        p->mUnk_08[i]->mUnk_24.mUnk_00_3 = 1;
+        p->mLevel2Effects[i]->mUnk_24.mUnk_00_3 = 1;
     }
 }
 
-void func_0208cefc(Unk0208c5b8 *p) {
+void func_0208cefc(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_38 != 0) {
+    if (p->mLevel4Present != 0) {
         for (i = 0; i < 2; i++) {
-            p->mUnk_10[i]->mUnk_24.mUnk_00_3 = 1;
-            p->mUnk_18[i]->mUnk_24.mUnk_00_3 = 1;
+            p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_3 = 1;
+            p->mLevel4SecondEffects[i]->mUnk_24.mUnk_00_3 = 1;
         }
     }
     func_0208cf5c(p);
 }
 
-void func_0208ceac(Unk0208c5b8 *p) {
+void func_0208ceac(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_38 != 0) {
+    if (p->mLevel4Present != 0) {
         for (i = 0; i < 2; i++) {
-            p->mUnk_10[i]->mUnk_24.mUnk_00_3 = 1;
+            p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_3 = 1;
         }
     }
     func_0208cf5c(p);
 }
 
-void func_0208cddc(Unk0208c5b8 *p) {
+void func_0208cddc(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_3c != 0) {
+    if (p->mTurnStartPresent != 0) {
         for (i = 0; i < 2; i++) {
-            p->mUnk_00[i]->mUnk_24.mUnk_00_3 = 0;
+            p->mTurnStartEffects[i]->mUnk_24.mUnk_00_3 = 0;
         }
     }
-    if (p->mUnk_40 != 0) {
+    if (p->mLevel3Present != 0) {
         for (i = 0; i < 2; i++) {
-            p->mUnk_20[i]->mUnk_24.mUnk_00_3 = 0;
-            p->mUnk_28[i]->mUnk_24.mUnk_00_3 = 0;
+            p->mLevel3FirstEffects[i]->mUnk_24.mUnk_00_3 = 0;
+            p->mLevel3SecondEffects[i]->mUnk_24.mUnk_00_3 = 0;
         }
     }
-    if (p->mUnk_44 == FALSE) {
+    if (p->mLevel2Present == FALSE) {
         return;
     }
     for (i = 0; i < 2; i++) {
-        p->mUnk_08[i]->mUnk_24.mUnk_00_3 = 0;
+        p->mLevel2Effects[i]->mUnk_24.mUnk_00_3 = 0;
     }
 }
 
-void func_0208cd7c(Unk0208c5b8 *p) {
+void func_0208cd7c(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_38 != 0) {
+    if (p->mLevel4Present != 0) {
         for (i = 0; i < 2; i++) {
-            p->mUnk_10[i]->mUnk_24.mUnk_00_3 = 0;
-            p->mUnk_18[i]->mUnk_24.mUnk_00_3 = 0;
+            p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_3 = 0;
+            p->mLevel4SecondEffects[i]->mUnk_24.mUnk_00_3 = 0;
         }
     }
     func_0208cddc(p);
 }
 
-void func_0208cd2c(Unk0208c5b8 *p) {
+void func_0208cd2c(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_38 != 0) {
+    if (p->mLevel4Present != 0) {
         for (i = 0; i < 2; i++) {
-            p->mUnk_10[i]->mUnk_24.mUnk_00_3 = 0;
+            p->mLevel4FirstEffects[i]->mUnk_24.mUnk_00_3 = 0;
         }
     }
     func_0208cddc(p);
 }
 
-void func_0208ccf0(Unk0208c5b8 *p) {
-    if (p->mUnk_38 != 0) {
-        p->mUnk_74(p);
+void ResetKartLevel4Effects(KartTurnEffects *p) {
+    if (p->mLevel4Present != 0) {
+        p->mReleaseLevel4Effects(p);
     }
-    p->mUnk_38 = 0;
-    p->mUnk_30 = 0;
-    p->mUnk_34 = FALSE;
-    p->mUnk_62 = 0;
-    p->mUnk_64 = 0;
+    p->mLevel4Present = 0;
+    p->mLevel4StopFrames = 0;
+    p->mLevel4StopRequested = FALSE;
+    p->mLevel4RestartFrames = 0;
+    p->mLevel4RestartRequested = 0;
 }
 
-void func_0208cb8c(Unk0208c5b8 *p, Kart *q) {
+void AdvanceKartLevel4Effects(KartTurnEffects *p, Kart *q) {
     KartEffects *e;
 
-    if (p->mUnk_34 != FALSE) {
-        p->mUnk_30++;
-        if (p->mUnk_30 > 10) {
-            if (p->mUnk_38 != 0) {
-                p->mUnk_74(p);
+    if (p->mLevel4StopRequested != FALSE) {
+        p->mLevel4StopFrames++;
+        if (p->mLevel4StopFrames > 10) {
+            if (p->mLevel4Present != 0) {
+                p->mReleaseLevel4Effects(p);
             }
-            p->mUnk_38 = 0;
-            p->mUnk_30 = 0;
-            p->mUnk_34 = FALSE;
-            p->mUnk_62 = 0;
-            p->mUnk_64 = 0;
+            p->mLevel4Present = 0;
+            p->mLevel4StopFrames = 0;
+            p->mLevel4StopRequested = FALSE;
+            p->mLevel4RestartFrames = 0;
+            p->mLevel4RestartRequested = 0;
         }
     }
-    if ((q->mUnk_44 & 8) && p->mUnk_64 != 0) {
-        p->mUnk_62++;
-        if (p->mUnk_62 > 10) {
-            if (p->mUnk_38 != 0) {
-                p->mUnk_74(p);
+    if ((q->mUnk_44 & 8) && p->mLevel4RestartRequested != 0) {
+        p->mLevel4RestartFrames++;
+        if (p->mLevel4RestartFrames > 10) {
+            if (p->mLevel4Present != 0) {
+                p->mReleaseLevel4Effects(p);
             }
-            p->mUnk_38 = 0;
-            p->mUnk_30 = 0;
-            p->mUnk_34 = FALSE;
-            p->mUnk_62 = 0;
-            p->mUnk_64 = 0;
-            p->mUnk_68(p);
-            p->mUnk_38 = 1;
-            p->mUnk_62 = 0;
-            p->mUnk_64 = 0;
+            p->mLevel4Present = 0;
+            p->mLevel4StopFrames = 0;
+            p->mLevel4StopRequested = FALSE;
+            p->mLevel4RestartFrames = 0;
+            p->mLevel4RestartRequested = 0;
+            p->mStartLevel4Effects(p);
+            p->mLevel4Present = 1;
+            p->mLevel4RestartFrames = 0;
+            p->mLevel4RestartRequested = 0;
         }
     }
-    if (p->mUnk_38 == 0) {
+    if (p->mLevel4Present == 0) {
         return;
     }
     e = GetKartEffects(q->mIndex);
-    p->mUnk_84(p, e->mUnk_4c, e->mUnk_34);
+    p->mPlaceLevel4Effects(p, e->mSideDirections, e->mSidePositions);
     if ((q->mUnk_44 & 0x10) == 0) {
-        p->mUnk_6c(p);
+        p->mStopLevel4Emission(p);
         return;
     }
-    if (p->mUnk_34 == FALSE) {
-        p->mUnk_70(p);
+    if (p->mLevel4StopRequested == FALSE) {
+        p->mStartLevel4Emission(p);
     }
 }
 
-void func_0208cacc(Unk0208c5b8 *p, int v1) {
+void StartKartLevel3Effects(KartTurnEffects *p, int v1) {
     u16 i;
 
     if (v1 == 0) {
         return;
     }
-    if (p->mUnk_40 != 0) {
+    if (p->mLevel3Present != 0) {
         for (i = 0; i < 2; i++) {
-            func_0208b710(p->mUnk_20[i]);
-            func_0208b710(p->mUnk_28[i]);
-            p->mUnk_20[i] = NULL;
-            p->mUnk_28[i] = NULL;
+            func_0208b710(p->mLevel3FirstEffects[i]);
+            func_0208b710(p->mLevel3SecondEffects[i]);
+            p->mLevel3FirstEffects[i] = NULL;
+            p->mLevel3SecondEffects[i] = NULL;
         }
     }
-    p->mUnk_40 = 0;
-    p->mUnk_48 = 0;
+    p->mLevel3Present = 0;
+    p->mLevel3Frames = 0;
     for (i = 0; i < 2; i++) {
-        p->mUnk_20[i] = StartEffect(p->mUnk_58, &data_02155fcc);
-        p->mUnk_28[i] = StartEffect(p->mUnk_5c, &data_02155fcc);
+        p->mLevel3FirstEffects[i] = StartEffect(p->mLevel3FirstEffectId, &data_02155fcc);
+        p->mLevel3SecondEffects[i] = StartEffect(p->mLevel3SecondEffectId, &data_02155fcc);
     }
-    p->mUnk_40 = 1;
+    p->mLevel3Present = 1;
 }
 
-void func_0208c930(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b) {
+void AdvanceKartLevel3Effects(KartTurnEffects *p, Vec3s16 *a, Vec3 *b) {
     u16 i;
     Unk0201ca6c *e;
     s32 n;
 
-    if (p->mUnk_40 == 0) {
+    if (p->mLevel3Present == 0) {
         return;
     }
-    p->mUnk_48++;
-    if (p->mUnk_48 > 10) {
-        if (p->mUnk_40 != 0) {
+    p->mLevel3Frames++;
+    if (p->mLevel3Frames > 10) {
+        if (p->mLevel3Present != 0) {
             for (i = 0; i < 2; i++) {
-                func_0208b710(p->mUnk_20[i]);
-                func_0208b710(p->mUnk_28[i]);
-                p->mUnk_20[i] = NULL;
-                p->mUnk_28[i] = NULL;
+                func_0208b710(p->mLevel3FirstEffects[i]);
+                func_0208b710(p->mLevel3SecondEffects[i]);
+                p->mLevel3FirstEffects[i] = NULL;
+                p->mLevel3SecondEffects[i] = NULL;
             }
         }
-        p->mUnk_40 = 0;
-        p->mUnk_48 = 0;
+        p->mLevel3Present = 0;
+        p->mLevel3Frames = 0;
         return;
     }
     for (i = 0; i < 2; i++) {
-        p->mUnk_20[i]->mUnk_50 = a[i];
-        p->mUnk_28[i]->mUnk_50 = a[i];
-        e = p->mUnk_20[i];
+        p->mLevel3FirstEffects[i]->mUnk_50 = a[i];
+        p->mLevel3SecondEffects[i]->mUnk_50 = a[i];
+        e = p->mLevel3FirstEffects[i];
         n = b[i].x;
         e->mUnk_28.x = n + e->mUnk_20->mUnk_00->mUnk_04.x;
         n = b[i].y;
         e->mUnk_28.y = n + e->mUnk_20->mUnk_00->mUnk_04.y;
         n = b[i].z;
         e->mUnk_28.z = n + e->mUnk_20->mUnk_00->mUnk_04.z;
-        e = p->mUnk_28[i];
+        e = p->mLevel3SecondEffects[i];
         n = b[i].x;
         e->mUnk_28.x = n + e->mUnk_20->mUnk_00->mUnk_04.x;
         n = b[i].y;
@@ -482,56 +482,56 @@ void func_0208c930(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b) {
     }
 }
 
-void func_0208c884(Unk0208c5b8 *p, int v1) {
+void StartKartLevel2Effects(KartTurnEffects *p, int v1) {
     u16 i;
 
     if (v1 == 0) {
         return;
     }
-    if (p->mUnk_44 != FALSE) {
+    if (p->mLevel2Present != FALSE) {
         for (i = 0; i < 2; i++) {
-            func_0208b710(p->mUnk_08[i]);
-            p->mUnk_08[i] = NULL;
+            func_0208b710(p->mLevel2Effects[i]);
+            p->mLevel2Effects[i] = NULL;
         }
     }
-    p->mUnk_44 = FALSE;
-    p->mUnk_4a = 0;
+    p->mLevel2Present = FALSE;
+    p->mLevel2Frames = 0;
     for (i = 0; i < 2; i++) {
-        p->mUnk_08[i] = StartEffect(0x7e, &data_02155fcc);
+        p->mLevel2Effects[i] = StartEffect(0x7e, &data_02155fcc);
     }
-    p->mUnk_44 = TRUE;
+    p->mLevel2Present = TRUE;
 }
 
-void func_0208c6dc(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b) {
+void AdvanceKartLevel2Effects(KartTurnEffects *p, Vec3s16 *a, Vec3 *b) {
     u16 i;
     Unk0201ca6c *e;
     s32 t;
 
-    if (p->mUnk_44 == FALSE) {
+    if (p->mLevel2Present == FALSE) {
         return;
     }
-    p->mUnk_4a++;
-    if (p->mUnk_4a > 8) {
-        if (p->mUnk_44 != FALSE) {
+    p->mLevel2Frames++;
+    if (p->mLevel2Frames > 8) {
+        if (p->mLevel2Present != FALSE) {
             for (i = 0; i < 2; i++) {
-                func_0208b710(p->mUnk_08[i]);
-                p->mUnk_08[i] = NULL;
+                func_0208b710(p->mLevel2Effects[i]);
+                p->mLevel2Effects[i] = NULL;
             }
         }
-        p->mUnk_44 = FALSE;
-        p->mUnk_4a = 0;
-        if (p->mUnk_3c == 0) {
+        p->mLevel2Present = FALSE;
+        p->mLevel2Frames = 0;
+        if (p->mTurnStartPresent == 0) {
             return;
         }
         for (i = 0; i < 2; i++) {
-            p->mUnk_00[i]->mUnk_24.mUnk_00_1 = 0;
+            p->mTurnStartEffects[i]->mUnk_24.mUnk_00_1 = 0;
         }
         return;
     }
     for (i = 0; i < 2; i++) {
-        e = p->mUnk_08[i];
+        e = p->mLevel2Effects[i];
         e->mUnk_50 = a[i];
-        e = p->mUnk_08[i];
+        e = p->mLevel2Effects[i];
         t = b[i].x;
         e->mUnk_28.x = t + e->mUnk_20->mUnk_00->mUnk_04.x;
         t = b[i].y;
@@ -539,73 +539,73 @@ void func_0208c6dc(Unk0208c5b8 *p, Vec3s16 *a, Vec3 *b) {
         t = b[i].z;
         e->mUnk_28.z = t + e->mUnk_20->mUnk_00->mUnk_04.z;
     }
-    if (p->mUnk_3c == 0) {
+    if (p->mTurnStartPresent == 0) {
         return;
     }
     for (i = 0; i < 2; i++) {
-        p->mUnk_00[i]->mUnk_24.mUnk_00_1 = 1;
+        p->mTurnStartEffects[i]->mUnk_24.mUnk_00_1 = 1;
     }
 }
 
-void func_0208c5d0(Unk0208c5b8 *p) {
+void ReleaseKartTurnEffects(KartTurnEffects *p) {
     u16 i;
     u16 j;
 
-    if (p->mUnk_3c != 0) {
+    if (p->mTurnStartPresent != 0) {
         for (i = 0; i < 2; i++) {
-            func_0208b6d0(&p->mUnk_00[i]);
+            func_0208b6d0(&p->mTurnStartEffects[i]);
         }
     }
-    p->mUnk_3c = 0;
-    if (p->mUnk_38 != 0) {
-        p->mUnk_74(p);
+    p->mTurnStartPresent = 0;
+    if (p->mLevel4Present != 0) {
+        p->mReleaseLevel4Effects(p);
     }
-    p->mUnk_38 = 0;
-    p->mUnk_30 = 0;
-    p->mUnk_34 = FALSE;
-    p->mUnk_62 = 0;
-    p->mUnk_64 = 0;
-    if (p->mUnk_40 != 0) {
+    p->mLevel4Present = 0;
+    p->mLevel4StopFrames = 0;
+    p->mLevel4StopRequested = FALSE;
+    p->mLevel4RestartFrames = 0;
+    p->mLevel4RestartRequested = 0;
+    if (p->mLevel3Present != 0) {
         for (i = 0; i < 2; i++) {
-            func_0208b710(p->mUnk_20[i]);
-            func_0208b710(p->mUnk_28[i]);
-            p->mUnk_20[i] = NULL;
-            p->mUnk_28[i] = NULL;
+            func_0208b710(p->mLevel3FirstEffects[i]);
+            func_0208b710(p->mLevel3SecondEffects[i]);
+            p->mLevel3FirstEffects[i] = NULL;
+            p->mLevel3SecondEffects[i] = NULL;
         }
     }
-    p->mUnk_40 = 0;
-    p->mUnk_48 = 0;
-    if (p->mUnk_44 != FALSE) {
+    p->mLevel3Present = 0;
+    p->mLevel3Frames = 0;
+    if (p->mLevel2Present != FALSE) {
         for (j = 0; j < 2; j++) {
-            func_0208b710(p->mUnk_08[j]);
-            p->mUnk_08[j] = NULL;
+            func_0208b710(p->mLevel2Effects[j]);
+            p->mLevel2Effects[j] = NULL;
         }
     }
-    p->mUnk_44 = FALSE;
-    p->mUnk_4a = 0;
+    p->mLevel2Present = FALSE;
+    p->mLevel2Frames = 0;
 }
 
-Unk0208c5b8 *func_0208c5b8(int v1) {
-    return data_0217b078 + v1;
+KartTurnEffects *GetKartTurnEffects(int v1) {
+    return gKartTurnEffects + v1;
 }
 
-void func_0208c534(Unk0208c5b8 *p) {
+void StopKartTurnEffects(KartTurnEffects *p) {
     u16 i;
 
-    if (p->mUnk_38 == 0) {
-        p->mUnk_34 = FALSE;
+    if (p->mLevel4Present == 0) {
+        p->mLevel4StopRequested = FALSE;
     } else {
-        p->mUnk_78(p);
-        p->mUnk_34 = TRUE;
+        p->mStopLevel4Effects(p);
+        p->mLevel4StopRequested = TRUE;
     }
-    p->mUnk_62 = 0;
-    p->mUnk_64 = 0;
-    if (p->mUnk_3c == 0) {
+    p->mLevel4RestartFrames = 0;
+    p->mLevel4RestartRequested = 0;
+    if (p->mTurnStartPresent == 0) {
         return;
     }
     for (i = 0; i < 2; i++) {
-        p->mUnk_00[i]->mUnk_24.mUnk_00_0 = 1;
-        p->mUnk_00[i] = NULL;
+        p->mTurnStartEffects[i]->mUnk_24.mUnk_00_0 = 1;
+        p->mTurnStartEffects[i] = NULL;
     }
-    p->mUnk_3c = 0;
+    p->mTurnStartPresent = 0;
 }

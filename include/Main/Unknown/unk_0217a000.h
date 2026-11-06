@@ -1399,10 +1399,14 @@ typedef struct Unk0217ae84_10 {
 typedef struct KartEffects {
     // Id of the effect in mCurrentEffect, -1 when there is none.
     /* 00 */ s32 mCurrentEffectId;
-    /* 04 */ s32 mUnk_04[2];
+    // Id of the effect running in entry i of mEffectPairs, -1 when there is none; compared with the wanted id to decide
+    // whether to start again.
+    /* 04 */ s32 mEffectIds[2];
     // The effect object of this Kart started by func_02083d4c, whose id is mCurrentEffectId (NULL when none).
     /* 0c */ struct Unk0201ca6c *mCurrentEffect;
-    /* 10 */ Unk0217ae84_10 mUnk_10[2];
+    // The effect objects started for mEffectIds: entry i holds the object of side 0 and the object of side 1 (the byte
+    // set in each object is the side number); ids in mEffectIds.
+    /* 10 */ Unk0217ae84_10 mEffectPairs[2];
     union {
         struct {
             /* 20 */ struct Unk0201ca6c *mUnk_20;
@@ -1413,8 +1417,13 @@ typedef struct KartEffects {
     /* 28 */ struct Unk0201ca6c *mUnk_28;
     /* 2c */ struct Unk0201ca6c *mUnk_2c;
     /* 30 */ struct Unk0201ca6c *mUnk_30;
-    /* 34 */ Vec3 mUnk_34[2];
-    /* 4c */ Vec3s16 mUnk_4c[2];
+    // Position in effect units (position / 16) of each side of the Kart: model point 2 or 3 moved by the x offset
+    // 0x1800 or -0x1800 of data_02155800, scaled by the Kart scale and transformed by the Kart matrix; written only by
+    // ComputeKartSidePoints.
+    /* 34 */ Vec3 mSidePositions[2];
+    // Direction vector (halfwords) of the effect on each side of the Kart: the vector of data_02155818 for that side
+    // rotated by the Kart matrix; written only by ComputeKartSidePoints and read as the direction of the effect object.
+    /* 4c */ Vec3s16 mSideDirections[2];
 } KartEffects;
 
 // Per-Kart effect records, allocated for every Kart by InitKartEffects and indexed by Kart.mIndex.

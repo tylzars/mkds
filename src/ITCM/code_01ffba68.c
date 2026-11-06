@@ -173,7 +173,7 @@ void AdvanceKartCollision(Kart *p) {
     p->mUnk_244 = v;
     p->mUnk_4d0 = p->mUnk_4d0 + 1;
     if (p->mUnk_4c & 0x8000) {
-        func_02084478(p);
+        ComputeKartSidePoints(p);
     }
     if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && IsRaceStarted() == 1) {
         func_0207a790(p->mIndex);

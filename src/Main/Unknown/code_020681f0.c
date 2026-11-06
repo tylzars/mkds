@@ -395,19 +395,19 @@ void func_02068494(Kart *a, s32 b, s32 c) {
 }
 
 void func_02068440(Kart *a, s32 b) {
-    Unk0208c5b8 *c;
+    KartTurnEffects *c;
 
     a->mUnk_2fc = b;
     if (a->mUnk_2fc != 2) {
         return;
     }
-    c = func_0208c5b8(a->mIndex);
-    func_0208c884(c, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
+    c = GetKartTurnEffects(a->mIndex);
+    StartKartLevel2Effects(c, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
     StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
 }
 
 void func_020681f0(Kart *a) {
-    Unk0208c5b8 *b;
+    KartTurnEffects *b;
     u16 *c;
     u16 *d;
     u32 e;
@@ -435,8 +435,8 @@ void func_020681f0(Kart *a) {
                 a->mUnk_2fc = a->mUnk_2fc + 1;
                 a->mUnk_30c = 10;
                 if (a->mUnk_2fc == 2) {
-                    b = func_0208c5b8(a->mIndex);
-                    func_0208c884(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
+                    b = GetKartTurnEffects(a->mIndex);
+                    StartKartLevel2Effects(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
                     StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
                 }
             }
@@ -449,8 +449,8 @@ void func_020681f0(Kart *a) {
                     a->mUnk_2fc = a->mUnk_2fc + 1;
                     a->mUnk_30c = 10;
                     if (a->mUnk_2fc == 2) {
-                        b = func_0208c5b8(a->mIndex);
-                        func_0208c884(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
+                        b = GetKartTurnEffects(a->mIndex);
+                        StartKartLevel2Effects(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
                         StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
                     }
                 }
@@ -466,13 +466,13 @@ void func_020681f0(Kart *a) {
     if (a->mUnk_2fc != 3) {
         return;
     }
-    b = func_0208c5b8(a->mIndex);
+    b = GetKartTurnEffects(a->mIndex);
     if ((a->mUnk_4c & 0x8000) != 0) {
-        func_0208d650(b);
-        func_0208c520(b);
-        func_0208cacc(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
+        StopKartTurnStartEffects(b);
+        RequestKartLevel4EffectsRestart(b);
+        StartKartLevel3Effects(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
     } else {
-        func_0208c534(func_0208c5b8(a->mIndex));
+        StopKartTurnEffects(GetKartTurnEffects(a->mIndex));
     }
     a->mUnk_2fc = a->mUnk_2fc + 1;
 }

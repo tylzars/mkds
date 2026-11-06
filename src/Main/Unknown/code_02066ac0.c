@@ -229,17 +229,17 @@ s32 ApplyKartSurfaceKind10(Kart *a) {
     return 0;
 }
 
-u32 func_020675b4(Kart *a) {
-    Unk0208c5b8 *b;
+u32 IsKartTurnEffectsActive(Kart *a) {
+    KartTurnEffects *b;
     u32 c;
 
-    b = func_0208c5b8(a->mIndex);
-    if (b->mUnk_34 != FALSE) {
+    b = GetKartTurnEffects(a->mIndex);
+    if (b->mLevel4StopRequested != FALSE) {
         c = 0;
     } else {
-        c = b->mUnk_38;
+        c = b->mLevel4Present;
     }
-    return (b->mUnk_40 | (b->mUnk_3c | c)) != 0 ? 1 : 0;
+    return (b->mLevel3Present | (b->mTurnStartPresent | c)) != 0 ? 1 : 0;
 }
 
 void func_02067488(Kart *a) {
