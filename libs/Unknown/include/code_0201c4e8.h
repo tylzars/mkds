@@ -1,5 +1,6 @@
 #pragma once
 
 #include "types.h"
+#include "code_02012b30.h"
 
-u32 func_0201c4e8(u32 arg0, u32 arg1, u32 arg2);
+void SPLUtil_RotateY(s32 sinValue, s32 cosValue, MtxFx43 *mtx);

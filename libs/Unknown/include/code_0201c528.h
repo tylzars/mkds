@@ -27,7 +27,7 @@ typedef struct Unk0201e3c8 {
     /* 38 */ Vec3 mUnk_38;
 } Unk0201e3c8;
 
-// Used by func_0201e494, func_0201e3c8 and func_0201e448.
+// Used by SPLList_PushFront, SPLList_Erase and SPLList_PopFront.
 typedef struct Unk0201e494 {
     /* 00 */ Unk0201e3c8 *mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -273,13 +273,13 @@ struct Unk0201ca6c {
     };
 };
 
-// Read by func_0201e248 and func_0201dfc0.
+// Read by SPLBehavior_ApplyMagnet and SPLBehavior_ApplyConvergence.
 typedef struct Unk0201e248 {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ s16 mUnk_0c;
 } Unk0201e248;
 
-// Read by func_0201e2cc.
+// Read by SPLBehavior_ApplyRandom.
 typedef struct Unk0201e2cc {
     /* 00 */ s16 mUnk_00;
     /* 02 */ s16 mUnk_02;
@@ -287,7 +287,7 @@ typedef struct Unk0201e2cc {
     /* 06 */ u16 mUnk_06;
 } Unk0201e2cc;
 
-// Read by func_0201e054.
+// Read by SPLBehavior_ApplyCollisionPlane.
 typedef struct Unk0201e054 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s16 mUnk_04;
@@ -295,33 +295,33 @@ typedef struct Unk0201e054 {
     /* 06 */ u16 mUnk_06_2 : 14;
 } Unk0201e054;
 
-// Read by func_0201e170.
+// Read by SPLBehavior_ApplySpin.
 typedef struct Unk0201e170 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u16 mUnk_02;
 } Unk0201e170;
 
-void func_0201c528(s32 a, s32 b, MtxFx43 *m);
-void func_0201c5d4(u32 a, u32 b, s32 c, s32 d);
-void func_0201c690(u32 a, u32 b, s32 c, s32 d);
-void func_0201c74c(Unk0201e3c8 *p, Unk0201ca6c *q, Unk0201e494 *r);
-void func_0201ca6c(Unk0201ca6c *p, Unk0201e494 *r);
-void func_0201d798(Vec3 *out, const Vec3 *v, Unk0201ca6c *p);
-void func_0201d8f8(Unk0201ca6c *p);
-void func_0201db80(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v);
-void func_0201dbd8(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v);
-void func_0201dc24(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v);
-void func_0201dc88(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v);
-void func_0201dd64(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v);
-void func_0201df30(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v);
-void func_0201dfc0(const Unk0201e248 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
-void func_0201e054(const Unk0201e054 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
-void func_0201e170(const Unk0201e170 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
-void func_0201e248(const Unk0201e248 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
-void func_0201e2cc(const Unk0201e2cc *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
-void func_0201e394(const Vec3s16 *a, Unk0201e3c8 *p, Vec3 *v, Unk0201ca6c *q);
-Unk0201e3c8 *func_0201e3c8(Unk0201e494 *l0, Unk0201e3c8 *p);
-Unk0201e3c8 *func_0201e448(Unk0201e494 *l0);
-void func_0201e494(Unk0201e494 *l0, Unk0201e3c8 *p);
-void func_0201e4e4(Vec3 *v);
-void func_0201e540(Vec3 *v);
+void SPLUtil_RotateXYZ(s32 sinValue, s32 cosValue, MtxFx43 *mtx);
+void SPLUtil_DrawXZPlane(u32 a, u32 b, s32 c, s32 d);
+void SPLUtil_DrawXYPlane(u32 a, u32 b, s32 c, s32 d);
+void SPLEmitter_EmitChildren(Unk0201e3c8 *emtr, Unk0201ca6c *q, Unk0201e494 *r);
+void SPLEmitter_EmitParticles(Unk0201ca6c *emtr, Unk0201e494 *r);
+void SPLUtil_TiltCoordinates(Vec3 *ptclPos, const Vec3 *pos, Unk0201ca6c *emtr);
+void SPLEmitter_ComputeOrthogonalAxes(Unk0201ca6c *emtr);
+void SPLAnim_ChildAlpha(Unk0201e3c8 *ptcl, Unk0201ca6c_20 *res, s32 lifeRate);
+void SPLAnim_ChildScale(Unk0201e3c8 *ptcl, Unk0201ca6c_20 *res, s32 lifeRate);
+void SPLAnim_Texture(Unk0201e3c8 *ptcl, Unk0201ca6c_20 *res, s32 lifeRate);
+void SPLAnim_Alpha(Unk0201e3c8 *ptcl, Unk0201ca6c_20 *res, s32 lifeRate);
+void SPLAnim_Color(Unk0201e3c8 *ptcl, Unk0201ca6c_20 *res, s32 lifeRate);
+void SPLAnim_Scale(Unk0201e3c8 *ptcl, Unk0201ca6c_20 *res, s32 lifeRate);
+void SPLBehavior_ApplyConvergence(const Unk0201e248 *conv, Unk0201e3c8 *ptcl, Vec3 *acc, Unk0201ca6c *emtr);
+void SPLBehavior_ApplyCollisionPlane(const Unk0201e054 *plane, Unk0201e3c8 *ptcl, Vec3 *acc, Unk0201ca6c *emtr);
+void SPLBehavior_ApplySpin(const Unk0201e170 *spin, Unk0201e3c8 *ptcl, Vec3 *acc, Unk0201ca6c *emtr);
+void SPLBehavior_ApplyMagnet(const Unk0201e248 *magnet, Unk0201e3c8 *ptcl, Vec3 *acc, Unk0201ca6c *emtr);
+void SPLBehavior_ApplyRandom(const Unk0201e2cc *rng, Unk0201e3c8 *ptcl, Vec3 *acc, Unk0201ca6c *emtr);
+void SPLBehavior_ApplyGravity(const Vec3s16 *gravity, Unk0201e3c8 *ptcl, Vec3 *acc, Unk0201ca6c *emtr);
+Unk0201e3c8 *SPLList_Erase(Unk0201e494 *list, Unk0201e3c8 *node);
+Unk0201e3c8 *SPLList_PopFront(Unk0201e494 *list);
+void SPLList_PushFront(Unk0201e494 *list, Unk0201e3c8 *node);
+void SPLRandom_VecFx32_XY(Vec3 *vec);
+void SPLRandom_VecFx32(Vec3 *vec);

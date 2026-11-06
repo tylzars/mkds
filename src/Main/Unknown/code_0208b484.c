@@ -63,17 +63,17 @@ void func_0208b934(void *a) {
         }
     }
     data_0217b040 = c;
-    data_0217b044 = func_02018d94((void *(*) (u32)) func_0208bd04, f, e, 3, 0xe, func_02061768());
+    data_0217b044 = SPLManager_New((void *(*) (u32)) func_0208bd04, f, e, 3, 0xe, func_02061768());
     g = FindMainRaceOrMainEffectFile(data_usa_02166138);
-    func_02018a1c(data_0217b044, g);
-    func_02018888(data_0217b044);
-    func_02018874(data_0217b044);
+    SPLManager_LoadResources(data_0217b044, g);
+    SPLManager_UploadTextures(data_0217b044);
+    SPLManager_UploadPalettes(data_0217b044);
     func_02047220(g, *(u32 *) ((u8 *) g + 0x18));
-    data_0217b04c = func_02018d94((void *(*) (u32)) func_0208bd04, 0x1e, 0x64, 3, 0xe, 0x1e);
+    data_0217b04c = SPLManager_New((void *(*) (u32)) func_0208bd04, 0x1e, 0x64, 3, 0xe, 0x1e);
     h = FindMainRaceOrMainEffectFile(data_usa_02166148);
-    func_02018a1c(data_0217b04c, h);
-    func_02018888(data_0217b04c);
-    func_02018874(data_0217b04c);
+    SPLManager_LoadResources(data_0217b04c, h);
+    SPLManager_UploadTextures(data_0217b04c);
+    SPLManager_UploadPalettes(data_0217b04c);
     data_0217b03c = NULL;
     data_0217b054 = NULL;
     data_0217b048 = NULL;
@@ -82,11 +82,11 @@ void func_0208b934(void *a) {
     }
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         t = NULL;
-        data_0217b03c = func_02018d94((void *(*) (u32)) func_0208bd04, 0x32, 0xc8, 3, 0xe, 0x1e);
+        data_0217b03c = SPLManager_New((void *(*) (u32)) func_0208bd04, 0x32, 0xc8, 3, 0xe, 0x1e);
         func_02048590(data_usa_02166168, c, &t);
-        func_02018a1c(data_0217b03c, t);
-        func_02018888(data_0217b03c);
-        func_02018874(data_0217b03c);
+        SPLManager_LoadResources(data_0217b03c, t);
+        SPLManager_UploadTextures(data_0217b03c);
+        SPLManager_UploadPalettes(data_0217b03c);
         data_0217b03c->mUnk_3c = 0x8000;
     }
     data_0217b044->mUnk_38_24 = 1;
@@ -126,18 +126,18 @@ void func_0208b8c8(void) {
     if (data_0217b054 != NULL) {
         data_0217b054();
     }
-    func_0201873c(data_0217b044);
-    func_0201873c(data_0217b04c);
+    SPLManager_Update(data_0217b044);
+    SPLManager_Update(data_0217b04c);
     if (data_0217b03c != NULL) {
-        func_0201873c(data_0217b03c);
+        SPLManager_Update(data_0217b03c);
     }
 }
 
 void func_0208b870(MtxFx43 *a) {
-    func_02018674(data_0217b044, a);
-    func_02018674(data_0217b04c, a);
+    SPLManager_Draw(data_0217b044, a);
+    SPLManager_Draw(data_0217b04c, a);
     if (data_0217b03c != NULL) {
-        func_02018674(data_0217b03c, a);
+        SPLManager_Draw(data_0217b03c, a);
     }
 }
 
@@ -149,7 +149,7 @@ void *StartEffect(u32 a, const Vec3 *b) {
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;
-    q = func_02018600(p, e, &v);
+    q = SPLManager_CreateEmitter(p, e, &v);
     if (q != NULL) {
         if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
             q->mUnk_80_16 = 1;
@@ -167,21 +167,21 @@ void func_0208b748(u32 a, const Vec3 *b, void *c, void (*d)()) {
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;
-    func_02018578(p, e, &v, (s32) c, (void (*)(Unk0201ca6c *, s32)) d);
+    SPLManager_CreateEmitterWithCallbackEx(p, e, &v, (s32) c, (void (*)(Unk0201ca6c *, s32)) d);
 }
 
 void func_0208b710(Unk0201ca6c *a) {
     u32 v1;
     u8 v2[8];
     v1 = (*(UnkWordFunc *) (u32) data_0217b050)(v2, 0);
-    func_020184e4((Unk020184e4 *) v1, a);
+    SPLManager_DeleteEmitter((Unk020184e4 *) v1, a);
 }
 
 void func_0208b6d0(Unk0201ca6c **a) {
     u32 v1;
     u8 v2[8];
     v1 = (*(UnkWordFunc *) (u32) data_0217b050)(v2, 0);
-    func_020184e4((Unk020184e4 *) v1, *a);
+    SPLManager_DeleteEmitter((Unk020184e4 *) v1, *a);
     *a = NULL;
 }
 
@@ -196,7 +196,7 @@ Unk0201ca6c *func_0208b60c(s32 a, Vec3 *b) {
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;
-    q = func_02018600(data_0217b04c, a, &v);
+    q = SPLManager_CreateEmitter(data_0217b04c, a, &v);
     if (q != NULL) {
         if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
             q->mUnk_80_16 = 1;
@@ -226,7 +226,7 @@ void *func_0208b498(u32 a, Vec3 *b, u32 c, s32 d) {
     v.x = b->x >> 4;
     v.y = b->y >> 4;
     v.z = b->z >> 4;
-    q = func_02018600(p, e, &v);
+    q = SPLManager_CreateEmitter(p, e, &v);
     if (q != NULL) {
         if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
             q->mUnk_80_16 = 1;

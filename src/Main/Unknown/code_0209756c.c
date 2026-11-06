@@ -302,7 +302,7 @@ void UpdateFlipper(void *a, Flipper *p) {
         }
         p->mUnk_ec6 = w;
         p->mUnk_ed0->mUnk_24.mUnk_00_1 = 0;
-        func_02018f94(p->mUnk_ed0, &p->mUnk_be8[p->mUnk_ec0], &p->mUnk_d50[p->mUnk_ec0]);
+        SPLUtil_SetCylinderEmitterDir(p->mUnk_ed0, &p->mUnk_be8[p->mUnk_ec0], &p->mUnk_d50[p->mUnk_ec0]);
     } else {
         p->mUnk_ec4 = 0;
         p->mUnk_ec6 = 0;

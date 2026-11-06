@@ -37,7 +37,7 @@ typedef struct Unk020184e4_2c {
     /* 12 */ u16 mUnk_12;
 } Unk020184e4_2c;
 
-// First bytes of the data func_02018a1c reads.
+// First bytes of the data SPLManager_LoadResources reads.
 typedef struct Unk02018a1c {
     /* 00 */ u8 mUnk_00[8];
     /* 08 */ u16 mUnk_08;
@@ -65,38 +65,40 @@ typedef struct Unk020184e4 {
     /* 48 */ u16 mUnk_48;
 } Unk020184e4;
 
-// Entries of the two local call tables of func_020192e0.
+// Entries of the two local call tables of SPLEmitter_Update.
 typedef struct Unk020192e0_28 {
     /* 00 */ void (*mUnk_00)(Unk0201e3c8 *p, Unk0201ca6c_20 *q, s32 v);
     /* 04 */ u32 mUnk_04;
 } Unk020192e0_28;
 
-void func_020184e4(Unk020184e4 *a, Unk0201ca6c *b);
-Unk0201ca6c *func_02018578(Unk020184e4 *a, s32 b, Vec3 *c, s32 d, void (*e)(Unk0201ca6c *p, s32 a));
-Unk0201ca6c *func_02018600(Unk020184e4 *a, s32 b, Vec3 *c);
-void func_02018674(Unk020184e4 *a, MtxFx43 *b);
-void func_0201873c(Unk020184e4 *a);
-s32 func_02018874(Unk020184e4 *a);
-s32 func_02018888(Unk020184e4 *a);
-s32 func_0201889c(Unk020184e4 *a, u32 (*b)(s32 a, s32 b));
-s32 func_02018950(Unk020184e4 *a, u32 (*b)(s32 a, s32 b));
-void func_02018a1c(Unk020184e4 *a, Unk02018a1c *b);
-Unk020184e4 *func_02018d94(void *(*a)(u32 a), u16 b, u16 c, s32 d, u16 e, u16 f);
-u32 func_02018f24(s32 a, s32 b);
-u32 func_02018f5c(s32 a, s32 b);
-void func_02018f94(Unk0201ca6c *a, Vec3 *b, Vec3 *c);
-void func_02019090(Unk020184e4 *a);
-void func_0201910c(Unk020184e4 *a);
-void func_020191f4(Unk020184e4 *a);
-void func_020192e0(Unk020184e4 *a, Unk0201ca6c *b);
-void func_02019b28(Unk0201ca6c *a, Unk0201ca6c_20 *b, Vec3 *c);
-void func_02019df4(Unk020184e4_2c *a);
-void func_02019df8(Unk020184e4_2c *a);
-void func_02019ee4(Unk020184e4 *a, Unk0201e3c8 *b);
-void func_0201a364(Unk020184e4 *a, Unk0201e3c8 *b);
-void func_0201a7e0(Unk020184e4 *a, Unk0201e3c8 *b);
-void func_0201ab30(Unk020184e4 *a, Unk0201e3c8 *b);
-void func_0201ae80(Unk020184e4 *a, Unk0201e3c8 *b);
-void func_0201b560(Unk020184e4 *a, Unk0201e3c8 *b);
-void func_0201bc48(Unk020184e4 *a, Unk0201e3c8 *b);
-void func_0201c09c(Unk020184e4 *a, Unk0201e3c8 *b);
+void SPLManager_DeleteEmitter(Unk020184e4 *mgr, Unk0201ca6c *emtr);
+Unk0201ca6c *SPLManager_CreateEmitterWithCallbackEx(Unk020184e4 *mgr, s32 resourceId, Vec3 *pos, s32 param,
+                                                    void (*initCallback)(Unk0201ca6c *emtr, s32 param));
+Unk0201ca6c *SPLManager_CreateEmitter(Unk020184e4 *mgr, s32 resourceId, Vec3 *pos);
+void SPLManager_Draw(Unk020184e4 *mgr, MtxFx43 *viewMatrix);
+void SPLManager_Update(Unk020184e4 *mgr);
+s32 SPLManager_UploadPalettes(Unk020184e4 *mgr);
+s32 SPLManager_UploadTextures(Unk020184e4 *mgr);
+s32 SPLManager_UploadPalettesEx(Unk020184e4 *mgr, u32 (*vramAlloc)(s32 size, s32 isSpecial));
+s32 SPLManager_UploadTexturesEx(Unk020184e4 *mgr, u32 (*vramAlloc)(s32 size, s32 isSpecial));
+void SPLManager_LoadResources(Unk020184e4 *mgr, Unk02018a1c *data);
+Unk020184e4 *SPLManager_New(void *(*alloc)(u32 size), u16 maxEmitters, u16 maxParticles, s32 fixPolyId, u16 minPolyId,
+                            u16 maxPolyId);
+u32 SPLUtil_AllocPaletteVRAM(s32 size, s32 is4Pltt);
+u32 SPLUtil_AllocTextureVRAM(s32 size, s32 is4x4);
+void SPLUtil_SetCylinderEmitterDir(Unk0201ca6c *emtr, Vec3 *p1, Vec3 *p2);
+void SPLManager_DoDraw(Unk020184e4 *mgr);
+void SPLManager_DrawChildParticles(Unk020184e4 *mgr);
+void SPLManager_DrawParticles(Unk020184e4 *mgr);
+void SPLEmitter_Update(Unk020184e4 *mgr, Unk0201ca6c *b);
+void SPLEmitter_Init(Unk0201ca6c *emtr, Unk0201ca6c_20 *res, Vec3 *pos);
+void SPLUtil_SetTexture_Stub(Unk020184e4_2c *tex);
+void SPLUtil_SetTexture(Unk020184e4_2c *tex);
+void SPLDraw_Child_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl);
+void SPLDraw_DirectionalPolygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl);
+void SPLDraw_Child_Polygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl);
+void SPLDraw_Polygon(Unk020184e4 *mgr, Unk0201e3c8 *ptcl);
+void SPLDraw_Child_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl);
+void SPLDraw_DirectionalBillboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl);
+void SPLDraw_Child_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl);
+void SPLDraw_Billboard(Unk020184e4 *mgr, Unk0201e3c8 *ptcl);

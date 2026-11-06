@@ -57,7 +57,7 @@ void func_0208b190(void) {
         if (h->mUnk_48[i] != NULL) {
             s32 e;
             Unk0201ca6c **r = &h->mUnk_48[i];
-            func_020184e4(data_0217b050(&e, 0), *r);
+            SPLManager_DeleteEmitter(data_0217b050(&e, 0), *r);
             *r = NULL;
         }
     }
@@ -96,7 +96,7 @@ void func_0208b190(void) {
         v.x = t->x >> 4;
         v.y = t->y >> 4;
         v.z = t->z >> 4;
-        q = func_02018600(p, e, &v);
+        q = SPLManager_CreateEmitter(p, e, &v);
         if (q != NULL) {
             if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
                 q->mUnk_80_16 = 1;
@@ -129,7 +129,7 @@ void func_0208afe4(void) {
         v.x = k;
         v.y = l;
         v.z = m;
-        q = func_02018600(p, e, &v);
+        q = SPLManager_CreateEmitter(p, e, &v);
         if (q != NULL) {
             if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
                 q->mUnk_80_16 = 1;
@@ -146,7 +146,7 @@ void func_0208afe4(void) {
         v.x = x >> 4;
         v.y = l;
         v.z = m;
-        q = func_02018600(p, e, &v);
+        q = SPLManager_CreateEmitter(p, e, &v);
         if (q != NULL) {
             if (q->mUnk_20->mUnk_00->mUnk_54 & 0x80) {
                 q->mUnk_80_16 = 1;
