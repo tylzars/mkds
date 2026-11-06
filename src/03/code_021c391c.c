@@ -208,7 +208,7 @@ void func_ov003_021c39a4(void) {
                     break;
                 case 1:
                     func_ov003_021c2120(0, 1);
-                    func_ov003_021c212c(func_ov003_021c33ac);
+                    func_ov003_021c212c(SetupYb5Multi);
                     break;
                 case 2:
                     func_ov003_021c2120(0, 1);

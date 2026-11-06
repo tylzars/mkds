@@ -27,17 +27,17 @@
 #include "03/unk_021d5000.h"
 #include "03/code_021bf410.h"
 
-void func_ov003_021c33ac(void) {
+void SetupYb5Multi(void) {
     data_ov003_021da1a8 = 0;
-    func_ov003_021c3348();
+    LoadYb5MultiFileAndSetBgCnt();
     func_ov003_021bf86c(18);
     func_ov003_021bf43c(140, -1, 0);
     func_ov003_021bf578(85);
     func_ov003_021c212c(func_ov003_021c330c);
 }
 
-void func_ov003_021c3348(void) {
-    void *v2 = &data_ov003_021d7030;
+void LoadYb5MultiFileAndSetBgCnt(void) {
+    void *v2 = &gYb5MultiNscName;
     void *v3 = &GX_LoadBG2Scr;
     u32 v4 = func_ov003_021bf620(v2, v3);
     u32 v5 = 0x4001008u;
@@ -103,17 +103,17 @@ void func_ov003_021c32dc(void) {
 void func_ov003_021c32b8(void) {
     if (func_ov003_021bf334() != -2) {
         func_ov003_021bf2e0();
-        func_ov003_021c212c(func_ov003_021c32a0);
+        func_ov003_021c212c(UpdateYb5Multi);
     }
 }
 
-void func_ov003_021c32a0(void) {
-    func_ov003_021c3274();
+void UpdateYb5Multi(void) {
+    UpdateYb5MultiInput();
     func_ov003_021c3270();
     func_ov003_021c321c();
 }
 
-void func_ov003_021c3274(void) {
+void UpdateYb5MultiInput(void) {
     int v1;
     v1 = func_ov003_021d2b04(1);
     if (v1 != 0) {
