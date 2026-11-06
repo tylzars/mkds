@@ -104,7 +104,7 @@ u32 func_0210ed20(u32 a, u32 b) {
             break;
         }
         w = ((NNSSndArcWaveArcInfo *) q)->mFileId;
-        r = (u32 *) NNS_SndArcGetFileAddress(w);
+        r = NNS_SndArcGetFileAddress(w);
         if (x == 0) {
             continue;
         }

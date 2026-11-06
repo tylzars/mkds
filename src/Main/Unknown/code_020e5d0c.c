@@ -29,6 +29,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/code_020e337c.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -58,7 +59,7 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
     p->mUnk_18 = 0;
     if (param_2 != NULL) {
         x.mUnk_00 = d->mUnk_014;
-        n = (u16) (func_02087d0c(param_2) >> 12);
+        n = func_02087d0c(param_2) >> 12;
         p->mUnk_1a = n;
         t = GetHeap(func_020364e8());
         p->mUnk_1c = HeapAlloc(t, n * 4);
@@ -97,7 +98,7 @@ void func_020e64b8(Unk020e6488 *p, void *a, void *b, s32 c) {
     } else {
         ((Unk020e6488 *) p)->mUnk_28 = NULL;
     }
-    func_020e6514(((Unk020e6488 *) p)->mUnk_24, (Unk020e6514 *) ((Unk020e6488 *) p)->mUnk_28, (Unk020e6488 *) p);
+    func_020e6514(((Unk020e6488 *) p)->mUnk_24, ((Unk020e6488 *) p)->mUnk_28, p);
 }
 
 void func_020e6488(Unk020e6488 **param_1, void *param_2, u32 param_3, u32 param_4) {
@@ -149,7 +150,7 @@ void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
 
     t = a->mUnk_100;
     a->mUnk_100 = t + a->mUnk_fe;
-    v = (u16) (((s64) (s32) a->mUnk_fc * gPairsByAngle[(a->mUnk_100 >> 4) * 2]) >> 12);
+    v = ((s64) (s32) a->mUnk_fc * gPairsByAngle[(a->mUnk_100 >> 4) * 2]) >> 12;
     if ((t < 0x58f0 && a->mUnk_100 >= 0x58f0) || (t < 0xd8f0 && a->mUnk_100 >= 0xd8f0)) {
         if ((a->mUnk_78 & 4) == 0) {
             if (a->mUnk_70 == gSoundFalloffs[2].mUnk_20) {
@@ -199,18 +200,18 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
     d = c + a->mUnk_104;
     sq = (s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z;
     if (sq < (s64) d * d) {
-        *(volatile u16 *) 0x40002b0 = 1;
+        reg_CP_SQRTCNT = 1;
         *(volatile s64 *) 0x40002b8 = sq;
-        while (*(volatile u16 *) 0x40002b0 & 0x8000) {
+        while (reg_CP_SQRTCNT & 0x8000) {
         }
-        d -= *(volatile u32 *) 0x40002b4;
+        d -= reg_CP_SQRT_RESULT;
     } else {
         return FALSE;
     }
     if ((t > 0 ? t : -t) < d) {
-        out->x = (s32) (((s64) a->mUnk_28.mUnk_18.x * t) >> 12);
-        out->y = (s32) (((s64) a->mUnk_28.mUnk_18.y * t) >> 12);
-        out->z = (s32) (((s64) a->mUnk_28.mUnk_18.z * t) >> 12);
+        out->x = ((s64) a->mUnk_28.mUnk_18.x * t) >> 12;
+        out->y = ((s64) a->mUnk_28.mUnk_18.y * t) >> 12;
+        out->z = ((s64) a->mUnk_28.mUnk_18.z * t) >> 12;
         a->mUnk_10c = FALSE;
     } else {
         if (v.y < 0) {
@@ -220,9 +221,9 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
         if (sq >= 16) {
             Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }
-        out->x = (s32) (((s64) v.x * d) >> 12);
-        out->y = (s32) (((s64) v.y * d) >> 12);
-        out->z = (s32) (((s64) v.z * d) >> 12);
+        out->x = ((s64) v.x * d) >> 12;
+        out->y = ((s64) v.y * d) >> 12;
+        out->z = ((s64) v.z * d) >> 12;
         a->mUnk_10c = TRUE;
     }
     return TRUE;
@@ -239,10 +240,10 @@ void CreatePendulumAndPendulumShadow(void) {
 void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q) {
     s32 m;
 
-    p->mUnk_5c = (s32) (((s64) p->mUnk_98->mUnk_10 * q->mUnk_20) >> 12);
+    p->mUnk_5c = ((s64) p->mUnk_98->mUnk_10 * q->mUnk_20) >> 12;
     func_020d720c(&q->mUnk_0c, p->mUnk_a0);
     p->mUnk_c8 = p->mUnk_28;
-    p->mUnk_f8 = (s32) (((s64) p->mUnk_1c.y * 0x1f4000) >> 12);
+    p->mUnk_f8 = ((s64) p->mUnk_1c.y * 0x1f4000) >> 12;
     p->mUnk_100 = 0;
     p->mUnk_bc.x = q->mUnk_00.x;
     p->mUnk_bc.y = q->mUnk_00.y;
@@ -253,10 +254,10 @@ void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q) {
     p->mUnk_ec.y = p->mUnk_04.y >> 4;
     p->mUnk_ec.z = p->mUnk_04.z >> 4;
     m = q->mUnk_2a;
-    p->mUnk_fe = (u16) (0x640000u / (u32) q->mUnk_28 / 0xf0u);
-    p->mUnk_fc = (u16) ((u32) (m * 0x1111) / 0x64u);
-    p->mUnk_104 = (s32) (((s64) p->mUnk_1c.x * 0x64000) >> 12);
-    p->mUnk_108 = (s32) (((s64) p->mUnk_1c.z * 0x32000) >> 12);
+    p->mUnk_fe = 0x640000u / (u32) q->mUnk_28 / 0xf0u;
+    p->mUnk_fc = (u32) (m * 0x1111) / 0x64u;
+    p->mUnk_104 = ((s64) p->mUnk_1c.x * 0x64000) >> 12;
+    p->mUnk_108 = ((s64) p->mUnk_1c.z * 0x32000) >> 12;
     p->mUnk_10c = FALSE;
 }
 

@@ -59,9 +59,9 @@ BOOL func_020f14a0(ItemKouraR *a, s32 b, s32 c, s32 d) {
             if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
                 n = Vec3NormalizeAndGetLengthUnchecked(&t, &t);
             }
-            t.x = (s32) (((s64) t.x * b) >> 12);
-            t.y = (s32) (((s64) t.y * b) >> 12);
-            t.z = (s32) (((s64) t.z * b) >> 12);
+            t.x = ((s64) t.x * b) >> 12;
+            t.y = ((s64) t.y * b) >> 12;
+            t.z = ((s64) t.z * b) >> 12;
             if (a->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x8000000) {
                 if (n < (s32) (((s64) v->mPhysicalParam->mRadius * v->mScale.z + 0x800) >> 12)) {
                     a->mUnk_238 = a->mUnk_238 + 1;
@@ -78,15 +78,15 @@ BOOL func_020f14a0(ItemKouraR *a, s32 b, s32 c, s32 d) {
             if (0x64000 - n > 0) {
                 c += (s32) (((s64) (0x64000 - n) * 16) >> 12);
             }
-            t.x = (s32) (((s64) t.x * c) >> 12);
-            t.y = (s32) (((s64) t.y * c) >> 12);
-            t.z = (s32) (((s64) t.z * c) >> 12);
+            t.x = ((s64) t.x * c) >> 12;
+            t.y = ((s64) t.y * c) >> 12;
+            t.z = ((s64) t.z * c) >> 12;
             VEC_Add(&a->mUnk_22c, &t, &a->mUnk_22c);
             VEC_Subtract(&a->mKartItems->mKart->mVelocity, q, &t);
             t.y = 0;
-            t.x = (s32) (((s64) t.x * c) >> 12);
-            t.y = (s32) (((s64) t.y * c) >> 12);
-            t.z = (s32) (((s64) t.z * c) >> 12);
+            t.x = ((s64) t.x * c) >> 12;
+            t.y = ((s64) t.y * c) >> 12;
+            t.z = ((s64) t.z * c) >> 12;
             VEC_Add(q, &t, q);
         }
     }
@@ -112,16 +112,16 @@ BOOL func_020f14a0(ItemKouraR *a, s32 b, s32 c, s32 d) {
         if (a->mUnk_000.mUnk_000.mUnk_000.mUnk_fc & 0x214300) {
             if (a->mUnk_000.mUnk_000.mUnk_158 == 0 && d != 0) {
                 n = VEC_DotProduct(&w, q);
-                t.x = (s32) (((s64) w.x * n) >> 12);
-                t.y = (s32) (((s64) w.y * n) >> 12);
-                t.z = (s32) (((s64) w.z * n) >> 12);
+                t.x = ((s64) w.x * n) >> 12;
+                t.y = ((s64) w.y * n) >> 12;
+                t.z = ((s64) w.z * n) >> 12;
                 q->x = q->x - t.x;
                 q->y = q->y - t.y;
                 q->z = q->z - t.z;
                 VEC_Subtract(q, &t, q);
-                q->x = (s32) (((s64) q->x * 0x23d) >> 12);
-                q->y = (s32) (((s64) q->y * 0x23d) >> 12);
-                q->z = (s32) (((s64) q->z * 0x23d) >> 12);
+                q->x = ((s64) q->x * 0x23d) >> 12;
+                q->y = ((s64) q->y * 0x23d) >> 12;
+                q->z = ((s64) q->z * 0x23d) >> 12;
                 func_020f6fc4(a, 1);
                 return FALSE;
             }
@@ -149,9 +149,7 @@ int func_020f1258(ItemKouraR *a, int i, s32 c, u32 b) {
     s64 t2;
 
     p = GetKart(i);
-    x = (u16) (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
-                   ? (u16) (a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
-                   : 8);
+    x = !(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000) ? (u16) (a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00) : 8;
     n = GetKartRank(i);
     if (x < 8 && b != 0) {
         t = GetKartRank(x);

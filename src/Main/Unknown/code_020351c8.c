@@ -62,6 +62,7 @@
 #include "Main/Unknown/code_02025edc.h"
 #include "Main/Unknown/code_02025f80.h"
 #include "Main/Unknown/code_02025cd0.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -89,8 +90,8 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
             } else {
                 v = 15;
             }
-            func_02124100(i, (u8) v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
-            func_02124100(e, (u8) v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
+            func_02124100(i, v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
+            func_02124100(e, v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
         }
     }
 }
@@ -102,7 +103,7 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
 void func_02035c14(void) {
     void *v1;
     v1 = GetBmgEntry(data_02174e68->mUnk_88, 3);
-    SetTxtSystemBgOffsetRequested((int) 0xfffffff4, 0);
+    SetTxtSystemBgOffsetRequested(0xfffffff4, 0);
     func_02126638(v1, 0, 0, 0, 0, 0, 0);
 }
 
@@ -391,23 +392,23 @@ void func_020353f8(void) {
     s32 n;
 
     r = func_02025ebc(&data_02174e68->mUnk_90);
-    *(u32 *) 0x4000010 = (r << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (r << 16) & 0x1ff0000;
     n = -r;
-    *(u32 *) 0x400101c = (n << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (n << 16) & 0x1ff0000;
     if (r != 0) {
-        *(u32 *) 0x4000000 = (*(u32 *) 0x4000000 & 0xffff1fff) | 0x2000;
-        *(u16 *) 0x4000048 = (u32) ((*(u16 *) 0x4000048 & ~0x3f) | 0x1f) | 0x20;
-        *(u16 *) 0x400004a = (u32) ((*(u16 *) 0x400004a & ~0x3f) | 0xe) | 0x20;
-        *(u16 *) 0x4000040 = 0xff;
-        *(u16 *) 0x4000044 = ((n << 8) & 0xff00) | 0xc0;
-        *(u32 *) 0x4001000 = (*(u32 *) 0x4001000 & 0xffff1fff) | 0x2000;
-        *(u16 *) 0x4001048 = (u32) ((*(u16 *) 0x4001048 & ~0x3f) | 0x1f) | 0x20;
-        *(u16 *) 0x400104a = (u32) ((*(u16 *) 0x400104a & ~0x3f) | 7) | 0x20;
-        *(u16 *) 0x4001040 = 0xff;
-        *(u16 *) 0x4001044 = (r + 0xc0) & 0xff;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x2000;
+        reg_G2_WININ = (u32) ((reg_G2_WININ & ~0x3f) | 0x1f) | 0x20;
+        reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xe) | 0x20;
+        reg_G2_WIN0H = 0xff;
+        reg_G2_WIN0V = ((n << 8) & 0xff00) | 0xc0;
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffff1fff) | 0x2000;
+        reg_G2S_DB_WININ = (u32) ((reg_G2S_DB_WININ & ~0x3f) | 0x1f) | 0x20;
+        reg_G2S_DB_WINOUT = (u32) ((reg_G2S_DB_WINOUT & ~0x3f) | 7) | 0x20;
+        reg_G2S_DB_WIN0H = 0xff;
+        reg_G2S_DB_WIN0V = (r + 0xc0) & 0xff;
     } else {
-        *(u32 *) 0x4000000 = (u32) (*(u32 *) 0x4000000 & 0xffff1fff);
-        *(u32 *) 0x4001000 = (u32) (*(u32 *) 0x4001000 & 0xffff1fff);
+        reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
+        reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
     }
 }
 
@@ -430,7 +431,7 @@ void func_020353a4(void) {
 void func_02035378(void) {
     void *v1;
     v1 = GetBmgEntry(data_02174e64->mGhostMessages, 1);
-    func_0212658c(v1, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0);
+    func_0212658c(v1, 0, 0, 0, 0, 0, 0);
 }
 
 #pragma thumb off
@@ -541,8 +542,8 @@ void func_020351c8(void) {
     v1 = GetBmgEntry(data_02174e64->mGhostMessages, 8);
     v2 = GetBmgEntry(data_02174e64->mCommonMessages, 0);
     v3 = GetBmgEntry(data_02174e64->mCommonMessages, 1);
-    SetTxtSystemSoundId(0, (u32) 5);
-    func_02125fd4(v1, v2, v3, (u32) 0, (u32) 0, (u32) 1, (u32) 1, (u32) 0);
+    SetTxtSystemSoundId(0, 5);
+    func_02125fd4(v1, v2, v3, 0, 0, 1, 1, 0);
 }
 
 #pragma thumb off

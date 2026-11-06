@@ -264,10 +264,10 @@ void SetWiFiStateCallbacks(const WiFiStateCallbacks *callbacks) {
 }
 
 void RequestWiFiState(s32 nextState) {
-    u32 value0 = (u32) nextState;
+    u32 value0 = nextState;
     u32 value1;
     value1 = (u32) &gWiFiStates;
-    value1 = (u32) * (const u32 *) ((value1) + 0u);
+    value1 = *(const u32 *) ((value1) + 0u);
     gWiFiStates->mNextState = value0;
     return;
 }
@@ -277,7 +277,7 @@ s32 GetWiFiPrevState(void) {
 }
 
 u32 GetWiFiNextScene(void) {
-    return ((u32) gWiFiStates->mNextScene);
+    return (gWiFiStates->mNextScene);
 }
 
 void SetWiFiNextScene(u32 p0) {
@@ -307,15 +307,15 @@ void SetWiFiVSSettingIndex(u32 settingIndex) {
 s32 func_ov000_02180644(void) {
     u32 value0;
     value0 = (u32) &gWiFiStates;
-    value0 = (u32) gWiFiStates->mUnk_34;
-    return (s32) value0;
+    value0 = gWiFiStates->mUnk_34;
+    return value0;
 }
 
 void func_ov000_02180638(s32 arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     value1 = (u32) &gWiFiStates;
-    value1 = (u32) * (const u32 *) ((value1) + 0u);
+    value1 = *(const u32 *) ((value1) + 0u);
     gWiFiStates->mUnk_34 = value0;
     return;
 }

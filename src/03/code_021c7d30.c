@@ -57,6 +57,7 @@
 #include "03/code_021c6764.h"
 #include "03/code_021c6f08.h"
 #include "03/code_021cce78.h"
+#include "registers.h"
 
 void CreateJb3List(void) {
     int a;
@@ -106,7 +107,7 @@ void LoadJb3ListFilesAndSetBgCnt(void) {
     a = gJb3ListBackNscName;
     b = gYbBgStep2NclName;
     c = gYbBgStep21NclName;
-    *(u16 *) 0x400000c = (*(u16 *) 0x400000c & 0x43) | 0xe18;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0xe18;
     func_ov003_021bf620(gYbObjKbNclName3, GX_LoadOBJPltt);
     func_ov003_021bf620(gJbBgStep2NcgName, GX_LoadBG3Char);
     func_ov003_021bf620(gJbBgStep21NcgName, GX_LoadBG2Char);
@@ -117,12 +118,12 @@ void LoadJb3ListFilesAndSetBgCnt(void) {
     func_ov003_021cc9fc();
     gJb3List->mYbBgStep2NclFiles[0] = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &b), NULL, 4);
     gJb3List->mYbBgStep2NclFiles[1] = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &c), NULL, 4);
-    *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~0x3) | 0x3;
-    *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~0x3) | 0x3;
-    *(u16 *) 0x4000008 = (*(u16 *) 0x4000008 & ~0x3) | 0x3;
-    *(u16 *) 0x400000a = (*(u16 *) 0x400000a & ~0x3) | 0x2;
-    *(u16 *) 0x400000c = (*(u16 *) 0x400000c & ~0x3) | 0x3;
-    *(u16 *) 0x400000e = (*(u16 *) 0x400000e & ~0x3) | 0x2;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~0x3) | 0x3;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~0x3) | 0x3;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~0x3) | 0x3;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~0x3) | 0x2;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & ~0x3) | 0x3;
+    reg_G2_BG3CNT = (reg_G2_BG3CNT & ~0x3) | 0x2;
 }
 
 void func_ov003_021c94c8(void) {
@@ -138,8 +139,8 @@ void func_ov003_021c94c8(void) {
 }
 
 void func_ov003_021c948c(void) {
-    func_ov003_021d1ee0(2, 1, 1, (u16) (8));
-    func_ov003_021d1ee0(2, 0, 0x1d, (u16) (8));
+    func_ov003_021d1ee0(2, 1, 1, 8);
+    func_ov003_021d1ee0(2, 0, 0x1d, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x1d);
     func_ov003_021c212c(func_ov003_021c9464);
@@ -410,7 +411,7 @@ void UpdateJb3ListScrollInput(void) {
 
 void func_ov003_021c8e80(void) {
     func_ov003_021cce38();
-    func_ov003_021d1dd0((u16) (8));
+    func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c8e48);
     return;
 }
@@ -419,8 +420,8 @@ void func_ov003_021c8e48(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
-        func_ov003_021d1ee0(3, 1, 1, (u16) (8));
-        func_ov003_021d1ee0(3, 0, 0x1d, (u16) (8));
+        func_ov003_021d1ee0(3, 1, 1, 8);
+        func_ov003_021d1ee0(3, 0, 0x1d, 8);
         func_ov003_021c212c(func_ov003_021c8c14);
     }
     return;
@@ -463,9 +464,9 @@ void func_ov003_021c8c14(void) {
     func_ov003_021bf620(gYbObjMainNclName4, GX_LoadOBJPltt);
     func_ov003_021d272c(1, 1);
     func_ov003_021d272c(0, 0x1d);
-    *(u32 *) 0x4000010 = 0;
-    *(u32 *) 0x4000018 = 0;
-    *(u16 *) 0x400000c = (*(u16 *) 0x400000c & 0x43) | 0xe10;
+    reg_G2_BG0OFS = 0;
+    reg_G2_BG2OFS = 0;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0xe10;
     v = gJb3List->mUnk_40;
     switch (v) {
         case 0:
@@ -811,19 +812,19 @@ void RefreshJb3ListRowPositions(void) {
         gJb3List->mUnk_34->mUnk_00 = ((x & 0x1ff) << 16) | ((gJb3List->mUnk_34->mUnk_00 & 0xfe00ff00) | (b & 0xff));
     }
     for (i = 0, c = b; i < 5; i++, c += 0x1d) {
-        func_ov003_021c85a0_inline(gJb3List->mUnk_18[i], (u32 *) &x, (u32 *) &y);
+        func_ov003_021c85a0_inline(gJb3List->mUnk_18[i], (u32 *) &x, &y);
         p = gJb3List->mUnk_18[i];
         p->mUnk_00 = ((x & 0x1ff) << 16) | ((p->mUnk_00 & 0xfe00ff00) | (c & 0xff));
     }
     if (a <= 2) {
-        func_ov003_021c85a0_inline(gJb3List->mUnk_18[5], (u32 *) &x, (u32 *) &y);
+        func_ov003_021c85a0_inline(gJb3List->mUnk_18[5], &x, (u32 *) &y);
         gJb3List->mUnk_18[5]->mUnk_00 =
             ((x & 0x1ff) << 16) | ((gJb3List->mUnk_18[5]->mUnk_00 & 0xfe00ff00) | ((b + (2 - a) * 0x1d) & 0xff));
     } else {
         gJb3List->mUnk_18[5]->mUnk_00 = (gJb3List->mUnk_18[5]->mUnk_00 & 0xfe00ff00) | 0x1000000;
     }
     if (a >= 2 && a <= 6) {
-        func_ov003_021c85a0_inline(gJb3List->mUnk_18[6], (u32 *) &x, (u32 *) &y);
+        func_ov003_021c85a0_inline(gJb3List->mUnk_18[6], &x, (u32 *) &y);
         gJb3List->mUnk_18[6]->mUnk_00 =
             ((x & 0x1ff) << 16) | ((gJb3List->mUnk_18[6]->mUnk_00 & 0xfe00ff00) | ((b + (6 - a) * 0x1d) & 0xff));
     } else {
@@ -938,7 +939,7 @@ void AdvanceJb3ListScrollYDecrease(u32 b) {
     }
     RefreshJb3ListRowPositions();
     if (a == 0) {
-        func_ov003_021cce58((s32) _s32_div_f(*(u16 *) gJb3ListScrollY * 0x37, 0x91));
+        func_ov003_021cce58(_s32_div_f(*(u16 *) gJb3ListScrollY * 0x37, 0x91));
         func_ov003_021cce48();
         SetJb3ListSelectedIdFromRow();
         gJb3List->mScrollTask = 0;
@@ -958,7 +959,7 @@ void AdvanceJb3ListScrollYIncrease(u32 b) {
     }
     *(u16 *) gJb3ListScrollY = *(u16 *) gJb3ListScrollY - a;
     RefreshJb3List();
-    func_ov003_021cce58((s32) _s32_div_f(*(u16 *) gJb3ListScrollY * 0x37, 0x91));
+    func_ov003_021cce58(_s32_div_f(*(u16 *) gJb3ListScrollY * 0x37, 0x91));
     func_ov003_021cce48();
     SetJb3ListSelectedIdFromRow();
     gJb3List->mScrollTask = 0;
@@ -971,8 +972,8 @@ void WriteJb3ListBgOffset(void) {
     if (gJb3List->mBgOffsetPending != 0) {
         a = FX_DivS32(*(u16 *) gJb3ListScrollY, 0x1d);
         b = FX_ModS32(*(u16 *) gJb3ListScrollY, 0x1d) - 0x33;
-        *(vu32 *) 0x4000010 = (b << 16) & 0x1ff0000;
-        *(vu32 *) 0x4000018 = ((b + data_ov003_021d6460[a]) << 16) & 0x1ff0000;
+        reg_G2_BG0OFS = (b << 16) & 0x1ff0000;
+        reg_G2_BG2OFS = ((b + data_ov003_021d6460[a]) << 16) & 0x1ff0000;
         gJb3List->mBgOffsetPending = 0;
     }
 }
@@ -1220,7 +1221,7 @@ void func_ov003_021c7d58(void) {
     int v1;
     v1 = func_ov003_021cef80();
     if (v1 == 0) {
-        StartSoundSeq((u32) 6);
+        StartSoundSeq(6);
         func_ov003_021cef90();
         func_ov003_021cc900((u32) gJb3List->mYbBgStep2NclFiles[0]);
         func_ov003_021c212c(func_ov003_021c7d3c);

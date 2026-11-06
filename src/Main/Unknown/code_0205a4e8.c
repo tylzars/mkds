@@ -8,7 +8,7 @@ Unk0217aa14_104_20 *func_0205a4e8(u32 arg0, u32 arg1) {
     u32 value3;
     value3 = (u32) &data_0217aa14;
     value2 = 0x88u;
-    value3 = (u32) * (const u32 *) ((value3) + (0));
+    value3 = *(const u32 *) ((value3) + (0));
     value3 = (value3) + (0x104u);
     value2 = (value0) * (value2) + (value3);
     value0 = (value2) + (0x20u);

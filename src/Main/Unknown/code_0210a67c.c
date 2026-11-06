@@ -41,12 +41,12 @@ u32 func_0210b6a0(void) {
     u32 value12;
     value1 = 0xafc8000u;
     value0 = 0x384000u;
-    value0 = (u32) FX_Div((s32) value0, (s32) value1);
+    value0 = FX_Div(value0, value1);
     value2 = (u32) &data_0217ccb0;
     value1 = 0xafc8000u;
     *(u32 *) ((value2) + (0)) = value0;
     value0 = 0x1c2000u;
-    value0 = (u32) FX_Div((s32) value0, (s32) value1);
+    value0 = FX_Div(value0, value1);
     value3 = (u32) &data_0217ccbc;
     value2 = (u32) &data_0217ccb4;
     value12 = 0u;
@@ -78,7 +78,7 @@ void func_0210b564(SoundSource *a, int b, u32 c, u32 d, u32 e) {
         return;
     }
     if (b == 2) {
-        if (((u32) 0x00009c40u) < e) {
+        if ((0x00009c40u) < e) {
             StartSound(a, 0x70, 0x7f, 0);
             return;
         }
@@ -476,7 +476,7 @@ void func_0210aa14(Kart *a, PlayingSound *b, s32 c) {
         if (b == NULL) {
             return;
         }
-        NNS_SndPlayerWriteVariable(&b->mUnk_00, 0, (s16) a->mUnk_4b8);
+        NNS_SndPlayerWriteVariable(&b->mUnk_00, 0, a->mUnk_4b8);
     } else {
         NNS_SndArcPlayerStartSeqArcEx(&b->mUnk_00, f, -1, c, d, e);
     }

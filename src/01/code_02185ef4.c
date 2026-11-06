@@ -353,7 +353,7 @@ BOOL func_ov001_021871d0(Unk02188950 *a) {
 
 void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, const char *e) {
     if (a != NULL && c != NULL) {
-        b->mNsbmd = LoadMapObjectModelAnimated((Unk0219b478 *) a, (char *) c);
+        b->mNsbmd = LoadMapObjectModelAnimated(a, (char *) c);
         if (d != NULL) {
             LoadMapObjectModelNsbcaAnimation((Unk0219b250 *) b->mNsbmd, (char *) d);
         }
@@ -377,7 +377,7 @@ void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, 
 
 void func_ov001_021870b0(void *a, Unk02188950 *b, const char *c) {
     if (a != NULL && c != NULL) {
-        b->mShadowNsbmd = LoadMapObjectModelShadow((Unk0219b478 *) a, (char *) c);
+        b->mShadowNsbmd = LoadMapObjectModelShadow(a, (char *) c);
         SetMapObjectModelPolygonId(b->mShadowNsbmd, 0x3f);
         data_ov001_021a9ba0 = 0;
     }
@@ -698,21 +698,21 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         if (b->mUnk_1d8 != 0) {
             if (prev < b->mUnk_1d8 && b->mUnk_1d8 <= cur) {
                 func_ov001_02188e94(b, &b->mUnk_1dc);
-            } else if ((u32) cur < (u32) prev && (b->mUnk_1d8 <= cur || prev < b->mUnk_1d8)) {
+            } else if (cur < (u32) prev && (b->mUnk_1d8 <= cur || prev < b->mUnk_1d8)) {
                 func_ov001_02188e94(b, &b->mUnk_1dc);
             }
         }
         if (b->mUnk_1e0 != 0) {
             if (prev < b->mUnk_1e0 && b->mUnk_1e0 <= cur) {
                 b->mUnk_1e4(b);
-            } else if ((u32) cur < (u32) prev && (b->mUnk_1e0 <= cur || prev < b->mUnk_1e0)) {
+            } else if (cur < (u32) prev && (b->mUnk_1e0 <= cur || prev < b->mUnk_1e0)) {
                 b->mUnk_1e4(b);
             }
         }
         if (b->mUnk_1e8 != 0) {
             if (prev < b->mUnk_1e8 && b->mUnk_1e8 <= cur) {
                 b->mUnk_1ec(b);
-            } else if ((u32) cur < (u32) prev && (b->mUnk_1e8 <= cur || prev < b->mUnk_1e8)) {
+            } else if (cur < (u32) prev && (b->mUnk_1e8 <= cur || prev < b->mUnk_1e8)) {
                 b->mUnk_1ec(b);
             }
         }

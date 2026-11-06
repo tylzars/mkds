@@ -189,7 +189,7 @@ void func_02108a40(void) {
 void func_021089f4(void) {
     NNS_SndPlayerStopSeq(&data_0217c788, 1);
     NNS_SndPlayerStopSeq(&data_0217c778, 1);
-    NNS_SndArcPlayerStartSeqArc(&data_0217d068, (u32) 0, (u32) (((u32) 0x0000020au)));
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (0x0000020au));
 }
 
 void func_02108990(void) {

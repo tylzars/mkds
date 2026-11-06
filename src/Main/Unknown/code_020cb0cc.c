@@ -6,7 +6,7 @@
 #include "Main/Unknown/unk_02175628.h"
 
 u32 func_020cb114(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 0));
+    return (*(const u16 *) ((u8 *) p0 + 0));
 }
 
 u32 func_020cb0f4(u32 arg0) {
@@ -19,12 +19,12 @@ u32 func_020cb0f4(u32 arg0) {
     value1 = (value0) * (value1) + (value2);
     value12 = (u32) &func_020cb114;
     value0 = (value1) + (0x48u);
-    value0 = (u32) func_020cb114(value0);
+    value0 = func_020cb114(value0);
     return value0;
 }
 
 u32 func_020cb0ec(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 2));
+    return (*(const u16 *) ((u8 *) p0 + 2));
 }
 
 u32 func_020cb0cc(u32 arg0) {
@@ -37,6 +37,6 @@ u32 func_020cb0cc(u32 arg0) {
     value1 = (value0) * (value1) + (value2);
     value12 = (u32) &func_020cb0ec;
     value0 = (value1) + (0x48u);
-    value0 = (u32) func_020cb0ec(value0);
+    value0 = func_020cb0ec(value0);
     return value0;
 }

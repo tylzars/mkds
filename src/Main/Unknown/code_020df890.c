@@ -53,12 +53,12 @@ void func_020dffac(Unk020e005c *a) {
     r = func_020d8cac(p);
     i = (s32) (((s64) r * 0x40000) >> 12);
     t = gPairsByAngle[(i >> 4) * 2];
-    n = (s32) (((s64) -t * a->mUnk_168) >> 12);
+    n = ((s64) -t * a->mUnk_168) >> 12;
     p->mUnk_04 = n > 0x200 ? n : 0x200;
     if (n <= 0x200) {
         n = 0x200;
     }
-    p->mUnk_10 = (s32) (((s64) n * p->mUnk_00->mUnk_00[p->mUnk_0c].mUnk_34) >> 12);
+    p->mUnk_10 = ((s64) n * p->mUnk_00->mUnk_00[p->mUnk_0c].mUnk_34) >> 12;
 }
 
 void func_020dff88(void *a) {
@@ -106,10 +106,10 @@ void func_020dfd64(Unk020e005c *a, CourseMapRow *b) {
     a->mUnk_124.y = 0;
     a->mUnk_124.z = 0;
     a->mUnk_130 = FALSE;
-    a->mUnk_100 = (s32) (((s64) a->mUnk_01c * 0x190000) >> 12);
+    a->mUnk_100 = ((s64) a->mUnk_01c * 0x190000) >> 12;
     a->mUnk_104 = (s32) (((s64) a->mUnk_020 * 0x64000) >> 12) >> 1;
-    a->mUnk_108 = (s32) (((s64) a->mUnk_024 * 0xaf000) >> 12);
-    a->mUnk_10c = (s32) (((s64) a->mUnk_024 * 0xaf000) >> 12);
+    a->mUnk_108 = ((s64) a->mUnk_024 * 0xaf000) >> 12;
+    a->mUnk_10c = ((s64) a->mUnk_024 * 0xaf000) >> 12;
     a->mUnk_110 = 0;
     a->mUnk_114.x = 1;
     a->mUnk_114.y = 0;

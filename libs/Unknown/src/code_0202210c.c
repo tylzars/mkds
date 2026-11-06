@@ -33,7 +33,7 @@ u32 NNS_G2dTickAnimCtrl(Unk02022030 *pAnimCtrl, s32 frames) {
     if (pAnimCtrl->mUnk_08 != 1) {
         return 0;
     }
-    pAnimCtrl->mUnk_0c += Abs((u32) (((s64) pAnimCtrl->mUnk_10 * frames + 0x800) >> 12));
+    pAnimCtrl->mUnk_0c += Abs(((s64) pAnimCtrl->mUnk_10 * frames + 0x800) >> 12);
     currentTime = &pAnimCtrl->mUnk_0c;
     while (ShouldAnmCtrlMoveNext_(pAnimCtrl)) {
         changedFrame = 1;

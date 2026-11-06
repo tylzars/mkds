@@ -55,8 +55,8 @@ void func_020e35e4(u32 arg0, u32 arg1) {
 }
 
 void func_020e35a0(Unk020e35a0 *p0) {
-    p0->mUnk_08 = (u32) (p0->mUnk_ac);
-    p0->mUnk_14 = (u32) 0x0u;
+    p0->mUnk_08 = p0->mUnk_ac;
+    p0->mUnk_14 = 0x0u;
     p0->mUnk_02 |= data_02158bb8;
     p0->mUnk_02 |= data_02158bb4;
 }
@@ -69,9 +69,9 @@ void func_020e3584(Unk020e1e98 *a) {
 }
 
 void func_020e3538(Unk020e3538 *p0) {
-    p0->mUnk_08 = (u32) (p0->mUnk_ac);
-    p0->mUnk_14 = (u32) 0x1000u;
-    p0->mUnk_b8 = (u16) 0x0u;
+    p0->mUnk_08 = p0->mUnk_ac;
+    p0->mUnk_14 = 0x1000u;
+    p0->mUnk_b8 = 0x0u;
     p0->mUnk_02 |= data_02158bb8;
     p0->mUnk_02 |= data_02158bb4;
 }
@@ -86,7 +86,7 @@ void func_020e34f8(Unk020e1e98 *a) {
 }
 
 void func_020e34ec(Unk020e34ec *p0) {
-    p0->mUnk_14 = (u32) 0x0u;
+    p0->mUnk_14 = 0x0u;
 }
 
 void func_020e34d0(Unk020e1e98 *a) {
@@ -97,7 +97,7 @@ void func_020e34d0(Unk020e1e98 *a) {
 }
 
 void func_020e34c0(Unk020e34c0 *p0) {
-    p0->mUnk_14 = (u32) (((0x0u) - (0x1000u)));
+    p0->mUnk_14 = ((0x0u) - (0x1000u));
 }
 
 void func_020e3414(Unk020e1e98 *a) {
@@ -144,8 +144,8 @@ void func_020e337c(Unk020e1e98 *a) {
 }
 
 void func_020e3338(Unk020e3338 *p0) {
-    p0->mUnk_08 = (u32) (p0->mUnk_ac);
-    p0->mUnk_14 = (u32) 0x0u;
+    p0->mUnk_08 = p0->mUnk_ac;
+    p0->mUnk_14 = 0x0u;
     p0->mUnk_02 |= data_02158bb8;
     p0->mUnk_02 |= data_02158bb4;
 }
@@ -158,7 +158,7 @@ void func_020e331c(Unk020e1e98 *a) {
 }
 
 void func_020e3300(Unk020e1e98 *p0) {
-    p0->mUnk_000.mFlags = (u16) (((((u32) p0->mUnk_000.mFlags)) | (((u32) data_02158bb4))));
+    p0->mUnk_000.mFlags = (((p0->mUnk_000.mFlags)) | ((data_02158bb4)));
 }
 
 void func_020e32a4(Unk020e1e98 *a) {
@@ -267,7 +267,7 @@ void CreateChoropu(void) {
     u32 v2;
     v1 = FindCourseMapObjFile(gChoropuNsbmdName);
     v2 = (u32) FindCourseMapObjFile(gChoropuNsbtpName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gChoropu)), v1, v2, (u32) 0);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gChoropu)), v1, v2, 0);
     func_020e6ab8(gChoropu);
 }
 

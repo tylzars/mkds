@@ -91,9 +91,9 @@ void func_02114504(s32 a, u16 b) {
 void func_021144c0(void *a) {
     int v1;
     void *v2;
-    v1 = ((u32) HeapAlloc(a, (u32) 0x10));
+    v1 = ((u32) HeapAlloc(a, 0x10));
     *(s32 *) &data_0217d34c = v1;
-    v2 = HeapAlloc(a, (u32) 0x78);
+    v2 = HeapAlloc(a, 0x78);
     data_0217d34c->mUnk_04 = v2;
     v2 = func_0205eda0(a);
     data_0217d34c->mUnk_08 = v2;
@@ -298,17 +298,15 @@ void func_02113f34(void) {
     v1 = FindSceneFile(gRecordVSMBNclrName);
     LocateNclr(&v7, v1);
     v3 = v4->mData;
-    CallQueueAppend((u32) 0x13, (u32) 0, (gRecordVS->mRecordVSMNcgr->mData),
-                    (u32) (gRecordVS->mRecordVSMNcgr->mDataSize));
-    CallQueueAppend((u32) 0xe, (u32) 0, v4->mData, (u32) (((u32) 0x000001a0u)));
-    CallQueueAppend((u32) 0xe, (u32) 0x1c0, v3 + 0xe0, (u32) 0x40);
-    CallQueueAppend((u32) 0x23, (u32) 0, (gRecordVS->mRecordVSSNcgr->mData),
-                    (u32) (gRecordVS->mRecordVSSNcgr->mDataSize));
-    CallQueueAppend((u32) 0x1e, (u32) 0, v8->mData, v8->mDataSize);
-    CallQueueAppend((u32) 4, (u32) 0, v5->mData, v5->mDataSize);
-    CallQueueAppend((u32) 8, (u32) 0, v6->mData, v6->mDataSize);
-    CallQueueAppend((u32) 0xf, (u32) 0, v7->mData, (u32) 0x40);
-    CallQueueAppend((u32) 0xe, (u32) 0x40, v2->mData, (u32) 0x20);
+    CallQueueAppend(0x13, 0, (gRecordVS->mRecordVSMNcgr->mData), gRecordVS->mRecordVSMNcgr->mDataSize);
+    CallQueueAppend(0xe, 0, v4->mData, (0x000001a0u));
+    CallQueueAppend(0xe, 0x1c0, v3 + 0xe0, 0x40);
+    CallQueueAppend(0x23, 0, (gRecordVS->mRecordVSSNcgr->mData), gRecordVS->mRecordVSSNcgr->mDataSize);
+    CallQueueAppend(0x1e, 0, v8->mData, v8->mDataSize);
+    CallQueueAppend(4, 0, v5->mData, v5->mDataSize);
+    CallQueueAppend(8, 0, v6->mData, v6->mDataSize);
+    CallQueueAppend(0xf, 0, v7->mData, 0x40);
+    CallQueueAppend(0xe, 0x40, v2->mData, 0x20);
 }
 
 #pragma thumb off
@@ -477,12 +475,12 @@ u32 func_021139a0(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRecordVS;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 106u;
-    value0 = (u32) * (const s16 *) ((value1) + (value0));
+    value0 = *(const s16 *) ((value1) + (value0));
     value0 = (value0) + (1u);
     value1 = (value1) + 106u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     return value0;
 }
 #pragma thumb off
@@ -492,12 +490,12 @@ u32 func_0211398c(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRecordVS;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 106u;
-    value0 = (u32) * (const s16 *) ((value1) + (value0));
+    value0 = *(const s16 *) ((value1) + (value0));
     value0 = (value0) - (1u);
     value1 = (value1) + 106u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     return value0;
 }
 #pragma thumb off
@@ -513,7 +511,7 @@ void func_02113940(void) {
         v2 = 0;
     }
     if (gRecordVS->mIndex != v2) {
-        NNS_SndArcPlayerStartSeqArc((const void *) (((u32) ((u8 *) &data_0217d068))), (u32) 0, (u32) 0);
+        NNS_SndArcPlayerStartSeqArc((const void *) (((u32) ((u8 *) &data_0217d068))), 0, 0);
     }
     gRecordVS->mIndex = v2;
 }
@@ -534,7 +532,7 @@ void func_021138e4(void) {
         }
     }
     if (gRecordVS->mIndex != v4) {
-        NNS_SndArcPlayerStartSeqArc(&data_0217d068, (u32) 0, (u32) 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
     gRecordVS->mIndex = v4;
 }

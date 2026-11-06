@@ -11,7 +11,7 @@ Unk0215316c func_0202577c(u32 arg0) {
 }
 
 u32 func_0202553c(u32 a, void *c) {
-    Unk0215316c *b = (Unk0215316c *) c;
+    Unk0215316c *b = c;
     u32 r;
 
     r = 0x36;
@@ -141,7 +141,7 @@ u32 func_0202553c(u32 a, void *c) {
 }
 
 u32 func_0202511c(s32 a, void *c) {
-    Unk0215316c *b = (Unk0215316c *) c;
+    Unk0215316c *b = c;
     enum { K0 } r;
     BOOL f;
     s32 q;

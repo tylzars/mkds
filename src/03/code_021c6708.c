@@ -20,7 +20,7 @@ void func_ov003_021c6708(void) {
     int v1;
     v1 = func_ov003_021cef6c();
     if (v1 == 0) {
-        gEdit->mUnk_04->mUnk_00 = gEdit->mUnk_04->mUnk_00 & ((u32) 0xc1fffcffu);
+        gEdit->mUnk_04->mUnk_00 = gEdit->mUnk_04->mUnk_00 & (0xc1fffcffu);
         func_ov003_021c212c(func_ov003_021c6d0c);
     }
     return;

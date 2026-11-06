@@ -27,7 +27,7 @@ u32 func_020ca994(u32 arg0, u32 arg1) {
     value12 = (u32) &NNS_SndArcPlayerStartSeqArc;
     value2 = value0;
     value0 = (u32) &data_0217d068;
-    value0 = (u32) NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
+    value0 = NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
     return value0;
 }
 
@@ -37,6 +37,6 @@ u32 func_020ca984(u32 arg0) {
     u32 value12;
     value12 = (u32) &func_020ca994;
     value1 = 0u;
-    value0 = (u32) func_020ca994(value0, value1);
+    value0 = func_020ca994(value0, value1);
     return value0;
 }

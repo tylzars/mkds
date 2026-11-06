@@ -42,9 +42,9 @@ void func_020fcce4(ItemKouraW *p0, s32 a, s32 b) {
         VEC_MultAdd(b, &p->mUnk_244, &v, &v);
     }
     VEC_Subtract(&v, v1, &v);
-    v2->x = (s32) (((s64) v.x * a) >> 12);
-    v2->y = (s32) (((s64) v.y * a) >> 12);
-    v2->z = (s32) (((s64) v.z * a) >> 12);
+    v2->x = ((s64) v.x * a) >> 12;
+    v2->y = ((s64) v.y * a) >> 12;
+    v2->z = ((s64) v.z * a) >> 12;
     VEC_Add(v2, v1, v1);
     if (f == 0) {
         return;

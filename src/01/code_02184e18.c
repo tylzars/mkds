@@ -30,11 +30,11 @@ void func_ov001_02184e6c(Unk02188950 *a) {
 }
 
 void func_ov001_02184e18(u16 *a) {
-    if (*a == ((u32) 0x000001f5u)) {
+    if (*a == (0x000001f5u)) {
         func_ov001_02188e48((Unk02188950 *) a, 0x19, func_ov001_02184f40, 0x36, func_ov001_02184f04);
         return;
     }
-    if (*a == ((u32) 0x000001f6u)) {
+    if (*a == (0x000001f6u)) {
         func_ov001_02188e48((Unk02188950 *) a, 9, func_ov001_02184ec8, 0x26, func_ov001_02184e8c);
     }
 }

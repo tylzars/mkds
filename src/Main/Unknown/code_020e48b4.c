@@ -140,15 +140,15 @@ void func_020e4df8(u32 arg0, u32 arg1) {
 }
 
 void func_020e4dec(Unk020e4dec *p0) {
-    p0->mUnk_ac = (u16) 0x0u;
+    p0->mUnk_ac = 0x0u;
 }
 
 static inline u32 func_020e4ad0_inline(Unk020f41c4_B *r, u32 c) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     if (c == 0) {
-        return (u32) (r->mUnk_00 >> 32);
+        return r->mUnk_00 >> 32;
     } else {
-        return (u32) (((r->mUnk_00 >> 32) * c) >> 32);
+        return ((r->mUnk_00 >> 32) * c) >> 32;
     }
 }
 
@@ -224,7 +224,7 @@ void func_020e4ad0(Unk020e43a8 *p) {
 }
 
 void func_020e4ab4(Unk020e43a8 *p0) {
-    p0->mUnk_00.mFlags = (u16) (((((u32) p0->mUnk_00.mFlags)) | (((u32) data_02158fe4))));
+    p0->mUnk_00.mFlags = (((p0->mUnk_00.mFlags)) | ((data_02158fe4)));
 }
 
 void func_020e4a68(Unk020e43a8 *p) {
@@ -252,15 +252,15 @@ void func_020e4a18(Unk020e43a8 *p) {
 }
 
 void func_020e49c0(Unk020e49c0 *p0) {
-    p0->mUnk_04 = (u32) (p0->mUnk_b8);
-    p0->mUnk_0c = (u32) (p0->mUnk_c0);
-    p0->mUnk_10 = (u32) 0x0u;
-    p0->mUnk_14 = (u32) 0x3199u;
-    p0->mUnk_18 = (u32) 0x0u;
-    p0->mUnk_02 = (u16) (((((u32) p0->mUnk_02)) & ~(0x2u)));
-    p0->mUnk_02 = (u16) (((((u32) p0->mUnk_02)) & ~(0x8u)));
-    p0->mUnk_66 = (u16) 0x1fu;
-    p0->mUnk_02 = (u16) (((((u32) p0->mUnk_02)) & ~(0x1u)));
+    p0->mUnk_04 = p0->mUnk_b8;
+    p0->mUnk_0c = p0->mUnk_c0;
+    p0->mUnk_10 = 0x0u;
+    p0->mUnk_14 = 0x3199u;
+    p0->mUnk_18 = 0x0u;
+    p0->mUnk_02 = (((p0->mUnk_02)) & ~(0x2u));
+    p0->mUnk_02 = (((p0->mUnk_02)) & ~(0x8u));
+    p0->mUnk_66 = 0x1fu;
+    p0->mUnk_02 = (((p0->mUnk_02)) & ~(0x1u));
 }
 
 void func_020e4990(Unk020e43a8 *p) {
@@ -297,7 +297,7 @@ s32 func_020e48e0(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
 void CreatePukupuku(void) {
     void *v1;
     v1 = FindCourseMapObjFile(gPukupukuNsbmdName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gPukupuku)), v1, (u32) 0, (u32) 0);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gPukupuku)), v1, 0, 0);
     func_020e6ab8(gPukupuku);
 }
 

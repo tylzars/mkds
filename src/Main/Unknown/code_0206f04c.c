@@ -93,7 +93,7 @@ void func_0206ff50(Kart *p, u32 a) {
         p->mRespawnSlot = c;
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mCourseId == COURSE_ID_RAINBOW &&
             (data_0217c780 & 1)) {
-            d = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
+            d = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (d[0] != NULL) {
                     NNS_SndPlayerStopSeq(d, 0);
@@ -184,7 +184,7 @@ void func_0206fe08(Kart *p) {
     a = GetHeightAboveWaterOrEfct(p->mPos.y);
     if (a < 0 && !(p->mUnk_4c & 0x4000000)) {
         b = FALSE;
-        c = (s32) (((s64) p->mUnk_3f4 * p->mScale.z) >> 12);
+        c = ((s64) p->mUnk_3f4 * p->mScale.z) >> 12;
         p->mUnk_dc = (s32) (((s64) c * a) >> 12) + 0x1000;
         if (p->mUnk_dc < p->mPhysicalParam->mSurfaceSpeedLimitFactors[4]) {
             p->mUnk_dc = p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
@@ -237,7 +237,7 @@ void func_0206f914(Kart *p) {
             p->mUnk_4d4 = 0x1000;
         }
     } else {
-        p->mUnk_4d4 = (s32) (((s64) p->mUnk_4d4 * 0xf5c) >> 12);
+        p->mUnk_4d4 = ((s64) p->mUnk_4d4 * 0xf5c) >> 12;
     }
     if (!(p->mUnk_4c & 0x20000000)) {
         if (GetRaceStartSequenceFrames() - 0xaf > 0) {
@@ -386,9 +386,9 @@ void func_0206f694(Kart *p, u32 a, Vec3 *b, s32 c) {
         p->mUnk_1fc.y = 0;
     } else {
         e = data_usa_02165554;
-        p->mUnk_1fc.x = (s32) (((s64) p->mUnk_1fc.x * e.x) >> 12);
-        p->mUnk_1fc.y = (s32) (((s64) p->mUnk_1fc.y * e.y) >> 12);
-        p->mUnk_1fc.z = (s32) (((s64) p->mUnk_1fc.z * e.z) >> 12);
+        p->mUnk_1fc.x = ((s64) p->mUnk_1fc.x * e.x) >> 12;
+        p->mUnk_1fc.y = ((s64) p->mUnk_1fc.y * e.y) >> 12;
+        p->mUnk_1fc.z = ((s64) p->mUnk_1fc.z * e.z) >> 12;
         if ((s64) p->mUnk_1fc.x * p->mUnk_1fc.x + (s64) p->mUnk_1fc.y * p->mUnk_1fc.y +
                 (s64) p->mUnk_1fc.z * p->mUnk_1fc.z <
             0xa429) {
@@ -457,7 +457,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     g = VEC_DotProduct(a, &p->mUnk_2e4);
     p->mUnk_2e4.x = p->mUnk_2e4.x - (s32) (((s64) a->x * g) >> 12);
     p->mUnk_2e4.y = p->mUnk_2e4.y - (s32) (((s64) a->y * g) >> 12);
-    k = (s32) (((s64) c * i) >> 12);
+    k = ((s64) c * i) >> 12;
     p->mUnk_2e4.z = p->mUnk_2e4.z - (s32) (((s64) a->z * g) >> 12);
     p->mUnk_38c = k;
     if (Vec3DotUnrounded(&p->mUnk_1fc, a) < -0x800) {
@@ -467,9 +467,9 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         h = Vec3DotUnrounded(&p->mUnk_138, a);
         j = TRUE;
         g = VEC_DotProduct(a, &p->mVelocity);
-        m.x = (s32) (((s64) a->x * g) >> 12);
-        m.y = (s32) (((s64) a->y * g) >> 12);
-        m.z = (s32) (((s64) a->z * g) >> 12);
+        m.x = ((s64) a->x * g) >> 12;
+        m.y = ((s64) a->y * g) >> 12;
+        m.z = ((s64) a->z * g) >> 12;
         p->mDriftCharge = 0;
         p->mRightTurnCount = 0;
         p->mLeftTurnCount = p->mRightTurnCount;
@@ -499,7 +499,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                             g = 0x4cd;
                         }
                         VEC_MultAdd(-p->mRadius, a, &p->mPos, &n);
-                        VEC_MultAdd((s32) (((s64) p->mScale.y * (g << 4) + 0x800) >> 12), &p->mUnk_12c, &n, &n);
+                        VEC_MultAdd(((s64) p->mScale.y * (g << 4) + 0x800) >> 12, &p->mUnk_12c, &n, &n);
                         func_0208b748(0x3b, &n, p, func_0206c488);
                     }
                 }
@@ -521,19 +521,19 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                 }
             }
             if (p->mVelocityLength > 0x2000 && c != 0x1000) {
-                l = (s16) ((p->mVelocityLength >> 12) * 100);
+                l = (p->mVelocityLength >> 12) * 100;
                 if ((u16) p->mTurnAngle > 0x7fff) {
-                    l = (s16) (l * (s16) -1);
+                    l = l * -1;
                 }
                 p->mHeadingAnglePerFrame = l;
             }
         } else if (p->mVelocityLength > 0x2000 && c != 0x1000) {
             k = 0x1000 - i;
             if (p->mVelocityLength > 0x1800 && k > 0x19a) {
-                l = (s16) (((s32) (((s64) p->mVelocityLength * k) >> 12) >> 12) * 30);
+                l = ((s32) (((s64) p->mVelocityLength * k) >> 12) >> 12) * 30;
                 Vec3CrossUnrounded(&p->mUnk_05c, a, &o);
                 if (Vec3DotUnrounded(&o, &p->mUnk_12c) < 0) {
-                    l = (s16) (l * (s16) -1);
+                    l = l * -1;
                 }
                 p->mHeadingAnglePerFrame = l;
             }

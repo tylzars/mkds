@@ -92,7 +92,7 @@ void CreateWanwanAndRockShadow(void) {
 #pragma thumb on
 void func_020dc1d8(Wanwan *p, CourseMapRow *a) {
     p->mUnk_a0 = a->mUnk_00;
-    p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12);
+    p->mUnk_f0 = ((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12;
     p->mUnk_f4 = 0xf000 - p->mUnk_f0;
     p->mUnk_f8 = (a->mUnk_28 * 0x3000) >> 2;
     p->mUnk_1dc = a->mUnk_2a << 12;
@@ -115,7 +115,7 @@ void func_020dc1d8(Wanwan *p, CourseMapRow *a) {
 #pragma thumb on
 void func_020dc11c(Wanwan *p, CourseMapRow *a) {
     p->mUnk_a0 = a->mUnk_00;
-    p->mUnk_f0 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12);
+    p->mUnk_f0 = ((s64) p->mUnk_00.mScale.y * 0x1e000) >> 12;
     p->mUnk_f4 = 0xf000 - p->mUnk_f0;
     p->mUnk_fc = 1;
     p->mUnk_b0 = a->mUnk_2a;
@@ -152,9 +152,9 @@ void func_020dbf7c(Wanwan *p) {
         p->mUnk_160[3] = &p->mUnk_170[3];
         if (data_021759c0->mUnk_00c == 3) {
             VEC_MultAdd(0xf000, &p->mUnk_200, &p->mUnk_00.mPos, &p->mUnk_00.mPos);
-            p->mUnk_00.mUnk_10.x = (s32) (((s64) p->mUnk_200.x * 0x400) >> 12);
-            p->mUnk_00.mUnk_10.y = (s32) (((s64) p->mUnk_200.y * 0x400) >> 12);
-            p->mUnk_00.mUnk_10.z = (s32) (((s64) p->mUnk_200.z * 0x400) >> 12);
+            p->mUnk_00.mUnk_10.x = ((s64) p->mUnk_200.x * 0x400) >> 12;
+            p->mUnk_00.mUnk_10.y = ((s64) p->mUnk_200.y * 0x400) >> 12;
+            p->mUnk_00.mUnk_10.z = ((s64) p->mUnk_200.z * 0x400) >> 12;
             func_020d7b34((u16) ((((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
                                   0x80000000000LL) >>
                                  44),

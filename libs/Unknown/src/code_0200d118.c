@@ -339,7 +339,7 @@ int OS_VSNPrintf(char *dst, size_t len, const char *fmt, char *args) {
         switch (radix) {
             case 8:
                 while (value != 0) {
-                    int digit = (int) (value & 7);
+                    int digit = value & 7;
                     value >>= 3;
                     digits[nBuf++] = digit + '0';
                 }
@@ -363,7 +363,7 @@ int OS_VSNPrintf(char *dst, size_t len, const char *fmt, char *args) {
                 break;
             case 16:
                 while (value != 0) {
-                    int digit = (int) (value & 0xf);
+                    int digit = value & 0xf;
                     value >>= 4;
                     if (digit < 10) {
                         digit += '0';

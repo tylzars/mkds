@@ -11,15 +11,15 @@ u32 func_020815dc(u32 arg0) {
     u32 compareRight0;
     value2 = (u32) &gKartEffects;
     value1 = 0x58u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value3 = (value0) * (value1) + (value2);
-    value2 = (u32) * (const u32 *) ((value3) + (44));
+    value2 = *(const u32 *) ((value3) + (44));
     compareLeft0 = value2;
     compareRight0 = 0u;
     if (compareLeft0 == compareRight0) {
         return value0;
     }
-    value1 = (u32) * (const u32 *) ((value2) + (36));
+    value1 = *(const u32 *) ((value2) + (36));
     value0 = 0u;
     value1 = (value1) & ~(1u);
     value1 = (value1) | (1u);
@@ -37,9 +37,9 @@ void func_020815a0(u32 arg0) {
     u32 compareRight0;
     value2 = (u32) &gKartEffects;
     value1 = 0x58u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value4 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u32 *) ((value4) + (44));
+    value0 = *(const u32 *) ((value4) + (44));
     compareLeft0 = value0;
     compareRight0 = 0u;
     if (compareLeft0 == compareRight0) {

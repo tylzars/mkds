@@ -42,7 +42,7 @@ void func_02036108(void *a) {
     for (i = 0x16; i < 0x18; i++) {
         for (j = 0; j < 0x20; j++) {
             v = (((j + i + 1) & 1) << 12) | 1;
-            data_02174e6c->mUnk_034[j + (u32) i * 0x20] = v;
+            data_02174e6c->mUnk_034[j + i * 0x20] = v;
         }
     }
     DC_StoreRange(data_02174e6c->mUnk_034, 0x600);
@@ -50,7 +50,7 @@ void func_02036108(void *a) {
     func_02036264(data_02174e6c->mUnk_034, 0x600);
     for (i = 0x14; i < 0x16; i++) {
         for (j = 0; j < 0x20; j++) {
-            data_02174e6c->mUnk_034[j + (u32) i * 0x20] = j + (u32) (i - 0x14) * 0x20 + 0x20;
+            data_02174e6c->mUnk_034[j + i * 0x20] = j + (i - 0x14) * 0x20 + 0x20;
         }
     }
     DC_StoreRange(data_02174e6c->mUnk_034, 0x600);

@@ -95,13 +95,13 @@ void func_0205e0b0(void) {
 int GetCurrentSceneNumber(void) {
     u32 value0;
     value0 = (u32) &gSceneNumbers;
-    value0 = (u32) * (const s16 *) ((value0) + (2));
+    value0 = *(const s16 *) ((value0) + (2));
     return value0;
 }
 
 u32 GetNextSceneNumber(void) {
     u32 value0;
     value0 = (u32) &gSceneNumbers;
-    value0 = (u32) * (const s16 *) ((value0) + (4));
+    value0 = *(const s16 *) ((value0) + (4));
     return value0;
 }

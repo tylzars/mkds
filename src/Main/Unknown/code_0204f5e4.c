@@ -10,7 +10,7 @@ void func_0204f5e4(void) {
     u32 v4;
     u32 v5;
     v4 = (0xe0000000u);
-    v5 = ((u32) 0xdfffffffu);
+    v5 = (0xdfffffffu);
     v2 = &data_0217aa00->mUnk_16a0_view;
     v1 = 0;
     v3 = v2->mUnk_000;

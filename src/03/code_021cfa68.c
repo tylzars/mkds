@@ -157,8 +157,8 @@ BOOL func_ov003_021d04a8(void) {
         return TRUE;
     }
     func_ov003_021d07b0(4);
-    r = WM_StartMPEx(func_ov003_021d03c0, (u32) data_ov003_021da2a8->mUnk_1060, (u16) data_ov003_021da2a8->mUnk_12a4,
-                     (u32) data_ov003_021da2a8->mUnk_f80, (u16) data_ov003_021da2a8->mUnk_12a0, 1, 0, 0, 0, 0, 0);
+    r = WM_StartMPEx(func_ov003_021d03c0, (u32) data_ov003_021da2a8->mUnk_1060, data_ov003_021da2a8->mUnk_12a4,
+                     (u32) data_ov003_021da2a8->mUnk_f80, data_ov003_021da2a8->mUnk_12a0, 1, 0, 0, 0, 0, 0);
     if (r != 2) {
         func_ov003_021d079c(r);
         return FALSE;
@@ -355,10 +355,10 @@ void func_ov003_021d0158(Unk021425e8 *event) {
 
 void func_ov003_021d0134(Unk021425e8 *a) {
     if (a->mResultCode != 0) {
-        func_ov003_021d07b0((u32) 10);
+        func_ov003_021d07b0(10);
         return;
     }
-    func_ov003_021d07b0((u32) 0);
+    func_ov003_021d07b0(0);
 }
 
 void func_ov003_021d0128(u32 a) {
@@ -370,7 +370,7 @@ u16 func_ov003_021d0118(void) {
 }
 
 u32 func_ov003_021d010c(void) {
-    return (u32) data_ov003_021da2a8->mUnk_40;
+    return data_ov003_021da2a8->mUnk_40;
 }
 
 BOOL func_ov003_021d0078(void) {
@@ -453,7 +453,7 @@ void func_ov003_021cff50(Unk021425e8 *param_1) {
 }
 
 int func_ov003_021cff38(Unk021425e8Func a, u16 b) {
-    return WM_MeasureChannel(a, (u16) (3), (u16) (0x11), (u16) (b), (u16) (0x1e));
+    return WM_MeasureChannel(a, 3, 0x11, b, 0x1e);
 }
 
 u16 func_ov003_021cfed8(void) {
@@ -467,7 +467,7 @@ u16 func_ov003_021cfed8(void) {
     v1 = &data_ov003_021da2a8;
     data_ov003_021da2a8->mUnk_5c = v2;
     if ((UnkFunc *) (*(u32 *) &data_ov003_021da2a4) != NULL) {
-        (*(UnkFunc *) (*(u32 *) &data_ov003_021da2a4))(((u32) 0x08000000u), (u32) &data_ov003_021d7ac8, (*v1)->mUnk_5c);
+        (*(UnkFunc *) (*(u32 *) &data_ov003_021da2a4))((0x08000000u), (u32) &data_ov003_021d7ac8, (*v1)->mUnk_5c);
     }
     return data_ov003_021da2a8->mUnk_5c;
 }

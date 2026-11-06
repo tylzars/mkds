@@ -118,8 +118,8 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     s = gPairsByAngle[i * 2 + 1];
     b = func_020ea1d4_inline(param_3->x, param_2->x, (s + 0x1000) >> 2);
     a = func_020ea1d4_inline(param_3->y, param_2->y, (c + 0x1000) >> 2);
-    v.x = (s32) (((s64) v.x * b) >> 12);
-    v.y = (s32) (((s64) v.y * a) >> 12);
+    v.x = ((s64) v.x * b) >> 12;
+    v.y = ((s64) v.y * a) >> 12;
     v.z = 0;
     VEC_Add(&v, param_1, &v);
     w = v;
@@ -192,7 +192,7 @@ void func_020e9d10(void) {
     }
     if (data_0217b8b0 != 0) {
         n = func_0203c8c0(data_0217b888);
-        if ((u32) data_0217b87c < (u32) n) {
+        if (data_0217b87c < (u32) n) {
             Vec3 v;
             data_0217b87c = n;
             data_0217b954 = data_0217b8c8->mPos;
@@ -474,20 +474,20 @@ void func_020e8ac8(void) {
         data_0217b918 = data_0217b93c;
         if (data_0217b8f8 != 0) {
             d = -data_0217b8dc >> 1;
-            t.x = (s32) (((s64) data_0217bab8.mUnk_00[0].x * d) >> 12);
-            t.y = (s32) (((s64) data_0217bab8.mUnk_00[0].y * d) >> 12);
-            t.z = (s32) (((s64) data_0217bab8.mUnk_00[0].z * d) >> 12);
+            t.x = ((s64) data_0217bab8.mUnk_00[0].x * d) >> 12;
+            t.y = ((s64) data_0217bab8.mUnk_00[0].y * d) >> 12;
+            t.z = ((s64) data_0217bab8.mUnk_00[0].z * d) >> 12;
         } else {
             d = data_0217b8dc >> 1;
-            t.x = (s32) (((s64) data_0217bab8.mUnk_00[0].x * d) >> 12);
-            t.y = (s32) (((s64) data_0217bab8.mUnk_00[0].y * d) >> 12);
-            t.z = (s32) (((s64) data_0217bab8.mUnk_00[0].z * d) >> 12);
+            t.x = ((s64) data_0217bab8.mUnk_00[0].x * d) >> 12;
+            t.y = ((s64) data_0217bab8.mUnk_00[0].y * d) >> 12;
+            t.z = ((s64) data_0217bab8.mUnk_00[0].z * d) >> 12;
         }
         VEC_Add(&data_0217b930, &t, &data_0217b93c);
         d = -data_0217b8d4 >> 1;
-        t.x = (s32) (((s64) data_0217bab8.mUnk_00[1].x * d) >> 12);
-        t.y = (s32) (((s64) data_0217bab8.mUnk_00[1].y * d) >> 12);
-        t.z = (s32) (((s64) data_0217bab8.mUnk_00[1].z * d) >> 12);
+        t.x = ((s64) data_0217bab8.mUnk_00[1].x * d) >> 12;
+        t.y = ((s64) data_0217bab8.mUnk_00[1].y * d) >> 12;
+        t.z = ((s64) data_0217bab8.mUnk_00[1].z * d) >> 12;
         VEC_Add(&data_0217b93c, &t, &data_0217b93c);
         data_0217b8fc = 0;
         if (data_0217b900 == 0) {
@@ -539,7 +539,7 @@ void func_020e8ac8(void) {
                     w = -w;
                 }
                 if (Vec3DotUnrounded(&v, &data_0217bab8.mUnk_00[0]) > 0) {
-                    data_0217b8b8 = (s32) (((s64) w << 11) >> 12);
+                    data_0217b8b8 = ((s64) w << 11) >> 12;
                 } else {
                     data_0217b8b8 = -(s32) (((s64) w << 11) >> 12);
                 }
@@ -587,7 +587,7 @@ void func_020e8ac8(void) {
             t.y += data_0217b8ec;
             u.x = Vec3DotUnrounded(&t, &data_0217bab8.mUnk_00[0]);
             u.z = Vec3DotUnrounded(&t, &data_0217bad0);
-            data_0217b924.x = (s32) (((s64) data_0217b908 * u.x) >> 12);
+            data_0217b924.x = ((s64) data_0217b908 * u.x) >> 12;
             data_0217b924.z +=
                 (s32) (((s64) data_021593bc.z * u.z) >> 12) - (s32) (((s64) data_021593b0.z * data_0217b924.z) >> 12);
             v.x = Vec3DotUnrounded(&data_0217b9b4, &data_0217bab8.mUnk_00[0]);
@@ -744,7 +744,7 @@ void func_020e84b0(void) {
         i = (n >> 4) << 1;
         s = gPairsByAngle[i];
         c = gPairsByAngle[i + 1];
-        b = (s32) (((s64) data_0217b9a8.z * c) >> 12);
+        b = ((s64) data_0217b9a8.z * c) >> 12;
         t = b - (s32) (((s64) data_0217b9a8.x * s) >> 12);
         data_0217b9c0.z = t;
         if (t > 0) {
@@ -915,7 +915,7 @@ void func_020e7ed0(void) {
     if (func_0203c5e4() != 0) {
         p = (void *) func_020e6b48();
         ((MtxFx43 *) p)->mUnk_00[3] = data_0217b954;
-        MTX_MultVec43(&data_0217b960, (MtxFx43 *) p, &data_0217b9c0);
+        MTX_MultVec43(&data_0217b960, p, &data_0217b9c0);
     } else {
         MTX_MultVec43(&data_0217b960, &data_0217bab8, &data_0217b9c0);
     }

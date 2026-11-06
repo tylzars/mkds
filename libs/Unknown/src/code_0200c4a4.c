@@ -66,12 +66,12 @@ void CTRDGi_InitModuleInfo(void) {
     savedMasterEnable = reg_OS_IME;
     reg_OS_IME = 1;
     CTRDGi_LockByProcessor(gCartridgeState.mLockId, &lockInfo);
-    priority = (*(u16 *) 0x04000204 & 0x8000) >> 15;
+    priority = (reg_MI_EXMEMCNT & 0x8000) >> 15;
     CTRDGi_ChangeLatestAccessCycle(&romCycle);
-    *(u16 *) 0x04000204 = *(u16 *) 0x04000204 & ~0x8000;
+    reg_MI_EXMEMCNT = reg_MI_EXMEMCNT & ~0x8000;
     DC_InvalidateRange(((u8 *) &gCartridgeHeaderCopy + 0x80), 0x40);
     MI_DmaCopy16(1, (const void *) 0x08000080, ((u8 *) &gCartridgeHeaderCopy + 0x80), 0x40);
-    *(u16 *) 0x04000204 = (*(u16 *) 0x04000204 & ~0x8000) | (priority << 15);
+    reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0x8000) | (priority << 15);
     CTRDGi_RestoreAccessCycle(&romCycle);
     CTRDGi_UnlockByProcessor(gCartridgeState.mLockId, &lockInfo);
     chb = &gCartridgeHeaderCopy;

@@ -135,18 +135,18 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                 if (t->mUnk_02 != 0) {
                     a->mKindData->mUnk_34 = t->mUnk_02 >= 2 ? 1 : 0;
                     v = t->mUnk_04;
-                    a->mKindData->mUnk_2c = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_2c = v != 0 ? (v << 12) + 0.5f : (v << 12) - 0.5f;
                     v = t->mUnk_06;
-                    a->mKindData->mUnk_30 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_30 = v != 0 ? (v << 12) + 0.5f : (v << 12) - 0.5f;
                 }
                 if (t->mUnk_08 != 0) {
                     a->mKindData->mUnk_08 = t->mUnk_08;
                     v = t->mUnk_0a;
-                    a->mKindData->mUnk_0c = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_0c = v != 0 ? (v << 12) + 0.5f : (v << 12) - 0.5f;
                     v = t->mUnk_0c;
-                    a->mKindData->mUnk_10 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_10 = v != 0 ? (v << 12) + 0.5f : (v << 12) - 0.5f;
                     v = t->mUnk_0e;
-                    a->mKindData->mUnk_14 = (s32) (v != 0 ? (float) (v << 12) + 0.5f : (float) (v << 12) - 0.5f);
+                    a->mKindData->mUnk_14 = v != 0 ? (v << 12) + 0.5f : (v << 12) - 0.5f;
                 }
                 if (a->mUnk_24[0] == NULL && a->mUnk_10 != NULL) {
                     a->mUnk_24[0] = a->mUnk_10();
@@ -197,7 +197,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                 object->mUnk_10.z = 0x270f000;
             }
             if (courseRow != NULL) {
-                object->mAngle = (u16) (((s64) courseRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
+                object->mAngle = ((s64) courseRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44;
                 Matrix3x3FromVec3Degrees(&courseRow->mUnk_0c, (s32 *) &object->mMatrix);
             } else if (source != NULL) {
                 object->mAngle = source->mAngle;

@@ -55,10 +55,10 @@ void InitSun(u32 arg0) {
     u32 value2;
     u32 value4;
     value4 = value0;
-    value1 = (u32) * (const u32 *) ((value4) + (156));
+    value1 = *(const u32 *) ((value4) + (156));
     value0 = (value4) + (0xb8u);
     value2 = 0u;
-    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, (s32) value2);
+    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
     value0 = 0x1aeu;
     value2 = value4;
     value1 = 0x1eu;
@@ -114,7 +114,7 @@ void DrawSun(void *a, Unk0209d3fc *b) {
 
 static inline u32 func_0209c9fc_inline(Unk020f41c4_B *b) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-    return (u32) (b->mUnk_00 >> 32);
+    return b->mUnk_00 >> 32;
 }
 
 void func_0209d394(Unk02100094 *a) {
@@ -219,7 +219,7 @@ void UpdateSun(Unk02100094 *a, Unk0209cf34 *p) {
                 break;
             }
             if (p->mUnk_0a0 == 0) {
-                p->mUnk_0a4 = (u16) (((u64) func_0209c9fc_inline(func_020d22d0()) * 0x10000) >> 32);
+                p->mUnk_0a4 = ((u64) func_0209c9fc_inline(func_020d22d0()) * 0x10000) >> 32;
             } else {
                 p->mUnk_0a4 += 0x8000;
             }

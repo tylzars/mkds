@@ -151,7 +151,7 @@ int func_ov000_021960a4(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int 
         GpiSetErrorMessage((u32 *) a, data_ov000_021b38ac);
         return 2;
     }
-    v1 = GpiCreateSearch(a, &v2, (u32) 1);
+    v1 = GpiCreateSearch(a, &v2, 1);
     if (v1 == 0) {
         if (b == NULL) {
             v2->mUnk_028[0] = 0;
@@ -443,7 +443,7 @@ s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b) {
                     if (v == 0x600 && e.mUnk_08 == 0x600) {
                         r = func_ov000_021960a4(a, p->mUnk_028, p->mUnk_047, p->mUnk_05c, p->mUnk_08f, p->mUnk_0ae,
                                                 p->mUnk_130, e.mUnk_04 + p->mUnk_134, b->mUnk_08,
-                                                (u32) b->mUnk_0c.mCallback, (u32) b->mUnk_0c.mUnk_04);
+                                                (u32) b->mUnk_0c.mCallback, b->mUnk_0c.mUnk_04);
                         if (r != 0) {
                             return r;
                         }

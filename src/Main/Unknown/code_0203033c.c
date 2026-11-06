@@ -34,7 +34,7 @@
 #include "Main/Unknown/unk_02174000.h"
 
 u32 func_02030700(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 0));
+    return (*(const u16 *) ((u8 *) p0 + 0));
 }
 
 u32 func_020306e0(u32 arg0) {
@@ -47,12 +47,12 @@ u32 func_020306e0(u32 arg0) {
     value1 = (value0) * (value1) + (value2);
     value12 = (u32) &func_02030700;
     value0 = (value1) + (0x48u);
-    value0 = (u32) func_02030700(value0);
+    value0 = func_02030700(value0);
     return value0;
 }
 
 u32 func_020306d8(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 2));
+    return (*(const u16 *) ((u8 *) p0 + 2));
 }
 
 u32 func_020306b8(u32 arg0) {
@@ -65,7 +65,7 @@ u32 func_020306b8(u32 arg0) {
     value1 = (value0) * (value1) + (value2);
     value12 = (u32) &func_020306d8;
     value0 = (value1) + (0x48u);
-    value0 = (u32) func_020306d8(value0);
+    value0 = func_020306d8(value0);
     return value0;
 }
 
@@ -79,7 +79,7 @@ u32 func_02030688(u32 a, u32 b) {
 
 void func_02030654(u32 a) {
     NNS_SndArcSetCurrent((NNSSndArc *) (((u32) (&data_0217c868))));
-    func_0203063c(a, (u32) 0);
+    func_0203063c(a, 0);
     NNS_SndArcSetCurrent((NNSSndArc *) (((u32) (&data_0217d0a0))));
 }
 
@@ -90,7 +90,7 @@ void func_0203063c(u32 arg0, u32 arg1) {
     u32 value12;
     value2 = value0;
     value0 = (u32) &data_0217d068;
-    value0 = (u32) NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
+    value0 = NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
 }
 
 void func_0203062c(u32 arg0) {
@@ -215,7 +215,7 @@ u32 func_020303a8(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = 0x4001000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0x1f00u);
     value0 = (value1) | ((value0 << 8));
     *(u32 *) ((value2) + (0)) = value0;
@@ -227,7 +227,7 @@ u32 func_0203038c(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = 0x4001000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0xe000u);
     value0 = (value1) | ((value0 << 13));
     *(u32 *) ((value2) + (0)) = value0;
@@ -243,14 +243,14 @@ u32 func_02030364(u32 arg0, u32 arg1) {
     value2 = 0x4001048u;
     compareLeft0 = value1;
     compareRight0 = 0u;
-    value1 = (u32) * (const u16 *) ((value2) + (0));
+    value1 = *(const u16 *) ((value2) + (0));
     value1 = (value1) & ~(0x3fu);
     value1 = (value1) | (value0);
     value0 = 0x4001048u;
     if (compareLeft0 != compareRight0) {
         value1 = (value1) | (0x20u);
     }
-    *(u16 *) ((value0) + (0)) = (u16) value1;
+    *(u16 *) ((value0) + (0)) = value1;
     return value0;
 }
 
@@ -263,13 +263,13 @@ u32 func_0203033c(u32 arg0, u32 arg1) {
     value2 = 0x400104au;
     compareLeft0 = value1;
     compareRight0 = 0u;
-    value1 = (u32) * (const u16 *) ((value2) + (0));
+    value1 = *(const u16 *) ((value2) + (0));
     value1 = (value1) & ~(0x3fu);
     value1 = (value1) | (value0);
     value0 = 0x400104au;
     if (compareLeft0 != compareRight0) {
         value1 = (value1) | (0x20u);
     }
-    *(u16 *) ((value0) + (0)) = (u16) value1;
+    *(u16 *) ((value0) + (0)) = value1;
     return value0;
 }

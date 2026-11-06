@@ -126,7 +126,7 @@ void func_020ec1fc(void *a, Unk020e43a8 *b, void *c, u32 d) {
     if (h == 0) {
         return;
     }
-    t = (s32) (((s64) (0x5a000 - b->mUnk_d0) * 0x2e) >> 12);
+    t = ((s64) (0x5a000 - b->mUnk_d0) * 0x2e) >> 12;
     v.x = b->mUnk_00.mPos.x;
     v.z = b->mUnk_00.mPos.z;
     v.y = b->mUnk_0b4 - (s32) (((s64) b->mUnk_0bc * b->mUnk_cc) >> 12) - (s32) (((s64) b->mUnk_0c4 * b->mUnk_d4) >> 12);
@@ -190,7 +190,7 @@ void func_020ebef8(Unk020ebef8 *c, Vec3 *d) {
     Vec3CrossUnrounded(&c->mUnk_0bc, &a, &b);
     p = func_020d22c0();
     p->mUnk_00 = p->mUnk_08 * p->mUnk_00 + p->mUnk_10;
-    n = (s32) (((s64) (s32) ((u32) (((u64) (u32) (p->mUnk_00 >> 32) * 0x1800) >> 32) + 0x119a) << 12) >> 12);
+    n = ((s64) (s32) ((u32) (((u64) (u32) (p->mUnk_00 >> 32) * 0x1800) >> 32) + 0x119a) << 12) >> 12;
     p = func_020d22c0();
     p->mUnk_00 = p->mUnk_08 * p->mUnk_00 + p->mUnk_10;
     q->mVelocity = *d;
@@ -260,12 +260,12 @@ BOOL func_020ebc2c(Unk020ebef8 *param_1) {
     d = -Vec3DotUnrounded(&v, &param_1->mUnk_0bc);
     if (d > 0 && param_1->mUnk_000.mUnk_10.y < 0) {
         param_1->mUnk_0cc.y = param_1->mUnk_0cc.y + d;
-        param_1->mUnk_000.mUnk_10.y = (s32) (((s64) -param_1->mUnk_000.mUnk_10.y * 0x400) >> 12);
-        param_1->mUnk_0e4.x = (s32) (((s64) param_1->mUnk_0d8.x * -0x266) >> 12);
-        param_1->mUnk_0e4.y = (s32) (((s64) param_1->mUnk_0d8.y * -0x266) >> 12);
-        param_1->mUnk_0e4.z = (s32) (((s64) param_1->mUnk_0d8.z * -0x266) >> 12);
-        param_1->mUnk_000.mUnk_10.x = (s32) (((s64) param_1->mUnk_0e4.x * 0x9000) >> 12);
-        param_1->mUnk_000.mUnk_10.z = (s32) (((s64) param_1->mUnk_0e4.z * 0x9000) >> 12);
+        param_1->mUnk_000.mUnk_10.y = ((s64) -param_1->mUnk_000.mUnk_10.y * 0x400) >> 12;
+        param_1->mUnk_0e4.x = ((s64) param_1->mUnk_0d8.x * -0x266) >> 12;
+        param_1->mUnk_0e4.y = ((s64) param_1->mUnk_0d8.y * -0x266) >> 12;
+        param_1->mUnk_0e4.z = ((s64) param_1->mUnk_0d8.z * -0x266) >> 12;
+        param_1->mUnk_000.mUnk_10.x = ((s64) param_1->mUnk_0e4.x * 0x9000) >> 12;
+        param_1->mUnk_000.mUnk_10.z = ((s64) param_1->mUnk_0e4.z * 0x9000) >> 12;
         return TRUE;
     }
     return FALSE;
@@ -291,9 +291,9 @@ void func_020ebb04(Unk020ebef8 *param_1) {
     param_1->mUnk_0e4.x = 0;
     param_1->mUnk_0e4.y = 0;
     param_1->mUnk_0e4.z = 0;
-    param_1->mUnk_0cc.x = (s32) (((s64) param_1->mUnk_0d8.x * 0x14000) >> 12);
+    param_1->mUnk_0cc.x = ((s64) param_1->mUnk_0d8.x * 0x14000) >> 12;
     param_1->mUnk_0cc.y = 0x3c000;
-    param_1->mUnk_0cc.z = (s32) (((s64) param_1->mUnk_0d8.z * 0x14000) >> 12);
+    param_1->mUnk_0cc.z = ((s64) param_1->mUnk_0d8.z * 0x14000) >> 12;
     param_1->mUnk_000.mUnk_10.x = 0;
     param_1->mUnk_000.mUnk_10.y = 0;
     param_1->mUnk_000.mUnk_10.z = 0;
@@ -377,7 +377,7 @@ u32 func_020eb7e0(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *p
 u32 func_020eb760(Unk020ebef8 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
     u32 v;
 
-    v = (u32) (*param_3 - 1);
+    v = *param_3 - 1;
     if (v <= 1) {
         func_020ebef8(param_1, &param_2->mUnk_05c);
         if (data_0217bbf0 == param_1) {
@@ -417,7 +417,7 @@ void func_020eb498(Unk020ebef8 *param_1, Unk020eb498 *param_2) {
     param_1->mUnk_000.mUnk_10.x = 0;
     param_1->mUnk_000.mUnk_10.y = 0;
     param_1->mUnk_000.mUnk_10.z = 0;
-    param_1->mUnk_0c8 = (u16) ((((s64) param_2->mUnk_010 * 0xB60B60B60BLL) + 0x80000000000LL) >> 44);
+    param_1->mUnk_0c8 = (((s64) param_2->mUnk_010 * 0xB60B60B60BLL) + 0x80000000000LL) >> 44;
     func_020d7a3c(&param_1->mUnk_0bc, param_1->mUnk_0c8, &v);
     Matrix3x3FromQuaternion(&param_1->mUnk_000.mMatrix, &v);
     param_1->mUnk_0f4.x = -param_1->mUnk_0bc.x;
@@ -436,20 +436,19 @@ void func_020eb498(Unk020ebef8 *param_1, Unk020eb498 *param_2) {
     }
     Vec3RotateAroundY(&param_1->mUnk_0f4, 0x0aab, &param_1->mUnk_100);
     Vec3RotateAroundY(&param_1->mUnk_0f4, 0xf555, &param_1->mUnk_0f4);
-    param_1->mUnk_0f4.x = (s32) (((s64) param_1->mUnk_0f4.x * 0x800) >> 12);
-    param_1->mUnk_0f4.y = (s32) (((s64) param_1->mUnk_0f4.y * 0x800) >> 12);
-    param_1->mUnk_0f4.z = (s32) (((s64) param_1->mUnk_0f4.z * 0x800) >> 12);
-    param_1->mUnk_100.x = (s32) (((s64) param_1->mUnk_100.x * 0x800) >> 12);
-    param_1->mUnk_100.y = (s32) (((s64) param_1->mUnk_100.y * 0x800) >> 12);
-    param_1->mUnk_100.z = (s32) (((s64) param_1->mUnk_100.z * 0x800) >> 12);
+    param_1->mUnk_0f4.x = ((s64) param_1->mUnk_0f4.x * 0x800) >> 12;
+    param_1->mUnk_0f4.y = ((s64) param_1->mUnk_0f4.y * 0x800) >> 12;
+    param_1->mUnk_0f4.z = ((s64) param_1->mUnk_0f4.z * 0x800) >> 12;
+    param_1->mUnk_100.x = ((s64) param_1->mUnk_100.x * 0x800) >> 12;
+    param_1->mUnk_100.y = ((s64) param_1->mUnk_100.y * 0x800) >> 12;
+    param_1->mUnk_100.z = ((s64) param_1->mUnk_100.z * 0x800) >> 12;
     param_1->mUnk_10c = 0x1555;
     param_1->mUnk_10e = param_2->mUnk_028;
     param_1->mUnk_110 = param_2->mUnk_02a;
     func_02046be8(&param_1->mUnk_000.mStateMachine, (UnkFunc *const *) data_0216c3e4, 4, param_1);
     param_1->mUnk_000.mStateMachine.mNextState = 0;
     param_1->mUnk_000.mStateMachine.mNextStateRequested = 1;
-    func_020e516c(&param_1->mUnk_114, &param_2->mUnk_000, (s32) (((s64) param_1->mUnk_000.mScale.x * 0x19000) >> 12),
-                  13);
+    func_020e516c(&param_1->mUnk_114, &param_2->mUnk_000, ((s64) param_1->mUnk_000.mScale.x * 0x19000) >> 12, 13);
 }
 
 #pragma thumb off
@@ -461,9 +460,9 @@ void func_020eb3f0(Vec3 *param_1, Vec3 *param_2, s32 param_3, Vec3 *param_4) {
     if ((s64) param_4->x * param_4->x + (s64) param_4->y * param_4->y + (s64) param_4->z * param_4->z >= 16) {
         Vec3NormalizeAndGetLengthUnchecked(param_4, &v);
     }
-    v.x = (s32) (((s64) v.x * param_3) >> 12);
-    v.y = (s32) (((s64) v.y * param_3) >> 12);
-    v.z = (s32) (((s64) v.z * param_3) >> 12);
+    v.x = ((s64) v.x * param_3) >> 12;
+    v.y = ((s64) v.y * param_3) >> 12;
+    v.z = ((s64) v.z * param_3) >> 12;
     VEC_Subtract(&v, param_4, param_4);
 }
 
@@ -550,9 +549,9 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
     if (rz < rx) {
         if (ry < rz && d2 > 0) {
             if (param_7 != NULL) {
-                param_7->x = (s32) (((s64) b->x * ry) >> 12);
-                param_7->y = (s32) (((s64) b->y * ry) >> 12);
-                param_7->z = (s32) (((s64) b->z * ry) >> 12);
+                param_7->x = ((s64) b->x * ry) >> 12;
+                param_7->y = ((s64) b->y * ry) >> 12;
+                param_7->z = ((s64) b->z * ry) >> 12;
             }
             return 1;
         }
@@ -560,18 +559,18 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
             if (d3 <= 0) {
                 rz = -rz;
             }
-            param_7->x = (s32) (((s64) c->x * rz) >> 12);
-            param_7->y = (s32) (((s64) c->y * rz) >> 12);
-            param_7->z = (s32) (((s64) c->z * rz) >> 12);
+            param_7->x = ((s64) c->x * rz) >> 12;
+            param_7->y = ((s64) c->y * rz) >> 12;
+            param_7->z = ((s64) c->z * rz) >> 12;
             param_7->y = 0;
         }
         return 4;
     }
     if (ry < rx && d2 > 0) {
         if (param_7 != NULL) {
-            param_7->x = (s32) (((s64) b->x * ry) >> 12);
-            param_7->y = (s32) (((s64) b->y * ry) >> 12);
-            param_7->z = (s32) (((s64) b->z * ry) >> 12);
+            param_7->x = ((s64) b->x * ry) >> 12;
+            param_7->y = ((s64) b->y * ry) >> 12;
+            param_7->z = ((s64) b->z * ry) >> 12;
         }
         return 1;
     }
@@ -579,9 +578,9 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
         if (d1 <= 0) {
             rx = -rx;
         }
-        param_7->x = (s32) (((s64) param_3->x * rx) >> 12);
-        param_7->y = (s32) (((s64) param_3->y * rx) >> 12);
-        param_7->z = (s32) (((s64) param_3->z * rx) >> 12);
+        param_7->x = ((s64) param_3->x * rx) >> 12;
+        param_7->y = ((s64) param_3->y * rx) >> 12;
+        param_7->z = ((s64) param_3->z * rx) >> 12;
         param_7->y = 0;
     }
     return 3;
@@ -620,9 +619,9 @@ s32 func_020ead80(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, s32 
     n = (param_4 + param_7) - m;
     if (r < n && v.y > 0) {
         if (param_8 != NULL) {
-            param_8->x = (s32) (((s64) p->x * r) >> 12);
-            param_8->y = (s32) (((s64) p->y * r) >> 12);
-            param_8->z = (s32) (((s64) p->z * r) >> 12);
+            param_8->x = ((s64) p->x * r) >> 12;
+            param_8->y = ((s64) p->y * r) >> 12;
+            param_8->z = ((s64) p->z * r) >> 12;
         }
         return 1;
     }
@@ -632,9 +631,9 @@ s32 func_020ead80(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, s32 
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16) {
             Vec3NormalizeAndGetLengthUnchecked(&v, &w);
         }
-        w.x = (s32) (((s64) w.x * n) >> 12);
+        w.x = ((s64) w.x * n) >> 12;
         w.y = 0;
-        w.z = (s32) (((s64) w.z * n) >> 12);
+        w.z = ((s64) w.z * n) >> 12;
         param_8->x = (s32) (((s64) param_3->x * w.x) >> 12) + (s32) (((s64) q->x * w.z) >> 12);
         param_8->y = (s32) (((s64) param_3->y * w.x) >> 12) + (s32) (((s64) q->y * w.z) >> 12);
         param_8->z = (s32) (((s64) param_3->z * w.x) >> 12) + (s32) (((s64) q->z * w.z) >> 12);
@@ -652,17 +651,17 @@ void func_020eacc0(Vec3 *param_1, s32 param_2, Vec3 *param_3, Vec3 *param_4) {
     s32 o;
 
     n = -Vec3DotUnrounded(param_1, param_3);
-    t = (s32) (((s64) (0x1000 - n) * param_2) >> 12);
+    t = ((s64) (0x1000 - n) * param_2) >> 12;
     if (t > 0x1000) {
         t = 0x1000;
     }
     u = 0x1000 - t;
-    w = (s32) (((s64) t * u) >> 12);
-    o = (s32) (((s64) (n + 0x1000) * (w >> 1)) >> 12);
+    w = ((s64) t * u) >> 12;
+    o = ((s64) (n + 0x1000) * (w >> 1)) >> 12;
     s = u + o;
-    v.x = (s32) (((s64) param_1->x * s) >> 12);
-    v.y = (s32) (((s64) param_1->y * s) >> 12);
-    v.z = (s32) (((s64) param_1->z * s) >> 12);
+    v.x = ((s64) param_1->x * s) >> 12;
+    v.y = ((s64) param_1->y * s) >> 12;
+    v.z = ((s64) param_1->z * s) >> 12;
     VEC_MultAdd(t + o, param_3, &v, param_4);
 }
 
@@ -675,19 +674,19 @@ void func_020eac20(Vec3 *param_1, s32 param_2) {
     s32 s;
 
     n = -param_1->y;
-    t = (s32) (((s64) (0x1000 - n) * param_2) >> 12);
+    t = ((s64) (0x1000 - n) * param_2) >> 12;
     if (t > 0x1000) {
         t = 0x1000;
     }
     u = 0x1000 - t;
-    w = (s32) (((s64) t * u) >> 12);
+    w = ((s64) t * u) >> 12;
     n += 0x1000;
-    v = (s32) (((s64) n * (w >> 1)) >> 12);
+    v = ((s64) n * (w >> 1)) >> 12;
     s = u + v;
     t = t + v;
-    param_1->x = (s32) (((s64) param_1->x * s) >> 12);
-    param_1->y = (s32) (((s64) param_1->y * s) >> 12);
-    param_1->z = (s32) (((s64) param_1->z * s) >> 12);
+    param_1->x = ((s64) param_1->x * s) >> 12;
+    param_1->y = ((s64) param_1->y * s) >> 12;
+    param_1->z = ((s64) param_1->z * s) >> 12;
     param_1->y += t;
 }
 
@@ -711,23 +710,23 @@ void func_020eaa14(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, s32 p
         }
     }
     s = VEC_DotProduct(&v, param_1);
-    w.x = (s32) (((s64) v.x * s) >> 12);
-    w.y = (s32) (((s64) v.y * s) >> 12);
-    w.z = (s32) (((s64) v.z * s) >> 12);
+    w.x = ((s64) v.x * s) >> 12;
+    w.y = ((s64) v.y * s) >> 12;
+    w.z = ((s64) v.z * s) >> 12;
     param_6->x = param_1->x - w.x;
     param_6->y = param_1->y - w.y;
     param_6->z = param_1->z - w.z;
     a = -param_4;
-    param_6->x = (s32) (((s64) param_6->x * param_3) >> 12);
-    param_6->y = (s32) (((s64) param_6->y * param_3) >> 12);
-    param_6->z = (s32) (((s64) param_6->z * param_3) >> 12);
-    w.x = (s32) (((s64) w.x * a) >> 12);
-    w.y = (s32) (((s64) w.y * a) >> 12);
-    w.z = (s32) (((s64) w.z * a) >> 12);
+    param_6->x = ((s64) param_6->x * param_3) >> 12;
+    param_6->y = ((s64) param_6->y * param_3) >> 12;
+    param_6->z = ((s64) param_6->z * param_3) >> 12;
+    w.x = ((s64) w.x * a) >> 12;
+    w.y = ((s64) w.y * a) >> 12;
+    w.z = ((s64) w.z * a) >> 12;
     if ((s64) w.x * w.x + (s64) w.z * w.z < (s64) param_5 * param_5) {
-        w.x = (s32) (((s64) v.x * param_5) >> 12);
-        w.y = (s32) (((s64) v.y * param_5) >> 12);
-        w.z = (s32) (((s64) v.z * param_5) >> 12);
+        w.x = ((s64) v.x * param_5) >> 12;
+        w.y = ((s64) v.y * param_5) >> 12;
+        w.z = ((s64) v.z * param_5) >> 12;
     }
     VEC_Add(&w, param_6, param_6);
 }
@@ -758,14 +757,14 @@ void func_020ea8a8(Unk020ea670 *param_1, void *param_2, void *param_3, s32 param
     s32 v;
 
     p = param_1->mUnk_004;
-    n = NNS_G3dMdlGetMdlAlpha((NNSG3dResMdl *) p, 0);
+    n = NNS_G3dMdlGetMdlAlpha(p, 0);
     if (param_4 < n) {
-        v = NNS_G3dMdlGetMdlPolygonID((NNSG3dResMdl *) p, 0);
-        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, AllocPolygonIdWrapping());
-        NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, param_4);
+        v = NNS_G3dMdlGetMdlPolygonID(p, 0);
+        NNS_G3dMdlSetMdlPolygonIDAll(p, AllocPolygonIdWrapping());
+        NNS_G3dMdlSetMdlAlphaAll(p, param_4);
         func_020849f8(param_1, param_2, param_3);
-        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, v);
-        NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, n);
+        NNS_G3dMdlSetMdlPolygonIDAll(p, v);
+        NNS_G3dMdlSetMdlAlphaAll(p, n);
     } else {
         func_020849f8(param_1, param_2, param_3);
     }
@@ -794,16 +793,16 @@ void func_020ea7cc(Unk020ea670 *param_1, s32 param_2) {
     s32 m;
 
     p = param_1->mUnk_004;
-    n = NNS_G3dMdlGetMdlAlpha((NNSG3dResMdl *) p, 0);
+    n = NNS_G3dMdlGetMdlAlpha(p, 0);
     data_0216c3d4 = n;
     if (param_2 < n) {
-        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, AllocPolygonIdWrapping());
-        NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, param_2);
+        NNS_G3dMdlSetMdlPolygonIDAll(p, AllocPolygonIdWrapping());
+        NNS_G3dMdlSetMdlAlphaAll(p, param_2);
     }
     func_020849d0(param_1);
     m = data_0216c3d4;
     if (param_2 < m) {
-        NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, m);
+        NNS_G3dMdlSetMdlAlphaAll(p, m);
     }
     data_0216c3d4 = -1;
 }
@@ -814,16 +813,16 @@ void func_020ea740(Unk020ea670 *param_1, s32 param_2) {
     s32 m;
 
     p = param_1->mUnk_004;
-    n = NNS_G3dMdlGetMdlAlpha((NNSG3dResMdl *) p, 0);
+    n = NNS_G3dMdlGetMdlAlpha(p, 0);
     data_0216c3d4 = n;
     if (param_2 < n) {
-        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, AllocPolygonIdWrapping());
-        NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, param_2);
+        NNS_G3dMdlSetMdlPolygonIDAll(p, AllocPolygonIdWrapping());
+        NNS_G3dMdlSetMdlAlphaAll(p, param_2);
     }
     NNS_G3dDraw1Mat1Shp(param_1->mUnk_004, 0, 0, 1);
     m = data_0216c3d4;
     if (param_2 < m) {
-        NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, m);
+        NNS_G3dMdlSetMdlAlphaAll(p, m);
     }
     data_0216c3d4 = -1;
 }
@@ -835,11 +834,11 @@ void func_020ea670(Unk020ea670 *param_1, s32 param_2) {
     s32 m;
 
     p = param_1->mUnk_004;
-    n = NNS_G3dMdlGetMdlAlpha((NNSG3dResMdl *) p, 0);
+    n = NNS_G3dMdlGetMdlAlpha(p, 0);
     data_0216c3d4 = n;
     if (param_2 < n) {
-        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, AllocPolygonIdWrapping());
-        NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, param_2);
+        NNS_G3dMdlSetMdlPolygonIDAll(p, AllocPolygonIdWrapping());
+        NNS_G3dMdlSetMdlAlphaAll(p, param_2);
     }
     q = (u8 *) p + ((Unk020ea670_08 *) p)->mUnk_008;
     data_0217bbe8 =
@@ -848,7 +847,7 @@ void func_020ea670(Unk020ea670 *param_1, s32 param_2) {
     func_020849d0(param_1);
     m = data_0216c3d4;
     if (param_2 < m) {
-        NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, m);
+        NNS_G3dMdlSetMdlAlphaAll(p, m);
     }
     data_0216c3d4 = -1;
 }

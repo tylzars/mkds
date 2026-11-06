@@ -116,7 +116,7 @@ s16 func_02094c0c(s32 a) {
 }
 
 s32 func_02094bf0(s32 a, s32 b) {
-    return (s32) (((s64) a * b + 0x800) >> 12);
+    return ((s64) a * b + 0x800) >> 12;
 }
 
 s16 func_02094bd0(s32 a) {
@@ -219,9 +219,9 @@ void func_020946b8(void) {
 static inline u32 func_02094000_inline(Unk020f41c4_B *b, u32 n) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     if (n == 0) {
-        return (u32) (b->mUnk_00 >> 32);
+        return b->mUnk_00 >> 32;
     }
-    return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
+    return ((b->mUnk_00 >> 32) * n) >> 32;
 }
 
 static inline void func_02094000_inline_2(Unk02094000_bc *p, u16 a, s32 b, s32 c, s32 d, s32 e, s32 f) {

@@ -50,9 +50,9 @@ void func_020f9b0c(ItemObject *param_1) {
         func_020f7658(param_1, 1);
         return;
     }
-    param_1->mVelocity.x = (s32) (((s64) param_1->mVelocity.x * 0x99a) >> 12);
-    param_1->mVelocity.y = (s32) (((s64) param_1->mVelocity.y * 0x99a) >> 12);
-    param_1->mVelocity.z = (s32) (((s64) param_1->mVelocity.z * 0x99a) >> 12);
+    param_1->mVelocity.x = ((s64) param_1->mVelocity.x * 0x99a) >> 12;
+    param_1->mVelocity.y = ((s64) param_1->mVelocity.y * 0x99a) >> 12;
+    param_1->mVelocity.z = ((s64) param_1->mVelocity.z * 0x99a) >> 12;
     func_020f6fc4(param_1, 1);
 }
 

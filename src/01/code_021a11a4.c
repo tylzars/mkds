@@ -275,15 +275,15 @@ void RequestSelectEngineState6(void) {
 void InitSelectEngine(void *a, void *b, void *c) {
     void *heap;
     SelectEngine *p;
-    vu16 *bg0 = (vu16 *) 0x4000008;
-    vu16 *bg1 = (vu16 *) 0x400000a;
+    vu16 *bg0 = &reg_G2_BG0CNT;
+    vu16 *bg1 = &reg_G2_BG1CNT;
 
     *bg0 = (*bg0 & ~3) | 1;
     *bg1 = (*bg1 & ~3) | 1;
     *bg0 = (*bg0 & 0x43) | 0x9004;
     *bg1 = (*bg1 & 0x43) | 0x9204;
-    *(vu32 *) 0x4000010 = 0xc00000;
-    *(vu32 *) 0x4000014 = 0xc00000;
+    reg_G2_BG0OFS = 0xc00000;
+    reg_G2_BG1OFS = 0xc00000;
     heap = CreateFrmHeapFromMaxFree(a);
     p = HeapAlloc(heap, 0x50);
     gSelectEngine = p;

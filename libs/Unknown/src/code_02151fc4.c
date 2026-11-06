@@ -96,7 +96,7 @@ BOOL DWCi_AUTH_GetNewWiFiInfo(DWCWiFiInfo *info) {
         seed += (u32) OS_GetTick;
     }
     OS_GetMacAddress(mac);
-    vendor = (u8) ((mac[0] << 16 | mac[1] << 8 | mac[2]) != 0x9bf);
+    vendor = (mac[0] << 16 | mac[1] << 8 | mac[2]) != 0x9bf;
     macLow = mac[5];
     macLow |= (mac[3] << 16 | mac[4] << 8);
     seed = seed * 0x5d588b65 + 0x269ec3;

@@ -17,6 +17,7 @@
 #include "Main/Unknown/unk_0216a000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "01/code_021804e0.h"
+#include "registers.h"
 
 s32 func_020cc5b8(void) {
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
@@ -142,9 +143,9 @@ void func_020cc1ac(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
 }
 
 void func_020cc18c(u32 a) {
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | a;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | a;
 }
 
 void func_020cc168(u32 a) {
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffcfffef) | a;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | a;
 }

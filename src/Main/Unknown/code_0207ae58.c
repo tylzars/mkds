@@ -149,7 +149,7 @@ void func_0207b44c(Kart *a) {
         return;
     }
     if (m != MODE_BATTLE && data_021759c0->mUnk_1c == 1) {
-        b = (u16) gRaceProgress->mKartAtRank[0];
+        b = gRaceProgress->mKartAtRank[0];
         if (data_021759c0->mUseTeams != 0) {
             if (func_0207b44c_inline(b) != func_0207b44c_inline(a->mIndex)) {
                 f = 2;
@@ -238,7 +238,7 @@ void func_0207b284(Kart *p) {
     NNSG3dResMdl *t = r->mUnk_04;
 
     NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
-    NNS_G3dReleaseMdlTex((NNSG3dResMdl *) t);
+    NNS_G3dReleaseMdlTex(t);
     if (s != NULL && q->mUnk_0ac == FALSE) {
         NNS_G3dRenderObjRemoveAnmObj((NNSG3dRenderObj *) r, (NNSG3dAnmObj *) s->mUnk_1c[0]);
         q->mUnk_0ac = TRUE;
@@ -246,12 +246,12 @@ void func_0207b284(Kart *p) {
     func_0207a14c(t, 2);
     t = q->mUnk_010[1]->mUnk_04;
     NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
-    NNS_G3dReleaseMdlTex((NNSG3dResMdl *) t);
+    NNS_G3dReleaseMdlTex(t);
     func_0207a14c(t, 2);
     if (q->mUnk_010[2] != NULL) {
         t = q->mUnk_010[2]->mUnk_04;
         NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
-        NNS_G3dReleaseMdlTex((NNSG3dResMdl *) t);
+        NNS_G3dReleaseMdlTex(t);
         func_0207a14c(t, 2);
     }
     q->mUnk_064 = TRUE;
@@ -267,7 +267,7 @@ void func_0207b1a8(Kart *p) {
     Unk02084b2c *v;
 
     NNS_G3dMdlSetMdlPolygonModeAll(t, 0);
-    NNS_G3dBindMdlTex((NNSG3dResMdl *) t, (NNSG3dResTex *) r->mUnk_5c.mUnk_0c);
+    NNS_G3dBindMdlTex(t, r->mUnk_5c.mUnk_0c);
     if (s != NULL && q->mUnk_0ac != FALSE) {
         NNS_G3dRenderObjAddAnmObj((NNSG3dRenderObj *) r, (NNSG3dAnmObj *) s->mUnk_1c[0]);
         q->mUnk_0ac = FALSE;
@@ -276,13 +276,13 @@ void func_0207b1a8(Kart *p) {
     u = q->mUnk_010[1];
     t = u->mUnk_04;
     NNS_G3dMdlSetMdlPolygonModeAll(t, 0);
-    NNS_G3dBindMdlTex((NNSG3dResMdl *) t, (NNSG3dResTex *) u->mUnk_5c.mUnk_0c);
+    NNS_G3dBindMdlTex(t, u->mUnk_5c.mUnk_0c);
     func_0207a14c(t, 0);
     v = q->mUnk_010[2];
     if (v != NULL) {
         w = v->mUnk_04;
         NNS_G3dMdlSetMdlPolygonModeAll(w, 0);
-        NNS_G3dBindMdlTex((NNSG3dResMdl *) w, (NNSG3dResTex *) v->mUnk_5c.mUnk_0c);
+        NNS_G3dBindMdlTex(w, v->mUnk_5c.mUnk_0c);
         func_0207a14c(w, 0);
     }
     q->mUnk_064 = FALSE;

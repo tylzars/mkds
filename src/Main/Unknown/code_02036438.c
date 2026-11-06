@@ -17,9 +17,9 @@ void func_02036438(void *heap) {
     Ncgr *v3;
     Nclr *v4;
     v1 = CreateFrmHeapFromMaxFree(heap);
-    v2 = ((u32) HeapAlloc(v1, (u32) (((u32) 0x00000654u))));
+    v2 = ((u32) HeapAlloc(v1, (0x00000654u)));
     *(s32 *) &data_02174e6c = v2;
-    func_02036264((void *) v2, (u32) (((u32) 0x00000654u)));
+    func_02036264((void *) v2, (0x00000654u));
     data_02174e6c->mHeap = v1;
     func_020364a8(0, 0, 0x10, 0, 0);
     v3 = func_020d1630()->mUnk_24;

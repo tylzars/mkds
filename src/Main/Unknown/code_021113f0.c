@@ -618,8 +618,8 @@ void AdvanceRecordVS(void) {
 #pragma thumb on
 
 void func_02111b40(void) {
-    *(vu32 *) 0x4000010 = (-gRecordVS->mBg0OffsetX & 0x1ff) | ((-gRecordVS->mBg0OffsetY << 16) & 0x1ff0000);
-    *(vu32 *) 0x4000014 = (-gRecordVS->mBg1OffsetX & 0x1ff) | ((-gRecordVS->mBg1OffsetY << 16) & 0x1ff0000);
+    reg_G2_BG0OFS = (-gRecordVS->mBg0OffsetX & 0x1ff) | ((-gRecordVS->mBg0OffsetY << 16) & 0x1ff0000);
+    reg_G2_BG1OFS = (-gRecordVS->mBg1OffsetX & 0x1ff) | ((-gRecordVS->mBg1OffsetY << 16) & 0x1ff0000);
     func_02111428();
 }
 
@@ -883,7 +883,7 @@ void func_02111494(const void *a) {
 
 #pragma thumb on
 void func_02111488(s32 arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     data_0217d344->mUnk_0c = value0;
 }
@@ -892,15 +892,15 @@ void func_02111488(s32 arg0) {
 #pragma thumb on
 
 u32 func_0211147c(void) {
-    return ((u32) data_0217d344->mUnk_10);
+    return (data_0217d344->mUnk_10);
 }
 
 u32 func_0211146c(void) {
-    return ((u32) data_0217d344->mUnk_14);
+    return (data_0217d344->mUnk_14);
 }
 
 u32 func_0211145c(void) {
-    return ((u32) data_0217d344->mUnk_16);
+    return (data_0217d344->mUnk_16);
 }
 
 void func_02111450(u32 p0) {
@@ -927,9 +927,9 @@ u32 func_02111418(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &data_0217d344;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 48u;
-    value0 = (u32) * (const s16 *) ((value1) + (value0));
+    value0 = *(const s16 *) ((value1) + (value0));
     return value0;
 }
 #pragma thumb off
@@ -939,9 +939,9 @@ u32 func_02111408(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &data_0217d344;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 50u;
-    value0 = (u32) * (const s16 *) ((value1) + (value0));
+    value0 = *(const s16 *) ((value1) + (value0));
     return value0;
 }
 #pragma thumb off

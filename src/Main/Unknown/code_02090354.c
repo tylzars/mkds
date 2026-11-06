@@ -109,8 +109,8 @@ void func_0209151c(Unk0209151c *a) {
         p->mUnk_b0 = 0x1000;
         p->mUnk_b4 = 0x1000;
         i++;
-        p->mUnk_c0 = (s32) (((s64) p->mUnk_00.mScale.y * 0xf333) >> 12);
-        p->mUnk_c4 = (s32) (((s64) p->mUnk_00.mScale.y * 0x2000) >> 12);
+        p->mUnk_c0 = ((s64) p->mUnk_00.mScale.y * 0xf333) >> 12;
+        p->mUnk_c4 = ((s64) p->mUnk_00.mScale.y * 0x2000) >> 12;
         p->mUnk_b8 = p->mUnk_c0;
     }
 }
@@ -499,7 +499,7 @@ void func_02090920(void *a) {
 }
 
 BOOL func_020908d0(u32 a, void *c) {
-    Unk020908d0 *b = (Unk020908d0 *) c;
+    Unk020908d0 *b = c;
     return b->mUnk_03 * 1000 + b->mUnk_02 * 60000 + b->mUnk_00 < data_0217b0b0[a - 1];
 }
 

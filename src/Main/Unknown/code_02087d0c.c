@@ -70,7 +70,7 @@ void func_020881b0(void *a, s32 b, void *c, u32 d, void *e) {
         p->mUnk_1c[b] = x;
         p->mUnk_20[b] = d;
     }
-    NNS_G3dAnmObjInit((NNSG3dAnmObj *) x, c, p->mUnk_14->mResMdl, (void *) p->mUnk_14->mUnk_68);
+    NNS_G3dAnmObjInit(x, c, p->mUnk_14->mResMdl, (void *) p->mUnk_14->mUnk_68);
 }
 
 void func_0208805c(void *a, void *b, void *c) {
@@ -106,7 +106,7 @@ void func_0208805c(void *a, void *b, void *c) {
             x = p->mUnk_1c[i];
             p->mUnk_20[i] = 0;
         }
-        NNS_G3dAnmObjInit((NNSG3dAnmObj *) x, v, p->mUnk_14->mResMdl, (void *) p->mUnk_14->mUnk_68);
+        NNS_G3dAnmObjInit(x, v, p->mUnk_14->mResMdl, (void *) p->mUnk_14->mUnk_68);
     }
 }
 
@@ -127,7 +127,7 @@ void func_02087f84(void *b, s32 a) {
     NNS_G3dRenderObjAddAnmObj(p->mUnk_14, p->mUnk_1c[p->mUnk_1a]);
     p->mUnk_1c[p->mUnk_1a]->mRatio = 0x1000;
     v = data_02155cd8[p->mUnk_28](p->mUnk_1c[p->mUnk_1a]) << 12;
-    func_02087c9c(p, v, (u16) p->mUnk_20[p->mUnk_1a]);
+    func_02087c9c(p, v, p->mUnk_20[p->mUnk_1a]);
 }
 
 void func_02087e90(void *b, u16 a) {
@@ -151,7 +151,7 @@ void func_02087e90(void *b, u16 a) {
     NNS_G3dRenderObjAddAnmObj(p->mUnk_14, p->mUnk_1c[p->mUnk_1a]);
     p->mUnk_1c[p->mUnk_1a]->mRatio = 0;
     v = data_02155cd8[p->mUnk_28](p->mUnk_1c[p->mUnk_1a]) << 12;
-    func_02087c9c(p, v, (u16) p->mUnk_20[p->mUnk_1a]);
+    func_02087c9c(p, v, p->mUnk_20[p->mUnk_1a]);
 }
 
 void func_02087de0(void *a) {

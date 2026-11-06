@@ -19,7 +19,7 @@ void func_02007120(u32 a, u16 b) {
 }
 
 u32 func_02007114(void) {
-    return (u32) data_0216f3cc[0];
+    return data_0216f3cc[0];
 }
 
 #pragma thumb off

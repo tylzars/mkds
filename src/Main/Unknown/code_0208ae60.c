@@ -7,8 +7,8 @@ struct KartPhysicalParam *GetKartPhysicalParam(u32 arg0) {
     u32 value2;
     value2 = (u32) &gKartPhysicalParamTable;
     value1 = 0x98u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value0 = (value1) * (value0) + (value2);
     return (struct KartPhysicalParam *) value0;
 }
@@ -18,5 +18,5 @@ s32 *GetCharPhysicalParam(u32 p0) {
 }
 
 u32 GetFirstBaseSpeedLimit(void) {
-    return ((u32) gKartPhysicalParamTable->mFirstBaseSpeedLimit);
+    return (gKartPhysicalParamTable->mFirstBaseSpeedLimit);
 }

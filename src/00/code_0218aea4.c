@@ -211,11 +211,11 @@ void func_ov000_0218d1a0(SbServerList *a) {
 
 void func_ov000_0218d180(u32 p0) {
     u32 v1 = ((p0) + (0x0u));
-    u32 v5 = (u32) DarrayCreate((u32) 0x4u, (u32) 0x64u, (u32) 0x0u);
+    u32 v5 = (u32) DarrayCreate(0x4u, 0x64u, 0x0u);
     u32 v8;
     *(u32 *) ((v1) + (4)) = v5;
     v8 = 0x5d0u;
-    *(u32 *) ((v1) + (0 + (v8))) = (u32) 0x0u;
+    *(u32 *) ((v1) + (0 + (v8))) = 0x0u;
 }
 
 void *func_ov000_0218d134(SbServerList *p, const char *v1) {
@@ -315,7 +315,7 @@ void func_ov000_0218cf30(SbServerList *p) {
     char *q;
     if (n > 0) {
         s = data_ov000_021b21ec;
-        if ((u32) n > strlen(s)) {
+        if (n > strlen(s)) {
             q = (char *) p->mInBuffer;
             t = data_ov000_021b21ec;
             if (strncmp(q, t, strlen(t)) == 0) {
@@ -520,7 +520,7 @@ s32 func_ov000_0218ca58(SbServerList *p, const char *a, const char *b, u32 c, u3
     if ((p->mUnk_5c4 & 0x80) != 0) {
         func_ov000_0218cd94(&v3, d, &v2);
     }
-    t = (u16) ((((u16) v2 >> 8) & 0xff) | (((u16) v2 << 8) & 0xff00));
+    t = (((u16) v2 >> 8) & 0xff) | (((u16) v2 << 8) & 0xff00);
     __memcpy(v1, &t, 2);
     if (func_ov000_0218e420(p->mUnk_4b0, v1, v2, 0) <= 0) {
         func_ov000_0218c980(p);
@@ -1558,18 +1558,18 @@ u32 func_ov000_0218b570(Unk0218b668 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5,
     u32 v2 = p4;
     u32 v4 = p5;
     u32 v8 = p6;
-    u32 v10 = func_ov000_0218b590(p0, (s32) p1, p2, (u8 *) p3, (s32) v2, (const char *) v4, (u32) 0x80u, v8);
+    u32 v10 = func_ov000_0218b590(p0, p1, p2, (u8 *) p3, v2, (const char *) v4, 0x80u, v8);
     return v10;
 }
 
 s32 func_ov000_0218b530(Unk0218b668 *a, u32 b, s32 c, u8 *d, s32 e) {
     u32 f = func_ov000_0218e374(b);
-    return func_ov000_0218ba88(&a->mUnk_04c, f, (u16) (((c >> 8) & 0xff) | ((c << 8) & 0xff00)), d, e);
+    return func_ov000_0218ba88(&a->mUnk_04c, f, ((c >> 8) & 0xff) | ((c << 8) & 0xff00), d, e);
 }
 
 s32 func_ov000_0218b4f8(Unk0218b668 *a, u32 b, s32 c, u32 d) {
     u32 e = func_ov000_0218e374(b);
-    return func_ov000_0218ba10(&a->mUnk_04c, e, (u16) (((c >> 8) & 0xff) | ((c << 8) & 0xff00)), d);
+    return func_ov000_0218ba10(&a->mUnk_04c, e, ((c >> 8) & 0xff) | ((c << 8) & 0xff00), d);
 }
 
 void func_ov000_0218b4d4(struct Unk0218b668 *p, s32 a) {
@@ -1601,7 +1601,7 @@ u32 func_ov000_0218b480(Unk0218b668 *arg0, u32 arg1) {
     u32 value3;
     value0 = (value0) + 76u;
     value3 = (u32) &func_ov000_0218d218;
-    value0 = (u32) func_ov000_0218d218((SbServerList *) value0, value1);
+    value0 = func_ov000_0218d218((SbServerList *) value0, value1);
     return value0;
 }
 
@@ -1610,12 +1610,12 @@ u32 func_ov000_0218b474(Unk0218b668 *arg0) {
     u32 value3;
     value0 = (value0) + 76u;
     value3 = (u32) &func_ov000_0218d22c;
-    value0 = (u32) func_ov000_0218d22c((SbServerList *) value0);
+    value0 = func_ov000_0218d22c((SbServerList *) value0);
     return value0;
 }
 
 void func_ov000_0218b464(Unk0218b668 *p0, u32 p1, const char *p2, u32 p3) {
-    func_ov000_0218d374(&p0->mUnk_04c, (s32) p1, p2, p3);
+    func_ov000_0218d374(&p0->mUnk_04c, p1, p2, p3);
 }
 
 u32 func_ov000_0218b458(Unk0218b668 *a) {
@@ -1633,7 +1633,7 @@ s32 func_ov000_0218b440(const char *const *first, const char *const *second) {
 void func_ov000_0218b434(u32 arg0) {
     u32 value0 = arg0;
     u32 value3;
-    value0 = (u32) * (const u32 *) ((value0) + 0u);
+    value0 = *(const u32 *) ((value0) + 0u);
     value3 = (u32) &func_ov000_021a3668;
     func_ov000_021a3668((void *) value0);
     return;
@@ -1726,8 +1726,8 @@ u32 func_ov000_0218b260(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value1 = (u32) * (const u16 *) ((value0) + 4u);
-    value2 = ((u32) ((s32) value1 >> 8));
+    value1 = *(const u16 *) ((value0) + 4u);
+    value2 = ((s32) value1 >> 8);
     value0 = 255u;
     value2 = (value2) & (value0);
     value1 = (value1 << 8);
@@ -1758,8 +1758,8 @@ u32 func_ov000_0218b228(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value1 = (u32) * (const u16 *) ((value0) + 12u);
-    value2 = ((u32) ((s32) value1 >> 8));
+    value1 = *(const u16 *) ((value0) + 12u);
+    value2 = ((s32) value1 >> 8);
     value0 = 255u;
     value2 = (value2) & (value0);
     value1 = (value1 << 8);
@@ -1924,8 +1924,8 @@ u32 func_ov000_0218afd4(const s8 *v1, u32 v2) {
 }
 
 void func_ov000_0218afb8(u32 *a) {
-    func_ov000_0218d0e4((u32) (0), (u32) (*a));
-    func_ov000_0218d0e4((u32) (0), (u32) (a[1]));
+    func_ov000_0218d0e4(0, *a);
+    func_ov000_0218d0e4(0, a[1]);
     return;
 }
 

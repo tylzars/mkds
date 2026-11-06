@@ -7,5 +7,5 @@ void func_020b2a60(u32 p0) {
 }
 
 u32 GetRaceDone(void) {
-    return ((u32) gRaceProgress->mRaceDone);
+    return (gRaceProgress->mRaceDone);
 }

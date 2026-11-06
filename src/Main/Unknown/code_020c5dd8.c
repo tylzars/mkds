@@ -41,7 +41,7 @@
 #include "Main/Unknown/code_0203c5f8.h"
 
 u32 func_020c70d8(void) {
-    return ((u32) gRaceNewRecordTa->mUnk_14);
+    return (gRaceNewRecordTa->mUnk_14);
 }
 
 s32 func_020c70bc(void) {
@@ -378,7 +378,7 @@ void func_020c610c(void) {
             }
             if (r != FALSE) {
                 gRaceNewRecordTa->mUnk_18 = 1;
-                func_02056750(data_021759c0->mCourseId, (u16) data_021759c0->mEntryIndex);
+                func_02056750(data_021759c0->mCourseId, data_021759c0->mEntryIndex);
                 gRaceNewRecordTa->mUnk_00 = func_020c5f08;
                 gRaceNewRecordTa->mUnk_04 = 0;
             } else {
@@ -448,7 +448,7 @@ void func_020c5f7c(void) {
     }
     if (r != FALSE) {
         gRaceNewRecordTa->mUnk_18 = 1;
-        func_02056750(data_021759c0->mCourseId, (u16) data_021759c0->mEntryIndex);
+        func_02056750(data_021759c0->mCourseId, data_021759c0->mEntryIndex);
         gRaceNewRecordTa->mUnk_00 = func_020c5f08;
         gRaceNewRecordTa->mUnk_04 = 0;
     } else {
@@ -505,8 +505,8 @@ u32 func_020c5df0(void) {
     u32 compareLeft0;
     u32 compareRight0;
     value0 = (u32) &gRaceNewRecordTa;
-    value3 = (u32) * (const u32 *) ((value0) + (0));
-    value2 = (u32) gRaceNewRecordTa->mUnk_04;
+    value3 = *(const u32 *) ((value0) + (0));
+    value2 = gRaceNewRecordTa->mUnk_04;
     value1 = (value2) + (1u);
     gRaceNewRecordTa->mUnk_04 = value1;
     compareLeft0 = value2;
@@ -514,11 +514,11 @@ u32 func_020c5df0(void) {
     if ((s32) compareLeft0 < (s32) compareRight0) {
         return value0;
     }
-    value2 = (u32) * (const u32 *) ((value0) + (0));
+    value2 = *(const u32 *) ((value0) + (0));
     value3 = (u32) &func_020c5dd8;
     value1 = 0u;
     *(u32 *) ((value2) + (0)) = value3;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (4)) = value1;
     return value0;
 }
@@ -528,7 +528,7 @@ u32 func_020c5dd8(void) {
     u32 value1;
     value0 = (u32) &gRaceNewRecordTa;
     value1 = 0u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (220)) = value1;
     return value0;
 }

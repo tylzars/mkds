@@ -271,9 +271,9 @@ void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {
         func_020e5370(&data_0217b760, &data_0217b720, (u16) n, d);
         return;
     }
-    v.x = (s32) (((s64) b->mUnk_000.mScale.x * 0x1666) >> 12);
-    v.y = (s32) (((s64) b->mUnk_000.mScale.y * 0x1666) >> 12);
-    v.z = (s32) (((s64) b->mUnk_000.mScale.z * 0x1666) >> 12);
+    v.x = ((s64) b->mUnk_000.mScale.x * 0x1666) >> 12;
+    v.y = ((s64) b->mUnk_000.mScale.y * 0x1666) >> 12;
+    v.z = ((s64) b->mUnk_000.mScale.z * 0x1666) >> 12;
     if (b->mUnk_100 != NULL) {
         q = func_020e6b58(b->mUnk_0fc);
     } else {
@@ -310,21 +310,21 @@ void func_020debec(void *a, Unk020de6a8 *b) {
 void func_020deb2c(Vec3 *a, void *b, u32 c, int d, u32 e) {
     void *v1;
     u32 v2;
-    v2 = (u32) * (u16 *) ((u32) b + 0x74);
+    v2 = *(u16 *) ((u32) b + 0x74);
     if (d == 0) {
         if (v2 == data_021759c0->mEntryIndex) {
-            v1 = StartEffect((u32) 0x2d, a);
+            v1 = StartEffect(0x2d, a);
             if (v1 != NULL) {
-                func_02081f10(v1, v2, (u32) 0x1e);
+                func_02081f10(v1, v2, 0x1e);
             }
-            v1 = StartEffect((u32) 0x2e, a);
+            v1 = StartEffect(0x2e, a);
             if (v1 != NULL) {
-                func_02081f10(v1, v2, (u32) 0x1e);
+                func_02081f10(v1, v2, 0x1e);
             }
         }
-        v1 = StartEffect((u32) 0x2f, a);
+        v1 = StartEffect(0x2f, a);
         if (v1 != NULL) {
-            func_02081f10(v1, v2, (u32) 0x1e);
+            func_02081f10(v1, v2, 0x1e);
         }
     }
     func_020d26ec(b, 0xd4);

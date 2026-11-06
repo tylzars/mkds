@@ -45,7 +45,7 @@ void func_ov003_021cdb44(u32 a) {
 }
 
 void func_ov003_021cdb14(const u8 *a) {
-    MI_CpuCopy8(a, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_40, (u32) 0x20);
+    MI_CpuCopy8(a, data_ov003_021da270->mUnk_400.mUnk_00.mUnk_40, 0x20);
     data_ov003_021da270->mUnk_400.mUnk_00.mUnk_e7 = 0;
 }
 
@@ -118,51 +118,51 @@ void func_ov003_021cd948(void *output) {
 
 void func_ov003_021cd918(char *p0) {
     u8 *v5 = data_ov003_021da270->mUnk_400.mUnk_00.mUnk_c0;
-    u32 v6 = ((u32) v5[2]);
-    u32 v8 = ((u32) v5[3]);
+    u32 v6 = (v5[2]);
+    u32 v8 = (v5[3]);
     const char *v10 = data_ov003_021d77c4;
-    u32 v11 = ((u32) v5[0]);
-    u32 v12 = ((u32) v5[1]);
+    u32 v11 = (v5[0]);
+    u32 v12 = (v5[1]);
     u32 v13 = OS_SPrintf(p0, v10, v11, v12, v6, v8);
 }
 
 void func_ov003_021cd8e8(char *p0) {
     u8 *v5 = data_ov003_021da270->mUnk_400.mUnk_f0;
-    u32 v6 = ((u32) v5[2]);
-    u32 v8 = ((u32) v5[3]);
+    u32 v6 = (v5[2]);
+    u32 v8 = (v5[3]);
     const char *v10 = data_ov003_021d77c4;
-    u32 v11 = ((u32) v5[0]);
-    u32 v12 = ((u32) v5[1]);
+    u32 v11 = (v5[0]);
+    u32 v12 = (v5[1]);
     u32 v13 = OS_SPrintf(p0, v10, v11, v12, v6, v8);
 }
 
 void func_ov003_021cd8b8(char *p0) {
     u8 *v5 = data_ov003_021da270->mUnk_400.mUnk_00.mUnk_c4;
-    u32 v6 = ((u32) v5[2]);
-    u32 v8 = ((u32) v5[3]);
+    u32 v6 = (v5[2]);
+    u32 v8 = (v5[3]);
     const char *v10 = data_ov003_021d77c4;
-    u32 v11 = ((u32) v5[0]);
-    u32 v12 = ((u32) v5[1]);
+    u32 v11 = (v5[0]);
+    u32 v12 = (v5[1]);
     u32 v13 = OS_SPrintf(p0, v10, v11, v12, v6, v8);
 }
 
 void func_ov003_021cd888(char *p0) {
     u8 *v5 = data_ov003_021da270->mUnk_400.mUnk_00.mUnk_c8;
-    u32 v6 = ((u32) v5[2]);
-    u32 v8 = ((u32) v5[3]);
+    u32 v6 = (v5[2]);
+    u32 v8 = (v5[3]);
     const char *v10 = data_ov003_021d77c4;
-    u32 v11 = ((u32) v5[0]);
-    u32 v12 = ((u32) v5[1]);
+    u32 v11 = (v5[0]);
+    u32 v12 = (v5[1]);
     u32 v13 = OS_SPrintf(p0, v10, v11, v12, v6, v8);
 }
 
 void func_ov003_021cd858(char *p0) {
     u8 *v5 = &data_ov003_021da270->mUnk_400.mUnk_00.mUnk_c8[4];
-    u32 v6 = ((u32) v5[2]);
-    u32 v8 = ((u32) v5[3]);
+    u32 v6 = (v5[2]);
+    u32 v8 = (v5[3]);
     const char *v10 = data_ov003_021d77c4;
-    u32 v11 = ((u32) v5[0]);
-    u32 v12 = ((u32) v5[1]);
+    u32 v11 = (v5[0]);
+    u32 v12 = (v5[1]);
     u32 v13 = OS_SPrintf(p0, v10, v11, v12, v6, v8);
 }
 
@@ -253,20 +253,20 @@ void func_ov003_021cd5e0(const Unk021cd5e0_arg *a) {
 }
 
 void func_ov003_021cd4e8(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     u32 value4;
     u32 value5;
     value5 = (value0) + (0u);
     value0 = (u32) &data_ov003_021da270;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 0x400u;
     value4 = (value1) + (value0);
     value0 = (value4) + (0u);
     value1 = 0u;
     value2 = 239u;
-    MI_CpuFill8((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, value1, value2);
     value0 = (value5) + (0u);
     value1 = (value4) + (0u);
     value1 = (value1) + 209u;
@@ -327,37 +327,37 @@ void func_ov003_021cd4e8(int arg0) {
     MI_CpuCopy8((const void *) value0, (void *) value1, value2);
     value0 = (value4) + (0u);
     value0 = (value0) + 230u;
-    value1 = (u32) * (const u8 *) ((value0) + 0u);
+    value1 = *(const u8 *) ((value0) + 0u);
     value0 = 3u;
     value1 = (value1) & ~(value0);
     value0 = 2u;
     value1 = (value1) | (value0);
     value0 = (value4) + (0u);
     value0 = (value0) + 230u;
-    *(u8 *) ((value0) + 0u) = (u8) value1;
+    *(u8 *) ((value0) + 0u) = value1;
     value0 = (value4) + (0u);
     value0 = (value0) + 230u;
-    value1 = (u32) * (const u8 *) ((value0) + 0u);
+    value1 = *(const u8 *) ((value0) + 0u);
     value0 = 252u;
     value1 = (value1) & ~(value0);
     value0 = (value4) + (0u);
     value0 = (value0) + 230u;
-    *(u8 *) ((value0) + 0u) = (u8) value1;
+    *(u8 *) ((value0) + 0u) = value1;
     value1 = 1u;
     value0 = (value4) + (0u);
     value0 = (value0) + 231u;
-    *(u8 *) ((value0) + 0u) = (u8) value1;
+    *(u8 *) ((value0) + 0u) = value1;
     value0 = (value4) + (0u);
     value0 = (value0) + 240u;
     value1 = 0u;
     value2 = 4u;
-    MI_CpuFill8((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, value1, value2);
     value1 = 1u;
     value0 = (value4) + (0u);
     value0 = (value0) + 245u;
-    *(u8 *) ((value0) + 0u) = (u8) value1;
+    *(u8 *) ((value0) + 0u) = value1;
     value4 = (value4) + 246u;
-    *(u8 *) ((value4) + 0u) = (u8) value1;
+    *(u8 *) ((value4) + 0u) = value1;
     func_ov003_021cd6d0();
     return;
 }
@@ -369,7 +369,7 @@ u32 func_ov003_021cd4dc(void) {
 void func_ov003_021cd4ac(int a) {
     Unk021cd5e0_entry *v1;
     v1 = &data_ov003_021da270->mUnk_000[a].mUnk_00;
-    MI_CpuFill8(v1, (u8) (0), 0xef);
+    MI_CpuFill8(v1, 0, 0xef);
     v1->mUnk_e7 = 0xff;
     func_ov003_021cd338((u32) (a));
     return;

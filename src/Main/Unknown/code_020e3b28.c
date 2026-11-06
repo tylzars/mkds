@@ -32,7 +32,7 @@ void func_020e4380(Unk020e3ef4 *a) {
 }
 
 void func_020e435c(void *a) {
-    func_020e1e38((Unk020e1dc0 *) data_0217b7e4, a, func_020e1dec);
+    func_020e1e38(data_0217b7e4, a, func_020e1dec);
 }
 
 BOOL func_020e4320(s32 a) {
@@ -169,7 +169,7 @@ void func_020e3ef4(Unk020e3ef4 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
         a->mUnk_150 = 0;
     }
     a->mUnk_14c = 0;
-    a->mUnk_100 = (s32) (((s64) c->mUnk_04 * a->mUnk_000.mScale.x) >> 12);
+    a->mUnk_100 = ((s64) c->mUnk_04 * a->mUnk_000.mScale.x) >> 12;
     a->mUnk_104 = (s32) (((s64) c->mUnk_08 * a->mUnk_000.mScale.y) >> 12) >> 1;
     if (c->mUnk_00 != 0) {
         a->mUnk_110 = FALSE;
@@ -248,9 +248,9 @@ void UpdateBridge(s32 a, Bridge *b) {
     if (d < -0x8000) {
         d += 0x10000;
     }
-    b->mUnk_124.x = (s32) (((s64) b->mUnk_000.mMatrix.mUnk_00[0].x * d) >> 12);
-    b->mUnk_124.y = (s32) (((s64) b->mUnk_000.mMatrix.mUnk_00[0].y * d) >> 12);
-    b->mUnk_124.z = (s32) (((s64) b->mUnk_000.mMatrix.mUnk_00[0].z * d) >> 12);
+    b->mUnk_124.x = ((s64) b->mUnk_000.mMatrix.mUnk_00[0].x * d) >> 12;
+    b->mUnk_124.y = ((s64) b->mUnk_000.mMatrix.mUnk_00[0].y * d) >> 12;
+    b->mUnk_124.z = ((s64) b->mUnk_000.mMatrix.mUnk_00[0].z * d) >> 12;
     b->mUnk_14a = y;
     b->mUnk_0a0 = *(Unk020e38a0_28 *) &b->mUnk_000.mMatrix;
     MTX_RotX33_((s32 *) &b->mUnk_000.mMatrix, gPairsByAngle[(y >> 4) * 2], gPairsByAngle[(y >> 4) * 2 + 1]);
@@ -285,12 +285,12 @@ void func_020e3b4c(Unk020e3ef4 *a, void *b, u32 c) {
     a->mUnk_000.mMatrix.mUnk_00[3].x = a->mUnk_000.mPos.x >> 4;
     a->mUnk_000.mMatrix.mUnk_00[3].y = a->mUnk_000.mPos.y >> 4;
     a->mUnk_000.mMatrix.mUnk_00[3].z = a->mUnk_000.mPos.z >> 4;
-    p = (Unk020e1e98_12c *) gBridgeNsbca;
+    p = gBridgeNsbca;
     p->mUnk_0c = a->mUnk_154;
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
     func_020ea8a8(a->mUnk_140, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
 }
 
 void func_020e3b28(void *a) {
-    func_020e1e38((Unk020e1dc0 *) *(void **) data_0217b7c4, a, func_020e3b4c);
+    func_020e1e38(*(void **) data_0217b7c4, a, func_020e3b4c);
 }

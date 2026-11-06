@@ -10,6 +10,6 @@ void func_ov001_02187cd4(Unk02188950 *a, u32 b) {
     a->mUnk_27c = 3;
     v1 = &a->mNsbmd;
     (*v1)->mAnimatedModel->mUnk_2c = a;
-    NNS_G3dRenderObjSetCallBack((void *) (*v1)->mAnimatedModel, (NNSG3dSbcCallBackFunc) func_ov001_02187d14, (u32) 0,
-                                (u8) 6, (u8) 3);
+    NNS_G3dRenderObjSetCallBack((void *) (*v1)->mAnimatedModel, (NNSG3dSbcCallBackFunc) func_ov001_02187d14, 0, 6,
+                                (u8) 3);
 }

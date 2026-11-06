@@ -18,7 +18,7 @@ Unk02175620_bc *func_02040da8(u32 a) {
 }
 
 s32 func_02040d68(const UnkPair020b502c *a, const UnkPair020b502c *b) {
-    return (s32) (((s64) a->mUnk_00 * b->mUnk_00 + (s64) a->mUnk_04 * b->mUnk_04 + 0x800) >> 12);
+    return ((s64) a->mUnk_00 * b->mUnk_00 + (s64) a->mUnk_04 * b->mUnk_04 + 0x800) >> 12;
 }
 
 s64 func_02040d24(const UnkPair020b502c *a, const UnkPair020b502c *b) {
@@ -153,7 +153,7 @@ s16 func_020408f0(s32 a) {
     if (s > 9999) {
         s = 9999;
     }
-    return (s16) s;
+    return s;
 }
 
 void InitRaceProgressKart(RaceProgressKart *a, s32 b) {

@@ -29,7 +29,7 @@ u32 func_020f8e3c(u32 arg0, u32 arg1) {
     if (compareLeft0 == compareRight0) {
         return value0;
     }
-    value2 = (u32) * (const u32 *) ((value0) + (124));
+    value2 = *(const u32 *) ((value0) + (124));
     value2 = (value2) & (1u);
     compareLeft1 = value2;
     compareRight1 = 0u;

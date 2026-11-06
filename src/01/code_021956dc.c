@@ -1213,10 +1213,10 @@ void AdvanceRecordTAtt(void) {
 void func_ov001_0219574c(void) {
     RecordTAtt *p;
 
-    *(vu32 *) 0x4000010 = (-gRecordTAtt->mBg0Offset << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-gRecordTAtt->mBg0Offset << 16) & 0x1ff0000;
     p = gRecordTAtt;
-    *(vu32 *) 0x4000014 = (-p->mBg1OffsetX & 0x1ff) | ((-p->mBg1OffsetY << 16) & 0x1ff0000);
-    *(vu32 *) 0x400101c = -gRecordTAtt->mBg3OffsetX & 0x1ff;
+    reg_G2_BG1OFS = (-p->mBg1OffsetX & 0x1ff) | ((-p->mBg1OffsetY << 16) & 0x1ff0000);
+    reg_G2S_DB_BG3OFS = -gRecordTAtt->mBg3OffsetX & 0x1ff;
     func_02111428();
 }
 
@@ -1224,12 +1224,12 @@ void func_ov001_02195704(void) {
     u32 t;
     u32 u;
 
-    t = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
+    t = (reg_GX_DISPCNT & 0x1f00) >> 8;
     t |= 0x13;
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (t << 8);
-    u = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (t << 8);
+    u = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     u |= 9;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (u << 8);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (u << 8);
 }
 
 void RegisterRecordTAttCallbacks(void) {

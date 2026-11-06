@@ -239,7 +239,7 @@ BOOL DWC_Http_GetRawResult(DWCHttpLabelValue *a, s32 b, const char *c, char *d, 
 }
 
 void func_ov000_02186628(const void *a) {
-    data_ov000_021b1040.mUnk_00 = (char *) a;
+    data_ov000_021b1040.mUnk_00 = a;
     return;
 }
 

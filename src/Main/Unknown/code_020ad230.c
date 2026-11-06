@@ -19,7 +19,7 @@ void UpdateTitleState0(void) {
     }
     v1 = GetTitleStateFrames();
     if (v1 >= v2) {
-        SetTitleState((u32) 1, (u32) 8);
+        SetTitleState(1, 8);
     }
     AdvanceTitleBlend();
 }

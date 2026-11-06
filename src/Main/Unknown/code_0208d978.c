@@ -18,6 +18,7 @@
 #include "code_0214a4dc.h"
 #include "code_020172d0.h"
 #include "code_021471bc.h"
+#include "registers.h"
 
 void func_0208e99c(Unk0208ec64 *a) {
     Unk0208ec64_08 *p;
@@ -75,18 +76,18 @@ void func_0208e82c(const MtxFx43 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk02
     n.mUnk_00[3].z = c->mUnk_10.z;
     MTX_Concat43(&m, a, &m);
     MTX_Concat43(&n, a, &n);
-    *(u32 *) 0x4000500 = 1;
+    reg_G3_BEGIN_VTXS = 1;
     G3_LoadMtx43(&m);
-    *(u32 *) 0x4000488 = (u16) ((d->mUnk_1c << 8) >> 16);
-    *(u32 *) 0x4000490 = 0x10000;
-    *(u32 *) 0x4000488 = 0;
-    *(u32 *) 0x4000490 = 0xf0000;
+    reg_G3_TEXCOORD = (u16) ((d->mUnk_1c << 8) >> 16);
+    reg_G3_VTX_10 = 0x10000;
+    reg_G3_TEXCOORD = 0;
+    reg_G3_VTX_10 = 0xf0000;
     G3_LoadMtx43(&n);
-    *(u32 *) 0x4000488 = (u16) ((d->mUnk_20 << 8) >> 16) << 16;
-    *(u32 *) 0x4000490 = 0xf0000;
-    *(u32 *) 0x4000488 = (u16) ((d->mUnk_1c << 8) >> 16) | (u16) ((d->mUnk_20 << 8) >> 16) << 16;
-    *(u32 *) 0x4000490 = 0x10000;
-    *(u32 *) 0x4000504 = 0;
+    reg_G3_TEXCOORD = (u16) ((d->mUnk_20 << 8) >> 16) << 16;
+    reg_G3_VTX_10 = 0xf0000;
+    reg_G3_TEXCOORD = (u16) ((d->mUnk_1c << 8) >> 16) | (u16) ((d->mUnk_20 << 8) >> 16) << 16;
+    reg_G3_VTX_10 = 0x10000;
+    reg_G3_END_VTXS = 0;
 }
 
 void func_0208e808(s32 a) {

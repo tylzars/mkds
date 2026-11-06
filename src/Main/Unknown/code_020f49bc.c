@@ -168,7 +168,7 @@ void func_020f6830(ItemObject *a, Vec3 *b, Vec3 *c) {
         n = -n;
     }
     i = *(vs32 *) &a->mKind;
-    a->mUnk_100 = (s32) (((s64) n * gItemKinds[i].mUnk_7c) >> 12);
+    a->mUnk_100 = ((s64) n * gItemKinds[i].mUnk_7c) >> 12;
     a->mUnk_100 = a->mUnk_100 >> 1;
 }
 
@@ -246,8 +246,8 @@ void func_020f63cc(ItemObject *a) {
     p = &a->mVelocity;
 
     VEC_Add(p, q, q);
-    a->mVelocity.x = (s32) (((s64) a->mVelocity.x * 0xfec) >> 12);
-    p->z = (s32) (((s64) p->z * 0xfec) >> 12);
+    a->mVelocity.x = ((s64) a->mVelocity.x * 0xfec) >> 12;
+    p->z = ((s64) p->z * 0xfec) >> 12;
     if (func_01ffdee4(q, &a->mPrevPos, 0, a->mUnk_dc, 0x44, a->mUnk_da, &v1, &v2, (s32 *) &v3, &a->mUnk_fc, NULL, NULL,
                       NULL, &w) != 0) {
         VEC_Add(&v1, q, q);
@@ -297,7 +297,7 @@ void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
     NNSSndSeqPlayer **p;
 
     if (data_0217c780 & 1) {
-        p = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
+        p = func_0210e128(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (*p != NULL) {
                 NNS_SndPlayerStopSeq(p, 0);
@@ -425,17 +425,17 @@ s32 func_020f5d6c(Unk020eda5c *a, ItemKouraR *b) {
     } else {
         b->mUnk_254 = 1;
         if (data_021759c0->mMode != MODE_BATTLE && a->mUnk_00c->mUnk_1f0.mUnk_00 != NULL) {
-            x = (u16) (!(b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
-                           ? (u16) (b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
-                           : 8);
+            x = !(b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
+                    ? (u16) (b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
+                    : 8;
             if (x >= 8) {
                 v = 8;
             } else {
-                n = (u16) (GetKartRank(x) - 1);
+                n = GetKartRank(x) - 1;
                 if (n < 1) {
                     n = data_021759c0->mKartCount;
                 }
-                v = (u16) gRaceProgress->mKartAtRank[(u8) n - 1];
+                v = gRaceProgress->mKartAtRank[(u8) n - 1];
             }
             func_020ed268(&b->mUnk_000, a, 0x2d, 0x5b, 1, 0, 1, 0x5000, v, 0);
             b->mStateMachine.mNextState = 3;
@@ -474,28 +474,28 @@ void func_020f5d00(ItemKouraR *a) {
 
 void func_020f5cc4(u32 arg0, u32 arg1) {
     u32 value0 = (u32) arg0;
-    u32 value1 = (u32) arg1;
+    u32 value1 = arg1;
     u32 value2;
     u32 value3;
     u32 value4;
     u32 compareLeft0;
     u32 compareRight0;
     value4 = value0;
-    value3 = (u32) * (const s16 *) ((value4) + (218));
+    value3 = *(const s16 *) ((value4) + (218));
     value2 = ~(0u);
     compareLeft0 = value3;
     compareRight0 = value2;
-    if ((u32) compareLeft0 == (u32) compareRight0) {
+    if (compareLeft0 == compareRight0) {
     }
-    if ((u32) compareLeft0 == (u32) compareRight0) {
+    if (compareLeft0 == compareRight0) {
         return;
     }
     func_020f1150(value0, value1);
     value0 = (value4) + (0x200u);
     value1 = 4u;
-    *(u16 *) ((value0) + (76)) = (u16) value1;
+    *(u16 *) ((value0) + (76)) = value1;
     value1 = 1u;
-    *(u16 *) ((value0) + (78)) = (u16) value1;
+    *(u16 *) ((value0) + (78)) = value1;
 }
 
 void UpdateItemKouraRState2(ItemKouraR *a) {
@@ -540,17 +540,15 @@ void UpdateItemKouraRState3(ItemKouraR *a) {
     u16 v;
     u16 n;
 
-    x = (u16) (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
-                   ? (u16) (a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
-                   : 8);
+    x = !(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000) ? (u16) (a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00) : 8;
     if (x >= 8) {
         v = 8;
     } else {
-        n = (u16) (GetKartRank(x) - 1);
+        n = GetKartRank(x) - 1;
         if (n < 1) {
             n = data_021759c0->mKartCount;
         }
-        v = (u16) gRaceProgress->mKartAtRank[(u8) n - 1];
+        v = gRaceProgress->mKartAtRank[(u8) n - 1];
     }
     func_020ec918(&a->mUnk_000, 0xd000, 0x29, v, 0);
     if (!(a->mUnk_000.mUnk_000.mUnk_000.mFlags & 1)) {
@@ -661,7 +659,7 @@ void UpdateItemKouraRState5(ItemKouraR *a) {
         func_0210ddf4(&data_0217d294, a->mUnk_000.mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f, func_020f5fb8, a, 0);
     }
     if (a->mStateMachine.mStateFrames <= 0x14) {
-        r = k->mRadius + (s32) ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
+        r = k->mRadius + ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
         n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mUnk_1d8.z;
         t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mUnk_1d8.x;
         if ((s64) t * t + (s64) n * n >= (s64) r * r) {
@@ -696,7 +694,7 @@ void func_020f5614(void *a0, s32 b, ItemObject *c0) {
         return;
     }
     o = a->mKartItems;
-    n = (u16) (!(c->mUnk_78 & 0x8000) ? (u16) (c->mUnk_78 & ~0xff00) : 8);
+    n = !(c->mUnk_78 & 0x8000) ? (u16) (c->mUnk_78 & ~0xff00) : 8;
     if (o == NULL) {
         return;
     }
@@ -758,18 +756,18 @@ void func_020f53d0(ItemKouraR *a) {
         if (a->mUnk_000.mUnk_21c.mUnk_00 != NULL) {
             a->mStateMachine.mNextState = 3;
             a->mStateMachine.mNextStateRequested = 1;
-            x = (u16) (!(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
-                           ? (u16) (a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
-                           : 8);
+            x = !(a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
+                    ? (u16) (a->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
+                    : 8;
             if (x >= 8) {
                 v = 8;
             } else {
-                n = GetKartRank((u32) x);
-                i = (u16) (n - 1);
+                n = GetKartRank(x);
+                i = n - 1;
                 if (i < 1) {
-                    i = (u16) data_021759c0->mKartCount;
+                    i = data_021759c0->mKartCount;
                 }
-                v = (u16) gRaceProgress->mKartAtRank[(i & 0xff) - 1];
+                v = gRaceProgress->mKartAtRank[(i & 0xff) - 1];
             }
             func_020ec8bc(&a->mUnk_000, 0x2d, 0x5b, 0, 1, a->mUnk_250, v, 0);
         } else {
@@ -797,7 +795,7 @@ BOOL func_020f5324(void *a0, s32 b) {
 
     a = a0;
     k = GetKart(b);
-    r = k->mRadius + (s32) ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
+    r = k->mRadius + ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_e0 * 3) >> 1);
     n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mUnk_1d8.z;
     t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mUnk_1d8.x;
     if ((s64) t * t + (s64) n * n < (s64) r * r) {

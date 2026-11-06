@@ -6,7 +6,7 @@
 #include "00/code_02181f98.h"
 
 u32 func_020b2b5c(void) {
-    return ((u32) data_0217b488->mUnk_10);
+    return (data_0217b488->mUnk_10);
 }
 
 u32 func_020b2b54(void) {
@@ -22,5 +22,5 @@ u16 func_020b2b24(s32 a, u32 b) {
 }
 
 u32 func_020b2b1c(const void *p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 4));
+    return (*(const u16 *) ((u8 *) p0 + 4));
 }

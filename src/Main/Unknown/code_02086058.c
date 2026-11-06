@@ -21,6 +21,7 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/code_02077bc0.h"
 #include "code_021471bc.h"
+#include "registers.h"
 
 void func_02086a04(void) {
     Vec3 v24;
@@ -162,7 +163,7 @@ void func_0208677c(void) {
                 if (x < 0) {
                     x = 0;
                 }
-                r = (s32) (((s64) x * 0x44 + 0x800) >> 12);
+                r = ((s64) x * 0x44 + 0x800) >> 12;
             } else {
                 p->mUnk_20 = -1;
                 p->mUnk_14 = 2;
@@ -270,13 +271,13 @@ void func_02086250(MtxFx43 *a) {
     if (func_02061818() != 0 && func_02061818() != 3) {
         return;
     }
-    *(u16 *) 0x4000060 = (*(u16 *) 0x4000060 & ~0x3000) | 8;
-    *(u32 *) 0x40004c4 = 0x4210;
-    *(u32 *) 0x40004c0 = 0x42100000;
-    *(u32 *) 0x4000440 = 0;
+    reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
+    reg_G3_SPE_EMI = 0x4210;
+    reg_G3_DIF_AMB = 0x42100000;
+    reg_G3_MTX_MODE = 0;
     G3_LoadMtx44(&data_0217aee0);
-    *(u32 *) 0x4000440 = 3;
-    *(u32 *) 0x4000454 = 0;
+    reg_G3_MTX_MODE = 3;
+    reg_G3_MTX_IDENTITY = 0;
     for (i = data_021759c0->mKartCount - 1; i >= 0; i--) {
         p = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[i]];
         if (p == NULL) {
@@ -297,13 +298,13 @@ void func_02086250(MtxFx43 *a) {
             f = FALSE;
         } else {
             m = func_02076cc4();
-            t = (s32) (((s64) v.x * m->mUnk_00[0].x + (s64) v.z * m->mUnk_00[2].z) >> 12);
-            u = (s32) (((s64) v.y * m->mUnk_00[1].z + (s64) v.z * m->mUnk_00[3].x) >> 12);
+            t = ((s64) v.x * m->mUnk_00[0].x + (s64) v.z * m->mUnk_00[2].z) >> 12;
+            u = ((s64) v.y * m->mUnk_00[1].z + (s64) v.z * m->mUnk_00[3].x) >> 12;
             z = -((const Vec3 *) &v)->z;
             t = FX_Div(t, z);
             u = FX_Div(u, z);
-            t = (s32) ((((s64) t << 19) + 0x800) >> 12);
-            u = (s32) (((s64) u * 0x60000 + 0x800) >> 12);
+            t = (((s64) t << 19) + 0x800) >> 12;
+            u = ((s64) u * 0x60000 + 0x800) >> 12;
             f = TRUE;
         }
         if (f == FALSE) {
@@ -321,7 +322,7 @@ void func_02086250(MtxFx43 *a) {
 }
 
 static inline s32 func_02086098_inline(Unk02086250 *b) {
-    return ((u16) b->mUnk_0c + 11) << 24;
+    return (b->mUnk_0c + 11) << 24;
 }
 
 void func_02086098(Unk02086098 *a, Unk02086250 *b, MtxFx43 *c, s32 d, s32 e, s16 f, s32 g, s32 h, s32 i, s32 j,
@@ -330,9 +331,9 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, MtxFx43 *c, s32 d, s32 e, s16
     s32 x;
     s32 y;
     s32 z;
-    *(u32 *) 0x40004a8 = a->mUnk_00;
+    reg_G3_TEXIMAGE_PARAM = a->mUnk_00;
     if (a->mUnk_08 != 0) {
-        *(u32 *) 0x40004ac = a->mUnk_18 >> (4 - ((a->mUnk_00 >> 26 & 7) == 2));
+        reg_G3_PLTT_BASE = a->mUnk_18 >> (4 - ((a->mUnk_00 >> 26 & 7) == 2));
     }
     MTX_Identity43_(&m);
     m.mUnk_00[3] = b->mUnk_00;
@@ -354,22 +355,22 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, MtxFx43 *c, s32 d, s32 e, s16
     m.mUnk_00[2].z = 0;
     m.mUnk_00[2].y = 0;
     m.mUnk_00[2].x = 0;
-    *(u32 *) 0x40004a4 = (func_02086098_inline(b) | 0xc0) | (f << 16);
-    *(u32 *) 0x4000440 = 2;
+    reg_G3_POLYGON_ATTR = (func_02086098_inline(b) | 0xc0) | (f << 16);
+    reg_G3_MTX_MODE = 2;
     G3_LoadMtx43(&m);
-    *(u32 *) 0x4000500 = 1;
-    *(u32 *) 0x4000480 = 0x7fff;
+    reg_G3_BEGIN_VTXS = 1;
+    reg_G3_COLOR = 0x7fff;
     k(x, y, b->mUnk_26);
-    *(u32 *) 0x4000504 = 0;
+    reg_G3_END_VTXS = 0;
 }
 
 int func_02086080(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     value1 = (u32) &data_0217aed0;
-    value1 = (u32) * (const u32 *) ((value1) + (0));
+    value1 = *(const u32 *) ((value1) + (0));
     value0 = (value1) + ((value0 << 2));
-    value0 = (u32) * (const u32 *) ((value0) + (292));
+    value0 = *(const u32 *) ((value0) + (292));
     return value0;
 }
 

@@ -31,6 +31,7 @@
 #include "code_0201ea58.h"
 #include "code_0212df7c.h"
 #include "code_0214d018.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -427,22 +428,22 @@ void func_02032138(void) {
         a |= 2;
         b = 3;
     }
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (a << 8);
-    *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | b;
-    *(vu32 *) 0x4000014 = (-gSelectGame->mUnk_60 << 16) & 0x1ff0000;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (a << 8);
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | b;
+    reg_G2_BG1OFS = (-gSelectGame->mUnk_60 << 16) & 0x1ff0000;
     if (gSelectGame->mUnk_60 != 0) {
-        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffff1fff) | 0x6000;
-        *(vu16 *) 0x4000048 = (u32) ((*(vu16 *) 0x4000048 & ~0x3f) | 0x1f) | 0x20;
-        *(vu16 *) 0x4000048 = (u32) ((*(vu16 *) 0x4000048 & 0xffffc0ff) | 0x1f00) | 0x2000;
-        *(vu16 *) 0x400004a = (u32) ((*(vu16 *) 0x400004a & ~0x3f) | 0xd) | 0x20;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x6000;
+        reg_G2_WININ = (u32) ((reg_G2_WININ & ~0x3f) | 0x1f) | 0x20;
+        reg_G2_WININ = (u32) ((reg_G2_WININ & 0xffffc0ff) | 0x1f00) | 0x2000;
+        reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xd) | 0x20;
         y = gSelectGame->mUnk_60 + 0xc0;
-        *(vu16 *) 0x4000040 = 0xff;
-        *(vu16 *) 0x4000044 = y & 0xff;
+        reg_G2_WIN0H = 0xff;
+        reg_G2_WIN0V = y & 0xff;
         y = gSelectGame->mUnk_60 + 0xc0;
-        *(vu16 *) 0x4000042 = 0xff00;
-        *(vu16 *) 0x4000046 = y & 0xff;
+        reg_G2_WIN1H = 0xff00;
+        reg_G2_WIN1V = y & 0xff;
     } else {
-        *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & 0xffff1fff;
+        reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
     }
 }
 

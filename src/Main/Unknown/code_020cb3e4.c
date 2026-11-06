@@ -9,22 +9,22 @@
 #include "code_0214b824.h"
 
 void func_020cb4a8(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = 0x4000000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0x1f00u);
     value0 = (value1) | ((value0 << 8));
     *(u32 *) ((value2) + (0)) = value0;
 }
 
 void func_020cb48c(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = 0x4001000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0x1f00u);
     value0 = (value1) | ((value0 << 8));
     *(u32 *) ((value2) + (0)) = value0;
@@ -37,17 +37,17 @@ void func_020cb3e4(void) {
     v1 = func_020cccc0();
     if (v1 != 0) {
         func_020cb4a8(0x18);
-        GX_SetGraphicsMode((u16) 1, (u32) 0, 0);
-        GX_LoadOBJPltt(data_0217b43c->mSinglePlaySelectModeMONclr->mData, 0, (u32) (((u32) 0x000001a0u)));
-        GX_LoadOBJPltt(&data_0217b43c->mSinglePlaySelectModeMONclr->mData[0xe0], 0x1c0, (u32) 0x40);
+        GX_SetGraphicsMode(1, 0, 0);
+        GX_LoadOBJPltt(data_0217b43c->mSinglePlaySelectModeMONclr->mData, 0, (0x000001a0u));
+        GX_LoadOBJPltt(&data_0217b43c->mSinglePlaySelectModeMONclr->mData[0xe0], 0x1c0, 0x40);
         GX_LoadOBJ(data_0217b43c->mSinglePlaySelectModeMNcgr->mData, 0,
-                   (u32) (data_0217b43c->mSinglePlaySelectModeMNcgr->mDataSize));
+                   data_0217b43c->mSinglePlaySelectModeMNcgr->mDataSize);
         func_020cb48c(0x16);
-        GXS_SetGraphicsMode((u32) 0);
+        GXS_SetGraphicsMode(0);
         GXS_LoadOBJPltt(data_0217b43c->mSinglePlaySelectModeSONclr->mData, 0,
-                        (u32) (data_0217b43c->mSinglePlaySelectModeSONclr->mDataSize));
+                        data_0217b43c->mSinglePlaySelectModeSONclr->mDataSize);
         GXS_LoadOBJ(data_0217b43c->mSinglePlaySelectModeSNcgr->mData, 0,
-                    (u32) (data_0217b43c->mSinglePlaySelectModeSNcgr->mDataSize));
+                    data_0217b43c->mSinglePlaySelectModeSNcgr->mDataSize);
     }
 }
 

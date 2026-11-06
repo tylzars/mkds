@@ -1,9 +1,10 @@
 #include "code_0200ce30.h"
+#include "registers.h"
 
 void OSi_AllocateCartridgeBus(void) {
-    *(vu16 *) 0x4000204 &= ~0x80;
+    reg_MI_EXMEMCNT &= ~0x80;
 }
 
 void OSi_FreeCartridgeBus(void) {
-    *(vu16 *) 0x4000204 |= 0x80;
+    reg_MI_EXMEMCNT |= 0x80;
 }

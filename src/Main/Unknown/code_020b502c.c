@@ -156,7 +156,7 @@ u16 func_020b6368(void) {
 }
 
 u16 func_020b6338(s32 idx) {
-    return (u16) ((0x18000 - func_0207a880(idx)) % 0x10000);
+    return (0x18000 - func_0207a880(idx)) % 0x10000;
 }
 
 void func_020b6078(s32 idx, UnkPair020b502c *out) {
@@ -264,11 +264,11 @@ static inline s32 func_020b5ae8_inline(s32 v) {
     float f;
 
     if (GetFixed12Whole(v) > 0) {
-        f = 0.5f + (float) (GetFixed12Whole(v) << 12);
+        f = 0.5f + (GetFixed12Whole(v) << 12);
     } else {
-        f = (float) (GetFixed12Whole(v) << 12) - 0.5f;
+        f = (GetFixed12Whole(v) << 12) - 0.5f;
     }
-    return (s32) f;
+    return f;
 }
 
 BOOL ComputeRaceHudSubScreenPosition(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 flag2) {
@@ -354,15 +354,15 @@ void UpdateRaceHudSubScreenCenter(RaceHudSubScreenBgAffine *out) {
     out->mX1 = out->mCenterX - 0x80;
     out->mY1 = out->mCenterY - 0x60;
     if (gRaceHudSubScreenProjection->mCenterWhole.mUnk_00 > 0) {
-        f = 0.5f + (float) (gRaceHudSubScreenProjection->mCenterWhole.mUnk_00 << 12);
+        f = 0.5f + (gRaceHudSubScreenProjection->mCenterWhole.mUnk_00 << 12);
     } else {
-        f = (float) (gRaceHudSubScreenProjection->mCenterWhole.mUnk_00 << 12) - 0.5f;
+        f = (gRaceHudSubScreenProjection->mCenterWhole.mUnk_00 << 12) - 0.5f;
     }
     gRaceHudSubScreenProjection->mCenterRemainderX = gRaceHudSubScreenProjection->mCenter.mUnk_00 - (s32) f;
     if (gRaceHudSubScreenProjection->mCenterWhole.mUnk_04 > 0) {
-        f = 0.5f + (float) (gRaceHudSubScreenProjection->mCenterWhole.mUnk_04 << 12);
+        f = 0.5f + (gRaceHudSubScreenProjection->mCenterWhole.mUnk_04 << 12);
     } else {
-        f = (float) (gRaceHudSubScreenProjection->mCenterWhole.mUnk_04 << 12) - 0.5f;
+        f = (gRaceHudSubScreenProjection->mCenterWhole.mUnk_04 << 12) - 0.5f;
     }
     gRaceHudSubScreenProjection->mCenterRemainderY = gRaceHudSubScreenProjection->mCenter.mUnk_04 - (s32) f;
 }
@@ -392,7 +392,7 @@ Unk020b57e4 *func_020b57e4(void) {
 }
 
 s32 MulFx64c(s32 a, s64 k) {
-    return (s32) ((k * a + 0x80000000) >> 32);
+    return (k * a + 0x80000000) >> 32;
 }
 
 void func_020b5658(RaceHudSubScreenBgAffine *out) {
@@ -585,5 +585,5 @@ void UpdateRaceHudSubScreenProjectionAndBgAffine(RaceHudSubScreenBgAffine *p, s3
 }
 
 s32 MulFixed12NoRound(s32 a, s32 b) {
-    return (s32) (((s64) a * b) >> 12);
+    return ((s64) a * b) >> 12;
 }

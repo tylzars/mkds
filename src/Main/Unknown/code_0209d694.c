@@ -25,12 +25,12 @@
 
 void func_0209decc(u32 p0) {
     u32 v1 = ((u32) (&data_021565e4));
-    u32 v3 = ((u32) * (u16 *) ((p0) + (2)));
-    u32 v4 = ((u32) * (u16 *) ((v1) + (0)));
+    u32 v3 = (*(u16 *) ((p0) + (2)));
+    u32 v4 = (*(u16 *) ((v1) + (0)));
     u32 v5 = ((v3) | (v4));
     u32 v7;
     u32 v9;
-    *(u16 *) ((p0) + (2)) = (u16) v5;
+    *(u16 *) ((p0) + (2)) = v5;
     ParkMapObject((void *) (p0));
     CreateMapObjectSoundSourceFalloff2((MapObject *) p0);
 }
@@ -89,7 +89,7 @@ u32 func_0209dd40(u32 p0) {
 
 static inline u32 func_0209d84c_inline(Unk020f41c4_B *b) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-    return (u32) (b->mUnk_00 >> 32);
+    return b->mUnk_00 >> 32;
 }
 
 void func_0209d84c(void *a, Unk0209d694 *p) {
@@ -162,7 +162,7 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
             p->mUnk_00.mUnk_10.y = t;
             p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + p->mUnk_00.mUnk_10.y;
             if (p->mUnk_00.mUnk_10.y < 0) {
-                p->mUnk_b4 = (u16) (((u64) func_0209d84c_inline(func_020d22d0()) * 0x10000) >> 32);
+                p->mUnk_b4 = ((u64) func_0209d84c_inline(func_020d22d0()) * 0x10000) >> 32;
                 p->mUnk_b8 = 3;
             }
             break;

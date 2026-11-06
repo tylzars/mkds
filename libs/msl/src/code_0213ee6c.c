@@ -303,7 +303,7 @@ void DoubleToDigits(DigitRecord *out, double v) {
     }
     s = 0x35 - n;
     DigitsPowerOfTwo(&big_b, e - s);
-    DigitsFromU64(&big_a, (u64) ldexp(m, s));
+    DigitsFromU64(&big_a, ldexp(m, s));
     DigitsMultiply(out, &big_a, &big_b);
     out->mNegative = sign;
 }

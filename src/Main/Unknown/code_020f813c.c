@@ -23,9 +23,9 @@
 static inline u32 func_020f8a04_inline(Unk020f41c4_B *b, u32 c) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     if (c == 0) {
-        return (u32) (b->mUnk_00 >> 32);
+        return b->mUnk_00 >> 32;
     } else {
-        return (u32) (((b->mUnk_00 >> 32) * c) >> 32);
+        return ((b->mUnk_00 >> 32) * c) >> 32;
     }
 }
 
@@ -443,10 +443,10 @@ u32 ComputeItemSlotTableDataEnd(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = (value0) + (2u);
-    value1 = (u32) * (const u8 *) ((value0) + 1u);
-    value0 = (u32) * (const u8 *) ((value0) + 0u);
+    value1 = *(const u8 *) ((value0) + 1u);
+    value0 = *(const u8 *) ((value0) + 0u);
     value1 = (value1) * (value0);
     value0 = (value2) + (value1);
-    return (u32) value0;
+    return value0;
 }
 #pragma thumb off

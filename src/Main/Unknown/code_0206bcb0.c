@@ -371,7 +371,7 @@ BOOL func_0206c354(Kart *p, const Vec3 *a, int flag) {
             n = 4;
         }
         VEC_MultAdd(-p->mRadius, a, &p->mPos, &tmp);
-        VEC_MultAdd((s32) (((s64) p->mScale.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
+        VEC_MultAdd(((s64) p->mScale.y * 0x8000 + 0x800) >> 12, &p->mUnk_12c, &tmp, &tmp);
         for (; i < n; i++) {
             func_0208b748(list[i], &tmp, p, func_0206c450);
         }
@@ -384,9 +384,9 @@ void func_0206c2b4(Unk0206c1ac *obj, Kart *p) {
     Vec3 v = p->mEffectVelocity;
 
     v.y = 0;
-    v.x = (s32) (((s64) v.x * 0xe66) >> 12);
-    v.y = (s32) (((s64) v.y * 0xe66) >> 12);
-    v.z = (s32) (((s64) v.z * 0xe66) >> 12);
+    v.x = ((s64) v.x * 0xe66) >> 12;
+    v.y = ((s64) v.y * 0xe66) >> 12;
+    v.z = ((s64) v.z * 0xe66) >> 12;
     obj->mUnk_40 = v;
 }
 
@@ -395,7 +395,7 @@ void func_0206c1ac(Unk0206c1ac *obj, Kart *p) {
     UnkVec16 rot;
     Vec3 *q;
 
-    VEC_MultAdd((s32) (((s64) p->mRadius * -0x1333 + 0x800) >> 12), &p->mUnk_138, &v, &v);
+    VEC_MultAdd(((s64) p->mRadius * -0x1333 + 0x800) >> 12, &p->mUnk_138, &v, &v);
     v.x >>= 4;
     v.y >>= 4;
     v.z >>= 4;

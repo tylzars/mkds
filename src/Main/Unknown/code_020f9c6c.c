@@ -128,7 +128,7 @@ void func_020fc94c(ItemKouraW *p) {
         p->mRankKartIndex = gRaceProgress->mKartAtRank[(p->mRank & 0xff) - 1];
     } else {
         p->mRankKartIndex = gRaceProgress->mKartAtRank[(p->mRank & 0xff) - 1];
-        while (IsKartEnded(p->mRankKartIndex) != 0 && (u32) p->mRank < (u32) data_021759c0->mKartCount) {
+        while (IsKartEnded(p->mRankKartIndex) != 0 && p->mRank < (u32) data_021759c0->mKartCount) {
             p->mRank++;
             p->mRankKartIndex = gRaceProgress->mKartAtRank[(p->mRank & 0xff) - 1];
         }
@@ -218,9 +218,9 @@ void func_020fc2e8(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2) {
         if ((s64) v->x * v->x + (s64) v->y * v->y + (s64) v->z * v->z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(v, &p->mUnk_000.mUnk_94.mUnk_00[2]);
         }
-        v5->x = (s32) (((s64) v5->x * 0xccd) >> 12);
-        v5->y = (s32) (((s64) v5->y * 0xccd) >> 12);
-        v5->z = (s32) (((s64) v5->z * 0xccd) >> 12);
+        v5->x = ((s64) v5->x * 0xccd) >> 12;
+        v5->y = ((s64) v5->y * 0xccd) >> 12;
+        v5->z = ((s64) v5->z * 0xccd) >> 12;
         VEC_MultAdd(0x3000, v5, v2, &buf);
         Vec3CrossUnrounded(&buf, &p->mUnk_000.mUnk_94.mUnk_00[2], &buf);
         if ((s64) buf.x * buf.x + (s64) buf.y * buf.y + (s64) buf.z * buf.z >= 0x10) {
@@ -238,12 +238,12 @@ void func_020fc2e8(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2) {
             v5->x += (s32) (((s64) (v->x - v4->x - v5->x) * 0x148) >> 12);
             v5->z += (s32) (((s64) (v->z - v4->z - v5->z) * 0x148) >> 12);
         } else {
-            v5->x = (s32) (((s64) v5->x * 0xc00) >> 12);
-            v5->z = (s32) (((s64) v5->z * 0xc00) >> 12);
+            v5->x = ((s64) v5->x * 0xc00) >> 12;
+            v5->z = ((s64) v5->z * 0xc00) >> 12;
         }
         v3 = data_0216c6a8;
-        v3.x = (s32) (((s64) v5->x * 0x3000) >> 12);
-        v3.z = (s32) (((s64) v5->z * 0x3000) >> 12);
+        v3.x = ((s64) v5->x * 0x3000) >> 12;
+        v3.z = ((s64) v5->z * 0x3000) >> 12;
         buf = v3;
         Vec3CrossUnrounded(&buf, &p->mUnk_000.mUnk_94.mUnk_00[2], &p->mUnk_000.mUnk_94.mUnk_00[0]);
         if ((s64) p->mUnk_000.mUnk_94.mUnk_00[0].x * p->mUnk_000.mUnk_94.mUnk_00[0].x +
@@ -268,7 +268,7 @@ void func_020fc2e8(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2) {
 
 void func_020fc2c0(ItemKouraW *a) {
     func_02046b40(a->mUnk_2e8);
-    func_020f9320(&a->mUnk_000, (u32) 0x3c000400u);
+    func_020f9320(&a->mUnk_000, 0x3c000400u);
 }
 
 #pragma thumb off
@@ -326,7 +326,7 @@ void UpdateItemKouraWState1(ItemKouraW *param_1) {
             param_1->mRankKartIndex = gRaceProgress->mKartAtRank[(u8) param_1->mRank - 1];
         } else {
             param_1->mRankKartIndex = gRaceProgress->mKartAtRank[(u8) param_1->mRank - 1];
-            while (IsKartEnded(param_1->mRankKartIndex) != 0 && (u32) param_1->mRank < (u8) data_021759c0->mKartCount) {
+            while (IsKartEnded(param_1->mRankKartIndex) != 0 && (u32) param_1->mRank < data_021759c0->mKartCount) {
                 (param_1->mRank)++;
                 param_1->mRankKartIndex = gRaceProgress->mKartAtRank[(u8) param_1->mRank - 1];
             }
@@ -506,10 +506,10 @@ void UpdateItemKouraWState4(ItemKouraW *param_1) {
             v.y = param_1->mUnk_250.y * 2;
             v.z = param_1->mUnk_250.z * 2;
             Vec3CrossUnrounded(q, &v, &v);
-            VEC_MultAdd((s32) (((s64) (param_1->mAngle - 0x10000) * 0xccd) >> 12), q, &v, &v);
+            VEC_MultAdd(((s64) (param_1->mAngle - 0x10000) * 0xccd) >> 12, q, &v, &v);
         } else {
-            v.x = (s32) (((s64) param_1->mUnk_250.z * 0x2000) >> 12);
-            v.y = (s32) (((s64) (param_1->mAngle - 0x10000) * 0xccd) >> 12);
+            v.x = ((s64) param_1->mUnk_250.z * 0x2000) >> 12;
+            v.y = ((s64) (param_1->mAngle - 0x10000) * 0xccd) >> 12;
             v.z = -(s32) (((s64) param_1->mUnk_250.x * 0x2000) >> 12);
         }
         if (param_1->mStateFrames == 0) {
@@ -548,7 +548,7 @@ void UpdateItemKouraWState5(ItemKouraW *param_1) {
 
     param_1->mUnk_260 += 0x4cd;
     func_020fcce4(param_1, param_1->mUnk_264, param_1->mUnk_260);
-    if ((s32) param_1->mUnk_264 < 0xb33) {
+    if (param_1->mUnk_264 < 0xb33) {
         param_1->mUnk_264 += 0x52;
     }
     if (param_1->mUnk_260 > 0x2d000) {
@@ -700,8 +700,7 @@ void func_020fb038(ItemKouraW *param_1) {
 
     func_020f8e78(param_1);
     if (param_1->mUnk_21c != 0) {
-        func_020ec8bc((Unk020ec8bc *) param_1, 0x14, 0xcc, 1, 0, param_1->mUnk_2fc, (u16) gRaceProgress->mKartAtRank[0],
-                      1);
+        func_020ec8bc((Unk020ec8bc *) param_1, 0x14, 0xcc, 1, 0, param_1->mUnk_2fc, gRaceProgress->mKartAtRank[0], 1);
         func_02046bcc(&param_1->mUnk_2e8, 1);
     } else if (param_1->mUnk_000.mFlags & 0x8000000) {
         v = (u16) gRaceProgress->mKartAtRank[0];
@@ -818,7 +817,7 @@ BOOL IsItemKouraWState7(ItemKouraW *param_1) {
 
 Vec3 *func_020fad9c(ItemKouraW *param_1, s32 *param_2, s32 *param_3) {
     *param_2 = param_1->mStateFrames;
-    *param_3 = (s32) (((s64) param_1->mUnk_000.mUnk_68.z * data_0217bd40) >> 12);
+    *param_3 = ((s64) param_1->mUnk_000.mUnk_68.z * data_0217bd40) >> 12;
     return &param_1->mUnk_000.mPos;
 }
 
@@ -834,7 +833,7 @@ void func_020fad00(void) {
     data_0217bd44 = 0x299a;
     a = data_0217bd3c;
     b = gItemKinds[5].mUnk_6c;
-    v = (s32) (((s64) a * b) >> 12);
+    v = ((s64) a * b) >> 12;
     data_0217bd34 = v;
     v >>= 12;
     data_0217bd34 = v;
@@ -999,7 +998,7 @@ static inline s32 func_020fa4c8_inline(ItemObject *e, Kart *a) {
     if (!(e->mFlags & 0x8000)) {
         return 1;
     }
-    if ((u16) a->mIndex != (u16) (!(e->mUnk_78 & 0x8000) ? (u16) (e->mUnk_78 & ~0xff00) : 8)) {
+    if (a->mIndex != (u16) (!(e->mUnk_78 & 0x8000) ? (u16) (e->mUnk_78 & ~0xff00) : 8)) {
         return 1;
     }
     if (e->mVelocity.x != 0 || e->mVelocity.y != 0 || e->mVelocity.z != 0 || a->mForwardSpeed != 0) {
@@ -1246,8 +1245,8 @@ void func_020fa030(ItemObject *param_1) {
     param_1->mUnk_68.x = param_1->mUnk_68.y;
     e = &gItemKinds[k];
     m = e->mUnk_6c;
-    param_1->mUnk_dc = (s32) (((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12);
-    param_1->mUnk_e0 = (s32) (((s64) param_1->mUnk_68.y * m) >> 12);
+    param_1->mUnk_dc = ((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12;
+    param_1->mUnk_e0 = ((s64) param_1->mUnk_68.y * m) >> 12;
     func_020d5148(param_1->mUnk_da, param_1->mUnk_e0 + 0xa000);
 }
 
@@ -1262,8 +1261,8 @@ void func_020f9fa8(ItemObject *param_1) {
     param_1->mUnk_68.x = param_1->mUnk_68.y;
     e = &gItemKinds[k];
     m = e->mUnk_6c;
-    param_1->mUnk_dc = (s32) (((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12);
-    param_1->mUnk_e0 = (s32) (((s64) param_1->mUnk_68.y * m) >> 12);
+    param_1->mUnk_dc = ((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12;
+    param_1->mUnk_e0 = ((s64) param_1->mUnk_68.y * m) >> 12;
     func_020d5148(param_1->mUnk_da, param_1->mUnk_e0);
 }
 
@@ -1274,10 +1273,10 @@ void func_020f9f08(ItemObject *param_1, s32 param_2, s32 param_3) {
 
     k = p->mKind;
     m = gItemKinds[k].mUnk_68;
-    p->mUnk_68.x = (s32) (((s64) p->mUnk_68.z * param_2) >> 12);
-    p->mUnk_68.y = (s32) (((s64) p->mUnk_68.z * param_3) >> 12);
-    p->mUnk_dc = (s32) (((s64) p->mUnk_68.y * gItemKinds[k].mUnk_64) >> 12);
-    p->mUnk_e0 = (s32) (((s64) p->mUnk_68.y * m) >> 12);
+    p->mUnk_68.x = ((s64) p->mUnk_68.z * param_2) >> 12;
+    p->mUnk_68.y = ((s64) p->mUnk_68.z * param_3) >> 12;
+    p->mUnk_dc = ((s64) p->mUnk_68.y * gItemKinds[k].mUnk_64) >> 12;
+    p->mUnk_e0 = ((s64) p->mUnk_68.y * m) >> 12;
     func_020d5148(p->mUnk_da, p->mUnk_e0 + 0xa000);
 }
 
@@ -1292,12 +1291,12 @@ s32 func_020f9dc8(ItemObject *param_1) {
         param_1->mFlags |= 0x40;
         param_1->mUnk_68.y += param_1->mUnk_100;
         param_1->mUnk_100 += (s32) (((s64) (param_1->mUnk_68.z - param_1->mUnk_68.y) * 0x333) >> 12);
-        param_1->mUnk_100 = (s32) (((s64) param_1->mUnk_100 * 0xc00) >> 12);
+        param_1->mUnk_100 = ((s64) param_1->mUnk_100 * 0xc00) >> 12;
         param_1->mUnk_68.x = param_1->mUnk_68.z * 2 - param_1->mUnk_68.y;
         e = &gItemKinds[k];
         m = e->mUnk_6c;
-        param_1->mUnk_dc = (s32) (((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12);
-        param_1->mUnk_e0 = (s32) (((s64) param_1->mUnk_68.y * m) >> 12);
+        param_1->mUnk_dc = ((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12;
+        param_1->mUnk_e0 = ((s64) param_1->mUnk_68.y * m) >> 12;
         func_020d5148(param_1->mUnk_da, param_1->mUnk_e0 + 0xa000);
         return 1;
     }
@@ -1317,8 +1316,8 @@ s32 func_020f9ce8(ItemObject *param_1) {
         param_1->mUnk_68.x = param_1->mUnk_68.z * 2 - param_1->mUnk_68.y;
         e = &gItemKinds[k];
         m = e->mUnk_6c;
-        param_1->mUnk_dc = (s32) (((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12);
-        param_1->mUnk_e0 = (s32) (((s64) param_1->mUnk_68.y * m) >> 12);
+        param_1->mUnk_dc = ((s64) param_1->mUnk_68.y * e->mUnk_64) >> 12;
+        param_1->mUnk_e0 = ((s64) param_1->mUnk_68.y * m) >> 12;
         func_020d5148(param_1->mUnk_da, param_1->mUnk_e0 + 0xa000);
         return 1;
     }

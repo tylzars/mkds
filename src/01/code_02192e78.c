@@ -183,7 +183,7 @@ void RequestOptionState(u32 a) {
 }
 
 u32 GetOptionPrevState(void) {
-    return (u32) gOptionStates->mPrevState;
+    return gOptionStates->mPrevState;
 }
 
 int func_ov001_02192e84(void) {

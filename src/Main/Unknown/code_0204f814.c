@@ -211,7 +211,7 @@ void func_0204f938(Unk0217aa08_14 *a) {
     e = data_0217aa00->mUnk_0044.mUnk_38;
     e->mUnk_0e.mUnk_07_0 = 1;
     MI_CpuCopy8(a->mUnk_0c, e, 0x14);
-    e->mUnk_0e.mUnk_07_1 = (u8) a->mUnk_04_4;
+    e->mUnk_0e.mUnk_07_1 = a->mUnk_04_4;
     e->mUnk_18_0 = a->mUnk_04_0;
     e->mUnk_18_4 = (u8) func_0204684c(a->mUnk_04_10);
     e->mUnk_18_9 = a->mUnk_08_8;

@@ -62,10 +62,10 @@ void InitBridge(Bridge *a, struct CourseMapRow *b) {
         a->mUnk_146 = 0;
         a->mUnk_148 = ((b->mUnk_30 * 0x10000) / 0x168) >> 1;
     }
-    a->mUnk_100 = (s32) (((s64) a->mUnk_000.mScale.x * 0x5a000) >> 12);
+    a->mUnk_100 = ((s64) a->mUnk_000.mScale.x * 0x5a000) >> 12;
     a->mUnk_104 = (s32) (((s64) a->mUnk_000.mScale.y * 0x1e000) >> 12) >> 1;
-    a->mUnk_108 = (s32) (((s64) a->mUnk_000.mScale.z * 0x15e000) >> 12);
-    a->mUnk_10c = (s32) (((s64) a->mUnk_000.mScale.z * 0x32000) >> 12);
+    a->mUnk_108 = ((s64) a->mUnk_000.mScale.z * 0x15e000) >> 12;
+    a->mUnk_10c = ((s64) a->mUnk_000.mScale.z * 0x32000) >> 12;
     a->mUnk_110 = 0;
     a->mUnk_114.x = 1;
     a->mUnk_114.y = 0;

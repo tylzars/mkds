@@ -59,7 +59,7 @@ BOOL func_0200628c(Unk0200628c *a, s32 b, const u8 *c) {
     v2 = a->mUnk_18;
     if (b < a->mUnk_04) {
         if (b == a->mUnk_04 - 1) {
-            v3 = (u32) (_s32_div_f(a->mUnk_00, v1) >> 32);
+            v3 = _s32_div_f(a->mUnk_00, v1) >> 32;
             if (v3 != 0) {
                 MI_CpuCopy8(c, v2 + b * v1, v3);
             } else {
@@ -500,7 +500,7 @@ s32 func_02005a30(Unk0216f3dc *a, s32 b, s32 c) {
                 if ((a->mUnk_000.mUnk_08 & (u16) v2) != 0) {
                     v4 = func_020062f4(v3);
                     if (v4 == -1) {
-                        v1 = func_020065f8(b, (u16) v2, a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_14);
+                        v1 = func_020065f8(b, v2, a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_14);
                     } else {
                         v5 = a->mUnk_000.mUnk_08;
                         if (a->mUnk_000.mUnk_00 == 4) {

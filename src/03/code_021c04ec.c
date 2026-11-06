@@ -309,12 +309,12 @@ void func_ov003_021c06b0(void) {
         v1 = 2;
     }
     func_ov003_021c00ec(v1);
-    StartSoundSeq((u32) 1);
+    StartSoundSeq(1);
 }
 
 void func_ov003_021c0680(void) {
     func_ov003_021c00ec((data_ov003_021da15c->mUnk_11d != 1));
-    StartSoundSeq((u32) 1);
+    StartSoundSeq(1);
 }
 
 void func_ov003_021c0528(void) {
@@ -378,6 +378,6 @@ void func_ov003_021c04ec(int a) {
     if (a != data_ov003_021da15c->mUnk_11f) {
         func_ov003_021c0050(a, 1);
         func_ov003_021c0050(data_ov003_021da15c->mUnk_11f, 0);
-        data_ov003_021da15c->mUnk_11f = (s8) a;
+        data_ov003_021da15c->mUnk_11f = a;
     }
 }

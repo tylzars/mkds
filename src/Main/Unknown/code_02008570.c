@@ -49,7 +49,7 @@ int func_02008570(FSFile *param_1, void *param_2, u32 param_3) {
         v13 -= 0x160;
         if (v1 != NULL) {
             v7 = v1->mUnk_2c - v1->mProp.w.mUnk_04;
-            if ((s32) FS_ReadFile(v1, v2, 0x160) < 0x160) {
+            if (FS_ReadFile(v1, v2, 0x160) < 0x160) {
                 v13 = 0;
             }
             v9 = func_02008570_inline(v2);

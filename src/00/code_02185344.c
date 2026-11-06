@@ -98,9 +98,9 @@ void LocateAndUploadWiFiAikotobaCheck(void) {
     v1 = FindSceneFile(gWiFiAikotobaCheckMONclrName);
     LocateNclr(&gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr, v1);
     GX_LoadOBJ(gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr->mData, 0,
-               (u32) gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr->mDataSize);
-    GX_LoadOBJPltt(gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr->mData, 0, (u32) 0x1a0);
-    GX_LoadOBJPltt(gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr->mData + 0xe0, 0x1c0, (u32) 0x40);
+               gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr->mDataSize);
+    GX_LoadOBJPltt(gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr->mData, 0, 0x1a0);
+    GX_LoadOBJPltt(gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr->mData + 0xe0, 0x1c0, 0x40);
 }
 
 void func_ov000_021854f8(void) {

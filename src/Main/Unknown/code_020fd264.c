@@ -61,7 +61,7 @@ void func_020fe3d8(ItemBomb *a) {
     u32 v1;
     MTX_Identity43_((MtxFx43 *) a->mUnk_13c);
     func_02046be8(a->mUnk_184, (UnkFunc *const *) &gItemBombStateTable, 4, a);
-    func_02046bcc(a->mUnk_184, (u16) 0);
+    func_02046bcc(a->mUnk_184, 0);
     a->mUnk_170 = 300;
     a->mUnk_174 = 0;
     v1 = 0x05f592e1u;
@@ -434,7 +434,7 @@ void func_020fd804(u32 arg0) {
     u32 value1;
     u32 compareLeft0;
     u32 compareRight0;
-    value0 = (u32) * (const u32 *) ((value0) + (408));
+    value0 = *(const u32 *) ((value0) + (408));
     compareLeft0 = value0;
     compareRight0 = 0u;
     if (compareLeft0 == compareRight0) {
@@ -444,9 +444,9 @@ void func_020fd804(u32 arg0) {
     if (compareLeft0 == compareRight0) {
         return;
     }
-    value1 = (u32) * (const u16 *) ((value0) + (2));
+    value1 = *(const u16 *) ((value0) + (2));
     value1 = (value1) & ~(1u);
-    *(u16 *) ((value0) + (2)) = (u16) value1;
+    *(u16 *) ((value0) + (2)) = value1;
     ParkMapObject((void *) value0);
 }
 
@@ -628,7 +628,7 @@ void *func_020fd338(void *b, s32 a) {
 
 Vec3 *func_020fd308(ItemBomb *e, s32 *a, s32 *b) {
     *a = e->mStateFrames;
-    *b = (s32) (((s64) e->mUnk_000.mUnk_000.mUnk_68.z * data_0217bd48) >> 12);
+    *b = ((s64) e->mUnk_000.mUnk_000.mUnk_68.z * data_0217bd48) >> 12;
     return &e->mUnk_000.mUnk_000.mPos;
 }
 
@@ -640,7 +640,7 @@ void func_020fd264(void) {
     data_0217bd50 = 0x18006;
     data_0217bd48 = FX_Div(0x1000, 0x18006);
     data_0217bd54 = 0x2148;
-    data_0217bd58 = (s32) (((s64) data_0217bd50 * gItemKinds[9].mUnk_6c) >> 12);
+    data_0217bd58 = ((s64) data_0217bd50 * gItemKinds[9].mUnk_6c) >> 12;
     data_0217bd58 >>= 12;
     data_0217bd58 *= data_0217bd58;
     k = data_021759c0->mUnk_010;

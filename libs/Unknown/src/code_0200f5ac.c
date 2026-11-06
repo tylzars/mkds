@@ -5,6 +5,7 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/unk_02170000.h"
 #include "code_0200f580.h"
+#include "registers.h"
 
 u16 gTickInitialized;
 u32 data_02170250;
@@ -54,7 +55,7 @@ u64 OS_GetTick(void) {
     enabled = OS_DisableInterrupts();
     count = *(vu16 *) 0x4000100;
     overflows = gTickOverflowCount & 0xffffffffffffULL;
-    if ((*(vu32 *) 0x4000214 & 8) && !(count & 0x8000)) {
+    if ((reg_OS_IF & 8) && !(count & 0x8000)) {
         overflows++;
     }
     OS_RestoreInterrupts(enabled);

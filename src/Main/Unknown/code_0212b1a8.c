@@ -18,6 +18,7 @@
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_02023000.h"
 #include "Main/Unknown/code_0212b928.h"
+#include "registers.h"
 
 #pragma thumb on
 void InitPaletteBlend(void *heap, Nclr *nclr, u32 paletteIndex) {
@@ -123,9 +124,9 @@ void InitStaffRollText(void *heap) {
     gStaffRollText->mUnk_01c = 1;
     gStaffRollText->mUnk_850 = 1;
     gStaffRollText->mUnk_854 = 0x240;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x1f00) | 0x100;
-    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 1;
-    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & 0x43) | 0x1000;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x100;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 1;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x1000;
     MemFillWordsByBlock_inline((void *) G2S_GetBG0CharPtr(), 0x8000);
     for (i = 0; i < 0x400; i++) {
         ((u16 *) G2S_GetBG0ScrPtr())[i] = i | 0xf000;
@@ -287,7 +288,7 @@ void AdvanceStaffRollText(void) {
 }
 
 void func_0212b1c0(void) {
-    *(vu32 *) 0x4001010 = (((gStaffRollText->mScrollYFixed >> 12) % 256) << 16) & 0x1ff0000;
+    reg_G2S_DB_BG0OFS = (((gStaffRollText->mScrollYFixed >> 12) % 256) << 16) & 0x1ff0000;
     CallQueueDrain();
 }
 
@@ -296,7 +297,7 @@ u32 StartStaffRollText(void) {
     u32 value1;
     value0 = (u32) &gStaffRollText;
     value1 = 1u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (4)) = value1;
     return value0;
 }

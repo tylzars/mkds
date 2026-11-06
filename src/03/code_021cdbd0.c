@@ -37,11 +37,11 @@ void StartSoundSeq(u32 index) {
     u32 value3;
     value2 = (value0) + (0u);
     value0 = (u32) &gSoundData;
-    value0 = (u32) * (const u32 *) ((value0) + 0u);
+    value0 = *(const u32 *) ((value0) + 0u);
     value0 = (value0) + 144u;
     value1 = 0u;
     value3 = (u32) &NNS_SndArcPlayerStartSeqArc;
-    value0 = (u32) NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
+    value0 = NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
     return;
 }
 
@@ -51,7 +51,7 @@ u32 SetSoundSeqVolume(u32 volume) {
     u32 value3;
     value1 = (value0) + (0u);
     value0 = (u32) &gSoundData;
-    value0 = (u32) * (const u32 *) ((value0) + 0u);
+    value0 = *(const u32 *) ((value0) + 0u);
     value0 = (value0) + 144u;
     value3 = (u32) &NNS_SndPlayerSetVolume;
     value0 = (u32) NNS_SndPlayerSetVolume((NNSSndSeqPlayer **) value0, value1);

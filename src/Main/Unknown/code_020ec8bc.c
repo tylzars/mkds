@@ -139,9 +139,9 @@ BOOL func_020ed0f4(Unk020ec8bc *p) {
         v[0].y >>= 2;
         v[0].z >>= 2;
         s = VEC_DotProduct(r, &v[0]);
-        v[1].x = (s32) (((u64) ((s64) r->x * s)) >> 12);
-        v[1].y = (s32) (((u64) ((s64) r->y * s)) >> 12);
-        v[1].z = (s32) (((u64) ((s64) r->z * s)) >> 12);
+        v[1].x = ((u64) ((s64) r->x * s)) >> 12;
+        v[1].y = ((u64) ((s64) r->y * s)) >> 12;
+        v[1].z = ((u64) ((s64) r->z * s)) >> 12;
         VEC_Add(&v[0], &v[1], &v[0]);
         VEC_Subtract(q, &v[1], &v[2]);
         v[3] = *q;
@@ -212,7 +212,7 @@ void func_020ece1c(Unk020ec8bc *p, s32 a, s32 b, s32 c) {
     }
     s = 0x1000 - p->mUnk_214 * p->mUnk_218;
     n = (p->mUnk_224 != 0) ? 0x266 : 0x148;
-    func_020eacc0(q, (s32) (((u64) ((s64) n * s)) >> 12), &v, &v);
+    func_020eacc0(q, ((u64) ((s64) n * s)) >> 12, &v, &v);
     func_020f1d70(p, &v);
 }
 
@@ -290,16 +290,16 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
         }
         if ((p->mUnk_000.mUnk_000.mUnk_fc & 0x214300) != 0 && p->mUnk_000.mUnk_15c != FALSE) {
             s = VEC_DotProduct(&v40, r);
-            v28.x = (s32) (((u64) ((s64) v40.x * s)) >> 12);
-            v28.y = (s32) (((u64) ((s64) v40.y * s)) >> 12);
-            v28.z = (s32) (((u64) ((s64) v40.z * s)) >> 12);
+            v28.x = ((u64) ((s64) v40.x * s)) >> 12;
+            v28.y = ((u64) ((s64) v40.y * s)) >> 12;
+            v28.z = ((u64) ((s64) v40.z * s)) >> 12;
             r->x -= v28.x;
             r->y -= v28.y;
             r->z -= v28.z;
             VEC_Subtract(r, &v28, r);
-            r->x = (s32) (((u64) ((s64) r->x * 0x23d)) >> 12);
-            r->y = (s32) (((u64) ((s64) r->y * 0x23d)) >> 12);
-            r->z = (s32) (((u64) ((s64) r->z * 0x23d)) >> 12);
+            r->x = ((u64) ((s64) r->x * 0x23d)) >> 12;
+            r->y = ((u64) ((s64) r->y * 0x23d)) >> 12;
+            r->z = ((u64) ((s64) r->z * 0x23d)) >> 12;
             func_020f6fc4(p, 1);
             return;
         }

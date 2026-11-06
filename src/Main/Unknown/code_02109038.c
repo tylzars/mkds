@@ -7,7 +7,7 @@ void func_02109038(void *arg0, u32 arg1, Vec3 *arg2) {
     u32 value2 = (u32) arg2;
     u32 value3;
     u32 value12;
-    *(u8 *) ((value0) + (60)) = (u8) value1;
+    *(u8 *) ((value0) + (60)) = value1;
     value3 = ~(0u);
     value1 = value2;
     *(u32 *) ((value0) + (64)) = value3;

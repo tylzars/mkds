@@ -71,11 +71,11 @@ void func_020ad924(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
 }
 
 void func_020ad904(u32 a) {
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | a;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | a;
 }
 
 void func_020ad8e0(u32 a) {
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffcfffef) | a;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | a;
 }
 
 void func_020ad8a4(u32 a, u32 b, u32 c, u32 d) {

@@ -60,7 +60,7 @@ void func_02085e04(void) {
     data_0217aebc = HeapAlloc(GetHeap(func_020364e8()), 0x144);
     z = FALSE;
     m = -1;
-    for (i = 0; (u32) i < 8; i++) {
+    for (i = 0; i < 8; i++) {
         data_0217aebc->mUnk_000[i] = z;
         data_0217aebc->mUnk_020[i] = m;
         data_0217aebc->mUnk_040[i] = m;
@@ -137,12 +137,12 @@ void func_02085d1c(void) {
     Unk021759c0_70 *e;
     j = 0;
     data_0217aebc->mUnk_13c = j;
-    for (k = 0; (u32) k < 2; k++) {
+    for (k = 0; k < 2; k++) {
         data_0217aebc->mUnk_13e[k] = j;
     }
     for (j = 0; (u32) j < data_021759c0->mKartCount; j++) {
         if (data_021759c0->mUseTeams != 0) {
-            for (k = 0; (u32) k < 2; k++) {
+            for (k = 0; k < 2; k++) {
                 f = FALSE;
                 if ((u32) data_021759c0->mCurrentEntries[j].mPlayer.mKind > 3) {
                 } else if ((1 << data_021759c0->mCurrentEntries[j].mPlayer.mKind) & 0xd) {
@@ -179,7 +179,7 @@ void func_02085bec(void) {
     i0 = 0;
     m0 = 0;
     m1 = 0;
-    for (; (u32) i0 < 2; i0++) {
+    for (; i0 < 2; i0++) {
         data_0217aebc->mUnk_114[i0] = 0;
     }
     data_0217aebc->mUnk_110 = 1;
@@ -238,7 +238,7 @@ void func_02085ad8(void) {
     b = 0;
     g = data_021759c0->mKartCount;
     NNS_FndInitList(&data_0217aebc->mUnk_12c, 4);
-    for (i = 0; (u32) i < 2; i++) {
+    for (i = 0; i < 2; i++) {
         if (data_021759c0->mUnk_3d5[i] >= 0) {
             a++;
         }
@@ -330,7 +330,7 @@ s32 func_02085984(u16 a, u32 *b) {
                 v1 = TRUE;
             }
         } else {
-            for (k = 0; (u32) k < 2; k++) {
+            for (k = 0; k < 2; k++) {
                 s = p->mUnk_3d5[k];
                 if (s == a) {
                     if (k == 0) {
@@ -405,7 +405,7 @@ s16 func_02085824(u32 a) {
     u16 j;
     r = 0;
     if (data_021759c0->mUseTeams != 0) {
-        for (j = 0; (u32) j < 2; j++) {
+        for (j = 0; j < 2; j++) {
             if (j != data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex) {
                 r = r + data_0217aebc->mUnk_13e[j];
             }
@@ -548,7 +548,7 @@ s32 func_02085458(s32 a) {
 }
 
 s32 func_02085434(void) {
-    return ((u32) data_0217aebc->mUnk_060[(((u32) data_0217aebc->mUnk_124)) - (0x1u)]);
+    return ((u32) data_0217aebc->mUnk_060[((data_0217aebc->mUnk_124)) - (0x1u)]);
 }
 
 Unk0217aec0 *func_02085424(void) {
@@ -560,11 +560,11 @@ s32 func_02085408(u32 p0) {
 }
 
 u32 func_020853f0(u32 p0) {
-    return ((u32) data_0217aebc->mUnk_090[p0]);
+    return (data_0217aebc->mUnk_090[p0]);
 }
 
 u32 func_020853dc(void) {
-    return ((u32) data_0217aebc->mUnk_138);
+    return (data_0217aebc->mUnk_138);
 }
 
 s32 func_020853a4(u32 a) {
@@ -576,7 +576,7 @@ s32 func_020853a4(u32 a) {
 }
 
 u32 func_02085390(void) {
-    return ((u32) data_0217aebc->mUnk_120);
+    return (data_0217aebc->mUnk_120);
 }
 
 Unk0217aebc_128 *func_0208537c(void) {

@@ -43,7 +43,7 @@ u32 func_020b3f64(void) {
     u32 value1;
     value0 = (u32) &data_0217b35c;
     value1 = 1u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (4)) = value1;
     return value0;
 }
@@ -184,7 +184,7 @@ u32 func_020b3adc(void) {
     u32 value1;
     value0 = (u32) &data_0217b35c;
     value1 = 0u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (0)) = value1;
     return value0;
 }
@@ -225,7 +225,7 @@ void func_020b3728(void) {
                     }
                     break;
             }
-            if ((u32) (data_0217d084.mUnk_04 - 2) <= 1 && data_021759c0->mMode != MODE_BATTLE) {
+            if ((data_0217d084.mUnk_04 - 2) <= 1 && data_021759c0->mMode != MODE_BATTLE) {
                 d = data_021759c0;
                 f = TRUE;
                 if (d->mUnk_00c == 1) {

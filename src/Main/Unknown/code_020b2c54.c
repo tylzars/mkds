@@ -17,5 +17,5 @@ void func_020b2c68(void) {
 #pragma thumb off
 
 u32 func_020b2c54(void) {
-    return ((u32) data_021759d4->mUnk_0c);
+    return (data_021759d4->mUnk_0c);
 }

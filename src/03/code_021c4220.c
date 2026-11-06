@@ -35,7 +35,7 @@ void func_ov003_021c42cc(void) {
 
 void func_ov003_021c42ac(void) {
     func_ov003_021bf2d0();
-    func_ov003_021d1dd0((u16) (8));
+    func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c427c);
     return;
 }
@@ -45,7 +45,7 @@ void func_ov003_021c427c(void) {
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
         func_ov003_021bf344();
-        func_ov003_021d1ee0(3, 0, 0x15, (u16) (8));
+        func_ov003_021d1ee0(3, 0, 0x15, 8);
         func_ov003_021c212c(func_ov003_021c4240);
     }
     return;

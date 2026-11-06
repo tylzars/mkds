@@ -20,7 +20,7 @@ void NNSi_G2dTextCanvasDrawString(Unk02180728 *pTxn, s32 x, s32 y, u32 cl, u16 *
             if (code == 10) {
                 break;
             }
-            x += NNS_G2dCharCanvasDrawChar((Unk02023374 *) pTxn->mUnk_00, font, x, y, cl, code);
+            x += NNS_G2dCharCanvasDrawChar(pTxn->mUnk_00, font, x, y, cl, code);
             x += hSpace;
             code = readChar(&pos);
         } while (code != 0);

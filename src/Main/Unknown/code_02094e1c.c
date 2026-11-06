@@ -22,18 +22,18 @@ void func_020954e4(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = value0;
-    value1 = (u32) * (const u32 *) ((value2) + (156));
+    value1 = *(const u32 *) ((value2) + (156));
     value0 = MAP_OBJECT_KIND_TERESA;
-    value1 = (u32) * (const s16 *) ((value1) + (42));
+    value1 = *(const s16 *) ((value1) + (42));
     CreateParkedMapObjects(value0, value1, (void *) value2);
 }
 
 static inline u32 func_02095228_inline(Unk020f41c4_B *b, u32 n) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     if (n == 0) {
-        return (u32) (b->mUnk_00 >> 32);
+        return b->mUnk_00 >> 32;
     }
-    return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
+    return ((b->mUnk_00 >> 32) * n) >> 32;
 }
 
 static inline u16 func_020952dc_inline(u32 n) {
@@ -43,7 +43,7 @@ static inline u16 func_020952dc_inline(u32 n) {
     if (n == 0x10000) {
         r = &gRaceProgress->mLocalRandom;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        return (u16) ((r->mUnk_00 >> 32) * 0x10000 >> 32);
+        return (r->mUnk_00 >> 32) * 0x10000 >> 32;
     }
     r = &gRaceProgress->mLocalRandom;
     m = (u16) n;
@@ -57,7 +57,7 @@ static inline u16 func_020952dc_inline(u32 n) {
             t = ((r->mUnk_00 >> 32) * m) >> 32;
         }
     }
-    return (u16) t;
+    return t;
 }
 
 void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e) {
@@ -75,9 +75,9 @@ void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e) {
         k = i = 0;
         for (; i < c; i++) {
             if (d > 0) {
-                f = 0.5f + (float) (d << 12);
+                f = 0.5f + (d << 12);
             } else {
-                f = (float) (d << 12) - 0.5f;
+                f = (d << 12) - 0.5f;
             }
             z = 0;
             y = a->mUnk_00.mPos.y;
@@ -111,7 +111,7 @@ Unk020f41c4_B *GetRaceLocalRandom(void) {
 
 u16 func_020951b4(Unk020f41c4_B *a) {
     a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-    return (u16) (((a->mUnk_00 >> 32) * 0x10000) >> 32);
+    return ((a->mUnk_00 >> 32) * 0x10000) >> 32;
 }
 
 s16 func_0209519c(s32 a) {
@@ -119,7 +119,7 @@ s16 func_0209519c(s32 a) {
 }
 
 s32 func_0209518c(s32 a, s32 b) {
-    return (s32) (((s64) a * b) >> 12);
+    return ((s64) a * b) >> 12;
 }
 
 s16 func_0209516c(s32 a) {
@@ -166,9 +166,9 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
             if (func_02061818() == 2) {
                 for (i = 0; i < o->mUnk_00.mCourseMapRow->mUnk_2a; i++) {
                     if (o->mUnk_00.mCourseMapRow->mUnk_28 > 0) {
-                        f = 0.5f + (float) (o->mUnk_00.mCourseMapRow->mUnk_28 << 12);
+                        f = 0.5f + (o->mUnk_00.mCourseMapRow->mUnk_28 << 12);
                     } else {
-                        f = (float) (o->mUnk_00.mCourseMapRow->mUnk_28 << 12) - 0.5f;
+                        f = (o->mUnk_00.mCourseMapRow->mUnk_28 << 12) - 0.5f;
                     }
                     z = o->mUnk_00.mPos.z;
                     y = o->mUnk_00.mPos.y;

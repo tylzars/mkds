@@ -214,7 +214,7 @@ u16 func_ov000_021b01a0(u16 sum) {
 }
 
 u16 func_ov000_021b0188(const void *buffer, u32 length) {
-    return func_ov000_021b01a0((u16) func_ov000_021b01b4(buffer, length, 0));
+    return func_ov000_021b01a0(func_ov000_021b01b4(buffer, length, 0));
 }
 
 BOOL func_ov000_021b0138(const void *buffer, u32 length, const Unk021b0138 *header, u32 sum) {
@@ -615,7 +615,7 @@ void func_ov000_021af7e4(u8 *a, u32 b, Unk021a998c *c) {
     g = c->mSendBuffer;
     d = g + 0x22;
     *(u16 *) (g + 0x22) = 8;
-    *(u16 *) (d + 4) = (u16) (u32) data_0216ff5c.mCurrentThread;
+    *(u16 *) (d + 4) = (u32) data_0216ff5c.mCurrentThread;
     *(u16 *) (d + 2) = 0;
     h = data_ov000_021b636c;
     c->mUnk_0a = h;
@@ -713,8 +713,8 @@ void func_ov000_021af4d4(Unk021af3e8 *a) {
     a->mUnk_06 = 0x200;
     MI_CpuCopy8(a->mUnk_08, a->mUnk_12, 10);
     MI_CpuCopy8(data_ov000_021b63d0, a->mUnk_08, 6);
-    a->mUnk_0e = (u16) (((u16) (data_ov000_021b63b4 >> 16) >> 8) | ((u16) (data_ov000_021b63b4 >> 16) << 8));
-    a->mUnk_10 = (u16) (((u16) data_ov000_021b63b4 >> 8) | ((u16) data_ov000_021b63b4 << 8));
+    a->mUnk_0e = ((u16) (data_ov000_021b63b4 >> 16) >> 8) | ((u16) (data_ov000_021b63b4 >> 16) << 8);
+    a->mUnk_10 = ((u16) data_ov000_021b63b4 >> 8) | ((u16) data_ov000_021b63b4 << 8);
     MI_CpuCopy8(a->mUnk_12, (u8 *) a - 0xe, 6);
     MI_CpuCopy8(data_ov000_021b63d0, (u8 *) a - 8, 6);
     func_ov000_021affcc((u8 *) a - 0xe, 0x2a, NULL, 0);
@@ -749,7 +749,7 @@ void func_ov000_021af3e8(Unk021af3e8 *f, u32 g) {
     if (a != 1 && a != 2) {
         return;
     }
-    e = (u32) (((u16) ((f->mUnk_0e >> 8) | (f->mUnk_0e << 8)) << 16) | (u16) ((f->mUnk_10 >> 8) | (f->mUnk_10 << 8)));
+    e = ((u16) ((f->mUnk_0e >> 8) | (f->mUnk_0e << 8)) << 16) | (u16) ((f->mUnk_10 >> 8) | (f->mUnk_10 << 8));
     d = data_ov000_021b63b4;
     if (e == d) {
         b = 1;
@@ -779,7 +779,7 @@ void func_ov000_021af348(Unk021ae3f0 *d, Unk021af1e4 *e, u32 f) {
     u32 b;
     u16 c;
 
-    a = (u32) (((u16) ((d->mUnk_0c >> 8) | (d->mUnk_0c << 8)) << 16) | (u16) ((d->mUnk_0e >> 8) | (d->mUnk_0e << 8)));
+    a = ((u16) ((d->mUnk_0c >> 8) | (d->mUnk_0c << 8)) << 16) | (u16) ((d->mUnk_0e >> 8) | (d->mUnk_0e << 8));
     if (func_ov000_021b0094(a) != FALSE) {
         return;
     }
@@ -794,11 +794,10 @@ void func_ov000_021af348(Unk021ae3f0 *d, Unk021af1e4 *e, u32 f) {
     e->mUnk_00 = 0;
     e->mUnk_02 = 0;
     c = func_ov000_021b0188(e, f);
-    e->mUnk_02 = (u16) ((c >> 8) | (c << 8));
+    e->mUnk_02 = (c >> 8) | (c << 8);
     func_ov000_021af858(
         (u8 *) e, f, NULL, 0,
-        (u32) (((u16) ((d->mUnk_0c >> 8) | (d->mUnk_0c << 8)) << 16) | (u16) ((d->mUnk_0e >> 8) | (d->mUnk_0e << 8))),
-        1);
+        ((u16) ((d->mUnk_0c >> 8) | (d->mUnk_0c << 8)) << 16) | (u16) ((d->mUnk_0e >> 8) | (d->mUnk_0e << 8)), 1);
 }
 
 void func_ov000_021af2a0(Unk021ae3f0 *c, Unk021af1e4 *d, u32 e) {
@@ -988,13 +987,13 @@ void func_ov000_021aeed8(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
 
     p = &data_ov000_021b64f8;
     MI_CpuFill8(p, 0, 0x64);
-    p->mUnk_0a = (u16) ((param_2->mUnk_02 >> 8) | (param_2->mUnk_02 << 8));
-    p->mUnk_18 = (u16) ((param_2->mUnk_00 >> 8) | (param_2->mUnk_00 << 8));
-    p->mUnk_1c = (u32) (((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) |
-                        (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8)));
+    p->mUnk_0a = (param_2->mUnk_02 >> 8) | (param_2->mUnk_02 << 8);
+    p->mUnk_18 = (param_2->mUnk_00 >> 8) | (param_2->mUnk_00 << 8);
+    p->mUnk_1c = ((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) |
+                 (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8));
     if ((param_2->mUnk_0d & 0x10) != 0) {
-        p->mUnk_28 = (u32) (((u16) ((param_2->mUnk_08 >> 8) | (param_2->mUnk_08 << 8)) << 16) |
-                            (u16) ((param_2->mUnk_0a >> 8) | (param_2->mUnk_0a << 8)));
+        p->mUnk_28 = ((u16) ((param_2->mUnk_08 >> 8) | (param_2->mUnk_08 << 8)) << 16) |
+                     (u16) ((param_2->mUnk_0a >> 8) | (param_2->mUnk_0a << 8));
         func_ov000_021aefc0(p, 4, param_4);
         return;
     }
@@ -1010,16 +1009,16 @@ void func_ov000_021aeed8(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
 void func_ov000_021aee38(Unk021ae3f0 *param_1, Unk021ae87c *param_2, Unk021a998c *param_3) {
     param_3->mState = 3;
     param_3->mStateStartTime = OS_GetTick() >> 16;
-    param_3->mUnk_14 = (u32) (((u16) ((param_1->mUnk_10 >> 8) | (param_1->mUnk_10 << 8)) << 16) |
-                              (u16) ((param_1->mUnk_12 >> 8) | (param_1->mUnk_12 << 8)));
-    param_3->mUnk_18 = (u16) ((param_2->mUnk_00 >> 8) | (param_2->mUnk_00 << 8));
-    param_3->mUnk_1c = (u32) (((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) |
-                              (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8)));
+    param_3->mUnk_14 = ((u16) ((param_1->mUnk_10 >> 8) | (param_1->mUnk_10 << 8)) << 16) |
+                       (u16) ((param_1->mUnk_12 >> 8) | (param_1->mUnk_12 << 8));
+    param_3->mUnk_18 = (param_2->mUnk_00 >> 8) | (param_2->mUnk_00 << 8);
+    param_3->mUnk_1c = ((u16) ((param_1->mUnk_0c >> 8) | (param_1->mUnk_0c << 8)) << 16) |
+                       (u16) ((param_1->mUnk_0e >> 8) | (param_1->mUnk_0e << 8));
     param_3->mUnk_24 = (u32) (((u16) ((param_2->mUnk_04 >> 8) | (param_2->mUnk_04 << 8)) << 16) |
                               (u16) ((param_2->mUnk_06 >> 8) | (param_2->mUnk_06 << 8))) +
                        1;
     func_ov000_021af030(param_2, param_3);
-    func_ov000_021aefc0(param_3, 0x12, (u16) ((param_1->mUnk_05 << 8) + 1));
+    func_ov000_021aefc0(param_3, 0x12, (param_1->mUnk_05 << 8) + 1);
 }
 
 u32 func_ov000_021aedd8(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3) {
@@ -1074,11 +1073,11 @@ void func_ov000_021aec84(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
     a->mUnk_24 = (u32) (((u16) ((param_2->mUnk_04 >> 8) | (param_2->mUnk_04 << 8)) << 16) |
                         (u16) ((param_2->mUnk_06 >> 8) | (param_2->mUnk_06 << 8))) +
                  1;
-    a->mUnk_30 = (u32) (((u16) ((param_2->mUnk_08 >> 8) | (param_2->mUnk_08 << 8)) << 16) |
-                        (u16) ((param_2->mUnk_0a >> 8) | (param_2->mUnk_0a << 8)));
-    a->mUnk_2c = (u16) ((param_2->mUnk_0e >> 8) | (param_2->mUnk_0e << 8));
+    a->mUnk_30 = ((u16) ((param_2->mUnk_08 >> 8) | (param_2->mUnk_08 << 8)) << 16) |
+                 (u16) ((param_2->mUnk_0a >> 8) | (param_2->mUnk_0a << 8));
+    a->mUnk_2c = (param_2->mUnk_0e >> 8) | (param_2->mUnk_0e << 8);
     func_ov000_021af030(param_2, a);
-    func_ov000_021aefb4(a, (u16) ((param_1->mUnk_05 << 8) + 6));
+    func_ov000_021aefb4(a, (param_1->mUnk_05 << 8) + 6);
     a->mState = 4;
     if (a->mUnk_04 == 1) {
         a->mUnk_04 = 0;
@@ -1102,15 +1101,14 @@ void func_ov000_021aea34(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
     }
     b = param_2->mUnk_0d;
     d = param_2->mUnk_0a;
-    a->mUnk_30 =
-        (u32) (((u16) ((param_2->mUnk_08 >> 8) | (param_2->mUnk_08 << 8)) << 16) | (u16) ((d >> 8) | (d << 8)));
+    a->mUnk_30 = ((u16) ((param_2->mUnk_08 >> 8) | (param_2->mUnk_08 << 8)) << 16) | (u16) ((d >> 8) | (d << 8));
     e = param_2->mUnk_06;
-    c = (u32) (((u16) ((param_2->mUnk_04 >> 8) | (param_2->mUnk_04 << 8)) << 16) | (u16) ((e >> 8) | (e << 8)));
+    c = ((u16) ((param_2->mUnk_04 >> 8) | (param_2->mUnk_04 << 8)) << 16) | (u16) ((e >> 8) | (e << 8));
     if (a->mState == 4 && a->mUnk_24 != c) {
-        func_ov000_021aefb4(a, (u16) ((param_1->mUnk_05 << 8) + 0xa));
+        func_ov000_021aefb4(a, (param_1->mUnk_05 << 8) + 0xa);
         return;
     }
-    a->mUnk_2c = (u16) ((param_2->mUnk_0e >> 8) | (param_2->mUnk_0e << 8));
+    a->mUnk_2c = (param_2->mUnk_0e >> 8) | (param_2->mUnk_0e << 8);
     switch (a->mState) {
         case 0:
         case 2:
@@ -1149,7 +1147,7 @@ void func_ov000_021aea34(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
             if (c != 0 && (b & 1) != 0) {
                 a->mState = 6;
                 a->mUnk_24++;
-                func_ov000_021aefa8(a, (u16) ((param_1->mUnk_05 << 8) + 0xb));
+                func_ov000_021aefa8(a, (param_1->mUnk_05 << 8) + 0xb);
                 if (param_3 == 0 && a->mUnk_04 == 2) {
                     a->mUnk_04 = 0;
                     OS_WakeupThreadDirect(a->mThread);
@@ -1157,14 +1155,14 @@ void func_ov000_021aea34(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
                 break;
             }
             if (param_3 != 0) {
-                func_ov000_021aefb4(a, (u16) ((param_1->mUnk_05 << 8) + 0xc));
+                func_ov000_021aefb4(a, (param_1->mUnk_05 << 8) + 0xc);
             }
             break;
         case 7:
         case 8:
             if ((b & 1) != 0) {
                 a->mUnk_24 = a->mUnk_24 + (param_3 + 1);
-                func_ov000_021aefb4(a, (u16) ((param_1->mUnk_05 << 8) + 0xd));
+                func_ov000_021aefb4(a, (param_1->mUnk_05 << 8) + 0xd);
                 a->mState = 0;
                 if (a->mUnk_04 == 2) {
                     a->mUnk_04 = 0;
@@ -1174,7 +1172,7 @@ void func_ov000_021aea34(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
             }
             if (param_3 != 0) {
                 a->mUnk_24 += param_3;
-                func_ov000_021aefb4(a, (u16) ((param_1->mUnk_05 << 8) + 0xe));
+                func_ov000_021aefb4(a, (param_1->mUnk_05 << 8) + 0xe);
             }
             a->mState = 8;
             break;
@@ -1190,7 +1188,7 @@ void func_ov000_021aea34(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
             if ((b & 1) != 0) {
                 a->mUnk_24++;
             }
-            func_ov000_021aefb4(a, (u16) ((param_1->mUnk_05 << 8) + 0x12));
+            func_ov000_021aefb4(a, (param_1->mUnk_05 << 8) + 0x12);
             break;
     }
     OS_YieldThread();
@@ -1206,12 +1204,12 @@ void func_ov000_021ae984(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
     switch (a->mState) {
         case 7:
             a->mUnk_24++;
-            func_ov000_021aefb4(a, (u16) ((param_1->mUnk_05 << 8) + 0x13));
+            func_ov000_021aefb4(a, (param_1->mUnk_05 << 8) + 0x13);
             a->mState = 9;
             return;
         case 8:
             a->mUnk_24++;
-            func_ov000_021aefb4(a, (u16) ((param_1->mUnk_05 << 8) + 0x14));
+            func_ov000_021aefb4(a, (param_1->mUnk_05 << 8) + 0x14);
             a->mState = 0;
             if (a->mUnk_04 == 2) {
                 a->mUnk_04 = 0;
@@ -1221,7 +1219,7 @@ void func_ov000_021ae984(Unk021ae3f0 *param_1, Unk021ae87c *param_2, u32 param_3
             return;
         case 4:
             a->mUnk_24++;
-            func_ov000_021aefa8(a, (u16) ((param_1->mUnk_05 << 8) + 0x15));
+            func_ov000_021aefa8(a, (param_1->mUnk_05 << 8) + 0x15);
             a->mState = 6;
             return;
         default:
@@ -1300,12 +1298,12 @@ void func_ov000_021ae724(Unk021ae3f0 *a, Unk021ae724 *b, u32 c) {
                                  (u16) ((a->mUnk_0e >> 8) | (a->mUnk_0e << 8)))) {
             continue;
         }
-        s->mUnk_14 = (u32) (((u16) ((a->mUnk_10 >> 8) | (a->mUnk_10 << 8)) << 16) |
-                            (u16) ((a->mUnk_12 >> 8) | (a->mUnk_12 << 8)));
+        s->mUnk_14 =
+            ((u16) ((a->mUnk_10 >> 8) | (a->mUnk_10 << 8)) << 16) | (u16) ((a->mUnk_12 >> 8) | (a->mUnk_12 << 8));
         if (s->mUnk_1c == 0) {
-            s->mUnk_1c = (u32) (((u16) ((a->mUnk_0c >> 8) | (a->mUnk_0c << 8)) << 16) |
-                                (u16) ((a->mUnk_0e >> 8) | (a->mUnk_0e << 8)));
-            s->mUnk_18 = (u16) ((b->mUnk_00 >> 8) | (b->mUnk_00 << 8));
+            s->mUnk_1c =
+                ((u16) ((a->mUnk_0c >> 8) | (a->mUnk_0c << 8)) << 16) | (u16) ((a->mUnk_0e >> 8) | (a->mUnk_0e << 8));
+            s->mUnk_18 = (b->mUnk_00 >> 8) | (b->mUnk_00 << 8);
         }
         if (s->mReceiveBufferLength != 0) {
             return;
@@ -1354,7 +1352,7 @@ Unk021ae3f0 *func_ov000_021ae51c(Unk021ae3f0 *r, u32 *s) {
     }
     b = (r->mUnk_00 & 0xf) << 2;
     m = *(u16 *) &r->mUnk_04;
-    c = (u32) (((u16) ((r->mUnk_0c >> 8) | (r->mUnk_0c << 8)) << 16) | (u16) ((r->mUnk_0e >> 8) | (r->mUnk_0e << 8)));
+    c = ((u16) ((r->mUnk_0c >> 8) | (r->mUnk_0c << 8)) << 16) | (u16) ((r->mUnk_0e >> 8) | (r->mUnk_0e << 8));
     l = NULL;
     k = data_ov000_021b69dc;
     for (n = 0; n < 8; k++, n++) {
@@ -1421,8 +1419,8 @@ Unk021ae3f0 *func_ov000_021ae51c(Unk021ae3f0 *r, u32 *s) {
     {
         Unk021ae3f0 *p = (Unk021ae3f0 *) (k->mUnk_34 + 0xe);
 
-        p->mUnk_02 = (u16) (((u16) (k->mUnk_0a + ((p->mUnk_00 & 0xf) << 2)) >> 8) |
-                            ((u16) (k->mUnk_0a + ((p->mUnk_00 & 0xf) << 2)) << 8));
+        p->mUnk_02 = ((u16) (k->mUnk_0a + ((p->mUnk_00 & 0xf) << 2)) >> 8) |
+                     ((u16) (k->mUnk_0a + ((p->mUnk_00 & 0xf) << 2)) << 8);
         k->mUnk_04 = 0;
         *s = 1;
         return p;
@@ -1434,8 +1432,8 @@ void func_ov000_021ae3f0(Unk021ae3f0 *a, u32 f) {
 
     if ((u32) (((u16) ((a->mUnk_10 >> 8) | (a->mUnk_10 << 8)) << 16) | (u16) ((a->mUnk_12 >> 8) | (a->mUnk_12 << 8))) !=
         (u32) (((u16) ((a->mUnk_0c >> 8) | (a->mUnk_0c << 8)) << 16) | (u16) ((a->mUnk_0e >> 8) | (a->mUnk_0e << 8)))) {
-        if (func_ov000_021b003c((u32) (((u16) ((a->mUnk_10 >> 8) | (a->mUnk_10 << 8)) << 16) |
-                                       (u16) ((a->mUnk_12 >> 8) | (a->mUnk_12 << 8)))) == FALSE) {
+        if (func_ov000_021b003c(((u16) ((a->mUnk_10 >> 8) | (a->mUnk_10 << 8)) << 16) |
+                                (u16) ((a->mUnk_12 >> 8) | (a->mUnk_12 << 8))) == FALSE) {
             return;
         }
         if (f < (u16) ((a->mUnk_02 >> 8) | (a->mUnk_02 << 8))) {
@@ -1447,8 +1445,8 @@ void func_ov000_021ae3f0(Unk021ae3f0 *a, u32 f) {
         if (data_ov000_021b63b4 == (u32) (((u16) ((a->mUnk_10 >> 8) | (a->mUnk_10 << 8)) << 16) |
                                           (u16) ((a->mUnk_12 >> 8) | (a->mUnk_12 << 8)))) {
             func_ov000_021afb58((u8 *) a - 8,
-                                (u32) (((u16) ((a->mUnk_0c >> 8) | (a->mUnk_0c << 8)) << 16) |
-                                       (u16) ((a->mUnk_0e >> 8) | (a->mUnk_0e << 8))),
+                                ((u16) ((a->mUnk_0c >> 8) | (a->mUnk_0c << 8)) << 16) |
+                                    (u16) ((a->mUnk_0e >> 8) | (a->mUnk_0e << 8)),
                                 0);
         }
     }
@@ -1525,7 +1523,7 @@ void func_ov000_021ae304(void *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     value1 = (u32) &data_0216ff5c;
-    value1 = (u32) * (const u32 *) ((value1) + 4u);
+    value1 = *(const u32 *) ((value1) + 4u);
     value1 = (value1) + 164u;
     *(u32 *) ((value1) + 0u) = value0;
     return;

@@ -31,7 +31,7 @@ u32 func_0208bd04(u32 arg0) {
     value2 = (u32) &data_0217b040;
     value12 = (u32) &HeapAlloc;
     value1 = value0;
-    value0 = (u32) * (const u32 *) ((value2) + (0));
+    value0 = *(const u32 *) ((value2) + (0));
     value0 = (u32) HeapAlloc((void *) value0, value1);
     return value0;
 }
@@ -250,6 +250,6 @@ u32 func_0208b484(u32 arg0, u32 arg1) {
     u32 value2;
     value2 = (u32) &data_0217b044;
     *(u32 *) ((value0) + (0)) = value1;
-    value0 = (u32) * (const u32 *) ((value2) + (0));
+    value0 = *(const u32 *) ((value2) + (0));
     return value0;
 }

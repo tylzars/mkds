@@ -6,8 +6,8 @@ s32 func_02055710(void) {
     u32 value1;
     value0 = (u32) &data_0217aa00;
     value1 = 0xffffu;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     value0 = (value0) + (0x400u);
-    *(u16 *) ((value0) + (50)) = (u16) value1;
-    return (s32) value0;
+    *(u16 *) ((value0) + (50)) = value1;
+    return value0;
 }

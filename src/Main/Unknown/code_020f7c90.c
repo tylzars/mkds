@@ -29,7 +29,7 @@ void func_020f80c0(ItemSlotTable *a, s32 b) {
         return;
     }
     for (i = 0; i < b; i++) {
-        v = (u16) (e[i] - 1);
+        v = e[i] - 1;
         for (j = 0; j < 0x12; j++) {
             tab[i][j] = tab[v][j];
         }
@@ -149,8 +149,8 @@ void func_020f7c90(ItemObject *a, Vec3 *b, Vec3 *c) {
             Vec3NormalizeAndGetLengthUnchecked(c, c);
         }
         if (Vec3DotUnrounded(c, &a->mUnk_108) > 0x800) {
-            a->mVelocity.z = (s32) (((s64) c->z * 0x14cd) >> 12);
-            a->mVelocity.x = (s32) (((s64) c->x * 0x14cd) >> 12);
+            a->mVelocity.z = ((s64) c->z * 0x14cd) >> 12;
+            a->mVelocity.x = ((s64) c->x * 0x14cd) >> 12;
         }
     }
     d = (s64) (a->mPos.x - b->x) * (a->mPos.x - b->x) + (s64) (a->mPos.y - b->y) * (a->mPos.y - b->y) +
@@ -170,7 +170,7 @@ void func_020f7c90(ItemObject *a, Vec3 *b, Vec3 *c) {
     i = (u16) ((((u64) (u32) (q->mUnk_00 >> 32) * 0x10000) >> 32)) >> 4;
     a->mUnk_108.z = gPairsByAngle[i * 2 + 1];
     a->mUnk_108.x = gPairsByAngle[i * 2];
-    a->mVelocity.z = (s32) (((s64) a->mUnk_108.z * 0x14cd) >> 12);
-    a->mVelocity.x = (s32) (((s64) a->mUnk_108.x * 0x14cd) >> 12);
+    a->mVelocity.z = ((s64) a->mUnk_108.z * 0x14cd) >> 12;
+    a->mVelocity.x = ((s64) a->mUnk_108.x * 0x14cd) >> 12;
     a->mFlags |= 0x2000000;
 }

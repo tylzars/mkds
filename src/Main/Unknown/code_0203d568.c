@@ -114,7 +114,7 @@ static inline s32 func_0203df74_c_inline(CourseMapRoute *r, u16 c, s32 v) {
         x = FX_Div(t + v, r->mEntryCount << 12);
     }
     t = x + (r->mLapProgressBase << 12);
-    return (s32) (((s64) t * gRaceProgress->mLapProgressScale + 0x800) >> 12);
+    return ((s64) t * gRaceProgress->mLapProgressScale + 0x800) >> 12;
 }
 
 static inline void func_0203e550_inline(s32 a) {
@@ -151,7 +151,7 @@ void func_0203e550(RaceProgressKart *a) {
     if ((a->mFlags & 1) != 0) {
         func_02106ab8();
     }
-    func_0203f334(a, a->mLap > (s32) func_02044618());
+    func_0203f334(a, a->mLap > func_02044618());
     a->mHighestLap = a->mLap;
     if ((a->mFlags & 1) != 0) {
         func_020b1a34();
@@ -251,7 +251,7 @@ void UpdateRaceProgressKart(Vec3 *a, RaceProgressKart *b) {
 
     c = b->mCheckpoint;
     d = b->mRoute;
-    p = (s16) c;
+    p = c;
     v = 0;
     if (func_0207a5c4(b->mIndex) != 0) {
         return;
@@ -295,7 +295,7 @@ void UpdateRaceProgressKart(Vec3 *a, RaceProgressKart *b) {
     b->mCheckpointProgress = v;
     b->mLapProgress = w;
     k = ((b->mLap - 1) << 12) + b->mLapProgress;
-    b->mRaceProgress = (s32) (((s64) k * gRaceProgress->mRaceProgressScale + 0x800) >> 12);
+    b->mRaceProgress = ((s64) k * gRaceProgress->mRaceProgressScale + 0x800) >> 12;
 }
 
 void UpdateRaceProgressKarts(void) {
@@ -349,7 +349,7 @@ void UpdateRaceProgressKarts(void) {
             a[i] = e->mRaceProgress;
         }
     }
-    if ((u32) data_021759c0->mKartCount > 1) {
+    if (data_021759c0->mKartCount > 1) {
         p = gRaceProgress;
         y = data_021759c0->mKartCount - p->mUnk_000[0].mRemovedCount;
         x = p->mUnk_000[0].mFinishedCount;

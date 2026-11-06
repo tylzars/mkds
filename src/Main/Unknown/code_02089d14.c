@@ -300,10 +300,10 @@ void func_02089ef4(s32 a) {
 }
 
 void func_02089ecc(Unk02089ecc *p0) {
-    p0->mUnk_00 = (u16) 0xau;
-    p0->mUnk_02 = (u16) 0xcu;
-    p0->mUnk_04 = (u16) 0x7fffu;
-    p0->mUnk_08 = (u32) 0x1u;
+    p0->mUnk_00 = 0xau;
+    p0->mUnk_02 = 0xcu;
+    p0->mUnk_04 = 0x7fffu;
+    p0->mUnk_08 = 0x1u;
 }
 
 void func_02089e68(Unk02089e68 *a) {
@@ -315,21 +315,21 @@ void func_02089e68(Unk02089e68 *a) {
 }
 
 void func_02089e10(int a) {
-    *(u32 *) 0x400048c = data_02155ed0[a * 3] | data_02155ed0[a * 3 + 1] << 16;
-    *(u32 *) 0x400048c = data_02155ed0[a * 3 + 2];
+    reg_G3_VTX_16 = data_02155ed0[a * 3] | data_02155ed0[a * 3 + 1] << 16;
+    reg_G3_VTX_16 = data_02155ed0[a * 3 + 2];
 }
 
 void func_02089d70(Unk0217b034_784 *a) {
     u32 *v1;
     u32 *v2;
-    v1 = ((u32 *) 0x0400046cu);
+    v1 = ((u32 *) &reg_G3_MTX_SCALE);
     reg_G3_POLYGON_ATTR = (0x090000c0u) | a->mUnk_02 << 0x10;
     *v1 = 0x8c000;
     *v1 = 0x6e000;
-    v2 = ((u32 *) 0x04000500u);
+    v2 = ((u32 *) &reg_G3_BEGIN_VTXS);
     *v1 = 0xa000;
     *v2 = 1;
-    reg_G3_COLOR = (u32) a->mUnk_04;
+    reg_G3_COLOR = a->mUnk_04;
     func_02089e10(0);
     func_02089e10(1);
     func_02089e10(2);

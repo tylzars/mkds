@@ -913,7 +913,7 @@ u32 func_ov000_021aa380(u32 p0, u8 *p1, u32 p2) {
     u32 v2 = 0x1b4u;
     u32 v3 = ((p0) + (v2));
     u32 v5;
-    func_ov000_021ac3e4((u8 *) v3, p1, (s32) p2);
+    func_ov000_021ac3e4((u8 *) v3, p1, p2);
     v5 = ((v1) + (0x0u));
     return v5;
 }
@@ -1150,7 +1150,7 @@ u8 func_ov000_021a9d68(Unk021a998c *a) {
                     func_ov000_021abca0(&c->mUnk_2c0, r - 4, (u32) (v3 + 4));
                     func_ov000_021ab728(&c->mUnk_378, r - 4, (u32) (v3 + 4));
                     r += v3;
-                    n -= (u32) (v3 + 4);
+                    n -= (v3 + 4);
                     if (n == 0) {
                         break;
                     }

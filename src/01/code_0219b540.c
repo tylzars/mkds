@@ -671,6 +671,6 @@ int AdvanceSelectGhost(void) {
 }
 
 void func_ov001_0219b540(void) {
-    *(u32 *) 0x4000010 = (-gSelectGhost->mBg0Offset << 16) & 0x1ff0000;
-    *(u32 *) 0x400101c = (-gSelectGhost->mBg3Offset << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-gSelectGhost->mBg0Offset << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (-gSelectGhost->mBg3Offset << 16) & 0x1ff0000;
 }

@@ -59,10 +59,10 @@ u32 func_020980ec(Flipper *p, Kart *q, void *b, u8 *c) {
             VEC_Subtract(&q->mPos, &p->mUnk_00.mPos, &w);
             f = VEC_Mag(&w);
             e = &p->mUnk_a8[p->mUnk_ec0].mUnk_00[2];
-            f = (s32) (((s64) f * s) >> 12);
-            p->mUnk_00.mUnk_10.x = (s32) (((s64) e->x * f) >> 12);
-            p->mUnk_00.mUnk_10.y = (s32) (((s64) e->y * f) >> 12);
-            p->mUnk_00.mUnk_10.z = (s32) (((s64) e->z * f) >> 12);
+            f = ((s64) f * s) >> 12;
+            p->mUnk_00.mUnk_10.x = ((s64) e->x * f) >> 12;
+            p->mUnk_00.mUnk_10.y = ((s64) e->y * f) >> 12;
+            p->mUnk_00.mUnk_10.z = ((s64) e->z * f) >> 12;
             p->mUnk_00.mDistanceSquaredAndFlags = p->mUnk_00.mDistanceSquaredAndFlags | data_usa_02156588;
             func_020d26ec(q, 0x1d1);
         }

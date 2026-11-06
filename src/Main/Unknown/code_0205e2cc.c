@@ -304,7 +304,7 @@ s32 RunGhostScene(SceneNumbers *a) {
 #pragma thumb off
 
 static inline s32 func_0205e2cc_inline(s32 a, s32 b) {
-    return (s32) (((s64) a * b + 0x800) >> 12);
+    return ((s64) a * b + 0x800) >> 12;
 }
 
 void func_0205e2cc(void *a) {

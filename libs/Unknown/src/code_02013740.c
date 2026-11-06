@@ -78,7 +78,7 @@ void *NNS_G3dGetResDataByName(const void *dict, const u32 *name) {
             entryName = (const u32 *) ((const u8 *) dictEntries + dictEntries->mOfsName + i * 16);
             if (entryName[0] == k0 && entryName[1] == k1 && entryName[2] == k2 && entryName[3] == k3) {
                 dictEntries = (const NNSG3dResDictEntryHeader *) ((const u8 *) p + p->mOfsEntry);
-                return (void *) (dictEntries->mData + dictEntries->mSizeUnit * i);
+                return (dictEntries->mData + dictEntries->mSizeUnit * i);
             }
         }
     } else {
@@ -95,7 +95,7 @@ void *NNS_G3dGetResDataByName(const void *dict, const u32 *name) {
             if (entryName[0] == name[0] && entryName[1] == name[1] && entryName[2] == name[2] &&
                 entryName[3] == name[3]) {
                 dictEntries = (const NNSG3dResDictEntryHeader *) ((const u8 *) p + p->mOfsEntry);
-                return (void *) (dictEntries->mData + dictEntries->mSizeUnit * node->mIdxEntry);
+                return (dictEntries->mData + dictEntries->mSizeUnit * node->mIdxEntry);
             }
         }
     }

@@ -94,8 +94,8 @@ static inline void MulMtx22(const s32 *mtx, const s32 *pSrc, s32 *pDst) {
     if (pSrc == pDst) {
         result = buffer;
     }
-    result[0] = (s32) (((s64) mtx[2] * pSrc[1] + 0x1000 + (s64) mtx[0] * pSrc[0]) >> 12);
-    result[1] = (s32) (((s64) mtx[3] * pSrc[1] + 0x1000 + (s64) mtx[1] * pSrc[0]) >> 12);
+    result[0] = ((s64) mtx[2] * pSrc[1] + 0x1000 + (s64) mtx[0] * pSrc[0]) >> 12;
+    result[1] = ((s64) mtx[3] * pSrc[1] + 0x1000 + (s64) mtx[1] * pSrc[0]) >> 12;
     if (result == buffer) {
         pDst[0] = buffer[0];
         pDst[1] = buffer[1];
@@ -132,12 +132,12 @@ u16 NNS_G2dMakeCellToOams(Unk020224e0_o *pDstOams, u16 numDstOam, Unk020224e0_c 
         dstOam->mUnk_00[2] = pSrcOam->mUnk_04;
         if (pMtxSR != 0 || pBaseTrans != 0) {
             attr = *(u32 *) dstOam;
-            posX = (s16) ((attr & 0x1ff0000) >> 16);
+            posX = (attr & 0x1ff0000) >> 16;
             if (posX > 0xff) {
                 posX = posX | 0xff00;
             }
             oamOffset[0] = posX << 12;
-            posY = (s16) (*(u32 *) dstOam & 0xff);
+            posY = *(u32 *) dstOam & 0xff;
             if (posY > 0x7f) {
                 posY = posY | 0xff00;
             }
@@ -177,7 +177,7 @@ u16 NNS_G2dMakeCellToOams(Unk020224e0_o *pDstOams, u16 numDstOam, Unk020224e0_c 
                 oamOffset[1] += pBaseTrans[1];
             }
             *(u32 *) dstOam = (*(u32 *) dstOam & 0xfe00ff00) | (((oamOffset[1] + 0x800) >> 12) & 0xff) |
-                               ((((oamOffset[0] + 0x800) >> 12) & 0x1ff) << 16);
+                              ((((oamOffset[0] + 0x800) >> 12) & 0x1ff) << 16);
         }
     }
     return numDstOam;

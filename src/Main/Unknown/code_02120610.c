@@ -120,9 +120,9 @@ void TallyPickedCourse(void) {
     } else {
         r->mValue = r->mMultiplier * r->mValue + r->mIncrement;
         if (n == 0) {
-            v = (u32) (r->mValue >> 32);
+            v = r->mValue >> 32;
         } else {
-            v = (u32) (((r->mValue >> 32) * (u32) n) >> 32);
+            v = ((r->mValue >> 32) * (u32) n) >> 32;
         }
     }
     w = c[(u16) v];

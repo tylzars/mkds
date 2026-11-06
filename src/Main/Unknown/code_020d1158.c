@@ -4,12 +4,13 @@
 #include "Main/Unknown/code_020cffd0.h"
 #include "Main/Unknown/code_020b837c.h"
 #include "code_020222ec.h"
+#include "registers.h"
 
 void func_020d1198(Unk020d029c *a) {
     Unk020224e0_c *c;
     s32 q[2][2];
 
-    *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & ~0xe000;
+    reg_GX_DISPCNT = reg_GX_DISPCNT & ~0xe000;
     c = GetRaceStartBattleMNcerEntry(data_021759c0->mUnk_18 == 0 ? VALUE_0 : VALUE_1);
     q[0][0] = 0x80000;
     q[0][1] = 0x60000;

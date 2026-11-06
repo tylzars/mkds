@@ -151,7 +151,7 @@ void func_02035e38(void) {
 }
 
 void func_02035e30(u32 p0, u32 p1) {
-    *(u16 *) ((u8 *) p0 + 4) = (u16) p1;
+    *(u16 *) ((u8 *) p0 + 4) = p1;
 }
 
 #pragma thumb on
@@ -198,11 +198,11 @@ void func_02035d90(void) {
 #pragma thumb off
 
 void func_02035d74(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = 0x4001000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0x1f00u);
     value0 = (value1) | ((value0 << 8));
     *(u32 *) ((value2) + (0)) = value0;
@@ -216,7 +216,7 @@ void func_02035d48(u32 a, int b) {
 
 void func_02035d20(void) {
     func_02035d74(10);
-    func_02035d48((u32) (-data_02174e6c->mUnk_640), 0);
+    func_02035d48(-data_02174e6c->mUnk_640, 0);
 }
 
 #pragma thumb off

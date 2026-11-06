@@ -12,7 +12,7 @@
 
 void func_02029a70(void *a) {
     u32 v1;
-    v1 = ((u32) HeapAlloc(a, (u32) (((u32) 0x00000110u))));
+    v1 = ((u32) HeapAlloc(a, (0x00000110u)));
     *(u32 *) &data_02174e1c = v1;
     func_0202993c();
 }
@@ -29,5 +29,5 @@ void func_02029a38(void *a, u32 b) {
 }
 
 u32 func_02029a24(void) {
-    return ((u32) data_021759d0->mUnk_20);
+    return (data_021759d0->mUnk_20);
 }

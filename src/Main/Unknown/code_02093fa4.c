@@ -11,10 +11,10 @@ void InitNsKiller1(u32 arg0) {
     u32 value2;
     u32 value4;
     value4 = value0;
-    value1 = (u32) * (const u32 *) ((value4) + (156));
+    value1 = *(const u32 *) ((value4) + (156));
     value0 = (value4) + (0xacu);
     value2 = 0u;
-    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, (s32) value2);
+    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
     value0 = (value4) + (0xacu);
     func_020d7d80((Unk020e0144 *) value0);
     value0 = MAP_OBJECT_KIND_NS_KILLER2;
@@ -22,6 +22,6 @@ void InitNsKiller1(u32 arg0) {
     value1 = 0x14u;
     CreateParkedMapObjects(value0, value1, (void *) value2);
     value0 = (u32) &gSoundFalloffs;
-    value0 = (u32) * (const u32 *) ((value0) + (356));
+    value0 = *(const u32 *) ((value0) + (356));
     *(u32 *) ((value4) + (112)) = value0;
 }

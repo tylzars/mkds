@@ -82,9 +82,9 @@ void ResetItemTeresa(Unk021025d8 *a) {
 static inline u32 func_02101f7c_inline_2(Unk020f41c4_B *b, u32 n) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     if (n == 0) {
-        return (u32) (b->mUnk_00 >> 32);
+        return b->mUnk_00 >> 32;
     }
-    return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
+    return ((b->mUnk_00 >> 32) * n) >> 32;
 }
 
 static inline s32 func_02101f7c_inline(KartItems *v1, Unk021759c0 *o, s32 a, u16 k) {
@@ -146,9 +146,9 @@ void PickItemTeresaKartByRank(ItemTeresa *p, s32 a) {
         do {
             if (n > 1) {
                 n = (u16) (n - 1);
-                k = (u16) m->mKartAtRank[(u8) n - 1];
+                k = m->mKartAtRank[(u8) n - 1];
                 if (func_02101f7c_inline(v1, o, a, k) != 0) {
-                    s = (u16) (s + *t);
+                    s = s + *t;
                     b2[c] = k;
                     acc[c] = s;
                     c++;
@@ -157,9 +157,9 @@ void PickItemTeresaKartByRank(ItemTeresa *p, s32 a) {
             }
             if (j < lim) {
                 j = (u16) (j + 1);
-                k = (u16) m->mKartAtRank[(u8) j - 1];
+                k = m->mKartAtRank[(u8) j - 1];
                 if (func_02101f7c_inline(v1, o, a, k) != 0) {
-                    s = (u16) (s + *t);
+                    s = s + *t;
                     b2[c] = k;
                     acc[c] = s;
                     c++;
@@ -174,9 +174,9 @@ void PickItemTeresaKartByRank(ItemTeresa *p, s32 a) {
         do {
             if (j < lim) {
                 j = (u16) (j + 1);
-                k = (u16) m->mKartAtRank[(u8) j - 1];
+                k = m->mKartAtRank[(u8) j - 1];
                 if (func_02101f7c_inline(v2, v3, a, k) != 0) {
-                    s = (u16) (s + *t);
+                    s = s + *t;
                     b2[c] = k;
                     acc[c] = s;
                     c++;
@@ -185,9 +185,9 @@ void PickItemTeresaKartByRank(ItemTeresa *p, s32 a) {
             }
             if (n > 1) {
                 n = (u16) (n - 1);
-                k = (u16) m->mKartAtRank[(u8) n - 1];
+                k = m->mKartAtRank[(u8) n - 1];
                 if (func_02101f7c_inline(v2, v3, a, k) != 0) {
-                    s = (u16) (s + *t);
+                    s = s + *t;
                     b2[c] = k;
                     acc[c] = s;
                     c++;
@@ -197,7 +197,7 @@ void PickItemTeresaKartByRank(ItemTeresa *p, s32 a) {
         } while (j < lim || n > 1);
     }
     b = &m->mRandom;
-    v = (u16) (s == 0 ? 0 : func_02101f7c_inline_2(b, s));
+    v = s == 0 ? 0 : func_02101f7c_inline_2(b, s);
     for (i = 0; i < c; i++) {
         if (v < acc[i]) {
             p->mPickedKartIndex = b2[i];
@@ -300,7 +300,7 @@ void func_02101c84(ItemTeresa *p) {
     }
     w = &q->mUnk_98;
     VEC_Subtract(&p->mUnk_000.mPos, w, &v);
-    MTX_MultVec33(&v, (s32 *) func_020e6b38(), &v);
+    MTX_MultVec33(&v, func_020e6b38(), &v);
     VEC_Add(w, &v, &p->mUnk_000.mUnk_0c4);
 }
 
@@ -318,7 +318,7 @@ void func_02101964(ItemTeresa *p, s32 a) {
     s32 n;
 
     q = p->mKart;
-    g = (s32 *) GetCurrentCamera();
+    g = GetCurrentCamera();
     v = &p->mUnk_000.mPos;
     k = m = TRUE;
     if (q->mState < 4 && (q->mUnk_7c & 0x400020) == 0) {
@@ -339,9 +339,9 @@ void func_02101964(ItemTeresa *p, s32 a) {
     d[2] = v->z - (&p->mUnk_000.mVelocity)->z;
     if (p->mUnk_144 != FALSE) {
         VEC_Add(&p->mUnk_184, &p->mUnk_190, &p->mUnk_184);
-        p->mUnk_190.x = (s32) (((s64) p->mUnk_190.x * 0xeb8) >> 12);
-        p->mUnk_190.y = (s32) (((s64) p->mUnk_190.y * 0xeb8) >> 12);
-        p->mUnk_190.z = (s32) (((s64) p->mUnk_190.z * 0xeb8) >> 12);
+        p->mUnk_190.x = ((s64) p->mUnk_190.x * 0xeb8) >> 12;
+        p->mUnk_190.y = ((s64) p->mUnk_190.y * 0xeb8) >> 12;
+        p->mUnk_190.z = ((s64) p->mUnk_190.z * 0xeb8) >> 12;
         *v = p->mUnk_184;
     } else {
         *v = q->mUnk_98;
@@ -359,17 +359,17 @@ void func_02101964(ItemTeresa *p, s32 a) {
         c = 0x400;
     }
     if (a != 0) {
-        n = (s32) (((s64) * (s32 *) q->mPhysicalParam * q->mScale.z + 0x800) >> 12);
+        n = ((s64) * (s32 *) q->mPhysicalParam * q->mScale.z + 0x800) >> 12;
         v->x += (s32) (((s64) -n * w[0]) >> 12);
         v->z += (s32) (((s64) -n * w[2]) >> 12);
     }
     d[0] -= v->x;
     d[2] -= v->z;
-    t = (s32) (((s64) w[0] * d[0] + (s64) w[2] * d[2]) >> 12);
-    d[0] = (s32) (((s64) w[0] * t) >> 12);
-    d[2] = (s32) (((s64) w[2] * t) >> 12);
-    d[0] = (s32) (((s64) d[0] * s) >> 12);
-    d[2] = (s32) (((s64) d[2] * s) >> 12);
+    t = ((s64) w[0] * d[0] + (s64) w[2] * d[2]) >> 12;
+    d[0] = ((s64) w[0] * t) >> 12;
+    d[2] = ((s64) w[2] * t) >> 12;
+    d[0] = ((s64) d[0] * s) >> 12;
+    d[2] = ((s64) d[2] * s) >> 12;
     if (d[0] > c) {
         d[0] = c;
     } else if (d[0] < -c) {
@@ -421,9 +421,9 @@ void func_0210174c(ItemTeresa *p) {
         s32 f = s.x;
 
         q = (Vec3 *) func_020e6b28();
-        v.x = (s32) (((s64) q->x * f) >> 12);
-        v.y = (s32) (((s64) q->y * f) >> 12);
-        v.z = (s32) (((s64) q->z * f) >> 12);
+        v.x = ((s64) q->x * f) >> 12;
+        v.y = ((s64) q->y * f) >> 12;
+        v.z = ((s64) q->z * f) >> 12;
     }
     v.y += s.z;
     VEC_Subtract(&v, (Vec3 *) &p->mUnk_16c, &s);
@@ -485,14 +485,14 @@ s32 func_021014a0(ItemTeresa *p, s32 a, s32 b) {
         func_0210174c(p);
     } else if (p->mUnk_26c != FALSE) {
         k = data_0217c630[n];
-        p->mUnk_16c = (s32) (((s64) p->mUnk_16c * k) >> 12);
-        p->mUnk_174 = (s32) (((s64) p->mUnk_174 * k) >> 12);
+        p->mUnk_16c = ((s64) p->mUnk_16c * k) >> 12;
+        p->mUnk_174 = ((s64) p->mUnk_174 * k) >> 12;
     } else {
         p->mUnk_170 += p->mUnk_17c;
         p->mUnk_17c += 0x133;
         k = data_0217c630[n];
-        p->mUnk_16c = (s32) (((s64) p->mUnk_16c * k) >> 12);
-        p->mUnk_174 = (s32) (((s64) p->mUnk_174 * k) >> 12);
+        p->mUnk_16c = ((s64) p->mUnk_16c * k) >> 12;
+        p->mUnk_174 = ((s64) p->mUnk_174 * k) >> 12;
     }
     func_02101964(p, a);
     if (n > 7) {
@@ -603,8 +603,8 @@ void EnterItemTeresaState2(ItemTeresa *p) {
             p->mUnk_000.mUnk_d0 = &p->mUnk_000.mUnk_0c4;
         }
     }
-    v[0] = (s32) (((s64) g->mSide.x * -0xa000) >> 12);
-    v[2] = (s32) (((s64) g->mSide.z * -0xa000) >> 12);
+    v[0] = ((s64) g->mSide.x * -0xa000) >> 12;
+    v[2] = ((s64) g->mSide.z * -0xa000) >> 12;
     v[0] += (s32) (((s64) g->mForward.x * -0x11000) >> 12);
     v[2] += (s32) (((s64) g->mForward.z * -0x11000) >> 12);
     p->mUnk_17c = -p->mUnk_17c;
@@ -729,8 +729,8 @@ void UpdateItemTeresaState3(ItemTeresa *p) {
     if (p->mUnk_164 < 0x1f) {
         p->mUnk_164 += 5;
     }
-    p->mUnk_178 = (s32) (((s64) p->mUnk_178 * 0xf85) >> 12);
-    p->mUnk_180 = (s32) (((s64) p->mUnk_180 * 0xf85) >> 12);
+    p->mUnk_178 = ((s64) p->mUnk_178 * 0xf85) >> 12;
+    p->mUnk_180 = ((s64) p->mUnk_180 * 0xf85) >> 12;
     if (p->mStateFrames == 0x12) {
         if (p->mUnk_19c == 0) {
             p->mUnk_19c = -0x1ae;
@@ -958,8 +958,8 @@ void UpdateItemTeresaState6(ItemTeresa *p) {
 
     a = p->mItemInfoIndex != 0x13;
     if (p->mUnk_15c == FALSE) {
-        p->mUnk_178 = (s32) (((s64) p->mUnk_178 * 0xf85) >> 12);
-        p->mUnk_180 = (s32) (((s64) p->mUnk_180 * 0xf85) >> 12);
+        p->mUnk_178 = ((s64) p->mUnk_178 * 0xf85) >> 12;
+        p->mUnk_180 = ((s64) p->mUnk_180 * 0xf85) >> 12;
         p->mUnk_16c += p->mUnk_178;
         p->mUnk_174 += p->mUnk_180;
     }

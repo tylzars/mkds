@@ -52,9 +52,9 @@ s32 MTX_Inverse43(const MtxFx43 *src, MtxFx43 *dst) {
     det10 = (s32) (((s64) src->mUnk_00[1].x * src->mUnk_00[2].z - (s64) src12 * src->mUnk_00[2].x + 0x800) >> 12);
     cofactor00 = (s32) (((s64) src11 * src->mUnk_00[2].z - (s64) src12 * src21 + 0x800) >> 12);
     det20 = (s32) (((s64) src->mUnk_00[1].x * src->mUnk_00[2].y - src11 * (s64) src->mUnk_00[2].x + 0x800) >> 12);
-    determinant =
-        ((s64) src->mUnk_00[0].x * cofactor00 - (s64) src->mUnk_00[0].y * det10 + (s64) src->mUnk_00[0].z * det20 + 0x800) >>
-        12;
+    determinant = ((s64) src->mUnk_00[0].x * cofactor00 - (s64) src->mUnk_00[0].y * det10 +
+                   (s64) src->mUnk_00[0].z * det20 + 0x800) >>
+                  12;
     if (determinant == 0) {
         return -1;
     }
@@ -107,34 +107,30 @@ void MTX_Concat43(const MtxFx43 *a, const MtxFx43 *b, MtxFx43 *ab) {
     x0 = a->mUnk_00[0].x;
     x1 = a->mUnk_00[0].y;
     x2 = a->mUnk_00[0].z;
-    result->mUnk_00[0].x =
-        (s32) (((s64) x0 * b->mUnk_00[0].x + (s64) x1 * b->mUnk_00[1].x + (s64) x2 * b->mUnk_00[2].x) >> 12);
-    result->mUnk_00[0].y =
-        (s32) (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
+    result->mUnk_00[0].x = ((s64) x0 * b->mUnk_00[0].x + (s64) x1 * b->mUnk_00[1].x + (s64) x2 * b->mUnk_00[2].x) >> 12;
+    result->mUnk_00[0].y = ((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12;
     y0 = b->mUnk_00[0].z;
     y1 = b->mUnk_00[1].z;
     y2 = b->mUnk_00[2].z;
-    result->mUnk_00[0].z = (s32) (((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12);
+    result->mUnk_00[0].z = ((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12;
     x0 = a->mUnk_00[1].x;
     x1 = a->mUnk_00[1].y;
     x2 = a->mUnk_00[1].z;
-    result->mUnk_00[1].z = (s32) (((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12);
-    result->mUnk_00[1].y =
-        (s32) (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
+    result->mUnk_00[1].z = ((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12;
+    result->mUnk_00[1].y = ((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12;
     y0 = b->mUnk_00[0].x;
     y1 = b->mUnk_00[1].x;
     y2 = b->mUnk_00[2].x;
-    result->mUnk_00[1].x = (s32) (((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12);
+    result->mUnk_00[1].x = ((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12;
     x0 = a->mUnk_00[2].x;
     x1 = a->mUnk_00[2].y;
     x2 = a->mUnk_00[2].z;
-    result->mUnk_00[2].x = (s32) (((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12);
-    result->mUnk_00[2].y =
-        (s32) (((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12);
+    result->mUnk_00[2].x = ((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12;
+    result->mUnk_00[2].y = ((s64) x0 * b->mUnk_00[0].y + (s64) x1 * b->mUnk_00[1].y + (s64) x2 * b->mUnk_00[2].y) >> 12;
     y0 = b->mUnk_00[0].z;
     y1 = b->mUnk_00[1].z;
     y2 = b->mUnk_00[2].z;
-    result->mUnk_00[2].z = (s32) (((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12);
+    result->mUnk_00[2].z = ((s64) x0 * y0 + (s64) x1 * y1 + (s64) x2 * y2) >> 12;
     x0 = a->mUnk_00[3].x;
     x1 = a->mUnk_00[3].y;
     x2 = a->mUnk_00[3].z;
@@ -159,10 +155,10 @@ void MTX_MultVec43(const Vec3 *vec, const MtxFx43 *m, Vec3 *dst) {
     x = vec->x;
     y = vec->y;
     z = vec->z;
-    dst->x = (s32) (((s64) x * m->mUnk_00[0].x + (s64) y * m->mUnk_00[1].x + (s64) z * m->mUnk_00[2].x) >> 12);
+    dst->x = ((s64) x * m->mUnk_00[0].x + (s64) y * m->mUnk_00[1].x + (s64) z * m->mUnk_00[2].x) >> 12;
     dst->x += m->mUnk_00[3].x;
-    dst->y = (s32) (((s64) x * m->mUnk_00[0].y + (s64) y * m->mUnk_00[1].y + (s64) z * m->mUnk_00[2].y) >> 12);
+    dst->y = ((s64) x * m->mUnk_00[0].y + (s64) y * m->mUnk_00[1].y + (s64) z * m->mUnk_00[2].y) >> 12;
     dst->y += m->mUnk_00[3].y;
-    dst->z = (s32) (((s64) x * m->mUnk_00[0].z + (s64) y * m->mUnk_00[1].z + (s64) z * m->mUnk_00[2].z) >> 12);
+    dst->z = ((s64) x * m->mUnk_00[0].z + (s64) y * m->mUnk_00[1].z + (s64) z * m->mUnk_00[2].z) >> 12;
     dst->z += m->mUnk_00[3].z;
 }

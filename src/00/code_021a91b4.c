@@ -25,6 +25,6 @@ void func_ov000_021a91b4(void) {
     value1 = 0u;
     value2 = 0x170u;
     value3 = (u32) &MI_CpuFill8;
-    MI_CpuFill8((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, value1, value2);
     return;
 }

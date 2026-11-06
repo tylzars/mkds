@@ -343,10 +343,10 @@ u32 func_020091fc(Unk02007ec4 *a) {
 #pragma thumb on
 
 void func_020091e0(u16 *p0, u32 p1) {
-    p0[5] = (u16) 0x20u;
-    p0[6] = (u16) p1;
-    p0[7] = (u16) (((((p1) & (0xffff0000u))) >> 16));
-    p0[8] = (u16) (((u32) p0[0x24]));
+    p0[5] = 0x20u;
+    p0[6] = p1;
+    p0[7] = ((((p1) & (0xffff0000u))) >> 16);
+    p0[8] = ((u32) p0[0x24]);
 }
 
 #pragma thumb off

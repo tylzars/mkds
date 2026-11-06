@@ -211,24 +211,24 @@ void func_0209e310(MapObjectList *p) {
     for (i = 0; i < p->mMapObjectCount && (e = p->mMapObjects[i]) != NULL; i++) {
         v = e->mUnk_00.mCourseMapRow->mUnk_2a;
         if (v > 0) {
-            f = 0.5f + (float) (v << 12);
+            f = 0.5f + (v << 12);
         } else {
-            f = (float) (v << 12) - 0.5f;
+            f = (v << 12) - 0.5f;
         }
-        e->mUnk_ac = (s32) f;
+        e->mUnk_ac = f;
         e->mUnk_b0 = (e->mUnk_00.mCourseMapRow->mUnk_2c * 0x16c) / 100;
         e->mUnk_a4 = 0x10000 / e->mUnk_a0;
         e->mUnk_a8 = e->mUnk_ac / e->mUnk_a2;
         r = func_020d22d0();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         t = r->mUnk_00 >> 32;
-        e->mUnk_c2 = (u16) ((t * 0x10000) >> 32);
+        e->mUnk_c2 = (t * 0x10000) >> 32;
         for (j = 0; j < e->mUnk_a2; j++) {
             for (k = 0; k < e->mUnk_a0; k++) {
                 r = func_020d22d0();
                 r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
                 t = r->mUnk_00 >> 32;
-                e->mUnk_c4[k][j].mUnk_0e = (u16) ((t * 0x10000) >> 32);
+                e->mUnk_c4[k][j].mUnk_0e = (t * 0x10000) >> 32;
             }
         }
     }

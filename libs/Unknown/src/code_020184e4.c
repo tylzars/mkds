@@ -441,14 +441,14 @@ void SPLEmitter_EmitParticles(Unk0201ca6c *emtr, Unk0201e494 *list) {
                     break;
                 case 1:
                     SPLRandom_VecFx32(&n0->mUnk_08);
-                    n0->mUnk_08.x = (s32) (((s64) n0->mUnk_08.x * emtr->mUnk_5c + 0x800) >> 12);
-                    n0->mUnk_08.y = (s32) (((s64) n0->mUnk_08.y * emtr->mUnk_5c + 0x800) >> 12);
-                    n0->mUnk_08.z = (s32) (((s64) n0->mUnk_08.z * emtr->mUnk_5c + 0x800) >> 12);
+                    n0->mUnk_08.x = ((s64) n0->mUnk_08.x * emtr->mUnk_5c + 0x800) >> 12;
+                    n0->mUnk_08.y = ((s64) n0->mUnk_08.y * emtr->mUnk_5c + 0x800) >> 12;
+                    n0->mUnk_08.z = ((s64) n0->mUnk_08.z * emtr->mUnk_5c + 0x800) >> 12;
                     break;
                 case 2: {
                     SPLRandom_VecFx32_XY(&v2);
-                    v2.x = (s32) (((s64) v2.x * emtr->mUnk_5c + 0x800) >> 12);
-                    v2.y = (s32) (((s64) v2.y * emtr->mUnk_5c + 0x800) >> 12);
+                    v2.x = ((s64) v2.x * emtr->mUnk_5c + 0x800) >> 12;
+                    v2.y = ((s64) v2.y * emtr->mUnk_5c + 0x800) >> 12;
                     v2.z = 0;
                     SPLUtil_TiltCoordinates(&n0->mUnk_08, &v2, emtr);
                     break;
@@ -462,8 +462,8 @@ void SPLEmitter_EmitParticles(Unk0201ca6c *emtr, Unk0201e494 *list) {
                     k >>= 4;
                     a = gPairsByAngle[k * 2];
                     b = gPairsByAngle[k * 2 + 1];
-                    v3.x = (s32) (((s64) a * emtr->mUnk_5c + 0x800) >> 12);
-                    v3.y = (s32) (((s64) b * emtr->mUnk_5c + 0x800) >> 12);
+                    v3.x = ((s64) a * emtr->mUnk_5c + 0x800) >> 12;
+                    v3.y = ((s64) b * emtr->mUnk_5c + 0x800) >> 12;
                     v3.z = 0;
                     SPLUtil_TiltCoordinates(&n0->mUnk_08, &v3, emtr);
                     break;
@@ -471,44 +471,42 @@ void SPLEmitter_EmitParticles(Unk0201ca6c *emtr, Unk0201e494 *list) {
                 case 4: {
                     SPLRandom_VecFx32(&n0->mUnk_08);
                     n0->mUnk_08.x =
-                        (s32) (((s64) (s32) (((s64) n0->mUnk_08.x * emtr->mUnk_5c + 0x800) >> 12) *
-                                    ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
-                                            0x100000) >>
-                                     8) +
-                                0x800) >>
-                               12);
+                        ((s64) (s32) (((s64) n0->mUnk_08.x * emtr->mUnk_5c + 0x800) >> 12) *
+                             ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                     0x100000) >>
+                              8) +
+                         0x800) >>
+                        12;
                     n0->mUnk_08.y =
-                        (s32) (((s64) (s32) (((s64) n0->mUnk_08.y * emtr->mUnk_5c + 0x800) >> 12) *
-                                    ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
-                                            0x100000) >>
-                                     8) +
-                                0x800) >>
-                               12);
+                        ((s64) (s32) (((s64) n0->mUnk_08.y * emtr->mUnk_5c + 0x800) >> 12) *
+                             ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                     0x100000) >>
+                              8) +
+                         0x800) >>
+                        12;
                     n0->mUnk_08.z =
-                        (s32) (((s64) (s32) (((s64) n0->mUnk_08.z * emtr->mUnk_5c + 0x800) >> 12) *
-                                    ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
-                                            0x100000) >>
-                                     8) +
-                                0x800) >>
-                               12);
+                        ((s64) (s32) (((s64) n0->mUnk_08.z * emtr->mUnk_5c + 0x800) >> 12) *
+                             ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                     0x100000) >>
+                              8) +
+                         0x800) >>
+                        12;
                     break;
                 }
                 case 5: {
                     SPLRandom_VecFx32_XY(&v5);
-                    v5.x =
-                        (s32) (((s64) (s32) (((s64) v5.x * emtr->mUnk_5c + 0x800) >> 12) *
-                                    ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
-                                            0x100000) >>
-                                     8) +
-                                0x800) >>
-                               12);
-                    v5.y =
-                        (s32) (((s64) (s32) (((s64) v5.y * emtr->mUnk_5c + 0x800) >> 12) *
-                                    ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
-                                            0x100000) >>
-                                     8) +
-                                0x800) >>
-                               12);
+                    v5.x = ((s64) (s32) (((s64) v5.x * emtr->mUnk_5c + 0x800) >> 12) *
+                                ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                        0x100000) >>
+                                 8) +
+                            0x800) >>
+                           12;
+                    v5.y = ((s64) (s32) (((s64) v5.y * emtr->mUnk_5c + 0x800) >> 12) *
+                                ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                        0x100000) >>
+                                 8) +
+                            0x800) >>
+                           12;
                     SPLUtil_TiltCoordinates(&n0->mUnk_08, &v5, emtr);
                     break;
                 }
@@ -523,9 +521,9 @@ void SPLEmitter_EmitParticles(Unk0201ca6c *emtr, Unk0201e494 *list) {
                         n0->mUnk_08.y = -n0->mUnk_08.y;
                         n0->mUnk_08.z = -n0->mUnk_08.z;
                     }
-                    n0->mUnk_08.x = (s32) (((s64) n0->mUnk_08.x * emtr->mUnk_5c + 0x800) >> 12);
-                    n0->mUnk_08.y = (s32) (((s64) n0->mUnk_08.y * emtr->mUnk_5c + 0x800) >> 12);
-                    n0->mUnk_08.z = (s32) (((s64) n0->mUnk_08.z * emtr->mUnk_5c + 0x800) >> 12);
+                    n0->mUnk_08.x = ((s64) n0->mUnk_08.x * emtr->mUnk_5c + 0x800) >> 12;
+                    n0->mUnk_08.y = ((s64) n0->mUnk_08.y * emtr->mUnk_5c + 0x800) >> 12;
+                    n0->mUnk_08.z = ((s64) n0->mUnk_08.z * emtr->mUnk_5c + 0x800) >> 12;
                     break;
                 }
                 case 9: {
@@ -540,38 +538,35 @@ void SPLEmitter_EmitParticles(Unk0201ca6c *emtr, Unk0201e494 *list) {
                         n0->mUnk_08.z = -n0->mUnk_08.z;
                     }
                     n0->mUnk_08.x =
-                        (s32) (((s64) (s32) (((s64) n0->mUnk_08.x * emtr->mUnk_5c + 0x800) >> 12) *
-                                    (((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) *
-                                                 0x1000 -
-                                             0x100000) >>
-                                      9) +
-                                     0x800) +
-                                0x800) >>
-                               12);
+                        ((s64) (s32) (((s64) n0->mUnk_08.x * emtr->mUnk_5c + 0x800) >> 12) *
+                             (((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                      0x100000) >>
+                               9) +
+                              0x800) +
+                         0x800) >>
+                        12;
                     n0->mUnk_08.y =
-                        (s32) (((s64) (s32) (((s64) n0->mUnk_08.y * emtr->mUnk_5c + 0x800) >> 12) *
-                                    (((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) *
-                                                 0x1000 -
-                                             0x100000) >>
-                                      9) +
-                                     0x800) +
-                                0x800) >>
-                               12);
+                        ((s64) (s32) (((s64) n0->mUnk_08.y * emtr->mUnk_5c + 0x800) >> 12) *
+                             (((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                      0x100000) >>
+                               9) +
+                              0x800) +
+                         0x800) >>
+                        12;
                     n0->mUnk_08.z =
-                        (s32) (((s64) (s32) (((s64) n0->mUnk_08.z * emtr->mUnk_5c + 0x800) >> 12) *
-                                    (((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) *
-                                                 0x1000 -
-                                             0x100000) >>
-                                      9) +
-                                     0x800) +
-                                0x800) >>
-                               12);
+                        ((s64) (s32) (((s64) n0->mUnk_08.z * emtr->mUnk_5c + 0x800) >> 12) *
+                             (((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                      0x100000) >>
+                               9) +
+                              0x800) +
+                         0x800) >>
+                        12;
                     break;
                 }
                 case 6: {
                     SPLRandom_VecFx32_XY(&n0->mUnk_14);
-                    v6.x = (s32) (((s64) n0->mUnk_14.x * emtr->mUnk_5c + 0x800) >> 12);
-                    v6.y = (s32) (((s64) n0->mUnk_14.y * emtr->mUnk_5c + 0x800) >> 12);
+                    v6.x = ((s64) n0->mUnk_14.x * emtr->mUnk_5c + 0x800) >> 12;
+                    v6.y = ((s64) n0->mUnk_14.y * emtr->mUnk_5c + 0x800) >> 12;
                     v6.z = (emtr->mUnk_60 * (s32) ((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) -
                             emtr->mUnk_60 * 0x100) >>
                            8;
@@ -580,20 +575,18 @@ void SPLEmitter_EmitParticles(Unk0201ca6c *emtr, Unk0201e494 *list) {
                 }
                 case 7: {
                     SPLRandom_VecFx32_XY(&n0->mUnk_14);
-                    v7.x =
-                        (s32) (((s64) (s32) (((s64) n0->mUnk_14.x * emtr->mUnk_5c + 0x800) >> 12) *
-                                    ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
-                                            0x100000) >>
-                                     8) +
-                                0x800) >>
-                               12);
-                    v7.y =
-                        (s32) (((s64) (s32) (((s64) n0->mUnk_14.y * emtr->mUnk_5c + 0x800) >> 12) *
-                                    ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
-                                            0x100000) >>
-                                     8) +
-                                0x800) >>
-                               12);
+                    v7.x = ((s64) (s32) (((s64) n0->mUnk_14.x * emtr->mUnk_5c + 0x800) >> 12) *
+                                ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                        0x100000) >>
+                                 8) +
+                            0x800) >>
+                           12;
+                    v7.y = ((s64) (s32) (((s64) n0->mUnk_14.y * emtr->mUnk_5c + 0x800) >> 12) *
+                                ((s32) (((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) * 0x1000 -
+                                        0x100000) >>
+                                 8) +
+                            0x800) >>
+                           12;
                     v7.z = (emtr->mUnk_60 * (s32) ((data_02173274 = data_02173274 * 0x5eedf715 + 0x1b0cb173) >> 23) -
                             emtr->mUnk_60 * 0x100) >>
                            8;
@@ -702,15 +695,15 @@ void SPLEmitter_EmitParticles(Unk0201ca6c *emtr, Unk0201e494 *list) {
 }
 
 static inline s32 func_0201c74c_inline(s32 k0, Unk0201e3c8 *a) {
-    return (s32) (((s64) a->mUnk_14.z * (s64) k0 + 0x800) >> 12);
+    return ((s64) a->mUnk_14.z * (s64) k0 + 0x800) >> 12;
 }
 
 static inline s32 func_0201c74c_inline2(s32 k0, Unk0201e3c8 *a) {
-    return (s32) (((s64) a->mUnk_14.y * (s64) k0 + 0x800) >> 12);
+    return ((s64) a->mUnk_14.y * (s64) k0 + 0x800) >> 12;
 }
 
 static inline s32 func_0201c74c_inline3(s32 k0, Unk0201e3c8 *a) {
-    return (s32) (((s64) a->mUnk_14.x * (s64) k0 + 0x800) >> 12);
+    return ((s64) a->mUnk_14.x * (s64) k0 + 0x800) >> 12;
 }
 
 static inline s32 func_0201c74c_inline4(Unk0201ca6c_20_14 *e) {
@@ -726,7 +719,7 @@ void SPLEmitter_EmitChildren(Unk0201e3c8 *ptcl, Unk0201ca6c *emtr, Unk0201e494 *
     u32 b;
 
     e = emtr->mUnk_20->mUnk_14;
-    k0 = (s32) (((s64) (e->mUnk_08 << 12) * 16 + 0x800) >> 12);
+    k0 = ((s64) (e->mUnk_08 << 12) * 16 + 0x800) >> 12;
     for (i = 0; i < e->mUnk_0c; i++) {
         {
             n = SPLList_PopFront(list);
@@ -834,8 +827,8 @@ void SPLUtil_RotateXYZ(s32 sinValue, s32 cosValue, MtxFx43 *mtx) {
     s32 y;
     s32 z;
 
-    t1 = (s32) (((s64) (0x1000 - cosValue) * (s64) 0x555 + 0x800) >> 12);
-    t2 = (s32) (((s64) sinValue * (s64) 0x93d + 0x800) >> 12);
+    t1 = ((s64) (0x1000 - cosValue) * (s64) 0x555 + 0x800) >> 12;
+    t2 = ((s64) sinValue * (s64) 0x93d + 0x800) >> 12;
     y = t1 + t2;
     z = t1 - t2;
     x = t1 + cosValue;
@@ -1828,9 +1821,9 @@ void SPLEmitter_Update(Unk020184e4 *mgr, Unk0201ca6c *emtr) {
             }
         }
         if (emtr->mUnk_20->mUnk_00->mUnk_00.mUnk_00_30) {
-            n0->mUnk_2e_10 = (u16) mgr->mUnk_38_18;
+            n0->mUnk_2e_10 = mgr->mUnk_38_18;
         } else {
-            n0->mUnk_2e_10 = (u16) mgr->mUnk_38_12;
+            n0->mUnk_2e_10 = mgr->mUnk_38_12;
             mgr->mUnk_38_12++;
             if (mgr->mUnk_38_12 > mgr->mUnk_38_6) {
                 mgr->mUnk_38_12 = mgr->mUnk_38_0;
@@ -1879,9 +1872,9 @@ void SPLEmitter_Update(Unk020184e4 *mgr, Unk0201ca6c *emtr) {
             n0->mUnk_08.y += n0->mUnk_14.y + emtr->mUnk_34.y;
             n0->mUnk_08.z += n0->mUnk_14.z + emtr->mUnk_34.z;
             if (emtr->mUnk_20->mUnk_00->mUnk_00.mUnk_00_31) {
-                n0->mUnk_2e_10 = (u16) mgr->mUnk_38_18;
+                n0->mUnk_2e_10 = mgr->mUnk_38_18;
             } else {
-                n0->mUnk_2e_10 = (u16) mgr->mUnk_38_12;
+                n0->mUnk_2e_10 = mgr->mUnk_38_12;
                 mgr->mUnk_38_12++;
                 if (mgr->mUnk_38_12 > mgr->mUnk_38_6) {
                     mgr->mUnk_38_12 = mgr->mUnk_38_0;

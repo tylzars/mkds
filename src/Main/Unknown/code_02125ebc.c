@@ -158,14 +158,14 @@ void InitTxtSystemDisplay(void) {
     u32 a;
     u32 b;
 
-    a = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | ((a | 4) << 8);
-    *(vu16 *) 0x400000c &= ~3;
-    *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & 0x43) | 0x9e10;
-    b = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((b | 1) << 8);
-    *(vu16 *) 0x4001008 &= ~3;
-    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & 0x43) | 0x8b00;
+    a = (reg_GX_DISPCNT & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | ((a | 4) << 8);
+    reg_G2_BG2CNT &= ~3;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0x9e10;
+    b = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((b | 1) << 8);
+    reg_G2S_DB_BG0CNT &= ~3;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x8b00;
 }
 
 static inline void func_0212717c_inline(void *dst, u16 value) {
@@ -296,12 +296,11 @@ void func_02126ef8(void) {
     v1 = gTxtSystem;
     if (0 < v1->mExtraCanvasCount) {
         CallQueueAppend(0x1f, ((0xee - v1->mSelectedIndex) * 2), &v1->mUnk_2246, 2);
-        CallQueueAppend((u32) 0x1f, (u32) ((0xfe - gTxtSystem->mSelectedIndex) * 2), &gTxtSystem->mUnk_2246, (u32) 2);
+        CallQueueAppend(0x1f, (0xfe - gTxtSystem->mSelectedIndex) * 2, &gTxtSystem->mUnk_2246, 2);
         v1 = gTxtSystem;
         if (v1->mExtraCanvasCount == 2) {
             CallQueueAppend(0x1f, ((v1->mSelectedIndex + 0xed) * 2), &v1->mUnk_2244, 2);
-            CallQueueAppend((u32) 0x1f, (u32) ((gTxtSystem->mSelectedIndex + 0xfd) * 2), &gTxtSystem->mUnk_2244,
-                            (u32) 2);
+            CallQueueAppend(0x1f, (gTxtSystem->mSelectedIndex + 0xfd) * 2, &gTxtSystem->mUnk_2244, 2);
         }
     }
 }
@@ -386,7 +385,7 @@ void func_02126c90(void) {
     gTxtSystem->mStateFrames++;
     for (i = 0; i < 2; i++) {
         gTxtSystem->mBgOffset[i] = func_020ae4c0(1, data_0215d040[gTxtSystem->mOpenFromIndex],
-                                                 (s16) -gTxtSystem->mBgOffsetAtOpen[i], gTxtSystem->mStateFrames, 0xf);
+                                                 -gTxtSystem->mBgOffsetAtOpen[i], gTxtSystem->mStateFrames, 0xf);
     }
     p = gTxtSystem;
     p->mBrightness = (p->mStateFrames * -10) / 15;
@@ -593,8 +592,8 @@ void AdvanceTxtSystem(void) {
 
 void WriteTxtSystemRegisters(void) {
     if (gTxtSystem->mEnabled != 0) {
-        *(vu32 *) 0x4000018 = (gTxtSystem->mBgOffset[0] << 16) & 0x1ff0000;
-        *(vu32 *) 0x4001010 = (gTxtSystem->mBgOffset[1] << 16) & 0x1ff0000;
+        reg_G2_BG2OFS = (gTxtSystem->mBgOffset[0] << 16) & 0x1ff0000;
+        reg_G2S_DB_BG0OFS = (gTxtSystem->mBgOffset[1] << 16) & 0x1ff0000;
         if (gTxtSystem->mBlendPlanesEnabled[0] != 0) {
             G2x_SetBlendBrightnessExt_(&reg_G2_BLDCNT, gTxtSystem->mBlendPlanes[0], 0x1f, gTxtSystem->mBlendEv1[0],
                                        gTxtSystem->mBlendEv2[0], gTxtSystem->mBrightness);
@@ -676,7 +675,7 @@ void func_0212658c(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
 
 void func_02126570(void *p0, void *p1) {
     u32 v7 = ((0x1u) + (0x0u));
-    func_02126474(p0, p1, (u32) 0x1u, v7, (u32) 0x1u, (u32) 0x0u, (u32) 0x0u);
+    func_02126474(p0, p1, 0x1u, v7, 0x1u, 0x0u, 0x0u);
 }
 
 #pragma thumb off
@@ -744,7 +743,7 @@ void func_0212630c(void *a, void *b, void *c, u32 d, u32 e, u32 f, u32 g, u32 h,
 #pragma thumb on
 
 void SetupTxtSystemSubText(void *a) {
-    SetupTxtSystemSubTextEx(a, (u32) 1, (u32) 1, (u32) 1, (u32) 0, (u32) 0);
+    SetupTxtSystemSubTextEx(a, 1, 1, 1, 0, 0);
 }
 
 #pragma thumb off
@@ -776,7 +775,7 @@ void SetupTxtSystemSubTextEx(void *a, u32 b, u32 c, u32 d, u32 e, u32 f) {
 
 void func_02126230(void *p0, void *p1) {
     u32 v6 = ((0x1u) + (0x0u));
-    func_02126138(p0, p1, (u32) 0x1u, v6, (u32) 0x1u, (u32) 0x0u);
+    func_02126138(p0, p1, 0x1u, v6, 0x1u, 0x0u);
 }
 
 #pragma thumb off
@@ -879,16 +878,16 @@ s32 func_02125f6c(void) {
 #pragma thumb on
 s32 GetTxtSystemSelectedIndex(void) {
     u32 value0;
-    value0 = (u32) gTxtSystem->mSelectedIndex;
-    return (s32) value0;
+    value0 = gTxtSystem->mSelectedIndex;
+    return value0;
 }
 #pragma thumb off
 
 #pragma thumb on
 s32 func_02125f54(void) {
     u32 value0;
-    value0 = (u32) gTxtSystem->mUnk_30;
-    return (s32) value0;
+    value0 = gTxtSystem->mUnk_30;
+    return value0;
 }
 #pragma thumb off
 
@@ -927,11 +926,11 @@ void SetTxtSystemBgOffsetRequested(int a, int b) {
 
 #pragma thumb on
 void SetTxtSystemSoundId(int arg0, u32 arg1) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
     value2 = (u32) &gTxtSystem;
-    value2 = (u32) * (const u32 *) ((value2) + 0u);
+    value2 = *(const u32 *) ((value2) + 0u);
     value0 = (value0 << 2);
     value2 = (value2) + (value0);
     value0 = 0x2250u;

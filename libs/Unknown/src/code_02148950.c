@@ -11,6 +11,7 @@
 #include "Main/Unknown/code_02148cd0.h"
 #include "Main/Unknown/code_02148d24.h"
 #include "code_0200fe74.h"
+#include "registers.h"
 
 u8 gDispOn[4] = {1, 0, 0, 0};
 
@@ -156,21 +157,21 @@ void GX_SetBankForBGExtPltt(s32 bgExtPltt) {
     ((u16 *) gVramBankGroups)[7] = bgExtPltt;
     switch (bgExtPltt) {
         case 0:
-            *(vu32 *) 0x4000000 &= ~0x40000000;
+            reg_GX_DISPCNT &= ~0x40000000;
             break;
         case 0x10:
-            *(vu32 *) 0x4000000 |= 0x40000000;
+            reg_GX_DISPCNT |= 0x40000000;
             *(vu8 *) 0x4000244 = 0x84;
             break;
         case 0x40:
-            *(vu32 *) 0x4000000 |= 0x40000000;
+            reg_GX_DISPCNT |= 0x40000000;
             *(vu8 *) 0x4000246 = 0x8c;
             break;
         case 0x60:
             *(vu8 *) 0x4000246 = 0x8c;
         case 0x20:
             *(vu8 *) 0x4000245 = 0x84;
-            *(vu32 *) 0x4000000 |= 0x40000000;
+            reg_GX_DISPCNT |= 0x40000000;
             break;
     }
     GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
@@ -181,15 +182,15 @@ void GX_SetBankForOBJExtPltt(u32 objExtPltt) {
     ((u16 *) gVramBankGroups)[8] = objExtPltt;
     switch (objExtPltt) {
         case 0x20:
-            *(vu32 *) 0x4000000 |= 0x80000000;
+            reg_GX_DISPCNT |= 0x80000000;
             *(vu8 *) 0x4000245 = 0x85;
             break;
         case 0x40:
-            *(vu32 *) 0x4000000 |= 0x80000000;
+            reg_GX_DISPCNT |= 0x80000000;
             *(vu8 *) 0x4000246 = 0x85;
             break;
         case 0:
-            *(vu32 *) 0x4000000 &= ~0x80000000;
+            reg_GX_DISPCNT &= ~0x80000000;
             break;
     }
     GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
@@ -199,9 +200,9 @@ void GX_SetBankForTex(u32 tex) {
     ((u16 *) gVramBankGroups)[0] = (((u16 *) gVramBankGroups)[0] | ((u16 *) gVramBankGroups)[4]) & ~tex;
     ((u16 *) gVramBankGroups)[4] = tex;
     if (tex == 0) {
-        *(vu16 *) 0x4000060 &= 0xcffe;
+        reg_G3X_DISP3DCNT &= 0xcffe;
     } else {
-        *(vu16 *) 0x4000060 = (*(vu16 *) 0x4000060 & ~0x3000) | 0x1;
+        reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 0x1;
         switch (tex) {
             case 5:
                 *(vu8 *) 0x4000240 = 0x83;
@@ -287,24 +288,24 @@ void GX_SetBankForClearImage(u32 clrImg) {
             *(vu8 *) 0x4000240 = 0x93;
         case 2:
             *(vu8 *) 0x4000241 = 0x9b;
-            *(vu16 *) 0x4000060 |= 0x4000;
+            reg_G3X_DISP3DCNT |= 0x4000;
             break;
         case 12:
             *(vu8 *) 0x4000242 = 0x93;
         case 8:
             *(vu8 *) 0x4000243 = 0x9b;
-            *(vu16 *) 0x4000060 |= 0x4000;
+            reg_G3X_DISP3DCNT |= 0x4000;
             break;
         case 0:
-            *(vu16 *) 0x4000060 &= ~0x4000;
+            reg_G3X_DISP3DCNT &= ~0x4000;
             break;
         case 1:
             *(vu8 *) 0x4000240 = 0x9b;
-            *(vu16 *) 0x4000060 |= 0x4000;
+            reg_G3X_DISP3DCNT |= 0x4000;
             break;
         case 4:
             *(vu8 *) 0x4000242 = 0x9b;
-            *(vu16 *) 0x4000060 |= 0x4000;
+            reg_G3X_DISP3DCNT |= 0x4000;
             break;
     }
     GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
@@ -374,11 +375,11 @@ void GX_SetBankForSubBGExtPltt(u32 subBgExtPltt) {
     ((u16 *) gVramBankGroups)[11] = subBgExtPltt;
     if (subBgExtPltt != 0) {
         if (subBgExtPltt == 0x80) {
-            *(vu32 *) 0x4001000 |= 0x40000000;
+            reg_GXS_DB_DISPCNT |= 0x40000000;
             *(vu8 *) 0x4000248 = 0x82;
         }
     } else {
-        *(vu32 *) 0x4001000 &= ~0x40000000;
+        reg_GXS_DB_DISPCNT &= ~0x40000000;
     }
     GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
@@ -388,11 +389,11 @@ void GX_SetBankForSubOBJExtPltt(u32 subObjExtPltt) {
     ((u16 *) gVramBankGroups)[12] = subObjExtPltt;
     if (subObjExtPltt != 0) {
         if (subObjExtPltt == 0x100) {
-            *(vu32 *) 0x4001000 |= 0x80000000;
+            reg_GXS_DB_DISPCNT |= 0x80000000;
             *(vu8 *) 0x4000249 = 0x83;
         }
     } else {
-        *(vu32 *) 0x4001000 &= ~0x80000000;
+        reg_GXS_DB_DISPCNT &= ~0x80000000;
     }
     GX_VRAMCNT_SetLCDC_(((u16 *) gVramBankGroups)[0]);
 }
@@ -408,12 +409,12 @@ u16 resetBankForX_(u16 *group) {
 }
 
 u16 GX_ResetBankForBGExtPltt(void) {
-    *(vu32 *) 0x4000000 &= ~0x40000000;
+    reg_GX_DISPCNT &= ~0x40000000;
     return resetBankForX_(&data_021802be);
 }
 
 u16 GX_ResetBankForOBJExtPltt(void) {
-    *(vu32 *) 0x4000000 &= ~0x80000000;
+    reg_GX_DISPCNT &= ~0x80000000;
     return resetBankForX_(&data_021802c0);
 }
 
@@ -438,12 +439,12 @@ u16 GX_ResetBankForSubOBJ(void) {
 }
 
 u16 GX_ResetBankForSubBGExtPltt(void) {
-    *(vu32 *) 0x4001000 &= ~0x40000000;
+    reg_GXS_DB_DISPCNT &= ~0x40000000;
     return resetBankForX_(&data_021802c6);
 }
 
 u16 GX_ResetBankForSubOBJExtPltt(void) {
-    *(vu32 *) 0x4001000 &= ~0x80000000;
+    reg_GXS_DB_DISPCNT &= ~0x80000000;
     return resetBankForX_(&data_021802c8);
 }
 
@@ -492,12 +493,12 @@ u32 GX_DisableBankForOBJ(void) {
 }
 
 u32 GX_DisableBankForBGExtPltt(void) {
-    *(vu32 *) 0x4000000 &= ~0x40000000;
+    reg_GX_DISPCNT &= ~0x40000000;
     return disableBankForX_(&data_021802be);
 }
 
 u32 GX_DisableBankForOBJExtPltt(void) {
-    *(vu32 *) 0x4000000 &= ~0x80000000;
+    reg_GX_DISPCNT &= ~0x80000000;
     return disableBankForX_(&data_021802c0);
 }
 
@@ -530,12 +531,12 @@ u32 GX_DisableBankForSubOBJ(void) {
 }
 
 u32 GX_DisableBankForSubBGExtPltt(void) {
-    *(vu32 *) 0x4001000 &= ~0x40000000;
+    reg_GXS_DB_DISPCNT &= ~0x40000000;
     return disableBankForX_(&data_021802c6);
 }
 
 u32 GX_DisableBankForSubOBJExtPltt(void) {
-    *(vu32 *) 0x4001000 &= ~0x80000000;
+    reg_GXS_DB_DISPCNT &= ~0x80000000;
     return disableBankForX_(&data_021802c8);
 }
 
@@ -608,9 +609,9 @@ void GX_InitGXState(void) {
 void GX_Init(void) {
     s32 lockResult;
 
-    *(vu16 *) 0x4000304 |= 0x8000;
-    *(vu16 *) 0x4000304 = (*(vu16 *) 0x4000304 & ~0x20e) | 0x20e;
-    *(vu16 *) 0x4000304 |= 0x1;
+    reg_GX_POWCNT |= 0x8000;
+    reg_GX_POWCNT = (reg_GX_POWCNT & ~0x20e) | 0x20e;
+    reg_GX_POWCNT |= 0x1;
     GX_InitGXState();
     while (*(vu16 *) &gVramLockId == 0) {
         lockResult = OS_GetLockID();
@@ -620,27 +621,27 @@ void GX_Init(void) {
         *(vu16 *) &gVramLockId = lockResult;
     }
     *(vu16 *) 0x4000004 = 0;
-    *(vu32 *) 0x4000000 = 0;
+    reg_GX_DISPCNT = 0;
     if (data_0216f074[0] != -1) {
         MI_DmaFill32(data_0216f074[0], (void *) 0x4000008, 0, 0x60);
-        *(vu16 *) 0x400006c = 0;
+        reg_GX_MASTER_BRIGHT = 0;
         MI_DmaFill32(data_0216f074[0], (void *) 0x4001000, 0, 0x70);
     } else {
         volatile u32 z0 = 0;
         volatile u32 z1;
 
         MIi_CpuClear32(z0, (void *) 0x4000008, 0x60);
-        *(vu16 *) 0x400006c = 0;
+        reg_GX_MASTER_BRIGHT = 0;
         z1 = 0;
         MIi_CpuClear32(z1, (void *) 0x4001000, 0x70);
     }
-    *(vu16 *) 0x4000020 = 0x100;
+    reg_G2_BG2PA = 0x100;
     *(vu16 *) 0x4000026 = 0x100;
-    *(vu16 *) 0x4000030 = 0x100;
+    reg_G2_BG3PA = 0x100;
     *(vu16 *) 0x4000036 = 0x100;
-    *(vu16 *) 0x4001020 = 0x100;
+    reg_G2S_DB_BG2PA = 0x100;
     *(vu16 *) 0x4001026 = 0x100;
-    *(vu16 *) 0x4001030 = 0x100;
+    reg_G2S_DB_BG3PA = 0x100;
     *(vu16 *) 0x4001036 = 0x100;
 }
 
@@ -657,11 +658,11 @@ u32 GX_VBlankIntr(s32 enable) {
 }
 
 void GX_DispOff(void) {
-    u32 cnt = *(vu32 *) 0x4000000;
+    u32 cnt = reg_GX_DISPCNT;
 
     *(u16 *) gDispOn = 0;
     *(u16 *) gSavedDispMode = (cnt & 0x30000) >> 16;
-    *(vu32 *) 0x4000000 = cnt & ~0x30000;
+    reg_GX_DISPCNT = cnt & ~0x30000;
 }
 
 void GX_DispOn(void) {
@@ -670,9 +671,9 @@ void GX_DispOn(void) {
     *(u16 *) gDispOn = 1;
     mode = *(u16 *) gSavedDispMode;
     if (mode != 0) {
-        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & ~0x30000) | (mode << 16);
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x30000) | (mode << 16);
     } else {
-        *(vu32 *) 0x4000000 |= 0x10000;
+        reg_GX_DISPCNT |= 0x10000;
     }
 }
 
@@ -680,13 +681,13 @@ void GX_SetGraphicsMode(u16 dispMode, u32 bgMode, s32 bg0As) {
     u32 isDispOn;
     u32 dispCtrl;
 
-    dispCtrl = *(vu32 *) 0x4000000;
+    dispCtrl = reg_GX_DISPCNT;
     isDispOn = *(u16 *) gDispOn;
     *(u16 *) gSavedDispMode = dispMode;
     if (isDispOn == 0) {
         dispMode = 0;
     }
-    *(vu32 *) 0x4000000 = ((dispCtrl & 0xfff0fff0) | (dispMode << 16) | bgMode) | (bg0As << 3);
+    reg_GX_DISPCNT = ((dispCtrl & 0xfff0fff0) | (dispMode << 16) | bgMode) | (bg0As << 3);
     if (*(u16 *) gSavedDispMode == 0) {
         *(u16 *) gDispOn = 0;
     }

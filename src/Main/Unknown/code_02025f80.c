@@ -715,9 +715,9 @@ void func_02026058(void) {
     if (!(gSelectCharacter->mUnk_06c == 9 && gSelectCharacter->mUnk_08c == 2)) {
         a |= 1;
     }
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (a << 8);
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | 0x1600;
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 1;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (a << 8);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1600;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
     if (gSelectCharacter->mUnk_128 != FALSE) {
         func_0202ba14();
     }

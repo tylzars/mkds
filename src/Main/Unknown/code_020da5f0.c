@@ -48,7 +48,7 @@ void UpdateKuriboState0(Kuribo *p) {
         return;
     }
     p->mUnk_c8 += (s32) (((s64) (0x1000 - p->mUnk_c4) * 0x200) >> 12);
-    p->mUnk_c8 = (s32) (((s64) p->mUnk_c8 * 0xd99) >> 12);
+    p->mUnk_c8 = ((s64) p->mUnk_c8 * 0xd99) >> 12;
     p->mUnk_c4 += p->mUnk_c8;
     if (p->mUnk_c4 > 0xfd7 && p->mUnk_c4 < 0x1029 && p->mUnk_c8 > -0x29 && p->mUnk_c8 < 0x29) {
         p->mUnk_c4 = 0x1000;
@@ -94,11 +94,11 @@ void UpdateKuriboState1(Kuribo *p) {
 }
 
 void EnterKuriboState2(Kuribo *p0) {
-    p0->mUnk_00.mFlags = (u16) (((((u32) p0->mUnk_00.mFlags)) | (((u32) data_02158160))));
+    p0->mUnk_00.mFlags = (((p0->mUnk_00.mFlags)) | ((data_02158160)));
 }
 
 void UpdateKuriboState2(Kuribo *p) {
-    p->mUnk_c4 = (s32) (((s64) p->mUnk_c4 * 0x1266) >> 12);
+    p->mUnk_c4 = ((s64) p->mUnk_c4 * 0x1266) >> 12;
     if (p->mUnk_c4 > 0x1800) {
         p->mUnk_00.mStateMachine.mNextState = 3;
         p->mUnk_00.mStateMachine.mNextStateRequested = 1;
@@ -110,7 +110,7 @@ u32 func_020dabfc(u32 p0) {
 }
 
 void UpdateKuriboState3(Kuribo *p) {
-    p->mUnk_c4 = (s32) (((s64) p->mUnk_c4 * 0xd99) >> 12);
+    p->mUnk_c4 = ((s64) p->mUnk_c4 * 0xd99) >> 12;
     if (p->mUnk_c4 < 0x333) {
         p->mUnk_00.mStateMachine.mNextState = 4;
         p->mUnk_00.mStateMachine.mNextStateRequested = 1;
@@ -158,7 +158,7 @@ void EnterKuriboState5(Kuribo *p) {
 
 void UpdateKuriboState5(Kuribo *p) {
     p->mUnk_c8 += (s32) (((s64) (0x1000 - p->mUnk_c4) * 0x200) >> 12);
-    p->mUnk_c8 = (s32) (((s64) p->mUnk_c8 * 0xd99) >> 12);
+    p->mUnk_c8 = ((s64) p->mUnk_c8 * 0xd99) >> 12;
     p->mUnk_c4 += p->mUnk_c8;
     if (p->mUnk_00.mStateMachine.mStateFrames > 0x3c) {
         p->mUnk_00.mStateMachine.mNextState = 0;
@@ -197,9 +197,9 @@ void func_020da820(Kuribo *p, Vec3 *a) {
     r->mUnk_68.y = 0xcd;
     r->mUnk_68.z = 0xcd;
     d = VEC_Mag(a) + 0x5000;
-    r->mVelocity.x = (s32) (((s64) s.x * d) >> 12);
-    r->mVelocity.y = (s32) (((s64) s.y * d) >> 12);
-    r->mVelocity.z = (s32) (((s64) s.z * d) >> 12);
+    r->mVelocity.x = ((s64) s.x * d) >> 12;
+    r->mVelocity.y = ((s64) s.y * d) >> 12;
+    r->mVelocity.z = ((s64) s.z * d) >> 12;
     r->mVelocity.y += 0xf000;
     VEC_Add(&r->mPos, &r->mVelocity, &r->mPos);
     func_020f6630(r, 0, &p->mUnk_00.mPos, a, &data_021581f8);
@@ -210,7 +210,7 @@ u32 func_020da73c(Kuribo *p, Kart *a, u8 *b, u8 *c) {
         case 0:
             if (p->mUnk_c4 == 0x1000) {
                 if (p->mUnk_c8 == 0) {
-                    p->mUnk_c8 = (s32) (((s64) a->mVelocityLength * 0x52) >> 12);
+                    p->mUnk_c8 = ((s64) a->mVelocityLength * 0x52) >> 12;
                 }
             }
             break;
@@ -271,7 +271,7 @@ void CreateKuribo(void) {
     u32 v2;
     v1 = FindCourseMapObjFile(gKuriboNsbmdName);
     v2 = (u32) FindCourseMapObjFile(gKuriboNsbtpName);
-    func_020e6488((Unk020e6488 **) (((u32 *) &gKuribo)), v1, v2, (u32) 0);
+    func_020e6488((Unk020e6488 **) (((u32 *) &gKuribo)), v1, v2, 0);
     func_020e6ab8(gKuribo);
 }
 

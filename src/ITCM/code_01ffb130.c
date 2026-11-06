@@ -162,15 +162,15 @@ void func_01ffb130(Kart *p) {
     if ((p->mUnk_44 & 0x90) || (p->mUnk_4c & 0x10000000)) {
         k = p->mUnk_240;
         VEC_Subtract(&p->mUnk_50, &p->mUnk_68, &v4);
-        v4.x = (s32) (((s64) v4.x * k) >> 12);
-        v4.y = (s32) (((s64) v4.y * k) >> 12);
-        v4.z = (s32) (((s64) v4.z * k) >> 12);
+        v4.x = ((s64) v4.x * k) >> 12;
+        v4.y = ((s64) v4.y * k) >> 12;
+        v4.z = ((s64) v4.z * k) >> 12;
         VEC_Add(&p->mUnk_68, &v4, &p->mUnk_68);
         p->mUnk_68.y = p->mUnk_50.y;
     }
-    v1.x = (s32) (((s64) p->mUnk_68.x * a) >> 12);
-    v1.y = (s32) (((s64) p->mUnk_68.y * a) >> 12);
-    v1.z = (s32) (((s64) p->mUnk_68.z * a) >> 12);
+    v1.x = ((s64) p->mUnk_68.x * a) >> 12;
+    v1.y = ((s64) p->mUnk_68.y * a) >> 12;
+    v1.z = ((s64) p->mUnk_68.z * a) >> 12;
     if (a >= 0) {
         p->mUnk_05c = p->mUnk_50;
     } else {
@@ -195,7 +195,7 @@ void func_01ffb130(Kart *p) {
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         func_0207a74c(Vec3DotUnrounded(&p->mVelocity, &p->mUnk_50));
         if ((p->mUnk_44 & 0x1000000) && p->mUnk_4d4 != 0) {
-            p->mUnk_4d4 = (s32) (((s64) p->mUnk_4d4 * 0xfae) >> 12);
+            p->mUnk_4d4 = ((s64) p->mUnk_4d4 * 0xfae) >> 12;
             if (p->mUnk_4d4 < 0xcd) {
                 p->mUnk_4d4 = 0;
             }
@@ -206,9 +206,9 @@ void func_01ffb130(Kart *p) {
         p->mUnk_38c = 0x1000;
     }
     f = (p->mUnk_44 & 0x10) ? 0xee1 : 0xfae;
-    p->mUnk_2d8.x = (s32) (((s64) p->mUnk_2d8.x * f) >> 12);
-    p->mUnk_2d8.y = (s32) (((s64) p->mUnk_2d8.y * f) >> 12);
-    p->mUnk_2d8.z = (s32) (((s64) p->mUnk_2d8.z * f) >> 12);
+    p->mUnk_2d8.x = ((s64) p->mUnk_2d8.x * f) >> 12;
+    p->mUnk_2d8.y = ((s64) p->mUnk_2d8.y * f) >> 12;
+    p->mUnk_2d8.z = ((s64) p->mUnk_2d8.z * f) >> 12;
     if ((s64) p->mUnk_2d8.x * p->mUnk_2d8.x + (s64) p->mUnk_2d8.y * p->mUnk_2d8.y +
             (s64) p->mUnk_2d8.z * p->mUnk_2d8.z >=
         0xa429) {

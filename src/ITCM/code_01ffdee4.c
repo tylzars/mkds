@@ -14,6 +14,7 @@
 #include "Main/Unknown/unk_0216b000.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02147cd8.h"
+#include "registers.h"
 
 BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, void *g, void *h, u32 *o, u32 *j, int *k,
                    u16 *l, u32 *m) {
@@ -305,9 +306,9 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
             v = 0;
         lk:
             tq = qq;
-            *(vu16 *) 0x40002b0 = 1;
+            reg_CP_SQRTCNT = 1;
             *(vs64 *) 0x40002b8 = tq;
-            while (*(vu16 *) 0x40002b0 & 0x8000) {
+            while (reg_CP_SQRTCNT & 0x8000) {
             }
             pe = *(vs32 *) 0x40002b4 - d0;
             if (pe < 0) {
@@ -342,8 +343,8 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
                 dt = Vec3DotUnrounded(&ub, &n[0]);
                 if (dt < 0) {
                     if (v && (bt & 0x214300) && c != 0) {
-                        ua.x = (s32) (((s64) pe * n[0].x) >> 2);
-                        ua.z = (s32) (((s64) pe * n[0].z) >> 2);
+                        ua.x = ((s64) pe * n[0].x) >> 2;
+                        ua.z = ((s64) pe * n[0].z) >> 2;
                         if (ua.x > cc.x) {
                             cc.x = ua.x;
                         } else if (ua.x < cd.x) {
@@ -365,8 +366,8 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
                 VEC_Subtract(&pa, &pb, &ub);
                 if (Vec3DotUnrounded(&ub, &n[0]) > 0x333) {
                     if (v && (bt & 0x214300) && c != 0) {
-                        ua.x = (s32) (((s64) pe * n[0].x) >> 2);
-                        ua.z = (s32) (((s64) pe * n[0].z) >> 2);
+                        ua.x = ((s64) pe * n[0].x) >> 2;
+                        ua.z = ((s64) pe * n[0].z) >> 2;
                         if (ua.x > cc.x) {
                             cc.x = ua.x;
                         } else if (ua.x < cd.x) {
@@ -388,9 +389,9 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
                 ud = uc;
             }
             if (fa) {
-                uc.x = (s32) (((s64) pe * n[0].x) >> 2);
-                uc.y = (s32) (((s64) pe * n[0].y) >> 2);
-                uc.z = (s32) (((s64) pe * n[0].z) >> 2);
+                uc.x = ((s64) pe * n[0].x) >> 2;
+                uc.y = ((s64) pe * n[0].y) >> 2;
+                uc.z = ((s64) pe * n[0].z) >> 2;
                 if (bt & 0x1e34ef) {
                     if (uc.x > wa.mUnk_00) {
                         wa.mUnk_00 = uc.x;
@@ -501,7 +502,7 @@ BOOL func_01ffdee4(void *a, void *b, u32 c, int r, u16 fl, short e, void *f, voi
         }
         for (i = 0; i < data_0217b5a8; i++) {
             ob = data_0217b5c4[i];
-            if (func_020e1d10(ob, (Vec3 *) a, r, fl, &wa, &wb, j != NULL ? &ud : 0, &hw, (Vec3 *) k, l)) {
+            if (func_020e1d10(ob, a, r, fl, &wa, &wb, j != NULL ? &ud : 0, &hw, (Vec3 *) k, l)) {
                 ra |= data_0215690c;
                 ra |= 1 << hw;
                 if (data_027e0060 == 16) {

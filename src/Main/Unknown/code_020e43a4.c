@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_020e44d8.h"
 
 void func_020e44d8(Unk020e44d8 *p0) {
-    p0->mUnk_14c = (u32) 0x0u;
+    p0->mUnk_14c = 0x0u;
 }
 
 void func_020e4474(Unk020e43a8 *p) {
@@ -35,7 +35,7 @@ void func_020e4434(Unk020e43a8 *p) {
 }
 
 void func_020e4428(Unk020e4428 *p0) {
-    p0->mUnk_14c = (u32) 0x1000u;
+    p0->mUnk_14c = 0x1000u;
 }
 
 void func_020e43a8(Unk020e43a8 *p) {

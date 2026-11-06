@@ -24,7 +24,7 @@ void func_020ca6a8(void) {
 #pragma thumb on
 
 u32 func_020ca69c(void) {
-    return ((u32) gEmblemChoises->mUnk_1c);
+    return (gEmblemChoises->mUnk_1c);
 }
 
 #pragma thumb off

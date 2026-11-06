@@ -62,6 +62,7 @@
 #include "Main/Unknown/code_02025f80.h"
 #include "Main/Unknown/code_0204ea94.h"
 #include "Main/Unknown/code_0204f240.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -129,7 +130,7 @@ void func_0202d720(void) {
     p = &gTimeAttackGhostSend->mUnk_050[1];
     func_0212426c(1, 0xe, p->mUnk_14, GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x56), p->mUnk_0c, p->mUnk_18);
     func_0212426c(1, 0xf, p->mUnk_14, GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0x57), p->mUnk_0c, p->mUnk_18);
-    n = (s32) func_0202ddb0();
+    n = func_0202ddb0();
     if (n < 10) {
         s[0] = ' ';
     } else {
@@ -141,7 +142,7 @@ void func_0202d720(void) {
     s[4] = '2';
     s[5] = 0;
     func_02124224(1, 0x10, p->mUnk_14, s, p->mUnk_0c, p->mUnk_18, 6);
-    n = (s32) func_0202dd9c();
+    n = func_0202dd9c();
     if (n < 10) {
         s[0] = ' ';
     } else {
@@ -178,7 +179,7 @@ void func_0202d6a0(void) {
 void func_0202d674(void) {
     void *v1;
     v1 = GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 0);
-    func_0212658c(v1, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0, (u32) 0);
+    func_0212658c(v1, 0, 0, 0, 0, 0, 0);
 }
 
 #pragma thumb off
@@ -525,24 +526,24 @@ void ReleaseTimeAttackGhostSend(void) {
 void func_0202ccc0(void) {
     s16 a = func_02025ebc(&gTimeAttackGhostSend->mUnk_0cc);
     int b;
-    *(vu32 *) 0x4000010 = ((a << 16) & 0x1ff0000);
+    reg_G2_BG0OFS = ((a << 16) & 0x1ff0000);
     b = -a;
-    *(vu32 *) 0x400101c = ((b << 16) & 0x1ff0000);
-    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 1;
+    reg_G2S_DB_BG3OFS = ((b << 16) & 0x1ff0000);
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
     if (a != 0) {
-        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffff1fff) | 0x2000;
-        *(vu16 *) 0x4000048 = (u32) ((*(vu16 *) 0x4000048 & ~0x3f) | 0x1f) | 0x20;
-        *(vu16 *) 0x400004a = (u32) ((*(vu16 *) 0x400004a & ~0x3f) | 0xe) | 0x20;
-        *(vu16 *) 0x4000040 = 0xff;
-        *(vu16 *) 0x4000044 = ((b << 8) & 0xff00) | 0xc0;
-        *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffff1fff) | 0x2000;
-        *(vu16 *) 0x4001048 = (u32) ((*(vu16 *) 0x4001048 & ~0x3f) | 0x1f) | 0x20;
-        *(vu16 *) 0x400104a = (u32) ((*(vu16 *) 0x400104a & ~0x3f) | 7) | 0x20;
-        *(vu16 *) 0x4001040 = 0xff;
-        *(vu16 *) 0x4001044 = (a + 0xc0) & 0xff;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x2000;
+        reg_G2_WININ = (u32) ((reg_G2_WININ & ~0x3f) | 0x1f) | 0x20;
+        reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xe) | 0x20;
+        reg_G2_WIN0H = 0xff;
+        reg_G2_WIN0V = ((b << 8) & 0xff00) | 0xc0;
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffff1fff) | 0x2000;
+        reg_G2S_DB_WININ = (u32) ((reg_G2S_DB_WININ & ~0x3f) | 0x1f) | 0x20;
+        reg_G2S_DB_WINOUT = (u32) ((reg_G2S_DB_WINOUT & ~0x3f) | 7) | 0x20;
+        reg_G2S_DB_WIN0H = 0xff;
+        reg_G2S_DB_WIN0V = (a + 0xc0) & 0xff;
     } else {
-        *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & 0xffff1fff;
-        *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffff1fff;
+        reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
+        reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
     }
 }
 

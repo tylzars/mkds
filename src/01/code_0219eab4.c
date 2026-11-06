@@ -15,6 +15,7 @@
 #include "01/unk_021a9000.h"
 #include "01/unk_021ca000.h"
 #include "Main/Unknown/code_020ccc74.h"
+#include "registers.h"
 
 MissionRunLVsel *gMissionRunLVsel;
 
@@ -116,7 +117,7 @@ void func_ov001_0219f4f8(void) {
             gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][0]].mUnk_00 = 1;
             gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][1]].mUnk_00 = 1;
             gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][5]].mUnk_00 = 1;
-            r = func_ov001_0219f6a0((s16) i);
+            r = func_ov001_0219f6a0(i);
             if (r <= 4) {
                 gMissionRunLVsel->mMissionRunLVselS7Or6Table[data_ov001_021a6ce0[i][7]].mUnk_00 = 1;
                 gMissionRunLVsel->mMissionRunLVselS7Or6Table[cnt + data_ov001_021a6c60[i]].mUnk_00 = 1;
@@ -189,8 +190,8 @@ void func_ov001_0219f3a4(void) {
 }
 
 void func_ov001_0219f37c(void) {
-    func_0202948c((u32) ((gMissionRunLVsel->mIndex + 1) * 0x1000000 >> 0x18));
-    func_0202947c((u32) 1);
+    func_0202948c((gMissionRunLVsel->mIndex + 1) * 0x1000000 >> 0x18);
+    func_0202947c(1);
 }
 
 BOOL func_ov001_0219f31c(void) {
@@ -279,7 +280,7 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
     s32 i;
     s32 remaining;
 
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0x9004;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
     {
         void *heap = CreateFrmHeapFromMaxFree(a);
 
@@ -324,7 +325,7 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
 }
 
 void ReleaseMissionRunLVsel(void) {
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x1800;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x1800;
     switch (gMissionRunLVsel->mResult) {
         case 1:
             if (func_ov001_0219f31c() != FALSE) {
@@ -540,5 +541,5 @@ s32 AdvanceMissionRunLVsel(void) {
 }
 
 void WriteMissionRunLVselBg0Offset(void) {
-    *(vu32 *) 0x4000010 = (-gMissionRunLVsel->mBg0Offset << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-gMissionRunLVsel->mBg0Offset << 16) & 0x1ff0000;
 }

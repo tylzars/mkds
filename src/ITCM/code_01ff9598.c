@@ -115,10 +115,10 @@ BOOL func_01ffa1f8(Kart *p) {
                     q = func_0210e128(func_02108ea0(0));
                     if (data_0217d084.mUnk_0c != 0) {
                         if (*(u32 *) q != 0) {
-                            NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
+                            NNS_SndPlayerStopSeq(q, 0);
                         }
                         if (*(u32 *) q != 0) {
-                            NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
+                            NNS_SndPlayerStopSeq(q, 0);
                         }
                         NNS_SndArcPlayerStartSeqArc(q, 0, 0x1b7);
                     }

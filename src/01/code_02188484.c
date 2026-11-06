@@ -28,7 +28,7 @@ void func_ov001_0218883c(Unk02188950 *a, int b, u32 c, u32 d, u32 e) {
     a->mUnk_294 = 0;
     a->mUnk_2b0 = c;
     a->mUnk_2a4 = d;
-    a->mUnk_2a8 = ((u32) 0x0000a000u);
+    a->mUnk_2a8 = (0x0000a000u);
     a->mUnk_2ac = d;
     a->mUnk_2b4 = e;
 }
@@ -72,7 +72,7 @@ void func_ov001_02188644(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 
     int *v1;
     int *v2;
     a->mUnk_27c = 0;
-    if ((a->mUnk_000.mFlags & ((u32) 0x00000400u)) != 0) {
+    if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
         b = -b;
     }
     v2 = &a->mUnk_28c;
@@ -89,7 +89,7 @@ void func_ov001_02188644(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 
     *v1 = e;
     a->mUnk_298 = *v1;
     v1 = &a->mUnk_2a8;
-    *v1 = ((u32) 0x0000a000u);
+    *v1 = (0x0000a000u);
     a->mUnk_29c = *v1;
     v1 = &a->mUnk_2ac;
     *v1 = g;
@@ -99,7 +99,7 @@ void func_ov001_02188644(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 
 
 void func_ov001_021885d4(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l) {
     a->mUnk_27c = 0;
-    if ((a->mUnk_000.mFlags & ((u32) 0x00000400u)) != 0) {
+    if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
         b = -b;
     }
     a->mUnk_28c = b;
@@ -107,7 +107,7 @@ void func_ov001_021885d4(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 
     a->mUnk_294 = d;
     a->mUnk_2b0 = e;
     a->mUnk_2a4 = f;
-    a->mUnk_2a8 = ((u32) 0x0000a000u);
+    a->mUnk_2a8 = (0x0000a000u);
     a->mUnk_2ac = h;
     a->mUnk_2b4 = l;
 }
@@ -119,7 +119,7 @@ void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 
     int *v4;
     int *v5;
     a->mUnk_234 = 1;
-    if ((a->mUnk_000.mFlags & ((u32) 0x00000400u)) != 0) {
+    if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
         b = -b;
     }
     v2 = &a->mUnk_250;
@@ -152,7 +152,7 @@ void func_ov001_021884f0(Unk02188950 *a, int b, int c, int d, u32 e, u32 f, u32 
 
 void func_ov001_02188484(Unk02188950 *a, int b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 l) {
     a->mUnk_234 = 1;
-    if ((a->mUnk_000.mFlags & ((u32) 0x00000400u)) != 0) {
+    if ((a->mUnk_000.mFlags & (0x00000400u)) != 0) {
         b = -b;
     }
     a->mUnk_250 = b;

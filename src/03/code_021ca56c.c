@@ -60,7 +60,7 @@ void func_ov003_021ca864(void) {
     void *v9 = &GX_LoadBG2Scr;
     u32 v10 = func_ov003_021bf620(v8, v9);
     u32 v11 = 0x4001008u;
-    u32 v12 = ((u32) * (u16 *) ((v11) + (0)));
+    u32 v12 = (*(u16 *) ((v11) + (0)));
     u32 v14 = ((v12) & ~(0x3u));
     u32 v15 = ((v14) | (0x3u));
     u32 v17;
@@ -79,34 +79,34 @@ void func_ov003_021ca864(void) {
     u32 v33;
     u32 v34;
     u32 v35;
-    *(u16 *) ((v11) + (0)) = (u16) v15;
+    *(u16 *) ((v11) + (0)) = v15;
     v17 = 0x400100au;
-    v18 = ((u32) * (u16 *) ((v17) + (0)));
+    v18 = (*(u16 *) ((v17) + (0)));
     v19 = ((v18) & ~(0x3u));
     v20 = ((v19) | (0x3u));
-    *(u16 *) ((v17) + (0)) = (u16) v20;
+    *(u16 *) ((v17) + (0)) = v20;
     v22 = 0x4000008u;
-    v23 = ((u32) * (u16 *) ((v22) + (0)));
+    v23 = (*(u16 *) ((v22) + (0)));
     v24 = ((v23) & ~(0x3u));
     v25 = ((v24) | (0x3u));
-    *(u16 *) ((v22) + (0)) = (u16) v25;
+    *(u16 *) ((v22) + (0)) = v25;
     v27 = 0x400000au;
-    v28 = ((u32) * (u16 *) ((v27) + (0)));
+    v28 = (*(u16 *) ((v27) + (0)));
     v29 = ((v28) & ~(0x3u));
     v30 = ((v29) | (0x3u));
-    *(u16 *) ((v27) + (0)) = (u16) v30;
+    *(u16 *) ((v27) + (0)) = v30;
     v32 = 0x400000cu;
-    v33 = ((u32) * (u16 *) ((v32) + (0)));
+    v33 = (*(u16 *) ((v32) + (0)));
     v34 = ((v33) & ~(0x3u));
     v35 = ((v34) | (0x3u));
-    *(u16 *) ((v32) + (0)) = (u16) v35;
+    *(u16 *) ((v32) + (0)) = v35;
 }
 
 void func_ov003_021ca828(void) {
-    func_ov003_021d1ee0(2, 1, (u32) 1, (u16) 8);
-    func_ov003_021d1ee0(2, 0, (u32) 0x15, (u16) 8);
-    func_ov003_021d2784(1, (u32) 1);
-    func_ov003_021d2784(0, (u32) 0x15);
+    func_ov003_021d1ee0(2, 1, 1, 8);
+    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    func_ov003_021d2784(1, 1);
+    func_ov003_021d2784(0, 0x15);
     func_ov003_021c212c(func_ov003_021ca7f8);
 }
 
@@ -114,7 +114,7 @@ void func_ov003_021ca7f8(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
-        func_ov003_021bf5c8((u32) 1);
+        func_ov003_021bf5c8(1);
         func_ov003_021c212c(func_ov003_021ca7d4);
     }
 }
@@ -171,7 +171,7 @@ void func_ov003_021ca6f4(void) {
 
 void func_ov003_021ca6d4(void) {
     int v1;
-    v1 = func_ov003_021d2b04((u32) 2);
+    v1 = func_ov003_021d2b04(2);
     if (v1 != 0) {
         StopSoundSeq();
         func_ov003_021bf31c((u8) 0);
@@ -187,14 +187,14 @@ void func_ov003_021ca6a8(void) {
     v1 = func_ov003_021bf334();
     if (v1 == 0) {
         StopSoundSeq();
-        StartSoundSeq((u32) 7);
+        StartSoundSeq(7);
         func_ov003_021c212c(func_ov003_021ca688);
     }
 }
 
 void func_ov003_021ca688(void) {
     func_ov003_021bf2d0();
-    func_ov003_021d1dd0((u16) 8);
+    func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021ca64c);
 }
 
@@ -203,8 +203,8 @@ void func_ov003_021ca64c(void) {
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
         func_ov003_021bf344();
-        func_ov003_021d1ee0(3, 1, (u32) 1, (u16) 8);
-        func_ov003_021d1ee0(3, 0, (u32) 0x15, (u16) 8);
+        func_ov003_021d1ee0(3, 1, 1, 8);
+        func_ov003_021d1ee0(3, 0, 0x15, 8);
         func_ov003_021c212c(func_ov003_021ca5b0);
     }
 }
@@ -219,17 +219,17 @@ void func_ov003_021ca5b0(void) {
         func_ov003_021beecc();
         func_ov003_021d2168(0);
         func_ov003_021bf410();
-        func_ov003_021d272c(1, (u32) 1);
-        func_ov003_021d272c(0, (u32) 0x15);
+        func_ov003_021d272c(1, 1);
+        func_ov003_021d272c(0, 0x15);
         if ((*(u8 *) &data_ov003_021da228) != 1) {
             func_ov003_021cd27c();
             func_ov003_021cd790(func_ov003_021cdb6c()->mUnk_f4);
-            func_ov003_021c2120((u32) 2, (u32) 1);
+            func_ov003_021c2120(2, 1);
             func_ov003_021c212c(SetupWay);
             return;
         }
-        func_ov003_021c2120((u32) 0, (u32) 1);
-        func_ov003_021c20f8((u32) 0, (u32) 0);
+        func_ov003_021c2120(0, 1);
+        func_ov003_021c20f8(0, 0);
         func_ov003_021c212c(CreateApList);
     }
 }
@@ -238,7 +238,7 @@ void func_ov003_021ca588(void) {
     int v1;
     v1 = func_ov003_021cef80();
     if (v1 == 0) {
-        StartSoundSeq((u32) 6);
+        StartSoundSeq(6);
         func_ov003_021cef90();
         func_ov003_021c212c(func_ov003_021ca56c);
     }

@@ -270,7 +270,7 @@ u32 func_ov000_02196e48(u32 arg0) {
     u32 value0 = arg0;
     u32 value3;
     value3 = (u32) &func_ov000_0218e668;
-    value0 = (u32) func_ov000_0218e668(value0);
+    value0 = func_ov000_0218e668(value0);
     return value0;
 }
 
@@ -296,14 +296,14 @@ s32 func_ov000_02196d84(s32 a, s32 b, s32 c) {
         return -1;
     }
     d = 0;
-    if ((s32) DarrayGetCount((u32 *) data_ov000_021b4e5c) > 0) {
+    if (DarrayGetCount((u32 *) data_ov000_021b4e5c) > 0) {
         do {
             e = DarrayGetElement(data_ov000_021b4e5c, d);
             if (e->mUnk_00 == a && e->mUnk_04 == b && e->mUnk_08 == c) {
                 return d;
             }
             d++;
-        } while (d < (s32) DarrayGetCount((u32 *) data_ov000_021b4e5c));
+        } while (d < DarrayGetCount((u32 *) data_ov000_021b4e5c));
     }
     return -1;
 }

@@ -44,7 +44,7 @@ s32 SwiReadBytes(s32 a, u8 *b, u32 *c) {
 
     n = *c;
     for (i = 0; i < n; i++) {
-        b[i] = (u8) SwiReadByte();
+        b[i] = SwiReadByte();
         if (b[i] == 13 || b[i] == 10) {
             *c = i + 1;
             break;

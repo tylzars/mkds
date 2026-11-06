@@ -26,6 +26,7 @@
 #include "code_02142eac.h"
 #include "code_0214b824.h"
 #include "03/unk_021d67d8.h"
+#include "registers.h"
 
 static inline void func_ov003_021bfbd0_inline(Unk021bf920 *p, u32 *x, u32 *y) {
     *x = (p->mUnk_00 & 0x1ff0000) >> 16;
@@ -458,13 +459,13 @@ void func_ov003_021bf920(void) {
     u32 i;
     u16 a;
     i = 0;
-    a = *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = 0;
+    a = reg_OS_IME;
+    reg_OS_IME = 0;
     if (WM_GetAllowedChannel() != 0x8000) {
         i = WM_GetLinkLevel();
     }
-    *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = a;
+    reg_OS_IME;
+    reg_OS_IME = a;
     func_ov003_021d1c3c(0, data_ov003_021d5f58[data_ov003_021da158->mUnk_08][i], (u8 *) data_ov003_021da158->mUnk_00);
     data_ov003_021da158->mUnk_00->mUnk_00 =
         ((data_ov003_021d5f54[0] & 0x1ff) << 16) |

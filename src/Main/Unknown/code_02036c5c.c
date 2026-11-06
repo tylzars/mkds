@@ -65,14 +65,14 @@ void InitBrightnessFades(void) {
     gSubBrightnessFade.mFadeFrames = 0;
     gSubBrightnessFade.mFadeFrameCount = 0;
     gSubBrightnessFade.mBrightness = 0x10;
-    GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
-    GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
+    GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, gMainBrightnessFade.mBrightness);
+    GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, gSubBrightnessFade.mBrightness);
 }
 
 void WaitIrqAndTurnOnDisplays(void) {
     OS_WaitIrq(1, 1);
     GX_DispOn();
-    *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 | 0x10000;
+    reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT | 0x10000;
 }
 
 void InitDisplayBgRecords(void *a, u32 b) {
@@ -794,7 +794,7 @@ void FinishDisplayFrame(void) {
     DC_StoreAll();
     p = gDisplaySettings;
     if (p->mBg0As == 1) {
-        *(vu32 *) 0x4000540 = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
+        reg_G3_SWAP_BUFFERS = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
     }
     if ((gDisplaySettings->mFrameFlags & 1) == 0) {
         gDisplaySettings->mFrameFlags |= 2;
@@ -811,10 +811,10 @@ void FinishDisplayFrame(void) {
     gDisplaySettings->mFrameFlags |= 1;
     gDisplaySettings->mWaitEndTick = OS_GetTick();
     if (c != gMainBrightnessFade.mBrightness) {
-        GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
+        GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, gMainBrightnessFade.mBrightness);
     }
     if (d != gSubBrightnessFade.mBrightness) {
-        GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
+        GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, gSubBrightnessFade.mBrightness);
     }
     if (gFrameCallback != NULL) {
         gFrameCallback(2);
@@ -849,7 +849,7 @@ void func_02037658(s32 a) {
     }
     p = gDisplaySettings;
     if (p->mBg0As == 1 && e != FALSE) {
-        *(vu32 *) 0x4000540 = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
+        reg_G3_SWAP_BUFFERS = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
     }
     p = gDisplaySettings;
     t = OS_GetTick();
@@ -862,10 +862,10 @@ void func_02037658(s32 a) {
     gDisplaySettings->mFrameFlags |= 1;
     gDisplaySettings->mWaitEndTick = OS_GetTick();
     if (c != gMainBrightnessFade.mBrightness) {
-        GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
+        GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, gMainBrightnessFade.mBrightness);
     }
     if (d != gSubBrightnessFade.mBrightness) {
-        GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
+        GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, gSubBrightnessFade.mBrightness);
     }
     if (gFrameCallback != NULL) {
         gFrameCallback(2);
@@ -894,7 +894,7 @@ void FinishDisplayFrameSwapIf(s32 a) {
     }
     p = gDisplaySettings;
     if (p->mBg0As == 1 && a != 0) {
-        *(vu32 *) 0x4000540 = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
+        reg_G3_SWAP_BUFFERS = (p->mG3xParams->mSwapBit1 << 1) | p->mG3xParams->mSwapBit0;
     }
     p = gDisplaySettings;
     t = OS_GetTick();
@@ -905,10 +905,10 @@ void FinishDisplayFrameSwapIf(s32 a) {
     gDisplaySettings->mFrameFlags |= 1;
     gDisplaySettings->mWaitEndTick = OS_GetTick();
     if (c != gMainBrightnessFade.mBrightness) {
-        GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
+        GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, gMainBrightnessFade.mBrightness);
     }
     if (d != gSubBrightnessFade.mBrightness) {
-        GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
+        GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, gSubBrightnessFade.mBrightness);
     }
     if (gFrameCallback != NULL) {
         gFrameCallback(2);
@@ -998,8 +998,8 @@ void SetBrightnessFadesClear(void) {
     gSubBrightnessFade.mFadeFrames = 0;
     gSubBrightnessFade.mFadeFrameCount = 0;
     gSubBrightnessFade.mBrightness = 0;
-    GXx_SetMasterBrightness_((u16 *) 0x400006c, gMainBrightnessFade.mBrightness);
-    GXx_SetMasterBrightness_((u16 *) 0x400106c, gSubBrightnessFade.mBrightness);
+    GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, gMainBrightnessFade.mBrightness);
+    GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, gSubBrightnessFade.mBrightness);
 }
 
 u32 AreBrightnessFadesClear(void) {

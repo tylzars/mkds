@@ -24,14 +24,14 @@ u32 DGT_SetOverlayTableMode(u32 flag) {
 
 // Starts a SHA-1 computation.
 void DGT_Hash2Reset(Hash20State *ctx) {
-    ctx->mWords[0] = (u32) 0x67452301u;
-    ctx->mWords[1] = (u32) 0xefcdab89u;
-    ctx->mWords[2] = (u32) 0x98badcfeu;
-    ctx->mWords[3] = (u32) 0x10325476u;
-    ctx->mWords[4] = (u32) 0xc3d2e1f0u;
-    ctx->mBitCountLow = (u32) 0x0u;
-    ctx->mBitCountHigh = (u32) 0x0u;
-    ctx->mBufferLen = (u32) 0x0u;
+    ctx->mWords[0] = 0x67452301u;
+    ctx->mWords[1] = 0xefcdab89u;
+    ctx->mWords[2] = 0x98badcfeu;
+    ctx->mWords[3] = 0x10325476u;
+    ctx->mWords[4] = 0xc3d2e1f0u;
+    ctx->mBitCountLow = 0x0u;
+    ctx->mBitCountHigh = 0x0u;
+    ctx->mBufferLen = 0x0u;
 }
 
 // Adds length bytes of input to the SHA-1 computation, hashing each full 64-byte block as it fills.

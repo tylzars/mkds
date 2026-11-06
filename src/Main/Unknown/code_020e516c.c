@@ -128,17 +128,17 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
         func_020d7b88(&buf1, &buf2);
         Matrix3x3FromQuaternion(a, &buf2);
         d = b / 10;
-        ((Unk020e516c *) a)->mUnk_000[0] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[0] * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_000[1] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[1] * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_000[2] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[2] * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_000[3] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[3] * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_000[4] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[4] * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_000[5] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[5] * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_000[6] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[6] * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_000[7] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[7] * d) >> 12);
-        ((Unk020e516c *) a)->mUnk_000[8] = (s32) (((s64) ((Unk020e516c *) a)->mUnk_000[8] * d) >> 12);
+        ((Unk020e516c *) a)->mUnk_000[0] = ((s64) ((Unk020e516c *) a)->mUnk_000[0] * d) >> 12;
+        ((Unk020e516c *) a)->mUnk_000[1] = ((s64) ((Unk020e516c *) a)->mUnk_000[1] * d) >> 12;
+        ((Unk020e516c *) a)->mUnk_000[2] = ((s64) ((Unk020e516c *) a)->mUnk_000[2] * d) >> 12;
+        ((Unk020e516c *) a)->mUnk_000[3] = ((s64) ((Unk020e516c *) a)->mUnk_000[3] * d) >> 12;
+        ((Unk020e516c *) a)->mUnk_000[4] = ((s64) ((Unk020e516c *) a)->mUnk_000[4] * d) >> 12;
+        ((Unk020e516c *) a)->mUnk_000[5] = ((s64) ((Unk020e516c *) a)->mUnk_000[5] * d) >> 12;
+        ((Unk020e516c *) a)->mUnk_000[6] = ((s64) ((Unk020e516c *) a)->mUnk_000[6] * d) >> 12;
+        ((Unk020e516c *) a)->mUnk_000[7] = ((s64) ((Unk020e516c *) a)->mUnk_000[7] * d) >> 12;
+        ((Unk020e516c *) a)->mUnk_000[8] = ((s64) ((Unk020e516c *) a)->mUnk_000[8] * d) >> 12;
     } else {
-        MTX_Identity33_((MtxFx43 *) a);
+        MTX_Identity33_(a);
     }
     ((Unk020e516c *) a)->mUnk_000[9] = s.x >> 4;
     ((Unk020e516c *) a)->mUnk_000[10] = s.y >> 4;

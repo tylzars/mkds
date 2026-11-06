@@ -83,10 +83,10 @@ u32 func_ov000_021a6aa0(Unk021b5f54Func arg0) {
     u32 value1;
     u32 value4;
     value4 = (value0) + (0u);
-    value0 = (u32) OS_DisableInterrupts();
+    value0 = OS_DisableInterrupts();
     value1 = (u32) &data_ov000_021b5f54;
     *(u32 *) ((value1) + 40u) = value4;
-    value0 = (u32) OS_RestoreInterrupts(value0);
+    value0 = OS_RestoreInterrupts(value0);
     return value0;
 }
 

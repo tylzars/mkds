@@ -722,7 +722,7 @@ s32 func_02009cc8(u16 a) {
 int func_02009c98(void) {
     int v1;
     v1 = WM_Reset(data_0216fda8->mUnk_508);
-    func_02009928((u16) 1, v1);
+    func_02009928(1, v1);
     if (v1 == 2) {
         v1 = 0;
     }
@@ -736,7 +736,7 @@ u32 func_02009c90(void) {
     u32 value0;
     u32 value3;
     value3 = (u32) &func_02009c98;
-    value0 = (u32) func_02009c98();
+    value0 = func_02009c98();
     return value0;
 }
 #pragma thumb off
@@ -820,7 +820,7 @@ void func_02009ae8(u32 a) {
 void func_02009adc(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    data_0216fdc0.mUnk_06 = (u16) value0;
+    data_0216fdc0.mUnk_06 = value0;
 }
 #pragma thumb off
 

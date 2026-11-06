@@ -18,7 +18,7 @@ void func_020b2da4(void) {
     u16 *p;
 
     n = gChoisesS->mLists[func_020b2d04()].mValueCount;
-    p = (u16 *) func_020b32f8();
+    p = func_020b32f8();
     if (p != NULL) {
         for (i = 0, b = 0xd - n * 2; i < n; i++) {
             func_020b2e00(p, 2, b + i * 4);

@@ -178,7 +178,7 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
 }
 
 void func_02093234(void) {
-    func_0209bf70(&func_02093754, NULL, NULL, 2, 0, ((u32) 0x0000018du));
+    func_0209bf70(&func_02093754, NULL, NULL, 2, 0, (0x0000018du));
 }
 
 void func_02093210(void) {

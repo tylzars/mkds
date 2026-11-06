@@ -114,7 +114,7 @@ void func_0210f458(s32 a) {
     if (w >= 4) {
         return;
     }
-    n = (u16) (((v & 0xf000) >> 12) - 1);
+    n = ((v & 0xf000) >> 12) - 1;
     a = a - ((Unk0217d1c8 *) data_0217d1c8)[n].mUnk_00;
     ((Unk0217d1c4 *) data_0217d1c4)[n].mUnk_00 = ((Unk0217d1c0 *) data_0217d1c0)[n].mUnk_00;
     ((Unk0217d1c0 *) data_0217d1c0)[n].mUnk_00 = a;

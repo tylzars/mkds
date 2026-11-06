@@ -24,7 +24,7 @@ void func_ov003_021c3f84(void) {
 }
 
 void func_ov003_021c3f64(void) {
-    func_ov003_021d1ee0(3, 0, (u32) 0x15, (u16) 8);
+    func_ov003_021d1ee0(3, 0, 0x15, 8);
     func_ov003_021c212c(func_ov003_021c3ef0);
 }
 
@@ -35,8 +35,8 @@ void func_ov003_021c3ef0(void) {
         func_ov003_021bf9b8();
         func_ov003_021beecc();
         func_ov003_021d2168(0);
-        func_ov003_021d272c(0, (u32) 0x15);
-        func_ov003_021c2120((u32) 0, (u32) 1);
+        func_ov003_021d272c(0, 0x15);
+        func_ov003_021c2120(0, 1);
         if ((*(u8 *) &data_ov003_021da1bc) == 0) {
             func_ov003_021c212c(func_ov003_021c4aa4);
             return;
@@ -54,15 +54,15 @@ void func_ov003_021c3e8c(int a) {
         func_ov003_021cd42c();
         *(u8 *) &data_ov003_021da1bc = 1;
         StopSoundSeq();
-        StartSoundSeq((u32) 0x10);
+        StartSoundSeq(0x10);
     } else if (a == 3) {
         *(u8 *) &data_ov003_021da1bc = 2;
         StopSoundSeq();
-        StartSoundSeq((u32) 0x12);
+        StartSoundSeq(0x12);
     } else {
         *(u8 *) &data_ov003_021da1bc = 0;
         StopSoundSeq();
-        StartSoundSeq((u32) 0x12);
+        StartSoundSeq(0x12);
     }
     func_ov003_021c27d0(NULL);
     func_ov003_021c2824();

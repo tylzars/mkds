@@ -414,7 +414,7 @@ s32 func_ov000_0219d14c(DWCAccFriendData *a, s32 b, s32 c) {
 // error check; the buddy exists only once the other side authorizes.
 u32 AddBuddy(u32 a) {
     u32 v1;
-    v1 = GpWriteAddbuddy(gWiFiBuddySync->mGpConnection, (u32) (a), gWiFiBuddySync->mUnk_28);
+    v1 = GpWriteAddbuddy(gWiFiBuddySync->mGpConnection, a, gWiFiBuddySync->mUnk_28);
     ReportBuddySyncGpResult(v1);
     return v1;
 }

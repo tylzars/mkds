@@ -5,6 +5,7 @@
 #include "code_0200edc0.h"
 #include "Main/Unknown/code_0200f000.h"
 #include "code_0214d5b8.h"
+#include "registers.h"
 
 u16 gPowerInitialized;
 vu32 data_02180438;
@@ -365,14 +366,14 @@ void PM_GoSleepMode(u32 trigger, u32 logic, u32 keyPattern) {
 
     powerOffFlag = 0;
     PMi_ExecuteList(gPowerPreSleepCallbacks);
-    savedIme = *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = 0;
+    savedIme = reg_OS_IME;
+    reg_OS_IME = 0;
     intrMode = OS_DisableInterrupts();
     intrMask = OS_DisableIrqMask(0x3fffff);
     OS_SetIrqMask(0x40000);
     OS_RestoreInterrupts(intrMode);
-    ime = *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = 1;
+    ime = reg_OS_IME;
+    reg_OS_IME = 1;
     if ((trigger & 8) != 0) {
         if (*(vu16 *) 0x27ffc40 == 2) {
             trigger &= ~8;
@@ -383,8 +384,8 @@ void PM_GoSleepMode(u32 trigger, u32 logic, u32 keyPattern) {
             trigger &= ~0x10;
         }
     }
-    savedMainDispCnt = *(vu32 *) 0x4000000;
-    savedSubDispCnt = *(vu32 *) 0x4001000;
+    savedMainDispCnt = reg_GX_DISPCNT;
+    savedSubDispCnt = reg_GXS_DB_DISPCNT;
     lcdPower = PM_GetLCDPower();
     PM_GetBackLight(&topBacklightOn, &bottomBacklightOn);
     PM_SetBackLight(2, 0);
@@ -392,8 +393,8 @@ void PM_GoSleepMode(u32 trigger, u32 logic, u32 keyPattern) {
     while (vblankCount == OS_GetVBlankCount()) {
     }
     vblankCount = OS_GetVBlankCount();
-    *(vu32 *) 0x4000000 &= ~0x30000;
-    *(vu32 *) 0x4001000 &= ~0x10000;
+    reg_GX_DISPCNT &= ~0x30000;
+    reg_GXS_DB_DISPCNT &= ~0x10000;
     while (vblankCount == OS_GetVBlankCount()) {
     }
     vblankCount = OS_GetVBlankCount();
@@ -405,7 +406,7 @@ void PM_GoSleepMode(u32 trigger, u32 logic, u32 keyPattern) {
     OS_Halt();
     OS_SpinWait(0x332340);
     if ((trigger & 8) != 0) {
-        if ((*(vu32 *) 0x4000214 & 0x100000) != 0) {
+        if ((reg_OS_IF & 0x100000) != 0) {
             powerOffFlag = 1;
         }
     }
@@ -415,14 +416,14 @@ void PM_GoSleepMode(u32 trigger, u32 logic, u32 keyPattern) {
         } else {
             PMi_SetLED(1);
         }
-        *(vu32 *) 0x4000000 = savedMainDispCnt;
-        *(vu32 *) 0x4001000 = savedSubDispCnt;
+        reg_GX_DISPCNT = savedMainDispCnt;
+        reg_GXS_DB_DISPCNT = savedSubDispCnt;
     }
     OS_DisableInterrupts();
     OS_SetIrqMask(intrMask);
     OS_RestoreInterrupts(intrMode);
-    ime = *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = savedIme;
+    ime = reg_OS_IME;
+    reg_OS_IME = savedIme;
     if (powerOffFlag != 0) {
         PM_ForceToPowerOff();
     }
@@ -447,10 +448,10 @@ BOOL PMi_SetLCDPower(u32 sw, u32 led, u32 skip, u32 isSync) {
                     PMi_SetLEDAsync(led, 0, 0);
                 }
             }
-            *(vu16 *) 0x4000304 |= 1;
+            reg_GX_POWCNT |= 1;
             break;
         case 0:
-            *(vu16 *) 0x4000304 &= ~1;
+            reg_GX_POWCNT &= ~1;
             data_02180440 = *(vu32 *) 0x27ffc3c;
             if (led != 0) {
                 if (isSync != 0) {
@@ -475,7 +476,7 @@ BOOL PM_SetLCDPower(u32 sw) {
 
 // Returns bit 0 of reg_GX_POWCNT: 1 while the screens are powered.
 int PM_GetLCDPower(void) {
-    return (*(vu16 *) 0x4000304 & 1) != 0 ? 1 : 0;
+    return (reg_GX_POWCNT & 1) != 0 ? 1 : 0;
 }
 
 // Sends command 0x66 with pattern byte pattern; callback is called with the result.

@@ -38,6 +38,6 @@ void func_01ffb930(s32 *a, Kart *p) {
     if (b <= 0) {
         b = -b;
     }
-    c = (s32) ((s64) *a * data_usa_021654d8 >> 12);
+    c = (s64) *a * data_usa_021654d8 >> 12;
     *a -= (s32) ((s64) c * b >> 12);
 }

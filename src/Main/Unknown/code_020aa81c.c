@@ -47,6 +47,7 @@
 #include "code_0212df7c.h"
 #include "Main/Unknown/unk_02175628.h"
 #include "Main/Unknown/unk_0217d068.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -367,7 +368,7 @@ void SetKeyboardOffset(s32 a, s32 b) {
     gKeyboardTextEntry->mOffsetX = a;
     gKeyboardTextEntry->mOffsetY = b;
     StoreKeyboardOffset(gKeyboardTextEntry->mOffsetX, gKeyboardTextEntry->mOffsetY);
-    *(vu32 *) 0x4001018 = (-gKeyboardTextEntry->mOffsetX & 0x1ff) | ((-gKeyboardTextEntry->mOffsetY << 16) & 0x1ff0000);
+    reg_G2S_DB_BG2OFS = (-gKeyboardTextEntry->mOffsetX & 0x1ff) | ((-gKeyboardTextEntry->mOffsetY << 16) & 0x1ff0000);
     SetKeyboardButton0Rect(gKeyboardTextEntry->mOffsetX + gKeyboardTextEntry->mButton0X0,
                            gKeyboardTextEntry->mOffsetY + gKeyboardTextEntry->mButton0Y0,
                            gKeyboardTextEntry->mOffsetX + gKeyboardTextEntry->mButton0X1,
@@ -391,8 +392,8 @@ void SetKeyboardButton0Corners(u32 a, u32 b, u32 c, u32 d) {
     (*v1)->mButton0X1 = c;
     (*v1)->mButton0Y1 = d;
     v2 = *v1;
-    SetKeyboardButton0Rect((u32) (v2->mOffsetX + v2->mButton0X0), (u32) (v2->mOffsetY + v2->mButton0Y0),
-                           (u32) (v2->mOffsetX + v2->mButton0X1), (u32) (v2->mOffsetY + v2->mButton0Y1));
+    SetKeyboardButton0Rect(v2->mOffsetX + v2->mButton0X0, v2->mOffsetY + v2->mButton0Y0, v2->mOffsetX + v2->mButton0X1,
+                           v2->mOffsetY + v2->mButton0Y1);
 }
 
 void SetKeyboardButton1Corners(u32 a, u32 b, u32 c, u32 d) {
@@ -404,8 +405,8 @@ void SetKeyboardButton1Corners(u32 a, u32 b, u32 c, u32 d) {
     (*v1)->mButton1X1 = c;
     (*v1)->mButton1Y1 = d;
     v2 = *v1;
-    SetKeyboardButton1Rect((u32) (v2->mOffsetX + v2->mButton1X0), (u32) (v2->mOffsetY + v2->mButton1Y0),
-                           (u32) (v2->mOffsetX + v2->mButton1X1), (u32) (v2->mOffsetY + v2->mButton1Y1));
+    SetKeyboardButton1Rect(v2->mOffsetX + v2->mButton1X0, v2->mOffsetY + v2->mButton1Y0, v2->mOffsetX + v2->mButton1X1,
+                           v2->mOffsetY + v2->mButton1Y1);
 }
 
 #pragma thumb off
@@ -576,7 +577,7 @@ void AdvanceKeyboardInput(u16 a, volatile TPData b) {
 u32 GetKeyboardKeysPressed(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) gKeyboardInput.mKeysPressed;
+    value1 = gKeyboardInput.mKeysPressed;
     value1 = (value1) & (value0);
     value0 = (value1) + (0u);
     return value0;
@@ -587,7 +588,7 @@ u32 GetKeyboardKeysPressed(u32 arg0) {
 u32 GetKeyboardKeysDown(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
-    value1 = (u32) gKeyboardInput.mKeysDown;
+    value1 = gKeyboardInput.mKeysDown;
     value1 = (value1) & (value0);
     value0 = (value1) + (0u);
     return value0;
@@ -597,7 +598,7 @@ u32 GetKeyboardKeysDown(u32 arg0) {
 #pragma thumb on
 u32 GetKeyboardTouchDown(void) {
     u32 value0;
-    value0 = (u32) gKeyboardInput.mTouchDown;
+    value0 = gKeyboardInput.mTouchDown;
     return value0;
 }
 #pragma thumb off
@@ -605,7 +606,7 @@ u32 GetKeyboardTouchDown(void) {
 #pragma thumb on
 u32 GetKeyboardTouchStatus(void) {
     u32 value0;
-    value0 = (u32) gKeyboardInput.mTouchStatus;
+    value0 = gKeyboardInput.mTouchStatus;
     return value0;
 }
 #pragma thumb off
@@ -613,7 +614,7 @@ u32 GetKeyboardTouchStatus(void) {
 #pragma thumb on
 u32 GetKeyboardLastTouchX(void) {
     u32 value0;
-    value0 = (u32) gKeyboardInput.mLastTouchX;
+    value0 = gKeyboardInput.mLastTouchX;
     return value0;
 }
 #pragma thumb off
@@ -621,7 +622,7 @@ u32 GetKeyboardLastTouchX(void) {
 #pragma thumb on
 u32 GetKeyboardLastTouchY(void) {
     u32 value0;
-    value0 = (u32) gKeyboardInput.mLastTouchY;
+    value0 = gKeyboardInput.mLastTouchY;
     return value0;
 }
 #pragma thumb off
@@ -629,7 +630,7 @@ u32 GetKeyboardLastTouchY(void) {
 #pragma thumb on
 u32 IsKeyboardTouchEnabled(void) {
     u32 value0;
-    value0 = (u32) gKeyboardInput.mTouchEnabled;
+    value0 = gKeyboardInput.mTouchEnabled;
     return value0;
 }
 #pragma thumb off
@@ -637,17 +638,17 @@ u32 IsKeyboardTouchEnabled(void) {
 #pragma thumb on
 
 void SetupRepeatCounterDefault(RepeatCounter *p0) {
-    p0->mRepeatFrames = (u16) 0x0u;
-    p0->mUnk_06 = (u16) 0x0u;
-    p0->mFirstFireFrame = (u16) 0x28u;
-    p0->mRepeatFireFrame = (u16) 0x2du;
+    p0->mRepeatFrames = 0x0u;
+    p0->mUnk_06 = 0x0u;
+    p0->mFirstFireFrame = 0x28u;
+    p0->mRepeatFireFrame = 0x2du;
 }
 
 void SetupRepeatCounter(RepeatCounter *p0, u32 p1, u32 p2) {
-    p0->mRepeatFrames = (u16) 0x0u;
-    p0->mUnk_06 = (u16) 0x0u;
-    p0->mFirstFireFrame = (u16) p1;
-    p0->mRepeatFireFrame = (u16) (((p1) + (p2)));
+    p0->mRepeatFrames = 0x0u;
+    p0->mUnk_06 = 0x0u;
+    p0->mFirstFireFrame = p1;
+    p0->mRepeatFireFrame = ((p1) + (p2));
 }
 
 #pragma thumb off
@@ -669,8 +670,8 @@ void AdvanceRepeatCounter(RepeatCounter *p) {
 #pragma thumb on
 
 void ResetRepeatCounter(RepeatCounter *p0) {
-    p0->mRepeatFrames = (u16) 0x0u;
-    p0->mUnk_06 = (u16) 0x0u;
+    p0->mRepeatFrames = 0x0u;
+    p0->mUnk_06 = 0x0u;
 }
 
 #pragma thumb off
@@ -875,7 +876,7 @@ s32 GetKeyboardValueForKeyId(u32 a) {
                         return 0x13;
                 }
             } else {
-                switch ((s32) a) {
+                switch (a) {
                     case 1:
                         return 8;
                     case 2:

@@ -138,7 +138,7 @@ u8 *func_020ff040(u8 *a, void *b, void *c) {
 
     if (b != NULL) {
         if (c != NULL) {
-            v = func_020f36d8((Unk020f36d8 *) b);
+            v = func_020f36d8(b);
         }
         if (c != NULL) {
             *(u8 *) a = v;
@@ -330,7 +330,7 @@ void func_020feb44(void) {
                 data_0217bdc0[v3][0] = v4;
             }
             p = &data_0217c200[v2];
-            if (p->mUnk_1c == 0 || (u32) (p->mUnk_1c + 0x100) >= v1) {
+            if (p->mUnk_1c == 0 || (p->mUnk_1c + 0x100) >= v1) {
                 u32 k = *(vu32 *) &p->mUnk_14;
                 func_020f0758(gItemPools + k, p->mUnk_18, 0, (u8 *) p, p->mUnk_1c);
             }

@@ -44,12 +44,12 @@ void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         a->mUnk_0c = v;
         t = b->mUnk_70;
         if (t > 0x5000) {
-            x = (s32) (((s64) (t - 0x5000) * 0x5b) >> 12);
+            x = ((s64) (t - 0x5000) * 0x5b) >> 12;
             if (x > 0x1000) {
                 x = 0x1000;
             }
-            x = (s32) (((s64) x * 0x668) >> 12);
-            a->mUnk_0c = (s32) (((s64) (0x1000 - x) * 0xa000) >> 12);
+            x = ((s64) x * 0x668) >> 12;
+            a->mUnk_0c = ((s64) (0x1000 - x) * 0xa000) >> 12;
         }
         m = a->mUnk_0c;
         if (m < v) {
@@ -67,7 +67,7 @@ void func_0207d6a4(struct Unk02089a24 *a, struct Unk020888b4 *b) {
         return;
     }
     x = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
-    b->mKart->mSpeedLimitGoal = (s32) (((s64) a->mUnk_04 * x + 0x800) >> 12);
+    b->mKart->mSpeedLimitGoal = ((s64) a->mUnk_04 * x + 0x800) >> 12;
 }
 
 void func_0207d5b8(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -651,13 +651,13 @@ void func_0207c448(Unk0208fd8c *p0) {
     p0->mUnk_02 = (u16) 0x0u;
     p0->mUnk_04 = NULL;
     p0->mUnk_08 = NULL;
-    p0->mUnk_0c = (u32) 0x0u;
-    p0->mUnk_10 = (u32) 0x0u;
-    p0->mUnk_14 = (u32) 0x0u;
-    p0->mUnk_18 = (u32) 0x0u;
+    p0->mUnk_0c = 0x0u;
+    p0->mUnk_10 = 0x0u;
+    p0->mUnk_14 = 0x0u;
+    p0->mUnk_18 = 0x0u;
     p0->mUnk_1c = (u16) 0x0u;
     p0->mUnk_1e = (u16) 0x0u;
-    p0->mUnk_20 = (u32) 0x0u;
+    p0->mUnk_20 = 0x0u;
 }
 
 void func_0207c2ec(struct Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -890,16 +890,15 @@ void ComputePosCurvePoint(Vec3 *a, PosCurve *b) {
 
     t = b->mParam;
     u = 0x1000 - t;
-    t2 = (s32) (((s64) t * t + 0x800) >> 12);
-    t3 = (s32) (((s64) t2 * t + 0x800) >> 12);
-    c0 = (s32) (((s64) (s32) (((s64) u * 0x2ab + 0x800) >> 12) * (s32) (((s64) u * u + 0x800) >> 12) + 0x800) >> 12);
-    c1 =
-        (s32) (((s64) ((s32) (((s64) t3 * 0x3000 + 0x800) >> 12) - (s32) (((s64) 0x6000 * t2 + 0x800) >> 12) + 0x4000) *
-                    0x2ab +
-                0x800) >>
-               12);
-    c2 = (s32) (((s64) ((s32) (((s64) (t + (t2 - t3)) * 0x3000 + 0x800) >> 12) + 0x1000) * 0x2ab + 0x800) >> 12);
-    c3 = (s32) (((s64) t3 * 0x2ab + 0x800) >> 12);
+    t2 = ((s64) t * t + 0x800) >> 12;
+    t3 = ((s64) t2 * t + 0x800) >> 12;
+    c0 = ((s64) (s32) (((s64) u * 0x2ab + 0x800) >> 12) * (s32) (((s64) u * u + 0x800) >> 12) + 0x800) >> 12;
+    c1 = ((s64) ((s32) (((s64) t3 * 0x3000 + 0x800) >> 12) - (s32) (((s64) 0x6000 * t2 + 0x800) >> 12) + 0x4000) *
+              0x2ab +
+          0x800) >>
+         12;
+    c2 = ((s64) ((s32) (((s64) (t + (t2 - t3)) * 0x3000 + 0x800) >> 12) + 0x1000) * 0x2ab + 0x800) >> 12;
+    c3 = ((s64) t3 * 0x2ab + 0x800) >> 12;
     for (i = 0; i < 4; i++) {
         v[i] = &b->mPoints[i];
     }

@@ -45,13 +45,13 @@ BOOL func_020ee528(Unk020eda5c *a) {
     a->mUnk_050 = p->mUnk_98;
     a->mUnk_05c = p->mVelocity;
     a->mUnk_068 = p->mVelocityLength;
-    a->mUnk_078 = (s32) (((s64) p->mPhysicalParam->mUnk_08 * p->mScale.z + 0x800) >> 12);
+    a->mUnk_078 = ((s64) p->mPhysicalParam->mUnk_08 * p->mScale.z + 0x800) >> 12;
     a->mUnk_07c = p->mHopHeight;
     a->mUnk_080 = Vec3DotUnrounded(&a->mUnk_02c.mUnk_18, &a->mUnk_05c) > 0;
     VEC_Subtract(&a->mUnk_050, &p->mPrevPos, &a->mUnk_06c);
-    v.x = (s32) (((s64) p->mScaleFactor.x * p->mScaleBase.x) >> 12);
-    v.y = (s32) (((s64) p->mScaleFactor.y * p->mScaleBase.y) >> 12);
-    v.z = (s32) (((s64) p->mScaleFactor.z * p->mScaleBase.z) >> 12);
+    v.x = ((s64) p->mScaleFactor.x * p->mScaleBase.x) >> 12;
+    v.y = ((s64) p->mScaleFactor.y * p->mScaleBase.y) >> 12;
+    v.z = ((s64) p->mScaleFactor.z * p->mScaleBase.z) >> 12;
     s = (a->mUnk_084.x == v.x && a->mUnk_084.y == v.y && a->mUnk_084.z == v.z) ? 1 : 0;
     if (s == 0) {
         a->mUnk_084 = v;
@@ -437,7 +437,7 @@ void func_020ed79c(Unk020ed718 *p, Vec3 *v) {
         }
         if ((d8 = q->mUnk_d8) != 0x1f) {
             d->mUnk_14 &= ~0x1f0000;
-            d->mUnk_14 |= (u32) (u16) d8 << 16;
+            d->mUnk_14 |= (u16) d8 << 16;
         }
         if (i == sel) {
             d->mUnk_14 &= ~0x3f000000;
@@ -499,7 +499,7 @@ void func_020ed5c0(ItemObject *p, Unk020e6488 *q, Vec3 *v) {
 
     if ((d = p->mUnk_d8) != 0x1f) {
         q->mUnk_14 &= ~0x1f0000;
-        q->mUnk_14 |= (u32) (u16) d << 16;
+        q->mUnk_14 |= (u16) d << 16;
     }
     func_020e6a18(q);
     if (p->mUnk_f0.y < 0xfae || (p->mFlags & 0x80) != 0) {

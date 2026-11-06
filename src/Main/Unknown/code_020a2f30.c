@@ -209,7 +209,7 @@ void func_020a36a8(Balloon *a) {
     }
     v1 = (a->mUnk_00.mPos.x + a->mUnk_00.mUnk_10.x) - (a->mTargetPos.x + a->mTargetVelocity.x);
     v3 = (a->mUnk_00.mPos.z + a->mUnk_00.mUnk_10.z) - (a->mTargetPos.z + a->mTargetVelocity.z);
-    t = (s32) (((s64) 0xa000 * (a->mScaleFactor + a->mUnk_d8)) >> 12);
+    t = ((s64) 0xa000 * (a->mScaleFactor + a->mUnk_d8)) >> 12;
     v6 = v3 < 0 ? -v3 : v3;
     v4 = v1 < 0 ? -v1 : v1;
     v7 = v4 / 2 + v6 / 2;
@@ -218,9 +218,9 @@ void func_020a36a8(Balloon *a) {
     } else if (a->mUnk_e0 != 0) {
         if (v7 > t) {
             s = FX_Div(v7 - t, v7);
-            v.x = (s32) (((s64) v1 * s) >> 12);
+            v.x = ((s64) v1 * s) >> 12;
             v.y = 0;
-            v.z = (s32) (((s64) v3 * s) >> 12);
+            v.z = ((s64) v3 * s) >> 12;
             VEC_Subtract(&a->mUnk_00.mPos, &v, &a->mUnk_00.mPos);
         }
     }
@@ -234,9 +234,9 @@ void func_020a36a8(Balloon *a) {
     v7 = v5 + (v4 >> 2) + (v6 >> 2);
     if (v7 > t) {
         s = FX_Div(v7 - t, v7);
-        v.x = (s32) (((s64) v1 * s) >> 12);
-        v.y = (s32) (((s64) v2 * s) >> 12);
-        v.z = (s32) (((s64) v3 * s) >> 12);
+        v.x = ((s64) v1 * s) >> 12;
+        v.y = ((s64) v2 * s) >> 12;
+        v.z = ((s64) v3 * s) >> 12;
         if (a->mKartIndex >= 0) {
             VEC_Subtract(&a->mUnk_00.mUnk_10, &v, &a->mUnk_00.mUnk_10);
         } else {
@@ -273,8 +273,8 @@ void func_020a35b0(Balloon *a) {
     i = (v1 >> 4) * 2;
     s = gPairsByAngle[i];
     c = gPairsByAngle[i + 1];
-    x = (s32) (((s64) v.z * c) >> 12);
-    y = (s32) (((s64) v.x * s) >> 12);
+    x = ((s64) v.z * c) >> 12;
+    y = ((s64) v.x * s) >> 12;
     u = v.y;
     VEC_Subtract(&a->mTargetPos, &g->mPos, &v);
     w = (s32) (((s64) v.x * s) >> 12) + (s32) (((s64) v.z * c) >> 12);
@@ -398,9 +398,9 @@ void UpdateBalloon(void *p, Balloon *a) {
         a->mUnk_00.mAngle = a->mUnk_c8 + 0x4000;
         a->mUnk_00.mUnk_10.y = a->mUnk_00.mUnk_10.y + 0x59a;
         a->mTargetVelocity.y = a->mTargetVelocity.y - 0x2000;
-        a->mUnk_00.mUnk_10.x = (s32) (((s64) a->mUnk_00.mUnk_10.x * 0xc00) >> 12);
-        a->mUnk_00.mUnk_10.y = (s32) (((s64) a->mUnk_00.mUnk_10.y * 0xc00) >> 12);
-        a->mUnk_00.mUnk_10.z = (s32) (((s64) a->mUnk_00.mUnk_10.z * 0xc00) >> 12);
+        a->mUnk_00.mUnk_10.x = ((s64) a->mUnk_00.mUnk_10.x * 0xc00) >> 12;
+        a->mUnk_00.mUnk_10.y = ((s64) a->mUnk_00.mUnk_10.y * 0xc00) >> 12;
+        a->mUnk_00.mUnk_10.z = ((s64) a->mUnk_00.mUnk_10.z * 0xc00) >> 12;
         VEC_Add(&a->mUnk_00.mPos, &a->mUnk_00.mUnk_10, &a->mUnk_00.mPos);
         VEC_Add(&a->mTargetPos, &a->mTargetVelocity, &a->mTargetPos);
     }

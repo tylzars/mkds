@@ -1,4 +1,5 @@
 #include "code_0214a054.h"
+#include "registers.h"
 
 // Returns the main engine BG VRAM address of the screen base block set in BG2CNT.
 u32 G2_GetBG2ScrPtr(void) {
@@ -7,9 +8,9 @@ u32 G2_GetBG2ScrPtr(void) {
     u32 offset;
     u32 block;
 
-    mode = *(vu32 *) 0x4000000 & 0x7;
-    control = *(vu16 *) 0x400000c;
-    offset = ((*(vu32 *) 0x4000000 & 0x38000000) >> 27) << 16;
+    mode = reg_GX_DISPCNT & 0x7;
+    control = reg_G2_BG2CNT;
+    offset = ((reg_GX_DISPCNT & 0x38000000) >> 27) << 16;
     block = (control & 0x1f00) >> 8;
     switch (mode) {
         case 0:
@@ -35,8 +36,8 @@ u32 G2S_GetBG2ScrPtr(void) {
     u32 control;
     u32 block;
 
-    mode = *(vu32 *) 0x4001000 & 0x7;
-    control = *(vu16 *) 0x400100c;
+    mode = reg_GXS_DB_DISPCNT & 0x7;
+    control = reg_G2S_DB_BG2CNT;
     block = (control & 0x1f00) >> 8;
     switch (mode) {
         case 0:
@@ -63,9 +64,9 @@ u32 G2_GetBG3ScrPtr(void) {
     u32 offset;
     u32 block;
 
-    mode = *(vu32 *) 0x4000000 & 0x7;
-    control = *(vu16 *) 0x400000e;
-    offset = ((*(vu32 *) 0x4000000 & 0x38000000) >> 27) << 16;
+    mode = reg_GX_DISPCNT & 0x7;
+    control = reg_G2_BG3CNT;
+    offset = ((reg_GX_DISPCNT & 0x38000000) >> 27) << 16;
     block = (control & 0x1f00) >> 8;
     switch (mode) {
         case 0:
@@ -91,8 +92,8 @@ u32 G2S_GetBG3ScrPtr(void) {
     u32 control;
     u32 block;
 
-    mode = *(vu32 *) 0x4001000 & 0x7;
-    control = *(vu16 *) 0x400100e;
+    mode = reg_GXS_DB_DISPCNT & 0x7;
+    control = reg_G2S_DB_BG3CNT;
     block = (control & 0x1f00) >> 8;
     switch (mode) {
         case 0:
@@ -117,8 +118,8 @@ u32 G2_GetBG0CharPtr(void) {
     u32 control;
     u32 offset;
 
-    control = *(vu16 *) 0x4000008;
-    offset = (*(vu32 *) 0x4000000 & 0x7000000) >> 24;
+    control = reg_G2_BG0CNT;
+    offset = (reg_GX_DISPCNT & 0x7000000) >> 24;
     control &= 0x3c;
     offset <<= 16;
     control = (s32) control >> 2;

@@ -89,9 +89,9 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                     v6.x = -v6.x;
                     v6.y = -v6.y;
                     v6.z = -v6.z;
-                    v6.x = (s32) (((s64) v6.x * k) >> 12);
-                    v6.y = (s32) (((s64) v6.y * k) >> 12);
-                    v6.z = (s32) (((s64) v6.z * k) >> 12);
+                    v6.x = ((s64) v6.x * k) >> 12;
+                    v6.y = ((s64) v6.y * k) >> 12;
+                    v6.z = ((s64) v6.z * k) >> 12;
                     p->mUnk_374 = v6;
                     p->mUnk_374.y = -0x19a;
                 }
@@ -164,9 +164,9 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                             v7.x = -v7.x;
                             v7.y = -v7.y;
                             v7.z = -v7.z;
-                            v7.x = (s32) (((s64) v7.x * k) >> 12);
-                            v7.y = (s32) (((s64) v7.y * k) >> 12);
-                            v7.z = (s32) (((s64) v7.z * k) >> 12);
+                            v7.x = ((s64) v7.x * k) >> 12;
+                            v7.y = ((s64) v7.y * k) >> 12;
+                            v7.z = ((s64) v7.z * k) >> 12;
                             p->mUnk_374 = v7;
                             p->mUnk_374.y = -0x19a;
                         }
@@ -192,7 +192,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
     if ((p->mUnk_4c & 0x40000000) && p->mState == 0) {
         func_0206f824(p, a, b1);
     }
-    p->mUnk_274 = (s32) (((s64) p->mUnk_274 * 0xf33) >> 12);
+    p->mUnk_274 = ((s64) p->mUnk_274 * 0xf33) >> 12;
     t = p->mUnk_274;
     if ((t > 0 ? t : -t) < 0x29) {
         p->mUnk_274 = 0;

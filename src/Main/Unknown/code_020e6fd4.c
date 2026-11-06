@@ -52,7 +52,7 @@ void func_020e7a40(void) {
     u32 value1;
     u32 compareLeft0;
     u32 compareRight0;
-    value0 = (u32) data_021759c0->mUnk_00c;
+    value0 = data_021759c0->mUnk_00c;
     compareLeft0 = value0;
     compareRight0 = 6u;
     if (compareLeft0 == compareRight0) {
@@ -64,7 +64,7 @@ void func_020e7a40(void) {
     }
     value0 = (u32) &data_0217b9ec;
     value1 = 4u;
-    func_02046bcc((void *) value0, (u16) value1);
+    func_02046bcc((void *) value0, value1);
 }
 
 #pragma thumb off
@@ -278,7 +278,7 @@ MapObjectList *func_020e73b4(void) {
     data_0217b864 = p;
     *p = *(MapObjectList *) data_02159348;
     func_020e6f50(&data_0217b864);
-    return (MapObjectList *) data_0217b864;
+    return data_0217b864;
 }
 
 Vec3 *func_020e73a0(u32 arg0) {
@@ -286,13 +286,13 @@ Vec3 *func_020e73a0(u32 arg0) {
 }
 
 u16 func_020e7388(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     value1 = (u32) &data_0217b868;
     value0 = (value0 << 1);
-    value1 = (u32) * (const u32 *) ((value1) + (0));
-    value0 = (u32) * (const u16 *) ((value1) + (value0));
-    return (u16) value0;
+    value1 = *(const u32 *) ((value1) + (0));
+    value0 = *(const u16 *) ((value1) + (value0));
+    return value0;
 }
 
 #pragma thumb on
@@ -307,7 +307,7 @@ void func_020e730c(void) {
     for (i = 0; i < ((MapObjectList *) data_0217b864)->mMapObjectCount; i++) {
         s32 k;
 
-        e = (Unk020e730c *) ((MapObjectList *) data_0217b864)->mMapObjects[i];
+        e = ((MapObjectList *) data_0217b864)->mMapObjects[i];
         k = e->mUnk_a0;
         (*(Vec3 ***) data_0217b86c)[k] = &e->mUnk_00.mPos;
         data_0217b868[k] = e->mUnk_a2;

@@ -81,7 +81,7 @@ void LoadEditFilesAndSetBgCnt(void) {
     void *v12 = &GX_LoadBG2Scr;
     u32 v13 = func_ov003_021bf620(v11, v12);
     u32 v14 = 0x4001008u;
-    u32 v15 = ((u32) * (u16 *) ((v14) + (0)));
+    u32 v15 = (*(u16 *) ((v14) + (0)));
     u32 v17 = ((v15) & ~(0x3u));
     u32 v18 = ((v17) | (0x3u));
     u32 v20;
@@ -100,34 +100,34 @@ void LoadEditFilesAndSetBgCnt(void) {
     u32 v37;
     u32 v38;
     u32 v39;
-    *(u16 *) ((v14) + (0)) = (u16) v18;
+    *(u16 *) ((v14) + (0)) = v18;
     v20 = 0x400100au;
-    v21 = ((u32) * (u16 *) ((v20) + (0)));
+    v21 = (*(u16 *) ((v20) + (0)));
     v22 = ((v21) & ~(0x3u));
     v23 = ((v22) | (0x3u));
-    *(u16 *) ((v20) + (0)) = (u16) v23;
+    *(u16 *) ((v20) + (0)) = v23;
     v25 = 0x4000008u;
-    v26 = ((u32) * (u16 *) ((v25) + (0)));
+    v26 = (*(u16 *) ((v25) + (0)));
     v27 = ((v26) & ~(0x3u));
     v29 = ((v27) | (0x2u));
-    *(u16 *) ((v25) + (0)) = (u16) v29;
+    *(u16 *) ((v25) + (0)) = v29;
     v31 = 0x400000au;
-    v32 = ((u32) * (u16 *) ((v31) + (0)));
+    v32 = (*(u16 *) ((v31) + (0)));
     v33 = ((v32) & ~(0x3u));
     v34 = ((v33) | (0x3u));
-    *(u16 *) ((v31) + (0)) = (u16) v34;
+    *(u16 *) ((v31) + (0)) = v34;
     v36 = 0x400000cu;
-    v37 = ((u32) * (u16 *) ((v36) + (0)));
+    v37 = (*(u16 *) ((v36) + (0)));
     v38 = ((v37) & ~(0x3u));
     v39 = ((v38) | (0x3u));
-    *(u16 *) ((v36) + (0)) = (u16) v39;
+    *(u16 *) ((v36) + (0)) = v39;
 }
 
 void func_ov003_021c6d68(void) {
-    func_ov003_021d1ee0(2, 1, (u32) 1, (u16) 8);
-    func_ov003_021d1ee0(2, 0, (u32) 0x15, (u16) 8);
-    func_ov003_021d2784(1, (u32) 1);
-    func_ov003_021d2784(0, (u32) 0x15);
+    func_ov003_021d1ee0(2, 1, 1, 8);
+    func_ov003_021d1ee0(2, 0, 0x15, 8);
+    func_ov003_021d2784(1, 1);
+    func_ov003_021d2784(0, 0x15);
     func_ov003_021c212c(func_ov003_021c6d0c);
 }
 
@@ -136,12 +136,12 @@ void func_ov003_021c6d0c(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021c0d2c();
-        StartSoundSeq((u32) 0x14);
+        StartSoundSeq(0x14);
         if (gEdit->mCharCount == 0) {
-            func_ov003_021c0cd0((u8) 0);
+            func_ov003_021c0cd0(0);
         }
         if (gEdit->mCharCount == ' ') {
-            func_ov003_021c0cbc((u8) 0);
+            func_ov003_021c0cbc(0);
         }
         func_ov003_021c212c(func_ov003_021c6cf0);
     }
@@ -221,7 +221,7 @@ void func_ov003_021c6b9c(void) {
 }
 
 void func_ov003_021c6b80(void) {
-    func_ov003_021d1dd0((u16) (8));
+    func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c6b58);
     return;
 }
@@ -261,20 +261,20 @@ void func_ov003_021c6a18(void) {
     func_ov003_021d2f00((u32 *) (u32) gEdit->mUnk_04);
     func_ov003_021d2168(0);
     func_ov003_021bf620(&gYbObjMainNclName2, &GX_LoadOBJPltt);
-    func_ov003_021d272c(1, (u32) 1);
-    func_ov003_021d272c(0, (u32) 0x15);
+    func_ov003_021d272c(1, 1);
+    func_ov003_021d272c(0, 0x15);
     func_ov003_021c20dc(&v1, v2);
     if (v2[0] == 0) {
-        func_ov003_021c2120((u32) 2, (u32) 1);
-        func_ov003_021c20f8((u32) 0, (u32) v1);
+        func_ov003_021c2120(2, 1);
+        func_ov003_021c20f8(0, v1);
         func_ov003_021c212c(CreateJb3List);
     } else if (gEdit->mUnk_2a == 0) {
-        func_ov003_021c2120((u32) 0, (u32) 1);
-        func_ov003_021c20f8((u32) 1, (u32) 0);
+        func_ov003_021c2120(0, 1);
+        func_ov003_021c20f8(1, 0);
         func_ov003_021c212c(CreateApList);
     } else {
-        func_ov003_021c2120((u32) 0, (u32) 0);
-        func_ov003_021c20f8((u32) 0, (u32) 1);
+        func_ov003_021c2120(0, 0);
+        func_ov003_021c20f8(0, 1);
         func_ov003_021c212c(func_ov003_021cbf60);
     }
     func_ov003_021d2808(&gEdit);

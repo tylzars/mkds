@@ -2,7 +2,7 @@
 #include "Main/Unknown/unk_021759c0.h"
 
 u32 GetCourseNumber(void) {
-    return ((u32) data_021759c0->mCourseNumber);
+    return (data_021759c0->mCourseNumber);
 }
 
 u32 func_020b24e4(void) {

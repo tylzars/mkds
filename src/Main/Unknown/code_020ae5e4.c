@@ -7,11 +7,11 @@
 void func_020ae5f0(void *a, void *b) {
     if (a != NULL) {
         DC_FlushRange(a, 0x00000400u);
-        GX_LoadOAM(a, 0, (u32) 0x00000400u);
+        GX_LoadOAM(a, 0, 0x00000400u);
     }
     if (b != NULL) {
         DC_FlushRange(b, 0x00000400u);
-        GXS_LoadOAM(b, 0, (u32) 0x00000400u);
+        GXS_LoadOAM(b, 0, 0x00000400u);
     }
 }
 

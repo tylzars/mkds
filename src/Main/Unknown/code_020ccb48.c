@@ -43,10 +43,10 @@ void func_020ccb78(void) {
     Unk02029930 *v3;
     v2 = func_02029930();
     v3 = func_02029930();
-    func_020468b0(0, v2->mUnk_00[0].mCharacterIndex, v3->mUnk_00[0].mKartIndex, 0, (u32) 0xffffffff, 3);
+    func_020468b0(0, v2->mUnk_00[0].mCharacterIndex, v3->mUnk_00[0].mKartIndex, 0, 0xffffffff, 3);
     v1 = 1;
     do {
-        func_020ccb48((u32) v1);
+        func_020ccb48(v1);
         v1 = v1 + 1;
     } while (v1 < 8);
 }

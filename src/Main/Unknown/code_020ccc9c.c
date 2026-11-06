@@ -9,19 +9,19 @@ s32 func_020ccccc(void) {
 }
 
 u32 func_020cccc0(void) {
-    return ((u32) data_0217b43c->mUnk_004);
+    return (data_0217b43c->mUnk_004);
 }
 
 u32 func_020cccb4(void) {
-    return ((u32) data_0217b43c->mUnk_008);
+    return (data_0217b43c->mUnk_008);
 }
 
 u32 func_020ccca8(void) {
-    return ((u32) data_0217b43c->mUnk_00c);
+    return (data_0217b43c->mUnk_00c);
 }
 
 u32 func_020ccc9c(void) {
-    return ((u32) data_0217b43c->mUnk_010);
+    return (data_0217b43c->mUnk_010);
 }
 
 #pragma thumb off

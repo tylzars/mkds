@@ -36,7 +36,7 @@ void func_0203bc64(u8 *b) {
     } else {
         t1 = OS_GetTick();
         t2 = OS_GetTick();
-        l.mUnk_00 = (u32) ((u32) t1 << 24) + (u32) (t2 >> 8);
+        l.mUnk_00 = ((u32) t1 << 24) + (u32) (t2 >> 8);
         l.mUnk_08 = 0x5d588b656c078965;
         l.mUnk_10 = 0x269ec3;
         r = &l;
@@ -51,18 +51,18 @@ void func_0203bc64(u8 *b) {
             w = t * 3;
             for (; u < 3; u++) {
                 if (func_0205fc98(a->mUnk_44, t, u + w) != FALSE) {
-                    n = (u8) (n | (1 << u));
+                    n = n | (1 << u);
                 }
             }
             for (u = 0; u < 8; u++) {
                 if ((f & (1 << u)) != 0 && a->mUnk_24[u] >= w && a->mUnk_24[u] < (t + 1) * 3) {
-                    n = (u8) (n & ~(1 << (a->mUnk_24[u] - w)));
+                    n = n & ~(1 << (a->mUnk_24[u] - w));
                 }
             }
             if (n == 0) {
                 for (u = 0; u < 3; u++) {
                     if (func_0205fc98(a->mUnk_44, t, u + w) != FALSE) {
-                        n = (u8) (n | (1 << u));
+                        n = n | (1 << u);
                     }
                 }
             }
@@ -83,7 +83,7 @@ void func_0203bc64(u8 *b) {
                     if (m == (u16) y) {
                         e = u + w;
                     } else {
-                        m = (u8) (m + 1);
+                        m = m + 1;
                     }
                 }
             }
@@ -129,7 +129,7 @@ void func_0203ba84(u8 *b) {
     } else {
         t1 = OS_GetTick();
         t2 = OS_GetTick();
-        l.mUnk_00 = (u32) ((u32) t1 << 24) + (u32) (t2 >> 8);
+        l.mUnk_00 = ((u32) t1 << 24) + (u32) (t2 >> 8);
         l.mUnk_08 = 0x5d588b656c078965;
         l.mUnk_10 = 0x269ec3;
         r = &l;
@@ -152,14 +152,14 @@ void func_0203ba84(u8 *b) {
                     break;
             }
             if (v == -1 || func_0205fc28(v) != 0) {
-                m = (u16) (m | (1 << i));
+                m = m | (1 << i);
             }
         }
     }
     for (k = 0; k < 8; k++) {
         t = a->mUnk_04[k];
         if (t != -1 && (f & (1 << k)) != 0) {
-            m = (u16) (m & ~(1 << t));
+            m = m & ~(1 << t);
         }
     }
     for (k = 0; k < 8; k++) {
@@ -181,7 +181,7 @@ void func_0203ba84(u8 *b) {
             for (j = 0; j < 0xd && e == -1; j++) {
                 if ((m & (1 << j)) != 0) {
                     if (n == (u16) y) {
-                        m = (u16) (m & ~(1 << j));
+                        m = m & ~(1 << j);
                         e = j;
                     } else {
                         n = (u8) (n + 1);

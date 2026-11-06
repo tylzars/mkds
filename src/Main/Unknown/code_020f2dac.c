@@ -160,9 +160,9 @@ void func_020f45f0(Unk020f40dc *rec, s32 keep) {
 static inline u32 func_020f41c4_inline(Unk020f41c4_B *r, u32 c) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     if (c == 0) {
-        return (u32) (r->mUnk_00 >> 32);
+        return r->mUnk_00 >> 32;
     } else {
-        return (u32) (((r->mUnk_00 >> 32) * c) >> 32);
+        return ((r->mUnk_00 >> 32) * c) >> 32;
     }
 }
 
@@ -202,8 +202,8 @@ void func_020f41c4(Unk020f40dc *rec) {
         radius = 0x1800;
     }
     count = rec->mUnk_08;
-    va = (s32) (((s64) radius * gPairsByAngle[angle * 2]) >> 12);
-    vb = (s32) (((s64) radius * gPairsByAngle[angle * 2 + 1]) >> 12);
+    va = ((s64) radius * gPairsByAngle[angle * 2]) >> 12;
+    vb = ((s64) radius * gPairsByAngle[angle * 2 + 1]) >> 12;
     func_020f1048(&gItemPools[tab], count, rec->mUnk_14, owner->mIndex, &owner->mUnk_98);
     i = 0;
     if (i < count) {
@@ -211,13 +211,13 @@ void func_020f41c4(Unk020f40dc *rec) {
         do {
             x = row->mUnk_00[i].mUnk_00;
             y = row->mUnk_00[i].mUnk_04;
-            w1 = (s32) (((s64) x * (0x1000 + (s32) func_020f41c4_inline(st, 0x333))) >> 12);
-            w2 = (s32) (((s64) y * (0x1000 + (s32) func_020f41c4_inline(st, 0x333))) >> 12);
+            w1 = ((s64) x * (0x1000 + (s32) func_020f41c4_inline(st, 0x333))) >> 12;
+            w2 = ((s64) y * (0x1000 + (s32) func_020f41c4_inline(st, 0x333))) >> 12;
             d = (s32) (((s64) w1 * vb) >> 12) - (s32) (((s64) w2 * va) >> 12);
             elem = rec->mUnk_14[i];
-            elem->mVelocity.x = (s32) (((s64) dir->x * d) >> 12);
-            elem->mVelocity.y = (s32) (((s64) dir->y * d) >> 12);
-            elem->mVelocity.z = (s32) (((s64) dir->z * d) >> 12);
+            elem->mVelocity.x = ((s64) dir->x * d) >> 12;
+            elem->mVelocity.y = ((s64) dir->y * d) >> 12;
+            elem->mVelocity.z = ((s64) dir->z * d) >> 12;
             VEC_MultAdd((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &elem->mVelocity,
                         &elem->mVelocity);
             elem->mUnk_68.x = 0xcd;
@@ -615,13 +615,13 @@ u32 func_020f3678(u32 arg0, u32 arg1) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
-    value2 = (u32) * (const s8 *) ((value0) + (33));
+    value2 = *(const s8 *) ((value0) + (33));
     value2 = (value2 << 6);
     *(u32 *) ((value1) + (0)) = value2;
-    value2 = (u32) * (const s8 *) ((value0) + (34));
+    value2 = *(const s8 *) ((value0) + (34));
     value2 = (value2 << 6);
     *(u32 *) ((value1) + (4)) = value2;
-    value0 = (u32) * (const s8 *) ((value0) + (35));
+    value0 = *(const s8 *) ((value0) + (35));
     value0 = (value0 << 6);
     *(u32 *) ((value1) + (8)) = value0;
     return value0;
@@ -662,7 +662,7 @@ void func_020f357c(void) {
 
 static inline u32 func_020f3150_inline(Unk020f41c4_B *x, u32 n) {
     x->mUnk_00 = x->mUnk_08 * x->mUnk_00 + x->mUnk_10;
-    return (u32) (((u64) (u32) (x->mUnk_00 >> 32) * n) >> 32);
+    return ((u64) (u32) (x->mUnk_00 >> 32) * n) >> 32;
 }
 
 void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
@@ -676,7 +676,7 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
 
     n = Vec3DotUnrounded(&a->mUnk_06c, &a->mUnk_02c.mUnk_18);
     m = (a->mUnk_010->mUnk_48 & 1) != 0;
-    n = (s32) (((s64) n * 0x1ec) >> 12);
+    n = ((s64) n * 0x1ec) >> 12;
     if (n < 0x666) {
         n = 0x666;
     }
@@ -694,9 +694,9 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
         v.z += func_020f3150_inline(&gRaceProgress->mRandom, 0xf6) - 0x7b;
         v.x += func_020f3150_inline(&gRaceProgress->mRandom, 0xf6) - 0x7b;
     }
-    v.x = (s32) (((s64) v.x * n) >> 12);
-    v.y = (s32) (((s64) v.y * n) >> 12);
-    v.z = (s32) (((s64) v.z * n) >> 12);
+    v.x = ((s64) v.x * n) >> 12;
+    v.y = ((s64) v.y * n) >> 12;
+    v.z = ((s64) v.z * n) >> 12;
     if (!m) {
         if (c != 0) {
             n = e + (s32) (((s64) a->mUnk_068 * 0x200) >> 12) + (s32) (((s64) a->mUnk_06c.y * 0x2000) >> 12);
@@ -732,9 +732,9 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
         return;
     }
     n = VEC_DotProduct(&a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity);
-    dx = (s32) (((s64) a->mUnk_02c.mUnk_0c.x * n) >> 12);
-    dy = (s32) (((s64) a->mUnk_02c.mUnk_0c.y * n) >> 12);
-    dz = (s32) (((s64) a->mUnk_02c.mUnk_0c.z * n) >> 12);
+    dx = ((s64) a->mUnk_02c.mUnk_0c.x * n) >> 12;
+    dy = ((s64) a->mUnk_02c.mUnk_0c.y * n) >> 12;
+    dz = ((s64) a->mUnk_02c.mUnk_0c.z * n) >> 12;
     p->mUnk_000.mVelocity.x -= dx;
     p->mUnk_000.mVelocity.y -= dy;
     p->mUnk_000.mVelocity.z -= dz;
@@ -767,9 +767,9 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
     p = &a->mUnk_000.mVelocity;
     q = &a->mUnk_000.mPos;
     VEC_Add(p, q, q);
-    p->x = (s32) (((s64) p->x * c) >> 12);
-    p->y = (s32) (((s64) p->y * c) >> 12);
-    p->z = (s32) (((s64) p->z * c) >> 12);
+    p->x = ((s64) p->x * c) >> 12;
+    p->y = ((s64) p->y * c) >> 12;
+    p->z = ((s64) p->z * c) >> 12;
     if (func_01ffdee4(q, &a->mUnk_000.mPrevPos, 0, a->mUnk_000.mUnk_dc, 0x24, a->mUnk_000.mUnk_da, &t, &u, (s32 *) &v,
                       &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, e) != 0) {
         VEC_Add(&t, q, q);
@@ -781,15 +781,15 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
             } else {
                 a->mUnk_000.mFlags |= 0x10;
                 n = VEC_DotProduct(&u, p);
-                t.x = (s32) (((s64) u.x * n) >> 12);
-                t.y = (s32) (((s64) u.y * n) >> 12);
-                t.z = (s32) (((s64) u.z * n) >> 12);
+                t.x = ((s64) u.x * n) >> 12;
+                t.y = ((s64) u.y * n) >> 12;
+                t.z = ((s64) u.z * n) >> 12;
                 p->x -= t.x;
                 p->y -= t.y;
                 p->z -= t.z;
-                p->x = (s32) (((s64) p->x * 0x8cd) >> 12);
-                p->y = (s32) (((s64) p->y * 0x8cd) >> 12);
-                p->z = (s32) (((s64) p->z * 0x8cd) >> 12);
+                p->x = ((s64) p->x * 0x8cd) >> 12;
+                p->y = ((s64) p->y * 0x8cd) >> 12;
+                p->z = ((s64) p->z * 0x8cd) >> 12;
                 VEC_MultAdd(-d, &t, p, p);
                 a->mUnk_000.mUnk_f0 = u;
             }

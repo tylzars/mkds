@@ -104,7 +104,7 @@ void ReleaseWiFiLogin(void) {
     if (gWiFiLogin->mHttp != NULL) {
         DWC_Auth_Abort();
         DWC_Auth_Destroy();
-        func_ov000_021a3704((u32) 0, (u32) ((u32) gWiFiLogin->mHttp), (u32) 0);
+        func_ov000_021a3704(0, (u32) gWiFiLogin->mHttp, 0);
         gWiFiLogin->mHttp = NULL;
     }
     *(s32 *) &gWiFiLogin = 0;
@@ -229,8 +229,7 @@ void StartWiFiLoginRequest(void (*a)(), void *b) {
                 DWCi_Acc_CreateTempLoginId(&gWiFiLogin->mUnk_40);
             }
         } else {
-            DWCi_Acc_SetPlayerId(&gWiFiLogin->mUnk_40,
-                                 (u32) (((s64) OS_GetTick() * 0x5d588b656c078965 + 0x269ec3) >> 32));
+            DWCi_Acc_SetPlayerId(&gWiFiLogin->mUnk_40, ((s64) OS_GetTick() * 0x5d588b656c078965 + 0x269ec3) >> 32);
         }
         DWCi_Acc_LoginIdToUserName(&gWiFiLogin->mUnk_40, gWiFiLogin->mUnk_0c, gWiFiLogin->mUnk_24c);
     }

@@ -26,6 +26,7 @@
 #include "Main/Unknown/code_020d849c.h"
 #include "code_02146d78.h"
 #include "code_02148538.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -45,14 +46,14 @@ void func_020d7d18(Unk020d849c *p, s32 a, Vec3 **b, s32 c) {
 BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
     s32 v;
     p->mUnk_5c = p->mUnk_5c - 0x1000000;
-    p->mUnk_5c = (s32) (((s64) p->mUnk_5c * (s64) p->mUnk_00.mUnk_30) >> 12);
+    p->mUnk_5c = ((s64) p->mUnk_5c * (s64) p->mUnk_00.mUnk_30) >> 12;
     func_020d80e4(&p->mUnk_00, a, 0, b[0], b[1], b[2], b[3]);
     v = p->mUnk_00.mUnk_34;
     if (v != 0) {
-        p->mUnk_5c = (s32) (((s64) p->mUnk_5c * (s64) v) >> 24);
+        p->mUnk_5c = ((s64) p->mUnk_5c * (s64) v) >> 24;
     }
     if (v != 0) {
-        v = (s32) (((s64) p->mUnk_54 * (s64) v) >> 12);
+        v = ((s64) p->mUnk_54 * (s64) v) >> 12;
     } else {
         v = 0x1000000;
     }
@@ -105,8 +106,8 @@ void func_020d7a3c(void *p, s32 b, void *q) {
     s32 s;
     s32 k;
     s64 w = (s64) ((a->y + 0x1000) << 1) << 32;
-    *(vu16 *) 0x40002b0 = 1;
-    *(vu64 *) 0x40002b8 = w;
+    reg_CP_SQRTCNT = 1;
+    reg_CP_SQRT_PARAM = w;
     r = FX_GetSqrtResult();
     FX_DivAsync(a->z, r);
     i = (u16) (b >> 1) >> 4;
@@ -220,22 +221,22 @@ void func_020d73f0(Unk020d7b88 *a, Unk020d7b88 *b) {
         *b = *a;
         return;
     }
-    *(vu16 *) 0x4000280 = 2;
-    *(vu64 *) 0x4000290 = 0x1000000000000LL << 8;
-    *(vu64 *) 0x4000298 = w;
-    *(vu16 *) 0x40002b0 = 1;
-    *(vu64 *) 0x40002b8 = w << 2;
-    while (*(vu16 *) 0x40002b0 & 0x8000) {
+    reg_CP_DIVCNT = 2;
+    reg_CP_DIV_NUMER = 0x1000000000000LL << 8;
+    reg_CP_DIV_DENOM = w;
+    reg_CP_SQRTCNT = 1;
+    reg_CP_SQRT_PARAM = w << 2;
+    while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = *(vu32 *) 0x40002b4;
-    while (*(vu16 *) 0x4000280 & 0x8000) {
+    r = reg_CP_SQRT_RESULT;
+    while (reg_CP_DIVCNT & 0x8000) {
     }
-    q = *(vu64 *) 0x40002a0;
+    q = reg_CP_DIV_RESULT;
     t = q * r;
-    b->mUnk_00[0] = (s32) ((t * a->mUnk_00[0] + 0x100000000000LL) >> 45);
-    b->mUnk_00[1] = (s32) ((t * a->mUnk_00[1] + 0x100000000000LL) >> 45);
-    b->mUnk_00[2] = (s32) ((t * a->mUnk_00[2] + 0x100000000000LL) >> 45);
-    b->mUnk_00[3] = (s32) ((t * a->mUnk_00[3] + 0x100000000000LL) >> 45);
+    b->mUnk_00[0] = (t * a->mUnk_00[0] + 0x100000000000LL) >> 45;
+    b->mUnk_00[1] = (t * a->mUnk_00[1] + 0x100000000000LL) >> 45;
+    b->mUnk_00[2] = (t * a->mUnk_00[2] + 0x100000000000LL) >> 45;
+    b->mUnk_00[3] = (t * a->mUnk_00[3] + 0x100000000000LL) >> 45;
 }
 
 void func_020d720c(Vec3 *a, u32 *m) {
@@ -284,21 +285,21 @@ s32 Vec3NormalizeAndGetLengthOrZero(Vec3 *a, Vec3 *b) {
     if (w < 16) {
         return 0;
     }
-    *(vu16 *) 0x4000280 = 2;
-    *(vu64 *) 0x4000290 = 0x1000000000000LL << 8;
-    *(vu64 *) 0x4000298 = w;
-    *(vu16 *) 0x40002b0 = 1;
-    *(vu64 *) 0x40002b8 = w << 2;
-    while (*(vu16 *) 0x40002b0 & 0x8000) {
+    reg_CP_DIVCNT = 2;
+    reg_CP_DIV_NUMER = 0x1000000000000LL << 8;
+    reg_CP_DIV_DENOM = w;
+    reg_CP_SQRTCNT = 1;
+    reg_CP_SQRT_PARAM = w << 2;
+    while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = *(vu32 *) 0x40002b4;
-    while (*(vu16 *) 0x4000280 & 0x8000) {
+    r = reg_CP_SQRT_RESULT;
+    while (reg_CP_DIVCNT & 0x8000) {
     }
-    q = *(vu64 *) 0x40002a0;
+    q = reg_CP_DIV_RESULT;
     t = q * r;
-    b->x = (s32) ((t * a->x + 0x100000000000LL) >> 45);
-    b->y = (s32) ((t * a->y + 0x100000000000LL) >> 45);
-    b->z = (s32) ((t * a->z + 0x100000000000LL) >> 45);
+    b->x = (t * a->x + 0x100000000000LL) >> 45;
+    b->y = (t * a->y + 0x100000000000LL) >> 45;
+    b->z = (t * a->z + 0x100000000000LL) >> 45;
     return (r + 1) >> 1;
 }
 
@@ -313,20 +314,20 @@ s32 Vec3NormalizeXZAndGetLengthOrZero(Vec3 *a, Vec3 *b) {
     if (w < 16) {
         return 0;
     }
-    *(vu16 *) 0x4000280 = 2;
-    *(vu64 *) 0x4000290 = 0x1000000000000LL << 8;
-    *(vu64 *) 0x4000298 = w;
-    *(vu16 *) 0x40002b0 = 1;
-    *(vu64 *) 0x40002b8 = w << 2;
-    while (*(vu16 *) 0x40002b0 & 0x8000) {
+    reg_CP_DIVCNT = 2;
+    reg_CP_DIV_NUMER = 0x1000000000000LL << 8;
+    reg_CP_DIV_DENOM = w;
+    reg_CP_SQRTCNT = 1;
+    reg_CP_SQRT_PARAM = w << 2;
+    while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = *(vu32 *) 0x40002b4;
-    while (*(vu16 *) 0x4000280 & 0x8000) {
+    r = reg_CP_SQRT_RESULT;
+    while (reg_CP_DIVCNT & 0x8000) {
     }
-    q = *(vu64 *) 0x40002a0;
+    q = reg_CP_DIV_RESULT;
     t = q * r;
-    b->x = (s32) ((t * a->x + 0x100000000000LL) >> 45);
-    b->z = (s32) ((t * a->z + 0x100000000000LL) >> 45);
+    b->x = (t * a->x + 0x100000000000LL) >> 45;
+    b->z = (t * a->z + 0x100000000000LL) >> 45;
     return (r + 1) >> 1;
 }
 
@@ -372,10 +373,10 @@ u32 func_020d6d8c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     value14 = (u32) &data_0216bb7c;
     value12 = 0x38u;
     value12 = (value2) * (value12) + (value14);
-    value1 = (u32) * (const u32 *) ((value12) + ((value1 << 2)));
+    value1 = *(const u32 *) ((value12) + ((value1 << 2)));
     compareLeft0 = value0;
     compareRight0 = 0u;
-    value0 = (u32) * (const u8 *) ((value1) + (value3));
+    value0 = *(const u8 *) ((value1) + (value3));
     if (compareLeft0 != compareRight0) {
         value0 = 0u;
     }
@@ -573,7 +574,7 @@ void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {
     if (func_020b2ec0() == 0) {
         v2 = b->mUnk_00.mMatrix.mUnk_00[0];
         v3 = b->mUnk_00.mMatrix.mUnk_00[1];
-        v0.x = (s32) (((s64) b->mUnk_00.mUnk_10.z * (s64) b->mUnk_118) >> 12);
+        v0.x = ((s64) b->mUnk_00.mUnk_10.z * (s64) b->mUnk_118) >> 12;
         v0.z = -(s32) (((s64) b->mUnk_00.mUnk_10.x * (s64) b->mUnk_118) >> 12);
         v0.y = 0;
         Vec3CrossUnrounded(&v0, &v2, &v1);

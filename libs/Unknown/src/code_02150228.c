@@ -61,10 +61,10 @@ void DGT_Hash1GetDigest_R(void *digest, DGTHash1Context *ctx) {
     u64 bits;
 
     bits = ctx->mLength << 3;
-    bitsLow = (u32) bits;
-    bitsHigh = (u32) (bits >> 32);
+    bitsLow = bits;
+    bitsHigh = bits >> 32;
     DGT_Hash1SetSource(ctx, &data_0216f0a8, 1);
-    used = (u32) (ctx->mLength & 0x3f);
+    used = ctx->mLength & 0x3f;
     room = 0x40 - used;
     if (room < 8) {
         MI_CpuFill8(ctx->mBuffer8 + used, 0, room);

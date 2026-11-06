@@ -16,6 +16,7 @@
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_020f9c6c.h"
 #include "code_02147cd8.h"
+#include "registers.h"
 
 u32 func_020d8828(Unk020e0144 *a, Vec3 *b) {
     Unk020e0144_00 *p;
@@ -53,11 +54,11 @@ u32 func_020d8828(Unk020e0144 *a, Vec3 *b) {
             i--;
         } while (i >= 0);
     }
-    *(vu16 *) 0x40002b0 = 1;
+    reg_CP_SQRTCNT = 1;
     *(vs64 *) 0x40002b8 = m;
-    while (*(vu16 *) 0x40002b0 & 0x8000) {
+    while (reg_CP_SQRTCNT & 0x8000) {
     }
-    return *(vu32 *) 0x40002b4;
+    return reg_CP_SQRT_RESULT;
 }
 
 void func_020d879c(Unk020e0144 *a, Vec3 *b) {
@@ -67,8 +68,8 @@ void func_020d879c(Unk020e0144 *a, Vec3 *b) {
     p = &a->mUnk_00->mUnk_00[a->mUnk_0c];
     t = a->mUnk_14;
     u = 0x1000000 - t;
-    b->x = (s32) (((s64) p->mUnk_00[0].x * u) >> 24);
-    b->z = (s32) (((s64) p->mUnk_00[0].z * u) >> 24);
+    b->x = ((s64) p->mUnk_00[0].x * u) >> 24;
+    b->z = ((s64) p->mUnk_00[0].z * u) >> 24;
     b->x = b->x + (s32) (((s64) p->mUnk_00[3].x * t) >> 24);
     b->z = b->z + (s32) (((s64) p->mUnk_00[3].z * t) >> 24);
 }
@@ -91,10 +92,10 @@ Vec3 *func_020d8654(CourseMapRow *a) {
                 continue;
             }
             e = GetCourseMapGroupEntry(k, 0);
-            f = GetCourseMapGroupEntry(k, (u16) (n - 1));
+            f = GetCourseMapGroupEntry(k, n - 1);
             VEC_Subtract(&e->mUnk_00, &f->mUnk_00, &v);
         } else {
-            e = GetCourseMapGroupEntry(k, (u16) (i + 1));
+            e = GetCourseMapGroupEntry(k, i + 1);
             f = GetCourseMapGroupEntry(k, i);
             VEC_Subtract(&e->mUnk_00, &f->mUnk_00, &v);
         }

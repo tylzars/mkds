@@ -20,7 +20,7 @@ void func_02059034(void) {
         v1 = data_0217aa00->mUnk_0000;
     }
     if (v1 == 1) {
-        SetMPFrequency((u32) 0);
+        SetMPFrequency(0);
     }
 }
 
@@ -43,7 +43,7 @@ void func_02058fe0(void) {
         v1 = data_0217aa00->mUnk_0000;
     }
     if (v1 == 1) {
-        SetMPFrequency((u32) 0);
+        SetMPFrequency(0);
     }
 }
 

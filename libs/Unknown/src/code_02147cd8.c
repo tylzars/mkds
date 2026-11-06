@@ -17,7 +17,7 @@ void VEC_Subtract(const Vec3 *a, const Vec3 *b, Vec3 *difference) {
 
 // Dot product of two 20.12 vectors, rounded to 20.12.
 s32 VEC_DotProduct(const Vec3 *a, const Vec3 *b) {
-    return (s32) (((s64) a->x * b->x + (s64) a->y * b->y + (s64) a->z * b->z + 0x800) >> 12);
+    return ((s64) a->x * b->x + (s64) a->y * b->y + (s64) a->z * b->z + 0x800) >> 12;
 }
 
 // Dot product of two 4.12 halfword vectors, rounded to 20.12.
@@ -28,7 +28,7 @@ s32 VEC_Fx16DotProduct(const Vec3s16 *a, const Vec3s16 *b) {
     sum = a->x * b->x;
     sum += a->y * b->y;
     last = a->z * b->z;
-    return (s32) (((s64) sum + (last + 0x800)) >> 12);
+    return ((s64) sum + (last + 0x800)) >> 12;
 }
 
 // Cross product of two 20.12 vectors, rounded to 20.12.
@@ -118,9 +118,9 @@ void VEC_Fx16Normalize(const Vec3s16 *src, Vec3s16 *dst) {
     while (reg_CP_DIVCNT & 0x8000) {
     }
     scale = (s64) reg_CP_DIV_RESULT * root;
-    dst->x = (s16) ((scale * src->x + 0x100000000000LL) >> 45);
-    dst->y = (s16) ((scale * src->y + 0x100000000000LL) >> 45);
-    dst->z = (s16) ((scale * src->z + 0x100000000000LL) >> 45);
+    dst->x = (scale * src->x + 0x100000000000LL) >> 45;
+    dst->y = (scale * src->y + 0x100000000000LL) >> 45;
+    dst->z = (scale * src->z + 0x100000000000LL) >> 45;
 }
 
 // result = base + vector * scale, with scale in 20.12.
@@ -191,7 +191,7 @@ s64 FX_GetDivResultFx64c(void) {
 s32 FX_GetDivResult(void) {
     while (reg_CP_DIVCNT & 0x8000) {
     }
-    return (s32) (((s64) reg_CP_DIV_RESULT + 0x80000) >> 20);
+    return ((s64) reg_CP_DIV_RESULT + 0x80000) >> 20;
 }
 
 // Starts 1.0 / denom on the divider without waiting.
@@ -222,7 +222,7 @@ s32 FX_DivS32(s32 numer, s32 denom) {
     reg_CP_DIV_DENOM = (u32) denom;
     while (reg_CP_DIVCNT & 0x8000) {
     }
-    return (s32) * (vu32 *) 0x040002A0;
+    return *(vu32 *) 0x040002A0;
 }
 
 // Integer remainder on the divider.

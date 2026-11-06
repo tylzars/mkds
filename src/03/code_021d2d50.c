@@ -6,25 +6,26 @@
 #include "code_0200c914.h"
 #include "code_0200fc8c.h"
 #include "code_0214e308.h"
+#include "registers.h"
 
 void func_ov003_021d2dfc(void) {
     u16 a;
 
-    data_ov003_021da2ec = *(vu32 *) 0x4000210;
+    data_ov003_021da2ec = reg_OS_IE;
     OS_SetIrqMask(0x40018);
     OS_EnableIrqMask(1);
     data_ov003_021da2e8 = OS_GetIrqFunction(1);
     OS_SetIrqFunction(1, func_ov003_021d2da4);
-    a = *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = 1;
+    a = reg_OS_IME;
+    reg_OS_IME = 1;
     OS_EnableInterrupts();
 }
 
 void func_ov003_021d2dcc(void) {
     u16 a;
 
-    a = *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = 0;
+    a = reg_OS_IME;
+    reg_OS_IME = 0;
     OS_SetIrqMask(data_ov003_021da2ec);
     OS_SetIrqFunction(1, data_ov003_021da2e8);
 }

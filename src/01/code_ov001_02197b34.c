@@ -22,6 +22,7 @@
 #include "Main/Unknown/code_02116000.h"
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02047104.h"
+#include "registers.h"
 
 TimeAttackTopMenu *gTimeAttackTopMenu;
 
@@ -126,7 +127,7 @@ void InitTimeAttackTopMenu(void *a, void *b, s32 c) {
     void *heap;
     s32 i;
 
-    *(u16 *) 0x4000008 = (*(u16 *) 0x4000008 & 0x43) | 0x9004;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
     heap = CreateFrmHeapFromMaxFree(a);
     gTimeAttackTopMenu = HeapAlloc(heap, 0x38);
     gTimeAttackTopMenu->mHeap = heap;
@@ -260,7 +261,7 @@ next:
     bits = e->mUnk_00 & 1;
     if ((u16) bits != 0 || sel <= 2) {
         if ((u16) bits == 0) {
-            func_ov001_02198264((s32) (gTimeAttackTopMenu->mIndex));
+            func_ov001_02198264(gTimeAttackTopMenu->mIndex);
             switch (sel) {
                 case 0:
                     dir = 0;
@@ -274,10 +275,10 @@ next:
             }
             if (gTimeAttackTopMenu->mIndex != dir) {
                 gTimeAttackTopMenu->mIndex = dir;
-                func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
+                func_ov001_0219829c(gTimeAttackTopMenu->mIndex);
             }
         } else {
-            func_ov001_02198264((s32) (gTimeAttackTopMenu->mIndex));
+            func_ov001_02198264(gTimeAttackTopMenu->mIndex);
         }
         switch (gTimeAttackTopMenu->mIndex) {
             case 0:
@@ -293,20 +294,20 @@ next:
         func_ov001_021982e8();
     } else {
         if (func_020ae408(8, 0x40) != 0) {
-            func_ov001_02198264((s32) (gTimeAttackTopMenu->mIndex));
+            func_ov001_02198264(gTimeAttackTopMenu->mIndex);
             gTimeAttackTopMenu->mIndex--;
             if (gTimeAttackTopMenu->mIndex < 0) {
                 gTimeAttackTopMenu->mIndex = 2;
             }
-            func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
+            func_ov001_0219829c(gTimeAttackTopMenu->mIndex);
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         } else if (func_020ae408(8, 0x80) != 0) {
-            func_ov001_02198264((s32) (gTimeAttackTopMenu->mIndex));
+            func_ov001_02198264(gTimeAttackTopMenu->mIndex);
             gTimeAttackTopMenu->mIndex++;
             if (gTimeAttackTopMenu->mIndex >= 3) {
                 gTimeAttackTopMenu->mIndex = 0;
             }
-            func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
+            func_ov001_0219829c(gTimeAttackTopMenu->mIndex);
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     }
@@ -330,7 +331,7 @@ void AdvanceTimeAttackTopMenuState4(void) {
             break;
     }
     if (gTimeAttackTopMenu->mStateFrames == 5) {
-        func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
+        func_ov001_0219829c(gTimeAttackTopMenu->mIndex);
     }
     if (gTimeAttackTopMenu->mStateFrames >= 10) {
         RequestTimeAttackTopMenuState5();
@@ -385,5 +386,5 @@ s32 AdvanceTimeAttackTopMenu(void) {
 }
 
 void WriteTimeAttackTopMenuBg0Offset(void) {
-    *(vu32 *) 0x4000010 = (-gTimeAttackTopMenu->mBg0Offset << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-gTimeAttackTopMenu->mBg0Offset << 16) & 0x1ff0000;
 }

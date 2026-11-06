@@ -91,7 +91,7 @@ void func_02068b98(Kart *a) {
                 }
                 if (a->mUnk_2ca == -1) {
                     c = a->mPhysicalParam->mRadius;
-                    a->mUnk_2ca = func_020d555c(&a->mUnk_1f0, (s32) ((s64) c << 15 >> 12), 0x800, a);
+                    a->mUnk_2ca = func_020d555c(&a->mUnk_1f0, (s64) c << 15 >> 12, 0x800, a);
                 }
                 h = &a->mUnk_7c;
                 a->mUnk_7c = a->mUnk_7c & 0xdfffff9f;
@@ -132,10 +132,10 @@ void func_02068b98(Kart *a) {
         a->mScaleFactor.x = data_usa_02154de4[g];
         a->mScaleFactor.y = data_usa_02154e48[g];
         a->mScaleFactor.z = data_usa_02154eac[g];
-        a->mScale.x = (s32) ((s64) a->mScaleBase.x * a->mScaleFactor.x >> 12);
-        a->mScale.y = (s32) ((s64) a->mScaleBase.y * a->mScaleFactor.y >> 12);
-        a->mScale.z = (s32) ((s64) a->mScaleBase.z * a->mScaleFactor.z >> 12);
-        a->mScale.y = (s32) ((s64) a->mScaleYFactor * a->mScale.y >> 12);
+        a->mScale.x = (s64) a->mScaleBase.x * a->mScaleFactor.x >> 12;
+        a->mScale.y = (s64) a->mScaleBase.y * a->mScaleFactor.y >> 12;
+        a->mScale.z = (s64) a->mScaleBase.z * a->mScaleFactor.z >> 12;
+        a->mScale.y = (s64) a->mScaleYFactor * a->mScale.y >> 12;
         a->mUnk_3c8 = a->mUnk_3c8 + 1;
     }
 }
@@ -306,7 +306,7 @@ void func_02068640(Kart *a, s32 b) {
         }
         if (a->mUnk_2ca == -1) {
             g = a->mPhysicalParam->mRadius;
-            a->mUnk_2ca = func_020d555c(&a->mUnk_1f0, (s32) ((s64) g << 15 >> 12), 0x800, a);
+            a->mUnk_2ca = func_020d555c(&a->mUnk_1f0, (s64) g << 15 >> 12, 0x800, a);
         }
         a->mUnk_7c = a->mUnk_7c | 0x80;
         a->mUnk_7c = a->mUnk_7c & ~0x60;

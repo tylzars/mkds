@@ -70,7 +70,7 @@ void func_02030954(s32 a) {
             w = z2;
         }
         o->mUnk_18[q[1]].mUnk_00 = w;
-        func_02124100(q[2], (u8) t[v], o->mBnll, o->mUnk_18, o->mBncl);
+        func_02124100(q[2], t[v], o->mBnll, o->mUnk_18, o->mBncl);
     }
 }
 

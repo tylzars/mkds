@@ -34,9 +34,9 @@ void func_020813ec(s32 a, Vec3 *b) {
     if (e->mUnk_28 == NULL) {
         return;
     }
-    v.x = (s32) (((s64) q->mEffectVelocity.x * 0xccd) >> 12);
-    v.y = (s32) (((s64) q->mEffectVelocity.y * 0xccd) >> 12);
-    v.z = (s32) (((s64) q->mEffectVelocity.z * 0xccd) >> 12);
+    v.x = ((s64) q->mEffectVelocity.x * 0xccd) >> 12;
+    v.y = ((s64) q->mEffectVelocity.y * 0xccd) >> 12;
+    v.z = ((s64) q->mEffectVelocity.z * 0xccd) >> 12;
     e->mUnk_28->mUnk_40 = v;
     VEC_MultAdd(-q->mRadius, b, q->mPosSource, &w);
     func_0208b5b0(e->mUnk_28, &w);

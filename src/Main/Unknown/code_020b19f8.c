@@ -2,13 +2,13 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 u32 func_020b1a20(void) {
-    return ((u32) gRaceHud->mUnk_8dc);
+    return (gRaceHud->mUnk_8dc);
 }
 
 u32 func_020b1a0c(void) {
-    return ((u32) gRaceHud->mUnk_8e0);
+    return (gRaceHud->mUnk_8e0);
 }
 
 u32 GetUseTimeDifference(void) {
-    return ((u32) gRaceHud->mUseTimeDifference);
+    return (gRaceHud->mUseTimeDifference);
 }

@@ -30,6 +30,7 @@
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/code_0205f000.h"
+#include "registers.h"
 
 RecordGpx *gRecordGpx;
 
@@ -98,19 +99,19 @@ void SetupRecordGpxValues(s32 a) {
 
     k = func_020603bc(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[a]].mUnk_00 = 1;
-    func_02124748((u32) (data_ov001_021a66a4[gRecordGpx->mIndex]), (gRecordGpx->mRecordTrophyONcer),
-                  (gRecordGpx->mRecordTrophyONcgr), (gRecordGpx->mRecordTrophySOBncl), 1,
-                  (u32) (data_ov001_021a666c[a]), (gRecordGpx->mRecordGpxSNcer), (gRecordGpx->mRecordGpxSBncl));
+    func_02124748(data_ov001_021a66a4[gRecordGpx->mIndex], (gRecordGpx->mRecordTrophyONcer),
+                  (gRecordGpx->mRecordTrophyONcgr), (gRecordGpx->mRecordTrophySOBncl), 1, data_ov001_021a666c[a],
+                  (gRecordGpx->mRecordGpxSNcer), (gRecordGpx->mRecordGpxSBncl));
     func_02124a20(data_ov001_021a666c[a], (u8) data_ov001_021a6604[k], gRecordGpx->mRecordGpxSNcer,
                   gRecordGpx->mRecordGpxSBncl);
     k = func_02060414(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][0]].mUnk_00 = 1;
-    func_02124748((u32) (data_ov001_021a66e4[k]), (gRecordGpx->mPlayerCharacterMNcer),
-                  (gRecordGpx->mPlayerCharacterMNcgr), (gRecordGpx->mPlayerCharacterMBncl), 1,
-                  (u32) (data_ov001_021a6674[a][0]), (gRecordGpx->mRecordGpxSNcer), (gRecordGpx->mRecordGpxSBncl));
+    func_02124748(data_ov001_021a66e4[k], (gRecordGpx->mPlayerCharacterMNcer), (gRecordGpx->mPlayerCharacterMNcgr),
+                  (gRecordGpx->mPlayerCharacterMBncl), 1, data_ov001_021a6674[a][0], (gRecordGpx->mRecordGpxSNcer),
+                  (gRecordGpx->mRecordGpxSBncl));
     p = gRecordGpx->mPlayerCharacterMONclr->mUnk_0c;
     CallQueueAppend(0x1e, data_ov001_021a6684[a] << 5,
-                    p + (func_02124a68((u32) (data_ov001_021a66e4[k]), (gRecordGpx->mPlayerCharacterMNcer),
+                    p + (func_02124a68(data_ov001_021a66e4[k], (gRecordGpx->mPlayerCharacterMNcer),
                                        (gRecordGpx->mPlayerCharacterMBncl))
                          << 5),
                     0x20);
@@ -229,8 +230,8 @@ void SetupRecordGpx(void) {
         gRecordGpx->mRecordGpxSTable[n + data_ov001_021a663c[3]].mUnk_00 = 0;
     }
     d = gRecordGpx;
-    v = func_02124a68((u32) (1), (d->mRecordGpxMNcer), (d->mRecordGpxMBncl));
-    QueueCupMark((u32) (d->mIndex), d->mRecordGpxMNcer, d->mRecordGpxMBncl, (u32) (1), (u16) (v), 0);
+    v = func_02124a68(1, (d->mRecordGpxMNcer), (d->mRecordGpxMBncl));
+    QueueCupMark(d->mIndex, d->mRecordGpxMNcer, d->mRecordGpxMBncl, 1, v, 0);
     d = gRecordGpx;
     p = GetBmgEntry(d->mCommonMessages, data_ov001_021a6720[d->mIndex]);
     func_0212426c(0, 0, gRecordGpx->mRecordGpxMBnll, p, d->mRecordGpxMBncl, d->mRecordGpxMTable);
@@ -402,11 +403,11 @@ void InitRecordGpx(void *heap) {
     void *p;
     vu16 zero;
 
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 1;
-    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 1;
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0x8800;
-    *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & 0x43) | 0x1018;
-    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x5810;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 1;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x8800;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0x1018;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x5810;
     gRecordGpx = HeapAlloc(heap, 0x94);
     gRecordGpx->mHeap = heap;
     gRecordGpx->mState = 0;
@@ -458,12 +459,12 @@ void func_ov001_021946d0(void) {
     func_02117218();
     func_0211df38();
     gRecordGpx = NULL;
-    v = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
+    v = (reg_GX_DISPCNT & 0x1f00) >> 8;
     v &= ~0x11;
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (v << 8);
-    v = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (v << 8);
+    v = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     v &= ~0x8;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (v << 8);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (v << 8);
 }
 
 void AdvanceRecordGpxState0(void) {
@@ -764,20 +765,20 @@ void AdvanceRecordGpx(void) {
 }
 
 void func_ov001_02193ccc(void) {
-    *(vu32 *) 0x4000010 = (-gRecordGpx->mBg0Offset << 16) & 0x1ff0000;
-    *(vu32 *) 0x400101c = ((-gRecordGpx->mBg3OffsetX) & 0x1ff) | ((-gRecordGpx->mBg3OffsetY << 16) & 0x1ff0000);
+    reg_G2_BG0OFS = (-gRecordGpx->mBg0Offset << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = ((-gRecordGpx->mBg3OffsetX) & 0x1ff) | ((-gRecordGpx->mBg3OffsetY << 16) & 0x1ff0000);
     func_02111428();
 }
 
 void func_ov001_02193c84(void) {
-    u32 a = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
+    u32 a = (reg_GX_DISPCNT & 0x1f00) >> 8;
     u32 b;
 
     a |= 0x11;
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (a << 8);
-    b = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (a << 8);
+    b = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     b |= 0x8;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (b << 8);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (b << 8);
 }
 
 void RegisterRecordGpxCallbacks(void) {

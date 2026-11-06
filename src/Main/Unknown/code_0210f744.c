@@ -194,8 +194,8 @@ s32 func_02110590(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     value1 = (u32) &data_0217d22c;
-    value0 = (u32) * (const u32 *) ((value1) + ((value0 << 2)));
-    return (s32) value0;
+    value0 = *(const u32 *) ((value1) + ((value0 << 2)));
+    return value0;
 }
 
 u16 func_0211057c(int a) {
@@ -238,15 +238,15 @@ u32 func_02110484(void) {
     u32 value2;
     value0 = (u32) &data_0216cb28;
     value1 = 0x8340000u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     value0 = (value0) - (0x14u);
     value0 = (value0 << 12);
-    value0 = (u32) FX_Div((s32) value0, (s32) value1);
+    value0 = FX_Div(value0, value1);
     value2 = (u32) &data_0217d200;
     value1 = 0x8340000u;
     *(u32 *) ((value2) + (0)) = value0;
     value0 = 0x61000u;
-    value0 = (u32) FX_Div((s32) value0, (s32) value1);
+    value0 = FX_Div(value0, value1);
     value1 = (u32) &data_0217d208;
     *(u32 *) ((value1) + (0)) = value0;
     return value0;
@@ -390,15 +390,15 @@ u32 func_021100dc(NNSSndSeqPlayer **arg0, u32 arg1, u32 arg2) {
     u32 compareRight0;
     u32 compareLeft1;
     u32 compareRight1;
-    value12 = (u32) * (const u32 *) ((value0) + (0));
+    value12 = *(const u32 *) ((value0) + (0));
     value0 = 0u;
-    value3 = (u32) * (const u16 *) ((value12) + (58));
+    value3 = *(const u16 *) ((value12) + (58));
     compareLeft0 = value3;
     compareRight0 = value2;
     if (compareLeft0 != compareRight0) {
         return value0;
     }
-    value2 = (u32) * (const u16 *) ((value12) + (56));
+    value2 = *(const u16 *) ((value12) + (56));
     compareLeft1 = value2;
     compareRight1 = value1;
     if (compareLeft1 == compareRight1) {
@@ -610,7 +610,7 @@ u32 func_0210fad4(void) {
 
 u32 func_0210fac4(void) {
     u32 value0;
-    value0 = (u32) data_0217d244.mUnk_0c;
+    value0 = data_0217d244.mUnk_0c;
     return value0;
 }
 
@@ -618,7 +618,7 @@ u32 func_0210faac(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &data_0217d244;
-    value1 = (u32) data_0217d244.mUnk_08;
+    value1 = data_0217d244.mUnk_08;
     value1 = (value1) | (8u);
     data_0217d244.mUnk_08 = value1;
     return value0;

@@ -43,10 +43,9 @@ void CreateEmblemGrid(s32 side, s32 scrSide, s32 tableCount) {
     gEmblemGrid->mScrSide = scrSide;
     gEmblemGrid->mTableCount = tableCount;
     heap = GetHeap(func_020364e8());
-    gEmblemGrid->mUnk_18 = (u16 *) HeapAllocAligned(heap, gEmblemGrid->mTableCount * 2, 0x20);
+    gEmblemGrid->mUnk_18 = HeapAllocAligned(heap, gEmblemGrid->mTableCount * 2, 0x20);
     heap = GetHeap(func_020364e8());
-    gEmblemGrid->mBuffers[0] =
-        (u8 *) HeapAllocAligned(heap, gEmblemGrid->mScrSide / 8 * (gEmblemGrid->mScrSide / 8), 0x20);
+    gEmblemGrid->mBuffers[0] = HeapAllocAligned(heap, gEmblemGrid->mScrSide / 8 * (gEmblemGrid->mScrSide / 8), 0x20);
     MI_CpuFill8(gEmblemGrid->mBuffers[0], gEmblemGrid->mSide / 8 * gEmblemGrid->mSide / 8,
                 gEmblemGrid->mScrSide / 8 * (gEmblemGrid->mScrSide / 8));
     for (i = 0; i < gEmblemGrid->mSide / 8; i++) {
@@ -55,17 +54,17 @@ void CreateEmblemGrid(s32 side, s32 scrSide, s32 tableCount) {
         }
     }
     heap = GetHeap(func_020364e8());
-    gEmblemGrid->mBuffers[1] = (u8 *) HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide + 0x40, 0x20);
+    gEmblemGrid->mBuffers[1] = HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide + 0x40, 0x20);
     heap = GetHeap(func_020364e8());
-    gEmblemGrid->mBuffers[2] = (u8 *) HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide + 0x40, 0x20);
+    gEmblemGrid->mBuffers[2] = HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide + 0x40, 0x20);
     heap = GetHeap(func_020364e8());
-    gEmblemGrid->mBuffers[3] = (u8 *) HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide, 0x20);
+    gEmblemGrid->mBuffers[3] = HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide, 0x20);
     heap = GetHeap(func_020364e8());
-    gEmblemGrid->mBuffers[4] = (u8 *) HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide * 2, 0x20);
+    gEmblemGrid->mBuffers[4] = HeapAllocAligned(heap, gEmblemGrid->mSide * gEmblemGrid->mSide * 2, 0x20);
 }
 
 u32 GetEmblemGridSide(void) {
-    return ((u32) gEmblemGrid->mSide);
+    return (gEmblemGrid->mSide);
 }
 
 u8 *GetEmblemGridCellPtr(s32 x, s32 y) {
@@ -95,7 +94,7 @@ u32 func_ov001_021811b8(void) {
 
 int GetEmblemGridScrSize(void) {
     int v1;
-    v1 = _s32_div_f((u32) gEmblemGrid->mScrSide, 8);
+    v1 = _s32_div_f(gEmblemGrid->mScrSide, 8);
     return v1 * v1;
 }
 
@@ -104,7 +103,7 @@ u32 func_ov001_02181194(void) {
 }
 
 u32 GetEmblemGridCharSize(void) {
-    return (u32) gEmblemGrid->mSide * (u32) gEmblemGrid->mSide + 0x40;
+    return gEmblemGrid->mSide * gEmblemGrid->mSide + 0x40;
 }
 
 u32 GetEmblemGridCells(void) {
@@ -151,7 +150,7 @@ void SwapEmblemGridCells(void) {
 }
 
 u32 IsEmblemGridSwapped(void) {
-    return ((u32) gEmblemGrid->mSwapped);
+    return (gEmblemGrid->mSwapped);
 }
 
 void ClearEmblemGridCopied(void) {
@@ -159,7 +158,7 @@ void ClearEmblemGridCopied(void) {
 }
 
 u32 IsEmblemGridChanged(void) {
-    return ((u32) gEmblemGrid->mChanged);
+    return (gEmblemGrid->mChanged);
 }
 
 void ResetEmblemGridChanges(void) {
@@ -177,7 +176,7 @@ u32 SetEmblemGridCellValue(u32 x, u32 y, u32 value) {
     if ((v1 != NULL) && (*v1 != value)) {
         v2 = 1;
         CopyEmblemGridCellsOnFirstChange();
-        *v1 = (u8) value;
+        *v1 = value;
     }
     return v2;
 }

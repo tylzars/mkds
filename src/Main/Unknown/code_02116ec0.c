@@ -17,7 +17,7 @@
 
 void func_0211717c(void *a) {
     u32 v1;
-    v1 = ((u32) HeapAlloc(a, (u32) 4));
+    v1 = ((u32) HeapAlloc(a, 4));
     *(u32 *) &data_0217d358 = v1;
     v1 = (u32) func_0203bedc(a);
     *(u32 *) (*(u32 *) &data_0217d358) = v1;
@@ -102,7 +102,7 @@ void func_02116fb0(void) {
     }
     func_0203ba84(data_0217d358->mUnk_00);
     for (; n < 8; n++) {
-        func_0203be48(data_0217d358->mUnk_00, (u8) n, &v, NULL);
+        func_0203be48(data_0217d358->mUnk_00, n, &v, NULL);
         func_020294fc(n, v);
     }
 }
@@ -128,7 +128,7 @@ void func_02116ef8(void) {
     }
     func_0203bc64(data_0217d358->mUnk_00);
     for (; n < 8; n++) {
-        func_0203be48(data_0217d358->mUnk_00, (u8) n, NULL, &v);
+        func_0203be48(data_0217d358->mUnk_00, n, NULL, &v);
         func_020294e8(n, v);
         func_020294ac(n, 1);
     }

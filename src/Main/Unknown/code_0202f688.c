@@ -159,7 +159,7 @@ void func_0203003c(s32 a) {
             p->mUnk_18[(q->mUnk_00 + 4)[j]].mUnk_00 &= z;
             p->mUnk_18[(q->mUnk_00 + 16)[j]].mUnk_00 &= z;
         }
-        func_02124100(q->mUnk_30, (u8) t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+        func_02124100(q->mUnk_30, t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
         r4 += 0xc;
         q = (Unk02153c58 *) ((u8 *) q + 0x32);
         i++;
@@ -176,7 +176,7 @@ void func_0203003c(s32 a) {
         w = 0;
     }
     p->mUnk_18[88].mUnk_00 = w;
-    func_02124100(4, (u8) t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+    func_02124100(4, t.mUnk_00[v], p->mUnk_14, p->mUnk_18, p->mUnk_0c);
 }
 
 #pragma thumb off

@@ -27,6 +27,7 @@
 #include "code_0214b824.h"
 #include "03/code_021cc8d4.h"
 #include "03/code_021cdcb8.h"
+#include "registers.h"
 
 void SetupJb2Menu(void) {
     LoadJb2MenuFilesAndSetBgCnt();
@@ -45,15 +46,15 @@ void LoadJb2MenuFilesAndSetBgCnt(void) {
     func_ov003_021bf620(gJbBgStep1NclName2, GX_LoadBGPltt);
     func_ov003_021bf620(gJb2MenuNscName, GX_LoadBG2Scr);
     gYbBgStep11Ncl = func_ov003_021d14b8(func_ov003_021bf650(a.mUnk_00), NULL, 4);
-    *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;
-    *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;
-    *(u16 *) 0x400000a = (*(u16 *) 0x400000a & ~3) | 3;
-    *(u16 *) 0x400000c = (*(u16 *) 0x400000c & ~3) | 3;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & ~3) | 3;
 }
 
 void func_ov003_021c2f98(void) {
-    func_ov003_021d1ee0(2, 1, 1, (u16) (8));
-    func_ov003_021d1ee0(2, 0, 0x14, (u16) (8));
+    func_ov003_021d1ee0(2, 1, 1, 8);
+    func_ov003_021d1ee0(2, 0, 0x14, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x14);
     func_ov003_021c212c(func_ov003_021c2f68);
@@ -131,7 +132,7 @@ void func_ov003_021c2df4(void) {
 
 void func_ov003_021c2dd4(void) {
     func_ov003_021bf2d0();
-    func_ov003_021d1dd0((u16) (8));
+    func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c2d9c);
     return;
 }
@@ -140,8 +141,8 @@ void func_ov003_021c2d9c(void) {
     int v1;
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
-        func_ov003_021d1ee0(3, 1, 1, (u16) (8));
-        func_ov003_021d1ee0(3, 0, 0x14, (u16) (8));
+        func_ov003_021d1ee0(3, 1, 1, 8);
+        func_ov003_021d1ee0(3, 0, 0x14, 8);
         func_ov003_021c212c(func_ov003_021c2d18);
     }
     return;

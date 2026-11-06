@@ -44,8 +44,8 @@ void func_020a29cc(void) {
     NNS_G3dGlbLightVector(1, data_0217b200->mUnk_0fe, data_0217b200->mUnk_102, data_0217b200->mUnk_106);
     NNS_G3dGlbLightColor(0, 0x7fff);
     NNS_G3dGlbLightColor(1, 0x7fff);
-    x = (s32) (((s64) FX_Div(data_0215d6b4[0x54], data_0215d6b4[0x55]) * 0x19a) >> 12);
-    y = (s32) (((s64) -x * 0x1555) >> 12);
+    x = ((s64) FX_Div(data_0215d6b4[0x54], data_0215d6b4[0x55]) * 0x19a) >> 12;
+    y = ((s64) -x * 0x1555) >> 12;
     if (data_021759c0->mUnk_57 != 0) {
         G3i_FrustumW_(x, -x, -y, y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mProjMtx);
         data_0217029c.mFlag &= ~0x50;
@@ -145,12 +145,12 @@ void func_020a269c(s32 a, u32 b) {
         func_02087f84(&data_0217b200->mUnk_094, 0);
         x = data_0217b200->mUnk_002;
         if (x != 0) {
-            f = 0.5f + (float) (x << 12);
+            f = 0.5f + (x << 12);
         } else {
-            f = (float) (x << 12) - 0.5f;
+            f = (x << 12) - 0.5f;
         }
         s = &data_0217b200->mUnk_094;
-        s->mUnk_0c = (s32) f;
+        s->mUnk_0c = f;
         *s->mUnk_1c[s->mUnk_1a] = s->mUnk_0c;
         func_0208b934(GetHeap(func_020364e8()));
         if (b == 0) {
@@ -181,7 +181,7 @@ s16 func_020a2684(s32 a) {
 }
 
 s32 func_020a2668(s32 a, s32 b) {
-    return (s32) (((s64) a * b + 0x800) >> 12);
+    return ((s64) a * b + 0x800) >> 12;
 }
 
 void func_020a2558(void) {

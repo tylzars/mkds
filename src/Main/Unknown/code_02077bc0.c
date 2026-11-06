@@ -245,27 +245,27 @@ u32 func_0207a8a4(u32 arg0) {
     u32 value2;
     value2 = (u32) &gKarts;
     value1 = 0x5a8u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u32 *) ((value1) + (668));
+    value0 = *(const u32 *) ((value1) + (668));
     return value0;
 }
 
 u16 func_0207a880(s32 arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = (u32) &gKarts;
     value1 = 0x5a8u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
     value0 = (value1) + (0x200u);
-    value0 = (u32) * (const u16 *) ((value0) + (54));
-    return (u16) value0;
+    value0 = *(const u16 *) ((value0) + (54));
+    return value0;
 }
 
 u32 IsMissionRunWithKind2Shapes(void) {
-    return (u32) gMissionRunKind2ShapesPresent;
+    return gMissionRunKind2ShapesPresent;
 }
 
 s32 func_0207a84c(s32 a) {
@@ -281,7 +281,7 @@ u32 func_0207a7fc(s32 a) {
 }
 
 u32 func_0207a7ec(void) {
-    return (u32) data_0217ad30;
+    return data_0217ad30;
 }
 
 void func_0207a790(s32 a) {
@@ -300,7 +300,7 @@ u32 func_0207a780(void) {
 }
 
 void func_0207a74c(s32 a) {
-    data_0217ad30 = (s32) (((s64) a * data_0217ad2c + 0x800) >> 12);
+    data_0217ad30 = ((s64) a * data_0217ad2c + 0x800) >> 12;
 }
 
 void func_0207a73c(u32 p0) {
@@ -330,16 +330,16 @@ EntryKartCounters *GetEntryKartCounters(void) {
 }
 
 u32 func_0207a68c(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     u32 value12;
     value2 = (u32) &gKarts;
     value1 = 0x5a8u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value12 = (u32) &func_0206c0a8;
     value0 = (value1) * (value0) + (value2);
-    value0 = (u32) func_0206c0a8((Kart *) value0);
+    value0 = func_0206c0a8((Kart *) value0);
     return value0;
 }
 
@@ -426,11 +426,11 @@ void func_0207a32c(void) {
 }
 
 u32 func_0207a31c(void) {
-    return ((u32) data_0217ad10);
+    return (data_0217ad10);
 }
 
 void func_0207a30c(u32 p0) {
-    data_0217ad10 = (u16) p0;
+    data_0217ad10 = p0;
 }
 
 void func_0207a2d4(s32 a) {
@@ -503,28 +503,28 @@ void func_0207a14c(NNSG3dResMdl *a, u32 b) {
 u16 func_0207a134(void) {
     u32 value0;
     value0 = (u32) &gKartModels;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) * (const u32 *) ((value0) + (4));
-    value0 = (u32) * (const u16 *) ((value0) + (0));
-    return (u16) value0;
+    value0 = *(const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (4));
+    value0 = *(const u16 *) ((value0) + (0));
+    return value0;
 }
 
 u16 func_0207a11c(void) {
     u32 value0;
     value0 = (u32) &gKartModels;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) * (const u32 *) ((value0) + (4));
-    value0 = (u32) * (const u16 *) ((value0) + (6));
-    return (u16) value0;
+    value0 = *(const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (4));
+    value0 = *(const u16 *) ((value0) + (6));
+    return value0;
 }
 
 u16 func_0207a104(void) {
     u32 value0;
     value0 = (u32) &gKartModels;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) * (const u32 *) ((value0) + (4));
-    value0 = (u32) * (const u16 *) ((value0) + (2));
-    return (u16) value0;
+    value0 = *(const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (4));
+    value0 = *(const u16 *) ((value0) + (2));
+    return value0;
 }
 
 void func_02079f70(struct Unk0206bcb0_590 *a, u16 b, u16 c, u16 d) {
@@ -623,8 +623,8 @@ Unk0206bcb0_590 *func_02079bf0(u32 arg0) {
     u32 value2;
     value2 = (u32) &gKartModels;
     value1 = 0xb4u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value0 = (value1) * (value0) + (value2);
     return (Unk0206bcb0_590 *) value0;
 }
@@ -635,11 +635,11 @@ void *func_02079bcc(u32 arg0) {
     u32 value2;
     value2 = (u32) &gKartModels;
     value1 = 0xb4u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u32 *) ((value1) + (20));
-    value0 = (u32) * (const u32 *) ((value0) + (4));
+    value0 = *(const u32 *) ((value1) + (20));
+    value0 = *(const u32 *) ((value0) + (4));
     return (void *) value0;
 }
 
@@ -665,10 +665,10 @@ u32 func_02079b40(u32 arg0) {
     u32 value2;
     value2 = (u32) &gKartModels;
     value1 = 0xb4u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u16 *) ((value1) + (104));
+    value0 = *(const u16 *) ((value1) + (104));
     return value0;
 }
 
@@ -701,7 +701,7 @@ void func_02079a3c(u32 *arg0) {
     *(u32 *) ((value4) + 100u) = value0;
     value1 = (value4) + (0u);
     value1 = (value1) + 104u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     value1 = (value4) + (0u);
     value1 = (value1) + 172u;
     *(u32 *) ((value1) + 0u) = value0;
@@ -710,99 +710,99 @@ void func_02079a3c(u32 *arg0) {
     *(u32 *) ((value1) + 0u) = value0;
     value1 = (value4) + (0u);
     value1 = (value1) + 110u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     value1 = (value4) + (0u);
     value1 = (value1) + 110u;
-    value2 = (u32) * (const u16 *) ((value1) + 0u);
+    value2 = *(const u16 *) ((value1) + 0u);
     value1 = (value4) + (0u);
     value1 = (value1) + 108u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = (value4) + (0u);
     value1 = (value1) + 108u;
-    value2 = (u32) * (const u16 *) ((value1) + 0u);
+    value2 = *(const u16 *) ((value1) + 0u);
     value1 = (value4) + (0u);
     value1 = (value1) + 106u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = (value4) + (0u);
     value1 = (value1) + 116u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     value1 = 116u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 114u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = 114u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 112u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = (value4) + (0u);
     value1 = (value1) + 122u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     value1 = 122u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 120u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = 120u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 118u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = (value4) + (0u);
     value1 = (value1) + 128u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     value1 = 128u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 126u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = 126u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 124u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = (value4) + (0u);
     value1 = (value1) + 134u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     value1 = 134u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 132u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = 132u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 130u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = (value4) + (0u);
     value1 = (value1) + 140u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     value1 = 140u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 138u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = 138u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 136u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = (value4) + (0u);
     value1 = (value1) + 146u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     value1 = 146u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 144u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value1 = 144u;
-    value2 = (u32) * (const s16 *) ((value4) + (value1));
+    value2 = *(const s16 *) ((value4) + (value1));
     value1 = (value4) + (0u);
     value1 = (value1) + 142u;
-    *(u16 *) ((value1) + 0u) = (u16) value2;
+    *(u16 *) ((value1) + 0u) = value2;
     value4 = (value4) + 148u;
-    *(u16 *) ((value4) + 0u) = (u16) value0;
+    *(u16 *) ((value4) + 0u) = value0;
 }
 #pragma thumb off
 
@@ -821,9 +821,9 @@ void func_02079a04(u32 arg0) {
     value1 = 0u;
     *(u32 *) ((value0) + 0u) = value1;
     *(u32 *) ((value0) + 20u) = value1;
-    *(u16 *) ((value0) + 24u) = (u16) value1;
+    *(u16 *) ((value0) + 24u) = value1;
     *(u32 *) ((value0) + 4u) = value1;
-    *(u16 *) ((value0) + 16u) = (u16) value1;
+    *(u16 *) ((value0) + 16u) = value1;
 }
 #pragma thumb off
 
@@ -871,7 +871,7 @@ void InitKartModels(void *a, u32 b) {
     u16 i;
     Unk0206bcb0_590 *e;
     Unk0206bcb0_590 *d;
-    v4 = (u8 *) FindKartModelFile("kartoffsetdata.bin");
+    v4 = FindKartModelFile("kartoffsetdata.bin");
     SetKartModelPathPrefix(0);
     data_0217ad08 = NULL;
     gKartModels = HeapAlloc(a, 0x144);
@@ -989,7 +989,7 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     NNSG3dResFileHeader *v10;
     NNSG3dResMdl *p;
     void *s;
-    e8 = (u16) a->mUnk_000;
+    e8 = a->mUnk_000;
     v7 = func_02047950(BuildCharacterNsbmdPath(e8, c));
     v10 = FindKartModelFile(BuildCharacterNsbtxPath(e8, c));
     a->mUnk_010[0] = HeapAlloc(b, 0x6c);
@@ -1027,7 +1027,7 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
 }
 
 void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
-    u16 v7 = (u16) a->mUnk_004;
+    u16 v7 = a->mUnk_004;
     void *s;
     NNSG3dResFileHeader *t;
     NNSG3dResMdl *r4;
@@ -1148,7 +1148,7 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
 }
 
 void CreateTire(Unk0206bcb0_590 *a, void *b) {
-    u16 v6 = (u16) a->mUnk_004;
+    u16 v6 = a->mUnk_004;
     void *v7;
     NNSG3dResMdl *v4;
     NNSG3dResFileHeader *v8;
@@ -1163,7 +1163,7 @@ void CreateTire(Unk0206bcb0_590 *a, void *b) {
 void CreateKartShadow(Unk0206bcb0_590 *a, void *b) {
     void *v6;
     u8 *p;
-    v6 = func_02047950(BuildKartShadowNsbmdPath((u16) a->mUnk_004));
+    v6 = func_02047950(BuildKartShadowNsbmdPath(a->mUnk_004));
     a->mUnk_01c = HeapAlloc(b, 0x74);
     func_0208526c(&a->mUnk_01c->mUnk_00.mUnk_5c, v6, v6);
     p = (u8 *) NNS_G3dGetMdlSet(v6);
@@ -1212,7 +1212,7 @@ void func_02079078(void *a, Unk02084b2c *b, void *c, NNSG3dResFileHeader *d, NNS
     void *v1;
     v2 = func_02084d3c(b, d, e);
     func_020849c0(b, 3);
-    func_0207a14c(v2, (u32) 1);
+    func_0207a14c(v2, 1);
     func_0208823c(0, c, b, 1, a, NULL);
     v1 = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(f), 0);
     v3 = func_0207b8dc(2);
@@ -1234,7 +1234,7 @@ void func_02079014(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *
     NNSG3dResMdl *v1;
     v1 = func_02084d3c(a, b, c);
     func_020849c0(a, 3);
-    func_0207a14c(v1, (u32) 1);
+    func_0207a14c(v1, 1);
 }
 
 #pragma thumb off
@@ -1270,15 +1270,15 @@ void func_02078f18(void *a, Unk0217ad08_058 *b) {
     func_02079a3c((u32 *) b);
     b->mUnk_b0 = (u32) data_021759d0->mUnk_00;
     b->mUnk_b4 = 0;
-    v1 = ((u32) HeapAlloc(a, (u32) 0x6c));
+    v1 = ((u32) HeapAlloc(a, 0x6c));
     b->mUnk_10 = (struct Unk02084b2c *) v1;
-    v1 = ((u32) HeapAlloc(a, (u32) 0x6c));
+    v1 = ((u32) HeapAlloc(a, 0x6c));
     b->mUnk_14 = (struct Unk02084b2c *) v1;
-    v1 = ((u32) HeapAlloc(a, (u32) 0x6c));
+    v1 = ((u32) HeapAlloc(a, 0x6c));
     b->mUnk_18 = (struct Unk02084b2c *) v1;
-    v1 = ((u32) HeapAlloc(a, (u32) 0x74));
+    v1 = ((u32) HeapAlloc(a, 0x74));
     b->mUnk_1c = (struct Unk0207adf8 *) v1;
-    v1 = ((u32) HeapAlloc(a, (u32) 0x38));
+    v1 = ((u32) HeapAlloc(a, 0x38));
     b->mUnk_08 = (Unk0217ad08_058_08 *) v1;
 }
 
@@ -1507,9 +1507,9 @@ void func_02078934(s32 param_1) {
     s32 c;
     s32 b;
     s32 a;
-    a = (s32) (((s64) FX_Div(0x579, 0xf09) * 0x200) >> 12);
+    a = ((s64) FX_Div(0x579, 0xf09) * 0x200) >> 12;
     b = -a;
-    c = (s32) (((s64) b * 0x1555) >> 12);
+    c = ((s64) b * 0x1555) >> 12;
     d = -c;
     e = d;
     if (param_1 != 0) {
@@ -1614,9 +1614,9 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
             for (i = 0; i < 4; i++) {
                 if (i < 2) {
                     k = param_1->mUnk_20->mUnk_10;
-                    w.x = (s32) (((s64) v.x * k) >> 12);
-                    w.y = (s32) (((s64) v.y * k) >> 12);
-                    w.z = (s32) (((s64) v.z * k) >> 12);
+                    w.x = ((s64) v.x * k) >> 12;
+                    w.y = ((s64) v.y * k) >> 12;
+                    w.z = ((s64) v.z * k) >> 12;
                 } else {
                     w = v;
                 }
@@ -1658,10 +1658,10 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
 
 void func_0207851c(Unk0217ad08_058 *a) {
     if ((data_0217ad08->mUnk_1e0 != FALSE) && (a->mUnk_b4 != NULL)) {
-        NNS_G3dReleaseMdlTexEx((NNSG3dResMdl *) a->mUnk_14->mUnk_04, data_02155048);
-        NNS_G3dReleaseMdlPlttEx((NNSG3dResMdl *) a->mUnk_14->mUnk_04, data_021550a8);
-        NNS_G3dBindMdlTexEx((NNSG3dResMdl *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_02155048);
-        NNS_G3dBindMdlPlttEx((NNSG3dResMdl *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_021550a8);
+        NNS_G3dReleaseMdlTexEx(a->mUnk_14->mUnk_04, data_02155048);
+        NNS_G3dReleaseMdlPlttEx(a->mUnk_14->mUnk_04, data_021550a8);
+        NNS_G3dBindMdlTexEx(a->mUnk_14->mUnk_04, a->mUnk_b4, data_02155048);
+        NNS_G3dBindMdlPlttEx(a->mUnk_14->mUnk_04, a->mUnk_b4, data_021550a8);
     }
 }
 
@@ -1915,14 +1915,14 @@ void func_02077f0c(u16 *a, int b, u32 c) {
     int v2;
     int v3;
     v1 = *a;
-    v3 = b - (u32) v1;
+    v3 = b - v1;
     if (v3 < 0) {
         v3 = 0xffff - v3;
     }
     v2 = FX_MulFunc(v3, c);
     *a = *a + v2;
     if (((*a + 100) - b) < 0) {
-        *a = (u16) (*a + 100);
+        *a = *a + 100;
         return;
     }
     *a = v1;
@@ -1943,8 +1943,8 @@ Nclr *GetEmblemSBNclr(void) {
 void func_02077eb4(void *a, u32 *b) {
     u32 v1;
     u32 v2;
-    v1 = ((u32) HeapAlloc(a, (u32) (((u32) 0x0000f000u))));
-    v2 = (u32) NNS_FndCreateExpHeapEx(((void *) v1), (u32) ((u32) (((u32) 0x0000f000u))), (u32) 0);
+    v1 = ((u32) HeapAlloc(a, (0x0000f000u)));
+    v2 = (u32) NNS_FndCreateExpHeapEx(((void *) v1), (0x0000f000u), 0);
     b[1] = v2;
     *b = v1;
     b[4] = 0;
@@ -2060,8 +2060,8 @@ void func_02077bc0(void *a) {
     v2 = func_020172d0(0x20);
     v3 = HeapAlloc(a, v1);
     v4 = HeapAlloc(a, v2);
-    NNS_GfdInitLnkTexVramManager((u32) 0x00040000u, (u32) 0x00020000u, v3, v1, 1);
-    NNS_GfdInitLnkPlttVramManager((u32) 0x00010000u, v4, v2, 1);
+    NNS_GfdInitLnkTexVramManager(0x00040000u, 0x00020000u, v3, v1, 1);
+    NNS_GfdInitLnkPlttVramManager(0x00010000u, v4, v2, 1);
 }
 
 #pragma thumb off

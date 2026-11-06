@@ -1,4 +1,5 @@
 #include "code_02149e90.h"
+#include "registers.h"
 
 // Returns the main engine BG VRAM address of the character base block set in BG2CNT,
 // or 0 in mode 5 or 6 with the 256 color bit set.
@@ -6,10 +7,10 @@ u32 G2_GetBG2CharPtr(void) {
     s32 mode;
     u32 control;
 
-    mode = *(vu32 *) 0x4000000 & 0x7;
-    control = *(vu16 *) 0x400000c;
+    mode = reg_GX_DISPCNT & 0x7;
+    control = reg_G2_BG2CNT;
     if (mode < 5 || !(control & 0x80)) {
-        return (((*(vu32 *) 0x4000000 & 0x7000000) >> 24) << 16) + 0x6000000 + (((control & 0x3c) >> 2) << 14);
+        return (((reg_GX_DISPCNT & 0x7000000) >> 24) << 16) + 0x6000000 + (((control & 0x3c) >> 2) << 14);
     }
     return 0;
 }
@@ -20,8 +21,8 @@ u32 G2S_GetBG2CharPtr(void) {
     s32 mode;
     u32 control;
 
-    mode = *(vu32 *) 0x4001000 & 0x7;
-    control = *(vu16 *) 0x400100c;
+    mode = reg_GXS_DB_DISPCNT & 0x7;
+    control = reg_G2S_DB_BG2CNT;
     if (mode < 5 || !(control & 0x80)) {
         return (((control & 0x3c) >> 2) << 14) + 0x6200000;
     }
@@ -34,10 +35,10 @@ u32 G2_GetBG3CharPtr(void) {
     s32 mode;
     u32 control;
 
-    mode = *(vu32 *) 0x4000000 & 0x7;
-    control = *(vu16 *) 0x400000e;
+    mode = reg_GX_DISPCNT & 0x7;
+    control = reg_G2_BG3CNT;
     if (mode < 3 || (mode < 6 && !(control & 0x80))) {
-        return (((*(vu32 *) 0x4000000 & 0x7000000) >> 24) << 16) + 0x6000000 + (((control & 0x3c) >> 2) << 14);
+        return (((reg_GX_DISPCNT & 0x7000000) >> 24) << 16) + 0x6000000 + (((control & 0x3c) >> 2) << 14);
     }
     return 0;
 }
@@ -48,8 +49,8 @@ u32 G2S_GetBG3CharPtr(void) {
     s32 mode;
     u32 control;
 
-    mode = *(vu32 *) 0x4001000 & 0x7;
-    control = *(vu16 *) 0x400100e;
+    mode = reg_GXS_DB_DISPCNT & 0x7;
+    control = reg_G2S_DB_BG3CNT;
     if (mode < 3 || (mode < 6 && !(control & 0x80))) {
         return (((control & 0x3c) >> 2) << 14) + 0x6200000;
     }

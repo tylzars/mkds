@@ -345,7 +345,7 @@ void func_ov003_021c1648(int a) {
     if (a != data_ov003_021da160->mUnk_62) {
         func_ov003_021c12cc(a, 1);
         func_ov003_021c12cc(data_ov003_021da160->mUnk_62, 0);
-        data_ov003_021da160->mUnk_62 = (s8) a;
+        data_ov003_021da160->mUnk_62 = a;
     }
     return;
 }

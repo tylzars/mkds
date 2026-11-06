@@ -6,7 +6,7 @@ u32 StartRaceClock(void) {
     u32 value1;
     value0 = (u32) &gRaceProgress;
     value1 = 1u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (4)) = value1;
     return value0;
 }

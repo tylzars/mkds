@@ -70,7 +70,7 @@ u32 func_0204863c(void *a, void *b, u32 c) {
     FS_InitFile(&f);
     r = FS_OpenFile(&f, a);
     if (r != 0) {
-        if (c <= (u32) (f.mProp.p.mUnk_08 - f.mProp.p.mUnk_04)) {
+        if (c <= (f.mProp.p.mUnk_08 - f.mProp.p.mUnk_04)) {
             if (FS_ReadFile(&f, b, c) < 0) {
                 r = 0;
             }

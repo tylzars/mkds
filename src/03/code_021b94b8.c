@@ -711,7 +711,7 @@ s32 func_ov003_021b9570(Unk021b94c4 *req) {
         srcLen = 8;
         received = func_ov003_021b7d68(data_ov003_021d6804, buffer->mUnk_0c, 0x5dc, 0, &src2, &srcLen);
         buffer->mUnk_00 = data_ov003_021d6804;
-        buffer->mUnk_04 = func_ov003_021b7c44((u16) received);
+        buffer->mUnk_04 = func_ov003_021b7c44(received);
         state = func_ov003_021b9078(mode, buffer, &attempts, list, data_ov003_021d6804);
         if (state == 0x64) {
             ret = 0;

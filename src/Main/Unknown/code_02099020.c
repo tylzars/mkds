@@ -18,12 +18,12 @@
 
 void func_02099278(u32 p0) {
     u32 v1 = ((u32) (&data_02156598));
-    u32 v3 = ((u32) * (u16 *) ((p0) + (2)));
-    u32 v4 = ((u32) * (u16 *) ((v1) + (0)));
+    u32 v3 = (*(u16 *) ((p0) + (2)));
+    u32 v4 = (*(u16 *) ((v1) + (0)));
     u32 v5 = ((v3) | (v4));
     u32 v7;
     u32 v9;
-    *(u16 *) ((p0) + (2)) = (u16) v5;
+    *(u16 *) ((p0) + (2)) = v5;
     ParkMapObject((void *) (p0));
     CreateMapObjectSoundSourceFalloff2((MapObject *) p0);
 }
@@ -97,5 +97,5 @@ void func_0209905c(void *a, Unk0209905c *p) {
 }
 
 void func_02099020(void) {
-    func_0209bf70(&func_02099208, NULL, NULL, 1, 1, ((u32) 0x0000018du));
+    func_0209bf70(&func_02099208, NULL, NULL, 1, 1, (0x0000018du));
 }

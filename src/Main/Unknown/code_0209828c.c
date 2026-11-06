@@ -97,7 +97,7 @@ void InitPakkun(Pakkun *p) {
             v = p->mUnk_000.mCourseMapRow->mUnk_34;
         }
         if (v >= 0) {
-            func_020d7db4(&p->mUnk_0b8[p->mUnk_1ba], (u16) v, 100);
+            func_020d7db4(&p->mUnk_0b8[p->mUnk_1ba], v, 100);
             func_020d8918(&p->mUnk_0b8[p->mUnk_1ba], &a, &b);
             d = FX_Atan2Idx(b.x, b.z) - p->mUnk_1d8;
             if (d > 0x8000) {
@@ -245,17 +245,16 @@ void func_0209886c(void) {
     if (data_usa_0217b0dc == NULL) {
         return;
     }
-    for (i = 0; i < data_usa_0217b0dc->mMapObjectCount && (o = (Pakkun *) data_usa_0217b0dc->mMapObjects[i]) != NULL;
-         i++) {
+    for (i = 0; i < data_usa_0217b0dc->mMapObjectCount && (o = data_usa_0217b0dc->mMapObjects[i]) != NULL; i++) {
         if (GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1 > 0) {
-            f = 0.5f + (float) ((GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1) << 12);
+            f = 0.5f + ((GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1) << 12);
         } else {
-            f = (float) ((GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1) << 12) - 0.5f;
+            f = ((GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1) << 12) - 0.5f;
         }
         o->mUnk_0a4 = 0;
         o->mUnk_0a8 = 0x1000;
         o->mUnk_0ac = 0;
-        o->mUnk_0b0 = (s32) f;
+        o->mUnk_0b0 = f;
         o->mUnk_1e0 = -0xa4;
     }
 }
@@ -370,8 +369,8 @@ void UpdatePakkun(void *a, Pakkun *p) {
             p->mUnk_1ec = -0x52;
         }
     }
-    x = (s32) (((s64) (p->mUnk_1e8 + p->mUnk_1f0 - 0x1000) * 0x2f000) >> 12);
-    y = (s32) (((s64) p->mUnk_1f0 * 0x17000) >> 12);
+    x = ((s64) (p->mUnk_1e8 + p->mUnk_1f0 - 0x1000) * 0x2f000) >> 12;
+    y = ((s64) p->mUnk_1f0 * 0x17000) >> 12;
     p->mUnk_1f8 = x + y;
 }
 

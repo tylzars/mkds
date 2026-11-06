@@ -105,7 +105,7 @@ void func_02059954(u8 *a) {
             break;
     }
     if (f != 0) {
-        m = (u8) (1U << a[0]);
+        m = 1U << a[0];
         if (func_02059878_inline() == 1) {
             if (func_020586ac(0xff, NULL, 0, 0, m) != FALSE) {
                 data_0217aa00->mUnk_162a |= 1 << a[0];

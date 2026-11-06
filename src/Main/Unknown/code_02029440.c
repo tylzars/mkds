@@ -4,71 +4,71 @@
 #pragma thumb on
 
 u32 func_020296e4(void) {
-    return ((u32) data_02174e1c->mCourseId);
+    return (data_02174e1c->mCourseId);
 }
 
 u32 func_020296d4(u16 p0) {
-    return ((u32) data_02174e1c->mUnk_00[p0].mCharacterIndex);
+    return (data_02174e1c->mUnk_00[p0].mCharacterIndex);
 }
 
 u32 func_020296c0(u16 p0) {
-    return ((u32) data_02174e1c->mUnk_00[p0].mKartIndex);
+    return (data_02174e1c->mUnk_00[p0].mKartIndex);
 }
 
 u32 func_020296ac(u16 p0) {
-    return ((u32) data_02174e1c->mUnk_00[p0].mUnk_08);
+    return (data_02174e1c->mUnk_00[p0].mUnk_08);
 }
 
 u32 func_0202969c(void) {
-    return ((u32) data_02174e1c->mUnk_d4);
+    return (data_02174e1c->mUnk_d4);
 }
 
 u32 func_0202968c(void) {
-    return ((u32) data_02174e1c->mUnk_cc);
+    return (data_02174e1c->mUnk_cc);
 }
 
 u32 func_0202967c(void) {
-    return ((u32) data_02174e1c->mUnk_d8);
+    return (data_02174e1c->mUnk_d8);
 }
 
 u32 func_0202966c(void) {
-    return ((u32) data_02174e1c->mUnk_c0);
+    return (data_02174e1c->mUnk_c0);
 }
 
 u32 func_0202965c(void) {
-    return ((u32) data_02174e1c->mCourseListMode);
+    return (data_02174e1c->mCourseListMode);
 }
 
 u32 func_0202964c(void) {
-    return ((u32) data_02174e1c->mUnk_e8);
+    return (data_02174e1c->mUnk_e8);
 }
 
 u32 func_0202963c(void) {
-    return ((u32) data_02174e1c->mUnk_ec);
+    return (data_02174e1c->mUnk_ec);
 }
 
 u32 func_0202962c(void) {
-    return ((u32) data_02174e1c->mUseTeams);
+    return (data_02174e1c->mUseTeams);
 }
 
 u32 func_02029618(u16 p0) {
-    return ((u32) data_02174e1c->mUnk_00[p0].mTeamIndex);
+    return (data_02174e1c->mUnk_00[p0].mTeamIndex);
 }
 
 u32 func_02029608(void) {
-    return ((u32) data_02174e1c->mMissionTableRow);
+    return (data_02174e1c->mMissionTableRow);
 }
 
 u32 func_020295f8(void) {
-    return ((u32) data_02174e1c->mMissionTableColumn);
+    return (data_02174e1c->mMissionTableColumn);
 }
 
 u32 func_020295e4(void) {
-    return ((u32) data_02174e1c->mUnk_10c);
+    return (data_02174e1c->mUnk_10c);
 }
 
 u32 func_020295d0(void) {
-    return ((u32) data_02174e1c->mUnk_10d);
+    return (data_02174e1c->mUnk_10d);
 }
 
 void func_020295c0(u32 p0) {
@@ -160,15 +160,15 @@ void func_0202947c(u32 p0) {
 }
 
 void func_02029468(u32 p0) {
-    data_02174e1c->mMissionFileRowIndex = (u16) p0;
+    data_02174e1c->mMissionFileRowIndex = p0;
 }
 
 void func_02029454(u32 p0) {
-    data_02174e1c->mUnk_10c = (u8) p0;
+    data_02174e1c->mUnk_10c = p0;
 }
 
 void func_02029440(u32 p0) {
-    data_02174e1c->mUnk_10d = (u8) p0;
+    data_02174e1c->mUnk_10d = p0;
 }
 
 #pragma thumb off

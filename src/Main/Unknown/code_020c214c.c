@@ -264,8 +264,8 @@ u32 func_020c31ec(void) {
 
 void func_020c31c0(void) {
     u32 v2 = ((u32) (&gRaceGoalS));
-    u32 v3 = ((u32) * (u32 *) ((v2) + (0)));
-    u32 v4 = ((u32) * (u32 *) ((v3) + (172)));
+    u32 v3 = (*(u32 *) ((v2) + (0)));
+    u32 v4 = (*(u32 *) ((v3) + (172)));
     u32 v5 = ((u32(*)(void))(v4))();
     UpdateRaceGoalSOffset();
 }
@@ -344,7 +344,7 @@ void func_020c28dc(Unk020c06c4 *a) {
             }
             break;
     }
-    for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         k = gRaceGoalS->mUnk_0040[i];
         v = gRaceGoalS->mUnk_0020[k];
         p = v / 100;
@@ -553,7 +553,7 @@ void func_020c214c(Unk020c06c4 *a) {
     for (i = 0; i < 2; i++) {
         c[i] = 0;
     }
-    for (i = 0; (u32) i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
         k = data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex;
         func_020c2570(a, i, t1[k] + (k == 0 ? -d : d), c[k] * 0x17 + 0x11);
         c[k]++;

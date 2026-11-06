@@ -23,6 +23,7 @@
 #include "Main/Unknown/code_0211e0c4.h"
 #include "code_021488e8.h"
 #include "code_02148950.h"
+#include "registers.h"
 
 #pragma optimize_for_size on
 
@@ -53,12 +54,12 @@ void func_ov001_02185af0(void) {
 
 #pragma thumb off
 void func_ov001_02185ad8(u32 a) {
-    vu32 *r = (vu32 *) 0x4000000;
+    vu32 *r = &reg_GX_DISPCNT;
     *r = (*r & ~0x1f00) | (a << 8);
 }
 
 void func_ov001_02185abc(u32 a) {
-    vu32 *r = (vu32 *) 0x4001000;
+    vu32 *r = &reg_GXS_DB_DISPCNT;
     *r = (*r & ~0x1f00) | (a << 8);
 }
 #pragma thumb on
@@ -224,11 +225,11 @@ void func_ov001_021857ec(void) {
 
 #pragma thumb off
 void func_ov001_021857c0(u32 a, u32 b) {
-    *(vu32 *) 0x4000014 = (a & 0x1ff) | ((b << 16) & 0x1ff0000);
+    reg_G2_BG1OFS = (a & 0x1ff) | ((b << 16) & 0x1ff0000);
 }
 
 void func_ov001_021857a4(u32 a) {
-    vu16 *r = (vu16 *) 0x400000a;
+    vu16 *r = &reg_G2_BG1CNT;
     *r = (*r & ~3) | a;
 }
 #pragma thumb on

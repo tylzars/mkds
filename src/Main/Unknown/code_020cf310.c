@@ -170,7 +170,7 @@ void func_020cf340(Unk020cf340 *a) {
                 n = GetWaterHeightFactor();
                 for (k = 7; k > 0; k--) {
                     f = (7 - k) * 0.286f + -0.858f;
-                    v = (s32) (f > 0.0f ? f * 4096.0f + 0.5f : f * 4096.0f - 0.5f);
+                    v = f > 0.0f ? f * 4096.0f + 0.5f : f * 4096.0f - 0.5f;
                     if (n < v) {
                         break;
                     }
@@ -248,7 +248,7 @@ void func_020cf340(Unk020cf340 *a) {
                 x = GetWaterHeightAngle();
                 for (k = 0; k < 0x13; k++) {
                     f = k * 0.105f + -0.945f;
-                    v = (s32) (f > 0.0f ? f * 4096.0f + 0.5f : f * 4096.0f - 0.5f);
+                    v = f > 0.0f ? f * 4096.0f + 0.5f : f * 4096.0f - 0.5f;
                     if (n < v) {
                         break;
                     }

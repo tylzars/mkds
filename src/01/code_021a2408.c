@@ -39,30 +39,30 @@ void func_ov001_021a2408(void) {
             }
             break;
         case 2:
-            bits = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-            *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x1f00) | ((bits | 1) << 8);
-            *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 1;
-            *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & 0x43) | 0x8a10;
-            *(vu32 *) 0x4001010 = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
-            *(vu32 *) 0x4001018 =
+            bits = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+            reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | ((bits | 1) << 8);
+            reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 1;
+            reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0x8a10;
+            reg_G2S_DB_BG0OFS = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
+            reg_G2S_DB_BG2OFS =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
             gEmblem->mUnk_1098 = 4;
             break;
         case 6:
-            *(vu32 *) 0x4001010 = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
-            *(vu32 *) 0x4001018 =
+            reg_G2S_DB_BG0OFS = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
+            reg_G2S_DB_BG2OFS =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
             GXS_SetGraphicsMode(1);
-            *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 2;
-            *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x1218;
+            reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 2;
+            reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1218;
             DC_FlushRange(gEmblem->mUnk_0a7c, 0x200);
             GX_LoadBG2Char((gEmblem->mUnk_0a7c), 0, 0x200);
             G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0, 0x10, 0x10);
             gEmblem->mUnk_1098 = 4;
             break;
         case 4:
-            *(vu32 *) 0x4001010 = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
-            *(vu32 *) 0x4001018 =
+            reg_G2S_DB_BG0OFS = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
+            reg_G2S_DB_BG2OFS =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
             DC_FlushRange((const void *) GetEmblemGridCells(), GetEmblemGridCharSize());
             GXS_LoadBG3Char((const void *) (GetEmblemGridCells()), func_ov001_02181194(), GetEmblemGridCharSize());
@@ -76,20 +76,20 @@ void func_ov001_021a2408(void) {
             GXS_LoadOBJPltt(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
             break;
         case 3:
-            *(vu32 *) 0x4001010 = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
-            *(vu32 *) 0x4001018 =
+            reg_G2S_DB_BG0OFS = (-(gEmblem->mUnk_10a0 - 0xc0) << 16) & 0x1ff0000;
+            reg_G2S_DB_BG2OFS =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
             GXS_SetGraphicsMode(0);
-            *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 1;
-            *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x1010;
-            *(vu32 *) 0x400101c = 0;
+            reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
+            reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1010;
+            reg_G2S_DB_BG3OFS = 0;
             G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 8, 0x36, 8, 8);
             gEmblem->mUnk_1098 = 5;
             break;
         case 7:
-            bits = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-            *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x1f00) | ((bits & ~1) << 8);
-            *(vu32 *) 0x4001018 =
+            bits = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+            reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | ((bits & ~1) << 8);
+            reg_G2S_DB_BG2OFS =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
             gEmblem->mUnk_1098 = 8;
             break;
@@ -104,7 +104,7 @@ void func_ov001_021a2408(void) {
             GXS_LoadOBJPltt(gEmblem->mEmblemSONclr->mData, 0, gEmblem->mEmblemSONclr->mDataSize);
             break;
         case 8:
-            *(vu32 *) 0x4001018 =
+            reg_G2S_DB_BG2OFS =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
             DC_FlushRange((const void *) GetEmblemGridCells(), GetEmblemGridCharSize());
             GXS_LoadBG3Char((const void *) (GetEmblemGridCells()), func_ov001_02181194(), GetEmblemGridCharSize());
@@ -128,19 +128,19 @@ void func_ov001_021a2408(void) {
             gEmblem->mUnk_1098 = 10;
             break;
         case 10:
-            *(vu32 *) 0x4001018 = 0;
+            reg_G2S_DB_BG2OFS = 0;
             G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 0x3e, -gEmblem->mUnk_109c);
             break;
         case 13:
-            *(vu32 *) 0x4001018 =
+            reg_G2S_DB_BG2OFS =
                 ((gEmblem->mUnk_10a8 >> 12) & 0x1ff) | (((-gEmblem->mUnk_10a8 >> 12) << 16) & 0x1ff0000);
             G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 0x3e, -gEmblem->mUnk_109c);
             break;
         case 14:
             func_ov001_021a4d10();
-            *(vu32 *) 0x4001010 = 0;
-            *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 1;
-            *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & 0x43) | 0xa00;
+            reg_G2S_DB_BG0OFS = 0;
+            reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 1;
+            reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0xa00;
             gEmblem->mUnk_1098 = 1;
             break;
         case 15:

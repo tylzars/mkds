@@ -8,7 +8,7 @@ u32 func_ov000_021ad36c(void) {
     int v3;
     func_ov000_021ae270();
     func_ov000_021ae2d8();
-    func_ov000_021ae290(0x44, (u16) (0x43), 0xffffffff);
+    func_ov000_021ae290(0x44, 0x43, 0xffffffff);
     v3 = 0;
     do {
         v1 = func_ov000_021ad6c0();

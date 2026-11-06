@@ -144,9 +144,9 @@ void func_ov001_0218d950(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_088, a->mPrm->mUnk_08c);
     prod = a->mPrm->mUnk_0d0 * a->mUnk_0a8;
     if (prod > 0) {
-        f = 0.5f + (float) (prod << 12);
+        f = 0.5f + (prod << 12);
     } else {
-        f = (float) (prod << 12) - 0.5f;
+        f = (prod << 12) - 0.5f;
     }
     s = a->mNsbmd->mNsbcaAnimation;
     s->mUnk_0c = f;

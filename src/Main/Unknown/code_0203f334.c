@@ -158,7 +158,7 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
         x >>= 10;
         y >>= 10;
     }
-    return FX_Div((s32) x, (s32) y);
+    return FX_Div(x, y);
 }
 
 BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e) {
@@ -237,7 +237,7 @@ s16 func_0203f91c(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         for (j = 0; j < 3; j++) {
             k = (p->mNextRoutes)[j];
             if (k != -1) {
-                r = func_0203f91c(a, b, c, (u16) k, gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry, f - 1);
+                r = func_0203f91c(a, b, c, k, gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry, f - 1);
                 if (r != -1) {
                     return r;
                 }
@@ -268,7 +268,7 @@ s16 func_0203f7c0(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         for (j = 0; j < 3; j++) {
             k = p->mPreviousRoutes[j];
             if (k != -1) {
-                r = func_0203f7c0(a, b, c, (u16) k,
+                r = func_0203f7c0(a, b, c, k,
                                   gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry +
                                       gCourseMap->mCheckpointRoutes[(u16) k].mEntryCount - 1,
                                   f - 1);

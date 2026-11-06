@@ -50,7 +50,7 @@ void LocateAndQueueRecordVSErase(void) {
     gRecordVSErase->mRecordVSSEraseBnbl = v2;
     v2 = FindSceneFile(gRecordVSSEraseBnllName);
     gRecordVSErase->mRecordVSSEraseBnll = v2;
-    v2 = HeapAlloc(gRecordVSErase->mHeap, (u32) (((u32) 0x00000800u)));
+    v2 = HeapAlloc(gRecordVSErase->mHeap, (0x00000800u));
     gRecordVSErase->mUnk_4c = v2;
     v2 = FindSceneFile(gRecordVSSBNcgrName);
     LocateNcgr(&v4, v2);
@@ -63,11 +63,11 @@ void LocateAndQueueRecordVSErase(void) {
     v2 = FindSceneFile(gRecordVSM03NscrName);
     LocateNscr(&gRecordVSErase->mRecordVSM03Nscr, v2);
     v3 = GetEmblemSBNclr();
-    CallQueueAppend((u32) 0x17, (u32) 0, v4->mData, v4->mDataSize);
-    CallQueueAppend((u32) 0x1b, (u32) 0, v6[0]->mData, v6[0]->mDataSize);
-    CallQueueAppend((u32) 0x1b, (u32) (((u32) 0x00000800u)), gRecordVSErase->mUnk_4c, (u32) (((u32) 0x00000800u)));
-    CallQueueAppend((u32) 0x1f, (u32) 0, v5->mData, (u32) 0x40);
-    CallQueueAppend((u32) 0xe, (u32) 0x40, v3->mData, (u32) 0x20);
+    CallQueueAppend(0x17, 0, v4->mData, v4->mDataSize);
+    CallQueueAppend(0x1b, 0, v6[0]->mData, v6[0]->mDataSize);
+    CallQueueAppend(0x1b, (0x00000800u), gRecordVSErase->mUnk_4c, (0x00000800u));
+    CallQueueAppend(0x1f, 0, v5->mData, 0x40);
+    CallQueueAppend(0xe, 0x40, v3->mData, 0x20);
 }
 
 #pragma thumb off
@@ -251,12 +251,12 @@ u32 IncrementRecordVSErasePageIndex(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRecordVSErase;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 118u;
-    value0 = (u32) * (const s16 *) ((value1) + (value0));
+    value0 = *(const s16 *) ((value1) + (value0));
     value0 = (value0) + (1u);
     value1 = (value1) + 118u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     return value0;
 }
 #pragma thumb off
@@ -266,12 +266,12 @@ u32 DecrementRecordVSErasePageIndex(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRecordVSErase;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 118u;
-    value0 = (u32) * (const s16 *) ((value1) + (value0));
+    value0 = *(const s16 *) ((value1) + (value0));
     value0 = (value0) - (1u);
     value1 = (value1) + 118u;
-    *(u16 *) ((value1) + 0u) = (u16) value0;
+    *(u16 *) ((value1) + 0u) = value0;
     return value0;
 }
 #pragma thumb off
@@ -287,7 +287,7 @@ void IncrementRecordVSEraseIndex(void) {
         v2 = 0;
     }
     if (gRecordVSErase->mIndex != v2) {
-        NNS_SndArcPlayerStartSeqArc((const void *) (((u32) ((u8 *) &data_0217d068))), (u32) 0, (u32) 0);
+        NNS_SndArcPlayerStartSeqArc((const void *) (((u32) ((u8 *) &data_0217d068))), 0, 0);
     }
     gRecordVSErase->mIndex = v2;
 }
@@ -308,7 +308,7 @@ void DecrementRecordVSEraseIndex(void) {
         }
     }
     if (gRecordVSErase->mIndex != v4) {
-        NNS_SndArcPlayerStartSeqArc(&data_0217d068, (u32) 0, (u32) 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
     gRecordVSErase->mIndex = v4;
 }

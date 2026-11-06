@@ -31,7 +31,7 @@ static inline u32 func_020919e8_inline(u32 n) {
 
     b = func_020d22d0();
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-    return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
+    return ((b->mUnk_00 >> 32) * n) >> 32;
 }
 
 static inline u16 func_020919e8_inline_2(u32 n) {
@@ -89,7 +89,7 @@ void func_02091fd8(MapObjectList *a) {
     if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mMapObjectCount && (p = (Unk020919e8 *) a->mMapObjects[i]) != NULL; i++) {
+    for (i = 0; i < a->mMapObjectCount && (p = a->mMapObjects[i]) != NULL; i++) {
         if (p->mUnk_00.mFlags & 0x800) {
             p->mUnk_a4 = (u16) (func_020919e8_inline_2(25) + 200);
         }
@@ -112,7 +112,7 @@ s16 func_02091f54(s32 a) {
 }
 
 s32 func_02091f44(s32 a, s32 b) {
-    return (s32) (((s64) a * b) >> 12);
+    return ((s64) a * b) >> 12;
 }
 
 static inline s64 func_020919e8_inline_5(const Vec3 *a, const Vec3 *b) {

@@ -37,7 +37,7 @@ void InitOptionScene(s16 *a) {
 
     heap = GetHeap(func_020364e8());
     data_ov001_021ca408 = HeapAlloc(heap, 0x808);
-    InitOptionStates((heap), (s16) (*a));
+    InitOptionStates((heap), *a);
 }
 
 void ReleaseOptionScene(void) {

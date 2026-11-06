@@ -34,11 +34,11 @@ void func_020cca10(u32 p0) {
 }
 
 void SetNextUseTeams(u32 p0) {
-    data_021759c0->mNextHeader.mUseTeams = (u8) p0;
+    data_021759c0->mNextHeader.mUseTeams = p0;
 }
 
 void func_020cc9e4(u32 p0) {
-    data_021759c0->mUnk_3d8 = (u16) p0;
+    data_021759c0->mUnk_3d8 = p0;
 }
 
 void func_020cc9d0(u32 p0) {
@@ -54,5 +54,5 @@ void func_020cc9a8(u32 p0) {
 }
 
 u32 func_020cc994(void) {
-    return ((u32) data_0217b488->mUnk_04);
+    return (data_0217b488->mUnk_04);
 }

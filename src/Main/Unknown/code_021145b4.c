@@ -49,6 +49,7 @@
 #include "Main/Unknown/code_020b3f7c.h"
 #include "code_02148950.h"
 #include "Main/Unknown/code_02047104.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -176,7 +177,7 @@ void func_02115d08(void) {
     gRecordVSErase->mNextState = 8;
     gRecordVSErase->mStateFrames = 0;
     v = GetRecordVSEraseFirstRecordIndex();
-    func_02114298((u16) (v + gRecordVSErase->mIndex), buf, 0x20);
+    func_02114298(v + gRecordVSErase->mIndex, buf, 0x20);
     func_0212513c(buf, GetBmgEntry(gRecordVSErase->mRecordMessages, 5), buf2, 0x200);
     func_02125fd4(buf2, GetBmgEntry(gRecordVSErase->mCommonMessages, 0),
                   GetBmgEntry(gRecordVSErase->mCommonMessages, 1), 1, 0, 1, 1, 1);
@@ -221,9 +222,9 @@ void InitRecordVSErase(void *a) {
     u32 p3;
     u32 p4;
 
-    *(volatile u16 *) 0x400100e = (*(volatile u16 *) 0x400100e & ~3) | 1;
-    *(volatile u16 *) 0x400100a = (*(volatile u16 *) 0x400100a & 0x43) | 0x1018;
-    *(volatile u16 *) 0x400100e = (*(volatile u16 *) 0x400100e & 0x43) | 0x9810;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 1;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0x1018;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x9810;
     gRecordVSErase = HeapAlloc(a, 0xa4);
     gRecordVSErase->mHeap = a;
     gRecordVSErase->mState = 3;
@@ -268,7 +269,7 @@ void InitRecordVSErase(void *a) {
             v -= func_021243ac(a, data_0215c530[i][j], gRecordVSErase->mRecordVSMBnll, data_0215c544[i][j],
                                data_0215c558[i][j], z, gRecordVSErase->mRecordVSMNcer, gRecordVSErase->mRecordVSMBncl,
                                gRecordVSErase->mRecordVSMTable, v);
-            z = (u16) (n + data_0215c530[i][j]);
+            z = n + data_0215c530[i][j];
         }
     }
     for (i = 0; i < 3; i++) {
@@ -328,9 +329,9 @@ void func_021156d4(void) {
     func_021113fc(gRecordVSErase->mPageIndex);
     func_021113f0(gRecordVSErase->mIndex);
     gRecordVSErase = NULL;
-    v = (*(volatile u32 *) 0x4001000 & 0x1f00) >> 8;
+    v = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     v &= ~9;
-    *(volatile u32 *) 0x4001000 = (*(volatile u32 *) 0x4001000 & 0xffffe0ff) | (v << 8);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (v << 8);
 }
 
 #pragma thumb off
@@ -470,7 +471,7 @@ void AdvanceRecordVSEraseState4(void) {
         return;
     }
     if (w <= 4) {
-        i = (Unk02175628Index) data_0215c4d0[w];
+        i = data_0215c4d0[w];
         if (i == gRecordVSErase->mIndex) {
             if (func_02114398(s + i) == 0) {
                 if (IsRecordVSEraseIndexChangeRunning() == 0) {
@@ -882,17 +883,17 @@ void AdvanceRecordVSErase(void) {
 }
 
 void func_02114604(void) {
-    *(vu32 *) 0x4000010 = (-gRecordVSErase->mBg0OffsetX & 0x1ff) | ((-gRecordVSErase->mBg0OffsetY << 16) & 0x1ff0000);
-    *(vu32 *) 0x4000014 = (-gRecordVSErase->mBg1OffsetX & 0x1ff) | ((-gRecordVSErase->mBg1OffsetY << 16) & 0x1ff0000);
-    *(vu32 *) 0x400101c = (-gRecordVSErase->mBg3Offset << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (-gRecordVSErase->mBg0OffsetX & 0x1ff) | ((-gRecordVSErase->mBg0OffsetY << 16) & 0x1ff0000);
+    reg_G2_BG1OFS = (-gRecordVSErase->mBg1OffsetX & 0x1ff) | ((-gRecordVSErase->mBg1OffsetY << 16) & 0x1ff0000);
+    reg_G2S_DB_BG3OFS = (-gRecordVSErase->mBg3Offset << 16) & 0x1ff0000;
     func_02111428();
 }
 
 void func_021145dc(void) {
     u32 a;
 
-    a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x1f00) | ((a | 9) << 8);
+    a = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | ((a | 9) << 8);
 }
 
 void RegisterRecordVSEraseCallbacks(void) {

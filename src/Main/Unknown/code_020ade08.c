@@ -74,7 +74,7 @@ s16 func_020ae564(s32 a) {
 }
 
 s32 func_020ae554(s32 a, s32 b) {
-    return (s32) (((s64) a * b) >> 12);
+    return ((s64) a * b) >> 12;
 }
 
 s32 func_020ae54c(s32 a) {
@@ -101,11 +101,11 @@ s16 func_020ae4c0(s32 a, s16 b, s16 c, s32 d, s32 e) {
             t = func_020ae564((d << 15) / e);
             v1 = c - b;
             if (v1 > 0) {
-                f = 0.5f + (float) (v1 << 12);
+                f = 0.5f + (v1 << 12);
             } else {
-                f = (float) (v1 << 12) - 0.5f;
+                f = (v1 << 12) - 0.5f;
             }
-            return b + func_020ae54c(func_020ae554((s32) f, 0x1000 - t)) / 2;
+            return b + func_020ae54c(func_020ae554(f, 0x1000 - t)) / 2;
     }
 }
 
@@ -156,7 +156,7 @@ u16 func_020ae408(u32 a, u32 b) {
 #pragma thumb off
 
 u32 func_020ae3f4(void) {
-    return ((u32) data_021759d0->mUnk_20);
+    return (data_021759d0->mUnk_20);
 }
 
 u32 func_020ae3d8(void) {
@@ -255,7 +255,7 @@ u32 func_020ae244(u32 a, Unk020ae244 b) {
 #pragma thumb off
 
 u32 func_020ae23c(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 0));
+    return (*(const u16 *) ((u8 *) p0 + 0));
 }
 
 u32 func_020ae21c(u32 arg0) {
@@ -268,12 +268,12 @@ u32 func_020ae21c(u32 arg0) {
     value1 = (value0) * (value1) + (value2);
     value12 = (u32) &func_020ae23c;
     value0 = (value1) + (0x48u);
-    value0 = (u32) func_020ae23c(value0);
+    value0 = func_020ae23c(value0);
     return value0;
 }
 
 u32 func_020ae214(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 2));
+    return (*(const u16 *) ((u8 *) p0 + 2));
 }
 
 u32 func_020ae1f4(u32 arg0) {
@@ -286,7 +286,7 @@ u32 func_020ae1f4(u32 arg0) {
     value1 = (value0) * (value1) + (value2);
     value12 = (u32) &func_020ae214;
     value0 = (value1) + (0x48u);
-    value0 = (u32) func_020ae214(value0);
+    value0 = func_020ae214(value0);
     return value0;
 }
 
@@ -318,9 +318,9 @@ u32 func_020ae15c(u32 arg0) {
     u32 value2;
     value2 = (u32) &data_021759c0;
     value1 = 0x30u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u32 *) ((value1) + (112));
+    value0 = *(const u32 *) ((value1) + (112));
     return value0;
 }
 
@@ -337,14 +337,14 @@ u32 func_020ae0f8(u32 arg0) {
     u32 value2;
     value2 = (u32) &data_021759c0;
     value1 = 0x30u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u32 *) ((value1) + (136));
+    value0 = *(const u32 *) ((value1) + (136));
     return value0;
 }
 
 u32 func_020ae0e4(void) {
-    return ((u32) data_021759c0->mMode);
+    return (data_021759c0->mMode);
 }
 
 u32 func_020ae0c8(u32 arg0) {
@@ -353,21 +353,21 @@ u32 func_020ae0c8(u32 arg0) {
     u32 value2;
     value2 = (u32) &data_021759c0;
     value1 = 0x30u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u32 *) ((value1) + (104));
+    value0 = *(const u32 *) ((value1) + (104));
     return value0;
 }
 
 int func_020ae0ac(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = (u32) &data_021759c0;
     value1 = 0x30u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const s8 *) ((value1) + (134));
+    value0 = *(const s8 *) ((value1) + (134));
     return value0;
 }
 
@@ -396,7 +396,7 @@ void func_020adff0(u32 a, u16 *b, u32 c) {
         }
     } else {
         if (func_020ae0e4() == MODE_GRAND_PRIX || func_020ae0e4() == MODE_MISSION_RUN) {
-            p = (u16 *) func_020ae178(func_020ae0c8(a), c);
+            p = func_020ae178(func_020ae0c8(a), c);
             n = 20;
         } else {
             wcsncpy(w, GetBmgEntry(func_020b47cc("common.bmg"), 0x72), 9);

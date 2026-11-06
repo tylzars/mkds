@@ -51,9 +51,9 @@ void func_020ec6e4(Unk020e43a8 *param_1, Unk020ec6e4 *param_2) {
         param_1->mUnk_0a8 = 0;
     }
     s = param_1->mUnk_0b4;
-    param_1->mUnk_00.mUnk_10.x = (s32) (((s64) v.x * s) >> 12);
-    param_1->mUnk_00.mUnk_10.y = (s32) (((s64) v.y * s) >> 12);
-    param_1->mUnk_00.mUnk_10.z = (s32) (((s64) v.z * s) >> 12);
+    param_1->mUnk_00.mUnk_10.x = ((s64) v.x * s) >> 12;
+    param_1->mUnk_00.mUnk_10.y = ((s64) v.y * s) >> 12;
+    param_1->mUnk_00.mUnk_10.z = ((s64) v.z * s) >> 12;
     param_1->mUnk_00.mUnk_10.x = param_1->mUnk_00.mUnk_10.x + (param_2->mUnk_0a4 >> 1);
     param_1->mUnk_00.mUnk_10.z = param_1->mUnk_00.mUnk_10.z + (param_2->mUnk_0ac >> 1);
     param_1->mUnk_00.mUnk_10.y = param_1->mUnk_0b0;
@@ -92,9 +92,9 @@ void func_020ec538(Unk020e43a8 *param_1, const Unk020ec6e4 *param_2) {
         param_1->mUnk_0a8 = 0;
     }
     s = param_1->mUnk_0b4;
-    param_1->mUnk_00.mUnk_10.x = (s32) (((s64) out.x * s) >> 12);
-    param_1->mUnk_00.mUnk_10.y = (s32) (((s64) out.y * s) >> 12);
-    param_1->mUnk_00.mUnk_10.z = (s32) (((s64) out.z * s) >> 12);
+    param_1->mUnk_00.mUnk_10.x = ((s64) out.x * s) >> 12;
+    param_1->mUnk_00.mUnk_10.y = ((s64) out.y * s) >> 12;
+    param_1->mUnk_00.mUnk_10.z = ((s64) out.z * s) >> 12;
     param_1->mUnk_00.mUnk_10.x = param_1->mUnk_00.mUnk_10.x + (b.x >> 1);
     param_1->mUnk_00.mUnk_10.z = param_1->mUnk_00.mUnk_10.z + (b.z >> 1);
     param_1->mUnk_00.mUnk_10.y = param_1->mUnk_0b0;

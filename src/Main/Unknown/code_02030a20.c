@@ -63,6 +63,7 @@
 #include "code_0214d018.h"
 #include "Main/Unknown/code_02025edc.h"
 #include "Main/Unknown/code_02025f80.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -288,7 +289,7 @@ void func_02031b30(s32 a) {
         f = 0;
     }
     q->mUnk_18[0x11].mUnk_00 = a;
-    func_02124100(8, (u8) f, q->mUnk_14, q->mUnk_18, q->mUnk_0c);
+    func_02124100(8, f, q->mUnk_14, q->mUnk_18, q->mUnk_0c);
 }
 
 void func_02031960(void) {
@@ -960,16 +961,16 @@ void func_02030a20(void) {
     if (gMultiSelectMember->mUnk_84 == 0 && gMultiSelectMember->mState != 6) {
         a |= 8;
     }
-    *(u32 *) 0x4001000 = (*(u32 *) 0x4001000 & 0xffffe0ff) | (a << 8);
-    *(u32 *) 0x400101c = (-r << 16) & 0x1ff0000;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (a << 8);
+    reg_G2S_DB_BG3OFS = (-r << 16) & 0x1ff0000;
     if (r != 0) {
-        *(u32 *) 0x4001000 = (*(u32 *) 0x4001000 & 0xffff1fff) | 0x2000;
-        *(u16 *) 0x4001048 = (u32) ((*(u16 *) 0x4001048 & ~0x3f) | 0x1f) | 0x20;
-        *(u16 *) 0x400104a = (u32) ((*(u16 *) 0x400104a & ~0x3f) | 7) | 0x20;
-        *(u16 *) 0x4001040 = 0xff;
-        *(u16 *) 0x4001044 = (r + 0xc0) & 0xff;
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffff1fff) | 0x2000;
+        reg_G2S_DB_WININ = (u32) ((reg_G2S_DB_WININ & ~0x3f) | 0x1f) | 0x20;
+        reg_G2S_DB_WINOUT = (u32) ((reg_G2S_DB_WINOUT & ~0x3f) | 7) | 0x20;
+        reg_G2S_DB_WIN0H = 0xff;
+        reg_G2S_DB_WIN0V = (r + 0xc0) & 0xff;
     } else {
-        *(u32 *) 0x4001000 = *(u32 *) 0x4001000 & 0xffff1fff;
+        reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
     }
 }
 

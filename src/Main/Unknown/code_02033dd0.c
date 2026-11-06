@@ -6,6 +6,7 @@
 #include "Main/Unknown/unk_02174000.h"
 #include "Main/Unknown/unk_021759c0.h"
 #include "Main/Unknown/unk_0217a000.h"
+#include "registers.h"
 
 // Reads the table of data_0217aa1c, a row chosen by one call and a column by another.
 static inline Unk0217aa1c_00 *func_02033e6c_inline(u32 a) {
@@ -22,28 +23,28 @@ void func_02034244(void) {
     s32 e;
 
     a = func_02025ebc(&data_02174e64->mUnk_194);
-    *(vu32 *) 0x4000010 = (a << 16) & 0x1ff0000;
+    reg_G2_BG0OFS = (a << 16) & 0x1ff0000;
     d = -a;
-    *(vu32 *) 0x400101c = (d << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (d << 16) & 0x1ff0000;
     switch (a) {
         default:
-            *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffff1fff) | 0x2000;
-            e = (*(vu16 *) 0x4000048 & ~0x3f) | 0x1f;
-            *(vu16 *) 0x4000048 = e | 0x20;
-            *(vu16 *) 0x400004a = (u32) ((*(vu16 *) 0x400004a & ~0x3f) | 0xe) | 0x20;
-            *(vu16 *) 0x4000040 = 0xff;
-            *(vu16 *) 0x4000044 = ((d << 8) & 0xff00) | 0xc0;
-            *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffff1fff) | 0x2000;
-            c = (*(vu16 *) 0x4001048 & ~0x3f) | 0x1f;
-            *(vu16 *) 0x4001048 = c | 0x20;
-            b = (*(vu16 *) 0x400104a & ~0x3f) | (u32) 7;
-            *(vu16 *) 0x400104a = b | 0x20;
-            *(vu16 *) 0x4001040 = 0xff;
-            *(vu16 *) 0x4001044 = (a + 0xc0) & 0xff;
+            reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x2000;
+            e = (reg_G2_WININ & ~0x3f) | 0x1f;
+            reg_G2_WININ = e | 0x20;
+            reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0xe) | 0x20;
+            reg_G2_WIN0H = 0xff;
+            reg_G2_WIN0V = ((d << 8) & 0xff00) | 0xc0;
+            reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffff1fff) | 0x2000;
+            c = (reg_G2S_DB_WININ & ~0x3f) | 0x1f;
+            reg_G2S_DB_WININ = c | 0x20;
+            b = (reg_G2S_DB_WINOUT & ~0x3f) | 7;
+            reg_G2S_DB_WINOUT = b | 0x20;
+            reg_G2S_DB_WIN0H = 0xff;
+            reg_G2S_DB_WIN0V = (a + 0xc0) & 0xff;
             break;
         case 0:
-            *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & 0xffff1fff;
-            *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffff1fff;
+            reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
+            reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
             break;
     }
 }

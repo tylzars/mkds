@@ -270,11 +270,9 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
     a->mUnk_170 = a->mPrm->mUnk_09c;
     if (a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0) > 0) {
         f = 0.5f +
-            (float) ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0))
-                     << 12);
+            ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0)) << 12);
     } else {
-        f = (float) ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0))
-                     << 12) -
+        f = ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0)) << 12) -
             0.5f;
     }
     a->mUnk_16c = (s32) f / a->mPrm->mUnk_1d4;
@@ -436,7 +434,7 @@ void func_ov001_0218e92c(Unk02188950 *p) {
     p->mUnk_000.mFlags |= data_ov001_021a65b0;
     func_ov001_02182a3c(p->mPrm->mUnk_18c < (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181800() : 0)
                             ? p->mPrm->mUnk_18c
-                            : (data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181800() : 0));
+                            : (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181800() : 0));
     p->mUnk_25c = p->mUnk_268 = p->mUnk_264 = p->mUnk_270 = p->mPrm->mUnk_00c / 2;
 }
 

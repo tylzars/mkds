@@ -33,18 +33,18 @@ void InitCrab(u32 arg0) {
     u32 value1;
     u32 value2;
     u32 value12;
-    value1 = (u32) * (const u32 *) ((value0) + (156));
+    value1 = *(const u32 *) ((value0) + (156));
     value0 = (value0) + (0xf0u);
     value2 = 0u;
-    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, (s32) value2);
+    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
 }
 
 static inline u32 func_0209b388_inline(Unk020f41c4_B *r, u32 c) {
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     if (c == 0) {
-        return (u32) (r->mUnk_00 >> 32);
+        return r->mUnk_00 >> 32;
     } else {
-        return (u32) (((r->mUnk_00 >> 32) * c) >> 32);
+        return ((r->mUnk_00 >> 32) * c) >> 32;
     }
 }
 
@@ -157,13 +157,13 @@ void DrawCrab(void *a, Crab *b) {
         func_01ff9048(0x1a, f0, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_000.mScale, 3);
-    func_0209b688(gCrab, (u16) (b->mUnk_0a8 >> 12));
+    func_0209b688(gCrab, b->mUnk_0a8 >> 12);
     func_0209bbd0(a, gCrab);
     DrawMapObjectModel(a, gCrab, b);
     MTX_RotZ33_(f1, gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2],
                 gPairsByAngle[((u16) b->mUnk_0d0.mUnk_04 >> 4) * 2 + 1]);
     func_01ff9048(0x1a, f1, 9);
-    func_0209b688(gCrabHand, (u16) (b->mUnk_0ac >> 12));
+    func_0209b688(gCrabHand, b->mUnk_0ac >> 12);
     func_0209bbd0(a, gCrabHand);
     DrawMapObjectModel(a, gCrabHand, b);
 }
@@ -195,7 +195,7 @@ s16 func_0209af80(s32 a) {
 }
 
 s32 func_0209af64(s32 a, s32 b) {
-    return (s32) (((s64) a * b + 0x800) >> 12);
+    return ((s64) a * b + 0x800) >> 12;
 }
 
 static inline void func_0209a7dc_inline(Unk0209a7dc_b0 *b) {
@@ -239,8 +239,8 @@ void UpdateCrab(void *a, Crab *b) {
     switch (b->mState) {
         case 0:
             b->mUnk_0ac += 0x200;
-            if (b->mUnk_0ac >= (s32) (func_0209b634(gCrabHand) > 0 ? 0.5f + (float) (func_0209b634(gCrabHand) << 12)
-                                                                   : (float) (func_0209b634(gCrabHand) << 12) - 0.5f)) {
+            if (b->mUnk_0ac >= (s32) (func_0209b634(gCrabHand) > 0 ? 0.5f + (func_0209b634(gCrabHand) << 12)
+                                                                   : (func_0209b634(gCrabHand) << 12) - 0.5f)) {
                 b->mUnk_0ac = 0;
             }
             if (b->mUnk_0a4-- > 0) {
@@ -266,8 +266,8 @@ void UpdateCrab(void *a, Crab *b) {
                 b->mState = 0;
             }
             b->mUnk_0a8 += 0x200;
-            if (b->mUnk_0a8 >= (s32) (func_0209b634(gCrab) > 0 ? 0.5f + (float) (func_0209b634(gCrab) << 12)
-                                                               : (float) (func_0209b634(gCrab) << 12) - 0.5f)) {
+            if (b->mUnk_0a8 >= (s32) (func_0209b634(gCrab) > 0 ? 0.5f + (func_0209b634(gCrab) << 12)
+                                                               : (func_0209b634(gCrab) << 12) - 0.5f)) {
                 b->mUnk_0a8 = 0;
             }
             func_0209a7dc_inline(&b->mUnk_0d0);
@@ -307,8 +307,8 @@ void UpdateCrab(void *a, Crab *b) {
             break;
         case 3:
             b->mUnk_0ac += 0x200;
-            if (b->mUnk_0ac >= (s32) (func_0209b634(gCrabHand) > 0 ? 0.5f + (float) (func_0209b634(gCrabHand) << 12)
-                                                                   : (float) (func_0209b634(gCrabHand) << 12) - 0.5f)) {
+            if (b->mUnk_0ac >= (s32) (func_0209b634(gCrabHand) > 0 ? 0.5f + (func_0209b634(gCrabHand) << 12)
+                                                                   : (func_0209b634(gCrabHand) << 12) - 0.5f)) {
                 b->mUnk_0ac = 0;
             }
             func_0209a7dc_inline(&b->mUnk_0b0);

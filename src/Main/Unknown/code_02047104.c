@@ -648,28 +648,28 @@ void func_02047634(NNSiFndHeapHead *a, s32 b, s32 c, u32 d, u32 e) {
 #pragma thumb on
 
 void func_02047544(NNSiFndHeapHead *a, NNSiFndHeapHead *b, NNSiFndHeapHead *c) {
-    func_02047634(c, 2, 0x3c, (u32) 0, (u32) 1);
-    func_02047634(c, 3, 0x32, (u32) 0, (u32) 1);
-    func_02047634(c, 4, 5, (u32) 0, (u32) 1);
-    func_02047634(c, 5, 5, (u32) 0, (u32) 1);
-    func_02047634(c, 0, 0x14, (u32) 0, (u32) 1);
-    func_02047634(c, 1, 0x14, (u32) 0, (u32) 1);
-    func_02047634(c, 0xe, 0x46, (u32) 0, (u32) 1);
-    func_02047634(c, 0xf, 0x46, (u32) 0, (u32) 1);
-    func_02047634(b, 6, 200, (u32) 1, (u32) 1);
-    func_02047634(b, 7, 200, (u32) 0, (u32) 1);
-    func_02047634(a, 8, 0x46, (u32) 1, (u32) 0);
-    func_02047634(a, 0xd, 0x1e, (u32) 0, (u32) 0);
+    func_02047634(c, 2, 0x3c, 0, 1);
+    func_02047634(c, 3, 0x32, 0, 1);
+    func_02047634(c, 4, 5, 0, 1);
+    func_02047634(c, 5, 5, 0, 1);
+    func_02047634(c, 0, 0x14, 0, 1);
+    func_02047634(c, 1, 0x14, 0, 1);
+    func_02047634(c, 0xe, 0x46, 0, 1);
+    func_02047634(c, 0xf, 0x46, 0, 1);
+    func_02047634(b, 6, 200, 1, 1);
+    func_02047634(b, 7, 200, 0, 1);
+    func_02047634(a, 8, 0x46, 1, 0);
+    func_02047634(a, 0xd, 0x1e, 0, 0);
     data_021759c8->mUnk_a78 = a;
     data_021759c8->mUnk_a7c = b;
     data_021759c8->mUnk_a80 = c;
 }
 
 void func_020474e4(void) {
-    func_02047634(data_0217aa10->mUnk_a0, 0xb, 0xaa, (u32) 0, (u32) 0);
-    func_02047634(data_0217aa10->mUnk_a0, 0xc, 0x6e, (u32) 0, (u32) 0);
-    func_02047634(data_0217aa10->mUnk_a0, 9, 0x1e, (u32) 0, (u32) 0);
-    func_02047634(data_0217aa10->mUnk_a0, 10, 0x1e, (u32) 0, (u32) 0);
+    func_02047634(data_0217aa10->mUnk_a0, 0xb, 0xaa, 0, 0);
+    func_02047634(data_0217aa10->mUnk_a0, 0xc, 0x6e, 0, 0);
+    func_02047634(data_0217aa10->mUnk_a0, 9, 0x1e, 0, 0);
+    func_02047634(data_0217aa10->mUnk_a0, 10, 0x1e, 0, 0);
 }
 
 #pragma thumb off
@@ -696,22 +696,22 @@ void func_02047468(const void *a, u32 b) {
 
 void func_020473e4(void) {
     func_0204f5e4();
-    NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, (u32) 3);
+    NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
     func_02047498(gKartModelMainAArchivePath, 0xb);
     func_02047498(gKartModelMainBArchivePath, 0xc);
     func_02047498(gMenuDLArchivePath2, 0);
-    func_02047468(gMenuDLArchivePrefix2, (u32) 1);
+    func_02047468(gMenuDLArchivePrefix2, 1);
     func_02047498(gMainRaceArchivePath, 8);
     func_02047498(gMain2DArchivePath, 9);
-    func_02047468(gMain2DArchivePrefix, (u32) 10);
+    func_02047468(gMain2DArchivePrefix, 10);
     func_02047498(gMainEffectArchivePath, 0xd);
 }
 
 void func_020473a8(void) {
     func_0204f5e4();
-    NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, (u32) 3);
+    NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
     func_02047498(gMenuDLArchivePath, 0);
-    func_02047468(gMenuDLArchivePrefix, (u32) 1);
+    func_02047468(gMenuDLArchivePrefix, 1);
 }
 
 #pragma thumb off
@@ -746,9 +746,9 @@ void func_020472e4(void *a, void *b) {
 
 void func_020472a8(void) {
     func_0204f5e4();
-    NNS_FndFreeToFrmHeap((void *) ((u32) data_021759c8->mUnk_a80), (u32) 3);
+    NNS_FndFreeToFrmHeap((void *) ((u32) data_021759c8->mUnk_a80), 3);
     func_02047498(gResultDLArchivePath, 0xe);
-    func_02047468(gResultDLArchivePrefix, (u32) 0xf);
+    func_02047468(gResultDLArchivePrefix, 0xf);
 }
 
 #pragma thumb off

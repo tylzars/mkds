@@ -137,7 +137,7 @@ void UpdateShineBalloon(void *a, ShineBalloonObject *b) {
 }
 
 void func_020ac67c(void) {
-    func_0209bfa8(NULL, NULL, NULL, (u32) 1, (u16) 0);
+    func_0209bfa8(NULL, NULL, NULL, 1, 0);
 }
 
 void *func_020ac658(void) {

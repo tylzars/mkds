@@ -80,7 +80,7 @@ void func_02061220(u32 a) {
     u64 b;
 
     b = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c);
-    func_02152918((u32) b, (u32) (b >> 32), a);
+    func_02152918(b, b >> 32, a);
 }
 
 s32 func_02061104(const void *a) {
@@ -98,7 +98,7 @@ s32 func_02061104(const void *a) {
     if (d == DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c)) {
         return 1;
     }
-    func_021524d8(b, (u32) d, (u32) (d >> 32));
+    func_021524d8(b, d, d >> 32);
     f = (u8 *) data_0217aa08->mUnk_20 + 0x874;
     e = -1;
     for (i = 0; i < 60; i++) {
@@ -133,7 +133,7 @@ s32 func_0206105c(const void *a) {
         func_0205ee14(i, &b);
         if (b.mUnk_22_0 == 1) {
             e = d + i * 12;
-            if (func_02152698(e) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) e, (DWCAccFriendData *) a) != 0) {
+            if (func_02152698(e) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) e, a) != 0) {
                 c = (s8) i;
                 break;
             }
@@ -236,6 +236,6 @@ s32 func_02060cb4(const void *a, void *b) {
     u64 d;
 
     d = DWC_StringToFriendKey(a);
-    func_021524d8(c, (u32) d, (u32) (d >> 32));
+    func_021524d8(c, d, d >> 32);
     return func_02060d1c((u8 *) data_0217aa08->mUnk_20 + 0x874, b, c, 1, 0, 1);
 }

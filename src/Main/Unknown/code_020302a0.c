@@ -2,12 +2,13 @@
 #include "Main/Unknown/code_0202f688.h"
 #include "Main/Unknown/code_0203033c.h"
 #include "Main/Unknown/unk_02174000.h"
+#include "registers.h"
 
 #pragma optimize_for_size on
 
 void func_020302f0(u32 a, u32 b, u32 c, u32 d) {
-    *(u16 *) 0x4001040 = ((a << 8) & 0xff00) | (c & 0xff);
-    *(u16 *) 0x4001044 = ((b << 8) & 0xff00) | (d & 0xff);
+    reg_G2S_DB_WIN0H = ((a << 8) & 0xff00) | (c & 0xff);
+    reg_G2S_DB_WIN0V = ((b << 8) & 0xff00) | (d & 0xff);
 }
 
 #pragma thumb on

@@ -11,15 +11,15 @@ u32 func_02122ae4(void) {
     u32 compareRight1;
     value1 = (u32) &gWiFiSession;
     value0 = 0u;
-    value1 = (u32) * (const u32 *) ((value1) + (0));
+    value1 = *(const u32 *) ((value1) + (0));
     value1 = (value1) + (0x1000u);
-    value2 = (u32) * (const u8 *) ((value1) + (2477));
+    value2 = *(const u8 *) ((value1) + (2477));
     compareLeft0 = value2;
     compareRight0 = 1u;
     if (compareLeft0 != compareRight0) {
         return value0;
     }
-    value1 = (u32) * (const u32 *) ((value1) + (2384));
+    value1 = *(const u32 *) ((value1) + (2384));
     compareLeft1 = value1;
     compareRight1 = 0xcu;
     if (compareLeft1 == compareRight1) {

@@ -18,16 +18,16 @@ void func_020a8098(Sanbo *p) {
     for (i = 0; i < p->mUnk_1d0; i++) {
         r = func_020d22d0();
         r->mUnk_00 = (s64) r->mUnk_08 * (s64) r->mUnk_00 + r->mUnk_10;
-        v1 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x10000) >> 32);
+        v1 = ((u64) (u32) (r->mUnk_00 >> 32) * 0x10000) >> 32;
         p->mUnk_0b0[i].mUnk_00.x = p->mUnk_000.mPos.x;
         p->mUnk_0b0[i].mUnk_00.y = p->mUnk_000.mPos.y + i * 0x14000;
         p->mUnk_0b0[i].mUnk_00.z = p->mUnk_000.mPos.z;
-        p->mUnk_0b0[i].mUnk_0c.x = (s32) (((s64) gPairsByAngle[(v1 >> 4) * 2] * 0x2000) >> 12);
+        p->mUnk_0b0[i].mUnk_0c.x = ((s64) gPairsByAngle[(v1 >> 4) * 2] * 0x2000) >> 12;
         p->mUnk_0b0[i].mUnk_0c.y = 0x4000;
-        p->mUnk_0b0[i].mUnk_0c.z = (s32) (((s64) gPairsByAngle[(v1 >> 4) * 2 + 1] * 0x2000) >> 12);
+        p->mUnk_0b0[i].mUnk_0c.z = ((s64) gPairsByAngle[(v1 >> 4) * 2 + 1] * 0x2000) >> 12;
         r = func_020d22d0();
         r->mUnk_00 = (s64) r->mUnk_08 * (s64) r->mUnk_00 + r->mUnk_10;
-        v2 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 2) >> 32);
+        v2 = ((u64) (u32) (r->mUnk_00 >> 32) * 2) >> 32;
         p->mUnk_0b0[i].mUnk_40 = (v2 != 0 ? 1 : -1) * 0xaab;
     }
     p->mUnk_0a8 = 300;

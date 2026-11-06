@@ -95,11 +95,11 @@ void func_02089b4c(Unk02089b4c *a, Unk020888b4 *b, s32 c) {
     if (b->mUnk_70 <= 0x5000) {
         return;
     }
-    t = (s32) (((s64) (b->mUnk_70 - 0x5000) * 0x5b + 0x800) >> 12);
+    t = ((s64) (b->mUnk_70 - 0x5000) * 0x5b + 0x800) >> 12;
     if (t > 0x1000) {
         t = 0x1000;
     }
-    a->mUnk_10 = (s32) (((s64) (0x1000 - (s32) (((s64) t * 0x99c + 0x800) >> 12)) * 0x6000 + 0x800) >> 12);
+    a->mUnk_10 = ((s64) (0x1000 - (s32) (((s64) t * 0x99c + 0x800) >> 12)) * 0x6000 + 0x800) >> 12;
     if (b->mUnk_d0 == NULL) {
         return;
     }
@@ -292,7 +292,7 @@ void func_02089494(Unk020888b4 *p) {
             t.y = 0;
             VEC_CrossProduct(&z, &t, &u);
             d = VEC_Mag(&u);
-            p->mUnk_70 = (s32) (((s64) FX_Atan2(d, VEC_DotProduct(&z, &t)) * 0x394bb834c8LL + 0x80000000LL) >> 32);
+            p->mUnk_70 = ((s64) FX_Atan2(d, VEC_DotProduct(&z, &t)) * 0x394bb834c8LL + 0x80000000LL) >> 32;
         }
         if (func_02080e2c(s, &v) != 0 || func_02080dbc(s, &v) != 0) {
             x = FALSE;
@@ -344,7 +344,7 @@ void func_020892bc(Unk020888b4 *p) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         a = (s16) (u16) (r->mUnk_00 >> 52);
         t = (s32) (((s64) a * 0x2000 + 0x800) >> 12) - 0x1000;
-        u = (s32) (((s64) t * 0x4ce + 0x800) >> 12);
+        u = ((s64) t * 0x4ce + 0x800) >> 12;
         n = p->mUnk_74 + u;
         if (func_020738f8(n) > 0xb36) {
             if (n > 0) {
@@ -355,10 +355,10 @@ void func_020892bc(Unk020888b4 *p) {
         }
         p->mUnk_74 = n;
     }
-    f = (s32) (((s64) p->mUnk_74 * p->mUnk_28.mUnk_00->mUnk_24 + 0x800) >> 12);
-    p->mUnk_60.x = (s32) (((s64) p->mUnk_60.x * f) >> 12);
-    p->mUnk_60.y = (s32) (((s64) p->mUnk_60.y * f) >> 12);
-    p->mUnk_60.z = (s32) (((s64) p->mUnk_60.z * f) >> 12);
+    f = ((s64) p->mUnk_74 * p->mUnk_28.mUnk_00->mUnk_24 + 0x800) >> 12;
+    p->mUnk_60.x = ((s64) p->mUnk_60.x * f) >> 12;
+    p->mUnk_60.y = ((s64) p->mUnk_60.y * f) >> 12;
+    p->mUnk_60.z = ((s64) p->mUnk_60.z * f) >> 12;
 }
 
 void func_02088e44(Unk020888b4 *p) {

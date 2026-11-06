@@ -65,16 +65,16 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
         VEC_Subtract(e, c, &t3);
         if (Vec3NormalizeAndGetLengthOrZero(&t3, &t3) != 0) {
             w = (0x1000 - Vec3DotUnrounded(&t2, &t3)) >> 1;
-            u = (s32) (((s64) n * (s64) w) >> 12);
+            u = ((s64) n * (s64) w) >> 12;
             if (a != 0) {
-                t4.x = (s32) (((s64) t3.x * n) >> 12);
-                t4.y = (s32) (((s64) t3.y * n) >> 12);
-                t4.z = (s32) (((s64) t3.z * n) >> 12);
+                t4.x = ((s64) t3.x * n) >> 12;
+                t4.y = ((s64) t3.y * n) >> 12;
+                t4.z = ((s64) t3.z * n) >> 12;
             } else {
                 r = n + u;
-                t4.x = (s32) (((s64) t3.x * (s64) r) >> 12);
-                t4.y = (s32) (((s64) t3.y * (s64) r) >> 12);
-                t4.z = (s32) (((s64) t3.z * (s64) r) >> 12);
+                t4.x = ((s64) t3.x * (s64) r) >> 12;
+                t4.y = ((s64) t3.y * (s64) r) >> 12;
+                t4.z = ((s64) t3.z * (s64) r) >> 12;
             }
             VEC_MultAdd(0x555, &t4, &p->mUnk_00[0], &p->mUnk_00[1]);
         } else {
@@ -87,16 +87,16 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
         VEC_Subtract(f, d, &t5);
         if (Vec3NormalizeAndGetLengthOrZero(&t5, &t5) != 0) {
             w = (0x1000 - Vec3DotUnrounded(&t2, &t5)) >> 1;
-            v = (s32) (((s64) n * (s64) w) >> 12);
+            v = ((s64) n * (s64) w) >> 12;
             if (a != 0) {
-                t6.x = (s32) (((s64) t5.x * n) >> 12);
-                t6.y = (s32) (((s64) t5.y * n) >> 12);
-                t6.z = (s32) (((s64) t5.z * n) >> 12);
+                t6.x = ((s64) t5.x * n) >> 12;
+                t6.y = ((s64) t5.y * n) >> 12;
+                t6.z = ((s64) t5.z * n) >> 12;
             } else {
                 r = n + v;
-                t6.x = (s32) (((s64) t5.x * (s64) r) >> 12);
-                t6.y = (s32) (((s64) t5.y * (s64) r) >> 12);
-                t6.z = (s32) (((s64) t5.z * (s64) r) >> 12);
+                t6.x = ((s64) t5.x * (s64) r) >> 12;
+                t6.y = ((s64) t5.y * (s64) r) >> 12;
+                t6.z = ((s64) t5.z * (s64) r) >> 12;
             }
             VEC_MultAdd(-0x555, &t6, &p->mUnk_00[3], &p->mUnk_00[2]);
         } else {

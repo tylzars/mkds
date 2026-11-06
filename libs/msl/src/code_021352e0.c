@@ -355,7 +355,7 @@ char *FormatInt64(u64 v, char *end, FormatSpec spec) {
             break;
     }
     do {
-        d = (int) (v % base);
+        d = v % base;
         v = v / base;
         if (d < 10) {
             d += '0';

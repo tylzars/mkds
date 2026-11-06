@@ -84,7 +84,7 @@ s32 func_ov003_021d15a4(FSFile *a, u32 b) {
 }
 
 u32 func_ov003_021d1574(int a, u32 b, int c, u32 d) {
-    CARDi_ReadRom(0xffffffff, (c + *(s32 *) (a + 0x28)), b, d, (UnkFunc *) (&func_ov003_021d1568), (u32) (a), 1);
+    CARDi_ReadRom(0xffffffff, (c + *(s32 *) (a + 0x28)), b, d, (UnkFunc *) (&func_ov003_021d1568), a, 1);
     return 6;
 }
 

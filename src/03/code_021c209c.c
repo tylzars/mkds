@@ -74,10 +74,10 @@ u32 func_ov003_021c2440(s32 a, u32 b) {
 
 void func_ov003_021c2398(void) {
     u8 *p;
-    u16 q = *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = 0;
+    u16 q = reg_OS_IME;
+    reg_OS_IME = 0;
     GX_DispOff();
-    *(u32 *) 0x4001000 &= 0xfffeffff;
+    reg_GXS_DB_DISPCNT &= 0xfffeffff;
     if (OS_IsTickAvailable() == 0) {
         OS_Terminate();
     }
@@ -90,7 +90,7 @@ void func_ov003_021c2398(void) {
     TP_Init();
     RTC_Init();
     GX_DispOff();
-    *(u32 *) 0x4001000 &= 0xfffeffff;
+    reg_GXS_DB_DISPCNT &= 0xfffeffff;
     func_ov003_021d3408();
     func_ov003_021d28b0(data_ov003_021da174);
     func_ov003_021d2dfc();
@@ -110,44 +110,44 @@ void func_ov003_021c2188(void) {
     GX_SetBankForBG(1);
     GX_SetBankForOBJ(2);
     GX_SetGraphicsMode(1, 0, 0);
-    p = (u32 *) 0x4000000;
+    p = &reg_GX_DISPCNT;
     *p = *p & 0xffffe0ff;
-    GXx_SetMasterBrightness_((u16 *) 0x400006c, 0);
-    *(u32 *) 0x4000000 = (*(u32 *) 0x4000000 & 0xffcfffef) | 0x200010;
-    *(u16 *) 0x4000008 &= ~0x40;
-    *(u16 *) 0x400000a &= ~0x40;
-    *(u16 *) 0x400000c &= ~0x40;
-    *(u16 *) 0x400000e &= ~0x40;
-    *(u32 *) 0x4000010 = 0;
-    *(u32 *) 0x4000014 = 0;
-    *(u32 *) 0x4000018 = 0;
-    *(u32 *) 0x400001c = 0;
+    GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, 0);
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x200010;
+    reg_G2_BG0CNT &= ~0x40;
+    reg_G2_BG1CNT &= ~0x40;
+    reg_G2_BG2CNT &= ~0x40;
+    reg_G2_BG3CNT &= ~0x40;
+    reg_G2_BG0OFS = 0;
+    reg_G2_BG1OFS = 0;
+    reg_G2_BG2OFS = 0;
+    reg_G2_BG3OFS = 0;
     G2x_SetBlendBrightness_(&reg_G2_BLDCNT, 0x3f, 0x10);
     GX_SetBankForSubBG(0x80);
     GX_SetBankForSubOBJ(0x100);
     GXS_SetGraphicsMode(0);
-    p = (u32 *) 0x4001000;
+    p = &reg_GXS_DB_DISPCNT;
     *p = *p & 0xffffe0ff;
-    GXx_SetMasterBrightness_((u16 *) 0x400106c, 0);
-    *(u32 *) 0x4001000 = (*(u32 *) 0x4001000 & 0xffcfffef) | 0x10;
-    *(u16 *) 0x4001008 &= ~0x40;
-    *(u16 *) 0x400100a &= ~0x40;
-    *(u16 *) 0x400100c &= ~0x40;
-    *(u16 *) 0x400100e &= ~0x40;
-    *(u32 *) 0x4001010 = 0;
-    *(u32 *) 0x4001014 = 0;
-    *(u32 *) 0x4001018 = 0;
-    *(u32 *) 0x400101c = 0;
+    GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, 0);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
+    reg_G2S_DB_BG0CNT &= ~0x40;
+    reg_G2S_DB_BG1CNT &= ~0x40;
+    reg_G2S_DB_BG2CNT &= ~0x40;
+    reg_G2S_DB_BG3CNT &= ~0x40;
+    reg_G2S_DB_BG0OFS = 0;
+    reg_G2S_DB_BG1OFS = 0;
+    reg_G2S_DB_BG2OFS = 0;
+    reg_G2S_DB_BG3OFS = 0;
     G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 0x3f, 0x10);
-    *(u16 *) 0x4000008 = (*(u16 *) 0x4000008 & 0x43) | 0xc00;
-    *(u16 *) 0x400000a = (*(u16 *) 0x400000a & 0x43) | 0xd08;
-    *(u16 *) 0x400000c = (*(u16 *) 0x400000c & 0x43) | 0xe10;
-    *(u16 *) 0x400000e = (*(u16 *) 0x400000e & 0x43) | 0xf10;
-    *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & 0x43) | 0xc00;
-    *(u16 *) 0x400100a = (*(u16 *) 0x400100a & 0x43) | 0xd00;
-    *(u16 *) 0x400100c = (*(u16 *) 0x400100c & 0x43) | 0xe00;
-    *(u16 *) 0x400100e = (*(u16 *) 0x400100e & 0x43) | 0xf00;
-    q = (u16 *) 0x4000304;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xc00;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0xd08;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & 0x43) | 0xe10;
+    reg_G2_BG3CNT = (reg_G2_BG3CNT & 0x43) | 0xf10;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & 0x43) | 0xc00;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & 0x43) | 0xd00;
+    reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & 0x43) | 0xe00;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0xf00;
+    q = &reg_GX_POWCNT;
     *q = *q & ~0x8000;
     func_ov003_021d2490();
     func_ov003_021d2fdc();
@@ -160,7 +160,7 @@ void func_ov003_021c2188(void) {
 
 void func_ov003_021c2138(void) {
     GX_DispOff();
-    *((u32 *) 0x04001000u) = *((u32 *) 0x04001000u) & ((u32) 0xfffeffffu);
+    *((u32 *) 0x04001000u) = *((u32 *) 0x04001000u) & (0xfffeffffu);
     func_ov003_021d326c();
     func_ov003_021d2d28();
     func_ov003_021d2dcc();

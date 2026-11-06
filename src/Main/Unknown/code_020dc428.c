@@ -179,8 +179,7 @@ void UpdateWanwan(void *a, Wanwan *p) {
                 x = p->mUnk_160[2]->x - p->mUnk_00.mPos.x;
                 z = p->mUnk_160[2]->z - p->mUnk_00.mPos.z;
             }
-            t = (s32) (((s64) (s32) (((s64) p->mUnk_00.mUnk_10.x * x + (s64) p->mUnk_00.mUnk_10.z * z) >> 12) << 9) >>
-                       12);
+            t = ((s64) (s32) (((s64) p->mUnk_00.mUnk_10.x * x + (s64) p->mUnk_00.mUnk_10.z * z) >> 12) << 9) >> 12;
             if (t > 0x3000) {
                 t = 0x3000;
             } else if (t < 0x2800) {
@@ -195,7 +194,7 @@ void UpdateWanwan(void *a, Wanwan *p) {
         }
         if (h != 0) {
             if (f & 0x1e34ef) {
-                t = (s32) (((s64) p->mUnk_00.mUnk_10.x * u.x + (s64) p->mUnk_00.mUnk_10.z * u.z) >> 12);
+                t = ((s64) p->mUnk_00.mUnk_10.x * u.x + (s64) p->mUnk_00.mUnk_10.z * u.z) >> 12;
                 if (t < 0) {
                     p->mUnk_00.mUnk_10.y += (s32) (((s64) -t * 0x14cd) >> 12);
                 }
@@ -330,10 +329,10 @@ void UpdateWanwanState0(Wanwan *p) {
                 if ((s64) (s32) xp * xp + (s64) (s32) zp * zp < 0x7e9000000LL) {
                     continue;
                 }
-                g = (s32) (((s64) xp * dx + (s64) zp * dz) >> 12);
+                g = ((s64) xp * dx + (s64) zp * dz) >> 12;
                 if (g < 0) {
                     g = -g;
-                    e = (s32) ((-(s64) xp * dz + (s64) zp * dx) >> 12);
+                    e = (-(s64) xp * dz + (s64) zp * dx) >> 12;
                     if (e < 0) {
                         e = -e;
                     }
@@ -413,12 +412,12 @@ void UpdateWanwanState1(Wanwan *p) {
 
     if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_1f8) {
         VEC_Subtract(p->mUnk_1f0, &p->mUnk_00.mPos, &a);
-        t = (s32) (((s64) p->mUnk_1f4->x * a.z - (s64) p->mUnk_1f4->z * a.x) >> 12);
+        t = ((s64) p->mUnk_1f4->x * a.z - (s64) p->mUnk_1f4->z * a.x) >> 12;
         t = -t >> 12;
         if (t < 0) {
             t = -t;
         }
-        k = (s32) (((s64) t * 0x7a) >> 12);
+        k = ((s64) t * 0x7a) >> 12;
         b.x = p->mUnk_1f4->x * k;
         b.z = p->mUnk_1f4->z * k;
         VEC_Add(&b, p->mUnk_1f0, &b);
@@ -430,9 +429,9 @@ void UpdateWanwanState1(Wanwan *p) {
         if (m > p->mUnk_1ec) {
             m = p->mUnk_1ec;
         }
-        a.x = (s32) (((s64) a.x * m) >> 12);
-        a.y = (s32) (((s64) a.y * m) >> 12);
-        a.z = (s32) (((s64) a.z * m) >> 12);
+        a.x = ((s64) a.x * m) >> 12;
+        a.y = ((s64) a.y * m) >> 12;
+        a.z = ((s64) a.z * m) >> 12;
         VEC_Add(&a, &p->mUnk_a0, &p->mUnk_1e0);
         p->mUnk_1f8 += 0xb4;
     }
@@ -449,7 +448,7 @@ void UpdateWanwanState1(Wanwan *p) {
     } else {
         func_020d7b34((u16) (((s64) FX_Atan2(a.x, a.z) * 0x28be60db9391LL + 0x80000000000LL) >> 44), &p->mUnk_d4);
     }
-    t = (s32) (((s64) p->mUnk_00.mUnk_10.x * a.z) >> 12);
+    t = ((s64) p->mUnk_00.mUnk_10.x * a.z) >> 12;
     t -= (s32) (((s64) p->mUnk_00.mUnk_10.z * a.x) >> 12);
     if (((s64) a.x * a.x + (s64) a.z * a.z) * 10 < (s64) t * t) {
         p->mUnk_00.mUnk_10.x >>= 1;
@@ -462,8 +461,8 @@ void UpdateWanwanState1(Wanwan *p) {
         Vec3NormalizeXZAndGetLengthOrZero(&a, &a);
         p->mUnk_00.mPos.x = p->mUnk_a0.x + (s32) (((s64) a.x * p->mUnk_1ec) >> 12);
         p->mUnk_00.mPos.z = p->mUnk_a0.z + (s32) (((s64) a.z * p->mUnk_1ec) >> 12);
-        k = (s32) (((s64) p->mUnk_00.mUnk_10.x * a.x) >> 12);
-        m = (s32) (((s64) p->mUnk_00.mUnk_10.z * a.z) >> 12);
+        k = ((s64) p->mUnk_00.mUnk_10.x * a.x) >> 12;
+        m = ((s64) p->mUnk_00.mUnk_10.z * a.z) >> 12;
         if (k + m > 0) {
             p->mUnk_00.mUnk_10.x -= (s32) (((s64) k * a.x) >> 12);
             p->mUnk_00.mUnk_10.z -= (s32) (((s64) m * a.z) >> 12);

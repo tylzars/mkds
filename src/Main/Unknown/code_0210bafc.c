@@ -19,7 +19,7 @@ u32 func_0210bc8c(void *a, void *b) {
         p->mUnk_08 = a;
     }
     if (i != FALSE) {
-        NNS_FndAppendListObject((NNSFndList *) a, b);
+        NNS_FndAppendListObject(a, b);
     } else {
         return 0;
     }

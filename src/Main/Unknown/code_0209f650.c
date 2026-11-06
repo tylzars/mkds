@@ -30,7 +30,7 @@ static inline u16 func_0209f800_inline(u32 n) {
     if (n == 0x10000) {
         b = func_020d22d0();
         b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-        return (u16) (((b->mUnk_00 >> 32) * 0x10000) >> 32);
+        return ((b->mUnk_00 >> 32) * 0x10000) >> 32;
     } else {
         b = func_020d22d0();
         m = (u16) n;
@@ -45,7 +45,7 @@ static inline u16 func_0209f800_inline(u32 n) {
             }
         }
     }
-    return (u16) r;
+    return r;
 }
 
 static inline void func_0209f6d8_inline(TownMonte *p) {
@@ -220,7 +220,7 @@ void func_0209f800(Unk0209f800 *a) {
         p->mUnk_a0 = func_0209f800_inline(n);
         r = func_020d22d0();
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-        m = (u16) (((r->mUnk_00 >> 32) * 0x1a) >> 32);
+        m = ((r->mUnk_00 >> 32) * 0x1a) >> 32;
         for (j = 0; j < m; j++) {
             func_0209f6d8_inline(p);
         }

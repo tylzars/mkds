@@ -135,15 +135,15 @@ void UpdateDossun(void *a, Dossun *p) {
         v = q->mUnk_04;
         if (p->mState < 4) {
             if (v > 0x4000) {
-                t = (s32) (((s64) v * 0xf85) >> 12);
+                t = ((s64) v * 0xf85) >> 12;
                 q->mUnk_04 = t;
-                q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
+                q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
             }
         } else {
             if (v > 0x800) {
-                t = (s32) (((s64) v * 0xe66) >> 12);
+                t = ((s64) v * 0xe66) >> 12;
                 q->mUnk_04 = t;
-                q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
+                q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
             }
         }
         if (func_020d8cc8(q) != FALSE) {
@@ -171,7 +171,7 @@ void UpdateDossun(void *a, Dossun *p) {
             p->mState++;
             t = p->mUnk_f0 != 0 ? 0xc00 : 0x3000;
             q->mUnk_04 = t;
-            q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
+            q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
             return;
         case 1:
             if (p->mUnk_f0 != 0) {
@@ -202,7 +202,7 @@ void UpdateDossun(void *a, Dossun *p) {
                 p->mUnk_a8 += 0x1000;
                 t = p->mUnk_a8;
                 q->mUnk_04 = t;
-                q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
+                q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
             }
             break;
         case 5:
@@ -213,7 +213,7 @@ void UpdateDossun(void *a, Dossun *p) {
             p->mState++;
             t = p->mUnk_108;
             q->mUnk_04 = t;
-            q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
+            q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
             return;
         case 6:
             break;
@@ -298,7 +298,7 @@ u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c) {
             }
             t = t - (s32) (((s64) (0x1000 - p->mUnk_00.mScale.y) * 0x2000) >> 12);
             q->mUnk_04 = t;
-            q->mUnk_10 = (s32) (((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12);
+            q->mUnk_10 = ((s64) t * q->mUnk_00->mUnk_00[q->mUnk_0c].mUnk_34) >> 12;
             p->mUnk_b4 = 1;
             p->mUnk_b8 = 0x1b58;
             if ((s64) s0.z * a->mVelocity.x - (s64) s0.x * a->mVelocity.z < 0) {
@@ -398,13 +398,13 @@ void InitDossun(Dossun *p, CourseMapRow *a) {
     p->mUnk_f0 = a->mUnk_28;
     func_020d7da8(&p->mUnk_c8, a, p->mUnk_f0 != 0 ? 0xc00 : 0x3000);
     p->mUnk_ec = a->mUnk_2a;
-    p->mUnk_f4 = (s32) (((s64) p->mUnk_00.mScale.x * 0x28000) >> 12);
-    p->mUnk_f8 = (s32) (((s64) p->mUnk_00.mScale.y * 0x2d000) >> 12);
-    p->mUnk_fc = (s32) (((s64) p->mUnk_00.mScale.z * 0x1e000) >> 12);
-    p->mUnk_100 = (s32) (((s64) p->mUnk_00.mScale.y * 0xf000) >> 12);
-    p->mUnk_104 = (s32) (((s64) p->mUnk_00.mScale.y * 0x1000) >> 12);
-    p->mUnk_108 = (s32) (((s64) p->mUnk_00.mScale.y * 0x2000) >> 12);
-    p->mUnk_c4 = (s32) (((s64) p->mUnk_00.mScale.y * 0x3000) >> 12);
+    p->mUnk_f4 = ((s64) p->mUnk_00.mScale.x * 0x28000) >> 12;
+    p->mUnk_f8 = ((s64) p->mUnk_00.mScale.y * 0x2d000) >> 12;
+    p->mUnk_fc = ((s64) p->mUnk_00.mScale.z * 0x1e000) >> 12;
+    p->mUnk_100 = ((s64) p->mUnk_00.mScale.y * 0xf000) >> 12;
+    p->mUnk_104 = ((s64) p->mUnk_00.mScale.y * 0x1000) >> 12;
+    p->mUnk_108 = ((s64) p->mUnk_00.mScale.y * 0x2000) >> 12;
+    p->mUnk_c4 = ((s64) p->mUnk_00.mScale.y * 0x3000) >> 12;
     func_020db430(p);
     if (p->mUnk_f0 != 0) {
         CreateMapObjectSoundSourceFalloff3(&p->mUnk_00);
@@ -455,8 +455,8 @@ void DrawKuribo(void *a, Kuribo *p, void *c, u16 d) {
         func_020e6d34(func_020d88fc(&p->mUnk_cc), &p->mUnk_00.mMatrix);
     }
     s.z = p->mUnk_00.mScale.z;
-    s.y = (s32) (((s64) p->mUnk_00.mScale.y * p->mUnk_c4) >> 12);
-    s.x = (s32) (((s64) p->mUnk_00.mScale.x * (((0x1000 - p->mUnk_c4) >> 1) + 0x1000)) >> 12);
+    s.y = ((s64) p->mUnk_00.mScale.y * p->mUnk_c4) >> 12;
+    s.x = ((s64) p->mUnk_00.mScale.x * (((0x1000 - p->mUnk_c4) >> 1) + 0x1000)) >> 12;
     p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
@@ -500,7 +500,7 @@ void UpdateKuribo(void *a, Kuribo *p) {
         } else {
             r = &gRaceProgress->mRandom;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-            p->mUnk_f0 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x28) >> 32);
+            p->mUnk_f0 = ((u64) (u32) (r->mUnk_00 >> 32) * 0x28) >> 32;
             p->mUnk_f4 = 1;
         }
     }

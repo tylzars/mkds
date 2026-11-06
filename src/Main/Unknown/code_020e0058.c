@@ -165,7 +165,7 @@ void func_020e012c(Unk020e005c *a) {
     s32 v = func_020d8cac(b);
     s32 w = (u16) (((s64) v << 18) >> 12);
     s16 t = gPairsByAngle[(w >> 4) * 2];
-    s32 p = (s32) (((s64) t * a->mUnk_168) >> 12);
+    s32 p = ((s64) t * a->mUnk_168) >> 12;
     s32 m;
 
     b->mUnk_04 = p > 0x200 ? p : 0x200;
@@ -173,7 +173,7 @@ void func_020e012c(Unk020e005c *a) {
     if (p <= 0x200) {
         p = 0x200;
     }
-    b->mUnk_10 = (s32) (((s64) p * m) >> 12);
+    b->mUnk_10 = ((s64) p * m) >> 12;
     if (func_020d8cac(b) >= 0x100) {
         a->mStateMachine.mNextState = 1;
         a->mStateMachine.mNextStateRequested = 1;
@@ -184,7 +184,7 @@ void func_020e00f8(Unk020e005c *a) {
     s32 v = a->mUnk_168;
 
     a->mUnk_144.mUnk_04 = v;
-    a->mUnk_144.mUnk_10 = (s32) (((s64) v * a->mUnk_144.mUnk_00->mUnk_00[a->mUnk_144.mUnk_0c].mUnk_34) >> 12);
+    a->mUnk_144.mUnk_10 = ((s64) v * a->mUnk_144.mUnk_00->mUnk_00[a->mUnk_144.mUnk_0c].mUnk_34) >> 12;
 }
 
 void func_020e005c(Unk020e005c *a) {

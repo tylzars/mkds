@@ -183,7 +183,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     b = q->mPhysicalParam->mWeight + q->mCharPhysicalParam[1];
     v2 = p->mVelocityLengthRatio;
     if (p->mUnk_7c & 0x600) {
-        if ((float) v2 > 4.8828125e-05f) {
+        if (v2 > 4.8828125e-05f) {
             v2 = 0x333;
         }
     } else if (v2 > 0x800) {
@@ -211,17 +211,17 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     if (t > 0x5000) {
         t = 0x5000;
     }
-    b = (s32) (((s64) a * t) >> 12);
-    v2 = (s32) (((s64) b * v2) >> 12);
+    b = ((s64) a * t) >> 12;
+    v2 = ((s64) b * v2) >> 12;
     d = q->mUnk_50;
     if (q->mUnk_44 & 0x100) {
         d.x = -d.x;
         d.y = -d.y;
         d.z = -d.z;
     }
-    s.x = (s32) (((s64) v->x * v2) >> 12);
-    s.y = (s32) (((s64) v->y * v2) >> 12);
-    s.z = (s32) (((s64) v->z * v2) >> 12);
+    s.x = ((s64) v->x * v2) >> 12;
+    s.y = ((s64) v->y * v2) >> 12;
+    s.z = ((s64) v->z * v2) >> 12;
     v3 = VEC_DotProduct(&d, &s);
     v9.x = s.x - (s32) (((s64) d.x * v3) >> 12);
     v9.y = s.y - (s32) (((s64) d.y * v3) >> 12);
@@ -240,9 +240,9 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
             n = data_02154f94;
         }
     }
-    m.x = (s32) (((s64) n.x * v2) >> 12);
-    m.y = (s32) (((s64) n.y * v2) >> 12);
-    m.z = (s32) (((s64) n.z * v2) >> 12);
+    m.x = ((s64) n.x * v2) >> 12;
+    m.y = ((s64) n.y * v2) >> 12;
+    m.z = ((s64) n.z * v2) >> 12;
     if (m.y > 0) {
         m.y = 0;
     }
@@ -253,7 +253,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     q->mUnk_2d8.x += v6;
     q->mUnk_2d8.z += v7;
     q->mVerticalSpeed += v8;
-    v2 = (s32) (((s64) v2 * 0xaab + 0x800) >> 12);
+    v2 = ((s64) v2 * 0xaab + 0x800) >> 12;
     if (v2 > 0x1000) {
         v2 = 0x1000;
     }
@@ -299,7 +299,7 @@ void func_0206d578(Kart *p) {
     d = 0;
     v1 = FALSE;
     ComputeKartPointAlongUp(&p->mUnk_1f0, p->mUnk_510, 0x400, p);
-    VEC_MultAdd((s32) (((s64) p->mRadius * -0x4000) >> 12), &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
+    VEC_MultAdd(((s64) p->mRadius * -0x4000) >> 12, &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
     if (p->mIndex == GetRaceUpdateFramesMod8() && !(p->mUnk_4c & 0x10002000)) {
         if (p->mVelocityLength > 0x4000 && p->mState == 0) {
             for (i = 0; i < data_0217b5a8; i++) {

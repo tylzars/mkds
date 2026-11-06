@@ -263,16 +263,16 @@ void func_020d5bf0(Unk020d5bf0 *p, struct CourseMapRow *q) {
     p->mUnk_10c = p->mUnk_000.mScale.y;
     v = q->mUnk_2e;
     if (v > 0) {
-        f = 0.5f + (float) (v << 12);
+        f = 0.5f + (v << 12);
     } else {
-        f = (float) (v << 12) - 0.5f;
+        f = (v << 12) - 0.5f;
     }
     p->mUnk_110 = (s32) f / 60000;
     v = q->mUnk_30;
     if (v > 0) {
-        f = 0.5f + (float) (v << 12);
+        f = 0.5f + (v << 12);
     } else {
-        f = (float) (v << 12) - 0.5f;
+        f = (v << 12) - 0.5f;
     }
     p->mUnk_114 = (s32) f / 1000 + 0x1000;
     func_020d5dd0(p);

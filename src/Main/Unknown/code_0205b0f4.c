@@ -361,7 +361,7 @@ void func_0205c610(u32 a) {
     r = &q->mUnk_04;
     r->mUnk_00_h = data_0217aa14->mUnk_736 - data_0217aa14->mUnk_104[a].mUnk_84;
     r->mUnk_04_b[0] = data_0217aa14->mUnk_0fb;
-    if (func_0205c340((u8) a, 2, 8) != 0) {
+    if (func_0205c340(a, 2, 8) != 0) {
         data_0217aa14->mUnk_734 = a;
     }
 }
@@ -418,7 +418,7 @@ int func_0205c340(u8 a, u32 b, int c) {
         data_0217aa14->mUnk_75c = data_0217aa14->mUnk_75c | 4;
         m->mUnk_00_0 = func_ov000_0219bb50();
         m->mUnk_00_2 = a;
-        m->mUnk_00_4 = (u8) b;
+        m->mUnk_00_4 = b;
         m->mUnk_01 = data_0217aa14->mUnk_758;
         m->mUnk_02_0 = data_0217aa14->mUnk_748;
         DC_StoreRange(m, r);
@@ -577,7 +577,7 @@ void func_0205be0c(void) {
             } else {
                 u16 w;
 
-                w = (u16) data_0217aa18->mUnk_06[i];
+                w = data_0217aa18->mUnk_06[i];
                 c = gRaceProgress->mUnk_000[w].mUnk_50_0;
                 z = c;
                 for (p = 0; p < 4; p++) {
@@ -664,11 +664,11 @@ u32 func_0205bbe8(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &data_0217aa14;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     value0 = (value0) + (0x700u);
-    value1 = (u32) * (const u16 *) ((value0) + (92));
+    value1 = *(const u16 *) ((value0) + (92));
     value1 = (value1) & ~(0x100u);
-    *(u16 *) ((value0) + (92)) = (u16) value1;
+    *(u16 *) ((value0) + (92)) = value1;
     return value0;
 }
 

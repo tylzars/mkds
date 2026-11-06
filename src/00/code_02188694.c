@@ -16,7 +16,7 @@ void *func_ov000_021886c4(u8 param_1, u32 param_2) {
     void *v2;
     v1 = (Unk021884e4 *) func_ov000_02188584(1);
     if ((v1->mUnk_08 & param_1) == 0) {
-        v1->mUnk_08 = v1->mUnk_08 | (u8) param_1;
+        v1->mUnk_08 = v1->mUnk_08 | param_1;
         v2 = v1->mUnk_00(param_1, param_2);
         return v2;
     }

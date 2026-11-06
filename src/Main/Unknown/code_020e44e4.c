@@ -34,7 +34,7 @@ void func_020e47c8(Unk020e43a8 *p, Vec3 *a) {
     func_020ec854(p, p->mUnk_00.mPos.y - 0x1e000, 0x400, 0x400, 0x4000, 0x1800);
     p->mUnk_00.mStateMachine.mNextState = 0;
     p->mUnk_00.mStateMachine.mNextStateRequested = 1;
-    func_020e516c((Unk020e516c *) &p->mUnk_c8, a, (s32) (((s64) p->mUnk_00.mScale.x * 0x12000) >> 12), 0xd);
+    func_020e516c((Unk020e516c *) &p->mUnk_c8, a, ((s64) p->mUnk_00.mScale.x * 0x12000) >> 12, 0xd);
     p->mUnk_f4.z = a->y;
     {
         s32 *q = &p->mUnk_d4;
@@ -97,9 +97,9 @@ void func_020e44e4(u32 a, Unk020e43a8 *p) {
     if (d < -0x8000) {
         d += 0x10000;
     }
-    p->mUnk_124 = (s32) (((s64) p->mUnk_00.mMatrix.mUnk_00[1].x * d) >> 12);
-    p->mUnk_128 = (s32) (((s64) p->mUnk_00.mMatrix.mUnk_00[1].y * d) >> 12);
-    p->mUnk_12c = (s32) (((s64) p->mUnk_00.mMatrix.mUnk_00[1].z * d) >> 12);
+    p->mUnk_124 = ((s64) p->mUnk_00.mMatrix.mUnk_00[1].x * d) >> 12;
+    p->mUnk_128 = ((s64) p->mUnk_00.mMatrix.mUnk_00[1].y * d) >> 12;
+    p->mUnk_12c = ((s64) p->mUnk_00.mMatrix.mUnk_00[1].z * d) >> 12;
     p->mUnk_a0 = *(Unk020e43a8_28 *) &p->mUnk_00.mMatrix;
     MTX_RotY33_((s32 *) &p->mUnk_00.mMatrix, gPairsByAngle[(p->mUnk_00.mAngle >> 4) * 2],
                 gPairsByAngle[(p->mUnk_00.mAngle >> 4) * 2 + 1]);

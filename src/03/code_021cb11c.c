@@ -35,6 +35,7 @@
 #include "03/code_021d27d8.h"
 #include "code_0214b824.h"
 #include "03/code_021cc8d4.h"
+#include "registers.h"
 
 void func_ov003_021cb3d8(void) {
     if (func_ov003_021d1f70(1) == 0 && func_ov003_021d1f70(0) == 0 && func_ov003_021bf2f0() != 0) {
@@ -118,10 +119,10 @@ void LoadApFilesAndSetBgCnt(void) {
     func_ov003_021bf620(gJb2ApNscName, GX_LoadBG2Scr);
     gAp->mYbBgStep11Ncl = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
     func_ov003_021d2784(1, 0x10);
-    *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;
-    *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;
-    *(u16 *) 0x400000a = (*(u16 *) 0x400000a & ~3) | 3;
-    *(u16 *) 0x400000c = (*(u16 *) 0x400000c & ~3) | 3;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & ~3) | 3;
 }
 
 void func_ov003_021cb11c(void) {

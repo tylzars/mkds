@@ -29,9 +29,10 @@
 #include "Main/Unknown/code_02090088.h"
 #include "Main/Unknown/code_02090194.h"
 #include "Main/Unknown/code_02077bc0.h"
+#include "registers.h"
 
 void func_02090194(Unk02090194 *p0) {
-    p0->mUnk_10 = (u32) 0x1u;
+    p0->mUnk_10 = 0x1u;
 }
 
 void func_02090088(Unk0208fd8c *a, Unk020888b4 *b) {
@@ -80,7 +81,7 @@ void func_0208ffe4(Unk0208fd8c *a, Unk020888b4 *b) {
 }
 
 void func_0208ffd8(Unk0208ffd8 *p0) {
-    p0->mUnk_10 = (u32) 0x1u;
+    p0->mUnk_10 = 0x1u;
 }
 
 void func_0208fefc(Unk0208fd8c *a, struct Unk020888b4 *b) {
@@ -509,24 +510,24 @@ void func_0208ee7c(const MtxFx43 *a) {
     }
     do {
         if (g == FALSE) {
-            *(u16 *) 0x4000060 = (*(u16 *) 0x4000060 & ~0x3000) | 8;
-            *(u32 *) 0x40004c4 = 0x7c004210;
-            *(u32 *) 0x40004c0 = 0x42100000;
-            *(u32 *) 0x4000440 = 3;
-            *(u32 *) 0x4000454 = 0;
-            *(u32 *) 0x4000440 = 2;
-            *(u32 *) 0x40004a8 = data_021663f4.mUnk_00;
-            *(u32 *) 0x40004ac = data_021663f4.mUnk_18 >> (4 - ((data_021663f4.mUnk_00 >> 26 & 7) == 2));
+            reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
+            reg_G3_SPE_EMI = 0x7c004210;
+            reg_G3_DIF_AMB = 0x42100000;
+            reg_G3_MTX_MODE = 3;
+            reg_G3_MTX_IDENTITY = 0;
+            reg_G3_MTX_MODE = 2;
+            reg_G3_TEXIMAGE_PARAM = data_021663f4.mUnk_00;
+            reg_G3_PLTT_BASE = data_021663f4.mUnk_18 >> (4 - ((data_021663f4.mUnk_00 >> 26 & 7) == 2));
             g = TRUE;
         }
-        *(u32 *) 0x4000480 = 0x7fff;
+        reg_G3_COLOR = 0x7fff;
         q = NNS_FndGetNextListObject(&p->mUnk_08, NULL);
         if (q != NULL && data_021663e8 != 0) {
             r = NNS_FndGetNextListObject(&p->mUnk_08, NULL);
             if (r != NULL) {
                 do {
                     v = 0x1f - q->mUnk_0c * data_021663dc;
-                    *(u32 *) 0x40004a4 = (u32) f << 24 | (data_0217b08c->mUnk_34 | 0xc0) | v << 16;
+                    reg_G3_POLYGON_ATTR = f << 24 | (data_0217b08c->mUnk_34 | 0xc0) | v << 16;
                     func_0208e82c(a, q, r, &data_021663f4);
                     q = r;
                     r = NNS_FndGetNextListObject(&p->mUnk_08, r);
@@ -543,19 +544,19 @@ void func_0208ee40(u32 arg0, u32 arg1) {
     u32 value1 = arg1;
     u32 value2;
     u32 value3;
-    value3 = (u32) * (const u32 *) ((value1) + (20));
-    value2 = (u32) * (const u32 *) ((value1) + (28));
+    value3 = *(const u32 *) ((value1) + (20));
+    value2 = *(const u32 *) ((value1) + (28));
     value1 = 0u;
     *(u32 *) ((value0) + (8)) = value2;
-    *(u16 *) ((value0) + (12)) = (u16) value1;
-    value1 = (u32) * (const u32 *) ((value3) + (0));
-    value1 = ((u32) ((s32) value1 >> 4));
+    *(u16 *) ((value0) + (12)) = value1;
+    value1 = *(const u32 *) ((value3) + (0));
+    value1 = ((s32) value1 >> 4);
     *(u32 *) ((value0) + (16)) = value1;
-    value1 = (u32) * (const u32 *) ((value3) + (4));
-    value1 = ((u32) ((s32) value1 >> 4));
+    value1 = *(const u32 *) ((value3) + (4));
+    value1 = ((s32) value1 >> 4);
     *(u32 *) ((value0) + (20)) = value1;
-    value1 = (u32) * (const u32 *) ((value3) + (8));
-    value1 = ((u32) ((s32) value1 >> 4));
+    value1 = *(const u32 *) ((value3) + (8));
+    value1 = ((s32) value1 >> 4);
     *(u32 *) ((value0) + (24)) = value1;
 }
 
@@ -572,19 +573,19 @@ void func_0208ecd8(Unk0208ec64_08 *a, Unk0208ec64 *b) {
     v = o->mPos;
     p = &o->mUnk_120;
     k = b->mUnk_24;
-    x.x = (s32) (((s64) p->x * k) >> 12);
-    x.y = (s32) (((s64) p->y * k) >> 12);
-    x.z = (s32) (((s64) p->z * k) >> 12);
+    x.x = ((s64) p->x * k) >> 12;
+    x.y = ((s64) p->y * k) >> 12;
+    x.z = ((s64) p->z * k) >> 12;
     p = &o->mUnk_12c;
     k = b->mUnk_28;
-    y.x = (s32) (((s64) p->x * k) >> 12);
-    y.y = (s32) (((s64) p->y * k) >> 12);
-    y.z = (s32) (((s64) p->z * k) >> 12);
+    y.x = ((s64) p->x * k) >> 12;
+    y.y = ((s64) p->y * k) >> 12;
+    y.z = ((s64) p->z * k) >> 12;
     p = &o->mUnk_138;
     k = b->mUnk_2c;
-    z.x = (s32) (((s64) p->x * k) >> 12);
-    z.y = (s32) (((s64) p->y * k) >> 12);
-    z.z = (s32) (((s64) p->z * k) >> 12);
+    z.x = ((s64) p->x * k) >> 12;
+    z.y = ((s64) p->y * k) >> 12;
+    z.z = ((s64) p->z * k) >> 12;
     VEC_Add(&v, &x, &v);
     VEC_Add(&v, &y, &v);
     VEC_Add(&v, &z, &v);
@@ -639,5 +640,5 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
 }
 
 void func_0208eb10(u32 p0) {
-    *(u32 *) ((u8 *) p0 + 24) = (u32) 0x1u;
+    *(u32 *) ((u8 *) p0 + 24) = 0x1u;
 }

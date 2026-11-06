@@ -41,7 +41,7 @@ void InitMkdEfBubble(MkdEfBubbleObject *a, CourseMapRow *b) {
     a->mUnk_a8 = 0;
     a->mUnk_00.mStateMachine.mNextState = 0;
     a->mUnk_00.mStateMachine.mNextStateRequested = 1;
-    func_020e516c(&a->mUnk_b0, &a->mUnk_00.mPos, (s32) (((s64) a->mUnk_00.mScale.x * 0x18000) >> 12), 0xd);
+    func_020e516c(&a->mUnk_b0, &a->mUnk_00.mPos, ((s64) a->mUnk_00.mScale.x * 0x18000) >> 12, 0xd);
     a->mUnk_00.mFlags |= data_02158740;
 }
 #pragma thumb off
@@ -65,7 +65,7 @@ void func_020df58c(void) {
     s32 x;
 
     x = gPairsByAngle[(data_0217b750 >> 4) * 2];
-    data_0217b754 = (s32) (((s64) x * 0x4000) >> 12);
+    data_0217b754 = ((s64) x * 0x4000) >> 12;
     data_0217b750 += 0x2d8;
     data_0217b75c = 0xf00 - (x >> 4);
     data_0217b760.x = 0x1666;

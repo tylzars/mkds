@@ -26,11 +26,11 @@ void func_020fcf10(ItemKouraW *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         p0->mUnk_22c.z = -p0->mUnk_22c.z;
     }
     Vec3CrossUnrounded(&p0->mUnk_22c, &p->mUnk_244, &t);
-    s = (s32) (((s64) c * gPairsByAngle[(b >> 4) * 2 + 1]) >> 12);
-    p0->mUnk_250.x = (s32) (((s64) t.x * s) >> 12);
-    p0->mUnk_250.y = (s32) (((s64) t.y * s) >> 12);
-    p0->mUnk_250.z = (s32) (((s64) t.z * s) >> 12);
-    s = (s32) (((s64) c * gPairsByAngle[(b >> 4) * 2]) >> 12);
+    s = ((s64) c * gPairsByAngle[(b >> 4) * 2 + 1]) >> 12;
+    p0->mUnk_250.x = ((s64) t.x * s) >> 12;
+    p0->mUnk_250.y = ((s64) t.y * s) >> 12;
+    p0->mUnk_250.z = ((s64) t.z * s) >> 12;
+    s = ((s64) c * gPairsByAngle[(b >> 4) * 2]) >> 12;
     VEC_MultAdd(s, &p0->mUnk_22c, &p0->mUnk_250, &p0->mUnk_250);
     VEC_MultAdd(0x1e000, &p0->mUnk_22c, &p0->mUnk_250, &t);
     if (func_0206c0b0(p) == FALSE) {
@@ -38,16 +38,16 @@ void func_020fcf10(ItemKouraW *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     }
     VEC_Add(&t, &p0->mUnk_244, &t);
     VEC_Subtract(&t, v1, v);
-    t.x = (s32) (((s64) v->x * d) >> 12);
-    t.y = (s32) (((s64) v->y * d) >> 12);
-    t.z = (s32) (((s64) v->z * d) >> 12);
+    t.x = ((s64) v->x * d) >> 12;
+    t.y = ((s64) v->y * d) >> 12;
+    t.z = ((s64) v->z * d) >> 12;
     if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= (s64) a * a) {
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
-        t.x = (s32) (((s64) t.x * a) >> 12);
-        t.y = (s32) (((s64) t.y * a) >> 12);
-        t.z = (s32) (((s64) t.z * a) >> 12);
+        t.x = ((s64) t.x * a) >> 12;
+        t.y = ((s64) t.y * a) >> 12;
+        t.z = ((s64) t.z * a) >> 12;
     }
     v2->x = (v2->x * (s32) e + t.x) >> f;
     v2->y = (v2->y * (s32) e + t.y) >> f;

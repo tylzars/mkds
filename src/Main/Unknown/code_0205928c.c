@@ -30,13 +30,13 @@ void func_0205982c(void *a) {
     int v2;
     void *v3;
     int *v4;
-    v3 = HeapAllocAligned(a, ((u32) 0x0000016cu), 0x20);
+    v3 = HeapAllocAligned(a, (0x0000016cu), 0x20);
     v4 = (s32 *) &data_0217aa00;
     data_0217aa00->mUnk_1624 = v3;
     v1 = 0;
     v2 = 0;
     do {
-        v3 = HeapAlloc(a, (u32) 0x12);
+        v3 = HeapAlloc(a, 0x12);
         *(void **) (*v4 + v2 + 0x162c) = v3;
         v2 = v2 + 4;
         v1 = v1 + 1;
@@ -305,7 +305,7 @@ void func_020593b4(void) {
         v1 = data_0217aa00->mUnk_0000;
     }
     if (v1 == 1) {
-        SetMPFrequency((u32) 0);
+        SetMPFrequency(0);
     }
 }
 
@@ -365,7 +365,7 @@ void func_020592ac(void) {
         v1 = data_0217aa00->mUnk_0000;
     }
     if (v1 == 1) {
-        SetMPFrequency((u32) 1);
+        SetMPFrequency(1);
     }
 }
 

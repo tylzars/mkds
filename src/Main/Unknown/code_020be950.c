@@ -56,15 +56,15 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 u32 func_020c0dc4(void) {
-    return ((u32) gRaceHudSubScreenCellGroups->mUnk_000);
+    return (gRaceHudSubScreenCellGroups->mUnk_000);
 }
 
 u32 func_020c0db0(void) {
-    return ((u32) gRaceHudSubScreenCellGroups->mUnk_004);
+    return (gRaceHudSubScreenCellGroups->mUnk_004);
 }
 
 u32 func_020c0d9c(void) {
-    return ((u32) gRaceHudSubScreenCellGroups->mUnk_008);
+    return (gRaceHudSubScreenCellGroups->mUnk_008);
 }
 
 BOOL CreateRaceHudSubScreenCells(RaceHudSubScreenCells **a, s32 b) {
@@ -890,12 +890,12 @@ void UpdateRaceHudSubScreenCellGroups(void) {
         case 2:
         case 3:
             if (func_020b1d50() * 3 > 0) {
-                f = 0.5f + (float) (func_020b1d50() * 0x3000);
+                f = 0.5f + (func_020b1d50() * 0x3000);
             } else {
-                f = (float) (func_020b1d50() * 0x3000) - 0.5f;
+                f = (func_020b1d50() * 0x3000) - 0.5f;
             }
-            n = (s32) f;
-            gRaceHudSubScreenCellGroups->mUnk_004 = (s32) (((s64) n * 20) >> 12);
+            n = f;
+            gRaceHudSubScreenCellGroups->mUnk_004 = ((s64) n * 20) >> 12;
             gRaceHudSubScreenCellGroups->mUnk_008 = FX_Div(0x2400, gRaceHudSubScreenCellGroups->mUnk_004);
             UpdateRaceHudSubScreenProjectionAndBgAffine(GetRaceHudSubScreenBgAffine(),
                                                         gRaceHudSubScreenCellGroups->mUnk_004);

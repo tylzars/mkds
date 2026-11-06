@@ -33,6 +33,7 @@
 #include "Main/Unknown/code_021053e4.h"
 #include "Main/Unknown/code_0203c8dc.h"
 #include "Main/Unknown/code_02077bc0.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -121,8 +122,8 @@ void func_0210465c(Unk021035ac *p) {
         for (i = 0; i < 4; i++) {
             p->mUnk_00[i][0] += q[i][0];
             p->mUnk_00[i][1] += q[i][1];
-            q[i][0] = (s16) (((s64) q[i][0] * 0x10cd) >> 12);
-            q[i][1] = (s16) (((s64) q[i][1] * 0x10cd) >> 12);
+            q[i][0] = ((s64) q[i][0] * 0x10cd) >> 12;
+            q[i][1] = ((s64) q[i][1] * 0x10cd) >> 12;
             x = p->mUnk_00[i][0];
             if (x > 0x3ccd) {
                 p->mUnk_00[i][0] = 0x3ccd;
@@ -216,12 +217,12 @@ void func_0210449c(Unk021035ac *p) {
         return;
     }
     if (*(u32 *) r != 0) {
-        NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) r, 0);
+        NNS_SndPlayerStopSeq(r, 0);
     }
     if (*(u32 *) r != 0) {
-        NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) r, 0);
+        NNS_SndPlayerStopSeq(r, 0);
     }
-    NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) r, 0, (u16) v);
+    NNS_SndArcPlayerStartSeqArc(r, 0, (u16) v);
 }
 
 void func_02104368(void) {
@@ -269,20 +270,20 @@ void func_02104144(Unk0210340c *p) {
     if (func_0203c5e4() != 0) {
         return;
     }
-    *(u16 *) 0x4000060 = (*(u16 *) 0x4000060 & ~0x3000) | 8;
-    *(u32 *) 0x40004a8 = p->mUnk_08;
-    *(u32 *) 0x40004ac = p->mUnk_0c;
-    *(u32 *) 0x40004c0 = p->mUnk_10;
-    *(u32 *) 0x40004c4 = p->mUnk_14;
-    *(u32 *) 0x4000440 = 0;
+    reg_G3X_DISP3DCNT = (reg_G3X_DISP3DCNT & ~0x3000) | 8;
+    reg_G3_TEXIMAGE_PARAM = p->mUnk_08;
+    reg_G3_PLTT_BASE = p->mUnk_0c;
+    reg_G3_DIF_AMB = p->mUnk_10;
+    reg_G3_SPE_EMI = p->mUnk_14;
+    reg_G3_MTX_MODE = 0;
     G3_LoadMtx44(data_0217c6a4);
-    *(u32 *) 0x4000440 = 3;
-    *(u32 *) 0x4000454 = 0;
-    *(u32 *) 0x4000440 = 2;
-    *(u32 *) 0x4000454 = 0;
-    *(u32 *) 0x400046c = 0x64000;
-    *(u32 *) 0x400046c = 0x64000;
-    *(u32 *) 0x400046c = 0x64000;
+    reg_G3_MTX_MODE = 3;
+    reg_G3_MTX_IDENTITY = 0;
+    reg_G3_MTX_MODE = 2;
+    reg_G3_MTX_IDENTITY = 0;
+    reg_G3_MTX_SCALE = 0x64000;
+    reg_G3_MTX_SCALE = 0x64000;
+    reg_G3_MTX_SCALE = 0x64000;
     i = 0;
     if (*(s32 *) data_0217c658 <= 0) {
         return;
@@ -290,18 +291,18 @@ void func_02104144(Unk0210340c *p) {
     do {
         Unk021035ac *e = &((Unk021035ac *) data_0217c654)[i];
 
-        *(u32 *) 0x40004a4 = p->mUnk_04 | (data_0217c63c + i) << 24;
-        *(u32 *) 0x4000500 = 1;
-        *(u32 *) 0x4000488 = 0;
-        *(u32 *) 0x400048c = *(u32 *) &e->mUnk_00[0];
-        *(u32 *) 0x400048c = 0;
-        *(u32 *) 0x4000488 = (u16) ((s32) (p->mUnk_1c << 8) >> 16) << 16;
+        reg_G3_POLYGON_ATTR = p->mUnk_04 | (data_0217c63c + i) << 24;
+        reg_G3_BEGIN_VTXS = 1;
+        reg_G3_TEXCOORD = 0;
+        reg_G3_VTX_16 = *(u32 *) &e->mUnk_00[0];
+        reg_G3_VTX_16 = 0;
+        reg_G3_TEXCOORD = (u16) ((s32) (p->mUnk_1c << 8) >> 16) << 16;
         *(u32 *) 0x4000494 = *(u32 *) &e->mUnk_00[1];
-        *(u32 *) 0x4000488 = (u16) ((s32) (p->mUnk_18 << 8) >> 16) | ((u16) ((s32) (p->mUnk_1c << 8) >> 16) << 16);
+        reg_G3_TEXCOORD = (u16) ((s32) (p->mUnk_18 << 8) >> 16) | ((u16) ((s32) (p->mUnk_1c << 8) >> 16) << 16);
         *(u32 *) 0x4000494 = *(u32 *) &e->mUnk_00[2];
-        *(u32 *) 0x4000488 = (u16) ((s32) (p->mUnk_18 << 8) >> 16);
+        reg_G3_TEXCOORD = (u16) ((s32) (p->mUnk_18 << 8) >> 16);
         *(u32 *) 0x4000494 = *(u32 *) &e->mUnk_00[3];
-        *(u32 *) 0x4000504 = 0;
+        reg_G3_END_VTXS = 0;
         i++;
     } while (i < *(s32 *) data_0217c658);
 }
@@ -429,18 +430,18 @@ void func_02103900(s32 v1, s32 n, s32 v2) {
             v.mHalf.mUnk_02 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32) * 2;
         } else if (*(s32 *) data_0217c658 == 0) {
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            v.mHalf.mUnk_00 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32);
+            v.mHalf.mUnk_00 = ((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32;
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
             v.mHalf.mUnk_00 = v.mHalf.mUnk_00 + (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1000) >> 32);
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            v.mHalf.mUnk_02 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32);
+            v.mHalf.mUnk_02 = ((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32;
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
             v.mHalf.mUnk_02 = v.mHalf.mUnk_02 + (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0xc00) >> 32);
         } else {
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            v.mHalf.mUnk_00 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x2000) >> 32);
+            v.mHalf.mUnk_00 = ((u64) (u32) (a->mUnk_00 >> 32) * 0x2000) >> 32;
             a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
-            v.mHalf.mUnk_02 = (s16) (((u64) (u32) (a->mUnk_00 >> 32) * 0x1800) >> 32);
+            v.mHalf.mUnk_02 = ((u64) (u32) (a->mUnk_00 >> 32) * 0x1800) >> 32;
         }
         t8 = v.mHalf.mUnk_00 >> 10;
         t10 = v.mHalf.mUnk_02 >> 10;
@@ -494,14 +495,14 @@ u32 func_02103840(u32 arg0) {
     u32 compareRight1;
     u32 compareLeft2;
     u32 compareRight2;
-    value1 = (u32) data_021759c0->mEntryIndex;
+    value1 = data_021759c0->mEntryIndex;
     compareLeft0 = value0;
     compareRight0 = value1;
     if (compareLeft0 != compareRight0) {
         return value0;
     }
     value0 = (u32) &data_0217c658;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     compareLeft1 = value0;
     compareRight1 = 0u;
     if (compareLeft1 == compareRight1) {
@@ -509,8 +510,8 @@ u32 func_02103840(u32 arg0) {
     }
     value1 = (u32) &data_0217c644;
     value0 = (u32) &data_0217c650;
-    value2 = (u32) * (const u32 *) ((value1) + (0));
-    value1 = (u32) * (const u32 *) ((value0) + (0));
+    value2 = *(const u32 *) ((value1) + (0));
+    value1 = *(const u32 *) ((value0) + (0));
     compareLeft2 = value1;
     compareRight2 = value2;
     if ((s32) compareLeft2 < (s32) compareRight2) {
@@ -537,7 +538,7 @@ void func_0210366c(Unk021035ac *p) {
         b = p->mUnk_00[i][1];
         if (a > 0) {
             if (a > 0x4cd) {
-                va = (s32) (((s64) a * a) >> 12);
+                va = ((s64) a * a) >> 12;
             } else {
                 va = 0x171;
             }
@@ -550,7 +551,7 @@ void func_0210366c(Unk021035ac *p) {
         }
         if (b > 0) {
             if (b > 0x4cd) {
-                vb = (s32) (((s64) b * b) >> 12);
+                vb = ((s64) b * b) >> 12;
             } else {
                 vb = 0x171;
             }
@@ -648,10 +649,10 @@ void func_02103468(void) {
     for (i = 0; i < 3; i++) {
         AllocPolygonId();
     }
-    *(u32 *) 0x4000440 = 0;
-    *(u32 *) 0x4000444 = 0;
+    reg_G3_MTX_MODE = 0;
+    reg_G3_MTX_PUSH = 0;
     G3i_OrthoW_(0x60000, 0xfffa0000, 0xfff80000, 0x80000, 0, 0x1000, 0x1fb, 1, (Unk0214ad4c *) data_0217c6a4);
-    *(u32 *) 0x4000448 = 1;
+    reg_G3_MTX_POP = 1;
 }
 
 void func_0210340c(Unk0210340c *p, Unk020e6488 *q) {
@@ -709,7 +710,7 @@ void func_021031f4(ItemGesso *p) {
         j = 1;
         n = GetKartRank(b2);
         do {
-            v = (u16) gRaceProgress->mKartAtRank[(u8) j - 1];
+            v = gRaceProgress->mKartAtRank[(u8) j - 1];
             r = GetKart(v);
             if ((r->mUnk_7c & 0x402020) == 0 && (r->mUnk_4c & 0x10000840) == 0 && (r->mUnk_48 & 0x10000) == 0) {
                 p->mUnk_130[v] = 4 - ((j - 1) >> 1);

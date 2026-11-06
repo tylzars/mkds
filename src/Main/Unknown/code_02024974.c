@@ -31,20 +31,20 @@ u32 func_020250a8(void) {
     u32 value2;
     value1 = (u32) &data_02161ae4;
     value0 = 0x1000u;
-    value1 = (u32) * (const u32 *) ((value1) + (0));
-    value0 = (u32) FX_Div((s32) value0, (s32) value1);
+    value1 = *(const u32 *) ((value1) + (0));
+    value0 = FX_Div(value0, value1);
     value1 = (u32) &data_02161ae0;
     value2 = (u32) &data_02174e10;
-    value1 = (u32) * (const u32 *) ((value1) + (0));
+    value1 = *(const u32 *) ((value1) + (0));
     *(u32 *) ((value2) + (0)) = value0;
     value0 = 0x1000u;
-    value0 = (u32) FX_Div((s32) value0, (s32) value1);
+    value0 = FX_Div(value0, value1);
     value1 = (u32) &data_02161adc;
     value2 = (u32) &data_02174e0c;
-    value1 = (u32) * (const u32 *) ((value1) + (0));
+    value1 = *(const u32 *) ((value1) + (0));
     *(u32 *) ((value2) + (0)) = value0;
     value0 = 0x1000u;
-    value0 = (u32) FX_Div((s32) value0, (s32) value1);
+    value0 = FX_Div(value0, value1);
     value1 = (u32) &data_02174e08;
     *(u32 *) ((value1) + (0)) = value0;
     return value0;
@@ -83,16 +83,16 @@ void func_02024fc0(u32 arg0, u32 arg1) {
     u32 value12;
     u32 compareLeft0;
     u32 compareRight0;
-    value3 = (u32) * (const u32 *) ((value1) + (8));
-    value2 = (u32) * (const u8 *) ((value1) + (4));
+    value3 = *(const u32 *) ((value1) + (8));
+    value2 = *(const u8 *) ((value1) + (4));
     compareLeft0 = value3;
     compareRight0 = 0x440000u;
     if ((s32) compareLeft0 > (s32) compareRight0) {
         value3 = 0x440000u;
     }
     value3 = (value3 << 4);
-    value1 = (u32) * (const u32 *) ((value1) + (92));
-    value3 = ((u32) ((s32) value3 >> 16));
+    value1 = *(const u32 *) ((value1) + (92));
+    value3 = ((s32) value3 >> 16);
     StartSoundWhileRequested((SoundSource *) value0, value1, value2, value3);
 }
 

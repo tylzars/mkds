@@ -250,7 +250,7 @@ void UpdateIronBall(void *a, IronBall *p) {
         p->mUnk_0c0 -= 0x1000;
         p->mUnk_0bc = p->mUnk_0bc + p->mUnk_0c0;
         if (p->mUnk_0bc <= 0) {
-            p->mUnk_0c0 = (s32) (((s64) p->mUnk_0c0 * -0x800) >> 12);
+            p->mUnk_0c0 = ((s64) p->mUnk_0c0 * -0x800) >> 12;
             if (p->mUnk_0c0 < 0x1000) {
                 p->mUnk_0c0 = 0;
             } else if (!(func_0207a780() & p->mUnk_128) && !(p->mUnk_000.mDistanceSquaredAndFlags & 4)) {

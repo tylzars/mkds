@@ -130,10 +130,10 @@ void InitWiFiVSSetting(void *heap) {
 void func_ov000_02182f88(void) {
     u32 a;
 
-    a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+    a = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     a &= ~8;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (a << 8);
-    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0xf00;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (a << 8);
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0xf00;
     func_0212b91c();
     gWiFiVSSetting = NULL;
 }
@@ -153,7 +153,7 @@ void LocateAndQueueWiFiVSSetting(void) {
     LocateNcgr2(&gWiFiVSSetting->mWiFiVSSettingSNcgr, FindSceneFile("WiFi_VS_setting_s.nce.ncgr"));
     LocateNcer(&gWiFiVSSetting->mWiFiVSSettingSNcer, FindSceneFile("WiFi_VS_setting_s.nce.ncer"));
     LocateNclr(&gWiFiVSSetting->mWiFiVSSettingSONclr, FindSceneFile("WiFi_VS_setting_s_o.nclr"));
-    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x4400;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x4400;
     zero = 0;
     MIi_CpuClear16(zero, gWiFiVSSetting->mNscrCopy, 0x1000);
     MIi_CpuCopy16(scrn->mData, gWiFiVSSetting->mNscrCopy, 0x800);
@@ -698,12 +698,12 @@ void func_ov000_02181ff0(void) {
     u32 b;
     s32 v;
 
-    a = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
+    a = (reg_GX_DISPCNT & 0x1f00) >> 8;
     a |= 4;
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (a << 8);
-    b = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (a << 8);
+    b = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     b |= 9;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (b << 8);
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (b << 8);
     G2x_SetBlendAlpha_(&reg_G2_BLDCNT, 0, 2, 6, 10);
     v = -gWiFiVSSetting->mRowOffsets[1][0];
     if (v <= -256) {
@@ -712,7 +712,7 @@ void func_ov000_02181ff0(void) {
     if (v >= 0x100) {
         v = 0x100;
     }
-    *(vu32 *) 0x400101c = v & 0x1ff;
+    reg_G2S_DB_BG3OFS = v & 0x1ff;
 }
 
 WiFiStateCallbacks gWiFiVSSettingCallbacks = {InitWiFiVSSetting, func_ov000_02182f88, AdvanceWiFiVSSetting,

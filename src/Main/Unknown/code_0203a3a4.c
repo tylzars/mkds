@@ -44,6 +44,7 @@
 #include "Main/Unknown/unk_02164000.h"
 #include "code_021458c4.h"
 #include "Main/Unknown/code_02046740.h"
+#include "registers.h"
 
 static inline u32 func_0203a908_inline(void) {
     Unk02175628Index i = UNK_02175628_INDEX_8;
@@ -124,7 +125,7 @@ void func_0203ad58(void *a) {
     }
     InitDisplayFromSettings(b);
     func_02055f68();
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 2;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 2;
 }
 
 void InitRaceScene(void) {
@@ -282,7 +283,7 @@ u32 func_0203a908(u32 a) {
 }
 
 u32 func_0203a8f4(void) {
-    return ((u32) data_021759c0->mMode);
+    return (data_021759c0->mMode);
 }
 
 void func_0203a8e0(u32 p0) {
@@ -473,7 +474,7 @@ u32 func_0203a48c(u32 arg0) {
     value2 = value0;
     value0 = (u32) &data_0217d068;
     value1 = 0u;
-    value0 = (u32) NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
+    value0 = NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
     return value0;
 }
 
@@ -494,7 +495,7 @@ u32 func_0203a440(u32 a) {
 }
 
 u32 func_0203a42c(void) {
-    return (u32) gRaceProgress->mUnk_4d0;
+    return gRaceProgress->mUnk_4d0;
 }
 
 u32 func_0203a3cc(u32 a) {
@@ -516,5 +517,5 @@ void func_0203a3b8(u32 p0) {
 }
 
 u32 func_0203a3a4(void) {
-    return ((u32) data_021759c0->mCourseId);
+    return (data_021759c0->mCourseId);
 }

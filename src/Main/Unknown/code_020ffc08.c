@@ -88,7 +88,7 @@ void func_020ffdd4(MapObjectList *v1) {
     }
     q = func_020d22d0();
     q->mUnk_00 = q->mUnk_08 * q->mUnk_00 + q->mUnk_10;
-    t = (u16) (((u64) (u32) (q->mUnk_00 >> 32) * 6) >> 32);
+    t = ((u64) (u32) (q->mUnk_00 >> 32) * 6) >> 32;
     for (i = 0; i < n; i++) {
         e = arr[i];
         v2 = (u16 *) data_0215a0a8[t];
@@ -153,7 +153,7 @@ void UpdateDramState4(Dram *p) {
     s16 d;
 
     p->mUnk_ac -= p->mUnk_b0;
-    d = (s16) ((s32) (((s64) p->mUnk_ac * p->mUnk_a8) >> 12));
+    d = (s32) (((s64) p->mUnk_ac * p->mUnk_a8) >> 12);
     if (d <= 0x96) {
         d = 0x96;
     }
@@ -181,23 +181,23 @@ void UpdateDramState5(u32 arg0) {
     u32 value12;
     u32 compareLeft0;
     u32 compareRight0;
-    value1 = (u32) * (const u16 *) ((value0) + (166));
+    value1 = *(const u16 *) ((value0) + (166));
     value12 = (value0) + (0xa6u);
     value1 = (value1) + (0x96u);
-    *(u16 *) ((value0) + (166)) = (u16) value1;
-    value1 = (u32) * (const u32 *) ((value0) + (188));
+    *(u16 *) ((value0) + (166)) = value1;
+    value1 = *(const u32 *) ((value0) + (188));
     value1 = (value1) - (0x96u);
     *(u32 *) ((value0) + (188)) = value1;
-    value3 = (u32) * (const u32 *) ((value0) + (188));
+    value3 = *(const u32 *) ((value0) + (188));
     compareLeft0 = value3;
     compareRight0 = 0u;
     if ((s32) compareLeft0 >= (s32) compareRight0) {
         return;
     }
-    value2 = (u32) * (const u16 *) ((value12) + (0));
+    value2 = *(const u16 *) ((value12) + (0));
     value1 = 1u;
     value2 = (value2) + (value3);
-    *(u16 *) ((value12) + (0)) = (u16) value2;
-    *(u16 *) ((value0) + (144)) = (u16) value1;
-    *(u16 *) ((value0) + (146)) = (u16) value1;
+    *(u16 *) ((value12) + (0)) = value2;
+    *(u16 *) ((value0) + (144)) = value1;
+    *(u16 *) ((value0) + (146)) = value1;
 }

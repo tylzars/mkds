@@ -154,14 +154,14 @@ void TP_SetCalibrateParam(TPCalibrateParam *param) {
     enabled = OS_DisableInterrupts();
     xDotSize = param->mXDotSize;
     if (xDotSize != 0) {
-        *(vu16 *) 0x4000280 = 0;
+        reg_CP_DIVCNT = 0;
         *(vu32 *) 0x4000290 = 0x10000000;
         den = (vu32 *) 0x4000298;
         den[0] = xDotSize;
         den[1] = 0;
         gTouchPanelState.mCalibration.mX0 = param->mX0;
         gTouchPanelState.mCalibration.mXDotSize = param->mXDotSize;
-        while (*(vu16 *) 0x4000280 & 0x8000) {
+        while (reg_CP_DIVCNT & 0x8000) {
         }
         gTouchPanelState.mCalibration.mXDotSizeInv = *(vu32 *) 0x40002a0;
     } else {
@@ -171,14 +171,14 @@ void TP_SetCalibrateParam(TPCalibrateParam *param) {
     }
     yDotSize = param->mYDotSize;
     if (yDotSize != 0) {
-        *(vu16 *) 0x4000280 = 0;
+        reg_CP_DIVCNT = 0;
         *(vu32 *) 0x4000290 = 0x10000000;
         den = (vu32 *) 0x4000298;
         den[0] = yDotSize;
         den[1] = 0;
         gTouchPanelState.mCalibration.mY0 = param->mY0;
         gTouchPanelState.mCalibration.mYDotSize = param->mYDotSize;
-        while (*(vu16 *) 0x4000280 & 0x8000) {
+        while (reg_CP_DIVCNT & 0x8000) {
         }
         gTouchPanelState.mCalibration.mYDotSizeInv = *(vu32 *) 0x40002a0;
     } else {
@@ -358,13 +358,13 @@ void TP_GetCalibratedPoint(TPData *disp, const TPData *raw) {
         disp->mY = 0;
         return;
     }
-    disp->mX = (u16) ((((u64) (raw->mX << 2) - calibration->mX0) * calibration->mXDotSizeInv) >> 22);
+    disp->mX = (((u64) (raw->mX << 2) - calibration->mX0) * calibration->mXDotSizeInv) >> 22;
     if ((s16) disp->mX < 0) {
         disp->mX = 0;
     } else if ((s16) disp->mX > 0xff) {
         disp->mX = 0xff;
     }
-    disp->mY = (u16) ((((u64) (raw->mY << 2) - calibration->mY0) * calibration->mYDotSizeInv) >> 22);
+    disp->mY = (((u64) (raw->mY << 2) - calibration->mY0) * calibration->mYDotSizeInv) >> 22;
     if ((s16) disp->mY < 0) {
         disp->mY = 0;
         return;

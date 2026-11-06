@@ -9,6 +9,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_02147cd8.h"
+#include "registers.h"
 
 void func_01ffdb70(void) {
     s32 i = 0;
@@ -393,20 +394,20 @@ void QuaternionNormalize(const Vec4 *a, Vec4 *b) {
     w += (s64) a->y * a->y;
     w += (s64) a->z * a->z;
     w += (s64) a->w * a->w;
-    *(vu16 *) 0x4000280 = 2;
-    *(vu64 *) 0x4000290 = 0x1000000000000LL << 8;
-    *(vu64 *) 0x4000298 = w;
-    *(vu16 *) 0x40002b0 = 1;
-    *(vu64 *) 0x40002b8 = w << 2;
-    while (*(vu16 *) 0x40002b0 & 0x8000) {
+    reg_CP_DIVCNT = 2;
+    reg_CP_DIV_NUMER = 0x1000000000000LL << 8;
+    reg_CP_DIV_DENOM = w;
+    reg_CP_SQRTCNT = 1;
+    reg_CP_SQRT_PARAM = w << 2;
+    while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = *(vu32 *) 0x40002b4;
-    while (*(vu16 *) 0x4000280 & 0x8000) {
+    r = reg_CP_SQRT_RESULT;
+    while (reg_CP_DIVCNT & 0x8000) {
     }
-    q = *(vu64 *) 0x40002a0;
+    q = reg_CP_DIV_RESULT;
     t = q * r;
-    b->x = (s32) ((t * a->x + 0x100000000000LL) >> 45);
-    b->y = (s32) ((t * a->y + 0x100000000000LL) >> 45);
-    b->z = (s32) ((t * a->z + 0x100000000000LL) >> 45);
-    b->w = (s32) ((t * a->w + 0x100000000000LL) >> 45);
+    b->x = (t * a->x + 0x100000000000LL) >> 45;
+    b->y = (t * a->y + 0x100000000000LL) >> 45;
+    b->z = (t * a->z + 0x100000000000LL) >> 45;
+    b->w = (t * a->w + 0x100000000000LL) >> 45;
 }

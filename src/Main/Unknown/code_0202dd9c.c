@@ -34,6 +34,7 @@
 #include "code_0214d018.h"
 #include "00/code_02181f98.h"
 #include "Main/Unknown/code_02025cd0.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -98,8 +99,8 @@ void func_0202dfd4(void *a) {
         }
     }
     func_020ae6d4(data_02174e44, data_02174e44->mUnk_404);
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | 0x10;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffcfffef) | 0x10;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffcfffef) | 0x10;
     switch (data_0217b488->mUnk_0c) {
         case 0:
             data_02174e44->mUnk_8c8 = 0;
@@ -140,8 +141,8 @@ void func_0202df34(s32 a) {
 }
 
 void func_0202defc(void) {
-    *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & 0xffff1fff;
-    *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffff1fff;
+    reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
+    reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
     func_02125da0();
     func_0212abd0();
     func_02117218();
@@ -189,15 +190,15 @@ u32 func_0202ddd8(void) {
 }
 
 u32 func_0202ddc4(void) {
-    return ((u32) data_02174e44->mUnk_808);
+    return (data_02174e44->mUnk_808);
 }
 
 u32 func_0202ddb0(void) {
-    return ((u32) data_02174e44->mUnk_80c);
+    return (data_02174e44->mUnk_80c);
 }
 
 u32 func_0202dd9c(void) {
-    return ((u32) data_02174e44->mUnk_810);
+    return (data_02174e44->mUnk_810);
 }
 
 #pragma thumb off

@@ -45,9 +45,9 @@ s32 InitSelectReturn(void *heap, s32 b) {
         gSelectReturn->mDisplayBitOn = TRUE;
     } else {
         gSelectReturn->mDisplayBitOn = FALSE;
-        t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+        t = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
         t &= ~4;
-        *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (t << 8);
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (t << 8);
     }
     gSelectReturn->mEnabled = TRUE;
     gSelectReturn->mState = 0;
@@ -74,10 +74,10 @@ void func_021287c0(void) {
 #pragma thumb on
 void InitSelectReturnDisplay(void) {
     u32 t;
-    t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((t | 4) << 8);
-    *(vu16 *) 0x400100c = (*(vu16 *) 0x400100c & ~3);
-    *(vu16 *) 0x400100c = (*(vu16 *) 0x400100c & 0x43) | 0xe00;
+    t = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((t | 4) << 8);
+    reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3);
+    reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & 0x43) | 0xe00;
 }
 
 s32 func_021286a0(s32 a) {
@@ -222,17 +222,17 @@ void WriteSelectReturnRegisters(void) {
     p = gSelectReturn;
     if (p->mEnabled != FALSE) {
         if (p->mDisplayBitOn != FALSE) {
-            if (((*(vu32 *) 0x4001000 & 0x1f00) >> 8 & 4) == 0) {
-                t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-                *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((t | 4) << 8);
+            if (((reg_GXS_DB_DISPCNT & 0x1f00) >> 8 & 4) == 0) {
+                t = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+                reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((t | 4) << 8);
             }
         } else {
-            if (((*(vu32 *) 0x4001000 & 0x1f00) >> 8 & 4) != 0) {
-                t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-                *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((t & ~4) << 8);
+            if (((reg_GXS_DB_DISPCNT & 0x1f00) >> 8 & 4) != 0) {
+                t = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+                reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((t & ~4) << 8);
             }
         }
-        *(vu32 *) 0x4001018 = (gSelectReturn->mBg2Offset << 16) & 0x1ff0000;
+        reg_G2S_DB_BG2OFS = (gSelectReturn->mBg2Offset << 16) & 0x1ff0000;
     }
 }
 
@@ -341,7 +341,7 @@ void ClearSelectReturnDisplayBitOn(void) {
     u32 value2;
     value2 = 0u;
     value0 = (u32) &gSelectReturn;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 0x820u;
     *(u32 *) ((value1) + (value0)) = value2;
 }
@@ -361,7 +361,7 @@ void func_021281c8(u32 arg0) {
     u32 value1;
     u32 value2;
     value1 = (u32) &gSelectReturn;
-    value2 = (u32) * (const u32 *) ((value1) + 0u);
+    value2 = *(const u32 *) ((value1) + 0u);
     value1 = 0x824u;
     *(u32 *) ((value2) + (value1)) = value0;
 }
@@ -374,7 +374,7 @@ u32 func_021281b4(void) {
     u32 value2;
     value2 = 0u;
     value0 = (u32) &gSelectChoises;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 0x8a0u;
     *(u32 *) ((value1) + (value0)) = value2;
     return value0;
@@ -395,9 +395,9 @@ s32 InitSelectChoises(void *a, s32 b, s32 c) {
         gSelectChoises->mUnk_8a4 = 1;
     } else {
         gSelectChoises->mUnk_8a4 = 0;
-        t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+        t = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
         t &= ~1;
-        *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (t << 8);
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | (t << 8);
     }
     for (i = 0; i < 2; i++) {
         gSelectChoises->mCharBuffers[i] = HeapAlloc(a, 0x800);
@@ -445,16 +445,16 @@ u32 InitSelectChoisesDisplay(void) {
     u32 value1;
     u32 value2;
     value2 = 0x4001008u;
-    value1 = (u32) * (const u16 *) ((value2) + 0u);
+    value1 = *(const u16 *) ((value2) + 0u);
     value0 = 3u;
     value1 = (value1) & ~(value0);
-    *(u16 *) ((value2) + 0u) = (u16) value1;
-    value1 = (u32) * (const u16 *) ((value2) + 0u);
+    *(u16 *) ((value2) + 0u) = value1;
+    value1 = *(const u16 *) ((value2) + 0u);
     value0 = 67u;
     value1 = (value1) & (value0);
     value0 = 0xb00u;
     value1 = (value1) | (value0);
-    *(u16 *) ((value2) + 0u) = (u16) value1;
+    *(u16 *) ((value2) + 0u) = value1;
     return value0;
 }
 #pragma thumb off
@@ -760,15 +760,15 @@ void WriteSelectChoisesRegisters(void) {
     u32 a;
 
     if (gSelectChoises->mEnabled != 0) {
-        *(vu32 *) 0x4001010 = 0;
+        reg_G2S_DB_BG0OFS = 0;
         if (gSelectChoises->mState == 0 || gSelectChoises->mUnk_8a4 == 0) {
             G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, 0x1e, 0x1f, 6, 10, 0);
-            a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-            *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((a & ~1) << 8);
+            a = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+            reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((a & ~1) << 8);
         } else {
             G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, 0x1e, 0x1f, 6, 10, -10);
-            a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
-            *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((a | 1) << 8);
+            a = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
+            reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | ((a | 1) << 8);
         }
     }
 }

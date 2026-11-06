@@ -7,6 +7,7 @@
 
 #include "03/unk_021d6000.h"
 #include "code_0214b824.h"
+#include "registers.h"
 
 void func_ov003_021bf4d0(void) {
     *(u8 *) &data_ov003_021da10c = 0;
@@ -21,7 +22,7 @@ u32 func_ov003_021bf43c(u32 v1, s32 v2, u32 v3) {
         return 0;
     }
     func_ov003_021bf620(data_ov003_021d697c, GXS_LoadBG0Scr);
-    *(vu32 *) 0x4001010 = 0x1920000;
+    reg_G2S_DB_BG0OFS = 0x1920000;
     a = func_ov003_021d2288(1, 0);
     b = func_ov003_021c250c(data_ov003_021da19c, v1, v2, v3);
     func_ov003_021d2070(a, data_ov003_021d5efc[0], data_ov003_021d5efc[1], data_ov003_021d5efc[2],

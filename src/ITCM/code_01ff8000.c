@@ -9,6 +9,7 @@
 #include "code_02010c84.h"
 #include "code_0214c778.h"
 #include "code_02146bb8.h"
+#include "registers.h"
 
 void func_01ff92e0(Unk01ff9048 *a) {
     if (data_usa_021731e4 == 0) {
@@ -37,7 +38,7 @@ void func_01ff9234(void) {
     if (data_usa_021731e4->mUnk_00 == 0) {
         return;
     }
-    MIi_CpuSend32(data_usa_021731e4->mUnk_04, (vu32 *) 0x4000400, data_usa_021731e4->mUnk_00 * 4);
+    MIi_CpuSend32(data_usa_021731e4->mUnk_04, &reg_G3X_GXFIFO, data_usa_021731e4->mUnk_00 * 4);
     data_usa_021731e4->mUnk_00 = 0;
 }
 
@@ -89,8 +90,8 @@ void func_01ff9048(u32 a, const void *b, u32 n) {
     } else if (data_usa_021731e8 != 0) {
         func_01ff921c();
     }
-    *(vu32 *) 0x4000400 = a;
-    MIi_CpuSend32(b, (vu32 *) 0x4000400, n * 4);
+    reg_G3X_GXFIFO = a;
+    MIi_CpuSend32(b, &reg_G3X_GXFIFO, n * 4);
 }
 
 void func_01ff8ff8(Unk02170500 *s) {

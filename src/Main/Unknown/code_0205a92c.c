@@ -134,7 +134,7 @@ void func_0205ab78(void) {
             case 0:
                 break;
             case 2:
-                if ((u32) e->mUnk_00 + 30 < (u32) data_0217aa14->mUnk_728) {
+                if (e->mUnk_00 + 30 < (u32) data_0217aa14->mUnk_728) {
                     e->mUnk_08 = 0;
                     e->mUnk_00 = 0;
                     e->mUnk_09 = 15;
@@ -144,7 +144,7 @@ void func_0205ab78(void) {
                 }
                 break;
             case 1:
-                if ((u32) e->mUnk_00 < (u32) data_0217aa14->mUnk_728) {
+                if (e->mUnk_00 < (u32) data_0217aa14->mUnk_728) {
                     e->mUnk_08 = 2;
                 }
                 break;

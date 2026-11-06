@@ -31,7 +31,7 @@ void LoadTrophyIconData(void) {
 void CreateTrophyIcon(void *a) {
     int v1;
     void *v2;
-    v1 = ((u32) HeapAlloc(a, (u32) 0x10));
+    v1 = ((u32) HeapAlloc(a, 0x10));
     *(s32 *) &gTrophyIcon = v1;
     v2 = FindSceneFile(gTrophyIconNcgrName);
     LocateNcgr2(&gTrophyIcon->mNcgr, v2);
@@ -64,8 +64,7 @@ void QueueTrophyIcon(int a, int b, void *c, void *d, u32 e, u16 f, int g) {
     }
     v2 = gTrophyIcon;
     func_02124748(gTrophyIconBnclIndices[a], v2->mNcer, v2->mNcgr, v2->mBncl, g, e, c, d);
-    CallQueueAppend(v1, (u32) ((u32) f << 5), (u8 *) gTrophyIcon->mNclr->mData + gTrophyIconNclrStarts[b] * 0x20,
-                    (u32) 0x20);
+    CallQueueAppend(v1, f << 5, (u8 *) gTrophyIcon->mNclr->mData + gTrophyIconNclrStarts[b] * 0x20, 0x20);
 }
 
 void func_0211f240(void) {}

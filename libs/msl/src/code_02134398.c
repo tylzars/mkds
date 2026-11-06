@@ -95,7 +95,7 @@ void MemsetBody(u8 *p, int c, u32 n) {
         if (m != 0) {
             n -= m;
             do {
-                *p++ = (u8) c;
+                *p++ = c;
                 m--;
             } while (m != 0);
         }
@@ -120,7 +120,7 @@ void MemsetBody(u8 *p, int c, u32 n) {
         p = (u8 *) w;
     }
     for (; n != 0; n--) {
-        *p++ = (u8) c;
+        *p++ = c;
     }
 }
 
@@ -164,7 +164,7 @@ void *memchr(const void *x, int c, u32 n) {
 
     for (; n != 0; n--) {
         if (*p++ == ch) {
-            return (void *) (p - 1);
+            return (p - 1);
         }
     }
     return 0;
@@ -176,7 +176,7 @@ void *MemChrBackward(const void *a, int v, u32 n) {
 
     for (; n != 0; n--) {
         if (*--p == c) {
-            return (void *) p;
+            return p;
         }
     }
     return 0;

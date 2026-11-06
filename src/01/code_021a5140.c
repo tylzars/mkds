@@ -90,11 +90,11 @@ void InitEmblem(void) {
         ResetEmblemGridChanges();
     }
     func_ov001_021a63cc(2);
-    func_ov001_021a63c0((u8) 1);
+    func_ov001_021a63c0(1);
     func_ov001_021a63a8(0);
     func_ov001_021a6388(0);
-    func_ov001_021a6350((s32) (func_ov001_02184fc8(func_ov001_02185160(gEmblem->mEmblemSLld, 0))),
-                        (s32) (func_ov001_02184fb8(func_ov001_02185160(gEmblem->mEmblemSLld, 0))));
+    func_ov001_021a6350(func_ov001_02184fc8(func_ov001_02185160(gEmblem->mEmblemSLld, 0)),
+                        func_ov001_02184fb8(func_ov001_02185160(gEmblem->mEmblemSLld, 0)));
     func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 14), 1);
     func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 12), 0);
     func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 10), 0);

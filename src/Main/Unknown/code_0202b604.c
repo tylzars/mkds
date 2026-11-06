@@ -11,6 +11,7 @@
 #include "Main/Unknown/code_020b47d8.h"
 #include "code_02148950.h"
 #include "Main/Unknown/code_02025ebc.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -32,29 +33,29 @@ void func_0202ba14(void) {
     if (data_02174e3c->mUnk_254 == 2) {
         b = FALSE;
         a |= 2;
-        *(vu32 *) 0x4000010 = x & 0x1ff;
-        *(vu32 *) 0x4000014 = -x & 0x1ff;
-        *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
-        *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | 3;
+        reg_G2_BG0OFS = x & 0x1ff;
+        reg_G2_BG1OFS = -x & 0x1ff;
+        reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 3;
+        reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
     } else {
         b = TRUE;
     }
     if (data_02174e3c->mUnk_250 == 2) {
         a |= 2;
     }
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (a << 8);
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (a << 8);
     GX_SetGraphicsMode(1, 0, b);
     if (data_02174e3c->mUnk_254 == 2) {
-        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffff1fff) | 0x6000;
-        *(vu16 *) 0x4000048 = (u32) ((*(vu16 *) 0x4000048 & ~0x3f) | 0x1d) | 0x20;
-        *(vu16 *) 0x4000048 = (u32) ((*(vu16 *) 0x4000048 & 0xffffc0ff) | 0x1e00) | 0x2000;
-        *(vu16 *) 0x400004a = (u32) ((*(vu16 *) 0x400004a & ~0x3f) | 0x1c) | 0x20;
-        *(vu16 *) 0x4000040 = 0x80;
-        *(vu16 *) 0x4000044 = 0xc0;
-        *(vu16 *) 0x4000042 = 0x8000;
-        *(vu16 *) 0x4000046 = 0xc0;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffff1fff) | 0x6000;
+        reg_G2_WININ = (u32) ((reg_G2_WININ & ~0x3f) | 0x1d) | 0x20;
+        reg_G2_WININ = (u32) ((reg_G2_WININ & 0xffffc0ff) | 0x1e00) | 0x2000;
+        reg_G2_WINOUT = (u32) ((reg_G2_WINOUT & ~0x3f) | 0x1c) | 0x20;
+        reg_G2_WIN0H = 0x80;
+        reg_G2_WIN0V = 0xc0;
+        reg_G2_WIN1H = 0x8000;
+        reg_G2_WIN1V = 0xc0;
     } else {
-        *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & 0xffff1fff;
+        reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
     }
 }
 
@@ -234,7 +235,7 @@ void func_0202b604(void) {
     u32 value2;
     value2 = 1u;
     value0 = (u32) &data_02174e3c;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 0x1fcu;
     *(u32 *) ((value1) + (value0)) = value2;
 }

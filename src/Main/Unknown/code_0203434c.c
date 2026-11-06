@@ -238,7 +238,7 @@ s32 func_02034370(Unk02034370 *a) {
         case 4:
             if (func_02125f54() != 0) {
                 if (GetTxtSystemSelectedIndex() == 0) {
-                    func_0204ece0((u16) data_02174e64->mUnk_080);
+                    func_0204ece0(data_02174e64->mUnk_080);
                 } else {
                     func_02128374();
                     data_02174e64->mUnk_18c = FALSE;

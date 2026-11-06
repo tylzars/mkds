@@ -71,7 +71,7 @@ s32 func_ov000_021a911c(Unk021a6fa8 *a, Unk021a8e18 *b) {
 
 s32 func_ov000_021a9104(s32 p0, void *p1, s32 p2, s32 p3) {
     u32 v5 = ((0x0u) + (0x0u));
-    u32 v6 = func_ov000_021a7de0((u32) p0, (u32) p1, (u32) p2, v5, (u32) 0x0u, (u32) p3);
+    u32 v6 = func_ov000_021a7de0(p0, (u32) p1, p2, v5, 0x0u, p3);
     return v6;
 }
 
@@ -90,7 +90,7 @@ s32 func_ov000_021a90a0(s32 v1, void *v2, s32 v3, s32 v4, void *v5) {
 
 s32 func_ov000_021a9088(s32 p0, void *p1, s32 p2, s32 p3) {
     u32 v5 = ((0x0u) + (0x0u));
-    u32 v6 = func_ov000_021a8268((u32) p0, (u32) p1, (u32) p2, v5, (u32) 0x0u, (u32) p3);
+    u32 v6 = func_ov000_021a8268(p0, (u32) p1, p2, v5, 0x0u, p3);
     return v6;
 }
 
@@ -162,7 +162,7 @@ u32 func_ov000_021a8f0c(u32 f, u32 g) {
 }
 
 u32 func_ov000_021a8ed4(void) {
-    u32 v1 = ((u32) func_ov000_021a8830());
+    u32 v1 = (func_ov000_021a8830());
     u32 v2 = ((v1) << 24);
     u32 v3 = 0xff000000u;
     u32 v4 = ((v2) & (v3));
@@ -182,8 +182,8 @@ u32 func_ov000_021a8ed4(void) {
 }
 
 void func_ov000_021a8e78(u32 *p0, u32 *p1) {
-    u32 v2 = ((u32) * (u32 *) ((p1) + (0)));
-    u32 v3 = ((u32) * (u32 *) ((p0) + (0)));
+    u32 v2 = (*(u32 *) ((p1) + (0)));
+    u32 v3 = (*(u32 *) ((p0) + (0)));
     u32 v4 = ((v3) << 24);
     u32 v5 = 0xff000000u;
     u32 v6 = ((v4) & (v5));
@@ -212,7 +212,7 @@ void func_ov000_021a8e78(u32 *p0, u32 *p1) {
     u32 v30 = ((v24) | (v29));
     u32 v31 = ((v22) | (v30));
     u32 v32 = ((v31) + (0x0u));
-    u32 v33 = ((u32) func_ov000_021a8878(v19, v32));
+    u32 v33 = (func_ov000_021a8878(v19, v32));
 }
 
 s32 func_ov000_021a8e70(s32 descriptor) {
@@ -382,7 +382,7 @@ void func_ov000_021a8b08(u32 arg0, u32 arg1) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
-    value2 = (u32) * (const u32 *) ((value0) + 0u);
+    value2 = *(const u32 *) ((value0) + 0u);
     *(u32 *) ((value1) + 124u) = value2;
     *(u32 *) ((value0) + 0u) = value1;
     return;
@@ -1133,11 +1133,11 @@ s32 func_ov000_021a7d68(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f, s
 s32 func_ov000_021a7d14(Unk021a6fa8 *a, void *b, s32 c, u16 *d, u32 *e, s32 f) {
     s32 g;
     if (a->mUnk_73 == 4) {
-        return func_ov000_021a7bc8(a, (u32) b, (u32) c, (u32) d, (u32) e);
+        return func_ov000_021a7bc8(a, (u32) b, c, (u32) d, (u32) e);
     }
     g = func_ov000_021a7c4c(a, b, c, d, e);
     if (g == -6 && f == 1) {
-        g = func_ov000_021a7bc8(a, (u32) b, (u32) c, (u32) d, (u32) e);
+        g = func_ov000_021a7bc8(a, (u32) b, c, (u32) d, (u32) e);
     }
     return g;
 }
@@ -1212,7 +1212,7 @@ s32 func_ov000_021a7bc8(Unk021a6fa8 *p0, u32 p1, u32 p2, u32 p3, u32 p4) {
     u32 v4 = ((p2) + (0x0u));
     u32 v5 = ((p3) + (0x0u));
     Unk021a7064Func v6 = (Unk021a7064Func) func_ov000_021a7af0;
-    u32 v9 = ((u32) func_ov000_021a7064(v6, p0, (s32) 0x1u));
+    u32 v9 = ((u32) func_ov000_021a7064(v6, p0, 0x1u));
     u32 v10 = ((v9) + (0x0u));
     u32 v14;
     u32 v17;
@@ -1812,7 +1812,7 @@ s32 func_ov000_021a70b0(void) {
 Unk021a7064 *func_ov000_021a7088(s32 a) {
     int v1;
     Unk021a7064 *v2[1];
-    v1 = OS_ReceiveMessage(&data_ov000_021b5fdc, (void **) (v2), (s32) (a));
+    v1 = OS_ReceiveMessage(&data_ov000_021b5fdc, (void **) (v2), a);
     if (v1 != 0) {
         return v2[0];
     }

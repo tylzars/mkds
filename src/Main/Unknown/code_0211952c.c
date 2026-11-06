@@ -183,8 +183,8 @@ void func_02119ac4(void) {
 void func_02119a90(void) {
     gSelectCupCourse->mNextState = 6;
     gSelectCupCourse->mStateFrames = 0;
-    SetSelectChoisesSoundId(0, (u32) 7);
-    SetSelectChoisesSoundId(1, (u32) 0x10);
+    SetSelectChoisesSoundId(0, 7);
+    SetSelectChoisesSoundId(1, 0x10);
     SetSelectChoisesSoundId(0xffffffff, 0x10);
 }
 

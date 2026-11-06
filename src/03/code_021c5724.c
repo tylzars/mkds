@@ -82,12 +82,12 @@ void LoadApListFilesAndSetBgCnt(void) {
     func_ov003_021cca30(gApList->mXb4ApListBackNsc);
     func_ov003_021cc9fc();
     gApList->mYbBgStep31Ncl = func_ov003_021d14b8(func_ov003_021bf650(b), NULL, 4);
-    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 3;
-    *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & ~3) | 3;
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
-    *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | 2;
-    *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & ~3) | 3;
-    *(vu16 *) 0x400000e = (*(vu16 *) 0x400000e & ~3) | 2;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 3;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 2;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & ~3) | 3;
+    reg_G2_BG3CNT = (reg_G2_BG3CNT & ~3) | 2;
 }
 
 void func_ov003_021c6508(void) {
@@ -141,8 +141,8 @@ void func_ov003_021c6400(void) {
 }
 
 void func_ov003_021c63c4(void) {
-    func_ov003_021d1ee0(2, 1, 1, (u16) (8));
-    func_ov003_021d1ee0(2, 0, 0x1d, (u16) (8));
+    func_ov003_021d1ee0(2, 1, 1, 8);
+    func_ov003_021d1ee0(2, 0, 0x1d, 8);
     func_ov003_021d2784(1, 1);
     func_ov003_021d2784(0, 0x1d);
     func_ov003_021c212c(func_ov003_021c6394);
@@ -368,7 +368,7 @@ void func_ov003_021c5ec4(void) {
 
 void func_ov003_021c5ea4(void) {
     func_ov003_021bf2d0();
-    func_ov003_021d1dd0((u16) (8));
+    func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c5e54);
     return;
 }
@@ -416,8 +416,8 @@ void func_ov003_021c5cdc(void) {
     func_ov003_021d1490(gApList->mYbBgStep31Ncl);
     func_ov003_021d272c(1, 1);
     func_ov003_021d272c(0, 0x1d);
-    *(vu32 *) 0x4000010 = 0;
-    *(vu32 *) 0x4000018 = 0;
+    reg_G2_BG0OFS = 0;
+    reg_G2_BG2OFS = 0;
     s = gApList;
     if (s->mUnk_54 == 0) {
         func_ov003_021cd27c();
@@ -595,7 +595,7 @@ void WriteApListBgOffset(void) {
     u32 v2;
     if (gApList->mBgOffsetPending != 0) {
         v1 = FX_ModS32(*(u16 *) &gApListScrollY, 0x1c);
-        v2 = (v1 + -0x32) * 0x10000 & ((u32) 0x01ff0000u);
+        v2 = (v1 + -0x32) * 0x10000 & (0x01ff0000u);
         reg_G2_BG0OFS = v2;
         reg_G2_BG2OFS = v2;
         gApList->mBgOffsetPending = 0;

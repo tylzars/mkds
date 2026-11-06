@@ -413,8 +413,8 @@ void func_02118148(void) {
 void func_02118114(void) {
     gSelectCupGrid->mNextState = 6;
     gSelectCupGrid->mStateFrames = 0;
-    SetSelectChoisesSoundId(0, (u32) 7);
-    SetSelectChoisesSoundId(1, (u32) 0x10);
+    SetSelectChoisesSoundId(0, 7);
+    SetSelectChoisesSoundId(1, 0x10);
     SetSelectChoisesSoundId(0xffffffff, 0x10);
 }
 
@@ -449,8 +449,8 @@ void func_02118088(void) {
 void func_02118054(void) {
     gSelectCupGrid->mNextState = 9;
     gSelectCupGrid->mStateFrames = 0;
-    SetSelectChoisesSoundId(0, (u32) 5);
-    SetSelectChoisesSoundId(1, (u32) 0xf);
+    SetSelectChoisesSoundId(0, 5);
+    SetSelectChoisesSoundId(1, 0xf);
     SetSelectChoisesSoundId(0xffffffff, 0x10);
 }
 
@@ -1039,7 +1039,7 @@ void func_021173e4(void) {
     u32 value0;
     u32 value1;
     u32 value2;
-    value0 = (u32) gSelectCupGrid->mBg0Offset;
+    value0 = gSelectCupGrid->mBg0Offset;
     value0 = 0u - (value0);
     value1 = (value0 << 16);
     value0 = 0x1ff0000u;
@@ -1047,7 +1047,7 @@ void func_021173e4(void) {
     value0 = 0x4000010u;
     *(u32 *) ((value0) + 0u) = value1;
     value1 = 0x4000000u;
-    value2 = (u32) * (const u32 *) ((value1) + 0u);
+    value2 = *(const u32 *) ((value1) + 0u);
     value0 = 0xffff1fffu;
     value2 = (value2) & (value0);
     *(u32 *) ((value1) + 0u) = value2;

@@ -112,7 +112,7 @@ s32 NNS_G2dArrangeOBJ1D(void *oam, s32 areaWidth, s32 areaHeight, s32 x, s32 y, 
     u32 remainder;
     s32 subX;
 
-    pObj = (Unk02022eb0 *) oam;
+    pObj = oam;
     if (areaWidth >= 8) {
         widthLog = 3;
     } else {

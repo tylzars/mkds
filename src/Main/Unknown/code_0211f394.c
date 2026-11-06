@@ -36,8 +36,8 @@ void func_0211f61c(void) {
     data_0217d380->mBncl = v1;
     v1 = FindSceneFile(data_0216e12c);
     data_0217d380->mBnll = v1;
-    CallQueueAppend((u32) 0x23, (u32) 0, v2->mData, v2->mDataSize);
-    CallQueueAppend((u32) 0x1e, (u32) 0, v3[0]->mData, v3[0]->mDataSize);
+    CallQueueAppend(0x23, 0, v2->mData, v2->mDataSize);
+    CallQueueAppend(0x1e, 0, v3[0]->mData, v3[0]->mDataSize);
 }
 
 #pragma thumb off

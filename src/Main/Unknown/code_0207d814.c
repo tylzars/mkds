@@ -42,7 +42,7 @@ void func_0207e594(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     } else {
         p->mUnk_8c = 0x1000;
     }
-    p->mUnk_9c = (s32) (((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12);
+    p->mUnk_9c = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
     func_02080d34(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     p->mUnk_cc = 1;
@@ -89,7 +89,7 @@ void func_0207e400(struct Unk020888b4 *p, struct Kart *q, s32 a) {
     p->mUnk_06 = p->mIndex % 4;
     p->mUnk_88 = 0x1000;
     p->mUnk_8c = 0;
-    p->mUnk_9c = (s32) (((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12);
+    p->mUnk_9c = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
     func_02080d34(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     p->mUnk_cc = 1;
@@ -152,25 +152,25 @@ u32 func_0207e200(struct Unk02089a24 *arg0, struct Unk020888b4 *arg1) {
     u32 value1 = (u32) arg1;
     u32 value2;
     u32 value4;
-    value2 = (u32) * (const u32 *) ((value1) + (0));
+    value2 = *(const u32 *) ((value1) + (0));
     value4 = value0;
-    value0 = (u32) arg1->mKart->mPhysicalParam->mBaseSpeedLimit;
+    value0 = arg1->mKart->mPhysicalParam->mBaseSpeedLimit;
     *(u32 *) ((value4) + (0)) = value0;
-    value0 = (u32) * (const u32 *) ((value4) + (0));
+    value0 = *(const u32 *) ((value4) + (0));
     *(u32 *) ((value4) + (16)) = value0;
-    value0 = (u32) arg1->mIndex;
-    value0 = (u32) func_020853f0(value0);
+    value0 = arg1->mIndex;
+    value0 = func_020853f0(value0);
     *(u32 *) ((value4) + (28)) = value0;
-    value0 = (u32) * (const u32 *) ((value4) + (28));
+    value0 = *(const u32 *) ((value4) + (28));
     value2 = 0u;
     *(u32 *) ((value4) + (32)) = value0;
     *(u32 *) ((value4) + (36)) = value2;
-    value1 = (u32) * (const u32 *) ((value4) + (0));
+    value1 = *(const u32 *) ((value4) + (0));
     value0 = ~(0u);
     *(u32 *) ((value4) + (4)) = value1;
     *(u32 *) ((value4) + (8)) = value2;
     *(u32 *) ((value4) + (12)) = value2;
-    value1 = (u32) * (const u32 *) ((value4) + (0));
+    value1 = *(const u32 *) ((value4) + (0));
     *(u32 *) ((value4) + (16)) = value1;
     *(u32 *) ((value4) + (20)) = value0;
     *(u32 *) ((value4) + (24)) = value2;
@@ -179,11 +179,11 @@ u32 func_0207e200(struct Unk02089a24 *arg0, struct Unk020888b4 *arg1) {
 
 void func_0207e1d4(struct Unk02089a24 *p0, struct Unk020888b4 *p1) {
     p0->mUnk_04 = (u32) (((u32) p0->mUnk_00));
-    p0->mUnk_08 = (u32) 0x0u;
-    p0->mUnk_0c = (u32) 0x0u;
+    p0->mUnk_08 = 0x0u;
+    p0->mUnk_0c = 0x0u;
     p0->mUnk_10 = (u32) (((u32) p0->mUnk_00));
     p0->mUnk_14 = (u32) ((~(0x0u)));
-    p0->mUnk_18 = (u32) 0x0u;
+    p0->mUnk_18 = 0x0u;
 }
 
 void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
@@ -225,7 +225,7 @@ void func_0207e088(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     }
     t = data_usa_0217ae2c[r5];
     if (r4 >= t) {
-        if (!((float) t >= 1.0f)) {
+        if (!(t >= 1.0f)) {
             return;
         }
     }
@@ -267,16 +267,16 @@ void func_0207de84(struct Unk02089a24 *a, struct Unk020888b4 *b) {
             t = 0xa000;
         }
         if (q->mUnk_4c & 0x8000000) {
-            t = (s32) (((s64) t * 0xb33 + 0x800) >> 12);
+            t = ((s64) t * 0xb33 + 0x800) >> 12;
         }
         if (b->mUnk_90 == 0) {
             a->mUnk_0c = t;
             if (b->mUnk_70 > 0x5000) {
-                s = (s32) (((s64) (b->mUnk_70 - 0x5000) * 0x5b) >> 12);
+                s = ((s64) (b->mUnk_70 - 0x5000) * 0x5b) >> 12;
                 if (s > 0x1000) {
                     s = 0x1000;
                 }
-                a->mUnk_0c = (s32) (((s64) (0x1000 - (s32) (((s64) s * 0x668) >> 12)) * 0xa000) >> 12);
+                a->mUnk_0c = ((s64) (0x1000 - (s32) (((s64) s * 0x668) >> 12)) * 0xa000) >> 12;
             }
             func_0207d9f0(a, b, t);
             t = a->mUnk_10;
@@ -362,7 +362,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
         t = data_usa_0217ae34;
     }
     v = t[n - 1];
-    k[2] = (s32) (((s64) v * r->mUnk_04) >> 12);
+    k[2] = ((s64) v * r->mUnk_04) >> 12;
     if (func_02085390() != 0) {
         n = r->mUnk_04;
         d = func_02085434();
@@ -376,12 +376,12 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
             }
             v = t[GetKartRank((s32) (u16) d)];
             if (e > (s32) (((s64) v * n) >> 12)) {
-                a->mUnk_10 = (s32) (((s64) a->mUnk_10 * 0xf85) >> 12);
+                a->mUnk_10 = ((s64) a->mUnk_10 * 0xf85) >> 12;
                 a->mUnk_18 = 1;
             }
         }
     } else if (n < e) {
-        a->mUnk_10 = (s32) (((s64) a->mUnk_10 * 0xe66) >> 12);
+        a->mUnk_10 = ((s64) a->mUnk_10 * 0xe66) >> 12;
         a->mUnk_18 = 1;
     } else if (n == e) {
         if (n == 1) {
@@ -390,7 +390,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
                 g = func_020853a4(m);
                 g -= func_020853a4((u16) d);
                 if (g > GetKart(d)->mUnk_310->mUnk_e8.mUnk_24) {
-                    a->mUnk_10 = (s32) (((s64) a->mUnk_10 * 0xf85) >> 12);
+                    a->mUnk_10 = ((s64) a->mUnk_10 * 0xf85) >> 12;
                     a->mUnk_18 = 1;
                 }
             }
@@ -411,7 +411,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
                         if (q->mUnk_310->mUnk_e8.mUnk_04 > (s32) (((s64) w * 0xcd0) >> 12)) {
                             e = func_020853a4((u16) d) - g;
                             if (e < (s32) (((s64) k[2] * func_0208548c()) >> 12)) {
-                                a->mUnk_10 = (s32) (((s64) a->mUnk_10 * 0xfae) >> 12);
+                                a->mUnk_10 = ((s64) a->mUnk_10 * 0xfae) >> 12;
                                 a->mUnk_18 = 1;
                             }
                         }
@@ -421,7 +421,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct Unk020888b4 *b, s32 c) {
         }
     }
     if (a->mUnk_18 == 0) {
-        a->mUnk_10 = (s32) (((s64) a->mUnk_10 * 0x10cd) >> 12);
+        a->mUnk_10 = ((s64) a->mUnk_10 * 0x10cd) >> 12;
         if (a->mUnk_10 >= c) {
             a->mUnk_10 = c;
         }
@@ -483,7 +483,7 @@ void func_0207d814(struct Unk02089a24 *a, struct Unk020888b4 *b) {
     }
     if (data_021759c0->mUnk_00c == 6) {
         t = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
-        b->mKart->mForwardSpeed = (s32) (((s64) b->mKart->mPhysicalParam->mBaseSpeedLimit * t + 0x800) >> 12);
+        b->mKart->mForwardSpeed = ((s64) b->mKart->mPhysicalParam->mBaseSpeedLimit * t + 0x800) >> 12;
         b->mKart->mSpeedLimitGoal = b->mKart->mForwardSpeed;
         b->mKart->mSpeedLimit = b->mKart->mSpeedLimitGoal;
         return;

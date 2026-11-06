@@ -88,8 +88,8 @@ u32 func_02111158(s32 a) {
 u32 func_02111144(void) {
     u32 value0;
     value0 = (u32) &data_0217d32c;
-    value0 = (u32) * (const u32 *) ((value0) + (8));
-    value0 = (u32) * (const u32 *) ((value0) + (20));
+    value0 = *(const u32 *) ((value0) + (8));
+    value0 = *(const u32 *) ((value0) + (20));
     return value0;
 }
 

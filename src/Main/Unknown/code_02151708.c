@@ -10,7 +10,7 @@
 
 u32 func_02151830(u16 *a) {
     int v1;
-    v1 = readNvram((u32) 0x20, (u32) 0x20, a);
+    v1 = readNvram(0x20, 0x20, a);
     if (v1 == 0) {
         return 0;
     }
@@ -20,7 +20,7 @@ u32 func_02151830(u16 *a) {
 
 u32 func_02151804(void *a) {
     int v1;
-    v1 = readNvram((u32) ((*(u32 *) &data_0218049c)), (u32) (((u32) 0x00000400u)), a);
+    v1 = readNvram((*(u32 *) &data_0218049c), (0x00000400u), a);
     if (v1 != 0) {
         return 1;
     }

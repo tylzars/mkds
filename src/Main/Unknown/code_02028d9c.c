@@ -66,12 +66,12 @@ u16 func_02028dd4(void) {
 }
 
 u32 func_02028db8(u32 p0) {
-    return ((u32) data_0217aa00->mUnk_1e52[p0].mUnk_00);
+    return (data_0217aa00->mUnk_1e52[p0].mUnk_00);
 }
 
 u32 func_02028d9c(void) {
     u32 value0;
-    value0 = (u32) func_02028dd4();
-    value0 = (u32) func_02028db8(value0);
+    value0 = func_02028dd4();
+    value0 = func_02028db8(value0);
     return value0;
 }

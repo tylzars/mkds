@@ -6,6 +6,7 @@
 #include "code_02013740.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/unk_02170000.h"
+#include "registers.h"
 
 u32 gVramBankLockedMask;
 u16 gVramBankLockIds[9];
@@ -304,7 +305,7 @@ void OS_GetLowEntropyData(Unk0201000c *buffer) {
     buffer->mUnk_00 = OS_GetTickLo() | (vcount << 16);
     buffer->mUnk_04 = (*(u16 *) (macAddress + 4) << 16) ^ (u32) gTickOverflowCount;
     buffer->mUnk_08 = *(u32 *) (work + 0x3c) ^ ((gTickOverflowCount >> 32) ^ *(u32 *) macAddress);
-    buffer->mUnk_08 = buffer->mUnk_08 ^ *(vu32 *) 0x4000600;
+    buffer->mUnk_08 = buffer->mUnk_08 ^ reg_G3X_GXSTAT;
     buffer->mUnk_0c = *(u32 *) (work + 0x1e8);
     buffer->mUnk_10 = *(u32 *) (work + 0x1ec);
     buffer->mUnk_14 = *(u32 *) (work + 0x390) ^ (*(u16 *) (work + 0x394) << 16);

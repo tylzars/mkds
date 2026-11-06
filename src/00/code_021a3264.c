@@ -82,9 +82,9 @@ u32 func_ov000_021a3448(u32 a) {
     data_ov000_021b5dd4.mUnk_00 =
         data_ov000_021b5dd4.mUnk_08 * data_ov000_021b5dd4.mUnk_00 + data_ov000_021b5dd4.mUnk_10;
     if (a == 0) {
-        return (u32) (data_ov000_021b5dd4.mUnk_00 >> 32);
+        return data_ov000_021b5dd4.mUnk_00 >> 32;
     }
-    return (u32) (((data_ov000_021b5dd4.mUnk_00 >> 32) * a) >> 32);
+    return ((data_ov000_021b5dd4.mUnk_00 >> 32) * a) >> 32;
 }
 
 BOOL func_ov000_021a33e4(u32 a, s32 b) {

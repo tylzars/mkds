@@ -553,7 +553,7 @@ void AdvanceWiFiVSMatchingState8(void) {
             gWiFiVSMatching->mPendingWiFiState = 4;
             gWiFiVSMatching->mUnk_08 = 0;
             RequestTxtSystemClose();
-            StartFadeToFadedNegative((s16) (30));
+            StartFadeToFadedNegative(30);
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x20c);
         }
     }

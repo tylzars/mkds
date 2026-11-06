@@ -113,26 +113,26 @@ s32 func_020a223c(u16 a) {
 }
 
 void func_020a2220(u16 arg0, u32 arg1) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
     u32 value3;
     value3 = (u32) &gStandings;
     value2 = 0x70u;
-    value3 = (u32) * (const u32 *) ((value3) + (0));
+    value3 = *(const u32 *) ((value3) + (0));
     value2 = (value0) * (value2) + (value3);
     *(u32 *) ((value2) + (108)) = value1;
 }
 
 u32 func_020a2204(u16 arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = (u32) &gStandings;
     value1 = 0x70u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u32 *) ((value1) + (108));
+    value0 = *(const u32 *) ((value1) + (108));
     return value0;
 }
 
@@ -273,7 +273,7 @@ static inline u16 func_020a1790_inline(Standings *d, s32 i) {
 
     for (j = 0; j < 8; j++) {
         if ((u16) i == d->mKarts[j].mRankIndex) {
-            return (u16) j;
+            return j;
         }
     }
     return 0;
@@ -455,9 +455,9 @@ found:
     } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
         v1 = data_021759c0->mEntryIndex;
         if (gStandings->mWinnerTeamId == v1) {
-            func_0203e74c((u16) v1);
+            func_0203e74c(v1);
         } else {
-            func_0203cd04((u16) v1);
+            func_0203cd04(v1);
         }
         gStandings->mEndTimer = 0;
     }
@@ -482,7 +482,7 @@ static inline u16 func_020a12b8_inline(s32 i) {
 
     for (j = 0; j < 8; j++) {
         if ((u16) i == gStandings->mKarts[j].mRankIndex) {
-            return (u16) j;
+            return j;
         }
     }
     return 0;
@@ -534,7 +534,7 @@ u16 func_020a1520(void) {
         }
     }
     if (data_0217c780 & 1) {
-        h = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
+        h = func_0210e128(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (h[0] != NULL) {
                 NNS_SndPlayerStopSeq(h, 0);
@@ -565,7 +565,7 @@ void func_020a12b8(void) {
             if (gStandings->mWinnerTeamId >= 0) {
                 return;
             }
-            s = (u16) n;
+            s = n;
             do {
                 r = &gRaceProgress->mRandom;
                 if ((u16) n == 0) {
@@ -578,7 +578,7 @@ void func_020a12b8(void) {
                         m = (u32) (((u64) (u32) (r->mUnk_00 >> 32) * (u64) s) >> 32);
                     }
                 }
-                k = (u16) m;
+                k = m;
                 if (gStandings->mKarts[k].mEliminationStatus == 0) {
                     func_020a16d0(k);
                     gStandings->mKarts[k].mEliminationStatus = 2;
@@ -615,14 +615,14 @@ u32 func_020a128c(void) {
     u32 compareRight1;
     value1 = (u32) &gStandings;
     value0 = 0u;
-    value2 = (u32) * (const u32 *) ((value1) + (0));
-    value1 = (u32) * (const u32 *) ((value2) + (948));
+    value2 = *(const u32 *) ((value1) + (0));
+    value1 = *(const u32 *) ((value2) + (948));
     compareLeft0 = value1;
     compareRight0 = 0u;
     if ((s32) compareLeft0 < (s32) compareRight0) {
         return value0;
     }
-    value1 = (u32) * (const u32 *) ((value2) + (936));
+    value1 = *(const u32 *) ((value2) + (936));
     compareLeft1 = value1;
     compareRight1 = 0u;
     if ((s32) compareLeft1 < (s32) compareRight1) {
@@ -646,7 +646,7 @@ u16 GetKartStandingRankIndex(int arg0) {
 
 // Returns mShineCount.
 u32 GetShineCount(void) {
-    return ((u32) gStandings->mShineCount);
+    return (gStandings->mShineCount);
 }
 
 // Adds its argument to mShineCount (+1 when a shine is placed, -1 when one is finished).
@@ -699,15 +699,15 @@ void func_020a10f0(u16 a, s32 b) {
 }
 
 u16 func_020a10d4(u16 arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = (u32) &gStandings;
     value1 = 0x70u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u16 *) ((value1) + (80));
-    return (u16) value0;
+    value0 = *(const u16 *) ((value1) + (80));
+    return value0;
 }
 
 void func_020a10ac(u16 a, s32 b) {
@@ -754,12 +754,12 @@ s32 IsKartOnWinningTeamAtEnd(s32 a) {
 
 // Returns the address of the kart's saved position (mKarts[i].mPos), not its rank.
 Vec3 *GetKartStandingPos(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = (u32) &gStandings;
     value1 = 0x70u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
     value0 = (value1) + (0xcu);
     return (Vec3 *) value0;
@@ -792,8 +792,8 @@ void InitStandings(void) {
         e = &gStandings->mKarts[i];
         e->mUnk_1c = -2;
         e->mUnk_18 = -2;
-        e->mUnk_44 = (u16) i;
-        e->mRankIndex = (u16) i;
+        e->mUnk_44 = i;
+        e->mRankIndex = i;
         if (i < data_021759c0->mKartCount) {
             switch (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mTeamIndex) {
                 case 0:
@@ -803,7 +803,7 @@ void InitStandings(void) {
                     e->mTeamId = 3;
                     break;
                 default:
-                    e->mTeamId = (u16) i;
+                    e->mTeamId = i;
                     break;
             }
             e->mEliminationStatus = 0;
@@ -892,7 +892,7 @@ void UpdateStandings(void) {
                     e->mUnk_04 = TRUE;
                     e->mUnk_00 = FALSE;
                     e->mUnk_18 = -2;
-                    e->mUnk_44 = (u16) i;
+                    e->mUnk_44 = i;
                     e->mUnk_20 = FALSE;
                     if (e->mBalloonOrShineCount <= 1) {
                         if ((data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) ||
@@ -910,7 +910,7 @@ void UpdateStandings(void) {
                 }
                 if (e->mUnk_1c == 0) {
                     e->mUnk_1c = -2;
-                    gStandings->mKartHitCallback((u16) i, 8);
+                    gStandings->mKartHitCallback(i, 8);
                     e->mUnk_44 = i;
                 } else if (e->mUnk_1c >= 0) {
                     e->mUnk_1c = e->mUnk_1c + 1;
@@ -936,7 +936,7 @@ void UpdateStandings(void) {
                 }
                 if (e->mUnk_18 == 0) {
                     e->mUnk_18 = -2;
-                    gStandings->mKartHitCallback((u16) i, e->mUnk_44);
+                    gStandings->mKartHitCallback(i, e->mUnk_44);
                     e->mUnk_44 = i;
                 } else if (e->mUnk_18 >= 0) {
                     e->mUnk_18 = e->mUnk_18 + 1;

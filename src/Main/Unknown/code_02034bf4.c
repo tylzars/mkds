@@ -143,8 +143,8 @@ void func_02034ef0(void) {
         } else {
             v = 15;
         }
-        func_02124100(w, (u8) v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
-        func_02124100(i, (u8) v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
+        func_02124100(w, v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
+        func_02124100(i, v, s->mUnk_14, s->mUnk_18, s->mUnk_0c);
     }
     if (data_02174e64->mUnk_080 >= 0) {
         func_02025c6c(4, data_02164254[data_02174e64->mUnk_080][3], s->mUnk_0c);

@@ -7,7 +7,7 @@ void func_020ea618(Unk0209bc74_14 *a, int b) {
     u16 v2;
     u16 v3;
     v1 = a->mUnk_6e;
-    if (b < (s32) v1) {
+    if (b < v1) {
         v2 = a->mUnk_6c;
         v3 = AllocPolygonIdWrapping();
         a->mUnk_6c = v3;

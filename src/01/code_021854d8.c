@@ -4,7 +4,7 @@
 #pragma thumb off
 
 void func_ov001_021854f4(int a) {
-    (*(u32 *) (u32) 0x4000000u) = (*(u32 *) (u32) 0x4000000u) & 0xffffe0ff | a << 8;
+    (*(u32 *) 0x4000000u) = (*(u32 *) 0x4000000u) & 0xffffe0ff | a << 8;
     return;
 }
 

@@ -170,7 +170,7 @@ void func_02033a0c(void *a) {
             r -= func_02025a00(0, a, t, p, r);
             p += 8;
             j++;
-        } while (j < (s32) t->mUnk_14->mUnk_06);
+        } while (j < t->mUnk_14->mUnk_06);
     }
     func_020338f8_inline(w, 0x16);
     func_020adff0((u16) gResultsBattle->mUnk_0d0, w, 1);

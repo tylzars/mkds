@@ -253,7 +253,7 @@ void func_ov003_021cf5ac(void) {
 }
 
 void func_ov003_021cf598(void) {
-    func_ov003_021cf36c((u16) (6));
+    func_ov003_021cf36c(6);
     func_02009c04();
     return;
 }

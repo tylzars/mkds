@@ -109,10 +109,10 @@ void func_02069f6c(Kart *p) {
             p->mScaleFactor.x = 0x1000;
             p->mScaleFactor.y = 0x1000;
             p->mScaleFactor.z = 0x1000;
-            p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
-            p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
-            p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
-            p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
+            p->mScale.x = ((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12;
+            p->mScale.y = ((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12;
+            p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
+            p->mScale.y = ((s64) p->mScaleYFactor * p->mScale.y) >> 12;
             if (s->mUnk_0c > 0x19) {
                 p->mUnk_4c &= ~0x10000;
                 if (!(p->mUnk_4c & 0x10080)) {
@@ -129,10 +129,10 @@ void func_02069f6c(Kart *p) {
         p->mScaleFactor.y = data_usa_02154e48[s->mUnk_0c];
         p->mScaleFactor.z = data_usa_02154eac[s->mUnk_0c];
         p->mScaleYFactor = 0x1000;
-        p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
-        p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
-        p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
-        p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
+        p->mScale.x = ((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12;
+        p->mScale.y = ((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12;
+        p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
+        p->mScale.y = ((s64) p->mScaleYFactor * p->mScale.y) >> 12;
         return;
     }
     s->mUnk_0e--;
@@ -145,16 +145,16 @@ void func_02069f6c(Kart *p) {
     if (p->mUnk_48 & 0x4000000) {
         p->mForwardSpeed = 0;
     }
-    if ((float) p->mScaleYFactor > 0.3f / 4096.0f) {
+    if (p->mScaleYFactor > 0.3f / 4096.0f) {
         p->mScaleYFactor -= 0x4cd;
-        if ((float) p->mScaleYFactor < 0.3f / 4096.0f) {
+        if (p->mScaleYFactor < 0.3f / 4096.0f) {
             p->mScaleYFactor = 0x4cd;
         }
     }
-    p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
-    p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
-    p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
-    p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
+    p->mScale.x = ((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12;
+    p->mScale.y = ((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12;
+    p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
+    p->mScale.y = ((s64) p->mScaleYFactor * p->mScale.y) >> 12;
 }
 
 void func_02069ea8(Kart *p) {
@@ -650,7 +650,7 @@ s32 func_02068ec0(Kart *p, s32 a) {
         if (data_021759c0->mMode == MODE_BATTLE && a == 0) {
             StartSound(&p->mSoundSource, 0xd3, 0x7f, 0);
             if (data_021759c0->mUnk_18 == 0 && (data_0217c780 & 1)) {
-                h = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
+                h = func_0210e128(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (h[0] != NULL) {
                         NNS_SndPlayerStopSeq(h, 0);

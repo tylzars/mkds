@@ -4,7 +4,7 @@
 #pragma thumb on
 
 u32 func_020b41d4(u32 p0) {
-    return ((u32) data_021759c8->mUnk_00[p0].mLoaded);
+    return (data_021759c8->mUnk_00[p0].mLoaded);
 }
 
 #pragma thumb off

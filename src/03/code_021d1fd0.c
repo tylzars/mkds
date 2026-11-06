@@ -25,6 +25,7 @@
 #include "03/code_021bf4dc.h"
 #include "03/code_021d1d60.h"
 #include "03/unk_021d7000.h"
+#include "registers.h"
 
 void func_ov003_021d2490(void) {
     Unk021d2490 *a = func_ov003_021d285c(0x798, 4);
@@ -45,7 +46,7 @@ void func_ov003_021d244c(void) {
     int v1;
     int v2;
     int v3;
-    v3 = ((u32) 0x0000078cu);
+    v3 = (0x0000078cu);
     v1 = 0;
     v2 = 0;
     do {
@@ -86,7 +87,7 @@ Unk021d23b0 *func_ov003_021d23b0(u32 a, u16 b, u16 c, s32 d, u32 *e, s32 f) {
 }
 
 void func_ov003_021d2388(void *a) {
-    func_ov003_021d305c((u32) (*(u32 *) ((u8 *) a + 0x30)));
+    func_ov003_021d305c(*(u32 *) ((u8 *) a + 0x30));
     func_ov003_021d1d0c((*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_788, a);
 }
 
@@ -100,11 +101,11 @@ Unk021d2188 *func_ov003_021d2288(u32 g, u32 h) {
 
     a->mUnk_30 = func_ov003_021d285c((c * b) << 5, 0x20);
     if (g == 1) {
-        d = (vu16 *) 0x4001008;
+        d = &reg_G2S_DB_BG0CNT;
         *d &= ~0x40;
         *d = (*d & 0x43) | 0xc00;
     } else {
-        d = (vu16 *) 0x4000008;
+        d = &reg_G2_BG0CNT;
         *d &= ~0x40;
         *d = (*d & 0x43) | 0xc00;
     }
@@ -178,8 +179,7 @@ void func_ov003_021d214c(u32 p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5) {
 }
 
 void func_ov003_021d211c(void *a, u32 b, u32 c, u32 d, u16 e, int f) {
-    NNS_G2dCharCanvasDrawChar((Unk02023374 *) a, (Unk02022aa8 *) ((*(s32 *) &data_ov003_021da2c4) + f * 0xc), b, c, d,
-                              e);
+    NNS_G2dCharCanvasDrawChar(a, (Unk02022aa8 *) ((*(s32 *) &data_ov003_021da2c4) + f * 0xc), b, c, d, e);
 }
 
 void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n) {

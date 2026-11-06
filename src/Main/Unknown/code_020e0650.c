@@ -12,7 +12,7 @@ void func_020e0650(u32 *arg0) {
     value1 = 0x1cu;
     value0 = (u32) HeapAlloc((void *) value0, value1);
     *(u32 *) ((value4) + (0)) = value0;
-    value0 = (u32) * (const u32 *) ((value4) + (0));
+    value0 = *(const u32 *) ((value4) + (0));
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
 }

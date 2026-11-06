@@ -10,12 +10,12 @@ u32 InitMapObjectUpdateList(MapObjectList *arg0) {
     value4 = (value0) + (0u);
     value0 = (u32) func_020364e8();
     value0 = (u32) GetHeap((void *) value0);
-    value1 = (u32) * (const u16 *) ((value4) + 4u);
+    value1 = *(const u16 *) ((value4) + 4u);
     value1 = (value1 << 2);
     value0 = (u32) HeapAlloc((void *) value0, value1);
     *(u32 *) ((value4) + 0u) = value0;
     value1 = 0u;
-    *(u16 *) ((value4) + 4u) = (u16) value1;
+    *(u16 *) ((value4) + 4u) = value1;
     value0 = 3u;
     *(u32 *) ((value4) + 24u) = value0;
     *(u32 *) ((value4) + 28u) = value1;

@@ -6,6 +6,6 @@ void func_ov003_021d326c(void) {
     u32 value3;
     value0 = 1u;
     value3 = (u32) &PMi_SendLEDPatternCommand;
-    value0 = (u32) PMi_SendLEDPatternCommand(value0);
+    value0 = PMi_SendLEDPatternCommand(value0);
     return;
 }

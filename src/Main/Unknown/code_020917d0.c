@@ -5,7 +5,7 @@
 #include "Main/Unknown/unk_02156000.h"
 
 void func_0209188c(Unk0209188c *p0) {
-    p0->mUnk_02 = (u16) (((((u32) p0->mUnk_02)) | (((u32) data_0215645c))));
+    p0->mUnk_02 = (((p0->mUnk_02)) | ((data_0215645c)));
 }
 
 u8 func_02091828(Sman *a, Kart *b, u8 *c, u8 *d) {

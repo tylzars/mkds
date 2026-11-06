@@ -67,13 +67,14 @@
 #include "Main/Unknown/code_0203c5f8.h"
 #include "Main/Unknown/code_0203c8dc.h"
 #include "Main/Unknown/code_02077bc0.h"
+#include "registers.h"
 
 u32 func_020c5dc4(void) {
-    return ((u32) data_0217b3f0->mUnk_00);
+    return (data_0217b3f0->mUnk_00);
 }
 
 u32 func_020c5db0(void) {
-    return ((u32) data_0217b3f0->mUnk_04);
+    return (data_0217b3f0->mUnk_04);
 }
 
 void func_020c5ce0(void) {
@@ -453,15 +454,15 @@ void func_020c4e48(void) {
 
     DC_FlushRange(&gRaceStartGp->mUnk_18, 0x400);
     GX_LoadOAM(&gRaceStartGp->mUnk_18, 0, 0x400);
-    v = (*(vu16 *) 0x4000304 & 0x8000) >> 15;
+    v = (reg_GX_POWCNT & 0x8000) >> 15;
     if (v != 0) {
         if (v == 1) {
-            p = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
-            *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & ~0x1f00) | ((p | 0x10) << 8);
+            p = (reg_GX_DISPCNT & 0x1f00) >> 8;
+            reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((p | 0x10) << 8);
         }
     } else {
-        p = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
-        *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & ~0x1f00) | ((p & ~0x10) << 8);
+        p = (reg_GX_DISPCNT & 0x1f00) >> 8;
+        reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((p & ~0x10) << 8);
     }
 }
 
@@ -519,7 +520,7 @@ u32 func_020c4bd8(void) {
 u16 func_020c4bb0(void) {
     u16 *v1;
     int *v2;
-    v1 = ((u16 *) 0x04000304u);
+    v1 = ((u16 *) &reg_GX_POWCNT);
     v2 = (s32 *) gRaceStartGp;
     *v2 = (*(u32 *) v2) + 1;
     return *v1;
@@ -650,7 +651,7 @@ void func_020c43c4(void) {
     if (data_0217b3e4->mUnk_00c > 0xf) {
         data_0217b3e4->mUnk_00c = 0;
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
-            for (j = 0; j < data_0217b3e4->mUnk_790[i].mUnk_00; j = (u16) (j + 1)) {
+            for (j = 0; j < data_0217b3e4->mUnk_790[i].mUnk_00; j = j + 1) {
                 if (data_0217b3e4->mUnk_790[i].mUnk_34[j] < 0x28) {
                     data_0217b3e4->mUnk_790[i].mUnk_34[j]++;
                 }
@@ -712,10 +713,10 @@ void func_020c3e44(Unk020c06c4 *a) {
     for (i = 1; i < 16; i++) {
         func_020ae5c4(a);
     }
-    if ((s32) (func_020b1d50() * 3) > 0) {
-        f = (float) (s32) (func_020b1d50() * 0x3000) + 0.5f;
+    if ((func_020b1d50() * 3) > 0) {
+        f = (func_020b1d50() * 0x3000) + 0.5f;
     } else {
-        f = (float) (s32) (func_020b1d50() * 0x3000) - 0.5f;
+        f = (func_020b1d50() * 0x3000) - 0.5f;
     }
     v = f;
     s = ((s64) v * 20) >> 12;
@@ -767,7 +768,7 @@ void func_020c3e44(Unk020c06c4 *a) {
                         w2[1] = o2.mUnk_04 << 12;
                         p = &a->mUnk_000.mUnk_00[d];
                         a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) p, 0x80 - d, r,
-                                                             &data_0217b3e4->mUnk_810[y].mUnk_00, w2, (u16) (y + c), 1);
+                                                             &data_0217b3e4->mUnk_810[y].mUnk_00, w2, y + c, 1);
                         for (; d < a->mUnk_400; d++, p++) {
                             if ((i != 0 ? 1 : -1) != -1) {
                                 p->mUnk_0a = i != 0 ? 1 : -1;

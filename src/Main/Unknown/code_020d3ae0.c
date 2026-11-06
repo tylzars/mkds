@@ -65,7 +65,7 @@ void func_020d50c4(void) {
 
 u32 func_020d50b4(void) {
     u32 value0;
-    value0 = (u32) data_0217b4f8.mUnk_54;
+    value0 = data_0217b4f8.mUnk_54;
     return value0;
 }
 
@@ -226,10 +226,10 @@ void func_020d4bf0(void) {
     data_0217b4f8.mUnk_50 = TRUE;
     data_0217b4f8.mUnk_54 = FALSE;
     if (data_021759c0->mUnk_00c == 2) {
-        *(u32 *) &data_0217b4f4 = ((u32) 0x00258000u);
+        *(u32 *) &data_0217b4f4 = (0x00258000u);
         return;
     }
-    *(u32 *) &data_0217b4f4 = ((u32) 0x0012c000u);
+    *(u32 *) &data_0217b4f4 = (0x0012c000u);
 }
 
 #pragma thumb off
@@ -299,7 +299,7 @@ void ClearMapObjectList(MapObjectList *arg0) {
     u32 value1;
     value1 = 0u;
     *(u32 *) ((value0) + 0u) = value1;
-    arg0->mMapObjectCount = (u16) value1;
+    arg0->mMapObjectCount = value1;
 }
 #pragma thumb off
 
@@ -317,12 +317,12 @@ u32 InitMapObjectDrawList(MapObjectList *arg0) {
     value4 = (value0) + (0u);
     value0 = (u32) func_020364e8();
     value0 = (u32) GetHeap((void *) value0);
-    value1 = (u32) * (const u16 *) ((value4) + 4u);
+    value1 = *(const u16 *) ((value4) + 4u);
     value1 = (value1 << 2);
     value0 = (u32) HeapAlloc((void *) value0, value1);
     *(u32 *) ((value4) + 0u) = value0;
     value0 = 0u;
-    *(u16 *) ((value4) + 4u) = (u16) value0;
+    *(u16 *) ((value4) + 4u) = value0;
     return value0;
 }
 #pragma thumb off
@@ -333,10 +333,10 @@ u32 AddMapObjectToDrawList(MapObjectList *arg0, MapObject *arg1) {
     u32 value1 = (u32) arg1;
     u32 value2;
     u32 value3;
-    value3 = (u32) arg0->mMapObjectCount;
+    value3 = arg0->mMapObjectCount;
     value2 = (value3) + (1u);
-    arg0->mMapObjectCount = (u16) value2;
-    value2 = (u32) * (const u32 *) ((value0) + 0u);
+    arg0->mMapObjectCount = value2;
+    value2 = *(const u32 *) ((value0) + 0u);
     value0 = (value3 << 2);
     *(u32 *) ((value2) + (value0)) = value1;
     return value0;
@@ -675,12 +675,12 @@ MapObject *GetFoundMapObject(u32 arg0) {
 }
 
 Vec3 *func_020d4104(int arg0) {
-    u32 value0 = (u32) arg0;
+    u32 value0 = arg0;
     u32 value1;
     u32 value2;
     value2 = (u32) &data_0217b4dc;
     value1 = 0xcu;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value0 = (value1) * (value0) + (value2);
     return (Vec3 *) value0;
 }
@@ -794,13 +794,13 @@ u32 func_020d3d94(void) {
     u32 compareRight1;
     value1 = (u32) &gCourseWater;
     value0 = 0u;
-    value1 = (u32) * (const u32 *) ((value1) + (0));
+    value1 = *(const u32 *) ((value1) + (0));
     compareLeft0 = value1;
     compareRight0 = 0u;
     if (compareLeft0 == compareRight0) {
         return value0;
     }
-    value1 = (u32) * (const u32 *) ((value1) + (368));
+    value1 = *(const u32 *) ((value1) + (368));
     compareLeft1 = value1;
     compareRight1 = 0u;
     if (compareLeft1 != compareRight1) {
@@ -853,7 +853,7 @@ u32 func_020d3c7c(void) {
     u32 value1;
     value0 = (u32) &gMapObjects;
     value1 = 1u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (696)) = value1;
     return value0;
 }

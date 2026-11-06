@@ -32,8 +32,8 @@ void func_020f2b94(void *a0, Unk020eda5c *b0, s32 c, s32 d, s32 e, s32 f) {
     a->mUnk_148.z = u;
     a->mUnk_148.x = t;
     a->mUnk_148.y = 0;
-    a->mUnk_000.mVelocity.x = (s32) (((s64) a->mUnk_130.x * a->mUnk_12c) >> 12);
-    a->mUnk_000.mVelocity.z = (s32) (((s64) a->mUnk_130.z * a->mUnk_12c) >> 12);
+    a->mUnk_000.mVelocity.x = ((s64) a->mUnk_130.x * a->mUnk_12c) >> 12;
+    a->mUnk_000.mVelocity.z = ((s64) a->mUnk_130.z * a->mUnk_12c) >> 12;
     if (d == 0) {
         VEC_Add(&a->mUnk_000.mVelocity, &b->mUnk_010->mUnk_1fc, &a->mUnk_000.mVelocity);
     }
@@ -42,9 +42,9 @@ void func_020f2b94(void *a0, Unk020eda5c *b0, s32 c, s32 d, s32 e, s32 f) {
         {
             s32 x, y, z;
 
-            x = (s32) (((s64) b->mUnk_02c.mUnk_0c.x * n) >> 12);
-            y = (s32) (((s64) b->mUnk_02c.mUnk_0c.y * n) >> 12);
-            z = (s32) (((s64) b->mUnk_02c.mUnk_0c.z * n) >> 12);
+            x = ((s64) b->mUnk_02c.mUnk_0c.x * n) >> 12;
+            y = ((s64) b->mUnk_02c.mUnk_0c.y * n) >> 12;
+            z = ((s64) b->mUnk_02c.mUnk_0c.z * n) >> 12;
             a->mUnk_000.mVelocity.x = (s32) (a->mUnk_000.mVelocity.x - x);
             a->mUnk_000.mVelocity.y -= y;
             a->mUnk_000.mVelocity.z -= z;
@@ -125,9 +125,9 @@ void func_020f288c(Unk020f1d70 *a, Vec3 *b) {
     p = &a->mUnk_13c;
     q = &a->mUnk_130;
     n = VEC_DotProduct(b, p);
-    v.x = (s32) (((s64) b->x * n) >> 12);
-    v.y = (s32) (((s64) b->y * n) >> 12);
-    v.z = (s32) (((s64) b->z * n) >> 12);
+    v.x = ((s64) b->x * n) >> 12;
+    v.y = ((s64) b->y * n) >> 12;
+    v.z = ((s64) b->z * n) >> 12;
     a->mUnk_13c.x -= v.x;
     p->y -= v.y;
     p->z -= v.z;
@@ -155,9 +155,9 @@ void func_020f2768(Unk020f1d70 *a, Vec3 *b, Vec3 *c) {
 
     p = &a->mUnk_130;
     n = VEC_DotProduct(b, p);
-    v.x = (s32) (((s64) b->x * n) >> 12);
-    v.y = (s32) (((s64) b->y * n) >> 12);
-    v.z = (s32) (((s64) b->z * n) >> 12);
+    v.x = ((s64) b->x * n) >> 12;
+    v.y = ((s64) b->y * n) >> 12;
+    v.z = ((s64) b->z * n) >> 12;
     a->mUnk_130.x -= v.x;
     p->y -= v.y;
     p->z -= v.z;
@@ -242,9 +242,9 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
             }
         }
         n = a->mUnk_12c;
-        p->x = (s32) (((s64) a->mUnk_13c.x * n) >> 12);
-        p->y = (s32) (((s64) a->mUnk_13c.y * n) >> 12);
-        p->z = (s32) (((s64) a->mUnk_13c.z * n) >> 12);
+        p->x = ((s64) a->mUnk_13c.x * n) >> 12;
+        p->y = ((s64) a->mUnk_13c.y * n) >> 12;
+        p->z = ((s64) a->mUnk_13c.z * n) >> 12;
         if (a->mUnk_000.mUnk_fc & 0x1e34ef) {
             v1.y = q->y - a->mUnk_000.mPrevPos.y;
             if (v1.y > 0x5000 && f == 0) {
@@ -255,9 +255,9 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
             }
         }
         if (a->mUnk_154 < 0) {
-            p->x = (s32) (((s64) p->x * 0x23d) >> 12);
-            p->y = (s32) (((s64) p->y * 0x23d) >> 12);
-            p->z = (s32) (((s64) p->z * 0x23d) >> 12);
+            p->x = ((s64) p->x * 0x23d) >> 12;
+            p->y = ((s64) p->y * 0x23d) >> 12;
+            p->z = ((s64) p->z * 0x23d) >> 12;
             func_020f6fc4(a, 1);
             return;
         }
@@ -286,7 +286,7 @@ void func_020f2228(Unk020f1d70 *a, s32 b) {
             w->y = w->y >> 3;
             return;
         }
-        w->y = (s32) (((s64) n * 0xe66) >> 12);
+        w->y = ((s64) n * 0xe66) >> 12;
     } else {
         w->y -= 0x333;
         if (w->y >= -0xa000) {
@@ -316,7 +316,7 @@ void func_020f2150(void *a0) {
             p->y = p->y >> 3;
             return;
         }
-        p->y = (s32) (((s64) n * 0xe66) >> 12);
+        p->y = ((s64) n * 0xe66) >> 12;
     } else {
         p->y -= 0x333;
         if (p->y >= -0xa000) {
@@ -352,7 +352,7 @@ void func_020f2028(ItemObject *a) {
             p->y = p->y >> 3;
             return;
         }
-        p->y = (s32) (((s64) n * 0xe66) >> 12);
+        p->y = ((s64) n * 0xe66) >> 12;
     } else {
         p->y -= 0x333;
         if (p->y >= -0xa000) {
@@ -376,9 +376,9 @@ void func_020f1f98(Unk020f1d70 *a, Vec3 *b, Vec3 *c) {
         func_020f2768(a, &v, NULL);
     }
     n = a->mUnk_12c;
-    a->mUnk_000.mVelocity.x = (s32) (((s64) a->mUnk_13c.x * n) >> 12);
-    a->mUnk_000.mVelocity.y = (s32) (((s64) a->mUnk_13c.y * n) >> 12);
-    a->mUnk_000.mVelocity.z = (s32) (((s64) a->mUnk_13c.z * n) >> 12);
+    a->mUnk_000.mVelocity.x = ((s64) a->mUnk_13c.x * n) >> 12;
+    a->mUnk_000.mVelocity.y = ((s64) a->mUnk_13c.y * n) >> 12;
+    a->mUnk_000.mVelocity.z = ((s64) a->mUnk_13c.z * n) >> 12;
 }
 
 void func_020f1ea4(void *a0, s32 b, s32 c, s32 d) {
@@ -445,7 +445,7 @@ void func_020f1d70(void *a0, const Vec3 *b) {
         Vec3NormalizeAndGetLengthUnchecked(&a->mUnk_13c, &a->mUnk_13c);
     }
     s = a->mUnk_12c;
-    a->mUnk_000.mVelocity.x = (s32) (((s64) a->mUnk_13c.x * s) >> 12);
-    a->mUnk_000.mVelocity.z = (s32) (((s64) a->mUnk_13c.z * s) >> 12);
+    a->mUnk_000.mVelocity.x = ((s64) a->mUnk_13c.x * s) >> 12;
+    a->mUnk_000.mVelocity.z = ((s64) a->mUnk_13c.z * s) >> 12;
     Vec3CrossUnrounded(b, p, &a->mUnk_148);
 }

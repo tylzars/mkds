@@ -6,9 +6,9 @@
 
 void func_02008dbc(u8 *a, int b) {
     if (*(u16 *) (a + 0x48) != data_0216fc40->mUnk_10[b].mUnk_508) {
-        func_0200895c((u32) b);
-        MIi_CpuCopy16(a, data_0216fc40->mUnk_10[b].mUnk_4c0, (u32) 0xc0);
-        func_02008a4c((u32) b);
+        func_0200895c(b);
+        MIi_CpuCopy16(a, data_0216fc40->mUnk_10[b].mUnk_4c0, 0xc0);
+        func_02008a4c(b);
     }
 }
 

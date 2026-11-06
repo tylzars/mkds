@@ -206,7 +206,7 @@ s32 func_ov000_0218fca8(GpConnection *a, char *b) {
                 t->mUnk_10 = 0;
             } else {
                 t->mUnk_10 = (((u32) StrtolBase10(e) >> 24) & 0xff) | (((u32) StrtolBase10(e) >> 8) & 0xff00) |
-                             (((u32) StrtolBase10(e) << 8) & 0xff0000) | (((u32) StrtolBase10(e) << 24) & 0xff000000);
+                             ((StrtolBase10(e) << 8) & 0xff0000) | ((StrtolBase10(e) << 24) & 0xff000000);
             }
             if (GpiGetValue(c, data_ov000_021b284c, e, 0x10) == FALSE) {
                 t->mUnk_14 = 0;

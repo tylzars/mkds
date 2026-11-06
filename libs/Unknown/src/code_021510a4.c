@@ -285,7 +285,7 @@ void writeNvram(u32 address, u16 size, void *data) {
 }
 
 BOOL verify(const u8 *src, u32 address, u32 size, const u8 *work) {
-    if (readNvram(address, size, (void *) work) == 0) {
+    if (readNvram(address, size, work) == 0) {
         return 0;
     }
     if (memcmp(src, work, size) == 0) {

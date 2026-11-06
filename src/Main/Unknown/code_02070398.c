@@ -118,10 +118,10 @@ void func_020732d8(Kart *p) {
     p->mScaleFactor.x = data_usa_02154de4[i];
     p->mScaleFactor.y = data_usa_02154e48[i];
     p->mScaleFactor.z = data_usa_02154eac[i];
-    p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
-    p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
-    p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
-    p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
+    p->mScale.x = ((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12;
+    p->mScale.y = ((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12;
+    p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
+    p->mScale.y = ((s64) p->mScaleYFactor * p->mScale.y) >> 12;
 }
 
 void ResetKartToRespawnPoint(Kart *p) {
@@ -163,18 +163,18 @@ void ResetKartToRespawnPoint(Kart *p) {
         x = data_usa_02154d4c[p->mIndex][0];
         y = data_usa_02154d50[p->mIndex][0];
         Vec3CrossUnrounded(&data_02154f7c, &b, &d);
-        VEC_MultAdd((s32) (((s64) data_usa_02165504 * x) >> 12), &d, &a, &a);
-        VEC_MultAdd((s32) (((s64) data_usa_02165504 * y) >> 12), &b, &a, &a);
+        VEC_MultAdd(((s64) data_usa_02165504 * x) >> 12, &d, &a, &a);
+        VEC_MultAdd(((s64) data_usa_02165504 * y) >> 12, &b, &a, &a);
         if (c.x != 0 && y != 0) {
             i = ((u16) ((s32) (((s64) c.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
             l = gPairsByAngle[i * 2];
-            i = (s32) ((l * -y + 0x800) >> 12);
+            i = (l * -y + 0x800) >> 12;
             a.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
         }
         if (c.z != 0 && x != 0) {
             i = ((u16) ((s32) (((s64) c.z * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
             l = gPairsByAngle[i * 2];
-            i = (s32) ((l * x + 0x800) >> 12);
+            i = (l * x + 0x800) >> 12;
             a.y += (s32) (((s64) i * data_usa_02165504 + 0x800) >> 12);
         }
     }
@@ -207,12 +207,12 @@ s32 func_02072d84(Kart *p, s32 *a) {
     r = FALSE;
     if (f & 0x4000000) {
         if (p->mUnk_4bc > 0x19a) {
-            p->mUnk_4bc = (s32) (((s64) p->mUnk_4bc * 0xe66LL) >> 12);
+            p->mUnk_4bc = ((s64) p->mUnk_4bc * 0xe66LL) >> 12;
         }
         *a = p->mUnk_4bc;
     } else if (f & 0x200000) {
         if (p->mUnk_4bc > 0x666) {
-            p->mUnk_4bc = (s32) (((s64) p->mUnk_4bc * 0xe66LL) >> 12);
+            p->mUnk_4bc = ((s64) p->mUnk_4bc * 0xe66LL) >> 12;
         }
         *a = p->mUnk_4bc;
     }
@@ -370,7 +370,7 @@ void ResetKartToStartPlacement(Kart *p) {
         p->mUnk_2c8 = func_020d555c(q, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
     }
     if (p->mUnk_2ca == -1) {
-        p->mUnk_2ca = func_020d555c(&p->mUnk_1f0, (s32) (((s64) p->mPhysicalParam->mRadius << 15) >> 12), 0x800, p);
+        p->mUnk_2ca = func_020d555c(&p->mUnk_1f0, ((s64) p->mPhysicalParam->mRadius << 15) >> 12, 0x800, p);
     }
     p->mUnk_7c |= 0x80;
     p->mUnk_7c &= ~0x60;
@@ -399,7 +399,7 @@ void func_020726bc(Kart *p) {
                 break;
         }
     }
-    p->mPhysicalParam->mBaseSpeedLimit = (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * a) >> 12);
+    p->mPhysicalParam->mBaseSpeedLimit = ((s64) p->mPhysicalParam->mBaseSpeedLimit * a) >> 12;
     p->mPhysicalParam->mUnk_32 = p->mPhysicalParam->mUnk_32 + b;
     p->mUnk_3f4 = 0x1000 - p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
     p->mUnk_3f4 = FX_Div(p->mUnk_3f4, p->mPhysicalParam->mRadius << 1);
@@ -409,7 +409,7 @@ void func_020726bc(Kart *p) {
     for (i = 0; i < 12; i++) {
         a = q->mSurfaceSpeedLimitFactors[i];
         if (a < 0x1000) {
-            q->mSurfaceSpeedLimitFactors[i] = (s32) (((s64) a * *r + 0x800) >> 12);
+            q->mSurfaceSpeedLimitFactors[i] = ((s64) a * *r + 0x800) >> 12;
         }
     }
 }
@@ -891,7 +891,7 @@ void func_020719a8(u32 arg0, u32 arg1) {
 }
 
 void func_02071980(void *p, int b) {
-    func_0210b2a8((Kart *) p, b, ((Kart *) p)->mSurfaceKind, ((Kart *) p)->mSurfaceVariant, ((Kart *) p)->mUnk_500);
+    func_0210b2a8(p, b, ((Kart *) p)->mSurfaceKind, ((Kart *) p)->mSurfaceVariant, ((Kart *) p)->mUnk_500);
 }
 
 void func_02071958(Kart *p, s32 b) {
@@ -900,7 +900,7 @@ void func_02071958(Kart *p, s32 b) {
 
 void func_02071944(void *p, int v1) {
     SoundSource *v2 = p;
-    u32 v3 = (u32) v1;
+    u32 v3 = v1;
     u32 v4;
     u32 v5;
     u32 v6;
@@ -912,7 +912,7 @@ void func_02071944(void *p, int v1) {
 }
 
 void func_02071914(void *p, int a) {
-    if (StartSoundWhileRequested((SoundSource *) p, a, 0x7f, 0) != NULL) {
+    if (StartSoundWhileRequested(p, a, 0x7f, 0) != NULL) {
         ((Kart *) p)->mUnk_488 = a;
     }
 }
@@ -970,7 +970,7 @@ void func_02071568(Kart *p) {
         p->mUnk_4ec = t;
     }
     f = p->mUnk_4ec & 0xfff;
-    i = (u16) (p->mUnk_4ec >> 12);
+    i = p->mUnk_4ec >> 12;
     j = i + 1;
     if (j >= 8) {
         j = 0;
@@ -979,21 +979,21 @@ void func_02071568(Kart *p) {
     p->mUnk_4f0.y = data_02154b84[i] + (s32) (((s64) ((data_02154b84[j] - data_02154b84[i]) >> 1) * f) >> 12);
     p->mUnk_4f0.z = data_02154ba4[i] + (s32) (((s64) ((data_02154ba4[j] - data_02154ba4[i]) >> 1) * f) >> 12);
     v = p->mUnk_4d4;
-    s = (s32) (((s64) v * 0x333) >> 12);
+    s = ((s64) v * 0x333) >> 12;
     if (v > 0xf33) {
-        t = (s32) (((s64) ((v - 0xf33) * 0x32) * 0x19a) >> 12);
+        t = ((s64) ((v - 0xf33) * 0x32) * 0x19a) >> 12;
         if (t > 0x19a) {
             t = 0x19a;
         }
         t = t + 0x333;
-        s = (s32) (((s64) v * t) >> 12);
+        s = ((s64) v * t) >> 12;
     } else if (v > 0xd9a) {
-        t = (s32) (((s64) ((v - 0xd9a) * 0x32) * 0x52) >> 12);
+        t = ((s64) ((v - 0xd9a) * 0x32) * 0x52) >> 12;
         if (t > 0x52) {
             t = 0x52;
         }
         t = t + 0x333;
-        s = (s32) (((s64) v * t) >> 12);
+        s = ((s64) v * t) >> 12;
     }
     p->mUnk_4f0.x = p->mUnk_4f0.x + (s32) (((s64) p->mUnk_4f0.x * s) >> 12);
     p->mUnk_4f0.y = p->mUnk_4f0.y + (s32) (((s64) p->mUnk_4f0.y * s) >> 12);
@@ -1027,7 +1027,7 @@ void func_020713a0(Kart *p) {
             p->mHeadingAngleOffsetPerFrame = -0xd2;
         }
         p->mHeadingAngleOffset = p->mHeadingAngleOffset + p->mHeadingAngleOffsetPerFrame;
-        p->mUnk_4d4 = (s32) (((s64) p->mUnk_4d4 * 0xf5c) >> 12);
+        p->mUnk_4d4 = ((s64) p->mUnk_4d4 * 0xf5c) >> 12;
         t = p->mHeadingAngleOffset;
         if ((t > 0 && p->mUnk_4e2 > 0) || (t < 0 && p->mUnk_4e2 < 0)) {
             p->mHeadingAngleOffset = 0;
@@ -1384,7 +1384,7 @@ void func_020705fc(Kart *p, u32 b) {
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         SetupCameraBehindKart();
         if (data_0217c780 & 1) {
-            h = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
+            h = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (h[0] != NULL) {
                     NNS_SndPlayerStopSeq(h, 0);
@@ -1422,7 +1422,7 @@ void func_02070484(Kart *p, Vec4 *q) {
     }
     p->mUnk_234 = p->mUnk_234 + p->mUnk_3e8;
     k = p->mHeadingAngle;
-    t = (u16) p->mUnk_234;
+    t = p->mUnk_234;
     MTX_RotY43_(&m1, gPairsByAngle[(k >> 4) * 2], gPairsByAngle[(k >> 4) * 2 + 1]);
     MTX_MultVec43(&data_02154f88, &m1, &v1);
     MTX_RotAxis43(&m2, &v1, gPairsByAngle[(t >> 4) * 2], gPairsByAngle[(t >> 4) * 2 + 1]);

@@ -205,8 +205,8 @@ static inline const s32 func_01ffc090_inline(void) {
 
 void func_01ffca50(Kart *p) {
     p->mUnk_48 &= ~0x18;
-    p->mRadius = (s32) (((s64) p->mUnk_4c8 * (s32) (((s64) p->mPhysicalParam->mRadius * p->mUnk_394) >> 12)) >> 12);
-    p->mUnk_1d4 = (s32) (((s64) p->mPhysicalParam->mUnk_04 * p->mScale.z) >> 12);
+    p->mRadius = ((s64) p->mUnk_4c8 * (s32) (((s64) p->mPhysicalParam->mRadius * p->mUnk_394) >> 12)) >> 12;
+    p->mUnk_1d4 = ((s64) p->mPhysicalParam->mUnk_04 * p->mScale.z) >> 12;
     p->mUnk_3ec = 0;
 }
 
@@ -377,7 +377,7 @@ void func_01ffc558(Kart *p) {
 }
 
 void func_01ffc500(s32 *p) {
-    *p = (s32) (((s64) *p * 0xe6a) >> 12);
+    *p = ((s64) *p * 0xe6a) >> 12;
     if ((*p <= 0 ? -*p : *p) < 0x7b) {
         *p = 0;
     }
@@ -535,9 +535,9 @@ void UpdateKartSpeedLimitGoal(Kart *p) {
     s32 *q;
     u32 f;
 
-    p->mSpeedLimitGoal = (s32) (((s64) (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * p->mUnk_dc) >> 12) *
-                                 (s32) (((s64) (s32) p->mUnk_d4 * p->mUnk_d8) >> 12)) >>
-                                12);
+    p->mSpeedLimitGoal = ((s64) (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * p->mUnk_dc) >> 12) *
+                          (s32) (((s64) (s32) p->mUnk_d4 * p->mUnk_d8) >> 12)) >>
+                         12;
     q = &p->mSpeedLimitGoal;
     if (p->mUnk_7c & 0x402000) {
         *q = p->mPhysicalParam->mBaseSpeedLimit;
@@ -553,7 +553,7 @@ void UpdateKartSpeedLimitGoal(Kart *p) {
             *q = p->mPhysicalParam->mBaseSpeedLimit;
             p->mUnk_dc = 0x1000;
         }
-        *q = (s32) (((s64) *q * 0x14cd) >> 12);
+        *q = ((s64) *q * 0x14cd) >> 12;
         if (p->mUnk_48 & 0x400001) {
             if (*q < 0x8800) {
                 *q = 0x8800;
@@ -561,7 +561,7 @@ void UpdateKartSpeedLimitGoal(Kart *p) {
             }
         }
     } else if (p->mUnk_4c & 0x10000040) {
-        *q = (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * 0x1333) >> 12);
+        *q = ((s64) p->mPhysicalParam->mBaseSpeedLimit * 0x1333) >> 12;
         p->mUnk_dc = 0x1000;
     }
 }
@@ -570,7 +570,7 @@ void UpdateKartSpeedLimitGoal(Kart *p) {
 // it at once.
 void UpdateKartSpeedLimit(Kart *p) {
     if (p->mSpeedLimit > p->mSpeedLimitGoal) {
-        p->mSpeedLimit = (s32) (((s64) p->mSpeedLimit * 0xf37) >> 12);
+        p->mSpeedLimit = ((s64) p->mSpeedLimit * 0xf37) >> 12;
         if (p->mSpeedLimit < p->mSpeedLimitGoal) {
             p->mSpeedLimit = p->mSpeedLimitGoal;
         }
@@ -651,7 +651,7 @@ void func_01ffba68(Kart *p) {
         g = p->mUnk_4c;
         if (!(g & 0x20000000)) {
             if (f & 0x80) {
-                p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * 0xfae) >> 12);
+                p->mForwardSpeed = ((s64) p->mForwardSpeed * 0xfae) >> 12;
             } else if (f & 0x26) {
                 p->mForwardSpeed += v;
             } else if (!(g & 0x10000000)) {

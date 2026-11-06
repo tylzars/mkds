@@ -33,7 +33,7 @@ void func_ov003_021c2840(u32 a) {
 }
 
 void func_ov003_021c2824(void) {
-    func_ov003_021d3544((u32) 0, &func_ov003_021c27f8, NULL, (u32) 0x78);
+    func_ov003_021d3544(0, &func_ov003_021c27f8, NULL, 0x78);
 }
 
 void func_ov003_021c27f8(u32 a) {
@@ -60,7 +60,7 @@ u32 func_ov003_021c27c8(void) {
     u32 value0;
     u32 value3;
     value3 = (u32) &func_ov003_021d11a0;
-    value0 = (u32) func_ov003_021d11a0();
+    value0 = func_ov003_021d11a0();
     return value0;
 }
 

@@ -481,7 +481,7 @@ void DWCi_Netcheck_SetError(u32 a) {
 }
 
 u32 func_ov000_02187484(void) {
-    return (u32) gNetcheck->mUnk_04;
+    return gNetcheck->mUnk_04;
 }
 
 s32 DWC_Http_Create(Unk02186d7c *p, const Unk021873d4 *q) {
@@ -557,7 +557,7 @@ u32 func_ov000_02187230(Unk02186d7c *a) {
         return 0;
     }
     OS_UnlockMutex(&a->mUnk_a28);
-    OS_Sleep((u32) 10);
+    OS_Sleep(10);
     return 1;
 }
 

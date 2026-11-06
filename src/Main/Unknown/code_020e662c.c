@@ -166,19 +166,19 @@ u32 func_020e6b14(void) {
 }
 
 void func_020e6ab8(Unk020e6488 *p0) {
-    p0->mUnk_10 = (u32) (((((u32) p0->mUnk_10)) & (0x8000ffffu)));
-    p0->mUnk_10 = (u32) (((((u32) p0->mUnk_10)) | (0x294a0000u)));
-    p0->mUnk_14 = (u32) ((p0->mUnk_14 & ~(0x3f000000u)));
-    p0->mUnk_14 = (u32) ((p0->mUnk_14 | (0x3f000000u)));
-    p0->mUnk_14 = (u32) ((p0->mUnk_14 & ~(0xfu)));
-    p0->mUnk_14 = (u32) ((p0->mUnk_14 | (0x2u)));
+    p0->mUnk_10 = (u32) ((((p0->mUnk_10)) & (0x8000ffffu)));
+    p0->mUnk_10 = (u32) ((((p0->mUnk_10)) | (0x294a0000u)));
+    p0->mUnk_14 = (p0->mUnk_14 & ~(0x3f000000u));
+    p0->mUnk_14 = (p0->mUnk_14 | (0x3f000000u));
+    p0->mUnk_14 = (p0->mUnk_14 & ~(0xfu));
+    p0->mUnk_14 = (p0->mUnk_14 | (0x2u));
 }
 
 void func_020e6a74(void) {
     u32 v1[1];
-    func_01ff9048((u32) 0x17, (void *) (u32) data_0217b854, 0xc);
+    func_01ff9048(0x17, (void *) (u32) data_0217b854, 0xc);
     v1[0] = 0x1e;
-    func_01ff9048((u32) 0x13, (void *) ((u32) v1), 1);
+    func_01ff9048(0x13, (void *) ((u32) v1), 1);
 }
 
 void func_020e6a18(Unk020e6488 *p) {
@@ -229,7 +229,7 @@ void func_020e6854(Unk020e6488 *p, Vec3 *q, s32 c, u32 d) {
                 m = 1;
             }
             v &= ~0x1f0000;
-            v |= (u32) m << 16;
+            v |= m << 16;
             r = AllocPolygonIdWrapping();
             v &= 0xc0ffffff;
             v |= r << 24;
@@ -281,7 +281,7 @@ void func_020e66e4(Unk020e6488 *p, MtxFx43 *q, s32 r, Vec3 *v, s32 a5, u16 a6) {
     func_01ff9048(0x19, q, 0xc);
     if (r != 0) {
         i = r >> 4;
-        MTX_RotZ33_((s32 *) *(void **) data_0217b858, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
+        MTX_RotZ33_(*(void **) data_0217b858, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
         func_01ff9048(0x1a, *(void **) data_0217b858, 9);
     }
     if (v != NULL) {
@@ -300,21 +300,21 @@ void func_020e66e4(Unk020e6488 *p, MtxFx43 *q, s32 r, Vec3 *v, s32 a5, u16 a6) {
 
 void func_020e662c(void) {
     u32 v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, (u32) 0x30));
+    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
     *(u32 *) &data_0217b848 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, (u32) 0x30));
+    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
     *(u32 *) &data_0217b860 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, (u32) 0x30));
+    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
     *(u32 *) &data_0217b850 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, (u32) 0x30));
+    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
     *(u32 *) &data_0217b84c = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, (u32) 0x30));
+    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
     *(u32 *) &data_0217b85c = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, (u32) 0x30));
+    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
     *(u32 *) &data_0217b844 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, (u32) 0x30));
+    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x30));
     *(u32 *) &data_0217b854 = v1;
-    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, (u32) 0x24));
+    v1 = ((u32) HeapAlloc(data_021759d0->mHeap, 0x24));
     *(u32 *) &data_0217b858 = v1;
     MTX_Identity43_((MtxFx43 *) (u32) data_0217b844);
 }

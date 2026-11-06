@@ -100,11 +100,11 @@
 #include "Main/Unknown/code_0203ca38.h"
 
 u32 GetRaceUseChainCameras(void) {
-    return ((u32) gRace->mUseChainCameras);
+    return (gRace->mUseChainCameras);
 }
 
 u32 func_02062eb0(void) {
-    return ((u32) gRace->mUnk_38);
+    return (gRace->mUnk_38);
 }
 
 // Builds the race world and gRace. Not part of it: the screen and 3D engine set-up (func_02062860, called before), the
@@ -120,7 +120,7 @@ void InitRace(void) {
     gRace = HeapAlloc(a, 72);
     func_02062a0c();
     b = GX_GetBankForTex();
-    NNS_GfdInitFrmTexVramManager((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
+    NNS_GfdInitFrmTexVramManager(((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1), 1);
     NNS_GfdInitFrmPlttVramManager(0x10000, 1);
     func_0208533c();
     func_02077998();
@@ -223,7 +223,7 @@ void func_02062a0c(void) {
     gRace->mLightVectorX = v.x;
     gRace->mLightVectorY = v.y;
     gRace->mLightVectorZ = v.z;
-    gRace->mUseChainCameras = (u32) (data_021759c0->mUnk_00c - 3) <= 2 ? 1 : 0;
+    gRace->mUseChainCameras = (data_021759c0->mUnk_00c - 3) <= 2 ? 1 : 0;
     gRace->mUseFirstChainCamera = data_021759c0->mUnk_00c == 4 ? 1 : 0;
     gRace->mUnk_38 = (data_021759c0->mUnk_00c == 5 || data_021759c0->mUnk_00c == 6) != 0 ? 1 : 0;
     gRace->mStarted = gRace->mUnk_38 != 0 ? 1 : 0;
@@ -233,7 +233,7 @@ void func_020629a4(void) {
     u16 b;
 
     b = GX_GetBankForTex();
-    NNS_GfdInitFrmTexVramManager((u16) (((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1)), 1);
+    NNS_GfdInitFrmTexVramManager(((b >> 3) & 1) + ((b >> 2) & 1) + ((b >> 1) & 1) + (b & 1), 1);
     NNS_GfdInitFrmPlttVramManager(0x10000, 1);
     func_0208533c();
 }
@@ -478,7 +478,7 @@ void func_02062004(void) {
 void func_02062000(void) {}
 
 u32 IsRaceStarted(void) {
-    return ((u32) gRace->mStarted);
+    return (gRace->mStarted);
 }
 
 void StartRace(void) {
@@ -487,19 +487,19 @@ void StartRace(void) {
 }
 
 u32 GetRaceUpdateFrames(void) {
-    return ((u32) gRace->mUpdateFrames);
+    return (gRace->mUpdateFrames);
 }
 
 u32 GetRaceUpdateFramesModKartCount(void) {
-    return ((u32) gRace->mUpdateFramesModKartCount);
+    return (gRace->mUpdateFramesModKartCount);
 }
 
 u32 GetRaceUpdateFramesMod8(void) {
-    return ((u32) gRace->mUpdateFramesMod8);
+    return (gRace->mUpdateFramesMod8);
 }
 
 u32 GetRaceUpdateFramesMod2(void) {
-    return ((u32) gRace->mUpdateFramesMod2);
+    return (gRace->mUpdateFramesMod2);
 }
 
 // Also writes FOG_COLOR, FOG_OFFSET and FOG_TABLE directly and resets the fade state.
@@ -554,7 +554,7 @@ void InitRaceFog(void) {
     }
     if (gCourseMap->mSettings->mFogEnabled != 0) {
         G3X_SetFog(1, 0, data_0217aa80, data_0217aa48);
-        *(u32 *) 0x04000358 = data_0217aa38 | (data_0217aa50 << 16);
+        reg_G3X_FOG_COLOR = data_0217aa38 | (data_0217aa50 << 16);
         G3X_SetFogTable(data_0217aabc);
     } else {
         G3X_SetFog(0, 0, 5, 0);
@@ -570,17 +570,17 @@ void func_02061944(s32 a, s32 b) {
     s32 e;
 
     if (gCourseMap->mSettings->mFogEnabled != 0 && b == 0) {
-        t = (s32) (((s64) 57 * (a << 12) + 0x800) >> 12);
+        t = ((s64) 57 * (a << 12) + 0x800) >> 12;
         data_0217aa78 = t;
         u = 4096 - t;
         data_0217aa84 = u;
-        data_0217aa44 = (s32) (((s64) t * 72 + 0x800) >> 12);
+        data_0217aa44 = ((s64) t * 72 + 0x800) >> 12;
         data_0217aa28 = (s32) (((s64) data_0217aa40 * u + 0x800) >> 12) +
                         ((s32) (((s64) data_0217aa34 * u + 0x800) >> 12) << 5) +
                         ((s32) (((s64) data_0217aa3c * u + 0x800) >> 12) << 10);
         data_0217aa68 =
             (s32) (((s64) u * data_0217aa50 + 0x800) >> 12) + (s32) (((s64) t * data_0217aa60 + 0x800) >> 12);
-        data_0217aa70 = (s32) (((s64) u * data_0217aa48 + 0x800) >> 12);
+        data_0217aa70 = ((s64) u * data_0217aa48 + 0x800) >> 12;
         for (i = 0; i < 8; i++) {
             w = data_0217aabc[i];
             data_0217aa8c[0] = w & 0xff;
@@ -624,7 +624,7 @@ void func_02061860(void) {
     u32 value1;
     value0 = (u32) &data_0217aa2c;
     value1 = 0u;
-    *(u16 *) ((value0) + (0)) = (u16) value1;
+    *(u16 *) ((value0) + (0)) = value1;
 }
 
 void func_0206184c(void) {
@@ -632,11 +632,11 @@ void func_0206184c(void) {
     u32 value1;
     value0 = (u32) &data_0217aa2c;
     value1 = 0x48u;
-    *(u16 *) ((value0) + (0)) = (u16) value1;
+    *(u16 *) ((value0) + (0)) = value1;
 }
 
 u32 func_0206183c(void) {
-    return ((u32) data_0217aa64);
+    return (data_0217aa64);
 }
 
 MtxFx43 *func_0206182c(void) {
@@ -644,7 +644,7 @@ MtxFx43 *func_0206182c(void) {
 }
 
 u32 func_02061818(void) {
-    return ((u32) data_0217aa6c->mKind);
+    return (data_0217aa6c->mKind);
 }
 
 // The camera used this frame: data_0217aa6c (returned as void *).
@@ -657,7 +657,7 @@ u32 func_020617f0(void) {
     u32 value1;
     value0 = (u32) &gRace;
     value1 = 1u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (52)) = value1;
     return value0;
 }
@@ -666,8 +666,8 @@ u32 SetRaceUpdateFramesAtEntryEnd(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gRace;
-    value1 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) gRace->mUpdateFrames;
+    value1 = *(const u32 *) ((value0) + (0));
+    value0 = gRace->mUpdateFrames;
     gRace->mUpdateFramesAtEntryEnd = value0;
     return value0;
 }

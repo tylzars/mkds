@@ -30,7 +30,7 @@ void func_020298cc(u32 p0) {
 }
 
 void func_020298b8(u32 p0) {
-    data_021759c0->mNextHeader.mUseTeams = (u8) p0;
+    data_021759c0->mNextHeader.mUseTeams = p0;
 }
 
 void func_020298a4(u32 p0) {

@@ -469,7 +469,7 @@ int func_ov000_02193e70(GpConnection *a, GpiPeer *b) {
     int v1;
     int v2[2];
     v1 = GpiCreateOperation(a, 2, 0, v2, 0, 0, 0);
-    if ((v1 == 0) && (v1 = func_ov000_02192330(a, (u32) (b->mProfileId), (u32) (*(u32 *) (v2[0] + 0x18))), v1 == 0)) {
+    if ((v1 == 0) && (v1 = func_ov000_02192330(a, b->mProfileId, *(u32 *) (v2[0] + 0x18)), v1 == 0)) {
         b->mState = 0x65;
         v1 = 0;
     }

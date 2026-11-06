@@ -19,7 +19,7 @@ void func_020297bc(void) {
     u8 c;
     func_0202991c(0);
     for (b = 0; b < 4; b++) {
-        if (func_02122794((u8) b) != 0) {
+        if (func_02122794(b) != 0) {
             func_020468b0(a, data_02174e1c->mUnk_00[b].mCharacterIndex, data_02174e1c->mUnk_00[b].mKartIndex,
                           data_02174e1c->mUnk_00[b].mUnk_08, -1, 3);
             a++;

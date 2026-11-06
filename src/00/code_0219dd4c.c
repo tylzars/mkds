@@ -1293,7 +1293,7 @@ s32 func_ov000_021a01dc(s32 a, u32 b, u32 c, u16 d, u32 *e, s32 f) {
             if (t == 2) {
                 if (gWiFiMatching->mMode != 0) {
                     c = e[1];
-                    d = (u16) e[2];
+                    d = e[2];
                 }
                 if (func_ov000_0219fee4(func_ov000_0219ff54(b, c, d)) != 0) {
                     return 0;

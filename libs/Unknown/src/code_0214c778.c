@@ -4,6 +4,7 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "ITCM/code_01fff000.h"
 #include "ITCM/code_01fff95c.h"
+#include "registers.h"
 
 MIiGXDmaParams MIi_GXDmaParams;
 
@@ -21,7 +22,7 @@ void MI_SendGXCommandAsync(u32 dmaNo, const void *src, u32 commandLength, MIDmaC
     }
     while (MIi_GXDmaParams.mIsBusy != 0) {
     }
-    status = (vu32 *) 0x4000600;
+    status = &reg_G3X_GXSTAT;
     while ((((*status & 0x7000000) >> 0x18) & 2) == 0) {
     }
     MIi_GXDmaParams.mCallback = callback;
@@ -33,9 +34,9 @@ void MI_SendGXCommandAsync(u32 dmaNo, const void *src, u32 commandLength, MIDmaC
     MIi_CheckDma0SourceAddress(dmaNo, src, commandLength, 0);
     MI_WaitDma(dmaNo);
     enabled = OS_DisableInterrupts();
-    MIi_GXDmaParams.mFifoCond = (*(u32 *) 0x4000600 & 0xc0000000) >> 0x1e;
+    MIi_GXDmaParams.mFifoCond = (reg_G3X_GXSTAT & 0xc0000000) >> 0x1e;
     MIi_GXDmaParams.mFifoFunc = OS_GetIrqFunction(0x200000);
-    *(u32 *) 0x4000600 = (*(u32 *) 0x4000600 & ~0xc0000000) | 0x40000000;
+    reg_G3X_GXSTAT = (reg_G3X_GXSTAT & ~0xc0000000) | 0x40000000;
     OS_SetIrqFunction(0x200000, MIi_FIFOCallback);
     OS_EnableIrqMask(0x200000);
     MIi_FIFOCallback();
@@ -74,7 +75,7 @@ void MIi_DMACallback(void *arg) {
     void *callbackArg;
 
     OS_DisableIrqMask(0x200000);
-    *(u32 *) 0x4000600 = (MIi_GXDmaParams.mFifoCond << 0x1e) | (*(u32 *) 0x4000600 & ~0xc0000000);
+    reg_G3X_GXSTAT = (MIi_GXDmaParams.mFifoCond << 0x1e) | (reg_G3X_GXSTAT & ~0xc0000000);
     OS_SetIrqFunction(0x200000, MIi_GXDmaParams.mFifoFunc);
     MIi_GXDmaParams.mIsBusy = 0;
     callbackArg = MIi_GXDmaParams.mArg;

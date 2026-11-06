@@ -167,9 +167,9 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                 if ((p->mUnk_00.mFlags & 0x800) == 0) {
                     p->mState = 6;
                 }
-                p->mUnk_00.mUnk_10.x = (s32) (((s64) a->mVelocity.x * -0x4cd) >> 12);
-                p->mUnk_00.mUnk_10.y = (s32) (((s64) a->mVelocity.y * -0x4cd) >> 12);
-                p->mUnk_00.mUnk_10.z = (s32) (((s64) a->mVelocity.z * -0x4cd) >> 12);
+                p->mUnk_00.mUnk_10.x = ((s64) a->mVelocity.x * -0x4cd) >> 12;
+                p->mUnk_00.mUnk_10.y = ((s64) a->mVelocity.y * -0x4cd) >> 12;
+                p->mUnk_00.mUnk_10.z = ((s64) a->mVelocity.z * -0x4cd) >> 12;
                 p->mUnk_00.mUnk_10.y = 0x3800;
                 return 12;
             }
@@ -239,9 +239,9 @@ BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
             Vec3NormalizeAndGetLengthUnchecked(&s, &s);
         }
         d = p->mUnk_00.mExtent.x + b - d;
-        c->x = (s32) (((s64) s.x * d) >> 12);
-        c->y = (s32) (((s64) s.y * d) >> 12);
-        c->z = (s32) (((s64) s.z * d) >> 12);
+        c->x = ((s64) s.x * d) >> 12;
+        c->y = ((s64) s.y * d) >> 12;
+        c->z = ((s64) s.z * d) >> 12;
         return TRUE;
     }
     c->x = 0;
@@ -327,7 +327,7 @@ void DrawCoverPooHole(void *a, CoverPooHole *p) {
         e = p->mUnk_c8;
         k = ((u16) p->mUnk_e8 >> 4) * 2;
         v1 = gPairsByAngle[k];
-        r = (s32) (((s64) v1 * 0x7000) >> 12);
+        r = ((s64) v1 * 0x7000) >> 12;
         if (r <= 0) {
             r = -r;
         }
@@ -384,7 +384,7 @@ s32 func_020968dc(s32 a) {
 }
 
 s32 func_020968c0(s32 a, s32 b) {
-    return (s32) (((s64) a * b + 0x800) >> 12);
+    return ((s64) a * b + 0x800) >> 12;
 }
 
 static inline u16 func_02095fec_inline(u32 n) {

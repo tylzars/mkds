@@ -2,5 +2,5 @@
 #include "Main/Unknown/code_020f36d8.h"
 
 u32 func_0203c5e4(void) {
-    return (u32) gRaceProgress->mUnk_4f0;
+    return gRaceProgress->mUnk_4f0;
 }

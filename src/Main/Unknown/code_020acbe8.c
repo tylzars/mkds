@@ -24,7 +24,7 @@
 #include "Main/Unknown/code_020ace0c.h"
 
 u32 func_020ace0c(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 0));
+    return (*(const u16 *) ((u8 *) p0 + 0));
 }
 
 u32 func_020acdec(u32 arg0) {
@@ -37,12 +37,12 @@ u32 func_020acdec(u32 arg0) {
     value1 = (value0) * (value1) + (value2);
     value12 = (u32) &func_020ace0c;
     value0 = (value1) + (0x48u);
-    value0 = (u32) func_020ace0c(value0);
+    value0 = func_020ace0c(value0);
     return value0;
 }
 
 u32 func_020acde4(u32 p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 2));
+    return (*(const u16 *) ((u8 *) p0 + 2));
 }
 
 u32 func_020acdc4(u32 arg0) {
@@ -55,7 +55,7 @@ u32 func_020acdc4(u32 arg0) {
     value1 = (value0) * (value1) + (value2);
     value12 = (u32) &func_020acde4;
     value0 = (value1) + (0x48u);
-    value0 = (u32) func_020acde4(value0);
+    value0 = func_020acde4(value0);
     return value0;
 }
 
@@ -164,11 +164,11 @@ u32 func_020acbf0(u32 arg0) {
     u32 value0 = arg0;
     u32 value3;
     value3 = (u32) &func_020ad230;
-    value0 = (u32) func_020ad230(value0);
+    value0 = func_020ad230(value0);
     return value0;
 }
 #pragma thumb off
 
 u32 func_020acbe8(Unk0201ea30 *p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 6));
+    return (*(const u16 *) ((u8 *) p0 + 6));
 }

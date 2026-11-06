@@ -4,6 +4,7 @@
 #include "code_0200fc8c.h"
 #include "code_02148950.h"
 #include "code_0214d018.h"
+#include "registers.h"
 
 static inline u32 func_020399a8_inline(void) {
     return data_02175614.mUnk_00 == 2;
@@ -119,26 +120,26 @@ s32 Vec3NormalizeAndGetLengthUnchecked(const Vec3 *v, Vec3 *v1) {
     w = (s64) v->x * v->x;
     w += (s64) v->y * v->y;
     w += (s64) v->z * v->z;
-    *(vu16 *) 0x4000280 = 2;
-    *(vu64 *) 0x4000290 = 0x1000000000000LL << 8;
-    *(vu64 *) 0x4000298 = w;
-    *(vu16 *) 0x40002b0 = 1;
-    *(vu64 *) 0x40002b8 = w << 2;
-    while (*(vu16 *) 0x40002b0 & 0x8000) {
+    reg_CP_DIVCNT = 2;
+    reg_CP_DIV_NUMER = 0x1000000000000LL << 8;
+    reg_CP_DIV_DENOM = w;
+    reg_CP_SQRTCNT = 1;
+    reg_CP_SQRT_PARAM = w << 2;
+    while (reg_CP_SQRTCNT & 0x8000) {
     }
-    r = *(vu32 *) 0x40002b4;
-    while (*(vu16 *) 0x4000280 & 0x8000) {
+    r = reg_CP_SQRT_RESULT;
+    while (reg_CP_DIVCNT & 0x8000) {
     }
-    q = *(vu64 *) 0x40002a0;
+    q = reg_CP_DIV_RESULT;
     t = q * r;
-    v1->x = (s32) ((t * v->x + 0x100000000000LL) >> 45);
-    v1->y = (s32) ((t * v->y + 0x100000000000LL) >> 45);
-    v1->z = (s32) ((t * v->z + 0x100000000000LL) >> 45);
+    v1->x = (t * v->x + 0x100000000000LL) >> 45;
+    v1->y = (t * v->y + 0x100000000000LL) >> 45;
+    v1->z = (t * v->z + 0x100000000000LL) >> 45;
     return (r + 1) >> 1;
 }
 
 s32 Vec3DotUnrounded(const Vec3 *a, const Vec3 *b) {
-    return (s32) (((s64) a->x * b->x + (s64) a->y * b->y + (s64) a->z * b->z) >> 12);
+    return ((s64) a->x * b->x + (s64) a->y * b->y + (s64) a->z * b->z) >> 12;
 }
 
 void Vec3CrossUnrounded(const Vec3 *a, const Vec3 *b, Vec3 *v1) {
@@ -148,9 +149,9 @@ void Vec3CrossUnrounded(const Vec3 *a, const Vec3 *b, Vec3 *v1) {
     x = (s64) a->y * b->z - (s64) a->z * b->y;
     y = (s64) a->z * b->x - (s64) a->x * b->z;
     z = (s64) a->x * b->y - (s64) a->y * b->x;
-    v1->x = (s32) (x >> 12);
-    v1->y = (s32) (y >> 12);
-    v1->z = (s32) (z >> 12);
+    v1->x = x >> 12;
+    v1->y = y >> 12;
+    v1->z = z >> 12;
 }
 
 void func_02039774(void) {

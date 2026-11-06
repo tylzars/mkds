@@ -86,7 +86,7 @@ void func_0210298c(ItemGesso *p) {
     }
     v = p->mUnk_148;
     if (p->mUnk_000.mUnk_d8 < 0x1f && p->mUnk_194 == 0 && p->mUnk_198 != FALSE) {
-        p->mUnk_000.mUnk_d8 = (s16) (p->mUnk_000.mUnk_d8 + 7);
+        p->mUnk_000.mUnk_d8 = p->mUnk_000.mUnk_d8 + 7;
         if (p->mUnk_000.mUnk_d8 > 0x1f) {
             p->mUnk_000.mUnk_d8 = 0x1f;
         }
@@ -100,10 +100,10 @@ void func_0210298c(ItemGesso *p) {
         p->mUnk_14c += (s32) (((s64) f * n) >> 12);
     } else {
         f = p->mUnk_168;
-        p->mUnk_148 = (s32) (((s64) p->mUnk_148 * f) >> 12);
-        p->mUnk_14c = (s32) (((s64) p->mUnk_14c * f) >> 12);
+        p->mUnk_148 = ((s64) p->mUnk_148 * f) >> 12;
+        p->mUnk_14c = ((s64) p->mUnk_14c * f) >> 12;
         if (p->mUnk_194 != 0) {
-            p->mUnk_000.mUnk_d8 = (s16) (p->mUnk_000.mUnk_d8 - p->mUnk_170);
+            p->mUnk_000.mUnk_d8 = p->mUnk_000.mUnk_d8 - p->mUnk_170;
             if (p->mUnk_000.mUnk_d8 >= 1) {
                 p->mUnk_16c = 0;
             } else {
@@ -122,14 +122,14 @@ void func_0210298c(ItemGesso *p) {
     }
     p->mUnk_13c.x += p->mUnk_148;
     p->mUnk_13c.y += p->mUnk_14c;
-    v = (s32) (((s64) (p->mUnk_148 - (s32) (((s64) v * 0xccd) >> 12)) * 0x19a) >> 12);
+    v = ((s64) (p->mUnk_148 - (s32) (((s64) v * 0xccd) >> 12)) * 0x19a) >> 12;
     if (v > 0x19a) {
         v = 0x19a;
     } else if (v < -0x19a) {
         v = -0x19a;
     }
     p->mUnk_19c += v;
-    p->mUnk_19c = (s32) (((s64) p->mUnk_19c * 0xeb8) >> 12);
+    p->mUnk_19c = ((s64) p->mUnk_19c * 0xeb8) >> 12;
     if (p->mUnk_19c > 0x266) {
         p->mUnk_19c = 0x266;
     } else if (p->mUnk_19c < -0x266) {
@@ -141,11 +141,11 @@ void func_0210298c(ItemGesso *p) {
     p->mUnk_180 += (s32) (((s64) f * m) >> 12);
     p->mUnk_184.x += (s32) (((s64) f * n) >> 12);
     w = p->mUnk_13c;
-    v = (s32) (((s64) p->mUnk_19c * 0x800) >> 12);
+    v = ((s64) p->mUnk_19c * 0x800) >> 12;
     w.x -= (s32) (((s64) v * w.x) >> 12);
-    p->mUnk_000.mPos.x = (s32) (((s64) s->mSide.x * -w.x) >> 12);
-    p->mUnk_000.mPos.y = (s32) (((s64) s->mSide.y * -w.x) >> 12);
-    p->mUnk_000.mPos.z = (s32) (((s64) s->mSide.z * -w.x) >> 12);
+    p->mUnk_000.mPos.x = ((s64) s->mSide.x * -w.x) >> 12;
+    p->mUnk_000.mPos.y = ((s64) s->mSide.y * -w.x) >> 12;
+    p->mUnk_000.mPos.z = ((s64) s->mSide.z * -w.x) >> 12;
     VEC_MultAdd(w.y, &s->mUp, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     VEC_MultAdd(-w.z, &s->mForward, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     VEC_Add(&s->mPos, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
@@ -169,20 +169,20 @@ void func_021027ac(ItemGesso *p, s32 param_2, Unk020e6488 *t) {
         d = -d;
     }
     d = 0x1000 - (s32) (((s64) d * 0xa4) >> 12);
-    s.mUnk_00[1].x = (s32) (((s64) s.mUnk_00[1].x * d) >> 12);
-    s.mUnk_00[1].y = (s32) (((s64) s.mUnk_00[1].y * d) >> 12);
-    s.mUnk_00[1].z = (s32) (((s64) s.mUnk_00[1].z * d) >> 12);
+    s.mUnk_00[1].x = ((s64) s.mUnk_00[1].x * d) >> 12;
+    s.mUnk_00[1].y = ((s64) s.mUnk_00[1].y * d) >> 12;
+    s.mUnk_00[1].z = ((s64) s.mUnk_00[1].z * d) >> 12;
     VEC_MultAdd(p->mUnk_19c, &s.mUnk_00[0], &s.mUnk_00[1], &s.mUnk_00[1]);
-    w.x = (s32) (((s64) p->mUnk_180 * p->mUnk_000.mUnk_68.x) >> 12);
-    w.y = (s32) (((s64) p->mUnk_184.x * p->mUnk_000.mUnk_68.y) >> 12);
+    w.x = ((s64) p->mUnk_180 * p->mUnk_000.mUnk_68.x) >> 12;
+    w.y = ((s64) p->mUnk_184.x * p->mUnk_000.mUnk_68.y) >> 12;
     w.z = p->mUnk_000.mUnk_68.z;
     k = func_0203c5e4() != 0 ? 0xccd : 0x119a;
-    w.x = (s32) (((s64) w.x * k) >> 12);
-    w.y = (s32) (((s64) w.y * k) >> 12);
+    w.x = ((s64) w.x * k) >> 12;
+    w.y = ((s64) w.y * k) >> 12;
     d = p->mUnk_000.mUnk_d8;
     if (d != 0x1f) {
         t->mUnk_14 = t->mUnk_14 & ~0x1f0000;
-        t->mUnk_14 = t->mUnk_14 | ((u32) (u16) d << 16);
+        t->mUnk_14 = t->mUnk_14 | ((u16) d << 16);
     }
     func_020e6a18(t);
     func_020e67c4(t, &s, &w, 0, 0x1f);
@@ -227,9 +227,9 @@ void func_02102674(void) {
 
     data_0217c630 = HeapAlloc(GetHeap(func_020364e8()), 0x52);
     for (i = 0; i <= 0x28; i++) {
-        data_0217c630[i] = (u16) (((0x28 - i) << 12) / (0x29 - i));
+        data_0217c630[i] = ((0x28 - i) << 12) / (0x29 - i);
     }
     for (i -= 5; i <= 0x28; i++) {
-        data_0217c630[i] = (u16) ((data_0217c630[i] + data_0217c630[i - 1]) >> 1);
+        data_0217c630[i] = (data_0217c630[i] + data_0217c630[i - 1]) >> 1;
     }
 }

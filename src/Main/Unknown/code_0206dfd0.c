@@ -153,17 +153,17 @@ void CollideKartWithKarts(Kart *p) {
             if (q->mUnk_44 & 0xc0) {
                 VEC_Subtract(&q->mVelocity, &p->mVelocity, &e);
                 f = VEC_DotProduct(&n, &e);
-                e.x = (s32) (((s64) n.x * f) >> 12);
-                e.y = (s32) (((s64) n.y * f) >> 12);
-                e.z = (s32) (((s64) n.z * f) >> 12);
+                e.x = ((s64) n.x * f) >> 12;
+                e.y = ((s64) n.y * f) >> 12;
+                e.z = ((s64) n.z * f) >> 12;
                 p->mForwardSpeed += VEC_DotProduct(&p->mUnk_50, &e);
             }
             if (p->mUnk_44 & 0xc0) {
                 VEC_Subtract(&p->mVelocity, &q->mVelocity, &g);
                 f = VEC_DotProduct(&n, &g);
-                g.x = (s32) (((s64) n.x * f) >> 12);
-                g.y = (s32) (((s64) n.y * f) >> 12);
-                g.z = (s32) (((s64) n.z * f) >> 12);
+                g.x = ((s64) n.x * f) >> 12;
+                g.y = ((s64) n.y * f) >> 12;
+                g.z = ((s64) n.z * f) >> 12;
                 q->mForwardSpeed += VEC_DotProduct(&q->mUnk_50, &g);
             }
             if (data_021759c0->mMode == MODE_BATTLE) {

@@ -46,9 +46,9 @@ void GetCourseMapStartPlacementWithOffsets(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e
     } else {
         q = gCourseMap->mStartPlacements;
     }
-    x = (u16) ((q->mUnk_0c.x >> 12) * 0xb6);
-    y = (u16) ((q->mUnk_0c.y >> 12) * 0xb6);
-    z = (u16) ((q->mUnk_0c.z >> 12) * 0xb6);
+    x = (q->mUnk_0c.x >> 12) * 0xb6;
+    y = (q->mUnk_0c.y >> 12) * 0xb6;
+    z = (q->mUnk_0c.z >> 12) * 0xb6;
     MTX_RotX43_((s32 *) &m1, gPairsByAngle[(x >> 4) * 2], gPairsByAngle[(x >> 4) * 2 + 1]);
     MTX_RotY43_(&m2, gPairsByAngle[(y >> 4) * 2], gPairsByAngle[(y >> 4) * 2 + 1]);
     MTX_RotZ43_((s32 *) &m3, gPairsByAngle[(z >> 4) * 2], gPairsByAngle[(z >> 4) * 2 + 1]);
@@ -71,7 +71,7 @@ void GetCourseMapStartPlacementWithOffsets(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e
 // Position and rotation of the start spot of kart c by mode: a staggered grid by rank in a race, by key
 // (kart + mStartPlacementOffset) % 8 in battle.
 void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
-    u16 i = (u16) (data_021759c0->mKartCount - 1);
+    u16 i = data_021759c0->mKartCount - 1;
     s32 j = (u16) (func_0205d27c(c) - 1);
     s32 k;
     s32 l;
@@ -136,12 +136,12 @@ BOOL IsPosInCourseMapShapeBox(Vec3 *a, CourseMapShape *b) {
         return FALSE;
     }
     d = VEC_DotProduct(&v, &b->mUnk_18);
-    t = (s32) (((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12);
+    t = ((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12;
     if (d < -t || d > t) {
         return FALSE;
     }
     d = VEC_DotProduct(&v, &b->mUnk_30);
-    t = (s32) (((s64) b->mUnk_0c.z * 0x32000 + 0x800) >> 12);
+    t = ((s64) b->mUnk_0c.z * 0x32000 + 0x800) >> 12;
     if (d < -t || d > t) {
         return FALSE;
     }

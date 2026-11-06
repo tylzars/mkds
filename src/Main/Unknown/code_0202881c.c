@@ -3,7 +3,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 
 u32 func_02028850(void) {
-    return ((u32) data_0217aa00->mUnk_0004);
+    return (data_0217aa00->mUnk_0004);
 }
 
 void func_02028824(u8 a) {

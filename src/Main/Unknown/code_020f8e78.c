@@ -85,7 +85,7 @@ void func_020f9114(void *b) {
     ItemObject *p = b;
     enum { K0 } a = p->mKind;
 
-    func_02109038(p, (u32) gItemKinds[a].mUnk_a0, &p->mPos);
+    func_02109038(p, gItemKinds[a].mUnk_a0, &p->mPos);
     func_0210cf9c(&p->mSoundSource, 1);
     p->mFlags |= 0x400000;
 }
@@ -133,8 +133,8 @@ void func_020f8e78(void *b) {
     p->mUnk_68.x = p->mUnk_68.y;
     e = &gItemKinds[k];
     m = e->mUnk_6c;
-    p->mUnk_dc = (s32) (((s64) p->mUnk_68.y * e->mUnk_64) >> 12);
-    p->mUnk_e0 = (s32) (((s64) p->mUnk_68.y * m) >> 12);
+    p->mUnk_dc = ((s64) p->mUnk_68.y * e->mUnk_64) >> 12;
+    p->mUnk_e0 = ((s64) p->mUnk_68.y * m) >> 12;
     func_020d5148(p->mUnk_da, p->mUnk_e0 + 0xa000);
     func_0208adc8(p->mUnk_7c.mUnk_00, 1);
     p->mUnk_90 = NULL;
@@ -152,7 +152,7 @@ void func_020f8e78(void *b) {
     p->mAgeFrames = 1;
     if ((p->mFlags & 0x400000) == 0) {
         k = p->mKind;
-        func_02109038(p, (u32) gItemKinds[k].mUnk_a0, &p->mPos);
+        func_02109038(p, gItemKinds[k].mUnk_a0, &p->mPos);
         func_0210cf9c(&p->mSoundSource, 1);
         p->mFlags |= 0x400000;
     }

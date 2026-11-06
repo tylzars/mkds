@@ -12,9 +12,9 @@ void func_020cecdc(void) {
     v1 = func_020cccc0();
     if (v1 != 0) {
         GxDispCntBits8To12Write2(0x18);
-        GX_SetGraphicsMode((u16) 1, (u32) 0, 0);
+        GX_SetGraphicsMode(1, 0, 0);
         GxsDispCntBits8To12Write2(0x12);
-        GXS_SetGraphicsMode((u32) 0);
+        GXS_SetGraphicsMode(0);
     }
     func_02032138();
 }

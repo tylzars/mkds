@@ -88,7 +88,7 @@ void func_0207fec0(Unk02080b1c *p) {
 s32 func_0207fe70(Unk02080b1c *p) {
     s32 a = p->mUnk_00->mUnk_20->mUnk_02 << 12;
 
-    return (s32) (((s64) a * 0x29 + 0x800) >> 12);
+    return ((s64) a * 0x29 + 0x800) >> 12;
 }
 
 void func_0207fd28(Unk02080b1c *p) {
@@ -98,9 +98,9 @@ void func_0207fd28(Unk02080b1c *p) {
 
     if (p->mUnk_00->mUnk_24 > 1 && p->mUnk_1e < 2) {
         if (p->mUnk_1e == 0) {
-            i = (u16) (p->mUnk_1c / 3);
+            i = p->mUnk_1c / 3;
         } else {
-            i = (u16) (p->mUnk_1c % 3);
+            i = p->mUnk_1c % 3;
         }
         p->mUnk_1e++;
     } else {
@@ -169,7 +169,7 @@ void func_0207fa74(Unk020888b4 *p, Kart *q, s32 a) {
     }
     p->mUnk_88 = data_usa_0217ae38[v];
     p->mUnk_8c = data_usa_0217ae48[v];
-    p->mUnk_9c = (s32) (((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12);
+    p->mUnk_9c = ((s64) p->mKart->mPhysicalParam->mBaseSpeedLimit * 0x99a + 0x800) >> 12;
     func_02080d34(&p->mUnk_08, p->mIndex);
     func_0207f9cc(p, 0);
     r = func_0208537c();
@@ -270,7 +270,7 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Kart *r, Unk02175620_bc *s, V
         Vec3CrossUnrounded(b, &v, &w);
         e = VEC_Mag(&w);
         f = FX_Atan2(e, Vec3DotUnrounded(b, &v));
-        g = (s32) (((s64) f * 0x394bb834c8LL + 0x80000000LL) >> 32);
+        g = ((s64) f * 0x394bb834c8LL + 0x80000000LL) >> 32;
         if (Vec3DotUnrounded(&w, c) < 0) {
             g *= -1;
         }
@@ -514,7 +514,7 @@ void func_0207ebfc(Unk020888b4 *p) {
         Vec3CrossUnrounded(c, &v1, &v2);
         m = VEC_Mag(&v2);
         m = FX_Atan2(m, Vec3DotUnrounded(c, &v1));
-        m = (s32) (((s64) m * 0x394bb834c8LL + 0x80000000LL) >> 32);
+        m = ((s64) m * 0x394bb834c8LL + 0x80000000LL) >> 32;
         n = Vec3DotUnrounded(&v2, a);
         if (n < 0) {
             n = -1;
@@ -606,7 +606,7 @@ s32 func_0207eafc(Vec3 *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     Vec3CrossUnrounded(d, &v, &w);
     l = VEC_Mag(&w);
     r = FX_Atan2(l, Vec3DotUnrounded(d, &v));
-    r = (s32) (((s64) r * 0x394bb834c8LL + 0x80000000LL) >> 32);
+    r = ((s64) r * 0x394bb834c8LL + 0x80000000LL) >> 32;
     n = Vec3DotUnrounded(&w, c);
     if (n < 0) {
         n = -1;
@@ -643,10 +643,10 @@ void func_0207e944(Unk020888b4 *p) {
         }
         p->mUnk_74 = u;
     }
-    s = (s32) (((s64) p->mUnk_74 * p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c) >> 12);
-    p->mUnk_60.x = (s32) (((s64) p->mUnk_60.x * s) >> 12);
-    p->mUnk_60.y = (s32) (((s64) p->mUnk_60.y * s) >> 12);
-    p->mUnk_60.z = (s32) (((s64) p->mUnk_60.z * s) >> 12);
+    s = ((s64) p->mUnk_74 * p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c) >> 12;
+    p->mUnk_60.x = ((s64) p->mUnk_60.x * s) >> 12;
+    p->mUnk_60.y = ((s64) p->mUnk_60.y * s) >> 12;
+    p->mUnk_60.z = ((s64) p->mUnk_60.z * s) >> 12;
 }
 
 void func_0207e7f0(Unk020888b4 *p) {
@@ -675,10 +675,10 @@ void func_0207e7f0(Unk020888b4 *p) {
     }
     g = c;
     Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mUnk_08, &g, &p->mUnk_60);
-    s = (s32) (((s64) p->mUnk_74 * p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c) >> 12);
-    p->mUnk_60.x = (s32) (((s64) p->mUnk_60.x * s) >> 12);
-    p->mUnk_60.y = (s32) (((s64) p->mUnk_60.y * s) >> 12);
-    p->mUnk_60.z = (s32) (((s64) p->mUnk_60.z * s) >> 12);
+    s = ((s64) p->mUnk_74 * p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c) >> 12;
+    p->mUnk_60.x = ((s64) p->mUnk_60.x * s) >> 12;
+    p->mUnk_60.y = ((s64) p->mUnk_60.y * s) >> 12;
+    p->mUnk_60.z = ((s64) p->mUnk_60.z * s) >> 12;
     VEC_Add(&a, &p->mUnk_60, &p->mUnk_44);
 }
 

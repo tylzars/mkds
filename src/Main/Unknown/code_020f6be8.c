@@ -212,18 +212,18 @@ void func_020f6be8(ItemObject *b, Vec3 *c, Vec3 *e, Vec3 *f) {
     if (b->mFlags & 0x8000) {
         VEC_MultAdd(0x666, &a, &b->mVelocity, &b->mVelocity);
         q = data_0217bc4c;
-        q->x = (s32) (((s64) v.x * 0xccd) >> 12);
-        q->y = (s32) (((s64) v.y * 0xccd) >> 12);
-        q->z = (s32) (((s64) v.z * 0xccd) >> 12);
+        q->x = ((s64) v.x * 0xccd) >> 12;
+        q->y = ((s64) v.y * 0xccd) >> 12;
+        q->z = ((s64) v.z * 0xccd) >> 12;
         VEC_Add(&b->mVelocity, data_0217bc4c, &b->mVelocity);
     } else {
-        b->mVelocity.x = (s32) (((s64) e->x * 0x8cd) >> 12);
-        b->mVelocity.y = (s32) (((s64) e->y * 0x8cd) >> 12);
-        b->mVelocity.z = (s32) (((s64) e->z * 0x8cd) >> 12);
+        b->mVelocity.x = ((s64) e->x * 0x8cd) >> 12;
+        b->mVelocity.y = ((s64) e->y * 0x8cd) >> 12;
+        b->mVelocity.z = ((s64) e->z * 0x8cd) >> 12;
         q = data_0217bc4c;
-        q->x = (s32) (((s64) v.x * 0x1800) >> 12);
-        q->y = (s32) (((s64) v.y * 0x1800) >> 12);
-        q->z = (s32) (((s64) v.z * 0x1800) >> 12);
+        q->x = ((s64) v.x * 0x1800) >> 12;
+        q->y = ((s64) v.y * 0x1800) >> 12;
+        q->z = ((s64) v.z * 0x1800) >> 12;
         VEC_Add(&b->mVelocity, data_0217bc4c, &b->mVelocity);
     }
 }

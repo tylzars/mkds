@@ -66,13 +66,13 @@ BOOL GpiGetValue(const char *command, const char *key, char *value, s32 len) {
     if (len <= 0) {
         AssertionFailed(data_ov000_021b3ae4, data_ov000_021b3a1c, NULL, 0x110);
     }
-    f = (s8) *key;
+    f = *key;
     p = strstr(command, key);
     if (p == NULL) {
         return FALSE;
     }
     q = p + strlen(key);
-    for (i = 0; i < len - 1 && (g = (s8) q[i]) != 0 && g != f; i++) {
+    for (i = 0; i < len - 1 && (g = q[i]) != 0 && g != f; i++) {
         value[i] = g;
     }
     value[i] = 0;
@@ -85,7 +85,7 @@ u32 GpiCheckConnectComplete(GpConnection *a, u32 b, u32 *c) {
     int v3[2];
     v2 = 0;
     v3[0] = 0;
-    v1 = func_ov000_0218e68c((u32) (b), (u32 *) (0), (u32 *) (&v2), (u32 *) (v3));
+    v1 = func_ov000_0218e68c((u32) (b), NULL, (u32 *) (&v2), (u32 *) (v3));
     if (v1 == -1) {
         func_ov000_0219690c(a, data_ov000_021b3a58);
         GpiSetError(a, 5, data_ov000_021b3a6c);

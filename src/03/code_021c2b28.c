@@ -16,6 +16,7 @@
 #include "03/code_021d254c.h"
 #include "code_0214b824.h"
 #include "03/code_021bf8c0.h"
+#include "registers.h"
 
 void func_ov003_021c2b28(void) {
     func_ov003_021cdb90();
@@ -46,9 +47,9 @@ void func_ov003_021c2b28(void) {
             func_ov003_021bf620(data_ov003_021d6fbc, GXS_LoadBG1Scr);
             break;
     }
-    *(u16 *) 0x400100a = (*(u16 *) 0x400100a & ~3) | 3;
-    *(u16 *) 0x400000a = (*(u16 *) 0x400000a & ~3) | 3;
-    *(u16 *) 0x400000a = (*(u16 *) 0x400000a & ~3) | 3;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
     func_ov003_021d2784(1, 2);
     func_ov003_021d2784(0, 2);
     func_ov003_021c212c(func_ov003_021c2afc);

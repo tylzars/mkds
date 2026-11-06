@@ -44,7 +44,7 @@ void func_ov003_021cc9c0(int a, int b, int c, int d) {
 void func_ov003_021cc97c(void) {
     if (data_ov003_021da25c->mUnk_604 != 0) {
         DC_FlushRange(data_ov003_021da25c->mUnk_004, (0x00000600u));
-        GX_LoadBG2Scr(data_ov003_021da25c->mUnk_004, 0, (u32) (((u32) 0x00000600u)));
+        GX_LoadBG2Scr(data_ov003_021da25c->mUnk_004, 0, (0x00000600u));
         data_ov003_021da25c->mUnk_604 = 0;
     }
 }
@@ -62,11 +62,10 @@ void func_ov003_021cc924(u32 a) {
 
 void func_ov003_021cc900(u32 a) {
     *(u32 *) &data_ov003_021da260 = a;
-    func_ov003_021d3544((u32) 1, &func_ov003_021cc8d4, NULL, (u32) 0x78);
+    func_ov003_021d3544(1, &func_ov003_021cc8d4, NULL, 0x78);
 }
 
 void func_ov003_021cc8d4(u32 a) {
-    MIi_CpuCopy16((const void *) ((*(u32 *) &data_ov003_021da260)), (void *) (((u32) 0x05000000u)),
-                  (u32) (((u32) 0x00000200u)));
+    MIi_CpuCopy16((const void *) ((*(u32 *) &data_ov003_021da260)), (void *) ((0x05000000u)), (0x00000200u));
     func_ov003_021d34c8(1, a);
 }

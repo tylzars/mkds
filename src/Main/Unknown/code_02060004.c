@@ -240,7 +240,7 @@ s32 func_02060468(u8 a, void *b) {
     if (g != FALSE) {
         u64 f = DWC_GetFriendKey((DWCAccFriendData *) e);
 
-        func_02152918((u32) f, (u32) (f >> 32), (u32) b);
+        func_02152918(f, f >> 32, (u32) b);
         d = TRUE;
     }
     return d;

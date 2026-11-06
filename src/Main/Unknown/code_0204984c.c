@@ -31,6 +31,7 @@
 #include "code_0214f4a4.h"
 #include "code_021488e8.h"
 #include "Main/Unknown/code_02039230.h"
+#include "registers.h"
 
 #pragma opt_rebuildconditionals off
 
@@ -407,7 +408,7 @@ void func_02049e38(s32 a) {
             RecordFrameTimes();
         } while (AreBrightnessFadesFaded() == 0);
     } else {
-        GXx_SetMasterBrightness_((u16 *) 0x400006c, 0x10);
+        GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, 0x10);
     }
 }
 

@@ -127,28 +127,28 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         switch (q->mUnk_b4) {
             case 0:
                 u = &p->mUnk_138;
-                v4.x = (s32) (((s64) u->x * -0x7000) >> 12);
-                v4.y = (s32) (((s64) u->y * -0x7000) >> 12);
-                v4.z = (s32) (((s64) u->z * -0x7000) >> 12);
+                v4.x = ((s64) u->x * -0x7000) >> 12;
+                v4.y = ((s64) u->y * -0x7000) >> 12;
+                v4.z = ((s64) u->z * -0x7000) >> 12;
                 break;
             case 1:
                 u = &p->mUnk_138;
-                v4.x = (s32) (((s64) u->x * 0x7000) >> 12);
-                v4.y = (s32) (((s64) u->y * 0x7000) >> 12);
-                v4.z = (s32) (((s64) u->z * 0x7000) >> 12);
+                v4.x = ((s64) u->x * 0x7000) >> 12;
+                v4.y = ((s64) u->y * 0x7000) >> 12;
+                v4.z = ((s64) u->z * 0x7000) >> 12;
                 break;
             case 2:
                 u = &p->mUnk_120;
-                v4.x = (s32) (((s64) u->x * 0x7000) >> 12);
-                v4.y = (s32) (((s64) u->y * 0x7000) >> 12);
-                v4.z = (s32) (((s64) u->z * 0x7000) >> 12);
+                v4.x = ((s64) u->x * 0x7000) >> 12;
+                v4.y = ((s64) u->y * 0x7000) >> 12;
+                v4.z = ((s64) u->z * 0x7000) >> 12;
                 break;
             case 3:
             default:
                 u = &p->mUnk_120;
-                v4.x = (s32) (((s64) u->x * -0x7000) >> 12);
-                v4.y = (s32) (((s64) u->y * -0x7000) >> 12);
-                v4.z = (s32) (((s64) u->z * -0x7000) >> 12);
+                v4.x = ((s64) u->x * -0x7000) >> 12;
+                v4.y = ((s64) u->y * -0x7000) >> 12;
+                v4.z = ((s64) u->z * -0x7000) >> 12;
                 break;
         }
         q->mUnk_a8 = v4;
@@ -190,9 +190,9 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 }
                 MTX_MultVec33(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
                 k = p->mForwardSpeed;
-                v2.x = (s32) (((s64) p->mUnk_50.x * k) >> 12);
-                v2.y = (s32) (((s64) p->mUnk_50.y * k) >> 12);
-                v2.z = (s32) (((s64) p->mUnk_50.z * k) >> 12);
+                v2.x = ((s64) p->mUnk_50.x * k) >> 12;
+                v2.y = ((s64) p->mUnk_50.y * k) >> 12;
+                v2.z = ((s64) p->mUnk_50.z * k) >> 12;
                 VEC_Add(&v, &v2, &v);
                 VEC_Add(&v, &p->mUnk_2d8, &v);
                 VEC_Add(&p->mVelocity, &p->mUnk_2d8, &p->mVelocity);
@@ -200,9 +200,9 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                     p->mVerticalSpeed = 0;
                 }
                 k = (p->mUnk_44 & 0x10) ? 0xee1 : 0xfae;
-                p->mUnk_2d8.x = (s32) (((s64) p->mUnk_2d8.x * k) >> 12);
-                p->mUnk_2d8.y = (s32) (((s64) p->mUnk_2d8.y * k) >> 12);
-                p->mUnk_2d8.z = (s32) (((s64) p->mUnk_2d8.z * k) >> 12);
+                p->mUnk_2d8.x = ((s64) p->mUnk_2d8.x * k) >> 12;
+                p->mUnk_2d8.y = ((s64) p->mUnk_2d8.y * k) >> 12;
+                p->mUnk_2d8.z = ((s64) p->mUnk_2d8.z * k) >> 12;
                 if ((s64) p->mUnk_2d8.x * p->mUnk_2d8.x + (s64) p->mUnk_2d8.y * p->mUnk_2d8.y +
                         (s64) p->mUnk_2d8.z * p->mUnk_2d8.z >=
                     0xa429) {

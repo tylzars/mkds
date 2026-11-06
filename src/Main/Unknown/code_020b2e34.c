@@ -24,7 +24,7 @@ void func_020b2e64(u32 a) {
 }
 
 u32 func_020b2e58(void) {
-    return ((u32) gChoisesS->mUnk_004);
+    return (gChoisesS->mUnk_004);
 }
 
 int func_020b2e34(void) {

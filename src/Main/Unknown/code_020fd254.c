@@ -4,5 +4,5 @@
 
 void ClearItemKouraWKartItemsAndAngle(ItemKouraW *p0) {
     p0->mKartItems = NULL;
-    p0->mAngle = (u32) 0x0u;
+    p0->mAngle = 0x0u;
 }

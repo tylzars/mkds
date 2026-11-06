@@ -85,7 +85,7 @@ u16 GetKartBestLapTime(u16 a, u8 *b, u8 *c, u16 *d) {
             } else {
                 p = &v2;
                 k = FALSE;
-                if ((u32) ((q->mUnk_02 * 60 + q->mUnk_03) * 1000 + q->mUnk_00) <=
+                if (((q->mUnk_02 * 60 + q->mUnk_03) * 1000 + q->mUnk_00) <=
                     (u32) ((v2.mUnk_02 * 60 + v2.mUnk_03) * 1000 + v2.mUnk_00)) {
                     k = TRUE;
                     if (q != p) {

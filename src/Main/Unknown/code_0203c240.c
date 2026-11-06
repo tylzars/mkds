@@ -7,8 +7,8 @@ u32 func_0203c240(u32 arg0) {
     u32 value2;
     value2 = (u32) &gRaceProgress;
     value1 = 0x8cu;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
+    value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
-    value0 = (u32) * (const u32 *) ((value1) + (64));
+    value0 = *(const u32 *) ((value1) + (64));
     return value0;
 }

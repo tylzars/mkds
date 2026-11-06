@@ -113,7 +113,7 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
 #pragma thumb on
 
 u32 func_020d2c20(void) {
-    return ((u32) data_0217b4ec);
+    return (data_0217b4ec);
 }
 
 // The water_efct.nsbmd file: WaterEfct's if gCourseWaterEfct exists, else the Water's own when mUnk_170 is non-zero,

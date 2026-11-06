@@ -28,7 +28,7 @@ void CreateWait(void *a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, u32 f) {
     Wait *v1;
     Wait *v2;
     void *v3;
-    v2 = HeapAlloc(a, (u32) 0x2c);
+    v2 = HeapAlloc(a, 0x2c);
     gWait = v2;
     v3 = FindSceneFile(gWaitNcerName);
     LocateNcer(&gWait->mNcer, v3);

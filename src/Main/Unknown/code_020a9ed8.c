@@ -15,7 +15,7 @@
 #pragma thumb on
 u32 GetKeyboardKeyValue(void) {
     u32 value0;
-    value0 = (u32) gKeyboardKeys.mKeyValue;
+    value0 = gKeyboardKeys.mKeyValue;
     return value0;
 }
 #pragma thumb off

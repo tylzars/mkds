@@ -34,6 +34,7 @@
 #include "code_0212df7c.h"
 #include "code_0214d018.h"
 #include "Main/Unknown/code_02025f80.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -79,7 +80,7 @@ void func_0202b4bc(s32 a, s32 b, s32 c, s32 d) {
             } else {
                 k = 0xf;
             }
-            func_02124100(i, (u8) k, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
+            func_02124100(i, k, p->mUnk_14, p->mUnk_18, p->mUnk_0c);
         }
     }
 }
@@ -93,10 +94,10 @@ void func_0202b3f4(void) {
     n = p->mUnk_0c->mUnk_06;
     for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
         p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_06 = func_020ae4c0(
-            1, 0, (s16) (0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, data_usa_021539f4[i].mUnk_06))[1] << 20 >> 20)),
+            1, 0, 0x60 - (((s16 *) func_0201ea30(p->mUnk_0c, data_usa_021539f4[i].mUnk_06))[1] << 20 >> 20),
             (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
         p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_06 = func_020ae4c0(
-            1, 0, (s16) (0x60 - (((s16 *) func_0201ea58(p->mUnk_14, data_usa_021539f4[i].mUnk_00))[1] << 20 >> 20)),
+            1, 0, 0x60 - (((s16 *) func_0201ea58(p->mUnk_14, data_usa_021539f4[i].mUnk_00))[1] << 20 >> 20),
             (*(struct WiFiVSCourseSelect **) &gWiFiVSCourseSelect)->mStateFrames, 0x3c);
     }
 }
@@ -289,7 +290,7 @@ void InitWiFiVSCourseSelect(void *param_1, void *param_2, void *param_3) {
     func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[1], 0, 10, -0x40, 0);
     func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[0], 0, 10, -0xc0, 0);
     func_02025f80(&gWiFiVSCourseSelect->mUnk_0cc[2], 0, 10, 0x40, 0);
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & 0x43) | 0xc00;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0xc00;
     func_020258d4(0, gWiFiVSCourseSelect, gWiFiVSCourseSelectMBNcgrName, gWiFiVSCourseSelectMBNclrName,
                   gWiFiVSCourseSelectMNscrName, 0, FindSceneFile);
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
@@ -457,19 +458,19 @@ void func_0202a820(void) {
     s32 t;
 
     GX_SetGraphicsMode(1, 0, 0);
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | 0x1a00;
-    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 2;
-    *(vu32 *) 0x4000010 = (-func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[1]) << 16) & 0x1ff0000;
-    *(vu32 *) 0x400101c = (-gWiFiVSCourseSelect->mUnk_154 << 16) & 0x1ff0000;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1a00;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 2;
+    reg_G2_BG0OFS = (-func_02025ebc(&gWiFiVSCourseSelect->mUnk_0cc[1]) << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (-gWiFiVSCourseSelect->mUnk_154 << 16) & 0x1ff0000;
     if (gWiFiVSCourseSelect->mUnk_154 != 0) {
-        *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffff1fff) | 0x2000;
-        *(vu16 *) 0x4001048 = (u32) ((*(vu16 *) 0x4001048 & ~0x3f) | 0x1f) | 0x20;
-        *(vu16 *) 0x400104a = (u32) ((*(vu16 *) 0x400104a & ~0x3f) | 7) | 0x20;
+        reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffff1fff) | 0x2000;
+        reg_G2S_DB_WININ = (u32) ((reg_G2S_DB_WININ & ~0x3f) | 0x1f) | 0x20;
+        reg_G2S_DB_WINOUT = (u32) ((reg_G2S_DB_WINOUT & ~0x3f) | 7) | 0x20;
         t = gWiFiVSCourseSelect->mUnk_154 + 0xc0;
-        *(vu16 *) 0x4001040 = 0xff;
-        *(vu16 *) 0x4001044 = t & 0xff;
+        reg_G2S_DB_WIN0H = 0xff;
+        reg_G2S_DB_WIN0V = t & 0xff;
     } else {
-        *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffff1fff;
+        reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffff1fff;
     }
 }
 

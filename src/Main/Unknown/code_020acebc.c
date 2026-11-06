@@ -11,7 +11,7 @@ u32 func_020acefc(u32 arg0) {
     u32 value0 = arg0;
     u32 value3;
     value3 = (u32) &func_020ad230;
-    value0 = (u32) func_020ad230(value0);
+    value0 = func_020ad230(value0);
     return value0;
 }
 #pragma thumb off
@@ -29,5 +29,5 @@ u16 func_020acec4(u32 a, u32 b) {
 }
 
 u32 func_020acebc(const void *p0) {
-    return ((u32) * (const u16 *) ((u8 *) p0 + 4));
+    return (*(const u16 *) ((u8 *) p0 + 4));
 }

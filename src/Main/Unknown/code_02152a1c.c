@@ -6,7 +6,7 @@ u32 func_02152a1c(const DWCAccFriendData *a) {
     u32 value0;
     u32 value3;
     value3 = (u32) &DWCi_Acc_GetFlag_DataType;
-    value0 = (u32) DWCi_Acc_GetFlag_DataType(a);
+    value0 = DWCi_Acc_GetFlag_DataType(a);
     return value0;
 }
 #pragma thumb off

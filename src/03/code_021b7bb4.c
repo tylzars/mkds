@@ -16,8 +16,8 @@
 s32 func_ov003_021b94ac(void) {
     u32 value0;
     value0 = (u32) &data_ov003_021d7c50;
-    value0 = (u32) * (const u32 *) ((value0) + 0u);
-    return (s32) value0;
+    value0 = *(const u32 *) ((value0) + 0u);
+    return value0;
 }
 
 s32 func_ov003_021b929c(Unk021b94c4 *a) {
@@ -1065,13 +1065,13 @@ void func_ov003_021b7d90(void *arg0, const void *arg1, u32 arg2) {
 
 void func_ov003_021b7d84(void *arg0, s32 arg1, u32 arg2) {
     u32 value0 = (u32) arg0;
-    u32 value1 = (u32) arg1;
+    u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value3;
     value1 = (value1 << 24);
     value1 = (value1 >> 24);
     value3 = (u32) &MI_CpuFill8;
-    MI_CpuFill8((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, value1, value2);
     return;
 }
 

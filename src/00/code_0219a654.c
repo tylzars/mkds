@@ -90,7 +90,7 @@ u32 func_ov000_0219b05c(void) {
 }
 
 static inline void func_ov000_0219aa64_inline(void *a, const void *b) {
-    u8 *p = (u8 *) a;
+    u8 *p = a;
     const u8 *q = b;
     p[0] = q[0];
     p[1] = q[1];

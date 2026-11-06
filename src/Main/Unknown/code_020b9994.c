@@ -295,7 +295,7 @@ void func_020bab54(void) {
         w = &data_0217b3cc->mUnk_18;
         w->mUnk_08 += w->mUnk_0c;
         w->mUnk_0c += (s32) (((s64) (w->mUnk_10 - w->mUnk_08) * 0x333) >> 12);
-        w->mUnk_0c = (s32) (((s64) w->mUnk_0c * 0xc00) >> 12);
+        w->mUnk_0c = ((s64) w->mUnk_0c * 0xc00) >> 12;
         w->mUnk_04 = (s32) (((s64) w->mUnk_10 * 0x2000) >> 12) - w->mUnk_08;
         data_0217b3cc->mUnk_18.mUnk_00 += 1;
         if (data_0217b3cc->mUnk_18.mUnk_10 == 0xb33 && data_0217b3cc->mUnk_18.mUnk_00 > 7) {

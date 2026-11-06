@@ -17,11 +17,11 @@
 #include "Main/Unknown/code_020de204.h"
 
 u32 func_020de20c(u32 p0, u32 p1, u32 p2, u32 p3) {
-    return ((u32) * (const u8 *) ((u8 *) p3 + 0));
+    return (*(const u8 *) ((u8 *) p3 + 0));
 }
 
 u32 func_020de204(u32 p0, u32 p1, u32 p2, u32 p3) {
-    return ((u32) * (const u8 *) ((u8 *) p3 + 0));
+    return (*(const u8 *) ((u8 *) p3 + 0));
 }
 
 const u16 data_021583d4 = 1;
@@ -83,7 +83,7 @@ void func_020de000(Unk020de000 *o, void *a, Wanwan *p) {
     } else {
         d = 0xc8000;
     }
-    o->mUnk_68 = (s32) (1.2f * (float) (d + p->mUnk_f0));
+    o->mUnk_68 = 1.2f * (d + p->mUnk_f0);
 }
 
 #pragma thumb off
@@ -133,18 +133,18 @@ void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
         if (e != 0) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &u);
             w = a->mUnk_28;
-            u.x = (s32) (((s64) u.x * w) >> 12);
-            u.y = (s32) (((s64) u.y * w) >> 12);
-            u.z = (s32) (((s64) u.z * w) >> 12);
+            u.x = ((s64) u.x * w) >> 12;
+            u.y = ((s64) u.y * w) >> 12;
+            u.z = ((s64) u.z * w) >> 12;
             VEC_Add(q, &u, &p44[j - 1]);
             VEC_Subtract(&u, &t, &t);
-            t.x = (s32) (((s64) t.x * g.x) >> 12);
-            t.y = (s32) (((s64) t.y * g.y) >> 12);
-            t.z = (s32) (((s64) t.z * g.z) >> 12);
+            t.x = ((s64) t.x * g.x) >> 12;
+            t.y = ((s64) t.y * g.y) >> 12;
+            t.z = ((s64) t.z * g.z) >> 12;
             c = a->mUnk_24 * j;
-            t.x = (s32) (((s64) t.x * c) >> 12);
-            t.y = (s32) (((s64) t.y * c) >> 12);
-            t.z = (s32) (((s64) t.z * c) >> 12);
+            t.x = ((s64) t.x * c) >> 12;
+            t.y = ((s64) t.y * c) >> 12;
+            t.z = ((s64) t.z * c) >> 12;
             VEC_Add(&p48[j - 1], &t, &p48[j - 1]);
         }
         q--;
@@ -161,9 +161,9 @@ void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
         if (e != 0) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &u);
             w = a->mUnk_28;
-            u.x = (s32) (((s64) u.x * w) >> 12);
-            u.y = (s32) (((s64) u.y * w) >> 12);
-            u.z = (s32) (((s64) u.z * w) >> 12);
+            u.x = ((s64) u.x * w) >> 12;
+            u.y = ((s64) u.y * w) >> 12;
+            u.z = ((s64) u.z * w) >> 12;
             VEC_Add(&p44[m - 1], &u, &p44[m]);
         }
     }

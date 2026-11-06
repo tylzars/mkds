@@ -1,8 +1,9 @@
 #include "code_021488e8.h"
+#include "registers.h"
 
 // Sets the background mode of the sub screen (DISPCNT bits 0-2).
 void GXS_SetGraphicsMode(u32 bgMode) {
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x7) | bgMode;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x7) | bgMode;
 }
 
 // Writes the master brightness register: 0 for no change, 0x4000 | brightness to brighten, 0x8000 | -brightness to

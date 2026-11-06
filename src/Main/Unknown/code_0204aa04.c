@@ -9,7 +9,7 @@ u32 func_0204aa28(u32 arg0) {
     u32 compareLeft0;
     u32 compareRight0;
     value1 = 0x27ffc40u;
-    value1 = (u32) * (const u16 *) ((value1) + (0));
+    value1 = *(const u16 *) ((value1) + (0));
     compareLeft0 = value1;
     compareRight0 = 2u;
     if (compareLeft0 == compareRight0) {
@@ -17,8 +17,8 @@ u32 func_0204aa28(u32 arg0) {
     }
     value1 = (u32) &data_021759d0;
     value0 = (value0) & (1u);
-    value2 = (u32) * (const u32 *) ((value1) + (0));
-    value1 = (u32) * (const u32 *) ((value2) + (28));
+    value2 = *(const u32 *) ((value1) + (0));
+    value1 = *(const u32 *) ((value2) + (28));
     value1 = (value1) & ~(4u);
     value0 = (value1) | ((value0 << 2));
     *(u32 *) ((value2) + (28)) = value0;

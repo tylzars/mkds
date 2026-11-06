@@ -3,6 +3,6 @@
 
 u32 func_020360d0(void) {
     u32 value0;
-    value0 = (u32) data_021759d4->mUnk_0c;
+    value0 = data_021759d4->mUnk_0c;
     return value0;
 }

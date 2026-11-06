@@ -74,12 +74,13 @@
 #include "Main/Unknown/code_0212a724.h"
 #include "Main/Unknown/code_0212a910.h"
 #include "Main/Unknown/code_02047104.h"
+#include "registers.h"
 
 #pragma thumb on
 
 void func_0212a700(void) {
-    SetKeyboardButton0Corners((u32) 0x24, (u32) 0x7a, (u32) 0x7e, (u32) 0x8e);
-    SetKeyboardButton1Corners((u32) 0x82, (u32) 0x7a, (u32) 0xdc, (u32) 0x8e);
+    SetKeyboardButton0Corners(0x24, 0x7a, 0x7e, 0x8e);
+    SetKeyboardButton1Corners(0x82, 0x7a, 0xdc, 0x8e);
 }
 
 #pragma thumb off
@@ -346,7 +347,7 @@ void func_02129ea4(void) {
 void func_02129e78(void) {
     Nscr *v1;
     v1 = gKeyboard->mNscrs[gKeyboard->mKind];
-    CallQueueAppend((u32) 0x1b, (u32) 0, v1->mData, (u32) v1->mDataSize);
+    CallQueueAppend(0x1b, 0, v1->mData, v1->mDataSize);
 }
 
 void func_02129cbc(void) {
@@ -372,12 +373,12 @@ void func_02129cbc(void) {
     v1 = FindSceneFile(data_0216e9e8);
     LoadNclrData(&gKeyboard->mNclr, v1);
     DC_FlushRange(gKeyboard->mNcgr->mData, gKeyboard->mNcgr->mDataSize);
-    GX_LoadOBJ(gKeyboard->mNcgr->mData, 0, (u32) (gKeyboard->mNcgr->mDataSize));
-    GXS_LoadOBJ(gKeyboard->mNcgr->mData, 0, (u32) (gKeyboard->mNcgr->mDataSize));
+    GX_LoadOBJ(gKeyboard->mNcgr->mData, 0, gKeyboard->mNcgr->mDataSize);
+    GXS_LoadOBJ(gKeyboard->mNcgr->mData, 0, gKeyboard->mNcgr->mDataSize);
     DC_FlushRange(gKeyboard->mNclr->mData, gKeyboard->mNclr->mDataSize);
-    GX_LoadOBJPltt(gKeyboard->mNclr->mData, 0, (u32) (((u32) 0x000001a0u)));
-    GX_LoadOBJPltt(&gKeyboard->mNclr->mData[0xe0], 0x1c0, (u32) 0x40);
-    GXS_LoadOBJPltt(gKeyboard->mNclr->mData, 0, (u32) (gKeyboard->mNclr->mDataSize));
+    GX_LoadOBJPltt(gKeyboard->mNclr->mData, 0, (0x000001a0u));
+    GX_LoadOBJPltt(&gKeyboard->mNclr->mData[0xe0], 0x1c0, 0x40);
+    GXS_LoadOBJPltt(gKeyboard->mNclr->mData, 0, gKeyboard->mNclr->mDataSize);
     v1 = FindSceneFile(data_0216e9fc);
     LoadNcgrData(&v2, v1);
     DC_FlushRange(v2->mData, v2->mDataSize);
@@ -389,7 +390,7 @@ void func_02129cbc(void) {
     v1 = FindSceneFile(data_0216ea4c);
     LoadNclrData(&v3, v1);
     DC_FlushRange(v3->mData, 0x80);
-    GXS_LoadBGPltt(v3->mData, 0, (u32) 0x80);
+    GXS_LoadBGPltt(v3->mData, 0, 0x80);
 }
 
 #pragma thumb off
@@ -397,14 +398,14 @@ void func_02129cbc(void) {
 #pragma thumb on
 void func_02129c18(void) {
     u32 t;
-    *(vu16 *) 0x4001050 = 0;
-    t = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
+    reg_G2S_DB_BLDCNT = 0;
+    t = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
     t |= 0xc;
-    *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & ~0x1f00) | (t << 8);
-    *(vu16 *) 0x400100c = (*(vu16 *) 0x400100c & 0x43) | 0x8018;
-    *(vu16 *) 0x400100c = (*(vu16 *) 0x400100c & ~3) | 2;
-    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x9010;
-    *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & ~3) | 2;
+    reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | (t << 8);
+    reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & 0x43) | 0x8018;
+    reg_G2S_DB_BG2CNT = (reg_G2S_DB_BG2CNT & ~3) | 2;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x9010;
+    reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & ~3) | 2;
     MemFillWordsByBlock_inline((void *) G2_GetBG2ScrPtr(), 0x1000);
     MemFillWordsByBlock_inline((void *) G2_GetBG3ScrPtr(), 0x1000);
 }
@@ -756,7 +757,7 @@ void AdvanceKeyboardState8(void) {
                 a = GetBmgEntry(p->mCommonMessages, 0xe);
                 n = func_020adc7c(gKeyboard->mUnk_2c[1].mUnk_00, buf);
                 buf[n] = 0;
-                func_0212513c(buf, (u16 *) a, &buf2[1], 0x1f4);
+                func_0212513c(buf, a, &buf2[1], 0x1f4);
                 b = GetBmgEntry(gKeyboard->mCommonMessages, 0);
                 c = GetBmgEntry(gKeyboard->mCommonMessages, 1);
                 func_02125fd4(&buf2[1], b, c, 0, 0, 1, 1, 0);
@@ -1086,7 +1087,7 @@ void AdvanceKeyboard(void) {
 
 void func_0212899c(void) {
     SetKeyboardOffset(0, gKeyboard->mOffsetY + 0x28);
-    *(vu32 *) 0x400101c = (-gKeyboard->mOffsetY << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (-gKeyboard->mOffsetY << 16) & 0x1ff0000;
     UploadKeyboardBg2Data();
     func_021258f0();
 }
@@ -1097,9 +1098,9 @@ u32 GetKeyboardNextScene(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gKeyboard;
-    value1 = (u32) * (const u32 *) ((value0) + 0u);
+    value1 = *(const u32 *) ((value0) + 0u);
     value0 = 114u;
-    value0 = (u32) * (const s16 *) ((value1) + (value0));
+    value0 = *(const s16 *) ((value1) + (value0));
     return value0;
 }
 #pragma thumb off

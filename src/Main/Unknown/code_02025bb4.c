@@ -5,7 +5,7 @@
 #pragma thumb on
 
 void func_02025c94(int id, int x, int y, Unk0201ea30 *graphics) {
-    short *entry = (func_0201ea30((Unk0201ea30 *) graphics, id));
+    short *entry = (func_0201ea30(graphics, id));
     entry[0] = (entry[0] & 0xfffff000U) | (x & 0xfff);
     entry[1] = (entry[1] & 0xfffff000U) | (y & 0xfff);
 }

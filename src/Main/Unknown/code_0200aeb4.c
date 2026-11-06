@@ -117,7 +117,7 @@ void func_0200b00c(void *arg0) {
     u32 value3;
     value1 = 0u;
     value2 = 32u;
-    MI_CpuFill8(value0, (u8) value1, value2);
+    MI_CpuFill8(value0, value1, value2);
 }
 #pragma thumb off
 

@@ -22,6 +22,7 @@
 #include "code_0200c914.h"
 #include "code_0200fc8c.h"
 #include "code_02004dc0.h"
+#include "registers.h"
 
 void func_020367c4(void) {
     if (gDisplaySettings != NULL) {
@@ -36,8 +37,8 @@ void func_020367c4(void) {
 void func_02036778(void) {
     OS_SetIrqFunction(1, func_020367c4);
     OS_EnableIrqMask(1);
-    *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = 1;
+    reg_OS_IME;
+    reg_OS_IME = 1;
     OS_EnableInterrupts();
     GX_VBlankIntr(1);
 }
@@ -53,11 +54,11 @@ void func_020366bc(void) {
     func_02039c7c();
     func_02039bd4();
     GX_DispOff();
-    *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & ~0x10000;
+    reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & ~0x10000;
     OS_SetIrqFunction(1, func_020367c4);
     OS_EnableIrqMask(1);
-    *(vu16 *) 0x4000208;
-    *(vu16 *) 0x4000208 = 1;
+    reg_OS_IME;
+    reg_OS_IME = 1;
     OS_EnableInterrupts();
     GX_VBlankIntr(1);
     FS_Init(-1);

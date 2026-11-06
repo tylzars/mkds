@@ -66,8 +66,8 @@ s32 func_0212b0b8(void) {
     if (data_0217d408->mUnk_000c == FALSE) {
         return -1;
     }
-    GXx_SetMasterBrightness_((u16 *) 0x400006c, 0);
-    GXx_SetMasterBrightness_((u16 *) 0x400106c, 0);
+    GXx_SetMasterBrightness_((u16 *) &reg_GX_MASTER_BRIGHT, 0);
+    GXx_SetMasterBrightness_((u16 *) &reg_GXS_DB_MASTER_BRIGHT, 0);
     if ((u16) (data_021755dc.mUnk_00 & 1) != 0) {
         p = data_0217d408;
         if (p->mUnk_0004 != 0) {
@@ -94,11 +94,11 @@ void func_0212b09c(void) {
     u32 value2;
     u32 value3;
     value0 = (u32) &data_0217d408;
-    value0 = (u32) * (const u32 *) ((value0) + 0u);
+    value0 = *(const u32 *) ((value0) + 0u);
     value0 = (value0) + 68u;
     value1 = 0u;
     value2 = 0x1400u;
-    MI_CpuFill8((void *) value0, (u8) value1, value2);
+    MI_CpuFill8((void *) value0, value1, value2);
 }
 #pragma thumb off
 
@@ -171,10 +171,10 @@ void func_0212ae80(void) {
     }
     *(vu16 *) 0x50001fc = 0xffff;
     *(vu16 *) 0x5000000 = 0;
-    *(vu32 *) 0x4000014 = 0;
-    *(vu16 *) 0x400000a = *(vu16 *) 0x400000a & ~3;
-    *(vu16 *) 0x400000a = *(vu16 *) 0x400000a & ~0x40;
-    *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & 0x43) | 0x400;
+    reg_G2_BG1OFS = 0;
+    reg_G2_BG1CNT = reg_G2_BG1CNT & ~3;
+    reg_G2_BG1CNT = reg_G2_BG1CNT & ~0x40;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & 0x43) | 0x400;
     DC_FlushRange(data_0217d408->mUnk_0044, 0x1400);
     DC_FlushRange(data_0217d408->mUnk_1444, 0x600);
     GX_LoadBG1Char(data_0217d408->mUnk_0044, 0, 0x1400);
@@ -203,23 +203,23 @@ void func_0212ad28(s32 a, s32 b) {
         func_0212ae80();
         if (GetCurrentSceneNumber() == 2) {
             if (func_020b19a0() == 0) {
-                *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x200;
-                *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffffe0ff;
+                reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x200;
+                reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffffe0ff;
                 *(vu16 *) 0x5000400 = 0;
-                *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & 0xffff1fff;
+                reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
             } else {
-                t = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
+                t = (reg_GX_DISPCNT & 0x1f00) >> 8;
                 t |= 2;
-                *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | (t << 8);
+                reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (t << 8);
             }
             G2x_SetBlendBrightnessExt_(&reg_G2_BLDCNT, 0x1d, 0, 8, 8, -11);
         } else {
-            *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | 0x200;
-            *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & 0xffffe0ff;
+            reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x200;
+            reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffffe0ff;
             *(vu16 *) 0x5000400 = 0;
-            *(vu32 *) 0x4000000 = *(vu32 *) 0x4000000 & 0xffff1fff;
-            *(vu16 *) 0x4000050 = 0;
-            *(vu16 *) 0x4001050 = 0;
+            reg_GX_DISPCNT = reg_GX_DISPCNT & 0xffff1fff;
+            reg_G2_BLDCNT = 0;
+            reg_G2S_DB_BLDCNT = 0;
         }
     }
 }
@@ -387,7 +387,7 @@ void func_0212a910(u32 arg0, u32 arg1) {
     u32 value1 = arg1;
     u32 value2;
     value2 = (u32) &data_0217d404;
-    value2 = (u32) * (const u32 *) ((value2) + 0u);
+    value2 = *(const u32 *) ((value2) + 0u);
     value0 = (value0 << 2);
     *(u32 *) ((value2) + (value0)) = value1;
 }

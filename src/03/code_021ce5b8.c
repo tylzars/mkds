@@ -24,8 +24,8 @@ u32 func_ov003_021ce920(void (*a)(u32)) {
     data_ov003_021da280->mUnk_1370 = a;
     d = data_ov003_021da280;
     t = OS_GetTick();
-    d->mUnk_1b74 = (u32) t;
-    d->mUnk_1b78 = (u32) (t >> 32);
+    d->mUnk_1b74 = t;
+    d->mUnk_1b78 = t >> 32;
     if (WM_Initialize(d, func_ov003_021ce7c0, 3) == 2) {
         do {
             WM_ReadStatus(&data_ov003_021da280->mUnk_13b8);

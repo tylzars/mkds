@@ -87,14 +87,14 @@ void InitShine16(u32 arg0) {
     value1 = 0x44u;
     value0 = (u32) HeapAlloc((void *) value0, value1);
     *(u32 *) ((value4) + (148)) = value0;
-    value0 = (u32) * (const u32 *) ((value4) + (148));
+    value0 = *(const u32 *) ((value4) + (148));
     value2 = (value4) + (4u);
     value1 = 0xbu;
     InitSoundSource((SoundSource *) value0, value1, (Vec3 *) value2);
-    value0 = (u32) * (const u32 *) ((value4) + (148));
+    value0 = *(const u32 *) ((value4) + (148));
     func_0210bae8((SoundSource *) value0);
     value0 = (u32) &gSoundFalloffs;
-    value0 = (u32) * (const u32 *) ((value0) + (428));
+    value0 = *(const u32 *) ((value0) + (428));
     *(u32 *) ((value4) + (112)) = value0;
 }
 
@@ -171,7 +171,7 @@ void DrawShine16(void *a, Shine16 *p) {
     }
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     func_0209b7a0(gShine16, p->mUnk_b8, 0);
-    func_0209b688(gShine16, (u16) p->mNsbtpFrameIndex);
+    func_0209b688(gShine16, p->mNsbtpFrameIndex);
     DrawMapObjectModel(a, gShine16, p);
 }
 
@@ -180,7 +180,7 @@ u32 func_020a69a0(void) {
     u32 value1;
     value0 = (u32) &data_0217b220;
     value1 = 0u;
-    *(u16 *) ((value0) + (0)) = (u16) value1;
+    *(u16 *) ((value0) + (0)) = value1;
     return value0;
 }
 
@@ -433,7 +433,7 @@ void UpdateShine16(void *a, Shine16 *p) {
             if (p->mUnk_dc > 0) {
                 g = &gRaceProgress->mRandom;
                 g->mUnk_00 = g->mUnk_08 * g->mUnk_00 + g->mUnk_10;
-                r = (u16) (((u64) (u32) (g->mUnk_00 >> 32) * 0x10000) >> 32);
+                r = ((u64) (u32) (g->mUnk_00 >> 32) * 0x10000) >> 32;
                 g = &gRaceProgress->mRandom;
                 g->mUnk_00 = g->mUnk_08 * g->mUnk_00 + g->mUnk_10;
                 s = ((u64) (u32) (g->mUnk_00 >> 32) * 0x14000) >> 32;
@@ -1166,16 +1166,16 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                 a = e->mUnk_08 + c->mBalloonOffsets[m - 1][j];
                 if (a != 0) {
                     q = &p->mUnk_150;
-                    t.x = (s32) (((s64) q->x * a) >> 12);
-                    t.y = (s32) (((s64) q->y * a) >> 12);
-                    t.z = (s32) (((s64) q->z * a) >> 12);
+                    t.x = ((s64) q->x * a) >> 12;
+                    t.y = ((s64) q->y * a) >> 12;
+                    t.z = ((s64) q->z * a) >> 12;
                     func_020a2e74(o, &t);
                 }
                 if ((j & 1) == 1) {
                     q = &p->mUnk_168;
-                    t2.x = (s32) (((s64) q->x * -0xcd) >> 12);
-                    t2.y = (s32) (((s64) q->y * -0xcd) >> 12);
-                    t2.z = (s32) (((s64) q->z * -0xcd) >> 12);
+                    t2.x = ((s64) q->x * -0xcd) >> 12;
+                    t2.y = ((s64) q->y * -0xcd) >> 12;
+                    t2.z = ((s64) q->z * -0xcd) >> 12;
                     func_020a2e74(o, &t2);
                 }
                 SetBalloonTargetPosAndVelocity(o, &v, &p->mVelocity);

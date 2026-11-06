@@ -40,9 +40,9 @@ void func_020de84c(void) {
         b = gPairsByAngle[n * 2];
         data_0217b704[i].mUnk_00 = a;
         data_0217b704[i].mUnk_04 = b;
-        data_0217b704[i].mUnk_08 = (s32) (((s64) a * a) >> 12);
-        data_0217b704[i].mUnk_0c = (s32) (((s64) b * b) >> 12);
-        data_0217b704[i].mUnk_10 = (s32) (((s64) a * b) >> 12);
+        data_0217b704[i].mUnk_08 = ((s64) a * a) >> 12;
+        data_0217b704[i].mUnk_0c = ((s64) b * b) >> 12;
+        data_0217b704[i].mUnk_10 = ((s64) a * b) >> 12;
     }
     data_0217b708 = HeapAlloc(GetHeap(func_020364e8()), 0x410);
     for (j = 0; j < 0x82; j++) {
@@ -65,10 +65,10 @@ void func_020de6a8(Unk020de6a8 *a, Unk020de6a8_1 *b) {
     a->mUnk_0fc = &a->mUnk_000.mPos;
     r = func_020d22d0();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    a->mUnk_0a0 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x12c) >> 32);
+    a->mUnk_0a0 = ((u64) (u32) (r->mUnk_00 >> 32) * 0x12c) >> 32;
     r = func_020d22d0();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
-    a->mUnk_0a2 = (u16) (((u64) (u32) (r->mUnk_00 >> 32) * 0x82) >> 32);
+    a->mUnk_0a2 = ((u64) (u32) (r->mUnk_00 >> 32) * 0x82) >> 32;
     a->mUnk_0a4 = 0x80;
     if (b != NULL) {
         if (a->mUnk_000.mKind == 0xc9 && b->mUnk_26 >= 0) {

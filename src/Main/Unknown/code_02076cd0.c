@@ -27,6 +27,7 @@
 #include "code_02147cd8.h"
 #include "code_0214a748.h"
 #include "code_021471bc.h"
+#include "registers.h"
 
 #pragma thumb on
 
@@ -50,7 +51,7 @@ u32 func_02077a70(s32 *a, u32 b) {
     u32 n;
     enum { K0 } i;
 
-    *a = (s32) _s32_div_f((u16) b, 3);
+    *a = _s32_div_f((u16) b, 3);
     if (*a >= 8) {
         switch (*a) {
             case 8:
@@ -345,23 +346,23 @@ void RefreshCameraProjection(Camera *p) {
             p->mHalfFovAngle = p->mHalfFovAngleGoal;
         }
     }
-    p->mFrustumTop = (s32) (((s64) p->mNear * FX_Div(p->mHalfFovPairFirst, p->mHalfFovPairSecond)) >> 12);
+    p->mFrustumTop = ((s64) p->mNear * FX_Div(p->mHalfFovPairFirst, p->mHalfFovPairSecond)) >> 12;
     p->mFrustumBottom = -p->mFrustumTop;
-    p->mFrustumLeft = (s32) (((s64) -p->mFrustumTop * p->mAspectRatio) >> 12);
+    p->mFrustumLeft = ((s64) -p->mFrustumTop * p->mAspectRatio) >> 12;
     a = p->mFrustumTop;
     b = p->mFrustumBottom;
     switch (p->mFrustumShift) {
         case 1:
             a <<= 1;
             b = -a;
-            p->mFrustumTop = (s32) (((s64) a * (data_usa_021656b8 + 0x1000)) >> 12);
-            p->mFrustumBottom = (s32) (((s64) a * data_usa_021656b8) >> 12);
+            p->mFrustumTop = ((s64) a * (data_usa_021656b8 + 0x1000)) >> 12;
+            p->mFrustumBottom = ((s64) a * data_usa_021656b8) >> 12;
             break;
         case 2:
             b <<= 1;
             a = -b;
-            p->mFrustumBottom = (s32) (((s64) b * (data_usa_021656b8 + 0x1000)) >> 12);
-            p->mFrustumTop = (s32) (((s64) b * data_usa_021656b8) >> 12);
+            p->mFrustumBottom = ((s64) b * (data_usa_021656b8 + 0x1000)) >> 12;
+            p->mFrustumTop = ((s64) b * data_usa_021656b8) >> 12;
             break;
     }
     if (data_021759c0->mUnk_57 != 0) {
@@ -369,12 +370,12 @@ void RefreshCameraProjection(Camera *p) {
     }
     p->mFrustumRight = -p->mFrustumLeft;
     if (data_021759c0->mUnk_00c == 6 && p->mCourseMapCamera != NULL) {
-        c = (s32) (((s64) p->mFrustumTop * p->mCourseMapCamera->mUnk_00.y + 0x800) >> 12);
+        c = ((s64) p->mFrustumTop * p->mCourseMapCamera->mUnk_00.y + 0x800) >> 12;
         p->mFrustumBottom += c;
         p->mFrustumTop += c;
     }
     func_020d4a20(a, b, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar);
-    *(u32 *) 0x4000440 = 0;
+    reg_G3_MTX_MODE = 0;
     G3i_FrustumW_(p->mFrustumTop, p->mFrustumBottom, p->mFrustumLeft, p->mFrustumRight, p->mNear, p->mFar, 0x1000, 1,
                   (Unk0214ad4c *) data_0217acc0);
 }
@@ -402,7 +403,7 @@ void UpdateCameraViewWithWorldUp(Camera *p) {
             Vec3NormalizeAndGetLengthUnchecked(&p->mUp, &p->mUp);
         }
     }
-    *(u32 *) 0x4000440 = 2;
+    reg_G3_MTX_MODE = 2;
     d.x = p->mPos.x >> 4;
     d.y = (p->mPos.y + p->mViewPosYOffset) >> 4;
     d.z = p->mPos.z >> 4;
@@ -451,6 +452,6 @@ void UpdateCameraView(Camera *p) {
     p->mViewLookAt.x = d.x >> 4;
     p->mViewLookAt.y = d.y >> 4;
     p->mViewLookAt.z = d.z >> 4;
-    *(u32 *) 0x4000440 = 2;
+    reg_G3_MTX_MODE = 2;
     G3i_LookAt_(&p->mViewPos, &p->mUp, &p->mViewLookAt, 1, &p->mViewMatrix);
 }

@@ -9,7 +9,7 @@ void func_020467a0(void) {
     func_0205db50();
     value0 = (u32) &data_021759c0;
     value1 = 1u;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
+    value0 = *(const u32 *) ((value0) + (0));
     value0 = (value0) + (0x200u);
-    *(u16 *) ((value0) + (72)) = (u16) value1;
+    *(u16 *) ((value0) + (72)) = value1;
 }

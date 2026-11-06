@@ -17,6 +17,7 @@
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02037000.h"
+#include "registers.h"
 
 void func_020d159c(void) {
     DC_FlushRange(&gEndingStaffRoll->mUnk_10, 0x400);
@@ -51,7 +52,7 @@ void InitEndingStaffRoll(void) {
                    gEndingStaffRoll->mEndingStaffRollMO00Nclr->mDataSize);
     GX_LoadOBJ(gEndingStaffRoll->mEndingStaffRollM00Ncgr->mData, 0,
                gEndingStaffRoll->mEndingStaffRollM00Ncgr->mDataSize);
-    *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffcfffef) | 0x10;
+    reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffcfffef) | 0x10;
 }
 
 u32 func_020d1450(void) {
@@ -70,7 +71,7 @@ u16 UpdateEndingStaffRoll(void) {
     if (gEndingStaffRoll->mUnk_00 == 0x30c) {
         StartStaffRollText();
     }
-    return *(vu16 *) 0x4000304;
+    return reg_GX_POWCNT;
 }
 
 void DrawEndingStaffRoll(void) {

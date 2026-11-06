@@ -13,11 +13,11 @@
 #pragma thumb on
 
 u32 func_020070e4(void) {
-    return ((u32) data_0216f3d0);
+    return (data_0216f3d0);
 }
 
 u32 func_020070d8(void) {
-    return ((u32) data_0216f3d4);
+    return (data_0216f3d4);
 }
 
 void func_020070cc(u32 p0) {

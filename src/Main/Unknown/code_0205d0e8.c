@@ -46,7 +46,7 @@ void func_0205db50(void) {
 }
 
 u8 func_0205db28(void) {
-    return (u8) ((data_021759c0->mCourseNumber - 1) % 4);
+    return (data_021759c0->mCourseNumber - 1) % 4;
 }
 
 void func_0205d9d4(u32 a, s32 b, u32 c) {

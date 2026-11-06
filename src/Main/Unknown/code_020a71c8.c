@@ -42,10 +42,10 @@ void InitSanbo(u32 arg0) {
     u32 value1;
     u32 value2;
     u32 value12;
-    value1 = (u32) * (const u32 *) ((value0) + (156));
+    value1 = *(const u32 *) ((value0) + (156));
     value0 = (value0) + (0x1d8u);
     value2 = 0u;
-    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, (s32) value2);
+    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
 }
 
 u8 func_020a7fc4(Sanbo *p, Kart *a, u8 *b, u8 *c) {
@@ -394,7 +394,7 @@ void UpdateSanbo(void *a, Sanbo *p) {
 }
 
 void func_020a737c(void) {
-    func_0209bfa8(&func_020a7fc4, &func_020a7f18, NULL, (u32) 1, (u16) 1);
+    func_0209bfa8(&func_020a7fc4, &func_020a7f18, NULL, 1, 1);
 }
 
 u32 func_020a7358(void) {

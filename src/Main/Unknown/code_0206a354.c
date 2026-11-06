@@ -153,7 +153,7 @@ void AdvanceKartState6(Kart *p) {
             if (c <= 0xc8) {
                 p->mRotationAnglePerFrame = 0xc8;
             } else {
-                p->mRotationAnglePerFrame = (s32) (((s64) c * 0xf85) >> 12);
+                p->mRotationAnglePerFrame = ((s64) c * 0xf85) >> 12;
             }
         } else {
             p->mRotationAngle = 0;
@@ -171,7 +171,7 @@ void AdvanceKartState6(Kart *p) {
             p->mUnk_33c += 0x3e8;
             p->mUnk_334 = gPairsByAngle[(p->mUnk_338 >> 4) * 2];
         }
-        i = (u16) (((s64) p->mUnk_334 * 0xce4) >> 12);
+        i = ((s64) p->mUnk_334 * 0xce4) >> 12;
         MTX_RotAxis33((MtxFx43 *) &m, &p->mUnk_328, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
         MTX_MultVec33(&p->mRotationAxis, m.mUnk_00, &a);
         QuaternionFromAxisAngle(&a, p->mRotationAngle, &p->mRotationQuaternion);
@@ -273,7 +273,7 @@ void StartKartState3(Kart *p) {
     VEC_MultAdd(0x2e2, &v, &p->mRotationAxis, &p->mRotationAxis);
     Vec3NormalizeAndGetLengthUnchecked(&p->mRotationAxis, &p->mRotationAxis);
     QuaternionFromAxisAngle(&p->mRotationAxis, p->mRotationAngle, &p->mRotationQuaternion);
-    p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * 0x99a) >> 12);
+    p->mForwardSpeed = ((s64) p->mForwardSpeed * 0x99a) >> 12;
     if (p->mKartModelsEntry->mUnk_058 == 0) {
         StartEffect(0xc, &p->mPos);
         StartEffect(0xd, &p->mPos);
@@ -404,9 +404,9 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
         func_ov001_0218173c();
     }
     if (!(p->mUnk_7c & 0x400)) {
-        x = (s32) (((s64) a->x * 0x1b33) >> 12);
-        y = (s32) (((s64) a->y * 0x1b33) >> 12);
-        z = (s32) (((s64) a->z * 0x1b33) >> 12);
+        x = ((s64) a->x * 0x1b33) >> 12;
+        y = ((s64) a->y * 0x1b33) >> 12;
+        z = ((s64) a->z * 0x1b33) >> 12;
         p->mUnk_2d8.x += x;
         p->mUnk_2d8.z += z;
         p->mVerticalSpeed += y;
@@ -510,9 +510,9 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
     w = data_02154f7c;
     Vec3CrossUnrounded(&w, &v, &p->mRotationAxis);
     if (!(p->mUnk_7c & 0x400)) {
-        x = (s32) (((s64) v.x << 14) >> 12);
-        y = (s32) (((s64) v.y << 14) >> 12);
-        z = (s32) (((s64) v.z << 14) >> 12);
+        x = ((s64) v.x << 14) >> 12;
+        y = ((s64) v.y << 14) >> 12;
+        z = ((s64) v.z << 14) >> 12;
         p->mUnk_2d8.x += x;
         p->mUnk_2d8.z += z;
         p->mVerticalSpeed += y;
@@ -646,10 +646,10 @@ void func_0206a354(Kart *p) {
             p->mScaleFactor.x = 0x1000;
             p->mScaleFactor.y = 0x1000;
             p->mScaleFactor.z = 0x1000;
-            p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
-            p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
-            p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
-            p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
+            p->mScale.x = ((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12;
+            p->mScale.y = ((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12;
+            p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
+            p->mScale.y = ((s64) p->mScaleYFactor * p->mScale.y) >> 12;
             if (q->mUnk_04 > 0x19) {
                 p->mUnk_4c &= ~0x80;
                 if (!(p->mUnk_4c & 0x10080)) {
@@ -671,10 +671,10 @@ void func_0206a354(Kart *p) {
         p->mScaleBase.x = 0x1000;
         p->mScaleBase.y = 0x1000;
         p->mScaleBase.z = 0x1000;
-        p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
-        p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
-        p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
-        p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
+        p->mScale.x = ((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12;
+        p->mScale.y = ((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12;
+        p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
+        p->mScale.y = ((s64) p->mScaleYFactor * p->mScale.y) >> 12;
         return;
     }
     q->mUnk_02 = q->mUnk_02 - 1;
@@ -695,10 +695,10 @@ void func_0206a354(Kart *p) {
         p->mScaleBase.y = v;
         p->mScaleBase.z = p->mScaleBase.y;
         p->mScaleBase.x = p->mScaleBase.z;
-        p->mScale.x = (s32) (((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12);
-        p->mScale.y = (s32) (((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12);
-        p->mScale.z = (s32) (((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12);
-        p->mScale.y = (s32) (((s64) p->mScaleYFactor * p->mScale.y) >> 12);
+        p->mScale.x = ((s64) p->mScaleBase.x * p->mScaleFactor.x) >> 12;
+        p->mScale.y = ((s64) p->mScaleBase.y * p->mScaleFactor.y) >> 12;
+        p->mScale.z = ((s64) p->mScaleBase.z * p->mScaleFactor.z) >> 12;
+        p->mScale.y = ((s64) p->mScaleYFactor * p->mScale.y) >> 12;
     }
     func_0210fa3c();
 }

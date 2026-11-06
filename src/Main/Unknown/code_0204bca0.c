@@ -129,7 +129,7 @@ void func_0204d6f4(FSFile *a, s32 b) {
         }
     }
     v13 = OS_DisableInterrupts();
-    v6 = (u32 *) data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, v7, NULL);
+    v6 = data_02175ec0.mUnk_0014(data_02175ec0.mUnk_0018, v7, NULL);
     OS_RestoreInterrupts(v13);
     *v6 = v10;
     v11 = 0;
@@ -256,7 +256,7 @@ void func_0204d28c(void) {
         v1.mUnk_04 = 0;
         v1.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
         v1.mUnk_08 = data_02175ec0.mUnk_0028;
-        if (func_02006d3c((u16) g, &v1, 9, func_0204d5bc) == 0) {
+        if (func_02006d3c(g, &v1, 9, func_0204d5bc) == 0) {
             return;
         }
         p->mUnk_46d4 = TRUE;
@@ -316,7 +316,7 @@ void func_0204d28c(void) {
     v2.mUnk_00_8 = 1;
     v2.mUnk_00_4 = (data_02175ec0.mUnk_0028 >> 8) & 0xff;
     v2.mUnk_08 = data_02175ec0.mUnk_0028;
-    if (func_02006d3c((u16) v4, &v2, 9, func_0204d5bc) == 0) {
+    if (func_02006d3c(v4, &v2, 9, func_0204d5bc) == 0) {
         return;
     }
     p->mUnk_46d4 = TRUE;
@@ -1048,7 +1048,7 @@ void func_0204bcec(void) {
 
 u32 func_0204bcdc(void) {
     u32 value0;
-    value0 = (u32) data_02175ec0.mUnk_000c;
+    value0 = data_02175ec0.mUnk_000c;
     return value0;
 }
 
@@ -1058,11 +1058,11 @@ u32 func_0204bcb4(u32 arg0) {
     u32 value2;
     u32 value4;
     value4 = value0;
-    value0 = (u32) OS_DisableInterrupts();
+    value0 = OS_DisableInterrupts();
     value1 = (u32) &data_02179ec0;
     value2 = (value4) & ~(1u);
     data_02179ec0.mUnk_b10 = value2;
-    value0 = (u32) OS_RestoreInterrupts(value0);
+    value0 = OS_RestoreInterrupts(value0);
     return value0;
 }
 

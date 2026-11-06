@@ -113,7 +113,7 @@ void func_020525a8(Unk0217aa00_0ac *a, Unk0217aa00_24 *b, Unk0217aa00_42c *c, Un
         }
         a->mUnk_dc_1 = n1;
         a->mUnk_dc_5 = 0;
-        a->mUnk_dc_6 = (u8) k;
+        a->mUnk_dc_6 = k;
         MI_CpuCopy8(d, a->mUnk_c6, 0x14);
         func_0204ec28(e, d);
     } else {
@@ -134,7 +134,7 @@ void func_020525a8(Unk0217aa00_0ac *a, Unk0217aa00_24 *b, Unk0217aa00_42c *c, Un
         }
         a->mUnk_dc_1 = m1;
         a->mUnk_dc_5 = 0;
-        a->mUnk_dc_6 = (u8) k;
+        a->mUnk_dc_6 = k;
         MI_CpuCopy8(d, a->mUnk_c6, 0x14);
     }
 }
@@ -465,8 +465,8 @@ void StartConnectCallback(Unk021425e8 *a) {
 void StartMP(void) {
     data_0217aa00->mUnk_000c = 0xb;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_StartMPEx(StartMPCallback, data_0217aa00->mUnk_003c, (u16) data_0217aa00->mUnk_0038,
-                     data_0217aa00->mUnk_0034, data_0217aa00->mUnk_0030, 1, 0, 0, 0, 0, 0) == 2) {
+    if (WM_StartMPEx(StartMPCallback, data_0217aa00->mUnk_003c, data_0217aa00->mUnk_0038, data_0217aa00->mUnk_0034,
+                     data_0217aa00->mUnk_0030, 1, 0, 0, 0, 0, 0) == 2) {
         return;
     }
     data_0217aa00->mUnk_0008 = 2;

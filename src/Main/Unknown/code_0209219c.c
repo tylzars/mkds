@@ -53,14 +53,14 @@ u8 func_0209297c(Basabasa *a, Unk0209297c *b, void *c, u8 *d) {
         u.x = x;
         u.z = z;
         if (q < 0x10) {
-            a->mUnk_00.mUnk_10.x = (s32) (((s64) a->mUnk_00.mMatrix.mUnk_00[2].x * 0x1333) >> 12);
-            a->mUnk_00.mUnk_10.y = (s32) (((s64) a->mUnk_00.mMatrix.mUnk_00[2].y * 0x1333) >> 12);
-            a->mUnk_00.mUnk_10.z = (s32) (((s64) a->mUnk_00.mMatrix.mUnk_00[2].z * 0x1333) >> 12);
+            a->mUnk_00.mUnk_10.x = ((s64) a->mUnk_00.mMatrix.mUnk_00[2].x * 0x1333) >> 12;
+            a->mUnk_00.mUnk_10.y = ((s64) a->mUnk_00.mMatrix.mUnk_00[2].y * 0x1333) >> 12;
+            a->mUnk_00.mUnk_10.z = ((s64) a->mUnk_00.mMatrix.mUnk_00[2].z * 0x1333) >> 12;
         } else {
             Vec3NormalizeAndGetLengthUnchecked(&u, &u);
-            a->mUnk_00.mUnk_10.x = (s32) (((s64) u.x * 0x1333) >> 12);
-            a->mUnk_00.mUnk_10.y = (s32) (((s64) u.y * 0x1333) >> 12);
-            a->mUnk_00.mUnk_10.z = (s32) (((s64) u.z * 0x1333) >> 12);
+            a->mUnk_00.mUnk_10.x = ((s64) u.x * 0x1333) >> 12;
+            a->mUnk_00.mUnk_10.y = ((s64) u.y * 0x1333) >> 12;
+            a->mUnk_00.mUnk_10.z = ((s64) u.z * 0x1333) >> 12;
         }
         a->mUnk_d0 |= m;
     }
@@ -166,7 +166,7 @@ void UpdateBasabasa(void *a, Basabasa *b) {
 }
 
 void func_020924a8(void) {
-    func_0209bfa8(&func_0209297c, NULL, NULL, (u32) 1, (u16) 0);
+    func_0209bfa8(&func_0209297c, NULL, NULL, 1, 0);
 }
 
 static inline u16 func_0209219c_inline(u32 n) {
@@ -192,7 +192,7 @@ static inline u16 func_0209219c_inline(u32 n) {
             }
         }
     }
-    return (u16) r;
+    return r;
 }
 
 void func_02092484(void) {

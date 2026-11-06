@@ -787,7 +787,7 @@ void getTransData_(s32 *out, s32 frame, const u32 *desc, const NNSG3dResJntAnm *
                     } else {
                         x = ((const s32 *) values)[k];
                         y = ((const s32 *) values)[j];
-                        *out = (s32) (((s64) x + x + x + y) >> 2);
+                        *out = ((s64) x + x + x + y) >> 2;
                     }
                     return;
                 }
@@ -947,10 +947,10 @@ void getScaleData_(s32 *out, s32 frame, const u32 *desc, const NNSG3dResJntAnm *
                     e32 = (const FxPairS32 *) values + k;
                     x = ((const FxPairS32 *) values)[k].mFirst;
                     y = ((const FxPairS32 *) values)[i].mFirst;
-                    out[0] = (s32) (((s64) x + x + x + y) >> 2);
+                    out[0] = ((s64) x + x + x + y) >> 2;
                     x = e32->mSecond;
                     y = ((const FxPairS32 *) values + i)->mSecond;
-                    out[1] = (s32) (((s64) x + x + x + y) >> 2);
+                    out[1] = ((s64) x + x + x + y) >> 2;
                 }
                 return;
             }

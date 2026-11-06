@@ -6,7 +6,7 @@ void func_020445f8(void) {
     u32 value0;
     u32 value1;
     u32 value12;
-    value0 = (u32) data_021759c0->mNextHeader.mCourseId;
-    value1 = (u32) data_021759c0->mNextHeader.mMode;
+    value0 = data_021759c0->mNextHeader.mCourseId;
+    value1 = data_021759c0->mNextHeader.mMode;
     func_0205950c((void *) value0, (void *) value1);
 }

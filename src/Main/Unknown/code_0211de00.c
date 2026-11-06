@@ -48,7 +48,7 @@ void LoadCommonCupMarkData(void) {
 void CreateCupMark(void *a) {
     int v1;
     void *v2;
-    v1 = ((u32) HeapAlloc(a, (u32) 0x10));
+    v1 = ((u32) HeapAlloc(a, 0x10));
     *(s32 *) &gCupMark = v1;
     v2 = FindSceneFile(gCupMarkNcgrName);
     LocateNcgr2(&gCupMark->mNcgr, v2);
@@ -63,7 +63,7 @@ void CreateCupMark(void *a) {
 void CreateCommonCupMark(void *a) {
     int v1;
     void *v2;
-    v1 = ((u32) HeapAlloc(a, (u32) 0x10));
+    v1 = ((u32) HeapAlloc(a, 0x10));
     *(s32 *) &gCupMark = v1;
     v2 = FindSceneFile(gCommonCupMarkNcgrName);
     LocateNcgr2(&gCupMark->mNcgr, v2);
@@ -125,7 +125,7 @@ void LoadSelectCupNameMData(void) {
 void CreateSelectCupNameM(void *a) {
     int v1;
     void *v2;
-    v1 = ((u32) HeapAlloc(a, (u32) 0xc));
+    v1 = ((u32) HeapAlloc(a, 0xc));
     *(s32 *) &gSelectCupNameM = v1;
     v2 = FindSceneFile(gSelectCupNameMNcgrName);
     LocateNcgr2((Ncgr **) gSelectCupNameM, v2);

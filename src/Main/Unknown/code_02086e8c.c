@@ -31,6 +31,7 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02061654.h"
 #include "Main/Unknown/code_02077000.h"
+#include "registers.h"
 
 void func_0208784c(s32 a, s32 b) {
     u16 x;
@@ -38,22 +39,22 @@ void func_0208784c(s32 a, s32 b) {
     u16 c;
     x = (b << 8) >> 16;
     y = (a << 8) >> 16;
-    *(u32 *) 0x4000488 = 0x60006;
+    reg_G3_TEXCOORD = 0x60006;
     c = data_021659d4[2];
-    *(u32 *) 0x400048c = data_021659d4[0] | data_021659d4[1] << 16;
-    *(u32 *) 0x400048c = c;
-    *(u32 *) 0x4000488 = x << 16 | 6;
+    reg_G3_VTX_16 = data_021659d4[0] | data_021659d4[1] << 16;
+    reg_G3_VTX_16 = c;
+    reg_G3_TEXCOORD = x << 16 | 6;
     c = data_021659d4[5];
-    *(u32 *) 0x400048c = data_021659d4[3] | data_021659d4[4] << 16;
-    *(u32 *) 0x400048c = c;
-    *(u32 *) 0x4000488 = y | x << 16;
+    reg_G3_VTX_16 = data_021659d4[3] | data_021659d4[4] << 16;
+    reg_G3_VTX_16 = c;
+    reg_G3_TEXCOORD = y | x << 16;
     c = data_021659d4[8];
-    *(u32 *) 0x400048c = data_021659d4[6] | data_021659d4[7] << 16;
-    *(u32 *) 0x400048c = c;
-    *(u32 *) 0x4000488 = y | 0x60000;
+    reg_G3_VTX_16 = data_021659d4[6] | data_021659d4[7] << 16;
+    reg_G3_VTX_16 = c;
+    reg_G3_TEXCOORD = y | 0x60000;
     c = data_021659d4[11];
-    *(u32 *) 0x400048c = data_021659d4[9] | data_021659d4[10] << 16;
-    *(u32 *) 0x400048c = c;
+    reg_G3_VTX_16 = data_021659d4[9] | data_021659d4[10] << 16;
+    reg_G3_VTX_16 = c;
 }
 
 #pragma thumb on
@@ -150,7 +151,7 @@ void func_020875b4(void) {
             }
         }
     }
-    *(u32 *) 0x4000440 = 0;
+    reg_G3_MTX_MODE = 0;
     G3i_OrthoW_(0x60000, 0xfffa0000, 0xfff80000, 0x80000, 0, 0x1000, 0x200, 1, &data_0217aee0);
 }
 
@@ -321,8 +322,8 @@ void func_020871c0(Unk02086098 *a, u32 b) {
     v2[2] = 0;
     v2[3] = 0x1f;
     DC_FlushRange(v2, 8);
-    MI_CpuFill8(((u32 *) v3), (u8) 0, (u32) (a->mUnk_04));
-    func_020adddc(b, v3, (u32) 1, (u32) 2);
+    MI_CpuFill8(((u32 *) v3), 0, a->mUnk_04);
+    func_020adddc(b, v3, 1, 2);
     DC_FlushRange((const void *) v3, (0x00000100u));
     a->mUnk_0c = (void *) v3;
     a->mUnk_10 = v2;
@@ -399,7 +400,7 @@ void func_02087000(void) {
             if (data_021759c0->mUseTeams != 0) {
                 s = BuildTeamEmblemNsbtxPath(data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 1 ? 1 : 0);
             } else {
-                s = BuildEmblemNsbtxPath((u16) data_021759c0->mCurrentEntries[i].mCharacterIndex);
+                s = BuildEmblemNsbtxPath(data_021759c0->mCurrentEntries[i].mCharacterIndex);
             }
             p = NNS_G3dGetTex(func_02047950(s));
             q = (u8 *) p + p->mPlttInfo.mOfsPlttData;

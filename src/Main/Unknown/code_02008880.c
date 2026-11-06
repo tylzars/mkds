@@ -15,7 +15,7 @@ u16 func_020088dc(const u16 *a, s32 b) {
         v3--;
     }
     v2 = (v1 >> 16) + (v1 & 0xffff);
-    return (u16) ((v2 + (v2 >> 16)) ^ 0xffff);
+    return (v2 + (v2 >> 16)) ^ 0xffff;
 }
 
 u32 func_02008880(FSFile *a) {

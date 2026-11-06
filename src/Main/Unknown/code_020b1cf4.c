@@ -9,13 +9,13 @@ RaceHudSubScreenBgAffine *GetRaceHudSubScreenBgAffine(void) {
 }
 
 u32 func_020b1d20(void) {
-    return ((u32) gRaceHud->mUnk_848);
+    return (gRaceHud->mUnk_848);
 }
 
 u32 func_020b1d0c(void) {
-    return ((u32) gRaceHud->mUnk_84c);
+    return (gRaceHud->mUnk_84c);
 }
 
 u32 func_020b1cf4(u32 p0) {
-    return ((u32) gRaceHud->mUnk_89c[p0]);
+    return (gRaceHud->mUnk_89c[p0]);
 }

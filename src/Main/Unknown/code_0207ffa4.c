@@ -205,7 +205,7 @@ void func_02080b1c(Unk02080b1c *p) {
                 q->mUnk_00 = (s64) q->mUnk_08 * (s64) q->mUnk_00 + q->mUnk_10;
                 v = (n == 0) ? (u32) (q->mUnk_00 >> 32) : (u32) (((q->mUnk_00 >> 32) * (u32) n) >> 32);
             }
-            i = (u16) v;
+            i = v;
         }
     }
     p->mUnk_04 = p->mUnk_00;
@@ -327,7 +327,7 @@ void func_020800f4(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c, Unk020888b4_d0 *d, s
 
         n = 0;
         n1 = 0;
-        n1 = (u16) n1;
+        n1 = n1;
         n0 = 0;
         if (d != NULL) {
             k = 0;
@@ -491,7 +491,7 @@ s32 func_020800a0(Unk0208001c *p) {
     s16 a = *p->mUnk_00->mUnk_28;
 
     if (a != 0) {
-        r = (s32) (((s64) a * 0x28f5c) >> 12);
+        r = ((s64) a * 0x28f5c) >> 12;
     }
     return r;
 }

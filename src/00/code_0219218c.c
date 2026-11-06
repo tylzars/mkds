@@ -39,7 +39,7 @@ u32 GpiUnpackDate(u32 *a, s32 b, u32 *c, u32 *d, u32 *e) {
     u32 v3;
     v2 = b >> 0x18 & 0xff;
     v3 = b >> 0x10 & 0xff;
-    b = b & ((u32) 0x0000ffffu);
+    b = b & (0x0000ffffu);
     v1 = GpiIsValidDate(v2, v3, b);
     if (v1 == 0) {
         AssertionFailed(data_ov000_021b323c, data_ov000_021b31f8, NULL, 0xb7);

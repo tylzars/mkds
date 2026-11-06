@@ -3,6 +3,7 @@
 #include "code_0214d018.h"
 #include "code_0214f4a4.h"
 #include "code_02148950.h"
+#include "registers.h"
 
 void func_ov003_021d3408(void) {
     data_ov003_021da2f8[0] = GX_DisableBankForBG();
@@ -40,16 +41,16 @@ void func_ov003_021d332c(void) {
     GX_SetBankForSubBGExtPltt(data_ov003_021da2f8[9]);
     GX_SetBankForSubOBJExtPltt(data_ov003_021da2f8[10]);
     GX_SetBankForLCDC(data_ov003_021da2f8[12]);
-    *(u16 *) 0x4000050 = 0;
-    *(u16 *) 0x4001050 = 0;
-    *(u32 *) 0x4000010 = 0;
-    *(u32 *) 0x4000014 = 0;
-    *(u32 *) 0x4000018 = 0;
-    *(u32 *) 0x400001c = 0;
-    *(u32 *) 0x4001010 = 0;
-    *(u32 *) 0x4001014 = 0;
-    *(u32 *) 0x4001018 = 0;
-    *(u32 *) 0x400101c = 0;
+    reg_G2_BLDCNT = 0;
+    reg_G2S_DB_BLDCNT = 0;
+    reg_G2_BG0OFS = 0;
+    reg_G2_BG1OFS = 0;
+    reg_G2_BG2OFS = 0;
+    reg_G2_BG3OFS = 0;
+    reg_G2S_DB_BG0OFS = 0;
+    reg_G2S_DB_BG1OFS = 0;
+    reg_G2S_DB_BG2OFS = 0;
+    reg_G2S_DB_BG3OFS = 0;
     PM_SetLCDPower(1);
 }
 

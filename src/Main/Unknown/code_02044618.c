@@ -393,7 +393,7 @@ void func_02044940(void) {
                 f = TRUE;
             }
             if (f != FALSE) {
-                h = (s16) q->mUnk_1e52[(u16) (q->mUnk_0000 == 2 ? q->mUnk_0432 : 0)].mUnk_00;
+                h = q->mUnk_1e52[(u16) (q->mUnk_0000 == 2 ? q->mUnk_0432 : 0)].mUnk_00;
             }
             data_021759c0->mNextHeader.mEntryIndex = h;
             data_021759c0->mNextHeader.mUnk_63 = h;
@@ -501,7 +501,7 @@ u16 func_02044618(void) {
         if (p->mUnk_064 <= 0) {
             r = gCourseMap->mSettings->mLapCountOrBattleSeconds;
         } else {
-            r = (u16) p->mUnk_064;
+            r = p->mUnk_064;
         }
     }
     return r;

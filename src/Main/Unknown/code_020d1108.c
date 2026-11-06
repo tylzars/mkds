@@ -15,7 +15,7 @@ void InitCupPicture(void) {
     v1 = func_020d1158();
     if (v1 == 0) {
         v2 = func_020d113c();
-        v3 = HeapAlloc((void *) v2, (u32) (((u32) 0x0000185cu)));
+        v3 = HeapAlloc((void *) v2, (0x0000185cu));
         gCupPicture = v3;
         v3->mCupPictureIndex = 0;
         TrySetCupPictureIndexAndQueueLoads(0x14);

@@ -95,9 +95,9 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
                 if ((s64) v2.x * v2.x + (s64) v2.y * v2.y + (s64) v2.z * v2.z >= 0x10) {
                     Vec3NormalizeAndGetLengthUnchecked(&v2, &v2);
                 }
-                w.x = (s32) (((s64) v2.x * 0x1800) >> 12);
-                w.y = (s32) (((s64) v2.y * 0x1800) >> 12);
-                w.z = (s32) (((s64) v2.z * 0x1800) >> 12);
+                w.x = ((s64) v2.x * 0x1800) >> 12;
+                w.y = ((s64) v2.y * 0x1800) >> 12;
+                w.z = ((s64) v2.z * 0x1800) >> 12;
                 func_020f6be8(p, c, &w, &v2);
             }
             if (i == -1 || (p->mFlags & 0x8000000)) {

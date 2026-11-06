@@ -74,10 +74,10 @@ void func_020ff97c(Unk020ff97c *e) {
     e->mUnk_128 = 0;
     e->mUnk_12c = 0;
     e->mUnk_130 = 0;
-    e->mUnk_100 = (s32) (((s64) e->mUnk_00.mScale.x * 0x190000) >> 12);
+    e->mUnk_100 = ((s64) e->mUnk_00.mScale.x * 0x190000) >> 12;
     e->mUnk_104 = (s32) (((s64) e->mUnk_00.mScale.y * 0x64000) >> 12) >> 1;
-    e->mUnk_108 = (s32) (((s64) e->mUnk_00.mScale.z * 0xaf000) >> 12);
-    e->mUnk_10c = (s32) (((s64) e->mUnk_00.mScale.z * 0xaf000) >> 12);
+    e->mUnk_108 = ((s64) e->mUnk_00.mScale.z * 0xaf000) >> 12;
+    e->mUnk_10c = ((s64) e->mUnk_00.mScale.z * 0xaf000) >> 12;
     e->mUnk_110 = 0;
     e->mUnk_114 = 1;
     e->mUnk_118 = 0;
@@ -114,14 +114,14 @@ void func_020ff6d8(ItemFBox *e, MtxFx43 *out) {
     if ((e->mUnk_000.mUnk_000.mFlags & 0x80000) && func_020b2ec0() == 0) {
         s32 c, d;
 
-        c = (s32) (((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x * e->mUnk_130.x +
-                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z * e->mUnk_130.z) >>
-                   12);
-        a = (s32) (((s64) e->mUnk_130.x * 0xa4) >> 12);
-        d = (s32) (((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x * e->mUnk_130.x +
-                    (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].z * e->mUnk_130.z) >>
-                   12);
-        b = (s32) (((s64) e->mUnk_130.z * 0xa4) >> 12);
+        c = ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].x * e->mUnk_130.x +
+             (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[0].z * e->mUnk_130.z) >>
+            12;
+        a = ((s64) e->mUnk_130.x * 0xa4) >> 12;
+        d = ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].x * e->mUnk_130.x +
+             (s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[2].z * e->mUnk_130.z) >>
+            12;
+        b = ((s64) e->mUnk_130.z * 0xa4) >> 12;
         e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].x = (s32) (e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].x + a);
         e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].z += b;
         if ((s64) e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].x * e->mUnk_000.mUnk_000.mUnk_94.mUnk_00[1].x +

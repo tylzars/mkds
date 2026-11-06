@@ -15,9 +15,9 @@
 static inline u32 func_0208b190_inline(Unk020f41c4_B *b, u32 n) {
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     if (n == 0) {
-        return (u32) (b->mUnk_00 >> 32);
+        return b->mUnk_00 >> 32;
     }
-    return (u32) (((b->mUnk_00 >> 32) * n) >> 32);
+    return ((b->mUnk_00 >> 32) * n) >> 32;
 }
 
 Unk020184e4 *func_0208b458(s32 *a, s32 b) {
@@ -161,8 +161,8 @@ void CreateKartPhysicalParamTable(void *a, u32 b) {
     gKartPhysicalParamTable = HeapAlloc(a, 0x14);
     gKartPhysicalParamTable->mKartParams = HeapAlloc(a, b * 0x98);
     gKartPhysicalParamTable->mCharParams = HeapAlloc(a, b * 8);
-    gKartPhysicalParamTable->mKartParamFile = (u8 *) FindKartModelFile(data_usa_021660c8);
-    gKartPhysicalParamTable->mCharParamFile = (u8 *) FindKartModelFile(data_usa_021660e0);
+    gKartPhysicalParamTable->mKartParamFile = FindKartModelFile(data_usa_021660c8);
+    gKartPhysicalParamTable->mCharParamFile = FindKartModelFile(data_usa_021660e0);
     gKartPhysicalParamTable->mFirstBaseSpeedLimit = *(s32 *) (gKartPhysicalParamTable->mKartParamFile + 0x10);
 }
 

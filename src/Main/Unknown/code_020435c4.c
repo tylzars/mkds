@@ -310,7 +310,7 @@ void func_02043a34(void) {
 }
 
 u32 func_02043a20(void) {
-    return ((u32) data_02175624->mUnk_02);
+    return (data_02175624->mUnk_02);
 }
 
 static inline s32 func_02043648_inline(Unk0217aa00 *p) {
@@ -470,6 +470,6 @@ void func_020435d4(u32 a) {
 u32 func_020435c4(void) {
     u32 value0;
     value0 = (u32) &data_02175928;
-    value0 = (u32) * (const u16 *) ((value0) + (78));
+    value0 = *(const u16 *) ((value0) + (78));
     return value0;
 }

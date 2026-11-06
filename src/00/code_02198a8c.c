@@ -20,7 +20,7 @@
 #include "code_02134398.h"
 
 static inline void func_ov000_02198ba8_inline(void *a, const void *b) {
-    u8 *p = (u8 *) a;
+    u8 *p = a;
     const u8 *q = b;
     p[0] = q[0];
     p[1] = q[1];
@@ -85,9 +85,9 @@ u32 func_ov000_02198b9c(u32 arg0, u32 arg1, u32 arg2) {
     u32 value2 = arg2;
     u32 value3;
     value3 = 103u;
-    *(u8 *) ((value1) + 2u) = (u8) value3;
+    *(u8 *) ((value1) + 2u) = value3;
     value3 = (u32) &func_ov000_02198714;
-    value0 = (u32) func_ov000_02198714((u32 *) value0, value1, value2);
+    value0 = func_ov000_02198714((u32 *) value0, value1, value2);
     return value0;
 }
 

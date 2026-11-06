@@ -127,7 +127,7 @@ void PrintJb4Error(void) {
 }
 
 void func_ov003_021c79e4(void) {
-    func_ov003_021d1ee0(2, 0, 0x15, (u16) (8));
+    func_ov003_021d1ee0(2, 0, 0x15, 8);
     func_ov003_021d2784(0, 0x15);
     func_ov003_021c212c(func_ov003_021c79b4);
     return;
@@ -182,7 +182,7 @@ void func_ov003_021c7934(void) {
 
 void func_ov003_021c7914(void) {
     func_ov003_021bf2d0();
-    func_ov003_021d1dd0((u16) (8));
+    func_ov003_021d1dd0(8);
     func_ov003_021c212c(func_ov003_021c78d8);
     return;
 }
@@ -192,8 +192,8 @@ void func_ov003_021c78d8(void) {
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
         func_ov003_021bf344();
-        func_ov003_021d1ee0(3, 1, 1, (u16) (8));
-        func_ov003_021d1ee0(3, 0, 0x15, (u16) (8));
+        func_ov003_021d1ee0(3, 1, 1, 8);
+        func_ov003_021d1ee0(3, 0, 0x15, 8);
         func_ov003_021c212c(func_ov003_021c7850);
     }
     return;
@@ -216,7 +216,7 @@ void func_ov003_021c7850(void) {
         }
         func_ov003_021c2120(2, 0);
         func_ov003_021c20f8(0, 0);
-        SetJb3ListMode((u8) (0));
+        SetJb3ListMode(0);
         func_ov003_021c212c(CreateJb3List);
     }
     return;

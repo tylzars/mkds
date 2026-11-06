@@ -50,7 +50,7 @@ void DWC_ReportFriendData(const DWCAccUserData *userdata, const DWCAccFriendData
     if (DWCi_Acc_GetFlag_DataType(frienddata) != 3) {
         if (DWCi_Acc_GetFlag_DataType(frienddata) == 2) {
             friendKey = DWCi_Acc_GetFriendKey(frienddata);
-            func_02152918((u32) friendKey, (u32) (friendKey >> 32), (u32) name);
+            func_02152918(friendKey, friendKey >> 32, (u32) name);
             return;
         }
         if (DWCi_Acc_GetFlag_DataType(frienddata) == 1) {

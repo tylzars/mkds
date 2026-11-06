@@ -40,6 +40,7 @@
 #include "03/code_021bf810.h"
 #include "03/code_021be610.h"
 #include "code_0212df7c.h"
+#include "registers.h"
 
 void func_ov003_021c54dc(void) {
     data_ov003_021da1e0 = 0;
@@ -58,11 +59,11 @@ void func_ov003_021c5458(void) {
     func_ov003_021bf620(data_ov003_021d71d0, GX_LoadBG2Char);
     func_ov003_021bf620(data_ov003_021d71e8, GX_LoadBGPltt);
     func_ov003_021bf620(data_ov003_021d7200, GX_LoadBG2Scr);
-    *(vu16 *) 0x4001008 = (*(vu16 *) 0x4001008 & ~3) | 3;
-    *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & ~3) | 3;
-    *(vu16 *) 0x4000008 = (*(vu16 *) 0x4000008 & ~3) | 3;
-    *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & ~3) | 3;
-    *(vu16 *) 0x400000c = (*(vu16 *) 0x400000c & ~3) | 3;
+    reg_G2S_DB_BG0CNT = (reg_G2S_DB_BG0CNT & ~3) | 3;
+    reg_G2S_DB_BG1CNT = (reg_G2S_DB_BG1CNT & ~3) | 3;
+    reg_G2_BG0CNT = (reg_G2_BG0CNT & ~3) | 3;
+    reg_G2_BG1CNT = (reg_G2_BG1CNT & ~3) | 3;
+    reg_G2_BG2CNT = (reg_G2_BG2CNT & ~3) | 3;
 }
 
 void func_ov003_021c541c(void) {
@@ -230,7 +231,7 @@ void func_ov003_021c5120(void) {
 
 void func_ov003_021c50f8(void) {
     StopSoundSeq();
-    StartSoundSeq((u32) (7));
+    StartSoundSeq(7);
     *(u8 *) &data_ov003_021da1dc = 0;
     func_ov003_021c212c(func_ov003_021c52a0);
     return;

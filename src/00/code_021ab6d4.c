@@ -91,11 +91,11 @@ void func_ov000_021ab7e8(Unk021ab728 *a, const u8 *b) {
 }
 
 void func_ov000_021ab7b4(Unk021ab728 *a) {
-    MI_CpuFill8(a, (u8) (0), (u32) (0x58));
-    a->mUnk_00 = ((u32) 0x67452301u);
-    a->mUnk_04 = ((u32) 0xefcdab89u);
-    a->mUnk_08 = ((u32) 0x98badcfeu);
-    a->mUnk_0c = ((u32) 0x10325476u);
+    MI_CpuFill8(a, 0, 0x58);
+    a->mUnk_00 = (0x67452301u);
+    a->mUnk_04 = (0xefcdab89u);
+    a->mUnk_08 = (0x98badcfeu);
+    a->mUnk_0c = (0x10325476u);
     return;
 }
 

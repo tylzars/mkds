@@ -568,8 +568,8 @@ s32 NNS_G2dCharCanvasDrawChar(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s
 }
 
 void NNS_G2dCharCanvasInitForBG(void *pCC, void *charBase, u32 areaWidth, u32 areaHeight, u32 colorMode) {
-    InitCharCanvas((Unk02023374 *) pCC, charBase, areaWidth, areaHeight, colorMode, DrawGlyphLine, ClearContinuous,
-                   ClearAreaLine, areaWidth);
+    InitCharCanvas(pCC, charBase, areaWidth, areaHeight, colorMode, DrawGlyphLine, ClearContinuous, ClearAreaLine,
+                   areaWidth);
 }
 
 // clang-format off
