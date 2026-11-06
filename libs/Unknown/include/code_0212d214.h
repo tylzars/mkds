@@ -59,8 +59,8 @@ typedef struct Unk0212d5f8 {
     /* 24 */ u32 mUnk_24;
     /* 28 */ u8 mUnk_28[8];
     /* 30 */ u32 mUnk_30;
-    /* 34 */ Unk02003024 mUnk_34;
-    /* 7c */ Unk02005814 mUnk_7c;
+    /* 34 */ FSFile mUnk_34;
+    /* 7c */ FSFileID mUnk_7c;
     /* 84 */ Unk0212d254 *mUnk_84;
     /* 88 */ void *mUnk_88;
     /* 8c */ Unk0212d38c *mUnk_8c;

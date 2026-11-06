@@ -8,14 +8,14 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/code_0214d000.h"
 
-Unk02003a6c *data_0216f340;
+FSArchive *data_0216f340;
 Unk02003024U data_0216f344;
 
 // Resolves a path, with an optional "name:" archive prefix, against the current directory and sends the command.
-u32 FSi_FindPath(Unk02003024 *dir, const u8 *path, void *fileID, void *dirPos) {
+u32 FSi_FindPath(FSFile *dir, const u8 *path, void *fileID, void *dirPos) {
     Unk02003024U pos;
     s32 i;
-    Unk02003a6c *archive;
+    FSArchive *archive;
     s32 loaded;
 
     if (path[0] == '/' || path[0] == '\\') {
@@ -35,7 +35,7 @@ u32 FSi_FindPath(Unk02003024 *dir, const u8 *path, void *fileID, void *dirPos) {
                 if (archive == 0) {
                     return 0;
                 }
-                if (archive->mUnk_1c & 2) {
+                if (archive->mFlag & 2) {
                     loaded = 1;
                 } else {
                     loaded = 0;
@@ -55,37 +55,37 @@ u32 FSi_FindPath(Unk02003024 *dir, const u8 *path, void *fileID, void *dirPos) {
             }
         }
     }
-    dir->mUnk_08 = pos.h.mUnk_00;
-    dir->mUnk_3c = path;
-    dir->mUnk_30 = pos;
+    dir->mArc = pos.h.mUnk_00;
+    dir->mPath = path;
+    dir->mArg = pos;
     if (dirPos != 0) {
-        dir->mUnk_40 = 1;
-        dir->mUnk_44 = dirPos;
+        dir->mFindDirectory = 1;
+        dir->mResult = dirPos;
     } else {
-        dir->mUnk_40 = 0;
-        dir->mUnk_44 = fileID;
+        dir->mFindDirectory = 0;
+        dir->mResult = fileID;
     }
     return FSi_SendCommand(dir, 4);
 }
 
 // Reads up to len bytes from the file position; waits for the result unless async is set.
-s32 FSi_ReadFileCore(Unk02003024 *file, void *dst, s32 len, u32 async) {
+s32 FSi_ReadFileCore(FSFile *file, void *dst, s32 len, u32 async) {
     s32 start;
     s32 requested;
 
     start = file->mUnk_2c;
     requested = len;
-    if (len > file->mUnk_20.p.mUnk_08 - start) {
-        len = file->mUnk_20.p.mUnk_08 - start;
+    if (len > file->mProp.p.mUnk_08 - start) {
+        len = file->mProp.p.mUnk_08 - start;
     }
     if (len < 0) {
         len = 0;
     }
-    file->mUnk_30.p.mUnk_00 = dst;
-    file->mUnk_30.p.mUnk_04 = requested;
-    file->mUnk_30.p.mUnk_08 = len;
+    file->mArg.p.mUnk_00 = dst;
+    file->mArg.p.mUnk_04 = requested;
+    file->mArg.p.mUnk_08 = len;
     if (async == 0) {
-        file->mUnk_0c |= 4;
+        file->mStat |= 4;
     }
     FSi_SendCommand(file, 0);
     if (async == 0) {
@@ -99,45 +99,45 @@ s32 FSi_ReadFileCore(Unk02003024 *file, void *dst, s32 len, u32 async) {
 }
 
 // Looks up a path and stores the archive and file index.
-u32 FS_ConvertPathToFileID(Unk02005814 *fileID, const u8 *path) {
-    Unk02003024 file;
+u32 FS_ConvertPathToFileID(FSFileID *fileID, const u8 *path) {
+    FSFile file;
 
     FS_InitFile(&file);
     return FSi_FindPath(&file, path, fileID, 0) != 0;
 }
 
 // Opens a file from an archive by byte range and file index.
-u32 FS_OpenFileDirect(Unk02003024 *file, Unk02003a6c *archive, u32 imageTop, u32 imageBottom, u32 fileIndex) {
-    file->mUnk_08 = archive;
-    file->mUnk_30.w.mUnk_08 = fileIndex;
-    file->mUnk_30.w.mUnk_00 = imageTop;
-    file->mUnk_30.w.mUnk_04 = imageBottom;
+u32 FS_OpenFileDirect(FSFile *file, FSArchive *archive, u32 imageTop, u32 imageBottom, u32 fileIndex) {
+    file->mArc = archive;
+    file->mArg.w.mUnk_08 = fileIndex;
+    file->mArg.w.mUnk_00 = imageTop;
+    file->mArg.w.mUnk_04 = imageBottom;
     if (FSi_SendCommand(file, 7) == 0) {
         return 0;
     }
-    file->mUnk_0c |= 0x10;
-    file->mUnk_0c &= ~0x20;
+    file->mStat |= 0x10;
+    file->mStat &= ~0x20;
     return 1;
 }
 
 // Opens a file from the archive and index found by FS_ConvertPathToFileID.
-u32 FS_OpenFileFast(Unk02003024 *file, Unk02005814 fileID) {
-    if (fileID.mUnk_00 == 0) {
+u32 FS_OpenFileFast(FSFile *file, FSFileID fileID) {
+    if (fileID.mArc == 0) {
         return 0;
     }
-    file->mUnk_08 = fileID.mUnk_00;
-    file->mUnk_30.d.mUnk_00 = fileID;
+    file->mArc = fileID.mArc;
+    file->mArg.d.mUnk_00 = fileID;
     if (FSi_SendCommand(file, 6) == 0) {
         return 0;
     }
-    file->mUnk_0c |= 0x10;
-    file->mUnk_0c &= ~0x20;
+    file->mStat |= 0x10;
+    file->mStat &= ~0x20;
     return 1;
 }
 
 // Opens a file by path.
-u32 FS_OpenFile(Unk02003024 *file, const u8 *path) {
-    Unk02005814 fileID;
+u32 FS_OpenFile(FSFile *file, const u8 *path) {
+    FSFileID fileID;
 
     if (FS_ConvertPathToFileID(&fileID, path) != 0) {
         if (FS_OpenFileFast(file, fileID) != 0) {
@@ -148,85 +148,85 @@ u32 FS_OpenFile(Unk02003024 *file, const u8 *path) {
 }
 
 // Closes an open file.
-u32 FS_CloseFile(Unk02003024 *file) {
+u32 FS_CloseFile(FSFile *file) {
     if (FSi_SendCommand(file, 8) == 0) {
         return 0;
     }
-    file->mUnk_08 = 0;
-    file->mUnk_10 = 0xe;
-    file->mUnk_0c &= ~0x30;
+    file->mArc = 0;
+    file->mCommand = 0xe;
+    file->mStat &= ~0x30;
     return 1;
 }
 
 // Waits until the file has no command pending; runs the command itself if it has not started.
-u32 FS_WaitAsync(Unk02003024 *file) {
+u32 FS_WaitAsync(FSFile *file) {
     u32 needsRun;
     u32 enabled;
 
     needsRun = 0;
     enabled = OS_DisableInterrupts();
-    if (((file->mUnk_0c & 1) ? 1 : 0) != 0) {
-        needsRun = (file->mUnk_0c & 0x44) == 0;
+    if (((file->mStat & 1) ? 1 : 0) != 0) {
+        needsRun = (file->mStat & 0x44) == 0;
         if (needsRun) {
-            file->mUnk_0c |= 4;
+            file->mStat |= 4;
             do {
-                OS_SleepThread(&file->mUnk_18);
-            } while ((file->mUnk_0c & 0x40) == 0);
+                OS_SleepThread(&file->mQueue);
+            } while ((file->mStat & 0x40) == 0);
         } else {
             do {
-                OS_SleepThread(&file->mUnk_18);
-            } while (((file->mUnk_0c & 1) ? 1 : 0) != 0);
+                OS_SleepThread(&file->mQueue);
+            } while (((file->mStat & 1) ? 1 : 0) != 0);
         }
     }
     OS_RestoreInterrupts(enabled);
     if (needsRun) {
         return FSi_ExecuteSyncCommand(file);
     }
-    return file->mUnk_14 == 0;
+    return file->mError == 0;
 }
 
 // Marks a pending command as cancelled.
-void FS_CancelFile(Unk02003024 *file) {
+void FS_CancelFile(FSFile *file) {
     u32 enabled;
 
     enabled = OS_DisableInterrupts();
-    if (((file->mUnk_0c & 1) ? 1 : 0) != 0) {
-        file->mUnk_0c |= 2;
-        file->mUnk_08->mUnk_1c |= 0x20;
+    if (((file->mStat & 1) ? 1 : 0) != 0) {
+        file->mStat |= 2;
+        file->mArc->mFlag |= 0x20;
     }
     OS_RestoreInterrupts(enabled);
 }
 
 // Starts a read without waiting for it.
-s32 FS_ReadFileAsync(Unk02003024 *file, void *dst, s32 len) {
+s32 FS_ReadFileAsync(FSFile *file, void *dst, s32 len) {
     return FSi_ReadFileCore(file, dst, len, 1);
 }
 
 // Reads and waits; returns the byte count or -1.
-s32 FS_ReadFile(Unk02003024 *file, void *dst, s32 len) {
+s32 FS_ReadFile(FSFile *file, void *dst, s32 len) {
     return FSi_ReadFileCore(file, dst, len, 0);
 }
 
 // Moves the file position, clamped to the file range; origin 0 is start, 1 current, 2 end.
-u32 FS_SeekFile(Unk02003024 *file, s32 offset, u32 origin) {
+u32 FS_SeekFile(FSFile *file, s32 offset, u32 origin) {
     switch (origin) {
         case 0:
-            offset += file->mUnk_20.p.mUnk_04;
+            offset += file->mProp.p.mUnk_04;
             break;
         case 1:
             offset += file->mUnk_2c;
             break;
         case 2:
-            offset += file->mUnk_20.p.mUnk_08;
+            offset += file->mProp.p.mUnk_08;
             break;
         default:
             return 0;
     }
-    if (offset < file->mUnk_20.p.mUnk_04) {
-        offset = file->mUnk_20.p.mUnk_04;
+    if (offset < file->mProp.p.mUnk_04) {
+        offset = file->mProp.p.mUnk_04;
     }
-    if (offset > file->mUnk_20.p.mUnk_08) {
-        offset = file->mUnk_20.p.mUnk_08;
+    if (offset > file->mProp.p.mUnk_08) {
+        offset = file->mProp.p.mUnk_08;
     }
     file->mUnk_2c = offset;
     return 1;
@@ -235,10 +235,10 @@ u32 FS_SeekFile(Unk02003024 *file, s32 offset, u32 origin) {
 // Sets the current directory.
 u32 FS_ChangeDir(const u8 *path) {
     Unk02003024U dirPos;
-    Unk02003024 dir;
+    FSFile searchFile;
 
-    FS_InitFile(&dir);
-    if (FSi_FindPath(&dir, path, 0, &dirPos) == 0) {
+    FS_InitFile(&searchFile);
+    if (FSi_FindPath(&searchFile, path, 0, &dirPos) == 0) {
         return 0;
     }
     data_0216f344 = dirPos;
@@ -265,107 +265,107 @@ u32 FSi_GetPackedName(const u8 *name, s32 nameLen) {
 }
 
 // Archive read callback that copies from the archive memory image.
-s32 FSi_ReadMemCallback(Unk02003a6c *archive, void *dst, u32 pos, u32 size) {
-    MI_CpuCopy8(archive->mUnk_28 + pos, dst, size);
+s32 FSi_ReadMemCallback(FSArchive *archive, void *dst, u32 pos, u32 size) {
+    MI_CpuCopy8(archive->mBase + pos, dst, size);
     return 0;
 }
 
 // Archive write callback that copies into the archive memory image.
-s32 FSi_WriteMemCallback(Unk02003a6c *archive, void *src, u32 pos, u32 size) {
-    MI_CpuCopy8(src, archive->mUnk_28 + pos, size);
+s32 FSi_WriteMemCallback(FSArchive *archive, const void *src, u32 pos, u32 size) {
+    MI_CpuCopy8(src, archive->mBase + pos, size);
     return 0;
 }
 
 // Table read callback that copies from an address.
-s32 FSi_ReadMemoryCore(Unk02003a6c *archive, void *dst, u32 pos, u32 size) {
+s32 FSi_ReadMemoryCore(FSArchive *archive, void *dst, u32 pos, u32 size) {
     MI_CpuCopy8((const void *) pos, dst, size);
     return 0;
 }
 
 // Cancels flagged commands and returns the next command the archive should run, if it is not suspended.
-Unk02003024 *FSi_NextCommand(Unk02003a6c *archive) {
-    Unk02003024 tmp;
-    Unk02003024 *file;
-    Unk02003024 *next;
+FSFile *FSi_NextCommand(FSArchive *archive) {
+    FSFile tmp;
+    FSFile *file;
+    FSFile *next;
     u32 enabled;
     u32 first;
 
     enabled = OS_DisableInterrupts();
-    if (archive->mUnk_1c & 0x20) {
-        archive->mUnk_1c &= ~0x20;
-        file = archive->mUnk_24;
+    if (archive->mFlag & 0x20) {
+        archive->mFlag &= ~0x20;
+        file = archive->mList.mNext;
         if (file != 0) {
             do {
-                next = file->mUnk_04;
-                if (((file->mUnk_0c & 2) ? 1 : 0) != 0) {
-                    if (archive->mUnk_24 == file) {
-                        archive->mUnk_24 = next;
+                next = file->mLink.mNext;
+                if (((file->mStat & 2) ? 1 : 0) != 0) {
+                    if (archive->mList.mNext == file) {
+                        archive->mList.mNext = next;
                     }
-                    FileFinishCommand(file, 3);
+                    FSi_ReleaseCommand(file, 3);
                     if (next == 0) {
-                        next = archive->mUnk_24;
+                        next = archive->mList.mNext;
                     }
                 }
                 file = next;
             } while (next != 0);
         }
     }
-    if (!(archive->mUnk_1c & 0x40) && ((archive->mUnk_1c & 8) ? 1 : 0) == 0 && (file = archive->mUnk_24) != 0) {
-        first = ((archive->mUnk_1c & 0x10) ? 1 : 0) == 0;
+    if (!(archive->mFlag & 0x40) && ((archive->mFlag & 8) ? 1 : 0) == 0 && (file = archive->mList.mNext) != 0) {
+        first = ((archive->mFlag & 0x10) ? 1 : 0) == 0;
         if (first != 0) {
-            archive->mUnk_1c |= 0x10;
+            archive->mFlag |= 0x10;
         }
         OS_RestoreInterrupts(enabled);
-        if (first != 0 && (archive->mUnk_58 & 0x200)) {
-            archive->mUnk_54(file, 9);
+        if (first != 0 && (archive->mProcFlag & 0x200)) {
+            archive->mProc(file, 9);
         }
         enabled = OS_DisableInterrupts();
-        file->mUnk_0c |= 0x40;
-        if (((file->mUnk_0c & 4) ? 1 : 0) != 0) {
-            OS_WakeupThread(&file->mUnk_18);
+        file->mStat |= 0x40;
+        if (((file->mStat & 4) ? 1 : 0) != 0) {
+            OS_WakeupThread(&file->mQueue);
             OS_RestoreInterrupts(enabled);
             return 0;
         }
         OS_RestoreInterrupts(enabled);
         return file;
     }
-    if (archive->mUnk_1c & 0x10) {
-        archive->mUnk_1c &= ~0x10;
-        if (archive->mUnk_58 & 0x400) {
+    if (archive->mFlag & 0x10) {
+        archive->mFlag &= ~0x10;
+        if (archive->mProcFlag & 0x400) {
             FS_InitFile(&tmp);
-            tmp.mUnk_08 = archive;
-            archive->mUnk_54(&tmp, 10);
+            tmp.mArc = archive;
+            archive->mProc(&tmp, 10);
         }
     }
-    if (archive->mUnk_1c & 0x40) {
-        archive->mUnk_1c &= ~0x40;
-        archive->mUnk_1c |= 8;
-        OS_WakeupThread(&archive->mUnk_14);
+    if (archive->mFlag & 0x40) {
+        archive->mFlag &= ~0x40;
+        archive->mFlag |= 8;
+        OS_WakeupThread(&archive->mStatQ);
     }
     OS_RestoreInterrupts(enabled);
     return 0;
 }
 
 // Runs the given command and then the following queued ones until one is left pending.
-void FSi_ExecuteAsyncCommand(Unk02003024 *file) {
-    Unk02003a6c *archive;
+void FSi_ExecuteAsyncCommand(FSFile *file) {
+    FSArchive *archive;
     u32 enabled;
 
-    archive = file->mUnk_08;
+    archive = file->mArc;
     if (file == 0) {
         return;
     }
     do {
         enabled = OS_DisableInterrupts();
-        file->mUnk_0c |= 0x40;
-        if (((file->mUnk_0c & 4) ? 1 : 0) != 0) {
-            OS_WakeupThread(&file->mUnk_18);
+        file->mStat |= 0x40;
+        if (((file->mStat & 4) ? 1 : 0) != 0) {
+            OS_WakeupThread(&file->mQueue);
             OS_RestoreInterrupts(enabled);
             return;
         }
-        file->mUnk_0c |= 8;
+        file->mStat |= 8;
         OS_RestoreInterrupts(enabled);
-        if (FileDispatchCommand(file, file->mUnk_10) == 6) {
+        if (FSi_TranslateCommand(file, file->mCommand) == 6) {
             return;
         }
         file = FSi_NextCommand(archive);
@@ -373,112 +373,112 @@ void FSi_ExecuteAsyncCommand(Unk02003024 *file) {
 }
 
 // Runs one command to completion, then starts the queue.
-u32 FSi_ExecuteSyncCommand(Unk02003024 *file) {
-    Unk02003024 *next;
+u32 FSi_ExecuteSyncCommand(FSFile *file) {
+    FSFile *next;
 
-    FileFinishCommand(file, FileDispatchCommand(file, file->mUnk_10));
-    next = FSi_NextCommand(file->mUnk_08);
+    FSi_ReleaseCommand(file, FSi_TranslateCommand(file, file->mCommand));
+    next = FSi_NextCommand(file->mArc);
     if (next != 0) {
         FSi_ExecuteAsyncCommand(next);
     }
-    return file->mUnk_14 == 0;
+    return file->mError == 0;
 }
 
 // Queues a command on its archive and runs it or waits for it.
-u32 FSi_SendCommand(Unk02003024 *file, u32 command) {
-    Unk02003a6c *archive;
-    Unk02003024 *tail;
-    Unk02003024 *prev;
+u32 FSi_SendCommand(FSFile *file, u32 command) {
+    FSArchive *archive;
+    FSFile *tail;
+    FSFile *prev;
     u32 mask;
-    Unk02003024 *next;
+    FSFile *next;
     u32 enabled;
 
-    archive = file->mUnk_08;
-    file->mUnk_10 = command;
+    archive = file->mArc;
+    file->mCommand = command;
     mask = 1 << command;
-    file->mUnk_14 = 2;
-    file->mUnk_0c |= 1;
+    file->mError = 2;
+    file->mStat |= 1;
     enabled = OS_DisableInterrupts();
-    if (archive->mUnk_1c & 0x80) {
-        FileFinishCommand(file, 3);
+    if (archive->mFlag & 0x80) {
+        FSi_ReleaseCommand(file, 3);
         OS_RestoreInterrupts(enabled);
         return 0;
     }
     if (mask & 0x1fc) {
-        file->mUnk_0c |= 4;
+        file->mStat |= 4;
     }
-    prev = file->mUnk_00;
-    tail = (Unk02003024 *) &archive->mUnk_20;
-    next = file->mUnk_04;
+    prev = file->mLink.mPrev;
+    tail = (FSFile *) &archive->mList;
+    next = file->mLink.mNext;
     if (prev != 0) {
-        prev->mUnk_04 = next;
+        prev->mLink.mNext = next;
     }
     if (next != 0) {
-        next->mUnk_00 = prev;
+        next->mLink.mPrev = prev;
     }
-    while (tail->mUnk_04 != 0) {
-        tail = tail->mUnk_04;
+    while (tail->mLink.mNext != 0) {
+        tail = tail->mLink.mNext;
     }
-    tail->mUnk_04 = file;
-    file->mUnk_00 = tail;
-    file->mUnk_04 = 0;
-    if (((archive->mUnk_1c & 8) ? 1 : 0) == 0 && (archive->mUnk_1c & 0x10) == 0) {
-        archive->mUnk_1c |= 0x10;
+    tail->mLink.mNext = file;
+    file->mLink.mPrev = tail;
+    file->mLink.mNext = 0;
+    if (((archive->mFlag & 8) ? 1 : 0) == 0 && (archive->mFlag & 0x10) == 0) {
+        archive->mFlag |= 0x10;
         OS_RestoreInterrupts(enabled);
-        if (archive->mUnk_58 & 0x200) {
-            archive->mUnk_54(file, 9);
+        if (archive->mProcFlag & 0x200) {
+            archive->mProc(file, 9);
         }
         enabled = OS_DisableInterrupts();
-        file->mUnk_0c |= 0x40;
-        if (((file->mUnk_0c & 4) ? 1 : 0) == 0) {
+        file->mStat |= 0x40;
+        if (((file->mStat & 4) ? 1 : 0) == 0) {
             OS_RestoreInterrupts(enabled);
             FSi_ExecuteAsyncCommand(file);
             return 1;
         }
         OS_RestoreInterrupts(enabled);
     } else {
-        if (((file->mUnk_0c & 4) ? 1 : 0) == 0) {
+        if (((file->mStat & 4) ? 1 : 0) == 0) {
             OS_RestoreInterrupts(enabled);
             return 1;
         }
         do {
-            OS_SleepThread(&file->mUnk_18);
-        } while ((file->mUnk_0c & 0x40) == 0);
+            OS_SleepThread(&file->mQueue);
+        } while ((file->mStat & 0x40) == 0);
         OS_RestoreInterrupts(enabled);
     }
     return FSi_ExecuteSyncCommand(file);
 }
 
 // Clears an archive and its thread queues.
-void FS_InitArchive(Unk02003a6c *archive) {
+void FS_InitArchive(FSArchive *archive) {
     MI_CpuFill8(archive, 0, 0x5c);
-    archive->mUnk_0c.mTail = 0;
-    archive->mUnk_0c.mHead = archive->mUnk_0c.mTail;
-    archive->mUnk_14.mTail = 0;
-    archive->mUnk_14.mHead = archive->mUnk_14.mTail;
+    archive->mSyncQ.mTail = 0;
+    archive->mSyncQ.mHead = archive->mSyncQ.mTail;
+    archive->mStatQ.mTail = 0;
+    archive->mStatQ.mHead = archive->mStatQ.mTail;
 }
 
 // Finds a registered archive by name.
-Unk02003a6c *FS_FindArchive(const u8 *name, s32 nameLen) {
+FSArchive *FS_FindArchive(const u8 *name, s32 nameLen) {
     u32 packed;
     u32 enabled;
-    Unk02003a6c *archive;
+    FSArchive *archive;
 
     packed = FSi_GetPackedName(name, nameLen);
     enabled = OS_DisableInterrupts();
     archive = data_0216f340;
-    while (archive != 0 && archive->mUnk_00 != packed) {
-        archive = archive->mUnk_04;
+    while (archive != 0 && archive->mName != packed) {
+        archive = archive->mNext;
     }
     OS_RestoreInterrupts(enabled);
     return archive;
 }
 
 // Adds an archive to the list under the given name.
-u32 FS_RegisterArchiveName(Unk02003a6c *archive, const u8 *name, s32 nameLen) {
+u32 FS_RegisterArchiveName(FSArchive *archive, const u8 *name, s32 nameLen) {
     u32 result;
     u32 enabled;
-    Unk02003a6c *tail;
+    FSArchive *tail;
 
     result = 0;
     enabled = OS_DisableInterrupts();
@@ -491,38 +491,38 @@ u32 FS_RegisterArchiveName(Unk02003a6c *archive, const u8 *name, s32 nameLen) {
             data_0216f344.h.mUnk_04 = 0;
         } else {
             tail = data_0216f340;
-            while (tail->mUnk_04 != 0) {
-                tail = tail->mUnk_04;
+            while (tail->mNext != 0) {
+                tail = tail->mNext;
             }
-            tail->mUnk_04 = archive;
-            archive->mUnk_08 = tail;
+            tail->mNext = archive;
+            archive->mPrev = tail;
         }
-        archive->mUnk_00 = FSi_GetPackedName(name, nameLen);
+        archive->mName = FSi_GetPackedName(name, nameLen);
         result = 1;
-        archive->mUnk_1c |= 1;
+        archive->mFlag |= 1;
     }
     OS_RestoreInterrupts(enabled);
     return result;
 }
 
 // Removes an archive from the list.
-void FS_ReleaseArchiveName(Unk02003a6c *archive) {
+void FS_ReleaseArchiveName(FSArchive *archive) {
     u32 enabled;
 
-    if (archive->mUnk_00 == 0) {
+    if (archive->mName == 0) {
         return;
     }
     enabled = OS_DisableInterrupts();
-    if (archive->mUnk_04 != 0) {
-        archive->mUnk_04->mUnk_08 = archive->mUnk_08;
+    if (archive->mNext != 0) {
+        archive->mNext->mPrev = archive->mPrev;
     }
-    if (archive->mUnk_08 != 0) {
-        archive->mUnk_08->mUnk_04 = archive->mUnk_04;
+    if (archive->mPrev != 0) {
+        archive->mPrev->mNext = archive->mNext;
     }
-    archive->mUnk_00 = 0;
-    archive->mUnk_08 = 0;
-    archive->mUnk_04 = archive->mUnk_08;
-    archive->mUnk_1c &= ~1;
+    archive->mName = 0;
+    archive->mPrev = 0;
+    archive->mNext = archive->mPrev;
+    archive->mFlag &= ~1;
     if (data_0216f344.h.mUnk_00 == archive) {
         data_0216f344.h.mUnk_08 = 0;
         data_0216f344.h.mUnk_06 = 0;
@@ -533,109 +533,108 @@ void FS_ReleaseArchiveName(Unk02003a6c *archive) {
 }
 
 // Sets the archive memory image, table offsets and read and write callbacks.
-u32 FS_LoadArchive(Unk02003a6c *archive, u8 *base, u32 fat, u32 fatSize, u32 fnt, u32 fntSize,
-                   s32 (*readFunc)(Unk02003a6c *, void *, u32, u32),
-                   s32 (*writeFunc)(Unk02003a6c *, void *, u32, u32)) {
-    archive->mUnk_28 = base;
-    archive->mUnk_30 = fatSize;
-    archive->mUnk_3c = fat;
-    archive->mUnk_2c = archive->mUnk_3c;
-    archive->mUnk_38 = fntSize;
-    archive->mUnk_40 = fnt;
-    archive->mUnk_34 = archive->mUnk_40;
-    archive->mUnk_48 = (readFunc == 0) ? FSi_ReadMemCallback : readFunc;
-    archive->mUnk_4c = (writeFunc == 0) ? FSi_WriteMemCallback : writeFunc;
-    archive->mUnk_50 = archive->mUnk_48;
-    archive->mUnk_44 = 0;
-    archive->mUnk_1c |= 2;
+u32 FS_LoadArchive(FSArchive *archive, u8 *base, u32 fat, u32 fatSize, u32 fnt, u32 fntSize,
+                   FS_ARCHIVE_READ_FUNC readFunc, FS_ARCHIVE_WRITE_FUNC writeFunc) {
+    archive->mBase = base;
+    archive->mFatSize = fatSize;
+    archive->mFatBak = fat;
+    archive->mFat = archive->mFatBak;
+    archive->mFntSize = fntSize;
+    archive->mFntBak = fnt;
+    archive->mFnt = archive->mFntBak;
+    archive->mRead = (readFunc == 0) ? FSi_ReadMemCallback : readFunc;
+    archive->mWrite = (writeFunc == 0) ? FSi_WriteMemCallback : writeFunc;
+    archive->mTable = archive->mRead;
+    archive->mLoadMem = 0;
+    archive->mFlag |= 2;
     return 1;
 }
 
 // Cancels the queued commands and clears the archive.
-u32 FS_UnloadArchive(Unk02003a6c *archive) {
+u32 FS_UnloadArchive(FSArchive *archive) {
     u32 enabled;
-    Unk02003024 *file;
-    Unk02003024 *next;
+    FSFile *file;
+    FSFile *next;
     u32 suspended;
 
     enabled = OS_DisableInterrupts();
-    if (((archive->mUnk_1c & 2) ? 1 : 0) != 0) {
-        archive->mUnk_1c;
+    if (((archive->mFlag & 2) ? 1 : 0) != 0) {
+        archive->mFlag;
         suspended = FS_SuspendArchive(archive);
-        archive->mUnk_1c |= 0x80;
-        file = archive->mUnk_24;
+        archive->mFlag |= 0x80;
+        file = archive->mList.mNext;
         if (file != 0) {
             do {
-                next = file->mUnk_04;
-                FileFinishCommand(file, 3);
+                next = file->mLink.mNext;
+                FSi_ReleaseCommand(file, 3);
                 file = next;
             } while (next != 0);
         }
-        archive->mUnk_24 = 0;
+        archive->mList.mNext = 0;
         if (suspended != 0) {
             FS_ResumeArchive(archive);
         }
-        archive->mUnk_28 = 0;
-        archive->mUnk_2c = 0;
-        archive->mUnk_30 = 0;
-        archive->mUnk_34 = 0;
-        archive->mUnk_38 = 0;
-        archive->mUnk_40 = 0;
-        archive->mUnk_3c = archive->mUnk_40;
-        archive->mUnk_1c &= ~0xa2;
+        archive->mBase = 0;
+        archive->mFat = 0;
+        archive->mFatSize = 0;
+        archive->mFnt = 0;
+        archive->mFntSize = 0;
+        archive->mFntBak = 0;
+        archive->mFatBak = archive->mFntBak;
+        archive->mFlag &= ~0xa2;
     }
     OS_RestoreInterrupts(enabled);
     return 1;
 }
 
 // Copies the two tables into memory; returns the size needed.
-u32 FS_LoadArchiveTables(Unk02003a6c *archive, u32 mem, u32 maxSize) {
-    Unk02003024 tmp;
+u32 FS_LoadArchiveTables(FSArchive *archive, u32 mem, u32 maxSize) {
+    FSFile tmp;
     u32 totalSize;
 
-    totalSize = ((s32) (archive->mUnk_30 + archive->mUnk_38 + 32) + 31) & ~31;
+    totalSize = ((s32) (archive->mFatSize + archive->mFntSize + 32) + 31) & ~31;
     if (totalSize <= maxSize) {
         u8 *cache;
 
         cache = (u8 *) ((mem + 31) & ~31);
         FS_InitFile(&tmp);
-        if (FS_OpenFileDirect(&tmp, archive, archive->mUnk_2c, archive->mUnk_2c + archive->mUnk_30, -1) != 0) {
-            if (FS_ReadFile(&tmp, cache, archive->mUnk_30) < 0) {
-                MI_CpuFill8(cache, 0, archive->mUnk_30);
+        if (FS_OpenFileDirect(&tmp, archive, archive->mFat, archive->mFat + archive->mFatSize, -1) != 0) {
+            if (FS_ReadFile(&tmp, cache, archive->mFatSize) < 0) {
+                MI_CpuFill8(cache, 0, archive->mFatSize);
             }
             FS_CloseFile(&tmp);
         }
-        archive->mUnk_2c = (u32) cache;
-        cache += archive->mUnk_30;
-        if (FS_OpenFileDirect(&tmp, archive, archive->mUnk_34, archive->mUnk_34 + archive->mUnk_38, -1) != 0) {
-            if (FS_ReadFile(&tmp, cache, archive->mUnk_38) < 0) {
-                MI_CpuFill8(cache, 0, archive->mUnk_38);
+        archive->mFat = (u32) cache;
+        cache += archive->mFatSize;
+        if (FS_OpenFileDirect(&tmp, archive, archive->mFnt, archive->mFnt + archive->mFntSize, -1) != 0) {
+            if (FS_ReadFile(&tmp, cache, archive->mFntSize) < 0) {
+                MI_CpuFill8(cache, 0, archive->mFntSize);
             }
             FS_CloseFile(&tmp);
         }
-        archive->mUnk_34 = (u32) cache;
-        archive->mUnk_44 = mem;
-        archive->mUnk_50 = FSi_ReadMemoryCore;
-        archive->mUnk_1c |= 4;
+        archive->mFnt = (u32) cache;
+        archive->mLoadMem = mem;
+        archive->mTable = FSi_ReadMemoryCore;
+        archive->mFlag |= 4;
     }
     return totalSize;
 }
 
 // Returns the archive to reading its tables from the image; returns the table memory.
-u32 FS_UnloadArchiveTables(Unk02003a6c *archive) {
+u32 FS_UnloadArchiveTables(FSArchive *archive) {
     u32 mem;
     u32 suspended;
 
     mem = 0;
-    if (((archive->mUnk_1c & 2) ? 1 : 0) != 0) {
+    if (((archive->mFlag & 2) ? 1 : 0) != 0) {
         suspended = FS_SuspendArchive(archive);
-        if (((archive->mUnk_1c & 4) ? 1 : 0) != 0) {
-            archive->mUnk_1c &= ~4;
-            mem = archive->mUnk_44;
-            archive->mUnk_44 = 0;
-            archive->mUnk_2c = archive->mUnk_3c;
-            archive->mUnk_34 = archive->mUnk_40;
-            archive->mUnk_50 = archive->mUnk_48;
+        if (((archive->mFlag & 4) ? 1 : 0) != 0) {
+            archive->mFlag &= ~4;
+            mem = archive->mLoadMem;
+            archive->mLoadMem = 0;
+            archive->mFat = archive->mFatBak;
+            archive->mFnt = archive->mFntBak;
+            archive->mTable = archive->mRead;
         }
         if (suspended != 0) {
             FS_ResumeArchive(archive);
@@ -645,20 +644,20 @@ u32 FS_UnloadArchiveTables(Unk02003a6c *archive) {
 }
 
 // Stops the archive from starting commands; returns whether it was not already suspended.
-u32 FS_SuspendArchive(Unk02003a6c *archive) {
+u32 FS_SuspendArchive(FSArchive *archive) {
     u32 enabled;
     u32 result;
 
     enabled = OS_DisableInterrupts();
-    result = ((archive->mUnk_1c & 8) ? 1 : 0) == 0;
+    result = ((archive->mFlag & 8) ? 1 : 0) == 0;
     if (result) {
-        if (archive->mUnk_1c & 0x10) {
-            archive->mUnk_1c |= 0x40;
+        if (archive->mFlag & 0x10) {
+            archive->mFlag |= 0x40;
             do {
-                OS_SleepThread(&archive->mUnk_14);
-            } while (archive->mUnk_1c & 0x40);
+                OS_SleepThread(&archive->mStatQ);
+            } while (archive->mFlag & 0x40);
         } else {
-            archive->mUnk_1c |= 8;
+            archive->mFlag |= 8;
         }
     }
     OS_RestoreInterrupts(enabled);
@@ -666,16 +665,16 @@ u32 FS_SuspendArchive(Unk02003a6c *archive) {
 }
 
 // Lets a suspended archive start commands again.
-u32 FS_ResumeArchive(Unk02003a6c *archive) {
-    Unk02003024 *next;
+u32 FS_ResumeArchive(FSArchive *archive) {
+    FSFile *next;
     u32 enabled;
     u32 result;
 
     next = 0;
     enabled = OS_DisableInterrupts();
-    result = ((archive->mUnk_1c & 8) ? 1 : 0) == 0;
+    result = ((archive->mFlag & 8) ? 1 : 0) == 0;
     if (!result) {
-        archive->mUnk_1c &= ~8;
+        archive->mFlag &= ~8;
         next = FSi_NextCommand(archive);
     }
     OS_RestoreInterrupts(enabled);
@@ -686,35 +685,35 @@ u32 FS_ResumeArchive(Unk02003a6c *archive) {
 }
 
 // Sets the archive notification callback and the events it receives.
-void FS_SetArchiveProc(Unk02003a6c *archive, s32 (*proc)(Unk02003024 *, u32), u32 flags) {
+void FS_SetArchiveProc(FSArchive *archive, FS_ARCHIVE_PROC_FUNC proc, u32 flags) {
     if (flags == 0) {
         proc = 0;
     } else if (proc == 0) {
         flags = 0;
     }
-    archive->mUnk_54 = proc;
-    archive->mUnk_58 = flags;
+    archive->mProc = proc;
+    archive->mProcFlag = flags;
 }
 
 // Ends an asynchronous command with the given result.
-void FS_NotifyArchiveAsyncEnd(Unk02003a6c *archive, u32 result) {
+void FS_NotifyArchiveAsyncEnd(FSArchive *archive, u32 result) {
     u32 enabled;
-    Unk02003024 *file;
+    FSFile *file;
 
-    if (archive->mUnk_1c & 0x100) {
-        file = archive->mUnk_24;
-        archive->mUnk_1c &= ~0x100;
-        FileFinishCommand(file, result);
+    if (archive->mFlag & 0x100) {
+        file = archive->mList.mNext;
+        archive->mFlag &= ~0x100;
+        FSi_ReleaseCommand(file, result);
         file = FSi_NextCommand(archive);
         if (file != 0) {
             FSi_ExecuteAsyncCommand(file);
         }
     } else {
-        file = archive->mUnk_24;
+        file = archive->mList.mNext;
         enabled = OS_DisableInterrupts();
-        file->mUnk_14 = result;
-        archive->mUnk_1c &= ~0x200;
-        OS_WakeupThread(&archive->mUnk_0c);
+        file->mError = result;
+        archive->mFlag &= ~0x200;
+        OS_WakeupThread(&archive->mSyncQ);
         OS_RestoreInterrupts(enabled);
     }
 }

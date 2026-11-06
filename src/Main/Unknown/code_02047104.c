@@ -248,7 +248,7 @@ void func_02047f7c(s32 a, const char *b, u32 *c, void *d, s32 e, s32 f, s32 g) {
 
 void func_02047e94(void) {
     Unk021759c8_8c8 *p;
-    Unk02003024 f;
+    FSFile f;
     MIUncompContextLZ b;
     u32 n;
     s32 r;

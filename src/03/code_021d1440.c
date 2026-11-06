@@ -22,7 +22,7 @@
 #include "code_0214578c.h"
 
 void func_ov003_021d1654(void) {
-    Unk02003024 a;
+    FSFile a;
     u32 b[2];
     u32 c[2];
     char d[0x80];
@@ -35,7 +35,7 @@ void func_ov003_021d1654(void) {
         OS_Terminate();
     }
     data_ov003_021da2b0->mUnk_e4 = OS_GetLockID();
-    e = a.mUnk_20.w.mUnk_04;
+    e = a.mProp.w.mUnk_04;
     FS_ReadFile(&a, b, 8);
     FS_ReadFile(&a, c, 8);
     FS_CloseFile(&a);
@@ -45,8 +45,7 @@ void func_ov003_021d1654(void) {
     }
     FS_SetArchiveProc(&data_ov003_021da2b0->mUnk_88, func_ov003_021d15a4, 0x602);
     if (FS_LoadArchive(&data_ov003_021da2b0->mUnk_88, (u8 *) e, c[0], c[1], b[0], b[1],
-                       (s32(*)(Unk02003a6c *, void *, u32, u32)) func_ov003_021d1574,
-                       (s32(*)(Unk02003a6c *, void *, u32, u32)) func_ov003_021d1564) == 0) {
+                       (FS_ARCHIVE_READ_FUNC) func_ov003_021d1574, (FS_ARCHIVE_WRITE_FUNC) func_ov003_021d1564) == 0) {
         OS_Terminate();
     }
     f = FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, 0, 0);
@@ -69,7 +68,7 @@ void func_ov003_021d15f4(void) {
     func_ov003_021d2808(&data_ov003_021da2b0);
 }
 
-s32 func_ov003_021d15a4(Unk02003024 *a, u32 b) {
+s32 func_ov003_021d15a4(FSFile *a, u32 b) {
     switch (b) {
         case 9:
             CARD_LockRom(data_ov003_021da2b0->mUnk_e4);
@@ -89,7 +88,7 @@ u32 func_ov003_021d1574(int a, u32 b, int c, u32 d) {
     return 6;
 }
 
-void func_ov003_021d1568(Unk02003a6c *list) {
+void func_ov003_021d1568(FSArchive *list) {
     FS_NotifyArchiveAsyncEnd(list, 0);
 }
 
@@ -98,7 +97,7 @@ s32 func_ov003_021d1564(void) {
 }
 
 void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
-    Unk02003024 a;
+    FSFile a;
     void *b;
     u32 c;
     s32 e;
@@ -108,7 +107,7 @@ void *func_ov003_021d14b8(const u8 *f, u32 *g, s32 h) {
     if (FS_OpenFile(&a, f) == 0) {
         OS_Terminate();
     }
-    c = a.mUnk_20.w.mUnk_08 - a.mUnk_20.w.mUnk_04;
+    c = a.mProp.w.mUnk_08 - a.mProp.w.mUnk_04;
     if (g != NULL) {
         *g = c;
     }

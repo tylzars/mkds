@@ -42,13 +42,13 @@ typedef struct Unk0204d6f4_hdr {
     u32 mUnk_5c;
 } Unk0204d6f4_hdr;
 
-s32 func_0204dab8(Unk02003024 *a, u32 b) {
+s32 func_0204dab8(FSFile *a, u32 b) {
     switch (b) {
         case 0:
             if (data_02175ec0.mUnk_000c != 2) {
                 return 5;
             }
-            if (a->mUnk_30.p.mUnk_08 == 0) {
+            if (a->mArg.p.mUnk_08 == 0) {
                 return 0;
             }
             func_0204cf5c(a);
@@ -60,9 +60,9 @@ s32 func_0204dab8(Unk02003024 *a, u32 b) {
     }
 }
 
-void func_0204d6f4(Unk02003024 *a, s32 b) {
+void func_0204d6f4(FSFile *a, s32 b) {
     Unk0204d6f4_hdr v2;
-    Unk02003024 v1;
+    FSFile v1;
     Unk0204d610_t t[4];
     u32 v3[4];
     u32 *v4[4];
@@ -95,8 +95,8 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
         v10 = 0;
         v5 = (Unk0204d6f4_hdr *) 0x027ffe00;
     } else {
-        i = a->mUnk_2c - a->mUnk_20.w.mUnk_04;
-        v9 = i + a->mUnk_20.w.mUnk_04;
+        i = a->mUnk_2c - a->mProp.w.mUnk_04;
+        v9 = i + a->mProp.w.mUnk_04;
         v5 = &v2;
         v10 = v9;
         FS_ReadFile(a, v5, 0x60);
@@ -183,7 +183,7 @@ void func_0204d6f4(Unk02003024 *a, s32 b) {
 u32 func_0204d610(u32 *a) {
     Unk0204d610_t t[4];
     u32 r;
-    Unk02003a6c *p;
+    FSArchive *p;
     s32 i;
 
     p = FS_FindArchive(data_021651d4, 3);
@@ -337,7 +337,7 @@ void func_0204d18c(Unk02175ec0_440s *a, Unk0204c090 *b, s32 c) {
         b->mUnk_088 = 0;
         a->mUnk_46cc = a->mUnk_46cc | v2;
         if (b->mUnk_084 <= 0) {
-            v4 = b->mUnk_038.mUnk_20.w.mUnk_08 - b->mUnk_038.mUnk_20.w.mUnk_04;
+            v4 = b->mUnk_038.mProp.w.mUnk_08 - b->mUnk_038.mProp.w.mUnk_04;
             v6 = b->mUnk_08c;
             func_02006e74(&b->mUnk_004, v6, data_usa_0215470c, v4 <= 0x400u ? b->mUnk_0c0[0] : 0, v4, 0);
             func_0204d110(&a->mUnk_46c8, &a->mUnk_46c4, b);
@@ -390,7 +390,7 @@ void func_0204d0bc(Unk02175ec0_440s *a, Unk0204c090 *b) {
     a->mUnk_46e4 = a->mUnk_46e4 - 1;
 }
 
-void func_0204cf5c(Unk02003024 *a) {
+void func_0204cf5c(FSFile *a) {
     Unk02175ec0_msg v1;
     s32 v2;
     u32 v3;
@@ -401,7 +401,7 @@ void func_0204cf5c(Unk02003024 *a) {
     u32 v7;
     s32 b;
 
-    v2 = a->mUnk_30.p.mUnk_08;
+    v2 = a->mArg.p.mUnk_08;
     s = (Unk0204bfac *) &data_usa_021762e0;
     if (v2 < 0) {
         v2 = s->mUnk_b04;
@@ -424,7 +424,7 @@ void func_0204cf5c(Unk02003024 *a) {
         s->mUnk_080[0] = s->mUnk_afc;
     }
     data_02175ec0.mUnk_001c = a;
-    b = *(volatile s32 *) &a->mUnk_30.p.mUnk_08;
+    b = *(volatile s32 *) &a->mArg.p.mUnk_08;
     v1.mUnk_04 = s->mUnk_b00 + a->mUnk_2c;
     v1.mUnk_00_0 = 0;
     v1.mUnk_00_8 = b;
@@ -552,7 +552,7 @@ void func_0204c7e4(Unk0204c320 *a) {
     s32 v11;
     s32 v13;
     s32 v14;
-    Unk02003024 *v16;
+    FSFile *v16;
     s32 v15;
     s32 v17;
 
@@ -581,9 +581,9 @@ void func_0204c7e4(Unk0204c320 *a) {
                         return;
                     }
                     for (v1 = z->mUnk_46c4; v1 != NULL; v1 = v1->mUnk_000) {
-                        if (v1->mUnk_080 == 2 && v7 == v1->mUnk_038.mUnk_20.w.mUnk_04) {
+                        if (v1->mUnk_080 == 2 && v7 == v1->mUnk_038.mProp.w.mUnk_04) {
                             v16 = &v1->mUnk_038;
-                            if (v6 == v16->mUnk_20.w.mUnk_08 - v16->mUnk_20.w.mUnk_04) {
+                            if (v6 == v16->mProp.w.mUnk_08 - v16->mProp.w.mUnk_04) {
                                 break;
                             }
                         }
@@ -651,7 +651,7 @@ void func_0204c7e4(Unk0204c320 *a) {
             v9 = v4->mUnk_098;
             v10 = q->mUnk_0e.mUnk_04;
             if (v4->mUnk_09c != 2) {
-                v17 = (v4->mUnk_038.mUnk_0c & 1) != 0 ? 1 : 0;
+                v17 = (v4->mUnk_038.mStat & 1) != 0 ? 1 : 0;
                 if (v17 == 0) {
                     v4->mUnk_09c = 2;
                 }
@@ -715,9 +715,9 @@ void func_0204c320(Unk0204c320 *a) {
     void *v4;
     u32 v5;
     Unk02175ec0_msg v6;
-    Unk02003024 *v7;
+    FSFile *v7;
     Unk02175ec0_msg *v8;
-    Unk02003a6c *v9;
+    FSArchive *v9;
     u32 v10;
     void *v11;
 
@@ -825,15 +825,15 @@ void func_0204c320(Unk0204c320 *a) {
                         return;
                     }
                     s->mUnk_b08 = v8->mUnk_04;
-                    s->mUnk_040[i] = data_02175ec0.mUnk_001c->mUnk_30.w.mUnk_00;
-                    func_02006d78(1, s->mUnk_b08, s->mUnk_040, data_02175ec0.mUnk_001c->mUnk_30.w.mUnk_08, s->mUnk_080,
+                    s->mUnk_040[i] = data_02175ec0.mUnk_001c->mArg.w.mUnk_00;
+                    func_02006d78(1, s->mUnk_b08, s->mUnk_040, data_02175ec0.mUnk_001c->mArg.w.mUnk_08, s->mUnk_080,
                                   (void (*)(Unk0216f3dc_9c *)) func_0204c320);
                     return;
                 case 3:
                     v7 = data_02175ec0.mUnk_001c;
-                    v9 = v7->mUnk_08;
+                    v9 = v7->mArc;
                     data_02175ec0.mUnk_001c = NULL;
-                    v7->mUnk_2c = v7->mUnk_2c + v7->mUnk_30.w.mUnk_08;
+                    v7->mUnk_2c = v7->mUnk_2c + v7->mArg.w.mUnk_08;
                     FS_NotifyArchiveAsyncEnd(v9, 0);
                     return;
             }
@@ -865,7 +865,7 @@ void func_0204c28c(u32 a, u32 b, u32 c, u32 d) {
     }
 }
 
-void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g) {
+void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, FSFile *f, s32 g) {
     u32 v1;
     Unk02175ec0 *v2;
     Unk02175ec0_440s *v3;
@@ -1017,7 +1017,7 @@ void func_0204bcec(void) {
     Unk02175ec0_440s *q;
     u32 s;
     void *p;
-    Unk02003a6c *u;
+    FSArchive *u;
     g = &data_02175ec0;
     s = OS_DisableInterrupts();
     if (data_usa_02175e84 != 0) {
@@ -1031,7 +1031,7 @@ void func_0204bcec(void) {
         if (data_02175ec0.mUnk_0000 == 0) {
             q = &g->mUnk_0440;
             if (g->mUnk_001c != NULL) {
-                u = g->mUnk_001c->mUnk_08;
+                u = g->mUnk_001c->mArc;
                 g->mUnk_001c = NULL;
                 FS_NotifyArchiveAsyncEnd(u, 5);
             }

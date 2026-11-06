@@ -1,27 +1,18 @@
 #include "code_02004d80.h"
 #include "code_02004dc0.h"
 
+// Returns whether FS_Init has run.
 u32 FS_IsAvailable(void) {
-    u32 value0;
-    value0 = (u32) &data_0216f350;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    return value0;
+    return data_0216f350;
 }
 
-void FS_InitFile(Unk02003024 *arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    u32 value2;
-    u32 value3;
-    value3 = 0u;
-    *(u32 *) ((value0) + (0)) = value3;
-    value2 = (u32) * (const u32 *) ((value0) + (0));
-    value1 = 0xeu;
-    *(u32 *) ((value0) + (4)) = value2;
-    *(u32 *) ((value0) + (28)) = value3;
-    value2 = (u32) * (const u32 *) ((value0) + (28));
-    *(u32 *) ((value0) + (24)) = value2;
-    *(u32 *) ((value0) + (8)) = value3;
-    arg0->mUnk_10 = value1;
-    arg0->mUnk_0c = value3;
+// Clears a file record so it is idle and not linked to an archive.
+void FS_InitFile(FSFile *file) {
+    file->mLink.mPrev = 0;
+    file->mLink.mNext = file->mLink.mPrev;
+    file->mQueue.mTail = 0;
+    file->mQueue.mHead = file->mQueue.mTail;
+    file->mArc = 0;
+    file->mCommand = 0xe;
+    file->mStat = 0;
 }

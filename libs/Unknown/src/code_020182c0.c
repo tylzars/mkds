@@ -59,7 +59,7 @@ u32 ArchiveLoadFromMemory(Unk020182c0 *a, const u8 *b, Unk02018344 *c) {
     return 0;
 }
 
-u32 ArchiveUnload(Unk02003a6c *a) {
+u32 ArchiveUnload(FSArchive *a) {
     if (FS_UnloadArchive(a) == 0) {
         return 0;
     }
@@ -68,13 +68,13 @@ u32 ArchiveUnload(Unk02003a6c *a) {
 }
 
 u32 ArchiveFileGetAddress(const u8 *a) {
-    Unk02003024 s;
+    FSFile s;
     u32 r;
 
     r = 0;
     FS_InitFile(&s);
     if (FS_OpenFile(&s, a) != 0) {
-        r = (u32) (((Unk020182c0 *) s.mUnk_08)->mUnk_64 + s.mUnk_20.w.mUnk_04);
+        r = (u32) (((Unk020182c0 *) s.mArc)->mUnk_64 + s.mProp.w.mUnk_04);
         FS_CloseFile(&s);
     }
     return r;

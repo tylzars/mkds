@@ -254,7 +254,7 @@ typedef struct Unk021759c8 {
     /* 8c0 */ u32 mUnk_8c0;
     /* 8c4 */ void *mUnk_8c4;
     /* 8c8 */ Unk021759c8_8c8 mUnk_8c8;
-    /* 968 */ Unk02003024 mUnk_968;
+    /* 968 */ FSFile mUnk_968;
     /* 9b0 */ Unk021759c8_9b0 mUnk_9b0[16];
     /* a70 */ void *mUnk_a70;
     /* a74 */ void *mUnk_a74;
@@ -325,7 +325,7 @@ typedef struct Unk02175ec0_msg {
 } Unk02175ec0_msg;
 
 struct Unk0204c090;
-struct Unk02003024;
+struct FSFile;
 
 // Part of data_02175ec0 from 0x440: the table, then nine words at 0x46cc.
 typedef struct Unk02175ec0_440s {
@@ -359,7 +359,7 @@ typedef struct Unk02175ec0 {
     /* 0010 */ void (*mUnk_0010)(s32 a);
     /* 0014 */ void *(*mUnk_0014)(s32 a, u32 b, void *c);
     /* 0018 */ s32 mUnk_0018;
-    /* 001c */ struct Unk02003024 *mUnk_001c;
+    /* 001c */ struct FSFile *mUnk_001c;
     /* 0020 */ void *mUnk_0020;
     /* 0024 */ s32 mUnk_0024;
     /* 0028 */ s32 mUnk_0028;

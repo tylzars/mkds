@@ -7,143 +7,151 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0214d018.h"
 
-s32 FileCompareNamesNoCase(const u8 *a, const u8 *b, u32 c) {
+// Compares two names for len characters, ignoring case; returns the difference of the first pair that differs.
+s32 FSi_StrNICmp(const u8 *str1, const u8 *str2, u32 len) {
     u32 i;
-    u32 x;
-    u32 y;
+    u32 c;
+    u32 d;
 
-    for (i = 0; i < c; i++) {
-        x = a[i] - 0x41;
-        y = b[i] - 0x41;
-        if (x <= 0x19) {
-            x += 0x20;
+    for (i = 0; i < len; i++) {
+        c = str1[i] - 0x41;
+        d = str2[i] - 0x41;
+        if (c <= 0x19) {
+            c += 0x20;
         }
-        if (y <= 0x19) {
-            y += 0x20;
+        if (d <= 0x19) {
+            d += 0x20;
         }
-        if (x != y) {
-            return x - y;
+        if (c != d) {
+            return c - d;
         }
     }
     return 0;
 }
 
-void FileReadTableBytes(Unk02003ad8 *a, void *b, u32 c) {
-    Unk02003a6c *o;
-    s32 r;
-    u32 s;
+// Reads len bytes of the archive tables through FSArchive.mTable, waiting if it runs in the background; advances
+// the position.
+void FSi_ReadTable(Unk02003ad8 *param, void *dst, u32 len) {
+    FSArchive *archive;
+    s32 result;
+    u32 enabled;
 
-    o = a->mUnk_00;
-    o->mUnk_1c |= 0x200;
-    r = o->mUnk_50(o, b, a->mUnk_04, c);
-    switch (r) {
+    archive = param->mUnk_00;
+    archive->mFlag |= 0x200;
+    result = archive->mTable(archive, dst, param->mUnk_04, len);
+    switch (result) {
         case 0:
         case 1:
-            o->mUnk_1c &= ~0x200;
+            archive->mFlag &= ~0x200;
             break;
         case 6:
-            s = OS_DisableInterrupts();
-            if (o->mUnk_1c & 0x200) {
+            enabled = OS_DisableInterrupts();
+            if (archive->mFlag & 0x200) {
                 do {
-                    OS_SleepThread(&o->mUnk_0c);
-                } while (o->mUnk_1c & 0x200);
+                    OS_SleepThread(&archive->mSyncQ);
+                } while (archive->mFlag & 0x200);
             }
-            OS_RestoreInterrupts(s);
+            OS_RestoreInterrupts(enabled);
             break;
     }
-    a->mUnk_04 += c;
+    param->mUnk_04 += len;
 }
 
-s32 FileEnterDirectoryById(Unk02003024 *a, u32 b) {
-    a->mUnk_0c |= 4;
-    a->mUnk_30.h.mUnk_00 = a->mUnk_08;
-    a->mUnk_30.w.mUnk_08 = 0;
-    a->mUnk_30.h.mUnk_06 = 0;
-    a->mUnk_30.h.mUnk_04 = b;
-    return FileDispatchCommand(a, 2);
+// Moves a directory file to the directory with the given number.
+s32 FSi_SeekDirDirect(FSFile *dir, u32 id) {
+    dir->mStat |= 4;
+    dir->mArg.h.mUnk_00 = dir->mArc;
+    dir->mArg.w.mUnk_08 = 0;
+    dir->mArg.h.mUnk_06 = 0;
+    dir->mArg.h.mUnk_04 = id;
+    return FSi_TranslateCommand(dir, 2);
 }
 
-s32 FileReadViaArchive(Unk02003024 *a) {
-    Unk02003a6c *o;
-    void *buf;
+// File read command: advances FSFile position and calls FSArchive.mRead.
+s32 FSi_ReadFileCommand(FSFile *file) {
+    FSArchive *archive;
+    void *dst;
     u32 pos;
-    u32 n;
+    u32 len;
 
-    pos = a->mUnk_2c;
-    n = a->mUnk_30.p.mUnk_08;
-    o = a->mUnk_08;
-    buf = a->mUnk_30.p.mUnk_00;
-    a->mUnk_2c = pos + n;
-    return o->mUnk_48(o, buf, pos, n);
+    pos = file->mUnk_2c;
+    len = file->mArg.p.mUnk_08;
+    archive = file->mArc;
+    dst = file->mArg.p.mUnk_00;
+    file->mUnk_2c = pos + len;
+    return archive->mRead(archive, dst, pos, len);
 }
 
-s32 FileWriteViaArchive(Unk02003024 *a) {
-    Unk02003a6c *o;
-    void *buf;
+// File write command: advances FSFile position and calls FSArchive.mWrite.
+s32 FSi_WriteFileCommand(FSFile *file) {
+    FSArchive *archive;
+    void *src;
     u32 pos;
-    u32 n;
+    u32 len;
 
-    pos = a->mUnk_2c;
-    n = a->mUnk_30.p.mUnk_08;
-    o = a->mUnk_08;
-    buf = a->mUnk_30.p.mUnk_00;
-    a->mUnk_2c = pos + n;
-    return o->mUnk_4c(o, buf, pos, n);
+    pos = file->mUnk_2c;
+    len = file->mArg.p.mUnk_08;
+    archive = file->mArc;
+    src = file->mArg.p.mUnk_00;
+    file->mUnk_2c = pos + len;
+    return archive->mWrite(archive, src, pos, len);
 }
 
-s32 FileReadDirTableEntry(Unk02003024 *a) {
-    Unk02003a6c *o;
-    Unk02003024U *q;
-    Unk0200399c v;
-    Unk02003ad8 c;
+// Directory seek command: reads the directory table entry for the directory in FSFile.mArg.
+s32 FSi_SeekDirCommand(FSFile *dir) {
+    FSArchive *archive;
+    Unk02003024U *arg;
+    Unk0200399c tableEntry;
+    Unk02003ad8 readParam;
 
-    o = a->mUnk_08;
-    q = &a->mUnk_30;
-    c.mUnk_00 = o;
-    c.mUnk_04 = o->mUnk_34 + q->h.mUnk_04 * 8;
-    FileReadTableBytes(&c, &v, 8);
-    a->mUnk_20 = *q;
-    if (q->h.mUnk_06 == 0 && q->h.mUnk_08 == 0) {
-        a->mUnk_20.h.mUnk_06 = v.mUnk_04;
-        a->mUnk_20.h.mUnk_08 = o->mUnk_34 + v.mUnk_00;
+    archive = dir->mArc;
+    arg = &dir->mArg;
+    readParam.mUnk_00 = archive;
+    readParam.mUnk_04 = archive->mFnt + arg->h.mUnk_04 * 8;
+    FSi_ReadTable(&readParam, &tableEntry, 8);
+    dir->mProp = *arg;
+    if (arg->h.mUnk_06 == 0 && arg->h.mUnk_08 == 0) {
+        dir->mProp.h.mUnk_06 = tableEntry.mUnk_04;
+        dir->mProp.h.mUnk_08 = archive->mFnt + tableEntry.mUnk_00;
     }
-    a->mUnk_2c = v.mUnk_06 & 0xfff;
+    dir->mUnk_2c = tableEntry.mUnk_06 & 0xfff;
     return 0;
 }
 
-s32 FileReadDirEntry(Unk02003024 *a) {
-    Unk02003670 *e;
-    u8 b;
-    u16 h;
-    Unk02003ad8 c;
+// Directory read command: reads the next entry of the directory into the Unk02003670 in FSFile.mArg.
+s32 FSi_ReadDirCommand(FSFile *dir) {
+    Unk02003670 *entry;
+    u8 header;
+    u16 parent;
+    Unk02003ad8 readParam;
 
-    e = a->mUnk_30.e.mUnk_00;
-    c.mUnk_00 = a->mUnk_08;
-    c.mUnk_04 = a->mUnk_20.w.mUnk_08;
-    FileReadTableBytes(&c, &b, 1);
-    e->mUnk_10 = b & 0x7f;
-    e->mUnk_0c = (b >> 7) & 1;
-    if (e->mUnk_10 == 0) {
+    entry = dir->mArg.e.mUnk_00;
+    readParam.mUnk_00 = dir->mArc;
+    readParam.mUnk_04 = dir->mProp.w.mUnk_08;
+    FSi_ReadTable(&readParam, &header, 1);
+    entry->mUnk_10 = header & 0x7f;
+    entry->mUnk_0c = (header >> 7) & 1;
+    if (entry->mUnk_10 == 0) {
         return 1;
     }
-    if (a->mUnk_30.w.mUnk_04 != 0) {
-        c.mUnk_04 += e->mUnk_10;
+    if (dir->mArg.w.mUnk_04 != 0) {
+        readParam.mUnk_04 += entry->mUnk_10;
     } else {
-        FileReadTableBytes(&c, e->mUnk_14, e->mUnk_10);
-        e->mUnk_14[e->mUnk_10] = 0;
+        FSi_ReadTable(&readParam, entry->mUnk_14, entry->mUnk_10);
+        entry->mUnk_14[entry->mUnk_10] = 0;
     }
-    if (e->mUnk_0c != 0) {
-        FileReadTableBytes(&c, &h, 2);
-        e->mUnk_00.h.mUnk_00 = a->mUnk_08;
-        e->mUnk_00.h.mUnk_04 = h & 0xfff;
-        e->mUnk_00.h.mUnk_06 = 0;
-        e->mUnk_00.w.mUnk_08 = 0;
+    if (entry->mUnk_0c != 0) {
+        FSi_ReadTable(&readParam, &parent, 2);
+        entry->mUnk_00.h.mUnk_00 = dir->mArc;
+        entry->mUnk_00.h.mUnk_04 = parent & 0xfff;
+        entry->mUnk_00.h.mUnk_06 = 0;
+        entry->mUnk_00.w.mUnk_08 = 0;
     } else {
-        e->mUnk_00.h.mUnk_00 = a->mUnk_08;
-        e->mUnk_00.w.mUnk_04 = a->mUnk_20.h.mUnk_06;
-        a->mUnk_20.h.mUnk_06++;
+        entry->mUnk_00.h.mUnk_00 = dir->mArc;
+        entry->mUnk_00.w.mUnk_04 = dir->mProp.h.mUnk_06;
+        dir->mProp.h.mUnk_06++;
     }
-    a->mUnk_20.w.mUnk_08 = c.mUnk_04;
+    dir->mProp.w.mUnk_08 = readParam.mUnk_04;
     return 0;
 }
 
@@ -157,332 +165,340 @@ static inline int func_02003670_inline(u32 c) {
     return r;
 }
 
-s32 FileWalkPath(Unk02003024 *a) {
-    u32 f;
-    Unk02003670 e;
-    const u8 *p;
-    u32 d;
-    s32 n;
-    u32 c;
-    Unk02003024U *q;
+// Path search command: walks the path through the directory entries and stores the file or directory found.
+s32 FSi_FindPathCommand(FSFile *dir) {
+    u32 wantsDir;
+    Unk02003670 entry;
+    const u8 *path;
+    u32 isDirName;
+    s32 nameLen;
+    u32 ch;
+    Unk02003024U *result;
 
-    f = a->mUnk_40;
-    p = a->mUnk_3c;
-    FileDispatchCommand(a, 2);
-    c = *p;
-    if (c != 0) {
+    wantsDir = dir->mFindDirectory;
+    path = dir->mPath;
+    FSi_TranslateCommand(dir, 2);
+    ch = *path;
+    if (ch != 0) {
         do {
-            for (n = 0; d = p[n], func_02003670_inline(d); n++) {
+            for (nameLen = 0; isDirName = path[nameLen], func_02003670_inline(isDirName); nameLen++) {
             }
-            if (d != 0 || f != 0) {
-                d = 1;
+            if (isDirName != 0 || wantsDir != 0) {
+                isDirName = 1;
             }
-            if (n == 0) {
+            if (nameLen == 0) {
                 return 1;
             }
-            if (c == 0x2e) {
-                if (n == 1) {
-                    p += 1;
+            if (ch == 0x2e) {
+                if (nameLen == 1) {
+                    path += 1;
                     goto next;
                 }
-                if ((n == 2) & (p[1] == 0x2e)) {
-                    if (a->mUnk_20.h.mUnk_04 != 0) {
-                        FileEnterDirectoryById(a, a->mUnk_2c);
+                if ((nameLen == 2) & (path[1] == 0x2e)) {
+                    if (dir->mProp.h.mUnk_04 != 0) {
+                        FSi_SeekDirDirect(dir, dir->mUnk_2c);
                     }
-                    p += 2;
+                    path += 2;
                     goto next;
                 }
             }
-            if (n > 0x7f) {
+            if (nameLen > 0x7f) {
                 return 1;
             }
-            a->mUnk_30.e.mUnk_00 = &e;
-            a->mUnk_30.w.mUnk_04 = 0;
+            dir->mArg.e.mUnk_00 = &entry;
+            dir->mArg.w.mUnk_04 = 0;
             do {
-                if (FileDispatchCommand(a, 3) != 0) {
+                if (FSi_TranslateCommand(dir, 3) != 0) {
                     return 1;
                 }
-            } while (d != e.mUnk_0c || n != e.mUnk_10 || FileCompareNamesNoCase(p, e.mUnk_14, n) != 0);
-            if (d != 0) {
-                a->mUnk_30 = e.mUnk_00;
-                p += n;
-                FileDispatchCommand(a, 2);
+            } while (isDirName != entry.mUnk_0c || nameLen != entry.mUnk_10 ||
+                     FSi_StrNICmp(path, entry.mUnk_14, nameLen) != 0);
+            if (isDirName != 0) {
+                dir->mArg = entry.mUnk_00;
+                path += nameLen;
+                FSi_TranslateCommand(dir, 2);
             } else {
-                if (f != 0) {
+                if (wantsDir != 0) {
                     return 1;
                 }
-                q = a->mUnk_44;
-                q->d.mUnk_00 = e.mUnk_00.d.mUnk_00;
+                result = dir->mResult;
+                result->d.mUnk_00 = entry.mUnk_00.d.mUnk_00;
                 return 0;
             }
         next:
-            p += (*p != 0) ? 1 : 0;
-            c = *p;
-        } while (c != 0);
+            path += (*path != 0) ? 1 : 0;
+            ch = *path;
+        } while (ch != 0);
     }
-    if (f == 0) {
+    if (wantsDir == 0) {
         return 1;
     }
-    *a->mUnk_44 = a->mUnk_20;
+    *dir->mResult = dir->mProp;
     return 0;
 }
 
-s32 FileBuildPathString(Unk02003024 *a) {
-    Unk02003a6c *o;
-    Unk02003670 e;
-    Unk02003024 c;
-    Unk02003024U *p;
-    u32 k;
-    u32 id;
+// Path query command: sizes and writes the full path of a file or directory, starting with the archive name.
+s32 FSi_GetPathCommand(FSFile *file) {
+    FSArchive *archive;
+    Unk02003670 entry;
+    FSFile tmp;
+    Unk02003024U *arg;
+    u32 dirId;
+    u32 fileId;
     u32 i;
-    u32 limit;
-    u32 t;
-    u32 total;
+    u32 dirCount;
+    u32 parent;
+    u32 totalLen;
     u8 *buf;
     u32 len;
     u32 off;
     u32 n;
 
-    o = a->mUnk_08;
-    p = &a->mUnk_30;
-    FS_InitFile(&c);
-    c.mUnk_08 = a->mUnk_08;
-    if (((a->mUnk_0c & 0x20) ? 1 : 0) != 0) {
-        k = a->mUnk_20.h.mUnk_04;
-        id = 0x10000;
+    archive = file->mArc;
+    arg = &file->mArg;
+    FS_InitFile(&tmp);
+    tmp.mArc = file->mArc;
+    if (((file->mStat & 0x20) ? 1 : 0) != 0) {
+        dirId = file->mProp.h.mUnk_04;
+        fileId = 0x10000;
     } else {
-        id = a->mUnk_20.w.mUnk_00;
-        if (p->b.mUnk_08 != 0) {
-            k = p->b.mUnk_0a;
+        fileId = file->mProp.w.mUnk_00;
+        if (arg->b.mUnk_08 != 0) {
+            dirId = arg->b.mUnk_0a;
         } else {
             i = 0;
-            limit = 0;
-            k = 0x10000;
+            dirCount = 0;
+            dirId = 0x10000;
             do {
-                FileEnterDirectoryById(&c, i);
+                FSi_SeekDirDirect(&tmp, i);
                 if (i == 0) {
-                    limit = c.mUnk_2c;
+                    dirCount = tmp.mUnk_2c;
                 }
-                c.mUnk_30.e.mUnk_00 = &e;
-                c.mUnk_30.w.mUnk_04 = 1;
-                if (FileDispatchCommand(&c, 3) == 0) {
+                tmp.mArg.e.mUnk_00 = &entry;
+                tmp.mArg.w.mUnk_04 = 1;
+                if (FSi_TranslateCommand(&tmp, 3) == 0) {
                     do {
-                        if (e.mUnk_0c == 0 && e.mUnk_00.w.mUnk_04 == id) {
-                            k = c.mUnk_20.h.mUnk_04;
+                        if (entry.mUnk_0c == 0 && entry.mUnk_00.w.mUnk_04 == fileId) {
+                            dirId = tmp.mProp.h.mUnk_04;
                             break;
                         }
-                    } while (FileDispatchCommand(&c, 3) == 0);
+                    } while (FSi_TranslateCommand(&tmp, 3) == 0);
                 }
-                if (k != 0x10000) {
+                if (dirId != 0x10000) {
                     break;
                 }
                 i++;
-            } while (i < limit);
+            } while (i < dirCount);
         }
     }
-    if (k == 0x10000) {
-        p->b.mUnk_08 = 0;
+    if (dirId == 0x10000) {
+        arg->b.mUnk_08 = 0;
         return 1;
     }
-    if (p->b.mUnk_08 == 0) {
-        total = 0;
-        if (o->mUnk_00 <= 0xff) {
-            total += 1;
-        } else if (o->mUnk_00 <= 0xff00) {
-            total += 2;
+    if (arg->b.mUnk_08 == 0) {
+        totalLen = 0;
+        if (archive->mName <= 0xff) {
+            totalLen += 1;
+        } else if (archive->mName <= 0xff00) {
+            totalLen += 2;
         } else {
-            total += 3;
+            totalLen += 3;
         }
-        total += 2;
-        if (id != 0x10000) {
-            total += e.mUnk_10;
+        totalLen += 2;
+        if (fileId != 0x10000) {
+            totalLen += entry.mUnk_10;
         }
-        t = k;
-        if (t != 0) {
-            FileEnterDirectoryById(&c, t);
+        parent = dirId;
+        if (parent != 0) {
+            FSi_SeekDirDirect(&tmp, parent);
             do {
-                FileEnterDirectoryById(&c, c.mUnk_2c);
-                c.mUnk_30.e.mUnk_00 = &e;
-                c.mUnk_30.w.mUnk_04 = 1;
-                if (FileDispatchCommand(&c, 3) == 0) {
+                FSi_SeekDirDirect(&tmp, tmp.mUnk_2c);
+                tmp.mArg.e.mUnk_00 = &entry;
+                tmp.mArg.w.mUnk_04 = 1;
+                if (FSi_TranslateCommand(&tmp, 3) == 0) {
                     do {
-                        if (e.mUnk_0c != 0 && e.mUnk_00.h.mUnk_04 == t) {
-                            total += e.mUnk_10 + 1;
+                        if (entry.mUnk_0c != 0 && entry.mUnk_00.h.mUnk_04 == parent) {
+                            totalLen += entry.mUnk_10 + 1;
                             break;
                         }
-                    } while (FileDispatchCommand(&c, 3) == 0);
+                    } while (FSi_TranslateCommand(&tmp, 3) == 0);
                 }
-                t = c.mUnk_20.h.mUnk_04;
-            } while (t != 0);
+                parent = tmp.mProp.h.mUnk_04;
+            } while (parent != 0);
         }
-        p->b.mUnk_08 = total + 1;
-        p->b.mUnk_0a = k;
+        arg->b.mUnk_08 = totalLen + 1;
+        arg->b.mUnk_0a = dirId;
     }
-    buf = p->b.mUnk_00;
+    buf = arg->b.mUnk_00;
     if (buf == 0) {
         return 0;
     }
-    len = p->b.mUnk_08;
-    if (p->b.mUnk_04 < len) {
+    len = arg->b.mUnk_08;
+    if (arg->b.mUnk_04 < len) {
         return 1;
     }
     off = 0;
-    if (o->mUnk_00 <= 0xff) {
+    if (archive->mName <= 0xff) {
         n = 1;
-    } else if (o->mUnk_00 <= 0xff00) {
+    } else if (archive->mName <= 0xff00) {
         n = 2;
     } else {
         n = 3;
     }
-    MI_CpuCopy8(o, buf, n);
+    MI_CpuCopy8(archive, buf, n);
     off += n;
     MI_CpuCopy8(":/", buf + off, 2);
-    FileEnterDirectoryById(&c, k);
-    if (id != 0x10000) {
-        c.mUnk_30.e.mUnk_00 = &e;
-        c.mUnk_30.w.mUnk_04 = 0;
-        if (FileDispatchCommand(&c, 3) == 0) {
+    FSi_SeekDirDirect(&tmp, dirId);
+    if (fileId != 0x10000) {
+        tmp.mArg.e.mUnk_00 = &entry;
+        tmp.mArg.w.mUnk_04 = 0;
+        if (FSi_TranslateCommand(&tmp, 3) == 0) {
             do {
-                if (e.mUnk_0c == 0 && e.mUnk_00.w.mUnk_04 == id) {
+                if (entry.mUnk_0c == 0 && entry.mUnk_00.w.mUnk_04 == fileId) {
                     break;
                 }
-            } while (FileDispatchCommand(&c, 3) == 0);
+            } while (FSi_TranslateCommand(&tmp, 3) == 0);
         }
-        n = e.mUnk_10 + 1;
-        MI_CpuCopy8(e.mUnk_14, buf + len - n, n);
+        n = entry.mUnk_10 + 1;
+        MI_CpuCopy8(entry.mUnk_14, buf + len - n, n);
         len -= n;
     } else {
         *(buf + len - 1) = 0;
         len--;
     }
-    if (k != 0) {
+    if (dirId != 0) {
         do {
-            FileEnterDirectoryById(&c, c.mUnk_2c);
-            c.mUnk_30.e.mUnk_00 = &e;
-            c.mUnk_30.w.mUnk_04 = 0;
+            FSi_SeekDirDirect(&tmp, tmp.mUnk_2c);
+            tmp.mArg.e.mUnk_00 = &entry;
+            tmp.mArg.w.mUnk_04 = 0;
             *(buf + len - 1) = 0x2f;
             len--;
-            if (FileDispatchCommand(&c, 3) == 0) {
+            if (FSi_TranslateCommand(&tmp, 3) == 0) {
                 do {
-                    if (e.mUnk_0c != 0 && e.mUnk_00.h.mUnk_04 == k) {
-                        n = e.mUnk_10;
-                        MI_CpuCopy8(e.mUnk_14, buf + len - n, n);
+                    if (entry.mUnk_0c != 0 && entry.mUnk_00.h.mUnk_04 == dirId) {
+                        n = entry.mUnk_10;
+                        MI_CpuCopy8(entry.mUnk_14, buf + len - n, n);
                         len -= n;
                         break;
                     }
-                } while (FileDispatchCommand(&c, 3) == 0);
+                } while (FSi_TranslateCommand(&tmp, 3) == 0);
             }
-            k = c.mUnk_20.h.mUnk_04;
-        } while (k != 0);
+            dirId = tmp.mProp.h.mUnk_04;
+        } while (dirId != 0);
     }
     return 0;
 }
 
-s32 FileOpenFromTableEntry(Unk02003024 *a) {
-    Unk02003a6c *o;
-    u32 n;
-    u32 off;
-    Unk02003234 v;
-    Unk02003ad8 c;
+// Open command by file number: reads the file range from the file table and opens it.
+s32 FSi_OpenFileFastCommand(FSFile *file) {
+    FSArchive *archive;
+    u32 index;
+    u32 offset;
+    Unk02003234 range;
+    Unk02003ad8 readParam;
 
-    o = a->mUnk_08;
-    n = a->mUnk_30.w.mUnk_04;
-    off = n << 3;
-    if (off >= o->mUnk_30) {
+    archive = file->mArc;
+    index = file->mArg.w.mUnk_04;
+    offset = index << 3;
+    if (offset >= archive->mFatSize) {
         return 1;
     }
-    c.mUnk_00 = o;
-    c.mUnk_04 = o->mUnk_2c + off;
-    FileReadTableBytes(&c, &v, 8);
-    a->mUnk_30.w.mUnk_00 = v.mUnk_00;
-    a->mUnk_30.w.mUnk_04 = v.mUnk_04;
-    a->mUnk_30.w.mUnk_08 = n;
-    return FileDispatchCommand(a, 7);
+    readParam.mUnk_00 = archive;
+    readParam.mUnk_04 = archive->mFat + offset;
+    FSi_ReadTable(&readParam, &range, 8);
+    file->mArg.w.mUnk_00 = range.mUnk_00;
+    file->mArg.w.mUnk_04 = range.mUnk_04;
+    file->mArg.w.mUnk_08 = index;
+    return FSi_TranslateCommand(file, 7);
 }
 
-s32 FileOpenFromRange(Unk02003024 *a) {
-    a->mUnk_20.w.mUnk_04 = a->mUnk_30.w.mUnk_00;
-    a->mUnk_2c = a->mUnk_30.w.mUnk_00;
-    a->mUnk_20.w.mUnk_08 = a->mUnk_30.w.mUnk_04;
-    a->mUnk_20.w.mUnk_00 = a->mUnk_30.w.mUnk_08;
+// Open command by byte range: sets the file range and position.
+s32 FSi_OpenFileDirectCommand(FSFile *file) {
+    file->mProp.w.mUnk_04 = file->mArg.w.mUnk_00;
+    file->mUnk_2c = file->mArg.w.mUnk_00;
+    file->mProp.w.mUnk_08 = file->mArg.w.mUnk_04;
+    file->mProp.w.mUnk_00 = file->mArg.w.mUnk_08;
     return 0;
 }
 
-s32 FileCloseReturnOk(Unk02003024 *a) {
+// Close command: nothing to do.
+s32 FSi_CloseFileCommand(FSFile *file) {
     return 0;
 }
 
-void FileFinishCommand(Unk02003024 *a, s32 b) {
-    u32 s;
-    Unk02003024 *p;
-    Unk02003024 *q;
+// Unlinks a finished command from its archive list, stores the result and wakes the waiting threads.
+void FSi_ReleaseCommand(FSFile *file, s32 result) {
+    u32 enabled;
+    FSFile *prev;
+    FSFile *next;
 
-    s = OS_DisableInterrupts();
-    p = a->mUnk_00;
-    q = a->mUnk_04;
-    if (p != 0) {
-        p->mUnk_04 = q;
+    enabled = OS_DisableInterrupts();
+    prev = file->mLink.mPrev;
+    next = file->mLink.mNext;
+    if (prev != 0) {
+        prev->mLink.mNext = next;
     }
-    if (q != 0) {
-        q->mUnk_00 = p;
+    if (next != 0) {
+        next->mLink.mPrev = prev;
     }
-    a->mUnk_00 = 0;
-    a->mUnk_04 = a->mUnk_00;
-    a->mUnk_0c &= ~0x4f;
-    a->mUnk_14 = b;
-    OS_WakeupThread(&a->mUnk_18);
-    OS_RestoreInterrupts(s);
+    file->mLink.mPrev = 0;
+    file->mLink.mNext = file->mLink.mPrev;
+    file->mStat &= ~0x4f;
+    file->mError = result;
+    OS_WakeupThread(&file->mQueue);
+    OS_RestoreInterrupts(enabled);
 }
 
-s32 FileDispatchCommand(Unk02003024 *a, u32 b) {
-    s32 r;
-    Unk02003a6c *p;
-    u32 m;
-    u32 s;
+// Runs a command through FSArchive.mProc when it handles it, else through the default command table.
+s32 FSi_TranslateCommand(FSFile *file, u32 command) {
+    s32 result;
+    FSArchive *archive;
+    u32 mask;
+    u32 enabled;
 
-    p = a->mUnk_08;
-    m = 1 << b;
-    if (((a->mUnk_0c & 4) ? 1 : 0) != 0) {
-        p->mUnk_1c |= 0x200;
+    archive = file->mArc;
+    mask = 1 << command;
+    if (((file->mStat & 4) ? 1 : 0) != 0) {
+        archive->mFlag |= 0x200;
     } else {
-        p->mUnk_1c |= 0x100;
+        archive->mFlag |= 0x100;
     }
-    if (p->mUnk_58 & m) {
-        r = p->mUnk_54(a, b);
-        switch (r) {
+    if (archive->mProcFlag & mask) {
+        result = archive->mProc(file, command);
+        switch (result) {
             case 0:
             case 1:
             case 4:
-                a->mUnk_14 = r;
+                file->mError = result;
                 break;
             case 8:
-                p->mUnk_58 = p->mUnk_58 & ~m;
-                r = 7;
+                archive->mProcFlag = archive->mProcFlag & ~mask;
+                result = 7;
                 break;
         }
     } else {
-        r = 7;
+        result = 7;
     }
-    if (r == 7) {
-        r = data_02152b5c[b](a);
+    if (result == 7) {
+        result = data_02152b5c[command](file);
     }
-    if (r == 6) {
-        if (((a->mUnk_0c & 4) ? 1 : 0) != 0) {
-            s = OS_DisableInterrupts();
-            if (p->mUnk_1c & 0x200) {
+    if (result == 6) {
+        if (((file->mStat & 4) ? 1 : 0) != 0) {
+            enabled = OS_DisableInterrupts();
+            if (archive->mFlag & 0x200) {
                 do {
-                    OS_SleepThread(&p->mUnk_0c);
-                } while (p->mUnk_1c & 0x200);
+                    OS_SleepThread(&archive->mSyncQ);
+                } while (archive->mFlag & 0x200);
             }
-            r = a->mUnk_14;
-            OS_RestoreInterrupts(s);
+            result = file->mError;
+            OS_RestoreInterrupts(enabled);
         }
-    } else if (((a->mUnk_0c & 4) ? 1 : 0) != 0) {
-        p->mUnk_1c &= ~0x200;
-        a->mUnk_14 = r;
+    } else if (((file->mStat & 4) ? 1 : 0) != 0) {
+        archive->mFlag &= ~0x200;
+        file->mError = result;
     } else {
-        p->mUnk_1c &= ~0x100;
-        FileFinishCommand(a, r);
+        archive->mFlag &= ~0x100;
+        FSi_ReleaseCommand(file, result);
     }
-    return r;
+    return result;
 }

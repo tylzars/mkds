@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_02006954.h"
 #include "Main/Unknown/unk_02175000.h"
 
-typedef struct Unk02003024 Unk02003024;
+typedef struct FSFile FSFile;
 
 // Entry of 0x28 bytes; the table of pointers at the start of the object at 0x440 of data_02175ec0 points to them.
 typedef struct Unk0204bfac_28 {
@@ -31,7 +31,7 @@ typedef struct Unk0204bfac {
 typedef struct Unk0204c090 {
     /* 000 */ struct Unk0204c090 *mUnk_000;
     /* 004 */ Unk02007014 mUnk_004;
-    /* 038 */ Unk02003024 mUnk_038;
+    /* 038 */ FSFile mUnk_038;
     /* 080 */ s32 mUnk_080;
     /* 084 */ s32 mUnk_084;
     /* 088 */ u32 mUnk_088;
@@ -79,7 +79,7 @@ typedef struct Unk0204cc94 {
     /* 12 */ u16 mUnk_12;
 } Unk0204cc94;
 
-typedef struct Unk02003024 Unk02003024;
+typedef struct FSFile FSFile;
 
 // Entries of 0x20 bytes after a count word; func_0204d28c reads and rewrites the word at 0x18.
 typedef struct Unk0204d28c_20 {
@@ -95,18 +95,18 @@ void func_0204bcec(void);
 void func_0204be0c(void);
 void func_0204bf48(int a, u32 b, u32 c, void *d, void *e, u32 f);
 void func_0204bfac(u32 a, u32 b, u32 c, u32 d);
-void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, Unk02003024 *f, s32 g);
+void func_0204c090(u32 a, u32 b, u32 c, u32 d, u32 e, FSFile *f, s32 g);
 void func_0204c28c(u32 a, u32 b, u32 c, u32 d);
 void func_0204c320(Unk0204c320 *a);
 void func_0204c7e4(Unk0204c320 *a);
 void func_0204cc94(Unk0204cc94 *a);
 void func_0204ce60(void);
-void func_0204cf5c(Unk02003024 *a);
+void func_0204cf5c(FSFile *a);
 void func_0204d0bc(Unk02175ec0_440s *a, Unk0204c090 *b);
 void func_0204d110(Unk0204c090 **a, Unk0204c090 **b, Unk0204c090 *c);
 void func_0204d18c(Unk02175ec0_440s *a, Unk0204c090 *b, s32 c);
 void func_0204d28c(void);
 void func_0204d5bc(void);
 u32 func_0204d610(u32 *a);
-void func_0204d6f4(Unk02003024 *a, s32 b);
-s32 func_0204dab8(Unk02003024 *a, u32 b);
+void func_0204d6f4(FSFile *a, s32 b);
+s32 func_0204dab8(FSFile *a, u32 b);

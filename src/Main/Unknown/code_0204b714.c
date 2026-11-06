@@ -16,7 +16,7 @@
 #include "01/code_021956dc.h"
 
 void func_0204bb34(void *a) {
-    Unk02003a6c *o;
+    FSArchive *o;
     Unk02175ec0 *g;
     Unk021762e0 *b;
     s32 i;

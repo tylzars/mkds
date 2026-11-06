@@ -73,8 +73,8 @@ void func_ov003_021cf93c(Unk021cf8ac *a, u16 b) {
 }
 
 u32 func_ov003_021cf8ac(Unk021cf8ac *a) {
-    Unk02003024 *q;
-    Unk02003024 s;
+    FSFile *q;
+    FSFile s;
     u32 r;
 
     r = 0;

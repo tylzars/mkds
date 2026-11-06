@@ -3,11 +3,11 @@
 #include "types.h"
 #include "code_02003024.h"
 
-typedef struct Unk02005814 Unk02005814;
-typedef struct Unk02003024 Unk02003024;
-typedef struct Unk02003a6c Unk02003a6c;
+typedef struct FSFileID FSFileID;
+typedef struct FSFile FSFile;
+typedef struct FSArchive FSArchive;
 
-// Two words read as a pair: data_0216f35c, data_0216f364 and the blocks FileInitRomArchive and FS_LoadOverlayInfo read
+// Two words read as a pair: data_0216f35c, data_0216f364 and the blocks FSi_InitRom and FS_LoadOverlayInfo read
 // at fixed addresses.
 typedef struct Unk02005704 {
     /* 00 */ u8 *mUnk_00;
@@ -46,32 +46,32 @@ extern u32 data_0216f354;
 extern u32 data_0216f358;
 extern Unk02005704 data_0216f35c;
 extern Unk02005704 data_0216f364;
-extern Unk02003a6c data_0216f36c;
+extern FSArchive data_0216f36c;
 extern u8 data_02161764[];
 extern void *data_02161768;
 extern u32 data_0216176c;
 
-void FS_Init(u32 arg);
-u32 FS_TryLoadTable(u32 a, u32 b);
-void FileInitRomArchive(u32 arg);
-s32 FileRejectAllCommands(Unk02003024 *p0, u32 p1);
-s32 FileReadFail(Unk02003a6c *p0, void *p1, u32 p2, u32 p3);
-s32 FileHandleRomLock(Unk02003024 *p, u32 cmd);
-s32 FileWriteFail(Unk02003a6c *p0, void *p1, u32 p2, u32 p3);
-s32 FileStartCardRead(Unk02003a6c *p, void *buf, u32 off, u32 n);
-void FileFinishCardRead(Unk02003a6c *p);
-void FS_AttachOverlayTable(u32 sel, u8 *data, u32 n);
-u32 FS_UnloadOverlay(u32 sel, u32 idx);
-u32 FS_LoadOverlay(u32 sel, u32 idx);
-u32 FS_UnloadOverlayImage(Unk020055f0 *rec);
-void FS_EndOverlay(Unk020055f0 *rec);
-void FS_StartOverlay(Unk020055f0 *rec);
-u32 FileCheckHmac(const u8 *expected, const u8 *data, u32 n);
-u32 FS_LoadOverlayImage(Unk020055f0 *rec);
-u32 FS_LoadOverlayImageAsync(Unk020055f0 *rec, Unk02003024 *o);
-u32 FS_LoadOverlayInfo(Unk020055f0 *dst, u32 sel, u32 idx);
-u32 FileReadOverlayEntry(Unk020055f0 *dst, u32 sel, u32 idx, Unk02003a6c *owner, u8 *base0, u32 size0, u8 *base1,
-                         u32 size1);
-void FS_GetOverlayFileID(Unk02005814 *dst, Unk020055f0 *src);
-void FS_ClearOverlayImage(Unk020055f0 *p);
-s32 FileGetOverlayLoadSize(Unk020055f0 *p);
+void FS_Init(u32 dmaNo);
+u32 FS_TryLoadTable(u32 mem, u32 size);
+void FSi_InitRom(u32 dmaNo);
+s32 FSi_EmptyArchiveProc(FSFile *file, u32 command);
+s32 FSi_ReadDummyCallback(FSArchive *archive, void *dst, u32 src, u32 len);
+s32 FSi_RomArchiveProc(FSFile *file, u32 command);
+s32 FSi_WriteDummyCallback(FSArchive *archive, const void *src, u32 dst, u32 len);
+s32 FSi_ReadRomCallback(FSArchive *archive, void *dst, u32 src, u32 len);
+void FSi_OnRomReadDone(FSArchive *archive);
+void FS_AttachOverlayTable(u32 selector, u8 *data, u32 size);
+u32 FS_UnloadOverlay(u32 selector, u32 index);
+u32 FS_LoadOverlay(u32 selector, u32 index);
+u32 FS_UnloadOverlayImage(Unk020055f0 *info);
+void FS_EndOverlay(Unk020055f0 *info);
+void FS_StartOverlay(Unk020055f0 *info);
+u32 FSi_CompareDigest(const u8 *expected, const u8 *data, u32 size);
+u32 FS_LoadOverlayImage(Unk020055f0 *info);
+u32 FS_LoadOverlayImageAsync(Unk020055f0 *info, FSFile *file);
+u32 FS_LoadOverlayInfo(Unk020055f0 *info, u32 selector, u32 index);
+u32 FSi_LoadOverlayInfoCore(Unk020055f0 *info, u32 selector, u32 index, FSArchive *archive, u8 *base0, u32 size0,
+                            u8 *base1, u32 size1);
+void FS_GetOverlayFileID(FSFileID *fileID, Unk020055f0 *info);
+void FS_ClearOverlayImage(Unk020055f0 *info);
+s32 FSi_GetOverlayBinarySize(Unk020055f0 *info);

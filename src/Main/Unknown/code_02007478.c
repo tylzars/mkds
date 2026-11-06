@@ -56,7 +56,7 @@ u32 func_020074d8(void) {
 void func_02007478(Unk02007478 *a) {
     Unk0200adfc_30 *v1;
     Unk0200adfc *v2;
-    Unk02003024 v3;
+    FSFile v3;
     u32 v4;
     v1 = a->mUnk_10;
     v2 = a->mUnk_14;

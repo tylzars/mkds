@@ -20,11 +20,11 @@ static inline u32 func_02008570_inline(Unk02008570Header *a) {
     return b;
 }
 
-int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
-    Unk02003024 *v1;
+int func_02008570(FSFile *param_1, void *param_2, u32 param_3) {
+    FSFile *v1;
     Unk02008570Header *v2;
     u8 *v3;
-    Unk02003024 v4;
+    FSFile v4;
     BOOL v11;
     BOOL v12;
     u32 v13;
@@ -48,7 +48,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
         v3 += 0x160;
         v13 -= 0x160;
         if (v1 != NULL) {
-            v7 = v1->mUnk_2c - v1->mUnk_20.w.mUnk_04;
+            v7 = v1->mUnk_2c - v1->mProp.w.mUnk_04;
             if ((s32) FS_ReadFile(v1, v2, 0x160) < 0x160) {
                 v13 = 0;
             }
@@ -59,7 +59,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             FS_InitFile(&v4);
             FS_OpenFileDirect(&v4, FS_FindArchive(data_usa_0216178c, 3), 0, v9 + 0x88, -1);
             v1 = &v4;
-            v7 = v4.mUnk_2c - v4.mUnk_20.w.mUnk_04;
+            v7 = v4.mUnk_2c - v4.mProp.w.mUnk_04;
             MI_CpuCopy8((const void *) 0x027ffe00, v2, 0x160);
             v2->mUnk_60 |= 0x00406000;
         }
@@ -77,7 +77,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             v3 += 0x70;
             v13 -= 0x70;
             func_0200ae60(v5, 0, 0x160, (u8 *) v2, 3);
-            p = (s8 *) v1->mUnk_08;
+            p = (s8 *) v1->mArc;
             v10 = 0;
             while (v10 < 3 && p[v10] != 0) {
                 v10++;
@@ -90,8 +90,8 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
         if (v13 >= 0x10) {
             v6 = (u32 *) v3;
             v6[0] = 0;
-            v6[1] = v2->mUnk_20 + (v7 + v1->mUnk_20.w.mUnk_04);
-            v6[2] = v2->mUnk_30 + (v7 + v1->mUnk_20.w.mUnk_04);
+            v6[1] = v2->mUnk_20 + (v7 + v1->mProp.w.mUnk_04);
+            v6[2] = v2->mUnk_30 + (v7 + v1->mProp.w.mUnk_04);
             v3 += 0x10;
             v13 -= 0x10;
         } else {
@@ -99,7 +99,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
         }
         v8 = v2->mUnk_2c + v2->mUnk_3c;
         if (v13 >= v8) {
-            v10 = v1->mUnk_20.w.mUnk_04;
+            v10 = v1->mProp.w.mUnk_04;
             FS_SeekFile(v1, v6[1] - v10, 0);
             FS_ReadFile(v1, v3, v2->mUnk_2c);
             func_0200ae60(v5, v6[1], v2->mUnk_2c, v3, 3);
@@ -109,7 +109,7 @@ int func_02008570(Unk02003024 *param_1, void *param_2, u32 param_3) {
             func_0200ae60(v5, v6[2], v2->mUnk_3c, v3, 3);
             v11 = TRUE;
         } else if (v13 >= 0xcc00) {
-            v10 = v1->mUnk_20.w.mUnk_04;
+            v10 = v1->mProp.w.mUnk_04;
             v8 = v6[1];
             FS_SeekFile(v1, v8 - v10, 0);
             FS_ReadFile(v1, v3, 0x4400);

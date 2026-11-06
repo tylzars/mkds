@@ -24,242 +24,253 @@ u32 data_0216f354;
 u32 data_0216f358;
 Unk02005704 data_0216f364;
 Unk02005704 data_0216f35c;
-Unk02003a6c data_0216f36c;
+FSArchive data_0216f36c;
 
 void *data_02161768 = data_02152b80;
 u8 data_02161764[4] = "rom";
 u32 data_0216176c = 0x40;
 
-s32 FileGetOverlayLoadSize(Unk020055f0 *p) {
-    if (p->mUnk_1c.b[3] & 1) {
-        return p->mUnk_1c.f.mUnk_00_0;
+// Returns the size of the overlay image: the compressed size when the compressed flag is set, else the image size.
+s32 FSi_GetOverlayBinarySize(Unk020055f0 *info) {
+    if (info->mUnk_1c.b[3] & 1) {
+        return info->mUnk_1c.f.mUnk_00_0;
     }
-    return p->mUnk_08;
+    return info->mUnk_08;
 }
 
-void FS_ClearOverlayImage(Unk020055f0 *p) {
-    u8 *b;
-    s32 n;
-    s32 a;
+// Invalidates the caches over the overlay and zeroes its uninitialized part.
+void FS_ClearOverlayImage(Unk020055f0 *info) {
+    u8 *image;
+    s32 imageSize;
+    s32 totalSize;
 
-    n = p->mUnk_08;
-    a = n + p->mUnk_0c;
-    b = p->mUnk_04;
-    IC_InvalidateRange(b, a);
-    DC_InvalidateRange(b, a);
-    MI_CpuFill8(b + n, 0, a - n);
+    imageSize = info->mUnk_08;
+    totalSize = imageSize + info->mUnk_0c;
+    image = info->mUnk_04;
+    IC_InvalidateRange(image, totalSize);
+    DC_InvalidateRange(image, totalSize);
+    MI_CpuFill8(image + imageSize, 0, totalSize - imageSize);
 }
 
-void FS_GetOverlayFileID(Unk02005814 *dst, Unk020055f0 *src) {
-    Unk02005814 tmp;
+// Gives the archive and file number of an overlay.
+void FS_GetOverlayFileID(FSFileID *fileID, Unk020055f0 *info) {
+    FSFileID id;
 
-    tmp.mUnk_00 = &data_0216f36c;
-    tmp.mUnk_04 = src->mUnk_18;
-    *dst = tmp;
+    id.mArc = &data_0216f36c;
+    id.mFileId = info->mUnk_18;
+    *fileID = id;
 }
 
-u32 FileReadOverlayEntry(Unk020055f0 *dst, u32 sel, u32 idx, Unk02003a6c *owner, u8 *base0, u32 size0, u8 *base1,
-                         u32 size1) {
-    Unk02003024 o;
-    Unk02005814 s;
-    u32 off;
+// Reads an overlay entry from the overlay table in ROM, then looks up where its file lies.
+u32 FSi_LoadOverlayInfoCore(Unk020055f0 *info, u32 selector, u32 index, FSArchive *archive, u8 *base0, u32 size0,
+                            u8 *base1, u32 size1) {
+    FSFile file;
+    FSFileID fileID;
+    u32 offset;
     u8 *base;
     u32 size;
 
-    if (sel == 0) {
+    if (selector == 0) {
         size = size0;
         base = base0;
     } else {
         size = size1;
         base = base1;
     }
-    off = idx << 5;
-    if (off >= size) {
+    offset = index << 5;
+    if (offset >= size) {
         return 0;
     }
-    FS_InitFile(&o);
-    if (FS_OpenFileDirect(&o, owner, (u32) (base + off), (u32) (base + size), -1) == 0) {
+    FS_InitFile(&file);
+    if (FS_OpenFileDirect(&file, archive, (u32) (base + offset), (u32) (base + size), -1) == 0) {
         return 0;
     }
-    if (FS_ReadFile(&o, dst, 0x20) != 0x20) {
-        FS_CloseFile(&o);
+    if (FS_ReadFile(&file, info, 0x20) != 0x20) {
+        FS_CloseFile(&file);
         return 0;
     }
-    FS_CloseFile(&o);
-    dst->mUnk_20 = sel;
-    FS_GetOverlayFileID(&s, dst);
-    if (FS_OpenFileFast(&o, s) == 0) {
+    FS_CloseFile(&file);
+    info->mUnk_20 = selector;
+    FS_GetOverlayFileID(&fileID, info);
+    if (FS_OpenFileFast(&file, fileID) == 0) {
         return 0;
     }
-    dst->mUnk_24 = o.mUnk_20.p.mUnk_04;
-    dst->mUnk_28 = o.mUnk_20.p.mUnk_08 - o.mUnk_20.p.mUnk_04;
-    FS_CloseFile(&o);
+    info->mUnk_24 = file.mProp.p.mUnk_04;
+    info->mUnk_28 = file.mProp.p.mUnk_08 - file.mProp.p.mUnk_04;
+    FS_CloseFile(&file);
     return 1;
 }
 
-u32 FS_LoadOverlayInfo(Unk020055f0 *dst, u32 sel, u32 idx) {
-    Unk02003024 o;
-    Unk02005814 s;
-    Unk02005704 *tab;
-    Unk02005704 *x;
-    Unk02005704 *y;
+// Fills in an overlay record from the attached overlay table, or from the ROM table when none is attached.
+u32 FS_LoadOverlayInfo(Unk020055f0 *info, u32 selector, u32 index) {
+    FSFile file;
+    FSFileID fileID;
+    Unk02005704 *table;
+    Unk02005704 *region0;
+    Unk02005704 *region1;
 
-    if (sel == 0) {
-        tab = &data_0216f35c;
+    if (selector == 0) {
+        table = &data_0216f35c;
     } else {
-        tab = &data_0216f364;
+        table = &data_0216f364;
     }
-    if (tab->mUnk_00 != 0) {
-        if (idx * 32 >= tab->mUnk_04) {
+    if (table->mUnk_00 != 0) {
+        if (index * 32 >= table->mUnk_04) {
             return 0;
         }
-        MI_CpuCopy8(tab->mUnk_00 + idx * 32, dst, 0x20);
-        dst->mUnk_20 = sel;
-        FS_InitFile(&o);
-        FS_GetOverlayFileID(&s, dst);
-        if (FS_OpenFileFast(&o, s) == 0) {
+        MI_CpuCopy8(table->mUnk_00 + index * 32, info, 0x20);
+        info->mUnk_20 = selector;
+        FS_InitFile(&file);
+        FS_GetOverlayFileID(&fileID, info);
+        if (FS_OpenFileFast(&file, fileID) == 0) {
             return 0;
         }
-        dst->mUnk_24 = o.mUnk_20.p.mUnk_04;
-        dst->mUnk_28 = o.mUnk_20.p.mUnk_08 - o.mUnk_20.p.mUnk_04;
-        FS_CloseFile(&o);
+        info->mUnk_24 = file.mProp.p.mUnk_04;
+        info->mUnk_28 = file.mProp.p.mUnk_08 - file.mProp.p.mUnk_04;
+        FS_CloseFile(&file);
         return 1;
     }
-    x = (Unk02005704 *) 0x27ffe50;
-    y = (Unk02005704 *) 0x27ffe58;
-    return FileReadOverlayEntry(dst, sel, idx, &data_0216f36c, x->mUnk_00, x->mUnk_04, y->mUnk_00, y->mUnk_04);
+    region0 = (Unk02005704 *) 0x27ffe50;
+    region1 = (Unk02005704 *) 0x27ffe58;
+    return FSi_LoadOverlayInfoCore(info, selector, index, &data_0216f36c, region0->mUnk_00, region0->mUnk_04,
+                                   region1->mUnk_00, region1->mUnk_04);
 }
 
-u32 FS_LoadOverlayImageAsync(Unk020055f0 *rec, Unk02003024 *o) {
-    Unk02005814 s;
-    s32 n;
+// Starts reading an overlay image without waiting; the file stays open until the read ends.
+u32 FS_LoadOverlayImageAsync(Unk020055f0 *info, FSFile *file) {
+    FSFileID fileID;
+    s32 size;
 
-    FS_InitFile(o);
-    FS_GetOverlayFileID(&s, rec);
-    if (FS_OpenFileFast(o, s) == 0) {
+    FS_InitFile(file);
+    FS_GetOverlayFileID(&fileID, info);
+    if (FS_OpenFileFast(file, fileID) == 0) {
         return 0;
     }
-    n = FileGetOverlayLoadSize(rec);
-    FS_ClearOverlayImage(rec);
-    if (n == FS_ReadFileAsync(o, rec->mUnk_04, n)) {
+    size = FSi_GetOverlayBinarySize(info);
+    FS_ClearOverlayImage(info);
+    if (size == FS_ReadFileAsync(file, info->mUnk_04, size)) {
         return 1;
     }
-    FS_CloseFile(o);
+    FS_CloseFile(file);
     return 0;
 }
 
-u32 FS_LoadOverlayImage(Unk020055f0 *rec) {
-    Unk02005814 s;
-    Unk02003024 o;
-    s32 n;
+// Reads an overlay image into memory and waits for it.
+u32 FS_LoadOverlayImage(Unk020055f0 *info) {
+    FSFileID fileID;
+    FSFile file;
+    s32 size;
 
-    FS_InitFile(&o);
-    FS_GetOverlayFileID(&s, rec);
-    if (FS_OpenFileFast(&o, s) == 0) {
+    FS_InitFile(&file);
+    FS_GetOverlayFileID(&fileID, info);
+    if (FS_OpenFileFast(&file, fileID) == 0) {
         return 0;
     }
-    n = FileGetOverlayLoadSize(rec);
-    FS_ClearOverlayImage(rec);
-    if (n != FS_ReadFile(&o, rec->mUnk_04, n)) {
-        FS_CloseFile(&o);
+    size = FSi_GetOverlayBinarySize(info);
+    FS_ClearOverlayImage(info);
+    if (size != FS_ReadFile(&file, info->mUnk_04, size)) {
+        FS_CloseFile(&file);
         return 0;
     }
-    FS_CloseFile(&o);
+    FS_CloseFile(&file);
     return 1;
 }
 
-u32 FileCheckHmac(const u8 *expected, const u8 *data, u32 n) {
-    u8 d[0x14];
-    u8 k[0x40];
+// Computes the digest of a block and compares it with the expected one.
+u32 FSi_CompareDigest(const u8 *expected, const u8 *data, u32 size) {
+    u8 digest[0x14];
+    u8 key[0x40];
     u32 i;
 
-    MI_CpuFill8(d, 0, 0x14);
-    MI_CpuCopy8(data_02161768, k, data_0216176c);
-    DGT_Hash2CalcHmac(d, data, n, k, data_0216176c);
+    MI_CpuFill8(digest, 0, 0x14);
+    MI_CpuCopy8(data_02161768, key, data_0216176c);
+    DGT_Hash2CalcHmac(digest, data, size, key, data_0216176c);
     for (i = 0; i < 0x14; i += 4) {
-        if (*(u32 *) (d + i) != *(u32 *) (expected + i)) {
+        if (*(u32 *) (digest + i) != *(u32 *) (expected + i)) {
             break;
         }
     }
     return i == 0x14;
 }
 
-void FS_StartOverlay(Unk020055f0 *rec) {
-    u32 n;
-    u32 ok;
-    void (**p)(void);
-    void (**end)(void);
+// Checks the overlay when authentication is required, flushes it and runs its initializers.
+void FS_StartOverlay(Unk020055f0 *info) {
+    u32 size;
+    u32 verified;
+    void (**initFunc)(void);
+    void (**initEnd)(void);
 
-    n = FileGetOverlayLoadSize(rec);
+    size = FSi_GetOverlayBinarySize(info);
     if (*(u16 *) 0x27ffc40 == 2) {
-        ok = 0;
-        if (rec->mUnk_1c.b[3] & 2) {
-            if (rec->mUnk_00 < ((u8 *) &data_0216f340 - (u8 *) OverlaySignatures) / 20) {
-                ok = FileCheckHmac(OverlaySignatures[rec->mUnk_00], rec->mUnk_04, n);
+        verified = 0;
+        if (info->mUnk_1c.b[3] & 2) {
+            if (info->mUnk_00 < ((u8 *) &data_0216f340 - (u8 *) OverlaySignatures) / 20) {
+                verified = FSi_CompareDigest(OverlaySignatures[info->mUnk_00], info->mUnk_04, size);
             }
         }
-        if (ok == 0) {
-            MI_CpuFill8(rec->mUnk_04, 0, n);
+        if (verified == 0) {
+            MI_CpuFill8(info->mUnk_04, 0, size);
             OS_Terminate();
             return;
         }
     }
-    if (rec->mUnk_1c.b[3] & 1) {
-        func_02000934(rec->mUnk_04 + n);
+    if (info->mUnk_1c.b[3] & 1) {
+        func_02000934(info->mUnk_04 + size);
     }
-    DC_FlushRange(rec->mUnk_04, rec->mUnk_08);
-    p = rec->mUnk_10;
-    end = rec->mUnk_14;
-    if (p >= end) {
+    DC_FlushRange(info->mUnk_04, info->mUnk_08);
+    initFunc = info->mUnk_10;
+    initEnd = info->mUnk_14;
+    if (initFunc >= initEnd) {
         return;
     }
     do {
-        if (*p != 0) {
-            (*p)();
+        if (*initFunc != 0) {
+            (*initFunc)();
         }
-        p++;
-    } while (p < end);
+        initFunc++;
+    } while (initFunc < initEnd);
 }
 
-void FS_EndOverlay(Unk020055f0 *rec) {
+// Runs and removes the end handlers whose function or object lies inside the overlay.
+void FS_EndOverlay(Unk020055f0 *info) {
     Unk02005210 *prev;
-    Unk02005210 *head;
+    Unk02005210 *base;
     Unk02005210 *cur;
     Unk02005210 *next;
-    Unk02005210 *found;
-    Unk02005210 *last;
-    u32 lo;
-    u32 hi;
-    u32 irq;
-    u32 x;
-    void *y;
+    Unk02005210 *first;
+    Unk02005210 *removedLast;
+    u32 low;
+    u32 high;
+    u32 enabled;
+    u32 funcAddr;
+    void *arg;
 
     for (;;) {
-        lo = (u32) rec->mUnk_04;
-        hi = lo + (rec->mUnk_08 + rec->mUnk_0c);
-        found = 0;
-        last = 0;
-        irq = OS_DisableInterrupts();
+        low = (u32) info->mUnk_04;
+        high = low + (info->mUnk_08 + info->mUnk_0c);
+        first = 0;
+        removedLast = 0;
+        enabled = OS_DisableInterrupts();
         prev = 0;
-        head = data_0217eeb0;
-        cur = head;
-        if (head != 0) {
+        base = data_0217eeb0;
+        cur = base;
+        if (base != 0) {
             do {
-                y = cur->mUnk_08;
+                arg = cur->mUnk_08;
                 next = cur->mUnk_00;
-                x = (u32) cur->mUnk_04;
-                if ((y == 0 && x >= lo && x < hi) || ((u32) y >= lo && (u32) y < hi)) {
-                    if (last != 0) {
-                        last->mUnk_00 = cur;
+                funcAddr = (u32) cur->mUnk_04;
+                if ((arg == 0 && funcAddr >= low && funcAddr < high) || ((u32) arg >= low && (u32) arg < high)) {
+                    if (removedLast != 0) {
+                        removedLast->mUnk_00 = cur;
                     } else {
-                        found = cur;
+                        first = cur;
                     }
-                    if (head == cur) {
+                    if (base == cur) {
                         data_0217eeb0 = next;
-                        head = next;
+                        base = next;
                     }
                     cur->mUnk_00 = 0;
-                    last = cur;
+                    removedLast = cur;
                     if (prev != 0) {
                         prev->mUnk_00 = next;
                     }
@@ -269,81 +280,89 @@ void FS_EndOverlay(Unk020055f0 *rec) {
                 cur = next;
             } while (cur != 0);
         }
-        OS_RestoreInterrupts(irq);
-        if (found == 0) {
+        OS_RestoreInterrupts(enabled);
+        if (first == 0) {
             return;
         }
         do {
-            next = found->mUnk_00;
-            if (found->mUnk_04 != 0) {
-                found->mUnk_04(found->mUnk_08);
+            next = first->mUnk_00;
+            if (first->mUnk_04 != 0) {
+                first->mUnk_04(first->mUnk_08);
             }
-            found = next;
-        } while (found != 0);
+            first = next;
+        } while (first != 0);
     }
 }
 
-u32 FS_UnloadOverlayImage(Unk020055f0 *rec) {
-    FS_EndOverlay(rec);
+// Ends the overlay.
+u32 FS_UnloadOverlayImage(Unk020055f0 *info) {
+    FS_EndOverlay(info);
     return 1;
 }
 
-u32 FS_LoadOverlay(u32 sel, u32 idx) {
-    Unk020055f0 rec;
+// Loads an overlay and starts it.
+u32 FS_LoadOverlay(u32 selector, u32 index) {
+    Unk020055f0 info;
 
-    if (FS_LoadOverlayInfo(&rec, sel, idx) == 0 || FS_LoadOverlayImage(&rec) == 0) {
+    if (FS_LoadOverlayInfo(&info, selector, index) == 0 || FS_LoadOverlayImage(&info) == 0) {
         return 0;
     }
-    FS_StartOverlay(&rec);
+    FS_StartOverlay(&info);
     return 1;
 }
 
-u32 FS_UnloadOverlay(u32 sel, u32 idx) {
-    Unk020055f0 rec;
+// Ends a loaded overlay.
+u32 FS_UnloadOverlay(u32 selector, u32 index) {
+    Unk020055f0 info;
 
-    if (FS_LoadOverlayInfo(&rec, sel, idx) == 0 || FS_UnloadOverlayImage(&rec) == 0) {
+    if (FS_LoadOverlayInfo(&info, selector, index) == 0 || FS_UnloadOverlayImage(&info) == 0) {
         return 0;
     }
     return 1;
 }
 
-void FS_AttachOverlayTable(u32 sel, u8 *data, u32 n) {
-    Unk02005704 *dst;
-    u32 irq;
+// Sets the overlay table for a target; the table of target 0 is checked against its digest first.
+void FS_AttachOverlayTable(u32 selector, u8 *data, u32 size) {
+    Unk02005704 *table;
+    u32 saved;
 
-    if (data != 0 && sel == 0) {
-        irq = DGT_SetOverlayTableMode(1);
-        if (FileCheckHmac(data_0216f2dc, data, n) == 0) {
+    if (data != 0 && selector == 0) {
+        saved = DGT_SetOverlayTableMode(1);
+        if (FSi_CompareDigest(data_0216f2dc, data, size) == 0) {
             OS_Terminate();
         }
-        DGT_SetOverlayTableMode(irq);
+        DGT_SetOverlayTableMode(saved);
     }
-    if (sel == 0) {
-        dst = &data_0216f35c;
+    if (selector == 0) {
+        table = &data_0216f35c;
     } else {
-        dst = &data_0216f364;
+        table = &data_0216f364;
     }
-    irq = OS_DisableInterrupts();
-    dst->mUnk_00 = data;
-    dst->mUnk_04 = n;
-    OS_RestoreInterrupts(irq);
+    saved = OS_DisableInterrupts();
+    table->mUnk_00 = data;
+    table->mUnk_04 = size;
+    OS_RestoreInterrupts(saved);
 }
 
-void FileFinishCardRead(Unk02003a6c *p) {
-    FS_NotifyArchiveAsyncEnd(p, 0);
+// Ends the asynchronous ROM read of an archive.
+void FSi_OnRomReadDone(FSArchive *archive) {
+    FS_NotifyArchiveAsyncEnd(archive, 0);
 }
 
-s32 FileStartCardRead(Unk02003a6c *p, void *buf, u32 off, u32 n) {
-    CARDi_ReadRom(data_0216f358, off, (u32) buf, n, FileFinishCardRead, (u32) p, 1);
+// Archive read callback that reads from the card in the background.
+s32 FSi_ReadRomCallback(FSArchive *archive, void *dst, u32 src, u32 len) {
+    CARDi_ReadRom(data_0216f358, src, (u32) dst, len, FSi_OnRomReadDone, (u32) archive, 1);
     return 6;
 }
 
-s32 FileWriteFail(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
+// Archive write callback that always fails.
+s32 FSi_WriteDummyCallback(FSArchive *archive, const void *src, u32 dst, u32 len) {
     return 1;
 }
 
-s32 FileHandleRomLock(Unk02003024 *p, u32 cmd) {
-    switch (cmd) {
+// ROM archive callback: locks and unlocks the card.
+s32 FSi_RomArchiveProc(FSFile *file, u32 command) {
+    switch (command) {
         case 9:
             CARD_LockRom(data_0216f354);
             return 0;
@@ -357,18 +376,21 @@ s32 FileHandleRomLock(Unk02003024 *p, u32 cmd) {
     }
 }
 
-s32 FileReadFail(Unk02003a6c *p0, void *p1, u32 p2, u32 p3) {
+// Archive read callback that always fails.
+s32 FSi_ReadDummyCallback(FSArchive *archive, void *dst, u32 src, u32 len) {
     return 1;
 }
 
-s32 FileRejectAllCommands(Unk02003024 *p0, u32 p1) {
+// Archive callback that rejects every command.
+s32 FSi_EmptyArchiveProc(FSFile *file, u32 command) {
     return 4;
 }
 
-void FileInitRomArchive(u32 arg) {
-    enum { K0 } x, y;
+// Registers the "rom" archive and loads its tables from the ROM header.
+void FSi_InitRom(u32 dmaNo) {
+    enum { K0 } fntRegion, fatRegion;
 
-    data_0216f358 = arg;
+    data_0216f358 = dmaNo;
     data_0216f354 = OS_GetLockID();
     data_0216f35c.mUnk_00 = 0;
     data_0216f35c.mUnk_04 = 0;
@@ -382,37 +404,40 @@ void FileInitRomArchive(u32 arg) {
         data_0216f35c.mUnk_04 = 0;
         data_0216f364.mUnk_00 = (u8 *) -1;
         data_0216f364.mUnk_04 = 0;
-        FS_SetArchiveProc(&data_0216f36c, FileRejectAllCommands, -1);
-        FS_LoadArchive(&data_0216f36c, 0, 0, 0, 0, 0, FileReadFail, FileWriteFail);
+        FS_SetArchiveProc(&data_0216f36c, FSi_EmptyArchiveProc, -1);
+        FS_LoadArchive(&data_0216f36c, 0, 0, 0, 0, 0, FSi_ReadDummyCallback, FSi_WriteDummyCallback);
         return;
     }
-    x = 0x27ffe40;
-    y = 0x27ffe48;
-    FS_SetArchiveProc(&data_0216f36c, FileHandleRomLock, 0x602);
-    if (((Unk02005704 *) x)->mUnk_00 == (u8 *) -1) {
+    fntRegion = 0x27ffe40;
+    fatRegion = 0x27ffe48;
+    FS_SetArchiveProc(&data_0216f36c, FSi_RomArchiveProc, 0x602);
+    if (((Unk02005704 *) fntRegion)->mUnk_00 == (u8 *) -1) {
         return;
     }
-    if (((Unk02005704 *) x)->mUnk_00 == 0) {
+    if (((Unk02005704 *) fntRegion)->mUnk_00 == 0) {
         return;
     }
-    if (((Unk02005704 *) y)->mUnk_00 == (u8 *) -1) {
+    if (((Unk02005704 *) fatRegion)->mUnk_00 == (u8 *) -1) {
         return;
     }
-    if (((Unk02005704 *) y)->mUnk_00 == 0) {
+    if (((Unk02005704 *) fatRegion)->mUnk_00 == 0) {
         return;
     }
-    FS_LoadArchive(&data_0216f36c, 0, (u32) ((Unk02005704 *) y)->mUnk_00, ((Unk02005704 *) y)->mUnk_04,
-                   (u32) ((Unk02005704 *) x)->mUnk_00, ((Unk02005704 *) x)->mUnk_04, FileStartCardRead, FileWriteFail);
+    FS_LoadArchive(&data_0216f36c, 0, (u32) ((Unk02005704 *) fatRegion)->mUnk_00, ((Unk02005704 *) fatRegion)->mUnk_04,
+                   (u32) ((Unk02005704 *) fntRegion)->mUnk_00, ((Unk02005704 *) fntRegion)->mUnk_04,
+                   FSi_ReadRomCallback, FSi_WriteDummyCallback);
 }
 
-u32 FS_TryLoadTable(u32 a, u32 b) {
-    return FS_LoadArchiveTables(&data_0216f36c, a, b);
+// Copies the ROM archive tables into the given memory.
+u32 FS_TryLoadTable(u32 mem, u32 size) {
+    return FS_LoadArchiveTables(&data_0216f36c, mem, size);
 }
 
-void FS_Init(u32 arg) {
+// Initializes the file system once.
+void FS_Init(u32 dmaNo) {
     if (data_0216f350 != 0) {
         return;
     }
     data_0216f350 = 1;
-    FileInitRomArchive(arg);
+    FSi_InitRom(dmaNo);
 }

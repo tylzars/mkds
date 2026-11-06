@@ -5,28 +5,28 @@
 // or a section attribute (docs/compiler.md).
 
     .text
-    .extern FileReadViaArchive
-    .extern FileWriteViaArchive
-    .extern FileReadDirTableEntry
-    .extern FileReadDirEntry
-    .extern FileWalkPath
-    .extern FileBuildPathString
-    .extern FileOpenFromTableEntry
-    .extern FileOpenFromRange
-    .extern FileCloseReturnOk
+    .extern FSi_ReadFileCommand
+    .extern FSi_WriteFileCommand
+    .extern FSi_SeekDirCommand
+    .extern FSi_ReadDirCommand
+    .extern FSi_FindPathCommand
+    .extern FSi_GetPathCommand
+    .extern FSi_OpenFileFastCommand
+    .extern FSi_OpenFileDirectCommand
+    .extern FSi_CloseFileCommand
 
     .global data_02152b5c
     .type data_02152b5c, @object
 data_02152b5c:
-    .word FileReadViaArchive
-    .word FileWriteViaArchive
-    .word FileReadDirTableEntry
-    .word FileReadDirEntry
-    .word FileWalkPath
-    .word FileBuildPathString
-    .word FileOpenFromTableEntry
-    .word FileOpenFromRange
-    .word FileCloseReturnOk
+    .word FSi_ReadFileCommand
+    .word FSi_WriteFileCommand
+    .word FSi_SeekDirCommand
+    .word FSi_ReadDirCommand
+    .word FSi_FindPathCommand
+    .word FSi_GetPathCommand
+    .word FSi_OpenFileFastCommand
+    .word FSi_OpenFileDirectCommand
+    .word FSi_CloseFileCommand
     .size data_02152b5c, . - data_02152b5c
 
     .global data_02152b80

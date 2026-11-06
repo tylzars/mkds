@@ -57,7 +57,7 @@ void func_02009828(Unk0200b610 *a, Unk02009828 *b, const u8 *c) {
 }
 
 u32 func_020097ac(const u8 *a, u8 *b, u32 c) {
-    Unk02003024 v1;
+    FSFile v1;
     u32 v2;
     if (c != 0) {
         v2 = 0x200;
@@ -74,7 +74,7 @@ u32 func_020097ac(const u8 *a, u8 *b, u32 c) {
     if (FS_OpenFile(&v1, a) == 0) {
         return 0;
     }
-    if (v2 != v1.mUnk_20.w.mUnk_08 - v1.mUnk_20.w.mUnk_04) {
+    if (v2 != v1.mProp.w.mUnk_08 - v1.mProp.w.mUnk_04) {
         FS_CloseFile(&v1);
         return 0;
     }

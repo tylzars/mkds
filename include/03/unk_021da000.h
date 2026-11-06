@@ -9,7 +9,7 @@
 #include "03/code_021d1770.h" // Unk021d1770
 #include "03/code_021d1d88.h"
 #include "03/code_021d1da8.h"
-#include "code_02003024.h" // Unk02003a6c
+#include "code_02003024.h" // FSArchive
 #include "03/code_021bf098.h"
 #include "03/code_021c2530.h"
 #include "03/code_021c25e0.h"
@@ -210,13 +210,13 @@ typedef struct Unk021da2ac {
 } Unk021da2ac;
 
 extern Unk021da2ac *data_ov003_021da2ac;
-// Object of 0xe8 bytes: a pointer at 0x00, 32 pointers from 0x04, the list of them at 0x84, an Unk02003a6c at 0x88
+// Object of 0xe8 bytes: a pointer at 0x00, 32 pointers from 0x04, the list of them at 0x84, an FSArchive at 0x88
 // and a halfword at 0xe4.
 typedef struct Unk021da2b0 {
     /* 00 */ void *mUnk_00;
     /* 04 */ void *mUnk_04[0x20];
     /* 84 */ Unk021d1d88 *mUnk_84;
-    /* 88 */ Unk02003a6c mUnk_88;
+    /* 88 */ FSArchive mUnk_88;
     /* e4 */ u16 mUnk_e4;
     /* e6 */ u8 mUnk_e6[2];
 } Unk021da2b0;

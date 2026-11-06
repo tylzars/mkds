@@ -211,7 +211,7 @@ void func_02059e1c(void) {
         if (v == 2) {
             r = TRUE;
         } else if (v == 1) {
-            if (((data_0217aa10->mUnk_58.mUnk_0c & 1) ? 1 : 0) == 0) {
+            if (((data_0217aa10->mUnk_58.mStat & 1) ? 1 : 0) == 0) {
                 FS_StartOverlay(&data_0217aa10->mUnk_2c);
                 FS_CloseFile(&data_0217aa10->mUnk_58);
                 data_0217aa10->mUnk_04 = 2;
@@ -250,7 +250,7 @@ s32 func_02059ce8(void) {
     if (v != 1) {
         return r;
     }
-    if (p->mUnk_58.mUnk_0c & 1) {
+    if (p->mUnk_58.mStat & 1) {
         v = 1;
     } else {
         v = r;

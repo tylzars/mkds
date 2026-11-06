@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02003024.h" // Unk02003024
+#include "code_02003024.h" // FSFile
 #include "code_0212f788.h" // Interpolator
 #include "code_0214f4a4.h" // PMSleepCallbackInfo
 
@@ -22,7 +22,7 @@ typedef struct Unk0212c7f0 {
     /* 44 */ u32 mUnk_44;
     /* 48 */ s32 mUnk_48;
     /* 4c */ u8 mUnk_4c[0x10];
-    /* 5c */ Unk02003024 mUnk_5c;
+    /* 5c */ FSFile mUnk_5c;
     /* a4 */ u8 mUnk_a4[0x44];
     /* e8 */ Interpolator mUnk_e8;
     /* f8 */ u8 mUnk_f8[0x18];

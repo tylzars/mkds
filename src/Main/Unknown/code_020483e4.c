@@ -43,14 +43,14 @@ void func_020486d4(void *a) {
 }
 
 int func_02048684(const char *a, void *b, u32 c) {
-    Unk02003024 f;
+    FSFile f;
     u32 r;
     u32 n;
 
     FS_InitFile(&f);
     r = FS_OpenFile(&f, (const u8 *) a);
     if (r != 0) {
-        n = f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04;
+        n = f.mProp.p.mUnk_08 - f.mProp.p.mUnk_04;
         if (c != 0 && n > c) {
             r = 0;
         } else {
@@ -64,13 +64,13 @@ int func_02048684(const char *a, void *b, u32 c) {
 }
 
 u32 func_0204863c(void *a, void *b, u32 c) {
-    Unk02003024 f;
+    FSFile f;
     u32 r;
 
     FS_InitFile(&f);
     r = FS_OpenFile(&f, a);
     if (r != 0) {
-        if (c <= (u32) (f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04)) {
+        if (c <= (u32) (f.mProp.p.mUnk_08 - f.mProp.p.mUnk_04)) {
             if (FS_ReadFile(&f, b, c) < 0) {
                 r = 0;
             }
@@ -82,20 +82,20 @@ u32 func_0204863c(void *a, void *b, u32 c) {
 
 u32 func_02048590(char *a, NNSiFndHeapHead *b, void **c) {
     u32 s;
-    Unk02003024 *p;
+    FSFile *p;
     u32 n;
     void *t;
 
     p = &data_021759c8->mUnk_968;
-    if (((p->mUnk_0c & 1) ? 1 : 0) != 0) {
+    if (((p->mStat & 1) ? 1 : 0) != 0) {
         return 0;
     }
-    if (((p->mUnk_0c & 0x10) ? 1 : 0) != 0) {
+    if (((p->mStat & 0x10) ? 1 : 0) != 0) {
         FS_CloseFile(p);
     }
     s = FS_OpenFile(p, (const u8 *) a);
     if (s != 0) {
-        n = p->mUnk_20.p.mUnk_08 - p->mUnk_20.p.mUnk_04;
+        n = p->mProp.p.mUnk_08 - p->mProp.p.mUnk_04;
         t = HeapAlloc(b, n);
         *c = t;
         if (t == NULL) {
@@ -117,7 +117,7 @@ u32 func_02048590(char *a, NNSiFndHeapHead *b, void **c) {
 }
 
 void *func_02048504(const char *a, s32 b) {
-    Unk02003024 f;
+    FSFile f;
     u32 s;
     void *r;
     u32 n;
@@ -129,7 +129,7 @@ void *func_02048504(const char *a, s32 b) {
     FS_InitFile(&f);
     s = FS_OpenFile(&f, (const u8 *) a);
     if (s != 0) {
-        n = f.mUnk_20.p.mUnk_08 - f.mUnk_20.p.mUnk_04;
+        n = f.mProp.p.mUnk_08 - f.mProp.p.mUnk_04;
         r = HeapAllocAligned(GetHeap(func_020364e8()), n, b);
         DC_StoreRange(r, n);
         if (r == NULL) {

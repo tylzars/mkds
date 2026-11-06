@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02003024.h" // Unk02003a6c
+#include "code_02003024.h" // FSArchive
 
 // Record whose first fields ArchiveHeaderMatches checks; mUnk_0c is the offset of the first of mUnk_0e blocks that
 // ArchiveLoadFromMemory walks, each starting with a word and its own size.
@@ -14,15 +14,15 @@ typedef struct Unk02018344 {
     /* 0e */ u16 mUnk_0e;
 } Unk02018344;
 
-// Unk02003a6c followed by the three words ArchiveLoadFromMemory sets.
+// FSArchive followed by the three words ArchiveLoadFromMemory sets.
 typedef struct Unk020182c0 {
-    /* 00 */ Unk02003a6c mUnk_00;
+    /* 00 */ FSArchive mUnk_00;
     /* 5c */ Unk02018344 *mUnk_5c;
     /* 60 */ u8 *mUnk_60;
     /* 64 */ u8 *mUnk_64;
 } Unk020182c0;
 
 u32 ArchiveFileGetAddress(const u8 *a);
-u32 ArchiveUnload(Unk02003a6c *a);
+u32 ArchiveUnload(FSArchive *a);
 u32 ArchiveLoadFromMemory(Unk020182c0 *a, const u8 *b, Unk02018344 *c);
 u32 ArchiveHeaderMatches(Unk02018344 *a);

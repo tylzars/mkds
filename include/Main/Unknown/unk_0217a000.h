@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
-#include "code_02004dc0.h" // Unk020055f0, Unk02003024
+#include "code_02004dc0.h" // Unk020055f0, FSFile
 #include "code_0212d214.h"
 #include "code_0200db4c.h"
 #include "code_02142eac.h" // Unk021438f0, Unk02143a78, Unk02143c30
@@ -701,7 +701,7 @@ typedef struct Unk0217aa00 {
             /* 1d04 */ void *mHeap;
             /* 1d08 */ u16 mUnk_1d08;
             /* 1d0a */ u16 mUnk_1d0a;
-            /* 1d0c */ Unk02003024 mUnk_1d0c;
+            /* 1d0c */ FSFile mUnk_1d0c;
             /* 1d54 */ u8 mUnk_1d54;
             /* 1d55 */ u8 mUnk_1d55[0x3];
             /* 1d58 */ void *mUnk_1d58;
@@ -785,7 +785,7 @@ typedef struct Unk0217aa10 {
     /* 04 */ s32 mUnk_04;
     /* 08 */ Unk0217aa10_08 mUnk_08[3];
     /* 2c */ Unk020055f0 mUnk_2c;
-    /* 58 */ Unk02003024 mUnk_58;
+    /* 58 */ FSFile mUnk_58;
     /* a0 */ struct NNSiFndHeapHead *mUnk_a0;
     /* a4 */ void *mUnk_a4;
     /* a8 */ u32 mUnk_a8;

@@ -18,7 +18,7 @@ u16 func_020088dc(const u16 *a, s32 b) {
     return (u16) ((v2 + (v2 >> 16)) ^ 0xffff);
 }
 
-u32 func_02008880(Unk02003024 *a) {
+u32 func_02008880(FSFile *a) {
     Unk02008880 v1;
     Unk02008880 *v2;
     u32 v3;
@@ -26,7 +26,7 @@ u32 func_02008880(Unk02003024 *a) {
     v2 = NULL;
     v3 = 0;
     if (a != NULL) {
-        v4 = a->mUnk_2c - a->mUnk_20.w.mUnk_04;
+        v4 = a->mUnk_2c - a->mProp.w.mUnk_04;
         if ((u32) FS_ReadFile(a, &v1, 0x60) >= 0x60) {
             v2 = &v1;
         }

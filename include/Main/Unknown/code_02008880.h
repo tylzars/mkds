@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02003024 Unk02003024;
+typedef struct FSFile FSFile;
 
 // Two words of the 0x60-byte block that FS_ReadFile reads.
 typedef struct Unk02008880 {
@@ -13,5 +13,5 @@ typedef struct Unk02008880 {
     /* 40 */ u8 mUnk_40[0x20];
 } Unk02008880;
 
-u32 func_02008880(Unk02003024 *a);
+u32 func_02008880(FSFile *a);
 u16 func_020088dc(const u16 *a, s32 b);

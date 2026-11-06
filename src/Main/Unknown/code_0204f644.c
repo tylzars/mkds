@@ -24,11 +24,11 @@ void func_0204f770(void) {
 BOOL func_0204f644(void) {
     u16 n = data_0217aa00->mUnk_1d08;
     s16 m = n - 1;
-    Unk02003024 *p = &data_0217aa00->mUnk_1d0c;
+    FSFile *p = &data_0217aa00->mUnk_1d0c;
     void *q;
     s32 v1;
     u32 *v2;
-    if (((p->mUnk_0c & 1) ? 1 : 0) != 0) {
+    if (((p->mStat & 1) ? 1 : 0) != 0) {
         return FALSE;
     }
     if (m >= 0 && data_0217aa00->mUnk_16a0[m].mUnk_84_29 != 0) {
@@ -43,13 +43,13 @@ BOOL func_0204f644(void) {
         return TRUE;
     }
     q = &data_0217aa00->mUnk_16a0[n].mUnk_34;
-    if (((p->mUnk_0c & 0x10) ? 1 : 0) != 0) {
+    if (((p->mStat & 0x10) ? 1 : 0) != 0) {
         FS_CloseFile(p);
     }
     FS_InitFile(p);
     if (FS_OpenFile(p, q) != 0) {
         q = data_0217aa00;
-        v1 = p->mUnk_20.p.mUnk_08 - p->mUnk_20.p.mUnk_04;
+        v1 = p->mProp.p.mUnk_08 - p->mProp.p.mUnk_04;
         v2 = ((Unk0217aa00 *) q)->mUnk_16a0[n].mUnk_74;
         if (v2 == NULL) {
             v2 = HeapAllocAligned(data_0217aa00->mUnk_16a0[n].mUnk_80, v1, 0x20);
