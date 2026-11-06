@@ -61,7 +61,7 @@ void func_ov001_021a10b8(void) {
     LoadNcgrData2(&d, FindSceneFile(data_ov001_021a92b0));
     LoadNcerData(&e, FindSceneFile(data_ov001_021a9284));
     LoadNclrData(&f, FindSceneFile(data_ov001_021a927c));
-    func_ov001_021a651c();
+    LoadMissionRunBossIconData();
 }
 
 void LocateAndQueueMissionRunMSsel(void) {
@@ -149,12 +149,12 @@ void func_ov001_021a0b3c(void) {
         if (i == 8) {
             if (gMissionRunMSsel->mUnk_a0 != 0) {
                 gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
-                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 1, gMissionRunMSsel->mMissionRunMSselSNcer,
-                                    gMissionRunMSsel->mMissionRunMSselSBncl, (u32) (0x2d), (u16) (8), 1);
+                QueueMissionRunBossIcon((s32) ((s16) (func_02029608() - 1)), 1, gMissionRunMSsel->mMissionRunMSselSNcer,
+                                        gMissionRunMSsel->mMissionRunMSselSBncl, (u32) (0x2d), (u16) (8), 1);
             } else {
                 gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][4]].mUnk_00 = 1;
-                func_ov001_021a6430((s32) ((s16) (func_02029608() - 1)), 0, gMissionRunMSsel->mMissionRunMSselSNcer,
-                                    gMissionRunMSsel->mMissionRunMSselSBncl, (u32) (0x2d), (u16) (8), 1);
+                QueueMissionRunBossIcon((s32) ((s16) (func_02029608() - 1)), 0, gMissionRunMSsel->mMissionRunMSselSNcer,
+                                        gMissionRunMSsel->mMissionRunMSselSBncl, (u32) (0x2d), (u16) (8), 1);
             }
         } else {
             gMissionRunMSsel->mMissionRunMSselSTable[data_ov001_021a6e7c[i][1]].mUnk_00 = 1;
@@ -552,7 +552,7 @@ void InitMissionRunMSsel(void *a, void *b, void *c) {
                              gMissionRunMSsel->mMissionRunMSselSNcer, gMissionRunMSsel->mMissionRunMSselSBncl,
                              gMissionRunMSsel->mMissionRunMSselSTable, rem);
     }
-    func_ov001_021a64ac(gMissionRunMSsel->mHeap);
+    CreateMissionRunBossIcon(gMissionRunMSsel->mHeap);
     func_ov001_021a0b3c();
     gMissionRunMSsel->mUnk_b0 = gMissionRunMSsel->mIndex;
     func_ov001_021a0774();

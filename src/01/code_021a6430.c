@@ -16,7 +16,7 @@
 #include "01/unk_021a7000.h"
 #include "code_0212df7c.h"
 
-void func_ov001_021a651c(void) {
+void LoadMissionRunBossIconData(void) {
     void *v1;
     Ncgr *v2;
     Unk02021dc8 *v3;
@@ -24,31 +24,31 @@ void func_ov001_021a651c(void) {
     v2 = NULL;
     v3 = NULL;
     v4[0] = NULL;
-    v1 = FindSceneFile(data_ov001_021a993c);
+    v1 = FindSceneFile(gMissionRunBossIconSNcgrName);
     LoadNcgrData(&v2, v1);
-    v1 = FindSceneFile(data_ov001_021a9938);
+    v1 = FindSceneFile(gMissionRunBossIconSNcerName);
     LoadNcerData(&v3, v1);
-    v1 = FindSceneFile(data_ov001_021a9944);
+    v1 = FindSceneFile(gMissionRunBossIconSONclrName);
     LoadNclrData(v4, v1);
     return;
 }
 
-void func_ov001_021a64ac(void *a) {
-    data_ov001_021ca424 = HeapAlloc(a, 0x10);
-    LocateNcgr2(&data_ov001_021ca424->mUnk_00, FindSceneFile(data_ov001_021a993c));
-    LocateNcer(&data_ov001_021ca424->mUnk_04, FindSceneFile(data_ov001_021a9938));
-    LocateNclr((Nclr **) &data_ov001_021ca424->mUnk_08, FindSceneFile(data_ov001_021a9944));
-    data_ov001_021ca424->mUnk_0c = FindSceneFile(data_ov001_021a9940);
+void CreateMissionRunBossIcon(void *a) {
+    gMissionRunBossIcon = HeapAlloc(a, 0x10);
+    LocateNcgr2(&gMissionRunBossIcon->mNcgr, FindSceneFile(gMissionRunBossIconSNcgrName));
+    LocateNcer(&gMissionRunBossIcon->mNcer, FindSceneFile(gMissionRunBossIconSNcerName));
+    LocateNclr((Nclr **) &gMissionRunBossIcon->mNclr, FindSceneFile(gMissionRunBossIconSONclrName));
+    gMissionRunBossIcon->mBncl = FindSceneFile(gMissionRunBossIconSBnclName);
 }
 
 void func_ov001_021a64a0(void) {
-    *(u32 *) &data_ov001_021ca424 = 0;
+    *(u32 *) &gMissionRunBossIcon = 0;
     return;
 }
 
-void func_ov001_021a6430(s32 a, s32 flagB, void *c, void *d, u32 e, u16 f, s32 flagG) {
+void QueueMissionRunBossIcon(s32 a, s32 flagB, void *c, void *d, u32 e, u16 f, s32 flagG) {
     s32 v0 = 14;
-    Unk021ca424 *p;
+    MissionRunBossIcon *p;
     u8 *dst;
     s32 v1;
 
@@ -57,10 +57,9 @@ void func_ov001_021a6430(s32 a, s32 flagB, void *c, void *d, u32 e, u16 f, s32 f
             v0 = 30;
         }
     }
-    p = data_ov001_021ca424;
-    func_02124748((u32) (data_ov001_021a7664[a]), p->mUnk_04, p->mUnk_00, p->mUnk_0c, (s32) (flagG), (u32) (e), (c),
-                  (d));
-    dst = data_ov001_021ca424->mUnk_08->mUnk_0c;
+    p = gMissionRunBossIcon;
+    func_02124748((u32) (data_ov001_021a7664[a]), p->mNcer, p->mNcgr, p->mBncl, (s32) (flagG), (u32) (e), (c), (d));
+    dst = gMissionRunBossIcon->mNclr->mUnk_0c;
     if (flagB != 0) {
         v1 = data_ov001_021a7674[a];
     } else {

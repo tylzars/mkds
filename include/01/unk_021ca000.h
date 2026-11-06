@@ -169,22 +169,20 @@ typedef struct Unk021ca420 {
     /* 40 */ s32 mPrevCellY;
 } Unk021ca420;
 
-// Object behind the pointer at 0x08 of Unk021ca424.
 typedef struct Unk021ca424_08 {
     /* 00 */ u8 mUnk_00[0xc];
     /* 0c */ u8 *mUnk_0c;
 } Unk021ca424_08;
 
-// Object behind data_ov001_021ca424.
-typedef struct Unk021ca424 {
-    /* 00 */ Ncgr *mUnk_00;
-    /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ Unk021ca424_08 *mUnk_08;
-    /* 0c */ void *mUnk_0c;
-} Unk021ca424;
+typedef struct MissionRunBossIcon {
+    /* 00 */ Ncgr *mNcgr;
+    /* 04 */ struct Unk02021dc8 *mNcer;
+    /* 08 */ Unk021ca424_08 *mNclr;
+    /* 0c */ void *mBncl;
+} MissionRunBossIcon;
 
 extern u8 *data_ov001_021ca404;
 extern u8 *data_ov001_021ca408;
-extern Unk021ca424 *data_ov001_021ca424;
+extern MissionRunBossIcon *gMissionRunBossIcon;
 
 #include "00/code_021832d8.h"

@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_02047104.h"
 #include "Main/Unknown/code_020b47d8.h"
 
-void func_ov001_0219d50c(void) {
+void LoadSelectBattleStageData(void) {
     void *v1;
     Unk02111684_v v;
     v1 = FindSceneFile(data_ov001_021a8b54);

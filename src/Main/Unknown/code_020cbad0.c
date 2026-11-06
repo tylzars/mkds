@@ -150,7 +150,7 @@ void func_020cbb10(void) {
         LoadSelectGhostAndKartIconData();
         LoadMissionRunLVselData();
         func_ov001_021a10b8();
-        func_ov001_0219d50c();
+        LoadSelectBattleStageData();
         LoadSelectEngineData();
         func_02118d44();
         func_0211f240();

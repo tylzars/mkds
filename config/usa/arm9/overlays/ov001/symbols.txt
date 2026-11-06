@@ -946,7 +946,7 @@ CopyAndQueueSelectBattleStageNscrRect kind:function(thumb,size=0xdc) addr:0x0219
 LocateAndQueueSelectBattleStage kind:function(thumb,size=0x230) addr:0x0219d01c
 ReleaseSelectBattleStage kind:function(thumb,size=0x54) addr:0x0219d24c
 InitSelectBattleStage kind:function(thumb,size=0x24c) addr:0x0219d2a0
-func_ov001_0219d50c kind:function(thumb,size=0xd0) addr:0x0219d4ec
+LoadSelectBattleStageData kind:function(thumb,size=0xd0) addr:0x0219d4ec
 RegisterOptionEmbremSelectCallbacks kind:function(thumb,size=0x24) addr:0x0219d5bc
 func_ov001_0219d600 kind:function(thumb,size=0x20) addr:0x0219d5e0
 AdvanceOptionEmbremSelect kind:function(thumb,size=0x8c) addr:0x0219d600
@@ -1151,10 +1151,10 @@ func_ov001_021a63b4 kind:function(thumb,size=0xc) addr:0x021a6394
 func_ov001_021a63c0 kind:function(thumb,size=0xc) addr:0x021a63a0
 func_ov001_021a63cc kind:function(thumb,size=0xc) addr:0x021a63ac
 func_ov001_021a63d8 kind:function(thumb,size=0x58) addr:0x021a63b8
-func_ov001_021a6430 kind:function(thumb,size=0x70) addr:0x021a6410
+QueueMissionRunBossIcon kind:function(thumb,size=0x70) addr:0x021a6410
 func_ov001_021a64a0 kind:function(thumb,size=0xc) addr:0x021a6480
-func_ov001_021a64ac kind:function(thumb,size=0x70) addr:0x021a648c
-func_ov001_021a651c kind:function(thumb,size=0x50) addr:0x021a64fc
+CreateMissionRunBossIcon kind:function(thumb,size=0x70) addr:0x021a648c
+LoadMissionRunBossIconData kind:function(thumb,size=0x50) addr:0x021a64fc
 data_ov001_021a656c kind:data(any) addr:0x021a654c
 data_ov001_021a6574 kind:data(any) addr:0x021a6554
 data_ov001_021a6578 kind:data(any) addr:0x021a6558
@@ -1755,10 +1755,10 @@ data_usa_ov001_021a9698 kind:data(any) addr:0x021a9698 ambiguous
 @5916 kind:data(any) addr:0x021a98c0 local
 @5917 kind:data(any) addr:0x021a98d8 local
 @5918 kind:data(any) addr:0x021a98f0 local
-data_ov001_021a9938 kind:data(any) addr:0x021a9908
-data_ov001_021a993c kind:data(any) addr:0x021a990c
-data_ov001_021a9940 kind:data(any) addr:0x021a9910
-data_ov001_021a9944 kind:data(any) addr:0x021a9914
+gMissionRunBossIconSNcerName kind:data(any) addr:0x021a9908
+gMissionRunBossIconSNcgrName kind:data(any) addr:0x021a990c
+gMissionRunBossIconSBnclName kind:data(any) addr:0x021a9910
+gMissionRunBossIconSONclrName kind:data(any) addr:0x021a9914
 data_usa_ov001_021a9918 kind:data(any) addr:0x021a9918
 data_usa_ov001_021a9938 kind:data(any) addr:0x021a9938
 data_usa_ov001_021a995c kind:data(any) addr:0x021a995c
@@ -1814,4 +1814,4 @@ gMissionRunMSsel kind:bss addr:0x021ca3f4
 gSelectEngine kind:bss addr:0x021ca3f8
 gEmblem kind:bss addr:0x021ca3fc
 data_ov001_021ca420 kind:bss addr:0x021ca400
-data_ov001_021ca424 kind:bss addr:0x021ca404
+gMissionRunBossIcon kind:bss addr:0x021ca404
