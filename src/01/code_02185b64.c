@@ -112,7 +112,7 @@ void UpdateMissionGate(void *a, MissionGateObject *b) {
 
     switch (b->mState) {
         case 0:
-            pos = data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181820() : 0;
+            pos = data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunCount() : 0;
             if (pos >= b->mUnk_000.mCourseMapRow->mUnk_28 - 1) {
                 b->mUnk_000.mFlags &= ~1;
                 b->mState = 1;

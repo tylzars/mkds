@@ -138,7 +138,7 @@ void func_ov001_02182bdc(void) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 n = func_ov001_02181b54();
             }
-            v = func_ov001_02181b68(n);
+            v = GetMissionRunMapObject(n);
         }
         o->mUnk_0e8 = &v->mUnk_000.mPos;
         o->mUnk_000.mPos.x = c->mPos.x;
@@ -186,7 +186,7 @@ void func_ov001_02182a3c(s32 a) {
                         p->mUnk_0a0 = 0;
                         p->mUnk_0e8 =
                             (Vec3 *) ((data_021759c0->mMode == MODE_MISSION_RUN
-                                           ? (u32) func_ov001_02181b68(
+                                           ? (u32) GetMissionRunMapObject(
                                                  data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0)
                                            : 0) +
                                       4);

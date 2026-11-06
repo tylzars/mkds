@@ -432,7 +432,7 @@ void func_020ba520(void) {
     v = data_021759c0->mMode;
     switch (v) {
         case MODE_MISSION_RUN:
-            data_0217b3c8->mUnk_00 = v == MODE_MISSION_RUN ? func_ov001_02181820() : 0;
+            data_0217b3c8->mUnk_00 = v == MODE_MISSION_RUN ? GetMissionRunCount() : 0;
             data_0217b3c8->mUnk_04 = data_021759c0->mUnk_37;
             break;
         case MODE_BATTLE:
@@ -471,7 +471,7 @@ void func_020ba3ec(void) {
     v = data_021759c0->mMode;
     switch (v) {
         case MODE_MISSION_RUN:
-            data_0217b3c8->mUnk_00 = v == MODE_MISSION_RUN ? func_ov001_02181820() : 0;
+            data_0217b3c8->mUnk_00 = v == MODE_MISSION_RUN ? GetMissionRunCount() : 0;
             break;
         case MODE_BATTLE:
             if (data_021759c0->mUnk_18 == 0) {

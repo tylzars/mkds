@@ -46,45 +46,45 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-Unk021a9b90 *data_ov001_021a9b90;
+MissionRunData *gMissionRunData;
 
-void func_ov001_02181b8c(Unk02188950 *a) {
+void AddMissionRunMapObject(Unk02188950 *a) {
     u8 n;
     u16 k;
 
     n = data_021759c0->mKartCount;
-    k = data_ov001_021a9b90->mUnk_44 + n;
-    data_ov001_021a9b90->mUnk_48[k - n] = a;
+    k = gMissionRunData->mMapObjectCount + n;
+    gMissionRunData->mMapObjects[k - n] = a;
     func_020a1728(k);
-    data_ov001_021a9b90->mUnk_44++;
+    gMissionRunData->mMapObjectCount++;
 }
 
-Unk02188950 *func_ov001_02181b68(int a) {
-    return data_ov001_021a9b90->mUnk_48[a - data_021759c0->mKartCount];
+Unk02188950 *GetMissionRunMapObject(int a) {
+    return gMissionRunData->mMapObjects[a - data_021759c0->mKartCount];
 }
 
 u8 func_ov001_02181b54(void) {
     return data_021759c0->mKartCount;
 }
 
-u16 func_ov001_02181b30(void) {
-    return data_ov001_021a9b90->mUnk_44 + data_021759c0->mKartCount - 1;
+u16 GetMissionRunMapObjectLastIndex(void) {
+    return gMissionRunData->mMapObjectCount + data_021759c0->mKartCount - 1;
 }
 
 void func_ov001_02181aa0(void) {
-    Unk021a9b90 *p;
+    MissionRunData *p;
     u32 n;
 
     if ((data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) != FALSE) {
         return;
     }
-    p = data_ov001_021a9b90;
+    p = gMissionRunData;
     n = func_ov001_0218180c();
-    if (p->mUnk_04 >= n) {
+    if (p->mCount >= n) {
         return;
     }
-    p->mUnk_04 = p->mUnk_04 + 1;
-    func_02108edc(data_ov001_021a9b90->mUnk_04, func_ov001_0218180c());
+    p->mCount = p->mCount + 1;
+    func_02108edc(gMissionRunData->mCount, func_ov001_0218180c());
     switch (data_021759c0->mUnk_2f) {
         case 0:
         case 1:
@@ -92,62 +92,62 @@ void func_ov001_02181aa0(void) {
         case 5:
         case 7:
             n = func_ov001_0218180c();
-            if (data_ov001_021a9b90->mUnk_04 >= n) {
+            if (gMissionRunData->mCount >= n) {
                 func_0203e74c(data_021759c0->mEntryIndex);
             }
             break;
     }
 }
 
-Vec3 *func_ov001_02181a94(void) {
-    return &data_ov001_021a9b90->mUnk_28;
+Vec3 *GetMissionRunKartPos(void) {
+    return &gMissionRunData->mKartPos;
 }
 
-Vec3 *func_ov001_02181a88(void) {
-    return &data_ov001_021a9b90->mUnk_34;
+Vec3 *GetMissionRunPrevKartPos(void) {
+    return &gMissionRunData->mPrevKartPos;
 }
 
-u16 func_ov001_02181a78(void) {
-    return (u16) ((u32) data_ov001_021a9b90->mUnk_40);
+u16 GetMissionRunKartHeadingAngle(void) {
+    return (u16) ((u32) gMissionRunData->mKartHeadingAngle);
 }
 
-u16 func_ov001_02181a68(void) {
-    return (u16) ((u32) data_ov001_021a9b90->mUnk_42);
+u16 GetMissionRunPrevKartHeadingAngle(void) {
+    return (u16) ((u32) gMissionRunData->mPrevKartHeadingAngle);
 }
 
-void func_ov001_021819f4(void) {
+void CreateMissionRunData(void) {
     Kart *c;
-    Unk021a9b90 *o;
+    MissionRunData *o;
 
-    data_ov001_021a9b90 = HeapAlloc(GetHeap(func_020364e8()), 0x68);
+    gMissionRunData = HeapAlloc(GetHeap(func_020364e8()), 0x68);
     c = GetKart((u16) data_021759c0->mEntryIndex);
-    o = data_ov001_021a9b90;
-    o->mUnk_34 = c->mPos;
-    o->mUnk_28 = o->mUnk_34;
-    o->mUnk_42 = c->mHeadingAngle;
-    o = data_ov001_021a9b90;
-    o->mUnk_40 = o->mUnk_42;
+    o = gMissionRunData;
+    o->mPrevKartPos = c->mPos;
+    o->mKartPos = o->mPrevKartPos;
+    o->mPrevKartHeadingAngle = c->mHeadingAngle;
+    o = gMissionRunData;
+    o->mKartHeadingAngle = o->mPrevKartHeadingAngle;
 }
 
-void func_ov001_02181860(void) {
+void UpdateMissionRunData(void) {
     Kart *c;
-    Unk021a9b90 *o;
+    MissionRunData *o;
 
     c = GetKart((u16) data_021759c0->mEntryIndex);
     if ((c->mUnk_48 & 0x200) == 0) {
-        o = data_ov001_021a9b90;
-        o->mUnk_34 = o->mUnk_28;
-        o->mUnk_42 = o->mUnk_40;
-        o = data_ov001_021a9b90;
-        o->mUnk_28 = c->mPos;
-        o->mUnk_40 = c->mHeadingAngle;
+        o = gMissionRunData;
+        o->mPrevKartPos = o->mKartPos;
+        o->mPrevKartHeadingAngle = o->mKartHeadingAngle;
+        o = gMissionRunData;
+        o->mKartPos = c->mPos;
+        o->mKartHeadingAngle = c->mHeadingAngle;
     }
     if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
         if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
             if (GetBalloonOrShineCount((u16) data_021759c0->mEntryIndex)) {
-                data_ov001_021a9b90->mUnk_00 += 1;
-                if (data_ov001_021a9b90->mUnk_00 > 0xf) {
-                    data_ov001_021a9b90->mUnk_00 = 0;
+                gMissionRunData->mUnk_00 += 1;
+                if (gMissionRunData->mUnk_00 > 0xf) {
+                    gMissionRunData->mUnk_00 = 0;
                     func_020a1748((u16) data_021759c0->mEntryIndex);
                     return;
                 }
@@ -159,40 +159,40 @@ void func_ov001_02181860(void) {
         u32 m = data_021759c0->mUnk_2f;
         if (m == 1 || m == 5) {
             if (GetRaceUpdateFramesMod8() == 0) {
-                o = data_ov001_021a9b90;
+                o = gMissionRunData;
                 if (o->mUnk_0c != 0) {
                     o->mUnk_0c -= 1;
-                    o = data_ov001_021a9b90;
-                    if (o->mUnk_04 != 0) {
-                        o->mUnk_04 -= 1;
-                        data_ov001_021a9b90->mUnk_06 += 1;
+                    o = gMissionRunData;
+                    if (o->mCount != 0) {
+                        o->mCount -= 1;
+                        gMissionRunData->mUnk_06 += 1;
                     }
-                    if (data_ov001_021a9b90->mUnk_20 != NULL) {
-                        data_ov001_021a9b90->mUnk_20();
+                    if (gMissionRunData->mUnk_20 != NULL) {
+                        gMissionRunData->mUnk_20();
                     }
-                    data_ov001_021a9b90->mUnk_0e = 0;
+                    gMissionRunData->mUnk_0e = 0;
                 } else if (o->mUnk_0a != 0) {
                     o->mUnk_0a -= 1;
-                    o = data_ov001_021a9b90;
-                    if (o->mUnk_04 != 0) {
-                        o->mUnk_04 -= 1;
+                    o = gMissionRunData;
+                    if (o->mCount != 0) {
+                        o->mCount -= 1;
                     }
-                    if (data_ov001_021a9b90->mUnk_1c != NULL) {
-                        data_ov001_021a9b90->mUnk_1c();
+                    if (gMissionRunData->mUnk_1c != NULL) {
+                        gMissionRunData->mUnk_1c();
                     }
-                    data_ov001_021a9b90->mUnk_0e = 0;
-                } else if (o->mUnk_08 != 0) {
-                    o->mUnk_08 -= 1;
+                    gMissionRunData->mUnk_0e = 0;
+                } else if (o->mPendingCountUp != 0) {
+                    o->mPendingCountUp -= 1;
                     func_ov001_02181aa0();
-                    if (data_ov001_021a9b90->mUnk_18 != NULL) {
-                        data_ov001_021a9b90->mUnk_18();
+                    if (gMissionRunData->mUnk_18 != NULL) {
+                        gMissionRunData->mUnk_18();
                     }
                 }
             }
-            o = data_ov001_021a9b90;
+            o = gMissionRunData;
             if (o->mUnk_0e != 0) {
                 o->mUnk_0e -= 1;
-                o = data_ov001_021a9b90;
+                o = gMissionRunData;
                 if (o->mUnk_0e == 0) {
                     if (o->mUnk_24 != NULL) {
                         o->mUnk_24();
@@ -204,22 +204,22 @@ void func_ov001_02181860(void) {
 }
 
 void func_ov001_02181844(u16 a, u16 b, u16 c, u16 d) {
-    data_ov001_021a9b90->mUnk_10 = a;
-    data_ov001_021a9b90->mUnk_12 = b;
-    data_ov001_021a9b90->mUnk_14 = c;
-    data_ov001_021a9b90->mUnk_16 = d;
+    gMissionRunData->mUnk_10 = a;
+    gMissionRunData->mUnk_12 = b;
+    gMissionRunData->mUnk_14 = c;
+    gMissionRunData->mUnk_16 = d;
 }
 
 u32 func_ov001_02181838(void) {
-    return ((u32) data_ov001_021a9b90->mUnk_0e);
+    return ((u32) gMissionRunData->mUnk_0e);
 }
 
 void func_ov001_0218182c(u32 p0) {
-    data_ov001_021a9b90->mUnk_0e = (u16) p0;
+    gMissionRunData->mUnk_0e = (u16) p0;
 }
 
-u32 func_ov001_02181820(void) {
-    return ((u32) data_ov001_021a9b90->mUnk_04);
+u32 GetMissionRunCount(void) {
+    return ((u32) gMissionRunData->mCount);
 }
 
 u32 func_ov001_0218180c(void) {
@@ -231,7 +231,7 @@ u32 func_ov001_0218180c(void) {
 }
 
 u32 func_ov001_02181800(void) {
-    return ((u32) data_ov001_021a9b90->mUnk_06);
+    return ((u32) gMissionRunData->mUnk_06);
 }
 
 void func_ov001_021817e0(void) {
@@ -291,20 +291,20 @@ BOOL func_ov001_021816b4(void) {
 }
 
 void func_ov001_021816a8(UnkFunc *p0) {
-    data_ov001_021a9b90->mUnk_18 = p0;
+    gMissionRunData->mUnk_18 = p0;
 }
 
 void func_ov001_0218169c(UnkFunc *p0) {
-    data_ov001_021a9b90->mUnk_1c = p0;
+    gMissionRunData->mUnk_1c = p0;
 }
 
 void func_ov001_02181690(UnkFunc *p0) {
-    data_ov001_021a9b90->mUnk_20 = p0;
+    gMissionRunData->mUnk_20 = p0;
 }
 
 void func_ov001_02181678(u32 a) {
-    Unk021a9b90 *p = data_ov001_021a9b90;
-    u16 lim = p->mUnk_04;
+    MissionRunData *p = gMissionRunData;
+    u16 lim = p->mCount;
     if (a >= lim) {
         a = lim;
     }
@@ -312,8 +312,8 @@ void func_ov001_02181678(u32 a) {
 }
 
 void func_ov001_02181660(u16 a) {
-    Unk021a9b90 *p = data_ov001_021a9b90;
-    u16 lim = p->mUnk_04;
+    MissionRunData *p = gMissionRunData;
+    u16 lim = p->mCount;
     if (a >= lim) {
         a = lim;
     }
@@ -321,9 +321,9 @@ void func_ov001_02181660(u16 a) {
 }
 
 void func_ov001_02181630(short a) {
-    data_ov001_021a9b90->mUnk_06 += a;
-    if (data_ov001_021a9b90->mUnk_06 > func_ov001_0218180c()) {
-        data_ov001_021a9b90->mUnk_06 = func_ov001_0218180c();
+    gMissionRunData->mUnk_06 += a;
+    if (gMissionRunData->mUnk_06 > func_ov001_0218180c()) {
+        gMissionRunData->mUnk_06 = func_ov001_0218180c();
     }
 }
 
@@ -331,16 +331,16 @@ void func_ov001_021815d0(s32 p0) {
     s32 i;
 
     for (i = 0; i < p0; i++) {
-        if (++data_ov001_021a9b90->mUnk_08 > func_ov001_0218180c()) {
-            data_ov001_021a9b90->mUnk_08 = func_ov001_0218180c();
+        if (++gMissionRunData->mPendingCountUp > func_ov001_0218180c()) {
+            gMissionRunData->mPendingCountUp = func_ov001_0218180c();
             return;
         }
-        if (data_ov001_021a9b90->mUnk_0e == 0) {
-            data_ov001_021a9b90->mUnk_0e = data_ov001_021a9b90->mUnk_10;
+        if (gMissionRunData->mUnk_0e == 0) {
+            gMissionRunData->mUnk_0e = gMissionRunData->mUnk_10;
         } else {
-            data_ov001_021a9b90->mUnk_0e += data_ov001_021a9b90->mUnk_14;
-            if (data_ov001_021a9b90->mUnk_0e > data_ov001_021a9b90->mUnk_12) {
-                data_ov001_021a9b90->mUnk_0e = data_ov001_021a9b90->mUnk_12;
+            gMissionRunData->mUnk_0e += gMissionRunData->mUnk_14;
+            if (gMissionRunData->mUnk_0e > gMissionRunData->mUnk_12) {
+                gMissionRunData->mUnk_0e = gMissionRunData->mUnk_12;
             }
         }
     }
@@ -349,21 +349,21 @@ void func_ov001_021815d0(s32 p0) {
 void func_ov001_0218155c(s32 p0) {
     s32 i;
 
-    if ((u32) p0 >= data_ov001_021a9b90->mUnk_06) {
-        p0 = data_ov001_021a9b90->mUnk_06;
+    if ((u32) p0 >= gMissionRunData->mUnk_06) {
+        p0 = gMissionRunData->mUnk_06;
     }
     for (i = 0; i < p0; i++) {
-        data_ov001_021a9b90->mUnk_06--;
-        if (++data_ov001_021a9b90->mUnk_08 > func_ov001_0218180c()) {
-            data_ov001_021a9b90->mUnk_08 = func_ov001_0218180c();
+        gMissionRunData->mUnk_06--;
+        if (++gMissionRunData->mPendingCountUp > func_ov001_0218180c()) {
+            gMissionRunData->mPendingCountUp = func_ov001_0218180c();
             return;
         }
-        if (data_ov001_021a9b90->mUnk_0e == 0) {
-            data_ov001_021a9b90->mUnk_0e = data_ov001_021a9b90->mUnk_10;
+        if (gMissionRunData->mUnk_0e == 0) {
+            gMissionRunData->mUnk_0e = gMissionRunData->mUnk_10;
         } else {
-            data_ov001_021a9b90->mUnk_0e += data_ov001_021a9b90->mUnk_16;
-            if (data_ov001_021a9b90->mUnk_0e > data_ov001_021a9b90->mUnk_12) {
-                data_ov001_021a9b90->mUnk_0e = data_ov001_021a9b90->mUnk_12;
+            gMissionRunData->mUnk_0e += gMissionRunData->mUnk_16;
+            if (gMissionRunData->mUnk_0e > gMissionRunData->mUnk_12) {
+                gMissionRunData->mUnk_0e = gMissionRunData->mUnk_12;
             }
         }
     }

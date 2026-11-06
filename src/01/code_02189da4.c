@@ -225,7 +225,7 @@ void func_ov001_02189e2c(Unk0218d87c *a) {
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_ov001_02181b8c(obj);
+                AddMissionRunMapObject(obj);
             }
             func_ov001_021870e4(a, obj, data_ov001_021a7b14, data_ov001_021a7b24, data_ov001_021a7b34);
             func_ov001_021870b0(a, obj, data_ov001_021a7b44);

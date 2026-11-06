@@ -88,15 +88,15 @@ void func_ov001_0218f724(Unk02188950 *b) {
     s32 c;
     s64 z;
     s64 x;
-    VEC_Subtract(data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a94() : 0,
-                 data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a88() : 0, &v1);
+    VEC_Subtract(data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunKartPos() : 0,
+                 data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunPrevKartPos() : 0, &v1);
     v1.y = 0;
     a = 0;
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        a = func_ov001_02181a68();
+        a = GetMissionRunPrevKartHeadingAngle();
     }
-    a = (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a78() : 0) - a;
-    VEC_Subtract(&b->mUnk_000.mPos, data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a94() : 0, &v2);
+    a = (data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunKartHeadingAngle() : 0) - a;
+    VEC_Subtract(&b->mUnk_000.mPos, data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunKartPos() : 0, &v2);
     for (i = 0; i < 1; i++) {
         c = gPairsByAngle[((u16) a >> 4) * 2 + 1];
         x = v2.x;
@@ -110,8 +110,8 @@ void func_ov001_0218f724(Unk02188950 *b) {
 
 void func_ov001_0218f6d8(Unk02188950 *a) {
     Vec3 local;
-    VEC_Subtract(data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a94() : 0,
-                 data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a88() : 0, &local);
+    VEC_Subtract(data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunKartPos() : 0,
+                 data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunPrevKartPos() : 0, &local);
     local.y = 0;
     SetVelocity(a, &local);
 }
@@ -692,7 +692,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
         } else {
             p = GetKart((u16) data_021759c0->mEntryIndex);
             if (p->mUnk_48 & 0x200) {
-                if (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181820() : 0) {
+                if (data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunCount() : 0) {
                     if (data_021759c0->mMode == MODE_MISSION_RUN) {
                         func_ov001_0218182c((u16) b->mPrm->mUnk_1bc);
                     }
@@ -747,7 +747,7 @@ void func_ov001_0218de50(Unk0218d87c *a) {
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_ov001_02181b8c(p);
+                AddMissionRunMapObject(p);
             }
             func_ov001_021870e4(a, p, data_ov001_021a7da0, data_ov001_021a7db4, data_ov001_021a7dc8);
             func_ov001_021870b0(a, p, data_ov001_021a7dd8);

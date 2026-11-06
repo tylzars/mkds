@@ -426,7 +426,7 @@ void func_ov001_021831f0(Unk0218fa78 *a) {
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_ov001_02181b8c(o);
+                AddMissionRunMapObject(o);
             }
             func_ov001_021870e4(a, o, data_ov001_021a79a8, data_ov001_021a79bc, data_ov001_021a79d0);
             func_ov001_021870b0(a, o, data_ov001_021a79e4);
@@ -445,7 +445,7 @@ void func_ov001_02183158(Unk0218fa78 *a) {
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_ov001_02181b8c(o);
+                AddMissionRunMapObject(o);
             }
             func_ov001_021870e4(a, o, data_ov001_021a7950, data_ov001_021a7968, data_ov001_021a7980);
             func_ov001_021870b0(a, o, data_ov001_021a7998);

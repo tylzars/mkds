@@ -167,7 +167,7 @@ void InitRace(void) {
             break;
         case MODE_MISSION_RUN:
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_ov001_021819f4();
+                CreateMissionRunData();
             }
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 InitStandings();
@@ -278,7 +278,7 @@ void UpdateRace(void) {
             break;
         case MODE_MISSION_RUN:
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_ov001_02181860();
+                UpdateMissionRunData();
             }
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 UpdateStandings();

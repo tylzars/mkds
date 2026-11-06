@@ -344,7 +344,7 @@ void func_ov001_0218cb14(Unk0218d87c *a) {
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_ov001_02181b8c(obj);
+                AddMissionRunMapObject(obj);
             }
             func_ov001_021870e4(a, obj, data_ov001_021a7d0c, data_ov001_021a7d1c, data_ov001_021a7d2c);
             func_ov001_021870b0(a, obj, data_ov001_021a7d3c);
@@ -370,7 +370,7 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     b = LoadMissionRunFile(data_ov001_021a7c94);
     c = LoadMissionRunFile(data_ov001_021a7ca8);
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        src = func_ov001_02181b68(data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0);
+        src = GetMissionRunMapObject(data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0);
     } else {
         src = NULL;
     }
@@ -379,7 +379,7 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     obj->mPrm = src->mPrm;
     obj->mShadowNsbmd = src->mShadowNsbmd;
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        func_ov001_02181b8c(obj);
+        AddMissionRunMapObject(obj);
     }
     func_ov001_021870e4(d, obj, data_ov001_021a7cbc, NULL, NULL);
     func_ov001_0219b28c(obj->mNsbmd, a);
@@ -394,7 +394,7 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     obj->mPrm = src->mPrm;
     obj->mShadowNsbmd = src->mShadowNsbmd;
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        func_ov001_02181b8c(obj);
+        AddMissionRunMapObject(obj);
     }
     func_ov001_021870e4(d, obj, data_ov001_021a7cd0, NULL, NULL);
     func_ov001_0219b28c(obj->mNsbmd, b);
@@ -409,7 +409,7 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     obj->mPrm = src->mPrm;
     obj->mShadowNsbmd = src->mShadowNsbmd;
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        func_ov001_02181b8c(obj);
+        AddMissionRunMapObject(obj);
     }
     func_ov001_021870e4(d, obj, data_ov001_021a7ce4, NULL, NULL);
     func_ov001_0219b28c(obj->mNsbmd, a);
@@ -424,7 +424,7 @@ void func_ov001_0218c87c(Unk0218d87c *d) {
     obj->mPrm = src->mPrm;
     obj->mShadowNsbmd = src->mShadowNsbmd;
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        func_ov001_02181b8c(obj);
+        AddMissionRunMapObject(obj);
     }
     func_ov001_021870e4(d, obj, data_ov001_021a7cf8, NULL, NULL);
     func_ov001_0219b28c(obj->mNsbmd, b);

@@ -57,12 +57,11 @@ typedef struct OptionStates {
     /* 28 */ void *mUnk_28;
 } OptionStates;
 
-// Object behind data_ov001_021a9b90.
-typedef struct Unk021a9b90 {
+typedef struct MissionRunData {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ u16 mUnk_04;
+    /* 04 */ u16 mCount;
     /* 06 */ u16 mUnk_06;
-    /* 08 */ u16 mUnk_08;
+    /* 08 */ u16 mPendingCountUp;
     /* 0a */ u16 mUnk_0a;
     /* 0c */ u16 mUnk_0c;
     /* 0e */ u16 mUnk_0e;
@@ -74,13 +73,13 @@ typedef struct Unk021a9b90 {
     /* 1c */ UnkFunc *mUnk_1c;
     /* 20 */ UnkFunc *mUnk_20;
     /* 24 */ UnkFunc *mUnk_24;
-    /* 28 */ Vec3 mUnk_28;
-    /* 34 */ Vec3 mUnk_34;
-    /* 40 */ u16 mUnk_40;
-    /* 42 */ u16 mUnk_42;
-    /* 44 */ s32 mUnk_44;
-    /* 48 */ struct Unk02188950 *mUnk_48[8];
-} Unk021a9b90;
+    /* 28 */ Vec3 mKartPos;
+    /* 34 */ Vec3 mPrevKartPos;
+    /* 40 */ u16 mKartHeadingAngle;
+    /* 42 */ u16 mPrevKartHeadingAngle;
+    /* 44 */ s32 mMapObjectCount;
+    /* 48 */ struct Unk02188950 *mMapObjects[8];
+} MissionRunData;
 
 // Object behind data_ov001_021a9b88: a square grid of mUnk_00 by mUnk_00 cells.
 typedef struct Unk021a9b88 {

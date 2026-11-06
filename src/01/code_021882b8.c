@@ -20,8 +20,8 @@ void func_ov001_021882b8(void) {
 
     if (!(data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0)) {
         for (i = data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : (u8) 0;
-             i <= (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b30() : (u16) 0); i++) {
-            obj = data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b68(i) : 0;
+             i <= (data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunMapObjectLastIndex() : (u16) 0); i++) {
+            obj = data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunMapObject(i) : 0;
             table = func_02100138(0x1ff);
             func_ov001_02188e88(obj);
             obj->mUnk_2c0 = FALSE;
