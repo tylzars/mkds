@@ -97,8 +97,8 @@ void func_ov003_021bee24(void) {
     Unk021da104_04 *b;
     u32 c;
 
-    data_ov003_021da104->mUnk_09 = Div32Remainder(data_ov003_021da104->mUnk_09 + 1, 0x28);
-    c = Div32(data_ov003_021da104->mUnk_09, 5) + 0x47;
+    data_ov003_021da104->mUnk_09 = FX_ModS32(data_ov003_021da104->mUnk_09 + 1, 0x28);
+    c = FX_DivS32(data_ov003_021da104->mUnk_09, 5) + 0x47;
     func_ov003_021d1c3c(0, c, (u8 *) data_ov003_021da104->mUnk_04);
     b = data_ov003_021da104->mUnk_04;
     b->mUnk_04 = (b->mUnk_04 & 0xfffff3ff) | 0x400;

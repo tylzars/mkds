@@ -116,7 +116,7 @@ void AdvanceKartTurnStartEffects(KartTurnEffects *p, Kart *q) {
         b.x = -a.x;
         b.y = -a.y;
         b.z = -a.z;
-        Vec3Add(&e->mSidePositions[i], &b, &c);
+        VEC_Add(&e->mSidePositions[i], &b, &c);
         f = p->mTurnStartEffects[i];
         f->mUnk_28.x = c.x + f->mUnk_20->mUnk_00->mUnk_04.x;
         f->mUnk_28.y = c.y + f->mUnk_20->mUnk_00->mUnk_04.y;

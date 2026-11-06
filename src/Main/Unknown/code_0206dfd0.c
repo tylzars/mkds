@@ -121,50 +121,50 @@ void CollideKartWithKarts(Kart *p) {
             k = 0;
             c = FALSE;
             if (p->mUnk_44 & 0x10) {
-                f = Vec3Dot(&p->mUnk_244, &a);
+                f = VEC_DotProduct(&p->mUnk_244, &a);
                 a.x -= (s32) (((s64) p->mUnk_244.x * f) >> 12);
                 a.y -= (s32) (((s64) p->mUnk_244.y * f) >> 12);
                 a.z -= (s32) (((s64) p->mUnk_244.z * f) >> 12);
             }
             if (p->mUnk_44 & 0x80) {
-                if (Vec3Dot(&p->mUnk_244, &a) < 0) {
-                    f = Vec3Dot(&p->mUnk_250, &a);
+                if (VEC_DotProduct(&p->mUnk_244, &a) < 0) {
+                    f = VEC_DotProduct(&p->mUnk_250, &a);
                     a.x -= (s32) (((s64) p->mUnk_250.x * f) >> 12);
                     a.y -= (s32) (((s64) p->mUnk_250.y * f) >> 12);
                     a.z -= (s32) (((s64) p->mUnk_250.z * f) >> 12);
                 }
             }
             if (q->mUnk_44 & 0x10) {
-                f = Vec3Dot(&q->mUnk_244, &b);
+                f = VEC_DotProduct(&q->mUnk_244, &b);
                 b.x -= (s32) (((s64) q->mUnk_244.x * f) >> 12);
                 b.y -= (s32) (((s64) q->mUnk_244.y * f) >> 12);
                 b.z -= (s32) (((s64) q->mUnk_244.z * f) >> 12);
             }
             if (q->mUnk_44 & 0x80) {
-                if (Vec3Dot(&q->mUnk_244, &b) < 0) {
-                    f = Vec3Dot(&q->mUnk_250, &b);
+                if (VEC_DotProduct(&q->mUnk_244, &b) < 0) {
+                    f = VEC_DotProduct(&q->mUnk_250, &b);
                     b.x -= (s32) (((s64) q->mUnk_250.x * f) >> 12);
                     b.y -= (s32) (((s64) q->mUnk_250.y * f) >> 12);
                     b.z -= (s32) (((s64) q->mUnk_250.z * f) >> 12);
                 }
             }
-            Vec3Add(p->mUnk_510, &a, p->mUnk_510);
-            Vec3Add(q->mUnk_510, &b, q->mUnk_510);
+            VEC_Add(p->mUnk_510, &a, p->mUnk_510);
+            VEC_Add(q->mUnk_510, &b, q->mUnk_510);
             if (q->mUnk_44 & 0xc0) {
-                Vec3Sub(&q->mVelocity, &p->mVelocity, &e);
-                f = Vec3Dot(&n, &e);
+                VEC_Subtract(&q->mVelocity, &p->mVelocity, &e);
+                f = VEC_DotProduct(&n, &e);
                 e.x = (s32) (((s64) n.x * f) >> 12);
                 e.y = (s32) (((s64) n.y * f) >> 12);
                 e.z = (s32) (((s64) n.z * f) >> 12);
-                p->mForwardSpeed += Vec3Dot(&p->mUnk_50, &e);
+                p->mForwardSpeed += VEC_DotProduct(&p->mUnk_50, &e);
             }
             if (p->mUnk_44 & 0xc0) {
-                Vec3Sub(&p->mVelocity, &q->mVelocity, &g);
-                f = Vec3Dot(&n, &g);
+                VEC_Subtract(&p->mVelocity, &q->mVelocity, &g);
+                f = VEC_DotProduct(&n, &g);
                 g.x = (s32) (((s64) n.x * f) >> 12);
                 g.y = (s32) (((s64) n.y * f) >> 12);
                 g.z = (s32) (((s64) n.z * f) >> 12);
-                q->mForwardSpeed += Vec3Dot(&q->mUnk_50, &g);
+                q->mForwardSpeed += VEC_DotProduct(&q->mUnk_50, &g);
             }
             if (data_021759c0->mMode == MODE_BATTLE) {
                 k = func_020a1ee4(p->mIndex, q->mIndex);

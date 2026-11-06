@@ -117,7 +117,7 @@ void func_02085e04(void) {
                     break;
             }
         }
-        data_0217aec0->mUnk_04 = DivFixed12(data_0217aec0->mUnk_04, 0x3000);
+        data_0217aec0->mUnk_04 = FX_Div(data_0217aec0->mUnk_04, 0x3000);
     }
     func_02085d1c();
     func_0207fba0();
@@ -469,7 +469,7 @@ void func_0208552c(void) {
         }
         if (v == 1) {
             if (w >= 0) {
-                data_0217aebc->mUnk_08c = DivFixed12(data_0217aebc->mUnk_000[i], 0x4ce);
+                data_0217aebc->mUnk_08c = FX_Div(data_0217aebc->mUnk_000[i], 0x4ce);
                 if (data_0217aebc->mUnk_08c < 0x19a) {
                     data_0217aebc->mUnk_08c = 0x19a;
                 } else if (data_0217aebc->mUnk_08c > 0x1000) {

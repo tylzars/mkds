@@ -205,7 +205,7 @@ void DrawBakubaku(void *a, Bakubaku *p) {
     func_01ff9048(0x19, &p->mUnk_00.mMatrix, 12);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     DrawMapObjectModel(a, gBakuShadow, p);
-    i = (u16) (u32) AngleFromPair(-p->mUnk_00.mUnk_10.y, 0xc000) >> 4;
+    i = (u16) (u32) FX_Atan2Idx(-p->mUnk_00.mUnk_10.y, 0xc000) >> 4;
     Matrix3x3FromPairX(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);
     DrawMapObjectModel(a, gBakubaku, p);
@@ -219,7 +219,7 @@ void func_020957ec(Unk020e6fd4 *p) {
         return;
     }
     for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
-        Vec3AddScaled(0x320000, &e->mUnk_00.mMatrix.mUnk_00[2], &e->mUnk_00.mCourseMapRow->mUnk_00, &e->mUnk_a4);
+        VEC_MultAdd(0x320000, &e->mUnk_00.mMatrix.mUnk_00[2], &e->mUnk_00.mCourseMapRow->mUnk_00, &e->mUnk_a4);
     }
 }
 
@@ -254,7 +254,7 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
             break;
         case 1:
             p->mUnk_00.mUnk_10.y -= 0x400;
-            Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mPos.y < p->mUnk_00.mCourseMapRow->mUnk_00.y) {
                 return;
             }
@@ -268,7 +268,7 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
             break;
         case 2:
             p->mUnk_00.mUnk_10.y -= 0x400;
-            Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mPos.y > p->mUnk_00.mCourseMapRow->mUnk_00.y) {
                 return;
             }
@@ -282,7 +282,7 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
             break;
         case 3:
             p->mUnk_00.mUnk_10.y -= 0x400;
-            Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mPos.y <= p->mUnk_00.mCourseMapRow->mUnk_00.y - 0x32000) {
                 p->mUnk_a0 = 0x708;
                 p->mState = 4;

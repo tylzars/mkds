@@ -433,7 +433,7 @@ void func_01ff9828(Unk01ff9598_A *a, Unk01ff9598 *b) {
     s32 e;
     s32 f;
 
-    DivFixed12Start(h, w);
+    FX_DivAsync(h, w);
     k22 = b->mUnk_22;
     k18 = b->mUnk_18;
     k20 = b->mUnk_20;
@@ -444,12 +444,12 @@ void func_01ff9828(Unk01ff9598_A *a, Unk01ff9598 *b) {
     f = (s64) v1 * k22 >> 12;
     a->mUnk_00 = c;
     a->mUnk_14 = f;
-    a->mUnk_04 = -e * DivFixed12Result() >> 12;
-    DivFixed12Start(w, h);
+    a->mUnk_04 = -e * FX_GetDivResult() >> 12;
+    FX_DivAsync(w, h);
     a->mUnk_30 = (b->mUnk_2c * (b->mUnk_18 - (d + c)) << 3) - b->mUnk_2c * (s32) ((s64) b->mUnk_18 * b->mUnk_24 >> 8);
     a->mUnk_34 =
         b->mUnk_2e * (s32) ((s64) b->mUnk_1c * b->mUnk_28 >> 8) + (b->mUnk_2e * (e - f - b->mUnk_1c + 0x2000) << 3);
-    a->mUnk_10 = d * DivFixed12Result() >> 12;
+    a->mUnk_10 = d * FX_GetDivResult() >> 12;
 }
 
 void func_01ff974c(Unk01ff9598_A *a, Unk01ff9598 *b) {
@@ -457,15 +457,15 @@ void func_01ff974c(Unk01ff9598_A *a, Unk01ff9598 *b) {
     s32 h = b->mUnk_2e << 12;
     s32 t;
 
-    DivFixed12Start(h, w);
+    FX_DivAsync(h, w);
     a->mUnk_00 = b->mUnk_22;
     a->mUnk_14 = b->mUnk_22;
-    a->mUnk_04 = -b->mUnk_20 * DivFixed12Result() >> 12;
-    DivFixed12Start(w, h);
+    a->mUnk_04 = -b->mUnk_20 * FX_GetDivResult() >> 12;
+    FX_DivAsync(w, h);
     t = b->mUnk_20 + b->mUnk_22;
     a->mUnk_30 = (b->mUnk_2c * (-t + 0x1000) << 3) - (b->mUnk_24 * b->mUnk_2c << 4);
     a->mUnk_34 = (b->mUnk_2e * (b->mUnk_20 - b->mUnk_22 + 0x1000) << 3) + (b->mUnk_28 * b->mUnk_2e << 4);
-    a->mUnk_10 = b->mUnk_20 * DivFixed12Result() >> 12;
+    a->mUnk_10 = b->mUnk_20 * FX_GetDivResult() >> 12;
 }
 
 void func_01ff96cc(Unk01ff9598_A *a, Unk01ff9598 *b) {
@@ -499,7 +499,7 @@ void func_01ff9598(Unk01ff9598_A *a, Unk01ff9598 *b) {
     s32 e;
     s32 f;
 
-    DivFixed12Start(h, w);
+    FX_DivAsync(h, w);
     k22 = b->mUnk_22;
     k18 = b->mUnk_18;
     k20 = b->mUnk_20;
@@ -510,9 +510,9 @@ void func_01ff9598(Unk01ff9598_A *a, Unk01ff9598 *b) {
     f = (s64) v1 * k22 >> 12;
     a->mUnk_00 = c;
     a->mUnk_14 = f;
-    a->mUnk_04 = -e * DivFixed12Result() >> 12;
-    DivFixed12Start(w, h);
+    a->mUnk_04 = -e * FX_GetDivResult() >> 12;
+    FX_DivAsync(w, h);
     a->mUnk_30 = b->mUnk_2c * (b->mUnk_18 - (d + c)) << 3;
     a->mUnk_34 = b->mUnk_2e * (e - f - b->mUnk_1c + 0x2000) << 3;
-    a->mUnk_10 = d * DivFixed12Result() >> 12;
+    a->mUnk_10 = d * FX_GetDivResult() >> 12;
 }

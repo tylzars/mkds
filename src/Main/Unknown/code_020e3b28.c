@@ -136,9 +136,9 @@ void func_020e410c(Unk020e1dc0 *a) {
             if (j < 0) {
                 e->mUnk_138 = z;
             } else {
-                Vec3Sub(&p[j]->mUnk_000.mPos, &e->mUnk_000.mPos, &v);
+                VEC_Subtract(&p[j]->mUnk_000.mPos, &e->mUnk_000.mPos, &v);
                 v.y = z2;
-                e->mUnk_154 = Vec3Length(&v);
+                e->mUnk_154 = VEC_Mag(&v);
                 e->mUnk_154 -= p[j]->mUnk_000.mExtent.x;
             }
             j = i;
@@ -255,7 +255,7 @@ void UpdateBridge(s32 a, Bridge *b) {
     b->mUnk_0a0 = *(Unk020e38a0_28 *) &b->mUnk_000.mMatrix;
     Matrix3x3FromPairX((s32 *) &b->mUnk_000.mMatrix, gPairsByAngle[(y >> 4) * 2], gPairsByAngle[(y >> 4) * 2 + 1]);
     Matrix3x3Multiply((const s32 *) &b->mUnk_000.mMatrix, (const s32 *) &b->mUnk_0c4, (s32 *) &b->mUnk_000.mMatrix);
-    Vec3AddScaled(-b->mUnk_104, &b->mUnk_000.mMatrix.mUnk_00[1], &b->mUnk_000.mPos, &b->mUnk_0f4);
+    VEC_MultAdd(-b->mUnk_104, &b->mUnk_000.mMatrix.mUnk_00[1], &b->mUnk_000.mPos, &b->mUnk_0f4);
     if (b->mUnk_150 != 0) {
         b->mUnk_150--;
         return;

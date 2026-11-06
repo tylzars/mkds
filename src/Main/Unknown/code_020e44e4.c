@@ -38,8 +38,8 @@ void func_020e47c8(Unk020e43a8 *p, Vec3 *a) {
     p->mUnk_f4.z = a->y;
     {
         s32 *q = &p->mUnk_d4;
-        p->mUnk_104 = -DivFixed12(q[0], q[1]);
-        p->mUnk_108 = -DivFixed12(q[2], q[1]);
+        p->mUnk_104 = -FX_Div(q[0], q[1]);
+        p->mUnk_108 = -FX_Div(q[2], q[1]);
     }
 }
 
@@ -104,7 +104,7 @@ void func_020e44e4(u32 a, Unk020e43a8 *p) {
     Matrix3x3FromPairY((s32 *) &p->mUnk_00.mMatrix, gPairsByAngle[(p->mUnk_00.mAngle >> 4) * 2],
                        gPairsByAngle[(p->mUnk_00.mAngle >> 4) * 2 + 1]);
     Matrix3x3Multiply((const s32 *) &p->mUnk_00.mMatrix, (const s32 *) &p->mUnk_c4, (s32 *) &p->mUnk_00.mMatrix);
-    Vec3AddScaled(-p->mUnk_104, &p->mUnk_00.mMatrix.mUnk_00[1], &p->mUnk_00.mPos, &p->mUnk_f4);
+    VEC_MultAdd(-p->mUnk_104, &p->mUnk_00.mMatrix.mUnk_00[1], &p->mUnk_00.mPos, &p->mUnk_f4);
     if (p->mUnk_00.mStateMachine.mState == 3) {
         return;
     }

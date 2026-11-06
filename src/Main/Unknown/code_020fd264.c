@@ -503,7 +503,7 @@ void func_020fd684(void *c, Vec3 *d, Vec3 *f) {
         return;
     }
     e->mUnk_000.mUnk_000.mPos = *b;
-    Vec3Sub(&e->mUnk_000.mUnk_000.mPos, &e->mUnk_000.mUnk_000.mPrevPos, &e->mUnk_000.mUnk_000.mVelocity);
+    VEC_Subtract(&e->mUnk_000.mUnk_000.mPos, &e->mUnk_000.mUnk_000.mPrevPos, &e->mUnk_000.mUnk_000.mVelocity);
     if (e->mUnk_198 == NULL) {
         return;
     }
@@ -638,7 +638,7 @@ void func_020fd264(void) {
     s32 k;
 
     data_0217bd50 = 0x18006;
-    data_0217bd48 = DivFixed12(0x1000, 0x18006);
+    data_0217bd48 = FX_Div(0x1000, 0x18006);
     data_0217bd54 = 0x2148;
     data_0217bd58 = (s32) (((s64) data_0217bd50 * gItemKinds[9].mUnk_6c) >> 12);
     data_0217bd58 >>= 12;

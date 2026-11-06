@@ -585,9 +585,9 @@ void func_0208ecd8(Unk0208ec64_08 *a, Unk0208ec64 *b) {
     z.x = (s32) (((s64) p->x * k) >> 12);
     z.y = (s32) (((s64) p->y * k) >> 12);
     z.z = (s32) (((s64) p->z * k) >> 12);
-    Vec3Add(&v, &x, &v);
-    Vec3Add(&v, &y, &v);
-    Vec3Add(&v, &z, &v);
+    VEC_Add(&v, &x, &v);
+    VEC_Add(&v, &y, &v);
+    VEC_Add(&v, &z, &v);
     a->mUnk_08 = b->mUnk_1c;
     a->mUnk_0c = 0;
     a->mUnk_10.x = v.x >> 4;

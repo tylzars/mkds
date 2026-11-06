@@ -81,7 +81,7 @@ void func_0207fec0(Unk02080b1c *p) {
     if (t != a->mKartModelsEntry->mUnk_008->mUnk_1a) {
         func_02068a64(a, t, 1);
     }
-    Vec3Sub(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
+    VEC_Subtract(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
     Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_08, &p->mUnk_08);
 }
 
@@ -119,7 +119,7 @@ void func_0207fd28(Unk02080b1c *p) {
             a->mUnk_7c |= 0x40;
         }
     }
-    Vec3Sub(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
+    VEC_Subtract(p->mUnk_00->mUnk_18, p->mUnk_04->mUnk_18, &p->mUnk_08);
     Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_08, &p->mUnk_08);
 }
 
@@ -234,7 +234,7 @@ void func_0207f8f8(Unk020888b4 *p) {
     func_0207f6f0(p, q, a, s, &v, t);
     if (a->mState == 0) {
         func_0204360c(p->mKart->mEntryIndex, 1);
-        Vec3Sub(&p->mUnk_44, &v, &w);
+        VEC_Subtract(&p->mUnk_44, &v, &w);
         func_01ffd224(p, &w, t);
     }
     func_0207ebfc(p);
@@ -262,14 +262,14 @@ void func_0207f6f0(Unk020888b4 *p, Unk0208001c *q, Kart *r, Unk02175620_bc *s, V
             func_0207e7f0(p);
         }
         c = &r->mUnk_12c;
-        Vec3Sub(&p->mUnk_44, &r->mPos, &v);
-        d = Vec3Dot(c, &v);
+        VEC_Subtract(&p->mUnk_44, &r->mPos, &v);
+        d = VEC_DotProduct(c, &v);
         v.x = v.x - (s32) (((s64) r->mUnk_12c.x * d) >> 12);
         v.y = v.y - (s32) (((s64) c->y * d) >> 12);
         v.z = v.z - (s32) (((s64) c->z * d) >> 12);
         Vec3CrossUnrounded(b, &v, &w);
-        e = Vec3Length(&w);
-        f = func_02148538(e, Vec3DotUnrounded(b, &v));
+        e = VEC_Mag(&w);
+        f = FX_Atan2(e, Vec3DotUnrounded(b, &v));
         g = (s32) (((s64) f * 0x394bb834c8LL + 0x80000000LL) >> 32);
         if (Vec3DotUnrounded(&w, c) < 0) {
             g *= -1;
@@ -303,7 +303,7 @@ void func_0207f668(Unk020888b4 *p, Unk0208001c *q, Kart *r) {
             func_0207e944(p);
         }
     }
-    Vec3Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
+    VEC_Add(&p->mUnk_44, &p->mUnk_60, &p->mUnk_44);
 }
 
 void func_0207f630(Unk020888b4 *p, Unk0208001c *q, Kart *r) {
@@ -411,7 +411,7 @@ void func_0207f05c(Unk020888b4 *p) {
             a = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
             d = data_usa_021557c4;
             Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mUnk_08, &d, &b);
-            Vec3Sub(&p->mKart->mPos, &a, &c);
+            VEC_Subtract(&p->mKart->mPos, &a, &c);
             m = Vec3DotUnrounded(&c, &b);
             k = p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c;
             if (func_020738f8(m) < k) {
@@ -457,8 +457,8 @@ void func_0207f05c(Unk020888b4 *p) {
     e = *p->mUnk_08.mUnk_00.mUnk_00->mUnk_18;
     h = data_usa_021557c4;
     Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mUnk_08, &h, &f);
-    Vec3Sub(&p->mKart->mPos, &e, &g);
-    p->mUnk_74 = DivFixed12(Vec3DotUnrounded(&g, &f), p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c + 0x1000);
+    VEC_Subtract(&p->mKart->mPos, &e, &g);
+    p->mUnk_74 = FX_Div(Vec3DotUnrounded(&g, &f), p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c + 0x1000);
     if (func_020738f8(p->mUnk_74) > 0x1000) {
         if (p->mUnk_74 > 0) {
             p->mUnk_74 = 0x1000;
@@ -506,14 +506,14 @@ void func_0207ebfc(Unk020888b4 *p) {
     if (p->mUnk_90 == 3 && (q->mUnk_44 & 0x10)) {
         a = &q->mUnk_12c;
         c = &q->mUnk_138;
-        Vec3Sub(&p->mUnk_44, &q->mPos, &v1);
-        n = Vec3Dot(a, &v1);
+        VEC_Subtract(&p->mUnk_44, &q->mPos, &v1);
+        n = VEC_DotProduct(a, &v1);
         v1.x -= (s32) (((s64) a->x * n) >> 12);
         v1.y -= (s32) (((s64) a->y * n) >> 12);
         v1.z -= (s32) (((s64) a->z * n) >> 12);
         Vec3CrossUnrounded(c, &v1, &v2);
-        m = Vec3Length(&v2);
-        m = func_02148538(m, Vec3DotUnrounded(c, &v1));
+        m = VEC_Mag(&v2);
+        m = FX_Atan2(m, Vec3DotUnrounded(c, &v1));
         m = (s32) (((s64) m * 0x394bb834c8LL + 0x80000000LL) >> 32);
         n = Vec3DotUnrounded(&v2, a);
         if (n < 0) {
@@ -529,11 +529,11 @@ void func_0207ebfc(Unk020888b4 *p) {
         if (func_020738f8(p->mUnk_70) <= 0x32000) {
             return;
         }
-        Vec3Sub(&p->mUnk_44, &q->mPos, &v0);
+        VEC_Subtract(&p->mUnk_44, &q->mPos, &v0);
         p->mUnk_90 = 4;
         q2 = p->mKart;
         GetKartUp(q2, &v3);
-        n = Vec3Dot(&v3, &v0);
+        n = VEC_DotProduct(&v3, &v0);
         v4.x = v0.x - (s32) (((s64) v3.x * n) >> 12);
         v4.y = v0.y - (s32) (((s64) v3.y * n) >> 12);
         v4.z = v0.z - (s32) (((s64) v3.z * n) >> 12);
@@ -598,14 +598,14 @@ s32 func_0207eafc(Vec3 *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     s32 l;
     s32 r;
 
-    Vec3Sub(a, b, &v);
-    n = Vec3Dot(c, &v);
+    VEC_Subtract(a, b, &v);
+    n = VEC_DotProduct(c, &v);
     v.x -= (s32) (((s64) c->x * n) >> 12);
     v.y -= (s32) (((s64) c->y * n) >> 12);
     v.z -= (s32) (((s64) c->z * n) >> 12);
     Vec3CrossUnrounded(d, &v, &w);
-    l = Vec3Length(&w);
-    r = func_02148538(l, Vec3DotUnrounded(d, &v));
+    l = VEC_Mag(&w);
+    r = FX_Atan2(l, Vec3DotUnrounded(d, &v));
     r = (s32) (((s64) r * 0x394bb834c8LL + 0x80000000LL) >> 32);
     n = Vec3DotUnrounded(&w, c);
     if (n < 0) {
@@ -664,9 +664,9 @@ void func_0207e7f0(Unk020888b4 *p) {
     c = data_usa_021557c4;
     d = *(Vec3 *) &data_usa_021557c4;
     Vec3CrossUnrounded(&p->mUnk_08.mUnk_00.mUnk_08, &d, &e);
-    Vec3Sub(&p->mKart->mPos, &b, &f);
+    VEC_Subtract(&p->mKart->mPos, &b, &f);
     s = Vec3DotUnrounded(&f, &e);
-    p->mUnk_74 = DivFixed12(s, p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c + 0x1000);
+    p->mUnk_74 = FX_Div(s, p->mUnk_08.mUnk_00.mUnk_00->mUnk_1c + 0x1000);
     if (func_020738f8(p->mUnk_74) > 0x1000) {
         if (p->mUnk_74 > 0) {
             p->mUnk_74 = 0x1000;
@@ -679,7 +679,7 @@ void func_0207e7f0(Unk020888b4 *p) {
     p->mUnk_60.x = (s32) (((s64) p->mUnk_60.x * s) >> 12);
     p->mUnk_60.y = (s32) (((s64) p->mUnk_60.y * s) >> 12);
     p->mUnk_60.z = (s32) (((s64) p->mUnk_60.z * s) >> 12);
-    Vec3Add(&a, &p->mUnk_60, &p->mUnk_44);
+    VEC_Add(&a, &p->mUnk_60, &p->mUnk_44);
 }
 
 void func_0207e668(Unk020888b4 *p) {

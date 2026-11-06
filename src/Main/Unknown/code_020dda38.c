@@ -32,7 +32,7 @@ void func_020de184(Unk020de000 *o) {
     Vec3 w;
 
     p = o->mUnk_a0;
-    Vec3AddScaled(-p->mUnk_f0, &p->mUnk_00.mMatrix.mUnk_00[2], &p->mUnk_00.mPos, &w);
+    VEC_MultAdd(-p->mUnk_f0, &p->mUnk_00.mMatrix.mUnk_00[2], &p->mUnk_00.mPos, &w);
     v = p->mUnk_a0;
     v.y -= p->mUnk_f0 >> 1;
     func_020dd8b0(&o->mUnk_a4, &v, &w);
@@ -119,15 +119,15 @@ void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
         p48[i].y -= m04;
     }
     for (i = 1; i < n; i++) {
-        Vec3AddScaled((n - i) * -m10, &p48[i], &p48[i], &p48[i]);
+        VEC_MultAdd((n - i) * -m10, &p48[i], &p48[i], &p48[i]);
     }
     for (i = 1; i < n; i++) {
-        Vec3Add(&p44[i], &p48[i], &p44[i]);
+        VEC_Add(&p44[i], &p48[i], &p44[i]);
     }
     q = &p44[j];
     *q = *b;
     for (; j > 1; j--) {
-        Vec3Sub(&p44[j - 1], q, &t);
+        VEC_Subtract(&p44[j - 1], q, &t);
         d = (s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z - a->mUnk_2c;
         e = d < 0 ? 0 : (s32) (d >> 12);
         if (e != 0) {
@@ -136,8 +136,8 @@ void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
             u.x = (s32) (((s64) u.x * w) >> 12);
             u.y = (s32) (((s64) u.y * w) >> 12);
             u.z = (s32) (((s64) u.z * w) >> 12);
-            Vec3Add(q, &u, &p44[j - 1]);
-            Vec3Sub(&u, &t, &t);
+            VEC_Add(q, &u, &p44[j - 1]);
+            VEC_Subtract(&u, &t, &t);
             t.x = (s32) (((s64) t.x * g.x) >> 12);
             t.y = (s32) (((s64) t.y * g.y) >> 12);
             t.z = (s32) (((s64) t.z * g.z) >> 12);
@@ -145,7 +145,7 @@ void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
             t.x = (s32) (((s64) t.x * c) >> 12);
             t.y = (s32) (((s64) t.y * c) >> 12);
             t.z = (s32) (((s64) t.z * c) >> 12);
-            Vec3Add(&p48[j - 1], &t, &p48[j - 1]);
+            VEC_Add(&p48[j - 1], &t, &p48[j - 1]);
         }
         q--;
     }
@@ -155,7 +155,7 @@ void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
         m = 2;
     }
     for (; m < n; m++) {
-        Vec3Sub(&p44[m], &p44[m - 1], &t);
+        VEC_Subtract(&p44[m], &p44[m - 1], &t);
         d = (s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z - a->mUnk_2c;
         e = d < 0 ? 0 : (s32) (d >> 12);
         if (e != 0) {
@@ -164,7 +164,7 @@ void func_020ddb44(Unk020dd950 *a, Vec3 *b, Vec3 *v) {
             u.x = (s32) (((s64) u.x * w) >> 12);
             u.y = (s32) (((s64) u.y * w) >> 12);
             u.z = (s32) (((s64) u.z * w) >> 12);
-            Vec3Add(&p44[m - 1], &u, &p44[m]);
+            VEC_Add(&p44[m - 1], &u, &p44[m]);
         }
     }
     for (i = 1; i < n - 2; i++) {

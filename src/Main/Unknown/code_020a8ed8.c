@@ -93,7 +93,7 @@ void func_020a9a5c(Unk020a9a5c *p) {
         func_020d7da8(&o->mUnk_0c4, o->mUnk_000.mCourseMapRow, z0);
         func_020d8918(&o->mUnk_0c4, &o->mUnk_11c, &o->mUnk_000.mUnk_10);
         o->mUnk_11c.y += 0x1000;
-        Vec3AddScaled(o->mUnk_000.mExtent.x, &o->mUnk_000.mMatrix.mUnk_00[1], &o->mUnk_11c, &o->mUnk_000.mPos);
+        VEC_MultAdd(o->mUnk_000.mExtent.x, &o->mUnk_000.mMatrix.mUnk_00[1], &o->mUnk_11c, &o->mUnk_000.mPos);
         if (o->mUnk_000.mFlags & 0x800) {
             o->mUnk_0a8 = (u16) o->mUnk_000.mCourseMapRow->mUnk_2a;
             o->mUnk_130 = z2;
@@ -278,7 +278,7 @@ void UpdateIronBall(void *a, IronBall *p) {
         func_020d8918(&p->mUnk_0c4, &p->mUnk_11c, &p->mUnk_000.mUnk_10);
         p->mUnk_11c.y += 0x1000;
     }
-    Vec3AddScaled(p->mUnk_000.mExtent.x, &p->mUnk_000.mMatrix.mUnk_00[1], &p->mUnk_11c, &p->mUnk_000.mPos);
+    VEC_MultAdd(p->mUnk_000.mExtent.x, &p->mUnk_000.mMatrix.mUnk_00[1], &p->mUnk_11c, &p->mUnk_000.mPos);
     p->mUnk_000.mPos.y = p->mUnk_000.mPos.y + p->mUnk_0bc;
     if (p->mUnk_0a0 < 0) {
         if (p->mUnk_0a0 == -1) {
@@ -354,7 +354,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             } else {
                 k = 0x834000;
             }
-            v = AngleFromPair(r->mPos.x - b->x, r->mPos.z - b->z);
+            v = FX_Atan2Idx(r->mPos.x - b->x, r->mPos.z - b->z);
             if (v >= 0 && v <= 0xaaab) {
                 n = ((u16) v >> 4) << 1;
                 a->mUnk_10.x = b->x + (s32) (((s64) gPairsByAngle[n] * 0x5dc000) >> 12);

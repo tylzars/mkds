@@ -400,7 +400,7 @@ void func_020e705c(Unk020e6fd4 *p) {
             if ((e->mFlags & 4) == 0) {
                 t = e->mPos;
                 cb(p, e);
-                Vec3Sub(&e->mPos, &t, &e->mUnk_10);
+                VEC_Subtract(&e->mPos, &t, &e->mUnk_10);
                 if (e->mSound != NULL) {
                     func_020e71a0(e);
                 }

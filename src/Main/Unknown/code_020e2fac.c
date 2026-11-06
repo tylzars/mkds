@@ -211,7 +211,7 @@ u8 func_020e311c(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d) {
             func_020d26f8(&a->mUnk_000, b);
             break;
         case 1:
-            Vec3Sub(&a->mUnk_000.mPos, &b->mPos, &v);
+            VEC_Subtract(&a->mUnk_000.mPos, &b->mPos, &v);
             if ((s64) v.z * b->mVelocity.x - (s64) v.x * b->mVelocity.z < 0) {
                 a->mUnk_0b4.mUnk_00 = 1;
             } else {
@@ -233,7 +233,7 @@ u8 func_020e2fe4(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d) {
 
     if (c[0] == 1) {
         if (b != NULL) {
-            Vec3Sub(&a->mUnk_000.mPos, &b->mUnk_050, &v);
+            VEC_Subtract(&a->mUnk_000.mPos, &b->mUnk_050, &v);
             if ((s64) v.z * b->mUnk_05c - (s64) v.x * b->mUnk_064 < 0) {
                 a->mUnk_0b4.mUnk_00 = 1;
             } else {
@@ -245,7 +245,7 @@ u8 func_020e2fe4(Unk020e1e98 *a, Unk020e246c *b, u8 *c, u8 *d) {
             a->mUnk_000.mFlags |= data_02158bb4;
             func_020f8ddc(b);
         } else {
-            Vec3Sub(&a->mUnk_000.mPos, &a->mUnk_000.mPos, &w);
+            VEC_Subtract(&a->mUnk_000.mPos, &a->mUnk_000.mPos, &w);
             if ((s64) w.z * data_02158c7c.x - (s64) w.x * data_02158c7c.z < 0) {
                 a->mUnk_0b4.mUnk_00 = 1;
             } else {

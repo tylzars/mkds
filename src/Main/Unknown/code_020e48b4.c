@@ -156,7 +156,7 @@ void func_020e4ad0(Unk020e43a8 *p) {
     s32 y;
 
     p->mUnk_00.mUnk_10.y -= 0x385;
-    Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+    VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
     y = 0;
     y += (s32) (((s64) p->mUnk_104 * (p->mUnk_00.mPos.x - p->mUnk_a0.mUnk_18.x)) >> 12);
     y += (s32) (((s64) p->mUnk_108 * (p->mUnk_00.mPos.z - p->mUnk_a0.mUnk_18.z)) >> 12);

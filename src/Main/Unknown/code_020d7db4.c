@@ -49,7 +49,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
     s64 q;
     p->mUnk_00[0] = *d;
     p->mUnk_00[3] = *e;
-    Vec3Sub(e, d, &t1);
+    VEC_Subtract(e, d, &t1);
     n = Vec3NormalizeAndGetLengthOrZero(&t1, &t2);
     if (n == 0) {
         p->mUnk_00[1] = p->mUnk_00[0];
@@ -62,7 +62,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
         return;
     }
     if (c != NULL) {
-        Vec3Sub(e, c, &t3);
+        VEC_Subtract(e, c, &t3);
         if (Vec3NormalizeAndGetLengthOrZero(&t3, &t3) != 0) {
             w = (0x1000 - Vec3DotUnrounded(&t2, &t3)) >> 1;
             u = (s32) (((s64) n * (s64) w) >> 12);
@@ -76,7 +76,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
                 t4.y = (s32) (((s64) t3.y * (s64) r) >> 12);
                 t4.z = (s32) (((s64) t3.z * (s64) r) >> 12);
             }
-            Vec3AddScaled(0x555, &t4, &p->mUnk_00[0], &p->mUnk_00[1]);
+            VEC_MultAdd(0x555, &t4, &p->mUnk_00[0], &p->mUnk_00[1]);
         } else {
             p->mUnk_00[1] = p->mUnk_00[0];
         }
@@ -84,7 +84,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
         p->mUnk_00[1] = p->mUnk_00[0];
     }
     if (f != NULL) {
-        Vec3Sub(f, d, &t5);
+        VEC_Subtract(f, d, &t5);
         if (Vec3NormalizeAndGetLengthOrZero(&t5, &t5) != 0) {
             w = (0x1000 - Vec3DotUnrounded(&t2, &t5)) >> 1;
             v = (s32) (((s64) n * (s64) w) >> 12);
@@ -98,7 +98,7 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
                 t6.y = (s32) (((s64) t5.y * (s64) r) >> 12);
                 t6.z = (s32) (((s64) t5.z * (s64) r) >> 12);
             }
-            Vec3AddScaled(-0x555, &t6, &p->mUnk_00[3], &p->mUnk_00[2]);
+            VEC_MultAdd(-0x555, &t6, &p->mUnk_00[3], &p->mUnk_00[2]);
         } else {
             p->mUnk_00[2] = p->mUnk_00[3];
         }
@@ -106,13 +106,13 @@ void func_020d80e4(Unk020e0144_00_0 *p, s32 a, s32 b, Vec3 *c, Vec3 *d, Vec3 *e,
         p->mUnk_00[2] = p->mUnk_00[3];
     }
     p->mUnk_40 = n;
-    p->mUnk_44 = DivFixed12(0x1000000, p->mUnk_40);
+    p->mUnk_44 = FX_Div(0x1000000, p->mUnk_40);
     p->mUnk_38 = v + (n + u);
-    p->mUnk_3c = DivFixed12(0x1000000, p->mUnk_38);
+    p->mUnk_3c = FX_Div(0x1000000, p->mUnk_38);
     p->mUnk_30 = p->mUnk_38;
     p->mUnk_34 = p->mUnk_3c;
     if (b != 0) {
-        r = Vec3Dot(&t2, &data_02158088);
+        r = VEC_DotProduct(&t2, &data_02158088);
         p->mUnk_48.x = data_02158088.x - (s32) (((s64) t2.x * (s64) r) >> 12);
         p->mUnk_48.y = data_02158088.y - (s32) (((s64) t2.y * (s64) r) >> 12);
         p->mUnk_48.z = data_02158088.z - (s32) (((s64) t2.z * (s64) r) >> 12);

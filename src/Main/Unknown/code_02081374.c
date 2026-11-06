@@ -38,7 +38,7 @@ void func_020813ec(s32 a, Vec3 *b) {
     v.y = (s32) (((s64) q->mEffectVelocity.y * 0xccd) >> 12);
     v.z = (s32) (((s64) q->mEffectVelocity.z * 0xccd) >> 12);
     e->mUnk_28->mUnk_40 = v;
-    Vec3AddScaled(-q->mRadius, b, q->mPosSource, &w);
+    VEC_MultAdd(-q->mRadius, b, q->mPosSource, &w);
     func_0208b5b0(e->mUnk_28, &w);
     h.x = b->x;
     h.y = b->y;

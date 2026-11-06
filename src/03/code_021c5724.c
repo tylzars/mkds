@@ -106,7 +106,7 @@ void func_ov003_021c6508(void) {
         data_ov003_021da1f4->mUnk_53 = 0x37;
     }
     if (a != 0) {
-        b = Div32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40);
+        b = FX_DivS32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40);
     }
     func_ov003_021ccea4(a, 0x55, 0xec, 0x3f, b);
 }
@@ -283,7 +283,7 @@ void func_ov003_021c5f9c(void) {
             if (data_ov003_021da1f4->mUnk_55 == 0) {
                 func_ov003_021bf698();
                 *(u16 *) &data_ov003_021da1f0 =
-                    Div32(data_ov003_021da1f4->mUnk_40 * func_ov003_021cce6c(), data_ov003_021da1f4->mUnk_53);
+                    FX_DivS32(data_ov003_021da1f4->mUnk_40 * func_ov003_021cce6c(), data_ov003_021da1f4->mUnk_53);
                 func_ov003_021c5c68();
                 data_ov003_021da1f4->mUnk_55 = 4;
             }
@@ -292,10 +292,10 @@ void func_ov003_021c5f9c(void) {
             data_ov003_021da1f4->mUnk_57 = 0;
             func_ov003_021bf2e0();
             *(u16 *) &data_ov003_021da1f0 =
-                Div32(data_ov003_021da1f4->mUnk_40 * func_ov003_021cce6c(), data_ov003_021da1f4->mUnk_53);
+                FX_DivS32(data_ov003_021da1f4->mUnk_40 * func_ov003_021cce6c(), data_ov003_021da1f4->mUnk_53);
             func_ov003_021cdc10(0x13);
             func_ov003_021c5c68();
-            a = Div32Remainder(*(u16 *) &data_ov003_021da1f0, 0x1c);
+            a = FX_ModS32(*(u16 *) &data_ov003_021da1f0, 0x1c);
             if (a == 0) {
                 func_ov003_021c590c();
             } else if (a < 0xe) {
@@ -347,7 +347,7 @@ void func_ov003_021c5ec4(void) {
                     func_ov003_021cdc10(6);
                     func_ov003_021c5724();
                 } else {
-                    b = data_ov003_021da1ec + Div32(*(u16 *) &data_ov003_021da1f0, 0x1c);
+                    b = data_ov003_021da1ec + FX_DivS32(*(u16 *) &data_ov003_021da1f0, 0x1c);
                     if ((data_ov003_021da1f4->mUnk_00 + b * 0x2a)[0x28] == 2) {
                         func_ov003_021cdc10(9);
                         func_ov003_021cce38();
@@ -451,7 +451,7 @@ void func_ov003_021c5c68(void) {
     int v2;
     int v3;
     int v4;
-    v1 = Div32((u32) ((*(u16 *) &data_ov003_021da1f0)), 0x1c);
+    v1 = FX_DivS32(*(u16 *) &data_ov003_021da1f0, 0x1c);
     v4 = data_ov003_021da1f4->mUnk_51;
     func_ov003_021d2060(data_ov003_021da1f4->mUnk_0c, 0);
     if (5 < v4) {
@@ -531,7 +531,7 @@ void func_ov003_021c5aa4(void) {
     int a;
     int b;
     int i;
-    a = 0x36 - Div32Remainder(*(u16 *) &data_ov003_021da1f0, 0x1c);
+    a = 0x36 - FX_ModS32(*(u16 *) &data_ov003_021da1f0, 0x1c);
     b = data_ov003_021da1f4->mUnk_51;
     if (b > 5) {
         b = 5;
@@ -555,7 +555,7 @@ void func_ov003_021c5a0c(u32 param_0) {
     } else {
         *(u16 *) &data_ov003_021da1f0 = 0;
     }
-    a = Div32Remainder(*(u16 *) &data_ov003_021da1f0, 0x1c);
+    a = FX_ModS32(*(u16 *) &data_ov003_021da1f0, 0x1c);
     if (a == 0x18) {
         func_ov003_021c5c68();
         return;
@@ -567,7 +567,7 @@ void func_ov003_021c5a0c(u32 param_0) {
     func_ov003_021c5aa4();
     if (a == 0) {
         func_ov003_021cce58(
-            Div32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40));
+            FX_DivS32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40));
         func_ov003_021cce48();
         func_ov003_021c590c();
         data_ov003_021da1f4->mUnk_38 = 0;
@@ -580,7 +580,7 @@ void func_ov003_021c5994(u32 param_0) {
     func_ov003_021cce38();
     func_ov003_021bf698();
     *(u16 *) &data_ov003_021da1f0 = *(u16 *) &data_ov003_021da1f0 + 4;
-    a = Div32Remainder(*(u16 *) &data_ov003_021da1f0, 0x1c);
+    a = FX_ModS32(*(u16 *) &data_ov003_021da1f0, 0x1c);
     if (a >= 4) {
         func_ov003_021c5aa4();
         return;
@@ -588,7 +588,7 @@ void func_ov003_021c5994(u32 param_0) {
     *(u16 *) &data_ov003_021da1f0 = *(u16 *) &data_ov003_021da1f0 - a;
     func_ov003_021c5c68();
     func_ov003_021cce58(
-        Div32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40));
+        FX_DivS32(*(u16 *) &data_ov003_021da1f0 * data_ov003_021da1f4->mUnk_53, data_ov003_021da1f4->mUnk_40));
     func_ov003_021cce48();
     func_ov003_021c590c();
     data_ov003_021da1f4->mUnk_38 = 0;
@@ -599,7 +599,7 @@ void func_ov003_021c5944(void) {
     int v1;
     u32 v2;
     if (data_ov003_021da1f4->mUnk_56 != 0) {
-        v1 = Div32Remainder((u32) ((*(u16 *) &data_ov003_021da1f0)), (u32) 0x1c);
+        v1 = FX_ModS32(*(u16 *) &data_ov003_021da1f0, 0x1c);
         v2 = (v1 + -0x32) * 0x10000 & ((u32) 0x01ff0000u);
         reg_G2_BG0OFS = v2;
         reg_G2_BG2OFS = v2;

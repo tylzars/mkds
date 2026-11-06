@@ -33,8 +33,8 @@ void bindMdlTex_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data, Unk02010294 
         matData->mUnk_14 |= texData->mUnk_00 + vramOffset;
         width = texData->mUnk_04 & 0x7ff;
         height = (texData->mUnk_04 >> 11) & 0x7ff;
-        matData->mUnk_24 = (width == matData->mUnk_20) ? 0x1000 : DivFixed12(width << 12, matData->mUnk_20 << 12);
-        matData->mUnk_28 = (height == matData->mUnk_22) ? 0x1000 : DivFixed12(height << 12, matData->mUnk_22 << 12);
+        matData->mUnk_24 = (width == matData->mUnk_20) ? 0x1000 : FX_Div(width << 12, matData->mUnk_20 << 12);
+        matData->mUnk_28 = (height == matData->mUnk_22) ? 0x1000 : FX_Div(height << 12, matData->mUnk_22 << 12);
     }
     data->mUnk_03 |= 1;
 }

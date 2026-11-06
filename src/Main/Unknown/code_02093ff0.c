@@ -256,7 +256,7 @@ void func_02094000(Vec3 *a) {
         e = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x30);
         c = (u16) (func_02094000_inline(&gRaceProgress->mLocalRandom, 0) >> 20);
         b = func_02094000_inline(&gRaceProgress->mLocalRandom, 0x5555);
-        k = AngleFromPair(g->mLookAt.z - g->mPos.z, g->mLookAt.x - g->mPos.x) + b - 0x2aaa;
+        k = FX_Atan2Idx(g->mLookAt.z - g->mPos.z, g->mLookAt.x - g->mPos.x) + b - 0x2aaa;
         func_02094000_inline_2(&o->mUnk_bc, func_02094000_inline(&gRaceProgress->mLocalRandom, 0x10000), k, c + 0x1000,
                                0, e + 0x60, 0);
     } else {

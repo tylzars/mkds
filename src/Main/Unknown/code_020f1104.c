@@ -28,6 +28,6 @@ void func_020f112c(Unk020f5d6c *a, int b) {
 }
 
 void func_020f1104(Unk020f5d6c *a) {
-    Vec3Add(&a->mUnk_22c, &a->mUnk_000.mUnk_000.mUnk_000.mVelocity, &a->mUnk_000.mUnk_000.mUnk_000.mVelocity);
+    VEC_Add(&a->mUnk_22c, &a->mUnk_000.mUnk_000.mUnk_000.mVelocity, &a->mUnk_000.mUnk_000.mUnk_000.mVelocity);
     func_020f29e8(a);
 }

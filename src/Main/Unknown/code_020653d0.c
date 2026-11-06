@@ -38,9 +38,9 @@ static inline void func_020653d0_inline(Kart *o, Kart *o2, Vec3 *t) {
     Vec3 t2;
 
     *t = *(Vec3 *) &o2->mUnk_120;
-    Vec3Sub(&o->mPos, &o2->mPos, &t1);
-    Vec3Cross(&o2->mUnk_138, &t1, &t2);
-    if (Vec3Dot(&t2, &o2->mUnk_12c) < 0) {
+    VEC_Subtract(&o->mPos, &o2->mPos, &t1);
+    VEC_CrossProduct(&o2->mUnk_138, &t1, &t2);
+    if (VEC_DotProduct(&t2, &o2->mUnk_12c) < 0) {
         t->x = -t->x;
         t->y = -t->y;
         t->z = -t->z;
@@ -153,7 +153,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
         q->mUnk_a8 = v4;
         v.y += 0x14000;
-        Vec3Add(&v, &v4, &v);
+        VEC_Add(&v, &v4, &v);
         p->mPos = v;
         p->mPrevPos = p->mPos;
         p->mUnk_98 = p->mPrevPos;
@@ -167,7 +167,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         }
     } else if (!(p->mUnk_48 & 0x20000)) {
         v6 = p->mPrevPos;
-        Vec3Add(&v, &q->mUnk_a8, &v);
+        VEC_Add(&v, &q->mUnk_a8, &v);
         func_020d5180(&v, n * 0xd000 + p->mRadius, 0x8000);
         for (i = 0; i < n; i++) {
             if (p->mUnk_48 & 0x40) {
@@ -195,9 +195,9 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 v2.x = (s32) (((s64) p->mUnk_50.x * k) >> 12);
                 v2.y = (s32) (((s64) p->mUnk_50.y * k) >> 12);
                 v2.z = (s32) (((s64) p->mUnk_50.z * k) >> 12);
-                Vec3Add(&v, &v2, &v);
-                Vec3Add(&v, &p->mUnk_2d8, &v);
-                Vec3Add(&p->mVelocity, &p->mUnk_2d8, &p->mVelocity);
+                VEC_Add(&v, &v2, &v);
+                VEC_Add(&v, &p->mUnk_2d8, &v);
+                VEC_Add(&p->mVelocity, &p->mUnk_2d8, &p->mVelocity);
                 if (p->mUnk_514->mUnk_44 & 1) {
                     p->mVerticalSpeed = 0;
                 }
@@ -215,7 +215,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 }
             }
             if (func_01ffdee4(&v, (u32 *) &v6, 0, p->mRadius, 1, p->mUnk_2c8, &v5, 0, 0, &w, 0, 0, 0, 0)) {
-                Vec3Add(&v, &v5, &v);
+                VEC_Add(&v, &v5, &v);
             }
             v6 = v;
         }
@@ -428,7 +428,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == 4) {
             goto l7;
         }
-        Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
+        VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
@@ -449,7 +449,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == 4) {
             goto l8;
         }
-        Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
+        VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
@@ -470,7 +470,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == 4) {
             goto l9;
         }
-        Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
+        VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
@@ -491,7 +491,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == 4) {
             goto l10;
         }
-        Vec3Sub(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
+        VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }

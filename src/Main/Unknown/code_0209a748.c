@@ -55,7 +55,7 @@ void func_0209b388(Crab *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     s32 z;
 
     if (b != NULL && c != NULL) {
-        Vec3Sub(&a->mUnk_000.mPos, b, &v);
+        VEC_Subtract(&a->mUnk_000.mPos, b, &v);
         z = c->z;
         x = c->x;
         if ((s64) v.z * x - (s64) v.x * z < 0) {
@@ -273,11 +273,11 @@ void UpdateCrab(void *a, Crab *b) {
             func_0209a7dc_inline(&b->mUnk_0d0);
             func_020d8a5c(&b->mUnk_0f0, &b->mUnk_000.mPos);
             v = *func_020d88fc(&b->mUnk_0f0);
-            Vec3Sub(&v, &b->mUnk_000.mMatrix.mUnk_00[1], &v);
+            VEC_Subtract(&v, &b->mUnk_000.mMatrix.mUnk_00[1], &v);
             v.x = ((s64) v.x * 0x800) >> 12;
             v.y = ((s64) v.y * 0x800) >> 12;
             v.z = ((s64) v.z * 0x800) >> 12;
-            Vec3Add(&b->mUnk_000.mMatrix.mUnk_00[1], &v, &b->mUnk_000.mMatrix.mUnk_00[1]);
+            VEC_Add(&b->mUnk_000.mMatrix.mUnk_00[1], &v, &b->mUnk_000.mMatrix.mUnk_00[1]);
             if ((s64) b->mUnk_000.mMatrix.mUnk_00[1].x * b->mUnk_000.mMatrix.mUnk_00[1].x +
                     (s64) b->mUnk_000.mMatrix.mUnk_00[1].y * b->mUnk_000.mMatrix.mUnk_00[1].y +
                     (s64) b->mUnk_000.mMatrix.mUnk_00[1].z * b->mUnk_000.mMatrix.mUnk_00[1].z >=
@@ -288,7 +288,7 @@ void UpdateCrab(void *a, Crab *b) {
         case 2:
             if (b->mUnk_0a4-- > 0) {
                 b->mUnk_000.mUnk_10.y -= 0x400;
-                Vec3Add(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
+                VEC_Add(&b->mUnk_000.mPos, &b->mUnk_000.mUnk_10, &b->mUnk_000.mPos);
                 b->mUnk_0a2 += b->mUnk_0a0;
                 return;
             }

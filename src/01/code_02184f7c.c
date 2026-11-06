@@ -97,8 +97,8 @@ void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
                     u16 idx = func_020ae5c4(b);
                     s32 mtx[4] = {0, 0, 0, 0};
 
-                    mtx[0] = DivFixed12(0x1000, entry->mUnk_18);
-                    mtx[3] = DivFixed12(0x1000, entry->mUnk_18);
+                    mtx[0] = FX_Div(0x1000, entry->mUnk_18);
+                    mtx[3] = FX_Div(0x1000, entry->mUnk_18);
                     ((Unk0218516c_000 *) b->mUnk_000)[idx].mUnk_06 = mtx[0] >> 4;
                     ((Unk0218516c_000 *) b->mUnk_000)[idx].mUnk_0e = mtx[1] >> 4;
                     ((Unk0218516c_000 *) b->mUnk_000)[idx].mUnk_16 = mtx[2] >> 4;

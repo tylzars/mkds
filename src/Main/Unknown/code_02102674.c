@@ -146,9 +146,9 @@ void func_0210298c(Unk02102674 *p) {
     p->mUnk_000.mPos.x = (s32) (((s64) s->mSide.x * -w.x) >> 12);
     p->mUnk_000.mPos.y = (s32) (((s64) s->mSide.y * -w.x) >> 12);
     p->mUnk_000.mPos.z = (s32) (((s64) s->mSide.z * -w.x) >> 12);
-    Vec3AddScaled(w.y, &s->mUp, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
-    Vec3AddScaled(-w.z, &s->mForward, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
-    Vec3Add(&s->mPos, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
+    VEC_MultAdd(w.y, &s->mUp, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
+    VEC_MultAdd(-w.z, &s->mForward, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
+    VEC_Add(&s->mPos, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
 }
 
 void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
@@ -172,7 +172,7 @@ void func_021027ac(Unk02102674 *p, s32 param_2, Unk020e6488 *t) {
     s.mUnk_00[1].x = (s32) (((s64) s.mUnk_00[1].x * d) >> 12);
     s.mUnk_00[1].y = (s32) (((s64) s.mUnk_00[1].y * d) >> 12);
     s.mUnk_00[1].z = (s32) (((s64) s.mUnk_00[1].z * d) >> 12);
-    Vec3AddScaled(p->mUnk_19c, &s.mUnk_00[0], &s.mUnk_00[1], &s.mUnk_00[1]);
+    VEC_MultAdd(p->mUnk_19c, &s.mUnk_00[0], &s.mUnk_00[1], &s.mUnk_00[1]);
     w.x = (s32) (((s64) p->mUnk_180 * p->mUnk_000.mUnk_68.x) >> 12);
     w.y = (s32) (((s64) p->mUnk_184.x * p->mUnk_000.mUnk_68.y) >> 12);
     w.z = p->mUnk_000.mUnk_68.z;

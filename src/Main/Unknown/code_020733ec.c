@@ -121,7 +121,7 @@ void func_02073630(void) {
                 break;
         }
     }
-    data_usa_021654ec = DivFixed12(0x1000, ((s64) (s32) func_0208ae60() * 0xd9aLL) >> 12);
+    data_usa_021654ec = FX_Div(0x1000, ((s64) (s32) func_0208ae60() * 0xd9aLL) >> 12);
 }
 
 void func_020733ec(Kart *p) {
@@ -134,7 +134,7 @@ void func_020733ec(Kart *p) {
     func_020726bc(p);
     func_02071e28(p);
     if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
-        func_0207a73c(DivFixed12(0x1000, p->mPhysicalParam->mBaseSpeedLimit));
+        func_0207a73c(FX_Div(0x1000, p->mPhysicalParam->mBaseSpeedLimit));
     }
     func_02071c18(p);
     func_020e0650((u32 *) &p->mUnk_208);

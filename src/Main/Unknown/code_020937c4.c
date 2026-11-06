@@ -189,7 +189,7 @@ void UpdateNsKiller2(void *a, NsKiller2 *p) {
                 } else {
                     func_0210b7ec(p->mUnk_a8, func_020d4ef4(&p->mUnk_00.mPos));
                 }
-                Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+                VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
                 if (p->mUnk_a0 < 0x24e) {
                     StartMapObjectSoundWhileRequested(&p->mUnk_00, 0x17d);
                 }
@@ -200,7 +200,7 @@ void UpdateNsKiller2(void *a, NsKiller2 *p) {
         case 1:
             if (p->mUnk_a0-- > 0) {
                 p->mUnk_00.mUnk_10.y -= 0x400;
-                Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+                VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             } else {
                 ParkMapObject(&p->mUnk_00);
             }

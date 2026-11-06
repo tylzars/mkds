@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-s16 func_02148538(s32 a, s32 b);
-u16 AngleFromPair(s32 a, s32 b);
+s16 FX_Atan2(s32 y, s32 x);
+u16 FX_Atan2Idx(s32 y, s32 x);

@@ -163,8 +163,8 @@ void ResetKartToRespawnPoint(Kart *p) {
         x = data_usa_02154d4c[p->mIndex][0];
         y = data_usa_02154d50[p->mIndex][0];
         Vec3CrossUnrounded(&data_02154f7c, &b, &d);
-        Vec3AddScaled((s32) (((s64) data_usa_02165504 * x) >> 12), &d, &a, &a);
-        Vec3AddScaled((s32) (((s64) data_usa_02165504 * y) >> 12), &b, &a, &a);
+        VEC_MultAdd((s32) (((s64) data_usa_02165504 * x) >> 12), &d, &a, &a);
+        VEC_MultAdd((s32) (((s64) data_usa_02165504 * y) >> 12), &b, &a, &a);
         if (c.x != 0 && y != 0) {
             i = ((u16) ((s32) (((s64) c.x * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
             l = gPairsByAngle[i * 2];
@@ -253,7 +253,7 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
         q->mUnk_b4 = 0;
     }
     if (b != NULL) {
-        p->mHeadingAngle = (s32) (((s64) func_02148538(b->x, b->z) * 0x28be60dLL) >> 12) >> 12;
+        p->mHeadingAngle = (s32) (((s64) FX_Atan2(b->x, b->z) * 0x28be60dLL) >> 12) >> 12;
         v = data_02165524;
         QuaternionFromAxisAngle(&v, p->mHeadingAngle, &p->mUnk_e0_m);
     }
@@ -402,7 +402,7 @@ void func_020726bc(Kart *p) {
     p->mPhysicalParam->mBaseSpeedLimit = (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * a) >> 12);
     p->mPhysicalParam->mUnk_32 = p->mPhysicalParam->mUnk_32 + b;
     p->mUnk_3f4 = 0x1000 - p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
-    p->mUnk_3f4 = DivFixed12(p->mUnk_3f4, p->mPhysicalParam->mRadius << 1);
+    p->mUnk_3f4 = FX_Div(p->mUnk_3f4, p->mPhysicalParam->mRadius << 1);
     p->mCharPhysicalParam = GetCharPhysicalParam(p->mIndex);
     q = p->mPhysicalParam;
     r = p->mCharPhysicalParam;
@@ -788,10 +788,10 @@ void func_020719d0(Kart *p) {
     q->mUnk_0c = 0;
     q->mUnk_10 = 0;
     q->mUnk_14 = 0;
-    q->mUnk_18 = DivFixed12(0x300000, 0xd000 - p->mPhysicalParam->mBaseSpeedLimit);
-    q->mUnk_1c = DivFixed12(0x580000, p->mPhysicalParam->mBaseSpeedLimit);
-    q->mUnk_20 = DivFixed12(0x480000, p->mPhysicalParam->mBaseSpeedLimit);
-    q->mUnk_24 = DivFixed12(0x280000, p->mPhysicalParam->mBaseSpeedLimit);
+    q->mUnk_18 = FX_Div(0x300000, 0xd000 - p->mPhysicalParam->mBaseSpeedLimit);
+    q->mUnk_1c = FX_Div(0x580000, p->mPhysicalParam->mBaseSpeedLimit);
+    q->mUnk_20 = FX_Div(0x480000, p->mPhysicalParam->mBaseSpeedLimit);
+    q->mUnk_24 = FX_Div(0x280000, p->mPhysicalParam->mBaseSpeedLimit);
     q->mUnk_28 = 0;
     q->mUnk_2c = 0;
     q->mUnk_30 = 0;
@@ -1287,11 +1287,11 @@ void func_020708a4(Kart *p) {
 
     data_0217566a[p->mEntryIndex].mBitMask = 0xe04;
     Vec3CrossUnrounded(&data_02154f7c, &e, &f);
-    Vec3Sub(&p->mPos, &a, &g);
+    VEC_Subtract(&p->mPos, &a, &g);
     g.y = 0;
-    Vec3AddScaled(Vec3DotUnrounded(&f, &g), &f, &a, &a);
+    VEC_MultAdd(Vec3DotUnrounded(&f, &g), &f, &a, &a);
     Vec3DotUnrounded(&f, &g);
-    Vec3Sub(&a, &p->mPos, &c);
+    VEC_Subtract(&a, &p->mPos, &c);
     d = func_020708a4_inline(&c, &c);
 
     if (Vec3DotUnrounded(&c, &e) <= 0) {
@@ -1311,7 +1311,7 @@ void func_020708a4(Kart *p) {
         h.y = 0;
         p->mUnk_3a8 = 0x1000;
         func_020708a4_inline(&h, &h);
-        p->mHeadingAngle = (s32) (((s64) func_02148538(h.x, h.z) * 0x28be60d) >> 12) >> 12;
+        p->mHeadingAngle = (s32) (((s64) FX_Atan2(h.x, h.z) * 0x28be60d) >> 12) >> 12;
         q = data_02165524;
         QuaternionFromAxisAngle(&q, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
         Vec3CrossUnrounded(&data_02154f7c, &p->mUnk_50, &l);
@@ -1342,7 +1342,7 @@ void func_020708a4(Kart *p) {
         }
     }
     p->mVelocity = m2.mUnk_00[3];
-    Vec3Add(&p->mPos, &p->mVelocity, &p->mPos);
+    VEC_Add(&p->mPos, &p->mVelocity, &p->mPos);
 }
 
 void func_020705fc(Kart *p, u32 b) {
@@ -1369,7 +1369,7 @@ void func_020705fc(Kart *p, u32 b) {
     Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &e);
     if (data_021759c0->mMode == MODE_BATTLE) {
-        Vec3Sub(&a, &p->mPos, &v);
+        VEC_Subtract(&a, &p->mPos, &v);
         func_020a21bc(p->mIndex, (s32) &v);
     }
     p->mPos = a;
@@ -1378,7 +1378,7 @@ void func_020705fc(Kart *p, u32 b) {
     p->mForwardSpeed = 0x5000;
     p->mUnk_50 = e;
     p->mUnk_68 = p->mUnk_50;
-    p->mHeadingAngle = (s32) (((s64) func_02148538(e.x, e.z) * 0x28be60dLL) >> 12) >> 12;
+    p->mHeadingAngle = (s32) (((s64) FX_Atan2(e.x, e.z) * 0x28be60dLL) >> 12) >> 12;
     w = data_02165524;
     QuaternionFromAxisAngle(&w, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {

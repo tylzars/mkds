@@ -130,17 +130,17 @@ BOOL IsPosInCourseMapShapeBox(Vec3 *a, CourseMapShape *b) {
     s32 d;
     s32 t;
 
-    Vec3Sub(a, (Vec3 *) b, &v);
-    d = Vec3Dot(&v, &b->mUnk_24);
+    VEC_Subtract(a, (Vec3 *) b, &v);
+    d = VEC_DotProduct(&v, &b->mUnk_24);
     if (d > (s32) (((s64) b->mUnk_0c.y * 0x64000 + 0x800) >> 12) || d < 0) {
         return FALSE;
     }
-    d = Vec3Dot(&v, &b->mUnk_18);
+    d = VEC_DotProduct(&v, &b->mUnk_18);
     t = (s32) (((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12);
     if (d < -t || d > t) {
         return FALSE;
     }
-    d = Vec3Dot(&v, &b->mUnk_30);
+    d = VEC_DotProduct(&v, &b->mUnk_30);
     t = (s32) (((s64) b->mUnk_0c.z * 0x32000 + 0x800) >> 12);
     if (d < -t || d > t) {
         return FALSE;
@@ -160,12 +160,12 @@ s32 IsPosInCourseMapShape(Vec3 *a, CourseMapShape *b) {
             r = IsPosInCourseMapShapeBox(a, b);
             break;
         case 1:
-            Vec3Sub(a, (Vec3 *) b, &v);
-            if (Vec3Dot(&v, &b->mUnk_24) > (s32) (((s64) b->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+            VEC_Subtract(a, (Vec3 *) b, &v);
+            if (VEC_DotProduct(&v, &b->mUnk_24) > (s32) (((s64) b->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
                 r = 0;
             } else {
-                x = Vec3Dot(&v, &b->mUnk_18) >> 4;
-                y = Vec3Dot(&v, &b->mUnk_30) >> 4;
+                x = VEC_DotProduct(&v, &b->mUnk_18) >> 4;
+                y = VEC_DotProduct(&v, &b->mUnk_30) >> 4;
                 z = (s32) (((s64) b->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                 r = (s32) (((s64) z * z + 0x800) >> 12) >=
                     (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12);
@@ -194,10 +194,10 @@ s32 func_0204176c(Vec3 *a, s32 *b) {
                     t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
-                    Vec3Sub(a, (Vec3 *) p, &v);
-                    if (Vec3Dot(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = Vec3Dot(&v, &p->mUnk_18) >> 4;
-                        y = Vec3Dot(&v, &p->mUnk_30) >> 4;
+                    VEC_Subtract(a, (Vec3 *) p, &v);
+                    if (VEC_DotProduct(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                        x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
+                        y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                         if ((s32) (((s64) z * z + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
@@ -242,10 +242,10 @@ void *FindCourseMapKind4ShapeRacePointLink(Vec3 *a) {
                     t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
-                    Vec3Sub(a, (Vec3 *) p, &v);
-                    if (Vec3Dot(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = Vec3Dot(&v, &p->mUnk_18) >> 4;
-                        y = Vec3Dot(&v, &p->mUnk_30) >> 4;
+                    VEC_Subtract(a, (Vec3 *) p, &v);
+                    if (VEC_DotProduct(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                        x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
+                        y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                         if ((s32) (((s64) z * z + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
@@ -285,10 +285,10 @@ Unk02175620_bc *FindCourseMapKind4ShapeBattlePointLink(Vec3 *a) {
                     t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
-                    Vec3Sub(a, (Vec3 *) p, &v);
-                    if (Vec3Dot(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                        x = Vec3Dot(&v, &p->mUnk_18) >> 4;
-                        y = Vec3Dot(&v, &p->mUnk_30) >> 4;
+                    VEC_Subtract(a, (Vec3 *) p, &v);
+                    if (VEC_DotProduct(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                        x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
+                        y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                         if ((s32) (((s64) z * z + 0x800) >> 12) >=
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
@@ -325,12 +325,12 @@ s32 GetCourseMapCameraIndexAtPos(Vec3 *a) {
                     t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
-                    Vec3Sub(a, (Vec3 *) p, &v);
-                    if (Vec3Dot(&v, &p->mUnk_24) > (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                    VEC_Subtract(a, (Vec3 *) p, &v);
+                    if (VEC_DotProduct(&v, &p->mUnk_24) > (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
                         t = 0;
                     } else {
-                        x = Vec3Dot(&v, &p->mUnk_18) >> 4;
-                        y = Vec3Dot(&v, &p->mUnk_30) >> 4;
+                        x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
+                        y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
                         z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                         if ((s32) (((s64) z * z + 0x800) >> 12) <
                             (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {
@@ -465,10 +465,10 @@ s32 IsKartInCourseMapKind3ShapeList(s32 a, u32 b) {
                 t = IsPosInCourseMapShapeBox(&v, p);
                 break;
             case 1:
-                Vec3Sub(&v, (Vec3 *) p, &w);
-                if (Vec3Dot(&w, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
-                    x = Vec3Dot(&w, &p->mUnk_18) >> 4;
-                    y = Vec3Dot(&w, &p->mUnk_30) >> 4;
+                VEC_Subtract(&v, (Vec3 *) p, &w);
+                if (VEC_DotProduct(&w, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
+                    x = VEC_DotProduct(&w, &p->mUnk_18) >> 4;
+                    y = VEC_DotProduct(&w, &p->mUnk_30) >> 4;
                     z = (s32) (((s64) p->mUnk_0c.x * 0x32000 + 0x800) >> 12) >> 4;
                     if ((s32) (((s64) z * z + 0x800) >> 12) >=
                         (s32) (((s64) x * x + 0x800) >> 12) + (s32) (((s64) y * y + 0x800) >> 12)) {

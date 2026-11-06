@@ -39,11 +39,11 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
             {
                 Vec3 b;
 
-                Vec3Sub(&d->mUnk_000.mPos, &e->mCollisionCenter, &b);
+                VEC_Subtract(&d->mUnk_000.mPos, &e->mCollisionCenter, &b);
                 if ((s64) b.z * b.z + ((s64) b.x * b.x + (s64) b.y * b.y) >= 0x10) {
                     Vec3NormalizeAndGetLengthUnchecked(&b, &b);
                 }
-                Vec3AddScaled(e->mRadius, &b, &e->mCollisionCenter, &b);
+                VEC_MultAdd(e->mRadius, &b, &e->mCollisionCenter, &b);
                 if (d->mUnk_000.mKind == 0x1f5) {
                     d->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                     StopSound(&d->mUnk_000.mSound->mSoundSource, 0x214);

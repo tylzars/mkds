@@ -113,10 +113,10 @@ void func_ov001_02192694(void) {
     other = GetKart((u16) data_021759c0->mEntryIndex);
     if (obj->mUnk_0a8 == 4) {
         a0 = obj->mPrm;
-        ang = AngleFromPair(other->mPos.z - obj->mUnk_000.mPos.z, other->mPos.x - obj->mUnk_000.mPos.x) - a0->mUnk_26c;
+        ang = FX_Atan2Idx(other->mPos.z - obj->mUnk_000.mPos.z, other->mPos.x - obj->mUnk_000.mPos.x) - a0->mUnk_26c;
     } else {
         a0 = obj->mPrm;
-        ang = a0->mUnk_26c + AngleFromPair(other->mPos.z - obj->mUnk_000.mPos.z, other->mPos.x - obj->mUnk_000.mPos.x);
+        ang = a0->mUnk_26c + FX_Atan2Idx(other->mPos.z - obj->mUnk_000.mPos.z, other->mPos.x - obj->mUnk_000.mPos.x);
     }
     idx = (ang >> 4) * 2;
     pos.x = obj->mUnk_000.mPos.x + (s32) (((s64) a0->mUnk_270 * gPairsByAngle[idx + 1]) >> 12);
@@ -1223,7 +1223,7 @@ void func_ov001_0218fd20(Unk02188950 *a, Unk0218fd20 *b) {
     int limit;
     Vec3 vec;
 
-    diff = (u16) (AngleFromPair(b->mUnk_50.x - a->mUnk_000.mPos.x, b->mUnk_50.z - a->mUnk_000.mPos.z) - a->mAngle);
+    diff = (u16) (FX_Atan2Idx(b->mUnk_50.x - a->mUnk_000.mPos.x, b->mUnk_50.z - a->mUnk_000.mPos.z) - a->mAngle);
     if (diff > 0x8000) {
         diff -= 0x10000;
     }

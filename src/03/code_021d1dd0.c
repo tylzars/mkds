@@ -16,7 +16,7 @@ void func_ov003_021d1e14(u32 param_1, Unk021d1da8 *param_2) {
     u8 d;
 
     param_2->mFrames++;
-    c = Div32(param_2->mFrames << 4, param_2->mFrameCount);
+    c = FX_DivS32(param_2->mFrames << 4, param_2->mFrameCount);
     d = a[param_2->mUnk_08];
     if (d & 1) {
         c = 0x10 - c;

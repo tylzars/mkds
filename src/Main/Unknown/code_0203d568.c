@@ -111,7 +111,7 @@ static inline s32 func_0203df74_c_inline(CourseMapRoute *r, u16 c, s32 v) {
     if (r->mEntryCount == 0) {
         x = 0;
     } else {
-        x = DivFixed12(t + v, r->mEntryCount << 12);
+        x = FX_Div(t + v, r->mEntryCount << 12);
     }
     t = x + (r->mLapProgressBase << 12);
     return (s32) (((s64) t * gRaceProgress->mLapProgressScale + 0x800) >> 12);

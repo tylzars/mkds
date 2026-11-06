@@ -137,21 +137,21 @@ void func_02064f50(Kart *a) {
     e = a->mPos;
     e.y = e.y - b->mUnk_60;
     c = b->mUnk_24;
-    Vec3Sub(&e, &b->mUnk_00, &f);
+    VEC_Subtract(&e, &b->mUnk_00, &f);
     f.x = (s64) f.x * c >> 12;
     f.y = (s64) f.y * c >> 12;
     f.z = (s64) f.z * c >> 12;
-    Vec3Add(&b->mUnk_00, &f, &b->mUnk_00);
+    VEC_Add(&b->mUnk_00, &f, &b->mUnk_00);
     if ((a->mUnk_514->mUnk_44 & 1) != 0) {
         ComputeKartPointAlongUp(&g, &b->mUnk_00, 0x400, a);
         k = &a->mUnk_12c;
         h.x = (s64) k->x * -0x7000 >> 12;
         h.y = (s64) k->y * -0x7000 >> 12;
         h.z = (s64) k->z * -0x7000 >> 12;
-        Vec3Add(&g, &h, &g);
+        VEC_Add(&g, &h, &g);
         if (func_01ffdee4(&g, NULL, 0, a->mRadius, 1, a->mUnk_2c8, &i, NULL, NULL, &j, NULL, NULL, NULL, NULL) != 0) {
-            Vec3Add(&i, &h, &i);
-            Vec3Add(&b->mUnk_00, &i, &b->mUnk_00);
+            VEC_Add(&i, &h, &i);
+            VEC_Add(&b->mUnk_00, &i, &b->mUnk_00);
         }
     }
     b->mUnk_10 = b->mUnk_00;

@@ -27,7 +27,7 @@ void UpdateCameraShake(Unk02073904 *p) {
     s32 i;
 
     if (GetRaceUpdateFramesMod2() == 0) {
-        Vec3Sub(&p->mPos, &p->mLookAt, &d);
+        VEC_Subtract(&p->mPos, &p->mLookAt, &d);
         l = func_02073904_inline(&d, &d);
         if (l != 0) {
             k = data_usa_021656a8;
@@ -47,7 +47,7 @@ void UpdateCameraShake(Unk02073904 *p) {
             b.x = (s32) (((s64) p->mUp.x * m) >> 12);
             b.y = (s32) (((s64) p->mUp.y * m) >> 12);
             b.z = (s32) (((s64) p->mUp.z * m) >> 12);
-            Vec3Add(&a, &b, &p->mShakeLookAtOffsetGoal);
+            VEC_Add(&a, &b, &p->mShakeLookAtOffsetGoal);
             r = &gRaceProgress->mLocalRandom;
             r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
             h = (s16) (u16) (r->mUnk_00 >> 52);
@@ -62,26 +62,26 @@ void UpdateCameraShake(Unk02073904 *p) {
             b.x = (s32) (((s64) p->mUp.x * m) >> 12);
             b.y = (s32) (((s64) p->mUp.y * m) >> 12);
             b.z = (s32) (((s64) p->mUp.z * m) >> 12);
-            Vec3Add(&a, &b, &p->mShakePosOffsetGoal);
+            VEC_Add(&a, &b, &p->mShakePosOffsetGoal);
         }
     }
     s = data_usa_021656b0;
-    Vec3Sub(&p->mShakePosOffsetGoal, &p->mShakePosOffset, &e);
+    VEC_Subtract(&p->mShakePosOffsetGoal, &p->mShakePosOffset, &e);
     e.x = (s32) (((s64) e.x * s) >> 12);
     e.y = (s32) (((s64) e.y * s) >> 12);
     e.z = (s32) (((s64) e.z * s) >> 12);
-    Vec3Add(&p->mShakePosOffset, &e, &p->mShakePosOffset);
+    VEC_Add(&p->mShakePosOffset, &e, &p->mShakePosOffset);
     s = data_usa_021656a4;
-    Vec3Sub(&p->mShakeLookAtOffsetGoal, &p->mShakeLookAtOffset, &f);
+    VEC_Subtract(&p->mShakeLookAtOffsetGoal, &p->mShakeLookAtOffset, &f);
     f.x = (s32) (((s64) f.x * s) >> 12);
     f.y = (s32) (((s64) f.y * s) >> 12);
     f.z = (s32) (((s64) f.z * s) >> 12);
-    Vec3Add(&p->mShakeLookAtOffset, &f, &p->mShakeLookAtOffset);
+    VEC_Add(&p->mShakeLookAtOffset, &f, &p->mShakeLookAtOffset);
     i = -data_usa_021656cc[p->mShakeKind - 1];
     g.x = (s32) (((s64) p->mShakeLookAtOffset.x * i) >> 12);
     g.y = (s32) (((s64) p->mShakeLookAtOffset.y * i) >> 12);
     g.z = (s32) (((s64) p->mShakeLookAtOffset.z * i) >> 12);
-    Vec3Add(&g, &p->mShakeLookAtCounterOffset, &p->mShakeLookAtCounterOffset);
+    VEC_Add(&g, &p->mShakeLookAtCounterOffset, &p->mShakeLookAtCounterOffset);
     s = data_usa_021656bc;
     p->mShakeLookAtCounterOffset.x = (s32) (((s64) p->mShakeLookAtCounterOffset.x * s) >> 12);
     p->mShakeLookAtCounterOffset.y = (s32) (((s64) p->mShakeLookAtCounterOffset.y * s) >> 12);

@@ -20,7 +20,7 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "Main/Unknown/code_0209bf70.h"
 
-u16 AngleFromPair(s32 a, s32 b);
+u16 FX_Atan2Idx(s32 a, s32 b);
 
 static inline u16 func_0209f800_inline(u32 n) {
     Unk020f41c4_B *b;
@@ -126,7 +126,7 @@ void UpdateAirship(void *a, Airship *p) {
             func_0209fdb4_inline(p);
             break;
     }
-    p->mUnk_00.mAngle = AngleFromPair(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z);
+    p->mUnk_00.mAngle = FX_Atan2Idx(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z);
 }
 
 void *func_0209fd94(void) {

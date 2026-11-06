@@ -131,7 +131,7 @@ void func_ov003_021c0154(u32 param_1, s32 param_2, u32 param_3) {
         func_ov003_021d1ffc(data_ov003_021da15c->mUnk_000[param_1][param_2], data_ov003_021d5fb0[param_2 * 12][0],
                             param_3, data_ov003_021da15c->mUnk_104[param_2], 2);
     }
-    k = Div32Remainder(param_2 + 3, 4);
+    k = FX_ModS32(param_2 + 3, 4);
     for (i = 0; i < c[(u32) param_2]; i++) {
         p = data_ov003_021da15c->mUnk_0ec[k];
         p->mUnk_00 = p->mUnk_00 & 0xc1fffcff;

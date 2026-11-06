@@ -118,12 +118,12 @@ void func_0209d84c(void *a, Unk0209d694 *p) {
                     t = -0x8000;
                 }
                 p->mUnk_00.mUnk_10.y = t;
-                Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+                VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
                 if (p->mUnk_a0 > 0x78 && p->mUnk_00.mUnk_10.y < 0) {
                     if (func_01ffdee4(&p->mUnk_00.mPos, NULL, 0, p->mUnk_00.mExtent.x, 8, -2, &v, NULL, NULL, &f, NULL,
                                       NULL, NULL, NULL) != 0 &&
                         (f & 0x3f77ef) != 0) {
-                        Vec3Add(&p->mUnk_00.mPos, &v, &p->mUnk_00.mPos);
+                        VEC_Add(&p->mUnk_00.mPos, &v, &p->mUnk_00.mPos);
                         t = p->mUnk_00.mPos.x - p->mUnk_a8.x;
                         k = p->mUnk_00.mPos.z - p->mUnk_a8.z;
                         if ((s64) t * t + (s64) k * k < 0x2710000000LL) {

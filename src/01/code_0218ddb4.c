@@ -88,15 +88,15 @@ void func_ov001_0218f724(Unk02188950 *b) {
     s32 c;
     s64 z;
     s64 x;
-    Vec3Sub(data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a94() : 0,
-            data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a88() : 0, &v1);
+    VEC_Subtract(data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a94() : 0,
+                 data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a88() : 0, &v1);
     v1.y = 0;
     a = 0;
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         a = func_ov001_02181a68();
     }
     a = (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a78() : 0) - a;
-    Vec3Sub(&b->mUnk_000.mPos, data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a94() : 0, &v2);
+    VEC_Subtract(&b->mUnk_000.mPos, data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a94() : 0, &v2);
     for (i = 0; i < 1; i++) {
         c = gPairsByAngle[((u16) a >> 4) * 2 + 1];
         x = v2.x;
@@ -110,8 +110,8 @@ void func_ov001_0218f724(Unk02188950 *b) {
 
 void func_ov001_0218f6d8(Unk02188950 *a) {
     Vec3 local;
-    Vec3Sub(data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a94() : 0,
-            data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a88() : 0, &local);
+    VEC_Subtract(data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a94() : 0,
+                 data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181a88() : 0, &local);
     local.y = 0;
     SetVelocity(a, &local);
 }
@@ -180,7 +180,7 @@ s32 func_ov001_0218f3ec(Unk02188950 *a) {
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
-        Vec3AddScaled(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
+        VEC_MultAdd(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
         func_ov001_02188d8c(a, (&v));
     }
@@ -205,7 +205,7 @@ void func_ov001_0218f2a8(Unk02188950 *a) {
     Vec3 v;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
-    Vec3AddScaled(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
+    VEC_MultAdd(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
     func_ov001_02187218(a, 5, func_ov001_0218f3ac);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_0ec), (s32) (a->mPrm->mUnk_0f0));
     func_ov001_02188d1c(a, (s32) (a->mPrm->mUnk_0f4), (s32) (a->mPrm->mUnk_0f8));
@@ -226,7 +226,7 @@ s32 func_ov001_0218f244(Unk02188950 *a) {
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
-        Vec3AddScaled(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
+        VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
         func_ov001_02188d8c(a, (&v));
     }
@@ -239,7 +239,7 @@ void func_ov001_0218f16c(Unk02188950 *a) {
     Vec3 v;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
-    Vec3AddScaled(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
+    VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
     func_ov001_02187218(a, 3, func_ov001_0218f244);
     func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_0c4), (s32) (a->mPrm->mUnk_0c8));
     func_ov001_02188d1c(a, (s32) (a->mPrm->mUnk_0cc), (s32) (a->mPrm->mUnk_0d0));
@@ -306,11 +306,11 @@ void func_ov001_0218ee88(Unk02188950 *a) {
     Vec3 v;
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
-    Vec3AddScaled(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
+    VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
     a->mUnk_000.mPos.x = v.x;
     a->mUnk_000.mPos.y = a->mUnk_000.mCourseMapRow->mUnk_00.y + a->mPrm->mUnk_080;
     a->mUnk_000.mPos.z = v.z;
-    a->mMoveAngle = (u16) (AngleFromPair(p->mPos.x - a->mUnk_000.mPos.x, p->mPos.z - a->mUnk_000.mPos.z) + 0x4000);
+    a->mMoveAngle = (u16) (FX_Atan2Idx(p->mPos.x - a->mUnk_000.mPos.x, p->mPos.z - a->mUnk_000.mPos.z) + 0x4000);
     a->mAngle = a->mMoveAngle;
     func_ov001_0218ef30(a);
     func_ov001_02182a3c(0);

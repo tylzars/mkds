@@ -540,9 +540,9 @@ void func_020c8bdc(void) {
         x = (s64) p->mUnk_000.mMatrix.mUnk_00[2].x * s >> 12;
         y = (s64) p->mUnk_000.mMatrix.mUnk_00[2].z * s >> 12;
         if (data_021759c0->mUnk_57 != 0) {
-            data_0217b424->mUnk_0c[i] = AngleFromPair(-y, x) + 0x8000;
+            data_0217b424->mUnk_0c[i] = FX_Atan2Idx(-y, x) + 0x8000;
         } else {
-            data_0217b424->mUnk_0c[i] = AngleFromPair(y, x);
+            data_0217b424->mUnk_0c[i] = FX_Atan2Idx(y, x);
         }
         func_020b5ae8(v, &data_0217b424->mUnk_14[i], a, 0, 0);
         w.x = v->x + x;

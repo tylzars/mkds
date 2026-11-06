@@ -121,7 +121,7 @@ void func_020ea1d4(Vec3 *param_1, const Vec3 *param_2, const Vec3 *param_3) {
     v.x = (s32) (((s64) v.x * b) >> 12);
     v.y = (s32) (((s64) v.y * a) >> 12);
     v.z = 0;
-    Vec3Add(&v, param_1, &v);
+    VEC_Add(&v, param_1, &v);
     w = v;
     w.x += data_0217b88c;
     Vec3MultiplyMatrix4x3(&w, &data_0217bab8, &data_0217b9c0);
@@ -381,7 +381,7 @@ void func_020e9658(void) {
     Vec3 *v;
 
     data_0217ba88 = data_0217ba58;
-    Vec3Sub(&data_0217b954, &data_0217bab8.mUnk_00[3], &data_0217b9b4);
+    VEC_Subtract(&data_0217b954, &data_0217bab8.mUnk_00[3], &data_0217b9b4);
     data_0217bab8.mUnk_00[3] = data_0217b954;
     data_0217bab8.mUnk_00[3].y = data_0217bab8.mUnk_00[3].y + (data_0217b8c8->mVelocity.y - data_0217b8c8->mHopSpeed);
     data_0217bab8.mUnk_00[1] = data_02159494;
@@ -483,12 +483,12 @@ void func_020e8ac8(void) {
             t.y = (s32) (((s64) data_0217bab8.mUnk_00[0].y * d) >> 12);
             t.z = (s32) (((s64) data_0217bab8.mUnk_00[0].z * d) >> 12);
         }
-        Vec3Add(&data_0217b930, &t, &data_0217b93c);
+        VEC_Add(&data_0217b930, &t, &data_0217b93c);
         d = -data_0217b8d4 >> 1;
         t.x = (s32) (((s64) data_0217bab8.mUnk_00[1].x * d) >> 12);
         t.y = (s32) (((s64) data_0217bab8.mUnk_00[1].y * d) >> 12);
         t.z = (s32) (((s64) data_0217bab8.mUnk_00[1].z * d) >> 12);
-        Vec3Add(&data_0217b93c, &t, &data_0217b93c);
+        VEC_Add(&data_0217b93c, &t, &data_0217b93c);
         data_0217b8fc = 0;
         if (data_0217b900 == 0) {
             if (data_0217b8bc != 0 || data_0217b8f0 != 0) {
@@ -515,12 +515,12 @@ void func_020e8ac8(void) {
                 data_0217b894 = 0;
             }
             t = lo;
-            Vec3Add(&t, &hi, &t);
+            VEC_Add(&t, &hi, &t);
             if (t.y < 0 && data_0217b9ec.mUnk_00e == 5) {
                 t.y = 0;
             }
-            Vec3Add(&data_0217b930, &t, &data_0217b930);
-            Vec3Add(&data_0217b93c, &t, &data_0217b93c);
+            VEC_Add(&data_0217b930, &t, &data_0217b930);
+            VEC_Add(&data_0217b93c, &t, &data_0217b93c);
         }
         if (data_0217b900 == 0) {
             data_0217b870++;
@@ -583,7 +583,7 @@ void func_020e8ac8(void) {
             if (data_0217b908 < 0x7b) {
                 data_0217b908 = 0x7b;
             }
-            Vec3Sub(&data_0217b9c0, &data_0217b930, &t);
+            VEC_Subtract(&data_0217b9c0, &data_0217b930, &t);
             t.y += data_0217b8ec;
             u.x = Vec3DotUnrounded(&t, &data_0217bab8.mUnk_00[0]);
             u.z = Vec3DotUnrounded(&t, &data_0217bad0);
@@ -615,9 +615,9 @@ void func_020e8ac8(void) {
         data_0217b924.y = data_0217b924.y + ((s32) (((s64) data_021593bc.y * t.y) >> 12) -
                                              (s32) (((s64) data_021593b0.y * data_0217b924.y) >> 12));
         u.y = data_0217b924.y;
-        Vec3Add(&data_0217b930, &u, &data_0217b930);
-        Vec3Sub(&data_0217b930, &data_0217b948, &v);
-        Vec3AddScaled(0xd9a, &v, &data_0217b948, &data_0217b948);
+        VEC_Add(&data_0217b930, &u, &data_0217b930);
+        VEC_Subtract(&data_0217b930, &data_0217b948, &v);
+        VEC_MultAdd(0xd9a, &v, &data_0217b948, &data_0217b948);
     }
     if (data_0217b8e4 == 0) {
         return;

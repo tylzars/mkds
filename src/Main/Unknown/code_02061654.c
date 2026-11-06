@@ -430,7 +430,7 @@ void func_02062078(void) {
     b.x = -p->mViewMatrix.mUnk_00[0].z;
     b.y = -p->mViewMatrix.mUnk_00[1].z;
     b.z = -p->mViewMatrix.mUnk_00[2].z;
-    Vec3Sub(&b, &a, &c);
+    VEC_Subtract(&b, &a, &c);
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 16) {
         Vec3NormalizeAndGetLengthUnchecked(&c, &c);
     }

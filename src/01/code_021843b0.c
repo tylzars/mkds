@@ -58,11 +58,11 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
             {
                 Vec3 b;
 
-                Vec3Sub(&d->mUnk_000.mPos, &e->mCollisionCenter, &b);
+                VEC_Subtract(&d->mUnk_000.mPos, &e->mCollisionCenter, &b);
                 if ((s64) b.z * b.z + ((s64) b.x * b.x + (s64) b.y * b.y) >= 0x10) {
                     Vec3NormalizeAndGetLengthUnchecked(&b, &b);
                 }
-                Vec3AddScaled(e->mRadius, &b, &e->mCollisionCenter, &b);
+                VEC_MultAdd(e->mRadius, &b, &e->mCollisionCenter, &b);
                 if (d->mUnk_000.mKind == 0x1f5) {
                     d->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                     StopSound(&d->mUnk_000.mSound->mSoundSource, 0x214);
@@ -127,11 +127,11 @@ void func_ov001_021843b0(Unk02188950 *a, Kart *b) {
                 func_ov001_02188dcc(a, func_ov001_02184d70);
                 func_ov001_02188cec(a, 0);
             }
-            Vec3Sub(&a->mUnk_000.mPos, &b->mCollisionCenter, &vec2);
+            VEC_Subtract(&a->mUnk_000.mPos, &b->mCollisionCenter, &vec2);
             if ((s64) vec2.x * vec2.x + (s64) vec2.y * vec2.y + (s64) vec2.z * vec2.z >= 0x10) {
                 Vec3NormalizeAndGetLengthUnchecked(&vec2, &vec2);
             }
-            Vec3AddScaled(b->mRadius, &vec2, &b->mCollisionCenter, &vec2);
+            VEC_MultAdd(b->mRadius, &vec2, &b->mCollisionCenter, &vec2);
             if (a->mUnk_000.mKind == 0x1f5) {
                 a->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                 StopSound(&a->mUnk_000.mSound->mSoundSource, 0x214);

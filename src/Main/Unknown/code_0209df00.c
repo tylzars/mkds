@@ -249,7 +249,7 @@ void UpdateFireball2(void *a, Fireball2 *b) {
     if (b->mUnk_a2 == 1) {
         p = GetKart((u16) data_021759c0->mEntryIndex);
         if (func_0209df84_inline(p, b, n - 0xf000) != FALSE) {
-            Vec3Sub(&p->mPos, &b->mUnk_00.mPos, &v);
+            VEC_Subtract(&p->mPos, &b->mUnk_00.mPos, &v);
             d = Vec3DotUnrounded(&v, &b->mUnk_00.mMatrix.mUnk_00[2]);
             if ((b->mUnk_19e4 < 0 && d > 0) || (b->mUnk_19e4 > 0 && d < 0)) {
                 func_02108e38();
@@ -279,10 +279,10 @@ void UpdateFireball2(void *a, Fireball2 *b) {
         for (j = 0; j < b->mUnk_a0; j++) {
             w = w + b->mUnk_a4;
             b->mUnk_c4[j][i].mUnk_0c = w;
-            Vec3AddScaled(((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[0],
-                          &b->mUnk_00.mPos, &b->mUnk_c4[j][i].mUnk_00);
-            Vec3AddScaled(((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[1],
-                          &b->mUnk_c4[j][i].mUnk_00, &b->mUnk_c4[j][i].mUnk_00);
+            VEC_MultAdd(((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[0],
+                        &b->mUnk_00.mPos, &b->mUnk_c4[j][i].mUnk_00);
+            VEC_MultAdd(((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12, &b->mUnk_00.mMatrix.mUnk_00[1],
+                        &b->mUnk_c4[j][i].mUnk_00, &b->mUnk_c4[j][i].mUnk_00);
             b->mUnk_c4[j][i].mUnk_0e = b->mUnk_c4[j][i].mUnk_0e + 0x51e;
         }
         n = n - b->mUnk_a8;

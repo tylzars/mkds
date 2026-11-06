@@ -64,8 +64,8 @@ void func_020646f0(Kart *a, s32 b) {
         h.x = (s64) f.x * 0x5000 >> 12;
         h.y = (s64) f.y * 0x5000 >> 12;
         h.z = (s64) f.z * 0x5000 >> 12;
-        Vec3Sub(&e, &h, &e);
-        Vec3Add(&a->mPos, &e, &a->mPos);
+        VEC_Subtract(&e, &h, &e);
+        VEC_Add(&a->mPos, &e, &a->mPos);
     }
     a->mPos.y = a->mPos.y - 0x1000;
     a->mHeadingAngle = (u32) (d.y * 0xb6) >> 12;

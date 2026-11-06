@@ -31,7 +31,7 @@ void func_020e0584(Unk020e005c *a, Vec3 *b, Vec3 *c, Unk020e04b0 *d) {
     s32 f;
     s32 g;
 
-    Vec3Sub(b, &a->mPos, &e);
+    VEC_Subtract(b, &a->mPos, &e);
     f = Vec3DotUnrounded(&e, &a->mUnk_040);
     g = Vec3DotUnrounded(&e, &a->mUnk_034);
     d->mUnk_04.x = Vec3DotUnrounded(&e, &a->mUnk_028);
@@ -58,7 +58,7 @@ void func_020e0538(Unk020e04b0 *a, Vec3 *b) {
         return;
     }
     Vec3MultiplyMatrix3x3(&a->mUnk_04, &c->mUnk_028.x, b);
-    Vec3Add(&c->mPos, b, b);
+    VEC_Add(&c->mPos, b, b);
 }
 
 BOOL func_020e04b0(Unk020e04b0 *a, Vec3 *b, Vec3 *c) {
@@ -66,7 +66,7 @@ BOOL func_020e04b0(Unk020e04b0 *a, Vec3 *b, Vec3 *c) {
 
     if (d != NULL) {
         Vec3MultiplyMatrix3x3(&a->mUnk_04, &d->mUnk_028.x, b);
-        Vec3Add(&d->mPos, b, b);
+        VEC_Add(&d->mPos, b, b);
         if (d->mUnk_130 != FALSE) {
             Vec3MultiplyMatrix3x3(&a->mUnk_10, &d->mUnk_028.x, c);
             if (c->y < d->mUnk_120) {
@@ -152,8 +152,8 @@ void func_020e01f0(void *a0, Unk020e005c *a1) {
     a1->mUnk_0e8 = a1->mPos;
     func_020d8a5c(b, &a1->mPos);
     func_02046b40(&a1->mStateMachine);
-    Vec3Sub(&a1->mPos, &a1->mUnk_0e8, &a1->mUnk_010);
-    Vec3AddScaled(-a1->mUnk_104, &a1->mUnk_034, &a1->mPos, &a1->mUnk_0f4);
+    VEC_Subtract(&a1->mPos, &a1->mUnk_0e8, &a1->mUnk_010);
+    VEC_MultAdd(-a1->mUnk_104, &a1->mUnk_034, &a1->mPos, &a1->mUnk_0f4);
 }
 
 u32 func_020e01ec(u32 p0) {

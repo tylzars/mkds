@@ -56,8 +56,8 @@ u32 func_020980ec(Flipper *p, Kart *q, void *b, u8 *c) {
             p->mUnk_00.mUnk_10.y = 0;
             p->mUnk_00.mUnk_10.z = 0;
         } else {
-            Vec3Sub(&q->mPos, &p->mUnk_00.mPos, &w);
-            f = Vec3Length(&w);
+            VEC_Subtract(&q->mPos, &p->mUnk_00.mPos, &w);
+            f = VEC_Mag(&w);
             e = &p->mUnk_a8[p->mUnk_ec0].mUnk_00[2];
             f = (s32) (((s64) f * s) >> 12);
             p->mUnk_00.mUnk_10.x = (s32) (((s64) e->x * f) >> 12);
@@ -191,12 +191,12 @@ void func_020979c8(Unk020e6fd4 *a) {
             p->mUnk_be8[j].y = p->mUnk_00.mPos.y >> 4;
             p->mUnk_be8[j].z = p->mUnk_00.mPos.z >> 4;
             if (p->mUnk_a4 == 0) {
-                k = (u16) (-e + AngleFromPair(-2, -10)) >> 4;
+                k = (u16) (-e + FX_Atan2Idx(-2, -10)) >> 4;
                 p->mUnk_d50[j].x = (p->mUnk_00.mPos.x + (s32) (((s64) v1 * gPairsByAngle[k * 2 + 1]) >> 12)) >> 4;
                 p->mUnk_d50[j].y = p->mUnk_00.mPos.y >> 4;
                 p->mUnk_d50[j].z = (p->mUnk_00.mPos.z + (s32) (((s64) v1 * gPairsByAngle[k * 2]) >> 12)) >> 4;
             } else {
-                k = (u16) (-e - AngleFromPair(-2, -10)) >> 4;
+                k = (u16) (-e - FX_Atan2Idx(-2, -10)) >> 4;
                 p->mUnk_d50[j].x = (p->mUnk_00.mPos.x - (s32) (((s64) v1 * gPairsByAngle[k * 2 + 1]) >> 12)) >> 4;
                 p->mUnk_d50[j].y = p->mUnk_00.mPos.y >> 4;
                 p->mUnk_d50[j].z = (p->mUnk_00.mPos.z - (s32) (((s64) v1 * gPairsByAngle[k * 2]) >> 12)) >> 4;

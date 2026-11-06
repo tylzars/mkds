@@ -158,7 +158,7 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
         x >>= 10;
         y >>= 10;
     }
-    return DivFixed12((s32) x, (s32) y);
+    return FX_Div((s32) x, (s32) y);
 }
 
 BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e) {
@@ -389,7 +389,7 @@ void func_0203f334(RaceProgressKart *a, s32 b) {
     }
     GetKartPos(&u, (u32) (a->mUnk_3c << 24) >> 28);
     GetKartPrevPos(&v, (u32) (a->mUnk_3c << 24) >> 28);
-    Vec3Sub(&u, &v, &w);
+    VEC_Subtract(&u, &v, &w);
     w.x = (s64) w.x * -240 >> 12;
     w.y = (s64) w.y * -240 >> 12;
     w.z = (s64) w.z * -240 >> 12;
@@ -400,7 +400,7 @@ void func_0203f334(RaceProgressKart *a, s32 b) {
     k = t;
     do {
         n = func_0203fcac(&p, 0, k);
-        Vec3Add(&p, &w, &p);
+        VEC_Add(&p, &w, &p);
         i++;
     } while (n > 0 && i < 0x11);
     ComputeRaceTime(&e[a->mLap - 2].mUnk_02, &e[a->mLap - 2].mUnk_03, &e[a->mLap - 2].mUnk_00, -i * 0xf0,

@@ -269,7 +269,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                 p->mUnk_a8 = 0x1000;
             }
             p->mUnk_00.mUnk_10.y -= 0x19a;
-            Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mPos.y > p->mFloorY) {
                 return;
             }
@@ -473,7 +473,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                 p->mUnk_a8 = 0x1000;
             }
             p->mUnk_00.mUnk_10.y -= 0x19a;
-            Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mUnk_10.y >= 0) {
                 return;
             }
@@ -499,11 +499,11 @@ void UpdateShine16(void *a, Shine16 *p) {
                 p->mUnk_a8 = 0x1000;
             }
             p->mUnk_00.mUnk_10.y -= 0x19a;
-            Vec3Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
+            VEC_Add(&p->mUnk_00.mPos, &p->mUnk_00.mUnk_10, &p->mUnk_00.mPos);
             if (p->mUnk_00.mUnk_10.y < 0 && p->mUnk_00.mPos.y <= p->mUnk_cc.y + p->mUnk_00.mExtent.x) {
                 if (func_020d3c94(&p->mUnk_00, 0, &b)) {
                     t = p->mUnk_00.mUnk_10.y;
-                    Vec3Add(&p->mUnk_00.mPos, &b, &p->mUnk_00.mPos);
+                    VEC_Add(&p->mUnk_00.mPos, &b, &p->mUnk_00.mPos);
                     func_020ea94c(&p->mUnk_00.mUnk_10, &b, 0x1000, 0x1000, 0x800, &p->mUnk_00.mUnk_10);
                     p->mUnk_00.mUnk_10.y = 0;
                     if ((s64) p->mUnk_00.mUnk_10.x * p->mUnk_00.mUnk_10.x +
@@ -521,7 +521,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                 c.y = p->mUnk_00.mExtent.x + (p->mUnk_00.mPos.y - 0x14000);
                 c.z = p->mUnk_00.mPos.z;
                 if (func_01ffdee4(&c, NULL, 0, p->mUnk_00.mExtent.x, 8, -2, &b, &d, &e.x, &f, NULL, NULL, NULL, NULL)) {
-                    Vec3Add(&p->mUnk_00.mPos, &b, &p->mUnk_00.mPos);
+                    VEC_Add(&p->mUnk_00.mPos, &b, &p->mUnk_00.mPos);
                     if (f & 0x214300) {
                         t = p->mUnk_00.mUnk_10.y;
                         func_020eaa14(&p->mUnk_00.mUnk_10, &e, 0x1000, 0x1000, 0x800, &p->mUnk_00.mUnk_10);

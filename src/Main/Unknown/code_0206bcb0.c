@@ -241,15 +241,15 @@ recheck:
         Vec3 w;
         Vec3 *q = &p->mUnk_138;
 
-        dot = Vec3Dot(&p->mUnk_284, q);
+        dot = VEC_DotProduct(&p->mUnk_284, q);
         v.x = p->mUnk_138.x - (s32) (((s64) p->mUnk_284.x * dot) >> 12);
         v.y = q->y - (s32) (((s64) p->mUnk_284.y * dot) >> 12);
         v.z = q->z - (s32) (((s64) p->mUnk_284.z * dot) >> 12);
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 16 ? Vec3NormalizeAndGetLengthUnchecked(&v, &v)
                                                                       : 0) {
             Vec3CrossUnrounded(&p->mUnk_290, &v, &w);
-            len = Vec3Length(&w);
-            ang = func_02148538(len, Vec3DotUnrounded(&p->mUnk_290, &v));
+            len = VEC_Mag(&w);
+            ang = FX_Atan2(len, Vec3DotUnrounded(&p->mUnk_290, &v));
             turn = (s16) (((s64) ang * 0x28be60db9391LL + 0x80000000LL) >> 44);
         }
         if (p->mForwardSpeed < 0) {
@@ -370,8 +370,8 @@ BOOL func_0206c354(Kart *p, const Vec3 *a, int flag) {
             list = arr;
             n = 4;
         }
-        Vec3AddScaled(-p->mRadius, a, &p->mPos, &tmp);
-        Vec3AddScaled((s32) (((s64) p->mScale.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
+        VEC_MultAdd(-p->mRadius, a, &p->mPos, &tmp);
+        VEC_MultAdd((s32) (((s64) p->mScale.y * 0x8000 + 0x800) >> 12), &p->mUnk_12c, &tmp, &tmp);
         for (; i < n; i++) {
             func_0208b748(list[i], &tmp, p, func_0206c450);
         }
@@ -395,7 +395,7 @@ void func_0206c1ac(Unk0206c1ac *obj, Kart *p) {
     UnkVec16 rot;
     Vec3 *q;
 
-    Vec3AddScaled((s32) (((s64) p->mRadius * -0x1333 + 0x800) >> 12), &p->mUnk_138, &v, &v);
+    VEC_MultAdd((s32) (((s64) p->mRadius * -0x1333 + 0x800) >> 12), &p->mUnk_138, &v, &v);
     v.x >>= 4;
     v.y >>= 4;
     v.z >>= 4;

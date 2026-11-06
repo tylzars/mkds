@@ -143,11 +143,11 @@ void func_01ffb130(Kart *p) {
             Matrix3x3Multiply(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
         }
         Vec3MultiplyMatrix3x3(&p->mUnk_278, m1.mUnk_00, &p->mUnk_50);
-        d = Vec3Dot(&p->mUnk_244, &p->mUnk_50);
+        d = VEC_DotProduct(&p->mUnk_244, &p->mUnk_50);
         v3.x = p->mUnk_50.x - (s32) (((s64) p->mUnk_244.x * d) >> 12);
         v3.y = p->mUnk_50.y - (s32) (((s64) p->mUnk_244.y * d) >> 12);
         v3.z = p->mUnk_50.z - (s32) (((s64) p->mUnk_244.z * d) >> 12);
-        p->mUnk_d4 = Vec3Length(&v3);
+        p->mUnk_d4 = VEC_Mag(&v3);
     } else {
         d = Vec3DotUnrounded(&p->mUnk_278, &p->mUnk_244);
         p->mUnk_50 = p->mUnk_278;
@@ -163,11 +163,11 @@ void func_01ffb130(Kart *p) {
     func_01ffb930(&a, p);
     if ((p->mUnk_44 & 0x90) || (p->mUnk_4c & 0x10000000)) {
         k = p->mUnk_240;
-        Vec3Sub(&p->mUnk_50, &p->mUnk_68, &v4);
+        VEC_Subtract(&p->mUnk_50, &p->mUnk_68, &v4);
         v4.x = (s32) (((s64) v4.x * k) >> 12);
         v4.y = (s32) (((s64) v4.y * k) >> 12);
         v4.z = (s32) (((s64) v4.z * k) >> 12);
-        Vec3Add(&p->mUnk_68, &v4, &p->mUnk_68);
+        VEC_Add(&p->mUnk_68, &v4, &p->mUnk_68);
         p->mUnk_68.y = p->mUnk_50.y;
     }
     v1.x = (s32) (((s64) p->mUnk_68.x * a) >> 12);
@@ -184,14 +184,14 @@ void func_01ffb130(Kart *p) {
         v1.y = 0;
     }
     p->mVelocity = v1;
-    Vec3Add(&p->mVelocity, &p->mUnk_374, &p->mVelocity);
+    VEC_Add(&p->mVelocity, &p->mUnk_374, &p->mVelocity);
     p->mVelocity.y += p->mVerticalSpeed;
-    Vec3AddScaled(p->mUnk_274, &p->mUnk_268, &p->mVelocity, &p->mVelocity);
+    VEC_MultAdd(p->mUnk_274, &p->mUnk_268, &p->mVelocity, &p->mVelocity);
     if (!(p->mUnk_44 & 0x10) && p->mAirborneFrames > 5 && p->mVelocity.y < -0x6000) {
         p->mVelocity.y = -0x6000;
     }
-    Vec3Add(&p->mVelocity, &p->mUnk_2f0, &p->mVelocity);
-    Vec3Add(&p->mVelocity, &p->mUnk_1fc, &p->mVelocity);
+    VEC_Add(&p->mVelocity, &p->mUnk_2f0, &p->mVelocity);
+    VEC_Add(&p->mVelocity, &p->mUnk_1fc, &p->mVelocity);
     func_01ff9c40(p);
     ScaleKartVelocityAndSetCappedLengthAndDirection(p, b);
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -204,7 +204,7 @@ void func_01ffb130(Kart *p) {
         }
     }
     if (!(p->mUnk_7c & 0x20)) {
-        Vec3Add(&p->mPos, &p->mVelocity, &p->mPos);
+        VEC_Add(&p->mPos, &p->mVelocity, &p->mPos);
         p->mUnk_38c = 0x1000;
     }
     f = (p->mUnk_44 & 0x10) ? 0xee1 : 0xfae;

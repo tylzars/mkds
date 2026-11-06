@@ -99,7 +99,7 @@ void InitPakkun(Pakkun *p) {
         if (v >= 0) {
             func_020d7db4(&p->mUnk_0b8[p->mUnk_1ba], (u16) v, 100);
             func_020d8918(&p->mUnk_0b8[p->mUnk_1ba], &a, &b);
-            d = AngleFromPair(b.x, b.z) - p->mUnk_1d8;
+            d = FX_Atan2Idx(b.x, b.z) - p->mUnk_1d8;
             if (d > 0x8000) {
                 d -= 0x10000;
             }

@@ -85,9 +85,9 @@ void func_02109468(void) {
     gSoundFalloffs[0].mUnk_04 = c0.mUnk_04;
     gSoundFalloffs[0].mUnk_08 = c0.mUnk_08;
     gSoundFalloffs[0].mInnerDistance = c0.mUnk_0c;
-    gSoundFalloffs[0].mUnk_14 = DivFixed12((c0.mUnk_08 - c0.mUnk_10) << 12, (c0.mUnk_04 - c0.mUnk_0c) << 12);
-    gSoundFalloffs[0].mUnk_18 = DivFixed12(c0.mUnk_08 << 12, (c0.mUnk_04 - c0.mUnk_00) << 12);
-    gSoundFalloffs[0].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[0].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[0].mUnk_14 = FX_Div((c0.mUnk_08 - c0.mUnk_10) << 12, (c0.mUnk_04 - c0.mUnk_0c) << 12);
+    gSoundFalloffs[0].mUnk_18 = FX_Div(c0.mUnk_08 << 12, (c0.mUnk_04 - c0.mUnk_00) << 12);
+    gSoundFalloffs[0].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[0].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[0].mUnk_20 = (((s32) ((((s64) (c0.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (c0.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     t1 = s1;
@@ -105,9 +105,9 @@ void func_02109468(void) {
     gOtherKartSoundFalloff.mUnk_04 = c1.mUnk_04;
     gOtherKartSoundFalloff.mUnk_08 = c1.mUnk_08;
     gOtherKartSoundFalloff.mInnerDistance = c1.mUnk_0c;
-    gOtherKartSoundFalloff.mUnk_14 = DivFixed12((c1.mUnk_08 - c1.mUnk_10) << 12, (c1.mUnk_04 - c1.mUnk_0c) << 12);
-    gOtherKartSoundFalloff.mUnk_18 = DivFixed12(c1.mUnk_08 << 12, (c1.mUnk_04 - c1.mUnk_00) << 12);
-    gOtherKartSoundFalloff.mUnk_1c = DivFixed12(0x666, (gOtherKartSoundFalloff.mInnerDistance << 12) + 0x36000);
+    gOtherKartSoundFalloff.mUnk_14 = FX_Div((c1.mUnk_08 - c1.mUnk_10) << 12, (c1.mUnk_04 - c1.mUnk_0c) << 12);
+    gOtherKartSoundFalloff.mUnk_18 = FX_Div(c1.mUnk_08 << 12, (c1.mUnk_04 - c1.mUnk_00) << 12);
+    gOtherKartSoundFalloff.mUnk_1c = FX_Div(0x666, (gOtherKartSoundFalloff.mInnerDistance << 12) + 0x36000);
     gOtherKartSoundFalloff.mUnk_20 = (((s32) ((((s64) (c1.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                      (((s32) ((((s64) (c1.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     t2 = s2;
@@ -125,9 +125,9 @@ void func_02109468(void) {
     gSoundFalloffs[1].mUnk_04 = c2.mUnk_04;
     gSoundFalloffs[1].mUnk_08 = c2.mUnk_08;
     gSoundFalloffs[1].mInnerDistance = c2.mUnk_0c;
-    gSoundFalloffs[1].mUnk_14 = DivFixed12((c2.mUnk_08 - c2.mUnk_10) << 12, (c2.mUnk_04 - c2.mUnk_0c) << 12);
-    gSoundFalloffs[1].mUnk_18 = DivFixed12(c2.mUnk_08 << 12, (c2.mUnk_04 - c2.mUnk_00) << 12);
-    gSoundFalloffs[1].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[1].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[1].mUnk_14 = FX_Div((c2.mUnk_08 - c2.mUnk_10) << 12, (c2.mUnk_04 - c2.mUnk_0c) << 12);
+    gSoundFalloffs[1].mUnk_18 = FX_Div(c2.mUnk_08 << 12, (c2.mUnk_04 - c2.mUnk_00) << 12);
+    gSoundFalloffs[1].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[1].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[1].mUnk_20 = (((s32) ((((s64) (c2.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (c2.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     t3 = s3;
@@ -145,9 +145,9 @@ void func_02109468(void) {
     gSoundFalloffs[2].mUnk_04 = c3.mUnk_04;
     gSoundFalloffs[2].mUnk_08 = c3.mUnk_08;
     gSoundFalloffs[2].mInnerDistance = c3.mUnk_0c;
-    gSoundFalloffs[2].mUnk_14 = DivFixed12((c3.mUnk_08 - c3.mUnk_10) << 12, (c3.mUnk_04 - c3.mUnk_0c) << 12);
-    gSoundFalloffs[2].mUnk_18 = DivFixed12(c3.mUnk_08 << 12, (c3.mUnk_04 - c3.mUnk_00) << 12);
-    gSoundFalloffs[2].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[2].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[2].mUnk_14 = FX_Div((c3.mUnk_08 - c3.mUnk_10) << 12, (c3.mUnk_04 - c3.mUnk_0c) << 12);
+    gSoundFalloffs[2].mUnk_18 = FX_Div(c3.mUnk_08 << 12, (c3.mUnk_04 - c3.mUnk_00) << 12);
+    gSoundFalloffs[2].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[2].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[2].mUnk_20 = (((s32) ((((s64) (c3.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (c3.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     t4 = s4;
@@ -165,9 +165,9 @@ void func_02109468(void) {
     gSoundFalloffs[3].mUnk_04 = c4.mUnk_04;
     gSoundFalloffs[3].mUnk_08 = c4.mUnk_08;
     gSoundFalloffs[3].mInnerDistance = c4.mUnk_0c;
-    gSoundFalloffs[3].mUnk_14 = DivFixed12((c4.mUnk_08 - c4.mUnk_10) << 12, (c4.mUnk_04 - c4.mUnk_0c) << 12);
-    gSoundFalloffs[3].mUnk_18 = DivFixed12(c4.mUnk_08 << 12, (c4.mUnk_04 - c4.mUnk_00) << 12);
-    gSoundFalloffs[3].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[3].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[3].mUnk_14 = FX_Div((c4.mUnk_08 - c4.mUnk_10) << 12, (c4.mUnk_04 - c4.mUnk_0c) << 12);
+    gSoundFalloffs[3].mUnk_18 = FX_Div(c4.mUnk_08 << 12, (c4.mUnk_04 - c4.mUnk_00) << 12);
+    gSoundFalloffs[3].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[3].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[3].mUnk_20 = (((s32) ((((s64) (c4.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (c4.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w5 = s5;
@@ -176,9 +176,9 @@ void func_02109468(void) {
     gSoundFalloffs[4].mUnk_04 = w5.mUnk_04;
     gSoundFalloffs[4].mUnk_08 = w5.mUnk_08;
     gSoundFalloffs[4].mInnerDistance = w5.mUnk_0c;
-    gSoundFalloffs[4].mUnk_14 = DivFixed12((w5.mUnk_08 - w5.mUnk_10) << 12, (w5.mUnk_04 - w5.mUnk_0c) << 12);
-    gSoundFalloffs[4].mUnk_18 = DivFixed12(w5.mUnk_08 << 12, (w5.mUnk_04 - w5.mUnk_00) << 12);
-    gSoundFalloffs[4].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[4].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[4].mUnk_14 = FX_Div((w5.mUnk_08 - w5.mUnk_10) << 12, (w5.mUnk_04 - w5.mUnk_0c) << 12);
+    gSoundFalloffs[4].mUnk_18 = FX_Div(w5.mUnk_08 << 12, (w5.mUnk_04 - w5.mUnk_00) << 12);
+    gSoundFalloffs[4].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[4].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[4].mUnk_20 = (((s32) ((((s64) (w5.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (w5.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w6 = s6;
@@ -187,9 +187,9 @@ void func_02109468(void) {
     gSoundFalloffs[5].mUnk_04 = w6.mUnk_04;
     gSoundFalloffs[5].mUnk_08 = w6.mUnk_08;
     gSoundFalloffs[5].mInnerDistance = w6.mUnk_0c;
-    gSoundFalloffs[5].mUnk_14 = DivFixed12((w6.mUnk_08 - w6.mUnk_10) << 12, (w6.mUnk_04 - w6.mUnk_0c) << 12);
-    gSoundFalloffs[5].mUnk_18 = DivFixed12(w6.mUnk_08 << 12, (w6.mUnk_04 - w6.mUnk_00) << 12);
-    gSoundFalloffs[5].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[5].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[5].mUnk_14 = FX_Div((w6.mUnk_08 - w6.mUnk_10) << 12, (w6.mUnk_04 - w6.mUnk_0c) << 12);
+    gSoundFalloffs[5].mUnk_18 = FX_Div(w6.mUnk_08 << 12, (w6.mUnk_04 - w6.mUnk_00) << 12);
+    gSoundFalloffs[5].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[5].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[5].mUnk_20 = (((s32) ((((s64) (w6.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (w6.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w7 = s7;
@@ -198,9 +198,9 @@ void func_02109468(void) {
     gSoundFalloffs[6].mUnk_04 = w7.mUnk_04;
     gSoundFalloffs[6].mUnk_08 = w7.mUnk_08;
     gSoundFalloffs[6].mInnerDistance = w7.mUnk_0c;
-    gSoundFalloffs[6].mUnk_14 = DivFixed12((w7.mUnk_08 - w7.mUnk_10) << 12, (w7.mUnk_04 - w7.mUnk_0c) << 12);
-    gSoundFalloffs[6].mUnk_18 = DivFixed12(w7.mUnk_08 << 12, (w7.mUnk_04 - w7.mUnk_00) << 12);
-    gSoundFalloffs[6].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[6].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[6].mUnk_14 = FX_Div((w7.mUnk_08 - w7.mUnk_10) << 12, (w7.mUnk_04 - w7.mUnk_0c) << 12);
+    gSoundFalloffs[6].mUnk_18 = FX_Div(w7.mUnk_08 << 12, (w7.mUnk_04 - w7.mUnk_00) << 12);
+    gSoundFalloffs[6].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[6].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[6].mUnk_20 = (((s32) ((((s64) (w7.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (w7.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w8 = s8;
@@ -209,9 +209,9 @@ void func_02109468(void) {
     gSoundFalloffs[7].mUnk_04 = w8.mUnk_04;
     gSoundFalloffs[7].mUnk_08 = w8.mUnk_08;
     gSoundFalloffs[7].mInnerDistance = w8.mUnk_0c;
-    gSoundFalloffs[7].mUnk_14 = DivFixed12((w8.mUnk_08 - w8.mUnk_10) << 12, (w8.mUnk_04 - w8.mUnk_0c) << 12);
-    gSoundFalloffs[7].mUnk_18 = DivFixed12(w8.mUnk_08 << 12, (w8.mUnk_04 - w8.mUnk_00) << 12);
-    gSoundFalloffs[7].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[7].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[7].mUnk_14 = FX_Div((w8.mUnk_08 - w8.mUnk_10) << 12, (w8.mUnk_04 - w8.mUnk_0c) << 12);
+    gSoundFalloffs[7].mUnk_18 = FX_Div(w8.mUnk_08 << 12, (w8.mUnk_04 - w8.mUnk_00) << 12);
+    gSoundFalloffs[7].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[7].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[7].mUnk_20 = (((s32) ((((s64) (w8.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (w8.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w9 = s9;
@@ -220,9 +220,9 @@ void func_02109468(void) {
     gSoundFalloffs[8].mUnk_04 = w9.mUnk_04;
     gSoundFalloffs[8].mUnk_08 = w9.mUnk_08;
     gSoundFalloffs[8].mInnerDistance = w9.mUnk_0c;
-    gSoundFalloffs[8].mUnk_14 = DivFixed12((w9.mUnk_08 - w9.mUnk_10) << 12, (w9.mUnk_04 - w9.mUnk_0c) << 12);
-    gSoundFalloffs[8].mUnk_18 = DivFixed12(w9.mUnk_08 << 12, (w9.mUnk_04 - w9.mUnk_00) << 12);
-    gSoundFalloffs[8].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[8].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[8].mUnk_14 = FX_Div((w9.mUnk_08 - w9.mUnk_10) << 12, (w9.mUnk_04 - w9.mUnk_0c) << 12);
+    gSoundFalloffs[8].mUnk_18 = FX_Div(w9.mUnk_08 << 12, (w9.mUnk_04 - w9.mUnk_00) << 12);
+    gSoundFalloffs[8].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[8].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[8].mUnk_20 = (((s32) ((((s64) (w9.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (w9.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w10 = s10;
@@ -231,9 +231,9 @@ void func_02109468(void) {
     gSoundFalloffs[9].mUnk_04 = w10.mUnk_04;
     gSoundFalloffs[9].mUnk_08 = w10.mUnk_08;
     gSoundFalloffs[9].mInnerDistance = w10.mUnk_0c;
-    gSoundFalloffs[9].mUnk_14 = DivFixed12((w10.mUnk_08 - w10.mUnk_10) << 12, (w10.mUnk_04 - w10.mUnk_0c) << 12);
-    gSoundFalloffs[9].mUnk_18 = DivFixed12(w10.mUnk_08 << 12, (w10.mUnk_04 - w10.mUnk_00) << 12);
-    gSoundFalloffs[9].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[9].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[9].mUnk_14 = FX_Div((w10.mUnk_08 - w10.mUnk_10) << 12, (w10.mUnk_04 - w10.mUnk_0c) << 12);
+    gSoundFalloffs[9].mUnk_18 = FX_Div(w10.mUnk_08 << 12, (w10.mUnk_04 - w10.mUnk_00) << 12);
+    gSoundFalloffs[9].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[9].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[9].mUnk_20 = (((s32) ((((s64) (w10.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                 (((s32) ((((s64) (w10.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w11 = s11;
@@ -242,9 +242,9 @@ void func_02109468(void) {
     gSoundFalloffs[10].mUnk_04 = w11.mUnk_04;
     gSoundFalloffs[10].mUnk_08 = w11.mUnk_08;
     gSoundFalloffs[10].mInnerDistance = w11.mUnk_0c;
-    gSoundFalloffs[10].mUnk_14 = DivFixed12((w11.mUnk_08 - w11.mUnk_10) << 12, (w11.mUnk_04 - w11.mUnk_0c) << 12);
-    gSoundFalloffs[10].mUnk_18 = DivFixed12(w11.mUnk_08 << 12, (w11.mUnk_04 - w11.mUnk_00) << 12);
-    gSoundFalloffs[10].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[10].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[10].mUnk_14 = FX_Div((w11.mUnk_08 - w11.mUnk_10) << 12, (w11.mUnk_04 - w11.mUnk_0c) << 12);
+    gSoundFalloffs[10].mUnk_18 = FX_Div(w11.mUnk_08 << 12, (w11.mUnk_04 - w11.mUnk_00) << 12);
+    gSoundFalloffs[10].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[10].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[10].mUnk_20 = (((s32) ((((s64) (w11.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                  (((s32) ((((s64) (w11.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w12 = s12;
@@ -253,9 +253,9 @@ void func_02109468(void) {
     gSoundFalloffs[11].mUnk_04 = w12.mUnk_04;
     gSoundFalloffs[11].mUnk_08 = w12.mUnk_08;
     gSoundFalloffs[11].mInnerDistance = w12.mUnk_0c;
-    gSoundFalloffs[11].mUnk_14 = DivFixed12((w12.mUnk_08 - w12.mUnk_10) << 12, (w12.mUnk_04 - w12.mUnk_0c) << 12);
-    gSoundFalloffs[11].mUnk_18 = DivFixed12(w12.mUnk_08 << 12, (w12.mUnk_04 - w12.mUnk_00) << 12);
-    gSoundFalloffs[11].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[11].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[11].mUnk_14 = FX_Div((w12.mUnk_08 - w12.mUnk_10) << 12, (w12.mUnk_04 - w12.mUnk_0c) << 12);
+    gSoundFalloffs[11].mUnk_18 = FX_Div(w12.mUnk_08 << 12, (w12.mUnk_04 - w12.mUnk_00) << 12);
+    gSoundFalloffs[11].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[11].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[11].mUnk_20 = (((s32) ((((s64) (w12.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                  (((s32) ((((s64) (w12.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w13 = s13;
@@ -264,9 +264,9 @@ void func_02109468(void) {
     gSoundFalloffs[12].mUnk_04 = w13.mUnk_04;
     gSoundFalloffs[12].mUnk_08 = w13.mUnk_08;
     gSoundFalloffs[12].mInnerDistance = w13.mUnk_0c;
-    gSoundFalloffs[12].mUnk_14 = DivFixed12((w13.mUnk_08 - w13.mUnk_10) << 12, (w13.mUnk_04 - w13.mUnk_0c) << 12);
-    gSoundFalloffs[12].mUnk_18 = DivFixed12(w13.mUnk_08 << 12, (w13.mUnk_04 - w13.mUnk_00) << 12);
-    gSoundFalloffs[12].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[12].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[12].mUnk_14 = FX_Div((w13.mUnk_08 - w13.mUnk_10) << 12, (w13.mUnk_04 - w13.mUnk_0c) << 12);
+    gSoundFalloffs[12].mUnk_18 = FX_Div(w13.mUnk_08 << 12, (w13.mUnk_04 - w13.mUnk_00) << 12);
+    gSoundFalloffs[12].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[12].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[12].mUnk_20 = (((s32) ((((s64) (w13.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                  (((s32) ((((s64) (w13.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w14 = s14;
@@ -275,9 +275,9 @@ void func_02109468(void) {
     gSoundFalloffs[13].mUnk_04 = w14.mUnk_04;
     gSoundFalloffs[13].mUnk_08 = w14.mUnk_08;
     gSoundFalloffs[13].mInnerDistance = w14.mUnk_0c;
-    gSoundFalloffs[13].mUnk_14 = DivFixed12((w14.mUnk_08 - w14.mUnk_10) << 12, (w14.mUnk_04 - w14.mUnk_0c) << 12);
-    gSoundFalloffs[13].mUnk_18 = DivFixed12(w14.mUnk_08 << 12, (w14.mUnk_04 - w14.mUnk_00) << 12);
-    gSoundFalloffs[13].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[13].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[13].mUnk_14 = FX_Div((w14.mUnk_08 - w14.mUnk_10) << 12, (w14.mUnk_04 - w14.mUnk_0c) << 12);
+    gSoundFalloffs[13].mUnk_18 = FX_Div(w14.mUnk_08 << 12, (w14.mUnk_04 - w14.mUnk_00) << 12);
+    gSoundFalloffs[13].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[13].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[13].mUnk_20 = (((s32) ((((s64) (w14.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                  (((s32) ((((s64) (w14.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w15 = s15;
@@ -286,9 +286,9 @@ void func_02109468(void) {
     gSoundFalloffs[14].mUnk_04 = w15.mUnk_04;
     gSoundFalloffs[14].mUnk_08 = w15.mUnk_08;
     gSoundFalloffs[14].mInnerDistance = w15.mUnk_0c;
-    gSoundFalloffs[14].mUnk_14 = DivFixed12((w15.mUnk_08 - w15.mUnk_10) << 12, (w15.mUnk_04 - w15.mUnk_0c) << 12);
-    gSoundFalloffs[14].mUnk_18 = DivFixed12(w15.mUnk_08 << 12, (w15.mUnk_04 - w15.mUnk_00) << 12);
-    gSoundFalloffs[14].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[14].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[14].mUnk_14 = FX_Div((w15.mUnk_08 - w15.mUnk_10) << 12, (w15.mUnk_04 - w15.mUnk_0c) << 12);
+    gSoundFalloffs[14].mUnk_18 = FX_Div(w15.mUnk_08 << 12, (w15.mUnk_04 - w15.mUnk_00) << 12);
+    gSoundFalloffs[14].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[14].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[14].mUnk_20 = (((s32) ((((s64) (w15.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                  (((s32) ((((s64) (w15.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
     w16 = s16;
@@ -297,9 +297,9 @@ void func_02109468(void) {
     gSoundFalloffs[15].mUnk_04 = w16.mUnk_04;
     gSoundFalloffs[15].mUnk_08 = w16.mUnk_08;
     gSoundFalloffs[15].mInnerDistance = w16.mUnk_0c;
-    gSoundFalloffs[15].mUnk_14 = DivFixed12((w16.mUnk_08 - w16.mUnk_10) << 12, (w16.mUnk_04 - w16.mUnk_0c) << 12);
-    gSoundFalloffs[15].mUnk_18 = DivFixed12(w16.mUnk_08 << 12, (w16.mUnk_04 - w16.mUnk_00) << 12);
-    gSoundFalloffs[15].mUnk_1c = DivFixed12(0x666, (gSoundFalloffs[15].mInnerDistance << 12) + 0x36000);
+    gSoundFalloffs[15].mUnk_14 = FX_Div((w16.mUnk_08 - w16.mUnk_10) << 12, (w16.mUnk_04 - w16.mUnk_0c) << 12);
+    gSoundFalloffs[15].mUnk_18 = FX_Div(w16.mUnk_08 << 12, (w16.mUnk_04 - w16.mUnk_00) << 12);
+    gSoundFalloffs[15].mUnk_1c = FX_Div(0x666, (gSoundFalloffs[15].mInnerDistance << 12) + 0x36000);
     gSoundFalloffs[15].mUnk_20 = (((s32) ((((s64) (w16.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12) *
                                  (((s32) ((((s64) (w16.mUnk_00 << 12) * 0x16a1) + 0x800) >> 12)) >> 12);
 }
@@ -351,7 +351,7 @@ s32 func_0210920c(Unk0210bcf4 *p) {
     u32 a;
     s32 v;
 
-    a = AngleFromPair(p->mUnk_08 << 12, -p->mUnk_0c << 12);
+    a = FX_Atan2Idx(p->mUnk_08 << 12, -p->mUnk_0c << 12);
     if (a > 0x7fff) {
         a = (u16) (0xffff - a);
     }

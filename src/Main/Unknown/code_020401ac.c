@@ -91,13 +91,12 @@ void func_02040a8c(Unk0217561c_500 *a, s32 b) {
     if (d->mUnk_000[0].mRankTime == 0) {
         a->mUnk_00 = 0;
     } else {
-        a->mUnk_00 = (DivFixed12(r->mUnk_0a * (d->mUnk_000[0].mRankTime - d->mUnk_000[0].mElapsedFrames),
-                                 d->mUnk_000[0].mRankTime) +
-                      0x800) >>
-                     12;
+        a->mUnk_00 =
+            (FX_Div(r->mUnk_0a * (d->mUnk_000[0].mRankTime - d->mUnk_000[0].mElapsedFrames), d->mUnk_000[0].mRankTime) +
+             0x800) >>
+            12;
     }
-    a->mUnk_04 =
-        (r->mUnk_0c * DivFixed12(e->mFirstPlaceFrames << 12, gRaceProgress->mUnk_000[0].mRankTime << 12)) >> 12;
+    a->mUnk_04 = (r->mUnk_0c * FX_Div(e->mFirstPlaceFrames << 12, gRaceProgress->mUnk_000[0].mRankTime << 12)) >> 12;
     if (t->mUnk_00 != 0) {
         a->mUnk_08 = r->mUnk_0e;
     } else {
@@ -105,7 +104,7 @@ void func_02040a8c(Unk0217561c_500 *a, s32 b) {
     }
     a->mUnk_0c = r->mUnk_10 * t->mUnk_04;
     a->mUnk_10 = r->mUnk_12 * t->mUnk_08;
-    a->mUnk_14 = -((u32) (t->mUnk_0c * ReciprocalFixed12(r->mUnk_14 << 12)) >> 12);
+    a->mUnk_14 = -((u32) (t->mUnk_0c * FX_Inv(r->mUnk_14 << 12)) >> 12);
     a->mUnk_18 = t->mUnk_10 * -r->mUnk_16;
     a->mUnk_1c = t->mUnk_14 * -r->mUnk_18;
     a->mUnk_20 = t->mUnk_18 * -r->mUnk_1a;
@@ -132,7 +131,7 @@ s16 func_020408f0(s32 a) {
             h = (u8 *) g + 0x28;
             t = GetEntryKartCounters();
             b.mUnk_00 =
-                DivFixed12(*(s16 *) (h + 4) * (*(u16 *) (h + 2) - d->mUnk_000[0].mElapsedFrames) << 12, 0x3e8000) >> 12;
+                FX_Div(*(s16 *) (h + 4) * (*(u16 *) (h + 2) - d->mUnk_000[0].mElapsedFrames) << 12, 0x3e8000) >> 12;
             b.mUnk_04 = 0;
             b.mUnk_08 = 0;
             b.mUnk_0c = 0;
@@ -221,7 +220,7 @@ static inline void func_020401ac_inline4(Unk020f41c4_B *x, u32 s) {
 }
 
 static inline s32 func_020401ac_inline5(s32 a, s32 b) {
-    return b == 0 ? 0 : DivFixed12(a + 0x1000, b << 12);
+    return b == 0 ? 0 : FX_Div(a + 0x1000, b << 12);
 }
 
 static inline u32 func_020401ac_inline6(Unk020f41c4_B *x, u32 n) {
@@ -338,8 +337,8 @@ void InitRaceProgress(void) {
         ShuffleCourseMapRespawnSlots(&gRaceProgress->mRandom);
     }
     gRaceProgress->mUnk_4d0 = 0;
-    gRaceProgress->mLapProgressScale = ReciprocalFixed12((gCourseMap->mLapProgressBaseMax + 1) << 12);
-    gRaceProgress->mRaceProgressScale = ReciprocalFixed12(func_02044618() << 12);
+    gRaceProgress->mLapProgressScale = FX_Inv((gCourseMap->mLapProgressBaseMax + 1) << 12);
+    gRaceProgress->mRaceProgressScale = FX_Inv(func_02044618() << 12);
     for (i = 0; i < gCourseMap->mNumberedCheckpointCount + 1; i++) {
         v1 = i % (gCourseMap->mNumberedCheckpointCount + 1);
         if (v1 == gCourseMap->mNumberedCheckpointCount) {

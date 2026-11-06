@@ -217,11 +217,11 @@ void func_020a36a8(Balloon *a) {
         a->mUnk_e0 = 1;
     } else if (a->mUnk_e0 != 0) {
         if (v7 > t) {
-            s = DivFixed12(v7 - t, v7);
+            s = FX_Div(v7 - t, v7);
             v.x = (s32) (((s64) v1 * s) >> 12);
             v.y = 0;
             v.z = (s32) (((s64) v3 * s) >> 12);
-            Vec3Sub(&a->mUnk_00.mPos, &v, &a->mUnk_00.mPos);
+            VEC_Subtract(&a->mUnk_00.mPos, &v, &a->mUnk_00.mPos);
         }
     }
     v1 = (a->mUnk_00.mPos.x + a->mUnk_00.mUnk_10.x) - (a->mTargetPos.x + a->mTargetVelocity.x);
@@ -233,18 +233,18 @@ void func_020a36a8(Balloon *a) {
     v6 = v3 < 0 ? -v3 : v3;
     v7 = v5 + (v4 >> 2) + (v6 >> 2);
     if (v7 > t) {
-        s = DivFixed12(v7 - t, v7);
+        s = FX_Div(v7 - t, v7);
         v.x = (s32) (((s64) v1 * s) >> 12);
         v.y = (s32) (((s64) v2 * s) >> 12);
         v.z = (s32) (((s64) v3 * s) >> 12);
         if (a->mKartIndex >= 0) {
-            Vec3Sub(&a->mUnk_00.mUnk_10, &v, &a->mUnk_00.mUnk_10);
+            VEC_Subtract(&a->mUnk_00.mUnk_10, &v, &a->mUnk_00.mUnk_10);
         } else {
-            Vec3Add(&a->mTargetVelocity, &v, &a->mTargetVelocity);
+            VEC_Add(&a->mTargetVelocity, &v, &a->mTargetVelocity);
         }
     }
-    Vec3Add(&a->mUnk_00.mPos, &a->mUnk_00.mUnk_10, &a->mUnk_00.mPos);
-    Vec3Add(&a->mTargetPos, &a->mTargetVelocity, &a->mTargetPos);
+    VEC_Add(&a->mUnk_00.mPos, &a->mUnk_00.mUnk_10, &a->mUnk_00.mPos);
+    VEC_Add(&a->mTargetPos, &a->mTargetVelocity, &a->mTargetPos);
 }
 
 u32 func_020a369c(Balloon *p) {
@@ -268,17 +268,17 @@ void func_020a35b0(Balloon *a) {
     s32 w;
 
     g = GetCurrentCamera();
-    v1 = AngleFromPair(g->mForward.x, g->mForward.z) - 0x4000;
-    Vec3Sub(&a->mUnk_00.mPos, &g->mPos, &v);
+    v1 = FX_Atan2Idx(g->mForward.x, g->mForward.z) - 0x4000;
+    VEC_Subtract(&a->mUnk_00.mPos, &g->mPos, &v);
     i = (v1 >> 4) * 2;
     s = gPairsByAngle[i];
     c = gPairsByAngle[i + 1];
     x = (s32) (((s64) v.z * c) >> 12);
     y = (s32) (((s64) v.x * s) >> 12);
     u = v.y;
-    Vec3Sub(&a->mTargetPos, &g->mPos, &v);
+    VEC_Subtract(&a->mTargetPos, &g->mPos, &v);
     w = (s32) (((s64) v.x * s) >> 12) + (s32) (((s64) v.z * c) >> 12);
-    a->mUnk_00.mAngle = AngleFromPair(u - v.y, -(y + x - w));
+    a->mUnk_00.mAngle = FX_Atan2Idx(u - v.y, -(y + x - w));
 }
 
 void UpdateBalloon(void *p, Balloon *a) {
@@ -401,8 +401,8 @@ void UpdateBalloon(void *p, Balloon *a) {
         a->mUnk_00.mUnk_10.x = (s32) (((s64) a->mUnk_00.mUnk_10.x * 0xc00) >> 12);
         a->mUnk_00.mUnk_10.y = (s32) (((s64) a->mUnk_00.mUnk_10.y * 0xc00) >> 12);
         a->mUnk_00.mUnk_10.z = (s32) (((s64) a->mUnk_00.mUnk_10.z * 0xc00) >> 12);
-        Vec3Add(&a->mUnk_00.mPos, &a->mUnk_00.mUnk_10, &a->mUnk_00.mPos);
-        Vec3Add(&a->mTargetPos, &a->mTargetVelocity, &a->mTargetPos);
+        VEC_Add(&a->mUnk_00.mPos, &a->mUnk_00.mUnk_10, &a->mUnk_00.mPos);
+        VEC_Add(&a->mTargetPos, &a->mTargetVelocity, &a->mTargetPos);
     }
 }
 

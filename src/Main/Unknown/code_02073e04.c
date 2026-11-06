@@ -13,7 +13,7 @@ int GetCameraForwardDistance(u32 a) {
     Camera *v1;
     u8 v2[12];
     v1 = GetCurrentCamera();
-    Vec3Sub((const Vec3 *) a, &v1->mPos, (Vec3 *) (v2));
+    VEC_Subtract((const Vec3 *) a, &v1->mPos, (Vec3 *) (v2));
     return Vec3DotUnrounded(&v1->mForward, (const Vec3 *) v2);
 }
 
@@ -23,7 +23,7 @@ int GetCameraSideDistance(u32 a) {
     int v2;
     u8 v3[12];
     v1 = GetCurrentCamera();
-    Vec3Sub((const Vec3 *) a, &v1->mPos, (Vec3 *) (v3));
+    VEC_Subtract((const Vec3 *) a, &v1->mPos, (Vec3 *) (v3));
     v2 = ((u32) Vec3DotUnrounded(&v1->mSide, (const Vec3 *) v3));
     return v1->mSideDistanceSign * v2;
 }

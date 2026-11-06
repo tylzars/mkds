@@ -226,7 +226,7 @@ s32 func_ov001_02180eec(s32 p0, s32 p1, s32 p2, s32 p3, s32 p4) {
     if (dx == 0) {
         stepX = 0;
     } else if (dx < dy) {
-        stepX = DivFixed12(p2 - p0, dy);
+        stepX = FX_Div(p2 - p0, dy);
     } else if (p2 > p0) {
         stepX = 0x1000;
     } else {
@@ -235,7 +235,7 @@ s32 func_ov001_02180eec(s32 p0, s32 p1, s32 p2, s32 p3, s32 p4) {
     if (dy == 0) {
         stepY = 0;
     } else if (dy < dx) {
-        stepY = DivFixed12(p3 - p1, dx);
+        stepY = FX_Div(p3 - p1, dx);
     } else if (p3 > p1) {
         stepY = 0x1000;
     } else {

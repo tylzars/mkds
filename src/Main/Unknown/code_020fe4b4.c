@@ -117,13 +117,13 @@ u8 *func_020ff0b0(u8 *a, Vec3 *b, Vec3 *q, void *c) {
 
     if (q != NULL) {
         if (c != NULL) {
-            Vec3Sub(q, b, (Vec3 *) t);
+            VEC_Subtract(q, b, (Vec3 *) t);
         }
         a = func_020ff0b0_inline(a, &t[0], c, 10);
         a = func_020ff0b0_inline(a, &t[1], c, 9);
         a = func_020ff0b0_inline(a, &t[2], c, 10);
         if (c == NULL) {
-            Vec3Add((Vec3 *) t, b, q);
+            VEC_Add((Vec3 *) t, b, q);
         }
     } else {
         a++;

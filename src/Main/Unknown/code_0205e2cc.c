@@ -345,7 +345,7 @@ void func_0205e2cc(void *a) {
                     y = func_0205e2cc_inline(func_020431cc(), p->mUnk_0c.z);
                     w = func_0205e2cc_inline(u, u) + func_0205e2cc_inline(v, v);
                     y = func_0205e2cc_inline(y, y);
-                    u = SqrtFixed12(y + w);
+                    u = FX_Sqrt(y + w);
                     break;
                 case 1:
                     u = func_0205e2cc_inline(func_020431dc(), p->mUnk_0c.x);

@@ -220,11 +220,11 @@ u32 func_02096f54(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
 BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
     Vec3 s;
     s32 d;
-    Vec3Sub(a, &p->mUnk_00.mPos, &s);
+    VEC_Subtract(a, &p->mUnk_00.mPos, &s);
     if (s.y >= p->mUnk_a0 + b) {
         return FALSE;
     }
-    d = Vec3Length(&s);
+    d = VEC_Mag(&s);
     if (d >= p->mUnk_00.mExtent.x + b) {
         return FALSE;
     }

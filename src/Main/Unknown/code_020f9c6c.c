@@ -140,7 +140,7 @@ void func_020fc94c(Unk020fc2e8 *p) {
     p->mUnk_298.x = 0;
     p->mUnk_298.y = 0;
     p->mUnk_298.z = 0;
-    Vec3Sub(&p->mUnk_000.mVelocity, &p->mUnk_298, &p->mUnk_28c);
+    VEC_Subtract(&p->mUnk_000.mVelocity, &p->mUnk_298, &p->mUnk_28c);
     p->mUnk_000.mUnk_d0 = &p->mUnk_000.mUnk_0c4;
     func_0208adc8(&p->mUnk_000.mUnk_7c, 1);
 }
@@ -192,9 +192,9 @@ void func_020fc654(Unk020fc2e8 *p) {
     if (p->mUnk_000.mFlags & 0x40000000) {
         p->mUnk_268 += 0x5dc;
         v = gPairsByAngle[(p->mUnk_268 >> 4) * 2];
-        Vec3AddScaled(a + (s32) (((s64) p->mUnk_264 * v) >> 12), &p->mUnk_000.mUnk_f0, &p->mUnk_000.mPos, &buf);
-        Vec3Sub(&buf, &p->mUnk_000.mUnk_0c4, &buf);
-        Vec3AddScaled(0x333, &buf, &p->mUnk_000.mUnk_0c4, &p->mUnk_000.mUnk_0c4);
+        VEC_MultAdd(a + (s32) (((s64) p->mUnk_264 * v) >> 12), &p->mUnk_000.mUnk_f0, &p->mUnk_000.mPos, &buf);
+        VEC_Subtract(&buf, &p->mUnk_000.mUnk_0c4, &buf);
+        VEC_MultAdd(0x333, &buf, &p->mUnk_000.mUnk_0c4, &p->mUnk_000.mUnk_0c4);
     } else {
         p->mUnk_000.mUnk_0c4.y += p->mUnk_000.mVelocity.y >> 1;
         p->mUnk_268 += 0x5dc;
@@ -221,7 +221,7 @@ void func_020fc2e8(Unk020fc2e8 *p, Vec3 *v, s32 v1, Vec3 *v2) {
         v5->x = (s32) (((s64) v5->x * 0xccd) >> 12);
         v5->y = (s32) (((s64) v5->y * 0xccd) >> 12);
         v5->z = (s32) (((s64) v5->z * 0xccd) >> 12);
-        Vec3AddScaled(0x3000, v5, v2, &buf);
+        VEC_MultAdd(0x3000, v5, v2, &buf);
         Vec3CrossUnrounded(&buf, &p->mUnk_000.mUnk_94.mUnk_00[2], &buf);
         if ((s64) buf.x * buf.x + (s64) buf.y * buf.y + (s64) buf.z * buf.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&buf, &p->mUnk_000.mUnk_94.mUnk_00[0]);
@@ -390,7 +390,7 @@ void func_020fbd98(Unk020fc2e8 *param_1) {
 }
 
 void func_020fbd4c(Unk020fc2e8 *param_1) {
-    param_1->mUnk_27c = Vec3Length(&param_1->mUnk_000.mVelocity);
+    param_1->mUnk_27c = VEC_Mag(&param_1->mUnk_000.mVelocity);
     param_1->mUnk_284 = 0x1e000;
     if (param_1->mUnk_228->mKartIndex == data_021759c0->mEntryIndex) {
         param_1->mUnk_270 = 0xdd;
@@ -465,7 +465,7 @@ void func_020fbae0(Unk020fc2e8 *param_1) {
 void func_020fba6c(Unk020fc2e8 *param_1) {
     param_1->mUnk_264 = 0x5000;
     param_1->mUnk_288 = 0x3e8;
-    Vec3Sub(&param_1->mUnk_238, &param_1->mUnk_298, &param_1->mUnk_28c);
+    VEC_Subtract(&param_1->mUnk_238, &param_1->mUnk_298, &param_1->mUnk_28c);
     if (param_1->mUnk_26c != 0) {
         func_0208eb10(param_1->mUnk_26c);
         param_1->mUnk_26c = 0;
@@ -506,14 +506,14 @@ void func_020fb7f8(Unk020fc2e8 *param_1) {
             v.y = param_1->mUnk_250.y * 2;
             v.z = param_1->mUnk_250.z * 2;
             Vec3CrossUnrounded(q, &v, &v);
-            Vec3AddScaled((s32) (((s64) (param_1->mUnk_25c - 0x10000) * 0xccd) >> 12), q, &v, &v);
+            VEC_MultAdd((s32) (((s64) (param_1->mUnk_25c - 0x10000) * 0xccd) >> 12), q, &v, &v);
         } else {
             v.x = (s32) (((s64) param_1->mUnk_250.z * 0x2000) >> 12);
             v.y = (s32) (((s64) (param_1->mUnk_25c - 0x10000) * 0xccd) >> 12);
             v.z = -(s32) (((s64) param_1->mUnk_250.x * 0x2000) >> 12);
         }
         if (param_1->mUnk_2ec == 0) {
-            Vec3Sub(&v, &param_1->mUnk_298, &param_1->mUnk_28c);
+            VEC_Subtract(&v, &param_1->mUnk_298, &param_1->mUnk_28c);
         }
         func_020fc2e8(param_1, &v, 1, q);
         return;
@@ -562,7 +562,7 @@ void func_020fb61c(Unk020fc2e8 *param_1) {
     }
     q = func_020fbd98_inline(param_1);
     if (q != NULL) {
-        Vec3AddScaled(param_1->mUnk_27c, q, &param_1->mUnk_22c, &v);
+        VEC_MultAdd(param_1->mUnk_27c, q, &param_1->mUnk_22c, &v);
     } else {
         z = param_1->mUnk_22c.z;
         y = param_1->mUnk_27c;
@@ -571,8 +571,8 @@ void func_020fb61c(Unk020fc2e8 *param_1) {
         v.y = y;
         v.z = z;
     }
-    Vec3Sub(&v, &param_1->mUnk_2a4, &v);
-    Vec3AddScaled(param_1->mUnk_284, &v, &param_1->mUnk_2a4, &param_1->mUnk_2a4);
+    VEC_Subtract(&v, &param_1->mUnk_2a4, &v);
+    VEC_MultAdd(param_1->mUnk_284, &v, &param_1->mUnk_2a4, &param_1->mUnk_2a4);
     func_020fc2e8(param_1, &param_1->mUnk_2a4, 0, q);
 }
 
@@ -603,7 +603,7 @@ void func_020fb46c(Unk020fc2e8 *param_1) {
         pv = &param_1->mUnk_000.mPos;
         if (func_01ffdee4(pv, &param_1->mUnk_000.mPrevPos, 0, param_1->mUnk_000.mUnk_dc, 4, param_1->mUnk_000.mUnk_da,
                           &v, NULL, NULL, &param_1->mUnk_000.mUnk_fc, NULL, NULL, NULL, NULL) != 0) {
-            Vec3Add(&v, pv, pv);
+            VEC_Add(&v, pv, pv);
             func_020f7104(&param_1->mUnk_000, 0);
             if (param_1->mUnk_000.mFlags & 0x8000000) {
                 func_020fe71c(5, param_1->mUnk_228->mKartIndex, param_1->mUnk_000.mId);
@@ -830,7 +830,7 @@ void func_020fad00(void) {
     s32 v;
 
     data_0217bd3c = 0x1e000;
-    data_0217bd40 = DivFixed12(0x1000, data_0217bd3c);
+    data_0217bd40 = FX_Div(0x1000, data_0217bd3c);
     data_0217bd44 = 0x299a;
     a = data_0217bd3c;
     b = gItemKinds[5].mUnk_6c;
@@ -1003,9 +1003,9 @@ static inline s32 func_020fa4c8_inline(ItemObject *e, Kart *a) {
         return 1;
     }
     if (e->mVelocity.x != 0 || e->mVelocity.y != 0 || e->mVelocity.z != 0 || a->mForwardSpeed != 0) {
-        Vec3Sub(&e->mPrevPos, &a->mUnk_1e4, &b);
+        VEC_Subtract(&e->mPrevPos, &a->mUnk_1e4, &b);
         b.y = 0;
-        Vec3Sub(&e->mPos, &a->mUnk_1d8, &c);
+        VEC_Subtract(&e->mPos, &a->mUnk_1d8, &c);
         c.y = 0;
         d1 = Vec3DotUnrounded(&b, &b);
         d2 = Vec3DotUnrounded(&c, &c);

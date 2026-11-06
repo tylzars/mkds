@@ -92,11 +92,11 @@ Vec3 *func_020d8654(CourseMapRow *a) {
             }
             e = GetCourseMapGroupEntry(k, 0);
             f = GetCourseMapGroupEntry(k, (u16) (n - 1));
-            Vec3Sub(&e->mUnk_00, &f->mUnk_00, &v);
+            VEC_Subtract(&e->mUnk_00, &f->mUnk_00, &v);
         } else {
             e = GetCourseMapGroupEntry(k, (u16) (i + 1));
             f = GetCourseMapGroupEntry(k, i);
-            Vec3Sub(&e->mUnk_00, &f->mUnk_00, &v);
+            VEC_Subtract(&e->mUnk_00, &f->mUnk_00, &v);
         }
         t = v.z;
         v.z = -v.x;

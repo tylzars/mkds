@@ -368,10 +368,10 @@ void UpdateWanwanState0(Wanwan *p) {
     p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x - p->mUnk_00.mUnk_10.x;
     p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z - p->mUnk_00.mUnk_10.z;
     if (func_020dccc8_inline(&p->mUnk_00.mUnk_10) >= 0x10) {
-        func_020d7b34((u16) (((s64) func_02148538(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL +
-                              0x80000000000LL) >>
-                             44),
-                      &p->mUnk_d4);
+        func_020d7b34(
+            (u16) (((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL + 0x80000000000LL) >>
+                   44),
+            &p->mUnk_d4);
     }
     if (p->mUnk_00.mStateMachine.mStateFrames < 0x40) {
         p->mUnk_ec += 0x1c;
@@ -412,7 +412,7 @@ void UpdateWanwanState1(Wanwan *p) {
     s32 m;
 
     if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_1f8) {
-        Vec3Sub(p->mUnk_1f0, &p->mUnk_00.mPos, &a);
+        VEC_Subtract(p->mUnk_1f0, &p->mUnk_00.mPos, &a);
         t = (s32) (((s64) p->mUnk_1f4->x * a.z - (s64) p->mUnk_1f4->z * a.x) >> 12);
         t = -t >> 12;
         if (t < 0) {
@@ -421,8 +421,8 @@ void UpdateWanwanState1(Wanwan *p) {
         k = (s32) (((s64) t * 0x7a) >> 12);
         b.x = p->mUnk_1f4->x * k;
         b.z = p->mUnk_1f4->z * k;
-        Vec3Add(&b, p->mUnk_1f0, &b);
-        Vec3Sub(&b, &p->mUnk_a0, &a);
+        VEC_Add(&b, p->mUnk_1f0, &b);
+        VEC_Subtract(&b, &p->mUnk_a0, &a);
         m = Vec3NormalizeXZAndGetLengthOrZero(&a, &a);
         if (m > p->mUnk_f0) {
             m -= p->mUnk_f0 >> 1;
@@ -433,10 +433,10 @@ void UpdateWanwanState1(Wanwan *p) {
         a.x = (s32) (((s64) a.x * m) >> 12);
         a.y = (s32) (((s64) a.y * m) >> 12);
         a.z = (s32) (((s64) a.z * m) >> 12);
-        Vec3Add(&a, &p->mUnk_a0, &p->mUnk_1e0);
+        VEC_Add(&a, &p->mUnk_a0, &p->mUnk_1e0);
         p->mUnk_1f8 += 0xb4;
     }
-    Vec3Sub(&p->mUnk_1e0, &p->mUnk_00.mPos, &a);
+    VEC_Subtract(&p->mUnk_1e0, &p->mUnk_00.mPos, &a);
     p->mUnk_00.mUnk_10.x += (s32) (((s64) a.x << 5) >> 12);
     p->mUnk_00.mUnk_10.z += (s32) (((s64) a.z << 5) >> 12);
     if (func_020dccc8_inline(&p->mUnk_00.mUnk_10) >= 0x40000000) {
@@ -447,7 +447,7 @@ void UpdateWanwanState1(Wanwan *p) {
         p->mUnk_00.mUnk_10.x >>= 1;
         p->mUnk_00.mUnk_10.z >>= 1;
     } else {
-        func_020d7b34((u16) (((s64) func_02148538(a.x, a.z) * 0x28be60db9391LL + 0x80000000000LL) >> 44), &p->mUnk_d4);
+        func_020d7b34((u16) (((s64) FX_Atan2(a.x, a.z) * 0x28be60db9391LL + 0x80000000000LL) >> 44), &p->mUnk_d4);
     }
     t = (s32) (((s64) p->mUnk_00.mUnk_10.x * a.z) >> 12);
     t -= (s32) (((s64) p->mUnk_00.mUnk_10.z * a.x) >> 12);
@@ -457,7 +457,7 @@ void UpdateWanwanState1(Wanwan *p) {
     }
     p->mUnk_00.mPos.x += p->mUnk_00.mUnk_10.x;
     p->mUnk_00.mPos.z += p->mUnk_00.mUnk_10.z;
-    Vec3Sub(&p->mUnk_00.mPos, &p->mUnk_a0, &a);
+    VEC_Subtract(&p->mUnk_00.mPos, &p->mUnk_a0, &a);
     if ((s64) a.x * a.x + (s64) a.z * a.z >= (s64) p->mUnk_1ec * p->mUnk_1ec) {
         Vec3NormalizeXZAndGetLengthOrZero(&a, &a);
         p->mUnk_00.mPos.x = p->mUnk_a0.x + (s32) (((s64) a.x * p->mUnk_1ec) >> 12);
@@ -496,7 +496,7 @@ void UpdateWanwanState2(Wanwan *p) {
         p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z - p->mUnk_00.mUnk_10.z;
         v = &p->mUnk_00.mUnk_10;
         if ((s64) v->x * v->x + (s64) v->z * v->z >= 0x10) {
-            func_020d7b34((u16) (((s64) func_02148538(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL +
+            func_020d7b34((u16) (((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL +
                                   0x80000000000LL) >>
                                  44),
                           &p->mUnk_d4);
@@ -545,7 +545,7 @@ void UpdateWanwanState3(Wanwan *p) {
     if ((s64) (p->mUnk_00.mPos.x - p->mUnk_a0.x) * (p->mUnk_00.mPos.x - p->mUnk_a0.x) +
             (s64) (p->mUnk_00.mPos.z - p->mUnk_a0.z) * (p->mUnk_00.mPos.z - p->mUnk_a0.z) >=
         (s64) k * k) {
-        Vec3Sub(&p->mUnk_a0, &p->mUnk_00.mPos, &a);
+        VEC_Subtract(&p->mUnk_a0, &p->mUnk_00.mPos, &a);
         p->mUnk_00.mUnk_10.x += (s32) (((s64) a.x << 2) >> 12);
         p->mUnk_00.mUnk_10.z += (s32) (((s64) a.z << 2) >> 12);
         if (func_020dc474_inline(&p->mUnk_00.mUnk_10) >= 0x1000000) {

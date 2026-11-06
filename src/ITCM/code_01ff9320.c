@@ -27,15 +27,15 @@ void func_01ff94d4(s32 *o, const Unk0201290c_1c *v1) {
 
     a = v1->mUnk_2c << 12;
     b = v1->mUnk_2e << 12;
-    DivFixed12Start(b, a);
+    FX_DivAsync(b, a);
     o[0] = v1->mUnk_20[1];
     o[5] = v1->mUnk_20[1];
-    o[1] = (-v1->mUnk_20[0] * DivFixed12Result()) >> 12;
-    DivFixed12Start(a, b);
+    o[1] = (-v1->mUnk_20[0] * FX_GetDivResult()) >> 12;
+    FX_DivAsync(a, b);
     t = -(v1->mUnk_20[0] + v1->mUnk_20[1]);
     o[12] = (v1->mUnk_2c * (t + 0x1000)) << 3;
     o[13] = (v1->mUnk_2e * (v1->mUnk_20[0] - v1->mUnk_20[1] + 0x1000)) << 3;
-    o[4] = (v1->mUnk_20[0] * DivFixed12Result()) >> 12;
+    o[4] = (v1->mUnk_20[0] * FX_GetDivResult()) >> 12;
 }
 
 void func_01ff9490(s32 *o, const Unk0201290c_1c *v1) {

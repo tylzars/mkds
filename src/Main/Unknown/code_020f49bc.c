@@ -77,7 +77,7 @@ void func_020f6a6c(ItemObject *a, void *b) {
     enum { K0 } i;
     s32 k;
 
-    Vec3AddScaled(-a->mUnk_dc, &a->mUnk_f0, &a->mPos, &a->mUnk_108);
+    VEC_MultAdd(-a->mUnk_dc, &a->mUnk_f0, &a->mPos, &a->mUnk_108);
     func_020d5aa0(b, a->mUnk_fc, a->mUnk_104, &a->mUnk_108, &a->mUnk_f0);
     if (a->mUnk_104->mUnk_00 != NULL && func_020e0448((Unk020e0448 *) a->mUnk_104) != 0) {
         a->mUnk_11a = 0xe10;
@@ -123,7 +123,7 @@ void func_020f68b0(ItemObject *a) {
                 a->mFlags |= 0x80;
             }
         }
-        Vec3AddScaled(a->mUnk_dc, &a->mUnk_f0, &a->mUnk_108, &a->mPos);
+        VEC_MultAdd(a->mUnk_dc, &a->mUnk_f0, &a->mUnk_108, &a->mPos);
         if (a->mUnk_11a > 0) {
             a->mUnk_11a -= 1;
             if ((a->mUnk_48 & 7) != GetRaceUpdateFramesMod8()) {
@@ -144,13 +144,13 @@ void func_020f68b0(ItemObject *a) {
             }
             func_020f7070(a, 1);
         } else {
-            Vec3Sub(&a->mPos, &a->mPrevPos, &a->mVelocity);
+            VEC_Subtract(&a->mPos, &a->mPrevPos, &a->mVelocity);
         }
     } else {
         if (!(a->mFlags & 0x40)) {
             return;
         }
-        Vec3AddScaled(a->mUnk_dc, &a->mUnk_f0, &a->mUnk_108, &a->mPos);
+        VEC_MultAdd(a->mUnk_dc, &a->mUnk_f0, &a->mUnk_108, &a->mPos);
     }
 }
 
@@ -189,7 +189,7 @@ void func_020f6630(ItemObject *a0, s32 b, Vec3 *c, Vec3 *d, Vec3 *e) {
     }
     a->mFlags |= 0x4000;
     a->mUnk_78 |= data_02159b64;
-    n = Vec3Dot(e, p);
+    n = VEC_DotProduct(e, p);
     p->x -= (s32) (((s64) e->x * n) >> 12);
     p->y -= (s32) (((s64) e->y * n) >> 12);
     p->z -= (s32) (((s64) e->z * n) >> 12);
@@ -199,13 +199,13 @@ void func_020f6630(ItemObject *a0, s32 b, Vec3 *c, Vec3 *d, Vec3 *e) {
     } else if (n > 0x1333) {
         n = 0x1333;
     }
-    Vec3AddScaled(n + (t != 0 ? 0x2800 : 0x3800), e, p, p);
+    VEC_MultAdd(n + (t != 0 ? 0x2800 : 0x3800), e, p, p);
     if (b != 0) {
-        Vec3Sub(&a->mPos, c, &v);
+        VEC_Subtract(&a->mPos, c, &v);
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }
-        Vec3AddScaled(b * 0x14cd, &v, p, p);
+        VEC_MultAdd(b * 0x14cd, &v, p, p);
     }
     if (t != 0) {
         if (!(a->mFlags & 0x180000)) {
@@ -245,12 +245,12 @@ void func_020f63cc(ItemObject *a) {
     q = &a->mPos;
     p = &a->mVelocity;
 
-    Vec3Add(p, q, q);
+    VEC_Add(p, q, q);
     a->mVelocity.x = (s32) (((s64) a->mVelocity.x * 0xfec) >> 12);
     p->z = (s32) (((s64) p->z * 0xfec) >> 12);
     if (func_01ffdee4(q, &a->mPrevPos, 0, a->mUnk_dc, 0x44, a->mUnk_da, &v1, &v2, (s32 *) &v3, &a->mUnk_fc, NULL, NULL,
                       NULL, &w) != 0) {
-        Vec3Add(&v1, q, q);
+        VEC_Add(&v1, q, q);
         if (a->mUnk_fc & 0x1e34ef) {
             func_020f9334(a, q, p, 0x385, &v2);
         }
@@ -972,7 +972,7 @@ void func_020f4e78(Unk020f5008 *a, Vec3 *b, Vec3 *c) {
         return;
     }
     a->mUnk_000.mUnk_000.mPos = *c;
-    Vec3Sub(&a->mUnk_000.mUnk_000.mPos, &a->mUnk_000.mUnk_000.mPrevPos, &a->mUnk_000.mUnk_000.mVelocity);
+    VEC_Subtract(&a->mUnk_000.mUnk_000.mPos, &a->mUnk_000.mUnk_000.mPrevPos, &a->mUnk_000.mUnk_000.mVelocity);
 }
 
 // Runs the object's first word and stores the 0x120 and 0x130 words.
@@ -1076,7 +1076,7 @@ void func_020f49bc(Unk020f40dc *a) {
     r = &p->mVelocity;
     StartItemObject(gItemPools + e->mKind, e);
     func_020efd1c(a->mUnk_04, e);
-    Vec3AddScaled(0xb33, r, &e->mVelocity, &e->mVelocity);
+    VEC_MultAdd(0xb33, r, &e->mVelocity, &e->mVelocity);
     *(Vec3 *) &e->mPos = *q;
     func_020f6630(e, 0, q, r, &p->mUnk_244);
     k = e->mKind;

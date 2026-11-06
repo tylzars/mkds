@@ -168,11 +168,11 @@ void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
     }
     func_020d7734(a->mUnk_a0, v, buf);
     Matrix3x3FromQuaternion(&a->mUnk_28, buf);
-    Vec3AddScaled(-a->mUnk_f8, &a->mUnk_28.mUnk_0c, &a->mUnk_bc, &a->mUnk_04);
+    VEC_MultAdd(-a->mUnk_f8, &a->mUnk_28.mUnk_0c, &a->mUnk_bc, &a->mUnk_04);
     a->mUnk_ec.x = a->mUnk_04.x >> 4;
     a->mUnk_ec.y = a->mUnk_04.y >> 4;
     a->mUnk_ec.z = a->mUnk_04.z >> 4;
-    Vec3Sub(&a->mUnk_04, &a->mUnk_b0, &a->mUnk_10);
+    VEC_Subtract(&a->mUnk_04, &a->mUnk_b0, &a->mUnk_10);
     a->mUnk_b0 = a->mUnk_04;
 }
 
@@ -183,7 +183,7 @@ BOOL func_020e5fb4(Unk020e5e24 *a, Vec3 *b, s32 c, Vec3 *out) {
     s32 d;
     s64 sq;
 
-    Vec3Sub(b, &a->mUnk_04, &v);
+    VEC_Subtract(b, &a->mUnk_04, &v);
     r = Vec3DotUnrounded(&v, &a->mUnk_28.mUnk_18);
     if (r > 0) {
         t = a->mUnk_108 + c - r;
@@ -247,7 +247,7 @@ void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q) {
     p->mUnk_bc.x = q->mUnk_00.x;
     p->mUnk_bc.y = q->mUnk_00.y;
     p->mUnk_bc.z = q->mUnk_00.z;
-    Vec3AddScaled(-p->mUnk_f8, &p->mUnk_28.mUnk_0c, &p->mUnk_bc, &p->mUnk_04);
+    VEC_MultAdd(-p->mUnk_f8, &p->mUnk_28.mUnk_0c, &p->mUnk_bc, &p->mUnk_04);
     p->mUnk_b0 = p->mUnk_04;
     p->mUnk_ec.x = p->mUnk_04.x >> 4;
     p->mUnk_ec.y = p->mUnk_04.y >> 4;

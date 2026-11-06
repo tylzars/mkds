@@ -72,8 +72,8 @@ void DrawShineBalloon(void *a, ShineBalloonObject *b) {
         func_01ff9048(0x1b, &v3, 3);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    Vec3Sub(&b->mUnk_00.mPos, &((Camera *) GetCurrentCamera())->mPos, &v1);
-    v5 = Vec3Length(&v1);
+    VEC_Subtract(&b->mUnk_00.mPos, &((Camera *) GetCurrentCamera())->mPos, &v1);
+    v5 = VEC_Mag(&v1);
     v4.x = v5;
     v4.y = v5;
     v4.z = v5;

@@ -237,7 +237,7 @@ s32 func_01ffd648(Vec3 *a, s32 b, s32 c, s32 d, u16 e) {
     s32 q;
     s32 h;
     c = (c + b) >> 12;
-    Vec3Sub(a, &data_0217b4f8.mUnk_08, &v);
+    VEC_Subtract(a, &data_0217b4f8.mUnk_08, &v);
     v.x = (a->x - data_0217b4f8.mUnk_08.x) >> 12;
     v.z = (a->z - data_0217b4f8.mUnk_08.z) >> 12;
     q = v.x * v.x + v.z * v.z;
@@ -297,7 +297,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
     func_0208c1d0(&v0, &v1, p);
     if (p->mUnk_a8 == 1) {
         u = &q->mUnk_12c;
-        d = Vec3Dot(u, &v1);
+        d = VEC_DotProduct(u, &v1);
         v5.x = v1.x - (s32) (((s64) u->x * d) >> 12);
         v5.y = v1.y - (s32) (((s64) u->y * d) >> 12);
         v5.z = v1.z - (s32) (((s64) u->z * d) >> 12);
@@ -305,10 +305,10 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
             func_0208c1d0(&v2, &v3, p);
             o = p->mKart;
             r = TRUE;
-            Vec3Sub(&o->mPos, &v2, &v9);
+            VEC_Subtract(&o->mPos, &v2, &v9);
             v9.y = 0;
             GetKartUp(o, &v8);
-            d = Vec3Dot(&v8, &v3);
+            d = VEC_DotProduct(&v8, &v3);
             v10.x = v3.x - (s32) (((s64) v8.x * d) >> 12);
             v10.y = v3.y - (s32) (((s64) v8.y * d) >> 12);
             v10.z = v3.z - (s32) (((s64) v8.z * d) >> 12);
@@ -324,7 +324,7 @@ void func_01ffd224(struct Unk020888b4 *p, Vec3 *a, Vec3 *b) {
             e = 0x1000;
         }
         GetKartUp(q, &v6);
-        d = Vec3Dot(&v6, a);
+        d = VEC_DotProduct(&v6, a);
         v7.x = a->x - (s32) (((s64) v6.x * d) >> 12);
         v7.y = a->y - (s32) (((s64) v6.y * d) >> 12);
         v7.z = a->z - (s32) (((s64) v6.z * d) >> 12);
@@ -370,15 +370,15 @@ s32 func_01ffd0e8(Vec4 *a, const Vec3 *b, const Vec3 *c) {
     Vec3 v;
     s32 r;
     BOOL k = TRUE;
-    Vec3Cross(b, c, &v);
-    r = SqrtFixed12((Vec3Dot(b, c) + 0x1000) << 1);
+    VEC_CrossProduct(b, c, &v);
+    r = FX_Sqrt((VEC_DotProduct(b, c) + 0x1000) << 1);
     *a = data_usa_02155194;
     if (r <= 0) {
         k = FALSE;
     } else {
-        a->x = DivFixed12(v.x, r);
-        a->y = DivFixed12(v.y, r);
-        a->z = DivFixed12(v.z, r);
+        a->x = FX_Div(v.x, r);
+        a->y = FX_Div(v.y, r);
+        a->z = FX_Div(v.z, r);
         a->w = r >> 1;
     }
     return k;

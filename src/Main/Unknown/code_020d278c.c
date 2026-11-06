@@ -22,7 +22,7 @@ void SetMapObjectScale(MapObject *d, Vec3 *e) {
             case 3:
             case 4:
             case 5:
-                a = Vec3Length(&d->mExtent);
+                a = VEC_Mag(&d->mExtent);
                 break;
             case 0:
             case 1:
@@ -39,7 +39,7 @@ void SetMapObjectScale(MapObject *d, Vec3 *e) {
             case 3:
             case 4:
             case 5:
-                a = Vec3Length(&d->mExtent);
+                a = VEC_Mag(&d->mExtent);
                 break;
             case 0:
             case 1:
@@ -56,7 +56,7 @@ void SetMapObjectScale(MapObject *d, Vec3 *e) {
             case 3:
             case 4:
             case 5:
-                a = Vec3Length(&d->mExtent);
+                a = VEC_Mag(&d->mExtent);
                 break;
             case 0:
             case 1:
@@ -89,7 +89,7 @@ void func_020d2950(MapObject *b, s32 c) {
         case 3:
         case 4:
         case 5:
-            a = Vec3Length(&b->mExtent);
+            a = VEC_Mag(&b->mExtent);
             break;
         case 0:
         case 1:

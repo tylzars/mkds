@@ -21,7 +21,7 @@ void func_020ec490(Unk020ec490 *a) {
         a->mUnk_ac = a->mUnk_ac - a->mUnk_ae;
     }
     a->mUnk_10.y -= a->mUnk_a4;
-    Vec3Add(&a->mUnk_04, &a->mUnk_10, &a->mUnk_04);
+    VEC_Add(&a->mUnk_04, &a->mUnk_10, &a->mUnk_04);
     if (a->mUnk_04.y < a->mUnk_a0) {
         a->mUnk_90 = 2;
         a->mUnk_92 = 1;

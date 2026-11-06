@@ -411,8 +411,8 @@ void func_02108344(void *a, u32 b, u32 c) {
     func_0212ba68(0x7f);
     func_0212ba34(0);
     func_0210d970(0x1e);
-    data_0217c7f0.mUnk_1c = DivFixed12(0x7f000, 0x46000);
-    data_0217c7f0.mUnk_20 = DivFixed12(0x7f000, 0x3c000);
+    data_0217c7f0.mUnk_1c = FX_Div(0x7f000, 0x46000);
+    data_0217c7f0.mUnk_20 = FX_Div(0x7f000, 0x3c000);
     data_0217c7f0.mUnk_14 = 0xff;
     data_0217c7f0.mUnk_18 = 0x7f;
     data_0217c7f0.mUnk_00 = data_0217c7f0.mUnk_1c;

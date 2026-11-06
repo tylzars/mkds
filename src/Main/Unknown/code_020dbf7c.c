@@ -71,7 +71,7 @@ void UpdateWanwanState5(Wanwan *p) {
     p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x - p->mUnk_00.mUnk_10.x;
     p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z - p->mUnk_00.mUnk_10.z;
     if (func_020dc354_inline(&p->mUnk_00.mUnk_10) >= 0x10) {
-        func_020d7b34((u16) ((((s64) func_02148538(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
+        func_020d7b34((u16) ((((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
                               0x80000000000LL) >>
                              44),
                       &p->mUnk_d4);
@@ -135,10 +135,10 @@ void func_020dbf7c(Wanwan *p) {
     p->mUnk_00.mUnk_10.y = 0;
     p->mUnk_00.mUnk_10.z = 0;
     p->mUnk_c4 = data_0216beec;
-    func_020d7b34((u16) ((((s64) func_02148538(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
-                          0x80000000000LL) >>
-                         44),
-                  &p->mUnk_d4);
+    func_020d7b34(
+        (u16) ((((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) + 0x80000000000LL) >>
+               44),
+        &p->mUnk_d4);
     func_020d7938(&p->mUnk_c4, &p->mUnk_d4, &p->mUnk_b4);
     Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_b4);
     p->mUnk_e4 = 0;
@@ -151,11 +151,11 @@ void func_020dbf7c(Wanwan *p) {
         p->mUnk_160[2] = &p->mUnk_170[2];
         p->mUnk_160[3] = &p->mUnk_170[3];
         if (data_021759c0->mUnk_00c == 3) {
-            Vec3AddScaled(0xf000, &p->mUnk_200, &p->mUnk_00.mPos, &p->mUnk_00.mPos);
+            VEC_MultAdd(0xf000, &p->mUnk_200, &p->mUnk_00.mPos, &p->mUnk_00.mPos);
             p->mUnk_00.mUnk_10.x = (s32) (((s64) p->mUnk_200.x * 0x400) >> 12);
             p->mUnk_00.mUnk_10.y = (s32) (((s64) p->mUnk_200.y * 0x400) >> 12);
             p->mUnk_00.mUnk_10.z = (s32) (((s64) p->mUnk_200.z * 0x400) >> 12);
-            func_020d7b34((u16) ((((s64) func_02148538(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
+            func_020d7b34((u16) ((((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
                                   0x80000000000LL) >>
                                  44),
                           &p->mUnk_d4);

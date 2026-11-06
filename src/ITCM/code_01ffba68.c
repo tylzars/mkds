@@ -514,20 +514,20 @@ void func_01ffc090(Kart *p, s32 a) {
 // Writes base + (mRadius + extra) * up to the out vector, where up is row 1 of the matrix at 0x120 (the vector
 // GetKartUp returns), and nothing else.
 void ComputeKartPointAlongUp(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
-    Vec3AddScaled(p->mRadius + c, &p->mUnk_12c, b, a);
+    VEC_MultAdd(p->mRadius + c, &p->mUnk_12c, b, a);
 }
 
 void func_01ffc008(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
     Vec3 d;
     Vec3 e;
 
-    Vec3Sub(&p->mPos, &p->mPrevPos, &d);
-    Vec3Add(&d, b, &e);
-    Vec3AddScaled(p->mRadius + c, &p->mUnk_15c, &e, a);
+    VEC_Subtract(&p->mPos, &p->mPrevPos, &d);
+    VEC_Add(&d, b, &e);
+    VEC_MultAdd(p->mRadius + c, &p->mUnk_15c, &e, a);
 }
 
 void SetKartPrevCollisionCenter(Kart *p) {
-    Vec3AddScaled(p->mRadius + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mPrevCollisionCenter);
+    VEC_MultAdd(p->mRadius + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mPrevCollisionCenter);
 }
 
 // Called once per step of the driving states (AdvanceKartMotion, func_020651fc); also writes mUnk_dc in five branches.
@@ -580,13 +580,13 @@ void UpdateKartSpeedLimit(Kart *p) {
 }
 
 void func_01ffbd9c(Kart *p) {
-    DivFixed12Start(p->mVelocityLength, p->mSpeedLimit);
+    FX_DivAsync(p->mVelocityLength, p->mSpeedLimit);
     if (p->mUnk_44 & 0x10) {
         Vec3CrossUnrounded(&p->mUnk_120, &p->mUnk_244, &p->mUnk_278);
     } else {
         GetKartForward(p, &p->mUnk_278);
     }
-    p->mVelocityLengthRatio = DivFixed12Result();
+    p->mVelocityLengthRatio = FX_GetDivResult();
     if (p->mVelocityLengthRatio > 0x1000) {
         p->mVelocityLengthRatio = 0x1000;
         p->mVelocityLength = p->mSpeedLimit;
@@ -635,7 +635,7 @@ void func_01ffba68(Kart *p) {
             } else if (f > b) {
                 v = a;
             } else {
-                e = DivFixed12(c - a, b - 0x800);
+                e = FX_Div(c - a, b - 0x800);
                 f = f - 0x800;
                 v = c - (s32) (((s64) e * f) >> 12);
             }

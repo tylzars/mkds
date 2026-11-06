@@ -51,12 +51,12 @@ s32 Matrix4x3Invert(const Unk02012f58 *a, Unk02012f58 *b) {
     if (n == 0) {
         return -1;
     }
-    ReciprocalFixed12Start(n);
+    FX_InvAsync(n);
     d0 = ((s64) a->mUnk_00[0].y * a->mUnk_00[2].z - (s64) a->mUnk_00[2].y * a->mUnk_00[0].z) >> 12;
     d1 = ((s64) a->mUnk_00[0].y * a->mUnk_00[1].z - (s64) a->mUnk_00[1].y * a->mUnk_00[0].z) >> 12;
     d2 = ((s64) a->mUnk_00[0].x * a->mUnk_00[2].z - (s64) a->mUnk_00[2].x * a->mUnk_00[0].z) >> 12;
     d3 = ((s64) a->mUnk_00[0].x * a->mUnk_00[1].z - (s64) a->mUnk_00[1].x * a->mUnk_00[0].z) >> 12;
-    k = DivFixed12Result();
+    k = FX_GetDivResult();
     p->mUnk_00[0].x = ((s64) k * c0) >> 12;
     p->mUnk_00[0].y = -(s32) (((s64) k * d0) >> 12);
     p->mUnk_00[0].z = ((s64) k * d1) >> 12;

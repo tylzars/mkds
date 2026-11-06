@@ -37,7 +37,7 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             if (p->mFlags & 0x1000) {
                 break;
             }
-            Vec3Sub(&p->mPrevPos, c, &v);
+            VEC_Subtract(&p->mPrevPos, c, &v);
             if (!(p->mFlags & 0x8000) && (p->mFlags & 0x1000000)) {
                 func_020f7c90(p, c, &v);
                 break;
@@ -88,7 +88,7 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             if (n != 0) {
                 func_020f6be8(p, c, d, &v2);
             } else {
-                Vec3Sub(&p->mPos, c, &v2);
+                VEC_Subtract(&p->mPos, c, &v2);
                 if (v2.y < 0) {
                     v2.y = 0;
                 }

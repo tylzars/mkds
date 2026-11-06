@@ -170,7 +170,7 @@ void FinishRemainingRaceProgressKarts(void) {
             h = gRaceProgress->mUnk_000[0].mElapsedFrames;
             if (data_021759c0->mMode == MODE_GRAND_PRIX) {
                 if (p->mRaceProgress > 0) {
-                    h = (u32) (h * ReciprocalFixed12(p->mRaceProgress)) >> 12;
+                    h = (u32) (h * FX_Inv(p->mRaceProgress)) >> 12;
                     if (h > 0x57e40) {
                         h = 0x57e40;
                     }
@@ -212,7 +212,7 @@ void func_0203ecf0(void) {
             h = gRaceProgress->mUnk_000[0].mElapsedFrames;
             if (data_021759c0->mMode == MODE_GRAND_PRIX) {
                 if (p->mRaceProgress > 0) {
-                    h = (u32) (h * ReciprocalFixed12(p->mRaceProgress)) >> 12;
+                    h = (u32) (h * FX_Inv(p->mRaceProgress)) >> 12;
                     if (h > 0x57e40) {
                         h = 0x57e40;
                     }
@@ -254,7 +254,7 @@ void func_0203eb38(void) {
             h = gRaceProgress->mUnk_000[0].mElapsedFrames;
             if (data_021759c0->mMode == MODE_GRAND_PRIX) {
                 if (p->mRaceProgress > 0) {
-                    h = (u32) (h * ReciprocalFixed12(p->mRaceProgress)) >> 12;
+                    h = (u32) (h * FX_Inv(p->mRaceProgress)) >> 12;
                     if (h > 0x57e40) {
                         h = 0x57e40;
                     }

@@ -45,12 +45,12 @@ void func_02086a04(void) {
         p = GetKart(i);
         k = p->mRadius * 3;
         s = p->mKartModelsEntry;
-        Vec3Sub(p->mPosSource, &q->mUnk_08, &v30);
-        d = Vec3Dot(&v30, &q->mUnk_14);
+        VEC_Subtract(p->mPosSource, &q->mUnk_08, &v30);
+        d = VEC_DotProduct(&v30, &q->mUnk_14);
         data_0217aed0->mUnk_104[i] = d + k;
         data_0217aed0->mUnk_074[p->mIndex] = data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_034[p->mIndex];
         data_0217aed0->mUnk_054[data_0217aed0->mUnk_074[p->mIndex]] = d;
-        Vec3Sub(p->mPosSource, &q->mUnk_08, &v24);
+        VEC_Subtract(p->mPosSource, &q->mUnk_08, &v24);
         v24.x = v24.x >> 12;
         v24.y = v24.y >> 12;
         v24.z = v24.z >> 12;
@@ -77,9 +77,9 @@ void func_02086a04(void) {
             } else {
                 g = FALSE;
                 h = k >> 12;
-                if (Vec3Dot(&v24, &q->mUnk_20) - h > 0) {
+                if (VEC_DotProduct(&v24, &q->mUnk_20) - h > 0) {
                     g = TRUE;
-                } else if (Vec3Dot(&v24, &q->mUnk_2c) - h > 0) {
+                } else if (VEC_DotProduct(&v24, &q->mUnk_2c) - h > 0) {
                     g = TRUE;
                 }
                 if (g != FALSE) {
@@ -300,8 +300,8 @@ void func_02086250(Unk02012f58 *a) {
             t = (s32) (((s64) v.x * m->mUnk_00[0].x + (s64) v.z * m->mUnk_00[2].z) >> 12);
             u = (s32) (((s64) v.y * m->mUnk_00[1].z + (s64) v.z * m->mUnk_00[3].x) >> 12);
             z = -((const Vec3 *) &v)->z;
-            t = DivFixed12(t, z);
-            u = DivFixed12(u, z);
+            t = FX_Div(t, z);
+            u = FX_Div(u, z);
             t = (s32) ((((s64) t << 19) + 0x800) >> 12);
             u = (s32) (((s64) u * 0x60000 + 0x800) >> 12);
             f = TRUE;

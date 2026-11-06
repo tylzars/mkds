@@ -26,7 +26,7 @@ BOOL func_020ec7e8(Unk020e43a8 *param_1) {
         param_1->mUnk_0ac = param_1->mUnk_0ac - param_1->mUnk_0ae;
     }
     param_1->mUnk_00.mUnk_10.y = param_1->mUnk_00.mUnk_10.y - param_1->mUnk_0a4;
-    Vec3Add(&param_1->mUnk_00.mPos, &param_1->mUnk_00.mUnk_10, &param_1->mUnk_00.mPos);
+    VEC_Add(&param_1->mUnk_00.mPos, &param_1->mUnk_00.mUnk_10, &param_1->mUnk_00.mPos);
     return param_1->mUnk_00.mPos.y < param_1->mUnk_0a0;
 }
 
@@ -34,7 +34,7 @@ void func_020ec6e4(Unk020e43a8 *param_1, Unk020ec6e4 *param_2) {
     Vec3 v;
     s32 s;
 
-    Vec3Sub(&param_1->mUnk_00.mPos, &param_2->mUnk_080, &v);
+    VEC_Subtract(&param_1->mUnk_00.mPos, &param_2->mUnk_080, &v);
     if ((s64) v.z * param_2->mUnk_0a4 - (s64) v.x * param_2->mUnk_0ac < 0) {
         s32 x = param_2->mUnk_050.x;
         s32 z = param_2->mUnk_050.z;
@@ -67,7 +67,7 @@ void func_020ec538(Unk020e43a8 *param_1, const Unk020ec6e4 *param_2) {
 
     a = param_2 ? param_2->mUnk_050 : param_1->mUnk_00.mPos;
     b = param_2 ? param_2->mUnk_05c : data_02159594;
-    Vec3Sub(&param_1->mUnk_00.mPos, &a, &out);
+    VEC_Subtract(&param_1->mUnk_00.mPos, &a, &out);
     if ((s64) out.z * b.x - (s64) out.x * b.z < 0) {
         if (Vec3NormalizeXZAndGetLengthOrZero(&b, &out) == 0) {
             out = data_0215957c;

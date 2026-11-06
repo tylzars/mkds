@@ -120,7 +120,7 @@ void func_ov003_021ccc24(s32 param_1) {
     if (a < 2) {
         b = 0;
     } else if (a < 6) {
-        b = Div32(0x7f, 6 - a);
+        b = FX_DivS32(0x7f, 6 - a);
     } else {
         b = 0x7f;
     }
@@ -128,7 +128,7 @@ void func_ov003_021ccc24(s32 param_1) {
     if (a < 2) {
         c = -0x100;
     } else if (a < 6) {
-        c = Div32(0x200, 6 - a) - 0x100;
+        c = FX_DivS32(0x200, 6 - a) - 0x100;
     } else {
         c = 0x100;
     }

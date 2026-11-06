@@ -48,7 +48,7 @@ BOOL func_020ee528(Unk020eda5c *a) {
     a->mUnk_078 = (s32) (((s64) p->mPhysicalParam->mUnk_08 * p->mScale.z + 0x800) >> 12);
     a->mUnk_07c = p->mHopHeight;
     a->mUnk_080 = Vec3DotUnrounded(&a->mUnk_02c.mUnk_18, &a->mUnk_05c) > 0;
-    Vec3Sub(&a->mUnk_050, &p->mPrevPos, &a->mUnk_06c);
+    VEC_Subtract(&a->mUnk_050, &p->mPrevPos, &a->mUnk_06c);
     v.x = (s32) (((s64) p->mScaleFactor.x * p->mScaleBase.x) >> 12);
     v.y = (s32) (((s64) p->mScaleFactor.y * p->mScaleBase.y) >> 12);
     v.z = (s32) (((s64) p->mScaleFactor.z * p->mScaleBase.z) >> 12);
@@ -189,7 +189,7 @@ void func_020edf10(Unk020eda5c *p) {
     for (i = 0; i < n; i++) {
         q = d[i];
         q->mAgeFrames = q->mAgeFrames + 1;
-        Vec3Sub(&q->mPos, &q->mPrevPos, &q->mVelocity);
+        VEC_Subtract(&q->mPos, &q->mPrevPos, &q->mVelocity);
         q->mPrevPos = q->mPos;
         if (p->mUnk_024 == 0) {
             q->mUnk_f0 = p->mUnk_02c.mUnk_0c;
@@ -294,17 +294,17 @@ s32 func_020edc9c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
     s32 n;
     s32 r;
 
-    n = Vec3Length(&p->mUnk_06c);
+    n = VEC_Mag(&p->mUnk_06c);
     if (p->mUnk_080 != 0) {
         r = a + (s32) (((s64) n * b) >> 12);
-        Vec3AddScaled(c, &p->mUnk_02c.mUnk_18, &p->mUnk_06c, &v);
+        VEC_MultAdd(c, &p->mUnk_02c.mUnk_18, &p->mUnk_06c, &v);
     } else {
         Vec3 *t;
 
         t = &p->mUnk_010->mUnk_1fc;
         if ((s64) t->x * t->x + (s64) t->y * t->y + (s64) t->z * t->z >= 0x10) {
             r = a + (s32) (((s64) n * b) >> 12);
-            Vec3AddScaled(c, &p->mUnk_02c.mUnk_18, t, &v);
+            VEC_MultAdd(c, &p->mUnk_02c.mUnk_18, t, &v);
         } else {
             r = a - n;
             v = p->mUnk_02c.mUnk_18;
@@ -323,11 +323,11 @@ s32 func_020edb8c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
     Vec3 v;
     s32 n;
 
-    n = Vec3Length(&p->mUnk_06c);
+    n = VEC_Mag(&p->mUnk_06c);
     if (p->mUnk_080 != 0) {
         a -= n;
-        Vec3Sub(&p->mUnk_06c, &p->mUnk_010->mUnk_1fc, &v);
-        Vec3AddScaled(c, &p->mUnk_02c.mUnk_18, &v, &v);
+        VEC_Subtract(&p->mUnk_06c, &p->mUnk_010->mUnk_1fc, &v);
+        VEC_MultAdd(c, &p->mUnk_02c.mUnk_18, &v, &v);
         v.x = -v.x;
         v.y = -v.y;
         v.z = -v.z;

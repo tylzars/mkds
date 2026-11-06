@@ -62,7 +62,7 @@ void func_0208b190(void) {
         }
     }
     for (i = 0; i < 6; i++) {
-        s32 d = Vec3Dot(&v3, &data_0217b048->mUnk_00[i]);
+        s32 d = VEC_DotProduct(&v3, &data_0217b048->mUnk_00[i]);
         if (d >= v1) {
             v1 = d;
             v2 = i;

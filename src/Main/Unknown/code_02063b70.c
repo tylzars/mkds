@@ -156,7 +156,7 @@ s32 func_02063b70(Kart *a) {
     if (d != FALSE) {
         t = a->mRadius + 0x5000;
         g = *a->mUnk_1b4;
-        Vec3AddScaled(t, &a->mUnk_12c, a->mPosSource, &h);
+        VEC_MultAdd(t, &a->mUnk_12c, a->mPosSource, &h);
         g.mUnk_00[3].x = h.x >> 4;
         g.mUnk_00[3].y = h.y >> 4;
         g.mUnk_00[3].z = h.z >> 4;

@@ -68,11 +68,11 @@ void func_0206edac(Kart *p, Vec3 *a) {
     if ((!(p->mUnk_4c & 0x10000000) && p->mVelocity.y < 0 &&
          (p->mAirborneFrames > 0x19 || p->mLastGroundY - p->mPos.y > 0x1e000)) ||
         p->mState == 6) {
-        s = Vec3Dot(a, &p->mVelocity);
+        s = VEC_DotProduct(a, &p->mVelocity);
         v.x = ((s64) a->x * s) >> 12;
         v.y = ((s64) a->y * s) >> 12;
         v.z = ((s64) a->z * s) >> 12;
-        if (Vec3Length(&v) > 0x2000) {
+        if (VEC_Mag(&v) > 0x2000) {
             m = ((s64) p->mUnk_dc * 0x1800) >> 12;
             n = v.y;
             if (n <= 0) {
@@ -175,7 +175,7 @@ void func_0206e874(Kart *p) {
                                     w = *u;
                                 } else {
                                     if (d != 0) {
-                                        s = Vec3Dot(&v, u);
+                                        s = VEC_DotProduct(&v, u);
                                         w.x = ((s64) v.x * s) >> 12;
                                         w.y = ((s64) v.y * s) >> 12;
                                         w.z = ((s64) v.z * s) >> 12;
@@ -184,10 +184,10 @@ void func_0206e874(Kart *p) {
                                         m = 0;
                                     }
                                 }
-                                p->mUnk_39c = Vec3Length(&w);
+                                p->mUnk_39c = VEC_Mag(&w);
                                 if (p->mUnk_39c > 0x1000 && m != 0) {
                                     p->mUnk_3a0 = Vec3DotUnrounded(&p->mUnk_50, &w);
-                                    s = Vec3Dot(&p->mUnk_50, &w);
+                                    s = VEC_DotProduct(&p->mUnk_50, &w);
                                     v6 = w.y - (s32) (((s64) p->mUnk_50.y * s) >> 12);
                                     v7 = w.z - (s32) (((s64) p->mUnk_50.z * s) >> 12);
                                     v5 = w.x - (s32) (((s64) p->mUnk_50.x * s) >> 12);
@@ -242,7 +242,7 @@ void func_0206e874(Kart *p) {
                 t.x = 0;
             }
         }
-        Vec3Add(&p->mPos, &t, &p->mPos);
+        VEC_Add(&p->mPos, &t, &p->mPos);
     }
     for (j = 0; j < 2; j++) {
         p->mUnk_438[j] = v1[j];

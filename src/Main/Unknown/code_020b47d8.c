@@ -31,7 +31,7 @@ void func_020b4cec(s32 *a, s32 b) {
     s32 v;
 
     if (b != 0) {
-        v = DivFixed12(0x1000, b);
+        v = FX_Div(0x1000, b);
     } else {
         v = 0x1000;
     }
@@ -69,7 +69,7 @@ void func_020b4bf8(s32 *a, s32 b, s32 c) {
     s32 v;
 
     if (b != 0) {
-        v = DivFixed12(0x1000, b);
+        v = FX_Div(0x1000, b);
     } else {
         v = 0x1000;
     }

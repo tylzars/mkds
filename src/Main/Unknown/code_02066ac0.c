@@ -268,7 +268,7 @@ void func_02067488(Kart *a) {
         return;
     }
     c = GetKart(data_021759c0->mEntryIndex);
-    Vec3Sub(&a->mPos, &c->mPos, &b);
+    VEC_Subtract(&a->mPos, &c->mPos, &b);
     b.x = b.x >> 12;
     b.y = b.y >> 12;
     b.z = b.z >> 12;

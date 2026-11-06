@@ -20,7 +20,7 @@ void ComputeFrustumMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h
     s32 u;
     vu32 *p;
 
-    ReciprocalFixed12Start(d - c);
+    FX_InvAsync(d - c);
     if (h != 0) {
         reg_G3_MTX_MODE = 0;
         p = &reg_G3_MTX_LOAD_4x4;
@@ -38,7 +38,7 @@ void ComputeFrustumMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h
         i->mUnk_3c = 0;
     }
     e2 = e << 1;
-    x = DivResult64();
+    x = FX_GetDivResultFx64c();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
     reg_CP_DIV_DENOM = (u32) (a - b);
     if (g != 0x1000) {
@@ -54,7 +54,7 @@ void ComputeFrustumMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h
     if (i != 0) {
         i->mUnk_00 = t1;
     }
-    y = DivResult64();
+    y = FX_GetDivResultFx64c();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
     reg_CP_DIV_DENOM = (u32) (e - f);
     if (g != 0x1000) {
@@ -84,7 +84,7 @@ void ComputeFrustumMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h
             i->mUnk_24 = k1;
         }
     }
-    z = DivResult64();
+    z = FX_GetDivResultFx64c();
     if (g != 0x1000) {
         z = z * g / 0x1000;
     }
@@ -114,7 +114,7 @@ void ComputeOrthoMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, 
     s32 w;
     vu32 *p;
 
-    ReciprocalFixed12Start(d - c);
+    FX_InvAsync(d - c);
     if (h != 0) {
         reg_G3_MTX_MODE = 0;
         p = &reg_G3_MTX_LOAD_4x4;
@@ -131,7 +131,7 @@ void ComputeOrthoMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, 
         i->mUnk_2c = 0;
         i->mUnk_3c = g;
     }
-    x = DivResult64();
+    x = FX_GetDivResultFx64c();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
     reg_CP_DIV_DENOM = (u32) (a - b);
     if (g != 0x1000) {
@@ -148,7 +148,7 @@ void ComputeOrthoMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, 
     if (i != 0) {
         i->mUnk_00 = u;
     }
-    y = DivResult64();
+    y = FX_GetDivResultFx64c();
     reg_CP_DIV_NUMER = 0x100000000000ULL;
     reg_CP_DIV_DENOM = (u32) (e - f);
     if (g != 0x1000) {
@@ -165,7 +165,7 @@ void ComputeOrthoMatrix(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, int h, 
     if (i != 0) {
         i->mUnk_14 = v;
     }
-    z = DivResult64();
+    z = FX_GetDivResultFx64c();
     if (g != 0x1000) {
         z = z * g / 0x1000;
     }
@@ -210,10 +210,10 @@ void ComputeLookAtMatrix(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk
     v0.x = a->x - c->x;
     v0.y = a->y - c->y;
     v0.z = a->z - c->z;
-    Vec3Normalize(&v0, &v0);
-    Vec3Cross(b, &v0, &v1);
-    Vec3Normalize(&v1, &v1);
-    Vec3Cross(&v0, &v1, &v2);
+    VEC_Normalize(&v0, &v0);
+    VEC_CrossProduct(b, &v0, &v1);
+    VEC_Normalize(&v1, &v1);
+    VEC_CrossProduct(&v0, &v1, &v2);
     if (d != 0) {
         reg_G3_MTX_MODE = 2;
         p = &reg_G3_MTX_LOAD_4x3;
@@ -227,9 +227,9 @@ void ComputeLookAtMatrix(const Vec3 *a, const Vec3 *b, const Vec3 *c, int d, Unk
         *p = v2.z;
         *p = v0.z;
     }
-    x = -Vec3Dot(a, &v1);
-    y = -Vec3Dot(a, &v2);
-    z = -Vec3Dot(a, &v0);
+    x = -VEC_DotProduct(a, &v1);
+    y = -VEC_DotProduct(a, &v2);
+    z = -VEC_DotProduct(a, &v0);
     if (d != 0) {
         *p = x;
         *p = y;

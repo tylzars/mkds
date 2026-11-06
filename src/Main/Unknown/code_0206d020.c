@@ -119,9 +119,9 @@ BOOL func_0206dbf8(Kart *p, Kart *q) {
     c = func_0206dbf8_inline(q);
     if (c != 0) {
         a = p->mUnk_120;
-        Vec3Sub(&q->mPos, &p->mPos, &b);
-        Vec3Cross(&p->mUnk_138, &b, &v1);
-        if (Vec3Dot(&v1, &p->mUnk_12c) < 0) {
+        VEC_Subtract(&q->mPos, &p->mPos, &b);
+        VEC_CrossProduct(&p->mUnk_138, &b, &v1);
+        if (VEC_DotProduct(&v1, &p->mUnk_12c) < 0) {
             a.x = -a.x;
             a.y = -a.y;
             a.z = -a.z;
@@ -207,7 +207,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     if (q->mUnk_48 & 0x100000) {
         a >>= 2;
     }
-    t = DivFixed12(a, b);
+    t = FX_Div(a, b);
     if (t > 0x5000) {
         t = 0x5000;
     }
@@ -222,7 +222,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     s.x = (s32) (((s64) v->x * v2) >> 12);
     s.y = (s32) (((s64) v->y * v2) >> 12);
     s.z = (s32) (((s64) v->z * v2) >> 12);
-    v3 = Vec3Dot(&d, &s);
+    v3 = VEC_DotProduct(&d, &s);
     v9.x = s.x - (s32) (((s64) d.x * v3) >> 12);
     v9.y = s.y - (s32) (((s64) d.y * v3) >> 12);
     v9.z = s.z - (s32) (((s64) d.z * v3) >> 12);
@@ -236,7 +236,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     if (c != 0) {
         *v1 = n;
     } else if (v1->x != 0 || v1->y != 0 || v1->z != 0) {
-        if (Vec3Dot(&n, v1) > 0x19a) {
+        if (VEC_DotProduct(&n, v1) > 0x19a) {
             n = data_02154f94;
         }
     }
@@ -246,7 +246,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     if (m.y > 0) {
         m.y = 0;
     }
-    v3 = Vec3Dot(&q->mUnk_244, &m);
+    v3 = VEC_DotProduct(&q->mUnk_244, &m);
     v6 = m.x - (s32) (((s64) q->mUnk_244.x * v3) >> 12);
     v8 = m.y - (s32) (((s64) q->mUnk_244.y * v3) >> 12);
     v7 = m.z - (s32) (((s64) q->mUnk_244.z * v3) >> 12);
@@ -257,7 +257,7 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     if (v2 > 0x1000) {
         v2 = 0x1000;
     }
-    Vec3Cross(&n, &q->mUnk_278, &v10);
+    VEC_CrossProduct(&n, &q->mUnk_278, &v10);
     if (v10.y < 0) {
         v2 = v2 * v5;
     }
@@ -299,14 +299,14 @@ void func_0206d578(Kart *p) {
     d = 0;
     v1 = FALSE;
     ComputeKartPointAlongUp(&p->mUnk_1f0, p->mUnk_510, 0x400, p);
-    Vec3AddScaled((s32) (((s64) p->mRadius * -0x4000) >> 12), &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
+    VEC_MultAdd((s32) (((s64) p->mRadius * -0x4000) >> 12), &p->mUnk_50, &p->mUnk_1f0, &p->mUnk_1f0);
     if (p->mIndex == GetRaceUpdateFramesMod8() && !(p->mUnk_4c & 0x10002000)) {
         if (p->mVelocityLength > 0x4000 && p->mState == 0) {
             for (i = 0; i < data_0217b5a8; i++) {
                 q = data_0217b5c4[i];
                 if (q->mVelocityLength >= 0x2000 && (data_0217b5bc[i] & 0x800) && q != p && !(q->mUnk_7c & 0x402000)) {
-                    Vec3Sub(&q->mPos, &p->mPos, &v);
-                    d = Vec3Length(&v);
+                    VEC_Subtract(&q->mPos, &p->mPos, &v);
+                    d = VEC_Mag(&v);
                     if (Vec3DotUnrounded(&q->mUnk_50, &v) > (s32) (((s64) d * 0xe7f) >> 12)) {
                         v1 = TRUE;
                         p->mUnk_538.mUnk_08++;

@@ -68,7 +68,7 @@ BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
 void func_020d7bec(Unk02012f58 *a) {
     s32 t;
     s32 i;
-    t = func_02148538(a->mUnk_00[0].z, a->mUnk_00[2].z);
+    t = FX_Atan2(a->mUnk_00[0].z, a->mUnk_00[2].z);
     t = (((s64) t * 0x28BE60DB9391LL) + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
     data_0217b660.mUnk_00[0] = 0;
@@ -79,13 +79,13 @@ void func_020d7bec(Unk02012f58 *a) {
 
 void func_020d7b88(Vec3 *a, void *q) {
     Unk020d7b88 *b = q;
-    s32 r = SqrtFixed12((a->y + 0x1000) << 1);
-    DivFixed12Start(a->z, r);
+    s32 r = FX_Sqrt((a->y + 0x1000) << 1);
+    FX_DivAsync(a->z, r);
     b->mUnk_00[1] = 0;
-    b->mUnk_00[0] = DivFixed12Result();
-    DivFixed12Start(-a->x, r);
+    b->mUnk_00[0] = FX_GetDivResult();
+    FX_DivAsync(-a->x, r);
     b->mUnk_00[3] = r >> 1;
-    b->mUnk_00[2] = DivFixed12Result();
+    b->mUnk_00[2] = FX_GetDivResult();
 }
 
 void func_020d7b34(s32 a, Unk020d7b88 *b) {
@@ -107,18 +107,18 @@ void func_020d7a3c(void *p, s32 b, void *q) {
     s64 w = (s64) ((a->y + 0x1000) << 1) << 32;
     *(vu16 *) 0x40002b0 = 1;
     *(vu64 *) 0x40002b8 = w;
-    r = SqrtFixed12Result();
-    DivFixed12Start(a->z, r);
+    r = FX_GetSqrtResult();
+    FX_DivAsync(a->z, r);
     i = (u16) (b >> 1) >> 4;
     s = gPairsByAngle[i * 2];
     k = gPairsByAngle[i * 2 + 1];
     c->mUnk_00[1] = ((r >> 1) * s) >> 12;
     c->mUnk_00[3] = ((r >> 1) * k) >> 12;
-    d = DivFixed12Result();
-    DivFixed12Start(-a->x, r);
+    d = FX_GetDivResult();
+    FX_DivAsync(-a->x, r);
     c->mUnk_00[0] = (d * k) >> 12;
     c->mUnk_00[2] = (d * s) >> 12;
-    d = DivFixed12Result();
+    d = FX_GetDivResult();
     c->mUnk_00[0] = c->mUnk_00[0] - ((d * s) >> 12);
     c->mUnk_00[2] = c->mUnk_00[2] + ((d * k) >> 12);
 }
@@ -577,11 +577,11 @@ void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {
         v0.z = -(s32) (((s64) b->mUnk_00.mUnk_10.x * (s64) b->mUnk_118) >> 12);
         v0.y = 0;
         Vec3CrossUnrounded(&v0, &v2, &v1);
-        Vec3Add(&v2, &v1, &v2);
+        VEC_Add(&v2, &v1, &v2);
         Vec3NormalizeAndGetLengthUnchecked(&v2, &b->mUnk_00.mMatrix.mUnk_00[0]);
         Vec3CrossUnrounded(&v0, &v3, &v1);
-        Vec3Add(&v3, &v1, &v3);
-        r = Vec3Dot(&b->mUnk_00.mMatrix.mUnk_00[0], &v3);
+        VEC_Add(&v3, &v1, &v3);
+        r = VEC_DotProduct(&b->mUnk_00.mMatrix.mUnk_00[0], &v3);
         v3.x = v3.x - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].x * (s64) r) >> 12);
         v3.y = v3.y - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].y * (s64) r) >> 12);
         v3.z = v3.z - (s32) (((s64) b->mUnk_00.mMatrix.mUnk_00[0].z * (s64) r) >> 12);

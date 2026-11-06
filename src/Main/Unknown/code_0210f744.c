@@ -205,7 +205,7 @@ u16 func_0211057c(int a) {
 void func_02110534(u32 a) {
     s32 i;
     for (i = 0; i < 2; i++) {
-        data_0217d22c[i] = DivFixed12(data_0215c3a4[i], a);
+        data_0217d22c[i] = FX_Div(data_0215c3a4[i], a);
     }
 }
 
@@ -241,23 +241,23 @@ u32 func_02110484(void) {
     value0 = (u32) * (const u32 *) ((value0) + (0));
     value0 = (value0) - (0x14u);
     value0 = (value0 << 12);
-    value0 = (u32) DivFixed12((s32) value0, (s32) value1);
+    value0 = (u32) FX_Div((s32) value0, (s32) value1);
     value2 = (u32) &data_0217d200;
     value1 = 0x8340000u;
     *(u32 *) ((value2) + (0)) = value0;
     value0 = 0x61000u;
-    value0 = (u32) DivFixed12((s32) value0, (s32) value1);
+    value0 = (u32) FX_Div((s32) value0, (s32) value1);
     value1 = (u32) &data_0217d208;
     *(u32 *) ((value1) + (0)) = value0;
     return value0;
 }
 
 void func_021103c0(void) {
-    data_0217d1fc = DivFixed12(0x7f000, 0x1e000);
-    data_0217d224[0] = DivFixed12(0x7f000, 0x1e000);
-    data_0217d224[1] = DivFixed12(0x7f000, 0x5a000);
-    data_0217d210 = DivFixed12(data_0216cb28 << 12, 0x23000);
-    data_0217d214 = DivFixed12(0x7f000, 0x19000);
+    data_0217d1fc = FX_Div(0x7f000, 0x1e000);
+    data_0217d224[0] = FX_Div(0x7f000, 0x1e000);
+    data_0217d224[1] = FX_Div(0x7f000, 0x5a000);
+    data_0217d210 = FX_Div(data_0216cb28 << 12, 0x23000);
+    data_0217d214 = FX_Div(0x7f000, 0x19000);
     data_0217d234.mUnk_00 = data_0217d1fc;
     data_0217d234.mUnk_04 = 0x7f000;
     data_0217d218 = data_0216cb28;

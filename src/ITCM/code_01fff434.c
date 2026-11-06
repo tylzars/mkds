@@ -121,7 +121,7 @@ after:
 void func_01fff434(s32 a, s32 b, s32 c, Vec3 *d, const Vec3 *e, const Vec3 *f, s64 *g) {
     s32 q;
     s32 u;
-    q = DivFixed12((s32) (((s64) a * b) >> 12) - c, (s32) (((s64) a * a) >> 12) - 0x1000);
+    q = FX_Div((s32) (((s64) a * b) >> 12) - c, (s32) (((s64) a * a) >> 12) - 0x1000);
     u = b - (s32) (((s64) q * a) >> 12);
     d->x = (s32) (((s64) q * e->x) >> 12) + (s32) (((s64) u * f->x) >> 12);
     d->y = (s32) (((s64) q * e->y) >> 12) + (s32) (((s64) u * f->y) >> 12);

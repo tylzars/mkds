@@ -365,7 +365,7 @@ void func_ov003_021c8ea0(void) {
                 *(u16 *) &data_ov003_021da210 = _s32_div_f(func_ov003_021cce6c() * 0x91, 0x37);
                 func_ov003_021cdc10(0x13);
                 func_ov003_021c8b94();
-                a = Div32Remainder(*(u16 *) &data_ov003_021da210, 0x1d);
+                a = FX_ModS32(*(u16 *) &data_ov003_021da210, 0x1d);
                 if (a == 0) {
                     func_ov003_021c812c();
                     return;
@@ -525,7 +525,7 @@ void func_ov003_021c8b94(void) {
     int a;
     int i;
     int j;
-    a = Div32(*(u16 *) &data_ov003_021da210, 0x1d);
+    a = FX_DivS32(*(u16 *) &data_ov003_021da210, 0x1d);
     func_ov003_021d2060(data_ov003_021da214->mUnk_14, 0);
     for (i = 0, j = a; i < 5; i++, j++) {
         func_ov003_021c8a60(j, i);
@@ -800,8 +800,8 @@ void func_ov003_021c85a0(void) {
     int i;
     u32 x;
     u32 y;
-    a = Div32(*(u16 *) &data_ov003_021da210, 0x1d);
-    b = 0x34 - Div32Remainder(*(u16 *) &data_ov003_021da210, 0x1d);
+    a = FX_DivS32(*(u16 *) &data_ov003_021da210, 0x1d);
+    b = 0x34 - FX_ModS32(*(u16 *) &data_ov003_021da210, 0x1d);
     if (data_ov003_021da214->mUnk_34 != NULL) {
         if (a == 0) {
             x = 0x26;
@@ -845,7 +845,7 @@ u32 func_ov003_021c8400(void) {
     if (func_ov003_021d2a34(&data_ov003_021d67e8) == 0) {
         return 0xe;
     }
-    c = Div32(*(u16 *) data_ov003_021da210, 0x1d);
+    c = FX_DivS32(*(u16 *) data_ov003_021da210, 0x1d);
     b = &a;
     a = data_ov003_021d643c;
     for (d = 0; d < 4; d++, c++, a.mUnk_02 += 0x1d) {
@@ -855,7 +855,7 @@ u32 func_ov003_021c8400(void) {
             }
         }
     }
-    e = Div32(*(u16 *) data_ov003_021da210, 0x1d);
+    e = FX_DivS32(*(u16 *) data_ov003_021da210, 0x1d);
     for (d = 0; d < 4; d++, e++) {
         if (e == 2) {
             a = data_ov003_021d644c;
@@ -872,7 +872,7 @@ u32 func_ov003_021c8400(void) {
             break;
         }
     }
-    e = Div32(*(u16 *) data_ov003_021da210, 0x1d);
+    e = FX_DivS32(*(u16 *) data_ov003_021da210, 0x1d);
     for (d = 0; d < 4; d++, e++) {
         if (e == 6) {
             a = data_ov003_021d644c;
@@ -903,7 +903,7 @@ u32 func_ov003_021c8400(void) {
 int func_ov003_021c83cc(int a) {
     int v1;
     int v2;
-    v1 = Div32((u32) ((*(u16 *) &data_ov003_021da210)), 0x1d);
+    v1 = FX_DivS32((u32) ((*(u16 *) &data_ov003_021da210)), 0x1d);
     v2 = 0;
     do {
         if (v1 == a) {
@@ -917,7 +917,7 @@ int func_ov003_021c83cc(int a) {
 
 int func_ov003_021c83b0(int a) {
     int v1;
-    v1 = Div32((u32) ((*(u16 *) &data_ov003_021da210)), 0x1d);
+    v1 = FX_DivS32((u32) ((*(u16 *) &data_ov003_021da210)), 0x1d);
     return v1 + a;
 }
 
@@ -930,7 +930,7 @@ void func_ov003_021c8320(u32 b) {
     } else {
         *(u16 *) data_ov003_021da210 = 0;
     }
-    a = Div32Remainder(*(u16 *) data_ov003_021da210, 0x1d);
+    a = FX_ModS32(*(u16 *) data_ov003_021da210, 0x1d);
     if (a == 0x17) {
         func_ov003_021c8b94();
         return;
@@ -954,7 +954,7 @@ void func_ov003_021c82b4(u32 b) {
     func_ov003_021cce38();
     func_ov003_021bf698();
     *(u16 *) data_ov003_021da210 = *(u16 *) data_ov003_021da210 + 6;
-    a = Div32Remainder(*(u16 *) data_ov003_021da210, 0x1d);
+    a = FX_ModS32(*(u16 *) data_ov003_021da210, 0x1d);
     if (a >= 6) {
         func_ov003_021c85a0();
         return;
@@ -972,8 +972,8 @@ void func_ov003_021c824c(void) {
     u32 a;
     s32 b;
     if (data_ov003_021da214->mUnk_44 != 0) {
-        a = Div32(*(u16 *) data_ov003_021da210, 0x1d);
-        b = Div32Remainder(*(u16 *) data_ov003_021da210, 0x1d) - 0x33;
+        a = FX_DivS32(*(u16 *) data_ov003_021da210, 0x1d);
+        b = FX_ModS32(*(u16 *) data_ov003_021da210, 0x1d) - 0x33;
         *(vu32 *) 0x4000010 = (b << 16) & 0x1ff0000;
         *(vu32 *) 0x4000018 = ((b + data_ov003_021d6460[a]) << 16) & 0x1ff0000;
         data_ov003_021da214->mUnk_44 = 0;
@@ -1004,7 +1004,7 @@ void func_ov003_021c812c(void) {
         return;
     }
     a = func_ov003_021cdb6c();
-    b = data_ov003_021da20c[0] + Div32(*(u16 *) data_ov003_021da210, 0x1d);
+    b = data_ov003_021da20c[0] + FX_DivS32(*(u16 *) data_ov003_021da210, 0x1d);
     switch (b) {
         case 2:
             if (a->mUnk_f5 != 0) {

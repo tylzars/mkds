@@ -60,7 +60,7 @@ void func_020d2584(MapObject *b, s32 c) {
         case 3:
         case 4:
         case 5:
-            a = Vec3Length(&b->mExtent);
+            a = VEC_Mag(&b->mExtent);
             break;
         case 0:
         case 1:
@@ -77,7 +77,7 @@ s32 func_020d252c(MapObject *a) {
         case 3:
         case 4:
         case 5:
-            return Vec3Length(&a->mExtent);
+            return VEC_Mag(&a->mExtent);
         case 0:
         case 1:
         case 2:

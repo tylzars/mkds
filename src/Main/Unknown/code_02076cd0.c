@@ -345,7 +345,7 @@ void RefreshCameraProjection(Camera *p) {
             p->mHalfFovAngle = p->mHalfFovAngleGoal;
         }
     }
-    p->mFrustumTop = (s32) (((s64) p->mNear * DivFixed12(p->mHalfFovPairFirst, p->mHalfFovPairSecond)) >> 12);
+    p->mFrustumTop = (s32) (((s64) p->mNear * FX_Div(p->mHalfFovPairFirst, p->mHalfFovPairSecond)) >> 12);
     p->mFrustumBottom = -p->mFrustumTop;
     p->mFrustumLeft = (s32) (((s64) -p->mFrustumTop * p->mAspectRatio) >> 12);
     a = p->mFrustumTop;
@@ -387,7 +387,7 @@ void UpdateCameraViewWithWorldUp(Camera *p) {
     Vec3 e;
 
     a = data_usa_02154fc4;
-    Vec3Sub(&p->mLookAt, &p->mPos, &b);
+    VEC_Subtract(&p->mLookAt, &p->mPos, &b);
     if ((s64) b.x * b.x + (s64) b.y * b.y + (s64) b.z * b.z >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&b, &b);
     }
@@ -423,7 +423,7 @@ void UpdateCameraView(Camera *p) {
     c = p->mPos;
     d = p->mLookAt;
     d.y += p->mWobbleOffset;
-    Vec3Sub(&d, &c, &a);
+    VEC_Subtract(&d, &c, &a);
     if ((s64) a.x * a.x + (s64) a.y * a.y + (s64) a.z * a.z >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&a, &a);
     }
@@ -440,9 +440,9 @@ void UpdateCameraView(Camera *p) {
     }
     if (p->mShakeKind != 0) {
         UpdateCameraShake(p);
-        Vec3Add(&c, &p->mShakePosOffset, &c);
-        Vec3Add(&d, &p->mShakeLookAtOffset, &d);
-        Vec3Add(&p->mShakeLookAtCounterOffset, &d, &d);
+        VEC_Add(&c, &p->mShakePosOffset, &c);
+        VEC_Add(&d, &p->mShakeLookAtOffset, &d);
+        VEC_Add(&p->mShakeLookAtCounterOffset, &d, &d);
     }
     p->mViewPos.x = c.x >> 4;
     p->mViewPos.y = c.y >> 4;

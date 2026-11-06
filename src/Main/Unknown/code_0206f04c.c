@@ -229,7 +229,7 @@ void func_0206f914(Kart *p) {
         } else if (a > 0x1000) {
             b = 8;
         } else {
-            b = DivFixed12(0x4a, 0x1000);
+            b = FX_Div(0x4a, 0x1000);
             b = 0x52 - (s32) (((s64) b * a) >> 12);
         }
         p->mUnk_4d4 = p->mUnk_4d4 + b;
@@ -255,7 +255,7 @@ void func_0206f914(Kart *p) {
                     w = p->mUnk_7c;
                     if ((w & 0x10) && p->mKartModelsEntry->mUnk_058 == 0) {
                         if ((w & 1) || !(w & 0x402000)) {
-                            Vec3AddScaled(g.mUnk_00[p->mKartModelsEntry->mUnk_004] << 4, &p->mUnk_138, &p->mPos, &e);
+                            VEC_MultAdd(g.mUnk_00[p->mKartModelsEntry->mUnk_004] << 4, &p->mUnk_138, &p->mPos, &e);
                             func_0208b748(0x72, &e, p, func_0206c1ac);
                             func_0208b748(0x73, &e, p, func_0206c1ac);
                         }
@@ -292,7 +292,7 @@ void func_0206f914(Kart *p) {
                     w = p->mUnk_7c;
                     if ((w & 0x10) && p->mKartModelsEntry->mUnk_058 == 0) {
                         if ((w & 1) || !(w & 0x402000)) {
-                            Vec3AddScaled(h.mUnk_00[p->mKartModelsEntry->mUnk_004] << 4, &p->mUnk_138, &p->mPos, &f);
+                            VEC_MultAdd(h.mUnk_00[p->mKartModelsEntry->mUnk_004] << 4, &p->mUnk_138, &p->mPos, &f);
                             func_0208b748(0x72, &f, p, func_0206c1ac);
                             func_0208b748(0x73, &f, p, func_0206c1ac);
                         }
@@ -351,7 +351,7 @@ void func_0206f824(Kart *p, Vec3 *a, s32 b) {
         e >>= 1;
     }
     if (b == 0) {
-        Vec3Sub(c, &p->mPos, &g);
+        VEC_Subtract(c, &p->mPos, &g);
         Vec3CrossUnrounded(a, &g, &f);
         Vec3CrossUnrounded(&f, a, &g);
         if (!((s64) g.x * g.x + (s64) g.y * g.y + (s64) g.z * g.z < 0x10)) {
@@ -376,11 +376,11 @@ void func_0206f694(Kart *p, u32 a, Vec3 *b, s32 c) {
         p->mUnk_1fc.y = 0;
     }
     if (b->x | b->y | b->z) {
-        Vec3Sub(b, &p->mUnk_1fc, &d);
+        VEC_Subtract(b, &p->mUnk_1fc, &d);
         if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < 0x1000000) {
             p->mUnk_1fc = *b;
         } else {
-            Vec3AddScaled(0x199, &d, &p->mUnk_1fc, &p->mUnk_1fc);
+            VEC_MultAdd(0x199, &d, &p->mUnk_1fc, &p->mUnk_1fc);
         }
         p->mVerticalSpeed = p->mVerticalSpeed + p->mUnk_1fc.y;
         p->mUnk_1fc.y = 0;
@@ -450,11 +450,11 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     } else if (i < 0x29) {
         i = 0x29;
     }
-    g = Vec3Dot(a, &p->mUnk_2d8);
+    g = VEC_DotProduct(a, &p->mUnk_2d8);
     p->mUnk_2d8.x = p->mUnk_2d8.x - (s32) (((s64) a->x * g) >> 12);
     p->mUnk_2d8.y = p->mUnk_2d8.y - (s32) (((s64) a->y * g) >> 12);
     p->mUnk_2d8.z = p->mUnk_2d8.z - (s32) (((s64) a->z * g) >> 12);
-    g = Vec3Dot(a, &p->mUnk_2e4);
+    g = VEC_DotProduct(a, &p->mUnk_2e4);
     p->mUnk_2e4.x = p->mUnk_2e4.x - (s32) (((s64) a->x * g) >> 12);
     p->mUnk_2e4.y = p->mUnk_2e4.y - (s32) (((s64) a->y * g) >> 12);
     k = (s32) (((s64) c * i) >> 12);
@@ -466,7 +466,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     if (b == 0) {
         h = Vec3DotUnrounded(&p->mUnk_138, a);
         j = TRUE;
-        g = Vec3Dot(a, &p->mVelocity);
+        g = VEC_DotProduct(a, &p->mVelocity);
         m.x = (s32) (((s64) a->x * g) >> 12);
         m.y = (s32) (((s64) a->y * g) >> 12);
         m.z = (s32) (((s64) a->z * g) >> 12);
@@ -498,8 +498,8 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
                         if (p->mUnk_4c & 0x10000) {
                             g = 0x4cd;
                         }
-                        Vec3AddScaled(-p->mRadius, a, &p->mPos, &n);
-                        Vec3AddScaled((s32) (((s64) p->mScale.y * (g << 4) + 0x800) >> 12), &p->mUnk_12c, &n, &n);
+                        VEC_MultAdd(-p->mRadius, a, &p->mPos, &n);
+                        VEC_MultAdd((s32) (((s64) p->mScale.y * (g << 4) + 0x800) >> 12), &p->mUnk_12c, &n, &n);
                         func_0208b748(0x3b, &n, p, func_0206c488);
                     }
                 }

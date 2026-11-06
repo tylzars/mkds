@@ -382,10 +382,10 @@ void func_020ba63c(Unk020d029c *p) {
         p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, e, 0, 1);
     } else {
         k = func_020ae5c4(p);
-        w[0] = DivFixed12(0x1000, data_0217b3cc->mUnk_18.mUnk_04);
+        w[0] = FX_Div(0x1000, data_0217b3cc->mUnk_18.mUnk_04);
         w[1] = 0;
         w[2] = 0;
-        w[3] = DivFixed12(0x1000, data_0217b3cc->mUnk_18.mUnk_08);
+        w[3] = FX_Div(0x1000, data_0217b3cc->mUnk_18.mUnk_08);
         t = GetRaceMNcerEntry(LookupRaceMNcerIndex(y));
         l = p->mUnk_400;
         f[0] = 0x18000;

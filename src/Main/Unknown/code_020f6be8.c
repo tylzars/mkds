@@ -54,7 +54,7 @@ s32 func_020f7184(ItemObject *a, s32 b, s32 c) {
     } else {
         a->mUnk_108.y = 0x333;
         if (!(a->mFlags & 0x8000)) {
-            a->mUnk_108.y += (s32) (((s64) Vec3Length(v) * 0x15c) >> 12);
+            a->mUnk_108.y += (s32) (((s64) VEC_Mag(v) * 0x15c) >> 12);
             if (a->mUnk_108.y > 0x5c3) {
                 a->mUnk_108.y = 0x5c3;
             }
@@ -71,7 +71,7 @@ s32 func_020f7184(ItemObject *a, s32 b, s32 c) {
 
         r = Vec3DotUnrounded(v, w);
         if (r < 0x3000) {
-            Vec3AddScaled(0x3000 - r, w, v, v);
+            VEC_MultAdd(0x3000 - r, w, v, v);
         }
     }
     a->mFlags |= 0x80001;
@@ -181,10 +181,10 @@ void func_020f6e58(ItemObject *a) {
     Vec3 v;
 
     Vec3CrossUnrounded(&a->mUnk_f0, (Vec3 *) func_020e6b14(), &v);
-    Vec3AddScaled(a->mUnk_108.x != 0 ? a->mUnk_108.y : -a->mUnk_108.y, &v, &a->mUnk_f0, &a->mUnk_f0);
+    VEC_MultAdd(a->mUnk_108.x != 0 ? a->mUnk_108.y : -a->mUnk_108.y, &v, &a->mUnk_f0, &a->mUnk_f0);
     a->mFlags |= 0x80;
     a->mVelocity.y -= 0x400;
-    Vec3Add(&a->mPos, &a->mVelocity, &a->mPos);
+    VEC_Add(&a->mPos, &a->mVelocity, &a->mPos);
     a->mUnk_d8--;
     if (a->mUnk_d8 > 0) {
         return;
@@ -199,9 +199,9 @@ void func_020f6be8(ItemObject *b, Vec3 *c, Vec3 *e, Vec3 *f) {
     s32 dot;
     s64 d;
 
-    Vec3Sub(e, &b->mVelocity, &a);
-    Vec3Sub(&b->mPos, c, &v);
-    dot = Vec3Dot(f, &v);
+    VEC_Subtract(e, &b->mVelocity, &a);
+    VEC_Subtract(&b->mPos, c, &v);
+    dot = VEC_DotProduct(f, &v);
     v.x -= (s32) (((s64) f->x * dot) >> 12);
     v.y -= (s32) (((s64) f->y * dot) >> 12);
     v.z -= (s32) (((s64) f->z * dot) >> 12);
@@ -210,12 +210,12 @@ void func_020f6be8(ItemObject *b, Vec3 *c, Vec3 *e, Vec3 *f) {
         Vec3NormalizeAndGetLengthUnchecked(&v, &v);
     }
     if (b->mFlags & 0x8000) {
-        Vec3AddScaled(0x666, &a, &b->mVelocity, &b->mVelocity);
+        VEC_MultAdd(0x666, &a, &b->mVelocity, &b->mVelocity);
         q = data_0217bc4c;
         q->x = (s32) (((s64) v.x * 0xccd) >> 12);
         q->y = (s32) (((s64) v.y * 0xccd) >> 12);
         q->z = (s32) (((s64) v.z * 0xccd) >> 12);
-        Vec3Add(&b->mVelocity, data_0217bc4c, &b->mVelocity);
+        VEC_Add(&b->mVelocity, data_0217bc4c, &b->mVelocity);
     } else {
         b->mVelocity.x = (s32) (((s64) e->x * 0x8cd) >> 12);
         b->mVelocity.y = (s32) (((s64) e->y * 0x8cd) >> 12);
@@ -224,6 +224,6 @@ void func_020f6be8(ItemObject *b, Vec3 *c, Vec3 *e, Vec3 *f) {
         q->x = (s32) (((s64) v.x * 0x1800) >> 12);
         q->y = (s32) (((s64) v.y * 0x1800) >> 12);
         q->z = (s32) (((s64) v.z * 0x1800) >> 12);
-        Vec3Add(&b->mVelocity, data_0217bc4c, &b->mVelocity);
+        VEC_Add(&b->mVelocity, data_0217bc4c, &b->mVelocity);
     }
 }

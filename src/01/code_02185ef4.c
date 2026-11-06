@@ -413,7 +413,7 @@ int func_ov001_02187074(int a, int b, int c) {
 }
 
 u16 func_ov001_02187024(Vec3 *a, Vec3 *b, s32 c, s32 d) {
-    s32 diff = (u16) (AngleFromPair(a->x - b->x, a->z - b->z) - d);
+    s32 diff = (u16) (FX_Atan2Idx(a->x - b->x, a->z - b->z) - d);
     s32 res;
 
     if (c < 0) {
@@ -433,7 +433,7 @@ u16 func_ov001_02187024(Vec3 *a, Vec3 *b, s32 c, s32 d) {
 }
 
 u16 func_ov001_02186fb4(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e) {
-    s32 diff = (u16) (AngleFromPair(a->x - b->x, a->z - b->z) - e);
+    s32 diff = (u16) (FX_Atan2Idx(a->x - b->x, a->z - b->z) - e);
     s32 limit;
     s32 res;
     s32 target;
@@ -651,7 +651,7 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
             Vec3NormalizeAndGetLengthUnchecked(&v5c, &dir);
         }
         dir.y = 0;
-        Vec3AddScaled(b->mPrm->mUnk_030, &dir, &b->mVelocity, &b->mVelocity);
+        VEC_MultAdd(b->mPrm->mUnk_030, &dir, &b->mVelocity, &b->mVelocity);
     }
 
     if (b->mUnk_2c8 & 0x1e34ef) {
@@ -685,7 +685,7 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         Matrix3x3FromPairY(&b->mUnk_000.mMatrix.mUnk_00[0].x, gPairsByAngle[((u16) b->mAngle >> 4) * 2],
                            gPairsByAngle[((u16) b->mAngle >> 4) * 2 + 1]);
         Vec3MultiplyMatrix3x3((Vec3 *) &b->mUnk_244, &b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_238);
-        Vec3Add(&b->mUnk_238, &b->mUnk_000.mPos, &b->mUnk_238);
+        VEC_Add(&b->mUnk_238, &b->mUnk_000.mPos, &b->mUnk_238);
     } else {
         b->mUnk_238.x = b->mUnk_000.mPos.x + b->mUnk_244;
         b->mUnk_238.y = b->mUnk_000.mPos.y + b->mUnk_248;
@@ -925,7 +925,7 @@ s32 func_ov001_02185fb0(Unk02188950 *a, Unk02185fb0_1 *b, u8 *c, u8 *d) {
             a->mUnk_000.mUnk_10.x = (s32) (((s64) v.x * k) >> 12);
             a->mUnk_000.mUnk_10.y = (s32) (((s64) v.y * k) >> 12);
             a->mUnk_000.mUnk_10.z = (s32) (((s64) v.z * k) >> 12);
-            Vec3AddScaled(a->mPrm->mUnk_028, &v, &a->mVelocity, &a->mVelocity);
+            VEC_MultAdd(a->mPrm->mUnk_028, &v, &a->mVelocity, &a->mVelocity);
         }
         fn = a->mUnk_2d4;
         a->mUnk_2d4 = NULL;
@@ -949,7 +949,7 @@ s32 func_ov001_02185f04(Unk02188950 *a, Unk02185f04_1 *b, u8 *c, u8 *d) {
     v.z = a->mUnk_000.mPos.z - b->mUnk_58;
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
         Vec3NormalizeAndGetLengthUnchecked(&v, &v);
-        Vec3AddScaled(a->mPrm->mUnk_02c, &v, &a->mVelocity, &a->mVelocity);
+        VEC_MultAdd(a->mPrm->mUnk_02c, &v, &a->mVelocity, &a->mVelocity);
     }
     fn = a->mUnk_2dc;
     a->mUnk_2dc = NULL;

@@ -28,7 +28,7 @@ void func_02124b1c(Unk02124b1c *a, s32 b, s32 c) {
     i = (b >> 4) * 2;
     p = a->mUnk_14;
     q = a->mUnk_24;
-    r = DivFixed12(0x1000, c);
+    r = FX_Div(0x1000, c);
     x = gPairsByAngle[i + 1];
     a->mUnk_14[0] = ((s64) x * r) >> 12;
     y = gPairsByAngle[i];

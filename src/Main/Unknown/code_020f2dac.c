@@ -218,8 +218,8 @@ void func_020f41c4(Unk020f40dc *rec) {
             elem->mVelocity.x = (s32) (((s64) dir->x * d) >> 12);
             elem->mVelocity.y = (s32) (((s64) dir->y * d) >> 12);
             elem->mVelocity.z = (s32) (((s64) dir->z * d) >> 12);
-            Vec3AddScaled((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &elem->mVelocity,
-                          &elem->mVelocity);
+            VEC_MultAdd((s32) (((s64) w2 * vb) >> 12) + (s32) (((s64) d * va) >> 12), axis, &elem->mVelocity,
+                        &elem->mVelocity);
             elem->mUnk_68.x = 0xcd;
             elem->mUnk_68.y = 0xcd;
             elem->mUnk_68.z = 0xcd;
@@ -648,7 +648,7 @@ void func_020f357c(void) {
     }
     e = gCourseMap->mItemPointLinks;
     for (i = 0; i < n; i++, e++) {
-        Vec3Sub(e->mUnk_00[0]->mUnk_18, e->mUnk_18, &v);
+        VEC_Subtract(e->mUnk_00[0]->mUnk_18, e->mUnk_18, &v);
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&v, &v);
         }
@@ -705,18 +705,18 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
             dx = a->mUnk_06c.y > 0 ? 0x666 : 0x1333;
             n += (s32) (((s64) dx * a->mUnk_06c.y) >> 12);
         }
-        Vec3AddScaled(n, &a->mUnk_02c.mUnk_0c, &v, &p->mUnk_000.mVelocity);
+        VEC_MultAdd(n, &a->mUnk_02c.mUnk_0c, &v, &p->mUnk_000.mVelocity);
     }
     if (c == 0) {
-        Vec3Add(&p->mUnk_000.mVelocity, &a->mUnk_010->mUnk_1fc, &p->mUnk_000.mVelocity);
+        VEC_Add(&p->mUnk_000.mVelocity, &a->mUnk_010->mUnk_1fc, &p->mUnk_000.mVelocity);
     }
     if (c != 0) {
         p->mUnk_000.mPos = a->mUnk_010->mCollisionCenter;
-        Vec3AddScaled(p->mUnk_000.mUnk_68.z * 10, &a->mUnk_02c.mUnk_18, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
+        VEC_MultAdd(p->mUnk_000.mUnk_68.z * 10, &a->mUnk_02c.mUnk_18, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     } else {
         if (a->mUnk_07c != 0 && a->mUnk_068 < 0x2000 && p->mUnk_000.mUnk_68.z < 0xccd) {
-            Vec3Sub(&a->mUnk_02c.mUnk_0c, &a->mUnk_02c.mUnk_18, &v);
-            Vec3AddScaled(0x2000, &v, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
+            VEC_Subtract(&a->mUnk_02c.mUnk_0c, &a->mUnk_02c.mUnk_18, &v);
+            VEC_MultAdd(0x2000, &v, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
         }
     }
     if (p->mUnk_000.mUnk_68.z < 0xccd) {
@@ -731,14 +731,14 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
     if (!m) {
         return;
     }
-    n = Vec3Dot(&a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity);
+    n = VEC_DotProduct(&a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity);
     dx = (s32) (((s64) a->mUnk_02c.mUnk_0c.x * n) >> 12);
     dy = (s32) (((s64) a->mUnk_02c.mUnk_0c.y * n) >> 12);
     dz = (s32) (((s64) a->mUnk_02c.mUnk_0c.z * n) >> 12);
     p->mUnk_000.mVelocity.x -= dx;
     p->mUnk_000.mVelocity.y -= dy;
     p->mUnk_000.mVelocity.z -= dz;
-    Vec3AddScaled(c != 0 ? 0x8800 : -0x1000, &a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity, &p->mUnk_000.mVelocity);
+    VEC_MultAdd(c != 0 ? 0x8800 : -0x1000, &a->mUnk_02c.mUnk_0c, &p->mUnk_000.mVelocity, &p->mUnk_000.mVelocity);
     p->mUnk_12c = 0;
 }
 
@@ -766,13 +766,13 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
 
     p = &a->mUnk_000.mVelocity;
     q = &a->mUnk_000.mPos;
-    Vec3Add(p, q, q);
+    VEC_Add(p, q, q);
     p->x = (s32) (((s64) p->x * c) >> 12);
     p->y = (s32) (((s64) p->y * c) >> 12);
     p->z = (s32) (((s64) p->z * c) >> 12);
     if (func_01ffdee4(q, &a->mUnk_000.mPrevPos, 0, a->mUnk_000.mUnk_dc, 0x24, a->mUnk_000.mUnk_da, &t, &u, (s32 *) &v,
                       &a->mUnk_000.mUnk_fc, NULL, NULL, NULL, e) != 0) {
-        Vec3Add(&t, q, q);
+        VEC_Add(&t, q, q);
         if (a->mUnk_000.mUnk_fc & 0x1e34ef) {
             n = a->mUnk_12c;
             a->mUnk_12c = n - 1;
@@ -780,7 +780,7 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
                 func_020f9334(a, q, p, b, &u);
             } else {
                 a->mUnk_000.mFlags |= 0x10;
-                n = Vec3Dot(&u, p);
+                n = VEC_DotProduct(&u, p);
                 t.x = (s32) (((s64) u.x * n) >> 12);
                 t.y = (s32) (((s64) u.y * n) >> 12);
                 t.z = (s32) (((s64) u.z * n) >> 12);
@@ -790,7 +790,7 @@ void func_020f2df0(Unk020f2df0 *a, s32 b, s32 c, s32 d, u32 *e) {
                 p->x = (s32) (((s64) p->x * 0x8cd) >> 12);
                 p->y = (s32) (((s64) p->y * 0x8cd) >> 12);
                 p->z = (s32) (((s64) p->z * 0x8cd) >> 12);
-                Vec3AddScaled(-d, &t, p, p);
+                VEC_MultAdd(-d, &t, p, p);
                 a->mUnk_000.mUnk_f0 = u;
             }
         }

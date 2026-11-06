@@ -297,15 +297,15 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
     d = *c;
     if (e == 3 || e == 4) {
         if (p->mUnk_120[k->mIndex] == 0) {
-            Vec3Sub(&k->mPos, &p->mUnk_000.mPos, &v2);
-            t = Vec3Dot(&k->mVelocityDirection, &v2);
+            VEC_Subtract(&k->mPos, &p->mUnk_000.mPos, &v2);
+            t = VEC_DotProduct(&k->mVelocityDirection, &v2);
             v0.x = ((s64) k->mVelocityDirection.x * t) >> 12;
             v0.y = ((s64) k->mVelocityDirection.y * t) >> 12;
             v0.z = ((s64) k->mVelocityDirection.z * t) >> 12;
             v1.x = v2.x - v0.x;
             v1.y = v2.y - v0.y;
             v1.z = v2.z - v0.z;
-            t = Vec3Dot(&p->mUnk_000.mMatrix.mUnk_00[1], &v1);
+            t = VEC_DotProduct(&p->mUnk_000.mMatrix.mUnk_00[1], &v1);
             v0.x = ((s64) p->mUnk_000.mMatrix.mUnk_00[1].x * t) >> 12;
             v0.y = ((s64) p->mUnk_000.mMatrix.mUnk_00[1].y * t) >> 12;
             v0.z = ((s64) p->mUnk_000.mMatrix.mUnk_00[1].z * t) >> 12;
@@ -323,8 +323,8 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
                 p->mUnk_000.mUnk_10.y = ((s64) v1.y * 0xc000) >> 12;
                 p->mUnk_000.mUnk_10.z = ((s64) v1.z * 0xc000) >> 12;
             }
-            Vec3Sub(&v0, &p->mUnk_000.mMatrix.mUnk_00[1], &v0);
-            Vec3AddScaled(0x19a, &v0, &p->mUnk_000.mUnk_10, &p->mUnk_000.mUnk_10);
+            VEC_Subtract(&v0, &p->mUnk_000.mMatrix.mUnk_00[1], &v0);
+            VEC_MultAdd(0x19a, &v0, &p->mUnk_000.mUnk_10, &p->mUnk_000.mUnk_10);
             p->mUnk_120[k->mIndex] = 0x1f;
             if (data_021759c0->mMode == MODE_BATTLE) {
                 func_020a21bc(k->mIndex, (s32) &p->mUnk_000.mUnk_10);
@@ -362,11 +362,11 @@ s32 func_0209c9fc(Unk0209c220 *p, Kart *k, u8 *b, u8 *c) {
             if ((u16) (p->mUnk_000.mKind + 0xfe4c) <= 1) {
                 func_02103544(k->mIndex,
                               (u16) (((u64) func_0209c9fc_inline(&gRaceProgress->mLocalRandom) * 3) >> 32) + 1);
-                Vec3Sub(&p->mUnk_000.mPos, &k->mCollisionCenter, &v3);
+                VEC_Subtract(&p->mUnk_000.mPos, &k->mCollisionCenter, &v3);
                 if (!((s64) v3.x * v3.x + (s64) v3.y * v3.y + (s64) v3.z * v3.z < 0x10)) {
                     Vec3NormalizeAndGetLengthUnchecked(&v3, &v3);
                 }
-                Vec3AddScaled(k->mRadius, &v3, &k->mCollisionCenter, &v3);
+                VEC_MultAdd(k->mRadius, &v3, &k->mCollisionCenter, &v3);
                 if (k->mIndex == data_021759c0->mEntryIndex) {
                     StartEffect(0x74, &v3);
                 } else {

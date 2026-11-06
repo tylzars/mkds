@@ -970,7 +970,7 @@ void func_02079678(void *a, s32 b) {
                         dst->z = src->z >> 4;
                         j++;
                     } while (j < 4);
-                    e->mUnk_054->mUnk_v[1].x = DivFixed12(-e->mUnk_054->mUnk_v[0].x * 2, e->mUnk_020->mUnk_10);
+                    e->mUnk_054->mUnk_v[1].x = FX_Div(-e->mUnk_054->mUnk_v[0].x * 2, e->mUnk_020->mUnk_10);
                     e->mUnk_054->mUnk_v[3].x = -e->mUnk_054->mUnk_v[2].x * 2;
                     CreateTire(e, a);
                 }
@@ -1015,7 +1015,7 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
         if (d != FALSE) {
             func_02087f84(a->mUnk_008, 0);
             a->mUnk_02c = (func_02087d0c(a->mUnk_008) - 0x1000) / 2;
-            a->mUnk_030 = DivFixed12(0x1000, a->mUnk_02c);
+            a->mUnk_030 = FX_Div(0x1000, a->mUnk_02c);
         } else {
             a->mUnk_008->mUnk_18 = 0;
         }
@@ -1507,7 +1507,7 @@ void func_02078934(s32 param_1) {
     s32 c;
     s32 b;
     s32 a;
-    a = (s32) (((s64) DivFixed12(0x579, 0xf09) * 0x200) >> 12);
+    a = (s32) (((s64) FX_Div(0x579, 0xf09) * 0x200) >> 12);
     b = -a;
     c = (s32) (((s64) b * 0x1555) >> 12);
     d = -c;
@@ -1539,8 +1539,8 @@ void func_020787f4(s32 param_1, s32 param_2) {
     b = data_usa_02155188;
     c = data_usa_021656f0;
     c.y += param_2;
-    Vec3Sub(&c, &data_usa_021656fc, &d);
-    Vec3Cross(&b, &d, &e);
+    VEC_Subtract(&c, &data_usa_021656fc, &d);
+    VEC_CrossProduct(&b, &d, &e);
     data_021704dc[0] = data_usa_021656fc;
     data_021704dc[1] = e;
     data_021704dc[2] = c;

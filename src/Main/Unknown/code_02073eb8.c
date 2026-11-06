@@ -98,7 +98,7 @@ void SetupCameraBehindKart(void) {
     u.x = (s32) (((s64) m[2].x * t) >> 12);
     u.y = (s32) (((s64) m[2].y * t) >> 12);
     u.z = (s32) (((s64) m[2].z * t) >> 12);
-    Vec3Add(&q->mPos, &u, &p->mPos);
+    VEC_Add(&q->mPos, &u, &p->mPos);
     p->mPos.y = p->mPos.y + data_usa_0217ac7c;
     p->mBaseUp = data_usa_02154fc4;
     p->mPrevPos = p->mPos;
@@ -146,7 +146,7 @@ void UpdateChaseCamera(Camera *a, Kart *b) {
         }
         return;
     }
-    Vec3Sub(&b->mPos, &b->mPrevPos, &w);
+    VEC_Subtract(&b->mPos, &b->mPrevPos, &w);
     k = 0x19a;
     if (a->mHalfFovAngle > a->mHalfFovAngleGoal) {
         k = 0xcd;
@@ -198,11 +198,11 @@ void UpdateChaseCamera(Camera *a, Kart *b) {
     } else {
         q = data_usa_02154fc4;
     }
-    Vec3Sub(&q, &a->mBaseUp, &r);
+    VEC_Subtract(&q, &a->mBaseUp, &r);
     r.x = (s32) (((s64) r.x * 0x800) >> 12);
     r.y = (s32) (((s64) r.y * 0x800) >> 12);
     r.z = (s32) (((s64) r.z * 0x800) >> 12);
-    Vec3Add(&a->mBaseUp, &r, &a->mBaseUp);
+    VEC_Add(&a->mBaseUp, &r, &a->mBaseUp);
     if (a->mHeightHold != 0) {
         a->mLookAtHeight = a->mLookAtHeight - 0x1000;
         if (a->mLookAtHeight < 0x5000) {
@@ -261,7 +261,7 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c) {
                     m = FALSE;
                     a->mUnk_258 = FALSE;
                 } else {
-                    a->mCollisionOffsetLengthGoal = Vec3Length(&v);
+                    a->mCollisionOffsetLengthGoal = VEC_Mag(&v);
                     a->mUnk_254 = 1;
                 }
             } else if (Vec3DotUnrounded(c, &x) > 0) {
@@ -271,9 +271,9 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c) {
                 m = FALSE;
             }
         } else if (j & 0x1e34ef) {
-            if (data_021759c0->mMode != MODE_BATTLE || Vec3Dot(&data_usa_02154fc4, &w) < 0xfae ||
+            if (data_021759c0->mMode != MODE_BATTLE || VEC_DotProduct(&data_usa_02154fc4, &w) < 0xfae ||
                 a->mPos.y - b->mPos.y < data_usa_0217ac7c) {
-                Vec3Add(&v, &a->mPos, &a->mPos);
+                VEC_Add(&v, &a->mPos, &a->mPos);
             }
         }
     }
@@ -291,11 +291,11 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c) {
         }
     } else {
         a->mCollisionOffsetLengthGoal = 0;
-        Vec3Sub(&v, &a->mPosGoalCollisionOffset, &t);
+        VEC_Subtract(&v, &a->mPosGoalCollisionOffset, &t);
         t.x = (s32) (((s64) t.x * 0x4cd) >> 12);
         t.y = (s32) (((s64) t.y * 0x4cd) >> 12);
         t.z = (s32) (((s64) t.z * 0x4cd) >> 12);
-        Vec3Add(&a->mPosGoalCollisionOffset, &t, &a->mPosGoalCollisionOffset);
+        VEC_Add(&a->mPosGoalCollisionOffset, &t, &a->mPosGoalCollisionOffset);
         a->mUnk_254 = 3;
     }
     a->mCollisionOffsetLength =
@@ -723,7 +723,7 @@ void UpdateCameraAngleEntry(Camera *p) {
     Matrix3x3Multiply(m3, m2, m4);
     Vec3MultiplyMatrix3x3(&d, m4, &d);
     func_02074b00_inline(&t, &d, q->mUnk_18.z);
-    Vec3Add(&p->mLookAt, &t, &p->mPos);
+    VEC_Add(&p->mLookAt, &t, &p->mPos);
     f.x = -f.x;
     f.y = -f.y;
     f.z = -f.z;
@@ -738,7 +738,7 @@ void UpdateCameraAngleEntry(Camera *p) {
     Matrix3x3Multiply(m6, m3, m6);
     Matrix3x3Multiply(m6, m5, m7);
     Vec3MultiplyMatrix3x3(&n, m7, &n);
-    Vec3Add(&p->mPos, &n, &p->mLookAt);
+    VEC_Add(&p->mPos, &n, &p->mLookAt);
     p->mLookAt.y = p->mLookAt.y - o->mHopHeight;
     p->mPos.y = p->mPos.y - o->mHopHeight;
     if (data_021759c0->mMode != MODE_MISSION_RUN && data_021759c0->mMode != MODE_BATTLE) {
@@ -746,11 +746,11 @@ void UpdateCameraAngleEntry(Camera *p) {
                           NULL, NULL, NULL) != 0) {
             o = GetKart(p->mFollowedKartIndex);
             v = &o->mUnk_120;
-            k = Vec3Dot(v, &w);
+            k = VEC_DotProduct(v, &w);
             w.x = (s32) (((s64) o->mUnk_120.x * k) >> 12);
             w.y = (s32) (((s64) v->y * k) >> 12);
             w.z = (s32) (((s64) v->z * k) >> 12);
-            Vec3Add(&w, &p->mPos, &p->mPos);
+            VEC_Add(&w, &p->mPos, &p->mPos);
         }
     }
     UpdateCameraView(p);
@@ -767,7 +767,7 @@ void func_02074b00(Camera *p) {
 
     p->mUnk_0b4 = p->mLookAt;
     b = o->mPos;
-    Vec3AddScaled(q->mUnk_00.z, &o->mUnk_120, &o->mPos, &a);
+    VEC_MultAdd(q->mUnk_00.z, &o->mUnk_120, &o->mPos, &a);
     a.y = 0x1f4000;
     b.y = 0x1f4000;
     c = o->mUnk_138;
@@ -776,8 +776,8 @@ void func_02074b00(Camera *p) {
         Vec3NormalizeAndGetLengthUnchecked(&c, &c);
     }
     func_02074b00_inline(&c, &c, q->mUnk_00.x);
-    Vec3Add(&a, &c, &a);
-    Vec3Add(&b, &c, &b);
+    VEC_Add(&a, &c, &a);
+    VEC_Add(&b, &c, &b);
     if (GetRaceUpdateFrames() < q->mFrameCount) {
         p->mLookAt = b;
         p->mPos = a;
@@ -785,13 +785,13 @@ void func_02074b00(Camera *p) {
         p->mLookAt = b;
         p->mPos = a;
         p->mUnk_144 = p->mUnk_144 + 0x52;
-        Vec3Sub(&p->mPrevPos, &p->mPos, &p->mUnk_0a8);
-        Vec3Sub(&p->mUnk_0b4, &p->mLookAt, &p->mUnk_0b4);
-        Vec3AddScaled(p->mUnk_144, &p->mUnk_0a8, &a, &p->mPos);
-        Vec3AddScaled(p->mUnk_144, &p->mUnk_0b4, &b, &p->mLookAt);
+        VEC_Subtract(&p->mPrevPos, &p->mPos, &p->mUnk_0a8);
+        VEC_Subtract(&p->mUnk_0b4, &p->mLookAt, &p->mUnk_0b4);
+        VEC_MultAdd(p->mUnk_144, &p->mUnk_0a8, &a, &p->mPos);
+        VEC_MultAdd(p->mUnk_144, &p->mUnk_0b4, &b, &p->mLookAt);
     }
     UpdateCameraView(p);
-    Vec3Sub(&a, &b, &d);
+    VEC_Subtract(&a, &b, &d);
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&d, &d);
     }
@@ -847,7 +847,7 @@ void UpdateCameraPosCurve(Camera *p, s32 a) {
     e0 = GetCourseMapGroupEntry(q->mEntryGroupIndex, 0);
     e1 = GetCourseMapGroupEntry(q->mEntryGroupIndex, 1);
     v = e0->mUnk_00;
-    Vec3Sub(&e1->mUnk_00, &e0->mUnk_00, &d);
+    VEC_Subtract(&e1->mUnk_00, &e0->mUnk_00, &d);
     if ((s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < 0x10) {
         m = 0;
     } else {
@@ -861,7 +861,7 @@ void UpdateCameraPosCurve(Camera *p, s32 a) {
     s.x = (s32) (((s64) d.x * m) >> 12);
     s.y = (s32) (((s64) d.y * m) >> 12);
     s.z = (s32) (((s64) d.z * m) >> 12);
-    Vec3Add(&v, &s, &p->mPos);
+    VEC_Add(&v, &s, &p->mPos);
 }
 
 void UpdateCameraPosCurveLookAtBlend(Camera *p) {
@@ -958,20 +958,20 @@ void UpdateChaseCameraLookAt(Vec3 *a, Vec3 *b, s32 *c, Kart *d, s32 e, s32 f) {
     v4 = d->mPos;
     v10 = d->mPos;
     v10.y = v10.y - e;
-    Vec3AddScaled(f, &d->mUnk_12c, &v10, &v10);
+    VEC_MultAdd(f, &d->mUnk_12c, &v10, &v10);
     v4.y = v4.y + (f - e);
     if (!(d->mUnk_48 & 0x40000000)) {
         v1 = data_usa_02154fdc;
     } else {
-        Vec3Sub(&v10, &v4, &v1);
-        Vec3AddScaled(0xa000, &d->mUnk_12c, &v1, &v1);
+        VEC_Subtract(&v10, &v4, &v1);
+        VEC_MultAdd(0xa000, &d->mUnk_12c, &v1, &v1);
     }
-    Vec3Sub(&v1, b, &v28);
+    VEC_Subtract(&v1, b, &v28);
     v28.x = (s32) (((s64) v28.x * 0x266) >> 12);
     v28.y = (s32) (((s64) v28.y * 0x266) >> 12);
     v28.z = (s32) (((s64) v28.z * 0x266) >> 12);
-    Vec3Add(b, &v28, b);
-    Vec3Add(&v4, b, &v4);
+    VEC_Add(b, &v28, b);
+    VEC_Add(&v4, b, &v4);
     a->x = v4.x;
     a->z = v4.z;
     if (d->mUnk_48 & 0x10000) {
@@ -1013,49 +1013,49 @@ void UpdateChaseCameraPos(Vec3 *a, Vec3 *b, Camera *c, Kart *d, Vec3 *e, const V
     if (h < 500) {
         h = 500;
     }
-    Vec3Sub(&d->mPos, &d->mPrevPos, &v4);
+    VEC_Subtract(&d->mPos, &d->mPrevPos, &v4);
     if (d->mUnk_48 & 0x1000) {
         if (d->mUnk_4c & 0x4000000) {
             return;
         }
         c->mKartMoveScale = (s32) (((s64) c->mKartMoveScale * 0xe66) >> 12);
-        Vec3AddScaled(c->mKartMoveScale, &v4, a, a);
+        VEC_MultAdd(c->mKartMoveScale, &v4, a, a);
         return;
     }
     v4.y = 0;
-    Vec3Add(a, &v4, a);
+    VEC_Add(a, &v4, a);
     i = -h;
     v2.x = (s32) (((s64) v1.x * i) >> 12);
     v2.y = (s32) (((s64) v1.y * i) >> 12);
     v2.z = (s32) (((s64) v1.z * i) >> 12);
-    Vec3Add(&v2, &c->mPosGoalKartOffset, &v2);
-    Vec3Add(&v2, &c->mPosGoalCollisionOffset, &v2);
-    Vec3AddScaled(data_usa_0217ac7c, &v10, &v2, &v3);
-    Vec3Add(e, &v3, &v70);
+    VEC_Add(&v2, &c->mPosGoalKartOffset, &v2);
+    VEC_Add(&v2, &c->mPosGoalCollisionOffset, &v2);
+    VEC_MultAdd(data_usa_0217ac7c, &v10, &v2, &v3);
+    VEC_Add(e, &v3, &v70);
     v2.y = data_usa_0217ac7c;
-    Vec3Add(e, &v2, &v64);
+    VEC_Add(e, &v2, &v64);
     v40 = v64;
     v40.y = v40.y + c->mPosGoalYOffset;
     if (!(d->mUnk_48 & 0x40000000)) {
         v88 = data_usa_02154fdc;
     } else {
-        Vec3Sub(&v70, &v40, &v88);
-        Vec3AddScaled(-0x1e000, &v10, &v88, &v88);
+        VEC_Subtract(&v70, &v40, &v88);
+        VEC_MultAdd(-0x1e000, &v10, &v88, &v88);
     }
-    Vec3Sub(&v88, b, &v94);
+    VEC_Subtract(&v88, b, &v94);
     v94.x = (s32) (((s64) v94.x * 0x19a) >> 12);
     v94.y = (s32) (((s64) v94.y * 0x19a) >> 12);
     v94.z = (s32) (((s64) v94.z * 0x19a) >> 12);
-    Vec3Add(b, &v94, b);
-    Vec3Add(&v40, b, &v40);
-    Vec3Sub(&v40, a, &v58);
+    VEC_Add(b, &v94, b);
+    VEC_Add(&v40, b, &v40);
+    VEC_Subtract(&v40, a, &v58);
     j = v58.y;
     k = 0;
     v58.y = 0;
     if ((s64) v58.x * v58.x + (s64) v58.y * v58.y + (s64) v58.z * v58.z >= 16) {
         k = Vec3NormalizeAndGetLengthUnchecked(&v58, &v58);
     }
-    Vec3AddScaled((s32) (((s64) k * 0x11f) >> 12), &v58, a, a);
+    VEC_MultAdd((s32) (((s64) k * 0x11f) >> 12), &v58, a, a);
     a->y = a->y + ((s32) (((s64) j * 0x11f) >> 9) + g * 2);
     if (c->mHeightHold != 0) {
         if (c->mHeldHeightEasing != FALSE) {
@@ -1065,7 +1065,7 @@ void UpdateChaseCameraPos(Vec3 *a, Vec3 *b, Camera *c, Kart *d, Vec3 *e, const V
         }
         a->y = c->mHeldHeight;
     }
-    Vec3Sub(a, e, &v28);
+    VEC_Subtract(a, e, &v28);
     v34 = v28;
     k = 0;
     if ((s64) v34.x * v34.x + (s64) v34.y * v34.y + (s64) v34.z * v34.z >= 16) {
@@ -1074,7 +1074,7 @@ void UpdateChaseCameraPos(Vec3 *a, Vec3 *b, Camera *c, Kart *d, Vec3 *e, const V
     if (k == 0) {
         return;
     }
-    Vec3AddScaled((s32) (((s64) c->mFollowDistance * c->mFollowDistanceScale) >> 12), &v34, e, a);
+    VEC_MultAdd((s32) (((s64) c->mFollowDistance * c->mFollowDistanceScale) >> 12), &v34, e, a);
 }
 
 // Puts the chase camera at a minus mFollowDistance along axis 2 of the matrix b (the kart's).
@@ -1090,7 +1090,7 @@ void ResetCameraBehind(const Vec3 *a, void *b) {
     v.x = (s32) (((s64) m[2].x * t) >> 12);
     v.y = (s32) (((s64) m[2].y * t) >> 12);
     v.z = (s32) (((s64) m[2].z * t) >> 12);
-    Vec3Add(a, &v, &p->mPos);
+    VEC_Add(a, &v, &p->mPos);
     p->mPos.y = p->mPos.y + data_usa_0217ac7c;
     p->mBaseUp = data_usa_02154fc4;
     p->mPrevPos = p->mPos;

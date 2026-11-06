@@ -101,9 +101,9 @@ u32 func_02102eb8(Unk02102674 *p, s32 b) {
     }
     p->mUnk_12c = GetKart(b2);
     p->mUnk_000.mPos = p->mUnk_12c->mUnk_98;
-    Vec3AddScaled(0x5800, &s->mUp, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
-    Vec3AddScaled(func_0203c5e4() != 0 ? 0x5800 : 0xa800, &s->mForward, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
-    Vec3Sub(&p->mUnk_000.mPos, &s->mPos, &p->mUnk_13c);
+    VEC_MultAdd(0x5800, &s->mUp, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
+    VEC_MultAdd(func_0203c5e4() != 0 ? 0x5800 : 0xa800, &s->mForward, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
+    VEC_Subtract(&p->mUnk_000.mPos, &s->mPos, &p->mUnk_13c);
     Vec3MultiplyMatrix3x3(&p->mUnk_13c, s->mViewMatrix, &p->mUnk_13c);
     if (b != 0) {
         if (p->mUnk_000.mFlags & 0x10000000) {

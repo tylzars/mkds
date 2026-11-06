@@ -271,7 +271,7 @@ void StartKartState3(Kart *p) {
     p->mForwardSpeed = p->mForwardSpeed + 0x800;
     func_02063b50(p, &p->mUnk_31c);
     GetKartForward(p, &v);
-    Vec3AddScaled(0x2e2, &v, &p->mUnk_31c, &p->mUnk_31c);
+    VEC_MultAdd(0x2e2, &v, &p->mUnk_31c, &p->mUnk_31c);
     Vec3NormalizeAndGetLengthUnchecked(&p->mUnk_31c, &p->mUnk_31c);
     QuaternionFromAxisAngle(&p->mUnk_31c, p->mUnk_314, &p->mUnk_34c);
     p->mForwardSpeed = (s32) (((s64) p->mForwardSpeed * 0x99a) >> 12);
@@ -373,9 +373,9 @@ BOOL TryStartKartState4(Kart *p, Unk0206b020 *a) {
         return FALSE;
     }
     t = a->mUnk_28;
-    Vec3Sub(&p->mPos, &a->mUnk_04, &u);
-    Vec3Cross(&a->mUnk_40, &u, &w);
-    if (Vec3Dot(&w, &a->mUnk_34) < 0) {
+    VEC_Subtract(&p->mPos, &a->mUnk_04, &u);
+    VEC_CrossProduct(&a->mUnk_40, &u, &w);
+    if (VEC_DotProduct(&w, &a->mUnk_34) < 0) {
         t.x = -t.x;
         t.y = -t.y;
         t.z = -t.z;

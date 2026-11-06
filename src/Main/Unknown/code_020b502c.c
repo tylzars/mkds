@@ -47,19 +47,19 @@ void func_020b65f0(void) {
     func_020b6b54(&a, &b);
     data_0217b3c0->mUnk_2c = a;
     data_0217b3c0->mUnk_34 = b;
-    data_0217b3c0->mUnk_3c = ReciprocalFixed12Raw(b.mUnk_00 - a.mUnk_00);
-    data_0217b3c0->mUnk_44 = ReciprocalFixed12Raw(b.mUnk_04 - a.mUnk_04);
+    data_0217b3c0->mUnk_3c = FX_InvFx64c(b.mUnk_00 - a.mUnk_00);
+    data_0217b3c0->mUnk_44 = FX_InvFx64c(b.mUnk_04 - a.mUnk_04);
     func_020b6a98(&c, &d);
     data_0217b3c0->mUnk_4c = c;
     data_0217b3c0->mUnk_54 = d;
-    data_0217b3c0->mUnk_5c = ReciprocalFixed12Raw(d.mUnk_00 - c.mUnk_00);
-    data_0217b3c0->mUnk_64 = ReciprocalFixed12Raw(d.mUnk_04 - c.mUnk_04);
-    data_0217b3c0->mUnk_28 = func_020b502c(DivFixed12(d.mUnk_00 - c.mUnk_00, 0x200000), 0xb0000);
+    data_0217b3c0->mUnk_5c = FX_InvFx64c(d.mUnk_00 - c.mUnk_00);
+    data_0217b3c0->mUnk_64 = FX_InvFx64c(d.mUnk_04 - c.mUnk_04);
+    data_0217b3c0->mUnk_28 = func_020b502c(FX_Div(d.mUnk_00 - c.mUnk_00, 0x200000), 0xb0000);
     func_020b681c(&e, &f);
     data_0217b3c0->mUnk_6c = e;
     data_0217b3c0->mUnk_74 = f;
-    data_0217b3c0->mUnk_7c = ReciprocalFixed12Raw(f.mUnk_00 - e.mUnk_00);
-    data_0217b3c0->mUnk_84 = ReciprocalFixed12Raw(f.mUnk_04 - e.mUnk_04);
+    data_0217b3c0->mUnk_7c = FX_InvFx64c(f.mUnk_00 - e.mUnk_00);
+    data_0217b3c0->mUnk_84 = FX_InvFx64c(f.mUnk_04 - e.mUnk_04);
     data_0217b3c0->mUnk_8c = 0;
     data_0217b3c0->mUnk_90 = data_02156874;
 }
@@ -138,7 +138,7 @@ u16 func_020b6368(void) {
             } else {
                 p = GetChaseCamera();
             }
-            a = AngleFromPair(p->mViewMatrix[8], p->mViewMatrix[2]);
+            a = FX_Atan2Idx(p->mViewMatrix[8], p->mViewMatrix[2]);
             r = (0x14000 - a) % 0x10000;
             data_0217b3c0->mUnk_8c = 0;
             break;
@@ -481,9 +481,9 @@ void func_020b5290(void) {
         if (data_0217b3c0->mUnk_8c < 300) {
             func_0207a91c(&target, func_020b4d9c());
             data_0217b3c0->mUnk_8c = 300;
-            Vec3Sub(&target, &data_0217b3c0->mUnk_90, &dir);
+            VEC_Subtract(&target, &data_0217b3c0->mUnk_90, &dir);
             Vec3NormalizeAndGetLengthUnchecked(&dir, &dir);
-            Vec3AddScaled(0xa000, &dir, &data_0217b3c0->mUnk_90, &data_0217b3c0->mUnk_90);
+            VEC_MultAdd(0xa000, &dir, &data_0217b3c0->mUnk_90, &data_0217b3c0->mUnk_90);
             if (func_020b5250(target.x - data_0217b3c0->mUnk_90.x) *
                         func_020b5250(target.x - data_0217b3c0->mUnk_90.x) +
                     func_020b5250(target.z - data_0217b3c0->mUnk_90.z) *
@@ -536,8 +536,8 @@ void func_020b503c(Unk020b503c *p, s32 scale) {
     if (GetRaceHudSubScreenState() == 2) {
         func_020b5290();
     }
-    data_0217b3c0->mUnk_18 = func_020b5250(DivFixed12(0xb0000, scale));
-    scale = ReciprocalFixed12(scale);
+    data_0217b3c0->mUnk_18 = func_020b5250(FX_Div(0xb0000, scale));
+    scale = FX_Inv(scale);
     a = func_020b502c(data_0217b3c0->mUnk_1c, scale);
     b = func_020b502c(data_0217b3c0->mUnk_1e, scale);
     if (func_020b523c() != 0) {

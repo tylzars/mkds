@@ -80,7 +80,7 @@ void UpdateKuriboState1(Kuribo *p) {
     v = p->mUnk_00.mPos;
     v.y += 0xa000;
     if (func_01ffdee4(&v, NULL, 0, 0xa000, 8, -2, &w, &x, NULL, &f, NULL, NULL, NULL, NULL) != 0) {
-        Vec3Add(&p->mUnk_00.mPos, &w, &p->mUnk_00.mPos);
+        VEC_Add(&p->mUnk_00.mPos, &w, &p->mUnk_00.mPos);
         p->mUnk_00.mUnk_10.y = 0;
         if ((f & 0x1e34ef) != 0) {
             func_020d7b88(&x, &p->mUnk_b4);
@@ -173,7 +173,7 @@ void func_020da820(Kuribo *p, Vec3 *a) {
     if (p->mUnk_00.mCourseMapRow == NULL || p->mUnk_00.mCourseMapRow->mUnk_2c != 0) {
         return;
     }
-    Vec3Sub(&p->mUnk_cc.mUnk_1c->mUnk_00, &p->mUnk_cc.mUnk_20->mUnk_00, &s);
+    VEC_Subtract(&p->mUnk_cc.mUnk_1c->mUnk_00, &p->mUnk_cc.mUnk_20->mUnk_00, &s);
     if ((s64) s.x * s.x + (s64) s.y * s.y + (s64) s.z * s.z >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&s, &s);
     }
@@ -181,7 +181,7 @@ void func_020da820(Kuribo *p, Vec3 *a) {
         Vec3 t = {0, 0, 0};
         t.x = a->x;
         t.z = a->z;
-        d = Vec3Dot(&s, &t);
+        d = VEC_DotProduct(&s, &t);
         s.x = t.x - (s32) (((s64) s.x * d) >> 12);
         s.y = t.y - (s32) (((s64) s.y * d) >> 12);
         s.z = t.z - (s32) (((s64) s.z * d) >> 12);
@@ -196,12 +196,12 @@ void func_020da820(Kuribo *p, Vec3 *a) {
     r->mUnk_68.x = 0xcd;
     r->mUnk_68.y = 0xcd;
     r->mUnk_68.z = 0xcd;
-    d = Vec3Length(a) + 0x5000;
+    d = VEC_Mag(a) + 0x5000;
     r->mVelocity.x = (s32) (((s64) s.x * d) >> 12);
     r->mVelocity.y = (s32) (((s64) s.y * d) >> 12);
     r->mVelocity.z = (s32) (((s64) s.z * d) >> 12);
     r->mVelocity.y += 0xf000;
-    Vec3Add(&r->mPos, &r->mVelocity, &r->mPos);
+    VEC_Add(&r->mPos, &r->mVelocity, &r->mPos);
     func_020f6630(r, 0, &p->mUnk_00.mPos, a, &data_021581f8);
 }
 
