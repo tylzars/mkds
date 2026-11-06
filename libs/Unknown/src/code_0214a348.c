@@ -2,7 +2,7 @@
 
 // Sets the brightness amount of a blend register block. A negative value changes a brightness increase effect
 // to a decrease; a positive value changes a decrease to an increase.
-void G2x_ChangeBlendBrightness_(u16 *reg, s32 brightness) {
+void G2x_ChangeBlendBrightness_(vu16 *reg, s32 brightness) {
     u32 control;
 
     control = reg[0];

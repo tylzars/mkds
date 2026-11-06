@@ -269,15 +269,15 @@ u32 SetG3xSwapBits(DisplaySettings *arg0, u32 arg1, u32 arg2) {
     u32 value1 = arg1;
     u32 value2 = arg2;
     u32 value3;
-    value3 = (u32) * (const u32 *) ((value0) + (108));
-    arg0->mG3xParams->mSwapBit0 = (u8) value1;
-    value0 = (u32) * (const u32 *) ((value0) + (108));
-    *(u8 *) ((value0) + (3)) = (u8) value2;
+    value3 = *(const u32 *) ((value0) + (108));
+    arg0->mG3xParams->mSwapBit0 = value1;
+    value0 = *(const u32 *) ((value0) + (108));
+    *(u8 *) ((value0) + (3)) = value2;
     return value0;
 }
 
 void func_02038c94(DisplaySettings *p0, u32 p1) {
-    p0->mUnk_b2 = (u16) p1;
+    p0->mUnk_b2 = p1;
 }
 
 // Enum-typed parameters of the inlines below: the original reads their values before the register.
@@ -370,65 +370,65 @@ void ApplyBg2Cnt(Bg23Cnt *a, s32 b) {
         case 1:
             if (b != 0) {
                 reg_G2_BG2OFS = 0;
-                func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline2((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                func_020386d0_inline(&reg_G2_BG2CNT, q);
+                func_020386d0_inline2(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             } else {
                 reg_G2S_DB_BG2OFS = 0;
-                func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline2((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
+                func_020386d0_inline2(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             }
             break;
         case 2:
             if (b != 0) {
-                G2x_SetBGyAffine_((u32 *) 0x04000020, m, 0, 0, 0, 0);
-                func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline3((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                G2x_SetBGyAffine_(&reg_G2_BG2PA, m, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2_BG2CNT, q);
+                func_020386d0_inline3(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
                                       (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             } else {
-                G2x_SetBGyAffine_((u32 *) 0x04001020, m, 0, 0, 0, 0);
-                func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline3((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, m, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
+                func_020386d0_inline3(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
                                       (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             }
             break;
         case 3:
             if (b != 0) {
-                G2x_SetBGyAffine_((u32 *) 0x04000020, m, 0, 0, 0, 0);
-                func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline4((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2_BG2PA, m, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2_BG2CNT, q);
+                func_020386d0_inline4(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                G2x_SetBGyAffine_((u32 *) 0x04001020, m, 0, 0, 0, 0);
-                func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline4((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, m, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
+                func_020386d0_inline4(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             }
             break;
         case 4:
             if (b != 0) {
-                G2x_SetBGyAffine_((u32 *) 0x04000020, m, 0, 0, 0, 0);
-                func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline5((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2_BG2PA, m, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2_BG2CNT, q);
+                func_020386d0_inline5(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                G2x_SetBGyAffine_((u32 *) 0x04001020, m, 0, 0, 0, 0);
-                func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline5((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, m, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
+                func_020386d0_inline5(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             }
             break;
         case 5:
             if (b != 0) {
-                G2x_SetBGyAffine_((u32 *) 0x04000020, m, 0, 0, 0, 0);
-                func_020386d0_inline((vu16 *) 0x0400000c, q);
-                func_020386d0_inline6((vu16 *) 0x0400000c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2_BG2PA, m, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2_BG2CNT, q);
+                func_020386d0_inline6(&reg_G2_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                G2x_SetBGyAffine_((u32 *) 0x04001020, m, 0, 0, 0, 0);
-                func_020386d0_inline((vu16 *) 0x0400100c, q);
-                func_020386d0_inline6((vu16 *) 0x0400100c, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, m, 0, 0, 0, 0);
+                func_020386d0_inline(&reg_G2S_DB_BG2CNT, q);
+                func_020386d0_inline6(&reg_G2S_DB_BG2CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             }
             break;
@@ -450,65 +450,65 @@ void ApplyBg3Cnt(Bg23Cnt *a, s32 b) {
         case 1:
             if (b != 0) {
                 reg_G2_BG3OFS = 0;
-                func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline2((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                func_0203810c_inline(&reg_G2_BG3CNT, q);
+                func_0203810c_inline2(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             } else {
                 reg_G2S_DB_BG3OFS = 0;
-                func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline2((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
+                func_0203810c_inline2(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08, (Unk0203810c_Arg) q->mUnk_0a);
             }
             break;
         case 2:
             if (b != 0) {
-                G2x_SetBGyAffine_((u32 *) 0x04000030, m, 0, 0, 0, 0);
-                func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline3((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                G2x_SetBGyAffine_(&reg_G2_BG3PA, m, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2_BG3CNT, q);
+                func_0203810c_inline3(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
                                       (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             } else {
-                G2x_SetBGyAffine_((u32 *) 0x04001030, m, 0, 0, 0, 0);
-                func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline3((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, m, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
+                func_0203810c_inline3(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_08,
                                       (Unk0203810c_Arg) q->mUnk_0a, (Unk0203810c_Arg) q->mUnk_06);
             }
             break;
         case 3:
             if (b != 0) {
-                G2x_SetBGyAffine_((u32 *) 0x04000030, m, 0, 0, 0, 0);
-                func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline4((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2_BG3PA, m, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2_BG3CNT, q);
+                func_0203810c_inline4(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                G2x_SetBGyAffine_((u32 *) 0x04001030, m, 0, 0, 0, 0);
-                func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline4((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, m, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
+                func_0203810c_inline4(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             }
             break;
         case 4:
             if (b != 0) {
-                G2x_SetBGyAffine_((u32 *) 0x04000030, m, 0, 0, 0, 0);
-                func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline5((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2_BG3PA, m, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2_BG3CNT, q);
+                func_0203810c_inline5(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                G2x_SetBGyAffine_((u32 *) 0x04001030, m, 0, 0, 0, 0);
-                func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline5((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, m, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
+                func_0203810c_inline5(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             }
             break;
         case 5:
             if (b != 0) {
-                G2x_SetBGyAffine_((u32 *) 0x04000030, m, 0, 0, 0, 0);
-                func_0203810c_inline((vu16 *) 0x0400000e, q);
-                func_0203810c_inline6((vu16 *) 0x0400000e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2_BG3PA, m, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2_BG3CNT, q);
+                func_0203810c_inline6(&reg_G2_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             } else {
-                G2x_SetBGyAffine_((u32 *) 0x04001030, m, 0, 0, 0, 0);
-                func_0203810c_inline((vu16 *) 0x0400100e, q);
-                func_0203810c_inline6((vu16 *) 0x0400100e, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
+                G2x_SetBGyAffine_(&reg_G2S_DB_BG3PA, m, 0, 0, 0, 0);
+                func_0203810c_inline(&reg_G2S_DB_BG3CNT, q);
+                func_0203810c_inline6(&reg_G2S_DB_BG3CNT, (Unk0203810c_Arg) q->mUnk_04, (Unk0203810c_Arg) q->mUnk_06,
                                       (Unk0203810c_Arg) q->mUnk_08);
             }
             break;
@@ -713,10 +713,10 @@ u32 ClearFrameFinishedFlag(void) {
     u32 value0;
     u32 value1;
     value0 = (u32) &gDisplaySettings;
-    value1 = (u32) * (const u32 *) ((value0) + (0));
-    value0 = (u32) gDisplaySettings->mFrameFlags;
+    value1 = *(const u32 *) ((value0) + (0));
+    value0 = gDisplaySettings->mFrameFlags;
     value0 = (value0) & ~(1u);
-    gDisplaySettings->mFrameFlags = (u8) value0;
+    gDisplaySettings->mFrameFlags = value0;
     return value0;
 }
 

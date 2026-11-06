@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020ad2dc.h"
+#include "registers.h"
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02036c5c.h"
@@ -50,7 +51,7 @@ u32 func_020ada10(void) {
 }
 
 u32 func_020ad9fc(void) {
-    return ((u32) data_0217b488->mUnk_00);
+    return (data_0217b488->mUnk_00);
 }
 
 void func_020ad9c0(Unk02180774 *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g, u32 h) {
@@ -78,7 +79,7 @@ void func_020ad8e0(u32 a) {
 }
 
 void func_020ad8a4(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(((u32 *) 0x04001050u), a, b, c, d);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, a, b, c, d);
 }
 
 u32 func_020ad88c(u32 arg0) {
@@ -86,7 +87,7 @@ u32 func_020ad88c(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = 0x4000000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0xe000u);
     value0 = (value1) | ((value0 << 13));
     *(u32 *) ((value2) + (0)) = value0;
@@ -98,7 +99,7 @@ u32 func_020ad870(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = 0x4001000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0xe000u);
     value0 = (value1) | ((value0 << 13));
     *(u32 *) ((value2) + (0)) = value0;
@@ -238,7 +239,7 @@ void func_020ad32c(void) {
 #pragma thumb off
 
 void func_020ad2f0(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(((u32 *) 0x04000050u), a, b, c, d);
+    G2x_SetBlendAlpha_(&reg_G2_BLDCNT, a, b, c, d);
 }
 
 void func_020ad2dc(u32 p0) {

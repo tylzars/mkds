@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020caaac.h"
+#include "registers.h"
 
 #include "Main/Unknown/code_020caae8.h"
 #include "code_0214a390.h"
@@ -28,7 +29,7 @@ u32 func_020cab58(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = 0x4001000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0x1f00u);
     value0 = (value1) | ((value0 << 8));
     *(u32 *) ((value2) + (0)) = value0;
@@ -40,9 +41,9 @@ void func_020cab2c(u32 a, u32 b) {
 }
 
 void func_020caae8(u32 a, u32 b, u32 c, u32 d, s32 e) {
-    G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, a, b, c, d, e);
+    G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, a, b, c, d, e);
 }
 
 void func_020caaac(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(((u32 *) 0x04001050u), a, b, c, d);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, a, b, c, d);
 }

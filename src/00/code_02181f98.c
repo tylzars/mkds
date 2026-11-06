@@ -704,7 +704,7 @@ void func_ov000_02181ff0(void) {
     b = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
     b |= 9;
     *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | (b << 8);
-    G2x_SetBlendAlpha_((u32 *) 0x4000050, 0, 2, 6, 10);
+    G2x_SetBlendAlpha_(&reg_G2_BLDCNT, 0, 2, 6, 10);
     v = -gWiFiVSSetting->mRowOffsets[1][0];
     if (v <= -256) {
         v = -256;

@@ -1,4 +1,5 @@
 #include "03/code_021c209c.h"
+#include "registers.h"
 
 #include "03/code_021d1440.h"
 #include "03/code_021d197c.h"
@@ -121,7 +122,7 @@ void func_ov003_021c2188(void) {
     *(u32 *) 0x4000014 = 0;
     *(u32 *) 0x4000018 = 0;
     *(u32 *) 0x400001c = 0;
-    G2x_SetBlendBrightness_((u16 *) 0x4000050, 0x3f, 0x10);
+    G2x_SetBlendBrightness_(&reg_G2_BLDCNT, 0x3f, 0x10);
     GX_SetBankForSubBG(0x80);
     GX_SetBankForSubOBJ(0x100);
     GXS_SetGraphicsMode(0);
@@ -137,7 +138,7 @@ void func_ov003_021c2188(void) {
     *(u32 *) 0x4001014 = 0;
     *(u32 *) 0x4001018 = 0;
     *(u32 *) 0x400101c = 0;
-    G2x_SetBlendBrightness_((u16 *) 0x4001050, 0x3f, 0x10);
+    G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 0x3f, 0x10);
     *(u16 *) 0x4000008 = (*(u16 *) 0x4000008 & 0x43) | 0xc00;
     *(u16 *) 0x400000a = (*(u16 *) 0x400000a & 0x43) | 0xd08;
     *(u16 *) 0x400000c = (*(u16 *) 0x400000c & 0x43) | 0xe10;

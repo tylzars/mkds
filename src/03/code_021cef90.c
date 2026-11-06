@@ -62,7 +62,7 @@ void func_ov003_021cefc0(u32 a, s32 b, s32 c, u32 d, u32 e) {
     data_ov003_021da284->mUnk_1c = b;
     data_ov003_021da284->mUnk_1b = -2;
     data_ov003_021da284->mUnk_1e = c;
-    G2x_SetBlendBrightness_((u16 *) 0x04000050, 0x1f, 0);
+    G2x_SetBlendBrightness_(&reg_G2_BLDCNT, 0x1f, 0);
     data_ov003_021da284->mUnk_00 = func_ov003_021d1be4(0, data_ov003_021d6718[b], 0);
     func_ov003_021d17d4(data_ov003_021da284->mUnk_00, -1, 0x100, 0);
     func_ov003_021d1790(data_ov003_021da284->mUnk_00, -1, 0);

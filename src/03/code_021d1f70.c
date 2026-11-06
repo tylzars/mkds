@@ -1,4 +1,5 @@
 #include "03/code_021d1f70.h"
+#include "registers.h"
 
 #include "03/code_021d1da8.h"
 #include "03/code_021d27d8.h"
@@ -7,8 +8,8 @@
 
 void func_ov003_021d1f98(void) {
     data_ov003_021da2c0 = func_ov003_021d283c(0x18, 4);
-    G2x_SetBlendBrightness_((u16 *) 0x4000050, 0x3f, 0x10);
-    G2x_SetBlendBrightness_((u16 *) 0x4001050, 0x3f, 0x10);
+    G2x_SetBlendBrightness_(&reg_G2_BLDCNT, 0x3f, 0x10);
+    G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 0x3f, 0x10);
 }
 
 void func_ov003_021d1f88(void) {

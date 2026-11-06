@@ -16,7 +16,7 @@
 #include "Main/Unknown/code_0202b604.h"
 
 u32 func_0202811c(void) {
-    return ((u32) data_021759d0->mUnk_20);
+    return (data_021759d0->mUnk_20);
 }
 
 u16 *func_02028110(void) {
@@ -58,7 +58,7 @@ u32 func_02028074(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = 0x4000000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0x1f00u);
     value0 = (value1) | ((value0 << 8));
     *(u32 *) ((value2) + (0)) = value0;
@@ -70,7 +70,7 @@ u32 func_02028058(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = 0x4001000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0x1f00u);
     value0 = (value1) | ((value0 << 8));
     *(u32 *) ((value2) + (0)) = value0;
@@ -86,7 +86,7 @@ void func_02028010(u32 a) {
 }
 
 void func_02027fd4(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(((u32 *) 0x04001050u), a, b, c, d);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, a, b, c, d);
 }
 
 u32 func_02027fb8(u32 arg0) {
@@ -94,7 +94,7 @@ u32 func_02027fb8(u32 arg0) {
     u32 value1;
     u32 value2;
     value2 = 0x4001000u;
-    value1 = (u32) * (const u32 *) ((value2) + (0));
+    value1 = *(const u32 *) ((value2) + (0));
     value1 = (value1) & ~(0xe000u);
     value0 = (value1) | ((value0 << 13));
     *(u32 *) ((value2) + (0)) = value0;
@@ -110,14 +110,14 @@ u32 func_02027f90(u32 arg0, u32 arg1) {
     value2 = 0x4001048u;
     compareLeft0 = value1;
     compareRight0 = 0u;
-    value1 = (u32) * (const u16 *) ((value2) + (0));
+    value1 = *(const u16 *) ((value2) + (0));
     value1 = (value1) & ~(0x3fu);
     value1 = (value1) | (value0);
     value0 = 0x4001048u;
     if (compareLeft0 != compareRight0) {
         value1 = (value1) | (0x20u);
     }
-    *(u16 *) ((value0) + (0)) = (u16) value1;
+    *(u16 *) ((value0) + (0)) = value1;
     return value0;
 }
 
@@ -130,14 +130,14 @@ u32 func_02027f68(u32 arg0, u32 arg1) {
     value2 = 0x400104au;
     compareLeft0 = value1;
     compareRight0 = 0u;
-    value1 = (u32) * (const u16 *) ((value2) + (0));
+    value1 = *(const u16 *) ((value2) + (0));
     value1 = (value1) & ~(0x3fu);
     value1 = (value1) | (value0);
     value0 = 0x400104au;
     if (compareLeft0 != compareRight0) {
         value1 = (value1) | (0x20u);
     }
-    *(u16 *) ((value0) + (0)) = (u16) value1;
+    *(u16 *) ((value0) + (0)) = value1;
     return value0;
 }
 

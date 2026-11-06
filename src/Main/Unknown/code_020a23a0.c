@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020a23a0.h"
+#include "registers.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0204984c.h"
 #include "code_02010c84.h"
@@ -38,7 +39,7 @@ void func_020a29cc(void) {
     Unk0217b200 *d;
     Unk0217b200_08 *p;
 
-    G2x_SetBlendAlpha_((u32 *) 0x4000050, 1, 0x1f, 0x10, 0x10);
+    G2x_SetBlendAlpha_(&reg_G2_BLDCNT, 1, 0x1f, 0x10, 0x10);
     NNS_G3dGlbLightVector(0, data_0217b200->mUnk_0fc, data_0217b200->mUnk_100, data_0217b200->mUnk_104);
     NNS_G3dGlbLightVector(1, data_0217b200->mUnk_0fe, data_0217b200->mUnk_102, data_0217b200->mUnk_106);
     NNS_G3dGlbLightColor(0, 0x7fff);

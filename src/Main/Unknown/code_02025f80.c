@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02025f80.h"
+#include "registers.h"
 
 #include "Main/Unknown/code_02025edc.h"
 #include "Main/Unknown/code_0202b000.h"
@@ -710,7 +711,7 @@ void func_020260e4(void) {
 void func_02026058(void) {
     u32 a = 0x18;
 
-    G2x_SetBlendAlpha_((u32 *) 0x4001050, 0, 0x3f, 6, 10);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0x3f, 6, 10);
     if (!(gSelectCharacter->mUnk_06c == 9 && gSelectCharacter->mUnk_08c == 2)) {
         a |= 1;
     }

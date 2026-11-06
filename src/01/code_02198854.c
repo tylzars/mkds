@@ -613,7 +613,7 @@ void func_ov001_02198878(void) {
         plane &= ~2;
         reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | (plane << 8);
     }
-    G2x_SetBlendAlpha_((u32 *) 0x4001050, 0, 2, 6, 10);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 2, 6, 10);
     reg_G2_BG0OFS = (-gOptionSelectMenu->mUnk_24 << 16) & 0x1ff0000;
     reg_G2_BG1OFS = (-gOptionSelectMenu->mUnk_24 << 16) & 0x1ff0000;
 }

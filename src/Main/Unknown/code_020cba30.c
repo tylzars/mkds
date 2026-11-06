@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020cba30.h"
+#include "registers.h"
 #include "00/code_02181f98.h"
 #include "code_0214a390.h"
 
@@ -11,9 +12,9 @@ void func_020cbaa8(u32 p0) {
 }
 
 void func_020cba6c(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(((u32 *) 0x04000050u), a, b, c, d);
+    G2x_SetBlendAlpha_(&reg_G2_BLDCNT, a, b, c, d);
 }
 
 void func_020cba30(u32 a, u32 b, u32 c, u32 d) {
-    G2x_SetBlendAlpha_(((u32 *) 0x04001050u), a, b, c, d);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, a, b, c, d);
 }

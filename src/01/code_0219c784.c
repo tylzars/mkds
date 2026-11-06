@@ -460,6 +460,6 @@ void WriteSelectBattleStageRegisters(void) {
     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & 0xffffe0ff) | 0x1600;
     reg_G2_BG2CNT = (reg_G2_BG2CNT & ~3) | 1;
     reg_G2_BLDCNT = 0;
-    G2x_SetBlendAlpha_((u32 *) 0x4001050, 0, 2, 6, 10);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 2, 6, 10);
     reg_G2_BG2OFS = ((gSelectBattleStage->mUnk_14 - gSelectBattleStage->mOffset) << 16) & 0x1ff0000;
 }

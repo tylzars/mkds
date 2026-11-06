@@ -1,4 +1,5 @@
 #include "03/code_021d1dd0.h"
+#include "registers.h"
 #include "03/code_021d1da8.h"
 #include "03/code_021d3488.h"
 #include "code_02147cd8.h"
@@ -25,15 +26,15 @@ void func_ov003_021d1e14(u32 param_1, Unk021d1da8 *param_2) {
         c = -c;
     }
     if (param_2 == data_ov003_021da2c0) {
-        G2x_ChangeBlendBrightness_((u16 *) 0x4001050, c);
+        G2x_ChangeBlendBrightness_(&reg_G2S_DB_BLDCNT, c);
     } else {
-        G2x_ChangeBlendBrightness_((u16 *) 0x4000050, c);
+        G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, c);
     }
     if (param_2->mFrames >= param_2->mFrameCount) {
         if (param_2 == data_ov003_021da2c0) {
-            G2x_ChangeBlendBrightness_((u16 *) 0x4001050, b[param_2->mUnk_08]);
+            G2x_ChangeBlendBrightness_(&reg_G2S_DB_BLDCNT, b[param_2->mUnk_08]);
         } else {
-            G2x_ChangeBlendBrightness_((u16 *) 0x4000050, b[param_2->mUnk_08]);
+            G2x_ChangeBlendBrightness_(&reg_G2_BLDCNT, b[param_2->mUnk_08]);
         }
         param_2->mEnabled = 0;
         func_ov003_021d34c8(1, param_1);

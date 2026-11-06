@@ -1,4 +1,5 @@
 #include "01/code_0219d5dc.h"
+#include "registers.h"
 
 #include "01/code_0219d000.h"
 #include "01/unk_021a6000.h"
@@ -437,7 +438,7 @@ void AdvanceOptionEmbremSelect(void) {
 }
 
 void func_ov001_0219d600(void) {
-    G2x_SetBlendAlpha_(((u32 *) (u32) 0x04001050u), 0, 2, 6, 10);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 2, 6, 10);
 }
 
 void RegisterOptionEmbremSelectCallbacks(void) {

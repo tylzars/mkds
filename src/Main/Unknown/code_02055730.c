@@ -147,7 +147,7 @@ void func_02055fc8(void) {
     m[3] = 0x1000;
     m[1] = 0;
     m[2] = 0;
-    G2x_SetBGyAffine_((u32 *) 0x04001020, m, 0, 0, 0, 0);
+    G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, m, 0, 0, 0, 0);
     for (i = 0; i < 0x80; i++) {
         v1[i].mUnk_00 = 0;
         v1[i].mUnk_04 = 0;

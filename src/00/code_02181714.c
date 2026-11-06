@@ -1,4 +1,5 @@
 #include "00/code_02181714.h"
+#include "registers.h"
 #include "Main/Unknown/code_02060cb4.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "01/code_021956dc.h"
@@ -93,10 +94,8 @@ void LocateAndQueueWiFiTopMenu(void) {
     LocateNcer(&gWiFiTopMenu->mWiFiTopMenuSNcer, v1);
     v1 = FindSceneFile(gWiFiTopMenuSONclrName);
     LocateNclr(&gWiFiTopMenu->mWiFiTopMenuSONclr, v1);
-    CallQueueAppend(0x23, 0, (gWiFiTopMenu->mWiFiTopMenuSNcgr->mData),
-                    (u32) (gWiFiTopMenu->mWiFiTopMenuSNcgr->mDataSize));
-    CallQueueAppend(0x1e, 0, (gWiFiTopMenu->mWiFiTopMenuSONclr->mData),
-                    (u32) (gWiFiTopMenu->mWiFiTopMenuSONclr->mDataSize));
+    CallQueueAppend(0x23, 0, (gWiFiTopMenu->mWiFiTopMenuSNcgr->mData), gWiFiTopMenu->mWiFiTopMenuSNcgr->mDataSize);
+    CallQueueAppend(0x1e, 0, (gWiFiTopMenu->mWiFiTopMenuSONclr->mData), gWiFiTopMenu->mWiFiTopMenuSONclr->mDataSize);
     return;
 }
 
@@ -325,7 +324,7 @@ void AdvanceWiFiTopMenuState7(void) {
     int v1;
     v1 = GetWiFiNextScene();
     if ((v1 == -1) && (gWiFiTopMenu->mPendingWiFiState == 10)) {
-        SetWiFiNextScene((u32) 0);
+        SetWiFiNextScene(0);
     }
     v1 = func_0211fd68();
     if (v1 != 1) {
@@ -418,7 +417,7 @@ void AdvanceWiFiTopMenu(void) {
 }
 
 void func_ov000_02181738(void) {
-    G2x_SetBlendAlpha_(((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 2, 6, 10);
     return;
 }
 

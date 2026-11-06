@@ -1,4 +1,5 @@
 #include "00/code_02184ba8.h"
+#include "registers.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_0214a000.h"
 #include "00/unk_021b0000.h"
@@ -83,9 +84,8 @@ void LocateAndUploadWiFiAikotoba(void) {
     LocateNcer(&gWiFiAikotoba->mWiFiAikotobaSNcer, v1);
     v1 = FindSceneFile(gWiFiAikotobaSONclrName);
     LocateNclr(&gWiFiAikotoba->mWiFiAikotobaSONclr, v1);
-    GXS_LoadOBJ(gWiFiAikotoba->mWiFiAikotobaSNcgr->mData, 0, (u32) (gWiFiAikotoba->mWiFiAikotobaSNcgr->mDataSize));
-    GXS_LoadOBJPltt(gWiFiAikotoba->mWiFiAikotobaSONclr->mData, 0,
-                    (u32) (gWiFiAikotoba->mWiFiAikotobaSONclr->mDataSize));
+    GXS_LoadOBJ(gWiFiAikotoba->mWiFiAikotobaSNcgr->mData, 0, gWiFiAikotoba->mWiFiAikotobaSNcgr->mDataSize);
+    GXS_LoadOBJPltt(gWiFiAikotoba->mWiFiAikotobaSONclr->mData, 0, gWiFiAikotoba->mWiFiAikotobaSONclr->mDataSize);
     return;
 }
 
@@ -362,7 +362,7 @@ void AdvanceWiFiAikotoba(void) {
 }
 
 void func_ov000_02184bcc(void) {
-    G2x_SetBlendAlpha_(((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
+    G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 2, 6, 10);
     return;
 }
 

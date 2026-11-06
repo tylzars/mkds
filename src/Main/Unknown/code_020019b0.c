@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020019b0.h"
+#include "registers.h"
 #include "Main/Unknown/code_02001000.h"
 #include "Main/Unknown/code_02001080.h"
 #include "Main/Unknown/code_02036820.h"
@@ -112,8 +113,8 @@ void func_02001abc(void) {
     if (v2 > 90) {
         v1 = (-(v2 - 90) * 16) / 30;
     }
-    G2x_SetBlendBrightness_((u16 *) 0x04000050, 2, v1);
-    G2x_SetBlendBrightness_((u16 *) 0x04001050, 2, v1);
+    G2x_SetBlendBrightness_(&reg_G2_BLDCNT, 2, v1);
+    G2x_SetBlendBrightness_(&reg_G2S_DB_BLDCNT, 2, v1);
 }
 
 void func_02001a74(Unk02001a74 *a) {

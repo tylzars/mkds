@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_02125ebc.h"
+#include "registers.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020ade08.h"
 #include "Main/Unknown/code_02124f4c.h"
@@ -595,17 +596,17 @@ void WriteTxtSystemRegisters(void) {
         *(vu32 *) 0x4000018 = (gTxtSystem->mBgOffset[0] << 16) & 0x1ff0000;
         *(vu32 *) 0x4001010 = (gTxtSystem->mBgOffset[1] << 16) & 0x1ff0000;
         if (gTxtSystem->mBlendPlanesEnabled[0] != 0) {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4000050, gTxtSystem->mBlendPlanes[0], 0x1f, gTxtSystem->mBlendEv1[0],
+            G2x_SetBlendBrightnessExt_(&reg_G2_BLDCNT, gTxtSystem->mBlendPlanes[0], 0x1f, gTxtSystem->mBlendEv1[0],
                                        gTxtSystem->mBlendEv2[0], gTxtSystem->mBrightness);
         } else {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4000050, 0, 0x1f, gTxtSystem->mBlendEv1[0], gTxtSystem->mBlendEv2[0],
+            G2x_SetBlendBrightnessExt_(&reg_G2_BLDCNT, 0, 0x1f, gTxtSystem->mBlendEv1[0], gTxtSystem->mBlendEv2[0],
                                        gTxtSystem->mBrightness);
         }
         if (gTxtSystem->mBlendPlanesEnabled[1] != 0) {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, gTxtSystem->mBlendPlanes[1], 0x1f, gTxtSystem->mBlendEv1[1],
+            G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, gTxtSystem->mBlendPlanes[1], 0x1f, gTxtSystem->mBlendEv1[1],
                                        gTxtSystem->mBlendEv2[1], gTxtSystem->mBrightness);
         } else {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, 0, 0x1f, gTxtSystem->mBlendEv1[1], gTxtSystem->mBlendEv2[1],
+            G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, 0, 0x1f, gTxtSystem->mBlendEv1[1], gTxtSystem->mBlendEv2[1],
                                        gTxtSystem->mBrightness);
         }
     }

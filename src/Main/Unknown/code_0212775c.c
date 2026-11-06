@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_0212775c.h"
+#include "registers.h"
 
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_02124f4c.h"
@@ -761,11 +762,11 @@ void WriteSelectChoisesRegisters(void) {
     if (gSelectChoises->mEnabled != 0) {
         *(vu32 *) 0x4001010 = 0;
         if (gSelectChoises->mState == 0 || gSelectChoises->mUnk_8a4 == 0) {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, 0x1e, 0x1f, 6, 10, 0);
+            G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, 0x1e, 0x1f, 6, 10, 0);
             a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
             *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((a & ~1) << 8);
         } else {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, 0x1e, 0x1f, 6, 10, -10);
+            G2x_SetBlendBrightnessExt_(&reg_G2S_DB_BLDCNT, 0x1e, 0x1f, 6, 10, -10);
             a = (*(vu32 *) 0x4001000 & 0x1f00) >> 8;
             *(vu32 *) 0x4001000 = (*(vu32 *) 0x4001000 & 0xffffe0ff) | ((a | 1) << 8);
         }
