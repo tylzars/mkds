@@ -34,4 +34,4 @@ void func_ov001_021a0b3c(void);
 void func_ov001_021a0e08(s32 a, u16 *b);
 void func_ov001_021a0e34(void);
 void LocateAndQueueMissionRunMSsel(void);
-void func_ov001_021a10b8(void);
+void LoadMissionRunMSselAndBossIconData(void);

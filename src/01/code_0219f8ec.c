@@ -39,7 +39,7 @@
 
 MissionRunMSsel *gMissionRunMSsel;
 
-void func_ov001_021a10b8(void) {
+void LoadMissionRunMSselAndBossIconData(void) {
     Ncgr *a = NULL;
     Unk02021dc8 *b = NULL;
     Nclr *c = NULL;
@@ -51,16 +51,16 @@ void func_ov001_021a10b8(void) {
     Nscr *i = NULL;
     Nclr *j = NULL;
 
-    LoadNcgrData(&g, FindSceneFile(data_ov001_021a92bc));
-    LoadNclrData(&j, FindSceneFile(data_ov001_021a92a8));
-    LoadNscrData(&h, FindSceneFile(data_ov001_021a928c));
-    LoadNscrData(&i, FindSceneFile(data_ov001_021a92c0));
-    LoadNcgrData2(&a, FindSceneFile(data_ov001_021a9278));
-    LoadNcerData(&b, FindSceneFile(data_ov001_021a92c4));
-    LoadNclrData(&c, FindSceneFile(data_ov001_021a9298));
-    LoadNcgrData2(&d, FindSceneFile(data_ov001_021a92b0));
-    LoadNcerData(&e, FindSceneFile(data_ov001_021a9284));
-    LoadNclrData(&f, FindSceneFile(data_ov001_021a927c));
+    LoadNcgrData(&g, FindSceneFile(gMissionRunMSselMBNcgrName));
+    LoadNclrData(&j, FindSceneFile(gMissionRunMSselMBNclrName));
+    LoadNscrData(&h, FindSceneFile(gMissionRunMSselMWNscrName));
+    LoadNscrData(&i, FindSceneFile(gMissionRunMSselMNscrName));
+    LoadNcgrData2(&a, FindSceneFile(gMissionRunMSselMNcgrName));
+    LoadNcerData(&b, FindSceneFile(gMissionRunMSselMNcerName));
+    LoadNclrData(&c, FindSceneFile(gMissionRunMSselMONclrName));
+    LoadNcgrData2(&d, FindSceneFile(gMissionRunMSselSNcgrName));
+    LoadNcerData(&e, FindSceneFile(gMissionRunMSselSNcerName));
+    LoadNclrData(&f, FindSceneFile(gMissionRunMSselSONclrName));
     LoadMissionRunBossIconData();
 }
 
@@ -74,22 +74,22 @@ void LocateAndQueueMissionRunMSsel(void) {
     Nclr *g = NULL;
     u16 *p;
 
-    LocateNcgr(&d, FindSceneFile(data_ov001_021a92bc));
-    LocateNclr(&g, FindSceneFile(data_ov001_021a92a8));
-    LocateNscr(&e, FindSceneFile(data_ov001_021a928c));
-    LocateNscr(&f, FindSceneFile(data_ov001_021a92c0));
+    LocateNcgr(&d, FindSceneFile(gMissionRunMSselMBNcgrName));
+    LocateNclr(&g, FindSceneFile(gMissionRunMSselMBNclrName));
+    LocateNscr(&e, FindSceneFile(gMissionRunMSselMWNscrName));
+    LocateNscr(&f, FindSceneFile(gMissionRunMSselMNscrName));
     gMissionRunMSsel->mUnk_48 = HeapAlloc(gMissionRunMSsel->mHeap, 0x800);
-    gMissionRunMSsel->mMissionRunMSselMBncl = FindSceneFile(data_ov001_021a929c);
-    gMissionRunMSsel->mMissionRunMSselMBnll = FindSceneFile(data_ov001_021a92ac);
-    LocateNcgr2(&a, FindSceneFile(data_ov001_021a9278));
-    LocateNcer(&gMissionRunMSsel->mMissionRunMSselMNcer, FindSceneFile(data_ov001_021a92c4));
-    LocateNclr(&b, FindSceneFile(data_ov001_021a9298));
-    gMissionRunMSsel->mMissionRunMSselSBncl = FindSceneFile(data_ov001_021a92a4);
-    gMissionRunMSsel->mMissionRunMSselSBnbl = FindSceneFile(data_ov001_021a92a0);
-    gMissionRunMSsel->mMissionRunMSselSBnll = FindSceneFile(data_ov001_021a9280);
-    LocateNcgr2(&c, FindSceneFile(data_ov001_021a92b0));
-    LocateNcer(&gMissionRunMSsel->mMissionRunMSselSNcer, FindSceneFile(data_ov001_021a9284));
-    LocateNclr((Nclr **) &gMissionRunMSsel->mUnk_1c, FindSceneFile(data_ov001_021a927c));
+    gMissionRunMSsel->mMissionRunMSselMBncl = FindSceneFile(gMissionRunMSselMBnclName);
+    gMissionRunMSsel->mMissionRunMSselMBnll = FindSceneFile(gMissionRunMSselMBnllName);
+    LocateNcgr2(&a, FindSceneFile(gMissionRunMSselMNcgrName));
+    LocateNcer(&gMissionRunMSsel->mMissionRunMSselMNcer, FindSceneFile(gMissionRunMSselMNcerName));
+    LocateNclr(&b, FindSceneFile(gMissionRunMSselMONclrName));
+    gMissionRunMSsel->mMissionRunMSselSBncl = FindSceneFile(gMissionRunMSselSBnclName);
+    gMissionRunMSsel->mMissionRunMSselSBnbl = FindSceneFile(gMissionRunMSselSBnblName);
+    gMissionRunMSsel->mMissionRunMSselSBnll = FindSceneFile(gMissionRunMSselSBnllName);
+    LocateNcgr2(&c, FindSceneFile(gMissionRunMSselSNcgrName));
+    LocateNcer(&gMissionRunMSsel->mMissionRunMSselSNcer, FindSceneFile(gMissionRunMSselSNcerName));
+    LocateNclr((Nclr **) &gMissionRunMSsel->mUnk_1c, FindSceneFile(gMissionRunMSselSONclrName));
     p = b->mData;
     CallQueueAppend(4, 0, d->mData, d->mDataSize);
     CallQueueAppend(0xf, 0, g->mData, 0x40);

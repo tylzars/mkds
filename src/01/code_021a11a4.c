@@ -51,15 +51,15 @@ void LoadSelectEngineData(void) {
     Nscr *l7 = NULL;
     Nclr *l8 = NULL;
 
-    LoadNcgrData(&l6, FindSceneFile(data_ov001_021a94ec));
-    LoadNclrData(&l8, FindSceneFile(data_ov001_021a9508));
-    LoadNscrData(&l7, FindSceneFile(data_ov001_021a94f0));
-    LoadNcgrData2(&l0, FindSceneFile(data_ov001_021a94dc));
-    LoadNcerData(&l1, FindSceneFile(data_ov001_021a94e4));
-    LoadNclrData(&l2, FindSceneFile(data_ov001_021a950c));
-    LoadNcgrData2(&l3, FindSceneFile(data_ov001_021a94f4));
-    LoadNcerData(&l4, FindSceneFile(data_ov001_021a94f8));
-    LoadNclrData(&l5, FindSceneFile(data_ov001_021a94fc));
+    LoadNcgrData(&l6, FindSceneFile(gSelectEngineMBNcgrName));
+    LoadNclrData(&l8, FindSceneFile(gSelectEngineMBNclrName));
+    LoadNscrData(&l7, FindSceneFile(gSelectEngineMNscrName));
+    LoadNcgrData2(&l0, FindSceneFile(gSelectEngineMNcgrName));
+    LoadNcerData(&l1, FindSceneFile(gSelectEngineMNcerName));
+    LoadNclrData(&l2, FindSceneFile(gSelectEngineMONclrName));
+    LoadNcgrData2(&l3, FindSceneFile(gSelectEngineSNcgrName));
+    LoadNcerData(&l4, FindSceneFile(gSelectEngineSNcerName));
+    LoadNclrData(&l5, FindSceneFile(gSelectEngineSONclrName));
 }
 
 void LocateAndQueueSelectEngine(void) {
@@ -72,23 +72,23 @@ void LocateAndQueueSelectEngine(void) {
     Nclr *g = NULL;
     u16 *h;
 
-    LocateNcgr(&e, FindSceneFile(data_ov001_021a94ec));
-    LocateNclr(&g, FindSceneFile(data_ov001_021a9508));
-    LocateNscr(&f, FindSceneFile(data_ov001_021a94f0));
+    LocateNcgr(&e, FindSceneFile(gSelectEngineMBNcgrName));
+    LocateNclr(&g, FindSceneFile(gSelectEngineMBNclrName));
+    LocateNscr(&f, FindSceneFile(gSelectEngineMNscrName));
     gSelectEngine->mUnk_1c = HeapAlloc(gSelectEngine->mHeap, 0x800);
-    gSelectEngine->mSelectEngineMBncl = FindSceneFile(data_ov001_021a9504);
-    LocateNcgr2(&a, FindSceneFile(data_ov001_021a94dc));
-    LocateNcer(&gSelectEngine->mSelectEngineMNcer, FindSceneFile(data_ov001_021a94e4));
-    LocateNclr(&b, FindSceneFile(data_ov001_021a950c));
-    LocateNcgr2(&c, FindSceneFile(data_ov001_021a94f4));
-    LocateNcer(&gSelectEngine->mSelectEngineSNcer, FindSceneFile(data_ov001_021a94f8));
-    LocateNclr(&d, FindSceneFile(data_ov001_021a94fc));
+    gSelectEngine->mSelectEngineMBncl = FindSceneFile(gSelectEngineMBnclName);
+    LocateNcgr2(&a, FindSceneFile(gSelectEngineMNcgrName));
+    LocateNcer(&gSelectEngine->mSelectEngineMNcer, FindSceneFile(gSelectEngineMNcerName));
+    LocateNclr(&b, FindSceneFile(gSelectEngineMONclrName));
+    LocateNcgr2(&c, FindSceneFile(gSelectEngineSNcgrName));
+    LocateNcer(&gSelectEngine->mSelectEngineSNcer, FindSceneFile(gSelectEngineSNcerName));
+    LocateNclr(&d, FindSceneFile(gSelectEngineSONclrName));
     if (func_02056dec(0x10) != 0) {
-        gSelectEngine->mSelectEngineAOrBSBncl = FindSceneFile(data_ov001_021a94e8);
-        gSelectEngine->mSelectEngineAOrBSBnbl = FindSceneFile(data_ov001_021a9510);
+        gSelectEngine->mSelectEngineAOrBSBncl = FindSceneFile(gSelectEngineBSBnclName);
+        gSelectEngine->mSelectEngineAOrBSBnbl = FindSceneFile(gSelectEngineBSBnblName);
     } else {
-        gSelectEngine->mSelectEngineAOrBSBncl = FindSceneFile(data_ov001_021a9500);
-        gSelectEngine->mSelectEngineAOrBSBnbl = FindSceneFile(data_ov001_021a94e0);
+        gSelectEngine->mSelectEngineAOrBSBncl = FindSceneFile(gSelectEngineASBnclName);
+        gSelectEngine->mSelectEngineAOrBSBnbl = FindSceneFile(gSelectEngineASBnblName);
     }
     h = b->mData;
     CallQueueAppend(4, 0, e->mData, e->mDataSize);

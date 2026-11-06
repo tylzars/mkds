@@ -149,7 +149,7 @@ void func_020cbb10(void) {
         LoadTimeAttackTopMenuData();
         LoadSelectGhostAndKartIconData();
         LoadMissionRunLVselData();
-        func_ov001_021a10b8();
+        LoadMissionRunMSselAndBossIconData();
         LoadSelectBattleStageData();
         LoadSelectEngineData();
         func_02118d44();

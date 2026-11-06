@@ -26,12 +26,12 @@ void LoadMissionRunLVselData(void) {
     Nscr *v5 = NULL;
     Nclr *v6 = NULL;
 
-    LoadNcgrData(&v4, FindSceneFile(data_ov001_021a90a8));
-    LoadNscrData(&v5, FindSceneFile(data_ov001_021a90e4));
-    LoadNclrData(&v6, FindSceneFile(data_ov001_021a90cc));
-    LoadNcgrData2(&v1, FindSceneFile(data_ov001_021a90d4));
-    LoadNcerData(&v2, FindSceneFile(data_ov001_021a90c4));
-    LoadNclrData(&v3, FindSceneFile(data_ov001_021a90c0));
+    LoadNcgrData(&v4, FindSceneFile(gMissionRunLVselMBNcgrName));
+    LoadNscrData(&v5, FindSceneFile(gMissionRunLVselMNscrName));
+    LoadNclrData(&v6, FindSceneFile(gMissionRunLVselMBNclrName));
+    LoadNcgrData2(&v1, FindSceneFile(gMissionRunLVselSNcgrName));
+    LoadNcerData(&v2, FindSceneFile(gMissionRunLVselSNcerName));
+    LoadNclrData(&v3, FindSceneFile(gMissionRunLVselSONclrName));
 }
 
 void LocateAndQueueMissionRunLVsel(void) {
@@ -41,21 +41,21 @@ void LocateAndQueueMissionRunLVsel(void) {
     Nscr *v4 = NULL;
     Nclr *v5 = NULL;
 
-    LocateNcgr(&v3, FindSceneFile(data_ov001_021a90a8));
-    LocateNscr(&v4, FindSceneFile(data_ov001_021a90e4));
-    LocateNclr(&v5, FindSceneFile(data_ov001_021a90cc));
+    LocateNcgr(&v3, FindSceneFile(gMissionRunLVselMBNcgrName));
+    LocateNscr(&v4, FindSceneFile(gMissionRunLVselMNscrName));
+    LocateNclr(&v5, FindSceneFile(gMissionRunLVselMBNclrName));
     if (gMissionRunLVsel->mUnk_4a >= 6) {
-        gMissionRunLVsel->mMissionRunLVselS7Or6Bncl = FindSceneFile(data_ov001_021a90dc);
-        gMissionRunLVsel->mMissionRunLVselS7Or6Bnbl = FindSceneFile(data_ov001_021a90b8);
-        gMissionRunLVsel->mMissionRunLVselS7Or6Bnll = FindSceneFile(data_ov001_021a90bc);
+        gMissionRunLVsel->mMissionRunLVselS7Or6Bncl = FindSceneFile(gMissionRunLVselS7BnclName);
+        gMissionRunLVsel->mMissionRunLVselS7Or6Bnbl = FindSceneFile(gMissionRunLVselS7BnblName);
+        gMissionRunLVsel->mMissionRunLVselS7Or6Bnll = FindSceneFile(gMissionRunLVselS7BnllName);
     } else {
-        gMissionRunLVsel->mMissionRunLVselS7Or6Bncl = FindSceneFile(data_ov001_021a90c8);
-        gMissionRunLVsel->mMissionRunLVselS7Or6Bnbl = FindSceneFile(data_ov001_021a90a4);
-        gMissionRunLVsel->mMissionRunLVselS7Or6Bnll = FindSceneFile(data_ov001_021a90d8);
+        gMissionRunLVsel->mMissionRunLVselS7Or6Bncl = FindSceneFile(gMissionRunLVselS6BnclName);
+        gMissionRunLVsel->mMissionRunLVselS7Or6Bnbl = FindSceneFile(gMissionRunLVselS6BnblName);
+        gMissionRunLVsel->mMissionRunLVselS7Or6Bnll = FindSceneFile(gMissionRunLVselS6BnllName);
     }
-    LocateNcgr2(&v1, FindSceneFile(data_ov001_021a90d4));
-    LocateNcer(&gMissionRunLVsel->mMissionRunLVselSNcer, FindSceneFile(data_ov001_021a90c4));
-    LocateNclr(&v2, FindSceneFile(data_ov001_021a90c0));
+    LocateNcgr2(&v1, FindSceneFile(gMissionRunLVselSNcgrName));
+    LocateNcer(&gMissionRunLVsel->mMissionRunLVselSNcer, FindSceneFile(gMissionRunLVselSNcerName));
+    LocateNclr(&v2, FindSceneFile(gMissionRunLVselSONclrName));
     gMissionRunLVsel->mUnk_14 = HeapAlloc(gMissionRunLVsel->mHeap, 0x800);
     CallQueueAppend(4, 0, v3->mData, v3->mDataSize);
     CallQueueAppend(8, 0, v4->mData, v4->mDataSize);

@@ -33,12 +33,12 @@ void LoadTimeAttackTopMenuData(void) {
     Nclr *e = NULL;
     Nscr *f = NULL;
 
-    LoadNcgrData(&d, FindSceneFile(data_ov001_021a835c));
-    LoadNclrData(&e, FindSceneFile(data_ov001_021a8360));
-    LoadNscrData(&f, FindSceneFile(data_ov001_021a8354));
-    LoadNcgrData2(&a, FindSceneFile(data_ov001_021a8350));
-    LoadNcerData(&b, FindSceneFile(data_ov001_021a834c));
-    LoadNclrData(&c, FindSceneFile(data_ov001_021a8364));
+    LoadNcgrData(&d, FindSceneFile(gTimeAttackTopMenuMBNcgrName));
+    LoadNclrData(&e, FindSceneFile(gTimeAttackTopMenuMBNclrName));
+    LoadNscrData(&f, FindSceneFile(gTimeAttackTopMenuMNscrName));
+    LoadNcgrData2(&a, FindSceneFile(gTimeAttackTopMenuSNcgrName));
+    LoadNcerData(&b, FindSceneFile(gTimeAttackTopMenuSNcerName));
+    LoadNclrData(&c, FindSceneFile(gTimeAttackTopMenuSONclrName));
 }
 
 void LocateAndQueueTimeAttackTopMenu(void) {
@@ -48,15 +48,15 @@ void LocateAndQueueTimeAttackTopMenu(void) {
     Nclr *d = NULL;
     Nscr *e = NULL;
 
-    LocateNcgr(&c, FindSceneFile(data_ov001_021a835c));
-    LocateNclr(&d, FindSceneFile(data_ov001_021a8360));
-    LocateNscr(&e, FindSceneFile(data_ov001_021a8354));
+    LocateNcgr(&c, FindSceneFile(gTimeAttackTopMenuMBNcgrName));
+    LocateNclr(&d, FindSceneFile(gTimeAttackTopMenuMBNclrName));
+    LocateNscr(&e, FindSceneFile(gTimeAttackTopMenuMNscrName));
     gTimeAttackTopMenu->mUnk_10 = HeapAlloc(gTimeAttackTopMenu->mHeap, 0x800);
-    gTimeAttackTopMenu->mTimeAttackTopMenuSBncl = FindSceneFile(data_ov001_021a8358);
-    gTimeAttackTopMenu->mTimeAttackTopMenuSBnbl = FindSceneFile(data_ov001_021a8348);
-    LocateNcgr2(&a, FindSceneFile(data_ov001_021a8350));
-    LocateNcer(&gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, FindSceneFile(data_ov001_021a834c));
-    LocateNclr(&b, FindSceneFile(data_ov001_021a8364));
+    gTimeAttackTopMenu->mTimeAttackTopMenuSBncl = FindSceneFile(gTimeAttackTopMenuSBnclName);
+    gTimeAttackTopMenu->mTimeAttackTopMenuSBnbl = FindSceneFile(gTimeAttackTopMenuSBnblName);
+    LocateNcgr2(&a, FindSceneFile(gTimeAttackTopMenuSNcgrName));
+    LocateNcer(&gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, FindSceneFile(gTimeAttackTopMenuSNcerName));
+    LocateNclr(&b, FindSceneFile(gTimeAttackTopMenuSONclrName));
     CallQueueAppend(4, 0, c->mData, c->mDataSize);
     CallQueueAppend(0xf, 0, d->mData, 0x20);
     CallQueueAppend(8, 0, &e->mData, e->mDataSize);
