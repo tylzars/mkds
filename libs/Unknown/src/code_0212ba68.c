@@ -11,8 +11,8 @@
 #include "Main/Unknown/code_02021000.h"
 #include "code_0212bb50.h"
 
-CallbackEntry data_0217d42c;
-CallbackEntry data_0217d420;
+PMSleepCallbackInfo data_0217d42c;
+PMSleepCallbackInfo data_0217d420;
 u32 data_0217d418;
 u32 data_0217d41c;
 s8 data_0217d414;

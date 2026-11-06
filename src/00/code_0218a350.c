@@ -38,11 +38,11 @@ void func_ov000_0218a5b0(const u8 *a, u8 *b) {
 }
 
 void func_ov000_0218a57c(const u8 *a, u8 *b) {
-    Hash16State c;
+    DGTHash1Context c;
     u8 d[20];
-    Hash16Init((u32) &c);
-    Hash16Update(&c, a, 24);
-    Hash16Final(d, &c);
+    DGT_Hash1Reset(&c);
+    DGT_Hash1SetSource(&c, a, 24);
+    DGT_Hash1GetDigest_R(d, &c);
     MI_CpuCopy8(d + 3, b, 13);
 }
 

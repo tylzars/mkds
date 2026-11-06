@@ -107,7 +107,7 @@ static inline void func_02049c3c_inline(OSThreadQueue *q) {
     q->mHead = q->mTail = NULL;
 }
 
-static inline void func_02049c3c_inline2(CallbackEntry *p, void (*f)(void *)) {
+static inline void func_02049c3c_inline2(PMSleepCallbackInfo *p, void (*f)(void *)) {
     p->mCallback = f;
     p->mArg = NULL;
 }

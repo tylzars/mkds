@@ -1,5 +1,5 @@
 #pragma once
 
-#include "types.h"
+#include "code_02150228.h"
 
-void Hash16Init(u32 arg0);
+void DGT_Hash1Reset(DGTHash1Context *ctx);

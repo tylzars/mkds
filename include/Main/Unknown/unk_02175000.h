@@ -7,7 +7,7 @@
 #include "code_02017f24.h" // Unk02017f24
 #include "code_0200db4c.h"
 #include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
-#include "code_0214f4a4.h" // CallbackEntry
+#include "code_0214f4a4.h" // PMSleepCallbackInfo
 #include "Main/Unknown/code_02105ec0.h" // Unk0217d060
 
 // Object behind data_021759d0 (0x7c bytes); the 0x14 bytes at 0x2a are the source of a block move into
@@ -78,8 +78,8 @@ typedef struct Unk021759cc {
     /* 004 */ OSThread mUnk_004;
     /* 0bc */ u8 mUnk_0bc[8];
     /* 0c4 */ OSThreadQueue mUnk_0c4;
-    /* 0cc */ CallbackEntry mUnk_0cc;
-    /* 0d8 */ CallbackEntry mUnk_0d8;
+    /* 0cc */ PMSleepCallbackInfo mUnk_0cc;
+    /* 0d8 */ PMSleepCallbackInfo mUnk_0d8;
     // Passes of RunScene's update loop and fade-out loop since they began (RunScene zeroes it at
     // :192 and :376); not counted while func_020487fc_inline6 is true (mode 5 with a flag, or the
     // data_0217aa00 flag tests). Only the Race slots use it (kind 6: the first 0x708 frames,

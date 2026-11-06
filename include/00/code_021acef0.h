@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Hash16State Hash16State;
+typedef struct DGTHash1Context DGTHash1Context;
 
-void func_ov000_021acef0(Hash16State *arg0);
+void func_ov000_021acef0(DGTHash1Context *arg0);
