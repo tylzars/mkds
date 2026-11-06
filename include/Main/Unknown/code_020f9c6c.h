@@ -37,9 +37,8 @@ typedef struct Unk020fb038 {
     /* 18 */ u8 mUnk_18[8];
 } Unk020fb038;
 
-// Element of gItemPools[5]: 0x31c bytes (the size in gItemKinds[5]), handled by the functions of this file
-// from func_020fad9c to func_020fc268 and by those of code_020fc2e8.c, code_020fcbb8.c and code_020fcf10.c.
-typedef struct Unk020fc2e8 {
+// Object of item kind 5, element of gItemPools[5].
+typedef struct ItemKouraW {
     /* 000 */ ItemObject mUnk_000;
     /* 12c */ u8 mUnk_12c[4];
     /* 130 */ u32 mUnk_130;
@@ -52,23 +51,23 @@ typedef struct Unk020fc2e8 {
     /* 174 */ u8 mUnk_174[0xa8];
     /* 21c */ s32 mUnk_21c;
     /* 220 */ u8 mUnk_220[8];
-    /* 228 */ struct KartItems *mUnk_228;
+    /* 228 */ struct KartItems *mKartItems;
     /* 22c */ Vec3 mUnk_22c;
     /* 238 */ Vec3 mUnk_238;
     /* 244 */ Vec3 mUnk_244;
     /* 250 */ Vec3 mUnk_250;
-    /* 25c */ s32 mUnk_25c;
+    /* 25c */ s32 mAngle;
     /* 260 */ s32 mUnk_260;
     /* 264 */ s32 mUnk_264;
     /* 268 */ u16 mUnk_268;
     /* 26a */ u8 mUnk_26a[2];
     /* 26c */ s32 mUnk_26c;
     /* 270 */ s32 mUnk_270;
-    /* 274 */ u16 mUnk_274;
-    /* 276 */ u16 mUnk_276;
+    /* 274 */ u16 mRank;
+    /* 276 */ u16 mRankKartIndex;
     /* 278 */ s32 mUnk_278;
     /* 27c */ s32 mUnk_27c;
-    /* 280 */ u16 mUnk_280;
+    /* 280 */ u16 mKartMask;
     /* 282 */ u8 mUnk_282[2];
     /* 284 */ s32 mUnk_284;
     /* 288 */ u16 mUnk_288;
@@ -80,17 +79,17 @@ typedef struct Unk020fc2e8 {
     /* 2b4 */ u8 mUnk_2b4[0x30];
     /* 2e4 */ s32 mUnk_2e4;
     /* 2e8 */ u8 mUnk_2e8[4];
-    /* 2ec */ u32 mUnk_2ec;
+    /* 2ec */ u32 mStateFrames;
     /* 2f0 */ u8 mUnk_2f0[6];
-    /* 2f6 */ u16 mUnk_2f6;
-    /* 2f8 */ u16 mUnk_2f8;
-    /* 2fa */ u16 mUnk_2fa;
+    /* 2f6 */ u16 mState;
+    /* 2f8 */ u16 mNextState;
+    /* 2fa */ u16 mNextStateRequested;
     /* 2fc */ s32 mUnk_2fc;
     /* 300 */ Unk0210b7ec mUnk_300;
     /* 310 */ u8 mUnk_310[0xc];
-} Unk020fc2e8;
+} ItemKouraW;
 
-typedef struct Unk020fc2e8 Unk020fc2e8;
+typedef struct ItemKouraW ItemKouraW;
 
 #include "Main/Unknown/code_020f1d70.h"
 
@@ -126,31 +125,31 @@ BOOL func_020faa78(s32 param_1);
 BOOL func_020fab34(s32 *param_1);
 BOOL func_020faca4(s32 param_1);
 void func_020fad00(void);
-Vec3 *func_020fad9c(Unk020fc2e8 *param_1, s32 *param_2, s32 *param_3);
-BOOL func_020fadcc(Unk020fc2e8 *param_1);
-s32 func_020fade4(Unk020fc2e8 *param_1);
-void func_020fae74(Unk020fc2e8 *param_1, s32 param_2, s32 param_3);
-void func_020faed0(Unk020fc2e8 *param_1, s32 param_2, s32 param_3);
-void func_020fb038(Unk020fc2e8 *param_1);
-void *func_020fb208(void *param_1, Unk020fc2e8 *param_2, void *param_3);
-void func_020fb2b4(Unk020fc2e8 *param_1);
-void func_020fb35c(Unk020fc2e8 *param_1);
-void func_020fb46c(Unk020fc2e8 *param_1);
-void func_020fb5dc(Unk020fc2e8 *param_1);
-void func_020fb61c(Unk020fc2e8 *param_1);
-void func_020fb770(Unk020fc2e8 *param_1);
-void func_020fb7f8(Unk020fc2e8 *param_1);
-void func_020fba6c(Unk020fc2e8 *param_1);
-void func_020fbae0(Unk020fc2e8 *param_1);
-void func_020fbc18(Unk020fc2e8 *param_1);
-void func_020fbd4c(Unk020fc2e8 *param_1);
-void func_020fbd98(Unk020fc2e8 *param_1);
-void func_020fc268(Unk020fc2e8 *param_1);
-void func_020fc2c0(Unk020fc2e8 *a);
-void func_020fc2e8(Unk020fc2e8 *p, Vec3 *v, s32 v1, Vec3 *v2);
-void func_020fc654(Unk020fc2e8 *p);
-s32 func_020fc79c(Unk020eda5c *a, Unk020fc2e8 *e);
-void func_020fc8ec(Unk020fc2e8 *e, s32 a);
-void func_020fc94c(Unk020fc2e8 *p);
-void func_020fcac0(Unk020fc2e8 *a);
-void func_020fcb30(Unk020fc2e8 *p);
+Vec3 *func_020fad9c(ItemKouraW *param_1, s32 *param_2, s32 *param_3);
+BOOL IsItemKouraWState7(ItemKouraW *param_1);
+s32 func_020fade4(ItemKouraW *param_1);
+void func_020fae74(ItemKouraW *param_1, s32 param_2, s32 param_3);
+void func_020faed0(ItemKouraW *param_1, s32 param_2, s32 param_3);
+void func_020fb038(ItemKouraW *param_1);
+void *func_020fb208(void *param_1, ItemKouraW *param_2, void *param_3);
+void UpdateItemKouraWState7(ItemKouraW *param_1);
+void EnterItemKouraWState7(ItemKouraW *param_1);
+void UpdateItemKouraWState6(ItemKouraW *param_1);
+void EnterItemKouraWState6(ItemKouraW *param_1);
+void UpdateItemKouraWState5(ItemKouraW *param_1);
+void EnterItemKouraWState5(ItemKouraW *param_1);
+void UpdateItemKouraWState4(ItemKouraW *param_1);
+void EnterItemKouraWState4(ItemKouraW *param_1);
+void UpdateItemKouraWState2(ItemKouraW *param_1);
+void UpdateItemKouraWState3(ItemKouraW *param_1);
+void EnterItemKouraWState3(ItemKouraW *param_1);
+void UpdateItemKouraWState1(ItemKouraW *param_1);
+void UpdateItemKouraWState0(ItemKouraW *param_1);
+void func_020fc2c0(ItemKouraW *a);
+void func_020fc2e8(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2);
+void func_020fc654(ItemKouraW *p);
+s32 func_020fc79c(Unk020eda5c *a, ItemKouraW *e);
+void func_020fc8ec(ItemKouraW *e, s32 a);
+void func_020fc94c(ItemKouraW *p);
+void func_020fcac0(ItemKouraW *a);
+void func_020fcb30(ItemKouraW *p);

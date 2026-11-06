@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020fc2e8 Unk020fc2e8;
+typedef struct ItemKouraW ItemKouraW;
 
-void func_020fd254(Unk020fc2e8 *p0);
+void ClearItemKouraWKartItemsAndAngle(ItemKouraW *p0);

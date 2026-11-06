@@ -10,19 +10,19 @@
 #include "Main/Unknown/code_020ee684.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_020fce94(Unk020fc2e8 *p0, s32 a, s32 b, s32 c, u16 d) {
-    p0->mUnk_25c += d;
-    func_020fcf10(p0, b, (u16) p0->mUnk_25c, c, a, 1, 1);
+void func_020fce94(ItemKouraW *p0, s32 a, s32 b, s32 c, u16 d) {
+    p0->mAngle += d;
+    func_020fcf10(p0, b, (u16) p0->mAngle, c, a, 1, 1);
 }
 
-void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
+void func_020fcce4(ItemKouraW *p0, s32 a, s32 b) {
     Vec3 v;
     s32 f;
     Vec3 *v1;
     Vec3 *v2;
     Kart *p;
 
-    p = p0->mUnk_228->mKart;
+    p = p0->mKartItems->mKart;
     f = (p->mUnk_48 & 1) ? 1 : 0;
     p0->mUnk_22c = p->mUnk_05c;
     v1 = &p0->mUnk_000.mPos;
@@ -56,7 +56,7 @@ void func_020fcce4(Unk020fc2e8 *p0, s32 a, s32 b) {
     VEC_Add(v1, &v, v1);
 }
 
-BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
+BOOL func_020fcbb8(ItemKouraW *p0, s32 v1) {
     Kart *p;
     KartItems *e;
     Vec3 v;
@@ -88,7 +88,7 @@ BOOL func_020fcbb8(Unk020fc2e8 *p0, s32 v1) {
     if (p0->mUnk_000.mFlags & 0x10000000) {
         return FALSE;
     }
-    p0->mUnk_228 = e;
+    p0->mKartItems = e;
     p0->mUnk_244 = *q;
     return TRUE;
 }

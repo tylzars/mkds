@@ -75,8 +75,8 @@ void func_020cefdc(void) {
     b = q->mObjects;
     for (i = 0; i < m; i++) {
         e2 = b[i];
-        if (func_020fadcc((Unk020fc2e8 *) e2) != FALSE) {
-            p2 = func_020fad9c((Unk020fc2e8 *) e2, &x2, &y2);
+        if (IsItemKouraWState7((ItemKouraW *) e2) != FALSE) {
+            p2 = func_020fad9c((ItemKouraW *) e2, &x2, &y2);
             if (func_020b5ae8(p2, &data_0217b48c->mCells[n].mUnk_00, v, 1, 1) != FALSE) {
                 data_0217b48c->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x64);
                 data_0217b48c->mCells[n].mUnk_0c = func_020b4e70(p2) != 0 ? 2 : 3;

@@ -8,7 +8,7 @@ extern const char gChoropuNsbtpName[];
 extern const char gPukupukuNsbmdName[];
 extern const char gObPakkunSfNsbmdName[];
 extern const char gObPakkunSfNsbtpName[];
-extern u8 data_0216c6b4[];
+extern u8 gItemKouraWStateTable[];
 extern u8 data_0216c714[];
 extern u8 data_0216c77c[];
 extern s32 data_0216ca44;

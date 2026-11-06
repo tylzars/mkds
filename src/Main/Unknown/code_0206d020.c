@@ -388,14 +388,14 @@ void func_0206d18c(Kart *p) {
             func_02069c38(p);
             break;
         case 5:
-            if (((Unk020fc2e8 *) e)->mUnk_2e4 != 0) {
+            if (((ItemKouraW *) e)->mUnk_2e4 != 0) {
                 r = func_0206bcb0(p, 2, r);
             } else {
                 r = TryStartKartState6(p);
             }
             break;
         case 9:
-            if (((Unk020fc2e8 *) e)->mUnk_16c != 0) {
+            if (((ItemKouraW *) e)->mUnk_16c != 0) {
                 r = func_0206bcb0(p, 2, r);
             } else {
                 r = TryStartKartState6(p);

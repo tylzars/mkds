@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020fc2e8 Unk020fc2e8;
+typedef struct ItemKouraW ItemKouraW;
 
-void func_020fcb9c(Unk020fc2e8 *a, int b);
+void SetItemKouraWKartItems(ItemKouraW *a, int b);

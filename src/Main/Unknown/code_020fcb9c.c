@@ -3,6 +3,6 @@
 #include "Main/Unknown/code_020ee684.h"
 #include "Main/Unknown/unk_027e0000.h"
 
-void func_020fcb9c(Unk020fc2e8 *a, int b) {
-    a->mUnk_228 = &gKartItems[b];
+void SetItemKouraWKartItems(ItemKouraW *a, int b) {
+    a->mKartItems = &gKartItems[b];
 }

@@ -2,7 +2,7 @@
 #include "code_02012b30.h"
 #include "Main/Unknown/code_020f9c6c.h"
 
-void func_020fd254(Unk020fc2e8 *p0) {
-    p0->mUnk_228 = NULL;
-    p0->mUnk_25c = (u32) 0x0u;
+void ClearItemKouraWKartItemsAndAngle(ItemKouraW *p0) {
+    p0->mKartItems = NULL;
+    p0->mAngle = (u32) 0x0u;
 }
