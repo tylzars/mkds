@@ -80,7 +80,7 @@ extern u8 data_ov000_021b4a5c[];
 extern u8 data_ov000_021b4a60[];
 extern u8 data_ov000_021b4be4[];
 extern u8 data_ov000_021b4be5[];
-extern u8 data_ov000_021b4c80[];
+extern u8 gWiFiVSCourseSelectState[];
 extern Unk02186d7c *gHttp;
 extern DWCNetcheck *gNetcheck;
 extern Unk02188408 *data_ov000_021b4d00;
@@ -90,13 +90,13 @@ extern Unk02188114 *data_ov000_021b4d0c;
 extern Unk021884e4 *data_ov000_021b4d10;
 extern struct Hashtable *data_ov000_021b4d18;
 extern u8 data_ov000_021b4d1c[];
-// Objects behind data_ov000_021b4c78 and data_ov000_021b4c7c.
+// Objects behind gWiFiSelectCharacterState and gWiFiSelectKartState.
 typedef struct Unk021b4c78 {
-    /* 0 */ void *mUnk_00;
+    /* 0 */ void *mHeap;
 } Unk021b4c78;
 
-extern Unk021b4c78 *data_ov000_021b4c78;
-extern Unk021b4c78 *data_ov000_021b4c7c;
+extern Unk021b4c78 *gWiFiSelectCharacterState;
+extern Unk021b4c78 *gWiFiSelectKartState;
 
 // Object behind data_ov000_021b4d24; the 0x5d8 bytes at offset 0x4c of a Unk0218b668.
 typedef struct SbServerList {

@@ -7,16 +7,16 @@ struct Unk02021dc8;
 struct Ncgr;
 struct Nclr;
 
-// Object behind gWiFiAikotobaCheck; func_ov000_0218554c fills 0x34 to 0x48.
+// Object behind gWiFiAikotobaCheck; LocateAndUploadWiFiAikotobaCheck fills 0x34 to 0x48.
 typedef struct WiFiAikotobaCheck {
     /* 00 */ s32 mState;
     /* 04 */ s32 mNextState;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s16 mUnk_0c;
-    /* 0e */ u16 mUnk_0e[12];
+    /* 08 */ s32 mStateFrames;
+    /* 0c */ s16 mOffset;
+    /* 0e */ u16 mDigits[12];
     /* 26 */ u8 pad_26[2];
-    /* 28 */ s32 mUnk_28;
-    /* 2c */ void *mUnk_2c;
+    /* 28 */ s32 mPendingWiFiState;
+    /* 2c */ void *mHeap;
     // Table of cells built from the Bncl / Bnll by func_02124ed0.
     /* 30 */ Unk02124b1c *mWiFiAikotobaCheckTable;
     /* 34 */ struct Unk02021dc8 *mWiFiAikotobaCheckMNcer;
@@ -45,10 +45,10 @@ void AdvanceWiFiAikotobaCheckState2(void);
 void AdvanceWiFiAikotobaCheckState1(void);
 void AdvanceWiFiAikotobaCheckState0(void);
 void func_ov000_021854f8(void);
-void func_ov000_0218554c(void);
+void LocateAndUploadWiFiAikotobaCheck(void);
 void func_ov000_021855f8(void);
 void InitWiFiAikotobaCheck(void *a);
 void func_ov000_021856a8(void);
-void func_ov000_02185788(void);
+void SetWiFiAikotobaCheckDigits(void);
 
 #include "00/code_021832d8.h"

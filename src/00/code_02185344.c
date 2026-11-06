@@ -21,13 +21,13 @@
 #include "Main/Unknown/code_0212658c.h"
 #include "Main/Unknown/code_02047104.h"
 
-void func_ov000_02185788(void) {
+void SetWiFiAikotobaCheckDigits(void) {
     u8 a[20];
     s32 i;
 
     func_02061220((u32) a);
     for (i = 0; i < 12; i++) {
-        gWiFiAikotobaCheck->mUnk_0e[i] = a[i];
+        gWiFiAikotobaCheck->mDigits[i] = a[i];
     }
 }
 
@@ -40,20 +40,20 @@ void func_ov000_021856a8(void) {
     s16 z[2];
 
     c = gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl->mUnk_06;
-    func_ov000_02185788();
+    SetWiFiAikotobaCheckDigits();
     for (i = 0; i < 12; i++) {
         if (b[i] == 0) {
             a[i] = a[i] + c;
         }
     }
     for (i = 0; i < 12; i++) {
-        n -= func_021243ac(gWiFiAikotobaCheck->mUnk_2c, data_ov000_021b06dc[i],
-                           gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll, 8, 0x10, a[i],
-                           gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcer, gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl,
-                           gWiFiAikotobaCheck->mWiFiAikotobaCheckTable, n);
+        n -=
+            func_021243ac(gWiFiAikotobaCheck->mHeap, data_ov000_021b06dc[i], gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll,
+                          8, 0x10, a[i], gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcer,
+                          gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl, gWiFiAikotobaCheck->mWiFiAikotobaCheckTable, n);
         z[0] = 0;
         z[1] = 0;
-        z[0] = gWiFiAikotobaCheck->mUnk_0e[i];
+        z[0] = gWiFiAikotobaCheck->mDigits[i];
         func_0212426c(0, data_ov000_021b06dc[i], gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll, z,
                       gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl, gWiFiAikotobaCheck->mWiFiAikotobaCheckTable);
     }
@@ -63,19 +63,19 @@ void InitWiFiAikotobaCheck(void *a) {
     void *b;
 
     gWiFiAikotobaCheck = HeapAlloc(a, 0x54);
-    gWiFiAikotobaCheck->mUnk_2c = a;
+    gWiFiAikotobaCheck->mHeap = a;
     gWiFiAikotobaCheck->mState = 0;
     gWiFiAikotobaCheck->mNextState = 0;
-    gWiFiAikotobaCheck->mUnk_28 = -1;
-    gWiFiAikotobaCheck->mUnk_08 = 0;
+    gWiFiAikotobaCheck->mPendingWiFiState = -1;
+    gWiFiAikotobaCheck->mStateFrames = 0;
     gWiFiAikotobaCheck->mWiFiMessages = FindSceneFile(data_ov000_021b0fc0);
     gWiFiAikotobaCheck->mCommonMessages = func_02047a28(data_ov000_021b0fcc);
-    func_ov000_0218554c();
+    LocateAndUploadWiFiAikotobaCheck();
     b = func_ov000_021804f4();
     func_020ae6d4(b, func_ov000_021804e0());
     func_02124ed0(a, gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl, gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll,
                   &gWiFiAikotobaCheck->mWiFiAikotobaCheckTable);
-    gWiFiAikotobaCheck->mUnk_0c = 0x50;
+    gWiFiAikotobaCheck->mOffset = 0x50;
     func_ov000_021854f8();
     func_ov000_021856a8();
     func_02126638(GetBmgEntry(gWiFiAikotobaCheck->mWiFiMessages, 0x11), 0, 1, 0, 0, 0, 0);
@@ -85,17 +85,17 @@ void func_ov000_021855f8(void) {
     gWiFiAikotobaCheck = NULL;
 }
 
-void func_ov000_0218554c(void) {
+void LocateAndUploadWiFiAikotobaCheck(void) {
     void *v1;
-    v1 = FindSceneFile(data_ov000_021b0f28);
+    v1 = FindSceneFile(gWiFiAikotobaCheckBnclName);
     gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl = v1;
-    v1 = FindSceneFile(data_ov000_021b0f44);
+    v1 = FindSceneFile(gWiFiAikotobaCheckBnllName);
     gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll = v1;
-    v1 = FindSceneFile(data_ov000_021b0f60);
+    v1 = FindSceneFile(gWiFiAikotobaCheckMNcgrName);
     LocateNcgr2(&gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr, v1);
-    v1 = FindSceneFile(data_ov000_021b0f80);
+    v1 = FindSceneFile(gWiFiAikotobaCheckMNcerName);
     LocateNcer(&gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcer, v1);
-    v1 = FindSceneFile(data_ov000_021b0fa0);
+    v1 = FindSceneFile(gWiFiAikotobaCheckMONclrName);
     LocateNclr(&gWiFiAikotobaCheck->mWiFiAikotobaCheckMONclr, v1);
     GX_LoadOBJ(gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr->mData, 0,
                (u32) gWiFiAikotobaCheck->mWiFiAikotobaCheckMNcgr->mDataSize);
@@ -107,21 +107,21 @@ void func_ov000_021854f8(void) {
     s32 i;
 
     for (i = 0; i < 2; i++) {
-        gWiFiAikotobaCheck->mWiFiAikotobaCheckTable[data_ov000_021b06d8[i]].mUnk_06 = gWiFiAikotobaCheck->mUnk_0c;
+        gWiFiAikotobaCheck->mWiFiAikotobaCheckTable[data_ov000_021b06d8[i]].mUnk_06 = gWiFiAikotobaCheck->mOffset;
     }
     for (i = 0; i < 12; i++) {
         gWiFiAikotobaCheck
             ->mWiFiAikotobaCheckTable[data_ov000_021b06dc[i] + gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl->mUnk_06]
-            .mUnk_06 = gWiFiAikotobaCheck->mUnk_0c;
+            .mUnk_06 = gWiFiAikotobaCheck->mOffset;
     }
 }
 
 void AdvanceWiFiAikotobaCheckState0(void) {
-    gWiFiAikotobaCheck->mUnk_08 = gWiFiAikotobaCheck->mUnk_08 + 1;
-    gWiFiAikotobaCheck->mUnk_0c = func_020ae4c0(1, 0x50, 0, gWiFiAikotobaCheck->mUnk_08, 15);
-    if (gWiFiAikotobaCheck->mUnk_08 >= 15 && func_02125fa4() != 0) {
+    gWiFiAikotobaCheck->mStateFrames = gWiFiAikotobaCheck->mStateFrames + 1;
+    gWiFiAikotobaCheck->mOffset = func_020ae4c0(1, 0x50, 0, gWiFiAikotobaCheck->mStateFrames, 15);
+    if (gWiFiAikotobaCheck->mStateFrames >= 15 && func_02125fa4() != 0) {
         gWiFiAikotobaCheck->mNextState = 1;
-        gWiFiAikotobaCheck->mUnk_08 = 0;
+        gWiFiAikotobaCheck->mStateFrames = 0;
     }
 }
 
@@ -147,16 +147,17 @@ void AdvanceWiFiAikotobaCheckState1(void) {
         }
     }
     gWiFiAikotobaCheck->mNextState = 2;
-    gWiFiAikotobaCheck->mUnk_28 = 8;
+    gWiFiAikotobaCheck->mPendingWiFiState = 8;
     func_02128310(0);
     func_02125fc0();
 }
 
 void AdvanceWiFiAikotobaCheckState2(void) {
-    gWiFiAikotobaCheck->mUnk_08 = gWiFiAikotobaCheck->mUnk_08 + 1;
-    gWiFiAikotobaCheck->mUnk_0c = func_020ae4c0(1, 0, 0x50, gWiFiAikotobaCheck->mUnk_08, 15);
-    if (gWiFiAikotobaCheck->mUnk_08 >= 15 && func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
-        RequestWiFiState(gWiFiAikotobaCheck->mUnk_28);
+    gWiFiAikotobaCheck->mStateFrames = gWiFiAikotobaCheck->mStateFrames + 1;
+    gWiFiAikotobaCheck->mOffset = func_020ae4c0(1, 0, 0x50, gWiFiAikotobaCheck->mStateFrames, 15);
+    if (gWiFiAikotobaCheck->mStateFrames >= 15 && func_02125f88() != 0 &&
+        IsSelectReturnState2NoState3Or4Request() != 0) {
+        RequestWiFiState(gWiFiAikotobaCheck->mPendingWiFiState);
     }
 }
 

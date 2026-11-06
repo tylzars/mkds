@@ -17,8 +17,8 @@ void InitWiFiSelectCharacterState(void *a) {
     void *c;
     s32 i;
 
-    data_ov000_021b4c78 = HeapAlloc(a, 4);
-    data_ov000_021b4c78->mUnk_00 = a;
+    gWiFiSelectCharacterState = HeapAlloc(a, 4);
+    gWiFiSelectCharacterState->mHeap = a;
     func_ov000_02184934();
     if (GetWiFiPrevState() != 5) {
         func_02122728();
@@ -37,7 +37,7 @@ void InitWiFiSelectCharacterState(void *a) {
 
 void ReleaseWiFiSelectCharacterState(void) {
     func_020260e4();
-    *(u32 *) &data_ov000_021b4c78 = 0;
+    *(u32 *) &gWiFiSelectCharacterState = 0;
     return;
 }
 

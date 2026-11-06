@@ -147,11 +147,11 @@ AdvanceWiFiAikotobaCheckState2 kind:function(thumb,size=0x54) addr:0x02185390
 AdvanceWiFiAikotobaCheckState1 kind:function(thumb,size=0x90) addr:0x021853e4
 AdvanceWiFiAikotobaCheckState0 kind:function(thumb,size=0x50) addr:0x02185474
 func_ov000_021854f8 kind:function(thumb,size=0x54) addr:0x021854c4
-func_ov000_0218554c kind:function(thumb,size=0xac) addr:0x02185518
+LocateAndUploadWiFiAikotobaCheck kind:function(thumb,size=0xac) addr:0x02185518
 func_ov000_021855f8 kind:function(thumb,size=0xc) addr:0x021855c4
 InitWiFiAikotobaCheck kind:function(thumb,size=0xa4) addr:0x021855d0
 func_ov000_021856a8 kind:function(thumb,size=0xe0) addr:0x02185674
-func_ov000_02185788 kind:function(thumb,size=0x30) addr:0x02185754
+SetWiFiAikotobaCheckDigits kind:function(thumb,size=0x30) addr:0x02185754
 func_ov000_021857b8 kind:function(thumb,size=0x24) addr:0x02185784
 func_ov000_021857dc kind:function(thumb,size=0x2) addr:0x021857a8
 func_ov000_021857e0 kind:function(thumb,size=0x38) addr:0x021857ac
@@ -1574,11 +1574,11 @@ data_ov000_021b0ef4 kind:data(any) addr:0x021b0eb4
 @3622 kind:data(any) addr:0x021b0ec0 local
 @3624 kind:data(any) addr:0x021b0ecc local
 gWiFiAikotobaCheckCallbacks kind:data(any) addr:0x021b0ed8
-data_ov000_021b0f28 kind:data(any) addr:0x021b0ee8
-data_ov000_021b0f44 kind:data(any) addr:0x021b0f04
-data_ov000_021b0f60 kind:data(any) addr:0x021b0f20
-data_ov000_021b0f80 kind:data(any) addr:0x021b0f40
-data_ov000_021b0fa0 kind:data(any) addr:0x021b0f60
+gWiFiAikotobaCheckBnclName kind:data(any) addr:0x021b0ee8
+gWiFiAikotobaCheckBnllName kind:data(any) addr:0x021b0f04
+gWiFiAikotobaCheckMNcgrName kind:data(any) addr:0x021b0f20
+gWiFiAikotobaCheckMNcerName kind:data(any) addr:0x021b0f40
+gWiFiAikotobaCheckMONclrName kind:data(any) addr:0x021b0f60
 data_ov000_021b0fc0 kind:data(any) addr:0x021b0f80
 data_ov000_021b0fcc kind:data(any) addr:0x021b0f8c
 data_ov000_021b0fd8 kind:data(any) addr:0x021b0f98
@@ -2323,9 +2323,9 @@ data_ov000_021b4c68 kind:bss addr:0x021b4c28
 gWiFiTopMenu kind:bss addr:0x021b4c2c
 gWiFiVSSetting kind:bss addr:0x021b4c30
 gWiFiVSMatching kind:bss addr:0x021b4c34
-data_ov000_021b4c78 kind:bss addr:0x021b4c38
-data_ov000_021b4c7c kind:bss addr:0x021b4c3c
-data_ov000_021b4c80 kind:bss addr:0x021b4c40
+gWiFiSelectCharacterState kind:bss addr:0x021b4c38
+gWiFiSelectKartState kind:bss addr:0x021b4c3c
+gWiFiVSCourseSelectState kind:bss addr:0x021b4c40
 gWiFiAikotoba kind:bss addr:0x021b4c44
 gWiFiAikotobaCheck kind:bss addr:0x021b4c48
 data_ov000_021b4c8c kind:bss addr:0x021b4c4c

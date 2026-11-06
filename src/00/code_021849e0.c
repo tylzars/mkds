@@ -15,8 +15,8 @@ void InitWiFiSelectKartState(void *a) {
     void *b;
     void *c;
 
-    data_ov000_021b4c7c = HeapAlloc(a, 4);
-    data_ov000_021b4c7c->mUnk_00 = a;
+    gWiFiSelectKartState = HeapAlloc(a, 4);
+    gWiFiSelectKartState->mHeap = a;
     func_ov000_02184a50();
     b = func_ov000_021804f4();
     c = func_ov000_021804e0();
@@ -25,7 +25,7 @@ void InitWiFiSelectKartState(void *a) {
 
 void ReleaseWiFiSelectKartState(void) {
     ReleaseSelectKart();
-    *(u32 *) &data_ov000_021b4c7c = 0;
+    *(u32 *) &gWiFiSelectKartState = 0;
     return;
 }
 
