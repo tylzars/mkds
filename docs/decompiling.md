@@ -344,7 +344,7 @@ Inline getters and helpers:
   holds for a reused local whose second use takes its register after the loop counter: give that value its own local
   (func_0203b6ac).
 - A value assigned in both arms of an if/else that takes its register too early: give one arm's value its own local,
-  declared before the local it swaps with (func_020b5ae8).
+  declared before the local it swaps with (ComputeRaceHudSubScreenPosition).
 - A narrow local converted where it is passed to a call can take its register before the local it swaps with: declare it
   `u32`, put the narrowing cast at its assignment, and declare it first (PM_GoSleepMode).
 - An `s32` local passed to a `u32` parameter inside a loop: declare it `u32` (func_02106580).
@@ -944,7 +944,7 @@ Expression shapes:
   `__memcpy(dst, src, n)` with a constant n (func_ov000_021923b4). A struct store whose nearby address is loaded early
   can be `__memcpy(dst, src, sizeof(T))`; use it only at the store that needs it (func_020a29cc).
 - The same block written out twice can split a value in two: use one static inline helper taking the value
-  (func_020b5ae8).
+  (ComputeRaceHudSubScreenPosition).
 - An inline's local whose stack slot comes after the slots of later expansions was a shared expression: read the
   expression twice instead of keeping it in an inline local (func_02126a00).
 - `add rD, inv, mod` where `inv + k % 4` gives the operands swapped: pass the invariant as a parameter of a static

@@ -12,10 +12,10 @@
 #include "Main/Unknown/code_020b47d8.h"
 #include "Main/Unknown/code_020b6a18.h"
 #include "Main/Unknown/code_0207a880.h"
-#include "Main/Unknown/code_020b502c.h" // Unk020b503c
+#include "Main/Unknown/code_020b502c.h" // RaceHudSubScreenBgAffine
 
 unsigned int func_020b1cf4(unsigned int p0);
 unsigned int func_020b1d0c(void);
 unsigned int func_020b1d20(void);
-Unk020b503c *func_020b1d34(void);
+RaceHudSubScreenBgAffine *GetRaceHudSubScreenBgAffine(void);
 s32 func_020b1d50(void);

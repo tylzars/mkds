@@ -20,10 +20,10 @@ void func_020b4f64(Vec3 *v1, const Vec3 *a, const Vec3 *b) {
         *v1 = *a;
         return;
     }
-    s = func_020b502c(func_020c0d9c(), 0x3000);
-    t.x = a->x + func_020b502c(s, b->x - a->x);
-    t.y = a->y + func_020b502c(s, b->y - a->y);
-    t.z = a->z + func_020b502c(s, b->z - a->z);
+    s = MulFixed12NoRound(func_020c0d9c(), 0x3000);
+    t.x = a->x + MulFixed12NoRound(s, b->x - a->x);
+    t.y = a->y + MulFixed12NoRound(s, b->y - a->y);
+    t.z = a->z + MulFixed12NoRound(s, b->z - a->z);
     *v1 = t;
 }
 

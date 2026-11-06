@@ -724,7 +724,8 @@ void func_020c3e44(Unk020c06c4 *a) {
             if (gRaceProgress->mRaceDone == 0) {
                 for (j = 0; j < data_0217b3e4->mUnk_790[i].mUnk_00; j++) {
                     if (data_0217b3e4->mUnk_790[i].mUnk_34[j] < 0x28) {
-                        if (func_020b5ae8(&data_0217b3e4->mUnk_790[i].mUnk_04[j], &o1, s, 1, 1) != FALSE) {
+                        if (ComputeRaceHudSubScreenPosition(&data_0217b3e4->mUnk_790[i].mUnk_04[j], &o1, s, 1, 1) !=
+                            FALSE) {
                             m = data_0217b3e4->mUnk_790[i].mUnk_28[j];
                             q = GetRaceSNcerEntry(0x4f);
                             n = a->mUnk_400;
@@ -744,7 +745,7 @@ void func_020c3e44(Unk020c06c4 *a) {
             for (j = 0; j < 0x28; j++) {
                 u16 x = (u16) (data_0217b3e4->mUnk_010[i][j].mUnk_0c + func_020b6368()) + 0x800;
                 u16 y = ((x << 4) / 0x10000) % 16;
-                if (func_020b5ae8(&data_0217b3e4->mUnk_010[i][j].mUnk_00, &o2, s, 1, 1) != FALSE) {
+                if (ComputeRaceHudSubScreenPosition(&data_0217b3e4->mUnk_010[i][j].mUnk_00, &o2, s, 1, 1) != FALSE) {
                     switch (data_0217b3e4->mUnk_010[i][j].mUnk_10) {
                         case 0:
                             r = NULL;

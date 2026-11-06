@@ -107,7 +107,7 @@ BOOL CreateRaceHudSubScreenCells(RaceHudSubScreenCells **a, s32 b) {
     (*a)->mObjectCount = n;
     (*a)->mUnk_0c = HeapAlloc(GetHeap(func_020364e8()), n * 8);
     for (i = 0; i < n; i++) {
-        func_020b5fe4(&(*a)->mObjects[i]->mPos, &(*a)->mUnk_0c[i]);
+        ComputeRaceHudSubScreenCoursePosition(&(*a)->mObjects[i]->mPos, &(*a)->mUnk_0c[i]);
     }
     (*a)->mCells = func_020ae730(n * 2, 0x14);
     return TRUE;
@@ -897,7 +897,8 @@ void UpdateRaceHudSubScreenCellGroups(void) {
             n = (s32) f;
             gRaceHudSubScreenCellGroups->mUnk_004 = (s32) (((s64) n * 20) >> 12);
             gRaceHudSubScreenCellGroups->mUnk_008 = FX_Div(0x2400, gRaceHudSubScreenCellGroups->mUnk_004);
-            func_020b503c(func_020b1d34(), gRaceHudSubScreenCellGroups->mUnk_004);
+            UpdateRaceHudSubScreenProjectionAndBgAffine(GetRaceHudSubScreenBgAffine(),
+                                                        gRaceHudSubScreenCellGroups->mUnk_004);
             func_0207a91c(&v, func_020b4d9c());
             gRaceHudSubScreenCellGroups->mUnk_000 = func_020b4e70(&v) != 0 ? 0 : 3;
             for (i = 0; i < gRaceHudSubScreenCellGroups->mGroupCount; i++) {

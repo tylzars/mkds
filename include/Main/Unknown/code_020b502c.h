@@ -367,74 +367,72 @@ typedef struct CourseMap {
     /* 10f */ u8 mKind2ShapeCountInMode4;
 } CourseMap;
 
-// Eight words.
-typedef struct {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-} Unk020b503c;
+typedef struct RaceHudSubScreenBgAffine {
+    /* 00 */ s32 mMatrix0;
+    /* 04 */ s32 mMatrix1;
+    /* 08 */ s32 mMatrix2;
+    /* 0c */ s32 mMatrix3;
+    /* 10 */ s32 mCenterX;
+    /* 14 */ s32 mCenterY;
+    /* 18 */ s32 mX1;
+    /* 1c */ s32 mY1;
+} RaceHudSubScreenBgAffine;
 
-// Object behind data_0217b3c0.
-typedef struct {
-    /* 00 */ UnkPair020b502c mUnk_00;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ UnkPair020b502c mUnk_10;
-    /* 18 */ s32 mUnk_18;
-    /* 1c */ s16 mUnk_1c;
-    /* 1e */ s16 mUnk_1e;
-    /* 20 */ s32 mUnk_20;
-    /* 24 */ s32 mUnk_24;
+typedef struct RaceHudSubScreenProjection {
+    /* 00 */ UnkPair020b502c mCenter;
+    /* 08 */ s32 mCenterRemainderX;
+    /* 0c */ s32 mCenterRemainderY;
+    /* 10 */ UnkPair020b502c mCenterWhole;
+    /* 18 */ s32 mHalfSize;
+    /* 1c */ s16 mAnglePairSecond;
+    /* 1e */ s16 mAnglePairFirst;
+    /* 20 */ s32 mAnglePairSecondScaled;
+    /* 24 */ s32 mAnglePairFirstScaled;
     /* 28 */ s32 mUnk_28;
     /* 2c */ UnkPair020b502c mUnk_2c;
     /* 34 */ UnkPair020b502c mUnk_34;
     /* 3c */ s64 mUnk_3c;
     /* 44 */ s64 mUnk_44;
-    /* 4c */ UnkPair020b502c mUnk_4c;
-    /* 54 */ UnkPair020b502c mUnk_54;
-    /* 5c */ s64 mUnk_5c;
-    /* 64 */ s64 mUnk_64;
+    /* 4c */ UnkPair020b502c mCourseMin;
+    /* 54 */ UnkPair020b502c mCourseMax;
+    /* 5c */ s64 mCourseInverseX;
+    /* 64 */ s64 mCourseInverseZ;
     /* 6c */ UnkPair020b502c mUnk_6c;
     /* 74 */ UnkPair020b502c mUnk_74;
     /* 7c */ s64 mUnk_7c;
     /* 84 */ s64 mUnk_84;
-    /* 8c */ s32 mUnk_8c;
-    /* 90 */ Vec3 mUnk_90;
-} Unk0217b3c0;
+    /* 8c */ s32 mScrollTimer;
+    /* 90 */ Vec3 mScrollPosition;
+} RaceHudSubScreenProjection;
 
 extern CourseMap *gCourseMap;
 
 #include "Main/Unknown/unk_02175628.h"
 
-extern Unk0217b3c0 *data_0217b3c0;
+extern RaceHudSubScreenProjection *gRaceHudSubScreenProjection;
 
 extern u16 func_020435bc(void);
-s32 func_020b502c(s32 a, s32 b);
-void func_020b503c(Unk020b503c *p, s32 scale);
+s32 MulFixed12NoRound(s32 a, s32 b);
+void UpdateRaceHudSubScreenProjectionAndBgAffine(RaceHudSubScreenBgAffine *p, s32 scale);
 s32 func_020b523c(void);
-s32 func_020b5250(s32 x);
-s32 func_020b5258(s32 x);
-s32 func_020b5270(s32 x);
-void func_020b5290(void);
+s32 GetFixed12Whole(s32 x);
+s32 GetAnglePairFirst(s32 x);
+s32 GetAnglePairSecond(s32 x);
+void UpdateRaceHudSubScreenScroll(void);
 u16 func_020b5628(s32 idx, s32 mask);
 u16 func_020b5644(Unk02175628 *p, s32 mask);
-void func_020b5658(Unk020b503c *out);
-s32 func_020b57b4(s32 a, s64 k);
+void func_020b5658(RaceHudSubScreenBgAffine *out);
+s32 MulFx64c(s32 a, s64 k);
 Unk020b57e4 *func_020b57e4(void);
-void func_020b57f8(Unk020b503c *out);
-void func_020b58f8(Unk020b503c *out);
-BOOL func_020b5ae8(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 flag2);
-void func_020b5dcc(s32 idx, UnkPair020b502c *out, s32);
-BOOL func_020b5f68(const UnkPair020b502c *p);
-void func_020b5fe4(const Vec3 *pos, UnkPair020b502c *out);
+void func_020b57f8(RaceHudSubScreenBgAffine *out);
+void UpdateRaceHudSubScreenCenter(RaceHudSubScreenBgAffine *out);
+BOOL ComputeRaceHudSubScreenPosition(const Vec3 *pos, UnkPair020b502c *out, s32 unk, s32 flag, s32 flag2);
+void ComputeRaceHudSubScreenKartPosition(s32 idx, UnkPair020b502c *out, s32);
+BOOL IsRaceHudSubScreenPairNearCenter(const UnkPair020b502c *p);
+void ComputeRaceHudSubScreenCoursePosition(const Vec3 *pos, UnkPair020b502c *out);
 void func_020b6078(s32 idx, UnkPair020b502c *out);
 u16 func_020b6338(s32 idx);
 u16 func_020b6368(void);
 s32 func_020b6430(void);
 s32 func_020b64e8(void);
-u32 func_020b65dc(void);
+u32 ClearRaceHudSubScreenProjection(void);

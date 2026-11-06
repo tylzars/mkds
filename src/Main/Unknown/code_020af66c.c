@@ -366,7 +366,7 @@ void func_020b03bc(void) {
     gRaceHud = HeapAlloc(GetHeap(func_020364e8()), 0x914);
     InitRaceStartSequence();
     func_020b3b08();
-    func_020b65f0();
+    InitRaceHudSubScreenProjection();
     func_020b8624();
     func_020cffa0();
     if (data_021759c0->mUnk_00c == 4) {
@@ -713,7 +713,7 @@ void func_020af86c(void) {
     gRaceHud = NULL;
     func_020b36c8();
     func_020b3af4();
-    func_020b65dc();
+    ClearRaceHudSubScreenProjection();
     func_020b8610();
     if (data_021759c0->mUnk_00c == 4) {
         func_020d129c();

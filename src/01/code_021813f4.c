@@ -64,7 +64,7 @@ void func_ov001_02181410(void) {
         e = data_ov001_021a9b8c->mObjects[i];
         if ((e->mFlags & 1) == 0) {
             pos = &e->mPos;
-            if (func_020b5ae8(pos, &data_ov001_021a9b8c->mCells[count].mUnk_00, v, 1, 1)) {
+            if (ComputeRaceHudSubScreenPosition(pos, &data_ov001_021a9b8c->mCells[count].mUnk_00, v, 1, 1)) {
                 data_ov001_021a9b8c->mCells[count].mUnk_08 = GetRaceSNcerEntry(0x58);
                 data_ov001_021a9b8c->mCells[count].mUnk_0c = func_020b4e70(pos) != 0 ? 2 : 3;
                 count++;

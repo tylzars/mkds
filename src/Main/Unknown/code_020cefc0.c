@@ -57,7 +57,7 @@ void func_020cefdc(void) {
         e = b[i];
         if (IsItemBombState2((Kart *) e) != FALSE) {
             p = func_020fd308((ItemBomb *) e, &x, &y);
-            if (func_020b5ae8(p, &data_0217b48c->mCells[n].mUnk_00, v, 1, 1) != FALSE) {
+            if (ComputeRaceHudSubScreenPosition(p, &data_0217b48c->mCells[n].mUnk_00, v, 1, 1) != FALSE) {
                 data_0217b48c->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x63);
                 data_0217b48c->mCells[n].mUnk_0c = func_020b4e70(p) != 0 ? 2 : 3;
                 data_0217b48c->mCells[n].mUnk_10 = x;
@@ -77,7 +77,7 @@ void func_020cefdc(void) {
         e2 = b[i];
         if (IsItemKouraWState7((ItemKouraW *) e2) != FALSE) {
             p2 = func_020fad9c((ItemKouraW *) e2, &x2, &y2);
-            if (func_020b5ae8(p2, &data_0217b48c->mCells[n].mUnk_00, v, 1, 1) != FALSE) {
+            if (ComputeRaceHudSubScreenPosition(p2, &data_0217b48c->mCells[n].mUnk_00, v, 1, 1) != FALSE) {
                 data_0217b48c->mCells[n].mUnk_08 = GetRaceSNcerEntry(0x64);
                 data_0217b48c->mCells[n].mUnk_0c = func_020b4e70(p2) != 0 ? 2 : 3;
                 data_0217b48c->mCells[n].mUnk_10 = x2;

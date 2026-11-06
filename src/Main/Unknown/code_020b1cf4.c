@@ -4,8 +4,8 @@ s32 func_020b1d50(void) {
     return (gRaceHud->mUnk_854);
 }
 
-Unk020b503c *func_020b1d34(void) {
-    return (Unk020b503c *) gRaceHud->mUnk_858;
+RaceHudSubScreenBgAffine *GetRaceHudSubScreenBgAffine(void) {
+    return (RaceHudSubScreenBgAffine *) gRaceHud->mUnk_858;
 }
 
 u32 func_020b1d20(void) {
