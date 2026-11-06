@@ -123,75 +123,80 @@ void func_020ad820(u32 p0) {
 
 #pragma thumb on
 
-void func_020ad344(void) {
+void CreateTitleScene(void) {
     s32 r;
     s32 d;
     void *h;
     Unk02125de0 s;
 
     r = func_02090940();
-    data_0217b340 = HeapAlloc((void *) func_020ada10(), 0x8bc);
-    data_0217b340->mUnk_00 = 0;
-    data_0217b340->mUnk_04 = TRUE;
-    data_0217b340->mUnk_08 = 0;
-    data_0217b340->mUnk_0c = 0;
-    data_0217b340->mUnk_10 = 8;
-    data_0217b340->mUnk_4c = 0;
-    data_0217b340->mUnk_50 = func_020ad9fc() != 0;
-    data_0217b340->mUnk_54 = 0;
-    data_0217b340->mUnk_58 = FALSE;
-    data_0217b340->mUnk_5c = TRUE;
-    data_0217b340->mUnk_60 = 0;
-    data_0217b340->mUnk_64 = func_020ad9fc() != 0 ? 0x6b : 0;
-    func_020ad268();
-    func_020adb04();
-    func_020ae6d4(&data_0217b340->mUnk_b0, &data_0217b340->mUnk_4b4);
-    LoadNclrData(&data_0217b340->mUnk_78, FindSceneFileWrapper(r != 0 ? data_02167e6c : data_02167e80));
-    LoadNclrData(&data_0217b340->mUnk_80, FindSceneFileWrapper(data_02167e90));
-    LoadNcgrData(&data_0217b340->mUnk_7c, FindSceneFileWrapper(r != 0 ? data_02167ea0 : data_02167eb4));
-    LoadNcgrData(&data_0217b340->mUnk_84, FindSceneFileWrapper(data_02167ec4));
-    LoadNscrData(&data_0217b340->mUnk_88, FindSceneFileWrapper(r != 0 ? data_02167ed4 : data_02167eec));
-    LoadNscrData(&data_0217b340->mUnk_8c, FindSceneFileWrapper(r != 0 ? data_02167f00 : data_02167f14));
-    LoadNscrData(&data_0217b340->mUnk_90, FindSceneFileWrapper(data_02167f24));
-    LoadNclrData(&data_0217b340->mUnk_a0, FindSceneFileWrapper(data_02167f34));
-    LoadNcgrData2(&data_0217b340->mUnk_a4, FindSceneFileWrapper(data_02167f44));
-    LoadNcerData(&data_0217b340->mUnk_a8, FindSceneFileWrapper(data_02167f58));
-    data_0217b340->mUnk_6c = FindSceneFileWrapper(data_02167f6c);
-    data_0217b340->mUnk_70 = FindSceneFileWrapper(data_02167f7c);
-    data_0217b340->mUnk_74 = FindSceneFileWrapper(data_02167f8c);
+    gTitleScene = HeapAlloc((void *) func_020ada10(), 0x8bc);
+    gTitleScene->mStateFrames = 0;
+    gTitleScene->mUnk_04 = TRUE;
+    gTitleScene->mPrevState = 0;
+    gTitleScene->mState = 0;
+    gTitleScene->mNextState = 8;
+    gTitleScene->mNoInputFrames = 0;
+    gTitleScene->mBlendDone = func_020ad9fc() != 0;
+    gTitleScene->mSelectedIndex = 0;
+    gTitleScene->mSelectedPressed = FALSE;
+    gTitleScene->mPreferEntry4 = TRUE;
+    gTitleScene->mSelectedOffset = 0;
+    gTitleScene->mBlendFrames = func_020ad9fc() != 0 ? 0x6b : 0;
+    AdvanceTitleBlend();
+    InitTitleStateHandlers();
+    func_020ae6d4(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
+    LoadNclrData(&gTitleScene->mTitleTrueMBOrMBNclr,
+                 FindSceneFileWrapper(r != 0 ? gTitleTrueMBNclrName : gTitleMBNclrName));
+    LoadNclrData(&gTitleScene->mTitleSBNclr, FindSceneFileWrapper(gTitleSBNclrName));
+    LoadNcgrData(&gTitleScene->mTitleTrueMBOrMBNcgr,
+                 FindSceneFileWrapper(r != 0 ? gTitleTrueMBNcgrName : gTitleMBNcgrName));
+    LoadNcgrData(&gTitleScene->mTitleSBNcgr, FindSceneFileWrapper(gTitleSBNcgrName));
+    LoadNscrData(&gTitleScene->mTitleTrueM1OrM1Nscr,
+                 FindSceneFileWrapper(r != 0 ? gTitleTrueM1NscrName : gTitleM1NscrName));
+    LoadNscrData(&gTitleScene->mTitleTrueM2OrM2Nscr,
+                 FindSceneFileWrapper(r != 0 ? gTitleTrueM2NscrName : gTitleM2NscrName));
+    LoadNscrData(&gTitleScene->mTitleSBgNscr, FindSceneFileWrapper(gTitleSBgNscrName));
+    LoadNclrData(&gTitleScene->mTitleSONclr, FindSceneFileWrapper(gTitleSONclrName));
+    LoadNcgrData2(&gTitleScene->mTitleSNceNcgr, FindSceneFileWrapper(gTitleSNceNcgrName));
+    LoadNcerData(&gTitleScene->mTitleSNceNcer, FindSceneFileWrapper(gTitleSNceNcerName));
+    gTitleScene->mTitleSBncl = FindSceneFileWrapper(gTitleSBnclName);
+    gTitleScene->mTitleSBnbl = FindSceneFileWrapper(gTitleSBnblName);
+    gTitleScene->mTitleSBnll = FindSceneFileWrapper(gTitleSBnllName);
     h = CreateDisplaySettings((void *) func_020ada10(), data_02156840);
     func_020ad9c0(h, 0, 0, 0, 0, 2, 0, 0);
     func_020ad98c(h, 2, 0, 0, 1, 14, 4);
     func_020ad958(h, 3, 0, 0, 1, 15, 4);
     func_020ad924(h, 3, 0, 0, 0, 1, 6);
     InitDisplayFromSettings(h);
-    func_02124ed0((void *) func_020ada10(), data_0217b340->mUnk_6c, data_0217b340->mUnk_74, &data_0217b340->mUnk_68);
-    func_02124a98(0, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);
-    func_02124a98(1, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);
-    func_02124a98(2, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);
-    func_02124a98(3, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);
-    func_02124a98(4, 1, data_0217b340->mUnk_a8, data_0217b340->mUnk_6c);
+    func_02124ed0((void *) func_020ada10(), gTitleScene->mTitleSBncl, gTitleScene->mTitleSBnll,
+                  &gTitleScene->mTitleTable);
+    func_02124a98(0, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
+    func_02124a98(1, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
+    func_02124a98(2, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
+    func_02124a98(3, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
+    func_02124a98(4, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     d = GX_GetSizeOfSubOBJ();
-    d -= func_021243ac((void *) func_020ada10(), 0, data_0217b340->mUnk_74, 0x55, 0xd, 0xd, data_0217b340->mUnk_a8,
-                       data_0217b340->mUnk_6c, data_0217b340->mUnk_68, d);
-    func_021243ac((void *) func_020ada10(), 1, data_0217b340->mUnk_74, 0x55, 0xd, 0xe, data_0217b340->mUnk_a8,
-                  data_0217b340->mUnk_6c, data_0217b340->mUnk_68, d);
-    func_0212426c(1, 0, data_0217b340->mUnk_74, GetBmgEntry(FindSceneFileWrapper(data_02167f9c), 1),
-                  data_0217b340->mUnk_6c, data_0217b340->mUnk_68);
-    func_0212426c(1, 1, data_0217b340->mUnk_74, GetBmgEntry(FindSceneFileWrapper(data_02167fa8), 0),
-                  data_0217b340->mUnk_6c, data_0217b340->mUnk_68);
+    d -= func_021243ac((void *) func_020ada10(), 0, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xd,
+                       gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
+    func_021243ac((void *) func_020ada10(), 1, gTitleScene->mTitleSBnll, 0x55, 0xd, 0xe, gTitleScene->mTitleSNceNcer,
+                  gTitleScene->mTitleSBncl, gTitleScene->mTitleTable, d);
+    func_0212426c(1, 0, gTitleScene->mTitleSBnll, GetBmgEntry(FindSceneFileWrapper(gTitleBmgName), 1),
+                  gTitleScene->mTitleSBncl, gTitleScene->mTitleTable);
+    func_0212426c(1, 1, gTitleScene->mTitleSBnll, GetBmgEntry(FindSceneFileWrapper(gTitleBmgName2), 0),
+                  gTitleScene->mTitleSBncl, gTitleScene->mTitleTable);
     GX_BeginLoadBGExtPltt();
-    GX_LoadBGExtPltt(data_0217b340->mUnk_78->mData, 0x4000, data_0217b340->mUnk_78->mDataSize);
-    GX_LoadBGExtPltt(data_0217b340->mUnk_78->mData, 0x6000, data_0217b340->mUnk_78->mDataSize);
+    GX_LoadBGExtPltt(gTitleScene->mTitleTrueMBOrMBNclr->mData, 0x4000, gTitleScene->mTitleTrueMBOrMBNclr->mDataSize);
+    GX_LoadBGExtPltt(gTitleScene->mTitleTrueMBOrMBNclr->mData, 0x6000, gTitleScene->mTitleTrueMBOrMBNclr->mDataSize);
     GX_EndLoadBGExtPltt();
-    GX_LoadBG2Char(data_0217b340->mUnk_7c->mData, 0, data_0217b340->mUnk_7c->mDataSize);
-    GX_LoadBG2Scr(data_0217b340->mUnk_88->mData, 0, 0x800);
-    GX_LoadBG3Scr(data_0217b340->mUnk_8c->mData, 0, 0x800);
-    GXS_LoadBGPltt(data_0217b340->mUnk_80->mData, 0, data_0217b340->mUnk_80->mDataSize);
-    GXS_LoadBG3Char(data_0217b340->mUnk_84->mData, 0, data_0217b340->mUnk_84->mDataSize);
-    GXS_LoadBG3Scr(data_0217b340->mUnk_90->mData, 0, 0x800);
-    GXS_LoadOBJPltt(data_0217b340->mUnk_a0->mData, 0, data_0217b340->mUnk_a0->mDataSize);
-    GXS_LoadOBJ(data_0217b340->mUnk_a4->mData, 0, data_0217b340->mUnk_a4->mDataSize);
+    GX_LoadBG2Char(gTitleScene->mTitleTrueMBOrMBNcgr->mData, 0, gTitleScene->mTitleTrueMBOrMBNcgr->mDataSize);
+    GX_LoadBG2Scr(gTitleScene->mTitleTrueM1OrM1Nscr->mData, 0, 0x800);
+    GX_LoadBG3Scr(gTitleScene->mTitleTrueM2OrM2Nscr->mData, 0, 0x800);
+    GXS_LoadBGPltt(gTitleScene->mTitleSBNclr->mData, 0, gTitleScene->mTitleSBNclr->mDataSize);
+    GXS_LoadBG3Char(gTitleScene->mTitleSBNcgr->mData, 0, gTitleScene->mTitleSBNcgr->mDataSize);
+    GXS_LoadBG3Scr(gTitleScene->mTitleSBgNscr->mData, 0, 0x800);
+    GXS_LoadOBJPltt(gTitleScene->mTitleSONclr->mData, 0, gTitleScene->mTitleSONclr->mDataSize);
+    GXS_LoadOBJ(gTitleScene->mTitleSNceNcgr->mData, 0, gTitleScene->mTitleSNceNcgr->mDataSize);
     func_020ad904(0x10);
     func_020ad8e0(0x10);
     func_020ad2f0(4, 8, 0, 0x10);
@@ -210,7 +215,7 @@ void func_020ad344(void) {
     s.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0((void *) func_020ada10(), &s);
-    data_0217b340->mUnk_8b8 = func_0203bedc((void *) func_020ada10());
+    gTitleScene->mUnk_8b8 = func_0203bedc((void *) func_020ada10());
     func_020acab8(0);
     func_0204aa28(0);
     func_020cee28();
@@ -227,7 +232,7 @@ void func_020ad344(void) {
 
 void func_020ad32c(void) {
     func_02125da0();
-    data_0217b340 = NULL;
+    gTitleScene = NULL;
 }
 
 #pragma thumb off

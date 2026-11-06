@@ -8,10 +8,10 @@
 #pragma thumb on
 
 void func_020ada94(void) {
-    data_0217b340->mUnk_14[data_0217b340->mUnk_0c].mUnk_00();
-    data_0217b340->mUnk_04 = FALSE;
+    gTitleScene->mStateHandlers[gTitleScene->mState].mUnk_00();
+    gTitleScene->mUnk_04 = FALSE;
     func_021258f0();
-    func_020ae5f0(&data_0217b340->mUnk_b0, &data_0217b340->mUnk_4b4);
+    func_020ae5f0(&gTitleScene->mMainOam, &gTitleScene->mSubOam);
 }
 
 #pragma thumb off

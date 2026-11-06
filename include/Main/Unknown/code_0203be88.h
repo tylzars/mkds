@@ -38,10 +38,10 @@ void func_0203bfec(s32 *a);
 // Scene function of gSceneFuncs[0] (scene 'Title' in gSceneNames): copies the callbacks and calls
 // RunScene. Returns 0.
 u32 RunTitleScene(SceneNumbers *a);
-void func_0203c060(s32 a);
+void UpdateTitleScene(s32 a);
 void func_0203c07c(void);
-void func_0203c088(void);
-void func_0203c094(void);
+void ReleaseTitleScene(void);
+void InitTitleScene(void);
 u32 func_0203c0bc(void);
 BOOL func_0203c174(void);
 void func_0203c1a8(Vec3 *a, u32 b);

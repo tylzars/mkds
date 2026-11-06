@@ -3,8 +3,8 @@
 
 #pragma thumb on
 
-s32 func_020adaf8(void) {
-    return ((u32) data_0217b340->mUnk_00);
+s32 GetTitleStateFrames(void) {
+    return ((u32) gTitleScene->mStateFrames);
 }
 
 #pragma thumb off

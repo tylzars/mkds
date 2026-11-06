@@ -76,14 +76,14 @@ u32 func_0203c0bc(void) {
     return 0;
 }
 
-void func_0203c094(void) {
+void InitTitleScene(void) {
     GetHeap(func_020364e8());
     func_02039a1c();
-    func_020ad344();
+    CreateTitleScene();
     func_02043c14();
 }
 
-void func_0203c088(void) {
+void ReleaseTitleScene(void) {
     u32 value12;
     func_020ad32c();
 }
@@ -93,9 +93,9 @@ void func_0203c07c(void) {
     func_020ada94();
 }
 
-void func_0203c060(s32 a) {
+void UpdateTitleScene(s32 a) {
     PrepareDisplayFrame();
-    func_020ada2c(a);
+    AdvanceTitleStates(a);
 }
 
 u32 RunTitleScene(SceneNumbers *a) {

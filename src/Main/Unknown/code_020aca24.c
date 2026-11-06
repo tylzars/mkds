@@ -6,11 +6,11 @@
 #pragma optimize_for_size on
 #pragma thumb on
 
-void func_020aca24(Unk020aca24 *a) {
+void UpdateTitleState5(Unk020aca24 *a) {
     s16 v[5] = {1, 6, 12, 7, 8};
 
     if (a != NULL) {
-        switch (data_0217b340->mUnk_54) {
+        switch (gTitleScene->mSelectedIndex) {
             case 0:
             case 3:
             case 4:
@@ -25,7 +25,7 @@ void func_020aca24(Unk020aca24 *a) {
                 func_020acab8(3);
                 break;
         }
-        a->mUnk_04 = v[data_0217b340->mUnk_54];
+        a->mNextScene = v[gTitleScene->mSelectedIndex];
         func_02105e98();
     }
 }

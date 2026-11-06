@@ -127,12 +127,12 @@ BOOL func_020adb34(void) {
     return TRUE;
 }
 
-void func_020adb04(void) {
+void InitTitleStateHandlers(void) {
     s32 i;
 
     for (i = 0; i < 7; i++) {
-        data_0217b340->mUnk_14[i].mUnk_00 = data_02167e34[i].mUnk_00;
-        data_0217b340->mUnk_14[i].mUnk_04 = data_02167e34[i].mUnk_04;
+        gTitleScene->mStateHandlers[i].mUnk_00 = gTitleStateHandlers[i].mUnk_00;
+        gTitleScene->mStateHandlers[i].mUpdate = gTitleStateHandlers[i].mUpdate;
     }
 }
 

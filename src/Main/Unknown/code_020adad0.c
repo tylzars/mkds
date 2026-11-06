@@ -4,12 +4,12 @@
 #pragma optimize_for_size on
 #pragma thumb on
 
-void func_020adad0(u32 a, u32 b) {
-    data_0217b340->mUnk_00 = 0;
-    data_0217b340->mUnk_04 = TRUE;
-    data_0217b340->mUnk_08 = data_0217b340->mUnk_0c;
-    data_0217b340->mUnk_0c = a;
-    data_0217b340->mUnk_10 = b;
+void SetTitleState(u32 a, u32 b) {
+    gTitleScene->mStateFrames = 0;
+    gTitleScene->mUnk_04 = TRUE;
+    gTitleScene->mPrevState = gTitleScene->mState;
+    gTitleScene->mState = a;
+    gTitleScene->mNextState = b;
 }
 
 #pragma thumb off

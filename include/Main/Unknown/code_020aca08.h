@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_020aca08(int a);
+void UpdateTitleState6(int a);
 unsigned int func_020aca20(unsigned int p0);

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-s32 func_020adaf8(void);
+s32 GetTitleStateFrames(void);

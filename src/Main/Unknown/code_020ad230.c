@@ -10,18 +10,18 @@ u32 func_020ad264(u32 p0) {
     return p0;
 }
 
-void func_020ad234(void) {
+void UpdateTitleState0(void) {
     int v1;
     int v2;
     v2 = 0;
-    if (data_0217b340->mUnk_50 == FALSE) {
+    if (gTitleScene->mBlendDone == FALSE) {
         v2 = 0x6b;
     }
-    v1 = func_020adaf8();
+    v1 = GetTitleStateFrames();
     if (v1 >= v2) {
-        func_020adad0((u32) 1, (u32) 8);
+        SetTitleState((u32) 1, (u32) 8);
     }
-    func_020ad268();
+    AdvanceTitleBlend();
 }
 
 u32 func_020ad230(u32 p0) {

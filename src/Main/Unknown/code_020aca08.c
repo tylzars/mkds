@@ -7,7 +7,7 @@ u32 func_020aca20(u32 p0) {
     return p0;
 }
 
-void func_020aca08(int a) {
+void UpdateTitleState6(int a) {
     if (a != 0) {
         *(u16 *) (a + 4) = 0xb;
         func_02105e98();

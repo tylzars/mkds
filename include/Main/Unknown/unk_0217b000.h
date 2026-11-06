@@ -510,54 +510,53 @@ typedef struct Unk0217b334 {
 extern Unk0217b334 *data_0217b334;
 extern u16 *data_0217b338;
 extern void *gShineBalloon;
-// Element of 8 bytes of data_02167e34: two code pointers.
-typedef struct Unk020ad344_14 {
+typedef struct TitleStateHandlers {
     /* 00 */ UnkFunc *mUnk_00;
-    /* 04 */ void (*mUnk_04)(s32);
-} Unk020ad344_14;
+    /* 04 */ void (*mUpdate)(s32);
+} TitleStateHandlers;
 
 struct Unk02124b1c;
 struct Unk0201ea30;
 
-// Object behind data_0217b340, 0x8bc bytes allocated by func_020ad344.
-typedef struct Unk020ad344 {
-    /* 000 */ s32 mUnk_00;
+// 0x8bc bytes.
+typedef struct TitleScene {
+    /* 000 */ s32 mStateFrames;
     /* 004 */ BOOL mUnk_04;
-    /* 008 */ s32 mUnk_08;
-    /* 00c */ s32 mUnk_0c;
-    /* 010 */ s32 mUnk_10;
-    /* 014 */ Unk020ad344_14 mUnk_14[7];
-    /* 04c */ s32 mUnk_4c;
-    /* 050 */ BOOL mUnk_50;
-    /* 054 */ s32 mUnk_54;
-    /* 058 */ BOOL mUnk_58;
-    /* 05c */ BOOL mUnk_5c;
-    /* 060 */ s16 mUnk_60;
+    /* 008 */ s32 mPrevState;
+    /* 00c */ s32 mState;
+    /* 010 */ s32 mNextState;
+    /* 014 */ TitleStateHandlers mStateHandlers[7];
+    /* 04c */ s32 mNoInputFrames;
+    /* 050 */ BOOL mBlendDone;
+    /* 054 */ s32 mSelectedIndex;
+    /* 058 */ BOOL mSelectedPressed;
+    /* 05c */ BOOL mPreferEntry4;
+    /* 060 */ s16 mSelectedOffset;
     /* 062 */ u8 pad_62[2];
-    /* 064 */ s32 mUnk_64;
-    /* 068 */ struct Unk02124b1c *mUnk_68;
-    /* 06c */ struct Unk0201ea30 *mUnk_6c;
-    /* 070 */ void *mUnk_70;
-    /* 074 */ struct Unk0201ea30 *mUnk_74;
-    /* 078 */ struct Nclr *mUnk_78;
-    /* 07c */ struct Ncgr *mUnk_7c;
-    /* 080 */ struct Nclr *mUnk_80;
-    /* 084 */ struct Ncgr *mUnk_84;
-    /* 088 */ struct Nscr *mUnk_88;
-    /* 08c */ struct Nscr *mUnk_8c;
-    /* 090 */ struct Nscr *mUnk_90;
+    /* 064 */ s32 mBlendFrames;
+    /* 068 */ struct Unk02124b1c *mTitleTable;
+    /* 06c */ struct Unk0201ea30 *mTitleSBncl;
+    /* 070 */ void *mTitleSBnbl;
+    /* 074 */ struct Unk0201ea30 *mTitleSBnll;
+    /* 078 */ struct Nclr *mTitleTrueMBOrMBNclr;
+    /* 07c */ struct Ncgr *mTitleTrueMBOrMBNcgr;
+    /* 080 */ struct Nclr *mTitleSBNclr;
+    /* 084 */ struct Ncgr *mTitleSBNcgr;
+    /* 088 */ struct Nscr *mTitleTrueM1OrM1Nscr;
+    /* 08c */ struct Nscr *mTitleTrueM2OrM2Nscr;
+    /* 090 */ struct Nscr *mTitleSBgNscr;
     /* 094 */ u8 pad_94[0xc];
-    /* 0a0 */ struct Nclr *mUnk_a0;
-    /* 0a4 */ struct Ncgr *mUnk_a4;
-    /* 0a8 */ struct Unk02021dc8 *mUnk_a8;
+    /* 0a0 */ struct Nclr *mTitleSONclr;
+    /* 0a4 */ struct Ncgr *mTitleSNceNcgr;
+    /* 0a8 */ struct Unk02021dc8 *mTitleSNceNcer;
     /* 0ac */ u8 pad_ac[4];
-    /* 0b0 */ Unk020ae630 mUnk_b0;
-    /* 4b4 */ Unk020ae630 mUnk_4b4;
+    /* 0b0 */ Unk020ae630 mMainOam;
+    /* 4b4 */ Unk020ae630 mSubOam;
     /* 8b8 */ u8 *mUnk_8b8;
-} Unk020ad344;
+} TitleScene;
 
-extern Unk020ad344 *data_0217b340;
-extern const Unk020ad344_14 data_02167e34[7];
+extern TitleScene *gTitleScene;
+extern const TitleStateHandlers gTitleStateHandlers[7];
 extern u8 data_0217b344[];
 extern u16 *data_0217b34c;
 // 0x20 bytes: four words, then four more words.

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ad344(void);
+void CreateTitleScene(void);

@@ -61,7 +61,7 @@ u32 func_020acdc4(u32 arg0) {
 
 #pragma thumb on
 
-void func_020acbf8(Unk020aca24 *a) {
+void UpdateTitleState2(Unk020aca24 *a) {
     u32 i;
     s32 j;
     s32 n;
@@ -69,92 +69,92 @@ void func_020acbf8(Unk020aca24 *a) {
     if (a != NULL) {
         i = func_020acef4();
         if (func_020acec4(i, 1) != 0) {
-            func_020adad0(4, 8);
+            SetTitleState(4, 8);
             func_020acf04();
-            data_0217b340->mUnk_58 = TRUE;
+            gTitleScene->mSelectedPressed = TRUE;
         } else if (func_020ae408(i, 0x30) != 0) {
-            switch (data_0217b340->mUnk_54) {
+            switch (gTitleScene->mSelectedIndex) {
                 case 3:
-                    data_0217b340->mUnk_54 = 4;
-                    data_0217b340->mUnk_5c = TRUE;
+                    gTitleScene->mSelectedIndex = 4;
+                    gTitleScene->mPreferEntry4 = TRUE;
                     func_02105ac0(0);
                     break;
                 case 4:
-                    data_0217b340->mUnk_54 = 3;
-                    data_0217b340->mUnk_5c = FALSE;
+                    gTitleScene->mSelectedIndex = 3;
+                    gTitleScene->mPreferEntry4 = FALSE;
                     func_02105ac0(0);
                     break;
             }
-            data_0217b340->mUnk_4c = 0;
+            gTitleScene->mNoInputFrames = 0;
         } else if (func_020ae408(i, 0x40) != 0) {
-            switch (data_0217b340->mUnk_54) {
+            switch (gTitleScene->mSelectedIndex) {
                 case 0:
-                    if (data_0217b340->mUnk_5c != FALSE) {
-                        data_0217b340->mUnk_54 = 4;
+                    if (gTitleScene->mPreferEntry4 != FALSE) {
+                        gTitleScene->mSelectedIndex = 4;
                     } else {
-                        data_0217b340->mUnk_54 = 3;
+                        gTitleScene->mSelectedIndex = 3;
                     }
                     break;
                 case 1:
-                    data_0217b340->mUnk_54 = 0;
+                    gTitleScene->mSelectedIndex = 0;
                     break;
                 case 2:
-                    data_0217b340->mUnk_54 = 1;
+                    gTitleScene->mSelectedIndex = 1;
                     break;
                 case 3:
                 case 4:
-                    data_0217b340->mUnk_54 = 2;
+                    gTitleScene->mSelectedIndex = 2;
                     break;
             }
             func_02105ac0(0);
-            data_0217b340->mUnk_4c = 0;
+            gTitleScene->mNoInputFrames = 0;
         } else if (func_020ae408(i, 0x80) != 0) {
-            switch (data_0217b340->mUnk_54) {
+            switch (gTitleScene->mSelectedIndex) {
                 case 0:
-                    data_0217b340->mUnk_54 = 1;
+                    gTitleScene->mSelectedIndex = 1;
                     break;
                 case 1:
-                    data_0217b340->mUnk_54 = 2;
+                    gTitleScene->mSelectedIndex = 2;
                     break;
                 case 2:
-                    if (data_0217b340->mUnk_5c != FALSE) {
-                        data_0217b340->mUnk_54 = 4;
+                    if (gTitleScene->mPreferEntry4 != FALSE) {
+                        gTitleScene->mSelectedIndex = 4;
                     } else {
-                        data_0217b340->mUnk_54 = 3;
+                        gTitleScene->mSelectedIndex = 3;
                     }
                     break;
                 case 3:
                 case 4:
-                    data_0217b340->mUnk_54 = 0;
+                    gTitleScene->mSelectedIndex = 0;
                     break;
             }
             func_02105ac0(0);
-            data_0217b340->mUnk_4c = 0;
+            gTitleScene->mNoInputFrames = 0;
         } else if (func_020ace14(i) != 0) {
             u32 x = func_020acdec(i);
             u32 y = func_020acdc4(i);
-            j = data_0217b340->mUnk_54;
-            n = func_020291c4(x, y, data_0217b340->mUnk_70);
+            j = gTitleScene->mSelectedIndex;
+            n = func_020291c4(x, y, gTitleScene->mTitleSBnbl);
             if (n != -1) {
                 if (j == n) {
-                    data_0217b340->mUnk_58 = TRUE;
+                    gTitleScene->mSelectedPressed = TRUE;
                 }
-                data_0217b340->mUnk_54 = n;
-                func_020adad0(4, 8);
+                gTitleScene->mSelectedIndex = n;
+                SetTitleState(4, 8);
                 func_020acf04();
             }
         } else {
             s32 m = func_0210f738();
-            data_0217b340->mUnk_4c++;
-            if (data_0217b340->mUnk_4c > m) {
+            gTitleScene->mNoInputFrames++;
+            if (gTitleScene->mNoInputFrames > m) {
                 if (func_0210f75c(0) != 0) {
-                    a->mUnk_04 = 2;
-                    func_0203b6ac(data_0217b340->mUnk_8b8);
+                    a->mNextScene = 2;
+                    func_0203b6ac(gTitleScene->mUnk_8b8);
                 }
             }
         }
     }
-    func_020acff4();
+    SetupAndDrawTitleTable();
 }
 
 #pragma thumb off

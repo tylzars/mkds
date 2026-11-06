@@ -8,11 +8,11 @@
 
 #pragma thumb on
 
-void func_020acff4(void) {
-    Unk020ad344 *v1;
-    func_020ad028();
-    v1 = data_0217b340;
-    func_02124c30(v1->mUnk_6c, v1->mUnk_a8, v1->mUnk_74, &v1->mUnk_4b4, v1->mUnk_68);
+void SetupAndDrawTitleTable(void) {
+    TitleScene *v1;
+    SetupTitleTable();
+    v1 = gTitleScene;
+    func_02124c30(v1->mTitleSBncl, v1->mTitleSNceNcer, v1->mTitleSBnll, &v1->mSubOam, v1->mTitleTable);
 }
 
 #pragma thumb off
