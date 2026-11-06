@@ -58,9 +58,9 @@ void func_01ff9144(const void *a, u32 b) {
     func_01ff9234();
     data_usa_021731e8 = 1;
     if (*(u32 *) data_0217320c != 0) {
-        GxFifoSendWords(data_0216f074[0], a, b, (UnkFunc *) func_01ff9210, (u32) &data_usa_021731e8);
+        MI_SendGXCommandAsyncFast(data_0216f074[0], a, b, (MIDmaCallback) func_01ff9210, &data_usa_021731e8);
     } else {
-        GxFifoSendWordsInPieces(data_0216f074[0], a, b, (UnkFunc *) func_01ff9210, (u32) &data_usa_021731e8);
+        MI_SendGXCommandAsync(data_0216f074[0], a, b, (MIDmaCallback) func_01ff9210, &data_usa_021731e8);
     }
 }
 

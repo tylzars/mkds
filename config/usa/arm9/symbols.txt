@@ -7505,8 +7505,8 @@ GX_BeginLoadTex kind:function(arm,size=0x80) addr:0x0214c6a8
 MemCopy12WordsToOneAddress kind:function(arm,size=0x24) addr:0x0214c728
 MemCopy16WordsToOneAddress kind:function(arm,size=0x1c) addr:0x0214c74c
 MI_SetWramBank kind:function(arm,size=0x10) addr:0x0214c768
-CheckDma0SourceOrLoopForever kind:function(arm,size=0x70) addr:0x0214c778
-CheckDmaTimingConflictOrLoopForever kind:function(arm,size=0xb4) addr:0x0214c7e8
+MIi_CheckDma0SourceAddress kind:function(arm,size=0x70) addr:0x0214c778
+MIi_CheckAnotherAutoDMA kind:function(arm,size=0xb4) addr:0x0214c7e8
 MI_StopDma kind:function(arm,size=0x84) addr:0x0214c89c
 MI_WaitDma kind:function(arm,size=0x70) addr:0x0214c920
 MI_DmaCopy32Async kind:function(arm,size=0xa8) addr:0x0214c990
@@ -7514,11 +7514,11 @@ MI_DmaFill32Async kind:function(arm,size=0xd8) addr:0x0214ca38
 MI_DmaCopy16 kind:function(arm,size=0x78) addr:0x0214cb10
 MI_DmaCopy32 kind:function(arm,size=0x7c) addr:0x0214cb88
 MI_DmaFill32 kind:function(arm,size=0x90) addr:0x0214cc04
-GxFifoSendWordsDone kind:function(arm,size=0x40) addr:0x0214cc94
-GxFifoSendWords kind:function(arm,size=0xc0) addr:0x0214ccd4
-GxFifoSendWordsInPiecesDone kind:function(arm,size=0x74) addr:0x0214cd94
-GxFifoSendNextPiece kind:function(arm,size=0xc8) addr:0x0214ce08
-GxFifoSendWordsInPieces kind:function(arm,size=0x114) addr:0x0214ced0
+MIi_DMAFastCallback kind:function(arm,size=0x40) addr:0x0214cc94
+MI_SendGXCommandAsyncFast kind:function(arm,size=0xc0) addr:0x0214ccd4
+MIi_DMACallback kind:function(arm,size=0x74) addr:0x0214cd94
+MIi_FIFOCallback kind:function(arm,size=0xc8) addr:0x0214ce08
+MI_SendGXCommandAsync kind:function(arm,size=0x114) addr:0x0214ced0
 MemFillHalfwords kind:function(arm,size=0x18) addr:0x0214cfe4
 MemCopyHalfwords kind:function(arm,size=0x1c) addr:0x0214cffc
 MemFillWords kind:function(arm,size=0x14) addr:0x0214d018
@@ -12146,7 +12146,7 @@ gClearImageLoadBase kind:bss addr:0x021802d8
 gTextureLoadBankMask kind:bss addr:0x021802dc
 gTextureLoadSecondBase kind:bss addr:0x021802e0
 gTextureLoadFirstSize kind:bss addr:0x021802e4
-data_02180308 kind:bss addr:0x021802e8
+MIi_GXDmaParams kind:bss addr:0x021802e8
 data_02180328 kind:bss addr:0x02180308
 data_0218032c kind:bss addr:0x0218030c
 gClockInitialized kind:bss addr:0x0218038c

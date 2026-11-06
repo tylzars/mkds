@@ -4,8 +4,8 @@
 #include "ITCM/code_01fff95c.h"
 
 void StartCardDmaCopy(u32 a, const void *b, void *c, u32 d) {
-    CheckDmaTimingConflictOrLoopForever(a, -1);
-    CheckDma0SourceOrLoopForever(a, b, d, 0x1000000);
+    MIi_CheckAnotherAutoDMA(a, -1);
+    MIi_CheckDma0SourceAddress(a, b, d, 0x1000000);
     if (d == 0) {
         return;
     }
