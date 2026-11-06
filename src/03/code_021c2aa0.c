@@ -11,7 +11,7 @@ void func_ov003_021c2aa0(void) {
         switch (func_ov003_021c20c0()) {
             case 0:
                 func_ov003_021c2120(0, 1);
-                func_ov003_021c212c(func_ov003_021c3078);
+                func_ov003_021c212c(SetupJb2Menu);
                 break;
             case 1:
                 func_ov003_021c2120(1, 1);

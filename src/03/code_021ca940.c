@@ -219,7 +219,7 @@ void func_ov003_021cacfc(void) {
         func_ov003_021d272c(0, 0x14);
         if (gAp->mUnk_1d == 2) {
             func_ov003_021c2120(0, 0);
-            func_ov003_021c212c(func_ov003_021c3078);
+            func_ov003_021c212c(SetupJb2Menu);
         } else {
             switch (gApSelectedIndex[0]) {
                 case 0:

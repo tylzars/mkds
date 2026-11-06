@@ -179,7 +179,7 @@ void func_ov003_021c312c(void) {
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da1a8 == 0) {
             func_ov003_021c2120(0, 1);
-            func_ov003_021c212c(func_ov003_021c3dd4);
+            func_ov003_021c212c(SetupOptMenu);
             return;
         }
         func_ov003_021c2120(0, 1);

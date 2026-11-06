@@ -162,7 +162,7 @@ void func_ov003_021cbc50(void) {
             func_ov003_021c212c(CreateJb3List);
             return;
         }
-        func_ov003_021c212c(func_ov003_021c3078);
+        func_ov003_021c212c(SetupJb2Menu);
     }
     return;
 }

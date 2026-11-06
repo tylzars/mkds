@@ -13,32 +13,32 @@ typedef struct Unk021d6fd4 {
     /* 00 */ u8 mUnk_00[0x16];
 } Unk021d6fd4;
 
-extern Unk021d299c data_ov003_021d6318[];
+extern Unk021d299c gJb2MenuRects[];
 extern u16 data_ov003_021d6328[];
 extern u16 data_ov003_021d632a[];
 extern u16 data_ov003_021d632c[];
 extern u16 data_ov003_021d632e[];
 extern Unk021d6fd0 data_ov003_021d6fd0;
-extern Unk021d6fd4 data_ov003_021d6fd4;
-extern u8 data_ov003_021d6fec[];
-extern u8 data_ov003_021d7004[];
-extern u8 data_ov003_021d701c[];
-extern u8 data_ov003_021da1a0;
-extern void *data_ov003_021da1a4;
+extern Unk021d6fd4 gYbBgStep11NclName;
+extern u8 gJbBgStep1NcgName2[];
+extern u8 gJbBgStep1NclName2[];
+extern u8 gJb2MenuNscName[];
+extern u8 gJb2MenuSelectedIndex;
+extern void *gYbBgStep11Ncl;
 
 // Not decompiled yet.
 void func_ov003_021c2c94(void);
-void func_ov003_021c2cc8(s32 a);
+void MoveJb2MenuSelection(s32 a);
 void func_ov003_021c2d18(void);
 void func_ov003_021c2d9c(void);
 void func_ov003_021c2dd4(void);
 void func_ov003_021c2df4(void);
 void func_ov003_021c2e3c(void);
-void func_ov003_021c2e40(void);
-void func_ov003_021c2f2c(void);
+void UpdateJb2MenuInput(void);
+void UpdateJb2Menu(void);
 void func_ov003_021c2f44(void);
 void func_ov003_021c2f68(void);
 void func_ov003_021c2f98(void);
-void func_ov003_021c2fd4(void);
-void func_ov003_021c3078(void);
+void LoadJb2MenuFilesAndSetBgCnt(void);
+void SetupJb2Menu(void);
 // Not decompiled yet.

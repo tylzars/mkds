@@ -186,7 +186,7 @@ void func_ov003_021c4ae0(void) {
         }
         if (data_ov003_021da1d4 == 0) {
             func_ov003_021d272c(1, 1);
-            func_ov003_021c212c(func_ov003_021c3dd4);
+            func_ov003_021c212c(SetupOptMenu);
             return;
         }
         func_ov003_021c212c(func_ov003_021c4054);
