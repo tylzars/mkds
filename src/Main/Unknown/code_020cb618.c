@@ -134,7 +134,7 @@ void func_020cb6c0(void) {
                 break;
             case 12:
             case 24:
-                func_0211e958(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
+                InitSelectCupM(func_020cb99c(), p->mUnk_108, p->mUnk_50c);
                 break;
             case 29:
                 func_020cc744();
@@ -212,7 +212,7 @@ void func_020cb618(void) {
                 break;
             case 12:
             case 24:
-                func_0211e924();
+                ReleaseSelectCupM();
                 break;
         }
     }

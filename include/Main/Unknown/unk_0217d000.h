@@ -417,30 +417,29 @@ typedef struct Unk0217d374 {
     /* 10 */ s16 mUnk_10;
 } Unk0217d374;
 
-// Object behind data_0217d378, allocated by func_0211e958.
-typedef struct Unk0217d378 {
-    /* 00 */ struct Unk02021dc8 *mUnk_00;
-    /* 04 */ Unk0201ea30 *mUnk_04;
-    /* 08 */ struct Unk0201ea30 *mUnk_08;
-    /* 0c */ struct Unk02021dc8 *mUnk_0c;
-    /* 10 */ Unk0201ea30 *mUnk_10;
-    /* 14 */ struct Unk0201ea30 *mUnk_14;
-    /* 18 */ Unk02124b1c *mUnk_18;
-    /* 1c */ Unk02124b1c *mUnk_1c;
+typedef struct SelectCupM {
+    /* 00 */ struct Unk02021dc8 *mMainNcer;
+    /* 04 */ Unk0201ea30 *mMainBncl;
+    /* 08 */ struct Unk0201ea30 *mMainBnll;
+    /* 0c */ struct Unk02021dc8 *mSubNcer;
+    /* 10 */ Unk0201ea30 *mSubBncl;
+    /* 14 */ struct Unk0201ea30 *mSubBnll;
+    /* 18 */ Unk02124b1c *mMainTable;
+    /* 1c */ Unk02124b1c *mSubTable;
     /* 20 */ void *mUnk_20;
-    /* 24 */ struct Bmg *mUnk_24;
+    /* 24 */ struct Bmg *mCommonMessages;
     /* 28 */ void *mHeap;
-    /* 2c */ s32 mUnk_2c;
-    /* 30 */ s32 mUnk_30;
-    /* 34 */ s32 mUnk_34;
-    /* 38 */ BOOL mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-    /* 40 */ s32 mUnk_40;
+    /* 2c */ s32 mState;
+    /* 30 */ s32 mNextState;
+    /* 34 */ s32 mStateFrames;
+    /* 38 */ BOOL mCupPicturePending;
+    /* 3c */ s32 mBg0Offset;
+    /* 40 */ s32 mBg3Offset;
     /* 44 */ u8 mUnk_44[0x04];
     /* 48 */ void *mUnk_48;
     /* 4c */ void *mUnk_4c;
     /* 50 */ s32 mUnk_50;
-} Unk0217d378;
+} SelectCupM;
 
 // Halfword objects behind data_0217d34c member 0x4.
 typedef struct Unk0217d34c_04 {
@@ -738,7 +737,7 @@ extern SelectRaceRule *gSelectRaceRule;
 extern Unk0217d36c *data_0217d36c;
 extern Unk0217d370 *data_0217d370;
 extern Unk0217d374 *data_0217d374;
-extern Unk0217d378 *data_0217d378;
+extern SelectCupM *gSelectCupM;
 extern Unk0217d37c *data_0217d37c;
 extern Unk0217d380 *data_0217d380;
 extern char gKartFilterString[0x64];

@@ -84,11 +84,11 @@ void func_ov001_02185658(void) {
         func_ov001_0218568c(0x1e);
         GXS_SetGraphicsMode(0);
     }
-    func_0211e4e8();
+    WriteSelectCupMBgOffsets();
 }
 
 void func_ov001_0218562c(void) {
-    switch (func_0211e51c()) {
+    switch (AdvanceSelectCupM()) {
         case 1:
             func_020ccc74(25, 0x1f);
             break;

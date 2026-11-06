@@ -25,7 +25,7 @@ void func_020ce6ec(void) {
             GXS_SetGraphicsMode((u32) 0);
         }
     }
-    func_0211e4e8();
+    WriteSelectCupMBgOffsets();
 }
 
 #pragma thumb off

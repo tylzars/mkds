@@ -34,7 +34,7 @@
 
 #pragma thumb on
 
-void func_0211efec(void) {
+void LocateAndQueueSelectCupM(void) {
     Ncgr *a;
     Nclr *b;
     Ncgr *c;
@@ -60,35 +60,35 @@ void func_0211efec(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
-    LocateNcgr(&e, FindSceneFile(data_0216dfb0));
-    LocateNclr(&g, FindSceneFile(data_0216dfac));
-    LocateNscr(&f, FindSceneFile(data_0216df98));
-    LocateNcgr(&h, FindSceneFile(data_0216dfb0));
-    LocateNclr(&j, FindSceneFile(data_0216dfac));
-    LocateNscr(&i, FindSceneFile(data_0216df98));
-    data_0217d378->mUnk_20 = HeapAlloc(data_0217d378->mHeap, 0x800);
-    data_0217d378->mUnk_04 = FindSceneFile(data_0216df94);
-    data_0217d378->mUnk_08 = FindSceneFile(data_0216dfa4);
-    LocateNcgr2(&a, FindSceneFile(data_0216df9c));
-    LocateNcer(&data_0217d378->mUnk_00, FindSceneFile(data_0216dfa0));
-    LocateNclr(&b, FindSceneFile(data_0216dfa8));
-    data_0217d378->mUnk_10 = FindSceneFile(data_0216df94);
-    data_0217d378->mUnk_14 = FindSceneFile(data_0216dfa4);
-    LocateNcgr2(&c, FindSceneFile(data_0216df9c));
-    LocateNcer(&data_0217d378->mUnk_0c, FindSceneFile(data_0216dfa0));
-    LocateNclr(&d, FindSceneFile(data_0216dfa8));
+    LocateNcgr(&e, FindSceneFile(gSelectCupMBNcgrName3));
+    LocateNclr(&g, FindSceneFile(gSelectCupMBNclrName3));
+    LocateNscr(&f, FindSceneFile(gSelectCupMNscrName3));
+    LocateNcgr(&h, FindSceneFile(gSelectCupMBNcgrName3));
+    LocateNclr(&j, FindSceneFile(gSelectCupMBNclrName3));
+    LocateNscr(&i, FindSceneFile(gSelectCupMNscrName3));
+    gSelectCupM->mUnk_20 = HeapAlloc(gSelectCupM->mHeap, 0x800);
+    gSelectCupM->mMainBncl = FindSceneFile(gSelectCupMBnclName3);
+    gSelectCupM->mMainBnll = FindSceneFile(gSelectCupMBnllName3);
+    LocateNcgr2(&a, FindSceneFile(gSelectCupMNcgrName3));
+    LocateNcer(&gSelectCupM->mMainNcer, FindSceneFile(gSelectCupMNcerName3));
+    LocateNclr(&b, FindSceneFile(gSelectCupMONclrName3));
+    gSelectCupM->mSubBncl = FindSceneFile(gSelectCupMBnclName3);
+    gSelectCupM->mSubBnll = FindSceneFile(gSelectCupMBnllName3);
+    LocateNcgr2(&c, FindSceneFile(gSelectCupMNcgrName3));
+    LocateNcer(&gSelectCupM->mSubNcer, FindSceneFile(gSelectCupMNcerName3));
+    LocateNclr(&d, FindSceneFile(gSelectCupMONclrName3));
     v = b->mData;
     if (!(func_020cccb4() == 0x17 || func_020cccb4() == 0xb)) {
         CallQueueAppend(4, 0, e->mData, e->mDataSize);
         CallQueueAppend(0xf, 0, g->mData, 0x140);
         CallQueueAppend(8, 0, f->mData, f->mDataSize);
-        CallQueueAppend(8, 0x800, data_0217d378->mUnk_20, 0x800);
+        CallQueueAppend(8, 0x800, gSelectCupM->mUnk_20, 0x800);
     }
     if (!(func_020cccb4() == 0x19 || func_020cccb4() == 0xd)) {
         CallQueueAppend(0x17, 0, h->mData, h->mDataSize);
         CallQueueAppend(0x1f, 0, j->mData, 0x140);
         CallQueueAppend(0x1b, 0, i->mData, i->mDataSize);
-        CallQueueAppend(0x1b, 0x800, data_0217d378->mUnk_20, 0x800);
+        CallQueueAppend(0x1b, 0x800, gSelectCupM->mUnk_20, 0x800);
     }
     CallQueueAppend(0x13, 0, a->mData, a->mDataSize);
     CallQueueAppend(0xe, 0, b->mData, 0x1a0);
@@ -97,7 +97,7 @@ void func_0211efec(void) {
     CallQueueAppend(0x1e, 0, d->mData, d->mDataSize);
 }
 
-void func_0211ed80(void) {
+void InitSelectCupMCellsAndRequestCupPicture(void) {
     s32 i;
     u16 c;
     u16 d;
@@ -110,135 +110,135 @@ void func_0211ed80(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
-    c = data_0217d378->mUnk_04->mUnk_06;
-    d = data_0217d378->mUnk_10->mUnk_06;
+    c = gSelectCupM->mMainBncl->mUnk_06;
+    d = gSelectCupM->mSubBncl->mUnk_06;
     v = FALSE;
     for (i = 0; i < 8; i++) {
-        data_0217d378->mUnk_18[data_0215cf1c[i]].mUnk_00 = v;
-        data_0217d378->mUnk_1c[data_0215cf1c[i]].mUnk_00 = v;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_00 = v;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_00 = v;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_18[data_0215cefc[i]].mUnk_00 = 0;
-        data_0217d378->mUnk_1c[data_0215cefc[i]].mUnk_00 = 0;
+        gSelectCupM->mMainTable[data_0215cefc[i]].mUnk_00 = 0;
+        gSelectCupM->mSubTable[data_0215cefc[i]].mUnk_00 = 0;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_18[data_0215cf04[i]].mUnk_00 = 0;
-        data_0217d378->mUnk_18[c + data_0215cf0c[i]].mUnk_00 = 1;
-        data_0217d378->mUnk_1c[data_0215cf04[i]].mUnk_00 = 0;
-        data_0217d378->mUnk_1c[d + data_0215cf0c[i]].mUnk_00 = 1;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_00 = 0;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_00 = 1;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_00 = 0;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_00 = 1;
     }
-    data_0217d378->mUnk_18[20].mUnk_00 = 0;
-    data_0217d378->mUnk_18[19].mUnk_00 = 1;
-    data_0217d378->mUnk_1c[20].mUnk_00 = 0;
-    data_0217d378->mUnk_1c[19].mUnk_00 = 1;
-    func_0211de00(data_0215cf2c[func_0202968c()], data_0217d378->mUnk_00, data_0217d378->mUnk_04, 0x13, 0);
-    func_0211de00(data_0215cf2c[func_0202968c()], data_0217d378->mUnk_0c, data_0217d378->mUnk_10, 0x13, 1);
+    gSelectCupM->mMainTable[20].mUnk_00 = 0;
+    gSelectCupM->mMainTable[19].mUnk_00 = 1;
+    gSelectCupM->mSubTable[20].mUnk_00 = 0;
+    gSelectCupM->mSubTable[19].mUnk_00 = 1;
+    func_0211de00(data_0215cf2c[func_0202968c()], gSelectCupM->mMainNcer, gSelectCupM->mMainBncl, 0x13, 0);
+    func_0211de00(data_0215cf2c[func_0202968c()], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl, 0x13, 1);
     n = FALSE;
     for (j = 0; j < 4; j++) {
-        func_0212426c(n, data_0215cf0c[j], data_0217d378->mUnk_08,
-                      GetBmgEntry(data_0217d378->mUnk_24, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
-                      data_0217d378->mUnk_04, data_0217d378->mUnk_18);
-        func_0212426c(1, data_0215cf0c[j], data_0217d378->mUnk_14,
-                      GetBmgEntry(data_0217d378->mUnk_24, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
-                      data_0217d378->mUnk_10, data_0217d378->mUnk_1c);
+        func_0212426c(n, data_0215cf0c[j], gSelectCupM->mMainBnll,
+                      GetBmgEntry(gSelectCupM->mCommonMessages, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
+                      gSelectCupM->mMainBncl, gSelectCupM->mMainTable);
+        func_0212426c(1, data_0215cf0c[j], gSelectCupM->mSubBnll,
+                      GetBmgEntry(gSelectCupM->mCommonMessages, data_0215cf4c[data_0215cf2c[func_0202968c()]][j]),
+                      gSelectCupM->mSubBncl, gSelectCupM->mSubTable);
     }
     a = data_0215cf04[0];
-    data_0217d378->mUnk_18[a].mUnk_00 = 1;
+    gSelectCupM->mMainTable[a].mUnk_00 = 1;
     j = data_0215cf0c[0];
-    func_02124100(j, 0xe, data_0217d378->mUnk_08, data_0217d378->mUnk_18, data_0217d378->mUnk_04);
-    data_0217d378->mUnk_1c[a].mUnk_00 = 1;
-    func_02124100(j, 0xe, data_0217d378->mUnk_14, data_0217d378->mUnk_1c, data_0217d378->mUnk_10);
+    func_02124100(j, 0xe, gSelectCupM->mMainBnll, gSelectCupM->mMainTable, gSelectCupM->mMainBncl);
+    gSelectCupM->mSubTable[a].mUnk_00 = 1;
+    func_02124100(j, 0xe, gSelectCupM->mSubBnll, gSelectCupM->mSubTable, gSelectCupM->mSubBncl);
     for (m = 1; m < 4; m++) {
-        data_0217d378->mUnk_18[data_0215cf04[m]].mUnk_00 = 0;
-        func_02124100(data_0215cf0c[m], 0xf, data_0217d378->mUnk_08, data_0217d378->mUnk_18, data_0217d378->mUnk_04);
-        data_0217d378->mUnk_1c[data_0215cf04[m]].mUnk_00 = 0;
-        func_02124100(data_0215cf0c[m], 0xf, data_0217d378->mUnk_14, data_0217d378->mUnk_1c, data_0217d378->mUnk_10);
+        gSelectCupM->mMainTable[data_0215cf04[m]].mUnk_00 = 0;
+        func_02124100(data_0215cf0c[m], 0xf, gSelectCupM->mMainBnll, gSelectCupM->mMainTable, gSelectCupM->mMainBncl);
+        gSelectCupM->mSubTable[data_0215cf04[m]].mUnk_00 = 0;
+        func_02124100(data_0215cf0c[m], 0xf, gSelectCupM->mSubBnll, gSelectCupM->mSubTable, gSelectCupM->mSubBncl);
     }
     TrySetCupPictureIndexAndQueueLoads(data_0215cf8c[data_0215cf2c[func_0202968c()]][0]);
-    data_0217d378->mUnk_38 = TRUE;
+    gSelectCupM->mCupPicturePending = TRUE;
 }
 
-void func_0211ec54(void) {
+void StartSelectCupMState0(void) {
     s32 i;
     u16 c;
     u16 d;
 
-    data_0217d378->mUnk_30 = 0;
-    data_0217d378->mUnk_34 = 0;
+    gSelectCupM->mNextState = 0;
+    gSelectCupM->mStateFrames = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
-    c = data_0217d378->mUnk_04->mUnk_06;
-    d = data_0217d378->mUnk_10->mUnk_06;
-    data_0217d378->mUnk_3c = 0;
-    data_0217d378->mUnk_18[20].mUnk_06 = 0;
-    data_0217d378->mUnk_18[19].mUnk_06 = 0;
-    data_0217d378->mUnk_18[2].mUnk_06 = 0;
-    data_0217d378->mUnk_18[1].mUnk_06 = 0;
-    data_0217d378->mUnk_18[0].mUnk_06 = 0;
+    c = gSelectCupM->mMainBncl->mUnk_06;
+    d = gSelectCupM->mSubBncl->mUnk_06;
+    gSelectCupM->mBg0Offset = 0;
+    gSelectCupM->mMainTable[20].mUnk_06 = 0;
+    gSelectCupM->mMainTable[19].mUnk_06 = 0;
+    gSelectCupM->mMainTable[2].mUnk_06 = 0;
+    gSelectCupM->mMainTable[1].mUnk_06 = 0;
+    gSelectCupM->mMainTable[0].mUnk_06 = 0;
     for (i = 0; i < 8; i++) {
-        data_0217d378->mUnk_18[data_0215cf1c[i]].mUnk_06 = 0;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_06 = 0;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_18[data_0215cf04[i]].mUnk_06 = 0;
-        data_0217d378->mUnk_18[c + data_0215cf0c[i]].mUnk_06 = 0;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_06 = 0;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_06 = 0;
     }
-    data_0217d378->mUnk_40 = ~0xbf;
-    data_0217d378->mUnk_1c[20].mUnk_06 = ~0xbf;
-    data_0217d378->mUnk_1c[19].mUnk_06 = ~0xbf;
-    data_0217d378->mUnk_1c[2].mUnk_06 = ~0xbf;
-    data_0217d378->mUnk_1c[1].mUnk_06 = ~0xbf;
-    data_0217d378->mUnk_1c[0].mUnk_06 = ~0xbf;
+    gSelectCupM->mBg3Offset = ~0xbf;
+    gSelectCupM->mSubTable[20].mUnk_06 = ~0xbf;
+    gSelectCupM->mSubTable[19].mUnk_06 = ~0xbf;
+    gSelectCupM->mSubTable[2].mUnk_06 = ~0xbf;
+    gSelectCupM->mSubTable[1].mUnk_06 = ~0xbf;
+    gSelectCupM->mSubTable[0].mUnk_06 = ~0xbf;
     for (i = 0; i < 8; i++) {
-        data_0217d378->mUnk_1c[data_0215cf1c[i]].mUnk_06 = ~0xbf;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_06 = ~0xbf;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_1c[data_0215cf04[i]].mUnk_06 = ~0xbf;
-        data_0217d378->mUnk_1c[d + data_0215cf0c[i]].mUnk_06 = ~0xbf;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_06 = ~0xbf;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_06 = ~0xbf;
     }
 }
 
-void func_0211eb28(void) {
+void StartSelectCupMState1(void) {
     s32 i;
     u16 c;
     u16 d;
 
-    data_0217d378->mUnk_30 = 1;
-    data_0217d378->mUnk_34 = 0;
+    gSelectCupM->mNextState = 1;
+    gSelectCupM->mStateFrames = 0;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
-    c = data_0217d378->mUnk_04->mUnk_06;
-    d = data_0217d378->mUnk_10->mUnk_06;
-    data_0217d378->mUnk_3c = 0xc0;
-    data_0217d378->mUnk_18[20].mUnk_06 = 0xc0;
-    data_0217d378->mUnk_18[19].mUnk_06 = 0xc0;
-    data_0217d378->mUnk_18[2].mUnk_06 = 0xc0;
-    data_0217d378->mUnk_18[1].mUnk_06 = 0xc0;
-    data_0217d378->mUnk_18[0].mUnk_06 = 0xc0;
+    c = gSelectCupM->mMainBncl->mUnk_06;
+    d = gSelectCupM->mSubBncl->mUnk_06;
+    gSelectCupM->mBg0Offset = 0xc0;
+    gSelectCupM->mMainTable[20].mUnk_06 = 0xc0;
+    gSelectCupM->mMainTable[19].mUnk_06 = 0xc0;
+    gSelectCupM->mMainTable[2].mUnk_06 = 0xc0;
+    gSelectCupM->mMainTable[1].mUnk_06 = 0xc0;
+    gSelectCupM->mMainTable[0].mUnk_06 = 0xc0;
     for (i = 0; i < 8; i++) {
-        data_0217d378->mUnk_18[data_0215cf1c[i]].mUnk_06 = 0xc0;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_06 = 0xc0;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_18[data_0215cf04[i]].mUnk_06 = 0xc0;
-        data_0217d378->mUnk_18[c + data_0215cf0c[i]].mUnk_06 = 0xc0;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_06 = 0xc0;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_06 = 0xc0;
     }
-    data_0217d378->mUnk_40 = ~0x1f;
-    data_0217d378->mUnk_1c[20].mUnk_06 = ~0x1f;
-    data_0217d378->mUnk_1c[19].mUnk_06 = ~0x1f;
-    data_0217d378->mUnk_1c[2].mUnk_06 = ~0x1f;
-    data_0217d378->mUnk_1c[1].mUnk_06 = ~0x1f;
-    data_0217d378->mUnk_1c[0].mUnk_06 = ~0x1f;
+    gSelectCupM->mBg3Offset = ~0x1f;
+    gSelectCupM->mSubTable[20].mUnk_06 = ~0x1f;
+    gSelectCupM->mSubTable[19].mUnk_06 = ~0x1f;
+    gSelectCupM->mSubTable[2].mUnk_06 = ~0x1f;
+    gSelectCupM->mSubTable[1].mUnk_06 = ~0x1f;
+    gSelectCupM->mSubTable[0].mUnk_06 = ~0x1f;
     for (i = 0; i < 8; i++) {
-        data_0217d378->mUnk_1c[data_0215cf1c[i]].mUnk_06 = ~0x1f;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_06 = ~0x1f;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_1c[data_0215cf04[i]].mUnk_06 = ~0x1f;
-        data_0217d378->mUnk_1c[d + data_0215cf0c[i]].mUnk_06 = ~0x1f;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_06 = ~0x1f;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_06 = ~0x1f;
     }
 }
 
-void func_0211e958(void *a, void *b, void *c) {
+void InitSelectCupM(void *a, void *b, void *c) {
     void *p;
     s32 i;
     s32 m;
@@ -248,162 +248,162 @@ void func_0211e958(void *a, void *b, void *c) {
     reg_G2_BG0CNT = (reg_G2_BG0CNT & 0x43) | 0x9004;
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x8300;
     p = CreateFrmHeapFromMaxFree(a);
-    data_0217d378 = HeapAlloc(p, 0x54);
-    data_0217d378->mHeap = p;
-    data_0217d378->mUnk_38 = FALSE;
-    data_0217d378->mUnk_48 = b;
-    data_0217d378->mUnk_4c = c;
-    data_0217d378->mUnk_50 = 0;
+    gSelectCupM = HeapAlloc(p, 0x54);
+    gSelectCupM->mHeap = p;
+    gSelectCupM->mCupPicturePending = FALSE;
+    gSelectCupM->mUnk_48 = b;
+    gSelectCupM->mUnk_4c = c;
+    gSelectCupM->mUnk_50 = 0;
     if (func_020cccb4() == 0x19 || func_020cccb4() == 0xd) {
-        data_0217d378->mUnk_2c = 1;
+        gSelectCupM->mState = 1;
     } else {
-        data_0217d378->mUnk_2c = 0;
+        gSelectCupM->mState = 0;
     }
-    func_0211efec();
-    data_0217d378->mUnk_24 = func_02047a28(data_0216e09c);
+    LocateAndQueueSelectCupM();
+    gSelectCupM->mCommonMessages = func_02047a28(data_0216e09c);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02124ed0(data_0217d378->mHeap, data_0217d378->mUnk_04, data_0217d378->mUnk_08, &data_0217d378->mUnk_18);
-        func_02124ed0(data_0217d378->mHeap, data_0217d378->mUnk_10, data_0217d378->mUnk_14, &data_0217d378->mUnk_1c);
+        func_02124ed0(gSelectCupM->mHeap, gSelectCupM->mMainBncl, gSelectCupM->mMainBnll, &gSelectCupM->mMainTable);
+        func_02124ed0(gSelectCupM->mHeap, gSelectCupM->mSubBncl, gSelectCupM->mSubBnll, &gSelectCupM->mSubTable);
         m = 0x8000;
         for (i = 0; i < 4; i++) {
-            m -= func_021243ac(data_0217d378->mHeap, data_0215cf0c[i], data_0217d378->mUnk_08, data_0215cef4[i],
-                               data_0215cf14[i], data_0215cf04[i], data_0217d378->mUnk_00, data_0217d378->mUnk_04,
-                               data_0217d378->mUnk_18, m);
+            m -= func_021243ac(gSelectCupM->mHeap, data_0215cf0c[i], gSelectCupM->mMainBnll, data_0215cef4[i],
+                               data_0215cf14[i], data_0215cf04[i], gSelectCupM->mMainNcer, gSelectCupM->mMainBncl,
+                               gSelectCupM->mMainTable, m);
         }
         i = GX_GetSizeOfSubOBJ();
         for (m = 0; m < 4; m++) {
-            i -= func_021243ac(data_0217d378->mHeap, data_0215cf0c[m], data_0217d378->mUnk_14, data_0215cef4[m],
-                               data_0215cf14[m], data_0215cf04[m], data_0217d378->mUnk_0c, data_0217d378->mUnk_10,
-                               data_0217d378->mUnk_1c, i);
+            i -= func_021243ac(gSelectCupM->mHeap, data_0215cf0c[m], gSelectCupM->mSubBnll, data_0215cef4[m],
+                               data_0215cf14[m], data_0215cf04[m], gSelectCupM->mSubNcer, gSelectCupM->mSubBncl,
+                               gSelectCupM->mSubTable, i);
         }
-        func_0211de40(data_0217d378->mHeap);
+        func_0211de40(gSelectCupM->mHeap);
     } else {
-        func_0211f4b0(data_0217d378->mHeap, data_0217d378->mUnk_4c);
+        func_0211f4b0(gSelectCupM->mHeap, gSelectCupM->mUnk_4c);
         func_0211f380();
     }
-    func_0211ed80();
+    InitSelectCupMCellsAndRequestCupPicture();
     if (func_020cccb4() == 0x19 || func_020cccb4() == 0xd) {
-        func_0211eb28();
+        StartSelectCupMState1();
     } else {
-        func_0211ec54();
+        StartSelectCupMState0();
     }
-    FrmHeapShrinkInParent(data_0217d378->mHeap);
+    FrmHeapShrinkInParent(gSelectCupM->mHeap);
 }
 
-void func_0211e924(void) {
+void ReleaseSelectCupM(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_0211de34();
     } else {
         func_0211f498();
     }
-    HeapDestroy(data_0217d378->mHeap);
-    data_0217d378 = NULL;
+    HeapDestroy(gSelectCupM->mHeap);
+    gSelectCupM = NULL;
 }
 
-void func_0211e7c0(void) {
+void AdvanceSelectCupMState0(void) {
     s32 i;
     s16 a;
     s16 b;
     u16 c;
     u16 d;
 
-    data_0217d378->mUnk_34++;
+    gSelectCupM->mStateFrames++;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
-    a = func_020ae4c0(1, 0, 0xc0, data_0217d378->mUnk_34, 0xa);
-    b = func_020ae4c0(1, ~0xbf, ~0x1f, data_0217d378->mUnk_34, 0xa);
-    c = data_0217d378->mUnk_04->mUnk_06;
-    data_0217d378->mUnk_3c = a;
-    data_0217d378->mUnk_18[20].mUnk_06 = a;
-    data_0217d378->mUnk_18[19].mUnk_06 = a;
-    data_0217d378->mUnk_18[2].mUnk_06 = a;
-    data_0217d378->mUnk_18[1].mUnk_06 = a;
-    data_0217d378->mUnk_18[0].mUnk_06 = a;
+    a = func_020ae4c0(1, 0, 0xc0, gSelectCupM->mStateFrames, 0xa);
+    b = func_020ae4c0(1, ~0xbf, ~0x1f, gSelectCupM->mStateFrames, 0xa);
+    c = gSelectCupM->mMainBncl->mUnk_06;
+    gSelectCupM->mBg0Offset = a;
+    gSelectCupM->mMainTable[20].mUnk_06 = a;
+    gSelectCupM->mMainTable[19].mUnk_06 = a;
+    gSelectCupM->mMainTable[2].mUnk_06 = a;
+    gSelectCupM->mMainTable[1].mUnk_06 = a;
+    gSelectCupM->mMainTable[0].mUnk_06 = a;
     for (i = 0; i < 8; i++) {
-        data_0217d378->mUnk_18[data_0215cf1c[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_06 = a;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_18[data_0215cf04[i]].mUnk_06 = a;
-        data_0217d378->mUnk_18[c + data_0215cf0c[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_06 = a;
     }
-    d = data_0217d378->mUnk_10->mUnk_06;
-    data_0217d378->mUnk_40 = b;
-    data_0217d378->mUnk_1c[20].mUnk_06 = b;
-    data_0217d378->mUnk_1c[19].mUnk_06 = b;
-    data_0217d378->mUnk_1c[2].mUnk_06 = b;
-    data_0217d378->mUnk_1c[1].mUnk_06 = b;
-    data_0217d378->mUnk_1c[0].mUnk_06 = b;
+    d = gSelectCupM->mSubBncl->mUnk_06;
+    gSelectCupM->mBg3Offset = b;
+    gSelectCupM->mSubTable[20].mUnk_06 = b;
+    gSelectCupM->mSubTable[19].mUnk_06 = b;
+    gSelectCupM->mSubTable[2].mUnk_06 = b;
+    gSelectCupM->mSubTable[1].mUnk_06 = b;
+    gSelectCupM->mSubTable[0].mUnk_06 = b;
     for (i = 0; i < 8; i++) {
-        data_0217d378->mUnk_1c[data_0215cf1c[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_06 = b;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_1c[data_0215cf04[i]].mUnk_06 = b;
-        data_0217d378->mUnk_1c[d + data_0215cf0c[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_06 = b;
     }
 }
 
-void func_0211e65c(void) {
+void AdvanceSelectCupMState1(void) {
     s32 i;
     s16 a;
     s16 b;
     u16 c;
     u16 d;
 
-    data_0217d378->mUnk_34++;
+    gSelectCupM->mStateFrames++;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         return;
     }
-    a = func_020ae4c0(1, 0xc0, 0, data_0217d378->mUnk_34, 0xa);
-    b = func_020ae4c0(1, ~0x1f, ~0xbf, data_0217d378->mUnk_34, 0xa);
-    c = data_0217d378->mUnk_04->mUnk_06;
-    data_0217d378->mUnk_3c = a;
-    data_0217d378->mUnk_18[20].mUnk_06 = a;
-    data_0217d378->mUnk_18[19].mUnk_06 = a;
-    data_0217d378->mUnk_18[2].mUnk_06 = a;
-    data_0217d378->mUnk_18[1].mUnk_06 = a;
-    data_0217d378->mUnk_18[0].mUnk_06 = a;
+    a = func_020ae4c0(1, 0xc0, 0, gSelectCupM->mStateFrames, 0xa);
+    b = func_020ae4c0(1, ~0x1f, ~0xbf, gSelectCupM->mStateFrames, 0xa);
+    c = gSelectCupM->mMainBncl->mUnk_06;
+    gSelectCupM->mBg0Offset = a;
+    gSelectCupM->mMainTable[20].mUnk_06 = a;
+    gSelectCupM->mMainTable[19].mUnk_06 = a;
+    gSelectCupM->mMainTable[2].mUnk_06 = a;
+    gSelectCupM->mMainTable[1].mUnk_06 = a;
+    gSelectCupM->mMainTable[0].mUnk_06 = a;
     for (i = 0; i < 8; i++) {
-        data_0217d378->mUnk_18[data_0215cf1c[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[data_0215cf1c[i]].mUnk_06 = a;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_18[data_0215cf04[i]].mUnk_06 = a;
-        data_0217d378->mUnk_18[c + data_0215cf0c[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[data_0215cf04[i]].mUnk_06 = a;
+        gSelectCupM->mMainTable[c + data_0215cf0c[i]].mUnk_06 = a;
     }
-    d = data_0217d378->mUnk_10->mUnk_06;
-    data_0217d378->mUnk_40 = b;
-    data_0217d378->mUnk_1c[20].mUnk_06 = b;
-    data_0217d378->mUnk_1c[19].mUnk_06 = b;
-    data_0217d378->mUnk_1c[2].mUnk_06 = b;
-    data_0217d378->mUnk_1c[1].mUnk_06 = b;
-    data_0217d378->mUnk_1c[0].mUnk_06 = b;
+    d = gSelectCupM->mSubBncl->mUnk_06;
+    gSelectCupM->mBg3Offset = b;
+    gSelectCupM->mSubTable[20].mUnk_06 = b;
+    gSelectCupM->mSubTable[19].mUnk_06 = b;
+    gSelectCupM->mSubTable[2].mUnk_06 = b;
+    gSelectCupM->mSubTable[1].mUnk_06 = b;
+    gSelectCupM->mSubTable[0].mUnk_06 = b;
     for (i = 0; i < 8; i++) {
-        data_0217d378->mUnk_1c[data_0215cf1c[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[data_0215cf1c[i]].mUnk_06 = b;
     }
     for (i = 0; i < 4; i++) {
-        data_0217d378->mUnk_1c[data_0215cf04[i]].mUnk_06 = b;
-        data_0217d378->mUnk_1c[d + data_0215cf0c[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[data_0215cf04[i]].mUnk_06 = b;
+        gSelectCupM->mSubTable[d + data_0215cf0c[i]].mUnk_06 = b;
     }
 }
 
-s32 func_0211e51c(void) {
+s32 AdvanceSelectCupM(void) {
     s32 i;
     u16 *p;
     s32 n;
     s32 a;
     s32 b;
 
-    data_0217d378->mUnk_2c = data_0217d378->mUnk_30;
-    switch (data_0217d378->mUnk_2c) {
+    gSelectCupM->mState = gSelectCupM->mNextState;
+    switch (gSelectCupM->mState) {
         case 0:
-            func_0211e7c0();
+            AdvanceSelectCupMState0();
             break;
         case 1:
-            func_0211e65c();
+            AdvanceSelectCupMState1();
             break;
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        if (data_0217d378->mUnk_38 != FALSE && func_020d0ec4() != FALSE) {
+        if (gSelectCupM->mCupPicturePending != FALSE && func_020d0ec4() != FALSE) {
             p = GetCupPictureNscrData();
             CallQueueAppend(0xf, 0, GetCupPictureNclrData(), 0xe0);
             CallQueueAppend(4, 0x20, GetCupPictureNcgrData(), 0xdc0);
@@ -420,27 +420,27 @@ s32 func_0211e51c(void) {
                 n = ((i + 8) << 5) + 0x16;
                 CallQueueAppend(a, n << 1, p + n, b);
             }
-            data_0217d378->mUnk_38 = FALSE;
+            gSelectCupM->mCupPicturePending = FALSE;
         }
-        func_02124c30(data_0217d378->mUnk_04, data_0217d378->mUnk_00, data_0217d378->mUnk_08, data_0217d378->mUnk_48,
-                      data_0217d378->mUnk_18);
-        func_02124c30(data_0217d378->mUnk_10, data_0217d378->mUnk_0c, data_0217d378->mUnk_14, data_0217d378->mUnk_4c,
-                      data_0217d378->mUnk_1c);
+        func_02124c30(gSelectCupM->mMainBncl, gSelectCupM->mMainNcer, gSelectCupM->mMainBnll, gSelectCupM->mUnk_48,
+                      gSelectCupM->mMainTable);
+        func_02124c30(gSelectCupM->mSubBncl, gSelectCupM->mSubNcer, gSelectCupM->mSubBnll, gSelectCupM->mUnk_4c,
+                      gSelectCupM->mSubTable);
     } else {
         func_0211f39c();
     }
-    if (data_0217d378->mUnk_2c == 0 && data_0217d378->mUnk_34 > 0xa) {
+    if (gSelectCupM->mState == 0 && gSelectCupM->mStateFrames > 0xa) {
         return 1;
     }
-    if (data_0217d378->mUnk_2c == 1 && data_0217d378->mUnk_34 > 0xa) {
+    if (gSelectCupM->mState == 1 && gSelectCupM->mStateFrames > 0xa) {
         return 2;
     }
     return 0;
 }
 
-void func_0211e4e8(void) {
-    reg_G2_BG0OFS = (-data_0217d378->mUnk_3c << 16) & 0x1ff0000;
-    reg_G2S_DB_BG3OFS = (-data_0217d378->mUnk_40 << 16) & 0x1ff0000;
+void WriteSelectCupMBgOffsets(void) {
+    reg_G2_BG0OFS = (-gSelectCupM->mBg0Offset << 16) & 0x1ff0000;
+    reg_G2S_DB_BG3OFS = (-gSelectCupM->mBg3Offset << 16) & 0x1ff0000;
 }
 
 #pragma thumb off

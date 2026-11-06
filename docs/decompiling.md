@@ -308,7 +308,7 @@ Reused variables and own locals:
 - A local the original reuses for a second, separate value (a counter reused for the next loop, a pointer reused
   for a second search) takes its register ahead of the other named locals and compiler temporaries. If the original
   gives a value its register ahead of such a temporary, write it with an earlier variable that is dead there:
-  second loop `for (j...)` -> `for (i...)` (func_ov000_021854f8), `b = data[0]` -> `j = data[0]` (func_0211ed80).
+  second loop `for (j...)` -> `for (i...)` (func_ov000_021854f8), `b = data[0]` -> `j = data[0]` (InitSelectCupMCellsAndRequestCupPicture).
 - The reverse: a 0/1 or index local that gets the first register in a crowded loop, or a spill slot that sits low,
   was its own named local: `u16 l;` with `l = 0; ... l = 1; v2[0] = v4[l];` (func_020800f4), a string pointer in its
   own `const u8 *y` instead of reusing `x` (DWCi_Http_Thread). Try moving its declaration relative to the loop's
