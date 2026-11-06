@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u16 func_02116870(void);
+u16 GetRecordVSEraseFirstRecordIndex(void);

@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-void func_0211553c(void);
-void func_02115204(void);
-void func_02115000(void);
-void func_02114dfc(void);
-void func_02114cb0(void);
+void AdvanceRecordVSEraseState3(void);
+void AdvanceRecordVSEraseState4(void);
+void AdvanceRecordVSEraseState5(void);
+void AdvanceRecordVSEraseState6(void);
+void AdvanceRecordVSEraseState7(void);

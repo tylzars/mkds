@@ -754,11 +754,11 @@ void func_02111684(void) {
     LoadNclrData(&v2.mNclr, v1);
     v1 = FindSceneFile(gRecordVSM03NscrName);
     LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(data_0216d3f4);
+    v1 = FindSceneFile(gRecordVSSBNcgrName);
     LoadNcgrData2(&v2.mNcgr, v1);
-    v1 = FindSceneFile(data_0216d400);
+    v1 = FindSceneFile(gRecordVSSEraseNscrName);
     LoadNscrData(&v2.mNscr, v1);
-    v1 = FindSceneFile(data_0216d404);
+    v1 = FindSceneFile(gRecordVSSBNclrName);
     LoadNclrData(&v2.mNclr, v1);
     func_02117388();
     func_0211e074();
@@ -848,7 +848,7 @@ void func_021114cc(void) {
                 func_02111ab4();
                 break;
             case 4:
-                func_021145b4();
+                RegisterRecordVSEraseCallbacks();
                 break;
         }
         data_0217d344->mUnk_10 = data_0217d344->mUnk_08;

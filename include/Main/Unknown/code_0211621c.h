@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-u32 func_0211621c(void);
-u32 func_02116230(void);
+u32 DecrementRecordVSErasePageIndex(void);
+u32 IncrementRecordVSErasePageIndex(void);

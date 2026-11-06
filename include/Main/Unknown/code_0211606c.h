@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0211606c(void);
+u32 IsRecordVSEraseIndexChangeRunning(void);

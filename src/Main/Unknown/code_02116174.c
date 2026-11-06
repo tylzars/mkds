@@ -19,7 +19,7 @@
 
 #pragma thumb on
 
-void func_02116888(void) {
+void LocateAndQueueRecordVSErase(void) {
     void *v2;
     Nclr *v3;
     Ncgr *v4;
@@ -29,43 +29,43 @@ void func_02116888(void) {
     v5 = NULL;
     v6[0] = NULL;
     v2 = FindSceneFile(gRecordVSMNcgrName);
-    LocateNcgr2((Ncgr **) data_0217d350, v2);
+    LocateNcgr2((Ncgr **) gRecordVSErase, v2);
     v2 = FindSceneFile(gRecordVSMNcerName);
-    LocateNcer(&data_0217d350->mUnk_04, v2);
+    LocateNcer(&gRecordVSErase->mRecordVSMNcer, v2);
     v2 = FindSceneFile(gRecordVSMBnclName);
-    data_0217d350->mUnk_08 = v2;
+    gRecordVSErase->mRecordVSMBncl = v2;
     v2 = FindSceneFile(gRecordVSMBnllName);
-    data_0217d350->mUnk_0c = v2;
+    gRecordVSErase->mRecordVSMBnll = v2;
     v2 = FindSceneFile(gRecordVSMTransientBnclName);
-    data_0217d350->mUnk_18 = v2;
+    gRecordVSErase->mRecordVSMTransientBncl = v2;
     v2 = FindSceneFile(gRecordVSMTransientBnllName);
-    data_0217d350->mUnk_1c = v2;
+    gRecordVSErase->mRecordVSMTransientBnll = v2;
     v2 = FindSceneFile(gRecordVSSNcgrName);
-    LocateNcgr2(&data_0217d350->mUnk_28, v2);
+    LocateNcgr2(&gRecordVSErase->mRecordVSSNcgr, v2);
     v2 = FindSceneFile(gRecordVSSNcerName);
-    LocateNcer(&data_0217d350->mUnk_2c, v2);
-    v2 = FindSceneFile(data_0216d3f0);
-    data_0217d350->mUnk_30 = v2;
-    v2 = FindSceneFile(data_0216d3fc);
-    data_0217d350->mUnk_34 = v2;
-    v2 = FindSceneFile(data_0216d3f8);
-    data_0217d350->mUnk_38 = v2;
-    v2 = HeapAlloc(data_0217d350->mUnk_50, (u32) (((u32) 0x00000800u)));
-    data_0217d350->mUnk_4c = v2;
-    v2 = FindSceneFile(data_0216d3f4);
+    LocateNcer(&gRecordVSErase->mRecordVSSNcer, v2);
+    v2 = FindSceneFile(gRecordVSSEraseBnclName);
+    gRecordVSErase->mRecordVSSEraseBncl = v2;
+    v2 = FindSceneFile(gRecordVSSEraseBnblName);
+    gRecordVSErase->mRecordVSSEraseBnbl = v2;
+    v2 = FindSceneFile(gRecordVSSEraseBnllName);
+    gRecordVSErase->mRecordVSSEraseBnll = v2;
+    v2 = HeapAlloc(gRecordVSErase->mHeap, (u32) (((u32) 0x00000800u)));
+    gRecordVSErase->mUnk_4c = v2;
+    v2 = FindSceneFile(gRecordVSSBNcgrName);
     LocateNcgr(&v4, v2);
-    v2 = FindSceneFile(data_0216d400);
+    v2 = FindSceneFile(gRecordVSSEraseNscrName);
     LocateNscr(v6, v2);
-    v2 = FindSceneFile(data_0216d404);
+    v2 = FindSceneFile(gRecordVSSBNclrName);
     LocateNclr(&v5, v2);
     v2 = FindSceneFile(gRecordVSM02NscrName);
-    LocateNscr(&data_0217d350->mUnk_10, v2);
+    LocateNscr(&gRecordVSErase->mRecordVSM02Nscr, v2);
     v2 = FindSceneFile(gRecordVSM03NscrName);
-    LocateNscr(&data_0217d350->mUnk_20, v2);
+    LocateNscr(&gRecordVSErase->mRecordVSM03Nscr, v2);
     v3 = func_02077f00();
     CallQueueAppend((u32) 0x17, (u32) 0, v4->mData, v4->mDataSize);
     CallQueueAppend((u32) 0x1b, (u32) 0, v6[0]->mData, v6[0]->mDataSize);
-    CallQueueAppend((u32) 0x1b, (u32) (((u32) 0x00000800u)), data_0217d350->mUnk_4c, (u32) (((u32) 0x00000800u)));
+    CallQueueAppend((u32) 0x1b, (u32) (((u32) 0x00000800u)), gRecordVSErase->mUnk_4c, (u32) (((u32) 0x00000800u)));
     CallQueueAppend((u32) 0x1f, (u32) 0, v5->mData, (u32) 0x40);
     CallQueueAppend((u32) 0xe, (u32) 0x40, v3->mData, (u32) 0x20);
 }
@@ -74,18 +74,18 @@ void func_02116888(void) {
 
 #pragma thumb on
 
-u16 func_02116870(void) {
-    return data_0217d350->mUnk_76 * 5;
+u16 GetRecordVSEraseFirstRecordIndex(void) {
+    return gRecordVSErase->mPageIndex * 5;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-u32 func_02116844(int a) {
+u32 IsRecordVSEraseRowFilled(int a) {
     int v1;
     int v2;
-    v1 = func_02116870();
+    v1 = GetRecordVSEraseFirstRecordIndex();
     v2 = func_021143b4();
     if (v2 > v1 + a) {
         return 1;
@@ -102,43 +102,43 @@ void func_02116624(void) {
     s32 n;
     s32 v;
 
-    n = data_0217d350->mUnk_30->mUnk_06;
-    v = func_02116870();
+    n = gRecordVSErase->mRecordVSSEraseBncl->mUnk_06;
+    v = GetRecordVSEraseFirstRecordIndex();
     for (i = 0; i < 5; i++) {
-        data_0217d350->mUnk_3c[data_0215c4e8[i]].mUnk_00 = 0;
-        data_0217d350->mUnk_3c[data_0215c4f4[i]].mUnk_00 = 0;
-        data_0217d350->mUnk_3c[data_0215c500[i]].mUnk_00 = 0;
-        data_0217d350->mUnk_3c[data_0215c50c[i]].mUnk_00 = 0;
-        data_0217d350->mUnk_3c[data_0215c518[i]].mUnk_00 = 0;
-        data_0217d350->mUnk_3c[data_0215c524[i]].mUnk_00 = 0;
-        data_0217d350->mUnk_3c[n + data_0215c4b8[i]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_00 = 0;
+        gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mUnk_00 = 0;
     }
     for (i = 0; i < 5; i++) {
-        if (func_02116844((s16) i)) {
-            if (data_0217d350->mUnk_74 == i) {
+        if (IsRecordVSEraseRowFilled((s16) i)) {
+            if (gRecordVSErase->mIndex == i) {
                 if (func_02114398(v)) {
-                    data_0217d350->mUnk_3c[data_0215c50c[i]].mUnk_00 = 1;
-                    func_02124100(data_0215c4b8[i], 0xe, data_0217d350->mUnk_38, data_0217d350->mUnk_3c,
-                                  data_0217d350->mUnk_30);
+                    gRecordVSErase->mRecordVSSEraseTable[data_0215c50c[i]].mUnk_00 = 1;
+                    func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
+                                  gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 } else {
-                    data_0217d350->mUnk_3c[data_0215c4f4[i]].mUnk_00 = 1;
-                    func_02124100(data_0215c4b8[i], 0xe, data_0217d350->mUnk_38, data_0217d350->mUnk_3c,
-                                  data_0217d350->mUnk_30);
+                    gRecordVSErase->mRecordVSSEraseTable[data_0215c4f4[i]].mUnk_00 = 1;
+                    func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
+                                  gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 }
             } else {
                 if (func_02114398(v)) {
-                    data_0217d350->mUnk_3c[data_0215c500[i]].mUnk_00 = 1;
-                    func_02124100(data_0215c4b8[i], 0xe, data_0217d350->mUnk_38, data_0217d350->mUnk_3c,
-                                  data_0217d350->mUnk_30);
+                    gRecordVSErase->mRecordVSSEraseTable[data_0215c500[i]].mUnk_00 = 1;
+                    func_02124100(data_0215c4b8[i], 0xe, gRecordVSErase->mRecordVSSEraseBnll,
+                                  gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 } else {
-                    data_0217d350->mUnk_3c[data_0215c4e8[i]].mUnk_00 = 1;
-                    func_02124100(data_0215c4b8[i], 0xf, data_0217d350->mUnk_38, data_0217d350->mUnk_3c,
-                                  data_0217d350->mUnk_30);
+                    gRecordVSErase->mRecordVSSEraseTable[data_0215c4e8[i]].mUnk_00 = 1;
+                    func_02124100(data_0215c4b8[i], 0xf, gRecordVSErase->mRecordVSSEraseBnll,
+                                  gRecordVSErase->mRecordVSSEraseTable, gRecordVSErase->mRecordVSSEraseBncl);
                 }
             }
-            data_0217d350->mUnk_3c[data_0215c518[i]].mUnk_00 = func_02114398(v) ? 0 : 1;
-            data_0217d350->mUnk_3c[data_0215c524[i]].mUnk_00 = func_02114398(v);
-            data_0217d350->mUnk_3c[n + data_0215c4b8[i]].mUnk_00 = 1;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c518[i]].mUnk_00 = func_02114398(v) ? 0 : 1;
+            gRecordVSErase->mRecordVSSEraseTable[data_0215c524[i]].mUnk_00 = func_02114398(v);
+            gRecordVSErase->mRecordVSSEraseTable[n + data_0215c4b8[i]].mUnk_00 = 1;
         }
         v++;
     }
@@ -154,24 +154,25 @@ void func_021162cc(void) {
     u8 buf3[0x14];
     Unk02116a4c a;
 
-    v = func_02116870();
-    if (func_02114158(v + data_0217d350->mUnk_80, buf3)) {
-        data_0217d350->mUnk_40 = 1;
-        CallQueueAppend(9, 0, data_0217d350->mUnk_20->mData, data_0217d350->mUnk_20->mDataSize);
+    v = GetRecordVSEraseFirstRecordIndex();
+    if (func_02114158(v + gRecordVSErase->mShownIndex, buf3)) {
+        gRecordVSErase->mTransientDrawn = 1;
+        CallQueueAppend(9, 0, gRecordVSErase->mRecordVSM03Nscr->mData, gRecordVSErase->mRecordVSM03Nscr->mDataSize);
     } else {
-        data_0217d350->mUnk_40 = 0;
-        CallQueueAppend(9, 0, data_0217d350->mUnk_10->mData, data_0217d350->mUnk_10->mDataSize);
+        gRecordVSErase->mTransientDrawn = 0;
+        CallQueueAppend(9, 0, gRecordVSErase->mRecordVSM02Nscr->mData, gRecordVSErase->mRecordVSM02Nscr->mDataSize);
     }
-    switch (data_0217d350->mUnk_40) {
+    switch (gRecordVSErase->mTransientDrawn) {
         case 0:
-            func_02114298(v + data_0217d350->mUnk_80, buf, 0x20);
-            func_0212426c(0, 0, data_0217d350->mUnk_0c, buf, data_0217d350->mUnk_08, data_0217d350->mUnk_14);
-            t[1][0] = func_0211437c(v + data_0217d350->mUnk_80);
-            t[1][1] = func_02114360(v + data_0217d350->mUnk_80);
-            t[1][2] = func_02114344(v + data_0217d350->mUnk_80);
-            t[2][0] = func_02114328(v + data_0217d350->mUnk_80);
-            t[2][1] = func_0211430c(v + data_0217d350->mUnk_80);
-            t[2][2] = func_021142f0(v + data_0217d350->mUnk_80);
+            func_02114298(v + gRecordVSErase->mShownIndex, buf, 0x20);
+            func_0212426c(0, 0, gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+                          gRecordVSErase->mRecordVSMTable);
+            t[1][0] = func_0211437c(v + gRecordVSErase->mShownIndex);
+            t[1][1] = func_02114360(v + gRecordVSErase->mShownIndex);
+            t[1][2] = func_02114344(v + gRecordVSErase->mShownIndex);
+            t[2][0] = func_02114328(v + gRecordVSErase->mShownIndex);
+            t[2][1] = func_0211430c(v + gRecordVSErase->mShownIndex);
+            t[2][2] = func_021142f0(v + gRecordVSErase->mShownIndex);
             for (i = 1; i < 3; i++) {
                 for (j = 0; j < 3; j++) {
                     if (t[i][j] > 0x270f) {
@@ -180,42 +181,45 @@ void func_021162cc(void) {
                 }
             }
             func_02124fac(t[1][0], buf);
-            func_02124248(0, data_0215c530[1][0], data_0217d350->mUnk_0c, buf, data_0217d350->mUnk_08,
-                          data_0217d350->mUnk_14, 6);
+            func_02124248(0, data_0215c530[1][0], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+                          gRecordVSErase->mRecordVSMTable, 6);
             func_02124fac(t[1][1], buf);
-            func_02124248(0, data_0215c530[1][1], data_0217d350->mUnk_0c, buf, data_0217d350->mUnk_08,
-                          data_0217d350->mUnk_14, 6);
+            func_02124248(0, data_0215c530[1][1], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+                          gRecordVSErase->mRecordVSMTable, 6);
             func_02124fac(t[1][2], buf);
-            func_02124248(0, data_0215c530[1][2], data_0217d350->mUnk_0c, buf, data_0217d350->mUnk_08,
-                          data_0217d350->mUnk_14, 6);
+            func_02124248(0, data_0215c530[1][2], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+                          gRecordVSErase->mRecordVSMTable, 6);
             func_02124fac(t[2][0], buf);
-            func_02124248(0, data_0215c530[2][0], data_0217d350->mUnk_0c, buf, data_0217d350->mUnk_08,
-                          data_0217d350->mUnk_14, 6);
+            func_02124248(0, data_0215c530[2][0], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+                          gRecordVSErase->mRecordVSMTable, 6);
             func_02124fac(t[2][1], buf);
-            func_02124248(0, data_0215c530[2][1], data_0217d350->mUnk_0c, buf, data_0217d350->mUnk_08,
-                          data_0217d350->mUnk_14, 6);
+            func_02124248(0, data_0215c530[2][1], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+                          gRecordVSErase->mRecordVSMTable, 6);
             func_02124fac(t[2][2], buf);
-            func_02124248(0, data_0215c530[2][2], data_0217d350->mUnk_0c, buf, data_0217d350->mUnk_08,
-                          data_0217d350->mUnk_14, 6);
-            func_021142d4(v + data_0217d350->mUnk_80, &a);
+            func_02124248(0, data_0215c530[2][2], gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+                          gRecordVSErase->mRecordVSMTable, 6);
+            func_021142d4(v + gRecordVSErase->mShownIndex, &a);
             func_02116a4c(&a, buf);
-            func_02124224(0, 0xc, data_0217d350->mUnk_0c, buf, data_0217d350->mUnk_08, data_0217d350->mUnk_14, 6);
-            func_021141c8(v + data_0217d350->mUnk_80, data_0217d350->mUnk_88, data_0217d350->mUnk_8c);
-            CallQueueAppend(0x13, func_0212497c(3, data_0217d350->mUnk_04, data_0217d350->mUnk_08) << 5,
-                            data_0217d350->mUnk_8c, 0x200);
+            func_02124224(0, 0xc, gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
+                          gRecordVSErase->mRecordVSMTable, 6);
+            func_021141c8(v + gRecordVSErase->mShownIndex, gRecordVSErase->mUnk_88, gRecordVSErase->mUnk_8c);
+            CallQueueAppend(0x13, func_0212497c(3, gRecordVSErase->mRecordVSMNcer, gRecordVSErase->mRecordVSMBncl) << 5,
+                            gRecordVSErase->mUnk_8c, 0x200);
             break;
         case 1:
-            func_02114298(v + data_0217d350->mUnk_80, buf, 0x20);
-            func_0212426c(0, 0, data_0217d350->mUnk_1c, buf, data_0217d350->mUnk_18, data_0217d350->mUnk_24);
+            func_02114298(v + gRecordVSErase->mShownIndex, buf, 0x20);
+            func_0212426c(0, 0, gRecordVSErase->mRecordVSMTransientBnll, buf, gRecordVSErase->mRecordVSMTransientBncl,
+                          gRecordVSErase->mRecordVSMTransientTable);
             z = FALSE;
             for (i = 0; i < 12; i++) {
                 func_02124fac(buf3[i] - 0x30, buf);
-                func_0212426c(z, data_0215c584[i], data_0217d350->mUnk_1c, buf, data_0217d350->mUnk_18,
-                              data_0217d350->mUnk_24);
+                func_0212426c(z, data_0215c584[i], gRecordVSErase->mRecordVSMTransientBnll, buf,
+                              gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMTransientTable);
             }
-            func_021141c8(v + data_0217d350->mUnk_80, data_0217d350->mUnk_88, data_0217d350->mUnk_8c);
-            CallQueueAppend(0x13, func_0212497c(1, data_0217d350->mUnk_04, data_0217d350->mUnk_18) << 5,
-                            data_0217d350->mUnk_8c, 0x200);
+            func_021141c8(v + gRecordVSErase->mShownIndex, gRecordVSErase->mUnk_88, gRecordVSErase->mUnk_8c);
+            CallQueueAppend(
+                0x13, func_0212497c(1, gRecordVSErase->mRecordVSMNcer, gRecordVSErase->mRecordVSMTransientBncl) << 5,
+                gRecordVSErase->mUnk_8c, 0x200);
             break;
     }
 }
@@ -225,17 +229,17 @@ void func_02116244(void) {
     s32 i;
     u8 buf[0x20];
 
-    v = func_02116870();
+    v = GetRecordVSEraseFirstRecordIndex();
     for (i = 0; i < 5; i++) {
         if (func_021143b4() > v + i) {
             func_02114298(v + i, buf, 0x20);
-            func_0212426c(1, data_0215c4b8[i], data_0217d350->mUnk_38, buf, data_0217d350->mUnk_30,
-                          data_0217d350->mUnk_3c);
+            func_0212426c(1, data_0215c4b8[i], gRecordVSErase->mRecordVSSEraseBnll, buf,
+                          gRecordVSErase->mRecordVSSEraseBncl, gRecordVSErase->mRecordVSSEraseTable);
         }
     }
-    if (func_021143b4() <= v + data_0217d350->mUnk_74) {
-        data_0217d350->mUnk_74 = func_021143b4() % 5 - 1;
-        data_0217d350->mUnk_80 = data_0217d350->mUnk_74;
+    if (func_021143b4() <= v + gRecordVSErase->mIndex) {
+        gRecordVSErase->mIndex = func_021143b4() % 5 - 1;
+        gRecordVSErase->mShownIndex = gRecordVSErase->mIndex;
     }
     func_021162cc();
 }
@@ -243,10 +247,10 @@ void func_02116244(void) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_02116230(void) {
+u32 IncrementRecordVSErasePageIndex(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217d350;
+    value0 = (u32) &gRecordVSErase;
     value1 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = 118u;
     value0 = (u32) * (const s16 *) ((value1) + (value0));
@@ -258,10 +262,10 @@ u32 func_02116230(void) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_0211621c(void) {
+u32 DecrementRecordVSErasePageIndex(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217d350;
+    value0 = (u32) &gRecordVSErase;
     value1 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = 118u;
     value0 = (u32) * (const s16 *) ((value1) + (value0));
@@ -274,39 +278,39 @@ u32 func_0211621c(void) {
 
 #pragma thumb on
 
-void func_021161d0(void) {
+void IncrementRecordVSEraseIndex(void) {
     int v1;
     int v2;
-    v2 = (data_0217d350->mUnk_74 + 1) * 0x10000 >> 0x10;
-    v1 = func_02116844(v2);
+    v2 = (gRecordVSErase->mIndex + 1) * 0x10000 >> 0x10;
+    v1 = IsRecordVSEraseRowFilled(v2);
     if ((v1 == 0) || (5 <= v2)) {
         v2 = 0;
     }
-    if (data_0217d350->mUnk_74 != v2) {
+    if (gRecordVSErase->mIndex != v2) {
         NNS_SndArcPlayerStartSeqArc((const void *) (((u32) ((u8 *) &data_0217d068))), (u32) 0, (u32) 0);
     }
-    data_0217d350->mUnk_74 = v2;
+    gRecordVSErase->mIndex = v2;
 }
 
-void func_02116174(void) {
+void DecrementRecordVSEraseIndex(void) {
     int v1;
     u32 v2;
     int v3;
     int v4;
-    v4 = (data_0217d350->mUnk_74 + -1) * 0x10000 >> 0x10;
+    v4 = (gRecordVSErase->mIndex + -1) * 0x10000 >> 0x10;
     if (v4 < 0) {
         v4 = 4;
-        v1 = func_02116844(4);
+        v1 = IsRecordVSEraseRowFilled(4);
         if (v1 == 0) {
             v2 = func_021143b4();
             v3 = (int) (v2) % 5;
             v4 = (v3 + -1) * 0x10000 >> 0x10;
         }
     }
-    if (data_0217d350->mUnk_74 != v4) {
+    if (gRecordVSErase->mIndex != v4) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, (u32) 0, (u32) 0);
     }
-    data_0217d350->mUnk_74 = v4;
+    gRecordVSErase->mIndex = v4;
 }
 
 #pragma thumb off
