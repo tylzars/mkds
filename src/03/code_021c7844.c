@@ -25,7 +25,7 @@
 #include "03/code_021bf098.h"
 #include "03/code_021c209c.h"
 
-void func_ov003_021c7a0c(void) {
+void PrintJb4Error(void) {
     s32 a;
     s32 b;
     s32 c;
@@ -35,7 +35,7 @@ void func_ov003_021c7a0c(void) {
     u16 g;
     u16 h[8];
     func_ov003_021c20dc(NULL, &b);
-    a = *(s32 *) data_ov003_021da200;
+    a = *(s32 *) gJb4ErrorCode;
     if (a >= -0x4e83) {
         c = 0x0;
     } else if (a >= -0x4e84) {
@@ -117,7 +117,7 @@ void func_ov003_021c7a0c(void) {
     }
     d = func_ov003_021d2288(0, data_ov003_021d6408[func_ov003_021c20d0()]);
     e = func_ov003_021c2530(data_ov003_021da19c, c);
-    swprintf(h, 8, data_ov003_021d73b0, -*(s32 *) data_ov003_021da200);
+    swprintf(h, 8, gDecimalFormat, -*(s32 *) gJb4ErrorCode);
     f = data_ov003_021d641a[func_ov003_021c20d0() * 2];
     g = data_ov003_021d6418[func_ov003_021c20d0() * 2];
     func_ov003_021d2094(d, g, f, 2, 0xa, h, 0);
@@ -146,18 +146,18 @@ void func_ov003_021c79b4(void) {
 void func_ov003_021c7990(void) {
     if (func_ov003_021bf334() != -2) {
         func_ov003_021bf2e0();
-        func_ov003_021c212c(func_ov003_021c7978);
+        func_ov003_021c212c(UpdateJb4Error);
     }
 }
 
-void func_ov003_021c7978(void) {
-    func_ov003_021c795c();
+void UpdateJb4Error(void) {
+    UpdateJb4ErrorInput();
     func_ov003_021c7958();
     func_ov003_021c7934();
     return;
 }
 
-void func_ov003_021c795c(void) {
+void UpdateJb4ErrorInput(void) {
     int v1;
     v1 = func_ov003_021d2b04(1);
     if (v1 != 0) {
@@ -222,7 +222,7 @@ void func_ov003_021c7850(void) {
     return;
 }
 
-void func_ov003_021c7844(u32 a) {
-    *(u32 *) &data_ov003_021da200 = a;
+void SetJb4ErrorCode(u32 a) {
+    *(u32 *) &gJb4ErrorCode = a;
     return;
 }

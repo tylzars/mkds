@@ -5,13 +5,13 @@
 #include "03/unk_021d7000.h"
 #include "code_0214b824.h"
 
-void func_ov003_021c7d14(void) {
-    func_ov003_021c7cb0();
-    func_ov003_021c7a0c();
+void SetupJb4Error(void) {
+    LoadJb4ErrorFileAndSetBgCnt();
+    PrintJb4Error();
     func_ov003_021c212c(func_ov003_021c79e4);
 }
 
-void func_ov003_021c7cb0(void) {
+void LoadJb4ErrorFileAndSetBgCnt(void) {
     void *v2 = &gJb4ErrorNscName;
     void *v3 = &GX_LoadBG2Scr;
     u32 v4 = func_ov003_021bf620(v2, v3);

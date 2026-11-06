@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_ov003_021c7cb0(void);
-void func_ov003_021c7d14(void);
+void LoadJb4ErrorFileAndSetBgCnt(void);
+void SetupJb4Error(void);

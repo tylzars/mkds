@@ -189,7 +189,7 @@ void func_ov003_021cb948(void) {
         func_ov003_021d272c(0, 0x15);
         if (data_ov003_021da248 == 0) {
             func_ov003_021c2120(0, 1);
-            func_ov003_021c212c(func_ov003_021c7d14);
+            func_ov003_021c212c(SetupJb4Error);
         } else {
             func_ov003_021c2120(0, 1);
             func_ov003_021c212c(func_ov003_021cbdbc);
@@ -206,7 +206,7 @@ void func_ov003_021cb8f0(u32 b) {
             data_ov003_021da248 = 1;
             func_ov003_021cdc10(0x11);
         } else {
-            func_ov003_021c7844(func_ov000_02188758());
+            SetJb4ErrorCode(func_ov000_02188758());
             func_ov003_021cdc10(0x12);
         }
         func_ov003_021c212c(func_ov003_021cb9e8);

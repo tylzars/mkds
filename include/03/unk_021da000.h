@@ -106,7 +106,7 @@ struct Edit;
 extern struct Edit *gEdit;
 struct EditAddr;
 extern struct EditAddr *gEditAddr;
-extern u8 data_ov003_021da200[];
+extern u8 gJb4ErrorCode[];
 extern u8 gJb3ListSelectedId[];
 extern u8 gJb3ListMode[];
 extern u8 gJb3ListSelectedRow[];
