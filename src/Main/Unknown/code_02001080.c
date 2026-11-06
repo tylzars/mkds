@@ -45,7 +45,7 @@ void func_020011f0(void) {
 void func_0200118c(void) {
     Unk021a99c0_18 *v1;
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() == 0) {
@@ -65,7 +65,7 @@ void func_02001144(void) {
 void func_020010e0(void) {
     Unk021a99c0_18 *v1;
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() == 0) {

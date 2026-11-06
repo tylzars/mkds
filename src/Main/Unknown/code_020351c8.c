@@ -102,7 +102,7 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
 void func_02035c14(void) {
     void *v1;
     v1 = GetBmgEntry(data_02174e68->mUnk_88, 3);
-    func_02125ee8((int) 0xfffffff4, 0);
+    SetTxtSystemBgOffsetRequested((int) 0xfffffff4, 0);
     func_02126638(v1, 0, 0, 0, 0, 0, 0);
 }
 
@@ -140,7 +140,7 @@ void func_02035b78(void) {
     MIi_CpuCopy16(y, w, 0x14);
     w[10] = 0;
     func_0212513c(w, e, h, 0x100);
-    func_02125ed0(0, -1);
+    SetTxtSystemSoundId(0, -1);
     func_02125fd4(h, f, g, 1, 0, 1, 1, 0);
 }
 
@@ -321,7 +321,7 @@ s32 func_0203551c(u16 *a) {
             } else if ((u16) (data_02175628[k].mUnk_00 & 2) != 0 || z != 0) {
                 e = GetBmgEntry(data_02174e68->mUnk_88, 0x54);
                 h = GetBmgEntry(data_02174e68->mUnk_84, 4);
-                func_02125ed0(0, 5);
+                SetTxtSystemSoundId(0, 5);
                 func_02126230(e, h);
                 func_02128310(1);
                 data_02174e68->mUnk_a0 = FALSE;
@@ -329,13 +329,13 @@ s32 func_0203551c(u16 *a) {
             }
             break;
         case 2:
-            if (func_02125f40() != 0 && func_02125f60() == 0) {
+            if (func_02125f40() != 0 && GetTxtSystemSelectedIndex() == 0) {
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 10);
                 NNS_SndArcSetCurrent(&data_0217d0a0);
             }
             if (func_02125f54() != 0) {
-                if (func_02125f60() == 0) {
+                if (GetTxtSystemSelectedIndex() == 0) {
                     ((Unk0202ddd8 *) func_0202ddd8())->mUnk_08_0 = 1;
                     func_020566a8((u8) data_02174e68->mUnk_80, func_0202ddd8());
                     data_02174e68->mUnk_8c = 3;
@@ -343,14 +343,14 @@ s32 func_0203551c(u16 *a) {
                     func_02128374();
                     data_02174e68->mUnk_8c = 1;
                 }
-                func_02125fc0();
+                RequestTxtSystemClose();
             }
             break;
         case 3:
             if (func_0203551c_inline_2() != 0) {
                 e = GetBmgEntry(p->mUnk_88, 0x10);
                 h = GetBmgEntry(data_02174e68->mUnk_84, 4);
-                func_02125ed0(0, 5);
+                SetTxtSystemSoundId(0, 5);
                 func_02126230(e, h);
                 data_02174e68->mUnk_a0 = FALSE;
                 data_02174e68->mUnk_8c = 4;
@@ -417,7 +417,7 @@ void func_020353a4(void) {
 
     e = GetBmgEntry(data_02174e64->mGhostMessages, 0x11);
     f = GetBmgEntry(data_02174e64->mCommonMessages, 4);
-    func_02125ed0(0, 5);
+    SetTxtSystemSoundId(0, 5);
     func_02126230(e, f);
     data_02174e64->mUnk_090 = 0;
     data_02174e64->mState = 15;
@@ -541,7 +541,7 @@ void func_020351c8(void) {
     v1 = GetBmgEntry(data_02174e64->mGhostMessages, 8);
     v2 = GetBmgEntry(data_02174e64->mCommonMessages, 0);
     v3 = GetBmgEntry(data_02174e64->mCommonMessages, 1);
-    func_02125ed0(0, (u32) 5);
+    SetTxtSystemSoundId(0, (u32) 5);
     func_02125fd4(v1, v2, v3, (u32) 0, (u32) 0, (u32) 1, (u32) 1, (u32) 0);
 }
 

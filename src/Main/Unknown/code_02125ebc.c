@@ -57,11 +57,11 @@
 
 #pragma thumb on
 
-void func_02127734(void) {
+void ClearTxtSystemCanvasInUse(void) {
     s32 i;
 
     for (i = 0; i < 7; i++) {
-        gTxtSystem->mUnk_2204[i] = 0;
+        gTxtSystem->mCanvasInUse[i] = 0;
     }
 }
 
@@ -88,61 +88,61 @@ s32 InitTxtSystem(void *b, Unk021274ec *c) {
     if (c->mUnk_0c != 0) {
         gTxtSystem->mUnk_4c = 1;
     }
-    gTxtSystem->mUnk_50 = 1;
-    func_0212745c();
+    gTxtSystem->mEnabled = 1;
+    InitTxtSystemDisplay();
     a = func_0212717c(a);
     for (i = 0; i < 7; i++) {
         if (!((i == 1 && gTxtSystem->mUnk_44 == 0) || (i == 2 && gTxtSystem->mUnk_48 == 0) ||
               (i == 3 && gTxtSystem->mUnk_4c == 0))) {
-            gTxtSystem->mUnk_21e8[i] = HeapAlloc(b, (data_0215d044[i][0] * data_0215d044[i][1]) << 5);
-            NNS_G2dCharCanvasInitForBG(&gTxtSystem->mUnk_2098[i], gTxtSystem->mUnk_21e8[i], data_0215d044[i][0],
+            gTxtSystem->mCharBuffers[i] = HeapAlloc(b, (data_0215d044[i][0] * data_0215d044[i][1]) << 5);
+            NNS_G2dCharCanvasInitForBG(&gTxtSystem->mCharCanvases[i], gTxtSystem->mCharBuffers[i], data_0215d044[i][0],
                                        data_0215d044[i][1], 4);
-            o = &gTxtSystem->mUnk_2098[i];
+            o = &gTxtSystem->mCharCanvases[i];
             o->mUnk_18(o, 0);
-            func_021274ec_inline(&gTxtSystem->mUnk_2178[i], &gTxtSystem->mUnk_2098[i], c->mUnk_00);
+            func_021274ec_inline(&gTxtSystem->mUnk_2178[i], &gTxtSystem->mCharCanvases[i], c->mUnk_00);
         }
     }
-    func_02127734();
-    gTxtSystem->mUnk_00 = 0;
-    gTxtSystem->mUnk_04 = 0;
-    gTxtSystem->mUnk_08 = 0;
-    gTxtSystem->mUnk_0c = 0;
+    ClearTxtSystemCanvasInUse();
+    gTxtSystem->mState = 0;
+    gTxtSystem->mNextState = 0;
+    gTxtSystem->mPrevState = 0;
+    gTxtSystem->mStateFrames = 0;
     gTxtSystem->mUnk_10 = 0;
-    gTxtSystem->mUnk_14 = 0;
-    gTxtSystem->mUnk_18[0] = 0;
-    gTxtSystem->mUnk_18[1] = 0;
-    gTxtSystem->mUnk_20[0] = 0;
-    gTxtSystem->mUnk_20[1] = 0;
-    gTxtSystem->mUnk_206c[0] = 0;
-    gTxtSystem->mUnk_206c[1] = 0;
-    gTxtSystem->mUnk_2074[0] = 0;
-    gTxtSystem->mUnk_2074[1] = 0;
-    gTxtSystem->mUnk_34 = 0;
-    gTxtSystem->mUnk_38 = 0;
+    gTxtSystem->mAnimFrameIndex = 0;
+    gTxtSystem->mAnimVisible[0] = 0;
+    gTxtSystem->mAnimVisible[1] = 0;
+    gTxtSystem->mAnimRequested[0] = 0;
+    gTxtSystem->mAnimRequested[1] = 0;
+    gTxtSystem->mBlendPlanesEnabled[0] = 0;
+    gTxtSystem->mBlendPlanesEnabled[1] = 0;
+    gTxtSystem->mBlendPlanesRequested[0] = 0;
+    gTxtSystem->mBlendPlanesRequested[1] = 0;
+    gTxtSystem->mOpenRequested = 0;
+    gTxtSystem->mCloseRequested = 0;
     gTxtSystem->mUnk_30 = 0;
     gTxtSystem->mUnk_224c = 0;
-    gTxtSystem->mUnk_2250 = 5;
-    gTxtSystem->mUnk_2254 = 0x10;
-    gTxtSystem->mUnk_2258 = 0x23;
+    gTxtSystem->mInputSoundId = 5;
+    gTxtSystem->mSecondInputSoundId = 0x10;
+    gTxtSystem->mOpenSoundId = 0x23;
     for (i = 0; i < 2; i++) {
-        gTxtSystem->mUnk_2054[i] = -192;
-        gTxtSystem->mUnk_205c[i] = 0;
-        gTxtSystem->mUnk_2064[i] = 0;
+        gTxtSystem->mBgOffset[i] = -192;
+        gTxtSystem->mBgOffsetAtOpen[i] = 0;
+        gTxtSystem->mBgOffsetRequested[i] = 0;
     }
-    gTxtSystem->mUnk_2080[0] = 0x19;
-    gTxtSystem->mUnk_2080[1] = 0x1a;
-    gTxtSystem->mUnk_207c = 0;
+    gTxtSystem->mBlendPlanes[0] = 0x19;
+    gTxtSystem->mBlendPlanes[1] = 0x1a;
+    gTxtSystem->mBrightness = 0;
     for (i = 0; i < 2; i++) {
-        gTxtSystem->mUnk_2088[i] = 6;
-        gTxtSystem->mUnk_2090[i] = 10;
+        gTxtSystem->mBlendEv1[i] = 6;
+        gTxtSystem->mBlendEv2[i] = 10;
     }
-    gTxtSystem->mUnk_2248 = 0;
+    gTxtSystem->mMode = 0;
     return a;
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_021274e0(void) {
+void ClearTxtSystemPointer(void) {
     u32 value0;
     u32 value1;
     value1 = 0u;
@@ -153,7 +153,7 @@ void func_021274e0(void) {
 
 #pragma thumb on
 
-void func_0212745c(void) {
+void InitTxtSystemDisplay(void) {
     u32 a;
     u32 b;
 
@@ -194,30 +194,30 @@ s32 func_0212717c(s32 d) {
         LocateNscr(&gTxtSystem->mBgNscrs[6], func_02047a28(data_0216e810));
         LocateNclr(&c, func_02047a28(data_0216e828));
     }
-    gTxtSystem->mUnk_2220[0] = 0;
+    gTxtSystem->mCanvasFileCharIndex[0] = 0;
     DC_FlushRange(a->mData, a->mDataSize);
     GX_LoadBG2Char(a->mData, 0, a->mDataSize);
     if (gTxtSystem->mUnk_48 != 0) {
         d = d - a->mDataSize;
-        gTxtSystem->mUnk_2220[2] = d >> 5;
+        gTxtSystem->mCanvasFileCharIndex[2] = d >> 5;
         DC_FlushRange(a->mData, a->mDataSize);
         GXS_LoadBG0Char(a->mData, d, a->mDataSize);
     }
     if (*(vu16 *) 0x27ffc40 != 2) {
         if (gTxtSystem->mUnk_44 != 0) {
-            gTxtSystem->mUnk_2220[1] = 0;
+            gTxtSystem->mCanvasFileCharIndex[1] = 0;
         }
-        gTxtSystem->mUnk_223c[0] = a->mDataSize >> 5;
+        gTxtSystem->mB01CharIndex[0] = a->mDataSize >> 5;
         DC_FlushRange(b->mData, b->mDataSize);
-        GX_LoadBG2Char(b->mData, gTxtSystem->mUnk_223c[0] << 5, b->mDataSize);
+        GX_LoadBG2Char(b->mData, gTxtSystem->mB01CharIndex[0] << 5, b->mDataSize);
         if (gTxtSystem->mUnk_4c != 0) {
-            gTxtSystem->mUnk_2220[3] = gTxtSystem->mUnk_2220[2];
+            gTxtSystem->mCanvasFileCharIndex[3] = gTxtSystem->mCanvasFileCharIndex[2];
         }
         d = d - b->mDataSize;
-        gTxtSystem->mUnk_2220[4] = d >> 5;
-        gTxtSystem->mUnk_2220[5] = d >> 5;
-        gTxtSystem->mUnk_2220[6] = d >> 5;
-        gTxtSystem->mUnk_223c[1] = d >> 5;
+        gTxtSystem->mCanvasFileCharIndex[4] = d >> 5;
+        gTxtSystem->mCanvasFileCharIndex[5] = d >> 5;
+        gTxtSystem->mCanvasFileCharIndex[6] = d >> 5;
+        gTxtSystem->mB01CharIndex[1] = d >> 5;
         DC_FlushRange(b->mData, b->mDataSize);
         GXS_LoadBG0Char(b->mData, d, b->mDataSize);
     }
@@ -227,35 +227,35 @@ s32 func_0212717c(s32 d) {
     gTxtSystem->mUnk_2244 = c->mData[0xee];
     gTxtSystem->mUnk_2246 = c->mData[0xdf];
     MemFillWordsByBlock_inline((void *) G2_GetBG2ScrPtr(), 0x1000);
-    func_0212717c_inline((void *) G2S_GetBG0ScrPtr(), gTxtSystem->mUnk_2220[4]);
+    func_0212717c_inline((void *) G2S_GetBG0ScrPtr(), gTxtSystem->mCanvasFileCharIndex[4]);
     return d;
 }
 
-void func_021270bc(void) {
+void RefreshTxtSystemAnim(void) {
     s32 r;
     s32 i;
     s32 c;
     s32 n;
     u16 *d;
 
-    n = gTxtSystem->mUnk_14 + 4;
+    n = gTxtSystem->mAnimFrameIndex + 4;
     for (i = 0; i < 2; i++) {
-        if (gTxtSystem->mUnk_18[i] != 0) {
-            d = gTxtSystem->mUnk_54;
+        if (gTxtSystem->mAnimVisible[i] != 0) {
+            d = gTxtSystem->mMainScreenBuffer;
             if (i == 1) {
-                d = gTxtSystem->mUnk_1054;
+                d = gTxtSystem->mSubScreenBuffer;
             }
             for (r = data_0215d080[n].mUnk_02; r <= data_0215d080[n].mUnk_03; r++) {
                 for (c = data_0215d080[n].mUnk_00; c <= data_0215d080[n].mUnk_01; c++) {
                     *(d + r * 32 + c) =
-                        gTxtSystem->mUnk_223c[i] + *((u16 *) gTxtSystem->mBgNscrs[n]->mData + r * 32 + c);
+                        gTxtSystem->mB01CharIndex[i] + *((u16 *) gTxtSystem->mBgNscrs[n]->mData + r * 32 + c);
                 }
             }
         }
     }
 }
 
-void func_02126f78(u32 *b) {
+void RefreshTxtSystemScreenBuffers(u32 *b) {
     u8 a[9] = {0, 1, 0, 1, 2, 3, 0, 0, 0};
     s32 i;
     s32 r;
@@ -263,22 +263,22 @@ void func_02126f78(u32 *b) {
     s32 k;
     u16 *d;
 
-    MemFillWordsByBlock_inline(gTxtSystem->mUnk_54, 0x1000);
-    func_0212717c_inline(&gTxtSystem->mUnk_1054, gTxtSystem->mUnk_2220[4]);
+    MemFillWordsByBlock_inline(gTxtSystem->mMainScreenBuffer, 0x1000);
+    func_0212717c_inline(&gTxtSystem->mSubScreenBuffer, gTxtSystem->mCanvasFileCharIndex[4]);
     for (i = 0; i < 9; i++) {
         if (*b != 0) {
             if ((u32) (i - 7) <= 1) {
-                func_021270bc();
+                RefreshTxtSystemAnim();
             } else if (i != 6) {
                 k = a[i];
-                d = gTxtSystem->mUnk_1054;
+                d = gTxtSystem->mSubScreenBuffer;
                 if ((u32) i <= 1) {
-                    d = gTxtSystem->mUnk_54;
+                    d = gTxtSystem->mMainScreenBuffer;
                 }
                 for (r = data_0215d080[k].mUnk_02; r <= data_0215d080[k].mUnk_03; r++) {
                     for (c = data_0215d080[k].mUnk_00; c <= data_0215d080[k].mUnk_01; c++) {
-                        *(d + r * 32 + c) =
-                            gTxtSystem->mUnk_2220[i] + *((u16 *) gTxtSystem->mBgNscrs[k]->mData + r * 32 + c);
+                        *(d + r * 32 + c) = gTxtSystem->mCanvasFileCharIndex[i] +
+                                            *((u16 *) gTxtSystem->mBgNscrs[k]->mData + r * 32 + c);
                     }
                 }
             }
@@ -293,20 +293,21 @@ void func_02126f78(u32 *b) {
 void func_02126ef8(void) {
     TxtSystem *v1;
     v1 = gTxtSystem;
-    if (0 < v1->mUnk_28) {
-        CallQueueAppend(0x1f, ((0xee - v1->mUnk_2c) * 2), &v1->mUnk_2246, 2);
-        CallQueueAppend((u32) 0x1f, (u32) ((0xfe - gTxtSystem->mUnk_2c) * 2), &gTxtSystem->mUnk_2246, (u32) 2);
+    if (0 < v1->mExtraCanvasCount) {
+        CallQueueAppend(0x1f, ((0xee - v1->mSelectedIndex) * 2), &v1->mUnk_2246, 2);
+        CallQueueAppend((u32) 0x1f, (u32) ((0xfe - gTxtSystem->mSelectedIndex) * 2), &gTxtSystem->mUnk_2246, (u32) 2);
         v1 = gTxtSystem;
-        if (v1->mUnk_28 == 2) {
-            CallQueueAppend(0x1f, ((v1->mUnk_2c + 0xed) * 2), &v1->mUnk_2244, 2);
-            CallQueueAppend((u32) 0x1f, (u32) ((gTxtSystem->mUnk_2c + 0xfd) * 2), &gTxtSystem->mUnk_2244, (u32) 2);
+        if (v1->mExtraCanvasCount == 2) {
+            CallQueueAppend(0x1f, ((v1->mSelectedIndex + 0xed) * 2), &v1->mUnk_2244, 2);
+            CallQueueAppend((u32) 0x1f, (u32) ((gTxtSystem->mSelectedIndex + 0xfd) * 2), &gTxtSystem->mUnk_2244,
+                            (u32) 2);
         }
     }
 }
 
 void func_02126ea8(void) {
     int v2;
-    if (0 < gTxtSystem->mUnk_28) {
+    if (0 < gTxtSystem->mExtraCanvasCount) {
         v2 = 0;
         do {
             CallQueueAppend(0x1f, ((v2 + 0xed) * 2), &gTxtSystem->mUnk_2244, 2);
@@ -326,51 +327,52 @@ void func_02126d28(void) {
     s32 n;
     s32 m;
 
-    if (gTxtSystem->mUnk_34 != 0) {
+    if (gTxtSystem->mOpenRequested != 0) {
         for (i = 0; i < 9; i++) {
             if (i <= 6) {
-                if (gTxtSystem->mUnk_2204[i] != 0) {
+                if (gTxtSystem->mCanvasInUse[i] != 0) {
                     a[i] = 1;
                 } else {
                     a[i] = 0;
                 }
             } else {
-                if ((&gTxtSystem->mUnk_04)[i] != 0) {
-                    (&gTxtSystem->mUnk_04)[i] = 0;
-                    *(&gTxtSystem->mUnk_00 + i - 1) = 1;
+                if ((&gTxtSystem->mNextState)[i] != 0) {
+                    (&gTxtSystem->mNextState)[i] = 0;
+                    *(&gTxtSystem->mState + i - 1) = 1;
                     a[i] = 1;
                 } else {
                     a[i] = 0;
                 }
             }
         }
-        func_02126f78(a);
-        CallQueueAppend(10, 0, gTxtSystem->mUnk_54, 0x1000);
-        CallQueueAppend(0x18, 0, &gTxtSystem->mUnk_1054, 0x1000);
-        gTxtSystem->mUnk_04 = 1;
-        gTxtSystem->mUnk_0c = 0;
+        RefreshTxtSystemScreenBuffers(a);
+        CallQueueAppend(10, 0, gTxtSystem->mMainScreenBuffer, 0x1000);
+        CallQueueAppend(0x18, 0, &gTxtSystem->mSubScreenBuffer, 0x1000);
+        gTxtSystem->mNextState = 1;
+        gTxtSystem->mStateFrames = 0;
         for (i = 0; i < 2; i++) {
-            gTxtSystem->mUnk_205c[i] = gTxtSystem->mUnk_2064[i];
+            gTxtSystem->mBgOffsetAtOpen[i] = gTxtSystem->mBgOffsetRequested[i];
         }
         for (i = 0; i < 2; i++) {
-            gTxtSystem->mUnk_206c[i] = gTxtSystem->mUnk_2074[i];
+            gTxtSystem->mBlendPlanesEnabled[i] = gTxtSystem->mBlendPlanesRequested[i];
         }
         for (i = 0; i < 7; i++) {
-            if (gTxtSystem->mUnk_2204[i] != 0) {
+            if (gTxtSystem->mCanvasInUse[i] != 0) {
                 n = (data_0215d044[i][0] * data_0215d044[i][1]) << 5;
                 m = 0x14;
                 if ((u32) i <= 1) {
                     m = 6;
                 }
-                CallQueueAppend(m, (gTxtSystem->mUnk_2220[i] + data_0215d054[i]) << 5, gTxtSystem->mUnk_21e8[i], n);
+                CallQueueAppend(m, (gTxtSystem->mCanvasFileCharIndex[i] + data_0215d054[i]) << 5,
+                                gTxtSystem->mCharBuffers[i], n);
             }
         }
-        if (gTxtSystem->mUnk_28 > 0) {
+        if (gTxtSystem->mExtraCanvasCount > 0) {
             func_02126ef8();
         }
-        if (gTxtSystem->mUnk_18[0] == 0 && gTxtSystem->mUnk_18[1] == 0) {
-            if (gTxtSystem->mUnk_2258 != -1) {
-                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) gTxtSystem->mUnk_2258);
+        if (gTxtSystem->mAnimVisible[0] == 0 && gTxtSystem->mAnimVisible[1] == 0) {
+            if (gTxtSystem->mOpenSoundId != -1) {
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) gTxtSystem->mOpenSoundId);
             }
         }
     }
@@ -380,19 +382,19 @@ void func_02126c90(void) {
     TxtSystem *p;
     s32 i;
 
-    gTxtSystem->mUnk_0c++;
+    gTxtSystem->mStateFrames++;
     for (i = 0; i < 2; i++) {
-        gTxtSystem->mUnk_2054[i] = func_020ae4c0(1, data_0215d040[gTxtSystem->mUnk_3c], (s16) -gTxtSystem->mUnk_205c[i],
-                                                 gTxtSystem->mUnk_0c, 0xf);
+        gTxtSystem->mBgOffset[i] = func_020ae4c0(1, data_0215d040[gTxtSystem->mOpenFromIndex],
+                                                 (s16) -gTxtSystem->mBgOffsetAtOpen[i], gTxtSystem->mStateFrames, 0xf);
     }
     p = gTxtSystem;
-    p->mUnk_207c = (p->mUnk_0c * -10) / 15;
-    if (gTxtSystem->mUnk_0c >= 15) {
-        if (gTxtSystem->mUnk_38 == 0) {
-            gTxtSystem->mUnk_34 = 0;
+    p->mBrightness = (p->mStateFrames * -10) / 15;
+    if (gTxtSystem->mStateFrames >= 15) {
+        if (gTxtSystem->mCloseRequested == 0) {
+            gTxtSystem->mOpenRequested = 0;
         }
-        gTxtSystem->mUnk_04 = 2;
-        gTxtSystem->mUnk_0c = 0;
+        gTxtSystem->mNextState = 2;
+        gTxtSystem->mStateFrames = 0;
     }
 }
 
@@ -426,7 +428,7 @@ void func_02126a00(void) {
     u32 v;
     u16 w;
 
-    switch (gTxtSystem->mUnk_2248) {
+    switch (gTxtSystem->mMode) {
         case 0:
             v = 8;
             break;
@@ -436,7 +438,7 @@ void func_02126a00(void) {
     }
     x = data_02175670[v].mUnk_00;
     p = gTxtSystem;
-    t = p->mUnk_2054[1] + data_02175672[v].mUnk_00;
+    t = p->mBgOffset[1] + data_02175672[v].mUnk_00;
     if (t < 0) {
         t = 0xff;
     }
@@ -444,11 +446,11 @@ void func_02126a00(void) {
         t = 0xff;
     }
     y = t;
-    if (p->mUnk_38 != 0) {
-        p->mUnk_04 = 4;
+    if (p->mCloseRequested != 0) {
+        p->mNextState = 4;
         return;
     }
-    m = p->mUnk_28;
+    m = p->mExtraCanvasCount;
     if (m <= 0) {
         return;
     }
@@ -478,35 +480,35 @@ void func_02126a00(void) {
     if (m == 1) {
         func_02126ea8();
     } else {
-        if (hit == -1 || p->mUnk_2c == hit) {
+        if (hit == -1 || p->mSelectedIndex == hit) {
             func_02126ea8();
         } else {
-            p->mUnk_2c = hit;
+            p->mSelectedIndex = hit;
             func_02126ef8();
         }
     }
-    gTxtSystem->mUnk_04 = 3;
-    if (gTxtSystem->mUnk_28 == 2 && gTxtSystem->mUnk_2c == 1) {
-        if (gTxtSystem->mUnk_2254 != -1) {
-            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) gTxtSystem->mUnk_2254);
+    gTxtSystem->mNextState = 3;
+    if (gTxtSystem->mExtraCanvasCount == 2 && gTxtSystem->mSelectedIndex == 1) {
+        if (gTxtSystem->mSecondInputSoundId != -1) {
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) gTxtSystem->mSecondInputSoundId);
         }
     } else {
-        if (gTxtSystem->mUnk_2250 != -1) {
-            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) gTxtSystem->mUnk_2250);
+        if (gTxtSystem->mInputSoundId != -1) {
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) gTxtSystem->mInputSoundId);
         }
     }
     gTxtSystem->mUnk_224c = 1;
     return;
 L:
     if (m == 2) {
-        if ((u16) (w & 0x20) != 0 && p->mUnk_2c == 1) {
-            p->mUnk_2c = 0;
+        if ((u16) (w & 0x20) != 0 && p->mSelectedIndex == 1) {
+            p->mSelectedIndex = 0;
             func_02126ef8();
             func_02105ac0(0);
             return;
         }
-        if ((u16) (w & 0x10) != 0 && p->mUnk_2c == 0) {
-            p->mUnk_2c = 1;
+        if ((u16) (w & 0x10) != 0 && p->mSelectedIndex == 0) {
+            p->mSelectedIndex = 1;
             func_02126ef8();
             func_02105ac0(0);
         }
@@ -514,13 +516,13 @@ L:
 }
 
 void func_021269b8(void) {
-    gTxtSystem->mUnk_0c++;
+    gTxtSystem->mStateFrames++;
     gTxtSystem->mUnk_224c = 0;
-    if (gTxtSystem->mUnk_0c >= 10) {
+    if (gTxtSystem->mStateFrames >= 10) {
         gTxtSystem->mUnk_30 = 1;
-        gTxtSystem->mUnk_04 = 2;
-        gTxtSystem->mUnk_0c = 0;
-    } else if (gTxtSystem->mUnk_0c >= 5) {
+        gTxtSystem->mNextState = 2;
+        gTxtSystem->mStateFrames = 0;
+    } else if (gTxtSystem->mStateFrames >= 5) {
         func_02126ef8();
     }
 }
@@ -529,32 +531,33 @@ void func_021268f8(void) {
     TxtSystem *p;
     s32 i;
 
-    gTxtSystem->mUnk_0c++;
+    gTxtSystem->mStateFrames++;
     for (i = 0; i < 2; i++) {
-        gTxtSystem->mUnk_2054[i] =
-            func_020ae4c0(1, -gTxtSystem->mUnk_205c[i], data_0215d040[gTxtSystem->mUnk_40], gTxtSystem->mUnk_0c, 0xf);
+        gTxtSystem->mBgOffset[i] =
+            func_020ae4c0(1, -gTxtSystem->mBgOffsetAtOpen[i], data_0215d040[gTxtSystem->mCloseToIndex],
+                          gTxtSystem->mStateFrames, 0xf);
     }
     p = gTxtSystem;
-    p->mUnk_207c = -10 - (p->mUnk_0c * -10) / 15;
-    if (gTxtSystem->mUnk_0c >= 15) {
+    p->mBrightness = -10 - (p->mStateFrames * -10) / 15;
+    if (gTxtSystem->mStateFrames >= 15) {
         for (i = 0; i < 2; i++) {
-            gTxtSystem->mUnk_2054[i] = -192;
+            gTxtSystem->mBgOffset[i] = -192;
         }
-        gTxtSystem->mUnk_04 = 0;
+        gTxtSystem->mNextState = 0;
         func_02126ea8();
-        gTxtSystem->mUnk_0c = 0;
-        gTxtSystem->mUnk_38 = 0;
+        gTxtSystem->mStateFrames = 0;
+        gTxtSystem->mCloseRequested = 0;
         gTxtSystem->mUnk_30 = 0;
-        gTxtSystem->mUnk_18[0] = 0;
-        gTxtSystem->mUnk_18[1] = 0;
+        gTxtSystem->mAnimVisible[0] = 0;
+        gTxtSystem->mAnimVisible[1] = 0;
     }
 }
 
-void func_02126834(void) {
-    if (gTxtSystem->mUnk_50 != 0) {
-        gTxtSystem->mUnk_08 = gTxtSystem->mUnk_00;
-        gTxtSystem->mUnk_00 = gTxtSystem->mUnk_04;
-        switch (gTxtSystem->mUnk_00) {
+void AdvanceTxtSystem(void) {
+    if (gTxtSystem->mEnabled != 0) {
+        gTxtSystem->mPrevState = gTxtSystem->mState;
+        gTxtSystem->mState = gTxtSystem->mNextState;
+        switch (gTxtSystem->mState) {
             case 0:
                 func_02126d28();
                 break;
@@ -571,51 +574,51 @@ void func_02126834(void) {
                 func_021268f8();
                 break;
         }
-        if (gTxtSystem->mUnk_18[0] != 0 || gTxtSystem->mUnk_18[1] != 0) {
+        if (gTxtSystem->mAnimVisible[0] != 0 || gTxtSystem->mAnimVisible[1] != 0) {
             gTxtSystem->mUnk_10++;
             if (gTxtSystem->mUnk_10 >= 4) {
                 gTxtSystem->mUnk_10 = 0;
-                gTxtSystem->mUnk_14++;
-                if (gTxtSystem->mUnk_14 >= 3) {
-                    gTxtSystem->mUnk_14 = 0;
+                gTxtSystem->mAnimFrameIndex++;
+                if (gTxtSystem->mAnimFrameIndex >= 3) {
+                    gTxtSystem->mAnimFrameIndex = 0;
                 }
-                func_021270bc();
-                CallQueueAppend(10, 0, gTxtSystem->mUnk_54, 0x1000);
-                CallQueueAppend(0x18, 0, &gTxtSystem->mUnk_1054, 0x1000);
+                RefreshTxtSystemAnim();
+                CallQueueAppend(10, 0, gTxtSystem->mMainScreenBuffer, 0x1000);
+                CallQueueAppend(0x18, 0, &gTxtSystem->mSubScreenBuffer, 0x1000);
             }
         }
     }
 }
 
-void func_02126730(void) {
-    if (gTxtSystem->mUnk_50 != 0) {
-        *(vu32 *) 0x4000018 = (gTxtSystem->mUnk_2054[0] << 16) & 0x1ff0000;
-        *(vu32 *) 0x4001010 = (gTxtSystem->mUnk_2054[1] << 16) & 0x1ff0000;
-        if (gTxtSystem->mUnk_206c[0] != 0) {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4000050, gTxtSystem->mUnk_2080[0], 0x1f, gTxtSystem->mUnk_2088[0],
-                                       gTxtSystem->mUnk_2090[0], gTxtSystem->mUnk_207c);
+void WriteTxtSystemRegisters(void) {
+    if (gTxtSystem->mEnabled != 0) {
+        *(vu32 *) 0x4000018 = (gTxtSystem->mBgOffset[0] << 16) & 0x1ff0000;
+        *(vu32 *) 0x4001010 = (gTxtSystem->mBgOffset[1] << 16) & 0x1ff0000;
+        if (gTxtSystem->mBlendPlanesEnabled[0] != 0) {
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4000050, gTxtSystem->mBlendPlanes[0], 0x1f, gTxtSystem->mBlendEv1[0],
+                                       gTxtSystem->mBlendEv2[0], gTxtSystem->mBrightness);
         } else {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4000050, 0, 0x1f, gTxtSystem->mUnk_2088[0], gTxtSystem->mUnk_2090[0],
-                                       gTxtSystem->mUnk_207c);
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4000050, 0, 0x1f, gTxtSystem->mBlendEv1[0], gTxtSystem->mBlendEv2[0],
+                                       gTxtSystem->mBrightness);
         }
-        if (gTxtSystem->mUnk_206c[1] != 0) {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, gTxtSystem->mUnk_2080[1], 0x1f, gTxtSystem->mUnk_2088[1],
-                                       gTxtSystem->mUnk_2090[1], gTxtSystem->mUnk_207c);
+        if (gTxtSystem->mBlendPlanesEnabled[1] != 0) {
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, gTxtSystem->mBlendPlanes[1], 0x1f, gTxtSystem->mBlendEv1[1],
+                                       gTxtSystem->mBlendEv2[1], gTxtSystem->mBrightness);
         } else {
-            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, 0, 0x1f, gTxtSystem->mUnk_2088[1], gTxtSystem->mUnk_2090[1],
-                                       gTxtSystem->mUnk_207c);
+            G2x_SetBlendBrightnessExt_((u16 *) 0x4001050, 0, 0x1f, gTxtSystem->mBlendEv1[1], gTxtSystem->mBlendEv2[1],
+                                       gTxtSystem->mBrightness);
         }
     }
 }
 
-void func_02126700(void) {
-    if ((gTxtSystem->mUnk_00 == 0 && gTxtSystem->mUnk_34 != 0) || gTxtSystem->mUnk_00 == 1 ||
-        gTxtSystem->mUnk_00 == 2) {
-        gTxtSystem->mUnk_38 = 1;
+void RequestTxtSystemOpen(void) {
+    if ((gTxtSystem->mState == 0 && gTxtSystem->mOpenRequested != 0) || gTxtSystem->mState == 1 ||
+        gTxtSystem->mState == 2) {
+        gTxtSystem->mCloseRequested = 1;
     } else {
-        gTxtSystem->mUnk_38 = 0;
+        gTxtSystem->mCloseRequested = 0;
     }
-    gTxtSystem->mUnk_34 = 1;
+    gTxtSystem->mOpenRequested = 1;
 }
 #pragma thumb off
 
@@ -632,39 +635,39 @@ void func_021266e4(void *a) {
 void func_02126638(void *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g) {
     Unk0217d3f0_2098 *p;
 
-    p = &gTxtSystem->mUnk_2098[0];
+    p = &gTxtSystem->mCharCanvases[0];
     p->mUnk_18(p, 0xf);
     func_0212583c(&gTxtSystem->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1, a);
-    func_02127734();
-    gTxtSystem->mUnk_2204[0] = 1;
-    func_02126700();
-    gTxtSystem->mUnk_28 = 0;
+    ClearTxtSystemCanvasInUse();
+    gTxtSystem->mCanvasInUse[0] = 1;
+    RequestTxtSystemOpen();
+    gTxtSystem->mExtraCanvasCount = 0;
     gTxtSystem->mUnk_30 = 0;
-    gTxtSystem->mUnk_20[0] = f;
-    gTxtSystem->mUnk_20[1] = g;
-    gTxtSystem->mUnk_2074[0] = b;
-    gTxtSystem->mUnk_2074[1] = c;
-    gTxtSystem->mUnk_3c = d;
-    gTxtSystem->mUnk_40 = e;
+    gTxtSystem->mAnimRequested[0] = f;
+    gTxtSystem->mAnimRequested[1] = g;
+    gTxtSystem->mBlendPlanesRequested[0] = b;
+    gTxtSystem->mBlendPlanesRequested[1] = c;
+    gTxtSystem->mOpenFromIndex = d;
+    gTxtSystem->mCloseToIndex = e;
 }
 
 void func_0212658c(void *a, u32 b, u32 c, u32 d, u32 e, u32 f, u32 g) {
     Unk0217d3f0_2098 *p;
 
-    p = &gTxtSystem->mUnk_2098[1];
+    p = &gTxtSystem->mCharCanvases[1];
     p->mUnk_18(p, 0xf);
     func_0212583c(&gTxtSystem->mUnk_2178[1], 0, 0, data_0215d044[1][0] << 3, data_0215d044[1][1] << 3, 1, 0x480, 1, a);
-    func_02127734();
-    gTxtSystem->mUnk_2204[1] = 1;
-    func_02126700();
-    gTxtSystem->mUnk_28 = 0;
+    ClearTxtSystemCanvasInUse();
+    gTxtSystem->mCanvasInUse[1] = 1;
+    RequestTxtSystemOpen();
+    gTxtSystem->mExtraCanvasCount = 0;
     gTxtSystem->mUnk_30 = 0;
-    gTxtSystem->mUnk_20[0] = f;
-    gTxtSystem->mUnk_20[1] = g;
-    gTxtSystem->mUnk_2074[0] = b;
-    gTxtSystem->mUnk_2074[1] = c;
-    gTxtSystem->mUnk_3c = d;
-    gTxtSystem->mUnk_40 = e;
+    gTxtSystem->mAnimRequested[0] = f;
+    gTxtSystem->mAnimRequested[1] = g;
+    gTxtSystem->mBlendPlanesRequested[0] = b;
+    gTxtSystem->mBlendPlanesRequested[1] = c;
+    gTxtSystem->mOpenFromIndex = d;
+    gTxtSystem->mCloseToIndex = e;
 }
 #pragma thumb off
 
@@ -682,25 +685,25 @@ void func_02126570(void *p0, void *p1) {
 void func_02126474(void *a, void *b, u32 c, u32 d, u32 e, u32 f, u32 g) {
     Unk0217d3f0_2098 *p;
 
-    p = &gTxtSystem->mUnk_2098[0];
+    p = &gTxtSystem->mCharCanvases[0];
     p->mUnk_18(p, 0xf);
-    p = &gTxtSystem->mUnk_2098[4];
+    p = &gTxtSystem->mCharCanvases[4];
     p->mUnk_18(p, 0xe);
     func_0212583c(&gTxtSystem->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1, a);
     func_021257d8(&gTxtSystem->mUnk_2178[4], 0, 0, data_0215d044[4][0] << 3, data_0215d044[4][1] << 3, 2, 0x480, 1, b);
-    func_02127734();
-    gTxtSystem->mUnk_2204[0] = 1;
-    gTxtSystem->mUnk_2204[4] = 1;
-    func_02126700();
-    gTxtSystem->mUnk_28 = 1;
-    gTxtSystem->mUnk_2c = 0;
+    ClearTxtSystemCanvasInUse();
+    gTxtSystem->mCanvasInUse[0] = 1;
+    gTxtSystem->mCanvasInUse[4] = 1;
+    RequestTxtSystemOpen();
+    gTxtSystem->mExtraCanvasCount = 1;
+    gTxtSystem->mSelectedIndex = 0;
     gTxtSystem->mUnk_30 = 0;
-    gTxtSystem->mUnk_20[0] = g;
-    gTxtSystem->mUnk_20[1] = 0;
-    gTxtSystem->mUnk_2074[0] = c;
-    gTxtSystem->mUnk_2074[1] = d;
-    gTxtSystem->mUnk_3c = e;
-    gTxtSystem->mUnk_40 = f;
+    gTxtSystem->mAnimRequested[0] = g;
+    gTxtSystem->mAnimRequested[1] = 0;
+    gTxtSystem->mBlendPlanesRequested[0] = c;
+    gTxtSystem->mBlendPlanesRequested[1] = d;
+    gTxtSystem->mOpenFromIndex = e;
+    gTxtSystem->mCloseToIndex = f;
 }
 
 void func_02126454(void *a, void *b, void *c, s32 d) {
@@ -710,60 +713,60 @@ void func_02126454(void *a, void *b, void *c, s32 d) {
 void func_0212630c(void *a, void *b, void *c, u32 d, u32 e, u32 f, u32 g, u32 h, u32 i) {
     Unk0217d3f0_2098 *p;
 
-    p = &gTxtSystem->mUnk_2098[0];
+    p = &gTxtSystem->mCharCanvases[0];
     p->mUnk_18(p, 0xf);
-    p = &gTxtSystem->mUnk_2098[5];
+    p = &gTxtSystem->mCharCanvases[5];
     p->mUnk_18(p, 0xe);
-    p = &gTxtSystem->mUnk_2098[6];
+    p = &gTxtSystem->mCharCanvases[6];
     p->mUnk_18(p, 0xd);
     func_0212583c(&gTxtSystem->mUnk_2178[0], 0, 0, data_0215d044[0][0] << 3, data_0215d044[0][1] << 3, 1, 0x480, 1, a);
     func_021257d8(&gTxtSystem->mUnk_2178[5], 0, 0, data_0215d044[5][0] << 3, data_0215d044[5][1] << 3, 2, 0x480, 1, b);
     func_021257d8(&gTxtSystem->mUnk_2178[6], 0, 0, data_0215d044[6][0] << 3, data_0215d044[6][1] << 3, 2, 0x480, 1, c);
-    func_02127734();
-    gTxtSystem->mUnk_2204[0] = 1;
-    gTxtSystem->mUnk_2204[5] = 1;
-    gTxtSystem->mUnk_2204[6] = 1;
-    func_02126700();
-    gTxtSystem->mUnk_28 = 2;
-    gTxtSystem->mUnk_2c = d;
+    ClearTxtSystemCanvasInUse();
+    gTxtSystem->mCanvasInUse[0] = 1;
+    gTxtSystem->mCanvasInUse[5] = 1;
+    gTxtSystem->mCanvasInUse[6] = 1;
+    RequestTxtSystemOpen();
+    gTxtSystem->mExtraCanvasCount = 2;
+    gTxtSystem->mSelectedIndex = d;
     gTxtSystem->mUnk_30 = 0;
-    gTxtSystem->mUnk_20[0] = i;
-    gTxtSystem->mUnk_20[1] = 0;
-    gTxtSystem->mUnk_2074[0] = e;
-    gTxtSystem->mUnk_2074[1] = f;
-    gTxtSystem->mUnk_3c = g;
-    gTxtSystem->mUnk_40 = h;
+    gTxtSystem->mAnimRequested[0] = i;
+    gTxtSystem->mAnimRequested[1] = 0;
+    gTxtSystem->mBlendPlanesRequested[0] = e;
+    gTxtSystem->mBlendPlanesRequested[1] = f;
+    gTxtSystem->mOpenFromIndex = g;
+    gTxtSystem->mCloseToIndex = h;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_021262f0(void *a) {
-    func_02126248(a, (u32) 1, (u32) 1, (u32) 1, (u32) 0, (u32) 0);
+void SetupTxtSystemSubText(void *a) {
+    SetupTxtSystemSubTextEx(a, (u32) 1, (u32) 1, (u32) 1, (u32) 0, (u32) 0);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02126248(void *a, u32 b, u32 c, u32 d, u32 e, u32 f) {
+void SetupTxtSystemSubTextEx(void *a, u32 b, u32 c, u32 d, u32 e, u32 f) {
     Unk0217d3f0_2098 *p;
 
-    p = &gTxtSystem->mUnk_2098[2];
+    p = &gTxtSystem->mCharCanvases[2];
     p->mUnk_18(p, 0xf);
     func_0212583c(&gTxtSystem->mUnk_2178[2], 0, 0, data_0215d044[2][0] << 3, data_0215d044[2][1] << 3, 1, 0x480, 1, a);
-    func_02127734();
-    gTxtSystem->mUnk_2204[2] = 1;
-    func_02126700();
-    gTxtSystem->mUnk_28 = 0;
+    ClearTxtSystemCanvasInUse();
+    gTxtSystem->mCanvasInUse[2] = 1;
+    RequestTxtSystemOpen();
+    gTxtSystem->mExtraCanvasCount = 0;
     gTxtSystem->mUnk_30 = 0;
-    gTxtSystem->mUnk_20[0] = 0;
-    gTxtSystem->mUnk_20[1] = f;
-    gTxtSystem->mUnk_2074[0] = b;
-    gTxtSystem->mUnk_2074[1] = c;
-    gTxtSystem->mUnk_3c = d;
-    gTxtSystem->mUnk_40 = e;
+    gTxtSystem->mAnimRequested[0] = 0;
+    gTxtSystem->mAnimRequested[1] = f;
+    gTxtSystem->mBlendPlanesRequested[0] = b;
+    gTxtSystem->mBlendPlanesRequested[1] = c;
+    gTxtSystem->mOpenFromIndex = d;
+    gTxtSystem->mCloseToIndex = e;
 }
 
 #pragma thumb off
@@ -782,25 +785,25 @@ void func_02126230(void *p0, void *p1) {
 void func_02126138(void *a, void *b, u32 c, u32 d, u32 e, u32 f) {
     Unk0217d3f0_2098 *p;
 
-    p = &gTxtSystem->mUnk_2098[2];
+    p = &gTxtSystem->mCharCanvases[2];
     p->mUnk_18(p, 0xf);
-    p = &gTxtSystem->mUnk_2098[4];
+    p = &gTxtSystem->mCharCanvases[4];
     p->mUnk_18(p, 0xe);
     func_0212583c(&gTxtSystem->mUnk_2178[2], 0, 0, data_0215d044[2][0] << 3, data_0215d044[2][1] << 3, 1, 0x480, 1, a);
     func_021257d8(&gTxtSystem->mUnk_2178[4], 0, 0, data_0215d044[4][0] << 3, data_0215d044[4][1] << 3, 2, 0x480, 1, b);
-    func_02127734();
-    gTxtSystem->mUnk_2204[2] = 1;
-    gTxtSystem->mUnk_2204[4] = 1;
-    func_02126700();
-    gTxtSystem->mUnk_28 = 1;
-    gTxtSystem->mUnk_2c = 0;
+    ClearTxtSystemCanvasInUse();
+    gTxtSystem->mCanvasInUse[2] = 1;
+    gTxtSystem->mCanvasInUse[4] = 1;
+    RequestTxtSystemOpen();
+    gTxtSystem->mExtraCanvasCount = 1;
+    gTxtSystem->mSelectedIndex = 0;
     gTxtSystem->mUnk_30 = 0;
-    gTxtSystem->mUnk_20[0] = 0;
-    gTxtSystem->mUnk_20[1] = 0;
-    gTxtSystem->mUnk_2074[0] = c;
-    gTxtSystem->mUnk_2074[1] = d;
-    gTxtSystem->mUnk_3c = e;
-    gTxtSystem->mUnk_40 = f;
+    gTxtSystem->mAnimRequested[0] = 0;
+    gTxtSystem->mAnimRequested[1] = 0;
+    gTxtSystem->mBlendPlanesRequested[0] = c;
+    gTxtSystem->mBlendPlanesRequested[1] = d;
+    gTxtSystem->mOpenFromIndex = e;
+    gTxtSystem->mCloseToIndex = f;
 }
 
 void func_0212611c(void *a, void *b, void *c, s32 d) {
@@ -810,41 +813,41 @@ void func_0212611c(void *a, void *b, void *c, s32 d) {
 void func_02125fd4(void *a, void *b, void *c, u32 d, u32 e, u32 f, u32 g, u32 h) {
     Unk0217d3f0_2098 *p;
 
-    p = &gTxtSystem->mUnk_2098[2];
+    p = &gTxtSystem->mCharCanvases[2];
     p->mUnk_18(p, 0xf);
-    p = &gTxtSystem->mUnk_2098[5];
+    p = &gTxtSystem->mCharCanvases[5];
     p->mUnk_18(p, 0xe);
-    p = &gTxtSystem->mUnk_2098[6];
+    p = &gTxtSystem->mCharCanvases[6];
     p->mUnk_18(p, 0xd);
     func_0212583c(&gTxtSystem->mUnk_2178[2], 0, 0, data_0215d044[2][0] << 3, data_0215d044[2][1] << 3, 1, 0x480, 1, a);
     func_021257d8(&gTxtSystem->mUnk_2178[5], 0, 0, data_0215d044[5][0] << 3, data_0215d044[5][1] << 3, 2, 0x480, 1, b);
     func_021257d8(&gTxtSystem->mUnk_2178[6], 0, 0, data_0215d044[6][0] << 3, data_0215d044[6][1] << 3, 2, 0x480, 1, c);
-    func_02127734();
-    gTxtSystem->mUnk_2204[2] = 1;
-    gTxtSystem->mUnk_2204[5] = 1;
-    gTxtSystem->mUnk_2204[6] = 1;
-    func_02126700();
-    gTxtSystem->mUnk_28 = 2;
-    gTxtSystem->mUnk_2c = d;
+    ClearTxtSystemCanvasInUse();
+    gTxtSystem->mCanvasInUse[2] = 1;
+    gTxtSystem->mCanvasInUse[5] = 1;
+    gTxtSystem->mCanvasInUse[6] = 1;
+    RequestTxtSystemOpen();
+    gTxtSystem->mExtraCanvasCount = 2;
+    gTxtSystem->mSelectedIndex = d;
     gTxtSystem->mUnk_30 = 0;
-    gTxtSystem->mUnk_20[0] = 0;
-    gTxtSystem->mUnk_20[1] = 0;
-    gTxtSystem->mUnk_2074[0] = e;
-    gTxtSystem->mUnk_2074[1] = f;
-    gTxtSystem->mUnk_3c = g;
-    gTxtSystem->mUnk_40 = h;
+    gTxtSystem->mAnimRequested[0] = 0;
+    gTxtSystem->mAnimRequested[1] = 0;
+    gTxtSystem->mBlendPlanesRequested[0] = e;
+    gTxtSystem->mBlendPlanesRequested[1] = f;
+    gTxtSystem->mOpenFromIndex = g;
+    gTxtSystem->mCloseToIndex = h;
 }
 
-void func_02125fc0(void) {
-    gTxtSystem->mUnk_34 = 0;
-    gTxtSystem->mUnk_38 = 1;
+void RequestTxtSystemClose(void) {
+    gTxtSystem->mOpenRequested = 0;
+    gTxtSystem->mCloseRequested = 1;
 }
 
 s32 func_02125fa4(void) {
     BOOL r;
 
     r = FALSE;
-    if (gTxtSystem->mUnk_00 == 2 && gTxtSystem->mUnk_38 == 0) {
+    if (gTxtSystem->mState == 2 && gTxtSystem->mCloseRequested == 0) {
         r = TRUE;
     }
     return r;
@@ -854,7 +857,7 @@ s32 func_02125f88(void) {
     BOOL r;
 
     r = FALSE;
-    if (gTxtSystem->mUnk_00 == 0 && gTxtSystem->mUnk_34 == 0) {
+    if (gTxtSystem->mState == 0 && gTxtSystem->mOpenRequested == 0) {
         r = TRUE;
     }
     return r;
@@ -864,7 +867,7 @@ s32 func_02125f6c(void) {
     BOOL r;
 
     r = FALSE;
-    if (gTxtSystem->mUnk_08 == 1 && gTxtSystem->mUnk_00 == 2) {
+    if (gTxtSystem->mPrevState == 1 && gTxtSystem->mState == 2) {
         r = TRUE;
     }
     return r;
@@ -873,9 +876,9 @@ s32 func_02125f6c(void) {
 #pragma thumb off
 
 #pragma thumb on
-s32 func_02125f60(void) {
+s32 GetTxtSystemSelectedIndex(void) {
     u32 value0;
-    value0 = (u32) gTxtSystem->mUnk_2c;
+    value0 = (u32) gTxtSystem->mSelectedIndex;
     return (s32) value0;
 }
 #pragma thumb off
@@ -894,15 +897,15 @@ u32 func_02125f40(void) {
     return gTxtSystem->mUnk_224c;
 }
 
-void func_02125f2c(u32 p0) {
-    gTxtSystem->mUnk_2248 = p0;
+void SetTxtSystemMode(u32 p0) {
+    gTxtSystem->mMode = p0;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02125ee8(int a, int b) {
+void SetTxtSystemBgOffsetRequested(int a, int b) {
     if (a < -0x96) {
         a = -0x96;
     }
@@ -915,14 +918,14 @@ void func_02125ee8(int a, int b) {
     if (b > 0x96) {
         b = 0x96;
     }
-    gTxtSystem->mUnk_2064[0] = a;
-    gTxtSystem->mUnk_2064[1] = b;
+    gTxtSystem->mBgOffsetRequested[0] = a;
+    gTxtSystem->mBgOffsetRequested[1] = b;
 }
 
 #pragma thumb off
 
 #pragma thumb on
-void func_02125ed0(int arg0, u32 arg1) {
+void SetTxtSystemSoundId(int arg0, u32 arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value2;
@@ -937,8 +940,8 @@ void func_02125ed0(int arg0, u32 arg1) {
 
 #pragma thumb on
 
-void func_02125ebc(u32 p0) {
-    gTxtSystem->mUnk_2258 = p0;
+void SetTxtSystemOpenSoundId(u32 p0) {
+    gTxtSystem->mOpenSoundId = p0;
 }
 
 #pragma thumb off

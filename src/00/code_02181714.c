@@ -306,12 +306,12 @@ void AdvanceWiFiTopMenuState6(void) {
     int v1;
     v1 = func_02125f54();
     if (v1 != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     v1 = func_02125f88();
     if (v1 != 0) {
-        v1 = func_02125f60();
+        v1 = GetTxtSystemSelectedIndex();
         if (v1 == 0) {
             func_0211fd28();
             gWiFiTopMenu->mNextState = 7;
@@ -358,7 +358,7 @@ void AdvanceWiFiTopMenuState8(void) {
         }
         gWiFiTopMenu->mNextState = 1;
         func_02128310(0);
-        func_02125fc0();
+        RequestTxtSystemClose();
     }
 }
 

@@ -314,7 +314,7 @@ void AdvanceWiFiVSMatchingState1(void) {
         gWiFiVSMatching->mNextState = 10;
         gWiFiVSMatching->mPendingWiFiState = 2;
         gWiFiVSMatching->mUnk_08 = 0;
-        func_02125fc0();
+        RequestTxtSystemClose();
         func_0210895c();
         return;
     }
@@ -326,7 +326,7 @@ void AdvanceWiFiVSMatchingState1(void) {
         for (i = 0; i < 3; i++) {
             gWiFiVSMatching->mWiFiVSMatchingTable[data_ov000_021b065c[i]].mUnk_00 = 0;
         }
-        func_02125fc0();
+        RequestTxtSystemClose();
         func_02128374();
         func_02108990();
         return;
@@ -341,7 +341,7 @@ void AdvanceWiFiVSMatchingState1(void) {
             for (i = 0; i < 3; i++) {
                 gWiFiVSMatching->mWiFiVSMatchingTable[data_ov000_021b065c[i]].mUnk_00 = 0;
             }
-            func_02125fc0();
+            RequestTxtSystemClose();
             func_02128374();
             func_02108990();
             return;
@@ -382,7 +382,7 @@ void AdvanceWiFiVSMatchingState1(void) {
         }
         gWiFiVSMatching->mNextState = 2;
         func_021282c8();
-        func_02125fc0();
+        RequestTxtSystemClose();
         func_0202b604();
         func_02108a40();
         gWiFiVSMatching->mCurrentOtherIndex = 0;
@@ -552,7 +552,7 @@ void AdvanceWiFiVSMatchingState8(void) {
             gWiFiVSMatching->mNextState = 11;
             gWiFiVSMatching->mPendingWiFiState = 4;
             gWiFiVSMatching->mUnk_08 = 0;
-            func_02125fc0();
+            RequestTxtSystemClose();
             StartFadeToFadedNegative((s16) (30));
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x20c);
         }
@@ -590,7 +590,7 @@ void AdvanceWiFiVSMatchingState9(void) {
         gWiFiVSMatching->mNextState = 10;
         gWiFiVSMatching->mPendingWiFiState = 2;
         func_02128310(0);
-        func_02125fc0();
+        RequestTxtSystemClose();
     }
 }
 

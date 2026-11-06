@@ -8,7 +8,7 @@
 
 void func_02125928(void) {
     if (data_0217d3ec->mUnk_00 != FALSE) {
-        func_02126834();
+        AdvanceTxtSystem();
     }
     if (data_0217d3ec->mUnk_04 != FALSE) {
         AdvanceSelectChoises();
@@ -20,7 +20,7 @@ void func_02125928(void) {
 
 void func_021258f0(void) {
     if (data_0217d3ec->mUnk_00 != FALSE) {
-        func_02126730();
+        WriteTxtSystemRegisters();
     }
     if (data_0217d3ec->mUnk_04 != FALSE) {
         WriteSelectChoisesRegisters();

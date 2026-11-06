@@ -170,7 +170,7 @@ void RequestRecordTopMenuState7(void) {
 void func_ov001_0219adbc(void) {
     gRecordTopMenu->mNextState = 8;
     gRecordTopMenu->mStateFrames = 0;
-    func_021262f0(GetBmgEntry(gRecordTopMenu->mUnk_20, 0x76));
+    SetupTxtSystemSubText(GetBmgEntry(gRecordTopMenu->mUnk_20, 0x76));
 }
 
 void func_ov001_0219ad98(void) {
@@ -182,7 +182,7 @@ void func_ov001_0219ad98(void) {
 void func_ov001_0219ad7c(void) {
     gRecordTopMenu->mNextState = 10;
     gRecordTopMenu->mStateFrames = 0;
-    func_02125fc0();
+    RequestTxtSystemClose();
 }
 
 // Requests state 11: stores mNextState = 11 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to

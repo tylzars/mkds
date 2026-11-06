@@ -284,7 +284,7 @@ void AdvanceOptionEmbremSelectState5(void) {
                     arg = 10;
                 }
                 obj->mNextState = 6;
-                func_02125ebc(0x21);
+                SetTxtSystemOpenSoundId(0x21);
                 first = GetBmgEntry(gOptionEmbremSelect->mOptionMessages, arg);
                 func_02126230(first, GetBmgEntry(gOptionEmbremSelect->mCommonMessages, 4));
                 gOptionEmbremSelect->mStateFrames = 0;
@@ -307,8 +307,8 @@ void AdvanceOptionEmbremSelectState6(void) {
             value = 1;
         }
         if (value == 0) {
-            func_02125ebc(0x23);
-            func_02125fc0();
+            SetTxtSystemOpenSoundId(0x23);
+            RequestTxtSystemClose();
             return;
         }
     }

@@ -75,11 +75,11 @@ void func_ov001_021986e8(void) {
     void *b;
     void *c;
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() != 0) {
-        if (func_02125f60() == 0) {
+        if (GetTxtSystemSelectedIndex() == 0) {
             data_ov001_021a9be4->mUnk_04 = 2;
             a = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0xd);
             b = GetBmgEntry(data_ov001_021a9be4->mUnk_14, 0);
@@ -97,11 +97,11 @@ void func_ov001_02198624(void) {
     void *c;
     u8 *d;
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() != 0) {
-        if (func_02125f60() == 0) {
+        if (GetTxtSystemSelectedIndex() == 0) {
             d = data_021759d0->mUnk_2a;
             data_0217aa08->mUnk_00->mUnk_31_0 = 1;
             MI_CpuFill8(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
@@ -121,7 +121,7 @@ void func_ov001_02198624(void) {
 void func_ov001_021985b0(void) {
     s32 v;
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() != 0) {
@@ -135,7 +135,7 @@ void func_ov001_021985b0(void) {
             v = 1;
         }
         if (v == 0) {
-            if (func_02125f60() == 0) {
+            if (GetTxtSystemSelectedIndex() == 0) {
                 data_ov001_021a9be4->mUnk_0e = 3;
             } else {
                 data_ov001_021a9be4->mUnk_0e = 0;

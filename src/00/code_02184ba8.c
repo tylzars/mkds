@@ -287,13 +287,13 @@ void AdvanceWiFiAikotobaState6(void) {
         return;
     }
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
     }
 }
 
 void AdvanceWiFiAikotobaState7(void) {
     if (func_02125f88() != 0) {
-        if (func_02125f60() == 0) {
+        if (GetTxtSystemSelectedIndex() == 0) {
             gWiFiAikotoba->mPendingWiFiState = 0xe;
             if (GetWiFiNextScene() == -1) {
                 SetWiFiNextScene(8);
@@ -306,7 +306,7 @@ void AdvanceWiFiAikotobaState7(void) {
         return;
     }
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
     }
 }
 

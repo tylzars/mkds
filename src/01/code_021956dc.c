@@ -407,14 +407,14 @@ void func_ov001_02196ecc(void) {
 void func_ov001_02196eb0(void) {
     gRecordTAtt->mNextState = 10;
     gRecordTAtt->mStateFrames = 0;
-    func_02125ed0(0, 11);
+    SetTxtSystemSoundId(0, 11);
 }
 
 void func_ov001_02196e88(void) {
     gRecordTAtt->mNextState = 11;
     gRecordTAtt->mStateFrames = 0;
-    func_02125fc0();
-    func_02125ed0(0, 5);
+    RequestTxtSystemClose();
+    SetTxtSystemSoundId(0, 5);
 }
 
 void func_ov001_02196e54(void) {
@@ -457,7 +457,7 @@ void func_ov001_02196dbc(void) {
         }
     }
     str[n] = 0;
-    func_02126248(str, 0, 1, 0, 0, 0);
+    SetupTxtSystemSubTextEx(str, 0, 1, 0, 0, 0);
 }
 
 // Requests state 15: stores mNextState = 15 and zeroes mStateFrames; the next AdvanceRecordTAtt call copies it to
@@ -470,7 +470,7 @@ void RequestRecordTAttState15(void) {
 void func_ov001_02196d8c(void) {
     gRecordTAtt->mNextState = 0x10;
     gRecordTAtt->mStateFrames = 0;
-    func_02125fc0();
+    RequestTxtSystemClose();
 }
 
 // Requests state 17: stores mNextState = 17 and zeroes mStateFrames; the next AdvanceRecordTAtt call copies it to
@@ -949,7 +949,7 @@ void AdvanceRecordTAttState9(void) {
 
 void AdvanceRecordTAttState10(void) {
     if (func_02125f54() != 0) {
-        if (func_02125f60() == 0) {
+        if (GetTxtSystemSelectedIndex() == 0) {
             if (func_02060268(data_ov001_021a6900[gRecordTAtt->mIndex]) == 0) {
                 func_02060004(data_ov001_021a6900[gRecordTAtt->mIndex]);
                 func_02057d9c();

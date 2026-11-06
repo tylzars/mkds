@@ -305,7 +305,7 @@ void func_02031960(void) {
                 gMultiSelectMember->mUnk_78 = FALSE;
                 gMultiSelectMember->mUnk_70 = 3;
                 gMultiSelectMember->mTimer = 0x78;
-                func_02126248(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x79), 0, 1, 1, 0, 1);
+                SetupTxtSystemSubTextEx(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x79), 0, 1, 1, 0, 1);
                 func_02025f14(&gMultiSelectMember->mUnk_a0[0], 2);
             } else if (gMultiSelectMember->mUnk_7c != FALSE) {
                 gMultiSelectMember->mUnk_7c = FALSE;
@@ -329,10 +329,10 @@ void func_02031960(void) {
                 case 1:
                     if (gMultiSelectMember->mTimer == 0) {
                         if ((u8) ((data_0217aa00->mUnk_15f6 & ~data_0217aa00->mUnk_0457) & 0xfe) != 0) {
-                            func_021262f0(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x81));
+                            SetupTxtSystemSubText(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x81));
                             gMultiSelectMember->mTimer = 0x78;
                         } else {
-                            func_02125fc0();
+                            RequestTxtSystemClose();
                         }
                         func_02108d80();
                         func_0205e5c4(1);
@@ -408,7 +408,7 @@ void func_020317a0(void) {
                         func_02031b6c();
                     }
                     if (gMultiSelectMember->mTimer == 0) {
-                        func_021262f0(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x81));
+                        SetupTxtSystemSubText(GetBmgEntry(gMultiSelectMember->mCommonMessages, 0x81));
                         func_02108d80();
                         func_0205e5c4(1);
                         gMultiSelectMember->mUnk_148 = FALSE;
@@ -503,7 +503,7 @@ void InitMultiSelectMember(void *a, void *b, void *c) {
         gMultiSelectMember->mUnk_e0[i].mUnk_08 = i * 2;
         gMultiSelectMember->mUnk_e0[i].mUnk_0a = i * 2 + 1;
     }
-    func_02125ee8(0x20, 0);
+    SetTxtSystemBgOffsetRequested(0x20, 0);
 }
 
 void func_0203147c(void *a, void *b, void *c) {
@@ -553,7 +553,7 @@ void func_02031280(void *a, void *b, void *c) {
     q->mUnk_18[0x10].mUnk_00 = q->mUnk_18[0x11].mUnk_00;
     v = GetBmgEntry(gMultiSelectMember->mBannerMessages, 10);
     if (gMultiSelectMember->mUnk_84 != 0) {
-        func_02126248(v, 0, 0, 1, 0, 1);
+        SetupTxtSystemSubTextEx(v, 0, 0, 1, 0, 1);
     } else {
         func_02126638(v, 0, 0, 1, 0, 0, 0);
     }
@@ -730,7 +730,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 gMultiSelectMember->mUnk_6c = 1;
                 gMultiSelectMember->mState = 3;
                 gMultiSelectMember->mUnk_7c = TRUE;
-                func_02125fc0();
+                RequestTxtSystemClose();
                 func_02128310(0);
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
@@ -757,7 +757,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
             if (func_02125f54() != 0) {
-                func_02125fc0();
+                RequestTxtSystemClose();
                 gMultiSelectMember->mUnk_6c = 0;
                 gMultiSelectMember->mState = 3;
             }
@@ -897,7 +897,7 @@ s32 func_02030b18(Unk02030b18 *a) {
                     gMultiSelectMember->mUnk_6c = 0;
                     gMultiSelectMember->mState = 3;
                     gMultiSelectMember->mUnk_7c = TRUE;
-                    func_02125fc0();
+                    RequestTxtSystemClose();
                     func_02128310(0);
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 3);
@@ -912,7 +912,7 @@ s32 func_02030b18(Unk02030b18 *a) {
             if (func_02125f54() != 0) {
                 gMultiSelectMember->mUnk_6c = 0;
                 gMultiSelectMember->mState = 3;
-                func_02125fc0();
+                RequestTxtSystemClose();
             }
             break;
         case 3:
@@ -941,7 +941,7 @@ s32 func_02030b18(Unk02030b18 *a) {
 #pragma thumb on
 
 void ReleaseMultiSelectMember(void) {
-    func_02125ee8(0, 0);
+    SetTxtSystemBgOffsetRequested(0, 0);
     func_0212b91c();
     HeapDestroy(gMultiSelectMember->mHeap);
     *&gMultiSelectMember = NULL;

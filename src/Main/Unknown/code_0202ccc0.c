@@ -196,13 +196,13 @@ void func_0202d5f8(s32 a, s32 b) {
     if (b != 0) {
         func_02126230(y, GetBmgEntry(gTimeAttackGhostSend->mCommonMessages, 4));
     } else {
-        func_021262f0(y);
+        SetupTxtSystemSubText(y);
     }
 }
 
 void func_0202d5c0(void) {
     func_0202daa4(gTimeAttackGhostSend->mUnk_0a4);
-    func_021262f0(GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 9));
+    SetupTxtSystemSubText(GetBmgEntry(gTimeAttackGhostSend->mGhostMessages, 9));
     func_021281c8(0xe);
     func_021282c8();
 }

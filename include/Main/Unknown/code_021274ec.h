@@ -10,5 +10,5 @@ typedef struct Unk021274ec {
     /* 10 */ s32 mUnk_10;
 } Unk021274ec;
 
-void func_02127734(void);
+void ClearTxtSystemCanvasInUse(void);
 s32 InitTxtSystem(void *b, Unk021274ec *c);

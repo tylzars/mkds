@@ -469,7 +469,7 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *a) {
                     gMultiSelectMemberGroup->mState = 1;
                 } else {
                     gMultiSelectMemberGroup->mState = 3;
-                    func_02125fc0();
+                    RequestTxtSystemClose();
                 }
             }
             break;

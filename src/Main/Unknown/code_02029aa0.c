@@ -298,7 +298,7 @@ void func_02029aa0(Unk02029aa0 *a) {
                         v = GetBmgEntry(data_usa_02174e00->mUnk_50, 11);
                         data_usa_02174e00->mUnk_58 &= ~0x800;
                     }
-                    func_02125ebc(0x53);
+                    SetTxtSystemOpenSoundId(0x53);
                     func_02126138(v, q, 0, 1, 1, 0);
                     data_usa_02174e00->mUnk_54 = 1;
                 } else {
@@ -328,7 +328,7 @@ void func_02029aa0(Unk02029aa0 *a) {
         } break;
         case 1:
             if (func_02125f54()) {
-                func_02125fc0();
+                RequestTxtSystemClose();
                 data_usa_02174e00->mUnk_54 = 0;
             }
             break;

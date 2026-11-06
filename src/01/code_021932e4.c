@@ -279,11 +279,11 @@ void AdvanceOptionTopMenuState5(void) {
 
 void AdvanceOptionTopMenuState6(void) {
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() != 0) {
-        if (func_02125f60() == 0) {
+        if (GetTxtSystemSelectedIndex() == 0) {
             func_0212611c(GetBmgEntry(gOptionTopMenu->mOptionMessages, 4),
                           GetBmgEntry(gOptionTopMenu->mCommonMessages, 0),
                           GetBmgEntry(gOptionTopMenu->mCommonMessages, 1), 1);
@@ -296,14 +296,14 @@ void AdvanceOptionTopMenuState6(void) {
 
 void AdvanceOptionTopMenuState7(void) {
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() != 0) {
-        if (func_02125f60() == 0) {
+        if (GetTxtSystemSelectedIndex() == 0) {
             func_02057130();
             gOptionTopMenu->mNextState = 8;
-            func_02126248(GetBmgEntry(gOptionTopMenu->mOptionMessages, 5), 1, 1, 1, 0, 1);
+            SetupTxtSystemSubTextEx(GetBmgEntry(gOptionTopMenu->mOptionMessages, 5), 1, 1, 1, 0, 1);
         } else {
             gOptionTopMenu->mNextState = 1;
         }
@@ -327,7 +327,7 @@ void AdvanceOptionTopMenuState8(void) {
     }
     if (flag == 0 && func_02125fa4() != 0) {
         gOptionTopMenu->mNextState = 9;
-        func_02125ebc(0x21);
+        SetTxtSystemOpenSoundId(0x21);
         func_02126230(GetBmgEntry(gOptionTopMenu->mOptionMessages, 6), GetBmgEntry(gOptionTopMenu->mCommonMessages, 4));
     }
 }
@@ -340,8 +340,8 @@ void AdvanceOptionTopMenuState9(void) {
     }
     v1 = func_02125f54();
     if (v1 != 0) {
-        func_02125ebc((u32) 0x23);
-        func_02125fc0();
+        SetTxtSystemOpenSoundId((u32) 0x23);
+        RequestTxtSystemClose();
         gOptionTopMenu->mNextOptionState = 4;
     }
 }

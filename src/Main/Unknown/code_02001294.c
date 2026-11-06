@@ -66,7 +66,7 @@ void func_02001830(void) {
 void func_020017cc(void) {
     Unk021a99c0_18 *v1;
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() == 0) {
@@ -81,7 +81,7 @@ void func_02001770(void) {
     void *v1;
     func_02056e48();
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 126);
-    func_02126248(v1, 1, 1, 1, 0, 1);
+    SetupTxtSystemSubTextEx(v1, 1, 1, 1, 0, 1);
     data_usa_ov001_021a99c0->mUnk_34 = 0;
 }
 
@@ -116,7 +116,7 @@ void func_020016ac(void) {
 
 void func_0200165c(void) {
     void *v1;
-    func_02125ebc(33);
+    SetTxtSystemOpenSoundId(33);
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 128);
     func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
@@ -124,8 +124,8 @@ void func_0200165c(void) {
 void func_020015f0(void) {
     Unk021a99c0_18 *v1;
     if (func_02125f54() != 0) {
-        func_02125ebc(35);
-        func_02125fc0();
+        SetTxtSystemOpenSoundId(35);
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() == 0) {
@@ -151,13 +151,13 @@ void func_02001598(void) {
 void func_02001500(void) {
     Unk021a99c0_18 *v1;
     if (func_02125f54() != 0) {
-        func_02125fc0();
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() == 0) {
         return;
     }
-    if (func_02125f60() == 0) {
+    if (GetTxtSystemSelectedIndex() == 0) {
         v1 = &data_usa_ov001_021a99c0->mUnk_18;
         v1->mUnk_10 = 6;
         v1->mUnk_12 = 1;
@@ -175,7 +175,7 @@ void func_0200148c(void) {
         return;
     }
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 126);
-    func_02126248(v1, 1, 1, 1, 0, 1);
+    SetupTxtSystemSubTextEx(v1, 1, 1, 1, 0, 1);
     data_usa_ov001_021a99c0->mUnk_34 = 0;
 }
 
@@ -229,7 +229,7 @@ void func_02001350(void) {
 
 void func_02001300(void) {
     void *v1;
-    func_02125ebc(33);
+    SetTxtSystemOpenSoundId(33);
     v1 = GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 127);
     func_02126230(v1, GetBmgEntry(data_usa_ov001_021a99c0->mUnk_38, 4));
 }
@@ -237,8 +237,8 @@ void func_02001300(void) {
 void func_02001294(void) {
     Unk021a99c0_18 *v1;
     if (func_02125f54() != 0) {
-        func_02125ebc(35);
-        func_02125fc0();
+        SetTxtSystemOpenSoundId(35);
+        RequestTxtSystemClose();
         return;
     }
     if (func_02125f88() == 0) {

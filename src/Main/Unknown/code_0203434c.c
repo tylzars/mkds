@@ -126,7 +126,7 @@ s32 func_02034370(Unk02034370 *a) {
         case 2:
             switch (func_02054c98(0, NULL)) {
                 case 1:
-                    func_021262f0(GetBmgEntry(data_02174e64->mGhostMessages, 0xf));
+                    SetupTxtSystemSubText(GetBmgEntry(data_02174e64->mGhostMessages, 0xf));
                     NNS_SndArcSetCurrent(&data_0217c868);
                     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 9);
                     NNS_SndArcSetCurrent(&data_0217d0a0);
@@ -237,13 +237,13 @@ s32 func_02034370(Unk02034370 *a) {
             break;
         case 4:
             if (func_02125f54() != 0) {
-                if (func_02125f60() == 0) {
+                if (GetTxtSystemSelectedIndex() == 0) {
                     func_0204ece0((u16) data_02174e64->mUnk_080);
                 } else {
                     func_02128374();
                     data_02174e64->mUnk_18c = FALSE;
                 }
-                func_02125fc0();
+                RequestTxtSystemClose();
                 data_02174e64->mState = 2;
             }
             break;
@@ -292,11 +292,11 @@ s32 func_02034370(Unk02034370 *a) {
                 f = GetBmgEntry(data_02174e64->mCommonMessages, 0);
                 g = GetBmgEntry(data_02174e64->mCommonMessages, 1);
                 func_0212513c(GetBmgEntry(data_02174e64->mGhostMessages, v), e, h, 0x100);
-                func_02125ed0(0, -1);
+                SetTxtSystemSoundId(0, -1);
                 func_02125fd4(h, f, g, 1, 0, 1, 1, 0);
                 data_02174e64->mState = 9;
             } else if (func_0202dd9c() == 10) {
-                func_02125fc0();
+                RequestTxtSystemClose();
                 data_02174e64->mUnk_098 = 2;
                 data_02174e64->mState = 13;
                 func_02025f14(&data_02174e64->mUnk_194, 2);
@@ -311,14 +311,14 @@ s32 func_02034370(Unk02034370 *a) {
             }
             break;
         case 9:
-            if (func_02125f40() != 0 && func_02125f60() == 0) {
+            if (func_02125f40() != 0 && GetTxtSystemSelectedIndex() == 0) {
                 NNS_SndArcSetCurrent(&data_0217c868);
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 10);
                 NNS_SndArcSetCurrent(&data_0217d0a0);
             }
             if (func_02125f54() != 0) {
-                func_02125fc0();
-                if (func_02125f60() == 0) {
+                RequestTxtSystemClose();
+                if (GetTxtSystemSelectedIndex() == 0) {
                     data_02174e64->mUnk_08c =
                         func_0202d990(data_02174e64->mUnk_09c[data_02174e64->mUnk_080].mUnk_00.mUnk_18[2]);
                     ((Unk0202ddd8 *) func_0202ddd8())->mUnk_08_0 = 1;
@@ -333,7 +333,7 @@ s32 func_02034370(Unk02034370 *a) {
             if (func_02125f88() != 0) {
                 e = GetBmgEntry(data_02174e64->mGhostMessages, 0x54);
                 f = GetBmgEntry(data_02174e64->mCommonMessages, 4);
-                func_02125ed0(0, 5);
+                SetTxtSystemSoundId(0, 5);
                 func_02126230(e, f);
                 data_02174e64->mState = 14;
             }
@@ -342,7 +342,7 @@ s32 func_02034370(Unk02034370 *a) {
             if (func_02034370_inline_2() != 0) {
                 e = GetBmgEntry(data_02174e64->mGhostMessages, 0x10);
                 f = GetBmgEntry(data_02174e64->mCommonMessages, 4);
-                func_02125ed0(0, 5);
+                SetTxtSystemSoundId(0, 5);
                 func_02126230(e, f);
                 data_02174e64->mState = 14;
             }
@@ -354,7 +354,7 @@ s32 func_02034370(Unk02034370 *a) {
             if (func_02125f54() != 0) {
                 data_02174e64->mUnk_090 = 0;
                 data_02174e64->mState = 12;
-                func_02125fc0();
+                RequestTxtSystemClose();
             }
             break;
         case 14:

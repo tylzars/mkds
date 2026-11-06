@@ -65,7 +65,7 @@ void func_0202dfd4(void *a) {
     v.mUnk_24 = 0;
     LoadTxtSystemAndSelectChoisesAndSelectReturnData();
     func_02125de0(a, &v);
-    func_02125f2c(1);
+    SetTxtSystemMode(1);
     func_0212abdc(a, data_02174e44);
     CreateKartIcon(a);
     for (i = 0; i < 0x20; i++) {

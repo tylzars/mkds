@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02125ee8(int a, int b);
+void SetTxtSystemBgOffsetRequested(int a, int b);

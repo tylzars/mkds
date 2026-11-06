@@ -127,7 +127,7 @@ void RequestRecordVSEraseState1(void) {
 void func_02115e44(void) {
     gRecordVSErase->mNextState = 2;
     gRecordVSErase->mStateFrames = 0;
-    func_02125fc0();
+    RequestTxtSystemClose();
 }
 
 void func_02115e20(void) {
@@ -185,14 +185,14 @@ void func_02115d08(void) {
 void func_02115cec(void) {
     gRecordVSErase->mNextState = 9;
     gRecordVSErase->mStateFrames = 0;
-    func_02125ed0(0, 0xb);
+    SetTxtSystemSoundId(0, 0xb);
 }
 
 void func_02115cc4(void) {
     gRecordVSErase->mNextState = 0xa;
     gRecordVSErase->mStateFrames = 0;
-    func_02125fc0();
-    func_02125ed0(0, 5);
+    RequestTxtSystemClose();
+    SetTxtSystemSoundId(0, 5);
 }
 
 void func_02115ca0(void) {
@@ -679,7 +679,7 @@ void AdvanceRecordVSEraseState9(void) {
 
     a = GetRecordVSEraseFirstRecordIndex();
     if (func_02125f54()) {
-        if (func_02125f60() == 0) {
+        if (GetTxtSystemSelectedIndex() == 0) {
             func_02114174(a + gRecordVSErase->mIndex);
             gRecordVSErase->mErased = 1;
         } else {

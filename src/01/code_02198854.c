@@ -427,7 +427,7 @@ void AdvanceOptionSelectMenuState4(void) {
         if (gOptionSelectMenu->mStateFrames >= 10 && IsSelectReturnState2NoState3Or4Request() != 0) {
             gOptionSelectMenu->mUnk_3c = FALSE;
             if (gOptionSelectMenu->mUnk_1c != FALSE) {
-                func_02125ebc(0x21);
+                SetTxtSystemOpenSoundId(0x21);
                 a = GetBmgEntry(gOptionSelectMenu->mOptionMessages, 0x10);
                 b = GetBmgEntry(gOptionSelectMenu->mCommonMessages, 4);
                 func_02126230(a, b);
@@ -455,8 +455,8 @@ void AdvanceOptionSelectMenuState5(void) {
             r = 1;
         }
         if (r == 0) {
-            func_02125ebc(0x23);
-            func_02125fc0();
+            SetTxtSystemOpenSoundId(0x23);
+            RequestTxtSystemClose();
             func_02128374();
         }
     }

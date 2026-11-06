@@ -54,7 +54,7 @@ void func_02125de0(void *a, void *b) {
 
 void func_02125da0(void) {
     if (data_0217d3ec->mUnk_00 != FALSE) {
-        func_021274e0();
+        ClearTxtSystemPointer();
     }
     if (data_0217d3ec->mUnk_04 != FALSE) {
         func_0212804c();
