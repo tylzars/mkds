@@ -344,7 +344,7 @@ typedef struct Unk02174e48 {
 
 extern Unk02174e48 *data_02174e48;
 extern struct Unk02174e4c *data_02174e4c;
-extern struct Unk02174e50 *data_02174e50;
+extern struct MultiSelectMemberGroup *gMultiSelectMemberGroup;
 extern struct Unk02174e54 *data_02174e54;
 struct MultiSelectMember;
 extern struct MultiSelectMember *gMultiSelectMember;
