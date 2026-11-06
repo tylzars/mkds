@@ -74,18 +74,18 @@ typedef struct SelectGhost {
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_02175628.h"
 
-extern u16 data_ov001_021a6b38[];
-extern u16 data_ov001_021a6b3c[];
-extern u16 data_ov001_021a6b40[];
+extern u16 gSelectGhostTimerRunningSTableIndices[];
+extern u16 gSelectGhostTimerZeroSTableIndices[];
+extern u16 gSelectGhostMenuMessageIndices[];
 extern u16 data_ov001_021a6b48[];
-extern u16 data_ov001_021a6b54[];
+extern u16 gSelectGhostSBnllIndices[];
 extern u16 data_ov001_021a6b60[];
-extern u16 data_ov001_021a6b6c[];
+extern u16 gSelectGhostSTableIndices[];
 extern u32 data_ov001_021a6b78[];
 extern u16 data_ov001_021a6b88[];
 extern u32 data_ov001_021a6ba4[];
 
-void func_ov001_0219b540(void);
+void WriteSelectGhostRegisters(void);
 int AdvanceSelectGhost(void);
 void AdvanceSelectGhostState7(void);
 void AdvanceSelectGhostState6(void);
@@ -95,24 +95,24 @@ void AdvanceSelectGhostState3(void);
 void AdvanceSelectGhostState2(void);
 void AdvanceSelectGhostState1(void);
 void AdvanceSelectGhostState0(void);
-void func_ov001_0219baf4(void);
+void ReleaseSelectGhost(void);
 void InitSelectGhost(void *a, u32 b, u32 c);
 void func_ov001_0219be5c(void);
 void func_ov001_0219bfc0(void);
 void func_ov001_0219bff4(void);
 void func_ov001_0219c058(void);
-void func_ov001_0219c0bc(void);
+void RefreshSelectGhostForIndex(void);
 void AdvanceSelectGhostOffsetTimers(void);
 void func_ov001_0219c358(void);
 void RequestSelectGhostState7(void);
-void func_ov001_0219c3bc(void);
+void RequestSelectGhostState6AndRequestSelectChoisesState0(void);
 void RequestSelectGhostState5(void);
-void func_ov001_0219c3ec(void);
-void func_ov001_0219c428(void);
+void RequestSelectGhostState4AndStartSelectChoises(void);
+void RequestSelectGhostState3StopPaletteBlendAndStartSound(void);
 void RequestSelectGhostState2(void);
 void RequestSelectGhostState1(void);
-void func_ov001_0219c480(void);
-void func_ov001_0219c544(void);
+void ResetSelectGhost(void);
+void LocateAndQueueSelectGhost(void);
 void LoadSelectGhostAndKartIconData(void);
 
 #include "00/code_021832d8.h"

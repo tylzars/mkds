@@ -23,13 +23,13 @@ typedef struct OptionSelectMenu {
     /* counted only in states 0, 1, 3, 4; zeroed when 0, 1, 3 hand over and when 4 hands over to 5 (OK path); on
        the Back path state 4 keeps counting while it requests the next option state */
     /* 20 */ s32 mStateFrames;
-    /* 24 */ s16 mUnk_24;
+    /* 24 */ s16 mBg0Bg1Offset;
     /* 26 */ Unk021a9be8Pair mUnk_26[3];
     /* 32 */ u8 mUnk_32[2];
     /* 34 */ s32 mNextOptionState; /* only ever 0 (the top menu state), passed to RequestOptionState */
     /* 38 */ BOOL mUnk_38;
     /* 3c */ BOOL mUnk_3c;
-    /* 40 */ s32 mUnk_40[2][2];
+    /* 40 */ s32 mOffsetTimers[2][2];
     /* 50 */ void *mHeap;
     // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; indexed with an offset
     // added
@@ -55,21 +55,21 @@ typedef struct OptionSelectMenu {
 // Object behind data_0217aa08; the byte at 0x31 of the object at its first member holds flags.
 extern u8 data_ov001_021a6a20[];
 extern u8 data_ov001_021a6a24[];
-extern u8 data_ov001_021a6a2c[];
+extern u8 gOptionSelectMenuValueCounts[];
 extern u8 data_ov001_021a6a30[];
 extern u8 data_ov001_021a6a34[];
-extern u8 data_ov001_021a6a38[][3];
-extern s32 data_ov001_021a6a44[];
-extern u8 data_ov001_021a6a50[][3][2];
-extern u8 data_ov001_021a6a5c[][12];
+extern u8 gOptionSelectMenuValueSTableIndices[][3];
+extern s32 gOptionSelectMenuGroupSTableCounts[];
+extern u8 gOptionSelectMenuOffsetTimerSTableIndices[][3][2];
+extern u8 gOptionSelectMenuGroupSTableIndices[][12];
 
 void RegisterOptionSelectMenuCallbacks(void);
-void func_ov001_02198878(void);
+void WriteOptionSelectMenuRegisters(void);
 void AdvanceOptionSelectMenu(void);
-void func_ov001_021989bc(void);
-void func_ov001_02198a6c(void);
-void func_ov001_02198b58(void);
-void func_ov001_02198bbc(void);
+void AdvanceOptionSelectMenuOffsetTimers(void);
+void SetOptionSelectMenuRowsOnOff(void);
+void SetOptionSelectMenuValuesOnOff(void);
+void WriteOptionSelectMenuTableOffsets(void);
 void AdvanceOptionSelectMenuState5(void);
 void AdvanceOptionSelectMenuState4(void);
 void AdvanceOptionSelectMenuState3(void);
@@ -84,6 +84,6 @@ void LocateAndQueueOptionSelectMenu(void);
    the state heap is destroyed by AdvanceOptionStates after it returns */
 void ReleaseOptionSelectMenu(void);
 void InitOptionSelectMenu(void *a);
-void func_ov001_021997dc(void);
+void InitOptionSelectMenuTexts(void);
 
 #include "00/code_021832d8.h"

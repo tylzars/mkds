@@ -41,7 +41,7 @@ typedef struct RecordTopMenu {
 #include "Main/Unknown/code_02047104.h"
 
 void RegisterRecordTopMenuCallbacks(void);
-void func_ov001_0219a078(void);
+void WriteRecordTopMenuRegisters(void);
 void func_ov001_0219a0c0(void);
 void AdvanceRecordTopMenu(void);
 void AdvanceRecordTopMenuState11(void);
@@ -56,25 +56,25 @@ void AdvanceRecordTopMenuState3(void);
 void AdvanceRecordTopMenuState2(void);
 void AdvanceRecordTopMenuState1(void);
 void AdvanceRecordTopMenuState0(void);
-void func_ov001_0219a950(void);
+void ReleaseRecordTopMenu(void);
 void InitRecordTopMenu(void *heap);
 void func_ov001_0219ac98(void);
-void func_ov001_0219ad10(void);
-void func_ov001_0219ad3c(void);
+void DecrementRecordTopMenuIndexAndStartSound(void);
+void IncrementRecordTopMenuIndexAndStartSound(void);
 void RequestRecordTopMenuState11(void);
-void func_ov001_0219ad7c(void);
-void func_ov001_0219ad98(void);
-void func_ov001_0219adbc(void);
+void RequestRecordTopMenuState10AndRequestTxtSystemClose(void);
+void RequestRecordTopMenuState9AndStartSound(void);
+void RequestRecordTopMenuState8AndSetupTxtSystemSubText(void);
 void RequestRecordTopMenuState7(void);
 void RequestRecordTopMenuState6(void);
-void func_ov001_0219ae10(void);
+void RequestRecordTopMenuState5AndStartSound(void);
 void RequestRecordTopMenuState4(void);
 void func_ov001_0219ae44(void);
 void RequestRecordTopMenuState2(void);
 void RequestRecordTopMenuState1(void);
-void func_ov001_0219ae88(void);
-void func_ov001_0219af90(s32 a);
-void func_ov001_0219afc8(s32 a);
-void func_ov001_0219b000(void);
+void ResetRecordTopMenu(void);
+void SetRecordTopMenuRowOff(s32 a);
+void SetRecordTopMenuRowOn(s32 a);
+void LocateAndQueueRecordTopMenu(void);
 
 #include "00/code_021832d8.h"

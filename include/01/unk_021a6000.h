@@ -30,7 +30,7 @@ extern u16 data_ov001_021a6f28[4];
 extern u16 data_ov001_021a6f68[6];
 extern u32 data_ov001_021a6f90[4];
 extern u16 data_ov001_021a6fa0[4][3];
-extern u16 data_ov001_021a6abc[3];
+extern u16 gRecordTopMenuRecordMessageIndices[3];
 extern u16 data_ov001_021a6ac4[3];
 extern u16 data_ov001_021a6ae4[3][3];
 extern u16 data_ov001_021a6af8[3][3];

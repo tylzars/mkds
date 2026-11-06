@@ -37,7 +37,7 @@
 
 RecordTopMenu *gRecordTopMenu;
 
-void func_ov001_0219b000(void) {
+void LocateAndQueueRecordTopMenu(void) {
     Ncgr *a;
     Nclr *b;
     Ncgr *c;
@@ -80,17 +80,17 @@ void func_ov001_0219b000(void) {
     CallQueueAppend(0x1e, 0, d->mData, d->mDataSize);
 }
 
-void func_ov001_0219afc8(s32 a) {
+void SetRecordTopMenuRowOn(s32 a) {
     gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mUnk_00 = 1;
     func_02124a20(data_ov001_021a6aa4[a], 14, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
-void func_ov001_0219af90(s32 a) {
+void SetRecordTopMenuRowOff(s32 a) {
     gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[a]].mUnk_00 = 0;
     func_02124a20(data_ov001_021a6aa4[a], 15, gRecordTopMenu->mRecordTopMenuSNcer, gRecordTopMenu->mRecordTopMenuSBncl);
 }
 
-void func_ov001_0219ae88(void) {
+void ResetRecordTopMenu(void) {
     s32 i;
     s32 j;
     u16 *p;
@@ -117,7 +117,7 @@ void func_ov001_0219ae88(void) {
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6ac4[i]].mUnk_04 = 0xe0;
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[i]].mUnk_04 = 0xe0;
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = 0xe0;
-        func_ov001_0219af90(i);
+        SetRecordTopMenuRowOff(i);
     }
 }
 
@@ -145,7 +145,7 @@ void RequestRecordTopMenuState4(void) {
     gRecordTopMenu->mStateFrames = 0;
 }
 
-void func_ov001_0219ae10(void) {
+void RequestRecordTopMenuState5AndStartSound(void) {
     gRecordTopMenu->mNextState = 5;
     gRecordTopMenu->mStateFrames = 0;
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
@@ -163,19 +163,19 @@ void RequestRecordTopMenuState7(void) {
     gRecordTopMenu->mStateFrames = 0;
 }
 
-void func_ov001_0219adbc(void) {
+void RequestRecordTopMenuState8AndSetupTxtSystemSubText(void) {
     gRecordTopMenu->mNextState = 8;
     gRecordTopMenu->mStateFrames = 0;
     SetupTxtSystemSubText(GetBmgEntry(gRecordTopMenu->mUnk_20, 0x76));
 }
 
-void func_ov001_0219ad98(void) {
+void RequestRecordTopMenuState9AndStartSound(void) {
     gRecordTopMenu->mNextState = 9;
     gRecordTopMenu->mStateFrames = 0;
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
 }
 
-void func_ov001_0219ad7c(void) {
+void RequestRecordTopMenuState10AndRequestTxtSystemClose(void) {
     gRecordTopMenu->mNextState = 10;
     gRecordTopMenu->mStateFrames = 0;
     RequestTxtSystemClose();
@@ -187,7 +187,7 @@ void RequestRecordTopMenuState11(void) {
     gRecordTopMenu->mStateFrames = 0;
 }
 
-void func_ov001_0219ad3c(void) {
+void IncrementRecordTopMenuIndexAndStartSound(void) {
     gRecordTopMenu->mIndex++;
     if (gRecordTopMenu->mIndex >= 3) {
         gRecordTopMenu->mIndex = 0;
@@ -195,7 +195,7 @@ void func_ov001_0219ad3c(void) {
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
 }
 
-void func_ov001_0219ad10(void) {
+void DecrementRecordTopMenuIndexAndStartSound(void) {
     gRecordTopMenu->mIndex--;
     if (gRecordTopMenu->mIndex < 0) {
         gRecordTopMenu->mIndex = 2;
@@ -260,7 +260,7 @@ void InitRecordTopMenu(void *heap) {
             }
             break;
     }
-    func_ov001_0219b000();
+    LocateAndQueueRecordTopMenu();
     for (i = 0; i < 3; i++) {
         func_02124a98(data_ov001_021a6ac4[i], 1, gRecordTopMenu->mRecordTopMenuSNcer,
                       gRecordTopMenu->mRecordTopMenuSBncl);
@@ -290,7 +290,7 @@ void InitRecordTopMenu(void *heap) {
     }
     for (i = 0; i < 3; i++) {
         func_0212426c(0, data_ov001_021a6ae4[0][i], gRecordTopMenu->mRecordTopMenuMBnll,
-                      GetBmgEntry(gRecordTopMenu->mRecordMessages, data_ov001_021a6abc[i]),
+                      GetBmgEntry(gRecordTopMenu->mRecordMessages, gRecordTopMenuRecordMessageIndices[i]),
                       gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMTable);
     }
     pp = &data_0217aa08->mUnk_00;
@@ -311,11 +311,11 @@ void InitRecordTopMenu(void *heap) {
         }
     }
     func_ov001_0219ac98();
-    func_ov001_0219ae88();
-    func_ov001_0219afc8(gRecordTopMenu->mIndex);
+    ResetRecordTopMenu();
+    SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
 }
 
-void func_ov001_0219a950(void) {
+void ReleaseRecordTopMenu(void) {
     u32 a;
     u32 b;
 
@@ -446,28 +446,28 @@ skip:
         t = data_ov001_021a6acc[sel];
         if (gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[t]].mUnk_00 != 0) {
             if (gRecordTopMenu->mIndex == t) {
-                func_ov001_0219af90(gRecordTopMenu->mIndex);
+                SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
                 gRecordTopMenu->mIndex = t;
             } else {
-                func_ov001_0219af90(gRecordTopMenu->mIndex);
+                SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
                 gRecordTopMenu->mIndex = t;
-                func_ov001_0219afc8(gRecordTopMenu->mIndex);
+                SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
             }
-            func_ov001_0219ae10();
+            RequestRecordTopMenuState5AndStartSound();
         }
     } else {
         flags = data_02175628[i].mUnk_00 & 1;
         if (flags != 0) {
-            func_ov001_0219af90(gRecordTopMenu->mIndex);
-            func_ov001_0219ae10();
+            SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
+            RequestRecordTopMenuState5AndStartSound();
         } else if (func_020ae408(8, 0x40) != 0) {
-            func_ov001_0219af90(gRecordTopMenu->mIndex);
-            func_ov001_0219ad10();
-            func_ov001_0219afc8(gRecordTopMenu->mIndex);
+            SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
+            DecrementRecordTopMenuIndexAndStartSound();
+            SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
         } else if (func_020ae408(8, 0x80) != 0) {
-            func_ov001_0219af90(gRecordTopMenu->mIndex);
-            func_ov001_0219ad3c();
-            func_ov001_0219afc8(gRecordTopMenu->mIndex);
+            SetRecordTopMenuRowOff(gRecordTopMenu->mIndex);
+            IncrementRecordTopMenuIndexAndStartSound();
+            SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
         }
     }
 }
@@ -482,7 +482,7 @@ void AdvanceRecordTopMenuState5(void) {
     gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6a9c[gRecordTopMenu->mIndex]].mUnk_04 = v;
     gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[gRecordTopMenu->mIndex]].mUnk_04 = v;
     if (gRecordTopMenu->mStateFrames == 5) {
-        func_ov001_0219afc8(gRecordTopMenu->mIndex);
+        SetRecordTopMenuRowOn(gRecordTopMenu->mIndex);
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
         if (gRecordTopMenu->mIndex == 2 && func_021143b4() == 0) {
@@ -546,7 +546,7 @@ void AdvanceRecordTopMenuState7(void) {
         gRecordTopMenu->mRecordTopMenuSTable[data_ov001_021a6aa4[i]].mUnk_04 = v;
     }
     if (gRecordTopMenu->mStateFrames >= 10) {
-        func_ov001_0219adbc();
+        RequestRecordTopMenuState8AndSetupTxtSystemSubText();
     }
 }
 
@@ -554,7 +554,7 @@ void AdvanceRecordTopMenuState8(void) {
     int v1;
     v1 = func_02125fa4();
     if (v1 != 0) {
-        func_ov001_0219ad98();
+        RequestRecordTopMenuState9AndStartSound();
     }
 }
 
@@ -582,7 +582,7 @@ void AdvanceRecordTopMenuState9(void) {
             return;
         }
     }
-    func_ov001_0219ad7c();
+    RequestRecordTopMenuState10AndRequestTxtSystemClose();
     func_02128310(0);
 }
 
@@ -663,7 +663,7 @@ void func_ov001_0219a0c0(void) {
     func_02111428();
 }
 
-void func_ov001_0219a078(void) {
+void WriteRecordTopMenuRegisters(void) {
     u32 a;
     u32 b;
     a = (reg_GX_DISPCNT & 0x1f00) >> 8;
@@ -673,7 +673,7 @@ void func_ov001_0219a078(void) {
 }
 
 void RegisterRecordTopMenuCallbacks(void) {
-    UnkFunc *tbl[5] = {InitRecordTopMenu, func_ov001_0219a950, AdvanceRecordTopMenu, func_ov001_0219a0c0,
-                       func_ov001_0219a078};
+    UnkFunc *tbl[5] = {InitRecordTopMenu, ReleaseRecordTopMenu, AdvanceRecordTopMenu, func_ov001_0219a0c0,
+                       WriteRecordTopMenuRegisters};
     func_02111494(tbl);
 }

@@ -208,7 +208,7 @@ void func_020cb618(void) {
                 ReleaseTimeAttackTopMenu();
                 break;
             case SCREEN_SELECT_GHOST:
-                func_ov001_0219baf4();
+                ReleaseSelectGhost();
                 break;
             case 12:
             case 24:

@@ -15,7 +15,7 @@
 #define SCREEN_MISSION_RUN_MSSEL 0x13
 // InitTimeAttackTopMenu / ReleaseTimeAttackTopMenu.
 #define SCREEN_TIME_ATTACK_TOP_MENU 0x14
-// InitSelectGhost (released by func_ov001_0219baf4).
+// InitSelectGhost (released by ReleaseSelectGhost).
 #define SCREEN_SELECT_GHOST 0x1a
 
 void func_020ccc74(s32 a, s32 b);

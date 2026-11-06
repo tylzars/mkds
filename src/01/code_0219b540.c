@@ -63,7 +63,7 @@ void LoadSelectGhostAndKartIconData(void) {
     LoadCommonKartIconData();
 }
 
-void func_ov001_0219c544(void) {
+void LocateAndQueueSelectGhost(void) {
     Ncgr *a;
     Ncgr *b;
     Nclr *c;
@@ -98,7 +98,7 @@ void func_ov001_0219c544(void) {
     CallQueueAppend(0x1e, 0, gSelectGhost->mSelectGhostSONclr->mData, gSelectGhost->mSelectGhostSONclr->mDataSize);
 }
 
-void func_ov001_0219c480(void) {
+void ResetSelectGhost(void) {
     u16 cnt;
     s32 i;
 
@@ -107,18 +107,18 @@ void func_ov001_0219c480(void) {
     gSelectGhost->mBg0Offset = 0;
     gSelectGhost->mBg3Offset = -0xc0;
     for (i = 0; i < 6; i++) {
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[i]].mUnk_06 = -0xc0;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[i]].mUnk_06 = -0xc0;
     }
     gSelectGhost->mSelectGhostSTable[10].mUnk_06 = -0xc0;
     gSelectGhost->mSelectGhostSTable[11].mUnk_06 = -0xc0;
     cnt = gSelectGhost->mSelectGhostSBncl->mUnk_06;
     for (i = 0; i < 5; i++) {
-        gSelectGhost->mSelectGhostSTable[cnt + data_ov001_021a6b54[i]].mUnk_06 = -0xc0;
+        gSelectGhost->mSelectGhostSTable[cnt + gSelectGhostSBnllIndices[i]].mUnk_06 = -0xc0;
     }
     gSelectGhost->mSelectGhostSTable[cnt + 5].mUnk_06 = -0xc0;
     for (i = 0; i < 2; i++) {
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_06 = -0xc0;
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_06 = -0xc0;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_06 = -0xc0;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_06 = -0xc0;
     }
 }
 
@@ -134,14 +134,14 @@ void RequestSelectGhostState2(void) {
     gSelectGhost->mStateFrames = 0;
 }
 
-void func_ov001_0219c428(void) {
+void RequestSelectGhostState3StopPaletteBlendAndStartSound(void) {
     gSelectGhost->mNextState = 3;
     gSelectGhost->mStateFrames = 0;
     StopPaletteBlend();
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
-void func_ov001_0219c3ec(void) {
+void RequestSelectGhostState4AndStartSelectChoises(void) {
     gSelectGhost->mNextState = 4;
     gSelectGhost->mStateFrames = 0;
     StartSelectChoises(GetBmgEntry(gSelectGhost->mCommonMessages, 4), GetBmgEntry(gSelectGhost->mCommonMessages, 2), 0);
@@ -153,7 +153,7 @@ void RequestSelectGhostState5(void) {
     gSelectGhost->mStateFrames = 0;
 }
 
-void func_ov001_0219c3bc(void) {
+void RequestSelectGhostState6AndRequestSelectChoisesState0(void) {
     gSelectGhost->mNextState = 6;
     gSelectGhost->mStateFrames = 0;
     RequestSelectChoisesState0();
@@ -168,8 +168,8 @@ void RequestSelectGhostState7(void) {
 void func_ov001_0219c358(void) {
     gSelectGhost->mSelectGhostSTable[10].mUnk_00 = 1;
     gSelectGhost->mSelectGhostSTable[11].mUnk_00 = 0;
-    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[0]].mUnk_00 = 1;
-    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[1]].mUnk_00 = 0;
+    gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[0]].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[1]].mUnk_00 = 0;
     gSelectGhost->mSelectGhostSTable[10].mUnk_00 = 0;
     gSelectGhost->mSelectGhostSTable[11].mUnk_00 = 1;
 }
@@ -177,23 +177,23 @@ void func_ov001_0219c358(void) {
 // Stores both offsets and steps both timers; each timer switches its rows on or off.
 void AdvanceSelectGhostOffsetTimers(void) {
     s32 i;
-    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[0]].mUnk_04 =
+    gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[0]].mUnk_04 =
         -func_020adc64(6 - gSelectGhost->mOffsetTimers[0]);
-    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[1]].mUnk_04 =
+    gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[1]].mUnk_04 =
         func_020adc64(6 - gSelectGhost->mOffsetTimers[1]);
     for (i = 0; i < 2; i++) {
         if (gSelectGhost->mOffsetTimers[i] > 0) {
             gSelectGhost->mOffsetTimers[i]--;
-            gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_00 = 0;
-            gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_00 = 1;
+            gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_00 = 0;
+            gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_00 = 1;
         } else {
-            gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_00 = 1;
-            gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_00 = 0;
+            gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_00 = 1;
+            gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_00 = 0;
         }
     }
 }
 
-void func_ov001_0219c0bc(void) {
+void RefreshSelectGhostForIndex(void) {
     SelectGhost *p = gSelectGhost;
     Unk0201ea30 *q;
     u16 n;
@@ -209,28 +209,28 @@ void func_ov001_0219c0bc(void) {
 
     q = p->mSelectGhostSBncl;
     n = q->mUnk_06;
-    func_0212426c(1, data_ov001_021a6b54[4], gSelectGhost->mSelectGhostSBnll,
-                  GetBmgEntry(p->mMenuMessages, data_ov001_021a6b40[p->mIndex]), q, p->mSelectGhostSTable);
+    func_0212426c(1, gSelectGhostSBnllIndices[4], gSelectGhost->mSelectGhostSBnll,
+                  GetBmgEntry(p->mMenuMessages, gSelectGhostMenuMessageIndices[p->mIndex]), q, p->mSelectGhostSTable);
     if (gSelectGhost->mIndex == 0) {
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[2]].mUnk_00 = 0;
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[3]].mUnk_00 = 0;
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[4]].mUnk_00 = 0;
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[5]].mUnk_00 = 0;
-        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[0]].mUnk_00 = 0;
-        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[1]].mUnk_00 = 0;
-        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[2]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[2]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[3]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[4]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[5]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[n + gSelectGhostSBnllIndices[0]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[n + gSelectGhostSBnllIndices[1]].mUnk_00 = 0;
+        gSelectGhost->mSelectGhostSTable[n + gSelectGhostSBnllIndices[2]].mUnk_00 = 0;
         return;
     }
-    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[2]].mUnk_00 = 1;
-    gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[3]].mUnk_00 = 1;
-    a = data_ov001_021a6b6c[4];
+    gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[2]].mUnk_00 = 1;
+    gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[3]].mUnk_00 = 1;
+    a = gSelectGhostSTableIndices[4];
     gSelectGhost->mSelectGhostSTable[a].mUnk_00 = 1;
-    b = data_ov001_021a6b6c[5];
+    b = gSelectGhostSTableIndices[5];
     gSelectGhost->mSelectGhostSTable[b].mUnk_00 = 1;
-    gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[0]].mUnk_00 = 1;
-    y = data_ov001_021a6b54[1];
+    gSelectGhost->mSelectGhostSTable[n + gSelectGhostSBnllIndices[0]].mUnk_00 = 1;
+    y = gSelectGhostSBnllIndices[1];
     gSelectGhost->mSelectGhostSTable[n + y].mUnk_00 = 1;
-    x = data_ov001_021a6b54[2];
+    x = gSelectGhostSBnllIndices[2];
     gSelectGhost->mSelectGhostSTable[n + x].mUnk_00 = 1;
     r = data_ov001_021a6b88[func_0211e274(data_ov001_021a6b78[gSelectGhost->mIndex])];
     func_02124748(r, gSelectGhost->mPlayerCharacterMNcer, gSelectGhost->mPlayerCharacterMNcgr,
@@ -264,7 +264,7 @@ void func_ov001_0219c058(void) {
     gSelectGhost->mOffsetTimers[1] = 6;
     if (ok != FALSE) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 1);
-        func_ov001_0219c0bc();
+        RefreshSelectGhostForIndex();
     }
 }
 
@@ -281,7 +281,7 @@ void func_ov001_0219bff4(void) {
     gSelectGhost->mOffsetTimers[0] = 6;
     if (ok != FALSE) {
         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 1);
-        func_ov001_0219c0bc();
+        RefreshSelectGhostForIndex();
     }
 }
 
@@ -340,7 +340,7 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
     gSelectGhost->mUnk_64 = b;
     gSelectGhost->mUnk_68 = c;
     gSelectGhost->mResult = 0;
-    func_ov001_0219c544();
+    LocateAndQueueSelectGhost();
     CreateCommonKartIcon(gSelectGhost->mHeap);
     func_02124ed0(gSelectGhost->mHeap, gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMBnll,
                   &gSelectGhost->mSelectCupCourseTaMTable);
@@ -369,22 +369,22 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
                   gSelectGhost->mSelectCupCourseTaMTable, rem);
     rem = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 5; i++) {
-        rem -= func_021243ac(gSelectGhost->mHeap, data_ov001_021a6b54[i], gSelectGhost->mSelectGhostSBnll,
+        rem -= func_021243ac(gSelectGhost->mHeap, gSelectGhostSBnllIndices[i], gSelectGhost->mSelectGhostSBnll,
                              data_ov001_021a6b48[i], data_ov001_021a6b60[i], i, gSelectGhost->mSelectGhostSONcer,
                              gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable, rem);
     }
     func_021243ac(gSelectGhost->mHeap, 5, gSelectGhost->mSelectGhostSBnll, 0x32, 0xd, 0xb,
                   gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable,
                   rem);
-    func_0212426c(1, data_ov001_021a6b54[0], gSelectGhost->mSelectGhostSBnll,
+    func_0212426c(1, gSelectGhostSBnllIndices[0], gSelectGhost->mSelectGhostSBnll,
                   GetBmgEntry(gSelectGhost->mMenuMessages, 8), gSelectGhost->mSelectGhostSBncl,
                   gSelectGhost->mSelectGhostSTable);
-    func_0212426c(1, data_ov001_021a6b54[3], gSelectGhost->mSelectGhostSBnll,
+    func_0212426c(1, gSelectGhostSBnllIndices[3], gSelectGhost->mSelectGhostSBnll,
                   GetBmgEntry(gSelectGhost->mMenuMessages, 9), gSelectGhost->mSelectGhostSBncl,
                   gSelectGhost->mSelectGhostSTable);
-    func_0212426c(1, data_ov001_021a6b54[4], gSelectGhost->mSelectGhostSBnll,
-                  GetBmgEntry(gSelectGhost->mMenuMessages, data_ov001_021a6b40[0]), gSelectGhost->mSelectGhostSBncl,
-                  gSelectGhost->mSelectGhostSTable);
+    func_0212426c(1, gSelectGhostSBnllIndices[4], gSelectGhost->mSelectGhostSBnll,
+                  GetBmgEntry(gSelectGhost->mMenuMessages, gSelectGhostMenuMessageIndices[0]),
+                  gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable);
     func_0212426c(1, 5, gSelectGhost->mSelectGhostSBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 4),
                   gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable);
     CreateSelectCupNameM(gSelectGhost->mHeap);
@@ -392,18 +392,18 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
     InitPaletteBlend(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSONclr, 4);
     ResetPaletteBlendCycle();
     func_ov001_0219be5c();
-    func_ov001_0219c480();
+    ResetSelectGhost();
     for (i = 3; i >= 0; i--) {
         if (func_0211e160(data_ov001_021a6b78[i]) != 0) {
             gSelectGhost->mIndex = i;
             break;
         }
     }
-    func_ov001_0219c0bc();
+    RefreshSelectGhostForIndex();
     FrmHeapShrinkInParent(gSelectGhost->mHeap);
 }
 
-void func_ov001_0219baf4(void) {
+void ReleaseSelectGhost(void) {
     if (gSelectGhost->mResult == 1) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | 0x1800;
     }
@@ -426,14 +426,14 @@ void AdvanceSelectGhostState0(void) {
     v = func_020ae4c0(1, ~0xbf, 0, gSelectGhost->mStateFrames, 10);
     gSelectGhost->mBg3Offset = v;
     for (i = 0; i < 6; i++) {
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[i]].mUnk_06 = v;
     }
     for (i = 0; i < 5; i++) {
-        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[n + gSelectGhostSBnllIndices[i]].mUnk_06 = v;
     }
     for (i = 0; i < 2; i++) {
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_06 = v;
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_06 = v;
     }
     if (gSelectGhost->mStateFrames >= 10) {
         RequestSelectGhostState1();
@@ -508,7 +508,7 @@ next:
         return;
     }
     if (r == 3) {
-        func_ov001_0219c428();
+        RequestSelectGhostState3StopPaletteBlendAndStartSound();
         return;
     }
     if (r == 2) {
@@ -516,7 +516,7 @@ next:
         return;
     }
     if ((u16) (data_02175628[idx].mUnk_00 & 1) != 0) {
-        func_ov001_0219c428();
+        RequestSelectGhostState3StopPaletteBlendAndStartSound();
         return;
     }
     if (func_020ae408(8, 0x20) != 0) {
@@ -532,7 +532,7 @@ void AdvanceSelectGhostState3(void) {
     AdvanceSelectGhostOffsetTimers();
     gSelectGhost->mStateFrames++;
     if (gSelectGhost->mStateFrames >= 10) {
-        func_ov001_0219c3ec();
+        RequestSelectGhostState4AndStartSelectChoises();
     }
 }
 
@@ -546,7 +546,7 @@ void AdvanceSelectGhostState5(void) {
     int v1;
     v1 = GetSelectChoisesDone();
     if (v1 != 0) {
-        func_ov001_0219c3bc();
+        RequestSelectGhostState6AndRequestSelectChoisesState0();
     }
 }
 
@@ -602,16 +602,16 @@ void AdvanceSelectGhostState7(void) {
     w = -func_02128244(gSelectGhost->mStateFrames);
     gSelectGhost->mBg3Offset = v;
     for (i = 0; i < 6; i++) {
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b6c[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostSTableIndices[i]].mUnk_06 = v;
     }
     gSelectGhost->mSelectGhostSTable[10].mUnk_06 = w;
     gSelectGhost->mSelectGhostSTable[11].mUnk_06 = w;
     for (i = 0; i < 5; i++) {
-        gSelectGhost->mSelectGhostSTable[n + data_ov001_021a6b54[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[n + gSelectGhostSBnllIndices[i]].mUnk_06 = v;
     }
     for (i = 0; i < 2; i++) {
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b3c[i]].mUnk_06 = v;
-        gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostTimerZeroSTableIndices[i]].mUnk_06 = v;
+        gSelectGhost->mSelectGhostSTable[gSelectGhostTimerRunningSTableIndices[i]].mUnk_06 = v;
     }
     gSelectGhost->mSelectGhostSTable[n + 5].mUnk_06 = w;
 }
@@ -670,7 +670,7 @@ int AdvanceSelectGhost(void) {
     return 0;
 }
 
-void func_ov001_0219b540(void) {
+void WriteSelectGhostRegisters(void) {
     reg_G2_BG0OFS = (-gSelectGhost->mBg0Offset << 16) & 0x1ff0000;
     reg_G2S_DB_BG3OFS = (-gSelectGhost->mBg3Offset << 16) & 0x1ff0000;
 }

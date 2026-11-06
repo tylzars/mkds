@@ -51,7 +51,7 @@ void func_ov001_021856ec(void) {
         func_ov001_0218568c(0x1f);
         GXS_SetGraphicsMode(0);
     }
-    func_ov001_0219b540();
+    WriteSelectGhostRegisters();
 }
 
 void func_ov001_021856c0(void) {
