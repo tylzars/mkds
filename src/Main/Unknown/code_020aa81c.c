@@ -315,9 +315,9 @@ void func_020abae0(void) {
 
 void func_020aba9c(void) {
     DC_FlushRange(data_0217b334->mUnk_04, data_0217b334->mUnk_0c);
-    MemCopyHalfwordsToG2sBg2CntBits8To12Address(data_0217b334->mUnk_04, 0, data_0217b334->mUnk_0c);
+    GXS_LoadBG2Scr(data_0217b334->mUnk_04, 0, data_0217b334->mUnk_0c);
     DC_FlushRange(data_0217b334->mUnk_00, data_0217b334->mUnk_08);
-    MemCopyWordsToG2sBg2CntBits2To5Address(data_0217b334->mUnk_00, 0, data_0217b334->mUnk_08);
+    GXS_LoadBG2Char(data_0217b334->mUnk_00, 0, data_0217b334->mUnk_08);
     return;
 }
 

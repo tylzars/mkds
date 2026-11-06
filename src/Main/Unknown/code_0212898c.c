@@ -381,7 +381,7 @@ void func_02129cbc(void) {
     v1 = FindSceneFile(data_0216e9fc);
     LoadNcgrData(&v2, v1);
     DC_FlushRange(v2->mData, v2->mDataSize);
-    MemCopyWordsToG2sBg3CntBits2To5Address(v2->mData, 0, v2->mDataSize);
+    GXS_LoadBG3Char(v2->mData, 0, v2->mDataSize);
     v1 = FindSceneFile(data_0216ea14);
     LoadNscrData(&gKeyboard->mNscrs[0], v1);
     v1 = FindSceneFile(data_0216ea30);

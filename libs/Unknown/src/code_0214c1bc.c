@@ -10,52 +10,52 @@
 #include "Main/Unknown/unk_02180000.h"
 
 void GX_BeginLoadTex(void) {
-    u32 i;
-    u32 o;
+    u32 mask;
+    u32 row;
 
-    i = GX_ResetBankForTex();
-    o = i * 6;
-    gTextureLoadBankMask = i;
-    gTextureLoadFirstBase = *(u16 *) (gTextureBlockTable + o) << 12;
-    gTextureLoadSecondBase = *(u16 *) (data_021616ce + o) << 12;
-    gTextureLoadFirstSize = *(u16 *) (data_021616d0 + o) << 12;
+    mask = GX_ResetBankForTex();
+    row = mask * 6;
+    gTextureLoadBankMask = mask;
+    gTextureLoadFirstBase = *(u16 *) (gTextureBlockTable + row) << 12;
+    gTextureLoadSecondBase = *(u16 *) (data_021616ce + row) << 12;
+    gTextureLoadFirstSize = *(u16 *) (data_021616d0 + row) << 12;
 }
 
-void GX_LoadTex(const void *a, u32 b, u32 c) {
-    u8 *p;
-    u32 q;
-    u32 n;
-    u8 *dst;
+void GX_LoadTex(const void *src, u32 offset, u32 size) {
+    u8 *second;
+    u32 firstSize;
+    u32 firstCount;
+    u8 *dest;
 
-    p = (u8 *) gTextureLoadSecondBase;
-    if (p == 0) {
-        dst = (u8 *) gTextureLoadFirstBase + b;
+    second = (u8 *) gTextureLoadSecondBase;
+    if (second == 0) {
+        dest = (u8 *) gTextureLoadFirstBase + offset;
     } else {
-        q = gTextureLoadFirstSize;
-        if (b + c < q) {
-            dst = (u8 *) gTextureLoadFirstBase + b;
-        } else if (b >= q) {
-            dst = p + b - q;
+        firstSize = gTextureLoadFirstSize;
+        if (offset + size < firstSize) {
+            dest = (u8 *) gTextureLoadFirstBase + offset;
+        } else if (offset >= firstSize) {
+            dest = second + offset - firstSize;
         } else {
-            n = q - b;
-            dst = (u8 *) gTextureLoadFirstBase + b;
-            if (data_0216f074[0] != -1 && n > 0x30) {
-                MI_DmaCopy32(data_0216f074[0], a, dst, n);
+            firstCount = firstSize - offset;
+            dest = (u8 *) gTextureLoadFirstBase + offset;
+            if (data_0216f074[0] != -1 && firstCount > 0x30) {
+                MI_DmaCopy32(data_0216f074[0], src, dest, firstCount);
             } else {
-                MIi_CpuCopy32(a, dst, n);
+                MIi_CpuCopy32(src, dest, firstCount);
             }
             if (data_0216f074[0] != -1) {
-                MI_DmaCopy32Async(data_0216f074[0], (const u8 *) a + n, p, c - n, 0, 0);
+                MI_DmaCopy32Async(data_0216f074[0], (const u8 *) src + firstCount, second, size - firstCount, 0, 0);
             } else {
-                MIi_CpuCopy32((const u8 *) a + n, p, c - n);
+                MIi_CpuCopy32((const u8 *) src + firstCount, second, size - firstCount);
             }
             return;
         }
     }
     if (data_0216f074[0] != -1) {
-        MI_DmaCopy32Async(data_0216f074[0], a, dst, c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], src, dest, size, 0, 0);
     } else {
-        MIi_CpuCopy32(a, dst, c);
+        MIi_CpuCopy32(src, dest, size);
     }
 }
 
@@ -71,17 +71,17 @@ void GX_EndLoadTex(void) {
 }
 
 void GX_BeginLoadTexPltt(void) {
-    s32 v = GX_ResetBankForTexPltt();
-    gTexturePaletteLoadBankMask = v;
-    gTexturePaletteLoadBase = (u8 *) (gTexturePaletteBaseTable[v >> 4] << 12);
+    s32 mask = GX_ResetBankForTexPltt();
+    gTexturePaletteLoadBankMask = mask;
+    gTexturePaletteLoadBase = (u8 *) (gTexturePaletteBaseTable[mask >> 4] << 12);
 }
 
-void GX_LoadTexPltt(const void *a, u32 b, u32 c) {
-    u8 *p = gTexturePaletteLoadBase + b;
+void GX_LoadTexPltt(const void *src, u32 offset, u32 size) {
+    u8 *dest = gTexturePaletteLoadBase + offset;
     if (data_0216f074[0] != -1) {
-        MI_DmaCopy32Async(data_0216f074[0], a, p, c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], src, dest, size, 0, 0);
     } else {
-        MIi_CpuCopy32(a, p, c);
+        MIi_CpuCopy32(src, dest, size);
     }
 }
 
@@ -95,9 +95,9 @@ void GX_EndLoadTexPltt(void) {
 }
 
 void GX_BeginLoadClearImage(void) {
-    u32 v = GX_ResetBankForClearImage();
-    gClearImageLoadBankMask = v;
-    switch (v) {
+    u32 mask = GX_ResetBankForClearImage();
+    gClearImageLoadBankMask = mask;
+    switch (mask) {
         case 2:
         case 3:
             gClearImageLoadBase = (u8 *) 0x6800000;
@@ -115,21 +115,21 @@ void GX_BeginLoadClearImage(void) {
     }
 }
 
-void GX_LoadClearImageColor(const void *a, u32 b) {
-    u8 *p = gClearImageLoadBase;
+void GX_LoadClearImageColor(const void *src, u32 size) {
+    u8 *dest = gClearImageLoadBase;
     if (data_0216f074[0] != -1) {
-        MI_DmaCopy32Async(data_0216f074[0], a, p, b, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], src, dest, size, 0, 0);
     } else {
-        MIi_CpuCopy32(a, p, b);
+        MIi_CpuCopy32(src, dest, size);
     }
 }
 
-void GX_LoadClearImageDepth(const void *a, u32 b) {
-    u8 *p = gClearImageLoadBase + 0x20000;
+void GX_LoadClearImageDepth(const void *src, u32 size) {
+    u8 *dest = gClearImageLoadBase + 0x20000;
     if (data_0216f074[0] != -1) {
-        MI_DmaCopy32Async(data_0216f074[0], a, p, b, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], src, dest, size, 0, 0);
     } else {
-        MIi_CpuCopy32(a, p, b);
+        MIi_CpuCopy32(src, dest, size);
     }
 }
 

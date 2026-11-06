@@ -13,11 +13,11 @@
 void func_020ca9e4(void) {
     if (gEmblemChoises->mUnk_08 != FALSE) {
         GXS_LoadBGPltt(gEmblemChoises->mChoisesSBNclr->mData + 0xe0, 0x1c0, 0x40);
-        MemCopyWordsToG2sBg0CntBits2To5Address(gEmblemChoises->mChoisesSBNcgr->mData, 0, 0x3000);
+        GXS_LoadBG0Char(gEmblemChoises->mChoisesSBNcgr->mData, 0, 0x3000);
         gEmblemChoises->mUnk_08 = FALSE;
     }
     if (gEmblemChoises->mUnk_00 != 0) {
-        MemCopyHalfwordsToG2sBg0CntBits8To12Address(gEmblemChoises->mChoisesS3Nscr->mData, 0, 0x600);
+        GXS_LoadBG0Scr(gEmblemChoises->mChoisesS3Nscr->mData, 0, 0x600);
     }
     if (gEmblemChoises->mUnk_00 != gEmblemChoises->mUnk_04) {
         if (gEmblemChoises->mUnk_00 != 0) {

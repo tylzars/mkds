@@ -9,11 +9,11 @@
 #include "Main/Unknown/unk_02180000.h"
 
 void GX_BeginLoadBGExtPltt(void) {
-    s32 v;
+    s32 mask;
 
-    v = GX_ResetBankForBGExtPltt();
-    gBgExtPaletteLoadBankMask = v;
-    switch (v) {
+    mask = GX_ResetBankForBGExtPltt();
+    gBgExtPaletteLoadBankMask = mask;
+    switch (mask) {
         case 0:
             break;
         case 0x10:
@@ -32,14 +32,14 @@ void GX_BeginLoadBGExtPltt(void) {
     }
 }
 
-void GX_LoadBGExtPltt(const void *a, u32 b, u32 c) {
-    u32 d;
+void GX_LoadBGExtPltt(const void *src, u32 offset, u32 size) {
+    u32 dest;
 
-    d = gBgExtPaletteLoadBase + b - gBgExtPaletteLoadBaseOffset;
+    dest = gBgExtPaletteLoadBase + offset - gBgExtPaletteLoadBaseOffset;
     if (data_0216f074[0] != -1) {
-        MI_DmaCopy32Async(data_0216f074[0], a, (void *) d, c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], src, (void *) dest, size, 0, 0);
     } else {
-        MIi_CpuCopy32(a, (void *) d, c);
+        MIi_CpuCopy32(src, (void *) dest, size);
     }
 }
 
@@ -54,14 +54,14 @@ void GX_EndLoadBGExtPltt(void) {
 }
 
 void GX_BeginLoadOBJExtPltt(void) {
-    s32 v;
+    s32 mask;
 
-    v = GX_ResetBankForOBJExtPltt();
-    gObjExtPaletteLoadBankMask = v;
-    if (v == 0) {
+    mask = GX_ResetBankForOBJExtPltt();
+    gObjExtPaletteLoadBankMask = mask;
+    if (mask == 0) {
         return;
     }
-    switch (v) {
+    switch (mask) {
         case 0x20:
             gObjExtPaletteLoadBase = 0x6890000;
             break;
@@ -71,14 +71,14 @@ void GX_BeginLoadOBJExtPltt(void) {
     }
 }
 
-void GX_LoadOBJExtPltt(const void *a, u32 b, u32 c) {
-    u32 d;
+void GX_LoadOBJExtPltt(const void *src, u32 offset, u32 size) {
+    u32 dest;
 
-    d = gObjExtPaletteLoadBase + b;
+    dest = gObjExtPaletteLoadBase + offset;
     if (data_0216f074[0] != -1) {
-        MI_DmaCopy32Async(data_0216f074[0], a, (void *) d, c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], src, (void *) dest, size, 0, 0);
     } else {
-        MIi_CpuCopy32(a, (void *) d, c);
+        MIi_CpuCopy32(src, (void *) dest, size);
     }
 }
 
@@ -95,11 +95,11 @@ void GXS_BeginLoadBGExtPltt(void) {
     gSubBgExtPaletteLoadBankMask = GX_ResetBankForSubBGExtPltt();
 }
 
-void GXS_LoadBGExtPltt(const void *a, u32 b, u32 c) {
+void GXS_LoadBGExtPltt(const void *src, u32 offset, u32 size) {
     if (data_0216f074[0] != -1) {
-        MI_DmaCopy32Async(data_0216f074[0], a, (void *) (b + 0x6898000), c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], src, (void *) (offset + 0x6898000), size, 0, 0);
     } else {
-        MIi_CpuCopy32(a, (void *) (b + 0x6898000), c);
+        MIi_CpuCopy32(src, (void *) (offset + 0x6898000), size);
     }
 }
 
@@ -115,11 +115,11 @@ void GXS_BeginLoadOBJExtPltt(void) {
     gSubObjExtPaletteLoadBankMask = GX_ResetBankForSubOBJExtPltt();
 }
 
-void GXS_LoadOBJExtPltt(const void *a, u32 b, u32 c) {
+void GXS_LoadOBJExtPltt(const void *src, u32 offset, u32 size) {
     if (data_0216f074[0] != -1) {
-        MI_DmaCopy32Async(data_0216f074[0], a, (void *) (b + 0x68a0000), c, 0, 0);
+        MI_DmaCopy32Async(data_0216f074[0], src, (void *) (offset + 0x68a0000), size, 0, 0);
     } else {
-        MIi_CpuCopy32(a, (void *) (b + 0x68a0000), c);
+        MIi_CpuCopy32(src, (void *) (offset + 0x68a0000), size);
     }
 }
 

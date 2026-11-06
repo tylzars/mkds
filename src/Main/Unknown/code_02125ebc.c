@@ -196,12 +196,12 @@ s32 func_0212717c(s32 d) {
     }
     gTxtSystem->mUnk_2220[0] = 0;
     DC_FlushRange(a->mData, a->mDataSize);
-    MemCopyWordsToG2Bg2CntBits2To5Address(a->mData, 0, a->mDataSize);
+    GX_LoadBG2Char(a->mData, 0, a->mDataSize);
     if (gTxtSystem->mUnk_48 != 0) {
         d = d - a->mDataSize;
         gTxtSystem->mUnk_2220[2] = d >> 5;
         DC_FlushRange(a->mData, a->mDataSize);
-        MemCopyWordsToG2sBg0CntBits2To5Address(a->mData, d, a->mDataSize);
+        GXS_LoadBG0Char(a->mData, d, a->mDataSize);
     }
     if (*(vu16 *) 0x27ffc40 != 2) {
         if (gTxtSystem->mUnk_44 != 0) {
@@ -209,7 +209,7 @@ s32 func_0212717c(s32 d) {
         }
         gTxtSystem->mUnk_223c[0] = a->mDataSize >> 5;
         DC_FlushRange(b->mData, b->mDataSize);
-        MemCopyWordsToG2Bg2CntBits2To5Address(b->mData, gTxtSystem->mUnk_223c[0] << 5, b->mDataSize);
+        GX_LoadBG2Char(b->mData, gTxtSystem->mUnk_223c[0] << 5, b->mDataSize);
         if (gTxtSystem->mUnk_4c != 0) {
             gTxtSystem->mUnk_2220[3] = gTxtSystem->mUnk_2220[2];
         }
@@ -219,7 +219,7 @@ s32 func_0212717c(s32 d) {
         gTxtSystem->mUnk_2220[6] = d >> 5;
         gTxtSystem->mUnk_223c[1] = d >> 5;
         DC_FlushRange(b->mData, b->mDataSize);
-        MemCopyWordsToG2sBg0CntBits2To5Address(b->mData, d, b->mDataSize);
+        GXS_LoadBG0Char(b->mData, d, b->mDataSize);
     }
     DC_FlushRange(c->mData, 0x1c0);
     GX_LoadBGPltt(c->mData + 0xe0, 0x1c0, 0x40);

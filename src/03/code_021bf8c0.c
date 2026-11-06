@@ -474,13 +474,13 @@ void func_ov003_021bf920(void) {
 
 void func_ov003_021bf8c0(void) {
     data_ov003_021da154 = func_ov003_021d285c(0xc0, 4);
-    func_ov003_021bf620(data_ov003_021d6bb0, MemCopyWordsToG2Bg1CntBits2To5Address);
+    func_ov003_021bf620(data_ov003_021d6bb0, GX_LoadBG1Char);
     switch (func_ov003_021c20c0()) {
         case 0:
-            func_ov003_021bf620(data_ov003_021d6b60[0], MemCopyHalfwordsToG2Bg1CntBits8To12Address);
+            func_ov003_021bf620(data_ov003_021d6b60[0], GX_LoadBG1Scr);
             break;
         case 1:
-            func_ov003_021bf620(data_ov003_021d6b60[1], MemCopyHalfwordsToG2Bg1CntBits8To12Address);
+            func_ov003_021bf620(data_ov003_021d6b60[1], GX_LoadBG1Scr);
             break;
     }
 }

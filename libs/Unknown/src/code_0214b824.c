@@ -15,214 +15,214 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0216f000.h"
 
-void GX_LoadBGPltt(const void *a, u32 b, u32 c) {
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (0x5000000 + b), c);
+void GX_LoadBGPltt(const void *src, u32 offset, u32 size) {
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (0x5000000 + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (0x5000000 + b), c);
+        MIi_CpuCopy16(src, (void *) (0x5000000 + offset), size);
     }
 }
 
-void GXS_LoadBGPltt(const void *a, u32 b, u32 c) {
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (0x5000400 + b), c);
+void GXS_LoadBGPltt(const void *src, u32 offset, u32 size) {
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (0x5000400 + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (0x5000400 + b), c);
+        MIi_CpuCopy16(src, (void *) (0x5000400 + offset), size);
     }
 }
 
-void GX_LoadOBJPltt(const void *a, u32 b, u32 c) {
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (0x5000200 + b), c);
+void GX_LoadOBJPltt(const void *src, u32 offset, u32 size) {
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (0x5000200 + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (0x5000200 + b), c);
+        MIi_CpuCopy16(src, (void *) (0x5000200 + offset), size);
     }
 }
 
-void GXS_LoadOBJPltt(const void *a, u32 b, u32 c) {
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (0x5000600 + b), c);
+void GXS_LoadOBJPltt(const void *src, u32 offset, u32 size) {
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (0x5000600 + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (0x5000600 + b), c);
+        MIi_CpuCopy16(src, (void *) (0x5000600 + offset), size);
     }
 }
 
-void GX_LoadOAM(const void *a, u32 b, u32 c) {
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (0x7000000 + b), c);
+void GX_LoadOAM(const void *src, u32 offset, u32 size) {
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (0x7000000 + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (0x7000000 + b), c);
+        MIi_CpuCopy32(src, (void *) (0x7000000 + offset), size);
     }
 }
 
-void GXS_LoadOAM(const void *a, u32 b, u32 c) {
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (0x7000400 + b), c);
+void GXS_LoadOAM(const void *src, u32 offset, u32 size) {
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (0x7000400 + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (0x7000400 + b), c);
+        MIi_CpuCopy32(src, (void *) (0x7000400 + offset), size);
     }
 }
 
-void GX_LoadOBJ(const void *a, u32 b, u32 c) {
-    enum { K0 } d = 0x6400000;
+void GX_LoadOBJ(const void *src, u32 offset, u32 size) {
+    enum { K0 } base = 0x6400000;
 
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (d + b), c);
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (base + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (d + b), c);
+        MIi_CpuCopy32(src, (void *) (base + offset), size);
     }
 }
 
-void GXS_LoadOBJ(const void *a, u32 b, u32 c) {
-    enum { K0 } d = 0x6600000;
+void GXS_LoadOBJ(const void *src, u32 offset, u32 size) {
+    enum { K0 } base = 0x6600000;
 
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (d + b), c);
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (base + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (d + b), c);
+        MIi_CpuCopy32(src, (void *) (base + offset), size);
     }
 }
 
-void MemCopyHalfwordsToG2Bg0CntBits8To12Address(const void *a, u32 b, u32 c) {
-    u32 n = G2Bg0CntBits8To12Address();
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (n + b), c);
+void GX_LoadBG0Scr(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2Bg0CntBits8To12Address();
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (n + b), c);
+        MIi_CpuCopy16(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyHalfwordsToG2sBg0CntBits8To12Address(const void *a, u32 b, u32 c) {
-    u32 n = G2sBg0CntBits8To12Address();
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (n + b), c);
+void GXS_LoadBG0Scr(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2sBg0CntBits8To12Address();
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (n + b), c);
+        MIi_CpuCopy16(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyHalfwordsToG2Bg1CntBits8To12Address(const void *a, u32 b, u32 c) {
-    u32 n = G2Bg1CntBits8To12Address();
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (n + b), c);
+void GX_LoadBG1Scr(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2Bg1CntBits8To12Address();
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (n + b), c);
+        MIi_CpuCopy16(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyHalfwordsToG2sBg1CntBits8To12Address(const void *a, u32 b, u32 c) {
-    u32 n = G2sBg1CntBits8To12Address();
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (n + b), c);
+void GXS_LoadBG1Scr(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2sBg1CntBits8To12Address();
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (n + b), c);
+        MIi_CpuCopy16(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyHalfwordsToG2Bg2CntBits8To12Address(const void *a, u32 b, u32 c) {
-    u32 n = G2Bg2CntBits8To12Address();
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (n + b), c);
+void GX_LoadBG2Scr(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2Bg2CntBits8To12Address();
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (n + b), c);
+        MIi_CpuCopy16(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyHalfwordsToG2sBg2CntBits8To12Address(const void *a, u32 b, u32 c) {
-    u32 n = G2sBg2CntBits8To12Address();
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (n + b), c);
+void GXS_LoadBG2Scr(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2sBg2CntBits8To12Address();
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (n + b), c);
+        MIi_CpuCopy16(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyHalfwordsToG2Bg3CntBits8To12Address(const void *a, u32 b, u32 c) {
-    u32 n = G2Bg3CntBits8To12Address();
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (n + b), c);
+void GX_LoadBG3Scr(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2Bg3CntBits8To12Address();
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (n + b), c);
+        MIi_CpuCopy16(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyHalfwordsToG2sBg3CntBits8To12Address(const void *a, u32 b, u32 c) {
-    u32 n = G2sBg3CntBits8To12Address();
-    if (data_0216f074[0] != -1 && c > 0x1c) {
-        MI_DmaCopy16(data_0216f074[0], a, (void *) (n + b), c);
+void GXS_LoadBG3Scr(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2sBg3CntBits8To12Address();
+    if (data_0216f074[0] != -1 && size > 0x1c) {
+        MI_DmaCopy16(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy16(a, (void *) (n + b), c);
+        MIi_CpuCopy16(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyWordsToG2Bg0CntBits2To5Address(const void *a, u32 b, u32 c) {
-    u32 n = G2Bg0CntBits2To5Address();
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (n + b), c);
+void GX_LoadBG0Char(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2Bg0CntBits2To5Address();
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (n + b), c);
+        MIi_CpuCopy32(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyWordsToG2sBg0CntBits2To5Address(const void *a, u32 b, u32 c) {
-    u32 n = G2sBg0CntBits2To5Address();
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (n + b), c);
+void GXS_LoadBG0Char(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2sBg0CntBits2To5Address();
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (n + b), c);
+        MIi_CpuCopy32(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyWordsToG2Bg1CntBits2To5Address(const void *a, u32 b, u32 c) {
-    u32 n = G2Bg1CntBits2To5Address();
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (n + b), c);
+void GX_LoadBG1Char(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2Bg1CntBits2To5Address();
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (n + b), c);
+        MIi_CpuCopy32(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyWordsToG2sBg1CntBits2To5Address(const void *a, u32 b, u32 c) {
-    u32 n = G2sBg1CntBits2To5Address();
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (n + b), c);
+void GXS_LoadBG1Char(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2sBg1CntBits2To5Address();
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (n + b), c);
+        MIi_CpuCopy32(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyWordsToG2Bg2CntBits2To5Address(const void *a, u32 b, u32 c) {
-    u32 n = G2Bg2CntBits2To5Address();
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (n + b), c);
+void GX_LoadBG2Char(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2Bg2CntBits2To5Address();
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (n + b), c);
+        MIi_CpuCopy32(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyWordsToG2sBg2CntBits2To5Address(const void *a, u32 b, u32 c) {
-    u32 n = G2sBg2CntBits2To5Address();
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (n + b), c);
+void GXS_LoadBG2Char(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2sBg2CntBits2To5Address();
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (n + b), c);
+        MIi_CpuCopy32(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyWordsToG2Bg3CntBits2To5Address(const void *a, u32 b, u32 c) {
-    u32 n = G2Bg3CntBits2To5Address();
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (n + b), c);
+void GX_LoadBG3Char(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2Bg3CntBits2To5Address();
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (n + b), c);
+        MIi_CpuCopy32(src, (void *) (ptr + offset), size);
     }
 }
 
-void MemCopyWordsToG2sBg3CntBits2To5Address(const void *a, u32 b, u32 c) {
-    u32 n = G2sBg3CntBits2To5Address();
-    if (data_0216f074[0] != -1 && c > 0x30) {
-        MI_DmaCopy32(data_0216f074[0], a, (void *) (n + b), c);
+void GXS_LoadBG3Char(const void *src, u32 offset, u32 size) {
+    u32 ptr = G2sBg3CntBits2To5Address();
+    if (data_0216f074[0] != -1 && size > 0x30) {
+        MI_DmaCopy32(data_0216f074[0], src, (void *) (ptr + offset), size);
     } else {
-        MIi_CpuCopy32(a, (void *) (n + b), c);
+        MIi_CpuCopy32(src, (void *) (ptr + offset), size);
     }
 }

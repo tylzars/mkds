@@ -91,14 +91,14 @@ s32 func_021286a0(s32 a) {
     LocateNclr(&nclr, func_02047a28("select_return_s_b_00.nclr"));
     a -= ncgr->mDataSize;
     DC_FlushRange(ncgr->mData, ncgr->mDataSize);
-    MemCopyWordsToG2sBg2CntBits2To5Address(ncgr->mData, a, ncgr->mDataSize);
+    GXS_LoadBG2Char(ncgr->mData, a, ncgr->mDataSize);
     for (i = 0; i < 0x20; i++) {
         for (j = 0; j < 0x20; j++) {
             *(gSelectReturn->mUnk_10 + i * 0x20 + j) = (a >> 5) + *((u16 *) nscr->mData + i * 0x20 + j);
         }
     }
     DC_FlushRange(gSelectReturn->mUnk_10, nscr->mDataSize);
-    MemCopyHalfwordsToG2sBg2CntBits8To12Address(gSelectReturn->mUnk_10, 0, nscr->mDataSize);
+    GXS_LoadBG2Scr(gSelectReturn->mUnk_10, 0, nscr->mDataSize);
     DC_FlushRange(nclr->mData, 0x180);
     GXS_LoadBGPltt(nclr->mData + 0xc0, 0x180, 0x40);
     return a;
@@ -478,14 +478,14 @@ s32 func_02127f14(s32 d) {
     s = d >> 5;
     data_0217d3f4->mUnk_89c = s;
     DC_FlushRange(a->mData, a->mDataSize);
-    MemCopyWordsToG2sBg0CntBits2To5Address(a->mData, d, a->mDataSize);
+    GXS_LoadBG0Char(a->mData, d, a->mDataSize);
     for (i = 0; i < 32; i++) {
         for (j = 0; j < 32; j++) {
             *(data_0217d3f4->mUnk_2c + i * 32 + j) = s + *((u16 *) b->mData + i * 32 + j);
         }
     }
     DC_FlushRange(data_0217d3f4->mUnk_2c, b->mDataSize);
-    MemCopyHalfwordsToG2sBg0CntBits8To12Address(data_0217d3f4->mUnk_2c, 0, b->mDataSize);
+    GXS_LoadBG0Scr(data_0217d3f4->mUnk_2c, 0, b->mDataSize);
     e = &data_0215d0a0;
     y = e->mUnk_02 * 32;
     x = e->mUnk_00;

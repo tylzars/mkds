@@ -24,8 +24,8 @@ void func_02036438(void *heap) {
     func_020364a8(0, 0, 0x10, 0, 0);
     v3 = func_020d1630()->mUnk_24;
     v4 = func_020d1630()->mUnk_28;
-    MemCopyWordsToG2sBg1CntBits2To5Address(v3->mData, 0, v3->mDataSize);
-    MemCopyWordsToG2sBg3CntBits2To5Address(v3->mData, 0, v3->mDataSize);
+    GXS_LoadBG1Char(v3->mData, 0, v3->mDataSize);
+    GXS_LoadBG3Char(v3->mData, 0, v3->mDataSize);
     GXS_LoadBGPltt(v4->mData, 0, v4->mDataSize);
 }
 

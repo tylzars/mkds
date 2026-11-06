@@ -77,7 +77,7 @@ void func_ov003_021c6668(void) {
 void func_ov003_021c6588(void) {
     u8 a[0x19] = "char/xb4ApListBack.nsc.l";
     u8 b[0x16] = "char/ybBgStep31.ncl.l";
-    func_ov003_021bf620(data_ov003_021d7260, MemCopyHalfwordsToG2Bg3CntBits8To12Address);
+    func_ov003_021bf620(data_ov003_021d7260, GX_LoadBG3Scr);
     data_ov003_021da1f4->mUnk_04 = func_ov003_021d14b8(func_ov003_021bf650(a), NULL, 4);
     func_ov003_021cca30(data_ov003_021da1f4->mUnk_04);
     func_ov003_021cc9fc();

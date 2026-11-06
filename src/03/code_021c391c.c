@@ -66,8 +66,8 @@ void func_ov003_021c3cc4(void) {
     s32 i;
     b = data_ov003_021d70f8;
     c = data_ov003_021d7110;
-    func_ov003_021bf620(data_ov003_021d7128, MemCopyWordsToG2Bg2CntBits2To5Address);
-    func_ov003_021bf620(data_ov003_021d7140, MemCopyHalfwordsToG2Bg2CntBits8To12Address);
+    func_ov003_021bf620(data_ov003_021d7128, GX_LoadBG2Char);
+    func_ov003_021bf620(data_ov003_021d7140, GX_LoadBG2Scr);
     data_ov003_021da1b4 = func_ov003_021d14b8(func_ov003_021bf650(c.mUnk_00), NULL, 4);
     a = func_ov003_021d14b8(func_ov003_021bf650(b.mUnk_00), NULL, 4);
     func_02151910(&d);

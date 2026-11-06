@@ -113,9 +113,9 @@ void func_ov003_021cb294(void) {
 void func_ov003_021cb1d8(void) {
     Unk021d75c8 a = data_ov003_021d75c8;
     func_ov003_021bf620(data_ov003_021d75f8, GX_LoadOBJPltt);
-    func_ov003_021bf620(data_ov003_021d760c, MemCopyWordsToG2Bg2CntBits2To5Address);
+    func_ov003_021bf620(data_ov003_021d760c, GX_LoadBG2Char);
     func_ov003_021bf620(data_ov003_021d7624, GX_LoadBGPltt);
-    func_ov003_021bf620(data_ov003_021d763c, MemCopyHalfwordsToG2Bg2CntBits8To12Address);
+    func_ov003_021bf620(data_ov003_021d763c, GX_LoadBG2Scr);
     data_ov003_021da234->mUnk_00 = func_ov003_021d14b8(func_ov003_021bf650((u8 *) &a), NULL, 4);
     func_ov003_021d2784(1, 0x10);
     *(u16 *) 0x4001008 = (*(u16 *) 0x4001008 & ~3) | 3;

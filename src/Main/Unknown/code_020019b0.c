@@ -39,16 +39,16 @@ void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const ch
     LoadNcgrData2(&a->mUnk_04, FindSceneFile(d));
     DC_StoreRange(a->mUnk_04->mData, a->mUnk_04->mDataSize);
     if (b != 0) {
-        MemCopyWordsToG2Bg1CntBits2To5Address(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
+        GX_LoadBG1Char(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
     } else {
-        MemCopyWordsToG2sBg1CntBits2To5Address(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
+        GXS_LoadBG1Char(a->mUnk_04->mData, 0, a->mUnk_04->mDataSize);
     }
     LoadNscrData(&a->mUnk_08, FindSceneFile(e));
     DC_StoreRange(a->mUnk_08->mData, a->mUnk_08->mDataSize);
     if (b != 0) {
-        MemCopyHalfwordsToG2Bg1CntBits8To12Address(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
+        GX_LoadBG1Scr(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
     } else {
-        MemCopyHalfwordsToG2sBg1CntBits8To12Address(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
+        GXS_LoadBG1Scr(a->mUnk_08->mData, 0, a->mUnk_08->mDataSize);
     }
 }
 

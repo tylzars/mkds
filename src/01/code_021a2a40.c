@@ -61,13 +61,13 @@ void func_ov001_021a4fa0(void) {
     DC_FlushRange(gEmblem->mEmblemMBNclr->mData, gEmblem->mEmblemMBNclr->mDataSize);
     GX_LoadBGPltt(gEmblem->mEmblemMBNclr->mData, 0, gEmblem->mEmblemMBNclr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemMBNcgr->mData, gEmblem->mEmblemMBNcgr->mDataSize);
-    MemCopyWordsToG2Bg1CntBits2To5Address((gEmblem->mEmblemMBNcgr->mData), 0, gEmblem->mEmblemMBNcgr->mDataSize);
+    GX_LoadBG1Char((gEmblem->mEmblemMBNcgr->mData), 0, gEmblem->mEmblemMBNcgr->mDataSize);
     DC_FlushRange(gEmblem->mUnk_0a7c, 0x200);
-    MemCopyWordsToG2Bg2CntBits2To5Address(gEmblem->mUnk_0a7c, 0, 0x200);
+    GX_LoadBG2Char(gEmblem->mUnk_0a7c, 0, 0x200);
     DC_FlushRange(gEmblem->mEmblemMNscr->mData, gEmblem->mEmblemMNscr->mDataSize);
-    MemCopyHalfwordsToG2Bg1CntBits8To12Address(gEmblem->mEmblemMNscr->mData, 0, gEmblem->mEmblemMNscr->mDataSize);
+    GX_LoadBG1Scr(gEmblem->mEmblemMNscr->mData, 0, gEmblem->mEmblemMNscr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemMBgNscr->mData, gEmblem->mEmblemMBgNscr->mDataSize);
-    MemCopyHalfwordsToG2Bg2CntBits8To12Address(gEmblem->mEmblemMBgNscr->mData, 0, gEmblem->mEmblemMBgNscr->mDataSize);
+    GX_LoadBG2Scr(gEmblem->mEmblemMBgNscr->mData, 0, gEmblem->mEmblemMBgNscr->mDataSize);
     reg_G2_BG1OFS = 0;
     reg_G2_BG2OFS = 0;
 }
@@ -93,26 +93,21 @@ void func_ov001_021a4d10(void) {
     DC_FlushRange(gEmblem->mEmblemSBNclr->mData, gEmblem->mEmblemSBNclr->mDataSize);
     GXS_LoadBGPltt(gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSBNcgr->mData, gEmblem->mEmblemSBNcgr->mDataSize);
-    MemCopyWordsToG2sBg1CntBits2To5Address((gEmblem->mEmblemSBNcgr->mData), 0, gEmblem->mEmblemSBNcgr->mDataSize);
+    GXS_LoadBG1Char((gEmblem->mEmblemSBNcgr->mData), 0, gEmblem->mEmblemSBNcgr->mDataSize);
     DC_FlushRange((const void *) func_ov001_02181174(), func_ov001_02181180());
-    MemCopyWordsToG2sBg3CntBits2To5Address((const void *) (func_ov001_02181174()), func_ov001_02181194(),
-                                           func_ov001_02181180());
+    GXS_LoadBG3Char((const void *) (func_ov001_02181174()), func_ov001_02181194(), func_ov001_02181180());
     DC_FlushRange(gEmblem->mEmblemSTemplateFrameNscr->mData, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
-    MemCopyHalfwordsToG2sBg0CntBits8To12Address(gEmblem->mEmblemSTemplateFrameNscr->mData, 0,
-                                                gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
+    GXS_LoadBG0Scr(gEmblem->mEmblemSTemplateFrameNscr->mData, 0, gEmblem->mEmblemSTemplateFrameNscr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSToolNscr->mData, gEmblem->mEmblemSToolNscr->mDataSize);
-    MemCopyHalfwordsToG2sBg1CntBits8To12Address(gEmblem->mEmblemSToolNscr->mData, 0,
-                                                gEmblem->mEmblemSToolNscr->mDataSize);
+    GXS_LoadBG1Scr(gEmblem->mEmblemSToolNscr->mData, 0, gEmblem->mEmblemSToolNscr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemSBgNscr->mData, gEmblem->mEmblemSBgNscr->mDataSize);
-    MemCopyHalfwordsToG2sBg2CntBits8To12Address(gEmblem->mEmblemSBgNscr->mData, 0, gEmblem->mEmblemSBgNscr->mDataSize);
+    GXS_LoadBG2Scr(gEmblem->mEmblemSBgNscr->mData, 0, gEmblem->mEmblemSBgNscr->mDataSize);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1010;
     DC_FlushRange(gEmblem->mEmblemSTemplateDarkNscr->mData, gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
-    MemCopyHalfwordsToG2sBg3CntBits8To12Address(gEmblem->mEmblemSTemplateDarkNscr->mData, 0,
-                                                gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
+    GXS_LoadBG3Scr(gEmblem->mEmblemSTemplateDarkNscr->mData, 0, gEmblem->mEmblemSTemplateDarkNscr->mDataSize);
     reg_G2S_DB_BG3CNT = (reg_G2S_DB_BG3CNT & 0x43) | 0x1218;
     DC_FlushRange((const void *) func_ov001_021811bc(), func_ov001_02181198());
-    MemCopyHalfwordsToG2sBg3CntBits8To12Address((const void *) (func_ov001_021811bc()), func_ov001_021811b8(),
-                                                func_ov001_02181198());
+    GXS_LoadBG3Scr((const void *) (func_ov001_021811bc()), func_ov001_021811b8(), func_ov001_02181198());
 }
 
 void func_ov001_021a4ba0(void) {
@@ -132,14 +127,11 @@ void func_ov001_021a4ba0(void) {
     DC_FlushRange(gEmblem->mEmblemSBNclr->mData, gEmblem->mEmblemSBNclr->mDataSize);
     GXS_LoadBGPltt(gEmblem->mEmblemSBNclr->mData, 0, gEmblem->mEmblemSBNclr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemCameraSBNcgr->mData, gEmblem->mEmblemCameraSBNcgr->mDataSize);
-    MemCopyWordsToG2sBg1CntBits2To5Address((gEmblem->mEmblemCameraSBNcgr->mData), 0,
-                                           gEmblem->mEmblemCameraSBNcgr->mDataSize);
+    GXS_LoadBG1Char((gEmblem->mEmblemCameraSBNcgr->mData), 0, gEmblem->mEmblemCameraSBNcgr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemCameraSDSNscr->mData, gEmblem->mEmblemCameraSDSNscr->mDataSize);
-    MemCopyHalfwordsToG2sBg1CntBits8To12Address(gEmblem->mEmblemCameraSDSNscr->mData, 0,
-                                                gEmblem->mEmblemCameraSDSNscr->mDataSize);
+    GXS_LoadBG1Scr(gEmblem->mEmblemCameraSDSNscr->mData, 0, gEmblem->mEmblemCameraSDSNscr->mDataSize);
     DC_FlushRange(gEmblem->mEmblemCameraSBgNscr->mData, gEmblem->mEmblemCameraSBgNscr->mDataSize);
-    MemCopyHalfwordsToG2sBg2CntBits8To12Address(gEmblem->mEmblemCameraSBgNscr->mData, 0,
-                                                gEmblem->mEmblemCameraSBgNscr->mDataSize);
+    GXS_LoadBG2Scr(gEmblem->mEmblemCameraSBgNscr->mData, 0, gEmblem->mEmblemCameraSBgNscr->mDataSize);
 }
 
 void func_ov001_021a4b28(void) {

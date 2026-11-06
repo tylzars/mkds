@@ -176,8 +176,8 @@ void func_0212ae80(void) {
     *(vu16 *) 0x400000a = (*(vu16 *) 0x400000a & 0x43) | 0x400;
     DC_FlushRange(data_0217d408->mUnk_0044, 0x1400);
     DC_FlushRange(data_0217d408->mUnk_1444, 0x600);
-    MemCopyWordsToG2Bg1CntBits2To5Address(data_0217d408->mUnk_0044, 0, 0x1400);
-    MemCopyHalfwordsToG2Bg1CntBits8To12Address(data_0217d408->mUnk_1444, 0, 0x600);
+    GX_LoadBG1Char(data_0217d408->mUnk_0044, 0, 0x1400);
+    GX_LoadBG1Scr(data_0217d408->mUnk_1444, 0, 0x600);
 }
 
 void func_0212ae2c(void) {
