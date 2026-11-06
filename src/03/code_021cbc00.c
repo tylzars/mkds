@@ -33,9 +33,9 @@ void func_ov003_021cbe44(void) {
     func_ov003_021cbe3c();
     v1 = func_ov003_021cef80();
     if (v1 == 0) {
-        func_ov003_021cdc10((u32) 6);
+        StartSoundSeq((u32) 6);
         func_ov003_021cef90();
-        func_ov003_021cdc10((u32) 6);
+        StartSoundSeq((u32) 6);
         func_ov003_021c212c(func_ov003_021cbe14);
     }
 }

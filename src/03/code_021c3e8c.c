@@ -53,16 +53,16 @@ void func_ov003_021c3e8c(int a) {
     if (a == 2) {
         func_ov003_021cd42c();
         *(u8 *) &data_ov003_021da1bc = 1;
-        func_ov003_021cdbd0();
-        func_ov003_021cdc10((u32) 0x10);
+        StopSoundSeq();
+        StartSoundSeq((u32) 0x10);
     } else if (a == 3) {
         *(u8 *) &data_ov003_021da1bc = 2;
-        func_ov003_021cdbd0();
-        func_ov003_021cdc10((u32) 0x12);
+        StopSoundSeq();
+        StartSoundSeq((u32) 0x12);
     } else {
         *(u8 *) &data_ov003_021da1bc = 0;
-        func_ov003_021cdbd0();
-        func_ov003_021cdc10((u32) 0x12);
+        StopSoundSeq();
+        StartSoundSeq((u32) 0x12);
     }
     func_ov003_021c27d0(NULL);
     func_ov003_021c2824();

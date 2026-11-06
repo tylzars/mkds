@@ -9,7 +9,7 @@ void func_ov003_021c673c(void) {
     int v1;
     v1 = func_ov003_021cef80();
     if (v1 == 0) {
-        func_ov003_021cdc10(6);
+        StartSoundSeq(6);
         func_ov003_021cef90();
         func_ov003_021c212c(func_ov003_021c6708);
     }

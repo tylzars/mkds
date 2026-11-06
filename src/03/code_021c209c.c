@@ -39,7 +39,7 @@ s32 func_ov003_021c2494(void *a, s32 b, u32 c) {
     data_ov003_021da170[0] = 0;
     func_ov003_021c2398();
     func_ov003_021c2188();
-    func_ov003_021cdc4c();
+    CreateSoundData();
     func_ov003_021c212c(func_ov003_021c2b28);
     do {
         func_ov003_021d2d14();

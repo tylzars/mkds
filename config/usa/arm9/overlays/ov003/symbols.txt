@@ -445,8 +445,8 @@ func_ov003_021c4c0c kind:function(thumb,size=0x58) addr:0x021c4bcc
 func_ov003_021c4c64 kind:function(thumb,size=0x20) addr:0x021c4c24
 func_ov003_021c4c84 kind:function(thumb,size=0x2c) addr:0x021c4c44
 func_ov003_021c4cb0 kind:function(thumb,size=0x28) addr:0x021c4c70
-func_ov003_021c4cd8 kind:function(thumb,size=0x64) addr:0x021c4c98
-func_ov003_021c4d3c kind:function(thumb,size=0x98) addr:0x021c4cfc
+LoadJb5MoveFileAndSetBgCnt kind:function(thumb,size=0x64) addr:0x021c4c98
+SetupJb5Move kind:function(thumb,size=0x98) addr:0x021c4cfc
 func_ov003_021c4dd4 kind:function(thumb,size=0x40) addr:0x021c4d94
 func_ov003_021c4e14 kind:function(thumb,size=0xb8) addr:0x021c4dd4
 func_ov003_021c4ecc kind:function(thumb,size=0x58) addr:0x021c4e8c
@@ -858,13 +858,13 @@ func_ov003_021cdb58 kind:function(thumb,size=0x14) addr:0x021cdb18
 func_ov003_021cdb6c kind:function(thumb,size=0x14) addr:0x021cdb2c
 func_ov003_021cdb80 kind:function(thumb,size=0x10) addr:0x021cdb40
 func_ov003_021cdb90 kind:function(thumb,size=0x38) addr:0x021cdb50
-func_ov003_021cdbc8 kind:function(thumb,size=0x8) addr:0x021cdb88
-func_ov003_021cdbd0 kind:function(thumb,size=0x14) addr:0x021cdb90
-func_ov003_021cdbe4 kind:function(thumb,size=0x18) addr:0x021cdba4
-func_ov003_021cdbfc kind:function(thumb,size=0x14) addr:0x021cdbbc
-func_ov003_021cdc10 kind:function(thumb,size=0x18) addr:0x021cdbd0
+UpdateSound kind:function(thumb,size=0x8) addr:0x021cdb88
+StopSoundSeq kind:function(thumb,size=0x14) addr:0x021cdb90
+SetSoundSeqTrackPitch kind:function(thumb,size=0x18) addr:0x021cdba4
+SetSoundSeqVolume kind:function(thumb,size=0x14) addr:0x021cdbbc
+StartSoundSeq kind:function(thumb,size=0x18) addr:0x021cdbd0
 func_ov003_021cdc28 kind:function(thumb,size=0x24) addr:0x021cdbe8
-func_ov003_021cdc4c kind:function(thumb,size=0x6c) addr:0x021cdc0c
+CreateSoundData kind:function(thumb,size=0x6c) addr:0x021cdc0c
 func_ov003_021cdcb8 kind:function(thumb,size=0x38) addr:0x021cdc78
 func_ov003_021cdcf0 kind:function(thumb,size=0x38) addr:0x021cdcb0
 func_ov003_021cdd28 kind:function(thumb,size=0x20) addr:0x021cdce8
@@ -1375,7 +1375,7 @@ data_ov003_021d7158 kind:data(any) addr:0x021d7118
 data_ov003_021d716c kind:data(any) addr:0x021d712c
 data_ov003_021d7180 kind:data(any) addr:0x021d7140
 data_ov003_021d7194 kind:data(any) addr:0x021d7154
-data_ov003_021d71a8 kind:data(any) addr:0x021d7168
+gJb5MoveNscName kind:data(any) addr:0x021d7168
 data_ov003_021d71bc kind:data(any) addr:0x021d717c
 data_ov003_021d71d0 kind:data(any) addr:0x021d7190
 data_ov003_021d71e8 kind:data(any) addr:0x021d71a8
@@ -1456,7 +1456,7 @@ gJbBgStep3NcgName8 kind:data(any) addr:0x021d7740
 gYbBgStep3NclName8 kind:data(any) addr:0x021d7758
 gJb4UsbNscName kind:data(any) addr:0x021d7770
 data_ov003_021d77c4 kind:data(any) addr:0x021d7784
-data_ov003_021d77d4 kind:data(any) addr:0x021d7794
+gSoundDataSdatName kind:data(any) addr:0x021d7794
 data_usa_ov003_021d77ac kind:data(any) addr:0x021d77ac
 data_usa_ov003_021d77c0 kind:data(any) addr:0x021d77c0
 data_usa_ov003_021d77d4 kind:data(any) addr:0x021d77d4
@@ -1667,7 +1667,7 @@ data_ov003_021da260 kind:bss addr:0x021da220
 data_ov003_021da268 kind:bss addr:0x021da228
 data_ov003_021da26c kind:bss addr:0x021da22c
 data_ov003_021da270 kind:bss addr:0x021da230
-data_ov003_021da274 kind:bss addr:0x021da234
+gSoundData kind:bss addr:0x021da234
 data_ov003_021da278 kind:bss addr:0x021da238
 data_ov003_021da27c kind:bss addr:0x021da23c
 data_ov003_021da280 kind:bss addr:0x021da240

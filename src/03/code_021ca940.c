@@ -137,7 +137,7 @@ void func_ov003_021caeb8(void) {
         case 0:
             switch (func_ov003_021c20c0()) {
                 case 0:
-                    func_ov003_021cdc10(7);
+                    StartSoundSeq(7);
                     gAp->mUnk_1d = 2;
                     break;
                 case 1:
@@ -152,11 +152,11 @@ void func_ov003_021caeb8(void) {
             if (s >= 4) {
                 a = s - 4;
                 if (func_ov003_021cd844(a) == 0xff) {
-                    func_ov003_021cdc10(9);
+                    StartSoundSeq(9);
                     func_ov003_021bf310(-1);
                     return;
                 }
-                func_ov003_021cdc10(6);
+                StartSoundSeq(6);
                 func_ov003_021cefc0(0x98, 0, 1, data_ov003_021d64e8[func_ov003_021c20d0()], a + 1);
                 func_ov003_021caae0();
                 func_ov003_021bf2d0();
@@ -166,7 +166,7 @@ void func_ov003_021caeb8(void) {
             if (s <= 2) {
                 func_ov003_021cd790(s);
             }
-            func_ov003_021cdc10(6);
+            StartSoundSeq(6);
             func_ov003_021ca940();
             break;
         default:
@@ -344,7 +344,7 @@ void MoveApSelection(int a) {
             break;
     }
     if (b != 0) {
-        func_ov003_021cdc10(8);
+        StartSoundSeq(8);
         func_ov003_021caca8();
     }
 }
@@ -360,7 +360,7 @@ void func_ov003_021ca9e8(void) {
     s32 a = gApSelectedIndex[0] - 4;
     switch (func_ov003_021cef80()) {
         case 1:
-            func_ov003_021cdc10(0xe);
+            StartSoundSeq(0xe);
             func_ov003_021cd4ac(a);
             func_ov003_021d1c3c(0, data_ov003_021d64e4[3], func_ov003_021d1974(gAp->mUnk_04[a], 0));
             func_ov003_021d17d4(gAp->mUnk_04[a], -1, data_ov003_021d64f0[a].mUnk_00, data_ov003_021d64f0[a].mUnk_02);
@@ -369,7 +369,7 @@ void func_ov003_021ca9e8(void) {
             gAp->mUnk_10[a] = NULL;
             break;
         case 0:
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             func_ov003_021d1c3c(0, 0x11, func_ov003_021d1974(gAp->mUnk_10[a], 0));
             func_ov003_021d17d4(gAp->mUnk_10[a], -1, data_ov003_021d64f0[a + 3].mUnk_00,
                                 data_ov003_021d64f0[a + 3].mUnk_02);

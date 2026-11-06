@@ -133,10 +133,10 @@ void func_ov003_021cb57c(void) {
 void func_ov003_021cb538(void) {
     switch (func_ov003_021bf334()) {
         case 0:
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             break;
         case 1:
-            func_ov003_021cdc10(6);
+            StartSoundSeq(6);
             func_ov003_021cb2e0();
             data_ov003_021da240[0] = 1;
             break;

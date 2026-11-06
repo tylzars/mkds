@@ -45,7 +45,7 @@ void func_ov003_021ca8e8(void) {
     func_ov003_021beef8(0);
     func_ov003_021cd2a4();
     func_ov003_021cd1c4();
-    func_ov003_021cdc10(0xa);
+    StartSoundSeq(0xa);
     func_ov003_021c212c(func_ov003_021ca828);
 }
 
@@ -140,12 +140,12 @@ void func_ov003_021ca6f4(void) {
     int i;
     data_ov003_021da22c++;
     if (data_ov003_021da22c >= 0x12c) {
-        func_ov003_021cdbd0();
+        StopSoundSeq();
         a = func_ov003_021cd0d0(&b);
         if (a == 0) {
             *(u8 *) &data_ov003_021da228 = 2;
             func_ov003_021cefc0(0x43, 1, 1, -1, 0);
-            func_ov003_021cdc10(0x12);
+            StartSoundSeq(0x12);
             func_ov003_021bf2d0();
             func_ov003_021c212c(func_ov003_021ca588);
             return;
@@ -158,12 +158,12 @@ void func_ov003_021ca6f4(void) {
         if (i == a) {
             *(u8 *) &data_ov003_021da228 = 3;
             func_ov003_021cefc0(0x42, 1, 1, -1, 0);
-            func_ov003_021cdc10(0x12);
+            StartSoundSeq(0x12);
             func_ov003_021bf2d0();
             func_ov003_021c212c(func_ov003_021ca588);
         } else {
             *(u8 *) &data_ov003_021da228 = 1;
-            func_ov003_021cdc10(0xf);
+            StartSoundSeq(0xf);
             func_ov003_021c212c(func_ov003_021ca688);
         }
     }
@@ -173,7 +173,7 @@ void func_ov003_021ca6d4(void) {
     int v1;
     v1 = func_ov003_021d2b04((u32) 2);
     if (v1 != 0) {
-        func_ov003_021cdbd0();
+        StopSoundSeq();
         func_ov003_021bf31c((u8) 0);
     }
 }
@@ -186,8 +186,8 @@ void func_ov003_021ca6a8(void) {
     int v1;
     v1 = func_ov003_021bf334();
     if (v1 == 0) {
-        func_ov003_021cdbd0();
-        func_ov003_021cdc10((u32) 7);
+        StopSoundSeq();
+        StartSoundSeq((u32) 7);
         func_ov003_021c212c(func_ov003_021ca688);
     }
 }
@@ -238,7 +238,7 @@ void func_ov003_021ca588(void) {
     int v1;
     v1 = func_ov003_021cef80();
     if (v1 == 0) {
-        func_ov003_021cdc10((u32) 6);
+        StartSoundSeq((u32) 6);
         func_ov003_021cef90();
         func_ov003_021c212c(func_ov003_021ca56c);
     }

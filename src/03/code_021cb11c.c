@@ -85,7 +85,7 @@ void MoveWaySelection(int param_1) {
     } else {
         gWaySelectedIndex = b;
     }
-    func_ov003_021cdc10(8);
+    StartSoundSeq(8);
     func_ov003_021bf6c8(data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_00,
                         data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_04,
                         data_ov003_021d65e0[func_ov003_021c20a8(1)][gWaySelectedIndex].mUnk_02,

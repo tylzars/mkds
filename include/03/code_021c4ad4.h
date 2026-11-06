@@ -17,5 +17,5 @@ void func_ov003_021c4c0c(void);
 void func_ov003_021c4c64(void);
 void func_ov003_021c4c84(void);
 void func_ov003_021c4cb0(void);
-void func_ov003_021c4cd8(void);
-void func_ov003_021c4d3c(void);
+void LoadJb5MoveFileAndSetBgCnt(void);
+void SetupJb5Move(void);

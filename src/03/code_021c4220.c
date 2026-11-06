@@ -27,7 +27,7 @@ void func_ov003_021c42cc(void) {
     int v1;
     v1 = func_ov003_021bf334();
     if (v1 == 0) {
-        func_ov003_021cdc10(6);
+        StartSoundSeq(6);
         func_ov003_021c212c(func_ov003_021c42ac);
     }
     return;

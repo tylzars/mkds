@@ -41,8 +41,8 @@ void func_ov003_021ccd18(void) {
                 switch (func_ov003_021ccb50()) {
                     case 1:
                         if (data_ov003_021da268->mUnk_1b != 0) {
-                            func_ov003_021cdc10(0x16);
-                            func_ov003_021cdbfc(0);
+                            StartSoundSeq(0x16);
+                            SetSoundSeqVolume(0);
                             data_ov003_021da268->mUnk_1d = 1;
                             func_ov003_021d2940(data_ov003_021da268->mUnk_14);
                             data_ov003_021da268->mUnk_18 = data_ov003_021da268->mOffset;
@@ -105,7 +105,7 @@ void func_ov003_021ccc90(void) {
             return;
         }
     }
-    func_ov003_021cdbd0();
+    StopSoundSeq();
     data_ov003_021da268->mUnk_1c = 0;
     data_ov003_021da268->mUnk_1d = 3;
 }
@@ -124,7 +124,7 @@ void func_ov003_021ccc24(s32 param_1) {
     } else {
         b = 0x7f;
     }
-    func_ov003_021cdbfc(b);
+    SetSoundSeqVolume(b);
     if (a < 2) {
         c = -0x100;
     } else if (a < 6) {
@@ -132,7 +132,7 @@ void func_ov003_021ccc24(s32 param_1) {
     } else {
         c = 0x100;
     }
-    func_ov003_021cdbe4(0xffff, c);
+    SetSoundSeqTrackPitch(0xffff, c);
 }
 
 void func_ov003_021ccc08(int a) {

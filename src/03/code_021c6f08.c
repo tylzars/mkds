@@ -139,7 +139,7 @@ void func_ov003_021c7614(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021c1cd8();
-        func_ov003_021cdc10((u32) 0x14);
+        StartSoundSeq((u32) 0x14);
         if (gEditAddr->mGroupIndex == 0) {
             func_ov003_021c1c90((u8) 0);
             func_ov003_021c1c70((u8) 0);
@@ -181,7 +181,7 @@ void UpdateEditAddrInput(void) {
             if (gEditAddr->mGroupIndex == 0 && gEditAddr->mText[2] == 0) {
                 break;
             }
-            func_ov003_021cdc10(3);
+            StartSoundSeq(3);
             if (gEditAddr->mText[gEditAddr->mGroupIndex * 3 + 2] == 0) {
                 gEditAddr->mGroupIndex--;
             }
@@ -200,22 +200,22 @@ void UpdateEditAddrInput(void) {
             if (gEditAddr->mText[e * 3 + 2] == 0) {
                 break;
             }
-            func_ov003_021cdc10(1);
+            StartSoundSeq(1);
             gEditAddr->mGroupIndex = gEditAddr->mGroupIndex + 1;
             func_ov003_021c1c70(0);
             break;
         case 0x12:
             gEditAddr->mUnk_15 = 0;
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             func_ov003_021c212c(func_ov003_021c733c);
             return;
         case 0x13:
             if (func_ov003_021c6f64() != FALSE) {
-                func_ov003_021cdc10(6);
+                StartSoundSeq(6);
                 gEditAddr->mUnk_15 = 1;
             } else {
                 gEditAddr->mUnk_15 = 2;
-                func_ov003_021cdc10(9);
+                StartSoundSeq(9);
             }
             gEditAddr->mGroupIndex = 3;
             gEditAddr->mUnk_04->mUnk_00 = (gEditAddr->mUnk_04->mUnk_00 & 0xc1fffcff) | 0x200;
@@ -229,7 +229,7 @@ void UpdateEditAddrInput(void) {
                     break;
                 }
             }
-            func_ov003_021cdc10(1);
+            StartSoundSeq(1);
             g = &gEditAddr;
             b = (*g)->mText;
             k = (*g)->mGroupIndex * 3;
@@ -312,7 +312,7 @@ void func_ov003_021c7314(void) {
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
         func_ov003_021c1cb0();
-        func_ov003_021cdc10(0x15);
+        StartSoundSeq(0x15);
         func_ov003_021c212c(func_ov003_021c72a4);
     }
     return;
@@ -401,10 +401,10 @@ void func_ov003_021c7118(void) {
     gEditAddr->mUnk_15 = func_ov003_021cef80();
     switch (gEditAddr->mUnk_15) {
         case 0:
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             break;
         case 1:
-            func_ov003_021cdc10(0xe);
+            StartSoundSeq(0xe);
             break;
         default:
             return;
@@ -528,7 +528,7 @@ void func_ov003_021c6f3c(void) {
     int v1;
     v1 = func_ov003_021cef80();
     if (v1 == 0) {
-        func_ov003_021cdc10(6);
+        StartSoundSeq(6);
         func_ov003_021cef90();
         func_ov003_021c212c(func_ov003_021c6f08);
     }

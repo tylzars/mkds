@@ -29,7 +29,7 @@
 #include "03/code_021bf410.h"
 #include "code_0214cfe4.h"
 
-void func_ov003_021c4d3c(void) {
+void SetupJb5Move(void) {
     u8 *a;
     void *b;
     u16 c[12];
@@ -37,7 +37,7 @@ void func_ov003_021c4d3c(void) {
     b = func_ov003_021d2288(0, 0);
     data_ov003_021da1d4 = 0;
     data_ov003_021da1d0 = 0;
-    func_ov003_021c4cd8();
+    LoadJb5MoveFileAndSetBgCnt();
     c[0] = 0;
     MIi_CpuClear16(c[0], &c[1], 0x16);
     MIi_CpuCopy16(a + 2, &c[1], a[1] * 2);
@@ -49,8 +49,8 @@ void func_ov003_021c4d3c(void) {
     func_ov003_021c212c(func_ov003_021c4cb0);
 }
 
-void func_ov003_021c4cd8(void) {
-    void *v2 = &data_ov003_021d71a8;
+void LoadJb5MoveFileAndSetBgCnt(void) {
+    void *v2 = &gJb5MoveNscName;
     void *v3 = &GX_LoadBG2Scr;
     u32 v4 = func_ov003_021bf620(v2, v3);
     u32 v5 = 0x4001008u;
@@ -125,11 +125,11 @@ void func_ov003_021c4c0c(void) {
     switch (func_ov003_021cef80()) {
         case 0:
             data_ov003_021da1d4 = 0;
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             break;
         case 1:
             data_ov003_021da1d4 = 1;
-            func_ov003_021cdc10(0xe);
+            StartSoundSeq(0xe);
             break;
         default:
             return;

@@ -175,7 +175,7 @@ void UpdateJb3ListInput(void) {
         return;
     }
     if (func_ov003_021d2b04(2) != 0) {
-        func_ov003_021cdc10(7);
+        StartSoundSeq(7);
         gJb3List->mUnk_40 = 0xd;
         func_ov003_021c212c(func_ov003_021c8e80);
         return;
@@ -185,11 +185,11 @@ void UpdateJb3ListInput(void) {
             if (gJb3List->mUnk_47 != 0) {
                 return;
             }
-            func_ov003_021cdc10(9);
+            StartSoundSeq(9);
             gJb3List->mUnk_47 = 1;
             return;
         }
-        func_ov003_021cdc10(0x13);
+        StartSoundSeq(0x13);
         gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
         return;
     }
@@ -202,11 +202,11 @@ void UpdateJb3ListInput(void) {
             if (gJb3List->mUnk_47 != 0) {
                 return;
             }
-            func_ov003_021cdc10(9);
+            StartSoundSeq(9);
             gJb3List->mUnk_47 = 1;
             return;
         }
-        func_ov003_021cdc10(0x13);
+        StartSoundSeq(0x13);
         gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
         return;
     }
@@ -249,7 +249,7 @@ u32 UpdateJb3ListHit(void) {
     }
     v2 = IsJb3ListIdEnabled(v1);
     if (v2 == 0) {
-        func_ov003_021cdc10(9);
+        StartSoundSeq(9);
         return 1;
     }
     SetJb3ListSelectedId(v1);
@@ -266,18 +266,18 @@ u32 UpdateJb3ListHit(void) {
 
 void func_ov003_021c90dc(u32 param_1) {
     if (IsJb3ListIdEnabled(param_1) == 0) {
-        func_ov003_021cdc10(9);
+        StartSoundSeq(9);
         return;
     }
     switch (param_1) {
         case 2:
         case 3:
-            func_ov003_021cdc10(6);
+            StartSoundSeq(6);
             func_ov003_021c9084(((param_1 - 2) ^ 1) != 0);
             return;
         case 7:
         case 8:
-            func_ov003_021cdc10(6);
+            StartSoundSeq(6);
             func_ov003_021c9058(((param_1 - 7) ^ 1) != 0);
             return;
     }
@@ -285,21 +285,21 @@ void func_ov003_021c90dc(u32 param_1) {
     if (param_1 - 0xb <= 1) {
         func_ov003_021c7ec4();
         if (func_ov003_021c7d8c() == 0) {
-            func_ov003_021cdc10(9);
+            StartSoundSeq(9);
             func_ov003_021cefc0(0x2f, 1, 1, -1, 0);
             func_ov003_021c212c(func_ov003_021c7d58);
             return;
         }
         if (param_1 == 0xb) {
-            func_ov003_021cdc10(6);
+            StartSoundSeq(6);
         } else {
-            func_ov003_021cdc10(0xe);
+            StartSoundSeq(0xe);
         }
     } else if (param_1 == 0xd) {
         func_ov003_021c7ec4();
-        func_ov003_021cdc10(7);
+        StartSoundSeq(7);
     } else {
-        func_ov003_021cdc10(6);
+        StartSoundSeq(6);
         SetupJb3ListCell(0, 1, GetJb3ListRowOfEntryIndex(gJb3ListEntryIndexById[param_1]));
         RefreshJb3ListRowPositions();
     }
@@ -363,7 +363,7 @@ void UpdateJb3ListScrollInput(void) {
             case 3:
                 gJb3List->mUnk_45 = 0;
                 *(u16 *) &gJb3ListScrollY = _s32_div_f(func_ov003_021cce6c() * 0x91, 0x37);
-                func_ov003_021cdc10(0x13);
+                StartSoundSeq(0x13);
                 RefreshJb3List();
                 a = FX_ModS32(*(u16 *) &gJb3ListScrollY, 0x1d);
                 if (a == 0) {
@@ -381,10 +381,10 @@ void UpdateJb3ListScrollInput(void) {
                     if (gJb3List->mUnk_46 != 0) {
                         return;
                     }
-                    func_ov003_021cdc10(9);
+                    StartSoundSeq(9);
                     gJb3List->mUnk_46 = 1;
                 } else {
-                    func_ov003_021cdc10(0x13);
+                    StartSoundSeq(0x13);
                     gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
                 }
                 break;
@@ -393,10 +393,10 @@ void UpdateJb3ListScrollInput(void) {
                     if (gJb3List->mUnk_46 != 0) {
                         return;
                     }
-                    func_ov003_021cdc10(9);
+                    StartSoundSeq(9);
                     gJb3List->mUnk_46 = 1;
                 } else {
-                    func_ov003_021cdc10(0x13);
+                    StartSoundSeq(0x13);
                     gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
                 }
                 break;
@@ -1069,7 +1069,7 @@ void MoveJb3ListSelection(s32 d) {
                 if (gJb3List->mUnk_47 != 0) {
                     return;
                 }
-                func_ov003_021cdc10(9);
+                StartSoundSeq(9);
                 gJb3List->mUnk_47 = 1;
                 return;
             } else if (d == 3) {
@@ -1095,7 +1095,7 @@ void MoveJb3ListSelection(s32 d) {
                 if (gJb3List->mUnk_47 != 0) {
                     return;
                 }
-                func_ov003_021cdc10(9);
+                StartSoundSeq(9);
                 gJb3List->mUnk_47 = 1;
                 return;
             } else if (c == 0xc) {
@@ -1110,7 +1110,7 @@ void MoveJb3ListSelection(s32 d) {
                     gJb3ListSelectedRow[0] = gJb3ListSelectedRow[0] - 1;
                     break;
                 }
-                func_ov003_021cdc10(0x13);
+                StartSoundSeq(0x13);
                 gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYDecrease, NULL, 0x78);
                 return;
             } else if (d == 3) {
@@ -1118,7 +1118,7 @@ void MoveJb3ListSelection(s32 d) {
                     gJb3ListSelectedRow[0] = gJb3ListSelectedRow[0] + 1;
                     break;
                 }
-                func_ov003_021cdc10(0x13);
+                StartSoundSeq(0x13);
                 gJb3List->mScrollTask = func_ov003_021d3544(0, AdvanceJb3ListScrollYIncrease, NULL, 0x78);
                 return;
             } else {
@@ -1134,13 +1134,13 @@ void MoveJb3ListSelection(s32 d) {
                 } else {
                     break;
                 }
-                func_ov003_021cdc10(8);
+                StartSoundSeq(8);
                 func_ov003_021c81b8();
             }
             break;
     }
     if (b != 2) {
-        func_ov003_021cdc10(8);
+        StartSoundSeq(8);
         if (b == 0) {
             SetJb3ListSelectedIdFromRow();
         }
@@ -1220,7 +1220,7 @@ void func_ov003_021c7d58(void) {
     int v1;
     v1 = func_ov003_021cef80();
     if (v1 == 0) {
-        func_ov003_021cdc10((u32) 6);
+        StartSoundSeq((u32) 6);
         func_ov003_021cef90();
         func_ov003_021cc900((u32) gJb3List->mYbBgStep2NclFiles[0]);
         func_ov003_021c212c(func_ov003_021c7d3c);

@@ -49,7 +49,7 @@ void func_ov003_021cbb98(void) {
     func_ov003_021beef8(0);
     func_ov003_021cbaa0();
     func_ov003_021bf9e8(0);
-    func_ov003_021cdc10(0xc);
+    StartSoundSeq(0xc);
     func_ov003_021c212c(func_ov003_021cba54);
 }
 
@@ -201,13 +201,13 @@ void func_ov003_021cb8f0(u32 b) {
     s32 a = func_ov000_021887cc();
     if (a != 0) {
         func_ov003_021bf9b8();
-        func_ov003_021cdbd0();
+        StopSoundSeq();
         if (a > 0) {
             data_ov003_021da248 = 1;
-            func_ov003_021cdc10(0x11);
+            StartSoundSeq(0x11);
         } else {
             SetJb4ErrorCode(func_ov000_02188758());
-            func_ov003_021cdc10(0x12);
+            StartSoundSeq(0x12);
         }
         func_ov003_021c212c(func_ov003_021cb9e8);
         func_ov003_021d34c8(0, b);

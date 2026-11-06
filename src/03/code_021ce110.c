@@ -64,7 +64,7 @@ void func_ov003_021ce408(u32 a) {
     }
     data_ov003_021da27c->mTask = func_ov003_021d3544(0, func_ov003_021ce370, NULL, 0x78);
     func_ov003_021cdcf0(a);
-    func_ov003_021cdc10(0xd);
+    StartSoundSeq(0xd);
 }
 
 void func_ov003_021ce370(Unk021d34e0 *a) {

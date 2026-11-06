@@ -151,16 +151,16 @@ void func_ov003_021c3ae4(void) {
     DWCWiFiInfo a;
     switch (func_ov003_021bf334()) {
         case 0:
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             break;
         case 1:
             DWCi_BM_GetWiFiInfo(&a);
             if (gOptMenuSelectedIndex != 0 && a.mAttestedUserId == 0) {
-                func_ov003_021cdc10(9);
+                StartSoundSeq(9);
                 func_ov003_021bf310(-1);
                 return;
             }
-            func_ov003_021cdc10(6);
+            StartSoundSeq(6);
             func_ov003_021c391c();
             data_ov003_021da1b0[0] = 1;
             break;
@@ -225,7 +225,7 @@ void MoveOptMenuSelection(s32 a) {
     } else {
         gOptMenuSelectedIndex = FX_ModS32(gOptMenuSelectedIndex + 1, 3);
     }
-    func_ov003_021cdc10(8);
+    StartSoundSeq(8);
     func_ov003_021bf6c8(data_ov003_021d6368[gOptMenuSelectedIndex * 4], data_ov003_021d636c[gOptMenuSelectedIndex * 4],
                         data_ov003_021d636a[gOptMenuSelectedIndex * 4], data_ov003_021d636e[gOptMenuSelectedIndex * 4]);
 }

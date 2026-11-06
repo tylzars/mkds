@@ -62,7 +62,7 @@ extern u8 data_ov003_021d7158[];
 extern u8 data_ov003_021d716c[];
 extern u8 data_ov003_021d7180[];
 extern u8 data_ov003_021d7194[];
-extern u8 data_ov003_021d71a8[];
+extern u8 gJb5MoveNscName[];
 extern u8 data_ov003_021d71bc[];
 extern u8 data_ov003_021d7214[];
 extern u8 gYbObjMainNclName2[];

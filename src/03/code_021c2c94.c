@@ -118,11 +118,11 @@ void func_ov003_021c2e3c(void) {
 void func_ov003_021c2df4(void) {
     switch (func_ov003_021bf334()) {
         case 0:
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             func_ov003_021c212c(func_ov003_021c2a74);
             break;
         case 1:
-            func_ov003_021cdc10(6);
+            StartSoundSeq(6);
             func_ov003_021c2c94();
             func_ov003_021c212c(func_ov003_021c2dd4);
             break;
@@ -170,7 +170,7 @@ void func_ov003_021c2d18(void) {
 void MoveJb2MenuSelection(s32 a) {
     if (a != 1 && a != 3) {
         gJb2MenuSelectedIndex ^= 1;
-        func_ov003_021cdc10(8);
+        StartSoundSeq(8);
         func_ov003_021bf6c8(
             data_ov003_021d6328[gJb2MenuSelectedIndex * 4], data_ov003_021d632c[gJb2MenuSelectedIndex * 4],
             data_ov003_021d632a[gJb2MenuSelectedIndex * 4], data_ov003_021d632e[gJb2MenuSelectedIndex * 4]);

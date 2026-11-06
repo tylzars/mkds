@@ -195,10 +195,10 @@ void func_ov003_021c08d0(void) {
         func_ov003_021d250c(data_ov003_021d5fb0[i], data_ov003_021d5f7c[0], &a);
         if (func_ov003_021d2a34(&a) != 0) {
             if (data_ov003_021da15c->mUnk_124 == 0) {
-                func_ov003_021cdc10(9);
+                StartSoundSeq(9);
                 return;
             }
-            func_ov003_021cdc10(0);
+            StartSoundSeq(0);
             data_ov003_021da15c->mUnk_11e = i;
             return;
         }
@@ -207,10 +207,10 @@ void func_ov003_021c08d0(void) {
         func_ov003_021d250c(data_ov003_021d5f90[j], data_ov003_021d5fa0[j], &a);
         if (func_ov003_021d2a34(&a) != 0) {
             if ((j == 3 && data_ov003_021da15c->mUnk_123 == 0) || (j == 2 && data_ov003_021da15c->mUnk_124 == 0)) {
-                func_ov003_021cdc10(9);
+                StartSoundSeq(9);
                 return;
             }
-            func_ov003_021cdc10(data_ov003_021d6bf4[j]);
+            StartSoundSeq(data_ov003_021d6bf4[j]);
             data_ov003_021da15c->mUnk_11e = j + 0x2f;
             return;
         }
@@ -218,7 +218,7 @@ void func_ov003_021c08d0(void) {
     for (i = 0; i < 2; i++) {
         func_ov003_021d250c(data_ov003_021d5f88[i], data_ov003_021d5f78[0], &a);
         if (func_ov003_021d2a34(&a) != 0) {
-            func_ov003_021cdc10(0);
+            StartSoundSeq(0);
             data_ov003_021da15c->mUnk_11e = i + 0x33;
             return;
         }
@@ -309,12 +309,12 @@ void func_ov003_021c06b0(void) {
         v1 = 2;
     }
     func_ov003_021c00ec(v1);
-    func_ov003_021cdc10((u32) 1);
+    StartSoundSeq((u32) 1);
 }
 
 void func_ov003_021c0680(void) {
     func_ov003_021c00ec((data_ov003_021da15c->mUnk_11d != 1));
-    func_ov003_021cdc10((u32) 1);
+    StartSoundSeq((u32) 1);
 }
 
 void func_ov003_021c0528(void) {
@@ -346,7 +346,7 @@ void func_ov003_021c0528(void) {
                 data_ov003_021da15c->mUnk_122++;
                 if (data_ov003_021da15c->mUnk_122 >= 0x28) {
                     if (data_ov003_021da15c->mUnk_123 == 0) {
-                        func_ov003_021cdc10(9);
+                        StartSoundSeq(9);
                         data_ov003_021da15c->mUnk_11e = -1;
                         return;
                     }

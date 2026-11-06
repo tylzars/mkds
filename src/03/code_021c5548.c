@@ -31,7 +31,7 @@ void func_ov003_021c56fc(void) {
     int v1;
     v1 = func_ov003_021cef80();
     if (v1 == 0) {
-        func_ov003_021cdc10((u32) 6);
+        StartSoundSeq((u32) 6);
         func_ov003_021cef90();
         func_ov003_021c212c(func_ov003_021c56d8);
     }
@@ -52,7 +52,7 @@ void func_ov003_021c56a4(void) {
     func_ov003_021c5650();
     func_ov003_021bf854();
     func_ov003_021bf578((u32) 0x68);
-    func_ov003_021cdc10((u32) 0x10);
+    StartSoundSeq((u32) 0x10);
     func_ov003_021c212c(func_ov003_021c5628);
 }
 

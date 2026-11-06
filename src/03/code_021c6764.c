@@ -136,7 +136,7 @@ void func_ov003_021c6d0c(void) {
     v1 = func_ov003_021d1f70(1);
     if ((v1 == 0) && (v1 = func_ov003_021d1f70(0), v1 == 0)) {
         func_ov003_021c0d2c();
-        func_ov003_021cdc10((u32) 0x14);
+        StartSoundSeq((u32) 0x14);
         if (gEdit->mCharCount == 0) {
             func_ov003_021c0cd0((u8) 0);
         }
@@ -167,7 +167,7 @@ void UpdateEditInput(void) {
         case 0x80:
             b = gEdit;
             if (b->mCharCount != 0) {
-                func_ov003_021cdc10(3);
+                StartSoundSeq(3);
                 b = gEdit;
                 b->mCharCount = b->mCharCount - 1;
                 b = gEdit;
@@ -179,17 +179,17 @@ void UpdateEditInput(void) {
             }
             break;
         case 0x82:
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             gEdit->mUnk_2a = 0;
             func_ov003_021c212c(func_ov003_021c6b80);
             return;
         case 0x83:
             if (func_ov003_021c6764() != FALSE) {
-                func_ov003_021cdc10(6);
+                StartSoundSeq(6);
                 gEdit->mUnk_2a = 1;
             } else {
                 gEdit->mUnk_2a = 2;
-                func_ov003_021cdc10(9);
+                StartSoundSeq(9);
             }
             gEdit->mUnk_04->mUnk_00 = (gEdit->mUnk_04->mUnk_00 & 0xc1fffcff) | 0x200;
             func_ov003_021c212c(func_ov003_021c6b80);
@@ -200,7 +200,7 @@ void UpdateEditInput(void) {
         default:
             b = gEdit;
             if (b->mCharCount != 0x20) {
-                func_ov003_021cdc10(1);
+                StartSoundSeq(1);
                 b = gEdit;
                 b->mText[b->mCharCount] = a;
                 b = gEdit;
@@ -231,7 +231,7 @@ void func_ov003_021c6b58(void) {
     v1 = func_ov003_021d1f70(1);
     if (v1 == 0) {
         func_ov003_021c0cf8();
-        func_ov003_021cdc10(0x15);
+        StartSoundSeq(0x15);
         func_ov003_021c212c(func_ov003_021c6acc);
     }
     return;
@@ -333,10 +333,10 @@ void func_ov003_021c68c8(void) {
     gEdit->mUnk_2a = func_ov003_021cef80();
     switch (gEdit->mUnk_2a) {
         case 0:
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             break;
         case 1:
-            func_ov003_021cdc10(0xe);
+            StartSoundSeq(0xe);
             break;
         default:
             return;

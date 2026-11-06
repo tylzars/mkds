@@ -46,7 +46,7 @@ void func_ov003_021ca504(void) {
     func_ov003_021bf5ec(2);
     func_ov003_021bf578(0x69);
     func_ov003_021beef8(0);
-    func_ov003_021cdc10(0xb);
+    StartSoundSeq(0xb);
     func_ov003_021c212c(func_ov003_021ca444);
 }
 
@@ -159,8 +159,8 @@ void func_ov003_021ca370(void) {
     int v1;
     v1 = func_ov003_021bf334();
     if (v1 == 0) {
-        func_ov003_021cdbd0();
-        func_ov003_021cdc10(7);
+        StopSoundSeq();
+        StartSoundSeq(7);
         func_ov003_021c212c(func_ov003_021ca350);
     }
     return;
@@ -221,8 +221,8 @@ void func_ov003_021ca20c(void) {
             break;
         case 4:
             data_ov003_021da224 = 0;
-            func_ov003_021cdbd0();
-            func_ov003_021cdc10(9);
+            StopSoundSeq();
+            StartSoundSeq(9);
             func_ov003_021cefc0(0x41, 1, 1, -1, 0);
             func_ov003_021bf2d0();
             func_ov003_021c212c(func_ov003_021ca1e4);

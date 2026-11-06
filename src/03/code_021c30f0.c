@@ -133,11 +133,11 @@ void func_ov003_021c3270(void) {
 void func_ov003_021c321c(void) {
     switch (func_ov003_021bf334()) {
         case 0:
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             func_ov003_021c212c(func_ov003_021c31fc);
             break;
         case 1:
-            func_ov003_021cdc10(6);
+            StartSoundSeq(6);
             func_ov003_021cefc0(0x56, 0, 1, -1, 0);
             func_ov003_021bf2d0();
             func_ov003_021c212c(func_ov003_021c30f0);
@@ -191,11 +191,11 @@ void func_ov003_021c312c(void) {
 void func_ov003_021c30f0(void) {
     switch (func_ov003_021cef80()) {
         case 1:
-            func_ov003_021cdc10(0xe);
+            StartSoundSeq(0xe);
             data_ov003_021da1a8 = 1;
             break;
         case 0:
-            func_ov003_021cdc10(7);
+            StartSoundSeq(7);
             break;
         default:
             return;

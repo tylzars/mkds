@@ -29,7 +29,7 @@ void func_ov003_021c366c(void) {
     int v1;
     v1 = func_ov003_021bf334();
     if (v1 == 0) {
-        func_ov003_021cdc10((u32) 7);
+        StartSoundSeq((u32) 7);
         func_ov003_021c212c(func_ov003_021c364c);
     }
 }
