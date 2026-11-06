@@ -86,7 +86,7 @@ void LocateAndQueueRecordGpx(void) {
     CallQueueAppend(0x1e, data_ov001_021a6604[2] << 5, (u8 *) x + (data_ov001_021a660c[2] << 5), 0x20);
 }
 
-void func_ov001_021950fc(s32 a) {
+void SetupRecordGpxValues(s32 a) {
     s32 i;
     s32 k;
     u32 y;
@@ -157,7 +157,7 @@ void func_ov001_021950fc(s32 a) {
     }
 }
 
-void func_ov001_02194fd8(s32 a) {
+void SetupRecordGpxDashes(s32 a) {
     s32 i;
 
     gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[a]].mUnk_00 = 0;
@@ -199,7 +199,7 @@ void AdvanceRecordGpxOffsetTimers(void) {
     }
 }
 
-void func_ov001_02194d78(void) {
+void SetupRecordGpx(void) {
     s32 i;
     s32 n;
     RecordGpx *d;
@@ -218,7 +218,7 @@ void func_ov001_02194d78(void) {
         gRecordGpx->mRecordGpxSTable[n + data_ov001_021a662c[3]].mUnk_00 = 1;
         gRecordGpx->mRecordGpxSTable[n + data_ov001_021a663c[3]].mUnk_00 = 1;
     } else {
-        CallQueueAppend(0x1b, 0x3c6, (u8 *) gRecordGpx->mUnk_4c + 0x3c6, 0x134);
+        CallQueueAppend(0x1b, 0x3c6, (u8 *) gRecordGpx->mZeroBuffer + 0x3c6, 0x134);
         gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[3]].mUnk_00 = 0;
         for (i = 0; i < 3; i++) {
             gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[3][i]].mUnk_00 = 0;
@@ -236,9 +236,9 @@ void func_ov001_02194d78(void) {
     func_0212426c(0, 0, gRecordGpx->mRecordGpxMBnll, p, d->mRecordGpxMBncl, d->mRecordGpxMTable);
     for (i = 0; i < 4; i++) {
         if (func_02060440(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[i]) != 0) {
-            func_ov001_021950fc(i);
+            SetupRecordGpxValues(i);
         } else {
-            func_ov001_02194fd8(i);
+            SetupRecordGpxDashes(i);
         }
     }
 }
@@ -318,28 +318,28 @@ void func_ov001_02194a50(void) {
     gRecordGpx->mRecordGpxSTable[45].mUnk_04 = 0x100;
     for (i = 0; i < 4; i++) {
         gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mUnk_06 = gRecordGpx->mUnk_74;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
         gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mUnk_06 = gRecordGpx->mUnk_74;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a6654[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
         for (j = 0; j < 3; j++) {
             gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mUnk_04 = 0x100;
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mUnk_06 = gRecordGpx->mUnk_74;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66cc[i][j]].mUnk_06 = gRecordGpx->mBg3OffsetY;
         }
         gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mUnk_06 = gRecordGpx->mUnk_74;
+        gRecordGpx->mRecordGpxSTable[data_ov001_021a665c[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
         gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a6614[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a6614[i]].mUnk_06 = gRecordGpx->mUnk_74;
+        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a6614[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
         gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a662c[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a662c[i]].mUnk_06 = gRecordGpx->mUnk_74;
+        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a662c[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
         gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a663c[i]].mUnk_04 = 0x100;
-        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a663c[i]].mUnk_06 = gRecordGpx->mUnk_74;
+        gRecordGpx->mRecordGpxSTable[count1 + data_ov001_021a663c[i]].mUnk_06 = gRecordGpx->mBg3OffsetY;
         for (j = 0; j < 3; j++) {
             gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mUnk_04 = 0x100;
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mUnk_06 = gRecordGpx->mUnk_74;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a66b4[i][j]].mUnk_06 = gRecordGpx->mBg3OffsetY;
         }
         for (j = 0; j < 2; j++) {
             gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mUnk_04 = 0x100;
-            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mUnk_06 = gRecordGpx->mUnk_74;
+            gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[i][j]].mUnk_06 = gRecordGpx->mBg3OffsetY;
         }
     }
     for (i = 0; i < 2; i++) {
@@ -347,10 +347,10 @@ void func_ov001_02194a50(void) {
     }
 }
 
-void func_ov001_02194a34(void) {
+void RequestRecordGpxState1AndSetup(void) {
     gRecordGpx->mNextState = 1;
     gRecordGpx->mStateFrames = 0;
-    func_ov001_02194d78();
+    SetupRecordGpx();
 }
 
 // Requests state 2: stores mNextState = 2 and zeroes mStateFrames; the next AdvanceRecordGpx call copies it to mState
@@ -378,7 +378,7 @@ void func_ov001_021949d4(void) {
             func_ov001_02194d18();
             break;
     }
-    func_ov001_02194d78();
+    SetupRecordGpx();
 }
 
 // Requests state 5: stores mNextState = 5 and zeroes mStateFrames; the next AdvanceRecordGpx call copies it to mState
@@ -408,7 +408,7 @@ void InitRecordGpx(void *heap) {
     *(vu16 *) 0x400100a = (*(vu16 *) 0x400100a & 0x43) | 0x1018;
     *(vu16 *) 0x400100e = (*(vu16 *) 0x400100e & 0x43) | 0x5810;
     gRecordGpx = HeapAlloc(heap, 0x94);
-    gRecordGpx->mUnk_5c = heap;
+    gRecordGpx->mHeap = heap;
     gRecordGpx->mState = 0;
     gRecordGpx->mIndex = 0;
     gRecordGpx->mUnk_7c = 0;
@@ -439,16 +439,16 @@ void InitRecordGpx(void *heap) {
                              data_ov001_021a664c[i], i + 12, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl,
                              gRecordGpx->mRecordGpxSTable, rem);
     }
-    gRecordGpx->mUnk_74 = 0;
+    gRecordGpx->mBg3OffsetY = 0;
     for (i = 0; i < 8; i++) {
         acc |= func_ov001_02194d04(i);
     }
     if (acc == 0) {
-        gRecordGpx->mUnk_74 = 16;
+        gRecordGpx->mBg3OffsetY = 16;
     }
-    gRecordGpx->mUnk_4c = HeapAlloc(heap, 0x134);
+    gRecordGpx->mZeroBuffer = HeapAlloc(heap, 0x134);
     zero = 0;
-    MIi_CpuClear16(zero, gRecordGpx->mUnk_4c, 0x134);
+    MIi_CpuClear16(zero, gRecordGpx->mZeroBuffer, 0x134);
     func_ov001_02194a50();
 }
 
@@ -470,7 +470,7 @@ void AdvanceRecordGpxState0(void) {
     gRecordGpx->mStateFrames++;
     gRecordGpx->mBg0Offset = func_020ae4c0(1, -192, 0, gRecordGpx->mStateFrames, 10);
     if (gRecordGpx->mStateFrames >= 10) {
-        func_ov001_02194a34();
+        RequestRecordGpxState1AndSetup();
     }
 }
 
@@ -765,7 +765,7 @@ void AdvanceRecordGpx(void) {
 
 void func_ov001_02193ccc(void) {
     *(vu32 *) 0x4000010 = (-gRecordGpx->mBg0Offset << 16) & 0x1ff0000;
-    *(vu32 *) 0x400101c = ((-gRecordGpx->mBg3OffsetX) & 0x1ff) | ((-gRecordGpx->mUnk_74 << 16) & 0x1ff0000);
+    *(vu32 *) 0x400101c = ((-gRecordGpx->mBg3OffsetX) & 0x1ff) | ((-gRecordGpx->mBg3OffsetY << 16) & 0x1ff0000);
     func_02111428();
 }
 

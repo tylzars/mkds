@@ -62,11 +62,11 @@ typedef struct RecordGpx {
     /* 40 */ Unk021a9bd8_40 *mPlayerCharacterMONclr;
     /* 44 */ struct Unk0201ea30 *mPlayerCharacterMBncl;
     /* 48 */ Nscr *mRecordGpxSNscr;
-    /* 4c */ void *mUnk_4c;
+    /* 4c */ void *mZeroBuffer;
     /* 50 */ Unk02124b1c *mRecordGpxMTable;
     /* 54 */ Unk02124b1c *mRecordGpxSTable;
     /* 58 */ void *mCommonMessages;
-    /* 5c */ void *mUnk_5c;
+    /* 5c */ void *mHeap;
     /* 60 */ s32 mState;
     /* 64 */ s32 mNextState;
     /* 68 */ s32 mStateFrames;
@@ -75,7 +75,7 @@ typedef struct RecordGpx {
     // X half of reg_G2S_DB_BG3OFS (0x0400101c): the SUB engine's BG3, stored negated; the Y half is mUnk_74 (also the y
     // of the S cells)
     /* 70 */ s32 mBg3OffsetX;
-    /* 74 */ s32 mUnk_74;
+    /* 74 */ s32 mBg3OffsetY;
     /* 78 */ s32 mIndex;
     /* 7c */ s32 mUnk_7c;
     // Set to 6, counted down while above 0; the row member is set to -func_020adc64(6 - timer) for [0] and
@@ -136,16 +136,16 @@ void RequestRecordGpxState5(void);
 void func_ov001_021949d4(void);
 void RequestRecordGpxState3(void);
 void RequestRecordGpxState2(void);
-void func_ov001_02194a34(void);
+void RequestRecordGpxState1AndSetup(void);
 void func_ov001_02194a50(void);
 u32 func_ov001_02194c9c(u32 a);
 u32 func_ov001_02194d04(s32 a);
 void func_ov001_02194d18(void);
 void func_ov001_02194d48(void);
-void func_ov001_02194d78(void);
+void SetupRecordGpx(void);
 void AdvanceRecordGpxOffsetTimers(void);
-void func_ov001_02194fd8(s32 a);
-void func_ov001_021950fc(s32 a);
+void SetupRecordGpxDashes(s32 a);
+void SetupRecordGpxValues(s32 a);
 void LocateAndQueueRecordGpx(void);
 
 #include "00/code_021832d8.h"
