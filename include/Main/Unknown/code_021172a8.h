@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_021172a8(void *a);
+void CreateKartIcon(void *a);

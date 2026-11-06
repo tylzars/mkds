@@ -67,7 +67,7 @@ void func_0202dfd4(void *a) {
     func_02125de0(a, &v);
     func_02125f2c(1);
     func_0212abdc(a, data_02174e44);
-    func_021172a8(a);
+    CreateKartIcon(a);
     for (i = 0; i < 0x20; i++) {
         data_02174e44->mUnk_814[i] = -1;
     }
@@ -172,7 +172,7 @@ void func_0202de00(Unk02174e14 *a, s16 (*b)[4], void *c, s32 d, s32 e, s32 f, Un
     func_0212426c(0, b[2][0], a->mUnk_000.mUnk_14, t, a->mUnk_000.mUnk_0c, a->mUnk_000.mUnk_18);
     func_0212463c(d, h->mUnk_08, a->mUnk_038.mUnk_00, h->mUnk_04, h->mUnk_0c, 0, b[0][3], a->mUnk_000.mUnk_08,
                   a->mUnk_000.mUnk_0c);
-    func_021171a0(e, a->mUnk_000.mUnk_08, a->mUnk_000.mUnk_0c, b[1][3],
+    QueueKartIcon(e, a->mUnk_000.mUnk_08, a->mUnk_000.mUnk_0c, b[1][3],
                   func_02124a68(b[1][3], a->mUnk_000.mUnk_08, a->mUnk_000.mUnk_0c), 0);
 }
 

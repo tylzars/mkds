@@ -117,7 +117,7 @@ void func_ov001_021975f4(u16 a) {
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6850[0][1];
         gRecordTAtt->mRecordTAttMTable[slot].mUnk_00 = 1;
-        func_021171a0(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, slot,
+        QueueKartIcon(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, slot,
                       data_ov001_021a683c[5], 0);
         cnt = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
         func_02060134(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
@@ -149,7 +149,7 @@ void func_ov001_021975f4(u16 a) {
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6852[a][0];
         gRecordTAtt->mRecordTAttSTable[slot].mUnk_00 = 1;
-        func_021171a0(result, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl, slot,
+        QueueKartIcon(result, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl, slot,
                       data_ov001_021a6846[a], 1);
         cnt = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
         func_02060134(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
@@ -224,7 +224,7 @@ void func_ov001_021972f4(void) {
                         0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
         gRecordTAtt->mRecordTAttMTable[6].mUnk_00 = 1;
-        func_021171a0(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, 6, 6, 0);
+        QueueKartIcon(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, 6, 6, 0);
         func_02060134(data_ov001_021a6900[gRecordTAtt->mIndex], 5, &time);
         func_02116b8c(&time, str);
         gRecordTAtt->mRecordTAttMTable[cnt + 2].mUnk_00 = 1;
@@ -545,7 +545,7 @@ void InitRecordTAtt(void *heap) {
         gRecordTAtt->mUnk_78[i] = 0;
     }
     LocateAndQueueRecordTAtt();
-    func_021172a8(heap);
+    CreateKartIcon(heap);
     func_020ae6d4(func_02111318(), func_0211130c());
     func_02124ed0(heap, gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMBnll, &gRecordTAtt->mRecordTAttMTable);
     func_02124ed0(heap, gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSBnll, &gRecordTAtt->mRecordTAttSTable);

@@ -65,7 +65,7 @@ void func_0202e274(void) {
     LoadNscrData(v5, v1);
     v1 = FindSceneFile(data_02163240);
     LoadNscrData(v5, v1);
-    func_02117388();
+    LoadKartIconData();
 }
 
 #pragma thumb off

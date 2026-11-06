@@ -116,7 +116,7 @@ void SetupRecordGpxValues(s32 a) {
                     0x20);
     k = func_020603e8(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][1]].mUnk_00 = 1;
-    func_021171a0(k, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl, data_ov001_021a6674[a][1],
+    QueueKartIcon(k, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl, data_ov001_021a6674[a][1],
                   data_ov001_021a668c[a], 1);
     count = gRecordGpx->mRecordGpxSBncl->mUnk_06;
     func_02060318(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a], &value);
@@ -418,7 +418,7 @@ void InitRecordGpx(void *heap) {
         gRecordGpx->mOffsetTimers[i] = 0;
     }
     LocateAndQueueRecordGpx();
-    func_021172a8(heap);
+    CreateKartIcon(heap);
     func_0211dfb4(heap);
     p = func_02111318();
     func_020ae6d4(p, func_0211130c());

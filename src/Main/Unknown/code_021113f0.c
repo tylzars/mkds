@@ -760,7 +760,7 @@ void func_02111684(void) {
     LoadNscrData(&v2.mNscr, v1);
     v1 = FindSceneFile(gRecordVSSBNclrName);
     LoadNclrData(&v2.mNclr, v1);
-    func_02117388();
+    LoadKartIconData();
     func_0211e074();
 }
 

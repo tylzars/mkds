@@ -43,14 +43,13 @@ typedef struct Unk0217d358 {
 
 struct Nclr;
 
-// Object behind data_0217d35c: 0x18 bytes allocated by func_021172a8; members 0x0, 0x4 and 0x8 + 4 * i are filled
-// through LocateNcgr2, LocateNcer and LocateNclr.
-typedef struct Unk0217d35c {
-    /* 00 */ struct Ncgr *mUnk_00;
-    /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ struct Nclr *mUnk_08[3];
-    /* 14 */ void *mUnk_14;
-} Unk0217d35c;
+// 0x18 bytes.
+typedef struct KartIcon {
+    /* 00 */ struct Ncgr *mNcgr;
+    /* 04 */ struct Unk02021dc8 *mNcer;
+    /* 08 */ struct Nclr *mNclrs[3];
+    /* 14 */ void *mBncl;
+} KartIcon;
 
 struct NNSSndArc;
 struct NNSSndStrmThread;
@@ -732,7 +731,7 @@ extern struct Unk0217d344 *data_0217d344;
 extern RecordVSErase *gRecordVSErase;
 extern Wait *gWait;
 extern Unk0217d358 *data_0217d358;
-extern Unk0217d35c *data_0217d35c;
+extern KartIcon *gKartIcon;
 extern SelectRaceRule *gSelectRaceRule;
 extern Unk0217d36c *data_0217d36c;
 extern Unk0217d370 *data_0217d370;

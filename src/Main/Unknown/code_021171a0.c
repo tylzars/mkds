@@ -16,7 +16,7 @@
 
 #pragma thumb on
 
-void func_02117388(void) {
+void LoadKartIconData(void) {
     void *v1;
     int v2;
     const char **v3;
@@ -26,12 +26,12 @@ void func_02117388(void) {
     v4 = NULL;
     v5 = NULL;
     v6[0] = NULL;
-    v1 = FindSceneFile(data_0216d534);
+    v1 = FindSceneFile(gKartIconNcgrName);
     LoadNcgrData(&v4, v1);
-    v1 = FindSceneFile(data_0216d538);
+    v1 = FindSceneFile(gKartIconNcerName);
     LoadNcerData(&v5, v1);
     v2 = 0;
-    v3 = data_0216d53c;
+    v3 = gKartIconNclrNames;
     do {
         v1 = FindSceneFile(*v3);
         LoadNclrData(v6, v1);
@@ -40,7 +40,7 @@ void func_02117388(void) {
     } while (v2 < 3);
 }
 
-void func_0211732c(void) {
+void LoadCommonKartIconData(void) {
     void *v1;
     int v2;
     const char **v3;
@@ -50,12 +50,12 @@ void func_0211732c(void) {
     v4 = NULL;
     v5 = NULL;
     v6[0] = NULL;
-    v1 = FindSceneFile(data_0216d524);
+    v1 = FindSceneFile(gCommonKartIconNcgrName);
     LoadNcgrData(&v4, v1);
-    v1 = FindSceneFile(data_0216d528);
+    v1 = FindSceneFile(gCommonKartIconNcerName);
     LoadNcerData(&v5, v1);
     v2 = 0;
-    v3 = data_0216d548;
+    v3 = gCommonKartIconNclrNames;
     do {
         v1 = FindSceneFile(*v3);
         LoadNclrData(v6, v1);
@@ -68,32 +68,32 @@ void func_0211732c(void) {
 
 #pragma thumb on
 
-void func_021172a8(void *a) {
+void CreateKartIcon(void *a) {
     int i;
 
-    data_0217d35c = HeapAlloc(a, 0x18);
-    LocateNcgr2(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d534));
-    LocateNcer(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d538));
+    gKartIcon = HeapAlloc(a, 0x18);
+    LocateNcgr2(&gKartIcon->mNcgr, FindSceneFile(gKartIconNcgrName));
+    LocateNcer(&gKartIcon->mNcer, FindSceneFile(gKartIconNcerName));
     for (i = 0; i < 3; i++) {
-        LocateNclr(&data_0217d35c->mUnk_08[i], FindSceneFile(data_0216d53c[i]));
+        LocateNclr(&gKartIcon->mNclrs[i], FindSceneFile(gKartIconNclrNames[i]));
     }
-    data_0217d35c->mUnk_14 = FindSceneFile(data_0216d52c);
+    gKartIcon->mBncl = FindSceneFile(gKartIconBnclName);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02117224(void *heap) {
+void CreateCommonKartIcon(void *heap) {
     s32 i;
 
-    data_0217d35c = HeapAlloc(heap, 0x18);
-    LocateNcgr2(&data_0217d35c->mUnk_00, FindSceneFile(data_0216d524));
-    LocateNcer(&data_0217d35c->mUnk_04, FindSceneFile(data_0216d528));
+    gKartIcon = HeapAlloc(heap, 0x18);
+    LocateNcgr2(&gKartIcon->mNcgr, FindSceneFile(gCommonKartIconNcgrName));
+    LocateNcer(&gKartIcon->mNcer, FindSceneFile(gCommonKartIconNcerName));
     for (i = 0; i < 3; i++) {
-        LocateNclr(&data_0217d35c->mUnk_08[i], FindSceneFile(data_0216d548[i]));
+        LocateNclr(&gKartIcon->mNclrs[i], FindSceneFile(gCommonKartIconNclrNames[i]));
     }
-    data_0217d35c->mUnk_14 = FindSceneFile(data_0216d530);
+    gKartIcon->mBncl = FindSceneFile(gCommonKartIconBnclName);
 }
 
 #pragma thumb off
@@ -103,14 +103,14 @@ void func_02117218(void) {
     u32 value0;
     u32 value1;
     value1 = 0u;
-    value0 = (u32) &data_0217d35c;
+    value0 = (u32) &gKartIcon;
     *(u32 *) ((value0) + 0u) = value1;
 }
 #pragma thumb off
 
 #pragma thumb on
 
-void func_021171a0(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, s32 f) {
+void QueueKartIcon(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, s32 f) {
     int n;
 
     n = 0x12;
@@ -122,9 +122,8 @@ void func_021171a0(s32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, s32 f) {
             n = 0x1e;
             break;
     }
-    func_02124748(data_0215c60c[a].mUnk_00, data_0217d35c->mUnk_04, data_0217d35c->mUnk_00, data_0217d35c->mUnk_14, f,
-                  d, b, c);
-    CallQueueAppend(n, e * 32, data_0217d35c->mUnk_08[data_0215c60c[a].mUnk_04]->mData + data_0215c60c[a].mUnk_08 * 16,
+    func_02124748(gKartIconRows[a].mBnclIndex, gKartIcon->mNcer, gKartIcon->mNcgr, gKartIcon->mBncl, f, d, b, c);
+    CallQueueAppend(n, e * 32, gKartIcon->mNclrs[gKartIconRows[a].mNclrIndex]->mData + gKartIconRows[a].mNclrStart * 16,
                     0x20);
 }
 

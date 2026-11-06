@@ -60,7 +60,7 @@ void LoadSelectGhostAndKartIconData(void) {
     LoadNcgrData2(&p3, FindSceneFile(gSelectGhostSONcgrName));
     LoadNcerData(&p4, FindSceneFile(gSelectGhostSONcerName));
     LoadNclrData(&p5, FindSceneFile(gSelectGhostSONclrName));
-    func_0211732c();
+    LoadCommonKartIconData();
 }
 
 void func_ov001_0219c544(void) {
@@ -248,7 +248,7 @@ void func_ov001_0219c0bc(void) {
                << 5),
         0x20);
     k = func_0211e1f0(data_ov001_021a6b78[gSelectGhost->mIndex]);
-    func_021171a0(k, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, b, 9, 1);
+    QueueKartIcon(k, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, b, 9, 1);
     func_0211e38c(data_ov001_021a6b78[gSelectGhost->mIndex], buf14);
     func_02116b80(buf14, buf18);
     func_02124224(1, y, gSelectGhost->mSelectGhostSBnll, buf18, gSelectGhost->mSelectGhostSBncl,
@@ -350,7 +350,7 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
     gSelectGhost->mUnk_68 = c;
     gSelectGhost->mResult = 0;
     func_ov001_0219c544();
-    func_02117224(gSelectGhost->mHeap);
+    CreateCommonKartIcon(gSelectGhost->mHeap);
     func_02124ed0(gSelectGhost->mHeap, gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMBnll,
                   &gSelectGhost->mSelectCupCourseTaMTable);
     func_02124ed0(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSBnll,
