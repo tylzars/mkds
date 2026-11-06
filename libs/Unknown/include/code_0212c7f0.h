@@ -26,8 +26,8 @@ typedef struct NNSSndStrm {
     /* 4c */ u8 mChannelNo[0x10];
 } NNSSndStrm;
 
-// 0x160 bytes; data_0217e404 holds four. Bits of mUnk_110: 0 is tested by func_0212ef48, func_0212efb8 and
-// func_0212f094, 1 by func_0212efb8 and func_0212f094, 2 and 3 by func_0212f094.
+// 0x160 bytes; data_0217e404 holds four. Bits of mUnk_110: 0 is tested by ShutdownPlayer_, ForceStopStrm_ and
+// NNSi_SndArcStrmMain, 1 by ForceStopStrm_ and NNSi_SndArcStrmMain, 2 and 3 by NNSi_SndArcStrmMain.
 typedef struct Unk0212c7f0 {
     /* 00 */ NNSSndStrm mStream;
     /* 5c */ FSFile mFile;

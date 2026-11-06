@@ -261,7 +261,7 @@ void UpdateFireball2(void *a, Fireball2 *b) {
                     if (h[0] != NULL) {
                         NNS_SndPlayerStopSeq(h, 0);
                     }
-                    func_0212ecc0(h, 0, 0x1c2);
+                    NNS_SndArcPlayerStartSeqArc(h, 0, 0x1c2);
                 }
                 b->mUnk_19e4 = 0;
             } else {

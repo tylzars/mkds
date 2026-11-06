@@ -337,7 +337,7 @@ void func_020b0b8c(void) {
     }
     for (i = 0; i < data_021759c0->mKartCount; i++) {
         if (gRaceHud->mUnk_89c[i] != 0 && gRaceHud->mUnk_8bc[i] == 0) {
-            func_0212ecc0(&data_0217d068, 0, 0x52);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x52);
             gRaceHud->mUnk_8bc[i] = 1;
         }
     }

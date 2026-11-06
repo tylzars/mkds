@@ -108,7 +108,7 @@ void func_020b3410(void) {
                 if (*p != NULL) {
                     NNS_SndPlayerStopSeq(p, 0);
                 }
-                func_0212ecc0(p, 0, 0x27);
+                NNS_SndArcPlayerStartSeqArc(p, 0, 0x27);
             }
         }
     }
@@ -122,7 +122,7 @@ void func_020b3410(void) {
                 if (*p != NULL) {
                     NNS_SndPlayerStopSeq(p, 0);
                 }
-                func_0212ecc0(p, 0, 0x28);
+                NNS_SndArcPlayerStartSeqArc(p, 0, 0x28);
             }
         }
     }

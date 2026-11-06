@@ -457,7 +457,7 @@ void RequestMissionRunMSselState3(void) {
 s32 func_ov001_021a0488(void) {
     gMissionRunMSsel->mNextState = 4;
     gMissionRunMSsel->mStateFrames = 0;
-    return func_0212ecc0(&data_0217d068, 0, 5);
+    return NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
 void func_ov001_021a0428(void) {
@@ -683,7 +683,7 @@ skip:
     if (result <= 8) {
         target = data_ov001_021a6d98[result];
         if (target == 8 && gMissionRunMSsel->mUnk_a0 == 0) {
-            func_0212ecc0(&data_0217d068, 0, 0x16);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
             return;
         }
         gMissionRunMSsel->mIndex = target;
@@ -708,7 +708,7 @@ skip:
         }
         gMissionRunMSsel->mIndex = target;
         gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
-        func_0212ecc0(&data_0217d068, 0, 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
     if (func_020ae408(8, 0x80)) {
@@ -723,7 +723,7 @@ skip:
         }
         gMissionRunMSsel->mIndex = target;
         gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
-        func_0212ecc0(&data_0217d068, 0, 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
     if (func_020ae408(8, 0x20)) {
@@ -738,7 +738,7 @@ skip:
         }
         gMissionRunMSsel->mIndex = target;
         gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
-        func_0212ecc0(&data_0217d068, 0, 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
     if (func_020ae408(8, 0x10)) {
@@ -753,7 +753,7 @@ skip:
         }
         gMissionRunMSsel->mIndex = target;
         gMissionRunMSsel->mUnk_6c[gMissionRunMSsel->mIndex] = 5;
-        func_0212ecc0(&data_0217d068, 0, 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
 }
 

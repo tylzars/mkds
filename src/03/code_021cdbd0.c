@@ -18,8 +18,8 @@ void func_ov003_021cdc4c(void) {
     data_ov003_021da274 = func_ov003_021d285c(0x9c, 4);
     data_ov003_021da274->mUnk_94 = func_ov003_021d14b8(data_ov003_021d77d4, &a, 0x20);
     NNS_SndInit();
-    func_0212d5f8(&data_ov003_021da274->mUnk_00, data_ov003_021da274->mUnk_94);
-    func_0212edac(NULL);
+    NNS_SndArcInitOnMemory(&data_ov003_021da274->mUnk_00, data_ov003_021da274->mUnk_94);
+    NNS_SndArcPlayerSetup(NULL);
     NNS_SndHandleInit(&data_ov003_021da274->mUnk_90);
     data_ov003_021da274->mUnk_98 = func_ov003_021d3544(0, func_ov003_021cdbc8, NULL, 0xc8);
 }
@@ -40,8 +40,8 @@ void func_ov003_021cdc10(u32 arg0) {
     value0 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = (value0) + 144u;
     value1 = 0u;
-    value3 = (u32) &func_0212ecc0;
-    value0 = (u32) func_0212ecc0((const void *) value0, value1, value2);
+    value3 = (u32) &NNS_SndArcPlayerStartSeqArc;
+    value0 = (u32) NNS_SndArcPlayerStartSeqArc((const void *) value0, value1, value2);
     return;
 }
 

@@ -93,7 +93,7 @@ void func_02110754(void) {
             } else {
                 x = (u16) (w + v * 2);
             }
-            func_0212ecc0(&data_0217d068, t, x);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, t, x);
             if (data_0217d068 != NULL) {
                 func_02105b28(&data_0217d068, 0x3c);
             }
@@ -140,11 +140,11 @@ void func_021106a8(s32 a, s32 b) {
     } else {
         id = b + a * 2;
     }
-    func_0212ecc0(&data_0217d068, mode, id);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, mode, id);
     if (data_0217d068 != NULL) {
         func_02105b28(&data_0217d068, 100);
     }
-    func_0212ecc0(&data_0217d068, 0, 4);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
 }
 
 void func_02110698(void) {
@@ -424,7 +424,7 @@ void func_0211003c(u32 a, NNSSndSeqPlayer **b) {
     if (*b != NULL) {
         NNS_SndPlayerStopSeq(b, 0);
     }
-    func_0212ecc0(b, 0, a);
+    NNS_SndArcPlayerStartSeqArc(b, 0, a);
 }
 
 // Fades the object at data_0217d234 towards t, then writes the value that was reached.

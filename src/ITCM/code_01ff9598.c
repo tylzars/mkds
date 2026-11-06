@@ -120,7 +120,7 @@ BOOL func_01ffa1f8(Kart *p) {
                         if (*(u32 *) q != 0) {
                             NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
                         }
-                        func_0212ecc0(q, 0, 0x1b7);
+                        NNS_SndArcPlayerStartSeqArc(q, 0, 0x1b7);
                     }
                 }
             }

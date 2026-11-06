@@ -241,7 +241,7 @@ l1:
         gRecordVS->mUnk_80[0] = 6;
         gRecordVS->mUnk_88 = TRUE;
         RequestRecordVSState5();
-        func_0212ecc0(&data_0217d068, 0, 2);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
         return;
     }
     if ((a == 11 && gRecordVS->mUnk_8c != FALSE) || (b == 11 && gRecordVS->mUnk_8c == FALSE) ||
@@ -256,7 +256,7 @@ l1:
         gRecordVS->mUnk_80[1] = 6;
         gRecordVS->mUnk_8c = TRUE;
         RequestRecordVSState5();
-        func_0212ecc0(&data_0217d068, 0, 2);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
         return;
     }
     if ((u32) (b - 5) <= 4) {
@@ -278,7 +278,7 @@ l1:
             return;
         }
         gRecordVS->mIndex = t;
-        func_0212ecc0(&data_0217d068, 0, 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         return;
     }
     if (b == 12 || (u16) (q->mUnk_00 & 0x400) != 0) {

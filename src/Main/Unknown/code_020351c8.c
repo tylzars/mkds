@@ -312,7 +312,7 @@ s32 func_0203551c(u16 *a) {
                 func_02035a9c();
             }
             if (func_0202e468() != 0) {
-                func_0212ecc0(&data_0217d068, 0, 5);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
             }
             if (func_0202e47c() != 0) {
                 func_02035b78();
@@ -330,9 +330,9 @@ s32 func_0203551c(u16 *a) {
             break;
         case 2:
             if (func_02125f40() != 0 && func_02125f60() == 0) {
-                func_0212d5e0(&data_0217c868);
-                func_0212ecc0(&data_0217d068, 0, 10);
-                func_0212d5e0(&data_0217d0a0);
+                NNS_SndArcSetCurrent(&data_0217c868);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 10);
+                NNS_SndArcSetCurrent(&data_0217d0a0);
             }
             if (func_02125f54() != 0) {
                 if (func_02125f60() == 0) {
@@ -470,7 +470,7 @@ void func_020352fc(s32 a) {
         } while (i != p->mUnk_080);
     }
     if (f != FALSE) {
-        func_0212ecc0(&data_0217d068, 0, 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
 }
 
@@ -507,7 +507,7 @@ void func_02035280(s32 a) {
         } while (i != p->mUnk_080);
     }
     if (f != FALSE) {
-        func_0212ecc0(&data_0217d068, 0, 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
 }
 

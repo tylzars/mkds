@@ -5,7 +5,7 @@
 #include "code_0212d214.h"
 
 typedef struct NNSSndSeqPlayer NNSSndSeqPlayer;
-typedef struct HeapStack HeapStack;
+typedef struct NNSSndHeap NNSSndHeap;
 
 // Volume curve of one kind of sound source. The volume is the maximum up to the inner distance, falls to a mid volume
 // at the mid distance and to 0 at the outer distance. SoundSource.mFalloffIndex picks the element of gSoundFalloffs.
@@ -38,7 +38,7 @@ extern s32 data_0217c7a4;
 extern NNSSndSeqPlayer *data_0217c838[];
 extern u8 data_0217c83c[];
 extern u8 data_0217c840[];
-extern struct Unk0212d5f8 data_0217c868;
+extern struct NNSSndArc data_0217c868;
 extern u8 data_0217c91c[];
 extern u32 data_0217cbec[];
 extern u32 data_0217c780;
@@ -68,9 +68,9 @@ extern u32 data_0217c704[];
 extern u8 data_0217c648[];
 extern u16 data_0217c76c[];
 extern u16 data_0217c770[];
-extern HeapStack *data_0217c77c;
+extern NNSSndHeap *data_0217c77c;
 extern u32 data_0217c78c;
-extern HeapStack *data_0217c790;
+extern NNSSndHeap *data_0217c790;
 extern u32 data_0217c794;
 extern u32 data_0217c798[];
 extern u32 data_0217c7a8;

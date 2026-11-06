@@ -163,7 +163,7 @@ void func_0210d0ec(void) {
 }
 
 void func_0210d0b4(u32 a, PlayingSound *b, u32 c) {
-    func_0212ec04(&b->mUnk_00, -1, -1, c, b->mUnk_18, b->mSoundId);
+    NNS_SndArcPlayerStartSeqArcEx(&b->mUnk_00, -1, -1, c, b->mUnk_18, b->mSoundId);
 }
 
 void func_0210d078(u32 a, PlayingSound *b) {
@@ -172,7 +172,7 @@ void func_0210d078(u32 a, PlayingSound *b) {
 }
 
 void func_0210d050(u32 a, u32 b, u32 c, u32 d) {
-    func_0212ec04((NNSSndSeqPlayer **) a, (u32) 0xffffffff, (u32) 0xffffffff, d, b, c);
+    NNS_SndArcPlayerStartSeqArcEx((NNSSndSeqPlayer **) a, (u32) 0xffffffff, (u32) 0xffffffff, d, b, c);
 }
 
 void func_0210d040(s32 (*p0)(Unk0210bcf4 *)) {

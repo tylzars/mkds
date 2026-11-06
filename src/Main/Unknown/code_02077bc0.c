@@ -1736,7 +1736,7 @@ void func_02078158(void) {
                     func_02078a9c(w);
                     func_02078a34(data_0217ad08->mUnk_000);
                     d = 1;
-                    func_0212ecc0(&data_0217d068, a, 0x1fd);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, a, 0x1fd);
                 }
             } while (d == 0);
             data_0217ad08->mUnk_004++;
@@ -1754,7 +1754,7 @@ void func_02078158(void) {
                     func_02078a9c(w);
                     func_02078a34(data_0217ad08->mUnk_000);
                     d = 1;
-                    func_0212ecc0(&data_0217d068, a, 0x1fe);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, a, 0x1fe);
                 }
             } while (d == 0);
             data_0217ad08->mUnk_004--;

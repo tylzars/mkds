@@ -1124,7 +1124,7 @@ void func_020710b0(Kart *p, s32 b) {
             if (h[0] != NULL) {
                 NNS_SndPlayerStopSeq(h, 0);
             }
-            func_0212ecc0(h, 0, 0x1d2);
+            NNS_SndArcPlayerStartSeqArc(h, 0, 0x1d2);
             break;
         case COURSE_ID_PINBALL:
             d = StartSound((SoundSource *) p, 0x15b, 0x7f, 0);
@@ -1392,7 +1392,7 @@ void func_020705fc(Kart *p, u32 b) {
                 if (h[0] != NULL) {
                     NNS_SndPlayerStopSeq(h, 0);
                 }
-                func_0212ecc0(h, 0, 0x159);
+                NNS_SndArcPlayerStartSeqArc(h, 0, 0x159);
             }
         }
     }

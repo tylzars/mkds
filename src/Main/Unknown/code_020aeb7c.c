@@ -103,11 +103,11 @@ void func_020aeb7c(void) {
                     switch (gRaceHud->mSubScreenState) {
                         case 0:
                             gRaceHud->mSubScreenState = 1;
-                            func_0212ecc0(&data_0217d068, 0, 0x18);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x18);
                             break;
                         case 1:
                             gRaceHud->mSubScreenState = 0;
-                            func_0212ecc0(&data_0217d068, 0, 0x17);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
                             break;
                     }
                 } else {
@@ -159,26 +159,26 @@ void func_020aeb7c(void) {
                         switch (gRaceHud->mSubScreenState) {
                             case 0:
                                 gRaceHud->mSubScreenState = 1;
-                                func_0212ecc0(&data_0217d068, 0, 0x18);
+                                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x18);
                                 break;
                             case 1:
                                 gRaceHud->mSubScreenState = 0;
-                                func_0212ecc0(&data_0217d068, 0, 0x17);
+                                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
                                 break;
                         }
                     } else {
                         switch (gRaceHud->mSubScreenState) {
                             case 0:
                                 gRaceHud->mSubScreenState = 1;
-                                func_0212ecc0(&data_0217d068, 0, 0x18);
+                                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x18);
                                 break;
                             case 1:
                                 gRaceHud->mSubScreenState = 2;
-                                func_0212ecc0(&data_0217d068, 0, 0x17);
+                                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
                                 break;
                             case 2:
                                 gRaceHud->mSubScreenState = 0;
-                                func_0212ecc0(&data_0217d068, 0, 0x17);
+                                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
                                 break;
                         }
                     }
@@ -234,11 +234,11 @@ void func_020aeb7c(void) {
                     switch (gRaceHud->mSubScreenState) {
                         case 0:
                             gRaceHud->mSubScreenState = 1;
-                            func_0212ecc0(&data_0217d068, 0, 0x18);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x18);
                             break;
                         case 1:
                             gRaceHud->mSubScreenState = 0;
-                            func_0212ecc0(&data_0217d068, 0, 0x17);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
                             break;
                     }
                 } else {
@@ -304,11 +304,11 @@ void func_020aeb7c(void) {
                         switch (gRaceHud->mSubScreenState) {
                             case 0:
                                 gRaceHud->mSubScreenState = 3;
-                                func_0212ecc0(&data_0217d068, 0, 0x18);
+                                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x18);
                                 break;
                             case 3:
                                 gRaceHud->mSubScreenState = 0;
-                                func_0212ecc0(&data_0217d068, 0, 0x17);
+                                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
                                 break;
                         }
                     } else {
@@ -351,11 +351,11 @@ void func_020aeb7c(void) {
                     switch (gRaceHud->mSubScreenState) {
                         case 0:
                             gRaceHud->mSubScreenState = 1;
-                            func_0212ecc0(&data_0217d068, 0, 0x18);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x18);
                             break;
                         case 1:
                             gRaceHud->mSubScreenState = 0;
-                            func_0212ecc0(&data_0217d068, 0, 0x17);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
                             break;
                     }
                 } else {
@@ -388,7 +388,7 @@ void func_020aeb7c(void) {
                 }
             }
             if ((u16) (data_0217562c[func_020435bc()].mUnk_00 & 0x800) != 0) {
-                func_0212ecc0(&data_0217d068, 0, 0x19);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x19);
             }
             gRaceHud->mUnk_82c = FALSE;
             break;

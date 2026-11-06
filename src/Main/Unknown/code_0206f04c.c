@@ -101,7 +101,7 @@ void func_0206ff50(Kart *p, u32 a) {
                 if (d[0] != NULL) {
                     NNS_SndPlayerStopSeq(d, 0);
                 }
-                func_0212ecc0(d, 0, 0x1b7);
+                NNS_SndArcPlayerStartSeqArc(d, 0, 0x1b7);
             }
         }
     }

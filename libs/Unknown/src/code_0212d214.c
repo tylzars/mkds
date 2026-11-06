@@ -30,26 +30,25 @@
 
 u8 data_0217dec8[0x3c];
 
-// Calls NNS_SndPlayerSetPlayableSeqCount, NNS_SndPlayerSetAllocatableChannel and NNS_SndPlayerCreateHeap for up to 32
-// entries of func_0212d38c.
-u32 func_0212edac(HeapStack *a) {
+// Sets each player's sequence count and channels and creates its heaps.
+BOOL NNS_SndArcPlayerSetup(NNSSndHeap *heap) {
+    s32 playerNo;
+    NNSSndArcPlayerInfo *playerInfo;
     s32 i;
-    Unk0212edac *p;
-    s32 j;
 
-    func_0212d5d0();
-    for (i = 0; i < 32; i++) {
-        p = func_0212d38c(i);
-        if (p == 0) {
+    NNS_SndArcGetCurrent();
+    for (playerNo = 0; playerNo < 32; playerNo++) {
+        playerInfo = NNS_SndArcGetPlayerInfo(playerNo);
+        if (playerInfo == 0) {
             continue;
         }
-        NNS_SndPlayerSetPlayableSeqCount(i, p->mUnk_00);
-        NNS_SndPlayerSetAllocatableChannel(i, p->mUnk_02);
-        if (p->mUnk_04 == 0 || a == 0) {
+        NNS_SndPlayerSetPlayableSeqCount(playerNo, playerInfo->mSeqMax);
+        NNS_SndPlayerSetAllocatableChannel(playerNo, playerInfo->mAllocChBitFlag);
+        if (playerInfo->mHeapSize == 0 || heap == 0) {
             continue;
         }
-        for (j = 0; j < p->mUnk_00; j++) {
-            if (NNS_SndPlayerCreateHeap(i, a, p->mUnk_04) == 0) {
+        for (i = 0; i < playerInfo->mSeqMax; i++) {
+            if (NNS_SndPlayerCreateHeap(playerNo, heap, playerInfo->mHeapSize) == 0) {
                 return 0;
             }
         }
@@ -57,723 +56,733 @@ u32 func_0212edac(HeapStack *a) {
     return 1;
 }
 
-// Reads the entry func_0212d51c returns for b, then passes its fields on to func_0212eaf8.
-s32 func_0212ed58(void *a, s32 b) {
-    Unk0212ea28 *p;
+BOOL NNS_SndArcPlayerStartSeq(NNSSndSeqPlayer **handle, s32 seqNo) {
+    NNSSndArcSeqInfo *info;
 
-    p = func_0212d51c(b);
-    if (p == 0) {
+    info = NNS_SndArcGetSeqInfo(seqNo);
+    if (info == 0) {
         return 0;
     }
-    return func_0212eaf8(a, p->mUnk_09, p->mUnk_04, p->mUnk_08, p, b);
+    return StartSeq(handle, info->mParam.mPlayerNo, info->mParam.mBankNo, info->mParam.mPlayerPrio, info, seqNo);
 }
 
-s32 func_0212ecc0(const void *a, u32 b, u32 c) {
-    Unk0212f788 *t;
-    Unk0212ea28 *r;
-    u32 *p;
+BOOL NNS_SndArcPlayerStartSeqArc(NNSSndSeqPlayer **handle, u32 seqArcNo, u32 index) {
+    Unk0212f788 *seqArc;
+    NNSSndSeqArcSeqInfo *sound;
+    NNSSndArcSeqArcInfo *info;
 
-    p = func_0212d4b8(b);
-    if (p == 0) {
+    info = NNS_SndArcGetSeqArcInfo(seqArcNo);
+    if (info == 0) {
         return 0;
     }
-    t = func_0212d254(*p);
-    if (t == 0) {
+    seqArc = NNS_SndArcGetFileAddress(info->mFileId);
+    if (seqArc == 0) {
         return 0;
     }
-    r = (Unk0212ea28 *) NNSi_SndSeqArcGetSeqInfo(t, c);
-    if (r == 0) {
+    sound = (NNSSndSeqArcSeqInfo *) NNSi_SndSeqArcGetSeqInfo(seqArc, index);
+    if (sound == 0) {
         return 0;
     }
-    return func_0212ea28((NNSSndSeqPlayer **) a, r->mUnk_09, r->mUnk_04, r->mUnk_08, r, t, b, c);
+    return StartSeqArc(handle, sound->mParam.mPlayerNo, sound->mParam.mBankNo, sound->mParam.mPlayerPrio, sound, seqArc,
+                       seqArcNo, index);
 }
 
-s32 func_0212ec04(NNSSndSeqPlayer **a, s32 b, s32 c, s32 d, s32 e, s32 f) {
-    Unk0212f788 *t;
-    Unk0212ea28 *r;
-    u32 *p;
+// A negative player, bank or priority takes the value from the entry.
+BOOL NNS_SndArcPlayerStartSeqArcEx(NNSSndSeqPlayer **handle, s32 playerNo, s32 bankNo, s32 playerPrio, s32 seqArcNo,
+                                   s32 index) {
+    Unk0212f788 *seqArc;
+    NNSSndSeqArcSeqInfo *sound;
+    NNSSndArcSeqArcInfo *info;
 
-    p = func_0212d4b8(e);
-    if (p == 0) {
+    info = NNS_SndArcGetSeqArcInfo(seqArcNo);
+    if (info == 0) {
         return 0;
     }
-    t = func_0212d254(*p);
-    if (t == 0) {
+    seqArc = NNS_SndArcGetFileAddress(info->mFileId);
+    if (seqArc == 0) {
         return 0;
     }
-    r = (Unk0212ea28 *) NNSi_SndSeqArcGetSeqInfo(t, f);
-    if (r == 0) {
+    sound = (NNSSndSeqArcSeqInfo *) NNSi_SndSeqArcGetSeqInfo(seqArc, index);
+    if (sound == 0) {
         return 0;
     }
-    if (d < 0) {
-        d = r->mUnk_08;
+    if (playerPrio < 0) {
+        playerPrio = sound->mParam.mPlayerPrio;
     }
-    if (c < 0) {
-        c = r->mUnk_04;
+    if (bankNo < 0) {
+        bankNo = sound->mParam.mBankNo;
     }
-    if (b < 0) {
-        b = r->mUnk_09;
+    if (playerNo < 0) {
+        playerNo = sound->mParam.mPlayerNo;
     }
-    return func_0212ea28(a, b, c, d, r, t, e, f);
+    return StartSeqArc(handle, playerNo, bankNo, playerPrio, sound, seqArc, seqArcNo, index);
 }
 
-s32 func_0212eaf8(NNSSndSeqPlayer **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, s32 f) {
-    void *p;
-    Unk0212f788 *x;
-    Unk02021968 *y;
-    HeapStack *l;
+BOOL StartSeq(NNSSndSeqPlayer **handle, s32 playerNo, s32 bankNo, s32 playerPrio, NNSSndArcSeqInfo *info, s32 seqNo) {
+    NNSSndSeqPlayer *player;
+    Unk0212f788 *seq;
+    Unk02021968 *bank;
+    NNSSndHeap *heap;
 
-    p = NNSi_SndPlayerAllocSeqPlayer(a, b, d);
-    if (p == 0) {
+    player = NNSi_SndPlayerAllocSeqPlayer(handle, playerNo, playerPrio);
+    if (player == 0) {
         return 0;
     }
-    l = NNSi_SndPlayerAllocHeap(b, p);
-    if (func_0212e538(c, 6, l, 0, &y) != 0) {
-        NNSi_SndPlayerFreeSeqPlayer(p);
+    heap = NNSi_SndPlayerAllocHeap(playerNo, player);
+    if (NNSi_SndArcLoadBank(bankNo, 6, heap, 0, &bank) != 0) {
+        NNSi_SndPlayerFreeSeqPlayer(player);
         return 0;
     }
-    if (func_0212e708(f, 1, l, 0, &x) != 0) {
-        NNSi_SndPlayerFreeSeqPlayer(p);
+    if (NNSi_SndArcLoadSeq(seqNo, 1, heap, 0, &seq) != 0) {
+        NNSi_SndPlayerFreeSeqPlayer(player);
         return 0;
     }
-    NNSi_SndPlayerStartSeq(p, (u8 *) x + x->mUnk_18, 0, y);
-    NNS_SndPlayerSetInitialVolume(a, e->mUnk_06);
-    NNS_SndPlayerSetChannelPriority(a, e->mUnk_07);
-    NNS_SndPlayerSetSeqNo(a, f);
+    NNSi_SndPlayerStartSeq(player, (u8 *) seq + seq->mUnk_18, 0, bank);
+    NNS_SndPlayerSetInitialVolume(handle, info->mParam.mVolume);
+    NNS_SndPlayerSetChannelPriority(handle, info->mParam.mChannelPrio);
+    NNS_SndPlayerSetSeqNo(handle, seqNo);
     return 1;
 }
 
-s32 func_0212ea28(NNSSndSeqPlayer **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, Unk0212f788 *f, u32 g, u32 h) {
-    void *p;
-    Unk02021968 *x;
-    HeapStack *l;
+BOOL StartSeqArc(NNSSndSeqPlayer **handle, s32 playerNo, s32 bankNo, s32 playerPrio, NNSSndSeqArcSeqInfo *sound,
+                 Unk0212f788 *seqArc, u32 seqArcNo, u32 index) {
+    void *player;
+    Unk02021968 *bank;
+    NNSSndHeap *heap;
 
-    p = NNSi_SndPlayerAllocSeqPlayer(a, b, d);
-    if (p == 0) {
+    player = NNSi_SndPlayerAllocSeqPlayer(handle, playerNo, playerPrio);
+    if (player == 0) {
         return 0;
     }
-    l = NNSi_SndPlayerAllocHeap(b, p);
-    if (func_0212e538(c, 6, l, 0, &x) != 0) {
-        NNSi_SndPlayerFreeSeqPlayer(p);
+    heap = NNSi_SndPlayerAllocHeap(playerNo, player);
+    if (NNSi_SndArcLoadBank(bankNo, 6, heap, 0, &bank) != 0) {
+        NNSi_SndPlayerFreeSeqPlayer(player);
         return 0;
     }
-    NNSi_SndPlayerStartSeq(p, (u8 *) f + f->mUnk_18, e->mUnk_00, x);
-    NNS_SndPlayerSetInitialVolume(a, e->mUnk_06);
-    NNS_SndPlayerSetChannelPriority(a, e->mUnk_07);
-    NNS_SndPlayerSetSeqArcNo(a, g, h);
+    NNSi_SndPlayerStartSeq(player, (u8 *) seqArc + seqArc->mUnk_18, sound->mOffset, bank);
+    NNS_SndPlayerSetInitialVolume(handle, sound->mParam.mVolume);
+    NNS_SndPlayerSetChannelPriority(handle, sound->mParam.mChannelPrio);
+    NNS_SndPlayerSetSeqArcNo(handle, seqArcNo, index);
     return 1;
 }
 
-u32 func_0212ea04(s32 a, HeapStack *b) {
-    return func_0212e7b4(a, b) == 0;
+BOOL NNS_SndArcLoadGroup(s32 groupNo, NNSSndHeap *heap) {
+    return NNSi_SndArcLoadGroup(groupNo, heap) == 0;
 }
 
-u32 func_0212e9cc(s32 a, HeapStack *b) {
-    return func_0212e708(a, 0xff, b, 1, 0) == 0;
+BOOL NNS_SndArcLoadSeq(s32 seqNo, NNSSndHeap *heap) {
+    return NNSi_SndArcLoadSeq(seqNo, 0xff, heap, 1, 0) == 0;
 }
 
-u32 func_0212e994(s32 a, HeapStack *b) {
-    return func_0212e698(a, 0xff, b, 1, 0) == 0;
+BOOL NNS_SndArcLoadSeqArc(s32 seqArcNo, NNSSndHeap *heap) {
+    return NNSi_SndArcLoadSeqArc(seqArcNo, 0xff, heap, 1, 0) == 0;
 }
 
-u32 func_0212e95c(s32 a, HeapStack *b) {
-    return func_0212e538(a, 0xff, b, 1, 0) == 0;
+BOOL NNS_SndArcLoadBank(s32 bankNo, NNSSndHeap *heap) {
+    return NNSi_SndArcLoadBank(bankNo, 0xff, heap, 1, 0) == 0;
 }
 
-u32 func_0212e924(s32 a, HeapStack *b) {
-    return func_0212e490(a, 0xff, b, 1, 0) == 0;
+BOOL NNS_SndArcLoadWaveArc(s32 waveArcNo, NNSSndHeap *heap) {
+    return NNSi_SndArcLoadWaveArc(waveArcNo, 0xff, heap, 1, 0) == 0;
 }
 
-u32 func_0212e8f4(s32 a, u32 b, HeapStack *c) {
-    return func_0212e538(a, b, c, 1, 0) == 0;
+BOOL NNS_SndArcLoadBankEx(s32 bankNo, u32 loadFlag, NNSSndHeap *heap) {
+    return NNSi_SndArcLoadBank(bankNo, loadFlag, heap, 1, 0) == 0;
 }
 
-u32 func_0212e7b4(s32 a, HeapStack *b) {
-    u32 *t;
+NNSSndArcLoadResult NNSi_SndArcLoadGroup(s32 groupNo, NNSSndHeap *heap) {
+    NNSSndArcGroupInfo *info;
     u32 i;
-    Unk0212e7b4 *e;
-    u32 r;
+    NNSSndArcGroupItem *item;
+    NNSSndArcLoadResult result;
 
-    t = func_0212d328(a);
-    if (t == 0) {
-        return 1;
+    info = NNS_SndArcGetGroupInfo(groupNo);
+    if (info == 0) {
+        return NNS_SND_ARC_LOAD_ERROR_INVALID_GROUP_NO;
     }
-    for (i = 0; i < *t; i++) {
-        e = (Unk0212e7b4 *) (t + 1) + i;
-        switch (e->mUnk_00) {
+    for (i = 0; i < info->mCount; i++) {
+        item = &info->mItem[i];
+        switch (item->mType) {
             case 0:
-                r = func_0212e708(e->mUnk_04, e->mUnk_01, b, 1, 0);
-                if (r != 0) {
-                    return r;
+                result = NNSi_SndArcLoadSeq(item->mIndex, item->mLoadFlag, heap, 1, 0);
+                if (result != NNS_SND_ARC_LOAD_SUCESS) {
+                    return result;
                 }
                 break;
             case 3:
-                r = func_0212e698(e->mUnk_04, e->mUnk_01, b, 1, 0);
-                if (r != 0) {
-                    return r;
+                result = NNSi_SndArcLoadSeqArc(item->mIndex, item->mLoadFlag, heap, 1, 0);
+                if (result != NNS_SND_ARC_LOAD_SUCESS) {
+                    return result;
                 }
                 break;
             case 1:
-                r = func_0212e538(e->mUnk_04, e->mUnk_01, b, 1, 0);
-                if (r != 0) {
-                    return r;
+                result = NNSi_SndArcLoadBank(item->mIndex, item->mLoadFlag, heap, 1, 0);
+                if (result != NNS_SND_ARC_LOAD_SUCESS) {
+                    return result;
                 }
                 break;
             case 2:
-                r = func_0212e490(e->mUnk_04, e->mUnk_01, b, 1, 0);
-                if (r != 0) {
-                    return r;
+                result = NNSi_SndArcLoadWaveArc(item->mIndex, item->mLoadFlag, heap, 1, 0);
+                if (result != NNS_SND_ARC_LOAD_SUCESS) {
+                    return result;
                 }
                 break;
         }
     }
-    return 0;
+    return NNS_SND_ARC_LOAD_SUCESS;
 }
 
-u32 func_0212e708(s32 a, u32 b, HeapStack *c, u32 d, Unk0212f788 **out) {
-    Unk0212ea28 *p;
-    void *v;
-    u32 r;
+NNSSndArcLoadResult NNSi_SndArcLoadSeq(s32 seqNo, u32 loadFlag, NNSSndHeap *heap, BOOL bSetAddr, Unk0212f788 **pData) {
+    NNSSndArcSeqInfo *seqInfo;
+    Unk0212f788 *seqData;
+    NNSSndArcLoadResult result;
 
-    p = func_0212d51c(a);
-    if (p == 0) {
-        return 2;
+    seqInfo = NNS_SndArcGetSeqInfo(seqNo);
+    if (seqInfo == 0) {
+        return NNS_SND_ARC_LOAD_ERROR_INVALID_SEQ_NO;
     }
-    r = func_0212e538(p->mUnk_04, b, c, d, 0);
-    if (r != 0) {
-        return r;
+    result = NNSi_SndArcLoadBank(seqInfo->mParam.mBankNo, loadFlag, heap, bSetAddr, 0);
+    if (result != NNS_SND_ARC_LOAD_SUCESS) {
+        return result;
     }
-    if (b & 1) {
-        v = func_0212e360(p->mUnk_00, c, d);
-        if (v == 0) {
-            return 6;
+    if (loadFlag & 1) {
+        seqData = LoadSeq(seqInfo->mFileId, heap, bSetAddr);
+        if (seqData == 0) {
+            return NNS_SND_ARC_LOAD_ERROR_FAILED_LOAD_SEQ;
         }
     } else {
-        v = func_0212d254(p->mUnk_00);
+        seqData = NNS_SndArcGetFileAddress(seqInfo->mFileId);
     }
-    if (out != 0) {
-        *out = v;
+    if (pData != 0) {
+        *pData = seqData;
     }
-    return 0;
+    return NNS_SND_ARC_LOAD_SUCESS;
 }
 
-u32 func_0212e698(s32 a, u32 b, HeapStack *c, u32 d, Unk0212f788 **out) {
-    u32 *p;
-    void *v;
+NNSSndArcLoadResult NNSi_SndArcLoadSeqArc(s32 seqArcNo, u32 loadFlag, NNSSndHeap *heap, BOOL bSetAddr,
+                                          Unk0212f788 **pData) {
+    NNSSndArcSeqArcInfo *seqArcInfo;
+    Unk0212f788 *seqArc;
 
-    p = func_0212d4b8(a);
-    if (p == 0) {
-        return 3;
+    seqArcInfo = NNS_SndArcGetSeqArcInfo(seqArcNo);
+    if (seqArcInfo == 0) {
+        return NNS_SND_ARC_LOAD_ERROR_INVALID_SEQARC_NO;
     }
-    if (b & 8) {
-        v = func_0212e2e4(*p, c, d);
-        if (v == 0) {
-            return 7;
+    if (loadFlag & 8) {
+        seqArc = LoadSeqArc(seqArcInfo->mFileId, heap, bSetAddr);
+        if (seqArc == 0) {
+            return NNS_SND_ARC_LOAD_ERROR_FAILED_LOAD_SEQARC;
         }
     } else {
-        v = func_0212d254(*p);
+        seqArc = NNS_SndArcGetFileAddress(seqArcInfo->mFileId);
     }
-    if (out != 0) {
-        *out = v;
+    if (pData != 0) {
+        *pData = seqArc;
     }
-    return 0;
+    return NNS_SND_ARC_LOAD_SUCESS;
 }
 
-u32 func_0212e538(s32 a, u32 b, HeapStack *c, u32 d, Unk02021968 **out) {
-    Unk0212e538 *p;
-    Unk0212e490 *q;
-    Unk02021968 *tmp;
-    void *v;
+// Loads the bank and its wave archives, and assigns them to the bank.
+NNSSndArcLoadResult NNSi_SndArcLoadBank(s32 bankNo, u32 loadFlag, NNSSndHeap *heap, BOOL bSetAddr,
+                                        Unk02021968 **pData) {
+    NNSSndArcBankInfo *bankInfo;
+    NNSSndArcWaveArcInfo *waveArcInfo;
+    Unk02021968 *waveArc;
+    Unk02021968 *bank;
     s32 i;
-    u32 f;
-    u32 r;
+    u32 loadWave;
+    NNSSndArcLoadResult result;
 
-    p = func_0212d454(a);
-    if (p == 0) {
-        return 4;
+    bankInfo = NNS_SndArcGetBankInfo(bankNo);
+    if (bankInfo == 0) {
+        return NNS_SND_ARC_LOAD_ERROR_INVALID_BANK_NO;
     }
-    if (b & 2) {
-        v = func_0212e268(p->mUnk_00, c, d);
-        if (v == 0) {
-            return 8;
+    if (loadFlag & 2) {
+        bank = LoadBank(bankInfo->mFileId, heap, bSetAddr);
+        if (bank == 0) {
+            return NNS_SND_ARC_LOAD_ERROR_FAILED_LOAD_BANK;
         }
     } else {
-        v = func_0212d254(p->mUnk_00);
+        bank = NNS_SndArcGetFileAddress(bankInfo->mFileId);
     }
-    f = b & 4;
+    loadWave = loadFlag & 4;
     for (i = 0; i < 4; i++) {
-        if (p->mUnk_04[i] != 0xffff) {
-            q = func_0212d3f0(p->mUnk_04[i]);
-            if (q == 0) {
-                return 5;
+        if (bankInfo->mWaveArcNo[i] != 0xffff) {
+            waveArcInfo = NNS_SndArcGetWaveArcInfo(bankInfo->mWaveArcNo[i]);
+            if (waveArcInfo == 0) {
+                return NNS_SND_ARC_LOAD_ERROR_INVALID_WAVEARC_NO;
             }
-            r = func_0212e490(p->mUnk_04[i], b, c, d, &tmp);
-            if (r != 0) {
-                return r;
+            result = NNSi_SndArcLoadWaveArc(bankInfo->mWaveArcNo[i], loadFlag, heap, bSetAddr, &waveArc);
+            if (result != NNS_SND_ARC_LOAD_SUCESS) {
+                return result;
             }
-            if ((q->mUnk_03 & 1) && f) {
-                if (func_0212dd64(tmp, v, i, q->mUnk_00, c) == 0) {
-                    return 9;
+            if ((waveArcInfo->mFlags & 1) && loadWave) {
+                if (LoadSingleWaves(waveArc, bank, i, waveArcInfo->mFileId, heap) == 0) {
+                    return NNS_SND_ARC_LOAD_ERROR_FAILED_LOAD_WAVE;
                 }
             }
-            if (v != 0 && tmp != 0) {
-                SND_AssignWaveArc(v, i, tmp);
+            if (bank != 0 && waveArc != 0) {
+                SND_AssignWaveArc(bank, i, waveArc);
             }
         }
     }
-    if (out != 0) {
-        *out = v;
+    if (pData != 0) {
+        *pData = bank;
     }
-    return 0;
+    return NNS_SND_ARC_LOAD_SUCESS;
 }
 
-u32 func_0212e490(s32 a, u32 b, HeapStack *c, u32 d, Unk02021968 **out) {
-    Unk0212e490 *p;
-    Unk02021968 *v;
+NNSSndArcLoadResult NNSi_SndArcLoadWaveArc(s32 waveArcNo, u32 loadFlag, NNSSndHeap *heap, BOOL bSetAddr,
+                                           Unk02021968 **pData) {
+    NNSSndArcWaveArcInfo *waveArcInfo;
+    Unk02021968 *waveArc;
 
-    p = func_0212d3f0(a);
-    if (p == 0) {
-        return 5;
+    waveArcInfo = NNS_SndArcGetWaveArcInfo(waveArcNo);
+    if (waveArcInfo == 0) {
+        return NNS_SND_ARC_LOAD_ERROR_INVALID_WAVEARC_NO;
     }
-    if (b & 4) {
-        if (p->mUnk_03 & 1) {
-            v = func_0212e0b8(p->mUnk_00, c, d);
+    if (loadFlag & 4) {
+        if (waveArcInfo->mFlags & 1) {
+            waveArc = LoadWaveArcTable(waveArcInfo->mFileId, heap, bSetAddr);
         } else {
-            v = func_0212e1ec(p->mUnk_00, c, d);
+            waveArc = LoadWaveArc(waveArcInfo->mFileId, heap, bSetAddr);
         }
-        if (v == 0) {
-            return 9;
+        if (waveArc == 0) {
+            return NNS_SND_ARC_LOAD_ERROR_FAILED_LOAD_WAVE;
         }
     } else {
-        v = func_0212d254(p->mUnk_00);
+        waveArc = NNS_SndArcGetFileAddress(waveArcInfo->mFileId);
     }
-    if (out != 0) {
-        *out = v;
+    if (pData != 0) {
+        *pData = waveArc;
     }
-    return 0;
+    return NNS_SND_ARC_LOAD_SUCESS;
 }
 
-void *func_0212e3dc(u32 a, UnkFunc *f, Unk0212d5f8 *p, u32 d, HeapStack *e) {
+void *NNSi_SndArcLoadFile(u32 fileId, NNSSndHeapDisposeCallback callback, void *data1, u32 data2, NNSSndHeap *heap) {
     u32 size;
-    u8 *b;
+    u8 *buffer;
 
-    size = func_0212d300(a);
+    size = NNS_SndArcGetFileSize(fileId);
     if (size == 0) {
         return 0;
     }
-    if (e == 0) {
+    if (heap == 0) {
         return 0;
     }
-    b = HeapStackAlloc(e, size + 0x20, f, p, d);
-    if (b == 0) {
+    buffer = NNS_SndHeapAlloc(heap, size + 0x20, callback, data1, data2);
+    if (buffer == 0) {
         return 0;
     }
-    if (func_0212d27c(a, b, size, 0) != size) {
+    if (NNS_SndArcReadFile(fileId, buffer, size, 0) != size) {
         return 0;
     }
-    DC_StoreRange(b, size);
-    return b;
+    DC_StoreRange(buffer, size);
+    return buffer;
 }
 
-void *func_0212e360(u32 a, HeapStack *b, u32 c) {
-    void *p;
+Unk0212f788 *LoadSeq(u32 fileId, NNSSndHeap *heap, BOOL bSetAddr) {
+    void *buffer;
 
-    p = func_0212d254(a);
-    if (p == 0) {
-        p = func_0212e3dc(a, func_0212e018, c ? func_0212d5d0() : 0, a, b);
-        if (c != 0 && p != 0) {
-            func_0212d238(a, p);
+    buffer = NNS_SndArcGetFileAddress(fileId);
+    if (buffer == 0) {
+        buffer = NNSi_SndArcLoadFile(fileId, SeqDisposeCallback, bSetAddr ? NNS_SndArcGetCurrent() : 0, fileId, heap);
+        if (bSetAddr != 0 && buffer != 0) {
+            NNS_SndArcSetFileAddress(fileId, buffer);
         }
     }
-    return p;
+    return buffer;
 }
 
-void *func_0212e2e4(u32 a, HeapStack *b, u32 c) {
-    void *p;
+Unk0212f788 *LoadSeqArc(u32 fileId, NNSSndHeap *heap, BOOL bSetAddr) {
+    void *buffer;
 
-    p = func_0212d254(a);
-    if (p == 0) {
-        p = func_0212e3dc(a, func_0212e018, c ? func_0212d5d0() : 0, a, b);
-        if (c != 0 && p != 0) {
-            func_0212d238(a, p);
+    buffer = NNS_SndArcGetFileAddress(fileId);
+    if (buffer == 0) {
+        buffer = NNSi_SndArcLoadFile(fileId, SeqDisposeCallback, bSetAddr ? NNS_SndArcGetCurrent() : 0, fileId, heap);
+        if (bSetAddr != 0 && buffer != 0) {
+            NNS_SndArcSetFileAddress(fileId, buffer);
         }
     }
-    return p;
+    return buffer;
 }
 
-void *func_0212e268(u32 a, HeapStack *b, u32 c) {
-    void *p;
+Unk02021968 *LoadBank(u32 fileId, NNSSndHeap *heap, BOOL bSetAddr) {
+    void *buffer;
 
-    p = func_0212d254(a);
-    if (p == 0) {
-        p = func_0212e3dc(a, func_0212dfdc, c ? func_0212d5d0() : 0, a, b);
-        if (c != 0 && p != 0) {
-            func_0212d238(a, p);
+    buffer = NNS_SndArcGetFileAddress(fileId);
+    if (buffer == 0) {
+        buffer = NNSi_SndArcLoadFile(fileId, BankDisposeCallback, bSetAddr ? NNS_SndArcGetCurrent() : 0, fileId, heap);
+        if (bSetAddr != 0 && buffer != 0) {
+            NNS_SndArcSetFileAddress(fileId, buffer);
         }
     }
-    return p;
+    return buffer;
 }
 
-Unk02021968 *func_0212e1ec(u32 a, HeapStack *b, u32 c) {
-    Unk02021968 *p;
+Unk02021968 *LoadWaveArc(u32 fileId, NNSSndHeap *heap, BOOL bSetAddr) {
+    Unk02021968 *waveArc;
 
-    p = func_0212d254(a);
-    if (p == 0) {
-        p = func_0212e3dc(a, func_0212dfa0, c ? func_0212d5d0() : 0, a, b);
-        if (c != 0 && p != 0) {
-            func_0212d238(a, p);
+    waveArc = NNS_SndArcGetFileAddress(fileId);
+    if (waveArc == 0) {
+        waveArc =
+            NNSi_SndArcLoadFile(fileId, WaveArcDisposeCallback, bSetAddr ? NNS_SndArcGetCurrent() : 0, fileId, heap);
+        if (bSetAddr != 0 && waveArc != 0) {
+            NNS_SndArcSetFileAddress(fileId, waveArc);
         }
     }
-    return p;
+    return waveArc;
 }
 
-Unk02021968 *func_0212e0b8(u32 a, HeapStack *b, u32 c) {
-    Unk02021968 *p;
-    u32 size;
-    u32 n;
-    s32 m;
+// Loads the wave archive header and tables; the waves load one by one.
+Unk02021968 *LoadWaveArcTable(u32 fileId, NNSSndHeap *heap, BOOL bSetAddr) {
+    Unk02021968 *waveArc;
+    u32 len;
+    u32 tableSize;
+    s32 readSize;
 
-    p = func_0212d254(a);
-    if (p == 0) {
-        if (func_0212d27c(a, data_0217dec8, 0x3c, 0) != 0x3c) {
+    waveArc = NNS_SndArcGetFileAddress(fileId);
+    if (waveArc == 0) {
+        if (NNS_SndArcReadFile(fileId, data_0217dec8, 0x3c, 0) != 0x3c) {
             return 0;
         }
-        n = ((Unk02021968 *) data_0217dec8)->mUnk_38 * 4;
-        size = n * 2 + 0x3c;
-        if (b == 0) {
+        tableSize = ((Unk02021968 *) data_0217dec8)->mUnk_38 * 4;
+        len = tableSize * 2 + 0x3c;
+        if (heap == 0) {
             return 0;
         }
-        p = HeapStackAlloc(b, size + 0x20, func_0212df7c, c ? func_0212d5d0() : 0, a);
-        if (p == 0) {
+        waveArc = NNS_SndHeapAlloc(heap, len + 0x20, WaveArcTableDisposeCallback, bSetAddr ? NNS_SndArcGetCurrent() : 0,
+                                   fileId);
+        if (waveArc == 0) {
             return 0;
         }
-        m = func_0212d27c(a, p, n + 0x3c, 0);
-        if (m != n + 0x3c) {
+        readSize = NNS_SndArcReadFile(fileId, waveArc, tableSize + 0x3c, 0);
+        if (readSize != tableSize + 0x3c) {
             return 0;
         }
-        MI_CpuCopy8(p->mUnk_3c, p->mUnk_3c + p->mUnk_38, n);
-        MI_CpuFill8(p->mUnk_3c, 0, n);
-        DC_StoreRange(p, size);
-        if (c != 0) {
-            func_0212d238(a, p);
+        MI_CpuCopy8(waveArc->mUnk_3c, waveArc->mUnk_3c + waveArc->mUnk_38, tableSize);
+        MI_CpuFill8(waveArc->mUnk_3c, 0, tableSize);
+        DC_StoreRange(waveArc, len);
+        if (bSetAddr != 0) {
+            NNS_SndArcSetFileAddress(fileId, waveArc);
         }
     }
-    return p;
+    return waveArc;
 }
 
-void func_0212e04c(void *a, Unk0212d5f8 *b, u32 c) {
-    Unk0212d5f8 *p;
-    u32 v;
+// Clears the file address when mem is still the loaded copy.
+void DisposeCallback(void *mem, NNSSndArc *arc, u32 fileId) {
+    NNSSndArc *oldArc;
+    u32 enabled;
 
-    if (b == 0) {
+    if (arc == 0) {
         return;
     }
-    v = OS_DisableInterrupts();
-    p = func_0212d5e0(b);
-    if (a == func_0212d254(c)) {
-        func_0212d238(c, 0);
+    enabled = OS_DisableInterrupts();
+    oldArc = NNS_SndArcSetCurrent(arc);
+    if (mem == NNS_SndArcGetFileAddress(fileId)) {
+        NNS_SndArcSetFileAddress(fileId, 0);
     }
-    func_0212d5e0(p);
-    OS_RestoreInterrupts(v);
+    NNS_SndArcSetCurrent(oldArc);
+    OS_RestoreInterrupts(enabled);
 }
 
-void func_0212e018(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
-    func_0212e04c(a, c, d);
-    SND_InvalidateSeqData(a, a + b);
+void SeqDisposeCallback(void *mem, u32 size, void *data1, u32 data2) {
+    DisposeCallback(mem, data1, data2);
+    SND_InvalidateSeqData(mem, (u8 *) mem + size);
 }
 
-void func_0212dfdc(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
-    func_0212e04c(a, c, d);
-    SND_InvalidateBankData(a, a + b);
-    SND_DestroyBank((Unk02021968 *) a);
+void BankDisposeCallback(void *mem, u32 size, void *data1, u32 data2) {
+    DisposeCallback(mem, data1, data2);
+    SND_InvalidateBankData(mem, (u8 *) mem + size);
+    SND_DestroyBank(mem);
 }
 
-void func_0212dfa0(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
-    func_0212e04c(a, c, d);
-    SND_InvalidateWaveData(a, a + b);
-    SND_DestroyWaveArc((Unk02021968 *) a);
+void WaveArcDisposeCallback(void *mem, u32 size, void *data1, u32 data2) {
+    DisposeCallback(mem, data1, data2);
+    SND_InvalidateWaveData(mem, (u8 *) mem + size);
+    SND_DestroyWaveArc(mem);
 }
 
-void func_0212df7c(u8 *a, u32 b, Unk0212d5f8 *c, u32 d) {
-    func_0212e04c(a, c, d);
-    SND_DestroyWaveArc((Unk02021968 *) a);
+void WaveArcTableDisposeCallback(void *mem, u32 size, void *data1, u32 data2) {
+    DisposeCallback(mem, data1, data2);
+    SND_DestroyWaveArc(mem);
 }
 
-void func_0212df28(void *buf, u32 size, void *p, u32 idx) {
-    u8 *q = buf;
+void SingleWaveDisposeCallback(void *mem, u32 size, void *data1, u32 data2) {
+    u8 *wave = mem;
 
-    if (q == SND_GetWaveDataAddress(p, idx)) {
-        SND_SetWaveDataAddress(p, idx, 0);
+    if (wave == SND_GetWaveDataAddress(data1, data2)) {
+        SND_SetWaveDataAddress(data1, data2, 0);
     }
-    SND_InvalidateWaveData(q, q + size);
+    SND_InvalidateWaveData(wave, wave + size);
 }
 
-u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, HeapStack *d) {
-    u32 *e;
-    u32 n;
+BOOL LoadSingleWave(Unk02021968 *waveArc, s32 waveNo, u32 fileId, NNSSndHeap *heap) {
+    u32 *entry;
+    u32 waveCount;
     u32 end;
-    u32 size;
-    u32 start;
-    void *buf;
+    u32 len;
+    u32 begin;
+    void *buffer;
 
-    if (SND_GetWaveDataAddress(a, b) != 0) {
+    if (SND_GetWaveDataAddress(waveArc, waveNo) != 0) {
         return 1;
     }
-    n = SND_GetWaveDataCount(a);
-    e = (u32 *) a + (a->mUnk_38 + b);
-    start = e[15];
-    end = b < n - 1 ? e[16] : a->mUnk_08;
-    size = end - start;
-    if (d == 0) {
+    waveCount = SND_GetWaveDataCount(waveArc);
+    entry = (u32 *) waveArc + (waveArc->mUnk_38 + waveNo);
+    begin = entry[15];
+    end = waveNo < waveCount - 1 ? entry[16] : waveArc->mUnk_08;
+    len = end - begin;
+    if (heap == 0) {
         return 0;
     }
-    buf = HeapStackAlloc(d, size + 32, func_0212df28, a, b);
-    if (buf == 0) {
+    buffer = NNS_SndHeapAlloc(heap, len + 32, SingleWaveDisposeCallback, waveArc, waveNo);
+    if (buffer == 0) {
         return 0;
     }
-    if (func_0212d27c(c, buf, size, start) != size) {
+    if (NNS_SndArcReadFile(fileId, buffer, len, begin) != len) {
         return 0;
     }
-    DC_StoreRange(buf, size);
-    SND_SetWaveDataAddress(a, b, buf);
+    DC_StoreRange(buffer, len);
+    SND_SetWaveDataAddress(waveArc, waveNo, buffer);
     return 1;
 }
 
-u32 func_0212dd64(Unk02021968 *a, Unk02021968 *b, u32 c, u32 d, HeapStack *e) {
-    Unk02021bc8 it;
-    Unk02021bc8 init;
-    Unk020219f0 rec;
+BOOL LoadSingleWaves(Unk02021968 *waveArc, Unk02021968 *bank, s32 waveArcNo, u32 fileId, NNSSndHeap *heap) {
+    Unk02021bc8 pos;
+    Unk02021bc8 firstPos;
+    Unk020219f0 inst;
 
-    SND_GetFirstInstDataPos(&init);
-    it = init;
-    if (b == 0) {
+    SND_GetFirstInstDataPos(&firstPos);
+    pos = firstPos;
+    if (bank == 0) {
         return 0;
     }
-    if (SND_GetNextInstData(b, &rec, &it) != 0) {
+    if (SND_GetNextInstData(bank, &inst, &pos) != 0) {
         do {
-            if (rec.mUnk_00 == 1 && c == rec.mUnk_04) {
-                if (func_0212de34(a, rec.mUnk_02, d, e) == 0) {
+            if (inst.mUnk_00 == 1 && waveArcNo == inst.mUnk_04) {
+                if (LoadSingleWave(waveArc, inst.mUnk_02, fileId, heap) == 0) {
                     return 0;
                 }
             }
-        } while (SND_GetNextInstData(b, &rec, &it) != 0);
+        } while (SND_GetNextInstData(bank, &inst, &pos) != 0);
     }
     return 1;
 }
 
-HeapStack *HeapStackCreate(void *base, u32 size) {
-    HeapStack *a;
-    void *p;
+NNSSndHeap *NNS_SndHeapCreate(void *startAddress, u32 size) {
+    NNSSndHeap *heap;
+    void *handle;
     u32 end;
-    u32 n;
+    u32 remaining;
 
-    end = (u32) base + size;
-    a = (HeapStack *) (((u32) base + 3) & ~3);
-    if ((u32) a > end) {
+    end = (u32) startAddress + size;
+    heap = (NNSSndHeap *) (((u32) startAddress + 3) & ~3);
+    if ((u32) heap > end) {
         return 0;
     }
-    n = end - (u32) a;
-    if (n < 16) {
+    remaining = end - (u32) heap;
+    if (remaining < 16) {
         return 0;
     }
-    p = NNS_FndCreateFrmHeapEx(a + 1, n - 16, 0);
-    if (p == 0) {
+    handle = NNS_FndCreateFrmHeapEx(heap + 1, remaining - 16, 0);
+    if (handle == 0) {
         return 0;
     }
-    if (HeapStackInit(a, p) != 0) {
-        return a;
+    if (InitHeap(heap, handle) != 0) {
+        return heap;
     }
-    NNS_FndDestroyFrmHeap(p);
+    NNS_FndDestroyFrmHeap(handle);
     return 0;
 }
 
-void HeapStackDestroy(HeapStack *a) {
-    HeapStackReset(a);
-    NNS_FndDestroyFrmHeap(a->mHeap);
+void NNS_SndHeapDestroy(NNSSndHeap *heap) {
+    NNS_SndHeapClear(heap);
+    NNS_FndDestroyFrmHeap(heap->mHandle);
 }
 
-void HeapStackReset(HeapStack *a) {
-    NNSFndList *e;
-    void *node;
-    u32 flag = 0;
+void NNS_SndHeapClear(NNSSndHeap *heap) {
+    NNSSndHeapSection *section;
+    void *object;
+    u32 calledBack = 0;
 
-    for (e = NNS_FndGetPrevListObject(&a->mLevels, 0); e != 0; e = NNS_FndGetPrevListObject(&a->mLevels, 0)) {
-        for (node = NNS_FndGetPrevListObject(e, 0); node != 0; node = NNS_FndGetPrevListObject(e, node)) {
-            Unk0212db7c *n = node;
+    for (section = NNS_FndGetPrevListObject(&heap->mSectionList, 0); section != 0;
+         section = NNS_FndGetPrevListObject(&heap->mSectionList, 0)) {
+        for (object = NNS_FndGetPrevListObject(&section->mBlockList, 0); object != 0;
+             object = NNS_FndGetPrevListObject(&section->mBlockList, object)) {
+            NNSSndHeapBlock *block = object;
 
-            if (n->mUnk_0c != 0) {
-                n->mUnk_0c(n + 1, n->mUnk_08, n->mUnk_10, n->mUnk_14);
-                flag = 1;
+            if (block->mCallback != 0) {
+                block->mCallback(block + 1, block->mSize, block->mData1, block->mData2);
+                calledBack = 1;
             }
         }
-        NNS_FndRemoveListObject(&a->mLevels, e);
+        NNS_FndRemoveListObject(&heap->mSectionList, section);
     }
-    NNS_FndFreeToFrmHeap(a->mHeap, 3);
-    if (flag != 0) {
-        func_0212d968();
+    NNS_FndFreeToFrmHeap(heap->mHandle, 3);
+    if (calledBack != 0) {
+        EraseSync();
     }
-    HeapStackPushLevel(a);
+    NewSection(heap);
 }
 
-void *HeapStackAlloc(HeapStack *a, u32 size, UnkFunc *f, void *p, u32 v) {
-    Unk0212db7c *n;
-    NNSFndList *e;
+// Allocates behind a 32-byte block header holding the dispose callback.
+void *NNS_SndHeapAlloc(NNSSndHeap *heap, u32 size, NNSSndHeapDisposeCallback callback, void *data1, u32 data2) {
+    NNSSndHeapBlock *block;
+    NNSSndHeapSection *section;
 
-    n = NNS_FndAllocFromFrmHeapEx(a->mHeap, ((size + 31) & ~31) + 32, 32);
-    if (n == 0) {
+    block = NNS_FndAllocFromFrmHeapEx(heap->mHandle, ((size + 31) & ~31) + 32, 32);
+    if (block == 0) {
         return 0;
     }
-    e = NNS_FndGetPrevListObject(&a->mLevels, 0);
-    n->mUnk_08 = size;
-    n->mUnk_0c = f;
-    n->mUnk_10 = p;
-    n->mUnk_14 = v;
-    NNS_FndAppendListObject(e, n);
-    return n + 1;
+    section = NNS_FndGetPrevListObject(&heap->mSectionList, 0);
+    block->mSize = size;
+    block->mCallback = callback;
+    block->mData1 = data1;
+    block->mData2 = data2;
+    NNS_FndAppendListObject(&section->mBlockList, block);
+    return block + 1;
 }
 
-s32 HeapStackSave(HeapStack *a) {
-    if (NNS_FndRecordStateForFrmHeap(a->mHeap, a->mLevels.mCount) == 0) {
+// Returns the level for NNS_SndHeapLoadState, or -1.
+s32 NNS_SndHeapSaveState(NNSSndHeap *heap) {
+    if (NNS_FndRecordStateForFrmHeap(heap->mHandle, heap->mSectionList.mCount) == 0) {
         return -1;
     }
-    if (HeapStackPushLevel(a) != 0) {
-        return a->mLevels.mCount - 1;
+    if (NewSection(heap) != 0) {
+        return heap->mSectionList.mCount - 1;
     }
-    NNS_FndFreeByStateToFrmHeap(a->mHeap, 0);
+    NNS_FndFreeByStateToFrmHeap(heap->mHandle, 0);
     return -1;
 }
 
-void HeapStackRestore(HeapStack *a, s32 n) {
-    NNSFndList *e;
-    void *node = 0;
-    u32 flag = 0;
+// Frees the sections above level; level 0 clears the heap.
+void NNS_SndHeapLoadState(NNSSndHeap *heap, s32 level) {
+    NNSSndHeapSection *section;
+    void *object = 0;
+    u32 calledBack = 0;
 
-    if (n == 0) {
-        HeapStackReset(a);
+    if (level == 0) {
+        NNS_SndHeapClear(heap);
         return;
     }
-    if (n < a->mLevels.mCount) {
+    if (level < heap->mSectionList.mCount) {
         do {
-            e = NNS_FndGetPrevListObject(&a->mLevels, 0);
-            for (node = NNS_FndGetPrevListObject(e, node); node != 0; node = NNS_FndGetPrevListObject(e, node)) {
-                Unk0212db7c *p = node;
+            section = NNS_FndGetPrevListObject(&heap->mSectionList, 0);
+            for (object = NNS_FndGetPrevListObject(&section->mBlockList, object); object != 0;
+                 object = NNS_FndGetPrevListObject(&section->mBlockList, object)) {
+                NNSSndHeapBlock *block = object;
 
-                if (p->mUnk_0c != 0) {
-                    p->mUnk_0c(p + 1, p->mUnk_08, p->mUnk_10, p->mUnk_14);
-                    flag = 1;
+                if (block->mCallback != 0) {
+                    block->mCallback(block + 1, block->mSize, block->mData1, block->mData2);
+                    calledBack = 1;
                 }
             }
-            NNS_FndRemoveListObject(&a->mLevels, e);
-        } while (n < a->mLevels.mCount);
+            NNS_FndRemoveListObject(&heap->mSectionList, section);
+        } while (level < heap->mSectionList.mCount);
     }
-    NNS_FndFreeByStateToFrmHeap(a->mHeap, n);
-    if (flag != 0) {
-        func_0212d968();
+    NNS_FndFreeByStateToFrmHeap(heap->mHandle, level);
+    if (calledBack != 0) {
+        EraseSync();
     }
-    NNS_FndRecordStateForFrmHeap(a->mHeap, a->mLevels.mCount);
-    HeapStackPushLevel(a);
+    NNS_FndRecordStateForFrmHeap(heap->mHandle, heap->mSectionList.mCount);
+    NewSection(heap);
 }
 
-u32 func_0212da2c(HeapStack *arg0) {
-    u32 value0 = (u32) arg0;
-    value0 = (u32) arg0->mLevels.mCount;
-    value0 = (value0) - (1u);
-    return value0;
+s32 NNS_SndHeapGetCurrentLevel(NNSSndHeap *heap) {
+    return heap->mSectionList.mCount - 1;
 }
 
-void func_0212da1c(NNSFndList *arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    u32 value12;
-    value1 = 0u;
-    NNS_FndInitList((NNSFndList *) value0, (u16) value1);
+void InitHeapSection(NNSSndHeapSection *section) {
+    NNS_FndInitList(&section->mBlockList, 0);
 }
 
-u32 HeapStackInit(HeapStack *a, void *p) {
-    NNS_FndInitList(&a->mLevels, 12);
-    a->mHeap = p;
-    return HeapStackPushLevel(a) != 0;
+BOOL InitHeap(NNSSndHeap *heap, void *handle) {
+    NNS_FndInitList(&heap->mSectionList, 12);
+    heap->mHandle = handle;
+    return NewSection(heap) != 0;
 }
 
-u32 HeapStackPushLevel(HeapStack *a) {
-    void *p;
+BOOL NewSection(NNSSndHeap *heap) {
+    NNSSndHeapSection *section;
 
-    p = NNS_FndAllocFromFrmHeapEx(a->mHeap, 0x14, 4);
-    if (p == 0) {
+    section = NNS_FndAllocFromFrmHeapEx(heap->mHandle, 0x14, 4);
+    if (section == 0) {
         return 0;
     }
-    func_0212da1c(p);
-    NNS_FndAppendListObject(&a->mLevels, p);
+    InitHeapSection(section);
+    NNS_FndAppendListObject(&heap->mSectionList, section);
     return 1;
 }
 
-void func_0212d968(void) {
-    u32 v;
+void EraseSync(void) {
+    u32 commandTag;
 
-    v = SND_GetCurrentCommandTag();
+    commandTag = SND_GetCurrentCommandTag();
     SND_FlushCommand(1);
-    SND_WaitForCommandProc(v);
+    SND_WaitForCommandProc(commandTag);
 }
 
-void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, HeapStack *p, u32 flag) {
-    a->mUnk_8c = 0;
-    a->mUnk_84 = 0;
-    a->mUnk_88 = 0;
-    if (FS_ConvertPathToFileID(&a->mUnk_7c, path) == 0) {
+void NNS_SndArcInit(NNSSndArc *arc, const u8 *filePath, NNSSndHeap *heap, BOOL symbolLoadFlag) {
+    arc->mInfo = 0;
+    arc->mFat = 0;
+    arc->mSymbol = 0;
+    if (FS_ConvertPathToFileID(&arc->mFileId, filePath) == 0) {
         return;
     }
-    FS_InitFile(&a->mUnk_34);
-    if (FS_OpenFileFast(&a->mUnk_34, a->mUnk_7c) == 0) {
+    FS_InitFile(&arc->mFile);
+    if (FS_OpenFileFast(&arc->mFile, arc->mFileId) == 0) {
         return;
     }
-    a->mUnk_30 = 1;
-    if (func_0212d6c4(a, p, flag) != 0) {
-        data_0217dec4 = a;
+    arc->mFileOpen = 1;
+    if (NNS_SndArcSetup(arc, heap, symbolLoadFlag) != 0) {
+        data_0217dec4 = arc;
     }
 }
 
-u32 func_0212d6c4(Unk0212d5f8 *a, HeapStack *p, u32 flag) {
-    s32 n;
+BOOL NNS_SndArcSetup(NNSSndArc *arc, NNSSndHeap *heap, BOOL symbolLoadFlag) {
+    s32 readSize;
 
-    if (FS_SeekFile(&a->mUnk_34, 0, 0) == 0) {
+    if (FS_SeekFile(&arc->mFile, 0, 0) == 0) {
         return 0;
     }
-    if (FS_ReadFile(&a->mUnk_34, a, 0x30) != 0x30) {
+    if (FS_ReadFile(&arc->mFile, &arc->mHeader, 0x30) != 0x30) {
         return 0;
     }
-    if (p != 0) {
-        a->mUnk_8c = HeapStackAlloc(p, a->mUnk_1c, func_0212d22c, a, 0);
-        if (a->mUnk_8c == 0) {
+    if (heap != 0) {
+        arc->mInfo = NNS_SndHeapAlloc(heap, arc->mHeader.mInfoSize, InfoDisposeCallback, arc, 0);
+        if (arc->mInfo == 0) {
             return 0;
         }
-        if (FS_SeekFile(&a->mUnk_34, a->mUnk_18, 0) == 0) {
+        if (FS_SeekFile(&arc->mFile, arc->mHeader.mInfoOffset, 0) == 0) {
             return 0;
         }
-        n = FS_ReadFile(&a->mUnk_34, a->mUnk_8c, a->mUnk_1c);
-        if (n != a->mUnk_1c) {
+        readSize = FS_ReadFile(&arc->mFile, arc->mInfo, arc->mHeader.mInfoSize);
+        if (readSize != arc->mHeader.mInfoSize) {
             return 0;
         }
-        a->mUnk_84 = HeapStackAlloc(p, a->mUnk_24, func_0212d220, a, 0);
-        if (a->mUnk_84 == 0) {
+        arc->mFat = NNS_SndHeapAlloc(heap, arc->mHeader.mFatSize, FatDisposeCallback, arc, 0);
+        if (arc->mFat == 0) {
             return 0;
         }
-        if (FS_SeekFile(&a->mUnk_34, a->mUnk_20, 0) == 0) {
+        if (FS_SeekFile(&arc->mFile, arc->mHeader.mFatOffset, 0) == 0) {
             return 0;
         }
-        n = FS_ReadFile(&a->mUnk_34, a->mUnk_84, a->mUnk_24);
-        if (n != a->mUnk_24) {
+        readSize = FS_ReadFile(&arc->mFile, arc->mFat, arc->mHeader.mFatSize);
+        if (readSize != arc->mHeader.mFatSize) {
             return 0;
         }
-        if (flag != 0 && a->mUnk_14 != 0) {
-            a->mUnk_88 = HeapStackAlloc(p, a->mUnk_14, func_0212d214, a, 0);
-            if (a->mUnk_88 == 0) {
+        if (symbolLoadFlag != 0 && arc->mHeader.mSymbolDataSize != 0) {
+            arc->mSymbol = NNS_SndHeapAlloc(heap, arc->mHeader.mSymbolDataSize, SymbolDisposeCallback, arc, 0);
+            if (arc->mSymbol == 0) {
                 return 0;
             }
-            if (FS_SeekFile(&a->mUnk_34, a->mUnk_10, 0) == 0) {
+            if (FS_SeekFile(&arc->mFile, arc->mHeader.mSymbolDataOffset, 0) == 0) {
                 return 0;
             }
-            n = FS_ReadFile(&a->mUnk_34, a->mUnk_88, a->mUnk_14);
-            if (n != a->mUnk_14) {
+            readSize = FS_ReadFile(&arc->mFile, arc->mSymbol, arc->mHeader.mSymbolDataSize);
+            if (readSize != arc->mHeader.mSymbolDataSize) {
                 return 0;
             }
         }
@@ -781,256 +790,245 @@ u32 func_0212d6c4(Unk0212d5f8 *a, HeapStack *p, u32 flag) {
     return 1;
 }
 
-void func_0212d5f8(Unk0212d5f8 *a, void *buf) {
+// Points the blocks and files into an archive already in memory.
+void NNS_SndArcInitOnMemory(NNSSndArc *arc, void *data) {
     u32 i;
 
-    MIi_CpuCopy32(buf, a, 0x30);
-    a->mUnk_8c = a->mUnk_18 == 0 ? 0 : (Unk0212d38c *) ((u8 *) buf + a->mUnk_18);
-    a->mUnk_84 = a->mUnk_20 == 0 ? 0 : (Unk0212d254 *) ((u8 *) buf + a->mUnk_20);
-    a->mUnk_88 = a->mUnk_10 == 0 ? 0 : (u8 *) buf + a->mUnk_10;
-    for (i = 0; i < a->mUnk_84->mUnk_08; i++) {
-        Unk0212d27c *e = &a->mUnk_84->mUnk_0c[i];
+    MIi_CpuCopy32(data, &arc->mHeader, 0x30);
+    arc->mInfo = arc->mHeader.mInfoOffset == 0 ? 0 : (NNSSndArcInfo *) ((u8 *) data + arc->mHeader.mInfoOffset);
+    arc->mFat = arc->mHeader.mFatOffset == 0 ? 0 : (NNSSndArcFat *) ((u8 *) data + arc->mHeader.mFatOffset);
+    arc->mSymbol =
+        arc->mHeader.mSymbolDataOffset == 0 ? 0 : (NNSSndArcSymbol *) ((u8 *) data + arc->mHeader.mSymbolDataOffset);
+    for (i = 0; i < arc->mFat->mCount; i++) {
+        NNSSndArcFileInfo *file = &arc->mFat->mFiles[i];
 
-        e->mUnk_08 = e->mUnk_00 == 0 ? 0 : (Unk0212f788 *) ((u8 *) buf + e->mUnk_00);
+        file->mMem = file->mOffset == 0 ? 0 : (u8 *) data + file->mOffset;
     }
-    a->mUnk_30 = 0;
-    data_0217dec4 = a;
+    arc->mFileOpen = 0;
+    data_0217dec4 = arc;
 }
 
-Unk0212d5f8 *func_0212d5e0(Unk0212d5f8 *a) {
-    Unk0212d5f8 *old = data_0217dec4;
+NNSSndArc *NNS_SndArcSetCurrent(NNSSndArc *arc) {
+    NNSSndArc *oldArc = data_0217dec4;
 
-    data_0217dec4 = a;
-    return old;
+    data_0217dec4 = arc;
+    return oldArc;
 }
 
-struct Unk0212d5f8 *func_0212d5d0(void) {
-    u32 value0;
-    value0 = (u32) &data_0217dec4;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    return (struct Unk0212d5f8 *) value0;
+NNSSndArc *NNS_SndArcGetCurrent(void) {
+    return data_0217dec4;
 }
 
-Unk0212d580 *func_0212d580(s32 a, s32 b) {
-    u32 *p;
-    Unk0212f788 *q;
-    u32 *r;
+NNSSndSeqParam *NNS_SndArcGetSeqArcParam(s32 seqArcNo, s32 index) {
+    NNSSndArcSeqArcInfo *info;
+    Unk0212f788 *seqArc;
+    NNSSndSeqArcSeqInfo *sound;
 
-    p = func_0212d4b8(a);
-    if (p == 0) {
+    info = NNS_SndArcGetSeqArcInfo(seqArcNo);
+    if (info == 0) {
         return 0;
     }
-    q = func_0212d254(*p);
-    if (q == 0) {
+    seqArc = NNS_SndArcGetFileAddress(info->mFileId);
+    if (seqArc == 0) {
         return 0;
     }
-    r = NNSi_SndSeqArcGetSeqInfo(q, b);
-    if (r == 0) {
+    sound = (NNSSndSeqArcSeqInfo *) NNSi_SndSeqArcGetSeqInfo(seqArc, index);
+    if (sound == 0) {
         return 0;
     }
-    return (Unk0212d580 *) (r + 1);
+    return &sound->mParam;
 }
 
-void *func_0212d51c(s32 a) {
-    Unk0212d5f8 *d = data_0217dec4;
-    Unk0212d328 *t;
-    u32 off;
+NNSSndArcSeqInfo *NNS_SndArcGetSeqInfo(s32 seqNo) {
+    NNSSndArc *arc = data_0217dec4;
+    NNSSndArcOffsetTable *table;
+    u32 offset;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_08[0];
-    t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
-    if (t == 0) {
+    offset = arc->mInfo->mSeqOffset;
+    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    if (table == 0) {
         return 0;
     }
-    if (a < 0) {
+    if (seqNo < 0) {
         return 0;
     }
-    if (a >= t->mUnk_00) {
+    if (seqNo >= table->mCount) {
         return 0;
     }
-    off = t->mUnk_04[a];
-    base = (u8 *) d->mUnk_8c;
-    return off == 0 ? 0 : base + off;
+    offset = table->mOffset[seqNo];
+    base = (u8 *) arc->mInfo;
+    return offset == 0 ? 0 : (NNSSndArcSeqInfo *) (base + offset);
 }
 
-u32 *func_0212d4b8(s32 a) {
-    Unk0212d5f8 *d = data_0217dec4;
-    Unk0212d328 *t;
-    u32 off;
+NNSSndArcSeqArcInfo *NNS_SndArcGetSeqArcInfo(s32 seqArcNo) {
+    NNSSndArc *arc = data_0217dec4;
+    NNSSndArcOffsetTable *table;
+    u32 offset;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_08[1];
-    t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
-    if (t == 0) {
+    offset = arc->mInfo->mSeqArcOffset;
+    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    if (table == 0) {
         return 0;
     }
-    if (a < 0) {
+    if (seqArcNo < 0) {
         return 0;
     }
-    if (a >= t->mUnk_00) {
+    if (seqArcNo >= table->mCount) {
         return 0;
     }
-    off = t->mUnk_04[a];
-    base = (u8 *) d->mUnk_8c;
-    return off == 0 ? 0 : (u32 *) (base + off);
+    offset = table->mOffset[seqArcNo];
+    base = (u8 *) arc->mInfo;
+    return offset == 0 ? 0 : (NNSSndArcSeqArcInfo *) (base + offset);
 }
 
-void *func_0212d454(s32 a) {
-    Unk0212d5f8 *d = data_0217dec4;
-    Unk0212d328 *t;
-    u32 off;
+NNSSndArcBankInfo *NNS_SndArcGetBankInfo(s32 bankNo) {
+    NNSSndArc *arc = data_0217dec4;
+    NNSSndArcOffsetTable *table;
+    u32 offset;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_08[2];
-    t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
-    if (t == 0) {
+    offset = arc->mInfo->mBankOffset;
+    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    if (table == 0) {
         return 0;
     }
-    if (a < 0) {
+    if (bankNo < 0) {
         return 0;
     }
-    if (a >= t->mUnk_00) {
+    if (bankNo >= table->mCount) {
         return 0;
     }
-    off = t->mUnk_04[a];
-    base = (u8 *) d->mUnk_8c;
-    return off == 0 ? 0 : base + off;
+    offset = table->mOffset[bankNo];
+    base = (u8 *) arc->mInfo;
+    return offset == 0 ? 0 : (NNSSndArcBankInfo *) (base + offset);
 }
 
-void *func_0212d3f0(s32 a) {
-    Unk0212d5f8 *d = data_0217dec4;
-    Unk0212d328 *t;
-    u32 off;
+NNSSndArcWaveArcInfo *NNS_SndArcGetWaveArcInfo(s32 waveArcNo) {
+    NNSSndArc *arc = data_0217dec4;
+    NNSSndArcOffsetTable *table;
+    u32 offset;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_08[3];
-    t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
-    if (t == 0) {
+    offset = arc->mInfo->mWaveArcOffset;
+    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    if (table == 0) {
         return 0;
     }
-    if (a < 0) {
+    if (waveArcNo < 0) {
         return 0;
     }
-    if (a >= t->mUnk_00) {
+    if (waveArcNo >= table->mCount) {
         return 0;
     }
-    off = t->mUnk_04[a];
-    base = (u8 *) d->mUnk_8c;
-    return off == 0 ? 0 : base + off;
+    offset = table->mOffset[waveArcNo];
+    base = (u8 *) arc->mInfo;
+    return offset == 0 ? 0 : (NNSSndArcWaveArcInfo *) (base + offset);
 }
 
-void *func_0212d38c(s32 a) {
-    Unk0212d5f8 *d = data_0217dec4;
-    Unk0212d328 *t;
-    u32 off;
+NNSSndArcPlayerInfo *NNS_SndArcGetPlayerInfo(s32 playerNo) {
+    NNSSndArc *arc = data_0217dec4;
+    NNSSndArcOffsetTable *table;
+    u32 offset;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_08[4];
-    t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
-    if (t == 0) {
+    offset = arc->mInfo->mPlayerInfoOffset;
+    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    if (table == 0) {
         return 0;
     }
-    if (a < 0) {
+    if (playerNo < 0) {
         return 0;
     }
-    if (a >= t->mUnk_00) {
+    if (playerNo >= table->mCount) {
         return 0;
     }
-    off = t->mUnk_04[a];
-    base = (u8 *) d->mUnk_8c;
-    return off == 0 ? 0 : base + off;
+    offset = table->mOffset[playerNo];
+    base = (u8 *) arc->mInfo;
+    return offset == 0 ? 0 : (NNSSndArcPlayerInfo *) (base + offset);
 }
 
-void *func_0212d328(s32 a) {
-    Unk0212d5f8 *d = data_0217dec4;
-    Unk0212d328 *t;
-    u32 off;
+NNSSndArcGroupInfo *NNS_SndArcGetGroupInfo(s32 groupNo) {
+    NNSSndArc *arc = data_0217dec4;
+    NNSSndArcOffsetTable *table;
+    u32 offset;
     u8 *base;
 
-    off = d->mUnk_8c->mUnk_08[5];
-    t = off == 0 ? 0 : (Unk0212d328 *) ((u8 *) d->mUnk_8c + off);
-    if (t == 0) {
+    offset = arc->mInfo->mGroupInfoOffset;
+    table = offset == 0 ? 0 : (NNSSndArcOffsetTable *) ((u8 *) arc->mInfo + offset);
+    if (table == 0) {
         return 0;
     }
-    if (a < 0) {
+    if (groupNo < 0) {
         return 0;
     }
-    if (a >= t->mUnk_00) {
+    if (groupNo >= table->mCount) {
         return 0;
     }
-    off = t->mUnk_04[a];
-    base = (u8 *) d->mUnk_8c;
-    return off == 0 ? 0 : base + off;
+    offset = table->mOffset[groupNo];
+    base = (u8 *) arc->mInfo;
+    return offset == 0 ? 0 : (NNSSndArcGroupInfo *) (base + offset);
 }
 
-u32 func_0212d300(u32 a) {
-    Unk0212d254 *t = data_0217dec4->mUnk_84;
+u32 NNS_SndArcGetFileSize(u32 fileId) {
+    NNSSndArcFat *fat = data_0217dec4->mFat;
 
-    if (a >= t->mUnk_08) {
+    if (fileId >= fat->mCount) {
         return 0;
     }
-    return t->mUnk_0c[a].mUnk_04;
+    return fat->mFiles[fileId].mSize;
 }
 
-s32 func_0212d27c(u32 a, void *dst, u32 n, u32 off) {
-    Unk0212d5f8 *d = data_0217dec4;
-    Unk0212d254 *t;
-    Unk0212d27c *e;
+// Returns the number of bytes read, or -1.
+s32 NNS_SndArcReadFile(u32 fileId, void *buffer, u32 size, u32 offset) {
+    NNSSndArc *arc = data_0217dec4;
+    NNSSndArcFat *fat;
+    NNSSndArcFileInfo *file;
     u32 left;
 
-    t = d->mUnk_84;
-    if (a >= t->mUnk_08) {
+    fat = arc->mFat;
+    if (fileId >= fat->mCount) {
         return -1;
     }
-    e = &t->mUnk_0c[a];
-    left = e->mUnk_04 - off;
-    if (n > left) {
-        n = left;
+    file = &fat->mFiles[fileId];
+    left = file->mSize - offset;
+    if (size > left) {
+        size = left;
     }
-    if (FS_SeekFile(&d->mUnk_34, e->mUnk_00 + off, 0) == 0) {
+    if (FS_SeekFile(&arc->mFile, file->mOffset + offset, 0) == 0) {
         return -1;
     }
-    return FS_ReadFile(&d->mUnk_34, dst, n);
+    return FS_ReadFile(&arc->mFile, buffer, size);
 }
 
-void *func_0212d254(u32 a) {
-    Unk0212d254 *t = data_0217dec4->mUnk_84;
+void *NNS_SndArcGetFileAddress(u32 fileId) {
+    NNSSndArcFat *fat = data_0217dec4->mFat;
 
-    if (a >= t->mUnk_08) {
+    if (fileId >= fat->mCount) {
         return 0;
     }
-    return t->mUnk_0c[a].mUnk_08;
+    return fat->mFiles[fileId].mMem;
 }
 
-u32 func_0212d238(u32 arg0, Unk02021968 *arg1) {
-    u32 value0 = arg0;
-    u32 value1 = (u32) arg1;
-    u32 value2;
-    value2 = (u32) &data_0217dec4;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
-    value2 = (u32) * (const u32 *) ((value2) + (132));
-    value0 = (value2) + ((value0 << 4));
-    *(u32 *) ((value0) + (20)) = value1;
-    return value0;
+void NNS_SndArcSetFileAddress(u32 fileId, void *address) {
+    data_0217dec4->mFat->mFiles[fileId].mMem = address;
 }
 
-void func_0212d22c(void *arg0, u32 arg1, Unk0212d5f8 *arg2, u32 arg3) {
-    u32 value0;
-    u32 value2 = (u32) arg2;
-    value0 = 0u;
-    *(u32 *) ((value2) + (140)) = value0;
+void InfoDisposeCallback(void *mem, u32 size, void *data1, u32 data2) {
+    NNSSndArc *arc = data1;
+
+    arc->mInfo = 0;
 }
 
-void func_0212d220(void *arg0, u32 arg1, Unk0212d5f8 *arg2, u32 arg3) {
-    u32 value0;
-    u32 value2 = (u32) arg2;
-    value0 = 0u;
-    *(u32 *) ((value2) + (132)) = value0;
+void FatDisposeCallback(void *mem, u32 size, void *data1, u32 data2) {
+    NNSSndArc *arc = data1;
+
+    arc->mFat = 0;
 }
 
-void func_0212d214(void *arg0, u32 arg1, Unk0212d5f8 *arg2, u32 arg3) {
-    u32 value0;
-    u32 value2 = (u32) arg2;
-    value0 = 0u;
-    *(u32 *) ((value2) + (136)) = value0;
+void SymbolDisposeCallback(void *mem, u32 size, void *data1, u32 data2) {
+    NNSSndArc *arc = data1;
+
+    arc->mSymbol = 0;
 }

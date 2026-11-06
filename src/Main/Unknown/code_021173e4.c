@@ -392,7 +392,7 @@ void func_02118184(void) {
     gSelectCupGrid->mNextState = 4;
     gSelectCupGrid->mStateFrames = 0;
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_0212ecc0(&data_0217d068, 0, 5);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
     }
 }
 
@@ -716,7 +716,7 @@ L2:
         d = data_0215c8dc[s];
         if (gSelectCupGrid->mCupsEnabled[d] == 0) {
             if (*(vu16 *) 0x027ffc40 != 2) {
-                func_0212ecc0(&data_0217d068, 0, 0x16);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
             }
             return;
         }
@@ -741,7 +741,7 @@ L2:
                 gSelectCupGrid->mIndex = t;
                 ResetSelectCupGridShownCourse();
                 if (*(vu16 *) 0x027ffc40 != 2) {
-                    func_0212ecc0(&data_0217d068, 0, 0);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
                 }
             }
         }
@@ -754,7 +754,7 @@ L2:
                 gSelectCupGrid->mIndex = t;
                 ResetSelectCupGridShownCourse();
                 if (*(vu16 *) 0x027ffc40 != 2) {
-                    func_0212ecc0(&data_0217d068, 0, 0);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
                 }
             }
         }
@@ -767,7 +767,7 @@ L2:
                 gSelectCupGrid->mIndex = t;
                 ResetSelectCupGridShownCourse();
                 if (*(vu16 *) 0x027ffc40 != 2) {
-                    func_0212ecc0(&data_0217d068, 0, 0);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
                 }
             }
         }
@@ -780,7 +780,7 @@ L2:
                 gSelectCupGrid->mIndex = t;
                 ResetSelectCupGridShownCourse();
                 if (*(vu16 *) 0x027ffc40 != 2) {
-                    func_0212ecc0(&data_0217d068, 0, 0);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
                 }
             }
         }
@@ -882,7 +882,7 @@ void AdvanceSelectCupGridState9(void) {
                 case 0:
                     break;
                 case 1:
-                    func_0212ecc0(&data_0217d068, 0, 0xf);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0xf);
                     break;
             }
         }

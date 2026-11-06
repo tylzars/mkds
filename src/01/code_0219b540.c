@@ -140,7 +140,7 @@ void func_ov001_0219c428(void) {
     gSelectGhost->mNextState = 3;
     gSelectGhost->mStateFrames = 0;
     func_0212b7e8();
-    func_0212ecc0(&data_0217d068, 0, 5);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
 void func_ov001_0219c3ec(void) {
@@ -270,7 +270,7 @@ void func_ov001_0219c058(void) {
     }
     gSelectGhost->mOffsetTimers[1] = 6;
     if (ok != FALSE) {
-        func_0212ecc0(&data_0217d068, 0, 1);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 1);
         func_ov001_0219c0bc();
     }
 }
@@ -287,7 +287,7 @@ void func_ov001_0219bff4(void) {
     }
     gSelectGhost->mOffsetTimers[0] = 6;
     if (ok != FALSE) {
-        func_0212ecc0(&data_0217d068, 0, 1);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 1);
         func_ov001_0219c0bc();
     }
 }

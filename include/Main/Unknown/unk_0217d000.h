@@ -52,8 +52,8 @@ typedef struct Unk0217d35c {
     /* 14 */ void *mUnk_14;
 } Unk0217d35c;
 
-struct Unk0212d5f8;
-struct Unk0212ef48;
+struct NNSSndArc;
+struct NNSSndStrmThread;
 struct Ncgr;
 struct Nclr;
 struct Nscr;
@@ -165,7 +165,7 @@ typedef struct Unk0217d084 {
 // Object at data_0217d32c (0x10 bytes); mUnk_08 points to a row of six words.
 typedef struct Unk0217d32c {
     /* 00 */ s32 mUnk_00;
-    /* 04 */ HeapStack *mUnk_04;
+    /* 04 */ NNSSndHeap *mUnk_04;
     /* 08 */ u32 *mUnk_08;
     /* 0c */ u32 mUnk_0c;
 } Unk0217d32c;
@@ -766,7 +766,7 @@ extern NNSSndStrmChannel data_0217dd28[];
 extern s32 data_0217ddac;
 extern OSMessageQueue data_0217ddb0;
 extern EffectInfo data_0217de24[8];
-extern struct Unk0212d5f8 *data_0217dec4;
+extern struct NNSSndArc *data_0217dec4;
 extern s32 data_0217d1e8;
 extern s32 data_0217d1ec;
 extern s32 data_0217d1f8;
@@ -786,14 +786,14 @@ extern void *data_0217d33c;
 extern void *data_0217d340;
 extern Unk0217d404 *data_0217d404;
 extern Unk0217d410 *data_0217d410;
-extern struct Unk0212ef48 *data_0217df04;
+extern struct NNSSndStrmThread *data_0217df04;
 extern u8 data_0217df08[];
-extern HeapStack *data_0217d130;
+extern NNSSndHeap *data_0217d130;
 extern Unk0217d070 data_0217d070;
 // The member at 0x0c of data_0217d070, addressed through a pool word of its own.
 extern NNSSndSeqPlayer *data_0217d07c;
 extern Unk0217d084 data_0217d084;
-extern struct Unk0212d5f8 data_0217d0a0;
+extern struct NNSSndArc data_0217d0a0;
 extern Unk0217d32c data_0217d32c;
 extern RecordVS *gRecordVS;
 extern Unk0217d34c *data_0217d34c;

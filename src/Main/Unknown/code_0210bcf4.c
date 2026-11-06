@@ -157,7 +157,7 @@ u32 func_0210bcf4(u32 a, u32 b, u32 c, u32 d, u32 e) {
         return NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) d, 0);
     }
     k = st.mUnk_1c;
-    n = k + (func_0212d580(a, b)->mUnk_04 - 0x40);
+    n = k + (NNS_SndArcGetSeqArcParam(a, b)->mPlayerPrio - 0x40);
     if (n > 0) {
         if (n >= 0x7f) {
             n = 0x7f;

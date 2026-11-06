@@ -43,7 +43,7 @@ void NNS_SndMain(void) {
     }
     NNSi_SndPlayerMain();
     NNSi_SndCaptureMain();
-    func_0212f094();
+    NNSi_SndArcStrmMain();
     SND_FlushCommand(0);
 }
 

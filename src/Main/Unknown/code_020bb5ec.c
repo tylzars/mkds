@@ -84,7 +84,7 @@ void func_020bbbb4(void) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);
                 }
-                func_0212ecc0(r, 0, 0x49);
+                NNS_SndArcPlayerStartSeqArc(r, 0, 0x49);
             }
         }
 
@@ -101,7 +101,7 @@ void func_020bbbb4(void) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);
                 }
-                func_0212ecc0(r, 0, 0x49);
+                NNS_SndArcPlayerStartSeqArc(r, 0, 0x49);
             }
         }
 
@@ -118,7 +118,7 @@ void func_020bbbb4(void) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);
                 }
-                func_0212ecc0(r, 0, 0x49);
+                NNS_SndArcPlayerStartSeqArc(r, 0, 0x49);
             }
         }
 
@@ -135,7 +135,7 @@ void func_020bbbb4(void) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);
                 }
-                func_0212ecc0(r, 0, 0x49);
+                NNS_SndArcPlayerStartSeqArc(r, 0, 0x49);
             }
         }
 
@@ -152,7 +152,7 @@ void func_020bbbb4(void) {
                 if (*r != NULL) {
                     NNS_SndPlayerStopSeq(r, 0);
                 }
-                func_0212ecc0(r, 0, 0x49);
+                NNS_SndArcPlayerStartSeqArc(r, 0, 0x49);
             }
         }
 

@@ -6,22 +6,22 @@
 #include "code_02004d80.h"
 #include "Main/Unknown/code_0210e33c.h"
 
-u32 func_0210efcc(Unk0212d5f8 *a, const u8 *b, HeapStack *c, u32 d) {
-    a->mUnk_8c = NULL;
-    a->mUnk_84 = NULL;
-    a->mUnk_88 = NULL;
-    if (FS_ConvertPathToFileID(&a->mUnk_7c, b) == 0) {
+u32 func_0210efcc(NNSSndArc *a, const u8 *b, NNSSndHeap *c, u32 d) {
+    a->mInfo = NULL;
+    a->mFat = NULL;
+    a->mSymbol = NULL;
+    if (FS_ConvertPathToFileID(&a->mFileId, b) == 0) {
         return 0;
     }
-    FS_InitFile(&a->mUnk_34);
-    if (FS_OpenFileFast(&a->mUnk_34, a->mUnk_7c) == 0) {
+    FS_InitFile(&a->mFile);
+    if (FS_OpenFileFast(&a->mFile, a->mFileId) == 0) {
         return 0;
     }
-    a->mUnk_30 = 1;
-    if (func_0212d6c4(a, c, d) == 0) {
+    a->mFileOpen = 1;
+    if (NNS_SndArcSetup(a, c, d) == 0) {
         return 0;
     }
-    func_0212d5e0(a);
+    NNS_SndArcSetCurrent(a);
     return 1;
 }
 
@@ -38,6 +38,6 @@ void func_0210ef68(Unk0217d178 *p) {
     s32 i;
 
     for (i = 0; i < p->mUnk_40; i++) {
-        func_0212d238(p->mUnk_00[i], NULL);
+        NNS_SndArcSetFileAddress(p->mUnk_00[i], NULL);
     }
 }

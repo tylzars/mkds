@@ -255,7 +255,7 @@ void func_ov001_0219f1f4(void) {
     gMissionRunLVsel->mStateFrames = 0;
     gMissionRunLVsel->mUnk_48 = 0x100;
     func_ov001_0219f37c();
-    func_0212ecc0(&data_0217d068, 0, 5);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
 void func_ov001_0219f198(void) {
@@ -431,7 +431,7 @@ next:
             gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
             func_ov001_0219f1f4();
         } else {
-            func_0212ecc0(&data_0217d068, 0, 0x16);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
         return;
     }
@@ -446,7 +446,7 @@ next:
             if (func_ov001_0219f688(n) != 0) {
                 gMissionRunLVsel->mIndex = n;
                 gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
-                func_0212ecc0(&data_0217d068, 0, 0);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             }
         }
     } else if (func_020ae408(8, 0x80) != 0) {
@@ -455,7 +455,7 @@ next:
             if (func_ov001_0219f688(n) != 0) {
                 gMissionRunLVsel->mIndex = n;
                 gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
-                func_0212ecc0(&data_0217d068, 0, 0);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             }
         }
     } else if (func_020ae408(8, 0x20) != 0) {
@@ -464,7 +464,7 @@ next:
             if (func_ov001_0219f688(n) != 0) {
                 gMissionRunLVsel->mIndex = n;
                 gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
-                func_0212ecc0(&data_0217d068, 0, 0);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             }
         }
     } else if (func_020ae408(8, 0x10) != 0) {
@@ -473,7 +473,7 @@ next:
             if (func_ov001_0219f688(n) != 0) {
                 gMissionRunLVsel->mIndex = n;
                 gMissionRunLVsel->mUnk_28[gMissionRunLVsel->mIndex] = 5;
-                func_0212ecc0(&data_0217d068, 0, 0);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             }
         }
     }

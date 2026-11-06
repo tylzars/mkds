@@ -376,9 +376,9 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
                     func_0202d6a0();
                 }
                 if (func_0202e468() != 0) {
-                    func_0212d5e0(&data_0217c868);
-                    func_0212ecc0(&data_0217d068, 0, 7);
-                    func_0212d5e0(&data_0217d0a0);
+                    NNS_SndArcSetCurrent(&data_0217c868);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 7);
+                    NNS_SndArcSetCurrent(&data_0217d0a0);
                 }
                 if (func_0202e47c() != 0) {
                     func_0202d5c0();
@@ -434,9 +434,9 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
             } else if (func_0204eb08(data_02174e40->mUnk_0b8) != 0) {
                 func_021282c8();
                 func_02108c04();
-                func_0212d5e0(&data_0217c868);
-                func_0212ecc0(&data_0217d068, 0, 9);
-                func_0212d5e0(&data_0217d0a0);
+                NNS_SndArcSetCurrent(&data_0217c868);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 9);
+                NNS_SndArcSetCurrent(&data_0217d0a0);
                 func_0202d5f8(0xb, 0);
                 data_02174e40->mUnk_0b0 = 7;
             }
@@ -445,9 +445,9 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
             i = func_0205465c();
             switch (i) {
                 case 1:
-                    func_0212d5e0(&data_0217c868);
-                    func_0212ecc0(&data_0217d068, 0, 0xa);
-                    func_0212d5e0(&data_0217d0a0);
+                    NNS_SndArcSetCurrent(&data_0217c868);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0xa);
+                    NNS_SndArcSetCurrent(&data_0217d0a0);
                     data_02174e40->mUnk_0b0 = 0xa;
                     break;
                 case 2:
@@ -457,7 +457,7 @@ s32 func_0202cdf4(Unk0202cdf4 *p) {
             break;
         case 8:
             if (func_02125f6c() != 0) {
-                func_0212ecc0(&data_0217d068, 0, 0x15);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
             if (func_02125f54() != 0) {
                 data_02174e40->mUnk_0b0 = 9;

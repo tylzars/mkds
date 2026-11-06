@@ -486,9 +486,9 @@ void AdvanceKeyboardState2(void) {
             func_02125fc0();
             func_020ab8cc(1);
             gKeyboard->mUnk_24 = FALSE;
-            func_0212ecc0(&data_0217d068, 0, 4);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
         } else {
-            func_0212ecc0(&data_0217d068, 0, 0x16);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
     } else if (v == 0 || (func_020ab8c4() == 2 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
         gKeyboard->mNextState = 3;
@@ -496,7 +496,7 @@ void AdvanceKeyboardState2(void) {
         func_02125fc0();
         func_020ab8cc(2);
         gKeyboard->mUnk_24 = FALSE;
-        func_0212ecc0(&data_0217d068, 0, 0xe);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0xe);
     }
 }
 
@@ -550,7 +550,7 @@ void AdvanceKeyboardState4(void) {
     Keyboard *p;
     gKeyboard->mStateFrames++;
     if (func_02125f6c() != 0) {
-        func_0212ecc0(&data_0217d068, 0, 0x15);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
     }
     p = gKeyboard;
     if (p->mStateFrames >= 0x78) {
@@ -660,9 +660,9 @@ void AdvanceKeyboardState7(void) {
             func_02125fc0();
             func_020ab8cc(1);
             gKeyboard->mUnk_24 = FALSE;
-            func_0212ecc0(&data_0217d068, 0, 4);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
         } else {
-            func_0212ecc0(&data_0217d068, 0, 0x16);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
     } else if (v == 6 || (func_020ab8c4() == 2 && (u16) (data_02175628[i].mUnk_00 & 1) != 0)) {
         p = gKeyboard;
@@ -672,9 +672,9 @@ void AdvanceKeyboardState7(void) {
             func_02125fc0();
             func_020ab8cc(2);
             gKeyboard->mUnk_24 = FALSE;
-            func_0212ecc0(&data_0217d068, 0, 0xe);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0xe);
         } else {
-            func_0212ecc0(&data_0217d068, 0, 0x16);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
     } else if ((u16) (data_02175628[i].mUnk_00 & 0x800) != 0) {
         if (data_021759d0->mUnk_00 == 0) {
@@ -683,7 +683,7 @@ void AdvanceKeyboardState7(void) {
             gKeyboard->mUnk_08 = data_0215d122[gKeyboard->mUnk_08];
         }
         func_020ab9d0(gKeyboard->mUnk_08);
-        func_0212ecc0(&data_0217d068, 0, 0x1e5);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1e5);
     } else {
         p = gKeyboard;
         n = p->mUnk_08;
@@ -717,9 +717,9 @@ void AdvanceKeyboardState7(void) {
         }
         if (f != FALSE) {
             if (n != gKeyboard->mUnk_08) {
-                func_0212ecc0(&data_0217d068, 0, 0x1e5);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1e5);
             } else {
-                func_0212ecc0(&data_0217d068, 0, 0x1ed);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1ed);
             }
         }
     }
@@ -852,7 +852,7 @@ void AdvanceKeyboardState11(void) {
     s32 w;
     void *b;
     if (func_02125f6c() != 0) {
-        func_0212ecc0(&data_0217d068, 0, 0x22);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x22);
     }
     gKeyboard->mStateFrames++;
     if (func_02125fa4() != 0) {

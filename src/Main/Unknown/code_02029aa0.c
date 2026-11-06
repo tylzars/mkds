@@ -199,7 +199,7 @@ void func_02029dcc(void *a, void *b, void *c) {
             break;
     }
     if (i >= 0) {
-        func_0212ecc0(&data_0217d068, 0, (u16) i);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) i);
     }
     if (func_0203b324()) {
         func_02057d9c();
@@ -321,7 +321,7 @@ void func_02029aa0(Unk02029aa0 *a) {
                             }
                             break;
                     }
-                    func_0212ecc0(&data_0217d068, 0, 5);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                     data_usa_02174e00->mUnk_54 = 2;
                 }
             }

@@ -64,7 +64,7 @@ void func_02032a20(void) {
     }
     data_02174e5c->mUnk_64 = 1;
     data_02174e5c->mUnk_54 = 5;
-    func_0212ecc0(&data_0217d068, 0, 5);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
 void func_020329dc(s32 a) {
@@ -335,7 +335,7 @@ s32 func_02032280(void) {
             }
             if (d < 0 && b != data_02174e5c->mUnk_44) {
                 func_020328f8(1);
-                func_0212ecc0(&data_0217d068, 0, 0);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             }
             break;
         case 7:

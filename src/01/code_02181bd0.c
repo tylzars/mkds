@@ -265,7 +265,7 @@ void func_ov001_021828f0(void) {
         if (*q != 0) {
             NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
         }
-        func_0212ecc0(q, 0, 0x233);
+        NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) q, 0, 0x233);
     }
 }
 
@@ -301,7 +301,7 @@ void func_ov001_021827f0(void) {
         if (*q != 0) {
             NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
         }
-        func_0212ecc0(q, 0, 0x232);
+        NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) q, 0, 0x232);
     }
 }
 

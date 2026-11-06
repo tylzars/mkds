@@ -259,14 +259,14 @@ void func_0202fd2c(void) {
                         }
                     }
                     if (v5 != FALSE) {
-                        func_0212d5e0(&data_0217c868);
-                        func_0212ecc0(&data_0217d068, 0, 4);
-                        func_0212d5e0(&data_0217d0a0);
+                        NNS_SndArcSetCurrent(&data_0217c868);
+                        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
+                        NNS_SndArcSetCurrent(&data_0217d0a0);
                     }
                 } else if (v2 != 0 && data_02174e50->mUnk_58[i].mUnk_00 == 0) {
-                    func_0212d5e0(&data_0217c868);
-                    func_0212ecc0(&data_0217d068, 0, 5);
-                    func_0212d5e0(&data_0217d0a0);
+                    NNS_SndArcSetCurrent(&data_0217c868);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
+                    NNS_SndArcSetCurrent(&data_0217d0a0);
                 }
                 v1 |= v2 != data_02174e50->mUnk_58[i].mUnk_00 ? 1 : 0;
                 v1 |= v3 != data_02174e50->mUnk_58[i].mUnk_08 ? 1 : 0;
@@ -397,17 +397,17 @@ s32 func_0202f764(Unk0202f764 *a) {
                     data_02174e50->mUnk_98 = 0;
                     func_0203003c(0);
                     if (data_02174e50->mUnk_48 == 4) {
-                        func_0212ecc0(&data_0217d068, 0, 0x4e);
+                        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x4e);
                     } else {
                         if ((data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) == 2) {
                             data_0217aa00->mUnk_0436 |= 1;
                         }
-                        func_0212d5e0(&data_0217c868);
-                        func_0212ecc0(&data_0217d068, 0, 2);
-                        func_0212d5e0(&data_0217d0a0);
+                        NNS_SndArcSetCurrent(&data_0217c868);
+                        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
+                        NNS_SndArcSetCurrent(&data_0217d0a0);
                     }
                 } else {
-                    func_0212ecc0(&data_0217d068, 0, 0x4f);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x4f);
                 }
             } else if ((u16) (v & 2) != 0 || v3 != 0) {
                 if (a != NULL) {
@@ -421,16 +421,16 @@ s32 func_0202f764(Unk0202f764 *a) {
                     data_02174e50->mUnk_48 = 4;
                 }
                 func_0203003c(1);
-                func_0212ecc0(&data_0217d068, 0, 0);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             } else if (func_020ae408(v2, 0x80) != 0) {
                 data_02174e50->mUnk_48++;
                 if (data_02174e50->mUnk_48 > 4) {
                     data_02174e50->mUnk_48 = 0;
                 }
                 func_0203003c(1);
-                func_0212ecc0(&data_0217d068, 0, 0);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
             } else if (v4 == 0xc) {
-                func_0212ecc0(&data_0217d068, 0, 0x4e);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x4e);
                 func_0203003c(data_02174e50->mUnk_48 != 4 ? 1 : 0);
                 data_02174e50->mUnk_98 = 0;
                 data_02174e50->mUnk_4c = 2;
@@ -441,16 +441,16 @@ s32 func_0202f764(Unk0202f764 *a) {
                     if (func_02030274(v4, i) != 0) {
                         v7 = data_02174e50->mUnk_48 != i ? 1 : 0;
                         if (data_02174e50->mUnk_58[i].mUnk_00 != 0 && data_02174e50->mUnk_58[i].mUnk_08 < 7) {
-                            func_0212d5e0(&data_0217c868);
-                            func_0212ecc0(&data_0217d068, 0, 2);
-                            func_0212d5e0(&data_0217d0a0);
+                            NNS_SndArcSetCurrent(&data_0217c868);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
+                            NNS_SndArcSetCurrent(&data_0217d0a0);
                             data_02174e50->mUnk_48 = i;
                             func_0203003c(v7);
                             data_02174e50->mUnk_98 = 0;
                             data_02174e50->mUnk_4c = 2;
                             data_02174e50->mUnk_88 = TRUE;
                         } else {
-                            func_0212ecc0(&data_0217d068, 0, 0x4f);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x4f);
                         }
                     }
                 }

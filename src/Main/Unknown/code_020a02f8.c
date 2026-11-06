@@ -449,7 +449,7 @@ found:
     gStandings->mWinnerTeamId = v;
     if (data_021759c0->mMode == MODE_BATTLE) {
         if (data_021759c0->mUnk_18 == 1) {
-            func_0212ecc0(&data_0217d068, 0, 0x4a);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x4a);
         }
         gStandings->mEndTimer = 0x5a;
     } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
@@ -542,7 +542,7 @@ u16 func_020a1520(void) {
             if (h[0] != NULL) {
                 NNS_SndPlayerStopSeq(h, 0);
             }
-            func_0212ecc0(h, 0, 0x4b);
+            NNS_SndArcPlayerStartSeqArc(h, 0, 0x4b);
         }
     }
     return gStandings->mUnk_3a2;

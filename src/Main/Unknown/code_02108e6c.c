@@ -25,15 +25,15 @@ void func_02108edc(s32 a, s32 b) {
 
     if (a == b) {
         if (data_0217c76c[0] != 0xff) {
-            func_0212ecc0(&data_0217d068, 0, data_0217c76c[0]);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, data_0217c76c[0]);
         }
         if (data_0217c76c[0] == 0x1d7) {
-            func_0212ecc0(&data_0217d068, 0, 0x1de);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1de);
             return;
         }
         c = data_021759c0->mUnk_3c;
         if (c == 0x65 || c == 0xc9) {
-            func_0212ecc0(&data_0217d068, 0, 0xd4);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0xd4);
         }
     } else {
         c = data_0217c770[0];
@@ -53,7 +53,7 @@ void func_02108edc(s32 a, s32 b) {
         if (p->mUnk_00 != NULL) {
             NNS_SndPlayerStopSeq(&p->mUnk_00, 0);
         }
-        func_0212ecc0(p, 0, c);
+        NNS_SndArcPlayerStartSeqArc(&p->mUnk_00, 0, c);
     }
 }
 
@@ -62,9 +62,9 @@ void func_02108ed8(void) {}
 u32 func_02108ec4(void) {
     u32 value0;
     u32 value12;
-    value12 = (u32) &func_0212d5e0;
+    value12 = (u32) &NNS_SndArcSetCurrent;
     value0 = (u32) &data_0217d0a0;
-    value0 = (u32) func_0212d5e0((Unk0212d5f8 *) value0);
+    value0 = (u32) NNS_SndArcSetCurrent((NNSSndArc *) value0);
     return value0;
 }
 

@@ -576,7 +576,7 @@ next:
         gRecordGpx->mOffsetTimers[0] = 6;
         gRecordGpx->mUnk_88 = TRUE;
         RequestRecordGpxState3();
-        func_0212ecc0(&data_0217d068, 0, 2);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
         return;
     }
     if ((a == 1 && gRecordGpx->mUnk_8c != FALSE) || (b == 1 && gRecordGpx->mUnk_8c == FALSE) ||
@@ -585,7 +585,7 @@ next:
         gRecordGpx->mOffsetTimers[1] = 6;
         gRecordGpx->mUnk_8c = TRUE;
         RequestRecordGpxState3();
-        func_0212ecc0(&data_0217d068, 0, 2);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
     }
 }
 

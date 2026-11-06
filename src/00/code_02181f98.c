@@ -459,7 +459,7 @@ void AdvanceWiFiVSSettingState7(void) {
     u16 v;
 
     if (func_02125f6c() != 0) {
-        func_0212ecc0(&data_0217d068, 0, 0x15);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
     }
     if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         gWiFiVSSetting->mNextState = 2;
@@ -498,7 +498,7 @@ void AdvanceWiFiVSSettingState8(void) {
     u16 v;
 
     if (func_02125f6c() != 0) {
-        func_0212ecc0(&data_0217d068, 0, 0x15);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
     }
     if (func_02125f88() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         gWiFiVSSetting->mNextState = 2;

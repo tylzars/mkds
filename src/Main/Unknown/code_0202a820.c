@@ -171,7 +171,7 @@ void func_0202b100(void) {
                     gWiFiVSCourseSelect->mUnk_0bc[i] = v;
                     func_02025f14(&gWiFiVSCourseSelect->mUnk_0fc[i], 0);
                     if (gWiFiVSCourseSelect->mUnk_0b4 != i) {
-                        func_0212ecc0(&data_0217d068, 0, 0x208);
+                        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x208);
                     }
                 }
                 break;
@@ -201,9 +201,9 @@ void func_0202afe4(void) {
                 v = (gWiFiVSCourseSelect->mTimer + 0x3c) / 0x3c;
                 p->mUnk_18[15].mUnk_00 = v >= 10 ? 1 : 0;
                 if (gWiFiVSCourseSelect->mTimer == 0) {
-                    func_0212ecc0(&data_0217d068, 0, 0x51);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x51);
                 } else if ((gWiFiVSCourseSelect->mTimer + 0x3c) % 0x3c == 0 && v <= 4) {
-                    func_0212ecc0(&data_0217d068, 0, 0x50);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x50);
                 }
             }
             b = p->mUnk_0c;
@@ -368,7 +368,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             break;
         case 1:
             if (func_0202e468() != 0) {
-                func_0212ecc0(&data_0217d068, 0, 0x208);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x208);
             }
             if (func_0202e47c() == 0 && gWiFiVSCourseSelect->mTimer != 0) {
                 break;
@@ -396,7 +396,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
                 func_02036e20(0x3c, 1);
                 gWiFiVSCourseSelect->mState = 4;
                 gWiFiVSCourseSelect->mStateFrames = 0;
-                func_0212ecc0(&data_0217d068, 0, 0x209);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x209);
             }
             break;
         case 4:

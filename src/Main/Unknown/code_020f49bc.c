@@ -305,7 +305,7 @@ void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
             if (*p != NULL) {
                 NNS_SndPlayerStopSeq(p, 0);
             }
-            func_0212ecc0(p, 0, 0xde);
+            NNS_SndArcPlayerStartSeqArc(p, 0, 0xde);
         }
     }
     func_02069e10(b->mUnk_04->mKart);

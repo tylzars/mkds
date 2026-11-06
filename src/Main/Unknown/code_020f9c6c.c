@@ -646,7 +646,7 @@ void func_020fb35c(Unk020fc2e8 *param_1) {
             if (*p != NULL) {
                 NNS_SndPlayerStopSeq(p, 0);
             }
-            func_0212ecc0(p, 0, 0xe0);
+            NNS_SndArcPlayerStartSeqArc(p, 0, 0xe0);
         }
     }
     func_02073fb0(param_1->mUnk_000.mUnk_d4 & ~0xc000001f, 0x1000);

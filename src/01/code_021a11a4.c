@@ -262,7 +262,7 @@ void func_ov001_021a1978(void) {
     gSelectEngine->mStateFrames = 0;
     gSelectEngine->mResult = 1;
     func_ov001_021a1bb8();
-    func_0212ecc0(&data_0217d068, 0, 5);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
 // Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceSelectEngine call copies it to
@@ -467,7 +467,7 @@ next:
         }
         if (s != 0) {
             o->mIndex = t + s;
-            func_0212ecc0(&data_0217d068, 0, 0);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     } else if (func_020ae408(8, 0x80) != 0) {
         if (func_02056dec(0x10) != 0) {
@@ -481,7 +481,7 @@ next:
         }
         if (s != 0) {
             o->mIndex = t + s;
-            func_0212ecc0(&data_0217d068, 0, 0);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     } else if (func_020ae408(8, 0x20) != 0) {
         if (func_02056dec(0x10) != 0) {
@@ -495,7 +495,7 @@ next:
         }
         if (s != 0) {
             o->mIndex = t + s;
-            func_0212ecc0(&data_0217d068, 0, 0);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     } else if (func_020ae408(8, 0x10) != 0) {
         if (func_02056dec(0x10) != 0) {
@@ -509,7 +509,7 @@ next:
         }
         if (s != 0) {
             o->mIndex = t + s;
-            func_0212ecc0(&data_0217d068, 0, 0);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     }
 }

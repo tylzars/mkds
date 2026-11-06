@@ -150,7 +150,7 @@ void RequestRecordTopMenuState4(void) {
 void func_ov001_0219ae10(void) {
     gRecordTopMenu->mNextState = 5;
     gRecordTopMenu->mStateFrames = 0;
-    func_0212ecc0(&data_0217d068, 0, 5);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
 // Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceRecordTopMenu call copies it to
@@ -176,7 +176,7 @@ void func_ov001_0219adbc(void) {
 void func_ov001_0219ad98(void) {
     gRecordTopMenu->mNextState = 9;
     gRecordTopMenu->mStateFrames = 0;
-    func_0212ecc0(&data_0217d068, 0, 0x15);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
 }
 
 void func_ov001_0219ad7c(void) {
@@ -197,7 +197,7 @@ void func_ov001_0219ad3c(void) {
     if (gRecordTopMenu->mIndex >= 3) {
         gRecordTopMenu->mIndex = 0;
     }
-    func_0212ecc0(&data_0217d068, 0, 0);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
 }
 
 void func_ov001_0219ad10(void) {
@@ -205,7 +205,7 @@ void func_ov001_0219ad10(void) {
     if (gRecordTopMenu->mIndex < 0) {
         gRecordTopMenu->mIndex = 2;
     }
-    func_0212ecc0(&data_0217d068, 0, 0);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
 }
 
 void func_ov001_0219ac98(void) {

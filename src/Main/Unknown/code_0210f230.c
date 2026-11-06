@@ -108,7 +108,7 @@ void func_0210f458(s32 a) {
         if (*p != NULL) {
             NNS_SndPlayerStopSeq(p, 0);
         }
-        func_0212ecc0(p, 0, v);
+        NNS_SndArcPlayerStartSeqArc(p, 0, v);
         return;
     }
     if (w >= 4) {
@@ -148,7 +148,7 @@ u32 func_0210f35c(s32 a, u32 b) {
                 if (*p != NULL) {
                     NNS_SndPlayerStopSeq(p, 0);
                 }
-                func_0212ecc0(p, 0, b);
+                NNS_SndArcPlayerStartSeqArc(p, 0, b);
             }
         }
         if (*p != NULL) {
@@ -187,7 +187,7 @@ u32 func_0210f230(u32 a, u32 b) {
                     if (*p != NULL) {
                         NNS_SndPlayerStopSeq(p, 0);
                     }
-                    func_0212ecc0(p, 0, b);
+                    NNS_SndArcPlayerStartSeqArc(p, 0, b);
                 }
             }
             func_02105b28(p, c);

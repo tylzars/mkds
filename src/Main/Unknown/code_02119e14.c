@@ -51,11 +51,11 @@ void AdvanceSelectRaceRuleState6(void) {
         func_0211b9ec();
         switch (func_02127794()) {
             case 0:
-                func_0212ecc0(&data_0217d068, 0, 7);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 7);
                 break;
             case -1:
             case 1:
-                func_0212ecc0(&data_0217d068, 0, 0x10);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x10);
                 break;
         }
     }

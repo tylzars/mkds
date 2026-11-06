@@ -900,7 +900,7 @@ void func_020e7fa8(void) {
     if (q[0] != 0) {
         NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) q, 0);
     }
-    func_0212ecc0(q, 0, 0x102);
+    NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) q, 0, 0x102);
 }
 
 void func_020e7ed0(void) {

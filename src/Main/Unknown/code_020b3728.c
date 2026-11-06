@@ -247,13 +247,13 @@ void func_020b3728(void) {
                 }
                 if (f != FALSE) {
                     if (func_020c7148() != 0 || func_020c70ec() != 0) {
-                        func_0212ecc0(&data_0217d068, 0, 0x44);
+                        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x44);
                     } else {
                         b = gRaceProgress->mUnk_000[func_020b4d9c()].mStatus;
                         if (b == 3) {
-                            func_0212ecc0(&data_0217d068, 0, 0x43);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x43);
                         } else {
-                            func_0212ecc0(&data_0217d068, 0, 0x42);
+                            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x42);
                         }
                     }
                 }

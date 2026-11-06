@@ -273,7 +273,7 @@ BOOL func_ov001_02197210(void) {
         if (func_0205fdb4(data_ov001_021a6900[gRecordTAtt->mIndex], buf) != 0) {
             return TRUE;
         }
-        func_0212ecc0(&data_0217d068, 0, 0x16);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         return FALSE;
     }
     return FALSE;
@@ -377,7 +377,7 @@ void func_ov001_02196f80(void) {
     gRecordTAtt->mNextState = 7;
     gRecordTAtt->mStateFrames = 0;
     gRecordTAtt->mRecordTAttSTable[13].mUnk_00 = 1;
-    func_0212ecc0(&data_0217d068, 0, 4);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
 }
 
 void func_ov001_02196f64(void) {
@@ -428,7 +428,7 @@ void func_ov001_02196e54(void) {
 void func_ov001_02196e30(void) {
     gRecordTAtt->mNextState = 13;
     gRecordTAtt->mStateFrames = 0;
-    func_0212ecc0(&data_0217d068, 0, 6);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 6);
 }
 
 void func_ov001_02196dbc(void) {
@@ -718,14 +718,14 @@ other:
         gRecordTAtt->mUnk_78[0] = 6;
         gRecordTAtt->mUnk_88 = TRUE;
         RequestRecordTAttState3();
-        func_0212ecc0(&data_0217d068, 0, 2);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
     } else if ((a == 1 && gRecordTAtt->mUnk_8c != FALSE) || (b == 1 && gRecordTAtt->mUnk_8c == FALSE) ||
                (u16) (data_02175628[idx].mBits & 0x10) != 0) {
         gRecordTAtt->mUnk_70 = 0;
         gRecordTAtt->mUnk_78[1] = 6;
         gRecordTAtt->mUnk_8c = TRUE;
         RequestRecordTAttState3();
-        func_0212ecc0(&data_0217d068, 0, 2);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
     }
 done:
     if (func_ov001_02196c4c() != FALSE) {

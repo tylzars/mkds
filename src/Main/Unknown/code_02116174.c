@@ -283,7 +283,7 @@ void func_021161d0(void) {
         v2 = 0;
     }
     if (data_0217d350->mUnk_74 != v2) {
-        func_0212ecc0((const void *) (((u32) ((u8 *) &data_0217d068))), (u32) 0, (u32) 0);
+        NNS_SndArcPlayerStartSeqArc((const void *) (((u32) ((u8 *) &data_0217d068))), (u32) 0, (u32) 0);
     }
     data_0217d350->mUnk_74 = v2;
 }
@@ -304,7 +304,7 @@ void func_02116174(void) {
         }
     }
     if (data_0217d350->mUnk_74 != v4) {
-        func_0212ecc0(&data_0217d068, (u32) 0, (u32) 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, (u32) 0, (u32) 0);
     }
     data_0217d350->mUnk_74 = v4;
 }

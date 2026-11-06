@@ -126,7 +126,7 @@ void func_02104ff8(void) {
                     if (v[0] != NULL) {
                         NNS_SndPlayerStopSeq(v, a);
                     }
-                    func_0212ecc0(v, b, 0x3f);
+                    NNS_SndArcPlayerStartSeqArc(v, b, 0x3f);
                 }
             }
         } else if (data_0217c704[i] != 0 && c > 0) {

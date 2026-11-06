@@ -147,7 +147,7 @@ void func_02119ba8(void) {
     gSelectCupCourse->mNextState = 4;
     gSelectCupCourse->mStateFrames = 0;
     if (*(vu16 *) 0x027ffc40 != 2) {
-        func_0212ecc0(&data_0217d068, 0, 5);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
     }
 }
 

@@ -32,18 +32,18 @@ u32 func_0210d960(void) {
 
 void func_0210d894(void *a, u32 b, const u8 *c) {
     NNS_SndInit();
-    data_0217d130 = HeapStackCreate(a, b);
-    data_0217d06c = HeapStackAlloc(data_0217d130, 0x1020, func_0210d890, NULL, 0);
+    data_0217d130 = NNS_SndHeapCreate(a, b);
+    data_0217d06c = NNS_SndHeapAlloc(data_0217d130, 0x1020, func_0210d890, NULL, 0);
     if (c != NULL) {
-        func_0212d8e0(&data_0217d0a0, c, data_0217d130, 0);
+        NNS_SndArcInit(&data_0217d0a0, c, data_0217d130, 0);
         data_0217d064 = 1;
-        func_0212edac(data_0217d130);
+        NNS_SndArcPlayerSetup(data_0217d130);
     }
     NNS_SndHandleInit(&data_0217d068);
     func_0210dc60(&data_0217d084, &data_0217d070, 0);
 }
 
-void func_0210d890(u32 p0) {}
+void func_0210d890(void *p0, u32 p1, void *p2, u32 p3) {}
 
 void func_0210d854(u32 a) {
     NNS_SndCaptureStartOutputEffect((void *) (((u32) data_0217d06c + 0x1f) & ~0x1f), 0x1000, a);
@@ -59,8 +59,8 @@ void func_0210d7dc(u32 a, u32 b, NNSSndSeqPlayer **c) {
     if (*c != NULL) {
         NNS_SndPlayerStopSeq(c, 0);
     }
-    func_0212d254(((Unk0212ea28 *) func_0212d51c(a))->mUnk_00);
-    func_0212ed58(c, a);
+    NNS_SndArcGetFileAddress(NNS_SndArcGetSeqInfo(a)->mFileId);
+    NNS_SndArcPlayerStartSeq(c, a);
     NNS_SndPlayerSetVolume(c, b);
 }
 

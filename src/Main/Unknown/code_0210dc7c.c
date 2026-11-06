@@ -111,11 +111,11 @@ void *func_0210e128(Unk0217c7c4 *a) {
     }
 }
 
-void func_0210e094(Unk0217d26c *a, s32 b, HeapStack *c) {
+void func_0210e094(Unk0217d26c *a, s32 b, NNSSndHeap *c) {
     s32 i;
 
     a->mUnk_00 = b;
-    a->mUnk_04 = HeapStackAlloc(c, b << 4, NULL, NULL, 0);
+    a->mUnk_04 = NNS_SndHeapAlloc(c, b << 4, NULL, NULL, 0);
     for (i = 0; i < a->mUnk_00; i++) {
         a->mUnk_04[i].mUnk_00 = -1;
         a->mUnk_04[i].mUnk_04 = NULL;

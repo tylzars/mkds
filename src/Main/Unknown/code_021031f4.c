@@ -114,7 +114,7 @@ void func_0210465c(Unk021035ac *p) {
             if (*r != 0) {
                 NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) r, 0);
             }
-            func_0212ecc0(r, 0, 0xef);
+            NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) r, 0, 0xef);
         }
     }
     if (p->mUnk_28 != 0) {
@@ -221,7 +221,7 @@ void func_0210449c(Unk021035ac *p) {
     if (*(u32 *) r != 0) {
         NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) r, 0);
     }
-    func_0212ecc0(r, 0, (u16) v);
+    NNS_SndArcPlayerStartSeqArc((NNSSndSeqPlayer **) r, 0, (u16) v);
 }
 
 void func_02104368(void) {

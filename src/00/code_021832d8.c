@@ -466,7 +466,7 @@ void AdvanceWiFiVSMatchingState3(void) {
     if (gWiFiVSMatching->mUnk_08 >= 0x28) {
         gWiFiVSMatching->mNextState = 4;
         gWiFiVSMatching->mUnk_08 = 0;
-        func_0212ecc0(&data_0217d068, 0, 0x20b);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x20b);
     }
 }
 
@@ -540,7 +540,7 @@ void AdvanceWiFiVSMatchingState5(void) {
     if (gWiFiVSMatching->mUnk_08 >= 0x50) {
         gWiFiVSMatching->mNextState = 4;
         gWiFiVSMatching->mUnk_08 = 0;
-        func_0212ecc0(&data_0217d068, 0, 0x20b);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x20b);
     }
 }
 
@@ -554,7 +554,7 @@ void AdvanceWiFiVSMatchingState8(void) {
             gWiFiVSMatching->mUnk_08 = 0;
             func_02125fc0();
             func_02036f10((s16) (30));
-            func_0212ecc0(&data_0217d068, 0, 0x20c);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x20c);
         }
     }
 }

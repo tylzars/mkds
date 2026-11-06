@@ -513,7 +513,7 @@ void func_02113940(void) {
         v2 = 0;
     }
     if (gRecordVS->mIndex != v2) {
-        func_0212ecc0((const void *) (((u32) ((u8 *) &data_0217d068))), (u32) 0, (u32) 0);
+        NNS_SndArcPlayerStartSeqArc((const void *) (((u32) ((u8 *) &data_0217d068))), (u32) 0, (u32) 0);
     }
     gRecordVS->mIndex = v2;
 }
@@ -534,7 +534,7 @@ void func_021138e4(void) {
         }
     }
     if (gRecordVS->mIndex != v4) {
-        func_0212ecc0(&data_0217d068, (u32) 0, (u32) 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, (u32) 0, (u32) 0);
     }
     gRecordVS->mIndex = v4;
 }
@@ -575,10 +575,10 @@ void func_021137a8(s32 a) {
     b += a;
     if (func_02114398(b)) {
         func_02114260(b);
-        func_0212ecc0(&data_0217d068, 0, 0x25);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x25);
     } else {
         func_0211427c(b);
-        func_0212ecc0(&data_0217d068, 0, 0x24);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x24);
     }
 }
 
@@ -764,7 +764,7 @@ void func_021132b4(void) {
     gRecordVS->mNextState = 9;
     gRecordVS->mStateFrames = 0;
     gRecordVS->mRecordVSSTable[25].mUnk_00 = 1;
-    func_0212ecc0(&data_0217d068, 0, 4);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
 }
 
 void func_02113298(void) {

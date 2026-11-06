@@ -114,7 +114,7 @@ void AdvanceSelectCupCourseState3(void) {
             gSelectCupCourse->mIndex = 3;
         }
         if (*(vu16 *) 0x027ffc40 != 2) {
-            func_0212ecc0(&data_0217d068, 0, 0);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
         return;
     }
@@ -124,7 +124,7 @@ void AdvanceSelectCupCourseState3(void) {
             gSelectCupCourse->mIndex = 0;
         }
         if (*(vu16 *) 0x027ffc40 != 2) {
-            func_0212ecc0(&data_0217d068, 0, 0);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     }
 }
@@ -183,11 +183,11 @@ void AdvanceSelectCupCourseState6(void) {
             v = func_02127794();
             switch (v) {
                 case 0:
-                    func_0212ecc0(&data_0217d068, 0, 7);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 7);
                     break;
                 case -1:
                 case 1:
-                    func_0212ecc0(&data_0217d068, 0, 0x10);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x10);
                     break;
             }
         }

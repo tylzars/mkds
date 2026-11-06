@@ -210,7 +210,7 @@ void func_02110cc8(s32 d) {
         return;
     }
     func_02108e38();
-    func_0212ecc0(&data_0217d068, 0, (u16) a);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) a);
 }
 
 s32 func_02110c40(void) {
@@ -261,7 +261,7 @@ static inline void func_02110aac_inline(NNSSndSeqPlayer **p, u32 v) {
             if (*p != NULL) {
                 NNS_SndPlayerStopSeq(p, 0);
             }
-            func_0212ecc0(p, 0, v);
+            NNS_SndArcPlayerStartSeqArc(p, 0, v);
         }
     } else if (*p != NULL) {
         NNS_SndPlayerStopSeq(p, 0);
@@ -326,7 +326,7 @@ void func_021108bc(s32 a) {
     if (*p != NULL) {
         NNS_SndPlayerStopSeq(p, 0);
     }
-    func_0212ecc0(p, 0, (u16) b);
+    NNS_SndArcPlayerStartSeqArc(p, 0, (u16) b);
     data_0217d1e0 = data_0217d1e0 + 1;
     if (p != NULL) {
         switch (data_0217d1e4 % 3) {

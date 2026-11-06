@@ -29,7 +29,7 @@ void func_0210ef34(void) {
 }
 
 u32 func_0210ed20(u32 a, u32 b) {
-    Unk0212e538 *p;
+    NNSSndArcBankInfo *p;
     u32 *q;
     u32 *r;
     u32 v;
@@ -40,7 +40,7 @@ u32 func_0210ed20(u32 a, u32 b) {
     s32 i;
 
     if (b != 0) {
-        if (func_0212e924(0x61, data_0217d130) == 0) {
+        if (NNS_SndArcLoadWaveArc(0x61, data_0217d130) == 0) {
             ok = 0;
         } else {
             u32 *q;
@@ -48,12 +48,12 @@ u32 func_0210ed20(u32 a, u32 b) {
             u32 v;
             u32 w;
 
-            q = (u32 *) func_0212d3f0(0x61);
-            r = (u32 *) func_0212d3f0(0);
-            w = ((Unk0212e490 *) r)->mUnk_00;
-            v = ((Unk0212e490 *) q)->mUnk_00;
-            func_0212d238(w, func_0212d254(v));
-            func_0212d238(v, NULL);
+            q = (u32 *) NNS_SndArcGetWaveArcInfo(0x61);
+            r = (u32 *) NNS_SndArcGetWaveArcInfo(0);
+            w = ((NNSSndArcWaveArcInfo *) r)->mFileId;
+            v = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+            NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
+            NNS_SndArcSetFileAddress(v, NULL);
             ok = 1;
             n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
             ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
@@ -62,7 +62,7 @@ u32 func_0210ed20(u32 a, u32 b) {
         if (ok == 0) {
             return 0;
         }
-        if (func_0212e924(0x62, data_0217d130) == 0) {
+        if (NNS_SndArcLoadWaveArc(0x62, data_0217d130) == 0) {
             ok = 0;
         } else {
             u32 *q;
@@ -70,12 +70,12 @@ u32 func_0210ed20(u32 a, u32 b) {
             u32 v;
             u32 w;
 
-            q = (u32 *) func_0212d3f0(0x62);
-            r = (u32 *) func_0212d3f0(0x50);
-            w = ((Unk0212e490 *) r)->mUnk_00;
-            v = ((Unk0212e490 *) q)->mUnk_00;
-            func_0212d238(w, func_0212d254(v));
-            func_0212d238(v, NULL);
+            q = (u32 *) NNS_SndArcGetWaveArcInfo(0x62);
+            r = (u32 *) NNS_SndArcGetWaveArcInfo(0x50);
+            w = ((NNSSndArcWaveArcInfo *) r)->mFileId;
+            v = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+            NNS_SndArcSetFileAddress(w, NNS_SndArcGetFileAddress(v));
+            NNS_SndArcSetFileAddress(v, NULL);
             ok = 1;
             n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
             ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
@@ -85,26 +85,26 @@ u32 func_0210ed20(u32 a, u32 b) {
             return 0;
         }
     } else {
-        if (func_0212e924(0, data_0217d130) == 0) {
+        if (NNS_SndArcLoadWaveArc(0, data_0217d130) == 0) {
             return 0;
         }
-        if (func_0212e924(0x50, data_0217d130) == 0) {
+        if (NNS_SndArcLoadWaveArc(0x50, data_0217d130) == 0) {
             return 0;
         }
     }
-    p = func_0212d454(0);
-    x = (u32) func_0212d254(p->mUnk_00);
+    p = NNS_SndArcGetBankInfo(0);
+    x = (u32) NNS_SndArcGetFileAddress(p->mFileId);
     for (i = 0; i < 4; i++) {
-        v = p->mUnk_04[i];
+        v = p->mWaveArcNo[i];
         if (v == 0xffff) {
             continue;
         }
-        q = (u32 *) func_0212d3f0(v);
+        q = (u32 *) NNS_SndArcGetWaveArcInfo(v);
         if (q == NULL) {
             break;
         }
-        w = ((Unk0212e490 *) q)->mUnk_00;
-        r = (u32 *) func_0212d254(w);
+        w = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+        r = (u32 *) NNS_SndArcGetFileAddress(w);
         if (x == 0) {
             continue;
         }
@@ -135,7 +135,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
     func_0210e434(func_02108950());
     p = (Unk0217d134 *) data_0217d134;
     for (i = 0; i < p->mUnk_40; i++) {
-        func_0212d238(p->mUnk_00[i], NULL);
+        NNS_SndArcSetFileAddress(p->mUnk_00[i], NULL);
     }
     t = (Unk0217d134 *) data_0217d134;
     for (i = 0; i < 16; i++) {
@@ -145,7 +145,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
     if (d != 0) {
         switch (v.mUnk_00) {
             case 0x4a:
-                if (func_0212e924(0x63, data_0217d130) == 0) {
+                if (NNS_SndArcLoadWaveArc(0x63, data_0217d130) == 0) {
                     ok = 0;
                 } else {
                     u32 *p;
@@ -153,12 +153,12 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     u32 a;
                     u32 b;
 
-                    p = (u32 *) func_0212d3f0(0x63);
-                    q = (u32 *) func_0212d3f0(0x31);
-                    b = ((Unk0212e490 *) q)->mUnk_00;
-                    a = ((Unk0212e490 *) p)->mUnk_00;
-                    func_0212d238(b, func_0212d254(a));
-                    func_0212d238(a, NULL);
+                    p = (u32 *) NNS_SndArcGetWaveArcInfo(0x63);
+                    q = (u32 *) NNS_SndArcGetWaveArcInfo(0x31);
+                    b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+                    a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+                    NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
+                    NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
                     n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
                     ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
@@ -169,7 +169,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 }
                 break;
             case 0x2b:
-                if (func_0212e924(0x64, data_0217d130) == 0) {
+                if (NNS_SndArcLoadWaveArc(0x64, data_0217d130) == 0) {
                     ok = 0;
                 } else {
                     u32 *p;
@@ -177,12 +177,12 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     u32 a;
                     u32 b;
 
-                    p = (u32 *) func_0212d3f0(0x64);
-                    q = (u32 *) func_0212d3f0(0x58);
-                    b = ((Unk0212e490 *) q)->mUnk_00;
-                    a = ((Unk0212e490 *) p)->mUnk_00;
-                    func_0212d238(b, func_0212d254(a));
-                    func_0212d238(a, NULL);
+                    p = (u32 *) NNS_SndArcGetWaveArcInfo(0x64);
+                    q = (u32 *) NNS_SndArcGetWaveArcInfo(0x58);
+                    b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+                    a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+                    NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
+                    NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
                     n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
                     ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
@@ -193,7 +193,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 }
                 break;
             case 0xf:
-                if (func_0212e924(0x34, data_0217d130) == 0) {
+                if (NNS_SndArcLoadWaveArc(0x34, data_0217d130) == 0) {
                     ok = 0;
                 } else {
                     u32 *p;
@@ -201,12 +201,12 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                     u32 a;
                     u32 b;
 
-                    p = (u32 *) func_0212d3f0(0x34);
-                    q = (u32 *) func_0212d3f0(0x33);
-                    b = ((Unk0212e490 *) q)->mUnk_00;
-                    a = ((Unk0212e490 *) p)->mUnk_00;
-                    func_0212d238(b, func_0212d254(a));
-                    func_0212d238(a, NULL);
+                    p = (u32 *) NNS_SndArcGetWaveArcInfo(0x34);
+                    q = (u32 *) NNS_SndArcGetWaveArcInfo(0x33);
+                    b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+                    a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+                    NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
+                    NNS_SndArcSetFileAddress(a, NULL);
                     ok = 1;
                     n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
                     ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
@@ -218,7 +218,7 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 break;
         }
         if (v.mUnk_04 == 0x10) {
-            if (func_0212e924(0x13, data_0217d130) == 0) {
+            if (NNS_SndArcLoadWaveArc(0x13, data_0217d130) == 0) {
                 ok = 0;
             } else {
                 u32 *p;
@@ -226,12 +226,12 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
                 u32 a;
                 u32 b;
 
-                p = (u32 *) func_0212d3f0(0x13);
-                q = (u32 *) func_0212d3f0(0x12);
-                b = ((Unk0212e490 *) q)->mUnk_00;
-                a = ((Unk0212e490 *) p)->mUnk_00;
-                func_0212d238(b, func_0212d254(a));
-                func_0212d238(a, NULL);
+                p = (u32 *) NNS_SndArcGetWaveArcInfo(0x13);
+                q = (u32 *) NNS_SndArcGetWaveArcInfo(0x12);
+                b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+                a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+                NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
+                NNS_SndArcSetFileAddress(a, NULL);
                 ok = 1;
                 n = ((Unk0217d134 *) data_0217d134)->mUnk_40;
                 ((Unk0217d134 *) data_0217d134)->mUnk_40 = n + 1;
@@ -246,13 +246,13 @@ u32 func_0210e98c(Unk0215c380 v, u32 d) {
 }
 
 void func_0210e920(void) {
-    if (func_0212e924(1, data_0217d130) == 0) {
+    if (NNS_SndArcLoadWaveArc(1, data_0217d130) == 0) {
         return;
     }
-    if (func_0212e8f4(0, 2, data_0217d130) == 0) {
+    if (NNS_SndArcLoadBankEx(0, 2, data_0217d130) == 0) {
         return;
     }
-    func_0212e994(0, data_0217d130);
+    NNS_SndArcLoadSeqArc(0, data_0217d130);
 }
 
 void func_0210e8f8(u32 a) {
@@ -282,31 +282,31 @@ u32 func_0210e680(void) {
     u32 ok;
     u32 n;
 
-    func_0212d5e0(&data_0217c868);
+    NNS_SndArcSetCurrent(&data_0217c868);
     v = func_0210efcc(&data_0217d0a0, data_0216cb30, data_0217d130, 0);
     func_0210d990(1);
     if (v == 0) {
         return 0;
     }
-    if (func_0212e994(1, data_0217d130) == 0) {
+    if (NNS_SndArcLoadSeqArc(1, data_0217d130) == 0) {
         return 0;
     }
-    p = func_0212d4b8(1);
-    q = func_0212d4b8(0);
+    p = (u32 *) NNS_SndArcGetSeqArcInfo(1);
+    q = (u32 *) NNS_SndArcGetSeqArcInfo(0);
     a = *p;
     b = *q;
-    func_0212d238(b, func_0212d254(a));
-    func_0212d238(a, NULL);
+    NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
+    NNS_SndArcSetFileAddress(a, NULL);
     n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
     ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
     ((Unk0217d178 *) data_0217d178)->mUnk_00[n] = b;
-    if (func_0212e924(0x3e, data_0217d130) != 0) {
-        p = (u32 *) func_0212d3f0(0x3e);
-        q = (u32 *) func_0212d3f0(0x3d);
-        b = ((Unk0212e490 *) q)->mUnk_00;
-        a = ((Unk0212e490 *) p)->mUnk_00;
-        func_0212d238(b, func_0212d254(a));
-        func_0212d238(a, NULL);
+    if (NNS_SndArcLoadWaveArc(0x3e, data_0217d130) != 0) {
+        p = (u32 *) NNS_SndArcGetWaveArcInfo(0x3e);
+        q = (u32 *) NNS_SndArcGetWaveArcInfo(0x3d);
+        b = ((NNSSndArcWaveArcInfo *) q)->mFileId;
+        a = ((NNSSndArcWaveArcInfo *) p)->mFileId;
+        NNS_SndArcSetFileAddress(b, NNS_SndArcGetFileAddress(a));
+        NNS_SndArcSetFileAddress(a, NULL);
         ok = 1;
         n = ((Unk0217d178 *) data_0217d178)->mUnk_40;
         ((Unk0217d178 *) data_0217d178)->mUnk_40 = n + 1;
@@ -317,11 +317,11 @@ u32 func_0210e680(void) {
     if (ok == 0) {
         return 0;
     }
-    if (func_0212e924(1, data_0217d130) == 0) {
+    if (NNS_SndArcLoadWaveArc(1, data_0217d130) == 0) {
         ok = 0;
-    } else if (func_0212e8f4(0, 2, data_0217d130) == 0) {
+    } else if (NNS_SndArcLoadBankEx(0, 2, data_0217d130) == 0) {
         ok = 0;
-    } else if (func_0212e994(0, data_0217d130) == 0) {
+    } else if (NNS_SndArcLoadSeqArc(0, data_0217d130) == 0) {
         ok = 0;
     } else {
         ok = 1;
@@ -346,7 +346,7 @@ u32 func_0210e5e4(u32 a, u32 b) {
     v.mUnk_00 = d.mUnk_01;
     v.mUnk_04 = d.mUnk_02;
     v.mUnk_08 = d.mUnk_03;
-    func_0212d5e0(&data_0217d0a0);
+    NNS_SndArcSetCurrent(&data_0217d0a0);
     x = func_0210e98c(v, 1) != 0;
     if (x != 0) {
         x = func_02111158(a);
@@ -364,12 +364,12 @@ u32 func_0210e524(void) {
     v.mUnk_00 = c.mUnk_00[1];
     v.mUnk_04 = c.mUnk_00[2];
     v.mUnk_08 = c.mUnk_00[3];
-    func_0212d5e0(&data_0217d0a0);
+    NNS_SndArcSetCurrent(&data_0217d0a0);
     return func_0210e98c(v, 1) != 0;
 }
 
 u32 func_0210e50c(s32 a) {
-    return func_0212ea04(a, data_0217d130);
+    return NNS_SndArcLoadGroup(a, data_0217d130);
 }
 
 void func_0210e4ec(Unk0217c7b4 *p) {
@@ -378,7 +378,7 @@ void func_0210e4ec(Unk0217c7b4 *p) {
 }
 
 void func_0210e4c8(Unk0217c7b4 *p) {
-    p->mUnk_0c = HeapStackSave(data_0217d130);
+    p->mUnk_0c = NNS_SndHeapSaveState(data_0217d130);
 }
 
 void func_0210e434(Unk0217c7b4 *p) {
@@ -387,8 +387,8 @@ void func_0210e434(Unk0217c7b4 *p) {
     if (v.mUnk_00 == p->mUnk_00.mUnk_00 && v.mUnk_04 == p->mUnk_00.mUnk_04 && v.mUnk_08 == p->mUnk_00.mUnk_08) {
         return;
     }
-    HeapStackRestore(data_0217d130, p->mUnk_0c);
-    func_0212da2c(data_0217d130);
+    NNS_SndHeapLoadState(data_0217d130, p->mUnk_0c);
+    NNS_SndHeapGetCurrentLevel(data_0217d130);
     p->mUnk_00 = data_0215c38c;
 }
 
@@ -400,13 +400,13 @@ u32 func_0210e3ec(Unk0217c7b4 *p, Unk0215c380 v) {
 }
 
 u32 func_0210e33c(Unk0217c7b4 *p, Unk0215c380 v) {
-    if (v.mUnk_00 != 0xff && func_0212e9cc(v.mUnk_00, data_0217d130) == 0) {
+    if (v.mUnk_00 != 0xff && NNS_SndArcLoadSeq(v.mUnk_00, data_0217d130) == 0) {
         return 0;
     }
-    if (v.mUnk_04 != 0xff && func_0212e95c(v.mUnk_04, data_0217d130) == 0) {
+    if (v.mUnk_04 != 0xff && NNS_SndArcLoadBank(v.mUnk_04, data_0217d130) == 0) {
         return 0;
     }
-    if (v.mUnk_08 != 0xff && func_0212e95c(v.mUnk_08, data_0217d130) == 0) {
+    if (v.mUnk_08 != 0xff && NNS_SndArcLoadBank(v.mUnk_08, data_0217d130) == 0) {
         return 0;
     }
     p->mUnk_00 = v;

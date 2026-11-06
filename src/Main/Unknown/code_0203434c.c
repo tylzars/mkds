@@ -127,9 +127,9 @@ s32 func_02034370(Unk02034370 *a) {
             switch (func_02054c98(0, NULL)) {
                 case 1:
                     func_021262f0(GetBmgEntry(data_02174e64->mUnk_088, 0xf));
-                    func_0212d5e0(&data_0217c868);
-                    func_0212ecc0(&data_0217d068, 0, 9);
-                    func_0212d5e0(&data_0217d0a0);
+                    NNS_SndArcSetCurrent(&data_0217c868);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 9);
+                    NNS_SndArcSetCurrent(&data_0217d0a0);
                     data_02174e64->mUnk_094 = 5;
                     break;
                 case 0:
@@ -160,9 +160,9 @@ s32 func_02034370(Unk02034370 *a) {
                                 if (data_02174e64->mUnk_080 == i) {
                                     func_02034f60();
                                 }
-                                func_0212d5e0(&data_0217c868);
-                                func_0212ecc0(&data_0217d068, 0, 7);
-                                func_0212d5e0(&data_0217d0a0);
+                                NNS_SndArcSetCurrent(&data_0217c868);
+                                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 7);
+                                NNS_SndArcSetCurrent(&data_0217d0a0);
                             }
                         } else {
                             func_02025f14(&data_02174e64->mUnk_09c[i].mUnk_2c, 2);
@@ -189,7 +189,7 @@ s32 func_02034370(Unk02034370 *a) {
                         func_020351c8();
                         func_02035228(data_02174e64->mUnk_080 != m ? 1 : 0);
                         data_02174e64->mUnk_080 = m;
-                        func_0212ecc0(&data_0217d068, 0, 5);
+                        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         func_021282c8();
                         data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mUnk_090 = 0;
@@ -197,7 +197,7 @@ s32 func_02034370(Unk02034370 *a) {
                     } else if ((u16) (data_02175628[k].mUnk_00 & 1) != 0 && data_02174e64->mUnk_080 >= 0) {
                         func_020351c8();
                         func_02035228(0);
-                        func_0212ecc0(&data_0217d068, 0, 5);
+                        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         func_021282c8();
                         data_02174e64->mUnk_18c = TRUE;
                         data_02174e64->mUnk_090 = 0;
@@ -304,17 +304,17 @@ s32 func_02034370(Unk02034370 *a) {
                 data_02174e64->mUnk_08c = func_0202d9fc();
                 ((Unk0202ddd8 *) func_0202ddd8())->mUnk_08_0 = 1;
                 func_020566a8((u8) data_02174e64->mUnk_08c, func_0202ddd8());
-                func_0212d5e0(&data_0217c868);
-                func_0212ecc0(&data_0217d068, 0, 10);
-                func_0212d5e0(&data_0217d0a0);
+                NNS_SndArcSetCurrent(&data_0217c868);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 10);
+                NNS_SndArcSetCurrent(&data_0217d0a0);
                 data_02174e64->mUnk_094 = 11;
             }
             break;
         case 9:
             if (func_02125f40() != 0 && func_02125f60() == 0) {
-                func_0212d5e0(&data_0217c868);
-                func_0212ecc0(&data_0217d068, 0, 10);
-                func_0212d5e0(&data_0217d0a0);
+                NNS_SndArcSetCurrent(&data_0217c868);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 10);
+                NNS_SndArcSetCurrent(&data_0217d0a0);
             }
             if (func_02125f54() != 0) {
                 func_02125fc0();
@@ -349,7 +349,7 @@ s32 func_02034370(Unk02034370 *a) {
             break;
         case 15:
             if (func_02125f6c() != 0) {
-                func_0212ecc0(&data_0217d068, 0, 0x15);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
             if (func_02125f54() != 0) {
                 data_02174e64->mUnk_090 = 0;

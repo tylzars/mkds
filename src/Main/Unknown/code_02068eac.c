@@ -658,7 +658,7 @@ s32 func_02068ec0(Kart *p, s32 a) {
                     if (h[0] != NULL) {
                         NNS_SndPlayerStopSeq(h, 0);
                     }
-                    func_0212ecc0(h, 0, 0x4c);
+                    NNS_SndArcPlayerStartSeqArc(h, 0, 0x4c);
                 }
             }
         }

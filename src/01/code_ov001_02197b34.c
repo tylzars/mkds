@@ -100,7 +100,7 @@ void func_ov001_021982e8(void) {
             func_021282c8();
             break;
     }
-    func_0212ecc0(&data_0217d068, 0, 5);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
 // Requests state 5: stores mNextState = 5 and zeroes mStateFrames; the next AdvanceTimeAttackTopMenu call copies it to
@@ -299,7 +299,7 @@ next:
                 gTimeAttackTopMenu->mIndex = 2;
             }
             func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
-            func_0212ecc0(&data_0217d068, 0, 0);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         } else if (func_020ae408(8, 0x80) != 0) {
             func_ov001_02198264((s32) (gTimeAttackTopMenu->mIndex));
             gTimeAttackTopMenu->mIndex++;
@@ -307,7 +307,7 @@ next:
                 gTimeAttackTopMenu->mIndex = 0;
             }
             func_ov001_0219829c((s32) (gTimeAttackTopMenu->mIndex));
-            func_0212ecc0(&data_0217d068, 0, 0);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     }
 }

@@ -111,7 +111,7 @@ void func_0210cc3c(SoundSource *p) {
 }
 
 static inline s32 func_0210ca4c_inline(u32 k, u8 a, u16 b) {
-    s32 n = k + (func_0212d580(a, b)->mUnk_04 - 0x40);
+    s32 n = k + (NNS_SndArcGetSeqArcParam(a, b)->mPlayerPrio - 0x40);
     if (n > 0) {
         if (n >= 0x7f) {
             n = 0x7f;

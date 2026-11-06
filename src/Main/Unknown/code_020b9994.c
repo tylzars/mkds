@@ -180,7 +180,7 @@ void func_020bab54(void) {
                         if (*r != NULL) {
                             NNS_SndPlayerStopSeq(r, 0);
                         }
-                        func_0212ecc0(r, 0, k);
+                        NNS_SndArcPlayerStartSeqArc(r, 0, k);
                     }
                 }
             }
@@ -199,7 +199,7 @@ void func_020bab54(void) {
                         if (*r != NULL) {
                             NNS_SndPlayerStopSeq(r, 0);
                         }
-                        func_0212ecc0(r, 0, k);
+                        NNS_SndArcPlayerStartSeqArc(r, 0, k);
                     }
                 }
             }
@@ -220,7 +220,7 @@ void func_020bab54(void) {
                 if (*r2 != NULL) {
                     NNS_SndPlayerStopSeq(r2, 0);
                 }
-                func_0212ecc0(r2, 0, k2);
+                NNS_SndArcPlayerStartSeqArc(r2, 0, k2);
             }
         }
     }

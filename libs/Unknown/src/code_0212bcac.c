@@ -17,18 +17,18 @@
 
 // Allocates a player heap of size bytes from heap, sets up its own heap on it and adds it to the heap list of player
 // index.
-BOOL NNS_SndPlayerCreateHeap(int index, HeapStack *heap, u32 size) {
+BOOL NNS_SndPlayerCreateHeap(int index, NNSSndHeap *heap, u32 size) {
     NNSSndPlayerHeap *block;
-    HeapStack *inner;
+    NNSSndHeap *inner;
 
-    block = HeapStackAlloc(heap, size + 0x14, PlayerHeapDisposeCallback, 0, 0);
+    block = NNS_SndHeapAlloc(heap, size + 0x14, PlayerHeapDisposeCallback, 0, 0);
     if (block == 0) {
         return 0;
     }
     block->mPlayer = 0;
     block->mPlayerNo = index;
     block->mHandle = 0;
-    inner = HeapStackCreate(block->mUnk_14, size);
+    inner = NNS_SndHeapCreate(block->mUnk_14, size);
     if (inner == 0) {
         return 0;
     }
@@ -363,7 +363,7 @@ void NNSi_SndPlayerStopSeq(NNSSndSeqPlayer *seq, int fadeSteps) {
 }
 
 // Takes a free player heap of index for seq, empties it and returns its heap.
-HeapStack *NNSi_SndPlayerAllocHeap(int index, NNSSndSeqPlayer *seq) {
+NNSSndHeap *NNSi_SndPlayerAllocHeap(int index, NNSSndSeqPlayer *seq) {
     NNSSndPlayer *player = &data_0217d89c[index];
     NNSSndPlayerHeap *heap;
 
@@ -374,7 +374,7 @@ HeapStack *NNSi_SndPlayerAllocHeap(int index, NNSSndSeqPlayer *seq) {
     NNS_FndRemoveListObject(&player->mHeapList, heap);
     heap->mPlayer = seq;
     seq->mHeap = heap;
-    HeapStackReset(heap->mHandle);
+    NNS_SndHeapClear(heap->mHandle);
     return heap->mHandle;
 }
 
@@ -467,11 +467,13 @@ void ShutdownPlayer(NNSSndSeqPlayer *seq) {
 }
 
 // Frees the heap of a player heap, and unlinks the player heap from the sequence player or from the heap list.
-void PlayerHeapDisposeCallback(NNSSndPlayerHeap *heap) {
+void PlayerHeapDisposeCallback(void *mem, u32 size, void *data1, u32 data2) {
+    NNSSndPlayerHeap *heap = mem;
+
     if (heap->mHandle == 0) {
         return;
     }
-    HeapStackDestroy(heap->mHandle);
+    NNS_SndHeapDestroy(heap->mHandle);
     if (heap->mPlayer != 0) {
         heap->mPlayer->mHeap = 0;
         return;

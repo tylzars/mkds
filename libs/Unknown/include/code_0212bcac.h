@@ -30,11 +30,11 @@ typedef struct NNSSndSeqPlayer {
 
 #include "code_0212d214.h"
 
-// Memory NNS_SndPlayerCreateHeap gets from HeapStackAlloc: mHandle is the HeapStack it sets up on mUnk_14, mPlayerNo
+// Memory NNS_SndPlayerCreateHeap gets from NNS_SndHeapAlloc: mHandle is the NNSSndHeap it sets up on mUnk_14, mPlayerNo
 // the index of the data_0217d89c element whose heap list receives it.
 typedef struct NNSSndPlayerHeap {
     /* 00 */ u8 mLink[8];
-    /* 08 */ HeapStack *mHandle;
+    /* 08 */ NNSSndHeap *mHandle;
     /* 0c */ NNSSndSeqPlayer *mPlayer;
     /* 10 */ u32 mPlayerNo;
     /* 14 */ u8 mUnk_14[1];
@@ -48,14 +48,14 @@ extern NNSFndList data_0217d444;
 extern NNSFndList data_0217d450;
 
 void SetPlayerPriority(NNSSndSeqPlayer *seq, int priority);
-void PlayerHeapDisposeCallback(NNSSndPlayerHeap *heap);
+void PlayerHeapDisposeCallback(void *mem, u32 size, void *data1, u32 data2);
 void ShutdownPlayer(NNSSndSeqPlayer *seq);
 NNSSndSeqPlayer *AllocSeqPlayer(int priority);
 void ForceStopSeq(NNSSndSeqPlayer *seq);
 void InsertPrioList(NNSSndSeqPlayer *seq);
 void InsertPlayerList(NNSSndPlayer *player, NNSSndSeqPlayer *seq);
 void InitPlayer(NNSSndSeqPlayer *seq);
-HeapStack *NNSi_SndPlayerAllocHeap(int index, NNSSndSeqPlayer *seq);
+NNSSndHeap *NNSi_SndPlayerAllocHeap(int index, NNSSndSeqPlayer *seq);
 void NNSi_SndPlayerStopSeq(NNSSndSeqPlayer *seq, int fadeSteps);
 void NNSi_SndPlayerStartSeq(NNSSndSeqPlayer *seq, void *data, u32 offset, Unk02021968 *bank);
 void NNSi_SndPlayerFreeSeqPlayer(NNSSndSeqPlayer *seq);
@@ -81,4 +81,4 @@ void NNS_SndHandleReleaseSeq(NNSSndSeqPlayer **handle);
 void NNS_SndHandleInit(NNSSndSeqPlayer **handle);
 void NNS_SndPlayerStopSeqAll(u32 fadeSteps);
 u32 NNS_SndPlayerStopSeq(NNSSndSeqPlayer **handle, u32 fadeSteps);
-BOOL NNS_SndPlayerCreateHeap(int index, HeapStack *heap, u32 size);
+BOOL NNS_SndPlayerCreateHeap(int index, NNSSndHeap *heap, u32 size);

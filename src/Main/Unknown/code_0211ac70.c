@@ -277,7 +277,7 @@ void func_0211d56c(void) {
         }
     }
     if (a != 0) {
-        func_0212ecc0(&data_0217d068, 0, 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
 }
 
@@ -310,7 +310,7 @@ void func_0211d4a8(void) {
         }
     }
     if (a != 0) {
-        func_0212ecc0(&data_0217d068, 0, 0);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
     }
 }
 
@@ -438,7 +438,7 @@ void func_0211d174(u16 a, u32 b) {
     if (func_0211d44c(a) == 0) {
         v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
         if (a == data_0217aa00->mUnk_1e52[v].mUnk_00) {
-            func_0212ecc0(&data_0217d068, 0, 0x16);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x16);
         }
         return;
     }
@@ -468,7 +468,7 @@ void func_0211d174(u16 a, u32 b) {
                 gSelectRaceRule->mUnk_50[1][1] = 6;
                 break;
         }
-        func_0212ecc0(&data_0217d068, 0, 4);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 4);
     }
 }
 
@@ -685,7 +685,7 @@ void func_0211ccac(s32 a) {
     }
     gSelectRaceRule->mUnk_3c[gSelectRaceRule->mRow][1] = 6;
     if (a != 0) {
-        func_0212ecc0(&data_0217d068, 0, 1);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 1);
     }
 }
 
@@ -737,7 +737,7 @@ void func_0211cb6c(s32 a) {
     }
     gSelectRaceRule->mUnk_3c[gSelectRaceRule->mRow][0] = 6;
     if (a != 0) {
-        func_0212ecc0(&data_0217d068, 0, 1);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 1);
     }
 }
 
@@ -760,7 +760,7 @@ void func_0211cafc(void) {
                 break;
         }
         if (a != FALSE) {
-            func_0212ecc0(&data_0217d068, 0, 0x17);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
         }
     }
 }
@@ -784,7 +784,7 @@ void func_0211ca8c(void) {
                 break;
         }
         if (a != FALSE) {
-            func_0212ecc0(&data_0217d068, 0, 0x17);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x17);
         }
     }
 }
@@ -1291,7 +1291,7 @@ void func_0211ba58(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_0212b7e8();
     }
-    func_0212ecc0(&data_0217d068, 0, 5);
+    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
     func_0211c474();
 }
 
@@ -1744,7 +1744,7 @@ chain:
         if (func_0211d650() != 8 || d != 1) {
             gSelectRaceRule->mRow = d;
             gSelectRaceRule->mOnButton = 0;
-            func_0212ecc0(&data_0217d068, 0, 0);
+            NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0);
         }
     } else if ((u16) (r->mUnk_00 & 1) != 0) {
         if (gSelectRaceRule->mOnButton != 0) {

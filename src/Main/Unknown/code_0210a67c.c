@@ -217,7 +217,7 @@ void func_0210b198(s32 a, s32 b, u32 c, s32 d, s32 e) {
     if (h != NULL) {
         NNS_SndPlayerStopSeq(&h, 0);
     }
-    func_0212ec04(&h, d, -1, e, 2, f);
+    NNS_SndArcPlayerStartSeqArcEx(&h, d, -1, e, 2, f);
     func_02105b28(&h, c);
     NNS_SndHandleReleaseSeq(&h);
 }
@@ -279,7 +279,7 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
             if (h != NULL) {
                 NNS_SndPlayerStopSeq(&h, 0);
             }
-            func_0212ec04(&h, 1, -1, 0x7f, 2, g);
+            NNS_SndArcPlayerStartSeqArcEx(&h, 1, -1, 0x7f, 2, g);
             func_02105b28(&h, e);
             NNS_SndHandleReleaseSeq(&h);
         } else {
@@ -414,7 +414,7 @@ void func_0210abf4(Kart *a, s32 b, s32 c, s32 d) {
     if (h != NULL) {
         NNS_SndPlayerStopSeq(&h, 0);
     }
-    func_0212ec04(&h, -1, -1, 0x6e, 2, f);
+    NNS_SndArcPlayerStartSeqArcEx(&h, -1, -1, 0x6e, 2, f);
     func_02105b28(&h, d);
     NNS_SndHandleReleaseSeq(&h);
 }
@@ -434,7 +434,7 @@ void func_0210ab48(s32 a, s32 b) {
     if (h != NULL) {
         NNS_SndPlayerStopSeq(&h, 0);
     }
-    func_0212ec04(&h, 7, -1, -1, 2, d);
+    NNS_SndArcPlayerStartSeqArcEx(&h, 7, -1, -1, 2, d);
     func_02105b28(&h, 0x6e);
     NNS_SndHandleReleaseSeq(&h);
 }
@@ -451,15 +451,15 @@ void func_0210aa14(Kart *a, PlayingSound *b, s32 c) {
     u32 d;
     u32 e;
     s32 f;
-    Unk0212d580 *p;
+    NNSSndSeqParam *p;
     u32 g;
 
     d = b->mUnk_18;
     e = b->mSoundId;
     f = -1;
     if (a->mIndex == data_021759c0->mEntryIndex) {
-        p = func_0212d580(d, e);
-        g = p->mUnk_05;
+        p = NNS_SndArcGetSeqArcParam(d, e);
+        g = p->mPlayerNo;
         if (g == 2) {
             f = 4;
         } else if (g == 3) {
@@ -472,13 +472,13 @@ void func_0210aa14(Kart *a, PlayingSound *b, s32 c) {
     }
     if ((b->mUnk_19 & 0x20) && (b->mUnk_19 & 0x40)) {
         g = func_02079b40(a->mIndex) + 0x2d;
-        func_0212ec04(&b->mUnk_00, f, g, c, d, e);
+        NNS_SndArcPlayerStartSeqArcEx(&b->mUnk_00, f, g, c, d, e);
         if (b == NULL) {
             return;
         }
         NNS_SndPlayerWriteVariable(&b->mUnk_00, 0, (s16) a->mUnk_4b8);
     } else {
-        func_0212ec04(&b->mUnk_00, f, -1, c, d, e);
+        NNS_SndArcPlayerStartSeqArcEx(&b->mUnk_00, f, -1, c, d, e);
     }
 }
 

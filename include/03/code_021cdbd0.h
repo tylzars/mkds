@@ -3,11 +3,11 @@
 #include "types.h"
 #include "code_0212bcac.h"
 
-typedef struct Unk0212d5f8 Unk0212d5f8;
+typedef struct NNSSndArc NNSSndArc;
 
 // Object at data_ov003_021da274.
 typedef struct Unk021cdc4c {
-    /* 00 */ Unk0212d5f8 mUnk_00;
+    /* 00 */ NNSSndArc mUnk_00;
     /* 90 */ NNSSndSeqPlayer *mUnk_90;
     /* 94 */ void *mUnk_94;
     /* 98 */ u32 mUnk_98;

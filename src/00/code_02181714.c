@@ -339,7 +339,7 @@ void AdvanceWiFiTopMenuState8(void) {
     BOOL b;
     u32 v;
     if (func_02125f6c() != 0) {
-        func_0212ecc0(&data_0217d068, 0, 0x15);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
     }
     if (func_02125fa4() != 0 && IsSelectReturnState2NoState3Or4Request() != 0) {
         if ((u16) (data_02175628[i].mUnk_00 & 2) == 0) {

@@ -374,7 +374,7 @@ void func_02066fe0(Kart *a) {
         if (gRaceProgress->mUnk_000[a->mIndex].mStatus == 1) {
             e = 0;
             if (TryGetRaceUpdateFramesSinceEntryEnd((u32 *) &e) != 0 && (u32) e > 0xb4) {
-                func_0212ecc0(&data_0217d068, 0, 0x45);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x45);
             }
         }
     }

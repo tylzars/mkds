@@ -12,135 +12,124 @@
 #include "Main/Unknown/unk_0217e000.h"
 #include "Main/Unknown/unk_02152000.h"
 
-// Walks the four objects of data_0217e404.
-void func_0212f094(void) {
+// Steps the four stream players: start, volume and fade-out.
+void NNSi_SndArcStrmMain(void) {
     s32 i;
-    s32 a;
-    s32 b;
-    Unk0212c7f0 *p;
+    s32 initVolume;
+    s32 volume;
+    Unk0212c7f0 *player;
 
-    p = data_0217e404;
-    for (i = 0; i < 4; i++, p++) {
-        if (!p->mUnk_110_0) {
+    player = data_0217e404;
+    for (i = 0; i < 4; i++, player++) {
+        if (!player->mUnk_110_0) {
             continue;
         }
-        if (p->mUnk_114 == 0) {
-            func_0212efb8(p);
+        if (player->mUnk_114 == 0) {
+            ForceStopStrm_(player);
             continue;
         }
-        if (p->mUnk_110_2 && p->mUnk_118 != 0) {
-            NNS_SndStrmStart(&p->mStream);
-            p->mUnk_110_1 = 1;
-            p->mUnk_110_2 = 0;
+        if (player->mUnk_110_2 && player->mUnk_118 != 0) {
+            NNS_SndStrmStart(&player->mStream);
+            player->mUnk_110_1 = 1;
+            player->mUnk_110_2 = 0;
         }
-        if (p->mUnk_110_1) {
-            NNSi_SndFaderUpdate(&p->mUnk_e8);
-            a = data_02152ce4[p->mUnk_154];
-            b = data_02152ce4[NNSi_SndFaderGet(&p->mUnk_e8) >> 8];
-            b += a;
-            if (b != p->mUnk_158) {
-                NNS_SndStrmSetVolume(&p->mStream, b);
-                p->mUnk_158 = b;
+        if (player->mUnk_110_1) {
+            NNSi_SndFaderUpdate(&player->mUnk_e8);
+            initVolume = data_02152ce4[player->mUnk_154];
+            volume = data_02152ce4[NNSi_SndFaderGet(&player->mUnk_e8) >> 8];
+            volume += initVolume;
+            if (volume != player->mUnk_158) {
+                NNS_SndStrmSetVolume(&player->mStream, volume);
+                player->mUnk_158 = volume;
             }
-            if (p->mUnk_110_3) {
-                if (NNSi_SndFaderIsFinished(&p->mUnk_e8) != 0) {
-                    func_0212efb8(p);
+            if (player->mUnk_110_3) {
+                if (NNSi_SndFaderIsFinished(&player->mUnk_e8) != 0) {
+                    ForceStopStrm_(player);
                 }
             }
         }
     }
 }
 
-// Clears mUnk_14c (and the word it points to) and bits 0, 2 and 1 of mUnk_110.
-void func_0212f058(Unk0212c7f0 *a) {
-    if (a->mUnk_14c != 0) {
-        *a->mUnk_14c = 0;
-        a->mUnk_14c = 0;
+void FreePlayer(Unk0212c7f0 *player) {
+    if (player->mUnk_14c != 0) {
+        *player->mUnk_14c = 0;
+        player->mUnk_14c = 0;
     }
-    a->mUnk_110_0 = 0;
-    a->mUnk_110_2 = 0;
-    a->mUnk_110_1 = 0;
+    player->mUnk_110_0 = 0;
+    player->mUnk_110_2 = 0;
+    player->mUnk_110_1 = 0;
 }
 
-// Brackets func_0212ef48 with OS_LockMutex and OS_UnlockMutex on data_0217e3e0 and on mUnk_4cc of data_0217df04.
-void func_0212efb8(Unk0212c7f0 *a) {
+// Stops the player with the thread mutexes held.
+void ForceStopStrm_(Unk0212c7f0 *player) {
     OS_LockMutex(&data_0217e3e0);
     if (data_0217df04 != 0) {
-        OS_LockMutex(&data_0217df04->mUnk_4cc);
+        OS_LockMutex(&data_0217df04->mMutex);
     }
-    if (a->mUnk_110_1) {
-        NNS_SndStrmStop(&a->mStream);
+    if (player->mUnk_110_1) {
+        NNS_SndStrmStop(&player->mStream);
     }
-    if (a->mUnk_110_0) {
-        FS_CancelFile(&a->mFile);
+    if (player->mUnk_110_0) {
+        FS_CancelFile(&player->mFile);
     }
-    func_0212ef48(a);
+    ShutdownPlayer_(player);
     OS_UnlockMutex(&data_0217e3e0);
     if (data_0217df04 != 0) {
-        OS_UnlockMutex(&data_0217df04->mUnk_4cc);
+        OS_UnlockMutex(&data_0217df04->mMutex);
     }
 }
 
-// If bit 0 of mUnk_110 is set: runs func_0212ef00, FS_CloseFile, and func_0212ee8c on data_0217e3f8 and
-// mUnk_4e4 of data_0217df04, then func_0212f058.
-void func_0212ef48(Unk0212c7f0 *a) {
-    if (!a->mUnk_110_0) {
+// Frees the channels and file and drops the player's load commands.
+void ShutdownPlayer_(Unk0212c7f0 *player) {
+    if (!player->mUnk_110_0) {
         return;
     }
-    func_0212ef00(a);
-    FS_CloseFile(&a->mFile);
-    func_0212ee8c(&data_0217e3f8, a);
+    FreeChannel(player);
+    FS_CloseFile(&player->mFile);
+    RemoveCommandByPlayer(&data_0217e3f8, player);
     if (data_0217df04 != 0) {
-        func_0212ee8c(&data_0217df04->mUnk_4e4, a);
+        RemoveCommandByPlayer(&data_0217df04->mCommandList, player);
     }
-    func_0212f058(a);
+    FreePlayer(player);
 }
 
-// Lowers mUnk_120 when it is not 0 and calls NNS_SndStrmFreeChannel when it reaches 0.
-void func_0212ef00(Unk0212c7f0 *a) {
-    if (a->mUnk_120 == 0) {
+// Frees the stream channel when the count reaches 0.
+void FreeChannel(Unk0212c7f0 *player) {
+    if (player->mUnk_120 == 0) {
         return;
     }
-    a->mUnk_120 = a->mUnk_120 - 1;
-    if (a->mUnk_120 != 0) {
+    player->mUnk_120 = player->mUnk_120 - 1;
+    if (player->mUnk_120 != 0) {
         return;
     }
-    NNS_SndStrmFreeChannel(&a->mStream);
+    NNS_SndStrmFreeChannel(&player->mStream);
 }
 
-// Unlinks every element of the list whose mUnk_08 is b and passes it to func_0212ee54.
-void func_0212ee8c(NNSFndList *a, Unk0212c7f0 *b) {
-    u32 v;
-    Unk0212ee8c *p;
-    Unk0212ee8c *next;
+void RemoveCommandByPlayer(NNSFndList *commandList, Unk0212c7f0 *player) {
+    u32 enabled;
+    LoadCommand *command;
+    LoadCommand *next;
 
-    v = OS_DisableInterrupts();
-    p = NNS_FndGetNextListObject(a, 0);
-    if (p != 0) {
+    enabled = OS_DisableInterrupts();
+    command = NNS_FndGetNextListObject(commandList, 0);
+    if (command != 0) {
         do {
-            next = NNS_FndGetNextListObject(a, p);
-            if (p->mUnk_08 == b) {
-                NNS_FndRemoveListObject(a, p);
-                func_0212ee54(p);
+            next = NNS_FndGetNextListObject(commandList, command);
+            if (command->mPlayer == player) {
+                NNS_FndRemoveListObject(commandList, command);
+                FreeCommandBuffer(command);
             }
-            p = next;
-        } while (p != 0);
+            command = next;
+        } while (command != 0);
     }
-    OS_RestoreInterrupts(v);
+    OS_RestoreInterrupts(enabled);
 }
 
-u32 func_0212ee54(void *arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    u32 value4;
-    u32 value5;
-    value5 = value0;
-    value0 = (u32) OS_DisableInterrupts();
-    value4 = value0;
-    value0 = (u32) &data_0217df08;
-    value1 = value5;
-    NNS_FndAppendListObject((NNSFndList *) value0, (void *) value1);
-    value0 = value4;
-    value0 = (u32) OS_RestoreInterrupts(value0);
-    return value0;
+void FreeCommandBuffer(LoadCommand *command) {
+    u32 enabled;
+
+    enabled = OS_DisableInterrupts();
+    NNS_FndAppendListObject((NNSFndList *) data_0217df08, command);
+    OS_RestoreInterrupts(enabled);
 }

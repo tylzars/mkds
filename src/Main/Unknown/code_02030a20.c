@@ -663,13 +663,13 @@ s32 func_02030ea4(Unk02030b18 *a) {
         if (data_02174e58->mUnk_74 != v2) {
             func_02031f5c();
             if (data_02174e58->mUnk_74 > v2) {
-                func_0212d5e0(&data_0217c868);
-                func_0212ecc0(&data_0217d068, 0, 2);
-                func_0212d5e0(&data_0217d0a0);
+                NNS_SndArcSetCurrent(&data_0217c868);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
+                NNS_SndArcSetCurrent(&data_0217d0a0);
             } else {
-                func_0212d5e0(&data_0217c868);
-                func_0212ecc0(&data_0217d068, 0, 3);
-                func_0212d5e0(&data_0217d0a0);
+                NNS_SndArcSetCurrent(&data_0217c868);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 3);
+                NNS_SndArcSetCurrent(&data_0217d0a0);
             }
         }
     }
@@ -714,9 +714,9 @@ s32 func_02030ea4(Unk02030b18 *a) {
                     func_02031b30(0);
                     func_021282c8();
                     func_0212b7e8();
-                    func_0212d5e0(&data_0217c868);
-                    func_0212ecc0(&data_0217d068, 0, 6);
-                    func_0212d5e0(&data_0217d0a0);
+                    NNS_SndArcSetCurrent(&data_0217c868);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 6);
+                    NNS_SndArcSetCurrent(&data_0217d0a0);
                     data_02174e58->mUnk_78 = TRUE;
                     data_02174e58->mUnk_148 = TRUE;
                     data_02174e58->mUnk_94 = 2;
@@ -729,9 +729,9 @@ s32 func_02030ea4(Unk02030b18 *a) {
                 data_02174e58->mUnk_7c = TRUE;
                 func_02125fc0();
                 func_02128310(0);
-                func_0212d5e0(&data_0217c868);
-                func_0212ecc0(&data_0217d068, 0, 5);
-                func_0212d5e0(&data_0217d0a0);
+                NNS_SndArcSetCurrent(&data_0217c868);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
+                NNS_SndArcSetCurrent(&data_0217d0a0);
             }
             break;
         case 2:
@@ -751,7 +751,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
             break;
         case 5:
             if (func_02125f6c() != 0) {
-                func_0212ecc0(&data_0217d068, 0, 0x15);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
             if (func_02125f54() != 0) {
                 func_02125fc0();
@@ -808,13 +808,13 @@ s32 func_02030b18(Unk02030b18 *a) {
             func_02031f5c();
             if (data_02174e58->mUnk_88 == FALSE) {
                 if (data_02174e58->mUnk_74 > v2) {
-                    func_0212d5e0(&data_0217c868);
-                    func_0212ecc0(&data_0217d068, 0, 2);
-                    func_0212d5e0(&data_0217d0a0);
+                    NNS_SndArcSetCurrent(&data_0217c868);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 2);
+                    NNS_SndArcSetCurrent(&data_0217d0a0);
                 } else if (data_02174e58->mUnk_74 < v2) {
-                    func_0212d5e0(&data_0217c868);
-                    func_0212ecc0(&data_0217d068, 0, 3);
-                    func_0212d5e0(&data_0217d0a0);
+                    NNS_SndArcSetCurrent(&data_0217c868);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 3);
+                    NNS_SndArcSetCurrent(&data_0217d0a0);
                 }
                 data_02174e58->mUnk_88 = FALSE;
             }
@@ -874,9 +874,9 @@ s32 func_02030b18(Unk02030b18 *a) {
                 if (x != FALSE) {
                     func_021282c8();
                     func_02025f14(&data_02174e58->mUnk_a0[0], 2);
-                    func_0212d5e0(&data_0217c868);
-                    func_0212ecc0(&data_0217d068, 0, 6);
-                    func_0212d5e0(&data_0217d0a0);
+                    NNS_SndArcSetCurrent(&data_0217c868);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 6);
+                    NNS_SndArcSetCurrent(&data_0217d0a0);
                     data_02174e58->mUnk_148 = TRUE;
                     data_02174e58->mUnk_90 = 1;
                     break;
@@ -896,15 +896,15 @@ s32 func_02030b18(Unk02030b18 *a) {
                     data_02174e58->mUnk_7c = TRUE;
                     func_02125fc0();
                     func_02128310(0);
-                    func_0212d5e0(&data_0217c868);
-                    func_0212ecc0(&data_0217d068, 0, 3);
-                    func_0212d5e0(&data_0217d0a0);
+                    NNS_SndArcSetCurrent(&data_0217c868);
+                    NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 3);
+                    NNS_SndArcSetCurrent(&data_0217d0a0);
                 }
             }
             break;
         case 5:
             if (func_02125f6c() != 0) {
-                func_0212ecc0(&data_0217d068, 0, 0x15);
+                NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x15);
             }
             if (func_02125f54() != 0) {
                 data_02174e58->mUnk_6c = 0;

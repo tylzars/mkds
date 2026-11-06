@@ -50,14 +50,14 @@ u32 func_0211127c(void) {
 }
 
 void func_02111250(void *a, u32 b) {
-    data_0217d32c.mUnk_04 = HeapStackCreate(a, b);
+    data_0217d32c.mUnk_04 = NNS_SndHeapCreate(a, b);
     data_0217d32c.mUnk_08 = NULL;
 }
 
 u32 func_02111158(s32 a) {
     Unk0217d32c *p;
     u32 *b;
-    HeapStack *n;
+    NNSSndHeap *n;
     s32 i;
     n = data_0217d130;
     p = &data_0217d32c;
@@ -70,10 +70,10 @@ u32 func_02111158(s32 a) {
         return 1;
     }
     data_0217d130 = data_0217d32c.mUnk_04;
-    HeapStackReset(p->mUnk_04);
+    NNS_SndHeapClear(p->mUnk_04);
     for (i = 0; i < 6; i++) {
         if (b[i] != 0xff) {
-            if (func_0212e9cc(b[i], data_0217d130) == 0) {
+            if (NNS_SndArcLoadSeq(b[i], data_0217d130) == 0) {
                 data_0217d130 = n;
                 return 0;
             }

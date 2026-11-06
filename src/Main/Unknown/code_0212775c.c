@@ -256,7 +256,7 @@ void func_02128310(s32 a) {
     }
     v = gSelectReturn->mUnk_824;
     if (v != -1) {
-        func_0212ecc0(&data_0217d068, 0, (u16) v);
+        NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, (u16) v);
     }
 }
 
