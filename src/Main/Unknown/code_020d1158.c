@@ -13,11 +13,11 @@ void func_020d1198(Unk020d029c *a) {
     c = GetRaceStartBattleMNcerEntry(data_021759c0->mUnk_18 == 0 ? VALUE_0 : VALUE_1);
     q[0][0] = 0x80000;
     q[0][1] = 0x60000;
-    a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q[0], 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q[0], 0, 1);
     c = GetRaceStartBattleMNcerEntry(2);
     q[1][0] = 0x80000;
     q[1][1] = 0x60000;
-    a->mUnk_400 += func_020224e0(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q[1], 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q[1], 0, 1);
 }
 
 u16 *func_020d118c(void) {

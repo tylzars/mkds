@@ -1,13 +1,6 @@
 #include "code_02022a90.h"
 #include "Main/Unknown/unk_02174000.h"
 
-u32 func_02022a90(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
-    value2 = (u32) &data_02174e04;
-    value1 = 0x30u;
-    value2 = (u32) * (const u32 *) ((value2) + (0));
-    value0 = (value1) * (value0) + (value2);
-    return value0;
+NNSG2dCellTransferState *NNSi_G2dGetCellTransferState(u32 handle) {
+    return data_02174e04 + handle;
 }

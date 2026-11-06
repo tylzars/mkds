@@ -11,7 +11,7 @@ typedef struct Unk02124c70_00 {
 } Unk02124c70_00;
 
 // 0x404 bytes: 0x20 groups of four 8-byte entries, then two halfwords (func_02124c70 adds the return value of
-// func_020224e0 to mUnk_400; func_020ae5e4 returns mUnk_402).
+// NNS_G2dMakeCellToOams to mUnk_400; func_020ae5e4 returns mUnk_402).
 typedef struct Unk02124c70 {
     /* 000 */ Unk02124c70_00 mUnk_000[0x20];
     /* 400 */ u16 mUnk_400;

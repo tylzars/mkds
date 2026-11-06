@@ -1,5 +1,6 @@
 #pragma once
 
 #include "types.h"
+#include "code_02022030.h" // Unk02022030
 
-u32 func_020220f0(u32 arg0);
+u16 NNS_G2dGetAnimCtrlCurrentFrame(const Unk02022030 *pAnimCtrl);

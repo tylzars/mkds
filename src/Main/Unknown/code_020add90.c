@@ -11,7 +11,7 @@ void func_020addb8(void *a, u16 b, s32 c) {
 u32 func_020add90(Unk02022aa8 *a, u32 b) {
     u32 r;
 
-    r = func_02022ce4(a, b);
+    r = NNS_G2dFontFindGlyphIndex(a, b);
     if (r == 0xffff) {
         r = a->mUnk_00->mUnk_02;
     }

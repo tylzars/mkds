@@ -421,7 +421,7 @@ void func_020adfd8(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
 }
 
 void func_020adfb0(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
-    func_02024340(a, b, c, d, e, f);
+    NNSi_G2dTextCanvasDrawText(a, b, c, d, e, f);
 }
 
 #pragma thumb on
@@ -441,7 +441,7 @@ void func_020adf00(u32 a) {
     for (i = 0; i < 0x100; i++) {
         s[i] = 0;
     }
-    func_02023408(&o, s, 8, 2, 4);
+    NNS_G2dCharCanvasInitForBG(&o, s, 8, 2, 4);
     func_020adfd8(&q, &o, t, 2, 0);
     func_020adff0(a, r, 0);
     for (j = -1; j < 2; j++) {

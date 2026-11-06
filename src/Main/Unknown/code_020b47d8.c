@@ -145,7 +145,7 @@ void LoadNclrData(Nclr **v1, void *a) {
         r = FindPartByTag(a, 0x504c5454);
         if (r != NULL) {
             *v1 = (Nclr *) (r + 1);
-            func_02021f8c((u32) *v1);
+            NNS_G2dUnpackNCL((NNSG2dPaletteData *) *v1);
         }
     }
     DC_FlushRange((*v1)->mData, (*v1)->mDataSize);
@@ -170,7 +170,7 @@ void LoadNcgrData2(Ncgr **v1, void *a) {
         r = FindPartByTag(a, 0x43484152);
         if (r != NULL) {
             *v1 = (Ncgr *) (r + 1);
-            func_02021f7c((u32) *v1);
+            NNS_G2dUnpackBGNCG((NNSG2dCharacterData *) *v1);
         }
     }
     DC_FlushRange((*v1)->mData, (*v1)->mDataSize);
@@ -195,7 +195,7 @@ void LoadNcgrData(Ncgr **v1, void *a) {
         r = FindPartByTag(a, 0x43484152);
         if (r != NULL) {
             *v1 = (Ncgr *) (r + 1);
-            func_02021f6c((u32) *v1);
+            NNS_G2dUnpackNCG((NNSG2dCharacterData *) *v1);
         }
     }
     DC_FlushRange((*v1)->mData, (*v1)->mDataSize);
@@ -224,7 +224,7 @@ void LoadNcerData(Unk02021dc8 **v1, void *a) {
         return;
     }
     *v1 = (Unk02021dc8 *) (r + 1);
-    func_02021e8c(*v1);
+    NNS_G2dUnpackNCE(*v1);
 }
 
 void LocateNcer(Unk02021dc8 **v1, void *a) {
@@ -250,7 +250,7 @@ void LoadNanrData(Unk02021dc8 **v1, void *a) {
         return;
     }
     *v1 = (Unk02021dc8 *) (r + 1);
-    func_02021dc8(*v1);
+    NNS_G2dUnpackNAN(*v1);
 }
 
 void LoadNscrData(Nscr **v1, void *a) {
@@ -260,7 +260,7 @@ void LoadNscrData(Nscr **v1, void *a) {
         r = FindPartByTag(a, 0x5343524e);
         if (r != NULL) {
             *v1 = (Nscr *) (r + 1);
-            func_02021f9c(a, (Unk02021fd0 **) v1);
+            NNS_G2dGetUnpackedScreenData(a, (Unk02021fd0 **) v1);
         }
     }
     DC_FlushRange((*v1)->mData, (*v1)->mDataSize);

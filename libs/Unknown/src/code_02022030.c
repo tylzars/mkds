@@ -1,15 +1,15 @@
 #include "code_02022030.h"
 
-void func_02022040(Unk02022030 *a) {
-    if ((a->mUnk_10 > 0) ^ a->mUnk_04) {
-        a->mUnk_00 = &a->mUnk_18->mUnk_0c[a->mUnk_18->mUnk_02];
+void NNS_G2dResetAnimCtrlState(Unk02022030 *pAnimCtrl) {
+    if ((pAnimCtrl->mUnk_10 > 0) ^ pAnimCtrl->mUnk_04) {
+        pAnimCtrl->mUnk_00 = &pAnimCtrl->mUnk_18->mUnk_0c[pAnimCtrl->mUnk_18->mUnk_02];
     } else {
-        a->mUnk_00 = &a->mUnk_18->mUnk_0c[a->mUnk_18->mUnk_00] - 1;
+        pAnimCtrl->mUnk_00 = &pAnimCtrl->mUnk_18->mUnk_0c[pAnimCtrl->mUnk_18->mUnk_00] - 1;
     }
-    a->mUnk_0c = 0;
+    pAnimCtrl->mUnk_0c = 0;
 }
 
-void func_02022030(Unk02022030 *a, Unk02021dc8 *b) {
-    a->mUnk_18 = b;
-    func_02022040(a);
+void NNS_G2dBindAnimCtrl(Unk02022030 *pAnimCtrl, Unk02021dc8 *pAnimSequence) {
+    pAnimCtrl->mUnk_18 = pAnimSequence;
+    NNS_G2dResetAnimCtrlState(pAnimCtrl);
 }

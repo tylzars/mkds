@@ -7,8 +7,8 @@
 
 // Objects stored through the first parameter: Nscr by LocateNscr and LoadNscrData, Ncgr by
 // LocateNcgr, LoadNcgrData, LocateNcgr2 and LoadNcgrData2, Nclr by LocateNclr and LoadNclrData,
-// Unk02021dc8 by LoadNanrData, LocateNcer and LoadNcerData (LoadNanrData passes it to func_02021dc8,
-// LoadNcerData to func_02021e8c; LocateNcer looks up the same block tag as LoadNcerData).
+// Unk02021dc8 by LoadNanrData, LocateNcer and LoadNcerData (LoadNanrData passes it to NNS_G2dUnpackNAN,
+// LoadNcerData to NNS_G2dUnpackNCE; LocateNcer looks up the same block tag as LoadNcerData).
 typedef struct Ncgr {
     /* 0000 */ u16 mUnk_00;
     /* 0002 */ u16 mUnk_02;

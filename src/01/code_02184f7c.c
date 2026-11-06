@@ -53,7 +53,7 @@ Unk021ca41c_085c *func_ov001_021852f8(const char *a, void *b, void *c) {
             (s32) (rec[i].mUnk_04 > 0 ? 0.5f + (float) (rec[i].mUnk_04 << 12) : (float) (rec[i].mUnk_04 << 12) - 0.5f);
         entry->mUnk_18 = 0x1000;
         entry->mUnk_0c = rec[i].mUnk_06 != 0;
-        func_02022904((Unk02022030 *) &entry->mUnk_2c, func_02021db0(c, rec[i].mUnk_00), b);
+        NNS_G2dInitCellAnimation((Unk02022030 *) &entry->mUnk_2c, NNS_G2dGetAnimSequenceByIdx(c, rec[i].mUnk_00), b);
         if (rec[i].mUnk_06 > 1) {
             entry->mUnk_2c.mUnk_08 = TRUE;
         } else {
@@ -108,20 +108,21 @@ void func_ov001_0218516c(Unk021ca41c_085c *a, Unk0218516c *b) {
                     cell = entry->mUnk_2c.mUnk_2c;
                     pos_a[0] = x << 12;
                     pos_a[1] = y << 12;
-                    b->mUnk_400 += func_020224e0((Unk020224e0_o *) &b->mUnk_000[b->mUnk_400 * 8], 0x80 - b->mUnk_400,
-                                                 (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
+                    b->mUnk_400 +=
+                        NNS_G2dMakeCellToOams((Unk020224e0_o *) &b->mUnk_000[b->mUnk_400 * 8], 0x80 - b->mUnk_400,
+                                              (Unk020224e0_c *) cell, mtx, pos_a, idx, 1);
                 } else {
                     cell = entry->mUnk_2c.mUnk_2c;
                     pos_b[0] = x << 12;
                     pos_b[1] = y << 12;
-                    b->mUnk_400 += func_020224e0((Unk020224e0_o *) &b->mUnk_000[b->mUnk_400 * 8], 0x80 - b->mUnk_400,
-                                                 (Unk020224e0_c *) cell, NULL, pos_b, 0, 0);
+                    b->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &b->mUnk_000[b->mUnk_400 * 8],
+                                                         0x80 - b->mUnk_400, (Unk020224e0_c *) cell, NULL, pos_b, 0, 0);
                 }
             }
         }
         if (sub->mUnk_08 != FALSE) {
-            func_02022890((Unk02022030 *) &entry->mUnk_2c, 0x1000);
-            func_020228c0((Unk02022030 *) &entry->mUnk_2c, 0x1000);
+            NNS_G2dSetCellAnimationSpeed((Unk02022030 *) &entry->mUnk_2c, 0x1000);
+            NNS_G2dTickCellAnimation((Unk02022030 *) &entry->mUnk_2c, 0x1000);
         }
     }
 }
@@ -162,7 +163,7 @@ void func_ov001_02185018(Unk021a5a58 *a, s32 b) {
         sub->mUnk_14 = 2;
         a->mUnk_2c.mUnk_08 = TRUE;
     } else if (b == -2) {
-        func_02022040((Unk02022030 *) sub);
+        NNS_G2dResetAnimCtrlState((Unk02022030 *) sub);
         sub->mUnk_14 = 1;
         a->mUnk_2c.mUnk_08 = TRUE;
     } else if (b == -3) {
@@ -173,13 +174,13 @@ void func_ov001_02185018(Unk021a5a58 *a, s32 b) {
         a->mUnk_0c = FALSE;
     } else if (b >= 0) {
         a->mUnk_0c = TRUE;
-        func_02022898((Unk02022030 *) sub, b);
+        NNS_G2dSetCellAnimationCurrentFrame((Unk02022030 *) sub, b);
     }
 }
 
 s32 func_ov001_02184ff8(Unk021a5a58 *a) {
     if (a->mUnk_0c != FALSE) {
-        return func_020220f0((u32) (&a->mUnk_2c));
+        return NNS_G2dGetAnimCtrlCurrentFrame((Unk02022030 *) &a->mUnk_2c);
     }
     return -5;
 }

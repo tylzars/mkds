@@ -23,7 +23,7 @@ typedef struct Unk02124a68_04 {
     /* 04 */ u16 mUnk_04;
 } Unk02124a68_04;
 
-// What func_02021f1c returns for the functions here, and what mUnk_44 of Unk021243ac points to:
+// What NNS_G2dGetCellDataByIdx returns for the functions here, and what mUnk_44 of Unk021243ac points to:
 // mUnk_00 elements at mUnk_04.
 typedef struct Unk02124a68 {
     /* 00 */ u16 mUnk_00;

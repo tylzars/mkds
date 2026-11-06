@@ -3,4 +3,4 @@
 #include "types.h"
 
 // Declared here until the code that defines them is decompiled.
-s32 func_02022eb0(void *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, s32 h);
+s32 NNS_G2dArrangeOBJ1D(void *oam, s32 areaWidth, s32 areaHeight, s32 x, s32 y, s32 color, s32 charName, s32 vramMode);

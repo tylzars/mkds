@@ -7,7 +7,7 @@
 
 void func_020b478c(void *a, void *b) {
     if (b != NULL) {
-        func_02022d88((Unk02022aa8 *) a, (Unk02021f9c *) b);
+        NNS_G2dFontInitAuto((Unk02022aa8 *) a, (Unk02021f9c *) b);
     }
 }
 

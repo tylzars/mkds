@@ -222,7 +222,7 @@ void func_020c5804(Unk020c06c4 *a) {
             e[0] = 0x18000;
             e[1] = (y + 0xa8) << 12;
             k = a->mUnk_400;
-            a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
+            a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
             break;
         case MODE_MISSION_RUN:
             func_020c541c(a);
@@ -246,31 +246,31 @@ void func_020c55b0(Unk020c06c4 *a) {
     e0[0] = 0x18000;
     e0[1] = (y + 0xa8) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e0, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e0, 0, 1);
 
     c = GetRaceGoalMNcerEntry(data_0217b3f0->mUnk_0c + 8);
     e1[0] = 0x48000;
     e1[1] = (y + 0xb0) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e1, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e1, 0, 1);
 
     c = GetRaceGoalMNcerEntry(func_020b4b98(data_0217b3f0->mUnk_0c) != FALSE ? 0x13 : 0x14);
     e2[0] = 0x48000;
     e2[1] = (y + 0xb0) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e2, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e2, 0, 1);
 
     c = GetRaceGoalMNcerEntry(0x40);
     e3[0] = 0xda000;
     e3[1] = (y + 0xa6) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e3, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e3, 0, 1);
 
     c = GetRaceGoalMNcerEntry(0x41);
     e4[0] = 0xda000;
     e4[1] = (y + 0xa6) << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e4, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e4, 0, 1);
 }
 
 void func_020c541c(Unk020c06c4 *a) {
@@ -326,7 +326,7 @@ void func_020c541c(Unk020c06c4 *a) {
     e[0] = (y + 0x80) << 12;
     e[1] = 0x60000;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, c, NULL, e, 0, 1);
 }
 
 void func_020c53c4(void) {
@@ -415,7 +415,7 @@ void func_020c4f08(Unk020c06c4 *a) {
         v[0] = 0xf8000;
         v[1] = 0xb8000;
         e = &a->mUnk_000.mUnk_00[n];
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, p, NULL, v, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) e, 0x80 - n, p, NULL, v, 0, 1);
         for (; n < a->mUnk_400; n++, e++) {
             e->mUnk_0a = 2;
             e->mUnk_0e = 1;
@@ -423,7 +423,7 @@ void func_020c4f08(Unk020c06c4 *a) {
         w[0] = 0xf8000;
         w[1] = 0xb8000;
         n = a->mUnk_400;
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, p, NULL, w, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, p, NULL, w, 0, 1);
     }
     if (q != NULL) {
         s32 v[2];
@@ -435,7 +435,7 @@ void func_020c4f08(Unk020c06c4 *a) {
         v[0] = 0xf8000;
         v[1] = 0xa7000;
         e = &a->mUnk_000.mUnk_00[n];
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, q, NULL, v, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) e, 0x80 - n, q, NULL, v, 0, 1);
         for (; n < a->mUnk_400; n++, e++) {
             e->mUnk_0a = 2;
             e->mUnk_0e = 1;
@@ -443,7 +443,7 @@ void func_020c4f08(Unk020c06c4 *a) {
         w[0] = 0xf8000;
         w[1] = 0xa7000;
         n = a->mUnk_400;
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, q, NULL, w, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[n], 0x80 - n, q, NULL, w, 0, 1);
     }
 }
 
@@ -484,11 +484,11 @@ void InitRaceStartGp(void) {
     ncer = NULL;
     LoadNcerData(&ncer, FindSceneFileWrapper("race_start_gp_m.NCER"));
     for (i = 0; i < 3; i++) {
-        gRaceStartGp->mRaceStartGpMNcerEntries[i] = func_02021f1c(ncer, (u16) i);
+        gRaceStartGp->mRaceStartGpMNcerEntries[i] = NNS_G2dGetCellDataByIdx(ncer, (u16) i);
     }
     r = func_020b403c(2);
     s = -1;
-    func_02023408(buf, gRaceStartGp->mRaceStartGpMONcgr->mData, 0x20, 4, 4);
+    NNS_G2dCharCanvasInitForBG(buf, gRaceStartGp->mRaceStartGpMONcgr->mData, 0x20, 4, 4);
     w.mUnk_00 = buf;
     w.mUnk_04 = r;
     w.mUnk_08 = 1;
@@ -500,8 +500,8 @@ void InitRaceStartGp(void) {
         s = (data_021759c0->mMode == MODE_MISSION_RUN ? data_021759c0->mMissionTableRow : s) + 0x55;
         w.mUnk_08 = func_020b4b54();
     }
-    func_02024340(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
-    func_02024340(&w, 0, 8, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
+    NNSi_G2dTextCanvasDrawText(&w, 0, 9, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
+    NNSi_G2dTextCanvasDrawText(&w, 0, 8, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), s));
     DC_FlushRange(gRaceStartGp->mRaceStartGpMONcgr->mData, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
     GX_LoadOBJPltt(gRaceStartGp->mRaceStartGpMONclr->mData, 0, gRaceStartGp->mRaceStartGpMONclr->mDataSize);
     GX_LoadOBJ(gRaceStartGp->mRaceStartGpMONcgr->mData, 0, gRaceStartGp->mRaceStartGpMONcgr->mDataSize);
@@ -537,8 +537,8 @@ void func_020c4ae8(void) {
     p = &gRaceStartGp->mUnk_18;
     v[0] = 0x80000;
     v[1] = 0x60000;
-    p->mUnk_400 += func_020224e0((Unk020224e0_o *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400,
-                                 (Unk020224e0_c *) c, NULL, v, 0, 1);
+    p->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &p->mUnk_000.mUnk_00[p->mUnk_400], 0x80 - p->mUnk_400,
+                                         (Unk020224e0_c *) c, NULL, v, 0, 1);
     DC_FlushRange(&gRaceStartGp->mUnk_18, 0x400);
     MI_DmaFill32(3, &gRaceStartGp->mUnk_18.mUnk_000.mUnk_00[gRaceStartGp->mUnk_18.mUnk_400], 0xc0,
                  (0x80 - gRaceStartGp->mUnk_18.mUnk_400) * 8);
@@ -731,7 +731,7 @@ void func_020c3e44(Unk020c06c4 *a) {
                             w1[0] = o1.mUnk_00 << 12;
                             w1[1] = o1.mUnk_04 << 12;
                             e = &a->mUnk_000.mUnk_00[n];
-                            a->mUnk_400 += func_020224e0((Unk020224e0_o *) e, 0x80 - n, q, NULL, w1, 0, 1);
+                            a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) e, 0x80 - n, q, NULL, w1, 0, 1);
                             for (; n < a->mUnk_400; n++, e++) {
                                 if (m != -1) {
                                     e->mUnk_0e = m;
@@ -765,8 +765,8 @@ void func_020c3e44(Unk020c06c4 *a) {
                         w2[0] = o2.mUnk_00 << 12;
                         w2[1] = o2.mUnk_04 << 12;
                         p = &a->mUnk_000.mUnk_00[d];
-                        a->mUnk_400 += func_020224e0((Unk020224e0_o *) p, 0x80 - d, r,
-                                                     &data_0217b3e4->mUnk_810[y].mUnk_00, w2, (u16) (y + c), 1);
+                        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) p, 0x80 - d, r,
+                                                             &data_0217b3e4->mUnk_810[y].mUnk_00, w2, (u16) (y + c), 1);
                         for (; d < a->mUnk_400; d++, p++) {
                             if ((i != 0 ? 1 : -1) != -1) {
                                 p->mUnk_0a = i != 0 ? 1 : -1;

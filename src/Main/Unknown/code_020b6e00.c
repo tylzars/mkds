@@ -170,37 +170,37 @@ void func_020b8624(void) {
     a0 = NULL;
     LoadNcerData(&a0, FindSceneFileWrapper("race_m.NCER"));
     for (i = 0; i < 0x38; i++) {
-        data_0217b3c4->mRaceMNcerEntries[i] = func_02021f1c(a0, i);
+        data_0217b3c4->mRaceMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a0, i);
     }
     a1 = NULL;
     LoadNcerData(&a1, FindSceneFileWrapper("race_goal_m.NCER"));
     for (i = 0; i < 0x44; i++) {
-        data_0217b3c4->mRaceGoalMNcerEntries[i] = func_02021f1c(a1, i);
+        data_0217b3c4->mRaceGoalMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a1, i);
     }
 
     switch (data_021759c0->mMode) {
         case MODE_TIME_ATTACK:
             p = func_020b403c(2);
-            func_02023408(buf0, data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData, 0x20, 0x10, 4);
+            NNS_G2dCharCanvasInitForBG(buf0, data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData, 0x20, 0x10, 4);
             s0.mUnk_08 = func_020b4acc();
             s0.mUnk_00 = buf0;
             s0.mUnk_04 = p;
             s0.mUnk_0c = 0;
-            func_02024340(&s0, 0x80, 0x38, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x81));
+            NNSi_G2dTextCanvasDrawText(&s0, 0x80, 0x38, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x81));
             DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData,
                           data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mDataSize);
             a2 = NULL;
             LoadNcerData(&a2, FindSceneFileWrapper("race_ta_m.NCER"));
             for (i = 0; i < 0xf; i++) {
-                data_0217b3c4->mRaceTaMNcerEntries[i] = func_02021f1c(a2, i);
+                data_0217b3c4->mRaceTaMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a2, i);
             }
             p = func_020b403c(2);
-            func_02023408(buf1, data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData, 0x20, 4, 4);
+            NNS_G2dCharCanvasInitForBG(buf1, data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData, 0x20, 4, 4);
             s1.mUnk_08 = func_020b4acc();
             s1.mUnk_00 = buf1;
             s1.mUnk_04 = p;
             s1.mUnk_0c = 0;
-            func_02024340(&s1, 0x80, 0x18, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x6d));
+            NNSi_G2dTextCanvasDrawText(&s1, 0x80, 0x18, 0xe, 0x412, GetBmgEntry(func_020b47cc("common.bmg"), 0x6d));
             DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData,
                           data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mDataSize);
             func_020b46d0(data_0217b3c4->mNclrNcgrPairs[2].mNcgr->mData, 0, 0, 0x20, 4,
@@ -211,7 +211,7 @@ void func_020b8624(void) {
                 a3 = NULL;
                 LoadNcerData(&a3, FindSceneFileWrapper("race_battle_m.NCER"));
                 for (i = 0; i < 0xd; i++) {
-                    data_0217b3c4->mRaceBattleMNcerEntries[i] = func_02021f1c(a3, i);
+                    data_0217b3c4->mRaceBattleMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a3, i);
                 }
                 MIi_CpuCopy16(data_0217b3c4->mNclrNcgrPairs[3].mNclr->mData,
                               data_0217b3c4->mNclrNcgrPairs[0].mNclr->mData, 0x40);
@@ -221,23 +221,25 @@ void func_020b8624(void) {
                 a4 = NULL;
                 LoadNcerData(&a4, FindSceneFileWrapper("race_start_battle_m.NCER"));
                 for (i = 0; i < 3; i++) {
-                    data_0217b3c4->mRaceStartBattleMNcerEntries[i] = func_02021f1c(a4, i);
+                    data_0217b3c4->mRaceStartBattleMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a4, i);
                 }
                 p = func_020b403c(2);
                 n = func_02025d8c(data_021759c0->mCourseId);
-                func_02023408(buf2, data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData, 0x20, 4, 4);
+                NNS_G2dCharCanvasInitForBG(buf2, data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData, 0x20, 4, 4);
                 n2 = func_020b4b54();
                 s2.mUnk_04 = p;
                 s2.mUnk_00 = buf2;
                 s2.mUnk_0c = 0;
                 s2.mUnk_08 = n2;
-                func_02024340(&s2, 0, 9, 0xc, 0x40a,
-                              GetBmgEntry(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
-                func_02024340(&s2, 0, 8, 0xc, 0x40a,
-                              GetBmgEntry(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
+                NNSi_G2dTextCanvasDrawText(
+                    &s2, 0, 9, 0xc, 0x40a,
+                    GetBmgEntry(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
+                NNSi_G2dTextCanvasDrawText(
+                    &s2, 0, 8, 0xc, 0x40a,
+                    GetBmgEntry(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
                 s2.mUnk_08 = func_020b4b54();
-                func_02024340(&s2, 0, 0x19, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
-                func_02024340(&s2, 0, 0x18, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
+                NNSi_G2dTextCanvasDrawText(&s2, 0, 0x19, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
+                NNSi_G2dTextCanvasDrawText(&s2, 0, 0x18, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
                 DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData,
                               data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mDataSize);
                 MIi_CpuCopy16(data_0217b3c4->mNclrNcgrPairs[10].mNclr->mData,
@@ -250,7 +252,7 @@ void func_020b8624(void) {
             a5 = NULL;
             LoadNcerData(&a5, FindSceneFileWrapper("race_mr_m.NCER"));
             for (i = 0; i < 0x16; i++) {
-                data_0217b3c4->mRaceMrMNcerEntries[i] = func_02021f1c(a5, i);
+                data_0217b3c4->mRaceMrMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a5, i);
             }
             MIi_CpuCopy16(data_0217b3c4->mNclrNcgrPairs[4].mNclr->mData, data_0217b3c4->mNclrNcgrPairs[0].mNclr->mData,
                           0x40);
@@ -259,7 +261,7 @@ void func_020b8624(void) {
             a6 = NULL;
             LoadNcerData(&a6, FindSceneFileWrapper("race_goal_mr_m.NCER"));
             for (i = 0; i < 8; i++) {
-                data_0217b3c4->mRaceGoalMrMNcerEntries[i] = func_02021f1c(a6, i);
+                data_0217b3c4->mRaceGoalMrMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a6, i);
             }
             MIi_CpuCopy16(data_0217b3c4->mNclrNcgrPairs[5].mNclr->mData, data_0217b3c4->mNclrNcgrPairs[1].mNclr->mData,
                           0x20);
@@ -292,7 +294,7 @@ void func_020b8624(void) {
     LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[8].mNcgr, FindSceneFileWrapper("race_goal_team_s_o.NCGR"));
 
     p = func_020b403c(0);
-    func_02023408(buf3, data_0217b3c4->mNclrNcgrPairs[7].mNcgr->mData, 0x20, 0x10, 4);
+    NNS_G2dCharCanvasInitForBG(buf3, data_0217b3c4->mNclrNcgrPairs[7].mNcgr->mData, 0x20, 0x10, 4);
     s3.mUnk_00 = buf3;
     s3.mUnk_04 = p;
     s3.mUnk_08 = 1;
@@ -301,20 +303,20 @@ void func_020b8624(void) {
         x = (i % 2) * 0x68;
         y = (i / 2) * 0x10 + 0x48;
         func_020adff0(i, w3, 1);
-        func_02024340(&s3, x, y + 1, i == func_020b4d9c() ? 0xd : 0xf, 0x40a, w3);
-        func_02024340(&s3, x, y, i == func_020b4d9c() ? 0xc : 0xe, 0x40a, w3);
+        NNSi_G2dTextCanvasDrawText(&s3, x, y + 1, i == func_020b4d9c() ? 0xd : 0xf, 0x40a, w3);
+        NNSi_G2dTextCanvasDrawText(&s3, x, y, i == func_020b4d9c() ? 0xc : 0xe, 0x40a, w3);
     }
 
     p = func_020b403c(2);
-    func_02023408(buf4, data_0217b3c4->mNclrNcgrPairs[7].mNcgr->mData, 0x20, 0x10, 4);
+    NNS_G2dCharCanvasInitForBG(buf4, data_0217b3c4->mNclrNcgrPairs[7].mNcgr->mData, 0x20, 0x10, 4);
     s4.mUnk_00 = buf4;
     s4.mUnk_04 = p;
     s4.mUnk_08 = 1;
     s4.mUnk_0c = 0;
-    func_02024340(&s4, 0x20, 0x38, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), 0x79));
+    NNSi_G2dTextCanvasDrawText(&s4, 0x20, 0x38, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), 0x79));
 
     p = func_020b403c(0);
-    func_02023408(buf5, data_0217b3c4->mNclrNcgrPairs[8].mNcgr->mData, 0x20, 0xa, 4);
+    NNS_G2dCharCanvasInitForBG(buf5, data_0217b3c4->mNclrNcgrPairs[8].mNcgr->mData, 0x20, 0xa, 4);
     s5.mUnk_00 = buf5;
     s5.mUnk_04 = p;
     s5.mUnk_08 = 1;
@@ -340,24 +342,24 @@ void func_020b8624(void) {
             b = 0xe;
             c = 0xf;
         }
-        func_02024340(&s5, x2, y2 + 1, c, 0x40a, w5);
-        func_02024340(&s5, x2, y2, b, 0x40a, w5);
+        NNSi_G2dTextCanvasDrawText(&s5, x2, y2 + 1, c, 0x40a, w5);
+        NNSi_G2dTextCanvasDrawText(&s5, x2, y2, b, 0x40a, w5);
     }
 
     a9 = NULL;
     LoadNcerData(&a9, FindSceneFileWrapper("race_s.NCER"));
     for (i = 0; i < 0xc9; i++) {
-        data_0217b3c4->mRaceSNcerEntries[i] = func_02021f1c(a9, i);
+        data_0217b3c4->mRaceSNcerEntries[i] = NNS_G2dGetCellDataByIdx(a9, i);
     }
     a10 = NULL;
     LoadNcerData(&a10, FindSceneFileWrapper("race_goal_s.NCER"));
     for (i = 0; i < 0x2c; i++) {
-        data_0217b3c4->mRaceGoalSNcerEntries[i] = func_02021f1c(a10, i);
+        data_0217b3c4->mRaceGoalSNcerEntries[i] = NNS_G2dGetCellDataByIdx(a10, i);
     }
     a11 = NULL;
     LoadNcerData(&a11, FindSceneFileWrapper("race_goal_team_s.NCER"));
     for (i = 0; i < 0x28; i++) {
-        data_0217b3c4->mRaceGoalTeamSNcerEntries[i] = func_02021f1c(a11, i);
+        data_0217b3c4->mRaceGoalTeamSNcerEntries[i] = NNS_G2dGetCellDataByIdx(a11, i);
     }
 
     if (data_021759c0->mMode != MODE_TIME_ATTACK) {
@@ -366,7 +368,7 @@ void func_020b8624(void) {
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[9].mNclr, FindSceneFileWrapper("race_new_record_ta_s_o.NCLR"));
     LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[9].mNcgr, FindSceneFileWrapper("race_new_record_ta_s_o.NCGR"));
     p = func_020b403c(0);
-    func_02023408(buf6, data_0217b3c4->mNclrNcgrPairs[9].mNcgr->mData, 0x20, 0x10, 4);
+    NNS_G2dCharCanvasInitForBG(buf6, data_0217b3c4->mNclrNcgrPairs[9].mNcgr->mData, 0x20, 0x10, 4);
     s6.mUnk_00 = buf6;
     s6.mUnk_04 = p;
     s6.mUnk_08 = 1;
@@ -375,13 +377,13 @@ void func_020b8624(void) {
         y3 = (i / 2) * 0x10 + 0x49;
         func_020b6c74(i, w6, 1);
         x3 = (i % 2) * 0x68;
-        func_02024340(&s6, x3, y3 + 1, 0xf, 0x40a, w6);
-        func_02024340(&s6, x3, y3, 0xe, 0x40a, w6);
+        NNSi_G2dTextCanvasDrawText(&s6, x3, y3 + 1, 0xf, 0x40a, w6);
+        NNSi_G2dTextCanvasDrawText(&s6, x3, y3, 0xe, 0x40a, w6);
     }
     a12 = NULL;
     LoadNcerData(&a12, FindSceneFileWrapper("race_new_record_ta_s.NCER"));
     for (i = 0; i < 0x21; i++) {
-        data_0217b3c4->mRaceNewRecordTaSNcerEntries[i] = func_02021f1c(a12, i);
+        data_0217b3c4->mRaceNewRecordTaSNcerEntries[i] = NNS_G2dGetCellDataByIdx(a12, i);
     }
 }
 
@@ -606,7 +608,7 @@ void func_020b80a8(void) {
     p = func_020b403c(0);
     a = func_0212b090();
     func_0212b09c();
-    func_02023408(v1, a, 0x20, 4, 4);
+    NNS_G2dCharCanvasInitForBG(v1, a, 0x20, 4, 4);
     o.mUnk_00 = v1;
     o.mUnk_08 = 1;
     o.mUnk_04 = p;
@@ -634,8 +636,8 @@ void func_020b80a8(void) {
             b = 14;
             c = 15;
         }
-        func_02024340(&o, y, x + 1, c, 0x40a, t);
-        func_02024340(&o, y, x, b, 0x40a, t);
+        NNSi_G2dTextCanvasDrawText(&o, y, x + 1, c, 0x40a, t);
+        NNSi_G2dTextCanvasDrawText(&o, y, x, b, 0x40a, t);
     }
 }
 

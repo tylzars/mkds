@@ -1,25 +1,13 @@
 #include "code_02021f6c.h"
 
-void func_02021f8c(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (u32) * (const u32 *) ((value0) + (12));
-    value1 = (value1) + (value0);
-    *(u32 *) ((value0) + (12)) = value1;
+void NNS_G2dUnpackNCL(NNSG2dPaletteData *pPlttData) {
+    pPlttData->mRawData = (void *) ((u32) pPlttData->mRawData + (u32) pPlttData);
 }
 
-void func_02021f7c(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (u32) * (const u32 *) ((value0) + (20));
-    value1 = (value1) + (value0);
-    *(u32 *) ((value0) + (20)) = value1;
+void NNS_G2dUnpackBGNCG(NNSG2dCharacterData *pCharData) {
+    pCharData->mRawData = (void *) ((u32) pCharData->mRawData + (u32) pCharData);
 }
 
-void func_02021f6c(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (u32) * (const u32 *) ((value0) + (20));
-    value1 = (value1) + (value0);
-    *(u32 *) ((value0) + (20)) = value1;
+void NNS_G2dUnpackNCG(NNSG2dCharacterData *pCharData) {
+    pCharData->mRawData = (void *) ((u32) pCharData->mRawData + (u32) pCharData);
 }

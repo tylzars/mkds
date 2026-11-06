@@ -102,32 +102,36 @@ void DrawRaceMNumberPairTwoDigit(Unk020d029c *param_1) {
         q0[0] = (t[0] + gRaceMNumberPair->mOffsetX) << 12;
         q0[1] = 0xb1000;
         param_1->mUnk_400 +=
-            func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q0, a, 1);
+            NNS_G2dMakeCellToOams(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q0, a, 1);
     }
     a = gRaceMNumberPair->mUnk_20;
     p = gRaceMNumberPair->mUnk_18;
     c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseNumber % 10 + 0x2d);
     q1[0] = (t[1] + gRaceMNumberPair->mOffsetX) << 12;
     q1[1] = 0xb1000;
-    param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q1, a, 1);
+    param_1->mUnk_400 +=
+        NNS_G2dMakeCellToOams(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q1, a, 1);
     a = gRaceMNumberPair->mUnk_20;
     p = gRaceMNumberPair->mUnk_18;
     c = GetRaceMNcerEntry(0x37);
     q2[0] = (t[2] + gRaceMNumberPair->mOffsetX) << 12;
     q2[1] = 0xb1000;
-    param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q2, a, 1);
+    param_1->mUnk_400 +=
+        NNS_G2dMakeCellToOams(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q2, a, 1);
     a = gRaceMNumberPair->mUnk_20;
     p = gRaceMNumberPair->mUnk_18;
     c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseCount / 10 + 0x2d);
     q3[0] = (t[3] + gRaceMNumberPair->mOffsetX) << 12;
     q3[1] = 0xb1000;
-    param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q3, a, 1);
+    param_1->mUnk_400 +=
+        NNS_G2dMakeCellToOams(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q3, a, 1);
     a = gRaceMNumberPair->mUnk_20;
     p = gRaceMNumberPair->mUnk_18;
     c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseCount % 10 + 0x2d);
     q4[0] = (t[4] + gRaceMNumberPair->mOffsetX) << 12;
     q4[1] = 0xb1000;
-    param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q4, a, 1);
+    param_1->mUnk_400 +=
+        NNS_G2dMakeCellToOams(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q4, a, 1);
 }
 
 void DrawRaceMNumberPairOneDigit(Unk020d029c *param_1) {
@@ -144,17 +148,20 @@ void DrawRaceMNumberPairOneDigit(Unk020d029c *param_1) {
     c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseNumber + 0x2d);
     q0[0] = (t[0] + gRaceMNumberPair->mOffsetX) << 12;
     q0[1] = 0xb1000;
-    param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q0, a, 1);
+    param_1->mUnk_400 +=
+        NNS_G2dMakeCellToOams(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q0, a, 1);
     a = gRaceMNumberPair->mUnk_20;
     p = gRaceMNumberPair->mUnk_18;
     c = GetRaceMNcerEntry(0x37);
     q1[0] = (t[1] + gRaceMNumberPair->mOffsetX) << 12;
     q1[1] = 0xb1000;
-    param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q1, a, 1);
+    param_1->mUnk_400 +=
+        NNS_G2dMakeCellToOams(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q1, a, 1);
     a = gRaceMNumberPair->mUnk_20;
     p = gRaceMNumberPair->mUnk_18;
     c = GetRaceMNcerEntry(gRaceMNumberPair->mCourseCount + 0x2d);
     q2[0] = (t[2] + gRaceMNumberPair->mOffsetX) << 12;
     q2[1] = 0xb1000;
-    param_1->mUnk_400 += func_020224e0(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q2, a, 1);
+    param_1->mUnk_400 +=
+        NNS_G2dMakeCellToOams(&param_1->mUnk_000[param_1->mUnk_400], 0x80 - param_1->mUnk_400, c, p, q2, a, 1);
 }

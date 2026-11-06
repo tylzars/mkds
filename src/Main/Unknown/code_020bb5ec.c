@@ -214,66 +214,66 @@ void func_020bb5ec(Unk020d029c *p) {
         Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x27);
         a[0] = t[0] << 12;
         a[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, a, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, a, 0, 1);
     } else {
         Unk020224e0_c *w = GetRaceSNcerEntry(0x26);
         b[0] = t[0] << 12;
         b[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, b, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, b, 0, 1);
     }
     if (data_0217b3d0->mUnk_00.mUnk_00[0] != 0) {
         Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[0]);
         c[0] = t[1] << 12;
         c[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, c, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, c, 0, 1);
     }
     {
         Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[1]);
         d[0] = t[2] << 12;
         d[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, d, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, d, 0, 1);
     }
     q = m + 0x32;
     {
         Unk020224e0_c *w = GetRaceSNcerEntry(q);
         e[0] = t[3] << 12;
         e[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, e, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, e, 0, 1);
     }
     {
         Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[2]);
         f[0] = t[4] << 12;
         f[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, f, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, f, 0, 1);
     }
     {
         Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[3]);
         g[0] = t[5] << 12;
         g[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, g, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, g, 0, 1);
     }
     {
         Unk020224e0_c *w = GetRaceSNcerEntry(q);
         h[0] = t[6] << 12;
         h[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, h, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, h, 0, 1);
     }
     {
         Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[4]);
         j[0] = t[7] << 12;
         j[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, j, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, j, 0, 1);
     }
     {
         Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[5]);
         k[0] = t[8] << 12;
         k[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, k, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, k, 0, 1);
     }
     {
         Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[6]);
         l[0] = t[9] << 12;
         l[1] = 0xc000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, l, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, l, 0, 1);
     }
 }

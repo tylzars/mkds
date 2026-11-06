@@ -400,7 +400,7 @@ s32 func_02128058(void *a, s32 b, s32 c) {
     }
     for (i = 0; i < 2; i++) {
         data_0217d3f4->mUnk_894[i] = HeapAlloc(a, 0x800);
-        func_02023408(&data_0217d3f4->mUnk_834[i], data_0217d3f4->mUnk_894[i], 0x20, 2, 4);
+        NNS_G2dCharCanvasInitForBG(&data_0217d3f4->mUnk_834[i], data_0217d3f4->mUnk_894[i], 0x20, 2, 4);
         q = &data_0217d3f4->mUnk_834[i];
         q->mUnk_18(q, 0);
         r = func_020b4acc();

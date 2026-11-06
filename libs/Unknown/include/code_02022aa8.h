@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_020219e8.h" // Unk02021a5c
 
-// 3 bytes: func_02022bbc adds the first two, or reads the third.
+// 3 bytes: NNSi_G2dFontGetStringWidth adds the first two, or reads the third.
 typedef struct Unk02022c80 {
     /* 00 */ s8 mUnk_00;
     /* 01 */ u8 mUnk_01;
@@ -65,7 +65,7 @@ typedef struct Unk02022aa8 {
     /* 0a */ u16 mUnk_0a;
 } Unk02022aa8;
 
-// Width and height written by func_02022aa8.
+// Width and height written by NNSi_G2dFontGetTextRect.
 typedef struct Unk02022b10 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -75,14 +75,15 @@ typedef struct Unk02022b10 {
 
 #include "code_02021f9c.h" // Unk02021f9c
 
-void func_02022aa8(Unk02022b10 *a, Unk02022aa8 *b, s32 c, s32 d, u8 *e);
-s32 func_02022b44(Unk02022aa8 *a, s32 b, u8 *c);
-s32 func_02022bbc(Unk02022aa8 *a, s32 b, u8 *c, u8 **d);
-Unk02022c80 *func_02022c80(Unk02022aa8 *a, u32 b);
-u32 func_02022ce4(Unk02022aa8 *a, u32 b);
-void func_02022d44(Unk02022aa8 *a, Unk02021f9c *b);
-void func_02022d88(Unk02022aa8 *a, Unk02021f9c *b);
-u32 func_02022dd8(Unk02022dd8 *a, u32 b);
-u32 func_020231e4(u32 a, u32 b);
-void func_02023244(u16 *a, s32 b, s32 c, s32 d, s32 e, u32 f);
-void func_020232b0(u16 *a, s32 b, s32 c, s32 d, s32 e, s32 f, s32 g, u32 h);
+void NNSi_G2dFontGetTextRect(Unk02022b10 *pRect, Unk02022aa8 *pFont, s32 hSpace, s32 vSpace, u8 *txt);
+s32 NNSi_G2dFontGetTextHeight(Unk02022aa8 *pFont, s32 vSpace, u8 *txt);
+s32 NNSi_G2dFontGetStringWidth(Unk02022aa8 *pFont, s32 hSpace, u8 *str, u8 **pPos);
+Unk02022c80 *NNS_G2dFontGetCharWidthsFromIndex(Unk02022aa8 *pFont, u32 idx);
+u32 NNS_G2dFontFindGlyphIndex(Unk02022aa8 *pFont, u32 code);
+void NNS_G2dFontInitUTF16(Unk02022aa8 *pFont, Unk02021f9c *pNftrFile);
+void NNS_G2dFontInitAuto(Unk02022aa8 *pFont, Unk02021f9c *pNftrFile);
+u32 GetGlyphIndex(Unk02022dd8 *pMap, u32 code);
+u32 NNSi_G2dCalcRequiredOBJ(u32 areaWidth, u32 areaHeight);
+void NNS_G2dMapScrToChar256x16Pltt(u16 *areaBase, s32 areaWidth, s32 areaHeight, s32 scnWidth, s32 charNo, u32 cplt);
+void NNS_G2dMapScrToCharText(u16 *scnBase, s32 areaWidth, s32 areaHeight, s32 areaLeft, s32 areaTop, s32 scnWidth,
+                             s32 charNo, u32 cplt);

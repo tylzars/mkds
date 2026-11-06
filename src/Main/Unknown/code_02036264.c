@@ -37,7 +37,7 @@ void func_020362dc(void *a) {
     data_02174e6c->mUnk_000 = (u8 *) func_020d1630() + 0x14;
     b = G2S_GetBG1CharPtr();
     h = GetBmgEntry(data_02174e6c->mUnk_638, 1);
-    func_02023408(data_02174e6c->mUnk_004, (u8 *) b + 0x400, 0x20, 4, 4);
+    NNS_G2dCharCanvasInitForBG(data_02174e6c->mUnk_004, (u8 *) b + 0x400, 0x20, 4, 4);
     func_020362c4(&data_02174e6c->mUnk_024, data_02174e6c->mUnk_004, data_02174e6c->mUnk_000, 1, 4);
     func_0203629c(&data_02174e6c->mUnk_024, 0x80, 0, 3, 0x211, h);
     for (i = 7; i < 9; i++) {
@@ -71,7 +71,7 @@ void func_020362c4(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
 }
 
 u32 func_0203629c(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
-    return func_02024340(a, b, c, d, e, f);
+    return NNSi_G2dTextCanvasDrawText(a, b, c, d, e, f);
 }
 
 void func_02036278(void *a, u32 b, u32 c) {

@@ -2,70 +2,70 @@
 #include "code_020222ec.h"
 #include "code_02134398.h"
 
-static inline void func_0202212c_inline2(const Unk02022030 *a, u16 i) {
-    switch (a->mUnk_1c) {
+static inline void CallbackFuncHandling_(const Unk02022030 *pAnimCtrl, u16 currentFrameIdx) {
+    switch (pAnimCtrl->mCallbackFunctor.mType) {
         case 2:
-            if (i == a->mUnk_28) {
-                a->mUnk_24(a->mUnk_20, i);
+            if (currentFrameIdx == pAnimCtrl->mCallbackFunctor.mFrameIdx) {
+                pAnimCtrl->mCallbackFunctor.mFunc(pAnimCtrl->mCallbackFunctor.mParam, currentFrameIdx);
             }
             break;
         case 3:
-            a->mUnk_24(a->mUnk_20, i);
+            pAnimCtrl->mCallbackFunctor.mFunc(pAnimCtrl->mCallbackFunctor.mParam, currentFrameIdx);
             break;
     }
 }
 
-static inline u32 func_0202212c_inline(Unk02022030 *a) {
-    if (a->mUnk_08 != 0 && a->mUnk_0c >= (((Unk02022188 *) a->mUnk_00)->mUnk_04 << 12)) {
+static inline u32 ShouldAnmCtrlMoveNext_(Unk02022030 *pAnimCtrl) {
+    if (pAnimCtrl->mUnk_08 != 0 && pAnimCtrl->mUnk_0c >= (((Unk02022188 *) pAnimCtrl->mUnk_00)->mUnk_04 << 12)) {
         return 1;
     }
     return 0;
 }
 
-u32 func_0202212c(Unk02022030 *a, s32 b) {
-    u32 r;
-    s32 n;
-    Unk02021e40 *c;
-    u16 i;
-    s32 *p;
+u32 NNS_G2dTickAnimCtrl(Unk02022030 *pAnimCtrl, s32 frames) {
+    u32 changedFrame;
+    s32 atEdge;
+    Unk02021e40 *next;
+    u16 frameIdx;
+    s32 *currentTime;
 
-    r = 0;
-    if (a->mUnk_08 != 1) {
+    changedFrame = 0;
+    if (pAnimCtrl->mUnk_08 != 1) {
         return 0;
     }
-    a->mUnk_0c += Abs((u32) (((s64) a->mUnk_10 * b + 0x800) >> 12));
-    p = &a->mUnk_0c;
-    while (func_0202212c_inline(a)) {
-        r = 1;
-        *p = *p - (((Unk02022188 *) a->mUnk_00)->mUnk_04 << 12);
-        if ((a->mUnk_10 > 0) ^ a->mUnk_04) {
-            a->mUnk_00++;
+    pAnimCtrl->mUnk_0c += Abs((u32) (((s64) pAnimCtrl->mUnk_10 * frames + 0x800) >> 12));
+    currentTime = &pAnimCtrl->mUnk_0c;
+    while (ShouldAnmCtrlMoveNext_(pAnimCtrl)) {
+        changedFrame = 1;
+        *currentTime = *currentTime - (((Unk02022188 *) pAnimCtrl->mUnk_00)->mUnk_04 << 12);
+        if ((pAnimCtrl->mUnk_10 > 0) ^ pAnimCtrl->mUnk_04) {
+            pAnimCtrl->mUnk_00++;
         } else {
-            a->mUnk_00--;
+            pAnimCtrl->mUnk_00--;
         }
-        c = a->mUnk_00;
-        if ((a->mUnk_10 > 0) ^ a->mUnk_04) {
-            n = c >= &a->mUnk_18->mUnk_0c[a->mUnk_18->mUnk_00];
+        next = pAnimCtrl->mUnk_00;
+        if ((pAnimCtrl->mUnk_10 > 0) ^ pAnimCtrl->mUnk_04) {
+            atEdge = next >= &pAnimCtrl->mUnk_18->mUnk_0c[pAnimCtrl->mUnk_18->mUnk_00];
         } else {
-            n = c <= &a->mUnk_18->mUnk_0c[a->mUnk_18->mUnk_02] - 1;
+            atEdge = next <= &pAnimCtrl->mUnk_18->mUnk_0c[pAnimCtrl->mUnk_18->mUnk_02] - 1;
         }
-        if (n) {
-            func_02022310(a);
+        if (atEdge) {
+            SequenceEdgeHandle_(pAnimCtrl);
         }
-        if (a->mUnk_1c != 0) {
-            i = ((u32) a->mUnk_00 - (u32) a->mUnk_18->mUnk_0c) >> 3;
-            func_0202212c_inline2(a, i);
+        if (pAnimCtrl->mCallbackFunctor.mType != 0) {
+            frameIdx = ((u32) pAnimCtrl->mUnk_00 - (u32) pAnimCtrl->mUnk_18->mUnk_0c) >> 3;
+            CallbackFuncHandling_(pAnimCtrl, frameIdx);
         }
     }
-    return r;
+    return changedFrame;
 }
 
-u32 func_0202210c(Unk02022030 *a, u32 b) {
-    u32 r;
+u32 NNS_G2dSetAnimCtrlCurrentFrame(Unk02022030 *pAnimCtrl, u32 index) {
+    u32 result;
 
-    r = func_020222ec(a, b);
-    if (r != 0) {
-        a->mUnk_0c = 0;
+    result = SetAnimCtrlCurrentFrameImpl_(pAnimCtrl, index);
+    if (result != 0) {
+        pAnimCtrl->mUnk_0c = 0;
     }
-    return r;
+    return result;
 }

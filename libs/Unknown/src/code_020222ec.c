@@ -7,274 +7,276 @@
 #include "Main/Unknown/unk_02153000.h"
 #include "code_0202210c.h"
 
-static inline u32 func_0202294c_inline(const Unk02022030 *a) {
-    return a->mUnk_34 != -1;
+static inline u32 NNSi_G2dIsCellAnimVramTransferHandleValid(const Unk02022030 *pCellAnim) {
+    return pCellAnim->mUnk_34 != -1;
 }
 
-void func_0202294c(Unk02022030 *a) {
-    Unk020229c8 *r;
-    Unk02021dc8 *h;
-    u32 m;
-    Unk02021e40 *t;
-    u32 n;
-    Unk02021e40 *u;
+void ApplyCurrentAnimResult_(Unk02022030 *pCellAnim) {
+    Unk020229c8 *animResult;
+    Unk02021dc8 *cellBank;
+    u32 animType;
+    Unk02021e40 *pVramData;
+    u32 valid;
+    Unk02021e40 *pTransferData;
 
-    if (((Unk02022188 *) a->mUnk_00)->mUnk_04 == 0) {
+    if (((Unk02022188 *) pCellAnim->mUnk_00)->mUnk_04 == 0) {
         return;
     }
-    r = func_020222e0(a);
-    h = a->mUnk_30;
-    a->mUnk_2c = func_02021f1c(h, r->mUnk_00);
-    m = a->mUnk_18->mUnk_04 & 0xff;
-    func_02022474(&a->mUnk_38, 1);
-    if (m != 0) {
-        if (m == 2) {
-            func_020224c0(&a->mUnk_38, ((Unk020229b4 *) r)->mUnk_04, ((Unk020229b4 *) r)->mUnk_06);
+    animResult = NNS_G2dGetAnimCtrlCurrentElement(pCellAnim);
+    cellBank = pCellAnim->mUnk_30;
+    pCellAnim->mUnk_2c = NNS_G2dGetCellDataByIdx(cellBank, animResult->mUnk_00);
+    animType = pCellAnim->mUnk_18->mUnk_04 & 0xff;
+    NNSi_G2dSrtcInitControl(&pCellAnim->mUnk_38, 1);
+    if (animType != 0) {
+        if (animType == 2) {
+            NNSi_G2dSrtcSetTrans(&pCellAnim->mUnk_38, ((Unk020229b4 *) animResult)->mUnk_04,
+                                 ((Unk020229b4 *) animResult)->mUnk_06);
         } else {
-            func_02022484(&a->mUnk_38, r->mUnk_04, r->mUnk_08);
-            func_020224a4(&a->mUnk_38, r->mUnk_02);
-            func_020224c0(&a->mUnk_38, r->mUnk_0c, r->mUnk_0e);
+            NNSi_G2dSrtcSetSRTScale(&pCellAnim->mUnk_38, animResult->mUnk_04, animResult->mUnk_08);
+            NNSi_G2dSrtcSetSRTRotZ(&pCellAnim->mUnk_38, animResult->mUnk_02);
+            NNSi_G2dSrtcSetTrans(&pCellAnim->mUnk_38, animResult->mUnk_0c, animResult->mUnk_0e);
         }
     }
-    t = h->mUnk_0c;
-    n = t != 0;
-    if (n == 0) {
+    pVramData = cellBank->mUnk_0c;
+    valid = pVramData != 0;
+    if (valid == 0) {
         return;
     }
-    n = func_0202294c_inline(a);
-    if (n == 0) {
+    valid = NNSi_G2dIsCellAnimVramTransferHandleValid(pCellAnim);
+    if (valid == 0) {
         return;
     }
-    u = &((Unk02021e40 *) t->mUnk_04)[r->mUnk_00];
-    func_02022a60(a->mUnk_34, u->mUnk_00, u->mUnk_04);
+    pTransferData = &((Unk02021e40 *) pVramData->mUnk_04)[animResult->mUnk_00];
+    NNS_G2dSetCellTransferStateRequested(pCellAnim->mUnk_34, pTransferData->mUnk_00, pTransferData->mUnk_04);
 }
 
-void func_02022904(Unk02022030 *a, Unk02021dc8 *b, Unk02021dc8 *c) {
-    a->mUnk_30 = c;
-    a->mUnk_34 = -1;
-    func_02022474(&a->mUnk_38, 1);
-    func_020220b0(a);
-    func_020228e8(a, b);
+void NNS_G2dInitCellAnimation(Unk02022030 *pCellAnim, Unk02021dc8 *pAnimSeq, Unk02021dc8 *pCellDataBank) {
+    pCellAnim->mUnk_30 = pCellDataBank;
+    pCellAnim->mUnk_34 = -1;
+    NNSi_G2dSrtcInitControl(&pCellAnim->mUnk_38, 1);
+    NNS_G2dInitAnimCtrl(pCellAnim);
+    NNS_G2dSetCellAnimationSequence(pCellAnim, pAnimSeq);
 }
 
-void func_020228e8(Unk02022030 *a, Unk02021dc8 *b) {
-    func_02022030(a, b);
-    func_0202294c(a);
+void NNS_G2dSetCellAnimationSequence(Unk02022030 *pCellAnim, Unk02021dc8 *pAnimSeq) {
+    NNS_G2dBindAnimCtrl(pCellAnim, pAnimSeq);
+    ApplyCurrentAnimResult_(pCellAnim);
 }
 
-void func_020228c0(Unk02022030 *a, s32 b) {
-    if (func_0202212c(a, b) == 0) {
+void NNS_G2dTickCellAnimation(Unk02022030 *pCellAnim, s32 frames) {
+    if (NNS_G2dTickAnimCtrl(pCellAnim, frames) == 0) {
         return;
     }
-    func_0202294c(a);
+    ApplyCurrentAnimResult_(pCellAnim);
 }
 
-void func_02022898(Unk02022030 *a, u16 b) {
-    if (func_0202210c(a, b) == 0) {
+void NNS_G2dSetCellAnimationCurrentFrame(Unk02022030 *pCellAnim, u16 frameIndex) {
+    if (NNS_G2dSetAnimCtrlCurrentFrame(pCellAnim, frameIndex) == 0) {
         return;
     }
-    func_0202294c(a);
+    ApplyCurrentAnimResult_(pCellAnim);
 }
 
-void func_02022890(Unk02022030 *a, s32 b) {
-    a->mUnk_10 = b;
+void NNS_G2dSetCellAnimationSpeed(Unk02022030 *pCellAnim, s32 speed) {
+    pCellAnim->mUnk_10 = speed;
 }
 
-static inline u32 func_020224e0_inline2(u32 w) {
-    u32 m = w & 0x300;
-    return (m == 0x100 || m == 0x300) ? m : (m | (w & 0x30000000));
+static inline u32 G2_GetOBJEffect(u32 attr) {
+    u32 effect = attr & 0x300;
+    return (effect == 0x100 || effect == 0x300) ? effect : (effect | (attr & 0x30000000));
 }
 
-static inline void func_020224e0_inline(const s32 *m, const s32 *in, s32 *out) {
-    s32 tmp[2];
-    s32 *o;
+static inline void MulMtx22(const s32 *mtx, const s32 *pSrc, s32 *pDst) {
+    s32 buffer[2];
+    s32 *result;
 
-    o = out;
-    if (in == out) {
-        o = tmp;
+    result = pDst;
+    if (pSrc == pDst) {
+        result = buffer;
     }
-    o[0] = (s32) (((s64) m[2] * in[1] + 0x1000 + (s64) m[0] * in[0]) >> 12);
-    o[1] = (s32) (((s64) m[3] * in[1] + 0x1000 + (s64) m[1] * in[0]) >> 12);
-    if (o == tmp) {
-        out[0] = tmp[0];
-        out[1] = tmp[1];
+    result[0] = (s32) (((s64) mtx[2] * pSrc[1] + 0x1000 + (s64) mtx[0] * pSrc[0]) >> 12);
+    result[1] = (s32) (((s64) mtx[3] * pSrc[1] + 0x1000 + (s64) mtx[1] * pSrc[0]) >> 12);
+    if (result == buffer) {
+        pDst[0] = buffer[0];
+        pDst[1] = buffer[1];
     }
 }
 
-u16 func_020224e0(Unk020224e0_o *a, u16 b, Unk020224e0_c *c, s32 *d, s32 *e, u16 f, s32 g) {
+u16 NNS_G2dMakeCellToOams(Unk020224e0_o *pDstOams, u16 numDstOam, Unk020224e0_c *pCell, s32 *pMtxSR, s32 *pBaseTrans,
+                          u16 affineIndex, s32 bDoubleAffine) {
     u16 i;
-    u16 n;
-    s32 v[2];
-    s32 mode;
-    s32 sq;
-    u32 w;
-    s32 w2;
-    s32 sh;
-    s32 sz;
-    Unk020224e0_o *o;
-    Unk020224e0_s *s;
-    s16 x;
-    s16 y;
-    s32 w3;
-    s32 h3;
+    u16 numAttrs;
+    s32 oamOffset[2];
+    s32 effectAfter;
+    s32 shouldAdjust;
+    u32 attr;
+    s32 sizeBits;
+    s32 shape;
+    s32 size;
+    Unk020224e0_o *dstOam;
+    Unk020224e0_s *pSrcOam;
+    s16 posX;
+    s16 posY;
+    s32 halfWidth;
+    s32 halfHeight;
 
-    n = c->mUnk_00;
-    if (b >= n) {
-        b = n;
+    numAttrs = pCell->mUnk_00;
+    if (numDstOam >= numAttrs) {
+        numDstOam = numAttrs;
     }
-    for (i = 0; i < b; i++) {
-        o = &a[i];
-        s = &c->mUnk_04[i];
-        o->mUnk_00[0] = s->mUnk_00;
-        o->mUnk_00[1] = s->mUnk_02;
-        o->mUnk_00[2] = s->mUnk_04;
-        if (d != 0 || e != 0) {
-            w = *(u32 *) o;
-            x = (s16) ((w & 0x1ff0000) >> 16);
-            if (x > 0xff) {
-                x = x | 0xff00;
+    for (i = 0; i < numDstOam; i++) {
+        dstOam = &pDstOams[i];
+        pSrcOam = &pCell->mUnk_04[i];
+        dstOam->mUnk_00[0] = pSrcOam->mUnk_00;
+        dstOam->mUnk_00[1] = pSrcOam->mUnk_02;
+        dstOam->mUnk_00[2] = pSrcOam->mUnk_04;
+        if (pMtxSR != 0 || pBaseTrans != 0) {
+            attr = *(u32 *) dstOam;
+            posX = (s16) ((attr & 0x1ff0000) >> 16);
+            if (posX > 0xff) {
+                posX = posX | 0xff00;
             }
-            v[0] = x << 12;
-            y = (s16) (*(u32 *) o & 0xff);
-            if (y > 0x7f) {
-                y = y | 0xff00;
+            oamOffset[0] = posX << 12;
+            posY = (s16) (*(u32 *) dstOam & 0xff);
+            if (posY > 0x7f) {
+                posY = posY | 0xff00;
             }
-            v[1] = y << 12;
-            if (d != 0) {
-                w = *(u32 *) o;
-                if (func_020224e0_inline2(w) == 0x300) {
-                    w2 = w & 0xc000c000;
-                    sh = (w2 & 0xc000) >> 14;
-                    sz = (w2 & 0xc0000000) >> 30;
-                    v[0] += data_021530d0[sh][sz] << 11;
-                    v[1] += data_021530b8[sh][sz] << 11;
+            oamOffset[1] = posY << 12;
+            if (pMtxSR != 0) {
+                attr = *(u32 *) dstOam;
+                if (G2_GetOBJEffect(attr) == 0x300) {
+                    sizeBits = attr & 0xc000c000;
+                    shape = (sizeBits & 0xc000) >> 14;
+                    size = (sizeBits & 0xc0000000) >> 30;
+                    oamOffset[0] += data_021530d0[shape][size] << 11;
+                    oamOffset[1] += data_021530b8[shape][size] << 11;
                 }
-                mode = g != 0 ? 0x300 : 0x100;
-                sq = mode == 0x300 ? 1 : 0;
-                func_020224e0_inline(d, v, v);
-                if (mode != 0x100 && mode != 0x300) {
-                    *(u32 *) o = (*(u32 *) o & 0xc1fffcff) | mode;
+                effectAfter = bDoubleAffine != 0 ? 0x300 : 0x100;
+                shouldAdjust = effectAfter == 0x300 ? 1 : 0;
+                MulMtx22(pMtxSR, oamOffset, oamOffset);
+                if (effectAfter != 0x100 && effectAfter != 0x300) {
+                    *(u32 *) dstOam = (*(u32 *) dstOam & 0xc1fffcff) | effectAfter;
                 } else {
-                    *(u32 *) o = ((*(u32 *) o & 0xc1fffcff) | mode) | (f << 25);
+                    *(u32 *) dstOam = ((*(u32 *) dstOam & 0xc1fffcff) | effectAfter) | (affineIndex << 25);
                 }
-                w = *(u32 *) o;
-                w2 = w & 0xc000c000;
-                sh = (w2 & 0xc000) >> 14;
-                sz = (w2 & 0xc0000000) >> 30;
-                w3 = data_021530d0[sh][sz] >> 1;
-                h3 = data_021530b8[sh][sz] >> 1;
-                v[0] += d[0] * w3 + (s32) - (w3 << 12) + d[2] * h3;
-                v[1] += d[1] * w3 + (s32) - (h3 << 12) + d[3] * h3;
-                if (sq != 0) {
-                    v[0] -= w3 << 12;
-                    v[1] -= h3 << 12;
+                attr = *(u32 *) dstOam;
+                sizeBits = attr & 0xc000c000;
+                shape = (sizeBits & 0xc000) >> 14;
+                size = (sizeBits & 0xc0000000) >> 30;
+                halfWidth = data_021530d0[shape][size] >> 1;
+                halfHeight = data_021530b8[shape][size] >> 1;
+                oamOffset[0] += pMtxSR[0] * halfWidth + (s32) - (halfWidth << 12) + pMtxSR[2] * halfHeight;
+                oamOffset[1] += pMtxSR[1] * halfWidth + (s32) - (halfHeight << 12) + pMtxSR[3] * halfHeight;
+                if (shouldAdjust != 0) {
+                    oamOffset[0] -= halfWidth << 12;
+                    oamOffset[1] -= halfHeight << 12;
                 }
             }
-            if (e != 0) {
-                v[0] += e[0];
-                v[1] += e[1];
+            if (pBaseTrans != 0) {
+                oamOffset[0] += pBaseTrans[0];
+                oamOffset[1] += pBaseTrans[1];
             }
-            *(u32 *) o =
-                (*(u32 *) o & 0xfe00ff00) | (((v[1] + 0x800) >> 12) & 0xff) | ((((v[0] + 0x800) >> 12) & 0x1ff) << 16);
+            *(u32 *) dstOam = (*(u32 *) dstOam & 0xfe00ff00) | (((oamOffset[1] + 0x800) >> 12) & 0xff) |
+                               ((((oamOffset[0] + 0x800) >> 12) & 0x1ff) << 16);
         }
     }
-    return b;
+    return numDstOam;
 }
 
-void func_020224c0(Unk02022438 *a, s16 b, s16 c) {
-    if (a->mUnk_00 == 1) {
-        a->mUnk_12 |= 8;
-        a->mUnk_0c = b;
-        a->mUnk_0e = c;
+void NNSi_G2dSrtcSetTrans(Unk02022438 *pCtrl, s16 x, s16 y) {
+    if (pCtrl->mUnk_00 == 1) {
+        pCtrl->mUnk_12 |= 8;
+        pCtrl->mUnk_0c = x;
+        pCtrl->mUnk_0e = y;
     }
 }
 
-void func_020224a4(Unk02022438 *a, u16 b) {
-    if (a->mUnk_00 == 1) {
-        a->mUnk_12 |= 4;
-        a->mUnk_10 = b;
+void NNSi_G2dSrtcSetSRTRotZ(Unk02022438 *pCtrl, u16 rotZ) {
+    if (pCtrl->mUnk_00 == 1) {
+        pCtrl->mUnk_12 |= 4;
+        pCtrl->mUnk_10 = rotZ;
     }
 }
 
-void func_02022484(Unk02022438 *a, s32 b, s32 c) {
-    if (a->mUnk_00 == 1) {
-        a->mUnk_12 |= 2;
-        a->mUnk_04 = b;
-        a->mUnk_08 = c;
+void NNSi_G2dSrtcSetSRTScale(Unk02022438 *pCtrl, s32 x, s32 y) {
+    if (pCtrl->mUnk_00 == 1) {
+        pCtrl->mUnk_12 |= 2;
+        pCtrl->mUnk_04 = x;
+        pCtrl->mUnk_08 = y;
     }
 }
 
-void func_02022474(Unk02022438 *a, u32 b) {
-    a->mUnk_00 = b;
-    func_02022438(a);
+void NNSi_G2dSrtcInitControl(Unk02022438 *pCtrl, u32 type) {
+    pCtrl->mUnk_00 = type;
+    NNSi_G2dSrtcSetInitialValue(pCtrl);
 }
 
-void func_02022438(Unk02022438 *a) {
-    volatile u16 z;
+void NNSi_G2dSrtcSetInitialValue(Unk02022438 *pCtrl) {
+    volatile u16 zero;
 
-    z = 0;
-    MIi_CpuClear16(z, &a->mUnk_04, 0x18);
-    a->mUnk_04 = 0x1000;
-    a->mUnk_08 = 0x1000;
+    zero = 0;
+    MIi_CpuClear16(zero, &pCtrl->mUnk_04, 0x18);
+    pCtrl->mUnk_04 = 0x1000;
+    pCtrl->mUnk_08 = 0x1000;
 }
 
-void func_02022310(Unk02022030 *a) {
-    u32 m;
-    Unk02021e40 *p;
-    Unk02021e40 *q;
+void SequenceEdgeHandle_(Unk02022030 *pAnimCtrl) {
+    u32 playMode;
+    Unk02021e40 *current;
+    Unk02021e40 *last;
 
-    m = a->mUnk_14;
-    if (m == 0) {
-        m = a->mUnk_18->mUnk_08;
+    playMode = pAnimCtrl->mUnk_14;
+    if (playMode == 0) {
+        playMode = pAnimCtrl->mUnk_18->mUnk_08;
     }
-    switch (m) {
+    switch (playMode) {
         case 3:
         case 4:
-            a->mUnk_04 = a->mUnk_04 ^ 1;
-            if (a->mUnk_00 <= &a->mUnk_18->mUnk_0c[a->mUnk_18->mUnk_02] - 1) {
-                if (a->mUnk_1c == 1) {
-                    a->mUnk_24(a->mUnk_20, a->mUnk_0c);
+            pAnimCtrl->mUnk_04 = pAnimCtrl->mUnk_04 ^ 1;
+            if (pAnimCtrl->mUnk_00 <= &pAnimCtrl->mUnk_18->mUnk_0c[pAnimCtrl->mUnk_18->mUnk_02] - 1) {
+                if (pAnimCtrl->mCallbackFunctor.mType == 1) {
+                    pAnimCtrl->mCallbackFunctor.mFunc(pAnimCtrl->mCallbackFunctor.mParam, pAnimCtrl->mUnk_0c);
                 }
-                m = a->mUnk_14;
-                if (m == 0) {
-                    m = a->mUnk_18->mUnk_08;
+                playMode = pAnimCtrl->mUnk_14;
+                if (playMode == 0) {
+                    playMode = pAnimCtrl->mUnk_18->mUnk_08;
                 }
-                if (m != 2 && m != 4) {
-                    a->mUnk_08 = 0;
+                if (playMode != 2 && playMode != 4) {
+                    pAnimCtrl->mUnk_08 = 0;
                 } else {
-                    func_02022040(a);
+                    NNS_G2dResetAnimCtrlState(pAnimCtrl);
                 }
             }
             break;
         default:
-            if (a->mUnk_1c == 1) {
-                a->mUnk_24(a->mUnk_20, a->mUnk_0c);
+            if (pAnimCtrl->mCallbackFunctor.mType == 1) {
+                pAnimCtrl->mCallbackFunctor.mFunc(pAnimCtrl->mCallbackFunctor.mParam, pAnimCtrl->mUnk_0c);
             }
-            m = a->mUnk_14;
-            if (m == 0) {
-                m = a->mUnk_18->mUnk_08;
+            playMode = pAnimCtrl->mUnk_14;
+            if (playMode == 0) {
+                playMode = pAnimCtrl->mUnk_18->mUnk_08;
             }
-            if (m != 2 && m != 4) {
-                a->mUnk_08 = 0;
+            if (playMode != 2 && playMode != 4) {
+                pAnimCtrl->mUnk_08 = 0;
             } else {
-                func_02022040(a);
+                NNS_G2dResetAnimCtrlState(pAnimCtrl);
             }
             break;
     }
-    p = a->mUnk_00;
-    q = &a->mUnk_18->mUnk_0c[a->mUnk_18->mUnk_00] - 1;
-    if (p > q) {
-        a->mUnk_00 = q;
+    current = pAnimCtrl->mUnk_00;
+    last = &pAnimCtrl->mUnk_18->mUnk_0c[pAnimCtrl->mUnk_18->mUnk_00] - 1;
+    if (current > last) {
+        pAnimCtrl->mUnk_00 = last;
         return;
     }
-    if (p < a->mUnk_18->mUnk_0c) {
-        a->mUnk_00 = a->mUnk_18->mUnk_0c;
+    if (current < pAnimCtrl->mUnk_18->mUnk_0c) {
+        pAnimCtrl->mUnk_00 = pAnimCtrl->mUnk_18->mUnk_0c;
     }
 }
 
-u32 func_020222ec(Unk02022030 *a, u32 b) {
-    if (b < a->mUnk_18->mUnk_00) {
-        a->mUnk_00 = &a->mUnk_18->mUnk_0c[b];
+u32 SetAnimCtrlCurrentFrameImpl_(Unk02022030 *pAnimCtrl, u32 index) {
+    if (index < pAnimCtrl->mUnk_18->mUnk_00) {
+        pAnimCtrl->mUnk_00 = &pAnimCtrl->mUnk_18->mUnk_0c[index];
         return 1;
     }
     return 0;

@@ -1,29 +1,29 @@
 #include "code_02021f9c.h"
 
-Unk02021fd0 *FindPartByTag(Unk02021f9c *a, u32 b) {
+Unk02021fd0 *FindPartByTag(Unk02021f9c *file, u32 tag) {
     u16 i;
-    u16 n;
-    Unk02021fd0 *p;
+    u16 count;
+    Unk02021fd0 *part;
 
-    p = (Unk02021fd0 *) ((u8 *) a + a->mUnk_0c);
-    n = a->mUnk_0e;
-    for (i = 0; i < n; i++) {
-        if (p->mUnk_00 == b) {
-            return p;
+    part = (Unk02021fd0 *) ((u8 *) file + file->mUnk_0c);
+    count = file->mUnk_0e;
+    for (i = 0; i < count; i++) {
+        if (part->mUnk_00 == tag) {
+            return part;
         }
-        p = (Unk02021fd0 *) ((u8 *) p + p->mUnk_04);
+        part = (Unk02021fd0 *) ((u8 *) part + part->mUnk_04);
     }
     return 0;
 }
 
-u32 func_02021f9c(Unk02021f9c *a, Unk02021fd0 **b) {
-    Unk02021fd0 *p;
+u32 NNS_G2dGetUnpackedScreenData(Unk02021f9c *pNscrFile, Unk02021fd0 **ppScrData) {
+    Unk02021fd0 *part;
 
-    p = FindPartByTag(a, 0x5343524e);
-    if (p != 0) {
-        *b = p + 1;
+    part = FindPartByTag(pNscrFile, 0x5343524e);
+    if (part != 0) {
+        *ppScrData = part + 1;
         return 1;
     }
-    *b = 0;
+    *ppScrData = 0;
     return 0;
 }

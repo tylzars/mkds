@@ -131,7 +131,7 @@ void func_0212b5ec(void *a) {
     }
     LoadNclrData(&p, FindSceneFile(data_0216ea78));
     CallQueueAppend(0x1f, 0x1e0, p->mData + 0xf0, 0x20);
-    func_02023408(data_0217d40c->mUnk_020, data_0217d40c->mUnk_050, 0x20, 2, 4);
+    NNS_G2dCharCanvasInitForBG(data_0217d40c->mUnk_020, data_0217d40c->mUnk_050, 0x20, 2, 4);
     v = data_0217d40c->mUnk_01c;
     t = func_020b403c(2);
     d = data_0217d40c;
@@ -257,7 +257,7 @@ void func_0212b260(void) {
     if (v == 3) {
         c = 2;
     }
-    func_0202428c(&data_0217d40c->mUnk_040, 8, c, 0xf0, 0x10, v, data_0217d40c->mUnk_854, buf);
+    NNSi_G2dTextCanvasDrawTextRect(&data_0217d40c->mUnk_040, 8, c, 0xf0, 0x10, v, data_0217d40c->mUnk_854, buf);
     p = data_0217d40c;
     a = (((p->mUnk_008 >> 12) % 256) + 0xc0) >> 3;
     a = a << 3;

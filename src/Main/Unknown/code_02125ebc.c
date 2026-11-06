@@ -95,8 +95,8 @@ s32 InitTxtSystem(void *b, Unk021274ec *c) {
         if (!((i == 1 && gTxtSystem->mUnk_44 == 0) || (i == 2 && gTxtSystem->mUnk_48 == 0) ||
               (i == 3 && gTxtSystem->mUnk_4c == 0))) {
             gTxtSystem->mUnk_21e8[i] = HeapAlloc(b, (data_0215d044[i][0] * data_0215d044[i][1]) << 5);
-            func_02023408(&gTxtSystem->mUnk_2098[i], gTxtSystem->mUnk_21e8[i], data_0215d044[i][0], data_0215d044[i][1],
-                          4);
+            NNS_G2dCharCanvasInitForBG(&gTxtSystem->mUnk_2098[i], gTxtSystem->mUnk_21e8[i], data_0215d044[i][0],
+                                       data_0215d044[i][1], 4);
             o = &gTxtSystem->mUnk_2098[i];
             o->mUnk_18(o, 0);
             func_021274ec_inline(&gTxtSystem->mUnk_2178[i], &gTxtSystem->mUnk_2098[i], c->mUnk_00);

@@ -3,100 +3,97 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02153000.h"
 
-void func_020244f4(Unk02180728 *a, s32 b, s32 c, u32 d, u16 *e, u16 **f) {
-    s32 n;
-    Unk02022aa8 *s;
-    u16 *p;
-    Unk02022aa8_f *g;
-    u16 ch;
+void NNSi_G2dTextCanvasDrawString(Unk02180728 *pTxn, s32 x, s32 y, u32 cl, u16 *str, u16 **pPos) {
+    s32 hSpace;
+    Unk02022aa8 *font;
+    u16 *pos;
+    Unk02022aa8_f *readChar;
+    u16 code;
 
-    n = a->mUnk_08;
-    s = a->mUnk_04;
-    p = e;
-    g = s->mUnk_04;
-    ch = g(&p);
-    if (ch != 0) {
+    hSpace = pTxn->mUnk_08;
+    font = pTxn->mUnk_04;
+    pos = str;
+    readChar = font->mUnk_04;
+    code = readChar(&pos);
+    if (code != 0) {
         do {
-            if (ch == 10) {
+            if (code == 10) {
                 break;
             }
-            b += func_02023450((Unk02023374 *) a->mUnk_00, s, b, c, d, ch);
-            b += n;
-            ch = g(&p);
-        } while (ch != 0);
+            x += NNS_G2dCharCanvasDrawChar((Unk02023374 *) pTxn->mUnk_00, font, x, y, cl, code);
+            x += hSpace;
+            code = readChar(&pos);
+        } while (code != 0);
     }
-    if (f != 0) {
-        *f = ch == 10 ? p : 0;
+    if (pPos != 0) {
+        *pPos = code == 10 ? pos : 0;
     }
 }
 
-void func_020243f0(Unk02180728 *a, s32 b, s32 c, s32 d, u32 e, u32 f, u16 *g) {
-    s32 h;
-    s32 n;
-    s32 x;
-    u32 m1;
-    u32 m2;
-    s32 t;
-    u16 *v;
+void NNSi_G2dTextCanvasDrawTextAlign(Unk02180728 *pTxn, s32 x, s32 y, s32 areaWidth, u32 cl, u32 flags, u16 *txt) {
+    s32 lineHeight;
+    s32 lineWidth;
+    s32 lineX;
+    u32 alignRight;
+    u32 alignCenter;
+    s32 halfWidth;
+    u16 *pos;
 
-    h = a->mUnk_0c + ((Unk02022aa8 *) a->mUnk_04)->mUnk_00->mUnk_01;
-    v = g;
-    if (v == 0) {
+    lineHeight = pTxn->mUnk_0c + ((Unk02022aa8 *) pTxn->mUnk_04)->mUnk_00->mUnk_01;
+    pos = txt;
+    if (pos == 0) {
         return;
     }
-    m1 = f & 0x800;
-    m2 = f & 0x400;
-    t = (d + 1) / 2;
+    alignRight = flags & 0x800;
+    alignCenter = flags & 0x400;
+    halfWidth = (areaWidth + 1) / 2;
     do {
-        x = b;
-        if (m1 != 0) {
-            n = func_02022bbc(a->mUnk_04, a->mUnk_08, (u8 *) v, 0);
-            x = b + (d - n);
-        } else if (m2 != 0) {
-            n = func_02022bbc(a->mUnk_04, a->mUnk_08, (u8 *) v, 0);
-            x = b + (t - (n + 1) / 2);
+        lineX = x;
+        if (alignRight != 0) {
+            lineWidth = NNSi_G2dFontGetStringWidth(pTxn->mUnk_04, pTxn->mUnk_08, (u8 *) pos, 0);
+            lineX = x + (areaWidth - lineWidth);
+        } else if (alignCenter != 0) {
+            lineWidth = NNSi_G2dFontGetStringWidth(pTxn->mUnk_04, pTxn->mUnk_08, (u8 *) pos, 0);
+            lineX = x + (halfWidth - (lineWidth + 1) / 2);
         }
-        func_020244f4(a, x, c, e, v, &v);
-        c += h;
-    } while (v != 0);
+        NNSi_G2dTextCanvasDrawString(pTxn, lineX, y, cl, pos, &pos);
+        y += lineHeight;
+    } while (pos != 0);
 }
 
-u32 func_02024340(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
-    Unk02022b10 z;
+u32 NNSi_G2dTextCanvasDrawText(Unk02180728 *pTxn, s32 x, s32 y, u32 cl, u32 flags, void *txt) {
+    Unk02022b10 rect;
 
-    func_02022aa8(&z, a->mUnk_04, a->mUnk_08, a->mUnk_0c, f);
-    if (e & 0x10) {
-        b -= (z.mUnk_00 + 1) / 2;
-    } else if (e & 0x20) {
-        b -= z.mUnk_00;
+    NNSi_G2dFontGetTextRect(&rect, pTxn->mUnk_04, pTxn->mUnk_08, pTxn->mUnk_0c, txt);
+    if (flags & 0x10) {
+        x -= (rect.mUnk_00 + 1) / 2;
+    } else if (flags & 0x20) {
+        x -= rect.mUnk_00;
     }
-    if (e & 2) {
-        c -= (z.mUnk_04 + 1) / 2;
-    } else if (e & 4) {
-        c -= z.mUnk_04;
+    if (flags & 2) {
+        y -= (rect.mUnk_04 + 1) / 2;
+    } else if (flags & 4) {
+        y -= rect.mUnk_04;
     }
-    func_020243f0(a, b, c, z.mUnk_00, d, e, f);
+    NNSi_G2dTextCanvasDrawTextAlign(pTxn, x, y, rect.mUnk_00, cl, flags, txt);
 }
 
-void func_0202428c(Unk02180728 *a, s32 b, s32 c, s32 d, s32 e, s32 f, u32 g, u16 *h) {
-    s32 n;
+void NNSi_G2dTextCanvasDrawTextRect(Unk02180728 *pTxn, s32 x, s32 y, s32 w, s32 h, s32 cl, u32 flags, u16 *txt) {
+    s32 textHeight;
 
-    if (g & 0x100) {
-        n = func_02022b44(a->mUnk_04, a->mUnk_0c, (u8 *) h);
-        c += e - n;
-    } else if (g & 0x80) {
-        n = func_02022b44(a->mUnk_04, a->mUnk_0c, (u8 *) h);
-        c += (e + 1) / 2 - (n + 1) / 2;
+    if (flags & 0x100) {
+        textHeight = NNSi_G2dFontGetTextHeight(pTxn->mUnk_04, pTxn->mUnk_0c, (u8 *) txt);
+        y += h - textHeight;
+    } else if (flags & 0x80) {
+        textHeight = NNSi_G2dFontGetTextHeight(pTxn->mUnk_04, pTxn->mUnk_0c, (u8 *) txt);
+        y += (h + 1) / 2 - (textHeight + 1) / 2;
     }
-    func_020243f0(a, b, c, d, f, g, h);
+    NNSi_G2dTextCanvasDrawTextAlign(pTxn, x, y, w, cl, flags, txt);
 }
 
 // clang-format off
-// Walks two block sizes (c by d, with the limits a by b) down through the table data_usa_021530f8, which gives the shifts
-// e and f for the base-2 logarithms of the remaining sizes (each capped at 3 once it is 8 or more), and returns the sum
-// of the areas it peels off. It stops when a whole block no longer fits and adds the remainder of the position.
-// Not compiled code: it takes the logarithms with clz, which 1.2 never builds (docs/compiler.md).
-asm u32 func_02024184(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
+// Written as assembly because it uses clz.
+asm u32 GetCharIndex1D(u32 cx, u32 cy, u32 areaWidth, u32 areaHeight, u32 objWidth, u32 objHeight) {
     stmfd sp!, {r4, r5, r6, r7, r8, r9, r10, r11, lr}
     sub sp, sp, #0x4
     ldr r11, =data_usa_021530f8

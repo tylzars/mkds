@@ -35,7 +35,7 @@
 #pragma thumb off
 
 u32 func_ov001_02180ad0(Unk02180728 *p0, u32 p1, u32 p2, u32 p3, u32 p4, u16 *p5) {
-    return func_02024340(p0, p1, p2, p3, p4, p5);
+    return NNSi_G2dTextCanvasDrawText(p0, p1, p2, p3, p4, p5);
 }
 
 #pragma thumb on
@@ -193,7 +193,7 @@ void func_ov001_02180610(void) {
     data_ov001_021a99e4->mUnk_000c[1] = func_020b403c(1);
     data_ov001_021a99e4->mUnk_000c[2] = func_020b403c(2);
     for (i = 0; i < 3; i++) {
-        func_02023408(data_ov001_021a99e4->mUnk_0018[i], data_ov001_021a99e4->mUnk_00a8, 0x20, 0x18, 4);
+        NNS_G2dCharCanvasInitForBG(data_ov001_021a99e4->mUnk_0018[i], data_ov001_021a99e4->mUnk_00a8, 0x20, 0x18, 4);
         func_ov001_02180728(&data_ov001_021a99e4->mUnk_0078[i], data_ov001_021a99e4->mUnk_0018[i],
                             data_ov001_021a99e4->mUnk_000c[i], 0, 0);
     }

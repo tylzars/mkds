@@ -18,7 +18,7 @@ void func_020ca808(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
 }
 
 u32 func_020ca7e0(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
-    return func_02024340(a, b, c, d, e, f);
+    return NNSi_G2dTextCanvasDrawText(a, b, c, d, e, f);
 }
 
 #pragma thumb on
@@ -41,7 +41,7 @@ void InitEmblemChoises(void) {
     LoadNcgrData(&gEmblemChoises->mChoisesSBNcgr, FindSceneFileWrapper("choises_s_b.NCGR"));
     LoadNscrData(&gEmblemChoises->mChoisesS3Nscr, FindSceneFileWrapper("choises_s_3.NSCR"));
     gEmblemChoises->mUnk_2c = func_020b403c(2);
-    func_02023408(&gEmblemChoises->mUnk_30, gEmblemChoises->mChoisesSBNcgr->mData, 0x20, 0xc, 4);
+    NNS_G2dCharCanvasInitForBG(&gEmblemChoises->mUnk_30, gEmblemChoises->mChoisesSBNcgr->mData, 0x20, 0xc, 4);
     p = gEmblemChoises;
     func_020ca808(&p->mUnk_50, &p->mUnk_30, p->mUnk_2c, func_020b4acc(), 0);
     {

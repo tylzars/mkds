@@ -10,6 +10,7 @@
 #include "Main/Unknown/code_020b3f7c.h" // Bmg
 #include "Main/Unknown/code_0202f688.h"
 #include "Main/Unknown/code_0205ee14.h" // Unk0205fd2c
+#include "code_02022a90.h" // NNSG2dCellTransferState
 
 // 0x18-byte elements of the table at member 0 of Unk02029930.
 typedef struct Unk02029930_00 {
@@ -381,7 +382,7 @@ typedef struct Unk02174e78 {
 extern Unk02174e78 data_02174e78;
 extern u8 data_usa_02174e80[];
 
-extern u8 data_02174e04[];
+extern NNSG2dCellTransferState *data_02174e04; // first word of the cell transfer state manager
 extern u8 data_02174e08[];
 extern u8 data_02174e0c[];
 extern u8 data_02174e10[];

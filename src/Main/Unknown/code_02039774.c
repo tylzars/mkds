@@ -92,7 +92,7 @@ void func_02039a1c(void) {
         GX_SetBankForLCDC(8);
         MemFillWordsByBlock_inline((void *) 0x6860000, 0x20000);
         GX_DisableBankForLCDC();
-        if (func_0201e7a8(8, func_02039abc, 0) != 1) {
+        if (WVR_StartUpAsync(8, func_02039abc, 0) != 1) {
             OS_Terminate();
         }
     }
@@ -103,7 +103,7 @@ void func_02039a1c(void) {
 void func_020399a8(void) {
     if (data_02175614.mUnk_00 != 1 && data_02175614.mUnk_00 != 3) {
         data_02175614.mUnk_00 = 2;
-        if (func_0201e6b8(func_02039abc, 1) != 1) {
+        if (WVR_TerminateAsync(func_02039abc, 1) != 1) {
             OS_Terminate();
         }
     }

@@ -116,48 +116,48 @@ void func_020c6adc(Unk020c06c4 *a, s32 b, s32 c, Unk02056bc0 *d) {
         e0[0] = (b + v[0]) << 12;
         e0[1] = c << 12;
         k = a->mUnk_400;
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
     }
     p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[1] + 0xe);
     e1[0] = (b + v[1]) << 12;
     e1[1] = c << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
     p = GetRaceNewRecordTaSNcerEntry(0x18);
     e2[0] = (b + v[2]) << 12;
     e2[1] = c << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e2, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e2, 0, 1);
     p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[2] + 0xe);
     e3[0] = (b + v[3]) << 12;
     e3[1] = c << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e3, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e3, 0, 1);
     p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[3] + 0xe);
     e4[0] = (b + v[4]) << 12;
     e4[1] = c << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e4, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e4, 0, 1);
     p = GetRaceNewRecordTaSNcerEntry(0x18);
     e5[0] = (b + v[5]) << 12;
     e5[1] = c << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e5, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e5, 0, 1);
     p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[4] + 0xe);
     e6[0] = (b + v[6]) << 12;
     e6[1] = c << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e6, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e6, 0, 1);
     p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[5] + 0xe);
     e7[0] = (b + v[7]) << 12;
     e7[1] = c << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e7, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e7, 0, 1);
     p = GetRaceNewRecordTaSNcerEntry(w.mUnk_00[6] + 0xe);
     e8[0] = (b + v[8]) << 12;
     e8[1] = c << 12;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e8, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e8, 0, 1);
 }
 
 void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
@@ -192,12 +192,12 @@ void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
         e0[0] = (c + 0x32) << 12;
         e0[1] = d << 12;
         k = a->mUnk_400;
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
         p = GetRaceNewRecordTaSNcerEntry(b + 0x1a);
         e1[0] = (c + 0x3d) << 12;
         e1[1] = d << 12;
         k = a->mUnk_400;
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
     }
     if (f != FALSE && n >= 0x10) {
         return;
@@ -219,21 +219,21 @@ void DrawRaceNewRecordTa(Unk020c06c4 *a) {
     e0[0] = (gRaceNewRecordTa->mOffsetX + 0x80) << 12;
     e0[1] = 0xc000;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e0, 0, 1);
     for (i = 0; i < 5; i++) {
         p = GetRaceNewRecordTaSNcerEntry(i + 1);
         x = i * 0x18 + 0x28;
         e1[0] = gRaceNewRecordTa->mOffsetX << 12;
         e1[1] = (i * 0x18 + 0x28) << 12;
         k = a->mUnk_400;
-        a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
+        a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e1, 0, 1);
         func_020c692c(a, i, gRaceNewRecordTa->mOffsetX, x);
     }
     p = GetRaceNewRecordTaSNcerEntry(6);
     e2[0] = gRaceNewRecordTa->mOffsetX << 12;
     e2[1] = 0x9f000;
     k = a->mUnk_400;
-    a->mUnk_400 += func_020224e0((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e2, 0, 1);
+    a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[k], 0x80 - k, p, NULL, e2, 0, 1);
     func_020c692c(a, i, gRaceNewRecordTa->mOffsetX + 1, 0xb4);
 }
 

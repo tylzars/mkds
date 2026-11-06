@@ -1083,7 +1083,7 @@ void func_020aad9c(Unk0217b278 *a) {
     c = f->mUnk_00->mUnk_08->mUnk_01;
     q = a->mUnk_2c;
     MIi_CpuCopyFast(q->mUnk_04->mData, data_0217b254.mUnk_04, q->mUnk_04->mDataSize);
-    func_02023408(&v2, data_0217b254.mUnk_04, q->mUnk_04->mUnk_02, q->mUnk_04->mUnk_00, 4);
+    NNS_G2dCharCanvasInitForBG(&v2, data_0217b254.mUnk_04, q->mUnk_04->mUnk_02, q->mUnk_04->mUnk_00, 4);
     n = func_020aaf70(q);
     i = 0;
     if (q->mUnk_0e - n > 0) {
@@ -1093,11 +1093,11 @@ void func_020aad9c(Unk0217b278 *a) {
             e = &q->mUnk_00[(u32) n];
             g = *(u16 *) ((u8 *) a->mUnk_30 + j);
             if (e->mUnk_02 > 1 && e->mUnk_03 > 1) {
-                v = func_02022ce4(f, g);
+                v = NNS_G2dFontFindGlyphIndex(f, g);
                 if (v == 0xffff) {
                     v = f->mUnk_00->mUnk_02;
                 }
-                t = func_02022c80(f, v);
+                t = NNS_G2dFontGetCharWidthsFromIndex(f, v);
                 v1.mUnk_00 = t;
                 u = f->mUnk_00->mUnk_08;
                 v1.mUnk_04 = u->mUnk_08 + v * u->mUnk_02;

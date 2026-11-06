@@ -443,7 +443,7 @@ Pointer locals and addresses:
 - `movs #K; movs #size; muls` rebuilt at each table read across calls, where ours keeps `K` on the stack: an enum-typed
   index local assigned right before each read (func_02078158; 6 words were left).
 - A spilled value reloaded into a low register for an argument add, with the add before the other argument copies:
-  compute that argument in its own statement first (func_02022eb0).
+  compute that argument in its own statement first (NNS_G2dArrangeOBJ1D).
 
 ### 1.3 Scheduling and Evaluation Order
 

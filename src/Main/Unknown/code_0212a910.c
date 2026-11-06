@@ -45,7 +45,7 @@ void func_0212b158(void *a) {
     Unk02180728 *q;
     p = HeapAlloc(a, 0x1a44);
     data_0217d408 = p;
-    func_02023408(p->mUnk_0014, p->mUnk_0044, 0x20, 5, 4);
+    NNS_G2dCharCanvasInitForBG(p->mUnk_0014, p->mUnk_0044, 0x20, 5, 4);
     p = data_0217d408;
     q = &p->mUnk_0034;
     p->mUnk_0034.mUnk_00 = p->mUnk_0014;
@@ -159,7 +159,7 @@ void func_0212ae80(void) {
     } else {
         data_0217d408->mUnk_0034.mUnk_04 = func_020b403c(0);
     }
-    func_02024340(&data_0217d408->mUnk_0034, 0x80, 0x14, 0xe, 0x412, data_0217d408->mUnk_0008);
+    NNSi_G2dTextCanvasDrawText(&data_0217d408->mUnk_0034, 0x80, 0x14, 0xe, 0x412, data_0217d408->mUnk_0008);
     func_0212b064();
     for (i = 0; i < 0x300; i++) {
         if (i >= 0x120 && i < 0x1c0) {

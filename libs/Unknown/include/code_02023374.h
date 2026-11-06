@@ -11,8 +11,8 @@ typedef struct Unk02023374_24 {
     /* 04 */ u8 *mUnk_04;
 } Unk02023374_24;
 
-// 0x20-byte object set up by func_02023374 and func_02023408: a buffer of 8 x 8 blocks of mUnk_0c * 8 bytes and the
-// functions that draw into it.
+// 0x20-byte object set up by NNS_G2dCharCanvasInitForOBJ1D and NNS_G2dCharCanvasInitForBG: a buffer of 8 x 8 blocks of
+// mUnk_0c * 8 bytes and the functions that draw into it.
 typedef struct Unk02023374 {
     /* 00 */ u8 *mUnk_00;
     /* 04 */ s32 mUnk_04;
@@ -24,7 +24,7 @@ typedef struct Unk02023374 {
     /* 1c */ void (*mUnk_1c)(struct Unk02023374 *, u32, s32, s32, s32, s32);
 } Unk02023374;
 
-// Argument of func_02023d84, built on the stack by func_020239a8 and func_02023bcc.
+// Argument of LetterChar, built on the stack by DrawGlyph1D and DrawGlyphLine.
 typedef struct Unk02023d84 {
     /* 00 */ u32 *mUnk_00;
     /* 04 */ u8 *mUnk_04;
@@ -38,22 +38,22 @@ typedef struct Unk02023d84 {
     /* 24 */ u32 mUnk_24;
 } Unk02023d84;
 
-void func_02023510(Unk02023374 *a, void *b, s32 c, s32 d, u32 e,
-                   void (*f)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *),
-                   void (*g)(Unk02023374 *, u32), void (*h)(Unk02023374 *, u32, s32, s32, s32, s32), u32 i);
-void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f);
-void func_02023764(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f);
-void func_02023944(Unk02023374 *a, u32 b);
-void func_020239a8(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023374_24 *f);
-void func_02023bcc(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023374_24 *f);
-void func_02023d84(Unk02023d84 *a);
-void func_02024000(u8 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 g);
-u32 func_02024168(const u8 *a);
-void func_020243f0(Unk02180728 *a, s32 b, s32 c, s32 d, u32 e, u32 f, u16 *g);
-void func_020244f4(Unk02180728 *a, s32 b, s32 c, u32 d, u16 *e, u16 **f);
-void func_02023374(void *a, void *b, s32 c, s32 d, s32 e);
-void func_02023408(void *p0, void *p1, u32 p2, u32 p3, u32 p4);
-s32 func_02023450(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, u16 f);
-u32 func_02024184(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f);
-void func_0202428c(Unk02180728 *a, s32 b, s32 c, s32 d, s32 e, s32 f, u32 g, u16 *h);
-u32 func_02024340(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f);
+void InitCharCanvas(Unk02023374 *a, void *b, s32 c, s32 d, u32 e,
+                    void (*f)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *),
+                    void (*g)(Unk02023374 *, u32), void (*h)(Unk02023374 *, u32, s32, s32, s32, s32), u32 i);
+void ClearArea1D(Unk02023374 *pCanvas, u32 cl, s32 x, s32 y, s32 w, s32 h);
+void ClearAreaLine(Unk02023374 *pCanvas, u32 cl, s32 x, s32 y, s32 w, s32 h);
+void ClearContinuous(Unk02023374 *pCanvas, u32 cl);
+void DrawGlyph1D(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, Unk02023374_24 *pGlyph);
+void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, Unk02023374_24 *pGlyph);
+void LetterChar(Unk02023d84 *pInfo);
+void ClearChar(u8 *pChar, s32 x, s32 y, s32 w, s32 h, u32 cl8, s32 bpp);
+u32 OBJSizeToShape(const u8 *pSize);
+void NNSi_G2dTextCanvasDrawTextAlign(Unk02180728 *pTxn, s32 x, s32 y, s32 areaWidth, u32 cl, u32 flags, u16 *txt);
+void NNSi_G2dTextCanvasDrawString(Unk02180728 *pTxn, s32 x, s32 y, u32 cl, u16 *str, u16 **pPos);
+void NNS_G2dCharCanvasInitForOBJ1D(void *pCC, void *charBase, s32 areaWidth, s32 areaHeight, s32 colorMode);
+void NNS_G2dCharCanvasInitForBG(void *pCC, void *charBase, u32 areaWidth, u32 areaHeight, u32 colorMode);
+s32 NNS_G2dCharCanvasDrawChar(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, u16 ccode);
+u32 GetCharIndex1D(u32 cx, u32 cy, u32 areaWidth, u32 areaHeight, u32 objWidth, u32 objHeight);
+void NNSi_G2dTextCanvasDrawTextRect(Unk02180728 *pTxn, s32 x, s32 y, s32 w, s32 h, s32 cl, u32 flags, u16 *txt);
+u32 NNSi_G2dTextCanvasDrawText(Unk02180728 *pTxn, s32 x, s32 y, u32 cl, u32 flags, void *txt);

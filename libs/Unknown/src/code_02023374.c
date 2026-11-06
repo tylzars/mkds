@@ -3,578 +3,578 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02153000.h"
 
-u32 func_02024168(const u8 *a) {
-    return data_02153118[a[1]][a[0]];
+u32 OBJSizeToShape(const u8 *pSize) {
+    return data_02153118[pSize[1]][pSize[0]];
 }
 
-void func_02024000(u8 *a, s32 b, s32 c, s32 d, s32 e, u32 f, s32 g) {
-    u32 k;
-    u32 *p;
-    u32 *q;
-    u32 m;
-    u32 n;
-    u32 s;
-    u32 x;
-    u32 lo;
-    u32 hi;
-    u32 z;
-    u32 w;
-    u32 *r;
-    u32 *t;
-    volatile u32 v;
+void ClearChar(u8 *pChar, s32 x, s32 y, s32 w, s32 h, u32 cl8, s32 bpp) {
+    u32 color;
+    u32 *pRow;
+    u32 *pEnd;
+    u32 mask;
+    u32 rightPad;
+    u32 extra;
+    u32 bitStart;
+    u32 maskLo;
+    u32 maskHi;
+    u32 colorHi;
+    u32 colorLo;
+    u32 *pRow8;
+    u32 *pEnd8;
+    volatile u32 fill;
 
-    if (d == 8 && e == 8) {
-        v = f;
-        MIi_CpuClearFast(v, a, g << 3);
+    if (w == 8 && h == 8) {
+        fill = cl8;
+        MIi_CpuClearFast(fill, pChar, bpp << 3);
         return;
     }
-    if (g == 4) {
-        x = b * 4;
-        n = 32 - (x + d * 4);
-        m = (0xffffffffu >> x) << (n + x);
-        k = f & (m >> n);
-        m = ~(m >> n);
-        p = (u32 *) a + c;
-        q = p + e;
-        for (; p < q; p++) {
-            *p = k | (*p & m);
+    if (bpp == 4) {
+        bitStart = x * 4;
+        rightPad = 32 - (bitStart + w * 4);
+        mask = (0xffffffffu >> bitStart) << (rightPad + bitStart);
+        color = cl8 & (mask >> rightPad);
+        mask = ~(mask >> rightPad);
+        pRow = (u32 *) pChar + y;
+        pEnd = pRow + h;
+        for (; pRow < pEnd; pRow++) {
+            *pRow = color | (*pRow & mask);
         }
     } else {
-        x = b * 8;
-        n = 64 - (x + d * 8);
-        m = 0xffffffffu >> x;
-        if (n >= 32) {
-            s = n - 32;
-            lo = (m << (x + s)) >> s;
+        bitStart = x * 8;
+        rightPad = 64 - (bitStart + w * 8);
+        mask = 0xffffffffu >> bitStart;
+        if (rightPad >= 32) {
+            extra = rightPad - 32;
+            maskLo = (mask << (bitStart + extra)) >> extra;
         } else {
-            lo = m << x;
+            maskLo = mask << bitStart;
         }
-        m = 0xffffffffu << n;
-        if (x >= 32) {
-            x -= 32;
-            hi = (m >> (x + n)) << x;
+        mask = 0xffffffffu << rightPad;
+        if (bitStart >= 32) {
+            bitStart -= 32;
+            maskHi = (mask >> (bitStart + rightPad)) << bitStart;
         } else {
-            hi = m >> n;
+            maskHi = mask >> rightPad;
         }
-        r = (u32 *) a + c * 2;
-        t = r + e * 2;
-        w = f & lo;
-        z = f & hi;
-        lo = ~lo;
-        hi = ~hi;
-        for (; r < t; r += 2) {
-            r[0] = w | (r[0] & lo);
-            r[1] = z | (r[1] & hi);
+        pRow8 = (u32 *) pChar + y * 2;
+        pEnd8 = pRow8 + h * 2;
+        colorLo = cl8 & maskLo;
+        colorHi = cl8 & maskHi;
+        maskLo = ~maskLo;
+        maskHi = ~maskHi;
+        for (; pRow8 < pEnd8; pRow8 += 2) {
+            pRow8[0] = colorLo | (pRow8[0] & maskLo);
+            pRow8[1] = colorHi | (pRow8[1] & maskHi);
         }
     }
 }
 
-void func_02023d84(Unk02023d84 *a) {
-    u8 *src;
-    u32 e;
-    s32 v;
-    u32 base;
-    s32 y0;
-    s32 ye;
-    s32 n;
-    s32 fmt;
+void LetterChar(Unk02023d84 *pInfo) {
+    u8 *pGlyphBits;
+    u32 xEnd;
+    s32 xStart;
+    u32 colorBase8;
+    s32 yStart;
+    s32 yEnd;
+    s32 bitsPerRow;
+    s32 bpp;
     s32 x;
     s32 y;
-    u32 *p;
-    s32 o;
-    u32 *q;
-    s32 s;
-    u32 w;
-    u32 w8;
-    u32 w2;
-    u32 c;
-    s32 g;
-    Unk020247fc b;
-    u32 t;
-    Unk020247fc z;
+    u32 *pRow;
+    s32 bitPos;
+    u32 *pRowEnd;
+    s32 bitX;
+    u32 colorBase;
+    u32 rowLo;
+    u32 rowHi;
+    u32 row;
+    s32 glyphBpp;
+    Unk020247fc reader;
+    u32 pixel;
+    Unk020247fc reader8;
 
-    x = a->mUnk_08;
-    y = a->mUnk_0c;
-    v = x >= 0 ? x : 0;
-    e = x + a->mUnk_10;
+    x = pInfo->mUnk_08;
+    y = pInfo->mUnk_0c;
+    xStart = x >= 0 ? x : 0;
+    xEnd = x + pInfo->mUnk_10;
     if (y >= 0) {
-        y0 = y;
+        yStart = y;
     } else {
-        y0 = 0;
+        yStart = 0;
     }
-    ye = y + a->mUnk_14;
-    if ((s32) e >= 8) {
-        e = 8;
+    yEnd = y + pInfo->mUnk_14;
+    if ((s32) xEnd >= 8) {
+        xEnd = 8;
     }
-    ye = ye >= 8 ? 8 : ye;
+    yEnd = yEnd >= 8 ? 8 : yEnd;
     if (y > 0) {
         y = 0;
     }
-    o = -y;
+    bitPos = -y;
     if (x > 0) {
         x = 0;
     }
-    g = a->mUnk_1c;
-    n = a->mUnk_18;
-    o = o * n + g * -x;
-    fmt = a->mUnk_20;
-    v = v * fmt;
-    e = e * fmt;
-    src = a->mUnk_04;
-    if (fmt == 4) {
-        w = a->mUnk_24;
-        p = a->mUnk_00 + y0;
-        q = a->mUnk_00 + ye;
-        if (p < q) {
+    glyphBpp = pInfo->mUnk_1c;
+    bitsPerRow = pInfo->mUnk_18;
+    bitPos = bitPos * bitsPerRow + glyphBpp * -x;
+    bpp = pInfo->mUnk_20;
+    xStart = xStart * bpp;
+    xEnd = xEnd * bpp;
+    pGlyphBits = pInfo->mUnk_04;
+    if (bpp == 4) {
+        colorBase = pInfo->mUnk_24;
+        pRow = pInfo->mUnk_00 + yStart;
+        pRowEnd = pInfo->mUnk_00 + yEnd;
+        if (pRow < pRowEnd) {
             do {
-                c = *p;
-                b.mUnk_00 = src + ((u32) o >> 3);
-                b.mUnk_04 = 0;
-                b.mUnk_05 = 0;
-                BitStreamReadBits(&b, o % 8);
-                for (s = v; s < e; s += 4) {
-                    t = BitStreamReadBits(&b, g);
-                    if (t != 0) {
-                        c = (c & ~(0xf << s)) | ((w + t) << s);
+                row = *pRow;
+                reader.mUnk_00 = pGlyphBits + ((u32) bitPos >> 3);
+                reader.mUnk_04 = 0;
+                reader.mUnk_05 = 0;
+                BitStreamReadBits(&reader, bitPos % 8);
+                for (bitX = xStart; bitX < xEnd; bitX += 4) {
+                    pixel = BitStreamReadBits(&reader, glyphBpp);
+                    if (pixel != 0) {
+                        row = (row & ~(0xf << bitX)) | ((colorBase + pixel) << bitX);
                     }
                 }
-                *p = c;
-                o += n;
-                p++;
-            } while (p < q);
+                *pRow = row;
+                bitPos += bitsPerRow;
+                pRow++;
+            } while (pRow < pRowEnd);
         }
         return;
     }
-    base = a->mUnk_24;
-    p = a->mUnk_00 + y0 * 2;
-    q = a->mUnk_00 + ye * 2;
-    for (; p < q; p += 2) {
-        w8 = p[0];
-        w2 = p[1];
-        z.mUnk_00 = src + ((u32) o >> 3);
-        z.mUnk_04 = 0;
-        z.mUnk_05 = 0;
-        BitStreamReadBits(&z, o % 8);
-        for (s = v; s < e; s += 8) {
-            t = BitStreamReadBits(&z, g);
-            if (t != 0) {
-                if ((u32) s < 0x20) {
-                    w8 = (w8 & ~(0xff << s)) | ((base + t) << s);
+    colorBase8 = pInfo->mUnk_24;
+    pRow = pInfo->mUnk_00 + yStart * 2;
+    pRowEnd = pInfo->mUnk_00 + yEnd * 2;
+    for (; pRow < pRowEnd; pRow += 2) {
+        rowLo = pRow[0];
+        rowHi = pRow[1];
+        reader8.mUnk_00 = pGlyphBits + ((u32) bitPos >> 3);
+        reader8.mUnk_04 = 0;
+        reader8.mUnk_05 = 0;
+        BitStreamReadBits(&reader8, bitPos % 8);
+        for (bitX = xStart; bitX < xEnd; bitX += 8) {
+            pixel = BitStreamReadBits(&reader8, glyphBpp);
+            if (pixel != 0) {
+                if ((u32) bitX < 0x20) {
+                    rowLo = (rowLo & ~(0xff << bitX)) | ((colorBase8 + pixel) << bitX);
                 } else {
-                    w2 = (w2 & ~(0xff << (u32) (s - 0x20))) | ((base + t) << (u32) (s - 0x20));
+                    rowHi = (rowHi & ~(0xff << (u32) (bitX - 0x20))) | ((colorBase8 + pixel) << (u32) (bitX - 0x20));
                 }
             }
         }
-        p[0] = w8;
-        p[1] = w2;
-        o += n;
+        pRow[0] = rowLo;
+        pRow[1] = rowHi;
+        bitPos += bitsPerRow;
     }
 }
 
-void func_02023bcc(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023374_24 *f) {
-    Unk02023d84 s;
-    s32 cw;
-    s32 skip;
-    u32 w;
-    s32 xx;
-    u32 h;
-    u32 y0;
-    u32 x1;
-    s32 ch;
-    u32 y1;
-    s32 nx;
-    u32 x0;
-    s32 ny;
-    s32 xe;
-    s32 ye;
-    s32 yy;
-    u32 tw;
-    u8 *p;
-    s32 bpt;
-    u8 *base;
+void DrawGlyphLine(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, Unk02023374_24 *pGlyph) {
+    Unk02023d84 info;
+    s32 glyphWidth;
+    s32 rowSkip;
+    u32 canvasW;
+    s32 curX;
+    u32 canvasH;
+    u32 firstY;
+    u32 endX;
+    s32 glyphHeight;
+    u32 endY;
+    s32 numX;
+    u32 firstX;
+    s32 numY;
+    s32 limitX;
+    s32 limitY;
+    s32 curY;
+    u32 stride;
+    u8 *pTile;
+    s32 bytesPerChar;
+    u8 *pBase;
 
-    bpt = (a->mUnk_0c * 0x40) / 8;
-    cw = f->mUnk_00->mUnk_01;
-    ch = b->mUnk_00->mUnk_08->mUnk_01;
-    w = a->mUnk_04;
-    h = a->mUnk_08;
-    base = a->mUnk_00;
-    if (cw == 0) {
+    bytesPerChar = (pCanvas->mUnk_0c * 0x40) / 8;
+    glyphWidth = pGlyph->mUnk_00->mUnk_01;
+    glyphHeight = pFont->mUnk_00->mUnk_08->mUnk_01;
+    canvasW = pCanvas->mUnk_04;
+    canvasH = pCanvas->mUnk_08;
+    pBase = pCanvas->mUnk_00;
+    if (glyphWidth == 0) {
         return;
     }
-    if (c + cw < 0) {
+    if (x + glyphWidth < 0) {
         return;
     }
-    if (d + ch < 0) {
+    if (y + glyphHeight < 0) {
         return;
     }
-    if (c <= 0) {
-        x0 = 0;
+    if (x <= 0) {
+        firstX = 0;
     } else {
-        x0 = (u32) c >> 3;
+        firstX = (u32) x >> 3;
     }
-    x1 = (u32) (c + cw + 7) >> 3;
-    if (d <= 0) {
-        y0 = 0;
+    endX = (u32) (x + glyphWidth + 7) >> 3;
+    if (y <= 0) {
+        firstY = 0;
     } else {
-        y0 = (u32) d >> 3;
+        firstY = (u32) y >> 3;
     }
-    y1 = d + ch + 7;
-    if (x1 >= w) {
-        x1 = w;
+    endY = y + glyphHeight + 7;
+    if (endX >= canvasW) {
+        endX = canvasW;
     }
-    y1 >>= 3;
-    if (y1 >= h) {
-        y1 = h;
+    endY >>= 3;
+    if (endY >= canvasH) {
+        endY = canvasH;
     }
-    nx = x1 - x0;
-    ny = y1 - y0;
-    if (nx < 0) {
+    numX = endX - firstX;
+    numY = endY - firstY;
+    if (numX < 0) {
         return;
     }
-    if (ny < 0) {
+    if (numY < 0) {
         return;
     }
-    tw = a->mUnk_10;
-    p = base + bpt * (tw * y0 + x0);
-    skip = bpt * (tw - nx);
-    if (c >= 0) {
-        c &= 7;
+    stride = pCanvas->mUnk_10;
+    pTile = pBase + bytesPerChar * (stride * firstY + firstX);
+    rowSkip = bytesPerChar * (stride - numX);
+    if (x >= 0) {
+        x &= 7;
     }
-    if (d >= 0) {
-        d &= 7;
+    if (y >= 0) {
+        y &= 7;
     }
-    s.mUnk_04 = f->mUnk_04;
-    ye = d - ny * 8;
-    s.mUnk_10 = cw;
-    s.mUnk_24 = e - 1;
-    s.mUnk_14 = ch;
-    xe = c - nx * 8;
-    s.mUnk_1c = b->mUnk_00->mUnk_08->mUnk_04[2];
-    s.mUnk_20 = a->mUnk_0c;
-    s.mUnk_18 = s.mUnk_1c * b->mUnk_00->mUnk_08->mUnk_00;
-    for (yy = d; yy > ye; yy -= 8) {
-        s.mUnk_0c = yy;
-        for (xx = c; xx > xe; xx -= 8) {
-            s.mUnk_00 = (u32 *) p;
-            s.mUnk_08 = xx;
-            func_02023d84(&s);
-            p += bpt;
+    info.mUnk_04 = pGlyph->mUnk_04;
+    limitY = y - numY * 8;
+    info.mUnk_10 = glyphWidth;
+    info.mUnk_24 = cl - 1;
+    info.mUnk_14 = glyphHeight;
+    limitX = x - numX * 8;
+    info.mUnk_1c = pFont->mUnk_00->mUnk_08->mUnk_04[2];
+    info.mUnk_20 = pCanvas->mUnk_0c;
+    info.mUnk_18 = info.mUnk_1c * pFont->mUnk_00->mUnk_08->mUnk_00;
+    for (curY = y; curY > limitY; curY -= 8) {
+        info.mUnk_0c = curY;
+        for (curX = x; curX > limitX; curX -= 8) {
+            info.mUnk_00 = (u32 *) pTile;
+            info.mUnk_08 = curX;
+            LetterChar(&info);
+            pTile += bytesPerChar;
         }
-        p += skip;
+        pTile += rowSkip;
     }
 }
 
-void func_020239a8(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, Unk02023374_24 *f) {
-    Unk02023d84 s;
-    s32 cw;
-    u32 w;
-    u32 h;
-    u32 x0;
-    u32 y0;
-    u32 x1;
-    u32 y1;
-    s32 nx;
-    s32 ch;
-    s32 ny;
-    s32 ye;
-    s32 xx;
-    s32 xe;
-    s32 yy;
-    u32 tx;
-    u32 ty;
-    u32 v;
-    u8 *p;
-    s32 bpt;
-    u32 v1;
-    u32 v0;
-    u32 t;
-    u32 th;
-    u32 tw;
+void DrawGlyph1D(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, Unk02023374_24 *pGlyph) {
+    Unk02023d84 info;
+    s32 glyphWidth;
+    u32 canvasW;
+    u32 canvasH;
+    u32 firstX;
+    u32 firstY;
+    u32 endX;
+    u32 endY;
+    s32 numX;
+    s32 glyphHeight;
+    s32 numY;
+    s32 limitY;
+    s32 curX;
+    s32 limitX;
+    s32 curY;
+    u32 charX;
+    u32 charY;
+    u32 objSizeWord;
+    u8 *pBase;
+    s32 bytesPerChar;
+    u32 objHeight;
+    u32 objWidth;
+    u32 charIdx;
+    u32 height;
+    u32 width;
 
-    bpt = (a->mUnk_0c * 0x40) / 8;
-    cw = f->mUnk_00->mUnk_01;
-    w = a->mUnk_04;
-    h = a->mUnk_08;
-    ch = b->mUnk_00->mUnk_08->mUnk_01;
-    if (cw == 0) {
+    bytesPerChar = (pCanvas->mUnk_0c * 0x40) / 8;
+    glyphWidth = pGlyph->mUnk_00->mUnk_01;
+    canvasW = pCanvas->mUnk_04;
+    canvasH = pCanvas->mUnk_08;
+    glyphHeight = pFont->mUnk_00->mUnk_08->mUnk_01;
+    if (glyphWidth == 0) {
         return;
     }
-    if (c + cw < 0) {
+    if (x + glyphWidth < 0) {
         return;
     }
-    if (d + ch < 0) {
+    if (y + glyphHeight < 0) {
         return;
     }
-    if (c <= 0) {
-        x0 = 0;
+    if (x <= 0) {
+        firstX = 0;
     } else {
-        x0 = (u32) c >> 3;
+        firstX = (u32) x >> 3;
     }
-    x1 = c + cw + 7;
-    if (d <= 0) {
-        y0 = 0;
+    endX = x + glyphWidth + 7;
+    if (y <= 0) {
+        firstY = 0;
     } else {
-        y0 = (u32) d >> 3;
+        firstY = (u32) y >> 3;
     }
-    y1 = (u32) (d + ch + 7) >> 3;
-    x1 >>= 3;
-    if (x1 >= w) {
-        x1 = w;
+    endY = (u32) (y + glyphHeight + 7) >> 3;
+    endX >>= 3;
+    if (endX >= canvasW) {
+        endX = canvasW;
     }
-    if (y1 >= h) {
-        y1 = h;
+    if (endY >= canvasH) {
+        endY = canvasH;
     }
-    nx = x1 - x0;
-    ny = y1 - y0;
-    if (nx < 0) {
+    numX = endX - firstX;
+    numY = endY - firstY;
+    if (numX < 0) {
         return;
     }
-    if (ny < 0) {
+    if (numY < 0) {
         return;
     }
-    p = a->mUnk_00;
-    if (c >= 0) {
-        c &= 7;
+    pBase = pCanvas->mUnk_00;
+    if (x >= 0) {
+        x &= 7;
     }
-    if (d >= 0) {
-        d &= 7;
+    if (y >= 0) {
+        y &= 7;
     }
-    xe = c - nx * 8;
-    ye = d - ny * 8;
-    s.mUnk_04 = f->mUnk_04;
-    s.mUnk_24 = e - 1;
-    s.mUnk_14 = ch;
-    s.mUnk_10 = cw;
-    s.mUnk_1c = b->mUnk_00->mUnk_08->mUnk_04[2];
-    s.mUnk_20 = a->mUnk_0c;
-    s.mUnk_18 = s.mUnk_1c * b->mUnk_00->mUnk_08->mUnk_00;
-    v = a->mUnk_10;
-    tw = a->mUnk_04;
-    th = a->mUnk_08;
-    v0 = ((u8 *) &v)[0];
-    v1 = ((u8 *) &v)[1];
-    ty = y0;
-    for (yy = d; yy > ye; yy -= 8) {
-        s.mUnk_0c = yy;
-        tx = x0;
-        for (xx = c; xx > xe; xx -= 8) {
-            t = func_02024184(tx, ty, tw, th, v0, v1);
-            s.mUnk_00 = (u32 *) (p + t * bpt);
-            s.mUnk_08 = xx;
-            func_02023d84(&s);
-            tx++;
+    limitX = x - numX * 8;
+    limitY = y - numY * 8;
+    info.mUnk_04 = pGlyph->mUnk_04;
+    info.mUnk_24 = cl - 1;
+    info.mUnk_14 = glyphHeight;
+    info.mUnk_10 = glyphWidth;
+    info.mUnk_1c = pFont->mUnk_00->mUnk_08->mUnk_04[2];
+    info.mUnk_20 = pCanvas->mUnk_0c;
+    info.mUnk_18 = info.mUnk_1c * pFont->mUnk_00->mUnk_08->mUnk_00;
+    objSizeWord = pCanvas->mUnk_10;
+    width = pCanvas->mUnk_04;
+    height = pCanvas->mUnk_08;
+    objWidth = ((u8 *) &objSizeWord)[0];
+    objHeight = ((u8 *) &objSizeWord)[1];
+    charY = firstY;
+    for (curY = y; curY > limitY; curY -= 8) {
+        info.mUnk_0c = curY;
+        charX = firstX;
+        for (curX = x; curX > limitX; curX -= 8) {
+            charIdx = GetCharIndex1D(charX, charY, width, height, objWidth, objHeight);
+            info.mUnk_00 = (u32 *) (pBase + charIdx * bytesPerChar);
+            info.mUnk_08 = curX;
+            LetterChar(&info);
+            charX++;
         }
-        ty++;
+        charY++;
     }
 }
 
-void func_02023944(Unk02023374 *a, u32 b) {
-    volatile u32 v;
-    s32 n;
+void ClearContinuous(Unk02023374 *pCanvas, u32 cl) {
+    volatile u32 fill;
+    s32 bytes;
 
-    if (a->mUnk_0c == 4) {
-        b = b | (b << 4);
-        b = b | (b << 8);
-        b = b | (b << 16);
+    if (pCanvas->mUnk_0c == 4) {
+        cl = cl | (cl << 4);
+        cl = cl | (cl << 8);
+        cl = cl | (cl << 16);
     } else {
-        b = b | (b << 8);
-        b = b | (b << 16);
+        cl = cl | (cl << 8);
+        cl = cl | (cl << 16);
     }
-    v = b;
-    n = a->mUnk_04 * a->mUnk_08;
-    n *= (a->mUnk_0c * 0x40) / 8;
-    MIi_CpuClearFast(v, a->mUnk_00, n);
+    fill = cl;
+    bytes = pCanvas->mUnk_04 * pCanvas->mUnk_08;
+    bytes *= (pCanvas->mUnk_0c * 0x40) / 8;
+    MIi_CpuClearFast(fill, pCanvas->mUnk_00, bytes);
 }
 
-void func_02023764(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
-    s32 yy;
-    s32 xe;
-    s32 ye;
-    s32 yend;
-    u8 *p;
-    s32 x0;
-    s32 fmt;
-    s32 bpt;
-    s32 rowstep;
-    s32 yh;
-    s32 y1;
-    s32 xx;
-    s32 xend;
-    u8 *q;
-    s32 x1;
-    s32 xw;
+void ClearAreaLine(Unk02023374 *pCanvas, u32 cl, s32 x, s32 y, s32 w, s32 h) {
+    s32 pixelY;
+    s32 xEnd;
+    s32 yEnd;
+    s32 yEndAligned;
+    u8 *pRow;
+    s32 charX0;
+    s32 bitsPerPixel;
+    s32 bytesPerChar;
+    s32 rowStep;
+    s32 rows;
+    s32 rowOffset;
+    s32 pixelX;
+    s32 xEndAligned;
+    u8 *charData;
+    s32 colOffset;
+    s32 cols;
 
-    fmt = a->mUnk_0c;
-    xe = c + e;
-    ye = d + f;
-    if (fmt == 4) {
-        b = b | (b << 4);
-        b = b | (b << 8);
-        b = b | (b << 16);
+    bitsPerPixel = pCanvas->mUnk_0c;
+    xEnd = x + w;
+    yEnd = y + h;
+    if (bitsPerPixel == 4) {
+        cl = cl | (cl << 4);
+        cl = cl | (cl << 8);
+        cl = cl | (cl << 16);
     } else {
-        b = b | (b << 8);
-        b = b | (b << 16);
+        cl = cl | (cl << 8);
+        cl = cl | (cl << 16);
     }
-    yy = d & ~7;
-    x0 = c & ~7;
-    bpt = (fmt * 0x40) / 8;
-    xend = (xe + 7) & ~7;
-    yend = (ye + 7) & ~7;
-    p = a->mUnk_00 + bpt * ((yy / 8) * a->mUnk_10 + x0 / 8);
-    rowstep = a->mUnk_10 * bpt;
-    for (; yy < yend; yy += 8) {
-        if (yy < d) {
-            y1 = d - yy;
+    pixelY = y & ~7;
+    charX0 = x & ~7;
+    bytesPerChar = (bitsPerPixel * 0x40) / 8;
+    xEndAligned = (xEnd + 7) & ~7;
+    yEndAligned = (yEnd + 7) & ~7;
+    pRow = pCanvas->mUnk_00 + bytesPerChar * ((pixelY / 8) * pCanvas->mUnk_10 + charX0 / 8);
+    rowStep = pCanvas->mUnk_10 * bytesPerChar;
+    for (; pixelY < yEndAligned; pixelY += 8) {
+        if (pixelY < y) {
+            rowOffset = y - pixelY;
         } else {
-            y1 = 0;
+            rowOffset = 0;
         }
-        yh = ye - yy;
-        if (yh > 8) {
-            yh = 8;
+        rows = yEnd - pixelY;
+        if (rows > 8) {
+            rows = 8;
         }
-        yh -= y1;
-        q = p;
-        for (xx = x0; xx < xend; xx += 8) {
-            if (xx < c) {
-                x1 = c - xx;
+        rows -= rowOffset;
+        charData = pRow;
+        for (pixelX = charX0; pixelX < xEndAligned; pixelX += 8) {
+            if (pixelX < x) {
+                colOffset = x - pixelX;
             } else {
-                x1 = 0;
+                colOffset = 0;
             }
-            xw = xe - xx;
-            if (xw > 8) {
-                xw = 8;
+            cols = xEnd - pixelX;
+            if (cols > 8) {
+                cols = 8;
             }
-            xw -= x1;
-            func_02024000(q, x1, y1, xw, (s64) yh, b, fmt);
-            q += bpt;
+            cols -= colOffset;
+            ClearChar(charData, colOffset, rowOffset, cols, (s64) rows, cl, bitsPerPixel);
+            charData += bytesPerChar;
         }
-        p += rowstep;
+        pRow += rowStep;
     }
 }
 
-void func_02023548(Unk02023374 *a, u32 b, s32 c, s32 d, s32 e, s32 f) {
-    s32 yy;
-    s32 g;
-    s32 yh;
-    s32 xe;
-    s32 ye;
-    s32 yend;
-    u8 *p;
-    s32 tx0;
-    s32 x0;
-    u32 v1;
-    u32 v0;
-    u32 h;
-    u32 w;
-    s32 fmt;
-    s32 bpt;
-    u32 v;
-    s32 y1;
-    s32 xx;
-    s32 tx;
-    s32 ty;
-    s32 xend;
-    s32 x1;
-    s32 xw;
-    u32 t;
+void ClearArea1D(Unk02023374 *pCanvas, u32 cl, s32 x, s32 y, s32 w, s32 h) {
+    s32 pixelY;
+    s32 rows;
+    s32 bottom;
+    s32 xEnd;
+    s32 yEnd;
+    s32 yEndAligned;
+    u8 *pBase;
+    s32 charX0;
+    s32 xAligned;
+    u32 objHeight;
+    u32 objWidth;
+    u32 canvasH;
+    u32 canvasW;
+    s32 bitsPerPixel;
+    s32 bytesPerChar;
+    u32 objSizeWord;
+    s32 rowOffset;
+    s32 pixelX;
+    s32 charX;
+    s32 charY;
+    s32 xEndAligned;
+    s32 colOffset;
+    s32 cols;
+    u32 charIdx;
 
-    fmt = a->mUnk_0c;
-    xe = c + e;
-    ye = d + f;
-    if (fmt == 4) {
-        b = b | (b << 4);
-        b = b | (b << 8);
-        b = b | (b << 16);
+    bitsPerPixel = pCanvas->mUnk_0c;
+    xEnd = x + w;
+    yEnd = y + h;
+    if (bitsPerPixel == 4) {
+        cl = cl | (cl << 4);
+        cl = cl | (cl << 8);
+        cl = cl | (cl << 16);
     } else {
-        b = b | (b << 8);
-        b = b | (b << 16);
+        cl = cl | (cl << 8);
+        cl = cl | (cl << 16);
     }
-    x0 = c & ~7;
-    yy = d & ~7;
-    v = a->mUnk_10;
-    xend = (xe + 7) & ~7;
-    yend = (ye + 7) & ~7;
-    bpt = (fmt * 0x40) / 8;
-    tx0 = x0 / 8;
-    ty = yy / 8;
-    w = a->mUnk_04;
-    h = a->mUnk_08;
-    p = a->mUnk_00;
-    v0 = ((u8 *) &v)[0];
-    v1 = ((u8 *) &v)[1];
-    for (; yy < yend; yy += 8) {
-        tx = tx0;
-        if (yy < d) {
-            y1 = d - yy;
+    xAligned = x & ~7;
+    pixelY = y & ~7;
+    objSizeWord = pCanvas->mUnk_10;
+    xEndAligned = (xEnd + 7) & ~7;
+    yEndAligned = (yEnd + 7) & ~7;
+    bytesPerChar = (bitsPerPixel * 0x40) / 8;
+    charX0 = xAligned / 8;
+    charY = pixelY / 8;
+    canvasW = pCanvas->mUnk_04;
+    canvasH = pCanvas->mUnk_08;
+    pBase = pCanvas->mUnk_00;
+    objWidth = ((u8 *) &objSizeWord)[0];
+    objHeight = ((u8 *) &objSizeWord)[1];
+    for (; pixelY < yEndAligned; pixelY += 8) {
+        charX = charX0;
+        if (pixelY < y) {
+            rowOffset = y - pixelY;
         } else {
-            y1 = 0;
+            rowOffset = 0;
         }
-        yh = ye - yy;
-        if (yh > 8) {
-            yh = 8;
+        bottom = yEnd - pixelY;
+        if (bottom > 8) {
+            bottom = 8;
         }
-        g = yh - y1;
-        for (xx = x0; xx < xend; xx += 8) {
-            t = func_02024184(tx, ty, w, h, v0, v1);
-            if (xx < c) {
-                x1 = c - xx;
+        rows = bottom - rowOffset;
+        for (pixelX = xAligned; pixelX < xEndAligned; pixelX += 8) {
+            charIdx = GetCharIndex1D(charX, charY, canvasW, canvasH, objWidth, objHeight);
+            if (pixelX < x) {
+                colOffset = x - pixelX;
             } else {
-                x1 = 0;
+                colOffset = 0;
             }
-            xw = xe - xx;
-            if (xw > 8) {
-                xw = 8;
+            cols = xEnd - pixelX;
+            if (cols > 8) {
+                cols = 8;
             }
-            xw -= x1;
-            func_02024000(p + t * bpt, x1, y1, xw, g, b, fmt);
-            tx++;
+            cols -= colOffset;
+            ClearChar(pBase + charIdx * bytesPerChar, colOffset, rowOffset, cols, rows, cl, bitsPerPixel);
+            charX++;
         }
-        ty++;
+        charY++;
     }
 }
 
-void func_02023510(Unk02023374 *a, void *b, s32 c, s32 d, u32 e,
-                   void (*f)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *),
-                   void (*g)(Unk02023374 *, u32), void (*h)(Unk02023374 *, u32, s32, s32, s32, s32), u32 i) {
-    a->mUnk_04 = c;
-    a->mUnk_08 = d;
-    a->mUnk_0c = e;
-    a->mUnk_00 = b;
-    a->mUnk_14 = f;
-    a->mUnk_18 = g;
-    a->mUnk_1c = h;
-    a->mUnk_10 = i;
+void InitCharCanvas(Unk02023374 *pCanvas, void *charBase, s32 areaWidth, s32 areaHeight, u32 bpp,
+                    void (*drawGlyph)(Unk02023374 *, Unk02022aa8 *, s32, s32, u32, Unk02023374_24 *),
+                    void (*clearAll)(Unk02023374 *, u32), void (*clearArea)(Unk02023374 *, u32, s32, s32, s32, s32),
+                    u32 stride) {
+    pCanvas->mUnk_04 = areaWidth;
+    pCanvas->mUnk_08 = areaHeight;
+    pCanvas->mUnk_0c = bpp;
+    pCanvas->mUnk_00 = charBase;
+    pCanvas->mUnk_14 = drawGlyph;
+    pCanvas->mUnk_18 = clearAll;
+    pCanvas->mUnk_1c = clearArea;
+    pCanvas->mUnk_10 = stride;
 }
 
-s32 func_02023450(Unk02023374 *a, Unk02022aa8 *b, s32 c, s32 d, u32 e, u16 f) {
-    Unk02023374_24 v;
-    u32 i;
-    Unk02022ce4_08 *o;
+s32 NNS_G2dCharCanvasDrawChar(Unk02023374 *pCanvas, Unk02022aa8 *pFont, s32 x, s32 y, u32 cl, u16 ccode) {
+    Unk02023374_24 glyph;
+    u32 glyphIdx;
+    Unk02022ce4_08 *pRes;
 
-    i = func_02022ce4(b, f);
-    if (i == 0xffff) {
-        i = b->mUnk_00->mUnk_02;
+    glyphIdx = NNS_G2dFontFindGlyphIndex(pFont, ccode);
+    if (glyphIdx == 0xffff) {
+        glyphIdx = pFont->mUnk_00->mUnk_02;
     }
-    v.mUnk_00 = func_02022c80(b, i);
-    o = b->mUnk_00->mUnk_08;
-    v.mUnk_04 = &o->mUnk_08[i * o->mUnk_02];
-    a->mUnk_14(a, b, c + v.mUnk_00->mUnk_00, d, e, &v);
-    if (b->mUnk_08 != 0) {
-        return v.mUnk_00->mUnk_00 + v.mUnk_00->mUnk_01;
+    glyph.mUnk_00 = NNS_G2dFontGetCharWidthsFromIndex(pFont, glyphIdx);
+    pRes = pFont->mUnk_00->mUnk_08;
+    glyph.mUnk_04 = &pRes->mUnk_08[glyphIdx * pRes->mUnk_02];
+    pCanvas->mUnk_14(pCanvas, pFont, x + glyph.mUnk_00->mUnk_00, y, cl, &glyph);
+    if (pFont->mUnk_08 != 0) {
+        return glyph.mUnk_00->mUnk_00 + glyph.mUnk_00->mUnk_01;
     }
-    return v.mUnk_00->mUnk_02;
+    return glyph.mUnk_00->mUnk_02;
 }
 
-void func_02023408(void *p0, void *p1, u32 p2, u32 p3, u32 p4) {
-    func_02023510((Unk02023374 *) p0, p1, p2, p3, p4, func_02023bcc, func_02023944, func_02023764, p2);
+void NNS_G2dCharCanvasInitForBG(void *pCC, void *charBase, u32 areaWidth, u32 areaHeight, u32 colorMode) {
+    InitCharCanvas((Unk02023374 *) pCC, charBase, areaWidth, areaHeight, colorMode, DrawGlyphLine, ClearContinuous,
+                   ClearAreaLine, areaWidth);
 }
 
 // clang-format off
-// Looks up the pair of bytes in data_usa_021530f8 for the base-2 logarithms of c and d (each capped at 3 once it is 8
-// or more) and passes the pair, as a word, with the other arguments and three callbacks to func_02023510.
-// Not compiled code: it takes the logarithms with clz, which 1.2 never builds (docs/compiler.md).
-asm void func_02023374(void *a, void *b, s32 c, s32 d, s32 e) {
+// Sets up an OBJ-order canvas; written as assembly because it uses clz.
+asm void NNS_G2dCharCanvasInitForOBJ1D(void *pCC, void *charBase, s32 areaWidth, s32 areaHeight, s32 colorMode) {
     stmfd sp!, {r4, r5, r6, lr}
     sub sp, sp, #0x18
     cmp r2, #0x8
@@ -592,11 +592,11 @@ asm void func_02023374(void *a, void *b, s32 c, s32 d, s32 e) {
     add r4, r4, r6, lsl #0x3
     ldrb r6, [r4, ip, lsl #0x1]
     add ip, r4, ip, lsl #0x1
-    ldr r4, =func_020239a8
+    ldr r4, =DrawGlyph1D
     strb r6, [sp, #0x14]
     ldrb r6, [ip, #0x1]
-    ldr lr, =func_02023944
-    ldr ip, =func_02023548
+    ldr lr, =ClearContinuous
+    ldr ip, =ClearArea1D
     strb r6, [sp, #0x15]
     str r5, [sp, #0x0]
     str r4, [sp, #0x4]
@@ -604,7 +604,7 @@ asm void func_02023374(void *a, void *b, s32 c, s32 d, s32 e) {
     str ip, [sp, #0xc]
     ldr ip, [sp, #0x14]
     str ip, [sp, #0x10]
-    bl func_02023510
+    bl InitCharCanvas
     add sp, sp, #0x18
     ldmfd sp!, {r4, r5, r6, lr}
     bx lr

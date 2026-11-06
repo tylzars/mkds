@@ -93,11 +93,11 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                                     } else {
                                         *q++ = ch;
                                         if (h == -1 || (g != 0 && !func_021253f8_inline(ch))) {
-                                            u = func_02022ce4(r5, ch);
+                                            u = NNS_G2dFontFindGlyphIndex(r5, ch);
                                             if (u == 0xffff) {
                                                 u = r5->mUnk_00->mUnk_02;
                                             }
-                                            p = func_02022c80(r5, u);
+                                            p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
                                             *w += p->mUnk_02 + v10;
                                         } else {
                                             *w += v24;
@@ -110,11 +110,11 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                                 for (i1 = 0; i1 < n1; i1++) {
                                     *q++ = buf1[i1];
                                     if (h == -1 || (g != 0 && !func_021253f8_inline(buf1[i1]))) {
-                                        u = func_02022ce4(r5, buf1[i1]);
+                                        u = NNS_G2dFontFindGlyphIndex(r5, buf1[i1]);
                                         if (u == 0xffff) {
                                             u = r5->mUnk_00->mUnk_02;
                                         }
-                                        p = func_02022c80(r5, u);
+                                        p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
                                         *w += p->mUnk_02 + v10;
                                     } else {
                                         *w += v24;
@@ -128,11 +128,11 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                                     } else {
                                         *q++ = ch;
                                         if (h == -1 || (g != 0 && !func_021253f8_inline(ch))) {
-                                            u = func_02022ce4(r5, ch);
+                                            u = NNS_G2dFontFindGlyphIndex(r5, ch);
                                             if (u == 0xffff) {
                                                 u = r5->mUnk_00->mUnk_02;
                                             }
-                                            p = func_02022c80(r5, u);
+                                            p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
                                             *w += p->mUnk_02 + v10;
                                         } else {
                                             *w += v24;
@@ -145,11 +145,11 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                                 for (i2 = 0; i2 < n2; i2++) {
                                     *q++ = buf2[i2];
                                     if (h == -1 || (g != 0 && !func_021253f8_inline(buf2[i2]))) {
-                                        u = func_02022ce4(r5, buf2[i2]);
+                                        u = NNS_G2dFontFindGlyphIndex(r5, buf2[i2]);
                                         if (u == 0xffff) {
                                             u = r5->mUnk_00->mUnk_02;
                                         }
-                                        p = func_02022c80(r5, u);
+                                        p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
                                         *w += p->mUnk_02 + v10;
                                     } else {
                                         *w += v24;
@@ -182,11 +182,11 @@ void func_021253f8(Unk021243ac_20 *a, s32 *b, s32 *c, s32 *d, void *e, u16 *f, s
                         r7 = 0;
                     }
                     if (h == -1 || (g != 0 && !func_021253f8_inline(v1))) {
-                        u = func_02022ce4(r5, v1);
+                        u = NNS_G2dFontFindGlyphIndex(r5, v1);
                         if (u == 0xffff) {
                             u = r5->mUnk_00->mUnk_02;
                         }
-                        p = func_02022c80(r5, u);
+                        p = NNS_G2dFontGetCharWidthsFromIndex(r5, u);
                         *w += p->mUnk_02 + r7;
                     } else {
                         *w += h + r7;
@@ -290,15 +290,15 @@ void func_021251c4(Unk021243ac_20 *a, s32 b, s32 *c, s32 d, s32 e, s32 f, s32 g,
             }
         } else {
             if (n == -1 || (m != 0 && !func_021253f8_inline(ch))) {
-                x += func_02023450((Unk02023374 *) a->mUnk_00, a->mUnk_04, x, y, i, ch);
+                x += NNS_G2dCharCanvasDrawChar((Unk02023374 *) a->mUnk_00, a->mUnk_04, x, y, i, ch);
             } else {
-                u = func_02022ce4(v18, ch);
+                u = NNS_G2dFontFindGlyphIndex(v18, ch);
                 if (u == 0xffff) {
                     u = v18->mUnk_00->mUnk_02;
                 }
-                v24 = func_02022c80(v18, u);
+                v24 = NNS_G2dFontGetCharWidthsFromIndex(v18, u);
                 x += (n - v24->mUnk_02) >> 1;
-                func_02023450((Unk02023374 *) a->mUnk_00, a->mUnk_04, x, y, i, ch);
+                NNS_G2dCharCanvasDrawChar((Unk02023374 *) a->mUnk_00, a->mUnk_04, x, y, i, ch);
                 x += n - ((n - v24->mUnk_02) >> 1);
             }
             if (x > v20) {

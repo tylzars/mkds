@@ -25,7 +25,7 @@ void func_020b24cc(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
 }
 
 u32 func_020b24a4(Unk02180728 *a, s32 b, s32 c, u32 d, u32 e, void *f) {
-    return func_02024340(a, b, c, d, e, f);
+    return NNSi_G2dTextCanvasDrawText(a, b, c, d, e, f);
 }
 
 #pragma thumb on
@@ -172,10 +172,10 @@ void InitChoisesS(void) {
                 break;
         }
         gChoisesS->mUnk_0a8 = func_020b403c(2);
-        func_02023408(gChoisesS->mUnk_0ac[0], func_020b3374()->mData, 0x20, 0xc, 4);
+        NNS_G2dCharCanvasInitForBG(gChoisesS->mUnk_0ac[0], func_020b3374()->mData, 0x20, 0xc, 4);
         p = gChoisesS;
         func_020b24cc(&p->mUnk_12c[0], p->mUnk_0ac[0], p->mUnk_0a8, func_020b4acc(), 0);
-        func_02023408(gChoisesS->mUnk_0ac[1], gChoisesS->mUnk_174, 0x20, 0xc, 4);
+        NNS_G2dCharCanvasInitForBG(gChoisesS->mUnk_0ac[1], gChoisesS->mUnk_174, 0x20, 0xc, 4);
         p = gChoisesS;
         func_020b24cc(&p->mUnk_12c[1], p->mUnk_0ac[1], p->mUnk_0a8, func_020b4acc(), 0);
         n = func_020b3260(gChoisesS->mLists[1].mValueCount) >> 1;
@@ -183,7 +183,7 @@ void InitChoisesS(void) {
             gChoisesS->mUnk_174[i] = func_020b3374()->mData[i];
         }
         if (gChoisesS->mUnk_178 != NULL) {
-            func_02023408(gChoisesS->mUnk_0ac[2], gChoisesS->mUnk_178, 0x20, 0xc, 4);
+            NNS_G2dCharCanvasInitForBG(gChoisesS->mUnk_0ac[2], gChoisesS->mUnk_178, 0x20, 0xc, 4);
             p = gChoisesS;
             func_020b24cc(&p->mUnk_12c[2], p->mUnk_0ac[2], p->mUnk_0a8, func_020b4acc(), 0);
             n = func_020b3260(gChoisesS->mLists[2].mValueCount) >> 1;
@@ -191,7 +191,7 @@ void InitChoisesS(void) {
                 gChoisesS->mUnk_178[i] = func_020b3374()->mData[i];
             }
         }
-        func_02023408(gChoisesS->mUnk_0ac[3], func_020b3374()->mData, 0x20, 0xc, 4);
+        NNS_G2dCharCanvasInitForBG(gChoisesS->mUnk_0ac[3], func_020b3374()->mData, 0x20, 0xc, 4);
         p = gChoisesS;
         func_020b24cc(&p->mUnk_12c[3], p->mUnk_0ac[3], p->mUnk_0a8, func_020b4acc(), 0);
         if (func_020b24e4() != 2) {

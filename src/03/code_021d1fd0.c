@@ -36,8 +36,8 @@ void func_ov003_021d2490(void) {
     b = NULL;
     for (i = 0; i < 2; i++) {
         (*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_78c[i] = func_ov003_021d14b8(data_ov003_021d7c0c[i], b, 4);
-        func_02022d44(&(*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_000[i],
-                      (*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_78c[i]);
+        NNS_G2dFontInitUTF16(&(*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_000[i],
+                             (*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_78c[i]);
     }
 }
 
@@ -68,14 +68,14 @@ Unk021d23b0 *func_ov003_021d23b0(u32 a, u16 b, u16 c, s32 d, u32 *e, s32 f) {
     g->mUnk_37 = c;
     g->mUnk_30 = func_ov003_021d309c(a, b * c, d, &h);
     g->mUnk_34 = h;
-    *e = func_020231e4(b, c);
+    *e = NNSi_G2dCalcRequiredOBJ(b, c);
     if (a == 1) {
         i = 0x6600000;
     } else {
         i = 0x6400000;
     }
     i += h << 7;
-    func_02023374(g, (void *) i, b, c, 4);
+    NNS_G2dCharCanvasInitForOBJ1D(g, (void *) i, b, c, 4);
     g->mUnk_18(g, 0);
     j = &(*(Unk021d2490 **) data_ov003_021da2c4)->mUnk_000[f];
     g->mUnk_20 = g;
@@ -108,7 +108,7 @@ Unk021d2188 *func_ov003_021d2288(u32 g, u32 h) {
         *d &= ~0x40;
         *d = (*d & 0x43) | 0xc00;
     }
-    func_02023408(a, a->mUnk_30, c, b, 4);
+    NNS_G2dCharCanvasInitForBG(a, a->mUnk_30, c, b, 4);
     f = (*(Unk021d1fd0 **) &data_ov003_021da2c4)->mUnk_000 + h * 12;
     a->mUnk_20.mUnk_00 = a;
     a->mUnk_20.mUnk_04 = f;
@@ -119,7 +119,7 @@ Unk021d2188 *func_ov003_021d2288(u32 g, u32 h) {
     } else {
         e = G2_GetBG0ScrPtr();
     }
-    func_020232b0((u16 *) e, c, b, 0, 0, 0x20, data_ov003_021d67dc[g], 0xf);
+    NNS_G2dMapScrToCharText((u16 *) e, c, b, 0, 0, 0x20, data_ov003_021d67dc[g], 0xf);
     func_ov003_021d2060(a, 0);
     a->mUnk_34 =
         func_ov003_021d3544(1, func_ov003_021d21f8, &(*(Unk021d1fd0 **) &data_ov003_021da2c4)->mUnk_794 + g, 200);
@@ -174,11 +174,12 @@ void func_ov003_021d214c(u32 p0, u32 p1, u32 p2, u32 p3, u32 p4, u32 p5) {
     u32 v2 = p4;
     u32 v4 = p5;
     u32 v6 = ((p0) + (0x20u));
-    u32 v7 = func_02024340((Unk02180728 *) v6, p1, p2, p3, v2, (void *) v4);
+    u32 v7 = NNSi_G2dTextCanvasDrawText((Unk02180728 *) v6, p1, p2, p3, v2, (void *) v4);
 }
 
 void func_ov003_021d211c(void *a, u32 b, u32 c, u32 d, u16 e, int f) {
-    func_02023450((Unk02023374 *) a, (Unk02022aa8 *) ((*(s32 *) &data_ov003_021da2c4) + f * 0xc), b, c, d, e);
+    NNS_G2dCharCanvasDrawChar((Unk02023374 *) a, (Unk02022aa8 *) ((*(s32 *) &data_ov003_021da2c4) + f * 0xc), b, c, d,
+                              e);
 }
 
 void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n) {
@@ -189,11 +190,11 @@ void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n) {
 
     while (*m != 0) {
         a = (Unk02022aa8 *) ((*(Unk021d1fd0 **) &data_ov003_021da2c4)->mUnk_000 + n * 12);
-        b = func_02022ce4(a, *m);
+        b = NNS_G2dFontFindGlyphIndex(a, *m);
         if (b == 0xffff) {
             b = a->mUnk_00->mUnk_02;
         }
-        c = func_02022c80(a, b);
+        c = NNS_G2dFontGetCharWidthsFromIndex(a, b);
         if (a->mUnk_08 != 0) {
             d = c->mUnk_00 + c->mUnk_01;
         } else {
@@ -206,7 +207,7 @@ void func_ov003_021d2094(void *e, s32 f, u32 g, u32 h, s32 l, u16 *m, s32 n) {
 }
 
 void func_ov003_021d2070(Unk021d2188 *a, s32 b, s32 c, s32 d, s32 e, u32 f, u32 g, void *h) {
-    func_0202428c(&a->mUnk_20, b, c, d, e, f, g, h);
+    NNSi_G2dTextCanvasDrawTextRect(&a->mUnk_20, b, c, d, e, f, g, h);
 }
 
 void func_ov003_021d2060(Unk021d2188 *object, u32 value) {
@@ -219,7 +220,7 @@ void func_ov003_021d1ffc(Unk021d1ffc *b, s32 c, s32 d, Unk021d1770 *e, s32 f) {
     func_ov003_021d18f0(e, -1, 0, 0);
     func_ov003_021d1890(e, -1, 0, 0xf);
     func_ov003_021d1790(e, -1, f);
-    func_02022eb0(a, b->mUnk_36, b->mUnk_37, c, d, 0, b->mUnk_34, 2);
+    NNS_G2dArrangeOBJ1D(a, b->mUnk_36, b->mUnk_37, c, d, 0, b->mUnk_34, 2);
 }
 
 void func_ov003_021d1fd0(void *object) {

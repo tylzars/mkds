@@ -353,12 +353,12 @@ void func_020ba63c(Unk020d029c *p) {
     t = GetRaceMNcerEntry(0xc);
     a[0] = 0x18000;
     a[1] = 0x18000;
-    p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, a, 0, 1);
+    p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, a, 0, 1);
     l = p->mUnk_400;
     b[0] = 0x18000;
     b[1] = 0x18000;
     q = &p->mUnk_000[l];
-    p->mUnk_400 += func_020224e0(q, 0x80 - l, r, NULL, b, 0, 1);
+    p->mUnk_400 += NNS_G2dMakeCellToOams(q, 0x80 - l, r, NULL, b, 0, 1);
     for (; l < p->mUnk_400; l++, q++) {
         ((u32 *) q)[0] = (((u32 *) q)[0] & ~0xc00) | 0x800;
         ((u32 *) q)[1] = (((u32 *) q)[1] & ~0xc00) | 0x400;
@@ -367,7 +367,7 @@ void func_020ba63c(Unk020d029c *p) {
     c[0] = 0x18000;
     c[1] = 0x18000;
     q = &p->mUnk_000[l];
-    p->mUnk_400 += func_020224e0(q, 0x80 - l, r, NULL, c, 0, 1);
+    p->mUnk_400 += NNS_G2dMakeCellToOams(q, 0x80 - l, r, NULL, c, 0, 1);
     for (; l < p->mUnk_400; l++, q++) {
         ((u32 *) q)[1] = (((u32 *) q)[1] & ~0xc00) | 0x400;
     }
@@ -375,11 +375,11 @@ void func_020ba63c(Unk020d029c *p) {
         t = GetRaceMNcerEntry(LookupRaceMNcerIndex(y));
         d[0] = 0x18000;
         d[1] = (x - 8) << 12;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, d, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, d, 0, 1);
         t = GetRaceMNcerEntry(LookupRaceMNcerIndex(data_0217b3cc->mUnk_0c));
         e[0] = 0x18000;
         e[1] = (x + 0x18) << 12;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, e, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, e, 0, 1);
     } else {
         k = func_020ae5c4(p);
         w[0] = FX_Div(0x1000, data_0217b3cc->mUnk_18.mUnk_04);
@@ -391,7 +391,7 @@ void func_020ba63c(Unk020d029c *p) {
         f[0] = 0x18000;
         f[1] = (x - 8) << 12;
         q = &p->mUnk_000[l];
-        p->mUnk_400 += func_020224e0(q, 0x80 - l, t, w, f, k, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(q, 0x80 - l, t, w, f, k, 1);
         for (; l < p->mUnk_400; l++, q++) {
             ((u32 *) q)[1] = (((u32 *) q)[1] & ~0xc00) | 0x400;
         }
@@ -400,7 +400,7 @@ void func_020ba63c(Unk020d029c *p) {
         g[0] = 0x18000;
         g[1] = (x + 0x18) << 12;
         q = &p->mUnk_000[l];
-        p->mUnk_400 += func_020224e0(q, 0x80 - l, t, w, g, k, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(q, 0x80 - l, t, w, g, k, 1);
         for (; l < p->mUnk_400; l++, q++) {
             ((u32 *) q)[1] = (((u32 *) q)[1] & ~0xc00) | 0x400;
         }
@@ -413,7 +413,7 @@ void func_020ba63c(Unk020d029c *p) {
     t = GetRaceMNcerEntry(0xb);
     h[0] = 0x18000;
     h[1] = 0x18000;
-    p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, h, 0, 1);
+    p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, h, 0, 1);
 }
 
 s32 func_020ba620(void) {
@@ -533,7 +533,8 @@ void func_020b9dfc(Unk020d029c *p) {
                         t = GetRaceBattleMNcerEntry(10);
                         b[0] = (0xfe - i * 0xe) << 12;
                         b[1] = 0xc000;
-                        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, b, 0, 1);
+                        p->mUnk_400 +=
+                            NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, b, 0, 1);
                     }
                     if (k == 0) {
                         return;
@@ -544,7 +545,8 @@ void func_020b9dfc(Unk020d029c *p) {
                     t = GetRaceBattleMNcerEntry(10);
                     c[0] = (0xfe - i * 0xe) << 12;
                     c[1] = 0xc000;
-                    p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, c, 0, 1);
+                    p->mUnk_400 +=
+                        NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, c, 0, 1);
                 } else {
                     i = GetRaceStartSequenceFrames() % 16;
                     if (func_020a1048(func_020b4d9c()) != 0 && i >= 10) {
@@ -554,15 +556,18 @@ void func_020b9dfc(Unk020d029c *p) {
                     t = GetRaceBattleMNcerEntry(0xb);
                     d[0] = 0xcd000;
                     d[1] = 0xf000;
-                    p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, d, 0, 1);
+                    p->mUnk_400 +=
+                        NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, d, 0, 1);
                     t = GetRaceBattleMNcerEntry(n / 10);
                     e[0] = 0xe1000;
                     e[1] = 0x10000;
-                    p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, e, 0, 1);
+                    p->mUnk_400 +=
+                        NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, e, 0, 1);
                     t = GetRaceBattleMNcerEntry(n % 10);
                     f[0] = 0xf0000;
                     f[1] = 0x10000;
-                    p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, f, 0, 1);
+                    p->mUnk_400 +=
+                        NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, f, 0, 1);
                 }
             } else {
                 if (gRaceProgress->mUnk_000[func_020b4d9c()].mStatus != 2) {
@@ -574,7 +579,7 @@ void func_020b9dfc(Unk020d029c *p) {
                 t = GetRaceBattleMNcerEntry(0xc);
                 a[0] = 0x80000;
                 a[1] = 0x60000;
-                p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, a, 0, 1);
+                p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, a, 0, 1);
             }
             break;
         case MODE_TIME_ATTACK:
@@ -590,7 +595,7 @@ void func_020b9dfc(Unk020d029c *p) {
             g[0] = 0x80000;
             g[1] = 0x60000;
             q = &p->mUnk_000[l];
-            p->mUnk_400 += func_020224e0(q, 0x80 - l, t, NULL, g, 0, 1);
+            p->mUnk_400 += NNS_G2dMakeCellToOams(q, 0x80 - l, t, NULL, g, 0, 1);
             for (; l < p->mUnk_400; l++, q++) {
                 ((u32 *) q)[0] = (((u32 *) q)[0] & ~0xc00) | 0x800;
                 ((u32 *) q)[1] = (((u32 *) q)[1] & ~0xc00) | 0x400;
@@ -598,13 +603,13 @@ void func_020b9dfc(Unk020d029c *p) {
             t = GetRaceTaMNcerEntry(0xd);
             h[0] = 0x80000;
             h[1] = 0x60000;
-            p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, h, 0, 1);
+            p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, h, 0, 1);
             break;
         default:
             t = GetRaceMNcerEntry(data_0217b3c8->mUnk_00);
             j[0] = 0x18000;
             j[1] = 0xa8000;
-            p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, j, 0, 1);
+            p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, j, 0, 1);
             break;
     }
 }
@@ -636,40 +641,40 @@ void func_020b9994(Unk020d029c *p) {
     t = GetRaceMrMNcerEntry(0x15);
     a[0] = 0xc000;
     a[1] = 0xb0000;
-    p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, a, 0, 1);
+    p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, a, 0, 1);
     if (data_0217b3c8->mUnk_04 >= 10) {
         t = GetRaceMrMNcerEntry(m / 10);
         b[0] = 0x1b000;
         b[1] = 0xb4000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, b, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, b, 0, 1);
         t = GetRaceMrMNcerEntry(m % 10);
         c[0] = 0x2e000;
         c[1] = 0xb4000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, c, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, c, 0, 1);
         t = GetRaceMrMNcerEntry(10);
         d[0] = 0x42000;
         d[1] = 0xb4000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, d, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, d, 0, 1);
         t = GetRaceMrMNcerEntry(n / 10 + 0xb);
         e[0] = 0x4d000;
         e[1] = 0xb4000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, e, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, e, 0, 1);
         t = GetRaceMrMNcerEntry(n % 10 + 0xb);
         f[0] = 0x5b000;
         f[1] = 0xb4000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, f, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, f, 0, 1);
     } else {
         t = GetRaceMrMNcerEntry(m % 10);
         g[0] = 0x1b000;
         g[1] = 0xb4000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, g, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, g, 0, 1);
         t = GetRaceMrMNcerEntry(10);
         h[0] = 0x2f000;
         h[1] = 0xb4000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, h, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, h, 0, 1);
         t = GetRaceMrMNcerEntry(n % 10 + 0xb);
         i[0] = 0x3a000;
         i[1] = 0xb4000;
-        p->mUnk_400 += func_020224e0(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, i, 0, 1);
+        p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, i, 0, 1);
     }
 }

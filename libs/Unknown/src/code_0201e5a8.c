@@ -7,8 +7,8 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/code_0200c000.h"
 
-s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
-    u32 v;
+s32 WVR_StartUpAsync(u32 vram, UnkFunc *callback, u32 arg) {
+    u32 enabled;
 
     PXI_Init();
     if (PXI_IsCallbackReady(0xf, 1) == 0) {
@@ -16,27 +16,27 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
     }
     if (data_02173278 == 0) {
         do {
-            s32 n = OS_GetLockID();
+            s32 id = OS_GetLockID();
 
-            if (n == -3) {
+            if (id == -3) {
                 return 7;
             }
-            data_02173278 = n;
+            data_02173278 = id;
         } while (data_02173278 == 0);
     }
-    v = OS_DisableInterrupts();
+    enabled = OS_DisableInterrupts();
     if (data_02173284 != 0) {
-        OS_RestoreInterrupts(v);
+        OS_RestoreInterrupts(enabled);
         return 5;
     }
     if (data_0217327c != 0) {
-        OS_RestoreInterrupts(v);
+        OS_RestoreInterrupts(enabled);
         return 5;
     }
-    switch (a) {
+    switch (vram) {
         case 4:
             if (OSi_TryLockVram(4, data_02173278) == 0) {
-                OS_RestoreInterrupts(v);
+                OS_RestoreInterrupts(enabled);
                 return 6;
             }
             data_0217327c = 4;
@@ -44,7 +44,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             break;
         case 8:
             if (OSi_TryLockVram(8, data_02173278) == 0) {
-                OS_RestoreInterrupts(v);
+                OS_RestoreInterrupts(enabled);
                 return 6;
             }
             data_0217327c = 8;
@@ -52,7 +52,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             break;
         case 12:
             if (OSi_TryLockVram(12, data_02173278) == 0) {
-                OS_RestoreInterrupts(v);
+                OS_RestoreInterrupts(enabled);
                 return 6;
             }
             data_0217327c = 12;
@@ -60,89 +60,89 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             *(vu8 *) 0x4000243 = 0x8a;
             break;
         default:
-            OS_RestoreInterrupts(v);
+            OS_RestoreInterrupts(enabled);
             return 3;
     }
     if (PXI_IsCallbackReady(0xf, 0) == 0) {
-        PXI_SetFifoRecvCallback(0xf, func_0201e5ac);
+        PXI_SetFifoRecvCallback(0xf, WvrReceiveCallback);
     }
-    if (b == 0) {
-        data_02173284 = func_0201e5a8;
+    if (callback == 0) {
+        data_02173284 = WvrDummyAsyncCallback;
     } else {
-        data_02173284 = b;
+        data_02173284 = callback;
     }
-    data_02173280 = c;
+    data_02173280 = arg;
     if (PXI_SendWordByFifo(0xf, 0x10000, 0) < 0) {
         OSi_UnlockVram(data_0217327c, data_02173278);
         data_0217327c = 0;
         data_02173284 = 0;
-        OS_RestoreInterrupts(v);
+        OS_RestoreInterrupts(enabled);
         return 4;
     }
-    OS_RestoreInterrupts(v);
+    OS_RestoreInterrupts(enabled);
     return 1;
 }
 
-s32 func_0201e6b8(UnkFunc *a, u32 b) {
-    u32 v;
+s32 WVR_TerminateAsync(UnkFunc *callback, u32 arg) {
+    u32 enabled;
 
     PXI_Init();
     if (PXI_IsCallbackReady(0xf, 1) == 0) {
         return 2;
     }
-    v = OS_DisableInterrupts();
+    enabled = OS_DisableInterrupts();
     if (data_02173284 != 0) {
-        OS_RestoreInterrupts(v);
+        OS_RestoreInterrupts(enabled);
         return 5;
     }
     if (PXI_IsCallbackReady(0xf, 0) == 0) {
-        PXI_SetFifoRecvCallback(0xf, func_0201e5ac);
+        PXI_SetFifoRecvCallback(0xf, WvrReceiveCallback);
     }
-    if (a == 0) {
-        data_02173284 = func_0201e5a8;
+    if (callback == 0) {
+        data_02173284 = WvrDummyAsyncCallback;
     } else {
-        data_02173284 = a;
+        data_02173284 = callback;
     }
-    data_02173280 = b;
+    data_02173280 = arg;
     if (PXI_SendWordByFifo(0xf, 0x20000, 0) < 0) {
         data_02173284 = 0;
-        OS_RestoreInterrupts(v);
+        OS_RestoreInterrupts(enabled);
         return 4;
     }
-    OS_RestoreInterrupts(v);
+    OS_RestoreInterrupts(enabled);
     return 1;
 }
 
-void func_0201e5ac(u32 a, u32 b) {
-    UnkFunc *f;
-    u32 arg;
-    u32 t;
-    u32 k;
+void WvrReceiveCallback(u32 tag, u32 data) {
+    UnkFunc *callback;
+    u32 callbackArg;
+    u32 command;
+    u32 result;
 
-    t = b & 0xffff0000;
-    k = b & 0xff;
-    f = data_02173284;
-    arg = data_02173280;
-    switch (t) {
+    command = data & 0xffff0000;
+    result = data & 0xff;
+    callback = data_02173284;
+    callbackArg = data_02173280;
+    switch (command) {
         case 0x10000:
-            if (k == 7 && data_0217327c != 0 && data_02173278 != 0) {
+            if (result == 7 && data_0217327c != 0 && data_02173278 != 0) {
                 OSi_UnlockVram(data_0217327c, data_02173278);
                 data_0217327c = 0;
             }
             break;
         case 0x20000:
-            if (k == 0 && data_0217327c != 0 && data_02173278 != 0) {
+            if (result == 0 && data_0217327c != 0 && data_02173278 != 0) {
                 OSi_UnlockVram(data_0217327c, data_02173278);
                 data_0217327c = 0;
             }
             PXI_SetFifoRecvCallback(0xf, 0);
             break;
     }
-    if (f != 0) {
+    if (callback != 0) {
         data_02173284 = 0;
         data_02173280 = 0;
-        f(arg, k);
+        callback(callbackArg, result);
     }
 }
 
-void func_0201e5a8(void) {}
+void WvrDummyAsyncCallback(void) {}

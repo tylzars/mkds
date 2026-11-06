@@ -467,7 +467,7 @@ typedef struct Unk0217d3ec {
     /* 810 */ s32 mUnk_810;
 } Unk0217d3ec;
 
-// Objects of 0x20 bytes set up by func_02023408; the word at 0x18 is called with the object and a value.
+// Objects of 0x20 bytes set up by NNS_G2dCharCanvasInitForBG; the word at 0x18 is called with the object and a value.
 typedef struct Unk0217d3f0_2098 {
     /* 00 */ u8 mUnk_00[0x18];
     /* 18 */ void (*mUnk_18)(struct Unk0217d3f0_2098 *, s32);
@@ -673,7 +673,7 @@ typedef struct Unk0217d404 {
 } Unk0217d404;
 
 // Object behind data_0217d408: 0x1a44 bytes allocated by func_0212b158; the 0x20 bytes at 0x14 are set up by
-// func_02023408.
+// NNS_G2dCharCanvasInitForBG.
 typedef struct Unk0217d408 {
     /* 0000 */ s32 mUnk_0000;
     /* 0004 */ s32 mUnk_0004;
@@ -696,7 +696,7 @@ typedef struct Unk0217d40c_18 {
 } Unk0217d40c_18;
 
 // Object behind data_0217d40c: 0x85c bytes allocated by func_0212b5ec; the 0x20 bytes at 0x20 are set up by
-// func_02023408.
+// NNS_G2dCharCanvasInitForBG.
 typedef struct Unk0217d40c {
     /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
