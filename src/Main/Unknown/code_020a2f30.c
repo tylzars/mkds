@@ -126,7 +126,7 @@ void DrawBalloon(void *p, Balloon *a) {
             g0[2] = t;
             func_01ff9048(0x1b, g0, 3);
         }
-        SetMapObjectModelPolygonId(gBalloon, func_020d3c44());
+        SetMapObjectModelPolygonId(gBalloon, AllocPolygonIdWrapping());
         func_0209b688(gBalloon, a->mNsbtpFrameIndex);
         DrawMapObjectModel(p, gBalloon, a);
     } else if (n > 0) {
@@ -171,7 +171,7 @@ void DrawBalloon(void *p, Balloon *a) {
             h[1] = 0xf66;
             h[2] = 0;
             func_01ff9048(0x1c, h, 3);
-            SetMapObjectModelPolygonId(gBalloon, func_020d3c44());
+            SetMapObjectModelPolygonId(gBalloon, AllocPolygonIdWrapping());
             func_0209b688(gBalloon, e->mNsbtpFrameIndex);
             DrawMapObjectModel(p, gBalloon, a);
             w2 = 1;

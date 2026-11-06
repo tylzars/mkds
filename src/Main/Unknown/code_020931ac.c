@@ -58,7 +58,7 @@ void DrawMkdEfBurner(void *a, MkdEfBurner *p) {
     if (p->mUnk_a8 <= 0) {
         return;
     }
-    SetMapObjectModelPolygonId(gMkdEfBurner, func_020d3c44());
+    SetMapObjectModelPolygonId(gMkdEfBurner, AllocPolygonIdWrapping());
     s0 = 0x1e;
     func_01ff9048(0x14, &s0, 1);
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 0xc);

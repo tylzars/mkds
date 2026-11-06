@@ -62,7 +62,7 @@ extern Unk020f3fa8 data_0217bb88;
 
 // Element returned through gItemPools: the first 0x12c bytes that every pool object shares; the per-kind objects
 // embed it as their first member and run from 0x12c (kinds 4, 6 and 13) to 0x31c bytes. One is also embedded in
-// Unk0217b4f0 at 0x18c.
+// MapObjects at 0x18c.
 typedef struct ItemObject {
     // Sound source of the item object (the sounds started on it).
     /* 00 */ SoundSource mSoundSource;

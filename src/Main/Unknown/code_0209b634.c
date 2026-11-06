@@ -128,7 +128,7 @@ void func_0209b9a4(void *a, u16 b) {
 }
 
 // Stores a polygon id (6 bits at bit 24 of the polygon attribute) in every model the bundle holds; 0x3f at creation,
-// func_020d3c44 hands out 1..0x3e; the draw may replace it.
+// The draw may replace this polygon id.
 void SetMapObjectModelPolygonId(void *a, u32 b) {
     MapObjectModel *o = a;
     Unk020e6488 *m = o->mNsbmdModel;

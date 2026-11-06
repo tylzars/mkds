@@ -112,7 +112,7 @@ void func_020df07c(void *a, Unk020de6a8 *b, void *c, u16 d) {
     }
     if (b->mUnk_100 != NULL) {
         b->mUnk_100(b->mUnk_104, &q);
-        r = func_020d3c44();
+        r = AllocPolygonIdWrapping();
         p = data_0217b71c;
         p->mUnk_14 = p->mUnk_14 & 0xc0ffffff;
         p->mUnk_14 = p->mUnk_14 | r << 24;
@@ -168,7 +168,7 @@ void func_020def00(void *a, Unk020de6a8 *b, void *c, u16 d) {
     Unk020e6488 *p2;
     u16 y;
 
-    b->mUnk_0f0 = func_020d3c44();
+    b->mUnk_0f0 = AllocPolygonIdWrapping();
     if (b->mUnk_100 != NULL) {
         return;
     }

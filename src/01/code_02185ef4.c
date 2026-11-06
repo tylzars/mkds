@@ -791,7 +791,7 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
             obj = b->mNsbmd->mAnimatedModel->mUnk_04;
             NNS_G3dMdlSetMdlXLDepthUpdateAll((NNSG3dResMdl *) obj, 1);
             for (i = 0; i < obj->mUnk_18; i++) {
-                func_0209b904(b->mNsbmd, func_020d3c44(), i);
+                func_0209b904(b->mNsbmd, AllocPolygonIdWrapping(), i);
             }
         }
         value = 0x1e;

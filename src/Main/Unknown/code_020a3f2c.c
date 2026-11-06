@@ -944,7 +944,7 @@ void InitKartBalloons(Unk020a3fa8 *a) {
     s32 w;
     s32 v;
 
-    if (func_020d3bf8(MAP_OBJECT_KIND_BALLOON) == 0) {
+    if (CountMapObjectsOfKind(MAP_OBJECT_KIND_BALLOON) == 0) {
         d = data_021759c0;
         n = d->mKartCount;
         if (d->mMode == MODE_BATTLE) {

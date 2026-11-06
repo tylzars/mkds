@@ -22,7 +22,7 @@
 #include "code_0214a748.h" // Unk0214ad4c
 
 struct Unk020f41c4_B;
-struct Unk0217b4f0;
+struct MapObjects;
 struct Water;
 struct Unk0217b43c;
 struct Nscr;
@@ -722,7 +722,7 @@ extern s32 data_0217b4e0;
 // camera read this one, while gWater (never cleared) is only the creators' variable.
 extern struct Water *gCourseWater;
 extern s32 data_0217b4ec;
-extern struct Unk0217b4f0 *data_0217b4f0;
+extern struct MapObjects *gMapObjects;
 extern s32 data_0217b4f4;
 extern Unk0217b4f8 data_0217b4f8;
 extern Unk0217b4f8 data_0217b550;

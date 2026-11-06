@@ -386,8 +386,8 @@ void func_020d47e0(void) {
     u16 a;
     u32 b;
 
-    n = data_0217b4f0->mMapObjectCount;
-    t = data_0217b4f0->mMapObjects;
+    n = gMapObjects->mMapObjectCount;
+    t = gMapObjects->mMapObjects;
     f = func_0207a780();
     g = GetRaceUpdateFrames() & 3;
     i = 0;
@@ -446,8 +446,8 @@ void func_020d4698(void) {
 
     f = func_0207a780();
     i = 0;
-    n = data_0217b4f0->mMapObjectCount;
-    t = data_0217b4f0->mMapObjects;
+    n = gMapObjects->mMapObjectCount;
+    t = gMapObjects->mMapObjects;
     if (n <= 0) {
         return;
     }
@@ -492,8 +492,8 @@ void UpdateMapObjects(void) {
     Unk020e6fd4 **t;
     s32 r;
 
-    t = data_0217b4f0->mUnk_134;
-    n = data_0217b4f0->mUnk_174;
+    t = gMapObjects->mUpdateLists;
+    n = gMapObjects->mUpdateListCount;
     r = GetRaceStartSequenceFrames();
     if (r <= 0x168) {
         if (data_021759c0->mUnk_00c != 3) {
@@ -504,7 +504,7 @@ void UpdateMapObjects(void) {
             }
         }
     }
-    if (data_0217b4f0->mUnk_2b8 != 0) {
+    if (gMapObjects->mRunUpdateLists != 0) {
         for (i = 0; i < n; i++) {
             e = t[i];
             if (e->mUnk_0c != NULL) {
@@ -541,8 +541,8 @@ void DrawMapObjects(Unk020d4418 *p) {
         DrawWater(gCourseWater, v);
     }
     i = 0;
-    n = data_0217b4f0->mUnk_12a;
-    t = data_0217b4f0->mUnk_068;
+    n = gMapObjects->mUnk_12a;
+    t = gMapObjects->mUnk_068;
     for (; i < n; i++) {
         e = t[i];
         func_0208ab00();
@@ -556,8 +556,8 @@ void DrawMapObjects(Unk020d4418 *p) {
     }
     func_020e6a74();
     j = 0;
-    k = data_0217b4f0->mUnk_12c;
-    t = data_0217b4f0->mUnk_0c8;
+    k = gMapObjects->mUnk_12c;
+    t = gMapObjects->mUnk_0c8;
     for (; j < k; j++) {
         e = t[j];
         if (e->mUnk_0c != NULL) {
@@ -574,13 +574,13 @@ void func_020d4418(Unk020d4418 *p) {
     MtxFx43 *v;
 
     v = &p->mUnk_30;
-    if (data_0217b4f0->mUnk_17c != 0) {
+    if (gMapObjects->mUnk_17c != 0) {
         func_020dff88(v);
     }
-    if (data_0217b4f0->mUnk_180 != 0) {
+    if (gMapObjects->mUnk_180 != 0) {
         func_020e435c(v);
     }
-    if (data_0217b4f0->mUnk_184 != 0) {
+    if (gMapObjects->mUnk_184 != 0) {
         func_020e3b28(v);
     }
 }
@@ -835,12 +835,12 @@ s32 func_020d3d10(s32 b) {
 void func_020d3cc8(void) {
     s32 i;
     s32 n;
-    Unk0217b4f0 *q;
+    MapObjects *q;
     Unk020e6fd4 **p;
     i = 0;
-    q = data_0217b4f0;
-    n = q->mUnk_174;
-    p = q->mUnk_134;
+    q = gMapObjects;
+    n = q->mUpdateListCount;
+    p = q->mUpdateLists;
     for (; i < n; i++) {
         func_020e6fd4(p[i]);
     }
@@ -853,14 +853,14 @@ s32 func_020d3c94(MapObject *a, s32 b, Vec3 *c) {
 u32 func_020d3c7c(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217b4f0;
+    value0 = (u32) &gMapObjects;
     value1 = 1u;
     value0 = (u32) * (const u32 *) ((value0) + (0));
     *(u32 *) ((value0) + (696)) = value1;
     return value0;
 }
 
-u16 func_020d3c44(void) {
+u16 AllocPolygonIdWrapping(void) {
     data_0217b4c4++;
     if (data_0217b4c4 > 0x3e) {
         data_0217b4c4 = data_0217b4c8;
@@ -868,19 +868,19 @@ u16 func_020d3c44(void) {
     return data_0217b4c4;
 }
 
-u16 func_020d3c2c(void) {
+u16 AllocPolygonId(void) {
     return data_0217b4d0++;
 }
 
 #pragma thumb on
 
-u16 func_020d3bf8(u32 b) {
+u16 CountMapObjectsOfKind(u32 b) {
     s32 i;
     u16 a;
     a = 0;
     i = 0;
-    for (; i < data_0217b4f0->mMapObjectCount; i++) {
-        if (b == data_0217b4f0->mMapObjects[i]->mKind) {
+    for (; i < gMapObjects->mMapObjectCount; i++) {
+        if (b == gMapObjects->mMapObjects[i]->mKind) {
             a++;
         }
     }
@@ -892,8 +892,8 @@ void func_020d3b74(void) {
     s32 n;
     MapObject **p;
     MapObject *q;
-    n = data_0217b4f0->mMapObjectCount;
-    p = data_0217b4f0->mMapObjects;
+    n = gMapObjects->mMapObjectCount;
+    p = gMapObjects->mMapObjects;
     for (i = 0; i < n; i++) {
         q = *p;
         if (q->mFlags & 0x80) {
@@ -917,8 +917,8 @@ void func_020d3b10(void) {
     s32 n;
     MapObject **p;
     MapObject *q;
-    n = data_0217b4f0->mMapObjectCount;
-    p = data_0217b4f0->mMapObjects;
+    n = gMapObjects->mMapObjectCount;
+    p = gMapObjects->mMapObjects;
     for (i = 0; i < n; i++) {
         q = *p;
         if (q->mFlags & 0x80) {

@@ -20,8 +20,8 @@ void func_020d2d94(void) {
     Unk020e6fd4 **v2;
     void **v3;
     Unk020e6fd4 **v4;
-    v2 = data_0217b4f0->mUnk_008;
-    v4 = data_0217b4f0->mUnk_134;
+    v2 = gMapObjects->mDrawLists;
+    v4 = gMapObjects->mUpdateLists;
     v1 = 0;
     do {
         if (*v2 != NULL) {
@@ -74,7 +74,7 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
             Vec3 z2 = {0, 0, 0};
             mx = z2;
         }
-        q = &data_0217b4f0->mUnk_18c;
+        q = &gMapObjects->mUnk_18c;
         for (; i < data_0217b5a8; i++) {
             p = data_0217b5c4[i];
             if (func_020d3e34(b, d, p, &v) != FALSE) {

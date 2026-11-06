@@ -185,7 +185,7 @@ void func_020ddaa0(Unk020dd950 *a, Unk020e6488 *b, s32 c, u16 e) {
 
     func_020e6a18(b);
     for (i = 1; i < a->mUnk_20; i++) {
-        v = func_020d3c44();
+        v = AllocPolygonIdWrapping();
         b->mUnk_14 &= ~0x3f000000;
         b->mUnk_14 |= v << 24;
         func_020e67c4(b, func_020e6cf8(&a->mUnk_44[i]), &a->mUnk_34, 1, e);
@@ -196,7 +196,7 @@ void func_020dda38(Unk020dd950 *a, Unk020e6488 *b, Vec3 *c, s32 d, u16 e) {
     u32 v;
 
     func_020e6a18(b);
-    v = func_020d3c44();
+    v = AllocPolygonIdWrapping();
     b->mUnk_14 &= ~0x3f000000;
     b->mUnk_14 |= v << 24;
     func_020e67c4(b, func_020e6cbc(c), &a->mUnk_34, 1, e);

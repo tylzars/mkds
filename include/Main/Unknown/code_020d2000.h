@@ -7,23 +7,22 @@
 #include "Main/Unknown/code_020e6fd4.h"
 #include "Main/Unknown/code_020f36d8.h"
 
-// Object behind data_0217b4f0, allocated 0x2bc bytes long: the MapObject objects at 0x000 (count at 0x004),
-// Unk020e6fd4 pointer arrays at 0x008, 0x068, 0x0c8 and 0x134 and a ItemObject at 0x18c.
-typedef struct Unk0217b4f0 {
+// 0x2bc bytes.
+typedef struct MapObjects {
     /* 000 */ MapObject **mMapObjects;
     // Pinned at 0xff when the 0x100-pointer array is full.
     /* 004 */ vu16 mMapObjectCount;
     /* 006 */ u8 mUnk_006[2];
-    /* 008 */ Unk020e6fd4 *mUnk_008[24];
+    /* 008 */ Unk020e6fd4 *mDrawLists[24];
     /* 068 */ Unk020e6fd4 *mUnk_068[24];
     /* 0c8 */ Unk020e6fd4 *mUnk_0c8[24];
-    /* 128 */ u16 mUnk_128;
+    /* 128 */ u16 mDrawListCount;
     /* 12a */ u16 mUnk_12a;
     /* 12c */ u16 mUnk_12c;
     /* 12e */ u8 mUnk_12e[2];
     /* 130 */ BOOL mUnk_130;
-    /* 134 */ Unk020e6fd4 *mUnk_134[16];
-    /* 174 */ u16 mUnk_174;
+    /* 134 */ Unk020e6fd4 *mUpdateLists[16];
+    /* 174 */ u16 mUpdateListCount;
     /* 176 */ u8 mUnk_176[2];
     /* 178 */ BOOL mUnk_178;
     /* 17c */ s32 mUnk_17c;
@@ -31,8 +30,8 @@ typedef struct Unk0217b4f0 {
     /* 184 */ s32 mUnk_184;
     /* 188 */ s32 mUnk_188;
     /* 18c */ ItemObject mUnk_18c;
-    /* 2b8 */ s32 mUnk_2b8;
-} Unk0217b4f0;
+    /* 2b8 */ s32 mRunUpdateLists;
+} MapObjects;
 
 // Declared here until the code that defines them is decompiled.
 #include "Main/Unknown/code_020d2090.h"

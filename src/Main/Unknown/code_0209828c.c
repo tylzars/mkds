@@ -108,7 +108,7 @@ void InitPakkun(Pakkun *p) {
             p->mUnk_1ba++;
         }
     }
-    p->mUnk_0a0 = func_020d3c2c();
+    p->mUnk_0a0 = AllocPolygonId();
     CreateParkedMapObjects(0x1ab, 0x14, p);
 }
 

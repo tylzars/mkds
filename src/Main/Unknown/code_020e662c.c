@@ -217,7 +217,7 @@ void func_020e6854(Unk020e6488 *p, Vec3 *q, s32 c, u32 d) {
     if (d < e) {
         v &= ~0x1f0000;
         v |= d << 16;
-        r = func_020d3c44();
+        r = AllocPolygonIdWrapping();
         v &= 0xc0ffffff;
         v |= r << 24;
     } else if (c != 0) {
@@ -230,7 +230,7 @@ void func_020e6854(Unk020e6488 *p, Vec3 *q, s32 c, u32 d) {
             }
             v &= ~0x1f0000;
             v |= (u32) m << 16;
-            r = func_020d3c44();
+            r = AllocPolygonIdWrapping();
             v &= 0xc0ffffff;
             v |= r << 24;
         }

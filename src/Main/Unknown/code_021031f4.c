@@ -644,9 +644,9 @@ void func_02103468(void) {
     NNS_SndPlayerStopSeq(func_02108e6c(6), 1);
     q = func_020ed4d0(data_0216c7b4, NULL, data_0216c7c4);
     func_0210340c(&data_0217c684, q);
-    data_0217c63c = func_020d3c2c();
+    data_0217c63c = AllocPolygonId();
     for (i = 0; i < 3; i++) {
-        func_020d3c2c();
+        AllocPolygonId();
     }
     *(u32 *) 0x4000440 = 0;
     *(u32 *) 0x4000444 = 0;

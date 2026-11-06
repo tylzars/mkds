@@ -761,7 +761,7 @@ void func_020ea8a8(Unk020ea670 *param_1, void *param_2, void *param_3, s32 param
     n = NNS_G3dMdlGetMdlAlpha((NNSG3dResMdl *) p, 0);
     if (param_4 < n) {
         v = NNS_G3dMdlGetMdlPolygonID((NNSG3dResMdl *) p, 0);
-        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, func_020d3c44());
+        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, AllocPolygonIdWrapping());
         NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, param_4);
         func_020849f8(param_1, param_2, param_3);
         NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, v);
@@ -797,7 +797,7 @@ void func_020ea7cc(Unk020ea670 *param_1, s32 param_2) {
     n = NNS_G3dMdlGetMdlAlpha((NNSG3dResMdl *) p, 0);
     data_0216c3d4 = n;
     if (param_2 < n) {
-        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, func_020d3c44());
+        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, AllocPolygonIdWrapping());
         NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, param_2);
     }
     func_020849d0(param_1);
@@ -817,7 +817,7 @@ void func_020ea740(Unk020ea670 *param_1, s32 param_2) {
     n = NNS_G3dMdlGetMdlAlpha((NNSG3dResMdl *) p, 0);
     data_0216c3d4 = n;
     if (param_2 < n) {
-        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, func_020d3c44());
+        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, AllocPolygonIdWrapping());
         NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, param_2);
     }
     NNS_G3dDraw1Mat1Shp(param_1->mUnk_004, 0, 0, 1);
@@ -838,7 +838,7 @@ void func_020ea670(Unk020ea670 *param_1, s32 param_2) {
     n = NNS_G3dMdlGetMdlAlpha((NNSG3dResMdl *) p, 0);
     data_0216c3d4 = n;
     if (param_2 < n) {
-        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, func_020d3c44());
+        NNS_G3dMdlSetMdlPolygonIDAll((NNSG3dResMdl *) p, AllocPolygonIdWrapping());
         NNS_G3dMdlSetMdlAlphaAll((NNSG3dResMdl *) p, param_2);
     }
     q = (u8 *) p + ((Unk020ea670_08 *) p)->mUnk_008;

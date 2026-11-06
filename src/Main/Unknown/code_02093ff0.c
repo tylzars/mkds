@@ -51,7 +51,7 @@ void DrawTeresa(void *a, Teresa *b) {
         return;
     }
     GetKart((u16) data_021759c0->mEntryIndex);
-    SetMapObjectModelPolygonId(gTeresa, func_020d3c44());
+    SetMapObjectModelPolygonId(gTeresa, AllocPolygonIdWrapping());
     func_0209b688(gTeresa, b->mUnk_ae);
     func_0209b9a4(gTeresa, b->mUnk_ac);
     func_0209b8ac(gTeresa, func_0206183c());

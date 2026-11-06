@@ -362,7 +362,7 @@ void func_ov001_0218263c(void *b, Unk02181c3c *c) {
             func_01ff9048((u32) (0x1b), (&v), 3);
         }
         func_01ff9048((u32) (0x1b), (&c->mUnk_000.mScale), 3);
-        SetMapObjectModelPolygonId(data_ov001_021a9b98, func_020d3c44());
+        SetMapObjectModelPolygonId(data_ov001_021a9b98, AllocPolygonIdWrapping());
         t = c->mUnk_0a0;
         if (t >= 0x1f) {
             t = 0x1f;

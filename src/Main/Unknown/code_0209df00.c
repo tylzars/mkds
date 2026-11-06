@@ -149,7 +149,7 @@ void DrawFireball2(void *a, Fireball2 *b) {
                     func_01ff9048(0x1a, m1, 9);
                 }
                 func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-                SetMapObjectModelPolygonId(gFireball2, func_020d3c44());
+                SetMapObjectModelPolygonId(gFireball2, AllocPolygonIdWrapping());
                 DrawMapObjectModel(a, gFireball2, b);
             }
         }
@@ -163,7 +163,7 @@ void DrawFireball2(void *a, Fireball2 *b) {
             func_01ff9048(0x1a, m2, 9);
         }
         func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-        SetMapObjectModelPolygonId(gFireball2, func_020d3c44());
+        SetMapObjectModelPolygonId(gFireball2, AllocPolygonIdWrapping());
         DrawMapObjectModel(a, gFireball2, b);
     }
     for (i = 0; i < b->mUnk_a0; i++) {
@@ -188,7 +188,7 @@ void DrawFireball2(void *a, Fireball2 *b) {
                     func_01ff9048(0x1a, m3, 9);
                 }
                 func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-                SetMapObjectModelPolygonId(gFireball2, func_020d3c44());
+                SetMapObjectModelPolygonId(gFireball2, AllocPolygonIdWrapping());
                 DrawMapObjectModel(a, gFireball2, b);
             }
         }

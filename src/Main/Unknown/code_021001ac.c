@@ -1113,7 +1113,7 @@ void func_021001ac(ItemTeresa *p, s32 c, Unk020e6488 *q) {
         r->mUnk_18 = 0;
         while (i < b2) {
             func_01ff9048(0x1c, &data_0215a190[b2 == 2 ? 1 - i : i + 1], 3);
-            t = func_020d3c44();
+            t = AllocPolygonIdWrapping();
             r->mUnk_14 = r->mUnk_14 & ~0x3f000000;
             r->mUnk_14 = r->mUnk_14 | (t << 24);
             func_020e6854(r, &p->mUnk_000.mPos, 1, 0x1f);
@@ -1126,7 +1126,7 @@ void func_021001ac(ItemTeresa *p, s32 c, Unk020e6488 *q) {
             r->mUnk_14 = r->mUnk_14 | 0x1f0000;
         }
     }
-    t = func_020d3c44();
+    t = AllocPolygonIdWrapping();
     q->mUnk_14 = q->mUnk_14 & ~0x3f000000;
     q->mUnk_14 = q->mUnk_14 | (t << 24);
     d = p->mUnk_000.mUnk_d8;

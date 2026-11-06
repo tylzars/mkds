@@ -265,11 +265,11 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                 }
                 object->mCollisionSlotIndex = func_020d555c(&object->mPos, func_020d252c(object), m, object);
             }
-            j = data_0217b4f0->mMapObjectCount;
-            data_0217b4f0->mMapObjectCount = j + 1;
-            data_0217b4f0->mMapObjects[j] = object;
-            if (data_0217b4f0->mMapObjectCount >= 0x100) {
-                data_0217b4f0->mMapObjectCount = 0xff;
+            j = gMapObjects->mMapObjectCount;
+            gMapObjects->mMapObjectCount = j + 1;
+            gMapObjects->mMapObjects[j] = object;
+            if (gMapObjects->mMapObjectCount >= 0x100) {
+                gMapObjects->mMapObjectCount = 0xff;
             }
             return object;
         }
@@ -306,25 +306,25 @@ void InitMapObjects(void) {
     Unk020e6fd4 *w[3];
     Unk020e6fd4 *x;
     Unk020e6fd4 **y;
-    Unk0217b4f0 *q;
+    MapObjects *q;
     h = GetHeap(func_020364e8());
     func_020d22e0();
     data_0217b4cc = func_02061788();
     data_0217b4c0 = data_0217b4cc + 9;
     data_0217b4c8 = data_0217b4c0 + 1;
     n = gCourseMap->mRowCount;
-    data_0217b4f0 = HeapAlloc(h, 0x2bc);
-    data_0217b4f0->mMapObjects = HeapAlloc(h, 0x400);
+    gMapObjects = HeapAlloc(h, 0x2bc);
+    gMapObjects->mMapObjects = HeapAlloc(h, 0x400);
     data_0217b4e8 = HeapAlloc(h, 0x80);
     data_0217b4dc = HeapAlloc(h, 0x180);
-    data_0217b4f0->mMapObjectCount = 0;
-    data_0217b4f0->mUnk_130 = FALSE;
-    data_0217b4f0->mUnk_178 = FALSE;
+    gMapObjects->mMapObjectCount = 0;
+    gMapObjects->mUnk_130 = FALSE;
+    gMapObjects->mUnk_178 = FALSE;
     v = 0;
     if (data_021759c0->mMode != 5) {
         v = 1;
     }
-    data_0217b4f0->mUnk_2b8 = v;
+    gMapObjects->mRunUpdateLists = v;
     data_0217b4ec = 0;
     do {
         row = &data_0216b288[data_0217b4ec];
@@ -350,10 +350,10 @@ void InitMapObjects(void) {
         v = 0;
     }
     data_0217b4e0 = v;
-    data_0217b4f0->mUnk_17c = 0;
-    data_0217b4f0->mUnk_180 = 0;
-    data_0217b4f0->mUnk_184 = 0;
-    data_0217b4f0->mUnk_188 = 0;
+    gMapObjects->mUnk_17c = 0;
+    gMapObjects->mUnk_180 = 0;
+    gMapObjects->mUnk_184 = 0;
+    gMapObjects->mUnk_188 = 0;
     gCourseWater = NULL;
     gCourseWaterEfct = NULL;
     func_02103598();
@@ -373,19 +373,19 @@ void InitMapObjects(void) {
             continue;
         }
         CreateMapObject(e->mUnk_24, e, NULL);
-        data_0217b4f0->mUnk_17c |= func_020dff70(e->mUnk_24);
-        data_0217b4f0->mUnk_180 |= func_020e4320(e->mUnk_24);
-        data_0217b4f0->mUnk_184 |= func_020e3af0(e->mUnk_24);
-        data_0217b4f0->mUnk_188 |= func_020ffabc(e->mUnk_24);
+        gMapObjects->mUnk_17c |= func_020dff70(e->mUnk_24);
+        gMapObjects->mUnk_180 |= func_020e4320(e->mUnk_24);
+        gMapObjects->mUnk_184 |= func_020e3af0(e->mUnk_24);
+        gMapObjects->mUnk_188 |= func_020ffabc(e->mUnk_24);
     }
-    if (data_0217b4f0->mUnk_17c != 0 || data_0217b4f0->mUnk_180 != 0 || data_0217b4f0->mUnk_184 != 0 ||
-        data_0217b4f0->mUnk_188 != 0) {
+    if (gMapObjects->mUnk_17c != 0 || gMapObjects->mUnk_180 != 0 || gMapObjects->mUnk_184 != 0 ||
+        gMapObjects->mUnk_188 != 0) {
         data_0217b610 = 1;
     }
     func_02105214();
-    data_0217b4f0->mUnk_128 = 0;
+    gMapObjects->mDrawListCount = 0;
     for (m = 0; m < 24; m++) {
-        data_0217b4f0->mUnk_008[m] = NULL;
+        gMapObjects->mDrawLists[m] = NULL;
     }
     for (i = 0; i < data_0217b4ec; i++) {
         if (data_0216b288[i].mUnk_04 == NULL) {
@@ -401,8 +401,8 @@ void InitMapObjects(void) {
                 continue;
             }
             g = 1;
-            for (m = 0; m < data_0217b4f0->mUnk_128; m++) {
-                if (data_0217b4f0->mUnk_008[m] == w[j]) {
+            for (m = 0; m < gMapObjects->mDrawListCount; m++) {
+                if (gMapObjects->mDrawLists[m] == w[j]) {
                     func_020d4a10(w[j], v);
                     g = 0;
                 }
@@ -411,16 +411,16 @@ void InitMapObjects(void) {
                 func_020d4a18(w[j]);
                 if (v != 0) {
                     func_020d4a10(w[j], v);
-                    data_0217b4f0->mUnk_008[data_0217b4f0->mUnk_128++] = w[j];
+                    gMapObjects->mDrawLists[gMapObjects->mDrawListCount++] = w[j];
                 }
             }
         }
     }
-    for (i = 0; i < data_0217b4f0->mUnk_128; i++) {
-        func_020d49f0(data_0217b4f0->mUnk_008[i]);
+    for (i = 0; i < gMapObjects->mDrawListCount; i++) {
+        func_020d49f0(gMapObjects->mDrawLists[i]);
     }
-    for (i = 0; i < data_0217b4f0->mMapObjectCount; i++) {
-        o = data_0217b4f0->mMapObjects[i];
+    for (i = 0; i < gMapObjects->mMapObjectCount; i++) {
+        o = gMapObjects->mMapObjects[i];
         for (j = 0; j < data_0217b4ec; j++) {
             if (o->mKind == data_0216b288[j].mKind) {
                 w[0] = data_0216b288[j].mUnk_04->mUnk_24[0];
@@ -438,18 +438,18 @@ void InitMapObjects(void) {
             }
         }
     }
-    for (i = 0; i < data_0217b4f0->mUnk_128; i++) {
-        func_020d4990(data_0217b4f0->mUnk_008[i]);
+    for (i = 0; i < gMapObjects->mDrawListCount; i++) {
+        func_020d4990(gMapObjects->mDrawLists[i]);
     }
-    data_0217b4f0->mUnk_130 = TRUE;
+    gMapObjects->mUnk_130 = TRUE;
     func_020d2e24();
-    n = data_0217b4f0->mUnk_128;
+    n = gMapObjects->mDrawListCount;
     c1 = 0;
     c2 = 0;
     s1 = 0;
     s2 = 0;
     for (t = 0; t < n; t++) {
-        x = data_0217b4f0->mUnk_008[t];
+        x = gMapObjects->mDrawLists[t];
         if (x->mUnk_20 != 0) {
             if (x->mUnk_18 == 1) {
                 c1++;
@@ -460,18 +460,18 @@ void InitMapObjects(void) {
     }
     m = 0;
     for (i = 0; i < n; i++) {
-        x = data_0217b4f0->mUnk_008[i];
+        x = gMapObjects->mDrawLists[i];
         if (x->mUnk_18 == 1) {
-            y = data_0217b4f0->mUnk_068;
-            data_0217b4f0->mUnk_12a++;
+            y = gMapObjects->mUnk_068;
+            gMapObjects->mUnk_12a++;
             if (x->mUnk_20 != 0) {
                 k = s1++;
             } else {
                 k = c1++;
             }
         } else if (x->mUnk_18 == 2) {
-            y = data_0217b4f0->mUnk_0c8;
-            data_0217b4f0->mUnk_12c++;
+            y = gMapObjects->mUnk_0c8;
+            gMapObjects->mUnk_12c++;
             if (x->mUnk_20 != 0) {
                 k = s2++;
             } else {
@@ -480,9 +480,9 @@ void InitMapObjects(void) {
         }
         y[k] = x;
     }
-    data_0217b4f0->mUnk_174 = 0;
+    gMapObjects->mUpdateListCount = 0;
     for (i = 0; i < 16; i++) {
-        data_0217b4f0->mUnk_134[i] = NULL;
+        gMapObjects->mUpdateLists[i] = NULL;
     }
     for (i = 0; i < data_0217b4ec; i++) {
         if (data_0216b288[i].mUnk_04 == NULL) {
@@ -494,8 +494,8 @@ void InitMapObjects(void) {
             continue;
         }
         g = 1;
-        for (j = 0; j < data_0217b4f0->mUnk_174; j++) {
-            if (data_0217b4f0->mUnk_134[j] == x) {
+        for (j = 0; j < gMapObjects->mUpdateListCount; j++) {
+            if (gMapObjects->mUpdateLists[j] == x) {
                 func_020e6fc4(x, v);
                 g = 0;
             }
@@ -504,22 +504,22 @@ void InitMapObjects(void) {
             func_020e6fcc(x);
             if (v != 0) {
                 func_020e6fc4(x, v);
-                data_0217b4f0->mUnk_134[data_0217b4f0->mUnk_174++] = x;
+                gMapObjects->mUpdateLists[gMapObjects->mUpdateListCount++] = x;
             }
         }
     }
-    for (i = 0; i < data_0217b4f0->mUnk_174; i++) {
-        func_020e6f9c(data_0217b4f0->mUnk_134[i]);
+    for (i = 0; i < gMapObjects->mUpdateListCount; i++) {
+        func_020e6f9c(gMapObjects->mUpdateLists[i]);
     }
-    for (i = 0; i < data_0217b4f0->mMapObjectCount; i++) {
-        o = data_0217b4f0->mMapObjects[i];
+    for (i = 0; i < gMapObjects->mMapObjectCount; i++) {
+        o = gMapObjects->mMapObjects[i];
         for (j = 0; j < data_0217b4ec; j++) {
             if (o->mKind == data_0216b288[j].mKind && data_0216b288[j].mUnk_04->mUnk_24[3] != NULL) {
                 AddMapObjectToUpdateList(data_0216b288[j].mUnk_04->mUnk_24[3], o);
             }
         }
     }
-    data_0217b4f0->mUnk_178 = TRUE;
+    gMapObjects->mUnk_178 = TRUE;
     func_020d2dec();
 }
 
@@ -527,8 +527,8 @@ void func_020d2e24(void) {
     s32 i;
     s32 n;
     Unk020e6fd4 **p;
-    n = data_0217b4f0->mUnk_128;
-    p = data_0217b4f0->mUnk_008;
+    n = gMapObjects->mDrawListCount;
+    p = gMapObjects->mDrawLists;
     if (gCourseWater != NULL) {
         InitWaterModels(gCourseWater);
     }
@@ -544,8 +544,8 @@ void func_020d2dec(void) {
     s32 i;
     s32 n;
     Unk020e6fd4 **p;
-    n = data_0217b4f0->mUnk_174;
-    p = data_0217b4f0->mUnk_134;
+    n = gMapObjects->mUpdateListCount;
+    p = gMapObjects->mUpdateLists;
     for (i = 0; i < n; p++, i++) {
         if ((*p)->mUnk_08 != NULL) {
             (*p)->mUnk_08(*p);

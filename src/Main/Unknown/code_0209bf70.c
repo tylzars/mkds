@@ -73,7 +73,7 @@ void CreateSunAndSunLOD(void *a) {
     gSun = CreateMapObjectModelAnimated(a, gSunNsbmdName);
     CreateMapObjectModelNsbcaAnimation(gSun, gSunNsbcaName);
     gSunLOD = CreateMapObjectModelAnimated(a, gSunLODNsbmdName);
-    SetMapObjectModelPolygonId(gSun, func_020d3c2c());
+    SetMapObjectModelPolygonId(gSun, AllocPolygonId());
 }
 
 u32 func_0209d5e8(u32 p0) {
