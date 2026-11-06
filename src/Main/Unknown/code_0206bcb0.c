@@ -452,7 +452,7 @@ BOOL func_0206c094(Kart *p) {
     return (p->mUnk_4c & 0x800000) != 0;
 }
 
-void func_0206bf88(Kart *p, int mode) {
+void StartKartState(Kart *p, int mode) {
     p->mUnk_48 &= 0xdfe77fdf;
     p->mUnk_238 = 0;
     p->mUnk_538.mUnk_00 = 0;
@@ -482,7 +482,7 @@ void func_0206bf88(Kart *p, int mode) {
     }
 }
 
-BOOL func_0206be54(Kart *p, int a) {
+BOOL TryStartKartState(Kart *p, int a) {
     BOOL ok;
     BOOL res;
     BOOL t;
@@ -533,7 +533,7 @@ BOOL func_0206be54(Kart *p, int a) {
     if (!ok) {
         return FALSE;
     }
-    func_0206bf88(p, a);
+    StartKartState(p, a);
     return TRUE;
 }
 
@@ -548,7 +548,7 @@ BOOL func_0206bcb0(Kart *p, int a, int b) {
 
     x = s != 1 && s != 2;
     if (x == FALSE) {
-        if (p->mUnk_366 * 0xffff - p->mUnk_368 > 0xffff || (p->mUnk_7c & 0x200)) {
+        if (p->mYRotationCount * 0xffff - p->mYRotationAngleSum > 0xffff || (p->mUnk_7c & 0x200)) {
             return FALSE;
         }
     }
@@ -592,7 +592,7 @@ BOOL func_0206bcb0(Kart *p, int a, int b) {
             }
         }
     } else {
-        p->mUnk_366++;
+        p->mYRotationCount++;
     }
     return TRUE;
 }

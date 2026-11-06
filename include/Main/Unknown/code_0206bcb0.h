@@ -356,10 +356,10 @@ typedef struct Kart {
     /* 308 */ u16 *mUnk_308;
     /* 30c */ s32 mUnk_30c;
     /* 310 */ struct Unk020888b4 *mUnk_310;
-    /* 314 */ u16 mUnk_314;
+    /* 314 */ u16 mRotationAngle;
     /* 316 */ u8 mUnk_316[2];
-    /* 318 */ s32 mUnk_318;
-    /* 31c */ Vec3 mUnk_31c;
+    /* 318 */ s32 mRotationAngleSum;
+    /* 31c */ Vec3 mRotationAxis;
     /* 328 */ Vec3 mUnk_328;
     /* 334 */ s32 mUnk_334;
     /* 338 */ u16 mUnk_338;
@@ -368,14 +368,14 @@ typedef struct Kart {
     /* 340 */ s32 mUnk_340;
     /* 344 */ s32 mUnk_344;
     /* 348 */ s32 mUnk_348;
-    /* 34c */ Vec4 mUnk_34c;
-    /* 35c */ s16 mUnk_35c;
+    /* 34c */ Vec4 mRotationQuaternion;
+    /* 35c */ s16 mRotationEndFrames;
     /* 35e */ u8 mUnk_35e[2];
-    /* 360 */ s32 mUnk_360;
-    /* 364 */ u16 mUnk_364;
-    /* 366 */ u16 mUnk_366;
-    /* 368 */ s32 mUnk_368;
-    /* 36c */ s32 mUnk_36c;
+    /* 360 */ s32 mRotationAnglePerFrame;
+    /* 364 */ u16 mYRotationAngle;
+    /* 366 */ u16 mYRotationCount;
+    /* 368 */ s32 mYRotationAngleSum;
+    /* 36c */ s32 mYRotationAnglePerFrame;
     /* 370 */ u16 mUnk_370;
     /* 372 */ u8 mUnk_372[2];
     /* 374 */ Vec3 mUnk_374;
@@ -518,7 +518,7 @@ extern Kart *data_0217b8c8;
 
 extern int data_02154f10[];
 
-void func_0206bf88(Kart *p, int mode);
+void StartKartState(Kart *p, int mode);
 BOOL func_0206c094(Kart *p);
 int func_0206c0a8(Kart *p);
 BOOL func_0206c0b0(Kart *p);
@@ -547,7 +547,7 @@ void func_020718c8(void *p, int arg);
 void func_02071944(void *p, int arg);
 #include "Main/Unknown/code_021035ac.h"
 BOOL func_0206bcb0(Kart *p, int a, int b);
-BOOL func_0206be54(Kart *p, int a);
+BOOL TryStartKartState(Kart *p, int a);
 void func_0206c5e4(Kart *p);
 void GetKartForward(const Kart *p, Vec3 *out);
 void GetKartUp(const Kart *p, Vec3 *out);

@@ -201,19 +201,19 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
     if (!(p->mUnk_4c & 0x20)) {
         return;
     }
-    p->mUnk_368 += p->mUnk_36c;
+    p->mYRotationAngleSum += p->mYRotationAnglePerFrame;
     e = FALSE;
-    t = p->mUnk_368;
-    if ((t > 0 ? t : -t) > p->mUnk_366 * 0xffff) {
-        p->mUnk_364 = 0;
+    t = p->mYRotationAngleSum;
+    if ((t > 0 ? t : -t) > p->mYRotationCount * 0xffff) {
+        p->mYRotationAngle = 0;
         e = TRUE;
     } else {
-        p->mUnk_364 += p->mUnk_36c;
+        p->mYRotationAngle += p->mYRotationAnglePerFrame;
     }
     p->mUnk_4c |= 2;
     if (e == FALSE) {
         return;
     }
-    p->mUnk_364 = 0;
+    p->mYRotationAngle = 0;
     p->mUnk_4c &= ~0x20;
 }

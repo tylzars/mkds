@@ -44,7 +44,7 @@ void func_020641f0(Kart *a) {
         p = &a->mUnk_150_m;
         MTX_Identity43_(&d);
         e = d;
-        func_01ffcd84(&f, &a->mUnk_34c);
+        func_01ffcd84(&f, &a->mRotationQuaternion);
         q = &a->mUnk_12c;
         m.x = (s64) q->x * -0x5000 >> 12;
         m.y = (s64) q->y * -0x5000 >> 12;
@@ -58,7 +58,7 @@ void func_020641f0(Kart *a) {
         MTX_Concat43(p, &f, p);
         MTX_Concat43(p, &e, p);
         if ((a->mUnk_4c & 0x20) != 0) {
-            i = (a->mUnk_364 >> 4) * 2;
+            i = (a->mYRotationAngle >> 4) * 2;
             MTX_RotY43_(&g, gPairsByAngle[i], gPairsByAngle[i + 1]);
             MTX_Concat43(p, &g, p);
         }
@@ -66,7 +66,7 @@ void func_020641f0(Kart *a) {
         p->mUnk_00[3].y = p->mUnk_00[3].y + a->mPosSource->y;
         p->mUnk_00[3].z = p->mUnk_00[3].z + a->mPosSource->z;
     } else if ((n & 0x20) != 0) {
-        i = (a->mUnk_364 >> 4) * 2;
+        i = (a->mYRotationAngle >> 4) * 2;
         MTX_RotY43_(&h, gPairsByAngle[i], gPairsByAngle[i + 1]);
         MTX_Concat43(&h, &a->mUnk_120_m, &a->mUnk_150_m);
         q = a->mPosSource;
