@@ -387,7 +387,7 @@ void func_02118d44(void) {
         LoadNcerData(&e, FindSceneFile(data_0216d6b4));
         LoadNclrData(&f, FindSceneFile(data_0216d68c));
         func_0211de98();
-        func_0211e024();
+        LoadCommonCupMarkData();
         func_0211f328();
     }
 }

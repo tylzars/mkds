@@ -13,7 +13,7 @@
 
 #pragma thumb on
 
-void func_0211e074(void) {
+void LoadCupMarkData(void) {
     void *v1;
     Ncgr *v2;
     Unk02021dc8 *v3;
@@ -21,15 +21,15 @@ void func_0211e074(void) {
     v2 = NULL;
     v3 = NULL;
     v4[0] = NULL;
-    v1 = FindSceneFile(data_0216ded4);
+    v1 = FindSceneFile(gCupMarkNcgrName);
     LoadNcgrData(&v2, v1);
-    v1 = FindSceneFile(data_0216ded8);
+    v1 = FindSceneFile(gCupMarkNcerName);
     LoadNcerData(&v3, v1);
-    v1 = FindSceneFile(data_0216dec4);
+    v1 = FindSceneFile(gCupMarkNclrName);
     LoadNclrData(v4, v1);
 }
 
-void func_0211e024(void) {
+void LoadCommonCupMarkData(void) {
     void *v1;
     Ncgr *v2;
     Unk02021dc8 *v3;
@@ -37,42 +37,42 @@ void func_0211e024(void) {
     v2 = NULL;
     v3 = NULL;
     v4[0] = NULL;
-    v1 = FindSceneFile(data_0216dedc);
+    v1 = FindSceneFile(gCommonCupMarkNcgrName);
     LoadNcgrData(&v2, v1);
-    v1 = FindSceneFile(data_0216decc);
+    v1 = FindSceneFile(gCommonCupMarkNcerName);
     LoadNcerData(&v3, v1);
-    v1 = FindSceneFile(data_0216dee0);
+    v1 = FindSceneFile(gCommonCupMarkNclrName);
     LoadNclrData(v4, v1);
 }
 
-void func_0211dfb4(void *a) {
+void CreateCupMark(void *a) {
     int v1;
     void *v2;
     v1 = ((u32) HeapAlloc(a, (u32) 0x10));
-    *(s32 *) &data_0217d370 = v1;
-    v2 = FindSceneFile(data_0216ded4);
-    LocateNcgr2(&data_0217d370->mUnk_00, v2);
-    v2 = FindSceneFile(data_0216ded8);
-    LocateNcer(&data_0217d370->mUnk_04, v2);
-    v2 = FindSceneFile(data_0216dec4);
-    LocateNclr(&data_0217d370->mUnk_08, v2);
-    v2 = FindSceneFile(data_0216dec8);
-    data_0217d370->mUnk_0c = v2;
+    *(s32 *) &gCupMark = v1;
+    v2 = FindSceneFile(gCupMarkNcgrName);
+    LocateNcgr2(&gCupMark->mNcgr, v2);
+    v2 = FindSceneFile(gCupMarkNcerName);
+    LocateNcer(&gCupMark->mNcer, v2);
+    v2 = FindSceneFile(gCupMarkNclrName);
+    LocateNclr(&gCupMark->mNclr, v2);
+    v2 = FindSceneFile(gCupMarkBnclName);
+    gCupMark->mBncl = v2;
 }
 
-void func_0211df44(void *a) {
+void CreateCommonCupMark(void *a) {
     int v1;
     void *v2;
     v1 = ((u32) HeapAlloc(a, (u32) 0x10));
-    *(s32 *) &data_0217d370 = v1;
-    v2 = FindSceneFile(data_0216dedc);
-    LocateNcgr2(&data_0217d370->mUnk_00, v2);
-    v2 = FindSceneFile(data_0216decc);
-    LocateNcer(&data_0217d370->mUnk_04, v2);
-    v2 = FindSceneFile(data_0216dee0);
-    LocateNclr(&data_0217d370->mUnk_08, v2);
-    v2 = FindSceneFile(data_0216ded0);
-    data_0217d370->mUnk_0c = v2;
+    *(s32 *) &gCupMark = v1;
+    v2 = FindSceneFile(gCommonCupMarkNcgrName);
+    LocateNcgr2(&gCupMark->mNcgr, v2);
+    v2 = FindSceneFile(gCommonCupMarkNcerName);
+    LocateNcer(&gCupMark->mNcer, v2);
+    v2 = FindSceneFile(gCommonCupMarkNclrName);
+    LocateNclr(&gCupMark->mNclr, v2);
+    v2 = FindSceneFile(gCommonCupMarkBnclName);
+    gCupMark->mBncl = v2;
 }
 
 #pragma thumb off
@@ -82,15 +82,15 @@ void func_0211df38(void) {
     u32 value0;
     u32 value1;
     value1 = 0u;
-    value0 = (u32) &data_0217d370;
+    value0 = (u32) &gCupMark;
     *(u32 *) ((value0) + 0u) = value1;
 }
 #pragma thumb off
 
 #pragma thumb on
 
-void func_0211ded0(u32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, s32 f) {
-    Unk0217d370 *p;
+void QueueCupMark(u32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, s32 f) {
+    CupMark *p;
     u8 *dst;
     u32 v0 = 14;
     u32 id;
@@ -101,12 +101,12 @@ void func_0211ded0(u32 a, Unk02021dc8 *b, Unk0201ea30 *c, u32 d, u16 e, s32 f) {
             v0 = 30;
         }
     }
-    id = ((u16 *) data_0215cee4)[a];
-    p = data_0217d370;
-    func_02124748(id, p->mUnk_04, p->mUnk_00, p->mUnk_0c, f, d, b, c);
-    p = data_0217d370;
-    dst = (u8 *) p->mUnk_08->mData;
-    n = func_02124a68(id, p->mUnk_04, p->mUnk_0c);
+    id = ((u16 *) gCupMarkBnclIndices)[a];
+    p = gCupMark;
+    func_02124748(id, p->mNcer, p->mNcgr, p->mBncl, f, d, b, c);
+    p = gCupMark;
+    dst = (u8 *) p->mNclr->mData;
+    n = func_02124a68(id, p->mNcer, p->mBncl);
     CallQueueAppend(v0, e << 5, dst + (n << 5), 32);
 }
 

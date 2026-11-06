@@ -761,7 +761,7 @@ void func_02111684(void) {
     v1 = FindSceneFile(gRecordVSSBNclrName);
     LoadNclrData(&v2.mNclr, v1);
     LoadKartIconData();
-    func_0211e074();
+    LoadCupMarkData();
 }
 
 #pragma thumb off

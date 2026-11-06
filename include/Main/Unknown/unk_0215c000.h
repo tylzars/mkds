@@ -11,7 +11,7 @@ typedef struct KartIconRow {
 } KartIconRow;
 
 // Objects whose layout isn't known yet.
-extern u8 data_0215cee4[];
+extern u8 gCupMarkBnclIndices[];
 extern s16 data_0215c4d0[];
 extern u16 data_0215c4a8[2];
 extern u16 data_0215c4b8[];

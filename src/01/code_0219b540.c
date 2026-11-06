@@ -314,11 +314,11 @@ void func_ov001_0219be5c(void) {
     gSelectGhost->mSelectCupCourseTaMTable[n + 5].mUnk_00 = 1;
     func_0211de00(data_ov001_021a6ba4[func_0202968c()], gSelectGhost->mSelectCupCourseMNcer,
                   gSelectGhost->mSelectCupCourseTaMBncl, 0, 0);
-    func_0211ded0((u32) (data_ov001_021a6ba4[func_0202968c()]), gSelectGhost->mSelectCupCourseMNcer,
-                  gSelectGhost->mSelectCupCourseTaMBncl, (u32) (5),
-                  (u16) (func_02124a68((u32) (5), (gSelectGhost->mSelectCupCourseMNcer),
-                                       (gSelectGhost->mSelectCupCourseTaMBncl))),
-                  0);
+    QueueCupMark((u32) (data_ov001_021a6ba4[func_0202968c()]), gSelectGhost->mSelectCupCourseMNcer,
+                 gSelectGhost->mSelectCupCourseTaMBncl, (u32) (5),
+                 (u16) (func_02124a68((u32) (5), (gSelectGhost->mSelectCupCourseMNcer),
+                                      (gSelectGhost->mSelectCupCourseTaMBncl))),
+                 0);
     func_0212426c(0, 2, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x73),
                   gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMTable);
     func_0212426c(0, 4, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x74),
@@ -397,7 +397,7 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
     func_0212426c(1, 5, gSelectGhost->mSelectGhostSBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 4),
                   gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSTable);
     func_0211de40(gSelectGhost->mHeap);
-    func_0211df44(gSelectGhost->mHeap);
+    CreateCommonCupMark(gSelectGhost->mHeap);
     func_0212b928(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSONclr, 4);
     func_0212b7fc();
     func_ov001_0219be5c();

@@ -230,7 +230,7 @@ void SetupRecordGpx(void) {
     }
     d = gRecordGpx;
     v = func_02124a68((u32) (1), (d->mRecordGpxMNcer), (d->mRecordGpxMBncl));
-    func_0211ded0((u32) (d->mIndex), d->mRecordGpxMNcer, d->mRecordGpxMBncl, (u32) (1), (u16) (v), 0);
+    QueueCupMark((u32) (d->mIndex), d->mRecordGpxMNcer, d->mRecordGpxMBncl, (u32) (1), (u16) (v), 0);
     d = gRecordGpx;
     p = GetBmgEntry(d->mCommonMessages, data_ov001_021a6720[d->mIndex]);
     func_0212426c(0, 0, gRecordGpx->mRecordGpxMBnll, p, d->mRecordGpxMBncl, d->mRecordGpxMTable);
@@ -419,7 +419,7 @@ void InitRecordGpx(void *heap) {
     }
     LocateAndQueueRecordGpx();
     CreateKartIcon(heap);
-    func_0211dfb4(heap);
+    CreateCupMark(heap);
     p = func_02111318();
     func_020ae6d4(p, func_0211130c());
     func_02124ed0(heap, gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMBnll, &gRecordGpx->mRecordGpxMTable);

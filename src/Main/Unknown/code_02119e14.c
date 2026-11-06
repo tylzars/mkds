@@ -351,8 +351,8 @@ void func_0211a100(void) {
         func_0211de00(data_0215cadc[func_0202968c()], p->mSelectCupMNcer, p->mSelectCupMBncl, 0x13, 1);
         p = gSelectCupCourse;
         i = func_0202968c();
-        func_0211ded0(data_0215cadc[i], p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl, 5,
-                      func_02124a68(5, p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl), 0);
+        QueueCupMark(data_0215cadc[i], p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl, 5,
+                     func_02124a68(5, p->mSelectCupCourseMNcer, p->mSelectCupCourseTaOrVsMBncl), 0);
         for (i = 0; i < 4; i++) {
             p = gSelectCupCourse;
             func_0212426c(

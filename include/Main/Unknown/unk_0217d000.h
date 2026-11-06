@@ -129,13 +129,13 @@ typedef struct Unk0217d36c {
     /* 08 */ void *mUnk_08;
 } Unk0217d36c;
 
-// Object behind data_0217d370 (0x10 bytes); func_0211dfb4 and func_0211df44 allocate and fill it.
-typedef struct Unk0217d370 {
-    /* 00 */ struct Ncgr *mUnk_00;
-    /* 04 */ struct Unk02021dc8 *mUnk_04;
-    /* 08 */ struct Nclr *mUnk_08;
-    /* 0c */ struct Unk0201ea30 *mUnk_0c;
-} Unk0217d370;
+// 0x10 bytes.
+typedef struct CupMark {
+    /* 00 */ struct Ncgr *mNcgr;
+    /* 04 */ struct Unk02021dc8 *mNcer;
+    /* 08 */ struct Nclr *mNclr;
+    /* 0c */ struct Unk0201ea30 *mBncl;
+} CupMark;
 
 // Object at data_0217d070 (0x14 bytes); func_0210d740 fills it. data_0217d07c names its member 0x0c.
 typedef struct Unk0217d070 {
@@ -734,7 +734,7 @@ extern Unk0217d358 *data_0217d358;
 extern KartIcon *gKartIcon;
 extern SelectRaceRule *gSelectRaceRule;
 extern Unk0217d36c *data_0217d36c;
-extern Unk0217d370 *data_0217d370;
+extern CupMark *gCupMark;
 extern Unk0217d374 *data_0217d374;
 extern SelectCupM *gSelectCupM;
 extern Unk0217d37c *data_0217d37c;

@@ -107,8 +107,8 @@ void func_021188dc(void) {
         }
         for (i = 0; i < 8; i++) {
             p = gSelectCupGrid;
-            func_0211ded0(i, p->mSelectCupSNcer, p->mSelectCupSBncl, data_0215c9bc[i][4],
-                          func_02124a68(data_0215c9bc[i][4], p->mSelectCupSNcer, p->mSelectCupSBncl), 1);
+            QueueCupMark(i, p->mSelectCupSNcer, p->mSelectCupSBncl, data_0215c9bc[i][4],
+                         func_02124a68(data_0215c9bc[i][4], p->mSelectCupSNcer, p->mSelectCupSBncl), 1);
         }
     }
 }
@@ -509,7 +509,7 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
                                  gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMTable, rem);
         }
         func_0211de40(gSelectCupGrid->mHeap);
-        func_0211df44(gSelectCupGrid->mHeap);
+        CreateCommonCupMark(gSelectCupGrid->mHeap);
         func_0211f2b8(gSelectCupGrid->mHeap);
     } else {
         func_0211f4b0(gSelectCupGrid->mHeap, gSelectCupGrid->mUnk_84);
