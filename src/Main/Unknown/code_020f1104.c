@@ -22,12 +22,12 @@ void func_020f1150(int arg0, int arg1) {
     *(u32 *) ((value0) + (568)) = value3;
 }
 
-void func_020f112c(Unk020f5d6c *a, int b) {
-    a->mUnk_228 = &gKartItems[b];
+void func_020f112c(ItemKouraR *a, int b) {
+    a->mKartItems = &gKartItems[b];
     a->mUnk_238 = 0;
 }
 
-void func_020f1104(Unk020f5d6c *a) {
+void func_020f1104(ItemKouraR *a) {
     VEC_Add(&a->mUnk_22c, &a->mUnk_000.mUnk_000.mUnk_000.mVelocity, &a->mUnk_000.mUnk_000.mUnk_000.mVelocity);
     func_020f29e8(a);
 }

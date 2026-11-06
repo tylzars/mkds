@@ -27,7 +27,7 @@
 #include "Main/Unknown/code_0203c8dc.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
+BOOL func_020f14a0(ItemKouraR *a, s32 b, s32 c, s32 d) {
     Vec3 t;
     Vec3 u;
     Vec3 w;
@@ -42,7 +42,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     p = &a->mUnk_000.mUnk_000.mUnk_000.mPos;
     q = &a->mUnk_000.mUnk_000.mUnk_000.mVelocity;
     if ((a->mUnk_000.mUnk_000.mUnk_000.mUnk_48 & 1) == GetRaceUpdateFramesMod2()) {
-        v = a->mUnk_228->mKart;
+        v = a->mKartItems->mKart;
         if (!(a->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x20000)) {
             if (func_0206c0e0(v) != FALSE) {
                 b >>= 1;
@@ -82,7 +82,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
             t.y = (s32) (((s64) t.y * c) >> 12);
             t.z = (s32) (((s64) t.z * c) >> 12);
             VEC_Add(&a->mUnk_22c, &t, &a->mUnk_22c);
-            VEC_Subtract(&a->mUnk_228->mKart->mVelocity, q, &t);
+            VEC_Subtract(&a->mKartItems->mKart->mVelocity, q, &t);
             t.y = 0;
             t.x = (s32) (((s64) t.x * c) >> 12);
             t.y = (s32) (((s64) t.y * c) >> 12);
@@ -90,7 +90,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
             VEC_Add(q, &t, q);
         }
     }
-    a->mUnk_228->mUnk_208 = TRUE;
+    a->mKartItems->mUnk_208 = TRUE;
     VEC_Add(&a->mUnk_22c, p, p);
     VEC_Add(q, p, p);
     if (func_01ffdee4(&p->x, (u32 *) &a->mUnk_000.mUnk_000.mUnk_000.mPrevPos, 0, a->mUnk_000.mUnk_000.mUnk_000.mUnk_dc,
@@ -135,7 +135,7 @@ BOOL func_020f14a0(Unk020f5d6c *a, s32 b, s32 c, s32 d) {
     return r;
 }
 
-int func_020f1258(Unk020f5d6c *a, int i, s32 c, u32 b) {
+int func_020f1258(ItemKouraR *a, int i, s32 c, u32 b) {
     u16 x;
     Kart *p;
     u32 n;
@@ -192,7 +192,7 @@ int func_020f1258(Unk020f5d6c *a, int i, s32 c, u32 b) {
     if (a->mUnk_000.mUnk_000.mUnk_000.mFlags & 0x10000000) {
         return 0;
     }
-    a->mUnk_228 = &gKartItems[i];
+    a->mKartItems = &gKartItems[i];
     a->mUnk_22c.x = 0;
     a->mUnk_22c.y = 0;
     a->mUnk_22c.z = 0;

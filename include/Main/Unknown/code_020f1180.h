@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020f5d6c Unk020f5d6c;
+typedef struct ItemKouraR ItemKouraR;
 
-BOOL func_020f1180(Unk020f5d6c *a, u32 b);
+BOOL func_020f1180(ItemKouraR *a, u32 b);

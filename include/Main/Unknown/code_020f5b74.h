@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020f5d6c Unk020f5d6c;
+typedef struct ItemKouraR ItemKouraR;
 
-void func_020f5b74(Unk020f5d6c *p0);
+void EnterItemKouraRState3(ItemKouraR *p0);

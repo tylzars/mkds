@@ -96,7 +96,7 @@ void func_020f2a6c(Vec3 *a, Vec3 *b, Vec3 *c) {
     }
 }
 
-void func_020f29e8(Unk020f5d6c *a) {
+void func_020f29e8(ItemKouraR *a) {
     Unk020f1d70 *b;
     Vec3 *p;
     s32 n;

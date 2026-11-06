@@ -15,21 +15,18 @@ typedef struct Unk020f5008 Unk020f5008;
 
 #include "Main/Unknown/code_020ec8bc.h"
 
-// Element of gItemPools[1]: 0x274 bytes (the size in gItemKinds[1]), handled by func_020f5324 to
-// func_020f5824 of this file, func_020f5d6c to func_020f5fb8, the state functions in data_0216c648 and
-// func_020f1180 to func_020f14a0: the Unk020ec8bc part, the owner at 0x228, a vector at 0x22c, a counter at 0x238,
-// the state machine of func_02046be8 at 0x23c, words at 0x250 and 0x254 and a Unk0210b7ec at 0x258.
-typedef struct Unk020f5d6c {
+// Object of item kind 1, element of gItemPools[1].
+typedef struct ItemKouraR {
     /* 000 */ Unk020ec8bc mUnk_000;
-    /* 228 */ struct KartItems *mUnk_228;
+    /* 228 */ struct KartItems *mKartItems;
     /* 22c */ Vec3 mUnk_22c;
     /* 238 */ s32 mUnk_238;
-    /* 23c */ Unk020e005c_080 mUnk_23c;
+    /* 23c */ Unk020e005c_080 mStateMachine;
     /* 250 */ s32 mUnk_250;
     /* 254 */ s32 mUnk_254;
     /* 258 */ Unk0210b7ec mUnk_258;
     /* 268 */ u8 mUnk_268[0xc];
-} Unk020f5d6c;
+} ItemKouraR;
 
 // Element of gItemPools[2]: 0x134 bytes (the size in gItemKinds[2]), handled by func_020f50b4 to
 // func_020f5240: the Unk020f2df0 part and a word at 0x130.
@@ -69,15 +66,15 @@ void *func_020f5108(void *a, Unk020f5240 *b, void *c);
 void func_020f518c(Unk020f5240 *a);
 s32 func_020f5240(Unk020eda5c *a, Unk020f5240 *b);
 BOOL func_020f5324(void *a0, s32 b);
-void func_020f53d0(Unk020f5d6c *a);
-void *func_020f5550(void *a, Unk020f5d6c *b, void *c);
+void func_020f53d0(ItemKouraR *a);
+void *func_020f5550(void *a, ItemKouraR *b, void *c);
 void func_020f5614(void *a0, s32 b, ItemObject *c0);
-void func_020f56d0(Unk020f5d6c *a);
-void func_020f572c(Unk020f5d6c *a);
-void func_020f5824(Unk020f5d6c *a);
-void func_020f5968(Unk020f5d6c *p0);
-s32 func_020f5d6c(Unk020eda5c *a, Unk020f5d6c *b);
-void func_020f5f7c(Unk020f5d6c *a, Vec3 *b, Vec3 *c);
+void UpdateItemKouraRState6(ItemKouraR *a);
+void UpdateItemKouraRState5(ItemKouraR *a);
+void UpdateItemKouraRState4(ItemKouraR *a);
+void EnterItemKouraRState4(ItemKouraR *p0);
+s32 func_020f5d6c(Unk020eda5c *a, ItemKouraR *b);
+void func_020f5f7c(ItemKouraR *a, Vec3 *b, Vec3 *c);
 void func_020f5fb8(void *a0, s32 b);
 void func_020f5ffc(Unk020f6150 *a);
 void *func_020f6038(void *a, Unk020f6150 *b, void *c);
