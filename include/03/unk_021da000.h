@@ -17,26 +17,25 @@
 #include "03/code_021d3488.h"
 #include "03/types_021d299c.h"
 
-// Object behind data_ov003_021da214.
-typedef struct Unk021da214 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u8 mUnk_04[4];
-    /* 08 */ u16 *mUnk_08;
-    /* 0c */ void *mUnk_0c[2];
+typedef struct Jb3List {
+    /* 00 */ u32 mIdTimerTask;
+    /* 04 */ u8 mIdTimer[4];
+    /* 08 */ u16 *mJb3ListBackNsc;
+    /* 0c */ void *mYbBgStep2NclFiles[2];
     /* 14 */ Unk021d2188 *mUnk_14;
     /* 18 */ Unk021da104_04 *mUnk_18[7];
     /* 34 */ Unk021da104_04 *mUnk_34;
-    /* 38 */ u32 mUnk_38;
-    /* 3c */ u32 mUnk_3c;
+    /* 38 */ u32 mScrollTask;
+    /* 3c */ u32 mBgOffsetTask;
     /* 40 */ u8 mUnk_40;
-    /* 41 */ u8 mUnk_41;
-    /* 42 */ u8 mUnk_42;
+    /* 41 */ u8 mScrollTimer;
+    /* 42 */ u8 mReturnId;
     /* 43 */ u8 mUnk_43;
-    /* 44 */ u8 mUnk_44;
+    /* 44 */ u8 mBgOffsetPending;
     /* 45 */ u8 mUnk_45;
     /* 46 */ u8 mUnk_46;
     /* 47 */ u8 mUnk_47;
-} Unk021da214;
+} Jb3List;
 
 // Objects whose layout isn't known yet.
 typedef struct Unk021da280 Unk021da280;
@@ -108,11 +107,11 @@ extern struct Edit *gEdit;
 struct EditAddr;
 extern struct EditAddr *gEditAddr;
 extern u8 data_ov003_021da200[];
-extern u8 data_ov003_021da204[];
-extern u8 data_ov003_021da208[];
-extern u8 data_ov003_021da20c[];
-extern u8 data_ov003_021da210[];
-extern Unk021da214 *data_ov003_021da214;
+extern u8 gJb3ListSelectedId[];
+extern u8 gJb3ListMode[];
+extern u8 gJb3ListSelectedRow[];
+extern u8 gJb3ListScrollY[];
+extern Jb3List *gJb3List;
 extern u8 data_ov003_021da218;
 extern u8 data_ov003_021da21c;
 extern u8 data_ov003_021da220[];

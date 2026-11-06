@@ -267,7 +267,7 @@ void func_ov003_021c6a18(void) {
     if (v2[0] == 0) {
         func_ov003_021c2120((u32) 2, (u32) 1);
         func_ov003_021c20f8((u32) 0, (u32) v1);
-        func_ov003_021c212c(func_ov003_021c965c);
+        func_ov003_021c212c(CreateJb3List);
     } else if (gEdit->mUnk_2a == 0) {
         func_ov003_021c2120((u32) 0, (u32) 1);
         func_ov003_021c20f8((u32) 1, (u32) 0);

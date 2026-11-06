@@ -230,8 +230,8 @@ void func_ov003_021cacfc(void) {
                         func_ov003_021c212c(func_ov003_021cb7fc);
                     } else {
                         func_ov003_021c20f8(0, 0);
-                        func_ov003_021c7d30(0);
-                        func_ov003_021c212c(func_ov003_021c965c);
+                        SetJb3ListMode(0);
+                        func_ov003_021c212c(CreateJb3List);
                     }
                     break;
                 case 3:

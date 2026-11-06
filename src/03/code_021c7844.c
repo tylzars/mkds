@@ -216,8 +216,8 @@ void func_ov003_021c7850(void) {
         }
         func_ov003_021c2120(2, 0);
         func_ov003_021c20f8(0, 0);
-        func_ov003_021c7d30((u8) (0));
-        func_ov003_021c212c(func_ov003_021c965c);
+        SetJb3ListMode((u8) (0));
+        func_ov003_021c212c(CreateJb3List);
     }
     return;
 }

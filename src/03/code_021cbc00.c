@@ -159,7 +159,7 @@ void func_ov003_021cbc50(void) {
         func_ov003_021c20dc(NULL, v2);
         if (v2[0] == 0) {
             func_ov003_021c20f8(0, 0);
-            func_ov003_021c212c(func_ov003_021c965c);
+            func_ov003_021c212c(CreateJb3List);
             return;
         }
         func_ov003_021c212c(func_ov003_021c3078);

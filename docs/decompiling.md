@@ -547,7 +547,7 @@ Expression shapes:
 - A field load after an abs branch, with the `-K` constant load filling its delay and taking r0 across the multiply:
   read the field into a local before the `if` (func_020f6a6c).
 - A table byte loaded before the loop's offset init in ours, after it in the original: the table is in `.rodata`, so
-  declare it `const` and read it inside the loop (func_ov003_021c965c).
+  declare it `const` and read it inside the loop (CreateJb3List).
 - An address or constant from the early-return test shared with a store far below it, where ours reloads: write that
   store before the first if/else join; the scheduler moves it down to the original's place (OS_InitThread).
 - Two 0/1 flag arguments computed in the other order: put `? 1 : 0` on the later one only, `d = (v & M) != M ? 1 : 0`
@@ -672,7 +672,7 @@ Expression shapes:
   (Thumb; func_ov003_021cec50, like func_ov003_021cedbc).
 - A step after the counter's `+1` in the original, with a named for-update variable that gets the order right but adds a
   round of register changes: `for (i = 0, c = b; ...; i++, c += K)` with `c` declared before `i`, and the other `|`
-  operand read through a pointer local, `p = base->arr[i]; p->m = X | ((p->m & K) | (c & 0xff));` (func_ov003_021c85a0).
+  operand read through a pointer local, `p = base->arr[i]; p->m = X | ((p->m & K) | (c & 0xff));` (RefreshJb3ListRowPositions).
 
 ### 1.6 Switches, Branches and Selects
 
@@ -909,7 +909,7 @@ Expression shapes:
   `u32 e = tbl[i] << 6;`, added to `(u32) base` at each use; `(u8 *)` adds let the compiler fold `e` away
   (AdvanceWiFiVSMatchingState4).
 - Out-parameter locals of an inline getter kept in stack words with their dead stores, ours in registers: cast the
-  addresses at every call, `f(p, (u32 *) &x, (u32 *) &y)` (func_ov003_021c85a0).
+  addresses at every call, `f(p, (u32 *) &x, (u32 *) &y)` (RefreshJb3ListRowPositions).
 - A frame about 0x200 too big with a separate scratch buffer: make the buffer an array member of a local struct
   (`h.mUnk_008`; func_ov000_0219fbec).
 - Thumb: values read before a call and kept across it: read them into locals before the call (func_0202d210).

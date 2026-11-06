@@ -44,15 +44,15 @@ typedef struct Unk021d7708 {
 
 // Objects whose layout isn't known yet.
 extern Unk021d7864 data_ov003_021d7864;
-extern Unk021d73e0 data_ov003_021d73e0;
-extern Unk021d73f8 data_ov003_021d73f8;
-extern Unk021d7410 data_ov003_021d7410;
-extern u8 data_ov003_021d7460[];
-extern u8 data_ov003_021d7474[];
-extern u8 data_ov003_021d748c[];
-extern u8 data_ov003_021d74a4[];
-extern u16 data_ov003_021d7428[];
-extern u8 data_ov003_021d7448[];
+extern Unk021d73e0 gYbBgStep2NclName;
+extern Unk021d73f8 gYbBgStep21NclName;
+extern Unk021d7410 gJb3ListBackNscName;
+extern u8 gYbObjKbNclName3[];
+extern u8 gJbBgStep2NcgName[];
+extern u8 gJbBgStep21NcgName[];
+extern u8 gJb3ListNscName[];
+extern u16 gDotSeparatedBytesFormat[];
+extern u8 gYbObjMainNclName4[];
 extern Unk021d6974 data_ov003_021d75c0;
 extern Unk021d6974 data_ov003_021d75c4;
 extern u8 data_ov003_021d7030[];
@@ -76,9 +76,9 @@ extern u8 gJbBgStep3NcgName3[];
 extern u8 gYbBgStep3NclName3[];
 extern u8 gXb4EditAddrNscName[];
 extern u8 data_ov003_021d73b8[];
-extern u8 data_ov003_021d74b8[];
-extern u8 data_ov003_021d74d0[];
-extern u8 data_ov003_021d74e8[];
+extern u8 gJbBgStep3NcgName4[];
+extern u8 gYbBgStep3NclName4[];
+extern u8 gXb4NoneNscName[];
 extern u8 data_ov003_021d74fc[];
 extern u8 data_ov003_021d7510[];
 extern u8 data_ov003_021d7524[];
