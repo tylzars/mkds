@@ -334,7 +334,7 @@ void FileFinishCardRead(Unk02003a6c *p) {
 }
 
 s32 FileStartCardRead(Unk02003a6c *p, void *buf, u32 off, u32 n) {
-    StartRomRead(data_0216f358, off, (u32) buf, n, FileFinishCardRead, (u32) p, 1);
+    CARDi_ReadRom(data_0216f358, off, (u32) buf, n, FileFinishCardRead, (u32) p, 1);
     return 6;
 }
 

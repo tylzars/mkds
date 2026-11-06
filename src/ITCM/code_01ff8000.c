@@ -703,7 +703,7 @@ L_01ff8120:
     stmdb sp!, {r0, r1}
     add r0, r0, #0x0
     add r0, r0, #0x48
-    ldr r1, =DivSqrtRegistersSave
+    ldr r1, =CP_SaveContext
     blx r1
     ldmia sp!, {r0, r1}
     ldmib sp!, {r2, r3}
@@ -717,7 +717,7 @@ L_01ff8120:
     stmdb sp!, {r1}
     add r0, r1, #0x0
     add r0, r0, #0x48
-    ldr r1, =DivSqrtRegistersRestore
+    ldr r1, =CPi_RestoreContext
     blx r1
     ldmia sp!, {r1}
     ldr sp, [r1, #0x44]

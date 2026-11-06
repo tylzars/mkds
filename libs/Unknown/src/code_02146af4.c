@@ -8,24 +8,27 @@
 UnkWordFunc *gRemovalCallback;
 u32 gRemovalSeen;
 
+// Installs CARDi_PulledOutCallback on tag 14 and clears the user callback.
 void CARD_InitPulledOutCallback(void) {
     PXI_Init();
-    PXI_SetFifoRecvCallback(14, ReceiveRemovalMessage);
+    PXI_SetFifoRecvCallback(14, CARDi_PulledOutCallback);
     gRemovalCallback = 0;
 }
 
-void ReceiveRemovalMessage(u32 a, u32 b) {
-    u32 r;
-    UnkWordFunc *fn;
+// Tag 14 callback: on the pulled-out command sets gRemovalSeen, calls the user callback and ends the program when there
+// is none or it returns non-zero. Any other command ends in OS_Terminate.
+void CARDi_PulledOutCallback(u32 tag, u32 data) {
+    u32 terminate;
+    UnkWordFunc *callback;
 
-    if ((b & 0x3F) == 0x11) {
-        fn = gRemovalCallback;
+    if ((data & 0x3F) == 0x11) {
+        callback = gRemovalCallback;
         gRemovalSeen = 1;
-        r = 1;
-        if (fn != 0) {
-            r = fn();
+        terminate = 1;
+        if (callback != 0) {
+            terminate = callback();
         }
-        if (r != 0) {
+        if (terminate != 0) {
             CARD_TerminateForPulledOut();
         }
     } else {
@@ -33,16 +36,12 @@ void ReceiveRemovalMessage(u32 a, u32 b) {
     }
 }
 
-void CARD_SetPulledOutCallback(void *arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    value1 = (u32) &gRemovalCallback;
-    *(u32 *) ((value1) + (0)) = value0;
+// Sets the user callback.
+void CARD_SetPulledOutCallback(void *callback) {
+    gRemovalCallback = callback;
 }
 
+// Returns 1 once a card removal was reported.
 u32 CARD_IsPulledOut(void) {
-    u32 value0;
-    value0 = (u32) &gRemovalSeen;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    return value0;
+    return gRemovalSeen;
 }

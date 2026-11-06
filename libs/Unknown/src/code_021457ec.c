@@ -10,58 +10,44 @@
 
 u8 gAccessEnabled[0x20];
 
+// Returns the enable flag.
 u32 CARD_IsEnabled(void) {
-    u32 value0;
-    value0 = (u32) &gAccessEnabled;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    return value0;
+    return *(u32 *) gAccessEnabled;
 }
 
+// Ends in OS_Terminate unless card access is enabled.
 void CARD_CheckEnabled(void) {
-    u32 value0;
-    u32 compareLeft0;
-    u32 compareRight0;
-    value0 = (u32) CARD_IsEnabled();
-    compareLeft0 = value0;
-    compareRight0 = 0u;
-    if (compareLeft0 != compareRight0) {
-    }
-    if (compareLeft0 != compareRight0) {
-    }
-    if (compareLeft0 != compareRight0) {
+    if (CARD_IsEnabled() != 0) {
         return;
     }
     OS_Terminate();
 }
 
-void CARD_Enable(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    value1 = (u32) &gAccessEnabled;
-    *(u32 *) ((value1) + (0)) = value0;
+// Sets the enable flag.
+void CARD_Enable(u32 enable) {
+    *(u32 *) gAccessEnabled = enable;
 }
 
-// Waits until bit 2 of mUnk_114 is clear; returns 1 when the word at mUnk_00 is 0.
-int WaitForTransferEnd(void) {
-    Unk021458c4 *p;
-    u32 s;
+// Waits while a transfer is running. Returns 1 when CARDiCommandArg.mResult is 0.
+int CARDi_WaitAsync(void) {
+    CARDiCommon *p;
+    u32 enabled;
 
-    p = (Unk021458c4 *) (u32) &gAccessState;
-    s = OS_DisableInterrupts();
-    while (p->mUnk_114 & 4) {
-        OS_SleepThread(&p->mUnk_10c);
+    p = (CARDiCommon *) (u32) &gAccessState;
+    enabled = OS_DisableInterrupts();
+    while (p->mFlag & 4) {
+        OS_SleepThread(&p->mBusyQ);
     }
-    OS_RestoreInterrupts(s);
-    return p->mUnk_00->mUnk_00 == 0;
+    OS_RestoreInterrupts(enabled);
+    return p->mCmd->mResult == 0;
 }
 
-// Returns 1 when bit 2 of mUnk_114 is clear.
-int IsTransferIdle(void) {
-    return (gAccessState.mUnk_114 & 4) == 0;
+// Returns 1 when no transfer is running.
+int CARDi_TryWaitAsync(void) {
+    return (gAccessState.mFlag & 4) == 0;
 }
 
+// Returns CARDiCommandArg.mResult of the last request, 0 when it succeeded.
 u32 CARD_GetResultCode(void) {
-    u32 value0;
-    value0 = (u32) gAccessState.mUnk_00->mUnk_00;
-    return value0;
+    return gAccessState.mCmd->mResult;
 }

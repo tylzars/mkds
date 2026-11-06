@@ -87,8 +87,8 @@ void func_0204b574(void) {
     }
     if (r == FALSE) {
         func_0204ba7c();
-        StartBackupTransfer((u32) data_021759d4->mUnk_40, data_021759d4->mUnk_44, data_021759d4->mUnk_48,
-                            (UnkFunc *) func_0204b5dc, data_021759d4->mUnk_54, 1, 7, 10, 2);
+        CARDi_RequestStreamCommand((u32) data_021759d4->mUnk_40, data_021759d4->mUnk_44, data_021759d4->mUnk_48,
+                                   (UnkFunc *) func_0204b5dc, data_021759d4->mUnk_54, 1, 7, 10, 2);
     } else {
         func_0204b3dc();
         data_021759d4->mUnk_10 = 0;
@@ -103,7 +103,7 @@ u32 func_0204b518(void) {
     if (func_0204b3a4() == 0) {
         return 0;
     }
-    StartBackupTransfer(0, (u32) data_021759d4->mUnk_64, 1, (UnkFunc *) func_0204b574, NULL, 1, 6, 1, 0);
+    CARDi_RequestStreamCommand(0, (u32) data_021759d4->mUnk_64, 1, (UnkFunc *) func_0204b574, NULL, 1, 6, 1, 0);
     return 1;
 }
 
@@ -135,7 +135,7 @@ u32 func_0204b458(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, s32 e) {
         DC_StoreRange(b, n);
         return func_0204b518();
     }
-    StartBackupTransfer((u32) b, a, n, (UnkFunc *) func_0204b5dc, c, 1, 7, 10, 2);
+    CARDi_RequestStreamCommand((u32) b, a, n, (UnkFunc *) func_0204b5dc, c, 1, 7, 10, 2);
     return 1;
 }
 

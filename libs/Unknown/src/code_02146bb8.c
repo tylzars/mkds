@@ -1,18 +1,20 @@
 #include "code_02146bb8.h"
 #include "registers.h"
 
-void DivSqrtRegistersSave(DivSqrtRegisters *a) {
-    a->mDivNumer = reg_CP_DIV_NUMER;
-    a->mDivDenom = reg_CP_DIV_DENOM;
-    a->mDivCnt = reg_CP_DIVCNT & 3;
-    a->mSqrtParam = reg_CP_SQRT_PARAM;
-    a->mSqrtCnt = reg_CP_SQRTCNT & 1;
+// Reads the divider and square root registers into the context.
+void CP_SaveContext(CPContext *context) {
+    context->mDivNumer = reg_CP_DIV_NUMER;
+    context->mDivDenom = reg_CP_DIV_DENOM;
+    context->mDivMode = reg_CP_DIVCNT & 3;
+    context->mSqrt = reg_CP_SQRT_PARAM;
+    context->mSqrtMode = reg_CP_SQRTCNT & 1;
 }
 
-void DivSqrtRegistersRestore(const DivSqrtRegisters *a) {
-    reg_CP_DIV_NUMER = a->mDivNumer;
-    reg_CP_DIV_DENOM = a->mDivDenom;
-    reg_CP_DIVCNT = a->mDivCnt;
-    reg_CP_SQRT_PARAM = a->mSqrtParam;
-    reg_CP_SQRTCNT = a->mSqrtCnt;
+// Writes the context back to the divider and square root registers.
+void CPi_RestoreContext(const CPContext *context) {
+    reg_CP_DIV_NUMER = context->mDivNumer;
+    reg_CP_DIV_DENOM = context->mDivDenom;
+    reg_CP_DIVCNT = context->mDivMode;
+    reg_CP_SQRT_PARAM = context->mSqrt;
+    reg_CP_SQRTCNT = context->mSqrtMode;
 }

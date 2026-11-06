@@ -2,20 +2,24 @@
 #include "code_0200cdf8.h"
 #include "code_021458c4.h"
 
-void CARD_LockRom(u16 a) {
-    LockAccessTarget(a, 1);
-    OS_LockCard(a);
+// Takes the ROM target for the lock id, then OS_LockCard.
+void CARD_LockRom(u16 lockId) {
+    CARDi_LockResource(lockId, 1);
+    OS_LockCard(lockId);
 }
 
-void CARD_UnlockRom(u16 a) {
-    OS_UnlockCard(a);
-    UnlockAccessTarget(a, 1);
+// Calls OS_UnlockCard, then gives the ROM target back.
+void CARD_UnlockRom(u16 lockId) {
+    OS_UnlockCard(lockId);
+    CARDi_UnlockResource(lockId, 1);
 }
 
-void CARD_LockBackup(u16 a) {
-    LockAccessTarget(a, 2);
+// Takes the backup target for the lock id.
+void CARD_LockBackup(u16 lockId) {
+    CARDi_LockResource(lockId, 2);
 }
 
-void CARD_UnlockBackup(u16 a) {
-    UnlockAccessTarget(a, 2);
+// Gives the backup target back.
+void CARD_UnlockBackup(u16 lockId) {
+    CARDi_UnlockResource(lockId, 2);
 }

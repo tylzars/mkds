@@ -2,15 +2,14 @@
 
 #include "types.h"
 
-// Words and halfwords that DivSqrtRegistersSave reads from, and DivSqrtRegistersRestore writes to,
-// 0x04000280-0x040002bf.
-typedef struct DivSqrtRegisters {
+// The registers at 0x04000280-0x040002bf: divider operands, square root operand and the two mode halfwords.
+typedef struct CPContext {
     /* 00 */ u64 mDivNumer;
     /* 08 */ u64 mDivDenom;
-    /* 10 */ u64 mSqrtParam;
-    /* 18 */ u16 mDivCnt;
-    /* 1a */ u16 mSqrtCnt;
-} DivSqrtRegisters;
+    /* 10 */ u64 mSqrt;
+    /* 18 */ u16 mDivMode;
+    /* 1a */ u16 mSqrtMode;
+} CPContext;
 
-void DivSqrtRegistersRestore(const DivSqrtRegisters *a);
-void DivSqrtRegistersSave(DivSqrtRegisters *a);
+void CPi_RestoreContext(const CPContext *context);
+void CP_SaveContext(CPContext *context);

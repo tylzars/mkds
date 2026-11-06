@@ -14,10 +14,10 @@ extern u8 OV000_BSS_END[];
 extern u8 OV001_BSS_END[];
 extern u8 OV002_BSS_END[];
 
-// Set to 1 by ReceiveRemovalMessage; CARD_IsPulledOut returns it.
+// Set to 1 by CARDi_PulledOutCallback; CARD_IsPulledOut returns it.
 extern u32 gRemovalSeen;
 // The hook set by CARD_SetPulledOutCallback, cleared by CARD_InitPulledOutCallback and called by
-// ReceiveRemovalMessage.
+// CARDi_PulledOutCallback.
 extern UnkWordFunc *gRemovalCallback;
 // Id from OS_GetLockID, taken in GX_Init; disableBankForX_ hands it to the lock-table release.
 extern u16 gVramLockId;

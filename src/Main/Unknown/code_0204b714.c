@@ -266,6 +266,6 @@ u32 func_0204b714(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, u32 e, s32
     data_021759d4->mUnk_38 = f;
     data_021759d4->mUnk_14 = d;
     DC_InvalidateRange(b, n);
-    StartBackupTransfer(a, (u32) b, n, (UnkFunc *) func_0204b7b8, c, 1, 6, 1, 0);
+    CARDi_RequestStreamCommand(a, (u32) b, n, (UnkFunc *) func_0204b7b8, c, 1, 6, 1, 0);
     return 1;
 }
