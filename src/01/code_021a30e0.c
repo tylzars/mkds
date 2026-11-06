@@ -190,7 +190,7 @@ void func_ov001_021a30e0(void) {
         }
     }
 
-    if (GetEmblemInputPressed() && func_ov001_021a62c4((s32) (GetEmblemInputX()), (s32) (GetEmblemInputY()))) {
+    if (GetEmblemInputPressed() && IsEmblemPointInGrid((s32) (GetEmblemInputX()), (s32) (GetEmblemInputY()))) {
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xb), -5);
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xc), 0);
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0xd), -5);
@@ -243,11 +243,11 @@ void func_ov001_021a30e0(void) {
             }
         }
         if (GetEmblemInputDown() && !GetEmblemInputPrevDown() &&
-            func_ov001_021a62c4((s32) (GetEmblemInputX()), (s32) (GetEmblemInputY()))) {
+            IsEmblemPointInGrid((s32) (GetEmblemInputX()), (s32) (GetEmblemInputY()))) {
             gEmblem->mUnk_10b8 = TRUE;
         } else if (GetEmblemInputDown() &&
-                   (func_ov001_021a62c4((s32) (GetEmblemInputX()), (s32) (GetEmblemInputY())) ||
-                    func_ov001_021a62c4((s32) (GetEmblemInputPrevX()), (s32) (GetEmblemInputPrevY()))) &&
+                   (IsEmblemPointInGrid((s32) (GetEmblemInputX()), (s32) (GetEmblemInputY())) ||
+                    IsEmblemPointInGrid((s32) (GetEmblemInputPrevX()), (s32) (GetEmblemInputPrevY()))) &&
                    (func_ov001_021a633c() != func_ov001_021a6314() || func_ov001_021a6328() != func_ov001_021a6300())) {
             gEmblem->mUnk_10b8 = TRUE;
         } else if (func_ov001_02192a14(1)) {
@@ -266,7 +266,7 @@ void func_ov001_021a30e0(void) {
     func_ov001_02184fd8(func_ov001_02185160(gEmblem->mEmblemSLld, 3), func_ov001_021a633c(), func_ov001_021a6328());
 
     if (gEmblem->mUnk_1094 == 0 && GetEmblemInputDown() &&
-        func_ov001_021a62c4((s32) (GetEmblemInputX()), (s32) (GetEmblemInputY()))) {
+        IsEmblemPointInGrid((s32) (GetEmblemInputX()), (s32) (GetEmblemInputY()))) {
         func_ov001_02185018(func_ov001_02185160(gEmblem->mEmblemSLld, 0), -5);
         gEmblem->mUnk_1088 = -1;
     } else if (gEmblem->mUnk_1094 == 0 && GetEmblemInputDown() &&

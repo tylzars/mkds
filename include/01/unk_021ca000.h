@@ -151,22 +151,22 @@ typedef struct SelectEngine {
 
 // Object behind data_ov001_021ca420, allocated by func_ov001_021a6238.
 typedef struct Unk021ca420 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ u8 mUnk_08;
+    /* 00 */ s32 mMode;
+    /* 04 */ s32 mSizeIndex;
+    /* 08 */ u8 mCellValue;
     /* 09 */ u8 mUnk_09[0x3];
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
+    /* 0c */ s32 mCellShift;
+    /* 10 */ s32 mOriginX;
+    /* 14 */ s32 mOriginY;
+    /* 18 */ s32 mSide;
     /* 1c */ u8 mUnk_1c[0xc];
-    /* 28 */ s32 mUnk_28;
-    /* 2c */ s32 mUnk_2c;
-    /* 30 */ s32 mUnk_30;
-    /* 34 */ s32 mUnk_34;
-    /* 38 */ s32 mUnk_38;
-    /* 3c */ s32 mUnk_3c;
-    /* 40 */ s32 mUnk_40;
+    /* 28 */ s32 mPrevX;
+    /* 2c */ s32 mPrevY;
+    /* 30 */ s32 mPrevDown;
+    /* 34 */ s32 mCellX;
+    /* 38 */ s32 mCellY;
+    /* 3c */ s32 mPrevCellX;
+    /* 40 */ s32 mPrevCellY;
 } Unk021ca420;
 
 // Object behind the pointer at 0x08 of Unk021ca424.
