@@ -28,6 +28,9 @@ typedef s32 BOOL;
 #define TRUE 1
 #define FALSE 0
 
+// Pointer to the T that starts OFFSET bytes after BASE (offsets read from file data and headers).
+#define OFFSET_PTR(T, base, offset) ((T *) ((u8 *) (base) + (offset)))
+
 // Three fixed-point components (12 fractional bits).
 typedef struct Vec3 {
     /* 0 */ s32 x;
