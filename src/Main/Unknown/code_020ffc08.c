@@ -179,8 +179,8 @@ void UpdateDramState5(u32 arg0) {
     u32 value2;
     u32 value3;
     u32 value12;
-    u32 compareLeft0;
-    u32 compareRight0;
+    s32 compareLeft0;
+    s32 compareRight0;
     value1 = *(const u16 *) ((value0) + (166));
     value12 = (value0) + (0xa6u);
     value1 = (value1) + (0x96u);
@@ -191,7 +191,7 @@ void UpdateDramState5(u32 arg0) {
     value3 = *(const u32 *) ((value0) + (188));
     compareLeft0 = value3;
     compareRight0 = 0u;
-    if ((s32) compareLeft0 >= (s32) compareRight0) {
+    if (compareLeft0 >= compareRight0) {
         return;
     }
     value2 = *(const u16 *) ((value12) + (0));

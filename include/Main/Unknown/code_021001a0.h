@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_021001a0(void);
+s32 func_021001a0(void);

@@ -472,7 +472,7 @@ void func_020f5d00(ItemKouraR *a) {
     func_0210ddf4(&data_0217d294, a->mUnk_000.mUnk_000.mUnk_000.mUnk_d4 & ~0xc000001f, func_020f5fb8, a, 0);
 }
 
-void func_020f5cc4(u32 arg0, u32 arg1) {
+void func_020f5cc4(ItemObject *arg0, u32 arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value2;

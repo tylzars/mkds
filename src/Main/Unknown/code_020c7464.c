@@ -128,7 +128,7 @@ void func_020ca074(void) {
                     if (ComputeRaceHudSubScreenPosition(q, &data_0217b42c->mCells[n].mUnk_00, a, 1, 1) != FALSE) {
                         if (p->mUnk_d8 > 0) {
                             v = ((ItemTeresa *) p)->mUnk_170;
-                            data_0217b42c->mCells[n].mUnk_00.mUnk_04 -= 0x88 * v / (s32) func_021001a0();
+                            data_0217b42c->mCells[n].mUnk_00.mUnk_04 -= 0x88 * v / func_021001a0();
                             if (data_0217b42c->mCells[n].mUnk_00.mUnk_04 > 0) {
                                 data_0217b42c->mCells[n].mUnk_08 = c;
                                 data_0217b42c->mCells[n].mUnk_0c = func_020b4e70(q) != 0 ? 2 : 3;
