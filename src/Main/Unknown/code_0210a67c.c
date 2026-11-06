@@ -206,20 +206,20 @@ void func_0210b234(Kart *a, s32 b, s32 c, s32 d, s32 f) {
 }
 
 void func_0210b198(s32 a, s32 b, u32 c, s32 d, s32 e) {
-    Unk0212c400 *h;
+    NNSSndSeqPlayer *h;
     u16 f;
 
     if (func_02105504() == 0) {
         return;
     }
-    func_0212c6a0(&h);
+    NNS_SndHandleInit(&h);
     f = a * 0xe + b;
     if (h != NULL) {
-        func_0212c6f0(&h, 0);
+        NNS_SndPlayerStopSeq(&h, 0);
     }
     func_0212ec04(&h, d, -1, e, 2, f);
     func_02105b28(&h, c);
-    func_0212c688(&h);
+    NNS_SndHandleReleaseSeq(&h);
 }
 
 void func_0210b12c(Kart *a, s32 b, s16 d) {
@@ -239,7 +239,7 @@ void func_0210b12c(Kart *a, s32 b, s16 d) {
 }
 
 void func_0210af40(Kart *a, s32 b, s32 c) {
-    Unk0212c400 *h;
+    NNSSndSeqPlayer *h;
     Unk0206bcb0_A *p;
     u32 d;
     s32 e;
@@ -274,14 +274,14 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
             if (func_02105504() == 0) {
                 return;
             }
-            func_0212c6a0(&h);
+            NNS_SndHandleInit(&h);
             g = b * 0xe + c;
             if (h != NULL) {
-                func_0212c6f0(&h, 0);
+                NNS_SndPlayerStopSeq(&h, 0);
             }
             func_0212ec04(&h, 1, -1, 0x7f, 2, g);
             func_02105b28(&h, e);
-            func_0212c688(&h);
+            NNS_SndHandleReleaseSeq(&h);
         } else {
             if (c != 3 && c != 5) {
                 return;
@@ -375,7 +375,7 @@ void func_0210ad58(Kart *a, s32 b) {
 }
 
 void func_0210abf4(Kart *a, s32 b, s32 c, s32 d) {
-    Unk0212c400 *h;
+    NNSSndSeqPlayer *h;
     PlayingSound *p;
     PlayingSound *q;
     BOOL e;
@@ -409,18 +409,18 @@ void func_0210abf4(Kart *a, s32 b, s32 c, s32 d) {
     if (func_02105504() == 0) {
         return;
     }
-    func_0212c6a0(&h);
+    NNS_SndHandleInit(&h);
     f = b * 0xe + k;
     if (h != NULL) {
-        func_0212c6f0(&h, 0);
+        NNS_SndPlayerStopSeq(&h, 0);
     }
     func_0212ec04(&h, -1, -1, 0x6e, 2, f);
     func_02105b28(&h, d);
-    func_0212c688(&h);
+    NNS_SndHandleReleaseSeq(&h);
 }
 
 void func_0210ab48(s32 a, s32 b) {
-    Unk0212c400 *h;
+    NNSSndSeqPlayer *h;
     s32 c;
     u16 d;
 
@@ -429,14 +429,14 @@ void func_0210ab48(s32 a, s32 b) {
     if (func_02105504() == 0) {
         return;
     }
-    func_0212c6a0(&h);
+    NNS_SndHandleInit(&h);
     d = a * 0xe + c;
     if (h != NULL) {
-        func_0212c6f0(&h, 0);
+        NNS_SndPlayerStopSeq(&h, 0);
     }
     func_0212ec04(&h, 7, -1, -1, 2, d);
     func_02105b28(&h, 0x6e);
-    func_0212c688(&h);
+    NNS_SndHandleReleaseSeq(&h);
 }
 
 void func_0210ab44(Kart *a, PlayingSound *b, s32 c) {}
@@ -476,7 +476,7 @@ void func_0210aa14(Kart *a, PlayingSound *b, s32 c) {
         if (b == NULL) {
             return;
         }
-        func_0212c3c8(&b->mUnk_00, 0, (s16) a->mUnk_4b8);
+        NNS_SndPlayerWriteVariable(&b->mUnk_00, 0, (s16) a->mUnk_4b8);
     } else {
         func_0212ec04(&b->mUnk_00, f, -1, c, d, e);
     }

@@ -1,30 +1,33 @@
 #pragma once
 
 #include "types.h"
+#include "code_0212c9d4.h" // NNSSndCaptureCallback
 
-// 0xd8-byte object (data_0216eaa4): func_0212f5a0 calls mUnk_04(a, b, n, this) after mUnk_08 and before mUnk_10, which
-// are called only when not null; func_0212f638 stores a number in mUnk_00 and a function in mUnk_04 and clears
-// mUnk_18. mUnk_18 is read as 24 pairs of words by func_0212f1f8 and as two words by func_0212f3f8.
-typedef struct Unk0212f1f8 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ UnkFunc *mUnk_04;
-    /* 08 */ UnkFunc *mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ UnkFunc *mUnk_10;
-    /* 14 */ u32 mUnk_14;
+struct CallbackInfo;
+
+typedef void (*EffectFunc)(s16 *bufferL, s16 *bufferR, u32 len, struct CallbackInfo *info);
+
+// 0xd8-byte object (data_0216eaa4): EffectCallback calls mCbFunc, then mEffectFunc, then mCbPostFunc (the callbacks
+// only when not null) and flushes both buffers. NNS_SndCaptureChangeOutputEffect stores the effect type in mType, the
+// matching function in mEffectFunc and clears mBuffer. mBuffer holds two words for SurroundProc and 24 pairs of words
+// for HeadphoneProc.
+typedef struct CallbackInfo {
+    /* 00 */ s32 mType;
+    /* 04 */ EffectFunc mEffectFunc;
+    /* 08 */ NNSSndCaptureCallback mCbFunc;
+    /* 0c */ void *mCbArg;
+    /* 10 */ NNSSndCaptureCallback mCbPostFunc;
+    /* 14 */ void *mCbPostArg;
     union {
-        struct {
-            /* 00 */ s32 mUnk_00;
-            /* 04 */ s32 mUnk_04;
-        } p[24];
-        /* 00 */ s32 w[2];
-    } /* 18 */ mUnk_18;
-} Unk0212f1f8;
+        /* 00 */ s32 surround[2];
+        /* 00 */ s32 headphone[24][2];
+    } /* 18 */ mBuffer;
+} CallbackInfo;
 
-void func_0212f1ac(s16 *a, s16 *b, u32 n);
-void func_0212f1f8(s16 *a, s16 *b, u32 n, Unk0212f1f8 *d);
-void func_0212f3f8(s16 *a, s16 *b, u32 n, Unk0212f1f8 *d);
-void func_0212f59c(void);
-void func_0212f5a0(void *a, void *b, u32 n, u32 d, Unk0212f1f8 *s);
-void func_0212f638(s32 a);
-void func_0212f730(void *a, u32 b, s32 c);
+void MonoProc(s16 *bufferL, s16 *bufferR, u32 len, CallbackInfo *info);
+void HeadphoneProc(s16 *bufferL, s16 *bufferR, u32 len, CallbackInfo *info);
+void SurroundProc(s16 *bufferL, s16 *bufferR, u32 len, CallbackInfo *info);
+void NothingProc(s16 *bufferL, s16 *bufferR, u32 len, CallbackInfo *info);
+void EffectCallback(void *bufferL, void *bufferR, u32 len, u32 format, void *arg);
+void NNS_SndCaptureChangeOutputEffect(s32 type);
+void NNS_SndCaptureStartOutputEffect(void *buffer, u32 bufSize, s32 type);

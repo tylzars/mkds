@@ -4,7 +4,7 @@
 #include "code_0212bcac.h"
 #include "code_0212d214.h"
 
-typedef struct Unk0212c400 Unk0212c400;
+typedef struct NNSSndSeqPlayer NNSSndSeqPlayer;
 typedef struct HeapStack HeapStack;
 
 // Volume curve of one kind of sound source. The volume is the maximum up to the inner distance, falls to a mid volume
@@ -31,11 +31,11 @@ extern SoundFalloff gSoundFalloffs[];
 extern SoundFalloff gOtherKartSoundFalloff;
 
 // Objects whose layout isn't known yet.
-extern Unk0212c400 *data_0217c778;
+extern NNSSndSeqPlayer *data_0217c778;
 extern u8 data_0217c784[];
-extern Unk0212c400 *data_0217c788;
+extern NNSSndSeqPlayer *data_0217c788;
 extern s32 data_0217c7a4;
-extern Unk0212c400 *data_0217c838[];
+extern NNSSndSeqPlayer *data_0217c838[];
 extern u8 data_0217c83c[];
 extern u8 data_0217c840[];
 extern struct Unk0212d5f8 data_0217c868;
@@ -74,13 +74,13 @@ extern HeapStack *data_0217c790;
 extern u32 data_0217c794;
 extern u32 data_0217c798[];
 extern u32 data_0217c7a8;
-struct Unk0212c400;
-extern struct Unk0212c400 *data_0217c7ac;
+struct NNSSndSeqPlayer;
+extern struct NNSSndSeqPlayer *data_0217c7ac;
 extern u32 data_0217c7b0;
 extern u8 data_0217c7d8[];
 extern s32 data_0217c804[];
 extern u32 data_0217c80c[];
-extern Unk0212c400 *data_0217c81c;
+extern NNSSndSeqPlayer *data_0217c81c;
 extern u32 data_0217c728;
 extern u32 *data_0217c72c;
 extern s32 data_0217c724;

@@ -7,68 +7,66 @@ u32 data_0217d440;
 u32 data_0217d438;
 u32 data_0217d43c;
 
-u32 func_0212bc58(u32 a) {
-    if (a == 0) {
+// Locks the channels in channels unless one of them is already locked.
+BOOL NNS_SndLockChannel(u32 channels) {
+    if (channels == 0) {
         return 1;
     }
-    if (a & data_0217d440) {
+    if (channels & data_0217d440) {
         return 0;
     }
-    SND_LockChannel(a, 0);
-    data_0217d440 |= a;
+    SND_LockChannel(channels, 0);
+    data_0217d440 |= channels;
     return 1;
 }
 
-void func_0212bc20(u32 a) {
-    if (a == 0) {
+// Unlocks the channels in channels.
+void NNS_SndUnlockChannel(u32 channels) {
+    if (channels == 0) {
         return;
     }
-    SND_UnlockChannel(a, 0);
-    data_0217d440 &= ~a;
+    SND_UnlockChannel(channels, 0);
+    data_0217d440 &= ~channels;
 }
 
-u32 func_0212bbfc(u32 a) {
-    if (a & data_0217d438) {
+// Locks the capture units in captures unless one of them is already locked.
+BOOL NNS_SndLockCapture(u32 captures) {
+    if (captures & data_0217d438) {
         return 0;
     }
-    data_0217d438 |= a;
+    data_0217d438 |= captures;
     return 1;
 }
 
-void func_0212bbe0(u32 a) {
-    data_0217d438 &= ~a;
+// Unlocks the capture units in captures.
+void NNS_SndUnlockCapture(u32 captures) {
+    data_0217d438 &= ~captures;
 }
 
-s32 func_0212bb9c(void) {
-    s32 i;
-    u32 m;
+// Returns the number of the first free alarm and marks it used, or -1 when all eight are used.
+s32 NNS_SndAllocAlarm(void) {
+    s32 alarm;
+    u32 bit;
 
-    m = 1;
-    for (i = 0; i < 8; i++) {
-        if ((data_0217d43c & m) == 0) {
-            data_0217d43c |= m;
-            return i;
+    bit = 1;
+    for (alarm = 0; alarm < 8; alarm++) {
+        if ((data_0217d43c & bit) == 0) {
+            data_0217d43c |= bit;
+            return alarm;
         }
-        m <<= 1;
+        bit <<= 1;
     }
     return -1;
 }
 
-void func_0212bb7c(s32 a) {
-    data_0217d43c &= ~(1 << a);
+// Marks alarm number alarm free.
+void NNS_SndFreeAlarm(s32 alarm) {
+    data_0217d43c &= ~(1 << alarm);
 }
 
-u32 func_0212bb50(void) {
-    u32 value0;
-    u32 value1;
-    u32 value2;
-    u32 value3;
-    value2 = (u32) &data_0217d440;
-    value3 = 0u;
-    value1 = (u32) &data_0217d438;
-    value0 = (u32) &data_0217d43c;
-    *(u32 *) ((value2) + (0)) = value3;
-    *(u32 *) ((value1) + (0)) = value3;
-    *(u32 *) ((value0) + (0)) = value3;
-    return value0;
+// Clears the channel, capture and alarm locks.
+void NNSi_SndInitResourceMgr(void) {
+    data_0217d440 = 0;
+    data_0217d438 = 0;
+    data_0217d43c = 0;
 }

@@ -14,30 +14,37 @@
 #include "Main/Unknown/unk_0217d000.h"
 #include "00/code_02188720.h"
 
-s32 func_0212d154(u8 *a, u32 b, u32 c, u32 d, u32 e, UnkFunc *f, void *g) {
-    volatile u32 v;
+// Stops any running effect capture, clears the buffer and starts a mixer capture of type 1 with callback called on
+// every interval part of the buffer.
+s32 NNS_SndCaptureStartEffect(void *buffer, u32 bufSize, u32 format, u32 rate, u32 interval,
+                              NNSSndCaptureCallback callback, void *arg) {
+    volatile u32 zero;
+    u8 *a = buffer;
 
-    func_0212d10c();
-    if (data_0217ddd0.mUnk_00 != 0) {
+    NNS_SndCaptureStopEffect();
+    if (data_0217ddd0.mActiveFlag != 0) {
         return 0;
     }
-    v = 0;
-    MIi_CpuClear32(v, a, b);
-    DC_FlushRange(a, b);
-    return func_0212ccd4(1, a, a + (b >> 1), b >> 1, c, 0, 0, 1, d, 0x7f, 0, 0x7f, e, f, g);
+    zero = 0;
+    MIi_CpuClear32(zero, a, bufSize);
+    DC_FlushRange(a, bufSize);
+    return NNSi_SndCaptureStart(1, a, a + (bufSize >> 1), bufSize >> 1, format, 0, 0, 1, rate, 0x7f, 0, 0x7f, interval,
+                                callback, arg);
 }
 
-void func_0212d10c(void) {
-    if (data_0217ddd0.mUnk_00 == 0) {
+// Stops the capture when it is a running effect capture.
+void NNS_SndCaptureStopEffect(void) {
+    if (data_0217ddd0.mActiveFlag == 0) {
         return;
     }
-    if (data_0217ddd0.mUnk_04 != 1) {
+    if (data_0217ddd0.mType != 1) {
         return;
     }
-    func_0212cbd8();
+    NNSi_SndCaptureStop();
 }
 
-u32 func_0212d0ec(void) {
+// Clears the thread flag and CaptureParam.mActiveFlag.
+u32 NNSi_SndCaptureInit(void) {
     u32 value0;
     u32 value1;
     u32 value2;
@@ -45,232 +52,244 @@ u32 func_0212d0ec(void) {
     value2 = 0u;
     value0 = (u32) &data_0217ddd0;
     *(u32 *) ((value1) + (0)) = value2;
-    data_0217ddd0.mUnk_00 = value2;
+    data_0217ddd0.mActiveFlag = value2;
     return value0;
 }
 
-void func_0212d03c(void) {
-    Unk0212ccd4 *p = &data_0217ddd0;
-    Interpolator *q;
-    s32 v;
+// For a reverb capture steps the fader, stops the capture when the fade out has finished and otherwise sets the
+// volume of the playback channels from the fader.
+void NNSi_SndCaptureMain(void) {
+    CaptureParam *capture = &data_0217ddd0;
+    NNSSndFader *fader;
+    s32 volume;
 
-    if (p->mUnk_00 == 0) {
+    if (capture->mActiveFlag == 0) {
         return;
     }
-    if (p->mUnk_04 != 0) {
+    if (capture->mType != 0) {
         return;
     }
-    q = &p->mUnk_3c;
-    InterpolatorStep(q);
-    if (p->mUnk_4c != 0 && InterpolatorIsDone(q) != 0) {
-        func_0212cbd8();
+    fader = &capture->mFader;
+    NNSi_SndFaderUpdate(fader);
+    if (capture->mFadeOutFlag != 0 && NNSi_SndFaderIsFinished(fader) != 0) {
+        NNSi_SndCaptureStop();
         return;
     }
-    v = InterpolatorGetValue(q) >> 8;
-    if (v == p->mUnk_50) {
+    volume = NNSi_SndFaderGet(fader) >> 8;
+    if (volume == capture->mVolume) {
         return;
     }
-    SND_SetChannelVolume(p->mUnk_24, v, 0);
-    p->mUnk_50 = v;
+    SND_SetChannelVolume(capture->mPlayChBitMask, volume, 0);
+    capture->mVolume = volume;
 }
 
-s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i, u32 j, u32 k, u32 l, u32 m, UnkFunc *n,
-                  void *o) {
-    s32 u;
-    u32 x24;
-    u32 x28;
-    u32 x2c;
-    u32 w;
-    s32 s;
-    s32 q;
-    s32 r;
-    u32 t;
-    u32 z;
-    Unk0212ccd4 *p;
+// Locks two capture units, two channels and, with a callback, an alarm, sets them up on the two buffers and starts
+// the timers. Returns 0 when something could not be locked.
+s32 NNSi_SndCaptureStart(u32 type, u8 *left, u8 *right, u32 length, u32 format, u32 input, u32 output, u32 loop,
+                         s32 rate, u32 volume, u32 panLeft, u32 panRight, u32 parts, NNSSndCaptureCallback callback,
+                         void *callbackArg) {
+    s32 timer;
+    u32 captureFormat;
+    u32 waveFormat;
+    u32 playChannels;
+    u32 alarmPeriod;
+    s32 timerUnits;
+    s32 isByteFormat;
+    s32 alarm;
+    u32 alarmDelay;
+    u32 samples;
+    CaptureParam *capture;
 
-    s = 0;
-    x2c = 0;
-    r = -1;
-    p = &data_0217ddd0;
-    DC_FlushRange(b, d);
-    DC_FlushRange(c, d);
-    q = e == 1;
-    u = 0xffb0ff / i;
-    if (n != 0) {
-        z = d;
-        if (q == 0) {
-            z = d >> 1;
+    timerUnits = 0;
+    playChannels = 0;
+    alarm = -1;
+    capture = &data_0217ddd0;
+    DC_FlushRange(left, length);
+    DC_FlushRange(right, length);
+    isByteFormat = format == 1;
+    timer = 0xffb0ff / rate;
+    if (callback != 0) {
+        samples = length;
+        if (isByteFormat == 0) {
+            samples = length >> 1;
         }
-        u = (u + 0x10) & ~0x1f;
-        s = u >> 5;
-        w = s * (z / m);
-        t = 0x20;
-        if (q == 0) {
-            t = t >> 1;
+        timer = (timer + 0x10) & ~0x1f;
+        timerUnits = timer >> 5;
+        alarmPeriod = timerUnits * (samples / parts);
+        alarmDelay = 0x20;
+        if (isByteFormat == 0) {
+            alarmDelay = alarmDelay >> 1;
         }
-        t = t * s;
+        alarmDelay = alarmDelay * timerUnits;
     }
-    switch (q) {
+    switch (isByteFormat) {
         default:
-            x28 = 0;
+            waveFormat = 0;
             break;
         case 0:
-            x28 = 1;
+            waveFormat = 1;
             break;
     }
-    if (q != 0) {
-        x24 = 1;
+    if (isByteFormat != 0) {
+        captureFormat = 1;
     } else {
-        x24 = 0;
+        captureFormat = 0;
     }
-    if (a != 2) {
-        x2c = 10;
+    if (type != 2) {
+        playChannels = 10;
     }
-    if (n != 0) {
-        r = func_0212bb9c();
-        if (r < 0) {
+    if (callback != 0) {
+        alarm = NNS_SndAllocAlarm();
+        if (alarm < 0) {
             return 0;
         }
     }
-    if (func_0212bbfc(3) == 0) {
-        if (r >= 0) {
-            func_0212bb7c(r);
+    if (NNS_SndLockCapture(3) == 0) {
+        if (alarm >= 0) {
+            NNS_SndFreeAlarm(alarm);
         }
         return 0;
     }
-    if (func_0212bc58(10) == 0) {
-        if (r >= 0) {
-            func_0212bb7c(r);
+    if (NNS_SndLockChannel(10) == 0) {
+        if (alarm >= 0) {
+            NNS_SndFreeAlarm(alarm);
         }
-        func_0212bbe0(3);
+        NNS_SndUnlockCapture(3);
         return 0;
     }
-    SND_SetupChannelPcm(1, x28, b, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, k);
-    SND_SetupCapture(0, x24, b, d >> 2, h, f, g);
-    SND_SetupChannelPcm(3, x28, c, h != 0 ? 1 : 2, 0, d >> 2, j, 0, u, l);
-    SND_SetupCapture(1, x24, c, d >> 2, h, f, g);
-    if (r >= 0) {
-        SND_SetupAlarm(r, w + t, w, (SNDAlarmHandler) func_0212c9d4, p);
+    SND_SetupChannelPcm(1, waveFormat, left, loop != 0 ? 1 : 2, 0, length >> 2, volume, 0, timer, panLeft);
+    SND_SetupCapture(0, captureFormat, left, length >> 2, loop, input, output);
+    SND_SetupChannelPcm(3, waveFormat, right, loop != 0 ? 1 : 2, 0, length >> 2, volume, 0, timer, panRight);
+    SND_SetupCapture(1, captureFormat, right, length >> 2, loop, input, output);
+    if (alarm >= 0) {
+        SND_SetupAlarm(alarm, alarmPeriod + alarmDelay, alarmPeriod, AlarmCallback, capture);
     }
-    if (a == 1) {
+    if (type == 1) {
         SND_SetOutputSelector(1, 2, 1, 1);
     }
-    SND_StartTimer(x2c, 3, r >= 0 ? 1 << r : 0, 0);
-    p->mUnk_00 = 1;
-    p->mUnk_04 = a;
-    p->mUnk_20 = 10;
-    p->mUnk_24 = x2c;
-    p->mUnk_28 = 3;
-    p->mUnk_2c = r;
-    p->mUnk_08 = e;
-    p->mUnk_0c = b;
-    p->mUnk_10 = c;
-    p->mUnk_14 = d;
-    p->mUnk_18 = d / m;
-    p->mUnk_1c = 0;
-    p->mUnk_30 = m;
-    p->mUnk_34 = n;
-    p->mUnk_38 = o;
-    p->mUnk_50 = j;
-    InterpolatorInit(&p->mUnk_3c);
-    InterpolatorStart(&p->mUnk_3c, j << 8, 1);
-    p->mUnk_4c = 0;
+    SND_StartTimer(playChannels, 3, alarm >= 0 ? 1 << alarm : 0, 0);
+    capture->mActiveFlag = 1;
+    capture->mType = type;
+    capture->mChBitMask = 10;
+    capture->mPlayChBitMask = playChannels;
+    capture->mCapBitMask = 3;
+    capture->mAlarmNo = alarm;
+    capture->mFormat = format;
+    capture->mBufferL = left;
+    capture->mBufferR = right;
+    capture->mBufLen = length;
+    capture->mBlockSize = length / parts;
+    capture->mCurBuffer = 0;
+    capture->mInterval = parts;
+    capture->mCallback = callback;
+    capture->mCallbackArg = callbackArg;
+    capture->mVolume = volume;
+    InterpolatorInit(&capture->mFader);
+    NNSi_SndFaderSet(&capture->mFader, volume << 8, 1);
+    capture->mFadeOutFlag = 0;
     return 1;
 }
 
-void func_0212cbd8(void) {
-    Unk0212ccd4 *p = &data_0217ddd0;
-    s32 f;
-    u32 r;
+// Stops the timers, waits for the commands, drops the alarm messages, unlocks what the capture locked and restores
+// the output selector of an effect capture.
+void NNSi_SndCaptureStop(void) {
+    CaptureParam *capture = &data_0217ddd0;
+    s32 hasAlarm;
+    u32 tag;
 
-    if (p->mUnk_00 == 0) {
+    if (capture->mActiveFlag == 0) {
         return;
     }
-    f = p->mUnk_2c >= 0;
-    SND_StopTimer(p->mUnk_24, p->mUnk_28, f != 0 ? 1 << p->mUnk_2c : 0, 0);
-    if (f != 0) {
-        r = SND_GetCurrentCommandTag();
+    hasAlarm = capture->mAlarmNo >= 0;
+    SND_StopTimer(capture->mPlayChBitMask, capture->mCapBitMask, hasAlarm != 0 ? 1 << capture->mAlarmNo : 0, 0);
+    if (hasAlarm != 0) {
+        tag = SND_GetCurrentCommandTag();
         SND_FlushCommand(1);
-        SND_WaitForCommandProc(r);
+        SND_WaitForCommandProc(tag);
         while (OS_ReceiveMessage(&data_0217ddb0, 0, 0) != 0) {
         }
     }
-    if (p->mUnk_28 != 0) {
-        func_0212bbe0(p->mUnk_28);
+    if (capture->mCapBitMask != 0) {
+        NNS_SndUnlockCapture(capture->mCapBitMask);
     }
-    if (p->mUnk_20 != 0) {
-        func_0212bc20(p->mUnk_20);
+    if (capture->mChBitMask != 0) {
+        NNS_SndUnlockChannel(capture->mChBitMask);
     }
-    if (f != 0) {
-        func_0212bb7c(p->mUnk_2c);
+    if (hasAlarm != 0) {
+        NNS_SndFreeAlarm(capture->mAlarmNo);
     }
-    if (p->mUnk_04 == 1) {
+    if (capture->mType == 1) {
         SND_SetOutputSelector(0, 0, 0, 0);
     }
-    p->mUnk_00 = 0;
+    capture->mActiveFlag = 0;
 }
 
-void func_0212cb78(void) {
-    Unk0212ccd4 *p = &data_0217ddd0;
-    u32 r;
+// Stops the capture timers and waits for the commands, for the sleep mode.
+void NNSi_SndCaptureBeginSleep(void) {
+    CaptureParam *capture = &data_0217ddd0;
+    u32 tag;
 
-    if (p->mUnk_00 == 0) {
+    if (capture->mActiveFlag == 0) {
         return;
     }
-    SND_StopTimer(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);
-    r = SND_GetCurrentCommandTag();
+    SND_StopTimer(capture->mPlayChBitMask, capture->mCapBitMask, capture->mAlarmNo >= 0 ? 1 << capture->mAlarmNo : 0, 0);
+    tag = SND_GetCurrentCommandTag();
     SND_FlushCommand(1);
-    SND_WaitForCommandProc(r);
+    SND_WaitForCommandProc(tag);
 }
 
-void func_0212cad8(void) {
-    Unk0212ccd4 *p = &data_0217ddd0;
-    volatile u32 v;
-    volatile u32 w;
+// Clears and flushes both buffers and restarts the capture timers after sleep mode.
+void NNSi_SndCaptureEndSleep(void) {
+    CaptureParam *capture = &data_0217ddd0;
+    volatile u32 zeroL;
+    volatile u32 zeroR;
 
-    if (p->mUnk_00 == 0) {
+    if (capture->mActiveFlag == 0) {
         return;
     }
-    p->mUnk_1c = 0;
-    v = 0;
-    MIi_CpuClear32(v, p->mUnk_0c, p->mUnk_14);
-    w = 0;
-    MIi_CpuClear32(w, p->mUnk_10, p->mUnk_14);
-    DC_FlushRange(p->mUnk_0c, p->mUnk_14);
-    DC_FlushRange(p->mUnk_10, p->mUnk_14);
-    SND_StartTimer(p->mUnk_24, p->mUnk_28, p->mUnk_2c >= 0 ? 1 << p->mUnk_2c : 0, 0);
+    capture->mCurBuffer = 0;
+    zeroL = 0;
+    MIi_CpuClear32(zeroL, capture->mBufferL, capture->mBufLen);
+    zeroR = 0;
+    MIi_CpuClear32(zeroR, capture->mBufferR, capture->mBufLen);
+    DC_FlushRange(capture->mBufferL, capture->mBufLen);
+    DC_FlushRange(capture->mBufferR, capture->mBufLen);
+    SND_StartTimer(capture->mPlayChBitMask, capture->mCapBitMask, capture->mAlarmNo >= 0 ? 1 << capture->mAlarmNo : 0, 0);
 }
 
-void func_0212c9d4(Unk0212ccd4 *p) {
-    u8 *a;
-    u8 *b;
-    u32 n;
-    u32 off;
-    Unk0212c9d4 *e;
+// Alarm handler: hands the current block of both buffers to the callback, directly or through the message queue
+// when the thread exists, then moves to the next block.
+void AlarmCallback(void *arg) {
+    CaptureParam *capture = arg;
+    u8 *left;
+    u8 *right;
+    u32 blockSize;
+    u32 offset;
+    EffectInfo *info;
 
-    n = p->mUnk_18;
-    off = n * p->mUnk_1c;
-    a = p->mUnk_0c + off;
-    b = p->mUnk_10 + off;
+    blockSize = capture->mBlockSize;
+    offset = blockSize * capture->mCurBuffer;
+    left = capture->mBufferL + offset;
+    right = capture->mBufferR + offset;
     if (data_0217dda8 != 0) {
-        e = &data_0217de24[data_0217ddac];
-        e->mUnk_00 = p;
-        e->mUnk_04 = n;
-        e->mUnk_08 = off;
-        e->mUnk_0c = a;
-        e->mUnk_10 = b;
-        OS_SendMessage(&data_0217ddb0, e, 0);
+        info = &data_0217de24[data_0217ddac];
+        info->mCap = capture;
+        info->mBlockSize = blockSize;
+        info->mOffset = offset;
+        info->mBufferL = left;
+        info->mBufferR = right;
+        OS_SendMessage(&data_0217ddb0, info, 0);
         data_0217ddac++;
         if (data_0217ddac >= 8) {
             data_0217ddac = 0;
         }
     } else {
-        DC_InvalidateRange(a, n);
-        DC_InvalidateRange(b, n);
-        p->mUnk_34(a, b, n, p->mUnk_08, p->mUnk_38);
+        DC_InvalidateRange(left, blockSize);
+        DC_InvalidateRange(right, blockSize);
+        capture->mCallback(left, right, blockSize, capture->mFormat, capture->mCallbackArg);
     }
-    p->mUnk_1c++;
-    if (p->mUnk_1c >= p->mUnk_30) {
-        p->mUnk_1c = 0;
+    capture->mCurBuffer++;
+    if (capture->mCurBuffer >= capture->mInterval) {
+        capture->mCurBuffer = 0;
     }
 }

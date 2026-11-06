@@ -89,7 +89,7 @@ void UpdateRaceStartSequence(void) {
 }
 
 void func_020b3410(void) {
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
     s32 a = gRaceStartSequence->mSequenceFrames;
 
     if (a < -21) {
@@ -100,13 +100,13 @@ void func_020b3410(void) {
     }
     if (a == 0 || a == 60 || a == 120) {
         if (data_0217c780 & 1) {
-            p = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
+            p = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*p != NULL) {
-                    func_0212c6f0(p, 0);
+                    NNS_SndPlayerStopSeq(p, 0);
                 }
                 if (*p != NULL) {
-                    func_0212c6f0(p, 0);
+                    NNS_SndPlayerStopSeq(p, 0);
                 }
                 func_0212ecc0(p, 0, 0x27);
             }
@@ -114,13 +114,13 @@ void func_020b3410(void) {
     }
     if (a == 175) {
         if (data_0217c780 & 1) {
-            p = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
+            p = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*p != NULL) {
-                    func_0212c6f0(p, 0);
+                    NNS_SndPlayerStopSeq(p, 0);
                 }
                 if (*p != NULL) {
-                    func_0212c6f0(p, 0);
+                    NNS_SndPlayerStopSeq(p, 0);
                 }
                 func_0212ecc0(p, 0, 0x28);
             }

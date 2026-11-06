@@ -58,7 +58,7 @@
 void func_0206ff50(Kart *p, u32 a) {
     u32 b;
     u32 c;
-    Unk0212c400 **d;
+    NNSSndSeqPlayer **d;
     s32 f;
     s32 h;
     u16 k;
@@ -93,13 +93,13 @@ void func_0206ff50(Kart *p, u32 a) {
         p->mRespawnSlot = c;
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mCourseId == COURSE_ID_RAINBOW &&
             (data_0217c780 & 1)) {
-            d = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
+            d = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (d[0] != NULL) {
-                    func_0212c6f0(d, 0);
+                    NNS_SndPlayerStopSeq(d, 0);
                 }
                 if (d[0] != NULL) {
-                    func_0212c6f0(d, 0);
+                    NNS_SndPlayerStopSeq(d, 0);
                 }
                 func_0212ecc0(d, 0, 0x1b7);
             }

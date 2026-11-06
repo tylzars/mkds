@@ -3,16 +3,17 @@
 #include "types.h"
 #include "code_0212d214.h"
 
-// 0x24 bytes; data_0217d89c holds an array of them. mUnk_0c is a list header.
-typedef struct Unk0212c7a0 {
-    /* 00 */ NNSFndList mUnk_00;
-    /* 0c */ NNSFndList mUnk_0c;
-    /* 18 */ u32 mUnk_18;
-    /* 1c */ u32 mUnk_1c;
-    /* 20 */ u8 mUnk_20;
+// 0x24 bytes; data_0217d89c holds an array of them. NNSSndPlayer.mPlayerList holds the sequence players of the player,
+// NNSSndPlayer.mHeapList its free player heaps.
+typedef struct NNSSndPlayer {
+    /* 00 */ NNSFndList mPlayerList;
+    /* 0c */ NNSFndList mHeapList;
+    /* 18 */ u32 mPlayableSeqCount;
+    /* 1c */ u32 mAllocChBitFlag;
+    /* 20 */ u8 mVolume;
     /* 21 */ u8 mUnk_21[3];
-} Unk0212c7a0;
+} NNSSndPlayer;
 
-void func_0212c7a0(u32 a, u32 b);
-void func_0212c7b8(u32 a, u32 b);
-void func_0212c7d8(u32 a, u32 b);
+void NNS_SndPlayerSetAllocatableChannel(u32 index, u32 channels);
+void NNS_SndPlayerSetPlayableSeqCount(u32 index, u32 seqCount);
+void NNS_SndPlayerSetPlayerVolume(u32 index, u32 volume);

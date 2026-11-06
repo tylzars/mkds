@@ -29,21 +29,21 @@ void func_0212f094(void) {
             continue;
         }
         if (p->mUnk_110_2 && p->mUnk_118 != 0) {
-            func_0212c948(p);
+            NNS_SndStrmStart(&p->mStream);
             p->mUnk_110_1 = 1;
             p->mUnk_110_2 = 0;
         }
         if (p->mUnk_110_1) {
-            InterpolatorStep(&p->mUnk_e8);
+            NNSi_SndFaderUpdate(&p->mUnk_e8);
             a = data_02152ce4[p->mUnk_154];
-            b = data_02152ce4[InterpolatorGetValue(&p->mUnk_e8) >> 8];
+            b = data_02152ce4[NNSi_SndFaderGet(&p->mUnk_e8) >> 8];
             b += a;
             if (b != p->mUnk_158) {
-                func_0212c8a4(p, b);
+                NNS_SndStrmSetVolume(&p->mStream, b);
                 p->mUnk_158 = b;
             }
             if (p->mUnk_110_3) {
-                if (InterpolatorIsDone(&p->mUnk_e8) != 0) {
+                if (NNSi_SndFaderIsFinished(&p->mUnk_e8) != 0) {
                     func_0212efb8(p);
                 }
             }
@@ -69,10 +69,10 @@ void func_0212efb8(Unk0212c7f0 *a) {
         OS_LockMutex(&data_0217df04->mUnk_4cc);
     }
     if (a->mUnk_110_1) {
-        func_0212c918(a);
+        NNS_SndStrmStop(&a->mStream);
     }
     if (a->mUnk_110_0) {
-        FS_CancelFile(&a->mUnk_5c);
+        FS_CancelFile(&a->mFile);
     }
     func_0212ef48(a);
     OS_UnlockMutex(&data_0217e3e0);
@@ -88,7 +88,7 @@ void func_0212ef48(Unk0212c7f0 *a) {
         return;
     }
     func_0212ef00(a);
-    FS_CloseFile(&a->mUnk_5c);
+    FS_CloseFile(&a->mFile);
     func_0212ee8c(&data_0217e3f8, a);
     if (data_0217df04 != 0) {
         func_0212ee8c(&data_0217df04->mUnk_4e4, a);
@@ -96,7 +96,7 @@ void func_0212ef48(Unk0212c7f0 *a) {
     func_0212f058(a);
 }
 
-// Lowers mUnk_120 when it is not 0 and calls func_0212c9a4 when it reaches 0.
+// Lowers mUnk_120 when it is not 0 and calls NNS_SndStrmFreeChannel when it reaches 0.
 void func_0212ef00(Unk0212c7f0 *a) {
     if (a->mUnk_120 == 0) {
         return;
@@ -105,7 +105,7 @@ void func_0212ef00(Unk0212c7f0 *a) {
     if (a->mUnk_120 != 0) {
         return;
     }
-    func_0212c9a4(a);
+    NNS_SndStrmFreeChannel(&a->mStream);
 }
 
 // Unlinks every element of the list whose mUnk_08 is b and passes it to func_0212ee54.

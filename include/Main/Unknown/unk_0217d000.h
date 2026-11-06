@@ -3,9 +3,9 @@
 #include "types.h"
 
 #include "code_0212bcac.h"
-#include "code_0212c7a0.h" // Unk0212c7a0
-#include "code_0212c7f0.h" // Unk0212c8a4
-#include "code_0212c9d4.h" // Unk0212ccd4, Unk0212c9d4
+#include "code_0212c7a0.h" // NNSSndPlayer
+#include "code_0212c7f0.h" // NNSSndStrmChannel
+#include "code_0212c9d4.h" // CaptureParam, EffectInfo
 #include "code_0201ea58.h" // Unk0201ea30
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c
 #include "code_0212d214.h"
@@ -147,8 +147,8 @@ typedef struct Unk0217d070 {
     /* 09 */ u8 mUnk_09;
     /* 0a */ u8 mUnk_0a;
     /* 0b */ u8 mUnk_0b;
-    /* 0c */ Unk0212c400 *mUnk_0c;
-    /* 10 */ Unk0212c400 *mUnk_10;
+    /* 0c */ NNSSndSeqPlayer *mUnk_0c;
+    /* 10 */ NNSSndSeqPlayer *mUnk_10;
 } Unk0217d070;
 
 // Object at data_0217d084 (0x1c bytes); func_0210dc60 stores its second argument at 0x00.
@@ -159,7 +159,7 @@ typedef struct Unk0217d084 {
     /* 0c */ u32 mUnk_0c;
     /* 10 */ u32 mUnk_10;
     /* 14 */ u32 mUnk_14;
-    /* 18 */ Unk0212c400 **mUnk_18;
+    /* 18 */ NNSSndSeqPlayer **mUnk_18;
 } Unk0217d084;
 
 // Object at data_0217d32c (0x10 bytes); mUnk_08 points to a row of six words.
@@ -758,14 +758,14 @@ extern s32 data_0217d324;
 extern s32 data_0217d328;
 extern Unk0217d40c *data_0217d40c;
 extern u32 data_0217dda8;
-extern Unk0212ccd4 data_0217ddd0;
-extern Unk0212c400 data_0217d45c[16];
-extern Unk0212c7a0 data_0217d89c[];
+extern CaptureParam data_0217ddd0;
+extern NNSSndSeqPlayer data_0217d45c[16];
+extern NNSSndPlayer data_0217d89c[];
 extern NNSFndList data_0217dd1c;
-extern Unk0212c8a4 data_0217dd28[];
+extern NNSSndStrmChannel data_0217dd28[];
 extern s32 data_0217ddac;
 extern OSMessageQueue data_0217ddb0;
-extern Unk0212c9d4 data_0217de24[8];
+extern EffectInfo data_0217de24[8];
 extern struct Unk0212d5f8 *data_0217dec4;
 extern s32 data_0217d1e8;
 extern s32 data_0217d1ec;
@@ -791,7 +791,7 @@ extern u8 data_0217df08[];
 extern HeapStack *data_0217d130;
 extern Unk0217d070 data_0217d070;
 // The member at 0x0c of data_0217d070, addressed through a pool word of its own.
-extern Unk0212c400 *data_0217d07c;
+extern NNSSndSeqPlayer *data_0217d07c;
 extern Unk0217d084 data_0217d084;
 extern struct Unk0212d5f8 data_0217d0a0;
 extern Unk0217d32c data_0217d32c;

@@ -621,7 +621,7 @@ void func_02069044(Kart *p) {
 s32 func_02068ec0(Kart *p, s32 a) {
     BOOL r;
     u32 w;
-    Unk0212c400 **h;
+    NNSSndSeqPlayer **h;
 
     r = FALSE;
     if (a != 0) {
@@ -650,13 +650,13 @@ s32 func_02068ec0(Kart *p, s32 a) {
         if (data_021759c0->mMode == MODE_BATTLE && a == 0) {
             StartSound(&p->mSoundSource, 0xd3, 0x7f, 0);
             if (data_021759c0->mUnk_18 == 0 && (data_0217c780 & 1)) {
-                h = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
+                h = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (h[0] != NULL) {
-                        func_0212c6f0(h, 0);
+                        NNS_SndPlayerStopSeq(h, 0);
                     }
                     if (h[0] != NULL) {
-                        func_0212c6f0(h, 0);
+                        NNS_SndPlayerStopSeq(h, 0);
                     }
                     func_0212ecc0(h, 0, 0x4c);
                 }

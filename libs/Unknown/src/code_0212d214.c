@@ -30,7 +30,8 @@
 
 u8 data_0217dec8[0x3c];
 
-// Calls func_0212c7b8, func_0212c7a0 and func_0212c700 for up to 32 entries of func_0212d38c.
+// Calls NNS_SndPlayerSetPlayableSeqCount, NNS_SndPlayerSetAllocatableChannel and NNS_SndPlayerCreateHeap for up to 32
+// entries of func_0212d38c.
 u32 func_0212edac(HeapStack *a) {
     s32 i;
     Unk0212edac *p;
@@ -42,13 +43,13 @@ u32 func_0212edac(HeapStack *a) {
         if (p == 0) {
             continue;
         }
-        func_0212c7b8(i, p->mUnk_00);
-        func_0212c7a0(i, p->mUnk_02);
+        NNS_SndPlayerSetPlayableSeqCount(i, p->mUnk_00);
+        NNS_SndPlayerSetAllocatableChannel(i, p->mUnk_02);
         if (p->mUnk_04 == 0 || a == 0) {
             continue;
         }
         for (j = 0; j < p->mUnk_00; j++) {
-            if (func_0212c700(i, a, p->mUnk_04) == 0) {
+            if (NNS_SndPlayerCreateHeap(i, a, p->mUnk_04) == 0) {
                 return 0;
             }
         }
@@ -80,14 +81,14 @@ s32 func_0212ecc0(const void *a, u32 b, u32 c) {
     if (t == 0) {
         return 0;
     }
-    r = (Unk0212ea28 *) func_0212f788(t, c);
+    r = (Unk0212ea28 *) NNSi_SndSeqArcGetSeqInfo(t, c);
     if (r == 0) {
         return 0;
     }
-    return func_0212ea28((Unk0212c400 **) a, r->mUnk_09, r->mUnk_04, r->mUnk_08, r, t, b, c);
+    return func_0212ea28((NNSSndSeqPlayer **) a, r->mUnk_09, r->mUnk_04, r->mUnk_08, r, t, b, c);
 }
 
-s32 func_0212ec04(Unk0212c400 **a, s32 b, s32 c, s32 d, s32 e, s32 f) {
+s32 func_0212ec04(NNSSndSeqPlayer **a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     Unk0212f788 *t;
     Unk0212ea28 *r;
     u32 *p;
@@ -100,7 +101,7 @@ s32 func_0212ec04(Unk0212c400 **a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     if (t == 0) {
         return 0;
     }
-    r = (Unk0212ea28 *) func_0212f788(t, f);
+    r = (Unk0212ea28 *) NNSi_SndSeqArcGetSeqInfo(t, f);
     if (r == 0) {
         return 0;
     }
@@ -116,50 +117,50 @@ s32 func_0212ec04(Unk0212c400 **a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     return func_0212ea28(a, b, c, d, r, t, e, f);
 }
 
-s32 func_0212eaf8(Unk0212c400 **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, u32 f) {
+s32 func_0212eaf8(NNSSndSeqPlayer **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, s32 f) {
     void *p;
     Unk0212f788 *x;
     Unk02021968 *y;
     HeapStack *l;
 
-    p = func_0212c0e0(a, b, d);
+    p = NNSi_SndPlayerAllocSeqPlayer(a, b, d);
     if (p == 0) {
         return 0;
     }
-    l = func_0212bfbc(b, p);
+    l = NNSi_SndPlayerAllocHeap(b, p);
     if (func_0212e538(c, 6, l, 0, &y) != 0) {
-        func_0212c0d4(p);
+        NNSi_SndPlayerFreeSeqPlayer(p);
         return 0;
     }
     if (func_0212e708(f, 1, l, 0, &x) != 0) {
-        func_0212c0d4(p);
+        NNSi_SndPlayerFreeSeqPlayer(p);
         return 0;
     }
-    func_0212c078(p, (u8 *) x + x->mUnk_18, 0, y);
-    func_0212c668(a, e->mUnk_06);
-    func_0212c5c4(a, e->mUnk_07);
-    func_0212c478(a, f);
+    NNSi_SndPlayerStartSeq(p, (u8 *) x + x->mUnk_18, 0, y);
+    NNS_SndPlayerSetInitialVolume(a, e->mUnk_06);
+    NNS_SndPlayerSetChannelPriority(a, e->mUnk_07);
+    NNS_SndPlayerSetSeqNo(a, f);
     return 1;
 }
 
-s32 func_0212ea28(Unk0212c400 **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, Unk0212f788 *f, u32 g, u32 h) {
+s32 func_0212ea28(NNSSndSeqPlayer **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, Unk0212f788 *f, u32 g, u32 h) {
     void *p;
     Unk02021968 *x;
     HeapStack *l;
 
-    p = func_0212c0e0(a, b, d);
+    p = NNSi_SndPlayerAllocSeqPlayer(a, b, d);
     if (p == 0) {
         return 0;
     }
-    l = func_0212bfbc(b, p);
+    l = NNSi_SndPlayerAllocHeap(b, p);
     if (func_0212e538(c, 6, l, 0, &x) != 0) {
-        func_0212c0d4(p);
+        NNSi_SndPlayerFreeSeqPlayer(p);
         return 0;
     }
-    func_0212c078(p, (u8 *) f + f->mUnk_18, e->mUnk_00, x);
-    func_0212c668(a, e->mUnk_06);
-    func_0212c5c4(a, e->mUnk_07);
-    func_0212c450(a, g, h);
+    NNSi_SndPlayerStartSeq(p, (u8 *) f + f->mUnk_18, e->mUnk_00, x);
+    NNS_SndPlayerSetInitialVolume(a, e->mUnk_06);
+    NNS_SndPlayerSetChannelPriority(a, e->mUnk_07);
+    NNS_SndPlayerSetSeqArcNo(a, g, h);
     return 1;
 }
 
@@ -823,7 +824,7 @@ Unk0212d580 *func_0212d580(s32 a, s32 b) {
     if (q == 0) {
         return 0;
     }
-    r = func_0212f788(q, b);
+    r = NNSi_SndSeqArcGetSeqInfo(q, b);
     if (r == 0) {
         return 0;
     }

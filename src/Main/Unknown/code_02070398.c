@@ -1060,7 +1060,7 @@ void func_02071318(Kart *p, s32 a) {
 }
 
 void func_020710b0(Kart *p, s32 b) {
-    Unk0212c400 **h;
+    NNSSndSeqPlayer **h;
     PlayingSound *d;
 
     if (b == 0) {
@@ -1119,10 +1119,10 @@ void func_020710b0(Kart *p, s32 b) {
                 return;
             }
             if (h[0] != NULL) {
-                func_0212c6f0(h, 0);
+                NNS_SndPlayerStopSeq(h, 0);
             }
             if (h[0] != NULL) {
-                func_0212c6f0(h, 0);
+                NNS_SndPlayerStopSeq(h, 0);
             }
             func_0212ecc0(h, 0, 0x1d2);
             break;
@@ -1301,7 +1301,7 @@ void func_020708a4(Kart *p) {
         p->mUnk_48 &= ~0x40000;
         p->mUnk_3e8 = (s16) ((s32) (((s64) b.x * 0x4000) >> 12) >> 12) + 0x32;
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mCourseId == COURSE_ID_AIRSHIP) {
-            func_0212c6f0(func_02108e6c(7), 0x14);
+            NNS_SndPlayerStopSeq(func_02108e6c(7), 0x14);
         }
     } else {
         if (d > 0x64000) {
@@ -1351,7 +1351,7 @@ void func_020705fc(Kart *p, u32 b) {
     s32 m[9];
     Vec3 v;
     Vec3 w;
-    Unk0212c400 **h;
+    NNSSndSeqPlayer **h;
     u16 i;
     s32 k;
 
@@ -1384,13 +1384,13 @@ void func_020705fc(Kart *p, u32 b) {
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
         SetupCameraBehindKart();
         if (data_0217c780 & 1) {
-            h = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
+            h = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (h[0] != NULL) {
-                    func_0212c6f0(h, 0);
+                    NNS_SndPlayerStopSeq(h, 0);
                 }
                 if (h[0] != NULL) {
-                    func_0212c6f0(h, 0);
+                    NNS_SndPlayerStopSeq(h, 0);
                 }
                 func_0212ecc0(h, 0, 0x159);
             }

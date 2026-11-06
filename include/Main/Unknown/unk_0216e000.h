@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02134398.h"
-#include "code_0212f1ac.h" // Unk0212f1f8
+#include "code_0212f1ac.h" // CallbackInfo
 
 // Objects whose layout isn't known yet.
 extern const char *data_0216e0a8;
@@ -27,7 +27,7 @@ extern const char data_0216e9fc[];
 extern const char data_0216ea14[];
 extern const char data_0216ea30[];
 extern const char data_0216ea4c[];
-extern Unk0212f1f8 data_0216eaa4;
+extern CallbackInfo data_0216eaa4;
 
 // Walked by FflushAll; fwrite compares its argument with entries 1 and 2; printf passes entry 1
 // to fwide and FormatWithPutFunc.

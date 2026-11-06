@@ -1,48 +1,52 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212f788.h" // Interpolator
+#include "code_0212f788.h" // NNSSndFader
 
-// 0x54 bytes, data_0217ddd0. func_0212ccd4 sets it up and passes it to func_0212c9d4; mUnk_34 is called by
-// func_0212c9d4 with the two buffers, mUnk_14, mUnk_08 and mUnk_38.
-typedef struct Unk0212ccd4 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u8 *mUnk_0c;
-    /* 10 */ u8 *mUnk_10;
-    /* 14 */ u32 mUnk_14;
-    /* 18 */ u32 mUnk_18;
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ u32 mUnk_20;
-    /* 24 */ u32 mUnk_24;
-    /* 28 */ u32 mUnk_28;
-    /* 2c */ s32 mUnk_2c;
-    /* 30 */ s32 mUnk_30;
-    /* 34 */ void (*mUnk_34)(u8 *a, u8 *b, u32 c, u32 d, void *e);
-    /* 38 */ void *mUnk_38;
-    /* 3c */ Interpolator mUnk_3c;
-    /* 4c */ u32 mUnk_4c;
-    /* 50 */ s32 mUnk_50;
-} Unk0212ccd4;
+typedef void (*NNSSndCaptureCallback)(void *bufferL, void *bufferR, u32 len, u32 format, void *arg);
 
-// 0x14 bytes; func_0212c9d4 fills the elements of data_0217de24 in turn.
-typedef struct Unk0212c9d4 {
-    /* 00 */ Unk0212ccd4 *mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u8 *mUnk_0c;
-    /* 10 */ u8 *mUnk_10;
-} Unk0212c9d4;
+// 0x54 bytes, data_0217ddd0. NNSi_SndCaptureStart sets it up and passes it to AlarmCallback, which calls mCallback with
+// the two buffer halves, the block size, the format and mCallbackArg.
+typedef struct CaptureParam {
+    /* 00 */ u32 mActiveFlag;
+    /* 04 */ u32 mType;
+    /* 08 */ u32 mFormat;
+    /* 0c */ u8 *mBufferL;
+    /* 10 */ u8 *mBufferR;
+    /* 14 */ u32 mBufLen;
+    /* 18 */ u32 mBlockSize;
+    /* 1c */ s32 mCurBuffer;
+    /* 20 */ u32 mChBitMask;
+    /* 24 */ u32 mPlayChBitMask;
+    /* 28 */ u32 mCapBitMask;
+    /* 2c */ s32 mAlarmNo;
+    /* 30 */ s32 mInterval;
+    /* 34 */ NNSSndCaptureCallback mCallback;
+    /* 38 */ void *mCallbackArg;
+    /* 3c */ NNSSndFader mFader;
+    /* 4c */ u32 mFadeOutFlag;
+    /* 50 */ s32 mVolume;
+} CaptureParam;
 
-s32 func_0212ccd4(u32 a, u8 *b, u8 *c, u32 d, u32 e, u32 f, u32 g, u32 h, s32 i, u32 j, u32 k, u32 l, u32 m, UnkFunc *n,
-                  void *o);
+// 0x14 bytes; AlarmCallback fills the elements of data_0217de24 in turn.
+typedef struct EffectInfo {
+    /* 00 */ CaptureParam *mCap;
+    /* 04 */ u32 mBlockSize;
+    /* 08 */ u32 mOffset;
+    /* 0c */ u8 *mBufferL;
+    /* 10 */ u8 *mBufferR;
+} EffectInfo;
 
-void func_0212c9d4(Unk0212ccd4 *p);
-void func_0212cad8(void);
-void func_0212cb78(void);
-void func_0212cbd8(void);
-void func_0212d03c(void);
-u32 func_0212d0ec(void);
-void func_0212d10c(void);
-s32 func_0212d154(u8 *a, u32 b, u32 c, u32 d, u32 e, UnkFunc *f, void *g);
+s32 NNSi_SndCaptureStart(u32 type, u8 *left, u8 *right, u32 length, u32 format, u32 input, u32 output, u32 loop,
+                         s32 rate, u32 volume, u32 panLeft, u32 panRight, u32 parts, NNSSndCaptureCallback callback,
+                         void *callbackArg);
+
+void AlarmCallback(void *arg);
+void NNSi_SndCaptureEndSleep(void);
+void NNSi_SndCaptureBeginSleep(void);
+void NNSi_SndCaptureStop(void);
+void NNSi_SndCaptureMain(void);
+u32 NNSi_SndCaptureInit(void);
+void NNS_SndCaptureStopEffect(void);
+s32 NNS_SndCaptureStartEffect(void *buffer, u32 bufSize, u32 format, u32 rate, u32 interval,
+                              NNSSndCaptureCallback callback, void *arg);

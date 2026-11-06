@@ -46,7 +46,7 @@ void func_020bbbb4(void) {
     u16 c;
     s32 i;
     s32 x;
-    Unk0212c400 **r;
+    NNSSndSeqPlayer **r;
 
     if (GetRaceHudSubScreenState() == 6) {
         return;
@@ -79,10 +79,10 @@ void func_020bbbb4(void) {
             r = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 func_0212ecc0(r, 0, 0x49);
             }
@@ -96,10 +96,10 @@ void func_020bbbb4(void) {
             r = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 func_0212ecc0(r, 0, 0x49);
             }
@@ -113,10 +113,10 @@ void func_020bbbb4(void) {
             r = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 func_0212ecc0(r, 0, 0x49);
             }
@@ -130,10 +130,10 @@ void func_020bbbb4(void) {
             r = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 func_0212ecc0(r, 0, 0x49);
             }
@@ -147,10 +147,10 @@ void func_020bbbb4(void) {
             r = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 if (*r != NULL) {
-                    func_0212c6f0(r, 0);
+                    NNS_SndPlayerStopSeq(r, 0);
                 }
                 func_0212ecc0(r, 0, 0x49);
             }

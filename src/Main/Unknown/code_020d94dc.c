@@ -54,7 +54,7 @@ void InitWater(Unk020da384 *a, void *b, UnkFunc *c) {
 // on course 0x1f, else 0x7f000) and requests sound 0x114 when state 1 ends and 0x113 when state 3 ends.
 void UpdateWater(Water *a) {
     s32 v;
-    Unk0212c400 **h;
+    NNSSndSeqPlayer **h;
     Unk0210b7a8 s1;
     Unk0210b7a8 s2;
     u16 w;

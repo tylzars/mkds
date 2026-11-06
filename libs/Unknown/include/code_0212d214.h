@@ -10,7 +10,7 @@ typedef struct Unk0212d580 {
     /* 5 */ u8 mUnk_05;
 } Unk0212d580;
 
-// 12-byte records at 0x20 of Unk0212f788; func_0212f788 returns one unless its first word is -1.
+// 12-byte records at 0x20 of Unk0212f788; NNSi_SndSeqArcGetSeqInfo returns one unless its first word is -1.
 typedef struct Unk0212f788 {
     /* 00 */ u8 mUnk_00[0x18];
     /* 18 */ u32 mUnk_18;

@@ -16,6 +16,6 @@ typedef struct Unk0217d254 {
 extern Unk0217d254 data_0217d254[];
 
 void func_0210f808(void);
-void func_0210f780(Unk0212c400 **a);
+void func_0210f780(NNSSndSeqPlayer **a);
 u32 func_0210f75c(u32 a);
 u32 func_0210f744(u32 a);

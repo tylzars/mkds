@@ -4,7 +4,7 @@
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_0212bcac.h"
 
-static inline void func_0210d614_inline(Unk0217d070 *a, u32 b, Unk0212c400 **c) {
+static inline void func_0210d614_inline(Unk0217d070 *a, u32 b, NNSSndSeqPlayer **c) {
     if (c == NULL) {
         c = &data_0217d07c;
     }
@@ -19,7 +19,7 @@ void func_0210d6cc(Unk0217d070 *a) {
     if (a->mUnk_0a != 2) {
         return;
     }
-    func_0210d614_inline(a, data_0217d070.mUnk_0b, (Unk0212c400 **) (u32) &data_0217d07c);
+    func_0210d614_inline(a, data_0217d070.mUnk_0b, (NNSSndSeqPlayer **) (u32) &data_0217d07c);
 }
 
 void func_0210d65c(Unk0217d070 *a) {
@@ -27,20 +27,20 @@ void func_0210d65c(Unk0217d070 *a) {
     if (a->mUnk_0a != 3) {
         return;
     }
-    func_0210d614_inline(a, data_0217d070.mUnk_0b, (Unk0212c400 **) (u32) &data_0217d07c);
+    func_0210d614_inline(a, data_0217d070.mUnk_0b, (NNSSndSeqPlayer **) (u32) &data_0217d07c);
 }
 
-void func_0210d614(Unk0217d070 *a, u32 b, Unk0212c400 **c) {
+void func_0210d614(Unk0217d070 *a, u32 b, NNSSndSeqPlayer **c) {
     func_0210d614_inline(a, b, c);
 }
 
 void func_0210d5c0(Unk0217d070 *a) {
-    func_0210d614_inline(a, data_0217d070.mUnk_0b, (Unk0212c400 **) (u32) &data_0217d07c);
+    func_0210d614_inline(a, data_0217d070.mUnk_0b, (NNSSndSeqPlayer **) (u32) &data_0217d07c);
 }
 
 void func_0210d590(Unk0217d070 *a, u32 b) {
     if (a->mUnk_0b == 0xff) {
         return;
     }
-    func_0212c6f0(&a->mUnk_0c, b);
+    NNS_SndPlayerStopSeq(&a->mUnk_0c, b);
 }

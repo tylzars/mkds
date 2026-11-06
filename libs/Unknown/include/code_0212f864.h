@@ -1,6 +1,6 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212f788.h" // Interpolator
+#include "code_0212f788.h" // NNSSndFader
 
-void InterpolatorInit(Interpolator *arg0);
+void InterpolatorInit(NNSSndFader *arg0);

@@ -7,5 +7,5 @@ void func_0210e328(PlayingSound *arg0) {
     u32 value12;
     value1 = 0u;
     *(u32 *) ((value0) + (4)) = value1;
-    func_0212c6a0((Unk0212c400 **) value0);
+    NNS_SndHandleInit((NNSSndSeqPlayer **) value0);
 }

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_0212ba34(int a);
+void NNS_SndSetMonoFlag(BOOL mono);

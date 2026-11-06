@@ -91,8 +91,8 @@ void func_020bab54(void) {
     s32 v;
     s32 s;
     u32 k;
-    Unk0212c400 **r;
-    Unk0212c400 **r2;
+    NNSSndSeqPlayer **r;
+    NNSSndSeqPlayer **r2;
     u32 k2;
     Unk0217b3cc_18 *w;
     KartItems *c;
@@ -162,7 +162,7 @@ void func_020bab54(void) {
         n = data_0217b3cc->mUnk_04;
         data_0217b3cc->mUnk_10 = 1;
     } else {
-        func_0212c6f0((Unk0212c400 **) func_02108e88(), 0);
+        NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) func_02108e88(), 0);
         data_0217b3cc->mUnk_04 = 0;
         n = data_0217b3cc->mUnk_04;
         if (func_020bab54_inline(i)->mSlotShownItem >= 9) {
@@ -175,10 +175,10 @@ void func_020bab54(void) {
                     r = func_0210e128(func_02108ea0(0));
                     if (data_0217d084.mUnk_0c != 0) {
                         if (*r != NULL) {
-                            func_0212c6f0(r, 0);
+                            NNS_SndPlayerStopSeq(r, 0);
                         }
                         if (*r != NULL) {
-                            func_0212c6f0(r, 0);
+                            NNS_SndPlayerStopSeq(r, 0);
                         }
                         func_0212ecc0(r, 0, k);
                     }
@@ -194,10 +194,10 @@ void func_020bab54(void) {
                     r = func_0210e128(func_02108ea0(0));
                     if (data_0217d084.mUnk_0c != 0) {
                         if (*r != NULL) {
-                            func_0212c6f0(r, 0);
+                            NNS_SndPlayerStopSeq(r, 0);
                         }
                         if (*r != NULL) {
-                            func_0212c6f0(r, 0);
+                            NNS_SndPlayerStopSeq(r, 0);
                         }
                         func_0212ecc0(r, 0, k);
                     }
@@ -207,7 +207,7 @@ void func_020bab54(void) {
         data_0217b3cc->mUnk_10 = 0;
     }
     if (data_0217b3cc->mUnk_14 == 0 && data_0217b3cc->mUnk_10 != 0 && data_021759c0->mUnk_00c != 2) {
-        r2 = (Unk0212c400 **) func_02108e88();
+        r2 = (NNSSndSeqPlayer **) func_02108e88();
         k2 = 0x3e;
         if (data_021759c0->mCourseId == COURSE_ID_PINBALL) {
             k2 = 0x1c4;
@@ -215,10 +215,10 @@ void func_020bab54(void) {
         if ((data_0217c780 & 1) != 0) {
             if (data_0217d084.mUnk_0c != 0) {
                 if (*r2 != NULL) {
-                    func_0212c6f0(r2, 0);
+                    NNS_SndPlayerStopSeq(r2, 0);
                 }
                 if (*r2 != NULL) {
-                    func_0212c6f0(r2, 0);
+                    NNS_SndPlayerStopSeq(r2, 0);
                 }
                 func_0212ecc0(r2, 0, k2);
             }

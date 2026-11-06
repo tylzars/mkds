@@ -18,7 +18,7 @@ void func_0210e2c4(Unk0217c7c4 *a, void *b, s32 c, s32 d) {
     p = a->mUnk_08;
     for (i = 0; i < c; i++) {
         ((Unk0210e2c4 *) p)->mUnk_04 = 0;
-        func_0212c6a0(&((Unk0210e2c4 *) p)->mUnk_00);
+        NNS_SndHandleInit(&((Unk0210e2c4 *) p)->mUnk_00);
         p += a->mUnk_10;
     }
 }
@@ -96,10 +96,10 @@ void *func_0210e128(Unk0217c7c4 *a) {
         if (f == NULL) {
             f = q;
             k = j;
-            func_0212c6f0(&((Unk0210e2c4 *) q)->mUnk_00, 0);
+            NNS_SndPlayerStopSeq(&((Unk0210e2c4 *) q)->mUnk_00, 0);
         }
         ((Unk0210e2c4 *) f)->mUnk_04 = 0;
-        func_0212c6a0(&((Unk0210e2c4 *) f)->mUnk_00);
+        NNS_SndHandleInit(&((Unk0210e2c4 *) f)->mUnk_00);
         a->mUnk_04 = k;
         a->mUnk_04 = a->mUnk_04 + 1;
         a->mUnk_08 = f + a->mUnk_10;
@@ -190,7 +190,7 @@ u32 func_0210dccc(Unk0217d060 *a, u32 b, u32 c, u32 d, Unk0217c7b4 *e) {
         func_0210e434(e);
         func_0210e33c(e, a->mUnk_00);
     }
-    func_0212c6a0(&a->mUnk_0c);
+    NNS_SndHandleInit(&a->mUnk_0c);
     data_0217d060 = a;
     a->mUnk_10 = e;
     return 1;
@@ -201,7 +201,7 @@ void func_0210dcb8(Unk0217d060 *a, u32 b) {
 }
 
 void func_0210dca8(Unk0217d060 *a, u32 b) {
-    func_0212c6f0(&a->mUnk_0c, b);
+    NNS_SndPlayerStopSeq(&a->mUnk_0c, b);
 }
 
 void func_0210dc7c(Unk0217d060 *a) {

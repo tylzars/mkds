@@ -10,61 +10,67 @@
 #include "Main/Unknown/unk_0217d000.h"
 #include "code_020218f4.h"
 
-void func_0212c9a4(Unk0212c7f0 *p) {
-    if (p->mUnk_44 == 0) {
+// Unlocks the channels of the stream.
+void NNS_SndStrmFreeChannel(NNSSndStrm *stream) {
+    if (stream->mChBitMask == 0) {
         return;
     }
-    func_0212bc20(p->mUnk_44);
-    p->mUnk_44 = 0;
-    p->mUnk_48 = 0;
+    NNS_SndUnlockChannel(stream->mChBitMask);
+    stream->mChBitMask = 0;
+    stream->mNumChannels = 0;
 }
 
-void func_0212c948(Unk0212c7f0 *p) {
-    SND_StartTimer(p->mUnk_44, 0, 1 << p->mUnk_40, 0);
-    if (p->mUnk_24_1) {
+// Starts the timers of the stream and, on the first start, adds its sleep callbacks.
+void NNS_SndStrmStart(NNSSndStrm *stream) {
+    SND_StartTimer(stream->mChBitMask, 0, 1 << stream->mAlarmNo, 0);
+    if (stream->mStartFlag) {
         return;
     }
-    PM_PrependPreSleepCallback(&p->mUnk_08);
-    PM_AppendPostSleepCallback(&p->mUnk_14);
-    p->mUnk_24_1 = 1;
+    PM_PrependPreSleepCallback(&stream->mPreSleepInfo);
+    PM_AppendPostSleepCallback(&stream->mPostSleepInfo);
+    stream->mStartFlag = 1;
 }
 
-void func_0212c918(Unk0212c7f0 *p) {
-    if (p->mUnk_24_0) {
-        func_0212c824(p);
+// Stops the stream when it is set up.
+void NNS_SndStrmStop(NNSSndStrm *stream) {
+    if (stream->mActiveFlag) {
+        ForceStopStrm(stream);
     }
 }
 
-void func_0212c8a4(Unk0212c7f0 *p, s32 a) {
-    u32 v;
+// Sets NNSSndStrm.mVolume and the volume of every channel of the stream, added to the volume of the channel.
+void NNS_SndStrmSetVolume(NNSSndStrm *stream, s32 volume) {
+    u32 channel;
     s32 i;
-    s32 r;
+    s32 level;
 
-    p->mUnk_3c = a;
-    for (i = 0; i < p->mUnk_48; i++) {
-        v = p->mUnk_4c[i];
-        r = SND_CalcChannelVolume(p->mUnk_3c + data_0217dd28[v].mUnk_04);
-        SND_SetChannelVolume(1 << v, r & 0xff, r >> 8);
+    stream->mVolume = volume;
+    for (i = 0; i < stream->mNumChannels; i++) {
+        channel = stream->mChannelNo[i];
+        level = SND_CalcChannelVolume(stream->mVolume + data_0217dd28[channel].mVolume);
+        SND_SetChannelVolume(1 << channel, level & 0xff, level >> 8);
     }
 }
 
-void func_0212c824(Unk0212c7f0 *p) {
-    u32 r;
+// Stops the timers and the sleep callbacks of a started stream, waits for the sound commands, and shuts it down.
+void ForceStopStrm(NNSSndStrm *stream) {
+    u32 tag;
 
-    if (p->mUnk_24_1) {
-        SND_StopTimer(p->mUnk_44, 0, 1 << p->mUnk_40, 0);
-        PM_DeletePreSleepCallback(&p->mUnk_08);
-        PM_DeletePostSleepCallback(&p->mUnk_14);
-        p->mUnk_24_1 = 0;
-        r = SND_GetCurrentCommandTag();
+    if (stream->mStartFlag) {
+        SND_StopTimer(stream->mChBitMask, 0, 1 << stream->mAlarmNo, 0);
+        PM_DeletePreSleepCallback(&stream->mPreSleepInfo);
+        PM_DeletePostSleepCallback(&stream->mPostSleepInfo);
+        stream->mStartFlag = 0;
+        tag = SND_GetCurrentCommandTag();
         SND_FlushCommand(1);
-        SND_WaitForCommandProc(r);
+        SND_WaitForCommandProc(tag);
     }
-    func_0212c7f0(p);
+    ShutdownStrm(stream);
 }
 
-void func_0212c7f0(Unk0212c7f0 *p) {
-    func_0212bb7c(p->mUnk_40);
-    NNS_FndRemoveListObject(&data_0217dd1c, p);
-    p->mUnk_24_0 = 0;
+// Frees the alarm of the stream, removes it from the stream list and marks it not set up.
+void ShutdownStrm(NNSSndStrm *stream) {
+    NNS_SndFreeAlarm(stream->mAlarmNo);
+    NNS_FndRemoveListObject(&data_0217dd1c, stream);
+    stream->mActiveFlag = 0;
 }

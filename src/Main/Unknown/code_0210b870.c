@@ -93,12 +93,12 @@ int func_0210b8bc(void *p, s32 b) {
 
 void func_0210b874(struct Unk020e71a0_94 *p, s32 b) {
     s32 c;
-    Unk0212c400 **v;
+    NNSSndSeqPlayer **v;
 
     c = (b >> 12) + 5;
-    v = (Unk0212c400 **) StartSoundWhileRequested(&p->mSoundSource, 0x1cd, 0x7f, (s16) c);
+    v = (NNSSndSeqPlayer **) StartSoundWhileRequested(&p->mSoundSource, 0x1cd, 0x7f, (s16) c);
     if (v != NULL) {
-        func_0212c4c4(v, 0xffff, c);
+        NNS_SndPlayerSetTrackModSpeed(v, 0xffff, c);
     }
 }
 

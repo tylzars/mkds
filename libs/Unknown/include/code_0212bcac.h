@@ -1,83 +1,84 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212f788.h" // Interpolator
+#include "code_0212f788.h" // NNSSndFader
 
-// 0x44 bytes; sixteen of them in data_0217d45c. Most functions take a pointer to a pointer to one.
-typedef struct Unk0212c400 {
-    /* 00 */ struct Unk0212c400 **mUnk_00;
-    /* 04 */ struct Unk0212c7a0 *mUnk_04;
-    /* 08 */ struct Unk0212c700 *mUnk_08;
-    /* 0c */ u8 mUnk_0c[0x10];
-    /* 1c */ Interpolator mUnk_1c;
-    /* 2c */ u8 mUnk_2c;
-    /* 2d */ u8 mUnk_2d;
-    /* 2e */ u8 mUnk_2e;
-    /* 2f */ u8 mUnk_2f;
-    /* 30 */ u32 mUnk_30;
-    /* 34 */ u16 mUnk_34;
+// 0x44 bytes; sixteen of them in data_0217d45c. Most functions take a pointer to a pointer to one (the sound handle).
+typedef struct NNSSndSeqPlayer {
+    /* 00 */ struct NNSSndSeqPlayer **mHandle;
+    /* 04 */ struct NNSSndPlayer *mPlayer;
+    /* 08 */ struct NNSSndPlayerHeap *mHeap;
+    /* 0c */ u8 mPlayerLink[8];
+    /* 14 */ u8 mPrioLink[8];
+    /* 1c */ NNSSndFader mFader;
+    /* 2c */ u8 mStatus;
+    /* 2d */ u8 mStartFlag;
+    /* 2e */ u8 mPauseFlag;
+    /* 2f */ u8 mPrepareFlag;
+    /* 30 */ u32 mCommandTag;
+    /* 34 */ u16 mSeqType;
     /* 36 */ u8 mUnk_36[2];
-    /* 38 */ u16 mUnk_38;
-    /* 3a */ u16 mUnk_3a;
-    /* 3c */ u8 mUnk_3c;
-    /* 3d */ u8 mUnk_3d;
-    /* 3e */ s16 mUnk_3e;
-    /* 40 */ u8 mUnk_40;
-    /* 41 */ u8 mUnk_41;
+    /* 38 */ u16 mSeqNo;
+    /* 3a */ u16 mSeqArcIndex;
+    /* 3c */ u8 mPlayerNo;
+    /* 3d */ u8 mPrio;
+    /* 3e */ s16 mVolume;
+    /* 40 */ u8 mInitVolume;
+    /* 41 */ u8 mExtVolume;
     /* 42 */ u8 mUnk_42[2];
-} Unk0212c400;
+} NNSSndSeqPlayer;
 
 #include "code_0212d214.h"
 
-// Memory func_0212c700 gets from HeapStackAlloc: mUnk_08 is the HeapStack it sets up on mUnk_14, mUnk_10 the index
-// of the data_0217d89c element whose list receives it.
-typedef struct Unk0212c700 {
-    /* 00 */ u8 mUnk_00[8];
-    /* 08 */ HeapStack *mUnk_08;
-    /* 0c */ Unk0212c400 *mUnk_0c;
-    /* 10 */ u32 mUnk_10;
+// Memory NNS_SndPlayerCreateHeap gets from HeapStackAlloc: mHandle is the HeapStack it sets up on mUnk_14, mPlayerNo
+// the index of the data_0217d89c element whose heap list receives it.
+typedef struct NNSSndPlayerHeap {
+    /* 00 */ u8 mLink[8];
+    /* 08 */ HeapStack *mHandle;
+    /* 0c */ NNSSndSeqPlayer *mPlayer;
+    /* 10 */ u32 mPlayerNo;
     /* 14 */ u8 mUnk_14[1];
-} Unk0212c700;
+} NNSSndPlayerHeap;
 
-#include "code_0212c7a0.h" // Unk0212c7a0
+#include "code_0212c7a0.h" // NNSSndPlayer
 
 typedef struct Unk02021968 Unk02021968;
 
 extern NNSFndList data_0217d444;
 extern NNSFndList data_0217d450;
 
-void func_0212bcac(Unk0212c400 *p, u32 b);
-void func_0212bd10(Unk0212c700 *p);
-void func_0212bd6c(Unk0212c400 *p);
-Unk0212c400 *func_0212bdfc(s32 a);
-void func_0212be78(Unk0212c400 *p);
-void func_0212beb4(Unk0212c400 *p);
-void func_0212bf14(Unk0212c7a0 *e, Unk0212c400 *p);
-void func_0212bf70(Unk0212c400 *p);
-HeapStack *func_0212bfbc(u32 a, Unk0212c400 *b);
-void func_0212c018(Unk0212c400 *p, u32 b);
-void func_0212c078(Unk0212c400 *a, void *b, u32 c, Unk02021968 *d);
-void func_0212c0d4(void *a);
-Unk0212c400 *func_0212c0e0(Unk0212c400 **a, s32 b, s32 c);
-void func_0212c19c(void);
-void func_0212c310(void);
-u32 func_0212c3c8(Unk0212c400 **a, u32 b, u32 c);
-u32 func_0212c400(Unk0212c400 **a, u32 b, s16 *c);
-u32 func_0212c450(Unk0212c400 **arg0, u32 arg1, u32 arg2);
-void func_0212c478(Unk0212c400 **a, u32 b);
-void func_0212c494(Unk0212c400 **a, u32 b);
-void func_0212c4c4(Unk0212c400 **a, u32 b, u32 c);
-u32 func_0212c4f4(Unk0212c400 **a, u32 b, u32 c);
-void func_0212c524(Unk0212c400 **a, u32 b, u32 c);
-void func_0212c554(Unk0212c400 **a, u32 b, u32 c);
-void func_0212c594(Unk0212c400 **a, u32 b, u32 c);
-void func_0212c5c4(Unk0212c400 **a, u32 b);
-void func_0212c5f4(Unk0212c400 **a, u32 b);
-void func_0212c620(Unk0212c400 **a, s32 b, s32 c);
-u32 func_0212c668(Unk0212c400 **arg0, u32 arg1);
-Unk0212c400 *func_0212c678(Unk0212c400 **arg0, u32 arg1);
-void func_0212c688(Unk0212c400 **a);
-void func_0212c6a0(Unk0212c400 **arg0);
-void func_0212c6ac(u32 a);
-u32 func_0212c6f0(Unk0212c400 **a, u32 b);
-s32 func_0212c700(u32 a, HeapStack *b, u32 c);
+void SetPlayerPriority(NNSSndSeqPlayer *seq, int priority);
+void PlayerHeapDisposeCallback(NNSSndPlayerHeap *heap);
+void ShutdownPlayer(NNSSndSeqPlayer *seq);
+NNSSndSeqPlayer *AllocSeqPlayer(int priority);
+void ForceStopSeq(NNSSndSeqPlayer *seq);
+void InsertPrioList(NNSSndSeqPlayer *seq);
+void InsertPlayerList(NNSSndPlayer *player, NNSSndSeqPlayer *seq);
+void InitPlayer(NNSSndSeqPlayer *seq);
+HeapStack *NNSi_SndPlayerAllocHeap(int index, NNSSndSeqPlayer *seq);
+void NNSi_SndPlayerStopSeq(NNSSndSeqPlayer *seq, int fadeSteps);
+void NNSi_SndPlayerStartSeq(NNSSndSeqPlayer *seq, void *data, u32 offset, Unk02021968 *bank);
+void NNSi_SndPlayerFreeSeqPlayer(NNSSndSeqPlayer *seq);
+NNSSndSeqPlayer *NNSi_SndPlayerAllocSeqPlayer(NNSSndSeqPlayer **handle, int index, int priority);
+void NNSi_SndPlayerMain(void);
+void NNSi_SndPlayerInit(void);
+BOOL NNS_SndPlayerWriteVariable(NNSSndSeqPlayer **handle, int variable, s16 value);
+BOOL NNS_SndPlayerReadVariable(NNSSndSeqPlayer **handle, int variable, s16 *value);
+void NNS_SndPlayerSetSeqArcNo(NNSSndSeqPlayer **handle, int archive, int index);
+void NNS_SndPlayerSetSeqNo(NNSSndSeqPlayer **handle, int number);
+void NNS_SndPlayerSetTempoRatio(NNSSndSeqPlayer **handle, int ratio);
+void NNS_SndPlayerSetTrackModSpeed(NNSSndSeqPlayer **handle, u32 tracks, int speed);
+u32 NNS_SndPlayerSetTrackPan(NNSSndSeqPlayer **handle, u32 tracks, int pan);
+void NNS_SndPlayerSetTrackPitch(NNSSndSeqPlayer **handle, u32 tracks, int pitch);
+void NNS_SndPlayerSetTrackVolume(NNSSndSeqPlayer **handle, u32 tracks, int volume);
+void NNS_SndPlayerSetTrackMuteEx(NNSSndSeqPlayer **handle, u32 tracks, int mute);
+void NNS_SndPlayerSetChannelPriority(NNSSndSeqPlayer **handle, int priority);
+void NNS_SndPlayerSetPlayerPriority(NNSSndSeqPlayer **handle, int priority);
+void NNS_SndPlayerMoveVolume(NNSSndSeqPlayer **handle, int target, int steps);
+void NNS_SndPlayerSetInitialVolume(NNSSndSeqPlayer **handle, int volume);
+NNSSndSeqPlayer *NNS_SndPlayerSetVolume(NNSSndSeqPlayer **handle, int volume);
+void NNS_SndHandleReleaseSeq(NNSSndSeqPlayer **handle);
+void NNS_SndHandleInit(NNSSndSeqPlayer **handle);
+void NNS_SndPlayerStopSeqAll(u32 fadeSteps);
+u32 NNS_SndPlayerStopSeq(NNSSndSeqPlayer **handle, u32 fadeSteps);
+BOOL NNS_SndPlayerCreateHeap(int index, HeapStack *heap, u32 size);

@@ -288,13 +288,13 @@ u32 func_02110324(void) {
 }
 
 // Moves the object at data_0217d234 towards t.
-static inline void func_02110114_inline(Unk0212c400 **p, s32 v, s32 k, s32 t) {
+static inline void func_02110114_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t) {
     s32 m;
     s32 c;
     s32 r;
     s32 x;
     func_02108eb4(1, v);
-    func_0212c524(p, 0xffff, k);
+    NNS_SndPlayerSetTrackPitch(p, 0xffff, k);
     c = data_0217d234.mUnk_04 >> 12;
     if (t == c) {
         r = -1;
@@ -324,11 +324,11 @@ static inline void func_02110114_inline(Unk0212c400 **p, s32 v, s32 k, s32 t) {
     }
     data_0217d218 = m;
     if (r != -1) {
-        func_0212c678(p, r);
+        NNS_SndPlayerSetVolume(p, r);
     }
 }
 
-void func_02110114(Unk0212c400 **a) {
+void func_02110114(NNSSndSeqPlayer **a) {
     s32 b;
     s32 c;
     c = data_0217d20c;
@@ -373,14 +373,14 @@ void func_02110114(Unk0212c400 **a) {
     func_02110114_inline(a, 0x7f, 0, b);
 }
 
-u32 func_02110100(Unk0212c400 **a) {
+u32 func_02110100(NNSSndSeqPlayer **a) {
     if (*a != NULL) {
         return 1;
     }
     return 0;
 }
 
-u32 func_021100dc(Unk0212c400 **arg0, u32 arg1, u32 arg2) {
+u32 func_021100dc(NNSSndSeqPlayer **arg0, u32 arg1, u32 arg2) {
     u32 value0 = (u32) arg0;
     u32 value1 = arg1;
     u32 value2 = arg2;
@@ -407,11 +407,11 @@ u32 func_021100dc(Unk0212c400 **arg0, u32 arg1, u32 arg2) {
     return value0;
 }
 
-void func_021100d0(Unk0212c400 **a, u32 b) {
-    func_0212c6f0(a, b);
+void func_021100d0(NNSSndSeqPlayer **a, u32 b) {
+    NNS_SndPlayerStopSeq(a, b);
 }
 
-void func_0211003c(u32 a, Unk0212c400 **b) {
+void func_0211003c(u32 a, NNSSndSeqPlayer **b) {
     if ((data_0217c780 & 1) == 0) {
         return;
     }
@@ -419,22 +419,22 @@ void func_0211003c(u32 a, Unk0212c400 **b) {
         return;
     }
     if (*b != NULL) {
-        func_0212c6f0(b, 0);
+        NNS_SndPlayerStopSeq(b, 0);
     }
     if (*b != NULL) {
-        func_0212c6f0(b, 0);
+        NNS_SndPlayerStopSeq(b, 0);
     }
     func_0212ecc0(b, 0, a);
 }
 
 // Fades the object at data_0217d234 towards t, then writes the value that was reached.
-static inline void func_0210fb88_inline(Unk0212c400 **p, s32 v, s32 k, s32 t) {
+static inline void func_0210fb88_inline(NNSSndSeqPlayer **p, s32 v, s32 k, s32 t) {
     s32 m;
     s32 c;
     s32 r;
     s32 x;
     func_02108eb4(1, v);
-    func_0212c524(p, 0xffff, k);
+    NNS_SndPlayerSetTrackPitch(p, 0xffff, k);
     c = data_0217d234.mUnk_04 >> 12;
     if (t == c) {
         r = -1;
@@ -464,11 +464,11 @@ static inline void func_0210fb88_inline(Unk0212c400 **p, s32 v, s32 k, s32 t) {
     }
     data_0217d218 = m;
     if (r != -1) {
-        func_0212c678(p, r);
+        NNS_SndPlayerSetVolume(p, r);
     }
 }
 
-void func_0210fb88(Unk0217d244 *a, Unk0212c400 **b) {
+void func_0210fb88(Unk0217d244 *a, NNSSndSeqPlayer **b) {
     u32 i;
     s32 j;
     s32 k;
@@ -478,7 +478,7 @@ void func_0210fb88(Unk0217d244 *a, Unk0212c400 **b) {
     s32 y;
     s64 w;
     s32 z;
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
     k = 0;
     i = k;
     l = 0x7f;
@@ -590,11 +590,11 @@ u32 func_0210fb54(void) {
 }
 
 void func_0210fb10(void) {
-    Unk0212c400 **v1;
+    NNSSndSeqPlayer **v1;
     v1 = &data_0217d07c;
     *((u32 *) ((u32) (&data_0217d244))) = 2;
-    func_0212c594(v1, 1, 1);
-    func_0212c494(&data_0217d07c, 0xd9);
+    NNS_SndPlayerSetTrackMuteEx(v1, 1, 1);
+    NNS_SndPlayerSetTempoRatio(&data_0217d07c, 0xd9);
 }
 
 void func_0210faf4(void) {
@@ -725,7 +725,7 @@ void func_0210f808(void) {
     }
 }
 
-void func_0210f780(Unk0212c400 **a) {
+void func_0210f780(NNSSndSeqPlayer **a) {
     Unk0217d254 *p;
     s32 i;
 
@@ -734,7 +734,7 @@ void func_0210f780(Unk0212c400 **a) {
         if (data_0217d23c[i] == 0) {
             continue;
         }
-        if (func_0212c400(a, p->mUnk_08[0], (s16 *) p) == 0) {
+        if (NNS_SndPlayerReadVariable(a, p->mUnk_08[0], (s16 *) p) == 0) {
             continue;
         }
         if (p->mUnk_02 != p->mUnk_00) {

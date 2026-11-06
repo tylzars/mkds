@@ -246,30 +246,30 @@ s32 func_02110c40(void) {
 }
 
 // Releases the object when it holds nothing other than the given value, otherwise sets it up with that value.
-static inline void func_02110aac_inline(Unk0212c400 **p, u32 v) {
-    Unk0212c400 *q;
+static inline void func_02110aac_inline(NNSSndSeqPlayer **p, u32 v) {
+    NNSSndSeqPlayer *q;
     u32 r;
     if (v != 0xffff) {
         q = *p;
-        if (q != NULL && q->mUnk_3a == v && q->mUnk_38 == 0) {
+        if (q != NULL && q->mSeqArcIndex == v && q->mSeqNo == 0) {
             r = 1;
         } else {
             r = 0;
         }
         if (r == 0) {
-            func_0212c6f0(p, 0);
+            NNS_SndPlayerStopSeq(p, 0);
             if (*p != NULL) {
-                func_0212c6f0(p, 0);
+                NNS_SndPlayerStopSeq(p, 0);
             }
             func_0212ecc0(p, 0, v);
         }
     } else if (*p != NULL) {
-        func_0212c6f0(p, 0);
+        NNS_SndPlayerStopSeq(p, 0);
     }
 }
 
 void func_02110aac(s32 a, s32 b) {
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
     u32 x;
     u32 y;
     p = func_02108e6c(1);
@@ -301,7 +301,7 @@ void func_021108bc(s32 a) {
     s32 c;
     u8 m;
     u32 n;
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
     if (a <= 2) {
         b = 0x1f7;
     } else if (a <= 5) {
@@ -324,7 +324,7 @@ void func_021108bc(s32 a) {
         data_0217d1e4 = 0;
     }
     if (*p != NULL) {
-        func_0212c6f0(p, 0);
+        NNS_SndPlayerStopSeq(p, 0);
     }
     func_0212ecc0(p, 0, (u16) b);
     data_0217d1e0 = data_0217d1e0 + 1;

@@ -9,6 +9,6 @@ extern u32 data_0217d41c;
 extern PMSleepCallbackInfo data_0217d420;
 extern PMSleepCallbackInfo data_0217d42c;
 
-void func_0212ba68(u32 a);
-void func_0212ba74(void);
-void func_0212baa8(void);
+void NNS_SndSetMasterVolume(int volume);
+void NNS_SndMain(void);
+void NNS_SndInit(void);

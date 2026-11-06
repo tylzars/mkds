@@ -11,219 +11,223 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_0216e000.h"
 
-// Calls func_0212f638 with c, then func_0212d154 with a, b, 0, 32000, 2, func_0212f5a0 and data_0216eaa4.
-void func_0212f730(void *a, u32 b, s32 c) {
-    func_0212f638(c);
-    func_0212d154(a, b, 0, 32000, 2, func_0212f5a0, &data_0216eaa4);
+// Sets the output effect to type, then starts an effect capture of 32000 Hz with two parts, handled by EffectCallback.
+void NNS_SndCaptureStartOutputEffect(void *buffer, u32 bufSize, s32 type) {
+    NNS_SndCaptureChangeOutputEffect(type);
+    NNS_SndCaptureStartEffect(buffer, bufSize, 0, 32000, 2, EffectCallback, &data_0216eaa4);
 }
 
-// Does nothing when a equals mUnk_00 of data_0216eaa4. Otherwise clears the 0xc0 bytes at mUnk_18, stores a in mUnk_00
-// and one of func_0212f59c, func_0212f3f8, func_0212f1f8 and func_0212f1ac in mUnk_04 (by a = 0 to 3);
-// SNDi_SetSurroundDecay is called with 0 first when the old mUnk_00 is 1 and with 0x3000 last when a is 1.
-void func_0212f638(s32 a) {
-    u32 v;
-    volatile u16 z;
+// Does nothing when type is already set. Otherwise clears CallbackInfo.mBuffer, stores type in CallbackInfo.mType and
+// the matching function (type 0 to 3: NothingProc, SurroundProc, HeadphoneProc, MonoProc) in CallbackInfo.mEffectFunc;
+// the surround decay is reset first when the old type is 1 and set to 0x3000 last when type is 1.
+void NNS_SndCaptureChangeOutputEffect(s32 type) {
+    u32 enabled;
+    volatile u16 zero;
 
-    if (a == data_0216eaa4.mUnk_00) {
+    if (type == data_0216eaa4.mType) {
         return;
     }
-    if (data_0216eaa4.mUnk_00 == 1) {
+    if (data_0216eaa4.mType == 1) {
         SNDi_SetSurroundDecay(0);
     }
-    v = OS_DisableInterrupts();
-    z = 0;
-    MIi_CpuClear16(z, &data_0216eaa4.mUnk_18, 0xc0);
-    data_0216eaa4.mUnk_00 = a;
-    switch (a) {
+    enabled = OS_DisableInterrupts();
+    zero = 0;
+    MIi_CpuClear16(zero, &data_0216eaa4.mBuffer, 0xc0);
+    data_0216eaa4.mType = type;
+    switch (type) {
         case 1:
-            data_0216eaa4.mUnk_04 = func_0212f3f8;
+            data_0216eaa4.mEffectFunc = SurroundProc;
             break;
         case 2:
-            data_0216eaa4.mUnk_04 = func_0212f1f8;
+            data_0216eaa4.mEffectFunc = HeadphoneProc;
             break;
         case 3:
-            data_0216eaa4.mUnk_04 = func_0212f1ac;
+            data_0216eaa4.mEffectFunc = MonoProc;
             break;
         case 0:
-            data_0216eaa4.mUnk_04 = func_0212f59c;
+            data_0216eaa4.mEffectFunc = NothingProc;
             break;
         default:
-            data_0216eaa4.mUnk_04 = func_0212f59c;
+            data_0216eaa4.mEffectFunc = NothingProc;
             break;
     }
-    OS_RestoreInterrupts(v);
-    if (a == 1) {
+    OS_RestoreInterrupts(enabled);
+    if (type == 1) {
         SNDi_SetSurroundDecay(0x3000);
     }
 }
 
-// Calls mUnk_08, mUnk_04 and mUnk_10 of s (the first and last when not null), then DC_FlushRange on a and b.
-void func_0212f5a0(void *a, void *b, u32 n, u32 d, Unk0212f1f8 *s) {
-    if (s->mUnk_08 != 0) {
-        s->mUnk_08(a, b, n, d, s->mUnk_0c);
+// Capture callback: runs CallbackInfo.mCbFunc, CallbackInfo.mEffectFunc and CallbackInfo.mCbPostFunc on the buffers
+// (the callbacks only when not null), then flushes both.
+void EffectCallback(void *bufferL, void *bufferR, u32 len, u32 format, void *arg) {
+    CallbackInfo *info = arg;
+
+    if (info->mCbFunc != 0) {
+        info->mCbFunc(bufferL, bufferR, len, format, info->mCbArg);
     }
-    s->mUnk_04(a, b, n, s);
-    if (s->mUnk_10 != 0) {
-        s->mUnk_10(a, b, n, d, s->mUnk_14);
+    info->mEffectFunc(bufferL, bufferR, len, info);
+    if (info->mCbPostFunc != 0) {
+        info->mCbPostFunc(bufferL, bufferR, len, format, info->mCbPostArg);
     }
-    DC_FlushRange(a, n);
-    DC_FlushRange(b, n);
+    DC_FlushRange(bufferL, len);
+    DC_FlushRange(bufferR, len);
 }
 
 // Does nothing.
-void func_0212f59c(void) {}
+void NothingProc(s16 *bufferL, s16 *bufferR, u32 len, CallbackInfo *info) {}
 
-// Works on the last two entries of a and b, then on the rest from the end, with 16-bit clamping; keeps two words in
-// mUnk_18 of d.
-void func_0212f3f8(s16 *a, s16 *b, u32 n, Unk0212f1f8 *d) {
-    s16 t[2];
-    u32 m;
+// Cross-feeds the channels with a delay of two samples: works on the last two entries of the buffers first, then on
+// the rest from the end, with 16-bit clamping, and keeps the two delayed values in CallbackInfo.mBuffer.
+void SurroundProc(s16 *bufferL, s16 *bufferR, u32 len, CallbackInfo *info) {
+    s16 saved[2];
+    u32 samples;
     s32 i;
     s32 j;
     s32 k;
-    s32 x;
-    s32 y;
-    s32 e;
-    s16 *p;
-    s16 *q;
+    s32 newLeft;
+    s32 newRight;
+    s32 diff;
+    s16 *leftPtr;
+    s16 *rightPtr;
 
-    m = n >> 1;
+    samples = len >> 1;
     for (i = 0; i < 2; i++) {
-        e = *(a + m + i - 2) - *(b + m + i - 2);
-        if (e < -32768) {
-            e = -32768;
-        } else if (e > 32767) {
-            e = 32767;
+        diff = *(bufferL + samples + i - 2) - *(bufferR + samples + i - 2);
+        if (diff < -32768) {
+            diff = -32768;
+        } else if (diff > 32767) {
+            diff = 32767;
         }
-        t[i] = e;
+        saved[i] = diff;
     }
-    p = a + (m - 1);
-    q = b + (m - 1);
-    for (; p >= a + 2; p--, q--) {
-        e = p[-2] - q[-2];
-        x = p[0] + e;
-        y = q[0] - e;
-        if (e >= 0) {
-            if (x < 32767) {
-                p[0] = x;
+    leftPtr = bufferL + (samples - 1);
+    rightPtr = bufferR + (samples - 1);
+    for (; leftPtr >= bufferL + 2; leftPtr--, rightPtr--) {
+        diff = leftPtr[-2] - rightPtr[-2];
+        newLeft = leftPtr[0] + diff;
+        newRight = rightPtr[0] - diff;
+        if (diff >= 0) {
+            if (newLeft < 32767) {
+                leftPtr[0] = newLeft;
             } else {
-                p[0] = 32767;
+                leftPtr[0] = 32767;
             }
-            if (y > -32768) {
-                q[0] = y;
+            if (newRight > -32768) {
+                rightPtr[0] = newRight;
             } else {
-                q[0] = -32768;
+                rightPtr[0] = -32768;
             }
         } else {
-            if (x > -32768) {
-                p[0] = x;
+            if (newLeft > -32768) {
+                leftPtr[0] = newLeft;
             } else {
-                p[0] = -32768;
+                leftPtr[0] = -32768;
             }
-            if (y < 32767) {
-                q[0] = y;
+            if (newRight < 32767) {
+                rightPtr[0] = newRight;
             } else {
-                q[0] = 32767;
+                rightPtr[0] = 32767;
             }
         }
     }
     for (j = 1; j >= 0; j--) {
-        x = a[j] + d->mUnk_18.w[j];
-        if (x < -32768) {
-            x = -32768;
-        } else if (x > 32767) {
-            x = 32767;
+        newLeft = bufferL[j] + info->mBuffer.surround[j];
+        if (newLeft < -32768) {
+            newLeft = -32768;
+        } else if (newLeft > 32767) {
+            newLeft = 32767;
         }
-        a[j] = x;
-        y = b[j] - d->mUnk_18.w[j];
-        if (y < -32768) {
-            y = -32768;
-        } else if (y > 32767) {
-            y = 32767;
+        bufferL[j] = newLeft;
+        newRight = bufferR[j] - info->mBuffer.surround[j];
+        if (newRight < -32768) {
+            newRight = -32768;
+        } else if (newRight > 32767) {
+            newRight = 32767;
         }
-        b[j] = y;
+        bufferR[j] = newRight;
     }
     for (k = 0; k < 2; k++) {
-        d->mUnk_18.w[k] = t[k];
+        info->mBuffer.surround[k] = saved[k];
     }
 }
 
-// Adds the pairs in mUnk_18 of d to a and b in blocks of 24 entries with 16-bit clamping and stores new pairs.
-void func_0212f1f8(s16 *a, s16 *b, u32 n, Unk0212f1f8 *d) {
-    u32 m;
-    u32 r;
+// Adds the pairs in CallbackInfo.mBuffer to the buffers in blocks of 24 entries with 16-bit clamping and stores new
+// pairs.
+void HeadphoneProc(s16 *bufferL, s16 *bufferR, u32 len, CallbackInfo *info) {
+    u32 samples;
+    u32 rest;
     s32 i;
     s32 j;
-    s32 x;
-    s32 y;
-    u32 off;
-    s32 c;
-    s32 e;
+    s32 left;
+    s32 right;
+    u32 offset;
+    s32 clampedLeft;
+    s32 clampedRight;
 
-    m = n >> 1;
-    off = 0;
-    while (m > off + 24) {
+    samples = len >> 1;
+    offset = 0;
+    while (samples > offset + 24) {
         for (i = 0; i < 24; i++) {
-            x = a[i + off];
-            x += d->mUnk_18.p[i].mUnk_00;
-            y = b[i + off];
-            y += d->mUnk_18.p[i].mUnk_04;
-            c = x;
-            if (x < -32768) {
-                c = -32768;
-            } else if (x > 32767) {
-                c = 32767;
+            left = bufferL[i + offset];
+            left += info->mBuffer.headphone[i][0];
+            right = bufferR[i + offset];
+            right += info->mBuffer.headphone[i][1];
+            clampedLeft = left;
+            if (left < -32768) {
+                clampedLeft = -32768;
+            } else if (left > 32767) {
+                clampedLeft = 32767;
             }
-            a[i + off] = c;
-            e = y;
-            if (y < -32768) {
-                e = -32768;
-            } else if (y > 32767) {
-                e = 32767;
+            bufferL[i + offset] = clampedLeft;
+            clampedRight = right;
+            if (right < -32768) {
+                clampedRight = -32768;
+            } else if (right > 32767) {
+                clampedRight = 32767;
             }
-            b[i + off] = e;
-            d->mUnk_18.p[i].mUnk_00 = (y + 1) >> 2;
-            d->mUnk_18.p[i].mUnk_04 = (x + 1) >> 2;
+            bufferR[i + offset] = clampedRight;
+            info->mBuffer.headphone[i][0] = (right + 1) >> 2;
+            info->mBuffer.headphone[i][1] = (left + 1) >> 2;
         }
-        off += 24;
+        offset += 24;
     }
-    r = m - off;
-    for (i = 0; i < r; i++) {
-        j = a[i + off];
-        j += d->mUnk_18.p[i].mUnk_00;
-        y = b[i + off];
-        y += d->mUnk_18.p[i].mUnk_04;
+    rest = samples - offset;
+    for (i = 0; i < rest; i++) {
+        j = bufferL[i + offset];
+        j += info->mBuffer.headphone[i][0];
+        right = bufferR[i + offset];
+        right += info->mBuffer.headphone[i][1];
         if (j < -32768) {
             j = -32768;
         } else if (j > 32767) {
             j = 32767;
         }
-        a[i + off] = j;
-        if (y < -32768) {
-            y = -32768;
-        } else if (y > 32767) {
-            y = 32767;
+        bufferL[i + offset] = j;
+        if (right < -32768) {
+            right = -32768;
+        } else if (right > 32767) {
+            right = 32767;
         }
-        b[i + off] = y;
+        bufferR[i + offset] = right;
     }
-    for (i = 0; i < 24 - r; i++) {
-        d->mUnk_18.p[i].mUnk_00 = (d->mUnk_18.p + r)[i].mUnk_00;
-        d->mUnk_18.p[i].mUnk_04 = (d->mUnk_18.p + r)[i].mUnk_04;
+    for (i = 0; i < 24 - rest; i++) {
+        info->mBuffer.headphone[i][0] = (info->mBuffer.headphone + rest)[i][0];
+        info->mBuffer.headphone[i][1] = (info->mBuffer.headphone + rest)[i][1];
     }
-    for (i = 0; i < r; i++) {
-        d->mUnk_18.p[24 + i - r].mUnk_00 = (b[i + off] + 1) >> 2;
-        d->mUnk_18.p[24 + i - r].mUnk_04 = (a[i + off] + 1) >> 2;
+    for (i = 0; i < rest; i++) {
+        info->mBuffer.headphone[24 + i - rest][0] = (bufferR[i + offset] + 1) >> 2;
+        info->mBuffer.headphone[24 + i - rest][1] = (bufferL[i + offset] + 1) >> 2;
     }
 }
 
-// Replaces a with the rounded average of a and b, then calls MIi_CpuCopyFast with a, b and n.
-void func_0212f1ac(s16 *a, s16 *b, u32 n) {
-    u32 m;
+// Replaces the left buffer with the rounded average of both channels, then copies it over the right buffer.
+void MonoProc(s16 *bufferL, s16 *bufferR, u32 len, CallbackInfo *info) {
+    u32 samples;
     u32 i;
 
-    m = n >> 1;
-    for (i = 0; i < m; i++) {
-        a[i] = (a[i] + b[i] + 1) >> 1;
+    samples = len >> 1;
+    for (i = 0; i < samples; i++) {
+        bufferL[i] = (bufferL[i] + bufferR[i] + 1) >> 1;
     }
-    MIi_CpuCopyFast(a, b, n);
+    MIi_CpuCopyFast(bufferL, bufferR, len);
 }

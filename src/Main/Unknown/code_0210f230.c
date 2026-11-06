@@ -73,20 +73,20 @@ void func_0210f458(s32 a) {
     u16 v;
     u16 w;
     u16 n;
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
 
     v = data_0216cb50[data_0216cb4c].mUnk_00[a];
     w = v & 0xfff;
     switch (data_0216cb4c) {
         case 3:
             if (v == 0x1cc) {
-                p = (Unk0212c400 **) func_02108e88();
+                p = (NNSSndSeqPlayer **) func_02108e88();
                 if (*p != NULL) {
-                    func_0212c6f0(p, 0);
+                    NNS_SndPlayerStopSeq(p, 0);
                 }
                 p = func_02108e6c(7);
                 if (*p != NULL) {
-                    func_0212c6f0(p, 0);
+                    NNS_SndPlayerStopSeq(p, 0);
                 }
             };
             break;
@@ -103,10 +103,10 @@ void func_0210f458(s32 a) {
             return;
         }
         if (*p != NULL) {
-            func_0212c6f0(p, 0);
+            NNS_SndPlayerStopSeq(p, 0);
         }
         if (*p != NULL) {
-            func_0212c6f0(p, 0);
+            NNS_SndPlayerStopSeq(p, 0);
         }
         func_0212ecc0(p, 0, v);
         return;
@@ -121,7 +121,7 @@ void func_0210f458(s32 a) {
 }
 
 u32 func_0210f35c(s32 a, u32 b) {
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
     u32 v;
     u8 c;
     u32 ok;
@@ -143,10 +143,10 @@ u32 func_0210f35c(s32 a, u32 b) {
         if ((data_0217c780 & 1) != 0) {
             if (data_0217d084.mUnk_0c != 0) {
                 if (*p != NULL) {
-                    func_0212c6f0(p, 0);
+                    NNS_SndPlayerStopSeq(p, 0);
                 }
                 if (*p != NULL) {
-                    func_0212c6f0(p, 0);
+                    NNS_SndPlayerStopSeq(p, 0);
                 }
                 func_0212ecc0(p, 0, b);
             }
@@ -159,7 +159,7 @@ u32 func_0210f35c(s32 a, u32 b) {
 }
 
 u32 func_0210f230(u32 a, u32 b) {
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
     u32 v;
     u8 c;
     u32 ok;
@@ -182,10 +182,10 @@ u32 func_0210f230(u32 a, u32 b) {
             if ((data_0217c780 & 1) != 0) {
                 if (data_0217d084.mUnk_0c != 0) {
                     if (*p != NULL) {
-                        func_0212c6f0(p, 0);
+                        NNS_SndPlayerStopSeq(p, 0);
                     }
                     if (*p != NULL) {
-                        func_0212c6f0(p, 0);
+                        NNS_SndPlayerStopSeq(p, 0);
                     }
                     func_0212ecc0(p, 0, b);
                 }
@@ -195,7 +195,7 @@ u32 func_0210f230(u32 a, u32 b) {
             func_02105b28(p, c);
         }
     } else {
-        func_0212c6f0(p, 0xa);
+        NNS_SndPlayerStopSeq(p, 0xa);
     }
     return ok;
 }

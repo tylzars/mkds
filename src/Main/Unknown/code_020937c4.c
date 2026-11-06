@@ -87,7 +87,7 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
         case 2:
             if (p->mUnk_a0 == 0x2d) {
                 if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
-                    func_0212c6f0(func_02108e6c(8), 0);
+                    NNS_SndPlayerStopSeq(func_02108e6c(8), 0);
                     s = data_0216676c;
                     s.mUnk_04 = &p->mUnk_00.mPos;
                     s.mUnk_0c = func_020d4ef4(&p->mUnk_00.mPos);

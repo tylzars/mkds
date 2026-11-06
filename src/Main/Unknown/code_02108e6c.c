@@ -48,10 +48,10 @@ void func_02108edc(s32 a, s32 b) {
             return;
         }
         if (p->mUnk_00 != NULL) {
-            func_0212c6f0(&p->mUnk_00, 0);
+            NNS_SndPlayerStopSeq(&p->mUnk_00, 0);
         }
         if (p->mUnk_00 != NULL) {
-            func_0212c6f0(&p->mUnk_00, 0);
+            NNS_SndPlayerStopSeq(&p->mUnk_00, 0);
         }
         func_0212ecc0(p, 0, c);
     }
@@ -98,6 +98,6 @@ u32 func_02108e7c(void) {
     return ((u32) (&data_0217c83c));
 }
 
-Unk0212c400 **func_02108e6c(u32 p0) {
-    return (Unk0212c400 **) ((((u32) (&data_0217c838))) + (((p0) << 2)));
+NNSSndSeqPlayer **func_02108e6c(u32 p0) {
+    return (NNSSndSeqPlayer **) ((((u32) (&data_0217c838))) + (((p0) << 2)));
 }

@@ -294,16 +294,16 @@ void func_020f6388(ItemObject *a, Vec3 *b, Vec3 *c) {
 }
 
 void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
 
     if (data_0217c780 & 1) {
-        p = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
+        p = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (*p != NULL) {
-                func_0212c6f0(p, 0);
+                NNS_SndPlayerStopSeq(p, 0);
             }
             if (*p != NULL) {
-                func_0212c6f0(p, 0);
+                NNS_SndPlayerStopSeq(p, 0);
             }
             func_0212ecc0(p, 0, 0xde);
         }

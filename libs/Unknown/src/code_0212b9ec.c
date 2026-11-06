@@ -5,16 +5,18 @@
 #include "code_0201ec30.h"
 #include "Main/Unknown/code_02021000.h"
 
-void func_0212b9f8(void *a) {
-    u32 v;
+// Sleep callback: stops the capture and the sound timers and waits for the sound commands to finish.
+void BeginSleep(void *arg) {
+    u32 tag;
 
-    func_0212cb78();
+    NNSi_SndCaptureBeginSleep();
     SND_StopTimer(0, 0, 0, 0);
-    v = SND_GetCurrentCommandTag();
+    tag = SND_GetCurrentCommandTag();
     SND_FlushCommand(1);
-    SND_WaitForCommandProc(v);
+    SND_WaitForCommandProc(tag);
 }
 
-void func_0212b9ec(void *a) {
-    func_0212cad8();
+// Wake-up callback: restarts the capture.
+void EndSleep(void *arg) {
+    NNSi_SndCaptureEndSleep();
 }

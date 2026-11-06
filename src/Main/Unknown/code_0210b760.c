@@ -30,7 +30,7 @@ void func_0210b7a8(Unk0210b7a8 *p) {
     }
 }
 
-void func_0210b760(Unk0210b7a8 *p, Unk0212c400 **b) {
+void func_0210b760(Unk0210b7a8 *p, NNSSndSeqPlayer **b) {
     if (data_0217c780 & 1) {
         func_0210bee8(0, p->mUnk_00, (u32) p->mUnk_04, (u32) b, (u32) p);
     }

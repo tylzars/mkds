@@ -15,467 +15,482 @@
 #include "Main/Unknown/unk_02152000.h"
 #include "Main/Unknown/unk_0217d000.h"
 
-s32 func_0212c700(u32 a, HeapStack *b, u32 c) {
-    Unk0212c700 *p;
-    HeapStack *q;
+// Allocates a player heap of size bytes from heap, sets up its own heap on it and adds it to the heap list of player
+// index.
+BOOL NNS_SndPlayerCreateHeap(int index, HeapStack *heap, u32 size) {
+    NNSSndPlayerHeap *block;
+    HeapStack *inner;
 
-    p = HeapStackAlloc(b, c + 0x14, func_0212bd10, 0, 0);
-    if (p == 0) {
+    block = HeapStackAlloc(heap, size + 0x14, PlayerHeapDisposeCallback, 0, 0);
+    if (block == 0) {
         return 0;
     }
-    p->mUnk_0c = 0;
-    p->mUnk_10 = a;
-    p->mUnk_08 = 0;
-    q = HeapStackCreate(p->mUnk_14, c);
-    if (q == 0) {
+    block->mPlayer = 0;
+    block->mPlayerNo = index;
+    block->mHandle = 0;
+    inner = HeapStackCreate(block->mUnk_14, size);
+    if (inner == 0) {
         return 0;
     }
-    p->mUnk_08 = q;
-    NNS_FndAppendListObject(&data_0217d89c[a].mUnk_0c, p);
+    block->mHandle = inner;
+    NNS_FndAppendListObject(&data_0217d89c[index].mHeapList, block);
     return 1;
 }
 
-u32 func_0212c6f0(Unk0212c400 **a, u32 b) {
-    func_0212c018(*a, b);
+// Stops the sequence of handle, with a fade of fadeSteps steps.
+u32 NNS_SndPlayerStopSeq(NNSSndSeqPlayer **handle, u32 fadeSteps) {
+    NNSi_SndPlayerStopSeq(*handle, fadeSteps);
 }
 
-void func_0212c6ac(u32 a) {
+// Stops every sequence player that is in use.
+void NNS_SndPlayerStopSeqAll(u32 fadeSteps) {
     s32 i;
-    Unk0212c400 *p;
+    NNSSndSeqPlayer *seq;
 
-    for (i = 0, p = data_0217d45c; i < 16; i++) {
-        if (p->mUnk_2c != 0) {
-            func_0212c018(p, a);
+    for (i = 0, seq = data_0217d45c; i < 16; i++) {
+        if (seq->mStatus != 0) {
+            NNSi_SndPlayerStopSeq(seq, fadeSteps);
         }
-        p++;
+        seq++;
     }
 }
 
-void func_0212c6a0(Unk0212c400 **arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
+// Clears handle.
+void NNS_SndHandleInit(NNSSndSeqPlayer **handle) {
+    *handle = 0;
 }
 
-void func_0212c688(Unk0212c400 **a) {
-    Unk0212c400 *p = *a;
+// Detaches handle from its sequence player.
+void NNS_SndHandleReleaseSeq(NNSSndSeqPlayer **handle) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p != 0) {
-        p->mUnk_00 = 0;
-        *a = 0;
+    if (seq != 0) {
+        seq->mHandle = 0;
+        *handle = 0;
     }
 }
 
-Unk0212c400 *func_0212c678(Unk0212c400 **arg0, u32 arg1) {
-    u32 value0 = (u32) arg0;
-    u32 value1 = arg1;
-    u32 compareLeft0;
-    u32 compareRight0;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    compareLeft0 = value0;
-    compareRight0 = 0u;
-    if (compareLeft0 != compareRight0) {
-        *(u8 *) ((value0) + (65)) = (u8) value1;
+// Sets NNSSndSeqPlayer.mExtVolume.
+NNSSndSeqPlayer *NNS_SndPlayerSetVolume(NNSSndSeqPlayer **handle, int volume) {
+    NNSSndSeqPlayer *seq = *handle;
+
+    if (seq != 0) {
+        seq->mExtVolume = volume;
     }
-    return (Unk0212c400 *) value0;
+    return seq;
 }
 
-u32 func_0212c668(Unk0212c400 **arg0, u32 arg1) {
-    u32 value0 = (u32) arg0;
-    u32 value1 = arg1;
-    u32 compareLeft0;
-    u32 compareRight0;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    compareLeft0 = value0;
-    compareRight0 = 0u;
-    if (compareLeft0 != compareRight0) {
-        *(u8 *) ((value0) + (64)) = (u8) value1;
+// Sets NNSSndSeqPlayer.mInitVolume.
+void NNS_SndPlayerSetInitialVolume(NNSSndSeqPlayer **handle, int volume) {
+    if (*handle != 0) {
+        (*handle)->mInitVolume = volume;
     }
-    return value0;
 }
 
-void func_0212c620(Unk0212c400 **a, s32 b, s32 c) {
-    Unk0212c400 *p = *a;
+// Fades the volume of handle to target over a number of steps, unless the sequence is already fading out.
+void NNS_SndPlayerMoveVolume(NNSSndSeqPlayer **handle, int target, int steps) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p == 0) {
+    if (seq == 0) {
         return;
     }
-    if (p->mUnk_2c == 2) {
+    if (seq->mStatus == 2) {
         return;
     }
-    InterpolatorStart(&p->mUnk_1c, b << 8, c);
+    NNSi_SndFaderSet(&seq->mFader, target << 8, steps);
 }
 
-void func_0212c5f4(Unk0212c400 **a, u32 b) {
-    if (*a == 0) {
+// Sets the priority of the sequence player of handle.
+void NNS_SndPlayerSetPlayerPriority(NNSSndSeqPlayer **handle, int priority) {
+    if (*handle == 0) {
         return;
     }
-    func_0212bcac(*a, b);
+    SetPlayerPriority(*handle, priority);
 }
 
-void func_0212c5c4(Unk0212c400 **a, u32 b) {
-    Unk0212c400 *p = *a;
+// Sets the channel priority of the sequence player of handle.
+void NNS_SndPlayerSetChannelPriority(NNSSndSeqPlayer **handle, int priority) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p == 0) {
+    if (seq == 0) {
         return;
     }
-    SND_SetPlayerChannelPriority(p->mUnk_3c, b);
+    SND_SetPlayerChannelPriority(seq->mPlayerNo, priority);
 }
 
-void func_0212c594(Unk0212c400 **a, u32 b, u32 c) {
-    Unk0212c400 *p = *a;
+// Mutes the tracks selected by tracks of handle.
+void NNS_SndPlayerSetTrackMuteEx(NNSSndSeqPlayer **handle, u32 tracks, int mute) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p == 0) {
+    if (seq == 0) {
         return;
     }
-    SND_SetTrackMuteEx(p->mUnk_3c, b, c);
+    SND_SetTrackMuteEx(seq->mPlayerNo, tracks, mute);
 }
 
-void func_0212c554(Unk0212c400 **a, u32 b, u32 c) {
-    Unk0212c400 *p = *a;
+// Sets the volume of the tracks selected by tracks, converted to a decibel value.
+void NNS_SndPlayerSetTrackVolume(NNSSndSeqPlayer **handle, u32 tracks, int volume) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p == 0) {
+    if (seq == 0) {
         return;
     }
-    SND_SetTrackVolume(p->mUnk_3c, b, data_02152ce4[c]);
+    SND_SetTrackVolume(seq->mPlayerNo, tracks, data_02152ce4[volume]);
 }
 
-void func_0212c524(Unk0212c400 **a, u32 b, u32 c) {
-    Unk0212c400 *p = *a;
+// Sets the pitch of the tracks selected by tracks.
+void NNS_SndPlayerSetTrackPitch(NNSSndSeqPlayer **handle, u32 tracks, int pitch) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p == 0) {
+    if (seq == 0) {
         return;
     }
-    SND_SetTrackPitch(p->mUnk_3c, b, c);
+    SND_SetTrackPitch(seq->mPlayerNo, tracks, pitch);
 }
 
-u32 func_0212c4f4(Unk0212c400 **a, u32 b, u32 c) {
-    Unk0212c400 *p = *a;
+// Sets the pan of the tracks selected by tracks.
+u32 NNS_SndPlayerSetTrackPan(NNSSndSeqPlayer **handle, u32 tracks, int pan) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p == 0) {
-        return (u32) p;
+    if (seq == 0) {
+        return (u32) seq;
     }
-    SND_SetTrackPan(p->mUnk_3c, b, c);
+    SND_SetTrackPan(seq->mPlayerNo, tracks, pan);
 }
 
-void func_0212c4c4(Unk0212c400 **a, u32 b, u32 c) {
-    Unk0212c400 *p = *a;
+// Sets the modulation speed of the tracks selected by tracks.
+void NNS_SndPlayerSetTrackModSpeed(NNSSndSeqPlayer **handle, u32 tracks, int speed) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p == 0) {
+    if (seq == 0) {
         return;
     }
-    SND_SetTrackModSpeed(p->mUnk_3c, b, c);
+    SND_SetTrackModSpeed(seq->mPlayerNo, tracks, speed);
 }
 
-void func_0212c494(Unk0212c400 **a, u32 b) {
-    Unk0212c400 *p = *a;
+// Sets the tempo ratio of the sequence of handle.
+void NNS_SndPlayerSetTempoRatio(NNSSndSeqPlayer **handle, int ratio) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p == 0) {
+    if (seq == 0) {
         return;
     }
-    SND_SetPlayerTempoRatio(p->mUnk_3c, b);
+    SND_SetPlayerTempoRatio(seq->mPlayerNo, ratio);
 }
 
-void func_0212c478(Unk0212c400 **a, u32 b) {
-    Unk0212c400 *p = *a;
+// Marks the sequence of handle as a plain sequence number: NNSSndSeqPlayer.mSeqType 1 and NNSSndSeqPlayer.mSeqNo.
+void NNS_SndPlayerSetSeqNo(NNSSndSeqPlayer **handle, int number) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p != 0) {
-        p->mUnk_34 = 1;
-        (*a)->mUnk_38 = b;
+    if (seq != 0) {
+        seq->mSeqType = 1;
+        (*handle)->mSeqNo = number;
     }
 }
 
-u32 func_0212c450(Unk0212c400 **arg0, u32 arg1, u32 arg2) {
-    u32 value0 = (u32) arg0;
-    u32 value1 = arg1;
-    u32 value2 = arg2;
-    u32 value3;
-    u32 value12;
-    u32 compareLeft0;
-    u32 compareRight0;
-    value12 = (u32) * (const u32 *) ((value0) + (0));
-    compareLeft0 = value12;
-    compareRight0 = 0u;
-    if (compareLeft0 == compareRight0) {
-        return value0;
+// Marks the sequence of handle as a sequence archive entry: NNSSndSeqPlayer.mSeqType 2, NNSSndSeqPlayer.mSeqNo and
+// NNSSndSeqPlayer.mSeqArcIndex.
+void NNS_SndPlayerSetSeqArcNo(NNSSndSeqPlayer **handle, int archive, int index) {
+    if (*handle == 0) {
+        return;
     }
-    value3 = 2u;
-    *(u16 *) ((value12) + (52)) = (u16) value3;
-    value3 = (u32) * (const u32 *) ((value0) + (0));
-    *(u16 *) ((value3) + (56)) = (u16) value1;
-    value0 = (u32) * (const u32 *) ((value0) + (0));
-    *(u16 *) ((value0) + (58)) = (u16) value2;
-    return value0;
+    (*handle)->mSeqType = 2;
+    (*handle)->mSeqNo = archive;
+    (*handle)->mSeqArcIndex = index;
 }
 
 NNSFndList data_0217d450;
 NNSFndList data_0217d444;
 
-u32 func_0212c400(Unk0212c400 **a, u32 b, s16 *c) {
-    Unk0212c400 *p = *a;
+// Reads the sequence variable number variable of the sequence of handle into value; 0 for a handle without a sequence
+// player, -1 until the sequence has started.
+BOOL NNS_SndPlayerReadVariable(NNSSndSeqPlayer **handle, int variable, s16 *value) {
+    NNSSndSeqPlayer *seq = *handle;
 
-    if (p == 0) {
+    if (seq == 0) {
         return 0;
     }
-    if (p->mUnk_2d == 0) {
-        *c = -1;
+    if (seq->mStartFlag == 0) {
+        *value = -1;
         return 1;
     }
-    *c = SND_GetPlayerLocalVariable(p->mUnk_3c, b);
+    *value = SND_GetPlayerLocalVariable(seq->mPlayerNo, variable);
     return 1;
 }
 
-u32 func_0212c3c8(Unk0212c400 **a, u32 b, u32 c) {
-    if (*a == 0) {
+// Writes value to the sequence variable number variable of the sequence of handle.
+BOOL NNS_SndPlayerWriteVariable(NNSSndSeqPlayer **handle, int variable, s16 value) {
+    if (*handle == 0) {
         return 0;
     }
-    SND_SetPlayerLocalVariable((*a)->mUnk_3c, b, c);
+    SND_SetPlayerLocalVariable((*handle)->mPlayerNo, variable, value);
     return 1;
 }
 
-void func_0212c310(void) {
+// Sets up the lists of busy and free sequence players, and the player objects.
+void NNSi_SndPlayerInit(void) {
     s32 i;
-    Unk0212c400 *p;
-    Unk0212c7a0 *e;
+    NNSSndSeqPlayer *seq;
+    NNSSndPlayer *player;
 
     NNS_FndInitList(&data_0217d450, 0x14);
     NNS_FndInitList(&data_0217d444, 0x14);
-    for (i = 0, p = data_0217d45c; i < 16; i++, p++) {
-        p->mUnk_2c = 0;
-        p->mUnk_3c = i;
-        NNS_FndAppendListObject(&data_0217d444, p);
+    for (i = 0, seq = data_0217d45c; i < 16; i++, seq++) {
+        seq->mStatus = 0;
+        seq->mPlayerNo = i;
+        NNS_FndAppendListObject(&data_0217d444, seq);
     }
-    for (i = 0, e = data_0217d89c; i < 32; i++, e++) {
-        NNS_FndInitList(&e->mUnk_00, 0xc);
-        NNS_FndInitList(&e->mUnk_0c, 0);
-        e->mUnk_20 = 0x7f;
-        e->mUnk_18 = 1;
-        e->mUnk_1c = 0;
+    for (i = 0, player = data_0217d89c; i < 32; i++, player++) {
+        NNS_FndInitList(&player->mPlayerList, 0xc);
+        NNS_FndInitList(&player->mHeapList, 0);
+        player->mVolume = 0x7f;
+        player->mPlayableSeqCount = 1;
+        player->mAllocChBitFlag = 0;
     }
 }
 
-void func_0212c19c(void) {
-    u32 m;
-    Unk0212c400 *p;
-    Unk0212c400 *q;
-    s32 a;
-    s32 b;
-    s32 c;
-    s32 v;
+// Updates every busy sequence player: marks the started ones, shuts down the finished ones, steps the fader and
+// sets the player volume from the volume factors.
+void NNSi_SndPlayerMain(void) {
+    u32 status;
+    NNSSndSeqPlayer *seq;
+    NNSSndSeqPlayer *next;
+    s32 extDecibel;
+    s32 initDecibel;
+    s32 playerDecibel;
+    s32 volume;
 
-    m = SND_GetPlayerStatus();
-    for (p = NNS_FndGetNextListObject(&data_0217d450, 0); p != 0; p = q) {
-        q = NNS_FndGetNextListObject(&data_0217d450, p);
-        if (p->mUnk_2d == 0 && SND_IsFinishedCommandTag(p->mUnk_30) != 0) {
-            p->mUnk_2d = 1;
+    status = SND_GetPlayerStatus();
+    for (seq = NNS_FndGetNextListObject(&data_0217d450, 0); seq != 0; seq = next) {
+        next = NNS_FndGetNextListObject(&data_0217d450, seq);
+        if (seq->mStartFlag == 0 && SND_IsFinishedCommandTag(seq->mCommandTag) != 0) {
+            seq->mStartFlag = 1;
         }
-        if (p->mUnk_2d != 0 && (m & (1 << p->mUnk_3c)) == 0) {
-            func_0212bd6c(p);
+        if (seq->mStartFlag != 0 && (status & (1 << seq->mPlayerNo)) == 0) {
+            ShutdownPlayer(seq);
             continue;
         }
-        InterpolatorStep(&p->mUnk_1c);
-        a = data_02152ce4[p->mUnk_41];
-        b = data_02152ce4[p->mUnk_40];
-        c = data_02152ce4[p->mUnk_04->mUnk_20];
-        v = data_02152ce4[InterpolatorGetValue(&p->mUnk_1c) >> 8];
-        v += c + (b + a);
-        if (v < -723) {
-            v = -723;
-        } else if (v > 0) {
-            v = 0;
+        NNSi_SndFaderUpdate(&seq->mFader);
+        extDecibel = data_02152ce4[seq->mExtVolume];
+        initDecibel = data_02152ce4[seq->mInitVolume];
+        playerDecibel = data_02152ce4[seq->mPlayer->mVolume];
+        volume = data_02152ce4[NNSi_SndFaderGet(&seq->mFader) >> 8];
+        volume += playerDecibel + (initDecibel + extDecibel);
+        if (volume < -723) {
+            volume = -723;
+        } else if (volume > 0) {
+            volume = 0;
         }
-        if (v != p->mUnk_3e) {
-            SND_SetPlayerVolume(p->mUnk_3c, v);
-            p->mUnk_3e = v;
+        if (volume != seq->mVolume) {
+            SND_SetPlayerVolume(seq->mPlayerNo, volume);
+            seq->mVolume = volume;
         }
-        if (p->mUnk_2c == 2 && InterpolatorIsDone(&p->mUnk_1c) != 0) {
-            func_0212be78(p);
+        if (seq->mStatus == 2 && NNSi_SndFaderIsFinished(&seq->mFader) != 0) {
+            ForceStopSeq(seq);
         }
-        if (p->mUnk_2f != 0) {
-            SND_StartPreparedSeq(p->mUnk_3c);
-            p->mUnk_2f = 0;
+        if (seq->mPrepareFlag != 0) {
+            SND_StartPreparedSeq(seq->mPlayerNo);
+            seq->mPrepareFlag = 0;
         }
     }
 }
 
-Unk0212c400 *func_0212c0e0(Unk0212c400 **a, s32 b, s32 c) {
-    Unk0212c400 *p = *a;
-    Unk0212c7a0 *e = &data_0217d89c[b];
+// Attaches a sequence player of player index to handle after letting go of the one it held. A full player or a
+// full set of sequence players gives up its lowest priority sequence when priority is not lower than it. Returns 0
+// when none could be taken.
+NNSSndSeqPlayer *NNSi_SndPlayerAllocSeqPlayer(NNSSndSeqPlayer **handle, int index, int priority) {
+    NNSSndSeqPlayer *seq = *handle;
+    NNSSndPlayer *player = &data_0217d89c[index];
 
-    if (p != 0) {
-        func_0212c688(a);
+    if (seq != 0) {
+        NNS_SndHandleReleaseSeq(handle);
     }
-    if (e->mUnk_00.mCount >= e->mUnk_18) {
-        p = NNS_FndGetNextListObject(&e->mUnk_00, 0);
-        if (p == 0) {
+    if (player->mPlayerList.mCount >= player->mPlayableSeqCount) {
+        seq = NNS_FndGetNextListObject(&player->mPlayerList, 0);
+        if (seq == 0) {
             return 0;
         }
-        if (c < p->mUnk_3d) {
+        if (priority < seq->mPrio) {
             return 0;
         }
-        func_0212be78(p);
+        ForceStopSeq(seq);
     }
-    p = func_0212bdfc(c);
-    if (p == 0) {
+    seq = AllocSeqPlayer(priority);
+    if (seq == 0) {
         return 0;
     }
-    func_0212bf14(e, p);
-    p->mUnk_00 = a;
-    *a = p;
-    return p;
+    InsertPlayerList(player, seq);
+    seq->mHandle = handle;
+    *handle = seq;
+    return seq;
 }
 
-void func_0212c0d4(void *a) {
-    func_0212bd6c(a);
+// Gives a sequence player back.
+void NNSi_SndPlayerFreeSeqPlayer(NNSSndSeqPlayer *seq) {
+    ShutdownPlayer(seq);
 }
 
-void func_0212c078(Unk0212c400 *a, void *b, u32 c, Unk02021968 *d) {
-    Unk0212c7a0 *e = a->mUnk_04;
+// Prepares the sequence at offset of data on the sequence player, restricts its tracks to the channels
+// of the player when it has any, and marks it as playing.
+void NNSi_SndPlayerStartSeq(NNSSndSeqPlayer *seq, void *data, u32 offset, Unk02021968 *bank) {
+    NNSSndPlayer *player = seq->mPlayer;
 
-    SND_PrepareSeq(a->mUnk_3c, b, c, d);
-    if (e->mUnk_1c != 0) {
-        SND_SetTrackAllocatableChannel(a->mUnk_3c, 0xffff, e->mUnk_1c);
+    SND_PrepareSeq(seq->mPlayerNo, data, offset, bank);
+    if (player->mAllocChBitFlag != 0) {
+        SND_SetTrackAllocatableChannel(seq->mPlayerNo, 0xffff, player->mAllocChBitFlag);
     }
-    func_0212bf70(a);
-    a->mUnk_30 = SND_GetCurrentCommandTag();
-    a->mUnk_2f = 1;
-    a->mUnk_2c = 1;
+    InitPlayer(seq);
+    seq->mCommandTag = SND_GetCurrentCommandTag();
+    seq->mPrepareFlag = 1;
+    seq->mStatus = 1;
 }
 
-void func_0212c018(Unk0212c400 *p, u32 b) {
-    if (p == 0) {
+// Stops a playing sequence player at once for a fade of 0; otherwise starts the fade out and lowers its priority.
+void NNSi_SndPlayerStopSeq(NNSSndSeqPlayer *seq, int fadeSteps) {
+    if (seq == 0) {
         return;
     }
-    if (p->mUnk_2c == 0) {
+    if (seq->mStatus == 0) {
         return;
     }
-    if (b == 0) {
-        func_0212be78(p);
+    if (fadeSteps == 0) {
+        ForceStopSeq(seq);
         return;
     }
-    InterpolatorStart(&p->mUnk_1c, 0, b);
-    func_0212bcac(p, 0);
-    p->mUnk_2c = 2;
+    NNSi_SndFaderSet(&seq->mFader, 0, fadeSteps);
+    SetPlayerPriority(seq, 0);
+    seq->mStatus = 2;
 }
 
-HeapStack *func_0212bfbc(u32 a, Unk0212c400 *b) {
-    Unk0212c7a0 *e = &data_0217d89c[a];
-    Unk0212c700 *q;
+// Takes a free player heap of index for seq, empties it and returns its heap.
+HeapStack *NNSi_SndPlayerAllocHeap(int index, NNSSndSeqPlayer *seq) {
+    NNSSndPlayer *player = &data_0217d89c[index];
+    NNSSndPlayerHeap *heap;
 
-    q = NNS_FndGetNextListObject(&e->mUnk_0c, 0);
-    if (q == 0) {
+    heap = NNS_FndGetNextListObject(&player->mHeapList, 0);
+    if (heap == 0) {
         return 0;
     }
-    NNS_FndRemoveListObject(&e->mUnk_0c, q);
-    q->mUnk_0c = b;
-    b->mUnk_08 = q;
-    HeapStackReset(q->mUnk_08);
-    return q->mUnk_08;
+    NNS_FndRemoveListObject(&player->mHeapList, heap);
+    heap->mPlayer = seq;
+    seq->mHeap = heap;
+    HeapStackReset(heap->mHandle);
+    return heap->mHandle;
 }
 
-void func_0212bf70(Unk0212c400 *p) {
-    p->mUnk_2e = 0;
-    p->mUnk_2d = 0;
-    p->mUnk_2f = 0;
-    p->mUnk_34 = 0;
-    p->mUnk_3e = 0;
-    p->mUnk_40 = 0x7f;
-    p->mUnk_41 = 0x7f;
-    InterpolatorInit(&p->mUnk_1c);
-    InterpolatorStart(&p->mUnk_1c, 0x7f00, 1);
+// Resets the state of seq for a new sequence and starts its fader at full volume.
+void InitPlayer(NNSSndSeqPlayer *seq) {
+    seq->mPauseFlag = 0;
+    seq->mStartFlag = 0;
+    seq->mPrepareFlag = 0;
+    seq->mSeqType = 0;
+    seq->mVolume = 0;
+    seq->mInitVolume = 0x7f;
+    seq->mExtVolume = 0x7f;
+    InterpolatorInit(&seq->mFader);
+    NNSi_SndFaderSet(&seq->mFader, 0x7f00, 1);
 }
 
-void func_0212bf14(Unk0212c7a0 *e, Unk0212c400 *p) {
-    Unk0212c400 *q;
+// Inserts seq into the sequence player list of player, ordered by priority.
+void InsertPlayerList(NNSSndPlayer *player, NNSSndSeqPlayer *seq) {
+    NNSSndSeqPlayer *next;
 
-    for (q = NNS_FndGetNextListObject(&e->mUnk_00, 0); q != 0; q = NNS_FndGetNextListObject(&e->mUnk_00, q)) {
-        if (p->mUnk_3d < q->mUnk_3d) {
+    for (next = NNS_FndGetNextListObject(&player->mPlayerList, 0); next != 0;
+         next = NNS_FndGetNextListObject(&player->mPlayerList, next)) {
+        if (seq->mPrio < next->mPrio) {
             break;
         }
     }
-    NNS_FndInsertListObject(&e->mUnk_00, q, p);
-    p->mUnk_04 = e;
+    NNS_FndInsertListObject(&player->mPlayerList, next, seq);
+    seq->mPlayer = player;
 }
 
-void func_0212beb4(Unk0212c400 *p) {
-    Unk0212c400 *q;
+// Inserts seq into the list of all busy sequence players, ordered by priority.
+void InsertPrioList(NNSSndSeqPlayer *seq) {
+    NNSSndSeqPlayer *next;
 
-    for (q = NNS_FndGetNextListObject(&data_0217d450, 0); q != 0; q = NNS_FndGetNextListObject(&data_0217d450, q)) {
-        if (p->mUnk_3d < q->mUnk_3d) {
+    for (next = NNS_FndGetNextListObject(&data_0217d450, 0); next != 0;
+         next = NNS_FndGetNextListObject(&data_0217d450, next)) {
+        if (seq->mPrio < next->mPrio) {
             break;
         }
     }
-    NNS_FndInsertListObject(&data_0217d450, q, p);
+    NNS_FndInsertListObject(&data_0217d450, next, seq);
 }
 
-void func_0212be78(Unk0212c400 *p) {
-    if (p->mUnk_2c == 2) {
-        SND_SetPlayerVolume(p->mUnk_3c, -723);
+// Stops the sequence of seq at once and shuts the player down.
+void ForceStopSeq(NNSSndSeqPlayer *seq) {
+    if (seq->mStatus == 2) {
+        SND_SetPlayerVolume(seq->mPlayerNo, -723);
     }
-    SND_StopSeq(p->mUnk_3c);
-    func_0212bd6c(p);
+    SND_StopSeq(seq->mPlayerNo);
+    ShutdownPlayer(seq);
 }
 
-Unk0212c400 *func_0212bdfc(s32 a) {
-    Unk0212c400 *p = NNS_FndGetNextListObject(&data_0217d444, 0);
+// Takes the first free sequence player, or stops the lowest priority busy one when priority is not lower than its
+// priority, and puts it into the busy list with priority priority. Returns 0 when none could be taken.
+NNSSndSeqPlayer *AllocSeqPlayer(int priority) {
+    NNSSndSeqPlayer *seq = NNS_FndGetNextListObject(&data_0217d444, 0);
 
-    if (p == 0) {
-        p = NNS_FndGetNextListObject(&data_0217d450, 0);
-        if (a < p->mUnk_3d) {
+    if (seq == 0) {
+        seq = NNS_FndGetNextListObject(&data_0217d450, 0);
+        if (priority < seq->mPrio) {
             return 0;
         }
-        func_0212be78(p);
+        ForceStopSeq(seq);
     }
-    NNS_FndRemoveListObject(&data_0217d444, p);
-    p->mUnk_3d = a;
-    func_0212beb4(p);
-    return p;
+    NNS_FndRemoveListObject(&data_0217d444, seq);
+    seq->mPrio = priority;
+    InsertPrioList(seq);
+    return seq;
 }
 
-void func_0212bd6c(Unk0212c400 *p) {
-    Unk0212c7a0 *e;
+// Detaches seq from its handle, player and player heap, and moves it from the busy list to the free list.
+void ShutdownPlayer(NNSSndSeqPlayer *seq) {
+    NNSSndPlayer *player;
 
-    if (p->mUnk_00 != 0) {
-        *p->mUnk_00 = 0;
-        p->mUnk_00 = 0;
+    if (seq->mHandle != 0) {
+        *seq->mHandle = 0;
+        seq->mHandle = 0;
     }
-    e = p->mUnk_04;
-    NNS_FndRemoveListObject(&e->mUnk_00, p);
-    p->mUnk_04 = 0;
-    if (p->mUnk_08 != 0) {
-        NNS_FndAppendListObject(&e->mUnk_0c, p->mUnk_08);
-        p->mUnk_08->mUnk_0c = 0;
-        p->mUnk_08 = 0;
+    player = seq->mPlayer;
+    NNS_FndRemoveListObject(&player->mPlayerList, seq);
+    seq->mPlayer = 0;
+    if (seq->mHeap != 0) {
+        NNS_FndAppendListObject(&player->mHeapList, seq->mHeap);
+        seq->mHeap->mPlayer = 0;
+        seq->mHeap = 0;
     }
-    NNS_FndRemoveListObject(&data_0217d450, p);
-    NNS_FndAppendListObject(&data_0217d444, p);
-    p->mUnk_2c = 0;
+    NNS_FndRemoveListObject(&data_0217d450, seq);
+    NNS_FndAppendListObject(&data_0217d444, seq);
+    seq->mStatus = 0;
 }
 
-void func_0212bd10(Unk0212c700 *p) {
-    if (p->mUnk_08 == 0) {
+// Frees the heap of a player heap, and unlinks the player heap from the sequence player or from the heap list.
+void PlayerHeapDisposeCallback(NNSSndPlayerHeap *heap) {
+    if (heap->mHandle == 0) {
         return;
     }
-    HeapStackDestroy(p->mUnk_08);
-    if (p->mUnk_0c != 0) {
-        p->mUnk_0c->mUnk_08 = 0;
+    HeapStackDestroy(heap->mHandle);
+    if (heap->mPlayer != 0) {
+        heap->mPlayer->mHeap = 0;
         return;
     }
-    NNS_FndRemoveListObject(&data_0217d89c[p->mUnk_10].mUnk_0c, p);
+    NNS_FndRemoveListObject(&data_0217d89c[heap->mPlayerNo].mHeapList, heap);
 }
 
-void func_0212bcac(Unk0212c400 *p, u32 b) {
-    Unk0212c7a0 *e = p->mUnk_04;
+// Moves seq to the place of priority in its player list and in the busy list.
+void SetPlayerPriority(NNSSndSeqPlayer *seq, int priority) {
+    NNSSndPlayer *player = seq->mPlayer;
 
-    if (e != 0) {
-        NNS_FndRemoveListObject(&e->mUnk_00, p);
-        p->mUnk_04 = 0;
+    if (player != 0) {
+        NNS_FndRemoveListObject(&player->mPlayerList, seq);
+        seq->mPlayer = 0;
     }
-    NNS_FndRemoveListObject(&data_0217d450, p);
-    p->mUnk_3d = b;
-    if (e != 0) {
-        func_0212bf14(e, p);
+    NNS_FndRemoveListObject(&data_0217d450, seq);
+    seq->mPrio = priority;
+    if (player != 0) {
+        InsertPlayerList(player, seq);
     }
-    func_0212beb4(p);
+    InsertPrioList(seq);
 }

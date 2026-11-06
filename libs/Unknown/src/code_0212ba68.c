@@ -17,34 +17,37 @@ u32 data_0217d418;
 u32 data_0217d41c;
 s8 data_0217d414;
 
-void func_0212baa8(void) {
+// Sets up the sound driver, the sleep callbacks and the resource, capture and player state once.
+void NNS_SndInit(void) {
     if (data_0217d41c != 0) {
         return;
     }
     data_0217d41c = 1;
     SND_Init();
-    data_0217d420.mCallback = func_0212b9f8;
+    data_0217d420.mCallback = BeginSleep;
     data_0217d420.mArg = 0;
-    data_0217d42c.mCallback = func_0212b9ec;
+    data_0217d42c.mCallback = EndSleep;
     data_0217d42c.mArg = 0;
     PM_PrependPreSleepCallback(&data_0217d420);
     PM_AppendPostSleepCallback(&data_0217d42c);
-    func_0212bb50();
-    func_0212d0ec();
-    func_0212c310();
+    NNSi_SndInitResourceMgr();
+    NNSi_SndCaptureInit();
+    NNSi_SndPlayerInit();
     data_0217d414 = -1;
     data_0217d418 = 1;
 }
 
-void func_0212ba74(void) {
+// Handles the driver replies, then runs the player and capture updates and sends the queued commands.
+void NNS_SndMain(void) {
     while (SND_RecvCommandReply(0) != 0) {
     }
-    func_0212c19c();
-    func_0212d03c();
+    NNSi_SndPlayerMain();
+    NNSi_SndCaptureMain();
     func_0212f094();
     SND_FlushCommand(0);
 }
 
-void func_0212ba68(u32 a) {
-    SND_SetMasterVolume(a);
+// Sets the master volume.
+void NNS_SndSetMasterVolume(int volume) {
+    SND_SetMasterVolume(volume);
 }

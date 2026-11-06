@@ -6,10 +6,10 @@ extern u32 data_0217d438;
 extern u32 data_0217d43c;
 extern u32 data_0217d440;
 
-u32 func_0212bb50(void);
-void func_0212bb7c(s32 a);
-s32 func_0212bb9c(void);
-void func_0212bbe0(u32 a);
-u32 func_0212bbfc(u32 a);
-void func_0212bc20(u32 a);
-u32 func_0212bc58(u32 a);
+void NNSi_SndInitResourceMgr(void);
+void NNS_SndFreeAlarm(s32 alarm);
+s32 NNS_SndAllocAlarm(void);
+void NNS_SndUnlockCapture(u32 captures);
+BOOL NNS_SndLockCapture(u32 captures);
+void NNS_SndUnlockChannel(u32 channels);
+BOOL NNS_SndLockChannel(u32 channels);

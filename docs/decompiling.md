@@ -539,7 +539,7 @@ Expression shapes:
   (ARM): assign `f = x & 0xfff` before the indices and declare `f` before them (func_02071568).
 - Six byte stores where the original computes `(a - 1) * size` before loading the base: `p = tbl->rec[a - 1].arr; p[0] =
   ...; ... p[5] = ...;` with no offset or base locals (Thumb; func_ov003_021cf378).
-- An add with the loaded `s16` element first: `x = a[i]; x += p[i].m;` (func_0212f1f8).
+- An add with the loaded `s16` element first: `x = a[i]; x += p[i].m;` (HeadphoneProc).
 - A call's later argument computed before the call in an earlier argument: pass through a static inline wrapper taking
   all the arguments (func_ov003_021c25e0).
 - Index scaled (`lsl #2`) before the base pointer is reloaded: compute the entry address inside the statement that uses
@@ -648,7 +648,7 @@ Expression shapes:
 - Loop counter set before two pool-loaded table pointers: `j = 2; q = ..; p = ..; for (; j < 4; q++, p++, j++)`
   (func_ov003_021c06e0).
 - A loop counter taking its register before `counter + off` and before the loop's sum, the reverse of the original:
-  count with the variable an earlier loop used, and sum into a variable first used in this loop (func_0212f1f8).
+  count with the variable an earlier loop used, and sum into a variable first used in this loop (HeadphoneProc).
 - Loop pointer and counter registers swapped: declare the counter right before the pointer local (func_020072c0).
 - A hand-rotated do-while guard giving `bcc` (ROM `blt`) and swapped registers at `j++`: a plain `for (j = 1; j <= f();
   j++)` with the increment at the end (func_020b1a34).

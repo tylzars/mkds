@@ -149,7 +149,7 @@ void func_020fe120(Unk020fdae8 *e) {
 }
 
 void func_020fe00c(Unk020fdae8 *e) {
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
     Unk0208e490 *q;
 
     e->mUnk_000.mUnk_000.mFlags |= 0x800000;
@@ -170,10 +170,10 @@ void func_020fe00c(Unk020fdae8 *e) {
         p = func_0210e128(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (p[0] != NULL) {
-                func_0212c6f0(p, 0);
+                NNS_SndPlayerStopSeq(p, 0);
             }
             if (p[0] != NULL) {
-                func_0212c6f0(p, 0);
+                NNS_SndPlayerStopSeq(p, 0);
             }
             func_0212ecc0(p, 0, 0xe0);
         }

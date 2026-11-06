@@ -1,14 +1,14 @@
 #include "code_0212f864.h"
 
-void InterpolatorInit(Interpolator *arg0) {
+void InterpolatorInit(NNSSndFader *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value2;
     value2 = 0u;
-    arg0->mToValue = value2;
-    value1 = (u32) arg0->mToValue;
-    arg0->mFromValue = value1;
-    arg0->mTotalCount = value2;
-    value1 = (u32) arg0->mTotalCount;
-    arg0->mDoneCount = value1;
+    arg0->mTarget = value2;
+    value1 = (u32) arg0->mTarget;
+    arg0->mOrigin = value1;
+    arg0->mFrame = value2;
+    value1 = (u32) arg0->mFrame;
+    arg0->mCounter = value1;
 }

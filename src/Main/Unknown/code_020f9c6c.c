@@ -621,7 +621,7 @@ void func_020fb46c(Unk020fc2e8 *param_1) {
 }
 
 void func_020fb35c(Unk020fc2e8 *param_1) {
-    Unk0212c400 **p;
+    NNSSndSeqPlayer **p;
     struct Unk0208e490 *q;
     s32 *v;
 
@@ -641,10 +641,10 @@ void func_020fb35c(Unk020fc2e8 *param_1) {
         p = func_0210e128(func_02108ea0(0));
         if (data_0217d084.mUnk_0c != 0) {
             if (*p != NULL) {
-                func_0212c6f0(p, 0);
+                NNS_SndPlayerStopSeq(p, 0);
             }
             if (*p != NULL) {
-                func_0212c6f0(p, 0);
+                NNS_SndPlayerStopSeq(p, 0);
             }
             func_0212ecc0(p, 0, 0xe0);
         }

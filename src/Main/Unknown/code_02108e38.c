@@ -8,6 +8,6 @@ void func_02108e38(void) {
     s32 i;
 
     for (i = 7; i < 12; i++) {
-        func_0212c6f0(&data_0217c838[i], 0);
+        NNS_SndPlayerStopSeq(&data_0217c838[i], 0);
     }
 }

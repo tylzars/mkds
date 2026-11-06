@@ -12,7 +12,7 @@
 typedef struct Unk020a826c_a0 {
     /* 00 */ Unk0210b7a8 mUnk_00;
     /* 10 */ Vec3 mUnk_10;
-    /* 1c */ Unk0212c400 **mUnk_1c;
+    /* 1c */ NNSSndSeqPlayer **mUnk_1c;
     /* 20 */ BOOL mUnk_20;
     /* 24 */ s32 mUnk_24;
 } Unk020a826c_a0;

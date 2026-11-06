@@ -78,7 +78,7 @@ void func_020e79c4(void) {
     if (data_021759c0->mUnk_00c == 6) {
         return;
     }
-    func_0212c6f0(func_02108e6c(4), 1);
+    NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
     data_0217b8c8 = NULL;
 }
 

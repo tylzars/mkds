@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_0212d214.h"
 
-typedef struct Unk0212c400 Unk0212c400;
+typedef struct NNSSndSeqPlayer NNSSndSeqPlayer;
 
 s32 func_020172d0(s32 a);
 void *NNS_FndGetNthListObject(NNSFndList *list, u16 index);

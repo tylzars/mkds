@@ -662,7 +662,7 @@ typedef enum { UNK_020B843C_ARG_0, UNK_020B843C_ARG_1 } Unk020b843c_Arg;
 
 void func_020bc958(void) {
     Unk0217b3ec *d;
-    Unk0212c400 **a;
+    NNSSndSeqPlayer **a;
     u32 v;
 
     if (data_021759c0->mMode == MODE_BATTLE) {
@@ -691,10 +691,10 @@ void func_020bc958(void) {
                 a = func_0210e128(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (*a != NULL) {
-                        func_0212c6f0(a, 0);
+                        NNS_SndPlayerStopSeq(a, 0);
                     }
                     if (*a != NULL) {
-                        func_0212c6f0(a, 0);
+                        NNS_SndPlayerStopSeq(a, 0);
                     }
                     func_0212ecc0(a, 0, v);
                 }

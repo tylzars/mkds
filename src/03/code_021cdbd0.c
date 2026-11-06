@@ -17,10 +17,10 @@ void func_ov003_021cdc4c(void) {
     u32 a;
     data_ov003_021da274 = func_ov003_021d285c(0x9c, 4);
     data_ov003_021da274->mUnk_94 = func_ov003_021d14b8(data_ov003_021d77d4, &a, 0x20);
-    func_0212baa8();
+    NNS_SndInit();
     func_0212d5f8(&data_ov003_021da274->mUnk_00, data_ov003_021da274->mUnk_94);
     func_0212edac(NULL);
-    func_0212c6a0(&data_ov003_021da274->mUnk_90);
+    NNS_SndHandleInit(&data_ov003_021da274->mUnk_90);
     data_ov003_021da274->mUnk_98 = func_ov003_021d3544(0, func_ov003_021cdbc8, NULL, 0xc8);
 }
 
@@ -53,15 +53,15 @@ u32 func_ov003_021cdbfc(u32 arg0) {
     value0 = (u32) &data_ov003_021da274;
     value0 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = (value0) + 144u;
-    value3 = (u32) &func_0212c678;
-    value0 = (u32) func_0212c678((Unk0212c400 **) value0, value1);
+    value3 = (u32) &NNS_SndPlayerSetVolume;
+    value0 = (u32) NNS_SndPlayerSetVolume((NNSSndSeqPlayer **) value0, value1);
     return value0;
 }
 
 void func_ov003_021cdbe4(u32 first, u32 second) {
-    func_0212c524((Unk0212c400 **) ((u8 *) data_ov003_021da274 + 0x90), first, second);
+    NNS_SndPlayerSetTrackPitch((NNSSndSeqPlayer **) ((u8 *) data_ov003_021da274 + 0x90), first, second);
 }
 
 void func_ov003_021cdbd0(void) {
-    func_0212c6f0((Unk0212c400 **) ((u8 *) data_ov003_021da274 + 0x90), 0);
+    NNS_SndPlayerStopSeq((NNSSndSeqPlayer **) ((u8 *) data_ov003_021da274 + 0x90), 0);
 }

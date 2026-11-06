@@ -31,7 +31,7 @@ u32 func_0210d960(void) {
 }
 
 void func_0210d894(void *a, u32 b, const u8 *c) {
-    func_0212baa8();
+    NNS_SndInit();
     data_0217d130 = HeapStackCreate(a, b);
     data_0217d06c = HeapStackAlloc(data_0217d130, 0x1020, func_0210d890, NULL, 0);
     if (c != NULL) {
@@ -39,36 +39,36 @@ void func_0210d894(void *a, u32 b, const u8 *c) {
         data_0217d064 = 1;
         func_0212edac(data_0217d130);
     }
-    func_0212c6a0(&data_0217d068);
+    NNS_SndHandleInit(&data_0217d068);
     func_0210dc60(&data_0217d084, &data_0217d070, 0);
 }
 
 void func_0210d890(u32 p0) {}
 
 void func_0210d854(u32 a) {
-    func_0212f730((void *) (((u32) data_0217d06c + 0x1f) & ~0x1f), 0x1000, a);
+    NNS_SndCaptureStartOutputEffect((void *) (((u32) data_0217d06c + 0x1f) & ~0x1f), 0x1000, a);
     data_0216cb24 = a;
 }
 
 void func_0210d834(s32 a) {
-    func_0212f638(a);
+    NNS_SndCaptureChangeOutputEffect(a);
     data_0216cb24 = a;
 }
 
-void func_0210d7dc(u32 a, u32 b, Unk0212c400 **c) {
+void func_0210d7dc(u32 a, u32 b, NNSSndSeqPlayer **c) {
     if (*c != NULL) {
-        func_0212c6f0(c, 0);
+        NNS_SndPlayerStopSeq(c, 0);
     }
     func_0212d254(((Unk0212ea28 *) func_0212d51c(a))->mUnk_00);
     func_0212ed58(c, a);
-    func_0212c678(c, b);
+    NNS_SndPlayerSetVolume(c, b);
 }
 
 void func_0210d7ac(void) {
     if (data_0217d070.mUnk_00 != 0) {
         func_0210d73c(&data_0217d070);
     }
-    func_0212ba74();
+    NNS_SndMain();
 }
 
 void func_0210d740(Unk0217d070 *a, Unk0217c814 *b, u32 c, Unk021073ec d) {
@@ -76,7 +76,7 @@ void func_0210d740(Unk0217d070 *a, Unk0217c814 *b, u32 c, Unk021073ec d) {
     *(Unk021073ec *) &a->mUnk_09 = d;
     a->mUnk_04 = b;
     a->mUnk_08 = c;
-    func_0212c6a0(&a->mUnk_0c);
-    func_0212c6a0(&a->mUnk_10);
+    NNS_SndHandleInit(&a->mUnk_0c);
+    NNS_SndHandleInit(&a->mUnk_10);
     a->mUnk_00 = 1;
 }

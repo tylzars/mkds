@@ -41,7 +41,7 @@ typedef struct SoundSource {
 // is started. Returned by func_0210e128 and passed to func_0210bcf4; func_0210c084 writes its byte at 0x19.
 // func_0210bf24 subtracts one NNSFndList from mUnk_10 to reach the SoundSource holding it.
 typedef struct PlayingSound {
-    /* 00 */ Unk0212c400 *mUnk_00;
+    /* 00 */ NNSSndSeqPlayer *mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ u32 mUnk_08;
     /* 0c */ u32 mUnk_0c;

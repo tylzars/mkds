@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0210e33c.h"
 
-typedef struct Unk0212c400 Unk0212c400;
+typedef struct NNSSndSeqPlayer NNSSndSeqPlayer;
 
 // 0x08-byte entries behind data_0216c860.
 typedef struct Unk0216c860 {
@@ -64,7 +64,7 @@ typedef struct Unk0217c7c4 {
 
 // The first eight bytes of each element of the table an Unk0217c7c4 describes: a handle at 0 and a word at 4.
 typedef struct Unk0210e2c4 {
-    /* 00 */ Unk0212c400 *mUnk_00;
+    /* 00 */ NNSSndSeqPlayer *mUnk_00;
     /* 04 */ s32 mUnk_04;
 } Unk0210e2c4;
 
@@ -100,7 +100,7 @@ extern Unk0217c854 *data_0217c854;
 // Object data_0217d060 points to.
 typedef struct Unk0217d060 {
     /* 00 */ Unk0215c380 mUnk_00;
-    /* 0c */ Unk0212c400 *mUnk_0c;
+    /* 0c */ NNSSndSeqPlayer *mUnk_0c;
     /* 10 */ Unk0217c7b4 *mUnk_10;
 } Unk0217d060;
 

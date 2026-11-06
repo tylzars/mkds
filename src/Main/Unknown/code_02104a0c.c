@@ -98,7 +98,7 @@ void func_02104ff8(void) {
     s32 c;
     KartItems *p;
     Unk020f40dc *q;
-    Unk0212c400 **v;
+    NNSSndSeqPlayer **v;
     u32 a = 0;
     u32 b = 0;
     if (data_021759c0->mMode != MODE_BATTLE) {
@@ -118,13 +118,13 @@ void func_02104ff8(void) {
             func_020f47e4(q, 0x11);
             data_0217c704[i] = 0;
             if (i == data_021759c0->mEntryIndex && (data_0217c780 & 1)) {
-                v = (Unk0212c400 **) func_0210e128(func_02108ea0(0));
+                v = (NNSSndSeqPlayer **) func_0210e128(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (v[0] != NULL) {
-                        func_0212c6f0(v, 0);
+                        NNS_SndPlayerStopSeq(v, 0);
                     }
                     if (v[0] != NULL) {
-                        func_0212c6f0(v, a);
+                        NNS_SndPlayerStopSeq(v, a);
                     }
                     func_0212ecc0(v, b, 0x3f);
                 }

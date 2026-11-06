@@ -241,7 +241,7 @@ void UpdateFireball2(void *a, Fireball2 *b) {
     s32 d;
     u16 w;
     Kart *p;
-    Unk0212c400 **h;
+    NNSSndSeqPlayer **h;
     Vec3 v;
 
     n = b->mUnk_ac;
@@ -256,10 +256,10 @@ void UpdateFireball2(void *a, Fireball2 *b) {
                 h = func_02108e6c(7);
                 if ((data_0217c780 & 1) && data_0217d084.mUnk_0c != 0) {
                     if (h[0] != NULL) {
-                        func_0212c6f0(h, 0);
+                        NNS_SndPlayerStopSeq(h, 0);
                     }
                     if (h[0] != NULL) {
-                        func_0212c6f0(h, 0);
+                        NNS_SndPlayerStopSeq(h, 0);
                     }
                     func_0212ecc0(h, 0, 0x1c2);
                 }

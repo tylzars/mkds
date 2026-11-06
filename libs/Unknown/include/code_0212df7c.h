@@ -25,9 +25,9 @@ typedef struct Unk0212e7b4 {
     /* 04 */ u32 mUnk_04;
 } Unk0212e7b4;
 
-// Record of 12 bytes: func_0212f788 and func_0212d51c return one. func_0212e708 reads the number at 0 and the
-// halfword at 4, func_0212ed58 passes the halfword at 4 and the bytes at 8 and 9 to func_0212eaf8, and func_0212ea28
-// and func_0212eaf8 read the bytes at 6 and 7.
+// Record of 12 bytes: NNSi_SndSeqArcGetSeqInfo and func_0212d51c return one. func_0212e708 reads the number at 0 and
+// the halfword at 4, func_0212ed58 passes the halfword at 4 and the bytes at 8 and 9 to func_0212eaf8, and
+// func_0212ea28 and func_0212eaf8 read the bytes at 6 and 7.
 typedef struct Unk0212ea28 {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u16 mUnk_04;
@@ -70,9 +70,9 @@ u32 func_0212e95c(s32 a, HeapStack *b);
 u32 func_0212e994(s32 a, HeapStack *b);
 u32 func_0212e9cc(s32 a, HeapStack *b);
 u32 func_0212ea04(s32 a, HeapStack *b);
-s32 func_0212ea28(Unk0212c400 **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, Unk0212f788 *f, u32 g, u32 h);
-s32 func_0212eaf8(Unk0212c400 **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, u32 f);
-s32 func_0212ec04(Unk0212c400 **a, s32 b, s32 c, s32 d, s32 e, s32 f);
+s32 func_0212ea28(NNSSndSeqPlayer **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, Unk0212f788 *f, u32 g, u32 h);
+s32 func_0212eaf8(NNSSndSeqPlayer **a, s32 b, s32 c, s32 d, Unk0212ea28 *e, s32 f);
+s32 func_0212ec04(NNSSndSeqPlayer **a, s32 b, s32 c, s32 d, s32 e, s32 f);
 s32 func_0212ecc0(const void *a, u32 b, u32 c);
 s32 func_0212ed58(void *a, s32 b);
 u32 func_0212edac(HeapStack *a);

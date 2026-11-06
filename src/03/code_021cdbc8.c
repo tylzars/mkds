@@ -2,5 +2,5 @@
 #include "code_0212ba68.h"
 
 void func_ov003_021cdbc8(void) {
-    func_0212ba74();
+    NNS_SndMain();
 }
