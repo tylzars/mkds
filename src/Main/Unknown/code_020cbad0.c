@@ -156,7 +156,7 @@ void func_020cbb10(void) {
         func_0211f240();
         func_0211a6bc();
     }
-    func_0203206c();
+    LoadSelectGameData();
     func_0211dd44();
     s.mUnk_00 = func_020cbad0();
     s.mUnk_04 = func_020b403c(1);

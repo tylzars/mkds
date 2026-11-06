@@ -113,7 +113,7 @@ void func_020cb6c0(void) {
             case 14:
                 v = (func_020cae54() == 0) ? UNK_020CB6C0_0 : UNK_020CB6C0_1;
                 p = data_0217b43c;
-                func_02032654(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
+                InitSelectGame(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;
             case SCREEN_SELECT_BATTLE_STAGE:
                 v = (func_02029930()->mUnk_e4 == 0) ? UNK_020CB6C0_1 : UNK_020CB6C0_0;
@@ -193,7 +193,7 @@ void func_020cb618(void) {
                 ReleaseSelectRaceRule();
                 break;
             case 14:
-                func_0203223c();
+                ReleaseSelectGame();
                 break;
             case SCREEN_SELECT_BATTLE_STAGE:
                 ReleaseSelectBattleStage();

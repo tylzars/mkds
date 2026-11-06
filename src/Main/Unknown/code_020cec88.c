@@ -7,7 +7,7 @@
 #pragma optimize_for_size on
 #pragma thumb on
 void func_020cec88(void) {
-    switch (func_02032280()) {
+    switch (AdvanceSelectGame()) {
         case 1:
             switch (func_02029930()->mUnk_c8) {
                 case 3:
