@@ -17,9 +17,9 @@
 
 void func_020d2d94(void) {
     int v1;
-    Unk020e6fd4 **v2;
+    MapObjectList **v2;
     void **v3;
-    Unk020e6fd4 **v4;
+    MapObjectList **v4;
     v2 = gMapObjects->mDrawLists;
     v4 = gMapObjects->mUpdateLists;
     v1 = 0;

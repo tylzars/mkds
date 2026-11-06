@@ -65,14 +65,14 @@ void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d) {
     func_020e53ac(&p->mUnk_dc, NULL, c, d);
 }
 
-void func_02095d1c(Unk020e6fd4 *p) {
+void func_02095d1c(MapObjectList *p) {
     s32 i;
     MoveTree *e;
 
     if (p == NULL) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < p->mMapObjectCount && (e = p->mMapObjects[i]) != NULL; i++) {
         e->mUnk_a8 = (e->mUnk_00.mCourseMapRow->mUnk_28 << 12) / 100;
         func_020e516c(&e->mUnk_dc, &e->mUnk_00.mPos, 0x54666, 14);
     }
@@ -211,14 +211,14 @@ void DrawBakubaku(void *a, Bakubaku *p) {
     DrawMapObjectModel(a, gBakubaku, p);
 }
 
-void func_020957ec(Unk020e6fd4 *p) {
+void func_020957ec(MapObjectList *p) {
     s32 i;
     Bakubaku *e;
 
     if (p == NULL) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < p->mMapObjectCount && (e = p->mMapObjects[i]) != NULL; i++) {
         VEC_MultAdd(0x320000, &e->mUnk_00.mMatrix.mUnk_00[2], &e->mUnk_00.mCourseMapRow->mUnk_00, &e->mUnk_a4);
     }
 }

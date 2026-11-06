@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_02036820.h"
 
 #pragma thumb on
-u32 func_020e6f9c(Unk020e6fd4 *arg0) {
+u32 InitMapObjectUpdateList(MapObjectList *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value4;

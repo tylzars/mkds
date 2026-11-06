@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "code_02146d78.h"
-#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 
 // Element of 0x10 bytes: a position, then two halfwords.
 typedef struct Unk0209df84_c4 {
@@ -43,7 +43,7 @@ u32 func_0209df00(void);
 u32 func_0209df20(void);
 void func_0209df44(void);
 void UpdateFireball2(void *a, Fireball2 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_0209e310(Unk020e6fd4 *p);
+void func_0209e310(MapObjectList *p);
 void DrawFireball2(void *a, Fireball2 *b);
 void func_0209e938(void *a);
 void CreateFireball2(Unk0209e950 *a); /* also sets word +0x1c of the group record to 1 */

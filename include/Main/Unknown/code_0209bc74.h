@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_020ea670.h" // Unk020ea670
 #include "Main/Unknown/code_02087d0c.h" // Unk02087d0c
 
-// The draw group (Unk020e6fd4), not the bundle: the creators' first argument; they store 1 or 2 at 0x18.
+// The draw group (MapObjectList), not the bundle: the creators' first argument; they store 1 or 2 at 0x18.
 typedef struct Unk0209bc74_a {
     /* 00 */ u8 mUnk_00[0x18];
     /* 18 */ s32 mUnk_18;

@@ -303,9 +303,9 @@ void InitMapObjects(void) {
     Unk021000d0 *d;
     CourseMapRow *e;
     MapObject *o;
-    Unk020e6fd4 *w[3];
-    Unk020e6fd4 *x;
-    Unk020e6fd4 **y;
+    MapObjectList *w[3];
+    MapObjectList *x;
+    MapObjectList **y;
     MapObjects *q;
     h = GetHeap(func_020364e8());
     func_020d22e0();
@@ -408,7 +408,7 @@ void InitMapObjects(void) {
                 }
             }
             if (g != 0) {
-                func_020d4a18(w[j]);
+                ClearMapObjectList(w[j]);
                 if (v != 0) {
                     func_020d4a10(w[j], v);
                     gMapObjects->mDrawLists[gMapObjects->mDrawListCount++] = w[j];
@@ -417,7 +417,7 @@ void InitMapObjects(void) {
         }
     }
     for (i = 0; i < gMapObjects->mDrawListCount; i++) {
-        func_020d49f0(gMapObjects->mDrawLists[i]);
+        InitMapObjectDrawList(gMapObjects->mDrawLists[i]);
     }
     for (i = 0; i < gMapObjects->mMapObjectCount; i++) {
         o = gMapObjects->mMapObjects[i];
@@ -496,20 +496,20 @@ void InitMapObjects(void) {
         g = 1;
         for (j = 0; j < gMapObjects->mUpdateListCount; j++) {
             if (gMapObjects->mUpdateLists[j] == x) {
-                func_020e6fc4(x, v);
+                AddToMapObjectListCount(x, v);
                 g = 0;
             }
         }
         if (g != 0) {
-            func_020e6fcc(x);
+            ClearMapObjectListCount(x);
             if (v != 0) {
-                func_020e6fc4(x, v);
+                AddToMapObjectListCount(x, v);
                 gMapObjects->mUpdateLists[gMapObjects->mUpdateListCount++] = x;
             }
         }
     }
     for (i = 0; i < gMapObjects->mUpdateListCount; i++) {
-        func_020e6f9c(gMapObjects->mUpdateLists[i]);
+        InitMapObjectUpdateList(gMapObjects->mUpdateLists[i]);
     }
     for (i = 0; i < gMapObjects->mMapObjectCount; i++) {
         o = gMapObjects->mMapObjects[i];
@@ -526,7 +526,7 @@ void InitMapObjects(void) {
 void func_020d2e24(void) {
     s32 i;
     s32 n;
-    Unk020e6fd4 **p;
+    MapObjectList **p;
     n = gMapObjects->mDrawListCount;
     p = gMapObjects->mDrawLists;
     if (gCourseWater != NULL) {
@@ -543,7 +543,7 @@ void func_020d2e24(void) {
 void func_020d2dec(void) {
     s32 i;
     s32 n;
-    Unk020e6fd4 **p;
+    MapObjectList **p;
     n = gMapObjects->mUpdateListCount;
     p = gMapObjects->mUpdateLists;
     for (i = 0; i < n; p++, i++) {

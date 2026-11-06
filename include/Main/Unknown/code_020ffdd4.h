@@ -32,4 +32,4 @@ Unk02100004 *func_02100004(void);
 Unk020fff4c *func_020fff4c(void);
 Unk020fffa8 *func_020fffa8(void);
 void DrawDram(void *a, Dram *e, void *c, s32 d);
-void func_020ffdd4(Unk020e6fd4 *v1);
+void func_020ffdd4(MapObjectList *v1);

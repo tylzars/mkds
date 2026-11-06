@@ -4,7 +4,7 @@
 
 typedef struct MapObjectKindData MapObjectKindData;
 typedef struct MapObject MapObject;
-typedef struct Unk020e6fd4 Unk020e6fd4;
+typedef struct MapObjectList MapObjectList;
 
 struct Unk021000d0;
 
@@ -54,12 +54,12 @@ typedef struct Unk021000d0 {
     /* 04 */ s32 mObjectSize;
     /* 08 */ void (*mInitObject)(MapObject *a, struct CourseMapRow *b, void *c);
     /* 0c */ MapObjectKindData *(*mCreateKindData)(void);
-    /* 10 */ Unk020e6fd4 *(*mUnk_10)(void);
-    /* 14 */ Unk020e6fd4 *(*mUnk_14)(void);
-    /* 18 */ Unk020e6fd4 *(*mUnk_18)(void);
-    /* 1c */ Unk020e6fd4 *(*mUnk_1c)(void);
+    /* 10 */ MapObjectList *(*mUnk_10)(void);
+    /* 14 */ MapObjectList *(*mUnk_14)(void);
+    /* 18 */ MapObjectList *(*mUnk_18)(void);
+    /* 1c */ MapObjectList *(*mUnk_1c)(void);
     /* 20 */ MapObjectKindData *mKindData;
-    /* 24 */ Unk020e6fd4 *mUnk_24[4];
+    /* 24 */ MapObjectList *mUnk_24[4];
 } Unk021000d0;
 
 void *func_02100138(u32 a);

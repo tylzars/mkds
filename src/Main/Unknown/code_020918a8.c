@@ -82,14 +82,14 @@ void DrawKanoke64(void *a, Unk020919e8 *p) {
     DrawMapObjectModel(a, gKanoke64, p);
 }
 
-void func_02091fd8(Unk020e6fd4 *a) {
+void func_02091fd8(MapObjectList *a) {
     s32 i;
     Unk020919e8 *p;
 
     if (a == NULL) {
         return;
     }
-    for (i = 0; i < a->mUnk_04 && (p = (Unk020919e8 *) a->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < a->mMapObjectCount && (p = (Unk020919e8 *) a->mMapObjects[i]) != NULL; i++) {
         if (p->mUnk_00.mFlags & 0x800) {
             p->mUnk_a4 = (u16) (func_020919e8_inline_2(25) + 200);
         }

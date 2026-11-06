@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02146d78.h"
-#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
@@ -50,6 +50,6 @@ void InitNsKiller2(NsKiller2 *p);
 void func_02093cb4(void);
 void func_02093cd4(void);
 void UpdateNsKiller1(void *a, NsKiller1 *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_02093eac(Unk020e6fd4 *p);
+void func_02093eac(MapObjectList *p);
 void DrawNsKiller1(void *a, NsKiller1 *p);
 void CreateNsKiller1(void *a);

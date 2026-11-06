@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk020e6fd4 Unk020e6fd4;
+typedef struct MapObjectList MapObjectList;
 
-u32 func_020e6f9c(Unk020e6fd4 *arg0);
+u32 InitMapObjectUpdateList(MapObjectList *arg0);

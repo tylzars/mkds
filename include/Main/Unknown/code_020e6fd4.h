@@ -17,10 +17,7 @@ typedef struct Unk020e71a0_94 {
     /* 54 */ u8 mUnk_54[0xc];
 } Unk020e71a0_94;
 
-// Object behind MapObject.mKindData, built once per Unk021000d0 (row->mUnk_04): kinds whose rows point at the same
-// record share it (e.g. kinds 0x01/0x03/0x06/0x09/0x0c; 0x05/0x0e/0x0f). AddMapObjectToUpdateList copies its 0x04 into
-// the callback slot at 0x1c of a Unk020e6fd4 and its 0x20 into the word at 0x18; func_020d6968 reads 0x20 and
-// func_020f944c reads 0x28.
+// Object behind MapObject.mKindData; kinds whose rows point at the same record share it.
 typedef struct MapObjectKindData {
     /* 00 */ s32 (*mUnk_00)(struct MapObject *e, void *a, s32 *b, s32 *c);
     /* 04 */ s32 (*mUnk_04)(struct MapObject *e, void *a, void *b, void *c);
@@ -40,7 +37,7 @@ typedef struct MapObjectKindData {
     /* 3c */ s32 mUnk_3c;
 } MapObjectKindData;
 
-// Element object up to 0xa0, which every kind shares: func_020e705c and func_020e71a0 read 0x78 and 0x94 of every
+// Element object up to 0xa0, which every kind shares: UpdateMapObjectList and func_020e71a0 read 0x78 and 0x94 of every
 // object, func_020d6968 reads 0x00, 0x02 and 0x98. InitKuribo and InitDram pass the Unk020e005c_080 at 0x80 to
 // func_02046be8.
 // From 0xa0 on, the objects of func_020e72cc (Unk020e730c), InitDram (Dram), func_020ff97c (Unk020ff97c)
@@ -107,25 +104,22 @@ typedef struct Unk020e730c {
     /* a2 */ u16 mUnk_a2;
 } Unk020e730c;
 
-// Container of MapObject objects: the pointer array at 0x00 and its count at 0x04; func_020e6fd4 calls 0x1c for
-// each object, func_020e705c calls 0x10, AddMapObjectToUpdateList adds an object, func_020e6fc4 and func_020e6fcc
-// change the count.
-typedef struct Unk020e6fd4 {
-    /* 00 */ void **mUnk_00;
-    /* 04 */ u16 mUnk_04;
+typedef struct MapObjectList {
+    /* 00 */ void **mMapObjects;
+    /* 04 */ u16 mMapObjectCount;
     /* 06 */ u8 mUnk_06[2];
-    /* 08 */ void (*mUnk_08)(struct Unk020e6fd4 *p);
-    /* 0c */ void (*mUnk_0c)(struct Unk020e6fd4 *p);
+    /* 08 */ void (*mUnk_08)(struct MapObjectList *p);
+    /* 0c */ void (*mUnk_0c)(struct MapObjectList *p);
     /* 10 */ UnkFunc *mUnk_10;
-    /* 14 */ void (*mUnk_14)(struct Unk020e6fd4 *p);
+    /* 14 */ void (*mUnk_14)(struct MapObjectList *p);
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 (*mUnk_1c)(MapObject *e, void *a, void *b, void *c);
     /* 20 */ s32 mUnk_20;
     /* 24 */ void **mUnk_24;
-} Unk020e6fd4;
+} MapObjectList;
 
 typedef struct Unk020e6488 Unk020e6488;
-typedef struct Unk020e6fd4 Unk020e6fd4;
+typedef struct MapObjectList MapObjectList;
 typedef struct Unk0210b7a8 Unk0210b7a8;
 
 // 0x40-byte block that func_020e7410 takes from data_02159370.
@@ -161,13 +155,13 @@ extern Unk0217bb08 data_0217bae8[];
 extern Unk0217bb08 data_0217baf4[];
 extern Unk0217bb08 data_0217bb08[];
 
-void func_020e6fd4(Unk020e6fd4 *p);
-void func_020e705c(Unk020e6fd4 *p);
+void func_020e6fd4(MapObjectList *p);
+void UpdateMapObjectList(MapObjectList *p);
 void func_020e71a0(MapObject *p);
 void func_020e72cc(Unk020e730c *p, struct CourseMapRow *q);
 void func_020e730c(void);
 u16 func_020e7388(int arg0);
-Unk020e6fd4 *func_020e73b4(void);
+MapObjectList *func_020e73b4(void);
 Unk020e7410 *func_020e7410(void);
 void func_020e7460(void);
 void func_020e7760(void);

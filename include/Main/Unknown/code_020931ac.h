@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
-#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 
 // Object of kind 0x1a4 (MkdEfBurner); Unk02093708 is a view of the draw group record (word +0x1c), not of this
 // object. After the shared part, a counter at 0xa0, a halfword at 0xa4, a value at 0xa8, a
@@ -34,7 +34,7 @@ void func_020931f0(void);
 void func_02093210(void);
 void func_02093234(void);
 void UpdateMkdEfBurner(void *a, MkdEfBurner *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_02093484(Unk020e6fd4 *p);
+void func_02093484(MapObjectList *p);
 void DrawMkdEfBurner(void *a, MkdEfBurner *p);
 void func_020936f0(void *a);
 void CreateMkdEfBurner(Unk02093708 *p); /* also sets word +0x1c of the group record to 1 */

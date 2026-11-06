@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02146d78.h"
-#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "Main/Unknown/code_020e516c.h" // Unk020e516c
@@ -37,14 +37,14 @@ typedef struct MoveTree {
 void func_02095504(void);
 void func_02095524(void);
 void UpdateBakubaku(void *a, Bakubaku *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_020957ec(Unk020e6fd4 *p);
+void func_020957ec(MapObjectList *p);
 void DrawBakubaku(void *a, Bakubaku *p);
 void CreateBakubakuAndBakuShadow(void *a);
 void func_020959bc(void);
 void func_020959dc(void);
 void func_020959fc(void);
 void UpdateMoveTree(void *a, MoveTree *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_02095d1c(Unk020e6fd4 *p);
+void func_02095d1c(MapObjectList *p);
 void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d);
 void CreateMoveTree(void *a);
 u8 func_02095efc(MoveTree *a, Kart *b, u8 *c, u8 *d);

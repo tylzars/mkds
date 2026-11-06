@@ -211,7 +211,7 @@ void DrawSanbo(void *a, Sanbo *p) {
     }
 }
 
-void func_020a78c8(Unk020e6fd4 *l) {
+void func_020a78c8(MapObjectList *l) {
     s32 j;
     s32 i;
     Sanbo *o;
@@ -219,7 +219,7 @@ void func_020a78c8(Unk020e6fd4 *l) {
     if (l == NULL) {
         return;
     }
-    for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < l->mMapObjectCount && (o = l->mMapObjects[i]) != NULL; i++) {
         o->mUnk_1d4 = (o->mUnk_000.mCourseMapRow->mUnk_28 << 12) / 100;
         o->mUnk_1d0 = 4;
         for (j = 0; j < o->mUnk_1d0; j++) {
@@ -428,11 +428,11 @@ void func_020a7270(u16 a) {
 void func_020a71c8(void) {
     s32 i;
     MapObject *o;
-    Unk020e6fd4 *l;
+    MapObjectList *l;
 
     l = func_02100138(0x6b);
     if (l != NULL) {
-        for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
+        for (i = 0; i < l->mMapObjectCount && (o = l->mMapObjects[i]) != NULL; i++) {
             if ((o->mFlags & 0x100) == 0) {
                 ParkMapObject(o);
             }
@@ -440,7 +440,7 @@ void func_020a71c8(void) {
     }
     l = func_02100138(MAP_OBJECT_KIND_SHINE_BALLOON);
     if (l != NULL) {
-        for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
+        for (i = 0; i < l->mMapObjectCount && (o = l->mMapObjects[i]) != NULL; i++) {
             if ((o->mFlags & 0x100) == 0) {
                 ParkMapObject(o);
             }

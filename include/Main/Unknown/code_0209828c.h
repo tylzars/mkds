@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_0209bc74.h" // MapObjectModel
 #include "Main/Unknown/code_020e005c.h" // Unk020e0144
 #include "code_02146d78.h"
-#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 
 // Object up to 0x200 bytes: the shared part, a counter at 0xa4 that cycles between 0xac and 0xb0, a state at 0xb4,
 // seven Unk020e0144 from 0xb8, then a count and an index at 0x1b8 and 0x1ba and seven values at 0x1bc.
@@ -41,7 +41,7 @@ typedef struct Unk020982d4 {
     /* 1c */ BOOL mUnk_1c;
 } Unk020982d4;
 
-extern Unk020e6fd4 *data_usa_0217b0dc;
+extern MapObjectList *data_usa_0217b0dc;
 extern MapObjectModel *gPakkunMouth;
 extern void *gPakkunZHead;
 extern void *data_usa_0217b0e8;

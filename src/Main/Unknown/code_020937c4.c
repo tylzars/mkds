@@ -53,14 +53,14 @@ void DrawNsKiller1(void *a, NsKiller1 *p) {
     DrawMapObjectModel(a, gNsKiller1, p);
 }
 
-void func_02093eac(Unk020e6fd4 *p) {
+void func_02093eac(MapObjectList *p) {
     s32 i;
     NsKiller1 *e;
 
     if (p == NULL) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < p->mMapObjectCount && (e = p->mMapObjects[i]) != NULL; i++) {
         e->mUnk_a0 = 0;
     }
 }

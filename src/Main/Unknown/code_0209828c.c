@@ -245,7 +245,8 @@ void func_0209886c(void) {
     if (data_usa_0217b0dc == NULL) {
         return;
     }
-    for (i = 0; i < data_usa_0217b0dc->mUnk_04 && (o = (Pakkun *) data_usa_0217b0dc->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < data_usa_0217b0dc->mMapObjectCount && (o = (Pakkun *) data_usa_0217b0dc->mMapObjects[i]) != NULL;
+         i++) {
         if (GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1 > 0) {
             f = 0.5f + (float) ((GetMapObjectModelNsbcaFrameCount(gPakkunMouth) - 1) << 12);
         } else {
@@ -395,7 +396,7 @@ void *func_020982d4(void) {
 }
 
 void *func_0209828c(void) {
-    data_usa_0217b0dc = (Unk020e6fd4 *) func_0209bf48(func_0209886c, UpdatePakkun, NULL);
+    data_usa_0217b0dc = (MapObjectList *) func_0209bf48(func_0209886c, UpdatePakkun, NULL);
     func_020e6f50(&data_usa_0217b0dc);
     return data_usa_0217b0dc;
 }

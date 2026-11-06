@@ -75,7 +75,7 @@ void DrawMkdEfBurner(void *a, MkdEfBurner *p) {
     DrawMapObjectModel(a, gMkdEfBurner, p);
 }
 
-void func_02093484(Unk020e6fd4 *p) {
+void func_02093484(MapObjectList *p) {
     BOOL z;
     s32 i;
     MkdEfBurner *e;
@@ -87,7 +87,7 @@ void func_02093484(Unk020e6fd4 *p) {
     }
     z = FALSE;
     f = data_usa_0215646c;
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < p->mMapObjectCount && (e = p->mMapObjects[i]) != NULL; i++) {
         e->mUnk_00.mPos.y = e->mUnk_00.mCourseMapRow->mUnk_00.y - e->mUnk_00.mExtent.y;
         if (e->mUnk_00.mCourseMapRow->mUnk_26 < 0) {
             e->mUnk_b0.mUnk_08 = 0xffff;

@@ -179,7 +179,7 @@ void func_020d4d44(MtxFx43 *p) {
     func_020d7bec(p);
 }
 
-void func_020d4c28(Unk020e6fd4 *p, MtxFx43 *a) {
+void DrawMapObjectList(MapObjectList *p, MtxFx43 *a) {
     s32 i;
     MapObject *e;
     UnkFunc *f;
@@ -189,7 +189,7 @@ void func_020d4c28(Unk020e6fd4 *p, MtxFx43 *a) {
     s32 m;
 
     f = p->mUnk_10;
-    n = p->mUnk_04;
+    n = p->mMapObjectCount;
     t = p->mUnk_24;
     if (f == NULL) {
         return;
@@ -294,23 +294,23 @@ void func_020d4a20(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020d4a18(Unk020e6fd4 *arg0) {
+void ClearMapObjectList(MapObjectList *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     value1 = 0u;
     *(u32 *) ((value0) + 0u) = value1;
-    arg0->mUnk_04 = (u16) value1;
+    arg0->mMapObjectCount = (u16) value1;
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_020d4a10(Unk020e6fd4 *p, s32 a) {
-    p->mUnk_04 += a;
+void func_020d4a10(MapObjectList *p, s32 a) {
+    p->mMapObjectCount += a;
 }
 #pragma thumb off
 
 #pragma thumb on
-u32 func_020d49f0(Unk020e6fd4 *arg0) {
+u32 InitMapObjectDrawList(MapObjectList *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value4;
@@ -328,16 +328,14 @@ u32 func_020d49f0(Unk020e6fd4 *arg0) {
 #pragma thumb off
 
 #pragma thumb on
-// Appends the map object to the pointer array of one of its kind's three draw lists and counts it; the return value is
-// not used.
-u32 AddMapObjectToDrawList(Unk020e6fd4 *arg0, MapObject *arg1) {
+u32 AddMapObjectToDrawList(MapObjectList *arg0, MapObject *arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2;
     u32 value3;
-    value3 = (u32) arg0->mUnk_04;
+    value3 = (u32) arg0->mMapObjectCount;
     value2 = (value3) + (1u);
-    arg0->mUnk_04 = (u16) value2;
+    arg0->mMapObjectCount = (u16) value2;
     value2 = (u32) * (const u32 *) ((value0) + 0u);
     value0 = (value3 << 2);
     *(u32 *) ((value2) + (value0)) = value1;
@@ -354,16 +352,16 @@ void func_020d49d8(void *p0) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020d4990(Unk020e6fd4 *p) {
+void func_020d4990(MapObjectList *p) {
     s32 i;
 
     if (p->mUnk_1c != NULL) {
-        p->mUnk_24 = HeapAlloc(GetHeap(func_020364e8()), p->mUnk_04 * 4);
-        for (i = 0; i < p->mUnk_04; i++) {
-            p->mUnk_24[i] = p->mUnk_00[i];
+        p->mUnk_24 = HeapAlloc(GetHeap(func_020364e8()), p->mMapObjectCount * 4);
+        for (i = 0; i < p->mMapObjectCount; i++) {
+            p->mUnk_24[i] = p->mMapObjects[i];
         }
     } else {
-        p->mUnk_24 = p->mUnk_00;
+        p->mUnk_24 = p->mMapObjects;
     }
 }
 #pragma thumb off
@@ -486,10 +484,10 @@ void func_020d4698(void) {
 }
 
 void UpdateMapObjects(void) {
-    Unk020e6fd4 *e;
+    MapObjectList *e;
     s32 i;
     s32 n;
-    Unk020e6fd4 **t;
+    MapObjectList **t;
     s32 r;
 
     t = gMapObjects->mUpdateLists;
@@ -510,7 +508,7 @@ void UpdateMapObjects(void) {
             if (e->mUnk_0c != NULL) {
                 e->mUnk_0c(e);
             }
-            func_020e705c(e);
+            UpdateMapObjectList(e);
             if (e->mUnk_14 != NULL) {
                 e->mUnk_14(e);
             }
@@ -529,8 +527,8 @@ void UpdateMapObjects(void) {
 void DrawMapObjects(Unk020d4418 *p) {
     s32 i;
     s32 n;
-    Unk020e6fd4 **t;
-    Unk020e6fd4 *e;
+    MapObjectList **t;
+    MapObjectList *e;
     MtxFx43 *v;
     s32 k;
     s32 j;
@@ -549,7 +547,7 @@ void DrawMapObjects(Unk020d4418 *p) {
         if (e->mUnk_0c != NULL) {
             e->mUnk_0c(e);
         }
-        func_020d4c28(e, v);
+        DrawMapObjectList(e, v);
         if (e->mUnk_14 != NULL) {
             e->mUnk_14(e);
         }
@@ -563,7 +561,7 @@ void DrawMapObjects(Unk020d4418 *p) {
         if (e->mUnk_0c != NULL) {
             e->mUnk_0c(e);
         }
-        func_020d4c28(e, v);
+        DrawMapObjectList(e, v);
         if (e->mUnk_14 != NULL) {
             e->mUnk_14(e);
         }
@@ -836,7 +834,7 @@ void func_020d3cc8(void) {
     s32 i;
     s32 n;
     MapObjects *q;
-    Unk020e6fd4 **p;
+    MapObjectList **p;
     i = 0;
     q = gMapObjects;
     n = q->mUpdateListCount;

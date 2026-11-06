@@ -587,13 +587,13 @@ u32 func_020a58b4(void) {
 void ParkShine16Objects(void) {
     s32 i;
     MapObject *o;
-    Unk020e6fd4 *l;
+    MapObjectList *l;
 
     l = func_02100138(MAP_OBJECT_KIND_SHINE16);
     if (l == NULL) {
         return;
     }
-    for (i = 0; i < l->mUnk_04 && (o = l->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < l->mMapObjectCount && (o = l->mMapObjects[i]) != NULL; i++) {
         if ((o->mFlags & 0x100) == 0) {
             ParkMapObject(o);
         }

@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 #include "code_02146d78.h"
-#include "Main/Unknown/code_020e6fd4.h" // MapObject, Unk020e6fd4
+#include "Main/Unknown/code_020e6fd4.h" // MapObject, MapObjectList
 #include "code_0201c528.h" // Unk0201ca6c
 #include "code_02012b30.h" // MtxFx43
 
@@ -34,7 +34,7 @@ void *func_0209756c(void);
 void *func_0209758c(void);
 void func_020975ac(void);
 void UpdateFlipper(void *a, Flipper *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_020979c8(Unk020e6fd4 *a);
+void func_020979c8(MapObjectList *a);
 void DrawFlipper(void *a, Flipper *p);
 void CreateFlipper(void *a);
 u32 func_02097ed0(Flipper *p, Vec3 *a, s32 b, Vec3 *c);

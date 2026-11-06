@@ -136,7 +136,7 @@ void DrawFlipper(void *a, Flipper *p) {
     DrawMapObjectModel(a, gFlipper, p);
 }
 
-void func_020979c8(Unk020e6fd4 *a) {
+void func_020979c8(MapObjectList *a) {
     s32 i;
     s32 j;
     s32 v1;
@@ -152,7 +152,7 @@ void func_020979c8(Unk020e6fd4 *a) {
         return;
     }
     v1 = data_usa_0215653c[0].x;
-    for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < a->mMapObjectCount && (p = a->mMapObjects[i]) != NULL; i++) {
         switch (p->mUnk_00.mCourseMapRow->mUnk_28) {
             case 0:
                 p->mUnk_a4 = 0;

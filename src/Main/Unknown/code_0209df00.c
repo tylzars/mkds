@@ -195,7 +195,7 @@ void DrawFireball2(void *a, Fireball2 *b) {
     }
 }
 
-void func_0209e310(Unk020e6fd4 *p) {
+void func_0209e310(MapObjectList *p) {
     s32 i;
     s32 j;
     s32 k;
@@ -208,7 +208,7 @@ void func_0209e310(Unk020e6fd4 *p) {
     if (p == NULL) {
         return;
     }
-    for (i = 0; i < p->mUnk_04 && (e = p->mUnk_00[i]) != NULL; i++) {
+    for (i = 0; i < p->mMapObjectCount && (e = p->mMapObjects[i]) != NULL; i++) {
         v = e->mUnk_00.mCourseMapRow->mUnk_2a;
         if (v > 0) {
             f = 0.5f + (float) (v << 12);

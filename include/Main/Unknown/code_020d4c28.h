@@ -19,4 +19,4 @@ void func_020d4e28(ItemObject *p, Vec3 *v, u32 a);
 BOOL func_020d4ddc(MapObject *p);
 BOOL func_020d4d60(MapObject *p, s32 a);
 void func_020d4d44(MtxFx43 *p);
-void func_020d4c28(Unk020e6fd4 *p, MtxFx43 *a);
+void DrawMapObjectList(MapObjectList *p, MtxFx43 *a);

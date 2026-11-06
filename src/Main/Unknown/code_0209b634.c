@@ -14,12 +14,12 @@
 
 // Unparks and returns the first parked map object of the list, or NULL if the list is NULL or has none.
 void *UnparkFirstParkedMapObject(void *b) {
-    Unk020e6fd4 *a = b;
+    MapObjectList *a = b;
     MapObject *e;
     s32 i;
 
     if (a != NULL) {
-        for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
+        for (i = 0; i < a->mMapObjectCount && (e = a->mMapObjects[i]) != NULL; i++) {
             if ((e->mFlags & 0x100) != 0) {
                 UnparkMapObject(e);
                 return e;

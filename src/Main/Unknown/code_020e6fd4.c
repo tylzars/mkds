@@ -271,14 +271,14 @@ Unk020e7410 *func_020e7410(void) {
     return p;
 }
 
-Unk020e6fd4 *func_020e73b4(void) {
-    Unk020e6fd4 *p;
+MapObjectList *func_020e73b4(void) {
+    MapObjectList *p;
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b864 = p;
-    *p = *(Unk020e6fd4 *) data_02159348;
+    *p = *(MapObjectList *) data_02159348;
     func_020e6f50(&data_0217b864);
-    return (Unk020e6fd4 *) data_0217b864;
+    return (MapObjectList *) data_0217b864;
 }
 
 Vec3 *func_020e73a0(u32 arg0) {
@@ -301,13 +301,13 @@ void func_020e730c(void) {
     s32 n;
     s32 i;
 
-    n = ((Unk020e6fd4 *) data_0217b864)->mUnk_04;
+    n = ((MapObjectList *) data_0217b864)->mMapObjectCount;
     *(void **) data_0217b86c = HeapAlloc(GetHeap(func_020364e8()), n * 4);
     data_0217b868 = HeapAlloc(GetHeap(func_020364e8()), n * 2);
-    for (i = 0; i < ((Unk020e6fd4 *) data_0217b864)->mUnk_04; i++) {
+    for (i = 0; i < ((MapObjectList *) data_0217b864)->mMapObjectCount; i++) {
         s32 k;
 
-        e = (Unk020e730c *) ((Unk020e6fd4 *) data_0217b864)->mUnk_00[i];
+        e = (Unk020e730c *) ((MapObjectList *) data_0217b864)->mMapObjects[i];
         k = e->mUnk_a0;
         (*(Vec3 ***) data_0217b86c)[k] = &e->mUnk_00.mPos;
         data_0217b868[k] = e->mUnk_a2;
@@ -371,7 +371,7 @@ void func_020e71a0(MapObject *p) {
     }
 }
 
-void func_020e705c(Unk020e6fd4 *p) {
+void UpdateMapObjectList(MapObjectList *p) {
     MapObject *e;
     Vec3 t;
     void (*cb)(void *p, MapObject *e);
@@ -379,8 +379,8 @@ void func_020e705c(Unk020e6fd4 *p) {
     void **arr;
 
     cb = p->mUnk_10;
-    n = p->mUnk_04;
-    arr = p->mUnk_00;
+    n = p->mMapObjectCount;
+    arr = p->mMapObjects;
     if (cb == NULL) {
         s32 i;
 
@@ -423,7 +423,7 @@ void func_020e705c(Unk020e6fd4 *p) {
     }
 }
 
-void func_020e6fd4(Unk020e6fd4 *p) {
+void func_020e6fd4(MapObjectList *p) {
     MapObject *e;
     u8 buf[2];
     s32 i;
@@ -431,9 +431,9 @@ void func_020e6fd4(Unk020e6fd4 *p) {
     void **arr;
     s32 (*cb)(MapObject *, void *, void *, void *);
 
-    n = p->mUnk_04;
+    n = p->mMapObjectCount;
     cb = p->mUnk_1c;
-    arr = p->mUnk_00;
+    arr = p->mMapObjects;
     buf[0] = p->mUnk_20;
     buf[1] = 0;
     if (cb == NULL) {

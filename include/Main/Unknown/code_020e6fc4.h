@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020e6fd4 Unk020e6fd4;
+typedef struct MapObjectList MapObjectList;
 
-void func_020e6fc4(Unk020e6fd4 *p, s32 n);
-void func_020e6fcc(Unk020e6fd4 *p);
+void AddToMapObjectListCount(MapObjectList *p, s32 n);
+void ClearMapObjectListCount(MapObjectList *p);

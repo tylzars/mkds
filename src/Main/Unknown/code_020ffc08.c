@@ -70,7 +70,7 @@ void DrawDram(void *a, Dram *e, void *c, s32 d) {
     func_020ea8a8(gDram, q, &e->mUnk_00.mScale, d);
 }
 
-void func_020ffdd4(Unk020e6fd4 *v1) {
+void func_020ffdd4(MapObjectList *v1) {
     Unk020f41c4_B *q;
     void **arr;
     Dram *e;
@@ -78,8 +78,8 @@ void func_020ffdd4(Unk020e6fd4 *v1) {
     s32 n, i;
     u16 t;
 
-    n = v1->mUnk_04;
-    arr = v1->mUnk_00;
+    n = v1->mMapObjectCount;
+    arr = v1->mMapObjects;
     for (i = 0; i < n; i++) {
         e = arr[i];
         if (e->mUnk_00.mStateMachine.mState != 1) {

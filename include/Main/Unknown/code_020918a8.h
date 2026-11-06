@@ -26,6 +26,6 @@ s16 func_02091f24(s32 a);
 s32 func_02091f44(s32 a, s32 b);
 s16 func_02091f54(s32 a);
 u32 func_02091f6c(Unk020f41c4_B *a, u32 b);
-void func_02091fd8(Unk020e6fd4 *a);
+void func_02091fd8(MapObjectList *a);
 void DrawKanoke64(void *a, Unk020919e8 *p);
 void CreateKanoke64(void *a);
