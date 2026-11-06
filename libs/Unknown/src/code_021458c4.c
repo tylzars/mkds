@@ -50,10 +50,10 @@ int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b) {
 
     if (!(p->mUnk_114 & 2)) {
         p->mUnk_114 |= 2;
-        if (PxiCallbackBitIsSet(11, 1) == 0) {
+        if (PXI_IsCallbackReady(11, 1) == 0) {
             do {
                 OS_SpinWait(100);
-            } while (PxiCallbackBitIsSet(11, 1) == 0);
+            } while (PXI_IsCallbackReady(11, 1) == 0);
         }
         SendRequestWithRetries(p, 0, 1);
     }
@@ -62,11 +62,11 @@ int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b) {
     do {
         p->mUnk_04 = a;
         p->mUnk_114 |= 0x20;
-        while (PxiSendFifoWord(11, a, 1) < 0) {
+        while (PXI_SendWordByFifo(11, a, 1) < 0) {
         }
         if (a == 0) {
             q = p->mUnk_00;
-            while (PxiSendFifoWord(11, (u32) q, 1) < 0) {
+            while (PXI_SendWordByFifo(11, (u32) q, 1) < 0) {
             }
         }
         s = OS_DisableInterrupts();
@@ -646,7 +646,7 @@ void InitBackupAndRomAccess(void) {
     p->mUnk_108 = 4;
     OS_CreateThread(&p->mUnk_44, WorkerTaskLoop, 0, (u8 *) &gRomBaseOffset, 0x400, p->mUnk_108);
     OS_WakeupThreadDirect(&p->mUnk_44);
-    PxiCallbackSet(11, ReceiveRequestReply);
+    PXI_SetFifoRecvCallback(11, ReceiveRequestReply);
     if (*(u16 *) 0x027ffc40 != 2) {
         CARD_Enable(1);
     }

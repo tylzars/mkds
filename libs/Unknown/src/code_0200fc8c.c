@@ -35,10 +35,10 @@ void OS_InitReset(void) {
         return;
     }
     data_0217027c = 1;
-    PxiInit();
-    while (PxiCallbackBitIsSet(0xc, 1) == 0) {
+    PXI_Init();
+    while (PXI_IsCallbackReady(0xc, 1) == 0) {
     }
-    PxiCallbackSet(0xc, OSi_CommonCallback);
+    PXI_SetFifoRecvCallback(0xc, OSi_CommonCallback);
 }
 
 // Handles reset-channel commands: command 0x10 sets the flag, any other command terminates.

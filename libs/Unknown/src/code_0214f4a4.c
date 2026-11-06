@@ -68,10 +68,10 @@ void PM_Init(void) {
     gPowerInitialized = 1;
     gPowerCommand.mLocked = 0;
     gPowerCommand.mCallback = 0;
-    PxiInit();
-    while (PxiCallbackBitIsSet(8, 1) == 0) {
+    PXI_Init();
+    while (PXI_IsCallbackReady(8, 1) == 0) {
     }
-    PxiCallbackSet(8, ReceivePowerReply);
+    PXI_SetFifoRecvCallback(8, ReceivePowerReply);
     for (i = 0; i < 4; i++) {
         gPowerRegisterSlots[i].mReplyReceived = 0;
     }
@@ -310,7 +310,7 @@ int PM_GetBackLight(u32 *a, u32 *b) {
 }
 
 void SendPowerFifoWord(u32 a) {
-    while (PxiSendFifoWord(8, a, 0) != 0) {
+    while (PXI_SendWordByFifo(8, a, 0) != 0) {
     }
 }
 

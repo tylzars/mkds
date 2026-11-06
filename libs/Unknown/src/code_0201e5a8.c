@@ -10,8 +10,8 @@
 s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
     u32 v;
 
-    PxiInit();
-    if (PxiCallbackBitIsSet(0xf, 1) == 0) {
+    PXI_Init();
+    if (PXI_IsCallbackReady(0xf, 1) == 0) {
         return 2;
     }
     if (data_02173278 == 0) {
@@ -63,8 +63,8 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
             OS_RestoreInterrupts(v);
             return 3;
     }
-    if (PxiCallbackBitIsSet(0xf, 0) == 0) {
-        PxiCallbackSet(0xf, func_0201e5ac);
+    if (PXI_IsCallbackReady(0xf, 0) == 0) {
+        PXI_SetFifoRecvCallback(0xf, func_0201e5ac);
     }
     if (b == 0) {
         data_02173284 = func_0201e5a8;
@@ -72,7 +72,7 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
         data_02173284 = b;
     }
     data_02173280 = c;
-    if (PxiSendFifoWord(0xf, 0x10000, 0) < 0) {
+    if (PXI_SendWordByFifo(0xf, 0x10000, 0) < 0) {
         OSi_UnlockVram(data_0217327c, data_02173278);
         data_0217327c = 0;
         data_02173284 = 0;
@@ -86,8 +86,8 @@ s32 func_0201e7a8(u32 a, UnkFunc *b, u32 c) {
 s32 func_0201e6b8(UnkFunc *a, u32 b) {
     u32 v;
 
-    PxiInit();
-    if (PxiCallbackBitIsSet(0xf, 1) == 0) {
+    PXI_Init();
+    if (PXI_IsCallbackReady(0xf, 1) == 0) {
         return 2;
     }
     v = OS_DisableInterrupts();
@@ -95,8 +95,8 @@ s32 func_0201e6b8(UnkFunc *a, u32 b) {
         OS_RestoreInterrupts(v);
         return 5;
     }
-    if (PxiCallbackBitIsSet(0xf, 0) == 0) {
-        PxiCallbackSet(0xf, func_0201e5ac);
+    if (PXI_IsCallbackReady(0xf, 0) == 0) {
+        PXI_SetFifoRecvCallback(0xf, func_0201e5ac);
     }
     if (a == 0) {
         data_02173284 = func_0201e5a8;
@@ -104,7 +104,7 @@ s32 func_0201e6b8(UnkFunc *a, u32 b) {
         data_02173284 = a;
     }
     data_02173280 = b;
-    if (PxiSendFifoWord(0xf, 0x20000, 0) < 0) {
+    if (PXI_SendWordByFifo(0xf, 0x20000, 0) < 0) {
         data_02173284 = 0;
         OS_RestoreInterrupts(v);
         return 4;
@@ -135,7 +135,7 @@ void func_0201e5ac(u32 a, u32 b) {
                 OSi_UnlockVram(data_0217327c, data_02173278);
                 data_0217327c = 0;
             }
-            PxiCallbackSet(0xf, 0);
+            PXI_SetFifoRecvCallback(0xf, 0);
             break;
     }
     if (f != 0) {

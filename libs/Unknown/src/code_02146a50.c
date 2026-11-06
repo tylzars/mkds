@@ -14,7 +14,7 @@ void CARD_TerminateForPulledOut(void) {
 }
 
 void SendTag14WordUntilAccepted(u32 a, s32 b) {
-    while (PxiSendFifoWord(14, a, 0) != 0) {
+    while (PXI_SendWordByFifo(14, a, 0) != 0) {
         WaitByLoop(b);
     }
 }

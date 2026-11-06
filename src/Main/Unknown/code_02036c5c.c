@@ -70,7 +70,7 @@ void func_0203907c(void) {
 }
 
 void func_02039044(void) {
-    InterruptClearAndWait(1, 1);
+    OS_WaitIrq(1, 1);
     GX_DispOn();
     *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 | 0x10000;
 }
@@ -803,7 +803,7 @@ void func_02037850(void) {
     t = OS_GetTick();
     p->mUnk_cc = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
     for (i = 0; i < data_021755a0->mUnk_00; i++) {
-        InterruptClearAndWait(1, 1);
+        OS_WaitIrq(1, 1);
     }
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = OS_GetTick();
@@ -853,7 +853,7 @@ void func_02037658(s32 a) {
     p->mUnk_cc = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
     if (e != FALSE) {
         for (i = 0; i < data_021755a0->mUnk_00; i++) {
-            InterruptClearAndWait(1, 1);
+            OS_WaitIrq(1, 1);
         }
     }
     data_021755a0->mUnk_d8 |= 1;
@@ -897,7 +897,7 @@ void func_02037498(s32 a) {
     t = OS_GetTick();
     p->mUnk_cc = (t - p->mUnk_bc) * 0xfa00 / 0x82ea;
     for (i = 0; i < data_021755a0->mUnk_00; i++) {
-        InterruptClearAndWait(1, 1);
+        OS_WaitIrq(1, 1);
     }
     data_021755a0->mUnk_d8 |= 1;
     data_021755a0->mUnk_c4 = OS_GetTick();

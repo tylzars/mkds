@@ -143,7 +143,7 @@ void OS_DisableMainExArena(void) {
 // management.
 void OS_Init(void) {
     OS_InitArena();
-    PxiInit();
+    PXI_Init();
     OS_InitLock();
     OS_InitArenaEx();
     OS_InitIrqTable();

@@ -5,11 +5,11 @@
 
 #pragma thumb on
 
-// Calls PxiSendFifoWord(13, a, 0) and, while it returns nonzero, WaitByLoop(1) and the call again.
-void SendTag13WordUntilAccepted(u32 a) {
-    if (PxiSendFifoWord(13, a, 0) != 0) {
+// Sends data on FIFO tag 13, waiting and trying again until the send is accepted.
+void CTRDGi_SendtoPxi(u32 data) {
+    if (PXI_SendWordByFifo(13, data, 0) != 0) {
         do {
             WaitByLoop(1);
-        } while (PxiSendFifoWord(13, a, 0) != 0);
+        } while (PXI_SendWordByFifo(13, data, 0) != 0);
     }
 }

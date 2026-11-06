@@ -10,5 +10,5 @@ void CARD_SetPulledOutCallback(void *arg0);
 // gRemovalCallback when set, and calls CARD_TerminateForPulledOut when there is no hook or the hook returns non-zero.
 // For any other value calls OS_Terminate.
 void ReceiveRemovalMessage(u32 a, u32 b);
-// Calls PxiInit, installs ReceiveRemovalMessage as the tag 14 callback and clears gRemovalCallback.
+// Calls PXI_Init, installs ReceiveRemovalMessage as the tag 14 callback and clears gRemovalCallback.
 void CARD_InitPulledOutCallback(void);

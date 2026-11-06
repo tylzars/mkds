@@ -93,7 +93,7 @@ void TP_Init(void) {
         return;
     }
     gTouchPanelInitialized = 1;
-    PxiInit();
+    PXI_Init();
     gTouchPanelState.mUnk_32 = 0;
     gTouchPanelState.mBusyFlags = 0;
     gTouchPanelState.mAutoSampleIndex = 0;
@@ -101,9 +101,9 @@ void TP_Init(void) {
     gTouchPanelState.mAutoSampleBuffer = 0;
     gTouchPanelState.mCalibrated = 0;
     gTouchPanelState.mErrorFlags = 0;
-    while (!PxiCallbackBitIsSet(6, 1)) {
+    while (!PXI_IsCallbackReady(6, 1)) {
     }
-    PxiCallbackSet(6, ReceiveTouchPanelReply);
+    PXI_SetFifoRecvCallback(6, ReceiveTouchPanelReply);
 }
 
 u32 TP_GetUserInfo(Unk0214e334 *p) {
@@ -186,7 +186,7 @@ void TP_SetCalibrateParam(Unk0214e334 *p) {
 
 void TP_RequestSamplingAsync(void) {
     u32 v = OS_DisableInterrupts();
-    s32 r = PxiSendFifoWord(6, 0x3000000, 0);
+    s32 r = PXI_SendWordByFifo(6, 0x3000000, 0);
     u32 ok = r >= 0 ? 1 : 0;
 
     if (ok == 0) {
@@ -225,10 +225,10 @@ void TP_RequestAutoSamplingStartAsync(u32 a, u32 b, TouchSample *p, u32 n) {
         gTouchPanelState.mAutoSampleBuffer[i].mTouched = 0;
     }
     s = OS_DisableInterrupts();
-    if (PxiSendFifoWord(6, (b & 0xff) | 0x2000100, 0) < 0) {
+    if (PXI_SendWordByFifo(6, (b & 0xff) | 0x2000100, 0) < 0) {
         ok = 0;
     } else {
-        if (PxiSendFifoWord(6, a | 0x1010000, 0) < 0) {
+        if (PXI_SendWordByFifo(6, a | 0x1010000, 0) < 0) {
             ok = 0;
         } else {
             ok = 1;
@@ -254,7 +254,7 @@ void TP_RequestAutoSamplingStopAsync(void) {
     void (*f)(u32, u8, u8);
 
     s = OS_DisableInterrupts();
-    ok = PxiSendFifoWord(6, 0x3000200, 0) >= 0;
+    ok = PXI_SendWordByFifo(6, 0x3000200, 0) >= 0;
     if ((ok & 0xff) == 0) {
         OS_RestoreInterrupts(s);
         gTouchPanelState.mErrorFlags |= 4;

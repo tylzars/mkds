@@ -47,8 +47,8 @@ s32 InitWorkBufferWithSize(void *buf, u32 n, u32 size) {
         data_0217eed0 = 0;
         return 6;
     }
-    PxiInit();
-    if (PxiCallbackBitIsSet(0xa, 1) == 0) {
+    PXI_Init();
+    if (PXI_IsCallbackReady(0xa, 1) == 0) {
         data_0217eed0 = 0;
         return 4;
     }
@@ -70,7 +70,7 @@ s32 InitWorkBufferWithSize(void *buf, u32 n, u32 size) {
         DC_StoreRange(data_0217ef60[j], 2);
         OS_SendMessage(&data_0217eed8, data_0217ef60[j], 1);
     }
-    PxiCallbackSet(0xa, ReceiveCommandReply);
+    PXI_SetFifoRecvCallback(0xa, ReceiveCommandReply);
     return 0;
 }
 
@@ -85,7 +85,7 @@ s32 WM_Finish(void) {
         return r;
     }
     func_021425cc();
-    PxiCallbackSet(0xa, 0);
+    PXI_SetFifoRecvCallback(0xa, 0);
     data_0217eed4 = 0;
     data_0217eed0 = 0;
     return 0;
@@ -128,7 +128,7 @@ s32 SendCommandMessage(u32 a, u16 b, ...) {
         ((u32 *) ((u8 *) p + 4))[i] = ap[-1];
     }
     DC_StoreRange(p, 0x100);
-    r = PxiSendFifoWord(0xa, (u32) p, 0);
+    r = PXI_SendWordByFifo(0xa, (u32) p, 0);
     OS_SendMessage(&data_0217eed8, p, 1);
     if (r < 0) {
         return 8;

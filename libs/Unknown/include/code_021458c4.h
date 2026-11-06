@@ -165,7 +165,7 @@ void WriteRomCommandBytes(u32 a, u32 b);
 // length remains.
 int CopyFromRomPageBuffer(Unk02146154 *p);
 // Sends the command on tag 11 and waits until ReceiveRequestReply ends the wait; returns 1 when the first word of the
-// request block is 0. On the first call it waits until PxiCallbackBitIsSet(11, 1) is non-zero and sends command 0
+// request block is 0. On the first call it waits until PXI_IsCallbackReady(11, 1) is non-zero and sends command 0
 // first (command 0 also sends the address of the request block). Repeats while that word is 4 and tries remain.
 int SendRequestWithRetries(Unk021458c4 *p, s32 a, s32 b);
 // OSThread entry that never returns: with interrupts off, sleeps (storing its thread at +0x104) until value 8 of the

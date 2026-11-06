@@ -86,42 +86,42 @@ u32 func_02151620(const u8 *a) {
 }
 
 static inline u32 func_02151288_inline(u32 f, u32 a, u32 b, u32 c, u32 d, u32 e, u32 g) {
-    if (PxiSendFifoWord(f, a, 0) < 0) {
+    if (PXI_SendWordByFifo(f, a, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(f, b, 0) < 0) {
+    if (PXI_SendWordByFifo(f, b, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(f, c, 0) < 0) {
+    if (PXI_SendWordByFifo(f, c, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(f, d, 0) < 0) {
+    if (PXI_SendWordByFifo(f, d, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(f, e, 0) < 0) {
+    if (PXI_SendWordByFifo(f, e, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(f, g, 0) < 0) {
+    if (PXI_SendWordByFifo(f, g, 0) < 0) {
         return 0;
     }
     return 1;
 }
 
 static inline u32 func_02151288_inline2(u32 f, u32 a, u32 b, u32 c) {
-    if (PxiSendFifoWord(f, a, 0) < 0) {
+    if (PXI_SendWordByFifo(f, a, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(f, b, 0) < 0) {
+    if (PXI_SendWordByFifo(f, b, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(f, c, 0) < 0) {
+    if (PXI_SendWordByFifo(f, c, 0) < 0) {
         return 0;
     }
     return 1;
 }
 
 static inline u32 func_02151288_inline3(u32 f, u32 a) {
-    if (PxiSendFifoWord(f, a, 0) >= 0) {
+    if (PXI_SendWordByFifo(f, a, 0) >= 0) {
         return 1;
     }
     return 0;
@@ -179,15 +179,15 @@ u32 func_02151288(u32 a, u32 b, u16 c, u32 d) {
                     e = func_02151288_inline3(f, 0x3002000);
                     break;
                 case 3:
-                    if (PxiSendFifoWord(f, l5, 0) < 0) {
+                    if (PXI_SendWordByFifo(f, l5, 0) < 0) {
                         e = 0;
-                    } else if (PxiSendFifoWord(f, b, 0) < 0) {
+                    } else if (PXI_SendWordByFifo(f, b, 0) < 0) {
                         e = 0;
-                    } else if (PxiSendFifoWord(f, c | 0x20000, 0) < 0) {
+                    } else if (PXI_SendWordByFifo(f, c | 0x20000, 0) < 0) {
                         e = 0;
-                    } else if (PxiSendFifoWord(f, l6, 0) < 0) {
+                    } else if (PXI_SendWordByFifo(f, l6, 0) < 0) {
                         e = 0;
-                    } else if (PxiSendFifoWord(f, d, 0) < 0) {
+                    } else if (PXI_SendWordByFifo(f, d, 0) < 0) {
                         e = 0;
                     } else {
                         e = 1;
@@ -252,9 +252,9 @@ u32 func_0215122c(u32 a, u32 b, void *c) {
     u32 d;
     DC_InvalidateRange(c, b);
     d = 4;
-    while (PxiCallbackBitIsSet(d, 1) == 0) {
+    while (PXI_IsCallbackReady(d, 1) == 0) {
     }
-    PxiCallbackSet(4, (UnkFunc *) func_02151128);
+    PXI_SetFifoRecvCallback(4, (UnkFunc *) func_02151128);
     d = 1;
     while (1) {
         if (func_02151288(d, a, b, (u32) c) == 1) {
@@ -269,9 +269,9 @@ u32 func_0215122c(u32 a, u32 b, void *c) {
 void func_021511d8(u32 a, u16 b, void *c) {
     u32 d;
     d = 4;
-    while (PxiCallbackBitIsSet(d, 1) == 0) {
+    while (PXI_IsCallbackReady(d, 1) == 0) {
     }
-    PxiCallbackSet(4, (UnkFunc *) func_02151128);
+    PXI_SetFifoRecvCallback(4, (UnkFunc *) func_02151128);
     DC_StoreRange(c, b);
     d = 2;
     while (1) {
@@ -298,9 +298,9 @@ u32 func_02151154(void) {
     u32 c;
     a = 4;
     b = 1;
-    while (PxiCallbackBitIsSet(a, b) == 0) {
+    while (PXI_IsCallbackReady(a, b) == 0) {
     }
-    PxiCallbackSet(4, (UnkFunc *) func_02151128);
+    PXI_SetFifoRecvCallback(4, (UnkFunc *) func_02151128);
     b = 0x40000;
     a = 7;
     c = 0;

@@ -13,11 +13,11 @@ void MIC_Init(void) {
     gMicrophoneInitialized = 1;
     gMicrophoneCommand.mUnk_00 = 0;
     gMicrophoneCommand.mUnk_04 = 0;
-    PxiInit();
-    while (!PxiCallbackBitIsSet(9, 1)) {
+    PXI_Init();
+    while (!PXI_IsCallbackReady(9, 1)) {
     }
     *(u32 *) 0x27fff90 = 0;
-    PxiCallbackSet(9, ReceiveMicrophoneReply);
+    PXI_SetFifoRecvCallback(9, ReceiveMicrophoneReply);
 }
 
 u32 MIC_StartAutoSamplingAsync(Unk0214f2a8 *p, void (*fn)(), u32 arg) {
@@ -172,29 +172,29 @@ void ReceiveMicrophoneReply(u32 a, u32 b, u32 c) {
 }
 
 u32 TrySendMicrophoneStartCommand(u32 a, u32 b, u32 c, u32 d) {
-    if (PxiSendFifoWord(9, d | 0x2004100, 0) < 0) {
+    if (PXI_SendWordByFifo(9, d | 0x2004100, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(9, (a >> 16) | 0x10000, 0) < 0) {
+    if (PXI_SendWordByFifo(9, (a >> 16) | 0x10000, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(9, (a & 0xffff) | 0x20000, 0) < 0) {
+    if (PXI_SendWordByFifo(9, (a & 0xffff) | 0x20000, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(9, (b >> 16) | 0x30000, 0) < 0) {
+    if (PXI_SendWordByFifo(9, (b >> 16) | 0x30000, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(9, (b & 0xffff) | 0x40000, 0) < 0) {
+    if (PXI_SendWordByFifo(9, (b & 0xffff) | 0x40000, 0) < 0) {
         return 0;
     }
-    if (PxiSendFifoWord(9, (c >> 16) | 0x50000, 0) < 0) {
+    if (PXI_SendWordByFifo(9, (c >> 16) | 0x50000, 0) < 0) {
         return 0;
     }
-    return PxiSendFifoWord(9, (c & 0xffff) | 0x1060000, 0) >= 0;
+    return PXI_SendWordByFifo(9, (c & 0xffff) | 0x1060000, 0) >= 0;
 }
 
 s32 TrySendMicrophoneStopCommand(void) {
-    return PxiSendFifoWord(9, 0x3004200, 0) >= 0;
+    return PXI_SendWordByFifo(9, 0x3004200, 0) >= 0;
 }
 
 void SetMicrophoneResult(u32 arg0) {

@@ -42,24 +42,24 @@ Unk02142aa8 *GetWorkBuffer(void);
 // and returns 8. With a word count of 0 stores the 0x100-byte request area, invalidates the message and copies the
 // request area into it with MI_DmaCopy32 (DMA number at +0x14 of w). Writes the command number to the first halfword
 // and the words to +4 on, stores the 0x100 bytes (DC_StoreRange), sends the message address on tag 10 with
-// PxiSendFifoWord, appends the message to the ring again and returns 8 when the send result is negative, otherwise
+// PXI_SendWordByFifo, appends the message to the ring again and returns 8 when the send result is negative, otherwise
 // 2.
 s32 SendCommandMessage(u32 a, u16 b, ...);
 // Stores the function at the slot of the command number in the callback table (w + 0x18 + 4 times the number).
 u32 SetCommandCallback(u32 arg0, u32 arg1);
 // Returns 3 when GetErrorUnlessInitialized is not 0 and the result of GetErrorUnlessStateIsOneOf(1, 0) when that is not
-// 0. Clears bit 0 of the halfword at 0x027fff96, removes the callback of tag 10 (PxiCallbackSet(10, 0)) and stores 0 in
-// data_0217eed4 and data_0217eed0. Returns 0.
+// 0. Clears bit 0 of the halfword at 0x027fff96, removes the callback of tag 10 (PXI_SetFifoRecvCallback(10, 0)) and
+// stores 0 in data_0217eed4 and data_0217eed0. Returns 0.
 s32 WM_Finish(void);
 // Returns 3 when data_0217eed0 is not 0. Sets it to 1, then returns 6 (setting it back to 0) when the buffer is NULL,
-// the DMA number is above 3 or the buffer is not 32-byte aligned. Calls PxiInit and returns 4 (setting it back to 0)
-// when PxiCallbackBitIsSet(10, 1) is 0. Invalidates the size bytes at the buffer, fills them with zero by DMA, stores
+// the DMA number is above 3 or the buffer is not 32-byte aligned. Calls PXI_Init and returns 4 (setting it back to 0)
+// when PXI_IsCallbackReady(10, 1) is 0. Invalidates the size bytes at the buffer, fills them with zero by DMA, stores
 // the buffer in data_0217eed4 and lays out the areas: the word at +0 of w is the buffer + 0x200, the status area is
 // 0x300 after it, the request area 0x800 after that and the message area 0x100 after that. Clears bit 0 of the halfword
 // at 0x027fff96, stores the DMA number at +0x14 and calls WM_SetPortCallback(i, 0, 0) for the ports 0 to 15.
 // Initialises the ring (OS_InitMessageQueue, 10 entries), writes 0x8000 to the first halfword of each of the ten
 // 0x100-byte messages, stores those 2 bytes (DC_StoreRange) and appends the message, and installs ReceiveCommandReply
-// on tag 10 (PxiCallbackSet). Returns 0.
+// on tag 10 (PXI_SetFifoRecvCallback). Returns 0.
 s32 InitWorkBufferWithSize(void *buf, u32 n, u32 size);
 // Calls InitWorkBufferWithSize with its two arguments and the size 0xf00. When that returns 0, stores 0 in the halfword
 // at +0x16 of w. Returns the result.

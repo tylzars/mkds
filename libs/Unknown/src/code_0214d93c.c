@@ -20,7 +20,7 @@ s32 func_0214e1b0(void) {
 }
 
 s32 TrySendClockCommand(u32 a) {
-    return PxiSendFifoWord(5, (a << 8) & 0x7f00, 0) >= 0;
+    return PXI_SendWordByFifo(5, (a << 8) & 0x7f00, 0) >= 0;
 }
 
 void RTC_Init(void) {
@@ -33,10 +33,10 @@ void RTC_Init(void) {
     gClockRequest.mEventCallback = 0;
     gClockRequest.mOutput = 0;
     gClockRequest.mSecondOutput = 0;
-    PxiInit();
-    while (PxiCallbackBitIsSet(5, 1) == 0) {
+    PXI_Init();
+    while (PXI_IsCallbackReady(5, 1) == 0) {
     }
-    PxiCallbackSet(5, ReceiveClockReply);
+    PXI_SetFifoRecvCallback(5, ReceiveClockReply);
 }
 
 u32 RTC_GetDateAsync(u32 *a, UnkFunc *b, u32 c) {

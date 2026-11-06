@@ -9,8 +9,8 @@ UnkWordFunc *gRemovalCallback;
 u32 gRemovalSeen;
 
 void CARD_InitPulledOutCallback(void) {
-    PxiInit();
-    PxiCallbackSet(14, ReceiveRemovalMessage);
+    PXI_Init();
+    PXI_SetFifoRecvCallback(14, ReceiveRemovalMessage);
     gRemovalCallback = 0;
 }
 

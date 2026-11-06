@@ -122,7 +122,7 @@ Unk021a8f84 *func_ov000_021a8f84(const char *a) {
     if (b == 0) {
         return NULL;
     }
-    StringCopyBounded(data_ov000_021b6078, (const s8 *) a, 0x101);
+    STD_CopyLStringZeroFill((char *) data_ov000_021b6078, a, 0x101);
     data_ov000_021b6020.mUnk_00 = (u8 *) data_ov000_021b6078;
     data_ov000_021b6020.mUnk_04 = NULL;
     data_ov000_021b6020.mUnk_08 = 2;

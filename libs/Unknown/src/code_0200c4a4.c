@@ -31,27 +31,29 @@ s32 data_0216fe1c;
 void CTRDG_Init(void) {
     if (gCartridgeInitStarted == 0) {
         gCartridgeInitStarted = 1;
-        InitCartridgeState();
-        PxiInit();
-        while (PxiCallbackBitIsSet(13, 1) == 0) {
+        CTRDGi_InitCommon();
+        PXI_Init();
+        while (PXI_IsCallbackReady(13, 1) == 0) {
         }
-        PxiCallbackSet(13, (UnkFunc *) ReceiveCartridgeHeaderReply);
-        InitCartridgeHeaderCopy();
-        PxiCallbackSet(13, 0);
-        PxiCallbackSet(13, (UnkFunc *) ReceiveCartridgeRemovalMessage);
+        PXI_SetFifoRecvCallback(13, CTRDGi_CallbackForInitModuleInfo);
+        CTRDGi_InitModuleInfo();
+        PXI_SetFifoRecvCallback(13, 0);
+        PXI_SetFifoRecvCallback(13, CTRDGi_PulledOutCallback);
         gCartridgeRemovalCallback = 0;
     }
 }
 
-void InitCartridgeHeaderCopy(void) {
-    u32 v;
-    u16 w;
-    Unk0200c4a4 a;
-    Unk0200c4a4 b;
-    s32 c;
+// Runs once. Copies the cartridge header under the cartridge lock, fills the module info record from it, and sends the
+// address of the header buffer on tag 13, then waits for the reply.
+void CTRDGi_InitModuleInfo(void) {
+    u32 savedIrqMask;
+    u16 savedMasterEnable;
+    Unk0200c4a4 lockInfo;
+    Unk0200c4a4 romCycle;
+    s32 priority;
     s32 i;
-    Unk027ffc30 *s;
-    Unk0216fe20 *d;
+    Unk027ffc30 *idInfo;
+    Unk0216fe20 *chb;
 
     if (gHeaderCopyStarted != 0) {
         return;
@@ -60,54 +62,54 @@ void InitCartridgeHeaderCopy(void) {
     if ((*(u16 *) 0x04000300 & 1) == 0) {
         return;
     }
-    v = OS_SetIrqMask(0x40000);
-    w = reg_OS_IME;
+    savedIrqMask = OS_SetIrqMask(0x40000);
+    savedMasterEnable = reg_OS_IME;
     reg_OS_IME = 1;
-    LockCartridgeAndDisableIrq(gCartridgeState.mLockId, &a);
-    c = (*(u16 *) 0x04000204 & 0x8000) >> 15;
-    SaveAndSetExMemControlBits(&b);
+    CTRDGi_LockByProcessor(gCartridgeState.mLockId, &lockInfo);
+    priority = (*(u16 *) 0x04000204 & 0x8000) >> 15;
+    CTRDGi_ChangeLatestAccessCycle(&romCycle);
     *(u16 *) 0x04000204 = *(u16 *) 0x04000204 & ~0x8000;
     DC_InvalidateRange(((u8 *) &gCartridgeHeaderCopy + 0x80), 0x40);
     MI_DmaCopy16(1, (const void *) 0x08000080, ((u8 *) &gCartridgeHeaderCopy + 0x80), 0x40);
-    *(u16 *) 0x04000204 = (*(u16 *) 0x04000204 & ~0x8000) | (c << 15);
-    RestoreExMemControlBits(&b);
-    UnlockCartridgeAndRestoreIrq(gCartridgeState.mLockId, &a);
-    d = &gCartridgeHeaderCopy;
-    s = (Unk027ffc30 *) 0x027ffc30;
-    s->mIdHalfword = gCartridgeHeaderCopy.mHeaderTailCopy.mUnk_3e;
+    *(u16 *) 0x04000204 = (*(u16 *) 0x04000204 & ~0x8000) | (priority << 15);
+    CTRDGi_RestoreAccessCycle(&romCycle);
+    CTRDGi_UnlockByProcessor(gCartridgeState.mLockId, &lockInfo);
+    chb = &gCartridgeHeaderCopy;
+    idInfo = (Unk027ffc30 *) 0x027ffc30;
+    idInfo->mIdHalfword = gCartridgeHeaderCopy.mHeaderTailCopy.mUnk_3e;
     for (i = 0; i < 3; i++) {
-        ((u8 *) 0x027ffc32)[i] = d->mHeaderTailCopy.mUnk_35[i];
+        ((u8 *) 0x027ffc32)[i] = chb->mHeaderTailCopy.mUnk_35[i];
     }
-    s->mUnk_06 = d->mHeaderTailCopy.mUnk_30;
-    s->mIdWord = d->mHeaderTailCopy.mUnk_2c;
+    idInfo->mUnk_06 = chb->mHeaderTailCopy.mUnk_30;
+    idInfo->mIdWord = chb->mHeaderTailCopy.mUnk_2c;
     MIi_CpuCopy32((void *) 0xffff0020, gCartridgeHeaderCopy.mUnk_04, 0x9c);
     DC_FlushAll();
-    SendTag13WordUntilAccepted(((((u32) &gCartridgeHeaderCopy - 0x02000000) >> 5) << 6) | 1);
+    CTRDGi_SendtoPxi(((((u32) &gCartridgeHeaderCopy - 0x02000000) >> 5) << 6) | 1);
     while (gCartridgeState.mReplyReceived != 1) {
         WaitByLoop(1);
     }
     reg_OS_IME;
-    reg_OS_IME = w;
-    OS_SetIrqMask(v);
+    reg_OS_IME = savedMasterEnable;
+    OS_SetIrqMask(savedIrqMask);
 }
 
-void ReceiveCartridgeHeaderReply(u32 a, u32 b) {
-    if ((b & 0x3f) == 1) {
+void CTRDGi_CallbackForInitModuleInfo(u32 tag, u32 data) {
+    if ((data & 0x3f) == 1) {
         gCartridgeState.mReplyReceived = 1;
     } else {
         OS_Terminate();
     }
 }
 
-void ReceiveCartridgeRemovalMessage(u32 a, u32 b) {
-    s32 r;
+void CTRDGi_PulledOutCallback(u32 tag, u32 data) {
+    s32 terminateNow;
 
-    if ((b & 0x3f) == 0x11) {
-        r = 0;
+    if ((data & 0x3f) == 0x11) {
+        terminateNow = 0;
         if (gCartridgeRemovalCallback != 0) {
-            r = gCartridgeRemovalCallback();
+            terminateNow = gCartridgeRemovalCallback();
         }
-        if (r != 0) {
+        if (terminateNow != 0) {
             CTRDG_TerminateForPulledOut();
             return;
         }
@@ -117,82 +119,82 @@ void ReceiveCartridgeRemovalMessage(u32 a, u32 b) {
 }
 
 void CTRDG_TerminateForPulledOut(void) {
-    SendTag13WordUntilAccepted(2);
+    CTRDGi_SendtoPxi(2);
     OS_Terminate();
 }
 
-void InitCartridgeState(void) {
-    u32 v;
+void CTRDGi_InitCommon(void) {
+    u32 zero;
 
-    v = 0;
-    CpuSet(&v, &gCartridgeState, 0x05000001);
+    zero = 0;
+    CpuSet(&zero, &gCartridgeState, 0x05000001);
     gCartridgeState.mLockId = OS_GetLockID();
 }
 
 s32 CTRDG_IsExisting(void) {
-    s32 ret;
-    Unk0200c4a4 a;
-    Unk0200c4a4 b;
-    Unk027ffc30 *s;
-    Unk08000000 *c;
+    s32 exists;
+    Unk0200c4a4 lockInfo;
+    Unk0200c4a4 romCycle;
+    Unk027ffc30 *idInfo;
+    Unk08000000 *romHeader;
 
-    s = (Unk027ffc30 *) 0x027ffc30;
-    c = (Unk08000000 *) 0x08000000;
-    ret = 1;
-    if (s->mIdHalfword == 0xffff) {
+    idInfo = (Unk027ffc30 *) 0x027ffc30;
+    romHeader = (Unk08000000 *) 0x08000000;
+    exists = 1;
+    if (idInfo->mIdHalfword == 0xffff) {
         return 0;
     }
-    if (s->mUnk_05_1 == 1) {
+    if (idInfo->mUnk_05_1 == 1) {
         return 0;
     }
-    LockCartridgeAndDisableIrq(gCartridgeState.mLockId, &a);
-    SaveAndSetExMemControlBits(&b);
-    if ((c->mIdSelector == 0x96 && s->mIdHalfword != c->mIdHalfword) ||
-        (c->mIdSelector != 0x96 && s->mIdHalfword != *(u16 *) 0x0801fffe) ||
-        (s->mIdWord != c->mIdWord && s->mUnk_05_0)) {
-        s->mUnk_05_1 = 1;
-        ret = 0;
+    CTRDGi_LockByProcessor(gCartridgeState.mLockId, &lockInfo);
+    CTRDGi_ChangeLatestAccessCycle(&romCycle);
+    if ((romHeader->mIdSelector == 0x96 && idInfo->mIdHalfword != romHeader->mIdHalfword) ||
+        (romHeader->mIdSelector != 0x96 && idInfo->mIdHalfword != *(u16 *) 0x0801fffe) ||
+        (idInfo->mIdWord != romHeader->mIdWord && idInfo->mUnk_05_0)) {
+        idInfo->mUnk_05_1 = 1;
+        exists = 0;
     }
-    RestoreExMemControlBits(&b);
-    UnlockCartridgeAndRestoreIrq(gCartridgeState.mLockId, &a);
-    return ret;
+    CTRDGi_RestoreAccessCycle(&romCycle);
+    CTRDGi_UnlockByProcessor(gCartridgeState.mLockId, &lockInfo);
+    return exists;
 }
 
-void SaveAndSetExMemControlBits(Unk0200c4a4 *p) {
-    p->mUnk_00 = (reg_MI_EXMEMCNT & 0xc) >> 2;
-    p->mUnk_04 = (reg_MI_EXMEMCNT & 0x10) >> 4;
+void CTRDGi_ChangeLatestAccessCycle(Unk0200c4a4 *r) {
+    r->mUnk_00 = (reg_MI_EXMEMCNT & 0xc) >> 2;
+    r->mUnk_04 = (reg_MI_EXMEMCNT & 0x10) >> 4;
     reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0xc) | 0xc;
     reg_MI_EXMEMCNT &= ~0x10;
 }
 
-void RestoreExMemControlBits(Unk0200c4a4 *p) {
-    u32 a;
-    u32 b;
+void CTRDGi_RestoreAccessCycle(Unk0200c4a4 *r) {
+    u32 cycle1;
+    u32 cycle2;
 
-    a = p->mUnk_00;
-    reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0xc) | (a << 2);
-    b = p->mUnk_04;
-    reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0x10) | (b << 4);
+    cycle1 = r->mUnk_00;
+    reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0xc) | (cycle1 << 2);
+    cycle2 = r->mUnk_04;
+    reg_MI_EXMEMCNT = (reg_MI_EXMEMCNT & ~0x10) | (cycle2 << 4);
 }
 
-void LockCartridgeAndDisableIrq(u16 lockID, Unk0200c4a4 *p) {
+void CTRDGi_LockByProcessor(u16 lockID, Unk0200c4a4 *info) {
     for (;;) {
-        p->mUnk_04 = OS_DisableInterrupts();
-        p->mUnk_00 = OS_ReadOwnerOfLockWord((OSLockWord *) 0x027fffe8) & 0x40;
-        if (p->mUnk_00 != 0) {
+        info->mUnk_04 = OS_DisableInterrupts();
+        info->mUnk_00 = OS_ReadOwnerOfLockWord((OSLockWord *) 0x027fffe8) & 0x40;
+        if (info->mUnk_00 != 0) {
             break;
         }
         if (OS_TryLockCartridge(lockID) == 0) {
             break;
         }
-        OS_RestoreInterrupts(p->mUnk_04);
+        OS_RestoreInterrupts(info->mUnk_04);
         WaitByLoop(1);
     }
 }
 
-void UnlockCartridgeAndRestoreIrq(u16 lockID, Unk0200c4a4 *p) {
-    if (p->mUnk_00 == 0) {
+void CTRDGi_UnlockByProcessor(u16 lockID, Unk0200c4a4 *info) {
+    if (info->mUnk_00 == 0) {
         OS_UnLockCartridge(lockID);
     }
-    OS_RestoreInterrupts(p->mUnk_04);
+    OS_RestoreInterrupts(info->mUnk_04);
 }

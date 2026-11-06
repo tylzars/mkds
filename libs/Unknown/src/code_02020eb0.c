@@ -178,17 +178,17 @@ u32 PxiCommandSendPending(u32 a) {
         } while (data_021732e4 >= 8);
     }
     DC_FlushRange(data_021735a0, 0x1800);
-    if (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0) {
+    if (PXI_SendWordByFifo(7, (u32) data_021732d0, 0) < 0) {
         if ((a & 1) == 0) {
             OS_RestoreInterrupts(s);
             return 0;
         }
-        if (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0) {
+        if (PXI_SendWordByFifo(7, (u32) data_021732d0, 0) < 0) {
             do {
                 OS_RestoreInterrupts(s);
                 OS_SpinWait(0x64);
                 s = OS_DisableInterrupts();
-            } while (PxiSendFifoWord(7, (u32) data_021732d0, 0) < 0);
+            } while (PXI_SendWordByFifo(7, (u32) data_021732d0, 0) < 0);
         }
     }
     if ((a & 2) != 0) {
@@ -307,20 +307,20 @@ void func_02020ff0(u32 a, u32 b) {
 }
 
 void func_02020f84(void) {
-    PxiCallbackSet(7, func_02020ff0);
+    PXI_SetFifoRecvCallback(7, func_02020ff0);
     if (func_02020eb0() == 0) {
         return;
     }
-    if (PxiCallbackBitIsSet(7, 1) != 0) {
+    if (PXI_IsCallbackReady(7, 1) != 0) {
         return;
     }
     do {
         OS_SpinWait(0x64);
-    } while (PxiCallbackBitIsSet(7, 1) == 0);
+    } while (PXI_IsCallbackReady(7, 1) == 0);
 }
 
 void func_02020f50(void) {
-    while (PxiSendFifoWord(7, 0, 0) < 0) {
+    while (PXI_SendWordByFifo(7, 0, 0) < 0) {
     }
 }
 
