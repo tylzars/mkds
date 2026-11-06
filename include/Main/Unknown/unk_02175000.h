@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_02036c5c.h"
 #include "code_020182c0.h" // Unk020182c0
 #include "Main/Unknown/unk_02175628.h" // Unk02175628
-#include "code_02017f24.h" // Unk02017f24
+#include "code_02017f24.h" // NNSiFndHeapHead
 #include "code_0200db4c.h"
 #include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
 #include "code_0214f4a4.h" // PMSleepCallbackInfo
@@ -26,7 +26,7 @@ typedef struct Unk021759d0 {
         };
     };
     /* 20 */ s32 mUnk_20;
-    /* 24 */ Unk02017f24 *mHeap;
+    /* 24 */ NNSiFndHeapHead *mHeap;
     /* 28 */ s16 mUnk_28;
     /* 2a */ u8 mUnk_2a[0x14];
     /* 3e */ u16 mUnk_3e;
@@ -258,9 +258,9 @@ typedef struct Unk021759c8 {
     /* 9b0 */ Unk021759c8_9b0 mUnk_9b0[16];
     /* a70 */ void *mUnk_a70;
     /* a74 */ void *mUnk_a74;
-    /* a78 */ Unk02017f24 *mUnk_a78;
-    /* a7c */ Unk02017f24 *mUnk_a7c;
-    /* a80 */ Unk02017f24 *mUnk_a80;
+    /* a78 */ NNSiFndHeapHead *mUnk_a78;
+    /* a7c */ NNSiFndHeapHead *mUnk_a7c;
+    /* a80 */ NNSiFndHeapHead *mUnk_a80;
 } Unk021759c8;
 
 extern Unk021759c8 *data_021759c8;

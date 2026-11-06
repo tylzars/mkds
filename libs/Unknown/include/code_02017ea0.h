@@ -1,14 +1,15 @@
 #pragma once
 
 #include "types.h"
-#include "code_02017e70.h" // ExpHeapBlock, ExpHeapRange
+#include "code_02017e70.h" // NNSiFndExpHeapMBlockHead, NNSiMemRegion
 
-// First and last entries of a chain linked through mPrev and mNext of ExpHeapBlock.
-typedef struct ExpHeapBlockList {
-    /* 00 */ ExpHeapBlock *mHead;
-    /* 04 */ ExpHeapBlock *mTail;
-} ExpHeapBlockList;
+// First and last blocks of a chain linked through mMBHeadPrev and mMBHeadNext of NNSiFndExpHeapMBlockHead.
+typedef struct NNSiFndExpMBlockList {
+    /* 00 */ NNSiFndExpHeapMBlockHead *mHead;
+    /* 04 */ NNSiFndExpHeapMBlockHead *mTail;
+} NNSiFndExpMBlockList;
 
-ExpHeapBlock *ExpHeapBlockListInsertAfter(ExpHeapBlockList *a, ExpHeapBlock *b, ExpHeapBlock *c);
-ExpHeapBlock *ExpHeapBlockListRemove(ExpHeapBlockList *a, ExpHeapBlock *b);
-void ExpHeapBlockGetRange(ExpHeapRange *a, ExpHeapBlock *b);
+NNSiFndExpHeapMBlockHead *InsertMBlock(NNSiFndExpMBlockList *list, NNSiFndExpHeapMBlockHead *target,
+                                       NNSiFndExpHeapMBlockHead *prev);
+NNSiFndExpHeapMBlockHead *RemoveMBlock(NNSiFndExpMBlockList *list, NNSiFndExpHeapMBlockHead *block);
+void GetRegionOfMBlock(NNSiMemRegion *region, NNSiFndExpHeapMBlockHead *block);

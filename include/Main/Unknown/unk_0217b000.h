@@ -234,8 +234,8 @@ struct Unk0208e490;
 // Object behind data_0217b080, 0x60 bytes: a list at 0x00 and five lists at 0x0c (12 bytes each), and five pointers
 // at 0x48 to arrays of object pointers.
 typedef struct Unk0217b080 {
-    /* 00 */ LinkedList mUnk_00;
-    /* 0c */ LinkedList mUnk_0c[5];
+    /* 00 */ NNSFndList mUnk_00;
+    /* 0c */ NNSFndList mUnk_0c[5];
     /* 48 */ struct Unk0208e490 **mUnk_48[5];
     /* 5c */ u16 mUnk_5c;
     /* 5e */ u8 mUnk_5e[2];
@@ -248,7 +248,7 @@ extern Unk0208fd8c_08 *data_0217b0a4;
 
 // Object behind data_0217b08c, 0x38 bytes: 12-byte blocks at 0x00, 0x0c and 0x18.
 typedef struct Unk0217b08c {
-    /* 00 */ LinkedList mUnk_00[3];
+    /* 00 */ NNSFndList mUnk_00[3];
     /* 24 */ Unk0208526c mUnk_24;
     /* 34 */ s32 mUnk_34;
 } Unk0217b08c;

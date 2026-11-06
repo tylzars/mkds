@@ -472,12 +472,12 @@ void func_02066ac0(Kart *a) {
             i = data_0217aa14->mUnk_728 - h;
             if (i < 0) {
                 k = -i;
-                c = ListGetNth(&b->mUnk_8c, 0);
+                c = NNS_FndGetNthListObject(&b->mUnk_8c, 0);
                 if (c != NULL) {
-                    ListRemove(&b->mUnk_8c, c);
+                    NNS_FndRemoveListObject(&b->mUnk_8c, c);
                     c->mUnk_0c = *g;
                     c->mUnk_08 = k + 1;
-                    ListAppend(&b->mUnk_80, c);
+                    NNS_FndAppendListObject(&b->mUnk_80, c);
                 }
                 e = a->mUnk_514;
                 e->mUnk_5c = e->mUnk_5c + (s32) ((s64) (e->mUnk_40 - e->mUnk_5c) * 0x333 + 0x800 >> 12);
@@ -497,22 +497,22 @@ void func_02066ac0(Kart *a) {
         a->mTurnAngle = e->mUnk_5c;
     }
     e = a->mUnk_514;
-    m = ListGetNext(&e->mUnk_80, NULL);
+    m = NNS_FndGetNextListObject(&e->mUnk_80, NULL);
     while (m != NULL) {
-        n = ListGetNext(&e->mUnk_80, m);
+        n = NNS_FndGetNextListObject(&e->mUnk_80, m);
         m->mUnk_08 = m->mUnk_08 - 1;
         if (m->mUnk_08 <= 0) {
             if (j == 0) {
                 func_020653d0(a, &m->mUnk_0c, 0);
             }
-            ListRemove(&e->mUnk_80, m);
-            ListAppend(&e->mUnk_8c, m);
+            NNS_FndRemoveListObject(&e->mUnk_80, m);
+            NNS_FndAppendListObject(&e->mUnk_8c, m);
             if (n == NULL) {
                 break;
             }
             m = n;
         }
-        m = ListGetNext(&e->mUnk_80, m);
+        m = NNS_FndGetNextListObject(&e->mUnk_80, m);
     }
     if ((a->mUnk_514->mUnk_44 & 2) != 0) {
         func_0204360c(a->mEntryIndex, 1);

@@ -43,8 +43,8 @@ typedef struct Unk0212c700 {
 
 typedef struct Unk02021968 Unk02021968;
 
-extern LinkedList data_0217d444;
-extern LinkedList data_0217d450;
+extern NNSFndList data_0217d444;
+extern NNSFndList data_0217d450;
 
 void func_0212bcac(Unk0212c400 *p, u32 b);
 void func_0212bd10(Unk0212c700 *p);

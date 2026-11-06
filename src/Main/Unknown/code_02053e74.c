@@ -399,7 +399,7 @@ void func_02054368(void *a) {
     data_0217aa00->mUnk_165c = 0;
     data_0217aa00->mUnk_1658 = 0;
     data_0217aa00->mUnk_0044.mUnk_38 = HeapAllocAligned(a, 0x1c, 0x20);
-    data_0217aa00->mHeap = ExpHeapCreate(HeapAlloc(a, 0x7800), 0x7800, 1);
+    data_0217aa00->mHeap = NNS_FndCreateExpHeapEx(HeapAlloc(a, 0x7800), 0x7800, 1);
     data_0217aa00->mUnk_1e24 = 0;
     data_0217aa00->mUnk_1e2c = 0;
     data_0217aa00->mUnk_1e20 = 0;

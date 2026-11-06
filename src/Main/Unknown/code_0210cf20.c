@@ -37,9 +37,9 @@ void func_0210d4a4(PlayingSound *a, s32 b) {
         a->mVolume = 0x7f;
         a++;
     }
-    ListInit(&data_0217d028, 0);
+    NNS_FndInitList(&data_0217d028, 0);
     for (i = 0; i < 2; i++) {
-        ListInit(&data_0217d048[i], 0x1c);
+        NNS_FndInitList(&data_0217d048[i], 0x1c);
     }
     data_0217d010[0] = 0;
     data_0217d024[0] = 0;
@@ -50,17 +50,17 @@ u32 func_0210d4a0(u32 p0) {
 }
 
 void func_0210d2cc(void) {
-    LinkedList *l;
+    NNSFndList *l;
     u32 t;
     PlayingSound *q;
-    LinkedList *m;
+    NNSFndList *m;
     SoundSource *p;
 
     if (data_0217d084.mUnk_10 == 0) {
         return;
     }
     if (data_0217d020 != 0) {
-        for (p = data_0217d028.mHead; p != NULL; p = ListGetNext(&data_0217d028, p)) {
+        for (p = data_0217d028.mHead; p != NULL; p = NNS_FndGetNextListObject(&data_0217d028, p)) {
             func_0210cc3c(p);
         }
         data_0217d020 = 0;
@@ -74,7 +74,7 @@ void func_0210d2cc(void) {
             p->mUnk_18 = 3;
         }
     }
-    m = (LinkedList *) data_0217d054;
+    m = (NNSFndList *) data_0217d054;
     p = m->mHead;
     t = data_0217d024[0];
     if (p != NULL) {
@@ -83,7 +83,7 @@ void func_0210d2cc(void) {
             if ((t++ & 3) == data_0217d010[0]) {
                 func_0210ca4c(p);
             } else if ((t & 1) == (data_0217d010[0] & 1)) {
-                for (q = p->mPlayingSounds.mHead; q != NULL; q = ListGetNext(&p->mPlayingSounds, q)) {
+                for (q = p->mPlayingSounds.mHead; q != NULL; q = NNS_FndGetNextListObject(&p->mPlayingSounds, q)) {
                     if (q->mUnk_00 != NULL) {
                         p->mUnk_30(p, q, NULL);
                     }
@@ -127,7 +127,7 @@ void func_0210d200(u32 a) {
             func_0210bc54(&data_0217d048[p->mUnk_18], p);
             p->mUnk_18 = 3;
         }
-        p = ListGetNext(&data_0217d028, p);
+        p = NNS_FndGetNextListObject(&data_0217d028, p);
     } while (p != NULL);
 }
 
@@ -216,7 +216,7 @@ void func_0210cf9c(SoundSource *p, s32 b) {
 void func_0210cf20(SoundSource *a, u32 b) {
     void *v1;
     void *v2;
-    ListInit(&a->mPlayingSounds, 8);
+    NNS_FndInitList(&a->mPlayingSounds, 8);
     v1 = (void *) func_0210d0b4;
     a->mUnk_38 = 1;
     v2 = (void *) func_0210d078;

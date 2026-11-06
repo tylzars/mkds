@@ -109,18 +109,18 @@ void func_0212ef00(Unk0212c7f0 *a) {
 }
 
 // Unlinks every element of the list whose mUnk_08 is b and passes it to func_0212ee54.
-void func_0212ee8c(LinkedList *a, Unk0212c7f0 *b) {
+void func_0212ee8c(NNSFndList *a, Unk0212c7f0 *b) {
     u32 v;
     Unk0212ee8c *p;
     Unk0212ee8c *next;
 
     v = OS_DisableInterrupts();
-    p = ListGetNext(a, 0);
+    p = NNS_FndGetNextListObject(a, 0);
     if (p != 0) {
         do {
-            next = ListGetNext(a, p);
+            next = NNS_FndGetNextListObject(a, p);
             if (p->mUnk_08 == b) {
-                ListRemove(a, p);
+                NNS_FndRemoveListObject(a, p);
                 func_0212ee54(p);
             }
             p = next;
@@ -139,7 +139,7 @@ u32 func_0212ee54(void *arg0) {
     value4 = value0;
     value0 = (u32) &data_0217df08;
     value1 = value5;
-    ListAppend((LinkedList *) value0, (void *) value1);
+    NNS_FndAppendListObject((NNSFndList *) value0, (void *) value1);
     value0 = value4;
     value0 = (u32) OS_RestoreInterrupts(value0);
     return value0;

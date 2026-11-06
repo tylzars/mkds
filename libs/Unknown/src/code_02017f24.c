@@ -3,196 +3,214 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "00/code_02188720.h"
 
-Unk02017f24 *FrmHeapInit(Unk02017f24 *a, u32 b, u16 c) {
-    Unk02018174 *p;
+// Sets up a frame heap over startAddress to endAddress with nothing allocated.
+NNSiFndHeapHead *InitFrameHeap(void *startAddress, void *endAddress, u16 optFlag) {
+    NNSiFndHeapHead *heap;
+    NNSiFndFrmHeapHead *frmHeap;
 
-    p = &a->mUnk_24;
-    HeapInitAndLink(&a->mUnk_00, 0x46524d48, (u32) (p + 1), b, c);
-    a->mUnk_24.mFrontAddr = a->mUnk_00.mRangeStart;
-    p->mBackAddr = a->mUnk_00.mRangeEnd;
-    p->mSavedList = 0;
-    return a;
+    heap = startAddress;
+    frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
+    NNSi_FndInitHeapHead(heap, 0x46524d48, frmHeap + 1, endAddress, optFlag);
+    frmHeap->mHeadAllocator = heap->mHeapStart;
+    frmHeap->mTailAllocator = heap->mHeapEnd;
+    frmHeap->mState = 0;
+    return heap;
 }
 
-void *FrmHeapAllocFront(Unk02018174 *a, u32 b, u32 c) {
-    u32 m;
-    u32 s;
-    u32 e;
-    u32 lo;
-    u32 n;
+// Takes size bytes from the front of the free memory, aligned to alignment, and returns them or NULL.
+void *AllocFromHead_(NNSiFndFrmHeapHead *frmHeap, u32 size, int alignment) {
+    u32 mask;
+    u32 start;
+    u32 end;
+    u32 oldHead;
+    u32 clearSize;
 
-    lo = a->mFrontAddr;
-    m = c - 1;
-    s = (m + lo) & ~m;
-    e = b + s;
-    if (e > a->mBackAddr) {
+    oldHead = (u32) frmHeap->mHeadAllocator;
+    mask = alignment - 1;
+    start = (mask + oldHead) & ~mask;
+    end = size + start;
+    if (end > (u32) frmHeap->mTailAllocator) {
         return 0;
     }
-    n = e - lo;
+    clearSize = end - oldHead;
     {
-        volatile u32 z;
+        volatile u32 zero;
 
-        if ((u16) (*(u32 *) ((u8 *) a - 4) & 0xff) & 1) {
-            z = 0;
-            MIi_CpuClear32(z, (void *) lo, n);
+        if ((u16) (((NNSiFndHeapHead *) frmHeap - 1)->mAttribute & 0xff) & 1) {
+            zero = 0;
+            MIi_CpuClear32(zero, (void *) oldHead, clearSize);
         }
     }
-    a->mFrontAddr = e;
-    return (void *) s;
+    frmHeap->mHeadAllocator = (void *) end;
+    return (void *) start;
 }
 
-u32 FrmHeapAllocBack(Unk02018174 *a, u32 b, u32 c) {
-    u32 m;
-    u32 hi;
-    u32 s;
-    u32 n;
+// Takes size bytes from the end of the free memory, aligned to alignment, and returns them or NULL.
+void *AllocFromTail_(NNSiFndFrmHeapHead *frmHeap, u32 size, int alignment) {
+    u32 mask;
+    u32 oldTail;
+    u32 start;
+    u32 clearSize;
 
-    hi = a->mBackAddr;
-    m = c - 1;
-    s = (hi - b) & ~m;
-    if (s < a->mFrontAddr) {
+    oldTail = (u32) frmHeap->mTailAllocator;
+    mask = alignment - 1;
+    start = (oldTail - size) & ~mask;
+    if (start < (u32) frmHeap->mHeadAllocator) {
         return 0;
     }
-    n = hi - s;
+    clearSize = oldTail - start;
     {
-        volatile u32 z;
+        volatile u32 zero;
 
-        if ((u16) (*(u32 *) ((u8 *) a - 4) & 0xff) & 1) {
-            z = 0;
-            MIi_CpuClear32(z, (void *) s, n);
+        if ((u16) (((NNSiFndHeapHead *) frmHeap - 1)->mAttribute & 0xff) & 1) {
+            zero = 0;
+            MIi_CpuClear32(zero, (void *) start, clearSize);
         }
     }
-    a->mBackAddr = s;
-    return s;
+    frmHeap->mTailAllocator = (void *) start;
+    return (void *) start;
 }
 
-void FrmHeapFreeFront(Unk02017f24 *a) {
-    Unk02018174 *p;
+// Frees everything taken from the front of the heap and drops the recorded states.
+void FreeHead(NNSiFndHeapHead *heap) {
+    NNSiFndFrmHeapHead *frmHeap;
 
-    p = &a->mUnk_24;
-    p->mFrontAddr = a->mUnk_00.mRangeStart;
-    p->mSavedList = 0;
+    frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
+    frmHeap->mHeadAllocator = heap->mHeapStart;
+    frmHeap->mState = 0;
 }
 
-void FrmHeapFreeBack(Unk02017f24 *a) {
-    Unk02017f58 *n;
-    Unk02018174 *p;
+// Frees everything taken from the back of the heap, also in the recorded states.
+void FreeTail(NNSiFndHeapHead *heap) {
+    NNSiFndFrmHeapState *state;
+    NNSiFndFrmHeapHead *frmHeap;
 
-    p = &a->mUnk_24;
-    n = p->mSavedList;
-    if (n != 0) {
+    frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
+    state = frmHeap->mState;
+    if (state != 0) {
         do {
-            n->mBackAddr = a->mUnk_00.mRangeEnd;
-            n = n->mNext;
-        } while (n != 0);
+            state->mTailAllocator = heap->mHeapEnd;
+            state = state->mPrevState;
+        } while (state != 0);
     }
-    p->mBackAddr = a->mUnk_00.mRangeEnd;
+    frmHeap->mTailAllocator = heap->mHeapEnd;
 }
 
-Unk02017f24 *FrmHeapCreate(void *a, u32 b, u16 c) {
-    u32 e;
+// Sets up a frame heap in the memory of size bytes at startAddress, or returns NULL when it is too small.
+NNSFndHeapHandle NNS_FndCreateFrmHeapEx(void *startAddress, u32 size, u16 optFlag) {
+    void *bufferEnd;
 
-    e = (b + (u32) a) & ~3;
-    a = (void *) (((u32) a + 3) & ~3);
-    if ((u32) a > e || e - (u32) a < 0x30) {
+    bufferEnd = (void *) ((size + (u32) startAddress) & ~3);
+    startAddress = (void *) (((u32) startAddress + 3) & ~3);
+    if (startAddress > bufferEnd || (u32) bufferEnd - (u32) startAddress < 0x30) {
         return 0;
     }
-    return FrmHeapInit(a, e, c);
+    return InitFrameHeap(startAddress, bufferEnd, optFlag);
 }
 
-void FrmHeapDestroy(Unk02017584 *a) {
-    HeapUnlink(a);
+// Takes the heap out of the heap list; its memory stays with the caller.
+void NNS_FndDestroyFrmHeap(NNSFndHeapHandle heap) {
+    NNSi_FndFinalizeHeap(heap);
 }
 
-void *FrmHeapAlloc(Unk02017f24 *a, u32 b, s32 c) {
-    Unk02018174 *p;
+// Allocates size bytes, rounded up to a multiple of 4 and at least 4, from the front of the heap, or from the back when
+// alignment is negative.
+void *NNS_FndAllocFromFrmHeapEx(NNSFndHeapHandle heap, u32 size, int alignment) {
+    NNSiFndFrmHeapHead *frmHeap;
 
-    p = &a->mUnk_24;
-    if (b == 0) {
-        b = 1;
+    frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
+    if (size == 0) {
+        size = 1;
     }
-    b = (b + 3) & ~3;
-    if (c >= 0) {
-        return FrmHeapAllocFront(p, b, c);
+    size = (size + 3) & ~3;
+    if (alignment >= 0) {
+        return AllocFromHead_(frmHeap, size, alignment);
     }
-    return (void *) FrmHeapAllocBack(p, b, -c);
+    return AllocFromTail_(frmHeap, size, -alignment);
 }
 
-void FrmHeapFree(Unk02017f24 *a, u32 b) {
-    if (b & 1) {
-        FrmHeapFreeFront(a);
+// Frees the front of the heap for bit 0 of mode and the back for bit 1.
+void NNS_FndFreeToFrmHeap(NNSFndHeapHandle heap, int mode) {
+    if (mode & 1) {
+        FreeHead(heap);
     }
-    if (b & 2) {
-        FrmHeapFreeBack(a);
+    if (mode & 2) {
+        FreeTail(heap);
     }
 }
 
-u32 FrmHeapGetMaxAllocSize(Unk02017f24 *a, u32 b) {
-    u32 n;
-    u32 s;
-    u32 t;
-    Unk02018174 *p;
+// Returns the size of the largest block that can be allocated with the given alignment (its sign is ignored).
+u32 NNS_FndGetAllocatableSizeForFrmHeapEx(NNSFndHeapHandle heap, int alignment) {
+    u32 mask;
+    u32 start;
+    u32 tail;
+    NNSiFndFrmHeapHead *frmHeap;
 
-    n = Abs(b);
-    p = &a->mUnk_24;
-    t = p->mBackAddr;
-    s = ((n - 1) + p->mFrontAddr) & ~(n - 1);
-    if (s > t) {
+    mask = Abs(alignment);
+    frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
+    tail = (u32) frmHeap->mTailAllocator;
+    start = ((mask - 1) + (u32) frmHeap->mHeadAllocator) & ~(mask - 1);
+    if (start > tail) {
         return 0;
     }
-    return t - s;
+    return tail - start;
 }
 
-u32 FrmHeapSaveFrontBack(Unk02017f24 *a, u32 b) {
-    u32 lo;
-    Unk02017f58 *n;
-    Unk02018174 *p;
+// Records both allocation positions under tagName in a 16-byte entry taken from the front; returns 0 when there is no
+// room for it.
+BOOL NNS_FndRecordStateForFrmHeap(NNSFndHeapHandle heap, u32 tagName) {
+    u32 oldHead;
+    NNSiFndFrmHeapState *state;
+    NNSiFndFrmHeapHead *frmHeap;
 
-    p = &a->mUnk_24;
-    lo = a->mUnk_24.mFrontAddr;
-    n = FrmHeapAllocFront(p, 0x10, 4);
-    if (n == 0) {
+    frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
+    oldHead = (u32) frmHeap->mHeadAllocator;
+    state = AllocFromHead_(frmHeap, 0x10, 4);
+    if (state == 0) {
         return 0;
     }
-    n->mKey = b;
-    n->mFrontAddr = lo;
-    n->mBackAddr = p->mBackAddr;
-    n->mNext = p->mSavedList;
-    p->mSavedList = n;
+    state->mTagName = tagName;
+    state->mHeadAllocator = (void *) oldHead;
+    state->mTailAllocator = frmHeap->mTailAllocator;
+    state->mPrevState = frmHeap->mState;
+    frmHeap->mState = state;
     return 1;
 }
 
-u32 FrmHeapRestoreFrontBack(Unk02017f24 *a, u32 b) {
-    Unk02017f58 *n;
-    Unk02018174 *p;
+// Goes back to the state recorded under tagName, or to the newest one when tagName is 0; returns 0 when there is none.
+BOOL NNS_FndFreeByStateToFrmHeap(NNSFndHeapHandle heap, u32 tagName) {
+    NNSiFndFrmHeapState *state;
+    NNSiFndFrmHeapHead *frmHeap;
 
-    p = &a->mUnk_24;
-    n = p->mSavedList;
-    if (b != 0 && n != 0) {
+    frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
+    state = frmHeap->mState;
+    if (tagName != 0 && state != 0) {
         do {
-            if (n->mKey == b) {
+            if (state->mTagName == tagName) {
                 break;
             }
-            n = n->mNext;
-        } while (n != 0);
+            state = state->mPrevState;
+        } while (state != 0);
     }
-    if (n == 0) {
+    if (state == 0) {
         return 0;
     }
-    p->mFrontAddr = n->mFrontAddr;
-    p->mBackAddr = n->mBackAddr;
-    p->mSavedList = n->mNext;
+    frmHeap->mHeadAllocator = state->mHeadAllocator;
+    frmHeap->mTailAllocator = state->mTailAllocator;
+    frmHeap->mState = state->mPrevState;
     return 1;
 }
 
-u32 FrmHeapShrink(Unk02017f24 *a) {
-    Unk02018174 *p;
+// Cuts the end of the heap back to the allocated front and returns the new size of the heap; returns 0 when memory is
+// allocated from the back.
+u32 NNS_FndAdjustFrmHeap(NNSFndHeapHandle heap) {
+    NNSiFndFrmHeapHead *frmHeap;
 
-    p = &a->mUnk_24;
-    if (a->mUnk_00.mRangeEnd - p->mBackAddr != 0) {
+    frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
+    if ((u32) heap->mHeapEnd - (u32) frmHeap->mTailAllocator != 0) {
         return 0;
     }
-    a->mUnk_00.mRangeEnd = p->mFrontAddr;
-    p->mBackAddr = a->mUnk_00.mRangeEnd;
-    return a->mUnk_00.mRangeEnd - (u32) a;
+    heap->mHeapEnd = frmHeap->mHeadAllocator;
+    frmHeap->mTailAllocator = heap->mHeapEnd;
+    return (u32) heap->mHeapEnd - (u32) heap;
 }

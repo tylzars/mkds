@@ -237,7 +237,7 @@ void func_02085ad8(void) {
     a = 0;
     b = 0;
     g = data_021759c0->mKartCount;
-    ListInit(&data_0217aebc->mUnk_12c, 4);
+    NNS_FndInitList(&data_0217aebc->mUnk_12c, 4);
     for (i = 0; (u32) i < 2; i++) {
         if (data_021759c0->mUnk_3d5[i] >= 0) {
             a++;
@@ -258,7 +258,7 @@ void func_02085ad8(void) {
     j = 0;
     for (; j < q; j++) {
         data_0217aebc->mUnk_0b0[j].mUnk_00 = (u16) (j + a + 1);
-        ListAppend(&data_0217aebc->mUnk_12c, &data_0217aebc->mUnk_0b0[j]);
+        NNS_FndAppendListObject(&data_0217aebc->mUnk_12c, &data_0217aebc->mUnk_0b0[j]);
     }
     a = 0;
     p = data_021759c0;
@@ -282,7 +282,7 @@ s32 func_02085984(u16 a, u32 *b) {
     s32 m;
     s32 v;
     u16 k;
-    LinkedList *l;
+    NNSFndList *l;
     u16 n;
     u32 h;
     u16 x;
@@ -362,9 +362,9 @@ s32 func_02085984(u16 a, u32 *b) {
                     h = (s64) (u32) (c->mUnk_00 >> 32) * (s64) (u32) y >> 32;
                 }
             }
-            e = ListGetNth(l, (u16) h);
+            e = NNS_FndGetNthListObject(l, h);
             r = e->mUnk_00;
-            ListRemove(l, e);
+            NNS_FndRemoveListObject(l, e);
         }
     }
     return r;

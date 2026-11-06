@@ -638,11 +638,11 @@ void func_02071fb8(Kart *p, void *a) {
     q->mUnk_98 = v;
     q->mUnk_a8 = v;
     q->mUnk_b4 = 0;
-    ListInit(&q->mUnk_80, 0);
-    ListInit(&q->mUnk_8c, 0);
+    NNS_FndInitList(&q->mUnk_80, 0);
+    NNS_FndInitList(&q->mUnk_8c, 0);
     b = HeapAlloc(a, 0x438);
     for (i = 0; i < 0x1e; i++) {
-        ListAppend(&q->mUnk_8c, b + i * 0x24);
+        NNS_FndAppendListObject(&q->mUnk_8c, b + i * 0x24);
     }
 }
 

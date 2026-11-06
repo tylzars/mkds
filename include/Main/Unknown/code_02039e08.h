@@ -3,7 +3,7 @@
 #include "types.h"
 
 typedef struct SceneNumbers SceneNumbers;
-typedef struct Unk020176c0 Unk020176c0;
+typedef struct NNSiFndHeapHead NNSiFndHeapHead;
 
 // Object whose halfword at 0x04 UpdateRaceScene and func_0203a520 write.
 typedef struct Unk0203a0dc {
@@ -11,7 +11,7 @@ typedef struct Unk0203a0dc {
     /* 04 */ u16 mUnk_04;
 } Unk0203a0dc;
 
-u32 func_02039e08(Unk020176c0 *a, void **b, void **c, void **d, void **e, void **f);
+u32 func_02039e08(NNSiFndHeapHead *a, void **b, void **c, void **d, void **e, void **f);
 // Scene function of gSceneFuncs[1] (scene 'Menu' in gSceneNames): copies the callbacks and calls
 // RunScene. Returns 0. Scene 4 (func_02046a88) also carries the name 'Menu'.
 u32 RunMenuScene(SceneNumbers *a);

@@ -80,7 +80,7 @@ u32 func_0204863c(void *a, void *b, u32 c) {
     return r;
 }
 
-u32 func_02048590(char *a, Unk020176c0 *b, void **c) {
+u32 func_02048590(char *a, NNSiFndHeapHead *b, void **c) {
     u32 s;
     Unk02003024 *p;
     u32 n;

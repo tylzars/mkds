@@ -2,20 +2,22 @@
 
 #include "types.h"
 
-// Block of 16 bytes followed by mSize bytes, linked through mPrev and mNext; ExpHeapBlockInit sets it up over a
-// range. Halfword 2 holds a byte, seven bits and a flag.
-typedef struct ExpHeapBlock {
-    /* 00 */ u16 mTag;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ u32 mSize;
-    /* 08 */ struct ExpHeapBlock *mPrev;
-    /* 0c */ struct ExpHeapBlock *mNext;
-} ExpHeapBlock;
+// Header of 16 bytes before each block of an Exp heap, followed by mBlockSize bytes; blocks are linked through
+// mMBHeadPrev and mMBHeadNext. mAttribute holds the group ID in bits 0 to 7, the offset to the start of the block in
+// bits 8 to 14 and the end of the heap the block was taken from in bit 15.
+typedef struct NNSiFndExpHeapMBlockHead {
+    /* 00 */ u16 mSignature;
+    /* 02 */ u16 mAttribute;
+    /* 04 */ u32 mBlockSize;
+    /* 08 */ struct NNSiFndExpHeapMBlockHead *mMBHeadPrev;
+    /* 0c */ struct NNSiFndExpHeapMBlockHead *mMBHeadNext;
+} NNSiFndExpHeapMBlockHead;
 
-// Two addresses: ExpHeapBlockGetRange writes the start of a block (minus its offset) and the end of its data.
-typedef struct ExpHeapRange {
-    /* 00 */ u32 mStart;
-    /* 04 */ u32 mEnd;
-} ExpHeapRange;
+// Start and end of a block of memory: GetRegionOfMBlock writes the start of a block (minus its offset) and the end of
+// its data.
+typedef struct NNSiMemRegion {
+    /* 00 */ void *mStart;
+    /* 04 */ void *mEnd;
+} NNSiMemRegion;
 
-ExpHeapBlock *ExpHeapBlockInit(ExpHeapRange *a, u16 b);
+NNSiFndExpHeapMBlockHead *InitMBlock(const NNSiMemRegion *region, u16 signature);

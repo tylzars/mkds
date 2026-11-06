@@ -463,15 +463,15 @@ void func_0208f0f8(void *a) {
     data_0217b08c = HeapAlloc(a, 0x38);
     e = HeapAlloc(a, n * 0x30);
     f = HeapAlloc(a, m * 0x1c);
-    ListInit(&data_0217b08c->mUnk_00[0], 0);
-    ListInit(&data_0217b08c->mUnk_00[1], 0);
-    ListInit(&data_0217b08c->mUnk_00[2], 0);
+    NNS_FndInitList(&data_0217b08c->mUnk_00[0], 0);
+    NNS_FndInitList(&data_0217b08c->mUnk_00[1], 0);
+    NNS_FndInitList(&data_0217b08c->mUnk_00[2], 0);
     for (i = 0; i < n; i++) {
-        ListInit(&e[i].mUnk_08, 0);
-        ListAppend(&data_0217b08c->mUnk_00[1], &e[i]);
+        NNS_FndInitList(&e[i].mUnk_08, 0);
+        NNS_FndAppendListObject(&data_0217b08c->mUnk_00[1], &e[i]);
     }
     for (i = 0; i < m; i++) {
-        ListAppend(&data_0217b08c->mUnk_00[2], &f[i]);
+        NNS_FndAppendListObject(&data_0217b08c->mUnk_00[2], &f[i]);
     }
     func_0208526c(&data_0217b08c->mUnk_24, s, s);
     q = data_0217b08c->mUnk_24.mUnk_0c;
@@ -486,10 +486,10 @@ void func_0208f0f8(void *a) {
 
 void func_0208f0a0(void) {
     void *p;
-    p = ListGetNext(&data_0217b08c->mUnk_00[0], NULL);
+    p = NNS_FndGetNextListObject(&data_0217b08c->mUnk_00[0], NULL);
     while (p != NULL) {
         func_0208e99c(p);
-        p = ListGetNext(&data_0217b08c->mUnk_00[0], p);
+        p = NNS_FndGetNextListObject(&data_0217b08c->mUnk_00[0], p);
     }
 }
 
@@ -503,7 +503,7 @@ void func_0208ee7c(const MtxFx43 *a) {
 
     f = data_021663d8;
     g = FALSE;
-    p = ListGetNext(&data_0217b08c->mUnk_00[0], NULL);
+    p = NNS_FndGetNextListObject(&data_0217b08c->mUnk_00[0], NULL);
     if (p == NULL) {
         return;
     }
@@ -520,21 +520,21 @@ void func_0208ee7c(const MtxFx43 *a) {
             g = TRUE;
         }
         *(u32 *) 0x4000480 = 0x7fff;
-        q = ListGetNext(&p->mUnk_08, NULL);
+        q = NNS_FndGetNextListObject(&p->mUnk_08, NULL);
         if (q != NULL && data_021663e8 != 0) {
-            r = ListGetNext(&p->mUnk_08, NULL);
+            r = NNS_FndGetNextListObject(&p->mUnk_08, NULL);
             if (r != NULL) {
                 do {
                     v = 0x1f - q->mUnk_0c * data_021663dc;
                     *(u32 *) 0x40004a4 = (u32) f << 24 | (data_0217b08c->mUnk_34 | 0xc0) | v << 16;
                     func_0208e82c(a, q, r, &data_021663f4);
                     q = r;
-                    r = ListGetNext(&p->mUnk_08, r);
+                    r = NNS_FndGetNextListObject(&p->mUnk_08, r);
                 } while (r != NULL);
             }
         }
         f = f + 1;
-        p = ListGetNext(&data_0217b08c->mUnk_00[0], p);
+        p = NNS_FndGetNextListObject(&data_0217b08c->mUnk_00[0], p);
     } while (p != NULL);
 }
 
@@ -597,13 +597,13 @@ void func_0208ecd8(Unk0208ec64_08 *a, Unk0208ec64 *b) {
 
 s32 func_0208ec64(u32 a) {
     Unk0208ec64 *p;
-    p = ListGetNth(&data_0217b08c->mUnk_00[1], 0);
+    p = NNS_FndGetNthListObject(&data_0217b08c->mUnk_00[1], 0);
     if (p != NULL) {
         p->mUnk_14 = a;
         p->mUnk_18 = 0;
         p->mUnk_1c = 0x400;
-        ListRemove(&data_0217b08c->mUnk_00[1], p);
-        ListAppend(&data_0217b08c->mUnk_00[0], p);
+        NNS_FndRemoveListObject(&data_0217b08c->mUnk_00[1], p);
+        NNS_FndAppendListObject(&data_0217b08c->mUnk_00[0], p);
     }
     return (s32) p;
 }
@@ -616,7 +616,7 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
     s32 h;
 
     if (data_021759c0->mUnk_00c == 5) {
-        p = ListGetNth(&data_0217b08c->mUnk_00[1], 0);
+        p = NNS_FndGetNthListObject(&data_0217b08c->mUnk_00[1], 0);
         if (p != NULL) {
             o = GetKart(a);
             t = o->mKartModelsEntry;
@@ -630,8 +630,8 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
             p->mUnk_24 = v.x << 4;
             p->mUnk_28 = (data_02166480[t->mUnk_004] + h) << 4;
             p->mUnk_2c = data_0216641c[t->mUnk_000][0] + (v.z << 4);
-            ListRemove(&data_0217b08c->mUnk_00[1], p);
-            ListAppend(&data_0217b08c->mUnk_00[0], p);
+            NNS_FndRemoveListObject(&data_0217b08c->mUnk_00[1], p);
+            NNS_FndAppendListObject(&data_0217b08c->mUnk_00[0], p);
         }
         return p;
     }

@@ -57,7 +57,7 @@ void func_0210cc3c(SoundSource *p) {
             if (a->mUnk_19 & 4) {
                 if (f == 0) {
                     v = (u32) a;
-                    a = ListGetNext(&p->mPlayingSounds, a);
+                    a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
                     func_0212c6f0((Unk0212c400 **) v, 0);
                     ((PlayingSound *) v)->mUnk_19 &= ~4;
                     ((PlayingSound *) v)->mUnk_19 &= ~8;
@@ -74,7 +74,7 @@ void func_0210cc3c(SoundSource *p) {
             }
         } else if ((a->mUnk_19 & 2) == 0) {
             v = (u32) a;
-            a = ListGetNext(&p->mPlayingSounds, a);
+            a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
             func_0212c6f0((Unk0212c400 **) v, 0);
             ((PlayingSound *) v)->mUnk_19 &= ~4;
             ((PlayingSound *) v)->mUnk_19 &= ~8;
@@ -83,13 +83,13 @@ void func_0210cc3c(SoundSource *p) {
             v = 1;
             continue;
         }
-        a = ListGetNext(&p->mPlayingSounds, a);
+        a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
     }
     if (v == 0) {
         return;
     }
     v = 3;
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
         if (a->mUnk_19 & 2) {
             v = 0;
             break;
@@ -147,7 +147,7 @@ u32 func_0210ca4c(SoundSource *p) {
         func_0210c0bc(p);
         return 0;
     }
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
         n = -1;
         if (a->mUnk_19 & 2) {
             n = func_0210ca4c_inline(st.mUnk_1c, a->mUnk_18, a->mSoundId);
@@ -170,7 +170,7 @@ u32 func_0210ca4c(SoundSource *p) {
 PlayingSound *StartSoundEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
     PlayingSound *v;
     PlayingSound *w;
-    LinkedList *u;
+    NNSFndList *u;
     u32 f;
 
     v = NULL;
@@ -180,7 +180,7 @@ PlayingSound *StartSoundEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
     if ((a->mUnk_34 & 1) == 0) {
         return v;
     }
-    for (w = a->mPlayingSounds.mHead; w != NULL; w = ListGetNext(&a->mPlayingSounds, w)) {
+    for (w = a->mPlayingSounds.mHead; w != NULL; w = NNS_FndGetNextListObject(&a->mPlayingSounds, w)) {
         f = (w->mSoundId == c) && (w->mUnk_18 == b);
         if (f) {
             StopPlayingSound(a, w, 0);
@@ -232,7 +232,7 @@ PlayingSound *StartSoundEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
 PlayingSound *StartSoundWhileRequestedEx(SoundSource *a, u32 b, u32 c, u32 d, s16 e) {
     PlayingSound *v;
     PlayingSound *w;
-    LinkedList *u;
+    NNSFndList *u;
     u32 f;
 
     v = NULL;
@@ -242,7 +242,7 @@ PlayingSound *StartSoundWhileRequestedEx(SoundSource *a, u32 b, u32 c, u32 d, s1
     if ((a->mUnk_34 & 1) == 0) {
         return v;
     }
-    for (w = a->mPlayingSounds.mHead; w != NULL; w = ListGetNext(&a->mPlayingSounds, w)) {
+    for (w = a->mPlayingSounds.mHead; w != NULL; w = NNS_FndGetNextListObject(&a->mPlayingSounds, w)) {
         if (w->mUnk_19 & 4) {
             f = (w->mSoundId == c) && (w->mUnk_18 == b);
             if (f) {
@@ -323,7 +323,7 @@ void StopSoundEx(SoundSource *a, u32 b, u32 c, u32 d) {
             StopPlayingSound(a, v, d);
             return;
         }
-        v = ListGetNext(&a->mPlayingSounds, v);
+        v = NNS_FndGetNextListObject(&a->mPlayingSounds, v);
     }
 }
 
@@ -339,7 +339,7 @@ void StopPlayingSound(SoundSource *p, PlayingSound *b, u32 c) {
     b->mUnk_19 &= ~2;
     func_0210bc54(&p->mPlayingSounds, (u8 *) b);
     v = 3;
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;
@@ -389,7 +389,7 @@ void func_0210c238(SoundSource *p, u32 b) {
     while (a != NULL) {
         if (a->mUnk_19 & 4) {
             c = a;
-            a = ListGetNext(&p->mPlayingSounds, a);
+            a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
             func_0212c6f0((Unk0212c400 **) c, b);
             c->mUnk_19 &= ~4;
             c->mUnk_19 &= ~8;
@@ -398,13 +398,13 @@ void func_0210c238(SoundSource *p, u32 b) {
             v = 1;
             continue;
         }
-        a = ListGetNext(&p->mPlayingSounds, a);
+        a = NNS_FndGetNextListObject(&p->mPlayingSounds, a);
     }
     if (v == 0) {
         return;
     }
     v = 3;
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;

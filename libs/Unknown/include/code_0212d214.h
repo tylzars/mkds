@@ -68,19 +68,25 @@ typedef struct Unk0212d5f8 {
 
 typedef struct Unk0212d5f8 Unk0212d5f8;
 
+// Links of an element in an NNSFndList: previous and next element.
+typedef struct NNSFndLink {
+    /* 0 */ void *mPrevObject;
+    /* 4 */ void *mNextObject;
+} NNSFndLink;
+
 // List header of 12 bytes: first and last element, number of elements, and the offset of the links in an element.
-typedef struct LinkedList {
+typedef struct NNSFndList {
     /* 00 */ void *mHead;
     /* 04 */ void *mTail;
     /* 08 */ u16 mCount;
     /* 0a */ u16 mLinkOffset;
-} LinkedList;
+} NNSFndList;
 
 // 16 bytes: mLevels lists 20-byte elements whose links are at 0x0c (HeapStackInit sets that offset); HeapStackPushLevel
 // adds an element and func_0212da1c clears it as a list with offset 0.
 typedef struct HeapStack {
     /* 00 */ void *mHeap;
-    /* 04 */ LinkedList mLevels;
+    /* 04 */ NNSFndList mLevels;
 } HeapStack;
 
 // Block of 0x20 bytes before the memory HeapStackAlloc returns; an element (links at 0) of the list that starts each
@@ -155,7 +161,7 @@ Unk0212d5f8 *func_0212d5e0(Unk0212d5f8 *a);
 void func_0212d5f8(Unk0212d5f8 *a, void *buf);
 u32 func_0212d6c4(Unk0212d5f8 *a, HeapStack *p, u32 flag);
 void func_0212d8e0(Unk0212d5f8 *a, const u8 *path, HeapStack *p, u32 flag);
-void func_0212da1c(LinkedList *arg0);
+void func_0212da1c(NNSFndList *arg0);
 u32 func_0212dd64(Unk02021968 *a, Unk02021968 *b, u32 c, u32 d, HeapStack *e);
 u32 func_0212de34(Unk02021968 *a, u32 b, u32 c, HeapStack *d);
 void func_0212df28(void *buf, u32 size, void *p, u32 idx);

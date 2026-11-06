@@ -1944,7 +1944,7 @@ void func_02077eb4(void *a, u32 *b) {
     u32 v1;
     u32 v2;
     v1 = ((u32) HeapAlloc(a, (u32) (((u32) 0x0000f000u))));
-    v2 = (u32) ExpHeapCreate(((void *) v1), (u32) ((u32) (((u32) 0x0000f000u))), (u32) 0);
+    v2 = (u32) NNS_FndCreateExpHeapEx(((void *) v1), (u32) ((u32) (((u32) 0x0000f000u))), (u32) 0);
     b[1] = v2;
     *b = v1;
     b[4] = 0;
@@ -1978,8 +1978,8 @@ void LoadKartAndCharacterFiles(void) {
     b = data_0217ad08->mUnk_020->mUnk_00;
     c = data_0217ad08->mUnk_020->mUnk_04;
     p->mUnk_30 = 0;
-    ExpHeapDestroy(&p->mUnk_04->mUnk_00);
-    p->mUnk_04 = ExpHeapCreate(p->mUnk_00, 0xf000, 0);
+    NNS_FndDestroyExpHeap(p->mUnk_04);
+    p->mUnk_04 = NNS_FndCreateExpHeapEx(p->mUnk_00, 0xf000, 0);
     if (b != -1 && p->mUnk_08 != NULL) {
         func_02012b30(p->mUnk_08);
         func_02012b30(p->mUnk_0c);

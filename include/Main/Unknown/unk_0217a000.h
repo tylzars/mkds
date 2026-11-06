@@ -776,17 +776,17 @@ typedef struct Unk0217aa10_08 {
     /* 08 */ u32 mUnk_08;
 } Unk0217aa10_08;
 
-struct Unk02017584;
+struct NNSiFndHeapHead;
 
 // Object behind data_0217aa10; UpdateWiFiSession reads the word at 0. The objects at 0x2c and 0x58 are passed to
-// FS_StartOverlay and FS_InitFile, the pointer at 0xa4 to ExpHeapDestroy.
+// FS_StartOverlay and FS_InitFile, the pointer at 0xa4 to NNS_FndDestroyExpHeap.
 typedef struct Unk0217aa10 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ Unk0217aa10_08 mUnk_08[3];
     /* 2c */ Unk020055f0 mUnk_2c;
     /* 58 */ Unk02003024 mUnk_58;
-    /* a0 */ struct Unk02017f24 *mUnk_a0;
+    /* a0 */ struct NNSiFndHeapHead *mUnk_a0;
     /* a4 */ void *mUnk_a4;
     /* a8 */ u32 mUnk_a8;
     /* ac */ u32 mUnk_ac;
@@ -1305,7 +1305,7 @@ struct Unk020136f0;
 // 0x34-byte entries from 0x1f4 of Unk0217ad08; the pointers at 0x08 to 0x28 are passed to func_02012b30.
 typedef struct Unk0217ad08_1f4 {
     /* 00 */ void *mUnk_00;
-    /* 04 */ struct Unk020176c0 *mUnk_04;
+    /* 04 */ struct NNSiFndHeapHead *mUnk_04;
     /* 08 */ struct Unk020136f0 *mUnk_08;
     /* 0c */ struct Unk020136f0 *mUnk_0c;
     /* 10 */ struct Unk020136f0 *mUnk_10;
@@ -1474,7 +1474,7 @@ typedef struct Unk0217aec0 {
 } Unk0217aec0;
 
 // Object behind data_0217aebc, 0x144 bytes: word tables of eight entries, the eight
-// 0xc-byte entries at 0xb0 passed to ListAppend, and the list at 0x12c.
+// 0xc-byte entries at 0xb0 passed to NNS_FndAppendListObject, and the list at 0x12c.
 typedef struct Unk0217aebc {
     /* 000 */ s32 mUnk_000[8];
     /* 020 */ s32 mUnk_020[8];
@@ -1493,7 +1493,7 @@ typedef struct Unk0217aebc {
     /* 124 */ s16 mUnk_124;
     /* 126 */ u8 mUnk_126[2];
     /* 128 */ Unk0217aebc_128 *mUnk_128;
-    /* 12c */ LinkedList mUnk_12c;
+    /* 12c */ NNSFndList mUnk_12c;
     /* 138 */ s32 mUnk_138;
     /* 13c */ s16 mUnk_13c;
     /* 13e */ s16 mUnk_13e[3];
@@ -1644,7 +1644,7 @@ typedef struct Unk0217aa1c {
 
 extern Unk0217aa1c *data_0217aa1c;
 extern struct Kart *gKarts;
-extern LinkedList data_0217aeb0;
+extern NNSFndList data_0217aeb0;
 // The event counters of the selected entry's Kart, allocated by InitKarts.
 struct EntryKartCounters;
 extern struct EntryKartCounters *gEntryKartCounters;

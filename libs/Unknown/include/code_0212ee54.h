@@ -15,13 +15,13 @@ typedef struct Unk0212ee8c {
 typedef struct Unk0212ef48 {
     /* 000 */ u8 mUnk_000[0x4cc];
     /* 4cc */ OSMutex mUnk_4cc;
-    /* 4e4 */ LinkedList mUnk_4e4;
+    /* 4e4 */ NNSFndList mUnk_4e4;
 } Unk0212ef48;
 
 #include "code_0212c7f0.h" // Unk0212c7f0
 
 u32 func_0212ee54(void *arg0);
-void func_0212ee8c(LinkedList *a, Unk0212c7f0 *b);
+void func_0212ee8c(NNSFndList *a, Unk0212c7f0 *b);
 void func_0212ef00(Unk0212c7f0 *a);
 void func_0212ef48(Unk0212c7f0 *a);
 void func_0212efb8(Unk0212c7f0 *a);

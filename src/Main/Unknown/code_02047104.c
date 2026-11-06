@@ -278,7 +278,7 @@ void func_02047e94(void) {
         }
     } while (MI_ReadUncompLZ8(&b, (const u8 *) p->mUnk_88, r) != 0);
     DC_StoreRange(p->mUnk_84, n);
-    ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
+    NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(func_020364e8()));
 }
 
 void func_02047e0c(void) {
@@ -294,7 +294,7 @@ void func_02047e0c(void) {
     }
     MI_UncompressLZ8(p->mUnk_80, p->mUnk_84);
     DC_StoreRange(p->mUnk_84, n);
-    ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
+    NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(func_020364e8()));
 }
 
 void func_02047db8(void) {
@@ -331,7 +331,7 @@ void func_02047cf0(int a) {
         }
         data_021759c8->mUnk_00[a].mLoaded = 0;
         data_021759c8->mUnk_00[a].mData = 0;
-        ExpHeapGetTotalFreeSize(GetHeap(func_020364e8()));
+        NNS_FndGetTotalFreeSizeForExpHeap(GetHeap(func_020364e8()));
     }
 }
 
@@ -405,16 +405,8 @@ void func_02047b88(void) {
 #pragma thumb off
 
 #pragma thumb on
-void func_02047b6c(u16 arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    u32 value4;
-    value4 = (value0) + (0u);
-    value0 = (u32) func_020364e8();
-    value0 = (u32) GetHeap((void *) value0);
-    value1 = (value4 << 16);
-    value1 = (value1 >> 16);
-    value0 = (u32) func_020176b0(value0, value1);
+void func_02047b6c(u32 a) {
+    NNS_FndSetGroupIDForExpHeap(GetHeap(func_020364e8()), a);
 }
 #pragma thumb off
 
@@ -641,7 +633,7 @@ void func_020476ac(void) {
 
 #pragma thumb on
 
-void func_02047634(Unk02017f24 *a, s32 b, s32 c, u32 d, u32 e) {
+void func_02047634(NNSiFndHeapHead *a, s32 b, s32 c, u32 d, u32 e) {
     Unk021759c8_9b0 *p = &data_021759c8->mUnk_9b0[b];
     p->mUnk_00 = a;
     p->mUnk_04 = NULL;
@@ -655,7 +647,7 @@ void func_02047634(Unk02017f24 *a, s32 b, s32 c, u32 d, u32 e) {
 
 #pragma thumb on
 
-void func_02047544(Unk02017f24 *a, Unk02017f24 *b, Unk02017f24 *c) {
+void func_02047544(NNSiFndHeapHead *a, NNSiFndHeapHead *b, NNSiFndHeapHead *c) {
     func_02047634(c, 2, 0x3c, (u32) 0, (u32) 1);
     func_02047634(c, 3, 0x32, (u32) 0, (u32) 1);
     func_02047634(c, 4, 5, (u32) 0, (u32) 1);
@@ -704,7 +696,7 @@ void func_02047468(const void *a, u32 b) {
 
 void func_020473e4(void) {
     func_0204f5e4();
-    FrmHeapFree(data_021759c8->mUnk_a80, (u32) 3);
+    NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, (u32) 3);
     func_02047498(gKartModelMainAArchivePath, 0xb);
     func_02047498(gKartModelMainBArchivePath, 0xc);
     func_02047498(gMenuDLArchivePath2, 0);
@@ -717,7 +709,7 @@ void func_020473e4(void) {
 
 void func_020473a8(void) {
     func_0204f5e4();
-    FrmHeapFree(data_021759c8->mUnk_a80, (u32) 3);
+    NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, (u32) 3);
     func_02047498(gMenuDLArchivePath, 0);
     func_02047468(gMenuDLArchivePrefix, (u32) 1);
 }
@@ -729,7 +721,7 @@ void func_020473a8(void) {
 void func_020472e4(void *a, void *b) {
     char c[128];
     func_0204f5e4();
-    FrmHeapFree(data_021759c8->mUnk_a80, 3);
+    NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a80, 3);
     func_02047498(gRaceArchivePath, 2);
     func_02047468(gRaceArchivePrefix, 3);
     if (b == (void *) 3) {
@@ -740,7 +732,7 @@ void func_020472e4(void *a, void *b) {
         func_02047468(gRaceMgArchivePrefix, 5);
     }
     data_021759c8->mUnk_a74 = b;
-    FrmHeapFree(data_021759c8->mUnk_a7c, 3);
+    NNS_FndFreeToFrmHeap(data_021759c8->mUnk_a7c, 3);
     func_02048498(c, (s32) a, 0);
     func_02047498(c, 6);
     func_02048498(c, (s32) a, 1);
@@ -754,7 +746,7 @@ void func_020472e4(void *a, void *b) {
 
 void func_020472a8(void) {
     func_0204f5e4();
-    FrmHeapFree((void *) ((u32) data_021759c8->mUnk_a80), (u32) 3);
+    NNS_FndFreeToFrmHeap((void *) ((u32) data_021759c8->mUnk_a80), (u32) 3);
     func_02047498(gResultDLArchivePath, 0xe);
     func_02047468(gResultDLArchivePrefix, (u32) 0xf);
 }
@@ -782,7 +774,7 @@ void func_02047220(void *a, u32 b) {
     void *p;
 
     p = data_021759c8->mUnk_84c;
-    ExpHeapResizeBlock(GetHeap(func_020364e8()), p, b + ((u32) a - (u32) p));
+    NNS_FndResizeForMBlockExpHeap(GetHeap(func_020364e8()), p, b + ((u32) a - (u32) p));
 }
 
 void func_020471b0(void *a) {

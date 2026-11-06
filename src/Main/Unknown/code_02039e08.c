@@ -225,7 +225,7 @@ u32 RunMenuScene(SceneNumbers *a) {
     return 0;
 }
 
-u32 func_02039e08(Unk020176c0 *a, void **b, void **c, void **d, void **e, void **f) {
+u32 func_02039e08(NNSiFndHeapHead *a, void **b, void **c, void **d, void **e, void **f) {
     u32 r;
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         *b = CreateFrmHeapFromBack(a, 0x19000);
@@ -243,6 +243,6 @@ u32 func_02039e08(Unk020176c0 *a, void **b, void **c, void **d, void **e, void *
     }
     r = func_021087c4(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 ? 2 : 0);
     *c = HeapAlloc(a, r);
-    ExpHeapGetTotalFreeSize(a);
+    NNS_FndGetTotalFreeSizeForExpHeap(a);
     return r;
 }

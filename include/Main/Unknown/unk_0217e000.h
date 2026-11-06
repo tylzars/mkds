@@ -41,5 +41,5 @@ extern u32 data_0217eab8[];
 // the start of the next entry.
 extern u8 data_0217eadc[][0x14];
 extern OSMutex data_0217e3e0;
-extern LinkedList data_0217e3f8;
+extern NNSFndList data_0217e3f8;
 extern Unk0212c7f0 data_0217e404[4];

@@ -1,13 +1,14 @@
 #include "code_02017e70.h"
 
-ExpHeapBlock *ExpHeapBlockInit(ExpHeapRange *a, u16 b) {
-    ExpHeapBlock *p;
+// Sets up an empty block header at the start of the region, sized to the rest of the region.
+NNSiFndExpHeapMBlockHead *InitMBlock(const NNSiMemRegion *region, u16 signature) {
+    NNSiFndExpHeapMBlockHead *block;
 
-    p = (ExpHeapBlock *) a->mStart;
-    p->mTag = b;
-    p->mUnk_02 = 0;
-    p->mSize = a->mEnd - (u32) (p + 1);
-    p->mPrev = 0;
-    p->mNext = 0;
-    return p;
+    block = region->mStart;
+    block->mSignature = signature;
+    block->mAttribute = 0;
+    block->mBlockSize = (u32) region->mEnd - (u32) (block + 1);
+    block->mMBHeadPrev = 0;
+    block->mMBHeadNext = 0;
+    return block;
 }

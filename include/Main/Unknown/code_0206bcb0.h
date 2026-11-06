@@ -159,8 +159,8 @@ typedef struct Unk0206bcb0_514 {
     /* 60 */ s32 mUnk_60;
     /* 64 */ s32 mUnk_64;
     /* 68 */ u8 mUnk_68[0x18];
-    /* 80 */ LinkedList mUnk_80;
-    /* 8c */ LinkedList mUnk_8c;
+    /* 80 */ NNSFndList mUnk_80;
+    /* 8c */ NNSFndList mUnk_8c;
     /* 98 */ Vec3 mUnk_98;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ Vec3 mUnk_a8;

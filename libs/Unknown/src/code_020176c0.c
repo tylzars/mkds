@@ -3,353 +3,371 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "00/code_02188720.h"
 
-Unk020176c0 *ExpHeapInit(Unk020176c0 *a, u32 b, u16 c) {
-    Unk020179d4 *p;
-    ExpHeapRange r;
-    ExpHeapBlock *v;
+// Sets up an Exp heap over startAddress to endAddress with one free block covering all its memory.
+NNSiFndHeapHead *InitExpHeap(void *startAddress, void *endAddress, u16 optFlag) {
+    NNSiFndHeapHead *heap;
+    NNSiFndExpHeapHead *expHeap;
+    NNSiMemRegion range;
+    NNSiFndExpHeapMBlockHead *block;
 
-    p = &a->mUnk_24;
-    HeapInitAndLink(&a->mUnk_00, 0x45585048, (u32) (p + 1), b, c);
-    p->mUnk_10 = 0;
-    p->mUnk_12 = 0;
-    p->mUnk_12 &= ~1;
-    r.mStart = a->mUnk_00.mRangeStart;
-    r.mEnd = a->mUnk_00.mRangeEnd;
-    v = ExpHeapBlockInit(&r, 0x4652);
-    p->mFreeList.mHead = v;
-    p->mFreeList.mTail = v;
-    p->mUsedList.mHead = 0;
-    p->mUsedList.mTail = 0;
-    return a;
+    heap = startAddress;
+    expHeap = (NNSiFndExpHeapHead *) (heap + 1);
+    NNSi_FndInitHeapHead(heap, 0x45585048, expHeap + 1, endAddress, optFlag);
+    expHeap->mGroupID = 0;
+    expHeap->mFeature = 0;
+    expHeap->mFeature &= ~1;
+    range.mStart = heap->mHeapStart;
+    range.mEnd = heap->mHeapEnd;
+    block = InitMBlock(&range, 0x4652);
+    expHeap->mMbFreeList.mHead = block;
+    expHeap->mMbFreeList.mTail = block;
+    expHeap->mMbUsedList.mHead = 0;
+    expHeap->mMbUsedList.mTail = 0;
+    return heap;
 }
 
-void *ExpHeapAllocFromFreeBlock(Unk020179d4 *a, ExpHeapBlock *b, void *c, u32 d, u16 e) {
-    ExpHeapRange r1;
-    ExpHeapRange r2;
-    ExpHeapRange r3;
-    ExpHeapBlock *p;
-    ExpHeapBlock *q;
-    u32 n;
+// Cuts a used block of size bytes with its data at mblock out of freeBlock, putting what is left in front of and behind
+// it back on the free list, and links the used block to the end of the used list.
+void *AllocUsedBlockFromFreeBlock(NNSiFndExpHeapHead *expHeap, NNSiFndExpHeapMBlockHead *freeBlock, void *mblock,
+                                  u32 size, u16 direction) {
+    NNSiMemRegion freeRegion;
+    NNSiMemRegion rightRegion;
+    NNSiMemRegion usedRegion;
+    NNSiFndExpHeapMBlockHead *prev;
+    NNSiFndExpHeapMBlockHead *usedBlock;
+    u32 clearSize;
 
-    ExpHeapBlockGetRange(&r1, b);
-    q = (ExpHeapBlock *) ((u32) c - 0x10);
-    r2.mEnd = r1.mEnd;
-    r1.mEnd = (u32) q;
-    r2.mStart = d + (u32) c;
-    p = ExpHeapBlockListRemove(&a->mFreeList, b);
-    if (r1.mEnd - r1.mStart < 0x10) {
-        r1.mEnd = r1.mStart;
+    GetRegionOfMBlock(&freeRegion, freeBlock);
+    usedBlock = (NNSiFndExpHeapMBlockHead *) ((u32) mblock - 0x10);
+    rightRegion.mEnd = freeRegion.mEnd;
+    freeRegion.mEnd = usedBlock;
+    rightRegion.mStart = (void *) (size + (u32) mblock);
+    prev = RemoveMBlock(&expHeap->mMbFreeList, freeBlock);
+    if ((u32) freeRegion.mEnd - (u32) freeRegion.mStart < 0x10) {
+        freeRegion.mEnd = freeRegion.mStart;
     } else {
-        p = ExpHeapBlockListInsertAfter(&a->mFreeList, ExpHeapBlockInit(&r1, 0x4652), p);
+        prev = InsertMBlock(&expHeap->mMbFreeList, InitMBlock(&freeRegion, 0x4652), prev);
     }
-    if (r2.mEnd - r2.mStart < 0x10) {
-        r2.mStart = r2.mEnd;
+    if ((u32) rightRegion.mEnd - (u32) rightRegion.mStart < 0x10) {
+        rightRegion.mStart = rightRegion.mEnd;
     } else {
-        ExpHeapBlockListInsertAfter(&a->mFreeList, ExpHeapBlockInit(&r2, 0x4652), p);
+        InsertMBlock(&expHeap->mMbFreeList, InitMBlock(&rightRegion, 0x4652), prev);
     }
-    n = r2.mStart - r1.mEnd;
+    clearSize = (u32) rightRegion.mStart - (u32) freeRegion.mEnd;
     {
-        volatile u32 z;
+        volatile u32 zero;
 
-        if ((u16) (*(u32 *) ((u8 *) a - 4) & 0xff) & 1) {
-            z = 0;
-            MIi_CpuClear32(z, (void *) r1.mEnd, n);
+        if ((u16) (((NNSiFndHeapHead *) expHeap - 1)->mAttribute & 0xff) & 1) {
+            zero = 0;
+            MIi_CpuClear32(zero, freeRegion.mEnd, clearSize);
         }
     }
-    r3.mStart = (u32) q;
-    r3.mEnd = r2.mStart;
-    p = ExpHeapBlockInit(&r3, 0x5544);
-    p->mUnk_02 &= ~0x8000;
-    p->mUnk_02 |= (e & 1) << 15;
+    usedRegion.mStart = usedBlock;
+    usedRegion.mEnd = rightRegion.mStart;
+    usedBlock = InitMBlock(&usedRegion, 0x5544);
+    usedBlock->mAttribute &= ~0x8000;
+    usedBlock->mAttribute |= (direction & 1) << 15;
     {
-        u32 t = (u32) p - r1.mEnd;
+        u32 offset = (u32) usedBlock - (u32) freeRegion.mEnd;
 
-        p->mUnk_02 &= ~0x7f00;
-        p->mUnk_02 |= ((u16) t & 0x7f) << 8;
+        usedBlock->mAttribute &= ~0x7f00;
+        usedBlock->mAttribute |= ((u16) offset & 0x7f) << 8;
     }
     {
-        u8 g = a->mUnk_10;
+        u8 id = expHeap->mGroupID;
 
-        p->mUnk_02 &= ~0xff;
-        p->mUnk_02 |= g;
+        usedBlock->mAttribute &= ~0xff;
+        usedBlock->mAttribute |= id;
     }
-    ExpHeapBlockListInsertAfter(&a->mUsedList, p, a->mUsedList.mTail);
-    return c;
+    InsertMBlock(&expHeap->mMbUsedList, usedBlock, expHeap->mMbUsedList.mTail);
+    return mblock;
 }
 
-void *ExpHeapAllocFront(Unk020176c0 *a, u32 b, u32 c) {
-    Unk020179d4 *p;
-    ExpHeapBlock *q;
-    ExpHeapBlock *b0;
-    u32 a0;
-    u32 v0;
-    u32 v1;
-    int bestaddr;
-    u32 m;
-    u32 f;
+// Takes size bytes from the start of a free block, aligned to alignment, and returns them or NULL. In the first-fit
+// allocation mode the first block that fits is used, otherwise the smallest one.
+void *AllocFromHead(NNSiFndHeapHead *heap, u32 size, int alignment) {
+    NNSiFndExpHeapHead *expHeap;
+    NNSiFndExpHeapMBlockHead *block;
+    NNSiFndExpHeapMBlockHead *bestBlock;
+    u32 start;
+    u32 blockSize;
+    u32 bestSize;
+    int bestStart;
+    u32 mask;
+    u32 firstFit;
 
-    p = &a->mUnk_24;
-    f = (u16) (p->mUnk_12 & 1) == 0 ? 1 : 0;
-    q = p->mFreeList.mHead;
-    b0 = 0;
-    bestaddr = 0;
-    v1 = -1;
-    if (q != 0) {
-        m = c - 1;
+    expHeap = (NNSiFndExpHeapHead *) (heap + 1);
+    firstFit = (u16) (expHeap->mFeature & 1) == 0 ? 1 : 0;
+    block = expHeap->mMbFreeList.mHead;
+    bestBlock = 0;
+    bestStart = 0;
+    bestSize = -1;
+    if (block != 0) {
+        mask = alignment - 1;
         do {
-            a0 = (m + ((u32) (q + 1))) & ~m;
-            v0 = q->mSize;
-            if (v0 >= b + (a0 - ((u32) (q + 1))) && v1 > v0) {
-                b0 = q;
-                v1 = v0;
-                bestaddr = a0;
-                if (f != 0) {
+            start = (mask + ((u32) (block + 1))) & ~mask;
+            blockSize = block->mBlockSize;
+            if (blockSize >= size + (start - ((u32) (block + 1))) && bestSize > blockSize) {
+                bestBlock = block;
+                bestSize = blockSize;
+                bestStart = start;
+                if (firstFit != 0) {
                     break;
                 }
-                if (v0 == b) {
+                if (blockSize == size) {
                     break;
                 }
             }
-            q = q->mNext;
-        } while (q != 0);
+            block = block->mMBHeadNext;
+        } while (block != 0);
     }
-    if (b0 == 0) {
+    if (bestBlock == 0) {
         return 0;
     }
-    return ExpHeapAllocFromFreeBlock(p, b0, (void *) bestaddr, b, 0);
+    return AllocUsedBlockFromFreeBlock(expHeap, bestBlock, (void *) bestStart, size, 0);
 }
 
-void *ExpHeapAllocBack(Unk020176c0 *a, u32 b, u32 c) {
-    int v0;
-    u32 m;
-    u32 a0;
-    ExpHeapBlock *q;
-    ExpHeapBlock *b0;
-    u32 v1;
-    Unk020179d4 *p;
-    int g0;
-    int bestaddr;
-    u32 f;
+// Takes size bytes from the end of a free block, aligned to alignment, and returns them or NULL. In the first-fit
+// allocation mode the first block that fits is used, otherwise the smallest one.
+void *AllocFromTail(NNSiFndHeapHead *heap, u32 size, int alignment) {
+    int blockSize;
+    u32 mask;
+    u32 start;
+    NNSiFndExpHeapMBlockHead *block;
+    NNSiFndExpHeapMBlockHead *bestBlock;
+    u32 bestSize;
+    NNSiFndExpHeapHead *expHeap;
+    int offset;
+    int bestStart;
+    u32 firstFit;
 
-    p = &a->mUnk_24;
-    f = (u16) (p->mUnk_12 & 1) == 0 ? 1 : 0;
-    v1 = -1;
-    b0 = 0;
-    q = p->mFreeList.mTail;
-    bestaddr = 0;
-    if (q != 0) {
-        m = ~(c - 1);
+    expHeap = (NNSiFndExpHeapHead *) (heap + 1);
+    firstFit = (u16) (expHeap->mFeature & 1) == 0 ? 1 : 0;
+    bestSize = -1;
+    bestBlock = 0;
+    block = expHeap->mMbFreeList.mTail;
+    bestStart = 0;
+    if (block != 0) {
+        mask = ~(alignment - 1);
         do {
-            u32 t = q->mSize;
+            u32 size0 = block->mBlockSize;
 
-            v0 = t;
-            a0 = (v0 + ((u32) (q + 1)) - b) & m;
-            g0 = a0 - ((u32) (q + 1));
-            if (g0 >= 0 && v1 > v0) {
-                b0 = q;
-                v1 = (u32) v0;
-                bestaddr = a0;
-                if (f != 0) {
+            blockSize = size0;
+            start = (blockSize + ((u32) (block + 1)) - size) & mask;
+            offset = start - ((u32) (block + 1));
+            if (offset >= 0 && bestSize > blockSize) {
+                bestBlock = block;
+                bestSize = (u32) blockSize;
+                bestStart = start;
+                if (firstFit != 0) {
                     break;
                 }
-                if (v0 == b) {
+                if (blockSize == size) {
                     break;
                 }
             }
-            q = q->mPrev;
-        } while (q != 0);
+            block = block->mMBHeadPrev;
+        } while (block != 0);
     }
-    if (b0 == 0) {
+    if (bestBlock == 0) {
         return 0;
     }
-    return ExpHeapAllocFromFreeBlock(p, b0, (void *) bestaddr, b, 1);
+    return AllocUsedBlockFromFreeBlock(expHeap, bestBlock, (void *) bestStart, size, 1);
 }
 
-u32 ExpHeapAddFreeRange(Unk020179d4 *a, ExpHeapRange *b) {
-    ExpHeapRange r;
-    ExpHeapBlock *p;
-    ExpHeapBlock *q;
+// Puts the region back on the free list, merged with a free block right before or behind it. Returns 0 when what is
+// left is smaller than a block header.
+BOOL RecycleRegion(NNSiFndExpHeapHead *expHeap, const NNSiMemRegion *region) {
+    NNSiMemRegion merged;
+    NNSiFndExpHeapMBlockHead *block;
+    NNSiFndExpHeapMBlockHead *prev;
 
-    r = *b;
-    q = 0;
-    p = a->mFreeList.mHead;
-    if (p != 0) {
+    merged = *region;
+    prev = 0;
+    block = expHeap->mMbFreeList.mHead;
+    if (block != 0) {
         do {
-            if ((u32) p < b->mStart) {
-                q = p;
+            if ((void *) block < region->mStart) {
+                prev = block;
             } else {
-                if ((u32) p == b->mEnd) {
-                    r.mEnd = p->mSize + ((u32) (p + 1));
-                    ExpHeapBlockListRemove(&a->mFreeList, p);
+                if ((void *) block == region->mEnd) {
+                    merged.mEnd = (void *) (block->mBlockSize + ((u32) (block + 1)));
+                    RemoveMBlock(&expHeap->mMbFreeList, block);
                 }
                 break;
             }
-            p = p->mNext;
-        } while (p != 0);
+            block = block->mMBHeadNext;
+        } while (block != 0);
     }
-    if (q != 0) {
-        u32 s = q->mSize + ((u32) (q + 1));
+    if (prev != 0) {
+        u32 end = prev->mBlockSize + ((u32) (prev + 1));
 
-        if (s == b->mStart) {
-            r.mStart = (u32) q;
-            q = ExpHeapBlockListRemove(&a->mFreeList, q);
+        if (end == (u32) region->mStart) {
+            merged.mStart = prev;
+            prev = RemoveMBlock(&expHeap->mMbFreeList, prev);
         }
     }
-    if (r.mEnd - r.mStart < 0x10) {
+    if ((u32) merged.mEnd - (u32) merged.mStart < 0x10) {
         return 0;
     }
-    ExpHeapBlockListInsertAfter(&a->mFreeList, ExpHeapBlockInit(&r, 0x4652), q);
+    InsertMBlock(&expHeap->mMbFreeList, InitMBlock(&merged, 0x4652), prev);
     return 1;
 }
 
-Unk020176c0 *ExpHeapCreate(void *a, u32 b, u16 c) {
-    u32 e;
+// Sets up an Exp heap in the memory of size bytes at startAddress, or returns NULL when it is too small.
+NNSFndHeapHandle NNS_FndCreateExpHeapEx(void *startAddress, u32 size, u16 optFlag) {
+    void *bufferEnd;
 
-    e = (b + (u32) a) & ~3;
-    a = (void *) (((u32) a + 3) & ~3);
-    if ((u32) a > e || e - (u32) a < 0x4c) {
+    bufferEnd = (void *) ((size + (u32) startAddress) & ~3);
+    startAddress = (void *) (((u32) startAddress + 3) & ~3);
+    if (startAddress > bufferEnd || (u32) bufferEnd - (u32) startAddress < 0x4c) {
         return 0;
     }
-    return ExpHeapInit(a, e, c);
+    return InitExpHeap(startAddress, bufferEnd, optFlag);
 }
 
-void ExpHeapDestroy(Unk02017584 *a) {
-    HeapUnlink(a);
+// Takes the heap out of the heap list; its memory stays with the caller.
+void NNS_FndDestroyExpHeap(NNSFndHeapHandle heap) {
+    NNSi_FndFinalizeHeap(heap);
 }
 
-void *ExpHeapAlloc(Unk020176c0 *a, u32 b, s32 c) {
-    if (b == 0) {
-        b = 1;
+// Allocates size bytes, rounded up to a multiple of 4 and at least 4, from the front of the heap, or from the back when
+// alignment is negative.
+void *NNS_FndAllocFromExpHeapEx(NNSFndHeapHandle heap, u32 size, int alignment) {
+    if (size == 0) {
+        size = 1;
     }
-    b = (b + 3) & ~3;
-    if (c >= 0) {
-        return ExpHeapAllocFront(a, b, c);
+    size = (size + 3) & ~3;
+    if (alignment >= 0) {
+        return AllocFromHead(heap, size, alignment);
     }
-    return ExpHeapAllocBack(a, b, -c);
+    return AllocFromTail(heap, size, -alignment);
 }
 
-u32 ExpHeapResizeBlock(Unk020176c0 *a, void *b, u32 c) {
-    ExpHeapRange r1;
-    u32 start;
-    ExpHeapBlock *r;
-    ExpHeapBlock *prev;
-    ExpHeapRange r2;
-    u32 sz;
-    Unk020179d4 *p;
-    ExpHeapBlock *q;
-    u32 e;
-    u32 t;
-    u32 n;
+// Grows or shrinks the used block at memBlock to size bytes and returns its new size, or 0 when it cannot grow.
+u32 NNS_FndResizeForMBlockExpHeap(NNSFndHeapHandle heap, void *memBlock, u32 size) {
+    NNSiMemRegion freeRegion;
+    u32 freeStart;
+    NNSiFndExpHeapMBlockHead *freeBlock;
+    NNSiFndExpHeapMBlockHead *prev;
+    NNSiMemRegion cutRegion;
+    u32 oldSize;
+    NNSiFndExpHeapHead *expHeap;
+    NNSiFndExpHeapMBlockHead *block;
+    u32 newEnd;
+    u32 blockEnd;
+    u32 clearSize;
 
-    q = (ExpHeapBlock *) ((u8 *) b - 0x10);
-    sz = q->mSize;
-    c = (c + 3) & ~3;
-    p = &a->mUnk_24;
-    if (c == sz) {
-        return c;
+    block = (NNSiFndExpHeapMBlockHead *) ((u8 *) memBlock - 0x10);
+    oldSize = block->mBlockSize;
+    size = (size + 3) & ~3;
+    expHeap = (NNSiFndExpHeapHead *) (heap + 1);
+    if (size == oldSize) {
+        return size;
     }
-    if (c > sz) {
-        r = p->mFreeList.mHead;
-        t = sz + ((u32) (q + 1));
-        if (r != 0) {
+    if (size > oldSize) {
+        freeBlock = expHeap->mMbFreeList.mHead;
+        blockEnd = oldSize + ((u32) (block + 1));
+        if (freeBlock != 0) {
             do {
-                if ((u32) r == t) {
+                if ((u32) freeBlock == blockEnd) {
                     break;
                 }
-                r = r->mNext;
-            } while (r != 0);
+                freeBlock = freeBlock->mMBHeadNext;
+            } while (freeBlock != 0);
         }
-        if (r == 0 || c > sz + 0x10 + r->mSize) {
+        if (freeBlock == 0 || size > oldSize + 0x10 + freeBlock->mBlockSize) {
             return 0;
         }
-        ExpHeapBlockGetRange(&r1, r);
-        prev = ExpHeapBlockListRemove(&p->mFreeList, r);
-        e = c + (u32) b;
-        start = r1.mStart;
-        r1.mStart = e;
-        if (r1.mEnd - e < 0x10) {
-            r1.mStart = r1.mEnd;
+        GetRegionOfMBlock(&freeRegion, freeBlock);
+        prev = RemoveMBlock(&expHeap->mMbFreeList, freeBlock);
+        newEnd = size + (u32) memBlock;
+        freeStart = (u32) freeRegion.mStart;
+        freeRegion.mStart = (void *) newEnd;
+        if ((u32) freeRegion.mEnd - newEnd < 0x10) {
+            freeRegion.mStart = freeRegion.mEnd;
         }
-        q->mSize = r1.mStart - (u32) b;
-        if (r1.mEnd - r1.mStart >= 0x10) {
-            ExpHeapBlockListInsertAfter(&p->mFreeList, ExpHeapBlockInit(&r1, 0x4652), prev);
+        block->mBlockSize = (u32) freeRegion.mStart - (u32) memBlock;
+        if ((u32) freeRegion.mEnd - (u32) freeRegion.mStart >= 0x10) {
+            InsertMBlock(&expHeap->mMbFreeList, InitMBlock(&freeRegion, 0x4652), prev);
         }
-        n = r1.mStart - start;
+        clearSize = (u32) freeRegion.mStart - freeStart;
         {
-            volatile u32 z;
+            volatile u32 zero;
 
-            if ((u16) (a->mUnk_00.mUnk_20 & 0xff) & 1) {
-                z = 0;
-                MIi_CpuClear32(z, (void *) start, n);
+            if ((u16) (heap->mAttribute & 0xff) & 1) {
+                zero = 0;
+                MIi_CpuClear32(zero, (void *) freeStart, clearSize);
             }
         }
     } else {
-        r2.mStart = c + (u32) b;
-        r2.mEnd = q->mSize + ((u32) (q + 1));
-        q->mSize = c;
-        if (ExpHeapAddFreeRange(&a->mUnk_24, &r2) == 0) {
-            q->mSize = sz;
+        cutRegion.mStart = (void *) (size + (u32) memBlock);
+        cutRegion.mEnd = (void *) (block->mBlockSize + ((u32) (block + 1)));
+        block->mBlockSize = size;
+        if (RecycleRegion(expHeap, &cutRegion) == 0) {
+            block->mBlockSize = oldSize;
         }
     }
-    return q->mSize;
+    return block->mBlockSize;
 }
 
-void ExpHeapFree(Unk020176c0 *a, void *b) {
-    Unk020179d4 *p;
-    ExpHeapBlock *q;
-    ExpHeapRange r;
+// Returns the used block at memBlock to the free list.
+void NNS_FndFreeToExpHeap(NNSFndHeapHandle heap, void *memBlock) {
+    NNSiFndExpHeapHead *expHeap;
+    NNSiFndExpHeapMBlockHead *block;
+    NNSiMemRegion range;
 
-    q = (ExpHeapBlock *) ((u8 *) b - 0x10);
-    p = &a->mUnk_24;
-    ExpHeapBlockGetRange(&r, q);
-    ExpHeapBlockListRemove(&p->mUsedList, q);
-    ExpHeapAddFreeRange(p, &r);
+    block = (NNSiFndExpHeapMBlockHead *) ((u8 *) memBlock - 0x10);
+    expHeap = (NNSiFndExpHeapHead *) (heap + 1);
+    GetRegionOfMBlock(&range, block);
+    RemoveMBlock(&expHeap->mMbUsedList, block);
+    RecycleRegion(expHeap, &range);
 }
 
-u32 ExpHeapGetTotalFreeSize(Unk020176c0 *a) {
-    ExpHeapBlock *p;
-    u32 n;
+// Returns the sum of the sizes of all free blocks.
+u32 NNS_FndGetTotalFreeSizeForExpHeap(NNSFndHeapHandle heap) {
+    NNSiFndExpHeapMBlockHead *block;
+    u32 total;
 
-    p = a->mUnk_24.mFreeList.mHead;
-    n = 0;
-    if (p == 0) {
-        return n;
+    block = ((NNSiFndExpHeapHead *) (heap + 1))->mMbFreeList.mHead;
+    total = 0;
+    if (block == 0) {
+        return total;
     }
     do {
-        n += p->mSize;
-        p = p->mNext;
-    } while (p != 0);
-    return n;
+        total += block->mBlockSize;
+        block = block->mMBHeadNext;
+    } while (block != 0);
+    return total;
 }
 
-u32 ExpHeapGetMaxAllocSize(Unk020176c0 *a, u32 b) {
-    u32 m;
-    u32 b0;
-    u32 off;
-    ExpHeapBlock *p;
-    u32 s;
-    u32 e;
-    u32 n;
-    u32 l;
-    u32 d;
+// Returns the size of the largest block that can be allocated with the given alignment (its sign is ignored).
+u32 NNS_FndGetAllocatableSizeForExpHeapEx(NNSFndHeapHandle heap, int alignment) {
+    u32 mask;
+    u32 bestSize;
+    u32 bestOffset;
+    NNSiFndExpHeapMBlockHead *block;
+    u32 blockStart;
+    u32 blockEnd;
+    u32 alignedStart;
+    u32 fitSize;
+    u32 offset;
 
-    m = Abs(b);
-    b0 = 0;
-    off = -1;
-    for (p = a->mUnk_24.mFreeList.mHead; p != 0; p = p->mNext) {
-        {
-            s = (u32) (p + 1);
-            n = ((u32) (m - 1) + s) & ~(m - 1);
-            e = p->mSize + s;
-            if (n < e) {
-                l = e - n;
-                d = n - s;
-                if (b0 < l || (b0 == l && off > d)) {
-                    b0 = l;
-                    off = d;
-                }
+    mask = Abs(alignment);
+    bestSize = 0;
+    bestOffset = -1;
+    for (block = ((NNSiFndExpHeapHead *) (heap + 1))->mMbFreeList.mHead; block != 0; block = block->mMBHeadNext) {
+        blockStart = (u32) (block + 1);
+        alignedStart = ((u32) (mask - 1) + blockStart) & ~(mask - 1);
+        blockEnd = block->mBlockSize + blockStart;
+        if (alignedStart < blockEnd) {
+            fitSize = blockEnd - alignedStart;
+            offset = alignedStart - blockStart;
+            if (bestSize < fitSize || (bestSize == fitSize && bestOffset > offset)) {
+                bestSize = fitSize;
+                bestOffset = offset;
             }
         }
     }
-    return b0;
+    return bestSize;
 }

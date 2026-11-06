@@ -31,7 +31,7 @@ s32 func_0212c700(u32 a, HeapStack *b, u32 c) {
         return 0;
     }
     p->mUnk_08 = q;
-    ListAppend(&data_0217d89c[a].mUnk_0c, p);
+    NNS_FndAppendListObject(&data_0217d89c[a].mUnk_0c, p);
     return 1;
 }
 
@@ -209,8 +209,8 @@ u32 func_0212c450(Unk0212c400 **arg0, u32 arg1, u32 arg2) {
     return value0;
 }
 
-LinkedList data_0217d450;
-LinkedList data_0217d444;
+NNSFndList data_0217d450;
+NNSFndList data_0217d444;
 
 u32 func_0212c400(Unk0212c400 **a, u32 b, s16 *c) {
     Unk0212c400 *p = *a;
@@ -239,16 +239,16 @@ void func_0212c310(void) {
     Unk0212c400 *p;
     Unk0212c7a0 *e;
 
-    ListInit(&data_0217d450, 0x14);
-    ListInit(&data_0217d444, 0x14);
+    NNS_FndInitList(&data_0217d450, 0x14);
+    NNS_FndInitList(&data_0217d444, 0x14);
     for (i = 0, p = data_0217d45c; i < 16; i++, p++) {
         p->mUnk_2c = 0;
         p->mUnk_3c = i;
-        ListAppend(&data_0217d444, p);
+        NNS_FndAppendListObject(&data_0217d444, p);
     }
     for (i = 0, e = data_0217d89c; i < 32; i++, e++) {
-        ListInit(&e->mUnk_00, 0xc);
-        ListInit(&e->mUnk_0c, 0);
+        NNS_FndInitList(&e->mUnk_00, 0xc);
+        NNS_FndInitList(&e->mUnk_0c, 0);
         e->mUnk_20 = 0x7f;
         e->mUnk_18 = 1;
         e->mUnk_1c = 0;
@@ -265,8 +265,8 @@ void func_0212c19c(void) {
     s32 v;
 
     m = SND_GetPlayerStatus();
-    for (p = ListGetNext(&data_0217d450, 0); p != 0; p = q) {
-        q = ListGetNext(&data_0217d450, p);
+    for (p = NNS_FndGetNextListObject(&data_0217d450, 0); p != 0; p = q) {
+        q = NNS_FndGetNextListObject(&data_0217d450, p);
         if (p->mUnk_2d == 0 && SND_IsFinishedCommandTag(p->mUnk_30) != 0) {
             p->mUnk_2d = 1;
         }
@@ -307,7 +307,7 @@ Unk0212c400 *func_0212c0e0(Unk0212c400 **a, s32 b, s32 c) {
         func_0212c688(a);
     }
     if (e->mUnk_00.mCount >= e->mUnk_18) {
-        p = ListGetNext(&e->mUnk_00, 0);
+        p = NNS_FndGetNextListObject(&e->mUnk_00, 0);
         if (p == 0) {
             return 0;
         }
@@ -363,11 +363,11 @@ HeapStack *func_0212bfbc(u32 a, Unk0212c400 *b) {
     Unk0212c7a0 *e = &data_0217d89c[a];
     Unk0212c700 *q;
 
-    q = ListGetNext(&e->mUnk_0c, 0);
+    q = NNS_FndGetNextListObject(&e->mUnk_0c, 0);
     if (q == 0) {
         return 0;
     }
-    ListRemove(&e->mUnk_0c, q);
+    NNS_FndRemoveListObject(&e->mUnk_0c, q);
     q->mUnk_0c = b;
     b->mUnk_08 = q;
     HeapStackReset(q->mUnk_08);
@@ -389,24 +389,24 @@ void func_0212bf70(Unk0212c400 *p) {
 void func_0212bf14(Unk0212c7a0 *e, Unk0212c400 *p) {
     Unk0212c400 *q;
 
-    for (q = ListGetNext(&e->mUnk_00, 0); q != 0; q = ListGetNext(&e->mUnk_00, q)) {
+    for (q = NNS_FndGetNextListObject(&e->mUnk_00, 0); q != 0; q = NNS_FndGetNextListObject(&e->mUnk_00, q)) {
         if (p->mUnk_3d < q->mUnk_3d) {
             break;
         }
     }
-    ListInsertBefore(&e->mUnk_00, q, p);
+    NNS_FndInsertListObject(&e->mUnk_00, q, p);
     p->mUnk_04 = e;
 }
 
 void func_0212beb4(Unk0212c400 *p) {
     Unk0212c400 *q;
 
-    for (q = ListGetNext(&data_0217d450, 0); q != 0; q = ListGetNext(&data_0217d450, q)) {
+    for (q = NNS_FndGetNextListObject(&data_0217d450, 0); q != 0; q = NNS_FndGetNextListObject(&data_0217d450, q)) {
         if (p->mUnk_3d < q->mUnk_3d) {
             break;
         }
     }
-    ListInsertBefore(&data_0217d450, q, p);
+    NNS_FndInsertListObject(&data_0217d450, q, p);
 }
 
 void func_0212be78(Unk0212c400 *p) {
@@ -418,16 +418,16 @@ void func_0212be78(Unk0212c400 *p) {
 }
 
 Unk0212c400 *func_0212bdfc(s32 a) {
-    Unk0212c400 *p = ListGetNext(&data_0217d444, 0);
+    Unk0212c400 *p = NNS_FndGetNextListObject(&data_0217d444, 0);
 
     if (p == 0) {
-        p = ListGetNext(&data_0217d450, 0);
+        p = NNS_FndGetNextListObject(&data_0217d450, 0);
         if (a < p->mUnk_3d) {
             return 0;
         }
         func_0212be78(p);
     }
-    ListRemove(&data_0217d444, p);
+    NNS_FndRemoveListObject(&data_0217d444, p);
     p->mUnk_3d = a;
     func_0212beb4(p);
     return p;
@@ -441,15 +441,15 @@ void func_0212bd6c(Unk0212c400 *p) {
         p->mUnk_00 = 0;
     }
     e = p->mUnk_04;
-    ListRemove(&e->mUnk_00, p);
+    NNS_FndRemoveListObject(&e->mUnk_00, p);
     p->mUnk_04 = 0;
     if (p->mUnk_08 != 0) {
-        ListAppend(&e->mUnk_0c, p->mUnk_08);
+        NNS_FndAppendListObject(&e->mUnk_0c, p->mUnk_08);
         p->mUnk_08->mUnk_0c = 0;
         p->mUnk_08 = 0;
     }
-    ListRemove(&data_0217d450, p);
-    ListAppend(&data_0217d444, p);
+    NNS_FndRemoveListObject(&data_0217d450, p);
+    NNS_FndAppendListObject(&data_0217d444, p);
     p->mUnk_2c = 0;
 }
 
@@ -462,17 +462,17 @@ void func_0212bd10(Unk0212c700 *p) {
         p->mUnk_0c->mUnk_08 = 0;
         return;
     }
-    ListRemove(&data_0217d89c[p->mUnk_10].mUnk_0c, p);
+    NNS_FndRemoveListObject(&data_0217d89c[p->mUnk_10].mUnk_0c, p);
 }
 
 void func_0212bcac(Unk0212c400 *p, u32 b) {
     Unk0212c7a0 *e = p->mUnk_04;
 
     if (e != 0) {
-        ListRemove(&e->mUnk_00, p);
+        NNS_FndRemoveListObject(&e->mUnk_00, p);
         p->mUnk_04 = 0;
     }
-    ListRemove(&data_0217d450, p);
+    NNS_FndRemoveListObject(&data_0217d450, p);
     p->mUnk_3d = b;
     if (e != 0) {
         func_0212bf14(e, p);

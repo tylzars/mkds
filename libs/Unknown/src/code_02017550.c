@@ -2,55 +2,60 @@
 #include "code_020172d0.h"
 #include "code_0201750c.h"
 
-Unk02017584 *HeapFindInnermostInList(LinkedList *a, u32 b) {
-    Unk02017584 *p;
-    Unk02017584 *r;
+// Returns the innermost heap in list whose memory contains memBlock, looking into the child lists first.
+NNSiFndHeapHead *FindContainHeap(NNSFndList *list, const void *memBlock) {
+    NNSiFndHeapHead *candidate;
+    NNSiFndHeapHead *child;
 
-    p = ListGetNext(a, 0);
-    while (p != 0) {
-        if (p->mRangeStart <= b && b < p->mRangeEnd) {
-            r = HeapFindInnermostInList(&p->mUnk_0c, b);
-            if (r == 0) {
-                r = p;
+    candidate = NNS_FndGetNextListObject(list, 0);
+    while (candidate != 0) {
+        if (candidate->mHeapStart <= memBlock && memBlock < candidate->mHeapEnd) {
+            child = FindContainHeap(&candidate->mChildList, memBlock);
+            if (child == 0) {
+                child = candidate;
             }
-            return r;
+            return child;
         }
-        p = ListGetNext(a, p);
+        candidate = NNS_FndGetNextListObject(list, candidate);
     }
     return 0;
 }
 
-LinkedList *HeapFindList(u32 a) {
-    LinkedList *l;
-    Unk02017584 *p;
+// Returns the child list of the heap that contains heap, or the root list.
+NNSFndList *FindListContainHeap(NNSiFndHeapHead *heap) {
+    NNSFndList *list;
+    NNSiFndHeapHead *container;
 
-    l = &gHeapList;
-    p = HeapFindInnermostInList(l, a);
-    if (p != 0) {
-        l = &p->mUnk_0c;
+    list = &gHeapList;
+    container = FindContainHeap(list, heap);
+    if (container != 0) {
+        list = &container->mChildList;
     }
-    return l;
+    return list;
 }
 
-void HeapInitAndLink(Unk02017584 *a, u32 b, u32 c, u32 d, u16 e) {
-    a->mTag = b;
-    a->mRangeStart = c;
-    a->mRangeEnd = d;
-    a->mUnk_20 = 0;
-    a->mUnk_20 &= ~0xff;
-    a->mUnk_20 |= e & 0xff;
-    ListInit(&a->mUnk_0c, 4);
+// Fills in the heap header and links the heap into the child list of the heap that contains it.
+void NNSi_FndInitHeapHead(NNSiFndHeapHead *heap, u32 signature, void *heapStart, void *heapEnd, u16 optFlag) {
+    heap->mSignature = signature;
+    heap->mHeapStart = heapStart;
+    heap->mHeapEnd = heapEnd;
+    heap->mAttribute = 0;
+    heap->mAttribute &= ~0xff;
+    heap->mAttribute |= optFlag & 0xff;
+    NNS_FndInitList(&heap->mChildList, 4);
     if (gHeapListInitialized == 0) {
-        ListInit(&gHeapList, 4);
+        NNS_FndInitList(&gHeapList, 4);
         gHeapListInitialized = 1;
     }
-    ListAppend(HeapFindList((u32) a), a);
+    NNS_FndAppendListObject(FindListContainHeap(heap), heap);
 }
 
-void HeapUnlink(Unk02017584 *a) {
-    ListRemove(HeapFindList((u32) a), a);
+// Removes the heap from the list of the heap that contains it.
+void NNSi_FndFinalizeHeap(NNSiFndHeapHead *heap) {
+    NNS_FndRemoveListObject(FindListContainHeap(heap), heap);
 }
 
-void *HeapFindInnermost(void *a) {
-    return HeapFindInnermostInList(&gHeapList, (u32) a);
+// Returns the innermost heap whose memory contains memBlock.
+NNSFndHeapHandle NNS_FndFindContainHeap(const void *memBlock) {
+    return FindContainHeap(&gHeapList, memBlock);
 }

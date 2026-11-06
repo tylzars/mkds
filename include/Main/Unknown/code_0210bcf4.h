@@ -16,7 +16,7 @@ typedef struct SoundSource {
     /* 02 */ u16 mUnk_02;
     /* 04 */ u8 mUnk_04[8];
     // The sounds started on this source, as a list of PlayingSound entries.
-    /* 0c */ LinkedList mPlayingSounds;
+    /* 0c */ NNSFndList mPlayingSounds;
     /* 18 */ u32 mUnk_18;
     /* 1c */ u8 mUnk_1c[0xc];
     // Pointer to the owner's position (declared u32); the distance and the direction to the camera are measured to it.
@@ -39,13 +39,13 @@ typedef struct SoundSource {
 // One sound started on a SoundSource, from the start request until it is stopped. The entries are taken from a pool of
 // twelve and linked into the list of the source. The mUnk_00 member is the library player handle, NULL until the player
 // is started. Returned by func_0210e128 and passed to func_0210bcf4; func_0210c084 writes its byte at 0x19.
-// func_0210bf24 subtracts one LinkedList from mUnk_10 to reach the SoundSource holding it.
+// func_0210bf24 subtracts one NNSFndList from mUnk_10 to reach the SoundSource holding it.
 typedef struct PlayingSound {
     /* 00 */ Unk0212c400 *mUnk_00;
     /* 04 */ s32 mUnk_04;
     /* 08 */ u32 mUnk_08;
     /* 0c */ u32 mUnk_0c;
-    /* 10 */ LinkedList *mUnk_10;
+    /* 10 */ NNSFndList *mUnk_10;
     /* 14 */ s16 mUnk_14;
     // Number of the sound this entry plays.
     /* 16 */ u16 mSoundId;

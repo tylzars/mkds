@@ -1,45 +1,49 @@
 #include "code_02017ea0.h"
 
-void ExpHeapBlockGetRange(ExpHeapRange *a, ExpHeapBlock *b) {
-    a->mStart = (u32) b - (u16) ((b->mUnk_02 >> 8) & 0x7f);
-    a->mEnd = b->mSize + (u32) (b + 1);
+// Writes the start of the block (before its offset) and the end of its data to region.
+void GetRegionOfMBlock(NNSiMemRegion *region, NNSiFndExpHeapMBlockHead *block) {
+    region->mStart = (u8 *) block - (u16) ((block->mAttribute >> 8) & 0x7f);
+    region->mEnd = (void *) (block->mBlockSize + (u32) (block + 1));
 }
 
-ExpHeapBlock *ExpHeapBlockListRemove(ExpHeapBlockList *a, ExpHeapBlock *b) {
-    ExpHeapBlock *p;
-    ExpHeapBlock *n;
+// Unlinks block from list and returns the block before it.
+NNSiFndExpHeapMBlockHead *RemoveMBlock(NNSiFndExpMBlockList *list, NNSiFndExpHeapMBlockHead *block) {
+    NNSiFndExpHeapMBlockHead *prev;
+    NNSiFndExpHeapMBlockHead *next;
 
-    p = b->mPrev;
-    n = b->mNext;
-    if (p != 0) {
-        p->mNext = n;
+    prev = block->mMBHeadPrev;
+    next = block->mMBHeadNext;
+    if (prev != 0) {
+        prev->mMBHeadNext = next;
     } else {
-        a->mHead = n;
+        list->mHead = next;
     }
-    if (n != 0) {
-        n->mPrev = p;
+    if (next != 0) {
+        next->mMBHeadPrev = prev;
     } else {
-        a->mTail = p;
+        list->mTail = prev;
     }
-    return p;
+    return prev;
 }
 
-ExpHeapBlock *ExpHeapBlockListInsertAfter(ExpHeapBlockList *a, ExpHeapBlock *b, ExpHeapBlock *c) {
-    ExpHeapBlock *n;
+// Links target into list after prev, or at the start when prev is NULL, and returns it.
+NNSiFndExpHeapMBlockHead *InsertMBlock(NNSiFndExpMBlockList *list, NNSiFndExpHeapMBlockHead *target,
+                                       NNSiFndExpHeapMBlockHead *prev) {
+    NNSiFndExpHeapMBlockHead *next;
 
-    b->mPrev = c;
-    if (c != 0) {
-        n = c->mNext;
-        c->mNext = b;
+    target->mMBHeadPrev = prev;
+    if (prev != 0) {
+        next = prev->mMBHeadNext;
+        prev->mMBHeadNext = target;
     } else {
-        n = a->mHead;
-        a->mHead = b;
+        next = list->mHead;
+        list->mHead = target;
     }
-    b->mNext = n;
-    if (n != 0) {
-        n->mPrev = b;
+    target->mMBHeadNext = next;
+    if (next != 0) {
+        next->mMBHeadPrev = target;
     } else {
-        a->mTail = b;
+        list->mTail = target;
     }
-    return b;
+    return target;
 }

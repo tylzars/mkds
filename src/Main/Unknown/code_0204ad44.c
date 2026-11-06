@@ -44,7 +44,7 @@ void func_0204af70(void *a) {
     b = OS_GetArenaLo(4);
     c = OS_GetArenaHi(4);
     data_021759d0 = HeapAlloc(a, 0x7c);
-    data_021759d0->mHeap = FrmHeapCreate(b, c - b, 1);
+    data_021759d0->mHeap = NNS_FndCreateFrmHeapEx(b, c - b, 1);
     func_0204ad44();
 }
 

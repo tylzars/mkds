@@ -1,36 +1,29 @@
 #pragma once
 
 #include "types.h"
-#include "code_02017550.h" // Unk02017584
-#include "code_02017e70.h" // ExpHeapBlock
-#include "code_02017ea0.h" // ExpHeapBlockList
+#include "code_02017550.h" // NNSiFndHeapHead, NNSFndHeapHandle
+#include "code_02017e70.h" // NNSiFndExpHeapMBlockHead, NNSiMemRegion
+#include "code_02017ea0.h" // NNSiFndExpMBlockList
 
-// Two ExpHeapBlockList followed by two halfwords.
-typedef struct Unk020179d4 {
-    /* 00 */ ExpHeapBlockList mFreeList;
-    /* 08 */ ExpHeapBlockList mUsedList;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
-} Unk020179d4;
+// Follows the NNSiFndHeapHead of an Exp heap: its free and used blocks, the group ID given to new blocks, and the
+// allocation mode in bit 0 of mFeature (0 takes the first free block that fits).
+typedef struct NNSiFndExpHeapHead {
+    /* 00 */ NNSiFndExpMBlockList mMbFreeList;
+    /* 08 */ NNSiFndExpMBlockList mMbUsedList;
+    /* 10 */ u16 mGroupID;
+    /* 12 */ u16 mFeature;
+} NNSiFndExpHeapHead;
 
-// Unk02017584 followed by an Unk020179d4.
-typedef struct Unk020176c0 {
-    /* 00 */ Unk02017584 mUnk_00;
-    /* 24 */ Unk020179d4 mUnk_24;
-} Unk020176c0;
-
-u32 ExpHeapGetMaxAllocSize(Unk020176c0 *a, u32 b);
-u32 ExpHeapGetTotalFreeSize(Unk020176c0 *a);
-void ExpHeapFree(Unk020176c0 *a, void *b);
-u32 ExpHeapResizeBlock(Unk020176c0 *a, void *b, u32 c);
-void *ExpHeapAlloc(Unk020176c0 *a, u32 b, s32 c);
-// Only unlinks the heap.
-void ExpHeapDestroy(Unk02017584 *a);
-Unk020176c0 *ExpHeapCreate(void *a, u32 b, u16 c);
-u32 ExpHeapAddFreeRange(Unk020179d4 *a, ExpHeapRange *b);
-// ExpHeapAllocBack and ExpHeapAllocFront take the first block that fits: bit 0 of mUnk_12 is only ever cleared
-// (code_020176c0.c), so the best-fit branch never runs.
-void *ExpHeapAllocBack(Unk020176c0 *a, u32 b, u32 c);
-void *ExpHeapAllocFront(Unk020176c0 *a, u32 b, u32 c);
-void *ExpHeapAllocFromFreeBlock(Unk020179d4 *a, ExpHeapBlock *b, void *c, u32 d, u16 e);
-Unk020176c0 *ExpHeapInit(Unk020176c0 *a, u32 b, u16 c);
+u32 NNS_FndGetAllocatableSizeForExpHeapEx(NNSFndHeapHandle heap, int alignment);
+u32 NNS_FndGetTotalFreeSizeForExpHeap(NNSFndHeapHandle heap);
+void NNS_FndFreeToExpHeap(NNSFndHeapHandle heap, void *memBlock);
+u32 NNS_FndResizeForMBlockExpHeap(NNSFndHeapHandle heap, void *memBlock, u32 size);
+void *NNS_FndAllocFromExpHeapEx(NNSFndHeapHandle heap, u32 size, int alignment);
+void NNS_FndDestroyExpHeap(NNSFndHeapHandle heap);
+NNSFndHeapHandle NNS_FndCreateExpHeapEx(void *startAddress, u32 size, u16 optFlag);
+BOOL RecycleRegion(NNSiFndExpHeapHead *expHeap, const NNSiMemRegion *region);
+void *AllocFromTail(NNSiFndHeapHead *heap, u32 size, int alignment);
+void *AllocFromHead(NNSiFndHeapHead *heap, u32 size, int alignment);
+void *AllocUsedBlockFromFreeBlock(NNSiFndExpHeapHead *expHeap, NNSiFndExpHeapMBlockHead *freeBlock, void *mblock,
+                                  u32 size, u16 direction);
+NNSiFndHeapHead *InitExpHeap(void *startAddress, void *endAddress, u16 optFlag);

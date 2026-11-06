@@ -387,10 +387,10 @@ void func_0210abf4(Kart *a, s32 b, s32 c, s32 d) {
         do {
             if (p->mUnk_18 == 2) {
                 q = p;
-                p = ListGetNext(&a->mSoundSource.mPlayingSounds, p);
+                p = NNS_FndGetNextListObject(&a->mSoundSource.mPlayingSounds, p);
                 StopPlayingSound(&a->mSoundSource, q, 0);
             } else {
-                p = ListGetNext(&a->mSoundSource.mPlayingSounds, p);
+                p = NNS_FndGetNextListObject(&a->mSoundSource.mPlayingSounds, p);
             }
         } while (p != NULL);
     }

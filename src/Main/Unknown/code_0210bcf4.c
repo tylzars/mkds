@@ -18,7 +18,7 @@
 void func_0210c134(SoundSource *a, u32 b) {
     void *v1;
     void *v2;
-    ListInit(&a->mPlayingSounds, 8);
+    NNS_FndInitList(&a->mPlayingSounds, 8);
     v1 = (void *) func_0210d0b4;
     a->mUnk_38 = 1;
     v2 = (void *) func_0210d078;
@@ -58,7 +58,7 @@ void func_0210bfbc(SoundSource *p) {
     u8 f;
 
     v = 3;
-    for (a = p->mPlayingSounds.mHead; a != NULL; a = ListGetNext(&p->mPlayingSounds, a)) {
+    for (a = p->mPlayingSounds.mHead; a != NULL; a = NNS_FndGetNextListObject(&p->mPlayingSounds, a)) {
         f = a->mUnk_19;
         if (f & 2) {
             v = 0;
@@ -82,7 +82,7 @@ void func_0210bfbc(SoundSource *p) {
 
 void func_0210bf24(u32 a, u32 b, u32 c, u32 d) {
     PlayingSound *v;
-    LinkedList *w;
+    NNSFndList *w;
 
     if (data_0217d084.mUnk_10 == 0) {
         return;

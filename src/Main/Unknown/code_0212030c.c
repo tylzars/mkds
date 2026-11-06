@@ -62,7 +62,7 @@ void InitWiFiSession(void *a) {
 // through them).
 void CreateWiFiSessionHeap(void *a) {
     gWiFiSession->mHeapBuffer = HeapAllocAligned(a, 0x3e800, 0x20);
-    gWiFiSession->mHeap = ExpHeapCreate(gWiFiSession->mHeapBuffer, 0x3e800, 1);
+    gWiFiSession->mHeap = NNS_FndCreateExpHeapEx(gWiFiSession->mHeapBuffer, 0x3e800, 1);
     gWiFiSession->mHeapCreated = TRUE;
     func_ov000_021a3744(WiFiSessionHeapAlloc, WiFiSessionHeapFree);
 }
@@ -72,7 +72,7 @@ void DeleteWiFiSessionHeap(void) {
     Unk0217d384_08 *p;
 
     if (gWiFiSession->mHeap != NULL) {
-        ExpHeapDestroy(gWiFiSession->mHeap);
+        NNS_FndDestroyExpHeap(gWiFiSession->mHeap);
         HeapFree(GetHeap(func_020364e8()), gWiFiSession->mHeapBuffer);
     }
     gWiFiSession->mHeapCreated = FALSE;

@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk020176c0 Unk020176c0;
+typedef struct NNSiFndHeapHead NNSiFndHeapHead;
 
-extern Unk020176c0 *data_ov003_021da2c8;
+extern NNSiFndHeapHead *data_ov003_021da2c8;
 
 void func_ov003_021d27d8(void *block);
 void func_ov003_021d2808(void *storage);

@@ -28,7 +28,7 @@ void func_0208526c(Unk0208526c *a, Unk020136f0 *b, Unk020136f0 *c) {
     v2 = func_020136f0(c);
     a->mUnk_0c = NULL;
     a->mUnk_08 = NULL;
-    ListAppend(&data_0217aeb0, a);
+    NNS_FndAppendListObject(&data_0217aeb0, a);
     a->mUnk_08 = b;
     if (v2 == NULL) {
         return;
@@ -161,7 +161,7 @@ Unk0201290c *func_02084e28(void *a, Unk020136f0 *b) {
     v2 = func_020136f0(b);
     o->mUnk_5c.mUnk_0c = NULL;
     o->mUnk_5c.mUnk_08 = NULL;
-    ListAppend(&data_0217aeb0, &o->mUnk_5c);
+    NNS_FndAppendListObject(&data_0217aeb0, &o->mUnk_5c);
     o->mUnk_5c.mUnk_08 = b;
     if (v2 != NULL) {
         v2->mUnk_10 &= ~1;
@@ -192,7 +192,7 @@ Unk0201290c *func_02084d3c(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
     v2 = func_020136f0(c);
     o->mUnk_5c.mUnk_0c = NULL;
     o->mUnk_5c.mUnk_08 = NULL;
-    ListAppend(&data_0217aeb0, &o->mUnk_5c);
+    NNS_FndAppendListObject(&data_0217aeb0, &o->mUnk_5c);
     o->mUnk_5c.mUnk_08 = b;
     if (v2 != NULL) {
         v2->mUnk_10 &= ~1;
@@ -221,7 +221,7 @@ Unk0201290c *func_02084c54(Unk02084b2c *a, Unk020136f0 *b) {
     v2 = func_020136f0(b);
     a->mUnk_5c.mUnk_0c = NULL;
     a->mUnk_5c.mUnk_08 = NULL;
-    ListAppend(&data_0217aeb0, &a->mUnk_5c);
+    NNS_FndAppendListObject(&data_0217aeb0, &a->mUnk_5c);
     a->mUnk_5c.mUnk_08 = b;
     if (v2 != NULL) {
         v2->mUnk_10 &= ~1;
@@ -254,7 +254,7 @@ Unk0201290c *func_02084b2c(void *a, Unk02084b2c *b, Unk020136f0 *c, Unk020136f0 
     v2 = func_020136f0(d);
     b->mUnk_5c.mUnk_0c = NULL;
     b->mUnk_5c.mUnk_08 = NULL;
-    ListAppend(&data_0217aeb0, &b->mUnk_5c);
+    NNS_FndAppendListObject(&data_0217aeb0, &b->mUnk_5c);
     b->mUnk_5c.mUnk_08 = c;
     if (v2 != NULL) {
         v2->mUnk_10 &= ~1;
@@ -373,7 +373,8 @@ void func_02084958(void *a, u32 b) {
 void func_020848fc(void) {
     Unk0208526c *p;
 
-    for (p = ListGetNext(&data_0217aeb0, NULL); p != NULL; p = ListGetNext(&data_0217aeb0, p)) {
+    for (p = NNS_FndGetNextListObject(&data_0217aeb0, NULL); p != NULL;
+         p = NNS_FndGetNextListObject(&data_0217aeb0, p)) {
         if (p->mUnk_08 != NULL) {
             func_02012b30(p->mUnk_08);
         }

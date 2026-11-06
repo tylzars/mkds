@@ -129,7 +129,7 @@ void func_0205a140(void *a) {
 }
 
 void func_0205a108(void) {
-    data_0217aa10->mUnk_a0 = FrmHeapCreate(data_ov002_02180500, 0x50000, 0);
+    data_0217aa10->mUnk_a0 = NNS_FndCreateFrmHeapEx(data_ov002_02180500, 0x50000, 0);
 }
 
 void func_0205a0e4(void) {
@@ -166,7 +166,7 @@ void func_02059ea4(s32 a) {
                         data_0217aa10->mUnk_00 = 4;
                         data_0217aa10->mUnk_04 = 0;
                         if (data_0217aa10->mUnk_a4 != NULL) {
-                            ExpHeapDestroy(data_0217aa10->mUnk_a4);
+                            NNS_FndDestroyExpHeap(data_0217aa10->mUnk_a4);
                             data_0217aa10->mUnk_a4 = NULL;
                         }
                     }
@@ -186,7 +186,7 @@ void func_02059ea4(s32 a) {
                         data_0217aa10->mUnk_00 = 4;
                         data_0217aa10->mUnk_04 = 0;
                         if (data_0217aa10->mUnk_a4 != NULL) {
-                            ExpHeapDestroy(data_0217aa10->mUnk_a4);
+                            NNS_FndDestroyExpHeap(data_0217aa10->mUnk_a4);
                             data_0217aa10->mUnk_a4 = NULL;
                         }
                     }
@@ -225,14 +225,14 @@ void func_02059dc8(void) {
     if (data_0217aa10->mUnk_00 != 1) {
         return;
     }
-    data_0217aa10->mUnk_a4 = ExpHeapCreate(data_ov002_021a9c00, 0x20800, 1);
+    data_0217aa10->mUnk_a4 = NNS_FndCreateExpHeapEx(data_ov002_021a9c00, 0x20800, 1);
 }
 
 void func_02059d80(void) {
     if (data_0217aa10->mUnk_a4 == NULL) {
         return;
     }
-    ExpHeapDestroy(data_0217aa10->mUnk_a4);
+    NNS_FndDestroyExpHeap(data_0217aa10->mUnk_a4);
     data_0217aa10->mUnk_a4 = NULL;
 }
 
@@ -274,7 +274,7 @@ void func_02059c34(void) {
     data_0217aa10->mUnk_00 = 4;
     data_0217aa10->mUnk_04 = 0;
     if (data_0217aa10->mUnk_a4 != NULL) {
-        ExpHeapDestroy(data_0217aa10->mUnk_a4);
+        NNS_FndDestroyExpHeap(data_0217aa10->mUnk_a4);
         data_0217aa10->mUnk_a4 = NULL;
     }
 }

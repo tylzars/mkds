@@ -10,5 +10,5 @@ void func_0204ad24(void) {
     value0 = (u32) * (const u32 *) ((value0) + (0));
     value1 = 3u;
     value0 = (u32) * (const u32 *) ((value0) + (36));
-    FrmHeapFree((void *) value0, value1);
+    NNS_FndFreeToFrmHeap((void *) value0, value1);
 }

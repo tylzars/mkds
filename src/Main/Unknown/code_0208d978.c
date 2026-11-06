@@ -25,10 +25,10 @@ void func_0208e99c(Unk0208ec64 *a) {
     Unk0208ec64_08 *r;
     u32 f;
 
-    p = ListGetNext(&a->mUnk_08, NULL);
+    p = NNS_FndGetNextListObject(&a->mUnk_08, NULL);
     if (p != NULL) {
         do {
-            q = ListGetNext(&a->mUnk_08, p);
+            q = NNS_FndGetNextListObject(&a->mUnk_08, p);
             p->mUnk_0c = p->mUnk_0c + 1;
             if (p->mUnk_0c > data_021663e0) {
                 f = 1;
@@ -37,28 +37,28 @@ void func_0208e99c(Unk0208ec64 *a) {
                 f = 0;
             }
             if (f != 0) {
-                ListRemove(&a->mUnk_08, p);
-                ListAppend(&data_0217b08c->mUnk_00[2], p);
+                NNS_FndRemoveListObject(&a->mUnk_08, p);
+                NNS_FndAppendListObject(&data_0217b08c->mUnk_00[2], p);
                 if (q == NULL) {
                     break;
                 }
                 p = q;
             }
-            p = ListGetNext(&a->mUnk_08, p);
+            p = NNS_FndGetNextListObject(&a->mUnk_08, p);
         } while (p != NULL);
     }
     if (a->mUnk_18 == 0) {
-        r = ListGetNth(&data_0217b08c->mUnk_00[2], 0);
-        ListRemove(&data_0217b08c->mUnk_00[2], r);
-        ListAppend(&a->mUnk_08, r);
+        r = NNS_FndGetNthListObject(&data_0217b08c->mUnk_00[2], 0);
+        NNS_FndRemoveListObject(&data_0217b08c->mUnk_00[2], r);
+        NNS_FndAppendListObject(&a->mUnk_08, r);
         data_021663ec(r, a);
         return;
     }
     if (a->mUnk_08.mCount != 0) {
         return;
     }
-    ListRemove(&data_0217b08c->mUnk_00[0], a);
-    ListAppend(&data_0217b08c->mUnk_00[1], a);
+    NNS_FndRemoveListObject(&data_0217b08c->mUnk_00[0], a);
+    NNS_FndAppendListObject(&data_0217b08c->mUnk_00[1], a);
 }
 
 void func_0208e82c(const MtxFx43 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk021663f4 *d) {
@@ -108,9 +108,9 @@ void func_0208e570(void *a) {
         a = data_0217aa10->mUnk_a4;
     }
     data_0217b080 = HeapAlloc(a, 0x60);
-    ListInit(&data_0217b080->mUnk_00, 0);
+    NNS_FndInitList(&data_0217b080->mUnk_00, 0);
     for (i = 0; i < 5; i++) {
-        ListInit(&data_0217b080->mUnk_0c[i], 0);
+        NNS_FndInitList(&data_0217b080->mUnk_0c[i], 0);
     }
     x = data_0216618c;
     y = &data_021661b8;
@@ -152,9 +152,9 @@ void func_0208e570(void *a) {
 Unk0208e490 *func_0208e490(u32 a, const Vec3 *b, s32 c) {
     Unk0208e490 *p;
 
-    p = ListGetNth(&data_0217b080->mUnk_0c[a], 0);
+    p = NNS_FndGetNthListObject(&data_0217b080->mUnk_0c[a], 0);
     if (p != NULL) {
-        ListRemove(&data_0217b080->mUnk_0c[a], p);
+        NNS_FndRemoveListObject(&data_0217b080->mUnk_0c[a], p);
         p->mUnk_88 = 0;
         p->mUnk_74 = *b;
         p->mUnk_a8 = 0;
@@ -162,7 +162,7 @@ Unk0208e490 *func_0208e490(u32 a, const Vec3 *b, s32 c) {
         p->mUnk_b0 = data_0217b080->mUnk_5c;
         p->mUnk_b4 = 1;
         p->mUnk_80(p, c);
-        ListAppend(&data_0217b080->mUnk_00, p);
+        NNS_FndAppendListObject(&data_0217b080->mUnk_00, p);
         data_0217b080->mUnk_5c++;
         if (data_0217b080->mUnk_5c > 0xd) {
             data_0217b080->mUnk_5c = 10;
@@ -174,7 +174,7 @@ Unk0208e490 *func_0208e490(u32 a, const Vec3 *b, s32 c) {
 void func_0208e400(void) {
     Unk0208e490 *p;
 
-    p = ListGetNext(&data_0217b080->mUnk_00, NULL);
+    p = NNS_FndGetNextListObject(&data_0217b080->mUnk_00, NULL);
     if (p == NULL) {
         return;
     }
@@ -182,10 +182,10 @@ void func_0208e400(void) {
         p->mUnk_84(p);
         p->mUnk_a8 = p->mUnk_a8 + 1;
         if (p->mUnk_88 == 1) {
-            ListRemove(&data_0217b080->mUnk_00, p);
-            ListAppend(&data_0217b080->mUnk_0c[p->mUnk_8c], p);
+            NNS_FndRemoveListObject(&data_0217b080->mUnk_00, p);
+            NNS_FndAppendListObject(&data_0217b080->mUnk_0c[p->mUnk_8c], p);
         }
-        p = ListGetNext(&data_0217b080->mUnk_00, p);
+        p = NNS_FndGetNextListObject(&data_0217b080->mUnk_00, p);
     } while (p != NULL);
 }
 
@@ -194,7 +194,7 @@ void func_0208e358(void) {
     Unk0208e490 *p;
 
     MTX_Identity43_(&m);
-    p = ListGetNext(&data_0217b080->mUnk_00, NULL);
+    p = NNS_FndGetNextListObject(&data_0217b080->mUnk_00, NULL);
     if (p == NULL) {
         return;
     }
@@ -206,7 +206,7 @@ void func_0208e358(void) {
             func_020849c0(&p->mUnk_08, p->mUnk_b0);
             func_020849f8(&p->mUnk_08, &m, (u32 *) p->mUnk_9c);
         }
-        p = ListGetNext(&data_0217b080->mUnk_00, p);
+        p = NNS_FndGetNextListObject(&data_0217b080->mUnk_00, p);
     } while (p != NULL);
 }
 
@@ -301,7 +301,7 @@ void func_0208e098(void *a) {
             p->mUnk_8c = i;
             p->mUnk_80 = g->mUnk_10;
             p->mUnk_84 = g->mUnk_14;
-            ListAppend(&data_0217b080->mUnk_0c[i], p);
+            NNS_FndAppendListObject(&data_0217b080->mUnk_0c[i], p);
             if (i == 2) {
                 v = data_021759c0->mCourseId == COURSE_ID_OLD_KOOPA_AGB ? 0xb33 : 0x1000;
                 p->mUnk_9c[0] = v;
@@ -501,9 +501,9 @@ void func_0208d978(const Vec3 *a, s32 b) {
     }
     i = 0;
     if (b != 0) {
-        p = ListGetNth((LinkedList *) ((u8 *) data_0217b080->mUnk_0c + 0x18), 0);
+        p = NNS_FndGetNthListObject((NNSFndList *) ((u8 *) data_0217b080->mUnk_0c + 0x18), 0);
         if (p != NULL) {
-            ListRemove((LinkedList *) ((u8 *) data_0217b080->mUnk_0c + 0x18), p);
+            NNS_FndRemoveListObject((NNSFndList *) ((u8 *) data_0217b080->mUnk_0c + 0x18), p);
             p->mUnk_88 = 0;
             p->mUnk_74 = *a;
             p->mUnk_a8 = 0;
@@ -511,7 +511,7 @@ void func_0208d978(const Vec3 *a, s32 b) {
             p->mUnk_b0 = data_0217b080->mUnk_5c;
             p->mUnk_b4 = 1;
             p->mUnk_80(p, 0);
-            ListAppend(&data_0217b080->mUnk_00, p);
+            NNS_FndAppendListObject(&data_0217b080->mUnk_00, p);
             data_0217b080->mUnk_5c++;
             if (data_0217b080->mUnk_5c > 0xd) {
                 data_0217b080->mUnk_5c = 10;

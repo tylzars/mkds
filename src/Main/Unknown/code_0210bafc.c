@@ -11,7 +11,7 @@ u32 func_0210bc8c(void *a, void *b) {
     BOOL i;
     Unk0210bc54 *p;
 
-    p = (Unk0210bc54 *) ((u8 *) b + ((LinkedList *) a)->mLinkOffset);
+    p = (Unk0210bc54 *) ((u8 *) b + ((NNSFndList *) a)->mLinkOffset);
     if (p->mUnk_08 != 0) {
         i = FALSE;
     } else {
@@ -19,17 +19,17 @@ u32 func_0210bc8c(void *a, void *b) {
         p->mUnk_08 = a;
     }
     if (i != FALSE) {
-        ListAppend((LinkedList *) a, b);
+        NNS_FndAppendListObject((NNSFndList *) a, b);
     } else {
         return 0;
     }
     return 1;
 }
 
-void func_0210bc54(LinkedList *a, void *b) {
+void func_0210bc54(NNSFndList *a, void *b) {
     Unk0210bc54 *p;
 
-    ListRemove(a, b);
+    NNS_FndRemoveListObject(a, b);
     p = (Unk0210bc54 *) ((u8 *) b + a->mLinkOffset);
     if (p->mUnk_08 != 0) {
         p->mUnk_08 = 0;

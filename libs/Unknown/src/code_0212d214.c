@@ -575,29 +575,29 @@ HeapStack *HeapStackCreate(void *base, u32 size) {
     if (n < 16) {
         return 0;
     }
-    p = FrmHeapCreate(a + 1, n - 16, 0);
+    p = NNS_FndCreateFrmHeapEx(a + 1, n - 16, 0);
     if (p == 0) {
         return 0;
     }
     if (HeapStackInit(a, p) != 0) {
         return a;
     }
-    FrmHeapDestroy(p);
+    NNS_FndDestroyFrmHeap(p);
     return 0;
 }
 
 void HeapStackDestroy(HeapStack *a) {
     HeapStackReset(a);
-    FrmHeapDestroy(a->mHeap);
+    NNS_FndDestroyFrmHeap(a->mHeap);
 }
 
 void HeapStackReset(HeapStack *a) {
-    LinkedList *e;
+    NNSFndList *e;
     void *node;
     u32 flag = 0;
 
-    for (e = ListGetPrev(&a->mLevels, 0); e != 0; e = ListGetPrev(&a->mLevels, 0)) {
-        for (node = ListGetPrev(e, 0); node != 0; node = ListGetPrev(e, node)) {
+    for (e = NNS_FndGetPrevListObject(&a->mLevels, 0); e != 0; e = NNS_FndGetPrevListObject(&a->mLevels, 0)) {
+        for (node = NNS_FndGetPrevListObject(e, 0); node != 0; node = NNS_FndGetPrevListObject(e, node)) {
             Unk0212db7c *n = node;
 
             if (n->mUnk_0c != 0) {
@@ -605,9 +605,9 @@ void HeapStackReset(HeapStack *a) {
                 flag = 1;
             }
         }
-        ListRemove(&a->mLevels, e);
+        NNS_FndRemoveListObject(&a->mLevels, e);
     }
-    FrmHeapFree(a->mHeap, 3);
+    NNS_FndFreeToFrmHeap(a->mHeap, 3);
     if (flag != 0) {
         func_0212d968();
     }
@@ -616,34 +616,34 @@ void HeapStackReset(HeapStack *a) {
 
 void *HeapStackAlloc(HeapStack *a, u32 size, UnkFunc *f, void *p, u32 v) {
     Unk0212db7c *n;
-    LinkedList *e;
+    NNSFndList *e;
 
-    n = FrmHeapAlloc(a->mHeap, ((size + 31) & ~31) + 32, 32);
+    n = NNS_FndAllocFromFrmHeapEx(a->mHeap, ((size + 31) & ~31) + 32, 32);
     if (n == 0) {
         return 0;
     }
-    e = ListGetPrev(&a->mLevels, 0);
+    e = NNS_FndGetPrevListObject(&a->mLevels, 0);
     n->mUnk_08 = size;
     n->mUnk_0c = f;
     n->mUnk_10 = p;
     n->mUnk_14 = v;
-    ListAppend(e, n);
+    NNS_FndAppendListObject(e, n);
     return n + 1;
 }
 
 s32 HeapStackSave(HeapStack *a) {
-    if (FrmHeapSaveFrontBack(a->mHeap, a->mLevels.mCount) == 0) {
+    if (NNS_FndRecordStateForFrmHeap(a->mHeap, a->mLevels.mCount) == 0) {
         return -1;
     }
     if (HeapStackPushLevel(a) != 0) {
         return a->mLevels.mCount - 1;
     }
-    FrmHeapRestoreFrontBack(a->mHeap, 0);
+    NNS_FndFreeByStateToFrmHeap(a->mHeap, 0);
     return -1;
 }
 
 void HeapStackRestore(HeapStack *a, s32 n) {
-    LinkedList *e;
+    NNSFndList *e;
     void *node = 0;
     u32 flag = 0;
 
@@ -653,8 +653,8 @@ void HeapStackRestore(HeapStack *a, s32 n) {
     }
     if (n < a->mLevels.mCount) {
         do {
-            e = ListGetPrev(&a->mLevels, 0);
-            for (node = ListGetPrev(e, node); node != 0; node = ListGetPrev(e, node)) {
+            e = NNS_FndGetPrevListObject(&a->mLevels, 0);
+            for (node = NNS_FndGetPrevListObject(e, node); node != 0; node = NNS_FndGetPrevListObject(e, node)) {
                 Unk0212db7c *p = node;
 
                 if (p->mUnk_0c != 0) {
@@ -662,14 +662,14 @@ void HeapStackRestore(HeapStack *a, s32 n) {
                     flag = 1;
                 }
             }
-            ListRemove(&a->mLevels, e);
+            NNS_FndRemoveListObject(&a->mLevels, e);
         } while (n < a->mLevels.mCount);
     }
-    FrmHeapRestoreFrontBack(a->mHeap, n);
+    NNS_FndFreeByStateToFrmHeap(a->mHeap, n);
     if (flag != 0) {
         func_0212d968();
     }
-    FrmHeapSaveFrontBack(a->mHeap, a->mLevels.mCount);
+    NNS_FndRecordStateForFrmHeap(a->mHeap, a->mLevels.mCount);
     HeapStackPushLevel(a);
 }
 
@@ -680,16 +680,16 @@ u32 func_0212da2c(HeapStack *arg0) {
     return value0;
 }
 
-void func_0212da1c(LinkedList *arg0) {
+void func_0212da1c(NNSFndList *arg0) {
     u32 value0 = (u32) arg0;
     u32 value1;
     u32 value12;
     value1 = 0u;
-    ListInit((LinkedList *) value0, (u16) value1);
+    NNS_FndInitList((NNSFndList *) value0, (u16) value1);
 }
 
 u32 HeapStackInit(HeapStack *a, void *p) {
-    ListInit(&a->mLevels, 12);
+    NNS_FndInitList(&a->mLevels, 12);
     a->mHeap = p;
     return HeapStackPushLevel(a) != 0;
 }
@@ -697,12 +697,12 @@ u32 HeapStackInit(HeapStack *a, void *p) {
 u32 HeapStackPushLevel(HeapStack *a) {
     void *p;
 
-    p = FrmHeapAlloc(a->mHeap, 0x14, 4);
+    p = NNS_FndAllocFromFrmHeapEx(a->mHeap, 0x14, 4);
     if (p == 0) {
         return 0;
     }
     func_0212da1c(p);
-    ListAppend(&a->mLevels, p);
+    NNS_FndAppendListObject(&a->mLevels, p);
     return 1;
 }
 
