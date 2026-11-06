@@ -25,7 +25,7 @@ typedef struct Unk02187490 {
     /* 118 */ void *mUnk_118;
     /* 11c */ Thread mUnk_11c;
     /* 1d4 */ u8 pad_1d4[8];
-    /* 1dc */ ThreadLock mUnk_1dc;
+    /* 1dc */ OSMutex mUnk_1dc;
     /* 1f4 */ u8 pad_1f4[0x100c];
     /* 1200 */ u8 mUnk_1200[0x1000];
 } Unk02187490;

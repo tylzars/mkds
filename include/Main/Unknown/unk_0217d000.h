@@ -11,7 +11,7 @@
 #include "code_0212d214.h"
 #include "Main/Unknown/types_02180728.h" // Unk02180728
 
-typedef struct RingQueue RingQueue;
+typedef struct OSMessageQueue OSMessageQueue;
 
 // Three words derived from a halfword.
 typedef struct Unk0217d410_2c {
@@ -764,7 +764,7 @@ extern Unk0212c7a0 data_0217d89c[];
 extern LinkedList data_0217dd1c;
 extern Unk0212c8a4 data_0217dd28[];
 extern s32 data_0217ddac;
-extern RingQueue data_0217ddb0;
+extern OSMessageQueue data_0217ddb0;
 extern Unk0212c9d4 data_0217de24[8];
 extern struct Unk0212d5f8 *data_0217dec4;
 extern s32 data_0217d1e8;

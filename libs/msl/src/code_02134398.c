@@ -35,20 +35,20 @@ int printf(const char *fmt, ...) {
     if (fwide(&data_0216eb7c[1], -1) >= 0) {
         return -1;
     }
-    if (ThreadLockTry(data_0217eadc[3]) == 0) {
+    if (OS_TryLockMutex((OSMutex *) data_0217eadc[3]) == 0) {
         data_0217ea94[3] = data_0216ff5c.mListHead->mId;
         data_0217eab8[3] = 1;
     } else if (data_0217ea94[3] == data_0216ff5c.mListHead->mId) {
         data_0217eab8[3]++;
     } else {
-        ThreadLockWait(data_0217eadc[3]);
+        OS_LockMutex((OSMutex *) data_0217eadc[3]);
         data_0217ea94[3] = data_0216ff5c.mListHead->mId;
         data_0217eab8[3] = 1;
     }
     r = FormatWithPutFunc(FormatPutFwrite, &data_0216eb7c[1], fmt, (char *) (((int) &fmt & ~3) + 4));
     data_0217eab8[3]--;
     if (data_0217eab8[3] == 0) {
-        ThreadLockUnlock(data_0217eadc[3]);
+        OS_UnlockMutex((OSMutex *) data_0217eadc[3]);
     }
     return r;
 }
@@ -332,7 +332,7 @@ int fflush(FILE *a) {
 
 u32 fwrite(const char *a, u32 b, u32 c, FILE *d) {
     int i;
-    u8 *p;
+    OSMutex *p;
     u32 r;
 
     if (d == &data_0216eb7c[1]) {
@@ -342,8 +342,8 @@ u32 fwrite(const char *a, u32 b, u32 c, FILE *d) {
     } else {
         i = 5;
     }
-    p = data_0217eadc[i];
-    if (ThreadLockTry(p) == 0) {
+    p = (OSMutex *) data_0217eadc[i];
+    if (OS_TryLockMutex(p) == 0) {
         data_0217ea94[i] = data_0216ff5c.mListHead->mId;
         data_0217eab8[i] = 1;
     } else {
@@ -353,14 +353,14 @@ u32 fwrite(const char *a, u32 b, u32 c, FILE *d) {
         if (v == data_0216ff5c.mListHead->mId) {
             data_0217eab8[i]++;
         } else {
-            ThreadLockWait(p);
+            OS_LockMutex(p);
             data_0217ea94[i] = data_0216ff5c.mListHead->mId;
             data_0217eab8[i] = 1;
         }
     }
     r = FwriteBody(a, b, c, d);
     if (--data_0217eab8[i] == 0) {
-        ThreadLockUnlock(p);
+        OS_UnlockMutex(p);
     }
     return r;
 }

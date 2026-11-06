@@ -20,7 +20,7 @@ void func_ov000_021a6bdc(void) {
         data_ov000_021b5f54.mUnk_24 = 0;
         data_ov000_021b5f54.mUnk_04.mTail = NULL;
         data_ov000_021b5f54.mUnk_04.mHead = NULL;
-        ThreadLockInit(&data_ov000_021b5f54.mUnk_0c);
+        OS_InitMutex(&data_ov000_021b5f54.mUnk_0c);
     }
 }
 
@@ -100,15 +100,15 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
         IrqRestore(a);
         return -1;
     }
-    ThreadLockWait(&data_ov000_021b5f54.mUnk_0c);
+    OS_LockMutex(&data_ov000_021b5f54.mUnk_0c);
     b = func_ov000_021a5b30();
     if (b == NULL) {
-        ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
+        OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
         IrqRestore(a);
         return -1;
     }
     if (b->mUnk_2260 != 9 || b->mUnk_226b == 1) {
-        ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
+        OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
         IrqRestore(a);
         return -4;
     }
@@ -124,7 +124,7 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
         case 7:
         case 8:
         default:
-            ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
+            OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
             IrqRestore(a);
             return -5;
         case 2:
@@ -132,11 +132,11 @@ s32 func_ov000_021a6974(const void *d, const void *e, s32 f) {
             switch (data_ov000_021b5f54.mUnk_24) {
                 case 1:
                 default:
-                    ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
+                    OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
                     IrqRestore(a);
                     return -5;
                 case 0:
-                    ThreadLockUnlock(&data_ov000_021b5f54.mUnk_0c);
+                    OS_UnlockMutex(&data_ov000_021b5f54.mUnk_0c);
                     IrqRestore(a);
                     return f;
             }

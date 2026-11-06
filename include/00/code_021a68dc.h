@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-typedef struct ThreadLock ThreadLock;
+typedef struct OSMutex OSMutex;

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct ThreadLock ThreadLock;
+typedef struct OSMutex OSMutex;
 
 // CallbackListRun calls mCallback with mArg and follows mNext; CallbackListRemove, CallbackListAppend and
 // CallbackListPrepend link and unlink objects through mNext.
@@ -46,7 +46,7 @@ extern u32 data_02180440;
 extern CallbackEntry *gPowerPostSleepCallbacks;
 // The command in flight.
 extern PowerCommand gPowerCommand;
-extern ThreadLock data_02180458;
+extern OSMutex data_02180458;
 // The four register slots.
 extern PowerRegisterSlot gPowerRegisterSlots[4];
 

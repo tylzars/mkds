@@ -469,16 +469,16 @@ end:
 
 u32 func_ov000_021874c0(void) {
     u32 v1;
-    ThreadLockWait(&data_ov000_021b4cb0->mUnk_1dc);
+    OS_LockMutex(&data_ov000_021b4cb0->mUnk_1dc);
     v1 = data_ov000_021b4cb0->mUnk_00;
-    ThreadLockUnlock(&data_ov000_021b4cb0->mUnk_1dc);
+    OS_UnlockMutex(&data_ov000_021b4cb0->mUnk_1dc);
     return v1;
 }
 
 void func_ov000_02187490(u32 a) {
-    ThreadLockWait(&data_ov000_021b4cb0->mUnk_1dc);
+    OS_LockMutex(&data_ov000_021b4cb0->mUnk_1dc);
     data_ov000_021b4cb0->mUnk_00 = a;
-    ThreadLockUnlock(&data_ov000_021b4cb0->mUnk_1dc);
+    OS_UnlockMutex(&data_ov000_021b4cb0->mUnk_1dc);
 }
 
 u32 func_ov000_02187484(void) {
@@ -527,8 +527,8 @@ void func_ov000_021872bc(Unk02186d7c *p) {
     u32 n;
     n = ThreadGetSortKey(data_0216ff5c.mCurrentThread);
     p->mUnk_a40 = FALSE;
-    ThreadLockInit(&p->mUnk_a28);
-    ThreadLockInit(&p->mUnk_948);
+    OS_InitMutex(&p->mUnk_a28);
+    OS_InitMutex(&p->mUnk_948);
     if (p->mUnk_04.mUnk_18 == 1) {
         data_ov000_021b4ca8 = 1;
     } else {
@@ -542,9 +542,9 @@ void func_ov000_021872bc(Unk02186d7c *p) {
 
 void func_ov000_02187274(Unk02186d7c *p) {
     if (p->mUnk_00 == 0xff) {
-        ThreadLockWait(&p->mUnk_a28);
+        OS_LockMutex(&p->mUnk_a28);
         p->mUnk_a40 = TRUE;
-        ThreadLockUnlock(&p->mUnk_a28);
+        OS_UnlockMutex(&p->mUnk_a28);
         if (p->mThread.mId != 0) {
             ThreadWaitForEnd(&p->mThread);
         }
@@ -552,12 +552,12 @@ void func_ov000_02187274(Unk02186d7c *p) {
 }
 
 u32 func_ov000_02187230(Unk02186d7c *a) {
-    ThreadLockWait(&a->mUnk_a28);
+    OS_LockMutex(&a->mUnk_a28);
     if (a->mUnk_a40 == TRUE) {
-        ThreadLockUnlock(&a->mUnk_a28);
+        OS_UnlockMutex(&a->mUnk_a28);
         return 0;
     }
-    ThreadLockUnlock(&a->mUnk_a28);
+    OS_UnlockMutex(&a->mUnk_a28);
     OS_Sleep((u32) 10);
     return 1;
 }
@@ -665,11 +665,11 @@ void func_ov000_02186d7c(void *l) {
         }
     }
     FreeHttpBuffer((Http *) p, (HttpBuffer *) &p->mSendBuffer);
-    ThreadLockWait(&p->mUnk_948);
+    OS_LockMutex(&p->mUnk_948);
     if (p->mUnk_04.mUnk_08 == NULL) {
         if (InitHttpBuffer((Http *) p, (HttpBuffer *) &p->mReceiveBuffer, p->mUnk_04.mUnk_0c) == 0) {
             p->mResult = 1;
-            ThreadLockUnlock(&p->mUnk_948);
+            OS_UnlockMutex(&p->mUnk_948);
             goto fail;
         }
     } else {
@@ -680,22 +680,22 @@ void func_ov000_02186d7c(void *l) {
     }
     c->mCursor = c->mStart;
     c->mEnd = c->mStart + c->mSize;
-    ThreadLockUnlock(&p->mUnk_948);
+    OS_UnlockMutex(&p->mUnk_948);
     while (1) {
         if (data_ov000_021b63b4 == 0) {
             p->mResult = 5;
             goto fail;
         }
-        ThreadLockWait(&p->mUnk_948);
+        OS_LockMutex(&p->mUnk_948);
         if (c->mCursor >= c->mEnd - 1) {
-            ThreadLockUnlock(&p->mUnk_948);
+            OS_UnlockMutex(&p->mUnk_948);
             break;
         }
         n = func_ov000_021adbac();
         if (n > 0) {
             x = func_ov000_021adf78((u32 *) &n);
             if (x == NULL) {
-                ThreadLockUnlock(&p->mUnk_948);
+                OS_UnlockMutex(&p->mUnk_948);
                 break;
             }
             r = c->mEnd - 1 - c->mCursor;
@@ -724,23 +724,23 @@ void func_ov000_02186d7c(void *l) {
             }
             if (n > m) {
                 func_ov000_021adf00(n);
-                ThreadLockUnlock(&p->mUnk_948);
+                OS_UnlockMutex(&p->mUnk_948);
                 break;
             }
             func_ov000_021adf00(m);
         }
         if (n < 0) {
-            ThreadLockUnlock(&p->mUnk_948);
+            OS_UnlockMutex(&p->mUnk_948);
             break;
         }
         if (p->mContentLength > 0 && n > 0 && p->mBodyStart + p->mContentLength <= c->mCursor) {
-            ThreadLockUnlock(&p->mUnk_948);
+            OS_UnlockMutex(&p->mUnk_948);
             break;
         }
         t = OS_GetTick();
         if ((u64) d < (t - t0) * 64 / 0x82ea) {
             p->mResult = 6;
-            ThreadLockUnlock(&p->mUnk_948);
+            OS_UnlockMutex(&p->mUnk_948);
             goto fail;
         }
         if (p->mUseHttps == 1) {
@@ -750,7 +750,7 @@ void func_ov000_02186d7c(void *l) {
                 t1 = t;
             }
         }
-        ThreadLockUnlock(&p->mUnk_948);
+        OS_UnlockMutex(&p->mUnk_948);
         if (func_ov000_02187230(p) == 0) {
             p->mResult = 7;
             goto fail;

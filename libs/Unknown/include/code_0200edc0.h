@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct ThreadLock ThreadLock;
+typedef struct OSMutex OSMutex;
 
-void ThreadLockInit(ThreadLock *arg0);
+void OS_InitMutex(OSMutex *mutex);

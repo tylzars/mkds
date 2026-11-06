@@ -77,9 +77,9 @@ Thread *ThreadQueueRemoveFront(ThreadQueue *q) {
     return h;
 }
 
-ThreadLock *ThreadLockListRemoveFront(ThreadLockList *q) {
-    ThreadLock *h;
-    ThreadLock *n;
+OSMutex *ThreadLockListRemoveFront(ThreadLockList *q) {
+    OSMutex *h;
+    OSMutex *n;
 
     h = q->mHead;
     if (h != 0) {
@@ -217,7 +217,7 @@ void ThreadEndWithArg(Thread *t, void *a) {
         t->mUnk_04 = a;
         t->mUnk_00 = t->mUnk_00 | 0x80;
         t->mUnk_64 = 1;
-        ThreadLoadContext(t);
+        OS_LoadContext(t);
     } else {
         RunExitCallbackThenEndThread(a);
     }
@@ -242,7 +242,7 @@ void ThreadEndCurrent(void) {
 
     t = *data_0216ff54;
     ThreadSwitchDisable();
-    ThreadUnlockAll(t);
+    OSi_UnlockAllMutex(t);
     ThreadListRemove(t);
     t->mUnk_64 = 2;
     ThreadQueueSetAllRunnable(&t->mEndQueue);
@@ -259,7 +259,7 @@ void ThreadEnd(Thread *t) {
         ThreadEndCurrent();
     }
     ThreadSwitchDisable();
-    ThreadUnlockAll(t);
+    OSi_UnlockAllMutex(t);
     CancelThreadSleepAlarm(t);
     ThreadListRemove(t);
     t->mUnk_64 = 2;
@@ -376,7 +376,7 @@ void ThreadSwitch(void) {
         return;
     }
     if (a->mUnk_64 != 2) {
-        if (ThreadSaveContext(a) != 0) {
+        if (OS_SaveContext(a) != 0) {
             return;
         }
     }
@@ -387,7 +387,7 @@ void ThreadSwitch(void) {
         s->mSwitchCallback(a, b);
     }
     data_0216ff5c.mCurrentThread = b;
-    ThreadLoadContext(b);
+    OS_LoadContext(b);
 }
 
 void ThreadMoveCurrentAfterEqualSortKeys(void) {

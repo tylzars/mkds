@@ -1,7 +1,7 @@
 #include "00/code_021a6908.h"
 #include "ITCM/code_01ff8000.h"
 
-u32 func_ov000_021a6908(ThreadLock *a) {
+u32 func_ov000_021a6908(OSMutex *a) {
     if (a->mHolder == NULL) {
         a->mHolder = (struct Thread *) func_01ff8000;
         a->mLockCount = a->mLockCount + 1;

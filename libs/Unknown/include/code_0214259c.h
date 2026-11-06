@@ -37,8 +37,8 @@ s32 GetErrorUnlessStateAtLeast2(void);
 s32 GetErrorUnlessInitialized(void);
 // Returns the work buffer pointer in data_0217eed4.
 Unk02142aa8 *GetWorkBuffer(void);
-// Takes the first message of the ring with RingQueueRemoveFront and returns 8 when there is none. Invalidates its
-// first 2 bytes; when bit 15 of the first halfword is clear puts the message back at the front (RingQueuePrepend)
+// Takes the first message of the ring with OS_ReceiveMessage and returns 8 when there is none. Invalidates its
+// first 2 bytes; when bit 15 of the first halfword is clear puts the message back at the front (OS_JamMessage)
 // and returns 8. With a word count of 0 stores the 0x100-byte request area, invalidates the message and copies the
 // request area into it with MI_DmaCopy32 (DMA number at +0x14 of w). Writes the command number to the first halfword
 // and the words to +4 on, stores the 0x100 bytes (DC_StoreRange), sends the message address on tag 10 with
@@ -57,9 +57,9 @@ s32 WM_Finish(void);
 // the buffer in data_0217eed4 and lays out the areas: the word at +0 of w is the buffer + 0x200, the status area is
 // 0x300 after it, the request area 0x800 after that and the message area 0x100 after that. Clears bit 0 of the halfword
 // at 0x027fff96, stores the DMA number at +0x14 and calls WM_SetPortCallback(i, 0, 0) for the ports 0 to 15.
-// Initialises the ring (RingQueueInit, 10 entries), writes 0x8000 to the first halfword of each of the ten 0x100-byte
-// messages, stores those 2 bytes (DC_StoreRange) and appends the message, and installs ReceiveCommandReply on tag 10
-// (PxiCallbackSet). Returns 0.
+// Initialises the ring (OS_InitMessageQueue, 10 entries), writes 0x8000 to the first halfword of each of the ten
+// 0x100-byte messages, stores those 2 bytes (DC_StoreRange) and appends the message, and installs ReceiveCommandReply
+// on tag 10 (PxiCallbackSet). Returns 0.
 s32 InitWorkBufferWithSize(void *buf, u32 n, u32 size);
 // Calls InitWorkBufferWithSize with its two arguments and the size 0xf00. When that returns 0, stores 0 in the halfword
 // at +0x16 of w. Returns the result.

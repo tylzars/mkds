@@ -6,7 +6,7 @@
 #include "00/unk_021b5000.h"
 #include "00/code_021a6c08.h"
 
-extern ThreadLock data_ov000_021b5f60;
+extern OSMutex data_ov000_021b5f60;
 
 void func_ov000_021a6934(void);
 void func_ov000_021a6944(Unk021425e8 *a);

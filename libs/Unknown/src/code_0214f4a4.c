@@ -13,7 +13,7 @@ u32 data_02180440;
 CallbackEntry *gPowerPreSleepCallbacks;
 vu32 gPowerSleepHandshakeReplyReceived;
 PowerCommand gPowerCommand;
-ThreadLock data_02180458;
+OSMutex data_02180458;
 PowerRegisterSlot gPowerRegisterSlots[4];
 
 int TryLockPowerCommand(void) {
@@ -75,7 +75,7 @@ void PM_Init(void) {
     for (i = 0; i < 4; i++) {
         gPowerRegisterSlots[i].mReplyReceived = 0;
     }
-    ThreadLockInit(&data_02180458);
+    OS_InitMutex(&data_02180458);
     data_02180440 = *(u32 *) 0x27ffc3c;
 }
 

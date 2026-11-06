@@ -65,7 +65,7 @@ extern Thread data_ov003_021d8d08;
 extern s32 data_ov003_021d8c08;
 extern s32 data_ov003_021d8c48;
 extern UnkFunc *data_ov003_021d8c4c;
-extern u8 data_ov003_021d8c8c[];
+extern OSMutex data_ov003_021d8c8c;
 extern Unk021d8dc8 data_ov003_021d8dc8;
 extern u8 data_ov003_021d8bd0;
 extern u32 data_ov003_021d8be4;

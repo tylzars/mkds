@@ -27,13 +27,13 @@ void exit(int a) {
 }
 
 void ExitTail(int a) {
-    if (ThreadLockTry(data_0217eadc[0]) == 0) {
+    if (OS_TryLockMutex((OSMutex *) data_0217eadc[0]) == 0) {
         data_0217ea94[0] = data_0216ff5c.mListHead->mId;
         data_0217eab8[0] = 1;
     } else if (data_0217ea94[0] == data_0216ff5c.mListHead->mId) {
         data_0217eab8[0]++;
     } else {
-        ThreadLockWait(data_0217eadc[0]);
+        OS_LockMutex((OSMutex *) data_0217eadc[0]);
         data_0217ea94[0] = data_0216ff5c.mListHead->mId;
         data_0217eab8[0] = 1;
     }
@@ -41,7 +41,7 @@ void ExitTail(int a) {
         gExitFunctions[--gExitFunctionCount]();
     }
     if (--data_0217eab8[0] == 0) {
-        ThreadLockUnlock(data_0217eadc[0]);
+        OS_UnlockMutex((OSMutex *) data_0217eadc[0]);
     }
     if (data_0217e984 != 0) {
         data_0217e984();

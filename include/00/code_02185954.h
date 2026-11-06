@@ -54,12 +54,12 @@ u32 GrowHttpBuffer(Http *a, HttpBuffer *b, int c);
 void FreeHttpBuffer(Http *a, HttpBuffer *b);
 u32 InitHttpBuffer(Http *a, HttpBuffer *b, int c);
 
-// Object behind data_ov000_021b4c90; the bytes at 0x3bc are passed to ThreadLockWait and ThreadLockUnlock.
+// Object behind data_ov000_021b4c90; the mutex at 0x3bc is passed to OS_LockMutex and OS_UnlockMutex.
 typedef struct Unk021b4c90 {
     /* 000 */ u8 pad_000[4];
     /* 004 */ s32 mUnk_004;
     /* 008 */ u8 pad_008[0x3b4];
-    /* 3bc */ u8 mUnk_3bc[4];
+    /* 3bc */ OSMutex mUnk_3bc;
 } Unk021b4c90;
 
 #include "00/code_02186d04.h"
@@ -91,7 +91,7 @@ typedef struct Unk02185984 {
     /* 2f8 */ Http *mUnk_2f8;
     /* 2fc */ Thread mUnk_2fc;
     /* 3b4 */ u8 pad_3b4[8];
-    /* 3bc */ ThreadLock mUnk_3bc;
+    /* 3bc */ OSMutex mUnk_3bc;
     /* 3d4 */ BOOL mUnk_3d4;
     /* 3d8 */ u8 pad_3d8[8];
     /* 3e0 */ u8 mUnk_3e0[0x1000];

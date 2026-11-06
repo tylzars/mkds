@@ -14,7 +14,7 @@
 
 u16 data_0217eed0;
 struct Unk02142aa8 *data_0217eed4;
-RingQueue data_0217eed8;
+OSMessageQueue data_0217eed8;
 void *data_0217eef8[10];
 
 s32 WM_Init(void *buf, u32 n) {
@@ -64,11 +64,11 @@ s32 InitWorkBufferWithSize(void *buf, u32 n, u32 size) {
     for (i = 0; i < 16; i++) {
         WM_SetPortCallback((u16) i, 0, 0);
     }
-    RingQueueInit(&data_0217eed8, data_0217eef8, 10);
+    OS_InitMessageQueue(&data_0217eed8, data_0217eef8, 10);
     for (j = 0; j < 10; j++) {
         *(u16 *) data_0217ef60[j] = 0x8000;
         DC_StoreRange(data_0217ef60[j], 2);
-        RingQueueAppend(&data_0217eed8, data_0217ef60[j], 1);
+        OS_SendMessage(&data_0217eed8, data_0217ef60[j], 1);
     }
     PxiCallbackSet(0xa, ReceiveCommandReply);
     return 0;
@@ -108,12 +108,12 @@ s32 SendCommandMessage(u32 a, u16 b, ...) {
     s32 i;
     s32 r;
 
-    if (RingQueueRemoveFront(&data_0217eed8, &p, 0) == 0) {
+    if (OS_ReceiveMessage(&data_0217eed8, &p, 0) == 0) {
         return 8;
     }
     DC_InvalidateRange(p, 2);
     if ((*(u16 *) p & 0x8000) == 0) {
-        RingQueuePrepend(&data_0217eed8, p, 1);
+        OS_JamMessage(&data_0217eed8, p, 1);
         return 8;
     }
     if (b == 0) {
@@ -129,7 +129,7 @@ s32 SendCommandMessage(u32 a, u16 b, ...) {
     }
     DC_StoreRange(p, 0x100);
     r = PxiSendFifoWord(0xa, (u32) p, 0);
-    RingQueueAppend(&data_0217eed8, p, 1);
+    OS_SendMessage(&data_0217eed8, p, 1);
     if (r < 0) {
         return 8;
     }

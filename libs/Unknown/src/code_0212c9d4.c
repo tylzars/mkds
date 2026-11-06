@@ -192,7 +192,7 @@ void func_0212cbd8(void) {
         r = SND_GetCurrentCommandTag();
         PxiCommandSendPending(1);
         PxiCommandWaitForSequence(r);
-        while (RingQueueRemoveFront(&data_0217ddb0, 0, 0) != 0) {
+        while (OS_ReceiveMessage(&data_0217ddb0, 0, 0) != 0) {
         }
     }
     if (p->mUnk_28 != 0) {
@@ -259,7 +259,7 @@ void func_0212c9d4(Unk0212ccd4 *p) {
         e->mUnk_08 = off;
         e->mUnk_0c = a;
         e->mUnk_10 = b;
-        RingQueueAppend(&data_0217ddb0, e, 0);
+        OS_SendMessage(&data_0217ddb0, e, 0);
         data_0217ddac++;
         if (data_0217ddac >= 8) {
             data_0217ddac = 0;

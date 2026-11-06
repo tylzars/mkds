@@ -11,32 +11,34 @@ typedef struct ThreadQueue {
     /* 04 */ struct Thread *mTail;
 } ThreadQueue;
 
-// 0x18 bytes; ThreadLockInit clears mQueue to mLockCount. ThreadLockListAppend and ThreadLockListRemove link it through
+// 0x18 bytes; OS_InitMutex clears mQueue to mLockCount. OSi_EnqueueTail and OSi_DequeueItem link it through
 // mNext and mPrev into the ThreadLockList at mLockList of a Thread.
-typedef struct ThreadLock {
+typedef struct OSMutex {
     /* 00 */ ThreadQueue mQueue;
-    /* 08 */ struct Thread *mHolder; // set by ThreadLockTry and ThreadLockWait
-    /* 0c */ u32 mLockCount; // raised by ThreadLockTry and ThreadLockWait, lowered by ThreadLockUnlock
-    /* 10 */ struct ThreadLock *mNext;
-    /* 14 */ struct ThreadLock *mPrev;
-} ThreadLock;
+    /* 08 */ struct Thread *mHolder; // set by OS_TryLockMutex and OS_LockMutex
+    /* 0c */ u32 mLockCount; // raised by OS_TryLockMutex and OS_LockMutex, lowered by OS_UnlockMutex
+    /* 10 */ struct OSMutex *mNext;
+    /* 14 */ struct OSMutex *mPrev;
+} OSMutex;
 
 typedef struct ThreadLockList {
-    /* 00 */ ThreadLock *mHead;
-    /* 04 */ ThreadLock *mTail;
+    /* 00 */ OSMutex *mHead;
+    /* 04 */ OSMutex *mTail;
 } ThreadLockList;
 
-// Set up by RingQueueInit. RingQueueAppend stores a word at mBuffer[(mHeadIndex + mCount) % mCapacity] and raises
-// mCount; RingQueueRemoveFront reads mBuffer[mHeadIndex], advances mHeadIndex modulo mCapacity and lowers mCount. Each
+// Set up by OS_InitMessageQueue. OS_SendMessage stores a word at mBuffer[(mHeadIndex + mCount) % mCapacity] and raises
+// mCount; OS_ReceiveMessage reads mBuffer[mHeadIndex], advances mHeadIndex modulo mCapacity and lowers mCount. Each
 // calls ThreadWait on one of mFullWaiters and mEmptyWaiters and ThreadQueueSetAllRunnable on the other.
-typedef struct RingQueue {
+typedef void *OSMessage;
+
+typedef struct OSMessageQueue {
     /* 00 */ ThreadQueue mFullWaiters;
     /* 08 */ ThreadQueue mEmptyWaiters;
-    /* 10 */ void **mBuffer;
+    /* 10 */ OSMessage *mBuffer;
     /* 14 */ s32 mCapacity;
     /* 18 */ s32 mHeadIndex;
     /* 1c */ s32 mCount;
-} RingQueue;
+} OSMessageQueue;
 
 // Value OS_GetConsoleType builds on its first call; 0xffffffff until then.
 extern u32 gConsoleType;
@@ -54,17 +56,14 @@ u32 OS_GetConsoleType(void);
 // Returns 0. OS_GetConsoleType tests it first (nonzero adds 0x10000000); func_02020eb0 reads the register at 0x04fff200
 // only when it is nonzero; func_02039cbc and func_0204b9ac skip work when it is nonzero.
 u32 OS_IsRunOnEmulator(void);
-s32 RingQueuePeekFront(RingQueue *q, void **p, s32 f);
-s32 RingQueuePrepend(RingQueue *q, void *v, s32 f);
-s32 RingQueueRemoveFront(RingQueue *q, void **p, s32 f);
-s32 RingQueueAppend(RingQueue *q, void *v, s32 f);
-void RingQueueInit(RingQueue *q, void **p, s32 n);
-void ThreadLockListRemove(struct Thread *t, ThreadLock *n);
-void ThreadLockListAppend(struct Thread *t, ThreadLock *n);
-// p is used as an ThreadLock: these three write +0x08 and +0x0c, ThreadLockListAppend and ThreadLockListRemove (called
-// with p) write +0x10 and +0x14, and ThreadWait and ThreadQueueSetAllRunnable (given p) write +0x00 and +0x04.
-// data_0217eadc passes elements 0x14 bytes apart, so +0x14 of one element is +0x00 of the next.
-s32 ThreadLockTry(void *p);
-void ThreadUnlockAll(struct Thread *t);
-void ThreadLockUnlock(void *p);
-void ThreadLockWait(void *p);
+BOOL OS_ReadMessage(OSMessageQueue *queue, OSMessage *message, s32 flags);
+BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage message, s32 flags);
+BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *message, s32 flags);
+BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage message, s32 flags);
+void OS_InitMessageQueue(OSMessageQueue *queue, OSMessage *messages, s32 count);
+void OSi_DequeueItem(struct Thread *thread, OSMutex *mutex);
+void OSi_EnqueueTail(struct Thread *thread, OSMutex *mutex);
+BOOL OS_TryLockMutex(OSMutex *mutex);
+void OSi_UnlockAllMutex(struct Thread *thread);
+void OS_UnlockMutex(OSMutex *mutex);
+void OS_LockMutex(OSMutex *mutex);

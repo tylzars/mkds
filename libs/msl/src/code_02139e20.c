@@ -12,13 +12,13 @@ int raise(int a) {
     if (a < 1 || a > 7) {
         return -1;
     }
-    if (ThreadLockTry(data_0217eadc[7]) == 0) {
+    if (OS_TryLockMutex((OSMutex *) data_0217eadc[7]) == 0) {
         data_0217ea94[7] = data_0216ff5c.mListHead->mId;
         data_0217eab8[7] = 1;
     } else if (data_0217ea94[7] == data_0216ff5c.mListHead->mId) {
         data_0217eab8[7]++;
     } else {
-        ThreadLockWait(data_0217eadc[7]);
+        OS_LockMutex((OSMutex *) data_0217eadc[7]);
         data_0217ea94[7] = data_0216ff5c.mListHead->mId;
         data_0217eab8[7] = 1;
     }
@@ -28,7 +28,7 @@ int raise(int a) {
     }
     data_0217eab8[7]--;
     if (data_0217eab8[7] == 0) {
-        ThreadLockUnlock(data_0217eadc[7]);
+        OS_UnlockMutex((OSMutex *) data_0217eadc[7]);
     }
     if (f == (Unk02139e20Func) 1 || (f == 0 && a == 1)) {
         return 0;

@@ -24,7 +24,7 @@ typedef void (*Unk021b5f54Func)(void *param_1, void *param_2, void *param_3, u16
 typedef struct Unk021b5f54 {
     /* 00 */ u8 mUnk_00;
     /* 04 */ ThreadQueue mUnk_04;
-    /* 0c */ ThreadLock mUnk_0c;
+    /* 0c */ OSMutex mUnk_0c;
     /* 24 */ s32 mUnk_24;
     /* 28 */ Unk021b5f54Func mUnk_28;
 } Unk021b5f54;
@@ -100,7 +100,7 @@ extern u32 data_ov000_021b5f9c;
 extern Unk021a6fa8 *data_ov000_021b5fa4;
 extern Unk021b5fa8 data_ov000_021b5fa8;
 extern void *data_ov000_021b5fd8;
-extern RingQueue data_ov000_021b5fdc;
+extern OSMessageQueue data_ov000_021b5fdc;
 
 extern s32 data_ov000_021b5284;
 extern char data_ov000_021b5288[2][0x16];

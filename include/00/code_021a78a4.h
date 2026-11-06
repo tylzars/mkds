@@ -21,7 +21,7 @@ typedef struct Unk021a78a4 {
 typedef struct Unk021a7af0 {
     /* 00 */ Unk021a7064Func mUnk_00;
     /* 04 */ Unk021a6fa8 *mUnk_04;
-    /* 08 */ RingQueue *mUnk_08;
+    /* 08 */ OSMessageQueue *mUnk_08;
     /* 0c */ s8 mUnk_0c;
     /* 0d */ s8 mUnk_0d;
     /* 0e */ u8 mUnk_0e[2];

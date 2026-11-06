@@ -4,7 +4,9 @@
 #include "code_0212c7f0.h" // Unk0212c7f0
 #include "code_0212d214.h"
 
-typedef struct RingQueue RingQueue;
+typedef struct OSMutex OSMutex;
+
+typedef struct OSMessageQueue OSMessageQueue;
 
 struct Unk02005210;
 struct Unk02142aa8;
@@ -13,9 +15,9 @@ struct Unk021425e8;
 // The object that InitWorkBufferWithSize sets up.
 extern struct Unk02142aa8 *data_0217eed4;
 extern u16 data_0217eed0;
-extern RingQueue data_0217eed8;
+extern OSMessageQueue data_0217eed8;
 // Word array that InitWorkBufferWithSize gives data_0217eed8, an object ReceiveCommandReply fills in before calling the
-// function pointers, and the ten 0x100-byte buffers InitWorkBufferWithSize passes to RingQueueAppend.
+// function pointers, and the ten 0x100-byte buffers InitWorkBufferWithSize passes to OS_SendMessage.
 extern void *data_0217eef8[10];
 extern struct Unk021425e8 data_0217ef20;
 extern u8 data_0217ef60[10][0x100];
@@ -32,9 +34,10 @@ extern void (*gExitFunctions[])(void);
 // raise entry 7.
 extern u32 data_0217ea94[];
 extern u32 data_0217eab8[];
-// 0x14-byte entries passed to ThreadLockTry, ThreadLockUnlock and ThreadLockWait; ExitTail uses entry 0,
-// fwrite entries 3-5, printf entry 3 and raise entry 7.
+// 0x14-byte entries passed to OS_TryLockMutex, OS_UnlockMutex and OS_LockMutex; ExitTail uses entry 0,
+// fwrite entries 3-5, printf entry 3 and raise entry 7. An OSMutex is 0x18 bytes, so OSMutex.mPrev of one entry is
+// the start of the next entry.
 extern u8 data_0217eadc[][0x14];
-extern u8 data_0217e3e0[];
+extern OSMutex data_0217e3e0;
 extern LinkedList data_0217e3f8;
 extern Unk0212c7f0 data_0217e404[4];

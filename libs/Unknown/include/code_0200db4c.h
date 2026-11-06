@@ -27,7 +27,7 @@ typedef struct Thread {
     /* 3c */ void (*mUnk_3c)(void);
     /* 40 */ u32 mUnk_40;
     /* 44 */ u32 mUnk_44;
-    /* 48 */ u8 mUnk_48[0x1c]; // its address goes to the functions called by ThreadSaveContext and ThreadLoadContext
+    /* 48 */ u8 mUnk_48[0x1c]; // its address goes to the functions called by OS_SaveContext and OS_LoadContext
     /* 64 */ u32 mUnk_64;
     /* 68 */ struct Thread *mListNext;
     // The AllocThreadId result that ThreadInit stores (0 for the first thread); the game tests it against 0 and the
@@ -38,7 +38,7 @@ typedef struct Thread {
     /* 78 */ ThreadQueue *mWaitQueue;
     /* 7c */ struct Thread *mQueuePrev;
     /* 80 */ struct Thread *mQueueNext;
-    /* 84 */ ThreadLock *mUnk_84; // set by ThreadLockWait around its call to ThreadWait
+    /* 84 */ OSMutex *mUnk_84; // set by OS_LockMutex around its call to ThreadWait
     /* 88 */ ThreadLockList mLockList;
     /* 90 */ u8 *mStackLow;
     /* 94 */ u8 *mStackHigh;
@@ -100,7 +100,7 @@ void ThreadEndCurrent(void);
 void RunExitCallbackThenEndThread(void *a);
 // When the word data_0216ff44 (nothing writes it) is not 0: ThreadInitContext(t, RunExitCallbackThenEndThread, that
 // word), stores a at +4 of t, sets bit 0x80 of the first word of t, sets the member at +0x64 to 1 and calls
-// ThreadLoadContext(t). Otherwise calls RunExitCallbackThenEndThread(a). Its only caller is OS_ExitThread.
+// OS_LoadContext(t). Otherwise calls RunExitCallbackThenEndThread(a). Its only caller is OS_ExitThread.
 void ThreadEndWithArg(Thread *t, void *a);
 // Calls IrqDisable and then ThreadEndWithArg(current thread, 0). ThreadInit stores it in the member at +0x3c of every
 // new thread, so a thread function that returns ends here; func_0200b08c also calls it.
@@ -109,7 +109,7 @@ void ThreadInit(Thread *t, void (*f)(void *), void *a, u8 *p, u32 n, u32 v);
 void ThreadSystemInit(void);
 void ThreadListRemove(Thread *t);
 void ThreadListInsert(Thread *t);
-ThreadLock *ThreadLockListRemoveFront(ThreadLockList *q);
+OSMutex *ThreadLockListRemoveFront(ThreadLockList *q);
 Thread *ThreadQueueRemoveFront(ThreadQueue *q);
 void ThreadQueueInsert(ThreadQueue *q, Thread *t);
 // Adds 1 to gThreadIdCount and returns the new value. ThreadInit stores it in the thread's mId.

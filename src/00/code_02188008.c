@@ -184,7 +184,7 @@ u32 func_ov000_02188114(Unk02188114 *p) {
     if (gHttp == NULL) {
         return 4;
     }
-    ThreadLockInit(&data_ov000_021b4cb0->mUnk_1dc);
+    OS_InitMutex(&data_ov000_021b4cb0->mUnk_1dc);
     func_ov000_02188008();
     return 0;
 }

@@ -271,7 +271,7 @@ s32 func_ov000_02186560(Unk02186560 *a, Http *b) {
 }
 
 void func_ov000_021864e0(void) {
-    ThreadLockInit(&data_ov000_021b4c90->mUnk_3bc);
+    OS_InitMutex(&data_ov000_021b4c90->mUnk_3bc);
     data_ov000_021b4c90->mUnk_3d4 = FALSE;
     if (data_ov000_021b4c90->mUnk_2fc.mId == 0 || ThreadHasEnded(&data_ov000_021b4c90->mUnk_2fc) != 0) {
         ThreadInit(&data_ov000_021b4c90->mUnk_2fc, func_ov000_021860ac, &data_ov000_021b4c90,
@@ -282,9 +282,9 @@ void func_ov000_021864e0(void) {
 
 void func_ov000_02186474(void) {
     if (data_ov000_021b4c90 != NULL) {
-        ThreadLockWait(&data_ov000_021b4c90->mUnk_3bc);
+        OS_LockMutex(&data_ov000_021b4c90->mUnk_3bc);
         data_ov000_021b4c90->mUnk_3d4 = TRUE;
-        ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
+        OS_UnlockMutex(&data_ov000_021b4c90->mUnk_3bc);
         if (data_ov000_021b4c90->mUnk_2f8 != NULL) {
             func_ov000_02187274((Unk02186d7c *) data_ov000_021b4c90->mUnk_2f8);
         }
@@ -315,9 +315,9 @@ s32 func_ov000_021863cc(void) {
     if (data_ov000_021b4c90 == NULL) {
         return 0x15;
     }
-    ThreadLockWait(&data_ov000_021b4c90->mUnk_3bc);
+    OS_LockMutex(&data_ov000_021b4c90->mUnk_3bc);
     a = data_ov000_021b4c90->mUnk_004;
-    ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
+    OS_UnlockMutex(&data_ov000_021b4c90->mUnk_3bc);
     return a;
 }
 
@@ -421,26 +421,26 @@ void func_ov000_021860ac(void *param_1) {
         g = OS_GetTick();
         h = ((OS_GetTick() - g) * 64) / 0x82ea;
         while (h < 5000) {
-            ThreadLockWait(&data_ov000_021b4c90->mUnk_3bc);
+            OS_LockMutex(&data_ov000_021b4c90->mUnk_3bc);
             if (data_ov000_021b4c90->mUnk_3d4 == TRUE) {
                 data_ov000_021b4c90->mUnk_008 = -0x4e84;
-                ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
+                OS_UnlockMutex(&data_ov000_021b4c90->mUnk_3bc);
                 func_ov000_02185954(0x13);
                 return;
             }
-            ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
+            OS_UnlockMutex(&data_ov000_021b4c90->mUnk_3bc);
             OS_Sleep(5000);
             h = ((OS_GetTick() - g) * 64) / 0x82ea;
         }
         ReleaseHttp(data_ov000_021b4c90->mUnk_2f8);
-        ThreadLockWait(&data_ov000_021b4c90->mUnk_3bc);
+        OS_LockMutex(&data_ov000_021b4c90->mUnk_3bc);
         data_ov000_021b4c90->mUnk_004 = func_ov000_02186298(b);
         if (data_ov000_021b4c90->mUnk_004 != 0) {
             data_ov000_021b4c90->mUnk_008 = -0x4e84;
-            ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
+            OS_UnlockMutex(&data_ov000_021b4c90->mUnk_3bc);
             return;
         }
-        ThreadLockUnlock(&data_ov000_021b4c90->mUnk_3bc);
+        OS_UnlockMutex(&data_ov000_021b4c90->mUnk_3bc);
     }
 }
 
@@ -663,7 +663,7 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
 }
 
 void func_ov000_02185954(s32 a) {
-    ThreadLockWait(((Unk021b4c90 *) data_ov000_021b4c90)->mUnk_3bc);
+    OS_LockMutex(&((Unk021b4c90 *) data_ov000_021b4c90)->mUnk_3bc);
     ((Unk021b4c90 *) data_ov000_021b4c90)->mUnk_004 = a;
-    ThreadLockUnlock(((Unk021b4c90 *) data_ov000_021b4c90)->mUnk_3bc);
+    OS_UnlockMutex(&((Unk021b4c90 *) data_ov000_021b4c90)->mUnk_3bc);
 }

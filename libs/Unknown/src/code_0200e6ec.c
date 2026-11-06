@@ -12,247 +12,232 @@
 #include "Main/Unknown/unk_0216f000.h"
 #include "code_0200edc0.h"
 
-void ThreadLockInit(ThreadLock *arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    u32 value2;
-    value2 = 0u;
-    *(u32 *) ((value0) + (4)) = value2;
-    value1 = (u32) * (const u32 *) ((value0) + (4));
-    *(u32 *) ((value0) + (0)) = value1;
-    *(u32 *) ((value0) + (8)) = value2;
-    arg0->mLockCount = value2;
+// Clears OSMutex.mQueue, OSMutex.mHolder and OSMutex.mLockCount.
+void OS_InitMutex(OSMutex *mutex) {
+    mutex->mQueue.mTail = 0;
+    mutex->mQueue.mHead = mutex->mQueue.mTail;
+    mutex->mHolder = 0;
+    mutex->mLockCount = 0;
 }
 
-// With t = data_0216ff5c.mCurrentThread: when n->mHolder is 0 it is set to t, mLockCount is raised and
-// ThreadLockListAppend links n to t; when it is t only mLockCount is raised; otherwise t->mUnk_84 is set to n around
-// ThreadWait on n->mQueue, and the test repeats.
-void ThreadLockWait(void *p) {
-    ThreadLock *n;
-    u32 s;
-    Thread *t;
+// Takes the mutex for the current thread, or raises OSMutex.mLockCount when it already holds it. Another holder makes
+// the thread sleep on OSMutex.mQueue until the mutex is free.
+void OS_LockMutex(OSMutex *mutex) {
+    u32 enabled;
+    Thread *current;
 
-    n = p;
-    s = IrqDisable();
-    t = data_0216ff5c.mCurrentThread;
+    enabled = IrqDisable();
+    current = data_0216ff5c.mCurrentThread;
     while (1) {
-        if (n->mHolder == 0) {
-            n->mHolder = t;
-            n->mLockCount = n->mLockCount + 1;
-            ThreadLockListAppend(t, n);
+        if (mutex->mHolder == 0) {
+            mutex->mHolder = current;
+            mutex->mLockCount = mutex->mLockCount + 1;
+            OSi_EnqueueTail(current, mutex);
             break;
-        } else if (n->mHolder == t) {
-            n->mLockCount = n->mLockCount + 1;
+        } else if (mutex->mHolder == current) {
+            mutex->mLockCount = mutex->mLockCount + 1;
             break;
         } else {
-            t->mUnk_84 = n;
-            ThreadWait(&n->mQueue);
-            t->mUnk_84 = 0;
+            current->mUnk_84 = mutex;
+            ThreadWait(&mutex->mQueue);
+            current->mUnk_84 = 0;
         }
     }
-    IrqRestore(s);
+    IrqRestore(enabled);
 }
 
-// When n->mHolder is data_0216ff5c.mCurrentThread, lowers mLockCount; at 0 calls ThreadLockListRemove, clears mHolder
-// and calls ThreadQueueSetAllRunnable on n->mQueue.
-void ThreadLockUnlock(void *p) {
-    ThreadLock *n;
-    u32 s;
-    Thread *t;
+// Lowers OSMutex.mLockCount for the holding thread; at 0 the mutex is unlinked, released and its waiters wake up.
+void OS_UnlockMutex(OSMutex *mutex) {
+    u32 enabled;
+    Thread *current;
 
-    n = p;
-    s = IrqDisable();
-    t = data_0216ff5c.mCurrentThread;
-    if (n->mHolder == t) {
-        n->mLockCount = n->mLockCount - 1;
-        if (n->mLockCount == 0) {
-            ThreadLockListRemove(t, n);
-            n->mHolder = 0;
-            ThreadQueueSetAllRunnable(&n->mQueue);
+    enabled = IrqDisable();
+    current = data_0216ff5c.mCurrentThread;
+    if (mutex->mHolder == current) {
+        mutex->mLockCount = mutex->mLockCount - 1;
+        if (mutex->mLockCount == 0) {
+            OSi_DequeueItem(current, mutex);
+            mutex->mHolder = 0;
+            ThreadQueueSetAllRunnable(&mutex->mQueue);
         }
     }
-    IrqRestore(s);
+    IrqRestore(enabled);
 }
 
-// While t->mUnk_88.mUnk_00 is not 0, takes an object from t->mUnk_88 (ThreadLockListRemoveFront), clears its mUnk_08
-// and mUnk_0c and calls ThreadQueueSetAllRunnable on its mUnk_00.
-void ThreadUnlockAll(struct Thread *t) {
-    ThreadLock *n;
+// Releases every mutex in the mutex list of thread and wakes the threads waiting on them.
+void OSi_UnlockAllMutex(struct Thread *thread) {
+    OSMutex *mutex;
 
-    if (t->mLockList.mHead == 0) {
+    if (thread->mLockList.mHead == 0) {
         return;
     }
     do {
-        n = ThreadLockListRemoveFront(&t->mLockList);
-        n->mLockCount = 0;
-        n->mHolder = 0;
-        ThreadQueueSetAllRunnable(&n->mQueue);
-    } while (t->mLockList.mHead != 0);
+        mutex = ThreadLockListRemoveFront(&thread->mLockList);
+        mutex->mLockCount = 0;
+        mutex->mHolder = 0;
+        ThreadQueueSetAllRunnable(&mutex->mQueue);
+    } while (thread->mLockList.mHead != 0);
 }
 
-// When n->mHolder is 0 it is set to data_0216ff5c.mCurrentThread, mLockCount is raised and ThreadLockListAppend links
-// n; when it is that object only mLockCount is raised. Returns 1 in those cases, else 0.
-s32 ThreadLockTry(void *p) {
-    ThreadLock *n;
-    u32 s;
-    s32 r;
-    Thread *t;
+// Takes the mutex for the current thread like OS_LockMutex but returns 0 instead of sleeping; returns 1 when the
+// thread holds it.
+BOOL OS_TryLockMutex(OSMutex *mutex) {
+    u32 enabled;
+    BOOL locked;
+    Thread *current;
 
-    n = p;
-    s = IrqDisable();
-    t = data_0216ff5c.mCurrentThread;
-    if (n->mHolder == 0) {
-        n->mHolder = t;
-        n->mLockCount = n->mLockCount + 1;
-        ThreadLockListAppend(t, n);
-        r = 1;
-    } else if (n->mHolder == t) {
-        n->mLockCount = n->mLockCount + 1;
-        r = 1;
+    enabled = IrqDisable();
+    current = data_0216ff5c.mCurrentThread;
+    if (mutex->mHolder == 0) {
+        mutex->mHolder = current;
+        mutex->mLockCount = mutex->mLockCount + 1;
+        OSi_EnqueueTail(current, mutex);
+        locked = 1;
+    } else if (mutex->mHolder == current) {
+        mutex->mLockCount = mutex->mLockCount + 1;
+        locked = 1;
     } else {
-        r = 0;
+        locked = 0;
     }
-    IrqRestore(s);
-    return r;
+    IrqRestore(enabled);
+    return locked;
 }
 
-// Links n after t->mUnk_88.mUnk_04 (through mUnk_10 and mUnk_14) and stores it there.
-void ThreadLockListAppend(struct Thread *t, ThreadLock *n) {
-    ThreadLock *a;
+// Links mutex at the tail of the mutex list of thread.
+void OSi_EnqueueTail(struct Thread *thread, OSMutex *mutex) {
+    OSMutex *tail;
 
-    a = t->mLockList.mTail;
-    if (a == 0) {
-        t->mLockList.mHead = n;
+    tail = thread->mLockList.mTail;
+    if (tail == 0) {
+        thread->mLockList.mHead = mutex;
     } else {
-        a->mNext = n;
+        tail->mNext = mutex;
     }
-    n->mPrev = a;
-    n->mNext = 0;
-    t->mLockList.mTail = n;
+    mutex->mPrev = tail;
+    mutex->mNext = 0;
+    thread->mLockList.mTail = mutex;
 }
 
-// Takes n out of the links of t->mUnk_88 (mUnk_10 and mUnk_14).
-void ThreadLockListRemove(struct Thread *t, ThreadLock *n) {
-    ThreadLock *a;
-    ThreadLock *b;
+// Takes mutex out of the mutex list of thread.
+void OSi_DequeueItem(struct Thread *thread, OSMutex *mutex) {
+    OSMutex *prev;
+    OSMutex *next;
 
-    b = n->mNext;
-    a = n->mPrev;
-    if (b == 0) {
-        t->mLockList.mTail = a;
+    next = mutex->mNext;
+    prev = mutex->mPrev;
+    if (next == 0) {
+        thread->mLockList.mTail = prev;
     } else {
-        b->mPrev = a;
+        next->mPrev = prev;
     }
-    if (a == 0) {
-        t->mLockList.mHead = b;
+    if (prev == 0) {
+        thread->mLockList.mHead = next;
     } else {
-        a->mNext = b;
+        prev->mNext = next;
     }
 }
 
-// Clears mUnk_00 and mUnk_08, stores p and n in mUnk_10 and mUnk_14 and clears mUnk_18 and mUnk_1c.
-void RingQueueInit(RingQueue *q, void **p, s32 n) {
-    q->mFullWaiters.mTail = 0;
-    q->mFullWaiters.mHead = q->mFullWaiters.mTail;
-    q->mEmptyWaiters.mTail = 0;
-    q->mEmptyWaiters.mHead = q->mEmptyWaiters.mTail;
-    q->mBuffer = p;
-    q->mCapacity = n;
-    q->mHeadIndex = 0;
-    q->mCount = 0;
+// Clears both thread queues, sets the message array and its length, and empties the queue.
+void OS_InitMessageQueue(OSMessageQueue *queue, OSMessage *messages, s32 count) {
+    queue->mFullWaiters.mTail = 0;
+    queue->mFullWaiters.mHead = queue->mFullWaiters.mTail;
+    queue->mEmptyWaiters.mTail = 0;
+    queue->mEmptyWaiters.mHead = queue->mEmptyWaiters.mTail;
+    queue->mBuffer = messages;
+    queue->mCapacity = count;
+    queue->mHeadIndex = 0;
+    queue->mCount = 0;
 }
 
-// Stores v at mUnk_10[(mUnk_18 + mUnk_1c) % mUnk_14], raises mUnk_1c and calls ThreadQueueSetAllRunnable on mUnk_08.
-// While mUnk_1c is at least mUnk_14 it calls ThreadWait on mUnk_00, or returns 0 when bit 0 of f is clear.
-s32 RingQueueAppend(RingQueue *q, void *v, s32 f) {
-    u32 s;
+// Appends message at the end of the queue and wakes the receivers. When it is full, waits for room if bit 0 of flags is
+// set, else returns 0.
+BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
+    u32 enabled;
 
-    s = IrqDisable();
-    if (q->mCapacity <= q->mCount) {
+    enabled = IrqDisable();
+    if (queue->mCapacity <= queue->mCount) {
         do {
-            if ((f & 1) == 0) {
-                IrqRestore(s);
+            if ((flags & 1) == 0) {
+                IrqRestore(enabled);
                 return 0;
             }
-            ThreadWait(&q->mFullWaiters);
-        } while (q->mCapacity <= q->mCount);
+            ThreadWait(&queue->mFullWaiters);
+        } while (queue->mCapacity <= queue->mCount);
     }
-    q->mBuffer[(q->mHeadIndex + q->mCount) % q->mCapacity] = v;
-    q->mCount = q->mCount + 1;
-    ThreadQueueSetAllRunnable(&q->mEmptyWaiters);
-    IrqRestore(s);
+    queue->mBuffer[(queue->mHeadIndex + queue->mCount) % queue->mCapacity] = message;
+    queue->mCount = queue->mCount + 1;
+    ThreadQueueSetAllRunnable(&queue->mEmptyWaiters);
+    IrqRestore(enabled);
     return 1;
 }
 
-// Stores mUnk_10[mUnk_18] to *p when p is not 0, advances mUnk_18 modulo mUnk_14, lowers mUnk_1c and calls
-// ThreadQueueSetAllRunnable on mUnk_00. While mUnk_1c is 0 it calls ThreadWait on mUnk_08, or returns 0 when bit 0 of f
-// is clear.
-s32 RingQueueRemoveFront(RingQueue *q, void **p, s32 f) {
-    u32 s;
+// Removes the first message, stores it to *message when message is not 0 and wakes the senders. When the queue is
+// empty, waits for a message if bit 0 of flags is set, else returns 0.
+BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
+    u32 enabled;
 
-    s = IrqDisable();
-    if (q->mCount == 0) {
+    enabled = IrqDisable();
+    if (queue->mCount == 0) {
         do {
-            if ((f & 1) == 0) {
-                IrqRestore(s);
+            if ((flags & 1) == 0) {
+                IrqRestore(enabled);
                 return 0;
             }
-            ThreadWait(&q->mEmptyWaiters);
-        } while (q->mCount == 0);
+            ThreadWait(&queue->mEmptyWaiters);
+        } while (queue->mCount == 0);
     }
-    if (p != 0) {
-        *p = q->mBuffer[q->mHeadIndex];
+    if (message != 0) {
+        *message = queue->mBuffer[queue->mHeadIndex];
     }
-    q->mHeadIndex = (q->mHeadIndex + 1) % q->mCapacity;
-    q->mCount = q->mCount - 1;
-    ThreadQueueSetAllRunnable(&q->mFullWaiters);
-    IrqRestore(s);
+    queue->mHeadIndex = (queue->mHeadIndex + 1) % queue->mCapacity;
+    queue->mCount = queue->mCount - 1;
+    ThreadQueueSetAllRunnable(&queue->mFullWaiters);
+    IrqRestore(enabled);
     return 1;
 }
 
-// Lowers mUnk_18 by one modulo mUnk_14, stores v at mUnk_10[mUnk_18], raises mUnk_1c and calls
-// ThreadQueueSetAllRunnable on mUnk_08. While mUnk_1c is at least mUnk_14 it calls ThreadWait on mUnk_00, or returns 0
-// when bit 0 of f is clear.
-s32 RingQueuePrepend(RingQueue *q, void *v, s32 f) {
-    u32 s;
+// Puts message at the front of the queue and wakes the receivers. When it is full, waits for room if bit 0 of flags is
+// set, else returns 0.
+BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage message, s32 flags) {
+    u32 enabled;
 
-    s = IrqDisable();
-    if (q->mCapacity <= q->mCount) {
+    enabled = IrqDisable();
+    if (queue->mCapacity <= queue->mCount) {
         do {
-            if ((f & 1) == 0) {
-                IrqRestore(s);
+            if ((flags & 1) == 0) {
+                IrqRestore(enabled);
                 return 0;
             }
-            ThreadWait(&q->mFullWaiters);
-        } while (q->mCapacity <= q->mCount);
+            ThreadWait(&queue->mFullWaiters);
+        } while (queue->mCapacity <= queue->mCount);
     }
-    q->mHeadIndex = (q->mHeadIndex + q->mCapacity - 1) % q->mCapacity;
-    q->mBuffer[q->mHeadIndex] = v;
-    q->mCount = q->mCount + 1;
-    ThreadQueueSetAllRunnable(&q->mEmptyWaiters);
-    IrqRestore(s);
+    queue->mHeadIndex = (queue->mHeadIndex + queue->mCapacity - 1) % queue->mCapacity;
+    queue->mBuffer[queue->mHeadIndex] = message;
+    queue->mCount = queue->mCount + 1;
+    ThreadQueueSetAllRunnable(&queue->mEmptyWaiters);
+    IrqRestore(enabled);
     return 1;
 }
 
-// Stores mUnk_10[mUnk_18] to *p when p is not 0. While mUnk_1c is 0 it calls ThreadWait on mUnk_08, or returns
-// 0 when bit 0 of f is clear.
-s32 RingQueuePeekFront(RingQueue *q, void **p, s32 f) {
-    u32 s;
+// Stores the first message to *message when message is not 0 and leaves it in the queue. When the queue is empty, waits
+// for a message if bit 0 of flags is set, else returns 0.
+BOOL OS_ReadMessage(OSMessageQueue *queue, OSMessage *message, s32 flags) {
+    u32 enabled;
 
-    s = IrqDisable();
-    if (q->mCount == 0) {
+    enabled = IrqDisable();
+    if (queue->mCount == 0) {
         do {
-            if ((f & 1) == 0) {
-                IrqRestore(s);
+            if ((flags & 1) == 0) {
+                IrqRestore(enabled);
                 return 0;
             }
-            ThreadWait(&q->mEmptyWaiters);
-        } while (q->mCount == 0);
+            ThreadWait(&queue->mEmptyWaiters);
+        } while (queue->mCount == 0);
     }
-    if (p != 0) {
-        *p = q->mBuffer[q->mHeadIndex];
+    if (message != 0) {
+        *message = queue->mBuffer[queue->mHeadIndex];
     }
-    IrqRestore(s);
+    IrqRestore(enabled);
     return 1;
 }
 
@@ -267,20 +252,20 @@ u32 OS_IsRunOnEmulator(void) {
 // result is set, else 0x80000000), or-ed with a halfword read from a fixed address. The stored value is -1 until
 // then.
 u32 OS_GetConsoleType(void) {
-    u32 a;
+    u32 type;
 
     if (gConsoleType == 0xffffffff) {
-        a = ReadCartridgeMarkerBits();
+        type = ReadCartridgeMarkerBits();
         if (OS_IsRunOnEmulator() != 0) {
-            a |= 0x10000000;
+            type |= 0x10000000;
         } else if (func_0200e77c() != 0) {
-            a |= 0x40000000;
-        } else if (a & 0x1000000) {
-            a |= 0x20000000;
+            type |= 0x40000000;
+        } else if (type & 0x1000000) {
+            type |= 0x20000000;
         } else {
-            a |= 0x80000000;
+            type |= 0x80000000;
         }
-        gConsoleType = a | *(u16 *) 0x27ffffa;
+        gConsoleType = type | *(u16 *) 0x27ffffa;
     }
     return gConsoleType;
 }
@@ -332,7 +317,7 @@ u32 func_0200e77c(void) {
 // clang-format off
 // Calls DivSqrtRegistersSave with the address of mUnk_48, stores the status register and the registers (r0 = 1 saved) into
 // the words from 0, the banked sp of mode 0xd3 at 0x44 and the address of the return point at 0x3c, and returns 0.
-asm s32 ThreadSaveContext(Thread *t) {
+asm BOOL OS_SaveContext(Thread *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
     ldr r1, =DivSqrtRegistersSave
@@ -354,8 +339,8 @@ asm s32 ThreadSaveContext(Thread *t) {
 }
 
 // Calls DivSqrtRegistersRestore with the address of mUnk_48, then switches to mode 0xd3 and restores the registers and the
-// status word saved by ThreadSaveContext.
-asm void ThreadLoadContext(Thread *t) {
+// status word saved by OS_SaveContext.
+asm void OS_LoadContext(Thread *t) {
     stmdb sp!, {r0, lr}
     add r0, r0, #0x48
     ldr r1, =DivSqrtRegistersRestore

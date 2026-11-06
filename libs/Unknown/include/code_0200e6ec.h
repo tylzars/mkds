@@ -3,5 +3,5 @@
 #include "types.h"
 #include "code_0200db4c.h"
 
-s32 ThreadSaveContext(Thread *t);
-void ThreadLoadContext(Thread *t);
+BOOL OS_SaveContext(Thread *t);
+void OS_LoadContext(Thread *t);

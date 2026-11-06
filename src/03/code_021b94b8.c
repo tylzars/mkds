@@ -55,11 +55,11 @@ void func_ov003_021ba734(Unk021ba734 *list, Unk021ba778Src *src, s32 count) {
 }
 
 s32 func_ov003_021ba720(void *msg) {
-    return RingQueueAppend(&data_ov003_021d8a2c, msg, 0);
+    return OS_SendMessage(&data_ov003_021d8a2c, msg, 0);
 }
 
 s32 func_ov003_021ba70c(void *msg) {
-    return RingQueueAppend(&data_ov003_021d8a2c, msg, 0);
+    return OS_SendMessage(&data_ov003_021d8a2c, msg, 0);
 }
 
 s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
@@ -67,7 +67,7 @@ s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
     void *msg;
     void *buffer;
     u32 enabled;
-    RingQueueInit(&data_ov003_021d8a2c, data_ov003_021d8a1c, 4);
+    OS_InitMessageQueue(&data_ov003_021d8a2c, data_ov003_021d8a1c, 4);
     if (alloc == NULL || release == NULL) {
         return -1;
     }
@@ -85,7 +85,7 @@ s32 func_ov003_021ba61c(void *(*alloc)(u32), void (*release)(void *)) {
     }
     if (running != FALSE) {
         do {
-            RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
+            OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
             switch ((u32) msg) {
                 case 4:
                 case 5:
@@ -122,7 +122,7 @@ s32 func_ov003_021ba560(void) {
         return -1;
     }
     do {
-        RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
+        OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
         switch ((u32) msg) {
             case 4:
             case 5:
@@ -158,7 +158,7 @@ s32 func_ov003_021ba524(void) {
     if (func_ov003_021baa28() != FALSE) {
         done = FALSE;
         do {
-            RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
+            OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
             /* waits for one entry; the loop flag is a placeholder */
             if ((u32) msg == 0xe) {
                 result = 0;
@@ -193,7 +193,7 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
         OS_CreateAlarm(&timer);
         OS_SetAlarm(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x13);
         do {
-            RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
+            OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
             switch ((u32) msg) {
                 case 0x13:
                     if (found == FALSE) {
@@ -253,7 +253,7 @@ s32 func_ov003_021ba394(Unk021ba734 **out) {
         }
     cleanup:
         OS_CancelAlarm(&timer);
-        while (RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 0) == 1) {
+        while (OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 0) == 1) {
         }
     }
     data_ov003_021d8a18(buffer);
@@ -294,7 +294,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
         OS_SetAlarm(&timer, 0x3fec42, (void (*)(void *)) func_ov003_021ba70c, (void *) 0x12);
         flags |= 0x30000;
         do {
-            RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 1);
+            OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 1);
             switch ((u32) msg) {
                 case 0x12:
                     if (done == FALSE) {
@@ -346,7 +346,7 @@ s32 func_ov003_021ba1b0(Unk021ba1b0 *request, Unk021ba734 *out) {
             }
         } while (running != FALSE);
         OS_CancelAlarm(&timer);
-        while (RingQueueRemoveFront(&data_ov003_021d8a2c, &msg, 0) == 1) {
+        while (OS_ReceiveMessage(&data_ov003_021d8a2c, &msg, 0) == 1) {
         }
     }
     func_ov003_021ba734(out, &data_ov003_021d8ac0, result == 0 ? 1 : 0);

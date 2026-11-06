@@ -35,9 +35,9 @@ u32 func_ov003_021be604(void) {
 u32 func_ov003_021be5cc(u32 a, s32 b) {
     u32 result;
     if (b > 0) {
-        ThreadLockWait(data_ov003_021d8c8c);
+        OS_LockMutex(&data_ov003_021d8c8c);
         result = data_ov003_021d8bd4(b);
-        ThreadLockUnlock(data_ov003_021d8c8c);
+        OS_UnlockMutex(&data_ov003_021d8c8c);
         return result;
     }
     return 0;
@@ -45,9 +45,9 @@ u32 func_ov003_021be5cc(u32 a, s32 b) {
 
 void func_ov003_021be59c(u32 a, s32 b, s32 c) {
     if (b != 0 && c > 0) {
-        ThreadLockWait(data_ov003_021d8c8c);
+        OS_LockMutex(&data_ov003_021d8c8c);
         data_ov003_021d8bdc(b);
-        ThreadLockUnlock(data_ov003_021d8c8c);
+        OS_UnlockMutex(&data_ov003_021d8c8c);
     }
 }
 

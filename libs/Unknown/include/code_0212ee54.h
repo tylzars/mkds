@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "code_0212d214.h"
+#include "code_0200e77c.h"
 
 // Element of a list: func_0212ee8c compares mUnk_08 with its second argument.
 typedef struct Unk0212ee8c {
@@ -9,11 +10,11 @@ typedef struct Unk0212ee8c {
     /* 08 */ void *mUnk_08;
 } Unk0212ee8c;
 
-// Object pointed to by data_0217df04: the 0x18 bytes at 0x4cc are passed to ThreadLockWait and ThreadLockUnlock, and
+// Object pointed to by data_0217df04: the mutex at 0x4cc is passed to OS_LockMutex and OS_UnlockMutex, and
 // 0x4e4 is a list header.
 typedef struct Unk0212ef48 {
     /* 000 */ u8 mUnk_000[0x4cc];
-    /* 4cc */ u8 mUnk_4cc[0x18];
+    /* 4cc */ OSMutex mUnk_4cc;
     /* 4e4 */ LinkedList mUnk_4e4;
 } Unk0212ef48;
 

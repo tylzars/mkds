@@ -773,15 +773,15 @@ void func_ov000_021a8454(Unk021a7154 *a) {
         ThreadWaitForEnd(&a->mUnk_20);
         c = IrqDisable();
         ThreadSwitchDisable();
-        if (RingQueueRemoveFront(&a->mUnk_00, (void **) &b, 0) != 0) {
+        if (OS_ReceiveMessage(&a->mUnk_00, (void **) &b, 0) != 0) {
             do {
                 if (b != NULL) {
                     if (b->mUnk_08 != NULL) {
-                        RingQueueAppend(b->mUnk_08, (void *) -11, 0);
+                        OS_SendMessage(b->mUnk_08, (void *) -11, 0);
                     }
                     func_ov000_021a7048(b);
                 }
-            } while (RingQueueRemoveFront(&a->mUnk_00, (void **) &b, 0) != 0);
+            } while (OS_ReceiveMessage(&a->mUnk_00, (void **) &b, 0) != 0);
         }
         ThreadSwitchEnable();
         IrqRestore(c);
@@ -851,16 +851,16 @@ u32 func_ov000_021a8268(u32 a, u32 b, u32 c, u16 d, u32 e, u32 f) {
     }
     h = g->mSendBlock;
     if ((f & 4) != 0 || g->mUnk_72 == 0) {
-        if (ThreadLockTry(&h->mUnk_00.mUnk_e0) == 0) {
+        if (OS_TryLockMutex(&h->mUnk_00.mUnk_e0) == 0) {
             return -6;
         }
         i = FALSE;
     } else {
-        ThreadLockWait(&h->mUnk_00.mUnk_e0);
+        OS_LockMutex(&h->mUnk_00.mUnk_e0);
         i = TRUE;
     }
     j = func_ov000_021a81a8(g, (u8 *) b, c, d, (u16 *) e, i);
-    ThreadLockUnlock(&h->mUnk_00.mUnk_e0);
+    OS_UnlockMutex(&h->mUnk_00.mUnk_e0);
     return j;
 }
 
@@ -1091,14 +1091,14 @@ u32 func_ov000_021a7de0(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
     }
     h = g->mReceiveBlock;
     if (i == 0) {
-        if (ThreadLockTry(&h->mUnk_00.mUnk_e0) == 0) {
+        if (OS_TryLockMutex(&h->mUnk_00.mUnk_e0) == 0) {
             return -6;
         }
     } else {
-        ThreadLockWait(&h->mUnk_00.mUnk_e0);
+        OS_LockMutex(&h->mUnk_00.mUnk_e0);
     }
     i = func_ov000_021a7d68(g, (void *) b, c, (u16 *) d, (u32 *) e, i, f);
-    ThreadLockUnlock(&h->mUnk_00.mUnk_e0);
+    OS_UnlockMutex(&h->mUnk_00.mUnk_e0);
     return i;
 }
 
@@ -1486,13 +1486,13 @@ s32 func_ov000_021a7680(Unk021a7064 *param_1) {
     a = param_1->mUnk_04;
     c = 0;
     b = a->mReceiveBlock;
-    ThreadLockWait(&b->mUnk_00.mUnk_e0);
+    OS_LockMutex(&b->mUnk_00.mUnk_e0);
     func_ov000_021ae290(param_1->mUnk_10, param_1->mUnk_12, (s32) param_1->mUnk_14);
     b->mUnk_f8 = 0;
     if (param_1->mUnk_0c == 0 || param_1->mUnk_0c == 4) {
         c = func_ov000_021ae134();
     }
-    ThreadLockUnlock(&b->mUnk_00.mUnk_e0);
+    OS_UnlockMutex(&b->mUnk_00.mUnk_e0);
     if (c != 0) {
         a->mUnk_70 |= 0x40;
         return -76;
@@ -1622,7 +1622,7 @@ s32 func_ov000_021a740c(Unk021a7064 *param_1) {
 
     a = param_1->mUnk_04;
     b = a->mReceiveBlock;
-    ThreadLockWait(&b->mUnk_00.mUnk_e0);
+    OS_LockMutex(&b->mUnk_00.mUnk_e0);
     func_ov000_021ae290(param_1->mUnk_10, 0, 0);
     func_ov000_021ae1e4();
     b->mUnk_f8 = 0;
@@ -1630,7 +1630,7 @@ s32 func_ov000_021a740c(Unk021a7064 *param_1) {
     *param_1->mUnk_14 = c;
     *param_1->mUnk_18 = e;
     a->mUnk_70 |= 4;
-    ThreadLockUnlock(&b->mUnk_00.mUnk_e0);
+    OS_UnlockMutex(&b->mUnk_00.mUnk_e0);
     return 0;
 }
 
@@ -1768,8 +1768,8 @@ u8 *func_ov000_021a7154(u8 *b, Unk021a7154 *c, Unk021a72a4 *d) {
     u8 *a;
 
     a = b + func_ov000_021a72a4(d);
-    RingQueueInit(&c->mUnk_00, (void **) b, d->mUnk_03);
-    ThreadLockInit(&c->mUnk_e0);
+    OS_InitMessageQueue(&c->mUnk_00, (void **) b, d->mUnk_03);
+    OS_InitMutex(&c->mUnk_e0);
     ThreadInit(&c->mUnk_20, func_ov000_021a6f18, c, a, d->mUnk_00, d->mUnk_02);
     ThreadSetRunnable(&c->mUnk_20);
     return a;
@@ -1787,7 +1787,7 @@ s32 func_ov000_021a70ec(s32 e) {
     if (b == NULL) {
         return -1;
     }
-    RingQueueInit(&data_ov000_021b5fdc, b, e);
+    OS_InitMessageQueue(&data_ov000_021b5fdc, b, e);
     c = (Unk021a7064 *) ((u8 *) b + a);
     if (e > 0) {
         do {
@@ -1812,7 +1812,7 @@ s32 func_ov000_021a70b0(void) {
 Unk021a7064 *func_ov000_021a7088(s32 a) {
     int v1;
     Unk021a7064 *v2[1];
-    v1 = RingQueueRemoveFront(&data_ov000_021b5fdc, (void **) (v2), (s32) (a));
+    v1 = OS_ReceiveMessage(&data_ov000_021b5fdc, (void **) (v2), (s32) (a));
     if (v1 != 0) {
         return v2[0];
     }
@@ -1834,7 +1834,7 @@ Unk021a7064 *func_ov000_021a7064(Unk021a7064Func b, Unk021a6fa8 *c, s32 d) {
 
 void func_ov000_021a7048(Unk021a7064 *a) {
     if (a != NULL) {
-        RingQueueAppend(&data_ov000_021b5fdc, (a), 0);
+        OS_SendMessage(&data_ov000_021b5fdc, (a), 0);
     }
     return;
 }
@@ -1842,7 +1842,7 @@ void func_ov000_021a7048(Unk021a7064 *a) {
 s32 func_ov000_021a7008(Unk021a7154 *b, Unk021a7064 *c) {
     s32 a;
 
-    a = RingQueueAppend(&b->mUnk_00, c, c != NULL ? c->mUnk_0d : 1);
+    a = OS_SendMessage(&b->mUnk_00, c, c != NULL ? c->mUnk_0d : 1);
     if (a == 0) {
         func_ov000_021a7048(c);
     }
@@ -1855,16 +1855,16 @@ s32 func_ov000_021a7008(Unk021a7154 *b, Unk021a7064 *c) {
 s32 func_ov000_021a6fc0(Unk021a7154 *d, Unk021a7064 *e) {
     s32 a;
     void *b;
-    RingQueue c;
+    OSMessageQueue c;
 
     if (e->mUnk_0d == 0) {
         e->mUnk_08 = NULL;
         a = func_ov000_021a7008(d, e);
     } else {
-        RingQueueInit(&c, &b, 1);
+        OS_InitMessageQueue(&c, &b, 1);
         e->mUnk_08 = &c;
         func_ov000_021a7008(d, e);
-        RingQueueRemoveFront(&c, (void **) &a, 1);
+        OS_ReceiveMessage(&c, (void **) &a, 1);
     }
     return a;
 }
@@ -1885,25 +1885,25 @@ s32 func_ov000_021a6f84(Unk021a6fa8 *param_1, Unk021a7064 *param_2) {
 }
 
 void func_ov000_021a6f18(void *param_1) {
-    RingQueue *a = param_1;
+    OSMessageQueue *a = param_1;
     Unk021a7064 *b;
     s32 c;
     u32 d;
 
     while (1) {
-        RingQueuePeekFront(a, (void **) &b, 1);
+        OS_ReadMessage(a, (void **) &b, 1);
         if (b == NULL) {
             return;
         }
         c = b->mUnk_00(b);
         d = IrqDisable();
         ThreadSwitchDisable();
-        RingQueueRemoveFront(a, NULL, 0);
+        OS_ReceiveMessage(a, NULL, 0);
         if (b->mUnk_04 != NULL) {
             b->mUnk_04->mEntryResult = c;
         }
         if (b->mUnk_08 != NULL) {
-            RingQueueAppend(b->mUnk_08, (void *) c, 0);
+            OS_SendMessage(b->mUnk_08, (void *) c, 0);
         }
         func_ov000_021a7048(b);
         ThreadSwitchEnable();
