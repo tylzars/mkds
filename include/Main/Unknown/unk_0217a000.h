@@ -1143,7 +1143,8 @@ typedef struct Camera {
     // Index into gKarts the look-at is taken from (entry cameras; the chase camera is handed its Kart).
     /* 210 */ u16 mFollowedKartIndex;
     /* 212 */ u8 mUnk_212[0x2];
-    // Index func_020411e4 last returned for the followed kart; mCourseMapCamera is the entry actually in use.
+    // Index GetCourseMapCameraIndexAtPos last returned for the followed kart; mCourseMapCamera is the entry actually in
+    // use.
     /* 214 */ s32 mLastCourseMapCameraIndex;
     /* 218 */ struct CourseMapCamera *mCourseMapCamera;
     /* 21c */ struct Unk02077750 *mUnk_21c;
@@ -1228,10 +1229,10 @@ extern s32 gCameraEntryChanged;
 // The chain camera whose view matrix the last chain step returned; UpdateRace stores it as the camera in use. Not
 // written in races without chain cameras.
 extern Camera *gCurrentChainCamera;
-// The Camera that picks its CourseMapCamera entry from the position of the followed Kart (func_020411e4) and is stepped
-// by TryUpdateEntryCamera. mKind is 1, or 3 in mode 2 when CourseMap.mFirstKind7EntryInMode2 is set. The Kart code
-// starts its kind 6 and kind 8 entries (StartEntryCameraKind6Entry, StartEntryCameraKind8Entry). The chain cameras also
-// run entries but never pick by position.
+// The Camera that picks its CourseMapCamera entry from the position of the followed Kart (GetCourseMapCameraIndexAtPos)
+// and is stepped by TryUpdateEntryCamera. mKind is 1, or 3 in mode 2 when CourseMap.mFirstKind7EntryInMode2 is set. The
+// Kart code starts its kind 6 and kind 8 entries (StartEntryCameraKind6Entry, StartEntryCameraKind8Entry). The chain
+// cameras also run entries but never pick by position.
 extern Camera *gEntryCamera;
 extern u8 data_0217acc0[];
 // 0x20-byte entries behind member 0x014 of Unk0217ad00.

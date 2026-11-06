@@ -113,7 +113,7 @@ static inline s32 func_0203df74_c_inline(CourseMapRoute *r, u16 c, s32 v) {
     } else {
         x = DivFixed12(t + v, r->mEntryCount << 12);
     }
-    t = x + (r->mUnk_0a << 12);
+    t = x + (r->mLapProgressBase << 12);
     return (s32) (((s64) t * gRaceProgress->mLapProgressScale + 0x800) >> 12);
 }
 
@@ -334,7 +334,7 @@ void UpdateRaceProgressKarts(void) {
             UpdateRaceProgressKart(&v, e);
             f = FALSE;
             if (func_0207a7fc(e->mIndex) == 0) {
-                o = &gCourseMap->mCheckpoints[e->mCheckpoint].mUnk_10;
+                o = &gCourseMap->mCheckpoints[e->mCheckpoint].mDirection;
                 t.mUnk_00 = w.x;
                 t.mUnk_04 = w.z;
                 if (func_02040d68(&t, o) < -1394) {

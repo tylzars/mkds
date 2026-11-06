@@ -289,7 +289,7 @@ void func_0207a790(s32 a) {
 
     data_0217ad28 = 0;
     for (i = 0; i < 8; i++) {
-        if (func_02040de0(a, i) != 0) {
+        if (IsKartInCourseMapKind3ShapeList(a, i) != 0) {
             data_0217ad28 |= 1 << i;
         }
     }

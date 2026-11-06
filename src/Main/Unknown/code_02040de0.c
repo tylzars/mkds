@@ -38,7 +38,7 @@ void GetCourseMapStartPlacementWithOffsets(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e
     if (gCourseMap->mStartPlacementCount > 1) {
         for (i = 0; i < gCourseMap->mStartPlacementCount; i++) {
             p = &(gCourseMap->mStartPlacements)[i];
-            if (c == (s16) p->mUnk_1a) {
+            if (c == (s16) p->mKey) {
                 q = p;
                 break;
             }
@@ -220,7 +220,7 @@ s32 func_0204176c(Vec3 *a, s32 *b) {
     return r;
 }
 
-void *func_02041588(Vec3 *a) {
+void *FindCourseMapKind4ShapeRacePointLink(Vec3 *a) {
     u16 i;
     CourseMapShape *p;
     Vec3 v;
@@ -255,7 +255,7 @@ void *func_02041588(Vec3 *a) {
                     break;
             }
             if (t != 0) {
-                r = (u8 *) gCourseMap->mUnk_a0 + p->mUnk_40 * 0x28;
+                r = (u8 *) gCourseMap->mRacePointLinks + p->mPointIndex * 0x28;
                 break;
             }
         }
@@ -263,7 +263,7 @@ void *func_02041588(Vec3 *a) {
     return r;
 }
 
-Unk02175620_bc *func_020413a4(Vec3 *a) {
+Unk02175620_bc *FindCourseMapKind4ShapeBattlePointLink(Vec3 *a) {
     u16 i;
     CourseMapShape *p;
     Vec3 v;
@@ -298,7 +298,7 @@ Unk02175620_bc *func_020413a4(Vec3 *a) {
                     break;
             }
             if (t != 0) {
-                r = &gCourseMap->mUnk_b8[p->mUnk_40];
+                r = &gCourseMap->mBattlePointLinks[p->mPointIndex];
                 break;
             }
         }
@@ -306,7 +306,7 @@ Unk02175620_bc *func_020413a4(Vec3 *a) {
     return r;
 }
 
-s32 func_020411e4(Vec3 *a) {
+s32 GetCourseMapCameraIndexAtPos(Vec3 *a) {
     u16 i;
     CourseMapShape *p;
     Vec3 v;
@@ -342,7 +342,7 @@ s32 func_020411e4(Vec3 *a) {
                     break;
             }
             if (t != 0) {
-                r = p->mUnk_43;
+                r = p->mCameraIndex;
                 break;
             }
         }
@@ -366,7 +366,7 @@ u16 GetCourseMapRespawnSlot(u32 a) {
     return r;
 }
 
-void *func_020410a4(u32 a, Vec3 *b, Vec3 *c) {
+void *GetCourseMapRespawnRacePointLink(u32 a, Vec3 *b, Vec3 *c) {
     CourseMapRespawn *e;
     s32 i;
 
@@ -390,15 +390,15 @@ void *func_020410a4(u32 a, Vec3 *b, Vec3 *c) {
         c->x = e->mUnk_0c.x;
         c->y = e->mUnk_0c.y;
         c->z = e->mUnk_0c.z;
-        i = e->mUnk_18;
+        i = e->mPointIndex;
     }
     if (i == -1) {
         return NULL;
     }
-    return (u8 *) gCourseMap->mUnk_a0 + i * 0x28;
+    return (u8 *) gCourseMap->mRacePointLinks + i * 0x28;
 }
 
-Unk02175620_bc *func_02040fd8(u32 a, Vec3 *b, Vec3 *c) {
+Unk02175620_bc *GetCourseMapRespawnBattlePointLink(u32 a, Vec3 *b, Vec3 *c) {
     CourseMapRespawn *e;
     s32 i;
 
@@ -422,15 +422,15 @@ Unk02175620_bc *func_02040fd8(u32 a, Vec3 *b, Vec3 *c) {
         c->x = e->mUnk_0c.x;
         c->y = e->mUnk_0c.y;
         c->z = e->mUnk_0c.z;
-        i = e->mUnk_18;
+        i = e->mPointIndex;
     }
     if (i == -1) {
         return NULL;
     }
-    return &gCourseMap->mUnk_b8[i];
+    return &gCourseMap->mBattlePointLinks[i];
 }
 
-struct Unk020f371c *func_02040f78(u32 a) {
+struct Unk020f371c *GetCourseMapRespawnItemPointLink(u32 a) {
     CourseMapRespawn *e;
 
     if (gCourseMap->mCheckpoints == NULL && gCourseMap->mRespawns == NULL) {
@@ -441,10 +441,10 @@ struct Unk020f371c *func_02040f78(u32 a) {
     if (e == NULL) {
         return NULL;
     }
-    return &gCourseMap->mUnk_ac[e->mUnk_1a];
+    return &gCourseMap->mItemPointLinks[e->mItemPointIndex];
 }
 
-s32 func_02040de0(s32 a, u32 b) {
+s32 IsKartInCourseMapKind3ShapeList(s32 a, u32 b) {
     Unk02175620_d8 *n;
     s32 t;
     CourseMapShape *p;

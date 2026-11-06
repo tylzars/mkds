@@ -499,7 +499,7 @@ u16 func_02044618(void) {
     p = data_021759c0;
     if (p->mMode != MODE_BATTLE) {
         if (p->mUnk_064 <= 0) {
-            r = gCourseMap->mSettings->mUnk_02;
+            r = gCourseMap->mSettings->mLapCountOrBattleSeconds;
         } else {
             r = (u16) p->mUnk_064;
         }

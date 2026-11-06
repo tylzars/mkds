@@ -243,8 +243,8 @@ void func_02080908(Unk0208001c *p, Vec3 *a, Vec3 *b, u16 c) {
 
     v3[0] = v3[1] = v3[2] = 0xc8000;
     m = -0x1000;
-    for (i = 0; i < gCourseMap->mUnk_88; i++) {
-        Vec3Sub(&gCourseMap->mUnk_84[i].mUnk_00, a, &v);
+    for (i = 0; i < gCourseMap->mBattlePointCount; i++) {
+        Vec3Sub(&gCourseMap->mBattlePoints[i].mUnk_00, a, &v);
         d = Vec3Length(&v);
         if (d < 0xc8000) {
             for (k = 0; k < 3; k++) {

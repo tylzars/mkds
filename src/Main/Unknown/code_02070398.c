@@ -148,15 +148,15 @@ void ResetKartToRespawnPoint(Kart *p) {
     }
     i = (u16) p->mRespawnSlot;
     if (data_021759c0->mMode == MODE_BATTLE) {
-        r = func_02040fd8(i, &a, &c);
+        r = GetCourseMapRespawnBattlePointLink(i, &a, &c);
     } else {
-        r = func_020410a4(i, &a, &c);
+        r = GetCourseMapRespawnRacePointLink(i, &a, &c);
     }
     i = ((u16) ((s32) (((s64) c.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
     Matrix3x3FromPairY(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &b);
-    if (data_021759c0->mMode != MODE_BATTLE && gCourseMap->mUnk_60 != 0) {
-        (e = &(gKartItems)[p->mIndex])->mUnk_1f0.mUnk_00 = func_02040f78((u16) p->mRespawnSlot);
+    if (data_021759c0->mMode != MODE_BATTLE && gCourseMap->mItemRouteCount != 0) {
+        (e = &(gKartItems)[p->mIndex])->mUnk_1f0.mUnk_00 = GetCourseMapRespawnItemPointLink((u16) p->mRespawnSlot);
         e->mUnk_1f0.mUnk_04 = 1;
     }
     if (data_021759c0->mMode != MODE_TIME_ATTACK) {
@@ -1208,13 +1208,13 @@ void func_020708a4(Kart *p) {
     Vec3 q;
 
     b = data_02154f94;
-    i = *gCourseMap->mUnk_fc;
-    a.x = gCourseMap->mUnk_34[i].mPos.x;
-    a.y = gCourseMap->mUnk_34[i].mPos.y;
-    a.z = gCourseMap->mUnk_34[i].mPos.z;
-    b.x = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.x;
-    b.y = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.y;
-    b.z = gCourseMap->mUnk_34[*gCourseMap->mUnk_fc].mUnk_0c.z;
+    i = *gCourseMap->mKeyedPlacementIndexByKey;
+    a.x = gCourseMap->mKeyedPlacements[i].mPos.x;
+    a.y = gCourseMap->mKeyedPlacements[i].mPos.y;
+    a.z = gCourseMap->mKeyedPlacements[i].mPos.z;
+    b.x = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.x;
+    b.y = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.y;
+    b.z = gCourseMap->mKeyedPlacements[*gCourseMap->mKeyedPlacementIndexByKey].mUnk_0c.z;
     k = (u16) (((s64) b.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >> 4;
     Matrix3x3FromPairY(m1, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m1, &e);
@@ -1357,11 +1357,14 @@ void func_020705fc(Kart *p, u32 b) {
 
     func_020710b0(p, 1);
     p->mVerticalSpeed = 0x3000;
-    i = gCourseMap->mUnk_fc[b];
-    a.x = gCourseMap->mUnk_34[i].mPos.x;
-    a.y = gCourseMap->mUnk_34[i].mPos.y;
-    a.z = gCourseMap->mUnk_34[i].mPos.z;
-    k = (u16) (((s64) gCourseMap->mUnk_34[gCourseMap->mUnk_fc[b]].mUnk_0c.y * 0xb60b60b60bLL + 0x80000000LL) >> 44) >>
+    i = gCourseMap->mKeyedPlacementIndexByKey[b];
+    a.x = gCourseMap->mKeyedPlacements[i].mPos.x;
+    a.y = gCourseMap->mKeyedPlacements[i].mPos.y;
+    a.z = gCourseMap->mKeyedPlacements[i].mPos.z;
+    k = (u16) (((s64) gCourseMap->mKeyedPlacements[gCourseMap->mKeyedPlacementIndexByKey[b]].mUnk_0c.y *
+                    0xb60b60b60bLL +
+                0x80000000LL) >>
+               44) >>
         4;
     Matrix3x3FromPairY(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
     Vec3MultiplyMatrix3x3(&data_02154f70, m, &e);

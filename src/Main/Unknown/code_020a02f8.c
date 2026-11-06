@@ -774,11 +774,11 @@ Unk02175620_84 *func_020a0f0c(void) {
     a->mUnk_00 = a->mUnk_08 * a->mUnk_00 + a->mUnk_10;
     v = (u16) (((u64) (u32) (a->mUnk_00 >> 32) * 5) >> 32) + 1;
     w = gStandings->mUnk_3b8 + v;
-    if (w >= gCourseMap->mUnk_88) {
+    if (w >= gCourseMap->mBattlePointCount) {
         w = 0;
     }
     gStandings->mUnk_3b8 = w;
-    return &gCourseMap->mUnk_84[gStandings->mUnk_3b8];
+    return &gCourseMap->mBattlePoints[gStandings->mUnk_3b8];
 }
 
 // Allocates the Standings object and fills every entry (rank = own index, side id, status, count; the real karts first,

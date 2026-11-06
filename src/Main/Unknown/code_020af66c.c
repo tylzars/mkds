@@ -649,7 +649,7 @@ void func_020af99c(void) {
     if (v == 5 || v == 6) {
         return;
     }
-    w = gCourseMap->mSettings->mUnk_14 & 0x7fff;
+    w = gCourseMap->mSettings->mColorAndFogAlpha & 0x7fff;
     *(vu16 *) 0x05000000 = w;
     gRaceHud->mNclrs[0]->mData[0] = w;
     DC_FlushRange(gRaceHud->mNclrs[0]->mData, gRaceHud->mNclrs[0]->mDataSize);

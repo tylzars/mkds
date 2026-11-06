@@ -382,7 +382,7 @@ void func_02075d08(s32 a) {
     }
     p->mKind6EntryRunning = FALSE;
     GetKartPos(&v, p->mFollowedKartIndex);
-    s = func_020411e4(&v);
+    s = GetCourseMapCameraIndexAtPos(&v);
     if (s < 0) {
         return;
     }
@@ -442,7 +442,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
         return TRUE;
     }
     GetKartPos(&v, p->mFollowedKartIndex);
-    i = func_020411e4(&v);
+    i = GetCourseMapCameraIndexAtPos(&v);
     if (p->mKind6EntryRunning != FALSE) {
         if (data_021759c0->mMode == MODE_BATTLE) {
             UpdateCameraByEntryKind(p);

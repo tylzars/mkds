@@ -115,9 +115,9 @@ void UpdateCameraByEntryKind(Camera *p);
 // Steps the Camera through CourseMapCamera entries and returns whether it is the camera in use this frame (UpdateRace
 // then shows it, else the chase camera). With data_021759c0->mUnk_00c equal to 6 it runs func_02074b00 and returns
 // TRUE. Returns FALSE while mEntryUpdateHold or mEntryUpdateDisabled is set, and when no CourseMapShape of mKind 1
-// contains the followed Kart's position (func_020411e4 finds none); mPrevPos and gEntryCameraUpdateRan are written
-// before either. Otherwise it starts the entry that shape names when it differs from the last one, runs it and returns
-// TRUE. UpdateRace calls it only while gRace->mUseChainCameras is 0 and func_0203c5e4() is non-zero.
+// contains the followed Kart's position (GetCourseMapCameraIndexAtPos finds none); mPrevPos and gEntryCameraUpdateRan
+// are written before either. Otherwise it starts the entry that shape names when it differs from the last one, runs it
+// and returns TRUE. UpdateRace calls it only while gRace->mUseChainCameras is 0 and func_0203c5e4() is non-zero.
 BOOL TryUpdateEntryCamera(Camera *p);
 u32 func_02075cf0(void);
 void func_02075d08(s32 a);

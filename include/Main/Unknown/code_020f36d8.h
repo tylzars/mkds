@@ -155,7 +155,7 @@ typedef struct RaceProgressKart {
     /* 40 */ s32 mCheckpointProgress;
     // ((mLap - 1) << 12 + mLapProgress) scaled by 1/laps, fixed point; the rank sort uses it after mLap.
     /* 44 */ s32 mRaceProgress;
-    // Position within the lap, fixed point, scaled by 1/(gCourseMap->mUnk_9c + 1).
+    // Position within the lap, fixed point, scaled by 1/(gCourseMap->mLapProgressBaseMax + 1).
     /* 48 */ s32 mLapProgress;
     // One bit per checkpoint index over 16 words: set when the checkpoint was already tested in this update's search,
     // tested to skip it, cleared for all words before each update.
@@ -305,8 +305,8 @@ typedef struct RaceProgress {
     // How the race of the entry flagged local in RaceProgressKart.mFlags ended: the second argument of
     // FinishRaceProgressKartWithEndKind (0 goal reached, other values the other ends), 6 until it has ended.
     /* 4e0 */ s32 mEntryEndKind;
-    // Reciprocal of one more than gCourseMap's mUnk_9c, as a fixed-point factor: multiplied with a position in the
-    // route to get RaceProgressKart.mLapProgress and mCheckpointLapProgress.
+    // Reciprocal of one more than gCourseMap's mLapProgressBaseMax, as a fixed-point factor: multiplied with a position
+    // in the route to get RaceProgressKart.mLapProgress and mCheckpointLapProgress.
     /* 4e4 */ s32 mLapProgressScale;
     // Reciprocal of the lap count as a fixed-point factor: multiplied with (mLap - 1, mLapProgress) to get
     // RaceProgressKart.mRaceProgress.

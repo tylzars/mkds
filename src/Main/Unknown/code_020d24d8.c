@@ -93,7 +93,7 @@ void func_020d24d8(MapObject *b, s32 c) {
         b->mDrawDistance = 0x270f000;
         return;
     }
-    a = gCourseMap->mSettings->mUnk_20;
+    a = gCourseMap->mSettings->mMapObjectDrawDistanceMax;
     if (a == 0) {
         return;
     }

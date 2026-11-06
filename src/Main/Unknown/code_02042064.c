@@ -87,7 +87,7 @@ s32 func_02043078(u16 a) {
         t += func_02043078_inline(e->mFirstEntry + k)->mUnk_18;
     }
     for (m = 0; m < 3; m++) {
-        c = (e->mUnk_04)[m];
+        c = (e->mNextRoutes)[m];
         if (c != -1 && c != 0) {
             s += func_02043078(c);
             n++;
@@ -128,7 +128,7 @@ void func_02042fd8(void *a) {
     d = g->mGroupEntries;
     if (z != 0) {
         t = HeapAlloc(a, z);
-        gCourseMap->mUnk_94 = t;
+        gCourseMap->mEntryGroupTable = t;
         for (i = 0; i < n; i++) {
             r = gCourseMap->mEntryGroups + i;
             t->mUnk_00 = r;
@@ -137,7 +137,7 @@ void func_02042fd8(void *a) {
             t++;
         }
     } else {
-        g->mUnk_94 = NULL;
+        g->mEntryGroupTable = NULL;
     }
     func_02043038();
 }
@@ -146,24 +146,24 @@ void func_02042fd8(void *a) {
 #pragma thumb on
 
 u32 func_02042fc4(u32 p0) {
-    return ((u32) gCourseMap->mUnk_94) + (((p0) << 3));
+    return ((u32) gCourseMap->mEntryGroupTable) + (((p0) << 3));
 }
 
 #pragma thumb off
 
 #pragma thumb on
-void func_02042ec0(Unk020f371c *a, CourseMapRoute *b, u16 c) {
+void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c) {
     Unk02175620_54 *p;
     Unk020f371c *n;
     s32 i;
     s32 k;
 
     if (gCourseMap->mVersion < 0x21) {
-        p = (Unk02175620_54 *) ((Unk02175620_54_10 *) gCourseMap->mUnk_54 + c);
+        p = (Unk02175620_54 *) ((Unk02175620_54_10 *) gCourseMap->mItemPoints + c);
     } else {
-        p = gCourseMap->mUnk_54 + c;
+        p = gCourseMap->mItemPoints + c;
     }
-    n = gCourseMap->mUnk_ac + c;
+    n = gCourseMap->mItemPointLinks + c;
     for (k = 0; k < 3; k++) {
         if (a != NULL && n->mUnk_0c[k] == a) {
             return;
@@ -191,18 +191,18 @@ void func_02042ec0(Unk020f371c *a, CourseMapRoute *b, u16 c) {
         }
     }
     if (c < b->mFirstEntry + b->mEntryCount - 1) {
-        func_02042ec0(n, b, c + 1);
+        BuildCourseMapItemRouteLinks(n, b, c + 1);
         return;
     }
     for (k = 0; k < 3; k++) {
-        i = b->mUnk_04[k];
+        i = b->mNextRoutes[k];
         if (i != 0xff && i != 0) {
-            func_02042ec0(n, &gCourseMap->mUnk_5c[i], gCourseMap->mUnk_5c[i].mFirstEntry);
+            BuildCourseMapItemRouteLinks(n, &gCourseMap->mItemRoutes[i], gCourseMap->mItemRoutes[i].mFirstEntry);
         }
     }
 }
 
-void func_02042e0c(void *a) {
+void BuildCourseMapItemPointLinks(void *a) {
     CourseMap *g;
     CourseMapRoute *d;
     Unk020f371c **q;
@@ -215,11 +215,11 @@ void func_02042e0c(void *a) {
     CourseMapRoute *h;
 
     g = gCourseMap;
-    d = g->mUnk_5c;
-    q = &g->mUnk_ac;
-    g->mUnk_ac = HeapAlloc(a, g->mUnk_58 * 0x28);
-    q[1] = g->mUnk_ac + d->mFirstEntry;
-    for (i = 0; i < gCourseMap->mUnk_58; i++) {
+    d = g->mItemRoutes;
+    q = &g->mItemPointLinks;
+    g->mItemPointLinks = HeapAlloc(a, g->mItemPointCount * 0x28);
+    q[1] = g->mItemPointLinks + d->mFirstEntry;
+    for (i = 0; i < gCourseMap->mItemPointCount; i++) {
         e = q[0] + i;
         for (k = 0; k < 3; k++) {
             e->mUnk_0c[k] = NULL;
@@ -231,22 +231,22 @@ void func_02042e0c(void *a) {
         e->mUnk_20 = 0;
         e->mUnk_1c = 0;
     }
-    t = gCourseMap->mUnk_5c;
-    h = t + d->mUnk_07;
-    m = t[d->mUnk_07].mFirstEntry;
+    t = gCourseMap->mItemRoutes;
+    h = t + d->mPreviousRoutes[0];
+    m = t[d->mPreviousRoutes[0]].mFirstEntry;
     n = m + h->mEntryCount - 1;
     q[2] = q[0] + n;
-    func_02042ec0(q[0] + n, d, d->mFirstEntry);
+    BuildCourseMapItemRouteLinks(q[0] + n, d, d->mFirstEntry);
 }
 
-void func_02042d34(Unk02175620_a0 *a, CourseMapRoute *b, u16 c) {
+void BuildCourseMapRaceRouteLinks(Unk02175620_a0 *a, CourseMapRoute *b, u16 c) {
     Unk02175620_a0 *n;
     s32 i;
     s32 k;
     Unk02175620_84 *p;
 
-    p = gCourseMap->mUnk_64 + c;
-    n = gCourseMap->mUnk_a0 + c;
+    p = gCourseMap->mRacePoints + c;
+    n = gCourseMap->mRacePointLinks + c;
     for (k = 0; k < 3; k++) {
         if (a != NULL && n->mUnk_0c[k] == a) {
             return;
@@ -272,18 +272,18 @@ void func_02042d34(Unk02175620_a0 *a, CourseMapRoute *b, u16 c) {
         }
     }
     if (c < b->mFirstEntry + b->mEntryCount - 1) {
-        func_02042d34(n, b, c + 1);
+        BuildCourseMapRaceRouteLinks(n, b, c + 1);
         return;
     }
     for (k = 0; k < 3; k++) {
-        i = b->mUnk_04[k];
+        i = b->mNextRoutes[k];
         if (i != 0xff) {
-            func_02042d34(n, &gCourseMap->mUnk_6c[i], gCourseMap->mUnk_6c[i].mFirstEntry);
+            BuildCourseMapRaceRouteLinks(n, &gCourseMap->mRaceRoutes[i], gCourseMap->mRaceRoutes[i].mFirstEntry);
         }
     }
 }
 
-void func_02042c3c(void *a) {
+void BuildCourseMapRacePointLinks(void *a) {
     CourseMap *g;
     CourseMapRoute *d;
     Unk02175620_a0 **q;
@@ -294,11 +294,11 @@ void func_02042c3c(void *a) {
     s32 n;
 
     g = gCourseMap;
-    d = g->mUnk_6c;
-    q = &g->mUnk_a0;
-    g->mUnk_a0 = HeapAlloc(a, g->mUnk_68 * 0x28);
-    q[1] = g->mUnk_a0 + d->mFirstEntry;
-    for (i = 0; i < gCourseMap->mUnk_68; i++) {
+    d = g->mRaceRoutes;
+    q = &g->mRacePointLinks;
+    g->mRacePointLinks = HeapAlloc(a, g->mRacePointCount * 0x28);
+    q[1] = g->mRacePointLinks + d->mFirstEntry;
+    for (i = 0; i < gCourseMap->mRacePointCount; i++) {
         e = q[0] + i;
         for (k = 0; k < 3; k++) {
             e->mUnk_0c[k] = NULL;
@@ -310,19 +310,19 @@ void func_02042c3c(void *a) {
         e->mUnk_20 = NULL;
         e->mUnk_1c = 0;
     }
-    t = gCourseMap->mUnk_6c + d->mUnk_07;
+    t = gCourseMap->mRaceRoutes + d->mPreviousRoutes[0];
     n = t->mFirstEntry + t->mEntryCount - 1;
     q[2] = q[0] + n;
-    func_02042d34(q[0] + n, d, d->mFirstEntry);
-    for (i = 0; i < gCourseMap->mUnk_70; i++) {
-        t = gCourseMap->mUnk_6c + (u16) i;
+    BuildCourseMapRaceRouteLinks(q[0] + n, d, d->mFirstEntry);
+    for (i = 0; i < gCourseMap->mRaceRouteCount; i++) {
+        t = gCourseMap->mRaceRoutes + (u16) i;
         if (q[0][t->mFirstEntry].mUnk_24 == 0) {
-            func_02042d34(NULL, t, t->mFirstEntry);
+            BuildCourseMapRaceRouteLinks(NULL, t, t->mFirstEntry);
         }
     }
 }
 
-void func_02042a10(void *a) {
+void BuildCourseMapBattlePointLinks(void *a) {
     CourseMap *g;
     Unk02175620_8c *r;
     Unk02175620_8c *t;
@@ -340,12 +340,12 @@ void func_02042a10(void *a) {
     u16 c;
 
     g = gCourseMap;
-    r = g->mUnk_8c;
-    q = &g->mUnk_b8;
-    g->mUnk_b8 = HeapAlloc(a, g->mUnk_88 * 0x30);
-    q[1] = g->mUnk_b8;
-    q[2] = g->mUnk_b8 + gCourseMap->mUnk_88;
-    for (i = 0; i < gCourseMap->mUnk_88; i++) {
+    r = g->mBattleRoutes;
+    q = &g->mBattlePointLinks;
+    g->mBattlePointLinks = HeapAlloc(a, g->mBattlePointCount * 0x30);
+    q[1] = g->mBattlePointLinks;
+    q[2] = g->mBattlePointLinks + gCourseMap->mBattlePointCount;
+    for (i = 0; i < gCourseMap->mBattlePointCount; i++) {
         e = q[0] + i;
         for (k = 0; k < 8; k++) {
             e->mUnk_00[k] = NULL;
@@ -355,12 +355,12 @@ void func_02042a10(void *a) {
         e->mUnk_28 = NULL;
         e->mUnk_24 = 0;
     }
-    for (j = 0; j < gCourseMap->mUnk_88; j++) {
-        s = gCourseMap->mUnk_84 + (u16) j;
+    for (j = 0; j < gCourseMap->mBattlePointCount; j++) {
+        s = gCourseMap->mBattlePoints + (u16) j;
         d = q[0] + j;
         n = 0;
-        for (m = 0; m < gCourseMap->mUnk_90; m++) {
-            t = gCourseMap->mUnk_8c;
+        for (m = 0; m < gCourseMap->mBattleRouteCount; m++) {
+            t = gCourseMap->mBattleRoutes;
             r = t + m;
             if (j >= t[m].mUnk_00 && j < r->mUnk_00 + r->mUnk_02) {
                 break;
@@ -402,14 +402,14 @@ void func_02042a10(void *a) {
     }
 }
 
-void func_020429c8(void *a) {
-    if (gCourseMap->mUnk_60 != 0) {
-        func_02042e0c(a);
+void BuildCourseMapPointLinks(void *a) {
+    if (gCourseMap->mItemRouteCount != 0) {
+        BuildCourseMapItemPointLinks(a);
     }
-    if (gCourseMap->mUnk_70 != 0) {
-        func_02042c3c(a);
-    } else if (gCourseMap->mUnk_90 != 0) {
-        func_02042a10(a);
+    if (gCourseMap->mRaceRouteCount != 0) {
+        BuildCourseMapRacePointLinks(a);
+    } else if (gCourseMap->mBattleRouteCount != 0) {
+        BuildCourseMapBattlePointLinks(a);
     }
 }
 #pragma thumb off
@@ -510,33 +510,33 @@ s32 func_020427ac(void *a, ...) {
     return 1;
 }
 
-void func_0204274c(void) {
+void BuildCourseMapKeyedPlacementIndexByKey(void) {
     u16 n;
     u16 i;
 
-    n = gCourseMap->mUnk_38;
+    n = gCourseMap->mKeyedPlacementCount;
     if (n == 0) {
-        gCourseMap->mUnk_fc = NULL;
+        gCourseMap->mKeyedPlacementIndexByKey = NULL;
         return;
     }
-    gCourseMap->mUnk_fc = HeapAlloc(GetHeap(func_020364e8()), n * 2);
+    gCourseMap->mKeyedPlacementIndexByKey = HeapAlloc(GetHeap(func_020364e8()), n * 2);
     for (i = 0; i < n; i++) {
-        gCourseMap->mUnk_fc[gCourseMap->mUnk_34[i].mUnk_1a] = i;
+        gCourseMap->mKeyedPlacementIndexByKey[gCourseMap->mKeyedPlacements[i].mKey] = i;
     }
 }
 
-s32 func_02042708(void *a, ...) {
+s32 LoadCourseMapKeyedPlacementsData(void *a, ...) {
     BOOL r = FALSE;
 
     if (gCourseMap->mVersion < 0x1f) {
-        gCourseMap->mUnk_38 = 0;
-        gCourseMap->mUnk_34 = NULL;
+        gCourseMap->mKeyedPlacementCount = 0;
+        gCourseMap->mKeyedPlacements = NULL;
     } else {
-        gCourseMap->mUnk_38 = ReadCourseMapSectionCount(&a);
-        gCourseMap->mUnk_34 = a;
+        gCourseMap->mKeyedPlacementCount = ReadCourseMapSectionCount(&a);
+        gCourseMap->mKeyedPlacements = a;
         r = TRUE;
     }
-    func_0204274c();
+    BuildCourseMapKeyedPlacementIndexByKey();
     return r;
 }
 
@@ -593,8 +593,8 @@ s32 LoadCourseMapCheckpointRoutesData(void *a, ...) {
     for (i = 0; i < gCourseMap->mCheckpointRouteCount; i++) {
         if (gCourseMap->mCheckpointRoutes[(u16) i].mFirstEntry == 0) {
             t = gCourseMap->mCheckpointRoutes;
-            e = &t[(u16) (s8) t[(u16) i].mUnk_07];
-            m = t[(u16) (s8) t[(u16) i].mUnk_07].mFirstEntry;
+            e = &t[(u16) (s8) t[(u16) i].mPreviousRoutes[0]];
+            m = t[(u16) (s8) t[(u16) i].mPreviousRoutes[0]].mFirstEntry;
             gCourseMap->mLastCheckpoint = m + e->mEntryCount - 1;
             break;
         }
@@ -602,67 +602,67 @@ s32 LoadCourseMapCheckpointRoutesData(void *a, ...) {
     return 1;
 }
 
-s32 func_02042558(void *a, ...) {
-    gCourseMap->mUnk_58 = ReadCourseMapSectionCount(&a);
-    if (gCourseMap->mUnk_58 == 0) {
-        gCourseMap->mUnk_54 = NULL;
+s32 LoadCourseMapItemPointsData(void *a, ...) {
+    gCourseMap->mItemPointCount = ReadCourseMapSectionCount(&a);
+    if (gCourseMap->mItemPointCount == 0) {
+        gCourseMap->mItemPoints = NULL;
     } else {
-        gCourseMap->mUnk_54 = a;
+        gCourseMap->mItemPoints = a;
     }
     return 1;
 }
 
-s32 func_02042520(void *a, ...) {
-    gCourseMap->mUnk_60 = ReadCourseMapSectionCount(&a);
-    if (gCourseMap->mUnk_60 == 0) {
-        gCourseMap->mUnk_5c = NULL;
+s32 LoadCourseMapItemRoutesData(void *a, ...) {
+    gCourseMap->mItemRouteCount = ReadCourseMapSectionCount(&a);
+    if (gCourseMap->mItemRouteCount == 0) {
+        gCourseMap->mItemRoutes = NULL;
     } else {
-        gCourseMap->mUnk_5c = a;
+        gCourseMap->mItemRoutes = a;
     }
     return 1;
 }
 
-s32 func_02042498(void *a, ...) {
+s32 LoadCourseMapBattleOrRacePointsData(void *a, ...) {
     if (gCourseMap->mStartPlacementCount > 1) {
-        gCourseMap->mUnk_88 = ReadCourseMapSectionCount(&a);
-        if (gCourseMap->mUnk_88 == 0) {
-            gCourseMap->mUnk_84 = NULL;
+        gCourseMap->mBattlePointCount = ReadCourseMapSectionCount(&a);
+        if (gCourseMap->mBattlePointCount == 0) {
+            gCourseMap->mBattlePoints = NULL;
         } else {
-            gCourseMap->mUnk_84 = a;
-            gCourseMap->mUnk_64 = NULL;
-            gCourseMap->mUnk_68 = 0;
+            gCourseMap->mBattlePoints = a;
+            gCourseMap->mRacePoints = NULL;
+            gCourseMap->mRacePointCount = 0;
         }
     } else {
-        gCourseMap->mUnk_68 = ReadCourseMapSectionCount(&a);
-        if (gCourseMap->mUnk_68 == 0) {
-            gCourseMap->mUnk_64 = NULL;
+        gCourseMap->mRacePointCount = ReadCourseMapSectionCount(&a);
+        if (gCourseMap->mRacePointCount == 0) {
+            gCourseMap->mRacePoints = NULL;
         } else {
-            gCourseMap->mUnk_64 = a;
-            gCourseMap->mUnk_84 = NULL;
-            gCourseMap->mUnk_88 = 0;
+            gCourseMap->mRacePoints = a;
+            gCourseMap->mBattlePoints = NULL;
+            gCourseMap->mBattlePointCount = 0;
         }
     }
     return 1;
 }
 
-s32 func_02042410(void *a, ...) {
+s32 LoadCourseMapBattleOrRaceRoutesData(void *a, ...) {
     if (gCourseMap->mStartPlacementCount > 1) {
-        gCourseMap->mUnk_90 = ReadCourseMapSectionCount(&a);
-        if (gCourseMap->mUnk_90 == 0) {
-            gCourseMap->mUnk_8c = NULL;
+        gCourseMap->mBattleRouteCount = ReadCourseMapSectionCount(&a);
+        if (gCourseMap->mBattleRouteCount == 0) {
+            gCourseMap->mBattleRoutes = NULL;
         } else {
-            gCourseMap->mUnk_8c = a;
-            gCourseMap->mUnk_6c = NULL;
-            gCourseMap->mUnk_70 = 0;
+            gCourseMap->mBattleRoutes = a;
+            gCourseMap->mRaceRoutes = NULL;
+            gCourseMap->mRaceRouteCount = 0;
         }
     } else {
-        gCourseMap->mUnk_70 = ReadCourseMapSectionCount(&a);
-        if (gCourseMap->mUnk_70 == 0) {
-            gCourseMap->mUnk_6c = NULL;
+        gCourseMap->mRaceRouteCount = ReadCourseMapSectionCount(&a);
+        if (gCourseMap->mRaceRouteCount == 0) {
+            gCourseMap->mRaceRoutes = NULL;
         } else {
-            gCourseMap->mUnk_6c = a;
-            gCourseMap->mUnk_8c = NULL;
-            gCourseMap->mUnk_90 = 0;
+            gCourseMap->mRaceRoutes = a;
+            gCourseMap->mBattleRoutes = NULL;
+            gCourseMap->mBattleRouteCount = 0;
         }
     }
     return 1;
@@ -736,7 +736,7 @@ void CountCourseMapKind2ShapesInMode4(void) {
 #pragma thumb off
 
 #pragma thumb on
-s32 func_02042280(void *a, ...) {
+s32 LoadCourseMapShapesData(void *a, ...) {
     gCourseMap->mShapeCount = ReadCourseMapSectionCount(&a);
     if (gCourseMap->mShapeCount == 0) {
         gCourseMap->mShapes = NULL;
@@ -749,7 +749,7 @@ s32 func_02042280(void *a, ...) {
     return 1;
 }
 
-s32 func_02042170(void *a, ...) {
+s32 LoadCourseMapCamerasData(void *a, ...) {
     u16 i;
     Unk02175620_7c *e;
 
@@ -823,11 +823,11 @@ void CreateCourseMap(void *a) {
         }
     }
     func_02042fd8(a);
-    func_020429c8(a);
-    gCourseMap->mUnk_9c = 0;
+    BuildCourseMapPointLinks(a);
+    gCourseMap->mLapProgressBaseMax = 0;
     for (j = 0; j < gCourseMap->mCheckpointRouteCount; j++) {
-        if (gCourseMap->mCheckpointRoutes[j].mUnk_0a > gCourseMap->mUnk_9c) {
-            gCourseMap->mUnk_9c = gCourseMap->mCheckpointRoutes[j].mUnk_0a;
+        if (gCourseMap->mCheckpointRoutes[j].mLapProgressBase > gCourseMap->mLapProgressBaseMax) {
+            gCourseMap->mLapProgressBaseMax = gCourseMap->mCheckpointRoutes[j].mLapProgressBase;
         }
     }
 }

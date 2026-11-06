@@ -340,8 +340,9 @@ Inline getters and helpers:
   load order: a dead initializer on the variable that must come first, `s32 *p = 0;` (the only spelling that matched;
   DrawRaceMNumberPairTwoDigit).
 - A later loop that reuses an earlier loop's counter or pointer locals can come out with its registers rotated or
-  swapped: give each loop its own named local (func_0208552c, func_020b41e8, func_02042a10). The same holds for a reused
-  local whose second use takes its register after the loop counter: give that value its own local (func_0203b6ac).
+  swapped: give each loop its own named local (func_0208552c, func_020b41e8, BuildCourseMapBattlePointLinks). The same
+  holds for a reused local whose second use takes its register after the loop counter: give that value its own local
+  (func_0203b6ac).
 - A value assigned in both arms of an if/else that takes its register too early: give one arm's value its own local,
   declared before the local it swaps with (func_020b5ae8).
 - A narrow local converted where it is passed to a call can take its register before the local it swaps with: declare it
@@ -435,8 +436,10 @@ Pointer locals and addresses:
   (func_0204b7b8 passed the base to the call instead of the adjusted pointer).
 - A kept `add rX, rY, #0` between two summed terms, with the first term never stored: accumulate from zero in a local,
   `v = 0; v += a; v += b; p->m = v;` (func_020e4ad0, like func_020cf310).
-- `n = 2` folded where the original adds 2 to a zero slot: `n = 0; x[n++] = ..; x[n++] = ..;` (func_02042a10).
-- A table byte read again after stores: no local; write the element at the test and again at the use (func_02042a10).
+- `n = 2` folded where the original adds 2 to a zero slot: `n = 0; x[n++] = ..; x[n++] = ..;`
+  (BuildCourseMapBattlePointLinks).
+- A table byte read again after stores: no local; write the element at the test and again at the use
+  (BuildCourseMapBattlePointLinks).
 - `movs #K; movs #size; muls` rebuilt at each table read across calls, where ours keeps `K` on the stack: an enum-typed
   index local assigned right before each read (func_02078158; 6 words were left).
 - A spilled value reloaded into a low register for an argument add, with the add before the other argument copies:

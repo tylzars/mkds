@@ -263,7 +263,7 @@ void SetupCamera(Camera *p) {
     p->mAspectRatio = 0x1555;
     p->mNear = 0x400;
     p->mUnk_08c = 0x640000;
-    p->mFar = gCourseMap->mSettings->mUnk_24;
+    p->mFar = gCourseMap->mSettings->mCameraFar;
     if (p->mFar < 0x1000) {
         p->mFar = 0x640000;
     }

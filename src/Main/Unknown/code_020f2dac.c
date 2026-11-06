@@ -459,7 +459,7 @@ BOOL func_020f3a58(Unk020f371c_Ref *in, Unk020f371c_Ref *out, Vec3 *pos) {
     dy = (v->y - pos->y) >> 12;
     dz = (v->z - pos->z) >> 12;
     start = dx * dx + dy * dy + dz * dz;
-    limit = gCourseMap->mUnk_58;
+    limit = gCourseMap->mItemPointCount;
     q = pos;
 
     cur = node;
@@ -635,8 +635,8 @@ void func_020f357c(void) {
     u32 n;
     u16 i;
 
-    n = gCourseMap->mUnk_58;
-    e = gCourseMap->mUnk_ac;
+    n = gCourseMap->mItemPointCount;
+    e = gCourseMap->mItemPointLinks;
     i = 0;
     for (i = 0; i < 4; i++) {
         data_0217bc38[i] = 0;
@@ -646,7 +646,7 @@ void func_020f357c(void) {
             data_0217bc38[e->mUnk_20] = (s32) e;
         }
     }
-    e = gCourseMap->mUnk_ac;
+    e = gCourseMap->mItemPointLinks;
     for (i = 0; i < n; i++, e++) {
         Vec3Sub(e->mUnk_00[0]->mUnk_18, e->mUnk_18, &v);
         if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {

@@ -257,7 +257,7 @@ void func_02067488(Kart *a) {
     if (IsRaceStarted() != 1) {
         return;
     }
-    if (gCourseMap->mUnk_70 == 0 && gCourseMap->mUnk_90 == 0) {
+    if (gCourseMap->mRaceRouteCount == 0 && gCourseMap->mBattleRouteCount == 0) {
         return;
     }
     func_0208c218(a->mUnk_310);
@@ -296,7 +296,7 @@ void func_02066fe0(Kart *a) {
     a->mUnk_7c = a->mUnk_7c | 0x1000;
     if ((a->mUnk_7c & 0x400) == 0) {
         q = gCourseMap;
-        if ((q->mUnk_70 != 0 || q->mUnk_90 != 0) && IsKartEnded(a->mIndex) != 0) {
+        if ((q->mRaceRouteCount != 0 || q->mBattleRouteCount != 0) && IsKartEnded(a->mIndex) != 0) {
             p = data_021759c0;
             i = a->mIndex;
             b = &p->mCurrentEntries[i].mPlayer;

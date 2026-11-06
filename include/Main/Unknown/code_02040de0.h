@@ -17,14 +17,26 @@
 extern u8 data_0215406c[];
 extern u8 data_0215406d[];
 
-s32 func_02040de0(s32 a, u32 b);
-struct Unk020f371c *func_02040f78(u32 a);
-Unk02175620_bc *func_02040fd8(u32 a, Vec3 *b, Vec3 *c);
-void *func_020410a4(u32 a, Vec3 *b, Vec3 *c);
+// TRUE when the position of kart a lies inside any shape of list b of mKind3ShapeLists.
+s32 IsKartInCourseMapKind3ShapeList(s32 a, u32 b);
+// Returns the element of mItemPointLinks given by mItemPointIndex of the respawn spot of slot a, NULL when there is no
+// respawn spot.
+struct Unk020f371c *GetCourseMapRespawnItemPointLink(u32 a);
+// Looks up the respawn spot of slot a: writes its position to b and its rotation angles to c (a default position and
+// angles when there is none) and returns its element of mBattlePointLinks (mPointIndex), NULL for -1.
+Unk02175620_bc *GetCourseMapRespawnBattlePointLink(u32 a, Vec3 *b, Vec3 *c);
+// Looks up the respawn spot of slot a: writes its position to b and its rotation angles to c (a default position and
+// angles when there is none) and returns its element of mRacePointLinks (mPointIndex), NULL for -1.
+void *GetCourseMapRespawnRacePointLink(u32 a, Vec3 *b, Vec3 *c);
 u16 GetCourseMapRespawnSlot(u32 a);
-s32 func_020411e4(Vec3 *a);
-Unk02175620_bc *func_020413a4(Vec3 *a);
-void *func_02041588(Vec3 *a);
+// Returns CourseMapShape.mCameraIndex of the first shape of mKind 1 that contains position a, or -1 when there is none.
+s32 GetCourseMapCameraIndexAtPos(Vec3 *a);
+// Returns the element of mBattlePointLinks given by mPointIndex of the first mKind 4 shape that contains position a, or
+// NULL; NULL at once when the course has no kind 4 shapes.
+Unk02175620_bc *FindCourseMapKind4ShapeBattlePointLink(Vec3 *a);
+// Returns the element of mRacePointLinks given by mPointIndex of the first mKind 4 shape that contains position a, or
+// NULL; NULL at once when the course has no kind 4 shapes.
+void *FindCourseMapKind4ShapeRacePointLink(Vec3 *a);
 s32 func_0204176c(Vec3 *a, s32 *b);
 s32 IsPosInCourseMapShape(Vec3 *a, CourseMapShape *b);
 BOOL IsPosInCourseMapShapeBox(Vec3 *a, CourseMapShape *b);

@@ -13,7 +13,8 @@
 #include "Main/Unknown/code_02077bc0.h"
 
 Unk02175620_bc *func_02040da8(u32 a) {
-    return &gCourseMap->mUnk_b8[gCourseMap->mUnk_34[gCourseMap->mUnk_fc[a]].mUnk_18];
+    return &gCourseMap
+                ->mBattlePointLinks[gCourseMap->mKeyedPlacements[gCourseMap->mKeyedPlacementIndexByKey[a]].mUnk_18];
 }
 
 s32 func_02040d68(const UnkPair020b502c *a, const UnkPair020b502c *b) {
@@ -166,7 +167,7 @@ void InitRaceProgressKart(RaceProgressKart *a, s32 b) {
         a->mRoute = 0;
         a->mCheckpoint = 0;
     } else {
-        a->mRoute = gCourseMap->mCheckpointRoutes->mUnk_07;
+        a->mRoute = gCourseMap->mCheckpointRoutes->mPreviousRoutes[0];
         e = &gCourseMap->mCheckpointRoutes[a->mRoute];
         m = gCourseMap->mCheckpointRoutes[a->mRoute].mFirstEntry;
         a->mCheckpoint = m + e->mEntryCount - 1;
@@ -278,7 +279,7 @@ void InitRaceProgress(void) {
         case MODE_BATTLE:
             if (data_021759c0->mUnk_18 == 1) {
                 gRaceProgress->mTimeCountsDown = TRUE;
-                gRaceProgress->mTimeLimitFrameCount = gCourseMap->mSettings->mUnk_02 * 0x3c;
+                gRaceProgress->mTimeLimitFrameCount = gCourseMap->mSettings->mLapCountOrBattleSeconds * 0x3c;
             }
             break;
     }
@@ -337,7 +338,7 @@ void InitRaceProgress(void) {
         ShuffleCourseMapRespawnSlots(&gRaceProgress->mRandom);
     }
     gRaceProgress->mUnk_4d0 = 0;
-    gRaceProgress->mLapProgressScale = ReciprocalFixed12((gCourseMap->mUnk_9c + 1) << 12);
+    gRaceProgress->mLapProgressScale = ReciprocalFixed12((gCourseMap->mLapProgressBaseMax + 1) << 12);
     gRaceProgress->mRaceProgressScale = ReciprocalFixed12(func_02044618() << 12);
     for (i = 0; i < gCourseMap->mNumberedCheckpointCount + 1; i++) {
         v1 = i % (gCourseMap->mNumberedCheckpointCount + 1);
@@ -351,7 +352,7 @@ void InitRaceProgress(void) {
                     q = &gCourseMap->mCheckpoints[v2];
                     if (q->mNumber == v1) {
                         v = func_020401ac_inline5((v2 - e->mFirstEntry) << 12, e->mEntryCount);
-                        v += e->mUnk_0a << 12;
+                        v += e->mLapProgressBase << 12;
                         gRaceProgress->mCheckpointLapProgress[i] =
                             ((s64) v * gRaceProgress->mLapProgressScale + 0x800) >> 12;
                     }

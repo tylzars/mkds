@@ -544,8 +544,8 @@ void InitRaceFog(void) {
                 data_0217aabc[i] = a[i * 4] | (a[i * 4 + 1] << 8) | (a[i * 4 + 2] << 16) | (a[i * 4 + 3] << 24);
             }
         }
-        data_0217aa38 = gCourseMap->mSettings->mUnk_14 & 0x7fff;
-        data_0217aa50 = ((u32) gCourseMap->mSettings->mUnk_14 >> 15) & 31;
+        data_0217aa38 = gCourseMap->mSettings->mColorAndFogAlpha & 0x7fff;
+        data_0217aa50 = ((u32) gCourseMap->mSettings->mColorAndFogAlpha >> 15) & 31;
         data_0217aa80 = gCourseMap->mSettings->mUnk_07;
         data_0217aa48 = gCourseMap->mSettings->mFogOffset / 512;
         data_0217aa40 = data_0217aa38 & 31;

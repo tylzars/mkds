@@ -39,7 +39,7 @@ void func_0208c050(Unk020888b4 *p) {
             return;
         }
     }
-    p->mUnk_08.mUnk_00.mUnk_14 = func_02041588(&p->mKart->mPos);
+    p->mUnk_08.mUnk_00.mUnk_14 = FindCourseMapKind4ShapeRacePointLink(&p->mKart->mPos);
     if (p->mUnk_08.mUnk_00.mUnk_14 != NULL) {
         p->mUnk_08.mUnk_00.mUnk_18 = TRUE;
     }
