@@ -1,404 +1,412 @@
 #include "code_0200d118.h"
 
-void StringFormatPutChar(Unk0200d118 *s, char c) {
-    if (s->mUnk_00 != 0) {
-        s->mUnk_04[0] = c;
-        s->mUnk_00 = s->mUnk_00 - 1;
+// Stores c at dst_string.mCur while dst_string.mLen is nonzero, and always advances dst_string.mCur.
+void string_put_char(dst_string *str, char c) {
+    if (str->mLen != 0) {
+        str->mCur[0] = c;
+        str->mLen = str->mLen - 1;
     }
-    s->mUnk_04 = s->mUnk_04 + 1;
+    str->mCur = str->mCur + 1;
 }
 
-void StringFormatPutRepeat(Unk0200d118 *s, char c, int n) {
-    u32 k;
-    u32 m;
+// Stores len copies of c at dst_string.mCur as far as dst_string.mLen allows, and advances dst_string.mCur by len.
+void string_fill_char(dst_string *str, char c, int len) {
+    size_t i;
+    size_t count;
 
-    if (n <= 0) {
+    if (len <= 0) {
         return;
     }
-    m = s->mUnk_00;
-    if (m > n) {
-        m = n;
+    count = str->mLen;
+    if (count > len) {
+        count = len;
     }
-    for (k = 0; k < m; k++) {
-        s->mUnk_04[k] = c;
+    for (i = 0; i < count; i++) {
+        str->mCur[i] = c;
     }
-    s->mUnk_00 = s->mUnk_00 - m;
-    s->mUnk_04 = s->mUnk_04 + n;
+    str->mLen = str->mLen - count;
+    str->mCur = str->mCur + len;
 }
 
-void StringFormatPutBytes(Unk0200d118 *s, const char *p, int n) {
-    u32 k;
-    u32 m;
+// Copies len bytes of src to dst_string.mCur as far as dst_string.mLen allows, and advances dst_string.mCur by len.
+void string_put_string(dst_string *str, const char *src, int len) {
+    size_t i;
+    size_t count;
 
-    if (n <= 0) {
+    if (len <= 0) {
         return;
     }
-    m = s->mUnk_00;
-    if (m > n) {
-        m = n;
+    count = str->mLen;
+    if (count > len) {
+        count = len;
     }
-    for (k = 0; k < m; k++) {
-        s->mUnk_04[k] = p[k];
+    for (i = 0; i < count; i++) {
+        str->mCur[i] = src[i];
     }
-    s->mUnk_00 = s->mUnk_00 - m;
-    s->mUnk_04 = s->mUnk_04 + n;
+    str->mLen = str->mLen - count;
+    str->mCur = str->mCur + len;
 }
 
-int StringFormat(char *buf, const char *p, ...) {
-    char *q;
+// Formats into dst without a length limit and returns the length the text has.
+int OS_SPrintf(char *dst, const char *fmt, ...) {
+    char *args;
 
-    q = (char *) (((u32) &p & ~3) + 4);
-    return StringFormatArgs(buf, p, q);
+    args = (char *) (((u32) &fmt & ~3) + 4);
+    return OS_VSPrintf(dst, fmt, args);
 }
 
-int StringFormatArgs(char *buf, const char *p, char *q) {
-    return StringFormatArgsBounded(buf, 0x7fffffff, p, q);
+// OS_SPrintf with the arguments already collected.
+int OS_VSPrintf(char *dst, const char *fmt, char *args) {
+    return OS_VSNPrintf(dst, 0x7fffffff, fmt, args);
 }
 
-int StringFormatBounded(char *buf, u32 n, const char *p, ...) {
-    char *q;
+// Formats into dst with room for len bytes (including the terminator) and returns the length the full text has.
+int OS_SNPrintf(char *dst, size_t len, const char *fmt, ...) {
+    char *args;
 
-    q = (char *) (((u32) &p & ~3) + 4);
-    return StringFormatArgsBounded(buf, n, p, q);
+    args = (char *) (((u32) &fmt & ~3) + 4);
+    return OS_VSNPrintf(dst, len, fmt, args);
 }
 
-int StringFormatArgsBounded(char *buf, u32 n, const char *p, char *q) {
-    int w;
-    int g;
-    int i;
-    int f;
-    int m;
-    int z;
-    char c;
-    int k;
-    int h;
-    const char *t;
-    char e;
-    int j;
-    int x;
-    u64 v;
-    int y;
-    const char *u;
-    char a[2];
-    char b[24];
-    Unk0200d118 s;
+// OS_SNPrintf with the arguments already collected. Handles %d %i %u %o %x %X %p %c %s %n and %%, with the flags
+// space + - 0, a width and precision (also from the arguments), and the h, hh, l and ll sizes.
+int OS_VSNPrintf(char *dst, size_t len, const char *fmt, char *args) {
+    int width;
+    int nBuf;
+    int nPrefix;
+    int flag;
+    int precision;
+    int nZero;
+    char ch;
+    int radix;
+    int hexChar;
+    const char *specStart;
+    char flagCh;
+    int strLen;
+    int written;
+    u64 value;
+    int charArg;
+    const char *string;
+    char prefix[2];
+    char digits[24];
+    dst_string str;
 
-    s.mUnk_00 = n;
-    s.mUnk_08 = buf;
-    s.mUnk_04 = buf;
-    while (*p != 0) {
-        c = *(const s8 *) p;
-        if ((u32) (((u8) c ^ 0x20) - 0xa1) < 0x3c) {
-            StringFormatPutChar(&s, c);
-            c = *++p;
-            if (c != 0) {
-                p++;
-                StringFormatPutChar(&s, c);
+    str.mLen = len;
+    str.mBase = dst;
+    str.mCur = dst;
+    while (*fmt != 0) {
+        ch = *(const s8 *) fmt;
+        if ((u32) (((u8) ch ^ 0x20) - 0xa1) < 0x3c) {
+            string_put_char(&str, ch);
+            ch = *++fmt;
+            if (ch != 0) {
+                fmt++;
+                string_put_char(&str, ch);
             }
             continue;
         }
-        if (c != '%') {
-            p++;
-            StringFormatPutChar(&s, c);
+        if (ch != '%') {
+            fmt++;
+            string_put_char(&str, ch);
             continue;
         }
-        f = 0;
-        m = -1;
-        w = 0;
-        k = 10;
-        h = 0x57;
-        t = p;
+        flag = 0;
+        precision = -1;
+        width = 0;
+        radix = 10;
+        hexChar = 0x57;
+        specStart = fmt;
         for (;;) {
-            e = *++p;
-            switch (e) {
+            flagCh = *++fmt;
+            switch (flagCh) {
                 case '+':
-                    if (p[-1] == ' ') {
-                        f |= 2;
+                    if (fmt[-1] == ' ') {
+                        flag |= 2;
                         continue;
                     }
                     break;
                 case ' ':
-                    f |= 1;
+                    flag |= 1;
                     continue;
                 case '-':
-                    f |= 8;
+                    flag |= 8;
                     continue;
                 case '0':
-                    f |= 0x10;
+                    flag |= 0x10;
                     continue;
             }
             break;
         }
-        if (e == '*') {
-            q += 4;
-            w = *(int *) (q - 4);
-            p++;
-            if (w < 0) {
-                w = -w;
-                f |= 8;
+        if (flagCh == '*') {
+            args += 4;
+            width = *(int *) (args - 4);
+            fmt++;
+            if (width < 0) {
+                width = -width;
+                flag |= 8;
             }
         } else {
-            while (*p >= '0' && *p <= '9') {
-                w = w * 10 + *p++ - '0';
+            while (*fmt >= '0' && *fmt <= '9') {
+                width = width * 10 + *fmt++ - '0';
             }
         }
-        if (*p == '.') {
-            m = 0;
-            if (*++p == '*') {
-                q += 4;
-                m = *(int *) (q - 4);
-                p++;
-                if (m < 0) {
-                    m = -1;
+        if (*fmt == '.') {
+            precision = 0;
+            if (*++fmt == '*') {
+                args += 4;
+                precision = *(int *) (args - 4);
+                fmt++;
+                if (precision < 0) {
+                    precision = -1;
                 }
             } else {
-                while (*p >= '0' && *p <= '9') {
-                    m = m * 10 + *p++ - '0';
+                while (*fmt >= '0' && *fmt <= '9') {
+                    precision = precision * 10 + *fmt++ - '0';
                 }
             }
         }
-        switch (*p) {
+        switch (*fmt) {
             case 'h':
-                if (*++p != 'h') {
-                    f |= 0x40;
+                if (*++fmt != 'h') {
+                    flag |= 0x40;
                 } else {
-                    p++;
-                    f |= 0x100;
+                    fmt++;
+                    flag |= 0x100;
                 }
                 break;
             case 'l':
-                if (*++p != 'l') {
-                    f |= 0x20;
+                if (*++fmt != 'l') {
+                    flag |= 0x20;
                 } else {
-                    p++;
-                    f |= 0x80;
+                    fmt++;
+                    flag |= 0x80;
                 }
                 break;
         }
-        switch (*p) {
+        switch (*fmt) {
             case 'd':
             case 'i':
                 goto label_int;
             case 'o':
-                k = 8;
-                f |= 0x1000;
+                radix = 8;
+                flag |= 0x1000;
                 goto label_int;
             case 'u':
-                f |= 0x1000;
+                flag |= 0x1000;
                 goto label_int;
             case 'X':
-                h = 0x37;
+                hexChar = 0x37;
                 goto label_16;
             case 'p':
-                f |= 4;
-                m = 8;
+                flag |= 4;
+                precision = 8;
                 goto label_16;
             case 'x':
                 goto label_16;
             case 'c':
-                if (m >= 0) {
+                if (precision >= 0) {
                     goto label_copy;
                 }
-                q += 4;
-                y = *(int *) (q - 4);
-                if (f & 8) {
-                    StringFormatPutChar(&s, y);
-                    StringFormatPutRepeat(&s, ' ', w - 1);
+                args += 4;
+                charArg = *(int *) (args - 4);
+                if (flag & 8) {
+                    string_put_char(&str, charArg);
+                    string_fill_char(&str, ' ', width - 1);
                 } else {
-                    StringFormatPutRepeat(&s, (f & 0x10) ? '0' : ' ', w - 1);
-                    StringFormatPutChar(&s, y);
+                    string_fill_char(&str, (flag & 0x10) ? '0' : ' ', width - 1);
+                    string_put_char(&str, charArg);
                 }
-                p++;
+                fmt++;
                 continue;
             case 's':
-                q += 4;
-                j = 0;
-                u = *(const char **) (q - 4);
-                if (m < 0) {
-                    while (u[j] != 0) {
-                        j++;
+                args += 4;
+                strLen = 0;
+                string = *(const char **) (args - 4);
+                if (precision < 0) {
+                    while (string[strLen] != 0) {
+                        strLen++;
                     }
                 } else {
-                    while (j < m && u[j] != 0) {
-                        j++;
+                    while (strLen < precision && string[strLen] != 0) {
+                        strLen++;
                     }
                 }
-                w -= j;
-                if (f & 8) {
-                    StringFormatPutBytes(&s, u, j);
-                    StringFormatPutRepeat(&s, ' ', w);
+                width -= strLen;
+                if (flag & 8) {
+                    string_put_string(&str, string, strLen);
+                    string_fill_char(&str, ' ', width);
                 } else {
-                    StringFormatPutRepeat(&s, (f & 0x10) ? '0' : ' ', w);
-                    StringFormatPutBytes(&s, u, j);
+                    string_fill_char(&str, (flag & 0x10) ? '0' : ' ', width);
+                    string_put_string(&str, string, strLen);
                 }
-                p++;
+                fmt++;
                 continue;
             case 'n':
-                x = s.mUnk_04 - s.mUnk_08;
-                if (!(f & 0x100)) {
-                    if (f & 0x40) {
-                        q += 4;
-                        **(s16 **) (q - 4) = x;
-                    } else if (f & 0x80) {
-                        q += 4;
-                        **(s64 **) (q - 4) = x;
+                written = str.mCur - str.mBase;
+                if (!(flag & 0x100)) {
+                    if (flag & 0x40) {
+                        args += 4;
+                        **(s16 **) (args - 4) = written;
+                    } else if (flag & 0x80) {
+                        args += 4;
+                        **(s64 **) (args - 4) = written;
                     } else {
-                        q += 4;
-                        **(int **) (q - 4) = x;
+                        args += 4;
+                        **(int **) (args - 4) = written;
                     }
                 }
-                p++;
+                fmt++;
                 continue;
             case '%':
-                if (t + 1 == p) {
-                    StringFormatPutChar(&s, *p++);
+                if (specStart + 1 == fmt) {
+                    string_put_char(&str, *fmt++);
                     continue;
                 }
             default:
             label_copy:
-                StringFormatPutBytes(&s, t, p - t);
+                string_put_string(&str, specStart, fmt - specStart);
                 continue;
         }
     label_16:
-        k = 16;
-        f |= 0x1000;
+        radix = 16;
+        flag |= 0x1000;
     label_int:
-        i = 0;
-        if (f & 8) {
-            f &= ~0x10;
+        nPrefix = 0;
+        if (flag & 8) {
+            flag &= ~0x10;
         }
-        if (m >= 0) {
-            f &= ~0x10;
+        if (precision >= 0) {
+            flag &= ~0x10;
         } else {
-            m = 1;
+            precision = 1;
         }
-        if (f & 0x1000) {
-            if (f & 0x100) {
-                q += 4;
-                v = *(u8 *) (q - 4);
-            } else if (f & 0x40) {
-                q += 4;
-                v = *(u16 *) (q - 4);
-            } else if (f & 0x80) {
-                q += 8;
-                v = *(u64 *) (q - 8);
+        if (flag & 0x1000) {
+            if (flag & 0x100) {
+                args += 4;
+                value = *(u8 *) (args - 4);
+            } else if (flag & 0x40) {
+                args += 4;
+                value = *(u16 *) (args - 4);
+            } else if (flag & 0x80) {
+                args += 8;
+                value = *(u64 *) (args - 8);
             } else {
-                q += 4;
-                v = *(u32 *) (q - 4);
+                args += 4;
+                value = *(u32 *) (args - 4);
             }
-            f &= ~3;
-            if (f & 4) {
-                if (k == 16) {
-                    if (v != 0) {
-                        a[1] = '0';
-                        a[0] = h + 0x21;
-                        i = 2;
+            flag &= ~3;
+            if (flag & 4) {
+                if (radix == 16) {
+                    if (value != 0) {
+                        prefix[1] = '0';
+                        prefix[0] = hexChar + 0x21;
+                        nPrefix = 2;
                     }
-                } else if (k == 8) {
-                    a[0] = '0';
-                    i = 1;
+                } else if (radix == 8) {
+                    prefix[0] = '0';
+                    nPrefix = 1;
                 }
             }
         } else {
-            if (f & 0x100) {
-                q += 4;
-                v = *(s8 *) (q - 4);
-            } else if (f & 0x40) {
-                q += 4;
-                v = *(s16 *) (q - 4);
-            } else if (f & 0x80) {
-                q += 8;
-                v = *(s64 *) (q - 8);
+            if (flag & 0x100) {
+                args += 4;
+                value = *(s8 *) (args - 4);
+            } else if (flag & 0x40) {
+                args += 4;
+                value = *(s16 *) (args - 4);
+            } else if (flag & 0x80) {
+                args += 8;
+                value = *(s64 *) (args - 8);
             } else {
-                q += 4;
-                v = *(int *) (q - 4);
+                args += 4;
+                value = *(int *) (args - 4);
             }
-            if ((v >> 32) & 0x80000000) {
-                a[0] = '-';
-                v = ~v + 1;
-                i = 1;
-            } else if (v != 0 || m != 0) {
-                if (f & 2) {
-                    a[0] = '+';
-                    i = 1;
-                } else if (f & 1) {
-                    a[0] = ' ';
-                    i = 1;
+            if ((value >> 32) & 0x80000000) {
+                prefix[0] = '-';
+                value = ~value + 1;
+                nPrefix = 1;
+            } else if (value != 0 || precision != 0) {
+                if (flag & 2) {
+                    prefix[0] = '+';
+                    nPrefix = 1;
+                } else if (flag & 1) {
+                    prefix[0] = ' ';
+                    nPrefix = 1;
                 }
             }
         }
-        g = 0;
-        switch (k) {
+        nBuf = 0;
+        switch (radix) {
             case 8:
-                while (v != 0) {
-                    int d = (int) (v & 7);
-                    v >>= 3;
-                    b[g++] = d + '0';
+                while (value != 0) {
+                    int digit = (int) (value & 7);
+                    value >>= 3;
+                    digits[nBuf++] = digit + '0';
                 }
                 break;
             case 10:
-                if ((v >> 32) == 0) {
-                    u32 o = v;
-                    while (o != 0) {
-                        u32 r = o / 10;
-                        int d = o - r * 10;
-                        o = r;
-                        b[g++] = d + '0';
+                if ((value >> 32) == 0) {
+                    u32 low = value;
+                    while (low != 0) {
+                        u32 quot = low / 10;
+                        int digit = low - quot * 10;
+                        low = quot;
+                        digits[nBuf++] = digit + '0';
                     }
                 } else {
-                    while (v != 0) {
-                        u64 r = v / 10;
-                        b[g++] = (int) (v - r * 10) + '0';
-                        v = r;
+                    while (value != 0) {
+                        u64 quot = value / 10;
+                        digits[nBuf++] = (int) (value - quot * 10) + '0';
+                        value = quot;
                     }
                 }
                 break;
             case 16:
-                while (v != 0) {
-                    int d = (int) (v & 0xf);
-                    v >>= 4;
-                    if (d < 10) {
-                        d += '0';
+                while (value != 0) {
+                    int digit = (int) (value & 0xf);
+                    value >>= 4;
+                    if (digit < 10) {
+                        digit += '0';
                     } else {
-                        d += h;
+                        digit += hexChar;
                     }
-                    b[g++] = d;
+                    digits[nBuf++] = digit;
                 }
                 break;
         }
-        if (i > 0 && a[0] == '0') {
-            b[g++] = '0';
-            i = 0;
+        if (nPrefix > 0 && prefix[0] == '0') {
+            digits[nBuf++] = '0';
+            nPrefix = 0;
         }
-        z = m - g;
-        if (f & 0x10) {
-            if (z < w - g - i) {
-                z = w - g - i;
+        nZero = precision - nBuf;
+        if (flag & 0x10) {
+            if (nZero < width - nBuf - nPrefix) {
+                nZero = width - nBuf - nPrefix;
             }
         }
-        if (z > 0) {
-            w -= z;
+        if (nZero > 0) {
+            width -= nZero;
         }
-        w -= i + g;
-        if (!(f & 8)) {
-            StringFormatPutRepeat(&s, ' ', w);
+        width -= nPrefix + nBuf;
+        if (!(flag & 8)) {
+            string_fill_char(&str, ' ', width);
         }
-        while (i > 0) {
-            StringFormatPutChar(&s, a[--i]);
+        while (nPrefix > 0) {
+            string_put_char(&str, prefix[--nPrefix]);
         }
-        StringFormatPutRepeat(&s, '0', z);
-        while (g > 0) {
-            StringFormatPutChar(&s, b[--g]);
+        string_fill_char(&str, '0', nZero);
+        while (nBuf > 0) {
+            string_put_char(&str, digits[--nBuf]);
         }
-        if (f & 8) {
-            StringFormatPutRepeat(&s, ' ', w);
+        if (flag & 8) {
+            string_fill_char(&str, ' ', width);
         }
-        p++;
+        fmt++;
     }
-    if (s.mUnk_00 != 0) {
-        *s.mUnk_04 = 0;
-    } else if (n != 0) {
-        *(s.mUnk_08 + n - 1) = 0;
+    if (str.mLen != 0) {
+        *str.mCur = 0;
+    } else if (len != 0) {
+        *(str.mBase + len - 1) = 0;
     }
-    return s.mUnk_04 - s.mUnk_08;
+    return str.mCur - str.mBase;
 }

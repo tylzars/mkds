@@ -515,7 +515,7 @@ u32 func_ov000_0218735c(Unk02186d7c *p) {
     }
     n = strlen(strstr(p->mSendBuffer.mStart, data_ov000_021b1230) + 4);
     if (n != 0) {
-        StringFormatBounded(v1, 7, data_ov000_021b1370, n);
+        OS_SNPrintf(v1, 7, data_ov000_021b1370, n);
         if (func_ov000_02186bd4((Http *) p, data_ov000_021b1374, v1) != FALSE) {
             return 1;
         }

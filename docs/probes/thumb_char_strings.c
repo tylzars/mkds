@@ -24,7 +24,7 @@ typedef struct {
 extern Names02164e04 gArchiveNames;
 extern Obj021759a8 *data_021759a8;
 int GetCurrentSceneNumber(void);
-int StringFormatBounded(char *dst, int len, const char *fmt, ...);
+int OS_SNPrintf(char *dst, int len, const char *fmt, ...);
 int func_02048504(const char *path, int arg);
 
 // PROBE: LoadKartModelFile main 0x02047780
@@ -36,36 +36,36 @@ int LoadKartModelFile(const char *path) {
     if (mode == 1 || mode == 3 || mode == 12) {
         name = gArchiveNames.mUnk_28;
         if (path[0] == '/') {
-            StringFormatBounded(buf, 0x80, "%s:%s", name, path);
+            OS_SNPrintf(buf, 0x80, "%s:%s", name, path);
         } else {
-            StringFormatBounded(buf, 0x80, "%s:/%s", name, path);
+            OS_SNPrintf(buf, 0x80, "%s:/%s", name, path);
         }
         result = func_02048504(buf, 8);
     } else {
         if (data_021759a8->mUnk_308 != 0) {
             name = gArchiveNames.mUnk_18;
             if (path[0] == '/') {
-                StringFormatBounded(buf, 0x80, "%s:%s", name, path);
+                OS_SNPrintf(buf, 0x80, "%s:%s", name, path);
             } else {
-                StringFormatBounded(buf, 0x80, "%s:/%s", name, path);
+                OS_SNPrintf(buf, 0x80, "%s:/%s", name, path);
             }
             result = func_02048504(buf, 8);
         }
         if (result == 0 && data_021759a8->mUnk_378 != 0) {
             name = gArchiveNames.mUnk_1c;
             if (path[0] == '/') {
-                StringFormatBounded(buf, 0x80, "%s:%s", name, path);
+                OS_SNPrintf(buf, 0x80, "%s:%s", name, path);
             } else {
-                StringFormatBounded(buf, 0x80, "%s:/%s", name, path);
+                OS_SNPrintf(buf, 0x80, "%s:/%s", name, path);
             }
             result = func_02048504(buf, 8);
         }
         if (result == 0 && data_021759a8->mUnk_3e8 != 0) {
             name = gArchiveNames.mUnk_20;
             if (path[0] == '/') {
-                StringFormatBounded(buf, 0x80, "%s:%s", name, path);
+                OS_SNPrintf(buf, 0x80, "%s:%s", name, path);
             } else {
-                StringFormatBounded(buf, 0x80, "%s:/%s", name, path);
+                OS_SNPrintf(buf, 0x80, "%s:/%s", name, path);
             }
             result = func_02048504(buf, 8);
         }

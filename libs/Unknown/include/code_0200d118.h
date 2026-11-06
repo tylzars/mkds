@@ -1,19 +1,19 @@
 #pragma once
 
+#include "string.h"
 #include "types.h"
 
-// Local of StringFormatArgsBounded (sp+0x54); its address is passed to StringFormatPutBytes, StringFormatPutRepeat and
-// StringFormatPutChar.
-typedef struct Unk0200d118 {
-    /* 00 */ u32 mUnk_00;   // StringFormatPutChar stores a byte only while this is nonzero, and lowers it
-    /* 04 */ char *mUnk_04; // where StringFormatPutChar stores; raised for every byte, stored or not
-    /* 08 */ char *mUnk_08; // first argument of StringFormatArgsBounded
-} Unk0200d118;
+// Output cursor of the formatter: room left, next write position, start of the output.
+typedef struct dst_string {
+    /* 00 */ size_t mLen;  // bytes still free; string_put_char stores only while this is nonzero
+    /* 04 */ char *mCur; // next write position; moves on for every byte, stored or not
+    /* 08 */ char *mBase; // start of the output (dst)
+} dst_string;
 
-int StringFormatArgsBounded(char *buf, u32 n, const char *p, char *q);
-int StringFormatBounded(char *buf, u32 n, const char *p, ...);
-int StringFormatArgs(char *buf, const char *p, char *q);
-int StringFormat(char *buf, const char *p, ...);
-void StringFormatPutBytes(Unk0200d118 *s, const char *p, int n);
-void StringFormatPutRepeat(Unk0200d118 *s, char c, int n);
-void StringFormatPutChar(Unk0200d118 *s, char c);
+int OS_VSNPrintf(char *dst, size_t len, const char *fmt, char *args);
+int OS_SNPrintf(char *dst, size_t len, const char *fmt, ...);
+int OS_VSPrintf(char *dst, const char *fmt, char *args);
+int OS_SPrintf(char *dst, const char *fmt, ...);
+void string_put_string(dst_string *str, const char *src, int len);
+void string_fill_char(dst_string *str, char c, int len);
+void string_put_char(dst_string *str, char c);

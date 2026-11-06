@@ -147,7 +147,7 @@ void func_ov000_0219cc30(u32 a, u32 b, u32 c) {
         return;
     }
     gWiFiBuddySync->mUnk_24 = b;
-    StringFormatBounded(s, 0x40, data_ov000_021b4068, gWiFiBuddySync->mUnk_28);
+    OS_SNPrintf(s, 0x40, data_ov000_021b4068, gWiFiBuddySync->mUnk_28);
     func_ov000_0219cc00(gWiFiBuddySync->mUnk_24, 3, (u32) s, 0x80000001);
 }
 

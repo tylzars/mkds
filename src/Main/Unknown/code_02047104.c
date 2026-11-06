@@ -48,7 +48,7 @@ void func_020483a0(char *a) {
     } else {
         b = data_usa_0216510c;
     }
-    StringFormatBounded(a, 0x80, data_usa_02165110, gSceneNames[10].mUnk_00, b, data_usa_02165124);
+    OS_SNPrintf(a, 0x80, data_usa_02165110, gSceneNames[10].mUnk_00, b, data_usa_02165124);
 }
 
 void func_02048350(char *a) {
@@ -61,7 +61,7 @@ void func_02048350(char *a) {
         b = data_usa_021650e4;
     }
     c = func_02048474();
-    StringFormatBounded(a, 0x80, data_usa_021650e8, gSceneNames[10].mUnk_00, b, c, data_usa_02165100);
+    OS_SNPrintf(a, 0x80, data_usa_021650e8, gSceneNames[10].mUnk_00, b, c, data_usa_02165100);
 }
 
 #pragma thumb off
@@ -71,12 +71,12 @@ void func_02048350(char *a) {
 void func_02048324(char *a) {
     u32 v1;
     v1 = func_02048474();
-    StringFormatBounded(a, 0x80, data_021650bc, v1, (u32) &data_021650d8);
+    OS_SNPrintf(a, 0x80, data_021650bc, v1, (u32) &data_021650d8);
 }
 
 void func_020482f0(char *a, const char *b, int c) {
     if (*b != 0) {
-        StringFormatBounded(a, 0x80, data_021650a0, b, ((u32 *) &data_02164d28)[c], (u32) &data_021650b4);
+        OS_SNPrintf(a, 0x80, data_021650a0, b, ((u32 *) &data_02164d28)[c], (u32) &data_021650b4);
     }
 }
 
@@ -84,14 +84,14 @@ void func_020482ac(char *a, u8 *b, int c) {
     u32 v1;
     if (*b != 0) {
         v1 = func_02048474();
-        StringFormatBounded(a, 0x80, data_02165080, b, ((u32 *) &data_02164d28)[c], v1, (u32) &data_02165098);
+        OS_SNPrintf(a, 0x80, data_02165080, b, ((u32 *) &data_02164d28)[c], v1, (u32) &data_02165098);
     }
 }
 
 void func_02048284(u32 a, char *b) {
     u32 v1;
     v1 = func_02048474();
-    StringFormatBounded(b, 0x80, data_02165074, a, v1);
+    OS_SNPrintf(b, 0x80, data_02165074, a, v1);
 }
 
 #pragma thumb off
@@ -140,7 +140,7 @@ void func_02048050(int a, int b) {
                     break;
                 case 2:
                     if (data_021759c0->mUnk_00c == 6) {
-                        StringFormatBounded(c, 0x80, data_usa_02165058);
+                        OS_SNPrintf(c, 0x80, data_usa_02165058);
                     } else {
                         func_020483e4(c, (u8 *) gSceneNames[b].mUnk_00);
                     }
@@ -424,9 +424,9 @@ u32 FindArchiveFile(u32 archiveName, const char *path) {
     char fullPath[0x80];
 
     if (path[0] == '/') {
-        StringFormatBounded(fullPath, 0x80, gArchiveColonFormat, archiveName, path);
+        OS_SNPrintf(fullPath, 0x80, gArchiveColonFormat, archiveName, path);
     } else {
-        StringFormatBounded(fullPath, 0x80, gArchiveColonSlashFormat, archiveName, path);
+        OS_SNPrintf(fullPath, 0x80, gArchiveColonSlashFormat, archiveName, path);
     }
     return ArchiveFileGetAddress((const u8 *) fullPath);
 }
@@ -552,36 +552,36 @@ void *LoadKartModelFile(const char *path) {
     if (b == 1 || b == 3 || b == 0xc) {
         archiveName = gArchiveNames[10];
         if (path[0] == '/') {
-            StringFormatBounded(fullPath, 0x80, data_usa_02165008, archiveName, path);
+            OS_SNPrintf(fullPath, 0x80, data_usa_02165008, archiveName, path);
         } else {
-            StringFormatBounded(fullPath, 0x80, data_usa_02165010, archiveName, path);
+            OS_SNPrintf(fullPath, 0x80, data_usa_02165010, archiveName, path);
         }
         file = func_02048504(fullPath, 8);
     } else {
         if (data_021759c8->mUnk_00[6].mLoaded != 0) {
             archiveName = gArchiveNames[6];
             if (path[0] == '/') {
-                StringFormatBounded(fullPath, 0x80, data_usa_02165018, archiveName, path);
+                OS_SNPrintf(fullPath, 0x80, data_usa_02165018, archiveName, path);
             } else {
-                StringFormatBounded(fullPath, 0x80, data_usa_02165020, archiveName, path);
+                OS_SNPrintf(fullPath, 0x80, data_usa_02165020, archiveName, path);
             }
             file = func_02048504(fullPath, 8);
         }
         if (file == NULL && data_021759c8->mUnk_00[7].mLoaded != 0) {
             archiveName = gArchiveNames[7];
             if (path[0] == '/') {
-                StringFormatBounded(fullPath, 0x80, data_usa_02165028, archiveName, path);
+                OS_SNPrintf(fullPath, 0x80, data_usa_02165028, archiveName, path);
             } else {
-                StringFormatBounded(fullPath, 0x80, data_usa_02165030, archiveName, path);
+                OS_SNPrintf(fullPath, 0x80, data_usa_02165030, archiveName, path);
             }
             file = func_02048504(fullPath, 8);
         }
         if (file == NULL && data_021759c8->mUnk_00[8].mLoaded != 0) {
             archiveName = gArchiveNames[8];
             if (path[0] == '/') {
-                StringFormatBounded(fullPath, 0x80, data_usa_02165038, archiveName, path);
+                OS_SNPrintf(fullPath, 0x80, data_usa_02165038, archiveName, path);
             } else {
-                StringFormatBounded(fullPath, 0x80, data_usa_02165040, archiveName, path);
+                OS_SNPrintf(fullPath, 0x80, data_usa_02165040, archiveName, path);
             }
             file = func_02048504(fullPath, 8);
         }
@@ -698,7 +698,7 @@ void func_02047468(const void *a, u32 b) {
     u32 v1;
     char v2[128];
     v1 = func_02048440();
-    StringFormatBounded(v2, 0x80, gArchivePrefixFormat, a, v1);
+    OS_SNPrintf(v2, 0x80, gArchivePrefixFormat, a, v1);
     func_02047498(v2, b);
 }
 

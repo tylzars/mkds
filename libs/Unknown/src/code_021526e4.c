@@ -51,7 +51,7 @@ void func_02152808(const Unk02152490 *a, u32 b, char *c) {
 
     ValueToChars5Bit(func_02152ac8(a), 0x2b, d);
     ValueToChars5Bit(func_02152ac4(a), 0x20, e);
-    StringFormatBounded(c, 0x15, data_0216f2a0, d, (u8) (b >> 24), (u8) (b >> 16), (u8) (b >> 8), (u8) b, e);
+    OS_SNPrintf(c, 0x15, data_0216f2a0, d, (u8) (b >> 24), (u8) (b >> 16), (u8) (b >> 8), (u8) b, e);
 }
 
 void func_021527ac(Unk02152500 *a, u32 b) {

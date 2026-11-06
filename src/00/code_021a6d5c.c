@@ -324,7 +324,7 @@ char *func_ov000_021a8bc0(s32 a, const void *b, char *c, u32 d) {
     }
     MemCopy(b, e, 4);
     func_ov000_021a8bb0(*(u32 *) e, &e[4]);
-    StringFormatBounded(c, 0x10, data_ov000_021b49e8, e[7], e[6], e[5], e[4]);
+    OS_SNPrintf(c, 0x10, data_ov000_021b49e8, e[7], e[6], e[5], e[4]);
     return c;
 }
 

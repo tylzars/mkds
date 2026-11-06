@@ -53,7 +53,7 @@ void func_ov003_021d1654(void) {
     data_ov003_021da2b0->mUnk_00 = func_ov003_021d285c(f, 4);
     FS_LoadArchiveTables(&data_ov003_021da2b0->mUnk_88, (u32) data_ov003_021da2b0->mUnk_00, f);
     data_ov003_021da2b0->mUnk_84 = func_ov003_021d1d60(0x20, data_ov003_021da2b0->mUnk_04, 4);
-    StringFormat(d, data_ov003_021d7bf8, data_ov003_021d67d8);
+    OS_SPrintf(d, data_ov003_021d7bf8, data_ov003_021d67d8);
     FS_ChangeDir((u8 *) d);
 }
 

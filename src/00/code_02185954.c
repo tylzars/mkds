@@ -593,14 +593,14 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     g.mUnk_13[2] = 0;
     l = g.mUnk_02;
     for (k = 0; k < 6; l++, k++) {
-        StringFormat(&r[k * 2], data_ov000_021b1060, *l);
+        OS_SPrintf(&r[k * 2], data_ov000_021b1060, *l);
     }
     r[12] = 0;
     if (y.mUnk_00 > 6) {
         y.mUnk_00 = 1;
     }
-    StringFormatBounded(g.mUnk_16, 5, data_ov000_021b1068, y.mUnk_02, y.mUnk_03);
-    StringFormatBounded(s, 0xd, data_ov000_021b1074, o[0], o[1], o[2], p[0], p[1], p[2]);
+    OS_SNPrintf(g.mUnk_16, 5, data_ov000_021b1068, y.mUnk_02, y.mUnk_03);
+    OS_SNPrintf(s, 0xd, data_ov000_021b1074, o[0], o[1], o[2], p[0], p[1], p[2]);
     MemCopy(y.mUnk_04, t, 0x14);
     t[0x14] = 0;
     MemFill(&q, 0, 0xc);
@@ -624,16 +624,16 @@ u32 func_ov000_02185984(Http *a, const char *b, const char *c, Unk021868a4Entry 
     }
     func_ov000_021868a4(&q, data_ov000_021b10c0, data_ov000_021b10c8);
     if (data_ov000_021b4c94.mUnk_00 != 0) {
-        StringFormatBounded(x, 0xe, data_ov000_021b10d0, data_ov000_021b4c94.mUnk_00);
+        OS_SNPrintf(x, 0xe, data_ov000_021b10d0, data_ov000_021b4c94.mUnk_00);
     } else {
-        StringFormatBounded(x, 0xe, data_ov000_021b10d0, data_ov000_021b4c94.mUnk_08);
+        OS_SNPrintf(x, 0xe, data_ov000_021b10d0, data_ov000_021b4c94.mUnk_08);
     }
     func_ov000_021868a4(&q, data_ov000_021b10d8, x);
-    StringFormatBounded(g.mUnk_1b, 4, data_ov000_021b10e0, data_ov000_021b4c94.mUnk_10);
+    OS_SNPrintf(g.mUnk_1b, 4, data_ov000_021b10e0, data_ov000_021b4c94.mUnk_10);
     func_ov000_021868a4(&q, data_ov000_021b10e8, g.mUnk_1b);
-    StringFormatBounded(u, 0xd, data_ov000_021b10f0, g.mUnk_08[0], g.mUnk_08[1], g.mUnk_08[2], g.mUnk_08[3],
-                        g.mUnk_08[4], g.mUnk_08[5]);
-    StringFormatBounded(w, 0xd, data_ov000_021b110c, 0);
+    OS_SNPrintf(u, 0xd, data_ov000_021b10f0, g.mUnk_08[0], g.mUnk_08[1], g.mUnk_08[2], g.mUnk_08[3], g.mUnk_08[4],
+                g.mUnk_08[5]);
+    OS_SNPrintf(w, 0xd, data_ov000_021b110c, 0);
     func_ov000_0218a67c(v, &w[3]);
     func_ov000_021868a4(&q, data_ov000_021b111c, g.mUnk_0e);
     func_ov000_021868a4(&q, data_ov000_021b1124, g.mUnk_13);

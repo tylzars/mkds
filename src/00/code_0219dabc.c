@@ -44,7 +44,7 @@ void func_ov000_0219db18(s32 a, s32 b, Unk021a01dc *c, void *d) {
                 gWiFiMatching->mState = 7;
             }
             gWiFiMatching->mUnk_0c = 0;
-            StringFormatBounded(i, 12, data_ov000_021b40b8, gWiFiMatching->mUnk_1e8);
+            OS_SNPrintf(i, 12, data_ov000_021b40b8, gWiFiMatching->mUnk_1e8);
             if (func_ov000_0219e3e4(
                     func_ov000_02198968(*gWiFiMatching->mConnectionSocket, NULL,
                                         Gt2FormatAddress(gWiFiMatching->mUnk_1f8[e], gWiFiMatching->mUnk_278[e], 0), i,

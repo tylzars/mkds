@@ -5,7 +5,7 @@
 #pragma thumb on
 
 void func_02152918(u32 a, u32 b, u32 c) {
-    StringFormatBounded((char *) c, 0xd, data_0216f2d4, a, b);
+    OS_SNPrintf((char *) c, 0xd, data_0216f2d4, a, b);
 }
 
 #pragma thumb off

@@ -210,10 +210,10 @@ void StartMatchingWithBuddies(const void *param_1, s32 param_2, s32 param_3, s32
     if (gWiFiMatching->mUnk_e4 == NULL && func_ov000_0219e594(5) != 0) {
         return;
     }
-    StringFormatBounded(v1, 12, data_ov000_021b40b8, param_3);
+    OS_SNPrintf(v1, 12, data_ov000_021b40b8, param_3);
     func_ov000_021a363c(data_ov000_021b411c, v1, v2, 0x2f);
     func_ov000_021a360c(data_ov000_021b4120, param_4 != 0 ? data_ov000_021b41e0 : data_ov000_021b41e4, v2, 0x2f);
-    StringFormatBounded(v1, 12, data_ov000_021b40b8, 3);
+    OS_SNPrintf(v1, 12, data_ov000_021b40b8, 3);
     func_ov000_021a360c(data_ov000_021b4118, v1, v2, 0x2f);
     if (func_ov000_0219e608(func_ov000_0219d558(4, v2, NULL)) != 0) {
         return;
@@ -519,7 +519,7 @@ void WiFiGt2ResultCallback(Unk0219887c *param_1, s32 param_2) {
                 func_ov000_0219f9bc(gWiFiMatching->mParticipantProfileIds[gWiFiMatching->mLastParticipantPos + 1]);
                 return;
             }
-            StringFormatBounded(v1, 12, data_ov000_021b40b8, p->mUnk_1e8);
+            OS_SNPrintf(v1, 12, data_ov000_021b40b8, p->mUnk_1e8);
             p = gWiFiMatching;
             if (func_ov000_0219e3e4(func_ov000_02198968(
                     *gWiFiMatching->mConnectionSocket, NULL,
@@ -855,11 +855,11 @@ u32 func_ov000_021a1488(void) {
     if (gWiFiMatching->mMode != 2) {
         return 0;
     }
-    StringFormatBounded(name, 0xc, data_ov000_021b40b8, gWiFiMatching->mUnk_16 + 1);
+    OS_SNPrintf(name, 0xc, data_ov000_021b40b8, gWiFiMatching->mUnk_16 + 1);
     func_ov000_021a363c(data_ov000_021b41a8, name, buffer, 0x2f);
-    StringFormatBounded(name, 0xc, data_ov000_021b40b8, gWiFiMatching->mLastParticipantPos + 1);
+    OS_SNPrintf(name, 0xc, data_ov000_021b40b8, gWiFiMatching->mLastParticipantPos + 1);
     func_ov000_021a360c(data_ov000_021b41ac, name, buffer, 0x2f);
-    StringFormatBounded(name, 0xc, data_ov000_021b40b8, 3);
+    OS_SNPrintf(name, 0xc, data_ov000_021b40b8, 3);
     func_ov000_021a360c(data_ov000_021b4118, name, buffer, 0x2f);
     return func_ov000_0219d558(6, buffer, NULL);
 }
@@ -1040,14 +1040,14 @@ u32 func_ov000_021a0f20(u32 a) {
             if (a == 0) {
                 func_ov000_021a0ed8(v1, gWiFiMatching->mUnk_1e8, gWiFiMatching->mUnk_16, gWiFiMatching->mMode);
                 if (data_ov000_021b5674 != NULL) {
-                    StringFormatBounded(v1, 0x100, data_ov000_021b4194, v1, data_ov000_021b5674);
+                    OS_SNPrintf(v1, 0x100, data_ov000_021b4194, v1, data_ov000_021b5674);
                 }
                 break;
             }
         case 2:
         case 4:
         case 5:
-            StringFormatBounded(v1, 0x100, data_ov000_021b41a0, data_ov000_021b40c4, a);
+            OS_SNPrintf(v1, 0x100, data_ov000_021b41a0, data_ov000_021b40c4, a);
             gWiFiMatching->mUnk_1ec = a;
             break;
     }
@@ -1062,8 +1062,8 @@ u32 func_ov000_021a0f20(u32 a) {
 }
 
 s32 func_ov000_021a0ed8(char *a, s32 b, s32 c, s32 d) {
-    return StringFormatBounded(a, 0x100, data_ov000_021b413c, data_ov000_021b4108, 3, data_ov000_021b40c4, b, c, c,
-                               data_ov000_021b40f0, d, data_ov000_021b40fc, data_ov000_021b40c4);
+    return OS_SNPrintf(a, 0x100, data_ov000_021b413c, data_ov000_021b4108, 3, data_ov000_021b40c4, b, c, c,
+                       data_ov000_021b40f0, d, data_ov000_021b40fc, data_ov000_021b40c4);
 }
 
 u32 func_ov000_021a0cac(s32 a, s32 b, u32 c) {
@@ -1167,9 +1167,9 @@ u32 func_ov000_021a0ae8(u32 a, u32 b, u32 c, u32 d, void *e, s32 f) {
     } else {
         if (e != NULL && f != 0) {
             w = e;
-            n = StringFormatBounded(v2, 0x200, data_ov000_021b40b8, w[0]);
+            n = OS_SNPrintf(v2, 0x200, data_ov000_021b40b8, w[0]);
             for (k = 1; k < f; k++) {
-                j = StringFormatBounded(v1, 0x10, data_ov000_021b4138, w[k]);
+                j = OS_SNPrintf(v1, 0x10, data_ov000_021b4138, w[k]);
                 MemCopy(v1, v2 + n, j);
                 n += j;
             }
@@ -1225,7 +1225,7 @@ s32 func_ov000_021a09d0(struct GpConnection *a, u32 b, u32 c, const char *d) {
     s32 n;
     s32 i;
 
-    i = StringFormatBounded(v1, 0x200, data_ov000_021b4124, data_ov000_021b412c, 3, data_ov000_021b4134);
+    i = OS_SNPrintf(v1, 0x200, data_ov000_021b4124, data_ov000_021b412c, 3, data_ov000_021b4134);
     v1[i] = b;
     g = v1 + 1;
     e = g + i;
