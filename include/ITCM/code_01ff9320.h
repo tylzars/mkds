@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0201290c_1c Unk0201290c_1c;
+typedef struct NNSG3dMatAnmResult NNSG3dMatAnmResult;
 
 // Command word and the 18 words sent with it: a mode, a 4x4 matrix and a trailing value.
 typedef struct Unk01ff9320_buf {
@@ -13,9 +13,9 @@ typedef struct Unk01ff9320_buf {
     /* 4c */ u32 mUnk_4c;
 } Unk01ff9320_buf;
 
-typedef void (*Unk01ff9320_Fn)(s32 *, Unk0201290c_1c *);
+typedef void (*Unk01ff9320_Fn)(s32 *, NNSG3dMatAnmResult *);
 
-void func_01ff9320(Unk0201290c_1c *p);
+void func_01ff9320(NNSG3dMatAnmResult *p);
 void func_01ff946c(s32 *o);
-void func_01ff9490(s32 *o, const Unk0201290c_1c *in);
-void func_01ff94d4(s32 *o, const Unk0201290c_1c *in);
+void func_01ff9490(s32 *o, const NNSG3dMatAnmResult *in);
+void func_01ff94d4(s32 *o, const NNSG3dMatAnmResult *in);

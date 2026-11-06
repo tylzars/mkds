@@ -3,7 +3,7 @@
 #include "types.h"
 #include "code_02010c84.h"
 
-typedef struct Unk020136f0 Unk020136f0;
+typedef struct NNSG3dResFileHeader NNSG3dResFileHeader;
 
 // Fourth argument of func_02013e18 and func_02014164: halfword counts at 0x04 and 0x06, flags at 0x08, byte
 // offsets (from this struct) to two s16 arrays at 0x0c and 0x10, and halfword offsets to entries from 0x14.
@@ -66,7 +66,7 @@ typedef struct Unk02170500_04 {
     /* 00 */ u32 mUnk_00; // bit 0 and bit 4 are tested
     /* 04 */ Unk02170500_04_04 *mUnk_04;
     /* 08 */ struct Unk020152bc *mUnk_08;
-    /* 0c */ s32 (*mUnk_0c)(Unk0201290c_1c *, struct Unk020152bc *, u32);
+    /* 0c */ s32 (*mUnk_0c)(NNSG3dMatAnmResult *, struct Unk020152bc *, u32);
     /* 10 */ struct Unk020152bc *mUnk_10;
     /* 14 */ s32 (*mUnk_14)(Unk02014c5c_out *, struct Unk020152bc *, u32);
     /* 18 */ struct Unk020152bc *mUnk_18;
@@ -78,7 +78,7 @@ typedef struct Unk02170500_04 {
     /* 2c */ u8 mUnk_2c[4];
     /* 30 */ u8 *mUnk_30;
     /* 34 */ Unk02014c5c_out *mUnk_34;
-    /* 38 */ Unk0201290c_1c *mUnk_38;
+    /* 38 */ NNSG3dMatAnmResult *mUnk_38;
     /* 3c */ u32 mUnk_3c[2];
     /* 44 */ u32 mUnk_44[2];
     /* 4c */ u32 mUnk_4c[2];
@@ -95,7 +95,7 @@ typedef struct Unk02170500 {
     /* ad */ u8 mUnk_ad;
     /* ae */ u8 mUnk_ae;
     /* af */ u8 mUnk_af;
-    /* b0 */ Unk0201290c_1c *mUnk_b0;
+    /* b0 */ NNSG3dMatAnmResult *mUnk_b0;
     /* b4 */ Unk02014c5c_out *mUnk_b4;
     /* b8 */ u32 *mUnk_b8;
     /* bc */ u32 mUnk_bc[2];
@@ -107,8 +107,8 @@ typedef struct Unk02170500 {
     /* e4 */ s32 mUnk_e4;
     /* e8 */ UnkFunc *mUnk_e8; // called with four arguments by func_02014c5c and func_020151a4
     /* ec */ void (*mUnk_ec)(Unk02014c5c_out *);
-    /* f0 */ void (*mUnk_f0)(Unk0201290c_1c *);
-    /* f4 */ Unk0201290c_1c mUnk_f4;
+    /* f0 */ void (*mUnk_f0)(NNSG3dMatAnmResult *);
+    /* f4 */ NNSG3dMatAnmResult mUnk_f4;
     /* 12c */ Unk02014c5c_out mUnk_12c;
     /* 184 */ u32 mUnk_184;
 } Unk02170500;
@@ -303,7 +303,7 @@ typedef struct Unk02015c7c_e {
 
 void *func_02013bdc(void *a);
 void *func_02013bf8(void *a, u32 b);
-void *func_02013c18(Unk020136f0 *a, u32 b, u32 c);
+void *func_02013c18(NNSG3dResFileHeader *a, u32 b, u32 c);
 int func_02013c78(s32 *out, const s16 *a, const s16 *b, u32 n);
 void func_02013e18(s32 *out, s32 a, const u32 *p, Unk02014c5c *obj);
 void func_02014164(s32 *out, s32 a, const u32 *p, Unk02014c5c *obj);

@@ -67,7 +67,7 @@ void func_ov001_02187d14(Unk02187d14 *c) {
     p = c->mUnk_04->mUnk_2c;
     if (c->mUnk_00->mUnk_01 == p->mUnk_2e4) {
         q = GetCurrentCamera();
-        func_02012f58(&a, NULL);
+        NNS_G3dGetCurrentMtx(&a, NULL);
         MTX_Inverse43(&q->mViewMatrix, &b);
         MTX_Concat43(&a, &b, &a);
         p->mUnk_2e8.x = a.mUnk_00[3].x << 4;

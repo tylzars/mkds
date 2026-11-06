@@ -16,365 +16,397 @@
 #include "registers.h"
 #include "code_02147954.h"
 
-void *func_020136f0(Unk020136f0 *a) {
-    u8 *p;
+// Returns the texture block of a model or texture file, or NULL when the file has none.
+void *NNS_G3dGetTex(NNSG3dResFileHeader *file) {
+    u32 *blocks;
 
-    p = (u8 *) a + a->mUnk_0c;
-    if (a->mUnk_0e == 1) {
-        if (a->mUnk_00 == 0x30585442) {
-            return (u8 *) a + *(u32 *) p;
+    blocks = (u32 *) ((u8 *) file + file->mHeaderSize);
+    if (file->mDataBlocks == 1) {
+        if (file->mSigVal == 0x30585442) {
+            return (u8 *) file + blocks[0];
         }
         return 0;
     }
-    return (u8 *) a + *(u32 *) (p + 4);
+    return (u8 *) file + blocks[1];
 }
 
-void func_020136a8(Unk0201290c *a, u32 b, u32 c) {
-    u8 *p;
-    u8 *t;
-    u8 *e;
+// Sets the diffuse color of one material.
+void NNS_G3dMdlSetMdlDiff(NNSG3dResMdl *mdl, u32 matId, u32 color) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    p = (u8 *) a + a->mEntriesOffset;
-    t = p + 4 + *(u16 *) (p + 0xa);
-    e = p + *(u32 *) (t + *(u16 *) t * b + 4);
-    *(u32 *) (e + 4) = (*(u32 *) (e + 4) & -0x8000) | c;
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    data->mDiffAmb = (data->mDiffAmb & -0x8000) | color;
 }
 
-void func_02013660(Unk0201290c *a, u32 b, u32 c) {
-    u8 *p;
-    u8 *t;
-    u8 *e;
+// Sets the ambient color of one material.
+void NNS_G3dMdlSetMdlAmb(NNSG3dResMdl *mdl, u32 matId, u32 color) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    p = (u8 *) a + a->mEntriesOffset;
-    t = p + 4 + *(u16 *) (p + 0xa);
-    e = p + *(u32 *) (t + *(u16 *) t * b + 4);
-    *(u32 *) (e + 4) = (*(u32 *) (e + 4) & 0x8000ffff) | (c << 16);
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    data->mDiffAmb = (data->mDiffAmb & 0x8000ffff) | (color << 16);
 }
 
-void func_02013618(Unk0201290c *a, u32 b, u32 c) {
-    u8 *p;
-    u8 *t;
-    u8 *e;
+// Sets the specular color of one material.
+void NNS_G3dMdlSetMdlSpec(NNSG3dResMdl *mdl, u32 matId, u32 color) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    p = (u8 *) a + a->mEntriesOffset;
-    t = p + 4 + *(u16 *) (p + 0xa);
-    e = p + *(u32 *) (t + *(u16 *) t * b + 4);
-    *(u32 *) (e + 8) = (*(u32 *) (e + 8) & -0x8000) | c;
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    data->mSpecEmi = (data->mSpecEmi & -0x8000) | color;
 }
 
-void func_020135d0(Unk0201290c *a, u32 b, u32 c) {
-    u8 *p;
-    u8 *t;
-    u8 *e;
+// Sets the emission color of one material.
+void NNS_G3dMdlSetMdlEmi(NNSG3dResMdl *mdl, u32 matId, u32 color) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    p = (u8 *) a + a->mEntriesOffset;
-    t = p + 4 + *(u16 *) (p + 0xa);
-    e = p + *(u32 *) (t + *(u16 *) t * b + 4);
-    *(u32 *) (e + 8) = (*(u32 *) (e + 8) & 0x8000ffff) | (c << 16);
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    data->mSpecEmi = (data->mSpecEmi & 0x8000ffff) | (color << 16);
 }
 
-void func_02013588(Unk0201290c *a, u32 b, u32 c) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Sets the light enable mask of one material.
+void NNS_G3dMdlSetMdlLightEnableFlag(NNSG3dResMdl *mdl, u32 matId, u32 light) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    e->mUnk_0c = (e->mUnk_0c & ~0xf) | (c);
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    data->mPolyAttr = (data->mPolyAttr & ~0xf) | light;
 }
 
-void func_02013540(Unk0201290c *a, u32 b, u32 c) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Sets the polygon mode of one material.
+void NNS_G3dMdlSetMdlPolygonMode(NNSG3dResMdl *mdl, u32 matId, u32 polyMode) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    e->mUnk_0c = (e->mUnk_0c & ~0x30) | (c << 4);
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    data->mPolyAttr = (data->mPolyAttr & ~0x30) | (polyMode << 4);
 }
 
-void func_020134f8(Unk0201290c *a, u32 b, u32 c) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Sets the cull mode of one material.
+void NNS_G3dMdlSetMdlCullMode(NNSG3dResMdl *mdl, u32 matId, u32 cullMode) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    e->mUnk_0c = (e->mUnk_0c & ~0xc0) | (c << 6);
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    data->mPolyAttr = (data->mPolyAttr & ~0xc0) | (cullMode << 6);
 }
 
-void func_020134b0(Unk0201290c *a, u32 b, u32 c) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Sets the polygon ID of one material.
+void NNS_G3dMdlSetMdlPolygonID(NNSG3dResMdl *mdl, u32 matId, u32 polygonId) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    e->mUnk_0c = (e->mUnk_0c & ~0x3f000000) | (c << 24);
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    data->mPolyAttr = (data->mPolyAttr & ~0x3f000000) | (polygonId << 24);
 }
 
-void func_02013468(Unk0201290c *a, u32 b, u32 c) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Sets the alpha of one material.
+void NNS_G3dMdlSetMdlAlpha(NNSG3dResMdl *mdl, u32 matId, u32 alpha) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    e->mUnk_0c = (e->mUnk_0c & ~0x1f0000) | (c << 16);
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    data->mPolyAttr = (data->mPolyAttr & ~0x1f0000) | (alpha << 16);
 }
 
-void func_02013424(Unk0201290c *a, u32 b, s32 c) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Turns fog on or off for one material.
+void NNS_G3dMdlSetMdlFogEnableFlag(NNSG3dResMdl *mdl, u32 matId, s32 flag) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    if (c != 0) {
-        e->mUnk_0c |= 0x8000;
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    if (flag != 0) {
+        data->mPolyAttr |= 0x8000;
     } else {
-        e->mUnk_0c &= ~0x8000;
+        data->mPolyAttr &= ~0x8000;
     }
 }
 
-void func_020133e0(Unk0201290c *a, u32 b, s32 c) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Turns the depth update of translucent polygons on or off for one material.
+void NNS_G3dMdlSetMdlXLDepthUpdate(NNSG3dResMdl *mdl, u32 matId, s32 flag) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    if (c != 0) {
-        e->mUnk_0c |= 0x800;
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    if (flag != 0) {
+        data->mPolyAttr |= 0x800;
     } else {
-        e->mUnk_0c &= ~0x800;
+        data->mPolyAttr &= ~0x800;
     }
 }
 
-u32 func_020133ac(Unk0201290c *a, u32 b) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Returns the cull mode of one material.
+u32 NNS_G3dMdlGetMdlCullMode(NNSG3dResMdl *mdl, u32 matId) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    return (e->mUnk_0c & 0xc0) >> 6;
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    return (data->mPolyAttr & 0xc0) >> 6;
 }
 
-u32 func_02013378(Unk0201290c *a, u32 b) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Returns the polygon ID of one material.
+u32 NNS_G3dMdlGetMdlPolygonID(NNSG3dResMdl *mdl, u32 matId) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    return (e->mUnk_0c & 0x3f000000) >> 24;
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    return (data->mPolyAttr & 0x3f000000) >> 24;
 }
 
-u32 func_02013344(Unk0201290c *a, u32 b) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Returns the alpha of one material.
+u32 NNS_G3dMdlGetMdlAlpha(NNSG3dResMdl *mdl, u32 matId) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    return (e->mUnk_0c & 0x1f0000) >> 16;
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    return (data->mPolyAttr & 0x1f0000) >> 16;
 }
 
-u32 func_02013314(Unk0201290c *a, u32 b) {
-    u8 *q;
-    u16 *t;
-    Unk0201290c_08 *e;
+// Returns whether fog is on for one material.
+u32 NNS_G3dMdlGetMdlFogEnableFlag(NNSG3dResMdl *mdl, u32 matId) {
+    NNSG3dResMat *mat;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *data;
 
-    q = (u8 *) a + a->mEntriesOffset;
-    t = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-    e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) t + *t * b + 4));
-    return e->mUnk_0c & 0x8000;
+    mat = (NNSG3dResMat *) ((u8 *) mdl + mdl->mOfsMat);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &mat->mDict + mat->mDict.mOfsEntry);
+    data = (NNSG3dResMatData *) ((u8 *) mat + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+    return data->mPolyAttr & 0x8000;
 }
 
-void func_020132cc(Unk0201290c *a, u32 b) {
+// Sets the diffuse color of every material.
+void NNS_G3dMdlSetMdlDiffAll(NNSG3dResMdl *mdl, u32 color) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_020136a8(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlDiff(mdl, i, color);
     }
 }
 
-void func_02013284(Unk0201290c *a, u32 b) {
+// Sets the ambient color of every material.
+void NNS_G3dMdlSetMdlAmbAll(NNSG3dResMdl *mdl, u32 color) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_02013660(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlAmb(mdl, i, color);
     }
 }
 
-void func_0201323c(Unk0201290c *a, u32 b) {
+// Sets the specular color of every material.
+void NNS_G3dMdlSetMdlSpecAll(NNSG3dResMdl *mdl, u32 color) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_02013618(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlSpec(mdl, i, color);
     }
 }
 
-void func_020131f4(Unk0201290c *a, u32 b) {
+// Sets the emission color of every material.
+void NNS_G3dMdlSetMdlEmiAll(NNSG3dResMdl *mdl, u32 color) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_020135d0(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlEmi(mdl, i, color);
     }
 }
 
-void func_020131ac(Unk0201290c *a, u32 b) {
+// Sets the light enable mask of every material.
+void NNS_G3dMdlSetMdlLightEnableFlagAll(NNSG3dResMdl *mdl, u32 light) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_02013588(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlLightEnableFlag(mdl, i, light);
     }
 }
 
-void func_02013164(Unk0201290c *a, u32 b) {
+// Sets the polygon mode of every material.
+void NNS_G3dMdlSetMdlPolygonModeAll(NNSG3dResMdl *mdl, u32 polyMode) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_02013540(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlPolygonMode(mdl, i, polyMode);
     }
 }
 
-void func_0201311c(Unk0201290c *a, u32 b) {
+// Sets the cull mode of every material.
+void NNS_G3dMdlSetMdlCullModeAll(NNSG3dResMdl *mdl, u32 cullMode) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_020134f8(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlCullMode(mdl, i, cullMode);
     }
 }
 
-void func_020130d4(Unk0201290c *a, u32 b) {
+// Sets the polygon ID of every material.
+void NNS_G3dMdlSetMdlPolygonIDAll(NNSG3dResMdl *mdl, u32 polygonId) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_020134b0(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlPolygonID(mdl, i, polygonId);
     }
 }
 
-void func_0201308c(Unk0201290c *a, u32 b) {
+// Sets the alpha of every material.
+void NNS_G3dMdlSetMdlAlphaAll(NNSG3dResMdl *mdl, u32 alpha) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_02013468(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlAlpha(mdl, i, alpha);
     }
 }
 
-void func_02013044(Unk0201290c *a, u32 b) {
+// Sets the fog flag of every material.
+void NNS_G3dMdlSetMdlFogEnableFlagAll(NNSG3dResMdl *mdl, u32 flag) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_02013424(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlFogEnableFlag(mdl, i, flag);
     }
 }
 
-void func_02012ffc(Unk0201290c *a, u32 b) {
+// Sets the translucent depth update flag of every material.
+void NNS_G3dMdlSetMdlXLDepthUpdateAll(NNSG3dResMdl *mdl, u32 flag) {
     u32 i;
 
-    for (i = 0; i < a->mEntryCount; i++) {
-        func_020133e0(a, i, b);
+    for (i = 0; i < mdl->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlXLDepthUpdate(mdl, i, flag);
     }
 }
 
-void func_02012f58(MtxFx43 *a, void *b) {
-    s32 m[16];
+// Reads the current position and vector matrices back from the geometry engine; either pointer may be NULL.
+void NNS_G3dGetCurrentMtx(MtxFx43 *pos, void *vec) {
+    s32 clipMtx[16];
 
     func_01ff9234();
     reg_G3_MTX_MODE = 0;
     reg_G3_MTX_PUSH = 0;
     reg_G3_MTX_IDENTITY = 0;
-    if (a != 0) {
-        while (G3X_GetClipMtx(m) != 0) {
+    if (pos != 0) {
+        while (G3X_GetClipMtx(clipMtx) != 0) {
         }
-        MTX_Copy44To43_(m, a);
+        MTX_Copy44To43_(clipMtx, pos);
     }
-    if (b != 0) {
-        while (G3X_GetVectorMtx(b) != 0) {
+    if (vec != 0) {
+        while (G3X_GetVectorMtx(vec) != 0) {
         }
     }
     reg_G3_MTX_POP = 1;
     reg_G3_MTX_MODE = 2;
 }
 
-void func_02012f24(void) {
+// Initializes the geometry engine and the global state.
+void NNS_G3dInit(void) {
     G3X_Init();
-    func_02011074();
+    NNS_G3dGlbInit();
     reg_G3X_GXSTAT = (reg_G3X_GXSTAT & ~0xc0000000) | 0x80000000;
 }
 
-s32 func_02012cbc(Unk020136f0 *a) {
-    s32 f0;
-    u32 r;
-    u32 v0;
-    u32 v1;
-    u32 v2;
-    s32 f1;
-    s32 f2;
+// Allocates texture and palette memory for a model or texture file, loads them and binds them to the models. The key
+// variables first hold the required size.
+s32 NNS_G3dResDefaultSetup(NNSG3dResFileHeader *file) {
+    s32 texOk;
+    u32 tex;
+    u32 texKey;
+    u32 tex4x4Key;
+    u32 plttKey;
+    s32 tex4x4Ok;
+    s32 plttOk;
+    u32 mdlSet;
 
-    switch (a->mUnk_00) {
+    switch (file->mSigVal) {
         case 0x30444d42:
         case 0x30585442:
-            f0 = 1;
-            f1 = 1;
-            f2 = 1;
-            r = (u32) func_020136f0(a);
-            if (r != 0) {
-                v0 = func_020109b8(r);
-                v1 = func_020109ac(r);
-                v2 = func_02010878(r);
-                if (v0 != 0) {
-                    v0 = data_021619ec(v0, 0, 0);
-                    if (v0 == 0) {
-                        f0 = 0;
+            texOk = 1;
+            tex4x4Ok = 1;
+            plttOk = 1;
+            tex = (u32) NNS_G3dGetTex(file);
+            if (tex != 0) {
+                texKey = func_020109b8(tex);
+                tex4x4Key = func_020109ac(tex);
+                plttKey = func_02010878(tex);
+                if (texKey != 0) {
+                    texKey = data_021619ec(texKey, 0, 0);
+                    if (texKey == 0) {
+                        texOk = 0;
                     }
                 } else {
-                    v0 = 0;
+                    texKey = 0;
                 }
-                if (v1 != 0) {
-                    v1 = data_021619ec(v1, 1, 0);
-                    if (v1 == 0) {
-                        f1 = 0;
+                if (tex4x4Key != 0) {
+                    tex4x4Key = data_021619ec(tex4x4Key, 1, 0);
+                    if (tex4x4Key == 0) {
+                        tex4x4Ok = 0;
                     }
                 } else {
-                    v1 = 0;
+                    tex4x4Key = 0;
                 }
-                if (v2 != 0) {
-                    v2 = data_021619f4(v2, *(u16 *) (r + 0x20) & 0x8000, 0);
-                    if (v2 == 0) {
-                        f2 = 0;
+                if (plttKey != 0) {
+                    plttKey = data_021619f4(plttKey, *(u16 *) (tex + 0x20) & 0x8000, 0);
+                    if (plttKey == 0) {
+                        plttOk = 0;
                     }
                 } else {
-                    v2 = 0;
+                    plttKey = 0;
                 }
-                if (f0 == 0 || f1 == 0 || f2 == 0) {
-                    data_021619f8((void *) v2);
-                    data_021619f0((void *) v1);
-                    data_021619f0((void *) v0);
+                if (texOk == 0 || tex4x4Ok == 0 || plttOk == 0) {
+                    data_021619f8((void *) plttKey);
+                    data_021619f0((void *) tex4x4Key);
+                    data_021619f0((void *) texKey);
                     return 0;
                 }
-                func_02010998(r, v0, v1);
-                func_02010870((Unk02010804 *) r, v2);
-                func_020108bc((Unk020108bc *) r, 1);
-                func_02010804((Unk02010804 *) r, 1);
+                func_02010998(tex, texKey, tex4x4Key);
+                func_02010870((Unk02010804 *) tex, plttKey);
+                func_020108bc((Unk020108bc *) tex, 1);
+                func_02010804((Unk02010804 *) tex, 1);
             }
-            if (a->mUnk_00 == 0x30444d42) {
-                v0 = func_02013730((u32) a);
-                if (r != 0) {
-                    NNS_G3dBindMdlSet((Unk02010168 *) v0, (Unk02010294 *) r);
+            if (file->mSigVal == 0x30444d42) {
+                mdlSet = func_02013730((u32) file);
+                if (tex != 0) {
+                    NNS_G3dBindMdlSet((Unk02010168 *) mdlSet, (Unk02010294 *) tex);
                 }
             }
             return 1;
@@ -389,13 +421,15 @@ s32 func_02012cbc(Unk020136f0 *a) {
     }
 }
 
-void func_02012b30(Unk020136f0 *a) {
-    u32 p;
-    u32 q;
-    void *x;
-    void *y;
+// Frees the texture and palette memory of a model or texture file and releases the models bound to it.
+void NNS_G3dResDefaultRelease(NNSG3dResFileHeader *file) {
+    u32 mdlSet;
+    u32 tex;
+    void *texKey;
+    void *tex4x4Key;
+    u32 plttKey;
 
-    switch (a->mUnk_00) {
+    switch (file->mSigVal) {
         case 0x30415642:
         case 0x30414d42:
         case 0x30414342:
@@ -403,9 +437,9 @@ void func_02012b30(Unk020136f0 *a) {
         case 0x30505442:
             return;
         case 0x30444d42:
-            q = func_02013730((u32) a);
-            if (func_020136f0(a) != 0) {
-                NNS_G3dReleaseMdlSet((Unk02010168 *) q);
+            mdlSet = func_02013730((u32) file);
+            if (NNS_G3dGetTex(file) != 0) {
+                NNS_G3dReleaseMdlSet((Unk02010168 *) mdlSet);
             }
             break;
         case 0x30585442:
@@ -413,19 +447,19 @@ void func_02012b30(Unk020136f0 *a) {
         default:
             return;
     }
-    p = (u32) func_020136f0(a);
-    if (p == 0) {
+    tex = (u32) NNS_G3dGetTex(file);
+    if (tex == 0) {
         return;
     }
-    q = func_020107e4(p);
-    func_02010884(p, (u32) &x, (u32) &y);
-    if (q != 0) {
-        data_021619f8((void *) q);
+    plttKey = func_020107e4(tex);
+    func_02010884(tex, (u32) &texKey, (u32) &tex4x4Key);
+    if (plttKey != 0) {
+        data_021619f8((void *) plttKey);
     }
-    if (y != 0) {
-        data_021619f0(y);
+    if (tex4x4Key != 0) {
+        data_021619f0(tex4x4Key);
     }
-    if (x != 0) {
-        data_021619f0(x);
+    if (texKey != 0) {
+        data_021619f0(texKey);
     }
 }

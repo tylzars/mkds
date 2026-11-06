@@ -2,12 +2,12 @@
 
 #include "types.h"
 
-typedef struct Unk0201290c Unk0201290c;
+typedef struct NNSG3dResMdl NNSG3dResMdl;
 
-// Object whose pointer at 0x04 is passed to func_0201290c.
+// Object whose pointer at 0x04 is passed to NNS_G3dDraw1Mat1Shp.
 typedef struct Unk02085360 {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ Unk0201290c *mUnk_04;
+    /* 04 */ NNSG3dResMdl *mUnk_04;
 } Unk02085360;
 
 void func_02085354(void *a);

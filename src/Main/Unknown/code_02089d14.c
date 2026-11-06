@@ -240,7 +240,7 @@ void func_02089fa0(void) {
     Unk02084b2c *e;
 
     MTX_Identity43_(&a);
-    data_0217029c.mUnk_4c = a;
+    data_0217029c.mCameraMtx = a;
     if (data_021759c0->mUnk_00c != 0) {
         return;
     }
@@ -258,13 +258,13 @@ void func_02089fa0(void) {
         for (i = 0; i < data_0217b034->mUnk_000[8]->mNsbmdCount; i++) {
             e = &data_0217b034->mUnk_000[8]->mNsbmds[i];
             G3i_OrthoW_(0x60000, -0x60000, -0x80000, 0x80000, 0, 0x1000, 0x1f6, 0,
-                        (Unk0214ad4c *) data_0217029c.mUnk_08);
-            data_0217029c.mUnk_fc &= ~0x50;
-            func_02010fe4(&d);
-            MI_Copy36B(&b, &data_0217029c.mUnk_bc);
-            data_0217029c.mUnk_fc &= ~0xa4;
-            func_0201100c(&b.mUnk_00[3]);
-            func_02011034();
+                        (Unk0214ad4c *) data_0217029c.mProjMtx);
+            data_0217029c.mFlag &= ~0x50;
+            NNS_G3dGlbSetBaseScale(&d);
+            MI_Copy36B(&b, data_0217029c.mPrmBaseRot);
+            data_0217029c.mFlag &= ~0xa4;
+            NNS_G3dGlbSetBaseTrans(&b.mUnk_00[3]);
+            NNS_G3dGlbFlushP();
             func_01ff8cf0(e);
         }
     }

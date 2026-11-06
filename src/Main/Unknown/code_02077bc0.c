@@ -1,6 +1,6 @@
 #include "Main/Unknown/code_02077bc0.h"
 #include "Main/Unknown/code_0207ae58.h"
-#include "code_02012b30.h" // Unk020136f0
+#include "code_02012b30.h" // NNSG3dResFileHeader
 
 #include "Main/Unknown/code_02036820.h"
 #include "code_020169a4.h"
@@ -349,10 +349,10 @@ void func_0207a5f0(s32 a) {
     Unk0206bcb0_590 *s;
     for (i = 0; i < gKartCount; i++) {
         s = p->mKartModelsEntry;
-        func_02013044(s->mUnk_010[1]->mUnk_04, a);
-        func_02013044(s->mUnk_010[0]->mUnk_04, a);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(s->mUnk_010[1]->mUnk_04, a);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(s->mUnk_010[0]->mUnk_04, a);
         if (s->mUnk_010[2] != NULL) {
-            func_02013044(s->mUnk_010[2]->mUnk_04, a);
+            NNS_G3dMdlSetMdlFogEnableFlagAll(s->mUnk_010[2]->mUnk_04, a);
         }
         p++;
     }
@@ -461,7 +461,7 @@ s32 func_0207a218(void) {
     return r;
 }
 
-void func_0207a14c(Unk0201290c *a, u32 b) {
+void func_0207a14c(NNSG3dResMdl *a, u32 b) {
     u32 c;
     u32 d;
     u32 e;
@@ -494,10 +494,10 @@ void func_0207a14c(Unk0201290c *a, u32 b) {
             e = 0;
             break;
     }
-    func_020132cc(a, c);
-    func_02013284(a, d);
-    func_0201323c(a, e);
-    func_020131f4(a, f);
+    NNS_G3dMdlSetMdlDiffAll(a, c);
+    NNS_G3dMdlSetMdlAmbAll(a, d);
+    NNS_G3dMdlSetMdlSpecAll(a, e);
+    NNS_G3dMdlSetMdlEmiAll(a, f);
 }
 
 u16 func_0207a134(void) {
@@ -565,27 +565,27 @@ s32 func_02079ce0(struct Unk0206bcb0_590 *a, s32 b) {
         q->mUnk_00 = (s16) (q->mUnk_06 + (s32) (((s64) q->mUnk_0c * q->mUnk_2a + 0x800) >> 12)) +
                      ((s16) (q->mUnk_08 + (s32) (((s64) q->mUnk_0e * q->mUnk_2a + 0x800) >> 12)) << 5) +
                      ((s16) (q->mUnk_0a + (s32) (((s64) q->mUnk_10 * q->mUnk_2a + 0x800) >> 12)) << 10);
-        func_020132cc(a->mUnk_010[0]->mUnk_04, q->mUnk_00);
-        func_020132cc(a->mUnk_010[1]->mUnk_04, q->mUnk_00);
+        NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[0]->mUnk_04, q->mUnk_00);
+        NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[1]->mUnk_04, q->mUnk_00);
         if (a->mUnk_010[2] != NULL) {
-            func_020132cc(a->mUnk_010[2]->mUnk_04, q->mUnk_00);
+            NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[2]->mUnk_04, q->mUnk_00);
         }
         q->mUnk_02 = (s16) (q->mUnk_12 + (s32) (((s64) q->mUnk_18 * q->mUnk_2a + 0x800) >> 12)) +
                      ((s16) (q->mUnk_14 + (s32) (((s64) q->mUnk_1a * q->mUnk_2a + 0x800) >> 12)) << 5) +
                      ((s16) (q->mUnk_16 + (s32) (((s64) q->mUnk_1c * q->mUnk_2a + 0x800) >> 12)) << 10);
-        func_020131f4(a->mUnk_010[0]->mUnk_04, q->mUnk_02);
-        func_020131f4(a->mUnk_010[1]->mUnk_04, q->mUnk_02);
+        NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[0]->mUnk_04, q->mUnk_02);
+        NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[1]->mUnk_04, q->mUnk_02);
         if (a->mUnk_010[2] != NULL) {
-            func_020131f4(a->mUnk_010[2]->mUnk_04, q->mUnk_02);
+            NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[2]->mUnk_04, q->mUnk_02);
         }
         {
             s16 x = q->mUnk_1e + (s32) (((s64) q->mUnk_24 * q->mUnk_2a + 0x800) >> 12);
             s16 y = q->mUnk_20 + (s32) (((s64) q->mUnk_26 * q->mUnk_2a + 0x800) >> 12);
             s16 z = q->mUnk_22 + (s32) (((s64) q->mUnk_28 * q->mUnk_2a + 0x800) >> 12);
-            func_02013284(a->mUnk_010[0]->mUnk_04, q->mUnk_04);
-            func_02013284(a->mUnk_010[1]->mUnk_04, q->mUnk_04);
+            NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[0]->mUnk_04, q->mUnk_04);
+            NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[1]->mUnk_04, q->mUnk_04);
             if (a->mUnk_010[2] != NULL) {
-                func_02013284(a->mUnk_010[2]->mUnk_04, q->mUnk_04);
+                NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[2]->mUnk_04, q->mUnk_04);
             }
             q->mUnk_04 = x + (y << 5) + (z << 10);
         }
@@ -604,16 +604,16 @@ void func_02079c0c(struct Unk0206bcb0_590 *a) {
     b = p[0];
     c = p[3];
     d = p[1];
-    func_020132cc(a->mUnk_010[0]->mUnk_04, b);
-    func_020132cc(a->mUnk_010[1]->mUnk_04, b);
-    func_020131f4(a->mUnk_010[0]->mUnk_04, c);
-    func_020131f4(a->mUnk_010[1]->mUnk_04, c);
-    func_02013284(a->mUnk_010[0]->mUnk_04, d);
-    func_02013284(a->mUnk_010[1]->mUnk_04, d);
+    NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[0]->mUnk_04, b);
+    NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[1]->mUnk_04, b);
+    NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[0]->mUnk_04, c);
+    NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[1]->mUnk_04, c);
+    NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[0]->mUnk_04, d);
+    NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[1]->mUnk_04, d);
     if (a->mUnk_010[2] != NULL) {
-        func_020132cc(a->mUnk_010[2]->mUnk_04, b);
-        func_020131f4(a->mUnk_010[2]->mUnk_04, c);
-        func_02013284(a->mUnk_010[2]->mUnk_04, d);
+        NNS_G3dMdlSetMdlDiffAll(a->mUnk_010[2]->mUnk_04, b);
+        NNS_G3dMdlSetMdlEmiAll(a->mUnk_010[2]->mUnk_04, c);
+        NNS_G3dMdlSetMdlAmbAll(a->mUnk_010[2]->mUnk_04, d);
     }
 }
 
@@ -644,7 +644,7 @@ void *func_02079bcc(u32 arg0) {
 }
 
 void func_02079b9c(struct Unk0206bcb0_590 *a, s32 b) {
-    func_02013468(a->mUnk_010[1]->mUnk_04, gKartModels->mUnk_00c, b != 0 ? 0x1f : 0);
+    NNS_G3dMdlSetMdlAlpha(a->mUnk_010[1]->mUnk_04, gKartModels->mUnk_00c, b != 0 ? 0x1f : 0);
 }
 
 void *func_02079b88(void) {
@@ -986,8 +986,8 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
     u16 e8;
     BOOL d;
     void *v7;
-    Unk020136f0 *v10;
-    Unk0201290c *p;
+    NNSG3dResFileHeader *v10;
+    NNSG3dResMdl *p;
     void *s;
     e8 = (u16) a->mUnk_000;
     v7 = func_02047950(BuildCharacterNsbmdPath(e8, c));
@@ -1029,8 +1029,8 @@ void CreateCharacter(Unk0206bcb0_590 *a, void *b, s32 c) {
 void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
     u16 v7 = (u16) a->mUnk_004;
     void *s;
-    Unk020136f0 *t;
-    Unk0201290c *r4;
+    NNSG3dResFileHeader *t;
+    NNSG3dResMdl *r4;
     s32 i;
     s = func_02047950(BuildKartNsbmdPath(v7));
     t = FindKartModelFile(BuildKartNsbtxPath(v7));
@@ -1039,8 +1039,8 @@ void CreateKart(Unk0206bcb0_590 *a, void *b, s32 c) {
     func_020849c0(a->mUnk_010[1], 3);
     func_0207a14c(r4, 0);
     if (c != 0) {
-        i = func_02013754((u8 *) r4 + r4->mEntriesOffset + 4, data_usa_021550b8);
-        func_02013468(r4, i, 0);
+        i = func_02013754((u8 *) r4 + r4->mOfsMat + 4, data_usa_021550b8);
+        NNS_G3dMdlSetMdlAlpha(r4, i, 0);
         gKartModels->mUnk_00c = i;
     }
     func_0207940c(a->mUnk_010[1], a->mUnk_004, gKartModels->mUnk_010);
@@ -1150,8 +1150,8 @@ void func_020792c8(Unk0206bcb0_590 *a, s32 b) {
 void CreateTire(Unk0206bcb0_590 *a, void *b) {
     u16 v6 = (u16) a->mUnk_004;
     void *v7;
-    Unk0201290c *v4;
-    Unk020136f0 *v8;
+    NNSG3dResMdl *v4;
+    NNSG3dResFileHeader *v8;
     v7 = func_02047950(BuildTireNsbmdPath(v6, a->mUnk_020->mUnk_00));
     v8 = FindKartModelFile(BuildTireNsbtxPath(v6, a->mUnk_020->mUnk_00));
     a->mUnk_010[2] = HeapAlloc(b, 0x6c);
@@ -1172,7 +1172,7 @@ void CreateKartShadow(Unk0206bcb0_590 *a, void *b) {
 
 void CreateKillerItem(void *a) {
     void *v4 = func_02047950("character/common/KillerItem.nsbmd");
-    Unk020136f0 *v6 = FindKartModelFile("character/common/KillerItem.nsbtx");
+    NNSG3dResFileHeader *v6 = FindKartModelFile("character/common/KillerItem.nsbtx");
     void *v7 = func_02047950("character/common/KillerItem_s.nsbmd");
     void *v8;
     func_0207a14c(func_02084b2c(a, &gKartModels->mUnk_02c, v4, v6), 0);
@@ -1206,8 +1206,8 @@ void func_020790e0(void *a, s32 b) {
 
 #pragma thumb on
 
-void func_02079078(void *a, Unk02084b2c *b, void *c, Unk020136f0 *d, Unk020136f0 *e, void *f) {
-    Unk0201290c *v2;
+void func_02079078(void *a, Unk02084b2c *b, void *c, NNSG3dResFileHeader *d, NNSG3dResFileHeader *e, void *f) {
+    NNSG3dResMdl *v2;
     u32 v3;
     void *v1;
     v2 = func_02084d3c(b, d, e);
@@ -1220,18 +1220,18 @@ void func_02079078(void *a, Unk02084b2c *b, void *c, Unk020136f0 *d, Unk020136f0
     func_02087f84(c, 0);
 }
 
-void func_02079038(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
-    Unk0201290c *v1;
+void func_02079038(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
+    NNSG3dResMdl *v1;
     u32 v2;
     v1 = func_02084d3c(a, b, c);
     func_020849c0(a, 3);
     func_0207a14c(v1, 1);
-    v2 = func_02013754((u8 *) v1 + v1->mEntriesOffset + 4, data_02155098);
-    func_02013468(v1, v2, 0);
+    v2 = func_02013754((u8 *) v1 + v1->mOfsMat + 4, data_02155098);
+    NNS_G3dMdlSetMdlAlpha(v1, v2, 0);
 }
 
-void func_02079014(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
-    Unk0201290c *v1;
+void func_02079014(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
+    NNSG3dResMdl *v1;
     v1 = func_02084d3c(a, b, c);
     func_020849c0(a, 3);
     func_0207a14c(v1, (u32) 1);
@@ -1241,7 +1241,7 @@ void func_02079014(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
 
 #pragma thumb on
 
-void *func_02079008(void *a, Unk020136f0 *b) {
+void *func_02079008(void *a, NNSG3dResFileHeader *b) {
     return func_0207afa8(a, b, 3);
 }
 
@@ -1253,16 +1253,16 @@ void func_02078f9c(void *c) {
     data_0217ad08->mUnk_1cc = HeapAlloc(c, 0x6c);
     func_02084d3c(data_0217ad08->mUnk_1cc, a, b);
     func_020849c0(data_0217ad08->mUnk_1cc, 2);
-    func_02012ffc(data_0217ad08->mUnk_1cc->mUnk_04, 1);
+    NNS_G3dMdlSetMdlXLDepthUpdateAll(data_0217ad08->mUnk_1cc->mUnk_04, 1);
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_02078f78(Unk020136f0 *a) {
-    data_0217ad08->mUnk_1d4 = func_020136f0(a);
-    func_02012cbc(a);
+void func_02078f78(NNSG3dResFileHeader *a) {
+    data_0217ad08->mUnk_1d4 = NNS_G3dGetTex(a);
+    NNS_G3dResDefaultSetup(a);
 }
 
 void func_02078f18(void *a, Unk0217ad08_058 *b) {
@@ -1305,25 +1305,25 @@ void func_02078ee0(Unk0217ad08_024 *a, int b) {
 #pragma thumb on
 
 void func_02078e4c(void *param_1, void *param_2) {
-    Unk0201290c *e;
+    NNSG3dResMdl *e;
     u8 *t;
     u8 *u;
     u8 *w;
     s32 k;
     s32 h;
-    Unk0201290c_08 *x;
+    NNSG3dResMatData *x;
     Unk0217ad08 *d = data_0217ad08;
     Unk0217ad08_1f4 *p = &d->mUnk_1f4[d->mUnk_266];
     s16 i = d->mUnk_264;
     if (i >= 0 && p->mUnk_2c == FALSE) {
         e = d->mUnk_058[i].mUnk_14->mUnk_04;
-        k = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02155018);
-        t = (u8 *) e + e->mEntriesOffset;
+        k = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02155018);
+        t = (u8 *) e + e->mOfsMat;
         u = t + 4;
         w = u + *(u16 *) (t + 0xa);
-        x = (Unk0201290c_08 *) (t + *(u32 *) (w + *(u16 *) w * k + 4));
-        h = x->mUnk_1c << 4;
-        CallQueueAppend(0, (x->mUnk_14 & 0xffff) << 3, param_1, 0x200);
+        x = (NNSG3dResMatData *) (t + *(u32 *) (w + *(u16 *) w * k + 4));
+        h = x->mTexPlttBase << 4;
+        CallQueueAppend(0, (x->mTexImageParam & 0xffff) << 3, param_1, 0x200);
         CallQueueAppend(1, h, param_2, 0x20);
     }
 }
@@ -1332,7 +1332,7 @@ void func_02078d64(void *param_1) {
     u32 i;
     func_02047b6c(1);
     func_02062860();
-    func_02012b20(0);
+    NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
     func_02077bc0(param_1);
     func_0208533c();
@@ -1358,7 +1358,7 @@ void func_02078c58(void *param_1) {
     s32 a;
     func_02047b6c(1);
     func_02062860();
-    func_02012b20(0);
+    NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c &= ~8;
     func_02077bc0(param_1);
     func_0208533c();
@@ -1517,9 +1517,9 @@ void func_02078934(s32 param_1) {
         c = d;
     }
     func_01ff9048(0x15, NULL, 0);
-    G3i_FrustumW_(a, b, c, e, 0x200, 0x64000, 0x1000, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
-    data_0217029c.mUnk_fc &= ~0x50;
-    func_02011034();
+    G3i_FrustumW_(a, b, c, e, 0x200, 0x64000, 0x1000, 0, (Unk0214ad4c *) data_0217029c.mProjMtx);
+    data_0217029c.mFlag &= ~0x50;
+    NNS_G3dGlbFlushP();
 }
 
 void func_020787f4(s32 param_1, s32 param_2) {
@@ -1528,13 +1528,13 @@ void func_020787f4(s32 param_1, s32 param_2) {
     Vec3 d;
     Vec3 b;
     Vec3 c;
-    func_02011034();
+    NNS_G3dGlbFlushP();
     a = data_usa_02165708;
     if ((s64) a.z * a.z + ((s64) a.x * a.x + (s64) a.y * a.y) >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&a, &a);
     }
-    func_02010fac(0, (s16) a.x, (s16) a.y, (s16) a.z);
-    func_02010f98(0, (u16) (data_usa_021656d8 | (data_usa_021656d8 << 5) | (data_usa_021656d8 << 10)));
+    NNS_G3dGlbLightVector(0, (s16) a.x, (s16) a.y, (s16) a.z);
+    NNS_G3dGlbLightColor(0, (u16) (data_usa_021656d8 | (data_usa_021656d8 << 5) | (data_usa_021656d8 << 10)));
     func_02078934(0);
     b = data_usa_02155188;
     c = data_usa_021656f0;
@@ -1544,9 +1544,9 @@ void func_020787f4(s32 param_1, s32 param_2) {
     data_021704dc[0] = data_usa_021656fc;
     data_021704dc[1] = e;
     data_021704dc[2] = c;
-    G3i_LookAt_(&data_usa_021656fc, &e, &c, 0, &data_0217029c.mUnk_4c);
-    data_0217029c.mUnk_fc &= ~0xe8;
-    func_02011034();
+    G3i_LookAt_(&data_usa_021656fc, &e, &c, 0, &data_0217029c.mCameraMtx);
+    data_0217029c.mFlag &= ~0xe8;
+    NNS_G3dGlbFlushP();
 }
 
 void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param_3) {
@@ -1561,7 +1561,7 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
     s32 k;
     u16 i;
 
-    data_0217029c.mUnk_a0 = 0xbfff0000;
+    data_0217029c.mPrmViewPort = 0xbfff0000;
     t.x = data_usa_021656f0.x;
     t.y = data_usa_021656f0.y;
     t.z = data_usa_021656f0.z;
@@ -1580,18 +1580,18 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
     } else {
         MTX_Identity43_(&m3);
     }
-    func_02010fe4(&v);
-    func_0201100c(&t);
-    MI_Copy36B(m2, &data_0217029c.mUnk_bc);
-    data_0217029c.mUnk_fc &= ~0xa4;
-    func_02011034();
+    NNS_G3dGlbSetBaseScale(&v);
+    NNS_G3dGlbSetBaseTrans(&t);
+    MI_Copy36B(m2, data_0217029c.mPrmBaseRot);
+    data_0217029c.mFlag &= ~0xa4;
+    NNS_G3dGlbFlushP();
     if (data_0217ad08->mUnk_1cc != NULL) {
         func_01ff8cf0(data_0217ad08->mUnk_1cc);
     }
-    MI_Copy36B(m1, &data_0217029c.mUnk_bc);
-    data_0217029c.mUnk_fc &= ~0xa4;
-    func_0201100c(&t);
-    func_02011034();
+    MI_Copy36B(m1, data_0217029c.mPrmBaseRot);
+    data_0217029c.mFlag &= ~0xa4;
+    NNS_G3dGlbSetBaseTrans(&t);
+    NNS_G3dGlbFlushP();
     if (param_1->mUnk_00 != -1 && param_1->mUnk_04 != -1) {
         func_02078934(param_3);
         if (param_1->mUnk_1c != NULL) {
@@ -1626,9 +1626,9 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
                     u.y = e->y >> 4;
                     u.z = e->z >> 4;
                     MTX_MultVec43(&u, &m3, &t);
-                    func_02010fe4(&w);
-                    func_0201100c(&t);
-                    func_02011034();
+                    NNS_G3dGlbSetBaseScale(&w);
+                    NNS_G3dGlbSetBaseTrans(&t);
+                    NNS_G3dGlbFlushP();
                     if (param_3 != 0) {
                         func_02084f68(param_1->mUnk_18);
                     } else {
@@ -1640,8 +1640,8 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
         }
         if (param_1->mUnk_10 != NULL) {
             MTX_MultVec43(&param_1->mUnk_20->mUnk_44[param_1->mUnk_00], &m3, &t);
-            func_0201100c(&t);
-            func_02011034();
+            NNS_G3dGlbSetBaseTrans(&t);
+            NNS_G3dGlbFlushP();
             if (param_3 != 0) {
                 func_02084f68(param_1->mUnk_10);
             } else {
@@ -1867,7 +1867,7 @@ void func_0207800c(void) {
 }
 
 void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3) {
-    Unk0201290c *e;
+    NNSG3dResMdl *e;
     u8 *t;
     u8 *u;
     u8 *w;
@@ -1876,14 +1876,14 @@ void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3) {
     e = param_2->mUnk_010[0]->mUnk_04;
     DC_FlushRange(param_3, 0x20);
     if (func_020799a0(param_1) != 0) {
-        k = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02154ff8);
+        k = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02154ff8);
     } else {
-        k = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02155068);
+        k = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02155068);
     }
-    t = (u8 *) e + e->mEntriesOffset;
+    t = (u8 *) e + e->mOfsMat;
     u = t + 4;
     w = u + *(u16 *) (t + 0xa);
-    h = ((Unk0201290c_08 *) (t + *(u32 *) (w + *(u16 *) w * k + 4)))->mUnk_1c << 4;
+    h = ((NNSG3dResMatData *) (t + *(u32 *) (w + *(u16 *) w * k + 4)))->mTexPlttBase << 4;
     GX_BeginLoadTexPltt();
     GX_LoadTexPltt(param_3, h, 0x20);
     GX_EndLoadTexPltt();
@@ -1981,14 +1981,14 @@ void LoadKartAndCharacterFiles(void) {
     NNS_FndDestroyExpHeap(p->mUnk_04);
     p->mUnk_04 = NNS_FndCreateExpHeapEx(p->mUnk_00, 0xf000, 0);
     if (b != -1 && p->mUnk_08 != NULL) {
-        func_02012b30(p->mUnk_08);
-        func_02012b30(p->mUnk_0c);
-        func_02012b30(p->mUnk_10);
-        func_02012b30(p->mUnk_18);
-        func_02012b30(p->mUnk_1c);
-        func_02012b30(p->mUnk_20);
-        func_02012b30(p->mUnk_24);
-        func_02012b30(p->mUnk_28);
+        NNS_G3dResDefaultRelease(p->mUnk_08);
+        NNS_G3dResDefaultRelease(p->mUnk_0c);
+        NNS_G3dResDefaultRelease(p->mUnk_10);
+        NNS_G3dResDefaultRelease(p->mUnk_18);
+        NNS_G3dResDefaultRelease(p->mUnk_1c);
+        NNS_G3dResDefaultRelease(p->mUnk_20);
+        NNS_G3dResDefaultRelease(p->mUnk_24);
+        NNS_G3dResDefaultRelease(p->mUnk_28);
     }
     e = (char *) &data_0217ad08->mUnk_1c8[c];
     func_02048590(BuildCharacterNsbmdPath(b, 1), p->mUnk_04, (void **) &p->mUnk_08);

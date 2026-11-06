@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02012b30.h" // MtxFx43, Unk020136f0
+#include "code_02012b30.h" // MtxFx43, NNSG3dResFileHeader
 #include "Main/Unknown/code_020846c0.h"
 #include "Main/Unknown/code_02087d0c.h"
 #include "Main/Unknown/code_02017000.h"
@@ -37,7 +37,7 @@ void func_0208dc50(Unk0208e490 *a);
 void func_0208dcbc(Unk0208e490 *a);
 void func_0208dd10(Unk0208e490 *a);
 void func_0208dd6c(Unk0208e490 *a, s32 b);
-void func_0208ddf4(void *a, s32 b, Unk020136f0 *c, void *d, void *e, void *f);
+void func_0208ddf4(void *a, s32 b, NNSG3dResFileHeader *c, void *d, void *e, void *f);
 void func_0208e098(void *a);
 void func_0208e23c(void);
 void func_0208e2c8(Unk0216618c *a, s32 b);

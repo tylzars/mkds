@@ -7,75 +7,137 @@ typedef struct MtxFx43 {
     /* 00 */ Vec3 mUnk_00[4];
 } MtxFx43;
 
-// Entry of the table at mUnk_08 of Unk0201290c.
-typedef struct Unk0201290c_08 {
-    /* 00 */ u8 mUnk_00[4];
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u32 mUnk_0c; // bits 16-20 are tested
-    /* 10 */ u8 mUnk_10[4];
-    /* 14 */ u32 mUnk_14;
-    /* 18 */ u8 mUnk_18[4];
-    /* 1c */ u16 mUnk_1c;
-    /* 1e */ u16 mUnk_1e; // bits 0-3, 5 and 13 are tested
-    /* 20 */ u16 mUnk_20;
-    /* 22 */ u16 mUnk_22;
-    /* 24 */ u32 mUnk_24;
-    /* 28 */ u32 mUnk_28;
-    /* 2c */ u8 mUnk_2c[1];
-} Unk0201290c_08;
+typedef struct NNSG3dResDictTreeNode {
+    /* 00 */ u8 mRefBit;
+    /* 01 */ u8 mIdxLeft;
+    /* 02 */ u8 mIdxRight;
+    /* 03 */ u8 mIdxEntry;
+} NNSG3dResDictTreeNode;
 
-// Object with the offsets of two tables at mEntriesOffset and mUnk_0c, counted from this object.
-typedef struct Unk0201290c {
-    /* 00 */ u8 mUnk_00[8];
-    /* 08 */ u32 mEntriesOffset;
-    /* 0c */ u32 mUnk_0c;
-    /* 10 */ u8 mUnk_10[6];
-    /* 16 */ u8 mUnk_16;
-    /* 17 */ u8 mUnk_17;
-    /* 18 */ u8 mEntryCount; // the per-entry functions run for indexes below this
-    /* 19 */ u8 mUnk_19[3];
-    /* 1c */ s32 mUnk_1c;
-    /* 20 */ s32 mUnk_20;
-} Unk0201290c;
+typedef struct NNSG3dResDict {
+    /* 00 */ u8 mRevision;
+    /* 01 */ u8 mNumEntry;
+    /* 02 */ u16 mSizeDictBlk;
+    /* 04 */ u16 mDummy_;
+    /* 06 */ u16 mOfsEntry;
+    /* 08 */ NNSG3dResDictTreeNode mNode[1];
+} NNSG3dResDict;
 
-// Argument of func_020136f0 and func_02013c18: a tag word at 0x00, at 0x0c the offset of a table of word offsets and
-// at 0x0e the number of entries (1 selects the layout func_020136f0 tests the tag for).
-typedef struct Unk020136f0 {
-    /* 00 */ u32 mUnk_00;
-    /* 04 */ u8 mUnk_04[8];
-    /* 0c */ u16 mUnk_0c;
-    /* 0e */ u16 mUnk_0e;
-} Unk020136f0;
+typedef struct NNSG3dResDictEntryHeader {
+    /* 00 */ u16 mSizeUnit;
+    /* 02 */ u16 mOfsName;
+    /* 04 */ u8 mData[4];
+} NNSG3dResDictEntryHeader;
 
-void func_02012b30(Unk020136f0 *a);
-s32 func_02012cbc(Unk020136f0 *a);
-void func_02012f24(void);
-void func_02012f58(MtxFx43 *a, void *b);
-void func_02012ffc(Unk0201290c *a, u32 b);
-void func_02013044(Unk0201290c *a, u32 b);
-void func_0201308c(Unk0201290c *a, u32 b);
-void func_020130d4(Unk0201290c *a, u32 b);
-void func_0201311c(Unk0201290c *a, u32 b);
-void func_02013164(Unk0201290c *a, u32 b);
-void func_020131ac(Unk0201290c *a, u32 b);
-void func_020131f4(Unk0201290c *a, u32 b);
-void func_0201323c(Unk0201290c *a, u32 b);
-void func_02013284(Unk0201290c *a, u32 b);
-void func_020132cc(Unk0201290c *a, u32 b);
-u32 func_02013314(Unk0201290c *a, u32 b);
-u32 func_02013344(Unk0201290c *a, u32 b);
-u32 func_02013378(Unk0201290c *a, u32 b);
-u32 func_020133ac(Unk0201290c *a, u32 b);
-void func_020133e0(Unk0201290c *a, u32 b, s32 c);
-void func_02013424(Unk0201290c *a, u32 b, s32 c);
-void func_02013468(Unk0201290c *a, u32 b, u32 c);
-void func_020134b0(Unk0201290c *a, u32 b, u32 c);
-void func_020134f8(Unk0201290c *a, u32 b, u32 c);
-void func_02013540(Unk0201290c *a, u32 b, u32 c);
-void func_02013588(Unk0201290c *a, u32 b, u32 c);
-void func_020135d0(Unk0201290c *a, u32 b, u32 c);
-void func_02013618(Unk0201290c *a, u32 b, u32 c);
-void func_02013660(Unk0201290c *a, u32 b, u32 c);
-void func_020136a8(Unk0201290c *a, u32 b, u32 c);
-void *func_020136f0(Unk020136f0 *a);
+typedef struct NNSG3dResShp {
+    /* 00 */ NNSG3dResDict mDict;
+} NNSG3dResShp;
+
+typedef struct NNSG3dResMat {
+    /* 00 */ u16 mOfsDictTexToMatList;
+    /* 02 */ u16 mOfsDictPlttToMatList;
+    /* 04 */ NNSG3dResDict mDict;
+} NNSG3dResMat;
+
+typedef struct NNSG3dResMatData {
+    /* 00 */ u16 mItemTag;
+    /* 02 */ u16 mSize;
+    /* 04 */ u32 mDiffAmb;
+    /* 08 */ u32 mSpecEmi;
+    /* 0c */ u32 mPolyAttr; // bits 16-20 are the alpha
+    /* 10 */ u32 mPolyAttrMask;
+    /* 14 */ u32 mTexImageParam;
+    /* 18 */ u32 mTexImageParamMask;
+    /* 1c */ u16 mTexPlttBase;
+    /* 1e */ u16 mFlag; // bits 0-3, 5 and 13 are tested
+    /* 20 */ u16 mOrigWidth;
+    /* 22 */ u16 mOrigHeight;
+    /* 24 */ s32 mMagW;
+    /* 28 */ s32 mMagH;
+    /* 2c */ u8 mTexMtxData[1]; // optional texture matrix words follow
+} NNSG3dResMatData;
+
+typedef struct NNSG3dResShpData {
+    /* 00 */ u16 mItemTag;
+    /* 02 */ u16 mSize;
+    /* 04 */ u32 mFlag;
+    /* 08 */ u32 mOfsDL; // byte offset from this struct
+    /* 0c */ u32 mSizeDL; // second argument of NNS_G3dGeSendDL
+} NNSG3dResShpData;
+
+typedef struct NNSG3dResMdlInfo {
+    /* 00 */ u8 mSbcType;
+    /* 01 */ u8 mScalingRule;
+    /* 02 */ u8 mTexMtxMode;
+    /* 03 */ u8 mNumNode;
+    /* 04 */ u8 mNumMat;
+    /* 05 */ u8 mNumShp;
+    /* 06 */ u8 mFirstUnusedMtxStackID;
+    /* 07 */ u8 mDummy_;
+    /* 08 */ s32 mPosScale;
+    /* 0c */ s32 mInvPosScale;
+    /* 10 */ u16 mNumVertex;
+    /* 12 */ u16 mNumPolygon;
+    /* 14 */ u16 mNumTriangle;
+    /* 16 */ u16 mNumQuad;
+    /* 18 */ s16 mBoxX;
+    /* 1a */ s16 mBoxY;
+    /* 1c */ s16 mBoxZ;
+    /* 1e */ s16 mBoxW;
+    /* 20 */ s16 mBoxH;
+    /* 22 */ s16 mBoxD;
+    /* 24 */ s32 mBoxPosScale;
+    /* 28 */ s32 mBoxInvPosScale;
+} NNSG3dResMdlInfo;
+
+// Model resource: byte offsets (counted from this struct) of the SBC, material and shape blocks.
+typedef struct NNSG3dResMdl {
+    /* 00 */ u32 mSize;
+    /* 04 */ u32 mOfsSbc;
+    /* 08 */ u32 mOfsMat;
+    /* 0c */ u32 mOfsShp;
+    /* 10 */ u32 mOfsEvpMtx;
+    /* 14 */ NNSG3dResMdlInfo mInfo;
+} NNSG3dResMdl;
+
+// File file of a model or texture resource: signature, then at headerSize the table of data block offsets.
+typedef struct NNSG3dResFileHeader {
+    /* 00 */ u32 mSigVal;
+    /* 04 */ u16 mByteOrder;
+    /* 06 */ u16 mVersion;
+    /* 08 */ u32 mFileSize;
+    /* 0c */ u16 mHeaderSize;
+    /* 0e */ u16 mDataBlocks;
+} NNSG3dResFileHeader;
+
+void NNS_G3dResDefaultRelease(NNSG3dResFileHeader *file);
+s32 NNS_G3dResDefaultSetup(NNSG3dResFileHeader *file);
+void NNS_G3dInit(void);
+void NNS_G3dGetCurrentMtx(MtxFx43 *pos, void *vec);
+void NNS_G3dMdlSetMdlXLDepthUpdateAll(NNSG3dResMdl *mdl, u32 flag);
+void NNS_G3dMdlSetMdlFogEnableFlagAll(NNSG3dResMdl *mdl, u32 flag);
+void NNS_G3dMdlSetMdlAlphaAll(NNSG3dResMdl *mdl, u32 alpha);
+void NNS_G3dMdlSetMdlPolygonIDAll(NNSG3dResMdl *mdl, u32 polygonId);
+void NNS_G3dMdlSetMdlCullModeAll(NNSG3dResMdl *mdl, u32 cullMode);
+void NNS_G3dMdlSetMdlPolygonModeAll(NNSG3dResMdl *mdl, u32 polyMode);
+void NNS_G3dMdlSetMdlLightEnableFlagAll(NNSG3dResMdl *mdl, u32 light);
+void NNS_G3dMdlSetMdlEmiAll(NNSG3dResMdl *mdl, u32 color);
+void NNS_G3dMdlSetMdlSpecAll(NNSG3dResMdl *mdl, u32 color);
+void NNS_G3dMdlSetMdlAmbAll(NNSG3dResMdl *mdl, u32 color);
+void NNS_G3dMdlSetMdlDiffAll(NNSG3dResMdl *mdl, u32 color);
+u32 NNS_G3dMdlGetMdlFogEnableFlag(NNSG3dResMdl *mdl, u32 matId);
+u32 NNS_G3dMdlGetMdlAlpha(NNSG3dResMdl *mdl, u32 matId);
+u32 NNS_G3dMdlGetMdlPolygonID(NNSG3dResMdl *mdl, u32 matId);
+u32 NNS_G3dMdlGetMdlCullMode(NNSG3dResMdl *mdl, u32 matId);
+void NNS_G3dMdlSetMdlXLDepthUpdate(NNSG3dResMdl *mdl, u32 matId, s32 flag);
+void NNS_G3dMdlSetMdlFogEnableFlag(NNSG3dResMdl *mdl, u32 matId, s32 flag);
+void NNS_G3dMdlSetMdlAlpha(NNSG3dResMdl *mdl, u32 matId, u32 alpha);
+void NNS_G3dMdlSetMdlPolygonID(NNSG3dResMdl *mdl, u32 matId, u32 polygonId);
+void NNS_G3dMdlSetMdlCullMode(NNSG3dResMdl *mdl, u32 matId, u32 cullMode);
+void NNS_G3dMdlSetMdlPolygonMode(NNSG3dResMdl *mdl, u32 matId, u32 polyMode);
+void NNS_G3dMdlSetMdlLightEnableFlag(NNSG3dResMdl *mdl, u32 matId, u32 light);
+void NNS_G3dMdlSetMdlEmi(NNSG3dResMdl *mdl, u32 matId, u32 color);
+void NNS_G3dMdlSetMdlSpec(NNSG3dResMdl *mdl, u32 matId, u32 color);
+void NNS_G3dMdlSetMdlAmb(NNSG3dResMdl *mdl, u32 matId, u32 color);
+void NNS_G3dMdlSetMdlDiff(NNSG3dResMdl *mdl, u32 matId, u32 color);
+void *NNS_G3dGetTex(NNSG3dResFileHeader *file);

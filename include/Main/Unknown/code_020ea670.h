@@ -2,13 +2,13 @@
 
 #include "types.h"
 
-typedef struct Unk0201290c Unk0201290c;
+typedef struct NNSG3dResMdl NNSG3dResMdl;
 typedef struct Unk020ebef8 Unk020ebef8;
 
 // First argument of func_020ea670, func_020ea740, func_020ea7cc and func_020ea8a8.
 typedef struct Unk020ea670 {
     /* 000 */ void *mUnk_000;
-    /* 004 */ Unk0201290c *mUnk_004;
+    /* 004 */ NNSG3dResMdl *mUnk_004;
 } Unk020ea670;
 
 extern Unk020ea670 *gWoodbox1;

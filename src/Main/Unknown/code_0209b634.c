@@ -120,7 +120,7 @@ void func_0209b9a4(void *a, u16 b) {
         m->mUnk_14 |= b << 16;
     }
     if (o->mAnimatedModel != NULL) {
-        func_0201308c(o->mAnimatedModel->mUnk_004, b);
+        NNS_G3dMdlSetMdlAlphaAll(o->mAnimatedModel->mUnk_004, b);
     }
     if (o->mShadowModel != NULL) {
         o->mShadowModel->mUnk_6e = b;
@@ -138,7 +138,7 @@ void SetMapObjectModelPolygonId(void *a, u32 b) {
         m->mUnk_14 |= b << 24;
     }
     if (o->mAnimatedModel != NULL) {
-        func_020130d4(o->mAnimatedModel->mUnk_004, b);
+        NNS_G3dMdlSetMdlPolygonIDAll(o->mAnimatedModel->mUnk_004, b);
     }
     if (o->mShadowModel != NULL) {
         o->mShadowModel->mUnk_6c = b;
@@ -151,7 +151,7 @@ void func_0209b904(void *a, u32 b, u16 c) {
     if (o->mAnimatedModel == NULL) {
         return;
     }
-    func_020134b0(o->mAnimatedModel->mUnk_004, c, b);
+    NNS_G3dMdlSetMdlPolygonID(o->mAnimatedModel->mUnk_004, c, b);
 }
 
 void func_0209b8ac(void *a, u32 b) {
@@ -168,7 +168,7 @@ void func_0209b8ac(void *a, u32 b) {
     if (o->mAnimatedModel == NULL) {
         return;
     }
-    func_02013044(o->mAnimatedModel->mUnk_004, b);
+    NNS_G3dMdlSetMdlFogEnableFlagAll(o->mAnimatedModel->mUnk_004, b);
 }
 
 void func_0209b7a0(void *a, s32 b, s32 c) {

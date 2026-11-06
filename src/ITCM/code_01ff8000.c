@@ -57,7 +57,7 @@ void func_01ff9144(const void *a, u32 b) {
     }
     func_01ff9234();
     data_usa_021731e8 = 1;
-    if (*(u32 *) data_0217320c != 0) {
+    if (data_0217320c != 0) {
         MI_SendGXCommandAsyncFast(data_0216f074[0], a, b, (MIDmaCallback) func_01ff9210, &data_usa_021731e8);
     } else {
         MI_SendGXCommandAsync(data_0216f074[0], a, b, (MIDmaCallback) func_01ff9210, &data_usa_021731e8);
@@ -262,8 +262,8 @@ void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b) {
     u32 w;
     u32 m;
     u32 *d;
-    Unk0201290c_1c *o;
-    Unk0201290c_1c *v1;
+    NNSG3dMatAnmResult *o;
+    NNSG3dMatAnmResult *v1;
     u8 *h;
     u8 *t;
     s32 k;
@@ -314,11 +314,11 @@ void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b) {
     }
     k = *(u16 *) (e + 0x1e);
     x = ((u32 *) data_usa_02152bec)[(k >> 6) & 7];
-    o->mUnk_04 = (data_0217029c.mUnk_94 & ~x) | (*(u32 *) (e + 4) & x);
+    o->mUnk_04 = (data_0217029c.mPrmMatColor0 & ~x) | (*(u32 *) (e + 4) & x);
     y = ((u32 *) data_usa_02152bec)[(*(u16 *) (e + 0x1e) >> 9) & 7];
-    o->mUnk_08 = (data_0217029c.mUnk_98 & ~y) | (*(u32 *) (e + 8) & y);
+    o->mUnk_08 = (data_0217029c.mPrmMatColor1 & ~y) | (*(u32 *) (e + 8) & y);
     x = *(u32 *) (e + 0x10);
-    o->mUnk_0c = (data_0217029c.mUnk_9c & ~x) | (*(u32 *) (e + 0xc) & x);
+    o->mUnk_0c = (data_0217029c.mPrmPolygonAttr & ~x) | (*(u32 *) (e + 0xc) & x);
     o->mUnk_10 = *(u32 *) (e + 0x14);
     o->mUnk_14 = *(u16 *) (e + 0x1c);
     k = *(u16 *) (e + 0x1e);
@@ -407,7 +407,7 @@ void func_01ff86b4(Unk02170500 *s, u32 a) {
     s->mUnk_00 += 2;
 }
 
-void func_01ff8648(Unk02170500 *s, u32 a, Unk0201290c_0c *c) {
+void func_01ff8648(Unk02170500 *s, u32 a, NNSG3dResShpData *c) {
     u32 w;
 
     if (s->mUnk_0c[5] != 0) {
@@ -416,7 +416,7 @@ void func_01ff8648(Unk02170500 *s, u32 a, Unk0201290c_0c *c) {
         w = 0;
     }
     if (!(s->mUnk_08 & 0x100)) {
-        func_01ff9144((u8 *) c + c->mUnk_08, c->mUnk_0c);
+        func_01ff9144((u8 *) c + c->mOfsDL, c->mSizeDL);
     }
     if (w == 3) {
         s->mUnk_08 &= ~0x40;

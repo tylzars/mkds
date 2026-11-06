@@ -13,7 +13,7 @@ typedef struct Unk0217ad08_058 Unk0217ad08_058;
 typedef struct Unk0217ad08_058 Unk0217ad08_058;
 typedef struct Unk0217ad08_024 Unk0217ad08_024;
 
-typedef struct Unk020136f0 Unk020136f0;
+typedef struct NNSG3dResFileHeader NNSG3dResFileHeader;
 
 typedef struct Unk0217ad08_024 Unk0217ad08_024;
 
@@ -83,12 +83,12 @@ void func_02078d64(void *param_1);
 void func_02078e4c(void *param_1, void *param_2);
 void func_02078ee0(Unk0217ad08_024 *a, int b);
 void func_02078f18(void *a, Unk0217ad08_058 *b);
-void func_02078f78(Unk020136f0 *a);
+void func_02078f78(NNSG3dResFileHeader *a);
 void func_02078f9c(void *c);
-void *func_02079008(void *a, Unk020136f0 *b);
-void func_02079014(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c);
-void func_02079038(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c);
-void func_02079078(void *a, Unk02084b2c *b, void *c, Unk020136f0 *d, Unk020136f0 *e, void *f);
+void *func_02079008(void *a, NNSG3dResFileHeader *b);
+void func_02079014(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
+void func_02079038(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c);
+void func_02079078(void *a, Unk02084b2c *b, void *c, NNSG3dResFileHeader *d, NNSG3dResFileHeader *e, void *f);
 void func_020790e0(void *a, s32 b);
 void func_020792c8(Unk0206bcb0_590 *a, s32 b);
 void func_0207940c(Unk02084b2c *a, s32 b, void *c);

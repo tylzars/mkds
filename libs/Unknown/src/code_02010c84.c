@@ -20,843 +20,875 @@
 #include "code_021471bc.h"
 #include "code_02147954.h"
 
-void func_0201290c(Unk0201290c *a, u32 b, u32 c, s32 d) {
-    u32 s[7];
-    Unk0201290c_1c t;
-    s32 v[3];
-    s32 w[3];
-    u8 *p;
-    u8 *q;
-    Unk0201290c_08 *e;
-    Unk0201290c_0c *f;
-    u16 *h;
-    s32 k;
-    void (*fn)(Unk0201290c_1c *);
-    u32 x;
+// Draws one shape of the model, first sending the material and the texture matrix when sendMat is set.
+void NNS_G3dDraw1Mat1Shp(NNSG3dResMdl *resMdl, u32 matId, u32 shpId, BOOL sendMat) {
+    u32 words[7];
+    NNSG3dMatAnmResult texResult;
+    s32 scale[3];
+    s32 invScale[3];
+    u8 *texMtx;
+    NNSG3dResMat *matBlock;
+    NNSG3dResShp *shpBlock;
+    NNSG3dResDictEntryHeader *entries;
+    NNSG3dResMatData *matData;
+    NNSG3dResShpData *shpData;
+    s32 posScale;
+    void (*sendTexSRT)(NNSG3dMatAnmResult *);
+    u32 polyAttr;
 
-    k = a->mUnk_1c;
-    if (k != 0x1000) {
-        v[0] = k;
-        v[1] = k;
-        v[2] = k;
-        func_01ff9048(0x1b, v, 3);
+    posScale = resMdl->mInfo.mPosScale;
+    if (posScale != 0x1000) {
+        scale[0] = posScale;
+        scale[1] = posScale;
+        scale[2] = posScale;
+        func_01ff9048(0x1b, scale, 3);
     }
-    if (d != 0) {
-        q = (u8 *) a + a->mEntriesOffset;
-        h = (u16 *) (q + 4 + *(u16 *) (q + 0xa));
-        e = (Unk0201290c_08 *) (q + *(u32 *) ((u8 *) h + *h * b + 4));
-        if (!(e->mUnk_0c & 0x1f0000)) {
+    if (sendMat != 0) {
+        matBlock = (NNSG3dResMat *) ((u8 *) resMdl + resMdl->mOfsMat);
+        entries = (NNSG3dResDictEntryHeader *) ((u8 *) &matBlock->mDict + matBlock->mDict.mOfsEntry);
+        matData = (NNSG3dResMatData *) ((u8 *) matBlock + *(u32 *) (entries->mData + entries->mSizeUnit * matId));
+        if (!(matData->mPolyAttr & 0x1f0000)) {
             return;
         }
-        s[0] = 0x293130;
-        s[1] = e->mUnk_04;
-        s[2] = e->mUnk_08;
-        x = e->mUnk_0c;
-        s[3] = x;
-        if (e->mUnk_1e & 0x20) {
-            s[3] = x & ~0x1f0000;
+        words[0] = 0x293130;
+        words[1] = matData->mDiffAmb;
+        words[2] = matData->mSpecEmi;
+        polyAttr = matData->mPolyAttr;
+        words[3] = polyAttr;
+        if (matData->mFlag & 0x20) {
+            words[3] = polyAttr & ~0x1f0000;
         }
-        s[4] = 0x2b2a;
-        s[5] = e->mUnk_14;
-        s[6] = e->mUnk_1c;
-        func_01ff9048(s[0], &s[1], 6);
-        if (e->mUnk_1e & 1) {
-            fn = data_0216185c[a->mUnk_16];
-            t.mUnk_00 = 8;
-            t.mUnk_2c = e->mUnk_20;
-            t.mUnk_2e = e->mUnk_22;
-            t.mUnk_30 = e->mUnk_24;
-            t.mUnk_34 = e->mUnk_28;
-            p = e->mUnk_2c;
-            if (!(e->mUnk_1e & 2)) {
-                t.mUnk_18[0] = ((u32 *) p)[0];
-                t.mUnk_18[1] = ((u32 *) p)[1];
-                p += 8;
+        words[4] = 0x2b2a;
+        words[5] = matData->mTexImageParam;
+        words[6] = matData->mTexPlttBase;
+        func_01ff9048(words[0], &words[1], 6);
+        if (matData->mFlag & 1) {
+            sendTexSRT = data_0216185c[resMdl->mInfo.mTexMtxMode];
+            texResult.mUnk_00 = 8;
+            texResult.mUnk_2c = matData->mOrigWidth;
+            texResult.mUnk_2e = matData->mOrigHeight;
+            texResult.mUnk_30 = matData->mMagW;
+            texResult.mUnk_34 = matData->mMagH;
+            texMtx = matData->mTexMtxData;
+            if (!(matData->mFlag & 2)) {
+                texResult.mUnk_18[0] = ((u32 *) texMtx)[0];
+                texResult.mUnk_18[1] = ((u32 *) texMtx)[1];
+                texMtx += 8;
             } else {
-                t.mUnk_00 |= 1;
+                texResult.mUnk_00 |= 1;
             }
-            if (!(e->mUnk_1e & 4)) {
-                t.mUnk_20[0] = ((s16 *) p)[0];
-                t.mUnk_20[1] = ((s16 *) p)[1];
-                p += 4;
+            if (!(matData->mFlag & 4)) {
+                texResult.mUnk_20[0] = ((s16 *) texMtx)[0];
+                texResult.mUnk_20[1] = ((s16 *) texMtx)[1];
+                texMtx += 4;
             } else {
-                t.mUnk_00 |= 2;
+                texResult.mUnk_00 |= 2;
             }
-            if (!(e->mUnk_1e & 8)) {
-                t.mUnk_24[0] = ((u32 *) p)[0];
-                t.mUnk_24[1] = ((u32 *) p)[1];
+            if (!(matData->mFlag & 8)) {
+                texResult.mUnk_24[0] = ((u32 *) texMtx)[0];
+                texResult.mUnk_24[1] = ((u32 *) texMtx)[1];
             } else {
-                t.mUnk_00 |= 4;
+                texResult.mUnk_00 |= 4;
             }
-            fn(&t);
+            sendTexSRT(&texResult);
         }
     }
-    q = (u8 *) a + a->mUnk_0c;
-    h = (u16 *) (q + *(u16 *) (q + 6));
-    f = (Unk0201290c_0c *) (q + *(u32 *) ((u8 *) h + *h * c + 4));
-    func_01ff9144((u8 *) f + f->mUnk_08, f->mUnk_0c);
-    k = a->mUnk_20;
-    if (k != 0x1000) {
-        w[0] = k;
-        w[1] = k;
-        w[2] = k;
-        func_01ff9048(0x1b, w, 3);
+    shpBlock = (NNSG3dResShp *) ((u8 *) resMdl + resMdl->mOfsShp);
+    entries = (NNSG3dResDictEntryHeader *) ((u8 *) &shpBlock->mDict + shpBlock->mDict.mOfsEntry);
+    shpData = (NNSG3dResShpData *) ((u8 *) shpBlock + *(u32 *) (entries->mData + entries->mSizeUnit * shpId));
+    func_01ff9144((u8 *) shpData + shpData->mOfsDL, shpData->mSizeDL);
+    posScale = resMdl->mInfo.mInvPosScale;
+    if (posScale != 0x1000) {
+        invScale[0] = posScale;
+        invScale[1] = posScale;
+        invScale[2] = posScale;
+        func_01ff9048(0x1b, invScale, 3);
     }
 }
 
-void func_0201261c(Unk02011624 *a, u32 b) {
-    u32 c;
-    u32 c2;
-    s32 mm[16];
-    s32 m2[16];
-    s32 m3[16];
-    u32 v;
+// SBC command for a billboard node.
+void NNSi_G3dFuncSbc_BB(NNSG3dRS *state, u32 mode) {
+    u32 restoreIdx;
+    u32 storeIdx;
+    s32 clipMtx[16];
+    s32 invWV[16];
+    s32 camMtx[16];
+    u32 timing;
     u32 n = 2;
-    Vec3 *p0c = &data_0216190c;
-    Vec3 *p18 = &data_02161918;
+    Vec3 *pos = &data_0216190c;
+    Vec3 *scale = &data_02161918;
 
-    if (a->mUnk_08 & 0x200) {
-        if (b == 0x40 || b == 0x60) {
+    if (state->mFlag & 0x200) {
+        if (mode == 0x40 || mode == 0x60) {
             n++;
         }
-        if (b == 0x20 || b == 0x60) {
+        if (mode == 0x20 || mode == 0x60) {
             n++;
         }
-        a->mUnk_00 += n;
+        state->mC += n;
         return;
     }
-    if (b == 0x40 || b == 0x60) {
+    if (mode == 0x40 || mode == 0x60) {
         n++;
-        if (!(a->mUnk_08 & 0x100)) {
-            if (b == 0x40) {
-                c = a->mUnk_00[2];
+        if (!(state->mFlag & 0x100)) {
+            if (mode == 0x40) {
+                restoreIdx = state->mC[2];
             } else {
-                c = a->mUnk_00[3];
+                restoreIdx = state->mC[3];
             }
-            func_01ff9048(0x14, &c, 1);
+            func_01ff9048(0x14, &restoreIdx, 1);
         }
     }
-    if (a->mUnk_28 != 0) {
-        v = a->mUnk_93;
+    if (state->mCbVecFunc[7] != 0) {
+        timing = state->mCbVecTiming[7];
     } else {
-        v = 0;
+        timing = 0;
     }
-    if (!(a->mUnk_08 & 0x100)) {
+    if (!(state->mFlag & 0x100)) {
         func_01ff9234();
         reg_G3X_GXFIFO = 0x151110;
         reg_G3X_GXFIFO = 0;
         reg_G3X_GXFIFO = 0;
-        while (G3X_GetClipMtx(mm) != 0) {
+        while (G3X_GetClipMtx(clipMtx) != 0) {
         }
-        if (data_0217029c.mUnk_fc & 1) {
-            MTX_Copy43To44_(func_02010e2c(), m2);
-            MTX_Concat44(mm, m2, mm);
-        } else if (data_0217029c.mUnk_fc & 2) {
-            MTX_Copy43To44_(&data_0217029c.mUnk_4c, m3);
-            MTX_Concat44(mm, m3, mm);
+        if (data_0217029c.mFlag & 1) {
+            MTX_Copy43To44_(NNS_G3dGlbGetWV(), invWV);
+            MTX_Concat44(clipMtx, invWV, clipMtx);
+        } else if (data_0217029c.mFlag & 2) {
+            MTX_Copy43To44_(&data_0217029c.mCameraMtx, camMtx);
+            MTX_Concat44(clipMtx, camMtx, clipMtx);
         }
-        p0c->x = mm[12];
-        p0c->y = mm[13];
-        p0c->z = mm[14];
-        p18->x = VEC_Mag((Vec3 *) &mm[0]);
-        p18->y = VEC_Mag((Vec3 *) &mm[4]);
-        p18->z = VEC_Mag((Vec3 *) &mm[8]);
-        if (data_0217029c.mUnk_fc & 1) {
+        pos->x = clipMtx[12];
+        pos->y = clipMtx[13];
+        pos->z = clipMtx[14];
+        scale->x = VEC_Mag((Vec3 *) &clipMtx[0]);
+        scale->y = VEC_Mag((Vec3 *) &clipMtx[4]);
+        scale->z = VEC_Mag((Vec3 *) &clipMtx[8]);
+        if (data_0217029c.mFlag & 1) {
             reg_G3X_GXFIFO = 0x171012;
             MIi_CpuSend32(data_021618e0, &reg_G3X_GXFIFO, 8);
-            MIi_CpuSend32(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
+            MIi_CpuSend32(NNS_G3dGlbGetInvWV(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
             MIi_CpuSend32(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
-        } else if (data_0217029c.mUnk_fc & 2) {
+        } else if (data_0217029c.mFlag & 2) {
             reg_G3X_GXFIFO = 0x171012;
             MIi_CpuSend32(data_021618e0, &reg_G3X_GXFIFO, 8);
-            MIi_CpuSend32(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
+            MIi_CpuSend32(NNS_G3dGlbGetInvV(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
             MIi_CpuSend32(data_021618e8, &reg_G3X_GXFIFO, 0x3c);
         } else {
             MIi_CpuSend32(data_021618dc, &reg_G3X_GXFIFO, 0x48);
         }
     }
-    if (v == 3) {
-        a->mUnk_08 &= ~0x40;
-        a->mUnk_28(a);
-        v = a->mUnk_08 & 0x40;
+    if (timing == 3) {
+        state->mFlag &= ~0x40;
+        state->mCbVecFunc[7](state);
+        timing = state->mFlag & 0x40;
     } else {
-        v = 0;
+        timing = 0;
     }
-    if (b == 0x20 || b == 0x60) {
+    if (mode == 0x20 || mode == 0x60) {
         n++;
-        if (v == 0 && !(a->mUnk_08 & 0x100)) {
-            c2 = a->mUnk_00[2];
-            func_01ff9048(0x13, &c2, 1);
+        if (timing == 0 && !(state->mFlag & 0x100)) {
+            storeIdx = state->mC[2];
+            func_01ff9048(0x13, &storeIdx, 1);
         }
     }
-    a->mUnk_00 += n;
+    state->mC += n;
 }
 
-void func_020122cc(Unk02011624 *a, u32 b) {
-    u32 c;
-    u32 c2;
-    s32 mm[16];
-    s32 m2[16];
-    s32 m3[16];
-    u32 v;
+// SBC command for a billboard node that turns about the Y axis only.
+void NNSi_G3dFuncSbc_BBY(NNSG3dRS *state, u32 mode) {
+    u32 restoreIdx;
+    u32 storeIdx;
+    s32 clipMtx[16];
+    s32 invWV[16];
+    s32 camMtx[16];
+    u32 timing;
     u32 n = 2;
-    Vec3 *p54 = &data_02161954;
-    Vec3 *p60 = &data_02161960;
-    Vec3 *p30 = data_02161930;
+    Vec3 *pos = &data_02161954;
+    Vec3 *scale = &data_02161960;
+    Vec3 *axes = data_02161930;
 
-    if (a->mUnk_08 & 0x200) {
-        if (b == 0x40 || b == 0x60) {
+    if (state->mFlag & 0x200) {
+        if (mode == 0x40 || mode == 0x60) {
             n++;
         }
-        if (b == 0x20 || b == 0x60) {
+        if (mode == 0x20 || mode == 0x60) {
             n++;
         }
-        a->mUnk_00 += n;
+        state->mC += n;
         return;
     }
-    if (b == 0x40 || b == 0x60) {
+    if (mode == 0x40 || mode == 0x60) {
         n++;
-        if (!(a->mUnk_08 & 0x100)) {
-            if (b == 0x40) {
-                c = a->mUnk_00[2];
+        if (!(state->mFlag & 0x100)) {
+            if (mode == 0x40) {
+                restoreIdx = state->mC[2];
             } else {
-                c = a->mUnk_00[3];
+                restoreIdx = state->mC[3];
             }
-            func_01ff9048(0x14, &c, 1);
+            func_01ff9048(0x14, &restoreIdx, 1);
         }
     }
-    if (a->mUnk_2c != 0) {
-        v = a->mUnk_94;
+    if (state->mCbVecFunc[8] != 0) {
+        timing = state->mCbVecTiming[8];
     } else {
-        v = 0;
+        timing = 0;
     }
-    if (!(a->mUnk_08 & 0x100)) {
+    if (!(state->mFlag & 0x100)) {
         func_01ff9234();
         reg_G3X_GXFIFO = 0x151110;
         reg_G3X_GXFIFO = 0;
         reg_G3X_GXFIFO = 0;
-        while (G3X_GetClipMtx(mm) != 0) {
+        while (G3X_GetClipMtx(clipMtx) != 0) {
         }
-        if (data_0217029c.mUnk_fc & 1) {
-            MTX_Copy43To44_(func_02010e2c(), m2);
-            MTX_Concat44(mm, m2, mm);
-        } else if (data_0217029c.mUnk_fc & 2) {
-            MTX_Copy43To44_(&data_0217029c.mUnk_4c, m3);
-            MTX_Concat44(mm, m3, mm);
+        if (data_0217029c.mFlag & 1) {
+            MTX_Copy43To44_(NNS_G3dGlbGetWV(), invWV);
+            MTX_Concat44(clipMtx, invWV, clipMtx);
+        } else if (data_0217029c.mFlag & 2) {
+            MTX_Copy43To44_(&data_0217029c.mCameraMtx, camMtx);
+            MTX_Concat44(clipMtx, camMtx, clipMtx);
         }
-        p54->x = mm[12];
-        p54->y = mm[13];
-        p54->z = mm[14];
-        p60->x = VEC_Mag((Vec3 *) &mm[0]);
-        p60->y = VEC_Mag((Vec3 *) &mm[4]);
-        p60->z = VEC_Mag((Vec3 *) &mm[8]);
-        if (mm[5] != 0 || mm[6] != 0) {
-            VEC_Normalize((Vec3 *) &mm[4], &p30[1]);
-            p30[2].y = -p30[1].z;
-            p30[2].z = p30[1].y;
+        pos->x = clipMtx[12];
+        pos->y = clipMtx[13];
+        pos->z = clipMtx[14];
+        scale->x = VEC_Mag((Vec3 *) &clipMtx[0]);
+        scale->y = VEC_Mag((Vec3 *) &clipMtx[4]);
+        scale->z = VEC_Mag((Vec3 *) &clipMtx[8]);
+        if (clipMtx[5] != 0 || clipMtx[6] != 0) {
+            VEC_Normalize((Vec3 *) &clipMtx[4], &axes[1]);
+            axes[2].y = -axes[1].z;
+            axes[2].z = axes[1].y;
         } else {
-            VEC_Normalize((Vec3 *) &mm[8], &p30[2]);
-            p30[1].z = -p30[2].y;
-            p30[1].y = p30[2].z;
+            VEC_Normalize((Vec3 *) &clipMtx[8], &axes[2]);
+            axes[1].z = -axes[2].y;
+            axes[1].y = axes[2].z;
         }
-        if (data_0217029c.mUnk_fc & 1) {
+        if (data_0217029c.mFlag & 1) {
             reg_G3X_GXFIFO = 0x171012;
             MIi_CpuSend32(data_02161928, &reg_G3X_GXFIFO, 8);
-            MIi_CpuSend32(func_02010de8(), &reg_G3X_GXFIFO, 0x30);
+            MIi_CpuSend32(NNS_G3dGlbGetInvWV(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
             MIi_CpuSend32(data_02161930, &reg_G3X_GXFIFO, 0x3c);
-        } else if (data_0217029c.mUnk_fc & 2) {
+        } else if (data_0217029c.mFlag & 2) {
             reg_G3X_GXFIFO = 0x171012;
             MIi_CpuSend32(data_02161928, &reg_G3X_GXFIFO, 8);
-            MIi_CpuSend32(func_02010ed4(), &reg_G3X_GXFIFO, 0x30);
+            MIi_CpuSend32(NNS_G3dGlbGetInvV(), &reg_G3X_GXFIFO, 0x30);
             reg_G3X_GXFIFO = 0x1b19;
             MIi_CpuSend32(data_02161930, &reg_G3X_GXFIFO, 0x3c);
         } else {
             MIi_CpuSend32(data_02161924, &reg_G3X_GXFIFO, 0x48);
         }
     }
-    if (v == 3) {
-        a->mUnk_08 &= ~0x40;
-        a->mUnk_2c(a);
-        v = a->mUnk_08 & 0x40;
+    if (timing == 3) {
+        state->mFlag &= ~0x40;
+        state->mCbVecFunc[8](state);
+        timing = state->mFlag & 0x40;
     } else {
-        v = 0;
+        timing = 0;
     }
-    if (b == 0x20 || b == 0x60) {
+    if (mode == 0x20 || mode == 0x60) {
         n++;
-        if (v == 0 && !(a->mUnk_08 & 0x100)) {
-            c2 = a->mUnk_00[2];
-            func_01ff9048(0x13, &c2, 1);
+        if (timing == 0 && !(state->mFlag & 0x100)) {
+            storeIdx = state->mC[2];
+            func_01ff9048(0x13, &storeIdx, 1);
         }
     }
-    a->mUnk_00 += n;
+    state->mC += n;
 }
 
-void func_02011c58(Unk02011624 *a) {
-    u8 *q;
-    u32 n;
-    u32 d;
-    s64 v;
+// SBC command that blends several joint matrices by weight into one node matrix.
+void NNSi_G3dFuncSbc_NODEMIX(NNSG3dRS *state) {
+    u8 *invMtx;
+    u32 count;
+    u32 cached;
+    s64 weight;
     u8 *p;
     u32 i;
-    Unk02011c58_04_04 *b;
-    s32 *m;
-    s32 *r;
-    u32 k;
-    Unk02011c58_38 t;
+    NNSG3dResMdl *resMdl;
+    s32 *clip;
+    s32 *vec;
+    u32 jntIdx;
+    struct {
+        s32 pos[12];
+        s32 nrm[9];
+    } sum;
 
-    b = a->mUnk_04->mUnk_04;
-    n = a->mUnk_00[2];
-    q = (u8 *) b + b->mUnk_10;
-    v = 0;
-    p = a->mUnk_00 + 3;
-    MemFillWordsByBlock_inline(&t, sizeof(t));
+    resMdl = state->mRenderObj->mResMdl;
+    count = state->mC[2];
+    invMtx = (u8 *) resMdl + resMdl->mOfsEvpMtx;
+    weight = 0;
+    p = state->mC + 3;
+    MemFillWordsByBlock_inline(&sum, sizeof(sum));
     func_01ff9234();
     reg_G3_MTX_MODE = 0;
     reg_G3_MTX_STORE = 1;
     reg_G3_MTX_IDENTITY = 0;
     reg_G3_MTX_MODE = 2;
-    for (i = 0; i < n; i++) {
-        k = p[1];
-        d = ((s32 *) a->mUnk_cc)[k >> 5] & (1 << (k & 0x1f));
-        m = data_02171904[k];
-        if (!d) {
-            a->mUnk_cc[k >> 5] |= 1 << (k & 0x1f);
+    for (i = 0; i < count; i++) {
+        jntIdx = p[1];
+        cached = ((s32 *) state->mIsEvpCached)[jntIdx >> 5] & (1 << (jntIdx & 0x1f));
+        clip = data_02171904[jntIdx];
+        if (!cached) {
+            state->mIsEvpCached[jntIdx >> 5] |= 1 << (jntIdx & 0x1f);
             reg_G3_MTX_RESTORE = p[0];
             reg_G3_MTX_MODE = 1;
-            G3_MultMtx43(q + k * 0x54);
+            G3_MultMtx43(invMtx + jntIdx * 0x54);
         }
         if (i != 0) {
-            t.mUnk_30[0] += (v * r[0]) >> 12;
-            t.mUnk_30[1] += (v * r[1]) >> 12;
-            t.mUnk_30[2] += (v * r[2]) >> 12;
-            t.mUnk_30[3] += (v * r[3]) >> 12;
-            t.mUnk_30[4] += (v * r[4]) >> 12;
-            t.mUnk_30[5] += (v * r[5]) >> 12;
-            t.mUnk_30[6] += (v * r[6]) >> 12;
-            t.mUnk_30[7] += (v * r[7]) >> 12;
-            t.mUnk_30[8] += (v * r[8]) >> 12;
+            sum.nrm[0] += (weight * vec[0]) >> 12;
+            sum.nrm[1] += (weight * vec[1]) >> 12;
+            sum.nrm[2] += (weight * vec[2]) >> 12;
+            sum.nrm[3] += (weight * vec[3]) >> 12;
+            sum.nrm[4] += (weight * vec[4]) >> 12;
+            sum.nrm[5] += (weight * vec[5]) >> 12;
+            sum.nrm[6] += (weight * vec[6]) >> 12;
+            sum.nrm[7] += (weight * vec[7]) >> 12;
+            sum.nrm[8] += (weight * vec[8]) >> 12;
         }
-        if (!d) {
-            while (G3X_GetClipMtx(m) != 0) {
+        if (!cached) {
+            while (G3X_GetClipMtx(clip) != 0) {
             }
             reg_G3_MTX_MODE = 2;
-            G3_MultMtx33(q + k * 0x54 + 0x30);
+            G3_MultMtx33(invMtx + jntIdx * 0x54 + 0x30);
         }
-        r = data_02171944[k];
-        v = p[2] << 4;
-        t.mUnk_00[0] += (v * m[0]) >> 12;
-        t.mUnk_00[1] += (v * m[1]) >> 12;
-        t.mUnk_00[2] += (v * m[2]) >> 12;
-        t.mUnk_00[3] += (v * m[4]) >> 12;
-        t.mUnk_00[4] += (v * m[5]) >> 12;
-        t.mUnk_00[5] += (v * m[6]) >> 12;
-        t.mUnk_00[6] += (v * m[8]) >> 12;
-        t.mUnk_00[7] += (v * m[9]) >> 12;
-        t.mUnk_00[8] += (v * m[10]) >> 12;
-        t.mUnk_00[9] += (v * m[12]) >> 12;
-        t.mUnk_00[10] += (v * m[13]) >> 12;
-        t.mUnk_00[11] += (v * m[14]) >> 12;
+        vec = data_02171944[jntIdx];
+        weight = p[2] << 4;
+        sum.pos[0] += (weight * clip[0]) >> 12;
+        sum.pos[1] += (weight * clip[1]) >> 12;
+        sum.pos[2] += (weight * clip[2]) >> 12;
+        sum.pos[3] += (weight * clip[4]) >> 12;
+        sum.pos[4] += (weight * clip[5]) >> 12;
+        sum.pos[5] += (weight * clip[6]) >> 12;
+        sum.pos[6] += (weight * clip[8]) >> 12;
+        sum.pos[7] += (weight * clip[9]) >> 12;
+        sum.pos[8] += (weight * clip[10]) >> 12;
+        sum.pos[9] += (weight * clip[12]) >> 12;
+        sum.pos[10] += (weight * clip[13]) >> 12;
+        sum.pos[11] += (weight * clip[14]) >> 12;
         p += 3;
-        if (!d) {
-            while (G3X_GetVectorMtx(r) != 0) {
+        if (!cached) {
+            while (G3X_GetVectorMtx(vec) != 0) {
             }
         }
     }
-    t.mUnk_30[0] += (v * r[0]) >> 12;
-    t.mUnk_30[1] += (v * r[1]) >> 12;
-    t.mUnk_30[2] += (v * r[2]) >> 12;
-    t.mUnk_30[3] += (v * r[3]) >> 12;
-    t.mUnk_30[4] += (v * r[4]) >> 12;
-    t.mUnk_30[5] += (v * r[5]) >> 12;
-    t.mUnk_30[6] += (v * r[6]) >> 12;
-    t.mUnk_30[7] += (v * r[7]) >> 12;
-    t.mUnk_30[8] += (v * r[8]) >> 12;
-    G3_LoadMtx43(t.mUnk_30);
+    sum.nrm[0] += (weight * vec[0]) >> 12;
+    sum.nrm[1] += (weight * vec[1]) >> 12;
+    sum.nrm[2] += (weight * vec[2]) >> 12;
+    sum.nrm[3] += (weight * vec[3]) >> 12;
+    sum.nrm[4] += (weight * vec[4]) >> 12;
+    sum.nrm[5] += (weight * vec[5]) >> 12;
+    sum.nrm[6] += (weight * vec[6]) >> 12;
+    sum.nrm[7] += (weight * vec[7]) >> 12;
+    sum.nrm[8] += (weight * vec[8]) >> 12;
+    G3_LoadMtx43(sum.nrm);
     reg_G3_MTX_MODE = 1;
-    G3_LoadMtx43(t.mUnk_00);
+    G3_LoadMtx43(sum.pos);
     reg_G3_MTX_MODE = 0;
     reg_G3_MTX_RESTORE = 1;
     reg_G3_MTX_MODE = 2;
-    reg_G3_MTX_STORE = a->mUnk_00[1];
-    a->mUnk_00 += (a->mUnk_00[2] + 1) * 3;
+    reg_G3_MTX_STORE = state->mC[1];
+    state->mC += (state->mC[2] + 1) * 3;
 }
 
-void func_02011bbc(Unk02011624 *a) {
+// SBC command that sends a display list.
+void NNSi_G3dFuncSbc_CALLDL(NNSG3dRS *state) {
     u8 *p;
-    u32 v;
+    u32 timing;
 
-    if (a->mUnk_34 != 0) {
-        v = a->mUnk_96;
+    if (state->mCbVecFunc[10] != 0) {
+        timing = state->mCbVecTiming[10];
     } else {
-        v = 0;
+        timing = 0;
     }
-    if (!(a->mUnk_08 & 0x100)) {
-        p = a->mUnk_00;
+    if (!(state->mFlag & 0x100)) {
+        p = state->mC;
         func_01ff9144(p + (p[1] | (p[2] << 8) | (p[3] << 16) | (p[4] << 24)),
                       p[5] | (p[6] << 8) | (p[7] << 16) | (p[8] << 24));
     }
-    if (v == 3) {
-        a->mUnk_08 &= ~0x40;
-        a->mUnk_34(a);
+    if (timing == 3) {
+        state->mFlag &= ~0x40;
+        state->mCbVecFunc[10](state);
     }
-    a->mUnk_00 += 9;
+    state->mC += 9;
 }
 
-void func_02011928(Unk02011624 *a) {
-    u32 c0;
-    u32 c1;
-    u32 c2;
-    u32 c3;
-    u32 c4;
-    MtxFx43 m;
-    u32 v;
-    u8 *e;
-    u8 *t;
-    u16 h2;
-    s32 w;
-    s32 h;
+// SBC command that sets up environment-mapped texture coordinates.
+void NNSi_G3dFuncSbc_ENVMAP(NNSG3dRS *state) {
+    u32 texMode;
+    u32 texCoord;
+    u32 vecMode;
+    u32 texMode2;
+    u32 vecMode2;
+    MtxFx43 nrm;
+    u32 timing;
+    u8 *texMtx;
+    NNSG3dResMatData *matData;
+    NNSG3dResDictEntryHeader *entries;
+    u16 flag;
+    s32 width;
+    s32 height;
 
-    if (!(a->mUnk_08 & 0x200) && (a->mUnk_08 & 1)) {
-        if ((a->mUnk_b0->mUnk_10 & 0xc0000000) != 0x80000000) {
-            a->mUnk_b0->mUnk_10 &= ~0xc0000000;
-            a->mUnk_b0->mUnk_10 |= 0x80000000;
-            data_02161874[1] = a->mUnk_b0->mUnk_10;
+    if (!(state->mFlag & 0x200) && (state->mFlag & 1)) {
+        if ((state->mMatAnmResult->mUnk_10 & 0xc0000000) != 0x80000000) {
+            state->mMatAnmResult->mUnk_10 &= ~0xc0000000;
+            state->mMatAnmResult->mUnk_10 |= 0x80000000;
+            data_02161874[1] = state->mMatAnmResult->mUnk_10;
             func_01ff9048(data_02161874[0], &data_02161874[1], 1);
         }
-        c0 = 3;
-        func_01ff9048(0x10, &c0, 1);
-        if (a->mUnk_3c != 0) {
-            v = a->mUnk_98;
+        texMode = 3;
+        func_01ff9048(0x10, &texMode, 1);
+        if (state->mCbVecFunc[12] != 0) {
+            timing = state->mCbVecTiming[12];
         } else {
-            v = 0;
+            timing = 0;
         }
-        w = a->mUnk_b0->mUnk_2c;
-        h = a->mUnk_b0->mUnk_2e;
-        m.mUnk_00[3].x = w << 15;
-        m.mUnk_00[3].y = -h << 15;
-        m.mUnk_00[3].z = 0x10000;
-        func_01ff9048(0x1b, &m.mUnk_00[3], 3);
-        c1 = (u16) (s16) (w << 3) | ((u16) (s16) (h << 3) << 16);
-        func_01ff9048(0x22, &c1, 1);
-        t = a->mUnk_d8 + 4;
-        t = t + *(u16 *) (a->mUnk_d8 + 0xa);
-        e = a->mUnk_d8 + *(u32 *) (t + *(u16 *) t * a->mUnk_00[1] + 4);
-        h2 = *(u16 *) (e + 0x1e);
-        if (h2 & 0x2000) {
-            e += 0x2c;
-            if (!(h2 & 2)) {
-                e += 8;
+        width = state->mMatAnmResult->mUnk_2c;
+        height = state->mMatAnmResult->mUnk_2e;
+        nrm.mUnk_00[3].x = width << 15;
+        nrm.mUnk_00[3].y = -height << 15;
+        nrm.mUnk_00[3].z = 0x10000;
+        func_01ff9048(0x1b, &nrm.mUnk_00[3], 3);
+        texCoord = (u16) (s16) (width << 3) | ((u16) (s16) (height << 3) << 16);
+        func_01ff9048(0x22, &texCoord, 1);
+        entries = (NNSG3dResDictEntryHeader *) ((u8 *) &state->mResMat->mDict + state->mResMat->mDict.mOfsEntry);
+        matData = (NNSG3dResMatData *) ((u8 *) state->mResMat +
+                                        *(u32 *) (entries->mData + entries->mSizeUnit * state->mC[1]));
+        flag = matData->mFlag;
+        if (flag & 0x2000) {
+            texMtx = matData->mTexMtxData;
+            if (!(flag & 2)) {
+                texMtx += 8;
             }
-            if (!(h2 & 4)) {
-                e += 4;
+            if (!(flag & 4)) {
+                texMtx += 4;
             }
-            if (!(h2 & 8)) {
-                e += 8;
+            if (!(flag & 8)) {
+                texMtx += 8;
             }
-            func_01ff9048(0x18, e, 0x10);
+            func_01ff9048(0x18, texMtx, 0x10);
         }
-        if (v == 3) {
-            a->mUnk_08 &= ~0x40;
-            a->mUnk_3c(a);
-            v = a->mUnk_08 & 0x40;
+        if (timing == 3) {
+            state->mFlag &= ~0x40;
+            state->mCbVecFunc[12](state);
+            timing = state->mFlag & 0x40;
         } else {
-            v = 0;
+            timing = 0;
         }
-        if (v == 0) {
-            c2 = 2;
-            func_01ff9048(0x10, &c2, 1);
-            func_02012f58(0, &m);
-            c3 = 3;
-            func_01ff9048(0x10, &c3, 1);
-            if (data_0217029c.mUnk_fc & 1) {
-                func_01ff9048(0x1a, &data_0217029c.mUnk_4c, 9);
-                func_01ff9048(0x1a, &data_0217029c.mUnk_bc, 9);
-                func_01ff9048(0x1a, &m, 9);
-            } else if (data_0217029c.mUnk_fc & 2) {
-                func_01ff9048(0x1a, &data_0217029c.mUnk_4c, 9);
-                func_01ff9048(0x1a, &m, 9);
+        if (timing == 0) {
+            vecMode = 2;
+            func_01ff9048(0x10, &vecMode, 1);
+            NNS_G3dGetCurrentMtx(0, &nrm);
+            texMode2 = 3;
+            func_01ff9048(0x10, &texMode2, 1);
+            if (data_0217029c.mFlag & 1) {
+                func_01ff9048(0x1a, &data_0217029c.mCameraMtx, 9);
+                func_01ff9048(0x1a, data_0217029c.mPrmBaseRot, 9);
+                func_01ff9048(0x1a, &nrm, 9);
+            } else if (data_0217029c.mFlag & 2) {
+                func_01ff9048(0x1a, &data_0217029c.mCameraMtx, 9);
+                func_01ff9048(0x1a, &nrm, 9);
             } else {
-                func_01ff9048(0x1a, &m, 9);
+                func_01ff9048(0x1a, &nrm, 9);
             }
         }
-        c4 = 2;
-        func_01ff9048(0x10, &c4, 1);
+        vecMode2 = 2;
+        func_01ff9048(0x10, &vecMode2, 1);
     }
-    a->mUnk_00 += 3;
+    state->mC += 3;
 }
 
-void func_02011624(Unk02011624 *a) {
-    u32 c0;
-    u32 c1;
-    u32 c2;
-    u32 c3;
-    MtxFx43 m;
-    s32 mm[16];
-    u32 v;
-    u8 *e;
-    u8 *t;
-    u16 h2;
-    s32 w;
-    s32 h;
+// SBC command that sets up projection-mapped texture coordinates.
+void NNSi_G3dFuncSbc_PRJMAP(NNSG3dRS *state) {
+    u32 storeIdx;
+    u32 texCoord;
+    u32 vecMode;
+    u32 restoreIdx;
+    MtxFx43 curMatrix;
+    s32 texMtx[16];
+    u32 timing;
+    u8 *effectMtx;
+    NNSG3dResMatData *matData;
+    NNSG3dResDictEntryHeader *entries;
+    u16 flag;
+    s32 width;
+    s32 height;
     s32 x;
     s32 y;
 
-    if (!(a->mUnk_08 & 0x200) && (a->mUnk_08 & 1)) {
-        func_02012f58(&m, 0);
-        c0 = 0x1e;
-        func_01ff9048(0x13, &c0, 1);
-        if ((a->mUnk_b0->mUnk_10 & 0xc0000000) != 0xc0000000) {
-            a->mUnk_b0->mUnk_10 &= ~0xc0000000;
-            a->mUnk_b0->mUnk_10 |= 0xc0000000;
-            data_0216186c[1] = a->mUnk_b0->mUnk_10;
+    if (!(state->mFlag & 0x200) && (state->mFlag & 1)) {
+        NNS_G3dGetCurrentMtx(&curMatrix, 0);
+        storeIdx = 0x1e;
+        func_01ff9048(0x13, &storeIdx, 1);
+        if ((state->mMatAnmResult->mUnk_10 & 0xc0000000) != 0xc0000000) {
+            state->mMatAnmResult->mUnk_10 &= ~0xc0000000;
+            state->mMatAnmResult->mUnk_10 |= 0xc0000000;
+            data_0216186c[1] = state->mMatAnmResult->mUnk_10;
             func_01ff9048(data_0216186c[0], &data_0216186c[1], 1);
         }
-        if (a->mUnk_40 != 0) {
-            v = a->mUnk_99;
+        if (state->mCbVecFunc[13] != 0) {
+            timing = state->mCbVecTiming[13];
         } else {
-            v = 0;
+            timing = 0;
         }
-        h = a->mUnk_b0->mUnk_2e;
-        w = a->mUnk_b0->mUnk_2c;
-        data_0216189c[0] = w << 15;
-        data_0216189c[5] = -h << 15;
-        data_0216189c[12] = w << 15;
-        data_0216189c[13] = h << 15;
+        height = state->mMatAnmResult->mUnk_2e;
+        width = state->mMatAnmResult->mUnk_2c;
+        data_0216189c[0] = width << 15;
+        data_0216189c[5] = -height << 15;
+        data_0216189c[12] = width << 15;
+        data_0216189c[13] = height << 15;
         func_01ff9048(0x16, data_0216189c, 0x10);
-        t = a->mUnk_d8 + 4;
-        t = t + *(u16 *) (a->mUnk_d8 + 0xa);
-        e = a->mUnk_d8 + *(u32 *) (t + *(u16 *) t * a->mUnk_00[1] + 4);
-        h2 = *(u16 *) (e + 0x1e);
-        if (h2 & 0x2000) {
-            e += 0x2c;
-            if (!(h2 & 2)) {
-                e += 8;
+        entries = (NNSG3dResDictEntryHeader *) ((u8 *) &state->mResMat->mDict + state->mResMat->mDict.mOfsEntry);
+        matData = (NNSG3dResMatData *) ((u8 *) state->mResMat +
+                                        *(u32 *) (entries->mData + entries->mSizeUnit * state->mC[1]));
+        flag = matData->mFlag;
+        if (flag & 0x2000) {
+            effectMtx = matData->mTexMtxData;
+            if (!(flag & 2)) {
+                effectMtx += 8;
             }
-            if (!(h2 & 4)) {
-                e += 4;
+            if (!(flag & 4)) {
+                effectMtx += 4;
             }
-            if (!(h2 & 8)) {
-                e += 8;
+            if (!(flag & 8)) {
+                effectMtx += 8;
             }
-            func_01ff9048(0x18, e, 0x10);
+            func_01ff9048(0x18, effectMtx, 0x10);
         }
-        if (v == 3) {
-            a->mUnk_08 &= ~0x40;
-            a->mUnk_40(a);
-            v = a->mUnk_08 & 0x40;
+        if (timing == 3) {
+            state->mFlag &= ~0x40;
+            state->mCbVecFunc[13](state);
+            timing = state->mFlag & 0x40;
         } else {
-            v = 0;
+            timing = 0;
         }
-        if (v == 0) {
-            if (data_0217029c.mUnk_fc & 1) {
-                func_01ff9048(0x1c, &data_0217029c.mUnk_bc.mUnk_00[3], 3);
-                func_01ff9048(0x1a, &data_0217029c.mUnk_bc, 9);
-                func_01ff9048(0x19, &m, 0xc);
-            } else if (data_0217029c.mUnk_fc & 2) {
-                func_01ff9048(0x19, &m, 0xc);
+        if (timing == 0) {
+            if (data_0217029c.mFlag & 1) {
+                func_01ff9048(0x1c, &data_0217029c.mPrmBaseTrans, 3);
+                func_01ff9048(0x1a, data_0217029c.mPrmBaseRot, 9);
+                func_01ff9048(0x19, &curMatrix, 0xc);
+            } else if (data_0217029c.mFlag & 2) {
+                func_01ff9048(0x19, &curMatrix, 0xc);
             } else {
-                func_01ff9048(0x19, func_02010ed4(), 0xc);
-                func_01ff9048(0x19, &m, 0xc);
+                func_01ff9048(0x19, NNS_G3dGlbGetInvV(), 0xc);
+                func_01ff9048(0x19, &curMatrix, 0xc);
             }
             func_01ff9234();
             reg_G3_MTX_MODE = 0;
             reg_G3_MTX_PUSH = 0;
             reg_G3_MTX_IDENTITY = 0;
-            while (G3X_GetClipMtx(mm) != 0) {
+            while (G3X_GetClipMtx(texMtx) != 0) {
             }
             reg_G3_MTX_POP = 1;
             reg_G3_MTX_MODE = 3;
-            func_01ff9048(0x16, mm, 0x10);
-            x = mm[12] >> 4;
-            y = mm[13] >> 4;
-            c1 = (u16) (s16) (x >> 8) | ((u16) (s16) (y >> 8) << 16);
-            func_01ff9048(0x22, &c1, 1);
+            func_01ff9048(0x16, texMtx, 0x10);
+            x = texMtx[12] >> 4;
+            y = texMtx[13] >> 4;
+            texCoord = (u16) (s16) (x >> 8) | ((u16) (s16) (y >> 8) << 16);
+            func_01ff9048(0x22, &texCoord, 1);
         }
-        c2 = 2;
-        func_01ff9048(0x10, &c2, 1);
-        c3 = 0x1e;
-        func_01ff9048(0x14, &c3, 1);
+        vecMode = 2;
+        func_01ff9048(0x10, &vecMode, 1);
+        restoreIdx = 0x1e;
+        func_01ff9048(0x14, &restoreIdx, 1);
     }
-    a->mUnk_00 += 3;
+    state->mC += 3;
 }
 
-s32 func_020115c8(void *a, Unk020111e0 *b, u32 c) {
-    s32 r = 0;
+// Calls the animation functions of every animation object of the list that has data for the material.
+BOOL NNSi_G3dAnmBlendMat(NNSG3dMatAnmResult *result, NNSG3dAnmObj *anmObj, u32 matId) {
+    BOOL ret = FALSE;
 
     do {
-        u32 h = b->mUnk_1a[c];
+        u32 mapValue = anmObj->mMapData[matId];
 
-        if (h & 0x100) {
-            b->mUnk_0c(a, b, h & 0xff);
-            r = 1;
+        if (mapValue & 0x100) {
+            anmObj->mFuncAnm(result, anmObj, mapValue & 0xff);
+            ret = TRUE;
         }
-        b = b->mUnk_10;
-    } while (b != 0);
-    return r;
+        anmObj = anmObj->mNext;
+    } while (anmObj != 0);
+    return ret;
 }
 
-void func_02011558(Vec3 *a, const Vec3 *b, s32 c, u32 d) {
-    if (d != 0) {
-        a->x += c;
-        a->y += c;
-        a->z += c;
+// Adds ratio times v1 to v0, or just ratio when v1 is one.
+void blendScaleVec_(Vec3 *dest, const Vec3 *src, s32 weight, u32 srcIsOne) {
+    if (srcIsOne != 0) {
+        dest->x += weight;
+        dest->y += weight;
+        dest->z += weight;
     } else {
-        a->x += (c * b->x) >> 12;
-        a->y += (c * b->y) >> 12;
-        a->z += (c * b->z) >> 12;
+        dest->x += (weight * src->x) >> 12;
+        dest->y += (weight * src->y) >> 12;
+        dest->z += (weight * src->z) >> 12;
     }
 }
 
-s32 func_02011254(Unk02011254 *a, Unk020111e0 *b, u32 c) {
-    Unk02011254 t;
-    Unk020111e0 *p;
-    s32 n;
-    s32 s;
-    Unk020111e0 *q;
-    s32 w;
-    u32 h;
+// Blends the joint animations of every animation object of the list for one node.
+BOOL NNSi_G3dAnmBlendJnt(NNSG3dJntAnmResult *result, NNSG3dAnmObj *anmObj, u32 nodeId) {
+    NNSG3dJntAnmResult r;
+    NNSG3dAnmObj *p;
+    s32 count;
+    s32 totalWeight;
+    NNSG3dAnmObj *last;
+    s32 weight;
+    u32 mapValue;
 
-    if (b->mUnk_10 == 0) {
-        h = b->mUnk_1a[c];
-        if ((h & 0x300) != 0x100) {
+    if (anmObj->mNext == 0) {
+        mapValue = anmObj->mMapData[nodeId];
+        if ((mapValue & 0x300) != 0x100) {
             return 0;
         }
-        b->mUnk_0c(a, b, h & 0xff);
+        anmObj->mFuncAnm(result, anmObj, mapValue & 0xff);
         return 1;
     }
-    s = 0;
-    n = 0;
-    p = b;
+    totalWeight = 0;
+    count = 0;
+    p = anmObj;
     do {
-        if ((p->mUnk_1a[c] & 0x300) == 0x100) {
-            q = p;
-            s += p->mUnk_04;
-            n++;
+        if ((p->mMapData[nodeId] & 0x300) == 0x100) {
+            last = p;
+            totalWeight += p->mRatio;
+            count++;
         }
-        p = p->mUnk_10;
+        p = p->mNext;
     } while (p != 0);
-    if (s == 0) {
+    if (totalWeight == 0) {
         return 0;
     }
-    if (n == 1) {
-        q->mUnk_0c(a, q, q->mUnk_1a[c] & 0xff);
+    if (count == 1) {
+        last->mFuncAnm(result, last, last->mMapData[nodeId] & 0xff);
         return 1;
     }
-    MemFillWordsByBlock_inline(a, sizeof(*a));
-    a->mUnk_00 = -1;
+    MemFillWordsByBlock_inline(result, sizeof(*result));
+    result->mFlag = -1;
     do {
-        h = b->mUnk_1a[c];
-        if ((h & 0x300) == 0x100 && b->mUnk_04 > 0) {
-            b->mUnk_0c(&t, b, h & 0xff);
-            if (s == 0x1000) {
-                w = b->mUnk_04;
+        mapValue = anmObj->mMapData[nodeId];
+        if ((mapValue & 0x300) == 0x100 && anmObj->mRatio > 0) {
+            anmObj->mFuncAnm(&r, anmObj, mapValue & 0xff);
+            if (totalWeight == 0x1000) {
+                weight = anmObj->mRatio;
             } else {
-                w = FX_Div(b->mUnk_04, s);
+                weight = FX_Div(anmObj->mRatio, totalWeight);
             }
-            func_02011558(&a->mUnk_04[0], &t.mUnk_04[0], w, t.mUnk_00 & 1);
-            func_02011558(&a->mUnk_04[1], &t.mUnk_04[1], w, t.mUnk_00 & 8);
-            func_02011558(&a->mUnk_04[2], &t.mUnk_04[2], w, t.mUnk_00 & 0x10);
-            if (!(t.mUnk_00 & 4)) {
-                a->mUnk_28.mUnk_00[3].x += (s32) (((s64) w * t.mUnk_28.mUnk_00[3].x) >> 12);
-                a->mUnk_28.mUnk_00[3].y += (s32) (((s64) w * t.mUnk_28.mUnk_00[3].y) >> 12);
-                a->mUnk_28.mUnk_00[3].z += (s32) (((s64) w * t.mUnk_28.mUnk_00[3].z) >> 12);
+            blendScaleVec_(&result->mScale, &r.mScale, weight, r.mFlag & 1);
+            blendScaleVec_(&result->mScaleEx0, &r.mScaleEx0, weight, r.mFlag & 8);
+            blendScaleVec_(&result->mScaleEx1, &r.mScaleEx1, weight, r.mFlag & 0x10);
+            if (!(r.mFlag & 4)) {
+                result->mTrans.x += (s32) (((s64) weight * r.mTrans.x) >> 12);
+                result->mTrans.y += (s32) (((s64) weight * r.mTrans.y) >> 12);
+                result->mTrans.z += (s32) (((s64) weight * r.mTrans.z) >> 12);
             }
-            if (!(t.mUnk_00 & 2)) {
-                a->mUnk_28.mUnk_00[0].x += (w * t.mUnk_28.mUnk_00[0].x) >> 12;
-                a->mUnk_28.mUnk_00[0].y += (w * t.mUnk_28.mUnk_00[0].y) >> 12;
-                a->mUnk_28.mUnk_00[0].z += (w * t.mUnk_28.mUnk_00[0].z) >> 12;
-                a->mUnk_28.mUnk_00[1].x += (w * t.mUnk_28.mUnk_00[1].x) >> 12;
-                a->mUnk_28.mUnk_00[1].y += (w * t.mUnk_28.mUnk_00[1].y) >> 12;
-                a->mUnk_28.mUnk_00[1].z += (w * t.mUnk_28.mUnk_00[1].z) >> 12;
+            if (!(r.mFlag & 2)) {
+                result->mRot[0].x += (weight * r.mRot[0].x) >> 12;
+                result->mRot[0].y += (weight * r.mRot[0].y) >> 12;
+                result->mRot[0].z += (weight * r.mRot[0].z) >> 12;
+                result->mRot[1].x += (weight * r.mRot[1].x) >> 12;
+                result->mRot[1].y += (weight * r.mRot[1].y) >> 12;
+                result->mRot[1].z += (weight * r.mRot[1].z) >> 12;
             } else {
-                a->mUnk_28.mUnk_00[0].x += w;
-                a->mUnk_28.mUnk_00[1].y += w;
+                result->mRot[0].x += weight;
+                result->mRot[1].y += weight;
             }
-            a->mUnk_00 &= t.mUnk_00;
+            result->mFlag &= r.mFlag;
         }
-        b = b->mUnk_10;
-    } while (b != 0);
-    VEC_CrossProduct(&a->mUnk_28.mUnk_00[0], &a->mUnk_28.mUnk_00[1], &a->mUnk_28.mUnk_00[2]);
-    VEC_Normalize(&a->mUnk_28.mUnk_00[0], &a->mUnk_28.mUnk_00[0]);
-    VEC_Normalize(&a->mUnk_28.mUnk_00[2], &a->mUnk_28.mUnk_00[2]);
-    VEC_CrossProduct(&a->mUnk_28.mUnk_00[2], &a->mUnk_28.mUnk_00[0], &a->mUnk_28.mUnk_00[1]);
+        anmObj = anmObj->mNext;
+    } while (anmObj != 0);
+    VEC_CrossProduct(&result->mRot[0], &result->mRot[1], &result->mRot[2]);
+    VEC_Normalize(&result->mRot[0], &result->mRot[0]);
+    VEC_Normalize(&result->mRot[2], &result->mRot[2]);
+    VEC_CrossProduct(&result->mRot[2], &result->mRot[0], &result->mRot[1]);
     return 1;
 }
 
-s32 func_020111e0(u32 *a, Unk020111e0 *b, u32 c) {
-    u32 t;
-    s32 r = 0;
+// Combines the visibility animations of every animation object of the list for one node.
+BOOL NNSi_G3dAnmBlendVis(NNSG3dVisAnmResult *result, NNSG3dAnmObj *anmObj, u32 nodeId) {
+    NNSG3dVisAnmResult tmp;
+    BOOL ret = FALSE;
 
-    *a = 0;
+    result->mIsVisible = 0;
     do {
-        u32 h = b->mUnk_1a[c];
+        u32 mapValue = anmObj->mMapData[nodeId];
 
-        if (h & 0x100) {
-            b->mUnk_0c(&t, b, h & 0xff);
-            *a |= t;
-            r = 1;
+        if (mapValue & 0x100) {
+            anmObj->mFuncAnm(&tmp, anmObj, mapValue & 0xff);
+            result->mIsVisible |= tmp.mIsVisible;
+            ret = TRUE;
         }
-        b = b->mUnk_10;
-    } while (b != 0);
-    return r;
+        anmObj = anmObj->mNext;
+    } while (anmObj != 0);
+    return ret;
 }
 
-void func_02011074(void) {
-    data_0217029c.mUnk_00 = 0x17101610;
-    data_0217029c.mUnk_04 = 0;
-    data_0217029c.mUnk_48 = 2;
-    data_0217029c.mUnk_7c = 0x32323232;
-    data_0217029c.mUnk_90 = 0x60293130;
-    data_0217029c.mUnk_a4 = 0x33333333;
-    data_0217029c.mUnk_b8 = 0x2a1b19;
-    MTX_Identity43_(&data_0217029c.mUnk_4c);
-    MTX_Identity44_(data_0217029c.mUnk_08);
-    data_0217029c.mUnk_80 = 0x2d8b62d8;
-    data_0217029c.mUnk_84 = 0x40000200;
-    data_0217029c.mUnk_88 = 0x800001ff;
-    data_0217029c.mUnk_8c = 0xc0080000;
-    data_0217029c.mUnk_94 = 0x4210c210;
-    data_0217029c.mUnk_98 = 0x4210c210;
-    data_0217029c.mUnk_9c = 0x1f008f;
-    data_0217029c.mUnk_a0 = 0xbfff0000;
-    data_0217029c.mUnk_a8 = 0x7fff;
-    data_0217029c.mUnk_ac = 0x4000001f;
-    data_0217029c.mUnk_b0 = 0x800003e0;
-    data_0217029c.mUnk_b4 = 0xc0007c00;
-    data_0217029c.mUnk_bc.mUnk_00[3].x = 0;
-    data_0217029c.mUnk_bc.mUnk_00[3].y = 0;
-    data_0217029c.mUnk_bc.mUnk_00[3].z = 0;
-    MTX_Identity33_(&data_0217029c.mUnk_bc);
-    data_0217029c.mUnk_ec.x = 0x1000;
-    data_0217029c.mUnk_ec.y = 0x1000;
-    data_0217029c.mUnk_ec.z = 0x1000;
-    data_0217029c.mUnk_f8 = 0;
-    data_0217029c.mUnk_fc = 0;
-    data_0217029c.mUnk_248 = 0;
-    data_0217029c.mUnk_244 = 0;
-    data_0217029c.mUnk_240 = 0;
-    data_0217029c.mUnk_254 = 0;
-    data_0217029c.mUnk_24c = 0;
-    data_0217029c.mUnk_250 = 0x1000;
-    data_0217029c.mUnk_25c = 0;
-    data_0217029c.mUnk_258 = 0;
-    data_0217029c.mUnk_260 = -0x1000;
+// Sets the global state to its defaults: command words, identity matrices, lights, colors, viewport and base transform.
+void NNS_G3dGlbInit(void) {
+    data_0217029c.mCmd0 = 0x17101610;
+    data_0217029c.mMtxModeProj = 0;
+    data_0217029c.mMtxModePosVec = 2;
+    data_0217029c.mCmd1 = 0x32323232;
+    data_0217029c.mCmd2 = 0x60293130;
+    data_0217029c.mCmd3 = 0x33333333;
+    data_0217029c.mCmd4 = 0x2a1b19;
+    MTX_Identity43_(&data_0217029c.mCameraMtx);
+    MTX_Identity44_(data_0217029c.mProjMtx);
+    data_0217029c.mLightVec[0] = 0x2d8b62d8;
+    data_0217029c.mLightVec[1] = 0x40000200;
+    data_0217029c.mLightVec[2] = 0x800001ff;
+    data_0217029c.mLightVec[3] = 0xc0080000;
+    data_0217029c.mPrmMatColor0 = 0x4210c210;
+    data_0217029c.mPrmMatColor1 = 0x4210c210;
+    data_0217029c.mPrmPolygonAttr = 0x1f008f;
+    data_0217029c.mPrmViewPort = 0xbfff0000;
+    data_0217029c.mLightColor[0] = 0x7fff;
+    data_0217029c.mLightColor[1] = 0x4000001f;
+    data_0217029c.mLightColor[2] = 0x800003e0;
+    data_0217029c.mLightColor[3] = 0xc0007c00;
+    data_0217029c.mPrmBaseTrans.x = 0;
+    data_0217029c.mPrmBaseTrans.y = 0;
+    data_0217029c.mPrmBaseTrans.z = 0;
+    MTX_Identity33_((MtxFx43 *) data_0217029c.mPrmBaseRot);
+    data_0217029c.mPrmBaseScale.x = 0x1000;
+    data_0217029c.mPrmBaseScale.y = 0x1000;
+    data_0217029c.mPrmBaseScale.z = 0x1000;
+    data_0217029c.mPrmTexImageParam = 0;
+    data_0217029c.mFlag = 0;
+    data_0217029c.mCamPos.z = 0;
+    data_0217029c.mCamPos.y = 0;
+    data_0217029c.mCamPos.x = 0;
+    data_0217029c.mCamUp.z = 0;
+    data_0217029c.mCamUp.x = 0;
+    data_0217029c.mCamUp.y = 0x1000;
+    data_0217029c.mCamTarget.y = 0;
+    data_0217029c.mCamTarget.x = 0;
+    data_0217029c.mCamTarget.z = -0x1000;
 }
 
-void func_02011034(void) {
+// Sends the matrices, lights, colors, viewport and base transform to the geometry engine as one block.
+void NNS_G3dGlbFlushP(void) {
     u32 *p = (u32 *) &data_0217029c;
     u32 c = *p++;
 
     func_01ff9048(c, p, 0x3e);
-    data_0217029c.mUnk_fc &= ~1;
-    data_0217029c.mUnk_fc &= ~2;
+    data_0217029c.mFlag &= ~1;
+    data_0217029c.mFlag &= ~2;
 }
 
-void func_0201100c(const Vec3 *a) {
-    data_0217029c.mUnk_bc.mUnk_00[3] = *a;
-    data_0217029c.mUnk_fc &= ~0xa4;
+// Sets the base translation and drops the cached matrices that depend on it.
+void NNS_G3dGlbSetBaseTrans(const Vec3 *trans) {
+    data_0217029c.mPrmBaseTrans = *trans;
+    data_0217029c.mFlag &= ~0xa4;
 }
 
-void func_02010fe4(const Vec3 *a) {
-    data_0217029c.mUnk_ec = *a;
-    data_0217029c.mUnk_fc &= ~0xa4;
+// Sets the base scale and drops the cached matrices that depend on it.
+void NNS_G3dGlbSetBaseScale(const Vec3 *scale) {
+    data_0217029c.mPrmBaseScale = *scale;
+    data_0217029c.mFlag &= ~0xa4;
 }
 
-void func_02010fac(u32 a, s32 b, s32 c, s32 d) {
-    (&data_0217029c.mUnk_80)[a] =
-        ((b >> 3) & 0x3ff) | (((c >> 3) & 0x3ff) << 10) | (((d >> 3) & 0x3ff) << 20) | (a << 30);
+// Sets the direction of a light.
+void NNS_G3dGlbLightVector(u32 lightId, s32 x, s32 y, s32 z) {
+    data_0217029c.mLightVec[lightId] =
+        ((x >> 3) & 0x3ff) | (((y >> 3) & 0x3ff) << 10) | (((z >> 3) & 0x3ff) << 20) | (lightId << 30);
 }
 
-void func_02010f98(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
-    value2 = (u32) &data_02170344;
-    value1 = (value1) | ((value0 << 30));
-    *(u32 *) ((value2) + ((value0 << 2))) = value1;
+// Sets the color of a light.
+void NNS_G3dGlbLightColor(u32 lightId, u32 rgb) {
+    data_0217029c.mLightColor[lightId] = rgb | (lightId << 30);
 }
 
-void func_02010f74(u32 a, u32 b, u32 c) {
-    data_0217029c.mUnk_94 = a | (b << 16) | ((c != 0) << 15);
+// Sets the diffuse and ambient colors.
+void NNS_G3dGlbMaterialColorDiffAmb(u32 diffuse, u32 ambient, u32 vtxColor) {
+    data_0217029c.mPrmMatColor0 = diffuse | (ambient << 16) | ((vtxColor != 0) << 15);
 }
 
-void func_02010f50(u32 a, u32 b, u32 c) {
-    data_0217029c.mUnk_98 = a | (b << 16) | ((c != 0) << 15);
+// Sets the specular and emission colors.
+void NNS_G3dGlbMaterialColorSpecEmi(u32 specular, u32 emission, u32 shininess) {
+    data_0217029c.mPrmMatColor1 = specular | (emission << 16) | ((shininess != 0) << 15);
 }
 
-void func_02010f24(u32 a, u32 b, u32 c, u32 d, u32 e, u32 f) {
-    data_0217029c.mUnk_9c = (f | (a | (b << 4) | (c << 6))) | (d << 24) | (e << 16);
+// Sets the polygon attributes.
+void NNS_G3dGlbPolygonAttr(u32 light, u32 polyMode, u32 cullMode, u32 polygonId, u32 alpha, u32 extra) {
+    data_0217029c.mPrmPolygonAttr =
+        (extra | (light | (polyMode << 4) | (cullMode << 6))) | (polygonId << 24) | (alpha << 16);
 }
 
-MtxFx43 *func_02010ed4(void) {
-    if (!(data_0217029c.mUnk_fc & 0x8)) {
-        MTX_Inverse43(&data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[0]);
-        data_0217029c.mUnk_fc |= 0x8;
+// Returns the inverse of the camera matrix, computing it when it is out of date.
+MtxFx43 *NNS_G3dGlbGetInvV(void) {
+    if (!(data_0217029c.mFlag & 0x8)) {
+        MTX_Inverse43(&data_0217029c.mCameraMtx, &data_0217029c.mInvCameraMtx);
+        data_0217029c.mFlag |= 0x8;
     }
-    return &data_0217029c.mUnk_100[0];
+    return &data_0217029c.mInvCameraMtx;
 }
 
-void func_02010e70(void) {
-    MTX_Concat43(&data_0217029c.mUnk_bc, &data_0217029c.mUnk_4c, &data_0217029c.mUnk_100[1]);
-    MTX_ScaleApply43(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[1], data_0217029c.mUnk_ec.x,
-                     data_0217029c.mUnk_ec.y, data_0217029c.mUnk_ec.z);
-    MTX_Inverse43(&data_0217029c.mUnk_100[1], &data_0217029c.mUnk_100[2]);
+// Computes the camera matrix with the base transform applied, and its inverse.
+void calcSrtCameraMtx_(void) {
+    MTX_Concat43((MtxFx43 *) data_0217029c.mPrmBaseRot, &data_0217029c.mCameraMtx, &data_0217029c.mSrtCameraMtx);
+    MTX_ScaleApply43(&data_0217029c.mSrtCameraMtx, &data_0217029c.mSrtCameraMtx, data_0217029c.mPrmBaseScale.x,
+                     data_0217029c.mPrmBaseScale.y, data_0217029c.mPrmBaseScale.z);
+    MTX_Inverse43(&data_0217029c.mSrtCameraMtx, &data_0217029c.mInvSrtCameraMtx);
 }
 
-MtxFx43 *func_02010e2c(void) {
-    if (!(data_0217029c.mUnk_fc & 0x80)) {
-        func_02010e70();
-        data_0217029c.mUnk_fc |= 0x80;
+// Returns the camera matrix with the base transform applied, computing it when it is out of date.
+MtxFx43 *NNS_G3dGlbGetWV(void) {
+    if (!(data_0217029c.mFlag & 0x80)) {
+        calcSrtCameraMtx_();
+        data_0217029c.mFlag |= 0x80;
     }
-    return &data_0217029c.mUnk_100[1];
+    return &data_0217029c.mSrtCameraMtx;
 }
 
-MtxFx43 *func_02010de8(void) {
-    if (!(data_0217029c.mUnk_fc & 0x80)) {
-        func_02010e70();
-        data_0217029c.mUnk_fc |= 0x80;
+// Returns the inverse of the camera matrix with the base transform applied, computing it when it is out of date.
+MtxFx43 *NNS_G3dGlbGetInvWV(void) {
+    if (!(data_0217029c.mFlag & 0x80)) {
+        calcSrtCameraMtx_();
+        data_0217029c.mFlag |= 0x80;
     }
-    return &data_0217029c.mUnk_100[2];
+    return &data_0217029c.mInvSrtCameraMtx;
 }
 
-u32 func_02010d98(const u8 *a, const Unk02010d98 *b) {
-    switch (*a) {
-        case 0x4d:
-            return ((b->mUnk_18 << 1) + 0x1c) & ~3;
-        case 0x4a:
-        case 0x56:
-            return ((b->mUnk_17 << 1) + 0x1c) & ~3;
+// Returns the size of an animation object for the animation and the model.
+u32 NNS_G3dAnmObjCalcSizeRequired(const void *anm, const NNSG3dResMdl *mdl) {
+    switch (((const NNSG3dResAnmHeader *) anm)->mCategory0) {
+        case 'M':
+            return ((mdl->mInfo.mNumMat << 1) + 0x1c) & ~3;
+        case 'J':
+        case 'V':
+            return ((mdl->mInfo.mNumNode << 1) + 0x1c) & ~3;
         default:
             return 0;
     }
 }
 
-void func_02010cec(Unk02010c84 *a, const Unk02010cec_08 *b, u32 c, u32 d) {
+// Starts an animation object for the animation and selects the init function of its format.
+void NNS_G3dAnmObjInit(NNSG3dAnmObj *anmObj, void *resAnm, const NNSG3dResMdl *resMdl, void *resTex) {
+    const NNSG3dResAnmHeader *animHeader;
     u32 i;
 
-    a->mUnk_00 = 0;
-    a->mUnk_08 = b;
-    a->mUnk_10 = 0;
-    a->mUnk_18 = 0x7f;
-    a->mUnk_04 = 0x1000;
-    a->mUnk_14 = d;
+    anmObj->mFrame = 0;
+    anmObj->mResAnm = resAnm;
+    anmObj->mNext = 0;
+    anmObj->mPriority = 0x7f;
+    anmObj->mRatio = 0x1000;
+    anmObj->mResTex = resTex;
+    animHeader = resAnm;
     for (i = 0; i < data_021617d0; i++) {
-        if (b->mUnk_00 == data_021617f4[i].mUnk_00 && b->mUnk_02 == data_021617f4[i].mUnk_02) {
-            data_021617f8[i].mUnk_00(a, b, c);
+        if (animHeader->mCategory0 == data_021617f4[i].mCategory0 &&
+            animHeader->mCategory1 == data_021617f4[i].mCategory1) {
+            data_021617f4[i].mFunc(anmObj, resAnm, resMdl);
             return;
         }
     }
 }
 
-void func_02010c84(Unk02010c84 *a, u32 b) {
-    volatile u32 z = 0;
+// Clears the render object and sets the default blend functions and the model.
+void NNS_G3dRenderObjInit(NNSG3dRenderObj *renderObj, NNSG3dResMdl *resMdl) {
+    volatile u32 zero = 0;
 
-    MIi_CpuClear32(z, a, 0x54);
-    a->mUnk_0c = data_021617f0;
-    a->mUnk_14 = data_021617ec;
-    a->mUnk_1c = data_021617e8;
-    a->mUnk_04 = b;
+    MIi_CpuClear32(zero, renderObj, 0x54);
+    renderObj->mFuncBlendMat = data_021617f0;
+    renderObj->mFuncBlendJnt = data_021617ec;
+    renderObj->mFuncBlendVis = data_021617e8;
+    renderObj->mResMdl = resMdl;
 }

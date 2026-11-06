@@ -4,9 +4,11 @@
 
 typedef struct Unk02014c5c_out Unk02014c5c_out;
 typedef struct Unk02170500 Unk02170500;
-typedef struct Unk021617f4 Unk021617f4;
-typedef struct Unk021617f8 Unk021617f8;
-typedef struct Unk0201290c_1c Unk0201290c_1c;
+typedef struct NNSG3dAnmObj NNSG3dAnmObj;
+typedef struct NNSG3dAnmObjInitFunc NNSG3dAnmObjInitFunc;
+typedef struct NNSG3dMatAnmResult NNSG3dMatAnmResult;
+typedef struct NNSG3dJntAnmResult NNSG3dJntAnmResult;
+typedef struct NNSG3dVisAnmResult NNSG3dVisAnmResult;
 typedef struct Vec3s16 Vec3s16;
 
 // Objects whose layout isn't known yet.
@@ -57,12 +59,11 @@ extern u8 data_021616ce[];
 extern u8 data_021616d0[];
 
 extern u32 data_021617d0;
-extern Unk021617f4 data_021617f4[];
-extern Unk021617f8 data_021617f8[];
-extern u32 data_021617f0;
-extern u32 data_021617ec;
-extern u32 data_021617e8;
-extern void (*data_0216185c[])(Unk0201290c_1c *);
+extern NNSG3dAnmObjInitFunc data_021617f4[];
+extern BOOL (*data_021617f0)(NNSG3dMatAnmResult *, const NNSG3dAnmObj *, u32);
+extern BOOL (*data_021617ec)(NNSG3dJntAnmResult *, const NNSG3dAnmObj *, u32);
+extern BOOL (*data_021617e8)(NNSG3dVisAnmResult *, const NNSG3dAnmObj *, u32);
+extern void (*data_0216185c[])(NNSG3dMatAnmResult *);
 extern u32 data_0216186c[2];
 extern u32 data_02161874[2];
 extern s32 data_0216189c[16];

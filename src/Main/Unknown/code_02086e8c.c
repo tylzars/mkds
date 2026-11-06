@@ -401,7 +401,7 @@ void func_02087000(void) {
             } else {
                 s = BuildEmblemNsbtxPath((u16) data_021759c0->mCurrentEntries[i].mCharacterIndex);
             }
-            p = func_020136f0(func_02047950(s));
+            p = NNS_G3dGetTex(func_02047950(s));
             q = p + *(u32 *) (p + 0x38);
             r = p + *(u32 *) (p + 0x14);
             data_0217aed0->mUnk_144[i] = r;

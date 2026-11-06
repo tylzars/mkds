@@ -312,11 +312,11 @@ void func_0208e098(void *a) {
     }
 }
 
-void func_0208ddf4(void *a, s32 b, Unk020136f0 *c, void *d, void *e, void *f) {
+void func_0208ddf4(void *a, s32 b, NNSG3dResFileHeader *c, void *d, void *e, void *f) {
     u16 i;
     u8 *t;
     Unk02087d0c *o;
-    Unk0201290c *h;
+    NNSG3dResMdl *h;
     Unk0208e490 *p;
     Unk0216618c *g;
     u32 k;
@@ -336,11 +336,11 @@ void func_0208ddf4(void *a, s32 b, Unk020136f0 *c, void *d, void *e, void *f) {
         data_0217b07c = 1;
     }
     t = (u8 *) func_02013730((u32) c);
-    h = (Unk0201290c *) (t + *(u32 *) (t + *(u16 *) (t + 0xe) + 0xc));
+    h = (NNSG3dResMdl *) (t + *(u32 *) (t + *(u16 *) (t + 0xe) + 0xc));
     for (i = 0; i < g->mUnk_00; i++) {
         p = data_0217b080->mUnk_48[b][i];
         func_02084f10(&p->mUnk_08, h);
-        func_02013044(p->mUnk_08.mUnk_04, k);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(p->mUnk_08.mUnk_04, k);
         o = p->mUnk_90[0];
         if (o != NULL) {
             if (d != NULL) {

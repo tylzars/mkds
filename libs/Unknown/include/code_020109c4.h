@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02010d98 Unk02010d98;
+typedef struct NNSG3dResMdl NNSG3dResMdl;
 
 typedef struct Unk020109c4 {
     /* 00 */ u8 mUnk_00[0x20];
@@ -27,7 +27,7 @@ typedef struct Unk02010b50 {
 // Three chains with a 64-bit set each.
 typedef struct Unk02010ab4 {
     /* 00 */ u32 mUnk_00; // bit 4 set by func_020109d8
-    /* 04 */ const Unk02010d98 *mUnk_04;
+    /* 04 */ const NNSG3dResMdl *mUnk_04;
     /* 08 */ Unk02010b50 *mUnk_08;
     /* 0c */ u8 mUnk_0c[4];
     /* 10 */ Unk02010b50 *mUnk_10;

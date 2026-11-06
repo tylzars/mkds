@@ -5,7 +5,7 @@
 #include "code_0200db4c.h"
 #include "code_0200f790.h"
 
-typedef struct Unk0217029c Unk0217029c;
+typedef struct NNSG3dGlb NNSG3dGlb;
 
 extern OSThread data_0217002c;
 extern u32 data_021701b4;
@@ -29,10 +29,9 @@ extern u16 data_02170268;
 extern u32 data_0217026c;
 extern u32 data_02170270;
 extern u32 data_02170274[2];
-extern u8 data_02170344[];
 
-extern Unk0217029c data_0217029c;
+extern NNSG3dGlb data_0217029c;
 extern Unk02170500 *data_02170500;
 // The three vectors passed to G3i_LookAt_, written together before each call.
 extern Vec3 data_021704dc[3];
-extern Unk0201290c_1c data_usa_021704e4[];
+extern NNSG3dMatAnmResult data_usa_021704e4[];

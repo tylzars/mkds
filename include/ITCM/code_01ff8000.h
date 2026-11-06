@@ -3,7 +3,7 @@
 #include "types.h"
 #include "00/code_02188720.h"
 
-typedef struct Unk0201290c_0c Unk0201290c_0c;
+typedef struct NNSG3dResShpData NNSG3dResShpData;
 typedef struct Unk02170500_04 Unk02170500_04;
 typedef struct Unk02170500 Unk02170500;
 typedef struct Unk020152bc Unk020152bc;
@@ -19,7 +19,7 @@ void func_01ff8058(void);
 void func_01ff81b4(Unk02170500 *s, u32 a);
 void func_01ff8220(Unk02170500 *s, u32 a);
 void func_01ff85d0(Unk02170500 *s, u32 a);
-void func_01ff8648(Unk02170500 *s, u32 a, Unk0201290c_0c *c);
+void func_01ff8648(Unk02170500 *s, u32 a, NNSG3dResShpData *c);
 void func_01ff86b4(Unk02170500 *s, u32 a);
 void func_01ff8738(Unk02170500 *s, u32 a, const u8 *e, u32 b);
 void func_01ff8b08(Unk02170500 *s, u32 a);

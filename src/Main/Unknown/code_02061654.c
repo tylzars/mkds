@@ -239,22 +239,22 @@ void func_020629a4(void) {
 }
 
 void func_02062860(void) {
-    func_02012f24();
-    func_02011074();
+    NNS_G3dInit();
+    NNS_G3dGlbInit();
     func_01ff92b4();
-    func_02012b20(1);
+    NNS_G3dGeUseFastDma(1);
     data_021759d0->mUnk_1c |= 8;
-    func_02010fac(0, 0, -0x1000, 0);
-    func_02010fac(1, 0x93d, 0x93d, 0x93d);
-    func_02010fac(2, 0, -0x1000, 0);
-    func_02010fac(3, 0, 0xfff, 0);
-    func_02010f98(0, 0x7fff);
-    func_02010f98(1, 0x6318);
-    func_02010f98(2, 31);
-    func_02010f98(3, 0x3ff);
-    func_02010f74(0x5294, 0x5294, 0);
-    func_02010f50(0, 0, 1);
-    func_02010f24(15, 0, 2, 0, 31, 0);
+    NNS_G3dGlbLightVector(0, 0, -0x1000, 0);
+    NNS_G3dGlbLightVector(1, 0x93d, 0x93d, 0x93d);
+    NNS_G3dGlbLightVector(2, 0, -0x1000, 0);
+    NNS_G3dGlbLightVector(3, 0, 0xfff, 0);
+    NNS_G3dGlbLightColor(0, 0x7fff);
+    NNS_G3dGlbLightColor(1, 0x6318);
+    NNS_G3dGlbLightColor(2, 31);
+    NNS_G3dGlbLightColor(3, 0x3ff);
+    NNS_G3dGlbMaterialColorDiffAmb(0x5294, 0x5294, 0);
+    NNS_G3dGlbMaterialColorSpecEmi(0, 0, 1);
+    NNS_G3dGlbPolygonAttr(15, 0, 2, 0, 31, 0);
     data_0217aa74 = HeapAlloc(data_021759d0->mHeap, 772);
     func_01ff92e0(data_0217aa74);
 }
@@ -422,8 +422,8 @@ void func_02062078(void) {
     func_02076c50(data_0217aa6c, 1);
     func_02076bcc(data_0217aa6c);
     p = data_0217aa6c;
-    func_02010fac(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
-    func_02010f98(0, 0x7fff);
+    NNS_G3dGlbLightVector(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
+    NNS_G3dGlbLightColor(0, 0x7fff);
     a.x = p->mViewMatrix.mUnk_00[0].y;
     a.y = p->mViewMatrix.mUnk_00[1].y;
     a.z = p->mViewMatrix.mUnk_00[2].y;
@@ -434,21 +434,21 @@ void func_02062078(void) {
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 16) {
         Vec3NormalizeAndGetLengthUnchecked(&c, &c);
     }
-    func_02010fac(1, (s16) c.x, (s16) c.y, (s16) c.z);
-    func_02010f98(1, 0x7fff);
-    func_02011034();
+    NNS_G3dGlbLightVector(1, (s16) c.x, (s16) c.y, (s16) c.z);
+    NNS_G3dGlbLightColor(1, 0x7fff);
+    NNS_G3dGlbFlushP();
     func_01ff9048(23, data_0217aa7c, 12);
     v = 30;
     func_01ff9048(19, &v, 1);
     DrawCourseModelV();
     func_02076c50(data_0217aa6c, 0);
-    func_02011034();
+    NNS_G3dGlbFlushP();
     func_01ff92e0(data_0217aa74);
     DrawCourseModel();
     func_020d4418((Unk020d4418 *) data_0217aa6c);
     func_01ff92b4();
     DrawKarts();
-    func_02010fac(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
+    NNS_G3dGlbLightVector(0, gRace->mLightVectorX, gRace->mLightVectorY, gRace->mLightVectorZ);
     func_020e9810();
     DrawMapObjects((Unk020d4418 *) data_0217aa6c);
     func_020fa8ac(data_0217aa7c);

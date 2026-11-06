@@ -1026,14 +1026,14 @@ typedef struct Race {
     // Value of mUpdateFrames when the end handler of the kart of the selected entry (Unk021759c0.mEntryIndex) first
     // ran, stored by SetRaceUpdateFramesAtEntryEnd (in mission run mode that is after the end wait); 0 until then.
     /* 3c */ s32 mUpdateFramesAtEntryEnd;
-    // x component of the direction of light 0, the vector func_02062078 gives to func_02010fac; set at InitRace from
-    // data_021653f0 and by SetRaceLightVector.
+    // x component of the direction of light 0, the vector func_02062078 gives to NNS_G3dGlbLightVector; set at InitRace
+    // from data_021653f0 and by SetRaceLightVector.
     /* 40 */ s16 mLightVectorX;
-    // y component of the direction of light 0, the vector func_02062078 gives to func_02010fac; set at InitRace from
-    // data_021653f0 and by SetRaceLightVector.
+    // y component of the direction of light 0, the vector func_02062078 gives to NNS_G3dGlbLightVector; set at InitRace
+    // from data_021653f0 and by SetRaceLightVector.
     /* 42 */ s16 mLightVectorY;
-    // z component of the direction of light 0, the vector func_02062078 gives to func_02010fac; set at InitRace from
-    // data_021653f0 and by SetRaceLightVector.
+    // z component of the direction of light 0, the vector func_02062078 gives to NNS_G3dGlbLightVector; set at InitRace
+    // from data_021653f0 and by SetRaceLightVector.
     /* 44 */ s16 mLightVectorZ;
 } Race;
 
@@ -1300,21 +1300,21 @@ typedef struct Unk0217ad08_058 {
     /* b4 */ struct Unk02010294 *mUnk_b4;
 } Unk0217ad08_058;
 
-struct Unk020136f0;
+struct NNSG3dResFileHeader;
 
-// 0x34-byte entries from 0x1f4 of Unk0217ad08; the pointers at 0x08 to 0x28 are passed to func_02012b30.
+// 0x34-byte entries from 0x1f4 of Unk0217ad08; the pointers at 0x08 to 0x28 are passed to NNS_G3dResDefaultRelease.
 typedef struct Unk0217ad08_1f4 {
     /* 00 */ void *mUnk_00;
     /* 04 */ struct NNSiFndHeapHead *mUnk_04;
-    /* 08 */ struct Unk020136f0 *mUnk_08;
-    /* 0c */ struct Unk020136f0 *mUnk_0c;
-    /* 10 */ struct Unk020136f0 *mUnk_10;
+    /* 08 */ struct NNSG3dResFileHeader *mUnk_08;
+    /* 0c */ struct NNSG3dResFileHeader *mUnk_0c;
+    /* 10 */ struct NNSG3dResFileHeader *mUnk_10;
     /* 14 */ void *mUnk_14;
-    /* 18 */ struct Unk020136f0 *mUnk_18;
-    /* 1c */ struct Unk020136f0 *mUnk_1c;
-    /* 20 */ struct Unk020136f0 *mUnk_20;
-    /* 24 */ struct Unk020136f0 *mUnk_24;
-    /* 28 */ struct Unk020136f0 *mUnk_28;
+    /* 18 */ struct NNSG3dResFileHeader *mUnk_18;
+    /* 1c */ struct NNSG3dResFileHeader *mUnk_1c;
+    /* 20 */ struct NNSG3dResFileHeader *mUnk_20;
+    /* 24 */ struct NNSG3dResFileHeader *mUnk_24;
+    /* 28 */ struct NNSG3dResFileHeader *mUnk_28;
     /* 2c */ BOOL mUnk_2c;
     /* 30 */ u16 mUnk_30;
     /* 32 */ u8 mUnk_32[2];

@@ -266,49 +266,49 @@ void CreateHyudoroWater(void) {
 }
 
 // Once per course, from func_020d2e24 in InitMapObjects: builds the embedded model of each file (mUnk_68 only when A
-// exists, mUnk_d4) and sets material values (func_020134b0: 1 for A, 2 for C; the two 5-bit values mUnk_58 / mUnk_5a
-// through func_02013468).
+// exists, mUnk_d4) and sets material values (NNS_G3dMdlSetMdlPolygonID: 1 for A, 2 for C; the two 5-bit values mUnk_58
+// / mUnk_5a through NNS_G3dMdlSetMdlAlpha).
 void InitWaterModels(Water *a) {
     u32 i;
-    Unk0201290c *p;
-    Unk0201290c *q;
+    NNSG3dResMdl *p;
+    NNSG3dResMdl *q;
     s32 r;
     u32 n;
     if (a->mModelAFile != NULL) {
         func_02084e28(&a->mUnk_68, a->mModelAFile);
         i = 0;
         p = a->mUnk_68.mUnk_04;
-        for (; i < p->mEntryCount; i++) {
-            func_020135d0(p, i, 0x294a);
+        for (; i < p->mInfo.mNumMat; i++) {
+            NNS_G3dMdlSetMdlEmi(p, i, 0x294a);
         }
         i = 0;
         p = a->mUnk_68.mUnk_04;
-        for (; i < p->mEntryCount; i++) {
-            func_020134b0(p, i, 1);
+        for (; i < p->mInfo.mNumMat; i++) {
+            NNS_G3dMdlSetMdlPolygonID(p, i, 1);
         }
     }
     func_02084e28(&a->mUnk_d4, a->mModelCFile);
     i = 0;
     p = a->mUnk_d4.mUnk_04;
-    for (; i < p->mEntryCount; i++) {
-        func_020135d0(p, i, 0x294a);
+    for (; i < p->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlEmi(p, i, 0x294a);
     }
     i = 0;
     p = a->mUnk_d4.mUnk_04;
-    for (; i < p->mEntryCount; i++) {
-        func_020134b0(p, i, 2);
+    for (; i < p->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlPolygonID(p, i, 2);
     }
     q = a->mUnk_d4.mUnk_04;
-    r = func_02013754(&q->mUnk_00[q->mEntriesOffset] + 4, data_02158094);
+    r = func_02013754((u8 *) q + q->mOfsMat + 4, data_02158094);
     if (a->mModelAFile != NULL) {
         n = a->mUnk_58;
         i = 0;
         p = a->mUnk_68.mUnk_04;
-        for (; i < p->mEntryCount; i++) {
-            func_02013468(p, i, n);
+        for (; i < p->mInfo.mNumMat; i++) {
+            NNS_G3dMdlSetMdlAlpha(p, i, n);
         }
     }
-    func_02013468(q, r, a->mUnk_5a);
+    NNS_G3dMdlSetMdlAlpha(q, r, a->mUnk_5a);
 }
 
 void CreateWaterEfct(Unk020da384 *a) {

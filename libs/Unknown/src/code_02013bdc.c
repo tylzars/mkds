@@ -1342,12 +1342,12 @@ int func_02013c78(s32 *out, const s16 *a, const s16 *b, u32 n) {
     return 1;
 }
 
-void *func_02013c18(Unk020136f0 *a, u32 b, u32 c) {
+void *func_02013c18(NNSG3dResFileHeader *a, u32 b, u32 c) {
     u32 i;
     u32 *p;
 
-    if (a->mUnk_00 == b) {
-        for (i = 0; i < a->mUnk_0e; i++) {
+    if (a->mSigVal == b) {
+        for (i = 0; i < a->mDataBlocks; i++) {
             p = func_02013740(a, i);
             if (*p == c) {
                 return p;

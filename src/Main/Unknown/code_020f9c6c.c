@@ -748,12 +748,12 @@ void func_020faed0(Unk020fc2e8 *param_1, s32 param_2, s32 param_3) {
     v.y = param_1->mUnk_000.mUnk_68.y;
     if (param_1->mUnk_000.mUnk_d8 != 0x1f) {
         u32 i;
-        Unk0201290c *o;
+        NNSG3dResMdl *o;
 
         o = data_0217bd38->mUnk_004;
         n = (u16) param_1->mUnk_000.mUnk_d8;
-        for (i = 0; i < o->mEntryCount; i++) {
-            func_02013468(o, i, n);
+        for (i = 0; i < o->mInfo.mNumMat; i++) {
+            NNS_G3dMdlSetMdlAlpha(o, i, n);
         }
     }
     if (param_1->mUnk_000.mFlags & 0x80000) {
@@ -773,11 +773,11 @@ void func_020faed0(Unk020fc2e8 *param_1, s32 param_2, s32 param_3) {
     }
     {
         u32 i;
-        Unk0201290c *o;
+        NNSG3dResMdl *o;
 
         o = data_0217bd38->mUnk_004;
-        for (i = 0; i < o->mEntryCount; i++) {
-            func_02013468(o, i, 0x1f);
+        for (i = 0; i < o->mInfo.mNumMat; i++) {
+            NNS_G3dMdlSetMdlAlpha(o, i, 0x1f);
         }
     }
 }
@@ -841,7 +841,7 @@ void func_020fad00(void) {
     data_0217bd34 = v * v;
     data_0217bd38 = func_020ed490(data_0216c6f4, data_0216c704);
     if (data_021759c0->mCourseId == COURSE_ID_RAINBOW) {
-        func_02013044(data_0217bd38->mUnk_004, 0);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(data_0217bd38->mUnk_004, 0);
     }
 }
 

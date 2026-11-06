@@ -20,12 +20,12 @@
 #include "code_02010c84.h"
 #include "code_020172d0.h"
 
-void func_0208526c(Unk0208526c *a, Unk020136f0 *b, Unk020136f0 *c) {
+void func_0208526c(Unk0208526c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
     u32 v1;
     Unk020850c4 *v2;
 
     v1 = func_02013730((u32) b);
-    v2 = func_020136f0(c);
+    v2 = NNS_G3dGetTex(c);
     a->mUnk_0c = NULL;
     a->mUnk_08 = NULL;
     NNS_FndAppendListObject(&data_0217aeb0, a);
@@ -41,7 +41,7 @@ void func_0208526c(Unk0208526c *a, Unk020136f0 *b, Unk020136f0 *c) {
     v2->mUnk_2c = 0;
     func_020850c4(v2);
     a->mUnk_0c = v2;
-    if (((Unk020136f0 *) v1)->mUnk_00 == 0x304c444d) {
+    if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
         NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
     }
 }
@@ -99,28 +99,28 @@ u32 func_020850c4(Unk020850c4 *a) {
     return v3;
 }
 
-void func_02084fb0(Unk02084b2c *a, Unk0201290c *b, u32 c) {
+void func_02084fb0(Unk02084b2c *a, NNSG3dResMdl *b, u32 c) {
     u32 i;
-    Unk0201290c *p;
+    NNSG3dResMdl *p;
 
     if (c != 0 && GetCurrentSceneNumber() == 2) {
         a->mUnk_54 = data_021759c0->mUnk_57;
     } else {
         a->mUnk_54 = 0;
     }
-    if (b->mEntryCount == 1 && b->mUnk_19[0] == 1) {
+    if (b->mInfo.mNumMat == 1 && b->mInfo.mNumShp == 1) {
         a->mUnk_58 = 1;
     } else {
         a->mUnk_58 = 0;
     }
-    func_02010c84((Unk02010c84 *) a, (u32) b);
+    NNS_G3dRenderObjInit((NNSG3dRenderObj *) a, b);
     if (a->mUnk_54 != 0) {
         p = a->mUnk_04;
-        for (i = 0; i < p->mEntryCount; i++) {
-            if (func_020133ac(p, i) == 1) {
-                func_020134f8(p, i, 2);
-            } else if (func_020133ac(p, i) == 2) {
-                func_020134f8(p, i, 1);
+        for (i = 0; i < p->mInfo.mNumMat; i++) {
+            if (NNS_G3dMdlGetMdlCullMode(p, i) == 1) {
+                NNS_G3dMdlSetMdlCullMode(p, i, 2);
+            } else if (NNS_G3dMdlGetMdlCullMode(p, i) == 2) {
+                NNS_G3dMdlSetMdlCullMode(p, i, 1);
             }
         }
     }
@@ -128,29 +128,29 @@ void func_02084fb0(Unk02084b2c *a, Unk0201290c *b, u32 c) {
 
 void func_02084f68(Unk02084b2c *a) {
     u32 i;
-    Unk0201290c *p;
+    NNSG3dResMdl *p;
 
     p = a->mUnk_04;
-    for (i = 0; i < p->mEntryCount; i++) {
-        func_020134f8(p, i, 1);
+    for (i = 0; i < p->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlCullMode(p, i, 1);
     }
 }
 
 void func_02084f20(Unk02084b2c *a) {
     u32 i;
-    Unk0201290c *p;
+    NNSG3dResMdl *p;
 
     p = a->mUnk_04;
-    for (i = 0; i < p->mEntryCount; i++) {
-        func_020134f8(p, i, 2);
+    for (i = 0; i < p->mInfo.mNumMat; i++) {
+        NNS_G3dMdlSetMdlCullMode(p, i, 2);
     }
 }
 
-void func_02084f10(Unk02084b2c *a, Unk0201290c *b) {
+void func_02084f10(Unk02084b2c *a, NNSG3dResMdl *b) {
     func_02084fb0(a, b, 1);
 }
 
-Unk0201290c *func_02084e28(void *a, Unk020136f0 *b) {
+NNSG3dResMdl *func_02084e28(void *a, NNSG3dResFileHeader *b) {
     Unk02084b2c *o = a;
 
     u32 v1;
@@ -158,7 +158,7 @@ Unk0201290c *func_02084e28(void *a, Unk020136f0 *b) {
     u32 v3;
 
     v1 = func_02013730((u32) b);
-    v2 = func_020136f0(b);
+    v2 = NNS_G3dGetTex(b);
     o->mUnk_5c.mUnk_0c = NULL;
     o->mUnk_5c.mUnk_08 = NULL;
     NNS_FndAppendListObject(&data_0217aeb0, &o->mUnk_5c);
@@ -172,16 +172,16 @@ Unk0201290c *func_02084e28(void *a, Unk020136f0 *b) {
         v2->mUnk_2c = 0;
         func_020850c4(v2);
         o->mUnk_5c.mUnk_0c = v2;
-        if (((Unk020136f0 *) v1)->mUnk_00 == 0x304c444d) {
+        if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
             NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
         }
     }
     v3 = func_02013730((u32) b);
-    func_02084fb0(o, (Unk0201290c *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
+    func_02084fb0(o, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
     return o->mUnk_04;
 }
 
-Unk0201290c *func_02084d3c(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
+NNSG3dResMdl *func_02084d3c(Unk02084b2c *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
     Unk02084b2c *o = a;
 
     u32 v1;
@@ -189,7 +189,7 @@ Unk0201290c *func_02084d3c(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
     u32 v3;
 
     v1 = func_02013730((u32) b);
-    v2 = func_020136f0(c);
+    v2 = NNS_G3dGetTex(c);
     o->mUnk_5c.mUnk_0c = NULL;
     o->mUnk_5c.mUnk_08 = NULL;
     NNS_FndAppendListObject(&data_0217aeb0, &o->mUnk_5c);
@@ -203,22 +203,22 @@ Unk0201290c *func_02084d3c(Unk02084b2c *a, Unk020136f0 *b, Unk020136f0 *c) {
         v2->mUnk_2c = 0;
         func_020850c4(v2);
         o->mUnk_5c.mUnk_0c = v2;
-        if (((Unk020136f0 *) v1)->mUnk_00 == 0x304c444d) {
+        if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
             NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
         }
     }
     v3 = func_02013730((u32) b);
-    func_02084fb0(o, (Unk0201290c *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
+    func_02084fb0(o, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
     return o->mUnk_04;
 }
 
-Unk0201290c *func_02084c54(Unk02084b2c *a, Unk020136f0 *b) {
+NNSG3dResMdl *func_02084c54(Unk02084b2c *a, NNSG3dResFileHeader *b) {
     u32 v1;
     Unk020850c4 *v2;
     u32 v3;
 
     v1 = func_02013730((u32) b);
-    v2 = func_020136f0(b);
+    v2 = NNS_G3dGetTex(b);
     a->mUnk_5c.mUnk_0c = NULL;
     a->mUnk_5c.mUnk_08 = NULL;
     NNS_FndAppendListObject(&data_0217aeb0, &a->mUnk_5c);
@@ -232,26 +232,26 @@ Unk0201290c *func_02084c54(Unk02084b2c *a, Unk020136f0 *b) {
         v2->mUnk_2c = 0;
         func_020850c4(v2);
         a->mUnk_5c.mUnk_0c = v2;
-        if (((Unk020136f0 *) v1)->mUnk_00 == 0x304c444d) {
+        if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
             NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
         }
     }
     v3 = func_02013730((u32) b);
-    func_02084fb0(a, (Unk0201290c *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 0);
+    func_02084fb0(a, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 0);
     return a->mUnk_04;
 }
 
-Unk0201290c *func_02084b2c(void *a, Unk02084b2c *b, Unk020136f0 *c, Unk020136f0 *d) {
+NNSG3dResMdl *func_02084b2c(void *a, Unk02084b2c *b, NNSG3dResFileHeader *c, NNSG3dResFileHeader *d) {
     u32 v1;
     Unk020850c4 *v2;
     u32 v3;
     Unk020850c4 *m;
     u32 v4;
     Unk0208526c *e;
-    Unk0201290c *q;
+    NNSG3dResMdl *q;
 
     v1 = func_02013730((u32) c);
-    v2 = func_020136f0(d);
+    v2 = NNS_G3dGetTex(d);
     b->mUnk_5c.mUnk_0c = NULL;
     b->mUnk_5c.mUnk_08 = NULL;
     NNS_FndAppendListObject(&data_0217aeb0, &b->mUnk_5c);
@@ -265,12 +265,12 @@ Unk0201290c *func_02084b2c(void *a, Unk02084b2c *b, Unk020136f0 *c, Unk020136f0 
         v2->mUnk_2c = 0;
         func_020850c4(v2);
         b->mUnk_5c.mUnk_0c = v2;
-        if (((Unk020136f0 *) v1)->mUnk_00 == 0x304c444d) {
+        if (((NNSG3dResFileHeader *) v1)->mSigVal == 0x304c444d) {
             NNS_G3dBindMdlSet((Unk02010168 *) v1, (Unk02010294 *) v2);
         }
     }
     v3 = func_02013730((u32) c);
-    func_02084fb0(b, (Unk0201290c *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
+    func_02084fb0(b, (NNSG3dResMdl *) (v3 + *(u32 *) (v3 + *(u16 *) (v3 + 14) + 12)), 1);
     e = &b->mUnk_5c;
     m = e->mUnk_0c;
     q = b->mUnk_04;
@@ -285,7 +285,7 @@ Unk0201290c *func_02084b2c(void *a, Unk02084b2c *b, Unk020136f0 *c, Unk020136f0 
 void func_02084ad8(void *a, u8 b) {
     Unk02084b2c *o = a;
 
-    Unk0201290c *p = o->mUnk_04;
+    NNSG3dResMdl *p = o->mUnk_04;
     u32 n;
 
     if (o->mUnk_54 != 0) {
@@ -293,15 +293,15 @@ void func_02084ad8(void *a, u8 b) {
     } else {
         n = 1;
     }
-    func_020134b0(p, 0, 0);
-    func_020134f8(p, 0, n);
-    func_02013468(p, 0, b);
+    NNS_G3dMdlSetMdlPolygonID(p, 0, 0);
+    NNS_G3dMdlSetMdlCullMode(p, 0, n);
+    NNS_G3dMdlSetMdlAlpha(p, 0, b);
 }
 
 void func_02084a88(void *a, u8 b, u8 c) {
     Unk02084b2c *o = a;
 
-    Unk0201290c *p = o->mUnk_04;
+    NNSG3dResMdl *p = o->mUnk_04;
     u32 n;
 
     if (o->mUnk_54 != 0) {
@@ -309,9 +309,9 @@ void func_02084a88(void *a, u8 b, u8 c) {
     } else {
         n = 2;
     }
-    func_020134b0(p, 0, c);
-    func_020134f8(p, 0, n);
-    func_02013468(p, 0, b);
+    NNS_G3dMdlSetMdlPolygonID(p, 0, c);
+    NNS_G3dMdlSetMdlCullMode(p, 0, n);
+    NNS_G3dMdlSetMdlAlpha(p, 0, b);
 }
 
 void func_020849f8(void *a, MtxFx43 *b, u32 *c) {
@@ -341,33 +341,33 @@ void func_020849d0(void *a) {
 void func_020849c0(void *a, u32 b) {
     Unk02084b2c *o = a;
 
-    func_020130d4(o->mUnk_04, b);
+    NNS_G3dMdlSetMdlPolygonIDAll(o->mUnk_04, b);
 }
 
 void func_020849b0(void *a, u32 b) {
     Unk02084b2c *o = a;
 
-    func_020131ac(o->mUnk_04, b);
+    NNS_G3dMdlSetMdlLightEnableFlagAll(o->mUnk_04, b);
 }
 
 void func_020849a0(void *a, u32 b) {
     Unk02084b2c *o = a;
 
-    func_020131f4(o->mUnk_04, b);
+    NNS_G3dMdlSetMdlEmiAll(o->mUnk_04, b);
 }
 
 void func_02084968(void *a, u32 b, u32 c, u32 d) {
     Unk02084b2c *o = a;
 
-    func_020130d4(o->mUnk_04, b);
-    func_020131ac(o->mUnk_04, c);
-    func_020131f4(o->mUnk_04, d);
+    NNS_G3dMdlSetMdlPolygonIDAll(o->mUnk_04, b);
+    NNS_G3dMdlSetMdlLightEnableFlagAll(o->mUnk_04, c);
+    NNS_G3dMdlSetMdlEmiAll(o->mUnk_04, d);
 }
 
 void func_02084958(void *a, u32 b) {
     Unk02084b2c *o = a;
 
-    func_0201311c(o->mUnk_04, b);
+    NNS_G3dMdlSetMdlCullModeAll(o->mUnk_04, b);
 }
 
 void func_020848fc(void) {
@@ -376,7 +376,7 @@ void func_020848fc(void) {
     for (p = NNS_FndGetNextListObject(&data_0217aeb0, NULL); p != NULL;
          p = NNS_FndGetNextListObject(&data_0217aeb0, p)) {
         if (p->mUnk_08 != NULL) {
-            func_02012b30(p->mUnk_08);
+            NNS_G3dResDefaultRelease(p->mUnk_08);
         }
     }
 }

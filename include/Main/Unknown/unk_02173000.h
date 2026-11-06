@@ -10,7 +10,7 @@ typedef struct CallQueue CallQueue;
 
 extern u32 data_02173274;
 
-extern u8 data_0217320c[];
+extern BOOL data_0217320c;
 
 extern CallQueue data_02173220;
 extern Unk020162b0 data_02173214;

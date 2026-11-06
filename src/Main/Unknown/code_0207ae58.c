@@ -235,9 +235,9 @@ void func_0207b284(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
     Unk02084b2c *r = q->mUnk_010[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
-    Unk0201290c *t = r->mUnk_04;
+    NNSG3dResMdl *t = r->mUnk_04;
 
-    func_02013164(t, 2);
+    NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
     NNS_G3dReleaseMdlTex((Unk020101e8 *) t);
     if (s != NULL && q->mUnk_0ac == FALSE) {
         func_020109d8((Unk02010ab4 *) r, (Unk02010b50 *) s->mUnk_1c[0]);
@@ -245,12 +245,12 @@ void func_0207b284(Kart *p) {
     }
     func_0207a14c(t, 2);
     t = q->mUnk_010[1]->mUnk_04;
-    func_02013164(t, 2);
+    NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
     NNS_G3dReleaseMdlTex((Unk020101e8 *) t);
     func_0207a14c(t, 2);
     if (q->mUnk_010[2] != NULL) {
         t = q->mUnk_010[2]->mUnk_04;
-        func_02013164(t, 2);
+        NNS_G3dMdlSetMdlPolygonModeAll(t, 2);
         NNS_G3dReleaseMdlTex((Unk020101e8 *) t);
         func_0207a14c(t, 2);
     }
@@ -261,12 +261,12 @@ void func_0207b1a8(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
     Unk02084b2c *r = q->mUnk_010[0];
     Unk0206bcb0_590_08 *s = q->mUnk_00c;
-    Unk0201290c *t = r->mUnk_04;
+    NNSG3dResMdl *t = r->mUnk_04;
     Unk02084b2c *u;
-    Unk0201290c *w;
+    NNSG3dResMdl *w;
     Unk02084b2c *v;
 
-    func_02013164(t, 0);
+    NNS_G3dMdlSetMdlPolygonModeAll(t, 0);
     NNS_G3dBindMdlTex((Unk020101e8 *) t, (Unk02010294 *) r->mUnk_5c.mUnk_0c);
     if (s != NULL && q->mUnk_0ac != FALSE) {
         func_02010ab4((Unk02010ab4 *) r, (Unk02010b50 *) s->mUnk_1c[0]);
@@ -275,13 +275,13 @@ void func_0207b1a8(Kart *p) {
     func_0207a14c(t, 0);
     u = q->mUnk_010[1];
     t = u->mUnk_04;
-    func_02013164(t, 0);
+    NNS_G3dMdlSetMdlPolygonModeAll(t, 0);
     NNS_G3dBindMdlTex((Unk020101e8 *) t, (Unk02010294 *) u->mUnk_5c.mUnk_0c);
     func_0207a14c(t, 0);
     v = q->mUnk_010[2];
     if (v != NULL) {
         w = v->mUnk_04;
-        func_02013164(w, 0);
+        NNS_G3dMdlSetMdlPolygonModeAll(w, 0);
         NNS_G3dBindMdlTex((Unk020101e8 *) w, (Unk02010294 *) v->mUnk_5c.mUnk_0c);
         func_0207a14c(w, 0);
     }
@@ -290,31 +290,31 @@ void func_0207b1a8(Kart *p) {
 
 void func_0207b13c(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
-    Unk0201290c *r;
+    NNSG3dResMdl *r;
 
     if (q->mUnk_064 != FALSE) {
         return;
     }
     r = q->mUnk_010[0]->mUnk_04;
-    func_02013164(r, 2);
+    NNS_G3dMdlSetMdlPolygonModeAll(r, 2);
     func_0207a14c(r, 3);
     r = q->mUnk_010[1]->mUnk_04;
-    func_02013164(r, 2);
+    NNS_G3dMdlSetMdlPolygonModeAll(r, 2);
     func_0207a14c(r, 3);
 }
 
 void func_0207b0d0(Kart *p) {
     Unk0206bcb0_590 *q = p->mKartModelsEntry;
-    Unk0201290c *r;
+    NNSG3dResMdl *r;
 
     if (q->mUnk_064 != FALSE) {
         return;
     }
     r = q->mUnk_010[0]->mUnk_04;
-    func_02013164(r, 0);
+    NNS_G3dMdlSetMdlPolygonModeAll(r, 0);
     func_0207a14c(r, 0);
     r = q->mUnk_010[1]->mUnk_04;
-    func_02013164(r, 0);
+    NNS_G3dMdlSetMdlPolygonModeAll(r, 0);
     func_0207a14c(r, 0);
 }
 
@@ -335,28 +335,28 @@ void func_0207b054(Kart *p, s32 a, s32 b) {
 
 void func_0207b000(Unk02084b2c *a, void *b, u32 c) {
     Unk0207adf8 *p = (Unk0207adf8 *) a;
-    Unk0201290c *q;
+    NNSG3dResMdl *q;
 
     func_02084f10(a, b);
     q = a->mUnk_04;
     p->mUnk_6c = c;
     p->mUnk_6e = 0xd;
     p->mUnk_70 |= 1;
-    func_02013540(q, 0, 3);
-    func_02013588(q, 0, 0);
+    NNS_G3dMdlSetMdlPolygonMode(q, 0, 3);
+    NNS_G3dMdlSetMdlLightEnableFlag(q, 0, 0);
 }
 
-Unk0201290c *func_0207afa8(void *param_1, Unk020136f0 *b, u32 c) {
+NNSG3dResMdl *func_0207afa8(void *param_1, NNSG3dResFileHeader *b, u32 c) {
     Unk0207adf8 *a = param_1;
-    Unk0201290c *p;
+    NNSG3dResMdl *p;
 
     func_02084e28(a, b);
     p = a->mUnk_00.mUnk_04;
     a->mUnk_6c = c;
     a->mUnk_6e = 0xd;
     a->mUnk_70 |= 1;
-    func_02013540(p, 0, 3);
-    func_02013588(p, 0, 0);
+    NNS_G3dMdlSetMdlPolygonMode(p, 0, 3);
+    NNS_G3dMdlSetMdlLightEnableFlag(p, 0, 0);
     return a->mUnk_00.mUnk_04;
 }
 

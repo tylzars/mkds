@@ -286,7 +286,7 @@ void func_020e9810(void) {
     data_0217ba00.mUnk_14 &= ~0x1f0000;
     data_0217ba00.mUnk_14 |= data_0217b874 << 16;
     if (p5 != NULL) {
-        func_0201308c(p5->mUnk_04, data_0217b874);
+        NNS_G3dMdlSetMdlAlphaAll(p5->mUnk_04, data_0217b874);
     }
     if (p4 != NULL) {
         p4->mUnk_14 &= ~0x1f0000;

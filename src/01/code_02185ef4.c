@@ -782,14 +782,14 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
             level = 0x1f;
         }
         if (level >= 0x1f) {
-            func_02012ffc((Unk0201290c *) b->mNsbmd->mAnimatedModel->mUnk_04, 1);
+            NNS_G3dMdlSetMdlXLDepthUpdateAll((NNSG3dResMdl *) b->mNsbmd->mAnimatedModel->mUnk_04, 1);
             SetMapObjectModelPolygonId(b->mNsbmd, 3);
         } else if (b->mUnk_27c <= 1) {
-            func_02012ffc((Unk0201290c *) b->mNsbmd->mAnimatedModel->mUnk_04, 1);
+            NNS_G3dMdlSetMdlXLDepthUpdateAll((NNSG3dResMdl *) b->mNsbmd->mAnimatedModel->mUnk_04, 1);
             SetMapObjectModelPolygonId(b->mNsbmd, 3);
         } else {
             obj = b->mNsbmd->mAnimatedModel->mUnk_04;
-            func_02012ffc((Unk0201290c *) obj, 1);
+            NNS_G3dMdlSetMdlXLDepthUpdateAll((NNSG3dResMdl *) obj, 1);
             for (i = 0; i < obj->mUnk_18; i++) {
                 func_0209b904(b->mNsbmd, func_020d3c44(), i);
             }

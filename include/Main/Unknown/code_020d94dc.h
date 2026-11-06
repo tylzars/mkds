@@ -52,7 +52,7 @@ typedef struct Unk020da384 {
 // Object of 0x6c bytes at 0x68 and 0xd4 of Water; the word at 0x04 points to a table object.
 typedef struct Unk020d9cf4_68 {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ Unk0201290c *mUnk_04;
+    /* 04 */ NNSG3dResMdl *mUnk_04;
     /* 08 */ u8 mUnk_08[0x64];
 } Unk020d9cf4_68;
 

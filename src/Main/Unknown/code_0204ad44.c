@@ -88,7 +88,7 @@ void func_0204ad44(void) {
     data_021759d0->mUnk_1c_1 = 0;
     data_021759d0->mUnk_58 = 0;
     data_021759d0->mUnk_5c = 0;
-    func_02012b20(0);
+    NNS_G3dGeUseFastDma(0);
     data_021759d0->mUnk_1c_3 = 0;
     data_021759d0->mUnk_54 = FALSE;
     data_021759d0->mUnk_50 = 0;

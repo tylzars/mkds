@@ -81,7 +81,7 @@ void func_0206390c(Unk0206390c *a) {
         return;
     }
     i = func_0206182c();
-    func_02012f58(&d, c);
+    NNS_G3dGetCurrentMtx(&d, c);
     MTX_Inverse43(i, &e);
     MTX_Concat43(&d, &e, &d);
     MTX_Concat33((const s32 *) c, (const s32 *) &e, (s32 *) c);

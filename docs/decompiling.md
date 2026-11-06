@@ -521,7 +521,7 @@ Expression shapes:
 - `cmp t, reg` with the hardware word read before `t`: read the word through a static inline helper and write `t ==
   helper()` (PM_GoSleepMode).
 - Stores to one global array in a different order than ours, with two shifted values in each other's registers: write
-  the stores in index order (func_02011624).
+  the stores in index order (NNSi_G3dFuncSbc_PRJMAP).
 - A bit-field update that reads the value before the word: put the value in a local first; reuse one local for the
   stores that follow so only the last definition is folded (func_02056750).
 - A member address for a call argument formed before a branch instead of in the call's own block: write that update as
@@ -823,7 +823,7 @@ Expression shapes:
 - A nibble store that loads the byte, clears it with `bic`, then ors `(v & 0xf) << 4` is a bit-field member
   (func_02007698).
 - A halfword stored through `lsl 8; asr 16; lsl 16; lsr 16` with the x/y chains in crossed registers: `x = m >> 4; ...`
-  and `(u16) (s16) (x >> 8)` for the store (func_02011624).
+  and `(u16) (s16) (x >> 8)` for the store (NNSi_G3dFuncSbc_PRJMAP).
 - A `-0x8000` compare constant that takes r0 before the final value: write `(s16) (x >> 7)` instead of `(s32) (x << 9)
   >> 16` (TP_CalcCalibrateParam).
 - A `u16` argument converted right after its value's `if`, before the next test: assign it to a `u16` local at that

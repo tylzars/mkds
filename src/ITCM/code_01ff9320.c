@@ -20,7 +20,7 @@ Unk01ff9320_Fn data_01ff9300[8] = {
 
 #pragma section ITCM end
 
-void func_01ff94d4(s32 *o, const Unk0201290c_1c *v1) {
+void func_01ff94d4(s32 *o, const NNSG3dMatAnmResult *v1) {
     s32 a;
     s32 b;
     s32 t;
@@ -38,7 +38,7 @@ void func_01ff94d4(s32 *o, const Unk0201290c_1c *v1) {
     o[4] = (v1->mUnk_20[0] * FX_GetDivResult()) >> 12;
 }
 
-void func_01ff9490(s32 *o, const Unk0201290c_1c *v1) {
+void func_01ff9490(s32 *o, const NNSG3dMatAnmResult *v1) {
     s32 t;
 
     o[0] = v1->mUnk_18[0];
@@ -59,7 +59,7 @@ void func_01ff946c(s32 *o) {
     o[13] = 0;
 }
 
-void func_01ff9320(Unk0201290c_1c *p) {
+void func_01ff9320(NNSG3dMatAnmResult *p) {
     Unk01ff9320_buf b;
 
     if (p->mUnk_00 & 8) {

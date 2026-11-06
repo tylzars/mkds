@@ -39,18 +39,18 @@ void func_020a29cc(void) {
     Unk0217b200_08 *p;
 
     G2x_SetBlendAlpha_((u32 *) 0x4000050, 1, 0x1f, 0x10, 0x10);
-    func_02010fac(0, data_0217b200->mUnk_0fc, data_0217b200->mUnk_100, data_0217b200->mUnk_104);
-    func_02010fac(1, data_0217b200->mUnk_0fe, data_0217b200->mUnk_102, data_0217b200->mUnk_106);
-    func_02010f98(0, 0x7fff);
-    func_02010f98(1, 0x7fff);
+    NNS_G3dGlbLightVector(0, data_0217b200->mUnk_0fc, data_0217b200->mUnk_100, data_0217b200->mUnk_104);
+    NNS_G3dGlbLightVector(1, data_0217b200->mUnk_0fe, data_0217b200->mUnk_102, data_0217b200->mUnk_106);
+    NNS_G3dGlbLightColor(0, 0x7fff);
+    NNS_G3dGlbLightColor(1, 0x7fff);
     x = (s32) (((s64) FX_Div(data_0215d6b4[0x54], data_0215d6b4[0x55]) * 0x19a) >> 12);
     y = (s32) (((s64) -x * 0x1555) >> 12);
     if (data_021759c0->mUnk_57 != 0) {
-        G3i_FrustumW_(x, -x, -y, y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
-        data_0217029c.mUnk_fc &= ~0x50;
+        G3i_FrustumW_(x, -x, -y, y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mProjMtx);
+        data_0217029c.mFlag &= ~0x50;
     } else {
-        G3i_FrustumW_(x, -x, y, -y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mUnk_08);
-        data_0217029c.mUnk_fc &= ~0x50;
+        G3i_FrustumW_(x, -x, y, -y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mProjMtx);
+        data_0217029c.mFlag &= ~0x50;
     }
     {
         Vec3 v3;
@@ -62,11 +62,11 @@ void func_020a29cc(void) {
         data_021704dc[0] = v3;
         data_021704dc[1] = v2;
         data_021704dc[2] = v1;
-        G3i_LookAt_(&v3, &v2, &v1, 0, &data_0217029c.mUnk_4c);
-        data_0217029c.mUnk_fc &= ~0xe8;
+        G3i_LookAt_(&v3, &v2, &v1, 0, &data_0217029c.mCameraMtx);
+        data_0217029c.mFlag &= ~0xe8;
         func_02038c9c(data_021755a0, 1, 1);
-        data_0217029c.mUnk_a0 = 0xbfff0000;
-        func_02011034();
+        data_0217029c.mPrmViewPort = 0xbfff0000;
+        NNS_G3dGlbFlushP();
         if (data_0217b200->mUnk_002 >= 3) {
             return;
         }
@@ -239,7 +239,7 @@ void func_020a23cc(void) {
         return;
     }
     func_0208b870(&data_0217b200->mUnk_0cc);
-    func_02011034();
+    NNS_G3dGlbFlushP();
     func_01ff9048(0x15, NULL, 0);
     v1[0] = 0x1000;
     v1[1] = 0x1000;

@@ -65,12 +65,12 @@ void func_020881b0(void *a, s32 b, void *c, u32 d, void *e) {
         x = p->mUnk_1c[b];
         p->mUnk_20[b] = d;
     } else {
-        data_0217af20 = func_02010d98(c, p->mUnk_14->mUnk_04);
+        data_0217af20 = NNS_G3dAnmObjCalcSizeRequired(c, p->mUnk_14->mUnk_04);
         x = HeapAlloc(e, data_0217af20);
         p->mUnk_1c[b] = x;
         p->mUnk_20[b] = d;
     }
-    func_02010cec((Unk02010c84 *) x, c, (u32) p->mUnk_14->mUnk_04, p->mUnk_14->mUnk_68);
+    NNS_G3dAnmObjInit((NNSG3dAnmObj *) x, c, p->mUnk_14->mUnk_04, (void *) p->mUnk_14->mUnk_68);
 }
 
 void func_0208805c(void *a, void *b, void *c) {
@@ -98,7 +98,7 @@ void func_0208805c(void *a, void *b, void *c) {
                 break;
         }
         if (c != NULL) {
-            data_0217af20 = func_02010d98(v, p->mUnk_14->mUnk_04);
+            data_0217af20 = NNS_G3dAnmObjCalcSizeRequired(v, p->mUnk_14->mUnk_04);
             x = HeapAlloc(c, data_0217af20);
             p->mUnk_1c[i] = x;
             p->mUnk_20[i] = 0;
@@ -106,7 +106,7 @@ void func_0208805c(void *a, void *b, void *c) {
             x = p->mUnk_1c[i];
             p->mUnk_20[i] = 0;
         }
-        func_02010cec((Unk02010c84 *) x, v, (u32) p->mUnk_14->mUnk_04, p->mUnk_14->mUnk_68);
+        NNS_G3dAnmObjInit((NNSG3dAnmObj *) x, v, p->mUnk_14->mUnk_04, (void *) p->mUnk_14->mUnk_68);
     }
 }
 

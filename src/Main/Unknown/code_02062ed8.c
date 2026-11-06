@@ -98,7 +98,7 @@ void InitCourseModels(void *a) {
     const char *b;
     const char *c;
     const char *d;
-    Unk0201290c *e;
+    NNSG3dResMdl *e;
     s32 f;
     s32 g[6];
     s32 i;
@@ -106,29 +106,29 @@ void InitCourseModels(void *a) {
     b = FindCourseFile(data_usa_02165404);
     c = FindCourseFile(data_usa_02165418);
     gCourseModels.mNsbmd = HeapAlloc(a, 0x6c);
-    e = func_02084b2c(a, gCourseModels.mNsbmd, (Unk020136f0 *) b, (Unk020136f0 *) c);
+    e = func_02084b2c(a, gCourseModels.mNsbmd, (NNSG3dResFileHeader *) b, (NNSG3dResFileHeader *) c);
     d = FindCourseFile(data_usa_0216542c);
     func_0206331c_inline(2, data_usa_0217ab04, gCourseModels.mNsbmd, a, b, d, &gCourseModels.mUnk_20);
     d = FindCourseFile(data_usa_02165440);
     func_0206331c_inline(1, data_0217ab5c, gCourseModels.mNsbmd, a, b, d, &gCourseModels.mUnk_58);
     func_020849c0(gCourseModels.mNsbmd, 8);
-    func_02012ffc(e, 1);
+    NNS_G3dMdlSetMdlXLDepthUpdateAll(e, 1);
     switch (data_021759c0->mCourseId) {
         case COURSE_ID_OLD_KOOPA_AGB:
-            f = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02154a00);
+            f = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02154a00);
             if (f >= 0) {
-                func_02013468(e, f, 0x1e);
-                func_020133e0(e, f, 0);
+                NNS_G3dMdlSetMdlAlpha(e, f, 0x1e);
+                NNS_G3dMdlSetMdlXLDepthUpdate(e, f, 0);
             }
             break;
         case COURSE_ID_BANK:
-            f = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02154990);
+            f = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02154990);
             if (f >= 0) {
-                func_020133e0(e, f, 0);
+                NNS_G3dMdlSetMdlXLDepthUpdate(e, f, 0);
             }
-            f = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_02154a10);
+            f = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_02154a10);
             if (f >= 0) {
-                func_020133e0(e, f, 0);
+                NNS_G3dMdlSetMdlXLDepthUpdate(e, f, 0);
             }
             break;
     }
@@ -137,20 +137,20 @@ void InitCourseModels(void *a) {
     c = FindCourseFile(data_usa_0216546c);
     if (b != NULL) {
         gCourseModels.mVNsbmd = HeapAlloc(a, 0x6c);
-        func_02084b2c(a, gCourseModels.mVNsbmd, (Unk020136f0 *) b, (Unk020136f0 *) c);
+        func_02084b2c(a, gCourseModels.mVNsbmd, (NNSG3dResFileHeader *) b, (NNSG3dResFileHeader *) c);
         func_020849c0(gCourseModels.mVNsbmd, 8);
         d = FindCourseFile(data_usa_02165484);
         func_0206331c_inline(1, data_usa_0217ab74, gCourseModels.mVNsbmd, a, b, d, &gCourseModels.mUnk_90);
     }
-    g[0] = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_021549f0);
-    g[1] = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_021549c0);
-    g[2] = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_021549d0);
-    g[3] = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_021549e0);
-    g[4] = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_021549b0);
-    g[5] = func_02013754((u8 *) e + e->mEntriesOffset + 4, data_usa_021549a0);
+    g[0] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549f0);
+    g[1] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549c0);
+    g[2] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549d0);
+    g[3] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549e0);
+    g[4] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549b0);
+    g[5] = func_02013754((u8 *) e + e->mOfsMat + 4, data_usa_021549a0);
     for (i = 0; i < 6; i++) {
         if (g[i] >= 0) {
-            func_020134b0(e, g[i], 7);
+            NNS_G3dMdlSetMdlPolygonID(e, g[i], 7);
         }
     }
     MTX_Identity43_(&data_usa_0217abac);
@@ -187,15 +187,15 @@ void func_020631b0(void) {
         return;
     }
     a = data_usa_021653fc;
-    func_02010fac(2, a.x, a.y, a.z);
-    func_02010f98(2, 0x7fff);
+    NNS_G3dGlbLightVector(2, a.x, a.y, a.z);
+    NNS_G3dGlbLightColor(2, 0x7fff);
 }
 
 void func_0206302c(void) {
     u32 i;
-    Unk0201290c *b;
+    NNSG3dResMdl *b;
     u32 j;
-    Unk0201290c *c;
+    NNSG3dResMdl *c;
 
     gCourseModels.mUnk_e0 = FALSE;
     gCourseModels.mUnk_e4 = 0;
@@ -213,13 +213,13 @@ void func_0206302c(void) {
     }
     if (gCourseModels.mUnk_e0 != FALSE) {
         b = gCourseModels.mNsbmd->mUnk_04;
-        for (i = 0; i < b->mEntryCount; i++) {
-            if (func_02013314(b, i) != 0) {
+        for (i = 0; i < b->mInfo.mNumMat; i++) {
+            if (NNS_G3dMdlGetMdlFogEnableFlag(b, i) != 0) {
                 gCourseModels.mUnk_e4 |= (s64) (1 << i);
             }
         }
     } else {
-        func_02013044(gCourseModels.mNsbmd->mUnk_04, 1);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(gCourseModels.mNsbmd->mUnk_04, 1);
     }
     if (gCourseModels.mVNsbmd == NULL) {
         return;
@@ -228,8 +228,8 @@ void func_0206302c(void) {
         return;
     }
     c = gCourseModels.mVNsbmd->mUnk_04;
-    for (j = 0; j < c->mEntryCount; j++) {
-        if (func_02013314(c, j) != 0) {
+    for (j = 0; j < c->mInfo.mNumMat; j++) {
+        if (NNS_G3dMdlGetMdlFogEnableFlag(c, j) != 0) {
             gCourseModels.mUnk_f0 |= 1 << j;
         }
     }
@@ -237,30 +237,30 @@ void func_0206302c(void) {
 
 void func_02062ef8(u32 a) {
     u32 i;
-    Unk0201290c *b;
+    NNSG3dResMdl *b;
     u32 j;
 
     if (gCourseModels.mVNsbmd != NULL) {
         if (gCourseModels.mUnk_ec != FALSE && a == 0) {
             b = gCourseModels.mVNsbmd->mUnk_04;
-            for (i = 0; i < b->mEntryCount; i++) {
-                func_02013424(b, i, (gCourseModels.mUnk_f0 & (1 << i)) != 0 ? 1 : 0);
+            for (i = 0; i < b->mInfo.mNumMat; i++) {
+                NNS_G3dMdlSetMdlFogEnableFlag(b, i, (gCourseModels.mUnk_f0 & (1 << i)) != 0 ? 1 : 0);
             }
         } else {
-            func_02013044(gCourseModels.mVNsbmd->mUnk_04, a);
+            NNS_G3dMdlSetMdlFogEnableFlagAll(gCourseModels.mVNsbmd->mUnk_04, a);
         }
     }
     if (gCourseModels.mUnk_e0 == FALSE) {
         return;
     }
     if (a != 0) {
-        func_02013044(gCourseModels.mNsbmd->mUnk_04, 1);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(gCourseModels.mNsbmd->mUnk_04, 1);
         return;
     }
     b = gCourseModels.mNsbmd->mUnk_04;
-    for (j = 0; j < b->mEntryCount; j++) {
+    for (j = 0; j < b->mInfo.mNumMat; j++) {
         if ((gCourseModels.mUnk_e4 & (s64) (1 << j)) == 0) {
-            func_02013424(b, j, 0);
+            NNS_G3dMdlSetMdlFogEnableFlag(b, j, 0);
         }
     }
 }
