@@ -213,7 +213,7 @@ void func_02058820(void) {
 
     WM_SetPortCallback(14, (UnkFunc *) func_02059920, NULL);
     if (func_02058820_inline() == 1) {
-        func_020518c8(0);
+        SetMPFrequency(0);
     }
     for (i = 0; i < 8; i++) {
         if (func_02058820_inline() == 1) {
@@ -496,7 +496,7 @@ void func_020581f4(void) {
         v1 = data_0217aa00->mUnk_0000;
     }
     if (v1 == 1) {
-        func_020518c8(1);
+        SetMPFrequency(1);
     }
     return;
 }
@@ -526,7 +526,7 @@ void func_02058198(void) {
         case 0xc:
         case 0x25:
         case 0x27:
-            func_02051734();
+            StartDataSharing();
             break;
         case 0xe:
             data_0217aa00->mUnk_0004 = 7;

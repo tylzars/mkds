@@ -60,10 +60,10 @@ s32 func_02055564(s32 a) {
     }
     switch (data_0217aa00->mUnk_000c) {
         case 7:
-            func_02051e98();
+            EndScan();
             break;
         case 9:
-            func_02051d24(NULL, NULL, NULL, func_02055710, NULL);
+            StartConnect(NULL, NULL, NULL, func_02055710, NULL);
             break;
         case 2:
         case 10:
@@ -74,7 +74,7 @@ s32 func_02055564(s32 a) {
                 }
                 r = 2;
             } else {
-                func_02051a24();
+                StartMP();
             }
             break;
         case 11:
@@ -93,7 +93,7 @@ s32 func_020554e4(void) {
     switch (data_0217aa00->mUnk_000c) {
         case 11:
             if (data_0217aa00->mUnk_008b & 8) {
-                func_02051658();
+                SetGameInfo();
             }
             break;
         case 15:
@@ -218,7 +218,7 @@ s32 func_02055030(void) {
             break;
         case 7:
         case 8:
-            func_02051e98();
+            EndScan();
             break;
         case 11:
         case 12:

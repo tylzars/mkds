@@ -363,7 +363,7 @@ s32 func_02055808(s32 a) {
             } else {
                 r = TRUE;
                 data_0217aa00->mUnk_0004 = 3;
-                func_020527c0(1, NULL, NULL);
+                StartScan(1, NULL, NULL);
             }
             break;
         case 3:
@@ -378,7 +378,7 @@ s32 func_02055808(s32 a) {
             func_02052b60(NULL);
             break;
         case 6:
-            func_02051a24();
+            StartMP();
             break;
         case 11:
             data_0217aa00->mUnk_0004 = 2;

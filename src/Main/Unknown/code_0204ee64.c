@@ -97,7 +97,7 @@ void func_0204ef88(void) {
 void func_0204ef1c(void) {
     data_0217aa00->mUnk_000c = 0xb;
     data_0217aa00->mUnk_0010 = 1;
-    if (WM_StartMPEx(func_02051958, (u32) data_0217aa00->mUnk_1e24, (u16) data_0217aa00->mUnk_1e2c,
+    if (WM_StartMPEx(StartMPCallback, (u32) data_0217aa00->mUnk_1e24, (u16) data_0217aa00->mUnk_1e2c,
                      (u32) data_0217aa00->mUnk_1e20, (u16) data_0217aa00->mUnk_1e28, 1, 0, 0, 0, 0, 0) != 2) {
         func_02050e60(2);
     }

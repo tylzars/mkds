@@ -61,7 +61,7 @@ s32 func_0204dd24(u16 a) {
     switch (g->mUnk_000c) {
         case 7:
             g->mUnk_0454 |= 0x40;
-            func_02051e98();
+            EndScan();
             break;
         case 9:
             func_0204e4d8();
@@ -100,7 +100,7 @@ s32 func_0204dd24(u16 a) {
             if (*(u16 *) 0x027ffc40 == 2) {
                 func_0204df90();
             } else {
-                func_02051d24(NULL, NULL, NULL, (s32(*)()) func_0204df5c, NULL);
+                StartConnect(NULL, NULL, NULL, (s32(*)()) func_0204df5c, NULL);
             }
             break;
         case 31:
@@ -115,10 +115,10 @@ s32 func_0204dd24(u16 a) {
             func_02052ecc();
             break;
         case 36:
-            func_02051d24(NULL, NULL, NULL, (s32(*)()) func_0204df5c, NULL);
+            StartConnect(NULL, NULL, NULL, (s32(*)()) func_0204df5c, NULL);
             break;
         case 10:
-            func_02051a24();
+            StartMP();
             break;
         case 11:
             g->mUnk_0004 = 6;
@@ -211,7 +211,7 @@ s32 func_0204db6c(void) {
         case 6:
             data_0217aa00->mUnk_1695 = func_0204dcf0(data_0217aa00->mUnk_1695);
             data_0217aa00->mUnk_1692 = 0;
-            func_02051a24();
+            StartMP();
             break;
         case 11:
         case 15:

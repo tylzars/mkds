@@ -305,7 +305,7 @@ void func_020593b4(void) {
         v1 = data_0217aa00->mUnk_0000;
     }
     if (v1 == 1) {
-        func_020518c8((u32) 0);
+        SetMPFrequency((u32) 0);
     }
 }
 
@@ -365,7 +365,7 @@ void func_020592ac(void) {
         v1 = data_0217aa00->mUnk_0000;
     }
     if (v1 == 1) {
-        func_020518c8((u32) 1);
+        SetMPFrequency((u32) 1);
     }
 }
 

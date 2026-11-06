@@ -157,7 +157,7 @@ void func_02058c10(void) {
     switch (data_0217aa00->mUnk_000c) {
         case 11:
         case 15:
-            func_02051814(0);
+            SetEntry(0);
             return;
         case 13:
             func_02058b74_inline(7);

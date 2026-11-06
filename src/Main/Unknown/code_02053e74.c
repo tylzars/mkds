@@ -131,14 +131,14 @@ s32 func_02054c98(s32 a, void *b) {
             if (a != 0) {
                 func_020532dc(0x28);
             } else {
-                func_020527c0(0, NULL, NULL);
+                StartScan(0, NULL, NULL);
             }
             break;
         case 2:
             if (a != 0) {
                 func_020532dc(0x28);
             } else {
-                func_020527c0(0, NULL, NULL);
+                StartScan(0, NULL, NULL);
             }
             break;
         case 3:
@@ -157,13 +157,13 @@ s32 func_02054c98(s32 a, void *b) {
             break;
         case 7:
             if (data_0217aa00->mUnk_1e45 == -1) {
-                func_020527c0(0, NULL, NULL);
+                StartScan(0, NULL, NULL);
             } else {
-                func_02051e98();
+                EndScan();
             }
             break;
         case 9:
-            func_02051d24(NULL, NULL, NULL, NULL, func_02054f38);
+            StartConnect(NULL, NULL, NULL, NULL, func_02054f38);
             break;
         case 10:
             data_0217aa00->mUnk_1e3c = 1;
