@@ -4,7 +4,7 @@
 
 typedef struct Kart Kart;
 
-void func_0206d020(Kart *p, int a, int b);
+void StartKartBoost(Kart *p, int a, int b);
 void func_0206d138(Kart *p);
 void func_0206d18c(Kart *p);
 void func_0206d578(Kart *p);

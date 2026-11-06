@@ -394,11 +394,11 @@ void func_02068494(Kart *a, s32 b, s32 c) {
     func_020e79c4();
 }
 
-void func_02068440(Kart *a, s32 b) {
+void SetKartDriftCharge(Kart *a, s32 b) {
     KartTurnEffects *c;
 
-    a->mUnk_2fc = b;
-    if (a->mUnk_2fc != 2) {
+    a->mDriftCharge = b;
+    if (a->mDriftCharge != 2) {
         return;
     }
     c = GetKartTurnEffects(a->mIndex);
@@ -406,7 +406,7 @@ void func_02068440(Kart *a, s32 b) {
     StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
 }
 
-void func_020681f0(Kart *a) {
+void AdvanceKartDriftCharge(Kart *a) {
     KartTurnEffects *b;
     u16 *c;
     u16 *d;
@@ -414,56 +414,56 @@ void func_020681f0(Kart *a) {
     enum { K0 } k;
 
     if ((a->mUnk_7c & 0x402) == 0) {
-        if (a->mUnk_2fc >= 3) {
+        if (a->mDriftCharge >= 3) {
             return;
         }
-        a->mUnk_30c = a->mUnk_30c - 1;
-        if (a->mUnk_30c > 0) {
+        a->mTurnCountTimer = a->mTurnCountTimer - 1;
+        if (a->mTurnCountTimer > 0) {
             return;
         }
         k = a->mEntryIndex;
         e = data_02175628[k].mUnk_00;
         if ((u16) (e & 0x20) != 0) {
-            c = &a->mUnk_300;
-            if (a->mUnk_304 == c) {
+            c = &a->mLeftTurnCount;
+            if (a->mAwayTurnCounter == c) {
                 if (c[1] == c[0]) {
                     c[0]++;
-                    a->mUnk_30c = 10;
+                    a->mTurnCountTimer = 10;
                 }
             } else if (c[1] > c[0]) {
                 c[0]++;
-                a->mUnk_2fc = a->mUnk_2fc + 1;
-                a->mUnk_30c = 10;
-                if (a->mUnk_2fc == 2) {
+                a->mDriftCharge = a->mDriftCharge + 1;
+                a->mTurnCountTimer = 10;
+                if (a->mDriftCharge == 2) {
                     b = GetKartTurnEffects(a->mIndex);
                     StartKartLevel2Effects(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
                     StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
                 }
             }
         } else if ((u16) (e & 0x10) != 0) {
-            d = &a->mUnk_302;
-            if (a->mUnk_308 == d) {
-                c = &a->mUnk_300;
+            d = &a->mRightTurnCount;
+            if (a->mTowardTurnCounter == d) {
+                c = &a->mLeftTurnCount;
                 if (c[0] > c[1]) {
                     d[0] = d[0] + 1;
-                    a->mUnk_2fc = a->mUnk_2fc + 1;
-                    a->mUnk_30c = 10;
-                    if (a->mUnk_2fc == 2) {
+                    a->mDriftCharge = a->mDriftCharge + 1;
+                    a->mTurnCountTimer = 10;
+                    if (a->mDriftCharge == 2) {
                         b = GetKartTurnEffects(a->mIndex);
                         StartKartLevel2Effects(b, (a->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) != 0 ? 1 : 0);
                         StartSound(&a->mSoundSource, 0xd2, 0x7f, 0);
                     }
                 }
             } else {
-                c = &a->mUnk_300;
+                c = &a->mLeftTurnCount;
                 if (c[1] == c[0]) {
                     d[0] = d[0] + 1;
-                    a->mUnk_30c = 10;
+                    a->mTurnCountTimer = 10;
                 }
             }
         }
     }
-    if (a->mUnk_2fc != 3) {
+    if (a->mDriftCharge != 3) {
         return;
     }
     b = GetKartTurnEffects(a->mIndex);
@@ -474,5 +474,5 @@ void func_020681f0(Kart *a) {
     } else {
         StopKartTurnEffects(GetKartTurnEffects(a->mIndex));
     }
-    a->mUnk_2fc = a->mUnk_2fc + 1;
+    a->mDriftCharge = a->mDriftCharge + 1;
 }

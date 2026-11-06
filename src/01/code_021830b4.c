@@ -386,7 +386,7 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
                     a = d->mPrm;
                     c = func_ov001_02188000(d, a->mUnk_140, a->mUnk_144);
                     if (c != NULL) {
-                        if ((GetKart(c->mIndex)->mUnk_48 & 0x100000) != 0 && c->mUnk_238 > 0) {
+                        if ((GetKart(c->mIndex)->mUnk_48 & 0x100000) != 0 && c->mBoostTimer > 0) {
                             func_ov001_02183dec(d);
                         }
                     }

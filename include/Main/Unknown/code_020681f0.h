@@ -14,8 +14,8 @@ typedef struct Unk02068494 {
     /* 28 */ Vec3 mUnk_28;
 } Unk02068494;
 
-void func_020681f0(Kart *a);
-void func_02068440(Kart *a, s32 b);
+void AdvanceKartDriftCharge(Kart *a);
+void SetKartDriftCharge(Kart *a, s32 b);
 void func_02068494(Kart *a, s32 b, s32 c);
 void func_02068640(Kart *a, s32 b);
 void func_020688a0(Kart *a);

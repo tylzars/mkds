@@ -114,7 +114,7 @@ void func_0206ff50(Kart *p, u32 a) {
     func_020c4ab8(p->mIndex);
     p->mUnk_48 |= 0x41000;
     p->mUnk_48 &= 0xdfe77fdf;
-    p->mUnk_238 = 0;
+    p->mBoostTimer = 0;
     p->mUnk_538.mUnk_00 = 0;
     p->mUnk_23c = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -270,7 +270,7 @@ void func_0206f914(Kart *p) {
                 d = func_0208c16c(p->mUnk_310);
                 p->mUnk_3be = data_usa_02154a48[d - 1];
                 p->mUnk_44 |= 0x1800000;
-                func_0206d020(p, 2, (s16) p->mUnk_3be);
+                StartKartBoost(p, 2, (s16) p->mUnk_3be);
                 if (!(p->mUnk_48 & 0x840)) {
                     func_0210af40(p, p->mUnk_3cc, 5);
                 }
@@ -316,7 +316,7 @@ void func_0206f914(Kart *p) {
                 }
                 p->mUnk_3be = data_usa_02154a48[d - 1];
                 p->mUnk_44 |= 0x1800000;
-                func_0206d020(p, 2, (s16) p->mUnk_3be);
+                StartKartBoost(p, 2, (s16) p->mUnk_3be);
                 if (!(p->mUnk_48 & 0x840)) {
                     func_0210af40(p, p->mUnk_3cc, 5);
                 }
@@ -470,10 +470,10 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         m.x = (s32) (((s64) a->x * g) >> 12);
         m.y = (s32) (((s64) a->y * g) >> 12);
         m.z = (s32) (((s64) a->z * g) >> 12);
-        p->mUnk_2fc = 0;
-        p->mUnk_302 = 0;
-        p->mUnk_300 = p->mUnk_302;
-        p->mUnk_30c = 0;
+        p->mDriftCharge = 0;
+        p->mRightTurnCount = 0;
+        p->mLeftTurnCount = p->mRightTurnCount;
+        p->mTurnCountTimer = 0;
         p->mHeadingAnglePerFrame = 0;
         if (p->mVelocityLength > 0x1800) {
             if (!(p->mUnk_48 & 0x20) && (m.x != 0 || m.y != 0 || m.z != 0) && c != 0x1000) {
@@ -510,7 +510,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
             p->mUnk_38c = 0x4cd;
             if (p->mSurfaceGroup != 0xb && p->mSurfaceGroup != 8) {
                 p->mUnk_48 &= 0xdfe77fdf;
-                p->mUnk_238 = 0;
+                p->mBoostTimer = 0;
                 p->mUnk_538.mUnk_00 = 0;
                 p->mUnk_23c = 0;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {

@@ -19,10 +19,10 @@ void func_0206ceb4(s32 *out, Kart *p) {
     u16 b;
     u16 c;
 
-    p->mUnk_238 = p->mUnk_238 - 1;
-    if (p->mUnk_238 <= 0) {
+    p->mBoostTimer = p->mBoostTimer - 1;
+    if (p->mBoostTimer <= 0) {
         p->mUnk_48 &= 0xdfff7fdf;
-        p->mUnk_238 = 0;
+        p->mBoostTimer = 0;
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             return;
         }
@@ -64,8 +64,8 @@ void func_0206cdd4(Kart *p) {
     if (!(p->mUnk_44 & 0x10)) {
         p->mUnk_44 |= 0x8000;
     }
-    if (p->mUnk_2fc == 4) {
-        func_0206d020(p, 1, p->mPhysicalParam->mUnk_0e);
+    if (p->mDriftCharge == 4) {
+        StartKartBoost(p, 1, p->mPhysicalParam->mUnk_0e);
         p->mUnk_48 |= 0x80000;
         p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -78,10 +78,10 @@ void func_0206cdd4(Kart *p) {
     }
     p->mUnk_44 &= 0xfffff7f4;
     p->mTurnDirection = 0;
-    p->mUnk_2fc = 0;
-    p->mUnk_302 = 0;
-    p->mUnk_300 = p->mUnk_302;
-    p->mUnk_30c = 0;
+    p->mDriftCharge = 0;
+    p->mRightTurnCount = 0;
+    p->mLeftTurnCount = p->mRightTurnCount;
+    p->mTurnCountTimer = 0;
     StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
 }
 
@@ -119,13 +119,13 @@ void func_0206cc60(Kart *p, int arg) {
     } else {
         p->mUnk_38a = (s32) (((s64) p->mUnk_38a * 0xf33) >> 12);
     }
-    func_020681f0(p);
+    AdvanceKartDriftCharge(p);
     if (!(p->mUnk_44 & 0x10)) {
         return;
     }
     func_01ffc9e8(p, 1);
     p->mUnk_4c |= 0x2;
-    if (p->mUnk_2fc < 3) {
+    if (p->mDriftCharge < 3) {
         return;
     }
     if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
@@ -183,13 +183,13 @@ recheck:
         if ((f & 3) && p->mVelocityLength > (s32) (((s64) p->mPhysicalParam->mBaseSpeedLimit * 0x8cd) >> 12) &&
             g != 0 && (u16) (data_02175628[k = p->mEntryIndex].mBits & 0x100)) {
             p->mUnk_44 |= 8;
-            p->mUnk_2fc = 1;
+            p->mDriftCharge = 1;
             if (p->mTurnDirection > 0) {
-                p->mUnk_304 = &p->mUnk_300;
-                p->mUnk_308 = &p->mUnk_302;
+                p->mAwayTurnCounter = &p->mLeftTurnCount;
+                p->mTowardTurnCounter = &p->mRightTurnCount;
             } else {
-                p->mUnk_304 = &p->mUnk_302;
-                p->mUnk_308 = &p->mUnk_300;
+                p->mAwayTurnCounter = &p->mRightTurnCount;
+                p->mTowardTurnCounter = &p->mLeftTurnCount;
             }
             if (p->mUnk_4c & 0x8000) {
                 t = GetKartTurnEffects(p->mIndex);
@@ -209,8 +209,8 @@ recheck:
             if (!(f & 0x10)) {
                 p->mUnk_44 |= 0x8000;
             }
-            if (p->mUnk_2fc == 4) {
-                func_0206d020(p, 1, p->mPhysicalParam->mUnk_0e);
+            if (p->mDriftCharge == 4) {
+                StartKartBoost(p, 1, p->mPhysicalParam->mUnk_0e);
                 p->mUnk_48 |= 0x80000;
                 p->mUnk_23c = p->mPhysicalParam->mUnk_0e;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -223,10 +223,10 @@ recheck:
             }
             p->mUnk_44 &= 0xfffff7f4;
             p->mTurnDirection = 0;
-            p->mUnk_2fc = 0;
-            p->mUnk_302 = 0;
-            p->mUnk_300 = p->mUnk_302;
-            p->mUnk_30c = 0;
+            p->mDriftCharge = 0;
+            p->mRightTurnCount = 0;
+            p->mLeftTurnCount = p->mRightTurnCount;
+            p->mTurnCountTimer = 0;
             StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
         } else if (f & 0x10) {
             func_0206cc60(p, 0);
@@ -290,10 +290,10 @@ recheck:
     p->mHopHeight = 0;
     p->mTurnDirection = 0;
     p->mUnk_38a = 0;
-    p->mUnk_2fc = 0;
-    p->mUnk_302 = 0;
-    p->mUnk_300 = p->mUnk_302;
-    p->mUnk_30c = 0;
+    p->mDriftCharge = 0;
+    p->mRightTurnCount = 0;
+    p->mLeftTurnCount = p->mRightTurnCount;
+    p->mTurnCountTimer = 0;
     GetKartForward(p, &p->mUnk_290);
     GetKartUp(p, &p->mUnk_284);
     if (p->mUnk_208->mUnk_00 != FALSE) {
@@ -454,7 +454,7 @@ BOOL func_0206c094(Kart *p) {
 
 void StartKartState(Kart *p, int mode) {
     p->mUnk_48 &= 0xdfe77fdf;
-    p->mUnk_238 = 0;
+    p->mBoostTimer = 0;
     p->mUnk_538.mUnk_00 = 0;
     p->mUnk_23c = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -467,10 +467,10 @@ void StartKartState(Kart *p, int mode) {
     p->mState = mode;
     p->mUnk_44 &= 0xfffff7f4;
     p->mTurnDirection = 0;
-    p->mUnk_2fc = 0;
-    p->mUnk_302 = 0;
-    p->mUnk_300 = p->mUnk_302;
-    p->mUnk_30c = 0;
+    p->mDriftCharge = 0;
+    p->mRightTurnCount = 0;
+    p->mLeftTurnCount = p->mRightTurnCount;
+    p->mTurnCountTimer = 0;
     StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
     if (p->mUnk_4c & 0x2000) {
         p->mUnk_4c &= ~0x2000;

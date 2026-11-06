@@ -208,7 +208,7 @@ void func_02069e10(Kart *p) {
 }
 
 void func_02069db8(Kart *p) {
-    func_0206d020(p, 0, 0x5a);
+    StartKartBoost(p, 0, 0x5a);
     p->mUnk_48 |= 0x100000;
     p->mUnk_538.mUnk_00 = 0x5a;
     if (data_021759c0->mMode != MODE_BATTLE) {

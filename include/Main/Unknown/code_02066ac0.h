@@ -52,7 +52,7 @@ u32 IsKartTurnEffectsActive(Kart *a);
 // mSurfaceSpeedLimitFactors.
 s32 ApplyKartSurfaceKind10(Kart *a);
 // Surface kind 19 (entry 19 of gKartSurfaceFunctions): unless mSurfaceGroup is already 0xb and bit 0x80000000 of
-// mUnk_44 is clear it runs func_0206d020 and, for the selected kart, calls StartSound with 0x1b9; otherwise it sets
+// mUnk_44 is clear it runs StartKartBoost and, for the selected kart, calls StartSound with 0x1b9; otherwise it sets
 // mUnk_238 to 0x3c. Then it sets bits 0x40000001 of mUnk_48, runs func_020839d8 and returns surface group 0xb.
 s32 ApplyKartSurfaceKind19(Kart *a);
 // Surface kind 17 (entry 17 of gKartSurfaceFunctions): passes the entry that data_02154aa4 gives for mSurfaceVariant to
@@ -71,7 +71,7 @@ s32 ApplyKartSurfaceKind18(Kart *a);
 // StartSound with 0x15e.
 s32 ApplyKartSurfaceKind12(Kart *a);
 // Surface kind 7 (entry 7 of gKartSurfaceFunctions): unless mSurfaceGroup is already 8 and bit 0x80000000 of mUnk_44 is
-// clear it runs func_0206d020 and, for the selected kart with mSurfaceVariant above 0, calls StartSound with the id
+// clear it runs StartKartBoost and, for the selected kart with mSurfaceVariant above 0, calls StartSound with the id
 // that data_02165518 gives for mSurfaceVariant minus 1; otherwise it sets mUnk_238 to 0x3c. Then it runs func_020839d8
 // and returns surface group 8.
 s32 ApplyKartSurfaceKind7(Kart *a);

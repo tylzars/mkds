@@ -298,7 +298,7 @@ typedef struct Kart {
     // turned by the step functions and by mHeadingAnglePerFrame; mHeadingAngleOffset is added on top when the
     // orientation is built.
     /* 236 */ u16 mHeadingAngle;
-    /* 238 */ s16 mUnk_238;
+    /* 238 */ s16 mBoostTimer;
     /* 23a */ s16 mUnk_23a;
     /* 23c */ s16 mUnk_23c;
     /* 23e */ u8 mUnk_23e[2];
@@ -349,12 +349,12 @@ typedef struct Kart {
     /* 2d8 */ Vec3 mUnk_2d8;
     /* 2e4 */ Vec3 mUnk_2e4;
     /* 2f0 */ Vec3 mUnk_2f0;
-    /* 2fc */ s32 mUnk_2fc;
-    /* 300 */ u16 mUnk_300;
-    /* 302 */ u16 mUnk_302;
-    /* 304 */ u16 *mUnk_304;
-    /* 308 */ u16 *mUnk_308;
-    /* 30c */ s32 mUnk_30c;
+    /* 2fc */ s32 mDriftCharge;
+    /* 300 */ u16 mLeftTurnCount;
+    /* 302 */ u16 mRightTurnCount;
+    /* 304 */ u16 *mAwayTurnCounter;
+    /* 308 */ u16 *mTowardTurnCounter;
+    /* 30c */ s32 mTurnCountTimer;
     /* 310 */ struct Unk020888b4 *mUnk_310;
     /* 314 */ u16 mRotationAngle;
     /* 316 */ u8 mUnk_316[2];

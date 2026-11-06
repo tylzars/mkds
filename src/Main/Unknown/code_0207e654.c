@@ -575,7 +575,7 @@ void func_0207ebfc(Unk020888b4 *p) {
         }
     }
     if (b != FALSE) {
-        func_02068440(q, 3);
+        SetKartDriftCharge(q, 3);
     }
     p->mUnk_60 = data_usa_021557d0;
     p->mUnk_74 = 0;

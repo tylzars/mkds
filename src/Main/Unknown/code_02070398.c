@@ -485,7 +485,7 @@ void ResetKart(Kart *p) {
     *(Vec4 *) &p->mUnk_108.z = data_usa_02154f44;
     p->mUnk_234 = 0;
     p->mHeadingAngle = 0;
-    p->mUnk_238 = 0;
+    p->mBoostTimer = 0;
     p->mUnk_23a = 0;
     p->mUnk_23c = 0;
     p->mUnk_240 = 0x1000;
@@ -518,12 +518,12 @@ void ResetKart(Kart *p) {
     p->mUnk_344 = 0;
     p->mUnk_340 = p->mPos.y;
     p->mUnk_348 = 0;
-    p->mUnk_2fc = 0;
-    p->mUnk_302 = 0;
-    p->mUnk_300 = p->mUnk_302;
-    p->mUnk_308 = NULL;
-    p->mUnk_304 = p->mUnk_308;
-    p->mUnk_30c = 0;
+    p->mDriftCharge = 0;
+    p->mRightTurnCount = 0;
+    p->mLeftTurnCount = p->mRightTurnCount;
+    p->mTowardTurnCounter = NULL;
+    p->mAwayTurnCounter = p->mTowardTurnCounter;
+    p->mTurnCountTimer = 0;
     p->mRotationAngle = 0;
     p->mRotationAngleSum = 0;
     p->mRotationAxis = v;
@@ -1068,7 +1068,7 @@ void func_020710b0(Kart *p, s32 b) {
         p->mUnk_44 &= ~0x10;
     }
     p->mUnk_48 &= 0xdfe77fdf;
-    p->mUnk_238 = 0;
+    p->mBoostTimer = 0;
     p->mUnk_538.mUnk_00 = 0;
     p->mUnk_23c = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -1088,10 +1088,10 @@ void func_020710b0(Kart *p, s32 b) {
     func_02080fb8(p);
     p->mUnk_44 &= 0xfffff7f4;
     p->mTurnDirection = 0;
-    p->mUnk_2fc = 0;
-    p->mUnk_302 = 0;
-    p->mUnk_300 = p->mUnk_302;
-    p->mUnk_30c = 0;
+    p->mDriftCharge = 0;
+    p->mRightTurnCount = 0;
+    p->mLeftTurnCount = p->mRightTurnCount;
+    p->mTurnCountTimer = 0;
     StopKartTurnEffects(GetKartTurnEffects(p->mIndex));
     p->mState = 0;
     p->mUnk_4c &= ~0x30;

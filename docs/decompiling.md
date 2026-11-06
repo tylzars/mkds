@@ -367,7 +367,7 @@ Inline getters and helpers:
 - A flag stored into a bit-field without the `u8` truncation its `&` partners get: declare the flag `u8`
   (func_ov003_021d2b3c).
 - An index local reloaded or held differently around a table read: an enum-typed index local, `enum { K0 } k; k = a->m;
-  e = tbl[k].f;` (func_020681f0).
+  e = tbl[k].f;` (AdvanceKartDriftCharge).
 
 ### 1.2 Locals, Copies and Constants
 

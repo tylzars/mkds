@@ -596,7 +596,7 @@ void func_0210a6b4(Kart *a, PlayingSound *b) {
 void func_0210a67c(Kart *a, PlayingSound *b) {
     s32 c;
 
-    c = (s32) a->mUnk_308;
+    c = (s32) a->mTowardTurnCounter;
     func_02105b28(&b->mUnk_00, b->mVolume);
     func_02105b0c(&b->mUnk_00, b->mUnk_14 + c);
 }

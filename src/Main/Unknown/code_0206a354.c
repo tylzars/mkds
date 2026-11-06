@@ -92,7 +92,7 @@ void StartKartState6(Kart *p) {
     p->mForwardSpeed = 0;
     p->mTurnAngle = 0;
     p->mUnk_48 &= 0xdfe77fdf;
-    p->mUnk_238 = 0;
+    p->mBoostTimer = 0;
     p->mUnk_538.mUnk_00 = 0;
     p->mUnk_23c = 0;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {

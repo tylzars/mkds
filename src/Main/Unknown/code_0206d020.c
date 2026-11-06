@@ -377,7 +377,7 @@ void func_0206d18c(Kart *p) {
             }
             break;
         case 3:
-            func_0206d020(p, r, 0x5a);
+            StartKartBoost(p, r, 0x5a);
             p->mUnk_48 |= 0x100000;
             p->mUnk_538.mUnk_00 = 0x5a;
             if (data_021759c0->mMode == MODE_BATTLE) {
@@ -479,7 +479,7 @@ void func_0206d138(Kart *p) {
     func_0207b054(p, 2, 0);
 }
 
-void func_0206d020(Kart *p, int a, int b) {
+void StartKartBoost(Kart *p, int a, int b) {
     s32 c;
     u32 d;
     s16 e;
@@ -495,9 +495,9 @@ void func_0206d020(Kart *p, int a, int b) {
         return;
     }
     p->mUnk_48 |= 0x20;
-    e = p->mUnk_238;
+    e = p->mBoostTimer;
     if (b > e) {
-        p->mUnk_238 = b;
+        p->mBoostTimer = b;
     }
     if (a != 1 && a != 3) {
         p->mUnk_48 |= 0x20000000;

@@ -291,7 +291,7 @@ void func_01ff9d18(Kart *p) {
         d = -d;
     }
     if (d <= 2) {
-        func_0206d020(p, 3, 10);
+        StartKartBoost(p, 3, 10);
     }
     p->mUnk_4c = p->mUnk_4c & ~0x400;
 }
