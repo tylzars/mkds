@@ -25,12 +25,12 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                     Vec3NormalizeAndGetLengthUnchecked(&a, &a);
                 }
                 scale = d->mPrm->mUnk_1e0;
-                a.x = (s32) (((s64) a.x * scale) >> 12);
-                a.y = (s32) (((s64) a.y * scale) >> 12);
-                a.z = (s32) (((s64) a.z * scale) >> 12);
+                a.x = (((s64) a.x * scale) >> 12);
+                a.y = (((s64) a.y * scale) >> 12);
+                a.z = (((s64) a.z * scale) >> 12);
                 a.y = d->mPrm->mUnk_1dc;
                 func_ov001_02187218(d, 7, NULL);
-                func_ov001_02188d64(d, (s32) (d->mPrm->mUnk_1d4), (s32) (d->mPrm->mUnk_1d8));
+                func_ov001_02188d64(d, d->mPrm->mUnk_1d4, d->mPrm->mUnk_1d8);
                 func_ov001_02188a8c(d, d->mPrm->mUnk_1e4, 0x270f000);
                 SetVelocity(d, &a);
                 func_ov001_02188dcc(d, func_ov001_02184d70);
@@ -47,7 +47,7 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                 if (d->mUnk_000.mKind == 0x1f5) {
                     d->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                     StopSound(&d->mUnk_000.mSound->mSoundSource, 0x214);
-                    StartMapObjectSound(&d->mUnk_000, (u32) (0x211));
+                    StartMapObjectSound(&d->mUnk_000, 0x211);
                     StartEffect(0x3e9, &b);
                     StartEffect(0x3e8, &b);
                     StartEffect(0x3ea, &b);
@@ -56,7 +56,7 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                 } else if (d->mUnk_000.mKind == 0x1f6) {
                     d->mUnk_000.mDistanceSquaredAndFlags |= data_ov001_021a657c;
                     StopSound(&d->mUnk_000.mSound->mSoundSource, 0x245);
-                    StartMapObjectSound(&d->mUnk_000, (u32) (0x23f));
+                    StartMapObjectSound(&d->mUnk_000, 0x23f);
                     StartEffect(0x3fa, &b);
                     StartEffect(0x3fb, &b);
                     StartEffect(0x3fc, &b);
@@ -74,12 +74,12 @@ void func_ov001_02184874(Unk02188950 *d, Kart *e) {
                 Vec3NormalizeAndGetLengthUnchecked(&c, &c);
             }
             scale = d->mPrm->mUnk_1c8;
-            c.x = (s32) (((s64) c.x * scale) >> 12);
-            c.y = (s32) (((s64) c.y * scale) >> 12);
-            c.z = (s32) (((s64) c.z * scale) >> 12);
+            c.x = (((s64) c.x * scale) >> 12);
+            c.y = (((s64) c.y * scale) >> 12);
+            c.z = (((s64) c.z * scale) >> 12);
             c.y = d->mPrm->mUnk_1c4;
             func_ov001_02187218(d, 7, NULL);
-            func_ov001_02188d64(d, (s32) (d->mPrm->mUnk_1bc), (s32) (d->mPrm->mUnk_1c0));
+            func_ov001_02188d64(d, d->mPrm->mUnk_1bc, d->mPrm->mUnk_1c0);
             func_ov001_02188a8c(d, d->mPrm->mUnk_1cc, 0x270f000);
             SetVelocity(d, &c);
             func_ov001_02188dcc(d, NULL);

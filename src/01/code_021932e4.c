@@ -100,7 +100,6 @@ void AdvanceOptionTopMenuState0(void) {
     if (v1 != 0) {
         gOptionTopMenu->mNextState = 1;
     }
-    return;
 }
 
 void AdvanceOptionTopMenuState1(void) {
@@ -135,7 +134,6 @@ void AdvanceOptionTopMenuState2(void) {
     if (v1 != 0) {
         gOptionTopMenu->mNextState = 3;
     }
-    return;
 }
 
 void AdvanceOptionTopMenuState3(void) {
@@ -336,11 +334,11 @@ void AdvanceOptionTopMenuState9(void) {
     int v1;
     v1 = func_ov001_02192e84();
     if ((v1 == -1) && (gOptionTopMenu->mNextOptionState == 4)) {
-        func_ov001_02192e78((u16) 0);
+        func_ov001_02192e78(0);
     }
     v1 = func_02125f54();
     if (v1 != 0) {
-        SetTxtSystemOpenSoundId((u32) 0x23);
+        SetTxtSystemOpenSoundId(0x23);
         RequestTxtSystemClose();
         gOptionTopMenu->mNextOptionState = 4;
     }
@@ -406,9 +404,8 @@ void AdvanceOptionTopMenu(void) {
 }
 
 void func_ov001_02193308(void) {
-    G2x_SetBlendAlpha_(((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
+    G2x_SetBlendAlpha_(((u32 *) (u32) 0x04001050u), 0, 2, 6, 10);
     reg_G2_BG0OFS = gOptionTopMenu->mBg0Offset << 0x10 & ((u32) 0x01ff0000u);
-    return;
 }
 
 void RegisterOptionTopMenuCallbacks(void) {

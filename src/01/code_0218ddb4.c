@@ -120,7 +120,7 @@ s32 func_ov001_0218f688(Unk02188950 *a) {
     Kart *obj = GetKart((u16) data_021759c0->mEntryIndex);
     if ((obj->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &obj->mPos);
-        func_ov001_02188d8c(a, (&obj->mPos));
+        func_ov001_02188d8c(a, &obj->mPos);
     }
     func_ov001_0218f6d8(a);
     return 0;
@@ -130,7 +130,7 @@ s32 func_ov001_0218f634(Unk02188950 *a) {
     Kart *obj = GetKart((u16) data_021759c0->mEntryIndex);
     if ((obj->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &obj->mPos);
-        func_ov001_02188d8c(a, (&obj->mPos));
+        func_ov001_02188d8c(a, &obj->mPos);
     }
     func_ov001_0218f6d8(a);
     func_02061860();
@@ -142,19 +142,19 @@ void func_ov001_0218f57c(Unk02188950 *a) {
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_1fc), (s32) (a->mPrm->mUnk_200));
-    func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_204), (s32) (a->mPrm->mUnk_208));
+    func_ov001_02188d64(a, a->mPrm->mUnk_1fc, a->mPrm->mUnk_200);
+    func_ov001_02188cd8(a, a->mPrm->mUnk_204, a->mPrm->mUnk_208);
     func_ov001_02188bc4(a, a->mPrm->mUnk_20c, a->mPrm->mUnk_210);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     func_ov001_021889c8(a);
-    func_ov001_02188e24(a, (s32) (a->mPrm->mUnk_214), (UnkFunc *) (0));
+    func_ov001_02188e24(a, a->mPrm->mUnk_214, NULL);
     func_ov001_02188200(a, func_ov001_0218f9a8);
 }
 
 void func_ov001_0218f51c(Unk02188950 *a) {
     GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_1f4), (s32) (a->mPrm->mUnk_1f8), (UnkFunc *) (func_ov001_0218f57c));
+    func_ov001_02188d30(a, a->mPrm->mUnk_1f4, a->mPrm->mUnk_1f8, (UnkFunc *) func_ov001_0218f57c);
     func_ov001_02188200(a, func_ov001_0218f9a8);
     func_ov001_021828f0();
 }
@@ -164,14 +164,14 @@ void func_ov001_0218f454(Unk02188950 *a) {
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_1d8), (s32) (a->mPrm->mUnk_1dc));
-    func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_1e0), (s32) (a->mPrm->mUnk_1e4));
+    func_ov001_02188d64(a, a->mPrm->mUnk_1d8, a->mPrm->mUnk_1dc);
+    func_ov001_02188cd8(a, a->mPrm->mUnk_1e0, a->mPrm->mUnk_1e4);
     func_ov001_02188c48(a, a->mPrm->mUnk_1e8, a->mPrm->mUnk_1ec);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     func_ov001_021889c8(a);
-    func_ov001_02188e24(a, (s32) (a->mPrm->mUnk_1f0), (UnkFunc *) func_ov001_0218f51c);
+    func_ov001_02188e24(a, a->mPrm->mUnk_1f0, (UnkFunc *) func_ov001_0218f51c);
     func_ov001_02188200(a, func_ov001_0218f9a8);
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x229));
+    StartMapObjectSound(&a->mUnk_000, 0x229);
 }
 
 s32 func_ov001_0218f3ec(Unk02188950 *a) {
@@ -182,7 +182,7 @@ s32 func_ov001_0218f3ec(Unk02188950 *a) {
     if ((p->mUnk_48 & 0x200) == 0) {
         VEC_MultAdd(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
-        func_ov001_02188d8c(a, (&v));
+        func_ov001_02188d8c(a, &v);
     }
     func_ov001_0218f6d8(a);
     func_02061860();
@@ -207,11 +207,11 @@ void func_ov001_0218f2a8(Unk02188950 *a) {
     p = GetKart((u16) data_021759c0->mEntryIndex);
     VEC_MultAdd(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
     func_ov001_02187218(a, 5, func_ov001_0218f3ac);
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_0ec), (s32) (a->mPrm->mUnk_0f0));
-    func_ov001_02188d1c(a, (s32) (a->mPrm->mUnk_0f4), (s32) (a->mPrm->mUnk_0f8));
-    func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_0fc), (s32) (a->mPrm->mUnk_100));
+    func_ov001_02188d64(a, a->mPrm->mUnk_0ec, a->mPrm->mUnk_0f0);
+    func_ov001_02188d1c(a, a->mPrm->mUnk_0f4, a->mPrm->mUnk_0f8);
+    func_ov001_02188cd8(a, a->mPrm->mUnk_0fc, a->mPrm->mUnk_100);
     func_ov001_02188c48(a, a->mPrm->mUnk_104, a->mPrm->mUnk_108);
-    func_ov001_02188de0(a, (s32) (a->mPrm->mUnk_218), 0, (&v), (UnkFunc *) (func_ov001_0218f454));
+    func_ov001_02188de0(a, a->mPrm->mUnk_218, 0, &v, (UnkFunc *) func_ov001_0218f454);
     if (data_0217d20c != 2) {
         data_0217d21c = data_0217d20c;
     }
@@ -228,7 +228,7 @@ s32 func_ov001_0218f244(Unk02188950 *a) {
     if ((p->mUnk_48 & 0x200) == 0) {
         VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
-        func_ov001_02188d8c(a, (&v));
+        func_ov001_02188d8c(a, &v);
     }
     func_ov001_0218f6d8(a);
     return 0;
@@ -241,11 +241,11 @@ void func_ov001_0218f16c(Unk02188950 *a) {
     p = GetKart((u16) data_021759c0->mEntryIndex);
     VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
     func_ov001_02187218(a, 3, func_ov001_0218f244);
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_0c4), (s32) (a->mPrm->mUnk_0c8));
-    func_ov001_02188d1c(a, (s32) (a->mPrm->mUnk_0cc), (s32) (a->mPrm->mUnk_0d0));
-    func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_0d4), (s32) (a->mPrm->mUnk_0d8));
+    func_ov001_02188d64(a, a->mPrm->mUnk_0c4, a->mPrm->mUnk_0c8);
+    func_ov001_02188d1c(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
+    func_ov001_02188cd8(a, a->mPrm->mUnk_0d4, a->mPrm->mUnk_0d8);
     func_ov001_02188c48(a, a->mPrm->mUnk_0dc, a->mPrm->mUnk_0e0);
-    func_ov001_02188de0(a, (s32) (a->mPrm->mUnk_0e4), 0, (&v), (UnkFunc *) (func_ov001_0218f2a8));
+    func_ov001_02188de0(a, a->mPrm->mUnk_0e4, 0, &v, (UnkFunc *) func_ov001_0218f2a8);
     if (data_0217d20c != 1) {
         data_0217d21c = data_0217d20c;
     }
@@ -259,10 +259,10 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
     p = GetKart((u16) data_021759c0->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &p->mPos);
-        func_ov001_02188d8c(a, (&p->mPos));
+        func_ov001_02188d8c(a, &p->mPos);
     }
     func_ov001_0218f724(a);
-    if (func_ov001_02188104(a, (s32) (a->mPrm->mUnk_0b8), 0) == NULL) {
+    if (func_ov001_02188104(a, a->mPrm->mUnk_0b8, 0) == NULL) {
         a->mUnk_1c4 = a->mPrm->mUnk_0c0;
     } else {
         a->mUnk_1c4 = 0;
@@ -279,7 +279,7 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
     }
     a->mUnk_16c = (s32) f / a->mPrm->mUnk_1d4;
     if ((data_021759c0->mMode == MODE_MISSION_RUN ? (s32) func_ov001_02181838() : 0) <= a->mPrm->mUnk_1d0 &&
-        func_ov001_02188000(a, 0, (s32) (a->mPrm->mUnk_0bc)) != NULL) {
+        func_ov001_02188000(a, 0, a->mPrm->mUnk_0bc) != NULL) {
         func_ov001_02188200(a, func_ov001_0218f9a8);
         a->mUnk_000.mFlags |= data_ov001_021a65b0;
         func_ov001_0218f16c(a);
@@ -292,8 +292,8 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
 void func_ov001_0218ef30(Unk02188950 *a) {
     GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 3, func_ov001_0218efc4);
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_090), (s32) (a->mPrm->mUnk_094));
-    func_ov001_02188cec(a, (s32) (a->mPrm->mUnk_0a0));
+    func_ov001_02188d64(a, a->mPrm->mUnk_090, a->mPrm->mUnk_094);
+    func_ov001_02188cec(a, a->mPrm->mUnk_0a0);
     func_ov001_02188adc(a, a->mPrm->mUnk_0b0, 0x270f000, a->mPrm->mUnk_0a8, 0x270f000, 0);
     if (data_0217d20c != 0) {
         data_0217d21c = data_0217d20c;
@@ -322,12 +322,12 @@ void func_ov001_0218edc8(Unk02188950 *a) {
 
     p = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 3, func_ov001_0218f634);
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_144), (s32) (a->mPrm->mUnk_148));
-    func_ov001_02188d1c(a, (s32) (a->mPrm->mUnk_14c), (s32) (a->mPrm->mUnk_150));
-    func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_154), (s32) (a->mPrm->mUnk_158));
+    func_ov001_02188d64(a, a->mPrm->mUnk_144, a->mPrm->mUnk_148);
+    func_ov001_02188d1c(a, a->mPrm->mUnk_14c, a->mPrm->mUnk_150);
+    func_ov001_02188cd8(a, a->mPrm->mUnk_154, a->mPrm->mUnk_158);
     func_ov001_02188c48(a, a->mPrm->mUnk_15c, a->mPrm->mUnk_160);
     SetAnglePointAndMoveAnglePoint(a, &p->mPos);
-    func_ov001_02188e24(a, (s32) (a->mPrm->mUnk_164), (UnkFunc *) (0));
+    func_ov001_02188e24(a, a->mPrm->mUnk_164, NULL);
 }
 
 u32 func_ov001_0218edb8(void) {
@@ -338,21 +338,20 @@ u32 func_ov001_0218edb8(void) {
 void func_ov001_0218ec40(Unk02188950 *a) {
     GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(a, 1, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_118), (s32) (a->mPrm->mUnk_11c));
-    func_ov001_02188d1c(a, (s32) (a->mPrm->mUnk_120), (s32) (a->mPrm->mUnk_124));
+    func_ov001_02188d64(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c);
+    func_ov001_02188d1c(a, a->mPrm->mUnk_120, a->mPrm->mUnk_124);
     if (a->mUnk_0a8 == 1) {
-        func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_128), (s32) (a->mPrm->mUnk_12c));
+        func_ov001_02188cd8(a, a->mPrm->mUnk_128, a->mPrm->mUnk_12c);
         func_ov001_02188c48(a, a->mPrm->mUnk_130, a->mPrm->mUnk_134);
     } else if (a->mUnk_0a8 == 2) {
-        func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_220), (s32) (a->mPrm->mUnk_224));
+        func_ov001_02188cd8(a, a->mPrm->mUnk_220, a->mPrm->mUnk_224);
         func_ov001_02188c48(a, a->mPrm->mUnk_228, a->mPrm->mUnk_22c);
     } else if (a->mUnk_0a8 == 3) {
-        func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_230), (s32) (a->mPrm->mUnk_234));
+        func_ov001_02188cd8(a, a->mPrm->mUnk_230, a->mPrm->mUnk_234);
         func_ov001_02188c48(a, a->mPrm->mUnk_238, a->mPrm->mUnk_23c);
     }
-    SetAnglePointAndMoveAnglePoint(a, ((Vec3 *) func_ov001_02187fc0(a)));
-    func_ov001_02188de0(a, (s32) (a->mPrm->mUnk_138), (s32) (a->mPrm->mUnk_13c), (((Vec3 *) func_ov001_02187fc0(a))),
-                        (UnkFunc *) (0));
+    SetAnglePointAndMoveAnglePoint(a, &func_ov001_02187fc0(a)->mUnk_00);
+    func_ov001_02188de0(a, a->mPrm->mUnk_138, a->mPrm->mUnk_13c, &func_ov001_02187fc0(a)->mUnk_00, NULL);
     if (data_0217d20c != 5) {
         data_0217d21c = data_0217d20c;
     }
@@ -364,9 +363,9 @@ void func_ov001_0218eb94(Unk02188950 *a) {
     GetKart((u16) data_021759c0->mEntryIndex);
     rng = func_020d22d0();
     rng->mUnk_00 = (s64) rng->mUnk_08 * (s64) rng->mUnk_00 + rng->mUnk_10;
-    a->mUnk_000.mPos.x = ((Vec3 *) func_ov001_02187fc0(a))->x;
-    a->mUnk_000.mPos.y = a->mPrm->mUnk_080 + ((Vec3 *) func_ov001_02187fc0(a))->y;
-    a->mUnk_000.mPos.z = ((Vec3 *) func_ov001_02187fc0(a))->z;
+    a->mUnk_000.mPos.x = (&func_ov001_02187fc0(a)->mUnk_00)->x;
+    a->mUnk_000.mPos.y = a->mPrm->mUnk_080 + (&func_ov001_02187fc0(a)->mUnk_00)->y;
+    a->mUnk_000.mPos.z = (&func_ov001_02187fc0(a)->mUnk_00)->z;
     func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_0218f900(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_1b4, NULL);
@@ -442,16 +441,16 @@ void func_ov001_0218e92c(Unk02188950 *p) {
 }
 
 void func_ov001_0218e8d8(Unk02188950 *a) {
-    func_ov001_02187218(a, 5, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_168), (s32) (a->mPrm->mUnk_16c), (UnkFunc *) &func_ov001_0218e92c);
+    func_ov001_02187218(a, 5, NULL);
+    func_ov001_02188d30(a, a->mPrm->mUnk_168, a->mPrm->mUnk_16c, (UnkFunc *) &func_ov001_0218e92c);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02182a3c(0);
-    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x00000230u)));
+    StartMapObjectSound(&a->mUnk_000, 0x00000230u);
 }
 
 void func_ov001_0218e8b0(Unk02188950 *a) {
-    func_ov001_02187218(a, 1, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 1, NULL);
     func_ov001_021888a4(a, 0, 0x19000);
     func_0206184c();
     func_ov001_021827f0();
@@ -482,7 +481,7 @@ void func_ov001_0218e7d0(Unk02188950 *p) {
 }
 
 void func_ov001_0218e7b0(Unk02188950 *a) {
-    func_ov001_02187218(a, 1, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 1, NULL);
     func_ov001_021888a4(a, 0, 0x19000);
 }
 
@@ -537,7 +536,7 @@ void func_ov001_0218e5c4(Unk02188950 *a) {
     a->mUnk_168 = a->mUnk_16c = 0x1f000;
     a->mUnk_170 = 0;
     func_ov001_02187218(a, 8, func_ov001_0218e650);
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_070), (s32) (a->mPrm->mUnk_074));
+    func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
     func_ov001_02188e24(a, 0x3c, func_ov001_0218e690);
     if (data_0217d20c != 7) {
         data_0217d21c = data_0217d20c;
@@ -547,11 +546,10 @@ void func_ov001_0218e5c4(Unk02188950 *a) {
 }
 
 void func_ov001_0218e594(Unk02188950 *a) {
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_070), (s32) (a->mPrm->mUnk_074));
+    func_ov001_02187218(a, 8, NULL);
+    func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
-    return;
 }
 
 void func_ov001_0218e58c(void) {
@@ -559,19 +557,19 @@ void func_ov001_0218e58c(void) {
 }
 
 void func_ov001_0218e564(Unk02188950 *a) {
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d30(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, func_ov001_0218e760);
 }
 
 void func_ov001_0218e520(Unk02188950 *a) {
     a->mUnk_000.mPos.y += a->mPrm->mUnk_080;
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
     func_ov001_02188e24(a, a->mPrm->mUnk_054, func_ov001_0218e564);
 }
 
 void func_ov001_0218e508(Unk02188950 *a) {
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 8, NULL);
     func_ov001_0218f900(a);
 }
 
@@ -580,14 +578,14 @@ void func_ov001_0218e4ac(Unk02188950 *a) {
     a->mUnk_16c = 0;
     a->mUnk_168 = a->mUnk_16c;
     a->mUnk_168 = 0;
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, func_ov001_0218e508);
 }
 
 void func_ov001_0218e474(Unk02188950 *a) {
     a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) (a->mUnk_000.mSound), (u32) (0xe), (&a->mUnk_000.mPos));
+    InitSoundSource((SoundSource *) a->mUnk_000.mSound, 0xe, &a->mUnk_000.mPos);
     a->mUnk_000.mFarDistanceSquared = data_0217cc6c[6];
 }
 
@@ -601,7 +599,7 @@ void func_ov001_0218e38c(Unk02188950 *a, Kart *b) {
     func_ov001_02188200(a, func_ov001_0218f9a8);
     func_ov001_0218e860(a);
     a->mUnk_0a8 = 0;
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x22c));
+    StartMapObjectSound(&a->mUnk_000, 0x22c);
     a->mUnk_25c = a->mUnk_268 = a->mUnk_264 = a->mUnk_270 = a->mPrm->mUnk_00c;
 }
 
@@ -614,7 +612,7 @@ void func_ov001_0218e344(Unk02188950 *a) {
     a->mUnk_2d8 = 0xd;
     func_ov001_02188200(a, func_ov001_0218e344);
     if (a->mTimer == 0) {
-        StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x00000234u)));
+        StartMapObjectSound(&a->mUnk_000, 0x00000234u);
     }
 }
 
@@ -681,7 +679,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
                 }
             }
             if (func_ov001_021871f8(b, 3) != 0) {
-                if (func_ov001_021881a8(b, (Vec3 *) func_ov001_02187fc0(b), (s32) (b->mPrm->mUnk_138), 0) != 0) {
+                if (func_ov001_021881a8(b, &func_ov001_02187fc0(b)->mUnk_00, b->mPrm->mUnk_138, 0) != 0) {
                     func_ov001_02187e78(b);
                 }
                 func_ov001_02188200(b, func_ov001_0218e344);
@@ -731,9 +729,9 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
         if (data_0217d20c == 0) {
             func_02110350(b->mUnk_000.mSound);
         } else if (func_02110324() != 0) {
-            StartMapObjectSoundWhileRequested(&b->mUnk_000, (u32) (0x22a));
+            StartMapObjectSoundWhileRequested(&b->mUnk_000, 0x22a);
         } else if (data_0217d20c == 4) {
-            StartMapObjectSoundWhileRequested(&b->mUnk_000, (u32) (0x22b));
+            StartMapObjectSoundWhileRequested(&b->mUnk_000, 0x22b);
         }
     }
     func_ov001_021864ac(a, b);
@@ -775,7 +773,7 @@ void func_ov001_0218dde8(void) {
     void *v6 = &func_ov001_02185fb0;
     void *v7 = &func_ov001_02185f04;
     void *v8 = &func_ov001_021860cc;
-    void *v10 = func_ov001_0219b510(v6, v7, v8, (u32) 0x2u, (u16) ((u32) 0x0u), (u16) ((u32) 0x0u), (u16) ((u32) 0x0u));
+    void *v10 = func_ov001_0219b510(v6, v7, v8, 0x2u, 0x0u, 0x0u, 0x0u);
 }
 
 void *func_ov001_0218ddcc(void) {

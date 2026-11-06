@@ -83,7 +83,7 @@ void func_ov001_02182d30(void) {
     Unk0210b7a8 arg;
 
     c = GetKart((u16) data_021759c0->mEntryIndex);
-    o = UnparkFirstParkedMapObject((Unk02181c3c_list *) (func_02100138((u32) (0x68))));
+    o = UnparkFirstParkedMapObject((Unk02181c3c_list *) func_02100138(0x68));
     if (o != NULL) {
         rnd = func_020d22d0();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
@@ -120,7 +120,7 @@ void func_ov001_02182bdc(void) {
     Unk0210b7a8 arg;
 
     c = GetKart((u16) data_021759c0->mEntryIndex);
-    o = UnparkFirstParkedMapObject((Unk02181c3c_list *) (func_02100138((u32) (0x68))));
+    o = UnparkFirstParkedMapObject((Unk02181c3c_list *) func_02100138(0x68));
     if (o != NULL) {
         rnd = func_020d22d0();
         rnd->mUnk_00 = (s64) rnd->mUnk_08 * (s64) rnd->mUnk_00 + rnd->mUnk_10;
@@ -144,9 +144,9 @@ void func_ov001_02182bdc(void) {
         o->mUnk_000.mPos.x = c->mPos.x;
         o->mUnk_000.mPos.y = c->mPos.y + 0x1a000;
         o->mUnk_000.mPos.z = c->mPos.z;
-        o->mUnk_000.mUnk_10.x = (s32) (((s64) b * gPairsByAngle[(a >> 4) * 2]) >> 12);
+        o->mUnk_000.mUnk_10.x = (((s64) b * gPairsByAngle[(a >> 4) * 2]) >> 12);
         o->mUnk_000.mUnk_10.y = 0x4000;
-        o->mUnk_000.mUnk_10.z = (s32) (((s64) b * gPairsByAngle[(a >> 4) * 2 + 1]) >> 12);
+        o->mUnk_000.mUnk_10.z = (((s64) b * gPairsByAngle[(a >> 4) * 2 + 1]) >> 12);
         arg.mUnk_00 = 0x1d9;
         arg.mUnk_04 = NULL;
         arg.mUnk_08 = 2;
@@ -352,25 +352,25 @@ void func_ov001_0218263c(void *b, Unk02181c3c *c) {
 
     if (c->mUnk_0b0 > 0 && c->mUnk_0a0 != 0) {
         a = 0x1e;
-        func_01ff9048((u32) (0x14), (&a), 1);
-        func_01ff9048((u32) (0x19), (func_020e6cbc(&c->mUnk_000.mPos)), 0xc);
+        func_01ff9048(0x14, (&a), 1);
+        func_01ff9048(0x19, func_020e6cbc(&c->mUnk_000.mPos), 0xc);
         s = c->mUnk_0b0;
         if (s != 0x1000) {
             v.x = s;
             v.y = s;
             v.z = s;
-            func_01ff9048((u32) (0x1b), (&v), 3);
+            func_01ff9048(0x1b, (&v), 3);
         }
-        func_01ff9048((u32) (0x1b), (&c->mUnk_000.mScale), 3);
+        func_01ff9048(0x1b, (&c->mUnk_000.mScale), 3);
         SetMapObjectModelPolygonId(data_ov001_021a9b98, AllocPolygonIdWrapping());
         t = c->mUnk_0a0;
         if (t >= 0x1f) {
             t = 0x1f;
         }
         func_0209b9a4(data_ov001_021a9b98, t);
-        func_0209b688(data_ov001_021a9b98, (u16) c->mUnk_0a4);
+        func_0209b688(data_ov001_021a9b98, c->mUnk_0a4);
         func_0209bbd0(b, data_ov001_021a9b98);
-        DrawMapObjectModel((b), (data_ov001_021a9b98), (c));
+        DrawMapObjectModel(b, data_ov001_021a9b98, c);
     }
 }
 
@@ -706,8 +706,7 @@ void func_ov001_02181c3c(void *a, Unk02181c3c *b) {
 }
 
 void func_ov001_02181c20(void) {
-    func_0209bfa8(&func_ov001_0218274c, NULL, NULL, (u32) (1), (u16) (1));
-    return;
+    func_0209bfa8(&func_ov001_0218274c, NULL, NULL, 1, 1);
 }
 
 void *func_ov001_02181c08(void) {

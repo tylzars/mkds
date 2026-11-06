@@ -122,9 +122,7 @@ void func_ov001_02187af4(Unk02188950 *a) {
     a->mUnk_0b8 = 0;
 }
 
-// Writes to param_3 a point for entry param_2 of param_1->mUnk_0bc: param_1->mUnk_004 plus the entry's mUnk_08
-// combined with the pair of gPairsByAngle values selected by param_1->mUnk_184. The entry's mUnk_00 (1-5) selects
-// the variant; other values write nothing.
+// Writes a point for one entry of the object's table; the entry's type (1-5) picks how, others write nothing.
 void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c) {
     Camera *obj;
     s32 x;
@@ -159,11 +157,11 @@ void func_ov001_02187684(Unk02188950 *a, int b, Vec3 *c) {
         case 2:
             // The entry's mUnk_08 is first multiplied per component by param_1->mUnk_01c, mUnk_020 and mUnk_024.
             t = a->mUnk_0bc[b].mOffset.y;
-            y = (s32) (((s64) t * a->mUnk_000.mScale.y) >> 12);
+            y = (((s64) t * a->mUnk_000.mScale.y) >> 12);
             t = a->mUnk_0bc[b].mOffset.x;
-            x = (s32) (((s64) t * a->mUnk_000.mScale.x) >> 12);
+            x = (((s64) t * a->mUnk_000.mScale.x) >> 12);
             t = a->mUnk_0bc[b].mOffset.z;
-            z = (s32) (((s64) t * a->mUnk_000.mScale.z) >> 12);
+            z = (((s64) t * a->mUnk_000.mScale.z) >> 12);
             c->x = a->mUnk_000.mPos.x + (s32) (((s64) z * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12) +
                    (s32) (((s64) x * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
             c->y = a->mUnk_000.mPos.y + y;
@@ -355,13 +353,13 @@ BOOL func_ov001_021871d0(Unk02188950 *a) {
 
 void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, const char *e) {
     if (a != NULL && c != NULL) {
-        b->mNsbmd = LoadMapObjectModelAnimated((Unk0219b478 *) (a), (char *) (c));
+        b->mNsbmd = LoadMapObjectModelAnimated((Unk0219b478 *) a, (char *) c);
         if (d != NULL) {
-            LoadMapObjectModelNsbcaAnimation((Unk0219b250 *) (b->mNsbmd), (char *) (d));
+            LoadMapObjectModelNsbcaAnimation((Unk0219b250 *) b->mNsbmd, (char *) d);
         }
     }
     if (e != NULL) {
-        b->mPrm = LoadMissionRunFile((char *) (e));
+        b->mPrm = LoadMissionRunFile((char *) e);
     }
     b->mAngle = (u16) (((s64) b->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
     b->mUnk_168 = 0x1f000;
@@ -379,7 +377,7 @@ void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, 
 
 void func_ov001_021870b0(void *a, Unk02188950 *b, const char *c) {
     if (a != NULL && c != NULL) {
-        b->mShadowNsbmd = LoadMapObjectModelShadow((Unk0219b478 *) (a), (char *) (c));
+        b->mShadowNsbmd = LoadMapObjectModelShadow((Unk0219b478 *) a, (char *) c);
         SetMapObjectModelPolygonId(b->mShadowNsbmd, 0x3f);
         data_ov001_021a9ba0 = 0;
     }
@@ -613,14 +611,14 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         b->mVelocity.z = 0;
     } else if (b->mUnk_2c8 & 0x1e34ef) {
         s = b->mPrm->mUnk_010;
-        b->mVelocity.x = (s32) (((s64) b->mVelocity.x * s) >> 12);
-        b->mVelocity.y = (s32) (((s64) b->mVelocity.y * s) >> 12);
-        b->mVelocity.z = (s32) (((s64) b->mVelocity.z * s) >> 12);
+        b->mVelocity.x = (((s64) b->mVelocity.x * s) >> 12);
+        b->mVelocity.y = (((s64) b->mVelocity.y * s) >> 12);
+        b->mVelocity.z = (((s64) b->mVelocity.z * s) >> 12);
     } else {
         s = b->mPrm->mUnk_014;
-        b->mVelocity.x = (s32) (((s64) b->mVelocity.x * s) >> 12);
-        b->mVelocity.y = (s32) (((s64) b->mVelocity.y * s) >> 12);
-        b->mVelocity.z = (s32) (((s64) b->mVelocity.z * s) >> 12);
+        b->mVelocity.x = (((s64) b->mVelocity.x * s) >> 12);
+        b->mVelocity.y = (((s64) b->mVelocity.y * s) >> 12);
+        b->mVelocity.z = (((s64) b->mVelocity.z * s) >> 12);
     }
 
     idx = ((u16) b->mMoveAngle >> 4) * 2;
@@ -658,7 +656,7 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         if (b->mVelocity.y > 0) {
             b->mUnk_2c8 &= ~0x1e34ef;
         } else if (b->mUnk_2bc != FALSE) {
-            b->mVelocity.y = (s32) (((s64) b->mVelocity.y * -b->mPrm->mUnk_020) >> 12);
+            b->mVelocity.y = (((s64) b->mVelocity.y * -b->mPrm->mUnk_020) >> 12);
             if (b->mVelocity.y < b->mPrm->mUnk_018) {
                 b->mUnk_2bc = FALSE;
                 b->mVelocity.y = 0;
@@ -729,10 +727,10 @@ void func_ov001_021864ac(u32 a, Unk02188950 *b) {
         b->mUnk_0b0 = 0;
         func_ov001_02188e94(b, &b->mUnk_1f4);
     }
-    if (b->mUnk_20c != NULL && func_ov001_021881a8(b, &b->mUnk_200, (s32) (b->mUnk_1f8), (s32) (b->mUnk_1fc))) {
+    if (b->mUnk_20c != NULL && func_ov001_021881a8(b, &b->mUnk_200, b->mUnk_1f8, b->mUnk_1fc)) {
         func_ov001_02188e94(b, &b->mUnk_20c);
     }
-    if (b->mUnk_224 != NULL && !func_ov001_021881a8(b, &b->mUnk_218, (s32) (b->mUnk_210), (s32) (b->mUnk_214))) {
+    if (b->mUnk_224 != NULL && !func_ov001_021881a8(b, &b->mUnk_218, b->mUnk_210, b->mUnk_214)) {
         func_ov001_02188e94(b, &b->mUnk_224);
     }
     if (b->mUnk_228 != NULL && b->mVelocity.y == 0 && -b->mPrm->mUnk_018 < b->mSpeed && b->mPrm->mUnk_018 > b->mSpeed &&
@@ -922,9 +920,9 @@ s32 func_ov001_02185fb0(Unk02188950 *a, Unk02185fb0_1 *b, u8 *c, u8 *d) {
         if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
             Vec3NormalizeAndGetLengthUnchecked(&v, &v);
             k = -a->mPrm->mUnk_024;
-            a->mUnk_000.mUnk_10.x = (s32) (((s64) v.x * k) >> 12);
-            a->mUnk_000.mUnk_10.y = (s32) (((s64) v.y * k) >> 12);
-            a->mUnk_000.mUnk_10.z = (s32) (((s64) v.z * k) >> 12);
+            a->mUnk_000.mUnk_10.x = (((s64) v.x * k) >> 12);
+            a->mUnk_000.mUnk_10.y = (((s64) v.y * k) >> 12);
+            a->mUnk_000.mUnk_10.z = (((s64) v.z * k) >> 12);
             VEC_MultAdd(a->mPrm->mUnk_028, &v, &a->mVelocity, &a->mVelocity);
         }
         fn = a->mUnk_2d4;

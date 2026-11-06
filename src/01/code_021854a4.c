@@ -10,10 +10,9 @@ void func_ov001_021854a4(void) {
     v1 = func_020cccc0();
     if (v1 != 0) {
         func_ov001_021854f4(0x19);
-        GX_SetGraphicsMode((u16) (1), 0, 0);
+        GX_SetGraphicsMode(1, 0, 0);
         func_ov001_021854d8(0x16);
         GXS_SetGraphicsMode(0);
     }
     func_021173e4();
-    return;
 }

@@ -17,9 +17,9 @@ void func_ov001_0218b2b8(Unk02188950 *a) {
 }
 
 void func_ov001_0218b2a8(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x237));
+    StartMapObjectSound(&a->mUnk_000, 0x237);
 }
 
 void func_ov001_0218b298(Unk02188950 *a) {
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x237));
+    StartMapObjectSound(&a->mUnk_000, 0x237);
 }

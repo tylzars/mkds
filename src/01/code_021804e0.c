@@ -48,24 +48,24 @@ void func_ov001_02180800(void) {
         func_ov001_02180c88(mtx);
         switch (data_ov001_021a99e4->mUnk_0004) {
             case 0:
-                func_ov001_02180c6c((u32) 1);
+                func_ov001_02180c6c(1);
                 GXS_SetGraphicsMode(0);
-                func_ov001_02180c40((u32) 0, (u32) 0);
-                func_ov001_02180c24((u32) 0);
-                func_ov001_02180bf8((u32) 0);
-                func_ov001_02180bc0((u32) 0, (u32) 0, (u32) 4, (u32) 4, (u32) 0);
+                func_ov001_02180c40(0, 0);
+                func_ov001_02180c24(0);
+                func_ov001_02180bf8(0);
+                func_ov001_02180bc0(0, 0, 4, 4, 0);
                 func_020ca688(1);
                 func_020ca6a8();
                 break;
             case 1:
             case 2:
             case 3:
-                func_ov001_02180c6c((u32) 2);
+                func_ov001_02180c6c(2);
                 GXS_SetGraphicsMode(0);
-                func_ov001_02180b94((u32) 0, (u32) 0);
-                func_ov001_02180b78((u32) 0);
-                func_ov001_02180b4c((u32) 0);
-                func_ov001_02180b14((u32) 0, (u32) 0, (u32) 4, (u32) 4, (u32) 0);
+                func_ov001_02180b94(0, 0);
+                func_ov001_02180b78(0);
+                func_ov001_02180b4c(0);
+                func_ov001_02180b14(0, 0, 4, 4, 0);
                 *(u16 *) 0x5000400 = 0;
                 *(u16 *) 0x5000402 = 0x1f;
                 *(u16 *) 0x5000404 = 0x3e0;
@@ -74,7 +74,7 @@ void func_ov001_02180800(void) {
                 *(u16 *) 0x500040a = 0x7c1f;
                 *(u16 *) 0x500040c = 0;
                 *(u16 *) 0x500040e = 0xffff;
-                func_ov001_02180ccc((data_ov001_021a99e4->mUnk_00a8));
+                func_ov001_02180ccc(data_ov001_021a99e4->mUnk_00a8);
                 GXS_LoadBG1Scr(data_ov001_021a99e4->mUnk_60a8, 0, 0x600);
                 break;
         }
@@ -135,12 +135,12 @@ void func_ov001_02180800(void) {
     }
     switch (data_ov001_021a99e4->mUnk_0008) {
         case 0:
-            func_ov001_02180c40((u32) 0, (u32) 0);
+            func_ov001_02180c40(0, 0);
             break;
         case 1:
         case 2:
         case 3:
-            func_ov001_02180b94((u32) 0, (u32) 0);
+            func_ov001_02180b94(0, 0);
             break;
     }
     data_ov001_021a99e4->mUnk_0008 = 0;
@@ -203,7 +203,7 @@ void func_ov001_02180610(void) {
 void func_ov001_021805f4(void) {
     func_020364e8();
     func_020ca6b8();
-    *(u32 *) &data_ov001_021a99e4 = 0;
+    data_ov001_021a99e4 = NULL;
 }
 
 #pragma thumb off

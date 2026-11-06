@@ -89,7 +89,6 @@ void AdvanceOptionHensyuMenuState0(void) {
     if (v1 != 0) {
         gOptionHensyuMenu->mNextState = 1;
     }
-    return;
 }
 
 void AdvanceOptionHensyuMenuState1(void) {
@@ -120,7 +119,6 @@ void AdvanceOptionHensyuMenuState2(void) {
     if (v1 != 0) {
         gOptionHensyuMenu->mNextState = 3;
     }
-    return;
 }
 
 void AdvanceOptionHensyuMenuState3(void) {
@@ -311,11 +309,10 @@ void AdvanceOptionHensyuMenu(void) {
 }
 
 void func_ov001_02199988(void) {
-    G2x_SetBlendAlpha_(((u32 *) (u32) (((u32) 0x04001050u))), 0, 2, 6, 10);
-    return;
+    G2x_SetBlendAlpha_(((u32 *) (u32) 0x04001050u), 0, 2, 6, 10);
 }
 
 void RegisterOptionHensyuMenuCallbacks(void) {
     UnkFunc *tbl[4] = {InitOptionHensyuMenu, ReleaseOptionHensyuMenu, AdvanceOptionHensyuMenu, func_ov001_02199988};
-    SetOptionStateCallbacks((tbl));
+    SetOptionStateCallbacks(tbl);
 }

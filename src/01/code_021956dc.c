@@ -216,11 +216,10 @@ void func_ov001_021972f4(void) {
         result = func_020601e4(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
         gRecordTAtt->mRecordTAttMTable[5].mUnk_00 = 1;
         tile = data_ov001_021a6864[result];
-        func_02124748((u32) (tile), (gRecordTAtt->mUnk_2c), (gRecordTAtt->mUnk_28), (gRecordTAtt->mUnk_34), 0,
-                      (u32) (5), (gRecordTAtt->mRecordTAttMNcer), (gRecordTAtt->mRecordTAttMBncl));
+        func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, 5,
+                      gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl);
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
-        CallQueueAppend(0xe, 0x80,
-                        palette + (func_02124a68((u32) (tile), (gRecordTAtt->mUnk_2c), (gRecordTAtt->mUnk_34)) << 5),
+        CallQueueAppend(0xe, 0x80, palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5),
                         0x20);
         result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
         gRecordTAtt->mRecordTAttMTable[6].mUnk_00 = 1;
@@ -338,8 +337,7 @@ void func_ov001_02197024(void) {
     gRecordTAtt->mUnk_74 = FALSE;
 }
 
-// Requests state 3: stores mNextState = 3 and zeroes mStateFrames; the next AdvanceRecordTAtt call copies it to mState
-// and runs AdvanceRecordTAttState3.
+// Requests state 3.
 void RequestRecordTAttState3(void) {
     gRecordTAtt->mNextState = 3;
     gRecordTAtt->mStateFrames = 0;
@@ -359,15 +357,13 @@ void func_ov001_02196fd8(void) {
     func_ov001_021972f4();
 }
 
-// Requests state 5: stores mNextState = 5 and zeroes mStateFrames; the next AdvanceRecordTAtt call copies it to mState
-// and runs AdvanceRecordTAttState5.
+// Requests state 5.
 void RequestRecordTAttState5(void) {
     gRecordTAtt->mNextState = 5;
     gRecordTAtt->mStateFrames = 0;
 }
 
-// Requests state 6: stores mNextState = 6 and zeroes mStateFrames; the next AdvanceRecordTAtt call copies it to mState
-// and runs AdvanceRecordTAttState6.
+// Requests state 6.
 void RequestRecordTAttState6(void) {
     gRecordTAtt->mNextState = 6;
     gRecordTAtt->mStateFrames = 0;
@@ -460,8 +456,7 @@ void func_ov001_02196dbc(void) {
     SetupTxtSystemSubTextEx(str, 0, 1, 0, 0, 0);
 }
 
-// Requests state 15: stores mNextState = 15 and zeroes mStateFrames; the next AdvanceRecordTAtt call copies it to
-// mState and runs AdvanceRecordTAttState15.
+// Requests state 15.
 void RequestRecordTAttState15(void) {
     gRecordTAtt->mNextState = 15;
     gRecordTAtt->mStateFrames = 0;
@@ -473,8 +468,7 @@ void func_ov001_02196d8c(void) {
     RequestTxtSystemClose();
 }
 
-// Requests state 17: stores mNextState = 17 and zeroes mStateFrames; the next AdvanceRecordTAtt call copies it to
-// mState and runs AdvanceRecordTAttState17.
+// Requests state 17.
 void RequestRecordTAttState17(void) {
     gRecordTAtt->mNextState = 0x11;
     gRecordTAtt->mStateFrames = 0;
@@ -1083,7 +1077,6 @@ void AdvanceRecordTAttState14(void) {
     if (v1 != 0) {
         RequestRecordTAttState15();
     }
-    return;
 }
 
 void AdvanceRecordTAttState15(void) {
@@ -1117,7 +1110,6 @@ void AdvanceRecordTAttState16(void) {
     if (v1 != 0) {
         RequestRecordTAttState17();
     }
-    return;
 }
 
 void AdvanceRecordTAttState17(void) {

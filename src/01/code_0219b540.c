@@ -122,15 +122,13 @@ void func_ov001_0219c480(void) {
     }
 }
 
-// Requests state 1: stores mNextState = 1 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
-// and runs AdvanceSelectGhostState1.
+// Requests state 1.
 void RequestSelectGhostState1(void) {
     gSelectGhost->mNextState = 1;
     gSelectGhost->mStateFrames = 0;
 }
 
-// Requests state 2: stores mNextState = 2 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
-// and runs AdvanceSelectGhostState2.
+// Requests state 2.
 void RequestSelectGhostState2(void) {
     gSelectGhost->mNextState = 2;
     gSelectGhost->mStateFrames = 0;
@@ -149,8 +147,7 @@ void func_ov001_0219c3ec(void) {
     StartSelectChoises(GetBmgEntry(gSelectGhost->mCommonMessages, 4), GetBmgEntry(gSelectGhost->mCommonMessages, 2), 0);
 }
 
-// Requests state 5: stores mNextState = 5 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
-// and runs AdvanceSelectGhostState5.
+// Requests state 5.
 void RequestSelectGhostState5(void) {
     gSelectGhost->mNextState = 5;
     gSelectGhost->mStateFrames = 0;
@@ -162,8 +159,7 @@ void func_ov001_0219c3bc(void) {
     RequestSelectChoisesState0();
 }
 
-// Requests state 7: stores mNextState = 7 and zeroes mStateFrames; the next AdvanceSelectGhost call copies it to mState
-// and runs AdvanceSelectGhostState7.
+// Requests state 7.
 void RequestSelectGhostState7(void) {
     gSelectGhost->mNextState = 7;
     gSelectGhost->mStateFrames = 0;
@@ -178,8 +174,7 @@ void func_ov001_0219c358(void) {
     gSelectGhost->mSelectGhostSTable[11].mUnk_00 = 1;
 }
 
-// Stores both offsets and steps both timers; while timer i is above 0 the row data_ov001_021a6b38[i] picks is switched
-// on and the row data_ov001_021a6b3c[i] picks off, and the other way round once it reaches 0.
+// Stores both offsets and steps both timers; each timer switches its rows on or off.
 void AdvanceSelectGhostOffsetTimers(void) {
     s32 i;
     gSelectGhost->mSelectGhostSTable[data_ov001_021a6b38[0]].mUnk_04 =
@@ -238,15 +233,13 @@ void func_ov001_0219c0bc(void) {
     x = data_ov001_021a6b54[2];
     gSelectGhost->mSelectGhostSTable[n + x].mUnk_00 = 1;
     r = data_ov001_021a6b88[func_0211e274(data_ov001_021a6b78[gSelectGhost->mIndex])];
-    func_02124748((u32) (r), (gSelectGhost->mPlayerCharacterMNcer), (gSelectGhost->mPlayerCharacterMNcgr),
-                  (gSelectGhost->mPlayerCharacterMBncl), 1, (u32) (a), (gSelectGhost->mSelectGhostSONcer),
-                  (gSelectGhost->mSelectGhostSBncl));
+    func_02124748(r, gSelectGhost->mPlayerCharacterMNcer, gSelectGhost->mPlayerCharacterMNcgr,
+                  gSelectGhost->mPlayerCharacterMBncl, 1, a, gSelectGhost->mSelectGhostSONcer,
+                  gSelectGhost->mSelectGhostSBncl);
     blk = gSelectGhost->mPlayerCharacterMONclr->mUnk_0c;
     CallQueueAppend(
         0x1e, 0x100,
-        blk + (func_02124a68((u32) (r), (gSelectGhost->mPlayerCharacterMNcer), (gSelectGhost->mPlayerCharacterMBncl))
-               << 5),
-        0x20);
+        blk + (func_02124a68(r, gSelectGhost->mPlayerCharacterMNcer, gSelectGhost->mPlayerCharacterMBncl) << 5), 0x20);
     k = func_0211e1f0(data_ov001_021a6b78[gSelectGhost->mIndex]);
     QueueKartIcon(k, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBncl, b, 9, 1);
     func_0211e38c(data_ov001_021a6b78[gSelectGhost->mIndex], buf14);
@@ -314,11 +307,9 @@ void func_ov001_0219be5c(void) {
     gSelectGhost->mSelectCupCourseTaMTable[n + 5].mUnk_00 = 1;
     QueueSelectCupNameM(data_ov001_021a6ba4[func_0202968c()], gSelectGhost->mSelectCupCourseMNcer,
                         gSelectGhost->mSelectCupCourseTaMBncl, 0, 0);
-    QueueCupMark((u32) (data_ov001_021a6ba4[func_0202968c()]), gSelectGhost->mSelectCupCourseMNcer,
-                 gSelectGhost->mSelectCupCourseTaMBncl, (u32) (5),
-                 (u16) (func_02124a68((u32) (5), (gSelectGhost->mSelectCupCourseMNcer),
-                                      (gSelectGhost->mSelectCupCourseTaMBncl))),
-                 0);
+    QueueCupMark(data_ov001_021a6ba4[func_0202968c()], gSelectGhost->mSelectCupCourseMNcer,
+                 gSelectGhost->mSelectCupCourseTaMBncl, 5,
+                 func_02124a68(5, gSelectGhost->mSelectCupCourseMNcer, gSelectGhost->mSelectCupCourseTaMBncl), 0);
     func_0212426c(0, 2, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x73),
                   gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMTable);
     func_0212426c(0, 4, gSelectGhost->mSelectCupCourseTaMBnll, GetBmgEntry(gSelectGhost->mCommonMessages, 0x74),
@@ -409,7 +400,7 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
         }
     }
     func_ov001_0219c0bc();
-    FrmHeapShrinkInParent((gSelectGhost->mHeap));
+    FrmHeapShrinkInParent(gSelectGhost->mHeap);
 }
 
 void func_ov001_0219baf4(void) {
@@ -557,7 +548,6 @@ void AdvanceSelectGhostState5(void) {
     if (v1 != 0) {
         func_ov001_0219c3bc();
     }
-    return;
 }
 
 void AdvanceSelectGhostState6(void) {

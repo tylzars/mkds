@@ -14,9 +14,9 @@ void func_ov001_0218b1d8(Unk02188950 *a) {
     Vec3 vec;
 
     if (func_ov001_02187c4c(a)) {
-        vec.x = (s32) (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2]) >> 12);
+        vec.x = (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2]) >> 12);
         vec.y = a->mPrm->mUnk_138;
-        vec.z = (s32) (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2 + 1]) >> 12);
+        vec.z = (((s64) a->mPrm->mUnk_134 * gPairsByAngle[((u16) a->mMoveAngle >> 4) * 2 + 1]) >> 12);
         func_ov001_02187bfc(a, &vec, a->mPrm->mUnk_13c);
     }
 }
@@ -51,6 +51,6 @@ void func_ov001_0218b034(Unk02188950 *a) {
             func_ov001_02187b94(func_ov001_02187e00(9), &pos, &vel, a->mPrm->mUnk_160);
         }
     }
-    func_ov001_02187518(a, (u32) (0x2000), (u32) (0), (u32) (0x3ae), (u32) (0x410), (u32) (0));
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x236));
+    func_ov001_02187518(a, 0x2000, 0, 0x3ae, 0x410, 0);
+    StartMapObjectSound(&a->mUnk_000, 0x236);
 }

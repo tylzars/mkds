@@ -98,7 +98,6 @@ void AdvanceOptionEmbremSelectState0(void) {
     if (v1 != 0) {
         gOptionEmbremSelect->mNextState = 1;
     }
-    return;
 }
 
 void AdvanceOptionEmbremSelectState1(void) {
@@ -130,7 +129,6 @@ void AdvanceOptionEmbremSelectState2(void) {
     if (v1 != 0) {
         gOptionEmbremSelect->mNextState = 3;
     }
-    return;
 }
 
 void AdvanceOptionEmbremSelectState3(void) {
@@ -245,7 +243,6 @@ void AdvanceOptionEmbremSelectState4(void) {
     if (5 <= v1->mStateFrames) {
         v1->mUnk_24 = TRUE;
     }
-    return;
 }
 
 void AdvanceOptionEmbremSelectState5(void) {
@@ -440,12 +437,11 @@ void AdvanceOptionEmbremSelect(void) {
 }
 
 void func_ov001_0219d600(void) {
-    G2x_SetBlendAlpha_(((u32 *) (u32) (((u32) 0x04001050u))), (u32) (0), 2, (u32) (6), 10);
-    return;
+    G2x_SetBlendAlpha_(((u32 *) (u32) 0x04001050u), 0, 2, 6, 10);
 }
 
 void RegisterOptionEmbremSelectCallbacks(void) {
     Unk021a8cd0 local = gOptionEmbremSelectCallbacks;
 
-    SetOptionStateCallbacks((local.mUnk_00));
+    SetOptionStateCallbacks(local.mUnk_00);
 }

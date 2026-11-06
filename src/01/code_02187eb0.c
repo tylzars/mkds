@@ -26,7 +26,7 @@ Kart *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
     Kart *q;
 
     q = GetKart((u16) data_021759c0->mEntryIndex);
-    if (q != NULL && func_ov001_021881a8(a, &q->mPos, (s32) (b), (s32) (c)) != FALSE && (q->mUnk_48 & 0x40) == 0) {
+    if (q != NULL && func_ov001_021881a8(a, &q->mPos, b, c) != FALSE && (q->mUnk_48 & 0x40) == 0) {
         return q;
     }
     return NULL;
@@ -62,21 +62,21 @@ Kart *func_ov001_02188000(Unk02188950 *a, s32 b, s32 c) {
 
 Unk02042044 *func_ov001_02187fc0(Unk02188950 *a) {
     if (a->mUnk_148 < gCourseMap->mEntryGroupCount) {
-        return GetCourseMapGroupEntry((u16) (a->mUnk_148), (u16) (a->mUnk_14c));
+        return GetCourseMapGroupEntry(a->mUnk_148, a->mUnk_14c);
     }
     return NULL;
 }
 
 s32 func_ov001_02187f7c(Unk02188950 *a) {
     if (a->mUnk_148 < gCourseMap->mEntryGroupCount) {
-        return GetCourseMapGroupEntry((u16) (a->mUnk_148), (u16) (a->mUnk_14c))->mUnk_0e;
+        return GetCourseMapGroupEntry(a->mUnk_148, a->mUnk_14c)->mUnk_0e;
     }
     return 0;
 }
 
 s32 func_ov001_02187f38(Unk02188950 *a) {
     if (a->mUnk_148 < gCourseMap->mEntryGroupCount) {
-        return GetCourseMapGroupEntry((u16) (a->mUnk_148), (u16) (a->mUnk_14c))->mUnk_10;
+        return GetCourseMapGroupEntry(a->mUnk_148, a->mUnk_14c)->mUnk_10;
     }
     return 0;
 }
@@ -90,7 +90,7 @@ Unk02042044 *func_ov001_02187ee8(Unk02188950 *a) {
         if (n >= g->mEntryGroups[(u16) a->mUnk_148].mEntryCount) {
             n = 0;
         }
-        return GetCourseMapGroupEntry((u16) (a->mUnk_148), (u16) (n));
+        return GetCourseMapGroupEntry(a->mUnk_148, n);
     }
     return NULL;
 }

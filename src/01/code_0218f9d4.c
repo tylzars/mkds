@@ -68,7 +68,7 @@
 
 void func_ov001_02192890(Unk02188950 *a) {
     a->mUnk_000.mSound = HeapAlloc(GetHeap(func_020364e8()), 0x44);
-    InitSoundSource((SoundSource *) (a->mUnk_000.mSound), (u32) (0xc), (&a->mUnk_000.mPos));
+    InitSoundSource((SoundSource *) a->mUnk_000.mSound, 0xc, &a->mUnk_000.mPos);
     a->mUnk_000.mFarDistanceSquared = data_0217cbec[0x14];
 }
 
@@ -151,13 +151,13 @@ void func_ov001_021924cc(void) {
     } else {
         objC = NULL;
     }
-    a.x = (s32) (((s64) objB->mPrm->mUnk_274 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2]) >> 12);
+    a.x = (((s64) objB->mPrm->mUnk_274 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2]) >> 12);
     a.y = objB->mUnk_000.mPos.y;
-    a.z = (s32) (((s64) objB->mPrm->mUnk_274 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
+    a.z = (((s64) objB->mPrm->mUnk_274 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
     b.x = -(s32) (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
     b.y = objB->mUnk_000.mPos.y;
-    b.z = (s32) (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2]) >> 12);
-    c.x = (s32) (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
+    b.z = (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2]) >> 12);
+    c.x = (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2 + 1]) >> 12);
     c.y = objB->mUnk_000.mPos.y;
     c.z = -(s32) (((s64) objB->mPrm->mUnk_278 * gPairsByAngle[((u16) objB->mAngle >> 4) * 2]) >> 12);
     SetAnglePoint(obj, &a);
@@ -169,76 +169,62 @@ void func_ov001_021924cc(void) {
 void func_ov001_0219246c(Unk02188950 *a) {
     a->mUnk_0a8 = 0;
     func_ov001_021881f4(a, (UnkFunc *) &func_ov001_0218fee0);
-    func_ov001_021884f0(a, 0, 0, 0, (u32) (0), (u32) (0), (u32) (0));
-    func_ov001_02188644(a, (0x0002a000u), 0, (0x00007000u), (u32) (((u32) 0x00026000u)), (u32) (((u32) 0x00001000u)),
-                        (u32) (((u32) 0x00022000u)));
-    return;
+    func_ov001_021884f0(a, 0, 0, 0, 0, 0, 0);
+    func_ov001_02188644(a, 0x0002a000u, 0, 0x00007000u, 0x00026000u, 0x00001000u, 0x00022000u);
 }
 
 void func_ov001_021923e0(Unk02188950 *a) {
     a->mUnk_0a8 = 1;
     func_ov001_021881f4(a, (UnkFunc *) &func_ov001_0218fd20);
-    func_ov001_02188484(a, (0xffffc000u), (0x0001e000u), (0xffff5000u), (u32) (((u32) 0x00002000u)),
-                        (u32) (((u32) 0x00024000u)), (u32) (((u32) 0x00028000u)), (u32) (((u32) 0x00011000u)),
-                        (u32) (((u32) 0x00002000u)));
-    func_ov001_021885d4(a, (0xffff8000u), 0, (0xffffa000u), (u32) (((u32) 0x00002000u)), (u32) (((u32) 0x00020000u)),
-                        (u32) (((u32) 0x00001000u)), (u32) (((u32) 0x00014000u)), (u32) (((u32) 0x00002000u)));
-    return;
+    func_ov001_02188484(a, 0xffffc000u, 0x0001e000u, 0xffff5000u, 0x00002000u, 0x00024000u, 0x00028000u, 0x00011000u,
+                        0x00002000u);
+    func_ov001_021885d4(a, 0xffff8000u, 0, 0xffffa000u, 0x00002000u, 0x00020000u, 0x00001000u, 0x00014000u,
+                        0x00002000u);
 }
 
 void func_ov001_02192358(Unk02188950 *a) {
     a->mUnk_0a8 = 1;
     func_ov001_021881f4(a, (UnkFunc *) &func_ov001_0218fd20);
-    func_ov001_02188484(a, (0xffffc000u), (0x00028000u), (0xffff5000u), (u32) (((u32) 0x00001000u)),
-                        (u32) (((u32) 0x00024000u)), (u32) (((u32) 0x00028000u)), (u32) (((u32) 0x00011000u)),
-                        (u32) (((u32) 0x00001000u)));
-    func_ov001_021885d4(a, (0xffff8000u), 0, (0xffffa000u), (u32) (((u32) 0x00000800u)), (u32) (((u32) 0x00020000u)),
-                        (u32) (((u32) 0x00001000u)), (u32) (((u32) 0x00014000u)), (u32) (((u32) 0x00001000u)));
-    return;
+    func_ov001_02188484(a, 0xffffc000u, 0x00028000u, 0xffff5000u, 0x00001000u, 0x00024000u, 0x00028000u, 0x00011000u,
+                        0x00001000u);
+    func_ov001_021885d4(a, 0xffff8000u, 0, 0xffffa000u, 0x00000800u, 0x00020000u, 0x00001000u, 0x00014000u,
+                        0x00001000u);
 }
 
 void func_ov001_021922e0(Unk02188950 *a) {
     a->mUnk_0a8 = 2;
     func_ov001_021881f4(a, (UnkFunc *) &func_ov001_0218fee0);
-    func_ov001_02188484(a, (0x00015000u), (0x00028000u), (0x0001c000u), (u32) (((u32) 0x00001000u)),
-                        (u32) (((u32) 0x00013000u)), (u32) (((u32) 0x00028000u)), (u32) (((u32) 0x00028000u)),
-                        (u32) (((u32) 0x00001000u)));
-    func_ov001_021885d4(a, (0x00012000u), 0, (0x0001c000u), (u32) (((u32) 0x00001000u)), (u32) (((u32) 0x00011000u)),
-                        (u32) (((u32) 0x00001000u)), (u32) (((u32) 0x00024000u)), (u32) (((u32) 0x00001000u)));
-    return;
+    func_ov001_02188484(a, 0x00015000u, 0x00028000u, 0x0001c000u, 0x00001000u, 0x00013000u, 0x00028000u, 0x00028000u,
+                        0x00001000u);
+    func_ov001_021885d4(a, 0x00012000u, 0, 0x0001c000u, 0x00001000u, 0x00011000u, 0x00001000u, 0x00024000u,
+                        0x00001000u);
 }
 
 void func_ov001_0219226c(Unk02188950 *a) {
     a->mUnk_0a8 = 3;
     func_ov001_021881f4(a, (UnkFunc *) &func_ov001_0218fee0);
-    func_ov001_02188484(a, 0, (u32) (((u32) 0x00028000u)), (u32) (((u32) 0xfffd1000u)), (u32) (((u32) 0x00002000u)),
-                        (u32) (((u32) 0x0001b99au)), (u32) (((u32) 0x00028000u)), (u32) (((u32) 0x0002f000u)),
-                        (u32) (((u32) 0x00002000u)));
-    func_ov001_021885d4(a, 0, (u32) (0), (u32) (((u32) 0xfffd1000u)), (u32) (((u32) 0x00002000u)),
-                        (u32) (((u32) 0x0001b99au)), (u32) (((u32) 0x00001000u)), (u32) (((u32) 0x0002f000u)),
-                        (u32) (((u32) 0x00002000u)));
-    return;
+    func_ov001_02188484(a, 0, 0x00028000u, 0xfffd1000u, 0x00002000u, 0x0001b99au, 0x00028000u, 0x0002f000u,
+                        0x00002000u);
+    func_ov001_021885d4(a, 0, 0, 0xfffd1000u, 0x00002000u, 0x0001b99au, 0x00001000u, 0x0002f000u, 0x00002000u);
 }
 
 void func_ov001_021921e4(Unk02188950 *a) {
     a->mUnk_0a8 = 1;
     func_ov001_021881f4(a, (UnkFunc *) &func_ov001_0218fee0);
-    func_ov001_02188484(a, (0xffffc000u), (0x00028000u), (0xffff5000u), (u32) (((u32) 0x00002000u)),
-                        (u32) (((u32) 0x00024000u)), (u32) (((u32) 0x00028000u)), (u32) (((u32) 0x00011000u)),
-                        (u32) (((u32) 0x00001000u)));
-    func_ov001_021885d4(a, (0xffff8000u), 0, (0xffffa000u), (u32) (((u32) 0x00001000u)), (u32) (((u32) 0x00020000u)),
-                        (u32) (((u32) 0x00001000u)), (u32) (((u32) 0x00014000u)), (u32) (((u32) 0x00001000u)));
-    return;
+    func_ov001_02188484(a, 0xffffc000u, 0x00028000u, 0xffff5000u, 0x00002000u, 0x00024000u, 0x00028000u, 0x00011000u,
+                        0x00001000u);
+    func_ov001_021885d4(a, 0xffff8000u, 0, 0xffffa000u, 0x00001000u, 0x00020000u, 0x00001000u, 0x00014000u,
+                        0x00001000u);
 }
 
 void func_ov001_02192174(Unk02188950 *a) {
     Vec3 pos = {0, 0, 0};
 
     func_ov001_02187218(a, 1, NULL);
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_27c), (s32) (a->mPrm->mUnk_280));
+    func_ov001_02188d64(a, a->mPrm->mUnk_27c, a->mPrm->mUnk_280);
     SetVelocity(a, &pos);
     func_ov001_02188c0c(a, a->mPrm->mUnk_2c8, 0x270f000);
-    func_ov001_02188cd8(a, (s32) (a->mPrm->mUnk_2cc), 0x270f000);
+    func_ov001_02188cd8(a, a->mPrm->mUnk_2cc, 0x270f000);
 }
 
 void func_ov001_021920dc(Unk02188950 *a) {
@@ -272,7 +258,7 @@ void func_ov001_02191f70(Unk02188950 *a) {
     func_ov001_02188c0c(a, a->mPrm->mUnk_2c8, 0x270f000);
     func_ov001_02188cd8(a, a->mPrm->mUnk_2cc, 0x270f000);
     func_ov001_021922e0(a);
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x215));
+    StartMapObjectSound(&a->mUnk_000, 0x215);
 }
 
 void func_ov001_02191ecc(Unk02188950 *a) {
@@ -286,21 +272,19 @@ void func_ov001_02191ecc(Unk02188950 *a) {
 }
 
 void func_ov001_02191e90(Unk02188950 *a) {
-    func_ov001_02187218(a, 1, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_28c), (s32) (a->mPrm->mUnk_290));
+    func_ov001_02187218(a, 1, NULL);
+    func_ov001_02188d64(a, a->mPrm->mUnk_28c, a->mPrm->mUnk_290);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
 }
 
 void func_ov001_02191e1c(Unk02188950 *a) {
-    func_ov001_02187218(a, 1, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_294), (s32) (a->mPrm->mUnk_298));
+    func_ov001_02187218(a, 1, NULL);
+    func_ov001_02188d64(a, a->mPrm->mUnk_294, a->mPrm->mUnk_298);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
-    func_ov001_021875c0(a, (u32) 0, (u32) (((u32) 0x000044cdu)), (u32) (((u32) 0x00000400u)),
-                        (u32) (((u32) 0x0000042du)), (u32) 0);
-    func_ov001_021875c0(a, (u32) 0, (u32) (((u32) 0x000044cdu)), (u32) (((u32) 0x00000400u)),
-                        (u32) (((u32) 0x0000042eu)), (u32) 0);
+    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00000400u, 0x0000042du, 0);
+    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00000400u, 0x0000042eu, 0);
 }
 
 void func_ov001_02191de0(Unk02188950 *a) {
@@ -313,7 +297,7 @@ void func_ov001_02191de0(Unk02188950 *a) {
 }
 
 u32 func_ov001_02191dc8(Unk02188950 *a) {
-    StartMapObjectSoundWhileRequested(&a->mUnk_000, (u32) (((u32) 0x0000021du)));
+    StartMapObjectSoundWhileRequested(&a->mUnk_000, 0x0000021du);
     return 0;
 }
 
@@ -346,24 +330,22 @@ void func_ov001_02191c14(Unk02188950 *a) {
 }
 
 void func_ov001_02191bc0(Unk02188950 *a) {
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_2ac), (s32) (a->mPrm->mUnk_2b0), (UnkFunc *) &func_ov001_02191e90);
+    func_ov001_02187218(a, 3, NULL);
+    func_ov001_02188d30(a, a->mPrm->mUnk_2ac, a->mPrm->mUnk_2b0, (UnkFunc *) &func_ov001_02191e90);
     func_ov001_02188cec(a, 0);
     func_ov001_02188c90(a);
     func_ov001_021922e0(a);
-    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x00000215u)));
+    StartMapObjectSound(&a->mUnk_000, 0x00000215u);
 }
 
 void func_ov001_02191b40(Unk02188950 *a) {
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_2b4), (s32) (a->mPrm->mUnk_2b8), (UnkFunc *) &func_ov001_02191e1c);
+    func_ov001_02187218(a, 3, NULL);
+    func_ov001_02188d30(a, a->mPrm->mUnk_2b4, a->mPrm->mUnk_2b8, (UnkFunc *) &func_ov001_02191e1c);
     func_ov001_02188cec(a, 0);
     func_ov001_02188c90(a);
     func_ov001_02192358(a);
-    func_ov001_021875c0(a, (u32) 0, (u32) (((u32) 0x000044cdu)), (u32) (((u32) 0x00002000u)),
-                        (u32) (((u32) 0x0000042du)), (u32) 0);
-    func_ov001_021875c0(a, (u32) 0, (u32) (((u32) 0x000044cdu)), (u32) (((u32) 0x00002000u)),
-                        (u32) (((u32) 0x0000042eu)), (u32) 0);
+    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00002000u, 0x0000042du, 0);
+    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00002000u, 0x0000042eu, 0);
 }
 
 void func_ov001_02191adc(Unk02188950 *a) {
@@ -415,7 +397,7 @@ void func_ov001_021918c8(Unk02188950 *a) {
 
 int func_ov001_02191888(Unk02188950 *a) {
     if (a->mSpeed > 0) {
-        StartMapObjectSoundWhileRequested(&a->mUnk_000, (u32) (0x219));
+        StartMapObjectSoundWhileRequested(&a->mUnk_000, 0x219);
     } else {
         func_ov001_02187af4(a);
         func_ov001_02188200(a, func_ov001_02192878);
@@ -425,17 +407,17 @@ int func_ov001_02191888(Unk02188950 *a) {
 }
 
 s32 func_ov001_02191870(Unk02188950 *a) {
-    StartMapObjectSoundWhileRequested(&a->mUnk_000, (u32) (0x219));
+    StartMapObjectSoundWhileRequested(&a->mUnk_000, 0x219);
     return 0;
 }
 
 void func_ov001_021917d0(Unk02188950 *a) {
     GetKart((u16) data_021759c0->mEntryIndex);
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(func_ov001_02191888));
+    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *)) func_ov001_02191888);
     func_ov001_02188d64(a, a->mPrm->mUnk_148, a->mPrm->mUnk_14c);
     func_ov001_02188cd8(a, a->mPrm->mUnk_150, a->mPrm->mUnk_154);
     func_ov001_02188e24(a, a->mPrm->mUnk_160, func_ov001_021918c8);
-    func_ov001_021875c0(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x433), (u32) (0));
+    func_ov001_021875c0(a, 0x1000, 0, 0x2000, 0x433, 0);
 }
 
 void func_ov001_021916e0(Unk02188950 *a) {
@@ -447,19 +429,19 @@ void func_ov001_021916e0(Unk02188950 *a) {
     } else {
         a->mMoveAngle = a->mAngle - 0x4000;
     }
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(func_ov001_02191870));
+    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *)) func_ov001_02191870);
     func_ov001_02188d64(a, a->mPrm->mUnk_128, a->mPrm->mUnk_12c);
     func_ov001_02188cd8(a, a->mPrm->mUnk_130, a->mPrm->mUnk_134);
     func_ov001_021889c8(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_140, func_ov001_021917d0);
     func_ov001_02188200(a, func_ov001_021927c0);
-    func_ov001_021875c0(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x433), (u32) (0));
+    func_ov001_021875c0(a, 0x1000, 0, 0x2000, 0x433, 0);
 }
 
 void func_ov001_02191618(Unk02188950 *a) {
     Vec3 local = {0, 0, 0};
 
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 3, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c);
     func_ov001_02188e24(a, a->mPrm->mUnk_120, func_ov001_021916e0);
     func_ov001_02188c90(a);
@@ -467,15 +449,15 @@ void func_ov001_02191618(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
     func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
-    func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x414), (u32) (0));
-    func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x415), (u32) (0));
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x218));
+    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x414, 0);
+    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x415, 0);
+    StartMapObjectSound(&a->mUnk_000, 0x218);
 }
 
 void func_ov001_02191550(Unk02188950 *a) {
     Vec3 local = {0, 0, 0};
 
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 3, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_10c, a->mPrm->mUnk_110);
     func_ov001_02188e24(a, a->mPrm->mUnk_114, func_ov001_021918c8);
     func_ov001_02188c90(a);
@@ -483,16 +465,16 @@ void func_ov001_02191550(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
     func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
-    func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x414), (u32) (0));
-    func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x415), (u32) (0));
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x218));
+    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x414, 0);
+    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x415, 0);
+    StartMapObjectSound(&a->mUnk_000, 0x218);
 }
 
 void func_ov001_02191488(Unk02188950 *a) {
     Vec3 local = {0, 0, 0};
 
     local.y = a->mPrm->mUnk_108;
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 3, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_0f0, a->mPrm->mUnk_0f4);
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
@@ -510,7 +492,7 @@ void func_ov001_02191488(Unk02188950 *a) {
 }
 
 s32 func_ov001_02191470(Unk02188950 *a) {
-    StartMapObjectSoundWhileRequested(&a->mUnk_000, (u32) (0x21c));
+    StartMapObjectSoundWhileRequested(&a->mUnk_000, 0x21c);
     return 0;
 }
 
@@ -519,7 +501,7 @@ void func_ov001_021913b8(Unk02188950 *a) {
     Vec3 local = {0, 0, 0};
 
     func_ov001_02187e78(a);
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(func_ov001_02191470));
+    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *)) func_ov001_02191470);
     func_ov001_02188d64(a, a->mPrm->mUnk_0d0, a->mPrm->mUnk_0d4);
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
@@ -534,7 +516,7 @@ void func_ov001_02191318(Unk02188950 *a) {
     Vec3 local = {0, 0, 0};
 
     local.y = a->mPrm->mUnk_0a4;
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(func_ov001_02191470));
+    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *)) func_ov001_02191470);
     func_ov001_02188d64(a, a->mPrm->mUnk_08c, a->mPrm->mUnk_090);
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
@@ -546,7 +528,7 @@ void func_ov001_02191318(Unk02188950 *a) {
 void func_ov001_02191258(Unk02188950 *a) {
     Vec3 local = {0, 0, 0};
 
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 3, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_210, a->mPrm->mUnk_214);
     func_ov001_02188e24(a, a->mPrm->mUnk_218, NULL);
     func_ov001_02188c90(a);
@@ -554,9 +536,9 @@ void func_ov001_02191258(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188200(a, func_ov001_02192878);
     func_02073fb0(a->mUnk_000.mDistanceSquaredAndFlags & 0x3fffffe0, 0x1000);
-    func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x414), (u32) (0));
-    func_ov001_02187518(a, (u32) (0x1000), (u32) (0), (u32) (0x2000), (u32) (0x415), (u32) (0));
-    StartMapObjectSound(&a->mUnk_000, (u32) (0x218));
+    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x414, 0);
+    func_ov001_02187518(a, 0x1000, 0, 0x2000, 0x415, 0);
+    StartMapObjectSound(&a->mUnk_000, 0x218);
 }
 
 void func_ov001_021911a8(Unk02188950 *a) {
@@ -564,7 +546,7 @@ void func_ov001_021911a8(Unk02188950 *a) {
     Vec3 local = {0, 0, 0};
 
     local.y = a->mPrm->mUnk_1e4;
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 3, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_1cc, a->mPrm->mUnk_1d0);
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
@@ -575,20 +557,20 @@ void func_ov001_021911a8(Unk02188950 *a) {
 }
 
 void func_ov001_0219116c(Unk02188950 *a) {
-    func_ov001_02187218(a, 7, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_234), (s32) (a->mPrm->mUnk_238), (UnkFunc *) &func_ov001_021918c8);
+    func_ov001_02187218(a, 7, NULL);
+    func_ov001_02188d30(a, a->mPrm->mUnk_234, a->mPrm->mUnk_238, (UnkFunc *) &func_ov001_021918c8);
     func_ov001_021922e0(a);
 }
 
 void func_ov001_02191130(Unk02188950 *a) {
-    func_ov001_02187218(a, 7, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_22c), (s32) (a->mPrm->mUnk_230), (UnkFunc *) &func_ov001_0219116c);
+    func_ov001_02187218(a, 7, NULL);
+    func_ov001_02188d30(a, a->mPrm->mUnk_22c, a->mPrm->mUnk_230, (UnkFunc *) &func_ov001_0219116c);
     func_ov001_021921e4(a);
 }
 
 s32 func_ov001_021910fc(Unk02188950 *a) {
     if ((a->mUnk_2c8 & 0x001e34ef) != 0) {
-        StartMapObjectSound(&a->mUnk_000, (u32) 0x218);
+        StartMapObjectSound(&a->mUnk_000, 0x218);
         a->mUnk_158 = NULL;
     }
     return 0;
@@ -603,13 +585,13 @@ s32 func_ov001_021910d4(Unk02188950 *a) {
 
 void func_ov001_02191064(Unk02188950 *a) {
     func_ov001_02187218(a, 7, &func_ov001_021910d4);
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_21c), (s32) (a->mPrm->mUnk_220), func_ov001_02191130);
+    func_ov001_02188d30(a, a->mPrm->mUnk_21c, a->mPrm->mUnk_220, func_ov001_02191130);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     a->mUnk_2c0 = TRUE;
     func_ov001_0219226c(a);
     func_ov001_02188200(a, func_ov001_02192878);
-    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x00000216u)));
+    StartMapObjectSound(&a->mUnk_000, 0x00000216u);
 }
 
 void func_ov001_02191034(Unk02188950 *a) {
@@ -619,29 +601,29 @@ void func_ov001_02191034(Unk02188950 *a) {
 
 void func_ov001_02190fc4(Unk02188950 *a) {
     func_ov001_02187218(a, 7, &func_ov001_021910d4);
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_23c), (s32) (a->mPrm->mUnk_240), (UnkFunc *) &func_ov001_02191034);
+    func_ov001_02188d30(a, a->mPrm->mUnk_23c, a->mPrm->mUnk_240, (UnkFunc *) &func_ov001_02191034);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     a->mUnk_2c0 = TRUE;
     func_ov001_0219226c(a);
     func_ov001_02188200(a, func_ov001_02192878);
-    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x00000216u)));
+    StartMapObjectSound(&a->mUnk_000, 0x00000216u);
 }
 
 void func_ov001_02190ee0(Unk02188950 *a) {
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
+    func_ov001_02187218(a, 8, NULL);
     func_ov001_02187af4(a);
-    func_ov001_021875c0(a, (u32) 0, (u32) 0x1000, (u32) 0xffffdccd, (u32) 0x3ef, (u32) 0);
-    func_ov001_021875c0(a, (u32) 0, (u32) 0x1000, (u32) 0xffffdccd, (u32) 0x3ee, (u32) 0);
-    func_ov001_021875c0(a, (u32) 0, (u32) 0x1000, (u32) 0xffffdccd, (u32) 0x3f0, (u32) 0);
-    func_ov001_021875c0(a, (u32) 0, (u32) 0x1000, (u32) 0xffffdccd, (u32) 0x3f1, (u32) 0);
-    func_ov001_021875c0(a, (u32) 0, (u32) 0x1000, (u32) 0xffffdccd, (u32) 0x3f2, (u32) 0);
+    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3ef, 0);
+    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3ee, 0);
+    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3f0, 0);
+    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3f1, 0);
+    func_ov001_021875c0(a, 0, 0x1000, 0xffffdccd, 0x3f2, 0);
     {
         Unk02190ee0 local = data_ov001_021a7de8;
 
         local.mUnk_04 = &a->mUnk_000.mPos;
         local.mUnk_0c = func_020d4ef4(&a->mUnk_000.mPos);
-        func_0210b734(&local, (u32) (func_02108e7c()));
+        func_0210b734(&local, func_02108e7c());
     }
     a->mUnk_000.mFlags |= data_ov001_021a65c8;
     a->mUnk_000.mFlags |= data_ov001_021a65cc;
@@ -649,28 +631,26 @@ void func_ov001_02190ee0(Unk02188950 *a) {
 }
 
 void func_ov001_02190eb0(Unk02188950 *a) {
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_070), (s32) (a->mPrm->mUnk_074));
+    func_ov001_02187218(a, 8, NULL);
+    func_ov001_02188d64(a, a->mPrm->mUnk_070, a->mPrm->mUnk_074);
     func_ov001_02188e24(a, 0x3c, &func_ov001_02190ee0);
 }
 
 void func_ov001_02190df8(Unk02188950 *a) {
     if (a->mUnk_0a8 == 1) {
-        func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-        func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_078), (s32) (a->mPrm->mUnk_07c));
+        func_ov001_02187218(a, 8, NULL);
+        func_ov001_02188d64(a, a->mPrm->mUnk_078, a->mPrm->mUnk_07c);
         func_ov001_02188c90(a);
         func_ov001_02188cec(a, 0);
         return;
     }
-    func_ov001_02187218(a, 3, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_2b4), (s32) (a->mPrm->mUnk_2b8), (UnkFunc *) &func_ov001_02190df8);
+    func_ov001_02187218(a, 3, NULL);
+    func_ov001_02188d30(a, a->mPrm->mUnk_2b4, a->mPrm->mUnk_2b8, (UnkFunc *) &func_ov001_02190df8);
     func_ov001_02188c90(a);
     func_ov001_02188cec(a, 0);
     func_ov001_02192358(a);
-    func_ov001_021875c0(a, (u32) 0, (u32) (((u32) 0x000044cdu)), (u32) (((u32) 0x00002000u)),
-                        (u32) (((u32) 0x0000042du)), (u32) 0);
-    func_ov001_021875c0(a, (u32) 0, (u32) (((u32) 0x000044cdu)), (u32) (((u32) 0x00002000u)),
-                        (u32) (((u32) 0x0000042eu)), (u32) 0);
+    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00002000u, 0x0000042du, 0);
+    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00002000u, 0x0000042eu, 0);
 }
 
 void func_ov001_02190df0(void) {
@@ -756,7 +736,7 @@ s32 func_ov001_02190b58(Unk02188950 *c) {
     SetAnglePointAndMoveAnglePoint(c, &GetKart((u16) data_021759c0->mEntryIndex)->mPos);
     func_ov001_021924cc();
     if (func_ov001_021871f8(a, 3) && func_ov001_021871f8(b, 3)) {
-        func_ov001_02188218(c, (s32) ((u16) c->mPrm->mUnk_1ec));
+        func_ov001_02188218(c, ((u16) c->mPrm->mUnk_1ec));
         func_ov001_02190c08(c);
     }
     return 0;
@@ -978,9 +958,9 @@ int func_ov001_0219052c(Unk02188950 *c) {
     }
     func_ov001_02192694();
     func_ov001_021924cc();
-    if (func_ov001_021881a8(c, &c->mAnglePoint, 0, (s32) (c->mPrm->mUnk_2bc)) &&
-        func_ov001_021881a8(a, &a->mMoveAnglePoint, (s32) (c->mPrm->mUnk_2c0), 0) &&
-        func_ov001_021881a8(b, &b->mMoveAnglePoint, (s32) (c->mPrm->mUnk_2c0), 0)) {
+    if (func_ov001_021881a8(c, &c->mAnglePoint, 0, c->mPrm->mUnk_2bc) &&
+        func_ov001_021881a8(a, &a->mMoveAnglePoint, c->mPrm->mUnk_2c0, 0) &&
+        func_ov001_021881a8(b, &b->mMoveAnglePoint, c->mPrm->mUnk_2c0, 0)) {
         func_ov001_021905f8(c);
     }
     return 0;
@@ -1090,7 +1070,7 @@ void func_ov001_02190270(Unk02188950 *c) {
 }
 
 void func_ov001_02190248(Unk02188950 *a) {
-    func_ov001_02188218(a, (s32) ((u16) a->mPrm->mUnk_1ec));
+    func_ov001_02188218(a, ((u16) a->mPrm->mUnk_1ec));
     func_ov001_02190c08(a);
 }
 
@@ -1173,53 +1153,44 @@ void func_ov001_02190080(Unk02188950 *a) {
 void func_ov001_0219006c(Unk02188950 *a) {
     func_ov001_021900ac(a);
     func_ov001_02188260(a);
-    return;
 }
 
 void func_ov001_02190030(Unk02188950 *a) {
-    func_ov001_02187518(a, (u32) (((u32) 0x00002ccdu)), (u32) (0), (u32) (0), (u32) (((u32) 0x00000411u)), (u32) (0));
-    func_ov001_02187518(a, (u32) (((u32) 0x00002ccdu)), (u32) (0), (u32) (0), (u32) (((u32) 0x00000412u)), (u32) (0));
-    return;
+    func_ov001_02187518(a, 0x00002ccdu, 0, 0, 0x00000411u, 0);
+    func_ov001_02187518(a, 0x00002ccdu, 0, 0, 0x00000412u, 0);
 }
 
 void func_ov001_0218ffd4(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_064, a->mPrm->mUnk_068);
-    func_ov001_021875c0(a, (u32) (0), (u32) (((u32) 0x000044cdu)), (u32) (((u32) 0x00000400u)),
-                        (u32) (((u32) 0x0000042du)), (u32) (0));
-    func_ov001_021875c0(a, (u32) (0), (u32) (((u32) 0x000044cdu)), (u32) (((u32) 0x00000400u)),
-                        (u32) (((u32) 0x0000042eu)), (u32) (0));
-    return;
+    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00000400u, 0x0000042du, 0);
+    func_ov001_021875c0(a, 0, 0x000044cdu, 0x00000400u, 0x0000042eu, 0);
 }
 
 void func_ov001_0218ff98(Unk02188950 *a) {
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d30(a, (s32) (a->mPrm->mUnk_058), (s32) (a->mPrm->mUnk_05c), (UnkFunc *) &func_ov001_0218ffd4);
+    func_ov001_02187218(a, 8, NULL);
+    func_ov001_02188d30(a, a->mPrm->mUnk_058, a->mPrm->mUnk_05c, (UnkFunc *) &func_ov001_0218ffd4);
     func_ov001_021923e0(a);
-    StartMapObjectSound(&a->mUnk_000, (u32) (((u32) 0x0000021bu)));
-    return;
+    StartMapObjectSound(&a->mUnk_000, 0x0000021bu);
 }
 
 void func_ov001_0218ff64(Unk02188950 *a) {
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_04c), (s32) (a->mPrm->mUnk_050));
+    func_ov001_02187218(a, 8, NULL);
+    func_ov001_02188d64(a, a->mPrm->mUnk_04c, a->mPrm->mUnk_050);
     func_ov001_02188e24(a, a->mPrm->mUnk_054, &func_ov001_0218ff98);
-    return;
 }
 
 void func_ov001_0218ff34(Unk02188950 *a) {
     func_ov001_02187218(a, 8, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_040, a->mPrm->mUnk_044);
     func_ov001_02188db8(a, func_ov001_02190030);
-    return;
 }
 
 void func_ov001_0218fef8(Unk02188950 *a) {
-    func_ov001_02187218(a, 8, (s32(*)(Unk02188950 *))(0));
-    func_ov001_02188d64(a, (s32) (a->mPrm->mUnk_034), (s32) (a->mPrm->mUnk_038));
+    func_ov001_02187218(a, 8, NULL);
+    func_ov001_02188d64(a, a->mPrm->mUnk_034, a->mPrm->mUnk_038);
     func_ov001_0218720c(a);
     func_ov001_02188e24(a, a->mPrm->mUnk_03c, &func_ov001_0218ff34);
-    return;
 }
 
 void func_ov001_0218fee0(Unk02188950 *a) {
@@ -1238,9 +1209,9 @@ void func_ov001_0218fd20(Unk02188950 *a, Unk0218fd20 *b) {
     }
     limit = a->mPrm->mUnk_088;
     if (diff <= limit && diff >= -limit && func_ov001_021871f8(a, 7)) {
-        vec.x = (s32) (((s64) -a->mPrm->mUnk_224 * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
+        vec.x = (((s64) -a->mPrm->mUnk_224 * gPairsByAngle[((u16) a->mAngle >> 4) * 2]) >> 12);
         vec.y = a->mPrm->mUnk_228;
-        vec.z = (s32) (((s64) -a->mPrm->mUnk_224 * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
+        vec.z = (((s64) -a->mPrm->mUnk_224 * gPairsByAngle[((u16) a->mAngle >> 4) * 2 + 1]) >> 12);
         SetVelocity(
             (data_021759c0->mMode == MODE_MISSION_RUN
                  ? GetMissionRunMapObject((u16) (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0))
@@ -1341,7 +1312,7 @@ void func_ov001_0218fb24(u32 a, Unk02188950 *b) {
         }
         b->mUnk_134 = value;
     }
-    func_0209b688(b->mNsbmd, (u16) b->mUnk_134);
+    func_0209b688(b->mNsbmd, b->mUnk_134);
     func_ov001_021864ac(a, b);
 }
 
@@ -1378,7 +1349,7 @@ void func_ov001_0218fa20(void) {
     void *v8 = &func_ov001_02185fb0;
     void *v9 = &func_ov001_02185f04;
     void *v10 = &func_ov001_021860cc;
-    u32 v12 = (u32) func_ov001_0219b510(v8, v9, v10, (u32) 0x2u, (u16) ((u32) 0x1u), (u16) (v4), (u16) (v6));
+    u32 v12 = (u32) func_ov001_0219b510(v8, v9, v10, 0x2u, 0x1u, v4, v6);
 }
 
 void *func_ov001_0218fa04(void) {
