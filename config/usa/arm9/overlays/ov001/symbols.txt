@@ -573,8 +573,8 @@ func_ov001_0218f9ec kind:function(thumb,size=0x18) addr:0x0218f9cc
 func_ov001_0218fa04 kind:function(thumb,size=0x1c) addr:0x0218f9e4
 func_ov001_0218fa20 kind:function(thumb,size=0x38) addr:0x0218fa00
 func_ov001_0218fa58 kind:function(thumb,size=0x1e) addr:0x0218fa38
-func_ov001_0218fa78 kind:function(thumb,size=0xac) addr:0x0218fa58
-func_ov001_0218fb24 kind:function(thumb,size=0xbc) addr:0x0218fb04
+InitIwante kind:function(thumb,size=0xac) addr:0x0218fa58
+UpdateIwante kind:function(thumb,size=0xbc) addr:0x0218fb04
 func_ov001_0218fbe0 kind:function(thumb,size=0x6c) addr:0x0218fbc0
 func_ov001_0218fc4c kind:function(thumb,size=0x78) addr:0x0218fc2c
 func_ov001_0218fcc4 kind:function(thumb,size=0x5c) addr:0x0218fca4
@@ -1421,11 +1421,11 @@ data_ov001_021a7dd8 kind:data(any) addr:0x021a7da8
 data_ov001_021a7de8 kind:data(any) addr:0x021a7db8
 data_usa_ov001_021a7dc8 kind:data(any) addr:0x021a7dc8 ambiguous
 data_usa_ov001_021a7dfc kind:data(any) addr:0x021a7dfc ambiguous
-data_ov001_021a7e60 kind:data(any) addr:0x021a7e30
-data_ov001_021a7e70 kind:data(any) addr:0x021a7e40
-data_ov001_021a7e80 kind:data(any) addr:0x021a7e50
-data_ov001_021a7e90 kind:data(any) addr:0x021a7e60
-data_ov001_021a7ea0 kind:data(any) addr:0x021a7e70
+gIwanteLNsbmdName kind:data(any) addr:0x021a7e30
+gIwanteLNsbcaName kind:data(any) addr:0x021a7e40
+gIwanteLPrmName kind:data(any) addr:0x021a7e50
+gShIwanteNsbmdName kind:data(any) addr:0x021a7e60
+gIwanteLNsbtpName kind:data(any) addr:0x021a7e70
 data_ov001_021a7eb0 kind:data(any) addr:0x021a7e80
 data_usa_ov001_021a7e90 kind:data(any) addr:0x021a7e90 ambiguous
 @5002 kind:data(any) addr:0x021a7ec4 local

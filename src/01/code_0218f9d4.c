@@ -421,7 +421,7 @@ void func_ov001_021917d0(Unk02188950 *a) {
 }
 
 void func_ov001_021916e0(Unk02188950 *a) {
-    Kart *v1 = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *kart = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     if ((a->mUnk_000.mFlags & 0x400) == 0) {
@@ -497,7 +497,7 @@ s32 func_ov001_02191470(Unk02188950 *a) {
 }
 
 void func_ov001_021913b8(Unk02188950 *a) {
-    Kart *v1 = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *kart = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     func_ov001_02187e78(a);
@@ -506,13 +506,13 @@ void func_ov001_021913b8(Unk02188950 *a) {
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
     func_ov001_02188cd8(a, a->mPrm->mUnk_0d8, a->mPrm->mUnk_0dc);
-    func_ov001_02188de0(a, a->mPrm->mUnk_0e8, 0, &v1->mPos, func_ov001_02191488);
+    func_ov001_02188de0(a, a->mPrm->mUnk_0e8, 0, &kart->mPos, func_ov001_02191488);
     func_ov001_02188e24(a, a->mPrm->mUnk_0ec, func_ov001_02191488);
     a->mUnk_2c0 = FALSE;
 }
 
 void func_ov001_02191318(Unk02188950 *a) {
-    Kart *v1 = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *kart = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     local.y = a->mPrm->mUnk_0a4;
@@ -520,7 +520,7 @@ void func_ov001_02191318(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_08c, a->mPrm->mUnk_090);
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
-    SetAnglePointAndMoveAnglePoint(a, &v1->mPos);
+    SetAnglePointAndMoveAnglePoint(a, &kart->mPos);
     func_ov001_02188cd8(a, a->mPrm->mUnk_094, a->mPrm->mUnk_098);
     func_ov001_02188e24(a, a->mPrm->mUnk_0a8, func_ov001_021913b8);
 }
@@ -542,7 +542,7 @@ void func_ov001_02191258(Unk02188950 *a) {
 }
 
 void func_ov001_021911a8(Unk02188950 *a) {
-    Kart *v1 = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *kart = GetKart((u16) data_021759c0->mEntryIndex);
     Vec3 local = {0, 0, 0};
 
     local.y = a->mPrm->mUnk_1e4;
@@ -550,7 +550,7 @@ void func_ov001_021911a8(Unk02188950 *a) {
     func_ov001_02188d64(a, a->mPrm->mUnk_1cc, a->mPrm->mUnk_1d0);
     SetVelocity(a, &local);
     func_ov001_02188c90(a);
-    SetAnglePointAndMoveAnglePoint(a, &v1->mPos);
+    SetAnglePointAndMoveAnglePoint(a, &kart->mPos);
     func_ov001_02188cd8(a, a->mPrm->mUnk_1d4, a->mPrm->mUnk_1d8);
     func_ov001_02188db8(a, func_ov001_02191258);
     func_ov001_02188200(a, func_ov001_02192794);
@@ -781,15 +781,15 @@ s32 func_ov001_02190a20(Unk02188950 *c) {
 }
 
 void func_ov001_02190948(Unk02188950 *c) {
-    Kart *r4;
+    Kart *kart;
     Unk02188950 *a;
     Unk02188950 *b;
 
     if (func_ov001_0218820c(c)) {
-        r4 = GetKart((u16) data_021759c0->mEntryIndex);
+        kart = GetKart((u16) data_021759c0->mEntryIndex);
         func_ov001_02187218(c, 3, func_ov001_02190a20);
         func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
-        SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
+        SetAnglePointAndMoveAnglePoint(c, &kart->mPos);
         if (data_021759c0->mMode == MODE_MISSION_RUN) {
             a = GetMissionRunMapObject((u16) ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0)));
         } else {
@@ -814,7 +814,7 @@ void func_ov001_02190948(Unk02188950 *c) {
 }
 
 int func_ov001_021908a8(Unk02188950 *c) {
-    Kart *r4;
+    Kart *kart;
     Unk02188950 *a;
     Unk02188950 *b;
 
@@ -828,8 +828,8 @@ int func_ov001_021908a8(Unk02188950 *c) {
     } else {
         b = NULL;
     }
-    r4 = GetKart((u16) data_021759c0->mEntryIndex);
-    SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
+    kart = GetKart((u16) data_021759c0->mEntryIndex);
+    SetAnglePointAndMoveAnglePoint(c, &kart->mPos);
     func_ov001_021924cc();
     if (func_ov001_021871f8(a, 3) && func_ov001_021871f8(b, 3)) {
         func_ov001_02188218(c, 4);
@@ -882,11 +882,11 @@ int func_ov001_0219079c(Unk02188950 *c) {
 }
 
 int func_ov001_02190688(Unk02188950 *c) {
-    Kart *r4;
+    Kart *kart;
     Unk02188950 *a;
     Unk02188950 *b;
 
-    r4 = GetKart((u16) data_021759c0->mEntryIndex);
+    kart = GetKart((u16) data_021759c0->mEntryIndex);
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         a = GetMissionRunMapObject((u16) ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0)));
     } else {
@@ -902,7 +902,7 @@ int func_ov001_02190688(Unk02188950 *c) {
             c->mUnk_0a8 = 5;
             func_ov001_02187218(c, 3, func_ov001_0219079c);
             func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
-            SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
+            SetAnglePointAndMoveAnglePoint(c, &kart->mPos);
             func_ov001_02191ecc(a);
             func_ov001_02191f70(b);
         }
@@ -910,7 +910,7 @@ int func_ov001_02190688(Unk02188950 *c) {
         c->mUnk_0a8 = 4;
         func_ov001_02187218(c, 3, func_ov001_0219079c);
         func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
-        SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
+        SetAnglePointAndMoveAnglePoint(c, &kart->mPos);
         func_ov001_02191f70(a);
         func_ov001_02191ecc(b);
     }
@@ -967,14 +967,14 @@ int func_ov001_0219052c(Unk02188950 *c) {
 }
 
 void func_ov001_02190468(Unk02188950 *c) {
-    Kart *r4;
+    Kart *kart;
     Unk02188950 *a;
     Unk02188950 *b;
 
-    r4 = GetKart((u16) data_021759c0->mEntryIndex);
+    kart = GetKart((u16) data_021759c0->mEntryIndex);
     func_ov001_02187218(c, 3, func_ov001_0219052c);
     func_ov001_02188c48(c, c->mPrm->mUnk_2c4, 0x270f000);
-    SetAnglePointAndMoveAnglePoint(c, &r4->mPos);
+    SetAnglePointAndMoveAnglePoint(c, &kart->mPos);
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         a = GetMissionRunMapObject((u16) ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181b54() : 0)));
     } else {
@@ -1289,7 +1289,7 @@ void func_ov001_0218fbe0(Unk0218fa78 *a) {
     SetStandingsEndCallback((void (*)(void)) func_ov001_02190df0);
 }
 
-void func_ov001_0218fb24(u32 a, Unk02188950 *b) {
+void UpdateIwante(u32 a, Unk02188950 *b) {
     s32 value;
 
     if ((data_021759c0->mMode == MODE_MISSION_RUN ? func_020a128c() : 0) && func_ov001_021871f8(b, 3)) {
@@ -1316,7 +1316,8 @@ void func_ov001_0218fb24(u32 a, Unk02188950 *b) {
     func_ov001_021864ac(a, b);
 }
 
-void func_ov001_0218fa78(Unk0218fa78 *a) {
+// Iwante: the two stone hands of Mission Run.
+void InitIwante(Unk0218fa78 *a) {
     int i;
     Unk02188950 *obj;
 
@@ -1325,9 +1326,9 @@ void func_ov001_0218fa78(Unk0218fa78 *a) {
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(obj);
             }
-            func_ov001_021870e4(a, obj, data_ov001_021a7e60, data_ov001_021a7e70, data_ov001_021a7e80);
-            func_ov001_021870b0(a, obj, data_ov001_021a7e90);
-            LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, data_ov001_021a7ea0);
+            func_ov001_021870e4(a, obj, gIwanteLNsbmdName, gIwanteLNsbcaName, gIwanteLPrmName);
+            func_ov001_021870b0(a, obj, gShIwanteNsbmdName);
+            LoadMapObjectModelNsbtpAnimation(obj->mNsbmd, gIwanteLNsbtpName);
             obj->mUnk_234 = 1;
             if (i == 0) {
                 obj->mUnk_000.mFlags |= data_ov001_021a65c0;
@@ -1353,11 +1354,11 @@ void func_ov001_0218fa20(void) {
 }
 
 void *func_ov001_0218fa04(void) {
-    return func_0209bf1c(func_ov001_0218fa78, func_ov001_0218fa58, func_ov001_02187098);
+    return func_0209bf1c(InitIwante, func_ov001_0218fa58, func_ov001_02187098);
 }
 
 void *func_ov001_0218f9ec(void) {
-    return func_0209bf48(func_ov001_0218fbe0, func_ov001_0218fb24, NULL);
+    return func_0209bf48(func_ov001_0218fbe0, UpdateIwante, NULL);
 }
 
 void *func_ov001_0218f9d4(void) {
