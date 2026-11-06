@@ -11,54 +11,53 @@
 #include "Main/Unknown/code_02037000.h"
 #include "Main/Unknown/unk_021759c0.h"
 
-Unk021ca400 *data_ov001_021ca400;
+EndingScene *gEndingScene;
 
-void func_ov001_0219e6ec(void *heap) {
+void CreateEndingScene(void *heap) {
     void *result;
 
-    data_ov001_021ca400 = HeapAlloc(heap, 0x470);
-    data_ov001_021ca400->mHeap = heap;
-    data_ov001_021ca400->mUnk_01c = func_021250b0(heap);
-    data_ov001_021ca400->mUnk_014 = -1;
-    data_ov001_021ca400->mState = 0;
-    data_ov001_021ca400->mNextState = data_ov001_021ca400->mState;
-    data_ov001_021ca400->mUnk_008 = 0;
+    gEndingScene = HeapAlloc(heap, 0x470);
+    gEndingScene->mHeap = heap;
+    gEndingScene->mUnk_01c = func_021250b0(heap);
+    gEndingScene->mNextScene = -1;
+    gEndingScene->mState = 0;
+    gEndingScene->mNextState = gEndingScene->mState;
+    gEndingScene->mUnk_008 = 0;
     if (data_021759c0->mCourseId == COURSE_ID_STAFFROLLTRUE) {
-        data_ov001_021ca400->mKind = 1;
+        gEndingScene->mKind = 1;
     } else {
-        data_ov001_021ca400->mKind = 0;
+        gEndingScene->mKind = 0;
     }
-    data_ov001_021ca400->mUnk_018 = FALSE;
-    data_ov001_021ca400->mCommonMessages = func_02047a28("common.bmg");
+    gEndingScene->mIndex1Queued = FALSE;
+    gEndingScene->mCommonMessages = func_02047a28("common.bmg");
     func_ov001_0219e660();
-    func_ov001_0219e38c();
-    func_020ae6d4(data_ov001_021ca400->mUnk_068, NULL);
-    func_02124ed0(data_ov001_021ca400->mHeap, data_ov001_021ca400->mEndingThanksBncl,
-                  data_ov001_021ca400->mEndingThanksBnll, &data_ov001_021ca400->mUnk_020);
+    LoadAndQueueEndingSceneData();
+    func_020ae6d4(gEndingScene->mMainOam, NULL);
+    func_02124ed0(gEndingScene->mHeap, gEndingScene->mEndingThanksBncl, gEndingScene->mEndingThanksBnll,
+                  &gEndingScene->mEndingThanksTable);
     result = NULL;
-    data_ov001_021ca400->mUnk_020->mUnk_00 = 0;
+    gEndingScene->mEndingThanksTable->mUnk_00 = 0;
     {
         u16 table[2][2] = {{200, 24}, {200, 24}};
 
-        switch (data_ov001_021ca400->mKind) {
+        switch (gEndingScene->mKind) {
             case 0:
-                result = GetBmgEntry(data_ov001_021ca400->mCommonMessages, 0x77);
+                result = GetBmgEntry(gEndingScene->mCommonMessages, 0x77);
                 break;
             case 1:
-                result = GetBmgEntry(data_ov001_021ca400->mCommonMessages, 0x78);
+                result = GetBmgEntry(gEndingScene->mCommonMessages, 0x78);
                 break;
         }
-        func_021243ac(data_ov001_021ca400->mHeap, 0, data_ov001_021ca400->mEndingThanksBnll,
-                      table[data_ov001_021ca400->mKind][0], table[data_ov001_021ca400->mKind][1], 0,
-                      data_ov001_021ca400->mThanksYouMNcer, data_ov001_021ca400->mEndingThanksBncl,
-                      data_ov001_021ca400->mUnk_020, 0x8000);
-        func_0212426c(0, 0, data_ov001_021ca400->mEndingThanksBnll, result, data_ov001_021ca400->mEndingThanksBncl,
-                      data_ov001_021ca400->mUnk_020);
+        func_021243ac(gEndingScene->mHeap, 0, gEndingScene->mEndingThanksBnll, table[gEndingScene->mKind][0],
+                      table[gEndingScene->mKind][1], 0, gEndingScene->mThanksYouMNcer, gEndingScene->mEndingThanksBncl,
+                      gEndingScene->mEndingThanksTable, 0x8000);
+        func_0212426c(0, 0, gEndingScene->mEndingThanksBnll, result, gEndingScene->mEndingThanksBncl,
+                      gEndingScene->mEndingThanksTable);
     }
 }
 
 void func_ov001_0219e6e0(void) {
-    *(u32 *) &data_ov001_021ca400 = 0;
+    *(u32 *) &gEndingScene = 0;
     return;
 }
 
@@ -74,152 +73,151 @@ void func_ov001_0219e660(void) {
     *(vu16 *) 0x5000400 = 0;
 }
 
-void func_ov001_0219e5d4(int i) {
-    CallQueueAppend(4, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mData,
-                    data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mDataSize);
-    CallQueueAppend(8, 0, data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mData,
-                    data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mDataSize);
-    CallQueueAppend(0xf, 0, data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mData,
-                    data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mDataSize);
-    CallQueueAppend(0x14, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mData,
-                    data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mDataSize);
-    CallQueueAppend(0x18, 0, data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mData,
-                    data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mDataSize);
-    CallQueueAppend(0x1f, 0, data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mData,
-                    data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mDataSize);
+void QueueEndingSceneNcgrNscrNclr(int i) {
+    CallQueueAppend(4, 0, gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mData,
+                    gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNcgrs[i]->mDataSize);
+    CallQueueAppend(8, 0, gEndingScene->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mData,
+                    gEndingScene->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[i]->mDataSize);
+    CallQueueAppend(0xf, 0, gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mData,
+                    gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNclrs[i]->mDataSize);
+    CallQueueAppend(0x14, 0, gEndingScene->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mData,
+                    gEndingScene->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[i]->mDataSize);
+    CallQueueAppend(0x18, 0, gEndingScene->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mData,
+                    gEndingScene->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[i]->mDataSize);
+    CallQueueAppend(0x1f, 0, gEndingScene->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mData,
+                    gEndingScene->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[i]->mDataSize);
 }
 
 void func_ov001_0219e5a0(void) {
     reg_G2_BG0CNT = reg_G2_BG0CNT & 0x43 | (u16) 0x00001f80u;
-    func_ov001_0219e5d4(1);
-    data_ov001_021ca400->mUnk_018 = TRUE;
+    QueueEndingSceneNcgrNscrNclr(1);
+    gEndingScene->mIndex1Queued = TRUE;
     return;
 }
 
-void func_ov001_0219e38c(void) {
+void LoadAndQueueEndingSceneData(void) {
 #ifdef version_EUR
-    LoadNcgrData(&data_ov001_021ca400->mUnk_038[0], FindSceneFile("logo_end_marioKart_m_b_02.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mUnk_040[0], FindSceneFile("logo_end_marioKart_m_bg_02.nscr"));
+    LoadNcgrData(&gEndingScene->mUnk_038[0], FindSceneFile("logo_end_marioKart_m_b_02.ncgr"));
+    LoadNscrData(&gEndingScene->mUnk_040[0], FindSceneFile("logo_end_marioKart_m_bg_02.nscr"));
 #else
-    LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[0],
+    LoadNcgrData(&gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNcgrs[0],
                  FindSceneFile("logo_end_marioKart_m_b_01.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[0],
+    LoadNscrData(&gEndingScene->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[0],
                  FindSceneFile("logo_end_marioKart_m_bg_01.nscr"));
 #endif
-    LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[0],
+    LoadNclrData(&gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNclrs[0],
                  FindSceneFile("logo_end_marioKart_m_b.nclr"));
-    switch (data_ov001_021ca400->mKind) {
+    switch (gEndingScene->mKind) {
         case 0:
-            LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1],
+            LoadNcgrData(&gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1],
                          FindSceneFile("thanksYou_m_b_00.ncgr"));
-            LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1],
+            LoadNscrData(&gEndingScene->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1],
                          FindSceneFile("thanksYou_m_bg_00.nscr"));
-            LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[1],
+            LoadNclrData(&gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNclrs[1],
                          FindSceneFile("thanksYou_m_b_00.nclr"));
             break;
         case 1:
-            LoadNcgrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1],
+            LoadNcgrData(&gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNcgrs[1],
                          FindSceneFile("thanksYou_m_b_01_2.ncgr"));
-            LoadNscrData(&data_ov001_021ca400->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1],
+            LoadNscrData(&gEndingScene->mLogoEndMarioKartMBgAndThanksYouMBgNscrs[1],
                          FindSceneFile("thanksYou_m_bg_01_2.nscr"));
-            LoadNclrData(&data_ov001_021ca400->mLogoEndMarioKartMBAndThanksYouMBNclrs[1],
+            LoadNclrData(&gEndingScene->mLogoEndMarioKartMBAndThanksYouMBNclrs[1],
                          FindSceneFile("thanksYou_m_b_01.nclr"));
             break;
     }
-    LoadNcgrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[0],
+    LoadNcgrData(&gEndingScene->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[0],
                  FindSceneFile("end_allRightsReserved_s_b.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[0],
+    LoadNscrData(&gEndingScene->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[0],
                  FindSceneFile("end_allRightsReserved_s_bg.nscr"));
-    LoadNclrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[0],
+    LoadNclrData(&gEndingScene->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[0],
                  FindSceneFile("end_allRightsReserved_s_b.nclr"));
-    LoadNcgrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[1],
+    LoadNcgrData(&gEndingScene->mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[1],
                  FindSceneFile("logo_end_Nintendo_s_b.ncgr"));
-    LoadNscrData(&data_ov001_021ca400->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[1],
+    LoadNscrData(&gEndingScene->mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[1],
                  FindSceneFile("logo_end_Nintendo_s_bg.nscr"));
-    LoadNclrData(&data_ov001_021ca400->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[1],
+    LoadNclrData(&gEndingScene->mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[1],
                  FindSceneFile("logo_end_Nintendo_s_b.nclr"));
-    LoadNcerData(&data_ov001_021ca400->mThanksYouMNcer, FindSceneFile("thanksYou_m.nce.ncer"));
-    LoadNclrData(&data_ov001_021ca400->mThanksYouMO00Nclr, FindSceneFile("thanksYou_m_o_00.nclr"));
-    switch (data_ov001_021ca400->mKind) {
+    LoadNcerData(&gEndingScene->mThanksYouMNcer, FindSceneFile("thanksYou_m.nce.ncer"));
+    LoadNclrData(&gEndingScene->mThanksYouMO00Nclr, FindSceneFile("thanksYou_m_o_00.nclr"));
+    switch (gEndingScene->mKind) {
         case 0:
-            data_ov001_021ca400->mEndingThanksBncl = FindSceneFile("ending_thanks_00.bncl");
-            data_ov001_021ca400->mEndingThanksBnll = FindSceneFile("ending_thanks_00.bnll");
+            gEndingScene->mEndingThanksBncl = FindSceneFile("ending_thanks_00.bncl");
+            gEndingScene->mEndingThanksBnll = FindSceneFile("ending_thanks_00.bnll");
             break;
         case 1:
-            data_ov001_021ca400->mEndingThanksBncl = FindSceneFile("ending_thanks_01.bncl");
-            data_ov001_021ca400->mEndingThanksBnll = FindSceneFile("ending_thanks_01.bnll");
+            gEndingScene->mEndingThanksBncl = FindSceneFile("ending_thanks_01.bncl");
+            gEndingScene->mEndingThanksBnll = FindSceneFile("ending_thanks_01.bnll");
             break;
     }
     if (data_0217b488->mUnk_70 != 0) {
         func_ov001_0219e5a0();
     } else {
-        func_ov001_0219e5d4(0);
+        QueueEndingSceneNcgrNscrNclr(0);
     }
-    CallQueueAppend(0xe, 0, data_ov001_021ca400->mThanksYouMO00Nclr->mData,
-                    data_ov001_021ca400->mThanksYouMO00Nclr->mDataSize);
+    CallQueueAppend(0xe, 0, gEndingScene->mThanksYouMO00Nclr->mData, gEndingScene->mThanksYouMO00Nclr->mDataSize);
 }
 
-void func_ov001_0219e34c(void) {
+void AdvanceEndingSceneState0(void) {
     if (AreBrightnessFadesClear() != 0) {
         if (data_0217b488->mUnk_70 != 0) {
-            data_ov001_021ca400->mNextState = 5;
+            gEndingScene->mNextState = 5;
             data_0217b488->mUnk_70 = 0;
             return;
         }
-        data_ov001_021ca400->mNextState = 1;
+        gEndingScene->mNextState = 1;
     }
 }
 
-void func_ov001_0219e310(void) {
-    data_ov001_021ca400->mUnk_008++;
-    if (data_ov001_021ca400->mUnk_008 > data_ov001_021a6c50[data_ov001_021ca400->mState]) {
-        data_ov001_021ca400->mNextState = 2;
-        data_ov001_021ca400->mUnk_008 = 0;
-        StartFadeToFadedNegative((s16) (data_ov001_021a6c50[2]));
+void AdvanceEndingSceneState1(void) {
+    gEndingScene->mUnk_008++;
+    if (gEndingScene->mUnk_008 > gEndingSceneStateTable[gEndingScene->mState]) {
+        gEndingScene->mNextState = 2;
+        gEndingScene->mUnk_008 = 0;
+        StartFadeToFadedNegative((s16) (gEndingSceneStateTable[2]));
     }
 }
 
-void func_ov001_0219e2f0(void) {
+void AdvanceEndingSceneState2(void) {
     int v1;
     v1 = AreBrightnessFadesFaded();
     if (v1 != 0) {
-        data_ov001_021ca400->mNextState = 3;
+        gEndingScene->mNextState = 3;
     }
     return;
 }
 
-void func_ov001_0219e2b4(void) {
-    Unk021ca400 *p;
+void AdvanceEndingSceneState3(void) {
+    EndingScene *p;
 
-    data_ov001_021ca400->mUnk_008++;
-    p = data_ov001_021ca400;
-    if (p->mUnk_008 > data_ov001_021a6c50[3]) {
+    gEndingScene->mUnk_008++;
+    p = gEndingScene;
+    if (p->mUnk_008 > gEndingSceneStateTable[3]) {
         p->mNextState = 4;
-        data_ov001_021ca400->mUnk_008 = 0;
-        StartFadeToClearNegative(data_ov001_021a6c50[4]);
+        gEndingScene->mUnk_008 = 0;
+        StartFadeToClearNegative(gEndingSceneStateTable[4]);
         func_ov001_0219e5a0();
     }
 }
 
-void func_ov001_0219e294(void) {
+void AdvanceEndingSceneState4(void) {
     int v1;
     v1 = AreBrightnessFadesClear();
     if (v1 != 0) {
-        data_ov001_021ca400->mNextState = 5;
+        gEndingScene->mNextState = 5;
     }
     return;
 }
 
-void func_ov001_0219e1f8(void) {
+void AdvanceEndingSceneState5(void) {
     Unk02175628Index idx = UNK_02175628_INDEX_8;
     u16 flags;
     BOOL a;
     BOOL b;
     u16 x;
 
-    data_ov001_021ca400->mUnk_008++;
-    if (data_ov001_021ca400->mUnk_008 > data_ov001_021a6c50[data_ov001_021ca400->mState]) {
-        data_ov001_021ca400->mUnk_008 = data_ov001_021a6c50[data_ov001_021ca400->mState];
+    gEndingScene->mUnk_008++;
+    if (gEndingScene->mUnk_008 > gEndingSceneStateTable[gEndingScene->mState]) {
+        gEndingScene->mUnk_008 = gEndingSceneStateTable[gEndingScene->mState];
         flags = data_02175628[idx].mUnk_00 & 0xc0f;
         if (flags == 0) {
             a = FALSE;
@@ -235,68 +233,68 @@ void func_ov001_0219e1f8(void) {
                 return;
             }
         }
-        data_ov001_021ca400->mNextState = 6;
-        data_ov001_021ca400->mUnk_008 = 0;
-        StartFadeToFadedNegative((s16) (data_ov001_021a6c50[6]));
+        gEndingScene->mNextState = 6;
+        gEndingScene->mUnk_008 = 0;
+        StartFadeToFadedNegative((s16) (gEndingSceneStateTable[6]));
     }
 }
 
-void func_ov001_0219e1d4(void) {
+void AdvanceEndingSceneState6(void) {
     if (AreBrightnessFadesFaded() != 0) {
-        data_ov001_021ca400->mNextState = 7;
-        data_ov001_021ca400->mUnk_008 = 0;
+        gEndingScene->mNextState = 7;
+        gEndingScene->mUnk_008 = 0;
     }
 }
 
-void func_ov001_0219e1b0(void) {
-    data_ov001_021ca400->mUnk_008++;
-    if (data_ov001_021ca400->mUnk_008 > data_ov001_021a6c50[7]) {
-        data_ov001_021ca400->mUnk_014 = 0;
+void AdvanceEndingSceneState7(void) {
+    gEndingScene->mUnk_008++;
+    if (gEndingScene->mUnk_008 > gEndingSceneStateTable[7]) {
+        gEndingScene->mNextScene = 0;
     }
 }
 
-void func_ov001_0219e118(void) {
-    data_ov001_021ca400->mState = data_ov001_021ca400->mNextState;
-    func_020ae6ac(data_ov001_021ca400->mUnk_068, NULL);
-    switch (data_ov001_021ca400->mState) {
+void AdvanceEndingScene(void) {
+    gEndingScene->mState = gEndingScene->mNextState;
+    func_020ae6ac(gEndingScene->mMainOam, NULL);
+    switch (gEndingScene->mState) {
         case 0:
-            func_ov001_0219e34c();
+            AdvanceEndingSceneState0();
             break;
         case 1:
-            func_ov001_0219e310();
+            AdvanceEndingSceneState1();
             break;
         case 2:
-            func_ov001_0219e2f0();
+            AdvanceEndingSceneState2();
             break;
         case 3:
-            func_ov001_0219e2b4();
+            AdvanceEndingSceneState3();
             break;
         case 4:
-            func_ov001_0219e294();
+            AdvanceEndingSceneState4();
             break;
         case 5:
-            func_ov001_0219e1f8();
+            AdvanceEndingSceneState5();
             break;
         case 6:
-            func_ov001_0219e1d4();
+            AdvanceEndingSceneState6();
             break;
         case 7:
-            func_ov001_0219e1b0();
+            AdvanceEndingSceneState7();
             break;
     }
-    func_02124c30(data_ov001_021ca400->mEndingThanksBncl, data_ov001_021ca400->mThanksYouMNcer,
-                  data_ov001_021ca400->mEndingThanksBnll, data_ov001_021ca400->mUnk_068, data_ov001_021ca400->mUnk_020);
-    func_020ae630(data_ov001_021ca400->mUnk_068, NULL);
+    func_02124c30(gEndingScene->mEndingThanksBncl, gEndingScene->mThanksYouMNcer, gEndingScene->mEndingThanksBnll,
+                  gEndingScene->mMainOam, gEndingScene->mEndingThanksTable);
+    func_020ae630(gEndingScene->mMainOam, NULL);
 }
 
 void func_ov001_0219e0d4(void) {
     u32 bits;
 
-    if (data_ov001_021ca400->mUnk_018 != FALSE) {
+    if (gEndingScene->mIndex1Queued != FALSE) {
         bits = (*(vu32 *) 0x4000000 & 0x1f00) >> 8;
         *(vu32 *) 0x4000000 = (*(vu32 *) 0x4000000 & 0xffffe0ff) | ((bits | 0x10) << 8);
     }
-    func_020ae5f0(data_ov001_021ca400->mUnk_068, NULL);
+    func_020ae5f0(gEndingScene->mMainOam, NULL);
 }
 
 void func_ov001_0219e0c4(void) {
@@ -307,6 +305,6 @@ s32 func_ov001_0219e0b8(void) {
     return data_0217b488->mUnk_70;
 }
 
-int func_ov001_0219e0a8(void) {
-    return data_ov001_021ca400->mUnk_014;
+int GetEndingSceneNextScene(void) {
+    return gEndingScene->mNextScene;
 }

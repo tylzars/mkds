@@ -3,18 +3,17 @@
 #include "types.h"
 #include "00/code_02181f98.h"
 
-// Object behind data_ov001_021ca400.
-typedef struct Unk021ca400 {
+typedef struct EndingScene {
     /* 000 */ s32 mState;
     /* 004 */ s32 mNextState;
     /* 008 */ s32 mUnk_008;
     /* 00c */ s32 mKind;
     /* 010 */ void *mHeap;
-    /* 014 */ s16 mUnk_014;
+    /* 014 */ s16 mNextScene;
     /* 016 */ u8 mUnk_016[0x2];
-    /* 018 */ BOOL mUnk_018;
+    /* 018 */ BOOL mIndex1Queued;
     /* 01c */ void *mUnk_01c;
-    /* 020 */ Unk02124b1c *mUnk_020;
+    /* 020 */ Unk02124b1c *mEndingThanksTable;
     /* 024 */ struct Unk02021dc8 *mThanksYouMNcer;
     /* 028 */ u8 mUnk_028[0x4];
     /* 02c */ Nclr *mThanksYouMO00Nclr;
@@ -26,9 +25,9 @@ typedef struct Unk021ca400 {
     /* 050 */ Ncgr *mEndAllRightsReservedSBAndLogoEndNintendoSBNcgrs[2];
     /* 058 */ Nscr *mEndAllRightsReservedSBgAndLogoEndNintendoSBgNscrs[2];
     /* 060 */ Nclr *mEndAllRightsReservedSBAndLogoEndNintendoSBNclrs[2];
-    /* 068 */ u8 mUnk_068[0x404];
+    /* 068 */ u8 mMainOam[0x404];
     /* 46c */ struct Bmg *mCommonMessages;
-} Unk021ca400;
+} EndingScene;
 
 // Objects whose layout isn't known yet.
 // Object behind gMissionRunLVsel.

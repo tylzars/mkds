@@ -16,10 +16,10 @@ void InitEndingScene(void) {
     void *heap = GetHeap(func_020364e8());
 
     data_ov001_021ca40c = HeapAlloc(heap, 4);
-    func_ov001_0219e6ec(heap);
+    CreateEndingScene(heap);
 }
 
-void func_ov001_0219ea74(void) {
+void ReleaseEndingScene(void) {
     func_ov001_0219e6e0();
     *(u32 *) &data_ov001_021ca40c = 0;
     return;
@@ -32,9 +32,9 @@ void func_ov001_0219ea6c(void) {
 void UpdateEndingScene(int a) {
     u16 v1;
     int v2;
-    func_ov001_0219e118();
-    if ((a != 0) && (v2 = func_ov001_0219e0a8(), v2 != -1)) {
-        v1 = func_ov001_0219e0a8();
+    AdvanceEndingScene();
+    if ((a != 0) && (v2 = GetEndingSceneNextScene(), v2 != -1)) {
+        v1 = GetEndingSceneNextScene();
         *(u16 *) (a + 4) = v1;
     }
     return;

@@ -23,7 +23,7 @@ u8 *data_ov001_021ca408;
 static SceneCallbacks gOptionSceneCallbacks = {
     InitOptionScene, UpdateOptionScene, ReleaseOptionScene, func_ov001_0219e9a4, 0, 0, 10, 10, 0};
 static SceneCallbacks gEndingSceneCallbacks = {
-    InitEndingScene, UpdateEndingScene, func_ov001_0219ea74, func_ov001_0219ea6c, 0, 0, 30, 1, 0};
+    InitEndingScene, UpdateEndingScene, ReleaseEndingScene, func_ov001_0219ea6c, 0, 0, 30, 1, 0};
 
 int RunEndingScene(void *a) {
     SceneCallbacks local = gEndingSceneCallbacks;
