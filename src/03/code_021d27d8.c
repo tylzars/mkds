@@ -20,13 +20,13 @@ void func_ov003_021d2894(void) {
 }
 
 void *func_ov003_021d285c(u32 size, s32 alignment) {
-    u32 interrupts = InterruptEnableClearBits(1);
+    u32 interrupts = OS_DisableIrqMask(1);
     void *block = ExpHeapAlloc(data_ov003_021da2c8, size, alignment);
 
     if (block == NULL) {
         IrqDisableLoopForever();
     }
-    InterruptEnableSetBits(interrupts);
+    OS_EnableIrqMask(interrupts);
     return block;
 }
 
@@ -39,20 +39,20 @@ void *func_ov003_021d283c(u32 size, s32 alignment) {
 
 void func_ov003_021d2808(void *storage) {
     void **block = storage;
-    u32 interrupts = InterruptEnableClearBits(1);
+    u32 interrupts = OS_DisableIrqMask(1);
 
     if (*block != NULL) {
         ExpHeapFree(data_ov003_021da2c8, *block);
-        InterruptEnableSetBits(interrupts);
+        OS_EnableIrqMask(interrupts);
         *block = NULL;
     }
 }
 
 void func_ov003_021d27d8(void *block) {
-    u32 interrupts = InterruptEnableClearBits(1);
+    u32 interrupts = OS_DisableIrqMask(1);
 
     if (block != NULL) {
         ExpHeapFree(data_ov003_021da2c8, block);
-        InterruptEnableSetBits(interrupts);
+        OS_EnableIrqMask(interrupts);
     }
 }

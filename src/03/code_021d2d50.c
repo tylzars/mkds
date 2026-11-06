@@ -11,10 +11,10 @@ void func_ov003_021d2dfc(void) {
     u16 a;
 
     data_ov003_021da2ec = *(vu32 *) 0x4000210;
-    InterruptEnableWrite(0x40018);
-    InterruptEnableSetBits(1);
-    data_ov003_021da2e8 = InterruptHandlerGet(1);
-    InterruptHandlerSet(1, func_ov003_021d2da4);
+    OS_SetIrqMask(0x40018);
+    OS_EnableIrqMask(1);
+    data_ov003_021da2e8 = OS_GetIrqFunction(1);
+    OS_SetIrqFunction(1, func_ov003_021d2da4);
     a = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
     IrqEnable();
@@ -25,8 +25,8 @@ void func_ov003_021d2dcc(void) {
 
     a = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 0;
-    InterruptEnableWrite(data_ov003_021da2ec);
-    InterruptHandlerSet(1, data_ov003_021da2e8);
+    OS_SetIrqMask(data_ov003_021da2ec);
+    OS_SetIrqFunction(1, data_ov003_021da2e8);
 }
 
 void func_ov003_021d2da4(void) {

@@ -14,7 +14,7 @@ void OS_InitVAlarm(void) {
     data_02170268 = 1;
     data_02170274[0] = 0;
     data_02170274[1] = 0;
-    InterruptEnableClearBits(4);
+    OS_DisableIrqMask(4);
     data_02170270 = 0;
     data_0217026c = 0;
 }
@@ -30,7 +30,7 @@ void StartAlarmTimer(Unk0200fb08 *n) {
     t = OS_GetTick();
     *(vu16 *) 0x4000106 = 0;
     d = n->mUnk_0c - t;
-    SetTimerOverflowCallback(1, AlarmTimerCallback, 0);
+    OSi_EnterTimerCallback(1, AlarmTimerCallback, 0);
     if (d < 0) {
         v = 0xfffe;
     } else if (d < 0x10000) {
@@ -40,7 +40,7 @@ void StartAlarmTimer(Unk0200fb08 *n) {
     }
     *(vu16 *) 0x4000104 = v;
     *(vu16 *) 0x4000106 = 0xc1;
-    InterruptEnableSetBits(0x10);
+    OS_EnableIrqMask(0x10);
 }
 
 void OS_InitAlarm(void) {
@@ -51,7 +51,7 @@ void OS_InitAlarm(void) {
     func_0200f580(1);
     gAlarmList.mUnk_00 = 0;
     gAlarmList.mUnk_04 = 0;
-    InterruptEnableClearBits(0x10);
+    OS_DisableIrqMask(0x10);
 }
 
 u32 OS_IsAlarmAvailable(void) {
@@ -154,7 +154,7 @@ void AdvanceAlarmList(void) {
     u64 c;
 
     *(vu16 *) 0x4000106 = 0;
-    InterruptEnableClearBits(0x10);
+    OS_DisableIrqMask(0x10);
     *(u32 *) ((u8 *) &data_027e0000 + 0x3ff8) |= 0x10;
     c = OS_GetTick();
     n = gAlarmList.mUnk_00;

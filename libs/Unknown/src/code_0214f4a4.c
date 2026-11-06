@@ -337,8 +337,8 @@ void PM_GoSleepMode(u32 a, u32 b, u32 c) {
     saved = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 0;
     v0 = IrqDisable();
-    v1 = InterruptEnableClearBits(0x3fffff);
-    InterruptEnableWrite(0x40000);
+    v1 = OS_DisableIrqMask(0x3fffff);
+    OS_SetIrqMask(0x40000);
     IrqRestore(v0);
     tmp = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
@@ -388,7 +388,7 @@ void PM_GoSleepMode(u32 a, u32 b, u32 c) {
         *(vu32 *) 0x4001000 = k1;
     }
     IrqDisable();
-    InterruptEnableWrite(v1);
+    OS_SetIrqMask(v1);
     IrqRestore(v0);
     tmp = *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = saved;

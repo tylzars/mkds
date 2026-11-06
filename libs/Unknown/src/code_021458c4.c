@@ -135,8 +135,8 @@ void AdvanceRomDmaRead(void) {
     gAccessState.mUnk_20 += 0x200;
     gAccessState.mUnk_24 -= 0x200;
     if (gAccessState.mUnk_24 == 0) {
-        InterruptEnableClearBits(0x80000);
-        InterruptFlagWrite(0x80000);
+        OS_DisableIrqMask(0x80000);
+        OS_ResetRequestIrqMask(0x80000);
         p = (Unk021458c4 *) (u32) &gAccessState;
         p->mUnk_00->mUnk_00 = 0;
         cb = p->mUnk_38;
@@ -218,9 +218,9 @@ int TryStartRomDmaRead(Unk02146154 *p) {
         }
         DC_InvalidateRange((void *) addr, len);
         DC_WaitWriteBufferEmpty();
-        InterruptHandlerSet(0x80000, AdvanceRomDmaRead);
-        InterruptFlagWrite(0x80000);
-        InterruptEnableSetBits(0x80000);
+        OS_SetIrqFunction(0x80000, AdvanceRomDmaRead);
+        OS_ResetRequestIrqMask(0x80000);
+        OS_EnableIrqMask(0x80000);
         IrqRestore(s);
         StartRomPageDma();
     }

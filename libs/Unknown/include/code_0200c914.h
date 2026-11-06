@@ -15,60 +15,55 @@ typedef struct Unk027e0000 {
 } Unk027e0000;
 
 extern Unk027e0000 data_027e0000;
-extern UnkFunc *data_027e0008[22];
 
-// Entry of the table of 8 at gDmaTimerCallbacks: a function pointer, a word, and the argument the function is called
-// with.
-typedef struct Unk0216fee0 {
-    /* 00 */ UnkFunc *mUnk_00;
-    /* 04 */ u32 mUnk_04;
-    /* 08 */ u32 mUnk_08;
-} Unk0216fee0;
+typedef void (*OSIrqFunction)(void);
+typedef u32 OSIrqMask;
 
-// Eight interrupt callback slots of three words (function, keep-enabled word, argument). Slots 0-3: the done
-// interrupt of DMA channels 0-3 (interrupt-enable bits 8-11); slots 4-7: timers 0-3 (bits 3-6). The dispatcher
-// clears a slot's function before calling it, so each registration runs once.
-extern Unk0216fee0 gDmaTimerCallbacks[8];
-extern u16 data_021617bc[8];
+// One registered callback of a DMA channel or timer: the function, whether its interrupt stays enabled after the
+// callback has run, and the argument the function is called with.
+typedef struct OSIrqCallbackInfo {
+    /* 00 */ UnkFunc *mFunc;
+    /* 04 */ u32 mEnable;
+    /* 08 */ u32 mArg;
+} OSIrqCallbackInfo;
 
-// Calls InterruptSlotHandler with slot 7. Table index 6; nothing else in the game uses timer 3, the number follows the
-// timer 0 and 1 entries.
-void Timer3InterruptHandler(void);
-// Calls InterruptSlotHandler with slot 6. Table index 5; nothing else in the game uses timer 2, the number follows the
-// timer 0 and 1 entries.
-void Timer2InterruptHandler(void);
-// Calls InterruptSlotHandler with slot 5. Table index 4 of the interrupt table at 0x027e0008.
-void Timer1InterruptHandler(void);
-// Calls InterruptSlotHandler with slot 4. Table index 3 of the interrupt table at 0x027e0008.
-void Timer0InterruptHandler(void);
-// Calls InterruptSlotHandler with slot 3. Table index 11 of the interrupt table at 0x027e0008.
-void Dma3InterruptHandler(void);
-// Calls InterruptSlotHandler with slot 2. Table index 10 of the interrupt table at 0x027e0008.
-void Dma2InterruptHandler(void);
-// Calls InterruptSlotHandler with slot 1. Table index 9 of the interrupt table at 0x027e0008.
-void Dma1InterruptHandler(void);
-// Calls InterruptSlotHandler with slot 0. Table index 8 of the interrupt table at 0x027e0008.
-void Dma0InterruptHandler(void);
-// Entry body for slot n of gDmaTimerCallbacks (0 to 3: DMA 0 to 3, 4 to 7: timers 0 to 3). Zeroes the stored
-// function and calls it with the stored argument, ors bit data_021617bc[n] into the word at 0x027e3ff8, and when the
-// slot's keep-enabled word is 0 clears that bit in the interrupt enable mask.
-void InterruptSlotHandler(u32 n);
-// Returns at once. The 14 slots of the interrupt table at 0x027e0008 that have no handler (0, 1, 2, 7 and 12 to 21)
-// hold its address.
+// Handler for each of the 22 interrupt bits; the unused ones hold OS_IrqDummy.
+extern OSIrqFunction OS_IRQTable[22];
+// Entries 0 to 3 belong to DMA channels 0 to 3, entries 4 to 7 to timers 0 to 3. OSi_IrqCallback clears an entry's
+// function before calling it, so each registration runs once.
+extern OSIrqCallbackInfo OSi_IrqCallbackInfo[8];
+// Interrupt bit of each entry of OSi_IrqCallbackInfo.
+extern u16 OSi_IrqCallbackInfoIndex[8];
+
+// Call OSi_IrqCallback with entry 7 to 4 (timer 3 to 0) and entry 3 to 0 (DMA 3 to 0).
+void OSi_IrqTimer3(void);
+void OSi_IrqTimer2(void);
+void OSi_IrqTimer1(void);
+void OSi_IrqTimer0(void);
+void OSi_IrqDma3(void);
+void OSi_IrqDma2(void);
+void OSi_IrqDma1(void);
+void OSi_IrqDma0(void);
+// Clears the function of entry index of OSi_IrqCallbackInfo and calls it with its argument, sets the entry's bit in
+// the interrupt check word at 0x027e3ff8, and clears the bit in the interrupt enable mask unless the entry says it
+// stays enabled.
+void OSi_IrqCallback(int index);
+// Returns at once; the interrupt bits without a handler point to it.
 void OS_IrqDummy(void);
-// Writes 0xfddb597d at 0x027e3f7c and 0x7bf9dd5b at 0x027e3380, the upper and lower end of the stack region the
-// start-up code sets up for interrupt mode.
+// Writes 0xfddb597d at 0x027e3f7c and 0x7bf9dd5b at 0x027e3380, the two ends of the stack region the start-up code
+// sets up for interrupt mode.
 void OS_SetIrqStackChecker(void);
-u32 InterruptFlagWrite(u32 v);
-u32 InterruptEnableClearBits(u32 m);
-u32 InterruptEnableSetBits(u32 m);
-u32 InterruptEnableWrite(u32 v);
-// Stores function f and argument a in slot n + 4 of gDmaTimerCallbacks, sets the slot's keep-enabled word to 1 and
-// enables interrupt bit n + 3. Callers: the tick (n = 0) and the alarm (n = 1).
-void SetTimerOverflowCallback(u32 n, UnkFunc *f, u32 a);
-// Stores the function and the argument in slot n of gDmaTimerCallbacks, sets interrupt-enable bit n + 8 and keeps
-// in the slot whether that bit was already set before. The dispatcher of the slot clears the function, calls it
-// with the argument and clears the bit again unless the slot says it was set before.
-void SetDmaDoneCallback(u32 n, UnkFunc *f, u32 a);
-UnkFunc *InterruptHandlerGet(u32 m);
-void InterruptHandlerSet(u32 m, UnkFunc *f);
+// Write REG_IF and REG_IE with interrupts off and return the previous value.
+OSIrqMask OS_ResetRequestIrqMask(OSIrqMask intr);
+OSIrqMask OS_DisableIrqMask(OSIrqMask intr);
+OSIrqMask OS_EnableIrqMask(OSIrqMask intr);
+OSIrqMask OS_SetIrqMask(OSIrqMask intr);
+// Store the callback and its argument in the entry for timer timerNo (OSi_IrqCallbackInfo[timerNo + 4]) or DMA
+// channel dmaNo, enable the interrupt bit and set the entry's mEnable: always for a timer, and for a DMA channel
+// only when the bit was already set.
+void OSi_EnterTimerCallback(u32 timerNo, UnkFunc *callback, u32 arg);
+void OSi_EnterDmaCallback(u32 dmaNo, UnkFunc *callback, u32 arg);
+// Return and set the handler of the lowest interrupt bit in intrBit. DMA and timer bits use OSi_IrqCallbackInfo, with
+// no argument and mEnable set.
+OSIrqFunction OS_GetIrqFunction(OSIrqMask intrBit);
+void OS_SetIrqFunction(OSIrqMask intrBit, OSIrqFunction function);

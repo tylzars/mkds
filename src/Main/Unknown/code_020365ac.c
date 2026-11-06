@@ -34,8 +34,8 @@ void func_020367c4(void) {
 }
 
 void func_02036778(void) {
-    InterruptHandlerSet(1, func_020367c4);
-    InterruptEnableSetBits(1);
+    OS_SetIrqFunction(1, func_020367c4);
+    OS_EnableIrqMask(1);
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
     IrqEnable();
@@ -54,8 +54,8 @@ void func_020366bc(void) {
     func_02039bd4();
     GX_DispOff();
     *(vu32 *) 0x4001000 = *(vu32 *) 0x4001000 & ~0x10000;
-    InterruptHandlerSet(1, func_020367c4);
-    InterruptEnableSetBits(1);
+    OS_SetIrqFunction(1, func_020367c4);
+    OS_EnableIrqMask(1);
     *(vu16 *) 0x4000208;
     *(vu16 *) 0x4000208 = 1;
     IrqEnable();

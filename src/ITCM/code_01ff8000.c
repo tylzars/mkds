@@ -608,7 +608,7 @@ void func_01ff81b4(Unk02170500 *s, u32 a) {
 
 // clang-format off
 // Interrupt dispatch: reads the interrupt flag and enable registers (0x04000210), takes the highest set bit with clz,
-// acknowledges it, and runs the function in data_027e0008 for that bit with lr set to func_01ff8058.
+// acknowledges it, and runs the function in OS_IRQTable for that bit with lr set to func_01ff8058.
 // Not compiled code: it jumps with a set return address instead of a call (ldr lr, bx).
 asm void func_01ff8000(void) {
     stmdb sp!, {lr}
@@ -628,7 +628,7 @@ L_loop:
     mov r1, r3, lsr r0
     str r1, [ip, #0x4]
     rsbs r0, r0, #0x1f
-    ldr r1, =data_027e0008
+    ldr r1, =OS_IRQTable
     ldr r0, [r1, r0, lsl #0x2]
     ldr lr, =func_01ff8058
     bx r0

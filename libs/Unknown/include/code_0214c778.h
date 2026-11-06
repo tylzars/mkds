@@ -33,7 +33,7 @@ void MI_StopDma(u32 a);
 void MI_WaitDma(u32 a);
 // Checks the source range (CheckDma0SourceOrLoopForever, mode 0). With a length of 0 it only calls the callback
 // when there is one. Otherwise it waits for the channel (MI_WaitDma) and starts length / 4 words with control
-// 0x84000000; with a callback it registers it first (SetDmaDoneCallback) and uses 0xc4000000. It returns without
+// 0x84000000; with a callback it registers it first (OSi_EnterDmaCallback) and uses 0xc4000000. It returns without
 // waiting for the end.
 void MI_DmaCopy32Async(u32 a, const void *b, void *c, u32 d, UnkFunc *f, u32 arg);
 // With a length of 0 it only calls the callback when there is one. Otherwise it waits for the channel (MI_WaitDma),

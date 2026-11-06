@@ -20,8 +20,8 @@ void OS_InitTick(void) {
     *(vu16 *) 0x4000102 = 0;
     *(vu16 *) 0x4000100 = 0;
     *(vu16 *) 0x4000102 = 0xc1;
-    InterruptHandlerSet(8, TickOverflowCallback);
-    InterruptEnableSetBits(8);
+    OS_SetIrqFunction(8, TickOverflowCallback);
+    OS_EnableIrqMask(8);
     data_02170250 = 0;
 }
 
@@ -40,7 +40,7 @@ void TickOverflowCallback(void) {
         *(vu16 *) 0x4000102 = 0xc1;
         data_02170250 = 0;
     }
-    SetTimerOverflowCallback(0, TickOverflowCallback, 0);
+    OSi_EnterTimerCallback(0, TickOverflowCallback, 0);
 }
 
 u64 OS_GetTick(void) {

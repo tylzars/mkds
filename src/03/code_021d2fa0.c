@@ -41,7 +41,7 @@ Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d) {
     e = func_ov003_021d1cd4(data_ov003_021da2f4[a].mUnk_19c);
     l = (b + 3 & ~3) >> 2;
     e->mUnk_0a = l;
-    i = InterruptEnableClearBits(1);
+    i = OS_DisableIrqMask(1);
     if (c != 0) {
         k = data_ov003_021da2f4;
         f = &k[a].mUnk_180;
@@ -80,7 +80,7 @@ Unk021d309c *func_ov003_021d309c(u32 a, s32 b, s32 c, u32 *d) {
         }
     }
     *d = e->mUnk_08;
-    InterruptEnableSetBits(i);
+    OS_EnableIrqMask(i);
     return e;
 }
 

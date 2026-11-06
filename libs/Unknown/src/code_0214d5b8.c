@@ -8,7 +8,7 @@ UnkFunc *data_0218032c[32];
 u16 data_02180328;
 
 // Runs once: clears the first word at mUnk_388 and the 32 entries of data_0218032c, writes 0xc408 to the register
-// at 0x04000184, calls InterruptFlagWrite, InterruptHandlerSet (with PxiReceiveDispatch) and InterruptEnableSetBits
+// at 0x04000184, calls OS_ResetRequestIrqMask, OS_SetIrqFunction (with PxiReceiveDispatch) and OS_EnableIrqMask
 // with 0x40000, then writes the low 4 bits read from the register at 0x04000180 back shifted left by 8 until the
 // conditions of its loop hold.
 void PxiInitOnce(void) {
@@ -28,9 +28,9 @@ void PxiInitOnce(void) {
             data_0218032c[i] = 0;
         }
         reg_PXI_SUBP_FIFO_CNT = 0xc408;
-        InterruptFlagWrite(0x40000);
-        InterruptHandlerSet(0x40000, (UnkFunc *) PxiReceiveDispatch);
-        InterruptEnableSetBits(0x40000);
+        OS_ResetRequestIrqMask(0x40000);
+        OS_SetIrqFunction(0x40000, PxiReceiveDispatch);
+        OS_EnableIrqMask(0x40000);
         j = 0;
         for (;;) {
             v = reg_PXI_SUBPINTF & 0xf;

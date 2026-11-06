@@ -60,7 +60,7 @@ void InitCartridgeHeaderCopy(void) {
     if ((*(u16 *) 0x04000300 & 1) == 0) {
         return;
     }
-    v = InterruptEnableWrite(0x40000);
+    v = OS_SetIrqMask(0x40000);
     w = reg_OS_IME;
     reg_OS_IME = 1;
     LockCartridgeAndDisableIrq(gCartridgeState.mLockId, &a);
@@ -88,7 +88,7 @@ void InitCartridgeHeaderCopy(void) {
     }
     reg_OS_IME;
     reg_OS_IME = w;
-    InterruptEnableWrite(v);
+    OS_SetIrqMask(v);
 }
 
 void ReceiveCartridgeHeaderReply(u32 a, u32 b) {

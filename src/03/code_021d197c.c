@@ -52,7 +52,7 @@ Unk021d1770 *func_ov003_021d19e0(u32 f, s32 g, s32 h) {
     Unk021d1770_08 *e;
 
     a = func_ov003_021d1cd4(data_ov003_021da2b4[f].mUnk_224);
-    b = InterruptEnableClearBits(1);
+    b = OS_DisableIrqMask(1);
     if (h != 0) {
         c = &data_ov003_021da2b4[f].mUnk_200;
         if (c != &data_ov003_021da2b4[f].mUnk_210) {
@@ -88,7 +88,7 @@ Unk021d1770 *func_ov003_021d19e0(u32 f, s32 g, s32 h) {
             IrqDisableLoopForever();
         }
     }
-    InterruptEnableSetBits(b);
+    OS_EnableIrqMask(b);
     a->mUnk_0c = g;
     return a;
 }
