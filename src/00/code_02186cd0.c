@@ -618,7 +618,7 @@ void func_ov000_02186d7c(void *l) {
     func_ov000_021ae290(0, h, g);
     t0 = OS_GetTick();
     if (p->mUseHttps == 1) {
-        func_0201000c(&v1);
+        OS_GetLowEntropyData(&v1);
         func_ov000_021a9c5c(&v1, 0x20);
         t1 = t0;
     }
@@ -653,7 +653,7 @@ void func_ov000_02186d7c(void *l) {
         }
         if (p->mUseHttps == 1) {
             if (1000 < (t - t1) * 64 / 0x82ea) {
-                func_0201000c(&v1);
+                OS_GetLowEntropyData(&v1);
                 func_ov000_021a9c5c(&v1, 0x20);
                 t1 = t;
             }
@@ -745,7 +745,7 @@ void func_ov000_02186d7c(void *l) {
         }
         if (p->mUseHttps == 1) {
             if (1000 < (t - t1) * 64 / 0x82ea) {
-                func_0201000c(&v1);
+                OS_GetLowEntropyData(&v1);
                 func_ov000_021a9c5c(&v1, 0x20);
                 t1 = t;
             }

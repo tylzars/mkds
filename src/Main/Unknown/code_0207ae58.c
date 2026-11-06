@@ -238,7 +238,7 @@ void func_0207b284(Kart *p) {
     Unk0201290c *t = r->mUnk_04;
 
     func_02013164(t, 2);
-    func_020104a4((Unk020101e8 *) t);
+    NNS_G3dReleaseMdlTex((Unk020101e8 *) t);
     if (s != NULL && q->mUnk_0ac == FALSE) {
         func_020109d8((Unk02010ab4 *) r, (Unk02010b50 *) s->mUnk_1c[0]);
         q->mUnk_0ac = TRUE;
@@ -246,12 +246,12 @@ void func_0207b284(Kart *p) {
     func_0207a14c(t, 2);
     t = q->mUnk_010[1]->mUnk_04;
     func_02013164(t, 2);
-    func_020104a4((Unk020101e8 *) t);
+    NNS_G3dReleaseMdlTex((Unk020101e8 *) t);
     func_0207a14c(t, 2);
     if (q->mUnk_010[2] != NULL) {
         t = q->mUnk_010[2]->mUnk_04;
         func_02013164(t, 2);
-        func_020104a4((Unk020101e8 *) t);
+        NNS_G3dReleaseMdlTex((Unk020101e8 *) t);
         func_0207a14c(t, 2);
     }
     q->mUnk_064 = TRUE;
@@ -267,7 +267,7 @@ void func_0207b1a8(Kart *p) {
     Unk02084b2c *v;
 
     func_02013164(t, 0);
-    func_02010584((Unk020101e8 *) t, (Unk02010294 *) r->mUnk_5c.mUnk_0c);
+    NNS_G3dBindMdlTex((Unk020101e8 *) t, (Unk02010294 *) r->mUnk_5c.mUnk_0c);
     if (s != NULL && q->mUnk_0ac != FALSE) {
         func_02010ab4((Unk02010ab4 *) r, (Unk02010b50 *) s->mUnk_1c[0]);
         q->mUnk_0ac = FALSE;
@@ -276,13 +276,13 @@ void func_0207b1a8(Kart *p) {
     u = q->mUnk_010[1];
     t = u->mUnk_04;
     func_02013164(t, 0);
-    func_02010584((Unk020101e8 *) t, (Unk02010294 *) u->mUnk_5c.mUnk_0c);
+    NNS_G3dBindMdlTex((Unk020101e8 *) t, (Unk02010294 *) u->mUnk_5c.mUnk_0c);
     func_0207a14c(t, 0);
     v = q->mUnk_010[2];
     if (v != NULL) {
         w = v->mUnk_04;
         func_02013164(w, 0);
-        func_02010584((Unk020101e8 *) w, (Unk02010294 *) v->mUnk_5c.mUnk_0c);
+        NNS_G3dBindMdlTex((Unk020101e8 *) w, (Unk02010294 *) v->mUnk_5c.mUnk_0c);
         func_0207a14c(w, 0);
     }
     q->mUnk_064 = FALSE;

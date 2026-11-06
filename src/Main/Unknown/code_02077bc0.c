@@ -1658,10 +1658,10 @@ void func_02078580(Unk0217ad08_058 *param_1, Unk0217ad08_024 *param_2, s32 param
 
 void func_0207851c(Unk0217ad08_058 *a) {
     if ((data_0217ad08->mUnk_1e0 != FALSE) && (a->mUnk_b4 != NULL)) {
-        func_02010458((Unk020101e8 *) a->mUnk_14->mUnk_04, data_02155048);
-        func_020101e8((Unk020101e8 *) a->mUnk_14->mUnk_04, data_021550a8);
-        func_0201050c((Unk020101e8 *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_02155048);
-        func_02010294((Unk020101e8 *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_021550a8);
+        NNS_G3dReleaseMdlTexEx((Unk020101e8 *) a->mUnk_14->mUnk_04, data_02155048);
+        NNS_G3dReleaseMdlPlttEx((Unk020101e8 *) a->mUnk_14->mUnk_04, data_021550a8);
+        NNS_G3dBindMdlTexEx((Unk020101e8 *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_02155048);
+        NNS_G3dBindMdlPlttEx((Unk020101e8 *) a->mUnk_14->mUnk_04, a->mUnk_b4, data_021550a8);
     }
 }
 

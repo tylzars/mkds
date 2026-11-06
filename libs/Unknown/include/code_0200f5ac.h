@@ -10,6 +10,6 @@ u64 OS_GetTick(void);
 void OSi_CountUpTick(void);
 // Returns gTickInitialized.
 u32 OS_IsTickAvailable(void);
-// Runs once: reserves timer 0 (func_0200f580), clears gTickOverflowCount, stops timer 0, zeroes its count, starts
-// it with control 0xc1, installs OSi_CountUpTick for IRQ bit 3 and enables it, clears data_02170250.
+// Runs once: reserves timer 0 (OSi_SetTimerReserved), clears gTickOverflowCount, stops timer 0, zeroes its count,
+// starts it with control 0xc1, installs OSi_CountUpTick for IRQ bit 3 and enables it, clears data_02170250.
 void OS_InitTick(void);

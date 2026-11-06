@@ -374,7 +374,7 @@ s32 func_02012cbc(Unk020136f0 *a) {
             if (a->mUnk_00 == 0x30444d42) {
                 v0 = func_02013730((u32) a);
                 if (r != 0) {
-                    func_02010168((Unk02010168 *) v0, (Unk02010294 *) r);
+                    NNS_G3dBindMdlSet((Unk02010168 *) v0, (Unk02010294 *) r);
                 }
             }
             return 1;
@@ -405,7 +405,7 @@ void func_02012b30(Unk020136f0 *a) {
         case 0x30444d42:
             q = func_02013730((u32) a);
             if (func_020136f0(a) != 0) {
-                func_020100fc((Unk02010168 *) q);
+                NNS_G3dReleaseMdlSet((Unk02010168 *) q);
             }
             break;
         case 0x30585442:

@@ -10,297 +10,317 @@
 u32 gVramBankLockedMask;
 u16 gVramBankLockIds[9];
 
-void func_020106c8(Unk020101e8_08 *a, Unk020103c0_e *b, Unk02010294 *c, Unk020106c8_0c *d) {
-    u32 m;
+// Binds the texture to the materials of one entry of the texture-to-material list: sets the texture offset in
+// each material and the scale from the texture size. Sets bit 0 of the flag.
+void bindMdlTex_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data, Unk02010294 *tex, Unk020106c8_0c *texData) {
+    u32 vramOffset;
     u32 i;
-    u8 *idx;
-    u32 x;
-    u32 y;
-    Unk020106c8_14 *n;
+    u8 *matIndices;
+    u32 width;
+    u32 height;
+    Unk020106c8_14 *matData;
 
-    idx = (u8 *) a + b->mUnk_00;
-    if ((d->mUnk_00 & 0x1c000000) != 0x14000000) {
-        m = c->mUnk_08 & 0xffff;
+    matIndices = (u8 *) mat + data->mUnk_00;
+    if ((texData->mUnk_00 & 0x1c000000) != 0x14000000) {
+        vramOffset = tex->mUnk_08 & 0xffff;
     } else {
-        m = c->mUnk_18 & 0xffff;
+        vramOffset = tex->mUnk_18 & 0xffff;
     }
-    for (i = 0; i < b->mUnk_02; i++) {
-        u8 *t;
-        t = (u8 *) a + 4 + a->mUnk_0a;
-        n = (Unk020106c8_14 *) ((u8 *) a + *(u32 *) (t + *(u16 *) t * idx[i] + 4));
-        n->mUnk_14 |= d->mUnk_00 + m;
-        x = d->mUnk_04 & 0x7ff;
-        y = (d->mUnk_04 >> 11) & 0x7ff;
-        n->mUnk_24 = (x == n->mUnk_20) ? 0x1000 : DivFixed12(x << 12, n->mUnk_20 << 12);
-        n->mUnk_28 = (y == n->mUnk_22) ? 0x1000 : DivFixed12(y << 12, n->mUnk_22 << 12);
+    for (i = 0; i < data->mUnk_02; i++) {
+        u8 *table;
+        table = (u8 *) mat + 4 + mat->mUnk_0a;
+        matData = (Unk020106c8_14 *) ((u8 *) mat + *(u32 *) (table + *(u16 *) table * matIndices[i] + 4));
+        matData->mUnk_14 |= texData->mUnk_00 + vramOffset;
+        width = texData->mUnk_04 & 0x7ff;
+        height = (texData->mUnk_04 >> 11) & 0x7ff;
+        matData->mUnk_24 = (width == matData->mUnk_20) ? 0x1000 : DivFixed12(width << 12, matData->mUnk_20 << 12);
+        matData->mUnk_28 = (height == matData->mUnk_22) ? 0x1000 : DivFixed12(height << 12, matData->mUnk_22 << 12);
     }
-    b->mUnk_03 |= 1;
+    data->mUnk_03 |= 1;
 }
 
-void func_0201063c(Unk020101e8_08 *a, Unk020103c0_e *b) {
-    u8 *idx;
+// Undoes bindMdlTex_Internal_ for one entry: clears the texture offset and resets the scale. Clears bit 0 of the flag.
+void releaseMdlTex_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data) {
+    u8 *matIndices;
     u32 i;
-    Unk020106c8_14 *n;
+    Unk020106c8_14 *matData;
 
-    idx = (u8 *) a + b->mUnk_00;
-    for (i = 0; i < b->mUnk_02; i++) {
-        u8 *t;
-        t = (u8 *) a + 4 + a->mUnk_0a;
-        n = (Unk020106c8_14 *) ((u8 *) a + *(u32 *) (t + *(u16 *) t * idx[i] + 4));
-        n->mUnk_14 &= 0xc00f0000;
-        n->mUnk_24 = 0x1000;
-        n->mUnk_28 = n->mUnk_24;
+    matIndices = (u8 *) mat + data->mUnk_00;
+    for (i = 0; i < data->mUnk_02; i++) {
+        u8 *table;
+        table = (u8 *) mat + 4 + mat->mUnk_0a;
+        matData = (Unk020106c8_14 *) ((u8 *) mat + *(u32 *) (table + *(u16 *) table * matIndices[i] + 4));
+        matData->mUnk_14 &= 0xc00f0000;
+        matData->mUnk_24 = 0x1000;
+        matData->mUnk_28 = matData->mUnk_24;
     }
-    b->mUnk_03 &= ~1;
+    data->mUnk_03 &= ~1;
 }
 
-int func_02010584(Unk020101e8 *a, Unk02010294 *b) {
-    Unk020101e8_08 *s;
-    Unk02010294_t *d;
-    int r;
+// Binds the texture to every texture-to-material entry of the model that is not bound yet. Returns 0 when the texture
+// has no texture for one of the names.
+int NNS_G3dBindMdlTex(Unk020101e8 *mdl, Unk02010294 *tex) {
+    Unk020101e8_08 *materials;
+    Unk02010294_t *dict;
+    int result;
     u32 i;
-    void *e;
-    u8 *t;
-    Unk020103c0_e *f;
+    void *texData;
+    u8 *table;
+    Unk020103c0_e *data;
 
-    s = (Unk020101e8_08 *) ((u8 *) a + a->mUnk_08);
-    d = (Unk02010294_t *) ((u8 *) s + s->mUnk_00);
-    r = 1;
-    for (i = 0; i < d->mUnk_01; i++) {
-        t = (u8 *) d + d->mUnk_06;
-        e = func_020138b4(b->mUnk_3c, (const u32 *) (t + *(u16 *) (t + 2) + i * 16));
-        if (e != 0) {
-            t = (u8 *) d + d->mUnk_06;
-            f = (Unk020103c0_e *) (t + 4 + *(u16 *) t * i);
-            if ((f->mUnk_03 & 1) == 0) {
-                func_020106c8(s, f, b, e);
+    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
+    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_00);
+    result = 1;
+    for (i = 0; i < dict->mUnk_01; i++) {
+        table = (u8 *) dict + dict->mUnk_06;
+        texData = func_020138b4(tex->mUnk_3c, (const u32 *) (table + *(u16 *) (table + 2) + i * 16));
+        if (texData != 0) {
+            table = (u8 *) dict + dict->mUnk_06;
+            data = (Unk020103c0_e *) (table + 4 + *(u16 *) table * i);
+            if ((data->mUnk_03 & 1) == 0) {
+                bindMdlTex_Internal_(materials, data, tex, texData);
             }
         } else {
-            r = 0;
+            result = 0;
         }
     }
-    return r;
+    return result;
 }
 
-int func_0201050c(Unk020101e8 *a, Unk02010294 *b, const u32 *k) {
-    Unk02010294_t *d;
-    Unk020101e8_08 *s;
-    void *e;
-    Unk020103c0_e *f;
+// Binds the texture of the given name to the model if it is not bound yet. Returns 1 when it was bound.
+int NNS_G3dBindMdlTexEx(Unk020101e8 *mdl, Unk02010294 *tex, const u32 *name) {
+    Unk02010294_t *dict;
+    Unk020101e8_08 *materials;
+    void *texData;
+    Unk020103c0_e *data;
 
-    s = (Unk020101e8_08 *) ((u8 *) a + a->mUnk_08);
-    d = (Unk02010294_t *) ((u8 *) s + s->mUnk_00);
-    e = func_020138b4(b->mUnk_3c, k);
-    if (e != 0) {
-        f = func_020138b4(d, k);
-        if (f != 0 && (f->mUnk_03 & 1) == 0) {
-            func_020106c8(s, f, b, e);
+    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
+    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_00);
+    texData = func_020138b4(tex->mUnk_3c, name);
+    if (texData != 0) {
+        data = func_020138b4(dict, name);
+        if (data != 0 && (data->mUnk_03 & 1) == 0) {
+            bindMdlTex_Internal_(materials, data, tex, texData);
             return 1;
         }
     }
     return 0;
 }
 
-void func_020104a4(Unk020101e8 *a) {
-    Unk020101e8_08 *s;
-    Unk02010294_t *d;
-    u8 *t;
-    Unk020103c0_e *e;
+// Releases every texture binding of the model.
+void NNS_G3dReleaseMdlTex(Unk020101e8 *mdl) {
+    Unk020101e8_08 *materials;
+    Unk02010294_t *dict;
+    u8 *table;
+    Unk020103c0_e *data;
     u32 i;
 
-    s = (Unk020101e8_08 *) ((u8 *) a + a->mUnk_08);
-    d = (Unk02010294_t *) ((u8 *) s + s->mUnk_00);
-    for (i = 0; i < d->mUnk_01; i++) {
-        t = (u8 *) d + d->mUnk_06;
-        e = (Unk020103c0_e *) (t + 4 + *(u16 *) t * i);
-        if ((e->mUnk_03 & 1) != 0) {
-            func_0201063c(s, e);
+    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
+    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_00);
+    for (i = 0; i < dict->mUnk_01; i++) {
+        table = (u8 *) dict + dict->mUnk_06;
+        data = (Unk020103c0_e *) (table + 4 + *(u16 *) table * i);
+        if ((data->mUnk_03 & 1) != 0) {
+            releaseMdlTex_Internal_(materials, data);
         }
     }
 }
 
-u32 func_02010458(Unk020101e8 *a, const u32 *k) {
-    Unk020101e8_08 *b;
-    Unk020103c0_e *e;
+// Releases the texture binding of the given name. Returns 1 when a binding was released.
+u32 NNS_G3dReleaseMdlTexEx(Unk020101e8 *mdl, const u32 *name) {
+    Unk020101e8_08 *materials;
+    Unk020103c0_e *data;
 
-    b = (Unk020101e8_08 *) ((u8 *) a + a->mUnk_08);
-    e = func_020138b4((u8 *) b + b->mUnk_00, k);
-    if (e != 0 && (e->mUnk_03 & 1) != 0) {
-        func_0201063c(b, e);
+    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
+    data = func_020138b4((u8 *) materials + materials->mUnk_00, name);
+    if (data != 0 && (data->mUnk_03 & 1) != 0) {
+        releaseMdlTex_Internal_(materials, data);
         return 1;
     }
     return 0;
 }
 
-void func_020103c0(Unk020101e8_08 *a, Unk020103c0_e *e, Unk02010294 *b, Unk020103c0_d *d) {
-    u8 *p;
-    u32 x;
-    u32 y;
+// Binds the palette to the materials of one entry of the palette-to-material list. Sets bit 0 of the flag.
+void bindMdlPltt_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data, Unk02010294 *tex, Unk020103c0_d *plttData) {
+    u8 *matIndices;
+    u32 base;
+    u32 vramOffset;
     u32 i;
-    u8 *r;
-    Unk020103c0_o *o;
+    u8 *table;
+    Unk020103c0_o *matData;
 
-    p = (u8 *) a + e->mUnk_00;
-    x = (u16) b->mUnk_2c;
-    y = d->mUnk_00;
-    if ((d->mUnk_02 & 1) == 0) {
-        x = (x << 15) >> 16;
-        y = (y << 15) >> 16;
+    matIndices = (u8 *) mat + data->mUnk_00;
+    base = (u16) tex->mUnk_2c;
+    vramOffset = plttData->mUnk_00;
+    if ((plttData->mUnk_02 & 1) == 0) {
+        base = (base << 15) >> 16;
+        vramOffset = (vramOffset << 15) >> 16;
     }
-    for (i = 0; i < e->mUnk_02; i++) {
-        r = (u8 *) a + 4 + a->mUnk_0a;
-        o = (Unk020103c0_o *) ((u8 *) a + *(u32 *) (r + *(u16 *) r * p[i] + 4));
-        o->mUnk_1c = y + x;
+    for (i = 0; i < data->mUnk_02; i++) {
+        table = (u8 *) mat + 4 + mat->mUnk_0a;
+        matData = (Unk020103c0_o *) ((u8 *) mat + *(u32 *) (table + *(u16 *) table * matIndices[i] + 4));
+        matData->mUnk_1c = vramOffset + base;
     }
-    e->mUnk_03 |= 1;
+    data->mUnk_03 |= 1;
 }
 
-u32 func_02010310(Unk020101e8 *a, Unk02010294 *b) {
-    Unk020101e8_08 *c;
-    Unk02010294_t *t;
-    u8 *d;
+// Binds the palette to every palette-to-material entry of the model that is not bound yet. Returns 0 when the texture
+// has no palette for one of the names.
+u32 NNS_G3dBindMdlPltt(Unk020101e8 *mdl, Unk02010294 *tex) {
+    Unk020101e8_08 *materials;
+    Unk02010294_t *dict;
+    u8 *table;
     u32 i;
-    u32 r;
-    void *e;
-    Unk020103c0_e *g;
+    u32 result;
+    void *plttData;
+    Unk020103c0_e *data;
 
-    c = (Unk020101e8_08 *) ((u8 *) a + a->mUnk_08);
-    r = 1;
+    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
+    result = 1;
     i = 0;
-    t = (Unk02010294_t *) ((u8 *) c + c->mUnk_02);
-    for (; i < t->mUnk_01; i++) {
-        d = (u8 *) t + t->mUnk_06;
-        e = func_020138b4((u8 *) b + b->mUnk_34, (u32 *) (d + ((Unk02010310_d *) d)->mUnk_02 + i * 16));
-        if (e != 0) {
-            d = (u8 *) t + t->mUnk_06;
-            g = (Unk020103c0_e *) (d + 4 + *(u16 *) d * i);
-            if ((g->mUnk_03 & 1) == 0) {
-                func_020103c0(c, g, b, e);
+    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_02);
+    for (; i < dict->mUnk_01; i++) {
+        table = (u8 *) dict + dict->mUnk_06;
+        plttData =
+            func_020138b4((u8 *) tex + tex->mUnk_34, (u32 *) (table + ((Unk02010310_d *) table)->mUnk_02 + i * 16));
+        if (plttData != 0) {
+            table = (u8 *) dict + dict->mUnk_06;
+            data = (Unk020103c0_e *) (table + 4 + *(u16 *) table * i);
+            if ((data->mUnk_03 & 1) == 0) {
+                bindMdlPltt_Internal_(materials, data, tex, plttData);
             }
         } else {
-            r = 0;
+            result = 0;
         }
     }
-    return r;
+    return result;
 }
 
-u32 func_02010294(Unk020101e8 *a, Unk02010294 *b, const u32 *k) {
-    Unk02010294_t *t;
-    Unk020101e8_08 *c;
-    void *e;
-    Unk020103c0_e *g;
+// Binds the palette of the given name to the model if it is not bound yet. Returns 1 when it was bound.
+u32 NNS_G3dBindMdlPlttEx(Unk020101e8 *mdl, Unk02010294 *tex, const u32 *name) {
+    Unk02010294_t *dict;
+    Unk020101e8_08 *materials;
+    void *plttData;
+    Unk020103c0_e *data;
 
-    c = (Unk020101e8_08 *) ((u8 *) a + a->mUnk_08);
-    t = (Unk02010294_t *) ((u8 *) c + c->mUnk_02);
-    e = func_020138b4((u8 *) b + b->mUnk_34, k);
-    if (e != 0) {
-        g = func_020138b4(t, k);
-        if (g != 0 && (g->mUnk_03 & 1) == 0) {
-            func_020103c0(c, g, b, e);
+    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
+    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_02);
+    plttData = func_020138b4((u8 *) tex + tex->mUnk_34, name);
+    if (plttData != 0) {
+        data = func_020138b4(dict, name);
+        if (data != 0 && (data->mUnk_03 & 1) == 0) {
+            bindMdlPltt_Internal_(materials, data, tex, plttData);
             return 1;
         }
     }
     return 0;
 }
 
-void func_0201023c(Unk020101e8 *a) {
-    Unk020101e8_08 *c;
-    Unk02010294_t *t;
-    u8 *d;
-    Unk020103c0_e *g;
+// Releases every palette binding of the model.
+void NNS_G3dReleaseMdlPltt(Unk020101e8 *mdl) {
+    Unk020101e8_08 *materials;
+    Unk02010294_t *dict;
+    u8 *table;
+    Unk020103c0_e *data;
     u32 i;
 
-    c = (Unk020101e8_08 *) ((u8 *) a + a->mUnk_08);
-    t = (Unk02010294_t *) ((u8 *) c + c->mUnk_02);
-    for (i = 0; i < t->mUnk_01; i++) {
-        d = (u8 *) t + t->mUnk_06;
-        g = (Unk020103c0_e *) (d + 4 + *(u16 *) d * i);
-        if ((g->mUnk_03 & 1) != 0) {
-            g->mUnk_03 &= ~1;
+    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
+    dict = (Unk02010294_t *) ((u8 *) materials + materials->mUnk_02);
+    for (i = 0; i < dict->mUnk_01; i++) {
+        table = (u8 *) dict + dict->mUnk_06;
+        data = (Unk020103c0_e *) (table + 4 + *(u16 *) table * i);
+        if ((data->mUnk_03 & 1) != 0) {
+            data->mUnk_03 &= ~1;
         }
     }
 }
 
-u32 func_020101e8(Unk020101e8 *a, const u32 *k) {
-    Unk020101e8_08 *c;
-    Unk020103c0_e *g;
+// Releases the palette binding of the given name. Returns 1 when a binding was released.
+u32 NNS_G3dReleaseMdlPlttEx(Unk020101e8 *mdl, const u32 *name) {
+    Unk020101e8_08 *materials;
+    Unk020103c0_e *data;
 
-    c = (Unk020101e8_08 *) ((u8 *) a + a->mUnk_08);
-    g = func_020138b4((u8 *) c + c->mUnk_02, k);
-    if (g != 0 && (g->mUnk_03 & 1) != 0) {
-        g->mUnk_03 &= ~1;
+    materials = (Unk020101e8_08 *) ((u8 *) mdl + mdl->mUnk_08);
+    data = func_020138b4((u8 *) materials + materials->mUnk_02, name);
+    if (data != 0 && (data->mUnk_03 & 1) != 0) {
+        data->mUnk_03 &= ~1;
         return 1;
     }
     return 0;
 }
 
-u32 func_02010168(Unk02010168 *a, Unk02010294 *b) {
+// Binds the textures and palettes of tex to every model of the model set. Returns 0 when one name is missing.
+u32 NNS_G3dBindMdlSet(Unk02010168 *mdlSet, Unk02010294 *tex) {
     u32 i;
-    u32 r;
-    u8 *t;
-    u16 off;
-    u16 st;
-    Unk020101e8 *o;
+    u32 result;
+    u8 *table;
+    u16 offset;
+    u16 stride;
+    Unk020101e8 *model;
 
-    r = 1;
+    result = 1;
     i = 0;
-    if (i < a->mUnk_09) {
-        t = (u8 *) a + 8;
+    if (i < mdlSet->mUnk_09) {
+        table = (u8 *) mdlSet + 8;
         do {
-            off = a->mUnk_0e;
-            st = *(u16 *) (t + off);
-            o = (Unk020101e8 *) ((u8 *) a + *(u32 *) (t + off + st * i + 4));
-            r &= func_02010584(o, b);
-            r &= func_02010310(o, b);
+            offset = mdlSet->mUnk_0e;
+            stride = *(u16 *) (table + offset);
+            model = (Unk020101e8 *) ((u8 *) mdlSet + *(u32 *) (table + offset + stride * i + 4));
+            result &= NNS_G3dBindMdlTex(model, tex);
+            result &= NNS_G3dBindMdlPltt(model, tex);
             i++;
-        } while (i < a->mUnk_09);
+        } while (i < mdlSet->mUnk_09);
     }
-    return r;
+    return result;
 }
 
-void func_020100fc(Unk02010168 *a) {
+// Releases the texture and palette bindings of every model of the model set.
+void NNS_G3dReleaseMdlSet(Unk02010168 *mdlSet) {
     u32 i;
-    u8 *t;
-    u16 off;
-    u16 st;
-    Unk020101e8 *o;
+    u8 *table;
+    u16 offset;
+    u16 stride;
+    Unk020101e8 *model;
 
     i = 0;
-    if (i < a->mUnk_09) {
-        t = (u8 *) a + 8;
+    if (i < mdlSet->mUnk_09) {
+        table = (u8 *) mdlSet + 8;
         do {
-            off = a->mUnk_0e;
-            st = *(u16 *) (t + off);
-            o = (Unk020101e8 *) ((u8 *) a + *(u32 *) (t + off + st * i + 4));
-            func_020104a4(o);
-            func_0201023c(o);
+            offset = mdlSet->mUnk_0e;
+            stride = *(u16 *) (table + offset);
+            model = (Unk020101e8 *) ((u8 *) mdlSet + *(u32 *) (table + offset + stride * i + 4));
+            NNS_G3dReleaseMdlTex(model);
+            NNS_G3dReleaseMdlPltt(model);
             i++;
-        } while (i < a->mUnk_09);
+        } while (i < mdlSet->mUnk_09);
     }
 }
 
-void func_0201000c(Unk0201000c *p) {
-    u16 a;
-    u8 *b;
-    u8 *d;
-    u8 *e;
+// Fills the eight words of buffer with values that change from run to run: the tick counter, the vertical counter,
+// the console's stored user data, the clock, the microphone, the touch panel and the buttons.
+void OS_GetLowEntropyData(Unk0201000c *buffer) {
+    u16 vcount;
+    u8 *work;
+    u8 *userInfo;
+    u8 *macAddress;
 
-    b = (u8 *) 0x27ffc00;
-    d = b + 0x80;
-    e = (u8 *) ((u32) d + 0x74);
-    a = *(vu16 *) 0x4000006;
-    p->mUnk_00 = OS_GetTickLo() | (a << 16);
-    p->mUnk_04 = (*(u16 *) (e + 4) << 16) ^ (u32) gTickOverflowCount;
-    p->mUnk_08 = *(u32 *) (b + 0x3c) ^ ((gTickOverflowCount >> 32) ^ *(u32 *) e);
-    p->mUnk_08 = p->mUnk_08 ^ *(vu32 *) 0x4000600;
-    p->mUnk_0c = *(u32 *) (b + 0x1e8);
-    p->mUnk_10 = *(u32 *) (b + 0x1ec);
-    p->mUnk_14 = *(u32 *) (b + 0x390) ^ (*(u16 *) (b + 0x394) << 16);
-    p->mUnk_18 = (*(u16 *) (b + 0x3aa) << 16) | *(u16 *) (b + 0x3ac);
-    p->mUnk_1c = *(vu16 *) 0x4000130 | *(vu16 *) 0x27fffa8 | (*(u16 *) (b + 0x398) << 16);
+    work = (u8 *) 0x27ffc00;
+    userInfo = work + 0x80;
+    macAddress = (u8 *) ((u32) userInfo + 0x74);
+    vcount = *(vu16 *) 0x4000006;
+    buffer->mUnk_00 = OS_GetTickLo() | (vcount << 16);
+    buffer->mUnk_04 = (*(u16 *) (macAddress + 4) << 16) ^ (u32) gTickOverflowCount;
+    buffer->mUnk_08 = *(u32 *) (work + 0x3c) ^ ((gTickOverflowCount >> 32) ^ *(u32 *) macAddress);
+    buffer->mUnk_08 = buffer->mUnk_08 ^ *(vu32 *) 0x4000600;
+    buffer->mUnk_0c = *(u32 *) (work + 0x1e8);
+    buffer->mUnk_10 = *(u32 *) (work + 0x1ec);
+    buffer->mUnk_14 = *(u32 *) (work + 0x390) ^ (*(u16 *) (work + 0x394) << 16);
+    buffer->mUnk_18 = (*(u16 *) (work + 0x3aa) << 16) | *(u16 *) (work + 0x3ac);
+    buffer->mUnk_1c = *(vu16 *) 0x4000130 | *(vu16 *) 0x27fffa8 | (*(u16 *) (work + 0x398) << 16);
 }
 
-void InitVramLocks(void) {
+// Sets the locked-bank mask and the nine bank lock ids to 0.
+void OSi_InitVramExclusive(void) {
     s32 i;
 
     gVramBankLockedMask = 0;
@@ -309,62 +329,66 @@ void InitVramLocks(void) {
     }
 }
 
-u32 TryLockVramBanks(u32 m, u16 v) {
-    u32 s;
-    u32 t;
-    s32 k;
+// Under OS_DisableInterrupts: returns 0 and changes nothing when a bank of bank is already locked with an id other
+// than lockId. Otherwise locks every bank of bank & 0x1ff with lockId and returns 1.
+u32 OSi_TryLockVram(u32 bank, u16 lockId) {
+    u32 remainingBanks;
+    u32 enabled;
+    s32 bankIndex;
 
-    s = OS_DisableInterrupts();
-    t = m & gVramBankLockedMask;
+    enabled = OS_DisableInterrupts();
+    remainingBanks = bank & gVramBankLockedMask;
     while (1) {
-        k = 31 - CountLeadingZeros(t);
-        if (k < 0) {
+        bankIndex = 31 - OsCountZeroBits(remainingBanks);
+        if (bankIndex < 0) {
             break;
         }
-        t &= ~(1 << k);
-        if (v != gVramBankLockIds[k]) {
-            OS_RestoreInterrupts(s);
+        remainingBanks &= ~(1 << bankIndex);
+        if (lockId != gVramBankLockIds[bankIndex]) {
+            OS_RestoreInterrupts(enabled);
             return 0;
         }
     }
-    t = m & 0x1ff;
+    remainingBanks = bank & 0x1ff;
     while (1) {
-        k = 31 - CountLeadingZeros(t);
-        if (k < 0) {
+        bankIndex = 31 - OsCountZeroBits(remainingBanks);
+        if (bankIndex < 0) {
             break;
         }
-        t &= ~(1 << k);
-        gVramBankLockIds[k] = v;
-        gVramBankLockedMask |= 1 << k;
+        remainingBanks &= ~(1 << bankIndex);
+        gVramBankLockIds[bankIndex] = lockId;
+        gVramBankLockedMask |= 1 << bankIndex;
     }
-    OS_RestoreInterrupts(s);
+    OS_RestoreInterrupts(enabled);
     return 1;
 }
 
-void UnlockVramBanks(u32 m, u16 v) {
-    u32 t;
-    u32 s;
-    s32 k;
+// Under OS_DisableInterrupts: for each locked bank of bank & 0x1ff whose lock id equals lockId, clears the lock bit
+// and the id. Other banks are left alone.
+void OSi_UnlockVram(u32 bank, u16 lockId) {
+    u32 remainingBanks;
+    u32 enabled;
+    s32 bankIndex;
 
-    s = OS_DisableInterrupts();
-    t = m & gVramBankLockedMask & 0x1ff;
+    enabled = OS_DisableInterrupts();
+    remainingBanks = bank & gVramBankLockedMask & 0x1ff;
     while (1) {
-        k = 31 - CountLeadingZeros(t);
-        if (k < 0) {
+        bankIndex = 31 - OsCountZeroBits(remainingBanks);
+        if (bankIndex < 0) {
             break;
         }
-        t &= ~(1 << k);
-        if (v == gVramBankLockIds[k]) {
-            gVramBankLockIds[k] = 0;
-            gVramBankLockedMask &= ~(1 << k);
+        remainingBanks &= ~(1 << bankIndex);
+        if (lockId == gVramBankLockIds[bankIndex]) {
+            gVramBankLockIds[bankIndex] = 0;
+            gVramBankLockedMask &= ~(1 << bankIndex);
         }
     }
-    OS_RestoreInterrupts(s);
+    OS_RestoreInterrupts(enabled);
 }
 
 // clang-format off
-// Counts the leading zero bits of r0.
-asm u32 CountLeadingZeros(u32 a) {
+// Counts the leading zero bits of bitmap.
+asm u32 OsCountZeroBits(u32 bitmap) {
     clz r0, r0
     bx lr
 }

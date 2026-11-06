@@ -51,7 +51,7 @@ void OS_InitAlarm(void) {
         return;
     }
     gAlarmInitialized = 1;
-    func_0200f580(1);
+    OSi_SetTimerReserved(1);
     gAlarmList.mHead = 0;
     gAlarmList.mTail = 0;
     OS_DisableIrqMask(0x10);

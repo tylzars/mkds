@@ -479,7 +479,7 @@ u32 ReleaseVramBankGroup(u16 *p) {
     if (v & 0x100) {
         *(vu8 *) 0x4000249 = 0;
     }
-    UnlockVramBanks((u16) v, gVramLockId);
+    OSi_UnlockVram((u16) v, gVramLockId);
     return v;
 }
 

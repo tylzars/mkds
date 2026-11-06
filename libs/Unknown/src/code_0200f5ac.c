@@ -17,7 +17,7 @@ void OS_InitTick(void) {
         return;
     }
     gTickInitialized = 1;
-    func_0200f580(0);
+    OSi_SetTimerReserved(0);
     gTickOverflowCount = 0;
     *(vu16 *) 0x4000102 = 0;
     *(vu16 *) 0x4000100 = 0;

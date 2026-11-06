@@ -151,7 +151,7 @@ void OS_Init(void) {
     OS_InitException();
     MI_Init();
     OS_InitVAlarm();
-    InitVramLocks();
+    OSi_InitVramExclusive();
     OS_InitThread();
     OS_InitReset();
     CTRDG_Init();

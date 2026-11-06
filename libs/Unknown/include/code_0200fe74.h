@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-u32 CountLeadingZeros(u32 a);
+u32 OsCountZeroBits(u32 bitmap);
 
-// Filled by func_0201000c.
+// Filled by OS_GetLowEntropyData.
 typedef struct Unk0201000c {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -56,7 +56,8 @@ typedef struct Unk02010310_d {
 } Unk02010310_d;
 
 // Entry of a table: the offset of a byte list at 0x00, its length at 0x02 and a flag byte at 0x03 (bit 0 set by
-// func_020103c0 and func_020106c8, cleared by func_020101e8, func_0201023c and func_0201063c).
+// bindMdlPltt_Internal_ and bindMdlTex_Internal_, cleared by NNS_G3dReleaseMdlPlttEx, NNS_G3dReleaseMdlPltt and
+// releaseMdlTex_Internal_).
 typedef struct Unk020103c0_e {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02;
@@ -100,7 +101,7 @@ typedef struct Unk020106c8_14 {
     /* 28 */ s32 mUnk_28;
 } Unk020106c8_14;
 
-// Fourth argument of func_020106c8: an entry found by func_020138b4.
+// Fourth argument of bindMdlTex_Internal_: an entry found by func_020138b4.
 typedef struct Unk020106c8_0c {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
@@ -111,25 +112,25 @@ extern u32 gVramBankLockedMask;
 // Id that locked bank k; 0 when the bank is not locked.
 extern u16 gVramBankLockIds[9];
 
-// Under OS_DisableInterrupts: for each locked bank of mask m & 0x1ff whose stored id equals v, clears its lock bit and
-// its id. Other banks are left alone.
-void UnlockVramBanks(u32 m, u16 v);
-// Under OS_DisableInterrupts: returns 0 and changes nothing when a bank of mask m is already locked with an id other
-// than v. Otherwise marks every bank of m & 0x1ff locked with id v and returns 1.
-u32 TryLockVramBanks(u32 m, u16 v);
-// Sets gVramBankLockedMask and the nine halfwords of gVramBankLockIds to 0. Called once by the start-up function.
-void InitVramLocks(void);
-void func_0201000c(Unk0201000c *p);
-void func_020100fc(Unk02010168 *a);
-u32 func_02010168(Unk02010168 *a, Unk02010294 *b);
-u32 func_020101e8(Unk020101e8 *a, const u32 *k);
-void func_0201023c(Unk020101e8 *a);
-u32 func_02010294(Unk020101e8 *a, Unk02010294 *b, const u32 *k);
-u32 func_02010310(Unk020101e8 *a, Unk02010294 *b);
-void func_020103c0(Unk020101e8_08 *a, Unk020103c0_e *e, Unk02010294 *b, Unk020103c0_d *d);
-u32 func_02010458(Unk020101e8 *a, const u32 *k);
-void func_020104a4(Unk020101e8 *a);
-int func_0201050c(Unk020101e8 *a, Unk02010294 *b, const u32 *k);
-int func_02010584(Unk020101e8 *a, Unk02010294 *b);
-void func_0201063c(Unk020101e8_08 *a, Unk020103c0_e *b);
-void func_020106c8(Unk020101e8_08 *a, Unk020103c0_e *b, Unk02010294 *c, Unk020106c8_0c *d);
+// Under OS_DisableInterrupts: for each locked bank of bank & 0x1ff whose lock id equals lockId, clears the lock bit
+// and the id. Other banks are left alone.
+void OSi_UnlockVram(u32 bank, u16 lockId);
+// Under OS_DisableInterrupts: returns 0 and changes nothing when a bank of bank is already locked with an id other
+// than lockId. Otherwise locks every bank of bank & 0x1ff with lockId and returns 1.
+u32 OSi_TryLockVram(u32 bank, u16 lockId);
+// Sets the locked-bank mask and the nine bank lock ids to 0. Called once by the start-up function.
+void OSi_InitVramExclusive(void);
+void OS_GetLowEntropyData(Unk0201000c *buffer);
+void NNS_G3dReleaseMdlSet(Unk02010168 *mdlSet);
+u32 NNS_G3dBindMdlSet(Unk02010168 *mdlSet, Unk02010294 *tex);
+u32 NNS_G3dReleaseMdlPlttEx(Unk020101e8 *mdl, const u32 *name);
+void NNS_G3dReleaseMdlPltt(Unk020101e8 *mdl);
+u32 NNS_G3dBindMdlPlttEx(Unk020101e8 *mdl, Unk02010294 *tex, const u32 *name);
+u32 NNS_G3dBindMdlPltt(Unk020101e8 *mdl, Unk02010294 *tex);
+void bindMdlPltt_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data, Unk02010294 *tex, Unk020103c0_d *plttData);
+u32 NNS_G3dReleaseMdlTexEx(Unk020101e8 *mdl, const u32 *name);
+void NNS_G3dReleaseMdlTex(Unk020101e8 *mdl);
+int NNS_G3dBindMdlTexEx(Unk020101e8 *mdl, Unk02010294 *tex, const u32 *name);
+int NNS_G3dBindMdlTex(Unk020101e8 *mdl, Unk02010294 *tex);
+void releaseMdlTex_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data);
+void bindMdlTex_Internal_(Unk020101e8_08 *mat, Unk020103c0_e *data, Unk02010294 *tex, Unk020106c8_0c *texData);
