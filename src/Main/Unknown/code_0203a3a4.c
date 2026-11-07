@@ -494,8 +494,8 @@ u32 func_0203a440(u32 a) {
     return r;
 }
 
-u32 func_0203a42c(void) {
-    return gRaceProgress->mUnk_4d0;
+u32 IsCameraChainEnded(void) {
+    return gRaceProgress->mCameraChainEnded;
 }
 
 u32 func_0203a3cc(u32 a) {

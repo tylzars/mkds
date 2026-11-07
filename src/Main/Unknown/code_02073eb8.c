@@ -582,7 +582,7 @@ static inline void func_02075424_inline(Camera *p) {
         q = gCourseMap->mCameras + (u16) p->mCourseMapCamera->mNextIndex;
     }
     if (q == NULL) {
-        gRaceProgress->mUnk_4d0 = 1;
+        gRaceProgress->mCameraChainEnded = 1;
         return;
     }
     p->mCourseMapCameraFrames = 0;

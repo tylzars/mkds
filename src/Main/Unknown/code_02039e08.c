@@ -82,8 +82,8 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                         break;
                     case 3:
                     case 4:
-                        if (func_0203a42c() != 0 || (b > 0x5a && (func_0203a4a8(func_0203a4cc(), 0xc0f) != 0 ||
-                                                                  func_0203a3cc(func_0203a4cc()) != 0))) {
+                        if (IsCameraChainEnded() != 0 || (b > 0x5a && (func_0203a4a8(func_0203a4cc(), 0xc0f) != 0 ||
+                                                                       func_0203a3cc(func_0203a4cc()) != 0))) {
                             a->mUnk_04 = 2;
                             func_0203a3b8(0);
                         }

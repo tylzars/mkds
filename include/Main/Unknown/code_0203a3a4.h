@@ -7,7 +7,7 @@ typedef struct Unk0203a0dc Unk0203a0dc;
 unsigned int func_0203a3a4(void);
 void func_0203a3b8(unsigned int p0);
 u32 func_0203a3cc(u32 a);
-unsigned int func_0203a42c(void);
+unsigned int IsCameraChainEnded(void);
 u32 func_0203a440(u32 a);
 u32 func_0203a48c(u32 arg0);
 u16 func_0203a4a8(u32 a, u32 b);

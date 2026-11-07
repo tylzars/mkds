@@ -95,7 +95,7 @@ static inline s16 func_0203df74_b_inline(RaceProgressKart *b, s32 *v, Vec3 *a) {
         lo = r->mFirstEntry;
         hi = lo + r->mEntryCount;
         for (k = lo; k < hi; k++) {
-            if (func_0203fa60(b, v, a, i, k) != 0) {
+            if (TryGetKartCheckpointProgress(b, v, a, i, k) != 0) {
                 return k;
             }
         }
@@ -123,7 +123,7 @@ static inline void func_0203e550_inline(s32 a) {
     }
 }
 
-void func_0203e550(RaceProgressKart *a) {
+void CompleteRaceProgressKartLap(RaceProgressKart *a) {
     BOOL f;
     BOOL g;
     Unk021759c0_28 *s;
@@ -151,7 +151,7 @@ void func_0203e550(RaceProgressKart *a) {
     if ((a->mFlags & 1) != 0) {
         func_02106ab8();
     }
-    func_0203f334(a, a->mLap > GetLapCount());
+    StoreRaceProgressKartLapTime(a, a->mLap > GetLapCount());
     a->mHighestLap = a->mLap;
     if ((a->mFlags & 1) != 0) {
         func_020b1a34();
@@ -217,7 +217,7 @@ void func_0203e4c4(u32 a, u32 b) {
     }
 }
 
-void func_0203e370(RaceProgressKart *a, s32 b) {
+void EnterRaceProgressKartCheckpoint(RaceProgressKart *a, s32 b) {
     s16 c;
 
     c = gCourseMap->mCheckpoints[a->mCheckpoint].mNumber;
@@ -228,7 +228,7 @@ void func_0203e370(RaceProgressKart *a, s32 b) {
         }
     }
     if (b == 0 && a->mInOrderCheckpointNumber >= gCourseMap->mNumberedCheckpointCount - 1) {
-        func_0203e550(a);
+        CompleteRaceProgressKartLap(a);
     } else if (a->mCheckpoint == 0 && b == gCourseMap->mLastCheckpoint) {
         if (a->mLap > -100) {
             a->mLap = a->mLap - 1;
@@ -256,16 +256,16 @@ void UpdateRaceProgressKart(Vec3 *a, RaceProgressKart *b) {
     if (func_0207a5c4(b->mIndex) != 0) {
         return;
     }
-    if (func_0203fa60(b, &v, a, d, c) == 0) {
+    if (TryGetKartCheckpointProgress(b, &v, a, d, c) == 0) {
         if (v >= 0) {
-            p = func_0203f91c(b, &v, a, d, c, 5);
+            p = FindKartCheckpointForward(b, &v, a, d, c, 5);
             if (p == -1) {
-                p = func_0203f7c0(b, &v, a, d, c, 5);
+                p = FindKartCheckpointBackward(b, &v, a, d, c, 5);
             }
         } else {
-            p = func_0203f7c0(b, &v, a, d, c, 5);
+            p = FindKartCheckpointBackward(b, &v, a, d, c, 5);
             if (p == -1) {
-                p = func_0203f91c(b, &v, a, d, c, 5);
+                p = FindKartCheckpointForward(b, &v, a, d, c, 5);
             }
         }
         if (p == -1) {
@@ -284,9 +284,9 @@ void UpdateRaceProgressKart(Vec3 *a, RaceProgressKart *b) {
             k = gRaceProgress->mCheckpointLapProgress[gCourseMap->mNumberedCheckpointCount - 1];
         }
         if (w <= gRaceProgress->mCheckpointLapProgress[b->mInOrderCheckpointNumber + 1]) {
-            func_0203e370(b, p);
+            EnterRaceProgressKartCheckpoint(b, p);
         } else if (b->mCheckpoint == 0 && w > k) {
-            func_0203e370(b, p);
+            EnterRaceProgressKartCheckpoint(b, p);
         } else {
             v = b->mCheckpointProgress;
             w = func_0203df74_c_inline(r, b->mCheckpoint, v);
@@ -425,7 +425,7 @@ void UpdateRaceProgressKarts(void) {
                         EliminateKartsUntilWinnerDecided();
                         break;
                     case MODE_MISSION_RUN:
-                        func_0203eb38();
+                        FinishRemainingMissionRunKarts();
                         break;
                     case 5:
                         func_0203ecf0();
@@ -449,7 +449,7 @@ void UpdateRaceProgressKarts(void) {
     }
 }
 
-void func_0203d8fc(RankTimeGp *a) {
+void SetRankTimeFromRankTimeGp(RankTimeGp *a) {
     s32 i;
     RankTimeGpEntry *e;
 
@@ -478,7 +478,7 @@ void CreateRaceProgress(void *a) {
     gRaceProgress->mCheckpointLapProgress = HeapAlloc(a, (gCourseMap->mNumberedCheckpointCount + 1) << 2);
     gRaceProgress->mRankPointFile = FindMainRaceOrMainEffectFile(data_usa_021647b8);
     gRaceProgress->mRankTimeGpFile = FindMainRaceOrMainEffectFile(data_usa_021647c8);
-    func_0203d8fc(gRaceProgress->mRankTimeGpFile);
+    SetRankTimeFromRankTimeGp(gRaceProgress->mRankTimeGpFile);
     if (data_021759c0->mMode == MODE_MISSION_RUN) {
         func_0205e2cc(a);
     }

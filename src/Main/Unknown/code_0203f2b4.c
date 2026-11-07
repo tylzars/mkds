@@ -15,6 +15,6 @@ BOOL func_0203f2dc(u32 a) {
     return FALSE;
 }
 
-BOOL func_0203f2b4(u32 a) {
+BOOL IsRaceProgressKartRemoved(u32 a) {
     return gRaceProgress->mUnk_000[a].mStatus == 4;
 }

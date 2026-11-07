@@ -297,7 +297,7 @@ typedef struct RaceProgress {
     /* 4c8 */ RankTimeGp *mRankTimeGpFile;
     // Set once per race in every mode; read by HUD and net code.
     /* 4cc */ s32 mRaceDone;
-    /* 4d0 */ s32 mUnk_4d0;
+    /* 4d0 */ s32 mCameraChainEnded;
     // Entry i is the fraction of the lap at numbered checkpoint i, fixed point; compared with a kart's mLapProgress.
     /* 4d4 */ s32 *mCheckpointLapProgress;
     /* 4d8 */ u8 mUnk_4d8[0x4];
@@ -326,7 +326,7 @@ typedef struct RaceProgress {
     // goal; the step waits for 0x3c and then takes the entry out.
     /* 4fc */ u16 mFramesSinceFailure;
     /* 4fe */ u16 mUnk_4fe;
-    /* 500 */ RaceProgressScoreTerms mUnk_500;
+    /* 500 */ RaceProgressScoreTerms mScoreTerms;
 } RaceProgress;
 
 // Entry of the table behind gItemKinds: one record per object kind (14, 0xa8 bytes each), a heap copy of the static

@@ -598,14 +598,14 @@ u8 func_020f36d8(Unk020f36d8 *p) {
     if (t == 0) {
         return 0xff;
     }
-    return (t - gCourseMap->mUnk_b0) / 40;
+    return (t - gCourseMap->mItemRoute0FirstLink) / 40;
 }
 
 s32 func_020f36a0(u32 a, u32 *b) {
     if (a >= 0xff) {
         *b = 0;
     } else {
-        *b = gCourseMap->mUnk_b0 + a * 0x28;
+        *b = gCourseMap->mItemRoute0FirstLink + a * 0x28;
     }
     b[1] = 1;
     return 1;

@@ -81,7 +81,7 @@ void RemoveRaceProgressKart(u16 a) {
                 EliminateKartsUntilWinnerDecided();
                 break;
             case MODE_MISSION_RUN:
-                func_0203eb38();
+                FinishRemainingMissionRunKarts();
                 break;
             case 5:
                 func_0203ecf0();

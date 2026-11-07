@@ -133,7 +133,7 @@ s32 IsPastBattlePointLink(LinkCursor *p, Vec3 *a) {
 }
 
 void InitRacePointLinkCursor(Unk02080d34 *p, u16 kartIndex) {
-    p->mUnk_00.mLink = gCourseMap->mUnk_a4;
+    p->mUnk_00.mLink = gCourseMap->mRaceRoute0FirstLink;
     p->mUnk_00.mPreviousLink = p->mUnk_00.mLink->mUnk_0c;
     p->mUnk_00.mDirection = data_021557ec;
     VEC_Subtract(p->mUnk_00.mLink->mUnk_18, p->mUnk_00.mPreviousLink->mUnk_18, &p->mUnk_00.mDirection);
@@ -235,7 +235,7 @@ void ResetBattlePointLinkCursorNear(LinkCursor *p, Vec3 *a, Vec3 *b, u16 c) {
     s32 k;
     s32 m;
     s32 d;
-    Unk02175620_bc *v1 = gCourseMap->mUnk_bc;
+    Unk02175620_bc *v1 = gCourseMap->mFirstBattlePointLink;
     Unk02175620_bc *v2[3] = {0, 0, 0};
     s32 v3[3];
     Vec3 v;

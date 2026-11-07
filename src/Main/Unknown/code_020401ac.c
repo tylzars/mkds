@@ -117,7 +117,7 @@ s16 ComputeRaceProgressKartScore(s32 a) {
     EntryKartCounters *t;
     Unk021759c0 *g;
     RaceProgress *d = gRaceProgress;
-    RaceProgressScoreTerms *o = &d->mUnk_500;
+    RaceProgressScoreTerms *o = &d->mScoreTerms;
     s32 s;
     u8 *h;
 
@@ -338,7 +338,7 @@ void InitRaceProgress(void) {
     if (data_021759c0->mMode == MODE_BATTLE) {
         ShuffleCourseMapRespawnSlots(&gRaceProgress->mRandom);
     }
-    gRaceProgress->mUnk_4d0 = 0;
+    gRaceProgress->mCameraChainEnded = 0;
     gRaceProgress->mLapProgressScale = FX_Inv((gCourseMap->mLapProgressBaseMax + 1) << 12);
     gRaceProgress->mRaceProgressScale = FX_Inv(GetLapCount() << 12);
     for (i = 0; i < gCourseMap->mNumberedCheckpointCount + 1; i++) {

@@ -111,8 +111,8 @@ void SetCourseMapCheckpointTotals(void) {
         a = ComputeCourseMapRouteCheckpointSum(0);
         b = a / 15000;
     }
-    gCourseMap->mUnk_104 = a;
-    gCourseMap->mUnk_108 = b;
+    gCourseMap->mCheckpointSum = a;
+    gCourseMap->mCheckpointSumQuotient = b;
 }
 
 void BuildCourseMapEntryGroupTable(void *a) {

@@ -453,7 +453,7 @@ void func_0208552c(void) {
     BOOL f;
     m = 1;
     for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
-        w = gCourseMap->mUnk_108;
+        w = gCourseMap->mCheckpointSumQuotient;
         x = GetKartRaceProgress(i);
         w = ((s64) x * w + 0x800) >> 12;
         v = GetKartRank(i);
@@ -572,7 +572,7 @@ u32 func_020853dc(void) {
 s32 GetKartRaceProgressScaled(u32 a) {
     s32 m;
     s32 v;
-    m = gCourseMap->mUnk_108;
+    m = gCourseMap->mCheckpointSumQuotient;
     v = GetKartRaceProgress(a);
     return ((s64) v * m + 0x800) >> 12;
 }

@@ -13,7 +13,7 @@
 #include "Main/Unknown/code_020a12b8.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_0203fed4(void) {
+void UpdateRaceClock(void) {
     RaceProgress *p;
     s32 t;
     RaceProgress *q;
@@ -61,7 +61,7 @@ void func_0203fed4(void) {
                                 EliminateKartsUntilWinnerDecided();
                                 break;
                             case MODE_MISSION_RUN:
-                                func_0203eb38();
+                                FinishRemainingMissionRunKarts();
                                 break;
                             case 5:
                                 func_0203ecf0();
@@ -114,7 +114,7 @@ void func_0203fed4(void) {
     ComputeRaceTime((u8 *) c + 2, (u8 *) c + 3, c, t, p->mUnk_000[0].mElapsedFrames);
 }
 
-BOOL func_0203fde0(const Vec3 *a, const CourseMapCheckpoint *b, const CourseMapCheckpoint *c) {
+BOOL IsPointBetweenCheckpointLines(const Vec3 *a, const CourseMapCheckpoint *b, const CourseMapCheckpoint *c) {
     volatile UnkPair020b502c p;
     s32 d;
 
@@ -134,7 +134,7 @@ BOOL func_0203fde0(const Vec3 *a, const CourseMapCheckpoint *b, const CourseMapC
     return FALSE;
 }
 
-s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
+s32 ComputeProgressBetweenCheckpoints(const Vec3 *a, u16 b, u16 c) {
     CourseMapCheckpoint *q;
     CourseMapCheckpoint *r;
     UnkPair020b502c l[3];
@@ -143,7 +143,7 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
 
     q = &gCourseMap->mCheckpoints[b];
     r = &gCourseMap->mCheckpoints[c];
-    if (func_0203fde0(a, q, r) == FALSE) {
+    if (IsPointBetweenCheckpointLines(a, q, r) == FALSE) {
         return -0x1000;
     }
     l[0].mUnk_00 = a->x - q->mPointBX;
@@ -161,7 +161,7 @@ s32 func_0203fcac(const Vec3 *a, u16 b, u16 c) {
     return FX_Div(x, y);
 }
 
-BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e) {
+BOOL TryGetKartCheckpointProgress(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     BOOL r;
     u32 m;
     s32 w;
@@ -184,7 +184,7 @@ BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e) {
         for (j = 0; j < 3; j++) {
             k = (p->mNextRoutes)[j];
             if (k != -1) {
-                *b = func_0203fcac(c, e, gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry);
+                *b = ComputeProgressBetweenCheckpoints(c, e, gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry);
                 if (*b >= -2 && *b <= 0x1002) {
                     if ((gCourseMap->mCheckpoints[e].mUnk_23 & 1) != 0) {
                         if (data_021759c0->mMode == 5) {
@@ -199,7 +199,7 @@ BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e) {
             }
         }
     } else {
-        *b = func_0203fcac(c, e, e + 1);
+        *b = ComputeProgressBetweenCheckpoints(c, e, e + 1);
         if (*b >= -2 && *b <= 0x1002) {
             if ((gCourseMap->mCheckpoints[e].mUnk_23 & 1) != 0) {
                 *b = 0x1000 - ((u32) (a->mUnk_3c << 28) >> 28) * 0x190;
@@ -217,7 +217,7 @@ BOOL func_0203fa60(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e) {
     return r;
 }
 
-s16 func_0203f91c(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
+s16 FindKartCheckpointForward(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s16 t;
     s8 k;
     s32 j;
@@ -225,7 +225,7 @@ s16 func_0203f91c(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     CourseMapRoute *p;
 
     t = gCourseMap->mCheckpoints[e].mUnk_1c;
-    if (func_0203fa60(a, b, c, d, e) != 0) {
+    if (TryGetKartCheckpointProgress(a, b, c, d, e) != 0) {
         return e;
     }
     if (f == 0) {
@@ -237,7 +237,7 @@ s16 func_0203f91c(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         for (j = 0; j < 3; j++) {
             k = (p->mNextRoutes)[j];
             if (k != -1) {
-                r = func_0203f91c(a, b, c, k, gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry, f - 1);
+                r = FindKartCheckpointForward(a, b, c, k, gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry, f - 1);
                 if (r != -1) {
                     return r;
                 }
@@ -245,10 +245,10 @@ s16 func_0203f91c(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         }
         return r;
     }
-    return func_0203f91c(a, b, c, d, e + 1, f - 1);
+    return FindKartCheckpointForward(a, b, c, d, e + 1, f - 1);
 }
 
-s16 func_0203f7c0(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
+s16 FindKartCheckpointBackward(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     s16 t;
     s8 k;
     s32 j;
@@ -256,7 +256,7 @@ s16 func_0203f7c0(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
     CourseMapRoute *p;
 
     t = gCourseMap->mCheckpoints[e].mUnk_1e;
-    if (func_0203fa60(a, b, c, d, e) != 0) {
+    if (TryGetKartCheckpointProgress(a, b, c, d, e) != 0) {
         return e;
     }
     if (f == 0) {
@@ -268,10 +268,10 @@ s16 func_0203f7c0(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         for (j = 0; j < 3; j++) {
             k = p->mPreviousRoutes[j];
             if (k != -1) {
-                r = func_0203f7c0(a, b, c, k,
-                                  gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry +
-                                      gCourseMap->mCheckpointRoutes[(u16) k].mEntryCount - 1,
-                                  f - 1);
+                r = FindKartCheckpointBackward(a, b, c, k,
+                                               gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry +
+                                                   gCourseMap->mCheckpointRoutes[(u16) k].mEntryCount - 1,
+                                               f - 1);
                 if (r != -1) {
                     return r;
                 }
@@ -279,7 +279,7 @@ s16 func_0203f7c0(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u16 e, s32 f) {
         }
         return r;
     }
-    return func_0203f7c0(a, b, c, d, e - 1, f - 1);
+    return FindKartCheckpointBackward(a, b, c, d, e - 1, f - 1);
 }
 
 void ComputeRaceTime(u8 *a, u8 *b, u16 *c, s32 d, u32 e) {
@@ -342,7 +342,7 @@ void ComputeRaceTime(u8 *a, u8 *b, u16 *c, s32 d, u32 e) {
     *c = f;
 }
 
-void func_0203f544(const Unk0217aa1c_144_00 *a, const Unk0217aa1c_144_00 *b, Unk0217aa1c_144_00 *c) {
+void AddLapTimes(const Unk0217aa1c_144_00 *a, const Unk0217aa1c_144_00 *b, Unk0217aa1c_144_00 *c) {
     s16 y;
     s16 x;
     s16 z;
@@ -368,7 +368,7 @@ void func_0203f544(const Unk0217aa1c_144_00 *a, const Unk0217aa1c_144_00 *b, Unk
     c->mUnk_00 = x;
 }
 
-void func_0203f334(RaceProgressKart *a, s32 b) {
+void StoreRaceProgressKartLapTime(RaceProgressKart *a, s32 b) {
     Vec3 u;
     Vec3 v;
     Vec3 p;
@@ -399,7 +399,7 @@ void func_0203f334(RaceProgressKart *a, s32 b) {
     }
     k = t;
     do {
-        n = func_0203fcac(&p, 0, k);
+        n = ComputeProgressBetweenCheckpoints(&p, 0, k);
         VEC_Add(&p, &w, &p);
         i++;
     } while (n > 0 && i < 0x11);
@@ -411,7 +411,7 @@ void func_0203f334(RaceProgressKart *a, s32 b) {
     q->mUnk_03 = 0;
     e[5].mUnk_00 = 0;
     for (j = 0; j < a->mLap - 1; j++) {
-        func_0203f544(&e[j], q, q);
+        AddLapTimes(&e[j], q, q);
     }
     if (b != 0) {
         return;

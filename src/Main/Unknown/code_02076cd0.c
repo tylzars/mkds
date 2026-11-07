@@ -211,7 +211,7 @@ void CreateChainCameraPair(void) {
     gFirstChainCamera->mKind = 2;
     gSecondChainCamera->mKind = 2;
     if (gFirstChainCamera->mCourseMapCamera == NULL) {
-        gRaceProgress->mUnk_4d0 = 1;
+        gRaceProgress->mCameraChainEnded = 1;
         return;
     }
     if ((s16) gFirstChainCamera->mCourseMapCamera->mEntryGroupIndex != -1) {
@@ -230,7 +230,7 @@ void CreateFirstChainCamera(void) {
     gFirstChainCamera->mKind = 2;
     gFirstChainCamera->mFrustumShift = 0;
     if (gFirstChainCamera->mCourseMapCamera == NULL) {
-        gRaceProgress->mUnk_4d0 = 1;
+        gRaceProgress->mCameraChainEnded = 1;
         return;
     }
     if ((s16) gFirstChainCamera->mCourseMapCamera->mEntryGroupIndex != -1) {

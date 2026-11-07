@@ -334,19 +334,25 @@ typedef struct CourseMap {
     // values), built from mRacePoints and mRaceRoutes; read by FindCourseMapKind4ShapeRacePointLink,
     // GetCourseMapRespawnRacePointLink and the kart follower set-up (InitRacePointLinkCursor).
     /* a0 */ Unk02175620_a0 *mRacePointLinks;
-    /* a4 */ Unk02175620_bc *mUnk_a4;
-    /* a8 */ s32 mUnk_a8;
+    // Link of the first point of mRaceRoutes[0].
+    /* a4 */ Unk02175620_bc *mRaceRoute0FirstLink;
+    // Link of the last point of the route before mRaceRoutes[0].
+    /* a8 */ s32 mRaceRoute0PreviousLastLink;
     // One 0x28-byte link per item point (up to three next and three previous links, a pointer to the point, two
     // values), built from mItemPoints and mItemRoutes; followed by the kart item code and the item objects.
     /* ac */ struct Unk020f371c *mItemPointLinks;
-    /* b0 */ s32 mUnk_b0;
-    /* b4 */ s32 mUnk_b4;
+    // Link of the first point of mItemRoutes[0]; the link indices of the item objects count from it.
+    /* b0 */ s32 mItemRoute0FirstLink;
+    // Link of the last point of the route before mItemRoutes[0].
+    /* b4 */ s32 mItemRoute0PreviousLastLink;
     // One 0x30-byte link per battle point (up to eight neighbour links, a pointer to the point, two values, a link
     // count and a bit mask), built from mBattlePoints and mBattleRoutes; read by
     // FindCourseMapKind4ShapeBattlePointLink, GetCourseMapRespawnBattlePointLink and GetKeyedPlacementBattlePointLink.
     /* b8 */ Unk02175620_bc *mBattlePointLinks;
-    /* bc */ Unk02175620_bc *mUnk_bc;
-    /* c0 */ Unk02175620_bc *mUnk_c0;
+    // Address of the first element of mBattlePointLinks.
+    /* bc */ Unk02175620_bc *mFirstBattlePointLink;
+    // Address one past the last element of mBattlePointLinks.
+    /* c0 */ Unk02175620_bc *mBattlePointLinksEnd;
     // The first entry whose mChainStart is 1.
     /* c4 */ Unk02175620_7c *mFirstChainStartEntry;
     /* c8 */ Unk02175620_7c *mSecondChainStartEntry;
@@ -361,8 +367,10 @@ typedef struct CourseMap {
     // Mode 2 only: the slot GetCourseMapRespawnSlot hands out next; counts up modulo mRespawnCount.
     /* 100 */ u16 mNextRespawnSlot;
     /* 102 */ u16 mKind4ShapeCount;
-    /* 104 */ u32 mUnk_104;
-    /* 108 */ s32 mUnk_108;
+    // Sum of the checkpoint values along the route chain from route 0 (0 when the course has several start placements).
+    /* 104 */ u32 mCheckpointSum;
+    // mCheckpointSum / 15000, a 1.12 fixed-point factor for the kart race progress.
+    /* 108 */ s32 mCheckpointSumQuotient;
     // Format version from the file header halfword at 4; 0x1f adds the mKeyedPlacements section, 0x21 makes the
     // mItemPoints entries 0x14 bytes, 0x24 adds the mUnk_3c section.
     /* 10c */ u16 mVersion;

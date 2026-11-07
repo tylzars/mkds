@@ -160,7 +160,7 @@ void func_0203d078(void) {
                 EliminateKartsUntilWinnerDecided();
                 break;
             case MODE_MISSION_RUN:
-                func_0203eb38();
+                FinishRemainingMissionRunKarts();
                 break;
             case 5:
                 func_0203ecf0();
@@ -295,7 +295,7 @@ void FinishRaceProgressKartWithEndKind4(u16 a) {
 
 void UpdateRaceProgress(void) {
     u32 i;
-    func_0203fed4();
+    UpdateRaceClock();
     if (data_021759c0->mMode == 5) {
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
@@ -309,7 +309,7 @@ void UpdateRaceProgress(void) {
                             EliminateKartsUntilWinnerDecided();
                             break;
                         case MODE_MISSION_RUN:
-                            func_0203eb38();
+                            FinishRemainingMissionRunKarts();
                             break;
                         case 5:
                             func_0203ecf0();

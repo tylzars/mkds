@@ -62,7 +62,7 @@ s32 IsRaceEndConditionMet(void) {
             if (q->mUnk_000[0].mFinishedCount < (s32) func_0203f320() - (q->mUnk_000[0].mRemovedCount + 1)) {
                 for (i = 0; i < func_0203f320(); i++) {
                     if (func_0203f2dc(i) != FALSE && IsKartEnded(i) == 0) {
-                        if (func_0203f2b4(i) == FALSE) {
+                        if (IsRaceProgressKartRemoved(i) == FALSE) {
                             r = FALSE;
                             break;
                         }
@@ -228,7 +228,7 @@ void func_0203ecf0(void) {
     gRaceProgress->mUnk_000[0].mFinishedCount = data_021759c0->mKartCount;
 }
 
-void func_0203eb38(void) {
+void FinishRemainingMissionRunKarts(void) {
     u16 i;
     RaceProgressKart *p;
     EntryKartCounters *q;
@@ -392,7 +392,7 @@ void FinishRaceProgressKartWithEndKind(s32 a, s32 b) {
             EliminateKartsUntilWinnerDecided();
             return;
         case MODE_MISSION_RUN:
-            func_0203eb38();
+            FinishRemainingMissionRunKarts();
             return;
         case 5:
             func_0203ecf0();
