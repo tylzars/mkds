@@ -71,7 +71,7 @@ void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e) {
     u16 q;
     Vec3 v;
 
-    if (func_02093ff0() < b) {
+    if (GetUnparkedTeresaCount() < b) {
         k = i = 0;
         for (; i < c; i++) {
             if (d > 0) {
@@ -87,7 +87,7 @@ void func_020952dc(Unk02094e8c *a, s32 b, s32 c, s32 d, s32 e) {
             v.x = x + func_0209518c(r, func_0209519c(q));
             v.y = y + NextRandomBelow(GetRaceLocalRandom(), k);
             v.z = z + func_0209518c(r, func_0209516c(q));
-            func_02094000(&v);
+            StartTeresa(&v);
         }
         a->mUnk_a8 = func_020952dc_inline((u16) e);
     }
@@ -178,7 +178,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
                     v.x = x + func_0209518c(r, func_0209519c(q));
                     v.y = y + NextRandomBelow(GetRaceLocalRandom(), k);
                     v.z = z + func_0209518c(r, func_0209516c(q));
-                    func_02094000(&v);
+                    StartTeresa(&v);
                 }
             }
             o->mUnk_ac = 1;
@@ -209,12 +209,12 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
                     func_020952dc(o, 6, 1, 0xa, 0x14);
                 }
             } else {
-                func_020946b8();
+                ClearTeresaTimers();
                 o->mUnk_ac = 1;
             }
             break;
     }
-    if (func_02093ff0() > 0) {
+    if (GetUnparkedTeresaCount() > 0) {
         func_020d26e0(GetKart((u16) data_021759c0->mEntryIndex), 0x11e);
     }
 }

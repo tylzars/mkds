@@ -23,7 +23,7 @@ void func_0203aaa8(void);
 void func_0203aacc(void);
 // Slot mInit of the Race scene; not the whole preparation (RunRaceScene and RunScene's prologue run
 // before it). Calls in order: func_02059dc8 (creates the heap that func_02059d80 destroys),
-// func_020399a8 (kinds 3 and 5) or func_02039a1c + func_02053e74, func_02062860, func_02056158,
+// StopWvrAndWait (kinds 3 and 5) or ClearLcdcBankAndStartWvrAndWait + func_02053e74, func_02062860, func_02056158,
 // func_0203ad58 (screen layout), func_020431e4, InitRace, InitChoisesS, func_020b03bc,
 // func_020af99c (not kind 3), func_02043a9c, and the mode 5 net state / mode 2 func_02046fb4
 // extras. Does not allocate gRace: InitRace does.

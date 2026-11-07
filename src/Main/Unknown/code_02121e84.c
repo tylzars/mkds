@@ -191,18 +191,18 @@ void ReceiveWiFiSessionMessage(u32 a, void *b, u32 c) {
     }
 }
 
-void func_02121f1c(s32 a) {
+void SetWiFiSessionOwnCharacterIndex(s32 a) {
     gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mCharacterIndex = a;
 }
 
-void func_02121ee4(void) {
+void SetWiFiSessionOwnCharacterIndexNone(void) {
     gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mCharacterIndex = -1;
 }
 
-void func_02121eb4(s32 a) {
+void SetWiFiSessionOwnKartIndex(s32 a) {
     gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mKartIndex = a;
 }
 
-void func_02121e84(s32 a) {
+void SetWiFiSessionOwnPickedCourseId(s32 a) {
     gWiFiSession->mUnk_1e10[func_ov000_0219bb50()].mPickedCourseId = a;
 }

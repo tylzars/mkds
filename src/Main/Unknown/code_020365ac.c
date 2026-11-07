@@ -51,8 +51,8 @@ void func_020366bc(void) {
     OS_InitAlarm();
     func_02148904();
     GX_Init();
-    func_02039c7c();
-    func_02039bd4();
+    InitWvrState();
+    ClearLcdcBanksByState();
     GX_DispOff();
     reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & ~0x10000;
     OS_SetIrqFunction(1, func_020367c4);
@@ -64,7 +64,7 @@ void func_020366bc(void) {
     FS_Init(-1);
     func_02039774();
     data_usa_02174e54 = DWC_Init(data_usa_02174e80);
-    func_02039a1c();
+    ClearLcdcBankAndStartWvrAndWait();
 }
 
 void func_02036678(void) {

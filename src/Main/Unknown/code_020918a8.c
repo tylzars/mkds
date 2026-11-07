@@ -207,9 +207,9 @@ void UpdateKanoke64(void *a, Unk020919e8 *p) {
             v4.y = NextRandomBelow(func_020d22d0(), 0x400) + 0x2200;
             v4.z = func_02091f44(r, func_02091f24(k));
             if (i == 0 && p->mUnk_a8 == 0) {
-                func_0209219c(0x50, &v3, &v4, 0x28, 1, i == 0 ? 3 : 0);
+                StartBasabasa(0x50, &v3, &v4, 0x28, 1, i == 0 ? 3 : 0);
             } else {
-                func_0209219c(0x50, &v3, &v4, 0x28, 0, i == 0 ? 3 : 0);
+                StartBasabasa(0x50, &v3, &v4, 0x28, 0, i == 0 ? 3 : 0);
             }
         }
         p->mUnk_a8 += 1;

@@ -136,10 +136,10 @@ typedef struct CourseMapRespawn {
 typedef Unk0217b498_0c Unk02040d24;
 
 // 0x24-byte entries of CourseMap.mCheckpoints: a gate across the course: two x/z end points (0x00..0x0c), a 2-D
-// direction at 0x10, a word at 0x18 that is summed along the routes (func_02043078), neighbour links at 0x1c and 0x1e,
-// mNumber, mRespawnSlot, a flag byte at 0x23. The race progress code tests the kart's x/z against these lines, keeps
-// the entry the kart is in and counts a lap when it reaches entry 0 after all numbered ones. Role word Checkpoint is
-// not spelled in the tree.
+// direction at 0x10, a word at 0x18 that is summed along the routes (ComputeCourseMapCheckpointSumFromRoute), neighbour
+// links at 0x1c and 0x1e, mNumber, mRespawnSlot, a flag byte at 0x23. The race progress code tests the kart's x/z
+// against these lines, keeps the entry the kart is in and counts a lap when it reaches entry 0 after all numbered ones.
+// Role word Checkpoint is not spelled in the tree.
 typedef struct CourseMapCheckpoint {
     // X of end point A of the checkpoint line (the two ends are A and B in the order of the file words; the position
     // tests compare a kart with the lines through consecutive A ends and consecutive B ends).
@@ -318,7 +318,8 @@ typedef struct CourseMap {
     /* 90 */ u16 mBattleRouteCount;
     /* 92 */ u8 mUnk_92[2];
     // One 8-byte record per element of mEntryGroups: the group record and the address of its first 0x14-byte entry in
-    // mGroupEntries; built by func_02042fd8, read through GetCourseMapEntryGroupTableRow.
+    // mGroupEntries; built by BuildCourseMapEntryGroupTableAndCheckpointSum, read through
+    // GetCourseMapEntryGroupTableRow.
     /* 94 */ Unk02175620_94 *mEntryGroupTable;
     /* 98 */ u16 mNumberedCheckpointCount;
     // Last entry of the run that comes just before entry 0: first entry + count - 1 of the run named by the first back

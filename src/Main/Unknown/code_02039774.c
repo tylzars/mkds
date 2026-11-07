@@ -10,12 +10,12 @@ static inline u32 func_020399a8_inline(void) {
     return data_02175614.mUnk_00 == 2;
 }
 
-void func_02039c7c(void) {
+void InitWvrState(void) {
     data_02175614.mUnk_00 = 1;
     data_02175614.mUnk_04 = NULL;
 }
 
-void func_02039bd4(void) {
+void ClearLcdcBanksByState(void) {
     switch (data_02175614.mUnk_00) {
         case 0:
             GX_SetBankForLCDC(0x1f7);
@@ -33,7 +33,7 @@ void func_02039bd4(void) {
     GX_DisableBankForLCDC();
 }
 
-void func_02039b94(u32 a) {
+void SetBankForARM7ByState(u32 a) {
     switch (data_02175614.mUnk_00) {
         case 0:
         case 2:
@@ -69,7 +69,8 @@ void DisableAllBanks(void) {
     }
 }
 
-void func_02039abc(u32 a, s32 b) {
+// Stores the state; for states 0 and 1 calls the stored callback with 0 or 1.
+void WvrCallback(u32 a, s32 b) {
     if (b != 0) {
         OS_Terminate();
     }
@@ -87,13 +88,13 @@ void func_02039abc(u32 a, s32 b) {
     }
 }
 
-void func_02039a1c(void) {
+void ClearLcdcBankAndStartWvrAndWait(void) {
     if (data_02175614.mUnk_00 != 0 && data_02175614.mUnk_00 != 3) {
         data_02175614.mUnk_00 = 2;
         GX_SetBankForLCDC(8);
         MemFillWordsByBlock_inline((void *) 0x6860000, 0x20000);
         GX_DisableBankForLCDC();
-        if (WVR_StartUpAsync(8, func_02039abc, 0) != 1) {
+        if (WVR_StartUpAsync(8, WvrCallback, 0) != 1) {
             OS_Terminate();
         }
     }
@@ -101,10 +102,10 @@ void func_02039a1c(void) {
     }
 }
 
-void func_020399a8(void) {
+void StopWvrAndWait(void) {
     if (data_02175614.mUnk_00 != 1 && data_02175614.mUnk_00 != 3) {
         data_02175614.mUnk_00 = 2;
-        if (WVR_TerminateAsync(func_02039abc, 1) != 1) {
+        if (WVR_TerminateAsync(WvrCallback, 1) != 1) {
             OS_Terminate();
         }
     }

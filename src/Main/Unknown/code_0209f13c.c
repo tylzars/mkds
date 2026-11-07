@@ -15,7 +15,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "code_02146cbc.h"
 
-void func_0209f514(Unk0209f514 *a) {
+void InitChandelierObjects(Unk0209f514 *a) {
     s32 i;
     Unk0209f1c8 *o;
     Unk020f41c4_B *r;
@@ -104,12 +104,12 @@ void UpdateChandelier(void *a, Unk0209f1c8 *b) {
     }
 }
 
-void *func_0209f318(void) {
+void *CreateChandelierDrawList(void) {
     return func_0209bf1c(CreateChandelier, DrawChandelier, NULL);
 }
 
-void *func_0209f2f8(void) {
-    return func_0209bf48(func_0209f514, UpdateChandelier, NULL);
+void *CreateChandelierUpdateList(void) {
+    return func_0209bf48(InitChandelierObjects, UpdateChandelier, NULL);
 }
 
 void CreateRainStar(void *a) {
@@ -150,10 +150,10 @@ void UpdateRainStar(void *a, Unk0209f1c8 *b) {
     b->mUnk_00.mAngle += 0x111;
 }
 
-void *func_0209f158(void) {
+void *CreateRainStarDrawList(void) {
     return func_0209bf1c(CreateRainStar, DrawRainStar, NULL);
 }
 
-void *func_0209f13c(void) {
+void *CreateRainStarUpdateList(void) {
     return func_0209bf48(NULL, UpdateRainStar, NULL);
 }

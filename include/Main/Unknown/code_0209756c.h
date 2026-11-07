@@ -30,11 +30,11 @@ typedef struct Flipper {
     /* ed4 */ s32 mUnk_ed4[1];
 } Flipper;
 
-void *func_0209756c(void);
-void *func_0209758c(void);
-void func_020975ac(void);
+void *CreateFlipperUpdateList(void);
+void *CreateFlipperDrawList(void);
+void CreateFlipperKindData(void);
 void UpdateFlipper(void *a, Flipper *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_020979c8(MapObjectList *a);
+void InitFlipperObjects(MapObjectList *a);
 void DrawFlipper(void *a, Flipper *p);
 void CreateFlipper(void *a);
 u32 func_02097ed0(Flipper *p, Vec3 *a, s32 b, Vec3 *c);

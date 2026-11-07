@@ -78,7 +78,7 @@ u32 func_0203c0bc(void) {
 
 void InitTitleScene(void) {
     GetHeap(func_020364e8());
-    func_02039a1c();
+    ClearLcdcBankAndStartWvrAndWait();
     CreateTitleScene();
     func_02043c14();
 }

@@ -136,9 +136,9 @@ void InitRaceScene(void) {
     p = GetHeap(func_020364e8());
     func_02059dc8();
     if (data_021759c0->mUnk_00c == 3 || data_021759c0->mUnk_00c == 5) {
-        func_020399a8();
+        StopWvrAndWait();
     } else {
-        func_02039a1c();
+        ClearLcdcBankAndStartWvrAndWait();
         func_02053e74();
     }
     func_02062860();

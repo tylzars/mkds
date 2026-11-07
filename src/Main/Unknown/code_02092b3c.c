@@ -158,9 +158,9 @@ void func_02092b5c(void *a, Unk020919e8 *p) {
             v4.y = NextRandomBelow(func_020d22d0(), 0x400) - 0xa00;
             v4.z = func_020930a0(r, func_02093080(k));
             if (i == 0 && p->mUnk_a8 == 0) {
-                func_0209219c(0x8c, &v3, &v4, 0xf, 1, i == 0 ? 2 : 0);
+                StartBasabasa(0x8c, &v3, &v4, 0xf, 1, i == 0 ? 2 : 0);
             } else {
-                func_0209219c(0x8c, &v3, &v4, 0xf, 0, i == 0 ? 2 : 0);
+                StartBasabasa(0x8c, &v3, &v4, 0xf, 0, i == 0 ? 2 : 0);
             }
         }
         p->mUnk_a8 += 1;

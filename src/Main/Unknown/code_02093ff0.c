@@ -27,7 +27,7 @@ u32 InitTeresa(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     ParkMapObject((void *) value0);
-    value0 = (u32) &data_0217b0d8;
+    value0 = (u32) &gUnparkedTeresaCount;
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
     return value0;
@@ -98,7 +98,8 @@ static inline void func_02094768_inline_2(s32 *p, s32 *q) {
     }
 }
 
-void func_02094c24(Unk020946b8 *a) {
+// Gives each Teresa two values from its place in the list: bit 0 and bit 1 of its index.
+void InitTeresaObjects(Unk020946b8 *a) {
     s32 i;
     Teresa *o;
 
@@ -155,7 +156,7 @@ void UpdateTeresa(void *a, Teresa *o) {
                 } else {
                     o->mUnk_ac = 0;
                     ParkMapObject(&o->mUnk_00);
-                    data_0217b0d8--;
+                    gUnparkedTeresaCount--;
                 }
             } else {
                 func_02094768_inline(o);
@@ -193,15 +194,15 @@ void UpdateTeresa(void *a, Teresa *o) {
     }
 }
 
-void func_02094744(void) {
+void CreateTeresaDrawList(void) {
     func_0209bef0(CreateTeresa, DrawTeresa, func_02094d9c);
 }
 
-void func_02094724(void) {
-    func_0209bf48(func_02094c24, UpdateTeresa, NULL);
+void CreateTeresaUpdateList(void) {
+    func_0209bf48(InitTeresaObjects, UpdateTeresa, NULL);
 }
 
-void func_020946b8(void) {
+void ClearTeresaTimers(void) {
     Unk020946b8 *l;
     Teresa *o;
     s32 i;
@@ -233,7 +234,7 @@ static inline void func_02094000_inline_2(Unk02094000_bc *p, u16 a, s32 b, s32 c
     p->mUnk_1c = f;
 }
 
-void func_02094000(Vec3 *a) {
+void StartTeresa(Vec3 *a) {
     Teresa *o;
     Unk020748a8 *g;
     s32 p;
@@ -286,9 +287,9 @@ void func_02094000(Vec3 *a) {
         o->mUnk_b8 = (u16) func_02094000_inline(&gRaceProgress->mLocalRandom, 0x96) + 0x12c;
         o->mState = 1;
     }
-    data_0217b0d8++;
+    gUnparkedTeresaCount++;
 }
 
-s32 func_02093ff0(void) {
-    return data_0217b0d8;
+s32 GetUnparkedTeresaCount(void) {
+    return gUnparkedTeresaCount;
 }

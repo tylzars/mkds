@@ -165,7 +165,7 @@ void UpdateBasabasa(void *a, Basabasa *b) {
     StartMapObjectSoundWhileRequested(&b->mUnk_00, 0x165);
 }
 
-void func_020924a8(void) {
+void CreateBasabasaKindData(void) {
     func_0209bfa8(&func_0209297c, NULL, NULL, 1, 0);
 }
 
@@ -195,15 +195,15 @@ static inline u16 func_0209219c_inline(u32 n) {
     return r;
 }
 
-void func_02092484(void) {
+void CreateBasabasaDrawList(void) {
     func_0209bef0(CreateBasabasa, DrawBasabasa, func_02092928);
 }
 
-void func_02092468(void) {
+void CreateBasabasaUpdateList(void) {
     func_0209bf48(NULL, UpdateBasabasa, NULL);
 }
 
-void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
+void StartBasabasa(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f) {
     Basabasa *p;
     Unk020f41c4_B *r;
     u32 n;

@@ -349,7 +349,7 @@ end:
     }
     func_02043b3c();
     ClearFontAndPlayerCharacterTables();
-    func_02039a1c();
+    ClearLcdcBankAndStartWvrAndWait();
     func_02105ec0();
     if (data_021759d0->mUnk_1c_1 && func_0204a340(a->mScene, a->mNextScene)) {
         func_0204aba8();

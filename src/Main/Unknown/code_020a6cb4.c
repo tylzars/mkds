@@ -113,7 +113,7 @@ void func_020a6e70(Unk02100094 *a) {
                 continue;
             }
         }
-        func_020ac5e4(GetKart((u16) i));
+        StartShineBalloon(GetKart((u16) i));
     }
     if (a == NULL) {
         return;

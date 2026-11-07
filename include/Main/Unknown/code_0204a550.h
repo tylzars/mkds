@@ -17,7 +17,7 @@ s32 RunEmblemScene(void *a);
 void UpdateEmblemScene(Unk0204a598 *a);
 void func_0204a5e8(void);
 unsigned int func_0204a5f4(unsigned int p0);
-// Calls func_020399a8, func_02043c14 and InitEmblem through func_ov001_021a23f4 (InitEmblem also
+// Calls StopWvrAndWait, func_02043c14 and InitEmblem through func_ov001_021a23f4 (InitEmblem also
 // calls InitEmblemChoises).
 void InitEmblemScene(void);
 BOOL func_0204a620(Unk02175650 *a);

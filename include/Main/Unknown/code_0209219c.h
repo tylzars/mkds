@@ -39,10 +39,10 @@ typedef struct Unk0209297c {
 
 void CreateBasabasa(void *a);
 
-void func_0209219c(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f);
-void func_02092468(void);
-void func_02092484(void);
-void func_020924a8(void);
+void StartBasabasa(u32 a, const Vec3 *b, const Vec3 *c, u32 d, s32 e, u16 f);
+void CreateBasabasaUpdateList(void);
+void CreateBasabasaDrawList(void);
+void CreateBasabasaKindData(void);
 void UpdateBasabasa(void *a, Basabasa *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void DrawBasabasa(void *a, Basabasa *b);
 void func_02092928(void *a);

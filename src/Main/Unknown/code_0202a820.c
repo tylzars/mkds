@@ -380,7 +380,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
             } else {
                 v--;
             }
-            func_02121e84(data_usa_02153a4c[v]);
+            SetWiFiSessionOwnPickedCourseId(data_usa_02153a4c[v]);
             gWiFiVSCourseSelect->mState = 2;
             gWiFiVSCourseSelect->mUnk_0b0 = 1;
             func_0202e490(0);

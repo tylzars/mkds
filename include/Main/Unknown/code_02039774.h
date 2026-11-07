@@ -13,10 +13,10 @@ s32 Vec3DotUnrounded(const Vec3 *a, const Vec3 *b);
 // of v. It does not test for a zero vector (many callers test the squared length against 16 first);
 // Vec3NormalizeAndGetLengthOrZero does. dst may be v.
 s32 Vec3NormalizeAndGetLengthUnchecked(const Vec3 *v, Vec3 *dst);
-void func_020399a8(void);
-void func_02039a1c(void);
-void func_02039abc(u32 a, s32 b);
+void StopWvrAndWait(void);
+void ClearLcdcBankAndStartWvrAndWait(void);
+void WvrCallback(u32 a, s32 b);
 void DisableAllBanks(void);
-void func_02039b94(u32 a);
-void func_02039bd4(void);
-void func_02039c7c(void);
+void SetBankForARM7ByState(u32 a);
+void ClearLcdcBanksByState(void);
+void InitWvrState(void);

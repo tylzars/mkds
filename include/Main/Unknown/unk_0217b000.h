@@ -285,7 +285,7 @@ typedef struct Unk0217b034 {
 } Unk0217b034;
 
 extern Unk0217b034 *data_0217b034;
-extern u32 data_0217b0d8;
+extern u32 gUnparkedTeresaCount;
 extern void *gChandelier;
 // One kart's entry of Standings (0x70 bytes, indexed by kart index): its count, rank, side id, elimination status and
 // last position, and the hit tracking of the kart (those members keep their address names). Slots past the kart count

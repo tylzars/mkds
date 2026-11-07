@@ -564,7 +564,7 @@ void InitDisplayFromSettings(void *a) {
 
     p = a;
     gDisplaySettings = p;
-    func_02039bd4();
+    ClearLcdcBanksByState();
     func_02037abc_inline(0xc0, (void *) 0x07000000, 0x400);
     func_02037abc_inline(0xc0, (void *) 0x07000400, 0x400);
     func_02037abc_inline(0, (void *) 0x05000000, 0x400);
@@ -603,7 +603,7 @@ void InitDisplayFromSettings(void *a) {
         GX_SetBankForSubOBJExtPltt(gDisplaySettings->mBankForSubOBJExtPltt);
     }
     if (gDisplaySettings->mBankForARM7 != 0) {
-        func_02039b94(gDisplaySettings->mBankForARM7);
+        SetBankForARM7ByState(gDisplaySettings->mBankForARM7);
     }
     if (gDisplaySettings->mBankForLCDC != 0) {
         GX_SetBankForLCDC(gDisplaySettings->mBankForLCDC);

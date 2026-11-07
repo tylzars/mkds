@@ -53,7 +53,7 @@ void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d) {
     func_01ff9048(0x19, func_020e6cbc(&p->mUnk_00.mPos), 12);
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     if ((s32) (p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f) < 0xc5c10) {
-        SetMapObjectModelNsbcaFrameIndex(gMoveTree, p->mUnk_ac);
+        SetMapObjectModelNsbcaFrameIndex(gMoveTree, p->mNsbcaFrameIndex);
         DrawMapObjectModel(a, gMoveTree, p);
     } else {
         DrawMapObjectModel1Mat1Shp(a, gMoveTree, p);
@@ -65,7 +65,7 @@ void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d) {
     func_020e53ac(&p->mUnk_dc, NULL, c, d);
 }
 
-void func_02095d1c(MapObjectList *p) {
+void InitMoveTreeObjects(MapObjectList *p) {
     s32 i;
     MoveTree *e;
 
@@ -96,20 +96,20 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             }
             if (p->mUnk_a4-- > 0) {
                 p->mUnk_b0 = 2;
-                p->mUnk_ac += p->mUnk_b0;
-                if (p->mUnk_ac >= GetMapObjectModelNsbcaFrameCount(gMoveTree)) {
-                    p->mUnk_ac = 0;
+                p->mNsbcaFrameIndex += p->mUnk_b0;
+                if (p->mNsbcaFrameIndex >= GetMapObjectModelNsbcaFrameCount(gMoveTree)) {
+                    p->mNsbcaFrameIndex = 0;
                 }
                 return;
             }
-            if (p->mUnk_ac == 0) {
+            if (p->mNsbcaFrameIndex == 0) {
                 return;
             }
-            p->mUnk_ac += p->mUnk_b0;
-            if (p->mUnk_ac >= GetMapObjectModelNsbcaFrameCount(gMoveTree)) {
-                p->mUnk_ac = 0;
+            p->mNsbcaFrameIndex += p->mUnk_b0;
+            if (p->mNsbcaFrameIndex >= GetMapObjectModelNsbcaFrameCount(gMoveTree)) {
+                p->mNsbcaFrameIndex = 0;
             }
-            if (p->mUnk_ac != 0 && p->mUnk_ac != 0x1e) {
+            if (p->mNsbcaFrameIndex != 0 && p->mNsbcaFrameIndex != 0x1e) {
                 return;
             }
             if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) != 0) {
@@ -145,11 +145,11 @@ void UpdateMoveTree(void *a, MoveTree *p) {
             } else {
                 p->mUnk_b0 = 1;
             }
-            p->mUnk_ac += p->mUnk_b0;
-            if (p->mUnk_ac >= GetMapObjectModelNsbcaFrameCount(gMoveTree)) {
-                p->mUnk_ac = 0;
+            p->mNsbcaFrameIndex += p->mUnk_b0;
+            if (p->mNsbcaFrameIndex >= GetMapObjectModelNsbcaFrameCount(gMoveTree)) {
+                p->mNsbcaFrameIndex = 0;
             }
-            if (p->mUnk_ac != 0 && p->mUnk_ac != 0x1e) {
+            if (p->mNsbcaFrameIndex != 0 && p->mNsbcaFrameIndex != 0x1e) {
                 return;
             }
             if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) != 0) {
@@ -170,16 +170,16 @@ void UpdateMoveTree(void *a, MoveTree *p) {
     }
 }
 
-void func_020959fc(void) {
+void CreateMoveTreeKindData(void) {
     func_0209bf70(func_02095efc, NULL, NULL, 2, 1, 0x125);
 }
 
-void func_020959dc(void) {
+void CreateMoveTreeDrawList(void) {
     func_0209bf1c(CreateMoveTree, DrawMoveTree, NULL);
 }
 
-void func_020959bc(void) {
-    func_0209bf48(func_02095d1c, UpdateMoveTree, NULL);
+void CreateMoveTreeUpdateList(void) {
+    func_0209bf48(InitMoveTreeObjects, UpdateMoveTree, NULL);
 }
 
 void CreateBakubakuAndBakuShadow(void *a) {
@@ -211,7 +211,7 @@ void DrawBakubaku(void *a, Bakubaku *p) {
     DrawMapObjectModel(a, gBakubaku, p);
 }
 
-void func_020957ec(MapObjectList *p) {
+void InitBakubakuObjects(MapObjectList *p) {
     s32 i;
     Bakubaku *e;
 
@@ -296,10 +296,10 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
     }
 }
 
-void func_02095524(void) {
+void CreateBakubakuDrawList(void) {
     func_0209bf1c(CreateBakubakuAndBakuShadow, DrawBakubaku, NULL);
 }
 
-void func_02095504(void) {
-    func_0209bf48(func_020957ec, UpdateBakubaku, NULL);
+void CreateBakubakuUpdateList(void) {
+    func_0209bf48(InitBakubakuObjects, UpdateBakubaku, NULL);
 }

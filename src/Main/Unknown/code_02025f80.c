@@ -172,7 +172,7 @@ void InitSelectCharacter(void *a, s32 b, void *c, void *d) {
                     }
                     break;
                 case 2:
-                    func_02121ee4();
+                    SetWiFiSessionOwnCharacterIndexNone();
                     break;
             }
             break;
@@ -479,8 +479,8 @@ int AdvanceSelectCharacter(void) {
                 p = gSelectCharacter;
                 switch (p->mUnk_080) {
                     case 2:
-                        func_02121f1c(p->mUnk_0f0);
-                        func_02121eb4(gSelectCharacter->mUnk_0f4);
+                        SetWiFiSessionOwnCharacterIndex(p->mUnk_0f0);
+                        SetWiFiSessionOwnKartIndex(gSelectCharacter->mUnk_0f4);
                         break;
                     case 1:
                         c = p->mUnk_0f0 | 0xc0;
@@ -586,7 +586,7 @@ int AdvanceSelectCharacter(void) {
                         }
                         break;
                     case 2:
-                        func_02121f1c(p->mUnk_0f0);
+                        SetWiFiSessionOwnCharacterIndex(p->mUnk_0f0);
                         func_02025f14(&gSelectCharacter->mUnk_0f8[1], 2);
                         func_02027424(1);
                         gSelectCharacter->mUnk_06c = 8;

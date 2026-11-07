@@ -189,7 +189,7 @@ int AdvanceSelectKart(void) {
                         break;
                     case 2:
                         RequestSelectReturnState4();
-                        func_02121eb4(gSelectKart->mKartIndex);
+                        SetWiFiSessionOwnKartIndex(gSelectKart->mKartIndex);
                         gSelectKart->mState = 5;
                         break;
                 }

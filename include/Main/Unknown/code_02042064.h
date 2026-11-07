@@ -95,9 +95,9 @@ void BuildCourseMapItemPointLinks(void *a);
 // point of each following route other than route 0 and 255.
 void BuildCourseMapItemRouteLinks(Unk020f371c *a, CourseMapRoute *b, u16 c);
 Unk02175620_94 *GetCourseMapEntryGroupTableRow(unsigned int p0);
-void func_02042fd8(void *a);
-void func_02043038(void);
-s32 func_02043078(u16 a);
+void BuildCourseMapEntryGroupTableAndCheckpointSum(void *a);
+void SetCourseMapCheckpointSumAndQuotient(void);
+s32 ComputeCourseMapCheckpointSumFromRoute(u16 a);
 s32 LoadCourseMapGroupEntriesData(void *a, ...);
 s32 LoadCourseMapEntryGroupsData(void *a, ...);
 s32 LoadCourseMapRowsData(void *a, ...);

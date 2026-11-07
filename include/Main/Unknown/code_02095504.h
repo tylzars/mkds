@@ -24,7 +24,7 @@ typedef struct MoveTree {
     /* a0 */ s32 mUnk_a0;
     /* a4 */ s32 mUnk_a4;
     /* a8 */ s32 mUnk_a8;
-    /* ac */ u16 mUnk_ac;
+    /* ac */ u16 mNsbcaFrameIndex;
     /* ae */ u8 mUnk_ae[2];
     /* b0 */ s32 mUnk_b0;
     /* b4 */ Unk020e0144 mUnk_b4;
@@ -34,17 +34,17 @@ typedef struct MoveTree {
     /* dc */ Unk020e516c mUnk_dc;
 } MoveTree;
 
-void func_02095504(void);
-void func_02095524(void);
+void CreateBakubakuUpdateList(void);
+void CreateBakubakuDrawList(void);
 void UpdateBakubaku(void *a, Bakubaku *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_020957ec(MapObjectList *p);
+void InitBakubakuObjects(MapObjectList *p);
 void DrawBakubaku(void *a, Bakubaku *p);
 void CreateBakubakuAndBakuShadow(void *a);
-void func_020959bc(void);
-void func_020959dc(void);
-void func_020959fc(void);
+void CreateMoveTreeUpdateList(void);
+void CreateMoveTreeDrawList(void);
+void CreateMoveTreeKindData(void);
 void UpdateMoveTree(void *a, MoveTree *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void func_02095d1c(MapObjectList *p);
+void InitMoveTreeObjects(MapObjectList *p);
 void DrawMoveTree(void *a, MoveTree *p, u32 c, u32 d);
 void CreateMoveTree(void *a);
 u8 func_02095efc(MoveTree *a, Kart *b, u8 *c, u8 *d);

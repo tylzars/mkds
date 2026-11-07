@@ -136,19 +136,19 @@ void UpdateShineBalloon(void *a, ShineBalloonObject *b) {
     }
 }
 
-void func_020ac67c(void) {
+void CreateShineBalloonKindData(void) {
     func_0209bfa8(NULL, NULL, NULL, 1, 0);
 }
 
-void *func_020ac658(void) {
+void *CreateShineBalloonDrawList(void) {
     return func_0209bef0(CreateShineBalloon, DrawShineBalloon, func_020ac9b0);
 }
 
-void *func_020ac63c(void) {
+void *CreateShineBalloonUpdateList(void) {
     return func_0209bf48(NULL, UpdateShineBalloon, NULL);
 }
 
-void func_020ac5e4(Kart *a) {
+void StartShineBalloon(Kart *a) {
     ShineBalloonObject *o;
 
     o = UnparkFirstParkedMapObject(func_02100138(MAP_OBJECT_KIND_SHINE_BALLOON));

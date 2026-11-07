@@ -136,7 +136,7 @@ void DrawFlipper(void *a, Flipper *p) {
     DrawMapObjectModel(a, gFlipper, p);
 }
 
-void func_020979c8(MapObjectList *a) {
+void InitFlipperObjects(MapObjectList *a) {
     s32 i;
     s32 j;
     s32 v1;
@@ -316,14 +316,14 @@ void UpdateFlipper(void *a, Flipper *p) {
     }
 }
 
-void func_020975ac(void) {
+void CreateFlipperKindData(void) {
     func_0209bf70(func_020980ec, NULL, func_02097ed0, 0, 1, 0x1d0);
 }
 
-void *func_0209758c(void) {
+void *CreateFlipperDrawList(void) {
     return func_0209bf1c(CreateFlipper, DrawFlipper, NULL);
 }
 
-void *func_0209756c(void) {
-    return func_0209bf48(func_020979c8, UpdateFlipper, NULL);
+void *CreateFlipperUpdateList(void) {
+    return func_0209bf48(InitFlipperObjects, UpdateFlipper, NULL);
 }
