@@ -29,8 +29,8 @@ void func_020cca24(u32 p0) {
     gRaceSetup->mNextHeader.mUnk_24 = p0;
 }
 
-void func_020cca10(u32 p0) {
-    gRaceSetup->mNextHeader.mUnk_18 = p0;
+void SetNextBattleKind(u32 p0) {
+    gRaceSetup->mNextHeader.mBattleKind = p0;
 }
 
 void SetNextUseTeams(u32 p0) {

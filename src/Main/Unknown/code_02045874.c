@@ -116,11 +116,11 @@ void func_02046024(s32 a) {
     gRaceSetup->mCourseListIndex = 0;
     gRaceSetup->mNextHeader.mCourseNumber = 1;
     if (a != 0) {
-        gRaceSetup->mNextHeader.mUnk_0c = 0;
+        gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
     } else if (data_021759d0->mUnk_1c_2) {
-        gRaceSetup->mNextHeader.mUnk_0c = 0;
+        gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
     } else {
-        gRaceSetup->mNextHeader.mUnk_0c = 4;
+        gRaceSetup->mNextHeader.mRaceKind = 4;
     }
     for (i = 0; i < 0x21; i++) {
         gRaceSetup->mCourseList[i] = 0;
@@ -263,7 +263,7 @@ void func_02045ed0(void) {
         case MODE_GRAND_PRIX:
             ResetCupRecords();
             gRaceSetup->mNextHeader.mCourseNumber = 1;
-            gRaceSetup->mNextHeader.mUnk_0c = 3;
+            gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_START_GP;
             gRaceSetup->mNextHeader.mCourseId =
                 data_02154128[gRaceSetup->mNextHeader.mCupIndex][gRaceSetup->mNextHeader.mCourseNumber - 1];
             break;
@@ -277,7 +277,7 @@ void func_02045ed0(void) {
             r = 0xff;
             ResetCupRecords();
             gRaceSetup->mNextHeader.mCourseNumber = 1;
-            gRaceSetup->mNextHeader.mUnk_0c = 0;
+            gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
             for (i = 0; i < 4; i++) {
                 if (gRaceSetup->mNextEntries[i].mPlayer.mKind == 0) {
                     r = i;
@@ -289,9 +289,9 @@ void func_02045ed0(void) {
         case MODE_MISSION_RUN:
             ResetCupRecords();
             if (gRaceSetup->mNextHeader.mMissionTableColumn == 9) {
-                gRaceSetup->mNextHeader.mUnk_0c = 3;
+                gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_START_GP;
             } else {
-                gRaceSetup->mNextHeader.mUnk_0c = 0;
+                gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
             }
             gRaceSetup->mNextHeader.mCourseNumber = 1;
             break;
@@ -327,7 +327,7 @@ BOOL func_02045bd4(void) {
         return FALSE;
     }
     gRaceSetup->mNextHeader.mCourseId = COURSE_ID_AWARD;
-    gRaceSetup->mNextHeader.mUnk_0c = 5;
+    gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_AWARD;
     for (i = 0; i < 3; i++) {
         for (j = 0; j < gRaceSetup->mKartCount; j++) {
             if (GetKartCupRank((u16) j) == i + 1) {
@@ -359,7 +359,7 @@ void func_02045a2c(s32 a) {
     } else {
         gRaceSetup->mNextHeader.mCourseId = COURSE_ID_STAFFROLL;
     }
-    gRaceSetup->mNextHeader.mUnk_0c = 6;
+    gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_STAFF_ROLL;
     gRaceSetup->mNextHeader.mEngineIndex = 1;
     gRaceSetup->mNextHeader.mFollowedKartIndex = 0;
     for (i = 0; i < 8; i++) {
@@ -444,9 +444,9 @@ s32 func_02045914(void) {
 
 s32 func_020458cc(void) {
     if (data_021759d0->mUnk_1c_2) {
-        gRaceSetup->mNextHeader.mUnk_0c = 0;
+        gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
     } else {
-        gRaceSetup->mNextHeader.mUnk_0c = 4;
+        gRaceSetup->mNextHeader.mRaceKind = 4;
     }
     return func_02045920();
 }

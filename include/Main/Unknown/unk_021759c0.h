@@ -58,6 +58,19 @@ typedef struct KartEntry {
 #define MODE_MISSION_RUN 4
 
 // Values of the mCourseId member of RaceSetup and of RaceSetupHeader, and of the course id stored in the race
+// Values of the mRaceKind member of RaceSetup and of RaceSetupHeader; 2 and 4 occur in the code and stay numbers.
+// Normal race.
+#define RACE_KIND_NORMAL 0
+// Demo race that SetNextDemoRace sets up from the title screen.
+#define RACE_KIND_DEMO 1
+// Start scene: it creates RaceStartGp instead of the race HUD; set before each Grand Prix course and for mission
+// column 9.
+#define RACE_KIND_START_GP 3
+// Award scene: the course is COURSE_ID_AWARD.
+#define RACE_KIND_AWARD 5
+// Staff roll: the course is COURSE_ID_STAFFROLL or COURSE_ID_STAFFROLLTRUE.
+#define RACE_KIND_STAFF_ROLL 6
+
 // setup. The value is the row of the course name table data_usa_02154228 (8 byte rows, the string pointer first):
 // func_02048498 formats the row's string as the first %s of "/data/Course/%s%s%s.carc". Each name below is that
 // row's string without a trailing "_course", upper-cased, and the comment after it quotes the row index and the
@@ -111,14 +124,17 @@ typedef struct KartEntry {
 #define COURSE_ID_STAFFROLLTRUE 0x36  // row 54: "StaffRollTrue"
 
 // The 0x68 bytes at 0x1e8 of the object behind gRaceSetup.
+// Values of the mBattleKind member of RaceSetup and of RaceSetupHeader.
+typedef enum { BATTLE_KIND_BALLOON, BATTLE_KIND_SHINE } BattleKind;
+
 typedef struct RaceSetupHeader {
     /* 00 */ s32 mCourseId;
     /* 04 */ s32 mCupIndex;
     /* 08 */ s32 mMode;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ s32 mRaceKind;
     /* 10 */ s32 mEngineIndex;
     /* 14 */ s32 mUnk_14;
-    /* 18 */ s32 mUnk_18;
+    /* 18 */ s32 mBattleKind;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mCourseListMode;
     /* 24 */ s32 mUnk_24;
@@ -154,13 +170,13 @@ typedef struct RaceSetup {
     /* 00 */ s32 mCourseId;
     /* 004 */ s32 mCupIndex;
     /* 08 */ s32 mMode;
-// Selects the race scene set-up (display table and scene code); 5 is the award scene and 6 the staff roll, the
-// other values stay numbers.
-    /* 00c */ u32 mUnk_00c;
+// Which kind of race scene this is (RACE_KIND_*): the display table and the scene code are chosen by it.
+// The values 2 and 4 are not named.
+    /* 00c */ u32 mRaceKind;
     /* 010 */ s32 mEngineIndex;
     /* 014 */ s32 mUnk_014;
-// Two values for battle: the end handling, the timer and the item tables differ between 0 and 1.
-    /* 018 */ s32 mUnk_18;
+// Which battle this is (BattleKind): the end handling, the timer and the item tables differ.
+    /* 018 */ s32 mBattleKind;
     /* 01c */ s32 mUnk_1c;
     /* 020 */ s32 mCourseListMode;
     /* 024 */ u8 mUnk_024[0x4];

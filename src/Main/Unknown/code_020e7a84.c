@@ -134,7 +134,7 @@ void UpdateJg(void) {
     s32 lap;
     u32 kartFlags;
 
-    if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
     if (gJgKart == NULL) {
@@ -258,7 +258,7 @@ void DrawJg(void) {
     Unk020e9810 *p5;
     Unk020e6488 *p4;
 
-    if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
     if (gJgKart == NULL) {

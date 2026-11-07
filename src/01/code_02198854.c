@@ -175,13 +175,13 @@ void LocateAndQueueOptionSelectMenu(void) {
 
 void ApplyOptionSelectMenuSound(void) {
     switch (gOptionSelectMenu->mRowValues[0]) {
-        case 1:
+        case SOUND_MODE_STEREO:
             SetSoundOutputEffect(0);
             break;
-        case 0:
+        case SOUND_MODE_SURROUND:
             SetSoundOutputEffect(1);
             break;
-        case 2:
+        case SOUND_MODE_HEADPHONES:
             SetSoundOutputEffect(2);
             break;
     }
@@ -189,28 +189,28 @@ void ApplyOptionSelectMenuSound(void) {
 
 void SetSoundModeFromOptionRow(void) {
     switch (gOptionSelectMenu->mRowValues[0]) {
-        case 1:
-            data_0217aa08->mUnk_00->mSoundMode = 1;
+        case SOUND_MODE_STEREO:
+            data_0217aa08->mUnk_00->mSoundMode = SOUND_MODE_STEREO;
             break;
-        case 0:
-            data_0217aa08->mUnk_00->mSoundMode = 0;
+        case SOUND_MODE_SURROUND:
+            data_0217aa08->mUnk_00->mSoundMode = SOUND_MODE_SURROUND;
             break;
-        case 2:
-            data_0217aa08->mUnk_00->mSoundMode = 2;
+        case SOUND_MODE_HEADPHONES:
+            data_0217aa08->mUnk_00->mSoundMode = SOUND_MODE_HEADPHONES;
             break;
     }
 }
 
 void SetOptionSoundRowFromSave(void) {
     switch (data_0217aa08->mUnk_00->mSoundMode) {
-        case 1:
-            gOptionSelectMenu->mRowValues[0] = 1;
+        case SOUND_MODE_STEREO:
+            gOptionSelectMenu->mRowValues[0] = SOUND_MODE_STEREO;
             break;
-        case 0:
-            gOptionSelectMenu->mRowValues[0] = 0;
+        case SOUND_MODE_SURROUND:
+            gOptionSelectMenu->mRowValues[0] = SOUND_MODE_SURROUND;
             break;
-        case 2:
-            gOptionSelectMenu->mRowValues[0] = 2;
+        case SOUND_MODE_HEADPHONES:
+            gOptionSelectMenu->mRowValues[0] = SOUND_MODE_HEADPHONES;
             break;
     }
 }

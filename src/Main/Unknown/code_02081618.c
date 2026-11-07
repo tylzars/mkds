@@ -798,7 +798,7 @@ void InitCourseCameraEffects(void) {
         case 0x25: {
             Unk0201ca6c *p;
 
-            if (gRaceSetup->mUnk_00c == 0) {
+            if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                 p = StartEffect(0x24, &data_02155a14);
                 gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_02082750;
@@ -829,7 +829,7 @@ void InitCourseCameraEffects(void) {
                 p = StartEffect(0x3e, &data_02155a14);
                 gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_02082034;
-            } else if (gRaceSetup->mUnk_00c == 0) {
+            } else if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                 p = StartEffect(0x29, &data_02155a14);
                 gFirstCourseCameraEffect = p;
                 p->mUnk_90 = func_020821cc;

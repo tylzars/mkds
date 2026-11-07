@@ -55,14 +55,14 @@ void func_0207b734(Kart *a) {
     b = (a->mUnk_44 & KART_44_DRIFTING) != 0 ? 0x2000 : 0x1000;
     v = a->mUnk_48;
     if ((v & 8) != 0) {
-        if (gRaceSetup->mUnk_00c != 6) {
+        if (gRaceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
             p->mUnk_00 += b;
             if (p->mUnk_00 > c) {
                 p->mUnk_00 = c;
             }
         }
     } else if ((v & 0x10) != 0) {
-        if (gRaceSetup->mUnk_00c != 6) {
+        if (gRaceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
             c *= -1;
             p->mUnk_00 -= b;
             if (p->mUnk_00 < c) {

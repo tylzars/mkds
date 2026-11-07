@@ -91,7 +91,7 @@ void func_0208e82c(const MtxFx43 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk02
 }
 
 void func_0208e808(s32 a) {
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         data_021663e8 = a;
     }
 }

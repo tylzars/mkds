@@ -206,7 +206,7 @@ void func_020c5804(Unk020c06c4 *a) {
     s32 e[2];
     void *c;
 
-    if (gRaceSetup->mUnk_00c != 0) {
+    if (gRaceSetup->mRaceKind != RACE_KIND_NORMAL) {
         return;
     }
     if (func_020b1d0c() == 0) {

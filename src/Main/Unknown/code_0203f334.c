@@ -98,7 +98,7 @@ void UpdateRaceClock(void) {
                     }
                     break;
                 case MODE_BATTLE:
-                    if (gRaceSetup->mUnk_18 == 1) {
+                    if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
                         gRaceProgress->mTimeLimitFrameCount = func_020a1520() * 0x3c;
                         p->mUnk_000[0].mElapsedFrames = 0;
                     }

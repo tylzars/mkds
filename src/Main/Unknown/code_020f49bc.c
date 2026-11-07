@@ -1029,7 +1029,7 @@ void CreateItemInfos(void) {
             }
             break;
     }
-    if (gRaceSetup->mUnk_00c == 1) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_DEMO) {
         gItemInfos[15].mEnabled = FALSE;
     }
 }

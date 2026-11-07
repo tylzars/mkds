@@ -83,7 +83,7 @@ static inline u32 func_0203a9ec_inline(void) {
 }
 
 u32 func_0203afe4(u32 a) {
-    if (gRaceSetup->mUnk_00c != 6) {
+    if (gRaceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
         return 1;
     }
     return a >= 0x708;
@@ -91,28 +91,28 @@ u32 func_0203afe4(u32 a) {
 
 void func_0203ad58(void *a) {
     DisplaySettings *b;
-    b = CreateDisplaySettings(a, data_usa_02164718[gRaceSetup->mUnk_00c]);
+    b = CreateDisplaySettings(a, data_usa_02164718[gRaceSetup->mRaceKind]);
     SetG3xSwapBits(b, 1, 1);
     SetBg0Record(&b->mMainBg0, 1, 0, 0, 1, 0, 0, 0);
-    switch (gRaceSetup->mUnk_00c) {
-        case 0:
+    switch (gRaceSetup->mRaceKind) {
+        case RACE_KIND_NORMAL:
         case 2:
-        case 6:
+        case RACE_KIND_STAFF_ROLL:
             SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
             SetBg0Record(&b->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
             SetBg1Record(&b->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
             SetBg2RecordParams(&b->mSubBg0, 2, 0, 0, 0, 0xf, 0);
             func_02056114(0);
             break;
-        case 1:
+        case RACE_KIND_DEMO:
             SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
             SetBg0Record(&b->mSubBg0, 0, 0, 0, 0, 0xd, 0, 0);
             SetBg1Record(&b->mSubBg0, 1, 0, 0, 0, 0xe, 0, 0);
             SetBg2RecordParams(&b->mSubBg0, 2, 0, 0, 0, 0xf, 0);
             func_02056114(0);
             break;
-        case 3:
-        case 5:
+        case RACE_KIND_START_GP:
+        case RACE_KIND_AWARD:
             SetBg2RecordParams(&b->mMainBg0, 1, 0, 0, 0, 7, 0);
             SetBg2RecordMode5(&b->mSubBg0, 0, 0, 1, 0, 0);
             func_02038c94(b, 0x20);
@@ -135,7 +135,7 @@ void InitRaceScene(void) {
     BOOL f;
     p = GetHeap(func_020364e8());
     CreateOverlayExpHeap();
-    if (gRaceSetup->mUnk_00c == 3 || gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_START_GP || gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         StopWvrAndWait();
     } else {
         ClearLcdcBankAndStartWvrAndWait();
@@ -151,7 +151,7 @@ void InitRaceScene(void) {
     SetHeapGroupId(5);
     InitChoisesS();
     func_020b03bc();
-    if (gRaceSetup->mUnk_00c != 3) {
+    if (gRaceSetup->mRaceKind != RACE_KIND_START_GP) {
         func_020af99c();
     }
     SetHeapGroupId(8);
@@ -181,7 +181,7 @@ void InitRaceScene(void) {
             }
         }
     } else {
-        if (gRaceSetup->mUnk_18 == 0) {
+        if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
             func_02046fb4(GetHeap(func_020364e8()));
         }
     }
@@ -209,7 +209,7 @@ void func_0203aacc(void) {
         }
     }
     p = gRaceSetup;
-    if (p->mUnk_00c == 6) {
+    if (p->mRaceKind == RACE_KIND_STAFF_ROLL) {
         t = 0x18;
         if (p->mMode != MODE_GRAND_PRIX) {
             if (p->mMode == MODE_MISSION_RUN) {
@@ -339,16 +339,16 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
         case 1:
         case 3:
             r = 2;
-            gRaceSetup->mNextHeader.mUnk_0c = 0;
+            gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
             break;
         case 8:
             r = 2;
-            gRaceSetup->mNextHeader.mUnk_0c = r;
+            gRaceSetup->mNextHeader.mRaceKind = r;
             break;
         case 2:
             switch (gRaceSetup->mMode) {
                 case MODE_GRAND_PRIX:
-                    func_02046740();
+                    SetNextGrandPrixCourse();
                     r = 2;
                     break;
                 case MODE_VS:
@@ -443,8 +443,8 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
     }
 }
 
-u32 func_0203a50c(void) {
-    return gRaceSetup->mUnk_00c;
+u32 GetCurrentRaceKind(void) {
+    return gRaceSetup->mRaceKind;
 }
 
 void func_0203a4d4(u32 a) {
@@ -512,8 +512,8 @@ u32 func_0203a3cc(u32 a) {
     return r;
 }
 
-void func_0203a3b8(u32 p0) {
-    gRaceSetup->mNextHeader.mUnk_0c = p0;
+void SetNextRaceKind(u32 p0) {
+    gRaceSetup->mNextHeader.mRaceKind = p0;
 }
 
 u32 func_0203a3a4(void) {

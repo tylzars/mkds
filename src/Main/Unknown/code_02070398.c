@@ -307,7 +307,7 @@ void func_02072930(Kart *p) {
         p->mItemEffect = 0;
         StopKartStarEffects(p->mIndex);
         func_02068a64(p, 0, 1);
-        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
             func_02106dc8();
         }
         if (p->mUnk_4c & 0x2000) {
@@ -703,7 +703,7 @@ void func_02071ddc(Unk0206ceb4 *p0) {
     p0->mKillerFrames = 0;
     p0->mUnk_20 = 0;
     p0->mKillerEnding = FALSE;
-    p0->mUnk_28 = 0;
+    p0->mKillerEndRank = 0;
 }
 
 void func_02071c18(Kart *p) {
@@ -756,7 +756,7 @@ void func_02071c18(Kart *p) {
         if (!(p->mSoundSource.mUnk_34 & 1)) {
             SetSoundSourceFlagBit(&p->mSoundSource, 2, 1);
         }
-        if (gRaceSetup->mUnk_00c == 2) {
+        if (gRaceSetup->mRaceKind == 2) {
             func_0210b850(&p->mUnk_518);
         }
     } else {
@@ -1252,7 +1252,7 @@ void func_020708a4(Kart *p) {
             func_0210ddf4(data_0217d26c, func_02086080(p->mIndex), func_020718c8, p, 0xa3);
         }
         s->mUnk_0a++;
-        if (s->mUnk_0a > 0xb4 && (p->mUnk_4c & 0x2000)) {
+        if (s->mUnk_0a > KART_KILLER_RANK_END_FRAMES && (p->mUnk_4c & 0x2000)) {
             p->mUnk_4c &= ~0x2000;
             p->mUnk_d8 = 0x1000;
             if (!(p->mUnk_4c & 0x8000000)) {
@@ -1275,7 +1275,7 @@ void func_020708a4(Kart *p) {
             p->mItemEffect = 0;
             StopKartStarEffects(p->mIndex);
             func_02068a64(p, 0, 1);
-            if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
+            if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                 func_02106dc8();
             }
             if (p->mUnk_4c & 0x2000) {

@@ -56,8 +56,8 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                     func_0203a8e0(c);
                     func_0203a520(a, c);
                 }
-                switch (func_0203a50c()) {
-                    case 1:
+                switch (GetCurrentRaceKind()) {
+                    case RACE_KIND_DEMO:
                         c = 0;
                         if (b > func_0210f72c()) {
                             if (IsSeqVariableChanged(1) != 0) {
@@ -80,12 +80,12 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                             a->mUnk_04 = 0;
                         }
                         break;
-                    case 3:
+                    case RACE_KIND_START_GP:
                     case 4:
                         if (IsCameraChainEnded() != 0 || (b > 0x5a && (func_0203a4a8(func_0203a4cc(), 0xc0f) != 0 ||
                                                                        func_0203a3cc(func_0203a4cc()) != 0))) {
                             a->mUnk_04 = 2;
-                            func_0203a3b8(0);
+                            SetNextRaceKind(0);
                         }
                         break;
                     case 2:
@@ -98,12 +98,12 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
                                 break;
                         }
                         break;
-                    case 5:
+                    case RACE_KIND_AWARD:
                         if (func_0203a9ec(b) != 0) {
                             a->mUnk_04 = 0xa;
                         }
                         break;
-                    case 6:
+                    case RACE_KIND_STAFF_ROLL:
                         c = 0x2a5a;
                         if (func_0203a3a4() == COURSE_ID_STAFFROLLTRUE) {
                             c = 0x2b02;
@@ -125,10 +125,10 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
             func_020af66c();
         }
         func_020aeb7c();
-        switch (func_0203a50c()) {
-            case 0:
+        switch (GetCurrentRaceKind()) {
+            case RACE_KIND_NORMAL:
             case 2:
-            case 3:
+            case RACE_KIND_START_GP:
             case 4:
                 func_020b2574();
                 break;
@@ -140,7 +140,7 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
         }
     }
     q = gRaceSetup;
-    if (q->mUnk_00c != 6) {
+    if (q->mRaceKind != RACE_KIND_STAFF_ROLL) {
         c = 1;
     } else {
         if (b < 0x708) {
@@ -160,7 +160,7 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
 
 void func_0203a05c(void) {
     data_021759d0->mUnk_54 = FALSE;
-    if (gRaceSetup->mUnk_00c == 0) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
         func_020b2e64(1);
     }
     func_02046e84();
@@ -184,8 +184,8 @@ u32 RunRaceScene(SceneNumbers *a) {
     if (gRaceSetup->mMode == 5) {
         b.mUnk_1c = 1;
     }
-    if (gRaceSetup->mUnk_00c != 5) {
-        if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind != RACE_KIND_AWARD) {
+        if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
             b.mUnk_18 = 1;
             b.mUnk_1a = 0x78;
         }

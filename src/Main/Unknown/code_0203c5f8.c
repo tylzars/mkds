@@ -29,7 +29,7 @@ void GetKartFinishTime(s32 a, u8 *b, u8 *c, u16 *d) {
     RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], a * 0x8c);
     BOOL g = TRUE;
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        if (gRaceSetup->mUnk_18 == 1) {
+        if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
             g = FALSE;
         }
     }

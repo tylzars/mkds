@@ -6,5 +6,5 @@ u32 GetCourseNumber(void) {
 }
 
 u32 func_020b24e4(void) {
-    return gRaceSetup->mUnk_00c;
+    return gRaceSetup->mRaceKind;
 }

@@ -154,7 +154,7 @@ s32 func_0204a428(s32 a, s32 *b) {
             r = TRUE;
             break;
         case 2:
-            if (gRaceSetup->mUnk_00c == 6) {
+            if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
                 if (gRaceSetup->mCourseId != COURSE_ID_STAFFROLL) {
                     if (gRaceSetup->mCourseId == COURSE_ID_STAFFROLLTRUE) {
                         *b = 0x46;
@@ -492,7 +492,7 @@ u32 func_0204998c(void) {
         case 15:
             return 1;
         case 2:
-            if (gRaceSetup->mUnk_00c == 6) {
+            if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
                 return 1;
             }
             break;

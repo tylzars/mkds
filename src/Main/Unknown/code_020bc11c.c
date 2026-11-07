@@ -493,7 +493,7 @@ void func_020bd178(Unk020d029c *a) {
         q3[0] = (p.mUnk_00 + 0xb) << 12;
         q3[1] = p.mUnk_04 << 12;
         a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q3, 0, 1);
-        if (gRaceSetup->mUnk_18 == 0) {
+        if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
             s32 t = gRaceRankList->mUnk_0c0[k];
 
             c = GetRaceSNcerEntry(0xc3);
@@ -586,7 +586,7 @@ void func_020bcbe8(Unk020d029c *a) {
         q2[0] = (p.mUnk_00 + 1) << 12;
         q2[1] = p.mUnk_04 << 12;
         a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, d, q2, f, 1);
-        if (gRaceSetup->mUnk_18 == 0) {
+        if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
             s32 t = gRaceRankList->mUnk_0c0[k];
 
             c = GetRaceSNcerEntry(0xc3);
@@ -728,10 +728,10 @@ void DrawRaceLapAndTimeDifference(Unk020d029c *a) {
     s32 v;
     Unk020224e0_c *c;
 
-    if (gRaceSetup->mUnk_00c == 4) {
+    if (gRaceSetup->mRaceKind == 4) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 1) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_DEMO) {
         return;
     }
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
@@ -857,7 +857,7 @@ void InitRaceTimeDigits(void) {
     gRaceTimeDigits->mUnk_00.mUnk_00[6] = 0;
     gRaceTimeDigits->mUnk_1c = FALSE;
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        if (gRaceSetup->mUnk_18 == 1) {
+        if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
             gRaceTimeDigits->mUnk_1c = TRUE;
         }
     }

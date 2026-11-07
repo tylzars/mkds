@@ -71,7 +71,7 @@ void func_020cc744(void) {
         SetNextEngineIndex(GetRaceSetupCopy()->mEngineIndex);
         SetNextMirrorMode(GetRaceSetupCopy()->mMirrorMode);
         func_020cca24(GetRaceSetupCopy()->mUnk_e0);
-        func_020cca10(GetRaceSetupCopy()->mUnk_e4);
+        SetNextBattleKind(GetRaceSetupCopy()->mBattleKind);
         SetNextUseTeams(GetRaceSetupCopy()->mUseTeams);
         SetCourseCount(GetRaceSetupCopy()->mCourseCount);
         func_020cc9d0(GetRaceSetupCopy()->mUnk_ec);

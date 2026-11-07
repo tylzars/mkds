@@ -241,7 +241,7 @@ void func_02089fa0(void) {
 
     MTX_Identity43_(&a);
     data_0217029c.mCameraMtx = a;
-    if (gRaceSetup->mUnk_00c != 0) {
+    if (gRaceSetup->mRaceKind != RACE_KIND_NORMAL) {
         return;
     }
     if (data_0217b034->mUnk_73c != 9) {

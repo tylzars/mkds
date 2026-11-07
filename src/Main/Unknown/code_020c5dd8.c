@@ -350,7 +350,7 @@ void func_020c610c(void) {
     if (func_020b1a20() != 0) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 0) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
         gRaceNewRecordTa->mUnk_08 = func_020c657c(1);
         gRaceNewRecordTa->mUnk_10 = func_020c6428(1);
         if (gRaceNewRecordTa->mUnk_08 != 0 || gRaceNewRecordTa->mUnk_10 != 0) {

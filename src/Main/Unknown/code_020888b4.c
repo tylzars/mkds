@@ -126,7 +126,7 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
     if (c != FALSE) {
         return;
     }
-    if (gRaceSetup->mUnk_18 != 1) {
+    if (gRaceSetup->mBattleKind != BATTLE_KIND_SHINE) {
         return;
     }
     r = GetKartAiRandom();
@@ -154,7 +154,7 @@ void func_02089974(void) {
     gSearchStartIndex = 0;
     data_0217b030 = &data_0216600c;
     t = gRaceSetup;
-    if (t->mUnk_18 == 0) {
+    if (t->mBattleKind == BATTLE_KIND_BALLOON) {
         switch (t->mUnk_014) {
             case 2:
                 data_0217b030 = &data_02166028;
@@ -214,7 +214,7 @@ void func_02089788(KartAi *p, Kart *q) {
     ResetBattlePointLinkCursorNear(&p->mUnk_28, &q->mPos, &q->mUnk_138, q->mIndex);
     p->mUnk_44 = *p->mUnk_28.mLink->mUnk_20;
     func_020898bc(p);
-    if (gRaceSetup->mUnk_18 == 0) {
+    if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
         t = data_0217b030;
         k = 0;
         r = GetKartAiRandom();
@@ -244,7 +244,7 @@ void func_020896e0(KartAi *p) {
         func_0207e668(p);
     }
     func_02089494(p);
-    if (gRaceSetup->mUnk_18 == 0) {
+    if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
         func_02088e44(p);
         return;
     }
@@ -499,7 +499,7 @@ void func_02088d34(KartAi *p) {
     BOOL c;
 
     p->mUnk_c4 = FALSE;
-    if (gRaceSetup->mUnk_18 != 0) {
+    if (gRaceSetup->mBattleKind != BATTLE_KIND_BALLOON) {
         return;
     }
     if (func_01ffc67c(p->mKart) != FALSE) {

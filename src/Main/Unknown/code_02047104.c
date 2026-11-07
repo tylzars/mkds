@@ -139,7 +139,7 @@ void LoadArchiveSlotForScene(int a, int b) {
                     BuildResultArchivePath(c);
                     break;
                 case 2:
-                    if (gRaceSetup->mUnk_00c == 6) {
+                    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
                         OS_SNPrintf(c, 0x80, data_usa_02165058);
                     } else {
                         func_020483e4(c, gSceneNames[b].mUnk_00);
@@ -168,7 +168,7 @@ void LoadArchiveSlotForScene(int a, int b) {
                     func_02048350(c);
                     break;
                 case 2:
-                    if (gRaceSetup->mUnk_00c == 6) {
+                    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
                         BuildStaffRollArchivePath(c);
                     } else {
                         func_0204840c(c, gSceneNames[b].mUnk_00);

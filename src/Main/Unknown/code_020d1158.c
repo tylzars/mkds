@@ -11,7 +11,7 @@ void func_020d1198(Unk020d029c *a) {
     s32 q[2][2];
 
     reg_GX_DISPCNT = reg_GX_DISPCNT & ~0xe000;
-    c = GetRaceStartBattleMNcerEntry(gRaceSetup->mUnk_18 == 0 ? VALUE_0 : VALUE_1);
+    c = GetRaceStartBattleMNcerEntry(gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON ? VALUE_0 : VALUE_1);
     q[0][0] = 0x80000;
     q[0][1] = 0x60000;
     a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q[0], 0, 1);

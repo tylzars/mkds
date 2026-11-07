@@ -791,7 +791,7 @@ void CreateCourseMap(void *a) {
 
     switch (gRaceSetup->mMode) {
         case MODE_MISSION_RUN:
-            if (gRaceSetup->mUnk_00c == 6) {
+            if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
                 header = FindCourseFile("/course_map.nkm");
             } else {
                 snprintf(path, 0x100, "/MissionRun/%s_tool.nkm", gRaceSetup->mMissionRunStem);

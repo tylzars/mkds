@@ -228,7 +228,7 @@ void func_020b3728(void) {
             if ((data_0217d084.mUnk_04 - 2) <= 1 && gRaceSetup->mMode != MODE_BATTLE) {
                 d = gRaceSetup;
                 f = TRUE;
-                if (d->mUnk_00c == 1) {
+                if (d->mRaceKind == RACE_KIND_DEMO) {
                     f = FALSE;
                 } else if (d->mMode == MODE_MISSION_RUN) {
                     switch (d->mMissionKind) {

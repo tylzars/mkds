@@ -40,7 +40,7 @@ typedef struct RaceSetupCopy {
     /* d8 */ s32 mMirrorMode;
     /* dc */ s32 mUseTeams;
     /* e0 */ s32 mUnk_e0;
-    /* e4 */ s32 mUnk_e4;
+    /* e4 */ s32 mBattleKind;
     /* e8 */ u16 mCourseCount;
     /* ea */ u8 mUnk_ea[2];
     /* ec */ s32 mUnk_ec;

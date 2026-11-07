@@ -7,7 +7,7 @@
 #include "Main/Unknown/unk_0217b000.h"
 
 void func_0208c284(void) {
-    if (gRaceSetup->mUnk_00c == 5 || gRaceSetup->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD || gRaceSetup->mMode == MODE_MISSION_RUN) {
         data_0217b05c = func_0208be00;
         data_0217b060 = func_0208bde0;
         data_0217b058 = func_0208bdc0;
@@ -16,7 +16,7 @@ void func_0208c284(void) {
         data_0217b064 = func_0208c000;
         data_0217b068 = func_0208bfec;
         data_0217b06c = func_0208bfd8;
-    } else if (gRaceSetup->mUnk_00c == 6) {
+    } else if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         data_0217b05c = func_0208bd44;
         data_0217b060 = func_0208bd40;
         data_0217b058 = func_0208bd20;

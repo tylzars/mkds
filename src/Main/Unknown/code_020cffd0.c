@@ -166,7 +166,7 @@ void func_020d06b8(Unk020d029c *a) {
     if (gRaceSetup->mMode != MODE_GRAND_PRIX && gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 4 || gRaceSetup->mUnk_00c == 1) {
+    if (gRaceSetup->mRaceKind == 4 || gRaceSetup->mRaceKind == RACE_KIND_DEMO) {
         return;
     }
     if (func_020c70bc() != 0) {

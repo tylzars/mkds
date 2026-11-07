@@ -90,12 +90,12 @@ void ApplySavedSoundMode(void) {
     data_usa_ov001_021a99c0 = NULL;
     v2 = data_0217aa08->mUnk_00->mSoundMode;
     switch (v2) {
-        case 1:
+        case SOUND_MODE_STEREO:
             break;
-        case 2:
+        case SOUND_MODE_HEADPHONES:
             v1 = 2;
             break;
-        case 0:
+        case SOUND_MODE_SURROUND:
         default:
             v1 = 1;
             break;

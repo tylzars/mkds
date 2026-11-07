@@ -198,7 +198,7 @@ void InitRace(void) {
     }
     InitRaceFog();
     SetKoopaCourseLight2();
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         for (j = 0; j < 3; j++) {
             func_0208eb1c(j);
         }
@@ -223,9 +223,10 @@ void func_02062a0c(void) {
     gRace->mLightVectorX = v.x;
     gRace->mLightVectorY = v.y;
     gRace->mLightVectorZ = v.z;
-    gRace->mUseChainCameras = (gRaceSetup->mUnk_00c - 3) <= 2 ? 1 : 0;
-    gRace->mUseFirstChainCamera = gRaceSetup->mUnk_00c == 4 ? 1 : 0;
-    gRace->mUnk_38 = (gRaceSetup->mUnk_00c == 5 || gRaceSetup->mUnk_00c == 6) != 0 ? 1 : 0;
+    gRace->mUseChainCameras = (gRaceSetup->mRaceKind - 3) <= 2 ? 1 : 0;
+    gRace->mUseFirstChainCamera = gRaceSetup->mRaceKind == 4 ? 1 : 0;
+    gRace->mUnk_38 =
+        (gRaceSetup->mRaceKind == RACE_KIND_AWARD || gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) != 0 ? 1 : 0;
     gRace->mStarted = gRace->mUnk_38 != 0 ? 1 : 0;
 }
 

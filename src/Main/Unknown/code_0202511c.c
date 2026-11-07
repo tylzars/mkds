@@ -154,8 +154,8 @@ u32 func_0202511c(s32 a, void *c) {
     f = FALSE;
     switch (a) {
         case 2:
-            switch (gRaceSetup->mUnk_00c) {
-                case 0:
+            switch (gRaceSetup->mRaceKind) {
+                case RACE_KIND_NORMAL:
                 case 2:
                     q = gRaceSetup->mMode;
                     r = func_0202553c(gRaceSetup->mCourseId, b);
@@ -207,13 +207,13 @@ u32 func_0202511c(s32 a, void *c) {
                         }
                     }
                     break;
-                case 5:
+                case RACE_KIND_AWARD:
                     r = 0x2a;
                     break;
-                case 1:
+                case RACE_KIND_DEMO:
                     r = 0x33;
                     break;
-                case 3:
+                case RACE_KIND_START_GP:
                     switch (gRaceSetup->mCourseId) {
                         case COURSE_ID_OLD_LUIGI_GC:
                         case COURSE_ID_CROSS:
@@ -242,7 +242,7 @@ u32 func_0202511c(s32 a, void *c) {
                 case 4:
                     r = 5;
                     break;
-                case 6:
+                case RACE_KIND_STAFF_ROLL:
                     r = 0x33;
                     break;
             }

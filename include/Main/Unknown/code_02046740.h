@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02046740(void);
+void SetNextGrandPrixCourse(void);

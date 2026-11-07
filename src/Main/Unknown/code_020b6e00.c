@@ -133,7 +133,7 @@ void func_020b8624(void) {
             break;
         case MODE_BATTLE:
             LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[3].mNclr, FindSceneFileWrapper("race_battle_m_o.NCLR"));
-            if (gRaceSetup->mUnk_00c == 4) {
+            if (gRaceSetup->mRaceKind == 4) {
                 LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[10].mNclr,
                              FindSceneFileWrapper("race_start_battle_m_o.NCLR"));
             }
@@ -154,7 +154,7 @@ void func_020b8624(void) {
             break;
         case MODE_BATTLE:
             LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[3].mNcgr, FindSceneFileWrapper("race_battle_m_o.NCGR"));
-            if (gRaceSetup->mUnk_00c == 4) {
+            if (gRaceSetup->mRaceKind == 4) {
                 LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[10].mNcgr,
                               FindSceneFileWrapper("race_start_battle_m_o.NCGR"));
             }
@@ -207,7 +207,7 @@ void func_020b8624(void) {
                           data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mData, 0, 0);
             break;
         case MODE_BATTLE:
-            if (gRaceSetup->mUnk_00c != 4) {
+            if (gRaceSetup->mRaceKind != 4) {
                 a3 = NULL;
                 LoadNcerData(&a3, FindSceneFileWrapper("race_battle_m.NCER"));
                 for (i = 0; i < 0xd; i++) {
@@ -231,12 +231,12 @@ void func_020b8624(void) {
                 s2.mUnk_00 = buf2;
                 s2.mUnk_0c = 0;
                 s2.mUnk_08 = n2;
-                NNSi_G2dTextCanvasDrawText(
-                    &s2, 0, 9, 0xc, 0x40a,
-                    GetBmgEntry(func_020b47cc("common.bmg"), gRaceSetup->mUnk_18 == 0 ? 0x54 : 0x55));
-                NNSi_G2dTextCanvasDrawText(
-                    &s2, 0, 8, 0xc, 0x40a,
-                    GetBmgEntry(func_020b47cc("common.bmg"), gRaceSetup->mUnk_18 == 0 ? 0x54 : 0x55));
+                NNSi_G2dTextCanvasDrawText(&s2, 0, 9, 0xc, 0x40a,
+                                           GetBmgEntry(func_020b47cc("common.bmg"),
+                                                       gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON ? 0x54 : 0x55));
+                NNSi_G2dTextCanvasDrawText(&s2, 0, 8, 0xc, 0x40a,
+                                           GetBmgEntry(func_020b47cc("common.bmg"),
+                                                       gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON ? 0x54 : 0x55));
                 s2.mUnk_08 = func_020b4b54();
                 NNSi_G2dTextCanvasDrawText(&s2, 0, 0x19, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
                 NNSi_G2dTextCanvasDrawText(&s2, 0, 0x18, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));

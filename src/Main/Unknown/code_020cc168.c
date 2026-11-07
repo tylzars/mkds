@@ -80,8 +80,8 @@ void func_020cc3e8(void) {
     GetRaceSetupCopy()->mEngineIndex = GetCurrentEngineIndex();
     GetRaceSetupCopy()->mMirrorMode = GetCurrentMirrorMode();
     GetRaceSetupCopy()->mUseTeams = GetCurrentUseTeams();
-    GetRaceSetupCopy()->mUnk_e4 = func_020cc604();
-    GetRaceSetupCopy()->mUnk_e4 = func_020cc604();
+    GetRaceSetupCopy()->mBattleKind = GetCurrentBattleKind();
+    GetRaceSetupCopy()->mBattleKind = GetCurrentBattleKind();
     GetRaceSetupCopy()->mCourseCount = GetCurrentCourseCount();
     GetRaceSetupCopy()->mUnk_ec = func_020cc5d8();
     if (GetCurrentMode() == MODE_MISSION_RUN) {

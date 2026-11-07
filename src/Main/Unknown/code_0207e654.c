@@ -142,10 +142,10 @@ void func_0207fba0(void) {
             data_usa_0217ae48 = data_usa_02155708;
             break;
     }
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         data_usa_0217ae3c = func_0207fec0;
         data_usa_0217ae44 = func_0207f630;
-    } else if (gRaceSetup->mUnk_00c == 6) {
+    } else if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         data_usa_0217ae3c = func_0207fd28;
         data_usa_0217ae44 = func_0207f630;
     } else {

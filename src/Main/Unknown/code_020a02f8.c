@@ -285,10 +285,10 @@ u16 func_020a1cd8(s32 a) {
     s32 v1;
 
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        if (gRaceSetup->mUnk_18 == 0) {
+        if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
             v = 3 - gStandings->mKarts[a].mBalloonOrShineCount;
             v += 1;
-        } else if (gRaceSetup->mUnk_18 == 1) {
+        } else if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
             v1 = 1;
             for (i = 0; i < gRaceSetup->mKartCount; i++) {
                 if (gStandings->mKarts[i].mBalloonOrShineCount > v1) {
@@ -448,7 +448,7 @@ found:
     }
     gStandings->mWinnerTeamId = v;
     if (gRaceSetup->mMode == MODE_BATTLE) {
-        if (gRaceSetup->mUnk_18 == 1) {
+        if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x4a);
         }
         gStandings->mEndTimer = 0x5a;
@@ -561,7 +561,7 @@ void EliminateKartsUntilWinnerDecided(void) {
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
         n = gRaceSetup->mKartCount;
-        if (gRaceSetup->mUnk_18 == 0) {
+        if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
             if (gStandings->mWinnerTeamId >= 0) {
                 return;
             }
@@ -584,7 +584,7 @@ void EliminateKartsUntilWinnerDecided(void) {
                     gStandings->mKarts[k].mEliminationStatus = 2;
                 }
             } while (gStandings->mWinnerTeamId < 0);
-        } else if (gRaceSetup->mUnk_18 == 1) {
+        } else if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
             for (i = n - 1; i >= 0; i--) {
                 if (gStandings->mWinnerTeamId < 0) {
                     k = func_020a12b8_inline(i);
@@ -895,7 +895,7 @@ void UpdateStandings(void) {
                     e->mUnk_44 = i;
                     e->mUnk_20 = FALSE;
                     if (e->mBalloonOrShineCount <= 1) {
-                        if ((gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 0) ||
+                        if ((gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) ||
                             gRaceSetup->mMode == MODE_MISSION_RUN) {
                             o->mUnk_7c |= 0x20000000;
                             o->mUnk_48 &= ~0x2000000;
@@ -918,7 +918,7 @@ void UpdateStandings(void) {
                 if (e->mUnk_00 == FALSE && b != FALSE && (o->mUnk_4c & 0x400000) == 0) {
                     e->mUnk_00 = TRUE;
                     if (e->mBalloonOrShineCount <= 1) {
-                        if ((gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 0) ||
+                        if ((gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) ||
                             gRaceSetup->mMode == MODE_MISSION_RUN) {
                             o->mUnk_7c |= 0x20000000;
                         }

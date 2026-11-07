@@ -33,15 +33,15 @@ void func_020ae824(void) {
     u32 v;
     s32 a;
 
-    v = gRaceSetup->mUnk_00c;
-    if (v == 3) {
+    v = gRaceSetup->mRaceKind;
+    if (v == RACE_KIND_START_GP) {
         func_020c4ae8();
         return;
     }
-    if (v == 5) {
+    if (v == RACE_KIND_AWARD) {
         return;
     }
-    if (v == 6) {
+    if (v == RACE_KIND_STAFF_ROLL) {
         DrawEndingStaffRoll();
         return;
     }
@@ -52,7 +52,7 @@ void func_020ae824(void) {
     func_020b3724();
     gRaceHud->mUnk_404 = 0;
     gRaceHud->mUnk_406 = 0;
-    if (gRaceSetup->mUnk_00c == 4) {
+    if (gRaceSetup->mRaceKind == 4) {
         func_020d1198((Unk020d029c *) gRaceHud->mUnk_004);
     }
     v = gRaceSetup->mMode;

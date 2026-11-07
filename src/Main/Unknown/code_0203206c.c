@@ -48,7 +48,7 @@ void func_02032a20(void) {
                 v = TRUE;
                 break;
         }
-        GetRaceSetupCopy()->mUnk_e4 = v;
+        GetRaceSetupCopy()->mBattleKind = v;
     } else if (gSelectGame->mSelectedIndex == 0) {
         GetRaceSetupCopy()->mMode = 3;
     } else {
@@ -61,7 +61,7 @@ void func_02032a20(void) {
                 v = TRUE;
                 break;
         }
-        GetRaceSetupCopy()->mUnk_e4 = v;
+        GetRaceSetupCopy()->mBattleKind = v;
     }
     gSelectGame->mResult = 1;
     gSelectGame->mState = 5;

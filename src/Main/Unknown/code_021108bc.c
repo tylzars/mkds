@@ -146,8 +146,8 @@ void func_02110cc8(s32 d) {
     u32 c;
     u32 *q;
     a = -1;
-    c = gRaceSetup->mUnk_00c;
-    if (c != 2 && c != 0) {
+    c = gRaceSetup->mRaceKind;
+    if (c != 2 && c != RACE_KIND_NORMAL) {
         return;
     }
     if (data_0217d084.mUnk_04 != 2) {

@@ -166,7 +166,7 @@ void func_020bab54(void) {
         data_0217b3cc->mUnk_04 = 0;
         n = data_0217b3cc->mUnk_04;
         if (func_020bab54_inline(i)->mSlotShownItem >= 9) {
-            if (gRaceSetup->mUnk_00c != 2) {
+            if (gRaceSetup->mRaceKind != 2) {
                 k = 0x40;
                 if (gRaceSetup->mCourseId == COURSE_ID_PINBALL) {
                     k = 0x1c6;
@@ -185,7 +185,7 @@ void func_020bab54(void) {
                 }
             }
         } else {
-            if (gRaceSetup->mUnk_00c != 2) {
+            if (gRaceSetup->mRaceKind != 2) {
                 k = 0x3f;
                 if (gRaceSetup->mCourseId == COURSE_ID_PINBALL) {
                     k = 0x1c5;
@@ -206,7 +206,7 @@ void func_020bab54(void) {
         }
         data_0217b3cc->mUnk_10 = 0;
     }
-    if (data_0217b3cc->mUnk_14 == 0 && data_0217b3cc->mUnk_10 != 0 && gRaceSetup->mUnk_00c != 2) {
+    if (data_0217b3cc->mUnk_14 == 0 && data_0217b3cc->mUnk_10 != 0 && gRaceSetup->mRaceKind != 2) {
         r2 = func_02108e88();
         k2 = 0x3e;
         if (gRaceSetup->mCourseId == COURSE_ID_PINBALL) {
@@ -344,10 +344,10 @@ void func_020ba63c(Unk020d029c *p) {
     r = GetRaceMNcerEntry(gRaceSetup->mUseTeams == 0                                                           ? 8
                           : gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mTeamIndex == 0 ? 9
                                                                                                                : 10);
-    if (gRaceSetup->mUnk_00c == 4) {
+    if (gRaceSetup->mRaceKind == 4) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 1) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_DEMO) {
         return;
     }
     t = GetRaceMNcerEntry(0xc);
@@ -436,12 +436,12 @@ void func_020ba520(void) {
             data_0217b3c8->mUnk_04 = gRaceSetup->mUnk_37;
             break;
         case MODE_BATTLE:
-            switch (gRaceSetup->mUnk_18) {
-                case 0:
+            switch (gRaceSetup->mBattleKind) {
+                case BATTLE_KIND_BALLOON:
                     q->mUnk_00_h[0] = 0;
                     data_0217b3c8->mUnk_00_h[1] = func_020a10d4(GetFollowedKartOrEntryIndex());
                     break;
-                case 1:
+                case BATTLE_KIND_SHINE:
                 default:
                     data_0217b3c8->mUnk_00_h[0] = GetBalloonOrShineCount(GetFollowedKartOrEntryIndex());
                     break;
@@ -474,7 +474,7 @@ void func_020ba3ec(void) {
             data_0217b3c8->mUnk_00 = v == MODE_MISSION_RUN ? GetMissionRunCount() : 0;
             break;
         case MODE_BATTLE:
-            if (gRaceSetup->mUnk_18 == 0) {
+            if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
                 if (func_020a2204(GetFollowedKartOrEntryIndex()) != 0) {
                     data_0217b3c8->mUnk_00_h[0] += 1;
                     if (data_0217b3c8->mUnk_00_h[0] >= 9) {
@@ -513,10 +513,10 @@ void func_020b9dfc(Unk020d029c *p) {
     Unk020224e0_o *q;
     Unk020224e0_c *t;
 
-    if (gRaceSetup->mUnk_00c == 4) {
+    if (gRaceSetup->mRaceKind == 4) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 1) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_DEMO) {
         return;
     }
     switch (gRaceSetup->mMode) {
@@ -525,7 +525,7 @@ void func_020b9dfc(Unk020d029c *p) {
             return;
         case MODE_BATTLE:
             if (IsKartEnded(GetFollowedKartOrEntryIndex()) == 0) {
-                if (gRaceSetup->mUnk_18 == 0) {
+                if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON) {
                     i = 0;
                     n = data_0217b3c8->mUnk_00_h[1];
                     k = data_0217b3c8->mUnk_00_h[0];

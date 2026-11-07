@@ -4,7 +4,7 @@
 
 unsigned int func_020cc5d8(void);
 unsigned int GetCurrentCourseCount(void);
-unsigned int func_020cc604(void);
+unsigned int GetCurrentBattleKind(void);
 unsigned int GetCurrentMirrorMode(void);
 unsigned int GetCurrentEngineIndex(void);
 unsigned int GetCurrentCourseId(void);

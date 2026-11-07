@@ -136,15 +136,15 @@ void func_020b0b8c(void) {
     s32 w;
     s32 a;
 
-    v = gRaceSetup->mUnk_00c;
-    if (v == 3) {
+    v = gRaceSetup->mRaceKind;
+    if (v == RACE_KIND_START_GP) {
         func_020c4e48();
         return;
     }
-    if (v == 5) {
+    if (v == RACE_KIND_AWARD) {
         return;
     }
-    if (v == 6) {
+    if (v == RACE_KIND_STAFF_ROLL) {
         *(vu16 *) 0x05000000 = 0;
         func_020d159c();
         func_0212b1c0();
@@ -164,7 +164,7 @@ void func_020b0b8c(void) {
     } else if (gRaceHud->mUnk_844 != 0) {
         if (func_020b2ec0() == 0) {
             if (gRaceHud->mUnk_844++ >= gRaceHud->mUnk_850) {
-                if (gRaceSetup->mMode == MODE_GRAND_PRIX && gRaceSetup->mUnk_00c == 0) {
+                if (gRaceSetup->mMode == MODE_GRAND_PRIX && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                     w = (reg_GX_DISPCNT & 0x1f00) >> 8;
                     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((w | 8) << 8);
                     reg_G2_BG3CNT = (reg_G2_BG3CNT & ~3) | 1;
@@ -350,15 +350,15 @@ void func_020b03bc(void) {
     u32 j;
     u16 w;
 
-    v = gRaceSetup->mUnk_00c;
-    if (v == 3) {
+    v = gRaceSetup->mRaceKind;
+    if (v == RACE_KIND_START_GP) {
         InitRaceStartGp();
         return;
     }
-    if (v == 5) {
+    if (v == RACE_KIND_AWARD) {
         return;
     }
-    if (v == 6) {
+    if (v == RACE_KIND_STAFF_ROLL) {
         InitEndingStaffRoll();
         InitStaffRollText(GetHeap(func_020364e8()));
         return;
@@ -369,7 +369,7 @@ void func_020b03bc(void) {
     InitRaceHudSubScreenProjection();
     func_020b8624();
     func_020cffa0();
-    if (gRaceSetup->mUnk_00c == 4) {
+    if (gRaceSetup->mRaceKind == 4) {
         func_020d12b0();
     }
     func_020bb530();
@@ -515,10 +515,10 @@ void InitMap2D(void) {
     s32 k;
 
     v1 = gRaceSetup->mMode != MODE_MISSION_RUN;
-    if (gRaceSetup->mUnk_00c == 3) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_START_GP) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 5 || gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD || gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
     data_0217b34c = HeapAlloc(GetHeap(func_020364e8()), 0x400);
@@ -583,7 +583,7 @@ void InitMap2D(void) {
             InitMap2D_inline(nscrs[0]->mData);
         }
         k = 0;
-        if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 1) {
+        if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
             k = 1;
         }
         for (i = 0; i < 16; i++) {
@@ -640,11 +640,11 @@ void func_020af99c(void) {
     u32 v;
     u16 w;
 
-    v = gRaceSetup->mUnk_00c;
-    if (v == 3) {
+    v = gRaceSetup->mRaceKind;
+    if (v == RACE_KIND_START_GP) {
         return;
     }
-    if (v == 5 || v == 6) {
+    if (v == RACE_KIND_AWARD || v == RACE_KIND_STAFF_ROLL) {
         return;
     }
     w = gCourseMap->mSettings->mColorAndFogAlpha & 0x7fff;
@@ -695,15 +695,15 @@ void func_020af99c(void) {
 void func_020af86c(void) {
     u32 v;
 
-    v = gRaceSetup->mUnk_00c;
-    if (v == 3) {
+    v = gRaceSetup->mRaceKind;
+    if (v == RACE_KIND_START_GP) {
         func_020c4bd8();
         return;
     }
-    if (v == 5) {
+    if (v == RACE_KIND_AWARD) {
         return;
     }
-    if (v == 6) {
+    if (v == RACE_KIND_STAFF_ROLL) {
         func_0212b5d8();
         func_020d1450();
         return;
@@ -715,7 +715,7 @@ void func_020af86c(void) {
     func_020b3af4();
     ClearRaceHudSubScreenProjection();
     func_020b8610();
-    if (gRaceSetup->mUnk_00c == 4) {
+    if (gRaceSetup->mRaceKind == 4) {
         func_020d129c();
     }
     func_020bb51c();
@@ -741,15 +741,15 @@ void func_020af66c(void) {
     if (gRaceHud != NULL) {
         gRaceHud->mUnk_908 = 1;
     }
-    v = gRaceSetup->mUnk_00c;
-    if (v == 3) {
+    v = gRaceSetup->mRaceKind;
+    if (v == RACE_KIND_START_GP) {
         func_020c4bb0();
         return;
     }
-    if (v == 5) {
+    if (v == RACE_KIND_AWARD) {
         return;
     }
-    if (v == 6) {
+    if (v == RACE_KIND_STAFF_ROLL) {
         UpdateEndingStaffRoll();
         AdvanceStaffRollText();
         return;
@@ -766,7 +766,7 @@ void func_020af66c(void) {
     }
     UpdateRaceStartSequence();
     func_020b3728();
-    if (gRaceSetup->mUnk_00c == 4) {
+    if (gRaceSetup->mRaceKind == 4) {
         func_020d1298();
     }
     v = gRaceSetup->mMode;

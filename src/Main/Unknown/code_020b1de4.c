@@ -148,7 +148,7 @@ void InitChoisesS(void) {
             }
             break;
     }
-    if (func_020b24e4() != 3 && func_020b24e4() != 6) {
+    if (func_020b24e4() != RACE_KIND_START_GP && func_020b24e4() != RACE_KIND_STAFF_ROLL) {
         const char *nscrNames[6] = {
             "choises_s_1.NSCR", "choises_s_2.NSCR", "choises_s_3.NSCR",
             "choises_s_4.NSCR", "choises_s_5.NSCR", "choises_s_6.NSCR",

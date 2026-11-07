@@ -439,7 +439,7 @@ void func_0208f0f8(void *a) {
     NNSG3dResTex *q;
     s32 t;
 
-    s = FindMainRaceOrMainEffectFile(gRaceSetup->mUnk_00c == 5 ? data_02166514 : data_02166530);
+    s = FindMainRaceOrMainEffectFile(gRaceSetup->mRaceKind == RACE_KIND_AWARD ? data_02166514 : data_02166530);
     data_021663f0 = 0x4d;
     data_021663e0 = 8;
     data_021663dc = 3;
@@ -450,7 +450,7 @@ void func_0208f0f8(void *a) {
     n = 1;
     if (gRaceSetup->mMode == 5) {
         n += 3;
-    } else if (gRaceSetup->mUnk_00c == 5) {
+    } else if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         data_021663f0 = 0;
         data_021663e0 = 0xe;
         data_021663dc = 2;
@@ -619,7 +619,7 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
     Vec3 v;
     s32 h;
 
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         p = NNS_FndGetNthListObject(&data_0217b08c->mUnk_00[1], 0);
         if (p != NULL) {
             o = GetKart(a);

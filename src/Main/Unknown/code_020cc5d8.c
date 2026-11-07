@@ -97,8 +97,8 @@ u32 GetCurrentMirrorMode(void) {
     return (gRaceSetup->mMirrorMode);
 }
 
-u32 func_020cc604(void) {
-    return (gRaceSetup->mUnk_18);
+u32 GetCurrentBattleKind(void) {
+    return (gRaceSetup->mBattleKind);
 }
 
 u32 GetCurrentCourseCount(void) {

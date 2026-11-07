@@ -79,7 +79,7 @@ void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
     s32 t;
     s32 d;
 
-    if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         GetCourseMapStartPlacementWithOffsets(a, b, 0, 0, 0);
         return;
     }

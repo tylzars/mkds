@@ -157,7 +157,7 @@ void func_020a6d8c(Unk02100094 *a, Unk020a6cb4 *b) {
 }
 
 s32 func_020a6d40(void) {
-    if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 1) {
+    if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
         return CreateEmptyMapObjectKindData();
     }
     return 0;

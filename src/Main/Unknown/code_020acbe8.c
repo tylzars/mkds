@@ -149,7 +149,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
             if (gTitleScene->mNoInputFrames > m) {
                 if (IsSeqVariableChanged(0) != 0) {
                     a->mNextScene = 2;
-                    func_0203b6ac(gTitleScene->mUnk_8b8);
+                    SetNextDemoRace(gTitleScene->mUnk_8b8);
                 }
             }
         }

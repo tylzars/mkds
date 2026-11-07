@@ -360,7 +360,7 @@ void func_0207a32c(void) {
     u16 k;
     s32 j;
     Kart *p;
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         for (k = 0; k < 3; k++) {
             gKarts[k].mUnk_4c |= 0x8000;
         }

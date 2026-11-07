@@ -111,7 +111,7 @@ void func_02044380(Unk02029930_f8 *a, u32 b, u32 c) {
     gRaceSetup->mNextHeader.mUseTeams = 0;
     gRaceSetup->mNextHeader.mUnk_1c = 0;
     gRaceSetup->mNextHeader.mCourseListMode = 0;
-    gRaceSetup->mNextHeader.mUnk_18 = 0;
+    gRaceSetup->mNextHeader.mBattleKind = 0;
     gRaceSetup->mCourseCount = 0;
     gRaceSetup->mNextHeader.mEngineIndex = a->mEngineIndex;
     func_020468b0(0, a->mCharacterIndex0, a->mKartIndex0, 0, -1, 3);

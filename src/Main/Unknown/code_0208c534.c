@@ -17,7 +17,8 @@ void InitKartTurnEffects(void *a) {
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         e = &gKartTurnEffects[i];
         e->mIndex = i;
-        if (i == gRaceSetup->mEntryIndex || gRaceSetup->mUnk_00c == 5 || gRaceSetup->mMode == MODE_TIME_ATTACK) {
+        if (i == gRaceSetup->mEntryIndex || gRaceSetup->mRaceKind == RACE_KIND_AWARD ||
+            gRaceSetup->mMode == MODE_TIME_ATTACK) {
             e->mTurnStartEffectId = 0x14;
             e->mLevel4FirstEffectId = 0x11;
             e->mLevel4SecondEffectId = 0x12;

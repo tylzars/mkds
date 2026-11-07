@@ -34,7 +34,7 @@ void SetKartAiParamRow(void) {
     KartAiParamRow *r;
     gKartAiParamRow = NULL;
     p = gRaceSetup;
-    if (p->mUnk_00c != 5 && p->mMode != MODE_BATTLE && p->mUnk_00c != 6) {
+    if (p->mRaceKind != RACE_KIND_AWARD && p->mMode != MODE_BATTLE && p->mRaceKind != RACE_KIND_STAFF_ROLL) {
         r = func_02047950(data_usa_02165990);
         p = gRaceSetup;
         if (p->mMode == MODE_GRAND_PRIX) {

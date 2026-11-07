@@ -70,13 +70,13 @@ void CreateItemSlotTables(void) {
             p = ComputeItemSlotTableDataEnd(p);
             p = ComputeItemSlotTableDataEnd(p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
-            switch (gRaceSetup->mUnk_18) {
-                case 0:
+            switch (gRaceSetup->mBattleKind) {
+                case BATTLE_KIND_BALLOON:
                 default:
                     p = LoadItemSlotTableData(&data_0217bc6c, p);
                     p = LoadItemSlotTableData(&data_0217bc64, p);
                     break;
-                case 1:
+                case BATTLE_KIND_SHINE:
                     p = ComputeItemSlotTableDataEnd(p);
                     p = ComputeItemSlotTableDataEnd(p);
                     p = LoadItemSlotTableData(&data_0217bc6c, p);

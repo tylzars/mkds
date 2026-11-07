@@ -327,13 +327,13 @@ void UpdateRaceProgress(void) {
         UpdateRaceProgressKarts();
     } else {
         BOOL t = FALSE;
-        switch (gRaceSetup->mUnk_00c) {
-            case 1:
+        switch (gRaceSetup->mRaceKind) {
+            case RACE_KIND_DEMO:
             case 2:
-            case 6:
+            case RACE_KIND_STAFF_ROLL:
                 t = TRUE;
                 break;
-            case 0:
+            case RACE_KIND_NORMAL:
                 if (func_02040bc0() != 0) {
                     t = TRUE;
                 }

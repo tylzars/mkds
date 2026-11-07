@@ -225,7 +225,7 @@ void DrawMapObjectList(MapObjectList *p, MtxFx43 *a) {
 void func_020d4bf0(void) {
     data_0217b4f8.mUnk_50 = TRUE;
     data_0217b4f8.mUnk_54 = FALSE;
-    if (gRaceSetup->mUnk_00c == 2) {
+    if (gRaceSetup->mRaceKind == 2) {
         data_0217b4f4 = 0x258000;
         return;
     }
@@ -474,7 +474,7 @@ void UpdateMapObjects(void) {
     n = gMapObjects->mUpdateListCount;
     r = GetRaceStartSequenceFrames();
     if (r <= 0x168) {
-        if (gRaceSetup->mUnk_00c != 3) {
+        if (gRaceSetup->mRaceKind != RACE_KIND_START_GP) {
             if (r == -0x73) {
                 func_020d3b74();
             } else if (r == 0x168) {

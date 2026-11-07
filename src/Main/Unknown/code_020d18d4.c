@@ -17,7 +17,7 @@ void DrawRaceMNumberPair(Unk020d029c *param_1) {
     s32 a;
 
     a = GetRaceStartSequenceFrames();
-    if (gRaceSetup->mUnk_00c == 4 || gRaceSetup->mUnk_00c == 1) {
+    if (gRaceSetup->mRaceKind == 4 || gRaceSetup->mRaceKind == RACE_KIND_DEMO) {
         return;
     }
     if (a >= 0xb4) {

@@ -45,7 +45,7 @@ static inline s32 func_0203d568_inline(Unk0217aa00 *p) {
 static inline void func_0203d568_b_inline(void) {
     u16 i;
 
-    if (gRaceSetup->mUnk_00c == 0 && GetNextSceneNumber() != 10 &&
+    if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL && GetNextSceneNumber() != 10 &&
         (GetNextSceneNumber() != 6 || data_0217b488->mUnk_74 != 2) && func_0203d568_inline(data_0217aa00) != 0) {
         for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == 0 &&
@@ -325,7 +325,7 @@ void UpdateRaceProgressKarts(void) {
 
     for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         e = &gRaceProgress->mKarts[i];
-        if (e->mStatus != 4 && gRaceSetup->mUnk_00c != 6) {
+        if (e->mStatus != 4 && gRaceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
             for (k = 0; k < 16; k++) {
                 e->mCheckpointTestedBits[k] = 0;
             }
@@ -392,13 +392,13 @@ void UpdateRaceProgressKarts(void) {
         }
     }
     f = FALSE;
-    switch (gRaceSetup->mUnk_00c) {
-        case 1:
+    switch (gRaceSetup->mRaceKind) {
+        case RACE_KIND_DEMO:
         case 2:
-        case 6:
+        case RACE_KIND_STAFF_ROLL:
             f = TRUE;
             break;
-        case 0:
+        case RACE_KIND_NORMAL:
             if (func_02040bc0() != 0) {
                 f = TRUE;
             }

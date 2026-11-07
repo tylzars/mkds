@@ -52,7 +52,7 @@ void func_020e7a40(void) {
     u32 value1;
     u32 compareLeft0;
     u32 compareRight0;
-    value0 = gRaceSetup->mUnk_00c;
+    value0 = gRaceSetup->mRaceKind;
     compareLeft0 = value0;
     compareRight0 = 6u;
     if (compareLeft0 == compareRight0) {
@@ -69,13 +69,13 @@ void func_020e7a40(void) {
 
 #pragma thumb off
 void func_020e7a18(void) {
-    if (gRaceSetup->mUnk_00c != 6) {
+    if (gRaceSetup->mRaceKind != RACE_KIND_STAFF_ROLL) {
         data_0217b8b4 = 0x14;
     }
 }
 
 void func_020e79c4(void) {
-    if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
     NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
@@ -90,10 +90,10 @@ void func_020e7760(void) {
     Vec3 *s;
     BOOL a;
 
-    if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 3) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_START_GP) {
         gJgKart = NULL;
         return;
     }
@@ -201,7 +201,7 @@ void func_020e7460(void) {
     s32 k;
 
     h = GetHeap(func_020364e8());
-    if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         return;
     }
     func_020e64b8(&gJgMain, FindSceneFile(data_0216c374), FindSceneFile(data_0216c384), 0);

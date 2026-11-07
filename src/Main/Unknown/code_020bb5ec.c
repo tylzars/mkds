@@ -189,10 +189,10 @@ void func_020bb5ec(Unk020d029c *p) {
     if (GetRaceHudSubScreenState() == 6) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 4) {
+    if (gRaceSetup->mRaceKind == 4) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 1) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_DEMO) {
         return;
     }
     if (gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus == 3) {

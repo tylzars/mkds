@@ -474,7 +474,7 @@ void InitSceneSounds(s32 e) {
     v = 0x69;
     b = FALSE;
     if (GetCurrentSceneNumber() == 2) {
-        d = gRaceSetup->mUnk_00c == 0 || gRaceSetup->mUnk_00c == 2;
+        d = gRaceSetup->mRaceKind == RACE_KIND_NORMAL || gRaceSetup->mRaceKind == 2;
         if (d != 0) {
             b = TRUE;
         }
@@ -637,7 +637,7 @@ void InitSceneSounds(s32 e) {
                     func_0210bbec(0xd, data_0216c860[13].mUnk_04, &data_0216c860[13]);
                     func_0210bbec(0xe, data_0216c860[13].mUnk_04, &data_0216c860[13]);
                     func_0210bbec(0x10, data_0216c860[13].mUnk_04, &data_0216c860[13]);
-                    if (gRaceSetup->mUnk_00c == 0) {
+                    if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                         func_021104dc(1);
                     }
                     break;
@@ -793,7 +793,7 @@ void StartSceneSounds(void) {
     data_0217c7f0.mUnk_10 = 0x7f;
     data_0217c7f0.mUnk_08 = 0;
     if (GetCurrentSceneNumber() == 2) {
-        c = gRaceSetup->mUnk_00c == 0 || gRaceSetup->mUnk_00c == 2;
+        c = gRaceSetup->mRaceKind == RACE_KIND_NORMAL || gRaceSetup->mRaceKind == 2;
         if (c != 0) {
             b = 1;
         }
@@ -855,7 +855,7 @@ void StartSceneSounds(void) {
         }
     } else {
         if (GetCurrentSceneNumber() == 2) {
-            if (gRaceSetup->mUnk_00c - 3 <= 1) {
+            if (gRaceSetup->mRaceKind - 3 <= 1) {
                 func_0210d9a0(&data_0217d084, 2);
                 data_0217c780 = 2;
             } else {
@@ -1001,7 +1001,7 @@ void AdvanceSceneSoundLap(void) {
 
     b = FALSE;
     if (GetCurrentSceneNumber() == 2) {
-        if (gRaceSetup->mUnk_00c == 1) {
+        if (gRaceSetup->mRaceKind == RACE_KIND_DEMO) {
             return;
         }
     }
@@ -1059,7 +1059,7 @@ void SetSceneSoundRank(u32 a) {
 
     b = FALSE;
     if (GetCurrentSceneNumber() == 2) {
-        c = gRaceSetup->mUnk_00c == 0 || gRaceSetup->mUnk_00c == 2;
+        c = gRaceSetup->mRaceKind == RACE_KIND_NORMAL || gRaceSetup->mRaceKind == 2;
         if (c != FALSE) {
             b = TRUE;
         }
@@ -1355,12 +1355,12 @@ void UpdateSceneSoundState(void) {
         }
     }
     if (GetCurrentSceneNumber() == 2) {
-        switch (gRaceSetup->mUnk_00c) {
-            case 0:
+        switch (gRaceSetup->mRaceKind) {
+            case RACE_KIND_NORMAL:
             case 2:
                 UpdateRaceSounds();
                 break;
-            case 3:
+            case RACE_KIND_START_GP:
             case 4:
                 func_021062a8();
                 break;

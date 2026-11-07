@@ -85,7 +85,7 @@ u32 func_0203b8e4(Unk020f41c4_B *a) {
     return i;
 }
 
-void func_0203b6ac(u8 *a) {
+void SetNextDemoRace(u8 *a) {
     Unk020f41c4_B r;
     RTCTime t;
     u16 v1[2];
@@ -112,7 +112,7 @@ void func_0203b6ac(u8 *a) {
     r.mUnk_08 = 0x5d588b656c078965ULL;
     r.mUnk_10 = 0x269ec3;
     gRaceSetup->mNextHeader.mMode = MODE_GRAND_PRIX;
-    gRaceSetup->mNextHeader.mUnk_0c = 1;
+    gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_DEMO;
     gRaceSetup->mNextHeader.mEngineIndex = 2;
     gRaceSetup->mNextHeader.mUseTeams = 0;
     gRaceSetup->mNextHeader.mUnk_1c = 0;

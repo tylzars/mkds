@@ -146,7 +146,7 @@ void func_020777ac(u32 a) {
     gEntryCamera->mCourseMapCamera = NULL;
     gEntryCamera->mFrustumShift = 0;
     gEntryCamera->mKind = 1;
-    if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         gEntryCamera->mCourseMapCamera = gCourseMap->mCameras;
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
@@ -369,7 +369,7 @@ void RefreshCameraProjection(Camera *p) {
         p->mFrustumLeft = -p->mFrustumLeft;
     }
     p->mFrustumRight = -p->mFrustumLeft;
-    if (gRaceSetup->mUnk_00c == 6 && p->mCourseMapCamera != NULL) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL && p->mCourseMapCamera != NULL) {
         c = ((s64) p->mFrustumTop * p->mCourseMapCamera->mUnk_00.y + 0x800) >> 12;
         p->mFrustumBottom += c;
         p->mFrustumTop += c;

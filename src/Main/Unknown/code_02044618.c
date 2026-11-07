@@ -51,10 +51,10 @@ void ResetRaceSetup(void) {
     gRaceSetup->mNextHeader.mCourseId = COURSE_ID_CROSS;
     gRaceSetup->mNextHeader.mCupIndex = 0;
     gRaceSetup->mNextHeader.mMode = MODE_GRAND_PRIX;
-    gRaceSetup->mNextHeader.mUnk_0c = 0;
+    gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
     gRaceSetup->mNextHeader.mEngineIndex = 0;
     gRaceSetup->mNextHeader.mUnk_14 = 0;
-    gRaceSetup->mNextHeader.mUnk_18 = 0;
+    gRaceSetup->mNextHeader.mBattleKind = 0;
     gRaceSetup->mNextHeader.mUnk_1c = 0;
     gRaceSetup->mNextHeader.mCourseListMode = 0;
     gRaceSetup->mNextHeader.mUnk_24 = 0;
@@ -246,7 +246,7 @@ BOOL func_02044e9c(s32 a, s32 b) {
     Unk0217aa08_14 *p;
 
     r = FALSE;
-    if (gRaceSetup->mNextHeader.mUnk_0c == 2) {
+    if (gRaceSetup->mNextHeader.mRaceKind == 2) {
         return TRUE;
     }
     p = data_0217aa08->mUnk_14[0];
@@ -268,7 +268,7 @@ s32 func_02044d4c(s32 a, s32 b) {
     s32 r;
     u8 i;
 
-    if (gRaceSetup->mNextHeader.mUnk_0c == 2) {
+    if (gRaceSetup->mNextHeader.mRaceKind == 2) {
         return 1;
     }
     p = data_0217aa08->mUnk_14[1];
@@ -291,7 +291,7 @@ BOOL func_02044bf8(s32 a, s32 b) {
     Unk0217aa08_14 *p;
     u8 i;
 
-    if (gRaceSetup->mNextHeader.mUnk_0c == 2) {
+    if (gRaceSetup->mNextHeader.mRaceKind == 2) {
         return TRUE;
     }
     p = data_0217aa08->mUnk_14[2];
@@ -367,18 +367,18 @@ void SetCurrentRaceFromNext(void) {
             r = 2;
             break;
     }
-    switch (gRaceSetup->mNextHeader.mUnk_0c) {
-        case 1:
-        case 5:
+    switch (gRaceSetup->mNextHeader.mRaceKind) {
+        case RACE_KIND_DEMO:
+        case RACE_KIND_AWARD:
             gRaceSetup->mNextHeader.mEntryIndex = gRaceSetup->mNextHeader.mFollowedKartIndex;
             break;
-        case 6:
+        case RACE_KIND_STAFF_ROLL:
             gRaceSetup->mNextHeader.mEntryIndex = gRaceSetup->mNextHeader.mFollowedKartIndex;
             r = 8;
             break;
-        case 0:
+        case RACE_KIND_NORMAL:
         case 2:
-        case 3:
+        case RACE_KIND_START_GP:
         case 4:
             h = 0;
             for (i = 0; i < 8; i++) {
@@ -421,13 +421,13 @@ void func_020446e0(void) {
         case MODE_GRAND_PRIX:
             if (gRaceSetup->mNextHeader.mCourseId == COURSE_ID_AWARD) {
                 gRaceSetup->mNextHeader.mCourseId = COURSE_ID_AWARD;
-                gRaceSetup->mNextHeader.mUnk_0c = 5;
+                gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_AWARD;
                 for (i = 3; i < 8; i++) {
                     func_020468b0(i, i, i * 3, 4, -1, 3);
                 }
                 gRaceSetup->mNextHeader.mFollowedKartIndex = 0;
             } else if ((u32) (gRaceSetup->mNextHeader.mCourseId - 0x35) <= 1) {
-                gRaceSetup->mNextHeader.mUnk_0c = 6;
+                gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_STAFF_ROLL;
                 gRaceSetup->mNextHeader.mEngineIndex = 1;
                 for (c = 0; c < 8; c++) {
                     s8 j;
@@ -457,21 +457,21 @@ void func_020446e0(void) {
                 }
                 gRaceSetup->mNextHeader.mCourseNumber = (u8) (n + 1);
                 a = &gRaceSetup->mNextHeader;
-                gRaceSetup->mNextHeader.mUnk_0c = 3;
+                gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_START_GP;
                 gRaceSetup->mNextHeader.mCupIndex = m;
             }
             break;
         case MODE_BATTLE:
             if (data_021759d0->mUnk_1c_2 != 0) {
-                gRaceSetup->mNextHeader.mUnk_0c = 0;
+                gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
             } else {
-                gRaceSetup->mNextHeader.mUnk_0c = 4;
+                gRaceSetup->mNextHeader.mRaceKind = 4;
             }
             break;
         case MODE_MISSION_RUN:
             break;
         default:
-            gRaceSetup->mNextHeader.mUnk_0c = 0;
+            gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
             break;
     }
 }
@@ -482,7 +482,7 @@ void ResetTimeAttackNextEntries(void) {
     if (gRaceSetup->mNextHeader.mMode != MODE_TIME_ATTACK) {
         return;
     }
-    gRaceSetup->mNextHeader.mUnk_0c = 0;
+    gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
     for (i = 1; i < 8; i++) {
         gRaceSetup->mNextEntries[i].mCharacterIndex = i;
         gRaceSetup->mNextEntries[i].mKartIndex = i;

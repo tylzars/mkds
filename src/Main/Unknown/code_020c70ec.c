@@ -69,7 +69,7 @@ void func_020c7164(void) {
     if (gRaceNewRecordTa == NULL) {
         return;
     }
-    if (gRaceSetup->mUnk_00c == 0) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
         gRaceNewRecordTa->mUnk_08 = func_020c657c(0);
         gRaceNewRecordTa->mUnk_10 = func_020c6428(0);
         return;

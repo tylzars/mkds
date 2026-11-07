@@ -21,9 +21,9 @@ u32 func_02105504(void) {
     u32 r = 0;
     u32 f;
     if (GetCurrentSceneNumber() == 2) {
-        s32 a = gRaceSetup->mUnk_00c;
+        s32 a = gRaceSetup->mRaceKind;
         f = 1;
-        if (a != 0 && a != 2) {
+        if (a != RACE_KIND_NORMAL && a != 2) {
             f = 0;
         }
         if (f != 0) {

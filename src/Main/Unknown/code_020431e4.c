@@ -119,7 +119,7 @@ void func_020431e4(void) {
             if (j == q->mEntryIndex) {
                 if (func_020431e4_inline(z) != 0) {
                     data_02175628[w].mSourceKind = 4;
-                } else if (q->mUnk_00c == 2) {
+                } else if (q->mRaceKind == 2) {
                     data_02175628[w].mSourceKind = 1;
                 } else {
                     data_02175628[w].mSourceKind = 2;

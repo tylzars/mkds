@@ -252,13 +252,13 @@ void InitRaceProgress(void) {
     gRaceProgress->mUnk_000[0].mFinishedCount = 0;
     gRaceProgress->mUnk_000[0].mRemovedCount = 0;
     gRaceProgress->mRaceDone = 0;
-    switch (gRaceSetup->mUnk_00c) {
-        case 1:
+    switch (gRaceSetup->mRaceKind) {
+        case RACE_KIND_DEMO:
         case 2:
-        case 6:
+        case RACE_KIND_STAFF_ROLL:
             f = TRUE;
             break;
-        case 0:
+        case RACE_KIND_NORMAL:
             if (func_02040bc0() != 0) {
                 f = TRUE;
             }
@@ -278,7 +278,7 @@ void InitRaceProgress(void) {
             gRaceProgress->mTimeLimitFrameCount = gRaceSetup->mMissionTimeLimitFrameCount;
             break;
         case MODE_BATTLE:
-            if (gRaceSetup->mUnk_18 == 1) {
+            if (gRaceSetup->mBattleKind == BATTLE_KIND_SHINE) {
                 gRaceProgress->mTimeCountsDown = TRUE;
                 gRaceProgress->mTimeLimitFrameCount = gCourseMap->mSettings->mLapCountOrBattleSeconds * 0x3c;
             }
@@ -288,14 +288,14 @@ void InitRaceProgress(void) {
         InitRaceProgressKart(&gRaceProgress->mKarts[i], i);
         gRaceProgress->mKartAtRank[i] = -1;
     }
-    switch (gRaceSetup->mUnk_00c) {
+    switch (gRaceSetup->mRaceKind) {
         case 2:
             s = gRaceSetup->mUnk_05c;
             break;
-        case 5:
+        case RACE_KIND_AWARD:
             s = 0xc240793;
             break;
-        case 6:
+        case RACE_KIND_STAFF_ROLL:
             s = 0x71abc95;
             break;
         default:

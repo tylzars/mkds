@@ -430,7 +430,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
 
     p->mPrevPos = p->mPos;
     gEntryCameraUpdateRan = 1;
-    if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         func_02074b00(p);
         return TRUE;
     }
@@ -492,7 +492,7 @@ void UpdateCameraByEntryKind(Camera *p) {
     switch (p->mCourseMapCamera->mKind) {
         case 0:
             p->mPos = p->mCourseMapCamera->mUnk_00;
-            if (gRaceSetup->mUnk_00c == 5) {
+            if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
                 p->mFollowedKartIndex = (p->mCourseMapCamera->mUnk_24.z >> 12) - 1;
                 GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
                 p->mLookAt.y = p->mLookAt.y + p->mCourseMapCamera->mUnk_18.y;
@@ -592,7 +592,7 @@ static inline void func_02075424_inline(Camera *p) {
     if ((s16) q->mEntryGroupIndex != -1) {
         SetupPosCurve(&p->mPosCurve, q);
     }
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         func_0208e808(q->mShakeKind != 0);
     }
     gCameraEntryChanged = 1;
@@ -658,7 +658,7 @@ void UpdateCameraEntry(Camera *p) {
 
 void UpdateCameraPosCurveLookAtKart(Camera *p) {
     UpdateCameraPosCurve(p, p->mCourseMapCamera->mPosCurvePerFrame);
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         p->mFollowedKartIndex = (p->mCourseMapCamera->mUnk_24.z >> 12) - 1;
         GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
         p->mLookAt.y = p->mLookAt.y + p->mCourseMapCamera->mUnk_18.y;
@@ -694,7 +694,7 @@ void UpdateCameraAngleEntry(Camera *p) {
     s32 k;
     s32 l;
 
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         p->mFollowedKartIndex = (q->mUnk_24.z >> 12) - 1;
         GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
         p->mLookAt.y = p->mLookAt.y + p->mCourseMapCamera->mUnk_18.y;

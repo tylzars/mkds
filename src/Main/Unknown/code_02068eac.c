@@ -248,7 +248,7 @@ void StartKartStar(Kart *p) {
     p->mItemEffect = 1;
     func_0207b284(p);
     StartKartStarEffects(p->mIndex);
-    if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
+    if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
         StartKartStarSeq();
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
@@ -274,7 +274,7 @@ void StartKartTeresa(Kart *p) {
         p->mItemEffect = 0;
         StopKartStarEffects(p->mIndex);
         func_02068a64(p, 0, 1);
-        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
             func_02106dc8();
         }
         if (p->mUnk_4c & 0x2000) {
@@ -386,9 +386,9 @@ void StartKartKiller(Kart *p) {
     func_0209086c(&s->mUnk_2c, p->mIndex);
     p->mUnk_4c |= 0x10000000;
     k = gRaceSetup->mKartCount;
-    s->mUnk_28 = GetKartRank(p->mIndex) - w.mUnk_00[k - 1];
-    if (s->mUnk_28 <= 0) {
-        s->mUnk_28 = 1;
+    s->mKillerEndRank = GetKartRank(p->mIndex) - w.mUnk_00[k - 1];
+    if (s->mKillerEndRank <= 0) {
+        s->mKillerEndRank = 1;
     }
     p->mKartModelsEntry->mUnk_0a4 = 0;
     if (p->mUnk_7c & 0x2000) {
@@ -416,7 +416,7 @@ void StartKartKiller(Kart *p) {
         p->mItemEffect = 0;
         StopKartStarEffects(p->mIndex);
         func_02068a64(p, 0, 1);
-        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
             func_02106dc8();
         }
         if (p->mUnk_4c & 0x2000) {
@@ -506,10 +506,10 @@ void AdvanceKartKiller(Kart *p) {
     if (!(p->mUnk_7c & 0x400)) {
         if (GetKartRank(p->mIndex) == 1) {
             r = TRUE;
-        } else if ((s32) GetKartRank(p->mIndex) <= s->mUnk_28) {
+        } else if ((s32) GetKartRank(p->mIndex) <= s->mKillerEndRank) {
             r = TRUE;
         }
-        if (s->mKillerFrames > 0xb4 && r != FALSE) {
+        if (s->mKillerFrames > KART_KILLER_RANK_END_FRAMES && r != FALSE) {
             t = TRUE;
         }
     }
@@ -653,7 +653,7 @@ s32 func_02068ec0(Kart *p, s32 a) {
         }
         if (gRaceSetup->mMode == MODE_BATTLE && a == 0) {
             StartSound(&p->mSoundSource, 0xd3, 0x7f, 0);
-            if (gRaceSetup->mUnk_18 == 0 && (data_0217c780 & 1)) {
+            if (gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON && (data_0217c780 & 1)) {
                 h = func_0210e128(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (h[0] != NULL) {

@@ -530,7 +530,7 @@ void func_0205ef70(void) {
 }
 
 void func_0205eeb0(void) {
-    if (gRaceSetup->mUnk_00c == 0) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
         switch (gRaceSetup->mMode) {
             case MODE_VS:
                 func_0205f700();
@@ -539,11 +539,11 @@ void func_0205eeb0(void) {
                 func_0203b230();
                 break;
             case MODE_BATTLE:
-                switch (gRaceSetup->mUnk_18) {
-                    case 0:
+                switch (gRaceSetup->mBattleKind) {
+                    case BATTLE_KIND_BALLOON:
                         func_0205f498();
                         break;
-                    case 1:
+                    case BATTLE_KIND_SHINE:
                         func_0205f218();
                         break;
                 }

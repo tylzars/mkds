@@ -345,7 +345,7 @@ void func_02066fe0(Kart *a) {
         a->mItemEffect = 0;
         StopKartStarEffects(a->mIndex);
         func_02068a64(a, 0, 1);
-        if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0 && gRaceSetup->mUnk_00c == 0) {
+        if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0 && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
             func_02106dc8();
         }
         if ((a->mUnk_4c & 0x2000) != 0) {

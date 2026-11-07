@@ -35,7 +35,7 @@ void func_020646f0(Kart *a, s32 b) {
 
     if (b == 0) {
         GetCourseMapKartStartPlacement(&a->mPos, &d, a->mIndex);
-        if (gRaceSetup->mUnk_00c == 5) {
+        if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
             a->mPos = data_0216549c[a->mIndex];
         }
     } else {

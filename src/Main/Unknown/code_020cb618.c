@@ -116,7 +116,7 @@ void func_020cb6c0(void) {
                 InitSelectGame(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;
             case SCREEN_SELECT_BATTLE_STAGE:
-                v = (GetRaceSetupCopy()->mUnk_e4 == 0) ? UNK_020CB6C0_1 : UNK_020CB6C0_0;
+                v = (GetRaceSetupCopy()->mBattleKind == BATTLE_KIND_BALLOON) ? UNK_020CB6C0_1 : UNK_020CB6C0_0;
                 p = data_0217b43c;
                 InitSelectBattleStage(func_020cb99c(), v, p->mUnk_108, p->mUnk_50c);
                 break;

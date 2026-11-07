@@ -1196,7 +1196,7 @@ u32 func_020a3f48(void) {
 
     d = gRaceSetup;
     k = d->mMode;
-    if (k == MODE_BATTLE && d->mUnk_18 == 0) {
+    if (k == MODE_BATTLE && d->mBattleKind == BATTLE_KIND_BALLOON) {
         return CreateEmptyMapObjectKindData();
     }
     if (k != MODE_MISSION_RUN) {

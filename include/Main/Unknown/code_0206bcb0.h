@@ -112,6 +112,8 @@ typedef struct Unk0217d26c {
 extern Unk0217d26c data_0217d294;
 extern Unk0217d26c data_0217d29c;
 
+// Frames before the Killer effect may end early because of the kart's rank.
+#define KART_KILLER_RANK_END_FRAMES 0xb4
 // Frames after which the Killer effect ends.
 #define KART_KILLER_MAX_FRAMES 0x1e0
 // Frames after which the Teresa effect ends (7.5 seconds).
@@ -136,7 +138,8 @@ typedef struct Unk0206ceb4 {
     /* 20 */ s16 mUnk_20;
     /* 22 */ u8 mUnk_22[2];
     /* 24 */ BOOL mKillerEnding;
-    /* 28 */ s16 mUnk_28;
+    // The effect may end early after KART_KILLER_RANK_END_FRAMES once the kart's rank is this number or better.
+    /* 28 */ s16 mKillerEndRank;
     /* 2a */ u8 mUnk_2a[2];
     /* 2c */ Unk020905a8 mUnk_2c;
 } Unk0206ceb4;

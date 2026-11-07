@@ -14,15 +14,16 @@
 u16 GetFollowedKartOrEntryIndex(void) {
     RaceSetup *p = gRaceSetup;
 
-    return p->mUnk_00c == 1 ? p->mFollowedKartIndex : p->mEntryIndex;
+    return p->mRaceKind == RACE_KIND_DEMO ? p->mFollowedKartIndex : p->mEntryIndex;
 }
 
 u16 func_020b4d2c(void) {
     u16 a;
 
-    a = func_0203c8c0((u16) (gRaceSetup->mUnk_00c == 1 ? gRaceSetup->mFollowedKartIndex : gRaceSetup->mEntryIndex));
-    if (IsKartEnded((u16) (gRaceSetup->mUnk_00c == 1 ? gRaceSetup->mFollowedKartIndex : gRaceSetup->mEntryIndex)) ==
-        0) {
+    a = func_0203c8c0(
+        (u16) (gRaceSetup->mRaceKind == RACE_KIND_DEMO ? gRaceSetup->mFollowedKartIndex : gRaceSetup->mEntryIndex));
+    if (IsKartEnded((u16) (gRaceSetup->mRaceKind == RACE_KIND_DEMO ? gRaceSetup->mFollowedKartIndex
+                                                                   : gRaceSetup->mEntryIndex)) == 0) {
         a = a - 1;
     }
     return a;

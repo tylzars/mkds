@@ -37,7 +37,7 @@ void func_0207e594(struct KartAi *p, struct Kart *q, s32 a) {
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
     p->mUnk_88 = 0x1000;
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         p->mUnk_8c = 0;
     } else {
         p->mUnk_8c = 0x1000;
@@ -476,11 +476,11 @@ void func_0207d814(struct Unk02089a24 *a, struct KartAi *b) {
     a->mUnk_14 = -1;
     a->mUnk_18 = 0;
     a->mUnk_10 = 0;
-    if (gRaceSetup->mUnk_00c == 5) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         b->mKart->mForwardSpeed = a->mUnk_00;
         return;
     }
-    if (gRaceSetup->mUnk_00c == 6) {
+    if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
         t = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
         b->mKart->mForwardSpeed = ((s64) b->mKart->mPhysicalParam->mBaseSpeedLimit * t + 0x800) >> 12;
         b->mKart->mSpeedLimitGoal = b->mKart->mForwardSpeed;

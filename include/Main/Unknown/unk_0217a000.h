@@ -17,6 +17,9 @@
 #include "Main/Unknown/code_02087d0c.h" // Unk02087d0c
 #include "code_02003024.h"
 
+// Values of Unk0217aa08_00.mSoundMode.
+typedef enum { SOUND_MODE_SURROUND, SOUND_MODE_STEREO, SOUND_MODE_HEADPHONES } SoundMode;
+
 // Objects whose layout isn't known yet.
 // What data_0217aa08 points to.
 typedef struct Unk0217aa08_00 {
