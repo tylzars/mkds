@@ -38,7 +38,7 @@ static inline BOOL func_0205f218_inline(void) {
     return (p == NULL ? 0 : p->mUnk_0000) != 0 && p->mUnk_0004 != 13;
 }
 
-u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c) {
+u32 func_0205fe1c(u8 *a, TimeRecord *b, s32 c) {
     u8 d[10] = {0};
     u32 e;
     s32 f;
@@ -52,7 +52,7 @@ u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c) {
     u8 q;
     s32 x;
 
-    e = b->mUnk_00 + (b->mUnk_03 * 1000 + b->mUnk_02 * 60000);
+    e = b->mMillisecond + (b->mSecond * 1000 + b->mMinute * 60000);
     if (e >= 240000) {
         return 0;
     }
@@ -60,13 +60,13 @@ u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c) {
     if (f < 0 || f >= 32) {
         return 0;
     }
-    g = b->mUnk_19 * 37 + b->mUnk_1a;
+    g = b->mCharacterIndex * 37 + b->mKartIndex;
     if (g >= 0x200) {
         return 0;
     }
     e = ((e & 0x3ffff) << 14) | ((f & 0x1f) << 9);
     *(u32 *) &d[0] = e | (g & 0x1ff);
-    MI_CpuCopy8(&b->mUnk_04, &d[4], 4);
+    MI_CpuCopy8(&b->mName, &d[4], 4);
     *(u16 *) &d[8] = 0;
     func_0204b284(d, 10, 1);
     x = 0xc3;
@@ -88,11 +88,11 @@ u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c) {
 }
 
 s32 func_0205fdb4(s32 a, void *b) {
-    Unk02056bc0 c;
+    TimeRecord c;
     BOOL d;
 
     d = FALSE;
-    if (func_02056bc0(a, 0, &c) != 0 && c.mUnk_18 != 0) {
+    if (func_02056bc0(a, 0, &c) != 0 && c.mFilled != 0) {
         d = TRUE;
     }
     if (d == FALSE) {
@@ -158,7 +158,7 @@ s32 func_0205fbb8(s32 a) {
 
 void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
     RaceSetup *p;
-    Unk0217aa08_20_04 e;
+    BuddyRecord e;
     u16 *f;
     u16 *g;
     u8 h;
@@ -177,24 +177,24 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
     }
     h = r;
     func_0205ee14(h, &e);
-    if (e.mUnk_22_0 == 0) {
+    if (e.mFilled == 0) {
         func_02057624((u32) &e);
     }
     if (gRaceSetup->mCurrentEntries[a].mPlayer.mName != NULL) {
-        MI_CpuCopy8(gRaceSetup->mCurrentEntries[a].mPlayer.mName, e.mUnk_0e, 0x14);
+        MI_CpuCopy8(gRaceSetup->mCurrentEntries[a].mPlayer.mName, e.mName, 0x14);
     }
     switch (c) {
         case 0:
-            f = &e.mUnk_00[0][0];
-            g = &e.mUnk_00[0][1];
+            f = &e.mResultCounts[0][0];
+            g = &e.mResultCounts[0][1];
             break;
         case 1:
-            f = &e.mUnk_00[1][0];
-            g = &e.mUnk_00[1][1];
+            f = &e.mResultCounts[1][0];
+            g = &e.mResultCounts[1][1];
             break;
         case 2:
-            f = &e.mUnk_00[2][0];
-            g = &e.mUnk_00[2][1];
+            f = &e.mResultCounts[2][0];
+            g = &e.mResultCounts[2][1];
             break;
     }
     switch (d) {
@@ -209,10 +209,10 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
             }
             break;
     }
-    e.mUnk_0c_0 = b[0];
-    e.mUnk_0c_7 = b[1];
-    e.mUnk_0c_11 = b[2];
-    e.mUnk_22_0 = 1;
+    e.mYear = b[0];
+    e.mMonth = b[1];
+    e.mDay = b[2];
+    e.mFilled = 1;
     func_0205ee74(h, &e);
 }
 
@@ -555,13 +555,13 @@ void func_0205eeb0(void) {
     }
 }
 
-void func_0205ee74(u32 a, Unk0217aa08_20_04 *b) {
-    MI_CpuCopy8(b, &data_0217aa08->mUnk_20->mUnk_04[a], 0x24);
+void func_0205ee74(u32 a, BuddyRecord *b) {
+    MI_CpuCopy8(b, &data_0217aa08->mBuddyRecordBlock->mRecords[a], 0x24);
 }
 
-u32 func_0205ee14(u32 a, Unk0217aa08_20_04 *b) {
+u32 func_0205ee14(u32 a, BuddyRecord *b) {
     if (b != NULL) {
-        MI_CpuCopy8(&data_0217aa08->mUnk_20->mUnk_04[a], b, 0x24);
+        MI_CpuCopy8(&data_0217aa08->mBuddyRecordBlock->mRecords[a], b, 0x24);
     }
-    return data_0217aa08->mUnk_20->mUnk_04[a].mUnk_22_0 != 0;
+    return data_0217aa08->mBuddyRecordBlock->mRecords[a].mFilled != 0;
 }

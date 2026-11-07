@@ -85,7 +85,7 @@ void func_02061220(u32 a) {
 
 s32 func_02061104(const void *a) {
     u8 b[12];
-    Unk0217aa08_20_04 c;
+    BuddyRecord c;
     u64 d;
     s32 e;
     u8 i;
@@ -99,13 +99,13 @@ s32 func_02061104(const void *a) {
         return 1;
     }
     func_021524d8(b, d, d >> 32);
-    f = (u8 *) data_0217aa08->mUnk_20 + 0x874;
+    f = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874;
     e = -1;
     for (i = 0; i < 60; i++) {
         u8 *g;
 
         func_0205ee14(i, &c);
-        if (c.mUnk_22_0 == 1) {
+        if (c.mFilled == 1) {
             g = f + i * 12;
             if (func_02152698(g) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) g, (DWCAccFriendData *) b) != 0) {
                 e = (s8) i;
@@ -120,18 +120,18 @@ s32 func_02061104(const void *a) {
 }
 
 s32 func_0206105c(const void *a) {
-    Unk0217aa08_20_04 b;
+    BuddyRecord b;
     s32 c;
     u8 i;
     u8 *d;
 
-    d = (u8 *) data_0217aa08->mUnk_20 + 0x874;
+    d = (u8 *) data_0217aa08->mBuddyRecordBlock + 0x874;
     c = -1;
     for (i = 0; i < 60; i++) {
         u8 *e;
 
         func_0205ee14(i, &b);
-        if (b.mUnk_22_0 == 1) {
+        if (b.mFilled == 1) {
             e = d + i * 12;
             if (func_02152698(e) != 0 && DWC_IsEqualFriendData((DWCAccFriendData *) e, a) != 0) {
                 c = (s8) i;
@@ -145,7 +145,7 @@ s32 func_0206105c(const void *a) {
 s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     Unk0203b0a0 h;
     Unk0203b0a0 j;
-    Unk0217aa08_20_04 k;
+    BuddyRecord k;
     s32 g[3];
     s32 m;
     BOOL n;
@@ -166,7 +166,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     p = a;
     for (i = 0; i < 60; i = (s8) (i + 1), p += 12) {
         func_0205ee14((u8) i, &k);
-        if (k.mUnk_22_0 == 1 && func_02152698(c) != 0 && func_02152698(p) != 0 &&
+        if (k.mFilled == 1 && func_02152698(c) != 0 && func_02152698(p) != 0 &&
             DWC_IsEqualFriendData((DWCAccFriendData *) p, (DWCAccFriendData *) c) != 0) {
             m = i;
             n = TRUE;
@@ -182,7 +182,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     if (m == -1) {
         for (i = 0; i < 60; i = (s8) (i + 1)) {
             func_0205ee14((u8) i, &k);
-            if (k.mUnk_22_0 == 0) {
+            if (k.mFilled == 0) {
                 m = i;
                 break;
             }
@@ -195,10 +195,10 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
         h.mUnk_02 = 31;
         for (i = 0; i < 60; i = (s8) (i + 1)) {
             func_0205ee14((u8) i, &k);
-            j.mUnk_00 = k.mUnk_0c_0;
-            j.mUnk_01 = k.mUnk_0c_7;
-            j.mUnk_02 = k.mUnk_0c_11;
-            if (k.mUnk_22_0 == 1 && k.mUnk_22_3 == 0 && func_0203b0a0(&j, &h) != FALSE) {
+            j.mUnk_00 = k.mYear;
+            j.mUnk_01 = k.mMonth;
+            j.mUnk_02 = k.mDay;
+            if (k.mFilled == 1 && k.mFlagged == 0 && func_0203b0a0(&j, &h) != FALSE) {
                 h = j;
                 q = i;
             }
@@ -216,17 +216,17 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     if (n == FALSE) {
         func_02057624((u32) &k);
     }
-    k.mUnk_0c_0 = r;
-    k.mUnk_0c_7 = s;
-    k.mUnk_0c_11 = t;
+    k.mYear = r;
+    k.mMonth = s;
+    k.mDay = t;
     if (d != 0) {
-        k.mUnk_22_1 = 1;
+        k.mNotYetBuddy = 1;
     } else {
-        k.mUnk_22_1 = 0;
+        k.mNotYetBuddy = 0;
     }
-    MI_CpuCopy8(b, k.mUnk_0e, 0x14);
+    MI_CpuCopy8(b, k.mName, 0x14);
     k.mUnk_22_2 = e != 0;
-    k.mUnk_22_0 = 1;
+    k.mFilled = 1;
     func_0205ee74(v, &k);
     return m;
 }
@@ -237,5 +237,5 @@ s32 func_02060cb4(const void *a, void *b) {
 
     d = DWC_StringToFriendKey(a);
     func_021524d8(c, d, d >> 32);
-    return func_02060d1c((u8 *) data_0217aa08->mUnk_20 + 0x874, b, c, 1, 0, 1);
+    return func_02060d1c((u8 *) data_0217aa08->mBuddyRecordBlock + 0x874, b, c, 1, 0, 1);
 }

@@ -5,7 +5,7 @@
 
 #pragma thumb on
 
-void func_02056c6c(u32 a, int b, Unk02056bc0 *c) {
+void func_02056c6c(u32 a, int b, TimeRecord *c) {
     int v1;
     v1 = func_0204684c(a);
     if (v1 != -1) {

@@ -127,9 +127,9 @@ void BuildRecordList(void) {
     a = 0;
     gRecordList->mUnk_00 = 0;
     for (i = 0; i < 0x3c; i++) {
-        if (func_02060b34(i)) {
+        if (IsBuddyRecordFilled(i)) {
             gRecordList->mUnk_00++;
-            if (func_02060afc(i)) {
+            if (IsBuddyRecordFlagged(i)) {
                 a++;
             }
         }
@@ -138,8 +138,8 @@ void BuildRecordList(void) {
         b = 0;
         c = a;
         for (i = 0; i < 0x3c; i++) {
-            if (func_02060b34(i)) {
-                if (func_02060afc(i)) {
+            if (IsBuddyRecordFilled(i)) {
+                if (IsBuddyRecordFlagged(i)) {
                     gRecordList->mUnk_04[b].mUnk_00 = (u8) i;
                     b++;
                 } else {
@@ -160,7 +160,7 @@ u16 GetRecordCount(void) {
     n = 0;
     if (gRecordList == NULL) {
         for (i = 0; i < 0x3c; i++) {
-            if (func_02060b34(i)) {
+            if (IsBuddyRecordFilled(i)) {
                 n++;
             }
         }
@@ -170,7 +170,7 @@ u16 GetRecordCount(void) {
 }
 
 s32 IsRecordFlagged(u16 a) {
-    return func_02060afc(gRecordList->mUnk_04[a].mUnk_00);
+    return IsBuddyRecordFlagged(gRecordList->mUnk_04[a].mUnk_00);
 }
 
 s32 func_0211437c(u16 a) {
@@ -198,23 +198,23 @@ s32 func_021142f0(u16 a) {
 }
 
 s32 func_021142d4(u16 a, void *b) {
-    return func_02060950(gRecordList->mUnk_04[a].mUnk_00, b);
+    return GetBuddyRecordDate(gRecordList->mUnk_04[a].mUnk_00, b);
 }
 
 void CopyRecordText(u16 a, void *b, u32 c) {
     u8 t[0x14];
 
-    func_020608fc(gRecordList->mUnk_04[a].mUnk_00, t);
+    GetBuddyRecordName(gRecordList->mUnk_04[a].mUnk_00, t);
     MI_CpuFill8(b, 0, c);
     MIi_CpuCopy16(t, b, 0x14);
 }
 
 s32 SetRecordFlag(u16 a) {
-    return func_02060880(gRecordList->mUnk_04[a].mUnk_00, 1);
+    return SetBuddyRecordFlag(gRecordList->mUnk_04[a].mUnk_00, 1);
 }
 
 s32 ClearRecordFlag(u16 a) {
-    return func_02060880(gRecordList->mUnk_04[a].mUnk_00, 0);
+    return SetBuddyRecordFlag(gRecordList->mUnk_04[a].mUnk_00, 0);
 }
 
 // Reads the slot's emblem into b, uses the emblem2.bin picture when it has none, and converts the pixels into c.
@@ -236,7 +236,7 @@ void ReadRecordEmblem(u16 a, EmblemData *b, void *c) {
 void EraseRecord(u16 a) {
     u8 d;
 
-    func_020607b0(gRecordList->mUnk_04[a].mUnk_00);
+    RemoveBuddyRecord(gRecordList->mUnk_04[a].mUnk_00);
     d = data_0217aa08->mUnk_28;
     do {
     } while (d == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1);
@@ -245,7 +245,7 @@ void EraseRecord(u16 a) {
 
 // Writes the entry's friend key as digits into b; returns TRUE only for a used entry with valid friend data.
 s32 GetRecordFriendKeyText(u16 a, void *b) {
-    return func_02060468(gRecordList->mUnk_04[a].mUnk_00, b);
+    return GetBuddyFriendKeyText(gRecordList->mUnk_04[a].mUnk_00, b);
 }
 
 #pragma thumb off

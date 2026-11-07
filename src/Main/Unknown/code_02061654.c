@@ -709,15 +709,15 @@ BOOL func_0206174c(void *v) {
     return FALSE;
 }
 
-BOOL func_02061704(void *v, Unk02056bc0 *b) {
+BOOL func_02061704(void *v, TimeRecord *b) {
     Unk0217aa08_14 *a = v;
 
     if (a->mUnk_08_0 != 1) {
         return FALSE;
     }
-    b->mUnk_02 = a->mUnk_08_8;
-    b->mUnk_03 = a->mUnk_08_15;
-    b->mUnk_00 = a->mUnk_08_22;
+    b->mMinute = a->mUnk_08_8;
+    b->mSecond = a->mUnk_08_15;
+    b->mMillisecond = a->mUnk_08_22;
     return TRUE;
 }
 

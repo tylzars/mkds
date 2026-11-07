@@ -46,8 +46,8 @@ void func_0211fe44(void) {
     if (gWiFiSession->mUnk_1cfc == FALSE) {
         return;
     }
-    func_02060c0c(&gWiFiSession->mBuddies[0]);
-    func_02060b68();
+    CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
+    RefreshNotYetBuddyFlags();
     func_0205edf8();
     while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1) {
     }
@@ -220,9 +220,9 @@ void func_0211f77c(s32 a, s32 b) {
 }
 
 void func_0211f6e8(u32 a, u32 b) {
-    func_02060510(b, a);
-    func_02060c0c(&gWiFiSession->mBuddies[0]);
-    func_02060b68();
+    MergeBuddyRecords(b, a);
+    CopyWiFiBuddiesToRecordBlock(&gWiFiSession->mBuddies[0]);
+    RefreshNotYetBuddyFlags();
     func_0205edf8();
     while (data_0217aa08->mUnk_28 == 0 ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1) {
     }

@@ -74,7 +74,7 @@ static inline u32 func_0203a9ec_inline(void) {
     u8 j;
     for (i = 0; i < 8; i++) {
         for (j = 0; j < 4; j++) {
-            if (func_02060440(i, j) != 0) {
+            if (IsGrandPrixRecordFilled(i, j) != 0) {
                 return 1;
             }
         }

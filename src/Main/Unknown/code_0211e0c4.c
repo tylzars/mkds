@@ -165,10 +165,10 @@ s32 func_0211e160(u32 a) {
             }
             break;
         case 2:
-            if (func_02060228(data_0217d374->mUnk_0c, 0) != FALSE) {
+            if (IsTimeRecordFilled(data_0217d374->mUnk_0c, 0) != FALSE) {
                 u32 buf;
 
-                func_02060134(data_0217d374->mUnk_0c, 0, &buf);
+                GetTimeRecordTime(data_0217d374->mUnk_0c, 0, &buf);
                 r = IsTimeLessThanStaffGhostTime(data_0217d374->mUnk_0c, &buf);
             } else {
                 r = 0;

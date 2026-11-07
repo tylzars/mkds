@@ -421,8 +421,8 @@ void func_02119e88(void) {
             0, 1, gSelectCupCourse->mSelectCupCourseTaOrVsMBnll,
             GetBmgEntry(gSelectCupCourse->mCommonMessages, data_0215cafc[data_0215cadc[GetCupIndex()]][p->mIndex]),
             p->mSelectCupCourseTaOrVsMBncl, p->mSelectCupCourseTaOrVsMTable);
-        if (func_02060228(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 0)) {
-            func_02060134(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 0, &a);
+        if (IsTimeRecordFilled(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 0)) {
+            GetTimeRecordTime(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 0, &a);
             func_02116b80(&a, b);
             p = gSelectCupCourse;
             func_02124224(0, 3, p->mSelectCupCourseTaOrVsMBnll, b, p->mSelectCupCourseTaOrVsMBncl,
@@ -432,8 +432,8 @@ void func_02119e88(void) {
             func_02124224(0, 3, p->mSelectCupCourseTaOrVsMBnll, data_0216dbac, p->mSelectCupCourseTaOrVsMBncl,
                           p->mSelectCupCourseTaOrVsMTable, 9);
         }
-        if (func_02060228(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 5)) {
-            func_02060134(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 5, &a);
+        if (IsTimeRecordFilled(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 5)) {
+            GetTimeRecordTime(data_0215cbec[data_0215cadc[GetCupIndex()]][gSelectCupCourse->mIndex], 5, &a);
             func_02116b80(&a, b);
             p = gSelectCupCourse;
             func_02124224(0, 5, p->mSelectCupCourseTaOrVsMBnll, b, p->mSelectCupCourseTaOrVsMBncl,

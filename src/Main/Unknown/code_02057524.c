@@ -17,7 +17,7 @@ void func_02057524(void *a) {
     data_0217aa08->mUnk_14[0] = HeapAllocAligned(a, 0xe00, 0x20);
     data_0217aa08->mUnk_14[1] = HeapAllocAligned(a, 0x1000, 0x20);
     data_0217aa08->mUnk_14[2] = HeapAllocAligned(a, 0x1000, 0x20);
-    data_0217aa08->mUnk_20 = HeapAllocAligned(a, 0xc00, 0x20);
+    data_0217aa08->mBuddyRecordBlock = HeapAllocAligned(a, 0xc00, 0x20);
     data_0217aa08->mUnk_24 = HeapAllocAligned(a, 0xb00, 0x20);
     data_0217aa08->mUnk_40 = NULL;
     func_0205721c(1);

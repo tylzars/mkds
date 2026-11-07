@@ -25,10 +25,10 @@
 #include "Main/Unknown/code_0204f240.h"
 #include "Main/Unknown/code_0203c5f8.h"
 
-void func_0203b598(Unk02056bc0 *a, Unk0217aa1c_144_00 *b, Unk02056bc0 *c) {
-    u16 v1 = a->mUnk_00 + b->mUnk_00;
-    u16 v2 = a->mUnk_02 + b->mUnk_02;
-    u16 v3 = a->mUnk_03 + b->mUnk_03;
+void func_0203b598(TimeRecord *a, Unk0217aa1c_144_00 *b, TimeRecord *c) {
+    u16 v1 = a->mMillisecond + b->mUnk_00;
+    u16 v2 = a->mMinute + b->mUnk_02;
+    u16 v3 = a->mSecond + b->mUnk_03;
     u16 d = v1 / 1000;
     if (d != 0) {
         v3 += d;
@@ -42,42 +42,42 @@ void func_0203b598(Unk02056bc0 *a, Unk0217aa1c_144_00 *b, Unk02056bc0 *c) {
     if (v2 > 99) {
         v2 = 99;
     }
-    c->mUnk_02 = v2;
-    c->mUnk_03 = v3;
-    c->mUnk_00 = v1;
+    c->mMinute = v2;
+    c->mSecond = v3;
+    c->mMillisecond = v1;
 }
 
-void func_0203b4c8(Unk02056bc0 *a) {
+void func_0203b4c8(TimeRecord *a) {
     u8 i;
-    a->mUnk_02 = 0;
-    a->mUnk_03 = 0;
-    a->mUnk_00 = 0;
-    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, a->mUnk_04, 0x14);
+    a->mMinute = 0;
+    a->mSecond = 0;
+    a->mMillisecond = 0;
+    MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, a->mName, 0x14);
     for (i = 0; i < 4; i++) {
         func_0203b598(a, &data_0217b488->mUnk_98[i], a);
     }
-    a->mUnk_19 = data_0217b488->mUnk_90;
-    a->mUnk_1a = data_0217b488->mUnk_94;
+    a->mCharacterIndex = data_0217b488->mUnk_90;
+    a->mKartIndex = data_0217b488->mUnk_94;
     a->mUnk_1b = 0;
-    a->mUnk_1c = data_usa_02154064[data_0217b488->mUnk_7c];
+    a->mCupRank = data_usa_02154064[data_0217b488->mUnk_7c];
     a->mUnk_1d = data_0217b488->mUnk_a8;
     a->mUnk_1e = data_0217b488->mUnk_80;
-    a->mUnk_18 = 1;
+    a->mFilled = 1;
 }
 
-BOOL func_0203b3d8(Unk02056bc0 *a, Unk02056bc0 *b) {
+BOOL func_0203b3d8(TimeRecord *a, TimeRecord *b) {
     s32 x;
     s32 y;
-    if (b->mUnk_1c == 3) {
+    if (b->mCupRank == 3) {
         return FALSE;
     }
-    if (a->mUnk_18 == 0) {
+    if (a->mFilled == 0) {
         return TRUE;
     }
-    if (a->mUnk_1c > b->mUnk_1c) {
+    if (a->mCupRank > b->mCupRank) {
         return TRUE;
     }
-    if (a->mUnk_1c < b->mUnk_1c) {
+    if (a->mCupRank < b->mCupRank) {
         return FALSE;
     }
     if (a->mUnk_1e < b->mUnk_1e) {
@@ -92,14 +92,14 @@ BOOL func_0203b3d8(Unk02056bc0 *a, Unk02056bc0 *b) {
     if (a->mUnk_1d > b->mUnk_1d) {
         return FALSE;
     }
-    x = a->mUnk_03 * 1000 + a->mUnk_02 * 60000 + a->mUnk_00;
-    y = b->mUnk_03 * 1000 + b->mUnk_02 * 60000 + b->mUnk_00;
+    x = a->mSecond * 1000 + a->mMinute * 60000 + a->mMillisecond;
+    y = b->mSecond * 1000 + b->mMinute * 60000 + b->mMillisecond;
     return x > y;
 }
 
 s32 func_0203b324(void) {
-    Unk02056bc0 a;
-    Unk02056bc0 b;
+    TimeRecord a;
+    TimeRecord b;
     BOOL r = FALSE;
     s32 v;
     Unk0217b488 *p = data_0217b488;

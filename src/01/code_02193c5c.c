@@ -97,14 +97,14 @@ void SetupRecordGpxValues(s32 a) {
     u16 buf[16];
     u8 *p;
 
-    k = func_020603bc(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
+    k = GetGrandPrixRecordCupRank(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a666c[a]].mUnk_00 = 1;
     func_02124748(data_ov001_021a66a4[gRecordGpx->mIndex], (gRecordGpx->mRecordTrophyONcer),
                   (gRecordGpx->mRecordTrophyONcgr), (gRecordGpx->mRecordTrophySOBncl), 1, data_ov001_021a666c[a],
                   (gRecordGpx->mRecordGpxSNcer), (gRecordGpx->mRecordGpxSBncl));
     func_02124a20(data_ov001_021a666c[a], (u8) data_ov001_021a6604[k], gRecordGpx->mRecordGpxSNcer,
                   gRecordGpx->mRecordGpxSBncl);
-    k = func_02060414(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
+    k = GetGrandPrixRecordCharacterIndex(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][0]].mUnk_00 = 1;
     func_02124748(data_ov001_021a66e4[k], (gRecordGpx->mPlayerCharacterMNcer), (gRecordGpx->mPlayerCharacterMNcgr),
                   (gRecordGpx->mPlayerCharacterMBncl), 1, data_ov001_021a6674[a][0], (gRecordGpx->mRecordGpxSNcer),
@@ -115,12 +115,12 @@ void SetupRecordGpxValues(s32 a) {
                                        (gRecordGpx->mPlayerCharacterMBncl))
                          << 5),
                     0x20);
-    k = func_020603e8(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
+    k = GetGrandPrixRecordKartIndex(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a]);
     gRecordGpx->mRecordGpxSTable[data_ov001_021a6674[a][1]].mUnk_00 = 1;
     QueueKartIcon(k, gRecordGpx->mRecordGpxSNcer, gRecordGpx->mRecordGpxSBncl, data_ov001_021a6674[a][1],
                   data_ov001_021a668c[a], 1);
     count = gRecordGpx->mRecordGpxSBncl->mUnk_06;
-    func_02060318(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a], &value);
+    GetGrandPrixRecordTime(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[a], &value);
     func_02116b8c(&value, buf);
     gRecordGpx->mRecordGpxSTable[count + data_ov001_021a6614[a]].mUnk_00 = 1;
     func_02124224(1, data_ov001_021a6614[a], gRecordGpx->mRecordGpxSBnll, buf, gRecordGpx->mRecordGpxSBncl,
@@ -236,7 +236,7 @@ void SetupRecordGpx(void) {
     p = GetBmgEntry(d->mCommonMessages, data_ov001_021a6720[d->mIndex]);
     func_0212426c(0, 0, gRecordGpx->mRecordGpxMBnll, p, d->mRecordGpxMBncl, d->mRecordGpxMTable);
     for (i = 0; i < 4; i++) {
-        if (func_02060440(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[i]) != 0) {
+        if (IsGrandPrixRecordFilled(data_ov001_021a6740[gRecordGpx->mIndex], data_ov001_021a6694[i]) != 0) {
             SetupRecordGpxValues(i);
         } else {
             SetupRecordGpxDashes(i);

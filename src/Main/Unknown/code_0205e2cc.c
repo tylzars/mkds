@@ -37,7 +37,7 @@ EmblemBlock *CreateEmblemBlock(void *a) {
 }
 
 BOOL CopyEmblemFromBlock(EmblemBlock *a, u8 b, EmblemData *c) {
-    Unk0217aa08_20_04 e;
+    BuddyRecord e;
     u8 d;
     u8 m;
     d = b / 5;
@@ -45,8 +45,8 @@ BOOL CopyEmblemFromBlock(EmblemBlock *a, u8 b, EmblemData *c) {
     if (d != a->mBlockIndex) {
         return FALSE;
     }
-    MI_CpuCopy8(&data_0217aa08->mUnk_20->mUnk_04[b], &e, 0x24);
-    if (e.mUnk_22_0 == 0 || e.mUnk_22_2 == 0) {
+    MI_CpuCopy8(&data_0217aa08->mBuddyRecordBlock->mRecords[b], &e, 0x24);
+    if (e.mFilled == 0 || e.mUnk_22_2 == 0) {
         return FALSE;
     }
     c->mUnk_200 = (a->mUnk_04.mUnk_004 & (1 << m)) != 0;
@@ -108,7 +108,7 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
             }
         }
     }
-    func_020577b4(data_0217aa08->mUnk_20);
+    func_020577b4(data_0217aa08->mBuddyRecordBlock);
     if (data_021759d4->mUnk_0c != 0) {
         CARD_WaitBackupAsync();
     }
@@ -181,7 +181,7 @@ void CopyWiFiOtherEmblemsToBlocks(void) {
             }
         }
     }
-    func_020577b4(data_0217aa08->mUnk_20);
+    func_020577b4(data_0217aa08->mBuddyRecordBlock);
     if (data_021759d4->mUnk_0c != 0) {
         CARD_WaitBackupAsync();
     }
@@ -262,9 +262,9 @@ static inline u8 func_0205e548_inline(void *a) {
     u8 i = 0;
     do {
         if (a != 0) {
-            MI_CpuCopy8(&data_0217aa08->mUnk_20->mUnk_04[i], a, 0x24);
+            MI_CpuCopy8(&data_0217aa08->mBuddyRecordBlock->mRecords[i], a, 0x24);
         }
-        if (data_0217aa08->mUnk_20->mUnk_04[i].mUnk_22_0 != 0) {
+        if (data_0217aa08->mBuddyRecordBlock->mRecords[i].mFilled != 0) {
             n = n + 1;
         }
         i = i + 1;

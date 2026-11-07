@@ -215,7 +215,7 @@ static inline BOOL func_02090940_inline(void) {
     enum { L0 } j;
     for (i = 0; i < 8; i++) {
         for (j = 0; j < 4; j++) {
-            if (func_02060440(i, j) != 0 && func_020603bc(i, j) == 0) {
+            if (IsGrandPrixRecordFilled(i, j) != 0 && GetGrandPrixRecordCupRank(i, j) == 0) {
                 r = TRUE;
             } else {
                 r = FALSE;
@@ -241,7 +241,7 @@ void *CreateSmanUpdateList(void) {
 }
 
 static inline BOOL func_02090cf8_inline(s32 a, s32 b) {
-    if (func_02060440(a, b) != 0 && func_020603bc(a, b) == 0) {
+    if (IsGrandPrixRecordFilled(a, b) != 0 && GetGrandPrixRecordCupRank(a, b) == 0) {
         return TRUE;
     }
     return FALSE;
@@ -275,7 +275,7 @@ u32 func_02090ff4(void) {
     q = 0;
     t = FALSE;
     if (func_02056d98() < 2) {
-        if ((func_02060440(3, 1) != 0 && func_020603bc(3, 1) == 0) ? 1 : 0) {
+        if ((IsGrandPrixRecordFilled(3, 1) != 0 && GetGrandPrixRecordCupRank(3, 1) == 0) ? 1 : 0) {
             func_02056d54(2);
             t = TRUE;
         }
@@ -286,7 +286,7 @@ u32 func_02090ff4(void) {
     t = FALSE;
     if (func_02056d98() < 3) {
         BOOL f;
-        if (func_02060440(3, 2) != 0 && func_020603bc(3, 2) == 0) {
+        if (IsGrandPrixRecordFilled(3, 2) != 0 && GetGrandPrixRecordCupRank(3, 2) == 0) {
             f = TRUE;
         } else {
             f = FALSE;
@@ -294,7 +294,7 @@ u32 func_02090ff4(void) {
         if (f != FALSE) {
             goto l1;
         }
-        if (func_02060440(7, 2) != 0 && func_020603bc(7, 2) == 0) {
+        if (IsGrandPrixRecordFilled(7, 2) != 0 && GetGrandPrixRecordCupRank(7, 2) == 0) {
             f = TRUE;
         } else {
             f = FALSE;
@@ -310,8 +310,8 @@ u32 func_02090ff4(void) {
     }
     t = FALSE;
     if (func_02056d98() < 4) {
-        if ((func_02060440(3, 3) != 0 && func_020603bc(3, 3) == 0) ? 1 : 0) {
-            if ((func_02060440(7, 3) != 0 && func_020603bc(7, 3) == 0) ? 1 : 0) {
+        if ((IsGrandPrixRecordFilled(3, 3) != 0 && GetGrandPrixRecordCupRank(3, 3) == 0) ? 1 : 0) {
+            if ((IsGrandPrixRecordFilled(7, 3) != 0 && GetGrandPrixRecordCupRank(7, 3) == 0) ? 1 : 0) {
                 func_02056d54(4);
                 t = TRUE;
             }
@@ -385,7 +385,7 @@ u32 func_02090b24(void) {
     r = 0;
     t = FALSE;
     if (func_02056dec(0x14) == 0) {
-        if ((func_02060440(3, 0) != 0 && func_020603bc(3, 0) == 0) ? 1 : 0) {
+        if ((IsGrandPrixRecordFilled(3, 0) != 0 && GetGrandPrixRecordCupRank(3, 0) == 0) ? 1 : 0) {
             func_02056e24(0x14);
             t = TRUE;
         }
@@ -395,7 +395,7 @@ u32 func_02090b24(void) {
     }
     t = FALSE;
     if (func_02056dec(0x15) == 0) {
-        if ((func_02060440(7, t) != 0 && func_020603bc(7, t) == 0) ? 1 : 0) {
+        if ((IsGrandPrixRecordFilled(7, t) != 0 && GetGrandPrixRecordCupRank(7, t) == 0) ? 1 : 0) {
             func_02056e24(0x15);
             t = TRUE;
         }
@@ -405,7 +405,7 @@ u32 func_02090b24(void) {
     }
     t = FALSE;
     if (func_02056dec(0x16) == 0) {
-        if ((func_02060440(7, 1) != 0 && func_020603bc(7, 1) == 0) ? 1 : 0) {
+        if ((IsGrandPrixRecordFilled(7, 1) != 0 && GetGrandPrixRecordCupRank(7, 1) == 0) ? 1 : 0) {
             func_02056e24(0x16);
             t = TRUE;
         }
@@ -416,7 +416,7 @@ u32 func_02090b24(void) {
     t = FALSE;
     if (func_02056dec(0x17) == 0) {
         BOOL f;
-        if (func_02060440(3, 3) != 0 && func_020603bc(3, 3) == 0) {
+        if (IsGrandPrixRecordFilled(3, 3) != 0 && GetGrandPrixRecordCupRank(3, 3) == 0) {
             f = TRUE;
         } else {
             f = FALSE;
@@ -424,7 +424,7 @@ u32 func_02090b24(void) {
         if (f != FALSE) {
             goto l1;
         }
-        if (func_02060440(7, 3) != 0 && func_020603bc(7, 3) == 0) {
+        if (IsGrandPrixRecordFilled(7, 3) != 0 && GetGrandPrixRecordCupRank(7, 3) == 0) {
             f = TRUE;
         } else {
             f = FALSE;
@@ -474,7 +474,7 @@ s32 func_020909cc(void) {
             } else {
                 n = 7;
             }
-            if (func_02060440(n, m) != 0 && func_020603bc(n, m) <= 2) {
+            if (IsGrandPrixRecordFilled(n, m) != 0 && GetGrandPrixRecordCupRank(n, m) <= 2) {
                 f = TRUE;
             } else {
                 f = FALSE;

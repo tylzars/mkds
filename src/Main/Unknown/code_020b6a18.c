@@ -15,7 +15,7 @@ void func_020b6c74(u32 a, u16 *b, u32 c) {
     u16 *p;
     u16 i;
     u16 v1[10];
-    Unk02056bc0 t;
+    TimeRecord t;
 
     p = NULL;
     n = 0;
@@ -43,7 +43,7 @@ void func_020b6c74(u32 a, u16 *b, u32 c) {
         }
     } else {
         if (func_02056bc0(gRaceSetup->mCourseId, a - 1, &t) != 0) {
-            p = t.mUnk_04;
+            p = t.mName;
             if (c != 0) {
                 n = 10;
             } else {

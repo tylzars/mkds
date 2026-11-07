@@ -67,7 +67,7 @@ void func_02056fdc(void) {
     if (data_021759d4->mUnk_04 != NULL) {
         a |= 0x10;
     }
-    func_02057764(data_0217aa08->mUnk_20);
+    func_02057764(data_0217aa08->mBuddyRecordBlock);
     if (data_021759d4->mUnk_0c != 0) {
         CARD_WaitBackupAsync();
     }
@@ -125,7 +125,7 @@ void func_02056e70(void) {
     }
     if (data_0217aa08->mUnk_2a & 0x20) {
         func_02057244();
-        func_020577b4(data_0217aa08->mUnk_20);
+        func_020577b4(data_0217aa08->mBuddyRecordBlock);
         if (data_021759d4->mUnk_0c != 0) {
             CARD_WaitBackupAsync();
         }

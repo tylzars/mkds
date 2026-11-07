@@ -105,7 +105,7 @@ void func_ov001_021975f4(u16 a) {
         u16 cnt;
 
         value = data_ov001_021a6828[0];
-        result = func_020601e4(data_ov001_021a6900[gRecordTAtt->mIndex], value);
+        result = GetTimeRecordCharacterIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         index = data_ov001_021a6850[0][0];
         gRecordTAtt->mRecordTAttMTable[index].mUnk_00 = 1;
         tile = data_ov001_021a6864[result];
@@ -114,19 +114,19 @@ void func_ov001_021975f4(u16 a) {
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
         CallQueueAppend(0xe, data_ov001_021a683c[0] << 5,
                         palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
-        result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], value);
+        result = GetTimeRecordKartIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6850[0][1];
         gRecordTAtt->mRecordTAttMTable[slot].mUnk_00 = 1;
         QueueKartIcon(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, slot,
                       data_ov001_021a683c[5], 0);
         cnt = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
-        func_02060134(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
+        GetTimeRecordTime(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
         func_02116b8c(&time, str);
         pal = data_ov001_021a67d4[0];
         gRecordTAtt->mRecordTAttMTable[cnt + pal].mUnk_00 = 1;
         func_02124224(0, pal, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable, 7);
-        func_020600d0(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
+        GetTimeRecordName(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
         MI_CpuFill8(str, 0, 0x20);
         MIi_CpuCopy16(name, str, 0x14);
         pal = data_ov001_021a6810[0];
@@ -137,7 +137,7 @@ void func_ov001_021975f4(u16 a) {
         u16 cnt;
 
         value = data_ov001_021a6828[a];
-        result = func_020601e4(data_ov001_021a6900[gRecordTAtt->mIndex], value);
+        result = GetTimeRecordCharacterIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         index = data_ov001_021a6850[a][0];
         gRecordTAtt->mRecordTAttSTable[index].mUnk_00 = 1;
         tile = data_ov001_021a6864[result];
@@ -146,19 +146,19 @@ void func_ov001_021975f4(u16 a) {
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
         CallQueueAppend(0x1e, data_ov001_021a683c[a] << 5,
                         palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5), 0x20);
-        result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], value);
+        result = GetTimeRecordKartIndex(data_ov001_021a6900[gRecordTAtt->mIndex], value);
         slot = data_ov001_021a6852[a][0];
         gRecordTAtt->mRecordTAttSTable[slot].mUnk_00 = 1;
         QueueKartIcon(result, gRecordTAtt->mRecordTAttSNcer, gRecordTAtt->mRecordTAttSBncl, slot,
                       data_ov001_021a6846[a], 1);
         cnt = gRecordTAtt->mRecordTAttSBncl->mUnk_06;
-        func_02060134(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
+        GetTimeRecordTime(data_ov001_021a6900[gRecordTAtt->mIndex], value, &time);
         func_02116b8c(&time, str);
         pal = data_ov001_021a67d4[a];
         gRecordTAtt->mRecordTAttSTable[cnt + pal].mUnk_00 = 1;
         func_02124224(1, pal, gRecordTAtt->mRecordTAttSBnll, str, gRecordTAtt->mRecordTAttSBncl,
                       gRecordTAtt->mRecordTAttSTable, 7);
-        func_020600d0(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
+        GetTimeRecordName(data_ov001_021a6900[gRecordTAtt->mIndex], value, name);
         MI_CpuFill8(str, 0, 0x20);
         MIi_CpuCopy16(name, str, 0x14);
         pal = data_ov001_021a6810[a];
@@ -205,15 +205,15 @@ void func_ov001_021972f4(void) {
     func_0212426c(0, 0, gRecordTAtt->mRecordTAttMBnll, GetBmgEntry(p->mCommonMessages, data_ov001_021a6880[p->mIndex]),
                   p->mRecordTAttMBncl, p->mRecordTAttMTable);
     for (i = 0; i < 5; i++) {
-        if (func_02060228(data_ov001_021a6900[gRecordTAtt->mIndex], data_ov001_021a6828[i])) {
+        if (IsTimeRecordFilled(data_ov001_021a6900[gRecordTAtt->mIndex], data_ov001_021a6828[i])) {
             func_ov001_021975f4(i);
         } else {
             func_ov001_0219750c(i);
         }
     }
     cnt = gRecordTAtt->mRecordTAttMBncl->mUnk_06;
-    if (func_02060228(data_ov001_021a6900[gRecordTAtt->mIndex], 5)) {
-        result = func_020601e4(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
+    if (IsTimeRecordFilled(data_ov001_021a6900[gRecordTAtt->mIndex], 5)) {
+        result = GetTimeRecordCharacterIndex(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
         gRecordTAtt->mRecordTAttMTable[5].mUnk_00 = 1;
         tile = data_ov001_021a6864[result];
         func_02124748(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_28, gRecordTAtt->mUnk_34, 0, 5,
@@ -221,15 +221,15 @@ void func_ov001_021972f4(void) {
         palette = (u8 *) ((Nclr *) gRecordTAtt->mUnk_30)->mData;
         CallQueueAppend(0xe, 0x80, palette + (func_02124a68(tile, gRecordTAtt->mUnk_2c, gRecordTAtt->mUnk_34) << 5),
                         0x20);
-        result = func_020601a0(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
+        result = GetTimeRecordKartIndex(data_ov001_021a6900[gRecordTAtt->mIndex], 5);
         gRecordTAtt->mRecordTAttMTable[6].mUnk_00 = 1;
         QueueKartIcon(result, gRecordTAtt->mRecordTAttMNcer, gRecordTAtt->mRecordTAttMBncl, 6, 6, 0);
-        func_02060134(data_ov001_021a6900[gRecordTAtt->mIndex], 5, &time);
+        GetTimeRecordTime(data_ov001_021a6900[gRecordTAtt->mIndex], 5, &time);
         func_02116b8c(&time, str);
         gRecordTAtt->mRecordTAttMTable[cnt + 2].mUnk_00 = 1;
         func_02124224(0, 2, gRecordTAtt->mRecordTAttMBnll, str, gRecordTAtt->mRecordTAttMBncl,
                       gRecordTAtt->mRecordTAttMTable, 7);
-        func_020600d0(data_ov001_021a6900[gRecordTAtt->mIndex], 5, name);
+        GetTimeRecordName(data_ov001_021a6900[gRecordTAtt->mIndex], 5, name);
         MI_CpuFill8(str, 0, 0x20);
         MIi_CpuCopy16(name, str, 0x14);
         gRecordTAtt->mRecordTAttMTable[cnt + 4].mUnk_00 = 1;
@@ -268,7 +268,7 @@ void func_ov001_02197274(void) {
 BOOL func_ov001_02197210(void) {
     u8 buf[0x14];
 
-    if (func_02060228(data_ov001_021a6900[gRecordTAtt->mIndex], data_ov001_021a6828[0]) != FALSE) {
+    if (IsTimeRecordFilled(data_ov001_021a6900[gRecordTAtt->mIndex], data_ov001_021a6828[0]) != FALSE) {
         if (func_0205fdb4(data_ov001_021a6900[gRecordTAtt->mIndex], buf) != 0) {
             return TRUE;
         }
@@ -945,7 +945,7 @@ void AdvanceRecordTAttState10(void) {
     if (func_02125f54() != 0) {
         if (GetTxtSystemSelectedIndex() == 0) {
             if (func_02060268(data_ov001_021a6900[gRecordTAtt->mIndex]) == 0) {
-                func_02060004(data_ov001_021a6900[gRecordTAtt->mIndex]);
+                ClearCourseTimeRecords(data_ov001_021a6900[gRecordTAtt->mIndex]);
                 func_02057d9c();
                 if (data_021759d4->mUnk_0c != 0) {
                     CARD_WaitBackupAsync();

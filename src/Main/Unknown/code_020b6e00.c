@@ -670,11 +670,11 @@ void func_020b7fd8(s32 a, s32 *b, s32 *c) {
 }
 
 void func_020b7ee8(s32 a, s32 *b, s32 *c) {
-    Unk02056bc0 t;
+    TimeRecord t;
 
     func_02056bc0(gRaceSetup->mCourseId, a, &t);
-    if (t.mUnk_18 != 0) {
-        *b = t.mUnk_19;
+    if (t.mFilled != 0) {
+        *b = t.mCharacterIndex;
     } else {
         *b = 0;
         *c = 0;

@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk02056bc0 Unk02056bc0;
+typedef struct TimeRecord TimeRecord;
 
-void func_02056b08(int a, int b, Unk02056bc0 *c);
+void func_02056b08(int a, int b, TimeRecord *c);

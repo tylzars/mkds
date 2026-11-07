@@ -6,15 +6,15 @@
 
 #pragma thumb on
 
-void func_02056cac(Unk0217aa08_0c_04 *a, Unk02056bc0 *b) {
-    if (b->mUnk_18 != 0) {
-        MI_CpuCopy8(b->mUnk_04, a->mUnk_08, 0x14);
+void func_02056cac(Unk0217aa08_0c_04 *a, TimeRecord *b) {
+    if (b->mFilled != 0) {
+        MI_CpuCopy8(b->mName, a->mUnk_08, 0x14);
         a->mUnk_00_0 = 1;
-        a->mUnk_00_1 = b->mUnk_19;
-        a->mUnk_04 = b->mUnk_1a;
-        a->mUnk_00_8 = b->mUnk_02;
-        a->mUnk_00_15 = b->mUnk_03;
-        a->mUnk_00_22 = b->mUnk_00;
+        a->mUnk_00_1 = b->mCharacterIndex;
+        a->mUnk_04 = b->mKartIndex;
+        a->mUnk_00_8 = b->mMinute;
+        a->mUnk_00_15 = b->mSecond;
+        a->mUnk_00_22 = b->mMillisecond;
     } else {
         MI_CpuFill8(a, 0, 0x1c);
     }

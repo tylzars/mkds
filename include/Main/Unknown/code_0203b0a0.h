@@ -18,8 +18,8 @@ void func_0203b1c8(void *a);
 void func_0203b1fc(void *a);
 u32 func_0203b230(void);
 s32 func_0203b324(void);
-BOOL func_0203b3d8(Unk02056bc0 *a, Unk02056bc0 *b);
-void func_0203b4c8(Unk02056bc0 *a);
-void func_0203b598(Unk02056bc0 *a, Unk0217aa1c_144_00 *b, Unk02056bc0 *c);
+BOOL func_0203b3d8(TimeRecord *a, TimeRecord *b);
+void func_0203b4c8(TimeRecord *a);
+void func_0203b598(TimeRecord *a, Unk0217aa1c_144_00 *b, TimeRecord *c);
 
 #include "00/code_021832d8.h"

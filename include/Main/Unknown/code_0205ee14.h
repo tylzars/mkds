@@ -2,9 +2,9 @@
 
 #include "types.h"
 
-typedef struct Unk0217aa08_20_04 Unk0217aa08_20_04;
+typedef struct BuddyRecord BuddyRecord;
 
-typedef struct Unk02056bc0 Unk02056bc0;
+typedef struct TimeRecord TimeRecord;
 
 // The word at 0 points to rows of 13 bytes from 6.
 typedef struct Unk0205fd2c_00 {
@@ -19,8 +19,8 @@ typedef struct Unk0205fd2c {
 extern u32 data_usa_021653e0;
 extern u8 data_usa_0215494c[];
 
-u32 func_0205ee14(u32 a, Unk0217aa08_20_04 *b);
-void func_0205ee74(u32 a, Unk0217aa08_20_04 *b);
+u32 func_0205ee14(u32 a, BuddyRecord *b);
+void func_0205ee74(u32 a, BuddyRecord *b);
 void func_0205eeb0(void);
 void func_0205ef70(void);
 void func_0205f218(void);
@@ -33,4 +33,4 @@ BOOL func_0205fc98(Unk0205fd2c *a, u32 b, u32 c);
 u32 func_0205fd2c(Unk0205fd2c *a, u32 b, u32 c);
 s32 func_0205fd78(s32 a, s32 b, s32 *out);
 s32 func_0205fdb4(s32 a, void *b);
-u32 func_0205fe1c(u8 *a, Unk02056bc0 *b, s32 c);
+u32 func_0205fe1c(u8 *a, TimeRecord *b, s32 c);

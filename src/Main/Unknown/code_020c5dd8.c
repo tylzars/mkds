@@ -92,7 +92,7 @@ void func_020c6f14(void) {
     }
 }
 
-void func_020c6adc(Unk020c06c4 *a, s32 b, s32 c, Unk02056bc0 *d) {
+void func_020c6adc(Unk020c06c4 *a, s32 b, s32 c, TimeRecord *d) {
     s32 e0[2];
     s32 e1[2];
     s32 e2[2];
@@ -107,8 +107,8 @@ void func_020c6adc(Unk020c06c4 *a, s32 b, s32 c, Unk02056bc0 *d) {
     s32 k;
     void *p;
 
-    SplitTimeDigits(d->mUnk_02, d->mUnk_03, d->mUnk_00, &w);
-    if (d->mUnk_18 == 0) {
+    SplitTimeDigits(d->mMinute, d->mSecond, d->mMillisecond, &w);
+    if (d->mFilled == 0) {
         w.mUnk_00[0] = w.mUnk_00[1] = w.mUnk_00[2] = w.mUnk_00[3] = w.mUnk_00[4] = w.mUnk_00[5] = w.mUnk_00[6] = 0xb;
     }
     if (w.mUnk_00[0] != 0) {
@@ -163,7 +163,7 @@ void func_020c6adc(Unk020c06c4 *a, s32 b, s32 c, Unk02056bc0 *d) {
 void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
     s32 e0[2];
     s32 e1[2];
-    Unk02056bc0 l;
+    TimeRecord l;
     s32 n;
     BOOL f;
     s32 k;
@@ -187,7 +187,7 @@ void func_020c692c(Unk020c06c4 *a, s32 b, s32 c, s32 d) {
         b = 0;
         f = TRUE;
     }
-    if (l.mUnk_18 != 0) {
+    if (l.mFilled != 0) {
         p = GetRaceNewRecordTaSNcerEntry(b + 7);
         e0[0] = (c + 0x32) << 12;
         e0[1] = d << 12;
@@ -243,10 +243,10 @@ BOOL func_020c657c(s32 a) {
     u16 z;
     s32 k;
     s32 j;
-    Unk02056bc0 *q;
+    TimeRecord *q;
     s32 t;
-    Unk02056bc0 *e;
-    Unk02056bc0 *g;
+    TimeRecord *e;
+    TimeRecord *g;
     u8 n0;
     u8 n1;
     u16 n2;
@@ -256,7 +256,7 @@ BOOL func_020c657c(s32 a) {
     t = y * 1000 + x * 60000 + z;
     k = 0;
     do {
-        if (q->mUnk_18 == 0 || t < q->mUnk_00 + (q->mUnk_03 * 1000 + q->mUnk_02 * 60000)) {
+        if (q->mFilled == 0 || t < q->mMillisecond + (q->mSecond * 1000 + q->mMinute * 60000)) {
             goto found;
         }
         k++;
@@ -274,13 +274,13 @@ found:
         n0 = x;
         g = gRaceNewRecordTa->mRecords;
         e = g + k;
-        e->mUnk_02 = n0;
-        e->mUnk_03 = n1;
-        g[k].mUnk_00 = n2;
-        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, e->mUnk_04, 0x14);
-        e->mUnk_18 = 1;
-        e->mUnk_19 = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
-        e->mUnk_1a = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
+        e->mMinute = n0;
+        e->mSecond = n1;
+        g[k].mMillisecond = n2;
+        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, e->mName, 0x14);
+        e->mFilled = 1;
+        e->mCharacterIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
+        e->mKartIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
         func_02056c6c(gRaceSetup->mCourseId, k, e);
         if (k != 5) {
             gRaceNewRecordTa->mUnk_0c = k;
@@ -295,16 +295,16 @@ BOOL func_020c6428(s32 a) {
     u8 x;
     u8 y;
     u16 z;
-    Unk02056bc0 *e;
-    Unk02056bc0 *g;
+    TimeRecord *e;
+    TimeRecord *g;
     u8 n0;
     u8 n1;
     u16 n2;
 
-    e = &gRaceNewRecordTa->mRecords[5];
+    e = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
     gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &x, &y, &z);
-    if (e->mUnk_18 != 0) {
-        if (z + (y * 1000 + x * 60000) >= e->mUnk_00 + (e->mUnk_03 * 1000 + e->mUnk_02 * 60000)) {
+    if (e->mFilled != 0) {
+        if (z + (y * 1000 + x * 60000) >= e->mMillisecond + (e->mSecond * 1000 + e->mMinute * 60000)) {
             return FALSE;
         }
     }
@@ -313,15 +313,15 @@ BOOL func_020c6428(s32 a) {
         n1 = y;
         n0 = x;
         g = gRaceNewRecordTa->mRecords;
-        e = g + 5;
-        e->mUnk_02 = n0;
-        e->mUnk_03 = n1;
-        g[5].mUnk_00 = n2;
-        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, e->mUnk_04, 0x14);
-        e->mUnk_18 = 1;
-        e->mUnk_19 = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
-        e->mUnk_1a = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
-        func_02056c6c(gRaceSetup->mCourseId, 5, e);
+        e = g + TIME_RECORD_BEST_LAP;
+        e->mMinute = n0;
+        e->mSecond = n1;
+        g[TIME_RECORD_BEST_LAP].mMillisecond = n2;
+        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, e->mName, 0x14);
+        e->mFilled = 1;
+        e->mCharacterIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
+        e->mKartIndex = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
+        func_02056c6c(gRaceSetup->mCourseId, TIME_RECORD_BEST_LAP, e);
     }
     return TRUE;
 }
@@ -341,8 +341,8 @@ void func_020c610c(void) {
     s32 j;
     s32 n;
     s32 g;
-    Unk02056bc0 *q;
-    Unk02056bc0 *w;
+    TimeRecord *q;
+    TimeRecord *w;
 
     if (gRaceProgress->mRaceDone == 0) {
         return;
@@ -392,7 +392,7 @@ void func_020c610c(void) {
         t = b * 1000 + a * 60000 + c;
         for (j = 4; j >= 0; j--) {
             q = &w[j];
-            if (q->mUnk_18 != 0 && t == q->mUnk_00 + (q->mUnk_03 * 1000 + q->mUnk_02 * 60000)) {
+            if (q->mFilled != 0 && t == q->mMillisecond + (q->mSecond * 1000 + q->mMinute * 60000)) {
                 j = 1;
                 goto found;
             }
@@ -400,9 +400,9 @@ void func_020c610c(void) {
         j = 0;
     found:
         gRaceNewRecordTa->mUnk_08 = j;
-        q = &gRaceNewRecordTa->mRecords[5];
+        q = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
         gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
-        if (d == q->mUnk_02 && e == q->mUnk_03 && f == q->mUnk_00) {
+        if (d == q->mMinute && e == q->mSecond && f == q->mMillisecond) {
             r = TRUE;
         } else {
             r = FALSE;

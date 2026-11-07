@@ -169,35 +169,39 @@ typedef struct Unk0217aa08_14 {
     /* 30 */ u8 mUnk_30[0xdd0];
 } Unk0217aa08_14;
 
-// Entries of 0x24 bytes from 0x04 of Unk0217aa08_20.
-typedef struct Unk0217aa08_20_04 {
-    /* 00 */ u16 mUnk_00[3][2];
+// One buddy: counts per kind of match, the date of the last result, the name and four flags; 60 entries from 0x04 of
+// BuddyRecordBlock.
+typedef struct BuddyRecord {
+// Two counters for each of three kinds of match (VS, Battle and a third kind), each raised by one at the end of a
+// race.
+    /* 00 */ u16 mResultCounts[3][2];
     /* 0c */ union {
-        u16 mUnk_0c;
+        u16 mDate;
         struct {
-            u16 mUnk_0c_0 : 7;
-            u16 mUnk_0c_7 : 4;
-            u16 mUnk_0c_11 : 5;
+            u16 mYear : 7;
+            u16 mMonth : 4;
+            u16 mDay : 5;
         };
     };
-    /* 0e */ u8 mUnk_0e[0x14];
+    /* 0e */ u8 mName[0x14];
     /* 22 */ union {
         u8 mUnk_22;
         struct {
-            u8 mUnk_22_0 : 1;
-            u8 mUnk_22_1 : 1;
+            u8 mFilled : 1;
+// Set when the buddy was added by friend key; cleared once the library reports a buddy.
+            u8 mNotYetBuddy : 1;
             u8 mUnk_22_2 : 1;
-            u8 mUnk_22_3 : 1;
+            u8 mFlagged : 1;
         };
     };
     /* 23 */ u8 mUnk_23;
-} Unk0217aa08_20_04;
+} BuddyRecord;
 
-// What member 0x20 of Unk0217aa08 points to (the entry count is not shown by the code).
-typedef struct Unk0217aa08_20 {
+// 60 BuddyRecord entries from 0x04, then the 60 buddy friend data of 0xc bytes each from 0x874.
+typedef struct BuddyRecordBlock {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ Unk0217aa08_20_04 mUnk_04[1];
-} Unk0217aa08_20;
+    /* 04 */ BuddyRecord mRecords[1];
+} BuddyRecordBlock;
 
 // 0xb00 bytes behind member 0x24 of Unk0217aa08: a byte at 0x04 and five 0x200-byte rows from 0x08.
 typedef struct Unk0217aa08_24 {
@@ -215,7 +219,7 @@ typedef struct Unk0217aa08 {
     /* 0c */ Unk0217aa08_0c *mUnk_0c;
     /* 10 */ Unk0217aa08_10 *mUnk_10;
     /* 14 */ Unk0217aa08_14 *mUnk_14[3];
-    /* 20 */ Unk0217aa08_20 *mUnk_20;
+    /* 20 */ BuddyRecordBlock *mBuddyRecordBlock;
     /* 24 */ Unk0217aa08_24 *mUnk_24;
     /* 28 */ u8 mUnk_28;
     /* 29 */ u8 mUnk_29;

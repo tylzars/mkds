@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk02056bc0 Unk02056bc0;
+typedef struct TimeRecord TimeRecord;
 
 // Declared here until the code that defines them is decompiled.
 
@@ -16,7 +16,7 @@ u32 func_02061654(void *a);
 s32 func_02061678(void *a);
 s32 func_0206169c(void *a);
 BOOL func_020616c0(void *a, void *b);
-BOOL func_02061704(void *a, Unk02056bc0 *b);
+BOOL func_02061704(void *a, TimeRecord *b);
 BOOL func_0206174c(void *a);
 u16 func_02061768(void);
 s32 func_02061788(void);

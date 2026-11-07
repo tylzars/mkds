@@ -60,8 +60,8 @@ void func_020c7164(void) {
     u16 f;
     s32 j;
     s32 t;
-    Unk02056bc0 *q;
-    Unk02056bc0 *r;
+    TimeRecord *q;
+    TimeRecord *r;
 
     if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
@@ -79,7 +79,7 @@ void func_020c7164(void) {
     t = b * 1000 + a * 60000 + c;
     for (j = 4; j >= 0; j--) {
         q = &r[j];
-        if (q->mUnk_18 != 0 && t == q->mUnk_00 + (q->mUnk_03 * 1000 + q->mUnk_02 * 60000)) {
+        if (q->mFilled != 0 && t == q->mMillisecond + (q->mSecond * 1000 + q->mMinute * 60000)) {
             j = 1;
             goto found;
         }
@@ -87,9 +87,9 @@ void func_020c7164(void) {
     j = 0;
 found:
     gRaceNewRecordTa->mUnk_08 = j;
-    q = &gRaceNewRecordTa->mRecords[5];
+    q = &gRaceNewRecordTa->mRecords[TIME_RECORD_BEST_LAP];
     gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
-    gRaceNewRecordTa->mUnk_10 = (d == q->mUnk_02 && e == q->mUnk_03 && f == q->mUnk_00) ? 1 : 0;
+    gRaceNewRecordTa->mUnk_10 = (d == q->mMinute && e == q->mSecond && f == q->mMillisecond) ? 1 : 0;
 }
 
 s32 func_020c7148(void) {

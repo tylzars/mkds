@@ -187,7 +187,7 @@ void SetupSelectCupGridIndex(void) {
             v = data_0215c7f0[GetEngineIndex()];
         }
         b = data_0215c81c[v];
-        if (func_02060440(data_0215c85c[gSelectCupGrid->mIndex], b) != 0) {
+        if (IsGrandPrixRecordFilled(data_0215c85c[gSelectCupGrid->mIndex], b) != 0) {
             c = func_02060364(data_0215c85c[gSelectCupGrid->mIndex], b);
             gSelectCupGrid->mSelectCupMTable[data_0215c83c[data_0215c87c[c]]].mUnk_00 = 1;
             switch (c) {
@@ -209,7 +209,7 @@ void SetupSelectCupGridIndex(void) {
                     break;
             }
             gSelectCupGrid->mSelectCupMTable[a].mUnk_00 = 1;
-            c = func_020603bc(data_0215c85c[gSelectCupGrid->mIndex], b);
+            c = GetGrandPrixRecordCupRank(data_0215c85c[gSelectCupGrid->mIndex], b);
             p = gSelectCupGrid;
             QueueTrophyIcon(data_0215c85c[p->mIndex], c, p->mSelectCupMNcer, p->mSelectCupMBncl, a, 4, 0);
         }

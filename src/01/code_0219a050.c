@@ -210,7 +210,7 @@ void func_ov001_0219ac98(void) {
 
     for (i = 0; i < 8; i++) {
         for (j = 0; j < 4; j++) {
-            if (func_02060440(i, j)) {
+            if (IsGrandPrixRecordFilled(i, j)) {
                 s32 v = func_02060364(i, j);
                 if (best > v) {
                     best = v;

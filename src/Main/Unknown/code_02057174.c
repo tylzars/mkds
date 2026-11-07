@@ -38,7 +38,7 @@ void func_02057174(void) {
     if (data_021759d4->mUnk_0c != 0) {
         CARD_WaitBackupAsync();
     }
-    func_020577b4(data_0217aa08->mUnk_20);
+    func_020577b4(data_0217aa08->mBuddyRecordBlock);
     if (data_021759d4->mUnk_0c != 0) {
         CARD_WaitBackupAsync();
     }
