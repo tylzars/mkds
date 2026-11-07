@@ -794,7 +794,7 @@ void func_ov001_02186368(void *a, Unk02188950 *b) {
         }
         value = 0x1e;
         func_01ff9048(0x14, &value, 1);
-        func_01ff9048(0x19, func_020e6b58(&b->mUnk_000.mPos), 0xc);
+        func_01ff9048(0x19, SetTranslationMatrixPos(&b->mUnk_000.mPos), 0xc);
         if (b->mUnk_000.mAngle != 0) {
             k = b->mUnk_000.mAngle >> 4;
             MTX_RotY33_(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
@@ -851,7 +851,7 @@ void func_ov001_021861f4(void *d, Unk02188950 *e, s32 f) {
 
         value = 0x1e;
         func_01ff9048(0x14, &value, 1);
-        func_01ff9048(0x19, func_020e6b58(&v), 0xc);
+        func_01ff9048(0x19, SetTranslationMatrixPos(&v), 0xc);
         k = (u16) e->mAngle >> 4;
         MTX_RotY33_(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
         func_01ff9048(0x1a, m, 9);

@@ -310,7 +310,7 @@ void DrawJg(void) {
     }
     c = 0x1e;
     func_01ff9048(0x14, &c, 1);
-    func_01ff9048(0x19, func_020e6cf8(&gJgEasedPos), 0xc);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&gJgEasedPos), 0xc);
     v1.y = data_0217b8a4[gJgTableIndex];
     v1.x = 0;
     v1.z = 0;
@@ -397,7 +397,7 @@ void ComputeJgMatrixAndInverse(void) {
         gJgMatrix.mUnk_00[2].y = -v->y;
         gJgMatrix.mUnk_00[2].z = -v->z;
     } else {
-        gJgMatrix.mUnk_00[2] = ((MtxFx43 *) func_020e6b38())->mUnk_00[2];
+        gJgMatrix.mUnk_00[2] = ((MtxFx43 *) GetViewTransposeMatrix())->mUnk_00[2];
     }
     Vec3CrossUnrounded(&gJgMatrix.mUnk_00[1], &gJgMatrix.mUnk_00[2], &gJgMatrix.mUnk_00[2]);
     sq = (s64) gJgMatrix.mUnk_00[2].x * gJgMatrix.mUnk_00[2].x + (s64) gJgMatrix.mUnk_00[2].y * gJgMatrix.mUnk_00[2].y +

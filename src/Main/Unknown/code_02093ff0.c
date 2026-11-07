@@ -58,7 +58,7 @@ void DrawTeresa(void *a, Teresa *b) {
     SetMapObjectModelMirror(gTeresa, b->mUnk_b0, 0);
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&b->mUnk_00.mPos), 0xc);
     if (func_02061818() == 2) {
         v[0] = 0x2000;
         v[1] = 0x2000;

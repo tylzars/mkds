@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020e662c(void);
+void InitMatrices(void);

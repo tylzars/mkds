@@ -164,7 +164,7 @@ void DrawMkdEfBubble(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
     }
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&b->mUnk_00.mPos), 0xc);
     if (b->mUnk_a8 != 0) {
         n = b->mUnk_a8 >> 4;
         MTX_RotZ33_(m, gPairsByAngle[n * 2], gPairsByAngle[n * 2 + 1]);

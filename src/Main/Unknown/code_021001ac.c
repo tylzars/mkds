@@ -300,7 +300,7 @@ void func_02101c84(ItemTeresa *p) {
     }
     w = &q->mUnk_98;
     VEC_Subtract(&p->mUnk_000.mPos, w, &v);
-    MTX_MultVec33(&v, func_020e6b38(), &v);
+    MTX_MultVec33(&v, GetViewTransposeMatrix(), &v);
     VEC_Add(w, &v, &p->mUnk_000.mUnk_0c4);
 }
 
@@ -1082,7 +1082,7 @@ void func_021001ac(ItemTeresa *p, s32 c, Unk020e6488 *q) {
     }
     a = 0x1e;
     func_01ff9048(0x14, &a, 1);
-    func_01ff9048(0x19, func_020e6cf8(p->mUnk_000.mUnk_d0), 0xc);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(p->mUnk_000.mUnk_d0), 0xc);
     z = p->mUnk_000.mUnk_68.z;
     y = p->mUnk_000.mUnk_68.y;
     x = p->mUnk_000.mUnk_68.x;

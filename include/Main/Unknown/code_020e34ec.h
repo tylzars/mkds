@@ -7,4 +7,4 @@ typedef struct Unk020e34ec {
     /* 14 */ u32 mUnk_14;
 } Unk020e34ec;
 
-void func_020e34ec(Unk020e34ec *p0);
+void EnterChoropuState2(Unk020e34ec *p0);

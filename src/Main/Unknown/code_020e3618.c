@@ -132,7 +132,7 @@ void DrawChoropu(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
     switch (b->mUnk_000.mStateMachine.mState) {
         case 4:
             gChoropu->mUnk_18 = 1;
-            p = func_020e6cf8(&b->mUnk_000.mPos);
+            p = SetViewTransposeMatrixPos(&b->mUnk_000.mPos);
             func_020e67c4(gChoropu, p, &b->mUnk_000.mScale, 0, d);
             break;
         case 5:
@@ -140,12 +140,12 @@ void DrawChoropu(s32 a, Unk020e1e98 *b, s32 c, u16 d) {
         case 6:
         case 7:
             gChoropu->mUnk_18 = 1;
-            p = func_020e6cf8(&b->mUnk_000.mPos);
+            p = SetViewTransposeMatrixPos(&b->mUnk_000.mPos);
             func_020e66e4(gChoropu, p, b->mUnk_0b4.mUnk_04, &b->mUnk_000.mScale, 0, d);
             break;
         default:
             gChoropu->mUnk_18 = 0;
-            p = func_020e6cf8(&b->mUnk_000.mPos);
+            p = SetViewTransposeMatrixPos(&b->mUnk_000.mPos);
             func_020e67c4(gChoropu, p, &b->mUnk_000.mScale, 0, d);
     }
 }

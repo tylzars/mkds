@@ -163,7 +163,7 @@ void func_021027ac(ItemGesso *p, s32 param_2, Unk020e6488 *t) {
     if (p->mUnk_198 == FALSE) {
         return;
     }
-    s = *func_020e6cf8(&p->mUnk_000.mPos);
+    s = *SetViewTransposeMatrixPos(&p->mUnk_000.mPos);
     d = p->mUnk_19c;
     if (d <= 0) {
         d = -d;

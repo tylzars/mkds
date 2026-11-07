@@ -88,7 +88,7 @@ void DrawSun(void *a, Unk0209d3fc *b) {
 
     s = 0x1e;
     func_01ff9048(0x14, &s, 1);
-    func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&b->mUnk_00.mPos), 0xc);
     if (b->mState == 3 || b->mState == 4) {
         t = (s32) (((s64) gPairsByAngle[((u16) b->mUnk_ac >> 4) * 2 + 1] * -0x14000) >> 12) + 0x14000;
         k = (b->mUnk_b0 >> 4) * 2;

@@ -197,7 +197,7 @@ void DrawPakkunZHead(void *a, Pakkun *p) {
     v.z = p->mUnk_000.mPos.z;
     w = 0x1e;
     func_01ff9048(0x14, &w, 1);
-    func_01ff9048(0x19, func_020e6cf8(&v), 12);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&v), 12);
     t = p->mUnk_1f0;
     f[0] = t;
     f[1] = t;

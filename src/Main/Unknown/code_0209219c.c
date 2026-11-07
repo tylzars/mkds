@@ -84,7 +84,7 @@ void DrawBasabasa(void *a, Basabasa *b) {
     d = 0x1fe0 - b->mUnk_c4;
     s = 0x1e;
     func_01ff9048(0x14, &s, 1);
-    func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&b->mUnk_00.mPos), 0xc);
     if (b->mUnk_cc != 0) {
         MTX_RotZ33_(m, gPairsByAngle[((u16) -d >> 4) * 2], gPairsByAngle[((u16) -d >> 4) * 2 + 1]);
     } else {

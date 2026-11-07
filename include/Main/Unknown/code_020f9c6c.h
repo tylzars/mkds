@@ -24,7 +24,7 @@ typedef struct CourseMapRow {
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
 
-// Object func_020e6b38 returns: a vector at 0x18.
+// Object GetViewTransposeMatrix returns: a vector at 0x18.
 typedef struct Unk020e6b38 {
     /* 00 */ u8 mUnk_00[0x18];
     /* 18 */ Vec3 mUnk_18;

@@ -275,7 +275,7 @@ void func_020dec4c(void *a, Unk020de6a8 *b, u32 c, u32 d) {
     v.y = ((s64) b->mUnk_000.mScale.y * 0x1666) >> 12;
     v.z = ((s64) b->mUnk_000.mScale.z * 0x1666) >> 12;
     if (b->mUnk_100 != NULL) {
-        q = func_020e6b58(b->mUnk_0fc);
+        q = SetTranslationMatrixPos(b->mUnk_0fc);
     } else {
         p = b->mUnk_0fc;
         data_0217b720.mUnk_00[3].x = p->x >> 4;

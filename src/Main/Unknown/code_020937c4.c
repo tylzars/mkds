@@ -166,7 +166,7 @@ void DrawNsKiller2(void *a, NsKiller2 *p) {
     }
     t = 0x1e;
     func_01ff9048(0x14, &t, 1);
-    func_01ff9048(0x19, func_020e6b58(&p->mUnk_00.mPos), 12);
+    func_01ff9048(0x19, SetTranslationMatrixPos(&p->mUnk_00.mPos), 12);
     i = p->mUnk_00.mAngle >> 4;
     MTX_RotY33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     func_01ff9048(0x1a, m, 9);

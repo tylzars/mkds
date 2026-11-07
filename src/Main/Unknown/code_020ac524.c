@@ -59,7 +59,7 @@ void DrawShineBalloon(void *a, ShineBalloonObject *b) {
     }
     s0 = 0x1e;
     func_01ff9048(0x14, &s0, 1);
-    func_01ff9048(0x19, func_020e6cf8(&b->mUnk_00.mPos), 0xc);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&b->mUnk_00.mPos), 0xc);
     v2.y = func_020a23a0(b->mUnk_ac) >> 4;
     v2.x = 0;
     v2.z = 0;

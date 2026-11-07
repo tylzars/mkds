@@ -358,6 +358,7 @@ void func_0204d18c(Unk02175ec0_440s *a, Unk0204c090 *b, s32 c) {
     OS_RestoreInterrupts(v1);
 }
 
+// Moves node c to the head of list b when it is in list a; does nothing otherwise.
 void func_0204d110(Unk0204c090 **a, Unk0204c090 **b, Unk0204c090 *c) {
     u32 v1;
     Unk0204c090 *v2;

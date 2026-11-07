@@ -175,7 +175,7 @@ BOOL func_020d4d60(MapObject *p, s32 a) {
 }
 
 void func_020d4d44(MtxFx43 *p) {
-    func_020e6df0(p);
+    SetViewMatrices(p);
     func_020d7bec(p);
 }
 

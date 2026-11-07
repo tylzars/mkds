@@ -13,4 +13,4 @@ typedef struct Unk020e35a0 {
     /* ac */ u32 mUnk_ac;
 } Unk020e35a0;
 
-void func_020e35a0(Unk020e35a0 *p0);
+void EnterChoropuState0(Unk020e35a0 *p0);

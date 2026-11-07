@@ -127,7 +127,7 @@ void DrawSanbo(void *a, Sanbo *p) {
     switch (p->mState) {
         case 0:
         case 1:
-            func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mPos), 12);
+            func_01ff9048(0x19, SetViewTransposeMatrixPos(&p->mUnk_000.mPos), 12);
             f0[0] = 0;
             f0[1] = 0xa00;
             f0[2] = 0;
@@ -161,7 +161,7 @@ void DrawSanbo(void *a, Sanbo *p) {
                 f2[1] = 0xa00;
                 f2[2] = 0;
                 func_01ff9048(0x1c, f2, 3);
-                func_01ff9048(0x19, func_020e6cf8(&p->mUnk_0b0[i].mUnk_00), 12);
+                func_01ff9048(0x19, SetViewTransposeMatrixPos(&p->mUnk_0b0[i].mUnk_00), 12);
                 if ((p->mUnk_000.mFlags & 0x12) == 0 && p->mUnk_0b0[i].mUnk_3c != 0) {
                     k = ((u16) p->mUnk_0b0[i].mUnk_3c >> 4) * 2;
                     MTX_RotZ33_(m1, gPairsByAngle[k], gPairsByAngle[k + 1]);
@@ -187,7 +187,7 @@ void DrawSanbo(void *a, Sanbo *p) {
             for (i = 0; i < p->mUnk_1d0; i++) {
                 w2 = 0x1e;
                 func_01ff9048(0x14, &w2, 1);
-                func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mPos), 12);
+                func_01ff9048(0x19, SetViewTransposeMatrixPos(&p->mUnk_000.mPos), 12);
                 f3[2] = 0x80;
                 f3[0] = 0;
                 f3[1] = (i * 0x14000 + 0xa000) >> 4;

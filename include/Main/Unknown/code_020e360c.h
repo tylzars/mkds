@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020e360c(void);
+void SetupDrawChoropuShadow(void);

@@ -86,7 +86,7 @@ void DrawIronBall(void *a, IronBall *p) {
 
     v = 0x1e;
     func_01ff9048(0x14, &v, 1);
-    func_01ff9048(0x19, func_020e6cf8(&p->mUnk_000.mPos), 0xc);
+    func_01ff9048(0x19, SetViewTransposeMatrixPos(&p->mUnk_000.mPos), 0xc);
     if (p->mUnk_0a0 != 0) {
         i = (u16) p->mUnk_0a0 >> 4;
         MTX_RotZ33_((s32 *) v1, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);

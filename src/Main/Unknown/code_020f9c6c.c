@@ -950,7 +950,7 @@ void DrawItems(void *a) {
     enum { K0 } i;
     void *q;
 
-    q = &((Unk020e6b38 *) func_020e6b38())->mUnk_18;
+    q = &((Unk020e6b38 *) GetViewTransposeMatrix())->mUnk_18;
     func_020e6a74();
     for (i = 0; i < 0xe; i++) {
         if (gItemPools[i].mTakenCount > 0 && gItemPools[i].mUnk_40 == 0) {

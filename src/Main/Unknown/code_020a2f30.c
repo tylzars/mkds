@@ -108,7 +108,7 @@ void DrawBalloon(void *p, Balloon *a) {
         }
         w0 = 0x1e;
         func_01ff9048(0x14, &w0, 1);
-        func_01ff9048(0x19, func_020e6cf8(&a->mUnk_e8), 12);
+        func_01ff9048(0x19, SetViewTransposeMatrixPos(&a->mUnk_e8), 12);
         if (a->mUnk_00.mAngle != 0) {
             i = (a->mUnk_00.mAngle >> 4) * 2;
             MTX_RotZ33_(m0, gPairsByAngle[i + 1], gPairsByAngle[i]);

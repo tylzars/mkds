@@ -358,7 +358,7 @@ void InitMapObjects(void) {
     gCourseWaterEfct = NULL;
     func_02103598();
     func_020d7df8();
-    func_020e662c();
+    InitMatrices();
     func_020d4bf0();
     data_0217b4c4 = data_0217b4c8;
     data_0217b4d0 = data_0217b4cc;

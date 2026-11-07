@@ -19,7 +19,8 @@
 #include "Main/Unknown/code_0206bcb0.h"
 #include "code_021471bc.h"
 
-void func_020e6df0(MtxFx43 *p) {
+// Copies the view matrix and builds its transposed rotation and three more matrices from it.
+void SetViewMatrices(MtxFx43 *p) {
     data_0217b850->mUnk_00[0].x = 0x1000;
     data_0217b850->mUnk_00[0].y = 0;
     data_0217b850->mUnk_00[0].z = 0;
@@ -29,8 +30,8 @@ void func_020e6df0(MtxFx43 *p) {
     data_0217b850->mUnk_00[2].x = 0;
     data_0217b850->mUnk_00[2].y = -p->mUnk_00[1].z;
     data_0217b850->mUnk_00[2].z = p->mUnk_00[1].y;
-    MTX_Transpose33_(p, data_0217b848);
-    MTX_Concat33((const s32 *) data_0217b850, (const s32 *) data_0217b848, (s32 *) data_0217b860);
+    MTX_Transpose33_(p, gViewTransposeMatrix);
+    MTX_Concat33((const s32 *) data_0217b850, (const s32 *) gViewTransposeMatrix, (s32 *) data_0217b860);
     {
         MtxFx43 *h;
         Vec3 *v;
@@ -39,7 +40,7 @@ void func_020e6df0(MtxFx43 *p) {
 
         h = data_0217b85c;
         v = &h->mUnk_00[2];
-        *v = data_0217b848->mUnk_00[2];
+        *v = gViewTransposeMatrix->mUnk_00[2];
         a = h->mUnk_00[2].x;
         b = v->z;
         h->mUnk_00[0].z = -a;
@@ -53,7 +54,7 @@ void func_020e6df0(MtxFx43 *p) {
         Vec3NormalizeAndGetLengthUnchecked(&data_0217b85c->mUnk_00[0], &data_0217b85c->mUnk_00[0]);
     }
     Vec3CrossUnrounded(&data_0217b85c->mUnk_00[2], &data_0217b85c->mUnk_00[0], &data_0217b85c->mUnk_00[1]);
-    *data_0217b854 = *p;
+    *gViewMatrix = *p;
 }
 
 s32 func_020e6d88(Vec3 *v) {
@@ -70,16 +71,17 @@ s32 func_020e6d34(Vec3 *v, MtxFx43 *h) {
     return Vec3NormalizeAndGetLengthUnchecked(&h->mUnk_00[0], &h->mUnk_00[0]);
 }
 
-MtxFx43 *func_020e6cf8(Vec3 *a) {
+// Sets the position of gViewTransposeMatrix to each component of a >> 4 and returns the matrix.
+MtxFx43 *SetViewTransposeMatrixPos(Vec3 *a) {
     MtxFx43 *p;
     Vec3 *q;
 
-    p = data_0217b848;
+    p = gViewTransposeMatrix;
     q = &p->mUnk_00[3];
     q->x = a->x >> 4;
     q->y = a->y >> 4;
     q->z = a->z >> 4;
-    return data_0217b848;
+    return gViewTransposeMatrix;
 }
 
 MtxFx43 *func_020e6cbc(Vec3 *a) {
@@ -137,32 +139,33 @@ MtxFx43 *func_020e6b94(Vec3 *a) {
     return data_0217b85c;
 }
 
-MtxFx43 *func_020e6b58(Vec3 *a) {
+// Sets the position of the translation-only matrix to each component of a >> 4 and returns the matrix.
+MtxFx43 *SetTranslationMatrixPos(Vec3 *a) {
     MtxFx43 *p;
     Vec3 *q;
 
-    p = data_0217b844;
+    p = gTranslationMatrix;
     q = &p->mUnk_00[3];
     q->x = a->x >> 4;
     q->y = a->y >> 4;
     q->z = a->z >> 4;
-    return data_0217b844;
+    return gTranslationMatrix;
 }
 
 MtxFx43 *func_020e6b48(void) {
     return data_0217b860;
 }
 
-void *func_020e6b38(void) {
-    return data_0217b848;
+void *GetViewTransposeMatrix(void) {
+    return gViewTransposeMatrix;
 }
 
 Vec3 *func_020e6b28(void) {
-    return &data_0217b848->mUnk_00[0];
+    return &gViewTransposeMatrix->mUnk_00[0];
 }
 
-Vec3 *func_020e6b14(void) {
-    return &data_0217b848->mUnk_00[2];
+Vec3 *GetViewTransposeMatrixAxis2(void) {
+    return &gViewTransposeMatrix->mUnk_00[2];
 }
 
 void func_020e6ab8(Unk020e6488 *p0) {
@@ -176,7 +179,7 @@ void func_020e6ab8(Unk020e6488 *p0) {
 
 void func_020e6a74(void) {
     u32 v1[1];
-    func_01ff9048(0x17, data_0217b854, 0xc);
+    func_01ff9048(0x17, gViewMatrix, 0xc);
     v1[0] = 0x1e;
     func_01ff9048(0x13, (void *) ((u32) v1), 1);
 }
@@ -194,7 +197,7 @@ s32 func_020e69bc(Vec3 *v) {
     MtxFx43 *t;
     s64 acc;
 
-    t = data_0217b854;
+    t = gViewMatrix;
     acc = (s64) v->x * t->mUnk_00[0].z + (s64) v->y * t->mUnk_00[1].z + (s64) v->z * t->mUnk_00[2].z;
     return -(t->mUnk_00[3].z + (s32) (acc >> 12)) >> 9;
 }
@@ -221,7 +224,7 @@ void func_020e6854(Unk020e6488 *p, Vec3 *q, s32 c, u32 d) {
         v &= 0xc0ffffff;
         v |= r << 24;
     } else if (c != 0) {
-        t = data_0217b854;
+        t = gViewMatrix;
         acc = (s64) q->x * t->mUnk_00[0].z + (s64) q->y * t->mUnk_00[1].z + (s64) q->z * t->mUnk_00[2].z;
         m = -(t->mUnk_00[3].z + (s32) (acc >> 12)) >> 9;
         if (m < e) {
@@ -298,10 +301,10 @@ void func_020e66e4(Unk020e6488 *p, MtxFx43 *q, s32 r, Vec3 *v, s32 a5, u16 a6) {
 
 #pragma thumb on
 
-void func_020e662c(void) {
+void InitMatrices(void) {
     void *v1;
     v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
-    data_0217b848 = v1;
+    gViewTransposeMatrix = v1;
     v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
     data_0217b860 = v1;
     v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
@@ -311,12 +314,12 @@ void func_020e662c(void) {
     v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
     data_0217b85c = v1;
     v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
-    data_0217b844 = v1;
+    gTranslationMatrix = v1;
     v1 = HeapAlloc(data_021759d0->mHeap, 0x30);
-    data_0217b854 = v1;
+    gViewMatrix = v1;
     v1 = HeapAlloc(data_021759d0->mHeap, 0x24);
     data_0217b858 = v1;
-    MTX_Identity43_(data_0217b844);
+    MTX_Identity43_(gTranslationMatrix);
 }
 
 #pragma thumb off
