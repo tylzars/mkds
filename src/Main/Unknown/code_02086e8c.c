@@ -84,18 +84,18 @@ void func_020875b4(void) {
     } else if (f == FALSE) {
         data_0217aed0->mUnk_020 = gRaceSetup->mKartCount - 1;
         for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
-            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == 2 &&
+            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == PLAYER_KIND_GHOST &&
                 gRaceSetup->mCurrentEntries[i].mPlayer.mUnk_10 == 0) {
                 data_0217aed0->mUnk_020 = data_0217aed0->mUnk_020 - 1;
             }
         }
     } else {
-        data_0217aed0->mUnk_020 = gRaceSetup->mUnk_3d1;
+        data_0217aed0->mUnk_020 = gRaceSetup->mHumanAndPeerKartCount;
         w = gRaceSetup->mEntryIndex;
         u = FALSE;
         if (w != -1) {
             v = gRaceSetup->mCurrentEntries[(u16) w].mPlayer.mKind;
-            if (v <= 3 && ((1 << v) & 0xd) != 0) {
+            if (v <= 3 && ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) != 0) {
                 u = TRUE;
             }
             if (u != FALSE) {
@@ -125,7 +125,7 @@ void func_020875b4(void) {
             t = FALSE;
             if (f == FALSE) {
                 if (i != gRaceSetup->mEntryIndex) {
-                    if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind != 2 ||
+                    if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind != PLAYER_KIND_GHOST ||
                         gRaceSetup->mCurrentEntries[i].mPlayer.mUnk_10 != 0) {
                         t = TRUE;
                     }
@@ -133,7 +133,7 @@ void func_020875b4(void) {
             } else {
                 k = FALSE;
                 v = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
-                if (v <= 3 && ((1 << v) & 0xd) != 0) {
+                if (v <= 3 && ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) != 0) {
                     k = TRUE;
                 }
                 if (k != FALSE && i != gRaceSetup->mEntryIndex) {

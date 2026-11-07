@@ -260,7 +260,7 @@ void func_0205f700(void) {
             continue;
         }
         r = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
-        if (r == 1 || r == 4 || r == 2) {
+        if (r == PLAYER_KIND_CPU || r == PLAYER_KIND_NONE || r == PLAYER_KIND_GHOST) {
             continue;
         }
         if (gRaceSetup->mUseTeams != 0) {
@@ -340,7 +340,7 @@ void func_0205f498(void) {
             continue;
         }
         r = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
-        if (r == 1 || r == 4 || r == 2) {
+        if (r == PLAYER_KIND_CPU || r == PLAYER_KIND_NONE || r == PLAYER_KIND_GHOST) {
             continue;
         }
         t = 2;
@@ -408,7 +408,7 @@ void func_0205f218(void) {
             continue;
         }
         r = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
-        if (r == 1 || r == 4 || r == 2) {
+        if (r == PLAYER_KIND_CPU || r == PLAYER_KIND_NONE || r == PLAYER_KIND_GHOST) {
             continue;
         }
         t = 2;

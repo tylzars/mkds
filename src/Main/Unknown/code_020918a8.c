@@ -134,7 +134,7 @@ static inline BOOL func_020919e8_inline_4(Unk020919e8 *p, s32 k) {
     for (i = 0; i < gRaceSetup->mKartCount; i++) {
         f = FALSE;
         if (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind <= 3 &&
-            ((1 << gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind) & 0xd)) {
+            ((1 << gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER)) {
             f = TRUE;
         }
         if (f == FALSE && i != gRaceSetup->mEntryIndex) {

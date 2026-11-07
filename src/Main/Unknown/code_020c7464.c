@@ -228,7 +228,8 @@ void UpdateRaceHudSubScreenKarts(void) {
                 y = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04;
                 if (x > -0x10 && x < 0x110 && y > -0x10 && y < 0xd0 && func_0207a84c(i) == 0) {
                     gRaceHudSubScreenKarts->mUnk_000[i] = 1;
-                    if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mCurrentEntries[i].mPlayer.mKind == 2) {
+                    if (gRaceSetup->mMode == MODE_TIME_ATTACK &&
+                        gRaceSetup->mCurrentEntries[i].mPlayer.mKind == PLAYER_KIND_GHOST) {
                         gRaceHudSubScreenKarts->mUnk_040[i] = 1;
                     } else {
                         gRaceHudSubScreenKarts->mUnk_040[i] = 0;

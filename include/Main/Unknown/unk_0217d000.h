@@ -377,8 +377,8 @@ typedef struct SelectRaceRule {
     /* 8a */ s16 mRaceCount;
     // Team index of each of the 8 entries.
     /* 8c */ u32 mPlayerTeamIndices[8];
-    // Per team: how many of the first entries (given player kind 0 in the setup copy) are in it.
-    /* ac */ u16 mUnk_ac[2];
+    // Per team: how many of the first entries are in it.
+    /* ac */ u16 mTeamHumanCounts[2];
     // Per team: how many of the entries after the first ones are in it; counted into a team's size only while row 1 is
     // not 0.
     /* b0 */ u16 mUnk_b0[2];

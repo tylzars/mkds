@@ -53,7 +53,7 @@ static inline s32 func_0207f554_inline(u32 a, u32 b) {
         t = FALSE;
         v = gRaceSetup->mCurrentEntries[b].mPlayer.mKind;
         if ((u32) v <= 3) {
-            if ((1 << v) & 0xd) {
+            if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
                 t = TRUE;
             }
         }
@@ -324,7 +324,7 @@ s32 ShouldKartAiTargetKart(u32 a, u32 b) {
         t = FALSE;
         v = gRaceSetup->mCurrentEntries[b].mPlayer.mKind;
         if ((u32) v <= 3) {
-            if ((1 << v) & 0xd) {
+            if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
                 t = TRUE;
             }
         }

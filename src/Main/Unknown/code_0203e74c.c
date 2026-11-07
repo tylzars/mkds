@@ -36,7 +36,7 @@ s32 IsRaceEndConditionMet(void) {
             for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
                 f = FALSE;
                 s = o->mCurrentEntries[i].mPlayer.mKind;
-                if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
+                if ((u32) s <= 3 && ((1 << s) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) != 0) {
                     f = TRUE;
                 }
                 if (f != FALSE) {
@@ -61,7 +61,7 @@ s32 IsRaceEndConditionMet(void) {
             q = gRaceProgress;
             if (q->mUnk_000[0].mFinishedCount < (s32) func_0203f320() - (q->mUnk_000[0].mRemovedCount + 1)) {
                 for (i = 0; i < func_0203f320(); i++) {
-                    if (func_0203f2dc(i) != FALSE && IsKartEnded(i) == 0) {
+                    if (IsKartNonCpu(i) != FALSE && IsKartEnded(i) == 0) {
                         if (IsRaceProgressKartRemoved(i) == FALSE) {
                             r = FALSE;
                             break;
@@ -118,7 +118,7 @@ s32 IsRaceEndConditionMet(void) {
             for (i = 0; i < (u32) o->mKartCount; i++) {
                 f = FALSE;
                 s = o->mCurrentEntries[i].mPlayer.mKind;
-                if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
+                if ((u32) s <= 3 && ((1 << s) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) != 0) {
                     f = TRUE;
                 }
                 if (f != FALSE) {

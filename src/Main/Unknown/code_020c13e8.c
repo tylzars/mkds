@@ -51,7 +51,7 @@ void func_020c1ef8(void) {
         if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
             v = x0;
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3 &&
-                ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & 0xd)) {
+                ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER)) {
                 v = 1;
             }
             c = v != 0 ? 1 : x1;

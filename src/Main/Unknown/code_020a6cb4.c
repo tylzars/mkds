@@ -105,7 +105,7 @@ void func_020a6e70(Unk02100094 *a) {
             f = FALSE;
             v = gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind;
             if ((u32) v <= 3) {
-                if ((1 << v) & 0xd) {
+                if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
                     f = TRUE;
                 }
             }

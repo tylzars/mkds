@@ -286,7 +286,7 @@ void func_0202c0d4(s32 a, s32 b) {
                 }
                 data_02174e3c->mUnk_044 = data_0217aa00->mUnk_1e52[(u16) i].mUnk_00;
                 for (j = 0; j < (n = data_02174e3c->mUnk_048); j++) {
-                    GetRaceSetupCopy()->mEntries[j].mPlayerKind = 0;
+                    GetRaceSetupCopy()->mEntries[j].mPlayerKind = PLAYER_KIND_HUMAN;
                     v = 0;
                     MIi_CpuClear16(v, data_02174e3c->mUnk_04c[j].mUnk_14, 0x16);
                     func_0202c0d4_inline(data_0217aa00->mUnk_1e8c[(u16) j] == 0xffff

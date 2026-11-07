@@ -140,7 +140,7 @@ void func_020733ec(Kart *p) {
     func_020e0650((u32 *) &p->mUnk_208);
     p->mAi = HeapAlloc(h, 0x158);
     if (gCourseMap->mRaceRouteCount != 0 || gCourseMap->mBattleRouteCount != 0) {
-        if (gRaceSetup->mCurrentEntries[p->mIndex].mPlayer.mKind == 1) {
+        if (gRaceSetup->mCurrentEntries[p->mIndex].mPlayer.mKind == PLAYER_KIND_CPU) {
             p->mUnk_7c |= 2;
             if (p->mUnk_7c & 2) {
                 for (i = 0; i < 12; i++) {

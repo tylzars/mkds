@@ -144,7 +144,7 @@ void func_021219cc(void) {
                 s8 x;
 
                 x = gWiFiSession->mPackedIndices[i];
-                GetRaceSetupCopy()->mEntries[x].mPlayerKind = 3;
+                GetRaceSetupCopy()->mEntries[x].mPlayerKind = PLAYER_KIND_PEER;
             }
             {
                 WiFiSession *d;

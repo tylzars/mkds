@@ -80,7 +80,7 @@ void func_02046594(void) {
             break;
     }
     for (i = 0; i < 8; i++) {
-        if (f == FALSE && gRaceSetup->mNextEntries[i].mPlayer.mKind == 1) {
+        if (f == FALSE && gRaceSetup->mNextEntries[i].mPlayer.mKind == PLAYER_KIND_CPU) {
             gRaceSetup->mNextEntries[i].mPlayer.mNumber = k;
             k = k + 1;
         } else {
@@ -279,7 +279,7 @@ void func_02045ed0(void) {
             gRaceSetup->mNextHeader.mCourseNumber = 1;
             gRaceSetup->mNextHeader.mRaceKind = RACE_KIND_NORMAL;
             for (i = 0; i < 4; i++) {
-                if (gRaceSetup->mNextEntries[i].mPlayer.mKind == 0) {
+                if (gRaceSetup->mNextEntries[i].mPlayer.mKind == PLAYER_KIND_HUMAN) {
                     r = i;
                     break;
                 }
@@ -335,10 +335,10 @@ BOOL func_02045bd4(void) {
             }
         }
         func_020468b0(i, gRaceSetup->mCurrentEntries[(u16) j].mCharacterIndex,
-                      gRaceSetup->mCurrentEntries[(u16) j].mKartIndex, 1, -1, 3);
+                      gRaceSetup->mCurrentEntries[(u16) j].mKartIndex, PLAYER_KIND_CPU, -1, 3);
     }
     for (; i < 8; i++) {
-        func_020468b0(i, i, i * 3, 4, -1, 3);
+        func_020468b0(i, i, i * 3, PLAYER_KIND_NONE, -1, 3);
     }
     for (i = 0; i < 8; i++) {
         n = GetKartCupRank(i) - 1;
@@ -397,7 +397,7 @@ void func_02045a2c(s32 a) {
             x = i;
             y = i * 3;
         }
-        func_020468b0(i, x, y, 1, -1, 3);
+        func_020468b0(i, x, y, PLAYER_KIND_CPU, -1, 3);
     }
 }
 

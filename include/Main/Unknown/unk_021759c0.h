@@ -13,9 +13,11 @@ typedef struct Unk020565e4 {
     /* 03 */ u8 mUnk_03;
 } Unk020565e4;
 
-// Values of Unk021759c0_70.mKind that ResetRaceSetup stores (entry 0 gets KIND_0, the others KIND_1).
-typedef enum { UNK_021759C0_70_KIND_0, UNK_021759C0_70_KIND_1 } Unk021759c0_70_Kind;
+// What drives an entry's kart: the player, the game's CPU, a recorded ghost, a player on another console, or nothing.
+typedef enum { PLAYER_KIND_HUMAN, PLAYER_KIND_CPU, PLAYER_KIND_GHOST, PLAYER_KIND_PEER, PLAYER_KIND_NONE } PlayerKind;
 
+// Bit set of the kinds 0, 2 and 3 (human, ghost, peer): the entries the mask tests pick out.
+#define PLAYER_KIND_MASK_HUMAN_GHOST_PEER 0xd
 // The 0x28 bytes from 0x08 of each KartEntry entry (code keeps pointers to them).
 typedef struct Unk021759c0_70 {
     /* 00 */ u32 mKind;
@@ -224,7 +226,7 @@ typedef struct RaceSetup {
     /* 1e8 */ RaceSetupHeader mNextHeader;
     /* 250 */ KartEntry mNextEntries[8];
     /* 3d0 */ u8 mKartCount;
-    /* 3d1 */ u8 mUnk_3d1;
+    /* 3d1 */ u8 mHumanAndPeerKartCount;
     /* 3d2 */ u8 mTeamKartCounts[2];
     /* 3d4 */ u8 mUnk_3d4;
     /* 3d5 */ s8 mUnk_3d5[3];

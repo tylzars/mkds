@@ -28,7 +28,7 @@ s64 ComputeDotOfPairsRoundedS64(const UnkPair020b502c *a, const UnkPair020b502c 
 static inline s32 func_02040bc0_inline(s8 i) {
     BOOL f = FALSE;
     if (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind <= 3 &&
-        ((1 << gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind) & 0xd) != 0) {
+        ((1 << gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) != 0) {
         f = TRUE;
     }
     return f;

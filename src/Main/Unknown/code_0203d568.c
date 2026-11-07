@@ -48,7 +48,7 @@ static inline void func_0203d568_b_inline(void) {
     if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL && GetNextSceneNumber() != 10 &&
         (GetNextSceneNumber() != 6 || data_0217b488->mUnk_74 != 2) && func_0203d568_inline(data_0217aa00) != 0) {
         for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
-            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == 0 &&
+            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == PLAYER_KIND_HUMAN &&
                 (data_0217aa00->mUnk_15f6 & (1 << data_0217aa00->mUnk_1e8c[i])) == 0) {
                 func_0204451c(i);
             }

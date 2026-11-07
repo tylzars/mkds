@@ -138,7 +138,7 @@ void func_0207e268(void) {
             break;
     }
     data_usa_021658f0 = 3;
-    d = gRaceSetup->mKartCount - gRaceSetup->mUnk_3d1;
+    d = gRaceSetup->mKartCount - gRaceSetup->mHumanAndPeerKartCount;
     if (d > 1) {
         if (d <= 3) {
             data_usa_021658f0 = d - 1;
@@ -197,7 +197,7 @@ void func_0207e088(struct Unk02089a24 *a, struct KartAi *b) {
 
     v = gRaceSetup->mCurrentEntries[b->mIndex].mPlayer.mKind;
     if ((u32) v <= 3) {
-        if ((1 << v) & 0xd) {
+        if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
             f = TRUE;
         }
     }
@@ -244,7 +244,7 @@ void func_0207de84(struct Unk02089a24 *a, struct KartAi *b) {
         f = FALSE;
         v = gRaceSetup->mCurrentEntries[b->mIndex].mPlayer.mKind;
         if ((u32) v <= 3) {
-            if ((1 << v) & 0xd) {
+            if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
                 f = TRUE;
             }
         }
@@ -317,7 +317,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
     f = FALSE;
     v = gRaceSetup->mCurrentEntries[m].mPlayer.mKind;
     if ((u32) v <= 3) {
-        if ((1 << v) & 0xd) {
+        if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
             f = TRUE;
         }
     }

@@ -1488,7 +1488,7 @@ typedef struct KartAiShared {
     // Kart index at rank n + 1, -1 when no kart has that rank.
     /* 020 */ s32 mKartAtRank[8];
     /* 040 */ s32 mKind1KartByRank[8];
-    /* 060 */ s32 mUnk_060[8];
+    /* 060 */ s32 mNonCpuKartByRank[8];
     /* 080 */ s32 mUnk_080;
     /* 084 */ s32 mUnk_084;
     /* 088 */ s32 mUnk_088;
@@ -1505,8 +1505,8 @@ typedef struct KartAiShared {
     /* 128 */ Unk0217aebc_128 *mRandom;
     /* 12c */ NNSFndList mTableIndexList;
     /* 138 */ s32 mUnk_138;
-    /* 13c */ s16 mUnk_13c;
-    /* 13e */ s16 mUnk_13e[3];
+    /* 13c */ s16 mNonCpuKartCount;
+    /* 13e */ s16 mTeamNonCpuKartCounts[3];
 } KartAiShared;
 
 extern KartAiShared *gKartAiShared;

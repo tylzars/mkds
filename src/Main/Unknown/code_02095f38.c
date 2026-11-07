@@ -65,7 +65,7 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
             v1 = p->mState;
             if (v1 == 0 || v1 == 3) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if (gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind != 2) {
+                if (gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind != PLAYER_KIND_GHOST) {
                     if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
                         if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;

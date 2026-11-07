@@ -674,7 +674,7 @@ void func_02071e28(Kart *p) {
     } else if (gRaceSetup->mMode == 5) {
         p->mUnk_7c |= 0x400;
     }
-    if (gRaceSetup->mCurrentEntries[p->mIndex].mPlayer.mKind == 2) {
+    if (gRaceSetup->mCurrentEntries[p->mIndex].mPlayer.mKind == PLAYER_KIND_GHOST) {
         p->mUnk_7c |= KART_7C_ENTRY_KIND_2;
         p->mVisible = 0;
     }

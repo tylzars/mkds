@@ -112,7 +112,7 @@ void func_020431e4(void) {
         s = q->mCurrentEntries[j].mPlayer.mKind;
         t = FALSE;
         w = q->mCurrentEntries[j].mPlayer.mIndex;
-        if ((u32) s <= 3 && ((1 << s) & 0xd)) {
+        if ((u32) s <= 3 && ((1 << s) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER)) {
             t = TRUE;
         }
         if (t != FALSE) {

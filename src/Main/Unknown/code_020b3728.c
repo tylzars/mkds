@@ -72,7 +72,7 @@ void func_020b3cd8(void) {
         if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
             f = FALSE;
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3) {
-                if ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & 0xd) {
+                if ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
                     f = TRUE;
                 }
             }
@@ -84,7 +84,7 @@ void func_020b3cd8(void) {
         } else {
             f = FALSE;
             if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3) {
-                if ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & 0xd) {
+                if ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
                     f = TRUE;
                 }
             }

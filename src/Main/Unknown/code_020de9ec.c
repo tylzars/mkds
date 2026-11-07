@@ -345,7 +345,7 @@ u8 CollideKartWithItemBox(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
     m = a->mUnk_000.mDistanceSquaredAndFlags & 3;
     v = gRaceSetup->mCurrentEntries[b->mUnk_74].mPlayer.mKind;
     if ((u32) v <= 3) {
-        if (((1 << v) & 0xd) != 0) {
+        if (((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) != 0) {
             n = TRUE;
         }
     }

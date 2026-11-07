@@ -119,7 +119,7 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
     b->mUnk_30 = 0;
     v = gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind;
     if ((u32) v <= 3) {
-        if ((1 << v) & 0xd) {
+        if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
             c = TRUE;
         }
     }

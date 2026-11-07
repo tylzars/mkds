@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned short func_0211d62c(void);
+unsigned short GetSelectRaceRuleCpuCount(void);

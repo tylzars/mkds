@@ -157,7 +157,7 @@ void SetNextDemoRace(u8 *a) {
             l = 1;
         }
         func_0203be48(a, i, &x, &y);
-        func_020468b0(i, x, y, 1, -1, l);
+        func_020468b0(i, x, y, PLAYER_KIND_CPU, -1, l);
     }
     func_020467a0();
 }

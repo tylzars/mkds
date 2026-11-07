@@ -26,7 +26,7 @@ void func_020297bc(void) {
         }
     }
     for (; a < 8; a++) {
-        func_020468b0(a, -1, -1, 4, -1, 3);
+        func_020468b0(a, -1, -1, PLAYER_KIND_NONE, -1, 3);
     }
     func_02029908(5);
     func_020298f4(gRaceSetupCopy->mCourseId);

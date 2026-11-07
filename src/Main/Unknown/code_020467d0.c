@@ -89,9 +89,9 @@ void func_02046968(s32 a) {
     n = 0;
     m = 0;
     for (i = 0; i < a; i++) {
-        if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind != 4) {
-            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == 0 ||
-                gRaceSetup->mCurrentEntries[i].mPlayer.mKind == 3) {
+        if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind != PLAYER_KIND_NONE) {
+            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == PLAYER_KIND_HUMAN ||
+                gRaceSetup->mCurrentEntries[i].mPlayer.mKind == PLAYER_KIND_PEER) {
                 n++;
             }
             m++;
@@ -101,7 +101,7 @@ void func_02046968(s32 a) {
         }
     }
     gRaceSetup->mKartCount = m;
-    gRaceSetup->mUnk_3d1 = n;
+    gRaceSetup->mHumanAndPeerKartCount = n;
     for (i = 0; i < 2; i++) {
         gRaceSetup->mTeamKartCounts[i] = b[i];
     }
@@ -114,7 +114,7 @@ void func_020468b0(int a, u32 b, u32 c, int d, u32 e, int f) {
     gRaceSetup->mNextEntries[a].mKartIndex = c;
     gRaceSetup->mNextEntries[a].mPlayer.mTeamIndex = e;
     gRaceSetup->mNextEntries[a].mPlayer.mUnk_08 = f;
-    gRaceSetup->mNextEntries[a].mPlayer.mUnk_10 = d == 2 ? 0 : 3;
+    gRaceSetup->mNextEntries[a].mPlayer.mUnk_10 = d == PLAYER_KIND_GHOST ? 0 : 3;
     gRaceSetup->mNextEntries[a].mPlayer.mUnk_14 = 0;
     if (f != 3) {
         gRaceSetup->mNextEntries[a].mPlayer.mUnk_14 |= 1;

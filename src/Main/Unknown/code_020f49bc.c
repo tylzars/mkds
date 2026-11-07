@@ -1050,7 +1050,7 @@ void InitHeldItem(HeldItem *a, KartItems *b) {
     for (i = 0; i < 3; i++) {
         a->mObjects[i] = NULL;
     }
-    a->mUnk_24 = gRaceSetup->mCurrentEntries[b->mKartIndex].mPlayer.mKind == 3;
+    a->mUnk_24 = gRaceSetup->mCurrentEntries[b->mKartIndex].mPlayer.mKind == PLAYER_KIND_PEER;
 }
 
 // Starts one held object at counts 7, 5 and 3 of the countdown that StartHeldItemObjects sets.

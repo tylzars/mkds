@@ -245,7 +245,8 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     for (m = 0; m < 8; m++) {
         e = gResultsBattle->mUnk_0e4[m].mUnk_08;
         k = gRaceSetup->mCurrentEntries[m].mPlayer.mKind;
-        if ((k == 0 || k == 1 || k == 3) && (gResultsBattle->mMode != 3 || gResultsBattle->mUnk_0e4[m].mUnk_04 != 0)) {
+        if ((k == PLAYER_KIND_HUMAN || k == PLAYER_KIND_CPU || k == PLAYER_KIND_PEER) &&
+            (gResultsBattle->mMode != 3 || gResultsBattle->mUnk_0e4[m].mUnk_04 != 0)) {
             func_02033ab8(1, m, e + 0x30, 1);
             func_02032f94_inline(w, 0x16);
             CopyKartEntryName(m, w, 0);

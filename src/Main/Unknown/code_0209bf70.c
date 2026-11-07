@@ -335,7 +335,7 @@ s32 CollideKartWithBound(Bound *p, Kart *k, u8 *b, u8 *c) {
             p->mUnk_000.mUnk_10.y = 0;
             p->mUnk_000.mUnk_10.z = 0;
         }
-        if (gRaceSetup->mCurrentEntries[k->mIndex].mPlayer.mKind != 2 && p->mWobbling == FALSE) {
+        if (gRaceSetup->mCurrentEntries[k->mIndex].mPlayer.mKind != PLAYER_KIND_GHOST && p->mWobbling == FALSE) {
             p->mWobbleXAngle = 0x8000;
             p->mWobbleXMid = 0x1000;
             p->mWobbleXAmplitude = 0x400;

@@ -971,20 +971,20 @@ void StartItemSlotForKart(s32 param_1, s32 param_2, s32 param_3) {
         return;
     }
     v = gRaceSetup->mCurrentEntries[param_1].mPlayer.mKind;
-    if (v == 3) {
+    if (v == PLAYER_KIND_PEER) {
         return;
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
         c = FALSE;
         if ((u32) v > 3) {
-        } else if ((1 << v) & 0xd) {
+        } else if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
             c = TRUE;
         }
         StartItemSlot(&gKartItems[param_1], param_2, GetBattleItemRank(param_1), c ? 1 : 0, param_3);
     } else {
         c = FALSE;
         if ((u32) v > 3) {
-        } else if ((1 << v) & 0xd) {
+        } else if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
             c = TRUE;
         }
         StartItemSlot(&gKartItems[param_1], param_2, GetKartRank(param_1), c ? 1 : 0, param_3);

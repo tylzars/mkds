@@ -202,7 +202,7 @@ u8 CollideKartWithChoropu(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d) {
 
     switch (c[0]) {
         case 2:
-            if (gRaceSetup->mCurrentEntries[b->mIndex].mPlayer.mKind == 2) {
+            if (gRaceSetup->mCurrentEntries[b->mIndex].mPlayer.mKind == PLAYER_KIND_GHOST) {
                 return d[0];
             }
             if (a->mUnk_000.mStateMachine.mState == 7) {

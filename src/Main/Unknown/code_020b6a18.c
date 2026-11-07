@@ -26,7 +26,7 @@ void func_020b6c74(u32 a, u16 *b, u32 c) {
     f = FALSE;
     if (a == 0) {
         if (gRaceSetup->mCurrentEntries[a].mPlayer.mKind <= 3) {
-            if ((1 << gRaceSetup->mCurrentEntries[a].mPlayer.mKind) & 0xd) {
+            if ((1 << gRaceSetup->mCurrentEntries[a].mPlayer.mKind) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
                 f = TRUE;
             }
         }

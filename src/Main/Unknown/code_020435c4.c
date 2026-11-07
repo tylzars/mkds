@@ -88,8 +88,8 @@ void func_0204451c(u32 a) {
     } else if (gRaceSetup->mUnk_3d5[1] == -1) {
         f = 1;
     }
-    func_020468b0(a, gRaceSetup->mCurrentEntries[a].mCharacterIndex, gRaceSetup->mCurrentEntries[a].mKartIndex, 1,
-                  gRaceSetup->mCurrentEntries[a].mPlayer.mTeamIndex, f);
+    func_020468b0(a, gRaceSetup->mCurrentEntries[a].mCharacterIndex, gRaceSetup->mCurrentEntries[a].mKartIndex,
+                  PLAYER_KIND_CPU, gRaceSetup->mCurrentEntries[a].mPlayer.mTeamIndex, f);
     q = gRaceSetup;
     q->mCurrentEntries[a] = q->mNextEntries[a];
     if (f < 2) {
@@ -114,16 +114,16 @@ void func_02044380(Unk02029930_f8 *a, u32 b, u32 c) {
     gRaceSetup->mNextHeader.mBattleKind = 0;
     gRaceSetup->mCourseCount = 0;
     gRaceSetup->mNextHeader.mEngineIndex = a->mEngineIndex;
-    func_020468b0(0, a->mCharacterIndex0, a->mKartIndex0, 0, -1, 3);
+    func_020468b0(0, a->mCharacterIndex0, a->mKartIndex0, PLAYER_KIND_HUMAN, -1, 3);
     if (a->mCharacterIndex1 != 0xff && a->mKartIndex1 != 0xff) {
-        func_020468b0(1, a->mCharacterIndex1, a->mKartIndex1, 1, -1, 3);
+        func_020468b0(1, a->mCharacterIndex1, a->mKartIndex1, PLAYER_KIND_CPU, -1, 3);
         gRaceSetup->mNextHeader.mUnk_14 = 2;
     } else {
-        func_020468b0(1, -1, -1, 4, -1, 3);
+        func_020468b0(1, -1, -1, PLAYER_KIND_NONE, -1, 3);
         gRaceSetup->mNextHeader.mUnk_14 = 0;
     }
     for (i = 2; i < 8; i++) {
-        func_020468b0(i, -1, -1, 4, -1, 3);
+        func_020468b0(i, -1, -1, PLAYER_KIND_NONE, -1, 3);
     }
 }
 

@@ -641,7 +641,7 @@ s32 func_02068ec0(Kart *p, s32 a) {
     }
     if (r != FALSE) {
         if (!(w & 0x4000000)) {
-            func_020858ac(p->mIndex);
+            DecrementKartAiNonCpuCount(p->mIndex);
             p->mUnk_7c |= 0x4000000;
         }
         p->mUnk_7c |= 0x20;

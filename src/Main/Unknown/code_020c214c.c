@@ -211,7 +211,7 @@ void InitRaceGoalS(void) {
     for (j = 0; j < gRaceSetup->mKartCount; j = (u16) (j + 1)) {
         if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
             e = gRaceSetup->mCurrentEntries[j].mPlayer.mKind;
-            k = e == 0 || e == 2 || e == 3 ? 1 : 0;
+            k = e == PLAYER_KIND_HUMAN || e == PLAYER_KIND_GHOST || e == PLAYER_KIND_PEER ? 1 : 0;
             l = GetKartPreviousWinCount(j);
             s[j] = l * 16 + k * 8;
             if (gRaceSetup->mMode == MODE_VS || gRaceSetup->mMode == 5) {
@@ -222,7 +222,7 @@ void InitRaceGoalS(void) {
             gRaceGoalS->mUnk_0020[j] = GetKartPreviousWinCount(j);
         } else {
             e = gRaceSetup->mCurrentEntries[j].mPlayer.mKind;
-            l = e == 0 || e == 2 || e == 3 ? 1 : 0;
+            l = e == PLAYER_KIND_HUMAN || e == PLAYER_KIND_GHOST || e == PLAYER_KIND_PEER ? 1 : 0;
             k = GetKartPreviousTotalPoints(j);
             s[j] = k * 16 + l * 8 + 8 - GetKartStartRank(j);
             gRaceGoalS->mUnk_0020[j] = GetKartPreviousTotalPoints(j);
