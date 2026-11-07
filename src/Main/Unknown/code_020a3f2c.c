@@ -116,7 +116,7 @@ u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
         p->mKartIndex = o->mIndex;
         p->mUnk_ca = o->mIndex;
         func_020a10ac(o->mIndex, 1);
-        func_020a10f0(o->mIndex, 1);
+        AddBalloonOrShineCountAndMoveRank(o->mIndex, 1);
         r = o->mIndex == data_021759c0->mEntryIndex ? 1 : 0;
         c = GetHighestBalloonOrShineCount();
         n = GetBalloonOrShineCount(o->mIndex);
@@ -372,7 +372,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                 }
             }
             for (i = 0; i < 2; i++) {
-                q = func_020a0f0c();
+                q = MoveToRandomForwardBattlePoint();
                 n = q->mPos.y - GetKartStandingPos(p->mKartIndex)->y;
                 if (n <= 0) {
                     n = -n;
@@ -675,10 +675,10 @@ BOOL func_020a5268(u16 a, u16 b) {
         if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
             if (func_020a2204(a) != 0 && f != NULL) {
                 e->mBalloons[GetBalloonOrShineCount(a)] = l;
-                func_020a10f0(a, -1);
+                AddBalloonOrShineCountAndMoveRank(a, -1);
                 e->mBalloons[GetBalloonOrShineCount(a)] = f;
             } else {
-                func_020a10f0(a, -1);
+                AddBalloonOrShineCountAndMoveRank(a, -1);
             }
         }
         if (l != NULL) {
@@ -696,7 +696,7 @@ BOOL func_020a5268(u16 a, u16 b) {
             }
             func_020d26ec(o, 0x153);
             if (GetBalloonOrShineCount(a) == 0) {
-                func_020a16d0(a);
+                EliminateKartAndCheckWinner(a);
             }
             return FALSE;
         }
@@ -707,10 +707,10 @@ BOOL func_020a5268(u16 a, u16 b) {
         if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
             if (func_020a2204(a) != 0 && f != NULL) {
                 e->mBalloons[GetBalloonOrShineCount(a)] = l;
-                func_020a10f0(a, -1);
+                AddBalloonOrShineCountAndMoveRank(a, -1);
                 e->mBalloons[GetBalloonOrShineCount(a)] = f;
             } else {
-                func_020a10f0(a, -1);
+                AddBalloonOrShineCountAndMoveRank(a, -1);
             }
         }
         if (l != NULL) {
@@ -718,7 +718,7 @@ BOOL func_020a5268(u16 a, u16 b) {
             n = GetBalloonOrShineCount(b);
             e->mBalloons[n + 1] = e->mBalloons[GetBalloonOrShineCount(b)];
             e->mBalloons[GetBalloonOrShineCount(b)] = l;
-            func_020a10f0(b, 1);
+            AddBalloonOrShineCountAndMoveRank(b, 1);
             func_020a2e68(l);
             SetBalloonKartIndex(l, b);
             if (GetBalloonOrShineCount(b) >= 2 && func_020a2204(b) != 0) {
@@ -728,7 +728,7 @@ BOOL func_020a5268(u16 a, u16 b) {
             SetupKartFollowEffect(StartEffect(0x7b, &o->mPos), o->mIndex, 0x20);
             func_020d26ec(GetKart(b), 0x14f);
             if (GetBalloonOrShineCount(a) == 0) {
-                func_020a16d0(a);
+                EliminateKartAndCheckWinner(a);
             }
             return TRUE;
         }
@@ -753,10 +753,10 @@ s32 func_020a4f54(u16 a, u16 b) {
     if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
         if (func_020a2204(a) != 0 && f != NULL) {
             v1->mBalloons[GetBalloonOrShineCount(a)] = l;
-            func_020a10f0(a, -1);
+            AddBalloonOrShineCountAndMoveRank(a, -1);
             v1->mBalloons[GetBalloonOrShineCount(a)] = f;
         } else {
-            func_020a10f0(a, -1);
+            AddBalloonOrShineCountAndMoveRank(a, -1);
         }
     }
     v2 = GetStandingsKartBalloons();
@@ -766,10 +766,10 @@ s32 func_020a4f54(u16 a, u16 b) {
     if (GetBalloonOrShineCount(b) != 0 && m != NULL) {
         if (func_020a2204(b) != 0 && g != NULL) {
             v2->mBalloons[GetBalloonOrShineCount(b)] = m;
-            func_020a10f0(b, -1);
+            AddBalloonOrShineCountAndMoveRank(b, -1);
             v2->mBalloons[GetBalloonOrShineCount(b)] = g;
         } else {
-            func_020a10f0(b, -1);
+            AddBalloonOrShineCountAndMoveRank(b, -1);
         }
     }
     if (l != NULL) {
@@ -778,7 +778,7 @@ s32 func_020a4f54(u16 a, u16 b) {
         n = GetBalloonOrShineCount(b);
         v2->mBalloons[n + 1] = v2->mBalloons[GetBalloonOrShineCount(b)];
         v2->mBalloons[GetBalloonOrShineCount(b)] = l;
-        func_020a10f0(b, 1);
+        AddBalloonOrShineCountAndMoveRank(b, 1);
         func_020a2e68(l);
         SetBalloonKartIndex(l, b);
         if (GetBalloonOrShineCount(b) >= 2 && func_020a2204(b) != 0) {
@@ -791,7 +791,7 @@ s32 func_020a4f54(u16 a, u16 b) {
         n = GetBalloonOrShineCount(a);
         v1->mBalloons[n + 1] = v1->mBalloons[GetBalloonOrShineCount(a)];
         v1->mBalloons[GetBalloonOrShineCount(a)] = m;
-        func_020a10f0(a, 1);
+        AddBalloonOrShineCountAndMoveRank(a, 1);
         func_020a2e68(m);
         SetBalloonKartIndex(m, a);
         if (GetBalloonOrShineCount(a) >= 2 && func_020a2204(a) != 0) {
@@ -821,10 +821,10 @@ BOOL func_020a4d94(u16 a, u16 b) {
     if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
         if (func_020a2204(a) != 0 && f != NULL) {
             e->mBalloons[GetBalloonOrShineCount(a)] = l;
-            func_020a10f0(a, -1);
+            AddBalloonOrShineCountAndMoveRank(a, -1);
             e->mBalloons[GetBalloonOrShineCount(a)] = f;
         } else {
-            func_020a10f0(a, -1);
+            AddBalloonOrShineCountAndMoveRank(a, -1);
         }
     }
     if (l != NULL) {
@@ -844,7 +844,7 @@ BOOL func_020a4d94(u16 a, u16 b) {
         }
         func_020d26ec(o, 0x153);
         if (GetBalloonOrShineCount(a) == 0) {
-            func_020a16d0(a);
+            EliminateKartAndCheckWinner(a);
         }
         return TRUE;
     }
@@ -870,10 +870,10 @@ void func_020a4c58(u16 a) {
         if (GetBalloonOrShineCount(a) != 0 && l != NULL) {
             if (func_020a2204(a) != 0 && f != NULL) {
                 e->mBalloons[GetBalloonOrShineCount(a)] = l;
-                func_020a10f0(a, -1);
+                AddBalloonOrShineCountAndMoveRank(a, -1);
                 e->mBalloons[GetBalloonOrShineCount(a)] = f;
             } else {
-                func_020a10f0(a, -1);
+                AddBalloonOrShineCountAndMoveRank(a, -1);
             }
         }
         if (l != NULL) {
@@ -1105,7 +1105,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
                 e->mState = 0;
             } else if (GetBalloonScaleFactor(o) >= 0x1000) {
                 func_020a2220(i, 0);
-                func_020a10f0(i, 1);
+                AddBalloonOrShineCountAndMoveRank(i, 1);
                 if (e->mRemainingSpawnCount <= 0) {
                     e->mSpawnTimer = 30;
                     e->mState = 0;

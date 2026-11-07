@@ -311,7 +311,7 @@ u16 func_020a1cd8(s32 a) {
     return v;
 }
 
-void func_020a1b6c(u16 a) {
+void MoveKartTowardFirstRankAndRefreshCountRange(u16 a) {
     s32 i;
     s32 j;
     s32 n;
@@ -347,7 +347,7 @@ void func_020a1b6c(u16 a) {
     }
 }
 
-void func_020a19f8(u16 a) {
+void MoveKartTowardLastRankAndRefreshCountRange(u16 a) {
     s32 i;
     s32 j;
     s32 n;
@@ -400,7 +400,7 @@ void EliminateKart(u16 a) {
     if ((u32) a >= data_021759c0->mKartCount) {
         return;
     }
-    func_020a19f8(a);
+    MoveKartTowardLastRankAndRefreshCountRange(a);
     if (data_021759c0->mMode == MODE_BATTLE) {
         func_02068b5c(GetKart(a));
     } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
@@ -410,7 +410,7 @@ void EliminateKart(u16 a) {
     }
 }
 
-void func_020a1790(void) {
+void SetWinnerAndEndTimerWhenOneTeamRemains(void) {
     s32 n;
     s32 v;
     s32 i;
@@ -488,7 +488,7 @@ static inline u16 func_020a12b8_inline(s32 i) {
     return 0;
 }
 
-void func_020a16d0(u16 a) {
+void EliminateKartAndCheckWinner(u16 a) {
     if (gStandings->mWinnerTeamId >= 0) {
         return;
     }
@@ -496,7 +496,7 @@ void func_020a16d0(u16 a) {
         return;
     }
     EliminateKart(a);
-    func_020a1790();
+    SetWinnerAndEndTimerWhenOneTeamRemains();
 }
 
 u16 func_020a1520(void) {
@@ -527,7 +527,7 @@ u16 func_020a1520(void) {
                     EliminateKart(k);
                 }
             }
-            func_020a1790();
+            SetWinnerAndEndTimerWhenOneTeamRemains();
             if (gStandings->mWinnerTeamId >= 0) {
                 return 0;
             }
@@ -548,7 +548,7 @@ u16 func_020a1520(void) {
     return gStandings->mUnk_3a2;
 }
 
-void func_020a12b8(void) {
+void EliminateKartsUntilWinnerDecided(void) {
     s32 n;
     s32 i;
     u16 k;
@@ -580,7 +580,7 @@ void func_020a12b8(void) {
                 }
                 k = m;
                 if (gStandings->mKarts[k].mEliminationStatus == 0) {
-                    func_020a16d0(k);
+                    EliminateKartAndCheckWinner(k);
                     gStandings->mKarts[k].mEliminationStatus = 2;
                 }
             } while (gStandings->mWinnerTeamId < 0);
@@ -589,7 +589,7 @@ void func_020a12b8(void) {
                 if (gStandings->mWinnerTeamId < 0) {
                     k = func_020a12b8_inline(i);
                     if (gStandings->mKarts[k].mEliminationStatus == 0) {
-                        func_020a16d0(k);
+                        EliminateKartAndCheckWinner(k);
                         gStandings->mKarts[k].mEliminationStatus = 2;
                     }
                 }
@@ -599,13 +599,13 @@ void func_020a12b8(void) {
         for (i = 7; i >= 0; i--) {
             k = func_020a12b8_inline(i);
             if (k != data_021759c0->mEntryIndex && gStandings->mWinnerTeamId < 0) {
-                func_020a16d0(k);
+                EliminateKartAndCheckWinner(k);
             }
         }
     }
 }
 
-u32 func_020a128c(void) {
+u32 IsWinnerDecidedAndEndReached(void) {
     u32 value0;
     u32 value1;
     u32 value2;
@@ -656,7 +656,7 @@ void AddShineCount(short a) {
     v1->mShineCount = v1->mShineCount + a;
 }
 
-u16 func_020a119c(void) {
+u16 GetTotalBalloonOrShineCount(void) {
     s32 i;
     s32 v1;
     s32 n;
@@ -689,12 +689,12 @@ u16 GetBalloonOrShineCount(u16 a) {
     return v;
 }
 
-void func_020a10f0(u16 a, s32 b) {
+void AddBalloonOrShineCountAndMoveRank(u16 a, s32 b) {
     gStandings->mKarts[a].mBalloonOrShineCount += b;
     if (b > 0) {
-        func_020a1b6c(a);
+        MoveKartTowardFirstRankAndRefreshCountRange(a);
     } else if (b < 0) {
-        func_020a19f8(a);
+        MoveKartTowardLastRankAndRefreshCountRange(a);
     }
 }
 
@@ -722,7 +722,7 @@ BOOL IsKartEliminated(int a) {
     return FALSE;
 }
 
-s32 func_020a1048(u16 a) {
+s32 IsKartAtLowestBalloonOrShineCountBelowHighest(u16 a) {
     Standings *d;
     BOOL r;
     s32 v;
@@ -765,7 +765,7 @@ Vec3 *GetKartStandingPos(int arg0) {
     return (Vec3 *) value0;
 }
 
-Unk02175620_84 *func_020a0f0c(void) {
+Unk02175620_84 *MoveToRandomForwardBattlePoint(void) {
     Unk020f41c4_B *a;
     u16 v;
     s32 w;

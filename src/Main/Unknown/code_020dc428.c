@@ -97,7 +97,7 @@ void func_020dd6c8(void *a, Wanwan *p, void *b, u32 c) {
 
 void UpdateWanwan(void *a, Wanwan *p) {
     u32 f;
-    Unk020d7b88 m;
+    Quaternion m;
     Vec3 v;
     Vec3 w;
     Vec3 u;
@@ -198,7 +198,7 @@ void UpdateWanwan(void *a, Wanwan *p) {
                 if (t < 0) {
                     p->mUnk_00.mUnk_10.y += (s32) (((s64) -t * 0x14cd) >> 12);
                 }
-                func_020d7b88(&u, &p->mUnk_c4);
+                QuaternionFromYAxisToVec3(&u, &p->mUnk_c4);
             }
         }
         if (p->mUnk_fc == 0 && !(p->mUnk_00.mDistanceSquaredAndFlags & 4) && k != FALSE) {
@@ -213,12 +213,12 @@ void UpdateWanwan(void *a, Wanwan *p) {
     }
     p->mUnk_e4 = p->mUnk_e4 + ((-p->mUnk_00.mUnk_10.y >> 1) - p->mUnk_e4 >> 4);
     if (h != 0) {
-        func_020d788c(&m, (u16) (p->mUnk_e8 + p->mUnk_e4), &m);
+        QuaternionMultiplyAngleAroundX(&m, (u16) (p->mUnk_e8 + p->mUnk_e4), &m);
     } else {
         func_020d76a8(&p->mUnk_d4, (u16) (p->mUnk_e8 + p->mUnk_e4), &m);
     }
     func_020d759c(&p->mUnk_b4, &m, &p->mUnk_b4, p->mUnk_ec);
-    func_020d73f0(&p->mUnk_b4, &p->mUnk_b4);
+    QuaternionNormalizeUnlessNearOne(&p->mUnk_b4, &p->mUnk_b4);
     Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_b4);
     if (p->mUnk_00.mPos.y >= 0) {
         return;
@@ -367,7 +367,7 @@ void UpdateWanwanState0(Wanwan *p) {
     p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x - p->mUnk_00.mUnk_10.x;
     p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z - p->mUnk_00.mUnk_10.z;
     if (func_020dccc8_inline(&p->mUnk_00.mUnk_10) >= 0x10) {
-        func_020d7b34(
+        QuaternionFromAngleAroundY(
             (u16) (((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL + 0x80000000000LL) >>
                    44),
             &p->mUnk_d4);
@@ -446,7 +446,8 @@ void UpdateWanwanState1(Wanwan *p) {
         p->mUnk_00.mUnk_10.x >>= 1;
         p->mUnk_00.mUnk_10.z >>= 1;
     } else {
-        func_020d7b34((u16) (((s64) FX_Atan2(a.x, a.z) * 0x28be60db9391LL + 0x80000000000LL) >> 44), &p->mUnk_d4);
+        QuaternionFromAngleAroundY((u16) (((s64) FX_Atan2(a.x, a.z) * 0x28be60db9391LL + 0x80000000000LL) >> 44),
+                                   &p->mUnk_d4);
     }
     t = ((s64) p->mUnk_00.mUnk_10.x * a.z) >> 12;
     t -= (s32) (((s64) p->mUnk_00.mUnk_10.z * a.x) >> 12);
@@ -495,10 +496,11 @@ void UpdateWanwanState2(Wanwan *p) {
         p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z - p->mUnk_00.mUnk_10.z;
         v = &p->mUnk_00.mUnk_10;
         if ((s64) v->x * v->x + (s64) v->z * v->z >= 0x10) {
-            func_020d7b34((u16) (((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL +
-                                  0x80000000000LL) >>
-                                 44),
-                          &p->mUnk_d4);
+            QuaternionFromAngleAroundY(
+                (u16) (((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL +
+                        0x80000000000LL) >>
+                       44),
+                &p->mUnk_d4);
         }
         if (p->mUnk_00.mStateMachine.mStateFrames < 0x40) {
             p->mUnk_ec += 0x1c;

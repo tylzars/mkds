@@ -445,7 +445,7 @@ void func_020db198(void) {
 
 void DrawKuribo(void *a, Kuribo *p, void *c, u16 d) {
     Vec3 s;
-    Unk020d7b88 t;
+    Quaternion t;
     u16 e;
     Unk020e6488 *q;
     if (p->mUnk_cc.mUnk_08 == 0xffff) {

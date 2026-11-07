@@ -115,7 +115,7 @@ void func_020e52bc(void) {
 }
 
 s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
-    Unk020d7b88 buf2;
+    Quaternion buf2;
     Vec3 buf1;
     Vec3 s;
     s32 d;
@@ -127,7 +127,7 @@ s32 func_020e516c(void *a, Vec3 *v, s32 b, u32 c) {
     s.y = s.y + 0x1999;
     if (func_01ffdee4(&s, NULL, 0, 0xa000, 8, -2, NULL, &buf1, NULL, NULL, NULL, NULL, NULL, NULL) != 0) {
         r = TRUE;
-        func_020d7b88(&buf1, &buf2);
+        QuaternionFromYAxisToVec3(&buf1, &buf2);
         Matrix3x3FromQuaternion(a, &buf2);
         d = b / 10;
         m->mUnk_000[0] = ((s64) m->mUnk_000[0] * d) >> 12;

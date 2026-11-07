@@ -329,7 +329,7 @@ void func_0205f498(void) {
     if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
         return;
     }
-    if (func_020a128c() == 0) {
+    if (IsWinnerDecidedAndEndReached() == 0) {
         return;
     }
     func_0203bfec(v2);
@@ -396,7 +396,7 @@ void func_0205f218(void) {
     if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
         return;
     }
-    if (func_020a128c() == 0) {
+    if (IsWinnerDecidedAndEndReached() == 0) {
         return;
     }
     func_0203bfec(v2);

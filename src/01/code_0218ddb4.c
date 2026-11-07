@@ -657,7 +657,7 @@ void func_ov001_0218df20(u32 a, Unk02188950 *b) {
         if (func_ov001_021871f8(b, 5) != 0) {
             if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
                 func_ov001_0218e710(b);
-            } else if (data_021759c0->mMode == MODE_MISSION_RUN ? func_020a128c() : 0) {
+            } else if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecidedAndEndReached() : 0) {
                 func_ov001_0218e5c4(b);
             } else {
                 func_ov001_0218e594(b);

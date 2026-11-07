@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020d3c7c(void);
+void SetMapObjectsRunUpdateLists(void);

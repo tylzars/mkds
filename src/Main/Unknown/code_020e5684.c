@@ -146,7 +146,7 @@ void func_020e5990(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
 
 void func_020e595c(u32 a, Unk020e43a8 *p) {
     func_02046b40(&p->mUnk_00.mStateMachine);
-    func_020d77e0(&p->mUnk_a0.mUnk_0c.y, p->mUnk_00.mAngle, &p->mUnk_a0);
+    QuaternionMultiplyAngleAroundY(&p->mUnk_a0.mUnk_0c.y, p->mUnk_00.mAngle, &p->mUnk_a0);
     Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_a0);
 }
 
@@ -238,8 +238,8 @@ void CreateSecondHand(void) {
 void func_020e5684(Unk020e43a8 *p, Unk020e5684 *q) {
     p->mUnk_00.mExtent.y = ((s64) p->mUnk_00.mScale.x * 0x4b000) >> 12;
     func_02046be8(&p->mUnk_00.mStateMachine, (UnkFunc *const *) data_0216c240, 4, p);
-    func_020d720c(&q->mUnk_0c, (u32 *) &p->mUnk_a0.mUnk_00);
-    *(Unk020d7b88 *) &p->mUnk_a0.mUnk_0c.y = *(Unk020d7b88 *) &p->mUnk_a0.mUnk_00;
+    QuaternionFromVec3Degrees(&q->mUnk_0c, (u32 *) &p->mUnk_a0.mUnk_00);
+    *(Quaternion *) &p->mUnk_a0.mUnk_0c.y = *(Quaternion *) &p->mUnk_a0.mUnk_00;
     *(s16 *) &p->mUnk_a0.mUnk_18.z = q->mUnk_2c;
     *((s16 *) &p->mUnk_a0.mUnk_18.z + 1) = q->mUnk_2a;
     p->mUnk_c4 = q->mUnk_2e;

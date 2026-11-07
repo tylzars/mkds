@@ -808,7 +808,7 @@ s32 func_020d3c94(MapObject *a, s32 b, Vec3 *c) {
     return func_020d2c2c(&a->mPos, &a->mUnk_10, a->mExtent.x, a->mCollisionSlotIndex, b, c);
 }
 
-void func_020d3c7c(void) {
+void SetMapObjectsRunUpdateLists(void) {
     gMapObjects->mRunUpdateLists = 1;
 }
 

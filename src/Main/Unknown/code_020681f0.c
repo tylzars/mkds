@@ -74,7 +74,7 @@ void func_02068b98(Kart *a) {
     if (c >= 0x19 || (b & KART_7C_ENTRY_KIND_2) != 0) {
         d = FALSE;
         if (data_021759c0->mMode == MODE_BATTLE) {
-            if (func_020a128c() != 0) {
+            if (IsWinnerDecidedAndEndReached() != 0) {
                 d = TRUE;
             }
         }
@@ -246,7 +246,7 @@ void func_020688a0(Kart *a) {
             default:
                 if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
                     if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                        func_020a16d0(a->mIndex);
+                        EliminateKartAndCheckWinner(a->mIndex);
                     }
                     a->mUnk_7c = a->mUnk_7c | 0x20000;
                     func_02068a64(a, 3, 1);
@@ -254,7 +254,7 @@ void func_020688a0(Kart *a) {
                 break;
         }
         if (data_021759c0->mMode == MODE_MISSION_RUN) {
-            func_020a12b8();
+            EliminateKartsUntilWinnerDecided();
         }
     }
     c = a->mUnk_7c;

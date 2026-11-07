@@ -729,7 +729,7 @@ void func_020fb038(ItemKouraW *param_1) {
         0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&param_1->mUnk_000.mVelocity, &s.mUnk_00);
     }
-    func_020d7b88(&s.mUnk_00, &s.mUnk_0c);
+    QuaternionFromYAxisToVec3(&s.mUnk_00, &s.mUnk_0c);
     Matrix3x3FromQuaternion(&param_1->mUnk_000.mUnk_94, &s.mUnk_0c);
 }
 

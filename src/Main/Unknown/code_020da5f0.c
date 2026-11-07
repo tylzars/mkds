@@ -83,7 +83,7 @@ void UpdateKuriboState1(Kuribo *p) {
         VEC_Add(&p->mUnk_00.mPos, &w, &p->mUnk_00.mPos);
         p->mUnk_00.mUnk_10.y = 0;
         if ((f & 0x1e34ef) != 0) {
-            func_020d7b88(&x, &p->mUnk_b4);
+            QuaternionFromYAxisToVec3(&x, &p->mUnk_b4);
             p->mUnk_00.mFlags &= ~1;
         }
     }

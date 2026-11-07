@@ -167,7 +167,7 @@ void func_020e61a8(u32 param_1, Unk020e5e24 *a) {
             func_0210b7a8(&s);
         }
     }
-    func_020d7734(a->mUnk_a0, v, buf);
+    QuaternionMultiplyAngleAroundZ(a->mUnk_a0, v, buf);
     Matrix3x3FromQuaternion(&a->mUnk_28, buf);
     VEC_MultAdd(-a->mUnk_f8, &a->mUnk_28.mUnk_0c, &a->mUnk_bc, &a->mUnk_04);
     a->mUnk_ec.x = a->mUnk_04.x >> 4;
@@ -241,7 +241,7 @@ void func_020e5e24(Unk020e5e24 *p, Unk020e5e24_2 *q) {
     s32 m;
 
     p->mUnk_5c = ((s64) p->mUnk_98->mUnk_10 * q->mUnk_20) >> 12;
-    func_020d720c(&q->mUnk_0c, p->mUnk_a0);
+    QuaternionFromVec3Degrees(&q->mUnk_0c, p->mUnk_a0);
     p->mUnk_c8 = p->mUnk_28;
     p->mUnk_f8 = ((s64) p->mUnk_1c.y * 0x1f4000) >> 12;
     p->mUnk_100 = 0;

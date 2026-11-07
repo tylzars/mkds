@@ -244,7 +244,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
         u = w;
         if (func_01ffdee4(&u, NULL, 0, 0xf000, 8, -2, out, &u, NULL, &n, NULL, NULL, NULL, NULL) != 0) {
             if (n & 0x1e34ef) {
-                func_020d7b88(&u, &b->mUnk_0b4);
+                QuaternionFromYAxisToVec3(&u, &b->mUnk_0b4);
                 func_0208ab98(&b->mUnk_132, (n & 0x3c000000) >> 26, 0x5000);
                 if (b->mUnk_0fe != 0 && b->mUnk_000.mUnk_10.y < 0) {
                     if (b->mUnk_000.mFlags & 1) {
@@ -333,7 +333,7 @@ void func_020e24d0(Unk020e1e98 *a, Vec3 *b) {
     if ((s64) c.x * c.x + (s64) c.y * c.y + (s64) c.z * c.z >= 0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&c, &c);
     }
-    func_020d7b88(&c, &a->mUnk_0c4);
+    QuaternionFromYAxisToVec3(&c, &a->mUnk_0c4);
     a->mUnk_152 = 0x384;
     if (a->mUnk_0fe > 0xf || a->mUnk_000.mUnk_10.y <= 0) {
         f = 0;

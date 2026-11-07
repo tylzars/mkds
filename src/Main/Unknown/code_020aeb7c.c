@@ -188,7 +188,7 @@ void func_020aeb7c(void) {
             }
             break;
         case MODE_BATTLE:
-            if (func_020a128c() != 0) {
+            if (IsWinnerDecidedAndEndReached() != 0) {
                 if (gRaceHud->mUnk_83c != FALSE) {
                     gRaceHud->mUnk_82c = FALSE;
                 } else {
@@ -427,7 +427,7 @@ void func_020aeb7c(void) {
     if (data_021759c0->mMode != MODE_MISSION_RUN) {
         v = 0;
     } else {
-        v = func_020a128c();
+        v = IsWinnerDecidedAndEndReached();
     }
     if (v == 0) {
         return;

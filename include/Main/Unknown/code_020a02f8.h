@@ -50,13 +50,13 @@ void UpdateStandings(void);
 // progress calls it.
 void FinishStandings(void);
 void InitStandings(void);
-Unk02175620_84 *func_020a0f0c(void);
+Unk02175620_84 *MoveToRandomForwardBattlePoint(void);
 Vec3 *GetKartStandingPos(int arg0);
 void func_020a1748(u16 a);
-void func_020a1790(void);
+void SetWinnerAndEndTimerWhenOneTeamRemains(void);
 void EliminateKart(u16 a);
-void func_020a19f8(u16 a);
-void func_020a1b6c(u16 a);
+void MoveKartTowardLastRankAndRefreshCountRange(u16 a);
+void MoveKartTowardFirstRankAndRefreshCountRange(u16 a);
 u16 func_020a1cd8(s32 a);
 void func_020a1ddc(s32 a);
 unsigned int func_020a1e3c(unsigned int p0);

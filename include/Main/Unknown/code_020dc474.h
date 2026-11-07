@@ -13,16 +13,16 @@ typedef struct Unk020dc474_1d8 {
 } Unk020dc474_1d8;
 
 // Object of kinds 0x196 (with chain post kind 0x197) and 0x1a5 (mUnk_fc is 0 or 1) of Wanwan; UpdateWanwanState3,
-// UpdateWanwanState2 and the functions after it up to func_020dd860: vectors at 0x04, 0x10 and 0xa0, ring of four vector
-// pointers at 0x160, words at 0xe8, 0xec, 0xf0 and 0x1fc.
+// UpdateWanwanState2 and the functions after it up to func_020dd860: vectors at 0x04, 0x10 and 0xa0, ring of four
+// vector pointers at 0x160, words at 0xe8, 0xec, 0xf0 and 0x1fc.
 typedef struct Wanwan {
     /* 00 */ MapObject mUnk_00;
     /* a0 */ Vec3 mUnk_a0;
     /* ac */ s32 mUnk_ac;
     /* b0 */ s32 mUnk_b0;
-    /* b4 */ Unk020d7b88 mUnk_b4;
-    /* c4 */ Unk020d7b88 mUnk_c4;
-    /* d4 */ Unk020d7b88 mUnk_d4;
+    /* b4 */ Quaternion mUnk_b4;
+    /* c4 */ Quaternion mUnk_c4;
+    /* d4 */ Quaternion mUnk_d4;
     /* e4 */ s32 mUnk_e4;
     /* e8 */ s32 mUnk_e8;
     /* ec */ s32 mUnk_ec;

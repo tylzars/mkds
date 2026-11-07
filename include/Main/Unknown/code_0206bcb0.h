@@ -368,7 +368,8 @@ typedef struct Kart {
     /* 2c4 */ s32 mTurnDirection;
     /* 2c8 */ s16 mUnk_2c8;
     /* 2ca */ s16 mUnk_2ca;
-    // Pointer to this slot's KartPhysicalParam; set once in func_020726bc. The record is shared by nothing else.
+    // Pointer to this slot's KartPhysicalParam; set once in InitKartPhysicalParams. The record is shared by nothing
+    // else.
     /* 2cc */ KartPhysicalParam *mPhysicalParam;
     // Two words of charphysicalparam.bin for the entry's character: [0] scales the surface factors below 0x1000, [1] is
     // added to mWeight.

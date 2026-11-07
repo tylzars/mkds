@@ -407,7 +407,7 @@ void *func_020a7338(void) {
 
 BOOL func_020a72c8(u16 a, u16 b) {
     if (GetBalloonOrShineCount(a) != 0) {
-        func_020a10f0(a, -1);
+        AddBalloonOrShineCountAndMoveRank(a, -1);
         if (b >= 8) {
             b = a;
         }
@@ -421,7 +421,7 @@ void func_020a7270(u16 a) {
     if (GetBalloonOrShineCount(a) == 0) {
         return;
     }
-    func_020a10f0(a, -1);
+    AddBalloonOrShineCountAndMoveRank(a, -1);
     func_020a5608(GetKart(a), GetKart(a));
 }
 

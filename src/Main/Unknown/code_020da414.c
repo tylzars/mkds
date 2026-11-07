@@ -54,11 +54,11 @@ void InitKuribo(Kuribo *a, CourseMapRow *b) {
         q->y = 0;
         q->z = 0;
         {
-            Unk020d7b88 x = {0, 0, 0, 0x1000};
+            Quaternion x = {0, 0, 0, 0x1000};
             a->mUnk_a4 = x;
         }
         {
-            Unk020d7b88 y = {0, 0, 0, 0x1000};
+            Quaternion y = {0, 0, 0, 0x1000};
             a->mUnk_b4 = y;
         }
         a->mUnk_f0 = 0;
@@ -73,11 +73,11 @@ void InitKuribo(Kuribo *a, CourseMapRow *b) {
         func_02046be8(&a->mUnk_00.mStateMachine, data_0216be68, 6, a);
         a->mUnk_f8 = 0x1000;
         {
-            Unk020d7b88 x = {0, 0, 0, 0x1000};
+            Quaternion x = {0, 0, 0, 0x1000};
             a->mUnk_a4 = x;
         }
         {
-            Unk020d7b88 y = {0, 0, 0, 0x1000};
+            Quaternion y = {0, 0, 0, 0x1000};
             a->mUnk_b4 = y;
         }
         func_02046bcc(&a->mUnk_00.mStateMachine, 1);

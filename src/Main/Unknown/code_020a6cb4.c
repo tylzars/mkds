@@ -123,7 +123,7 @@ void func_020a6e70(Unk02100094 *a) {
         if (e->mUnk_00.mCourseMapRow->mUnk_28 != 0) {
             n = data_021759c0->mKartCount;
             v = GetShineCount();
-            if (v + func_020a119c() < n + 1) {
+            if (v + GetTotalBalloonOrShineCount() < n + 1) {
                 func_020a5744(&e->mUnk_00.mPos, j, GetRaceUseChainCameras());
                 e->mUnk_a0 = TRUE;
             }
@@ -140,7 +140,7 @@ void func_020a6d8c(Unk02100094 *a, Unk020a6cb4 *b) {
     }
     n = data_021759c0->mKartCount;
     v = GetShineCount();
-    if (v + func_020a119c() >= n + 1) {
+    if (v + GetTotalBalloonOrShineCount() >= n + 1) {
         return;
     }
     b->mUnk_a8 += 1;
@@ -148,7 +148,8 @@ void func_020a6d8c(Unk02100094 *a, Unk020a6cb4 *b) {
         return;
     }
     b->mUnk_a8 = 0;
-    while (GetShineCount() < 3 && (n = data_021759c0->mKartCount, v = GetShineCount(), v + func_020a119c() < n + 1)) {
+    while (GetShineCount() < 3 &&
+           (n = data_021759c0->mKartCount, v = GetShineCount(), v + GetTotalBalloonOrShineCount() < n + 1)) {
         if (func_020a6f94(a) == FALSE) {
             return;
         }

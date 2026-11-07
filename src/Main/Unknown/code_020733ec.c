@@ -131,7 +131,7 @@ void func_020733ec(Kart *p) {
 
     h = GetHeap(func_020364e8());
     p->mUnk_230 = func_02071568;
-    func_020726bc(p);
+    InitKartPhysicalParams(p);
     func_02071e28(p);
     if (p->mUnk_7c & KART_7C_MODELS_ENTRY_008_SET) {
         func_0207a73c(FX_Div(0x1000, p->mPhysicalParam->mBaseSpeedLimit));

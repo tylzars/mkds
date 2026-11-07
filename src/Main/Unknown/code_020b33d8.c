@@ -80,7 +80,7 @@ void UpdateRaceStartSequence(void) {
         }
         p->mCounting = TRUE;
         func_020617f0();
-        func_020d3c7c();
+        SetMapObjectsRunUpdateLists();
         return;
     }
     if (func_02054754() == 1) {

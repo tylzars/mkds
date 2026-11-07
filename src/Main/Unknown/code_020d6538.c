@@ -72,34 +72,34 @@ void func_020d7bec(MtxFx43 *a) {
     t = FX_Atan2(a->mUnk_00[0].z, a->mUnk_00[2].z);
     t = (((s64) t * 0x28BE60DB9391LL) + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
-    data_0217b660.mUnk_00[0] = 0;
-    data_0217b660.mUnk_00[1] = gPairsByAngle[i * 2];
-    data_0217b660.mUnk_00[2] = 0;
-    data_0217b660.mUnk_00[3] = gPairsByAngle[i * 2 + 1];
+    data_0217b660.mComponents[0] = 0;
+    data_0217b660.mComponents[1] = gPairsByAngle[i * 2];
+    data_0217b660.mComponents[2] = 0;
+    data_0217b660.mComponents[3] = gPairsByAngle[i * 2 + 1];
 }
 
-void func_020d7b88(Vec3 *a, void *q) {
-    Unk020d7b88 *b = q;
+void QuaternionFromYAxisToVec3(Vec3 *a, void *q) {
+    Quaternion *b = q;
     s32 r = FX_Sqrt((a->y + 0x1000) << 1);
     FX_DivAsync(a->z, r);
-    b->mUnk_00[1] = 0;
-    b->mUnk_00[0] = FX_GetDivResult();
+    b->mComponents[1] = 0;
+    b->mComponents[0] = FX_GetDivResult();
     FX_DivAsync(-a->x, r);
-    b->mUnk_00[3] = r >> 1;
-    b->mUnk_00[2] = FX_GetDivResult();
+    b->mComponents[3] = r >> 1;
+    b->mComponents[2] = FX_GetDivResult();
 }
 
-void func_020d7b34(s32 a, Unk020d7b88 *b) {
+void QuaternionFromAngleAroundY(s32 a, Quaternion *b) {
     s32 i = (u16) (a >> 1) >> 4;
-    b->mUnk_00[0] = 0;
-    b->mUnk_00[1] = gPairsByAngle[i * 2];
-    b->mUnk_00[2] = 0;
-    b->mUnk_00[3] = gPairsByAngle[i * 2 + 1];
+    b->mComponents[0] = 0;
+    b->mComponents[1] = gPairsByAngle[i * 2];
+    b->mComponents[2] = 0;
+    b->mComponents[3] = gPairsByAngle[i * 2 + 1];
 }
 
 void func_020d7a3c(void *p, s32 b, void *q) {
     Vec3 *a = p;
-    Unk020d7b88 *c = q;
+    Quaternion *c = q;
     s32 r;
     s32 d;
     s32 i;
@@ -113,110 +113,110 @@ void func_020d7a3c(void *p, s32 b, void *q) {
     i = (u16) (b >> 1) >> 4;
     s = gPairsByAngle[i * 2];
     k = gPairsByAngle[i * 2 + 1];
-    c->mUnk_00[1] = ((r >> 1) * s) >> 12;
-    c->mUnk_00[3] = ((r >> 1) * k) >> 12;
+    c->mComponents[1] = ((r >> 1) * s) >> 12;
+    c->mComponents[3] = ((r >> 1) * k) >> 12;
     d = FX_GetDivResult();
     FX_DivAsync(-a->x, r);
-    c->mUnk_00[0] = (d * k) >> 12;
-    c->mUnk_00[2] = (d * s) >> 12;
+    c->mComponents[0] = (d * k) >> 12;
+    c->mComponents[2] = (d * s) >> 12;
     d = FX_GetDivResult();
-    c->mUnk_00[0] = c->mUnk_00[0] - ((d * s) >> 12);
-    c->mUnk_00[2] = c->mUnk_00[2] + ((d * k) >> 12);
+    c->mComponents[0] = c->mComponents[0] - ((d * s) >> 12);
+    c->mComponents[2] = c->mComponents[2] + ((d * k) >> 12);
 }
 
 void func_020d79b0(void *p, u32 b, void *q) {
-    Unk020d7b88 *a = p;
-    Unk020d7b88 *c = q;
+    Quaternion *a = p;
+    Quaternion *c = q;
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = gPairsByAngle[i * 2];
     s32 k = gPairsByAngle[i * 2 + 1];
-    c->mUnk_00[0] = (a->mUnk_00[0] * k - a->mUnk_00[2] * s) >> 12;
-    c->mUnk_00[1] = (a->mUnk_00[3] * s) >> 12;
-    c->mUnk_00[2] = (a->mUnk_00[2] * k + a->mUnk_00[0] * s) >> 12;
-    c->mUnk_00[3] = (a->mUnk_00[3] * k) >> 12;
+    c->mComponents[0] = (a->mComponents[0] * k - a->mComponents[2] * s) >> 12;
+    c->mComponents[1] = (a->mComponents[3] * s) >> 12;
+    c->mComponents[2] = (a->mComponents[2] * k + a->mComponents[0] * s) >> 12;
+    c->mComponents[3] = (a->mComponents[3] * k) >> 12;
 }
 
-void func_020d7938(Unk020d7b88 *a, Unk020d7b88 *b, Unk020d7b88 *c) {
-    c->mUnk_00[0] = (a->mUnk_00[0] * b->mUnk_00[3] - a->mUnk_00[2] * b->mUnk_00[1]) >> 12;
-    c->mUnk_00[1] = (a->mUnk_00[3] * b->mUnk_00[1]) >> 12;
-    c->mUnk_00[2] = (a->mUnk_00[2] * b->mUnk_00[3] + a->mUnk_00[0] * b->mUnk_00[1]) >> 12;
-    c->mUnk_00[3] = (a->mUnk_00[3] * b->mUnk_00[3]) >> 12;
+void func_020d7938(Quaternion *a, Quaternion *b, Quaternion *c) {
+    c->mComponents[0] = (a->mComponents[0] * b->mComponents[3] - a->mComponents[2] * b->mComponents[1]) >> 12;
+    c->mComponents[1] = (a->mComponents[3] * b->mComponents[1]) >> 12;
+    c->mComponents[2] = (a->mComponents[2] * b->mComponents[3] + a->mComponents[0] * b->mComponents[1]) >> 12;
+    c->mComponents[3] = (a->mComponents[3] * b->mComponents[3]) >> 12;
 }
 
-void func_020d788c(Unk020d7b88 *a, s32 b, Unk020d7b88 *c) {
-    Unk020d7b88 q = *a;
+void QuaternionMultiplyAngleAroundX(Quaternion *a, s32 b, Quaternion *c) {
+    Quaternion q = *a;
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = gPairsByAngle[i * 2];
     s32 k = gPairsByAngle[i * 2 + 1];
-    c->mUnk_00[0] = (q.mUnk_00[3] * s + q.mUnk_00[0] * k) >> 12;
-    c->mUnk_00[1] = (q.mUnk_00[1] * k + q.mUnk_00[2] * s) >> 12;
-    c->mUnk_00[2] = (q.mUnk_00[2] * k - q.mUnk_00[1] * s) >> 12;
-    c->mUnk_00[3] = (q.mUnk_00[3] * k - q.mUnk_00[0] * s) >> 12;
+    c->mComponents[0] = (q.mComponents[3] * s + q.mComponents[0] * k) >> 12;
+    c->mComponents[1] = (q.mComponents[1] * k + q.mComponents[2] * s) >> 12;
+    c->mComponents[2] = (q.mComponents[2] * k - q.mComponents[1] * s) >> 12;
+    c->mComponents[3] = (q.mComponents[3] * k - q.mComponents[0] * s) >> 12;
 }
 
-void func_020d77e0(void *m, s32 b, void *o) {
-    Unk020d7b88 *a = m;
-    Unk020d7b88 *c = o;
-    Unk020d7b88 q = *a;
+void QuaternionMultiplyAngleAroundY(void *m, s32 b, void *o) {
+    Quaternion *a = m;
+    Quaternion *c = o;
+    Quaternion q = *a;
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = gPairsByAngle[i * 2];
     s32 k = gPairsByAngle[i * 2 + 1];
-    c->mUnk_00[0] = (q.mUnk_00[0] * k - q.mUnk_00[2] * s) >> 12;
-    c->mUnk_00[1] = (q.mUnk_00[3] * s + q.mUnk_00[1] * k) >> 12;
-    c->mUnk_00[2] = (q.mUnk_00[2] * k + q.mUnk_00[0] * s) >> 12;
-    c->mUnk_00[3] = (q.mUnk_00[3] * k - q.mUnk_00[1] * s) >> 12;
+    c->mComponents[0] = (q.mComponents[0] * k - q.mComponents[2] * s) >> 12;
+    c->mComponents[1] = (q.mComponents[3] * s + q.mComponents[1] * k) >> 12;
+    c->mComponents[2] = (q.mComponents[2] * k + q.mComponents[0] * s) >> 12;
+    c->mComponents[3] = (q.mComponents[3] * k - q.mComponents[1] * s) >> 12;
 }
 
-void func_020d7734(void *m, s32 b, void *o) {
-    Unk020d7b88 *a = m;
-    Unk020d7b88 *c = o;
-    Unk020d7b88 q = *a;
+void QuaternionMultiplyAngleAroundZ(void *m, s32 b, void *o) {
+    Quaternion *a = m;
+    Quaternion *c = o;
+    Quaternion q = *a;
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = gPairsByAngle[i * 2];
     s32 k = gPairsByAngle[i * 2 + 1];
-    c->mUnk_00[0] = (q.mUnk_00[0] * k + q.mUnk_00[1] * s) >> 12;
-    c->mUnk_00[1] = (q.mUnk_00[1] * k - q.mUnk_00[0] * s) >> 12;
-    c->mUnk_00[2] = (q.mUnk_00[3] * s + q.mUnk_00[2] * k) >> 12;
-    c->mUnk_00[3] = (q.mUnk_00[3] * k - q.mUnk_00[2] * s) >> 12;
+    c->mComponents[0] = (q.mComponents[0] * k + q.mComponents[1] * s) >> 12;
+    c->mComponents[1] = (q.mComponents[1] * k - q.mComponents[0] * s) >> 12;
+    c->mComponents[2] = (q.mComponents[3] * s + q.mComponents[2] * k) >> 12;
+    c->mComponents[3] = (q.mComponents[3] * k - q.mComponents[2] * s) >> 12;
 }
 
-void func_020d76a8(Unk020d7b88 *a, s32 b, Unk020d7b88 *c) {
-    Unk020d7b88 q = *a;
+void func_020d76a8(Quaternion *a, s32 b, Quaternion *c) {
+    Quaternion q = *a;
     s32 i = (u16) (b >> 1) >> 4;
     s32 s = gPairsByAngle[i * 2];
     s32 k = gPairsByAngle[i * 2 + 1];
-    c->mUnk_00[0] = (q.mUnk_00[3] * s) >> 12;
-    c->mUnk_00[1] = (q.mUnk_00[1] * k) >> 12;
-    c->mUnk_00[2] = (-q.mUnk_00[1] * s) >> 12;
-    c->mUnk_00[3] = (q.mUnk_00[3] * k) >> 12;
+    c->mComponents[0] = (q.mComponents[3] * s) >> 12;
+    c->mComponents[1] = (q.mComponents[1] * k) >> 12;
+    c->mComponents[2] = (-q.mComponents[1] * s) >> 12;
+    c->mComponents[3] = (q.mComponents[3] * k) >> 12;
 }
 
 void func_020d759c(void *p, void *q, void *r, s32 d) {
-    Unk020d7b88 *a = p;
-    Unk020d7b88 *b = q;
-    Unk020d7b88 *c = r;
-    s32 v = a->mUnk_00[0] * b->mUnk_00[0] + a->mUnk_00[1] * b->mUnk_00[1] + a->mUnk_00[2] * b->mUnk_00[2] +
-            a->mUnk_00[3] * b->mUnk_00[3];
+    Quaternion *a = p;
+    Quaternion *b = q;
+    Quaternion *c = r;
+    s32 v = a->mComponents[0] * b->mComponents[0] + a->mComponents[1] * b->mComponents[1] +
+            a->mComponents[2] * b->mComponents[2] + a->mComponents[3] * b->mComponents[3];
     if (v < 0) {
-        c->mUnk_00[0] = a->mUnk_00[0] + ((d * -(b->mUnk_00[0] + a->mUnk_00[0])) >> 12);
-        c->mUnk_00[1] = a->mUnk_00[1] + ((d * -(b->mUnk_00[1] + a->mUnk_00[1])) >> 12);
-        c->mUnk_00[2] = a->mUnk_00[2] + ((d * -(b->mUnk_00[2] + a->mUnk_00[2])) >> 12);
-        c->mUnk_00[3] = a->mUnk_00[3] + ((d * -(b->mUnk_00[3] + a->mUnk_00[3])) >> 12);
+        c->mComponents[0] = a->mComponents[0] + ((d * -(b->mComponents[0] + a->mComponents[0])) >> 12);
+        c->mComponents[1] = a->mComponents[1] + ((d * -(b->mComponents[1] + a->mComponents[1])) >> 12);
+        c->mComponents[2] = a->mComponents[2] + ((d * -(b->mComponents[2] + a->mComponents[2])) >> 12);
+        c->mComponents[3] = a->mComponents[3] + ((d * -(b->mComponents[3] + a->mComponents[3])) >> 12);
     } else {
-        c->mUnk_00[0] = a->mUnk_00[0] + ((d * (b->mUnk_00[0] - a->mUnk_00[0])) >> 12);
-        c->mUnk_00[1] = a->mUnk_00[1] + ((d * (b->mUnk_00[1] - a->mUnk_00[1])) >> 12);
-        c->mUnk_00[2] = a->mUnk_00[2] + ((d * (b->mUnk_00[2] - a->mUnk_00[2])) >> 12);
-        c->mUnk_00[3] = a->mUnk_00[3] + ((d * (b->mUnk_00[3] - a->mUnk_00[3])) >> 12);
+        c->mComponents[0] = a->mComponents[0] + ((d * (b->mComponents[0] - a->mComponents[0])) >> 12);
+        c->mComponents[1] = a->mComponents[1] + ((d * (b->mComponents[1] - a->mComponents[1])) >> 12);
+        c->mComponents[2] = a->mComponents[2] + ((d * (b->mComponents[2] - a->mComponents[2])) >> 12);
+        c->mComponents[3] = a->mComponents[3] + ((d * (b->mComponents[3] - a->mComponents[3])) >> 12);
     }
 }
 
-void func_020d73f0(Unk020d7b88 *a, Unk020d7b88 *b) {
+void QuaternionNormalizeUnlessNearOne(Quaternion *a, Quaternion *b) {
     s64 w;
     s32 r;
     s64 q;
     s64 t;
-    w = a->mUnk_00[0] * a->mUnk_00[0] + a->mUnk_00[1] * a->mUnk_00[1] + a->mUnk_00[2] * a->mUnk_00[2] +
-        a->mUnk_00[3] * a->mUnk_00[3];
+    w = a->mComponents[0] * a->mComponents[0] + a->mComponents[1] * a->mComponents[1] +
+        a->mComponents[2] * a->mComponents[2] + a->mComponents[3] * a->mComponents[3];
     if (w > 0xE66666 && w < 0x119999A) {
         *b = *a;
         return;
@@ -233,45 +233,45 @@ void func_020d73f0(Unk020d7b88 *a, Unk020d7b88 *b) {
     }
     q = reg_CP_DIV_RESULT;
     t = q * r;
-    b->mUnk_00[0] = (t * a->mUnk_00[0] + 0x100000000000LL) >> 45;
-    b->mUnk_00[1] = (t * a->mUnk_00[1] + 0x100000000000LL) >> 45;
-    b->mUnk_00[2] = (t * a->mUnk_00[2] + 0x100000000000LL) >> 45;
-    b->mUnk_00[3] = (t * a->mUnk_00[3] + 0x100000000000LL) >> 45;
+    b->mComponents[0] = (t * a->mComponents[0] + 0x100000000000LL) >> 45;
+    b->mComponents[1] = (t * a->mComponents[1] + 0x100000000000LL) >> 45;
+    b->mComponents[2] = (t * a->mComponents[2] + 0x100000000000LL) >> 45;
+    b->mComponents[3] = (t * a->mComponents[3] + 0x100000000000LL) >> 45;
 }
 
-void func_020d720c(Vec3 *a, u32 *m) {
-    Unk020d7b88 *b = (Unk020d7b88 *) m;
-    Unk020d7b88 p;
-    Unk020d7b88 q;
-    Unk020d7b88 r;
+void QuaternionFromVec3Degrees(Vec3 *a, u32 *m) {
+    Quaternion *b = (Quaternion *) m;
+    Quaternion p;
+    Quaternion q;
+    Quaternion r;
     s32 i;
     s32 s;
     s32 c;
     s32 t;
     t = ((s64) a->x * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
-    p.mUnk_00[0] = gPairsByAngle[i * 2];
-    p.mUnk_00[3] = gPairsByAngle[i * 2 + 1];
-    p.mUnk_00[1] = 0;
-    p.mUnk_00[2] = 0;
+    p.mComponents[0] = gPairsByAngle[i * 2];
+    p.mComponents[3] = gPairsByAngle[i * 2 + 1];
+    p.mComponents[1] = 0;
+    p.mComponents[2] = 0;
     q = p;
     t = ((s64) a->y * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
     s = gPairsByAngle[i * 2];
     c = gPairsByAngle[i * 2 + 1];
-    p.mUnk_00[0] = (q.mUnk_00[0] * c - q.mUnk_00[2] * s) >> 12;
-    p.mUnk_00[2] = (q.mUnk_00[2] * c + q.mUnk_00[0] * s) >> 12;
-    p.mUnk_00[1] = (q.mUnk_00[3] * s + q.mUnk_00[1] * c) >> 12;
-    p.mUnk_00[3] = (q.mUnk_00[3] * c - q.mUnk_00[1] * s) >> 12;
+    p.mComponents[0] = (q.mComponents[0] * c - q.mComponents[2] * s) >> 12;
+    p.mComponents[2] = (q.mComponents[2] * c + q.mComponents[0] * s) >> 12;
+    p.mComponents[1] = (q.mComponents[3] * s + q.mComponents[1] * c) >> 12;
+    p.mComponents[3] = (q.mComponents[3] * c - q.mComponents[1] * s) >> 12;
     r = p;
     t = ((s64) a->z * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
     s = gPairsByAngle[i * 2];
     c = gPairsByAngle[i * 2 + 1];
-    b->mUnk_00[0] = (r.mUnk_00[0] * c + r.mUnk_00[1] * s) >> 12;
-    b->mUnk_00[1] = (r.mUnk_00[1] * c - r.mUnk_00[0] * s) >> 12;
-    b->mUnk_00[2] = (r.mUnk_00[3] * s + r.mUnk_00[2] * c) >> 12;
-    b->mUnk_00[3] = (r.mUnk_00[3] * c - r.mUnk_00[2] * s) >> 12;
+    b->mComponents[0] = (r.mComponents[0] * c + r.mComponents[1] * s) >> 12;
+    b->mComponents[1] = (r.mComponents[1] * c - r.mComponents[0] * s) >> 12;
+    b->mComponents[2] = (r.mComponents[3] * s + r.mComponents[2] * c) >> 12;
+    b->mComponents[3] = (r.mComponents[3] * c - r.mComponents[2] * s) >> 12;
 }
 
 s32 Vec3NormalizeAndGetLengthOrZero(Vec3 *a, Vec3 *b) {

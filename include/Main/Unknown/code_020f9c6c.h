@@ -30,7 +30,8 @@ typedef struct Unk020e6b38 {
     /* 18 */ Vec3 mUnk_18;
 } Unk020e6b38;
 
-// Stack object of func_020fb038: the two vectors Vec3NormalizeAndGetLengthUnchecked and func_020d7b88 write.
+// Stack object of func_020fb038: the two vectors Vec3NormalizeAndGetLengthUnchecked and QuaternionFromYAxisToVec3
+// write.
 typedef struct Unk020fb038 {
     /* 00 */ Vec3 mUnk_00;
     /* 0c */ Vec3 mUnk_0c;

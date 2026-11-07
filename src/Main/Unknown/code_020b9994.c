@@ -549,7 +549,7 @@ void func_020b9dfc(Unk020d029c *p) {
                         NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, t, NULL, c, 0, 1);
                 } else {
                     i = GetRaceStartSequenceFrames() % 16;
-                    if (func_020a1048(func_020b4d9c()) != 0 && i >= 10) {
+                    if (IsKartAtLowestBalloonOrShineCountBelowHighest(func_020b4d9c()) != 0 && i >= 10) {
                         return;
                     }
                     n = data_0217b3c8->mUnk_00_h[0];

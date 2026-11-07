@@ -373,13 +373,13 @@ void FinishRaceProgressKartWithEndKind(s32 a, s32 b) {
             e->mFlags |= 0x10;
             gRaceProgress->mFramesSinceFinish = 0;
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                func_020a12b8();
+                EliminateKartsUntilWinnerDecided();
             }
         } else {
             e->mFlags |= 0x20;
             gRaceProgress->mFramesSinceFailure = 0;
             if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                ((void (*)(s32)) func_020a16d0)(a);
+                ((void (*)(s32)) EliminateKartAndCheckWinner)(a);
             }
         }
     }
@@ -389,7 +389,7 @@ void FinishRaceProgressKartWithEndKind(s32 a, s32 b) {
     }
     switch (data_021759c0->mMode) {
         case MODE_BATTLE:
-            func_020a12b8();
+            EliminateKartsUntilWinnerDecided();
             return;
         case MODE_MISSION_RUN:
             func_0203eb38();

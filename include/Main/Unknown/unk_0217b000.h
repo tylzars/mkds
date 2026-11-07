@@ -362,7 +362,7 @@ typedef struct Standings {
     // race-progress end step, which sets -1 and runs the callback.
     /* 3a8 */ s32 mEndTimer;
     // Highest KartStanding.mBalloonOrShineCount over the karts, as of the last rank re-sort (the two functions that
-    // swap ranks recompute it; func_020a10f0, which adds to a count, does not).
+    // swap ranks recompute it; AddBalloonOrShineCountAndMoveRank, which adds to a count, does not).
     /* 3ac */ s32 mHighestBalloonOrShineCount;
     // Lowest non-negative KartStanding.mBalloonOrShineCount over the karts, as of the last rank re-sort; 0xffff when no
     // kart has a non-negative count.
@@ -730,7 +730,7 @@ extern struct Unk0217b650 *data_0217b650;
 extern struct Unk0217b654 *data_0217b654;
 extern struct Unk020ea868 *gRockShadow;
 extern struct Unk020ea670 *gRock;
-extern struct Unk020d7b88 data_0217b660;
+extern struct Quaternion data_0217b660;
 extern struct Unk020e0144_00 *data_0217b670;
 extern struct Unk020db20c *data_0217b680;
 extern struct Unk020db1b0 *data_0217b684;

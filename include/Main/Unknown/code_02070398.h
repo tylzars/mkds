@@ -36,7 +36,7 @@ void func_02071f44(Kart *p);
 void func_02071fb8(Kart *p, void *a);
 void ResetKart(Kart *p);
 void func_02072600(Kart *p);
-void func_020726bc(Kart *p);
+void InitKartPhysicalParams(Kart *p);
 // Slot 7 of Kart.mSlotFunctions, never called: when bit 0x20 of mUnk_7c is set, resets the Kart at its course start
 // placement, creates its collision objects if it has none and sets bit 0x80 of mUnk_7c while clearing 0x60.
 void ResetKartToStartPlacement(Kart *p);

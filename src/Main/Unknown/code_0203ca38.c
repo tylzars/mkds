@@ -125,7 +125,7 @@ void func_0203d21c(void) {
 
 void func_0203d078(void) {
     u32 i;
-    if (func_020a128c() != 0) {
+    if (IsWinnerDecidedAndEndReached() != 0) {
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             RaceProgressKart *p = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
             if (p->mStatus == 0) {
@@ -157,7 +157,7 @@ void func_0203d078(void) {
             case MODE_TIME_ATTACK:
                 break;
             case MODE_BATTLE:
-                func_020a12b8();
+                EliminateKartsUntilWinnerDecided();
                 break;
             case MODE_MISSION_RUN:
                 func_0203eb38();
@@ -305,7 +305,7 @@ void UpdateRaceProgress(void) {
                         case MODE_TIME_ATTACK:
                             break;
                         case MODE_BATTLE:
-                            func_020a12b8();
+                            EliminateKartsUntilWinnerDecided();
                             break;
                         case MODE_MISSION_RUN:
                             func_0203eb38();

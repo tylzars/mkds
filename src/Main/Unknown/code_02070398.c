@@ -377,7 +377,7 @@ void ResetKartToStartPlacement(Kart *p) {
     p->mScale = data_02154f94;
 }
 
-void func_020726bc(Kart *p) {
+void InitKartPhysicalParams(Kart *p) {
     s32 a;
     s32 b;
     s16 i;

@@ -4,8 +4,8 @@
 
 extern Vec3 data_0215807c;
 extern Vec3 data_02158088;
-extern struct Unk020d7b88 data_02158140;
-extern struct Unk020d7b88 data_02158150;
+extern struct Quaternion data_02158140;
+extern struct Quaternion data_02158150;
 extern struct Unk020db1b0 data_02158164;
 extern struct Unk020db20c data_0215818c;
 extern struct Unk020db268 data_021581b8;

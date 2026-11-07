@@ -68,7 +68,7 @@ void RemoveRaceProgressKart(u16 a) {
         gRaceProgress->mUnk_000[0].mRemovedCount++;
     }
     if (data_021759c0->mMode == MODE_BATTLE) {
-        func_020a16d0(a);
+        EliminateKartAndCheckWinner(a);
     }
     p->mStatus = 4;
     func_02069044(GetKart(a));
@@ -78,7 +78,7 @@ void RemoveRaceProgressKart(u16 a) {
             case MODE_TIME_ATTACK:
                 break;
             case MODE_BATTLE:
-                func_020a12b8();
+                EliminateKartsUntilWinnerDecided();
                 break;
             case MODE_MISSION_RUN:
                 func_0203eb38();

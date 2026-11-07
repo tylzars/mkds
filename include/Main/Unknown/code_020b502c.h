@@ -74,7 +74,8 @@ typedef struct CourseMapShape {
     /* 45 */ u8 mUnk_45[3];
 } CourseMapShape;
 
-// 0x18-byte entries of the table at CourseMap.mBattlePoints and mRacePoints (func_020a0f0c returns one).
+// 0x18-byte entries of the table at CourseMap.mBattlePoints and mRacePoints (MoveToRandomForwardBattlePoint returns
+// one).
 typedef struct {
     /* 00 */ Vec3 mPos;
     /* 0c */ s32 mUnk_0c;

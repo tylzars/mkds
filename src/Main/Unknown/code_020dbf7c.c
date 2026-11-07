@@ -71,10 +71,11 @@ void UpdateWanwanState5(Wanwan *p) {
     p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x - p->mUnk_00.mUnk_10.x;
     p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z - p->mUnk_00.mUnk_10.z;
     if (func_020dc354_inline(&p->mUnk_00.mUnk_10) >= 0x10) {
-        func_020d7b34((u16) ((((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
-                              0x80000000000LL) >>
-                             44),
-                      &p->mUnk_d4);
+        QuaternionFromAngleAroundY(
+            (u16) ((((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
+                    0x80000000000LL) >>
+                   44),
+            &p->mUnk_d4);
     }
     if (p->mUnk_00.mStateMachine.mStateFrames < 0x40) {
         p->mUnk_ec = p->mUnk_ec + 0x1c;
@@ -135,7 +136,7 @@ void func_020dbf7c(Wanwan *p) {
     p->mUnk_00.mUnk_10.y = 0;
     p->mUnk_00.mUnk_10.z = 0;
     p->mUnk_c4 = data_0216beec;
-    func_020d7b34(
+    QuaternionFromAngleAroundY(
         (u16) ((((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) + 0x80000000000LL) >>
                44),
         &p->mUnk_d4);
@@ -155,10 +156,11 @@ void func_020dbf7c(Wanwan *p) {
             p->mUnk_00.mUnk_10.x = ((s64) p->mUnk_200.x * 0x400) >> 12;
             p->mUnk_00.mUnk_10.y = ((s64) p->mUnk_200.y * 0x400) >> 12;
             p->mUnk_00.mUnk_10.z = ((s64) p->mUnk_200.z * 0x400) >> 12;
-            func_020d7b34((u16) ((((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
-                                  0x80000000000LL) >>
-                                 44),
-                          &p->mUnk_d4);
+            QuaternionFromAngleAroundY(
+                (u16) ((((s64) FX_Atan2(p->mUnk_00.mUnk_10.x, p->mUnk_00.mUnk_10.z) * 0x28be60db9391LL) +
+                        0x80000000000LL) >>
+                       44),
+                &p->mUnk_d4);
             p->mUnk_00.mStateMachine.mNextState = 4;
             p->mUnk_00.mStateMachine.mNextStateRequested = 1;
         } else {
@@ -169,7 +171,7 @@ void func_020dbf7c(Wanwan *p) {
 }
 #pragma thumb off
 
-Unk020d7b88 data_0216beec = {{0, 0, 0, 0x1000}};
+Quaternion data_0216beec = {{0, 0, 0, 0x1000}};
 Unk0210b7a8 data_0216bedc = {0x12d, NULL, 2, 0};
 // Shared by kinds 0x196 and 0x1a5 (class Wanwan). Only kind 0x196 objects reach states 0, 1, 3 and 4;
 // a kind 0x1a5 object starts in state 5 and moves between states 2 and 5.

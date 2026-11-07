@@ -10,7 +10,7 @@ u32 func_ov001_02188260(Unk02188950 *p) {
     if (p->mUnk_0ac >= p->mPrm->mUnk_000) {
         p->mUnk_0ac = p->mPrm->mUnk_000;
         if (data_021759c0->mMode == MODE_MISSION_RUN) {
-            func_020a12b8();
+            EliminateKartsUntilWinnerDecided();
         }
         return 1;
     }

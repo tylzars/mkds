@@ -422,7 +422,7 @@ void UpdateRaceProgressKarts(void) {
                     case MODE_TIME_ATTACK:
                         break;
                     case MODE_BATTLE:
-                        func_020a12b8();
+                        EliminateKartsUntilWinnerDecided();
                         break;
                     case MODE_MISSION_RUN:
                         func_0203eb38();
