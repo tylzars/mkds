@@ -43,38 +43,38 @@
 #include "Main/Unknown/code_020e6f50.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-Unk020e50dc *CreatePukupukuKindData(void) {
-    Unk020e50dc *p;
+PukupukuKindData *CreatePukupukuKindData(void) {
+    PukupukuKindData *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
-    *p = *(Unk020e50dc *) data_02159070;
+    *p = *(PukupukuKindData *) data_02159070;
     return p;
 }
 
-Unk020e5080 *CreatePukupukuDrawList(void) {
-    Unk020e5080 *p;
+PukupukuDrawList *CreatePukupukuDrawList(void) {
+    PukupukuDrawList *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
-    data_0217b7f8 = p;
-    *p = *(Unk020e5080 *) data_02159044;
-    func_020d49d8(&data_0217b7f8);
-    return data_0217b7f8;
+    gPukupukuDrawList = p;
+    *p = *(PukupukuDrawList *) data_02159044;
+    func_020d49d8(&gPukupukuDrawList);
+    return gPukupukuDrawList;
 }
 
-Unk020e5024 *func_020e5024(void) {
-    Unk020e5024 *p;
+PukupukuShadowDrawList *CreatePukupukuShadowDrawList(void) {
+    PukupukuShadowDrawList *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
-    data_0217b7fc = p;
-    *p = *(Unk020e5024 *) data_02159018;
-    func_020d49d8(&data_0217b7fc);
-    return data_0217b7fc;
+    gPukupukuShadowDrawList = p;
+    *p = *(PukupukuShadowDrawList *) data_02159018;
+    func_020d49d8(&gPukupukuShadowDrawList);
+    return gPukupukuShadowDrawList;
 }
 
-Unk020e4fc8 *CreatePukupukuUpdateList(void) {
-    Unk020e4fc8 *p;
+PukupukuUpdateList *CreatePukupukuUpdateList(void) {
+    PukupukuUpdateList *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
-    data_0217b7f4 = p;
-    *p = *(Unk020e4fc8 *) data_02158ff0;
-    func_020e6f50(&data_0217b7f4);
-    return data_0217b7f4;
+    gPukupukuUpdateList = p;
+    *p = *(PukupukuUpdateList *) data_02158ff0;
+    func_020e6f50(&gPukupukuUpdateList);
+    return gPukupukuUpdateList;
 }
 
 void SetupDrawPukupuku(void) {
@@ -92,11 +92,11 @@ void DrawPukupuku(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
         r = SetViewTransposeMatrixPos(&p->mUnk_00.mPos);
         q = gPukupuku;
         q->mUnk_14 = q->mUnk_14 | 0xc0;
-        data_0217b800 = p->mUnk_00.mScale;
+        gPukupukuDrawScale = p->mUnk_00.mScale;
         if (neg) {
-            data_0217b800.x = -data_0217b800.x;
+            gPukupukuDrawScale.x = -gPukupukuDrawScale.x;
         }
-        func_020e67c4(q, r, &data_0217b800, 0, c);
+        func_020e67c4(q, r, &gPukupukuDrawScale, 0, c);
     } else {
         MtxFx43 *r;
         neg = p->mUnk_00.mCollisionSlotIndex & 1;
@@ -104,11 +104,11 @@ void DrawPukupuku(u32 a, Unk020e43a8 *p, u32 b, u16 c) {
         r = SetViewTransposeMatrixPos(&p->mUnk_00.mPos);
         q = gPukupuku;
         q->mUnk_14 = q->mUnk_14 | 0xc0;
-        data_0217b800 = p->mUnk_00.mScale;
+        gPukupukuDrawScale = p->mUnk_00.mScale;
         if (neg) {
-            data_0217b800.x = -data_0217b800.x;
+            gPukupukuDrawScale.x = -gPukupukuDrawScale.x;
         }
-        func_020e66e4(q, r, v, &data_0217b800, 0, c);
+        func_020e66e4(q, r, v, &gPukupukuDrawScale, 0, c);
     }
 }
 
@@ -117,7 +117,7 @@ void func_020e4e9c(void) {
     func_020e55b4();
 }
 
-void func_020e4e08(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
+void DrawPukupukuShadow(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
     Unk020e4e08 s;
 
     if (p->mUnk_00.mStateMachine.mState != 0 && p->mUnk_00.mStateMachine.mState != 1) {
@@ -139,7 +139,7 @@ void func_020e4df8(u32 arg0, u32 arg1) {
     func_02046b40((void *) value0);
 }
 
-void func_020e4dec(Unk020e4dec *p0) {
+void EnterPukupukuState0(Unk020e4dec *p0) {
     p0->mUnk_ac = 0x0u;
 }
 
@@ -152,7 +152,7 @@ static inline u32 func_020e4ad0_inline(Unk020f41c4_B *r, u32 c) {
     }
 }
 
-void func_020e4ad0(Unk020e43a8 *p) {
+void UpdatePukupukuState0(Unk020e43a8 *p) {
     s32 y;
 
     p->mUnk_00.mUnk_10.y -= 0x385;
@@ -223,11 +223,11 @@ void func_020e4ad0(Unk020e43a8 *p) {
     }
 }
 
-void func_020e4ab4(Unk020e43a8 *p0) {
+void EnterPukupukuState1(Unk020e43a8 *p0) {
     p0->mUnk_00.mFlags = (((p0->mUnk_00.mFlags)) | ((data_02158fe4)));
 }
 
-void func_020e4a68(Unk020e43a8 *p) {
+void UpdatePukupukuState1(Unk020e43a8 *p) {
     if (func_020ec7e8(p) == FALSE) {
         return;
     }
@@ -239,19 +239,19 @@ void func_020e4a68(Unk020e43a8 *p) {
     ParkMapObject(&p->mUnk_00);
 }
 
-void func_020e4a34(Unk020e4a34 *p0) {
+void EnterPukupukuState2(Unk020e4a34 *p0) {
     p0->mUnk_02 |= data_02158fe8;
     p0->mUnk_02 |= data_02158fec;
 }
 
-void func_020e4a18(Unk020e43a8 *p) {
+void UpdatePukupukuState2(Unk020e43a8 *p) {
     if (p->mUnk_00.mStateMachine.mStateFrames > 0x12c) {
         p->mUnk_00.mStateMachine.mNextState = 3;
         p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-void func_020e49c0(Unk020e49c0 *p0) {
+void EnterPukupukuState3(Unk020e49c0 *p0) {
     p0->mUnk_04 = p0->mUnk_b8;
     p0->mUnk_0c = p0->mUnk_c0;
     p0->mUnk_10 = 0x0u;
@@ -263,7 +263,7 @@ void func_020e49c0(Unk020e49c0 *p0) {
     p0->mUnk_02 = (((p0->mUnk_02)) & ~(0x1u));
 }
 
-void func_020e4990(Unk020e43a8 *p) {
+void UpdatePukupukuState3(Unk020e43a8 *p) {
     p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + p->mUnk_00.mUnk_10.y;
     if (p->mUnk_00.mPos.y > p->mUnk_a0.mUnk_18.y) {
         p->mUnk_00.mStateMachine.mNextState = 0;
@@ -271,7 +271,7 @@ void func_020e4990(Unk020e43a8 *p) {
     }
 }
 
-u8 func_020e4934(Unk020e43a8 *a, Unk020ec6e4 *b, u8 *c, u8 *d) {
+u8 CollideKartWithPukupuku(Unk020e43a8 *a, Unk020ec6e4 *b, u8 *c, u8 *d) {
     if (*c == 1) {
         func_020ec6e4(a, b);
         a->mUnk_00.mStateMachine.mNextState = 1;
@@ -282,7 +282,7 @@ u8 func_020e4934(Unk020e43a8 *a, Unk020ec6e4 *b, u8 *c, u8 *d) {
     return *d;
 }
 
-s32 func_020e48e0(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
+s32 CollideItemObjectWithPukupuku(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
     if (*b == 1) {
         func_020ec538(p, a);
         p->mUnk_00.mFlags |= data_02158fe4;

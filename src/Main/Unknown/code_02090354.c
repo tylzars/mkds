@@ -99,14 +99,14 @@ void DrawSmanBottom(void *a, Sman *sman) {
     DrawMapObjectModel(a, gSmanBottom, sman);
 }
 
-void InitSmanObjects(Unk0209151c *a) {
+void InitSmanObjects(SmanList *a) {
     s32 i;
     Sman *p;
     if (a == NULL) {
         return;
     }
     i = 0;
-    while (i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL) {
+    while (i < a->mSmanCount && (p = a->mSmans[i]) != NULL) {
         p->mTopRiseProgress = 0x1000;
         p->mBottomScale = 0x1000;
         i++;
@@ -492,7 +492,7 @@ s32 func_020909cc(void) {
     return r;
 }
 
-BOOL func_02090940(void) {
+BOOL IsAllGrandPrixRecordsTopRank(void) {
     return func_02090940_inline();
 }
 
@@ -506,42 +506,45 @@ BOOL IsTimeLessThanStaffGhostTime(u32 a, void *c) {
     return b->mSecond * 1000 + b->mMinute * 60000 + b->mMillisecond < gStaffGhostTime[a - 1];
 }
 
-void func_0209086c(Unk020905a8 *a, u32 b) {
+void SetupKartKillerCursor(KartKillerCursor *a, u32 b) {
     Kart *p;
     p = GetKart(b);
-    a->mUnk_24 = b;
-    SetupPointLinkCursor(&a->mUnk_00, b, (Unk02080b1c_00 *) gKartItems[b].mUnk_1f0.mLink);
+    a->mKillerKartIndex = b;
+    SetupPointLinkCursor(&a->mPointLinkCursor, b, (Unk02080b1c_00 *) gKartItems[b].mUnk_1f0.mLink);
     a->mUnk_26 = 0;
     a->mUnk_28 = 0;
     p->mTurnAngle = 0;
     EndKartDrift(p);
 }
 
-void func_02090838(Unk020905a8 *a, Unk02080b1c_00 *b) {
-    if (b == a->mUnk_00.mPreviousLink) {
+void ResetKartKillerCursorTo(KartKillerCursor *a, Unk02080b1c_00 *b) {
+    if (b == a->mPointLinkCursor.mPreviousLink) {
         return;
     }
-    SetupPointLinkCursor(&a->mUnk_00, a->mUnk_24, b);
+    SetupPointLinkCursor(&a->mPointLinkCursor, a->mKillerKartIndex, b);
 }
 
-s32 func_0209081c(Unk020905a8 *a) {
-    func_02090748(a);
+s32 func_0209081c(KartKillerCursor *a) {
+    AdvanceKartKillerAlongPointLinks(a);
     return func_020905a8(a);
 }
 
-void func_02090748(Unk020905a8 *a) {
+// Holds the kart at a fixed speed, steers it toward the point link ahead, and moves the cursor on once the kart is past
+// that link or close to it.
+void AdvanceKartKillerAlongPointLinks(KartKillerCursor *a) {
     Kart *p;
     Vec3 v;
     s32 r;
-    p = GetKart(a->mUnk_24);
+    p = GetKart(a->mKillerKartIndex);
     v = p->mPos;
-    a->mUnk_20 = ComputeAngleToPositionDegrees(a->mUnk_00.mLink->mUnk_18, &v, &p->mUnk_12c, &p->mUnk_138);
+    a->mAngleToLinkDegrees =
+        ComputeAngleToPositionDegrees(a->mPointLinkCursor.mLink->mUnk_18, &v, &p->mUnk_12c, &p->mUnk_138);
     if ((p->mUnk_48 & 0x40000000) != 0 && p->mSurfaceVariant == 1) {
-        r = IsPastPointLink(&a->mUnk_00, &v);
+        r = IsPastPointLink(&a->mPointLinkCursor, &v);
     } else {
-        r = IsPastPointLink(&a->mUnk_00, &v);
+        r = IsPastPointLink(&a->mPointLinkCursor, &v);
         if (r == 0) {
-            r = IsWithinPointLinkDistance(&a->mUnk_00, &v);
+            r = IsWithinPointLinkDistance(&a->mPointLinkCursor, &v);
         }
     }
     p->mForwardSpeed = 0xa800;
@@ -550,11 +553,12 @@ void func_02090748(Unk020905a8 *a) {
     if (r != 0) {
         func_0207ff5c((u32) a);
     } else {
-        func_02090638(a);
+        TurnKartKillerTowardPointLink(a);
     }
 }
 
-void func_02090638(Unk020905a8 *a) {
+// Turns the kart toward the point link ahead; the left and right keys first nudge the heading.
+void TurnKartKillerTowardPointLink(KartKillerCursor *a) {
     Kart *p;
     s32 v;
     s32 s;
@@ -563,8 +567,8 @@ void func_02090638(Unk020905a8 *a) {
     s32 d;
     s32 e;
     s32 b;
-    p = GetKart(a->mUnk_24);
-    v = a->mUnk_20;
+    p = GetKart(a->mKillerKartIndex);
+    v = a->mAngleToLinkDegrees;
     if ((p->mUnk_44 & KART_44_ON_GROUND) != 0) {
         s = 0x19a;
     } else {
@@ -591,7 +595,7 @@ void func_02090638(Unk020905a8 *a) {
     p->mHeadingAngle = p->mHeadingAngle + (s32) (((s64) d * s) >> 12);
 }
 
-s32 func_020905a8(Unk020905a8 *a) {
+s32 func_020905a8(KartKillerCursor *a) {
     BOOL r;
     BOOL t;
     Kart *p;
@@ -603,7 +607,7 @@ s32 func_020905a8(Unk020905a8 *a) {
     } else {
         t = TRUE;
     }
-    p = GetKart(a->mUnk_24);
+    p = GetKart(a->mKillerKartIndex);
     if ((p->mUnk_44 & 0xc0) != 0) {
         t = TRUE;
         a->mUnk_28 = 5;

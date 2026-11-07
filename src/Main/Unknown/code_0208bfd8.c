@@ -16,20 +16,20 @@ void func_0208c0f0(KartAi *p, s32 a) {
 
     p->mUnk_154 = (gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_14 & 1) != 0;
     SetupRaceKartAi(p, q, p->mUnk_154);
-    func_0207e200(&p->mUnk_e8, p);
+    SetupRaceKartAiSpeedLimit(&p->mUnk_e8, p);
     func_0207c448(&p->mItemUse);
-    func_0207e088(&p->mUnk_e8, p);
+    PickKartAiRaceStart(&p->mUnk_e8, p);
 }
 
 void func_0208c0c8(KartAi *p) {
     ResetRaceKartAiAtPointLink(p);
-    func_0207e1d4(&p->mUnk_e8, p);
+    ResetRaceKartAiSpeedLimit(&p->mUnk_e8, p);
     func_0207c448(&p->mItemUse);
 }
 
 void func_0208c09c(KartAi *p) {
     AdvanceRaceKartAi(p);
-    func_0207de84(&p->mUnk_e8, p);
+    AdvanceRaceKartAiSpeedLimit(&p->mUnk_e8, p);
     func_0207c270(&p->mItemUse, p);
 }
 

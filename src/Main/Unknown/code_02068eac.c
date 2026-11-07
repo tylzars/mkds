@@ -383,7 +383,7 @@ void StartKartKiller(Kart *p) {
     s->mKillerFrames = 0;
     s->mUnk_20 = 0;
     s->mKillerEnding = FALSE;
-    func_0209086c(&s->mUnk_2c, p->mIndex);
+    SetupKartKillerCursor(&s->mKillerCursor, p->mIndex);
     p->mUnk_4c |= 0x10000000;
     k = gRaceSetup->mKartCount;
     s->mKillerEndRank = GetKartRank(p->mIndex) - w.mUnk_00[k - 1];
@@ -459,7 +459,7 @@ void AdvanceKartKiller(Kart *p) {
     s = &p->mUnk_538;
     s->mKillerFrames++;
     if (!(p->mUnk_7c & 0x400)) {
-        if (func_0209081c(&s->mUnk_2c) != 0) {
+        if (func_0209081c(&s->mKillerCursor) != 0) {
             u = &p->mUnk_538;
             if ((p->mUnk_4c & 0x10000000) && u->mKillerEnding == FALSE) {
                 u->mKillerEnding = TRUE;

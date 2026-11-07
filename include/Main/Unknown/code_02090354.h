@@ -34,21 +34,21 @@ typedef struct Sman {
 } Sman;
 
 // Array of Sman pointers at 0x00, its count at 0x04.
-typedef struct Unk0209151c {
-    /* 00 */ Sman **mUnk_00;
-    /* 04 */ u16 mUnk_04;
-} Unk0209151c;
+typedef struct SmanList {
+    /* 00 */ Sman **mSmans;
+    /* 04 */ u16 mSmanCount;
+} SmanList;
 
 void SetupBattleItemEntries(void);
-s32 func_020905a8(Unk020905a8 *a);
-void func_02090638(Unk020905a8 *a);
-void func_02090748(Unk020905a8 *a);
-s32 func_0209081c(Unk020905a8 *a);
-void func_02090838(Unk020905a8 *a, Unk02080b1c_00 *b);
-void func_0209086c(Unk020905a8 *a, u32 b);
+s32 func_020905a8(KartKillerCursor *a);
+void TurnKartKillerTowardPointLink(KartKillerCursor *a);
+void AdvanceKartKillerAlongPointLinks(KartKillerCursor *a);
+s32 func_0209081c(KartKillerCursor *a);
+void ResetKartKillerCursorTo(KartKillerCursor *a, Unk02080b1c_00 *b);
+void SetupKartKillerCursor(KartKillerCursor *a, u32 b);
 BOOL IsTimeLessThanStaffGhostTime(u32 a, void *b);
 void LoadStaffGhostTime(void *a);
-BOOL func_02090940(void);
+BOOL IsAllGrandPrixRecordsTopRank(void);
 s32 func_020909cc(void);
 u32 func_02090b24(void);
 u32 func_02090cf8(void);
@@ -60,7 +60,7 @@ void *CreateSmanBottomDrawList(void);
 void *CreateSmanTopDrawList(void);
 void CreateSmanKindData(void);
 void UpdateSman(void *a, Sman *sman); /* skipped for objects with mFlags & 4 (parked pool objects) */
-void InitSmanObjects(Unk0209151c *a);
+void InitSmanObjects(SmanList *a);
 void DrawSmanBottom(void *a, Sman *sman);
 void SetupDrawSmanBottom(void *a);
 void CreateSmanBottom(void *a);

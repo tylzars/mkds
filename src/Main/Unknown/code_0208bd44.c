@@ -52,24 +52,24 @@ void func_0208be00(KartAi *p, s32 a) {
     Kart *q = GetKart(a);
 
     p->mUnk_154 = 0;
-    func_0207e594(p, q, p->mUnk_154);
+    SetupAwardMissionRunKartAi(p, q, p->mUnk_154);
     func_0207d814(&p->mUnk_e8, p);
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-        p->mUnk_e8.mUnk_2c = 1;
-        p->mUnk_e8.mUnk_30 = 4;
+        p->mUnk_e8.mBoostsAtRaceStart = 1;
+        p->mUnk_e8.mRaceStartBoostChoice = 4;
     } else {
-        p->mUnk_e8.mUnk_2c = 0;
-        p->mUnk_e8.mUnk_30 = 0;
+        p->mUnk_e8.mBoostsAtRaceStart = 0;
+        p->mUnk_e8.mRaceStartBoostChoice = 0;
     }
 }
 
 void func_0208bde0(KartAi *p, Unk02175620_bc *a) {
-    func_0207e564(p, a);
+    ResetAwardMissionRunKartAi(p, a);
     func_0207d7e4(&p->mUnk_e8, p);
 }
 
 void func_0208bdc0(KartAi *p) {
-    func_0207e4a4(p);
+    AdvanceAwardMissionRunKartAi(p);
     func_0207d6a4(&p->mUnk_e8, p);
 }
 
@@ -77,10 +77,10 @@ void func_0208bd44(KartAi *p, s32 a) {
     Kart *q = GetKart(a);
 
     p->mUnk_154 = 0;
-    func_0207e400(p, q, p->mUnk_154);
+    SetupStaffRollKartAi(p, q, p->mUnk_154);
     func_0207d814(&p->mUnk_e8, p);
-    p->mUnk_e8.mUnk_2c = 0;
-    p->mUnk_e8.mUnk_30 = 0;
+    p->mUnk_e8.mBoostsAtRaceStart = 0;
+    p->mUnk_e8.mRaceStartBoostChoice = 0;
     if (q->mIndex != gRaceSetup->mEntryIndex) {
         q->mUnk_7c |= 0x40;
     }

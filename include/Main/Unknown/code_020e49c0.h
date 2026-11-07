@@ -19,4 +19,4 @@ typedef struct Unk020e49c0 {
     /* c0 */ u32 mUnk_c0;
 } Unk020e49c0;
 
-void func_020e49c0(Unk020e49c0 *p0);
+void EnterPukupukuState3(Unk020e49c0 *p0);

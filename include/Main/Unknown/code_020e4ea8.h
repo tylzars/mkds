@@ -5,7 +5,7 @@
 typedef struct Unk020e43a8 Unk020e43a8;
 
 // 0x28-byte object built from a table.
-typedef struct Unk020e4fc8 {
+typedef struct PukupukuUpdateList {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u32 mUnk_08;
@@ -16,12 +16,12 @@ typedef struct Unk020e4fc8 {
     /* 1c */ u32 mUnk_1c;
     /* 20 */ u32 mUnk_20;
     /* 24 */ u32 mUnk_24;
-} Unk020e4fc8;
+} PukupukuUpdateList;
 
-extern Unk020e4fc8 *data_0217b7f4;
+extern PukupukuUpdateList *gPukupukuUpdateList;
 
 // 0x2c-byte object built from a table.
-typedef struct Unk020e5024 {
+typedef struct PukupukuShadowDrawList {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u32 mUnk_08;
@@ -33,12 +33,12 @@ typedef struct Unk020e5024 {
     /* 20 */ u32 mUnk_20;
     /* 24 */ u32 mUnk_24;
     /* 28 */ u32 mUnk_28;
-} Unk020e5024;
+} PukupukuShadowDrawList;
 
-extern Unk020e5024 *data_0217b7fc;
+extern PukupukuShadowDrawList *gPukupukuShadowDrawList;
 
 // 0x2c-byte object built from a table.
-typedef struct Unk020e5080 {
+typedef struct PukupukuDrawList {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u32 mUnk_08;
@@ -50,12 +50,12 @@ typedef struct Unk020e5080 {
     /* 20 */ u32 mUnk_20;
     /* 24 */ u32 mUnk_24;
     /* 28 */ u32 mUnk_28;
-} Unk020e5080;
+} PukupukuDrawList;
 
-extern Unk020e5080 *data_0217b7f8;
+extern PukupukuDrawList *gPukupukuDrawList;
 
 // 0x40-byte object built from a table.
-typedef struct Unk020e50dc {
+typedef struct PukupukuKindData {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u32 mUnk_04;
     /* 08 */ u32 mUnk_08;
@@ -72,11 +72,11 @@ typedef struct Unk020e50dc {
     /* 34 */ u32 mUnk_34;
     /* 38 */ u32 mUnk_38;
     /* 3c */ u32 mUnk_3c;
-} Unk020e50dc;
+} PukupukuKindData;
 
-Unk020e50dc *CreatePukupukuKindData(void);
-Unk020e5080 *CreatePukupukuDrawList(void);
-Unk020e5024 *func_020e5024(void);
-Unk020e4fc8 *CreatePukupukuUpdateList(void);
+PukupukuKindData *CreatePukupukuKindData(void);
+PukupukuDrawList *CreatePukupukuDrawList(void);
+PukupukuShadowDrawList *CreatePukupukuShadowDrawList(void);
+PukupukuUpdateList *CreatePukupukuUpdateList(void);
 void SetupDrawPukupuku(void);
 void DrawPukupuku(u32 a, Unk020e43a8 *p, u32 b, u16 c);

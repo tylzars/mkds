@@ -6,9 +6,9 @@ u32 func_0208c180(KartAi *p) {
 }
 
 u32 func_0208c178(KartAi *p) {
-    return p->mUnk_e8.mUnk_2c;
+    return p->mUnk_e8.mBoostsAtRaceStart;
 }
 
 u32 func_0208c16c(KartAi *p) {
-    return p->mUnk_e8.mUnk_30;
+    return p->mUnk_e8.mRaceStartBoostChoice;
 }

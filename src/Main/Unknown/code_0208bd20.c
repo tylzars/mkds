@@ -6,6 +6,6 @@
 #include "Main/Unknown/code_0207e000.h"
 
 void func_0208bd20(KartAi *p) {
-    func_0207e35c(p);
+    AdvanceStaffRollKartAi(p);
     func_0207d6a4(&p->mUnk_e8, p);
 }

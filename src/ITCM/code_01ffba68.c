@@ -297,7 +297,7 @@ void func_01ffc6c0(Kart *p) {
         if (p->mState == KART_STATE_NORMAL) {
             b = 0;
             if (!(p->mUnk_44 & KART_44_DRIFTING)) {
-                b = func_0206c494(p);
+                b = TryTurnKartAtLowSpeed(p);
             }
             a = func_01ffc27c(p, b);
             AdvanceKartDrift(p);

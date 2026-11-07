@@ -32,7 +32,7 @@
 #include "Main/Unknown/code_0203c8dc.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void func_0207e594(struct KartAi *p, struct Kart *q, s32 a) {
+void SetupAwardMissionRunKartAi(struct KartAi *p, struct Kart *q, s32 a) {
     p->mKart = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
@@ -48,13 +48,13 @@ void func_0207e594(struct KartAi *p, struct Kart *q, s32 a) {
     p->mUnk_cc = 1;
 }
 
-void func_0207e564(struct KartAi *p, struct Unk02175620_bc *a) {
+void ResetAwardMissionRunKartAi(struct KartAi *p, struct Unk02175620_bc *a) {
     ResetPointLinkCursor(&p->mUnk_08.mUnk_00, a);
     ResetKartAi(p, 1);
     ResetKartAi(p, 1);
 }
 
-void func_0207e4a4(struct KartAi *p) {
+void AdvanceAwardMissionRunKartAi(struct KartAi *p) {
     Vec3 a;
     Vec3 b;
     LinkCursor *s;
@@ -83,7 +83,7 @@ void func_0207e4a4(struct KartAi *p) {
     func_0207ebfc(p);
 }
 
-void func_0207e400(struct KartAi *p, struct Kart *q, s32 a) {
+void SetupStaffRollKartAi(struct KartAi *p, struct Kart *q, s32 a) {
     p->mKart = q;
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
@@ -95,7 +95,7 @@ void func_0207e400(struct KartAi *p, struct Kart *q, s32 a) {
     p->mUnk_cc = 1;
 }
 
-void func_0207e35c(struct KartAi *p) {
+void AdvanceStaffRollKartAi(struct KartAi *p) {
     Vec3 a;
     Vec3 b;
     LinkCursor *s = &p->mUnk_08.mUnk_00;
@@ -119,7 +119,7 @@ void func_0207e35c(struct KartAi *p) {
     func_0207ebfc(p);
 }
 
-void func_0207e268(void) {
+void InitKartAiTables(void) {
     s32 d;
 
     switch (func_020853dc()) {
@@ -147,7 +147,7 @@ void func_0207e268(void) {
     data_usa_0217ae34 = data_usa_02165910[d];
 }
 
-u32 func_0207e200(struct Unk02089a24 *arg0, struct KartAi *arg1) {
+u32 SetupRaceKartAiSpeedLimit(struct Unk02089a24 *arg0, struct KartAi *arg1) {
     u32 value0 = (u32) arg0;
     u32 value1 = (u32) arg1;
     u32 value2;
@@ -176,16 +176,17 @@ u32 func_0207e200(struct Unk02089a24 *arg0, struct KartAi *arg1) {
     return value0;
 }
 
-void func_0207e1d4(struct Unk02089a24 *p0, struct KartAi *p1) {
-    p0->mUnk_04 = (u32) (((u32) p0->mUnk_00));
+void ResetRaceKartAiSpeedLimit(struct Unk02089a24 *p0, struct KartAi *p1) {
+    p0->mSpeedLimit = (u32) (((u32) p0->mBaseSpeedLimit));
     p0->mUnk_08 = 0x0u;
-    p0->mUnk_0c = 0x0u;
-    p0->mUnk_10 = (u32) (((u32) p0->mUnk_00));
-    p0->mUnk_14 = (u32) ((~(0x0u)));
+    p0->mTurnSpeedLimit = 0x0u;
+    p0->mUnk_10 = (u32) (((u32) p0->mBaseSpeedLimit));
+    p0->mRank = (u32) ((~(0x0u)));
     p0->mUnk_18 = 0x0u;
 }
 
-void func_0207e088(struct Unk02089a24 *a, struct KartAi *b) {
+// Rolls the race start of a CPU kart: a race start boost with its choice, or the flag in mUnk_28.
+void PickKartAiRaceStart(struct Unk02089a24 *a, struct KartAi *b) {
     BOOL f = FALSE;
     s32 v;
     BOOL r6;
@@ -215,8 +216,8 @@ void func_0207e088(struct Unk02089a24 *a, struct KartAi *b) {
     }
     t = data_usa_0217ae30[r5];
     if (r4 < t || t >= 0x1000) {
-        a->mUnk_2c = 1;
-        a->mUnk_30 = func_0207d8e4(u->mUnk_154);
+        a->mBoostsAtRaceStart = 1;
+        a->mRaceStartBoostChoice = PickKartAiRaceStartBoost(u->mUnk_154);
         r6 = TRUE;
     }
     if (r6 != FALSE) {
@@ -231,7 +232,8 @@ void func_0207e088(struct Unk02089a24 *a, struct KartAi *b) {
     a->mUnk_28 = 1;
 }
 
-void func_0207de84(struct Unk02089a24 *a, struct KartAi *b) {
+// Every eighth frame, on this kart's turn, recomputes the CPU speed limit; every call sets the kart's limit from it.
+void AdvanceRaceKartAiSpeedLimit(struct Unk02089a24 *a, struct KartAi *b) {
     BOOL f;
     s32 v;
     s32 t;
@@ -249,9 +251,9 @@ void func_0207de84(struct Unk02089a24 *a, struct KartAi *b) {
             }
         }
         if (f != FALSE) {
-            a->mUnk_14 = GetKartRank(b->mIndex);
+            a->mRank = GetKartRank(b->mIndex);
         } else {
-            a->mUnk_14 = GetKartRankAmongKind1(b->mIndex);
+            a->mRank = GetKartRankAmongKind1(b->mIndex);
         }
         a->mUnk_08 = GetKartAiParamRow()->mUnk_00;
         if (func_02085390() != 0) {
@@ -269,24 +271,24 @@ void func_0207de84(struct Unk02089a24 *a, struct KartAi *b) {
             t = ((s64) t * 0xb33 + 0x800) >> 12;
         }
         if (b->mUnk_90 == 0) {
-            a->mUnk_0c = t;
+            a->mTurnSpeedLimit = t;
             if (b->mTurnAngleDegrees > 0x5000) {
                 s = ((s64) (b->mTurnAngleDegrees - 0x5000) * 0x5b) >> 12;
                 if (s > 0x1000) {
                     s = 0x1000;
                 }
-                a->mUnk_0c = ((s64) (0x1000 - (s32) (((s64) s * 0x668) >> 12)) * 0xa000) >> 12;
+                a->mTurnSpeedLimit = ((s64) (0x1000 - (s32) (((s64) s * 0x668) >> 12)) * 0xa000) >> 12;
             }
             func_0207d9f0(a, b, t);
             t = a->mUnk_10;
         }
-        if (a->mUnk_0c < t) {
-            t = a->mUnk_0c;
+        if (a->mTurnSpeedLimit < t) {
+            t = a->mTurnSpeedLimit;
         }
         if (t > 0xa000) {
             t = 0xa000;
         }
-        a->mUnk_04 = t;
+        a->mSpeedLimit = t;
     }
     q = b->mKart;
     if (q->mState != KART_STATE_NORMAL) {
@@ -296,12 +298,12 @@ void func_0207de84(struct Unk02089a24 *a, struct KartAi *b) {
         return;
     }
     if ((q->mUnk_48 & 0x10000020) == 0) {
-        q->mSpeedLimitGoal = a->mUnk_04;
+        q->mSpeedLimitGoal = a->mSpeedLimit;
     }
 }
 
 void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
-    s32 n = a->mUnk_14;
+    s32 n = a->mRank;
     u16 m = b->mIndex;
     u16 i;
     BOOL f;
@@ -407,7 +409,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
                         Kart *q = GetKart(d);
                         s32 w = r->mUnk_08;
 
-                        if (q->mAi->mUnk_e8.mUnk_04 > (s32) (((s64) w * 0xcd0) >> 12)) {
+                        if (q->mAi->mUnk_e8.mSpeedLimit > (s32) (((s64) w * 0xcd0) >> 12)) {
                             e = GetKartRaceProgressScaled((u16) d) - g;
                             if (e < (s32) (((s64) k[2] * func_0208548c()) >> 12)) {
                                 a->mUnk_10 = ((s64) a->mUnk_10 * 0xfae) >> 12;
@@ -431,7 +433,9 @@ void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
     }
 }
 
-u16 func_0207d8e4(s32 a) {
+// Returns the race start boost choice (1 to 5) of a CPU kart: three candidates by difficulty, picked at random, or the
+// last one when a is non-zero.
+u16 PickKartAiRaceStartBoost(s32 a) {
     u16 v[9];
     u16 *p;
     s32 i;
@@ -468,16 +472,16 @@ u16 func_0207d8e4(s32 a) {
 void func_0207d814(struct Unk02089a24 *a, struct KartAi *b) {
     s32 t;
 
-    a->mUnk_00 = b->mKart->mPhysicalParam->mBaseSpeedLimit;
-    a->mUnk_04 = a->mUnk_00;
+    a->mBaseSpeedLimit = b->mKart->mPhysicalParam->mBaseSpeedLimit;
+    a->mSpeedLimit = a->mBaseSpeedLimit;
     a->mUnk_08 = 0;
-    a->mUnk_0c = 0;
-    a->mUnk_10 = a->mUnk_00;
-    a->mUnk_14 = -1;
+    a->mTurnSpeedLimit = 0;
+    a->mUnk_10 = a->mBaseSpeedLimit;
+    a->mRank = -1;
     a->mUnk_18 = 0;
     a->mUnk_10 = 0;
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
-        b->mKart->mForwardSpeed = a->mUnk_00;
+        b->mKart->mForwardSpeed = a->mBaseSpeedLimit;
         return;
     }
     if (gRaceSetup->mRaceKind == RACE_KIND_STAFF_ROLL) {
@@ -487,5 +491,5 @@ void func_0207d814(struct Unk02089a24 *a, struct KartAi *b) {
         b->mKart->mSpeedLimit = b->mKart->mSpeedLimitGoal;
         return;
     }
-    func_0207e088(a, b);
+    PickKartAiRaceStart(a, b);
 }

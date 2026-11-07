@@ -305,7 +305,9 @@ recheck:
     }
 }
 
-int func_0206c494(Kart *p) {
+// At low speed, with the A and B keys held and no boost running, steers the kart with the left and right keys; TRUE
+// when it acts.
+int TryTurnKartAtLowSpeed(Kart *p) {
     BOOL result = FALSE;
     BOOL pending = TRUE;
     BOOL dir = FALSE;

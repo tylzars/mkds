@@ -16,19 +16,19 @@ typedef struct Unk020888b4_d0 {
 // Object of 0x34 bytes at 0xe8 of the object KartAi starts: func_02089a24 writes the words at 0x28 and 0x2c and
 // the halfword at 0x30.
 typedef struct Unk02089a24 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 00 */ s32 mBaseSpeedLimit;
+    /* 04 */ s32 mSpeedLimit;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ s32 mTurnSpeedLimit;
     /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
+    /* 14 */ s32 mRank;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
     /* 24 */ s32 mUnk_24;
     /* 28 */ s32 mUnk_28;
-    /* 2c */ s32 mUnk_2c;
-    /* 30 */ u16 mUnk_30;
+    /* 2c */ s32 mBoostsAtRaceStart;
+    /* 30 */ u16 mRaceStartBoostChoice;
     /* 32 */ u8 mUnk_32[2];
 } Unk02089a24;
 

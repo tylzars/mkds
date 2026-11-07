@@ -41,7 +41,7 @@ void func_0207d6a4(struct Unk02089a24 *a, struct KartAi *b) {
         if (v > 0xa000) {
             v = 0xa000;
         }
-        a->mUnk_0c = v;
+        a->mTurnSpeedLimit = v;
         t = b->mTurnAngleDegrees;
         if (t > 0x5000) {
             x = ((s64) (t - 0x5000) * 0x5b) >> 12;
@@ -49,16 +49,16 @@ void func_0207d6a4(struct Unk02089a24 *a, struct KartAi *b) {
                 x = 0x1000;
             }
             x = ((s64) x * 0x668) >> 12;
-            a->mUnk_0c = ((s64) (0x1000 - x) * 0xa000) >> 12;
+            a->mTurnSpeedLimit = ((s64) (0x1000 - x) * 0xa000) >> 12;
         }
-        m = a->mUnk_0c;
+        m = a->mTurnSpeedLimit;
         if (m < v) {
             v = m;
         }
         if (v > 0xa000) {
             v = 0xa000;
         }
-        a->mUnk_04 = v;
+        a->mSpeedLimit = v;
     }
     if (b->mKart->mState != KART_STATE_NORMAL) {
         return;
@@ -67,7 +67,7 @@ void func_0207d6a4(struct Unk02089a24 *a, struct KartAi *b) {
         return;
     }
     x = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
-    b->mKart->mSpeedLimitGoal = ((s64) a->mUnk_04 * x + 0x800) >> 12;
+    b->mKart->mSpeedLimitGoal = ((s64) a->mSpeedLimit * x + 0x800) >> 12;
 }
 
 void func_0207d5b8(KartAiItemUse *a, struct KartAi *b) {

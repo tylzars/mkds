@@ -7,4 +7,4 @@ typedef struct Unk020e4a34 {
     /* 02 */ u16 mUnk_02;
 } Unk020e4a34;
 
-void func_020e4a34(Unk020e4a34 *p0);
+void EnterPukupukuState2(Unk020e4a34 *p0);

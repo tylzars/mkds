@@ -4,4 +4,4 @@
 
 typedef struct Unk020e43a8 Unk020e43a8;
 
-void func_020e4990(Unk020e43a8 *p);
+void UpdatePukupukuState3(Unk020e43a8 *p);

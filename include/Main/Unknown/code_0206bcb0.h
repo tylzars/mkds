@@ -17,7 +17,7 @@
 #include "code_0212d214.h"
 #include "Main/Unknown/code_0210bcf4.h"
 #include "Main/Unknown/code_0210b000.h" // Unk0210b7ec
-#include "Main/Unknown/code_02080b1c.h" // Unk020905a8
+#include "Main/Unknown/code_02080b1c.h" // KartKillerCursor
 
 typedef struct UnkVec16 {
     s16 x;
@@ -141,7 +141,7 @@ typedef struct Unk0206ceb4 {
     // The effect may end early after KART_KILLER_RANK_END_FRAMES once the kart's rank is this number or better.
     /* 28 */ s16 mKillerEndRank;
     /* 2a */ u8 mUnk_2a[2];
-    /* 2c */ Unk020905a8 mUnk_2c;
+    /* 2c */ KartKillerCursor mKillerCursor;
 } Unk0206ceb4;
 
 typedef struct Unk0206bcb0_514 {
@@ -590,7 +590,7 @@ void func_0206c450(Unk0206c1ac *obj, Kart *p);
 void func_0206c488(Unk0206c1ac *obj, Kart *p);
 
 void func_0208b748(u32 idx, const Vec3 *pos, void *p, void (*cb)());
-int func_0206c494(Kart *p);
+int TryTurnKartAtLowSpeed(Kart *p);
 void func_0206cc60(Kart *p, int arg);
 #include "Main/Unknown/code_0210ab48.h"
 void EndKartDrift(Kart *p);

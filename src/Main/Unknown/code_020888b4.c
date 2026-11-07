@@ -116,8 +116,8 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
     Unk0217aebc_128 *r;
 
     b->mUnk_28 = 0;
-    b->mUnk_2c = 0;
-    b->mUnk_30 = 0;
+    b->mBoostsAtRaceStart = 0;
+    b->mRaceStartBoostChoice = 0;
     v = gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & PLAYER_KIND_MASK_HUMAN_GHOST_PEER) {
@@ -145,8 +145,8 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
     if (v > t) {
         return;
     }
-    b->mUnk_2c = 1;
-    b->mUnk_30 = func_0207d8e4(0);
+    b->mBoostsAtRaceStart = 1;
+    b->mRaceStartBoostChoice = PickKartAiRaceStartBoost(0);
 }
 
 void SetupBattleKartAiParams(void) {

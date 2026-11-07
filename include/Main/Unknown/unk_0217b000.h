@@ -1051,7 +1051,7 @@ extern struct CollisionSlot *gCollisionSlots;
 extern struct CollisionSlotEnd *gCollisionSlotLowEnds;
 extern s16 *gCollisionSlotNextFree;
 extern s16 *gFoundCollisionSlotIndices;
-extern Vec3 data_0217b800;
+extern Vec3 gPukupukuDrawScale;
 extern void *gPendulum;
 extern void *gPendulumShadow;
 extern void *gSecondHand;
