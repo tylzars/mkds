@@ -143,7 +143,8 @@ typedef struct Unk02174e14 {
     /* 078 */ s32 mUnk_078;
     /* 07c */ s32 mUnk_07c;
     /* 080 */ s32 mUnk_080;
-    /* 84 */ s16 mUnk_084[4];
+    // Row to move to on up, down, right and left; 0xffff means stay on the row.
+    /* 84 */ s16 mTableIndexByKey[4];
     /* 08c */ s32 mUnk_08c;
     /* 090 */ Unk021535b4 mUnk_090[12];
     /* 0f0 */ s32 mUnk_0f0;

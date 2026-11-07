@@ -310,7 +310,7 @@ void func_02086250(MtxFx43 *a) {
         if (f == FALSE) {
             continue;
         }
-        if (p->mUnk_1c->mUnk_00[3].mUnk_0c != NULL) {
+        if (p->mUnk_1c->mUnk_00[3].mTexData != NULL) {
             func_02086098(&p->mUnk_1c->mUnk_00[3], p, a, data_021659a8, data_021659a0, h, t, u, data_021659bc,
                           data_021659b0, func_02087ab0);
         }
@@ -332,8 +332,8 @@ void func_02086098(Unk02086098 *a, Unk02086250 *b, MtxFx43 *c, s32 d, s32 e, s16
     s32 y;
     s32 z;
     reg_G3_TEXIMAGE_PARAM = a->mUnk_00;
-    if (a->mUnk_08 != 0) {
-        reg_G3_PLTT_BASE = a->mUnk_18 >> (4 - ((a->mUnk_00 >> 26 & 7) == 2));
+    if (a->mPlttByteCount != 0) {
+        reg_G3_PLTT_BASE = a->mPlttOffset >> (4 - ((a->mUnk_00 >> 26 & 7) == 2));
     }
     MTX_Identity43_(&m);
     m.mUnk_00[3] = b->mUnk_00;

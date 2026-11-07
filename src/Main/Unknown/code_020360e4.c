@@ -31,7 +31,7 @@ void func_02036108(void *a) {
     u16 v;
 
     func_02036438(a);
-    data_02174e6c->mUnk_64c = 9;
+    data_02174e6c->mState = 9;
     data_02174e6c->mUnk_634 = FindFileInLoadedArchives(data_021646e0);
     data_02174e6c->mUnk_000 = func_020b403c(0);
     b = G2S_GetBG1CharPtr();

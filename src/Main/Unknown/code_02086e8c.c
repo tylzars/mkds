@@ -104,7 +104,7 @@ void func_020875b4(void) {
         }
     }
     data_0217aed8 = &data_02155a48;
-    func_02087000();
+    InitKartEmblemPointers();
     for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
         data_0217aed0->mUnk_024[i] = i;
         data_0217aed0->mUnk_044[i] = i;
@@ -172,7 +172,7 @@ void func_02087508(Unk02086250 *a, u16 b, void *c) {
     a->mUnk_20 = 0;
 }
 
-void func_02087458(Unk02086098 *a) {
+void SetTextureSizeFromBits(Unk02086098 *a) {
     u16 v;
     u16 w;
     s32 x;
@@ -235,7 +235,7 @@ void func_02087458(Unk02086098 *a) {
     a->mUnk_20 = y << 12;
 }
 
-u16 func_020873e4(int a) {
+u16 GetKartPaletteColor(int a) {
     if (gRaceSetup->mMode == 5) {
         return data_02155a2c[gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_25];
     }
@@ -256,84 +256,84 @@ void func_020872a4(void) {
     Unk02086098 *e1;
     Unk02086098 *e3;
     v1 = GetHeap(func_020364e8());
-    func_02086fac();
+    UploadKartEmblems();
     data_0217aedc = 0;
-    data_0217aed4 = HeapAllocAligned(v1, 0x20, -4);
-    data_0217aec4 = HeapAllocAligned(v1, 0x100, -4);
-    data_0217aec8 = HeapAllocAligned(v1, 8, -4);
+    gKartEmblemPlltBuffer = HeapAllocAligned(v1, 0x20, -4);
+    gKartEntryNameTexBuffer = HeapAllocAligned(v1, 0x100, -4);
+    gKartEntryNamePlltBuffer = HeapAllocAligned(v1, 8, -4);
     data_0217aecc = HeapAllocAligned(v1, 0x200, -4);
     for (i = 0; i < data_0217aed0->mUnk_020; i++) {
         p = data_0217aed0->mUnk_0c4[i];
         q = p->mUnk_1c;
         e1 = &q->mUnk_00[1];
         e3 = &q->mUnk_00[3];
-        q->mUnk_00[0].mUnk_04 = 0x200;
-        q->mUnk_00[0].mUnk_08 = 0x20;
-        q->mUnk_00[0].mUnk_10 = data_0217aed0->mUnk_188;
-        p->mUnk_26 = func_020873e4(p->mUnk_0c);
-        func_02087228(&q->mUnk_00[0], p->mUnk_0c);
-        func_020871c0(e1, p->mUnk_0c);
-        func_020871a4(&q->mUnk_00[2], p->mUnk_0c);
+        q->mUnk_00[0].mTexByteCount = 0x200;
+        q->mUnk_00[0].mPlttByteCount = 0x20;
+        q->mUnk_00[0].mPlttData = data_0217aed0->mUnk_188;
+        p->mUnk_26 = GetKartPaletteColor(p->mUnk_0c);
+        SetupKartEmblemTexture(&q->mUnk_00[0], p->mUnk_0c);
+        SetupKartEntryNameTexture(e1, p->mUnk_0c);
+        SetPaletteKartColor(&q->mUnk_00[2], p->mUnk_0c);
         func_020870ec(e3, p->mUnk_0c);
-        func_02086e8c(&q->mUnk_00[0]);
-        func_02086e8c(e1);
-        func_02086e8c(&p->mUnk_1c->mUnk_00[2]);
-        if (e3->mUnk_0c != NULL) {
-            func_02086e8c(e3);
+        UploadTextureAndPalette(&q->mUnk_00[0]);
+        UploadTextureAndPalette(e1);
+        UploadTextureAndPalette(&p->mUnk_1c->mUnk_00[2]);
+        if (e3->mTexData != NULL) {
+            UploadTextureAndPalette(e3);
         }
     }
     HeapFree(v1, data_0217aecc);
-    HeapFree(v1, data_0217aec8);
-    HeapFree(v1, data_0217aec4);
-    HeapFree(v1, data_0217aed4);
+    HeapFree(v1, gKartEntryNamePlltBuffer);
+    HeapFree(v1, gKartEntryNameTexBuffer);
+    HeapFree(v1, gKartEmblemPlltBuffer);
 }
 
-void func_02087228(Unk02086098 *a, u16 b) {
+void SetupKartEmblemTexture(Unk02086098 *a, u16 b) {
     u16 *p;
     void *q;
     u16 v;
-    p = data_0217aed4;
-    q = data_0217aed0->mUnk_144[b];
-    MI_CpuCopy8(data_0217aed0->mUnk_164[b], p, a->mUnk_08);
+    p = gKartEmblemPlltBuffer;
+    q = data_0217aed0->mEmblemTex[b];
+    MI_CpuCopy8(data_0217aed0->mEmblemPltt[b], p, a->mPlttByteCount);
     v = 0x7fff;
     if (gRaceSetup->mUseTeams != 0) {
         v = data_02155a28[gRaceSetup->mCurrentEntries[b].mPlayer.mTeamIndex];
     }
     *p = v;
-    DC_FlushRange(p, a->mUnk_08);
-    DC_FlushRange(q, a->mUnk_04);
-    a->mUnk_10 = p;
-    a->mUnk_0c = q;
+    DC_FlushRange(p, a->mPlttByteCount);
+    DC_FlushRange(q, a->mTexByteCount);
+    a->mPlttData = p;
+    a->mTexData = q;
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_020871c0(Unk02086098 *a, u32 b) {
+void SetupKartEntryNameTexture(Unk02086098 *a, u32 b) {
     u16 v1;
     u16 *v2;
     u8 *v3;
-    v3 = data_0217aec4;
-    v2 = data_0217aec8;
+    v3 = gKartEntryNameTexBuffer;
+    v2 = gKartEntryNamePlltBuffer;
     *v2 = (0x00007c00u);
-    v1 = func_020873e4(b);
+    v1 = GetKartPaletteColor(b);
     v2[1] = v1;
     v2[2] = 0;
     v2[3] = 0x1f;
     DC_FlushRange(v2, 8);
-    MI_CpuFill8(v3, 0, a->mUnk_04);
+    MI_CpuFill8(v3, 0, a->mTexByteCount);
     func_020adddc(b, v3, 1, 2);
     DC_FlushRange(v3, 0x100);
-    a->mUnk_0c = v3;
-    a->mUnk_10 = v2;
+    a->mTexData = v3;
+    a->mPlttData = v2;
 }
 
-void func_020871a4(Unk02086098 *a, u32 b) {
+void SetPaletteKartColor(Unk02086098 *a, u32 b) {
     u16 v1;
     u16 *v2;
-    v2 = a->mUnk_10;
-    v1 = func_020873e4(b);
+    v2 = a->mPlttData;
+    v1 = GetKartPaletteColor(b);
     v2[1] = v1;
     DC_FlushRange(v2, 8);
 }
@@ -363,9 +363,9 @@ void func_020870ec(Unk02086098 *a, u16 b) {
                 c = -1;
                 break;
         }
-        MI_CpuCopy8(q->mUnk_0c, p, q->mUnk_04);
+        MI_CpuCopy8(q->mTexData, p, q->mTexByteCount);
         if (c > 0) {
-            for (i = 0; i < q->mUnk_04; i++) {
+            for (i = 0; i < q->mTexByteCount; i++) {
                 v = p[i];
                 w = v & 0xf0;
                 x = w >> 4;
@@ -379,14 +379,14 @@ void func_020870ec(Unk02086098 *a, u16 b) {
                 p[i] = v;
             }
         }
-        DC_FlushRange(p, q->mUnk_04);
-        q->mUnk_0c = p;
+        DC_FlushRange(p, q->mTexByteCount);
+        q->mTexData = p;
     } else {
-        q->mUnk_0c = NULL;
+        q->mTexData = NULL;
     }
 }
 
-void func_02087000(void) {
+void InitKartEmblemPointers(void) {
     u16 i;
     Nclr *o;
     NNSG3dResTex *p;
@@ -394,8 +394,8 @@ void func_02087000(void) {
     u8 *q;
     u8 *r;
     for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
-        data_0217aed0->mUnk_144[i] = NULL;
-        data_0217aed0->mUnk_164[i] = NULL;
+        data_0217aed0->mEmblemTex[i] = NULL;
+        data_0217aed0->mEmblemPltt[i] = NULL;
         if (gRaceSetup->mCurrentEntries[i].mPlayer.mUnk_24 == 0 || gRaceSetup->mUseTeams != 0) {
             if (gRaceSetup->mUseTeams != 0) {
                 s = BuildTeamEmblemNsbtxPath(gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex == 1 ? 1 : 0);
@@ -405,26 +405,27 @@ void func_02087000(void) {
             p = NNS_G3dGetTex(func_02047950(s));
             q = OFFSET_PTR(u8, p, p->mPlttInfo.mOfsPlttData);
             r = OFFSET_PTR(u8, p, p->mTexInfo.mOfsTex);
-            data_0217aed0->mUnk_144[i] = r;
-            data_0217aed0->mUnk_164[i] = q;
+            data_0217aed0->mEmblemTex[i] = r;
+            data_0217aed0->mEmblemPltt[i] = q;
         } else {
             r = (void *) gRaceSetup->mCurrentEntries[i].mPlayer.mEmblemData;
             LoadNclrData(&o, func_02047950(gEmblemSBNclrName));
             q = (u8 *) o->mData;
-            data_0217aed0->mUnk_144[i] = r;
-            data_0217aed0->mUnk_164[i] = q;
+            data_0217aed0->mEmblemTex[i] = r;
+            data_0217aed0->mEmblemPltt[i] = q;
         }
     }
 }
 
-void func_02086fac(void) {
+void UploadKartEmblems(void) {
     u16 i;
     for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
-        func_02086f24(i, data_0217aed0->mUnk_144[i], data_0217aed0->mUnk_164[i]);
+        UploadKartEmblem(i, data_0217aed0->mEmblemTex[i], data_0217aed0->mEmblemPltt[i]);
     }
 }
 
-void func_02086f24(u32 a, void *b, void *c) {
+// Replaces the pixels and palette of the kart_emblem texture of the model of kart a.
+void UploadKartEmblem(u32 a, void *b, void *c) {
     u8 *p;
     u8 *q;
     u8 *r;
@@ -451,23 +452,23 @@ void func_02086f24(u32 a, void *b, void *c) {
     GX_EndLoadTexPltt();
 }
 
-void func_02086e8c(Unk02086098 *a) {
+void UploadTextureAndPalette(Unk02086098 *a) {
     u16 v;
     u32 d;
     v = a->mUnk_00 >> 26 & 7;
-    d = (data_021619ec(a->mUnk_04, 0, 0) & 0xffff) << 3;
+    d = (data_021619ec(a->mTexByteCount, 0, 0) & 0xffff) << 3;
     a->mUnk_00 = a->mUnk_00 & 0xffff0000;
     GX_BeginLoadTex();
-    GX_LoadTex(a->mUnk_0c, d, a->mUnk_04);
+    GX_LoadTex(a->mTexData, d, a->mTexByteCount);
     GX_EndLoadTex();
     a->mUnk_00 = a->mUnk_00 | (d >> 3 & 0xffff);
-    if (a->mUnk_08 != 0) {
-        a->mUnk_18 = (data_021619f4(a->mUnk_08, v == 2, 0) & 0xffff) << 3;
+    if (a->mPlttByteCount != 0) {
+        a->mPlttOffset = (data_021619f4(a->mPlttByteCount, v == 2, 0) & 0xffff) << 3;
         GX_BeginLoadTexPltt();
-        GX_LoadTexPltt(a->mUnk_10, a->mUnk_18, a->mUnk_08);
+        GX_LoadTexPltt(a->mPlttData, a->mPlttOffset, a->mPlttByteCount);
         GX_EndLoadTexPltt();
     }
-    func_02087458(a);
+    SetTextureSizeFromBits(a);
 }
 
 #pragma thumb off

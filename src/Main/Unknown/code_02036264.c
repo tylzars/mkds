@@ -31,7 +31,7 @@ void func_020362dc(void *a) {
     u16 v;
 
     func_02036438(a);
-    data_02174e6c->mUnk_64c = 0;
+    data_02174e6c->mState = 0;
     func_0204aa28(1);
     data_02174e6c->mUnk_638 = func_020d1630()->mUnk_20;
     data_02174e6c->mUnk_000 = (u8 *) func_020d1630() + 0x14;

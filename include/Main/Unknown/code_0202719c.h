@@ -9,7 +9,7 @@ void func_0202728c(s16 a);
 void func_020272c0(s16 a, s16 b);
 void func_020272ec(void);
 void func_0202734c(s32 a);
-void func_020273c0(void);
+void StartSelectCharacterReturn(void);
 void func_02027424(s32 a);
 void func_02027448(void);
 void func_02027648(void);

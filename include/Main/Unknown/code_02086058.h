@@ -3,17 +3,17 @@
 #include "types.h"
 #include "code_02012b30.h" // MtxFx43
 
-// 0x24-byte entry: the word at 0x00 and the halfword at 0x08 are tested by func_02086098 and func_02086e8c,
+// 0x24-byte entry: the word at 0x00 and the halfword at 0x08 are tested by func_02086098 and UploadTextureAndPalette,
 // the words at 0x1c and 0x20 are passed to the function given to func_02086098.
 typedef struct Unk02086098 {
     /* 00 */ u32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ u16 mUnk_08;
+    /* 04 */ s32 mTexByteCount;
+    /* 08 */ u16 mPlttByteCount;
     /* 0a */ u8 mUnk_0a[2];
-    /* 0c */ void *mUnk_0c;
-    /* 10 */ void *mUnk_10;
+    /* 0c */ void *mTexData;
+    /* 10 */ void *mPlttData;
     /* 14 */ u8 mUnk_14[4];
-    /* 18 */ u32 mUnk_18;
+    /* 18 */ u32 mPlttOffset;
     /* 1c */ s32 mUnk_1c;
     /* 20 */ s32 mUnk_20;
 } Unk02086098;

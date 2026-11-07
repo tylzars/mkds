@@ -1512,11 +1512,11 @@ typedef struct KartAiShared {
 extern KartAiShared *gKartAiShared;
 // The row of 'kartAIparam.bin' for this race; NULL in battle and when mUnk_00c is 5 or 6.
 extern KartAiParamRow *gKartAiParamRow;
-extern u8 *data_0217aec4;
-extern u16 *data_0217aec8;
+extern u8 *gKartEntryNameTexBuffer;
+extern u16 *gKartEntryNamePlltBuffer;
 extern u8 *data_0217aecc;
 extern Vec3 *data_0217aed8;
-extern u16 *data_0217aed4;
+extern u16 *gKartEmblemPlltBuffer;
 extern s32 data_0217aedc;
 extern Unk0214ad4c data_0217aee0;
 
@@ -1538,8 +1538,8 @@ typedef struct Unk0217aed0 {
     /* 0e4 */ s32 mUnk_0e4[8];
     /* 104 */ s32 mUnk_104[8];
     /* 124 */ u32 mUnk_124[8];
-    /* 144 */ void *mUnk_144[8];
-    /* 164 */ void *mUnk_164[8];
+    /* 144 */ void *mEmblemTex[8];
+    /* 164 */ void *mEmblemPltt[8];
     /* 184 */ s32 mUnk_184;
     /* 188 */ void *mUnk_188;
     /* 18c */ u8 mUnk_18c[8];

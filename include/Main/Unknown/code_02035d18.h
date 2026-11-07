@@ -12,16 +12,16 @@ typedef struct Unk02174e6c {
     /* 634 */ void *mUnk_634;
     /* 638 */ struct Bmg *mUnk_638;
     /* 63c */ u8 mUnk_63c[4];
-    /* 640 */ s32 mUnk_640;
+    /* 640 */ s32 mBg3Offset;
     /* 644 */ u8 mUnk_644[8];
-    /* 64c */ s32 mUnk_64c;
+    /* 64c */ s32 mState;
     /* 650 */ void *mHeap;
 } Unk02174e6c;
 
 void func_02035d18(void);
 void func_02035d20(void);
-void func_02035d48(u32 a, int b);
-void func_02035d74(int arg0);
+void WriteSubBg3Offset(u32 a, int b);
+void WriteSubDispcntBits(int arg0);
 void func_02035d90(void);
 s32 func_02035db4(u32 a);
 void func_02035e30(unsigned int p0, unsigned int p1);

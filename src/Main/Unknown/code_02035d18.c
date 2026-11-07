@@ -32,10 +32,10 @@ s32 func_02035f5c(u32 a) {
     s32 r;
     Unk02174e6c *o;
 
-    switch (data_02174e6c->mUnk_64c) {
+    switch (data_02174e6c->mState) {
         case 0:
             if (func_0205579c(0, 1) == 1) {
-                data_02174e6c->mUnk_64c = 2;
+                data_02174e6c->mState = 2;
             }
             break;
         case 2:
@@ -43,7 +43,7 @@ s32 func_02035f5c(u32 a) {
             switch (r) {
                 case 1:
                     func_0204aa28(func_020360e4());
-                    data_02174e6c->mUnk_64c = 4;
+                    data_02174e6c->mState = 4;
                     break;
                 case 2:
                     break;
@@ -57,7 +57,7 @@ s32 func_02035f5c(u32 a) {
                         func_02035e38();
                     }
                     func_0205e5c4(1);
-                    data_02174e6c->mUnk_64c = 6;
+                    data_02174e6c->mState = 6;
                     break;
                 case 2:
                     break;
@@ -70,12 +70,12 @@ s32 func_02035f5c(u32 a) {
                 if (a != 0) {
                     func_02035e30(a, 1);
                 }
-                data_02174e6c->mUnk_64c = 11;
+                data_02174e6c->mState = 11;
             }
             break;
     }
     o = data_02174e6c;
-    o->mUnk_640 = (o->mUnk_640 + 1) % 0x100;
+    o->mBg3Offset = (o->mBg3Offset + 1) % 0x100;
     return -1;
 }
 
@@ -83,7 +83,7 @@ s32 func_02035ee0(u32 a) {
     s32 r;
     Unk02174e6c *o;
 
-    switch (data_02174e6c->mUnk_64c) {
+    switch (data_02174e6c->mState) {
         case 9:
             r = func_020591c4();
             switch (r) {
@@ -91,7 +91,7 @@ s32 func_02035ee0(u32 a) {
                     if (func_02035e44() != 0) {
                         func_02035e38();
                     }
-                    data_02174e6c->mUnk_64c = 10;
+                    data_02174e6c->mState = 10;
                     break;
                 case 2:
                     break;
@@ -101,11 +101,11 @@ s32 func_02035ee0(u32 a) {
             if (a != 0) {
                 func_02035e30(a, 2);
             }
-            data_02174e6c->mUnk_64c = 11;
+            data_02174e6c->mState = 11;
             break;
     }
     o = data_02174e6c;
-    o->mUnk_640 = (o->mUnk_640 + 1) % 0x100;
+    o->mBg3Offset = (o->mBg3Offset + 1) % 0x100;
     return -1;
 }
 
@@ -113,7 +113,7 @@ s32 func_02035e64(u32 a) {
     s32 r;
     Unk02174e6c *o;
 
-    switch (data_02174e6c->mUnk_64c) {
+    switch (data_02174e6c->mState) {
         case 9:
             r = func_02058f20();
             switch (r) {
@@ -121,7 +121,7 @@ s32 func_02035e64(u32 a) {
                     if (func_02035e44() != 0) {
                         func_02035e38();
                     }
-                    data_02174e6c->mUnk_64c = 10;
+                    data_02174e6c->mState = 10;
                     break;
                 case 2:
                     break;
@@ -131,11 +131,11 @@ s32 func_02035e64(u32 a) {
             if (a != 0) {
                 func_02035e30(a, 10);
             }
-            data_02174e6c->mUnk_64c = 11;
+            data_02174e6c->mState = 11;
             break;
     }
     o = data_02174e6c;
-    o->mUnk_640 = (o->mUnk_640 + 1) % 0x100;
+    o->mBg3Offset = (o->mBg3Offset + 1) % 0x100;
     return -1;
 }
 
@@ -160,7 +160,7 @@ s32 func_02035db4(u32 a) {
     s32 r;
     Unk02174e6c *o;
 
-    switch (data_02174e6c->mUnk_64c) {
+    switch (data_02174e6c->mState) {
         case 9:
             r = func_020591bc();
             switch (r) {
@@ -168,7 +168,7 @@ s32 func_02035db4(u32 a) {
                     if (func_02035e44() != 0) {
                         func_02035e38();
                     }
-                    data_02174e6c->mUnk_64c = 10;
+                    data_02174e6c->mState = 10;
                     break;
                 case 2:
                     break;
@@ -178,11 +178,11 @@ s32 func_02035db4(u32 a) {
             if (a != 0) {
                 func_02035e30(a, 1);
             }
-            data_02174e6c->mUnk_64c = 11;
+            data_02174e6c->mState = 11;
             break;
     }
     o = data_02174e6c;
-    o->mUnk_640 = (o->mUnk_640 + 1) % 0x100;
+    o->mBg3Offset = (o->mBg3Offset + 1) % 0x100;
     return -1;
 }
 
@@ -197,7 +197,7 @@ void func_02035d90(void) {
 
 #pragma thumb off
 
-void func_02035d74(int arg0) {
+void WriteSubDispcntBits(int arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
@@ -208,15 +208,15 @@ void func_02035d74(int arg0) {
     *(u32 *) ((value2) + (0)) = value0;
 }
 
-void func_02035d48(u32 a, int b) {
+void WriteSubBg3Offset(u32 a, int b) {
     reg_G2S_DB_BG3OFS = (a & 0x1ff) | ((b << 16) & 0x01ff0000);
 }
 
 #pragma thumb on
 
 void func_02035d20(void) {
-    func_02035d74(10);
-    func_02035d48(-data_02174e6c->mUnk_640, 0);
+    WriteSubDispcntBits(10);
+    WriteSubBg3Offset(-data_02174e6c->mBg3Offset, 0);
 }
 
 #pragma thumb off
