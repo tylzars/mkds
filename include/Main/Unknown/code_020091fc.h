@@ -5,9 +5,9 @@
 #include "Main/Unknown/code_02008880.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0214cfe4.h"
-#include "code_021453ec.h"
+#include "wm_etc.h"
 #include "code_02003be0.h"
-#include "code_02004d80.h"
+#include "fs_file.h"
 #include "Main/Unknown/code_02008e10.h"
 
 // Entry of the list that data_0216fc4c walks (the lists are chained through mUnk_4bc). func_02008934 returns one;

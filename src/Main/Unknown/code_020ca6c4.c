@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020ca820.h"
 #include "Main/Unknown/unk_0217b000.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 
 void func_020ca808(Unk02180728 *a, void *b, void *c, s32 d, s32 e) {
     a->mUnk_00 = b;

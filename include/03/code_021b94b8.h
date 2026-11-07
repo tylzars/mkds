@@ -8,7 +8,7 @@
 #include "Main/Unknown/code_0200f000.h"
 #include "code_0200f790.h"
 #include "Main/Unknown/code_0214d000.h"
-#include "code_0200db4c.h"
+#include "os_thread.h"
 #include "code_0200e77c.h"
 
 typedef struct Unk021b94c4 {

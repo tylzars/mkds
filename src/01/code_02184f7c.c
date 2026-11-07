@@ -17,7 +17,7 @@
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_02047104.h"
 #include "code_02012b30.h"
-#include "code_02021db0.h"
+#include "g2d_NAN_load.h"
 #include "Main/Unknown/code_02021000.h"
 #include "code_02022030.h"
 #include "code_020222ec.h"

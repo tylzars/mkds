@@ -25,7 +25,7 @@
 #include "03/code_021ca940.h"
 #include "03/code_021cb000.h"
 #include "03/code_021cc000.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "03/code_021cd2e0.h"
 #include "code_0212df7c.h"
 #include "03/code_021cdbd0.h"

@@ -112,7 +112,7 @@ extern void (*data_ov000_021b6384)(void);
 
 // OSThread entry functions (not lifted yet).
 
-#include "code_0200db4c.h"
+#include "os_thread.h"
 
 typedef struct Unk021b69dc Unk021b69dc;
 typedef struct Unk021b5fa8 Unk021b5fa8;

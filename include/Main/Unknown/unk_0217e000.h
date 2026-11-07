@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0212c7f0.h" // Unk0212c7f0
+#include "stream.h" // Unk0212c7f0
 #include "code_0212d214.h"
 
 typedef struct OSMutex OSMutex;

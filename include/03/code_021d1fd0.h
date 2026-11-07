@@ -13,7 +13,7 @@ void func_ov003_021d214c(unsigned int p0, unsigned int p1, unsigned int p2, unsi
                          unsigned int p5);
 
 #include "Main/Unknown/types_02180728.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 
 // 0x38-byte object; func_ov003_021d2288 sets it up.
 typedef struct Unk021d2188 {
@@ -55,7 +55,7 @@ typedef struct Unk021d1fd0 {
 #include "03/code_021d1770.h"
 #include "03/unk_021da000.h"
 #include "Main/Unknown/code_02024000.h"
-#include "code_02021f9c.h"
+#include "g2d_NSC_load.h"
 #include "code_02022aa8.h"
 
 void func_ov003_021d1fd0(void *object);

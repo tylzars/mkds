@@ -5,7 +5,7 @@
 #include "code_0200fc8c.h"
 #include "Main/Unknown/code_0200f000.h"
 #include "Main/Unknown/unk_02170000.h"
-#include "code_0200f580.h"
+#include "os_timer.h"
 
 // Runs once: empties the vertical count alarm state and clears the V-count interrupt enable.
 void OS_InitVAlarm(void) {

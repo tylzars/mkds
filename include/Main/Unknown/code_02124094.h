@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02021db0.h" // Unk02021dc8
+#include "g2d_NAN_load.h" // Unk02021dc8
 #include "code_02022030.h" // Unk020224e0_c, Unk020224e0_s
 #include "code_0201ea58.h" // Unk0201ea30
 

@@ -1,6 +1,6 @@
 #include "Main/Unknown/code_02152918.h"
 #include "Main/Unknown/unk_0216f000.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 
 #pragma thumb on
 

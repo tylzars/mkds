@@ -2,7 +2,7 @@
 #include "Main/Unknown/code_02026000.h"
 #include "Main/Unknown/code_020ccc9c.h"
 #include "Main/Unknown/code_020ce744.h"
-#include "code_021488e8.h"
+#include "gx.h"
 #include "code_02148950.h"
 #include "Main/Unknown/code_02025f80.h"
 

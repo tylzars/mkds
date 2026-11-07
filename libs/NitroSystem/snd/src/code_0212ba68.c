@@ -1,15 +1,15 @@
 #include "code_0212ba68.h"
-#include "code_020207ec.h"
-#include "code_02020e3c.h"
-#include "code_02020eb0.h"
+#include "snd_interface.h"
+#include "snd_main.h"
+#include "snd_command.h"
 #include "code_0212b9ec.h"
 #include "code_0212bcac.h"
 #include "code_0212c9d4.h"
-#include "code_0212ee54.h"
-#include "code_0214f4a4.h"
+#include "sndarc_stream.h"
+#include "pm.h"
 #include "code_0201ec30.h"
 #include "Main/Unknown/code_02021000.h"
-#include "code_0212bb50.h"
+#include "resource_mgr.h"
 
 PMSleepCallbackInfo data_0217d42c;
 PMSleepCallbackInfo data_0217d420;

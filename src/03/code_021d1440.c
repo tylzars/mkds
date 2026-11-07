@@ -8,7 +8,7 @@
 #include "03/code_021d1cd4.h"
 #include "03/code_021d27d8.h"
 #include "03/unk_021d7bd4.h"
-#include "code_02004d80.h"
+#include "fs_file.h"
 #include "code_02003be0.h"
 #include "string.h"
 #include "code_02134398.h"
@@ -18,7 +18,7 @@
 #include "03/code_021d1d60.h"
 #include "03/unk_021d67d8.h"
 #include "code_0200cd1c.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "code_0214578c.h"
 
 void func_ov003_021d1654(void) {

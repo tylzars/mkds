@@ -19,7 +19,7 @@
 #include "00/code_02194000.h"
 #include "00/code_0218e8d4.h"
 #include "00/unk_021b4000.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "code_02139f70.h"
 #include "Main/Unknown/code_02152000.h"
 #include "code_02152500.h"

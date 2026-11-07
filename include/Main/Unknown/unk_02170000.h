@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02013bdc.h"
-#include "code_0200db4c.h"
+#include "os_thread.h"
 #include "code_0200f790.h"
 
 typedef struct NNSG3dGlb NNSG3dGlb;

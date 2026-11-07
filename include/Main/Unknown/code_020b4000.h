@@ -3,7 +3,7 @@
 #include "types.h"
 
 #include "Main/Unknown/unk_0217b000.h"
-#include "code_02021db0.h" // Unk02021dc8
+#include "g2d_NAN_load.h" // Unk02021dc8
 
 // Objects stored through the first parameter: Nscr by LocateNscr and LoadNscrData, Ncgr by
 // LocateNcgr, LoadNcgrData, LocateNcgr2 and LoadNcgrData2, Nclr by LocateNclr and LoadNclrData,

@@ -6,7 +6,7 @@
 #include "code_0200eddc.h"
 #include "code_02013740.h"
 #include "code_02012b30.h"
-#include "code_0214c1bc.h"
+#include "gx_load3d.h"
 #include "code_0214d018.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "Main/Unknown/code_02047000.h"

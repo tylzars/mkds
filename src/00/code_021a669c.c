@@ -4,7 +4,7 @@
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
 #include "code_02133274.h"
-#include "code_0200db4c.h"
+#include "os_thread.h"
 #include "Main/Unknown/code_02000800.h"
 
 void func_ov000_021a68dc(OSMutex *a) {

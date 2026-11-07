@@ -1,5 +1,5 @@
 #include "code_0212ba34.h"
-#include "code_020207ec.h"
+#include "snd_interface.h"
 
 // Centers the master pan when mono is set, otherwise resets it.
 void NNS_SndSetMonoFlag(BOOL mono) {

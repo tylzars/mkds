@@ -1,6 +1,6 @@
 #include "code_0212b9ec.h"
-#include "code_020207ec.h"
-#include "code_02020eb0.h"
+#include "snd_interface.h"
+#include "snd_command.h"
 #include "code_0212c9d4.h"
 #include "code_0201ec30.h"
 #include "Main/Unknown/code_02021000.h"

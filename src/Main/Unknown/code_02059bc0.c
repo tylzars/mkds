@@ -2,7 +2,7 @@
 
 #include "Main/Unknown/code_0202a5a0.h"
 #include "Main/Unknown/code_02036820.h"
-#include "code_02004d80.h"
+#include "fs_file.h"
 #include "Main/Unknown/code_0202a000.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020364e0.h"
@@ -18,7 +18,7 @@
 #include "code_02003be0.h"
 #include "code_02004dc0.h"
 #include "code_020176c0.h"
-#include "code_02017f24.h"
+#include "frameheap.h"
 
 static inline void func_0205a140_inline(s32 i, s32 id, u32 start, u32 end) {
     Unk0217aa10_08 *entry;

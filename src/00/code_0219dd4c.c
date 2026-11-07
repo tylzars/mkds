@@ -45,7 +45,7 @@
 #include "00/code_0219b000.h"
 #include "00/code_0219f9bc.h"
 #include "00/code_021a1000.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "00/code_021a10b0.h"
 #include "00/code_0218f960.h"
 #include "00/code_02194000.h"

@@ -35,7 +35,7 @@ typedef struct WiFiTopMenu {
 #include "00/code_02180608.h"
 #include "00/unk_021b4000.h"
 #include "00/code_02181f98.h"
-#include "code_02021db0.h"
+#include "g2d_NAN_load.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02047104.h"
 

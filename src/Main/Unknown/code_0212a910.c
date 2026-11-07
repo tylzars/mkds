@@ -30,7 +30,7 @@
 #include "Main/Unknown/code_02124f4c.h"
 #include "Main/Unknown/code_02024000.h"
 #include "code_0200eddc.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 #include "code_0214a390.h"
 #include "code_0214b824.h"
 #include "code_0214d018.h"
@@ -38,7 +38,7 @@
 #include "Main/Unknown/code_0212b0b8.h"
 #include "00/code_02181f98.h"
 #include "Main/Unknown/code_02023000.h"
-#include "code_021488e8.h"
+#include "gx.h"
 
 #pragma thumb on
 void func_0212b158(void *a) {

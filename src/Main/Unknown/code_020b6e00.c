@@ -39,8 +39,8 @@
 #include "Main/Unknown/code_02025d5c.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_0200eddc.h"
-#include "code_02021e8c.h"
-#include "code_02023374.h"
+#include "g2d_NOB_load.h"
+#include "g2d_CharCanvas.h"
 #include "code_0214cfe4.h"
 
 void func_020b8624(void) {

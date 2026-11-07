@@ -14,7 +14,7 @@
 #include "03/code_021c2000.h"
 
 #include "03/unk_021d7000.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "03/code_021cd2e0.h"
 #include "03/code_021cea3c.h"
 #include "03/code_021c209c.h"

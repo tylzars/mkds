@@ -73,7 +73,7 @@ typedef struct Unk02022b10 {
 
 #include "Main/Unknown/code_02124094.h" // Unk02022eb0
 
-#include "code_02021f9c.h" // Unk02021f9c
+#include "g2d_NSC_load.h" // Unk02021f9c
 
 void NNSi_G2dFontGetTextRect(Unk02022b10 *pRect, Unk02022aa8 *pFont, s32 hSpace, s32 vSpace, u8 *txt);
 s32 NNSi_G2dFontGetTextHeight(Unk02022aa8 *pFont, s32 vSpace, u8 *txt);

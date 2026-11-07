@@ -24,11 +24,11 @@
 #include "code_0200f790.h"
 #include "code_0200fc8c.h"
 #include "code_02004dc0.h"
-#include "code_021488e8.h"
+#include "gx.h"
 #include "code_02148950.h"
 #include "code_0214a390.h"
 #include "code_0214d93c.h"
-#include "code_0214e308.h"
+#include "tp.h"
 #include "code_021519d4.h"
 #include "03/code_021d28e0.h"
 

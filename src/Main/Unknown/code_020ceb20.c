@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_020ceb54.h"
 #include "01/code_0219c784.h"
 #include "code_02148950.h"
-#include "code_021488e8.h"
+#include "gx.h"
 
 #pragma optimize_for_size on
 #pragma thumb on

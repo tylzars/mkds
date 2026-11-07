@@ -4,11 +4,11 @@
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "code_02003be0.h"
 #include "code_02004dc0.h"
 #include "Main/Unknown/code_0200e000.h"
-#include "code_02004d80.h"
+#include "fs_file.h"
 #include "code_0200eddc.h"
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02036bec.h"

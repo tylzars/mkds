@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02021db0.h" // Unk02021dc8, Unk02021e40
+#include "g2d_NAN_load.h" // Unk02021dc8, Unk02021e40
 
 // 0x1c bytes: NNSi_G2dSrtcSetInitialValue clears everything after the first word and sets mUnk_04 and mUnk_08 to
 // 0x1000. NNSi_G2dSrtcSetSRTScale, NNSi_G2dSrtcSetSRTRotZ and NNSi_G2dSrtcSetTrans set a member and a bit of mUnk_12

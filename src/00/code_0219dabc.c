@@ -12,7 +12,7 @@
 #include "00/code_0219f9bc.h"
 #include "00/code_021a01dc.h"
 #include "00/code_021a17bc.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "00/code_0219dd4c.h"
 #include "00/code_021a3264.h"
 

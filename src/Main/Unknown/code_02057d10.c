@@ -4,8 +4,8 @@
 #include "Main/Unknown/code_020019b0.h"
 #include "Main/Unknown/code_02057ed8.h"
 #include "Main/Unknown/code_020364e0.h"
-#include "code_0200c894.h"
-#include "code_0200db4c.h"
+#include "os_irqHandler.h"
+#include "os_thread.h"
 #include "Main/Unknown/unk_02165000.h"
 #include "Main/Unknown/unk_0217a000.h"
 

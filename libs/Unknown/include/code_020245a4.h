@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02021f9c.h" // Unk02021f9c
+#include "g2d_NSC_load.h" // Unk02021f9c
 #include "code_02022aa8.h" // Unk02022ce4
 
 // Bit reader: a pointer to the next byte, the number of unread bits of the current byte at 4 and the byte at 5.

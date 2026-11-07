@@ -3,7 +3,7 @@
 #include "Main/Unknown/code_0212b1c0.h"
 #include "Main/Unknown/unk_0217d000.h"
 #include "Main/Unknown/code_02024000.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 #include "code_0214a034.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "code_02016468.h"

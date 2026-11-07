@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "code_02134398.h"
-#include "code_0212f1ac.h" // CallbackInfo
+#include "output_effect.h" // CallbackInfo
 
 // Objects whose layout isn't known yet.
 extern const char *gTrophyIconNcgrName;

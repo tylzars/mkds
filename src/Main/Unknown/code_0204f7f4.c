@@ -1,5 +1,5 @@
 #include "Main/Unknown/code_0204f7f4.h"
-#include "code_0214f4a4.h"
+#include "pm.h"
 
 u32 func_0204f804(void) {
     u32 value0;

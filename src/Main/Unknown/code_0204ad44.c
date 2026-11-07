@@ -2,7 +2,7 @@
 
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020487fc.h"
-#include "code_02012b20.h"
+#include "gecom.h"
 #include "Main/Unknown/code_0211d4a8.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_0202f14c.h"
@@ -12,8 +12,8 @@
 #include "code_0200f5ac.h"
 #include "code_0200fc8c.h"
 #include "code_0214d018.h"
-#include "code_0214f4a4.h"
-#include "code_02017f24.h"
+#include "pm.h"
+#include "frameheap.h"
 #include "Main/Unknown/code_0204aa60.h"
 
 void func_0204b030(void) {

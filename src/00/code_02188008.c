@@ -5,7 +5,7 @@
 #include "00/code_02186d04.h"
 #include "00/code_02188694.h"
 #include "00/unk_021b4000.h"
-#include "code_0200db4c.h"
+#include "os_thread.h"
 #include "code_02133048.h"
 #include "code_02133274.h"
 #include "code_02139f70.h"

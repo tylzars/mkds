@@ -1,4 +1,4 @@
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 #include "code_0214d018.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02153000.h"

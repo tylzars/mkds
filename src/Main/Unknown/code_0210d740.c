@@ -7,7 +7,7 @@
 #include "Main/Unknown/unk_0216c000.h"
 #include "code_0212df7c.h"
 #include "code_0212d214.h"
-#include "code_0212f1ac.h"
+#include "output_effect.h"
 #include "code_0212ba68.h"
 #include "Main/Unknown/code_0210d890.h"
 #include "Main/Unknown/code_0210d894.h"

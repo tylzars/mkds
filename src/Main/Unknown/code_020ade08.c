@@ -17,7 +17,7 @@
 #include "Main/Unknown/code_0212a910.h"
 #include "Main/Unknown/code_0212b09c.h"
 #include "code_0200eddc.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 #include "code_0213c9f8.h"
 #include "code_0213ecf8.h"
 #include "Main/Unknown/unk_021759c0.h"

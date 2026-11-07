@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_020497f0.h"
 #include "Main/Unknown/unk_02175000.h"
 
-#include "code_021488e8.h"
+#include "gx.h"
 #include "registers.h"
 
 u32 func_02049838(void) {

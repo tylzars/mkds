@@ -4,10 +4,10 @@
 #include "Main/Unknown/code_02036c5c.h"
 #include "code_020182c0.h" // Unk020182c0
 #include "Main/Unknown/unk_02175628.h" // InputSlot
-#include "code_02017f24.h" // NNSiFndHeapHead
-#include "code_0200db4c.h"
+#include "frameheap.h" // NNSiFndHeapHead
+#include "os_thread.h"
 #include "Main/Unknown/code_020d22c0.h" // Unk020f41c4_B
-#include "code_0214f4a4.h" // PMSleepCallbackInfo
+#include "pm.h" // PMSleepCallbackInfo
 #include "Main/Unknown/code_02105ec0.h" // Unk0217d060
 
 // Object behind data_021759d0 (0x7c bytes); the 0x14 bytes at 0x2a are the source of a block move into

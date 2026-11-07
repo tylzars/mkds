@@ -7,7 +7,7 @@
 #include "Main/Unknown/unk_0215d000.h"
 #include "Main/Unknown/unk_02175000.h"
 #include "Main/Unknown/unk_021759c0.h"
-#include "code_02021e8c.h"
+#include "g2d_NOB_load.h"
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_0203c5f8.h"
 

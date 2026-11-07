@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_02024000.h"
 #include "Main/Unknown/unk_02153000.h"
 #include "Main/Unknown/code_02022000.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 
 void NNS_G2dMapScrToCharText(u16 *scnBase, s32 areaWidth, s32 areaHeight, s32 areaLeft, s32 areaTop, s32 scnWidth,
                              s32 charNo, u32 cplt) {

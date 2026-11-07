@@ -14,7 +14,7 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "00/code_021832d8.h"
 #include "01/code_021956dc.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "Main/Unknown/code_02036c5c.h"
 #include "Main/Unknown/code_02038000.h"
 #include "Main/Unknown/code_02039000.h"

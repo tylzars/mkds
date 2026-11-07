@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0214f4a4.h" // PMSleepCallbackInfo
+#include "pm.h" // PMSleepCallbackInfo
 
 extern s8 data_0217d414;
 extern u32 data_0217d418;

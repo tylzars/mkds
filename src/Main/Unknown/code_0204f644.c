@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_0204f644.h"
 #include "Main/Unknown/code_02036820.h"
 #include "code_02003be0.h"
-#include "code_02004d80.h"
+#include "fs_file.h"
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02057d10.h"
 #include "Main/Unknown/unk_0217a000.h"

@@ -2,7 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/unk_02029930.h" // Unk02029930_f8
-#include "code_0214e308.h"
+#include "tp.h"
 
 typedef struct Unk0210f090 Unk0210f090;
 

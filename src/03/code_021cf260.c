@@ -9,7 +9,7 @@
 #include "03/unk_021da000.h"
 #include "code_0214d018.h"
 #include "Main/Unknown/code_02007624.h"
-#include "code_02004d80.h"
+#include "fs_file.h"
 #include "Main/Unknown/code_02007ea0.h"
 #include "Main/Unknown/code_02008000.h"
 #include "Main/Unknown/code_02008880.h"

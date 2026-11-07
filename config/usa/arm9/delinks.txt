@@ -91,7 +91,7 @@ libs/NitroSDK/fs/src/code_02003be0.c:
     .bss        start:0x0216f320 end:0x0216f330
 
 // provisional: file name and boundaries
-libs/NitroSDK/fs/src/code_02004d80.c:
+libs/NitroSDK/fs/src/fs_file.c:
     complete
     .text       start:0x02004d80 end:0x02004dc0
 
@@ -243,7 +243,7 @@ src/Main/Unknown/code_0200c0d8.c:
     .text       start:0x0200c0d8 end:0x0200c46c
 
 // provisional: file name and boundaries
-libs/NitroSDK/ctrdg/src/code_0200c46c.c:
+libs/NitroSDK/ctrdg/src/ctrdg.c:
     complete
     .text       start:0x0200c46c end:0x0200c4a4
 
@@ -254,12 +254,12 @@ libs/NitroSDK/ctrdg/src/code_0200c4a4.c:
     .bss        start:0x0216fde4 end:0x0216fec0
 
 // provisional: file name and boundaries
-libs/NitroSDK/std/src/code_0200c858.c:
+libs/NitroSDK/std/src/std_string.c:
     complete
     .text       start:0x0200c858 end:0x0200c894
 
 // provisional: file name and boundaries
-libs/NitroSDK/os/src/code_0200c894.c:
+libs/NitroSDK/os/src/os_irqHandler.c:
     complete
     .text       start:0x0200c894 end:0x0200c914
 
@@ -312,12 +312,12 @@ libs/NitroSDK/os/src/code_0200ce60.c:
     .bss        start:0x0216ff20 end:0x0216ff24
 
 // provisional: file name and boundaries
-libs/NitroSDK/os/src/code_0200d118.c:
+libs/NitroSDK/os/src/os_printf.c:
     complete
     .text       start:0x0200d118 end:0x0200db4c
 
 // provisional: file name and boundaries
-libs/NitroSDK/os/src/code_0200db4c.c:
+libs/NitroSDK/os/src/os_thread.c:
     complete
     .text       start:0x0200db4c end:0x0200e688
 
@@ -355,7 +355,7 @@ libs/NitroSDK/os/src/code_0200f3f4.c:
     .bss        start:0x0217019c end:0x02170228
 
 // provisional: file name and boundaries
-libs/NitroSDK/os/src/code_0200f580.c:
+libs/NitroSDK/os/src/os_timer.c:
     complete
     .text       start:0x0200f580 end:0x0200f59c
 
@@ -429,7 +429,7 @@ libs/NitroSystem/g3d/src/code_02010c84.c:
     .text       start:0x02010c84 end:0x02012b20
 
 // provisional: file name and boundaries
-libs/NitroSystem/g3d/src/code_02012b20.c:
+libs/NitroSystem/g3d/src/gecom.c:
     complete
     .text       start:0x02012b20 end:0x02012b30
 
@@ -439,7 +439,7 @@ libs/NitroSystem/g3d/src/code_02012b30.c:
     .text       start:0x02012b30 end:0x02013730
 
 // provisional: file name and boundaries
-libs/NitroSystem/g3d/src/code_02013730.c:
+libs/NitroSystem/g3d/src/res_struct_accessor.c:
     complete
     .text       start:0x02013730 end:0x02013740
 
@@ -474,12 +474,12 @@ libs/NitroSystem/gfd/src/code_02015eb8.c:
     .text       start:0x02015eb8 end:0x02015f98
 
 // provisional: file name and boundaries
-libs/NitroSystem/gfd/src/code_02015f98.c:
+libs/NitroSystem/gfd/src/gfd_FrameTexVramMan.c:
     complete
     .text       start:0x02015f98 end:0x020162b0
 
 // provisional: file name and boundaries
-libs/NitroSystem/gfd/src/code_020162b0.c:
+libs/NitroSystem/gfd/src/gfd_FramePlttVramMan.c:
     complete
     .text       start:0x020162b0 end:0x02016468
 
@@ -525,13 +525,13 @@ libs/Unknown/src/code_02016d28.c:
     .text       start:0x02016d28 end:0x02016d34
 
 // provisional: file name and boundaries
-libs/NitroSystem/gfd/src/code_02016d34.c:
+libs/NitroSystem/gfd/src/gfd_LinkedListTexVramMan.c:
     complete
     .text       start:0x02016d34 end:0x020170e4
     .data       start:0x02161a90 end:0x02161ac0
 
 // provisional: file name and boundaries
-libs/NitroSystem/gfd/src/code_020170e4.c:
+libs/NitroSystem/gfd/src/gfd_LinkedListPlttVramMan.c:
     complete
     .text       start:0x020170e4 end:0x020172d0
 
@@ -546,7 +546,7 @@ libs/NitroSystem/fnd/src/code_0201750c.c:
     .text       start:0x0201750c end:0x02017550
 
 // provisional: file name and boundaries
-libs/NitroSystem/fnd/src/code_02017550.c:
+libs/NitroSystem/fnd/src/heapcommon.c:
     complete
     .text       start:0x02017550 end:0x020176b0
 
@@ -571,7 +571,7 @@ libs/NitroSystem/fnd/src/code_02017ea0.c:
     .text       start:0x02017ea0 end:0x02017f24
 
 // provisional: file name and boundaries
-libs/NitroSystem/fnd/src/code_02017f24.c:
+libs/NitroSystem/fnd/src/frameheap.c:
     complete
     .text       start:0x02017f24 end:0x020182c0
 
@@ -586,7 +586,7 @@ libs/spl/src/code_020184e4.c:
     .text       start:0x020184e4 end:0x0201e5a8
 
 // provisional: file name and boundaries
-libs/NitroSDK/wvr/src/code_0201e5a8.c:
+libs/NitroSDK/wvr/src/wvr.c:
     complete
     .text       start:0x0201e5a8 end:0x0201ea30
 
@@ -628,24 +628,24 @@ libs/NitroSDK/math/src/code_020205b0.c:
     .text       start:0x020205b0 end:0x020207ec
 
 // provisional: file name and boundaries
-libs/NitroSDK/snd/src/code_020207ec.c:
+libs/NitroSDK/snd/src/snd_interface.c:
     complete
     .text       start:0x020207ec end:0x02020e3c
 
 // provisional: file name and boundaries
-libs/NitroSDK/snd/src/code_02020e3c.c:
+libs/NitroSDK/snd/src/snd_main.c:
     complete
     .text       start:0x02020e3c end:0x02020eb0
     .bss        start:0x0217328c end:0x021732a8
 
 // provisional: file name and boundaries
-libs/NitroSDK/snd/src/code_02020eb0.c:
+libs/NitroSDK/snd/src/snd_command.c:
     complete
     .text       start:0x02020eb0 end:0x02021764
     .bss        start:0x021732a8 end:0x02174d80
 
 // provisional: file name and boundaries
-libs/NitroSDK/snd/src/code_02021764.c:
+libs/NitroSDK/snd/src/snd_work.c:
     complete
     .text       start:0x02021764 end:0x020218f4
     .bss        start:0x02174de0 end:0x02174de4
@@ -666,12 +666,12 @@ libs/NitroSDK/snd/src/code_020219e8.c:
     .text       start:0x020219e8 end:0x02021db0
 
 // provisional: file name and boundaries
-libs/NitroSystem/g2d/src/code_02021db0.c:
+libs/NitroSystem/g2d/src/g2d_NAN_load.c:
     complete
     .text       start:0x02021db0 end:0x02021e8c
 
 // provisional: file name and boundaries
-libs/NitroSystem/g2d/src/code_02021e8c.c:
+libs/NitroSystem/g2d/src/g2d_NOB_load.c:
     complete
     .text       start:0x02021e8c end:0x02021f6c
 
@@ -681,7 +681,7 @@ libs/NitroSystem/g2d/src/code_02021f6c.c:
     .text       start:0x02021f6c end:0x02021f9c
 
 // provisional: file name and boundaries
-libs/NitroSystem/g2d/src/code_02021f9c.c:
+libs/NitroSystem/g2d/src/g2d_NSC_load.c:
     complete
     .text       start:0x02021f9c end:0x02022030
 
@@ -736,7 +736,7 @@ libs/NitroSystem/g2d/src/code_02022aa8.c:
     .text       start:0x02022aa8 end:0x02023374
 
 // provisional: file name and boundaries
-libs/NitroSystem/g2d/src/code_02023374.c:
+libs/NitroSystem/g2d/src/g2d_CharCanvas.c:
     complete
     .text       start:0x02023374 end:0x02024184
 
@@ -5136,7 +5136,7 @@ libs/NitroSystem/snd/src/code_0212ba68.c:
     .bss        start:0x0217d3f4 end:0x0217d418
 
 // provisional: file name and boundaries
-libs/NitroSystem/snd/src/code_0212bb50.c:
+libs/NitroSystem/snd/src/resource_mgr.c:
     complete
     .text       start:0x0212bb50 end:0x0212bcac
     .bss        start:0x0217d418 end:0x0217d424
@@ -5153,7 +5153,7 @@ libs/NitroSystem/snd/src/code_0212c7a0.c:
     .text       start:0x0212c7a0 end:0x0212c7f0
 
 // provisional: file name and boundaries
-libs/NitroSystem/snd/src/code_0212c7f0.c:
+libs/NitroSystem/snd/src/stream.c:
     complete
     .text       start:0x0212c7f0 end:0x0212c9d4
 
@@ -5169,12 +5169,12 @@ libs/NitroSystem/snd/src/code_0212d214.c:
     .bss        start:0x0217dea8 end:0x0217dee4
 
 // provisional: file name and boundaries
-libs/NitroSystem/snd/src/code_0212ee54.c:
+libs/NitroSystem/snd/src/sndarc_stream.c:
     complete
     .text       start:0x0212ee54 end:0x0212f1ac
 
 // provisional: file name and boundaries
-libs/NitroSystem/snd/src/code_0212f1ac.c:
+libs/NitroSystem/snd/src/output_effect.c:
     complete
     .text       start:0x0212f1ac end:0x0212f788
 
@@ -5349,7 +5349,7 @@ libs/msl/src/code_021423e4.c:
     .text       start:0x021423e4 end:0x0214259c
 
 // provisional: file name and boundaries
-libs/NitroSDK/wm/src/code_0214259c.c:
+libs/NitroSDK/wm/src/wm_system.c:
     complete
     .text       start:0x0214259c end:0x02142eac
     .bss        start:0x0217eeb0 end:0x0217ef00
@@ -5365,7 +5365,7 @@ libs/NitroSDK/wm/src/code_021445e0.c:
     .text       start:0x021445e0 end:0x021453ec
 
 // provisional: file name and boundaries
-libs/NitroSDK/wm/src/code_021453ec.c:
+libs/NitroSDK/wm/src/wm_etc.c:
     complete
     .text       start:0x021453ec end:0x0214578c
     .bss        start:0x0217f940 end:0x0217f9c0
@@ -5386,7 +5386,7 @@ libs/NitroSDK/card/src/code_021458c4.c:
     .text       start:0x021458c4 end:0x02146a00
 
 // provisional: file name and boundaries
-libs/NitroSDK/card/src/code_02146a00.c:
+libs/NitroSDK/card/src/card_request.c:
     complete
     .text       start:0x02146a00 end:0x02146a50
 
@@ -5402,7 +5402,7 @@ libs/NitroSDK/card/src/code_02146af4.c:
     .bss        start:0x02180280 end:0x02180288
 
 // provisional: file name and boundaries
-libs/NitroSDK/cp/src/code_02146bb8.c:
+libs/NitroSDK/cp/src/cp_context.c:
     complete
     .text       start:0x02146bb8 end:0x02146c98
 
@@ -5457,7 +5457,7 @@ libs/NitroSDK/fx/src/code_02148538.c:
     .text       start:0x02148538 end:0x021488e8
 
 // provisional: file name and boundaries
-libs/NitroSDK/gx/src/code_021488e8.c:
+libs/NitroSDK/gx/src/gx.c:
     complete
     .text       start:0x021488e8 end:0x02148950
 
@@ -5523,7 +5523,7 @@ libs/NitroSDK/gx/src/code_0214a390.c:
     .text       start:0x0214a390 end:0x0214a4dc
 
 // provisional: file name and boundaries
-libs/NitroSDK/gx/src/code_0214a4dc.c:
+libs/NitroSDK/gx/src/g3imm.c:
     complete
     .text       start:0x0214a4dc end:0x0214a54c
 
@@ -5563,12 +5563,12 @@ libs/NitroSDK/gx/src/code_0214b824.c:
     .text       start:0x0214b824 end:0x0214c1bc
 
 // provisional: file name and boundaries
-libs/NitroSDK/gx/src/code_0214c1bc.c:
+libs/NitroSDK/gx/src/gx_load3d.c:
     complete
     .text       start:0x0214c1bc end:0x0214c728
 
 // provisional: file name and boundaries
-libs/NitroSDK/gx/src/code_0214c728.c:
+libs/NitroSDK/gx/src/gxasm.c:
     complete
     .text       start:0x0214c728 end:0x0214c768
 
@@ -5594,7 +5594,7 @@ libs/NitroSDK/mi/src/code_0214d018.c:
     .text       start:0x0214d018 end:0x0214d3d8
 
 // provisional: file name and boundaries
-libs/NitroSDK/mi/src/code_0214d3d8.c:
+libs/NitroSDK/mi/src/mi_dma_card.c:
     complete
     .text       start:0x0214d3d8 end:0x0214d464
 
@@ -5609,7 +5609,7 @@ libs/NitroSDK/mi/src/code_0214d564.c:
     .text       start:0x0214d564 end:0x0214d594
 
 // provisional: file name and boundaries
-libs/NitroSDK/mi/src/code_0214d594.c:
+libs/NitroSDK/mi/src/mi_init.c:
     complete
     .text       start:0x0214d594 end:0x0214d5b8
 
@@ -5641,19 +5641,19 @@ libs/NitroSDK/rtc/src/code_0214e274.c:
     .text       start:0x0214e274 end:0x0214e308
 
 // provisional: file name and boundaries
-libs/NitroSDK/spi/src/code_0214e308.c:
+libs/NitroSDK/spi/src/tp.c:
     complete
     .text       start:0x0214e308 end:0x0214eed8
     .bss        start:0x021803b4 end:0x021803b8
 
 // provisional: file name and boundaries
-libs/NitroSDK/spi/src/code_0214eed8.c:
+libs/NitroSDK/spi/src/mic.c:
     complete
     .text       start:0x0214eed8 end:0x0214f4a4
     .bss        start:0x021803f0 end:0x021803f4
 
 // provisional: file name and boundaries
-libs/NitroSDK/spi/src/code_0214f4a4.c:
+libs/NitroSDK/spi/src/pm.c:
     complete
     .text       start:0x0214f4a4 end:0x02150228
     .bss        start:0x02180410 end:0x02180470
@@ -5670,7 +5670,7 @@ libs/NitroSDK/dgt/src/code_021507c8.c:
     .text       start:0x021507c8 end:0x02150808
 
 // provisional: file name and boundaries
-libs/NitroSDK/dgt/src/code_02150808.c:
+libs/NitroSDK/dgt/src/hash2.c:
     complete
     .text       start:0x02150808 end:0x02150e08
     .bss        start:0x02180470 end:0x02180474

@@ -21,7 +21,7 @@
 #include "Main/Unknown/code_0211e000.h"
 #include "Main/Unknown/code_0209bef0.h"
 #include "Main/Unknown/code_0211e0c4.h"
-#include "code_021488e8.h"
+#include "gx.h"
 #include "code_02148950.h"
 #include "registers.h"
 

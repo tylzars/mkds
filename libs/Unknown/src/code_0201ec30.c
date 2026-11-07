@@ -5,7 +5,7 @@
 #include "Main/Unknown/unk_02161000.h"
 #include "Main/Unknown/code_0200e000.h"
 #include "code_020204b4.h"
-#include "code_0214eed8.h"
+#include "mic.h"
 
 u8 data_02161ad8 = 1;
 

@@ -1,5 +1,5 @@
 #include "code_02010804.h"
-#include "code_0214c1bc.h"
+#include "gx_load3d.h"
 
 void NNS_G3dPlttSetPlttKey(NNSG3dResTex *pTex, NNSG3dPlttKey plttKey) {
     pTex->mPlttInfo.mVramKey = plttKey;

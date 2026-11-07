@@ -8,7 +8,7 @@
 #include "00/unk_021b6000.h"
 #include "code_0214d018.h"
 #include "00/code_021abca0.h"
-#include "code_0200db4c.h"
+#include "os_thread.h"
 #include "00/code_021abc24.h"
 #include "code_0200fc8c.h"
 #include "00/code_021ac3e4.h"

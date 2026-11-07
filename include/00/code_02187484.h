@@ -38,7 +38,7 @@ typedef struct Unk0218635c {
     /* 177 */ char mUnk_177[0x4d];
 } Unk0218635c;
 
-#include "code_0200db4c.h"
+#include "os_thread.h"
 
 extern char *data_ov000_021b1384;
 extern char gUrlPairName[];

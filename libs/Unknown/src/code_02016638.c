@@ -5,7 +5,7 @@
 #include "Main/Unknown/unk_02152000.h"
 #include "code_0214b824.h"
 #include "code_0214b338.h"
-#include "code_0214c1bc.h"
+#include "gx_load3d.h"
 
 u16 CallQueueNextIndex(CallQueue *p, u32 v) {
     return (v + 1) % p->mCapacity;

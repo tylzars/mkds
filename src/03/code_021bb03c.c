@@ -3,7 +3,7 @@
 #include "03/code_021bcedc.h"
 #include "03/code_021be3b8.h"
 #include "03/code_021be418.h"
-#include "code_0200db4c.h"
+#include "os_thread.h"
 #include "code_0214d018.h"
 #include "03/unk_021d8000.h"
 #include "code_0200f5ac.h"

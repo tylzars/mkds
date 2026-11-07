@@ -18,7 +18,7 @@
 #include "Main/Unknown/unk_02175000.h"
 #include "code_0200f5ac.h"
 #include "code_0200f790.h"
-#include "code_021488e8.h"
+#include "gx.h"
 #include "code_0200c914.h"
 #include "code_0200fc8c.h"
 #include "code_02004dc0.h"

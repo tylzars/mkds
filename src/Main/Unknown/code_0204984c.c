@@ -27,9 +27,9 @@
 #include "00/code_021832d8.h"
 #include "01/code_0219e0a8.h"
 #include "01/code_021956dc.h"
-#include "code_0200db4c.h"
-#include "code_0214f4a4.h"
-#include "code_021488e8.h"
+#include "os_thread.h"
+#include "pm.h"
+#include "gx.h"
 #include "Main/Unknown/code_02039230.h"
 #include "registers.h"
 

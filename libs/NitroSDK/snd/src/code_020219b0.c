@@ -1,6 +1,6 @@
 #include "code_020219b0.h"
 #include "code_0200eddc.h"
-#include "code_02020e3c.h"
+#include "snd_main.h"
 
 // Stores address as entry index of the wave data table of waveArc and writes that word back to memory.
 void SND_SetWaveDataAddress(Unk02021968 *waveArc, u32 index, void *address) {

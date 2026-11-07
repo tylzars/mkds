@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_02038000.h"
 #include "Main/Unknown/code_020ad000.h"
 #include "Main/Unknown/code_0214d000.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 #include "code_0214cfe4.h"
 #include "code_02022aa8.h"
 #include "Main/Unknown/code_02023000.h"

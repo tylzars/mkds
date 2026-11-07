@@ -16,7 +16,7 @@
 #include "00/unk_021b5000.h"
 #include "code_02139f70.h"
 #include "00/code_0219d128.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "00/code_021a10b0.h"
 #include "00/code_021a17bc.h"
 #include "00/code_021a1ae0.h"

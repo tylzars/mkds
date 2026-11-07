@@ -2,8 +2,8 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020b4000.h" // Nscr, Ncgr, Nclr
-#include "code_02021db0.h" // Unk02021dc8
-#include "code_02021f9c.h" // Unk02021f9c
+#include "g2d_NAN_load.h" // Unk02021dc8
+#include "g2d_NSC_load.h" // Unk02021f9c
 
 void LocateNscr(Nscr **out, void *a);
 void LoadNscrData(Nscr **out, void *a);

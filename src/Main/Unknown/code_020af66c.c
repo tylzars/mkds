@@ -53,7 +53,7 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/unk_0217b000.h"
 #include "code_0200eddc.h"
-#include "code_021488e8.h"
+#include "gx.h"
 #include "code_02148950.h"
 #include "code_0214a390.h"
 #include "code_0214b338.h"

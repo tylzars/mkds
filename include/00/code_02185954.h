@@ -15,7 +15,7 @@ typedef struct DWCHttpParseResult {
     /* 08 */ s32 mCount;
 } DWCHttpParseResult;
 
-#include "code_0200db4c.h"
+#include "os_thread.h"
 #include "00/unk_021b1000.h"
 #include "code_021510a4.h"
 

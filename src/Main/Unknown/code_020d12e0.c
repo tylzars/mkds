@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_020364e0.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_020b47b4.h"
-#include "code_02021e8c.h"
+#include "g2d_NOB_load.h"
 #include "code_0214b824.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "Main/Unknown/code_02036000.h"

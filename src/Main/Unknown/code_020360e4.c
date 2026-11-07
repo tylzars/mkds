@@ -12,7 +12,7 @@
 #include "Main/Unknown/code_020b3f7c.h"
 #include "Main/Unknown/code_020b4000.h"
 #include "code_0200eddc.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 #include "code_02149fe0.h"
 #include "Main/Unknown/unk_02174000.h"
 #include "Main/Unknown/unk_02164000.h"

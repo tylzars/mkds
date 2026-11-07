@@ -9,7 +9,7 @@
 #include "Main/Unknown/code_021108bc.h"
 #include "Main/Unknown/code_02148000.h"
 #include "code_0200eddc.h"
-#include "code_021488e8.h"
+#include "gx.h"
 #include "code_0214a390.h"
 #include "code_0214b824.h"
 #include "Main/Unknown/code_020ca000.h"

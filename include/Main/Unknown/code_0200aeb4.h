@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0200db4c.h"
+#include "os_thread.h"
 
 // 0x10-byte object func_0200aeec links by the bits above bit 0 of its member 4, in increasing order.
 typedef struct Unk0200aeec {

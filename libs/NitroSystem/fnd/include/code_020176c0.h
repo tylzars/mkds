@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_02017550.h" // NNSiFndHeapHead, NNSFndHeapHandle
+#include "heapcommon.h" // NNSiFndHeapHead, NNSFndHeapHandle
 #include "code_02017e70.h" // NNSiFndExpHeapMBlockHead, NNSiMemRegion
 #include "code_02017ea0.h" // NNSiFndExpMBlockList
 

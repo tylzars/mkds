@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0200db4c.h"
+#include "os_thread.h"
 #include "code_02142eac.h" // Unk02143a78
 
 // Three words that func_0200c448 sets up.

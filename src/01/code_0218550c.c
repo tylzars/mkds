@@ -16,7 +16,7 @@
 #include "01/code_021a11a4.h"
 #include "Main/Unknown/code_02028000.h"
 #include "Main/Unknown/code_020cc000.h"
-#include "code_021488e8.h"
+#include "gx.h"
 #include "code_02148950.h"
 #include "registers.h"
 #include "Main/Unknown/code_02028130.h"

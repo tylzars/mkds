@@ -1,5 +1,5 @@
 #include "code_020108bc.h"
-#include "code_0214c1bc.h"
+#include "gx_load3d.h"
 
 void NNS_G3dTexLoad(NNSG3dResTex *pTex, BOOL execBeginEnd) {
     u32 texSize;

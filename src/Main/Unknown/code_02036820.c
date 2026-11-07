@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_02036820.h"
 #include "code_020176c0.h"
-#include "code_02017f24.h"
-#include "code_02017550.h"
+#include "frameheap.h"
+#include "heapcommon.h"
 #include "code_0200fc8c.h"
 
 void *HeapAlloc(void *a, u32 b) {

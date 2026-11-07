@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_0214eed8.h" // MICAutoParam
+#include "mic.h" // MICAutoParam
 
 // Object func_0210f090 and func_0210f130 take, 0x420 bytes: func_0210f130 zeroes 0x400 bytes and sets up the words
 // at 0x400..0x418; func_0210f090 steps a signed number at 0x41c to 0x1e and then resets it.

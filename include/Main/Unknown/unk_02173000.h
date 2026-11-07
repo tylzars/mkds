@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "code_020170e4.h"
+#include "gfd_LinkedListPlttVramMan.h"
 #include "code_0201ec30.h" // Unk02173290
 
 typedef struct Unk01ff9048 Unk01ff9048;
@@ -38,4 +38,4 @@ extern s32 data_021732a8;
 extern Unk01ff9048 *data_usa_021731e4;
 extern vu32 data_usa_021731e8;
 
-#include "code_02016d34.h"
+#include "gfd_LinkedListTexVramMan.h"

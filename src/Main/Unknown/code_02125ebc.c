@@ -39,7 +39,7 @@
 #include "Main/Unknown/code_02126f78.h"
 #include "code_0200eddc.h"
 #include "code_02016468.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 #include "code_0214a390.h"
 #include "code_0212df7c.h"
 #include "Main/Unknown/unk_0216e000.h"

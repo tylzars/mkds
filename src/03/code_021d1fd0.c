@@ -8,7 +8,7 @@
 #include "03/code_021d1970.h"
 #include "Main/Unknown/code_02022000.h"
 #include "code_02022aa8.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 #include "03/code_021d27d8.h"
 #include "03/code_021d3488.h"
 #include "03/unk_021d67d8.h"

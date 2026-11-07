@@ -5,7 +5,7 @@
 #include "Main/Unknown/code_0210f868.h"
 #include "Main/Unknown/unk_0216c000.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "code_0214f4a4.h"
+#include "pm.h"
 
 void func_0204acd0(s32 a) {
     if (data_021759d0->mUnk_1c_1) {

@@ -6,7 +6,7 @@
 #include "code_02152a7c.h"
 #include "code_02152ac8.h"
 #include "code_020205b0.h"
-#include "code_0200d118.h"
+#include "os_printf.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/code_02152000.h"
 #include "Main/Unknown/code_021529e0.h"

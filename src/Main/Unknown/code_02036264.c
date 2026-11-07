@@ -13,7 +13,7 @@
 #include "Main/Unknown/code_020d1630.h"
 #include "Main/Unknown/code_020d1640.h"
 #include "code_0200eddc.h"
-#include "code_02023374.h"
+#include "g2d_CharCanvas.h"
 #include "code_02149fe0.h"
 #include "Main/Unknown/unk_02174000.h"
 #include "code_0214b824.h"

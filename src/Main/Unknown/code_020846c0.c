@@ -6,7 +6,7 @@
 #include "code_020109ac.h"
 #include "code_02010878.h"
 #include "code_02010998.h"
-#include "code_02013730.h"
+#include "res_struct_accessor.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/code_0214d000.h"
 #include "Main/Unknown/unk_02155000.h"

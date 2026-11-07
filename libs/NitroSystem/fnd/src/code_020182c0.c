@@ -1,5 +1,5 @@
 #include "code_020182c0.h"
-#include "code_02004d80.h"
+#include "fs_file.h"
 #include "code_02003be0.h"
 #include "code_02139f70.h"
 

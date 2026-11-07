@@ -1,5 +1,5 @@
 #include "code_020218f4.h"
-#include "code_02020e3c.h"
+#include "snd_main.h"
 #include "Main/Unknown/unk_02152000.h"
 
 // Returns the entry of waveArc table at index as an address: values below 0x2000000 are offsets from waveArc, others

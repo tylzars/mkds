@@ -1,7 +1,7 @@
 #include "code_020219e8.h"
 #include "code_0200eddc.h"
 #include "Main/Unknown/code_0200e000.h"
-#include "code_02020e3c.h"
+#include "snd_main.h"
 
 // Links entry index of bank into the list of waveArc, first taking it out of the list of the wave archive it was in.
 void SND_AssignWaveArc(Unk02021968 *bank, s32 index, Unk02021968 *waveArc) {

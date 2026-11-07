@@ -4,7 +4,7 @@
 
 #include "code_0212bcac.h"
 #include "code_0212c7a0.h" // NNSSndPlayer
-#include "code_0212c7f0.h" // NNSSndStrmChannel
+#include "stream.h" // NNSSndStrmChannel
 #include "code_0212c9d4.h" // CaptureParam, EffectInfo
 #include "code_0201ea58.h" // Unk0201ea30
 #include "Main/Unknown/code_02124094.h" // Unk02124b1c

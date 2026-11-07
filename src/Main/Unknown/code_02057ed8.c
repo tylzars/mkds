@@ -4,7 +4,7 @@
 #include "Main/Unknown/code_02036000.h"
 #include "Main/Unknown/code_02036bec.h"
 #include "Main/Unknown/unk_0217a000.h"
-#include "code_0200db4c.h"
+#include "os_thread.h"
 
 void (*func_02057f8c(Unk0217aa0c *a))(void) {
     void (**q)(void) = NULL;
