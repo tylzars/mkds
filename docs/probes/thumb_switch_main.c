@@ -34,8 +34,8 @@ int func_02025e60(int idx) {
     return result;
 }
 
-// PROBE: func_0204e3b4 main 0x0204e3b4
-void func_0204e3b4(int arg) {
+// PROBE: RepeatedScanCallback main 0x0204e3b4
+void RepeatedScanCallback(int arg) {
     switch (arg) {
         case 0:
         case 1:

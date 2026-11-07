@@ -387,7 +387,8 @@ s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021d
     return q->mUnk_20.mUnk_14;
 }
 
-void func_0212428c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s32 g, s8 h) {
+// Clears the character canvas of entry b, draws the string d into it and queues its upload.
+void PrintLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s32 g, s8 h) {
     s32 k;
     s32 w;
     s32 z;
@@ -441,18 +442,19 @@ void func_0212428c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk021
 }
 
 void func_0212426c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f) {
-    func_0212428c(a, b, c, d, e, f, 0, -1);
+    PrintLabelLayoutText(a, b, c, d, e, f, 0, -1);
 }
 
 void func_02124248(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g) {
-    func_0212428c(a, b, c, d, e, f, 0, g);
+    PrintLabelLayoutText(a, b, c, d, e, f, 0, g);
 }
 
 void func_02124224(s32 a, u32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g) {
-    func_0212428c(a, b, c, d, e, f, 1, g);
+    PrintLabelLayoutText(a, b, c, d, e, f, 1, g);
 }
 
-void func_021241c0(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e) {
+// Clears the character canvas of entry b and queues its upload.
+void ClearAndQueueLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e) {
     Unk021243ac *p;
     void *buf;
     s32 u;

@@ -161,10 +161,10 @@ s32 func_02055030(void) {
     switch (data_0217aa00->mUnk_000c) {
         case 0x1d:
         case 0x1e:
-            func_0204e074();
+            StartRequestEndScan();
             break;
         case 0x22:
-            func_0204e4bc();
+            StartCloseScanConnect();
             break;
         case 0x16:
         case 0x17:
@@ -256,7 +256,7 @@ s32 func_02055030(void) {
         case 33:
         case 34:
         case 35:
-            func_0204e4bc();
+            StartCloseScanConnect();
             break;
         case 39:
         case 40:
@@ -306,7 +306,7 @@ s32 func_02054f58(void) {
             case 0x21:
             case 0x22:
             case 0x23:
-                func_0204e4bc();
+                StartCloseScanConnect();
                 break;
             default:
                 func_020533a0();

@@ -523,7 +523,7 @@ void func_0205ef70(void) {
             }
         }
     }
-    data_0217aa08->mUnk_00->mUnk_24 = func_02120220(func_ov000_0219bb50());
+    data_0217aa08->mUnk_00->mUnk_24 = GetPlayerRecordElo(func_ov000_0219bb50());
     data_0217aa08->mUnk_00->mUnk_34[4] = a;
     data_0217aa08->mUnk_00->mUnk_34[5] = b;
     func_0205edcc();

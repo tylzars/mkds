@@ -171,7 +171,7 @@ void func_0204e568(void) {
     data_0217aa00->mUnk_0010 = 0;
 }
 
-void func_0204e4d8(void) {
+void SetupScanConnect(void) {
     Unk0204e4d8 b;
     data_0217aa00->mUnk_000c = 0x1c;
     data_0217aa00->mUnk_0010 = 1;
@@ -181,11 +181,11 @@ void func_0204e4d8(void) {
     MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, b.mUnk_02, 0x14);
     data_0217aa00->mUnk_169a = -1;
     InitScanConnectWork(data_0217aa00->mUnk_165c, &b);
-    SetScanConnectStateCallback(func_0204e304);
+    SetScanConnectStateCallback(ScanConnectStateCallback);
     data_0217aa00->mUnk_0010 = 0;
 }
 
-void func_0204e4bc(void) {
+void StartCloseScanConnect(void) {
     data_0217aa00->mUnk_000c = 0x1f;
     data_0217aa00->mUnk_0010 = 1;
     CloseScanConnect();
@@ -194,7 +194,7 @@ void func_0204e4bc(void) {
 void func_0204e498(void) {
     data_0217aa00->mUnk_000c = 0x1d;
     data_0217aa00->mUnk_0010 = 1;
-    StartRepeatedScan(func_0204e3b4, 0x25);
+    StartRepeatedScan(RepeatedScanCallback, 0x25);
 }
 
 static inline u32 func_0204e1a8_inline(void) {
@@ -207,10 +207,11 @@ static inline u32 func_0204e1a8_inline(void) {
 void func_0204e474(void) {
     data_0217aa00->mUnk_000c = 0x1e;
     data_0217aa00->mUnk_0010 = 1;
-    StartRepeatedScan(func_0204e3b4, 0x25);
+    StartRepeatedScan(RepeatedScanCallback, 0x25);
 }
 
-s32 func_0204e3f0(u32 a) {
+// Returns the scan entry index with bytes 4..9 matching the first six of element a of mUnk_00ac[0].mUnk_c0, or -1.
+s32 FindScanEntryIndex(u32 a) {
     s32 r;
     u16 i;
     Unk0217aa00_24 b;
@@ -231,7 +232,8 @@ s32 func_0204e3f0(u32 a) {
     return r;
 }
 
-void func_0204e3b4(u32 a) {
+// Codes: 2 is an error, 3 the end of the scan; 0 and 1 carry a table entry and are ignored.
+void RepeatedScanCallback(u32 a) {
     switch (a) {
         case 0:
         case 1:
@@ -245,7 +247,7 @@ void func_0204e3b4(u32 a) {
     }
 }
 
-void func_0204e304(u32 a) {
+void ScanConnectStateCallback(u32 a) {
     switch (a) {
         case 11:
             data_0217aa00->mUnk_0010 = 0;
@@ -314,7 +316,7 @@ s32 func_0204e204(void) {
                 func_020536e0();
                 break;
             case 1:
-                func_0204e4d8();
+                SetupScanConnect();
                 break;
             case 0x1c:
                 func_0204e498();
@@ -401,7 +403,7 @@ void func_0204e090(void) {
     func_02009c04();
 }
 
-void func_0204e074(void) {
+void StartRequestEndScan(void) {
     data_0217aa00->mUnk_000c = 0x21;
     data_0217aa00->mUnk_0010 = 1;
     RequestEndScan();

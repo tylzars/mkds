@@ -109,11 +109,11 @@ void func_0212463c(u32 a, Unk02021dc8 *b, Unk0212463c_c *c, Unk0212463c_d *d, Un
                    Unk02021dc8 *h, Unk0201ea30 *i);
 s32 func_021243ac(void *a, s32 b, Unk0201ea30 *c, s32 d, s32 e, s32 f, Unk02021dc8 *g, Unk0201ea30 *h, Unk02124b1c *i,
                   s32 j);
-void func_0212428c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s32 g, s8 h);
+void PrintLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s32 g, s8 h);
 void func_0212426c(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f);
 void func_02124248(s32 a, s32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g);
 void func_02124224(s32 a, u32 b, Unk0201ea30 *c, void *d, Unk0201ea30 *e, Unk02124b1c *f, s8 g);
-void func_021241c0(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e);
+void ClearAndQueueLabelLayoutText(s32 a, s32 b, Unk0201ea30 *c, Unk0201ea30 *d, Unk02124b1c *e);
 BOOL func_0212418c(s32 a, void *b, Unk02124b1c *c, Unk0201ea30 *d);
 void func_02124140(u32 a, u32 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e);
 void func_02124100(s32 a, u8 b, Unk0201ea30 *c, Unk02124b1c *d, Unk0201ea30 *e);

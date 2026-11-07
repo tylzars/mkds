@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02120048(void);
+void UpdateWiFiSessionState5(void);

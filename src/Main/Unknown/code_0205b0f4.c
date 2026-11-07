@@ -940,7 +940,7 @@ void func_0205b32c(void) {
         if (data_0217aa18->mUnk_06[i] == -1) {
             a[i] = 5000;
         } else {
-            a[i] = func_02120220(i);
+            a[i] = GetPlayerRecordElo(i);
         }
     }
     for (i = 0; i < 4; i++) {
@@ -980,7 +980,7 @@ void func_0205b32c(void) {
                 v1[i] = 10000;
             }
         }
-        func_02120200(i, v1[i]);
+        SetPlayerRecordElo(i, v1[i]);
     }
 }
 

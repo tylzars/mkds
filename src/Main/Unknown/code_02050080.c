@@ -37,7 +37,7 @@ u32 func_020501b0(u32 a) {
             b = 1;
         }
         if (b != 0) {
-            func_0204e074();
+            StartRequestEndScan();
             r = 1;
         }
     } else {

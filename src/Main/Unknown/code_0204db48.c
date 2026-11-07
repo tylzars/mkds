@@ -24,7 +24,7 @@ s32 func_0204dd24(u16 a) {
                 func_02050e60(5);
             }
             if (func_0204ff14(a, NULL) != 0) {
-                func_0204e074();
+                StartRequestEndScan();
             } else {
                 func_02050e60(5);
             }
@@ -45,10 +45,10 @@ s32 func_0204dd24(u16 a) {
             if (data_0217aa00->mUnk_1692 > 0x4b0) {
                 func_02050e60(5);
             } else {
-                v = func_0204e3f0(a);
+                v = FindScanEntryIndex(a);
                 if (v != -1) {
                     data_0217aa00->mUnk_169a = v;
-                    func_0204e074();
+                    StartRequestEndScan();
                 }
             }
             break;
@@ -64,14 +64,14 @@ s32 func_0204dd24(u16 a) {
             EndScan();
             break;
         case 9:
-            func_0204e4d8();
+            SetupScanConnect();
             break;
         case 28:
             g->mUnk_1692 = 0;
             func_0204e474();
             break;
         case 30:
-            func_0204e074();
+            StartRequestEndScan();
             break;
         case 33:
             if (g->mUnk_169a == -1) {
@@ -92,7 +92,7 @@ s32 func_0204dd24(u16 a) {
             }
             break;
         case 35:
-            func_0204e4bc();
+            StartCloseScanConnect();
             break;
         case 1:
             g->mUnk_1692 = 0;

@@ -109,7 +109,7 @@ void func_02031f5c(void) {
                 gMultiSelectMember->mUnk_e0[i].mUnk_00 = 1;
             }
         } else {
-            func_021241c0(1, t->mUnk_00, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
+            ClearAndQueueLabelLayoutText(1, t->mUnk_00, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
             gMultiSelectMember->mUnk_e0[i].mUnk_00 = 0;
         }
     }
@@ -134,7 +134,7 @@ void func_02031e80(void) {
                 gMultiSelectMember->mUnk_e0[i].mUnk_00 = 2;
                 n++;
             } else {
-                func_021241c0(1, t->mUnk_00, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
+                ClearAndQueueLabelLayoutText(1, t->mUnk_00, q->mUnk_14, q->mUnk_0c, q->mUnk_18);
                 gMultiSelectMember->mUnk_e0[i].mUnk_00 = 0;
             }
         }

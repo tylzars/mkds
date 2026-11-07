@@ -72,7 +72,7 @@ s32 func_02025a00(u32 a, void *b, void *c, void *d, s32 e) {
     s32 r;
     r = func_021243ac(b, q->mUnk_00, p->mUnk_14, q->mUnk_02, q->mUnk_04, q->mUnk_06, p->mUnk_08, p->mUnk_0c, p->mUnk_18,
                       e);
-    func_021241c0(a, q->mUnk_00, p->mUnk_14, p->mUnk_0c, p->mUnk_18);
+    ClearAndQueueLabelLayoutText(a, q->mUnk_00, p->mUnk_14, p->mUnk_0c, p->mUnk_18);
     return r;
 }
 
@@ -216,4 +216,3 @@ u32 func_0202578c(u32 a) {
     }
     return r;
 }
-
