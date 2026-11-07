@@ -379,7 +379,7 @@ s32 func_02034370(Unk02034370 *a) {
     func_02054aa0();
     for (i = 0; i < 2; i++) {
         t = &data_02174e64->mUnk_02c[i];
-        func_02124c30(t->mUnk_0c, t->mUnk_08, t->mUnk_14, data_02174e64->mUnk_024[i], t->mUnk_18);
+        DrawLayoutTable(t->mUnk_0c, t->mUnk_08, t->mUnk_14, data_02174e64->mUnk_024[i], t->mUnk_18);
     }
     return r;
 }

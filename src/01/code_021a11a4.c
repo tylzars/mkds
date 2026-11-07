@@ -302,9 +302,9 @@ void InitSelectEngine(void *a, void *b, void *c) {
     gSelectEngine->mUnk_40 = gSelectEngine->mIndex;
     LocateAndQueueSelectEngine();
     func_020ae6d4(gSelectEngine->mUnk_44, gSelectEngine->mUnk_48);
-    func_02124ed0(gSelectEngine->mHeap, gSelectEngine->mSelectEngineMBncl, NULL, &gSelectEngine->mSelectEngineMTable);
-    func_02124ed0(gSelectEngine->mHeap, gSelectEngine->mSelectEngineAOrBSBncl, NULL,
-                  &gSelectEngine->mSelectEngineAOrBSTable);
+    InitLayoutTable(gSelectEngine->mHeap, gSelectEngine->mSelectEngineMBncl, NULL, &gSelectEngine->mSelectEngineMTable);
+    InitLayoutTable(gSelectEngine->mHeap, gSelectEngine->mSelectEngineAOrBSBncl, NULL,
+                    &gSelectEngine->mSelectEngineAOrBSTable);
     func_ov001_021a1cb0();
     func_ov001_021a1bf8();
     func_ov001_021a1a04();
@@ -590,10 +590,10 @@ int AdvanceSelectEngine(void) {
             break;
     }
     func_ov001_021a1c34();
-    func_02124c30(gSelectEngine->mSelectEngineMBncl, gSelectEngine->mSelectEngineMNcer, NULL, gSelectEngine->mUnk_44,
-                  gSelectEngine->mSelectEngineMTable);
-    func_02124c30(gSelectEngine->mSelectEngineAOrBSBncl, gSelectEngine->mSelectEngineSNcer, NULL,
-                  gSelectEngine->mUnk_48, gSelectEngine->mSelectEngineAOrBSTable);
+    DrawLayoutTable(gSelectEngine->mSelectEngineMBncl, gSelectEngine->mSelectEngineMNcer, NULL, gSelectEngine->mUnk_44,
+                    gSelectEngine->mSelectEngineMTable);
+    DrawLayoutTable(gSelectEngine->mSelectEngineAOrBSBncl, gSelectEngine->mSelectEngineSNcer, NULL,
+                    gSelectEngine->mUnk_48, gSelectEngine->mSelectEngineAOrBSTable);
     if (gSelectEngine->mState == 6 && gSelectEngine->mStateFrames >= 10) {
         return gSelectEngine->mResult;
     }

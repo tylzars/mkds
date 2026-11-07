@@ -39,9 +39,9 @@ typedef struct Unk021243ac {
     /* 44 */ Unk020224e0_c *mUnk_44;
 } Unk021243ac;
 
-// 0x40-byte element of the tables func_02124ed0 allocates and func_02124efc sets up: behind WiFiVSMatching.mUnk_10d4,
-// members 0x14, 0x24 and 0x3c of RecordVSErase, and the tables of the objects behind gRecordVS to data_0217d380
-// and of several overlay globals.
+// 0x40-byte element of the tables InitLayoutTable allocates and InitLayoutTableEntries sets up: behind
+// WiFiVSMatching.mUnk_10d4, members 0x14, 0x24 and 0x3c of RecordVSErase, and the tables of the objects behind
+// gRecordVS to data_0217d380 and of several overlay globals.
 typedef struct Unk02124b1c {
     /* 00 */ s32 mUnk_00;
     /* 04 */ s16 mUnk_04;

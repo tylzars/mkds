@@ -602,15 +602,16 @@ void AdvanceRecordVS(void) {
     p = gRecordVS;
     switch (p->mShowsFriendKey) {
         case 0:
-            func_02124c30(p->mRecordVSMBncl, p->mRecordVSMNcer, p->mRecordVSMBnll, func_02111318(), p->mRecordVSMTable);
+            DrawLayoutTable(p->mRecordVSMBncl, p->mRecordVSMNcer, p->mRecordVSMBnll, func_02111318(),
+                            p->mRecordVSMTable);
             break;
         case 1:
-            func_02124c30(p->mRecordVSMTransientBncl, p->mRecordVSMNcer, p->mRecordVSMTransientBnll, func_02111318(),
-                          p->mRecordVSMTransientTable);
+            DrawLayoutTable(p->mRecordVSMTransientBncl, p->mRecordVSMNcer, p->mRecordVSMTransientBnll, func_02111318(),
+                            p->mRecordVSMTransientTable);
             break;
     }
     p = gRecordVS;
-    func_02124c30(p->mRecordVSSBncl, p->mRecordVSSNcer, p->mRecordVSSBnll, func_0211130c(), p->mRecordVSSTable);
+    DrawLayoutTable(p->mRecordVSSBncl, p->mRecordVSSNcer, p->mRecordVSSBnll, func_0211130c(), p->mRecordVSSTable);
 }
 
 #pragma thumb off

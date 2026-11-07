@@ -1386,7 +1386,7 @@ void InitSelectRaceRule(void *a, s32 b, void *c, s32 d) {
         }
     }
     LocateAndQueueSelectRaceRule();
-    func_02124ed0(gSelectRaceRule->mHeap, gSelectRaceRule->mBncl, gSelectRaceRule->mBnll, &gSelectRaceRule->mTable);
+    InitLayoutTable(gSelectRaceRule->mHeap, gSelectRaceRule->mBncl, gSelectRaceRule->mBnll, &gSelectRaceRule->mTable);
     gSelectRaceRule->mCommonMessages = FindFileInLoadedArchives(data_0216de38);
     gSelectRaceRule->mRuleMessages = FindSceneFile(data_0216de44);
     n = gSelectRaceRule->mBncl->mUnk_06;

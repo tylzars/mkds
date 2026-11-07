@@ -8,6 +8,6 @@ extern SceneCallbacks gKeyboardSceneCallbacks;
 
 // Scene function of gSceneFuncs[14] (scene 'Keyboard' in gSceneNames): copies the callbacks and
 // calls RunScene. Returns 0.
-s32 RunKeyboardScene(void *a);
-void UpdateKeyboardScene(s16 *a);
+s32 RunKeyboardScene(void *sceneNumbers);
+void UpdateKeyboardScene(s16 *sceneNumbers);
 void func_0212891c(void);

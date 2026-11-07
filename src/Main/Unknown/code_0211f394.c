@@ -79,7 +79,7 @@ void func_0211f4b0(void *a, void *b) {
     data_0217d380->mState = 1;
     data_0217d380->mUnk_18 = b;
     func_0211f61c();
-    func_02124ed0(a, data_0217d380->mBncl, data_0217d380->mBnll, &data_0217d380->mTable);
+    InitLayoutTable(a, data_0217d380->mBncl, data_0217d380->mBnll, &data_0217d380->mTable);
     data_0217d380->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     v = GX_GetSizeOfSubOBJ();
     func_021243ac(a, 0xe, data_0217d380->mBnll, 0xc8, 0xd, 0, data_0217d380->mNcer, data_0217d380->mBncl,
@@ -152,8 +152,8 @@ void func_0211f39c(void) {
             break;
     }
     AdvanceWait();
-    func_02124c30(data_0217d380->mBncl, data_0217d380->mNcer, data_0217d380->mBnll, data_0217d380->mUnk_18,
-                  data_0217d380->mTable);
+    DrawLayoutTable(data_0217d380->mBncl, data_0217d380->mNcer, data_0217d380->mBnll, data_0217d380->mUnk_18,
+                    data_0217d380->mTable);
 }
 
 void func_0211f394(void) {

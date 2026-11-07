@@ -222,7 +222,7 @@ void func_0202c65c(void *a, void *b) {
         func_02025b20(q, data_usa_02162b6c, data_usa_02162b88, data_usa_02162ba4, gSelectMenuEtcMBnclName,
                       gSelectMenuEtcMBnllName, NULL, FindFileInLoadedArchives);
     }
-    func_02124ed0(data_02174e3c->mHeap, q->mUnk_0c, q->mUnk_14, &q->mUnk_18);
+    InitLayoutTable(data_02174e3c->mHeap, q->mUnk_0c, q->mUnk_14, &q->mUnk_18);
     for (i = 0; i < 8; i++) {
         r -= func_02025a00(0, data_02174e3c->mHeap, q, &data_usa_02174e14[i], r);
     }
@@ -309,9 +309,9 @@ void func_0202c0d4(s32 a, s32 b) {
                 for (i = 0; i < (n = data_02174e3c->mPlayerCount); i++) {
                     v2 = 0;
                     MIi_CpuClear16(v2, data_02174e3c->mUnk_04c[i].mName, 0x16);
-                    if (func_02122734(i) >= 0) {
-                        func_0202c0d4_inline(func_021202b0((u8) func_02122734(i)), data_02174e3c->mUnk_04c[i].mName,
-                                             0x14);
+                    if (GetIndexOfPackedIndex(i) >= 0) {
+                        func_0202c0d4_inline(func_021202b0((u8) GetIndexOfPackedIndex(i)),
+                                             data_02174e3c->mUnk_04c[i].mName, 0x14);
                     }
                 }
                 for (; n < 8; n++) {
@@ -495,7 +495,7 @@ void func_0202bb80(void) {
                 s32 e;
 
                 for (i = 0; i < data_02174e3c->mPlayerCount; i++) {
-                    if (func_02122794(i) == 0) {
+                    if (GetKartMaskBitOfPackedIndex(i) == 0) {
                         func_02025c48(data_usa_02174e0c[i].mUnk_02, 0x2e, q->mUnk_0c);
                         q->mUnk_18[data_usa_02174e0c[i].mUnk_02].mUnk_00 = 1;
                         q->mUnk_18[data_usa_02174e0c[i].mUnk_04].mUnk_00 = 0;
@@ -504,8 +504,8 @@ void func_0202bb80(void) {
                             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x52);
                         }
                     } else {
-                        e = func_02121e64((u8) func_02122734(i));
-                        f = func_02121e44((u8) func_02122734(i));
+                        e = GetWiFiSessionCharacterIndex((u8) GetIndexOfPackedIndex(i));
+                        f = GetWiFiSessionKartIndex((u8) GetIndexOfPackedIndex(i));
                         if (e == -1) {
                             d = 0;
                         } else {
@@ -539,7 +539,7 @@ void func_0202bb80(void) {
         }
     }
     func_0202c960();
-    func_02124c30(q->mUnk_0c, q->mUnk_08, q->mUnk_14, data_02174e3c->mUnk_038, q->mUnk_18);
+    DrawLayoutTable(q->mUnk_0c, q->mUnk_08, q->mUnk_14, data_02174e3c->mUnk_038, q->mUnk_18);
 }
 
 #pragma thumb off

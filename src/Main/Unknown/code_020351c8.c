@@ -369,7 +369,7 @@ s32 func_0203551c(u16 *a) {
     }
     for (i = 0; i < 2; i++) {
         t = data_02174e68->mUnk_2c;
-        func_02124c30(t[i].mUnk_0c, t[i].mUnk_08, t[i].mUnk_14, data_02174e68->mUnk_24[i], t[i].mUnk_18);
+        DrawLayoutTable(t[i].mUnk_0c, t[i].mUnk_08, t[i].mUnk_14, data_02174e68->mUnk_24[i], t[i].mUnk_18);
     }
     return r;
 }

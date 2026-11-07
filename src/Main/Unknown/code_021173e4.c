@@ -501,9 +501,10 @@ void InitSelectCupGrid(void *a, void *b, void *c, s32 d) {
     gSelectCupGrid->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     if (*(vu16 *) 0x027ffc40 != 2) {
         gSelectCupGrid->mMenuMessages = FindSceneFile("menu.bmg");
-        func_02124ed0(gSelectCupGrid->mHeap, gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMBnll,
-                      &gSelectCupGrid->mSelectCupMTable);
-        func_02124ed0(gSelectCupGrid->mHeap, gSelectCupGrid->mSelectCupSBncl, NULL, &gSelectCupGrid->mSelectCupSTable);
+        InitLayoutTable(gSelectCupGrid->mHeap, gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMBnll,
+                        &gSelectCupGrid->mSelectCupMTable);
+        InitLayoutTable(gSelectCupGrid->mHeap, gSelectCupGrid->mSelectCupSBncl, NULL,
+                        &gSelectCupGrid->mSelectCupSTable);
         rem = 0x8000;
         for (i = 0; i < 4; i++) {
             rem -= func_021243ac(gSelectCupGrid->mHeap, data_0215c7d8[i], gSelectCupGrid->mSelectCupMBnll,
@@ -1020,10 +1021,10 @@ s32 AdvanceSelectCupGrid(void) {
             }
             gSelectCupGrid->mCupPicturePending = FALSE;
         }
-        func_02124c30(gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMNcer, gSelectCupGrid->mSelectCupMBnll,
-                      gSelectCupGrid->mMainOam, gSelectCupGrid->mSelectCupMTable);
-        func_02124c30(gSelectCupGrid->mSelectCupSBncl, gSelectCupGrid->mSelectCupSNcer, NULL, gSelectCupGrid->mSubOam,
-                      gSelectCupGrid->mSelectCupSTable);
+        DrawLayoutTable(gSelectCupGrid->mSelectCupMBncl, gSelectCupGrid->mSelectCupMNcer,
+                        gSelectCupGrid->mSelectCupMBnll, gSelectCupGrid->mMainOam, gSelectCupGrid->mSelectCupMTable);
+        DrawLayoutTable(gSelectCupGrid->mSelectCupSBncl, gSelectCupGrid->mSelectCupSNcer, NULL, gSelectCupGrid->mSubOam,
+                        gSelectCupGrid->mSelectCupSTable);
     } else {
         func_0211f39c();
     }

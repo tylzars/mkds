@@ -8,4 +8,5 @@ typedef struct Unk02021dc8 Unk02021dc8;
 
 typedef struct Unk0201ea30 Unk0201ea30;
 
-void func_02124bc8(s32 a, Unk0201ea30 *b, Unk02021dc8 *c, Unk0201ea30 *d, void *e, Unk02124b1c *f);
+void DrawLayoutTableEntry(s32 index, Unk0201ea30 *cellLayout, Unk02021dc8 *cells, Unk0201ea30 *labelLayout,
+                          void *oamList, Unk02124b1c *table);

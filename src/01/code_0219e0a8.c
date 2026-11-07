@@ -33,8 +33,8 @@ void CreateEndingScene(void *heap) {
     func_ov001_0219e660();
     LoadAndQueueEndingSceneData();
     func_020ae6d4(gEndingScene->mMainOam, NULL);
-    func_02124ed0(gEndingScene->mHeap, gEndingScene->mEndingThanksBncl, gEndingScene->mEndingThanksBnll,
-                  &gEndingScene->mEndingThanksTable);
+    InitLayoutTable(gEndingScene->mHeap, gEndingScene->mEndingThanksBncl, gEndingScene->mEndingThanksBnll,
+                    &gEndingScene->mEndingThanksTable);
     result = NULL;
     gEndingScene->mEndingThanksTable->mUnk_00 = 0;
     {
@@ -278,8 +278,8 @@ void AdvanceEndingScene(void) {
             AdvanceEndingSceneState7();
             break;
     }
-    func_02124c30(gEndingScene->mEndingThanksBncl, gEndingScene->mThanksYouMNcer, gEndingScene->mEndingThanksBnll,
-                  gEndingScene->mMainOam, gEndingScene->mEndingThanksTable);
+    DrawLayoutTable(gEndingScene->mEndingThanksBncl, gEndingScene->mThanksYouMNcer, gEndingScene->mEndingThanksBnll,
+                    gEndingScene->mMainOam, gEndingScene->mEndingThanksTable);
     func_020ae630(gEndingScene->mMainOam, NULL);
 }
 

@@ -31,10 +31,10 @@ typedef struct OptionSelectMenu {
     /* 3c */ BOOL mUnk_3c;
     /* 40 */ s32 mOffsetTimers[2][2];
     /* 50 */ void *mHeap;
-    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; indexed with an offset
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable; indexed with an offset
     // added
     /* 54 */ Unk02124b1c *mOptionSelectMenuMTable;
-    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; indexed with an offset
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable; indexed with an offset
     // added
     /* 58 */ Unk02124b1c *mOptionSelectMenuSTable;
     /* 5c */ struct Unk02021dc8 *mOptionSelectMenuMNcer;

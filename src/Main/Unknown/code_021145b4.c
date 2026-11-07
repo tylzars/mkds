@@ -242,11 +242,12 @@ void InitRecordVSErase(void *a) {
     }
     LoadEmblemSBNclr(a);
     LocateAndQueueRecordVSErase();
-    func_02124ed0(a, gRecordVSErase->mRecordVSMBncl, gRecordVSErase->mRecordVSMBnll, &gRecordVSErase->mRecordVSMTable);
-    func_02124ed0(a, gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMTransientBnll,
-                  &gRecordVSErase->mRecordVSMTransientTable);
-    func_02124ed0(a, gRecordVSErase->mRecordVSSEraseBncl, gRecordVSErase->mRecordVSSEraseBnll,
-                  &gRecordVSErase->mRecordVSSEraseTable);
+    InitLayoutTable(a, gRecordVSErase->mRecordVSMBncl, gRecordVSErase->mRecordVSMBnll,
+                    &gRecordVSErase->mRecordVSMTable);
+    InitLayoutTable(a, gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMTransientBnll,
+                    &gRecordVSErase->mRecordVSMTransientTable);
+    InitLayoutTable(a, gRecordVSErase->mRecordVSSEraseBncl, gRecordVSErase->mRecordVSSEraseBnll,
+                    &gRecordVSErase->mRecordVSSEraseTable);
     gRecordVSErase->mCommonMessages = FindFileInLoadedArchives(data_0216d4a4);
     gRecordVSErase->mRecordMessages = FindSceneFile(data_0216d4b0);
     v = 0x8000;
@@ -869,17 +870,17 @@ void AdvanceRecordVSErase(void) {
     func_02116624();
     switch (gRecordVSErase->mTransientDrawn) {
         case 0:
-            func_02124c30(gRecordVSErase->mRecordVSMBncl, gRecordVSErase->mRecordVSMNcer,
-                          gRecordVSErase->mRecordVSMBnll, func_02111318(), gRecordVSErase->mRecordVSMTable);
+            DrawLayoutTable(gRecordVSErase->mRecordVSMBncl, gRecordVSErase->mRecordVSMNcer,
+                            gRecordVSErase->mRecordVSMBnll, func_02111318(), gRecordVSErase->mRecordVSMTable);
             break;
         case 1:
-            func_02124c30(gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMNcer,
-                          gRecordVSErase->mRecordVSMTransientBnll, func_02111318(),
-                          gRecordVSErase->mRecordVSMTransientTable);
+            DrawLayoutTable(gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMNcer,
+                            gRecordVSErase->mRecordVSMTransientBnll, func_02111318(),
+                            gRecordVSErase->mRecordVSMTransientTable);
             break;
     }
-    func_02124c30(gRecordVSErase->mRecordVSSEraseBncl, gRecordVSErase->mRecordVSSNcer,
-                  gRecordVSErase->mRecordVSSEraseBnll, func_0211130c(), gRecordVSErase->mRecordVSSEraseTable);
+    DrawLayoutTable(gRecordVSErase->mRecordVSSEraseBncl, gRecordVSErase->mRecordVSSNcer,
+                    gRecordVSErase->mRecordVSSEraseBnll, func_0211130c(), gRecordVSErase->mRecordVSSEraseTable);
 }
 
 void WriteRecordVSEraseBgOffsets(void) {

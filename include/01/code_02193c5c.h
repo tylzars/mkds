@@ -19,7 +19,7 @@ typedef struct OptionTopMenu {
     /* stored to reg_G2_BG0OFS without negation (the other mBg0Offset members are stored negated) */
     /* 18 */ s32 mBg0Offset;
     /* 1c */ void *mUnk_1c;
-    // one 0x40-byte record per cell of the Bncl member, built by func_02124ed0
+    // one 0x40-byte record per cell of the Bncl member, built by InitLayoutTable
     /* 20 */ Unk02124b1c *mOptionTopMenuSTable;
     /* 24 */ struct Unk02021dc8 *mOptionTopMenuSNcer;
     /* 28 */ Ncgr *mOptionTopMenuSNcgr;

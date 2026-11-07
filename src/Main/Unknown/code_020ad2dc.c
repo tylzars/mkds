@@ -155,7 +155,7 @@ void CreateTitleScene(void) {
     func_020ad958(displaySettings, 3, 0, 0, 1, 15, 4);
     func_020ad924(displaySettings, 3, 0, 0, 0, 1, 6);
     InitDisplayFromSettings(displaySettings);
-    func_02124ed0(func_020ada10(), gTitleScene->mTitleSBncl, gTitleScene->mTitleSBnll, &gTitleScene->mTitleTable);
+    InitLayoutTable(func_020ada10(), gTitleScene->mTitleSBncl, gTitleScene->mTitleSBnll, &gTitleScene->mTitleTable);
     func_02124a98(0, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(1, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);
     func_02124a98(2, 1, gTitleScene->mTitleSNceNcer, gTitleScene->mTitleSBncl);

@@ -505,7 +505,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
     func_02054aa0();
     for (i = 0; i < 2; i++) {
         q = gTimeAttackGhostSend->mUnk_050;
-        func_02124c30(q[i].mUnk_0c, q[i].mUnk_08, q[i].mUnk_14, gTimeAttackGhostSend->mUnk_048[i], q[i].mUnk_18);
+        DrawLayoutTable(q[i].mUnk_0c, q[i].mUnk_08, q[i].mUnk_14, gTimeAttackGhostSend->mUnk_048[i], q[i].mUnk_18);
     }
     return -1;
 }

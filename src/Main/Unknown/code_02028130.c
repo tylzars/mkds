@@ -248,12 +248,12 @@ int AdvanceSelectKart(void) {
     if (d->mUnk_104 != FALSE) {
         func_0202bb80();
     } else {
-        func_02124c30(q->mUnk_0c, q->mUnk_08, NULL, d->mUnk_080, q->mUnk_18);
+        DrawLayoutTable(q->mUnk_0c, q->mUnk_08, NULL, d->mUnk_080, q->mUnk_18);
     }
     if (func_020280dc() == 0) {
         d = gSelectKart;
         if (d->mState != 8) {
-            func_02124c30(p->mUnk_0c, p->mUnk_08, p->mUnk_14, d->mUnk_084, p->mUnk_18);
+            DrawLayoutTable(p->mUnk_0c, p->mUnk_08, p->mUnk_14, d->mUnk_084, p->mUnk_18);
         }
     } else {
         func_0211f39c();

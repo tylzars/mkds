@@ -131,8 +131,8 @@ void InitWiFiVSMatching(void *a) {
     LocateAndQueueWiFiVSMatching();
     b = func_ov000_021804f4();
     func_020ae6d4(b, func_ov000_021804e0());
-    func_02124ed0(a, gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingBnll,
-                  &gWiFiVSMatching->mWiFiVSMatchingTable);
+    InitLayoutTable(a, gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingBnll,
+                    &gWiFiVSMatching->mWiFiVSMatchingTable);
     gWiFiVSMatching->mWiFiMessages = FindSceneFile(gWiFiBmgName2);
     gWiFiVSMatching->mCommonMessages = FindFileInLoadedArchives(gCommonBmgName4);
     func_ov000_02184670();
@@ -712,8 +712,8 @@ void AdvanceWiFiVSMatching(void) {
     }
     func_ov000_02183548();
     func_ov000_02183444();
-    func_02124c30(gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingSNcer,
-                  gWiFiVSMatching->mWiFiVSMatchingBnll, func_ov000_021804e0(), gWiFiVSMatching->mWiFiVSMatchingTable);
+    DrawLayoutTable(gWiFiVSMatching->mWiFiVSMatchingBncl, gWiFiVSMatching->mWiFiVSMatchingSNcer,
+                    gWiFiVSMatching->mWiFiVSMatchingBnll, func_ov000_021804e0(), gWiFiVSMatching->mWiFiVSMatchingTable);
 }
 
 void func_ov000_02183330(void) {

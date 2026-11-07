@@ -16,33 +16,33 @@
 
 #pragma thumb on
 
-void func_02125de0(void *a, Unk02125de0Arg *b) {
-    Unk021274ec t;
+void func_02125de0(void *heap, Unk02125de0Arg *config) {
+    Unk021274ec txtConfig;
 
-    data_0217d3ec = HeapAlloc(a, 0x814);
+    data_0217d3ec = HeapAlloc(heap, 0x814);
     data_0217d3ec->mUnk_810 = 0x5800;
     data_0217d3ec->mUnk_00 = FALSE;
     data_0217d3ec->mUnk_04 = FALSE;
     data_0217d3ec->mUnk_08 = FALSE;
-    if (b->mUnk_00 != FALSE) {
-        t.mUnk_00 = (u32) b->mUnk_04;
-        t.mUnk_04 = b->mUnk_08;
-        t.mUnk_08 = b->mUnk_0c;
-        t.mUnk_0c = b->mUnk_10;
-        t.mUnk_10 = data_0217d3ec->mUnk_810;
+    if (config->mUnk_00 != FALSE) {
+        txtConfig.mUnk_00 = (u32) config->mUnk_04;
+        txtConfig.mUnk_04 = config->mUnk_08;
+        txtConfig.mUnk_08 = config->mUnk_0c;
+        txtConfig.mUnk_0c = config->mUnk_10;
+        txtConfig.mUnk_10 = data_0217d3ec->mUnk_810;
         data_0217d3ec->mUnk_00 = TRUE;
-        data_0217d3ec->mUnk_810 = InitTxtSystem(a, &t);
+        data_0217d3ec->mUnk_810 = InitTxtSystem(heap, &txtConfig);
     }
-    if (b->mUnk_14 != FALSE) {
+    if (config->mUnk_14 != FALSE) {
         data_0217d3ec->mUnk_04 = TRUE;
-        data_0217d3ec->mUnk_810 = InitSelectChoises(a, b->mUnk_18, data_0217d3ec->mUnk_810);
+        data_0217d3ec->mUnk_810 = InitSelectChoises(heap, config->mUnk_18, data_0217d3ec->mUnk_810);
     }
-    if (b->mUnk_1c != FALSE) {
+    if (config->mUnk_1c != FALSE) {
         data_0217d3ec->mUnk_08 = TRUE;
-        data_0217d3ec->mUnk_810 = InitSelectReturn(a, data_0217d3ec->mUnk_810);
+        data_0217d3ec->mUnk_810 = InitSelectReturn(heap, data_0217d3ec->mUnk_810);
     }
-    if (b->mUnk_20 != FALSE) {
-        data_0217d3ec->mBackScreenKind = b->mUnk_24;
+    if (config->mUnk_20 != FALSE) {
+        data_0217d3ec->mBackScreenKind = config->mUnk_24;
         func_02125ba4();
         data_0217d3ec->mUnk_810 = func_02125960(data_0217d3ec->mUnk_810);
     }

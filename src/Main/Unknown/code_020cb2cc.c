@@ -13,11 +13,11 @@ void DrawSinglePlaySelectCells(void) {
     Unk0217b43c *menu;
     func_020cb340();
     menu = data_0217b43c;
-    func_02124c30(menu->mSinglePlaySelectModeMBncl, menu->mSinglePlaySelectModeMNcer, NULL, menu->mMainOam,
-                  menu->mUnk_93c);
+    DrawLayoutTable(menu->mSinglePlaySelectModeMBncl, menu->mSinglePlaySelectModeMNcer, NULL, menu->mMainOam,
+                    menu->mUnk_93c);
     menu = data_0217b43c;
-    func_02124c30(menu->mSinglePlaySelectModeSBncl, menu->mSinglePlaySelectModeSNcer, NULL, menu->mSubOam,
-                  menu->mUnk_948);
+    DrawLayoutTable(menu->mSinglePlaySelectModeSBncl, menu->mSinglePlaySelectModeSNcer, NULL, menu->mSubOam,
+                    menu->mUnk_948);
 }
 
 #pragma thumb off

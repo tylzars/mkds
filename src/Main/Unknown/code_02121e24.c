@@ -1,8 +1,8 @@
 #include "Main/Unknown/code_02121e24.h"
 #include "00/code_021832d8.h"
 
-u32 func_02121e64(u32 arg0) {
-    u32 value0 = arg0;
+u32 GetWiFiSessionCharacterIndex(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     value2 = (u32) &gWiFiSession;
@@ -14,8 +14,8 @@ u32 func_02121e64(u32 arg0) {
     return value0;
 }
 
-u32 func_02121e44(u32 arg0) {
-    u32 value0 = arg0;
+u32 GetWiFiSessionKartIndex(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     value2 = (u32) &gWiFiSession;
@@ -27,8 +27,8 @@ u32 func_02121e44(u32 arg0) {
     return value0;
 }
 
-u32 func_02121e24(u32 arg0) {
-    u32 value0 = arg0;
+u32 GetWiFiSessionPickedCourseId(u32 index) {
+    u32 value0 = index;
     u32 value1;
     u32 value2;
     value2 = (u32) &gWiFiSession;

@@ -106,7 +106,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     gResultsBattle->mUnk_0b8[1] = c;
     gResultsBattle->mMode = data_021759d0->mUnk_20;
     if (gResultsBattle->mMode == 3) {
-        func_02123a48(3);
+        SetupWiFiSession(3);
     }
     Init3dEngine();
     r = CreateDisplaySettings(a, data_021547f0);
@@ -230,7 +230,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     q = &p->mUnk_048[1];
     func_02025abc(q, gResultsBattleSNcgrName, gResultsBattleSNcerName, gResultsBattleSONclrName,
                   gResultsBattleSBnclName, gResultsBattleSBnllName, NULL, FindSceneFile);
-    func_02124ed0(a, q->mUnk_0c, q->mUnk_14, &q->mUnk_18);
+    InitLayoutTable(a, q->mUnk_0c, q->mUnk_14, &q->mUnk_18);
     GXS_LoadOBJ(((Ncgr *) p->mUnk_048[1].mUnk_00)->mData, 0, ((Ncgr *) p->mUnk_048[1].mUnk_00)->mDataSize);
     GXS_LoadOBJPltt(((Nclr *) q->mUnk_04)->mData, 0, ((Nclr *) q->mUnk_04)->mDataSize);
     for (i = 0; i < q->mUnk_14->mUnk_06; i++) {
@@ -474,15 +474,16 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
     func_020a2558();
     func_020a23cc();
     for (i = 0; i < 2; i++) {
-        func_02124c30(gResultsBattle->mUnk_048[i].mUnk_0c, gResultsBattle->mUnk_048[i].mUnk_08,
-                      gResultsBattle->mUnk_048[i].mUnk_14, (void *) gResultsBattle->mUnk_0b8[i],
-                      gResultsBattle->mUnk_048[i].mUnk_18);
+        DrawLayoutTable(gResultsBattle->mUnk_048[i].mUnk_0c, gResultsBattle->mUnk_048[i].mUnk_08,
+                        gResultsBattle->mUnk_048[i].mUnk_14, (void *) gResultsBattle->mUnk_0b8[i],
+                        gResultsBattle->mUnk_048[i].mUnk_18);
     }
     j = t->mUnk_0c->mUnk_06;
     for (i = 0; i < 8; i++) {
         t->mUnk_18[i + j].mUnk_06 = t->mUnk_18[i + j].mUnk_06 + 1;
         func_02124100(i, 0xe, t->mUnk_14, t->mUnk_18, t->mUnk_0c);
-        func_02124bc8(i + j, t->mUnk_0c, t->mUnk_08, t->mUnk_14, (void *) gResultsBattle->mUnk_0b8[1], t->mUnk_18);
+        DrawLayoutTableEntry(i + j, t->mUnk_0c, t->mUnk_08, t->mUnk_14, (void *) gResultsBattle->mUnk_0b8[1],
+                             t->mUnk_18);
         func_02124100(i, 0xf, t->mUnk_14, t->mUnk_18, t->mUnk_0c);
         t->mUnk_18[i + j].mUnk_06 = t->mUnk_18[i + j].mUnk_06 - 1;
     }

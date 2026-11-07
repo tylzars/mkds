@@ -665,7 +665,8 @@ int AdvanceSelectCharacter(void) {
     if (gSelectCharacter->mUnk_128 != FALSE) {
         func_0202bb80();
     } else {
-        func_02124c30(g->mUnk_000.mUnk_0c, g->mUnk_000.mUnk_08, NULL, gSelectCharacter->mUnk_054, g->mUnk_000.mUnk_18);
+        DrawLayoutTable(g->mUnk_000.mUnk_0c, g->mUnk_000.mUnk_08, NULL, gSelectCharacter->mUnk_054,
+                        g->mUnk_000.mUnk_18);
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         func_02124bf0(s->mUnk_0c, s->mUnk_08, NULL, gSelectCharacter->mUnk_058, s->mUnk_18);

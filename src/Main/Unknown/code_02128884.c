@@ -18,22 +18,22 @@
 #include "Main/Unknown/code_0212a000.h"
 
 #pragma thumb on
-void InitKeyboardScene(s16 *a) {
-    void *h;
-    h = GetHeap(GetCurrentHeapCall());
-    data_0217d3fc = HeapAlloc(h, 0x808);
-    InitKeyboard(h, a[0]);
+void InitKeyboardScene(s16 *sceneNumbers) {
+    void *heap;
+    heap = GetHeap(GetCurrentHeapCall());
+    data_0217d3fc = HeapAlloc(heap, 0x808);
+    InitKeyboard(heap, sceneNumbers[0]);
 }
 #pragma thumb off
 
 #pragma thumb on
 void ReleaseKeyboardScene(void) {
-    u32 value0;
-    u32 value1;
+    u32 address;
+    u32 zero;
     ReleaseKeyboard();
-    value1 = 0u;
-    value0 = (u32) &data_0217d3fc;
-    *(u32 *) ((value0) + 0u) = value1;
+    zero = 0u;
+    address = (u32) &data_0217d3fc;
+    *(u32 *) ((address) + 0u) = zero;
 }
 #pragma thumb off
 
@@ -46,31 +46,31 @@ void func_0212891c(void) {
     func_020ae5f0(data_0217d3fc, &data_0217d3fc->mUnk_404);
 }
 
-void UpdateKeyboardScene(s16 *a) {
+void UpdateKeyboardScene(s16 *sceneNumbers) {
     func_020ae6ac(data_0217d3fc, &data_0217d3fc->mUnk_404);
     AdvanceKeyboard();
     func_020ae630(data_0217d3fc, &data_0217d3fc->mUnk_404);
-    if (a != NULL) {
+    if (sceneNumbers != NULL) {
         if (GetKeyboardNextScene() != -1) {
-            a[2] = GetKeyboardNextScene();
+            sceneNumbers[2] = GetKeyboardNextScene();
         }
     }
 }
 
-s32 RunKeyboardScene(void *a) {
-    SceneCallbacks v = gKeyboardSceneCallbacks;
-    RunScene(a, &v);
+s32 RunKeyboardScene(void *sceneNumbers) {
+    SceneCallbacks callbacks = gKeyboardSceneCallbacks;
+    RunScene(sceneNumbers, &callbacks);
     return 0;
 }
 #pragma thumb off
 
 #pragma thumb on
 
-Unk0217d3fc_00 *func_02128898(void) {
+Unk0217d3fc_00 *GetKeyboardFirstBuffer(void) {
     return &data_0217d3fc->mUnk_00;
 }
 
-Unk0217d3fc_00 *func_02128884(void) {
+Unk0217d3fc_00 *GetKeyboardSecondBuffer(void) {
     return &data_0217d3fc->mUnk_404;
 }
 

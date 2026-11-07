@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-u32 func_02122794(u8 a);
-u32 GetKartMaskBit(u32 a);
+u32 GetKartMaskBitOfPackedIndex(u8 packedIndex);
+u32 GetKartMaskBit(u32 index);
 void UpdateWiFiSessionKartTimeouts(void);
 void RemoveWiFiSessionKarts(void);
 void func_02122ab0(void);

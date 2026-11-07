@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02152918(u32 a, u32 b, u32 c);
+void FormatFriendKey(u32 low, u32 high, u32 buffer);

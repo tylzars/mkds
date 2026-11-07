@@ -111,7 +111,7 @@ void InitMultiSelectNS(void *a, void *b, void *c) {
     o->mBncl = FindSceneFile(gMultiSelectNSSBnclName);
     o->mBnbl = FindSceneFile(gMultiSelectNSSBnblName);
     o->mBnll = FindSceneFile(gMultiSelectNSSBnllName);
-    func_02124ed0(gMultiSelectNS->mHeap, o->mBncl, o->mBnll, &o->mUnk_18);
+    InitLayoutTable(gMultiSelectNS->mHeap, o->mBncl, o->mBnll, &o->mUnk_18);
     for (i = 0; i < 2; i++) {
         q = &data_02153d2c[i];
         x = q->mUnk_00;

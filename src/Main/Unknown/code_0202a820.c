@@ -157,8 +157,8 @@ void func_0202b100(void) {
     n = p->mUnk_0c->mUnk_06;
     for (i = 0; i < gWiFiVSCourseSelect->mUnk_0b8; i++) {
         func_02025edc(&gWiFiVSCourseSelect->mUnk_0fc[i]);
-        if (func_02122734(i) >= 0) {
-            v = func_02121e24((u8) func_02122734(i));
+        if (GetIndexOfPackedIndex(i) >= 0) {
+            v = GetWiFiSessionPickedCourseId((u8) GetIndexOfPackedIndex(i));
         } else {
             v = 0;
         }
@@ -435,7 +435,7 @@ s32 AdvanceWiFiVSCourseSelect(void) {
     for (i = 0; i < 2; i++) {
         d = gWiFiVSCourseSelect;
         p = &d->mWiFiVSCourseSelectMParts;
-        func_02124c30(p[i].mUnk_0c, p[i].mUnk_08, p[i].mUnk_14, d->mUnk_080[i], p[i].mUnk_18);
+        DrawLayoutTable(p[i].mUnk_0c, p[i].mUnk_08, p[i].mUnk_14, d->mUnk_080[i], p[i].mUnk_18);
     }
     return r;
 }

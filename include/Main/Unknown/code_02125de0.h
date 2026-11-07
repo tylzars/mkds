@@ -16,4 +16,4 @@ typedef struct Unk02125de0Arg {
     /* 24 */ s32 mUnk_24;
 } Unk02125de0Arg;
 
-void func_02125de0(void *a, Unk02125de0Arg *b);
+void func_02125de0(void *heap, Unk02125de0Arg *config);

@@ -2,28 +2,28 @@
 #include "00/code_021832d8.h"
 
 u32 func_02122ae4(void) {
-    u32 value0;
+    u32 result;
     u32 value1;
-    u32 value2;
-    u32 compareLeft0;
-    u32 compareRight0;
-    u32 compareLeft1;
-    u32 compareRight1;
+    u32 flag;
+    u32 testedFlag;
+    u32 one;
+    u32 testedStep;
+    u32 twelve;
     value1 = (u32) &gWiFiSession;
-    value0 = 0u;
+    result = 0u;
     value1 = *(const u32 *) ((value1) + (0));
     value1 = (value1) + (0x1000u);
-    value2 = *(const u8 *) ((value1) + (2477));
-    compareLeft0 = value2;
-    compareRight0 = 1u;
-    if (compareLeft0 != compareRight0) {
-        return value0;
+    flag = *(const u8 *) ((value1) + (2477));
+    testedFlag = flag;
+    one = 1u;
+    if (testedFlag != one) {
+        return result;
     }
     value1 = *(const u32 *) ((value1) + (2384));
-    compareLeft1 = value1;
-    compareRight1 = 0xcu;
-    if (compareLeft1 == compareRight1) {
-        value0 = 1u;
+    testedStep = value1;
+    twelve = 0xcu;
+    if (testedStep == twelve) {
+        result = 1u;
     }
-    return value0;
+    return result;
 }

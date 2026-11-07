@@ -4,23 +4,23 @@
 
 #pragma thumb on
 
-void func_02124efc(Unk02124b1c *p, s32 n) {
+void InitLayoutTableEntries(Unk02124b1c *entry, s32 count) {
     s32 i;
 
-    for (i = 0; i < n; i++) {
-        p->mUnk_00 = 1;
-        p->mUnk_04 = 0;
-        p->mUnk_06 = 0;
-        p->mUnk_08 = FALSE;
-        p->mUnk_0c = 0;
-        p->mUnk_0e = 0;
-        p->mUnk_10 = 0;
-        MTX_Identity22_(p->mUnk_14);
-        MTX_Identity22_(p->mUnk_24);
-        p->mUnk_34 = 1;
-        p->mUnk_38 = -1;
-        p->mUnk_3c = NULL;
-        p++;
+    for (i = 0; i < count; i++) {
+        entry->mUnk_00 = 1;
+        entry->mUnk_04 = 0;
+        entry->mUnk_06 = 0;
+        entry->mUnk_08 = FALSE;
+        entry->mUnk_0c = 0;
+        entry->mUnk_0e = 0;
+        entry->mUnk_10 = 0;
+        MTX_Identity22_(entry->mUnk_14);
+        MTX_Identity22_(entry->mUnk_24);
+        entry->mUnk_34 = 1;
+        entry->mUnk_38 = -1;
+        entry->mUnk_3c = NULL;
+        entry++;
     }
 }
 

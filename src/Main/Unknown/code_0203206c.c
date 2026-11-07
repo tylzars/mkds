@@ -398,10 +398,10 @@ s32 AdvanceSelectGame(void) {
     }
     if (gSelectGame->mState != 10) {
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-            func_02124c30(o->mUnk_00[0].mUnk_0c, o->mUnk_00[0].mUnk_08, o->mUnk_00[0].mUnk_14, gSelectGame->mUnk_38,
-                          o->mUnk_00[0].mUnk_18);
+            DrawLayoutTable(o->mUnk_00[0].mUnk_0c, o->mUnk_00[0].mUnk_08, o->mUnk_00[0].mUnk_14, gSelectGame->mUnk_38,
+                            o->mUnk_00[0].mUnk_18);
         }
-        func_02124c30(q->mUnk_0c, q->mUnk_08, q->mUnk_14, gSelectGame->mUnk_3c, q->mUnk_18);
+        DrawLayoutTable(q->mUnk_0c, q->mUnk_08, q->mUnk_14, gSelectGame->mUnk_3c, q->mUnk_18);
     }
     return a;
 }

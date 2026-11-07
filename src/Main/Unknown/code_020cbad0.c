@@ -120,9 +120,9 @@ void func_020cbb10(void) {
         data_0217b43c->mSinglePlaySelectModeSBncl = FindSceneFileWrapper("common/single_play_select_mode_s.bncl");
         data_0217b43c->mSinglePlaySelectModeSBnbl = FindSceneFileWrapper("common/single_play_select_mode_s.bnbl");
         p = data_0217b43c;
-        func_02124ed0(func_020cb99c(), p->mSinglePlaySelectModeMBncl, NULL, &p->mUnk_93c);
+        InitLayoutTable(func_020cb99c(), p->mSinglePlaySelectModeMBncl, NULL, &p->mUnk_93c);
         p = data_0217b43c;
-        func_02124ed0(func_020cb99c(), p->mSinglePlaySelectModeSBncl, NULL, &p->mUnk_948);
+        InitLayoutTable(func_020cb99c(), p->mSinglePlaySelectModeSBncl, NULL, &p->mUnk_948);
         p = data_0217b43c;
         func_02124a98(0, 1, p->mSinglePlaySelectModeSNcer, p->mSinglePlaySelectModeSBncl);
         p = data_0217b43c;

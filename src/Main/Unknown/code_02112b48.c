@@ -832,10 +832,10 @@ void InitRecordVS(void *a) {
     }
     LoadEmblemSBNclr(a);
     LocateAndQueueRecordVS();
-    func_02124ed0(a, gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMBnll, &gRecordVS->mRecordVSMTable);
-    func_02124ed0(a, gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientBnll,
-                  &gRecordVS->mRecordVSMTransientTable);
-    func_02124ed0(a, gRecordVS->mRecordVSSBncl, gRecordVS->mRecordVSSBnll, &gRecordVS->mRecordVSSTable);
+    InitLayoutTable(a, gRecordVS->mRecordVSMBncl, gRecordVS->mRecordVSMBnll, &gRecordVS->mRecordVSMTable);
+    InitLayoutTable(a, gRecordVS->mRecordVSMTransientBncl, gRecordVS->mRecordVSMTransientBnll,
+                    &gRecordVS->mRecordVSMTransientTable);
+    InitLayoutTable(a, gRecordVS->mRecordVSSBncl, gRecordVS->mRecordVSSBnll, &gRecordVS->mRecordVSSTable);
     gRecordVS->mRecordMessages = FindSceneFile("record.bmg");
     r = 0x8000;
     r -= func_021243ac(a, 0, gRecordVS->mRecordVSMBnll, 0x8c, 0x10, 0, gRecordVS->mRecordVSMNcer,

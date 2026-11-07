@@ -6,13 +6,13 @@
 #include "Main/Unknown/code_02120610.h"
 
 s32 func_0212a8d0(void) {
-    BOOL r = FALSE;
+    BOOL result = FALSE;
     if (!data_0217aa08->mUnk_00->mLocateFriendOff) {
         if (func_021213f4() != FALSE) {
-            r = TRUE;
+            result = TRUE;
         }
     }
-    return r;
+    return result;
 }
 
 #pragma thumb on

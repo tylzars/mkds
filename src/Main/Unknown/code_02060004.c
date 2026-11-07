@@ -241,7 +241,7 @@ s32 GetBuddyFriendKeyText(u8 a, void *b) {
     if (g != FALSE) {
         u64 f = DWC_GetFriendKey((DWCAccFriendData *) e);
 
-        func_02152918(f, f >> 32, (u32) b);
+        FormatFriendKey(f, f >> 32, (u32) b);
         d = TRUE;
     }
     return d;

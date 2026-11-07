@@ -266,9 +266,9 @@ void InitRecordTopMenu(void *heap) {
                       gRecordTopMenu->mRecordTopMenuSBncl);
     }
     func_020ae6d4(func_02111318(), func_0211130c());
-    func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMBnll,
-                  &gRecordTopMenu->mRecordTopMenuMTable);
-    func_02124ed0(heap, gRecordTopMenu->mRecordTopMenuSBncl, NULL, &gRecordTopMenu->mRecordTopMenuSTable);
+    InitLayoutTable(heap, gRecordTopMenu->mRecordTopMenuMBncl, gRecordTopMenu->mRecordTopMenuMBnll,
+                    &gRecordTopMenu->mRecordTopMenuMTable);
+    InitLayoutTable(heap, gRecordTopMenu->mRecordTopMenuSBncl, NULL, &gRecordTopMenu->mRecordTopMenuSTable);
     gRecordTopMenu->mUnk_20 = FindFileInLoadedArchives("common.bmg");
     gRecordTopMenu->mRecordMessages = FindSceneFile("record.bmg");
     rem = 0x8000;
@@ -652,10 +652,10 @@ void AdvanceRecordTopMenu(void) {
             break;
     }
     p = gRecordTopMenu;
-    func_02124c30(p->mRecordTopMenuMBncl, p->mRecordTopMenuMNcer, p->mRecordTopMenuMBnll, func_02111318(),
-                  p->mRecordTopMenuMTable);
+    DrawLayoutTable(p->mRecordTopMenuMBncl, p->mRecordTopMenuMNcer, p->mRecordTopMenuMBnll, func_02111318(),
+                    p->mRecordTopMenuMTable);
     p = gRecordTopMenu;
-    func_02124c30(p->mRecordTopMenuSBncl, p->mRecordTopMenuSNcer, NULL, func_0211130c(), p->mRecordTopMenuSTable);
+    DrawLayoutTable(p->mRecordTopMenuSBncl, p->mRecordTopMenuSNcer, NULL, func_0211130c(), p->mRecordTopMenuSTable);
 }
 
 void func_ov001_0219a0c0(void) {

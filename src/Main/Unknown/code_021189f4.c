@@ -346,11 +346,12 @@ s32 AdvanceSelectCupCourse(void) {
             }
             gSelectCupCourse->mCupPicturePending = FALSE;
         }
-        func_02124c30(gSelectCupCourse->mSelectCupCourseTaOrVsMBncl, gSelectCupCourse->mSelectCupCourseMNcer,
-                      gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, gSelectCupCourse->mUnk_64,
-                      gSelectCupCourse->mSelectCupCourseTaOrVsMTable);
-        func_02124c30(gSelectCupCourse->mSelectCupMBncl, gSelectCupCourse->mSelectCupMNcer,
-                      gSelectCupCourse->mSelectCupMBnll, gSelectCupCourse->mUnk_68, gSelectCupCourse->mSelectCupMTable);
+        DrawLayoutTable(gSelectCupCourse->mSelectCupCourseTaOrVsMBncl, gSelectCupCourse->mSelectCupCourseMNcer,
+                        gSelectCupCourse->mSelectCupCourseTaOrVsMBnll, gSelectCupCourse->mUnk_64,
+                        gSelectCupCourse->mSelectCupCourseTaOrVsMTable);
+        DrawLayoutTable(gSelectCupCourse->mSelectCupMBncl, gSelectCupCourse->mSelectCupMNcer,
+                        gSelectCupCourse->mSelectCupMBnll, gSelectCupCourse->mUnk_68,
+                        gSelectCupCourse->mSelectCupMTable);
     } else {
         func_0211f39c();
     }

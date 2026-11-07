@@ -541,8 +541,10 @@ void InitRecordTAtt(void *heap) {
     LocateAndQueueRecordTAtt();
     CreateKartIcon(heap);
     func_020ae6d4(func_02111318(), func_0211130c());
-    func_02124ed0(heap, gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMBnll, &gRecordTAtt->mRecordTAttMTable);
-    func_02124ed0(heap, gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSBnll, &gRecordTAtt->mRecordTAttSTable);
+    InitLayoutTable(heap, gRecordTAtt->mRecordTAttMBncl, gRecordTAtt->mRecordTAttMBnll,
+                    &gRecordTAtt->mRecordTAttMTable);
+    InitLayoutTable(heap, gRecordTAtt->mRecordTAttSBncl, gRecordTAtt->mRecordTAttSBnll,
+                    &gRecordTAtt->mRecordTAttSTable);
     gRecordTAtt->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     gRecordTAtt->mGhostMessages = FindSceneFile("ghost.bmg");
     gRecordTAtt->mRecordMessages = FindSceneFile("record.bmg");
@@ -1205,9 +1207,11 @@ void AdvanceRecordTAtt(void) {
             break;
     }
     p = gRecordTAtt;
-    func_02124c30(p->mRecordTAttMBncl, p->mRecordTAttMNcer, p->mRecordTAttMBnll, func_02111318(), p->mRecordTAttMTable);
+    DrawLayoutTable(p->mRecordTAttMBncl, p->mRecordTAttMNcer, p->mRecordTAttMBnll, func_02111318(),
+                    p->mRecordTAttMTable);
     p = gRecordTAtt;
-    func_02124c30(p->mRecordTAttSBncl, p->mRecordTAttSNcer, p->mRecordTAttSBnll, func_0211130c(), p->mRecordTAttSTable);
+    DrawLayoutTable(p->mRecordTAttSBncl, p->mRecordTAttSNcer, p->mRecordTAttSBnll, func_0211130c(),
+                    p->mRecordTAttSTable);
 }
 
 void func_ov001_0219574c(void) {

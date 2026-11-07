@@ -175,7 +175,7 @@ void UpdateWiFiSessionState3(void) {
 void func_021200a4(void) {}
 
 void UpdateWiFiSessionState4(void) {
-    func_021236f8();
+    UpdateWiFiSessionStep();
 }
 
 void EnterWiFiSessionState5(void) {

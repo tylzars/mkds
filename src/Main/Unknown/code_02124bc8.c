@@ -3,8 +3,9 @@
 
 #pragma thumb on
 
-void func_02124bc8(s32 a, Unk0201ea30 *b, Unk02021dc8 *c, Unk0201ea30 *d, void *e, Unk02124b1c *f) {
-    func_02124c70(a, c, b, d, e, OFFSET_PTR(Unk02124b1c, f, a * 0x40), 1);
+void DrawLayoutTableEntry(s32 index, Unk0201ea30 *cellLayout, Unk02021dc8 *cells, Unk0201ea30 *labelLayout,
+                          void *oamList, Unk02124b1c *table) {
+    DrawLayoutEntry(index, cells, cellLayout, labelLayout, oamList, OFFSET_PTR(Unk02124b1c, table, index * 0x40), 1);
 }
 
 #pragma thumb off

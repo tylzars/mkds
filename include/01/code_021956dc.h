@@ -32,9 +32,9 @@ typedef struct RecordTAtt {
     /* 2c */ struct Unk02021dc8 *mUnk_2c;
     /* 30 */ Nclr *mUnk_30;
     /* 34 */ struct Unk0201ea30 *mUnk_34;
-    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable
     /* 38 */ Unk02124b1c *mRecordTAttMTable;
-    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable
     /* 3c */ Unk02124b1c *mRecordTAttSTable;
     /* 40 */ struct Bmg *mCommonMessages;
     /* 44 */ void *mGhostMessages;

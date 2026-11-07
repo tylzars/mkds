@@ -527,10 +527,10 @@ void InitMissionRunMSsel(void *a, void *b, void *c) {
     func_ov001_021a0e34();
     LocateAndQueueMissionRunMSsel();
     func_020ae6d4(gMissionRunMSsel->mUnk_b4, gMissionRunMSsel->mUnk_b8);
-    func_02124ed0(gMissionRunMSsel->mHeap, gMissionRunMSsel->mMissionRunMSselMBncl,
-                  gMissionRunMSsel->mMissionRunMSselMBnll, &gMissionRunMSsel->mMissionRunMSselMTable);
-    func_02124ed0(gMissionRunMSsel->mHeap, gMissionRunMSsel->mMissionRunMSselSBncl,
-                  gMissionRunMSsel->mMissionRunMSselSBnll, &gMissionRunMSsel->mMissionRunMSselSTable);
+    InitLayoutTable(gMissionRunMSsel->mHeap, gMissionRunMSsel->mMissionRunMSselMBncl,
+                    gMissionRunMSsel->mMissionRunMSselMBnll, &gMissionRunMSsel->mMissionRunMSselMTable);
+    InitLayoutTable(gMissionRunMSsel->mHeap, gMissionRunMSsel->mMissionRunMSselSBncl,
+                    gMissionRunMSsel->mMissionRunMSselSBnll, &gMissionRunMSsel->mMissionRunMSselSTable);
     gMissionRunMSsel->mCommonMessages = FindFileInLoadedArchives(data_ov001_021a94a4);
     gMissionRunMSsel->mMissionMessages = FindSceneFile(data_ov001_021a94b0);
     gMissionRunMSsel->mMissionTableMtbl = FindFileInLoadedArchives(data_ov001_021a94bc);
@@ -884,12 +884,12 @@ s32 AdvanceMissionRunMSsel(void) {
     }
     func_ov001_021a08d8();
     func_ov001_021a09a4();
-    func_02124c30(gMissionRunMSsel->mMissionRunMSselMBncl, gMissionRunMSsel->mMissionRunMSselMNcer,
-                  gMissionRunMSsel->mMissionRunMSselMBnll, gMissionRunMSsel->mUnk_b4,
-                  gMissionRunMSsel->mMissionRunMSselMTable);
-    func_02124c30(gMissionRunMSsel->mMissionRunMSselSBncl, gMissionRunMSsel->mMissionRunMSselSNcer,
-                  gMissionRunMSsel->mMissionRunMSselSBnll, gMissionRunMSsel->mUnk_b8,
-                  gMissionRunMSsel->mMissionRunMSselSTable);
+    DrawLayoutTable(gMissionRunMSsel->mMissionRunMSselMBncl, gMissionRunMSsel->mMissionRunMSselMNcer,
+                    gMissionRunMSsel->mMissionRunMSselMBnll, gMissionRunMSsel->mUnk_b4,
+                    gMissionRunMSsel->mMissionRunMSselMTable);
+    DrawLayoutTable(gMissionRunMSsel->mMissionRunMSselSBncl, gMissionRunMSsel->mMissionRunMSselSNcer,
+                    gMissionRunMSsel->mMissionRunMSselSBnll, gMissionRunMSsel->mUnk_b8,
+                    gMissionRunMSsel->mMissionRunMSselSTable);
     if (gMissionRunMSsel->mState == 8 && gMissionRunMSsel->mStateFrames >= 10) {
         return gMissionRunMSsel->mResult;
     }

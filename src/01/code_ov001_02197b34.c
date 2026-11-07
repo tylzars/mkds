@@ -151,8 +151,8 @@ void InitTimeAttackTopMenu(void *a, void *b, s32 c) {
                       gTimeAttackTopMenu->mTimeAttackTopMenuSBncl);
     }
     func_020ae6d4(gTimeAttackTopMenu->mUnk_2c, (void *) gTimeAttackTopMenu->mUnk_30);
-    func_02124ed0(gTimeAttackTopMenu->mHeap, gTimeAttackTopMenu->mTimeAttackTopMenuSBncl, NULL,
-                  &gTimeAttackTopMenu->mTimeAttackTopMenuSTable);
+    InitLayoutTable(gTimeAttackTopMenu->mHeap, gTimeAttackTopMenu->mTimeAttackTopMenuSBncl, NULL,
+                    &gTimeAttackTopMenu->mTimeAttackTopMenuSTable);
     for (i = 0; i < 3; i++) {
         gTimeAttackTopMenu->mTimeAttackTopMenuSTable[data_ov001_021a6a08[i]].mUnk_04 = 0xe0;
         gTimeAttackTopMenu->mTimeAttackTopMenuSTable[data_ov001_021a6a10[i]].mUnk_04 = 0xe0;
@@ -377,8 +377,8 @@ s32 AdvanceTimeAttackTopMenu(void) {
             AdvanceTimeAttackTopMenuState5();
             break;
     }
-    func_02124c30(gTimeAttackTopMenu->mTimeAttackTopMenuSBncl, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, NULL,
-                  (void *) gTimeAttackTopMenu->mUnk_30, gTimeAttackTopMenu->mTimeAttackTopMenuSTable);
+    DrawLayoutTable(gTimeAttackTopMenu->mTimeAttackTopMenuSBncl, gTimeAttackTopMenu->mTimeAttackTopMenuSNcer, NULL,
+                    (void *) gTimeAttackTopMenu->mUnk_30, gTimeAttackTopMenu->mTimeAttackTopMenuSTable);
     if (gTimeAttackTopMenu->mState == 5 && gTimeAttackTopMenu->mStateFrames >= 10) {
         return gTimeAttackTopMenu->mResult;
     }

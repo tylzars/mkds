@@ -616,7 +616,7 @@ void func_02031208(void) {
         v1 = 0;
         do {
             v2 = &gMultiSelectMember->mUnk_24[v1];
-            func_02124c30(v2->mUnk_0c, v2->mUnk_08, v2->mUnk_14, (&gMultiSelectMember->mUnk_5c)[v1], v2->mUnk_18);
+            DrawLayoutTable(v2->mUnk_0c, v2->mUnk_08, v2->mUnk_14, (&gMultiSelectMember->mUnk_5c)[v1], v2->mUnk_18);
             v1++;
         } while (v1 < 2);
     }

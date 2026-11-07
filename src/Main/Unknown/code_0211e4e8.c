@@ -262,8 +262,8 @@ void InitSelectCupM(void *a, void *b, void *c) {
     LocateAndQueueSelectCupM();
     gSelectCupM->mCommonMessages = FindFileInLoadedArchives(data_0216e09c);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        func_02124ed0(gSelectCupM->mHeap, gSelectCupM->mMainBncl, gSelectCupM->mMainBnll, &gSelectCupM->mMainTable);
-        func_02124ed0(gSelectCupM->mHeap, gSelectCupM->mSubBncl, gSelectCupM->mSubBnll, &gSelectCupM->mSubTable);
+        InitLayoutTable(gSelectCupM->mHeap, gSelectCupM->mMainBncl, gSelectCupM->mMainBnll, &gSelectCupM->mMainTable);
+        InitLayoutTable(gSelectCupM->mHeap, gSelectCupM->mSubBncl, gSelectCupM->mSubBnll, &gSelectCupM->mSubTable);
         m = 0x8000;
         for (i = 0; i < 4; i++) {
             m -= func_021243ac(gSelectCupM->mHeap, data_0215cf0c[i], gSelectCupM->mMainBnll, data_0215cef4[i],
@@ -422,10 +422,10 @@ s32 AdvanceSelectCupM(void) {
             }
             gSelectCupM->mCupPicturePending = FALSE;
         }
-        func_02124c30(gSelectCupM->mMainBncl, gSelectCupM->mMainNcer, gSelectCupM->mMainBnll, gSelectCupM->mUnk_48,
-                      gSelectCupM->mMainTable);
-        func_02124c30(gSelectCupM->mSubBncl, gSelectCupM->mSubNcer, gSelectCupM->mSubBnll, gSelectCupM->mUnk_4c,
-                      gSelectCupM->mSubTable);
+        DrawLayoutTable(gSelectCupM->mMainBncl, gSelectCupM->mMainNcer, gSelectCupM->mMainBnll, gSelectCupM->mUnk_48,
+                        gSelectCupM->mMainTable);
+        DrawLayoutTable(gSelectCupM->mSubBncl, gSelectCupM->mSubNcer, gSelectCupM->mSubBnll, gSelectCupM->mUnk_4c,
+                        gSelectCupM->mSubTable);
     } else {
         func_0211f39c();
     }

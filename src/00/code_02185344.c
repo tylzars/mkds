@@ -73,8 +73,8 @@ void InitWiFiAikotobaCheck(void *a) {
     LocateAndUploadWiFiAikotobaCheck();
     b = func_ov000_021804f4();
     func_020ae6d4(b, func_ov000_021804e0());
-    func_02124ed0(a, gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl, gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll,
-                  &gWiFiAikotobaCheck->mWiFiAikotobaCheckTable);
+    InitLayoutTable(a, gWiFiAikotobaCheck->mWiFiAikotobaCheckBncl, gWiFiAikotobaCheck->mWiFiAikotobaCheckBnll,
+                    &gWiFiAikotobaCheck->mWiFiAikotobaCheckTable);
     gWiFiAikotobaCheck->mOffset = 0x50;
     func_ov000_021854f8();
     func_ov000_021856a8();
@@ -178,8 +178,8 @@ void AdvanceWiFiAikotobaCheck(void) {
     }
     func_ov000_021854f8();
     p = gWiFiAikotobaCheck;
-    func_02124c30(p->mWiFiAikotobaCheckBncl, p->mWiFiAikotobaCheckMNcer, p->mWiFiAikotobaCheckBnll,
-                  func_ov000_021804f4(), p->mWiFiAikotobaCheckTable);
+    DrawLayoutTable(p->mWiFiAikotobaCheckBncl, p->mWiFiAikotobaCheckMNcer, p->mWiFiAikotobaCheckBnll,
+                    func_ov000_021804f4(), p->mWiFiAikotobaCheckTable);
 }
 
 void func_ov000_02185368(void) {}

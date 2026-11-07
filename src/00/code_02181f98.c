@@ -62,8 +62,8 @@ void InitWiFiVSSetting(void *heap) {
                       gWiFiVSSetting->mWiFiVSSettingBncl);
     }
     func_020ae6d4(func_ov000_021804f4(), func_ov000_021804e0());
-    func_02124ed0(heap, gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingBnll,
-                  &gWiFiVSSetting->mWiFiVSSettingTable);
+    InitLayoutTable(heap, gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingBnll,
+                    &gWiFiVSSetting->mWiFiVSSettingTable);
     gWiFiVSSetting->mWiFiMessages = FindSceneFile("wifi.bmg");
     gWiFiVSSetting->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     {
@@ -690,8 +690,8 @@ void AdvanceWiFiVSSetting(void) {
     func_ov000_02182270();
     func_ov000_021821e0();
     func_ov000_02182150();
-    func_02124c30(gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingSNcer,
-                  gWiFiVSSetting->mWiFiVSSettingBnll, func_ov000_021804e0(), gWiFiVSSetting->mWiFiVSSettingTable);
+    DrawLayoutTable(gWiFiVSSetting->mWiFiVSSettingBncl, gWiFiVSSetting->mWiFiVSSettingSNcer,
+                    gWiFiVSSetting->mWiFiVSSettingBnll, func_ov000_021804e0(), gWiFiVSSetting->mWiFiVSSettingTable);
 }
 
 void func_ov000_02181ff0(void) {

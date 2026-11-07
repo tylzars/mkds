@@ -54,7 +54,7 @@ void func_02025abc(void *a, const char *b, const char *c, const char *d, const c
 void func_02025a50(u32 a, void *b, void *c) {
     Unk02174e14_00 *p = c;
     u32 r;
-    func_02124ed0(b, p->mUnk_0c, p->mUnk_14, &p->mUnk_18);
+    InitLayoutTable(b, p->mUnk_0c, p->mUnk_14, &p->mUnk_18);
     if (a == 0) {
         r = 0x13;
         CallQueueAppend(0xe, 0, ((Nclr *) p->mUnk_04)->mData, 0x1a0);

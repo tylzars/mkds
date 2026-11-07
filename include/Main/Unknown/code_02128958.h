@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void InitKeyboardScene(s16 *a);
+void InitKeyboardScene(s16 *sceneNumbers);

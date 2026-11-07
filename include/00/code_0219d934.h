@@ -61,7 +61,7 @@ typedef struct WiFiBuddySync {
     /* 40 */ void *mEntryMergedCallbackArg;
     // Set by SetBuddyChangedCallback (declared void *, called as void (*)(s32, void *)). Called by func_ov000_0219d504
     // with (list index, arg) after a GP reply set an entry's profile id, unless a sync is running (mState 1). The one
-    // caller passes func_0211f6b0 (a C body exists: src/Main/Unknown/code_0211f6b0.c).
+    // caller passes BuddyChangedCallback (a C body exists: src/Main/Unknown/code_0211f6b0.c).
     /* 44 */ void *mBuddyChangedCallback;
     /* 48 */ void *mBuddyChangedCallbackArg;
     /* 4c */ void (*mUnk_4c)(s32 a, s32 b, u32 c);

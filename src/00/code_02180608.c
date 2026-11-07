@@ -147,12 +147,12 @@ void InitWiFiStates(void *heap, s32 b) {
                     RegisterWiFiVSSettingCallbacks();
                     break;
                 case 2:
-                    func_02123a48(1);
+                    SetupWiFiSession(1);
                     gWiFiStates->mState = 4;
                     RegisterSelectCharacterCallbacks();
                     break;
                 case 3:
-                    func_02123a48(2);
+                    SetupWiFiSession(2);
                     func_020296f4();
                     gWiFiStates->mState = 6;
                     RegisterWiFiVSCourseSelectCallbacks();

@@ -218,9 +218,9 @@ void func_02029aa0(Unk02029aa0 *a) {
     v1 = func_020435bc();
     v = NULL;
     for (i = 0; i < 2; i++) {
-        func_02124c30(data_usa_02174e00->mUnk_00[i].mUnk_0c, data_usa_02174e00->mUnk_00[i].mUnk_08,
-                      data_usa_02174e00->mUnk_00[i].mUnk_14, data_usa_02174e00->mUnk_38[i],
-                      data_usa_02174e00->mUnk_00[i].mUnk_18);
+        DrawLayoutTable(data_usa_02174e00->mUnk_00[i].mUnk_0c, data_usa_02174e00->mUnk_00[i].mUnk_08,
+                        data_usa_02174e00->mUnk_00[i].mUnk_14, data_usa_02174e00->mUnk_38[i],
+                        data_usa_02174e00->mUnk_00[i].mUnk_18);
     }
     if (data_usa_02174e00->mUnk_48 < 3) {
         func_020a2558();

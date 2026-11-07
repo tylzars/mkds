@@ -423,8 +423,8 @@ void InitRecordGpx(void *heap) {
     CreateCupMark(heap);
     p = func_02111318();
     func_020ae6d4(p, func_0211130c());
-    func_02124ed0(heap, gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMBnll, &gRecordGpx->mRecordGpxMTable);
-    func_02124ed0(heap, gRecordGpx->mRecordGpxSBncl, gRecordGpx->mRecordGpxSBnll, &gRecordGpx->mRecordGpxSTable);
+    InitLayoutTable(heap, gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMBnll, &gRecordGpx->mRecordGpxMTable);
+    InitLayoutTable(heap, gRecordGpx->mRecordGpxSBncl, gRecordGpx->mRecordGpxSBnll, &gRecordGpx->mRecordGpxSTable);
     gRecordGpx->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     func_021243ac(heap, 0, gRecordGpx->mRecordGpxMBnll, 200, 16, 0, gRecordGpx->mRecordGpxMNcer,
                   gRecordGpx->mRecordGpxMBncl, gRecordGpx->mRecordGpxMTable, 0x8000);
@@ -757,9 +757,9 @@ void AdvanceRecordGpx(void) {
             break;
     }
     d = gRecordGpx;
-    func_02124c30(d->mRecordGpxMBncl, d->mRecordGpxMNcer, d->mRecordGpxMBnll, func_02111318(), d->mRecordGpxMTable);
+    DrawLayoutTable(d->mRecordGpxMBncl, d->mRecordGpxMNcer, d->mRecordGpxMBnll, func_02111318(), d->mRecordGpxMTable);
     d = gRecordGpx;
-    func_02124c30(d->mRecordGpxSBncl, d->mRecordGpxSNcer, d->mRecordGpxSBnll, func_0211130c(), d->mRecordGpxSTable);
+    DrawLayoutTable(d->mRecordGpxSBncl, d->mRecordGpxSNcer, d->mRecordGpxSBnll, func_0211130c(), d->mRecordGpxSTable);
 }
 
 void func_ov001_02193ccc(void) {

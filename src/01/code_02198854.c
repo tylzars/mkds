@@ -90,10 +90,10 @@ void InitOptionSelectMenu(void *a) {
                       gOptionSelectMenu->mOptionSelectMenuSBncl);
     }
     func_020ae6d4(GetOptionFirstBuffer(), GetOptionSecondBuffer());
-    func_02124ed0(a, gOptionSelectMenu->mOptionSelectMenuMBncl, gOptionSelectMenu->mOptionSelectMenuMBnll,
-                  &gOptionSelectMenu->mOptionSelectMenuMTable);
-    func_02124ed0(a, gOptionSelectMenu->mOptionSelectMenuSBncl, gOptionSelectMenu->mOptionSelectMenuSBnll,
-                  &gOptionSelectMenu->mOptionSelectMenuSTable);
+    InitLayoutTable(a, gOptionSelectMenu->mOptionSelectMenuMBncl, gOptionSelectMenu->mOptionSelectMenuMBnll,
+                    &gOptionSelectMenu->mOptionSelectMenuMTable);
+    InitLayoutTable(a, gOptionSelectMenu->mOptionSelectMenuSBncl, gOptionSelectMenu->mOptionSelectMenuSBnll,
+                    &gOptionSelectMenu->mOptionSelectMenuSTable);
     gOptionSelectMenu->mOptionMessages = FindSceneFile(data_ov001_021a8644);
     gOptionSelectMenu->mCommonMessages = FindFileInLoadedArchives(data_ov001_021a8650);
     InitOptionSelectMenuTexts();
@@ -599,11 +599,11 @@ void AdvanceOptionSelectMenu(void) {
     SetOptionSelectMenuRowsOnOff();
     AdvanceOptionSelectMenuOffsetTimers();
     p = gOptionSelectMenu;
-    func_02124c30(p->mOptionSelectMenuMBncl, p->mOptionSelectMenuMNcer, p->mOptionSelectMenuMBnll,
-                  GetOptionFirstBuffer(), p->mOptionSelectMenuMTable);
+    DrawLayoutTable(p->mOptionSelectMenuMBncl, p->mOptionSelectMenuMNcer, p->mOptionSelectMenuMBnll,
+                    GetOptionFirstBuffer(), p->mOptionSelectMenuMTable);
     p = gOptionSelectMenu;
-    func_02124c30(p->mOptionSelectMenuSBncl, p->mOptionSelectMenuSNcer, p->mOptionSelectMenuSBnll,
-                  GetOptionSecondBuffer(), p->mOptionSelectMenuSTable);
+    DrawLayoutTable(p->mOptionSelectMenuSBncl, p->mOptionSelectMenuSNcer, p->mOptionSelectMenuSBnll,
+                    GetOptionSecondBuffer(), p->mOptionSelectMenuSTable);
 }
 
 void WriteOptionSelectMenuRegisters(void) {

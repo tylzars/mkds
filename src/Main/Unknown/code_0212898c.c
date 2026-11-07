@@ -182,7 +182,7 @@ void InitKeyboard(void *a, s32 b) {
     gKeyboard = HeapAlloc(a, 0xc4);
     gKeyboard->mHeap = a;
     gKeyboard->mUnk_bc = func_021250b0(a);
-    func_0212abdc(a, func_02128898());
+    func_0212abdc(a, GetKeyboardFirstBuffer());
     c.mUnk_00 = 1;
     c.mUnk_04 = func_020b403c(1);
     c.mUnk_08 = 0;
@@ -201,7 +201,7 @@ void InitKeyboard(void *a, s32 b) {
     func_02125de0(a, &c);
     func_02129c18();
     LoadKeyboardFiles();
-    func_020ae6d4(func_02128898(), func_02128884());
+    func_020ae6d4(GetKeyboardFirstBuffer(), GetKeyboardSecondBuffer());
     InitKeyboardTextEntry(0x20, 0x40, 0xc);
     SetKeyboardOffset(0, 0x28);
     SetKeyboardButtonCorners();
@@ -252,7 +252,7 @@ void InitKeyboard(void *a, s32 b) {
     gKeyboard->mCommonMessages = FindFileInLoadedArchives(data_0216ea60);
     for (i = 0; i < 2; i++) {
         for (j = 0; j < 2; j++) {
-            func_02124ed0(a, gKeyboard->mBncls[i], gKeyboard->mBnlls[i], &gKeyboard->mTables[i][j]);
+            InitLayoutTable(a, gKeyboard->mBncls[i], gKeyboard->mBnlls[i], &gKeyboard->mTables[i][j]);
         }
     }
     InitKeyboardCursorCorners();
@@ -1085,10 +1085,11 @@ void AdvanceKeyboard(void) {
     WriteKeyboardObjectOffsets();
     for (i = 0; i < 2; i++) {
         p = gKeyboard;
-        func_02124c30(p->mBncls[i], p->mNcer, p->mBnlls[i], func_02128898(), p->mTables[i][0]);
+        DrawLayoutTable(p->mBncls[i], p->mNcer, p->mBnlls[i], GetKeyboardFirstBuffer(), p->mTables[i][0]);
     }
     p = gKeyboard;
-    func_02124c30(p->mBncls[p->mKind], p->mNcer, p->mBnlls[p->mKind], func_02128884(), p->mTables[p->mKind][1]);
+    DrawLayoutTable(p->mBncls[p->mKind], p->mNcer, p->mBnlls[p->mKind], GetKeyboardSecondBuffer(),
+                    p->mTables[p->mKind][1]);
 }
 
 void func_0212899c(void) {

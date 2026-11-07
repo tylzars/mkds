@@ -286,10 +286,12 @@ typedef struct SelectCupCourse {
     /* 10 */ Unk0201ea30 *mSelectCupMBncl;
     /* 14 */ Unk0201ea30 *mSelectCupMBnbl;
     /* 18 */ struct Unk0201ea30 *mSelectCupMBnll;
-    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; assigned only when *(vu16
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable; assigned only when
+    // *(vu16
     // *) 0x027ffc40 != 2
     /* 1c */ Unk02124b1c *mSelectCupCourseTaOrVsMTable;
-    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0; assigned only when *(vu16
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable; assigned only when
+    // *(vu16
     // *) 0x027ffc40 != 2
     /* 20 */ Unk02124b1c *mSelectCupMTable;
     /* 24 */ void *mUnk_24;

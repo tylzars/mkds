@@ -491,7 +491,7 @@ s32 AdvanceMultiSelectMemberGroup(Unk0202f764 *a) {
             break;
     }
     if (gMultiSelectMemberGroup->mState != 4) {
-        func_02124c30(q->mUnk_0c, q->mUnk_08, q->mUnk_14, gMultiSelectMemberGroup->mUnk_44, q->mUnk_18);
+        DrawLayoutTable(q->mUnk_0c, q->mUnk_08, q->mUnk_14, gMultiSelectMemberGroup->mUnk_44, q->mUnk_18);
     }
     return v1;
 }

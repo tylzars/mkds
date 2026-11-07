@@ -67,7 +67,7 @@ void InitWiFiTopMenu(void *heap) {
         func_02124a98(data_ov000_021b05c0[i], 1, gWiFiTopMenu->mWiFiTopMenuSNcer, gWiFiTopMenu->mWiFiTopMenuBncl);
     }
     func_020ae6d4(func_ov000_021804f4(), func_ov000_021804e0());
-    func_02124ed0(heap, gWiFiTopMenu->mWiFiTopMenuBncl, NULL, &gWiFiTopMenu->mWiFiTopMenuTable);
+    InitLayoutTable(heap, gWiFiTopMenu->mWiFiTopMenuBncl, NULL, &gWiFiTopMenu->mWiFiTopMenuTable);
     for (j = 0; j < 3; j++) {
         for (k = 0; k < data_ov000_021b05cc[j]; k++) {
             gWiFiTopMenu->mWiFiTopMenuTable[data_ov000_021b05d8[j][k]].mUnk_04 = 0xdc;
@@ -410,7 +410,7 @@ void AdvanceWiFiTopMenu(void) {
     }
     func_ov000_021817e8();
     p = gWiFiTopMenu;
-    func_02124c30(p->mWiFiTopMenuBncl, p->mWiFiTopMenuSNcer, NULL, func_ov000_021804e0(), p->mWiFiTopMenuTable);
+    DrawLayoutTable(p->mWiFiTopMenuBncl, p->mWiFiTopMenuSNcer, NULL, func_ov000_021804e0(), p->mWiFiTopMenuTable);
 }
 
 void func_ov000_02181738(void) {

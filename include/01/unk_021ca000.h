@@ -83,9 +83,9 @@ typedef struct MissionRunMSsel {
     /* 18 */ struct Unk0201ea30 *mMissionRunMSselSBnll;
     /* 1c */ Unk021ca414_1c *mUnk_1c;
     /* 20 */ u16 mUnk_20[0x10];
-    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable
     /* 40 */ Unk02124b1c *mMissionRunMSselMTable;
-    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable
     /* 44 */ Unk02124b1c *mMissionRunMSselSTable;
     /* 48 */ void *mUnk_48;
     // missionTable.mtbl: byte table, header u16 row width at +6, data at +8; GetMissionTableValue(table, row, column)
@@ -129,7 +129,7 @@ typedef struct SelectEngine {
     /* 0c */ struct Unk0201ea30 *mSelectEngineAOrBSBncl;
     // same variant as mSelectEngineAOrBSBncl (.bnbl)
     /* 10 */ void *mSelectEngineAOrBSBnbl;
-    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by func_02124ed0
+    // one 0x40-byte record per cell of the Bncl (plus Bnll) members, built by InitLayoutTable
     /* 14 */ Unk02124b1c *mSelectEngineMTable;
     // cell records of mSelectEngineAOrBSBncl (variant chosen by func_02056dec(0x10))
     /* 18 */ Unk02124b1c *mSelectEngineAOrBSTable;

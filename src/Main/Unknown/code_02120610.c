@@ -572,7 +572,7 @@ void KartKeysStartCallback(u32 a, s32 b) {
         }
         MI_CpuFill8(d->mPlayerRecords, 0, 0x910);
         func_02056464((Unk0217aa00_45c *) &gWiFiSession->mPlayerRecords[func_ov000_0219bb50()].mUnk_00c);
-        func_02123a48(0);
+        SetupWiFiSession(0);
         gWiFiSession->mStartStatus = 3;
     } else {
         gWiFiSession->mStartStatus = 4;

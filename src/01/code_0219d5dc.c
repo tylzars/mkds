@@ -32,8 +32,8 @@ void InitOptionEmbremSelect(void *a) {
                       gOptionEmbremSelect->mOptionEmbremSelectSBncl);
     }
     func_020ae6d4(GetOptionFirstBuffer(), GetOptionSecondBuffer());
-    func_02124ed0(a, gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
-                  &gOptionEmbremSelect->mOptionEmbremSelectSTable);
+    InitLayoutTable(a, gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSBnll,
+                    &gOptionEmbremSelect->mOptionEmbremSelectSTable);
     gOptionEmbremSelect->mOptionMessages = FindSceneFile("option.bmg");
     gOptionEmbremSelect->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     func_021243ac(a, 0, gOptionEmbremSelect->mOptionEmbremSelectSBnll, 0xa0, 0xe, 9,
@@ -432,9 +432,9 @@ void AdvanceOptionEmbremSelect(void) {
     func_ov001_0219d810();
     func_ov001_0219d730();
     func_ov001_0219d6ac();
-    func_02124c30(gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
-                  gOptionEmbremSelect->mOptionEmbremSelectSBnll, GetOptionSecondBuffer(),
-                  gOptionEmbremSelect->mOptionEmbremSelectSTable);
+    DrawLayoutTable(gOptionEmbremSelect->mOptionEmbremSelectSBncl, gOptionEmbremSelect->mOptionEmbremSelectSNcer,
+                    gOptionEmbremSelect->mOptionEmbremSelectSBnll, GetOptionSecondBuffer(),
+                    gOptionEmbremSelect->mOptionEmbremSelectSTable);
 }
 
 void func_ov001_0219d600(void) {

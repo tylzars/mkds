@@ -62,8 +62,9 @@ void InitSelectBattleStage(void *c, s32 d, void *e, void *f) {
     gSelectBattleStage->mUnk_107c = f;
     func_020ae6d4(e, f);
     for (i = 0; i < 2; i++) {
-        func_02124ed0(gSelectBattleStage->mHeap, gSelectBattleStage->mSelectBattleStageBncls[i],
-                      gSelectBattleStage->mSelectBattleStageBnlls[i], &gSelectBattleStage->mSelectBattleStageTables[i]);
+        InitLayoutTable(gSelectBattleStage->mHeap, gSelectBattleStage->mSelectBattleStageBncls[i],
+                        gSelectBattleStage->mSelectBattleStageBnlls[i],
+                        &gSelectBattleStage->mSelectBattleStageTables[i]);
     }
     gSelectBattleStage->mSelectBattleStageTables[0][0].mUnk_06 = -0xa0;
     gSelectBattleStage->mUnk_14 = 0xa0;
@@ -448,9 +449,10 @@ s32 AdvanceSelectBattleStage(void) {
     func_ov001_0219cec4();
     CopyAndQueueSelectBattleStageNscrRect();
     for (i = 0; i < 2; i++) {
-        func_02124c30(gSelectBattleStage->mSelectBattleStageBncls[i], (&gSelectBattleStage->mSelectBattleStageMNcer)[i],
-                      gSelectBattleStage->mSelectBattleStageBnlls[i], (&gSelectBattleStage->mUnk_1078)[i],
-                      gSelectBattleStage->mSelectBattleStageTables[i]);
+        DrawLayoutTable(gSelectBattleStage->mSelectBattleStageBncls[i],
+                        (&gSelectBattleStage->mSelectBattleStageMNcer)[i],
+                        gSelectBattleStage->mSelectBattleStageBnlls[i], (&gSelectBattleStage->mUnk_1078)[i],
+                        gSelectBattleStage->mSelectBattleStageTables[i]);
     }
     return gSelectBattleStage->mResult;
 }

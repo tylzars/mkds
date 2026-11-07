@@ -12,7 +12,7 @@ void SetupAndDrawTitleTable(void) {
     TitleScene *v1;
     SetupTitleTable();
     v1 = gTitleScene;
-    func_02124c30(v1->mTitleSBncl, v1->mTitleSNceNcer, v1->mTitleSBnll, &v1->mSubOam, v1->mTitleTable);
+    DrawLayoutTable(v1->mTitleSBncl, v1->mTitleSNceNcer, v1->mTitleSBnll, &v1->mSubOam, v1->mTitleTable);
 }
 
 #pragma thumb off

@@ -192,7 +192,7 @@ s32 AdvanceMultiSelectNS(void) {
             break;
     }
     if (gMultiSelectNS->mState != 4) {
-        func_02124c30(o->mBncl, o->mNcer, o->mBnll, gMultiSelectNS->mUnk_20, o->mUnk_18);
+        DrawLayoutTable(o->mBncl, o->mNcer, o->mBnll, gMultiSelectNS->mUnk_20, o->mUnk_18);
     }
     return r;
 }

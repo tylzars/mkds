@@ -7,24 +7,24 @@
 #include "00/code_021a2ccc.h"
 
 void func_02122ab0(void) {
-    Unk0217d384_08 *p;
+    Unk0217d384_08 *stateMachine;
     gWiFiSession->mUnk_19ad = 0;
-    p = &gWiFiSession->mUnk_0008;
-    p->mNextState = 2;
-    p->mNextStateRequested = 1;
+    stateMachine = &gWiFiSession->mUnk_0008;
+    stateMachine->mNextState = 2;
+    stateMachine->mNextStateRequested = 1;
 }
 
 // Drops the indices set in mKartRemoveMask from the roster; ends the run (step 11) if the own index is removed or one
 // kart or none remains.
 void RemoveWiFiSessionKarts(void) {
     u8 i;
-    u32 m;
+    u32 bit;
     if (gWiFiSession->mStep == 11 || gWiFiSession->mStep == 12) {
         return;
     }
     for (i = 0; i < gWiFiSession->mStartKartCount; i++) {
-        m = 1 << i;
-        if ((gWiFiSession->mKartMask & m) != 0 && (gWiFiSession->mKartRemoveMask & m) != 0) {
+        bit = 1 << i;
+        if ((gWiFiSession->mKartMask & bit) != 0 && (gWiFiSession->mKartRemoveMask & bit) != 0) {
             if (i == func_ov000_0219bb50()) {
                 gWiFiSession->mUnk_19ad = 1;
                 func_ov000_021a2ccc();
@@ -32,8 +32,8 @@ void RemoveWiFiSessionKarts(void) {
                 gWiFiSession->mStep = 11;
                 return;
             }
-            gWiFiSession->mKartMask &= ~m;
-            gWiFiSession->mKartRemoveMask &= ~m;
+            gWiFiSession->mKartMask &= ~bit;
+            gWiFiSession->mKartRemoveMask &= ~bit;
             gWiFiSession->mKartCount--;
         }
     }
@@ -47,11 +47,11 @@ void RemoveWiFiSessionKarts(void) {
 
 void UpdateWiFiSessionKartTimeouts(void) {
     u8 i;
-    u8 n;
+    u8 ownIndex;
     if (gWiFiSession->mStep > 2 && gWiFiSession->mStep < 9) {
         if (gWiFiSession->mStep == 3) {
-            n = func_ov000_0219bb50();
-            if (gWiFiSession->mUnk_1e10[n].mUnk_40 != 1) {
+            ownIndex = func_ov000_0219bb50();
+            if (gWiFiSession->mUnk_1e10[ownIndex].mUnk_40 != 1) {
                 return;
             }
         }
@@ -70,14 +70,14 @@ void UpdateWiFiSessionKartTimeouts(void) {
     }
 }
 
-u32 GetKartMaskBit(u32 a) {
-    return gWiFiSession->mKartMask & (1 << a);
+u32 GetKartMaskBit(u32 index) {
+    return gWiFiSession->mKartMask & (1 << index);
 }
 
-u32 func_02122794(u8 a) {
+u32 GetKartMaskBitOfPackedIndex(u8 packedIndex) {
     s8 i;
     for (i = 0; i < 4; i++) {
-        if (a == gWiFiSession->mPackedIndices[i]) {
+        if (packedIndex == gWiFiSession->mPackedIndices[i]) {
             goto found;
         }
     }

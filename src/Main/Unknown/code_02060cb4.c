@@ -80,7 +80,7 @@ void func_02061220(u32 a) {
     u64 b;
 
     b = DWC_CreateFriendKey((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c);
-    func_02152918(b, b >> 32, a);
+    FormatFriendKey(b, b >> 32, a);
 }
 
 s32 func_02061104(const void *a) {

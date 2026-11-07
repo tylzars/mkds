@@ -342,10 +342,10 @@ void InitSelectGhost(void *a, u32 b, u32 c) {
     gSelectGhost->mResult = 0;
     LocateAndQueueSelectGhost();
     CreateCommonKartIcon(gSelectGhost->mHeap);
-    func_02124ed0(gSelectGhost->mHeap, gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMBnll,
-                  &gSelectGhost->mSelectCupCourseTaMTable);
-    func_02124ed0(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSBnll,
-                  &gSelectGhost->mSelectGhostSTable);
+    InitLayoutTable(gSelectGhost->mHeap, gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseTaMBnll,
+                    &gSelectGhost->mSelectCupCourseTaMTable);
+    InitLayoutTable(gSelectGhost->mHeap, gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSBnll,
+                    &gSelectGhost->mSelectGhostSTable);
     gSelectGhost->mCommonMessages = FindFileInLoadedArchives("common.bmg");
     gSelectGhost->mMenuMessages = FindSceneFile("menu.bmg");
     rem = 0x8000;
@@ -646,11 +646,11 @@ int AdvanceSelectGhost(void) {
     }
     AdvancePaletteBlend();
     func_ov001_0219c358();
-    func_02124c30(gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseMNcer,
-                  gSelectGhost->mSelectCupCourseTaMBnll, (void *) gSelectGhost->mUnk_64,
-                  gSelectGhost->mSelectCupCourseTaMTable);
-    func_02124c30(gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBnll,
-                  (void *) gSelectGhost->mUnk_68, gSelectGhost->mSelectGhostSTable);
+    DrawLayoutTable(gSelectGhost->mSelectCupCourseTaMBncl, gSelectGhost->mSelectCupCourseMNcer,
+                    gSelectGhost->mSelectCupCourseTaMBnll, (void *) gSelectGhost->mUnk_64,
+                    gSelectGhost->mSelectCupCourseTaMTable);
+    DrawLayoutTable(gSelectGhost->mSelectGhostSBncl, gSelectGhost->mSelectGhostSONcer, gSelectGhost->mSelectGhostSBnll,
+                    (void *) gSelectGhost->mUnk_68, gSelectGhost->mSelectGhostSTable);
     if (gSelectGhost->mState == 7) {
         switch (gSelectGhost->mResult) {
             case 1:

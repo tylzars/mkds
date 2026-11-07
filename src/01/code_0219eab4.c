@@ -309,8 +309,8 @@ void InitMissionRunLVsel(void *a, void *b, void *c) {
     func_ov001_0219f3a4();
     LocateAndQueueMissionRunLVsel();
     func_020ae6d4(gMissionRunLVsel->mUnk_50, gMissionRunLVsel->mUnk_54);
-    func_02124ed0(gMissionRunLVsel->mHeap, gMissionRunLVsel->mMissionRunLVselS7Or6Bncl,
-                  gMissionRunLVsel->mMissionRunLVselS7Or6Bnll, &gMissionRunLVsel->mMissionRunLVselS7Or6Table);
+    InitLayoutTable(gMissionRunLVsel->mHeap, gMissionRunLVsel->mMissionRunLVselS7Or6Bncl,
+                    gMissionRunLVsel->mMissionRunLVselS7Or6Bnll, &gMissionRunLVsel->mMissionRunLVselS7Or6Table);
     remaining = GX_GetSizeOfSubOBJ();
     for (i = 0; i < 7; i++) {
         remaining -=
@@ -529,9 +529,9 @@ s32 AdvanceMissionRunLVsel(void) {
             break;
     }
     func_ov001_0219f430();
-    func_02124c30(gMissionRunLVsel->mMissionRunLVselS7Or6Bncl, gMissionRunLVsel->mMissionRunLVselSNcer,
-                  gMissionRunLVsel->mMissionRunLVselS7Or6Bnll, gMissionRunLVsel->mUnk_54,
-                  gMissionRunLVsel->mMissionRunLVselS7Or6Table);
+    DrawLayoutTable(gMissionRunLVsel->mMissionRunLVselS7Or6Bncl, gMissionRunLVsel->mMissionRunLVselSNcer,
+                    gMissionRunLVsel->mMissionRunLVselS7Or6Bnll, gMissionRunLVsel->mUnk_54,
+                    gMissionRunLVsel->mMissionRunLVselS7Or6Table);
     if (gMissionRunLVsel->mState == 5 && gMissionRunLVsel->mStateFrames >= 10) {
         return gMissionRunLVsel->mResult;
     }

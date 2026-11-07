@@ -133,8 +133,8 @@ void func_0211a964(s32 a) {
     b = gSelectRaceRule->mBncl->mUnk_06 + a;
     gSelectRaceRule->mTable[b].mUnk_06++;
     func_02124100(a, 1, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
-    func_02124bc8(b, gSelectRaceRule->mBncl, gSelectRaceRule->mNcer, gSelectRaceRule->mBnll, gSelectRaceRule->mUnk_b4,
-                  gSelectRaceRule->mTable);
+    DrawLayoutTableEntry(b, gSelectRaceRule->mBncl, gSelectRaceRule->mNcer, gSelectRaceRule->mBnll,
+                         gSelectRaceRule->mUnk_b4, gSelectRaceRule->mTable);
     gSelectRaceRule->mTable[b].mUnk_06--;
     func_02124100(a, 0, gSelectRaceRule->mBnll, gSelectRaceRule->mTable, gSelectRaceRule->mBncl);
 }
@@ -208,7 +208,7 @@ s32 AdvanceSelectRaceRule(void) {
     func_0211d66c();
     func_0211c0cc();
     p = gSelectRaceRule;
-    func_02124c30(p->mBncl, p->mNcer, p->mBnll, p->mUnk_b4, p->mTable);
+    DrawLayoutTable(p->mBncl, p->mNcer, p->mBnll, p->mUnk_b4, p->mTable);
     for (i = 0; i < 5; i++) {
         func_0211a908(i);
     }

@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// 0xc-byte object built on the stack by func_02123384.
+// 0xc-byte object built on the stack by AdvanceWiFiSessionStep1.
 typedef struct Unk02123384 {
     /* 00 */ s32 mKind;
     /* 04 */ s32 mSize;
@@ -12,13 +12,13 @@ typedef struct Unk02123384 {
     /* 0a */ u8 mKartMask;
 } Unk02123384;
 
-void func_02122b14(void);
-void func_02122bf0(void);
-void func_02122d74(void);
-void func_02122f38(void);
-void func_02123098(void);
-void func_0212320c(void);
-void func_02123384(void);
-void func_0212357c(void);
-s32 func_021236f8(void);
-void func_02123a48(u32 a);
+void CombineKartRemoveMask(void);
+void AdvanceWiFiSessionStep9(void);
+void AdvanceWiFiSessionStep8(void);
+void AdvanceWiFiSessionStep5(void);
+void AdvanceWiFiSessionStep4(void);
+void AdvanceWiFiSessionStep3(void);
+void AdvanceWiFiSessionStep1(void);
+void AdvanceWiFiSessionStep0(void);
+s32 UpdateWiFiSessionStep(void);
+void SetupWiFiSession(u32 mode);
