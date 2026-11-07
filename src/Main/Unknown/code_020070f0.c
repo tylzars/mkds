@@ -5,7 +5,7 @@
 
 #pragma thumb on
 
-u32 func_02007138(u32 a) {
+u32 IsChildIndexInRange(u32 a) {
     if ((a >= 1) && (a <= 15)) {
         return 1;
     }
@@ -13,28 +13,28 @@ u32 func_02007138(u32 a) {
 }
 
 void func_02007120(u32 a, u16 b) {
-    u16 v1[1];
-    v1[0] = b;
-    func_02007cf8(a, 0xd, v1);
+    u16 value[1];
+    value[0] = b;
+    func_02007cf8(a, 0xd, value);
 }
 
-u32 func_02007114(void) {
-    return data_0216f3cc[0];
+u32 GetRequestId(void) {
+    return gRequestId[0];
 }
 
 #pragma thumb off
 
 #pragma thumb on
 
-void func_020070fc(void) {
-    data_0216f3cc[0]++;
-    if (data_0216f3cc[0] == 0) {
-        data_0216f3cc[0]++;
+void AdvanceRequestId(void) {
+    gRequestId[0]++;
+    if (gRequestId[0] == 0) {
+        gRequestId[0]++;
     }
 }
 
-void func_020070f0(void) {
-    data_0216f3cc[0] = 0;
+void ResetRequestId(void) {
+    gRequestId[0] = 0;
 }
 
 #pragma thumb off

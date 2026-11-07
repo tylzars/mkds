@@ -75,7 +75,7 @@ typedef struct SelectKart {
     /* 090 */ s32 mStateFrames; /* counts only in states 3, 4 and 6 */
     /* 094 */ s32 mState;
     /* 098 */ Unk0205fd2c *mUnk_098;
-    // Position of the kart in the table data_0215336c that the player steps through; mKartIndex is the kart at that
+    // Position of the kart in the table gKartIndexTable that the player steps through; mKartIndex is the kart at that
     // position, -1 when the kart is not in the table.
     /* 09c */ s32 mKartTableIndex;
     // Index of the entry (element of the array behind gRaceSetupCopy) whose character and kart this screen edits.

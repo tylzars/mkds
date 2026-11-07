@@ -170,7 +170,8 @@ void func_02029dcc(void *a, void *b, void *c) {
         k += 2;
     }
     for (e = 0; e < 4; e++) {
-        v = GetBmgEntry(data_usa_02174e00->mUnk_4c, func_02025d8c(data_usa_02153898[data_usa_02174e00->mUnk_40][e]));
+        v = GetBmgEntry(data_usa_02174e00->mUnk_4c,
+                        GetCourseMessageIndex(data_usa_02153898[data_usa_02174e00->mUnk_40][e]));
         func_0212426c(1, data_usa_02153918[k].mUnk_00, r->mUnk_14, v, r->mUnk_0c, r->mUnk_18);
         k++;
     }

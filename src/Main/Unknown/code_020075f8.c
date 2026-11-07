@@ -5,10 +5,10 @@
 
 #pragma thumb on
 
-int func_020075f8(u8 a, u32 b) {
-    u8 v1[8];
-    v1[0] = a;
-    func_0200c3a4(v1, (u8 *) data_0216fdac);
+int SendParentMessage(u8 a, u32 b) {
+    u8 message[8];
+    message[0] = a;
+    WriteParentMessage(message, (u8 *) data_0216fdac);
     return func_02008908(6, b, (u32) data_0216fdac);
 }
 

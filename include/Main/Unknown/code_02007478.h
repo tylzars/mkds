@@ -12,14 +12,14 @@
 #include "Main/Unknown/code_02008908.h"
 #include "Main/Unknown/code_0214d000.h"
 
-// Object func_0200aeec runs func_02007478 on: the member at 0x10 is the entry of DataRangeTable that is read.
+// Object func_0200aeec runs LoadDataRange on: the member at 0x10 is the entry of DataRangeTable that is read.
 typedef struct Unk02007478 {
     /* 00 */ Unk0200aeec mUnk_00;
-    /* 10 */ DataRange *mUnk_10;
-    /* 14 */ DataRangeTable *mUnk_14;
+    /* 10 */ DataRange *mDataRange;
+    /* 14 */ DataRangeTable *mDataRangeTable;
 } Unk02007478;
 
-// Six bytes handed to func_0200c3a4.
+// Six bytes handed to WriteParentMessage.
 typedef struct Unk020074d8_msg {
     /* 00 */ u8 mUnk_00;
     /* 01 */ u8 mUnk_01;
@@ -29,5 +29,5 @@ typedef struct Unk020074d8_msg {
 
 extern u8 data_usa_02161784;
 
-void func_02007478(Unk02007478 *a);
+void LoadDataRange(Unk02007478 *job);
 u32 func_020074d8(void);

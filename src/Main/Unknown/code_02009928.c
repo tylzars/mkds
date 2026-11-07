@@ -688,13 +688,13 @@ s32 StartParentOnChannel(u16 a) {
     gWirelessWork->mChannel = a;
     v5 = data_0216fdac;
     gWMSysBuf = (void *) (((u32) v5 + 0x7d1f) & ~0x1f);
-    v4 = (s32) v5->mUnk_14e4;
+    v4 = (s32) v5->mCallback;
     v2[0] = 0;
     MIi_CpuClear16(v2[0], v5->mUnk_1340, 0x69c0);
-    func_02007ea0((UnkFunc *) v4);
+    SetCallback((UnkFunc *) v4);
     data_0216fdac->mUnk_1318 = gWirelessWork->mSendDataSize - 6;
-    func_0200c448(gWirelessWork->mReceiveDataSize);
-    func_0200c430((u32) data_0216fdac->mUnk_1538);
+    SetupPieceSizes(gWirelessWork->mReceiveDataSize);
+    SetupPieceBuffer((u32) data_0216fdac->mUnk_1538);
     for (i = 0; i < 15; i++) {
         data_0216fdac->mUnk_14e8[i] = 0;
         data_0216fdac->mUnk_1526[i] = -1;
@@ -803,7 +803,7 @@ void DisconnectChild(u32 a) {
         data_0216fdac->mUnk_148a[v1] = 0;
         MI_CpuFill8(data_0216fdac->mUnk_14a8 + v1, 0, 4);
         MI_CpuFill8(data_0216fdac->mUnk_1340 + v1 * 0x16, 0, 0x16);
-        func_0200c3fc(a);
+        ClearChildPieces(a);
         v2 = 0;
         data_0216fdac->mUnk_1754[v1] = v2;
         v3 = data_0216fdac->mUnk_1526[v1];

@@ -8,10 +8,10 @@ s32 func_02025da4(Unk0205fd2c *a, u32 b, s32 c) {
     s32 i;
     s32 j;
     u32 d;
-    j = func_02025e34(func_02025e60(b));
+    j = FindKartTableIndex(func_02025e60(b));
     i = j;
     do {
-        d = func_02025e28(i);
+        d = GetKartIndexAtTableIndex(i);
         if (func_0205fd2c(a, b, d) != 0) {
             if (d == c) {
                 break;

@@ -7,7 +7,7 @@
 void *func_02007e38(u32 a) {
     u32 v1;
     v1 = OS_DisableInterrupts();
-    if (data_0216fdac != NULL && func_02007138(a) != 0) {
+    if (data_0216fdac != NULL && IsChildIndexInRange(a) != 0) {
         MI_CpuCopy8(data_0216fdac->mUnk_1340 + (a - 1) * 0x16, data_0216fdac->mUnk_1772, 0x16);
         OS_RestoreInterrupts(v1);
         return data_0216fdac->mUnk_1772;
@@ -17,7 +17,7 @@ void *func_02007e38(u32 a) {
 }
 
 u32 func_02007df8(u32 a) {
-    if (data_0216fdac != NULL && func_02007138(a) != 0 && data_0216fdac->mUnk_14e8[a - 1] == 7) {
+    if (data_0216fdac != NULL && IsChildIndexInRange(a) != 0 && data_0216fdac->mUnk_14e8[a - 1] == 7) {
         return 1;
     }
     return 0;
@@ -49,7 +49,7 @@ u32 func_02007d50(u32 a, u32 b) {
             OS_RestoreInterrupts(v1);
             return 0;
     }
-    if (data_0216fdac != NULL && func_02007138(a) != 0 && v2 == data_0216fdac->mUnk_14e8[a - 1]) {
+    if (data_0216fdac != NULL && IsChildIndexInRange(a) != 0 && v2 == data_0216fdac->mUnk_14e8[a - 1]) {
         data_0216fdac->mUnk_1754[a - 1] = v3;
         OS_RestoreInterrupts(v1);
         return 1;
@@ -59,7 +59,7 @@ u32 func_02007d50(u32 a, u32 b) {
 }
 
 void func_02007d18(u32 a, u32 b, void *c) {
-    if (func_02007138(a) != 0) {
+    if (IsChildIndexInRange(a) != 0) {
         data_0216fdac->mUnk_14e8[a - 1] = b;
     }
     func_02007cf8(a, b, c);
@@ -68,8 +68,8 @@ void func_02007d18(u32 a, u32 b, void *c) {
 void func_02007cf8(u32 a, u32 b, void *c) {
     Unk0216fdac *v1;
     v1 = data_0216fdac;
-    if (v1->mUnk_14e4 != NULL) {
-        v1->mUnk_14e4(a, b, c);
+    if (v1->mCallback != NULL) {
+        v1->mCallback(a, b, c);
     }
 }
 
@@ -99,7 +99,7 @@ void func_020079c4(s32 a, Unk021425e8 *b) {
                 data_0216fdac->mUnk_148a[b->mUnk_10 - 1] = 0;
                 MI_CpuFill8(data_0216fdac->mUnk_14a8 + (b->mUnk_10 - 1), 0, 4);
                 MI_CpuFill8(data_0216fdac->mUnk_1340 + (b->mUnk_10 - 1) * 0x16, 0, 0x16);
-                func_0200c3fc(b->mUnk_10);
+                ClearChildPieces(b->mUnk_10);
                 v2 = 0;
                 data_0216fdac->mUnk_1754[b->mUnk_10 - 1] = v2;
                 v3 = b->mUnk_10;
@@ -195,7 +195,7 @@ void func_020079c4(s32 a, Unk021425e8 *b) {
             break;
     }
     if (a == 0x11) {
-        v6 = data_0216fdac->mUnk_14e4;
+        v6 = data_0216fdac->mCallback;
         MemFillWordsByBlock_inline(data_0216fdac, 0x7d00);
         data_0216fdac = NULL;
         if (v6 != NULL) {
@@ -205,7 +205,7 @@ void func_020079c4(s32 a, Unk021425e8 *b) {
 }
 
 void func_02007698(Unk021432ac *a, u32 b) {
-    Unk0200c16c v1;
+    ChildMessage v1;
     Unk0200c12c v2;
     u8 *v3;
     u32 v4;
@@ -217,10 +217,10 @@ void func_02007698(Unk021432ac *a, u32 b) {
     if (b == 0 || b > 15) {
         return;
     }
-    v3 = func_0200c2e0(a->mUnk_0a, &v1, b);
+    v3 = ReadChildMessage(a->mUnk_0a, &v1, b);
     v4 = b - 1;
     v5 = data_0216fdac->mUnk_14e8[v4];
-    switch (v1.mUnk_00) {
+    switch (v1.mKind) {
         case 7:
             if (v5 == 2) {
                 if (v3 == NULL) {

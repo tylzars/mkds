@@ -2,13 +2,13 @@
 #include "code_0214d018.h"
 
 #pragma thumb on
-void func_0200aea8(u32 arg0) {
-    u32 value0 = arg0;
-    u32 value1;
-    u32 value2;
+void ClearDataRangeTable(u32 table) {
+    u32 address = table;
+    u32 fillValue;
+    u32 byteCount;
     u32 value3;
-    value1 = 0u;
-    value2 = 112u;
-    MI_CpuFill8((void *) value0, value1, value2);
+    fillValue = 0u;
+    byteCount = 112u;
+    MI_CpuFill8((void *) address, fillValue, byteCount);
 }
 #pragma thumb off

@@ -4,4 +4,4 @@
 
 typedef struct ChunkReceiveState ChunkReceiveState;
 
-void func_0200635c(ChunkReceiveState *a, u32 b);
+void MarkChunkReceived(ChunkReceiveState *a, u32 b);

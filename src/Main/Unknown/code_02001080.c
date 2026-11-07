@@ -14,7 +14,7 @@
                                  ".bss" abs32 RWX
 #pragma section MAIN_TEXT begin
 
-UnkFunc *data_02001080[24] = {
+UnkFunc *gLogoStateTable[24] = {
     func_02001a44,
     func_020019b0,
     func_020019ac,
@@ -32,38 +32,38 @@ UnkFunc *data_02001080[24] = {
     EnterLogoState7,
     func_02001294,
     func_02001290,
-    func_02001238,
-    func_020011f0,
-    func_0200118c,
-    func_02001144,
-    func_020010e0,
+    UpdateLogoState8,
+    EnterLogoState9,
+    UpdateLogoState9,
+    EnterLogoState10,
+    UpdateLogoState10,
     NULL,
     NULL,
 };
 
 #pragma section MAIN_TEXT end
 
-void func_02001238(void) {
-    Unk021a99c0_18 *v1;
+void UpdateLogoState8(void) {
+    Unk021a99c0_18 *stateMachine;
     if (data_usa_02174e54 == 3) {
-        v1 = &gLogoScene->mStateMachine;
-        v1->mNextState = 9;
-        v1->mNextStateRequested = 1;
+        stateMachine = &gLogoScene->mStateMachine;
+        stateMachine->mNextState = 9;
+        stateMachine->mNextStateRequested = 1;
         return;
     }
-    v1 = &gLogoScene->mStateMachine;
-    v1->mNextState = 11;
-    v1->mNextStateRequested = 1;
+    stateMachine = &gLogoScene->mStateMachine;
+    stateMachine->mNextState = 11;
+    stateMachine->mNextStateRequested = 1;
 }
 
-void func_020011f0(void) {
-    void *v1;
-    v1 = GetBmgEntry(gLogoScene->mCommonMessages, 137);
-    SetupTxtSystemSubTextButton(v1, GetBmgEntry(gLogoScene->mCommonMessages, 6));
+void EnterLogoState9(void) {
+    void *message;
+    message = GetBmgEntry(gLogoScene->mCommonMessages, 137);
+    SetupTxtSystemSubTextButton(message, GetBmgEntry(gLogoScene->mCommonMessages, 6));
 }
 
-void func_0200118c(void) {
-    Unk021a99c0_18 *v1;
+void UpdateLogoState9(void) {
+    Unk021a99c0_18 *stateMachine;
     if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
@@ -71,19 +71,19 @@ void func_0200118c(void) {
     if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
-    v1 = &gLogoScene->mStateMachine;
-    v1->mNextState = 10;
-    v1->mNextStateRequested = 1;
+    stateMachine = &gLogoScene->mStateMachine;
+    stateMachine->mNextState = 10;
+    stateMachine->mNextStateRequested = 1;
 }
 
-void func_02001144(void) {
-    void *v1;
-    v1 = GetBmgEntry(gLogoScene->mCommonMessages, 138);
-    SetupTxtSystemSubTextButton(v1, GetBmgEntry(gLogoScene->mCommonMessages, 4));
+void EnterLogoState10(void) {
+    void *message;
+    message = GetBmgEntry(gLogoScene->mCommonMessages, 138);
+    SetupTxtSystemSubTextButton(message, GetBmgEntry(gLogoScene->mCommonMessages, 4));
 }
 
-void func_020010e0(void) {
-    Unk021a99c0_18 *v1;
+void UpdateLogoState10(void) {
+    Unk021a99c0_18 *stateMachine;
     if (GetTxtSystemDone() != 0) {
         RequestTxtSystemClose();
         return;
@@ -91,7 +91,7 @@ void func_020010e0(void) {
     if (IsTxtSystemState0NoOpenRequest() == 0) {
         return;
     }
-    v1 = &gLogoScene->mStateMachine;
-    v1->mNextState = 11;
-    v1->mNextStateRequested = 1;
+    stateMachine = &gLogoScene->mStateMachine;
+    stateMachine->mNextState = 11;
+    stateMachine->mNextStateRequested = 1;
 }

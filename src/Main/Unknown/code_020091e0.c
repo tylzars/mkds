@@ -227,7 +227,7 @@ void func_020094b8(u32 a, u16 b, u32 c) {
     data_0216fc60.mUnk_04_2 = v1->mUnk_4b5;
     data_0216fc60.mUnk_07 = data_0216fc4c.mUnk_11++;
     data_0216fc60.mUnk_08 = 0;
-    data_0216fc60.mUnk_08 = func_020088dc(&data_0216fc60.mUnk_08, 0x68);
+    data_0216fc60.mUnk_08 = ComputeU16Checksum(&data_0216fc60.mUnk_08, 0x68);
     data_0216fc4c.mUnk_0f++;
     if (data_0216fc4c.mUnk_0f < data_0216fc4c.mUnk_10) {
         data_0216fc4c.mUnk_08 += 0x62;
@@ -296,7 +296,7 @@ void func_020092d0(u32 a, u16 b, u32 c) {
         data_0216fc60.mUnk_10[n * 0x16] &= ~0xf0;
     }
     data_0216fc60.mUnk_08 = 0;
-    data_0216fc60.mUnk_08 = func_020088dc(&data_0216fc60.mUnk_08, 0x68);
+    data_0216fc60.mUnk_08 = ComputeU16Checksum(&data_0216fc60.mUnk_08, 0x68);
     if (data_0216fc4c.mUnk_04->mUnk_4b0 == data_0216fc4c.mUnk_04->mUnk_35a) {
         data_0216fc4c.mUnk_0c = 1;
     }
@@ -320,7 +320,7 @@ u32 func_0200921c(Unk02008f00Func a, u32 b, Unk02007ec4 *c) {
     MIi_CpuCopy16(c, data_0216fce0, 0xc0);
     c = (Unk02007ec4 *) data_0216fce0;
     data_0216fc3c = data_0216fd30;
-    if (func_020088dc(OFFSET_PTR(u16, data_0216fc3c, 8), 0x68) != 0) {
+    if (ComputeU16Checksum(OFFSET_PTR(u16, data_0216fc3c, 8), 0x68) != 0) {
         return 0;
     }
     v1 = func_02009098((u8 *) c, a);

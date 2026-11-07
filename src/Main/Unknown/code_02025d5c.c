@@ -3,23 +3,23 @@
 #include "Main/Unknown/unk_02153000.h"
 
 #pragma thumb on
-u32 func_02025d98(u32 arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    value1 = (value0 << 2);
-    value0 = (u32) &data_021532dc;
-    value0 = *(const u32 *) ((value0) + (value1));
+u32 GetKartMessageIndex(u32 kartIndex) {
+    u32 value0 = (u32) kartIndex;
+    u32 byteOffset;
+    byteOffset = (value0 << 2);
+    value0 = (u32) &gKartMessageIndexTable;
+    value0 = *(const u32 *) ((value0) + (byteOffset));
     return value0;
 }
 #pragma thumb off
 
 #pragma thumb on
-u32 func_02025d8c(u32 arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    value1 = (value0 << 2);
-    value0 = (u32) &data_021533fc;
-    value0 = *(const u32 *) ((value0) + (value1));
+u32 GetCourseMessageIndex(u32 courseId) {
+    u32 value0 = (u32) courseId;
+    u32 byteOffset;
+    byteOffset = (value0 << 2);
+    value0 = (u32) &gCourseMessageIndexTable;
+    value0 = *(const u32 *) ((value0) + (byteOffset));
     return value0;
 }
 #pragma thumb off
@@ -28,7 +28,7 @@ u32 func_02025d8c(u32 arg0) {
 
 int func_02025d74(int a) {
     int v1;
-    v1 = ((s32 *) &data_021533fc)[a];
+    v1 = ((s32 *) &gCourseMessageIndexTable)[a];
     if (v1 != -1) {
         v1 = v1 + -0x1a;
     }
@@ -37,7 +37,7 @@ int func_02025d74(int a) {
 
 int func_02025d5c(int a) {
     int v1;
-    v1 = ((s32 *) &data_021533fc)[a];
+    v1 = ((s32 *) &gCourseMessageIndexTable)[a];
     if (v1 != -1) {
         v1 = v1 + 4;
     }

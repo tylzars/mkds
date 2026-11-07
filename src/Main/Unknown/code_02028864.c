@@ -118,7 +118,7 @@ void InitSelectKart(void *a, s32 b, void *c, void *d) {
     }
     GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mKartIndex = -1;
     GetRaceSetupCopy()->mEntries[gSelectKart->mEntryIndex].mUnk_14 = 0;
-    gSelectKart->mKartTableIndex = func_02025e34(gSelectKart->mKartIndex);
+    gSelectKart->mKartTableIndex = FindKartTableIndex(gSelectKart->mKartIndex);
     if (func_020280dc() == 0) {
         g = gSelectKart;
         if (g->mUnk_104 == FALSE) {

@@ -323,7 +323,7 @@ u32 ParseReceivedPacket(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
                                     if ((a->mCurrentRequest.mIndexMask & (u16) (1 << b)) != 0) {
                                         if (IsChunkReceived(v6, v5->mChunkIndex) == FALSE) {
                                             if (StoreReceivedChunk(v6, v5->mChunkIndex, v5->mPayload) == TRUE) {
-                                                func_0200635c(v6, v5->mChunkIndex);
+                                                MarkChunkReceived(v6, v5->mChunkIndex);
                                             } else {
                                                 RunBlockTransferCallback(a, 15, b, 6);
                                             }
@@ -554,8 +554,8 @@ s32 StartNextRequest(BlockTransfer *a, u8 *b, s32 c) {
     if (v3->mKind == 0) {
         return 0;
     }
-    func_020070fc();
-    v2 = func_02007114();
+    AdvanceRequestId();
+    v2 = GetRequestId();
     switch (v3->mKind) {
         case 2:
             MIi_CpuCopy32(v3, a, 0x9c);

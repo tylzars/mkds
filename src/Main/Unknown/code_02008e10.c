@@ -114,7 +114,7 @@ void func_02008f00(Unk02008f00Func a, u32 b) {
 
 void func_02008e10(u8 *a, u32 b, u32 c) {
     Unk02008934 *e;
-    func_02008dbc(a, b);
+    ReplaceEntryIfChanged(a, b);
     func_02008d68(b);
     func_02008d30(b);
     e = &data_0216fc40->mUnk_10[b];

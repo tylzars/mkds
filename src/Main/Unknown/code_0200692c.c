@@ -3,9 +3,9 @@
 
 #pragma thumb on
 
-void func_0200692c(const u8 *a, int b, u32 c) {
-    if (((a != NULL) && (b != 0)) && (b != 0xffff)) {
-        ReceivePacketFromIndex(c, a, b);
+void ReceivePacketFromIndexChecked(const u8 *data, int size, u32 fromIndex) {
+    if (((data != NULL) && (size != 0)) && (size != 0xffff)) {
+        ReceivePacketFromIndex(fromIndex, data, size);
     }
 }
 

@@ -61,7 +61,7 @@ void ScanConnectStartConnect(u8 *scanBuffer) {
     gMPLink->mUnk_14 = *(u16 *) (scanBuffer + 0x4c);
     gMPLink->mUnk_16 = *(u16 *) (scanBuffer + 0x4e);
     gMPLink->mUnk_18 = gMPLink->mUnk_14 - 6;
-    func_0200c448(gMPLink->mUnk_16);
+    SetupPieceSizes(gMPLink->mUnk_16);
     r = WM_StartConnectEx(ScanConnectStartConnectCallback, (u16 *) scanBuffer, NULL, 1, 0);
     if (r != 2) {
         if (gMPLink->mCallback != NULL) {

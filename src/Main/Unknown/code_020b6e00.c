@@ -224,7 +224,7 @@ void func_020b8624(void) {
                     data_0217b3c4->mRaceStartBattleMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a4, i);
                 }
                 p = func_020b403c(2);
-                n = func_02025d8c(gRaceSetup->mCourseId);
+                n = GetCourseMessageIndex(gRaceSetup->mCourseId);
                 NNS_G2dCharCanvasInitForBG(buf2, data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData, 0x20, 4, 4);
                 n2 = func_020b4b54();
                 s2.mUnk_04 = p;

@@ -35,7 +35,7 @@ typedef struct Unk0216fdac {
     /* 1340 */ u8 mUnk_1340[0x14a];
     /* 148a */ u16 mUnk_148a[15];
     /* 14a8 */ u32 mUnk_14a8[15];
-    /* 14e4 */ void (*mUnk_14e4)(u32, u32, void *);
+    /* 14e4 */ void (*mCallback)(u32, u32, void *);
     /* 14e8 */ u32 mUnk_14e8[15];
     /* 1524 */ u8 mUnk_1524;
     /* 1525 */ u8 mUnk_1525;

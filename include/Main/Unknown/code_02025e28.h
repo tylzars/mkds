@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-u32 func_02025e28(u32 arg0);
-s32 func_02025e34(u32 a);
+u32 GetKartIndexAtTableIndex(u32 tableIndex);
+s32 FindKartTableIndex(u32 kartIndex);
 s32 func_02025e60(s32 a);

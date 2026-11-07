@@ -67,12 +67,12 @@ extern u16 data_02153f00[][4];
 extern Unk0215316c data_0215316c[];
 
 // Objects whose layout isn't known yet.
-extern u8 data_021533fc[];
+extern u8 gCourseMessageIndexTable[];
 extern u8 data_02153158[];
 
 extern u8 data_021532a8[];
-extern u8 data_021532dc[];
-extern u32 data_0215336c[];
+extern u8 gKartMessageIndexTable[];
+extern u32 gKartIndexTable[];
 extern s32 data_usa_02153240[];
 extern s32 data_usa_02153274[];
 

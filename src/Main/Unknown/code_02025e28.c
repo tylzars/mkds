@@ -20,12 +20,12 @@ s32 func_02025e60(s32 a) {
     return r;
 }
 
-s32 func_02025e34(u32 a) {
+s32 FindKartTableIndex(u32 kartIndex) {
     s32 i = 0;
     s32 r = -1;
-    if (a != 0x24) {
+    if (kartIndex != 0x24) {
         for (; i < 0x24; i++) {
-            if (a == data_0215336c[i]) {
+            if (kartIndex == gKartIndexTable[i]) {
                 r = i;
                 break;
             }
@@ -36,12 +36,12 @@ s32 func_02025e34(u32 a) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_02025e28(u32 arg0) {
-    u32 value0 = (u32) arg0;
-    u32 value1;
-    value1 = (value0 << 2);
-    value0 = (u32) &data_0215336c;
-    value0 = *(const u32 *) ((value0) + (value1));
+u32 GetKartIndexAtTableIndex(u32 tableIndex) {
+    u32 value0 = (u32) tableIndex;
+    u32 byteOffset;
+    byteOffset = (value0 << 2);
+    value0 = (u32) &gKartIndexTable;
+    value0 = *(const u32 *) ((value0) + (byteOffset));
     return value0;
 }
 #pragma thumb off

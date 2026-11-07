@@ -63,7 +63,7 @@ void func_02001ba0(void *a) {
     InitDisplayFromSettings(v2);
     func_02001d30(&gLogoScene->mUnk_00, 1, data_usa_ov001_021a768c, data_usa_ov001_021a76a8, data_usa_ov001_021a76c4);
     func_02001d30(&gLogoScene->mUnk_0c, 0, data_usa_ov001_021a76dc, data_usa_ov001_021a76f4, data_usa_ov001_021a770c);
-    func_02046be8(&gLogoScene->mStateMachine, data_02001080, 12, NULL);
+    func_02046be8(&gLogoScene->mStateMachine, gLogoStateTable, 12, NULL);
     gLogoScene->mUnk_2c_0 = 0;
     gLogoScene->mUnk_30 = 0;
     gLogoScene->mCommonMessages = FindFileInLoadedArchives(data_usa_ov001_021a7720);

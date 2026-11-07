@@ -160,7 +160,7 @@ void func_0204e568(void) {
         func_02050e60(5);
     }
     SetMPLimits(0x1fe, 7);
-    func_02007ea0(func_0204e6e8);
+    SetCallback(func_0204e6e8);
     if (((s32(*)(u32)) func_02009cc8)(data_0217aa00->mUnk_0088) != 0) {
         func_02050e60(5);
     }

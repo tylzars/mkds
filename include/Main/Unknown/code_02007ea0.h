@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_02007ea0(UnkFunc *p0);
+void SetCallback(UnkFunc *p0);

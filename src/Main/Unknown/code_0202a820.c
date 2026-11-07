@@ -112,7 +112,7 @@ void func_0202b2bc(void) {
     p = &gWiFiVSCourseSelect->mWiFiVSCourseSelectMParts;
     n = p->mUnk_0c->mUnk_06;
     a = GetWiFiSessionCourseId();
-    h = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, func_02025d8c(a));
+    h = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, GetCourseMessageIndex(a));
     for (i = 0; i < 4; i++) {
         p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_00 = 0;
         p->mUnk_18[n + data_usa_021539f4[i].mUnk_00].mUnk_00 = p->mUnk_18[data_usa_021539f4[i].mUnk_06].mUnk_00;
@@ -125,7 +125,7 @@ void func_0202b2bc(void) {
     p->mUnk_18[data_usa_021539f4[0].mUnk_00 + n].mUnk_06 += 2;
     func_0212426c(0, data_usa_021539f4[0].mUnk_00, p->mUnk_14, h, p->mUnk_0c, p->mUnk_18);
     gWiFiVSCourseSelect->mUnk_144 = a;
-    gWiFiVSCourseSelect->mUnk_148 = func_02025d8c(a);
+    gWiFiVSCourseSelect->mUnk_148 = GetCourseMessageIndex(a);
     gWiFiVSCourseSelect->mUnk_14c[0] = h[0];
     gWiFiVSCourseSelect->mUnk_14c[1] = h[1];
     gWiFiVSCourseSelect->mUnk_14c[2] = h[2];
@@ -167,7 +167,7 @@ void func_0202b100(void) {
             case 1:
             case 2:
                 if (v != 0 && v != gWiFiVSCourseSelect->mUnk_0bc[i]) {
-                    h = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, func_02025d8c(v));
+                    h = GetBmgEntry(gWiFiVSCourseSelect->mCommonMessages, GetCourseMessageIndex(v));
                     func_0212426c(0, data_usa_021539f4[i].mUnk_00, p->mUnk_14, h, p->mUnk_0c, p->mUnk_18);
                     gWiFiVSCourseSelect->mUnk_0bc[i] = v;
                     func_02025f14(&gWiFiVSCourseSelect->mUnk_0fc[i], 0);

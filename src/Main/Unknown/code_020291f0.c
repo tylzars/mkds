@@ -59,9 +59,9 @@ void func_020292bc(void) {
         i = 0;
     }
     while (d = gSelectKart, i != d->mKartTableIndex) {
-        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, func_02025e28(i)) != 0) {
+        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(i)) != 0) {
             gSelectKart->mKartTableIndex = i;
-            gSelectKart->mKartIndex = func_02025e28(gSelectKart->mKartTableIndex);
+            gSelectKart->mKartIndex = GetKartIndexAtTableIndex(gSelectKart->mKartTableIndex);
         } else {
             i++;
             if (i >= 0x24) {
@@ -80,9 +80,9 @@ void func_02029248(void) {
         i = 0x23;
     }
     while (d = gSelectKart, i != d->mKartTableIndex) {
-        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, func_02025e28(i)) != 0) {
+        if (func_0205fd2c(d->mUnk_098, d->mCharacterIndex, GetKartIndexAtTableIndex(i)) != 0) {
             gSelectKart->mKartTableIndex = i;
-            gSelectKart->mKartIndex = func_02025e28(gSelectKart->mKartTableIndex);
+            gSelectKart->mKartIndex = GetKartIndexAtTableIndex(gSelectKart->mKartTableIndex);
         } else {
             i--;
             if (i < 0) {

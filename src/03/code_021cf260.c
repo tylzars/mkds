@@ -57,7 +57,7 @@ void func_ov003_021cf978(u32 a, u32 b) {
         OS_Terminate();
     }
     SetMPLimits(0x100, 1);
-    func_02007ea0(func_ov003_021cf378);
+    SetCallback(func_ov003_021cf378);
     func_ov003_021cf36c(1);
 }
 

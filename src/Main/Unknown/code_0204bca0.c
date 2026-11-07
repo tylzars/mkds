@@ -524,7 +524,7 @@ void func_0204cc94(Unk0204cc94 *a) {
             if (p->mUnk_0000 != 0) {
                 m = a->mUnk_12;
                 z->mUnk_46d8 = z->mUnk_46d8 | (1 << m);
-                func_0200692c(s, n, m);
+                ReceivePacketFromIndexChecked(s, n, m);
             } else {
                 ReceiveParentPacketChecked(s, n);
             }

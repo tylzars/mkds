@@ -14,4 +14,4 @@ typedef struct Unk02008880 {
 } Unk02008880;
 
 u32 func_02008880(FSFile *a);
-u16 func_020088dc(const u16 *a, s32 b);
+u16 ComputeU16Checksum(const u16 *data, s32 byteCount);

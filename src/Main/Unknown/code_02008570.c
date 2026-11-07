@@ -73,7 +73,7 @@ int func_02008570(FSFile *param_1, void *param_2, u32 param_3) {
         }
         if (v13 >= 0x70) {
             v5 = (DataRangeTable *) v3;
-            func_0200aea8((u32) v3);
+            ClearDataRangeTable((u32) v3);
             v3 += 0x70;
             v13 -= 0x70;
             AddDataRange(v5, 0, 0x160, (u8 *) v2, 3);
@@ -131,9 +131,9 @@ int func_02008570(FSFile *param_1, void *param_2, u32 param_3) {
                 v14[1] = v2->mUnk_28 - v2->mUnk_20;
                 v14[2] = (u32) v5->mUnk_30[1].mData - v2->mUnk_20;
                 v14[3] = param_3;
-                func_0200850c(v14, 0x4000, 0x8000, 1);
+                CopyOrClearRange(v14, 0x4000, 0x8000, 1);
                 while (((s32 *) v6)[1] != 0) {
-                    func_0200850c(v14, v6[0], v6[0] + v6[1], 0);
+                    CopyOrClearRange(v14, v6[0], v6[0] + v6[1], 0);
                     v6 += 2;
                 }
                 v3 = v5->mUnk_30[1].mData;

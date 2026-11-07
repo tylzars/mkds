@@ -495,7 +495,7 @@ void InitRaceStartGp(void) {
     w.mUnk_08 = 1;
     w.mUnk_0c = 0;
     if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
-        s = func_02025d8c(gRaceSetup->mCourseId);
+        s = GetCourseMessageIndex(gRaceSetup->mCourseId);
         w.mUnk_08 = func_020b4b10();
     } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         s = (gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableRow : s) + 0x55;

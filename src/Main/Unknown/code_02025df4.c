@@ -11,7 +11,7 @@ int func_02025df4(Unk0205fd2c *a, u32 b) {
     v1 = 0;
     v2 = 0;
     do {
-        v4 = func_02025e28(v2);
+        v4 = GetKartIndexAtTableIndex(v2);
         v3 = func_0205fd2c(a, b, v4);
         if (v3 != 0) {
             v1 = v1 + 1;

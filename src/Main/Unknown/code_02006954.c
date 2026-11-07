@@ -398,7 +398,7 @@ void func_02006aac(s32 a, s32 b, void (*c)(BlockTransferRecord *)) {
     }
     v1.mKind = 0;
     TrySetNextRequest(&v1);
-    func_020070f0();
+    ResetRequestId();
     SetSendChunkSize(a - 0xe);
     SetReceiveChunkSize(b - 0xe);
     OS_RestoreInterrupts(v3);
@@ -431,7 +431,7 @@ void func_02006a10(void (*a)(BlockTransferRecord *)) {
     }
     v1.mKind = 0;
     TrySetNextRequest(&v1);
-    func_020070f0();
+    ResetRequestId();
     SetSendChunkSize(0);
     SetReceiveChunkSize(0);
     OS_RestoreInterrupts(v3);
@@ -464,7 +464,7 @@ void StopBlockTransfer(void) {
     }
     v1.mKind = 0;
     TrySetNextRequest(&v1);
-    func_020070f0();
+    ResetRequestId();
     SetSendChunkSize(-1);
     SetReceiveChunkSize(-1);
     OS_RestoreInterrupts(v3);

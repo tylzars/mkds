@@ -94,7 +94,7 @@ void func_0204ed04(Unk0204ed04 *a) {
             }
             switch (v) {
                 case 1:
-                    func_0200692c(b, a->mUnk_10, a->mUnk_12);
+                    ReceivePacketFromIndexChecked(b, a->mUnk_10, a->mUnk_12);
                     break;
                 case 2:
                     ReceiveParentPacketChecked(b, a->mUnk_10);
