@@ -107,7 +107,7 @@ void InitNsbmdRenderObj(Nsbmd *a, NNSG3dResMdl *b, u32 c) {
     NNSG3dResMdl *p;
 
     if (c != 0 && GetCurrentSceneNumber() == 2) {
-        a->mCullModesSwapped = data_021759c0->mUnk_57;
+        a->mCullModesSwapped = gRaceSetup->mMirrorMode;
     } else {
         a->mCullModesSwapped = 0;
     }
@@ -392,7 +392,7 @@ void func_020846c0(void *a) {
     u16 i;
     u16 j;
 
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     data_0217ae8c = HeapAlloc(a, n * 2);
     data_0217ae7c = HeapAlloc(a, n * 12);
     data_0217ae94 = HeapAlloc(a, n * 4);
@@ -403,14 +403,14 @@ void func_020846c0(void *a) {
         }
         data_0217ae94[i] = NULL;
         data_0217ae74[i] = NULL;
-        if (i == data_021759c0->mEntryIndex) {
+        if (i == gRaceSetup->mEntryIndex) {
             data_0217ae8c[i] = 0;
         } else {
             data_0217ae8c[i] = 1;
         }
     }
     data_0217ae6c = 0x7fff;
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_MANSION:
         case COURSE_ID_KOOPA:
             data_0217ae6c = 0x1667;
@@ -422,10 +422,10 @@ void func_020846c0(void *a) {
             data_0217ae6c = 0x3e67;
             break;
     }
-    data_0217ae98 = (data_021759c0->mKartCount - 1) / 2;
-    data_0217ae90 = (data_021759c0->mKartCount - 1) % 2;
+    data_0217ae98 = (gRaceSetup->mKartCount - 1) / 2;
+    data_0217ae90 = (gRaceSetup->mKartCount - 1) % 2;
     data_02165948 = 0x1000;
-    switch (data_021759c0->mUnk_010) {
+    switch (gRaceSetup->mEngineIndex) {
         case 0:
             data_02165948 = 0xb33;
             break;

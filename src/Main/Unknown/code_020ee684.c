@@ -505,7 +505,7 @@ void UpdateItemPool(ItemPool *a) {
             func_020f0684(e, t, m, 7);
         }
     }
-    if (data_021759c0->mMode != 5) {
+    if (gRaceSetup->mMode != 5) {
         for (i = 0; i < n; i++) {
             if (UpdateItemObject(a, e[i], 0) != 0) {
                 n = a->mActiveCount, i--;
@@ -648,7 +648,7 @@ void func_020f00f0(KartItems *p) {
     if ((p->mKart->mUnk_7c & 0x400) != 0) {
         return;
     }
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         return;
     }
     if (p->mSlotState == 0) {
@@ -664,7 +664,7 @@ void func_020f0044(KartItems *p) {
     if (p->mHeldItem.mUnk_00 != 0x13) {
         func_020f45f0(&p->mHeldItem, 0);
     }
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         return;
     }
     if (p->mSlotState != 0) {
@@ -673,7 +673,7 @@ void func_020f0044(KartItems *p) {
     if (p->mActiveItem != 0x13) {
         p->mActiveItem = 0x13;
     }
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         return;
     }
     if (p->mItemInUse.mObjectKind == 0xf) {
@@ -685,7 +685,7 @@ void func_020f0044(KartItems *p) {
 void func_020eff40(KartItems *p) {
     BOOL f;
 
-    f = data_021759c0->mMode == 5;
+    f = gRaceSetup->mMode == 5;
     if ((p->mKart->mUnk_7c & 0x400) != 0) {
         return;
     }
@@ -720,7 +720,7 @@ void func_020efea4(KartItems *p) {
     if ((u32) (p->mKart->mItemEffect - 2) <= 1) {
         return;
     }
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         return;
     }
     if (p->mItemInUse.mObjectKind == 0xf) {
@@ -813,7 +813,7 @@ void InitKartItems(KartItems *a, s32 n) {
 
     a->mKartIndex = n;
     a->mKart = GetKart(n);
-    a->mUnk_200 = ((Unk021759c0_000 *) data_021759c0)->mUnk_07c[n].mUnk_00;
+    a->mUnk_200 = ((Unk021759c0_000 *) gRaceSetup)->mUnk_07c[n].mUnk_00;
     InitItemSlot(a, a);
     InitHeldItem(&a->mHeldItem, a);
     InitItemInUse(&a->mItemInUse, a);
@@ -967,7 +967,7 @@ void AdvanceItemInUseOne(ItemInUse *a) {
             func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
         }
     }
-    if (n < 0xccd && b->mUnk_68.z >= 0xccd && a->mKartIndex == data_021759c0->mEntryIndex) {
+    if (n < 0xccd && b->mUnk_68.z >= 0xccd && a->mKartIndex == gRaceSetup->mEntryIndex) {
         func_020719bc(&c->mKart->mSoundSource, 0xe7);
     }
     if ((c->mFlags & 0x284) == 0x284 && a->mObjectKind != 0xf && a->mObjectStartFramesLeft == 0) {
@@ -1057,7 +1057,7 @@ void func_020ef1cc(ItemInUse *p) {
         p->mUnk_0ec[0][i] = 0;
         p->mUnk_0ec[1][i] = 0;
     }
-    if (p->mKartIndex == data_021759c0->mEntryIndex) {
+    if (p->mKartIndex == gRaceSetup->mEntryIndex) {
         func_020719bc(&p->mKartItems->mKart->mSoundSource, 0xe7);
     }
 }
@@ -1251,7 +1251,7 @@ void StartItemInUseCircle(ItemInUse *a) {
     }
     VEC_MultAdd(((s64) a->mUnk_084.z * 0x4333) >> 12, &a->mUnk_02c.mUnk_0c, &a->mUnk_050, &a->mCircleCenter);
     PlaceItemInUseCircleObjects(a);
-    if (a->mKartIndex == data_021759c0->mEntryIndex) {
+    if (a->mKartIndex == gRaceSetup->mEntryIndex) {
         func_020719bc(&a->mKartItems->mKart->mSoundSource, 0xe7);
     }
 }
@@ -1297,7 +1297,7 @@ void AdvanceItemInUseCircle(ItemInUse *a) {
             func_020f9f08(q, a->mUnk_084.x, a->mUnk_084.y);
         }
     }
-    if (a->mKartIndex == data_021759c0->mEntryIndex) {
+    if (a->mKartIndex == gRaceSetup->mEntryIndex) {
         func_020719a8((u32) c->mKart, n + 0xe0);
     }
     if ((c->mFlags & 0x244) != 0x244) {

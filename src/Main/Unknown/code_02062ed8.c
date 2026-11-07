@@ -113,7 +113,7 @@ void InitCourseModels(void *a) {
     func_0206331c_inline(1, data_0217ab5c, gCourseModels.mNsbmd, a, b, d, &gCourseModels.mUnk_58);
     SetNsbmdPolygonIdAll(gCourseModels.mNsbmd, 8);
     NNS_G3dMdlSetMdlXLDepthUpdateAll(e, 1);
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_OLD_KOOPA_AGB:
             f = NNS_G3dGetResDictIdxByName((u8 *) e + e->mOfsMat + 4, data_usa_02154a00);
             if (f >= 0) {
@@ -183,7 +183,7 @@ void DrawCourseModelV(void) {
 void SetKoopaCourseLight2(void) {
     UnkVec16 a;
 
-    if (data_021759c0->mCourseId != COURSE_ID_KOOPA) {
+    if (gRaceSetup->mCourseId != COURSE_ID_KOOPA) {
         return;
     }
     a = data_usa_021653fc;
@@ -201,7 +201,7 @@ void InitCourseModelsFogEnableFlags(void) {
     gCourseModels.mUnk_e4 = 0;
     gCourseModels.mUnk_ec = FALSE;
     gCourseModels.mUnk_f0 = 0;
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_MANSION:
         case COURSE_ID_DESERT:
         case COURSE_ID_MINI_STAGE2:

@@ -214,7 +214,7 @@ void func_020fde18(ItemBomb *e) {
     s32 z;
 
     v1 = (u16) GetRaceUpdateFramesMod8();
-    if (v1 >= data_021759c0->mKartCount) {
+    if (v1 >= gRaceSetup->mKartCount) {
         return;
     }
     v2 = (e->mUnk_000.mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (e->mUnk_000.mUnk_000.mUnk_78 & ~0xff00) : 8;
@@ -645,7 +645,7 @@ void func_020fd264(void) {
     data_0217bd58 = ((s64) data_0217bd50 * gItemKinds[9].mUnk_6c) >> 12;
     data_0217bd58 >>= 12;
     data_0217bd58 *= data_0217bd58;
-    k = data_021759c0->mUnk_010;
+    k = gRaceSetup->mEngineIndex;
     switch (k) {
         case 0:
             data_0217bd4c = 0xb4;

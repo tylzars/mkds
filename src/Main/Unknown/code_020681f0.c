@@ -73,7 +73,7 @@ void func_02068b98(Kart *a) {
     c = a->mUnk_3c8;
     if (c >= 0x19 || (b & KART_7C_ENTRY_KIND_2) != 0) {
         d = FALSE;
-        if (data_021759c0->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mMode == MODE_BATTLE) {
             if (IsWinnerDecidedAndEndReached() != 0) {
                 d = TRUE;
             }
@@ -85,7 +85,7 @@ void func_02068b98(Kart *a) {
             if (a->mUnk_3c8 >= 0xb9) {
                 *e = *e | 0x80000;
                 func_02063ad0(a);
-                k = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
+                k = gRaceSetup->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
                 if (a->mUnk_2c8 == -1) {
                     a->mUnk_2c8 = func_020d555c(k, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
                 }
@@ -227,7 +227,7 @@ void func_020688a0(Kart *a) {
     a->mUnk_7c = a->mUnk_7c | 0x10000008;
     a->mUnk_48 = a->mUnk_48 | 0x2000;
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-        if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
+        if (IsKartEnded((u16) gRaceSetup->mEntryIndex) != 0) {
             b = gRaceProgress->mEntryEndKind;
         } else {
             b = 6;
@@ -245,7 +245,7 @@ void func_020688a0(Kart *a) {
             case 6:
             default:
                 if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-                    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+                    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                         EliminateKartAndCheckWinner(a->mIndex);
                     }
                     a->mUnk_7c = a->mUnk_7c | 0x20000;
@@ -253,7 +253,7 @@ void func_020688a0(Kart *a) {
                 }
                 break;
         }
-        if (data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN) {
             EliminateKartsUntilWinnerDecided();
         }
     }
@@ -261,7 +261,7 @@ void func_020688a0(Kart *a) {
     if ((c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
         return;
     }
-    if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mMode == MODE_MISSION_RUN) {
         d = 1;
         if ((c & 0x10000) != 0) {
             d = 0;
@@ -300,7 +300,7 @@ void func_02068640(Kart *a, s32 b) {
         func_01ffcd84(&a->mUnk_120, &a->mUnk_e0_m);
         GetKartForward(a, &e);
         ResetKartAndSetPos(a, &c, &e, NULL);
-        f = data_021759c0->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
+        f = gRaceSetup->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
         if (a->mUnk_2c8 == -1) {
             a->mUnk_2c8 = func_020d555c(f, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
         }
@@ -322,7 +322,7 @@ void func_02068640(Kart *a, s32 b) {
     func_02068494(a, 0, b);
     h = a->mUnk_7c;
     if ((h & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
-        if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mMode == MODE_MISSION_RUN) {
             i = 1;
             if ((h & 0x10000) != 0) {
                 i = 0;
@@ -383,7 +383,7 @@ void func_02068494(Kart *a, s32 b, s32 c) {
             func_02068a64(a, 3, 1);
         }
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         VEC_Subtract(&a->mPos, &d.mUnk_04, &d.mUnk_28);
         func_020a21bc(a->mIndex, (s32) &d.mUnk_28);
     }

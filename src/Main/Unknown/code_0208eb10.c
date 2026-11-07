@@ -439,7 +439,7 @@ void func_0208f0f8(void *a) {
     NNSG3dResTex *q;
     s32 t;
 
-    s = FindMainRaceOrMainEffectFile(data_021759c0->mUnk_00c == 5 ? data_02166514 : data_02166530);
+    s = FindMainRaceOrMainEffectFile(gRaceSetup->mUnk_00c == 5 ? data_02166514 : data_02166530);
     data_021663f0 = 0x4d;
     data_021663e0 = 8;
     data_021663dc = 3;
@@ -448,9 +448,9 @@ void func_0208f0f8(void *a) {
     data_021663d8 = 0xe;
     data_021663e8 = 1;
     n = 1;
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         n += 3;
-    } else if (data_021759c0->mUnk_00c == 5) {
+    } else if (gRaceSetup->mUnk_00c == 5) {
         data_021663f0 = 0;
         data_021663e0 = 0xe;
         data_021663dc = 2;
@@ -461,7 +461,7 @@ void func_0208f0f8(void *a) {
         n = 6;
     }
     m = data_021663e4 * n;
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         a = data_0217aa10->mUnk_a4;
     }
     data_0217b08c = HeapAlloc(a, 0x38);
@@ -485,7 +485,7 @@ void func_0208f0f8(void *a) {
     data_021663f4.mUnk_18 = (q->mPlttInfo.mVramKey & 0xffff) << 3;
     data_021663f4.mUnk_1c = 0x10000;
     data_021663f4.mUnk_20 = 0x8000;
-    data_0217b08c->mUnk_34 = data_021759c0->mCourseId == COURSE_ID_RAINBOW ? 0 : 0x8000;
+    data_0217b08c->mUnk_34 = gRaceSetup->mCourseId == COURSE_ID_RAINBOW ? 0 : 0x8000;
 }
 
 void func_0208f0a0(void) {
@@ -619,7 +619,7 @@ Unk0208ec64 *func_0208eb1c(s32 a) {
     Vec3 v;
     s32 h;
 
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         p = NNS_FndGetNthListObject(&data_0217b08c->mUnk_00[1], 0);
         if (p != NULL) {
             o = GetKart(a);

@@ -46,18 +46,18 @@ void func_0205db50(void) {
 }
 
 u8 func_0205db28(void) {
-    return (data_021759c0->mCourseNumber - 1) % 4;
+    return (gRaceSetup->mCourseNumber - 1) % 4;
 }
 
 void func_0205d9d4(u32 a, s32 b, u32 c) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     s8 i, j;
     s32 t, k, m;
     u16 v;
     u8 n;
     Unk0217aa1c_00 *e;
 
-    p = data_021759c0;
+    p = gRaceSetup;
     t = (p->mCourseNumber - 1) % 4;
     m = p->mMode;
     k = (u8) t - 1;
@@ -100,17 +100,17 @@ void func_0205d9d4(u32 a, s32 b, u32 c) {
 }
 
 void func_0205d974(u32 a) {
-    data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mCourseNumber - 1) % 4)][(u8) a].mUnk_00 = 0;
+    data_0217aa1c->mUnk_000[(u8) ((gRaceSetup->mCourseNumber - 1) % 4)][(u8) a].mUnk_00 = 0;
 }
 
 void func_0205d88c(u32 a, s32 b) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     s8 i;
     s32 m, t, k;
     u8 c;
     Unk0217aa1c_00 *e;
 
-    p = data_021759c0;
+    p = gRaceSetup;
     t = (p->mCourseNumber - 1) % 4;
     m = p->mMode;
     k = (u8) t - 1;
@@ -142,7 +142,7 @@ void func_0205d818(u32 a, Unk0217aa1c_144_00 *b) {
     Unk0217aa1c_00 *e;
     Unk0217aa1c_144_00 *t;
 
-    e = &data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mCourseNumber - 1) % 4)][(u8) a];
+    e = &data_0217aa1c->mUnk_000[(u8) ((gRaceSetup->mCourseNumber - 1) % 4)][(u8) a];
     t = (Unk0217aa1c_144_00 *) &e->mUnk_06;
     t->mUnk_02 = b->mUnk_02;
     t->mUnk_03 = b->mUnk_03;
@@ -161,7 +161,7 @@ void func_0205d7c8(Unk0217aa1c_144_00 *a, u32 b, u32 c) {
 }
 
 void func_0205d76c(s32 a, u8 b) {
-    data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mCourseNumber - 1) % 4)][(u8) a].mUnk_02 = b;
+    data_0217aa1c->mUnk_000[(u8) ((gRaceSetup->mCourseNumber - 1) % 4)][(u8) a].mUnk_02 = b;
 }
 
 void func_0205d6d0(s32 a) {
@@ -172,9 +172,9 @@ void func_0205d6d0(s32 a) {
     if (a == 0) {
         b = 1;
     }
-    p = data_0217aa1c->mUnk_144[(u8) ((data_021759c0->mCourseNumber - 1) % 4)].mUnk_00;
+    p = data_0217aa1c->mUnk_144[(u8) ((gRaceSetup->mCourseNumber - 1) % 4)].mUnk_00;
     p[a].mUnk_03_0 = 1;
-    q = data_0217aa1c->mUnk_144[(u8) ((data_021759c0->mCourseNumber - 1) % 4)].mUnk_00;
+    q = data_0217aa1c->mUnk_144[(u8) ((gRaceSetup->mCourseNumber - 1) % 4)].mUnk_00;
     q[b].mUnk_03_0 = 0;
 }
 
@@ -188,10 +188,10 @@ void func_0205d558(s32 a) {
 
     for (j = 0; j < 2; j++) {
         n = 0;
-        v1 = &data_0217aa1c->mUnk_144[(u8) ((data_021759c0->mCourseNumber - 1) % 4)];
+        v1 = &data_0217aa1c->mUnk_144[(u8) ((gRaceSetup->mCourseNumber - 1) % 4)];
         e = &v1->mUnk_00[(s32) j];
-        i = (u8) ((data_021759c0->mCourseNumber - 1) % 4) - 1;
-        if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mMode == MODE_VS || data_021759c0->mMode == 5) {
+        i = (u8) ((gRaceSetup->mCourseNumber - 1) % 4) - 1;
+        if (gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mMode == MODE_VS || gRaceSetup->mMode == 5) {
             if (i < 0) {
                 i = i + 4;
             }
@@ -208,10 +208,9 @@ void func_0205d558(s32 a) {
             r = 99;
         }
         e->mUnk_02 = r;
-        for (k = 0; k < (u32) data_021759c0->mKartCount; k++) {
-            if (j == data_021759c0->mCurrentEntries[k].mPlayer.mTeamIndex) {
-                n = n +
-                    data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mCourseNumber - 1) % 4)][(u8) (s32) (u8) k].mUnk_00;
+        for (k = 0; k < (u32) gRaceSetup->mKartCount; k++) {
+            if (j == gRaceSetup->mCurrentEntries[k].mPlayer.mTeamIndex) {
+                n = n + data_0217aa1c->mUnk_000[(u8) ((gRaceSetup->mCourseNumber - 1) % 4)][(u8) (s32) (u8) k].mUnk_00;
             }
         }
         if (n > 9999) {
@@ -226,9 +225,9 @@ s32 func_0205d4e8(u32 a) {
     Unk0217aa1c_00 *v1;
     Unk0217aa1c_00 *b;
 
-    m = data_021759c0->mMode;
+    m = gRaceSetup->mMode;
     if (m == MODE_GRAND_PRIX || m == MODE_VS || m == 5) {
-        v1 = data_0217aa1c->mUnk_000[(u8) ((data_021759c0->mCourseNumber - 1) % 4)];
+        v1 = data_0217aa1c->mUnk_000[(u8) ((gRaceSetup->mCourseNumber - 1) % 4)];
         b = &v1[(u8) a];
         return b->mUnk_02;
     }
@@ -240,7 +239,7 @@ s32 func_0205d480(void) {
     Unk0217aa1c_144 *p;
 
     r = -1;
-    p = &data_0217aa1c->mUnk_144[(u8) ((data_021759c0->mCourseNumber - 1) % 4)];
+    p = &data_0217aa1c->mUnk_144[(u8) ((gRaceSetup->mCourseNumber - 1) % 4)];
     for (j = 0; j < 2; j++) {
         if (p->mUnk_00[(u32) j].mUnk_03_0) {
             r = j;
@@ -254,8 +253,8 @@ u16 func_0205d3f0(u32 a) {
     s32 m;
     s8 i;
 
-    m = data_021759c0->mMode;
-    i = (u8) ((data_021759c0->mCourseNumber - 1) % 4) - 1;
+    m = gRaceSetup->mMode;
+    i = (u8) ((gRaceSetup->mCourseNumber - 1) % 4) - 1;
     if (m == MODE_BATTLE || m == MODE_VS || m == 5) {
         if (i < 0) {
             i = i + 4;
@@ -271,8 +270,8 @@ u8 func_0205d360(u32 a) {
     s32 m;
     s8 i;
 
-    m = data_021759c0->mMode;
-    i = (u8) ((data_021759c0->mCourseNumber - 1) % 4) - 1;
+    m = gRaceSetup->mMode;
+    i = (u8) ((gRaceSetup->mCourseNumber - 1) % 4) - 1;
     if (m == MODE_BATTLE || m == MODE_VS || m == 5) {
         if (i < 0) {
             i = i + 4;
@@ -285,12 +284,12 @@ u8 func_0205d360(u32 a) {
 }
 
 u8 func_0205d27c(u32 a) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     s32 m;
     s8 i;
     u8 r;
 
-    p = data_021759c0;
+    p = gRaceSetup;
     m = p->mMode;
     i = (u8) ((p->mCourseNumber - 1) % 4) - 1;
     if (m == MODE_BATTLE || m == MODE_VS || m == 5) {
@@ -314,13 +313,13 @@ u8 func_0205d27c(u32 a) {
 }
 
 s32 func_0205d190(void) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     Unk0217aa1c *q;
     s32 a, x, y, z;
     u16 v, c;
     u32 d;
 
-    p = data_021759c0;
+    p = gRaceSetup;
     q = data_0217aa1c;
     c = p->mEntryIndex;
     a = q->mUnk_140;

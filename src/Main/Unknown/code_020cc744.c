@@ -68,12 +68,12 @@ void func_020cc744(void) {
                 GetRaceSetupCopy()->mEngineIndex = 1;
             }
         }
-        func_020cca4c(GetRaceSetupCopy()->mEngineIndex);
-        func_020cca38(GetRaceSetupCopy()->mUnk_d8);
+        SetNextEngineIndex(GetRaceSetupCopy()->mEngineIndex);
+        SetNextMirrorMode(GetRaceSetupCopy()->mMirrorMode);
         func_020cca24(GetRaceSetupCopy()->mUnk_e0);
         func_020cca10(GetRaceSetupCopy()->mUnk_e4);
         SetNextUseTeams(GetRaceSetupCopy()->mUseTeams);
-        func_020cc9e4(GetRaceSetupCopy()->mUnk_e8);
+        SetCourseCount(GetRaceSetupCopy()->mCourseCount);
         func_020cc9d0(GetRaceSetupCopy()->mUnk_ec);
         SetNextCourseListMode(GetRaceSetupCopy()->mCourseListMode);
         if (GetRaceSetupCopy()->mMode == 4 && func_020cbad0() == 0) {

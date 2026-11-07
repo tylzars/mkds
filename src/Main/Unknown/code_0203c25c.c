@@ -11,14 +11,14 @@ u16 LookupRankPoints(u8 a) {
     u16 r = 0;
     RankPointRow *t = gRaceProgress->mRankPointFile;
     if (t != NULL) {
-        switch (data_021759c0->mMode) {
+        switch (gRaceSetup->mMode) {
             case MODE_GRAND_PRIX:
                 break;
             case MODE_VS: {
                 u16 k = 1;
-                if (data_021759c0->mUseTeams != 0) {
-                    if (data_021759c0->mKartCount > 3) {
-                        if (data_021759c0->mTeamKartCounts[0] <= 1 || data_021759c0->mTeamKartCounts[1] <= 1) {
+                if (gRaceSetup->mUseTeams != 0) {
+                    if (gRaceSetup->mKartCount > 3) {
+                        if (gRaceSetup->mTeamKartCounts[0] <= 1 || gRaceSetup->mTeamKartCounts[1] <= 1) {
                             k = 8;
                         } else {
                             k = 0xf;
@@ -27,11 +27,11 @@ u16 LookupRankPoints(u8 a) {
                         k = 8;
                     }
                 }
-                r = k + 8 - data_021759c0->mKartCount;
+                r = k + 8 - gRaceSetup->mKartCount;
                 break;
             }
             case 5:
-                r = 9 - data_021759c0->mKartCount;
+                r = 9 - gRaceSetup->mKartCount;
                 break;
         }
         r = (t + r + 1)->mPoints[a - 1];
@@ -54,9 +54,9 @@ void RemoveRaceProgressKart(u16 a) {
         u32 v;
         s32 i;
         o = p->mRank;
-        v = (u16) (data_021759c0->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount);
-        p->mRank = data_021759c0->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount;
-        for (i = 0; i < data_021759c0->mKartCount; i++) {
+        v = (u16) (gRaceSetup->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount);
+        p->mRank = gRaceSetup->mKartCount - gRaceProgress->mUnk_000[0].mRemovedCount;
+        for (i = 0; i < gRaceSetup->mKartCount; i++) {
             RaceProgressKart *q = OFFSET_PTR(RaceProgressKart, &gRaceProgress->mKarts[0], i * 0x8c);
             if (i != a) {
                 u32 m = q->mRank;
@@ -67,14 +67,14 @@ void RemoveRaceProgressKart(u16 a) {
         }
         gRaceProgress->mUnk_000[0].mRemovedCount++;
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         EliminateKartAndCheckWinner(a);
     }
     p->mStatus = 4;
     func_02069044(GetKart(a));
     func_020b1cdc(a, 1);
     if (IsRaceEndConditionMet() != 0) {
-        switch (data_021759c0->mMode) {
+        switch (gRaceSetup->mMode) {
             case MODE_TIME_ATTACK:
                 break;
             case MODE_BATTLE:

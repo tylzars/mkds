@@ -233,7 +233,7 @@ s32 func_01ffc92c(Kart *p) {
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             func_0210689c((u8) (a - 1));
         }
-        if (a < p->mUnk_3d8 && a < data_021759c0->mKartCount) {
+        if (a < p->mUnk_3d8 && a < gRaceSetup->mKartCount) {
             c = gRaceProgress->mKartAtRank[(u8) (a + 1) - 1];
             if (c >= 0) {
                 o = GetKart((u16) c);
@@ -362,10 +362,10 @@ void func_01ffc5a0(Kart *p) {
 }
 
 void func_01ffc558(Kart *p) {
-    Unk021759c0 *d;
+    RaceSetup *d;
     enum { K0 } k;
 
-    d = data_021759c0;
+    d = gRaceSetup;
     if (d->mMode != MODE_MISSION_RUN) {
         return;
     }

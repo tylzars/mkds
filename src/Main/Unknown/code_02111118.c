@@ -61,7 +61,7 @@ u32 func_02111158(s32 a) {
     s32 i;
     n = data_0217d130;
     p = &data_0217d32c;
-    if (a == 4 && (data_021759c0->mMode == MODE_MISSION_RUN ? data_021759c0->mMissionTableColumn : -1) == 9) {
+    if (a == 4 && (gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1) == 9) {
         b = data_0216cbc0;
     } else {
         b = data_0216cbd8[a];

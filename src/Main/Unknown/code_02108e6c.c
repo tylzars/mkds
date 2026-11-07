@@ -31,7 +31,7 @@ void func_02108edc(s32 a, s32 b) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x1de);
             return;
         }
-        c = data_021759c0->mUnk_3c;
+        c = gRaceSetup->mUnk_3c;
         if (c == 0x65 || c == 0xc9) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0xd4);
         }

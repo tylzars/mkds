@@ -28,7 +28,7 @@ u32 GetCupIndex(void) {
 }
 
 u32 func_0202967c(void) {
-    return (gRaceSetupCopy->mUnk_d8);
+    return (gRaceSetupCopy->mMirrorMode);
 }
 
 u32 func_0202966c(void) {
@@ -40,7 +40,7 @@ u32 GetCourseListMode(void) {
 }
 
 u32 func_0202964c(void) {
-    return (gRaceSetupCopy->mUnk_e8);
+    return (gRaceSetupCopy->mCourseCount);
 }
 
 u32 func_0202963c(void) {
@@ -76,11 +76,11 @@ void SetEngineIndex(u32 p0) {
 }
 
 void func_020295b0(void) {
-    gRaceSetupCopy->mUnk_d8 = 1;
+    gRaceSetupCopy->mMirrorMode = 1;
 }
 
 void func_020295a0(void) {
-    gRaceSetupCopy->mUnk_d8 = 0;
+    gRaceSetupCopy->mMirrorMode = 0;
 }
 
 void SetCupIndex(u32 p0) {
@@ -100,7 +100,7 @@ void SetCourseListMode(u32 p0) {
 }
 
 void func_02029550(u16 p0) {
-    gRaceSetupCopy->mUnk_e8 = p0;
+    gRaceSetupCopy->mCourseCount = p0;
 }
 
 void func_02029540(u32 p0) {

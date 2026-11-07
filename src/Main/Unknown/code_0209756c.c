@@ -308,7 +308,7 @@ void UpdateFlipper(void *a, Flipper *p) {
         p->mUnk_ec6 = 0;
         p->mUnk_ed0->mUnk_24.mUnk_00_1 = 1;
     }
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     for (i = 0; i < n; i++) {
         if (p->mUnk_ed4[i] > 0) {
             p->mUnk_ed4[i] = p->mUnk_ed4[i] - 1;

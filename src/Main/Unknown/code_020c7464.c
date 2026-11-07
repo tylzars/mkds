@@ -215,21 +215,20 @@ void UpdateRaceHudSubScreenKarts(void) {
     s32 y;
 
     a = func_020c0db0();
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         gRaceHudSubScreenKarts->mUnk_000[i] = 0;
         gRaceHudSubScreenKarts->mUnk_130[i] = i;
         v1[i] = GetKartRank(i & 0xff);
     }
     switch (GetRaceHudSubScreenState()) {
         case 0:
-            for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+            for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
                 func_020b6078(i, &gRaceHudSubScreenKarts->mUnk_060[i]);
                 x = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00;
                 y = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_04;
                 if (x > -0x10 && x < 0x110 && y > -0x10 && y < 0xd0 && func_0207a84c(i) == 0) {
                     gRaceHudSubScreenKarts->mUnk_000[i] = 1;
-                    if (data_021759c0->mMode == MODE_TIME_ATTACK &&
-                        data_021759c0->mCurrentEntries[i].mPlayer.mKind == 2) {
+                    if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mCurrentEntries[i].mPlayer.mKind == 2) {
                         gRaceHudSubScreenKarts->mUnk_040[i] = 1;
                     } else {
                         gRaceHudSubScreenKarts->mUnk_040[i] = 0;
@@ -249,7 +248,7 @@ void UpdateRaceHudSubScreenKarts(void) {
         case 2:
         case 3:
             gRaceHudSubScreenKarts->mUnk_190->mCellCount = 0;
-            for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+            for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
                 GetKartPos(&v, i & 0xff);
                 ComputeRaceHudSubScreenKartPosition(i, &gRaceHudSubScreenKarts->mUnk_060[i], a);
                 x = gRaceHudSubScreenKarts->mUnk_060[i].mUnk_00;
@@ -322,30 +321,30 @@ void UpdateRaceHudSubScreenKarts(void) {
             }
             break;
     }
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         if (GetKartItemEffect(i) == 1) {
             gRaceHudSubScreenKarts->mUnk_170[i]++;
         } else {
             gRaceHudSubScreenKarts->mUnk_170[i] = 0;
         }
-        if (i != func_020b4d9c() && (GetKart(i)->mUnk_7c & 0x402000) != 0) {
+        if (i != GetFollowedKartOrEntryIndex() && (GetKart(i)->mUnk_7c & 0x402000) != 0) {
             gRaceHudSubScreenKarts->mUnk_020[i] = 1;
         } else {
             gRaceHudSubScreenKarts->mUnk_020[i] = 0;
         }
     }
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         if (gRaceHudSubScreenKarts->mUnk_040[i] == 0) {
             v1[i] -= 0x20;
         }
-        if (i == func_020b4d9c()) {
+        if (i == GetFollowedKartOrEntryIndex()) {
             v1[i] -= 0x10;
         }
     }
-    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         return;
     }
-    SortIndicesByKey(gRaceHudSubScreenKarts->mUnk_130, v1, data_021759c0->mKartCount);
+    SortIndicesByKey(gRaceHudSubScreenKarts->mUnk_130, v1, gRaceSetup->mKartCount);
 }
 
 static inline void func_020c8dbc_inline(Unk020c06c4 *p, Unk020224e0_c *c, s32 *r, s32 x, s32 y, u16 v, s32 s, s32 g) {
@@ -414,7 +413,7 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *p) {
 
     switch (GetRaceHudSubScreenState()) {
         case 0:
-            for (k = 0; k < data_021759c0->mKartCount; k++) {
+            for (k = 0; k < gRaceSetup->mKartCount; k++) {
                 i = gRaceHudSubScreenKarts->mUnk_130[k];
                 if (gRaceHudSubScreenKarts->mUnk_000[i] != 0) {
                     f = gRaceHudSubScreenKarts->mUnk_040[i];
@@ -455,7 +454,7 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *p) {
         case 2:
         case 3:
             a = func_020c0dc4();
-            for (k = 0; k < data_021759c0->mKartCount; k++) {
+            for (k = 0; k < gRaceSetup->mKartCount; k++) {
                 i = gRaceHudSubScreenKarts->mUnk_130[k];
                 g = gRaceHudSubScreenKarts->mUnk_150[i];
                 if (gRaceHudSubScreenKarts->mUnk_000[i] != 0 && a <= g) {
@@ -546,7 +545,7 @@ void func_020c8bdc(void) {
         v = &p->mUnk_000.mPos;
         x = (s64) p->mUnk_000.mMatrix.mUnk_00[2].x * s >> 12;
         y = (s64) p->mUnk_000.mMatrix.mUnk_00[2].z * s >> 12;
-        if (data_021759c0->mUnk_57 != 0) {
+        if (gRaceSetup->mMirrorMode != 0) {
             data_0217b424->mUnk_0c[i] = FX_Atan2Idx(-y, x) + 0x8000;
         } else {
             data_0217b424->mUnk_0c[i] = FX_Atan2Idx(y, x);
@@ -604,7 +603,7 @@ void func_020c82dc(Unk020c06c4 *p) {
         return;
     }
     if (a == 0) {
-        if (data_021759c0->mUnk_57 != 0) {
+        if (gRaceSetup->mMirrorMode != 0) {
             t = data_0217b424->mUnk_0c[0] - func_020b6368();
         } else {
             t = data_0217b424->mUnk_0c[0] + func_020b6368();
@@ -650,7 +649,7 @@ void func_020c82dc(Unk020c06c4 *p) {
         p->mUnk_000.mUnk_20[v1].mUnk_1e = r[3] >> 4;
     }
     if (data_0217b424->mUnk_08 == 3 && a == 0) {
-        if (data_021759c0->mUnk_57 != 0) {
+        if (gRaceSetup->mMirrorMode != 0) {
             v8 = data_0217b424->mUnk_0c[2] - func_020b6368();
         } else {
             v8 = data_0217b424->mUnk_0c[2] + func_020b6368();
@@ -695,7 +694,7 @@ void func_020c82dc(Unk020c06c4 *p) {
         p->mUnk_000.mUnk_20[v3].mUnk_16 = r[2] >> 4;
         p->mUnk_000.mUnk_20[v3].mUnk_1e = r[3] >> 4;
     }
-    if (data_021759c0->mUnk_57 != 0) {
+    if (gRaceSetup->mMirrorMode != 0) {
         v16 = data_0217b424->mUnk_0c[1] - func_020b6368();
     } else {
         v16 = data_0217b424->mUnk_0c[1] + func_020b6368();

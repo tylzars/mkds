@@ -87,7 +87,7 @@ static inline u32 func_02101f7c_inline_2(Unk020f41c4_B *b, u32 n) {
     return ((b->mUnk_00 >> 32) * n) >> 32;
 }
 
-static inline s32 func_02101f7c_inline(KartItems *v1, Unk021759c0 *o, s32 a, u16 k) {
+static inline s32 func_02101f7c_inline(KartItems *v1, RaceSetup *o, s32 a, u16 k) {
     KartItems *e;
     Kart *q;
     BOOL v2;
@@ -131,18 +131,18 @@ void PickItemTeresaKartByRank(ItemTeresa *p, s32 a) {
     u16 *t;
     u32 n;
     KartItems *v2;
-    Unk021759c0 *v3;
+    RaceSetup *v3;
     KartItems *v1;
-    Unk021759c0 *o;
+    RaceSetup *o;
 
-    lim = data_021759c0->mKartCount;
+    lim = gRaceSetup->mKartCount;
     s = c = 0;
     t = data_0215a154;
     j = n = GetKartRank((u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8));
     if (p->mUnk_148 != FALSE) {
         m = gRaceProgress;
         v1 = gKartItems;
-        o = data_021759c0;
+        o = gRaceSetup;
         do {
             if (n > 1) {
                 n = (u16) (n - 1);
@@ -170,7 +170,7 @@ void PickItemTeresaKartByRank(ItemTeresa *p, s32 a) {
     } else {
         m = gRaceProgress;
         v2 = gKartItems;
-        v3 = data_021759c0;
+        v3 = gRaceSetup;
         do {
             if (j < lim) {
                 j = (u16) (j + 1);
@@ -214,7 +214,7 @@ void PickItemTeresaKartBattle(ItemTeresa *p, s32 a) {
     u32 lim;
     s32 b3;
     KartItems *v1;
-    Unk021759c0 *o;
+    RaceSetup *o;
     s32 k;
     KartItems *e;
     Kart *q;
@@ -225,7 +225,7 @@ void PickItemTeresaKartBattle(ItemTeresa *p, s32 a) {
     m = gRaceProgress;
     b = &m->mRandom;
     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
-    o = data_021759c0;
+    o = gRaceSetup;
     i = (u16) (((u64) (u32) (b->mUnk_00 >> 32) * 8) >> 32);
     end = i + 8;
     lim = o->mKartCount;
@@ -566,14 +566,14 @@ void UpdateItemTeresaState1(ItemTeresa *p) {
 void EnterItemTeresaState2(ItemTeresa *p) {
     s32 *v;
     Camera *g;
-    Unk021759c0 *o;
+    RaceSetup *o;
     void (*f)(ItemTeresa *, s32);
     int i;
 
     v = &p->mUnk_16c;
     g = GetCurrentCamera();
     if (!(p->mUnk_000.mFlags & 0x8000000)) {
-        o = data_021759c0;
+        o = gRaceSetup;
         f = (o->mMode == MODE_BATTLE) ? PickItemTeresaKartBattle : PickItemTeresaKartByRank;
         if (o->mUseTeams != 0) {
             if ((p->mUnk_000.mUnk_78 & 0x8000) == 0) {
@@ -1045,7 +1045,7 @@ void func_021003e8(ItemTeresa *p, u32 sel, s32 v1) {
     switch (sel) {
         case 0:
             p->mUnk_250 = v1;
-            if (p->mUnk_250 == data_021759c0->mEntryIndex) {
+            if (p->mUnk_250 == gRaceSetup->mEntryIndex) {
                 p->mUnk_24c = TRUE;
             }
             break;

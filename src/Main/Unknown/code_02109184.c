@@ -65,7 +65,7 @@ void InitSoundFalloffs(void) {
     static SoundFalloffSettings s0 = {800, 500, 47, 150, 127};
     static SoundFalloffSettings s1 = {800, 500, 47, 150, 95};
 
-    if (GetCurrentSceneNumber() == 2 && data_021759c0->mUnk_00c == 2) {
+    if (GetCurrentSceneNumber() == 2 && gRaceSetup->mUnk_00c == 2) {
         f = TRUE;
     } else {
         f = FALSE;
@@ -313,7 +313,7 @@ s32 ComputeSoundVolume(Unk0210bcf4 *p) {
     k = (Kart *) p->mUnk_00;
     v = 0;
     if (k != NULL) {
-        if (k != NULL && k->mSoundSource.mFalloffIndex == 0 && k->mIndex != data_021759c0->mEntryIndex) {
+        if (k != NULL && k->mSoundSource.mFalloffIndex == 0 && k->mIndex != gRaceSetup->mEntryIndex) {
             e = &gOtherKartSoundFalloff;
         } else {
             e = &gSoundFalloffs[k->mSoundSource.mFalloffIndex];

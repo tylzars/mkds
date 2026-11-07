@@ -46,7 +46,7 @@ void func_020a29cc(void) {
     NNS_G3dGlbLightColor(1, 0x7fff);
     x = ((s64) FX_Div(data_0215d6b4[0x54], data_0215d6b4[0x55]) * 0x19a) >> 12;
     y = ((s64) -x * 0x1555) >> 12;
-    if (data_021759c0->mUnk_57 != 0) {
+    if (gRaceSetup->mMirrorMode != 0) {
         G3i_FrustumW_(x, -x, -y, y, 0x19a, 0x1388000, 0x200, 0, (Unk0214ad4c *) data_0217029c.mProjMtx);
         data_0217029c.mFlag &= ~0x50;
     } else {
@@ -134,7 +134,7 @@ void func_020a269c(s32 a, u32 b) {
         data_0217b200->mUnk_114 = data_021566b8[a];
         InitNsbmd(&data_0217b200->mUnk_028, v1);
         SetNsbmdLightEnableFlagAll(&data_0217b200->mUnk_028, 3);
-        if (data_021759c0->mUnk_57 != 0) {
+        if (gRaceSetup->mMirrorMode != 0) {
             SetNsbmdCullModeAll(&data_0217b200->mUnk_028, 1);
         } else {
             SetNsbmdCullModeAll(&data_0217b200->mUnk_028, 2);

@@ -126,7 +126,7 @@ void InitRace(void) {
     func_02077998();
     SetHeapGroupId(1);
     func_020875b4();
-    InitKartModels(a, data_021759c0->mKartCount);
+    InitKartModels(a, gRaceSetup->mKartCount);
     func_0207800c();
     func_020872a4();
     func_02047728();
@@ -145,9 +145,9 @@ void InitRace(void) {
     SetHeapGroupId(1);
     func_0208aa30(a);
     InitKartAiShared();
-    InitKarts(data_021759c0->mKartCount);
+    InitKarts(gRaceSetup->mKartCount);
     CreateChaseCamera();
-    func_020777ac(data_021759c0->mUnk_063);
+    func_020777ac(gRaceSetup->mFollowedKartIndex);
     if (gRace->mUseChainCameras != 0) {
         if (gRace->mUseFirstChainCamera != 0) {
             CreateFirstChainCamera();
@@ -161,15 +161,15 @@ void InitRace(void) {
     data_0217aa7c = &data_0217aa88->mViewMatrix;
     RefreshCameraProjection(data_0217aa88);
     SetHeapGroupId(3);
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_BATTLE:
             InitStandings();
             break;
         case MODE_MISSION_RUN:
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 CreateMissionRunData();
             }
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 InitStandings();
             }
             break;
@@ -198,7 +198,7 @@ void InitRace(void) {
     }
     InitRaceFog();
     SetKoopaCourseLight2();
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         for (j = 0; j < 3; j++) {
             func_0208eb1c(j);
         }
@@ -223,9 +223,9 @@ void func_02062a0c(void) {
     gRace->mLightVectorX = v.x;
     gRace->mLightVectorY = v.y;
     gRace->mLightVectorZ = v.z;
-    gRace->mUseChainCameras = (data_021759c0->mUnk_00c - 3) <= 2 ? 1 : 0;
-    gRace->mUseFirstChainCamera = data_021759c0->mUnk_00c == 4 ? 1 : 0;
-    gRace->mUnk_38 = (data_021759c0->mUnk_00c == 5 || data_021759c0->mUnk_00c == 6) != 0 ? 1 : 0;
+    gRace->mUseChainCameras = (gRaceSetup->mUnk_00c - 3) <= 2 ? 1 : 0;
+    gRace->mUseFirstChainCamera = gRaceSetup->mUnk_00c == 4 ? 1 : 0;
+    gRace->mUnk_38 = (gRaceSetup->mUnk_00c == 5 || gRaceSetup->mUnk_00c == 6) != 0 ? 1 : 0;
     gRace->mStarted = gRace->mUnk_38 != 0 ? 1 : 0;
 }
 
@@ -272,15 +272,15 @@ void UpdateRace(void) {
     if (gRace->mUpdateFramesMod8 == 0) {
         UpdateKartAiShared();
     }
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_BATTLE:
             UpdateStandings();
             break;
         case MODE_MISSION_RUN:
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 UpdateMissionRunData();
             }
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 UpdateStandings();
             }
             break;
@@ -295,7 +295,7 @@ void UpdateRace(void) {
         data_0217aa7c = v;
         data_0217aa6c = GetCurrentChainCamera();
     } else if (func_0203c5e4() != 0) {
-        UpdateChaseCamera(data_0217aa88, GetKart(data_021759c0->mUnk_063));
+        UpdateChaseCamera(data_0217aa88, GetKart(gRaceSetup->mFollowedKartIndex));
         UpdateCameraView(data_0217aa88);
         if (TryUpdateEntryCamera(data_0217aa5c) != 0) {
             data_0217aa6c = data_0217aa5c;
@@ -305,7 +305,7 @@ void UpdateRace(void) {
             data_0217aa7c = &data_0217aa88->mViewMatrix;
         }
     } else {
-        UpdateChaseCamera(data_0217aa88, GetKart(data_021759c0->mEntryIndex));
+        UpdateChaseCamera(data_0217aa88, GetKart(gRaceSetup->mEntryIndex));
         UpdateCameraView(data_0217aa88);
         data_0217aa6c = data_0217aa88;
         data_0217aa7c = &data_0217aa88->mViewMatrix;
@@ -344,7 +344,7 @@ void UpdateRace(void) {
     UpdateRaceProgress();
     UpdateKartSoundDistancesSquared();
     func_0208677c();
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         if (gRace->mUpdateFramesUnlimited == FALSE) {
             if (gRace->mUpdateFramesLimitReached == FALSE) {
                 gRace->mUpdateFrames++;
@@ -360,7 +360,7 @@ void UpdateRace(void) {
     }
     gRace->mUpdateFramesMod8 = gRace->mUpdateFrames & 7;
     gRace->mUpdateFramesMod2 = gRace->mUpdateFrames & 1;
-    gRace->mUpdateFramesModKartCount = (u32) gRace->mUpdateFrames % data_021759c0->mKartCount;
+    gRace->mUpdateFramesModKartCount = (u32) gRace->mUpdateFrames % gRaceSetup->mKartCount;
     G3X_SetToonTable(&data_0217aadc[gRace->mToonTableOffset]);
     gRace->mToonTableFrames++;
     if ((u32) gRace->mToonTableFrames > data_021653ec) {
@@ -686,14 +686,14 @@ s32 TryGetRaceUpdateFramesSinceEntryEnd(u32 *a) {
 }
 
 s32 func_02061788(void) {
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         return 0x2e;
     }
     return 0x1f;
 }
 
 u16 func_02061768(void) {
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         return 0x2d;
     }
     return 0x1e;

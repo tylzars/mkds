@@ -48,7 +48,7 @@ const ItemKind gItemKindKiller = {
 void func_02105214(void) {
     Vec3 buf;
     s32 i;
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_BATTLE:
             gPooledMapObjectCount = 0xb;
             break;
@@ -84,10 +84,10 @@ void func_021051d4(ItemInUse *p0, Unk020f40dc *p1) {
 
 void func_0210515c(s32 a) {
     gKartItems[a].mActiveItem = 0x13;
-    if (data_021759c0->mMode != 5) {
+    if (gRaceSetup->mMode != 5) {
         return;
     }
-    if (a == data_021759c0->mEntryIndex) {
+    if (a == gRaceSetup->mEntryIndex) {
         return;
     }
     func_020efd84(&gKartItems[a], 0xe);
@@ -101,7 +101,7 @@ void func_02104ff8(void) {
     NNSSndSeqPlayer **v;
     u32 a = 0;
     u32 b = 0;
-    if (data_021759c0->mMode != MODE_BATTLE) {
+    if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
     for (i = 0; i < 8; i++) {
@@ -117,7 +117,7 @@ void func_02104ff8(void) {
         if (c == 0) {
             func_020f47e4(q, 0x11);
             data_0217c704[i] = 0;
-            if (i == data_021759c0->mEntryIndex && (data_0217c780 & 1)) {
+            if (i == gRaceSetup->mEntryIndex && (data_0217c780 & 1)) {
                 v = func_0210e128(func_02108ea0(0));
                 if (data_0217d084.mUnk_0c != 0) {
                     if (v[0] != NULL) {
@@ -136,7 +136,7 @@ void func_02104ff8(void) {
 }
 
 void func_02104f84(s32 a) {
-    if (data_021759c0->mMode != MODE_BATTLE) {
+    if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
     if ((s32) data_0217c6e4[a] >= 0) {
@@ -170,7 +170,7 @@ void func_02104ee0(Unk02104c68 *p, void *a) {
 void func_02104e58(Unk02104c68 *p) {
     p->mUnk_148 = 0x666;
     func_021053e4(p->mUnk_134);
-    p->mUnk_138 = (u16) (p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00) == data_021759c0->mEntryIndex;
+    p->mUnk_138 = (u16) (p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00) == gRaceSetup->mEntryIndex;
     if (p->mUnk_138 != 0) {
         (p->mUnk_134)->mUnk_b0 = 2;
     }
@@ -235,7 +235,7 @@ void func_02104a0c(Unk02104c68 *p) {
             func_020f758c(&p->mUnk_000.mUnk_000);
         }
     } else if ((p->mUnk_000.mUnk_000.mFlags & 0x8000) != 0) {
-        if (data_021759c0->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mMode == MODE_BATTLE) {
             i = p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00;
             v = data_0217c6e4[i] - 0x3c;
             if (v < p->mUnk_000.mUnk_000.mUnk_d8) {

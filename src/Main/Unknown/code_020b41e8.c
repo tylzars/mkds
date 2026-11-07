@@ -80,7 +80,7 @@ static inline u16 *func_020b41e8_inline(u16 *p, s32 r, s32 k) {
 }
 
 void func_020b41e8(u16 *a, s32 b, u16 *c, s32 d, s32 e) {
-    Unk021759c0 *p = data_021759c0;
+    RaceSetup *p = gRaceSetup;
     Nclr *o1;
     Ncgr *o2;
     u16 *s3;
@@ -95,7 +95,7 @@ void func_020b41e8(u16 *a, s32 b, u16 *c, s32 d, s32 e) {
     u16 *q;
     s32 w;
 
-    i = p->mUnk_00c == 1 ? p->mUnk_063 : p->mEntryIndex;
+    i = p->mUnk_00c == 1 ? p->mFollowedKartIndex : p->mEntryIndex;
     n = p->mCurrentEntries[i].mCharacterIndex;
     if (n == 12) {
         o1 = func_020b4024(1);
@@ -105,8 +105,8 @@ void func_020b41e8(u16 *a, s32 b, u16 *c, s32 d, s32 e) {
     o2 = func_020b4018(1);
     k = o1->mData;
     if (n == 12) {
-        m = data_0217b488
-                ->mUnk_10c[(u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mEntryIndex)];
+        m = data_0217b488->mUnk_10c[(u16) (gRaceSetup->mUnk_00c == 1 ? gRaceSetup->mFollowedKartIndex
+                                                                     : gRaceSetup->mEntryIndex)];
     } else {
         m = n;
     }

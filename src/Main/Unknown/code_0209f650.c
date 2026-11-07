@@ -97,7 +97,7 @@ static inline void func_0209fdb4_inline(Airship *p) {
 static inline BOOL func_0209fdb4_inline_b(void) {
     s32 i;
 
-    for (i = 0; i < data_021759c0->mKartCount; i++) {
+    for (i = 0; i < gRaceSetup->mKartCount; i++) {
         if (func_0203c8c0((u16) i) >= 2) {
             return TRUE;
         }

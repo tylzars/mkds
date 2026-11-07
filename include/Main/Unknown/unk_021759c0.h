@@ -35,7 +35,7 @@ typedef struct Unk021759c0_70 {
     /* 27 */ u8 mUnk_27;
 } Unk021759c0_70;
 
-// 0x30-byte entries at 0x68 and 0x250 of the object behind data_021759c0.
+// 0x30-byte entries at 0x68 and 0x250 of the object behind gRaceSetup.
 typedef struct KartEntry {
     /* 00 */ s32 mCharacterIndex;
     /* 04 */ s32 mKartIndex;
@@ -43,7 +43,7 @@ typedef struct KartEntry {
     /* 08 */ Unk021759c0_70 mPlayer;
 } KartEntry;
 
-// Values of the mMode member of Unk021759c0 and of Unk021759c0_1e8 (the other values stay literals). The member is set
+// Values of the mMode member of RaceSetup and of RaceSetupHeader (the other values stay literals). The member is set
 // when the race is confirmed and is 0 in the menus before that.
 // Grand Prix (also the value in the menus before a race is confirmed): code_0203b6ac.c:114 stores it as the next mode.
 #define MODE_GRAND_PRIX 0
@@ -56,7 +56,7 @@ typedef struct KartEntry {
 // Mission run: the mission row and column are read only while the mode has this value (code_02045874.c:372-373).
 #define MODE_MISSION_RUN 4
 
-// Values of the mCourseId member of Unk021759c0 and of Unk021759c0_1e8, and of the course id stored in the race
+// Values of the mCourseId member of RaceSetup and of RaceSetupHeader, and of the course id stored in the race
 // setup. The value is the row of the course name table data_usa_02154228 (8 byte rows, the string pointer first):
 // func_02048498 formats the row's string as the first %s of "/data/Course/%s%s%s.carc". Each name below is that
 // row's string without a trailing "_course", upper-cased, and the comment after it quotes the row index and the
@@ -109,13 +109,13 @@ typedef struct KartEntry {
 #define COURSE_ID_STAFFROLL 0x35  // row 53: "StaffRoll"
 #define COURSE_ID_STAFFROLLTRUE 0x36  // row 54: "StaffRollTrue"
 
-// The 0x68 bytes at 0x1e8 of the object behind data_021759c0.
-typedef struct Unk021759c0_1e8 {
+// The 0x68 bytes at 0x1e8 of the object behind gRaceSetup.
+typedef struct RaceSetupHeader {
     /* 00 */ s32 mCourseId;
     /* 04 */ s32 mCupIndex;
     /* 08 */ s32 mMode;
     /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
+    /* 10 */ s32 mEngineIndex;
     /* 14 */ s32 mUnk_14;
     /* 18 */ s32 mUnk_18;
     /* 1c */ s32 mUnk_1c;
@@ -125,37 +125,40 @@ typedef struct Unk021759c0_1e8 {
     /* 54 */ s8 mMissionTableRow;
     /* 55 */ s8 mMissionTableColumn;
     /* 56 */ u8 mUnk_56[0x1];
-    /* 57 */ s8 mUnk_57;
+    /* 57 */ s8 mMirrorMode;
     /* 58 */ u8 mUseTeams;
     /* 59 */ u8 mUnk_59[0x3];
     /* 5c */ s32 mUnk_5c;
     /* 60 */ u16 mCourseNumber;
     /* 62 */ s8 mEntryIndex;
-    /* 63 */ u8 mUnk_63;
-    /* 64 */ s8 mUnk_64;
+    /* 63 */ u8 mFollowedKartIndex;
+    /* 64 */ s8 mLapCount;
     /* 65 */ u8 mUnk_65[0x3];
-} Unk021759c0_1e8;
+} RaceSetupHeader;
 
-// The 0x10 bytes at 0x28 of the object behind data_021759c0 (the same bytes as its mUnk_028 to mUnk_37).
+// The 0x10 bytes at 0x28 of the object behind gRaceSetup (the same bytes as its mUnk_028 to mUnk_37).
 typedef struct Unk021759c0_28 {
-    /* 00 */ u16 mUnk_00;
+    /* 00 */ u16 mMissionTimeLimitFrameCount;
     /* 02 */ u16 mUnk_02;
     /* 04 */ s16 mUnk_04;
-    /* 06 */ u8 mUnk_06;
-    /* 07 */ u8 mUnk_07;
+    /* 06 */ u8 mMissionTableValue;
+    /* 07 */ u8 mMissionKind;
     /* 08 */ u8 mUnk_08[6];
     /* 0e */ u8 mUnk_0e;
     /* 0f */ u8 mUnk_0f;
 } Unk021759c0_28;
 
-// Object behind data_021759c0.
-typedef struct Unk021759c0 {
+// Object behind gRaceSetup.
+typedef struct RaceSetup {
     /* 00 */ s32 mCourseId;
     /* 004 */ s32 mCupIndex;
     /* 08 */ s32 mMode;
+// Selects the race scene set-up (display table and scene code); 5 is the award scene and 6 the staff roll, the
+// other values stay numbers.
     /* 00c */ u32 mUnk_00c;
-    /* 010 */ s32 mUnk_010;
+    /* 010 */ s32 mEngineIndex;
     /* 014 */ s32 mUnk_014;
+// Two values for battle: the end handling, the timer and the item tables differ between 0 and 1.
     /* 018 */ s32 mUnk_18;
     /* 01c */ s32 mUnk_1c;
     /* 020 */ s32 mCourseListMode;
@@ -163,17 +166,17 @@ typedef struct Unk021759c0 {
     union {
         Unk021759c0_28 mUnk_28_view;
         struct {
-            /* 028 */ u16 mUnk_028;
+            /* 028 */ u16 mMissionTimeLimitFrameCount;
             /* 02a */ u16 mUnk_02a;
             /* 02c */ s16 mUnk_02c;
-            /* 02e */ u8 mUnk_2e;
-            /* 2f */ u8 mUnk_2f;
+            /* 02e */ u8 mMissionTableValue;
+            /* 2f */ u8 mMissionKind;
             /* 030 */ u8 mUnk_030[0x6];
             /* 036 */ u8 mUnk_036;
             /* 37 */ u8 mUnk_37;
         };
     };
-    /* 038 */ u16 mUnk_038;
+    /* 038 */ u16 mFinishWaitFrameCount;
     /* 03a */ u8 mUnk_03a[0x2];
     /* 3c */ u16 mUnk_3c;
     /* 3e */ u16 mUnk_3e;
@@ -185,24 +188,26 @@ typedef struct Unk021759c0 {
     /* 54 */ s8 mMissionTableRow;
     /* 55 */ s8 mMissionTableColumn;
     /* 056 */ u8 mUnk_056[0x1];
-    /* 57 */ s8 mUnk_57;
+// Nonzero in mirror mode: the side distance of the camera and the map object models are flipped.
+    /* 57 */ s8 mMirrorMode;
     /* 58 */ s8 mUseTeams;
     /* 059 */ u8 mUnk_059[0x3];
     /* 05c */ s32 mUnk_05c;
     /* 60 */ u16 mCourseNumber;
     /* 62 */ s8 mEntryIndex;
-    /* 063 */ u8 mUnk_063;
-    /* 064 */ s8 mUnk_064;
+    /* 063 */ u8 mFollowedKartIndex;
+// Laps to run; 0 or less means the count of the course setting.
+    /* 064 */ s8 mLapCount;
     /* 065 */ u8 mUnk_065[0x3];
     /* 68 */ KartEntry mCurrentEntries[8];
-    /* 1e8 */ Unk021759c0_1e8 mNextHeader;
+    /* 1e8 */ RaceSetupHeader mNextHeader;
     /* 250 */ KartEntry mNextEntries[8];
     /* 3d0 */ u8 mKartCount;
     /* 3d1 */ u8 mUnk_3d1;
     /* 3d2 */ u8 mTeamKartCounts[2];
     /* 3d4 */ u8 mUnk_3d4;
     /* 3d5 */ s8 mUnk_3d5[3];
-    /* 3d8 */ u16 mUnk_3d8;
+    /* 3d8 */ u16 mCourseCount;
     /* 3da */ u8 mUnk_3da[0x2];
     /* 3dc */ u8 *mCourseList;
     /* 3e0 */ u8 mCourseListIndex;
@@ -214,9 +219,9 @@ typedef struct Unk021759c0 {
     /* 3e7 */ u8 mUnk_3e7[0x1];
     /* 3e8 */ Unk020565e4 mUnk_3e8;
     /* 3ec */ Unk020565e4 mUnk_3ec[5];
-} Unk021759c0;
+} RaceSetup;
 
-extern Unk021759c0 *data_021759c0;
+extern RaceSetup *gRaceSetup;
 
 // Object behind data_021759c4; the members are the ones the code reads.
 typedef struct Unk021759c4 {

@@ -36,7 +36,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
     }
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         if (GetRaceUseChainCameras() != 0) {
-            switch (data_021759c0->mCourseId) {
+            switch (gRaceSetup->mCourseId) {
                 case COURSE_ID_CROSS:
                     p->mUnk_0f0 = 4;
                     q = p->mUnk_000.mCourseMapRow;
@@ -92,7 +92,7 @@ void func_020a8a6c(Unk020a8a6c *a) {
                     break;
             }
         } else {
-            switch (data_021759c0->mCourseId) {
+            switch (gRaceSetup->mCourseId) {
                 case COURSE_ID_CROSS:
                     p->mUnk_0f0 = 1;
                     p->mUnk_0a0.mUnk_00.mUnk_00 = 0x108;

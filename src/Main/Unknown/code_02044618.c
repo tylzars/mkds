@@ -48,64 +48,64 @@ void ResetRaceSetup(void) {
     u16 i;
     Unk020565e4 *e;
 
-    data_021759c0->mNextHeader.mCourseId = COURSE_ID_CROSS;
-    data_021759c0->mNextHeader.mCupIndex = 0;
-    data_021759c0->mNextHeader.mMode = MODE_GRAND_PRIX;
-    data_021759c0->mNextHeader.mUnk_0c = 0;
-    data_021759c0->mNextHeader.mUnk_10 = 0;
-    data_021759c0->mNextHeader.mUnk_14 = 0;
-    data_021759c0->mNextHeader.mUnk_18 = 0;
-    data_021759c0->mNextHeader.mUnk_1c = 0;
-    data_021759c0->mNextHeader.mCourseListMode = 0;
-    data_021759c0->mNextHeader.mUnk_24 = 0;
-    MI_CpuFill8(&data_021759c0->mNextHeader.mMissionFileRow, 0, 0x2c);
-    data_021759c0->mNextHeader.mMissionTableRow = -1;
-    data_021759c0->mNextHeader.mMissionTableColumn = -1;
-    data_021759c0->mNextHeader.mUnk_56[0] = 0;
-    data_021759c0->mNextHeader.mUnk_57 = 0;
-    data_021759c0->mNextHeader.mUseTeams = 0;
-    data_021759c0->mNextHeader.mUnk_5c = 0;
-    data_021759c0->mNextHeader.mCourseNumber = 1;
-    data_021759c0->mNextHeader.mEntryIndex = -1;
-    data_021759c0->mNextHeader.mUnk_63 = 0;
-    data_021759c0->mNextHeader.mUnk_64 = -1;
+    gRaceSetup->mNextHeader.mCourseId = COURSE_ID_CROSS;
+    gRaceSetup->mNextHeader.mCupIndex = 0;
+    gRaceSetup->mNextHeader.mMode = MODE_GRAND_PRIX;
+    gRaceSetup->mNextHeader.mUnk_0c = 0;
+    gRaceSetup->mNextHeader.mEngineIndex = 0;
+    gRaceSetup->mNextHeader.mUnk_14 = 0;
+    gRaceSetup->mNextHeader.mUnk_18 = 0;
+    gRaceSetup->mNextHeader.mUnk_1c = 0;
+    gRaceSetup->mNextHeader.mCourseListMode = 0;
+    gRaceSetup->mNextHeader.mUnk_24 = 0;
+    MI_CpuFill8(&gRaceSetup->mNextHeader.mMissionFileRow, 0, 0x2c);
+    gRaceSetup->mNextHeader.mMissionTableRow = -1;
+    gRaceSetup->mNextHeader.mMissionTableColumn = -1;
+    gRaceSetup->mNextHeader.mUnk_56[0] = 0;
+    gRaceSetup->mNextHeader.mMirrorMode = 0;
+    gRaceSetup->mNextHeader.mUseTeams = 0;
+    gRaceSetup->mNextHeader.mUnk_5c = 0;
+    gRaceSetup->mNextHeader.mCourseNumber = 1;
+    gRaceSetup->mNextHeader.mEntryIndex = -1;
+    gRaceSetup->mNextHeader.mFollowedKartIndex = 0;
+    gRaceSetup->mNextHeader.mLapCount = -1;
     for (i = 0; i < 8; i++) {
-        data_021759c0->mNextEntries[i].mCharacterIndex = i;
-        data_021759c0->mNextEntries[i].mKartIndex = i * 3;
-        data_021759c0->mNextEntries[i].mPlayer.mKind = i == 0 ? UNK_021759C0_70_KIND_0 : UNK_021759C0_70_KIND_1;
-        data_021759c0->mNextEntries[i].mPlayer.mTeamIndex = -1;
-        data_021759c0->mNextEntries[i].mPlayer.mUnk_08 = 3;
-        data_021759c0->mNextEntries[i].mPlayer.mIndex = i;
-        data_021759c0->mNextEntries[i].mPlayer.mUnk_10 = 3;
-        data_021759c0->mNextEntries[i].mPlayer.mUnk_14 = 0;
-        data_021759c0->mNextEntries[i].mPlayer.mName = NULL;
-        data_021759c0->mNextEntries[i].mPlayer.mUnk_24 = 0;
-        data_021759c0->mNextEntries[i].mPlayer.mUnk_25 = data_021759d0->mUnk_00;
-        data_021759c0->mNextEntries[i].mPlayer.mEmblemData = NULL;
-        data_021759c0->mNextEntries[i].mPlayer.mUnk_20 = 0;
+        gRaceSetup->mNextEntries[i].mCharacterIndex = i;
+        gRaceSetup->mNextEntries[i].mKartIndex = i * 3;
+        gRaceSetup->mNextEntries[i].mPlayer.mKind = i == 0 ? UNK_021759C0_70_KIND_0 : UNK_021759C0_70_KIND_1;
+        gRaceSetup->mNextEntries[i].mPlayer.mTeamIndex = -1;
+        gRaceSetup->mNextEntries[i].mPlayer.mUnk_08 = 3;
+        gRaceSetup->mNextEntries[i].mPlayer.mIndex = i;
+        gRaceSetup->mNextEntries[i].mPlayer.mUnk_10 = 3;
+        gRaceSetup->mNextEntries[i].mPlayer.mUnk_14 = 0;
+        gRaceSetup->mNextEntries[i].mPlayer.mName = NULL;
+        gRaceSetup->mNextEntries[i].mPlayer.mUnk_24 = 0;
+        gRaceSetup->mNextEntries[i].mPlayer.mUnk_25 = data_021759d0->mUnk_00;
+        gRaceSetup->mNextEntries[i].mPlayer.mEmblemData = NULL;
+        gRaceSetup->mNextEntries[i].mPlayer.mUnk_20 = 0;
     }
-    data_021759c0->mNextEntries[7].mPlayer.mUnk_08 = 0;
-    data_021759c0->mNextEntries[6].mPlayer.mUnk_08 = 1;
-    data_021759c0->mKartCount = 0;
-    data_021759c0->mUnk_3d1 = 0;
+    gRaceSetup->mNextEntries[7].mPlayer.mUnk_08 = 0;
+    gRaceSetup->mNextEntries[6].mPlayer.mUnk_08 = 1;
+    gRaceSetup->mKartCount = 0;
+    gRaceSetup->mUnk_3d1 = 0;
     for (i = 0; i < 2; i++) {
-        data_021759c0->mTeamKartCounts[i] = 0;
+        gRaceSetup->mTeamKartCounts[i] = 0;
     }
-    data_021759c0->mUnk_3d4 = 0;
+    gRaceSetup->mUnk_3d4 = 0;
     for (i = 0; i < 2; i++) {
-        data_021759c0->mUnk_3d5[i] = -1;
+        gRaceSetup->mUnk_3d5[i] = -1;
     }
-    data_021759c0->mUnk_3d8 = 0;
+    gRaceSetup->mCourseCount = 0;
     for (i = 0; i < 0x21; i++) {
-        data_021759c0->mCourseList[i] = 0;
+        gRaceSetup->mCourseList[i] = 0;
     }
-    data_021759c0->mCourseListIndex = 0;
-    e = &data_021759c0->mUnk_3e8;
+    gRaceSetup->mCourseListIndex = 0;
+    e = &gRaceSetup->mUnk_3e8;
     e->mUnk_02 = 0;
     e->mUnk_03 = 0;
     e->mUnk_00 = 0;
     for (i = 0; i < 5; i++) {
-        e = &data_021759c0->mUnk_3ec[i];
+        e = &gRaceSetup->mUnk_3ec[i];
         e->mUnk_02 = 0;
         e->mUnk_03 = 0;
         e->mUnk_00 = 0;
@@ -131,12 +131,12 @@ void SetCurrentEntryPlayer(s32 a) {
     u8 v;
 
     p = data_0217aa08;
-    b0 = &data_021759c0->mCurrentEntries[a].mPlayer.mName;
-    b1 = &data_021759c0->mCurrentEntries[a].mPlayer.mEmblemData;
-    b2 = &data_021759c0->mCurrentEntries[a].mPlayer.mUnk_24;
-    b3 = &data_021759c0->mCurrentEntries[a].mPlayer.mUnk_25;
-    b4 = &data_021759c0->mCurrentEntries[a].mPlayer.mUnk_26;
-    b5 = &data_021759c0->mCurrentEntries[a].mPlayer.mUnk_20;
+    b0 = &gRaceSetup->mCurrentEntries[a].mPlayer.mName;
+    b1 = &gRaceSetup->mCurrentEntries[a].mPlayer.mEmblemData;
+    b2 = &gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_24;
+    b3 = &gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_25;
+    b4 = &gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_26;
+    b5 = &gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_20;
     f = FALSE;
     if (p->mUnk_04->mUnk_004 != 0) {
         f = p->mUnk_00->mUnk_31_3 == 0;
@@ -152,7 +152,7 @@ void SetCurrentEntryPlayer(s32 a) {
     *b5 = 0;
     *b3 = data_021759d0->mUnk_00;
     *b4 = 0;
-    if (a == data_021759c0->mEntryIndex) {
+    if (a == gRaceSetup->mEntryIndex) {
         *b0 = &data_0217aa08->mUnk_00->mUnk_0c;
         *b1 = &data_0217aa08->mUnk_04->mUnk_008;
         *b2 = g != FALSE ? 1 : 0;
@@ -160,7 +160,7 @@ void SetCurrentEntryPlayer(s32 a) {
         *b4 = func_02056208();
         return;
     }
-    switch (data_021759c0->mCurrentEntries[a].mPlayer.mKind) {
+    switch (gRaceSetup->mCurrentEntries[a].mPlayer.mKind) {
         case 0:
             q = data_0217aa00;
             t = FALSE;
@@ -183,7 +183,7 @@ void SetCurrentEntryPlayer(s32 a) {
             *b4 = func_02045084_inline(data_0217aa00, a)->mUnk_229;
             break;
         case 2:
-            switch (data_021759c0->mCurrentEntries[a].mPlayer.mUnk_10) {
+            switch (gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_10) {
                 case 0:
                     *b0 = &data_0217aa08->mUnk_14[0]->mUnk_0c;
                     *b1 = &data_0217aa08->mUnk_04->mUnk_008;
@@ -229,15 +229,15 @@ void func_02044fc0(void) {
 
     n = 0;
     for (j = 0; j < 2; j++) {
-        data_021759c0->mUnk_3d5[j] = -1;
+        gRaceSetup->mUnk_3d5[j] = -1;
     }
-    for (j = 0; j < data_021759c0->mKartCount; j++) {
-        if ((data_021759c0->mCurrentEntries[(u16) j].mPlayer.mUnk_14 & 1) != 0) {
-            data_021759c0->mUnk_3d5[(u8) data_021759c0->mCurrentEntries[j].mPlayer.mUnk_08] = j;
+    for (j = 0; j < gRaceSetup->mKartCount; j++) {
+        if ((gRaceSetup->mCurrentEntries[(u16) j].mPlayer.mUnk_14 & 1) != 0) {
+            gRaceSetup->mUnk_3d5[(u8) gRaceSetup->mCurrentEntries[j].mPlayer.mUnk_08] = j;
             n++;
         }
     }
-    data_021759c0->mUnk_3d4 = n;
+    gRaceSetup->mUnk_3d4 = n;
 }
 
 BOOL func_02044e9c(s32 a, s32 b) {
@@ -246,18 +246,18 @@ BOOL func_02044e9c(s32 a, s32 b) {
     Unk0217aa08_14 *p;
 
     r = FALSE;
-    if (data_021759c0->mNextHeader.mUnk_0c == 2) {
+    if (gRaceSetup->mNextHeader.mUnk_0c == 2) {
         return TRUE;
     }
     p = data_0217aa08->mUnk_14[0];
     if (p->mUnk_08_0 == 1) {
         func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
-        data_021759c0->mNextEntries[b].mPlayer.mUnk_10 = r;
+        gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = r;
         MI_CpuCopy8(p->mUnk_30, data_02175650[b].mUnk_00, 0xdcc);
         r = TRUE;
-        func_02056574(0, &data_021759c0->mUnk_3e8);
+        func_02056574(0, &gRaceSetup->mUnk_3e8);
         for (i = 1; i <= 5; i++) {
-            func_020565ac(0, i, &data_021759c0->mUnk_3ec[i - 1]);
+            func_020565ac(0, i, &gRaceSetup->mUnk_3ec[i - 1]);
         }
     }
     return r;
@@ -268,18 +268,18 @@ s32 func_02044d4c(s32 a, s32 b) {
     s32 r;
     u8 i;
 
-    if (data_021759c0->mNextHeader.mUnk_0c == 2) {
+    if (gRaceSetup->mNextHeader.mUnk_0c == 2) {
         return 1;
     }
     p = data_0217aa08->mUnk_14[1];
     r = p->mUnk_08_0 == 1 ? 1 : 0;
     if (r != 0) {
         func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
-        data_021759c0->mNextEntries[b].mPlayer.mUnk_10 = 1;
+        gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = 1;
         MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
-        func_02056574(1, &data_021759c0->mUnk_3e8);
+        func_02056574(1, &gRaceSetup->mUnk_3e8);
         for (i = 1; i <= 5; i++) {
-            func_020565ac(1, i, &data_021759c0->mUnk_3ec[i - 1]);
+            func_020565ac(1, i, &gRaceSetup->mUnk_3ec[i - 1]);
         }
     } else {
         func_020468b0(b, 0, 0, 4, -1, 3);
@@ -291,17 +291,17 @@ BOOL func_02044bf8(s32 a, s32 b) {
     Unk0217aa08_14 *p;
     u8 i;
 
-    if (data_021759c0->mNextHeader.mUnk_0c == 2) {
+    if (gRaceSetup->mNextHeader.mUnk_0c == 2) {
         return TRUE;
     }
     p = data_0217aa08->mUnk_14[2];
     if (p != NULL && p->mUnk_08_0 == 1) {
         func_020468b0(b, p->mUnk_04_0, p->mUnk_04_4, 2, -1, 3);
-        data_021759c0->mNextEntries[b].mPlayer.mUnk_10 = 2;
+        gRaceSetup->mNextEntries[b].mPlayer.mUnk_10 = 2;
         MI_CpuCopy8(&p->mUnk_30[0x200], data_02175650[b].mUnk_00, 0xdcc);
-        func_020565e4(p, &data_021759c0->mUnk_3e8);
+        func_020565e4(p, &gRaceSetup->mUnk_3e8);
         for (i = 1; i <= 5; i++) {
-            func_0205660c(p, i, &data_021759c0->mUnk_3ec[i - 1]);
+            func_0205660c(p, i, &gRaceSetup->mUnk_3ec[i - 1]);
         }
         return TRUE;
     }
@@ -319,7 +319,7 @@ void SetCurrentRaceFromNext(void) {
     BOOL f;
 
     r = 0;
-    switch (data_021759c0->mNextHeader.mMode) {
+    switch (gRaceSetup->mNextHeader.mMode) {
         case MODE_GRAND_PRIX:
         case MODE_BATTLE:
         case MODE_VS:
@@ -332,29 +332,29 @@ void SetCurrentRaceFromNext(void) {
             n = 1;
             e = data_0217aa08->mUnk_14[0];
             if (e->mUnk_08_0 == 1) {
-                data_021759c0->mUnk_3e6 = 1;
-                data_021759c0->mUnk_3e4 = e->mUnk_08_8;
-                data_021759c0->mUnk_3e5 = e->mUnk_08_15;
-                data_021759c0->mUnk_3e2 = e->mUnk_08_22;
+                gRaceSetup->mUnk_3e6 = 1;
+                gRaceSetup->mUnk_3e4 = e->mUnk_08_8;
+                gRaceSetup->mUnk_3e5 = e->mUnk_08_15;
+                gRaceSetup->mUnk_3e2 = e->mUnk_08_22;
             } else {
-                data_021759c0->mUnk_3e6 = 0;
-                data_021759c0->mUnk_3e4 = 0;
-                data_021759c0->mUnk_3e5 = 0;
-                data_021759c0->mUnk_3e2 = 0;
+                gRaceSetup->mUnk_3e6 = 0;
+                gRaceSetup->mUnk_3e4 = 0;
+                gRaceSetup->mUnk_3e5 = 0;
+                gRaceSetup->mUnk_3e2 = 0;
             }
-            switch (data_021759c0->mNextHeader.mUnk_24) {
+            switch (gRaceSetup->mNextHeader.mUnk_24) {
                 case 0:
-                    if (func_02044e9c(data_021759c0->mNextHeader.mCourseId, 1) != 0) {
+                    if (func_02044e9c(gRaceSetup->mNextHeader.mCourseId, 1) != 0) {
                         n++;
                     }
                     break;
                 case 1:
-                    if (func_02044d4c(data_021759c0->mNextHeader.mCourseId, 1) != 0) {
+                    if (func_02044d4c(gRaceSetup->mNextHeader.mCourseId, 1) != 0) {
                         n++;
                     }
                     break;
                 case 2:
-                    if (func_02044bf8(data_021759c0->mNextHeader.mCourseId, 1) != FALSE) {
+                    if (func_02044bf8(gRaceSetup->mNextHeader.mCourseId, 1) != FALSE) {
                         n++;
                     }
                     break;
@@ -367,13 +367,13 @@ void SetCurrentRaceFromNext(void) {
             r = 2;
             break;
     }
-    switch (data_021759c0->mNextHeader.mUnk_0c) {
+    switch (gRaceSetup->mNextHeader.mUnk_0c) {
         case 1:
         case 5:
-            data_021759c0->mNextHeader.mEntryIndex = data_021759c0->mNextHeader.mUnk_63;
+            gRaceSetup->mNextHeader.mEntryIndex = gRaceSetup->mNextHeader.mFollowedKartIndex;
             break;
         case 6:
-            data_021759c0->mNextHeader.mEntryIndex = data_021759c0->mNextHeader.mUnk_63;
+            gRaceSetup->mNextHeader.mEntryIndex = gRaceSetup->mNextHeader.mFollowedKartIndex;
             r = 8;
             break;
         case 0:
@@ -382,7 +382,7 @@ void SetCurrentRaceFromNext(void) {
         case 4:
             h = 0;
             for (i = 0; i < 8; i++) {
-                if (data_021759c0->mNextEntries[i].mPlayer.mKind == 0) {
+                if (gRaceSetup->mNextEntries[i].mPlayer.mKind == 0) {
                     h = i;
                     break;
                 }
@@ -395,11 +395,11 @@ void SetCurrentRaceFromNext(void) {
             if (f != FALSE) {
                 h = q->mUnk_1e52[(u16) (q->mUnk_0000 == 2 ? q->mUnk_0432 : 0)].mUnk_00;
             }
-            data_021759c0->mNextHeader.mEntryIndex = h;
-            data_021759c0->mNextHeader.mUnk_63 = h;
+            gRaceSetup->mNextHeader.mEntryIndex = h;
+            gRaceSetup->mNextHeader.mFollowedKartIndex = h;
             break;
     }
-    *(Unk02044940_block *) data_021759c0 = *(Unk02044940_block *) &data_021759c0->mNextHeader;
+    *(Unk02044940_block *) gRaceSetup = *(Unk02044940_block *) &gRaceSetup->mNextHeader;
     func_02046968(r);
     func_02044fc0();
     for (n = 0; n < 8; n++) {
@@ -412,42 +412,42 @@ void func_020446e0(void) {
     u32 k;
     u8 m;
     u8 n;
-    Unk021759c0_1e8 *a;
+    RaceSetupHeader *a;
     s32 b;
     u8 c;
     s32 d;
 
-    switch (data_021759c0->mNextHeader.mMode) {
+    switch (gRaceSetup->mNextHeader.mMode) {
         case MODE_GRAND_PRIX:
-            if (data_021759c0->mNextHeader.mCourseId == COURSE_ID_AWARD) {
-                data_021759c0->mNextHeader.mCourseId = COURSE_ID_AWARD;
-                data_021759c0->mNextHeader.mUnk_0c = 5;
+            if (gRaceSetup->mNextHeader.mCourseId == COURSE_ID_AWARD) {
+                gRaceSetup->mNextHeader.mCourseId = COURSE_ID_AWARD;
+                gRaceSetup->mNextHeader.mUnk_0c = 5;
                 for (i = 3; i < 8; i++) {
                     func_020468b0(i, i, i * 3, 4, -1, 3);
                 }
-                data_021759c0->mNextHeader.mUnk_63 = 0;
-            } else if ((u32) (data_021759c0->mNextHeader.mCourseId - 0x35) <= 1) {
-                data_021759c0->mNextHeader.mUnk_0c = 6;
-                data_021759c0->mNextHeader.mUnk_10 = 1;
+                gRaceSetup->mNextHeader.mFollowedKartIndex = 0;
+            } else if ((u32) (gRaceSetup->mNextHeader.mCourseId - 0x35) <= 1) {
+                gRaceSetup->mNextHeader.mUnk_0c = 6;
+                gRaceSetup->mNextHeader.mEngineIndex = 1;
                 for (c = 0; c < 8; c++) {
                     s8 j;
-                    for (j = 0; j < data_021759c0->mKartCount; j++) {
+                    for (j = 0; j < gRaceSetup->mKartCount; j++) {
                         if (c + 1 == func_0205d4e8((u16) j)) {
                             break;
                         }
                     }
                     d = c * 3;
-                    if (data_021759c0->mNextHeader.mCourseId != COURSE_ID_STAFFROLLTRUE) {
+                    if (gRaceSetup->mNextHeader.mCourseId != COURSE_ID_STAFFROLLTRUE) {
                         func_020446e0_inline(3, -1, 1, d, c, c);
                     }
                 }
-                data_021759c0->mNextHeader.mUnk_63 = 0;
+                gRaceSetup->mNextHeader.mFollowedKartIndex = 0;
             } else {
                 for (k = 0; k < 32; k++) {
                     m = (s32) k / 4;
                     n = (s32) k % 4;
                     b = data_02154128[m][n];
-                    if (data_021759c0->mNextHeader.mCourseId == b) {
+                    if (gRaceSetup->mNextHeader.mCourseId == b) {
                         break;
                     }
                     if (k == 31) {
@@ -455,23 +455,23 @@ void func_020446e0(void) {
                         n = 3;
                     }
                 }
-                data_021759c0->mNextHeader.mCourseNumber = (u8) (n + 1);
-                a = &data_021759c0->mNextHeader;
-                data_021759c0->mNextHeader.mUnk_0c = 3;
-                data_021759c0->mNextHeader.mCupIndex = m;
+                gRaceSetup->mNextHeader.mCourseNumber = (u8) (n + 1);
+                a = &gRaceSetup->mNextHeader;
+                gRaceSetup->mNextHeader.mUnk_0c = 3;
+                gRaceSetup->mNextHeader.mCupIndex = m;
             }
             break;
         case MODE_BATTLE:
             if (data_021759d0->mUnk_1c_2 != 0) {
-                data_021759c0->mNextHeader.mUnk_0c = 0;
+                gRaceSetup->mNextHeader.mUnk_0c = 0;
             } else {
-                data_021759c0->mNextHeader.mUnk_0c = 4;
+                gRaceSetup->mNextHeader.mUnk_0c = 4;
             }
             break;
         case MODE_MISSION_RUN:
             break;
         default:
-            data_021759c0->mNextHeader.mUnk_0c = 0;
+            gRaceSetup->mNextHeader.mUnk_0c = 0;
             break;
     }
 }
@@ -479,30 +479,30 @@ void func_020446e0(void) {
 void ResetTimeAttackNextEntries(void) {
     u16 i;
 
-    if (data_021759c0->mNextHeader.mMode != MODE_TIME_ATTACK) {
+    if (gRaceSetup->mNextHeader.mMode != MODE_TIME_ATTACK) {
         return;
     }
-    data_021759c0->mNextHeader.mUnk_0c = 0;
+    gRaceSetup->mNextHeader.mUnk_0c = 0;
     for (i = 1; i < 8; i++) {
-        data_021759c0->mNextEntries[i].mCharacterIndex = i;
-        data_021759c0->mNextEntries[i].mKartIndex = i;
-        data_021759c0->mNextEntries[i].mPlayer.mKind = 4;
-        data_021759c0->mNextEntries[i].mPlayer.mIndex = i;
+        gRaceSetup->mNextEntries[i].mCharacterIndex = i;
+        gRaceSetup->mNextEntries[i].mKartIndex = i;
+        gRaceSetup->mNextEntries[i].mPlayer.mKind = 4;
+        gRaceSetup->mNextEntries[i].mPlayer.mIndex = i;
     }
 }
 
 // In battle there is one lap.
 u16 GetLapCount(void) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     u16 r;
 
     r = 1;
-    p = data_021759c0;
+    p = gRaceSetup;
     if (p->mMode != MODE_BATTLE) {
-        if (p->mUnk_064 <= 0) {
+        if (p->mLapCount <= 0) {
             r = gCourseMap->mSettings->mLapCountOrBattleSeconds;
         } else {
-            r = p->mUnk_064;
+            r = p->mLapCount;
         }
     }
     return r;

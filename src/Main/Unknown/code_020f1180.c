@@ -10,7 +10,7 @@ BOOL func_020f1180(ItemKouraR *a, u32 b) {
     int v;
 
     r = 0;
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     for (i = 0; i < n; i++) {
         v = func_020f1258(a, i, r, b);
         if (v != 0) {

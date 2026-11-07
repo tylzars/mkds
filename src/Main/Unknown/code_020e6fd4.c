@@ -52,7 +52,7 @@ void func_020e7a40(void) {
     u32 value1;
     u32 compareLeft0;
     u32 compareRight0;
-    value0 = data_021759c0->mUnk_00c;
+    value0 = gRaceSetup->mUnk_00c;
     compareLeft0 = value0;
     compareRight0 = 6u;
     if (compareLeft0 == compareRight0) {
@@ -69,13 +69,13 @@ void func_020e7a40(void) {
 
 #pragma thumb off
 void func_020e7a18(void) {
-    if (data_021759c0->mUnk_00c != 6) {
+    if (gRaceSetup->mUnk_00c != 6) {
         data_0217b8b4 = 0x14;
     }
 }
 
 void func_020e79c4(void) {
-    if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 6) {
         return;
     }
     NNS_SndPlayerStopSeq(func_02108e6c(4), 1);
@@ -90,18 +90,18 @@ void func_020e7760(void) {
     Vec3 *s;
     BOOL a;
 
-    if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 6) {
         return;
     }
-    if (data_021759c0->mUnk_00c == 3) {
+    if (gRaceSetup->mUnk_00c == 3) {
         gJgKart = NULL;
         return;
     }
-    if (data_021759c0->mEntryIndex < 0) {
+    if (gRaceSetup->mEntryIndex < 0) {
         gJgKart = NULL;
         return;
     }
-    gJgKartIndex = data_021759c0->mEntryIndex;
+    gJgKartIndex = gRaceSetup->mEntryIndex;
     q = GetKart(gJgKartIndex);
     gJgKart = q;
     data_0217b8c0 = &q->mKartModelsEntry->mUnk_040;
@@ -151,7 +151,7 @@ void func_020e7760(void) {
         }
         s++;
     }
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_BATTLE:
             gJgLapAndReverseEnabled = 0;
             break;
@@ -159,8 +159,8 @@ void func_020e7760(void) {
             BOOL b;
 
             b = FALSE;
-            if ((u8) (data_021759c0->mUnk_2f + 0xfe) <= 8 &&
-                (0x115 & (1 << (u8) (data_021759c0->mUnk_2f + 0xfe))) != 0) {
+            if ((u8) (gRaceSetup->mMissionKind + 0xfe) <= 8 &&
+                (0x115 & (1 << (u8) (gRaceSetup->mMissionKind + 0xfe))) != 0) {
                 b = TRUE;
             }
             gJgLapAndReverseEnabled = b;
@@ -170,7 +170,7 @@ void func_020e7760(void) {
             gJgLapAndReverseEnabled = 1;
             break;
     }
-    switch (data_021759c0->mUnk_010) {
+    switch (gRaceSetup->mEngineIndex) {
         case 0:
             gJgState2FrameCount = 0x50;
             break;
@@ -201,7 +201,7 @@ void func_020e7460(void) {
     s32 k;
 
     h = GetHeap(func_020364e8());
-    if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 6) {
         return;
     }
     func_020e64b8(&gJgMain, FindSceneFile(data_0216c374), FindSceneFile(data_0216c384), 0);
@@ -316,7 +316,7 @@ void func_020e730c(void) {
 
 void func_020e72cc(Unk020e730c *p, struct CourseMapRow *q) {
     p->mUnk_a0 = q->mUnk_28;
-    switch (data_021759c0->mUnk_010) {
+    switch (gRaceSetup->mEngineIndex) {
         case 0:
             p->mUnk_a2 = q->mUnk_2a;
             break;

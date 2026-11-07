@@ -37,7 +37,7 @@ void func_0207e594(struct KartAi *p, struct Kart *q, s32 a) {
     p->mIndex = q->mIndex;
     p->mUnk_06 = p->mIndex % 4;
     p->mUnk_88 = 0x1000;
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         p->mUnk_8c = 0;
     } else {
         p->mUnk_8c = 0x1000;
@@ -62,7 +62,7 @@ void func_0207e4a4(struct KartAi *p) {
     Vec3 *t;
     Unk02175620_bc *r;
 
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_0207e668(p);
     }
     s = &p->mUnk_08.mUnk_00;
@@ -138,7 +138,7 @@ void func_0207e268(void) {
             break;
     }
     data_usa_021658f0 = 3;
-    d = data_021759c0->mKartCount - data_021759c0->mUnk_3d1;
+    d = gRaceSetup->mKartCount - gRaceSetup->mUnk_3d1;
     if (d > 1) {
         if (d <= 3) {
             data_usa_021658f0 = d - 1;
@@ -195,7 +195,7 @@ void func_0207e088(struct Unk02089a24 *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     KartAi *u;
 
-    v = data_021759c0->mCurrentEntries[b->mIndex].mPlayer.mKind;
+    v = gRaceSetup->mCurrentEntries[b->mIndex].mPlayer.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             f = TRUE;
@@ -242,7 +242,7 @@ void func_0207de84(struct Unk02089a24 *a, struct KartAi *b) {
         a->mUnk_08 = 0;
         a->mUnk_18 = 0;
         f = FALSE;
-        v = data_021759c0->mCurrentEntries[b->mIndex].mPlayer.mKind;
+        v = gRaceSetup->mCurrentEntries[b->mIndex].mPlayer.mKind;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
                 f = TRUE;
@@ -315,7 +315,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
 
     a->mUnk_18 = 0;
     f = FALSE;
-    v = data_021759c0->mCurrentEntries[m].mPlayer.mKind;
+    v = gRaceSetup->mCurrentEntries[m].mPlayer.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             f = TRUE;
@@ -330,7 +330,7 @@ void func_0207d9f0(struct Unk02089a24 *a, struct KartAi *b, s32 c) {
         }
     }
     if (k[0] == 1) {
-        if (data_021759c0->mMode == MODE_GRAND_PRIX) {
+        if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
             if (GetKartRaceProgressScaled(m) >= 0x28f) {
                 if (GetKartRank(m) >= 4) {
                     for (i = 1; i < 4; i++) {
@@ -454,7 +454,7 @@ u16 func_0207d8e4(s32 a) {
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
         i = (u16) (((r->mUnk_00 >> 32) * 3) >> 32);
     }
-    switch (data_021759c0->mUnk_014) {
+    switch (gRaceSetup->mUnk_014) {
         case 1:
             p = &v[0];
             break;
@@ -476,11 +476,11 @@ void func_0207d814(struct Unk02089a24 *a, struct KartAi *b) {
     a->mUnk_14 = -1;
     a->mUnk_18 = 0;
     a->mUnk_10 = 0;
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         b->mKart->mForwardSpeed = a->mUnk_00;
         return;
     }
-    if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 6) {
         t = func_0207fe70((Unk02080b1c *) &b->mUnk_08.mUnk_00);
         b->mKart->mForwardSpeed = ((s64) b->mKart->mPhysicalParam->mBaseSpeedLimit * t + 0x800) >> 12;
         b->mKart->mSpeedLimitGoal = b->mKart->mForwardSpeed;

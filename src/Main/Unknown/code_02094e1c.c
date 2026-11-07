@@ -149,7 +149,7 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
     if (t <= 0) {
         o->mUnk_a0 = 0xf;
         c = o->mUnk_00.mCourseMapRow->mUnk_28;
-        g = GetKart((u16) data_021759c0->mEntryIndex);
+        g = GetKart((u16) gRaceSetup->mEntryIndex);
         e = c << 12;
         q2 = &g->mPos;
         v1 = q2->x - o->mUnk_00.mPos.x;
@@ -215,14 +215,14 @@ void func_02094e8c(void *a, Unk02094e8c *o) {
             break;
     }
     if (GetUnparkedTeresaCount() > 0) {
-        func_020d26e0(GetKart((u16) data_021759c0->mEntryIndex), 0x11e);
+        func_020d26e0(GetKart((u16) gRaceSetup->mEntryIndex), 0x11e);
     }
 }
 
 u32 func_02094e3c(void) {
     s32 m;
 
-    m = data_021759c0->mMode;
+    m = gRaceSetup->mMode;
     if (m == MODE_VS || m == 5) {
         if (func_02061818() == 0) {
             return 0;

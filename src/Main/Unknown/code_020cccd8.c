@@ -213,7 +213,7 @@ void UpdateRaceHudSubScreenMkdEfBurnerCells(void) {
             if (ComputeRaceHudSubScreenPosition(v, &gRaceHudSubScreenMkdEfBurnerCells->mCells[a].mUnk_00, n, 0, 0) !=
                 FALSE) {
                 gRaceHudSubScreenMkdEfBurnerCells->mCells[a].mUnk_08 =
-                    GetRaceSNcerEntry(data_021759c0->mCourseId == COURSE_ID_AIRSHIP ? 0xae : 0xb2);
+                    GetRaceSNcerEntry(gRaceSetup->mCourseId == COURSE_ID_AIRSHIP ? 0xae : 0xb2);
                 gRaceHudSubScreenMkdEfBurnerCells->mCells[a].mUnk_0c = func_020b4e70(v) != 0 ? 2 : 3;
                 gRaceHudSubScreenMkdEfBurnerCells->mUnk_0c[a].mUnk_00 = b != 0 ? 0x1000 : 0xccd;
                 a++;
@@ -613,13 +613,13 @@ void DrawRaceHudSubScreenFlipperCells(Unk020c06c4 *a) {
         h = gRaceHudSubScreenFlipperCells->mCells[i].mUnk_0c;
         if (c <= h) {
             if (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_0e != 0) {
-                if (data_021759c0->mUnk_57 != 0) {
+                if (gRaceSetup->mMirrorMode != 0) {
                     func_020b4c74(v1, (u16) (d + (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 + 0x4000)));
                 } else {
                     func_020b4c74(v1, (u16) (0x4000 - gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 - d));
                 }
             } else {
-                if (data_021759c0->mUnk_57 != 0) {
+                if (gRaceSetup->mMirrorMode != 0) {
                     Matrix2x2Rotation(v1, (u16) (gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10 + 0x4000 - d));
                 } else {
                     Matrix2x2Rotation(v1, (u16) (d + (0x4000 - gRaceHudSubScreenFlipperCells->mCells[i].mUnk_10)));

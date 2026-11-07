@@ -185,7 +185,7 @@ typedef struct Unk0206bcb0_A {
 } Unk0206bcb0_A;
 
 // Bits of Kart.mUnk_7c.
-// Set once at set-up (func_02071e28) when mIndex == data_021759c0->mEntryIndex, i.e. the selected entry.
+// Set once at set-up (func_02071e28) when mIndex == gRaceSetup->mEntryIndex, i.e. the selected entry.
 #define KART_7C_INDEX_IS_SELECTED_ENTRY 0x1
 // Set at set-up when the entry's mKind is 2. Bit 0x2 and this bit are also tested together as 6 / 0x402004 (left
 // literal).
@@ -329,7 +329,7 @@ typedef struct Kart {
     // squared distance in the sound source, 3 and 4 the two steps UpdateKarts runs for every Kart, 5 stores the
     // previous collision center, 6 respawn, 7 start placement, 8 does nothing. 7 and 8 are never called. InitKart fills
     // it from gKartDefaultSlotFunctions and replaces slots 2 to 5; it also replaces slots 3 and 4 with an empty
-    // function when gRace.mUseChainCameras is set and Unk021759c0.mUnk_00c is not 5.
+    // function when gRace.mUseChainCameras is set and RaceSetup.mUnk_00c is not 5.
     /* 20c */ void (*mSlotFunctions[9])(struct Kart *);
     /* 230 */ void (*mUnk_230)(struct Kart *);
     /* 234 */ s16 mUnk_234;

@@ -9,7 +9,7 @@ u32 GetCurrentCharacterIndex(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_021759c0;
+    value2 = (u32) &gRaceSetup;
     value1 = 0x30u;
     value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -21,7 +21,7 @@ u32 GetCurrentKartIndex(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_021759c0;
+    value2 = (u32) &gRaceSetup;
     value1 = 0x30u;
     value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -33,7 +33,7 @@ u32 GetCurrentPlayerKind(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_021759c0;
+    value2 = (u32) &gRaceSetup;
     value1 = 0x30u;
     value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -42,14 +42,14 @@ u32 GetCurrentPlayerKind(u32 arg0) {
 }
 
 u32 GetCurrentUseTeams(void) {
-    return (data_021759c0->mUseTeams);
+    return (gRaceSetup->mUseTeams);
 }
 
 u32 GetCurrentTeamIndex(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_021759c0;
+    value2 = (u32) &gRaceSetup;
     value1 = 0x30u;
     value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -61,7 +61,7 @@ u32 func_020cc6a4(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_021759c0;
+    value2 = (u32) &gRaceSetup;
     value1 = 0x30u;
     value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -70,41 +70,41 @@ u32 func_020cc6a4(u32 arg0) {
 }
 
 u32 GetCurrentCupIndex(void) {
-    return (data_021759c0->mCupIndex);
+    return (gRaceSetup->mCupIndex);
 }
 
 u32 func_020cc67c(void) {
-    return (data_021759c0->mUnk_014);
+    return (gRaceSetup->mUnk_014);
 }
 
 u32 GetCurrentKartCount(void) {
-    return (data_021759c0->mKartCount);
+    return (gRaceSetup->mKartCount);
 }
 
 u32 GetCurrentMode(void) {
-    return (data_021759c0->mMode);
+    return (gRaceSetup->mMode);
 }
 
 u32 GetCurrentCourseId(void) {
-    return (data_021759c0->mCourseId);
+    return (gRaceSetup->mCourseId);
 }
 
-u32 func_020cc62c(void) {
-    return (data_021759c0->mUnk_010);
+u32 GetCurrentEngineIndex(void) {
+    return (gRaceSetup->mEngineIndex);
 }
 
-u32 func_020cc618(void) {
-    return (data_021759c0->mUnk_57);
+u32 GetCurrentMirrorMode(void) {
+    return (gRaceSetup->mMirrorMode);
 }
 
 u32 func_020cc604(void) {
-    return (data_021759c0->mUnk_18);
+    return (gRaceSetup->mUnk_18);
 }
 
-u32 func_020cc5ec(void) {
-    return (data_021759c0->mUnk_3d8);
+u32 GetCurrentCourseCount(void) {
+    return (gRaceSetup->mCourseCount);
 }
 
 u32 func_020cc5d8(void) {
-    return (data_021759c0->mUnk_1c);
+    return (gRaceSetup->mUnk_1c);
 }

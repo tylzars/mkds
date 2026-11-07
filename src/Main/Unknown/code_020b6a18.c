@@ -25,13 +25,13 @@ void func_020b6c74(u32 a, u16 *b, u32 c) {
     }
     f = FALSE;
     if (a == 0) {
-        if (data_021759c0->mCurrentEntries[a].mPlayer.mKind <= 3) {
-            if ((1 << data_021759c0->mCurrentEntries[a].mPlayer.mKind) & 0xd) {
+        if (gRaceSetup->mCurrentEntries[a].mPlayer.mKind <= 3) {
+            if ((1 << gRaceSetup->mCurrentEntries[a].mPlayer.mKind) & 0xd) {
                 f = TRUE;
             }
         }
         if (f != FALSE) {
-            p = data_021759c0->mCurrentEntries[a].mPlayer.mName;
+            p = gRaceSetup->mCurrentEntries[a].mPlayer.mName;
             if (p == NULL) {
                 return;
             }
@@ -42,7 +42,7 @@ void func_020b6c74(u32 a, u16 *b, u32 c) {
             }
         }
     } else {
-        if (func_02056bc0(data_021759c0->mCourseId, a - 1, &t) != 0) {
+        if (func_02056bc0(gRaceSetup->mCourseId, a - 1, &t) != 0) {
             p = t.mUnk_04;
             if (c != 0) {
                 n = 10;

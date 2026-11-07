@@ -88,7 +88,7 @@ typedef struct RaceHudSubScreenCells {
     /* 10 */ RaceHudSubScreenCell *mCells;
 } RaceHudSubScreenCells;
 
-// Halfwords from 0x02 of Unk0217b490 read by func_020cf340 when data_021759c0->mUnk_00 is 0x20: six, two rows
+// Halfwords from 0x02 of Unk0217b490 read by func_020cf340 when gRaceSetup->mUnk_00 is 0x20: six, two rows
 // of three and two.
 typedef struct Unk0217b490_02_03 {
     /* 00 */ u16 mUnk_00[6];
@@ -97,7 +97,7 @@ typedef struct Unk0217b490_02_03 {
 } Unk0217b490_02_03;
 
 // The halfwords from 0x02 of Unk0217b490 as func_020cf340 and func_020cfca4 index them for the values of
-// data_021759c0->mUnk_00: a run of 0x15 (0x1c, 0x1f, 0x2e), nine rows of three (0xf), five rows of four (0x11)
+// gRaceSetup->mUnk_00: a run of 0x15 (0x1c, 0x1f, 0x2e), nine rows of three (0xf), five rows of four (0x11)
 // and Unk0217b490_02_03 (0x20).
 typedef union Unk0217b490_02 {
     u16 mUnk_00[0x15];
@@ -113,12 +113,12 @@ typedef struct Unk0217b490 {
 } Unk0217b490;
 
 // Pair of numbers "course number, course count" drawn on the main screen before start-sequence frame 0xb4, only in mode
-// 5 and in mode 3 with data_021759c0->mUnk_1c == 2 (DrawRaceMNumberPair), one record behind gRaceMNumberPair (0x28
+// 5 and in mode 3 with gRaceSetup->mUnk_1c == 2 (DrawRaceMNumberPair), one record behind gRaceMNumberPair (0x28
 // bytes, InitRaceMNumberPair); mUnk_08 .. mUnk_20 are the slide-in animation state. mUnk_18 points into mUnk_08.
 typedef struct RaceMNumberPair {
-    // Copy of data_021759c0->mCourseNumber taken in InitRaceMNumberPair.
+    // Copy of gRaceSetup->mCourseNumber taken in InitRaceMNumberPair.
     /* 00 */ s32 mCourseNumber;
-    // Number of courses of the run: 4 in mode 5, data_021759c0->mUnk_3d8 in mode 3 with mUnk_1c == 2, else 0 (not
+    // Number of courses of the run: 4 in mode 5, gRaceSetup->mUnk_3d8 in mode 3 with mUnk_1c == 2, else 0 (not
     // drawn). mUnk_3d8 has another meaning (score threshold) in mode 2 and for mUnk_1c == 1; this member never copies
     // that one.
     /* 04 */ s32 mCourseCount;
@@ -310,7 +310,7 @@ typedef struct KartStanding {
     // (karts still in play stay ahead of eliminated ones).
     /* 48 */ u16 mRankIndex;
     /* 4a */ u8 mUnk_4a[2];
-    // The kart's count: balloons held where the balloon object exists (mode 2 with Unk021759c0.mUnk_18 == 0, and mode
+    // The kart's count: balloons held where the balloon object exists (mode 2 with RaceSetup.mUnk_18 == 0, and mode
     // 4), shines held in the shine mode (mode 2 with mUnk_18 == 1). -1 for an unused slot and for a kart eliminated in
     // mode 2; 0 at the start; changed in steps of +1 / -1. The rank order is sorted by it.
     /* 4c */ s32 mBalloonOrShineCount;
@@ -574,8 +574,7 @@ typedef struct Unk0217b350_858 {
 // element draws append to (mUnk_004 for the main screen, mUnk_408 for the sub screen, copied to 0x07000000 /
 // 0x07000400), the loaded graphics, the sub-screen page (mSubScreenState) and the goal-background delay; the elements
 // themselves (time digits, number pair, goal page, new-record page) are separate objects. It does not exist in kinds 3,
-// 5 and 6 of data_021759c0->mUnk_00c (the scene slots run RaceStartGp / EndingStaffRoll there). Weak name: the word Hud
-// is a role word, not in the game's strings.
+// 5 and 6 of gRaceSetup->mUnk_00c (the scene slots run RaceStartGp / EndingStaffRoll there).
 // Words from 0x828 to 0x910 are read and written by func_020aeb7c. The pointers at 0x80c to 0x824 are written through
 // LoadNclrData, LoadNcgrData and LoadNscrData.
 typedef struct RaceHud {
@@ -620,7 +619,7 @@ typedef struct RaceHud {
     // the draw of the time difference.
     /* 8e4 */ s32 mUseTimeDifference;
     // ComputeTimeDifference's return: non-zero when the entry's summed lap times (GetKartLapTime) are >= the summed
-    // reference times (data_021759c0->mUnk_3ec); the draw picks one of two sprites by it. Which sprite is plus or minus
+    // reference times (gRaceSetup->mUnk_3ec); the draw picks one of two sprites by it. Which sprite is plus or minus
     // is not named.
     /* 8e8 */ s32 mTimeDifferenceSign;
     // The difference as seven digits (SplitTimeDigits), written by func_020b1a34, read through GetRaceHudTimeDifference

@@ -136,7 +136,7 @@ void func_020b0b8c(void) {
     s32 w;
     s32 a;
 
-    v = data_021759c0->mUnk_00c;
+    v = gRaceSetup->mUnk_00c;
     if (v == 3) {
         func_020c4e48();
         return;
@@ -164,7 +164,7 @@ void func_020b0b8c(void) {
     } else if (gRaceHud->mUnk_844 != 0) {
         if (func_020b2ec0() == 0) {
             if (gRaceHud->mUnk_844++ >= gRaceHud->mUnk_850) {
-                if (data_021759c0->mMode == MODE_GRAND_PRIX && data_021759c0->mUnk_00c == 0) {
+                if (gRaceSetup->mMode == MODE_GRAND_PRIX && gRaceSetup->mUnk_00c == 0) {
                     w = (reg_GX_DISPCNT & 0x1f00) >> 8;
                     reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((w | 8) << 8);
                     reg_G2_BG3CNT = (reg_G2_BG3CNT & ~3) | 1;
@@ -180,7 +180,7 @@ void func_020b0b8c(void) {
             }
         }
     }
-    v = data_021759c0->mMode;
+    v = gRaceSetup->mMode;
     if (v == MODE_GRAND_PRIX && gRaceHud->mUnk_84c != 0) {
         reg_G2_BG3OFS = 0x01ff0000 & (InterpolateS16(1, -64, 0, func_020c5db0(), 20) << 16);
     } else if (v == MODE_MISSION_RUN && gRaceHud->mUnk_84c != 0) {
@@ -238,7 +238,7 @@ void func_020b0b8c(void) {
         case 1:
         case 2:
         case 3:
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(6)->mNclr->mData, 0, GetRaceNclrNcgr(6)->mNclr->mDataSize);
             }
             G2x_SetBGyAffine_(&reg_G2S_DB_BG2PA, gRaceHud->mUnk_858[0].mUnk_00, gRaceHud->mUnk_858[0].mUnk_10,
@@ -262,7 +262,7 @@ void func_020b0b8c(void) {
             break;
         case 4:
             reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1e00;
-            switch (data_021759c0->mMode) {
+            switch (gRaceSetup->mMode) {
                 case MODE_BATTLE:
                 case MODE_VS:
                     GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x800);
@@ -279,7 +279,7 @@ void func_020b0b8c(void) {
             break;
         case 5:
             reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1e00;
-            switch (data_021759c0->mMode) {
+            switch (gRaceSetup->mMode) {
                 case MODE_BATTLE:
                 case MODE_VS:
                     GXS_LoadBG0Char(func_020b3374()->mData, 0, 0x800);
@@ -335,7 +335,7 @@ void func_020b0b8c(void) {
         reg_GX_DISPCNT = (reg_GX_DISPCNT & ~0x1f00) | ((w & ~4) << 8);
         G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0x3f, 6, 10);
     }
-    for (i = 0; i < data_021759c0->mKartCount; i++) {
+    for (i = 0; i < gRaceSetup->mKartCount; i++) {
         if (gRaceHud->mUnk_89c[i] != 0 && gRaceHud->mUnk_8bc[i] == 0) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x52);
             gRaceHud->mUnk_8bc[i] = 1;
@@ -350,7 +350,7 @@ void func_020b03bc(void) {
     u32 j;
     u16 w;
 
-    v = data_021759c0->mUnk_00c;
+    v = gRaceSetup->mUnk_00c;
     if (v == 3) {
         InitRaceStartGp();
         return;
@@ -369,7 +369,7 @@ void func_020b03bc(void) {
     InitRaceHudSubScreenProjection();
     func_020b8624();
     func_020cffa0();
-    if (data_021759c0->mUnk_00c == 4) {
+    if (gRaceSetup->mUnk_00c == 4) {
         func_020d12b0();
     }
     func_020bb530();
@@ -400,8 +400,8 @@ void func_020b03bc(void) {
     gRaceHud->mUnk_848 = 0;
     gRaceHud->mUnk_84c = 0;
     gRaceHud->mUnk_850 = 0;
-    if (data_021759c0->mMode == MODE_BATTLE) {
-        switch (data_021759c0->mCourseId) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
+        switch (gRaceSetup->mCourseId) {
             case COURSE_ID_MINI_STAGE3:
                 gRaceHud->mUnk_854 = 0x40;
                 break;
@@ -409,8 +409,8 @@ void func_020b03bc(void) {
                 gRaceHud->mUnk_854 = 0x64;
                 break;
         }
-    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        switch (data_021759c0->mCourseId) {
+    } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        switch (gRaceSetup->mCourseId) {
             case COURSE_ID_MR_STAGE1:
             case COURSE_ID_MR_STAGE2:
             case COURSE_ID_MR_STAGE3:
@@ -431,21 +431,21 @@ void func_020b03bc(void) {
     }
     gRaceHud->mUnk_8dc = 0;
     gRaceHud->mUnk_8e0 = -1;
-    if (data_021759c0->mMode == MODE_TIME_ATTACK && data_021759c0->mKartCount > 1) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mKartCount > 1) {
         gRaceHud->mUseTimeDifference = 1;
     } else {
         gRaceHud->mUseTimeDifference = 0;
     }
     gRaceHud->mUnk_908 = 0;
     gRaceHud->mUnk_90c = FALSE;
-    gRaceHud->mUnk_910 = data_021759c0->mMode == MODE_MISSION_RUN ? func_020adc04() : 0;
+    gRaceHud->mUnk_910 = gRaceSetup->mMode == MODE_MISSION_RUN ? func_020adc04() : 0;
     MI_DmaFill32(3, gRaceHud->mUnk_004, 0xc0, 0x400);
     MI_DmaFill32(3, gRaceHud->mUnk_408, 0xc0, 0x400);
     LoadNclrData(&gRaceHud->mNclrs[0], FindSceneFileWrapper("race_m_b.NCLR"));
     LoadNcgrData(&gRaceHud->mNcgrs[0], FindSceneFileWrapper("race_m_b.NCGR"));
     LoadNscrData(&gRaceHud->mNscrs[0], FindSceneFileWrapper("race_m_pause.NSCR"));
     LoadNscrData(&gRaceHud->mNscrs[1], FindSceneFileWrapper("race_m_goal.NSCR"));
-    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         LoadNclrData(&gRaceHud->mNclrs[1], FindSceneFileWrapper("race_new_record_ta_s_b.NCLR"));
         LoadNcgrData(&gRaceHud->mNcgrs[1], FindSceneFileWrapper("race_new_record_ta_s_b.NCGR"));
         LoadNscrData(&gRaceHud->mNscrs[2], FindSceneFileWrapper("race_new_record_ta_s_bg.NSCR"));
@@ -463,7 +463,7 @@ void func_020b03bc(void) {
         func_020c3e2c(0)->mUnk_00->mData[i + 0xe0] = w;
     }
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0x3f, 6, 10);
-    if (data_021759c0->mMode == MODE_GRAND_PRIX) {
+    if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
         func_020b6dc4(GetRaceNclrNcgr(1)->mNclr->mData, GetRaceNclrNcgr(1)->mNcgr->mData);
         DC_FlushRange(GetRaceNclrNcgr(1)->mNclr->mData, GetRaceNclrNcgr(1)->mNclr->mDataSize);
         DC_FlushRange(GetRaceNclrNcgr(1)->mNcgr->mData, GetRaceNclrNcgr(1)->mNcgr->mDataSize);
@@ -475,13 +475,13 @@ void func_020b03bc(void) {
     DC_FlushRange(GetRaceNclrNcgr(7)->mNcgr->mData, GetRaceNclrNcgr(7)->mNcgr->mDataSize);
     func_020b46d0(GetRaceNclrNcgr(6)->mNcgr->mData, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(8)->mNcgr->mData, 0x10, 0);
     DC_FlushRange(GetRaceNclrNcgr(8)->mNcgr->mData, GetRaceNclrNcgr(8)->mNcgr->mDataSize);
-    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         func_020b46d0(GetRaceNclrNcgr(6)->mNcgr->mData, 0x10, 0, 0x10, 2, GetRaceNclrNcgr(9)->mNcgr->mData, 0x10, 0);
         DC_FlushRange(GetRaceNclrNcgr(9)->mNcgr->mData, GetRaceNclrNcgr(9)->mNcgr->mDataSize);
     }
     func_020b36a4();
     func_020b3adc();
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         data_0217b488->mUnk_10 = 0;
     }
 }
@@ -514,11 +514,11 @@ void InitMap2D(void) {
     s32 i;
     s32 k;
 
-    v1 = data_021759c0->mMode != MODE_MISSION_RUN;
-    if (data_021759c0->mUnk_00c == 3) {
+    v1 = gRaceSetup->mMode != MODE_MISSION_RUN;
+    if (gRaceSetup->mUnk_00c == 3) {
         return;
     }
-    if (data_021759c0->mUnk_00c == 5 || data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 5 || gRaceSetup->mUnk_00c == 6) {
         return;
     }
     data_0217b34c = HeapAlloc(GetHeap(func_020364e8()), 0x400);
@@ -579,11 +579,11 @@ void InitMap2D(void) {
     }
 
     if (v1) {
-        if (data_021759c0->mUnk_57 != 0) {
+        if (gRaceSetup->mMirrorMode != 0) {
             InitMap2D_inline(nscrs[0]->mData);
         }
         k = 0;
-        if (data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 1) {
+        if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 1) {
             k = 1;
         }
         for (i = 0; i < 16; i++) {
@@ -640,7 +640,7 @@ void func_020af99c(void) {
     u32 v;
     u16 w;
 
-    v = data_021759c0->mUnk_00c;
+    v = gRaceSetup->mUnk_00c;
     if (v == 3) {
         return;
     }
@@ -695,7 +695,7 @@ void func_020af99c(void) {
 void func_020af86c(void) {
     u32 v;
 
-    v = data_021759c0->mUnk_00c;
+    v = gRaceSetup->mUnk_00c;
     if (v == 3) {
         func_020c4bd8();
         return;
@@ -715,7 +715,7 @@ void func_020af86c(void) {
     func_020b3af4();
     ClearRaceHudSubScreenProjection();
     func_020b8610();
-    if (data_021759c0->mUnk_00c == 4) {
+    if (gRaceSetup->mUnk_00c == 4) {
         func_020d129c();
     }
     func_020bb51c();
@@ -741,7 +741,7 @@ void func_020af66c(void) {
     if (gRaceHud != NULL) {
         gRaceHud->mUnk_908 = 1;
     }
-    v = data_021759c0->mUnk_00c;
+    v = gRaceSetup->mUnk_00c;
     if (v == 3) {
         func_020c4bb0();
         return;
@@ -766,13 +766,13 @@ void func_020af66c(void) {
     }
     UpdateRaceStartSequence();
     func_020b3728();
-    if (data_021759c0->mUnk_00c == 4) {
+    if (gRaceSetup->mUnk_00c == 4) {
         func_020d1298();
     }
-    v = data_021759c0->mMode;
+    v = gRaceSetup->mMode;
     if ((v == MODE_BATTLE        ? gRaceProgress->mRaceDone
          : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
-                                 : (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
+                                 : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
         func_020bab54();
         func_020bc958();
         func_020d2090();

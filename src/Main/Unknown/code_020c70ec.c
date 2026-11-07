@@ -63,18 +63,18 @@ void func_020c7164(void) {
     Unk02056bc0 *q;
     Unk02056bc0 *r;
 
-    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
     if (gRaceNewRecordTa == NULL) {
         return;
     }
-    if (data_021759c0->mUnk_00c == 0) {
+    if (gRaceSetup->mUnk_00c == 0) {
         gRaceNewRecordTa->mUnk_08 = func_020c657c(0);
         gRaceNewRecordTa->mUnk_10 = func_020c6428(0);
         return;
     }
-    GetKartFinishTime(func_020b4d9c(), &a, &b, &c);
+    GetKartFinishTime(GetFollowedKartOrEntryIndex(), &a, &b, &c);
     r = gRaceNewRecordTa->mRecords;
     t = b * 1000 + a * 60000 + c;
     for (j = 4; j >= 0; j--) {
@@ -88,7 +88,7 @@ void func_020c7164(void) {
 found:
     gRaceNewRecordTa->mUnk_08 = j;
     q = &gRaceNewRecordTa->mRecords[5];
-    gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(func_020b4d9c(), &d, &e, &f);
+    gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
     gRaceNewRecordTa->mUnk_10 = (d == q->mUnk_02 && e == q->mUnk_03 && f == q->mUnk_00) ? 1 : 0;
 }
 

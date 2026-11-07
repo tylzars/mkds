@@ -33,7 +33,7 @@ void func_020ae824(void) {
     u32 v;
     s32 a;
 
-    v = data_021759c0->mUnk_00c;
+    v = gRaceSetup->mUnk_00c;
     if (v == 3) {
         func_020c4ae8();
         return;
@@ -52,13 +52,13 @@ void func_020ae824(void) {
     func_020b3724();
     gRaceHud->mUnk_404 = 0;
     gRaceHud->mUnk_406 = 0;
-    if (data_021759c0->mUnk_00c == 4) {
+    if (gRaceSetup->mUnk_00c == 4) {
         func_020d1198((Unk020d029c *) gRaceHud->mUnk_004);
     }
-    v = data_021759c0->mMode;
+    v = gRaceSetup->mMode;
     if ((v == MODE_BATTLE        ? gRaceProgress->mRaceDone
          : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
-                                 : (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
+                                 : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
         func_020ba63c((Unk020d029c *) gRaceHud->mUnk_004);
         func_020bc208((Unk020d029c *) gRaceHud->mUnk_004);
         DrawRaceMNumberPair((Unk020d029c *) gRaceHud->mUnk_004);

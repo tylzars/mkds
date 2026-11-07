@@ -973,11 +973,11 @@ typedef struct Unk0217aa14 {
 extern Unk0217aa14 *data_0217aa14;
 // Per-run state of the race scene, one record behind gRace (0x48 bytes, allocated by InitRace on the scene heap and
 // never cleared at the end of the scene): frame counters (mUpdateFrames and three phases derived from it), toon-table
-// cycle, fog/fade switch, kind flags derived from data_021759c0->mUnk_00c (also live in the demo and credits kinds 3 to
-// 6), a light vector. Not the race setup (data_021759c0), not the karts.
+// cycle, fog/fade switch, kind flags derived from gRaceSetup->mUnk_00c (also live in the demo and credits kinds 3 to
+// 6), a light vector. Not the race setup (gRaceSetup), not the karts.
 typedef struct Race {
     // 1 once the race has started, else 0: StartRace sets it when UpdateRaceStartSequence reaches its frame 180, and
-    // InitRace sets it at once for the kinds 5 and 6 of Unk021759c0.mUnk_00c, which have no countdown; IsRaceStarted
+    // InitRace sets it at once for the kinds 5 and 6 of RaceSetup.mUnk_00c, which have no countdown; IsRaceStarted
     // returns it.
     /* 00 */ s16 mStarted;
     /* 02 */ u8 mUnk_02[2];
@@ -991,7 +991,7 @@ typedef struct Race {
     // Value of mUpdateFrames modulo 2 as of the end of the latest UpdateRace, 0 at set-up; compared with 0 or with a
     // bit of the object's own flags to act on every second frame.
     /* 10 */ s32 mUpdateFramesMod2;
-    // Value of mUpdateFrames modulo Unk021759c0.mKartCount as of the end of the latest UpdateRace, 0 at set-up; its one
+    // Value of mUpdateFrames modulo RaceSetup.mKartCount as of the end of the latest UpdateRace, 0 at set-up; its one
     // reader uses it as a kart index.
     /* 14 */ s32 mUpdateFramesModKartCount;
     // Start index (0 to 7) of the 32 entries of data_0217aadc that UpdateRace gives to G3X_SetToonTable on each call;
@@ -1008,12 +1008,12 @@ typedef struct Race {
     // mFadeFog, then copies mFadeFog here. func_02061874 sets it to 0 when it is 1 so that the next DrawRace writes the
     // registers again.
     /* 24 */ s32 mDrawnFadeFog;
-    // 1 when Unk021759c0.mUnk_00c is 3, 4 or 5, else 0. While it is 1, InitRace creates the chain cameras, UpdateRace
+    // 1 when RaceSetup.mUnk_00c is 3, 4 or 5, else 0. While it is 1, InitRace creates the chain cameras, UpdateRace
     // updates them and takes their view, and DrawRace skips the draw call of func_02086250. The other readers go
     // through GetRaceUseChainCameras and use it to tell these kinds apart (map objects, balloons, effects, kart
     // set-up).
     /* 28 */ s32 mUseChainCameras;
-    // 1 when Unk021759c0.mUnk_00c is 4: only the first chain camera is created and updated instead of the pair (read
+    // 1 when RaceSetup.mUnk_00c is 4: only the first chain camera is created and updated instead of the pair (read
     // only while mUseChainCameras is non-zero).
     /* 2c */ s32 mUseFirstChainCamera;
     // Mode 5 only: set by UpdateRace when mUpdateFrames reaches 128 while mUpdateFramesUnlimited is FALSE; from then on
@@ -1023,7 +1023,7 @@ typedef struct Race {
     // once set, UpdateRace counts mUpdateFrames on every call with no stop at 128.
     /* 34 */ BOOL mUpdateFramesUnlimited;
     /* 38 */ s32 mUnk_38;
-    // Value of mUpdateFrames when the end handler of the kart of the selected entry (Unk021759c0.mEntryIndex) first
+    // Value of mUpdateFrames when the end handler of the kart of the selected entry (RaceSetup.mEntryIndex) first
     // ran, stored by SetRaceUpdateFramesAtEntryEnd (in mission run mode that is after the end wait); 0 until then.
     /* 3c */ s32 mUpdateFramesAtEntryEnd;
     // x component of the direction of light 0, the vector func_02062078 gives to NNS_G3dGlbLightVector; set at InitRace
@@ -1094,7 +1094,7 @@ typedef struct Camera {
     /* 0e4 */ s32 mLookAtLowering;
     /* 0e8 */ s32 mFollowDistanceScale;
     /* 0ec */ s32 mUnk_0ec;
-    // 0x1000, or -0x1000 in mode 4 with flag 0x20 of data_021759c0->mUnk_044.
+    // 0x1000, or -0x1000 in mode 4 with flag 0x20 of gRaceSetup->mUnk_044.
     /* 0f0 */ s32 mFollowDirectionSign;
     /* 0f4 */ Vec3 mShakeLookAtOffsetGoal;
     /* 100 */ Vec3 mShakePosOffsetGoal;
@@ -1250,7 +1250,7 @@ typedef struct Unk0217ad00 {
     // Kart.mKartModelsEntry points into it.
     /* 000 */ struct Unk0206bcb0_590 *mKartModelsEntries;
     /* 004 */ u16 *mUnk_004;
-    // Number of elements of mKartModelsEntries, copied from data_021759c0->mKartCount; the loop bound over the
+    // Number of elements of mKartModelsEntries, copied from gRaceSetup->mKartCount; the loop bound over the
     // entries.
     /* 008 */ u16 mKartCount;
     /* 00a */ u8 mUnk_00a[2];
@@ -1655,7 +1655,7 @@ extern struct EntryKartCounters *gEntryKartCounters;
 // gFirstChainCamera, and its entry advances together with the first one's. Its view is the one used on odd frames.
 extern Camera *gSecondChainCamera;
 // The Camera (mKind 2) that starts at CourseMap.mFirstChainStartEntry and follows mNextIndex through its entries; the
-// only chain camera when data_021759c0->mUnk_00c is 4. Created by CreateFirstChainCamera or CreateChainCameraPair. With
+// only chain camera when gRaceSetup->mUnk_00c is 4. Created by CreateFirstChainCamera or CreateChainCameraPair. With
 // two chain cameras its view is the one used on even frames of gRace->mUpdateFrames.
 extern Camera *gFirstChainCamera;
 extern void *data_usa_0217aa68;

@@ -104,14 +104,14 @@ BOOL func_01ffa1f8(Kart *p) {
         if (!(p->mUnk_7c & 0x400) && !(p->mUnk_48 & 0x800)) {
             p->mUnk_48 = p->mUnk_48 | 0x800;
             i = p->mIndex;
-            if (data_021759c0->mMode == MODE_BATTLE) {
+            if (gRaceSetup->mMode == MODE_BATTLE) {
                 r = GetCourseMapRespawnSlot(0);
             } else {
                 r = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[i].mCheckpoint);
             }
             p->mRespawnSlot = r;
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-                if (data_021759c0->mCourseId == COURSE_ID_RAINBOW && (data_0217c780 & 1)) {
+                if (gRaceSetup->mCourseId == COURSE_ID_RAINBOW && (data_0217c780 & 1)) {
                     q = func_0210e128(func_02108ea0(0));
                     if (data_0217d084.mUnk_0c != 0) {
                         if (*(u32 *) q != 0) {

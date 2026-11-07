@@ -19,7 +19,7 @@ s32 func_020b4e0c(void) {
     s32 a = func_020b4e5c();
 
     if (a == 0x11 || a == 0x13) {
-        func_0207a91c(&v, func_020b4d9c());
+        func_0207a91c(&v, GetFollowedKartOrEntryIndex());
         r = func_020b4e70(&v);
     }
     return r;

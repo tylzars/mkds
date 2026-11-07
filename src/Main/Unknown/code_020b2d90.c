@@ -2,5 +2,5 @@
 #include "Main/Unknown/unk_021759c0.h"
 
 u32 GetEntryIndex(void) {
-    return (data_021759c0->mEntryIndex);
+    return (gRaceSetup->mEntryIndex);
 }

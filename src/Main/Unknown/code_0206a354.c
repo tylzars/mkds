@@ -49,7 +49,7 @@ void StartKartState2(Kart *p, int a, int b) {
     p->mYRotationCount = a;
     p->mUnk_4c |= 0x20;
     func_020efea4(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN && gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     if (b != 0) {
@@ -72,7 +72,7 @@ void AdvanceKartState1And2(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 0) {
         func_02088c7c(p->mAi);
     }
 }
@@ -125,7 +125,7 @@ void StartKartState6(Kart *p) {
     p->mUnk_340 = p->mPos.y;
     p->mUnk_348 = 0;
     func_020eff40(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN && gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     if (!(p->mUnk_48 & 0x840)) {
@@ -209,7 +209,7 @@ void AdvanceKartState6(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 0) {
         func_02088c7c(p->mAi);
     }
     p->mUnk_4c &= ~0x80000010;
@@ -283,7 +283,7 @@ void StartKartState3(Kart *p) {
         func_0210af40(p, p->mUnk_3cc, 2);
     }
     func_020efea4(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN && gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
 }
@@ -331,7 +331,7 @@ void AdvanceKartState3(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 0) {
         func_02088c7c(p->mAi);
     }
 }
@@ -400,7 +400,7 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
     v = data_02154f7c;
     Vec3CrossUnrounded(&v, a, &p->mRotationAxis);
     func_020eff40(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN && gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     if (!(p->mUnk_7c & 0x400)) {
@@ -474,7 +474,7 @@ void AdvanceKartState4(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 0) {
         func_02088c7c(p->mAi);
     }
     if (p->mUnk_44 & KART_44_ON_GROUND) {
@@ -525,7 +525,7 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
     }
     QuaternionFromAxisAngle(&p->mRotationAxis, p->mRotationAngle, &p->mRotationQuaternion);
     func_020eff40(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN && gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     if (p->mKartModelsEntry->mUnk_058 == 0) {
@@ -589,7 +589,7 @@ void AdvanceKartState5(Kart *p) {
     p->mUnk_48 &= ~0x20000;
     func_02068a64(p, 0, 1);
     p->mUnk_44 |= 0x80000000;
-    if ((p->mUnk_7c & 0x2) && data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) {
+    if ((p->mUnk_7c & 0x2) && gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 0) {
         func_02088c7c(p->mAi);
     }
     if (p->mUnk_44 & KART_44_ON_GROUND) {
@@ -616,14 +616,14 @@ void func_0206a624(Kart *p) {
     func_0206bcb0(p, 2, 1);
     func_0210f9ac(p);
     func_020eff40(&(gKartItems)[p->mIndex]);
-    if (data_021759c0->mMode == MODE_MISSION_RUN && data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN && gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     p->mScaleFactor.x = 0x1000;
     p->mScaleFactor.y = 0x1000;
     p->mScaleFactor.z = 0x1000;
     func_0210a644(p);
-    if (p->mIndex == data_021759c0->mEntryIndex) {
+    if (p->mIndex == gRaceSetup->mEntryIndex) {
         func_0210fa74(1);
     }
     if (p->mUnk_7c & 0x200) {
@@ -655,7 +655,7 @@ void func_0206a354(Kart *p) {
                 if (!(p->mUnk_4c & 0x10080)) {
                     p->mUnk_394 = 0x1000;
                 }
-                if (p->mIndex == data_021759c0->mEntryIndex) {
+                if (p->mIndex == gRaceSetup->mEntryIndex) {
                     func_0210fa74(0);
                 }
                 func_0210a664(p);

@@ -4290,7 +4290,7 @@ func_020b4c74 kind:function(arm,size=0x3c) addr:0x020b4c74
 Matrix2x2Rotation kind:function(arm,size=0x3c) addr:0x020b4cb0
 Matrix2x2ReciprocalScale kind:function(arm,size=0x40) addr:0x020b4cec
 func_020b4d2c kind:function(arm,size=0x70) addr:0x020b4d2c
-func_020b4d9c kind:function(arm,size=0x28) addr:0x020b4d9c
+GetFollowedKartOrEntryIndex kind:function(arm,size=0x28) addr:0x020b4d9c
 func_020b4dc4 kind:function(arm,size=0x34) addr:0x020b4dc4
 func_020b4df8 kind:function(arm,size=0x14) addr:0x020b4df8
 func_020b4e0c kind:function(arm,size=0x50) addr:0x020b4e0c
@@ -4634,10 +4634,10 @@ func_020cc3e8 kind:function(thumb,size=0x1ae) addr:0x020cc3e8
 func_020cc598 kind:function(arm,size=0x20) addr:0x020cc598
 func_020cc5b8 kind:function(arm,size=0x20) addr:0x020cc5b8
 func_020cc5d8 kind:function(arm,size=0x14) addr:0x020cc5d8
-func_020cc5ec kind:function(arm,size=0x18) addr:0x020cc5ec
+GetCurrentCourseCount kind:function(arm,size=0x18) addr:0x020cc5ec
 func_020cc604 kind:function(arm,size=0x14) addr:0x020cc604
-func_020cc618 kind:function(arm,size=0x14) addr:0x020cc618
-func_020cc62c kind:function(arm,size=0x14) addr:0x020cc62c
+GetCurrentMirrorMode kind:function(arm,size=0x14) addr:0x020cc618
+GetCurrentEngineIndex kind:function(arm,size=0x14) addr:0x020cc62c
 GetCurrentCourseId kind:function(arm,size=0x14) addr:0x020cc640
 GetCurrentMode kind:function(arm,size=0x14) addr:0x020cc654
 GetCurrentKartCount kind:function(arm,size=0x14) addr:0x020cc668
@@ -4654,12 +4654,12 @@ func_020cc994 kind:function(arm,size=0x14) addr:0x020cc994
 func_020cc9a8 kind:function(arm,size=0x14) addr:0x020cc9a8
 SetNextCourseListMode kind:function(arm,size=0x14) addr:0x020cc9bc
 func_020cc9d0 kind:function(arm,size=0x14) addr:0x020cc9d0
-func_020cc9e4 kind:function(arm,size=0x18) addr:0x020cc9e4
+SetCourseCount kind:function(arm,size=0x18) addr:0x020cc9e4
 SetNextUseTeams kind:function(arm,size=0x14) addr:0x020cc9fc
 func_020cca10 kind:function(arm,size=0x14) addr:0x020cca10
 func_020cca24 kind:function(arm,size=0x14) addr:0x020cca24
-func_020cca38 kind:function(arm,size=0x14) addr:0x020cca38
-func_020cca4c kind:function(arm,size=0x14) addr:0x020cca4c
+SetNextMirrorMode kind:function(arm,size=0x14) addr:0x020cca38
+SetNextEngineIndex kind:function(arm,size=0x14) addr:0x020cca4c
 SetNextCourseId kind:function(arm,size=0x14) addr:0x020cca60
 SetNextCupIndex kind:function(arm,size=0x14) addr:0x020cca74
 SetNextMode kind:function(arm,size=0x14) addr:0x020cca88
@@ -11269,7 +11269,7 @@ data_0217567c kind:bss addr:0x0217565c
 data_02175680 kind:bss addr:0x02175660
 data_021758e8 kind:bss addr:0x021758c8
 data_02175928 kind:bss addr:0x02175908
-data_021759c0 kind:bss addr:0x021759a0
+gRaceSetup kind:bss addr:0x021759a0
 data_021759c4 kind:bss addr:0x021759a4
 data_021759c8 kind:bss addr:0x021759a8
 data_021759cc kind:bss addr:0x021759ac

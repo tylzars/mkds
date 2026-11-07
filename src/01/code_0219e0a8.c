@@ -23,7 +23,7 @@ void CreateEndingScene(void *heap) {
     gEndingScene->mState = 0;
     gEndingScene->mNextState = gEndingScene->mState;
     gEndingScene->mUnk_008 = 0;
-    if (data_021759c0->mCourseId == COURSE_ID_STAFFROLLTRUE) {
+    if (gRaceSetup->mCourseId == COURSE_ID_STAFFROLLTRUE) {
         gEndingScene->mKind = 1;
     } else {
         gEndingScene->mKind = 0;

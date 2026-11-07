@@ -471,13 +471,13 @@ void func_021074ac(s32 e) {
     v = 0x69;
     b = FALSE;
     if (GetCurrentSceneNumber() == 2) {
-        d = data_021759c0->mUnk_00c == 0 || data_021759c0->mUnk_00c == 2;
+        d = gRaceSetup->mUnk_00c == 0 || gRaceSetup->mUnk_00c == 2;
         if (d != 0) {
             b = TRUE;
         }
     }
     if (b != FALSE) {
-        switch (data_021759c0->mCourseId) {
+        switch (gRaceSetup->mCourseId) {
             case COURSE_ID_BEACH:
                 v = v + 0x17;
                 break;
@@ -514,7 +514,7 @@ void func_021074ac(s32 e) {
     func_021103c0();
     switch (a) {
         case 2:
-            v = data_021759c0->mCourseId;
+            v = gRaceSetup->mCourseId;
             switch (v) {
                 case COURSE_ID_TOWN:
                     func_0210f868(0, 1);
@@ -634,15 +634,15 @@ void func_021074ac(s32 e) {
                     func_0210bbec(0xd, data_0216c860[13].mUnk_04, &data_0216c860[13]);
                     func_0210bbec(0xe, data_0216c860[13].mUnk_04, &data_0216c860[13]);
                     func_0210bbec(0x10, data_0216c860[13].mUnk_04, &data_0216c860[13]);
-                    if (data_021759c0->mUnk_00c == 0) {
+                    if (gRaceSetup->mUnk_00c == 0) {
                         func_021104dc(1);
                     }
                     break;
             }
             func_0210f5d4(v);
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                u8 *w = (u8 *) data_021759c0 + 0x28;
-                switch (data_021759c0->mUnk_2f) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+                u8 *w = (u8 *) gRaceSetup + 0x28;
+                switch (gRaceSetup->mMissionKind) {
                     case 1:
                         data_0217c770[0] = 0x1d7;
                         data_0217c76c[0] = 0x1d7;
@@ -790,7 +790,7 @@ void func_02107010(void) {
     data_0217c7f0.mUnk_10 = 0x7f;
     data_0217c7f0.mUnk_08 = 0;
     if (GetCurrentSceneNumber() == 2) {
-        c = data_021759c0->mUnk_00c == 0 || data_021759c0->mUnk_00c == 2;
+        c = gRaceSetup->mUnk_00c == 0 || gRaceSetup->mUnk_00c == 2;
         if (c != 0) {
             b = 1;
         }
@@ -801,8 +801,8 @@ void func_02107010(void) {
         func_0210d614(&data_0217d070, func_02111144(), NULL);
         data_0217c7b0 = 0;
         v = 0xffff;
-        if (data_021759c0->mMode == MODE_MISSION_RUN) {
-            switch (data_021759c0->mUnk_2e) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+            switch (gRaceSetup->mMissionTableValue) {
                 case 9:
                     v = 0x20e;
                     break;
@@ -818,7 +818,7 @@ void func_02107010(void) {
             }
         }
         if (v == 0xffff) {
-            switch (data_021759c0->mCourseId) {
+            switch (gRaceSetup->mCourseId) {
                 case COURSE_ID_AIRSHIP:
                     v = 0x1d2;
                     break;
@@ -846,13 +846,13 @@ void func_02107010(void) {
             }
             data_0217c7b0 = 1;
         }
-        if (data_021759c0->mMode != MODE_BATTLE) {
+        if (gRaceSetup->mMode != MODE_BATTLE) {
             func_02110534(gCourseMap->mCheckpointSum);
             data_0217c814.mUnk_14 = GetLapCount();
         }
     } else {
         if (GetCurrentSceneNumber() == 2) {
-            if (data_021759c0->mUnk_00c - 3 <= 1) {
+            if (gRaceSetup->mUnk_00c - 3 <= 1) {
                 func_0210d9a0(&data_0217d084, 2);
                 data_0217c780 = 2;
             } else {
@@ -907,7 +907,7 @@ void func_02106efc(void) {
     if (data_0217c7b0 != 0) {
         NNS_SndPlayerStopSeq(&data_0217c854, 0x14);
     }
-    if (data_021759c0->mCourseId != COURSE_ID_STADIUM) {
+    if (gRaceSetup->mCourseId != COURSE_ID_STADIUM) {
         return;
     }
     for (i = 7; i < 12; i++) {
@@ -997,11 +997,11 @@ void func_02106ab8(void) {
 
     b = FALSE;
     if (GetCurrentSceneNumber() == 2) {
-        if (data_021759c0->mUnk_00c == 1) {
+        if (gRaceSetup->mUnk_00c == 1) {
             return;
         }
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         return;
     }
     data_0217c814.mUnk_15 = data_0217c814.mUnk_15 + 1;
@@ -1017,7 +1017,7 @@ void func_02106ab8(void) {
         func_0210d614(&data_0217d070, 0x3e, NULL);
         data_0217c814.mUnk_16 = 1;
     }
-    if (data_021759c0->mCourseId != COURSE_ID_STADIUM) {
+    if (gRaceSetup->mCourseId != COURSE_ID_STADIUM) {
         return;
     }
     if (b != FALSE) {
@@ -1054,7 +1054,7 @@ void func_0210689c(u32 a) {
 
     b = FALSE;
     if (GetCurrentSceneNumber() == 2) {
-        c = data_021759c0->mUnk_00c == 0 || data_021759c0->mUnk_00c == 2;
+        c = gRaceSetup->mUnk_00c == 0 || gRaceSetup->mUnk_00c == 2;
         if (c != FALSE) {
             b = TRUE;
         }
@@ -1062,7 +1062,7 @@ void func_0210689c(u32 a) {
     if (b == FALSE) {
         return;
     }
-    if ((u32) data_021759c0->mMode - 1 <= 1) {
+    if ((u32) gRaceSetup->mMode - 1 <= 1) {
         return;
     }
     v = -1;
@@ -1071,7 +1071,7 @@ void func_0210689c(u32 a) {
         data_0217c814.mUnk_18 = a;
         return;
     }
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_STADIUM:
             if (data_0217c814.mUnk_10 != 0) {
                 v = 0x1c2;
@@ -1166,17 +1166,17 @@ void func_02106580(void) {
             func_02111024();
             break;
     }
-    if (data_021759c0->mMode != MODE_BATTLE) {
+    if (gRaceSetup->mMode != MODE_BATTLE) {
         v = &data_0217d07c;
         if (func_0210f858() != 0) {
             func_0210f780(v);
-            if (data_021759c0->mCourseId == COURSE_ID_TOWN) {
+            if (gRaceSetup->mCourseId == COURSE_ID_TOWN) {
                 if (func_0210f75c(0) != 0 || func_0210f75c(1) != 0) {
                     func_0210f35c(0, 0x1a9);
                 }
             }
         }
-        if (data_021759c0->mCourseId == COURSE_ID_KOOPA) {
+        if (gRaceSetup->mCourseId == COURSE_ID_KOOPA) {
             func_0210f230(0, 0x16b);
         }
         if (data_0217c814.mUnk_1c != -1) {
@@ -1217,7 +1217,7 @@ void func_021062a8(void) {
     NNSSndSeqPlayer **p;
 
     v = 0xffff;
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_STADIUM:
             if (data_0217c814.mUnk_04 == 0xa) {
                 v = 0x1bc;
@@ -1350,7 +1350,7 @@ void func_021060dc(void) {
         }
     }
     if (GetCurrentSceneNumber() == 2) {
-        switch (data_021759c0->mUnk_00c) {
+        switch (gRaceSetup->mUnk_00c) {
             case 0:
             case 2:
                 func_02106580();

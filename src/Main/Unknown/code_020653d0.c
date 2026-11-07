@@ -259,7 +259,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 p->mUnk_514->mUnk_2c ^= 0x4000;
             }
         } else {
-            for (; i < (u32) data_021759c0->mKartCount; i++) {
+            for (; i < (u32) gRaceSetup->mKartCount; i++) {
                 if (i != p->mIndex) {
                     func_0206a624(GetKart(i));
                 }
@@ -332,7 +332,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             o->mUnk_4c |= 0x1000;
         }
     }
-    o = GetKart(data_021759c0->mEntryIndex);
+    o = GetKart(gRaceSetup->mEntryIndex);
     e = 0;
     if (((p->mUnk_514->mUnk_30 & 0x400000) != 0) != ((f & 0x400000) != 0) && o->mIndex == 0) {
         Vec3 t;

@@ -171,7 +171,7 @@ u32 func_020b2f58(void) {
 #pragma thumb off
 
 s8 GetMissionRunTableRow(void) {
-    Unk021759c0 *d = data_021759c0;
+    RaceSetup *d = gRaceSetup;
 
     if (d->mMode == MODE_MISSION_RUN) {
         return d->mMissionTableRow;
@@ -180,7 +180,7 @@ s8 GetMissionRunTableRow(void) {
 }
 
 s8 GetMissionRunTableColumn(void) {
-    Unk021759c0 *d = data_021759c0;
+    RaceSetup *d = gRaceSetup;
 
     if (d->mMode == MODE_MISSION_RUN) {
         return d->mMissionTableColumn;

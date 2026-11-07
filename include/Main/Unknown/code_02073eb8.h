@@ -85,10 +85,10 @@ void func_02074b00(Camera *p);
 // Entry kinds 5 and 6 (the angle entries of CourseMapCamera.mKind): puts the Camera around the followed Kart from the
 // entry's angles (mUnk_18.x, mUnk_18.y, mUnk_24.x, mUnk_24.y: degrees converted to 0x10000 per turn) and distance
 // (mUnk_18.z), lowers the position and look-at by the Kart's mUnk_2bc, pushes mPos out of walls except in modes 2 and 4
-// of data_021759c0->mMode, then updates the view.
+// of gRaceSetup->mMode, then updates the view.
 void UpdateCameraAngleEntry(Camera *p);
 // Entry kind 1: moves mPos along the entry's curve (UpdateCameraPosCurve), points mLookAt at the followed Kart (raised
-// by 0x6000; when data_021759c0->mUnk_00c is 5 the Kart comes from the entry's mUnk_24.z and the raise from its
+// by 0x6000; when gRaceSetup->mUnk_00c is 5 the Kart comes from the entry's mUnk_24.z and the raise from its
 // mUnk_18.y) and updates the view.
 void UpdateCameraPosCurveLookAtKart(Camera *p);
 // Does nothing while mCourseMapCamera is NULL. Otherwise runs the entry (UpdateCameraByEntryKind), counts
@@ -97,12 +97,12 @@ void UpdateCameraPosCurveLookAtKart(Camera *p);
 // of gSecondChainCamera. UpdateRace reaches it once a frame, only while gRace->mUseChainCameras is non-zero.
 void UpdateCameraEntry(Camera *p);
 // Steps gFirstChainCamera (UpdateCameraEntry), updates its view, stores it in gCurrentChainCamera and returns its view
-// matrix. UpdateRace calls it when data_021759c0->mUnk_00c is 4.
+// matrix. UpdateRace calls it when gRaceSetup->mUnk_00c is 4.
 MtxFx43 *UpdateFirstChainCamera(void);
 // Sets mFrustumShift of the two chain cameras (1 and 2 while the second's entry is of kind 4, else 0) and steps the
 // first. Then it copies the first's field of view pair, mPos and mLookAt into the second (shift 2) or steps the second.
 // It updates the view of the first on even frames and of the second on odd frames, stores that camera in
-// gCurrentChainCamera and returns its view matrix. UpdateRace calls it when data_021759c0->mUnk_00c is 3 or 5.
+// gCurrentChainCamera and returns its view matrix. UpdateRace calls it when gRaceSetup->mUnk_00c is 3 or 5.
 MtxFx43 *UpdateChainCameraPair(void);
 // As StartEntryCameraKind6Entry for CourseMap.mFirstKind8EntryInMode4, setting mKind8EntryRunning.
 void StartEntryCameraKind8Entry(void);
@@ -113,7 +113,7 @@ void StartEntryCameraKind8Entry(void);
 // mFovBlendPerFrame, else copied from the entry.
 void UpdateCameraByEntryKind(Camera *p);
 // Steps the Camera through CourseMapCamera entries and returns whether it is the camera in use this frame (UpdateRace
-// then shows it, else the chase camera). With data_021759c0->mUnk_00c equal to 6 it runs func_02074b00 and returns
+// then shows it, else the chase camera). With gRaceSetup->mUnk_00c equal to 6 it runs func_02074b00 and returns
 // TRUE. Returns FALSE while mEntryUpdateHold or mEntryUpdateDisabled is set, and when no CourseMapShape of mKind 1
 // contains the followed Kart's position (GetCourseMapCameraIndexAtPos finds none); mPrevPos and gEntryCameraUpdateRan
 // are written before either. Otherwise it starts the entry that shape names when it differs from the last one, runs it

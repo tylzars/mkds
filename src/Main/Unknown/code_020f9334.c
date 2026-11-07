@@ -77,7 +77,7 @@ void ResetItemObject(ItemObject *param_1, s32 param_2) {
     param_1->mUnk_d0 = &param_1->mPos;
     param_1->mUnk_da = -1;
     param_1->mUnk_104->mUnk_00 = NULL;
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         param_1->mFlags |= 0x8000000;
     }
     param_1->mUnk_78 |= data_02159cac;

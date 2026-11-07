@@ -34,13 +34,13 @@
 #include "ITCM/code_01ff9598.h"
 
 void func_02073630(void) {
-    Unk021759c0 *d;
+    RaceSetup *d;
     u16 i;
     void **a;
     void **b;
 
     data_0217ac14 = func_01ffa478;
-    d = data_021759c0;
+    d = gRaceSetup;
     i = 0;
     a = data_0217ac18;
     b = data_0217ac54;
@@ -140,7 +140,7 @@ void func_020733ec(Kart *p) {
     func_020e0650((u32 *) &p->mUnk_208);
     p->mAi = HeapAlloc(h, 0x158);
     if (gCourseMap->mRaceRouteCount != 0 || gCourseMap->mBattleRouteCount != 0) {
-        if (data_021759c0->mCurrentEntries[p->mIndex].mPlayer.mKind == 1) {
+        if (gRaceSetup->mCurrentEntries[p->mIndex].mPlayer.mKind == 1) {
             p->mUnk_7c |= 2;
             if (p->mUnk_7c & 2) {
                 for (i = 0; i < 12; i++) {
@@ -156,7 +156,7 @@ void func_020733ec(Kart *p) {
     }
     p->mUnk_2ca = -1;
     p->mUnk_2c8 = p->mUnk_2ca;
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         v = &p->mUnk_1d8;
     } else {
         v = &p->mCollisionCenter;
@@ -171,7 +171,7 @@ void func_020733ec(Kart *p) {
     p->mUnk_4d0 = 0x64;
     p->mRadius = p->mPhysicalParam->mRadius;
     func_020719d0(p);
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         p->mUnk_514 = HeapAlloc(h, 0xb8);
         func_02071fb8(p, h);
     }

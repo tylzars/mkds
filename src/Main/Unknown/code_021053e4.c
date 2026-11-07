@@ -21,7 +21,7 @@ u32 func_02105504(void) {
     u32 r = 0;
     u32 f;
     if (GetCurrentSceneNumber() == 2) {
-        s32 a = data_021759c0->mUnk_00c;
+        s32 a = gRaceSetup->mUnk_00c;
         f = 1;
         if (a != 0 && a != 2) {
             f = 0;
@@ -35,11 +35,11 @@ u32 func_02105504(void) {
 
 u32 func_021054d0(void) {
     u32 r = 0;
-    s32 a = data_021759c0->mMode;
+    s32 a = gRaceSetup->mMode;
     if (a != MODE_MISSION_RUN) {
         return r;
     }
-    a = a == MODE_MISSION_RUN ? data_021759c0->mMissionTableColumn : -1;
+    a = a == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1;
     if (a == 9) {
         r = 1;
     }

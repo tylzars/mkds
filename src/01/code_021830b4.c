@@ -128,7 +128,7 @@ void func_ov001_02183dec(Unk02188950 *a) {
 }
 
 s32 func_ov001_02183d94(Unk02188950 *a) {
-    SetAnglePointAndMoveAnglePoint(a, &GetKart((u16) data_021759c0->mEntryIndex)->mPos);
+    SetAnglePointAndMoveAnglePoint(a, &GetKart((u16) gRaceSetup->mEntryIndex)->mPos);
     if (a->mSpeed < a->mPrm->mUnk_108) {
         func_ov001_02188200(a, func_ov001_02184874);
         func_ov001_02184e6c(a);
@@ -139,7 +139,7 @@ s32 func_ov001_02183d94(Unk02188950 *a) {
 void func_ov001_02183cc8(Unk02188950 *a) {
     Kart *r4;
 
-    r4 = GetKart((u16) data_021759c0->mEntryIndex);
+    r4 = GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 2, func_ov001_02183d94);
     func_ov001_02188d64(a, a->mPrm->mUnk_10c, a->mPrm->mUnk_110);
     func_ov001_02188c48(a, a->mPrm->mUnk_118, a->mPrm->mUnk_118);
@@ -185,7 +185,7 @@ void func_ov001_02183b9c(Unk02188950 *a) {
 void func_ov001_02183ad8(Unk02188950 *a) {
     Kart *r4;
 
-    r4 = GetKart((u16) data_021759c0->mEntryIndex);
+    r4 = GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 3, NULL);
     func_ov001_02188d64(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
     func_ov001_02188c48(a, a->mPrm->mUnk_0d8, a->mPrm->mUnk_0d8);
@@ -364,9 +364,9 @@ void func_ov001_021832cc(u32 b, Unk02188950 *d) {
     Unk02188950_a0 *a;
     Kart *c;
 
-    if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
         if (func_ov001_021871f8(d, 1) != 0) {
-            if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) gRaceSetup->mEntryIndex) : 0) {
                 func_ov001_02183850(d);
             } else {
                 func_ov001_02183f0c(d);
@@ -423,7 +423,7 @@ void InitBossDonketu(Unk0218fa78 *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(o);
             }
             func_ov001_021870e4(a, o, data_ov001_021a79a8, data_ov001_021a79bc, data_ov001_021a79d0);
@@ -442,7 +442,7 @@ void InitKingIceDonketu(Unk0218fa78 *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (o = a->mUnk_00[i]) != NULL; i++) {
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(o);
             }
             func_ov001_021870e4(a, o, data_ov001_021a7950, data_ov001_021a7968, data_ov001_021a7980);

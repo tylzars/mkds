@@ -40,10 +40,10 @@ void func_0203c1a8(Vec3 *a, u32 b) {
         return;
     }
     if (v != 0) {
-        if (data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN) {
             func_ov001_021816fc();
         }
-        if (data_021759c0->mMode != MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode != MODE_MISSION_RUN) {
             return;
         }
         FinishRaceProgressKartWithEndKind(b, 0);
@@ -53,12 +53,12 @@ void func_0203c1a8(Vec3 *a, u32 b) {
 }
 
 BOOL IsFramesSinceFinishPastWait(void) {
-    return gRaceProgress->mFramesSinceFinish > data_021759c0->mUnk_038;
+    return gRaceProgress->mFramesSinceFinish > gRaceSetup->mFinishWaitFrameCount;
 }
 
 u32 func_0203c0bc(void) {
     u32 v;
-    s32 i = data_021759c0->mEntryIndex;
+    s32 i = gRaceSetup->mEntryIndex;
     if (i == -1) {
         return 0;
     }

@@ -55,7 +55,7 @@ s32 func_020c70a0(void) {
 void InitRaceNewRecordTa(void) {
     s32 i;
 
-    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
     gRaceNewRecordTa = HeapAlloc(GetHeap(func_020364e8()), 0xe8);
@@ -67,7 +67,7 @@ void InitRaceNewRecordTa(void) {
     gRaceNewRecordTa->mUnk_14 = 0;
     gRaceNewRecordTa->mUnk_18 = 0;
     for (i = 0; i < 6; i++) {
-        func_02056bc0(data_021759c0->mCourseId, i, &gRaceNewRecordTa->mRecords[i]);
+        func_02056bc0(gRaceSetup->mCourseId, i, &gRaceNewRecordTa->mRecords[i]);
     }
     gRaceNewRecordTa->mUnk_18 = 0;
     gRaceNewRecordTa->mUnk_dc = 0;
@@ -76,13 +76,13 @@ void InitRaceNewRecordTa(void) {
 }
 
 void func_020c6f84(void) {
-    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         gRaceNewRecordTa = NULL;
     }
 }
 
 void func_020c6f14(void) {
-    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
     gRaceNewRecordTa->mUnk_00();
@@ -251,7 +251,7 @@ BOOL func_020c657c(s32 a) {
     u8 n1;
     u16 n2;
 
-    GetKartFinishTime(func_020b4d9c(), &x, &y, &z);
+    GetKartFinishTime(GetFollowedKartOrEntryIndex(), &x, &y, &z);
     q = gRaceNewRecordTa->mRecords;
     t = y * 1000 + x * 60000 + z;
     k = 0;
@@ -267,7 +267,7 @@ found:
     if (a != 0) {
         for (j = 4; j > k; j--) {
             gRaceNewRecordTa->mRecords[j] = gRaceNewRecordTa->mRecords[j - 1];
-            func_02056c6c(data_021759c0->mCourseId, j, &gRaceNewRecordTa->mRecords[j]);
+            func_02056c6c(gRaceSetup->mCourseId, j, &gRaceNewRecordTa->mRecords[j]);
         }
         n2 = z;
         n1 = y;
@@ -277,11 +277,11 @@ found:
         e->mUnk_02 = n0;
         e->mUnk_03 = n1;
         g[k].mUnk_00 = n2;
-        MIi_CpuCopy16(data_021759c0->mCurrentEntries[func_020b4d9c()].mPlayer.mName, e->mUnk_04, 0x14);
+        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, e->mUnk_04, 0x14);
         e->mUnk_18 = 1;
-        e->mUnk_19 = data_021759c0->mCurrentEntries[func_020b4d9c()].mCharacterIndex;
-        e->mUnk_1a = data_021759c0->mCurrentEntries[func_020b4d9c()].mKartIndex;
-        func_02056c6c(data_021759c0->mCourseId, k, e);
+        e->mUnk_19 = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
+        e->mUnk_1a = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
+        func_02056c6c(gRaceSetup->mCourseId, k, e);
         if (k != 5) {
             gRaceNewRecordTa->mUnk_0c = k;
         }
@@ -302,7 +302,7 @@ BOOL func_020c6428(s32 a) {
     u16 n2;
 
     e = &gRaceNewRecordTa->mRecords[5];
-    gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(func_020b4d9c(), &x, &y, &z);
+    gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &x, &y, &z);
     if (e->mUnk_18 != 0) {
         if (z + (y * 1000 + x * 60000) >= e->mUnk_00 + (e->mUnk_03 * 1000 + e->mUnk_02 * 60000)) {
             return FALSE;
@@ -317,11 +317,11 @@ BOOL func_020c6428(s32 a) {
         e->mUnk_02 = n0;
         e->mUnk_03 = n1;
         g[5].mUnk_00 = n2;
-        MIi_CpuCopy16(data_021759c0->mCurrentEntries[func_020b4d9c()].mPlayer.mName, e->mUnk_04, 0x14);
+        MIi_CpuCopy16(gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mName, e->mUnk_04, 0x14);
         e->mUnk_18 = 1;
-        e->mUnk_19 = data_021759c0->mCurrentEntries[func_020b4d9c()].mCharacterIndex;
-        e->mUnk_1a = data_021759c0->mCurrentEntries[func_020b4d9c()].mKartIndex;
-        func_02056c6c(data_021759c0->mCourseId, 5, e);
+        e->mUnk_19 = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mCharacterIndex;
+        e->mUnk_1a = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mKartIndex;
+        func_02056c6c(gRaceSetup->mCourseId, 5, e);
     }
     return TRUE;
 }
@@ -350,7 +350,7 @@ void func_020c610c(void) {
     if (func_020b1a20() != 0) {
         return;
     }
-    if (data_021759c0->mUnk_00c == 0) {
+    if (gRaceSetup->mUnk_00c == 0) {
         gRaceNewRecordTa->mUnk_08 = func_020c657c(1);
         gRaceNewRecordTa->mUnk_10 = func_020c6428(1);
         if (gRaceNewRecordTa->mUnk_08 != 0 || gRaceNewRecordTa->mUnk_10 != 0) {
@@ -361,14 +361,14 @@ void func_020c610c(void) {
         } else {
             r = FALSE;
             if (func_020ba620() != 0) {
-                if (data_021759c0->mMode == MODE_TIME_ATTACK && data_021759c0->mUnk_3e6 == 1) {
-                    MI_CpuCopy8(&data_021759c0->mUnk_3e2, &x, 4);
+                if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mUnk_3e6 == 1) {
+                    MI_CpuCopy8(&gRaceSetup->mUnk_3e2, &x, 4);
                     v1 = TRUE;
                 } else {
                     v1 = FALSE;
                 }
                 if (v1 != FALSE) {
-                    GetKartFinishTime((u16) data_021759c0->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
+                    GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
                     if (func_020adc24(&y, &x) != FALSE) {
                         r = TRUE;
                     }
@@ -378,7 +378,7 @@ void func_020c610c(void) {
             }
             if (r != FALSE) {
                 gRaceNewRecordTa->mUnk_18 = 1;
-                func_02056750(data_021759c0->mCourseId, data_021759c0->mEntryIndex);
+                func_02056750(gRaceSetup->mCourseId, gRaceSetup->mEntryIndex);
                 gRaceNewRecordTa->mUnk_00 = func_020c5f08;
                 gRaceNewRecordTa->mUnk_04 = 0;
             } else {
@@ -387,7 +387,7 @@ void func_020c610c(void) {
             }
         }
     } else {
-        GetKartFinishTime(func_020b4d9c(), &a, &b, &c);
+        GetKartFinishTime(GetFollowedKartOrEntryIndex(), &a, &b, &c);
         w = gRaceNewRecordTa->mRecords;
         t = b * 1000 + a * 60000 + c;
         for (j = 4; j >= 0; j--) {
@@ -401,7 +401,7 @@ void func_020c610c(void) {
     found:
         gRaceNewRecordTa->mUnk_08 = j;
         q = &gRaceNewRecordTa->mRecords[5];
-        gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(func_020b4d9c(), &d, &e, &f);
+        gRaceNewRecordTa->mUnk_14 = GetKartBestLapTime(GetFollowedKartOrEntryIndex(), &d, &e, &f);
         if (d == q->mUnk_02 && e == q->mUnk_03 && f == q->mUnk_00) {
             r = TRUE;
         } else {
@@ -431,14 +431,14 @@ void func_020c5f7c(void) {
     }
     r = FALSE;
     if (func_020ba620() != 0) {
-        if (data_021759c0->mMode == MODE_TIME_ATTACK && data_021759c0->mUnk_3e6 == 1) {
-            MI_CpuCopy8(&data_021759c0->mUnk_3e2, &x, 4);
+        if (gRaceSetup->mMode == MODE_TIME_ATTACK && gRaceSetup->mUnk_3e6 == 1) {
+            MI_CpuCopy8(&gRaceSetup->mUnk_3e2, &x, 4);
             v1 = TRUE;
         } else {
             v1 = FALSE;
         }
         if (v1 != FALSE) {
-            GetKartFinishTime((u16) data_021759c0->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
+            GetKartFinishTime((u16) gRaceSetup->mEntryIndex, &y.mUnk_02, &y.mUnk_03, &y.mUnk_00);
             if (func_020adc24(&y, &x) != FALSE) {
                 r = TRUE;
             }
@@ -448,7 +448,7 @@ void func_020c5f7c(void) {
     }
     if (r != FALSE) {
         gRaceNewRecordTa->mUnk_18 = 1;
-        func_02056750(data_021759c0->mCourseId, data_021759c0->mEntryIndex);
+        func_02056750(gRaceSetup->mCourseId, gRaceSetup->mEntryIndex);
         gRaceNewRecordTa->mUnk_00 = func_020c5f08;
         gRaceNewRecordTa->mUnk_04 = 0;
     } else {

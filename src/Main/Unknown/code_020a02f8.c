@@ -262,7 +262,7 @@ void func_020a1ddc(s32 a) {
     s32 i;
     s32 n;
 
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     for (i = 0; i < n; i++) {
         gStandings->mKarts[i].mUnk_24[a] = 0;
     }
@@ -284,13 +284,13 @@ u16 func_020a1cd8(s32 a) {
     s32 i;
     s32 v1;
 
-    if (data_021759c0->mMode == MODE_BATTLE) {
-        if (data_021759c0->mUnk_18 == 0) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mUnk_18 == 0) {
             v = 3 - gStandings->mKarts[a].mBalloonOrShineCount;
             v += 1;
-        } else if (data_021759c0->mUnk_18 == 1) {
+        } else if (gRaceSetup->mUnk_18 == 1) {
             v1 = 1;
-            for (i = 0; i < data_021759c0->mKartCount; i++) {
+            for (i = 0; i < gRaceSetup->mKartCount; i++) {
                 if (gStandings->mKarts[i].mBalloonOrShineCount > v1) {
                     v1 = gStandings->mKarts[i].mBalloonOrShineCount;
                 }
@@ -334,7 +334,7 @@ void MoveKartTowardFirstRank(u16 a) {
             }
         }
     }
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     gStandings->mLowestBalloonOrShineCount = 0xffff;
     gStandings->mHighestBalloonOrShineCount = 0;
     for (j = 0; j < n; j++) {
@@ -370,7 +370,7 @@ void MoveKartTowardLastRank(u16 a) {
             }
         }
     }
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     gStandings->mLowestBalloonOrShineCount = 0xffff;
     gStandings->mHighestBalloonOrShineCount = 0;
     for (j = 0; j < n; j++) {
@@ -393,17 +393,17 @@ void EliminateKart(u16 a) {
         gStandings->mKartEliminatedCallback(a);
     }
     gStandings->mKarts[a].mEliminationStatus = 1;
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         gStandings->mKarts[a].mBalloonOrShineCount = -1;
         gStandings->mKarts[a].mUnk_50 = 0;
     }
-    if ((u32) a >= data_021759c0->mKartCount) {
+    if ((u32) a >= gRaceSetup->mKartCount) {
         return;
     }
     MoveKartTowardLastRank(a);
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         func_02068b5c(GetKart(a));
-    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         c = GetKart(a);
         c->mUnk_48 |= 0x2000;
         c->mUnk_7c |= 8;
@@ -422,7 +422,7 @@ void SetWinnerIfOneTeamLeft(void) {
     KartStanding *e;
     Kart *c;
 
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     d = gStandings;
     for (k = 0; k < 8; k++) {
         if (d->mKarts[k].mRankIndex == 0) {
@@ -447,13 +447,13 @@ found:
         c->mUnk_7c |= 8;
     }
     gStandings->mWinnerTeamId = v;
-    if (data_021759c0->mMode == MODE_BATTLE) {
-        if (data_021759c0->mUnk_18 == 1) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mUnk_18 == 1) {
             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x4a);
         }
         gStandings->mEndTimer = 0x5a;
-    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        v1 = data_021759c0->mEntryIndex;
+    } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        v1 = gRaceSetup->mEntryIndex;
         if (gStandings->mWinnerTeamId == v1) {
             func_0203e74c(v1);
         } else {
@@ -519,7 +519,7 @@ u16 func_020a1520(void) {
     gStandings->mUnk_3a2 = data_021565f0[gStandings->mUnk_3a4];
     a = gStandings->mLowestBalloonOrShineCount;
     if (a != gStandings->mHighestBalloonOrShineCount) {
-        n = data_021759c0->mKartCount;
+        n = gRaceSetup->mKartCount;
         for (m = 0; m <= a; m++) {
             for (i = n - 1; i >= 0; i--) {
                 k = func_020a12b8_inline(i);
@@ -559,9 +559,9 @@ void EliminateKartsUntilWinnerDecided(void) {
     if (gStandings->mWinnerTeamId >= 0) {
         return;
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
-        n = data_021759c0->mKartCount;
-        if (data_021759c0->mUnk_18 == 0) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
+        n = gRaceSetup->mKartCount;
+        if (gRaceSetup->mUnk_18 == 0) {
             if (gStandings->mWinnerTeamId >= 0) {
                 return;
             }
@@ -584,7 +584,7 @@ void EliminateKartsUntilWinnerDecided(void) {
                     gStandings->mKarts[k].mEliminationStatus = 2;
                 }
             } while (gStandings->mWinnerTeamId < 0);
-        } else if (data_021759c0->mUnk_18 == 1) {
+        } else if (gRaceSetup->mUnk_18 == 1) {
             for (i = n - 1; i >= 0; i--) {
                 if (gStandings->mWinnerTeamId < 0) {
                     k = func_020a12b8_inline(i);
@@ -595,10 +595,10 @@ void EliminateKartsUntilWinnerDecided(void) {
                 }
             }
         }
-    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         for (i = 7; i >= 0; i--) {
             k = func_020a12b8_inline(i);
-            if (k != data_021759c0->mEntryIndex && gStandings->mWinnerTeamId < 0) {
+            if (k != gRaceSetup->mEntryIndex && gStandings->mWinnerTeamId < 0) {
                 EliminateKartAndCheckWinner(k);
             }
         }
@@ -663,7 +663,7 @@ u16 GetTotalBalloonOrShineCount(void) {
     s32 v;
 
     v1 = 0;
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     for (i = 0; i < n; i++) {
         v = gStandings->mKarts[(u16) i].mBalloonOrShineCount;
         if (v <= 0) {
@@ -794,8 +794,8 @@ void InitStandings(void) {
         e->mUnk_18 = -2;
         e->mUnk_44 = i;
         e->mRankIndex = i;
-        if (i < data_021759c0->mKartCount) {
-            switch (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mTeamIndex) {
+        if (i < gRaceSetup->mKartCount) {
+            switch (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mTeamIndex) {
                 case 0:
                     e->mTeamId = 1;
                     break;
@@ -813,7 +813,7 @@ void InitStandings(void) {
             e->mEliminationStatus = 2;
             e->mBalloonOrShineCount = -1;
             e->mUnk_50 = 0;
-            e->mTeamId = data_021759c0->mKartCount;
+            e->mTeamId = gRaceSetup->mKartCount;
         }
     }
     gStandings->mWinnerTeamId = -1;
@@ -836,7 +836,7 @@ void UpdateStandings(void) {
     s32 n;
     KartStanding *e = gStandings->mKarts;
 
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     if (gStandings->mWinnerTeamId >= 0) {
         if (gStandings->mEndTimer > 0) {
             gStandings->mEndTimer = gStandings->mEndTimer - 1;
@@ -849,7 +849,7 @@ void UpdateStandings(void) {
         }
         for (i = 0; i < n; i++) {
             if (gStandings->mKarts[i].mEliminationStatus == 1) {
-                if (i != data_021759c0->mEntryIndex) {
+                if (i != gRaceSetup->mEntryIndex) {
                     func_02068a00(GetKart((u16) i));
                 }
                 gStandings->mKarts[i].mEliminationStatus = 2;
@@ -895,8 +895,8 @@ void UpdateStandings(void) {
                     e->mUnk_44 = i;
                     e->mUnk_20 = FALSE;
                     if (e->mBalloonOrShineCount <= 1) {
-                        if ((data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) ||
-                            data_021759c0->mMode == MODE_MISSION_RUN) {
+                        if ((gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 0) ||
+                            gRaceSetup->mMode == MODE_MISSION_RUN) {
                             o->mUnk_7c |= 0x20000000;
                             o->mUnk_48 &= ~0x2000000;
                         }
@@ -918,8 +918,8 @@ void UpdateStandings(void) {
                 if (e->mUnk_00 == FALSE && b != FALSE && (o->mUnk_4c & 0x400000) == 0) {
                     e->mUnk_00 = TRUE;
                     if (e->mBalloonOrShineCount <= 1) {
-                        if ((data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_18 == 0) ||
-                            data_021759c0->mMode == MODE_MISSION_RUN) {
+                        if ((gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_18 == 0) ||
+                            gRaceSetup->mMode == MODE_MISSION_RUN) {
                             o->mUnk_7c |= 0x20000000;
                         }
                     }
@@ -950,7 +950,7 @@ void UpdateStandings(void) {
 void func_020a089c(Unk020a0318 *p) {
     s32 v;
 
-    v = data_021759c0->mCourseId;
+    v = gRaceSetup->mCourseId;
     if (v == COURSE_ID_MANSION) {
         p->mUnk_bc = 0x121;
     } else if (v == COURSE_ID_BEACH) {
@@ -970,13 +970,13 @@ void func_020a066c(Unk020a066c *p) {
         return;
     }
     for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
-        if (data_021759c0->mCourseId == COURSE_ID_MANSION) {
+        if (gRaceSetup->mCourseId == COURSE_ID_MANSION) {
             o->mUnk_a8 = 0xa28;
             o->mUnk_ac = o->mUnk_00.mPos.x + 0x73a000;
             o->mUnk_b0 = o->mUnk_00.mPos.y;
             o->mUnk_b4 = o->mUnk_00.mPos.z - 0x1400000;
             o->mUnk_b8 = TRUE;
-        } else if (data_021759c0->mCourseId == COURSE_ID_BEACH) {
+        } else if (gRaceSetup->mCourseId == COURSE_ID_BEACH) {
             o->mUnk_a8 = 0x546;
             o->mUnk_ac = o->mUnk_00.mPos.x + 0x28a000;
             o->mUnk_b0 = o->mUnk_00.mPos.y;
@@ -1016,7 +1016,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
         p->mUnk_c0 = 0xf;
         w = p->mUnk_a8;
         x = w / 2;
-        o = GetKart((u16) data_021759c0->mEntryIndex);
+        o = GetKart((u16) gRaceSetup->mEntryIndex);
         y = o->mPos.x - p->mUnk_ac;
         z = o->mPos.z - p->mUnk_b4;
         d = (s64) y * y + (s64) z * z;
@@ -1048,7 +1048,7 @@ void func_020a0318(void *a, Unk020a0318 *p) {
     if (p->mUnk_bc != 0) {
         if (p->mUnk_c4 != 0) {
             if (*func_02108e6c(8) != NULL) {
-                o = GetKart((u16) data_021759c0->mEntryIndex);
+                o = GetKart((u16) gRaceSetup->mEntryIndex);
                 p->mUnk_a0 = p->mUnk_a0 - (s32) (((s64) o->mVelocityLengthRatio * 0x1000) >> 12);
                 if (p->mUnk_a0 < 0xc000) {
                     p->mUnk_a0 = 0xc000;

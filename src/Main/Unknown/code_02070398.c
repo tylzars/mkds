@@ -139,7 +139,7 @@ void ResetKartToRespawnPoint(Kart *p) {
 
     if (p->mRespawnSlot == -1) {
         i = p->mIndex;
-        if (data_021759c0->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mMode == MODE_BATTLE) {
             i = GetCourseMapRespawnSlot(0);
         } else {
             i = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[i].mCheckpoint);
@@ -147,7 +147,7 @@ void ResetKartToRespawnPoint(Kart *p) {
         p->mRespawnSlot = i;
     }
     i = (u16) p->mRespawnSlot;
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         r = GetCourseMapRespawnBattlePointLink(i, &a, &c);
     } else {
         r = GetCourseMapRespawnRacePointLink(i, &a, &c);
@@ -155,11 +155,11 @@ void ResetKartToRespawnPoint(Kart *p) {
     i = ((u16) ((s32) (((s64) c.y * 0xb60b60b60bLL + 0x80000000LL) >> 32) >> 12)) >> 4;
     MTX_RotY33_(m, gPairsByAngle[i * 2], gPairsByAngle[i * 2 + 1]);
     MTX_MultVec33(&data_02154f70, m, &b);
-    if (data_021759c0->mMode != MODE_BATTLE && gCourseMap->mItemRouteCount != 0) {
+    if (gRaceSetup->mMode != MODE_BATTLE && gCourseMap->mItemRouteCount != 0) {
         (e = &gKartItems[p->mIndex])->mUnk_1f0.mUnk_00 = GetCourseMapRespawnItemPointLink((u16) p->mRespawnSlot);
         e->mUnk_1f0.mUnk_04 = 1;
     }
-    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         x = data_usa_02154d4c[p->mIndex][0];
         y = data_usa_02154d50[p->mIndex][0];
         Vec3CrossUnrounded(&data_02154f7c, &b, &d);
@@ -294,7 +294,7 @@ void func_02072930(Kart *p) {
     func_02080e9c(p);
     ReleaseKartTurnEffects(GetKartTurnEffects(p->mIndex));
     func_020719d0(p);
-    if (p->mIndex == data_021759c0->mEntryIndex) {
+    if (p->mIndex == gRaceSetup->mEntryIndex) {
         func_0210fa74(0);
     }
     func_0210a664(p);
@@ -307,7 +307,7 @@ void func_02072930(Kart *p) {
         p->mItemEffect = 0;
         func_020817b8(p->mIndex);
         func_02068a64(p, 0, 1);
-        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
             func_02106dc8();
         }
         if (p->mUnk_4c & 0x2000) {
@@ -361,7 +361,7 @@ void ResetKartToStartPlacement(Kart *p) {
     func_01ffcd84(&p->mUnk_120, &p->mUnk_e0_m);
     GetKartForward(p, &b);
     ResetKartAndSetPos(p, &a, &b, NULL);
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         q = &p->mUnk_1d8;
     } else {
         q = &p->mCollisionCenter;
@@ -388,7 +388,7 @@ void InitKartPhysicalParams(Kart *p) {
     a = 0x1000;
     b = 0;
     if (func_02062eb0() == 0) {
-        switch (data_021759c0->mUnk_010) {
+        switch (gRaceSetup->mEngineIndex) {
             case 0:
                 a = 0xb33;
                 b = -0x28;
@@ -662,26 +662,26 @@ void func_02071f44(Kart *p) {
 
 void func_02071e28(Kart *p) {
     p->mUnk_7c = 0;
-    if (p->mIndex == data_021759c0->mEntryIndex) {
+    if (p->mIndex == gRaceSetup->mEntryIndex) {
         p->mUnk_7c |= KART_7C_INDEX_IS_SELECTED_ENTRY;
-        if (data_021759c0->mMode == 5) {
+        if (gRaceSetup->mMode == 5) {
             p->mUnk_7c |= 0x200;
             if (func_0203c5e4() != 0) {
                 p->mUnk_7c &= ~0x200;
                 p->mUnk_7c |= 0x400;
             }
         }
-    } else if (data_021759c0->mMode == 5) {
+    } else if (gRaceSetup->mMode == 5) {
         p->mUnk_7c |= 0x400;
     }
-    if (data_021759c0->mCurrentEntries[p->mIndex].mPlayer.mKind == 2) {
+    if (gRaceSetup->mCurrentEntries[p->mIndex].mPlayer.mKind == 2) {
         p->mUnk_7c |= KART_7C_ENTRY_KIND_2;
         p->mVisible = 0;
     }
     if (p->mKartModelsEntry->mUnk_008 != NULL) {
         p->mUnk_7c |= KART_7C_MODELS_ENTRY_008_SET;
     }
-    if (data_021759c0->mMode == MODE_TIME_ATTACK || func_02062eb0() != 0) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK || func_02062eb0() != 0) {
         p->mUnk_7c |= 0x8000000;
     }
 }
@@ -756,7 +756,7 @@ void func_02071c18(Kart *p) {
         if (!(p->mSoundSource.mUnk_34 & 1)) {
             func_0210cfbc(&p->mSoundSource, 2, 1);
         }
-        if (data_021759c0->mUnk_00c == 2) {
+        if (gRaceSetup->mUnk_00c == 2) {
             func_0210b850(&p->mUnk_518);
         }
     } else {
@@ -856,10 +856,10 @@ void func_020719d0(Kart *p) {
     t.mUnk_14 = e;
     t.mUnk_18 = f;
     t.mUnk_1c = g;
-    if (p->mIndex != data_021759c0->mEntryIndex) {
+    if (p->mIndex != gRaceSetup->mEntryIndex) {
         b = c;
     }
-    if (p->mIndex != data_021759c0->mEntryIndex) {
+    if (p->mIndex != gRaceSetup->mEntryIndex) {
         a = c;
     }
     t.mUnk_20 = b;
@@ -1102,7 +1102,7 @@ void func_020710b0(Kart *p, s32 b) {
         return;
     }
     StartCameraWobbleByCourse();
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_AIRSHIP:
             func_02089d14(0);
             d = StartSound((SoundSource *) p, 0x15c, 0x7f, 0);
@@ -1275,7 +1275,7 @@ void func_020708a4(Kart *p) {
             p->mItemEffect = 0;
             func_020817b8(p->mIndex);
             func_02068a64(p, 0, 1);
-            if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
+            if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
                 func_02106dc8();
             }
             if (p->mUnk_4c & 0x2000) {
@@ -1299,7 +1299,7 @@ void func_020708a4(Kart *p) {
         func_01ffa11c(p, &p->mUnk_244);
         p->mUnk_48 &= ~0x40000;
         p->mUnk_3e8 = (s16) ((s32) (((s64) b.x * 0x4000) >> 12) >> 12) + 0x32;
-        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mCourseId == COURSE_ID_AIRSHIP) {
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mCourseId == COURSE_ID_AIRSHIP) {
             NNS_SndPlayerStopSeq(func_02108e6c(7), 0x14);
         }
     } else {
@@ -1367,7 +1367,7 @@ void func_020705fc(Kart *p, u32 b) {
         4;
     MTX_RotY33_(m, gPairsByAngle[k * 2], gPairsByAngle[k * 2 + 1]);
     MTX_MultVec33(&data_02154f70, m, &e);
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         VEC_Subtract(&a, &p->mPos, &v);
         func_020a21bc(p->mIndex, (s32) &v);
     }
@@ -1398,7 +1398,7 @@ void func_020705fc(Kart *p, u32 b) {
     if (!(p->mUnk_7c & 2)) {
         return;
     }
-    if (data_021759c0->mMode != MODE_BATTLE) {
+    if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
     func_02089754(p->mAi, GetKeyedPlacementBattlePointLink(b));

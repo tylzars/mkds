@@ -49,7 +49,7 @@ u32 func_020b3f64(void) {
 }
 
 void func_020b3cd8(void) {
-    Unk021759c0 *d = data_021759c0;
+    RaceSetup *d = gRaceSetup;
     s32 a[8];
     s32 b[8];
     u16 i;
@@ -68,11 +68,11 @@ void func_020b3cd8(void) {
     if (d->mMode == MODE_MISSION_RUN) {
         return;
     }
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
+        if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
             f = FALSE;
-            if (data_021759c0->mCurrentEntries[i].mPlayer.mKind <= 3) {
-                if ((1 << data_021759c0->mCurrentEntries[i].mPlayer.mKind) & 0xd) {
+            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3) {
+                if ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & 0xd) {
                     f = TRUE;
                 }
             }
@@ -83,8 +83,8 @@ void func_020b3cd8(void) {
             a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
         } else {
             f = FALSE;
-            if (data_021759c0->mCurrentEntries[i].mPlayer.mKind <= 3) {
-                if ((1 << data_021759c0->mCurrentEntries[i].mPlayer.mKind) & 0xd) {
+            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind <= 3) {
+                if ((1 << gRaceSetup->mCurrentEntries[i].mPlayer.mKind) & 0xd) {
                     f = TRUE;
                 }
             }
@@ -96,13 +96,13 @@ void func_020b3cd8(void) {
             a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
         }
     }
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         b[i] = i;
         a[i] = a[i] * n;
     }
-    SortIndicesByKey(b, a, data_021759c0->mKartCount);
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        for (j = 0; j < (u32) data_021759c0->mKartCount; j++) {
+    SortIndicesByKey(b, a, gRaceSetup->mKartCount);
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
+        for (j = 0; j < (u32) gRaceSetup->mKartCount; j++) {
             if (i == b[j]) {
                 func_0205d76c(i, j + 1);
                 break;
@@ -120,7 +120,7 @@ static inline Unk0217aa1c_144 *func_020b3b58_inline2(void) {
 }
 
 void func_020b3b58(void) {
-    Unk021759c0 *d = data_021759c0;
+    RaceSetup *d = gRaceSetup;
     s32 a;
     s32 b;
     BOOL c;
@@ -136,7 +136,7 @@ void func_020b3b58(void) {
         q = &data_0217aa1c->mUnk_144[func_0205db28()].mUnk_00[0];
         a = q->mUnk_00;
     }
-    d = data_021759c0;
+    d = gRaceSetup;
     c = TRUE;
     if (d->mUnk_1c != 1 && d->mMode != MODE_BATTLE) {
         c = FALSE;
@@ -154,12 +154,12 @@ void func_020b3b58(void) {
         func_0205d6d0(1);
         return;
     }
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         if (GetKartRank(i) == 1) {
             break;
         }
     }
-    func_0205d6d0(data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex);
+    func_0205d6d0(gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex);
 }
 
 void func_020b3b08(void) {
@@ -190,7 +190,7 @@ u32 func_020b3adc(void) {
 }
 
 void func_020b3728(void) {
-    Unk021759c0 *d;
+    RaceSetup *d;
     s32 a;
     s32 b;
     BOOL f;
@@ -202,7 +202,7 @@ void func_020b3728(void) {
         func_0205eeb0();
         data_0217b35c->mUnk_0c = TRUE;
     }
-    i = func_020b4d9c();
+    i = GetFollowedKartOrEntryIndex();
     if (gRaceProgress->mUnk_000[i].mStatus != 1 && gRaceProgress->mRaceDone == 0) {
         return;
     }
@@ -210,7 +210,7 @@ void func_020b3728(void) {
     if (a < 11) {
         data_0217b35c->mUnk_00 = a + 1;
         if (a == 0) {
-            d = data_021759c0;
+            d = gRaceSetup;
             switch (d->mMode) {
                 case MODE_GRAND_PRIX:
                 case MODE_TIME_ATTACK:
@@ -219,19 +219,19 @@ void func_020b3728(void) {
                 case MODE_VS:
                 case 5:
                     if (d->mUnk_1c != 1) {
-                        if (gRaceProgress->mUnk_000[func_020b4d9c()].mStatus == 1) {
+                        if (gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus == 1) {
                             func_02089ef4(3);
                         }
                     }
                     break;
             }
-            if ((data_0217d084.mUnk_04 - 2) <= 1 && data_021759c0->mMode != MODE_BATTLE) {
-                d = data_021759c0;
+            if ((data_0217d084.mUnk_04 - 2) <= 1 && gRaceSetup->mMode != MODE_BATTLE) {
+                d = gRaceSetup;
                 f = TRUE;
                 if (d->mUnk_00c == 1) {
                     f = FALSE;
                 } else if (d->mMode == MODE_MISSION_RUN) {
-                    switch (d->mUnk_2f) {
+                    switch (d->mMissionKind) {
                         case 2:
                         case 4:
                         case 6:
@@ -249,7 +249,7 @@ void func_020b3728(void) {
                     if (func_020c7148() != 0 || func_020c70ec() != 0) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x44);
                     } else {
-                        b = gRaceProgress->mUnk_000[func_020b4d9c()].mStatus;
+                        b = gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus;
                         if (b == 3) {
                             NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x43);
                         } else {
@@ -259,7 +259,7 @@ void func_020b3728(void) {
                 }
             }
         } else if (a == 10) {
-            d = data_021759c0;
+            d = gRaceSetup;
             switch (d->mMode) {
                 case MODE_VS:
                     if (d->mUnk_1c == 1) {
@@ -289,7 +289,7 @@ void func_020b3728(void) {
     if (a != 10) {
         return;
     }
-    d = data_021759c0;
+    d = gRaceSetup;
     switch (d->mMode) {
         case MODE_MISSION_RUN:
             if ((IsKartEnded((u16) d->mEntryIndex) ? gRaceProgress->mEntryEndKind : 6) == 0) {

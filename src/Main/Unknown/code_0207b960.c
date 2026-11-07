@@ -132,10 +132,10 @@ void UseItemAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 void func_0207d474(Unk0208fd8c *a, struct KartAi *b) {
-    Unk021759c0 *d;
+    RaceSetup *d;
     u16 n;
 
-    d = data_021759c0;
+    d = gRaceSetup;
     n = b->mIndex;
     if ((d->mCurrentEntries[n].mPlayer.mUnk_14 & 1) != 0) {
         if (a->mRandomValue <= 0xc00) {
@@ -146,10 +146,10 @@ void func_0207d474(Unk0208fd8c *a, struct KartAi *b) {
     UseItemByTargetOrRankAfterHeld(a, b);
 }
 void func_0207d3ec(Unk0208fd8c *a, struct KartAi *b) {
-    Unk021759c0 *d;
+    RaceSetup *d;
     u16 n;
 
-    d = data_021759c0;
+    d = gRaceSetup;
     n = b->mIndex;
     if ((d->mCurrentEntries[n].mPlayer.mUnk_14 & 1) != 0) {
         if (a->mRandomValue <= 0x400) {
@@ -275,7 +275,7 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
         }
         a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
         return;
-    } else if ((u32) rank >= 2 && rank <= data_021759c0->mKartCount - 1) {
+    } else if ((u32) rank >= 2 && rank <= gRaceSetup->mKartCount - 1) {
         switch (a->mHeldItemEntry->mThenBitKind) {
             case 0:
                 RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
@@ -532,7 +532,7 @@ void func_0207c8d8(Unk0208fd8c *a, struct KartAi *b) {
 }
 
 void func_0207c78c(void) {
-    switch (data_021759c0->mUnk_014) {
+    switch (gRaceSetup->mUnk_014) {
         case 1:
             data_0217ae38 = data_usa_021554a4;
             data_0217ae34 = data_usa_0215524c;

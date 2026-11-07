@@ -118,16 +118,16 @@ void func_020d0a18(void) {
     u16 i;
     s32 v;
 
-    if (data_021759c0->mMode != MODE_GRAND_PRIX && data_021759c0->mMode != MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode != MODE_GRAND_PRIX && gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
-    GetKartFinishTime(func_020b4d9c(), &a, &b, &c);
+    GetKartFinishTime(GetFollowedKartOrEntryIndex(), &a, &b, &c);
     SplitTimeDigits(a, b, c, &data_0217b49c->mUnk_00);
     for (i = 0; i < GetLapCount(); i++) {
-        GetKartLapTime(func_020b4d9c(), i + 1, &a, &b, &c);
+        GetKartLapTime(GetFollowedKartOrEntryIndex(), i + 1, &a, &b, &c);
         SplitTimeDigits(a, b, c, &data_0217b49c->mUnk_1c[i]);
     }
-    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
     if (func_020c7148() == 0 && func_020c70ec() == 0) {
@@ -163,10 +163,10 @@ void func_020d06b8(Unk020d029c *a) {
     s32 k;
 
     n = func_020c5db0();
-    if (data_021759c0->mMode != MODE_GRAND_PRIX && data_021759c0->mMode != MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode != MODE_GRAND_PRIX && gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
-    if (data_021759c0->mUnk_00c == 4 || data_021759c0->mUnk_00c == 1) {
+    if (gRaceSetup->mUnk_00c == 4 || gRaceSetup->mUnk_00c == 1) {
         return;
     }
     if (func_020c70bc() != 0) {

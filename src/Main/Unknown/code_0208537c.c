@@ -30,17 +30,17 @@
 
 // Picks the row of 'kartAIparam.bin' for the course and the mode; no row in battle and when mUnk_00c is 5 or 6.
 void SetKartAiParamRow(void) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     KartAiParamRow *r;
     gKartAiParamRow = NULL;
-    p = data_021759c0;
+    p = gRaceSetup;
     if (p->mUnk_00c != 5 && p->mMode != MODE_BATTLE && p->mUnk_00c != 6) {
         r = func_02047950(data_usa_02165990);
-        p = data_021759c0;
+        p = gRaceSetup;
         if (p->mMode == MODE_GRAND_PRIX) {
-            r = &r[(p->mCourseId - 1) * 12 + p->mUnk_010];
+            r = &r[(p->mCourseId - 1) * 12 + p->mEngineIndex];
         } else {
-            r = &r[(p->mCourseId - 1) * 12 + (p->mUnk_010 + 1) * 3];
+            r = &r[(p->mCourseId - 1) * 12 + (p->mEngineIndex + 1) * 3];
             switch (p->mUnk_014) {
                 case 2:
                     r++;
@@ -72,14 +72,14 @@ void InitKartAiShared(void) {
     gKartAiShared->mUnk_084 = m;
     gKartAiShared->mUnk_088 = m;
     gKartAiShared->mUnk_08c = z;
-    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         gKartAiShared->mRandom = &gRaceProgress->mLocalRandom;
     } else {
         gKartAiShared->mRandom = &gRaceProgress->mRandom;
     }
-    if (data_021759c0->mKartCount > 1 && data_021759c0->mKartCount - data_021759c0->mUnk_3d1 == 1) {
+    if (gRaceSetup->mKartCount > 1 && gRaceSetup->mKartCount - gRaceSetup->mUnk_3d1 == 1) {
         gKartAiShared->mUnk_120 = 1;
-        gKartAiShared->mUnk_124 = ((u32) data_021759c0->mUnk_3d1 >> 1) + 1;
+        gKartAiShared->mUnk_124 = ((u32) gRaceSetup->mUnk_3d1 >> 1) + 1;
     } else {
         gKartAiShared->mUnk_120 = 0;
         gKartAiShared->mUnk_124 = -1;
@@ -87,8 +87,8 @@ void InitKartAiShared(void) {
     if (gKartAiParamRow != NULL) {
         func_02085bec();
         func_02085ad8();
-        if (data_021759c0->mMode == MODE_GRAND_PRIX) {
-            switch (data_021759c0->mUnk_010) {
+        if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
+            switch (gRaceSetup->mEngineIndex) {
                 case 0:
                     gKartAiShared->mUnk_138 = 0;
                     break;
@@ -103,7 +103,7 @@ void InitKartAiShared(void) {
                     break;
             }
         } else {
-            switch (data_021759c0->mUnk_014) {
+            switch (gRaceSetup->mUnk_014) {
                 case 1:
                     gKartAiShared->mUnk_138 = 0;
                     break;
@@ -124,7 +124,7 @@ void InitKartAiShared(void) {
     func_0207fba0();
     func_0207e268();
     func_0207c78c();
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         func_02089974();
         SetupBattleItemEntries();
     }
@@ -141,22 +141,22 @@ void func_02085d1c(void) {
     for (k = 0; k < 2; k++) {
         gKartAiShared->mUnk_13e[k] = j;
     }
-    for (j = 0; (u32) j < data_021759c0->mKartCount; j++) {
-        if (data_021759c0->mUseTeams != 0) {
+    for (j = 0; (u32) j < gRaceSetup->mKartCount; j++) {
+        if (gRaceSetup->mUseTeams != 0) {
             for (k = 0; k < 2; k++) {
                 f = FALSE;
-                if (data_021759c0->mCurrentEntries[j].mPlayer.mKind > 3) {
-                } else if ((1 << data_021759c0->mCurrentEntries[j].mPlayer.mKind) & 0xd) {
+                if (gRaceSetup->mCurrentEntries[j].mPlayer.mKind > 3) {
+                } else if ((1 << gRaceSetup->mCurrentEntries[j].mPlayer.mKind) & 0xd) {
                     f = TRUE;
                 }
-                if (f != FALSE && k == data_021759c0->mCurrentEntries[j].mPlayer.mTeamIndex) {
+                if (f != FALSE && k == gRaceSetup->mCurrentEntries[j].mPlayer.mTeamIndex) {
                     gKartAiShared->mUnk_13e[k]++;
                     break;
                 }
             }
         } else {
             g = FALSE;
-            e = &data_021759c0->mCurrentEntries[j].mPlayer;
+            e = &gRaceSetup->mCurrentEntries[j].mPlayer;
             if (e->mKind <= 3 && ((1 << e->mKind) & 0xd)) {
                 g = TRUE;
             }
@@ -185,13 +185,13 @@ void func_02085bec(void) {
     }
     gKartAiShared->mUnk_110 = 1;
     gKartAiShared->mUnk_11c = 0;
-    if (data_021759c0->mMode == MODE_GRAND_PRIX) {
-        for (i = 0; i < data_021759c0->mKartCount; i++) {
+    if (gRaceSetup->mMode == MODE_GRAND_PRIX) {
+        for (i = 0; i < gRaceSetup->mKartCount; i++) {
             k = i;
             v = func_0205d3f0(k);
             f = FALSE;
-            if (data_021759c0->mCurrentEntries[k].mPlayer.mKind <= 3 &&
-                ((1 << data_021759c0->mCurrentEntries[k].mPlayer.mKind) & 0xd)) {
+            if (gRaceSetup->mCurrentEntries[k].mPlayer.mKind <= 3 &&
+                ((1 << gRaceSetup->mCurrentEntries[k].mPlayer.mKind) & 0xd)) {
                 f = TRUE;
             }
             if (f != FALSE) {
@@ -202,22 +202,22 @@ void func_02085bec(void) {
                 if (v > m1) {
                     m1 = v;
                 }
-                if (i == data_021759c0->mUnk_3d5[0]) {
+                if (i == gRaceSetup->mUnk_3d5[0]) {
                     gKartAiShared->mUnk_114[0] = v;
-                } else if (i == data_021759c0->mUnk_3d5[1]) {
+                } else if (i == gRaceSetup->mUnk_3d5[1]) {
                     gKartAiShared->mUnk_114[1] = v;
                 }
             }
         }
         v1 = m0 - m1;
         if (v1 <= -5) {
-            if (data_021759c0->mUnk_3d4 > 1) {
+            if (gRaceSetup->mUnk_3d4 > 1) {
                 gKartAiShared->mUnk_110 = 0;
                 if (gKartAiShared->mUnk_114[0] > gKartAiShared->mUnk_114[1]) {
                     gKartAiShared->mUnk_11c = 1;
                 }
             }
-        } else if (data_021759c0->mUnk_014 != 1 && v1 >= 4) {
+        } else if (gRaceSetup->mUnk_014 != 1 && v1 >= 4) {
             gKartAiShared->mUnk_110 = 2;
         }
     }
@@ -231,24 +231,24 @@ void func_02085ad8(void) {
     u16 n;
     u16 q;
     u16 j;
-    Unk021759c0 *p;
+    RaceSetup *p;
     s32 v;
     BOOL f;
     u32 g;
     a = 0;
     b = 0;
-    g = data_021759c0->mKartCount;
+    g = gRaceSetup->mKartCount;
     NNS_FndInitList(&gKartAiShared->mUnk_12c, 4);
     for (i = 0; i < 2; i++) {
-        if (data_021759c0->mUnk_3d5[i] >= 0) {
+        if (gRaceSetup->mUnk_3d5[i] >= 0) {
             a++;
         }
     }
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     for (k = 0; (u32) k < n; k++) {
         f = FALSE;
-        if (data_021759c0->mCurrentEntries[k].mPlayer.mKind <= 3 &&
-            ((1 << data_021759c0->mCurrentEntries[k].mPlayer.mKind) & 0xd)) {
+        if (gRaceSetup->mCurrentEntries[k].mPlayer.mKind <= 3 &&
+            ((1 << gRaceSetup->mCurrentEntries[k].mPlayer.mKind) & 0xd)) {
             f = TRUE;
         }
         if (f != FALSE) {
@@ -262,7 +262,7 @@ void func_02085ad8(void) {
         NNS_FndAppendListObject(&gKartAiShared->mUnk_12c, &gKartAiShared->mUnk_0b0[j]);
     }
     a = 0;
-    p = data_021759c0;
+    p = gRaceSetup;
     for (; (u32) a < p->mKartCount; a++) {
         if (p->mMode == MODE_TIME_ATTACK) {
             v = a;
@@ -270,7 +270,7 @@ void func_02085ad8(void) {
             v = func_02085984(a, &g);
         }
         gKartAiShared->mUnk_090[a] = v;
-        p = data_021759c0;
+        p = gRaceSetup;
     }
 }
 
@@ -289,7 +289,7 @@ s32 func_02085984(u16 a, u32 *b) {
     u16 x;
     u16 y;
     KartAiShared *d;
-    Unk021759c0 *p;
+    RaceSetup *p;
     Unk0217aebc_128 *c;
     Unk0217aebc_0b0 *e;
     v1 = FALSE;
@@ -302,7 +302,7 @@ s32 func_02085984(u16 a, u32 *b) {
         g = FALSE;
     }
     f = FALSE;
-    p = data_021759c0;
+    p = gRaceSetup;
     s = p->mCurrentEntries[a].mPlayer.mKind;
     if ((u32) s <= 3 && ((1 << s) & 0xd)) {
         f = TRUE;
@@ -374,10 +374,10 @@ s32 func_02085984(u16 a, u32 *b) {
 #pragma thumb off
 
 void func_020858ac(u32 a) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     BOOL f;
     s16 j;
-    p = data_021759c0;
+    p = gRaceSetup;
     f = FALSE;
     if (p->mCurrentEntries[a].mPlayer.mKind <= 3 && ((1 << p->mCurrentEntries[a].mPlayer.mKind) & 0xd)) {
         f = TRUE;
@@ -405,9 +405,9 @@ s16 func_02085824(u32 a) {
     s16 r;
     u16 j;
     r = 0;
-    if (data_021759c0->mUseTeams != 0) {
+    if (gRaceSetup->mUseTeams != 0) {
         for (j = 0; j < 2; j++) {
-            if (j != data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex) {
+            if (j != gRaceSetup->mCurrentEntries[a].mPlayer.mTeamIndex) {
                 r = r + gKartAiShared->mUnk_13e[j];
             }
         }
@@ -426,9 +426,9 @@ void UpdateKartAiShared(void) {
     }
     func_0208552c();
     m = 1;
-    for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
+    for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
         v = GetKartRank(i);
-        if (data_021759c0->mCurrentEntries[i].mPlayer.mKind != 1) {
+        if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind != 1) {
             if (v == 1) {
                 gKartAiShared->mUnk_088 = i;
             }
@@ -452,7 +452,7 @@ void func_0208552c(void) {
     u16 q;
     BOOL f;
     m = 1;
-    for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
+    for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
         w = gCourseMap->mCheckpointSumQuotient;
         x = GetKartRaceProgress(i);
         w = ((s64) x * w + 0x800) >> 12;
@@ -460,7 +460,7 @@ void func_0208552c(void) {
         gKartAiShared->mUnk_000[i] = w;
         if (v > 0) {
             q = v - 1;
-            if (data_021759c0->mCurrentEntries[i].mPlayer.mKind == 1) {
+            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == 1) {
                 if (v > m) {
                     m = v;
                     gKartAiShared->mUnk_080 = i;
@@ -482,11 +482,11 @@ void func_0208552c(void) {
         }
     }
     n = 0;
-    for (k = 0; k < data_021759c0->mKartCount; k++) {
+    for (k = 0; k < gRaceSetup->mKartCount; k++) {
         x = gKartAiShared->mKartAtRank[k];
         if (x >= 0) {
             q = x;
-            if (data_021759c0->mCurrentEntries[q].mPlayer.mKind == 1) {
+            if (gRaceSetup->mCurrentEntries[q].mPlayer.mKind == 1) {
                 gKartAiShared->mUnk_040[n] = x;
                 n++;
             }
@@ -496,13 +496,13 @@ void func_0208552c(void) {
         return;
     }
     n = 0;
-    for (k = 0; k < data_021759c0->mKartCount; k++) {
+    for (k = 0; k < gRaceSetup->mKartCount; k++) {
         y = gKartAiShared->mKartAtRank[k];
         if (y >= 0) {
             q = y;
             f = FALSE;
-            if (data_021759c0->mCurrentEntries[q].mPlayer.mKind <= 3 &&
-                ((1 << data_021759c0->mCurrentEntries[q].mPlayer.mKind) & 0xd)) {
+            if (gRaceSetup->mCurrentEntries[q].mPlayer.mKind <= 3 &&
+                ((1 << gRaceSetup->mCurrentEntries[q].mPlayer.mKind) & 0xd)) {
                 f = TRUE;
             }
             if (f != FALSE) {
@@ -517,7 +517,7 @@ s32 func_020854c0(u16 a) {
     s32 r;
     u16 i;
     r = -1;
-    for (i = 0; (u32) i < data_021759c0->mKartCount; i++) {
+    for (i = 0; (u32) i < gRaceSetup->mKartCount; i++) {
         if (a == (u16) gKartAiShared->mUnk_040[i]) {
             r = i + 1;
             break;

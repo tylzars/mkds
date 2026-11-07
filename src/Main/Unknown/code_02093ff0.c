@@ -50,7 +50,7 @@ void DrawTeresa(void *a, Teresa *b) {
     if (b->mUnk_ac == 0) {
         return;
     }
-    GetKart((u16) data_021759c0->mEntryIndex);
+    GetKart((u16) gRaceSetup->mEntryIndex);
     SetMapObjectModelPolygonId(gTeresa, AllocPolygonIdWrapping());
     SetMapObjectModelNsbtpFrameIndex(gTeresa, b->mUnk_ae);
     SetMapObjectModelAlpha(gTeresa, b->mUnk_ac);
@@ -187,7 +187,7 @@ void UpdateTeresa(void *a, Teresa *o) {
         o->mUnk_00.mPos.y = o->mUnk_a0.y + m;
         o->mUnk_00.mPos.z = o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12);
     } else {
-        g = GetKart((u16) data_021759c0->mEntryIndex);
+        g = GetKart((u16) gRaceSetup->mEntryIndex);
         o->mUnk_00.mPos.x = g->mPos.x + (o->mUnk_a0.x + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2 + 1]) >> 12));
         o->mUnk_00.mPos.y = o->mUnk_a0.y + m;
         o->mUnk_00.mPos.z = g->mPos.z + (o->mUnk_a0.z + (s32) (((s64) n * gPairsByAngle[(w >> 4) * 2]) >> 12));

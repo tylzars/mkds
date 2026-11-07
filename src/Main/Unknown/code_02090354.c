@@ -622,7 +622,7 @@ s32 func_020905a8(Unk020905a8 *a) {
 
 // Stores one of three sets of battle item entry tables and callbacks; any value other than 1 or 2 takes the third set.
 void SetupBattleItemEntries(void) {
-    switch (data_021759c0->mUnk_014) {
+    switch (gRaceSetup->mUnk_014) {
         case 1:
             gBattleHeldItemEntries = data_021561d0;
             gBattleItemInUseEntries = data_02155fd8;

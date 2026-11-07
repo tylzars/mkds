@@ -75,13 +75,13 @@ static inline BOOL func_02092b5c_inline_3(Unk020919e8 *p, s32 k) {
     s32 d;
     Kart *o;
 
-    for (i = 0; i < data_021759c0->mKartCount; i++) {
+    for (i = 0; i < gRaceSetup->mKartCount; i++) {
         f = FALSE;
-        if (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mKind <= 3 &&
-            ((1 << data_021759c0->mCurrentEntries[(u16) i].mPlayer.mKind) & 0xd)) {
+        if (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind <= 3 &&
+            ((1 << gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mKind) & 0xd)) {
             f = TRUE;
         }
-        if (f == FALSE && i != data_021759c0->mEntryIndex) {
+        if (f == FALSE && i != gRaceSetup->mEntryIndex) {
             continue;
         }
         o = GetKart((u16) i);

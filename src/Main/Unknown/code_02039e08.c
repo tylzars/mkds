@@ -42,7 +42,7 @@
 #include "Main/Unknown/code_02044618.h"
 
 void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
-    Unk021759c0 *q;
+    RaceSetup *q;
     u32 c;
     if (func_02049b6c() == 0) {
         if (func_0204359c() == 0) {
@@ -139,7 +139,7 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
             func_020435d4(0);
         }
     }
-    q = data_021759c0;
+    q = gRaceSetup;
     if (q->mUnk_00c != 6) {
         c = 1;
     } else {
@@ -160,7 +160,7 @@ void UpdateRaceScene(Unk0203a0dc *a, u32 b) {
 
 void func_0203a05c(void) {
     data_021759d0->mUnk_54 = FALSE;
-    if (data_021759c0->mUnk_00c == 0) {
+    if (gRaceSetup->mUnk_00c == 0) {
         func_020b2e64(1);
     }
     func_02046e84();
@@ -181,11 +181,11 @@ void func_0203a050(void) {
 u32 RunRaceScene(SceneNumbers *a) {
     SceneCallbacks b = gRaceSceneCallbacks;
     SetCurrentRaceFromNext();
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         b.mUnk_1c = 1;
     }
-    if (data_021759c0->mUnk_00c != 5) {
-        if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c != 5) {
+        if (gRaceSetup->mUnk_00c == 6) {
             b.mUnk_18 = 1;
             b.mUnk_1a = 0x78;
         }

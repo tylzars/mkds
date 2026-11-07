@@ -44,7 +44,7 @@ void CreateItemKinds(void) {
         }
         gItemKinds[i].mUnk_a4 = v;
     }
-    m = data_021759c0->mMode;
+    m = gRaceSetup->mMode;
     switch (m) {
         case MODE_BATTLE:
             gItemKinds[8].mLimit = 8;
@@ -83,7 +83,7 @@ void ComputeItemKindObjectCounts(void) {
         gItemKinds[i].mUnk_10 = gItemKinds[i].mUnk_10 + a[i];
         gItemKinds[i].mObjectCount = gItemKinds[i].mUnk_10;
     }
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         for (i = 0; i < 0xe; i++) {
             gItemKinds[i].mObjectCount = gItemKinds[i].mObjectCount + 3;
         }

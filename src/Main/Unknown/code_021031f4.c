@@ -72,7 +72,7 @@ void func_02104970(void) {
     u32 *p;
     u32 *q;
 
-    if (data_021759c0->mMode != MODE_BATTLE) {
+    if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
     i = 0;
@@ -407,7 +407,7 @@ void StartOrthoQuads(s32 kartIndex, s32 count, s32 useCreamEffect) {
 
     a = &gRaceProgress->mLocalRandom;
     GetKart(kartIndex);
-    if (kartIndex != data_021759c0->mEntryIndex) {
+    if (kartIndex != gRaceSetup->mEntryIndex) {
         return;
     }
     data_0217c638 = kartIndex;
@@ -479,7 +479,7 @@ void StartOrthoQuadsGesoSumi(u32 param_1, u32 param_2) {
 }
 
 void StopOrthoQuads(int v1) {
-    if (v1 != data_021759c0->mEntryIndex) {
+    if (v1 != gRaceSetup->mEntryIndex) {
         return;
     }
     gOrthoQuadCount = 0;
@@ -498,7 +498,7 @@ u32 SkipOrthoQuadsHold(u32 arg0) {
     u32 compareRight1;
     s32 compareLeft2;
     s32 compareRight2;
-    value1 = data_021759c0->mEntryIndex;
+    value1 = gRaceSetup->mEntryIndex;
     compareLeft0 = value0;
     compareRight0 = value1;
     if (compareLeft0 != compareRight0) {
@@ -591,7 +591,7 @@ void SkipOrthoQuadsHoldAndSetVelocities(int b2) {
     s32 a;
     s32 b;
 
-    if (b2 != data_021759c0->mEntryIndex) {
+    if (b2 != gRaceSetup->mEntryIndex) {
         return;
     }
     n = gOrthoQuadCount;
@@ -688,9 +688,9 @@ void func_021031f4(ItemGesso *p) {
     u16 v;
 
     b2 = (u16) ((p->mUnk_000.mUnk_78 & 0x8000) == 0 ? (u16) (p->mUnk_000.mUnk_78 & ~0xff00) : 8);
-    a = data_021759c0->mEntryIndex;
-    if (data_021759c0->mMode == MODE_BATTLE) {
-        b3 = data_021759c0->mKartCount;
+    a = gRaceSetup->mEntryIndex;
+    if (gRaceSetup->mMode == MODE_BATTLE) {
+        b3 = gRaceSetup->mKartCount;
         for (i = 0; i < b3; i++) {
             if (i == b2) {
                 continue;

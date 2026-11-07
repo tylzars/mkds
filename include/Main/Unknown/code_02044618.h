@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-// The 0x1e8 bytes at the start of the object behind data_021759c0, taken from 0x1e8.
+// The 0x1e8 bytes at the start of the object behind gRaceSetup, taken from 0x1e8.
 typedef struct Unk02044940_block {
     /* 000 */ u32 mUnk_000[0x7a];
 } Unk02044940_block;

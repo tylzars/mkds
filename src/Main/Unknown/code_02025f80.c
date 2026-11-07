@@ -660,7 +660,7 @@ int AdvanceSelectCharacter(void) {
             func_02078a9c(p->mUnk_0f0);
             func_02078a34(gSelectCharacter->mUnk_0f4);
         }
-        func_02078420(GetRaceSetupCopy()->mUnk_d8);
+        func_02078420(GetRaceSetupCopy()->mMirrorMode);
     }
     if (gSelectCharacter->mUnk_128 != FALSE) {
         func_0202bb80();

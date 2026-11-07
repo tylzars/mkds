@@ -184,7 +184,7 @@ void func_020f6630(ItemObject *a0, s32 b, Vec3 *c, Vec3 *d, Vec3 *e) {
     p = &a->mVelocity;
     i = *(vs32 *) &a->mKind;
     t = gItemKinds[i].mUnk_80;
-    if (data_021759c0->mMode == MODE_TIME_ATTACK || (a->mFlags & 0x8000000)) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK || (a->mFlags & 0x8000000)) {
         t = 0;
     }
     a->mFlags |= 0x4000;
@@ -312,7 +312,7 @@ void func_020f62b0(ItemInUse *a, Unk020f40dc *b) {
     func_020d3cc8();
     func_020f82e8(0);
     func_020f4754(b, 1);
-    if (data_021759c0->mMode != 5) {
+    if (gRaceSetup->mMode != 5) {
         return;
     }
     func_020fe958(6);
@@ -321,7 +321,7 @@ void func_020f62b0(ItemInUse *a, Unk020f40dc *b) {
 void func_020f6264(ItemInUse *a, Unk020f40dc *b) {
     StartKartStar(b->mUnk_04->mKart);
     func_020f4754(b, 1);
-    if (data_021759c0->mMode != 5) {
+    if (gRaceSetup->mMode != 5) {
         return;
     }
     func_020fe958(4);
@@ -341,7 +341,7 @@ void func_020f6220(void *a0, s32 b) {
 BOOL InitItemKouraG(ItemInUse *a, ItemKouraG *b) {
     BOOL v;
 
-    v = data_021759c0->mMode == MODE_BATTLE;
+    v = gRaceSetup->mMode == MODE_BATTLE;
     func_020f9114(b);
     func_0210b850(&b->mUnk_16c);
     b->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
@@ -425,7 +425,7 @@ s32 InitItemKouraR(ItemInUse *a, ItemKouraR *b) {
         b->mUnk_000.mUnk_21c.mUnk_04 = 1;
     } else {
         b->mUnk_254 = 1;
-        if (data_021759c0->mMode != MODE_BATTLE && a->mKartItems->mUnk_1f0.mUnk_00 != NULL) {
+        if (gRaceSetup->mMode != MODE_BATTLE && a->mKartItems->mUnk_1f0.mUnk_00 != NULL) {
             x = !(b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
                     ? (u16) (b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
                     : 8;
@@ -434,7 +434,7 @@ s32 InitItemKouraR(ItemInUse *a, ItemKouraR *b) {
             } else {
                 n = GetKartRank(x) - 1;
                 if (n < 1) {
-                    n = data_021759c0->mKartCount;
+                    n = gRaceSetup->mKartCount;
                 }
                 v = gRaceProgress->mKartAtRank[(u8) n - 1];
             }
@@ -547,7 +547,7 @@ void UpdateItemKouraRState3(ItemKouraR *a) {
     } else {
         n = GetKartRank(x) - 1;
         if (n < 1) {
-            n = data_021759c0->mKartCount;
+            n = gRaceSetup->mKartCount;
         }
         v = gRaceProgress->mKartAtRank[(u8) n - 1];
     }
@@ -766,7 +766,7 @@ void InitItemKouraRFromData(ItemKouraR *a) {
                 n = GetKartRank(x);
                 i = n - 1;
                 if (i < 1) {
-                    i = data_021759c0->mKartCount;
+                    i = gRaceSetup->mKartCount;
                 }
                 v = gRaceProgress->mKartAtRank[(i & 0xff) - 1];
             }
@@ -895,7 +895,7 @@ void func_020f504c(ItemInUse *a, Unk020f40dc *b) {
     func_02069db8(b->mUnk_04->mKart);
     func_020f4754(b, 1);
     a->mKartItems->mUnk_204 = TRUE;
-    if (data_021759c0->mMode != 5) {
+    if (gRaceSetup->mMode != 5) {
         return;
     }
     func_020fe958(3);
@@ -1017,7 +1017,7 @@ void CreateItemInfos(void) {
     p[15] = data_0215a2ec;
     p[16] = data_0215a174;
     p[17] = data_0215a4c0;
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_BATTLE:
             p[17].mEnabled = TRUE;
             break;
@@ -1029,7 +1029,7 @@ void CreateItemInfos(void) {
             }
             break;
     }
-    if (data_021759c0->mUnk_00c == 1) {
+    if (gRaceSetup->mUnk_00c == 1) {
         gItemInfos[15].mEnabled = FALSE;
     }
 }
@@ -1049,7 +1049,7 @@ void InitHeldItem(Unk020f40dc *a, KartItems *b) {
     for (i = 0; i < 3; i++) {
         a->mUnk_14[i] = NULL;
     }
-    a->mUnk_24 = data_021759c0->mCurrentEntries[b->mKartIndex].mPlayer.mKind == 3;
+    a->mUnk_24 = gRaceSetup->mCurrentEntries[b->mKartIndex].mPlayer.mKind == 3;
 }
 
 void func_020f49bc(Unk020f40dc *a) {

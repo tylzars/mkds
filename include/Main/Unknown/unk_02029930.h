@@ -6,9 +6,9 @@
 typedef struct Unk02029930_f8 {
     /* 00 */ u8 mUnk_00[6];
     /* 06 */ u8 mMissionTableValue;
-    /* 07 */ u8 mUnk_07[0x1];
+    /* 07 */ u8 mMissionKind[0x1];
     /* 08 */ u8 mCourseId;
-    /* 09 */ u8 mUnk_09;
+    /* 09 */ u8 mEngineIndex;
     /* 0a */ u8 mCharacterIndex0;
     /* 0b */ u8 mKartIndex0;
     /* 0c */ u8 mUnk_0c[0x10];

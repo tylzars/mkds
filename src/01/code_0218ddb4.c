@@ -88,15 +88,15 @@ void func_ov001_0218f724(Unk02188950 *b) {
     s32 c;
     s64 z;
     s64 x;
-    VEC_Subtract(data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunKartPos() : 0,
-                 data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunPrevKartPos() : 0, &v1);
+    VEC_Subtract(gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunKartPos() : 0,
+                 gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunPrevKartPos() : 0, &v1);
     v1.y = 0;
     a = 0;
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         a = GetMissionRunPrevKartHeadingAngle();
     }
-    a = (data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunKartHeadingAngle() : 0) - a;
-    VEC_Subtract(&b->mUnk_000.mPos, data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunKartPos() : 0, &v2);
+    a = (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunKartHeadingAngle() : 0) - a;
+    VEC_Subtract(&b->mUnk_000.mPos, gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunKartPos() : 0, &v2);
     for (i = 0; i < 1; i++) {
         c = gPairsByAngle[((u16) a >> 4) * 2 + 1];
         x = v2.x;
@@ -110,14 +110,14 @@ void func_ov001_0218f724(Unk02188950 *b) {
 
 void func_ov001_0218f6d8(Unk02188950 *a) {
     Vec3 local;
-    VEC_Subtract(data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunKartPos() : 0,
-                 data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunPrevKartPos() : 0, &local);
+    VEC_Subtract(gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunKartPos() : 0,
+                 gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunPrevKartPos() : 0, &local);
     local.y = 0;
     SetVelocity(a, &local);
 }
 
 s32 func_ov001_0218f688(Unk02188950 *a) {
-    Kart *obj = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *obj = GetKart((u16) gRaceSetup->mEntryIndex);
     if ((obj->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &obj->mPos);
         func_ov001_02188d8c(a, &obj->mPos);
@@ -127,7 +127,7 @@ s32 func_ov001_0218f688(Unk02188950 *a) {
 }
 
 s32 func_ov001_0218f634(Unk02188950 *a) {
-    Kart *obj = GetKart((u16) data_021759c0->mEntryIndex);
+    Kart *obj = GetKart((u16) gRaceSetup->mEntryIndex);
     if ((obj->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &obj->mPos);
         func_ov001_02188d8c(a, &obj->mPos);
@@ -140,7 +140,7 @@ s32 func_ov001_0218f634(Unk02188950 *a) {
 void func_ov001_0218f57c(Unk02188950 *a) {
     Kart *p;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
     func_ov001_02188d64(a, a->mPrm->mUnk_1fc, a->mPrm->mUnk_200);
     func_ov001_02188cd8(a, a->mPrm->mUnk_204, a->mPrm->mUnk_208);
@@ -152,7 +152,7 @@ void func_ov001_0218f57c(Unk02188950 *a) {
 }
 
 void func_ov001_0218f51c(Unk02188950 *a) {
-    GetKart((u16) data_021759c0->mEntryIndex);
+    GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
     func_ov001_02188d30(a, a->mPrm->mUnk_1f4, a->mPrm->mUnk_1f8, func_ov001_0218f57c);
     func_ov001_02188200(a, func_ov001_0218f9a8);
@@ -162,7 +162,7 @@ void func_ov001_0218f51c(Unk02188950 *a) {
 void func_ov001_0218f454(Unk02188950 *a) {
     Kart *p;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 5, func_ov001_0218f634);
     func_ov001_02188d64(a, a->mPrm->mUnk_1d8, a->mPrm->mUnk_1dc);
     func_ov001_02188cd8(a, a->mPrm->mUnk_1e0, a->mPrm->mUnk_1e4);
@@ -178,7 +178,7 @@ s32 func_ov001_0218f3ec(Unk02188950 *a) {
     Kart *p;
     Vec3 v;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
         VEC_MultAdd(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
@@ -192,7 +192,7 @@ s32 func_ov001_0218f3ec(Unk02188950 *a) {
 s32 func_ov001_0218f3ac(Unk02188950 *a) {
     Kart *p;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &p->mPos);
     }
@@ -204,7 +204,7 @@ void func_ov001_0218f2a8(Unk02188950 *a) {
     Kart *p;
     Vec3 v;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     VEC_MultAdd(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
     func_ov001_02187218(a, 5, func_ov001_0218f3ac);
     func_ov001_02188d64(a, a->mPrm->mUnk_0ec, a->mPrm->mUnk_0f0);
@@ -224,7 +224,7 @@ s32 func_ov001_0218f244(Unk02188950 *a) {
     Kart *p;
     Vec3 v;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
         VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
@@ -238,7 +238,7 @@ void func_ov001_0218f16c(Unk02188950 *a) {
     Kart *p;
     Vec3 v;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
     func_ov001_02187218(a, 3, func_ov001_0218f244);
     func_ov001_02188d64(a, a->mPrm->mUnk_0c4, a->mPrm->mUnk_0c8);
@@ -256,7 +256,7 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
     Kart *p;
     float f;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
         SetAnglePointAndMoveAnglePoint(a, &p->mPos);
         func_ov001_02188d8c(a, &p->mPos);
@@ -268,25 +268,25 @@ s32 func_ov001_0218efc4(Unk02188950 *a) {
         a->mUnk_1c4 = 0;
     }
     a->mUnk_170 = a->mPrm->mUnk_09c;
-    if (a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) > 0) {
-        f = 0.5f + ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0)) << 12);
+    if (a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) > 0) {
+        f = 0.5f + ((a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0)) << 12);
     } else {
-        f = ((a->mPrm->mUnk_1cc - (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0)) << 12) - 0.5f;
+        f = ((a->mPrm->mUnk_1cc - (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0)) << 12) - 0.5f;
     }
     a->mUnk_16c = (s32) f / a->mPrm->mUnk_1d4;
-    if ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) <= a->mPrm->mUnk_1d0 &&
+    if ((gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) <= a->mPrm->mUnk_1d0 &&
         func_ov001_02188000(a, 0, a->mPrm->mUnk_0bc) != NULL) {
         func_ov001_02188200(a, func_ov001_0218f9a8);
         a->mUnk_000.mFlags |= data_ov001_021a65b0;
         func_ov001_0218f16c(a);
-    } else if ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) > a->mPrm->mUnk_1cc) {
+    } else if ((gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) > a->mPrm->mUnk_1cc) {
         func_ov001_02188e88(a);
     }
     return 0;
 }
 
 void func_ov001_0218ef30(Unk02188950 *a) {
-    GetKart((u16) data_021759c0->mEntryIndex);
+    GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 3, func_ov001_0218efc4);
     func_ov001_02188d64(a, a->mPrm->mUnk_090, a->mPrm->mUnk_094);
     func_ov001_02188cec(a, a->mPrm->mUnk_0a0);
@@ -301,7 +301,7 @@ void func_ov001_0218ee88(Unk02188950 *a) {
     Kart *p;
     Vec3 v;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
     a->mUnk_000.mPos.x = v.x;
     a->mUnk_000.mPos.y = a->mUnk_000.mCourseMapRow->mUnk_00.y + a->mPrm->mUnk_080;
@@ -316,7 +316,7 @@ void func_ov001_0218ee88(Unk02188950 *a) {
 void func_ov001_0218edc8(Unk02188950 *a) {
     Kart *p;
 
-    p = GetKart((u16) data_021759c0->mEntryIndex);
+    p = GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 3, func_ov001_0218f634);
     func_ov001_02188d64(a, a->mPrm->mUnk_144, a->mPrm->mUnk_148);
     func_ov001_02188d1c(a, a->mPrm->mUnk_14c, a->mPrm->mUnk_150);
@@ -332,7 +332,7 @@ u32 func_ov001_0218edb8(void) {
 }
 
 void func_ov001_0218ec40(Unk02188950 *a) {
-    GetKart((u16) data_021759c0->mEntryIndex);
+    GetKart((u16) gRaceSetup->mEntryIndex);
     func_ov001_02187218(a, 1, (s32(*)(Unk02188950 *)) func_ov001_0218edb8);
     func_ov001_02188d64(a, a->mPrm->mUnk_118, a->mPrm->mUnk_11c);
     func_ov001_02188d1c(a, a->mPrm->mUnk_120, a->mPrm->mUnk_124);
@@ -356,7 +356,7 @@ void func_ov001_0218ec40(Unk02188950 *a) {
 
 void func_ov001_0218eb94(Unk02188950 *a) {
     Unk020f41c4_B *rng;
-    GetKart((u16) data_021759c0->mEntryIndex);
+    GetKart((u16) gRaceSetup->mEntryIndex);
     rng = func_020d22d0();
     rng->mUnk_00 = (s64) rng->mUnk_08 * (s64) rng->mUnk_00 + rng->mUnk_10;
     a->mUnk_000.mPos.x = (&func_ov001_02187fc0(a)->mUnk_00)->x;
@@ -430,9 +430,9 @@ void func_ov001_0218e92c(Unk02188950 *p) {
     data_0217d20c = 4;
     func_ov001_02188200(p, func_ov001_0218e38c);
     p->mUnk_000.mFlags |= data_ov001_021a65b0;
-    func_ov001_02182a3c(p->mPrm->mUnk_18c < (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181800() : 0)
+    func_ov001_02182a3c(p->mPrm->mUnk_18c < (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181800() : 0)
                             ? p->mPrm->mUnk_18c
-                            : (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181800() : 0));
+                            : (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181800() : 0));
     p->mUnk_25c.x = p->mUnk_268 = p->mUnk_25c.z = p->mUnk_270 = p->mPrm->mUnk_00c / 2;
 }
 
@@ -624,7 +624,7 @@ void func_ov001_0218e298(Unk02188950 *a, Kart *b) {
     func_02068a10(b);
     func_ov001_021888a4(a, 0, 0x32000);
     a->mUnk_0a8 = 1;
-    if (!(data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0)) {
+    if (!(gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0)) {
         func_02061874();
     }
 }
@@ -641,7 +641,7 @@ void InitKingTeresaObjects(Unk0218d87c *a) {
             } else {
                 func_ov001_0218e520(obj);
             }
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 a0 = obj->mPrm;
                 func_ov001_02181844(a0->mUnk_1b8, a0->mUnk_1bc, a0->mUnk_1c0, a0->mUnk_1c4);
             }
@@ -653,11 +653,11 @@ void InitKingTeresaObjects(Unk0218d87c *a) {
 void UpdateKingTeresa(u32 a, Unk02188950 *b) {
     Kart *p;
 
-    if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
         if (func_ov001_021871f8(b, 5) != 0) {
-            if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) gRaceSetup->mEntryIndex) : 0) {
                 func_ov001_0218e710(b);
-            } else if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecidedAndEndReached() : 0) {
+            } else if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecidedAndEndReached() : 0) {
                 func_ov001_0218e5c4(b);
             } else {
                 func_ov001_0218e594(b);
@@ -666,7 +666,7 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
     } else {
         if (b->mUnk_0a8 != 0) {
             if (func_ov001_021871f8(b, 5) != 0) {
-                p = GetKart((u16) data_021759c0->mEntryIndex);
+                p = GetKart((u16) gRaceSetup->mEntryIndex);
                 if (p->mState == KART_STATE_NORMAL && (p->mUnk_48 & 0x200) == 0 &&
                     func_ov001_02188104(b, 0, b->mPrm->mUnk_184) != NULL &&
                     func_ov001_02188000(b, 0, b->mPrm->mUnk_180) != NULL &&
@@ -684,14 +684,14 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
                 func_ov001_0218ec40(b);
             }
         } else {
-            p = GetKart((u16) data_021759c0->mEntryIndex);
+            p = GetKart((u16) gRaceSetup->mEntryIndex);
             if (p->mUnk_48 & 0x200) {
-                if (data_021759c0->mMode == MODE_MISSION_RUN ? GetMissionRunCount() : 0) {
-                    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+                if (gRaceSetup->mMode == MODE_MISSION_RUN ? GetMissionRunCount() : 0) {
+                    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                         func_ov001_0218182c((u16) b->mPrm->mUnk_1bc);
                     }
                 } else {
-                    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+                    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                         func_ov001_0218182c(0);
                     }
                 }
@@ -701,9 +701,9 @@ void UpdateKingTeresa(u32 a, Unk02188950 *b) {
                     func_ov001_0218e7d0(b);
                 }
             }
-            if (data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) {
                 if (func_ov001_021871f8(b, 3) != 0) {
-                    if ((data_021759c0->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) < b->mPrm->mUnk_1c8) {
+                    if ((gRaceSetup->mMode == MODE_MISSION_RUN ? func_ov001_02181838() : 0) < b->mPrm->mUnk_1c8) {
                         if (b->mUnk_000.mFlags & 1) {
                             func_ov001_02188200(b, func_ov001_0218f9a8);
                             b->mUnk_000.mFlags |= data_ov001_021a65b0;
@@ -739,7 +739,7 @@ void InitKingTeresa(Unk0218d87c *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(p);
             }
             func_ov001_021870e4(a, p, data_ov001_021a7da0, data_ov001_021a7db4, data_ov001_021a7dc8);

@@ -25,7 +25,7 @@
 Kart *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
     Kart *q;
 
-    q = GetKart((u16) data_021759c0->mEntryIndex);
+    q = GetKart((u16) gRaceSetup->mEntryIndex);
     if (q != NULL && func_ov001_021881a8(a, &q->mPos, b, c) != FALSE && (q->mUnk_48 & 0x40) == 0) {
         return q;
     }
@@ -35,7 +35,7 @@ Kart *func_ov001_02188104(Unk02188950 *a, s32 b, s32 c) {
 Kart *func_ov001_02188084(Unk02188950 *a, s32 b, s32 c, s32 d) {
     Kart *q;
 
-    q = GetKart((u16) data_021759c0->mEntryIndex);
+    q = GetKart((u16) gRaceSetup->mEntryIndex);
     if (q != NULL && (q->mUnk_48 & 0x40) == 0 && (c != 0 || d != 0)) {
         if (c == 0 || func_ov001_02188f04(a, &q->mPos, c) != 0) {
             if (d == 0 || func_ov001_02188eac(a, a->mAngle + b, &q->mPos, d) != 0) {
@@ -49,7 +49,7 @@ Kart *func_ov001_02188084(Unk02188950 *a, s32 b, s32 c, s32 d) {
 Kart *func_ov001_02188000(Unk02188950 *a, s32 b, s32 c) {
     Kart *q;
 
-    q = GetKart((u16) data_021759c0->mEntryIndex);
+    q = GetKart((u16) gRaceSetup->mEntryIndex);
     if (q != NULL && (q->mUnk_48 & 0x40) == 0 && (b != 0 || c != 0)) {
         if (b == 0 || func_ov001_02188f04(a, &q->mPos, b) != 0) {
             if (c == 0 || func_ov001_02188eac(a, q->mHeadingAngle + 0x8000, &q->mPos, c) != 0) {

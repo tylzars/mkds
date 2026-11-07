@@ -225,7 +225,7 @@ void DrawMapObjectList(MapObjectList *p, MtxFx43 *a) {
 void func_020d4bf0(void) {
     data_0217b4f8.mUnk_50 = TRUE;
     data_0217b4f8.mUnk_54 = FALSE;
-    if (data_021759c0->mUnk_00c == 2) {
+    if (gRaceSetup->mUnk_00c == 2) {
         data_0217b4f4 = 0x258000;
         return;
     }
@@ -250,7 +250,7 @@ void func_020d4a20(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&data_0217b550.mUnk_20, &data_0217b550.mUnk_20);
     }
-    if (data_021759c0->mUnk_57 != 0) {
+    if (gRaceSetup->mMirrorMode != 0) {
         data_0217b550.mUnk_20.x = -data_0217b550.mUnk_20.x;
         data_0217b550.mUnk_20.y = -data_0217b550.mUnk_20.y;
         data_0217b550.mUnk_20.z = -data_0217b550.mUnk_20.z;
@@ -265,7 +265,7 @@ void func_020d4a20(s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         0x10) {
         Vec3NormalizeAndGetLengthUnchecked(&data_0217b550.mUnk_2c, &data_0217b550.mUnk_2c);
     }
-    if (data_021759c0->mUnk_57 != 0) {
+    if (gRaceSetup->mMirrorMode != 0) {
         data_0217b550.mUnk_2c.x = -data_0217b550.mUnk_2c.x;
         data_0217b550.mUnk_2c.y = -data_0217b550.mUnk_2c.y;
         data_0217b550.mUnk_2c.z = -data_0217b550.mUnk_2c.z;
@@ -474,7 +474,7 @@ void UpdateMapObjects(void) {
     n = gMapObjects->mUpdateListCount;
     r = GetRaceStartSequenceFrames();
     if (r <= 0x168) {
-        if (data_021759c0->mUnk_00c != 3) {
+        if (gRaceSetup->mUnk_00c != 3) {
             if (r == -0x73) {
                 func_020d3b74();
             } else if (r == 0x168) {

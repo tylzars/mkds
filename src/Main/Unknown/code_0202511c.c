@@ -154,21 +154,21 @@ u32 func_0202511c(s32 a, void *c) {
     f = FALSE;
     switch (a) {
         case 2:
-            switch (data_021759c0->mUnk_00c) {
+            switch (gRaceSetup->mUnk_00c) {
                 case 0:
                 case 2:
-                    q = data_021759c0->mMode;
-                    r = func_0202553c(data_021759c0->mCourseId, b);
+                    q = gRaceSetup->mMode;
+                    r = func_0202553c(gRaceSetup->mCourseId, b);
                     f = TRUE;
                     if (q == MODE_MISSION_RUN) {
-                        p = &data_021759c0->mUnk_28_view;
+                        p = &gRaceSetup->mUnk_28_view;
                         s = FALSE;
-                        if (p->mUnk_06 == 4) {
+                        if (p->mMissionTableValue == 4) {
                             b->mUnk_00[1] = 0x2a;
                             s = TRUE;
                         }
                         if (s == FALSE) {
-                            switch (p->mUnk_07) {
+                            switch (p->mMissionKind) {
                                 case 1:
                                     b->mUnk_00[1] = 0x2c;
                                     break;
@@ -179,7 +179,7 @@ u32 func_0202511c(s32 a, void *c) {
                             }
                         }
                         t = TRUE;
-                        switch (p->mUnk_06) {
+                        switch (p->mMissionTableValue) {
                             case 9:
                             case 10:
                                 b->mUnk_00[2] = 0x25;
@@ -214,7 +214,7 @@ u32 func_0202511c(s32 a, void *c) {
                     r = 0x33;
                     break;
                 case 3:
-                    switch (data_021759c0->mCourseId) {
+                    switch (gRaceSetup->mCourseId) {
                         case COURSE_ID_OLD_LUIGI_GC:
                         case COURSE_ID_CROSS:
                         case COURSE_ID_MARIO:
@@ -235,7 +235,7 @@ u32 func_0202511c(s32 a, void *c) {
                     } else {
                         *b = data_0215316c[r];
                         f = TRUE;
-                        func_0202553c(data_021759c0->mCourseId, &v1);
+                        func_0202553c(gRaceSetup->mCourseId, &v1);
                         b->mUnk_00[2] = v1.mUnk_00[2];
                     }
                     break;

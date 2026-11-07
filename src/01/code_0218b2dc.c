@@ -182,9 +182,9 @@ void InitKurikingObjects(Unk0218d87c *a) {
 void UpdateKuriking(u32 a, Unk02188950 *b) {
     s32 var;
 
-    if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
         if (func_ov001_021871f8(b, 1)) {
-            if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) gRaceSetup->mEntryIndex) : 0) {
                 func_ov001_0218b9b4(b);
             } else {
                 func_ov001_0218b8f8(b);
@@ -247,7 +247,7 @@ void InitKuriking(Unk0218d87c *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(obj);
             }
             func_ov001_021870e4(a, obj, ("kuriking.nsbmd"), ("kuriking.nsbca"), ("kuriking.prm"));

@@ -46,8 +46,8 @@ void func_020f4884(Unk020f40dc *rec) {
     if (rec->mUnk_10 != 0) {
         return;
     }
-    if (data_021759c0->mMode == 5) {
-        if (data_021759c0->mEntryIndex == rec->mUnk_04->mKartIndex) {
+    if (gRaceSetup->mMode == 5) {
+        if (gRaceSetup->mEntryIndex == rec->mUnk_04->mKartIndex) {
             kind = (Unk020f40dc_Kind) rec->mUnk_00;
             func_020fe958(gItemInfos[kind].mObjectKind);
         }
@@ -129,7 +129,7 @@ void func_020f45f0(Unk020f40dc *rec, s32 keep) {
     Unk020f40dc_Kind kind = (Unk020f40dc_Kind) rec->mUnk_00;
     u32 tab = gItemInfos[kind].mObjectKind;
 
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         n = rec->mUnk_08;
         if (rec->mUnk_24 == FALSE) {
             for (i = 0; i < n; i++) {
@@ -188,7 +188,7 @@ void func_020f41c4(Unk020f40dc *rec) {
     s32 x;
     s32 y;
 
-    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         st = &gRaceProgress->mLocalRandom;
     } else {
         st = &gRaceProgress->mRandom;

@@ -13,7 +13,7 @@ static inline Unk0217aa1c_144_00 *func_0202a360_inline(s32 j) {
 }
 
 u32 func_0202a360(void) {
-    Unk021759c0 *d;
+    RaceSetup *d;
     s32 n;
     s32 v;
     s32 a[8];
@@ -29,7 +29,7 @@ u32 func_0202a360(void) {
     s32 w;
     Unk0217aa1c_00 *p;
 
-    d = data_021759c0;
+    d = gRaceSetup;
     n = d->mKartCount;
     if (d->mMode == MODE_GRAND_PRIX) {
         if (data_0217b488->mUnk_7c < 3) {
@@ -54,9 +54,9 @@ u32 func_0202a360(void) {
             v = (u16) GetPackedIndex(func_ov000_0219bb50());
             break;
     }
-    if (data_021759c0->mUseTeams != 0) {
-        r6 = data_021759c0->mCurrentEntries[v].mPlayer.mTeamIndex;
-        switch (data_021759c0->mUnk_1c) {
+    if (gRaceSetup->mUseTeams != 0) {
+        r6 = gRaceSetup->mCurrentEntries[v].mPlayer.mTeamIndex;
+        switch (gRaceSetup->mUnk_1c) {
             case 1:
                 r4 = func_0202a360_inline(0)->mUnk_02;
                 r5 = func_0202a360_inline(1)->mUnk_02;
@@ -84,7 +84,7 @@ u32 func_0202a360(void) {
     m = -1;
     e = 1;
     for (; i < n; i++) {
-        if (data_021759d0->mUnk_20 == 3 || data_021759c0->mUnk_1c == 2) {
+        if (data_021759d0->mUnk_20 == 3 || gRaceSetup->mUnk_1c == 2) {
             x = func_0205dc7c((u16) i);
             y = func_0205db28();
             p = &data_0217aa1c->mUnk_000[y][func_0205dc7c(x)];

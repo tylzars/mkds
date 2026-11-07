@@ -58,13 +58,13 @@ void func_02034188(void) {
     r = 0;
     n = 0;
     for (i = 0; i < gResultsBattle->mUnk_0d8; i++) {
-        if (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mTeamIndex == 0) {
+        if (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mTeamIndex == 0) {
             gResultsBattle->mUnk_0e4[i].mUnk_08 = r;
             r++;
         }
     }
     for (i = 0; i < gResultsBattle->mUnk_0d8; i++) {
-        if (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mTeamIndex == 1) {
+        if (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mTeamIndex == 1) {
             n++;
         }
     }
@@ -72,7 +72,7 @@ void func_02034188(void) {
         r = 4;
     }
     for (i = 0; i < gResultsBattle->mUnk_0d8; i++) {
-        if (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mTeamIndex == 1) {
+        if (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mTeamIndex == 1) {
             gResultsBattle->mUnk_0e4[i].mUnk_08 = r;
             r++;
         }
@@ -103,7 +103,7 @@ void func_02034024(void) {
         a[i] = o->mUnk_0e4[i].mUnk_04;
     }
     for (i = 0; i < (o = *(ResultsBattle **) &gResultsBattle)->mUnk_0d8; i++) {
-        if (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mTeamIndex == 0) {
+        if (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mTeamIndex == 0) {
             b[v1] = i;
             v1 = v1 + 1;
         } else {
@@ -146,7 +146,7 @@ void func_02033e6c(void) {
     s32 n;
 
     for (k = 0; k < gResultsBattle->mUnk_0d8; k++) {
-        if (gResultsBattle->mMode == 3 || data_021759c0->mUnk_1c == 2) {
+        if (gResultsBattle->mMode == 3 || gRaceSetup->mUnk_1c == 2) {
             gResultsBattle->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(func_0205dc7c(k))->mUnk_00;
         } else {
             gResultsBattle->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(func_0205dc7c(k))->mUnk_05;
@@ -161,13 +161,13 @@ void func_02033e6c(void) {
         }
         gResultsBattle->mUnk_0e4[j].mUnk_00 = n;
     }
-    if (data_021759c0->mUseTeams != 0) {
-        if (data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUnk_1c == 1) {
+    if (gRaceSetup->mUseTeams != 0) {
+        if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUnk_1c == 1) {
             func_02034188();
         } else {
             func_02034024();
         }
-    } else if (data_021759c0->mMode == MODE_BATTLE) {
+    } else if (gRaceSetup->mMode == MODE_BATTLE) {
         for (k = 0; k < gResultsBattle->mUnk_0d8; k++) {
             gResultsBattle->mUnk_0e4[k].mUnk_08 = data_0217b488->mUnk_ec[k];
         }

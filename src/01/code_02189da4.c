@@ -136,15 +136,15 @@ void InitBombKingObjects(Unk0218d87c *a) {
 void UpdateBombKing(u32 a, Unk02188950 *b) {
     int active;
 
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         active = IsWinnerDecided();
     } else {
         active = 0;
     }
     if (active != 0) {
         if (func_ov001_021871f8(b, 1) != 0) {
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
-                active = IsKartEliminated((u16) data_021759c0->mEntryIndex);
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+                active = IsKartEliminated((u16) gRaceSetup->mEntryIndex);
             } else {
                 active = 0;
             }
@@ -223,7 +223,7 @@ void InitBombKing(Unk0218d87c *a) {
 
     if (a != NULL) {
         for (i = 0; i < a->mUnk_04 && (obj = a->mUnk_00[i]) != NULL; i++) {
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 AddMissionRunMapObject(obj);
             }
             func_ov001_021870e4(a, obj, data_ov001_021a7b14, data_ov001_021a7b24, data_ov001_021a7b34);

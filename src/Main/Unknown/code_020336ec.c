@@ -36,8 +36,8 @@ void func_02033c80(s32 a) {
         d = FALSE;
     }
     r = gResultsBattle->mUnk_0e4[a].mUnk_08;
-    if (data_021759c0->mUseTeams != 0) {
-        if (data_021759c0->mCurrentEntries[(u16) a].mPlayer.mTeamIndex == 1) {
+    if (gRaceSetup->mUseTeams != 0) {
+        if (gRaceSetup->mCurrentEntries[(u16) a].mPlayer.mTeamIndex == 1) {
             b = TRUE;
         } else {
             b = FALSE;
@@ -97,7 +97,7 @@ void func_02033b80(s32 a) {
     t = &gResultsBattle->mUnk_048[1];
     r = gResultsBattle->mUnk_0e4[a].mUnk_08;
     q = gResultsBattle->mUnk_0e4[a].mUnk_04;
-    if (data_021759c0->mMode == MODE_BATTLE && data_021759c0->mUseTeams != 0 && data_021759c0->mUnk_1c == 1) {
+    if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUseTeams != 0 && gRaceSetup->mUnk_1c == 1) {
         t->mUnk_18[r + 0x38].mUnk_00 = 0;
         t->mUnk_18[r + 0x48].mUnk_00 = 0;
         return;
@@ -133,7 +133,7 @@ void func_02033ab8(s32 a, s32 b, s32 c, s32 d) {
     } else {
         q = &gResultsBattle->mUnk_048[3];
     }
-    r = data_021759c0->mCurrentEntries[(u16) b].mCharacterIndex;
+    r = gRaceSetup->mCurrentEntries[(u16) b].mCharacterIndex;
     func_0212463c(r, q->mUnk_08, q->mUnk_00, q->mUnk_04, q->mUnk_0c, a, c, s->mUnk_08, s->mUnk_0c);
     if (r == 0xc) {
         if (d == 1) {
@@ -307,7 +307,7 @@ void func_020336ec(void *a) {
         }
     }
     for (m = 0; m < gResultsBattle->mUnk_0d8; m++) {
-        if (x == data_021759c0->mCurrentEntries[(u16) m].mPlayer.mTeamIndex) {
+        if (x == gRaceSetup->mCurrentEntries[(u16) m].mPlayer.mTeamIndex) {
             func_02033ab8(0, m, d + n, e);
             n++;
         }

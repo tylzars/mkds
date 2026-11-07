@@ -105,8 +105,8 @@ void func_02077998(void) {
     *(u32 *) 0x4000580 = 0xbfff0000;
     gCameraEntryChanged = 1;
     i = gEntryCameraUpdateRan = 0;
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        i = data_021759c0->mUnk_036;
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        i = gRaceSetup->mUnk_036;
         i = (u16) i;
     } else {
         i = (u16) i;
@@ -115,7 +115,7 @@ void func_02077998(void) {
     data_usa_0217ac90 = data_usa_02154fa0[i][0];
     data_usa_0217ac7c = data_usa_02154fa4[i][0];
     data_usa_0217ac78 = data_usa_02154fa8[i][0];
-    if (data_021759c0->mCourseId == COURSE_ID_AIRSHIP) {
+    if (gRaceSetup->mCourseId == COURSE_ID_AIRSHIP) {
         data_usa_021656b4 = 0xa000;
     } else {
         data_usa_021656b4 = 0x5000;
@@ -123,7 +123,7 @@ void func_02077998(void) {
 }
 
 void CreateChaseCamera(void) {
-    Kart *a = GetKart(data_021759c0->mEntryIndex);
+    Kart *a = GetKart(gRaceSetup->mEntryIndex);
 
     gChaseCamera = HeapAlloc(GetHeap(func_020364e8()), 0x270);
     SetupCameraBehindKart();
@@ -146,10 +146,10 @@ void func_020777ac(u32 a) {
     gEntryCamera->mCourseMapCamera = NULL;
     gEntryCamera->mFrustumShift = 0;
     gEntryCamera->mKind = 1;
-    if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 6) {
         gEntryCamera->mCourseMapCamera = gCourseMap->mCameras;
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         gEntryCamera->mCourseMapCamera = gCourseMap->mFirstKind7EntryInMode2;
         if (gEntryCamera->mCourseMapCamera != NULL) {
             n = 0;
@@ -323,7 +323,7 @@ void SetupCamera(Camera *p) {
     p->mSavedKartForward = c;
     p->mUnk_0a8 = c;
     p->mUnk_0b4 = c;
-    p->mSideDistanceSign = data_021759c0->mUnk_57 ? -1 : 1;
+    p->mSideDistanceSign = gRaceSetup->mMirrorMode ? -1 : 1;
     p->mUnk_21c = NULL;
     p->mUnk_220 = NULL;
     p->mUnk_20c = 0;
@@ -365,11 +365,11 @@ void RefreshCameraProjection(Camera *p) {
             p->mFrustumTop = ((s64) b * data_usa_021656b8) >> 12;
             break;
     }
-    if (data_021759c0->mUnk_57 != 0) {
+    if (gRaceSetup->mMirrorMode != 0) {
         p->mFrustumLeft = -p->mFrustumLeft;
     }
     p->mFrustumRight = -p->mFrustumLeft;
-    if (data_021759c0->mUnk_00c == 6 && p->mCourseMapCamera != NULL) {
+    if (gRaceSetup->mUnk_00c == 6 && p->mCourseMapCamera != NULL) {
         c = ((s64) p->mFrustumTop * p->mCourseMapCamera->mUnk_00.y + 0x800) >> 12;
         p->mFrustumBottom += c;
         p->mFrustumTop += c;

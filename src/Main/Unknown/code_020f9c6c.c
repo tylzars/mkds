@@ -128,7 +128,7 @@ void func_020fc94c(ItemKouraW *p) {
         p->mRankKartIndex = gRaceProgress->mKartAtRank[(p->mRank & 0xff) - 1];
     } else {
         p->mRankKartIndex = gRaceProgress->mKartAtRank[(p->mRank & 0xff) - 1];
-        while (IsKartEnded(p->mRankKartIndex) != 0 && p->mRank < (u32) data_021759c0->mKartCount) {
+        while (IsKartEnded(p->mRankKartIndex) != 0 && p->mRank < (u32) gRaceSetup->mKartCount) {
             p->mRank++;
             p->mRankKartIndex = gRaceProgress->mKartAtRank[(p->mRank & 0xff) - 1];
         }
@@ -326,7 +326,7 @@ void UpdateItemKouraWState1(ItemKouraW *param_1) {
             param_1->mRankKartIndex = gRaceProgress->mKartAtRank[(u8) param_1->mRank - 1];
         } else {
             param_1->mRankKartIndex = gRaceProgress->mKartAtRank[(u8) param_1->mRank - 1];
-            while (IsKartEnded(param_1->mRankKartIndex) != 0 && (u32) param_1->mRank < data_021759c0->mKartCount) {
+            while (IsKartEnded(param_1->mRankKartIndex) != 0 && (u32) param_1->mRank < gRaceSetup->mKartCount) {
                 (param_1->mRank)++;
                 param_1->mRankKartIndex = gRaceProgress->mKartAtRank[(u8) param_1->mRank - 1];
             }
@@ -341,7 +341,7 @@ void UpdateItemKouraWState1(ItemKouraW *param_1) {
     }
     if (param_1->mUnk_278 != 0) {
         u32 n;
-        n = (u8) data_021759c0->mKartCount;
+        n = (u8) gRaceSetup->mKartCount;
         for (i = 1; i <= n; i = (u16) (i + 1)) {
             param_1->mRankKartIndex = gRaceProgress->mKartAtRank[(u8) i - 1];
             if (func_02068eac(GetKart(param_1->mRankKartIndex)) == 0) {
@@ -392,7 +392,7 @@ void UpdateItemKouraWState1(ItemKouraW *param_1) {
 void EnterItemKouraWState3(ItemKouraW *param_1) {
     param_1->mUnk_27c = VEC_Mag(&param_1->mUnk_000.mVelocity);
     param_1->mUnk_284 = 0x1e000;
-    if (param_1->mKartItems->mKartIndex == data_021759c0->mEntryIndex) {
+    if (param_1->mKartItems->mKartIndex == gRaceSetup->mEntryIndex) {
         param_1->mUnk_270 = 0xdd;
     }
 }
@@ -840,7 +840,7 @@ void func_020fad00(void) {
     data_0217bd34 = v;
     data_0217bd34 = v * v;
     data_0217bd38 = func_020ed490(data_0216c6f4, data_0216c704);
-    if (data_021759c0->mCourseId == COURSE_ID_RAINBOW) {
+    if (gRaceSetup->mCourseId == COURSE_ID_RAINBOW) {
         NNS_G3dMdlSetMdlFogEnableFlagAll(data_0217bd38->mUnk_004, 0);
     }
 }
@@ -875,7 +875,7 @@ BOOL func_020fab34(s32 *param_1) {
     if (i == 0x13) {
         goto done;
     }
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         e = &gItemInfos[i];
         n = e->mObjectCount;
         v = n * func_020fa0e8(e->mObjectKind, 0);
@@ -888,7 +888,7 @@ BOOL func_020fab34(s32 *param_1) {
         }
     }
 done:
-    *param_1 = data_021759c0->mMode == 5 ? 4 : 2;
+    *param_1 = gRaceSetup->mMode == 5 ? 4 : 2;
     return TRUE;
 }
 
@@ -929,7 +929,7 @@ void UpdateItems(void) {
     enum { K0 } i;
     u16 j;
 
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         func_020fec30();
         func_020feb44();
     }
@@ -966,11 +966,11 @@ void StartItemSlotForKart(s32 param_1, s32 param_2, s32 param_3) {
     if (gKartItems[param_1].mHeldItem.mUnk_00 != 0x13) {
         return;
     }
-    v = data_021759c0->mCurrentEntries[param_1].mPlayer.mKind;
+    v = gRaceSetup->mCurrentEntries[param_1].mPlayer.mKind;
     if (v == 3) {
         return;
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         c = FALSE;
         if ((u32) v > 3) {
         } else if ((1 << v) & 0xd) {
@@ -1170,7 +1170,7 @@ void InitItems(void) {
     InitItemKinds();
     func_020f73a4();
     func_020f357c();
-    v = data_021759c0->mKartCount;
+    v = gRaceSetup->mKartCount;
     gKartItemsCount = v;
     gKartItems = HeapAlloc(b, v * 0x210);
     for (i = 0; i < gKartItemsCount; i++) {
@@ -1181,11 +1181,11 @@ void InitItems(void) {
         CreateItemPool(&gItemPools[j], j, &a);
     }
     CreateItemModels();
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         func_020fe46c();
         func_020fe450();
     }
-    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         for (i = 0; i < gKartItemsCount; i++) {
             p = &gKartItems[i].mHeldItem;
             func_020f47e4(p, 5);

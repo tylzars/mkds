@@ -301,7 +301,7 @@ void UpdateBalloon(void *p, Balloon *a) {
                         a->mUnk_dc = a->mUnk_dc + 10;
                     }
                 }
-                if (a->mKartIndex == data_021759c0->mEntryIndex) {
+                if (a->mKartIndex == gRaceSetup->mEntryIndex) {
                     if (IsRaceStarted() == 1) {
                         o = GetKart((u16) a->mKartIndex);
                         func_020249b8(o, a->mScaleFactor + a->mUnk_d8, a->mUnk_d4);
@@ -425,7 +425,7 @@ void func_020a305c(void) {
     }
     for (i = 0; i < v1->mUnk_04 && (e = v1->mUnk_00[i]) != NULL; i++) {
         if (e->mKartIndex >= 0) {
-            e->mKartIndex = (u16) data_021759c0->mEntryIndex;
+            e->mKartIndex = (u16) gRaceSetup->mEntryIndex;
             e->mScaleFactor = 0x1000;
             e->mUnk_d4 = 0;
             e->mUnk_d8 = 0;

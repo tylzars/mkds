@@ -61,7 +61,7 @@ s32 func_02110fb8(s32 a) {
     if (a == 1) {
         b = 9;
     } else {
-        switch (data_021759c0->mKartCount) {
+        switch (gRaceSetup->mKartCount) {
             case 4:
             case 5:
                 if (a < 3) {
@@ -83,9 +83,9 @@ s32 func_02110fb8(s32 a) {
 s32 func_02110e58(void) {
     s32 a;
     s32 b;
-    Unk021759c0 *p;
+    RaceSetup *p;
     a = -1;
-    p = data_021759c0;
+    p = gRaceSetup;
     switch (p->mMode) {
         case MODE_GRAND_PRIX:
         case 5:
@@ -146,7 +146,7 @@ void func_02110cc8(s32 d) {
     u32 c;
     u32 *q;
     a = -1;
-    c = data_021759c0->mUnk_00c;
+    c = gRaceSetup->mUnk_00c;
     if (c != 2 && c != 0) {
         return;
     }
@@ -171,7 +171,7 @@ void func_02110cc8(s32 d) {
     func_0210d614(&data_0217d070, c, NULL);
     data_0217d324 = 1;
     data_0217d328 = 1;
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_STADIUM:
             switch (b) {
                 case 0:
@@ -218,7 +218,7 @@ s32 func_02110c40(void) {
     s32 b;
     b = func_02110e58();
     a = -1;
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_CROSS:
             switch (b) {
                 case 0:

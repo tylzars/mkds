@@ -80,7 +80,7 @@ void func_020431e4(void) {
     s32 w;
     BOOL t;
     Unk02175628 *p;
-    Unk021759c0 *q;
+    RaceSetup *q;
     Unk0217aa00 *z;
     s32 s;
 
@@ -106,7 +106,7 @@ void func_020431e4(void) {
         func_02039520(p, 0xff3, 0x1e, 0xa);
         p++;
     }
-    q = data_021759c0;
+    q = gRaceSetup;
     z = data_0217aa00;
     for (j = 0; j < 8; j++) {
         s = q->mCurrentEntries[j].mPlayer.mKind;

@@ -62,13 +62,13 @@ typedef struct Unk0217562a {
 
 extern Unk0217562a data_0217562a[];
 
-// Element at 0x7c of the object behind data_021759c0.
+// Element at 0x7c of the object behind gRaceSetup.
 typedef struct Unk021759c0_7c {
     /* 00 */ u32 mUnk_00;
     /* 04 */ u8 mUnk_04[0x2c];
 } Unk021759c0_7c;
 
-// The object behind data_021759c0 from its first byte: the elements at 0x7c.
+// The object behind gRaceSetup from its first byte: the elements at 0x7c.
 typedef struct Unk021759c0_000 {
     /* 000 */ u8 mUnk_000[0x7c];
     /* 07c */ Unk021759c0_7c mUnk_07c[17];

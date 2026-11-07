@@ -63,7 +63,7 @@ void func_020a826c(void *a, Unk020a826c *p) {
             break;
         case 2:
             func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
-            if (data_021759c0->mUnk_00c == 0 && IsKartOnLastLap(data_021759c0->mEntryIndex) != FALSE &&
+            if (gRaceSetup->mUnk_00c == 0 && IsKartOnLastLap(gRaceSetup->mEntryIndex) != FALSE &&
                 p->mUnk_0a0.mUnk_24 == 0 && p->mUnk_0a0.mUnk_20 != FALSE) {
                 v = func_02110c40();
                 NNS_SndPlayerStopSeq(p->mUnk_0a0.mUnk_1c, 0);
@@ -74,7 +74,7 @@ void func_020a826c(void *a, Unk020a826c *p) {
             break;
         case 3:
             func_020a8ed8(&p->mUnk_0a0, &p->mUnk_000.mPos);
-            if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
+            if (IsKartEnded((u16) gRaceSetup->mEntryIndex) != 0) {
                 ParkMapObject(&p->mUnk_000);
             } else if (p->mUnk_0a0.mUnk_20 == FALSE) {
                 v = p->mUnk_0c8.mUnk_00.mUnk_00;

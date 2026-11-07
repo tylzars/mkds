@@ -74,7 +74,7 @@ void UpdateRaceStartSequence(void) {
         }
         return;
     }
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         if ((data_0217aa14->mUnk_75c & 2) == 0) {
             return;
         }

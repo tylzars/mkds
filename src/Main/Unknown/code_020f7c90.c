@@ -50,7 +50,7 @@ void CreateItemSlotTables(void) {
     enum { K1 } k;
 
     p = FindMainRaceOrMainEffectFile(data_0216c680);
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_GRAND_PRIX:
         case MODE_TIME_ATTACK:
         case MODE_MISSION_RUN:
@@ -70,7 +70,7 @@ void CreateItemSlotTables(void) {
             p = ComputeItemSlotTableDataEnd(p);
             p = ComputeItemSlotTableDataEnd(p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
-            switch (data_021759c0->mUnk_18) {
+            switch (gRaceSetup->mUnk_18) {
                 case 0:
                 default:
                     p = LoadItemSlotTableData(&data_0217bc6c, p);
@@ -92,9 +92,9 @@ void CreateItemSlotTables(void) {
             p = ComputeItemSlotTableDataEnd(p);
             p = ComputeItemSlotTableDataEnd(p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
-            if (data_021759c0->mUnk_014 == 0) {
-                func_020f80c0(&data_0217bc6c, data_021759c0->mKartCount);
-                func_020f80c0(&data_0217bc64, data_021759c0->mKartCount);
+            if (gRaceSetup->mUnk_014 == 0) {
+                func_020f80c0(&data_0217bc6c, gRaceSetup->mKartCount);
+                func_020f80c0(&data_0217bc64, gRaceSetup->mKartCount);
             }
             break;
         case 5:
@@ -105,9 +105,9 @@ void CreateItemSlotTables(void) {
             p = LoadItemSlotTableData(&data_0217bc6c, p);
             p = LoadItemSlotTableData(&data_0217bc64, p);
             p = LoadItemSlotTableData(&data_0217bc74, p);
-            if (data_021759c0->mUnk_014 == 0) {
-                func_020f80c0(&data_0217bc6c, data_021759c0->mKartCount);
-                func_020f80c0(&data_0217bc64, data_021759c0->mKartCount);
+            if (gRaceSetup->mUnk_014 == 0) {
+                func_020f80c0(&data_0217bc6c, gRaceSetup->mKartCount);
+                func_020f80c0(&data_0217bc64, gRaceSetup->mKartCount);
             }
             break;
     }

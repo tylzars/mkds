@@ -178,7 +178,7 @@ void SetMapObjectModelMirror(void *a, s32 b, s32 c) {
     if (o->mNsbmdModel != NULL) {
         m = o->mNsbmdModel;
         k = b != 0 || c != 0 ? 1 : 0;
-        if (k ^ data_021759c0->mUnk_57) {
+        if (k ^ gRaceSetup->mMirrorMode) {
             m->mUnk_14 &= ~0x80;
             o->mNsbmdModel->mUnk_14 |= 0x40;
         } else {
@@ -188,7 +188,7 @@ void SetMapObjectModelMirror(void *a, s32 b, s32 c) {
     }
     if (o->mAnimatedModel != NULL) {
         k = b != 0 || c != 0 ? 1 : 0;
-        if (k ^ data_021759c0->mUnk_57) {
+        if (k ^ gRaceSetup->mMirrorMode) {
             SetNsbmdCullModeAll(o->mAnimatedModel, 1);
         } else {
             SetNsbmdCullModeAll(o->mAnimatedModel, 2);

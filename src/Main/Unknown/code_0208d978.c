@@ -91,7 +91,7 @@ void func_0208e82c(const MtxFx43 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk02
 }
 
 void func_0208e808(s32 a) {
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         data_021663e8 = a;
     }
 }
@@ -105,7 +105,7 @@ void InitModelEffects(void *heap) {
     ModelEffectKind *x;
     ModelEffectKind *y;
 
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         heap = data_0217aa10->mUnk_a4;
     }
     gModelEffects = HeapAlloc(heap, 0x60);
@@ -115,14 +115,14 @@ void InitModelEffects(void *heap) {
     }
     x = gModelEffectKinds;
     y = &data_021661b8;
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         x->mObjectCount = 6;
         y->mObjectCount = 4;
     } else {
         x->mObjectCount = 3;
         y->mObjectCount = 1;
     }
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         x->mObjectCount = 0x14;
     }
     SetupWaterEfctKindRow(&data_021661e4, 1);
@@ -141,7 +141,7 @@ void InitModelEffects(void *heap) {
     SetupModelEffectKind(heap, 1, c, d, e, f);
     SetupModelEffectKind(heap, 2, GetWaterEfctNsbmdFile(), GetWaterEfctNsbcaFile(), GetWaterEfctNsbmaFile(), NULL);
     SetupModelEffectKind(heap, 4, GetWaterEfctNsbmdFile(), GetWaterEfctNsbcaFile(), GetWaterEfctNsbmaFile(), NULL);
-    if (data_021759c0->mCourseId == COURSE_ID_OLD_HYUDORO_64) {
+    if (gRaceSetup->mCourseId == COURSE_ID_OLD_HYUDORO_64) {
         SetupModelEffectKind(heap, 3, GetWaterEfctNsbmdFile(), FindCourseFile(data_021663a8),
                              FindCourseFile(data_021663c0), NULL);
     }
@@ -305,7 +305,7 @@ void InitModelEffectObjects(void *heap) {
             p->mUpdate = g->mUpdate;
             NNS_FndAppendListObject(&gModelEffects->mFreeLists[i], p);
             if (i == 2) {
-                v = data_021759c0->mCourseId == COURSE_ID_OLD_KOOPA_AGB ? 0xb33 : 0x1000;
+                v = gRaceSetup->mCourseId == COURSE_ID_OLD_KOOPA_AGB ? 0xb33 : 0x1000;
                 p->mScale[0] = v;
                 p->mScale[1] = v;
                 p->mScale[2] = v;
@@ -327,7 +327,7 @@ void SetupModelEffectKind(void *heap, s32 kind, NNSG3dResFileHeader *modelFile, 
 
     g = &gModelEffectKinds[kind];
     k = 1;
-    if (data_021759c0->mCourseId == COURSE_ID_MANSION || data_021759c0->mCourseId == COURSE_ID_RAINBOW) {
+    if (gRaceSetup->mCourseId == COURSE_ID_MANSION || gRaceSetup->mCourseId == COURSE_ID_RAINBOW) {
         k = 0;
     }
     if (g->mObjectCount == 0) {

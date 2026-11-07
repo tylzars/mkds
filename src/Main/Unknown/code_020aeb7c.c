@@ -43,16 +43,16 @@ void func_020aeb7c(void) {
     s32 v;
 
     func_020c525c();
-    if (data_021759c0->mUnk_00c - 3 <= 3) {
+    if (gRaceSetup->mUnk_00c - 3 <= 3) {
         return;
     }
     if (gRaceHud->mEnabled == FALSE) {
         return;
     }
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_GRAND_PRIX:
-            if (IsKartEnded(func_020b4d9c()) != 0 && gRaceHud->mUnk_8dc == 0) {
-                if (data_021759c0->mUnk_00c == 0) {
+            if (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0) {
+                if (gRaceSetup->mUnk_00c == 0) {
                     if (gRaceHud->mUnk_83c != FALSE) {
                         gRaceHud->mUnk_82c = FALSE;
                     } else {
@@ -71,7 +71,7 @@ void func_020aeb7c(void) {
                 a = FALSE;
                 b = FALSE;
                 c = FALSE;
-                if (data_021759c0->mUnk_00c != 1 && data_021759c0->mUnk_00c != 4) {
+                if (gRaceSetup->mUnk_00c != 1 && gRaceSetup->mUnk_00c != 4) {
                     c = TRUE;
                 }
                 if (c != FALSE) {
@@ -126,7 +126,7 @@ void func_020aeb7c(void) {
                 a = FALSE;
                 b = FALSE;
                 c = FALSE;
-                if (data_021759c0->mUnk_00c != 1 && data_021759c0->mUnk_00c != 4) {
+                if (gRaceSetup->mUnk_00c != 1 && gRaceSetup->mUnk_00c != 4) {
                     c = TRUE;
                 }
                 if (c != FALSE) {
@@ -155,7 +155,7 @@ void func_020aeb7c(void) {
                 }
                 if (a != FALSE) {
                     gRaceHud->mUnk_82c = TRUE;
-                    if (data_021759c0->mUnk_00c != 2) {
+                    if (gRaceSetup->mUnk_00c != 2) {
                         switch (gRaceHud->mSubScreenState) {
                             case 0:
                                 gRaceHud->mSubScreenState = 1;
@@ -202,7 +202,7 @@ void func_020aeb7c(void) {
                 a = FALSE;
                 b = FALSE;
                 c = FALSE;
-                if (data_021759c0->mUnk_00c != 1 && data_021759c0->mUnk_00c != 4) {
+                if (gRaceSetup->mUnk_00c != 1 && gRaceSetup->mUnk_00c != 4) {
                     c = TRUE;
                 }
                 if (c != FALSE) {
@@ -248,7 +248,7 @@ void func_020aeb7c(void) {
             break;
         case MODE_VS:
         case 5:
-            if (gRaceProgress->mRaceDone != 0 && data_021759c0->mUnk_00c == 0) {
+            if (gRaceProgress->mRaceDone != 0 && gRaceSetup->mUnk_00c == 0) {
                 if (gRaceHud->mUnk_838 == FALSE) {
                     gRaceHud->mUnk_82c = TRUE;
                     gRaceHud->mSubScreenState = 4;
@@ -261,7 +261,7 @@ void func_020aeb7c(void) {
                 } else {
                     gRaceHud->mUnk_82c = FALSE;
                 }
-            } else if (IsKartEnded(func_020b4d9c()) != 0 && data_021759c0->mUnk_00c == 0) {
+            } else if (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceSetup->mUnk_00c == 0) {
                 if (gRaceHud->mUnk_83c == FALSE) {
                     gRaceHud->mUnk_82c = TRUE;
                     gRaceHud->mSubScreenState = 0;
@@ -272,7 +272,7 @@ void func_020aeb7c(void) {
                     a = FALSE;
                     b = FALSE;
                     c = FALSE;
-                    if (data_021759c0->mUnk_00c != 1 && data_021759c0->mUnk_00c != 4) {
+                    if (gRaceSetup->mUnk_00c != 1 && gRaceSetup->mUnk_00c != 4) {
                         c = TRUE;
                     }
                     if (c != FALSE) {
@@ -319,7 +319,7 @@ void func_020aeb7c(void) {
                 a = FALSE;
                 b = FALSE;
                 c = FALSE;
-                if (data_021759c0->mUnk_00c != 1 && data_021759c0->mUnk_00c != 4) {
+                if (gRaceSetup->mUnk_00c != 1 && gRaceSetup->mUnk_00c != 4) {
                     c = TRUE;
                 }
                 if (c != FALSE) {
@@ -368,7 +368,7 @@ void func_020aeb7c(void) {
                 if (gRaceHud->mUnk_83c == FALSE) {
                     gRaceHud->mUnk_83c = TRUE;
                     gRaceHud->mUnk_840 = TRUE;
-                    if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
+                    if (IsKartEnded((u16) gRaceSetup->mEntryIndex) != 0) {
                         v = gRaceProgress->mEntryEndKind;
                     } else {
                         v = 6;
@@ -378,7 +378,7 @@ void func_020aeb7c(void) {
                     }
                 }
             } else if (gRaceProgress->mRaceDone != 0) {
-                if (IsKartEnded((u16) data_021759c0->mEntryIndex) != 0) {
+                if (IsKartEnded((u16) gRaceSetup->mEntryIndex) != 0) {
                     v = gRaceProgress->mEntryEndKind;
                 } else {
                     v = 6;
@@ -416,15 +416,15 @@ void func_020aeb7c(void) {
     if (gRaceHud->mUnk_90c != FALSE) {
         return;
     }
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        v = (data_021759c0->mMode == MODE_MISSION_RUN ? data_021759c0->mMissionTableColumn : -1) == 9;
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        v = (gRaceSetup->mMode == MODE_MISSION_RUN ? gRaceSetup->mMissionTableColumn : -1) == 9;
     } else {
         v = 0;
     }
     if (v == 0) {
         return;
     }
-    if (data_021759c0->mMode != MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode != MODE_MISSION_RUN) {
         v = 0;
     } else {
         v = IsWinnerDecidedAndEndReached();
@@ -432,10 +432,10 @@ void func_020aeb7c(void) {
     if (v == 0) {
         return;
     }
-    if (data_021759c0->mMode != MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode != MODE_MISSION_RUN) {
         v = 0;
     } else {
-        v = IsKartEliminated(func_020b4d9c());
+        v = IsKartEliminated(GetFollowedKartOrEntryIndex());
     }
     if (v != 0) {
         data_0217b488->mUnk_10 = 0;

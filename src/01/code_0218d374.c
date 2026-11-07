@@ -28,11 +28,11 @@ void func_ov001_0218d3ec(Unk02188950 *a) {
     s32 y;
     s32 t;
 
-    if (GetBalloonOrShineCount(data_021759c0->mEntryIndex) <= 1) {
+    if (GetBalloonOrShineCount(gRaceSetup->mEntryIndex) <= 1) {
         y = 0x1000 - a->mPrm->mUnk_0ac;
         t = func_ov001_02187f38(a);
         x = (((s64) t * y) >> 12);
-    } else if (GetBalloonOrShineCount(data_021759c0->mEntryIndex) <= 2) {
+    } else if (GetBalloonOrShineCount(gRaceSetup->mEntryIndex) <= 2) {
         y = 0x1000 - a->mPrm->mUnk_0a8;
         t = func_ov001_02187f38(a);
         x = (((s64) t * y) >> 12);

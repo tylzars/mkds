@@ -152,19 +152,19 @@ void InitKarts(u32 a) {
     q->mUnk_10 = 0;
     q->mUnk_14 = 0;
     q->mUnk_18 = 0;
-    data_usa_021658bc = data_021759c0->mMode == MODE_BATTLE ? 1 : 2;
+    data_usa_021658bc = gRaceSetup->mMode == MODE_BATTLE ? 1 : 2;
     func_02073630();
     func_0208c284();
     InitKartEffects(a);
     gMissionRunKind2ShapesPresent = 0;
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         if (gCourseMap->mKind2ShapeCountInMode4 != 0) {
             gMissionRunKind2ShapesPresent = 1;
         }
     }
     for (i = 0; i < a; i++) {
         gKarts[i].mIndex = i;
-        gKarts[i].mEntryIndex = data_021759c0->mCurrentEntries[i].mPlayer.mIndex;
+        gKarts[i].mEntryIndex = gRaceSetup->mCurrentEntries[i].mPlayer.mIndex;
         InitKart(&gKarts[i], gKartDefaultSlotFunctions);
     }
     data_0217ad28 = 0;
@@ -204,7 +204,7 @@ void UpdateKartSoundDistancesSquared(void) {
 void DrawKarts(void) {
     s32 i = 0;
     u16 *p = func_02086058();
-    (gKarts[data_021759c0->mEntryIndex].mKartModelsEntry)->mUnk_060 = TRUE;
+    (gKarts[gRaceSetup->mEntryIndex].mKartModelsEntry)->mUnk_060 = TRUE;
     for (; i < gKartCount; i++) {
         DrawKart(&gKarts[*p]);
         p++;
@@ -291,13 +291,13 @@ void func_0207a73c(u32 p0) {
 }
 
 void func_0207a70c(s32 a) {
-    if (a == data_021759c0->mEntryIndex) {
+    if (a == gRaceSetup->mEntryIndex) {
         gEntryKartCounters->mUnk_08++;
     }
 }
 
 void func_0207a6c0(Kart *a) {
-    if (a->mIndex != data_021759c0->mEntryIndex) {
+    if (a->mIndex != gRaceSetup->mEntryIndex) {
         return;
     }
     if (a->mUnk_4c & 0x40) {
@@ -336,7 +336,7 @@ s32 func_0207a5c4(s32 a) {
 }
 
 BOOL func_0207a574(void) {
-    Kart *p = &gKarts[data_021759c0->mEntryIndex];
+    Kart *p = &gKarts[gRaceSetup->mEntryIndex];
     if (p->mState != KART_STATE_NORMAL || (p->mUnk_48 & 0x4000000) != 0) {
         return TRUE;
     }
@@ -344,27 +344,27 @@ BOOL func_0207a574(void) {
 }
 
 s32 func_0207a538(void) {
-    return (gKarts[data_021759c0->mEntryIndex].mUnk_44 & 0xc0) != 0 ? 1 : 0;
+    return (gKarts[gRaceSetup->mEntryIndex].mUnk_44 & 0xc0) != 0 ? 1 : 0;
 }
 
 s32 func_0207a4fc(void) {
-    return (gKarts[data_021759c0->mEntryIndex].mUnk_48 & 0x1000) != 0 ? 1 : 0;
+    return (gKarts[gRaceSetup->mEntryIndex].mUnk_48 & 0x1000) != 0 ? 1 : 0;
 }
 
 void func_0207a32c(void) {
     s32 d[3];
-    u32 n = GetKartRank((u16) data_021759c0->mEntryIndex);
+    u32 n = GetKartRank((u16) gRaceSetup->mEntryIndex);
     u16 i;
     u16 k;
     s32 j;
     Kart *p;
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         for (k = 0; k < 3; k++) {
             gKarts[k].mUnk_4c |= 0x8000;
         }
         return;
     }
-    d[0] = data_021759c0->mEntryIndex;
+    d[0] = gRaceSetup->mEntryIndex;
     if (n == 1) {
         d[1] = GetKartIndexAtRank(2);
         if (d[1] >= 0) {
@@ -379,7 +379,7 @@ void func_0207a32c(void) {
                 d[1] = -1;
             }
         }
-        if (n < data_021759c0->mKartCount) {
+        if (n < gRaceSetup->mKartCount) {
             j = GetKartIndexAtRank((u16) (n + 1));
             if (j >= 0) {
                 p = &gKarts[j];
@@ -424,9 +424,9 @@ BOOL TryGetMinKartDistanceSquared(s32 *a) {
 
 s32 func_0207a218(void) {
     BOOL r = TRUE;
-    s32 m = data_021759c0->mMode;
+    s32 m = gRaceSetup->mMode;
     if (m == MODE_MISSION_RUN) {
-        Kart *p = &gKarts[data_021759c0->mEntryIndex];
+        Kart *p = &gKarts[gRaceSetup->mEntryIndex];
         if (p->mState != KART_STATE_NORMAL || (p->mUnk_48 & 0x2000840) != 0 || (p->mUnk_44 & KART_44_ON_GROUND) == 0 ||
             (m != MODE_MISSION_RUN ? 0 : func_ov001_021816b4()) != 0) {
             r = FALSE;
@@ -766,16 +766,16 @@ u32 func_020799a0(s32 e) {
     s32 b = a;
     s32 c = a;
     s32 d = a;
-    if (e != data_021759c0->mEntryIndex && e != data_021759c0->mUnk_063) {
+    if (e != gRaceSetup->mEntryIndex && e != gRaceSetup->mFollowedKartIndex) {
         d = 0;
     }
-    if (d == 0 && data_021759c0->mMode != MODE_MISSION_RUN) {
+    if (d == 0 && gRaceSetup->mMode != MODE_MISSION_RUN) {
         c = 0;
     }
     if (c == 0 && func_02062eb0() == 0) {
         b = 0;
     }
-    if (b == 0 && data_021759c0->mMode != MODE_TIME_ATTACK) {
+    if (b == 0 && gRaceSetup->mMode != MODE_TIME_ATTACK) {
         a = FALSE;
     }
     if (a != FALSE) {
@@ -809,7 +809,7 @@ void InitKartModels(void *a, u32 b) {
     gKartModels = HeapAlloc(a, 0x144);
     gKartModels->mKartModelsEntries = HeapAlloc(a, b * 0xb4);
     gKartModels->mUnk_004 = func_02047950("kartcrsmat.bin");
-    gKartModels->mUnk_004 = gKartModels->mUnk_004 + (data_021759c0->mCourseId << 2) - 4;
+    gKartModels->mUnk_004 = gKartModels->mUnk_004 + (gRaceSetup->mCourseId << 2) - 4;
     gKartModels->mUnk_010 = LoadKartAPaletteFromKartModelFile();
     gKartModels->mUnk_014 = NULL;
     gKartModels->mUnk_028 = func_02047950((const char *) BuildPFaceanimNsbtpPath());
@@ -822,10 +822,10 @@ void InitKartModels(void *a, u32 b) {
         d = gKartModels->mKartModelsEntries;
         e = &d[i];
         InitKartModelsEntry(e);
-        e->mUnk_0b0 = data_021759c0->mCurrentEntries[i].mPlayer.mUnk_25;
+        e->mUnk_0b0 = gRaceSetup->mCurrentEntries[i].mPlayer.mUnk_25;
         func_02079a14(e);
-        d[i].mUnk_000 = data_021759c0->mCurrentEntries[i].mCharacterIndex;
-        e->mUnk_004 = data_021759c0->mCurrentEntries[i].mKartIndex;
+        d[i].mUnk_000 = gRaceSetup->mCurrentEntries[i].mCharacterIndex;
+        e->mUnk_004 = gRaceSetup->mCurrentEntries[i].mKartIndex;
         func_02079988(e, e->mUnk_004);
         e->mUnk_020 = HeapAlloc(a, 0xe0);
         MI_CpuCopy8(v4 + e->mUnk_004 * 0xe0, e->mUnk_020, 0xe0);
@@ -1784,7 +1784,7 @@ void func_0207800c(void) {
     u32 i;
     if (gKartModels->mUnk_014 != NULL) {
         func_02078078();
-        for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
+        for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
             if (gKartModels->mKartModelsEntries[i].mUnk_000 == 0xc) {
                 func_02077f9c(i, &gKartModels->mKartModelsEntries[i], func_02077f7c(i));
             }

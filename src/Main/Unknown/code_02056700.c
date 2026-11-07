@@ -67,7 +67,7 @@ void func_02056750(s32 a, u16 b) {
     u32 w;
 
     n = func_0204684c();
-    k = data_021759c0->mCurrentEntries[b].mPlayer.mIndex;
+    k = gRaceSetup->mCurrentEntries[b].mPlayer.mIndex;
     p = data_0217aa08->mUnk_14[0];
     if (n == -1) {
         return;
@@ -77,11 +77,11 @@ void func_02056750(s32 a, u16 b) {
     p->mUnk_04_16 = t[0];
     p->mUnk_04_23 = t[1];
     p->mUnk_04_27 = t[2];
-    w = data_021759c0->mCurrentEntries[b].mCharacterIndex;
+    w = gRaceSetup->mCurrentEntries[b].mCharacterIndex;
     p->mUnk_04_0 = (u8) w;
-    w = data_021759c0->mCurrentEntries[b].mKartIndex;
+    w = gRaceSetup->mCurrentEntries[b].mKartIndex;
     p->mUnk_04_4 = (u8) w;
-    w = data_021759c0->mCourseId;
+    w = gRaceSetup->mCourseId;
     p->mUnk_04_10 = (u8) w;
     p->mUnk_08_0 = 1;
     p->mUnk_08_1 = 0;

@@ -52,7 +52,7 @@ void AddMissionRunMapObject(Unk02188950 *a) {
     u8 n;
     u16 k;
 
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     k = gMissionRunData->mMapObjectCount + n;
     gMissionRunData->mMapObjects[k - n] = a;
     func_020a1728(k);
@@ -60,22 +60,22 @@ void AddMissionRunMapObject(Unk02188950 *a) {
 }
 
 Unk02188950 *GetMissionRunMapObject(int a) {
-    return gMissionRunData->mMapObjects[a - data_021759c0->mKartCount];
+    return gMissionRunData->mMapObjects[a - gRaceSetup->mKartCount];
 }
 
 u8 func_ov001_02181b54(void) {
-    return data_021759c0->mKartCount;
+    return gRaceSetup->mKartCount;
 }
 
 u16 GetMissionRunMapObjectLastIndex(void) {
-    return gMissionRunData->mMapObjectCount + data_021759c0->mKartCount - 1;
+    return gMissionRunData->mMapObjectCount + gRaceSetup->mKartCount - 1;
 }
 
 void func_ov001_02181aa0(void) {
     MissionRunData *p;
     u32 n;
 
-    if ((data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) != FALSE) {
+    if ((gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) != FALSE) {
         return;
     }
     p = gMissionRunData;
@@ -85,7 +85,7 @@ void func_ov001_02181aa0(void) {
     }
     p->mCount = p->mCount + 1;
     func_02108edc(gMissionRunData->mCount, func_ov001_0218180c());
-    switch (data_021759c0->mUnk_2f) {
+    switch (gRaceSetup->mMissionKind) {
         case 0:
         case 1:
         case 3:
@@ -93,7 +93,7 @@ void func_ov001_02181aa0(void) {
         case 7:
             n = func_ov001_0218180c();
             if (gMissionRunData->mCount >= n) {
-                func_0203e74c(data_021759c0->mEntryIndex);
+                func_0203e74c(gRaceSetup->mEntryIndex);
             }
             break;
     }
@@ -120,7 +120,7 @@ void CreateMissionRunData(void) {
     MissionRunData *o;
 
     gMissionRunData = HeapAlloc(GetHeap(func_020364e8()), 0x68);
-    c = GetKart((u16) data_021759c0->mEntryIndex);
+    c = GetKart((u16) gRaceSetup->mEntryIndex);
     o = gMissionRunData;
     o->mPrevKartPos = c->mPos;
     o->mKartPos = o->mPrevKartPos;
@@ -133,7 +133,7 @@ void UpdateMissionRunData(void) {
     Kart *c;
     MissionRunData *o;
 
-    c = GetKart((u16) data_021759c0->mEntryIndex);
+    c = GetKart((u16) gRaceSetup->mEntryIndex);
     if ((c->mUnk_48 & 0x200) == 0) {
         o = gMissionRunData;
         o->mPrevKartPos = o->mKartPos;
@@ -142,13 +142,13 @@ void UpdateMissionRunData(void) {
         o->mKartPos = c->mPos;
         o->mKartHeadingAngle = c->mHeadingAngle;
     }
-    if (data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
-        if (data_021759c0->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) data_021759c0->mEntryIndex) : 0) {
-            if (GetBalloonOrShineCount(data_021759c0->mEntryIndex)) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN ? IsKartEliminated((u16) gRaceSetup->mEntryIndex) : 0) {
+            if (GetBalloonOrShineCount(gRaceSetup->mEntryIndex)) {
                 gMissionRunData->mUnk_00 += 1;
                 if (gMissionRunData->mUnk_00 > 0xf) {
                     gMissionRunData->mUnk_00 = 0;
-                    func_020a1748(data_021759c0->mEntryIndex);
+                    func_020a1748(gRaceSetup->mEntryIndex);
                     return;
                 }
             }
@@ -156,7 +156,7 @@ void UpdateMissionRunData(void) {
         return;
     }
     {
-        u32 m = data_021759c0->mUnk_2f;
+        u32 m = gRaceSetup->mMissionKind;
         if (m == 1 || m == 5) {
             if (GetRaceUpdateFramesMod8() == 0) {
                 o = gMissionRunData;
@@ -223,7 +223,7 @@ u32 GetMissionRunCount(void) {
 }
 
 u32 func_ov001_0218180c(void) {
-    u32 v = data_021759c0->mUnk_37;
+    u32 v = gRaceSetup->mUnk_37;
     if (v == 0) {
         v = 1;
     }
@@ -235,14 +235,14 @@ s32 func_ov001_02181800(void) {
 }
 
 void func_ov001_021817e0(void) {
-    if (data_021759c0->mUnk_2f == '\a') {
+    if (gRaceSetup->mMissionKind == '\a') {
         func_ov001_02181aa0();
     }
 }
 
 void func_ov001_0218175c(s32 b) {
-    Unk021759c0 *p = data_021759c0;
-    u32 m = p->mUnk_2f;
+    RaceSetup *p = gRaceSetup;
+    u32 m = p->mMissionKind;
     if (m == 3 || m == 7 || m == 0) {
         u32 a = p->mUnk_3c;
         if (a == 0 && p->mUnk_3e == 0 && p->mUnk_40 == 0 && p->mUnk_42 == 0 && b > 400 && b < 500) {
@@ -256,19 +256,19 @@ void func_ov001_0218175c(s32 b) {
 }
 
 void func_ov001_0218173c(void) {
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_ov001_02181678(5);
     }
 }
 
 void func_ov001_0218171c(void) {
-    if (data_021759c0->mUnk_2f == 4) {
+    if (gRaceSetup->mMissionKind == 4) {
         func_ov001_02181aa0();
     }
 }
 
 void func_ov001_021816fc(void) {
-    if (data_021759c0->mUnk_2f == 0) {
+    if (gRaceSetup->mMissionKind == 0) {
         func_ov001_02181aa0();
     }
 }

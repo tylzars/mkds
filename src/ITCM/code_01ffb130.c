@@ -98,7 +98,7 @@ void func_01ffb130(Kart *p) {
             p->mItemEffect = 0;
             func_020817b8(p->mIndex);
             func_02068a64(p, 0, 1);
-            if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
+            if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
                 func_02106dc8();
             }
             if (p->mUnk_4c & 0x2000) {

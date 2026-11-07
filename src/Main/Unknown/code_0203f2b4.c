@@ -5,7 +5,7 @@ BOOL func_0203f2dc(u32 a) {
     BOOL f;
     s32 s;
     f = FALSE;
-    s = data_021759c0->mCurrentEntries[a].mPlayer.mKind;
+    s = gRaceSetup->mCurrentEntries[a].mPlayer.mKind;
     if ((u32) s <= 3 && ((1 << s) & 0xd) != 0) {
         f = TRUE;
     }

@@ -58,7 +58,7 @@ void func_02063a68(Kart *a) {
             a->mUnk_514->mUnk_2c ^= 0x10000;
         }
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         a->mUnk_48 &= ~0x200;
     }
 }

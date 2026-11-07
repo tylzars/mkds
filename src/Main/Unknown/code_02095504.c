@@ -235,7 +235,7 @@ void UpdateBakubaku(void *a, Bakubaku *p) {
     switch (p->mState) {
         case 0:
             if (func_02061818() != 2) {
-                o = GetKart((u16) data_021759c0->mEntryIndex);
+                o = GetKart((u16) gRaceSetup->mEntryIndex);
                 q = &o->mPos;
                 v2 = q->x - p->mUnk_a4.x;
                 v1 = q->z - p->mUnk_a4.z;

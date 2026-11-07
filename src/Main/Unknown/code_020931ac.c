@@ -169,7 +169,7 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
     } else {
         p->mUnk_00.mPos.y = p->mUnk_00.mCourseMapRow->mUnk_00.y - p->mUnk_00.mExtent.y;
     }
-    c = data_021759c0->mKartCount;
+    c = gRaceSetup->mKartCount;
     for (i = 0; i < c; i++) {
         if (p->mUnk_d4[i] > 0) {
             p->mUnk_d4[i]--;

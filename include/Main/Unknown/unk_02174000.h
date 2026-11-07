@@ -24,7 +24,7 @@ typedef struct Unk02029930_00 {
     /* 14 */ s32 mUnk_14;
 } Unk02029930_00;
 
-// Copy of the race setup that the screens edit: filled from the current half of data_021759c0 (or from the Wi-Fi
+// Copy of the race setup that the screens edit: filled from the current half of gRaceSetup (or from the Wi-Fi
 // session), written to the next half by func_020cc744 or func_020297bc. Object behind gRaceSetupCopy, returned by
 // GetRaceSetupCopy.
 typedef struct RaceSetupCopy {
@@ -37,11 +37,11 @@ typedef struct RaceSetupCopy {
     /* cc */ s32 mCupIndex;
     /* d0 */ s32 mCourseId;
     /* d4 */ s32 mEngineIndex;
-    /* d8 */ s32 mUnk_d8;
+    /* d8 */ s32 mMirrorMode;
     /* dc */ s32 mUseTeams;
     /* e0 */ s32 mUnk_e0;
     /* e4 */ s32 mUnk_e4;
-    /* e8 */ u16 mUnk_e8;
+    /* e8 */ u16 mCourseCount;
     /* ea */ u8 mUnk_ea[2];
     /* ec */ s32 mUnk_ec;
     /* f0 */ s32 mCourseListMode;

@@ -8,8 +8,8 @@
 void func_0203c98c(void) {
     u32 i;
     func_02043544(1);
-    for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
-        Unk02175628 *e = &data_02175628[data_021759c0->mCurrentEntries[i].mPlayer.mIndex];
+    for (i = 0; i < gRaceSetup->mKartCount; i = (u16) (i + 1)) {
+        Unk02175628 *e = &data_02175628[gRaceSetup->mCurrentEntries[i].mPlayer.mIndex];
         if (e->mSourceKind != 1) {
             if (e->mSourceKind == 2) {
                 func_0204a978((Unk02175650 *) &e->mUnk_28);
@@ -30,7 +30,7 @@ void GetRaceClockTime(u8 *a, u8 *b, u16 *c) {
 }
 
 u32 GetKartRank(u32 param_1) {
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         return data_0217aa14->mUnk_104[data_0217aa18->mUnk_00[param_1 & 0xff]].mUnk_86_1;
     }
     return gRaceProgress->mKarts[param_1].mRank;

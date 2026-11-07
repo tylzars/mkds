@@ -83,7 +83,7 @@ static inline u32 func_0203a9ec_inline(void) {
 }
 
 u32 func_0203afe4(u32 a) {
-    if (data_021759c0->mUnk_00c != 6) {
+    if (gRaceSetup->mUnk_00c != 6) {
         return 1;
     }
     return a >= 0x708;
@@ -91,10 +91,10 @@ u32 func_0203afe4(u32 a) {
 
 void func_0203ad58(void *a) {
     DisplaySettings *b;
-    b = CreateDisplaySettings(a, data_usa_02164718[data_021759c0->mUnk_00c]);
+    b = CreateDisplaySettings(a, data_usa_02164718[gRaceSetup->mUnk_00c]);
     SetG3xSwapBits(b, 1, 1);
     SetBg0Record(&b->mMainBg0, 1, 0, 0, 1, 0, 0, 0);
-    switch (data_021759c0->mUnk_00c) {
+    switch (gRaceSetup->mUnk_00c) {
         case 0:
         case 2:
         case 6:
@@ -135,7 +135,7 @@ void InitRaceScene(void) {
     BOOL f;
     p = GetHeap(func_020364e8());
     func_02059dc8();
-    if (data_021759c0->mUnk_00c == 3 || data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 3 || gRaceSetup->mUnk_00c == 5) {
         StopWvrAndWait();
     } else {
         ClearLcdcBankAndStartWvrAndWait();
@@ -151,20 +151,20 @@ void InitRaceScene(void) {
     SetHeapGroupId(5);
     InitChoisesS();
     func_020b03bc();
-    if (data_021759c0->mUnk_00c != 3) {
+    if (gRaceSetup->mUnk_00c != 3) {
         func_020af99c();
     }
     SetHeapGroupId(8);
-    x = data_021759c0->mUnk_57;
-    if (x == 0 && data_021759c0->mMode == MODE_MISSION_RUN) {
-        if ((data_021759c0->mUnk_044 & 0x10) != 0) {
+    x = gRaceSetup->mMirrorMode;
+    if (x == 0 && gRaceSetup->mMode == MODE_MISSION_RUN) {
+        if ((gRaceSetup->mUnk_044 & 0x10) != 0) {
             x = 1;
         }
     }
     func_02043a9c(x);
     SetHeapGroupId(9);
-    if (data_021759c0->mMode != MODE_BATTLE) {
-        if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode != MODE_BATTLE) {
+        if (gRaceSetup->mMode == 5) {
             f = FALSE;
             q = gWiFiSession;
             if (q != NULL) {
@@ -181,18 +181,18 @@ void InitRaceScene(void) {
             }
         }
     } else {
-        if (data_021759c0->mUnk_18 == 0) {
+        if (gRaceSetup->mUnk_18 == 0) {
             func_02046fb4(GetHeap(func_020364e8()));
         }
     }
 }
 
 void func_0203aacc(void) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     WiFiSession *q;
     s32 t;
     BOOL f;
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         f = FALSE;
         q = gWiFiSession;
         if (q != NULL) {
@@ -208,7 +208,7 @@ void func_0203aacc(void) {
             p->mNextStateRequested = 1;
         }
     }
-    p = data_021759c0;
+    p = gRaceSetup;
     if (p->mUnk_00c == 6) {
         t = 0x18;
         if (p->mMode != MODE_GRAND_PRIX) {
@@ -263,12 +263,12 @@ u32 func_0203a9ec(u32 a) {
 u32 func_0203a908(u32 a) {
     u32 r;
     s32 t = 0x18;
-    if (data_021759c0->mMode != MODE_GRAND_PRIX) {
-        if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode != MODE_GRAND_PRIX) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN) {
             t = 0x1a;
         }
     } else {
-        if (data_021759c0->mCourseId == COURSE_ID_STAFFROLLTRUE) {
+        if (gRaceSetup->mCourseId == COURSE_ID_STAFFROLLTRUE) {
             t = 0x19;
         }
     }
@@ -283,7 +283,7 @@ u32 func_0203a908(u32 a) {
 }
 
 u32 func_0203a8f4(void) {
-    return (data_021759c0->mMode);
+    return (gRaceSetup->mMode);
 }
 
 void func_0203a8e0(u32 p0) {
@@ -300,7 +300,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
             r = 2;
             break;
         case 9:
-            if (data_021759c0->mMode != 5) {
+            if (gRaceSetup->mMode != 5) {
                 u32 t;
                 u32 f;
                 Unk0217aa00 *q;
@@ -328,7 +328,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                 } else {
                     r = 0;
                 }
-                if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+                if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
                     func_0204673c();
                 }
             } else {
@@ -339,14 +339,14 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
         case 1:
         case 3:
             r = 2;
-            data_021759c0->mNextHeader.mUnk_0c = 0;
+            gRaceSetup->mNextHeader.mUnk_0c = 0;
             break;
         case 8:
             r = 2;
-            data_021759c0->mNextHeader.mUnk_0c = r;
+            gRaceSetup->mNextHeader.mUnk_0c = r;
             break;
         case 2:
-            switch (data_021759c0->mMode) {
+            switch (gRaceSetup->mMode) {
                 case MODE_GRAND_PRIX:
                     func_02046740();
                     r = 2;
@@ -360,7 +360,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                             data_0217b488->mUnk_74 = 1;
                         }
                     } else {
-                        if (data_021759c0->mCourseListMode == 0) {
+                        if (gRaceSetup->mCourseListMode == 0) {
                             data_0217b488->mUnk_08 = 2;
                         }
                         if (data_021759d0->mUnk_1c_2 == 0) {
@@ -389,7 +389,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
                             data_0217b488->mUnk_74 = 1;
                         }
                     } else {
-                        if (data_021759c0->mCourseListMode == 0) {
+                        if (gRaceSetup->mCourseListMode == 0) {
                             data_0217b488->mUnk_08 = 2;
                         }
                         if (data_021759d0->mUnk_1c_2 == 0) {
@@ -403,7 +403,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
             }
             break;
         case 7:
-            switch (data_021759c0->mMode) {
+            switch (gRaceSetup->mMode) {
                 case MODE_GRAND_PRIX:
                     if (func_02045bd4() != FALSE) {
                         r = 2;
@@ -444,7 +444,7 @@ void func_0203a520(Unk0203a0dc *a, u32 b) {
 }
 
 u32 func_0203a50c(void) {
-    return data_021759c0->mUnk_00c;
+    return gRaceSetup->mUnk_00c;
 }
 
 void func_0203a4d4(u32 a) {
@@ -513,9 +513,9 @@ u32 func_0203a3cc(u32 a) {
 }
 
 void func_0203a3b8(u32 p0) {
-    data_021759c0->mNextHeader.mUnk_0c = p0;
+    gRaceSetup->mNextHeader.mUnk_0c = p0;
 }
 
 u32 func_0203a3a4(void) {
-    return (data_021759c0->mCourseId);
+    return (gRaceSetup->mCourseId);
 }

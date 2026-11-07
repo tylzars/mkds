@@ -338,7 +338,7 @@ void UpdateRaceHudSubScreenCenter(RaceHudSubScreenBgAffine *out) {
     if (gRaceHudSubScreenProjection->mScrollTimer != 0) {
         pos = gRaceHudSubScreenProjection->mScrollPosition;
     } else {
-        func_0207a91c(&pos, func_020b4d9c());
+        func_0207a91c(&pos, GetFollowedKartOrEntryIndex());
     }
     if (GetRaceHudSubScreenState() == 3) {
         pos = func_020b57e4()->mUnk_00;
@@ -374,7 +374,7 @@ void func_020b57f8(RaceHudSubScreenBgAffine *out) {
     if (gRaceHudSubScreenProjection->mScrollTimer != 0) {
         pos = gRaceHudSubScreenProjection->mScrollPosition;
     } else {
-        func_0207a91c(&pos, func_020b4d9c());
+        func_0207a91c(&pos, GetFollowedKartOrEntryIndex());
     }
     if (GetRaceHudSubScreenState() == 3) {
         pos = func_020b57e4()->mUnk_00;
@@ -408,7 +408,7 @@ void func_020b5658(RaceHudSubScreenBgAffine *out) {
     if (gRaceHudSubScreenProjection->mScrollTimer != 0) {
         pos = gRaceHudSubScreenProjection->mScrollPosition;
     } else {
-        func_0207a91c(&pos, func_020b4d9c());
+        func_0207a91c(&pos, GetFollowedKartOrEntryIndex());
     }
     if (GetRaceHudSubScreenState() == 3) {
         pos = func_020b57e4()->mUnk_00;
@@ -450,7 +450,7 @@ void UpdateRaceHudSubScreenScroll(void) {
                 gRaceHudSubScreenProjection->mScrollPosition.x = lo.mUnk_00;
             }
         } else {
-            func_0207a91c(&gRaceHudSubScreenProjection->mScrollPosition, func_020b4d9c());
+            func_0207a91c(&gRaceHudSubScreenProjection->mScrollPosition, GetFollowedKartOrEntryIndex());
         }
         gRaceHudSubScreenProjection->mScrollTimer = 600;
     }
@@ -461,7 +461,7 @@ void UpdateRaceHudSubScreenScroll(void) {
                 gRaceHudSubScreenProjection->mScrollPosition.x = hi.mUnk_00;
             }
         } else {
-            func_0207a91c(&gRaceHudSubScreenProjection->mScrollPosition, func_020b4d9c());
+            func_0207a91c(&gRaceHudSubScreenProjection->mScrollPosition, GetFollowedKartOrEntryIndex());
         }
         gRaceHudSubScreenProjection->mScrollTimer = 600;
     }
@@ -472,7 +472,7 @@ void UpdateRaceHudSubScreenScroll(void) {
                 gRaceHudSubScreenProjection->mScrollPosition.z = lo.mUnk_04;
             }
         } else {
-            func_0207a91c(&gRaceHudSubScreenProjection->mScrollPosition, func_020b4d9c());
+            func_0207a91c(&gRaceHudSubScreenProjection->mScrollPosition, GetFollowedKartOrEntryIndex());
         }
         gRaceHudSubScreenProjection->mScrollTimer = 600;
     }
@@ -483,14 +483,14 @@ void UpdateRaceHudSubScreenScroll(void) {
                 gRaceHudSubScreenProjection->mScrollPosition.z = hi.mUnk_04;
             }
         } else {
-            func_0207a91c(&gRaceHudSubScreenProjection->mScrollPosition, func_020b4d9c());
+            func_0207a91c(&gRaceHudSubScreenProjection->mScrollPosition, GetFollowedKartOrEntryIndex());
         }
         gRaceHudSubScreenProjection->mScrollTimer = 600;
     }
     if (gRaceHudSubScreenProjection->mScrollTimer != 0) {
         gRaceHudSubScreenProjection->mScrollTimer--;
         if (gRaceHudSubScreenProjection->mScrollTimer < 300) {
-            func_0207a91c(&target, func_020b4d9c());
+            func_0207a91c(&target, GetFollowedKartOrEntryIndex());
             gRaceHudSubScreenProjection->mScrollTimer = 300;
             VEC_Subtract(&target, &gRaceHudSubScreenProjection->mScrollPosition, &dir);
             Vec3NormalizeAndGetLengthUnchecked(&dir, &dir);
@@ -533,7 +533,7 @@ s32 GetFixed12Whole(s32 x) {
 }
 
 s32 func_020b523c(void) {
-    return data_021759c0->mUnk_57;
+    return gRaceSetup->mMirrorMode;
 }
 
 void UpdateRaceHudSubScreenProjectionAndBgAffine(RaceHudSubScreenBgAffine *p, s32 scale) {

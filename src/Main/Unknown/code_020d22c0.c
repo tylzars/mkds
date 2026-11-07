@@ -37,7 +37,7 @@ void UnparkMapObject(MapObject *a) {
 }
 
 void func_020d22e0(void) {
-    data_0217b4bc = data_021759c0->mMode == 5 ? &gRaceProgress->mFixedSeedRandom : &gRaceProgress->mRandom;
+    data_0217b4bc = gRaceSetup->mMode == 5 ? &gRaceProgress->mFixedSeedRandom : &gRaceProgress->mRandom;
     data_0217b4b8 = &gRaceProgress->mRandom;
 }
 

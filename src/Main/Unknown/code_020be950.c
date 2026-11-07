@@ -158,7 +158,7 @@ void DrawRaceHudSubScreenCells(Unk020c06c4 *a, RaceHudSubScreenCells *b, s32 c) 
             q = b->mCells[i].mUnk_0e;
             n = 0;
             if (c != 0) {
-                if (data_021759c0->mUnk_57 != 0) {
+                if (gRaceSetup->mMirrorMode != 0) {
                     Matrix2x2Rotation(d, (u16) (b->mCells[i].mUnk_10 + 0x8000 - v));
                 } else {
                     Matrix2x2Rotation(d, (u16) (v + (0x8000 - b->mCells[i].mUnk_10)));
@@ -216,7 +216,7 @@ void DrawRaceHudSubScreenCellsScaled(Unk020c06c4 *a, RaceHudSubScreenCells *b, s
         if (l <= p) {
             q = b->mCells[i].mUnk_0e;
             if (c != 0) {
-                if (data_021759c0->mUnk_57 != 0) {
+                if (gRaceSetup->mMirrorMode != 0) {
                     Matrix2x2RotationReciprocalScale(d, b->mUnk_0c[i].mUnk_00, (u16) (b->mCells[i].mUnk_10 - v));
                 } else {
                     Matrix2x2RotationReciprocalScale(d, b->mUnk_0c[i].mUnk_00, (u16) (v - b->mCells[i].mUnk_10));
@@ -735,7 +735,7 @@ void InitRaceHudSubScreenCellGroups(void) {
             gRaceHudSubScreenCellGroups->mDrawFunctions[n] = gRaceHudSubScreenCellGroupFunctions[i].mDraw;
         }
     }
-    if (data_021759c0->mMode != MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode != MODE_MISSION_RUN) {
         return;
     }
     if (func_ov001_02181510()) {
@@ -902,7 +902,7 @@ void UpdateRaceHudSubScreenCellGroups(void) {
             gRaceHudSubScreenCellGroups->mUnk_008 = FX_Div(0x2400, gRaceHudSubScreenCellGroups->mUnk_004);
             UpdateRaceHudSubScreenProjectionAndBgAffine(GetRaceHudSubScreenBgAffine(),
                                                         gRaceHudSubScreenCellGroups->mUnk_004);
-            func_0207a91c(&v, func_020b4d9c());
+            func_0207a91c(&v, GetFollowedKartOrEntryIndex());
             gRaceHudSubScreenCellGroups->mUnk_000 = func_020b4e70(&v) != 0 ? 0 : 3;
             for (i = 0; i < gRaceHudSubScreenCellGroups->mGroupCount; i++) {
                 gRaceHudSubScreenCellGroups->mUpdateFunctions[i]();

@@ -14,7 +14,7 @@
 void func_0208c0f0(KartAi *p, s32 a) {
     Kart *q = GetKart(a);
 
-    p->mUnk_154 = (data_021759c0->mCurrentEntries[a].mPlayer.mUnk_14 & 1) != 0;
+    p->mUnk_154 = (gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_14 & 1) != 0;
     func_0207fa74(p, q, p->mUnk_154);
     func_0207e200(&p->mUnk_e8, p);
     func_0207c448(&p->mUnk_11c);

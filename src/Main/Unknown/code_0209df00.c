@@ -247,7 +247,7 @@ void UpdateFireball2(void *a, Fireball2 *b) {
     n = b->mUnk_ac;
     b->mUnk_b4 = b->mUnk_00.mPos;
     if (b->mUnk_a2 == 1) {
-        p = GetKart((u16) data_021759c0->mEntryIndex);
+        p = GetKart((u16) gRaceSetup->mEntryIndex);
         if (func_0209df84_inline(p, b, n - 0xf000) != FALSE) {
             VEC_Subtract(&p->mPos, &b->mUnk_00.mPos, &v);
             d = Vec3DotUnrounded(&v, &b->mUnk_00.mMatrix.mUnk_00[2]);
@@ -288,7 +288,7 @@ void UpdateFireball2(void *a, Fireball2 *b) {
         n = n - b->mUnk_a8;
     }
     b->mUnk_b2 = b->mUnk_b2 - b->mUnk_b0;
-    for (i = 0; i < data_021759c0->mKartCount; i++) {
+    for (i = 0; i < gRaceSetup->mKartCount; i++) {
         if (b->mUnk_19c4[i] > 0) {
             b->mUnk_19c4[i] = b->mUnk_19c4[i] - 1;
         }

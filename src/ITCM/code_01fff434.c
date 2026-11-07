@@ -88,7 +88,7 @@ void func_01fff524(KartItems *p) {
     BOOL r;
     s32 a;
     p->mFlags &= ~0xff;
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         a = p->mHeldItem.mUnk_00;
         if (a == 0x13 || p->mItemInUse.mObjectKind != 0xf) {
             r = FALSE;
@@ -110,7 +110,7 @@ after:
         return;
     }
     p->mFlags &= ~0x100;
-    if (data_021759c0->mMode != 5 && (p->mFlags & 0x1000)) {
+    if (gRaceSetup->mMode != 5 && (p->mFlags & 0x1000)) {
         return;
     }
     if (func_020f0154(p) == FALSE) {

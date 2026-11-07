@@ -20,15 +20,15 @@
 #include "registers.h"
 
 s32 func_020cc5b8(void) {
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        return data_021759c0->mMissionTableRow;
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        return gRaceSetup->mMissionTableRow;
     }
     return -1;
 }
 
 s32 func_020cc598(void) {
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        return data_021759c0->mMissionTableColumn;
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        return gRaceSetup->mMissionTableColumn;
     }
     return -1;
 }
@@ -77,12 +77,12 @@ void func_020cc3e8(void) {
     } else {
         GetRaceSetupCopy()->mCourseId = GetCurrentCourseId();
     }
-    GetRaceSetupCopy()->mEngineIndex = func_020cc62c();
-    GetRaceSetupCopy()->mUnk_d8 = func_020cc618();
+    GetRaceSetupCopy()->mEngineIndex = GetCurrentEngineIndex();
+    GetRaceSetupCopy()->mMirrorMode = GetCurrentMirrorMode();
     GetRaceSetupCopy()->mUseTeams = GetCurrentUseTeams();
     GetRaceSetupCopy()->mUnk_e4 = func_020cc604();
     GetRaceSetupCopy()->mUnk_e4 = func_020cc604();
-    GetRaceSetupCopy()->mUnk_e8 = func_020cc5ec();
+    GetRaceSetupCopy()->mCourseCount = GetCurrentCourseCount();
     GetRaceSetupCopy()->mUnk_ec = func_020cc5d8();
     if (GetCurrentMode() == MODE_MISSION_RUN) {
         GetRaceSetupCopy()->mMissionTableRow = func_020cc5b8();

@@ -105,7 +105,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 2:
             gRaceGoalS->mOffset = 0;
-            if (data_021759c0->mMode == 5 && func_020b32ec() != 0) {
+            if (gRaceSetup->mMode == 5 && func_020b32ec() != 0) {
                 gRaceGoalS->mOffsetState = 3;
                 gRaceGoalS->mOffsetStateFrames = 0;
                 return;
@@ -123,7 +123,7 @@ void UpdateRaceGoalSOffset(void) {
                 gRaceGoalS->mOffset = InterpolateS16(1, 0, -0x20, n, 0x14);
             } else {
                 gRaceGoalS->mOffset = -0x20;
-                if (data_021759c0->mMode == 5 && func_020b32ec() != 0) {
+                if (gRaceSetup->mMode == 5 && func_020b32ec() != 0) {
                     gRaceGoalS->mOffsetState = 7;
                     gRaceGoalS->mOffsetStateFrames = 0;
                 } else {
@@ -143,7 +143,7 @@ void UpdateRaceGoalSOffset(void) {
             break;
         case 5:
             gRaceGoalS->mOffset = 0;
-            if (data_021759c0->mMode != 5) {
+            if (gRaceSetup->mMode != 5) {
                 return;
             }
             if (func_020b32ec() == 0) {
@@ -208,32 +208,32 @@ void InitRaceGoalS(void) {
     gRaceGoalS->mUnk_00b0 = 0;
     gRaceGoalS->mUnk_00b4 = 0;
     gRaceGoalS->mUnk_00a0 = -0x100;
-    for (j = 0; j < data_021759c0->mKartCount; j = (u16) (j + 1)) {
-        if (data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE) {
-            e = data_021759c0->mCurrentEntries[j].mPlayer.mKind;
+    for (j = 0; j < gRaceSetup->mKartCount; j = (u16) (j + 1)) {
+        if (gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE) {
+            e = gRaceSetup->mCurrentEntries[j].mPlayer.mKind;
             k = e == 0 || e == 2 || e == 3 ? 1 : 0;
             l = func_0205d360(j);
             s[j] = l * 16 + k * 8;
-            if (data_021759c0->mMode == MODE_VS || data_021759c0->mMode == 5) {
+            if (gRaceSetup->mMode == MODE_VS || gRaceSetup->mMode == 5) {
                 s[j] = s[j] + (8 - func_0205d27c(j));
             } else {
                 s[j] += 8 - j;
             }
             gRaceGoalS->mUnk_0020[j] = func_0205d360(j);
         } else {
-            e = data_021759c0->mCurrentEntries[j].mPlayer.mKind;
+            e = gRaceSetup->mCurrentEntries[j].mPlayer.mKind;
             l = e == 0 || e == 2 || e == 3 ? 1 : 0;
             k = func_0205d3f0(j);
             s[j] = k * 16 + l * 8 + 8 - func_0205d27c(j);
             gRaceGoalS->mUnk_0020[j] = func_0205d3f0(j);
         }
     }
-    for (g = 0; g < data_021759c0->mKartCount; g = (u16) (g + 1)) {
+    for (g = 0; g < gRaceSetup->mKartCount; g = (u16) (g + 1)) {
         gRaceGoalS->mUnk_0040[g] = g;
         s[g] *= -1;
     }
-    SortIndicesByKey(gRaceGoalS->mUnk_0040, s, data_021759c0->mKartCount);
-    for (j = 0; j < data_021759c0->mKartCount; j = (u16) (j + 1)) {
+    SortIndicesByKey(gRaceGoalS->mUnk_0040, s, gRaceSetup->mKartCount);
+    for (j = 0; j < gRaceSetup->mKartCount; j = (u16) (j + 1)) {
         gRaceGoalS->mUnk_0060[j] = gRaceGoalS->mUnk_0040[j];
     }
     gRaceGoalS->mOffsetState = 0;
@@ -344,7 +344,7 @@ void func_020c28dc(Unk020c06c4 *a) {
             }
             break;
     }
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         k = gRaceGoalS->mUnk_0040[i];
         v = gRaceGoalS->mUnk_0020[k];
         p = v / 100;
@@ -357,7 +357,7 @@ void func_020c28dc(Unk020c06c4 *a) {
         }
         if (gRaceGoalS->mUnk_0000[i] == 0) {
             func_020c3b6c(i, 2);
-        } else if (k == func_020b4d9c()) {
+        } else if (k == GetFollowedKartOrEntryIndex()) {
             func_020c3b6c(i, 0);
         } else {
             func_020c3b6c(i, 1);
@@ -382,7 +382,7 @@ void func_020c28dc(Unk020c06c4 *a) {
             e3[1] = t[i] << 12;
             a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400],
                                                  0x80 - a->mUnk_400, m, NULL, e3, 0, 1);
-            if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE)) {
+            if (!(gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE)) {
                 x = func_020b4b98(v) != FALSE ? 0x1a : 0x1b;
                 m = GetRaceGoalSNcerEntry(x);
                 e4[0] = (d + 0xd1) << 12;
@@ -390,16 +390,15 @@ void func_020c28dc(Unk020c06c4 *a) {
                 a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400],
                                                      0x80 - a->mUnk_400, m, NULL, e4, 0, 1);
             }
-            if (data_021759c0->mUseTeams != 0) {
-                x = data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 0 ? 0x1f : 0x20;
+            if (gRaceSetup->mUseTeams != 0) {
+                x = gRaceSetup->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 0 ? 0x1f : 0x20;
                 m = GetRaceGoalSNcerEntry(x);
                 e5[0] = (d + 0xec) << 12;
                 e5[1] = t[i] << 12;
                 a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400],
                                                      0x80 - a->mUnk_400, m, NULL, e5, 0, 1);
             }
-            if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE ||
-                  data_021759c0->mCourseNumber == 1)) {
+            if (!(gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mCourseNumber == 1)) {
                 if (gRaceGoalS->mUnk_00ac == func_020c155c || gRaceGoalS->mUnk_00ac == func_020c13e8 ||
                     gRaceGoalS->mUnk_00ac == func_020c13d0) {
                     m = GetRaceGoalSNcerEntry(gRaceGoalS->mUnk_0080[k] + 0x1c);
@@ -456,17 +455,17 @@ void func_020c2570(Unk020c06c4 *a, u32 b, s32 c, s32 d) {
     e1[1] = d << 12;
     a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
                                          NULL, e1, 0, 1);
-    if (b == func_020b4d9c()) {
-        s = data_021759c0->mCurrentEntries[b].mPlayer.mTeamIndex == 0 ? 0x1e : 0x1f;
+    if (b == GetFollowedKartOrEntryIndex()) {
+        s = gRaceSetup->mCurrentEntries[b].mPlayer.mTeamIndex == 0 ? 0x1e : 0x1f;
     } else {
-        s = data_021759c0->mCurrentEntries[b].mPlayer.mTeamIndex == 0 ? 0x1c : 0x1d;
+        s = gRaceSetup->mCurrentEntries[b].mPlayer.mTeamIndex == 0 ? 0x1c : 0x1d;
     }
     m = GetRaceGoalTeamSNcerEntry(s);
     e2[0] = c << 12;
     e2[1] = d << 12;
     a->mUnk_400 += NNS_G2dMakeCellToOams((Unk020224e0_o *) &a->mUnk_000.mUnk_00[a->mUnk_400], 0x80 - a->mUnk_400, m,
                                          NULL, e2, 0, 1);
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         return;
     }
     if (p >= 10) {
@@ -553,14 +552,14 @@ void func_020c214c(Unk020c06c4 *a) {
     for (i = 0; i < 2; i++) {
         c[i] = 0;
     }
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        k = data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex;
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
+        k = gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex;
         func_020c2570(a, i, t1[k] + (k == 0 ? -d : d), c[k] * 0x17 + 0x11);
         c[k]++;
     }
     for (i = 0; i < 2; i++) {
         f = TRUE;
-        if (!(data_021759c0->mUnk_1c == 1 || data_021759c0->mMode == MODE_BATTLE)) {
+        if (!(gRaceSetup->mUnk_1c == 1 || gRaceSetup->mMode == MODE_BATTLE)) {
             f = FALSE;
         }
         if (f != FALSE) {

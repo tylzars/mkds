@@ -200,11 +200,11 @@ int func_ov001_0218d520(Unk02188950 *a) {
     s32 *v;
 
     if (func_ov001_021881a8(a, &func_ov001_02187fc0(a)->mUnk_00, a->mPrm->mUnk_0a0, 0)) {
-        if (GetBalloonOrShineCount(data_021759c0->mEntryIndex) <= 1) {
+        if (GetBalloonOrShineCount(gRaceSetup->mEntryIndex) <= 1) {
             r4 = 0x1000 - a->mPrm->mUnk_0ac;
             t = func_ov001_02187f38(a);
             r4 = (((s64) t * r4) >> 12);
-        } else if (GetBalloonOrShineCount(data_021759c0->mEntryIndex) <= 2) {
+        } else if (GetBalloonOrShineCount(gRaceSetup->mEntryIndex) <= 2) {
             r4 = 0x1000 - a->mPrm->mUnk_0a8;
             t = func_ov001_02187f38(a);
             r4 = (((s64) t * r4) >> 12);
@@ -214,7 +214,7 @@ int func_ov001_0218d520(Unk02188950 *a) {
         if (func_ov001_02187f7c(a) >= 1) {
             func_ov001_0218d9cc(a);
         }
-        if ((data_021759c0->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) == FALSE && a->mUnk_0a8 == 0 &&
+        if ((gRaceSetup->mMode == MODE_MISSION_RUN ? IsWinnerDecided() : 0) == FALSE && a->mUnk_0a8 == 0 &&
             func_ov001_021871f8(a, 3) != 0) {
             if (func_ov001_02188084(a, a->mPrm->mUnk_120, a->mPrm->mUnk_124, a->mPrm->mUnk_128)) {
                 a->mUnk_0a8 = a->mPrm->mUnk_12c;

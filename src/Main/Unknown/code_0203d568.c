@@ -45,10 +45,10 @@ static inline s32 func_0203d568_inline(Unk0217aa00 *p) {
 static inline void func_0203d568_b_inline(void) {
     u16 i;
 
-    if (data_021759c0->mUnk_00c == 0 && GetNextSceneNumber() != 10 &&
+    if (gRaceSetup->mUnk_00c == 0 && GetNextSceneNumber() != 10 &&
         (GetNextSceneNumber() != 6 || data_0217b488->mUnk_74 != 2) && func_0203d568_inline(data_0217aa00) != 0) {
-        for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-            if (data_021759c0->mCurrentEntries[i].mPlayer.mKind == 0 &&
+        for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
+            if (gRaceSetup->mCurrentEntries[i].mPlayer.mKind == 0 &&
                 (data_0217aa00->mUnk_15f6 & (1 << data_0217aa00->mUnk_1e8c[i])) == 0) {
                 func_0204451c(i);
             }
@@ -118,7 +118,7 @@ static inline s32 func_0203df74_c_inline(CourseMapRoute *r, u16 c, s32 v) {
 }
 
 static inline void func_0203e550_inline(s32 a) {
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         FinishRaceProgressKartWithEndKind(a, 0);
     }
 }
@@ -157,10 +157,10 @@ void CompleteRaceProgressKartLap(RaceProgressKart *a) {
         func_020b1a34();
     }
     f = FALSE;
-    if (data_021759c0->mMode != MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode != MODE_MISSION_RUN) {
         f = TRUE;
     } else {
-        switch (data_021759c0->mUnk_2f) {
+        switch (gRaceSetup->mMissionKind) {
             case 2:
             case 4:
             case 6:
@@ -175,11 +175,11 @@ void CompleteRaceProgressKartLap(RaceProgressKart *a) {
         return;
     }
     a->mHighestLap = GetLapCount();
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        s = &data_021759c0->mUnk_28_view;
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        s = &gRaceSetup->mUnk_28_view;
         g = TRUE;
         t = GetEntryKartCounters();
-        switch (s->mUnk_07) {
+        switch (s->mMissionKind) {
             case 4:
                 if (s->mUnk_0f > (u32) t->mUnk_04) {
                     g = FALSE;
@@ -197,7 +197,7 @@ void CompleteRaceProgressKartLap(RaceProgressKart *a) {
             FinishRaceProgressKartWithEndKind(a->mIndex, 4);
         }
     } else {
-        if ((a->mFlags & 1) == 0 && data_021759c0->mMode == 5) {
+        if ((a->mFlags & 1) == 0 && gRaceSetup->mMode == 5) {
             return;
         }
         a->mFlags |= 0x40;
@@ -212,7 +212,7 @@ void func_0203e4c4(u32 a, u32 b) {
     c = b != 0 ? 1 : 2;
     e->mUnk_3c = (e->mUnk_3c & ~0x300) | ((c & 3) << 8);
     if (gRaceProgress->mUnk_000[0].mFinishedCount + gRaceProgress->mUnk_000[0].mRemovedCount >=
-        data_021759c0->mKartCount) {
+        gRaceSetup->mKartCount) {
         FinishRaceProgress();
     }
 }
@@ -323,9 +323,9 @@ void UpdateRaceProgressKarts(void) {
     u16 g;
     RaceProgressKart *s;
 
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         e = &gRaceProgress->mKarts[i];
-        if (e->mStatus != 4 && data_021759c0->mUnk_00c != 6) {
+        if (e->mStatus != 4 && gRaceSetup->mUnk_00c != 6) {
             for (k = 0; k < 16; k++) {
                 e->mCheckpointTestedBits[k] = 0;
             }
@@ -349,11 +349,11 @@ void UpdateRaceProgressKarts(void) {
             a[i] = e->mRaceProgress;
         }
     }
-    if (data_021759c0->mKartCount > 1) {
+    if (gRaceSetup->mKartCount > 1) {
         p = gRaceProgress;
-        y = data_021759c0->mKartCount - p->mUnk_000[0].mRemovedCount;
+        y = gRaceSetup->mKartCount - p->mUnk_000[0].mRemovedCount;
         x = p->mUnk_000[0].mFinishedCount;
-        for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+        for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
             h = p->mUnk_000[i].mUnk_50_0 - 1;
             b[h] = a[i];
             d[h] = i;
@@ -371,13 +371,13 @@ void UpdateRaceProgressKarts(void) {
             b[n] = q;
             d[n] = u;
         }
-        for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+        for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
             if (d[i] < 8) {
                 gRaceProgress->mKarts[d[i]].mRank = i + 1;
             }
         }
         gRaceProgress->mUnk_000[d[0]].mFirstPlaceFrames++;
-        for (g = 0; g < (u32) data_021759c0->mKartCount; g++) {
+        for (g = 0; g < (u32) gRaceSetup->mKartCount; g++) {
             gRaceProgress->mKartAtRank[g] = d[g];
         }
         for (; g < 8; g++) {
@@ -392,7 +392,7 @@ void UpdateRaceProgressKarts(void) {
         }
     }
     f = FALSE;
-    switch (data_021759c0->mUnk_00c) {
+    switch (gRaceSetup->mUnk_00c) {
         case 1:
         case 2:
         case 6:
@@ -405,7 +405,7 @@ void UpdateRaceProgressKarts(void) {
             break;
     }
     gRaceProgress->mUnk_4f0 = f;
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         s = &gRaceProgress->mKarts[i];
         f = FALSE;
         switch (s->mStatus) {
@@ -418,7 +418,7 @@ void UpdateRaceProgressKarts(void) {
         if (f == FALSE && (s->mFlags & 0x40) != 0) {
             FinishRaceProgressKart(s, 1);
             if (IsRaceEndConditionMet() != 0) {
-                switch (data_021759c0->mMode) {
+                switch (gRaceSetup->mMode) {
                     case MODE_TIME_ATTACK:
                         break;
                     case MODE_BATTLE:
@@ -439,7 +439,7 @@ void UpdateRaceProgressKarts(void) {
         }
         if ((s->mFlags & 8) != 0) {
             s->mFlags &= ~8;
-            if (data_021759c0->mMode != MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode != MODE_MISSION_RUN) {
                 func_0207a828(s->mIndex);
                 if ((s->mFlags & 1) != 0) {
                     func_02110cc8(0);
@@ -456,8 +456,8 @@ void SetRankTimeFromRankTimeGp(RankTimeGp *a) {
     gRaceProgress->mUnk_000[0].mRankTime = 0;
     for (i = 0; i < a->mEntryCount; i++) {
         e = &a->mUnk_1c[i];
-        if (e->mCourseId == data_021759c0->mCourseId) {
-            switch (data_021759c0->mUnk_010) {
+        if (e->mCourseId == gRaceSetup->mCourseId) {
+            switch (gRaceSetup->mEngineIndex) {
                 case 0:
                     gRaceProgress->mUnk_000[0].mRankTime = e->mUnk_02;
                     return;
@@ -479,7 +479,7 @@ void CreateRaceProgress(void *a) {
     gRaceProgress->mRankPointFile = FindMainRaceOrMainEffectFile(data_usa_021647b8);
     gRaceProgress->mRankTimeGpFile = FindMainRaceOrMainEffectFile(data_usa_021647c8);
     SetRankTimeFromRankTimeGp(gRaceProgress->mRankTimeGpFile);
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_0205e2cc(a);
     }
     InitRaceProgress();
@@ -496,7 +496,7 @@ void func_0203d568(void) {
             CARD_WaitBackupAsync();
         }
     }
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_VS:
             func_0203d568_b_inline();
             break;
@@ -507,8 +507,8 @@ void func_0203d568(void) {
             func_0203d568_b_inline();
             break;
     }
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        k = data_021759c0->mCurrentEntries[i].mPlayer.mIndex;
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
+        k = gRaceSetup->mCurrentEntries[i].mPlayer.mIndex;
         func_0204a928(&data_02175628[k].mUnk_28);
     }
 }

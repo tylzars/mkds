@@ -71,7 +71,7 @@ void GetCourseMapStartPlacementWithOffsets(Vec3 *a, Vec3 *b, s32 c, s32 d, s32 e
 // Position and rotation of the start spot of kart c by mode: a staggered grid by rank in a race, by key
 // (kart + mStartPlacementOffset) % 8 in battle.
 void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
-    u16 i = data_021759c0->mKartCount - 1;
+    u16 i = gRaceSetup->mKartCount - 1;
     s32 j = (u16) (func_0205d27c(c) - 1);
     s32 k;
     s32 l;
@@ -79,11 +79,11 @@ void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
     s32 t;
     s32 d;
 
-    if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 6) {
         GetCourseMapStartPlacementWithOffsets(a, b, 0, 0, 0);
         return;
     }
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_BATTLE:
             GetCourseMapStartPlacementWithOffsets(a, b, (u16) ((j + gRaceProgress->mStartPlacementOffset) % 8), 0, 0);
             break;
@@ -91,7 +91,7 @@ void GetCourseMapKartStartPlacement(Vec3 *a, Vec3 *b, s32 c) {
             GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);
             break;
         case MODE_MISSION_RUN:
-            if (data_021759c0->mKartCount <= 1) {
+            if (gRaceSetup->mKartCount <= 1) {
                 GetCourseMapStartPlacementWithOffsets(a, b, 0, 0x800, 0);
             } else {
                 GetCourseMapStartPlacementWithOffsets(a, b, c, (1 - c * 2) * 0x14000 + 0x800, 0);
@@ -356,7 +356,7 @@ u16 GetCourseMapRespawnSlot(u32 a) {
     u16 r;
     CourseMap *p;
 
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         p = gCourseMap;
         r = p->mNextRespawnSlot;
         p->mNextRespawnSlot = (r + 1) % p->mRespawnCount;

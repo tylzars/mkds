@@ -65,7 +65,7 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
             v1 = p->mState;
             if (v1 == 0 || v1 == 3) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if (data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind != 2) {
+                if (gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind != 2) {
                     if ((p->mUnk_00.mDistanceSquaredAndFlags & 4) == 0) {
                         if (p->mUnk_00.mFarDistanceSquared == gSoundFalloffs[2].mUnk_20) {
                             t = 2;
@@ -86,7 +86,7 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
             }
             if (g == 1 && (v1 == 4 || (v1 == 5 && p->mUnk_a0 > 0x7800) || v1 == 1)) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == data_021759c0->mEntryIndex) {
+                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == gRaceSetup->mEntryIndex) {
                     p->mUnk_104 = 1;
                     p->mUnk_b4 = p->mUnk_a0;
                     p->mUnk_b8 = p->mUnk_a4;
@@ -105,13 +105,13 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                     p->mUnk_fc = 0x800;
                     p->mUnk_100 = 0x100;
                     func_020d26f8(&p->mUnk_00, a);
-                    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+                    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                         v.x = (p->mUnk_00.mPos.x + a->mPos.x) >> 1;
                         v.y = (p->mUnk_00.mPos.y + a->mPos.y) >> 1;
                         v.z = (p->mUnk_00.mPos.z + a->mPos.z) >> 1;
                         StartEffect(0x442, &v);
                         StartEffect(0x443, &v);
-                        if (data_021759c0->mMode == MODE_MISSION_RUN) {
+                        if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                             func_ov001_0218175c(p->mUnk_00.mKind);
                         }
                     }
@@ -130,7 +130,7 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
             }
             if (v1 == 1) {
                 p->mUnk_108 = p->mUnk_108 | m;
-                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == data_021759c0->mEntryIndex) {
+                if ((p->mUnk_00.mFlags & 0x800) == 0 || a->mIndex == gRaceSetup->mEntryIndex) {
                     p->mUnk_104 = 1;
                     p->mUnk_b4 = p->mUnk_a0;
                     p->mUnk_b8 = p->mUnk_a4;
@@ -368,7 +368,7 @@ void InitCoverPooHoleObjects(Unk020968f4 *p) {
         v1->mUnk_00 = (s64) v1->mUnk_08 * (s64) v1->mUnk_00 + v1->mUnk_10;
         o->mTimer =
             (u16) (o->mUnk_00.mCourseMapRow->mUnk_28 + (u16) (((u64) (u32) (v1->mUnk_00 >> 32) * 60) >> 32) - 30);
-        if (data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN) {
             o->mState = 3;
             o->mUnk_a0 = 0x2000;
             o->mUnk_a4 = -0xd000;
@@ -505,7 +505,7 @@ void UpdateCoverPooHole(void *a, CoverPooHole *p) {
             break;
     }
     if ((p->mState == 6 || p->mState == 7) && p->mUnk_104 == 0) {
-        if (data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN) {
             p->mState = 3;
             p->mUnk_a0 = 0x2000;
             p->mUnk_a4 = -0xd000;
@@ -588,7 +588,7 @@ void UpdateCoverPooHole(void *a, CoverPooHole *p) {
                 return;
             }
             p->mTimer = (u16) (p->mUnk_00.mCourseMapRow->mUnk_28 + func_02095fec_inline(60) - 30);
-            if (data_021759c0->mMode == MODE_MISSION_RUN) {
+            if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                 p->mState = 3;
                 p->mUnk_a0 = 0x2000;
                 p->mUnk_a4 = -0xd000;

@@ -40,7 +40,7 @@ void func_02086a04(void) {
     u16 n;
     s32 j;
     q = func_020d50e0();
-    for (i = 0; i < data_021759c0->mKartCount; i++) {
+    for (i = 0; i < gRaceSetup->mKartCount; i++) {
         GetKart(i);
         data_0217aed0->mUnk_0e4[i] = 0;
         p = GetKart(i);
@@ -58,7 +58,7 @@ void func_02086a04(void) {
         e = v24.x * v24.x + v24.y * v24.y + v24.z * v24.z;
         data_0217aed0->mUnk_124[i] = e;
         data_0217aed0->mUnk_0a4[(u16) (data_0217aed0->mUnk_024[p->mIndex] + data_0217aed0->mUnk_084[p->mIndex])] = e;
-        if (p->mIndex != data_021759c0->mEntryIndex) {
+        if (p->mIndex != gRaceSetup->mEntryIndex) {
             a = TRUE;
             if (e > gSoundFalloffs[0].mUnk_20) {
                 a = FALSE;
@@ -106,7 +106,7 @@ void func_02086a04(void) {
     }
     if (func_02061818() != 3) {
         n = 0;
-        for (j = data_0217aed0->mUnk_074[data_021759c0->mEntryIndex] + 1; j < data_021759c0->mKartCount; j++) {
+        for (j = data_0217aed0->mUnk_074[gRaceSetup->mEntryIndex] + 1; j < gRaceSetup->mKartCount; j++) {
             Unk02086250 *t;
             t = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[j]];
             if (t != NULL) {
@@ -118,7 +118,7 @@ void func_02086a04(void) {
         }
     } else {
         n = 0;
-        for (j = 0; j < data_021759c0->mKartCount; j++) {
+        for (j = 0; j < gRaceSetup->mKartCount; j++) {
             Unk02086250 *t;
             t = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[j]];
             if (t != NULL) {
@@ -170,7 +170,7 @@ void func_0208677c(void) {
             }
         }
         if (data_0217aed0->mUnk_0e4[p->mUnk_0c] != 0 || (GetKart(p->mUnk_0c)->mUnk_7c & 0x402020) != 0 ||
-            (func_020738f8(w->y - GetKart(data_021759c0->mEntryIndex)->mPos.y) > 0x96000 && func_02061818() != 3)) {
+            (func_020738f8(w->y - GetKart(gRaceSetup->mEntryIndex)->mPos.y) > 0x96000 && func_02061818() != 3)) {
             p->mUnk_20 = -1;
         }
         if (p->mUnk_18 != FALSE) {
@@ -212,7 +212,7 @@ void func_020866b4(void) {
     s32 y;
     u16 u;
     a = data_0217aed0->mUnk_054;
-    for (i = 1; (u32) i < data_021759c0->mKartCount; i++) {
+    for (i = 1; (u32) i < gRaceSetup->mKartCount; i++) {
         j = i - 1;
         x = a[j];
         y = a[i];
@@ -240,7 +240,7 @@ void func_020865ec(void) {
     u32 y;
     u16 u;
     a = data_0217aed0->mUnk_0a4;
-    for (i = 1; (u32) i < data_021759c0->mKartCount; i++) {
+    for (i = 1; (u32) i < gRaceSetup->mKartCount; i++) {
         j = i - 1;
         x = a[j];
         y = a[i];
@@ -278,7 +278,7 @@ void func_02086250(MtxFx43 *a) {
     G3_LoadMtx44(&data_0217aee0);
     reg_G3_MTX_MODE = 3;
     reg_G3_MTX_IDENTITY = 0;
-    for (i = data_021759c0->mKartCount - 1; i >= 0; i--) {
+    for (i = gRaceSetup->mKartCount - 1; i >= 0; i--) {
         p = data_0217aed0->mUnk_000[data_0217aed0->mUnk_044[i]];
         if (p == NULL) {
             continue;

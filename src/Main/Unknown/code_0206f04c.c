@@ -73,7 +73,7 @@ void func_0206ff50(Kart *p, u32 a) {
             return;
         }
         b = (u16) ((func_020d59f8(0x8000) & 0xe0) >> 5);
-        h = data_021759c0->mMode;
+        h = gRaceSetup->mMode;
         if (h == MODE_BATTLE || h == MODE_MISSION_RUN) {
             func_020705fc(p, b);
             return;
@@ -85,13 +85,13 @@ void func_0206ff50(Kart *p, u32 a) {
     if (!(p->mUnk_48 & 0x800)) {
         p->mUnk_48 |= 0x800;
         k = p->mIndex;
-        if (data_021759c0->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mMode == MODE_BATTLE) {
             c = GetCourseMapRespawnSlot(0);
         } else {
             c = GetCourseMapRespawnSlot(gRaceProgress->mUnk_000[k].mCheckpoint);
         }
         p->mRespawnSlot = c;
-        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mCourseId == COURSE_ID_RAINBOW &&
+        if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mCourseId == COURSE_ID_RAINBOW &&
             (data_0217c780 & 1)) {
             d = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {

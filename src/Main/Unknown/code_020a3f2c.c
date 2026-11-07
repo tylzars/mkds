@@ -117,7 +117,7 @@ u32 func_020a6ae4(Shine16 *p, Kart *o, u8 *a, u8 *b) {
         p->mUnk_ca = o->mIndex;
         func_020a10ac(o->mIndex, 1);
         AddBalloonOrShineCountAndMoveRank(o->mIndex, 1);
-        r = o->mIndex == data_021759c0->mEntryIndex ? 1 : 0;
+        r = o->mIndex == gRaceSetup->mEntryIndex ? 1 : 0;
         c = GetHighestBalloonOrShineCount();
         n = GetBalloonOrShineCount(o->mIndex);
         func_0210b98c(p->mUnk_00.mSound, func_02024974(0, r, c, n));
@@ -652,7 +652,7 @@ void func_020a5608(Kart *a, Kart *b) {
     p->mUnk_dc = 0;
     p->mUnk_c4 = -1;
     AddShineCount(1);
-    r = a->mIndex == data_021759c0->mEntryIndex ? 1 : 0;
+    r = a->mIndex == gRaceSetup->mEntryIndex ? 1 : 0;
     c = GetHighestBalloonOrShineCount();
     n = GetBalloonOrShineCount(a->mIndex);
     func_0210b98c(p->mUnk_00.mSound, func_02024974(1, r, c, n));
@@ -682,7 +682,7 @@ BOOL func_020a5268(u16 a, u16 b) {
             }
         }
         if (l != NULL) {
-            if (a == data_021759c0->mEntryIndex) {
+            if (a == gRaceSetup->mEntryIndex) {
                 func_020a2ebc(l, NULL);
             } else {
                 v.x = o->mPos.x;
@@ -798,7 +798,7 @@ s32 func_020a4f54(u16 a, u16 b) {
             v1->mState = 4;
         }
     }
-    if (a == data_021759c0->mEntryIndex || b == data_021759c0->mEntryIndex) {
+    if (a == gRaceSetup->mEntryIndex || b == gRaceSetup->mEntryIndex) {
         s.mUnk_00 = 0x14f;
         s.mUnk_04 = NULL;
         s.mUnk_08 = 2;
@@ -830,7 +830,7 @@ BOOL func_020a4d94(u16 a, u16 b) {
     if (l != NULL) {
         o = GetKart(a);
         GetStandingsKartBalloons();
-        if (a == data_021759c0->mEntryIndex) {
+        if (a == gRaceSetup->mEntryIndex) {
             func_020a2ebc(l, NULL);
         } else {
             v.x = o->mPos.x;
@@ -856,7 +856,7 @@ void func_020a4c58(u16 a) {
     Balloon *f;
     Balloon *l;
 
-    if (data_021759c0->mMode != MODE_BATTLE) {
+    if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
     func_020a4d94(a, a);
@@ -883,7 +883,7 @@ void func_020a4c58(u16 a) {
 }
 
 void func_020a4c20(void) {
-    if (data_021759c0->mMode != MODE_BATTLE) {
+    if (gRaceSetup->mMode != MODE_BATTLE) {
         return;
     }
     func_020a305c();
@@ -917,7 +917,7 @@ void func_020a4b70(u16 a, Vec3 *b) {
 // frame indices, offsets and start timer, sets Standings.mKartBalloons and registers the callbacks in Standings (four
 // hit callbacks, the kart-eliminated and the end callback). If kind 0x6c already exists it parks itself instead.
 void InitKartBalloons(Unk020a3fa8 *a) {
-    Unk021759c0 *d;
+    RaceSetup *d;
     s32 n;
     s32 i;
     KartBalloons *p;
@@ -926,7 +926,7 @@ void InitKartBalloons(Unk020a3fa8 *a) {
     s32 v;
 
     if (CountMapObjectsOfKind(MAP_OBJECT_KIND_BALLOON) == 0) {
-        d = data_021759c0;
+        d = gRaceSetup;
         n = d->mKartCount;
         if (d->mMode == MODE_BATTLE) {
             CreateParkedMapObjects(MAP_OBJECT_KIND_BALLOON, 0x20, a);
@@ -938,7 +938,7 @@ void InitKartBalloons(Unk020a3fa8 *a) {
             if (a->mUnk_000.mCourseMapRow->mUnk_2c != 0) {
                 p->mBalloonNsbtpFrameIndex = a->mUnk_000.mCourseMapRow->mUnk_2c;
             } else {
-                switch (data_021759c0->mCurrentEntries[(u16) i].mPlayer.mTeamIndex) {
+                switch (gRaceSetup->mCurrentEntries[(u16) i].mPlayer.mTeamIndex) {
                     case 0:
                         p->mBalloonNsbtpFrameIndex = 1;
                         break;
@@ -990,7 +990,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
     Vec3 t2;
     Vec3 *q;
 
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     if (c->mStartTimer > 0) {
         c->mStartTimer--;
         if (c->mStartTimer > 0) {
@@ -1115,7 +1115,7 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
         } else if (e->mRemainingSpawnCount <= 0) {
             e->mState = 0;
         }
-        if (i == data_021759c0->mEntryIndex) {
+        if (i == gRaceSetup->mEntryIndex) {
             if (func_020a2264(i) > 0 || func_020a223c(i) > 0) {
                 s = GetBalloonOrShineCount(i) >= 3 ? 600 : 300;
                 d = GetBalloonOrShineCount(i) >= 3 ? 200 : 100;
@@ -1191,10 +1191,10 @@ void UpdateKartBalloons(void *b, Unk020a3fa8 *c) {
 }
 
 u32 func_020a3f48(void) {
-    Unk021759c0 *d;
+    RaceSetup *d;
     s32 k;
 
-    d = data_021759c0;
+    d = gRaceSetup;
     k = d->mMode;
     if (k == MODE_BATTLE && d->mUnk_18 == 0) {
         return CreateEmptyMapObjectKindData();

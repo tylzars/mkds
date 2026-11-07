@@ -125,7 +125,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     if (a->mKindData->mUnk_3c == 0) {
                         a->mKindData->mUnk_3c = -0x64000;
                     }
-                    if (data_021759c0->mUnk_00c == 2) {
+                    if (gRaceSetup->mUnk_00c == 2) {
                         if (a->mKindData->mUnk_38 < 0x44c000) {
                             a->mKindData->mUnk_38 = 0x44c000;
                         }
@@ -321,7 +321,7 @@ void InitMapObjects(void) {
     gMapObjects->mUnk_130 = FALSE;
     gMapObjects->mUnk_178 = FALSE;
     v = 0;
-    if (data_021759c0->mMode != 5) {
+    if (gRaceSetup->mMode != 5) {
         v = 1;
     }
     gMapObjects->mRunUpdateLists = v;
@@ -346,7 +346,7 @@ void InitMapObjects(void) {
     } while (data_0217b4ec < 0x85);
     gGrpconfTbl = FindMainRaceOrMainEffectFile("MapObj/grpconf.tbl");
     v = 1;
-    if (data_021759c0->mMode != MODE_TIME_ATTACK && data_021759c0->mMode != 5) {
+    if (gRaceSetup->mMode != MODE_TIME_ATTACK && gRaceSetup->mMode != 5) {
         v = 0;
     }
     data_0217b4e0 = v;
@@ -369,7 +369,7 @@ void InitMapObjects(void) {
     }
     for (i = 0; i < n; i++) {
         e = OFFSET_PTR(CourseMapRow, gCourseMap->mRows, i * sizeof(CourseMapRow));
-        if (data_021759c0->mMode == MODE_TIME_ATTACK && (e->mUnk_38 & 1) == 0) {
+        if (gRaceSetup->mMode == MODE_TIME_ATTACK && (e->mUnk_38 & 1) == 0) {
             continue;
         }
         CreateMapObject(e->mUnk_24, e, NULL);

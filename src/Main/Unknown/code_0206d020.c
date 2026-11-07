@@ -381,7 +381,7 @@ void func_0206d18c(Kart *p) {
             StartKartBoost(p, r, 0x5a);
             p->mUnk_48 |= 0x100000;
             p->mUnk_538.mUnk_00 = 0x5a;
-            if (data_021759c0->mMode == MODE_BATTLE) {
+            if (gRaceSetup->mMode == MODE_BATTLE) {
                 func_020a1ddc(p->mIndex);
             }
             break;
@@ -412,7 +412,7 @@ void func_0206d18c(Kart *p) {
                     p->mUnk_514->mUnk_2c ^= 0x4000;
                 }
             } else {
-                while (i < data_021759c0->mKartCount) {
+                while (i < gRaceSetup->mKartCount) {
                     if (i != p->mIndex) {
                         func_0206a624(GetKart(i));
                     }
@@ -424,10 +424,10 @@ void func_0206d18c(Kart *p) {
             func_02104ee0((Unk02104c68 *) e, p);
             break;
     }
-    if (r != 0 && data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (r != 0 && gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_0207a70c(p->mIndex);
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         func_020a1e40(p->mIndex, e);
     }
     if (func_020f9880(e) == 0) {
@@ -442,12 +442,12 @@ void func_0206d18c(Kart *p) {
         return;
     }
     i = (u16) ((e->mUnk_78 & 0x8000) == 0 ? (u16) (e->mUnk_78 & ~0xff00) : 8);
-    if (i >= data_021759c0->mKartCount) {
+    if (i >= gRaceSetup->mKartCount) {
         return;
     }
     q = GetKart(i);
     if (q->mIndex != p->mIndex && r != 0) {
-        if (data_021759c0->mMode != MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode != MODE_MISSION_RUN) {
             func_0207a70c(i);
         }
         if (!(q->mUnk_48 & 0x840)) {

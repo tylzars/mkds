@@ -62,7 +62,7 @@ void func_0210f5d4(u32 a) {
         }
     }
     t = 0;
-    if (v == 1 && data_021759c0->mMode != MODE_MISSION_RUN) {
+    if (v == 1 && gRaceSetup->mMode != MODE_MISSION_RUN) {
         t = 3;
     }
     data_0217d1c0[0].mUnk_04 = t;

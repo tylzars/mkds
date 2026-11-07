@@ -7,7 +7,7 @@ void func_020467a0(void) {
     u32 value0;
     u32 value1;
     func_0205db50();
-    value0 = (u32) &data_021759c0;
+    value0 = (u32) &gRaceSetup;
     value1 = 1u;
     value0 = *(const u32 *) ((value0) + (0));
     value0 = (value0) + (0x200u);

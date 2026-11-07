@@ -319,7 +319,7 @@ u32 func_020ae15c(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_021759c0;
+    value2 = (u32) &gRaceSetup;
     value1 = 0x30u;
     value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -338,7 +338,7 @@ u32 GetKartEntryName(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_021759c0;
+    value2 = (u32) &gRaceSetup;
     value1 = 0x30u;
     value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -347,14 +347,14 @@ u32 GetKartEntryName(u32 arg0) {
 }
 
 u32 func_020ae0e4(void) {
-    return (data_021759c0->mMode);
+    return (gRaceSetup->mMode);
 }
 
 u32 func_020ae0c8(u32 arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_021759c0;
+    value2 = (u32) &gRaceSetup;
     value1 = 0x30u;
     value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);
@@ -366,7 +366,7 @@ int func_020ae0ac(int arg0) {
     u32 value0 = arg0;
     u32 value1;
     u32 value2;
-    value2 = (u32) &data_021759c0;
+    value2 = (u32) &gRaceSetup;
     value1 = 0x30u;
     value2 = *(const u32 *) ((value2) + (0));
     value1 = (value0) * (value1) + (value2);

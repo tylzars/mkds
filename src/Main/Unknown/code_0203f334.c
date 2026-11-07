@@ -40,7 +40,7 @@ void UpdateRaceClock(void) {
             l = h;
             f = TRUE;
         }
-        if (data_021759c0->mMode == 5 && e > 0x4650) {
+        if (gRaceSetup->mMode == 5 && e > 0x4650) {
             k = data_0217aa18->mUnk_06[func_ov000_0219bb50()];
             if (k >= 0) {
                 g = FALSE;
@@ -54,7 +54,7 @@ void UpdateRaceClock(void) {
                 if (g == FALSE) {
                     FinishRaceProgressKart(&gRaceProgress->mKarts[k], 0);
                     if (IsRaceEndConditionMet() != 0) {
-                        switch (data_021759c0->mMode) {
+                        switch (gRaceSetup->mMode) {
                             case MODE_TIME_ATTACK:
                                 break;
                             case MODE_BATTLE:
@@ -81,7 +81,7 @@ void UpdateRaceClock(void) {
             t = 1;
         }
         p->mUnk_000[0].mElapsedFrames = e;
-        for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+        for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
             v = gRaceProgress->mUnk_000[i].mLapFrames;
             if (v <= 0x57e40) {
                 v++;
@@ -89,16 +89,16 @@ void UpdateRaceClock(void) {
             gRaceProgress->mUnk_000[i].mLapFrames = v;
         }
         if (t != 0) {
-            switch (data_021759c0->mMode) {
+            switch (gRaceSetup->mMode) {
                 case MODE_MISSION_RUN:
-                    FinishRaceProgressKartWithEndKind((u16) data_021759c0->mEntryIndex, 1);
+                    FinishRaceProgressKartWithEndKind((u16) gRaceSetup->mEntryIndex, 1);
                     g = data_0217d084.mUnk_04 == 2 || data_0217d084.mUnk_04 == 3;
                     if (g) {
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x4a);
                     }
                     break;
                 case MODE_BATTLE:
-                    if (data_021759c0->mUnk_18 == 1) {
+                    if (gRaceSetup->mUnk_18 == 1) {
                         gRaceProgress->mTimeLimitFrameCount = func_020a1520() * 0x3c;
                         p->mUnk_000[0].mElapsedFrames = 0;
                     }
@@ -187,7 +187,7 @@ BOOL TryGetKartCheckpointProgress(RaceProgressKart *a, s32 *b, Vec3 *c, u16 d, u
                 *b = ComputeProgressBetweenCheckpoints(c, e, gCourseMap->mCheckpointRoutes[(u16) k].mFirstEntry);
                 if (*b >= -2 && *b <= 0x1002) {
                     if ((gCourseMap->mCheckpoints[e].mUnk_23 & 1) != 0) {
-                        if (data_021759c0->mMode == 5) {
+                        if (gRaceSetup->mMode == 5) {
                             *b = 0x1000 - (func_ov000_0219bb50() + 1) * 0x190;
                         } else {
                             *b = 0x1000 - ((u32) (a->mUnk_3c << 28) >> 28) * 0x190;

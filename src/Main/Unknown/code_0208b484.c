@@ -46,12 +46,12 @@ void func_0208b934(void *a) {
     u8 j;
     Vec3 w;
     Vec3 v;
-    Unk021759c0 *d;
+    RaceSetup *d;
     Vec3 *q;
 
     *(u32 *) &data_0217b050 = (u32) func_0208b484;
     if (GetCurrentSceneNumber() == 2) {
-        d = data_021759c0;
+        d = gRaceSetup;
         if (d->mMode == MODE_MISSION_RUN) {
             *(u32 *) &data_0217b050 = (u32) func_0208b458;
             c = data_0217aa10->mUnk_a4;
@@ -80,7 +80,7 @@ void func_0208b934(void *a) {
     if (GetCurrentSceneNumber() != 2) {
         return;
     }
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         t = NULL;
         data_0217b03c = SPLManager_New((void *(*) (u32)) func_0208bd04, 0x32, 0xc8, 3, 0xe, 0x1e);
         func_02048590(data_usa_02166168, c, &t);
@@ -95,13 +95,13 @@ void func_0208b934(void *a) {
         data_0217b03c->mUnk_38_24 = 1;
     }
     InitKartTurnEffects(a);
-    if (data_021759c0->mCourseId != COURSE_ID_RAINBOW) {
+    if (gRaceSetup->mCourseId != COURSE_ID_RAINBOW) {
         data_0217b044->mUnk_3c = 0x8000;
     } else {
         data_0217b044->mUnk_3c = 0;
     }
     InitCourseCameraEffects();
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_STADIUM:
             w = data_usa_021660fc;
             data_0217b048 = HeapAlloc(c, 0x64);

@@ -85,10 +85,10 @@ void SetupCameraBehindKart(void) {
     Vec3 u;
     s32 t;
 
-    q = GetKart(data_021759c0->mEntryIndex);
+    q = GetKart(gRaceSetup->mEntryIndex);
     SetupCamera(gChaseCamera);
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        if (data_021759c0->mUnk_044 & 0x20) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mUnk_044 & 0x20) {
             gChaseCamera->mFollowDirectionSign = -0x1000;
         }
     }
@@ -270,7 +270,7 @@ void UpdateChaseCameraCollision(Camera *a, Kart *b, Vec3 *c) {
                 m = FALSE;
             }
         } else if (j & 0x1e34ef) {
-            if (data_021759c0->mMode != MODE_BATTLE || VEC_DotProduct(&data_usa_02154fc4, &w) < 0xfae ||
+            if (gRaceSetup->mMode != MODE_BATTLE || VEC_DotProduct(&data_usa_02154fc4, &w) < 0xfae ||
                 a->mPos.y - b->mPos.y < data_usa_0217ac7c) {
                 VEC_Add(&v, &a->mPos, &a->mPos);
             }
@@ -348,11 +348,11 @@ void StartEntryCameraKind6Entry(void) {
     p->mShakeKind = q->mShakeKind;
     if ((s16) q->mEntryGroupIndex != -1) {
         SetupPosCurve(&p->mPosCurve, q);
-        if (data_021759c0->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mMode == MODE_BATTLE) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
-    if (IsKartEnded(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
+    if (IsKartEnded(GetKart(gRaceSetup->mEntryIndex)->mIndex) != 0) {
         r = &gRaceProgress->mLocalRandom;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     }
@@ -395,11 +395,11 @@ void func_02075d08(s32 a) {
     p->mShakeKind = q->mShakeKind;
     if ((s16) q->mEntryGroupIndex != -1) {
         SetupPosCurve(&p->mPosCurve, q);
-        if (data_021759c0->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mMode == MODE_BATTLE) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
-    if (IsKartEnded(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
+    if (IsKartEnded(GetKart(gRaceSetup->mEntryIndex)->mIndex) != 0) {
         r = &gRaceProgress->mLocalRandom;
         r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     }
@@ -430,7 +430,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
 
     p->mPrevPos = p->mPos;
     gEntryCameraUpdateRan = 1;
-    if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 6) {
         func_02074b00(p);
         return TRUE;
     }
@@ -445,7 +445,7 @@ BOOL TryUpdateEntryCamera(Camera *p) {
     GetKartPos(&v, p->mFollowedKartIndex);
     i = GetCourseMapCameraIndexAtPos(&v);
     if (p->mKind6EntryRunning != FALSE) {
-        if (data_021759c0->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mMode == MODE_BATTLE) {
             UpdateCameraByEntryKind(p);
             return TRUE;
         }
@@ -470,11 +470,11 @@ BOOL TryUpdateEntryCamera(Camera *p) {
                 p->mShakeKind = q->mShakeKind;
                 if ((s16) q->mEntryGroupIndex != -1) {
                     SetupPosCurve(&p->mPosCurve, q);
-                    if (data_021759c0->mMode == MODE_BATTLE) {
+                    if (gRaceSetup->mMode == MODE_BATTLE) {
                         func_0207bd6c(&p->mUnk_1d0, q);
                     }
                 }
-                if (IsKartEnded(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
+                if (IsKartEnded(GetKart(gRaceSetup->mEntryIndex)->mIndex) != 0) {
                     b = &gRaceProgress->mLocalRandom;
                     b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
                 }
@@ -492,7 +492,7 @@ void UpdateCameraByEntryKind(Camera *p) {
     switch (p->mCourseMapCamera->mKind) {
         case 0:
             p->mPos = p->mCourseMapCamera->mUnk_00;
-            if (data_021759c0->mUnk_00c == 5) {
+            if (gRaceSetup->mUnk_00c == 5) {
                 p->mFollowedKartIndex = (p->mCourseMapCamera->mUnk_24.z >> 12) - 1;
                 GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
                 p->mLookAt.y = p->mLookAt.y + p->mCourseMapCamera->mUnk_18.y;
@@ -562,11 +562,11 @@ void StartEntryCameraKind8Entry(void) {
     p->mShakeKind = q->mShakeKind;
     if ((s16) q->mEntryGroupIndex != -1) {
         SetupPosCurve(&p->mPosCurve, q);
-        if (data_021759c0->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mMode == MODE_BATTLE) {
             func_0207bd6c(&p->mUnk_1d0, q);
         }
     }
-    if (IsKartEnded(GetKart(data_021759c0->mEntryIndex)->mIndex) != 0) {
+    if (IsKartEnded(GetKart(gRaceSetup->mEntryIndex)->mIndex) != 0) {
         b = &gRaceProgress->mLocalRandom;
         b->mUnk_00 = b->mUnk_08 * b->mUnk_00 + b->mUnk_10;
     }
@@ -592,7 +592,7 @@ static inline void func_02075424_inline(Camera *p) {
     if ((s16) q->mEntryGroupIndex != -1) {
         SetupPosCurve(&p->mPosCurve, q);
     }
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         func_0208e808(q->mShakeKind != 0);
     }
     gCameraEntryChanged = 1;
@@ -658,7 +658,7 @@ void UpdateCameraEntry(Camera *p) {
 
 void UpdateCameraPosCurveLookAtKart(Camera *p) {
     UpdateCameraPosCurve(p, p->mCourseMapCamera->mPosCurvePerFrame);
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         p->mFollowedKartIndex = (p->mCourseMapCamera->mUnk_24.z >> 12) - 1;
         GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
         p->mLookAt.y = p->mLookAt.y + p->mCourseMapCamera->mUnk_18.y;
@@ -694,7 +694,7 @@ void UpdateCameraAngleEntry(Camera *p) {
     s32 k;
     s32 l;
 
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         p->mFollowedKartIndex = (q->mUnk_24.z >> 12) - 1;
         GetKartPos(&p->mLookAt, p->mFollowedKartIndex);
         p->mLookAt.y = p->mLookAt.y + p->mCourseMapCamera->mUnk_18.y;
@@ -738,7 +738,7 @@ void UpdateCameraAngleEntry(Camera *p) {
     VEC_Add(&p->mPos, &n, &p->mLookAt);
     p->mLookAt.y = p->mLookAt.y - o->mHopHeight;
     p->mPos.y = p->mPos.y - o->mHopHeight;
-    if (data_021759c0->mMode != MODE_MISSION_RUN && data_021759c0->mMode != MODE_BATTLE) {
+    if (gRaceSetup->mMode != MODE_MISSION_RUN && gRaceSetup->mMode != MODE_BATTLE) {
         if (func_01ffdee4(&p->mPos, (u32 *) &p->mPrevPos, 0, data_usa_021656c0 >> 1, 2, -2, &w, NULL, NULL, NULL, NULL,
                           NULL, NULL, NULL) != 0) {
             o = GetKart(p->mFollowedKartIndex);

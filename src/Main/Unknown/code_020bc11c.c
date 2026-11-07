@@ -65,7 +65,7 @@ void func_020be7fc(void) {
     u8 i;
 
     data_0217b3d8 = HeapAlloc(GetHeap(func_020364e8()), 0x15c);
-    for (i = 0; i < (s32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
         data_0217b3d8->mUnk_080[i] = 1;
         data_0217b3d8->mUnk_060[i] = data_0217b3d8->mUnk_080[i];
         data_0217b3d8->mUnk_0a0[i] = 0;
@@ -110,18 +110,18 @@ void func_020be3e4(void) {
     if (GetRaceStartSequenceFrames() < 0x168) {
         return;
     }
-    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         return;
     }
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         return;
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
-        for (i = 0; i < (s32) data_021759c0->mKartCount; i++) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
+        for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
             data_0217b3d8->mUnk_0c0[i] = GetBalloonOrShineCount(i);
         }
     }
-    for (i = 0; i < (s32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
         o = &gKartItems[i];
         data_0217b3d8->mUnk_040[i] = o->mHeldItem.mUnk_00 == 0x13 ? o->mActiveItem : o->mHeldItem.mUnk_00;
         if (data_0217b3d8->mUnk_0f8 % 0x1c == 0) {
@@ -148,16 +148,16 @@ void func_020be3e4(void) {
         }
         data_0217b3d8->mUnk_000[i] = v3;
     }
-    for (i = 0; i < (s32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
         data_0217b3d8->mUnk_0a0[i] = i;
         b[i] = data_0217b3d8->mUnk_080[i];
     }
-    SortIndicesByKey(data_0217b3d8->mUnk_0a0, b, data_021759c0->mKartCount);
+    SortIndicesByKey(data_0217b3d8->mUnk_0a0, b, gRaceSetup->mKartCount);
     data_0217b3d8->mUnk_0f8++;
     if (data_0217b3d8->mUnk_0f8 >= 0x1c) {
         data_0217b3d8->mUnk_0f8 = 0;
     }
-    for (i = 0; i < (s32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
         if (data_0217b3d8->mUnk_0fc[i].mUnk_00 != 0) {
             data_0217b3d8->mUnk_0fc[i].mUnk_00++;
             if (data_0217b3d8->mUnk_0fc[i].mUnk_00 > 0x24) {
@@ -175,7 +175,7 @@ void func_020be2f4(Unk020d029c *a) {
         return;
     }
     data_0217b3d8->mUnk_0e4 = func_020ae5c4(a);
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_GRAND_PRIX:
         case MODE_VS:
         case 5:
@@ -210,11 +210,11 @@ u32 func_020be15c(u16 a) {
 
     if (func_020b1cf4(a) != 0) {
         r = 0x25;
-    } else if (data_021759c0->mMode == MODE_BATTLE && IsKartOnWinningTeamAtEnd(a) != 0) {
+    } else if (gRaceSetup->mMode == MODE_BATTLE && IsKartOnWinningTeamAtEnd(a) != 0) {
         r = 0x24;
-    } else if (data_021759c0->mMode == MODE_BATTLE && IsKartEliminated(a) != FALSE) {
+    } else if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated(a) != FALSE) {
         r = 0xc9;
-    } else if (data_021759c0->mMode != MODE_BATTLE && IsKartEnded(a) != 0) {
+    } else if (gRaceSetup->mMode != MODE_BATTLE && IsKartEnded(a) != 0) {
         r = 0x24;
     } else if ((d = data_0217b3d8)->mUnk_0fc[a].mUnk_00 != 0) {
         v = d->mUnk_0fc[a].mUnk_00 - 1;
@@ -257,7 +257,7 @@ void func_020bdf08(Unk020d029c *a) {
     Unk020224e0_c *c;
 
     e = data_0217b3d8->mUnk_0e0;
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         j = data_0217b3d8->mUnk_060[i] - 1;
         c = GetRaceSNcerEntry(j + 0x35);
         q1[0] = (t[j][0] - e - 1) << 12;
@@ -265,16 +265,16 @@ void func_020bdf08(Unk020d029c *a) {
         q1[1] = (y - 4) << 12;
         a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q1, 0, 1);
         v = 0;
-        if (data_021759c0->mMode == MODE_BATTLE && IsKartEliminated(i) != FALSE) {
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated(i) != FALSE) {
             v = 1;
-        } else if (data_021759c0->mMode != MODE_BATTLE && (func_020b1cf4(i) != 0 || func_0207a84c(i) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4(i) != 0 || func_0207a84c(i) != 0)) {
             v = 1;
         }
         if (v != 0) {
             v = 3;
-        } else if (i == func_020b4d9c()) {
+        } else if (i == GetFollowedKartOrEntryIndex()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 1) {
+        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;
@@ -301,7 +301,7 @@ void func_020bdb34(Unk020d029c *a) {
     s32 v;
     Unk020224e0_c *c;
 
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         k = data_0217b3d8->mUnk_0a0[i];
         p = data_0217b3d8->mUnk_000[k];
         r = func_020be15c(k);
@@ -327,10 +327,9 @@ void func_020bdb34(Unk020d029c *a) {
         q2[1] = p.mUnk_04 << 12;
         a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, d, q2, f, 1);
         s = 0;
-        if (data_021759c0->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             s = 1;
-        } else if (data_021759c0->mMode != MODE_BATTLE &&
-                   (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             s = 1;
         }
         s = s != 0 ? 0x6d : 0x65;
@@ -339,17 +338,16 @@ void func_020bdb34(Unk020d029c *a) {
         q3[1] = p.mUnk_04 << 12;
         a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q3, 0, 1);
         v = 0;
-        if (data_021759c0->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             v = 1;
-        } else if (data_021759c0->mMode != MODE_BATTLE &&
-                   (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             v = 1;
         }
         if (v != 0) {
             v = 3;
-        } else if ((u16) k == func_020b4d9c()) {
+        } else if ((u16) k == GetFollowedKartOrEntryIndex()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
+        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;
@@ -374,7 +372,7 @@ void func_020bd850(Unk020d029c *a) {
     s32 v;
     Unk020224e0_c *c;
 
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         k = data_0217b3d8->mUnk_0a0[i];
         p = data_0217b3d8->mUnk_000[k];
         r = func_020be15c(k);
@@ -400,17 +398,16 @@ void func_020bd850(Unk020d029c *a) {
         q2[1] = p.mUnk_04 << 12;
         a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, d, q2, f, 1);
         v = 0;
-        if (data_021759c0->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             v = 1;
-        } else if (data_021759c0->mMode != MODE_BATTLE &&
-                   (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             v = 1;
         }
         if (v != 0) {
             v = 3;
-        } else if ((u16) k == func_020b4d9c()) {
+        } else if ((u16) k == GetFollowedKartOrEntryIndex()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
+        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;
@@ -457,7 +454,7 @@ void func_020bd178(Unk020d029c *a) {
     s32 v;
     Unk020224e0_c *c;
 
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         k = data_0217b3d8->mUnk_0a0[i];
         p = data_0217b3d8->mUnk_000[k];
         r = func_020be15c(k);
@@ -483,10 +480,9 @@ void func_020bd178(Unk020d029c *a) {
         q2[1] = p.mUnk_04 << 12;
         a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, d, q2, f, 1);
         s = 0;
-        if (data_021759c0->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             s = 1;
-        } else if (data_021759c0->mMode != MODE_BATTLE &&
-                   (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             s = 1;
         }
         s = s != 0 ? 0x6d : 0x65;
@@ -494,7 +490,7 @@ void func_020bd178(Unk020d029c *a) {
         q3[0] = (p.mUnk_00 + 0xb) << 12;
         q3[1] = p.mUnk_04 << 12;
         a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q3, 0, 1);
-        if (data_021759c0->mUnk_18 == 0) {
+        if (gRaceSetup->mUnk_18 == 0) {
             s32 t = data_0217b3d8->mUnk_0c0[k];
 
             c = GetRaceSNcerEntry(0xc3);
@@ -523,17 +519,16 @@ void func_020bd178(Unk020d029c *a) {
             a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q8, 0, 1);
         }
         v = 0;
-        if (data_021759c0->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             v = 1;
-        } else if (data_021759c0->mMode != MODE_BATTLE &&
-                   (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             v = 1;
         }
         if (v != 0) {
             v = 3;
-        } else if ((u16) k == func_020b4d9c()) {
+        } else if ((u16) k == GetFollowedKartOrEntryIndex()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
+        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;
@@ -563,7 +558,7 @@ void func_020bcbe8(Unk020d029c *a) {
     s32 v;
     Unk020224e0_c *c;
 
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         k = data_0217b3d8->mUnk_0a0[i];
         p = data_0217b3d8->mUnk_000[k];
         r = func_020be15c(k);
@@ -588,7 +583,7 @@ void func_020bcbe8(Unk020d029c *a) {
         q2[0] = (p.mUnk_00 + 1) << 12;
         q2[1] = p.mUnk_04 << 12;
         a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, d, q2, f, 1);
-        if (data_021759c0->mUnk_18 == 0) {
+        if (gRaceSetup->mUnk_18 == 0) {
             s32 t = data_0217b3d8->mUnk_0c0[k];
 
             c = GetRaceSNcerEntry(0xc3);
@@ -617,17 +612,16 @@ void func_020bcbe8(Unk020d029c *a) {
             a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q7, 0, 1);
         }
         v = 0;
-        if (data_021759c0->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
+        if (gRaceSetup->mMode == MODE_BATTLE && IsKartEliminated((u16) k) != FALSE) {
             v = 1;
-        } else if (data_021759c0->mMode != MODE_BATTLE &&
-                   (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
+        } else if (gRaceSetup->mMode != MODE_BATTLE && (func_020b1cf4((u16) k) != 0 || func_0207a84c((u16) k) != 0)) {
             v = 1;
         }
         if (v != 0) {
             v = 3;
-        } else if ((u16) k == func_020b4d9c()) {
+        } else if ((u16) k == GetFollowedKartOrEntryIndex()) {
             v = 0;
-        } else if (data_021759c0->mUseTeams != 0 && data_021759c0->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
+        } else if (gRaceSetup->mUseTeams != 0 && gRaceSetup->mCurrentEntries[(u16) k].mPlayer.mTeamIndex == 1) {
             v = 2;
         } else {
             v = 1;
@@ -665,11 +659,11 @@ void func_020bc958(void) {
     NNSSndSeqPlayer **a;
     u32 v;
 
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         return;
     }
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        switch (data_021759c0->mUnk_2f) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        switch (gRaceSetup->mMissionKind) {
             case 2:
             case 4:
             case 6:
@@ -680,11 +674,11 @@ void func_020bc958(void) {
         }
     }
     data_0217b3d4->mUnk_04 = data_0217b3d4->mUnk_00;
-    data_0217b3d4->mUnk_00 = func_0203c8c0(func_020b4d9c()) - 1;
+    data_0217b3d4->mUnk_00 = func_0203c8c0(GetFollowedKartOrEntryIndex()) - 1;
     if (data_0217b3d4->mUnk_00 != data_0217b3d4->mUnk_04 && data_0217b3d4->mUnk_08 > 0) {
         if (data_0217b3d4->mUnk_00 < data_0217b3d4->mUnk_08) {
             v = 0x41;
-            if (data_021759c0->mCourseId == COURSE_ID_PINBALL) {
+            if (gRaceSetup->mCourseId == COURSE_ID_PINBALL) {
                 v = 0x1c7;
             }
             if (data_0217c780 & 1) {
@@ -729,14 +723,14 @@ void func_020bc208(Unk020d029c *a) {
     s32 v;
     Unk020224e0_c *c;
 
-    if (data_021759c0->mUnk_00c == 4) {
+    if (gRaceSetup->mUnk_00c == 4) {
         return;
     }
-    if (data_021759c0->mUnk_00c == 1) {
+    if (gRaceSetup->mUnk_00c == 1) {
         return;
     }
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        switch (data_021759c0->mUnk_2f) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        switch (gRaceSetup->mMissionKind) {
             case 2:
             case 4:
             case 6:
@@ -749,7 +743,7 @@ void func_020bc208(Unk020d029c *a) {
                 return;
         }
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         return;
     }
     c = GetRaceMNcerEntry(0x20);
@@ -857,13 +851,13 @@ void func_020bc11c(void) {
     data_0217b3d0->mUnk_00.mUnk_00[5] = 0;
     data_0217b3d0->mUnk_00.mUnk_00[6] = 0;
     data_0217b3d0->mUnk_1c = FALSE;
-    if (data_021759c0->mMode == MODE_BATTLE) {
-        if (data_021759c0->mUnk_18 == 1) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
+        if (gRaceSetup->mUnk_18 == 1) {
             data_0217b3d0->mUnk_1c = TRUE;
         }
     }
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
-        if (data_021759c0->mUnk_2f != 6) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mMissionKind != 6) {
             data_0217b3d0->mUnk_1c = TRUE;
         }
     }

@@ -89,7 +89,7 @@ s32 func_020d252c(MapObject *a) {
 void func_020d24d8(MapObject *b, s32 c) {
     s32 a;
     b->mDrawDistance = c;
-    if (data_021759c0->mUnk_00c == 3) {
+    if (gRaceSetup->mUnk_00c == 3) {
         b->mDrawDistance = 0x270f000;
         return;
     }

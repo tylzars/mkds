@@ -77,11 +77,11 @@ void InitRaceMNumberPair(void) {
     RaceMNumberPair *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     gRaceMNumberPair = p;
-    p->mCourseNumber = data_021759c0->mCourseNumber;
-    if (data_021759c0->mMode == 5) {
+    p->mCourseNumber = gRaceSetup->mCourseNumber;
+    if (gRaceSetup->mMode == 5) {
         gRaceMNumberPair->mCourseCount = 4;
-    } else if (data_021759c0->mMode == MODE_VS && data_021759c0->mUnk_1c == 2) {
-        gRaceMNumberPair->mCourseCount = data_021759c0->mUnk_3d8;
+    } else if (gRaceSetup->mMode == MODE_VS && gRaceSetup->mUnk_1c == 2) {
+        gRaceMNumberPair->mCourseCount = gRaceSetup->mCourseCount;
     } else {
         gRaceMNumberPair->mCourseCount = 0;
     }

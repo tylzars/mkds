@@ -125,9 +125,9 @@ void InitSunObjects(Unk02100094 *a) {
         return;
     }
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
-        if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+        if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
             p->mTimer = (u16) p->mUnk_000.mCourseMapRow->mUnk_28;
-        } else if (data_021759c0->mMode == 5) {
+        } else if (gRaceSetup->mMode == 5) {
             p->mTimer = (u16) p->mUnk_000.mCourseMapRow->mUnk_2a;
         }
     }
@@ -136,7 +136,7 @@ void InitSunObjects(Unk02100094 *a) {
 static inline BOOL UpdateSun_inline(void) {
     s32 i;
 
-    for (i = 0; i < data_021759c0->mKartCount; i++) {
+    for (i = 0; i < gRaceSetup->mKartCount; i++) {
         if ((s32) func_0203c8c0((u16) i) >= 2) {
             return TRUE;
         }
@@ -151,7 +151,7 @@ static inline BOOL UpdateSun_inline_b(Sun *p) {
     s32 x;
     s32 z;
 
-    for (i = 0; i < data_021759c0->mKartCount; i++) {
+    for (i = 0; i < gRaceSetup->mKartCount; i++) {
         k = GetKart((u16) i);
         q = &k->mPos;
         x = q->x - p->mUnk_000.mPos.x;
@@ -184,7 +184,7 @@ void UpdateSun(Unk02100094 *a, Sun *p) {
             p->mUnk_0b8.mUnk_10 = ((s64) p->mUnk_0b8.mUnk_00->mUnk_00[p->mUnk_0b8.mUnk_0c].mUnk_34 * 0x3c000) >> 12;
             if (func_020d8cc8(&p->mUnk_0b8) != FALSE && (t = p->mUnk_0b8.mUnk_1c->mUnk_0e) != 0) {
                 if (p->mUnk_000.mFlags & 0x800) {
-                    k = data_021759c0->mMode;
+                    k = gRaceSetup->mMode;
                     if (k == MODE_TIME_ATTACK) {
                         p->mTimer = t;
                     } else if (k == 5) {
@@ -327,7 +327,7 @@ s32 CollideKartWithBound(Bound *p, Kart *k, u8 *b, u8 *c) {
             VEC_Subtract(&v0, &p->mUnk_000.mMatrix.mUnk_00[1], &v0);
             VEC_MultAdd(0x19a, &v0, &p->mUnk_000.mUnk_10, &p->mUnk_000.mUnk_10);
             p->mKartTimers[k->mIndex] = 0x1f;
-            if (data_021759c0->mMode == MODE_BATTLE) {
+            if (gRaceSetup->mMode == MODE_BATTLE) {
                 func_020a21bc(k->mIndex, (s32) &p->mUnk_000.mUnk_10);
             }
         } else {
@@ -335,7 +335,7 @@ s32 CollideKartWithBound(Bound *p, Kart *k, u8 *b, u8 *c) {
             p->mUnk_000.mUnk_10.y = 0;
             p->mUnk_000.mUnk_10.z = 0;
         }
-        if (data_021759c0->mCurrentEntries[k->mIndex].mPlayer.mKind != 2 && p->mWobbling == FALSE) {
+        if (gRaceSetup->mCurrentEntries[k->mIndex].mPlayer.mKind != 2 && p->mWobbling == FALSE) {
             p->mWobbleXAngle = 0x8000;
             p->mWobbleXMid = 0x1000;
             p->mWobbleXAmplitude = 0x400;
@@ -368,7 +368,7 @@ s32 CollideKartWithBound(Bound *p, Kart *k, u8 *b, u8 *c) {
                     Vec3NormalizeAndGetLengthUnchecked(&v3, &v3);
                 }
                 VEC_MultAdd(k->mRadius, &v3, &k->mCollisionCenter, &v3);
-                if (k->mIndex == data_021759c0->mEntryIndex) {
+                if (k->mIndex == gRaceSetup->mEntryIndex) {
                     StartEffect(0x74, &v3);
                 } else {
                     StartEffect(0x75, &v3);
@@ -620,7 +620,7 @@ void UpdateBoundAndCreamAndBerry(Unk02100094 *a, Bound *p) {
     } else {
         p->mUnk_000.mScale.x = p->mInitialScaleX;
     }
-    n = data_021759c0->mKartCount;
+    n = gRaceSetup->mKartCount;
     for (i = 0; i < n; i++) {
         if (p->mKartTimers[i] > 0) {
             p->mKartTimers[i] -= 1;

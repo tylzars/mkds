@@ -12,7 +12,7 @@ void func_020f8ddc(void *a) {
     if (p == NULL) {
         return;
     }
-    if (data_021759c0->mMode != MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode != MODE_MISSION_RUN) {
         return;
     }
     if ((u32) p->mKind > 1) {

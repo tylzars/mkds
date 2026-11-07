@@ -270,7 +270,7 @@ void func_0210e888(Unk0210e524 a, u32 b) {
     if (func_02105504() == 0) {
         return;
     }
-    func_02111158(data_021759c0->mMode);
+    func_02111158(gRaceSetup->mMode);
 }
 
 u32 func_0210e680(void) {

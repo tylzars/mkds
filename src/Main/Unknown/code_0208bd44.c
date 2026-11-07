@@ -54,7 +54,7 @@ void func_0208be00(KartAi *p, s32 a) {
     p->mUnk_154 = 0;
     func_0207e594(p, q, p->mUnk_154);
     func_0207d814(&p->mUnk_e8, p);
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         p->mUnk_e8.mUnk_2c = 1;
         p->mUnk_e8.mUnk_30 = 4;
     } else {
@@ -81,7 +81,7 @@ void func_0208bd44(KartAi *p, s32 a) {
     func_0207d814(&p->mUnk_e8, p);
     p->mUnk_e8.mUnk_2c = 0;
     p->mUnk_e8.mUnk_30 = 0;
-    if (q->mIndex != data_021759c0->mEntryIndex) {
+    if (q->mIndex != gRaceSetup->mEntryIndex) {
         q->mUnk_7c |= 0x40;
     }
 }

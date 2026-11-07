@@ -57,7 +57,7 @@ s32 PickItem(s32 param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5, s3
     row = q->mRows[param_3];
     acc = 0;
     t = 0;
-    if (data_021759c0->mMode != MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode != MODE_MISSION_RUN) {
         for (i = 0; i < 0xe; i++) {
             t += (u16) (gItemKinds[(s32) i].mUnk_90 *
                         (gItemPools[(s32) i].mReservedCount - gItemPools[(s32) i].mUnk_18));
@@ -122,7 +122,7 @@ void InitItemSlot(KartItems *param_1, KartItems *param_2) {
     param_1->mSlotResult = 0x13;
     param_1->mActiveItem = 0x13;
     param_1->mUnk_020 = FALSE;
-    param_1->mUnk_024 = data_021759c0->mCurrentEntries[param_2->mKartIndex].mPlayer.mKind == 3;
+    param_1->mUnk_024 = gRaceSetup->mCurrentEntries[param_2->mKartIndex].mPlayer.mKind == 3;
 }
 
 void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s32 param_5) {
@@ -134,7 +134,7 @@ void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s3
     BOOL b;
 
     p = param_1->mSelf;
-    a = data_021759c0->mMode == 5;
+    a = gRaceSetup->mMode == 5;
     if (param_1->mSlotState != 0) {
         return;
     }
@@ -165,7 +165,7 @@ void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s3
         param_1->mUnk_028 = 0x10;
         param_1->mUnk_02c = 4;
     }
-    b = p->mKartIndex == data_021759c0->mEntryIndex;
+    b = p->mKartIndex == gRaceSetup->mEntryIndex;
     if (p->mItemInUse.mObjectKind != 0xf && p->mItemInUse.mItemInfoIndex >= 9) {
         param_1->mSlotResult = PickItem(0, param_2, param_3, param_4, b, 9);
     } else {
@@ -231,7 +231,7 @@ BOOL UpdateItemSlot(KartItems *param_1, KartItems *param_2) {
     switch (param_1->mSlotState) {
         case 1:
             param_1->mSlotFrames++;
-            a = data_021759c0->mMode;
+            a = gRaceSetup->mMode;
             if (a == 5 && param_1->mUnk_020 != FALSE) {
                 b = param_2->mKartIndex & 0xff;
                 if (func_0205a310(((u8 *) data_0217aa18)[b]) == 0) {
@@ -392,7 +392,7 @@ void func_020f81c0(KartItems *a) {
     ItemPool *v;
     enum { K0 } k, j;
 
-    if (a->mSelf->mKartIndex == data_021759c0->mEntryIndex) {
+    if (a->mSelf->mKartIndex == gRaceSetup->mEntryIndex) {
         func_020bb5cc();
     }
     k = a->mSlotResult;

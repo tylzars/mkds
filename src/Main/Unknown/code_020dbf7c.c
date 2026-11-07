@@ -151,7 +151,7 @@ void func_020dbf7c(Wanwan *p) {
         p->mUnk_160[1] = &p->mUnk_170[1];
         p->mUnk_160[2] = &p->mUnk_170[2];
         p->mUnk_160[3] = &p->mUnk_170[3];
-        if (data_021759c0->mUnk_00c == 3) {
+        if (gRaceSetup->mUnk_00c == 3) {
             VEC_MultAdd(0xf000, &p->mUnk_200, &p->mUnk_00.mPos, &p->mUnk_00.mPos);
             p->mUnk_00.mUnk_10.x = ((s64) p->mUnk_200.x * 0x400) >> 12;
             p->mUnk_00.mUnk_10.y = ((s64) p->mUnk_200.y * 0x400) >> 12;

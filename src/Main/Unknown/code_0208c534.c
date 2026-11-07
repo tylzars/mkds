@@ -13,12 +13,11 @@ void InitKartTurnEffects(void *a) {
     u16 j;
     KartTurnEffects *e;
 
-    gKartTurnEffects = HeapAlloc(a, data_021759c0->mKartCount * 0x88);
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    gKartTurnEffects = HeapAlloc(a, gRaceSetup->mKartCount * 0x88);
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         e = &gKartTurnEffects[i];
         e->mIndex = i;
-        if (i == data_021759c0->mEntryIndex || data_021759c0->mUnk_00c == 5 ||
-            data_021759c0->mMode == MODE_TIME_ATTACK) {
+        if (i == gRaceSetup->mEntryIndex || gRaceSetup->mUnk_00c == 5 || gRaceSetup->mMode == MODE_TIME_ATTACK) {
             e->mTurnStartEffectId = 0x14;
             e->mLevel4FirstEffectId = 0x11;
             e->mLevel4SecondEffectId = 0x12;

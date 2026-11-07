@@ -117,7 +117,7 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
     b->mUnk_28 = 0;
     b->mUnk_2c = 0;
     b->mUnk_30 = 0;
-    v = data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind;
+    v = gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind;
     if ((u32) v <= 3) {
         if ((1 << v) & 0xd) {
             c = TRUE;
@@ -126,14 +126,14 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
     if (c != FALSE) {
         return;
     }
-    if (data_021759c0->mUnk_18 != 1) {
+    if (gRaceSetup->mUnk_18 != 1) {
         return;
     }
     r = GetKartAiRandom();
     r->mUnk_00 = r->mUnk_08 * r->mUnk_00 + r->mUnk_10;
     v = (s16) (u16) (r->mUnk_00 >> 52);
     t = 0x333;
-    switch (data_021759c0->mUnk_014) {
+    switch (gRaceSetup->mUnk_014) {
         case 2:
             t = 0x666;
             break;
@@ -149,11 +149,11 @@ void func_02089a24(KartAi *a, Unk02089a24 *b) {
 }
 
 void func_02089974(void) {
-    Unk021759c0 *t;
+    RaceSetup *t;
 
     gSearchStartIndex = 0;
     data_0217b030 = &data_0216600c;
-    t = data_021759c0;
+    t = gRaceSetup;
     if (t->mUnk_18 == 0) {
         switch (t->mUnk_014) {
             case 2:
@@ -214,7 +214,7 @@ void func_02089788(KartAi *p, Kart *q) {
     ResetBattlePointLinkCursorNear(&p->mUnk_28, &q->mPos, &q->mUnk_138, q->mIndex);
     p->mUnk_44 = *p->mUnk_28.mLink->mUnk_20;
     func_020898bc(p);
-    if (data_021759c0->mUnk_18 == 0) {
+    if (gRaceSetup->mUnk_18 == 0) {
         t = data_0217b030;
         k = 0;
         r = GetKartAiRandom();
@@ -244,7 +244,7 @@ void func_020896e0(KartAi *p) {
         func_0207e668(p);
     }
     func_02089494(p);
-    if (data_021759c0->mUnk_18 == 0) {
+    if (gRaceSetup->mUnk_18 == 0) {
         func_02088e44(p);
         return;
     }
@@ -385,13 +385,13 @@ void func_02088e44(KartAi *p) {
     if (m != GetRaceUpdateFramesMod8()) {
         return;
     }
-    if (data_021759c0->mUnk_014 == 1) {
+    if (gRaceSetup->mUnk_014 == 1) {
         return;
     }
     if (p->mTargetKart == NULL) {
         p->mUnk_5c = &p->mUnk_44;
         k = gSearchStartIndex;
-        for (n = 0; n < (u32) data_021759c0->mKartCount; n++) {
+        for (n = 0; n < (u32) gRaceSetup->mKartCount; n++) {
             if (func_0207f554(p->mIndex, k) != 0) {
                 o = GetKart(k);
                 v3 = &p->mKart->mPos;
@@ -404,7 +404,7 @@ void func_02088e44(KartAi *p) {
                     }
                 }
                 if (c != 0) {
-                    v2 = data_021759c0->mKartCount;
+                    v2 = gRaceSetup->mKartCount;
                     gSearchStartIndex++;
                     if (gSearchStartIndex >= v2) {
                         gSearchStartIndex = 0;
@@ -413,7 +413,7 @@ void func_02088e44(KartAi *p) {
                 }
             }
             k++;
-            if (k >= (u32) data_021759c0->mKartCount) {
+            if (k >= (u32) gRaceSetup->mKartCount) {
                 k = 0;
             }
         }
@@ -499,7 +499,7 @@ void func_02088d34(KartAi *p) {
     BOOL c;
 
     p->mUnk_c4 = FALSE;
-    if (data_021759c0->mUnk_18 != 0) {
+    if (gRaceSetup->mUnk_18 != 0) {
         return;
     }
     if (func_01ffc67c(p->mKart) != FALSE) {

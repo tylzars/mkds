@@ -28,7 +28,7 @@ typedef struct CourseMapEntryGroup {
 typedef struct CourseMapSettings {
     /* 00 */ u8 mUnk_00[2];
     // Lap count; in battle mode the same halfword is the time limit in seconds (times 60 frames into
-    // RaceProgress.mTimeLimitFrameCount when Unk021759c0.mUnk_18 is 1).
+    // RaceProgress.mTimeLimitFrameCount when RaceSetup.mUnk_18 is 1).
     /* 02 */ u16 mLapCountOrBattleSeconds;
     /* 04 */ u8 mUnk_04;
     /* 05 */ u8 mFogEnabled;
@@ -47,7 +47,7 @@ typedef struct CourseMapSettings {
     // into a kart model entry.
     /* 18 */ u16 mColors[4];
     // Upper limit for the mDrawDistance of every map object (func_020d24d8); 0 means no limit; not applied when
-    // Unk021759c0.mUnk_00c is 3.
+    // RaceSetup.mUnk_00c is 3.
     /* 20 */ s32 mMapObjectDrawDistanceMax;
     // Far plane distance of the cameras of this course; SetupCamera copies it to Camera.mFar and uses 0x640000 when it
     // is below 0x1000.

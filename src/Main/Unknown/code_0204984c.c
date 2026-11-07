@@ -154,9 +154,9 @@ s32 func_0204a428(s32 a, s32 *b) {
             r = TRUE;
             break;
         case 2:
-            if (data_021759c0->mUnk_00c == 6) {
-                if (data_021759c0->mCourseId != COURSE_ID_STAFFROLL) {
-                    if (data_021759c0->mCourseId == COURSE_ID_STAFFROLLTRUE) {
+            if (gRaceSetup->mUnk_00c == 6) {
+                if (gRaceSetup->mCourseId != COURSE_ID_STAFFROLL) {
+                    if (gRaceSetup->mCourseId == COURSE_ID_STAFFROLLTRUE) {
                         *b = 0x46;
                     }
                 } else {
@@ -460,7 +460,7 @@ void func_02049c3c(void *a) {
 u32 func_02049b6c(void) {
     u32 r = 0;
 
-    if (data_021759c0->mMode == 5 && func_0204984c_inline5()) {
+    if (gRaceSetup->mMode == 5 && func_0204984c_inline5()) {
         r = 1;
     }
     if (func_0204984c_inline4()) {
@@ -492,7 +492,7 @@ u32 func_0204998c(void) {
         case 15:
             return 1;
         case 2:
-            if (data_021759c0->mUnk_00c == 6) {
+            if (gRaceSetup->mUnk_00c == 6) {
                 return 1;
             }
             break;

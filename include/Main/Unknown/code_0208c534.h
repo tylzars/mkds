@@ -46,10 +46,10 @@ typedef struct KartTurnEffects {
     // Calls of AdvanceKartLevel2Effects since the level 2 group started; the group is released when it passes 8.
     /* 4a */ s16 mLevel2Frames;
     // Id of the effect started for each side of the turn start group: 0x14 for the Kart of the selected entry and for
-    // every Kart in time trial or when Unk021759c0.mUnk_00c is 5, 0x15 for the others.
+    // every Kart in time trial or when RaceSetup.mUnk_00c is 5, 0x15 for the others.
     /* 4c */ s32 mTurnStartEffectId;
     // Effect id of mLevel4FirstEffects: 0x11 for the Kart of the selected entry and for every Kart in time trial or
-    // when Unk021759c0.mUnk_00c is 5, 0x13 for the others.
+    // when RaceSetup.mUnk_00c is 5, 0x13 for the others.
     /* 50 */ s32 mLevel4FirstEffectId;
     // Effect id of mLevel4SecondEffects: 0x12 for the Karts that use StartKartLevel4EffectsWithSecond, -1 for the
     // others, which never start it.
@@ -155,6 +155,6 @@ void StopKartTurnStartEffects(KartTurnEffects *p);
 // Starts the two effect objects of the turn start group, replacing any earlier ones.
 void StartKartTurnStartEffects(KartTurnEffects *p);
 // Allocates one KartTurnEffects per counted Kart in the heap a, installs the function set with the second level 4
-// object for the selected entry, in time trial and when Unk021759c0.mUnk_00c is 5 and the set with the first object
+// object for the selected entry, in time trial and when RaceSetup.mUnk_00c is 5 and the set with the first object
 // only for the others, and clears every pointer and counter.
 void InitKartTurnEffects(void *a);

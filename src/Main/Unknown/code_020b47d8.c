@@ -11,17 +11,18 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_0203c5f8.h"
 
-u16 func_020b4d9c(void) {
-    Unk021759c0 *p = data_021759c0;
+u16 GetFollowedKartOrEntryIndex(void) {
+    RaceSetup *p = gRaceSetup;
 
-    return p->mUnk_00c == 1 ? p->mUnk_063 : p->mEntryIndex;
+    return p->mUnk_00c == 1 ? p->mFollowedKartIndex : p->mEntryIndex;
 }
 
 u16 func_020b4d2c(void) {
     u16 a;
 
-    a = func_0203c8c0((u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mEntryIndex));
-    if (IsKartEnded((u16) (data_021759c0->mUnk_00c == 1 ? data_021759c0->mUnk_063 : data_021759c0->mEntryIndex)) == 0) {
+    a = func_0203c8c0((u16) (gRaceSetup->mUnk_00c == 1 ? gRaceSetup->mFollowedKartIndex : gRaceSetup->mEntryIndex));
+    if (IsKartEnded((u16) (gRaceSetup->mUnk_00c == 1 ? gRaceSetup->mFollowedKartIndex : gRaceSetup->mEntryIndex)) ==
+        0) {
         a = a - 1;
     }
     return a;

@@ -120,7 +120,7 @@ void LoadArchiveSlotForScene(int a, int b) {
     switch (a) {
         case 3:
         case 13:
-            func_02048498(c, data_021759c0->mCourseId, a != 3);
+            func_02048498(c, gRaceSetup->mCourseId, a != 3);
             break;
         case 5:
             switch (b) {
@@ -139,7 +139,7 @@ void LoadArchiveSlotForScene(int a, int b) {
                     BuildResultArchivePath(c);
                     break;
                 case 2:
-                    if (data_021759c0->mUnk_00c == 6) {
+                    if (gRaceSetup->mUnk_00c == 6) {
                         OS_SNPrintf(c, 0x80, data_usa_02165058);
                     } else {
                         func_020483e4(c, gSceneNames[b].mUnk_00);
@@ -168,7 +168,7 @@ void LoadArchiveSlotForScene(int a, int b) {
                     func_02048350(c);
                     break;
                 case 2:
-                    if (data_021759c0->mUnk_00c == 6) {
+                    if (gRaceSetup->mUnk_00c == 6) {
                         BuildStaffRollArchivePath(c);
                     } else {
                         func_0204840c(c, gSceneNames[b].mUnk_00);
@@ -180,10 +180,10 @@ void LoadArchiveSlotForScene(int a, int b) {
             }
             break;
         case 11:
-            func_020482f0(c, gSceneNames[b].mUnk_00, data_021759c0->mMode);
+            func_020482f0(c, gSceneNames[b].mUnk_00, gRaceSetup->mMode);
             break;
         case 12:
-            func_020482ac(c, gSceneNames[b].mUnk_00, data_021759c0->mMode);
+            func_020482ac(c, gSceneNames[b].mUnk_00, gRaceSetup->mMode);
             break;
         case 2:
         case 15:

@@ -769,7 +769,7 @@ void InitCourseCameraEffects(void) {
     s32 x;
     s32 m;
 
-    m = data_021759c0->mUnk_010;
+    m = gRaceSetup->mEngineIndex;
     x = 0x1000;
     switch (m) {
         case 1:
@@ -782,11 +782,11 @@ void InitCourseCameraEffects(void) {
     data_0217ae9c = FX_Div(0x1000, ((s64) x * 0x779a + 0x800) >> 12);
     data_0217ae88 = NULL;
     data_0217ae78 = NULL;
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case 0x25: {
             Unk0201ca6c *p;
 
-            if (data_021759c0->mUnk_00c == 0) {
+            if (gRaceSetup->mUnk_00c == 0) {
                 p = StartEffect(0x24, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_02082750;
@@ -817,7 +817,7 @@ void InitCourseCameraEffects(void) {
                 p = StartEffect(0x3e, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_02082034;
-            } else if (data_021759c0->mUnk_00c == 0) {
+            } else if (gRaceSetup->mUnk_00c == 0) {
                 p = StartEffect(0x29, &data_02155a14);
                 data_0217ae78 = p;
                 p->mUnk_90 = func_020821cc;
@@ -873,7 +873,7 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
         return;
     }
     g = GetChaseCamera();
-    q = GetKart(data_021759c0->mEntryIndex);
+    q = GetKart(gRaceSetup->mEntryIndex);
     v = g->mForward;
     v.y = 0;
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
@@ -900,7 +900,7 @@ void func_02082750(Unk0201ca6c *p, s32 a) {
     p->mUnk_50 = h;
     s = data_02165954 + k;
     VEC_MultAdd(data_02165938 + (s32) (((s64) s * (s64) t + 0x800) >> 12), &v, &g->mViewPos, &u);
-    u.y = GetKart(data_021759c0->mEntryIndex)->mPosSource->y >> 4;
+    u.y = GetKart(gRaceSetup->mEntryIndex)->mPosSource->y >> 4;
     u.y = u.y - (s32) (((s64) data_02165934 * t + 0x800) >> 12);
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
@@ -940,7 +940,7 @@ void func_020824d0(Unk0201ca6c *p, s32 a) {
         return;
     }
     g = GetCurrentCamera();
-    GetKart(data_021759c0->mEntryIndex);
+    GetKart(gRaceSetup->mEntryIndex);
     v = g->mForward;
     w = data_02155a08;
     v.y = 0;
@@ -972,14 +972,14 @@ void func_02082368(Unk0201ca6c *p, s32 a) {
         return;
     }
     g = GetChaseCamera();
-    q = GetKart(data_021759c0->mEntryIndex);
+    q = GetKart(gRaceSetup->mEntryIndex);
     v = g->mForward;
     v.y = 0;
     if ((s64) v.z * v.z + ((s64) v.x * v.x + (s64) v.y * v.y) >= 16) {
         Vec3NormalizeAndGetLengthUnchecked(&v, &v);
     }
     VEC_MultAdd(0x5800, &v, &g->mViewPos, &u);
-    u.y = GetKart(data_021759c0->mEntryIndex)->mPosSource->y >> 4;
+    u.y = GetKart(gRaceSetup->mEntryIndex)->mPosSource->y >> 4;
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = u.z + p->mUnk_20->mUnk_00->mUnk_04.z;
@@ -1002,7 +1002,7 @@ void func_020821cc(Unk0201ca6c *p, s32 a) {
         return;
     }
     g = GetChaseCamera();
-    q = GetKart(data_021759c0->mEntryIndex);
+    q = GetKart(gRaceSetup->mEntryIndex);
     v = g->mForward;
     t = ((s64) q->mVelocityLength * data_0217ae9c + 0x800) >> 12;
     k = 0;
@@ -1018,7 +1018,7 @@ void func_020821cc(Unk0201ca6c *p, s32 a) {
     }
     k = k * 3;
     VEC_MultAdd((s32) (((s64) k * (s64) t + 0x800) >> 12) + 0x5800, &v, &g->mViewPos, &u);
-    u.y = GetKart(data_021759c0->mEntryIndex)->mPosSource->y >> 4;
+    u.y = GetKart(gRaceSetup->mEntryIndex)->mPosSource->y >> 4;
     p->mUnk_28.x = u.x + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = u.y + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = u.z + p->mUnk_20->mUnk_00->mUnk_04.z;
@@ -1060,7 +1060,7 @@ void func_02082034(Unk0201ca6c *p, s32 a) {
 void func_02081f30(void) {
     Unk0201ca6c *p;
 
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_OLD_LUIGI_AGB:
             if (data_0217ae78 != NULL) {
                 func_0208b710(data_0217ae78);

@@ -132,9 +132,9 @@ u32 func_0203b230(void) {
     s32 b;
     s32 t;
     BOOL v1;
-    a = (data_021759c0->mMode == MODE_MISSION_RUN) ? data_021759c0->mMissionTableRow : -1;
-    b = (data_021759c0->mMode == MODE_MISSION_RUN) ? data_021759c0->mMissionTableColumn : -1;
-    t = IsKartEnded((u16) data_021759c0->mEntryIndex);
+    a = (gRaceSetup->mMode == MODE_MISSION_RUN) ? gRaceSetup->mMissionTableRow : -1;
+    b = (gRaceSetup->mMode == MODE_MISSION_RUN) ? gRaceSetup->mMissionTableColumn : -1;
+    t = IsKartEnded((u16) gRaceSetup->mEntryIndex);
     t = (t != 0) ? gRaceProgress->mEntryEndKind : 6;
     if (t != 0) {
         return 0;

@@ -55,14 +55,14 @@ void func_0207b734(Kart *a) {
     b = (a->mUnk_44 & KART_44_DRIFTING) != 0 ? 0x2000 : 0x1000;
     v = a->mUnk_48;
     if ((v & 8) != 0) {
-        if (data_021759c0->mUnk_00c != 6) {
+        if (gRaceSetup->mUnk_00c != 6) {
             p->mUnk_00 += b;
             if (p->mUnk_00 > c) {
                 p->mUnk_00 = c;
             }
         }
     } else if ((v & 0x10) != 0) {
-        if (data_021759c0->mUnk_00c != 6) {
+        if (gRaceSetup->mUnk_00c != 6) {
             c *= -1;
             p->mUnk_00 -= b;
             if (p->mUnk_00 < c) {
@@ -118,7 +118,7 @@ void func_0207b6c0(struct Unk0206bcb0_590 *a, s32 b, s32 c) {
 }
 
 static inline s32 func_0207b44c_inline(u32 i) {
-    return *(vs32 *) &data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex;
+    return *(vs32 *) &gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex;
 }
 
 void func_0207b44c(Kart *a) {
@@ -135,22 +135,22 @@ void func_0207b44c(Kart *a) {
     c = TRUE;
     f = c;
     e = 0;
-    b = data_021759c0->mKartCount;
+    b = gRaceSetup->mKartCount;
 
     t = a->mUnk_7c;
     if ((t & 0x10) == 0) {
         return;
     }
-    m = data_021759c0->mMode;
+    m = gRaceSetup->mMode;
     if (m == MODE_BATTLE) {
         return;
     }
     if (m == MODE_MISSION_RUN) {
         return;
     }
-    if (m != MODE_BATTLE && data_021759c0->mUnk_1c == 1) {
+    if (m != MODE_BATTLE && gRaceSetup->mUnk_1c == 1) {
         b = gRaceProgress->mKartAtRank[0];
-        if (data_021759c0->mUseTeams != 0) {
+        if (gRaceSetup->mUseTeams != 0) {
             if (func_0207b44c_inline(b) != func_0207b44c_inline(a->mIndex)) {
                 f = 2;
             } else {

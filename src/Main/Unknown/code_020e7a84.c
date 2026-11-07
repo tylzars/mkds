@@ -134,7 +134,7 @@ void UpdateJg(void) {
     s32 lap;
     u32 kartFlags;
 
-    if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 6) {
         return;
     }
     if (gJgKart == NULL) {
@@ -167,10 +167,10 @@ void UpdateJg(void) {
     if (gJgStateMachine.mState != 0) {
         return;
     }
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         return;
     }
-    if (data_021759c0->mMode != MODE_MISSION_RUN && gRaceProgress->mUnk_000[gJgKartIndex].mStatus == 1 &&
+    if (gRaceSetup->mMode != MODE_MISSION_RUN && gRaceProgress->mUnk_000[gJgKartIndex].mStatus == 1 &&
         (gJgKart->mUnk_48 & 0x800) == 0) {
         Vec3 v;
         gJgMain.mUnk_18 = 2;
@@ -258,7 +258,7 @@ void DrawJg(void) {
     Unk020e9810 *p5;
     Unk020e6488 *p4;
 
-    if (data_021759c0->mUnk_00c == 6) {
+    if (gRaceSetup->mUnk_00c == 6) {
         return;
     }
     if (gJgKart == NULL) {

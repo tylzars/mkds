@@ -91,7 +91,7 @@ u32 func_02102eb8(ItemGesso *p, s32 b) {
     s32 a;
     s32 b2;
 
-    a = data_021759c0->mEntryIndex;
+    a = gRaceSetup->mEntryIndex;
     s = GetChaseCamera();
     func_020f82a4(0);
     if (a < 0) {

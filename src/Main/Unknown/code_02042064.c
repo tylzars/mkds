@@ -442,7 +442,7 @@ s32 LoadCourseMapRespawnsData(void *a, ...) {
     h = GetHeap(func_020364e8());
     gCourseMap->mRespawnCount = ReadCourseMapSectionCount(&a);
     gCourseMap->mRespawns = a;
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         n = gCourseMap->mRespawnCount;
         gCourseMap->mRespawnIndexBySlot = HeapAlloc(h, n * 2);
         gCourseMap->mNextRespawnSlot = 0;
@@ -719,7 +719,7 @@ void CountCourseMapKind2ShapesInMode4(void) {
     u8 count;
     u16 i;
     count = 0;
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         for (i = 0; i < gCourseMap->mShapeCount; i++) {
             if (GetCourseMapShape(i)->mKind == 2) {
                 count++;
@@ -770,10 +770,10 @@ s32 LoadCourseMapCamerasData(void *a, ...) {
         if (gCourseMap->mFirstKind6Entry == NULL && e->mKind == 6) {
             gCourseMap->mFirstKind6Entry = e;
         }
-        if (data_021759c0->mMode == MODE_BATTLE && gCourseMap->mFirstKind7EntryInMode2 == NULL && e->mKind == 7) {
+        if (gRaceSetup->mMode == MODE_BATTLE && gCourseMap->mFirstKind7EntryInMode2 == NULL && e->mKind == 7) {
             gCourseMap->mFirstKind7EntryInMode2 = e;
         }
-        if (data_021759c0->mMode == MODE_MISSION_RUN && gCourseMap->mFirstKind8EntryInMode4 == NULL && e->mKind == 8) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN && gCourseMap->mFirstKind8EntryInMode4 == NULL && e->mKind == 8) {
             gCourseMap->mFirstKind8EntryInMode4 = e;
         }
     }
@@ -789,12 +789,12 @@ void CreateCourseMap(void *a) {
     s32 i;
     u16 j;
 
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_MISSION_RUN:
-            if (data_021759c0->mUnk_00c == 6) {
+            if (gRaceSetup->mUnk_00c == 6) {
                 header = FindCourseFile("/course_map.nkm");
             } else {
-                snprintf(path, 0x100, "/MissionRun/%s_tool.nkm", data_021759c0->mMissionRunStem);
+                snprintf(path, 0x100, "/MissionRun/%s_tool.nkm", gRaceSetup->mMissionRunStem);
                 header = FindCourseFile(path);
             }
             break;

@@ -60,6 +60,6 @@ void func_020629a4(void);
 void func_02062a0c(void);
 void InitRace(void);
 unsigned int func_02062eb0(void);
-// Returns Race.mUseChainCameras: 1 for the kinds 3 to 5 of Unk021759c0.mUnk_00c, which other code also uses to tell
+// Returns Race.mUseChainCameras: 1 for the kinds 3 to 5 of RaceSetup.mUnk_00c, which other code also uses to tell
 // those kinds apart; changes nothing.
 unsigned int GetRaceUseChainCameras(void);

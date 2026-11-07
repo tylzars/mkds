@@ -312,7 +312,7 @@ void func_020deb2c(Vec3 *a, void *b, u32 c, int d, u32 e) {
     u32 v2;
     v2 = *OFFSET_PTR(u16, b, 0x74);
     if (d == 0) {
-        if (v2 == data_021759c0->mEntryIndex) {
+        if (v2 == gRaceSetup->mEntryIndex) {
             v1 = StartEffect(0x2d, a);
             if (v1 != NULL) {
                 SetupKartFollowEffect(v1, v2, 0x1e);
@@ -343,7 +343,7 @@ u8 func_020dea50(Unk020de6a8 *a, Unk020dea50_1 *b, void *c, u8 *d) {
     a->mUnk_0a4 = 0;
     a->mUnk_000.mFlags |= data_021585a4;
     m = a->mUnk_000.mDistanceSquaredAndFlags & 3;
-    v = data_021759c0->mCurrentEntries[b->mUnk_74].mPlayer.mKind;
+    v = gRaceSetup->mCurrentEntries[b->mUnk_74].mPlayer.mKind;
     if ((u32) v <= 3) {
         if (((1 << v) & 0xd) != 0) {
             n = TRUE;

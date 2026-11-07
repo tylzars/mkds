@@ -139,12 +139,12 @@ void func_0208a460(void *a) {
             InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[i], &gCountStartStems[(u32) i], i);
         }
     }
-    if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mUnk_1c == 1) {
+    if (gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mUnk_1c == 1) {
         data_0217b034->mUnk_000[4] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[4], &gWinStems, 4);
         data_0217b034->mUnk_000[5] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[5], &gLoseStems, 5);
-    } else if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    } else if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         data_0217b034->mUnk_000[6] = HeapAlloc(a, 0x14);
         InitNsbmdNsbcaNsbmaNsbtp(a, data_0217b034->mUnk_000[6], &gCompleteStems, 6);
         data_0217b034->mUnk_000[7] = HeapAlloc(a, 0x14);
@@ -241,7 +241,7 @@ void func_02089fa0(void) {
 
     MTX_Identity43_(&a);
     data_0217029c.mCameraMtx = a;
-    if (data_021759c0->mUnk_00c != 0) {
+    if (gRaceSetup->mUnk_00c != 0) {
         return;
     }
     if (data_0217b034->mUnk_73c != 9) {

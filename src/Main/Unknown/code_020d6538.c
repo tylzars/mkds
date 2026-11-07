@@ -416,7 +416,7 @@ s32 func_020d6be0(Kart *a, MapObject *b) {
         if ((b->mFlags & 0x80) == 0) {
             buf[1] = b->mKindData->mUnk_00(b, a, &buf[0], &buf[1]);
         }
-        if (data_021759c0->mMode == MODE_MISSION_RUN && buf[0] == 1 && data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN && buf[0] == 1 && gRaceSetup->mMode == MODE_MISSION_RUN) {
             func_ov001_0218175c(b->mKind);
         }
         return buf[1];
@@ -454,7 +454,7 @@ s32 func_020d6a54(ItemObject *a, MapObject *b, s32 *c) {
         if ((b->mFlags & 0x80) == 0) {
             buf[1] = b->mKindData->mUnk_04(b, a, &buf[0], &buf[1]);
         }
-        if (data_021759c0->mMode == MODE_MISSION_RUN && buf[0] == 1 && data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode == MODE_MISSION_RUN && buf[0] == 1 && gRaceSetup->mMode == MODE_MISSION_RUN) {
             func_ov001_0218175c(b->mKind);
         }
         if (c != NULL) {

@@ -133,7 +133,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     switch (gResultsBattle->mMode) {
         case 0:
             gResultsBattle->mUnk_0d0 = 0;
-            gResultsBattle->mUnk_0d8 = data_021759c0->mKartCount;
+            gResultsBattle->mUnk_0d8 = gRaceSetup->mKartCount;
             gResultsBattle->mUnk_150 = 2;
             break;
         case 1:
@@ -141,7 +141,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
             SetSelectChoisesSoundId(1, 0xf);
             gResultsBattle->mUnk_0d0 =
                 data_0217aa00->mUnk_1e52[(u16) (data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0)].mUnk_00;
-            gResultsBattle->mUnk_0d8 = data_021759c0->mKartCount;
+            gResultsBattle->mUnk_0d8 = gRaceSetup->mKartCount;
             gResultsBattle->mUnk_150 = 0;
             break;
         case 3:
@@ -153,10 +153,10 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
             break;
     }
     func_02033e6c();
-    if (data_021759c0->mUseTeams != 0) {
+    if (gRaceSetup->mUseTeams != 0) {
         j = 0;
         k = 0;
-        switch (data_021759c0->mUnk_1c) {
+        switch (gRaceSetup->mUnk_1c) {
             case 1:
                 j = func_02032f94_inline_2(0)->mUnk_02;
                 k = func_02032f94_inline_2(1)->mUnk_02;
@@ -170,10 +170,10 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
             gResultsBattle->mUnk_0d4 = gResultsBattle->mUnk_0d8;
             gResultsBattle->mUnk_0dc = 2;
         } else if (j > k) {
-            gResultsBattle->mUnk_0d4 = data_021759c0->mTeamKartCounts[0];
+            gResultsBattle->mUnk_0d4 = gRaceSetup->mTeamKartCounts[0];
             gResultsBattle->mUnk_0dc = 3;
         } else if (k > j) {
-            gResultsBattle->mUnk_0d4 = data_021759c0->mTeamKartCounts[1];
+            gResultsBattle->mUnk_0d4 = gRaceSetup->mTeamKartCounts[1];
             gResultsBattle->mUnk_0dc = 4;
         }
     } else if (func_02033e24() != 0) {
@@ -244,7 +244,7 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     }
     for (m = 0; m < 8; m++) {
         e = gResultsBattle->mUnk_0e4[m].mUnk_08;
-        k = data_021759c0->mCurrentEntries[m].mPlayer.mKind;
+        k = gRaceSetup->mCurrentEntries[m].mPlayer.mKind;
         if ((k == 0 || k == 1 || k == 3) && (gResultsBattle->mMode != 3 || gResultsBattle->mUnk_0e4[m].mUnk_04 != 0)) {
             func_02033ab8(1, m, e + 0x30, 1);
             func_02032f94_inline(w, 0x16);
@@ -270,14 +270,14 @@ void InitResultsBattle(void *a, s32 b, s32 c) {
     }
     switch (gResultsBattle->mUnk_0dc) {
         case 3:
-            if (data_021759c0->mCurrentEntries[(u16) gResultsBattle->mUnk_0d0].mPlayer.mTeamIndex == 0) {
+            if (gRaceSetup->mCurrentEntries[(u16) gResultsBattle->mUnk_0d0].mPlayer.mTeamIndex == 0) {
                 k = 0;
             } else {
                 k = 7;
             }
             break;
         case 4:
-            if (data_021759c0->mCurrentEntries[(u16) gResultsBattle->mUnk_0d0].mPlayer.mTeamIndex == 1) {
+            if (gRaceSetup->mCurrentEntries[(u16) gResultsBattle->mUnk_0d0].mPlayer.mTeamIndex == 1) {
                 k = 0;
             } else {
                 k = 7;

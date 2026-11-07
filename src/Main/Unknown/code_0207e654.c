@@ -41,7 +41,7 @@ static inline BOOL func_0207f600_inline(s32 a) {
 }
 
 static inline s32 func_0207f554_inline2(u32 i) {
-    return *(vs32 *) &data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex;
+    return *(vs32 *) &gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex;
 }
 
 static inline s32 func_0207f554_inline(u32 a, u32 b) {
@@ -49,10 +49,9 @@ static inline s32 func_0207f554_inline(u32 a, u32 b) {
     s32 v;
     BOOL t;
 
-    if (data_021759c0->mUseTeams == 0 ||
-        data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex != func_0207f554_inline2(b)) {
+    if (gRaceSetup->mUseTeams == 0 || gRaceSetup->mCurrentEntries[a].mPlayer.mTeamIndex != func_0207f554_inline2(b)) {
         t = FALSE;
-        v = data_021759c0->mCurrentEntries[b].mPlayer.mKind;
+        v = gRaceSetup->mCurrentEntries[b].mPlayer.mKind;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
                 t = TRUE;
@@ -124,7 +123,7 @@ void func_0207fd28(Unk02080b1c *p) {
 }
 
 void func_0207fba0(void) {
-    data_usa_0217ae40 = data_021759c0->mMode == MODE_BATTLE ? &data_usa_021557bc : &data_usa_021557c0;
+    data_usa_0217ae40 = gRaceSetup->mMode == MODE_BATTLE ? &data_usa_021557bc : &data_usa_021557c0;
     switch (func_020853dc()) {
         case 0:
             data_usa_0217ae38 = data_usa_0215572c;
@@ -143,10 +142,10 @@ void func_0207fba0(void) {
             data_usa_0217ae48 = data_usa_02155708;
             break;
     }
-    if (data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 5) {
         data_usa_0217ae3c = func_0207fec0;
         data_usa_0217ae44 = func_0207f630;
-    } else if (data_021759c0->mUnk_00c == 6) {
+    } else if (gRaceSetup->mUnk_00c == 6) {
         data_usa_0217ae3c = func_0207fd28;
         data_usa_0217ae44 = func_0207f630;
     } else {
@@ -321,10 +320,9 @@ s32 func_0207f554(u32 a, u32 b) {
     s32 v;
     BOOL t;
 
-    if (data_021759c0->mUseTeams == 0 ||
-        data_021759c0->mCurrentEntries[a].mPlayer.mTeamIndex != func_0207f554_inline2(b)) {
+    if (gRaceSetup->mUseTeams == 0 || gRaceSetup->mCurrentEntries[a].mPlayer.mTeamIndex != func_0207f554_inline2(b)) {
         t = FALSE;
-        v = data_021759c0->mCurrentEntries[b].mPlayer.mKind;
+        v = gRaceSetup->mCurrentEntries[b].mPlayer.mKind;
         if ((u32) v <= 3) {
             if ((1 << v) & 0xd) {
                 t = TRUE;
@@ -353,7 +351,7 @@ void func_0207f2e4(KartAi *p) {
     if (a != GetRaceUpdateFramesMod8()) {
         return;
     }
-    if (data_021759c0->mUnk_014 != 3) {
+    if (gRaceSetup->mUnk_014 != 3) {
         return;
     }
     a = GetKartRank(a);
@@ -373,7 +371,7 @@ void func_0207f2e4(KartAi *p) {
     if (d != FALSE) {
         return;
     }
-    if (a >= data_021759c0->mKartCount) {
+    if (a >= gRaceSetup->mKartCount) {
         return;
     }
     c = gRaceProgress->mKartAtRank[(u8) (a + 1) - 1];
@@ -726,7 +724,7 @@ void func_0207e668(KartAi *p) {
             p->mUnk_7a = 0x78;
             break;
         case 1:
-            if (data_021759c0->mMode == MODE_BATTLE) {
+            if (gRaceSetup->mMode == MODE_BATTLE) {
                 p->mUnk_a8 = 3;
                 func_0208c1f4(p->mKart->mAi);
                 p->mUnk_7a = 0xb4;

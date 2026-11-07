@@ -121,7 +121,7 @@ void *func_020e2d5c(void) {
 void func_020e2ccc(Unk020e20a8 *a) {
     u16 b;
 
-    b = data_021759c0->mEntryIndex;
+    b = gRaceSetup->mEntryIndex;
     if (a->mUnk_038 == FALSE) {
         return;
     }
@@ -449,8 +449,7 @@ void func_020e20a8(Unk020e20a8 *a) {
 
     b = FindCourseMapObjFile(gCarANsbmdName);
     c = FindCourseMapObjFile(gTruckANsbmdName);
-    a->mUnk_038 =
-        data_021759c0->mMode != MODE_MISSION_RUN && func_0203c5e4() == 0 && (u16) data_021759c0->mEntryIndex < 8;
+    a->mUnk_038 = gRaceSetup->mMode != MODE_MISSION_RUN && func_0203c5e4() == 0 && (u16) gRaceSetup->mEntryIndex < 8;
     a->mUnk_03c = FALSE;
     func_020ea588(&gCarA, b, NULL);
     func_020ea588(&gTruckA, c, NULL);

@@ -152,7 +152,7 @@ s32 ApplyKartSurfaceKind7(Kart *a) {
 
 s32 ApplyKartSurfaceKind12(Kart *a) {
     if (a->mSurfaceGroup != 8 || (a->mUnk_44 & 0x80000000) != 0) {
-        if (data_021759c0->mCourseId == COURSE_ID_OLD_KOOPA_AGB || data_021759c0->mCourseId == COURSE_ID_OLD_SKY_AGB) {
+        if (gRaceSetup->mCourseId == COURSE_ID_OLD_KOOPA_AGB || gRaceSetup->mCourseId == COURSE_ID_OLD_SKY_AGB) {
             StartSound(&a->mSoundSource, 0x15e, 0x7f, 0);
         }
     }
@@ -190,7 +190,7 @@ s32 ApplyKartSurfaceKind15(Kart *a) {
     ApplyKartSurfaceEffect(0, a);
     if ((a->mUnk_48 & 0x10000) == 0) {
         b = a->mSurfaceVariant;
-        if (data_021759c0->mMode == MODE_BATTLE || data_021759c0->mMode == MODE_MISSION_RUN) {
+        if (gRaceSetup->mMode == MODE_BATTLE || gRaceSetup->mMode == MODE_MISSION_RUN) {
             func_020705fc(a, b);
         } else {
             a->mUnk_48 = a->mUnk_48 | 0x10000;
@@ -264,10 +264,10 @@ void func_02067488(Kart *a) {
     if (a->mIndex != GetRaceUpdateFramesMod8()) {
         return;
     }
-    if (data_021759c0->mMode != MODE_GRAND_PRIX) {
+    if (gRaceSetup->mMode != MODE_GRAND_PRIX) {
         return;
     }
-    c = GetKart(data_021759c0->mEntryIndex);
+    c = GetKart(gRaceSetup->mEntryIndex);
     VEC_Subtract(&a->mPos, &c->mPos, &b);
     b.x = b.x >> 12;
     b.y = b.y >> 12;
@@ -280,7 +280,7 @@ void func_02067488(Kart *a) {
 }
 
 void func_02066fe0(Kart *a) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     CourseMap *q;
     Unk021759c0_70 *b;
     u32 c;
@@ -297,7 +297,7 @@ void func_02066fe0(Kart *a) {
     if ((a->mUnk_7c & 0x400) == 0) {
         q = gCourseMap;
         if ((q->mRaceRouteCount != 0 || q->mBattleRouteCount != 0) && IsKartEnded(a->mIndex) != 0) {
-            p = data_021759c0;
+            p = gRaceSetup;
             i = a->mIndex;
             b = &p->mCurrentEntries[i].mPlayer;
             c = 0;
@@ -345,7 +345,7 @@ void func_02066fe0(Kart *a) {
         a->mItemEffect = 0;
         func_020817b8(a->mIndex);
         func_02068a64(a, 0, 1);
-        if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0 && data_021759c0->mUnk_00c == 0) {
+        if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0 && gRaceSetup->mUnk_00c == 0) {
             func_02106dc8();
         }
         if ((a->mUnk_4c & 0x2000) != 0) {
@@ -361,7 +361,7 @@ void func_02066fe0(Kart *a) {
     }
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0) {
         SetRaceUpdateFramesAtEntryEnd();
-        p = data_021759c0;
+        p = gRaceSetup;
         if (p->mMode != MODE_GRAND_PRIX && p->mMode != MODE_TIME_ATTACK &&
             ((p->mUnk_1c == 1 && gRaceProgress->mUnk_000[a->mIndex].mStatus != 1) ||
              ((i = p->mKartCount) > 1 && (c = GetKartRank(a->mIndex), c == i)))) {
@@ -370,7 +370,7 @@ void func_02066fe0(Kart *a) {
             StartEntryCameraKind6Entry();
             func_02081f30();
         }
-    } else if (data_021759c0->mMode == MODE_VS || data_021759c0->mMode == 5) {
+    } else if (gRaceSetup->mMode == MODE_VS || gRaceSetup->mMode == 5) {
         if (gRaceProgress->mUnk_000[a->mIndex].mStatus == 1) {
             e = 0;
             if (TryGetRaceUpdateFramesSinceEntryEnd((u32 *) &e) != 0 && (u32) e > 0xb4) {
@@ -378,7 +378,7 @@ void func_02066fe0(Kart *a) {
             }
         }
     }
-    p = data_021759c0;
+    p = gRaceSetup;
     if (p->mMode == MODE_BATTLE) {
         return;
     }

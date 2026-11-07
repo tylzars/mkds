@@ -241,7 +241,7 @@ int AdvanceSelectKart(void) {
     if (func_020280dc() == 0) {
         func_02078a9c(gSelectKart->mCharacterIndex);
         func_02078a34(gSelectKart->mKartIndex);
-        func_02078420(GetRaceSetupCopy()->mUnk_d8);
+        func_02078420(GetRaceSetupCopy()->mMirrorMode);
         func_020780f4();
     }
     d = gSelectKart;

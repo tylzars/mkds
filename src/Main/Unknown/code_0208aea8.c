@@ -174,7 +174,7 @@ void CopyKartPhysicalParams(u32 a, u32 b, u32 c) {
     if (func_02062eb0() != 0) {
         c = 0;
         b = c;
-    } else if (data_021759c0->mMode == MODE_BATTLE) {
+    } else if (gRaceSetup->mMode == MODE_BATTLE) {
         b = (u16) (c + 0x25);
     }
     MI_CpuCopy8(p + b * 0x98, gKartPhysicalParamTable->mKartParams + a * 0x98, 0x98);

@@ -17,13 +17,13 @@ void DrawRaceMNumberPair(Unk020d029c *param_1) {
     s32 a;
 
     a = GetRaceStartSequenceFrames();
-    if (data_021759c0->mUnk_00c == 4 || data_021759c0->mUnk_00c == 1) {
+    if (gRaceSetup->mUnk_00c == 4 || gRaceSetup->mUnk_00c == 1) {
         return;
     }
     if (a >= 0xb4) {
         return;
     }
-    if (data_021759c0->mMode != 5 && (data_021759c0->mMode != MODE_VS || data_021759c0->mUnk_1c != 2)) {
+    if (gRaceSetup->mMode != 5 && (gRaceSetup->mMode != MODE_VS || gRaceSetup->mUnk_1c != 2)) {
         return;
     }
     func_020d1de8(param_1, a);

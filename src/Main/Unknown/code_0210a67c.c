@@ -148,7 +148,7 @@ void func_0210b2a8(Kart *a, s32 b, s32 c, s32 d, u32 e) {
     }
     if (e != 0) {
         w = 0;
-        h = a->mIndex == data_021759c0->mEntryIndex;
+        h = a->mIndex == gRaceSetup->mEntryIndex;
         if (e > 0x11170) {
             w = 0x384;
             if (h != FALSE) {
@@ -199,7 +199,7 @@ void func_0210b234(Kart *a, s32 b, s32 c, s32 d, s32 f) {
     if (e == 0xffff) {
         return;
     }
-    if (data_021759c0->mCourseId == COURSE_ID_RAINBOW) {
+    if (gRaceSetup->mCourseId == COURSE_ID_RAINBOW) {
         e = 0x1b6;
     }
     StartSound(&a->mSoundSource, e, 0x7f, 0);
@@ -264,7 +264,7 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
             return;
         }
         e = 0x7f;
-        f = a->mIndex == data_021759c0->mEntryIndex;
+        f = a->mIndex == gRaceSetup->mEntryIndex;
         if (c == 5) {
             e = 0x7f;
         } else if (c == 3) {
@@ -364,7 +364,7 @@ void func_0210ad58(Kart *a, s32 b) {
     if (q->mUnk_64 != FALSE) {
         return;
     }
-    if (a->mIndex == data_021759c0->mEntryIndex) {
+    if (a->mIndex == gRaceSetup->mEntryIndex) {
         func_0210abf4(a, b, 1, 0x6e);
         q->mUnk_6c = 0;
         return;
@@ -457,7 +457,7 @@ void func_0210aa14(Kart *a, PlayingSound *b, s32 c) {
     d = b->mUnk_18;
     e = b->mSoundId;
     f = -1;
-    if (a->mIndex == data_021759c0->mEntryIndex) {
+    if (a->mIndex == gRaceSetup->mEntryIndex) {
         p = NNS_SndArcGetSeqArcParam(d, e);
         g = p->mPlayerNo;
         if (g == 2) {
@@ -498,7 +498,7 @@ void func_0210a880(Kart *a, PlayingSound *b, s32 c) {
     if (b->mUnk_18 != 2) {
         f = a->mUnk_500;
         w = 0;
-        g = a->mIndex == data_021759c0->mEntryIndex;
+        g = a->mIndex == gRaceSetup->mEntryIndex;
         if (f > 0x11170) {
             w = 0x384;
             if (g != FALSE) {

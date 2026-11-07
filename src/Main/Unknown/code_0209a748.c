@@ -125,7 +125,7 @@ u8 CollideItemObjectWithCrab(Crab *a, Kart *b, u8 *c, u8 *d) {
             }
             func_020f8ddc(b);
         } else {
-            t = GetKart((u16) data_021759c0->mEntryIndex);
+            t = GetKart((u16) gRaceSetup->mEntryIndex);
             func_0209b388(a, &t->mPos, &t->mUnk_68, &t->mVelocity);
         }
     }

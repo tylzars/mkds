@@ -3,6 +3,6 @@
 
 s32 func_020b4e5c(void) {
     u32 value0;
-    value0 = data_021759c0->mCourseId;
+    value0 = gRaceSetup->mCourseId;
     return value0;
 }

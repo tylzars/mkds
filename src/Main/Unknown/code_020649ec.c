@@ -213,10 +213,10 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     Unk0206bcb0_590_08 *d;
 
     GetHeap(func_020364e8());
-    c = data_021759c0->mCurrentEntries[a->mIndex].mPlayer.mKind == 3;
+    c = gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind == 3;
     a->mKartModelsEntry = GetKartModelsEntry(a->mIndex);
     func_0208adc8(&a->mKartModelsEntry->mUnk_040, 1);
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         for (i = 0; i < 9; i++) {
             if (i == 3) {
                 a->mSlotFunctions[i] = c != 0 ? func_020637e0 : func_02063830;
@@ -253,12 +253,12 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     if (a->mSlotFunctions[0] != 0) {
         a->mSlotFunctions[0](a);
     }
-    if (data_021759c0->mUnk_00c == 2 || (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
+    if (gRaceSetup->mUnk_00c == 2 || (a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
         a->mSlotFunctions[2] = SetKartSoundDistanceSquaredAndChange;
     } else {
         a->mSlotFunctions[2] = SetKartSoundDistanceSquared;
     }
-    if (data_021759c0->mMode == 5) {
+    if (gRaceSetup->mMode == 5) {
         if (c != 0) {
             a->mPosSource = &a->mUnk_514->mUnk_10;
             a->mUnk_50c = &a->mUnk_514->mUnk_4c;
@@ -275,7 +275,7 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     }
     a->mUnk_534 = a->mPosSource;
     func_020646f0(a, 0);
-    if (GetRaceUseChainCameras() != 0 && data_021759c0->mUnk_00c != 5) {
+    if (GetRaceUseChainCameras() != 0 && gRaceSetup->mUnk_00c != 5) {
         a->mSlotFunctions[3] = func_020649e8;
         a->mSlotFunctions[4] = func_020649e8;
         a->mUnk_98 = a->mUnk_174;

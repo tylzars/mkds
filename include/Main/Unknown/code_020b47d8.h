@@ -25,4 +25,4 @@ void func_020b4c74(s32 *a, s32 b);
 void Matrix2x2Rotation(s32 *a, s32 b);
 void Matrix2x2ReciprocalScale(s32 *a, s32 b);
 u16 func_020b4d2c(void);
-u16 func_020b4d9c(void);
+u16 GetFollowedKartOrEntryIndex(void);

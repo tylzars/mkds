@@ -75,7 +75,7 @@ void StartItemInUse(ItemInUse *a, Unk020f40dc *b) {
 
     k = b->mUnk_00;
     t = gItemInfos[k].mUseKind;
-    s = data_021759c0->mMode == 5;
+    s = gRaceSetup->mMode == 5;
     if (b->mUnk_0c != 0) {
         if (b->mUnk_10 > b->mUnk_12) {
             return;

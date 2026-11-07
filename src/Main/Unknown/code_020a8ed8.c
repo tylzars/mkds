@@ -131,7 +131,7 @@ void UpdateIronBall(void *a, IronBall *p) {
                 return;
             }
             w = p->mUnk_0ac;
-            for (i = 0; i < data_021759c0->mKartCount; i++) {
+            for (i = 0; i < gRaceSetup->mKartCount; i++) {
                 if (func_0203c8c0((u16) i) >= w) {
                     f = TRUE;
                     goto found;
@@ -347,9 +347,9 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
     s32 m;
 
     r = GetCurrentCamera();
-    switch (data_021759c0->mCourseId) {
+    switch (gRaceSetup->mCourseId) {
         case COURSE_ID_CROSS:
-            if (IsKartOnLastLap(data_021759c0->mEntryIndex) != FALSE || GetRaceUseChainCameras() != 0) {
+            if (IsKartOnLastLap(gRaceSetup->mEntryIndex) != FALSE || GetRaceUseChainCameras() != 0) {
                 k = 0x898000;
             } else {
                 k = 0x834000;
@@ -380,7 +380,7 @@ void func_020a8ed8(Unk020a826c_a0 *a, Vec3 *b) {
             }
             break;
         case COURSE_ID_MARIO:
-            if (IsKartOnLastLap(data_021759c0->mEntryIndex) != FALSE || GetRaceUseChainCameras() != 0) {
+            if (IsKartOnLastLap(gRaceSetup->mEntryIndex) != FALSE || GetRaceUseChainCameras() != 0) {
                 m = 0x384000;
             } else {
                 m = 0x320000;

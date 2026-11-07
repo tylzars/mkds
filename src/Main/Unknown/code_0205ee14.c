@@ -157,14 +157,14 @@ s32 func_0205fbb8(s32 a) {
 }
 
 void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
-    Unk021759c0 *p;
+    RaceSetup *p;
     Unk0217aa08_20_04 e;
     u16 *f;
     u16 *g;
     u8 h;
     s32 r;
 
-    p = data_021759c0;
+    p = gRaceSetup;
     if (a == p->mEntryIndex) {
         return;
     }
@@ -180,8 +180,8 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
     if (e.mUnk_22_0 == 0) {
         func_02057624((u32) &e);
     }
-    if (data_021759c0->mCurrentEntries[a].mPlayer.mName != NULL) {
-        MI_CpuCopy8(data_021759c0->mCurrentEntries[a].mPlayer.mName, e.mUnk_0e, 0x14);
+    if (gRaceSetup->mCurrentEntries[a].mPlayer.mName != NULL) {
+        MI_CpuCopy8(gRaceSetup->mCurrentEntries[a].mPlayer.mName, e.mUnk_0e, 0x14);
     }
     switch (c) {
         case 0:
@@ -239,35 +239,35 @@ void func_0205f700(void) {
     if (func_0205f218_inline() == FALSE) {
         return;
     }
-    if (data_021759c0->mEntryIndex == -1) {
+    if (gRaceSetup->mEntryIndex == -1) {
         return;
     }
-    if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
+    if (gRaceProgress->mUnk_000[(u16) gRaceSetup->mEntryIndex].mStatus == 4) {
         return;
     }
     if (gRaceProgress->mRaceDone == 0) {
         return;
     }
     GetClockDateOrDefault(v2);
-    a = GetKartRank((u16) data_021759c0->mEntryIndex);
-    if (data_021759c0->mUseTeams != 0) {
-        c = data_021759c0->mCurrentEntries[(u16) data_021759c0->mEntryIndex].mPlayer.mTeamIndex;
+    a = GetKartRank((u16) gRaceSetup->mEntryIndex);
+    if (gRaceSetup->mUseTeams != 0) {
+        c = gRaceSetup->mCurrentEntries[(u16) gRaceSetup->mEntryIndex].mPlayer.mTeamIndex;
     }
     d = data_0217aa08->mUnk_00->mUnk_34[0];
     e = data_0217aa08->mUnk_00->mUnk_34[1];
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        if (i == data_021759c0->mEntryIndex) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
+        if (i == gRaceSetup->mEntryIndex) {
             continue;
         }
-        r = data_021759c0->mCurrentEntries[i].mPlayer.mKind;
+        r = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
         if (r == 1 || r == 4 || r == 2) {
             continue;
         }
-        if (data_021759c0->mUseTeams != 0) {
-            if (c == data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex) {
+        if (gRaceSetup->mUseTeams != 0) {
+            if (c == gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex) {
                 t = 2;
             } else {
-                switch (data_021759c0->mUnk_1c) {
+                switch (gRaceSetup->mUnk_1c) {
                     case 0:
                     case 2:
                         t = func_0205f700_inline(i, a);
@@ -323,10 +323,10 @@ void func_0205f498(void) {
     if (func_0205f218_inline() == FALSE) {
         return;
     }
-    if (data_021759c0->mEntryIndex == -1) {
+    if (gRaceSetup->mEntryIndex == -1) {
         return;
     }
-    if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
+    if (gRaceProgress->mUnk_000[(u16) gRaceSetup->mEntryIndex].mStatus == 4) {
         return;
     }
     if (IsWinnerDecidedAndEndReached() == 0) {
@@ -335,16 +335,16 @@ void func_0205f498(void) {
     GetClockDateOrDefault(v2);
     a = data_0217aa08->mUnk_00->mUnk_34[2];
     b = data_0217aa08->mUnk_00->mUnk_34[3];
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        if (i == data_021759c0->mEntryIndex) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
+        if (i == gRaceSetup->mEntryIndex) {
             continue;
         }
-        r = data_021759c0->mCurrentEntries[i].mPlayer.mKind;
+        r = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
         if (r == 1 || r == 4 || r == 2) {
             continue;
         }
         t = 2;
-        if (IsKartOnWinningTeamAtEnd((u16) data_021759c0->mEntryIndex) != 0) {
+        if (IsKartOnWinningTeamAtEnd((u16) gRaceSetup->mEntryIndex) != 0) {
             if (IsKartOnWinningTeamAtEnd(i) == 0) {
                 t = 0;
             }
@@ -390,29 +390,29 @@ void func_0205f218(void) {
     if (func_0205f218_inline() == FALSE) {
         return;
     }
-    if (data_021759c0->mEntryIndex == -1) {
+    if (gRaceSetup->mEntryIndex == -1) {
         return;
     }
-    if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
+    if (gRaceProgress->mUnk_000[(u16) gRaceSetup->mEntryIndex].mStatus == 4) {
         return;
     }
     if (IsWinnerDecidedAndEndReached() == 0) {
         return;
     }
     GetClockDateOrDefault(v2);
-    GetKartRank((u16) data_021759c0->mEntryIndex);
+    GetKartRank((u16) gRaceSetup->mEntryIndex);
     a = data_0217aa08->mUnk_00->mUnk_34[2];
     b = data_0217aa08->mUnk_00->mUnk_34[3];
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        if (i == data_021759c0->mEntryIndex) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
+        if (i == gRaceSetup->mEntryIndex) {
             continue;
         }
-        r = data_021759c0->mCurrentEntries[i].mPlayer.mKind;
+        r = gRaceSetup->mCurrentEntries[i].mPlayer.mKind;
         if (r == 1 || r == 4 || r == 2) {
             continue;
         }
         t = 2;
-        if (IsKartOnWinningTeamAtEnd((u16) data_021759c0->mEntryIndex) != 0) {
+        if (IsKartOnWinningTeamAtEnd((u16) gRaceSetup->mEntryIndex) != 0) {
             if (IsKartOnWinningTeamAtEnd(i) == 0) {
                 t = 0;
             }
@@ -473,18 +473,18 @@ void func_0205ef70(void) {
     a = data_0217aa08->mUnk_00->mUnk_34[4];
     b = data_0217aa08->mUnk_00->mUnk_34[5];
     func_0205b32c();
-    if (data_021759c0->mCourseNumber <= 3) {
+    if (gRaceSetup->mCourseNumber <= 3) {
         return;
     }
     if (gRaceProgress->mRaceDone == 0) {
         return;
     }
-    if (gRaceProgress->mUnk_000[(u16) data_021759c0->mEntryIndex].mStatus == 4) {
+    if (gRaceProgress->mUnk_000[(u16) gRaceSetup->mEntryIndex].mStatus == 4) {
         return;
     }
     GetClockDateOrDefault(v1);
-    c = func_0205d4e8((u16) data_021759c0->mEntryIndex);
-    h = func_0205ef70_inline(data_021759c0->mEntryIndex);
+    c = func_0205d4e8((u16) gRaceSetup->mEntryIndex);
+    h = func_0205ef70_inline(gRaceSetup->mEntryIndex);
     m = gWiFiSession->mKartCountCopy - 1;
     g = gWiFiSession->mKartCountCopy;
     if (m > 0) {
@@ -494,15 +494,15 @@ void func_0205ef70(void) {
             b -= m;
         }
     }
-    if ((s16) (g - data_021759c0->mKartCount) > 0) {
-        a += (s16) (g - data_021759c0->mKartCount);
+    if ((s16) (g - gRaceSetup->mKartCount) > 0) {
+        a += (s16) (g - gRaceSetup->mKartCount);
         if (a > data_usa_021653e0) {
             a = data_usa_021653e0;
         }
     }
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         t = 2;
-        if (i != data_021759c0->mEntryIndex) {
+        if (i != gRaceSetup->mEntryIndex) {
             if (c < func_0205d4e8(i)) {
                 t = 0;
             } else if (c > func_0205d4e8(i)) {
@@ -530,8 +530,8 @@ void func_0205ef70(void) {
 }
 
 void func_0205eeb0(void) {
-    if (data_021759c0->mUnk_00c == 0) {
-        switch (data_021759c0->mMode) {
+    if (gRaceSetup->mUnk_00c == 0) {
+        switch (gRaceSetup->mMode) {
             case MODE_VS:
                 func_0205f700();
                 break;
@@ -539,7 +539,7 @@ void func_0205eeb0(void) {
                 func_0203b230();
                 break;
             case MODE_BATTLE:
-                switch (data_021759c0->mUnk_18) {
+                switch (gRaceSetup->mUnk_18) {
                     case 0:
                         func_0205f498();
                         break;

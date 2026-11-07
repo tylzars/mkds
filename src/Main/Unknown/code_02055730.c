@@ -69,7 +69,7 @@ u8 func_02056208(void) {
 
 void func_02056158(void *a) {
     data_0217aa04 = HeapAlloc(a, 0x10);
-    if (data_021759c0->mUnk_00c == 3 || data_021759c0->mUnk_00c == 5) {
+    if (gRaceSetup->mUnk_00c == 3 || gRaceSetup->mUnk_00c == 5) {
         data_0217aa04->mUnk_04 = HeapAllocAligned(a, 0x400, 0x20);
     } else {
         data_0217aa04->mUnk_04 = NULL;

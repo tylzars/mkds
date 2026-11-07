@@ -15,7 +15,7 @@ void func_0210a5a8(Kart *a, Unk0210a5a8 *b) {
         a->mSoundSource.mUnk_2c = (void (*)(void *, void *, u32)) func_0210aa14;
     }
     a->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a76c;
-    if (GetCurrentSceneNumber() == 2 || a->mIndex != data_021759c0->mEntryIndex) {
+    if (GetCurrentSceneNumber() == 2 || a->mIndex != gRaceSetup->mEntryIndex) {
         b->mUnk_3c = func_0210a63c;
     } else {
         b->mUnk_3c = func_0210aa0c;

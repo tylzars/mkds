@@ -94,7 +94,7 @@ void CreateItemModels(void) {
     gItemModels[12] = func_020ed4d0(data_0216c5bc, NULL, data_0216c5d0);
     gItemModels[13] = func_020ed4d0(data_0216c5e4, NULL, data_0216c5f4);
     gItemModels[8] = gItemModels[7];
-    f = (data_021759c0->mCourseId == COURSE_ID_RAINBOW);
+    f = (gRaceSetup->mCourseId == COURSE_ID_RAINBOW);
     i = 0;
     while (i < 0xe) {
         p = &gItemKinds[i];

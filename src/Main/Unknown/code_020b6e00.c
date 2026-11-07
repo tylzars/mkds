@@ -127,13 +127,13 @@ void func_020b8624(void) {
 
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[0].mNclr, FindSceneFileWrapper("race_m_o.NCLR"));
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[1].mNclr, FindSceneFileWrapper("race_goal_m_o.NCLR"));
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_TIME_ATTACK:
             data_0217b3c4->mNclrNcgrPairs[2].mNclr = data_0217b3c4->mNclrNcgrPairs[0].mNclr;
             break;
         case MODE_BATTLE:
             LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[3].mNclr, FindSceneFileWrapper("race_battle_m_o.NCLR"));
-            if (data_021759c0->mUnk_00c == 4) {
+            if (gRaceSetup->mUnk_00c == 4) {
                 LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[10].mNclr,
                              FindSceneFileWrapper("race_start_battle_m_o.NCLR"));
             }
@@ -148,13 +148,13 @@ void func_020b8624(void) {
 
     LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[0].mNcgr, FindSceneFileWrapper("race_m_o.NCGR"));
     LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[1].mNcgr, FindSceneFileWrapper("race_goal_m_o.NCGR"));
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_TIME_ATTACK:
             LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[2].mNcgr, FindSceneFileWrapper("race_ta_m_o.NCGR"));
             break;
         case MODE_BATTLE:
             LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[3].mNcgr, FindSceneFileWrapper("race_battle_m_o.NCGR"));
-            if (data_021759c0->mUnk_00c == 4) {
+            if (gRaceSetup->mUnk_00c == 4) {
                 LoadNcgrData2(&data_0217b3c4->mNclrNcgrPairs[10].mNcgr,
                               FindSceneFileWrapper("race_start_battle_m_o.NCGR"));
             }
@@ -178,7 +178,7 @@ void func_020b8624(void) {
         data_0217b3c4->mRaceGoalMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a1, i);
     }
 
-    switch (data_021759c0->mMode) {
+    switch (gRaceSetup->mMode) {
         case MODE_TIME_ATTACK:
             p = func_020b403c(2);
             NNS_G2dCharCanvasInitForBG(buf0, data_0217b3c4->mNclrNcgrPairs[1].mNcgr->mData, 0x20, 0x10, 4);
@@ -207,7 +207,7 @@ void func_020b8624(void) {
                           data_0217b3c4->mNclrNcgrPairs[0].mNcgr->mData, 0, 0);
             break;
         case MODE_BATTLE:
-            if (data_021759c0->mUnk_00c != 4) {
+            if (gRaceSetup->mUnk_00c != 4) {
                 a3 = NULL;
                 LoadNcerData(&a3, FindSceneFileWrapper("race_battle_m.NCER"));
                 for (i = 0; i < 0xd; i++) {
@@ -224,7 +224,7 @@ void func_020b8624(void) {
                     data_0217b3c4->mRaceStartBattleMNcerEntries[i] = NNS_G2dGetCellDataByIdx(a4, i);
                 }
                 p = func_020b403c(2);
-                n = func_02025d8c(data_021759c0->mCourseId);
+                n = func_02025d8c(gRaceSetup->mCourseId);
                 NNS_G2dCharCanvasInitForBG(buf2, data_0217b3c4->mNclrNcgrPairs[10].mNcgr->mData, 0x20, 4, 4);
                 n2 = func_020b4b54();
                 s2.mUnk_04 = p;
@@ -233,10 +233,10 @@ void func_020b8624(void) {
                 s2.mUnk_08 = n2;
                 NNSi_G2dTextCanvasDrawText(
                     &s2, 0, 9, 0xc, 0x40a,
-                    GetBmgEntry(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
+                    GetBmgEntry(func_020b47cc("common.bmg"), gRaceSetup->mUnk_18 == 0 ? 0x54 : 0x55));
                 NNSi_G2dTextCanvasDrawText(
                     &s2, 0, 8, 0xc, 0x40a,
-                    GetBmgEntry(func_020b47cc("common.bmg"), data_021759c0->mUnk_18 == 0 ? 0x54 : 0x55));
+                    GetBmgEntry(func_020b47cc("common.bmg"), gRaceSetup->mUnk_18 == 0 ? 0x54 : 0x55));
                 s2.mUnk_08 = func_020b4b54();
                 NNSi_G2dTextCanvasDrawText(&s2, 0, 0x19, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
                 NNSi_G2dTextCanvasDrawText(&s2, 0, 0x18, 0xe, 0x40a, GetBmgEntry(func_020b47cc("common.bmg"), n));
@@ -280,9 +280,9 @@ void func_020b8624(void) {
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[6].mNclr, FindSceneFileWrapper("race_s_o.NCLR"));
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[7].mNclr, FindSceneFileWrapper("race_goal_s_o.NCLR"));
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[8].mNclr, FindSceneFileWrapper("race_goal_team_s_o.NCLR"));
-    if (data_021759c0->mUseTeams != 0) {
+    if (gRaceSetup->mUseTeams != 0) {
         a8 = NULL;
-        m = data_021759c0->mCurrentEntries[func_020b4d9c()].mPlayer.mTeamIndex == 0 ? 0x13 : 0x23;
+        m = gRaceSetup->mCurrentEntries[GetFollowedKartOrEntryIndex()].mPlayer.mTeamIndex == 0 ? 0x13 : 0x23;
         LoadNclrData(&a8, FindSceneFileWrapper("race_own_character_s_o.NCLR"));
         DC_FlushRange(data_0217b3c4->mNclrNcgrPairs[6].mNclr->mData, 0x200);
         for (j = 0; j < 4; j++) {
@@ -299,12 +299,12 @@ void func_020b8624(void) {
     s3.mUnk_04 = p;
     s3.mUnk_08 = 1;
     s3.mUnk_0c = 0;
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         x = (i % 2) * 0x68;
         y = (i / 2) * 0x10 + 0x48;
         CopyKartEntryName(i, w3, 1);
-        NNSi_G2dTextCanvasDrawText(&s3, x, y + 1, i == func_020b4d9c() ? 0xd : 0xf, 0x40a, w3);
-        NNSi_G2dTextCanvasDrawText(&s3, x, y, i == func_020b4d9c() ? 0xc : 0xe, 0x40a, w3);
+        NNSi_G2dTextCanvasDrawText(&s3, x, y + 1, i == GetFollowedKartOrEntryIndex() ? 0xd : 0xf, 0x40a, w3);
+        NNSi_G2dTextCanvasDrawText(&s3, x, y, i == GetFollowedKartOrEntryIndex() ? 0xc : 0xe, 0x40a, w3);
     }
 
     p = func_020b403c(2);
@@ -321,13 +321,13 @@ void func_020b8624(void) {
     s5.mUnk_04 = p;
     s5.mUnk_08 = 1;
     s5.mUnk_0c = 0;
-    for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (u32) gRaceSetup->mKartCount; i++) {
         x2 = (i % 4) * 0x38;
         y2 = (i / 4) * 0x10 + 0x38;
         CopyKartEntryName(i, w5, 0);
-        if (i == func_020b4d9c()) {
-            if (data_021759c0->mUseTeams != 0) {
-                if (data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 0) {
+        if (i == GetFollowedKartOrEntryIndex()) {
+            if (gRaceSetup->mUseTeams != 0) {
+                if (gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex == 0) {
                     b = 0xa;
                     c = 0xb;
                 } else {
@@ -362,7 +362,7 @@ void func_020b8624(void) {
         data_0217b3c4->mRaceGoalTeamSNcerEntries[i] = NNS_G2dGetCellDataByIdx(a11, i);
     }
 
-    if (data_021759c0->mMode != MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
         return;
     }
     LoadNclrData(&data_0217b3c4->mNclrNcgrPairs[9].mNclr, FindSceneFileWrapper("race_new_record_ta_s_o.NCLR"));
@@ -423,7 +423,7 @@ u32 LookupRaceMNcerIndex(u32 a) {
             r = 0xd;
             break;
         case 5:
-            p = &gKartItems[func_020b4d9c()];
+            p = &gKartItems[GetFollowedKartOrEntryIndex()];
             j = p->mHeldItem.mUnk_00;
             switch (gItemInfos[j].mObjectKind == 3 ? (u16) p->mHeldItem.mUnk_08 : 0) {
                 case 1:
@@ -610,9 +610,9 @@ void func_020b80a8(void) {
         y = (i % 4) << 6;
         x = (((u32) i >> 2) << 4) + 8;
         CopyKartEntryName(i, t, k);
-        if (i == func_020b4d9c()) {
-            if (data_021759c0->mUseTeams != 0) {
-                if (data_021759c0->mCurrentEntries[i].mPlayer.mTeamIndex == 0) {
+        if (i == GetFollowedKartOrEntryIndex()) {
+            if (gRaceSetup->mUseTeams != 0) {
+                if (gRaceSetup->mCurrentEntries[i].mPlayer.mTeamIndex == 0) {
                     b = 10;
                     c = 11;
                 } else {
@@ -635,7 +635,7 @@ void func_020b80a8(void) {
 void func_020b7fd8(s32 a, s32 *b, s32 *c) {
     s32 t;
 
-    *b = data_021759c0->mCurrentEntries[a].mCharacterIndex;
+    *b = gRaceSetup->mCurrentEntries[a].mCharacterIndex;
     switch (*b) {
         case 0:
         case 2:
@@ -672,7 +672,7 @@ void func_020b7fd8(s32 a, s32 *b, s32 *c) {
 void func_020b7ee8(s32 a, s32 *b, s32 *c) {
     Unk02056bc0 t;
 
-    func_02056bc0(data_021759c0->mCourseId, a, &t);
+    func_02056bc0(gRaceSetup->mCourseId, a, &t);
     if (t.mUnk_18 != 0) {
         *b = t.mUnk_19;
     } else {
@@ -720,7 +720,7 @@ void CopyRaceTransferMapMrSO(u16 *a, void *b) {
 
     LoadNcgrData2(&o, FindSceneFileWrapper("race_transfer_map_mr_s_o.NCGR"));
     p = o->mData;
-    switch (data_021759c0->mUnk_2e) {
+    switch (gRaceSetup->mMissionTableValue) {
         case 0x9:
             func_020b46d0(p, 0x0, 0, 4, 4, b, 0, 12);
             v1 = NULL;
@@ -808,13 +808,13 @@ void func_020b6e00(u16 *a, void *b) {
 
     LoadNcgrData2(&o, FindSceneFileWrapper("race_transfer_s_o.NCGR"));
     p = o->mData;
-    for (i = 0; i < (s32) data_021759c0->mKartCount; i++) {
+    for (i = 0; i < (s32) gRaceSetup->mKartCount; i++) {
         func_020b7fd8(i, &x, &y);
         func_020b46d0(p, x << 1, 0, 2, 2, b, i << 1, 0);
         r = data_0217b3c4->mRaceSNcerEntries[i]->mUnk_04;
         r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
     }
-    for (j = 0; j < (s32) data_021759c0->mKartCount; j++) {
+    for (j = 0; j < (s32) gRaceSetup->mKartCount; j++) {
         func_020b7fd8(j, &x, &y);
         func_020b46d0(p, x << 1, 2, 2, 2, b, (j << 1) + 0x10, 0);
         r = data_0217b3c4->mRaceSNcerEntries[j + 8]->mUnk_04;
@@ -823,12 +823,12 @@ void func_020b6e00(u16 *a, void *b) {
         r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
         r = data_0217b3c4->mRaceGoalTeamSNcerEntries[j]->mUnk_04;
         r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
-        if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+        if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
             r = data_0217b3c4->mRaceNewRecordTaSNcerEntries[j + 7]->mUnk_04;
             r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
         }
     }
-    if (data_021759c0->mMode == MODE_TIME_ATTACK) {
+    if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
         for (j = 0; j < 6; j++) {
             func_020b7ee8(j, &x, &y);
             func_020b46d0(p, x << 1, 2, 2, 2, b, ((j + 2) << 1) + 0x10, 0);
@@ -836,7 +836,7 @@ void func_020b6e00(u16 *a, void *b) {
             r->mUnk_04 = (r->mUnk_04 & 0xfff) + (y << 12);
         }
     }
-    for (k = 0; k < (s32) data_021759c0->mKartCount; k++) {
+    for (k = 0; k < (s32) gRaceSetup->mKartCount; k++) {
         s32 t[8][2] = {{16, 8}, {16, 10}, {11, 12}, {18, 12}, {25, 12}, {11, 14}, {18, 14}, {25, 14}};
 
         func_020b46d0(func_0212b090(), (k % 4) << 3, ((u32) k >> 2) << 1, 7, 2, b, t[k][0], t[k][1]);
@@ -844,7 +844,7 @@ void func_020b6e00(u16 *a, void *b) {
     func_0212b09c();
     LoadNcgrData2(&o, FindSceneFileWrapper("race_transfer_map_s_o.NCGR"));
     p = o->mData;
-    if (data_021759c0->mMode == MODE_BATTLE) {
+    if (gRaceSetup->mMode == MODE_BATTLE) {
         func_020b46d0(p, 0x14, 6, 0xc, 4, b, 0, 8);
         func_020b46d0(p, 0x14, 0xa, 0xb, 4, b, 0, 0xc);
         q1 = NULL;
@@ -853,7 +853,7 @@ void func_020b6e00(u16 *a, void *b) {
             a[0x40 + n] = q1->mData[0xd0 + n];
         }
     } else {
-        switch (data_021759c0->mCourseId) {
+        switch (gRaceSetup->mCourseId) {
             case COURSE_ID_OLD_NOKO_SFC:
             case COURSE_ID_BEACH:
             case COURSE_ID_MINI_STAGE3:
@@ -893,7 +893,7 @@ void func_020b6e00(u16 *a, void *b) {
             case COURSE_ID_PINBALL:
                 func_020b46d0(p, 0, 2, 0xc, 4, b, 0, 8);
                 func_020b46d0(p, 0, 6, 0xb, 4, b, 0, 0xc);
-                if (data_021759c0->mUnk_57 != 0) {
+                if (gRaceSetup->mMirrorMode != 0) {
                     func_020b45b0(p, 0, 2, 8, 8, b, 0, 8);
                 }
                 q6 = NULL;
@@ -985,7 +985,7 @@ void func_020b6e00(u16 *a, void *b) {
                 break;
         }
     }
-    if (data_021759c0->mMode == MODE_MISSION_RUN) {
+    if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         CopyRaceTransferMapMrSO(a, b);
     }
 }
