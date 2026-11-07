@@ -86,7 +86,7 @@ PATH_COMPILERS = {
 }
 # Flags from CC_FLAGS that sources under these paths must not get.
 PATH_DROP_FLAGS = {
-    "libs/": ["-char unsigned"],  # verified: libs/Unknown/src/code_0200d118.c matches with plain char only signed
+    "libs/": ["-char unsigned"],  # verified: libs/NitroSDK/os/src/code_0200d118.c matches with plain char only signed
     "libs/msl/": [],  # verified: libs/msl/src/code_02139f70.c matches with plain char only unsigned
 }
 # Flags added for sources under these paths. A game with Thumb code: "src/": ["-thumb"], with an empty list for an
