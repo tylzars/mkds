@@ -137,8 +137,8 @@ void DrawPendulum(u32 param_1, Unk020e5e24 *a, u32 param_3, u32 param_4) {
     a->mUnk_4c.x = a->mUnk_bc.x >> 4;
     a->mUnk_4c.y = a->mUnk_bc.y >> 4;
     a->mUnk_4c.z = a->mUnk_bc.z >> 4;
-    func_020ea8a8(gPendulum, &a->mUnk_28, &a->mUnk_1c, param_4);
-    func_020ea868(gPendulumShadow, &a->mUnk_c8, &a->mUnk_1c, param_4);
+    DrawNsbmdWithMatrixAndMaxAlpha(gPendulum, &a->mUnk_28, &a->mUnk_1c, param_4);
+    DrawShadowWithMaxAlpha(gPendulumShadow, &a->mUnk_c8, &a->mUnk_1c, param_4);
 }
 
 void UpdatePendulum(u32 param_1, Unk020e5e24 *a) {

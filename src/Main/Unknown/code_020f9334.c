@@ -213,7 +213,7 @@ void func_020f944c(ItemObject *param_1, MapObject *param_2) {
     if (IsSphereHittingMapObject(&p->mPos, p->mRadius, r, &a) == FALSE) {
         return;
     }
-    if ((r->mFlags & 0x40) == 0 && (p->mFlags & 0x80000) == 0 && func_020d6968(p->mKind, r) != 0) {
+    if ((r->mFlags & 0x40) == 0 && (p->mFlags & 0x80000) == 0 && DoesItemObjectRespondToMapObject(p->mKind, r) != 0) {
         VEC_Add(&p->mPos, &a, &p->mPos);
     }
     switch (func_020d6a54(p, r, &b)) {

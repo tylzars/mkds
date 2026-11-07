@@ -751,7 +751,7 @@ void DrawItemKouraWModel(ItemKouraW *param_1, s32 param_2, s32 param_3) {
         u32 i;
         NNSG3dResMdl *o;
 
-        o = gKouraW->mUnk_004;
+        o = gKouraW->mResMdl;
         n = (u16) param_1->mUnk_000.mUnk_d8;
         for (i = 0; i < o->mInfo.mNumMat; i++) {
             NNS_G3dMdlSetMdlAlpha(o, i, n);
@@ -768,7 +768,7 @@ void DrawItemKouraWModel(ItemKouraW *param_1, s32 param_2, s32 param_3) {
         param_1->mUnk_000.mUnk_94.mUnk_00[3].z = pv->z >> 4;
         q = &param_1->mUnk_000.mUnk_94;
     }
-    func_020ea8a8(gKouraW, q, &v, 0x1f);
+    DrawNsbmdWithMatrixAndMaxAlpha(gKouraW, q, &v, 0x1f);
     if (param_1->mUnk_000.mUnk_d8 == 0x1f) {
         return;
     }
@@ -776,7 +776,7 @@ void DrawItemKouraWModel(ItemKouraW *param_1, s32 param_2, s32 param_3) {
         u32 i;
         NNSG3dResMdl *o;
 
-        o = gKouraW->mUnk_004;
+        o = gKouraW->mResMdl;
         for (i = 0; i < o->mInfo.mNumMat; i++) {
             NNS_G3dMdlSetMdlAlpha(o, i, 0x1f);
         }
@@ -843,7 +843,7 @@ void SetupItemKouraWKind(void) {
     data_0217bd34 = v * v;
     gKouraW = func_020ed490(data_0216c6f4, data_0216c704);
     if (gRaceSetup->mCourseId == COURSE_ID_RAINBOW) {
-        NNS_G3dMdlSetMdlFogEnableFlagAll(gKouraW->mUnk_004, 0);
+        NNS_G3dMdlSetMdlFogEnableFlagAll(gKouraW->mResMdl, 0);
     }
 }
 

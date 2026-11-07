@@ -409,12 +409,12 @@ u8 CollideItemObjectWithBound(Bound *p, void *a, u8 *b, u8 *c) {
 
 BOOL func_0209c8b0(Bound *p, Vec3 *a, s32 b, Vec3 *c) {
     if ((p->mUnk_000.mFlags & 0x800) == 0 && p->mWobbling == TRUE) {
-        p->mUnk_0a4 =
-            func_020ead80(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0],
-                          ((s64) p->mUnk_000.mExtent.x * p->mWobbleScaleX) >> 12, p->mUnk_000.mExtent.y, 0, b, c);
+        p->mUnk_0a4 = ComputeSphereHitOnRotatedCylinder(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0],
+                                                        ((s64) p->mUnk_000.mExtent.x * p->mWobbleScaleX) >> 12,
+                                                        p->mUnk_000.mExtent.y, 0, b, c);
     } else {
-        p->mUnk_0a4 = func_020ead80(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0], p->mUnk_000.mExtent.x,
-                                    p->mUnk_000.mExtent.y, 0, b, c);
+        p->mUnk_0a4 = ComputeSphereHitOnRotatedCylinder(a, &p->mUnk_000.mPos, &p->mUnk_000.mMatrix.mUnk_00[0],
+                                                        p->mUnk_000.mExtent.x, p->mUnk_000.mExtent.y, 0, b, c);
     }
     return p->mUnk_0a4 != 0;
 }

@@ -53,7 +53,7 @@ void DrawMapObjectModel(Unk02100094 *a, void *b, void *d) {
         if (o->mAnimations[2] != NULL) {
             func_020ea670(o->mAnimatedModel, c->mAlpha);
         } else {
-            func_020ea7cc(o->mAnimatedModel, c->mAlpha);
+            DrawNsbmdWithMaxAlpha(o->mAnimatedModel, c->mAlpha);
         }
     }
     if (o->mShadowModel == NULL) {
@@ -78,7 +78,7 @@ void DrawMapObjectModelWithPos(u32 a, MapObjectModel *b, MapObject *c) {
         if (o->mAnimations[2] != NULL) {
             func_020ea670(o->mAnimatedModel, c->mAlpha);
         } else {
-            func_020ea7cc(o->mAnimatedModel, c->mAlpha);
+            DrawNsbmdWithMaxAlpha(o->mAnimatedModel, c->mAlpha);
         }
     }
     if (o->mShadowModel == NULL) {
@@ -93,7 +93,7 @@ void DrawMapObjectModel1Mat1Shp(void *a, void *b, void *c) {
     if (o->mAnimatedModel == NULL) {
         return;
     }
-    func_020ea740(o->mAnimatedModel, ((MapObject *) c)->mAlpha);
+    DrawNsbmd1Mat1ShpWithMaxAlpha(o->mAnimatedModel, ((MapObject *) c)->mAlpha);
 }
 
 void func_0209ba08(void *a, u32 b) {
@@ -119,7 +119,7 @@ void SetMapObjectModelAlpha(void *a, u16 b) {
         m->mUnk_14 |= b << 16;
     }
     if (o->mAnimatedModel != NULL) {
-        NNS_G3dMdlSetMdlAlphaAll(o->mAnimatedModel->mUnk_004, b);
+        NNS_G3dMdlSetMdlAlphaAll(o->mAnimatedModel->mResMdl, b);
     }
     if (o->mShadowModel != NULL) {
         o->mShadowModel->mUnk_6e = b;
@@ -137,7 +137,7 @@ void SetMapObjectModelPolygonId(void *a, u32 b) {
         m->mUnk_14 |= b << 24;
     }
     if (o->mAnimatedModel != NULL) {
-        NNS_G3dMdlSetMdlPolygonIDAll(o->mAnimatedModel->mUnk_004, b);
+        NNS_G3dMdlSetMdlPolygonIDAll(o->mAnimatedModel->mResMdl, b);
     }
     if (o->mShadowModel != NULL) {
         o->mShadowModel->mUnk_6c = b;
@@ -150,7 +150,7 @@ void func_0209b904(void *a, u32 b, u16 c) {
     if (o->mAnimatedModel == NULL) {
         return;
     }
-    NNS_G3dMdlSetMdlPolygonID(o->mAnimatedModel->mUnk_004, c, b);
+    NNS_G3dMdlSetMdlPolygonID(o->mAnimatedModel->mResMdl, c, b);
 }
 
 void SetMapObjectModelFogEnabled(void *a, u32 b) {
@@ -167,7 +167,7 @@ void SetMapObjectModelFogEnabled(void *a, u32 b) {
     if (o->mAnimatedModel == NULL) {
         return;
     }
-    NNS_G3dMdlSetMdlFogEnableFlagAll(o->mAnimatedModel->mUnk_004, b);
+    NNS_G3dMdlSetMdlFogEnableFlagAll(o->mAnimatedModel->mResMdl, b);
 }
 
 void SetMapObjectModelMirror(void *a, s32 b, s32 c) {

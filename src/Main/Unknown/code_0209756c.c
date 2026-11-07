@@ -81,27 +81,29 @@ u32 func_02097ed0(Flipper *p, Vec3 *a, s32 b, Vec3 *c) {
     s32 r;
 
     p->mUnk_a0 = 0;
-    if (func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0], &data_usa_0215650c[p->mUnk_a4],
-                      &data_usa_0215653c[p->mUnk_a4], b, NULL) != 0) {
-        r = func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0], &data_usa_02156554[p->mUnk_a4],
-                          &data_usa_021564dc[p->mUnk_a4], b, c);
+    if (ComputeSphereHitOnRotatedBox(a, &p->mUnk_00.mPos, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0],
+                                     &data_usa_0215650c[p->mUnk_a4], &data_usa_0215653c[p->mUnk_a4], b, NULL) != 0) {
+        r = ComputeSphereHitOnRotatedBox(a, &p->mUnk_00.mPos, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0],
+                                         &data_usa_02156554[p->mUnk_a4], &data_usa_021564dc[p->mUnk_a4], b, c);
         if (r == 4 || p->mState == 2) {
             p->mUnk_a0 = 1;
         } else if (p->mState == 3) {
             p->mUnk_a0 = -1;
         }
     } else {
-        if (func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0], &data_usa_021564c4[p->mUnk_a4],
-                          &data_usa_02156524[p->mUnk_a4], b, NULL) != 0) {
-            r = func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_648[p->mUnk_ec0].mUnk_00[0], &data_usa_0215656c[p->mUnk_a4],
-                              &data_usa_021564f4[p->mUnk_a4], b, c);
+        if (ComputeSphereHitOnRotatedBox(a, &p->mUnk_00.mPos, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0],
+                                         &data_usa_021564c4[p->mUnk_a4], &data_usa_02156524[p->mUnk_a4], b,
+                                         NULL) != 0) {
+            r = ComputeSphereHitOnRotatedBox(a, &p->mUnk_00.mPos, &p->mUnk_648[p->mUnk_ec0].mUnk_00[0],
+                                             &data_usa_0215656c[p->mUnk_a4], &data_usa_021564f4[p->mUnk_a4], b, c);
             if (r == 4 || p->mState == 3) {
                 p->mUnk_a0 = -1;
             } else if (p->mState == 2) {
                 p->mUnk_a0 = 1;
             }
         } else {
-            r = func_020ead80(a, &p->mUnk_00.mPos, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0], 0x32000, 0x3c000, 0, b, c);
+            r = ComputeSphereHitOnRotatedCylinder(a, &p->mUnk_00.mPos, &p->mUnk_a8[p->mUnk_ec0].mUnk_00[0], 0x32000,
+                                                  0x3c000, 0, b, c);
         }
     }
     return r != 0;

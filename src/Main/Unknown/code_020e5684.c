@@ -141,7 +141,7 @@ void DrawSecondHand(u32 a, Unk020e43a8 *p, u32 b, u32 c) {
     p->mUnk_00.mMatrix.mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     p->mUnk_00.mMatrix.mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    func_020ea8a8(gSecondHand, &p->mUnk_00.mMatrix, &p->mUnk_00.mScale, c);
+    DrawNsbmdWithMatrixAndMaxAlpha(gSecondHand, &p->mUnk_00.mMatrix, &p->mUnk_00.mScale, c);
 }
 
 void UpdateSecondHand(u32 a, Unk020e43a8 *p) {
@@ -225,7 +225,7 @@ void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c) {
     s.x = p->mUnk_00.mExtent.x;
     s.y = y;
     s.z = 0;
-    func_020eafc4(a, &p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[0], &p->mUnk_00.mExtent, &s, b, c);
+    ComputeSphereHitOnRotatedBox(a, &p->mUnk_00.mPos, &p->mUnk_00.mMatrix.mUnk_00[0], &p->mUnk_00.mExtent, &s, b, c);
 }
 
 #pragma thumb on

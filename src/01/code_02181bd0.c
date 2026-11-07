@@ -551,7 +551,7 @@ void UpdateCoin(void *a, Unk02181c3c *b) {
                               &out2, &flags, NULL, NULL, NULL, NULL) != 0) {
                 VEC_Add(&b->mUnk_000.mPos, &delta, &b->mUnk_000.mPos);
                 if (flags & 0x214300) {
-                    func_020eaa14(&b->mUnk_000.mUnk_10, &out2, 0x1000, 0x1000, 0xc00, &b->mUnk_000.mUnk_10);
+                    BounceVelocityOffSurface(&b->mUnk_000.mUnk_10, &out2, 0x1000, 0x1000, 0xc00, &b->mUnk_000.mUnk_10);
                     if ((s64) b->mUnk_000.mUnk_10.x * b->mUnk_000.mUnk_10.x +
                             (s64) b->mUnk_000.mUnk_10.y * b->mUnk_000.mUnk_10.y +
                             (s64) b->mUnk_000.mUnk_10.z * b->mUnk_000.mUnk_10.z >=

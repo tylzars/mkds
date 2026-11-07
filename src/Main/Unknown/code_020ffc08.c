@@ -67,7 +67,7 @@ void DrawDram(void *a, Dram *e, void *c, s32 d) {
     q->mUnk_00[3].x = e->mUnk_00.mPos.x >> 4;
     q->mUnk_00[3].y = e->mUnk_00.mPos.y >> 4;
     q->mUnk_00[3].z = e->mUnk_00.mPos.z >> 4;
-    func_020ea8a8(gDram, q, &e->mUnk_00.mScale, d);
+    DrawNsbmdWithMatrixAndMaxAlpha(gDram, q, &e->mUnk_00.mScale, d);
 }
 
 void func_020ffdd4(MapObjectList *v1) {

@@ -91,8 +91,8 @@ void DrawDossun(void *a, Dossun *p, void *c, s32 d) {
     q->mUnk_00[3].x = p->mUnk_00.mPos.x >> 4;
     q->mUnk_00[3].y = p->mUnk_00.mPos.y >> 4;
     q->mUnk_00[3].z = p->mUnk_00.mPos.z >> 4;
-    func_020ea8a8(gDossun, q, &p->mUnk_00.mScale, d);
-    func_020ea868(gDossunShadow, q, &p->mUnk_00.mScale, d);
+    DrawNsbmdWithMatrixAndMaxAlpha(gDossun, q, &p->mUnk_00.mScale, d);
+    DrawShadowWithMaxAlpha(gDossunShadow, q, &p->mUnk_00.mScale, d);
 }
 
 void UpdateDossun(void *a, Dossun *p) {
@@ -315,7 +315,7 @@ u32 CollideKartWithDossun(Dossun *p, Kart *a, u8 *b, u8 *c) {
         y = s2.y;
         m = ((s64) y * y) << 2;
         if (y < 0 && n < m) {
-            return func_020d6dc0(p->mUnk_00.mFlags & 0x800, a->mItemEffect, 4, 4);
+            return GetKartMapObjectResponseByKind(p->mUnk_00.mFlags & 0x800, a->mItemEffect, 4, 4);
         }
     }
     return *c;
@@ -449,7 +449,7 @@ void DrawKuribo(void *a, Kuribo *p, void *c, u16 d) {
     u16 e;
     Unk020e6488 *q;
     if (p->mUnk_cc.mUnk_08 == 0xffff) {
-        func_020d7938(&p->mUnk_a4, &data_0217b660, &t);
+        func_020d7938(&p->mUnk_a4, &gViewYawQuaternion, &t);
         Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &t);
     } else {
         func_020e6d34(func_020d88fc(&p->mUnk_cc), &p->mUnk_00.mMatrix);

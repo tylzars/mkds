@@ -26,7 +26,7 @@ BOOL func_020d2234(MapObject *d, ItemObject *e) {
         a -= 100;
         c++;
     }
-    if (func_020d6d8c(0, b, c, a) == 0 || func_020d6d34(0, b, c, a, 3) != 2) {
+    if (func_020d6d8c(0, b, c, a) == 0 || GetItemObjectResponseByKind(0, b, c, a, 3) != 2) {
         return FALSE;
     }
     return TRUE;

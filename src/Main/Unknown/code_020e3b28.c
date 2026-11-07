@@ -288,7 +288,7 @@ void func_020e3b4c(Unk020e3ef4 *a, void *b, u32 c) {
     p = gBridgeNsbca;
     p->mUnk_0c = a->mUnk_154;
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
-    func_020ea8a8(a->mModel, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
+    DrawNsbmdWithMatrixAndMaxAlpha(a->mModel, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
 }
 
 void func_020e3b28(void *a) {

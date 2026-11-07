@@ -62,7 +62,22 @@ const Unk0215950c data_0215950c = {
 };
 
 const Unk02159538 data_02159538 = {
-    (u32) &func_020eb7e0, (u32) &func_020eb760, 4, 0xa000, 0xa000, 0xa000, 0, 1, 1, 0x168, 0x169, 0, 0, 0, 0, 0,
+    (u32) &CollideKartWithWoodbox1,
+    (u32) &CollideItemObjectWithWoodbox1,
+    4,
+    0xa000,
+    0xa000,
+    0xa000,
+    0,
+    1,
+    1,
+    0x168,
+    0x169,
+    0,
+    0,
+    0,
+    0,
+    0,
 };
 
 BOOL func_020ec450(Unk020e43a8 *a, void *b, u8 *c) {
@@ -85,7 +100,7 @@ BOOL func_020ec41c(Unk020e43a8 *a, void *b, u8 *c) {
     return TRUE;
 }
 
-Unk02159538 *func_020ec3cc(void) {
+Unk02159538 *CreateWoodbox1KindData(void) {
     Unk02159538 *p;
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
@@ -93,7 +108,7 @@ Unk02159538 *func_020ec3cc(void) {
     return p;
 }
 
-Unk0215950c *func_020ec370(void) {
+Unk0215950c *CreateWoodbox1DrawList(void) {
     Unk0215950c *p;
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
@@ -103,7 +118,7 @@ Unk0215950c *func_020ec370(void) {
     return data_0217bbec;
 }
 
-Unk021594e4 *func_020ec314(void) {
+Unk021594e4 *CreateWoodbox1UpdateList(void) {
     Unk021594e4 *p;
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
@@ -122,7 +137,7 @@ void DrawWoodbox1(void *a, Unk020e43a8 *b, void *c, u32 d) {
     b->mUnk_00.mMatrix.mUnk_00[3].x = b->mUnk_00.mPos.x >> 4;
     b->mUnk_00.mMatrix.mUnk_00[3].y = b->mUnk_00.mPos.y >> 4;
     b->mUnk_00.mMatrix.mUnk_00[3].z = b->mUnk_00.mPos.z >> 4;
-    func_020ea8a8(gWoodbox1, &b->mUnk_00.mMatrix, &b->mUnk_00.mScale, d);
+    DrawNsbmdWithMatrixAndMaxAlpha(gWoodbox1, &b->mUnk_00.mMatrix, &b->mUnk_00.mScale, d);
     if (h == 0) {
         return;
     }
@@ -152,7 +167,7 @@ void EnterWoodbox1State0(Unk020ec194 *a) {
     p->y = 0;
     p->z = 0;
     a->mUnk_004 = a->mUnk_0b0;
-    func_020d7a3c(&a->mUnk_0bc, a->mUnk_0c8, &v);
+    QuaternionFromVec3AndAngleAroundY(&a->mUnk_0bc, a->mUnk_0c8, &v);
     Matrix3x3FromQuaternion(&a->mUnk_028, &v);
 }
 
@@ -174,21 +189,21 @@ void StartWoodbox1ItemObject(Woodbox1 *c, Vec3 *d) {
     }
     p = func_020d22c0();
     p->mUnk_00 = p->mUnk_08 * p->mUnk_00 + p->mUnk_10;
-    if (c->mUnk_110 <= (u16) (((u64) (u32) (p->mUnk_00 >> 32) * 100) >> 32)) {
+    if (c->mItemChancePercent <= (u16) (((u64) (u32) (p->mUnk_00 >> 32) * 100) >> 32)) {
         return;
     }
-    if (c->mUnk_10e == 0) {
+    if (c->mItemRowHandle == 0) {
         return;
     }
-    i = PickItem(0, c->mUnk_10e, 1, 1, 0, 0x12);
-    q = StartItemObjectOrZero(gItemInfos[i].mObjectKind, 8, &c->mUnk_000.mPos, &c->mUnk_0bc);
+    i = PickItem(0, c->mItemRowHandle, 1, 1, 0, 0x12);
+    q = StartItemObjectOrZero(gItemInfos[i].mObjectKind, 8, &c->mUnk_000.mPos, &c->mGroundUp);
     if (q == NULL) {
         return;
     }
     if ((s64) d->x * d->x + (s64) d->y * d->y + (s64) d->z * d->z >= 16) {
         Vec3NormalizeAndGetLengthUnchecked(d, &a);
     }
-    Vec3CrossUnrounded(&c->mUnk_0bc, &a, &b);
+    Vec3CrossUnrounded(&c->mGroundUp, &a, &b);
     p = func_020d22c0();
     p->mUnk_00 = p->mUnk_08 * p->mUnk_00 + p->mUnk_10;
     n = ((s64) (s32) ((u32) (((u64) (u32) (p->mUnk_00 >> 32) * 0x1800) >> 32) + 0x119a) << 12) >> 12;
@@ -200,7 +215,7 @@ void StartWoodbox1ItemObject(Woodbox1 *c, Vec3 *d) {
     q->mScale.x = 0xcd;
     q->mScale.y = 0xcd;
     q->mScale.z = 0xcd;
-    func_020f6630(q, 2, &c->mUnk_000.mPos, d, &c->mUnk_0bc);
+    func_020f6630(q, 2, &c->mUnk_000.mPos, d, &c->mGroundUp);
 }
 
 void EnterWoodbox1State1(Unk020ebeac *p0) {
@@ -225,7 +240,7 @@ void UpdateWoodbox1State1(Woodbox1 *param_1) {
     }
 }
 
-BOOL func_020ebc2c(Woodbox1 *param_1) {
+BOOL BounceWoodbox1OffGround(Woodbox1 *param_1) {
     Vec3 v;
     Vec3 *p;
     s32 d;
@@ -234,7 +249,7 @@ BOOL func_020ebc2c(Woodbox1 *param_1) {
     v = param_1->mUnk_000.mPos;
     p = &param_1->mUnk_000.mMatrix.mUnk_00[0];
     s = param_1->mUnk_000.mExtent.x;
-    d = Vec3DotUnrounded(&param_1->mUnk_0bc, p);
+    d = Vec3DotUnrounded(&param_1->mGroundUp, p);
     if (d > 0) {
         VEC_MultAdd(-s, p, &v, &v);
     } else {
@@ -242,7 +257,7 @@ BOOL func_020ebc2c(Woodbox1 *param_1) {
     }
     p = &param_1->mUnk_000.mMatrix.mUnk_00[1];
     s = param_1->mUnk_000.mExtent.x;
-    d = Vec3DotUnrounded(&param_1->mUnk_0bc, p);
+    d = Vec3DotUnrounded(&param_1->mGroundUp, p);
     if (d > 0) {
         VEC_MultAdd(-s, p, &v, &v);
     } else {
@@ -250,23 +265,23 @@ BOOL func_020ebc2c(Woodbox1 *param_1) {
     }
     p = &param_1->mUnk_000.mMatrix.mUnk_00[2];
     s = param_1->mUnk_000.mExtent.x;
-    d = Vec3DotUnrounded(&param_1->mUnk_0bc, p);
+    d = Vec3DotUnrounded(&param_1->mGroundUp, p);
     if (d > 0) {
         VEC_MultAdd(-s, p, &v, &v);
     } else {
         VEC_MultAdd(s, p, &v, &v);
     }
-    VEC_Subtract(&v, &param_1->mUnk_0b0, &v);
+    VEC_Subtract(&v, &param_1->mBasePos, &v);
     v.y = v.y + param_1->mUnk_000.mExtent.x;
-    d = -Vec3DotUnrounded(&v, &param_1->mUnk_0bc);
+    d = -Vec3DotUnrounded(&v, &param_1->mGroundUp);
     if (d > 0 && param_1->mUnk_000.mUnk_10.y < 0) {
-        param_1->mUnk_0cc.y = param_1->mUnk_0cc.y + d;
+        param_1->mPosOffset.y = param_1->mPosOffset.y + d;
         param_1->mUnk_000.mUnk_10.y = ((s64) -param_1->mUnk_000.mUnk_10.y * 0x400) >> 12;
-        param_1->mUnk_0e4.x = ((s64) param_1->mUnk_0d8.x * -0x266) >> 12;
-        param_1->mUnk_0e4.y = ((s64) param_1->mUnk_0d8.y * -0x266) >> 12;
-        param_1->mUnk_0e4.z = ((s64) param_1->mUnk_0d8.z * -0x266) >> 12;
-        param_1->mUnk_000.mUnk_10.x = ((s64) param_1->mUnk_0e4.x * 0x9000) >> 12;
-        param_1->mUnk_000.mUnk_10.z = ((s64) param_1->mUnk_0e4.z * 0x9000) >> 12;
+        param_1->mTiltOffsetPerFrame.x = ((s64) param_1->mTiltOffset.x * -0x266) >> 12;
+        param_1->mTiltOffsetPerFrame.y = ((s64) param_1->mTiltOffset.y * -0x266) >> 12;
+        param_1->mTiltOffsetPerFrame.z = ((s64) param_1->mTiltOffset.z * -0x266) >> 12;
+        param_1->mUnk_000.mUnk_10.x = ((s64) param_1->mTiltOffsetPerFrame.x * 0x9000) >> 12;
+        param_1->mUnk_000.mUnk_10.z = ((s64) param_1->mTiltOffsetPerFrame.z * 0x9000) >> 12;
         return TRUE;
     }
     return FALSE;
@@ -282,63 +297,63 @@ void EnterWoodbox1State2(Woodbox1 *param_1) {
     param_1->mUnk_000.mFlags &= ~2;
     param_1->mUnk_000.mFlags &= ~8;
     param_1->mUnk_000.mAlpha = 1;
-    param_1->mUnk_0d8 = *((n & 1) ? &param_1->mUnk_0f4 : &param_1->mUnk_100);
+    param_1->mTiltOffset = *((n & 1) ? &param_1->mUnk_0f4 : &param_1->mUnk_100);
     if (n & 2) {
         h = param_1->mUnk_10c;
     } else {
-        h = 0x10000 - param_1->mUnk_0f0;
+        h = 0x10000 - param_1->mHeadingAngleOffset;
     }
-    param_1->mUnk_0f0 = h;
-    param_1->mUnk_0e4.x = 0;
-    param_1->mUnk_0e4.y = 0;
-    param_1->mUnk_0e4.z = 0;
-    param_1->mUnk_0cc.x = ((s64) param_1->mUnk_0d8.x * 0x14000) >> 12;
-    param_1->mUnk_0cc.y = 0x3c000;
-    param_1->mUnk_0cc.z = ((s64) param_1->mUnk_0d8.z * 0x14000) >> 12;
+    param_1->mHeadingAngleOffset = h;
+    param_1->mTiltOffsetPerFrame.x = 0;
+    param_1->mTiltOffsetPerFrame.y = 0;
+    param_1->mTiltOffsetPerFrame.z = 0;
+    param_1->mPosOffset.x = ((s64) param_1->mTiltOffset.x * 0x14000) >> 12;
+    param_1->mPosOffset.y = 0x3c000;
+    param_1->mPosOffset.z = ((s64) param_1->mTiltOffset.z * 0x14000) >> 12;
     param_1->mUnk_000.mUnk_10.x = 0;
     param_1->mUnk_000.mUnk_10.y = 0;
     param_1->mUnk_000.mUnk_10.z = 0;
-    VEC_Add(&param_1->mUnk_0bc, &param_1->mUnk_0d8, &param_1->mUnk_0a0);
-    param_1->mUnk_0ac = param_1->mUnk_0c8 + param_1->mUnk_0f0;
-    func_020d7a3c(&param_1->mUnk_0a0, param_1->mUnk_0ac, &v);
+    VEC_Add(&param_1->mGroundUp, &param_1->mTiltOffset, &param_1->mTiltedUp);
+    param_1->mMatrixHeadingAngle = param_1->mHeadingAngle + param_1->mHeadingAngleOffset;
+    QuaternionFromVec3AndAngleAroundY(&param_1->mTiltedUp, param_1->mMatrixHeadingAngle, &v);
     Matrix3x3FromQuaternion(&param_1->mUnk_000.mMatrix, &v);
 }
 
 void UpdateWoodbox1State2(Woodbox1 *param_1) {
-    if (func_020ebc2c(param_1) != FALSE) {
+    if (BounceWoodbox1OffGround(param_1) != FALSE) {
         param_1->mUnk_000.mStateMachine.mNextState = 3;
         param_1->mUnk_000.mStateMachine.mNextStateRequested = 1;
     }
     param_1->mUnk_000.mUnk_10.y -= 0x1ec;
-    param_1->mUnk_0cc.y = param_1->mUnk_0cc.y + param_1->mUnk_000.mUnk_10.y;
-    VEC_Add(&param_1->mUnk_0b0, &param_1->mUnk_0cc, &param_1->mUnk_000.mPos);
+    param_1->mPosOffset.y = param_1->mPosOffset.y + param_1->mUnk_000.mUnk_10.y;
+    VEC_Add(&param_1->mBasePos, &param_1->mPosOffset, &param_1->mUnk_000.mPos);
 }
 
 void UpdateWoodbox1State3(Woodbox1 *param_1) {
     Vec3 v;
     s32 d;
 
-    func_020ebc2c(param_1);
-    param_1->mUnk_0cc.x -= (s32) (((s64) param_1->mUnk_0cc.x * 164) >> 12);
-    param_1->mUnk_0cc.z -= (s32) (((s64) param_1->mUnk_0cc.z * 164) >> 12);
-    VEC_Add(&param_1->mUnk_0d8, &param_1->mUnk_0e4, &param_1->mUnk_0d8);
-    d = param_1->mUnk_0f0;
+    BounceWoodbox1OffGround(param_1);
+    param_1->mPosOffset.x -= (s32) (((s64) param_1->mPosOffset.x * 164) >> 12);
+    param_1->mPosOffset.z -= (s32) (((s64) param_1->mPosOffset.z * 164) >> 12);
+    VEC_Add(&param_1->mTiltOffset, &param_1->mTiltOffsetPerFrame, &param_1->mTiltOffset);
+    d = param_1->mHeadingAngleOffset;
     if ((u32) d < 0x8000) {
-        param_1->mUnk_0f0 = d - (s32) (((s64) d * 246) >> 12);
+        param_1->mHeadingAngleOffset = d - (s32) (((s64) d * 246) >> 12);
     } else {
-        param_1->mUnk_0f0 = d + (s32) (((s64) (0x10000 - d) * 246) >> 12);
+        param_1->mHeadingAngleOffset = d + (s32) (((s64) (0x10000 - d) * 246) >> 12);
     }
     param_1->mUnk_000.mUnk_10.y -= 655;
-    VEC_Add(&param_1->mUnk_0cc, &param_1->mUnk_000.mUnk_10, &param_1->mUnk_0cc);
-    VEC_Add(&param_1->mUnk_0b0, &param_1->mUnk_0cc, &param_1->mUnk_000.mPos);
-    VEC_Add(&param_1->mUnk_0bc, &param_1->mUnk_0d8, &param_1->mUnk_0a0);
-    if ((s64) param_1->mUnk_0a0.x * param_1->mUnk_0a0.x + (s64) param_1->mUnk_0a0.y * param_1->mUnk_0a0.y +
-            (s64) param_1->mUnk_0a0.z * param_1->mUnk_0a0.z >=
+    VEC_Add(&param_1->mPosOffset, &param_1->mUnk_000.mUnk_10, &param_1->mPosOffset);
+    VEC_Add(&param_1->mBasePos, &param_1->mPosOffset, &param_1->mUnk_000.mPos);
+    VEC_Add(&param_1->mGroundUp, &param_1->mTiltOffset, &param_1->mTiltedUp);
+    if ((s64) param_1->mTiltedUp.x * param_1->mTiltedUp.x + (s64) param_1->mTiltedUp.y * param_1->mTiltedUp.y +
+            (s64) param_1->mTiltedUp.z * param_1->mTiltedUp.z >=
         16) {
-        Vec3NormalizeAndGetLengthUnchecked(&param_1->mUnk_0a0, &param_1->mUnk_0a0);
+        Vec3NormalizeAndGetLengthUnchecked(&param_1->mTiltedUp, &param_1->mTiltedUp);
     }
-    param_1->mUnk_0ac = param_1->mUnk_0c8 + param_1->mUnk_0f0;
-    func_020d7a3c(&param_1->mUnk_0a0, param_1->mUnk_0ac, &v);
+    param_1->mMatrixHeadingAngle = param_1->mHeadingAngle + param_1->mHeadingAngleOffset;
+    QuaternionFromVec3AndAngleAroundY(&param_1->mTiltedUp, param_1->mMatrixHeadingAngle, &v);
     Matrix3x3FromQuaternion(&param_1->mUnk_000.mMatrix, &v);
     if (param_1->mUnk_000.mStateMachine.mStateFrames >= 90) {
         data_0217bbf0 = NULL;
@@ -347,7 +362,7 @@ void UpdateWoodbox1State3(Woodbox1 *param_1) {
     }
 }
 
-u32 func_020eb7e0(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
+u32 CollideKartWithWoodbox1(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
     if (*param_3 == 3) {
         if (gRaceSetup->mMode != MODE_TIME_ATTACK) {
             if (param_2->mUnk_29c == 1 || param_2->mUnk_2a4 > 0x3000) {
@@ -375,7 +390,7 @@ u32 func_020eb7e0(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *para
     return *param_4;
 }
 
-u32 func_020eb760(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
+u32 CollideItemObjectWithWoodbox1(Woodbox1 *param_1, Unk020eb498 *param_2, u8 *param_3, u8 *param_4) {
     u32 v;
 
     v = *param_3 - 1;
@@ -409,21 +424,21 @@ void InitWoodbox1(Woodbox1 *param_1, Unk020eb498 *param_2) {
     Vec3 v;
     s32 d;
 
-    if (func_01ffdee4(&param_1->mUnk_000.mPos, NULL, 0, 0xa000, 8, -2, NULL, &param_1->mUnk_0bc, NULL, NULL, NULL, NULL,
-                      NULL, NULL) == 0) {
-        param_1->mUnk_0bc = data_0216c3d8;
+    if (func_01ffdee4(&param_1->mUnk_000.mPos, NULL, 0, 0xa000, 8, -2, NULL, &param_1->mGroundUp, NULL, NULL, NULL,
+                      NULL, NULL, NULL) == 0) {
+        param_1->mGroundUp = data_0216c3d8;
     }
     param_1->mUnk_000.mPos.y = param_1->mUnk_000.mPos.y + param_1->mUnk_000.mExtent.x;
-    param_1->mUnk_0b0 = param_1->mUnk_000.mPos;
+    param_1->mBasePos = param_1->mUnk_000.mPos;
     param_1->mUnk_000.mUnk_10.x = 0;
     param_1->mUnk_000.mUnk_10.y = 0;
     param_1->mUnk_000.mUnk_10.z = 0;
-    param_1->mUnk_0c8 = (((s64) param_2->mUnk_010 * 0xB60B60B60BLL) + 0x80000000000LL) >> 44;
-    func_020d7a3c(&param_1->mUnk_0bc, param_1->mUnk_0c8, &v);
+    param_1->mHeadingAngle = (((s64) param_2->mUnk_010 * 0xB60B60B60BLL) + 0x80000000000LL) >> 44;
+    QuaternionFromVec3AndAngleAroundY(&param_1->mGroundUp, param_1->mHeadingAngle, &v);
     Matrix3x3FromQuaternion(&param_1->mUnk_000.mMatrix, &v);
-    param_1->mUnk_0f4.x = -param_1->mUnk_0bc.x;
+    param_1->mUnk_0f4.x = -param_1->mGroundUp.x;
     param_1->mUnk_0f4.y = 0;
-    param_1->mUnk_0f4.z = -param_1->mUnk_0bc.z;
+    param_1->mUnk_0f4.z = -param_1->mGroundUp.z;
     if ((s64) param_1->mUnk_0f4.x * param_1->mUnk_0f4.x + (s64) param_1->mUnk_0f4.y * param_1->mUnk_0f4.y +
             (s64) param_1->mUnk_0f4.z * param_1->mUnk_0f4.z <
         16) {
@@ -444,8 +459,8 @@ void InitWoodbox1(Woodbox1 *param_1, Unk020eb498 *param_2) {
     param_1->mUnk_100.y = ((s64) param_1->mUnk_100.y * 0x800) >> 12;
     param_1->mUnk_100.z = ((s64) param_1->mUnk_100.z * 0x800) >> 12;
     param_1->mUnk_10c = 0x1555;
-    param_1->mUnk_10e = param_2->mUnk_028;
-    param_1->mUnk_110 = param_2->mUnk_02a;
+    param_1->mItemRowHandle = param_2->mUnk_028;
+    param_1->mItemChancePercent = param_2->mUnk_02a;
     func_02046be8(&param_1->mUnk_000.mStateMachine, (UnkFunc *const *) gWoodbox1StateTable, 4, param_1);
     param_1->mUnk_000.mStateMachine.mNextState = 0;
     param_1->mUnk_000.mStateMachine.mNextStateRequested = 1;
@@ -454,7 +469,7 @@ void InitWoodbox1(Woodbox1 *param_1, Unk020eb498 *param_2) {
 
 #pragma thumb off
 
-void func_020eb3f0(Vec3 *param_1, Vec3 *param_2, s32 param_3, Vec3 *param_4) {
+void ComputeSphereOverlapOffset(Vec3 *param_1, Vec3 *param_2, s32 param_3, Vec3 *param_4) {
     Vec3 v;
 
     VEC_Subtract(param_1, param_2, param_4);
@@ -467,7 +482,7 @@ void func_020eb3f0(Vec3 *param_1, Vec3 *param_2, s32 param_3, Vec3 *param_4) {
     VEC_Subtract(&v, param_4, param_4);
 }
 
-void func_020eb2a0(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, Vec3 *param_5) {
+void ComputeCylinderOverlapOffset(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, Vec3 *param_5) {
     Vec3 v;
     s32 a;
 
@@ -504,8 +519,8 @@ void func_020eb2a0(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, Vec3 
     param_5->y = 0;
 }
 
-s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Vec3 *param_5, s32 param_6,
-                  Vec3 *param_7) {
+s32 ComputeSphereHitOnRotatedBox(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Vec3 *param_5, s32 param_6,
+                                 Vec3 *param_7) {
     Vec3 dv;
     s32 ry;
     Vec3 *b;
@@ -587,8 +602,8 @@ s32 func_020eafc4(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, Vec3 *param_4, Ve
     return 3;
 }
 
-s32 func_020ead80(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, s32 param_5, s32 param_6, s32 param_7,
-                  Vec3 *param_8) {
+s32 ComputeSphereHitOnRotatedCylinder(Vec3 *param_1, Vec3 *param_2, Vec3 *param_3, s32 param_4, s32 param_5,
+                                      s32 param_6, s32 param_7, Vec3 *param_8) {
     Vec3 dv;
     Vec3 v;
     s32 r;
@@ -691,7 +706,7 @@ void func_020eac20(Vec3 *param_1, s32 param_2) {
     param_1->y += t;
 }
 
-void func_020eaa14(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, s32 param_5, Vec3 *param_6) {
+void BounceVelocityOffSurface(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, s32 param_5, Vec3 *param_6) {
     Vec3 v;
     Vec3 w;
     s32 s;
@@ -746,18 +761,18 @@ void func_020ea94c(Vec3 *param_1, Vec3 *param_2, s32 param_3, s32 param_4, s32 p
             *param_6 = *param_1;
             return;
         }
-        func_020eaa14(param_1, &v, param_3, param_4, param_5, param_6);
+        BounceVelocityOffSurface(param_1, &v, param_3, param_4, param_5, param_6);
     } else {
-        func_020eaa14(param_1, param_2, param_3, param_4, param_5, param_6);
+        BounceVelocityOffSurface(param_1, param_2, param_3, param_4, param_5, param_6);
     }
 }
 
-void func_020ea8a8(Unk020ea670 *param_1, void *param_2, void *param_3, s32 param_4) {
+void DrawNsbmdWithMatrixAndMaxAlpha(Unk020ea670 *param_1, void *param_2, void *param_3, s32 param_4) {
     void *p;
     s32 n;
     s32 v;
 
-    p = param_1->mUnk_004;
+    p = param_1->mResMdl;
     n = NNS_G3dMdlGetMdlAlpha(p, 0);
     if (param_4 < n) {
         v = NNS_G3dMdlGetMdlPolygonID(p, 0);
@@ -771,7 +786,7 @@ void func_020ea8a8(Unk020ea670 *param_1, void *param_2, void *param_3, s32 param
     }
 }
 
-void func_020ea868(Unk020ea868 *param_1, void *param_2, Vec3 *param_3, u32 param_4) {
+void DrawShadowWithMaxAlpha(Unk020ea868 *param_1, void *param_2, Vec3 *param_3, u32 param_4) {
     u16 v;
 
     v = param_1->mUnk_06e;
@@ -788,12 +803,12 @@ void func_020ea84c(void) {
     func_01ff9048(0x29, &data_0217bbe8, 1);
 }
 
-void func_020ea7cc(Unk020ea670 *param_1, s32 param_2) {
+void DrawNsbmdWithMaxAlpha(Unk020ea670 *param_1, s32 param_2) {
     void *p;
     s32 n;
     s32 m;
 
-    p = param_1->mUnk_004;
+    p = param_1->mResMdl;
     n = NNS_G3dMdlGetMdlAlpha(p, 0);
     data_0216c3d4 = n;
     if (param_2 < n) {
@@ -808,19 +823,19 @@ void func_020ea7cc(Unk020ea670 *param_1, s32 param_2) {
     data_0216c3d4 = -1;
 }
 
-void func_020ea740(Unk020ea670 *param_1, s32 param_2) {
+void DrawNsbmd1Mat1ShpWithMaxAlpha(Unk020ea670 *param_1, s32 param_2) {
     void *p;
     s32 n;
     s32 m;
 
-    p = param_1->mUnk_004;
+    p = param_1->mResMdl;
     n = NNS_G3dMdlGetMdlAlpha(p, 0);
     data_0216c3d4 = n;
     if (param_2 < n) {
         NNS_G3dMdlSetMdlPolygonIDAll(p, AllocPolygonIdWrapping());
         NNS_G3dMdlSetMdlAlphaAll(p, param_2);
     }
-    NNS_G3dDraw1Mat1Shp(param_1->mUnk_004, 0, 0, 1);
+    NNS_G3dDraw1Mat1Shp(param_1->mResMdl, 0, 0, 1);
     m = data_0216c3d4;
     if (param_2 < m) {
         NNS_G3dMdlSetMdlAlphaAll(p, m);
@@ -834,7 +849,7 @@ void func_020ea670(Unk020ea670 *param_1, s32 param_2) {
     s32 n;
     s32 m;
 
-    p = param_1->mUnk_004;
+    p = param_1->mResMdl;
     n = NNS_G3dMdlGetMdlAlpha(p, 0);
     data_0216c3d4 = n;
     if (param_2 < n) {

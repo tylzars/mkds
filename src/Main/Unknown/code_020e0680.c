@@ -165,7 +165,7 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
             b->mUnk_000.mMatrix.mUnk_00[3].x = m->x >> 4;
             b->mUnk_000.mMatrix.mUnk_00[3].y = m->y >> 4;
             b->mUnk_000.mMatrix.mUnk_00[3].z = m->z >> 4;
-            func_020ea868((void *) b->mUnk_128, &b->mUnk_000.mMatrix, &b->mUnk_000.mScale, d);
+            DrawShadowWithMaxAlpha((void *) b->mUnk_128, &b->mUnk_000.mMatrix, &b->mUnk_000.mScale, d);
         }
     }
     b->mUnk_000.mMatrix.mUnk_00[3].x = b->mUnk_000.mPos.x >> 4;
@@ -177,7 +177,7 @@ void func_020e2a74(Unk020e20a8 *a, Unk020e1e98 *b, u32 c, u32 d) {
         *r->mUnk_1c[r->mUnk_1a] = r->mUnk_0c;
     }
     func_0208ab4c(&b->mUnk_132);
-    func_020ea8a8((void *) b->mUnk_124, &b->mUnk_000.mMatrix, &b->mUnk_000.mScale, d);
+    DrawNsbmdWithMatrixAndMaxAlpha((void *) b->mUnk_124, &b->mUnk_000.mMatrix, &b->mUnk_000.mScale, d);
     if (f) {
         return;
     }
@@ -254,7 +254,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
                         b->mUnk_0c4 = -b->mUnk_0c4;
                         b->mUnk_0c8 = -b->mUnk_0c8;
                         b->mUnk_0cc = -b->mUnk_0cc;
-                        func_020d759c(&b->mUnk_0c4, &b->mUnk_0b4, &b->mUnk_0c4, 0x8cd);
+                        QuaternionBlendTowardNearerSign(&b->mUnk_0c4, &b->mUnk_0b4, &b->mUnk_0c4, 0x8cd);
                         b->mUnk_152 = 0x320;
                         StartMapObjectSound(&b->mUnk_000, b->mUnk_160);
                     } else if (f && b != NULL) {
@@ -303,7 +303,7 @@ void func_020e2630(u32 a, Unk020e1e98 *b) {
         }
         func_020d79b0(p, b->mUnk_000.mAngle, &m);
     }
-    func_020d759c(&b->mUnk_0a4, &m, &b->mUnk_0a4, b->mUnk_152);
+    QuaternionBlendTowardNearerSign(&b->mUnk_0a4, &m, &b->mUnk_0a4, b->mUnk_152);
     Matrix3x3FromQuaternion(&b->mUnk_000.mMatrix.mUnk_00[0].x, &b->mUnk_0a4);
     b->mUnk_10c += 0x600;
     if (b->mUnk_000.mDistanceSquaredAndFlags & 8) {
@@ -378,7 +378,7 @@ void func_020e2400(Unk020e1e98 *a, Vec3 *b, s32 c, Vec3 *d) {
     f.x = x;
     f.y = 0;
     f.z = z;
-    func_020eafc4(b, &a->mUnk_000.mPos, &a->mUnk_000.mMatrix.mUnk_00[0], &e, &f, c, d);
+    ComputeSphereHitOnRotatedBox(b, &a->mUnk_000.mPos, &a->mUnk_000.mMatrix.mUnk_00[0], &e, &f, c, d);
 }
 
 #pragma thumb on
@@ -549,7 +549,7 @@ void func_020e1dec(Unk020e3ef4 *a, void *b, u32 c) {
     a->mUnk_000.mMatrix.mUnk_00[3].x = a->mUnk_000.mPos.x >> 4;
     a->mUnk_000.mMatrix.mUnk_00[3].y = a->mUnk_000.mPos.y >> 4;
     a->mUnk_000.mMatrix.mUnk_00[3].z = a->mUnk_000.mPos.z >> 4;
-    func_020ea8a8(a->mModel, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
+    DrawNsbmdWithMatrixAndMaxAlpha(a->mModel, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
 }
 
 void SetMapObjectsModel(Unk020e1dc0 *a, void *b) {

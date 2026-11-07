@@ -477,7 +477,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         p->mHeadingAnglePerFrame = 0;
         if (p->mVelocityLength > 0x1800) {
             if (!(p->mUnk_48 & KART_48_BOOST) && (m.x != 0 || m.y != 0 || m.z != 0) && c != 0x1000) {
-                func_020eaa14(&m, a, 0, 0x4cd, 0, &m);
+                BounceVelocityOffSurface(&m, a, 0, 0x4cd, 0, &m);
                 p->mUnk_2d8.x = m.x;
                 p->mUnk_2d8.z = m.z;
                 p->mVerticalSpeed = p->mVerticalSpeed + m.y;

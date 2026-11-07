@@ -171,7 +171,7 @@ void DrawMkdEfBubble(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
         func_01ff9048(0x1a, m, 9);
     }
     func_01ff9048(0x1b, &b->mUnk_00.mScale, 3);
-    func_020ea7cc(gMkdEfBubble, d);
+    DrawNsbmdWithMaxAlpha(gMkdEfBubble, d);
     v = b->mUnk_00.mPos.y - b->mUnk_ac;
     if (v > 0x10000) {
         v = 0x1000 - ((v - 0x10000) >> 8);

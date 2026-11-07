@@ -352,9 +352,9 @@ end:
         return;
     }
     if (g > 0) {
-        q->mUnk_48 |= 8;
+        q->mUnk_48 |= KART_48_TURN_LEFT;
     } else {
-        q->mUnk_48 |= 0x10;
+        q->mUnk_48 |= KART_48_TURN_RIGHT;
     }
 }
 

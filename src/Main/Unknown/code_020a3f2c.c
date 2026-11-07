@@ -505,7 +505,7 @@ void UpdateShine16(void *a, Shine16 *p) {
                     VEC_Add(&p->mUnk_00.mPos, &b, &p->mUnk_00.mPos);
                     if (f & 0x214300) {
                         t = p->mUnk_00.mUnk_10.y;
-                        func_020eaa14(&p->mUnk_00.mUnk_10, &e, 0x1000, 0x1000, 0x800, &p->mUnk_00.mUnk_10);
+                        BounceVelocityOffSurface(&p->mUnk_00.mUnk_10, &e, 0x1000, 0x1000, 0x800, &p->mUnk_00.mUnk_10);
                         p->mUnk_00.mUnk_10.y = 0;
                         if ((s64) p->mUnk_00.mUnk_10.x * p->mUnk_00.mUnk_10.x +
                                 (s64) p->mUnk_00.mUnk_10.y * p->mUnk_00.mUnk_10.y +

@@ -490,11 +490,11 @@ void func_0207ebfc(KartAi *p) {
     if (p->mUnk_90 == 4) {
         if (q->mUnk_44 & 2) {
             if (p->mUnk_94 == 1) {
-                q->mUnk_48 &= ~0x10;
-                q->mUnk_48 |= 8;
+                q->mUnk_48 &= ~KART_48_TURN_RIGHT;
+                q->mUnk_48 |= KART_48_TURN_LEFT;
             } else if (p->mUnk_94 == 2) {
-                q->mUnk_48 &= ~8;
-                q->mUnk_48 |= 0x10;
+                q->mUnk_48 &= ~KART_48_TURN_LEFT;
+                q->mUnk_48 |= KART_48_TURN_RIGHT;
             }
         } else {
             p->mUnk_90 = 0;
@@ -555,11 +555,11 @@ void func_0207ebfc(KartAi *p) {
     }
     if (q->mUnk_44 & 2) {
         if (p->mUnk_94 == 1) {
-            q->mUnk_48 &= ~0x10;
-            q->mUnk_48 |= 8;
+            q->mUnk_48 &= ~KART_48_TURN_RIGHT;
+            q->mUnk_48 |= KART_48_TURN_LEFT;
         } else if (p->mUnk_94 == 2) {
-            q->mUnk_48 &= ~8;
-            q->mUnk_48 |= 0x10;
+            q->mUnk_48 &= ~KART_48_TURN_LEFT;
+            q->mUnk_48 |= KART_48_TURN_RIGHT;
         }
     }
     RequestBits(q->mEntryIndex, 0x100);

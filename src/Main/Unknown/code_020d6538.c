@@ -66,16 +66,16 @@ BOOL func_020d7c84(Unk020d849c *p, s32 a, Vec3 **b) {
 
 #pragma thumb off
 
-void func_020d7bec(MtxFx43 *a) {
+void SetViewYawQuaternion(MtxFx43 *a) {
     s32 t;
     s32 i;
     t = FX_Atan2(a->mUnk_00[0].z, a->mUnk_00[2].z);
     t = (((s64) t * 0x28BE60DB9391LL) + 0x80000000000LL) >> 44;
     i = (u16) ((u16) t >> 1) >> 4;
-    data_0217b660.mComponents[0] = 0;
-    data_0217b660.mComponents[1] = gPairsByAngle[i * 2];
-    data_0217b660.mComponents[2] = 0;
-    data_0217b660.mComponents[3] = gPairsByAngle[i * 2 + 1];
+    gViewYawQuaternion.mComponents[0] = 0;
+    gViewYawQuaternion.mComponents[1] = gPairsByAngle[i * 2];
+    gViewYawQuaternion.mComponents[2] = 0;
+    gViewYawQuaternion.mComponents[3] = gPairsByAngle[i * 2 + 1];
 }
 
 void QuaternionFromYAxisToVec3(Vec3 *a, void *q) {
@@ -97,7 +97,7 @@ void QuaternionFromAngleAroundY(s32 a, Quaternion *b) {
     b->mComponents[3] = gPairsByAngle[i * 2 + 1];
 }
 
-void func_020d7a3c(void *p, s32 b, void *q) {
+void QuaternionFromVec3AndAngleAroundY(void *p, s32 b, void *q) {
     Vec3 *a = p;
     Quaternion *c = q;
     s32 r;
@@ -191,7 +191,7 @@ void func_020d76a8(Quaternion *a, s32 b, Quaternion *c) {
     c->mComponents[3] = (q.mComponents[3] * k) >> 12;
 }
 
-void func_020d759c(void *p, void *q, void *r, s32 d) {
+void QuaternionBlendTowardNearerSign(void *p, void *q, void *r, s32 d) {
     Quaternion *a = p;
     Quaternion *b = q;
     Quaternion *c = r;
@@ -353,7 +353,7 @@ void Matrix3x3FromVec3Degrees(Vec3 *a, s32 *b) {
     MTX_Concat33(b, m, b);
 }
 
-u32 func_020d6dc0(s32 a, s32 b, s32 c, s32 d) {
+u32 GetKartMapObjectResponseByKind(s32 a, s32 b, s32 c, s32 d) {
     u32 v = data_0216b96c[c][b][d];
     if (v == 1) {
         v = a != 0 ? 2 : 0;
@@ -383,7 +383,7 @@ u32 func_020d6d8c(u32 arg0, u32 arg1, u32 arg2, u32 arg3) {
     return value0;
 }
 
-u32 func_020d6d34(s32 a, s32 b, s32 c, s32 d, s32 e) {
+u32 GetItemObjectResponseByKind(s32 a, s32 b, s32 c, s32 d, s32 e) {
     u32 v = data_0216ba2c[c][b][d];
     if (a != 0 && v == 1 && e != 0) {
         v = 2;
@@ -473,7 +473,7 @@ s32 func_020d6a54(ItemObject *a, MapObject *b, s32 *c) {
     return v;
 }
 
-s32 func_020d69e4(s32 a, MapObject *b) {
+s32 DoesKartRespondToMapObject(s32 a, MapObject *b) {
     s32 r = b->mKind;
     s32 n = 0;
     s32 v;
@@ -490,7 +490,7 @@ s32 func_020d69e4(s32 a, MapObject *b) {
     return v != 0 ? 1 : 0;
 }
 
-s32 func_020d6968(s32 a, MapObject *b) {
+s32 DoesItemObjectRespondToMapObject(s32 a, MapObject *b) {
     s32 r = b->mKind;
     s32 n = 0;
     s32 v;
@@ -527,7 +527,7 @@ s32 func_020d6910(s32 a, MapObject *b) {
     return v;
 }
 
-Unk02156adc *func_020d68b0(void) {
+Unk02156adc *CreateRockKindData(void) {
     Unk02156adc *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = data_02156adc;
     p->mUnk_38 = 0x3e8000;
@@ -535,24 +535,24 @@ Unk02156adc *func_020d68b0(void) {
     return p;
 }
 
-Unk0217b650 *func_020d6850(void) {
-    Unk0217b650 *p = HeapAlloc(GetHeap(func_020364e8()), 0x5c);
+RockDrawList *CreateRockDrawList(void) {
+    RockDrawList *p = HeapAlloc(GetHeap(func_020364e8()), 0x5c);
     data_0217b650 = p;
     *p = data_02156a80;
     func_020d49d8(&data_0217b650);
     return data_0217b650;
 }
 
-Unk0217b650 *func_020d67f0(void) {
-    Unk0217b650 *p = HeapAlloc(GetHeap(func_020364e8()), 0x5c);
+RockDrawList *CreateRock2DrawList(void) {
+    RockDrawList *p = HeapAlloc(GetHeap(func_020364e8()), 0x5c);
     data_0217b650 = p;
     *p = data_02156a24;
     func_020d49d8(&data_0217b650);
     return data_0217b650;
 }
 
-Unk0217b654 *func_020d6794(void) {
-    Unk0217b654 *p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
+RockUpdateList *CreateRockUpdateList(void) {
+    RockUpdateList *p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b654 = p;
     *p = data_021569fc;
     func_020e6f50(&data_0217b654);
@@ -569,7 +569,7 @@ void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {
     Vec3 v1;
     Vec3 v2;
     Vec3 v3;
-    Unk0217b650_2c *p;
+    RockShadowMatrix *p;
     s32 r;
     if (func_020b2ec0() == 0) {
         v2 = b->mUnk_00.mMatrix.mUnk_00[0];
@@ -593,12 +593,12 @@ void func_020d655c(void *a, Unk020d655c *b, void *c, s32 d) {
     b->mUnk_00.mMatrix.mUnk_00[3].x = b->mUnk_00.mPos.x >> 4;
     b->mUnk_00.mMatrix.mUnk_00[3].y = b->mUnk_00.mPos.y >> 4;
     b->mUnk_00.mMatrix.mUnk_00[3].z = b->mUnk_00.mPos.z >> 4;
-    func_020ea8a8(gRock, &b->mUnk_00.mMatrix, &b->mUnk_00.mScale, d);
+    DrawNsbmdWithMatrixAndMaxAlpha(gRock, &b->mUnk_00.mMatrix, &b->mUnk_00.mScale, d);
     p = &data_0217b650->mUnk_2c;
     p->mUnk_24.x = b->mUnk_00.mPos.x >> 4;
     p->mUnk_24.y = b->mUnk_00.mPos.y >> 4;
     p->mUnk_24.z = b->mUnk_00.mPos.z >> 4;
-    func_020ea868(gRockShadow, &data_0217b650->mUnk_2c, &b->mUnk_00.mScale, d);
+    DrawShadowWithMaxAlpha(gRockShadow, &data_0217b650->mUnk_2c, &b->mUnk_00.mScale, d);
 }
 
 void func_020d6538(Unk020d6538_a *p0, Unk020d634c *p1) {

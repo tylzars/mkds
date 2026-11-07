@@ -155,10 +155,10 @@ void func_0206c5e4(Kart *p) {
                 goto recheck;
             }
             g = p->mUnk_48;
-            if (g & 0x10) {
+            if (g & KART_48_TURN_RIGHT) {
                 p->mTurnDirection = 1;
                 p->mUnk_44 |= 1;
-            } else if (g & 8) {
+            } else if (g & KART_48_TURN_LEFT) {
                 p->mTurnDirection = -1;
                 p->mUnk_44 |= 1;
             }
@@ -170,9 +170,9 @@ recheck:
     if (p->mUnk_44 & 2) {
         if (p->mTurnDirection == 0) {
             g = p->mUnk_48;
-            if (g & 0x10) {
+            if (g & KART_48_TURN_RIGHT) {
                 p->mTurnDirection = 1;
-            } else if (g & 8) {
+            } else if (g & KART_48_TURN_LEFT) {
                 p->mTurnDirection = -1;
             }
         }

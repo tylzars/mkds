@@ -176,7 +176,7 @@ BOOL func_020d4d60(MapObject *p, s32 a) {
 
 void func_020d4d44(MtxFx43 *p) {
     SetViewMatrices(p);
-    func_020d7bec(p);
+    SetViewYawQuaternion(p);
 }
 
 void DrawMapObjectList(MapObjectList *p, MtxFx43 *a) {
@@ -598,7 +598,7 @@ s32 FindMapObjectsTouchingKart(Kart *a, Vec3 *b, Vec3 *c) {
                 continue;
             }
             if (IsSphereHittingMapObject(&v, q, e, p) != FALSE) {
-                if (!(e->mFlags & 0x40) && func_020d69e4(r, e) != 0) {
+                if (!(e->mFlags & 0x40) && DoesKartRespondToMapObject(r, e) != 0) {
                     lo.x = (p->x < lo.x) ? p->x : lo.x;
                     lo.y = (p->y < lo.y) ? p->y : lo.y;
                     lo.z = (p->z < lo.z) ? p->z : lo.z;
@@ -693,7 +693,7 @@ BOOL IsSphereHittingMapObject(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
             if (r == FALSE) {
                 return FALSE;
             }
-            func_020eb3f0(a, &c->mPos, t, d);
+            ComputeSphereOverlapOffset(a, &c->mPos, t, d);
             return TRUE;
         case 2:
             t = b + c->mExtent.x;
@@ -718,13 +718,14 @@ BOOL IsSphereHittingMapObject(Vec3 *a, s32 b, MapObject *c, Vec3 *d) {
             if (r == FALSE) {
                 return FALSE;
             }
-            func_020eb2a0(a, &c->mPos, t, u, d);
+            ComputeCylinderOverlapOffset(a, &c->mPos, t, u, d);
             return TRUE;
         case 3:
-            return func_020ead80(a, &c->mPos, &c->mMatrix.mUnk_00[0], c->mExtent.x, c->mExtent.y, c->mExtent.y, b, d) !=
-                   0;
+            return ComputeSphereHitOnRotatedCylinder(a, &c->mPos, &c->mMatrix.mUnk_00[0], c->mExtent.x, c->mExtent.y,
+                                                     c->mExtent.y, b, d) != 0;
         case 4:
-            return func_020eafc4(a, &c->mPos, &c->mMatrix.mUnk_00[0], &c->mExtent, &c->mExtent, b, d) != 0;
+            return ComputeSphereHitOnRotatedBox(a, &c->mPos, &c->mMatrix.mUnk_00[0], &c->mExtent, &c->mExtent, b, d) !=
+                   0;
         case 0:
             return FALSE;
         case 5:

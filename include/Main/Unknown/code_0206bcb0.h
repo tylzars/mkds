@@ -214,6 +214,10 @@ typedef struct Unk0206bcb0_A {
 // it).
 #define KART_4C_THUNDER_SHRINK 0x80
 // Bits of Kart.mUnk_48.
+// The Kart steers left in this step (from the input bits or the CPU); func_01ffca50 clears both turn bits.
+#define KART_48_TURN_LEFT 8
+// The Kart steers right in this step.
+#define KART_48_TURN_RIGHT 0x10
 // Set while a boost runs (StartKartBoost sets it; mBoostTimer counts it down).
 #define KART_48_BOOST 0x20
 // Set from the release of a fully charged drift until mUnk_23c has counted down.

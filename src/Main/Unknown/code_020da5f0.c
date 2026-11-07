@@ -87,7 +87,7 @@ void UpdateKuriboState1(Kuribo *p) {
             p->mUnk_00.mFlags &= ~1;
         }
     }
-    func_020d759c(&p->mUnk_a4, &p->mUnk_b4, &p->mUnk_a4, p->mUnk_f8);
+    QuaternionBlendTowardNearerSign(&p->mUnk_a4, &p->mUnk_b4, &p->mUnk_a4, p->mUnk_f8);
     if (p->mUnk_f8 > 0xb4) {
         p->mUnk_f8 = 0xb4;
     }

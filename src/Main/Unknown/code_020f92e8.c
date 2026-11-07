@@ -7,5 +7,5 @@ void func_020f9320(ItemObject *p0, u32 p1) {
 }
 
 void func_020f92e8(Vec3 *a, Vec3 *b) {
-    func_020eaa14(a, b, 0xb33, 0x733, 0xacd, a);
+    BounceVelocityOffSurface(a, b, 0xb33, 0x733, 0xacd, a);
 }

@@ -109,7 +109,7 @@ void CollideKartWithKarts(Kart *p) {
         if (func_0206dfd0_inline(p, q, r) == FALSE) {
             continue;
         }
-        func_020eb3f0(&p->mUnk_1d8, &q->mUnk_1d8, r, &v);
+        ComputeSphereOverlapOffset(&p->mUnk_1d8, &q->mUnk_1d8, r, &v);
         d = func_0206dfd0_inline_2(&v, &n);
         if (d > 0) {
             a.x = v.x >> 1;

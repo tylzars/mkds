@@ -204,7 +204,7 @@ static inline const s32 func_01ffc090_inline(void) {
 }
 
 void func_01ffca50(Kart *p) {
-    p->mUnk_48 &= ~0x18;
+    p->mUnk_48 &= ~(KART_48_TURN_LEFT | KART_48_TURN_RIGHT);
     p->mRadius = ((s64) p->mUnk_4c8 * (s32) (((s64) p->mPhysicalParam->mRadius * p->mUnk_394) >> 12)) >> 12;
     p->mUnk_1d4 = ((s64) p->mPhysicalParam->mUnk_04 * p->mScale.z) >> 12;
     p->mTurnHeadingAnglePerFrameGoal = 0;
@@ -319,9 +319,9 @@ void func_01ffc6c0(Kart *p) {
     k = p->mEntryIndex;
     a = data_02175628[k].mBits;
     if ((u16) (a & 0x20)) {
-        p->mUnk_48 |= 8;
+        p->mUnk_48 |= KART_48_TURN_LEFT;
     } else if ((u16) (a & 0x10)) {
-        p->mUnk_48 |= 0x10;
+        p->mUnk_48 |= KART_48_TURN_RIGHT;
     }
     p->mUnk_44 |= KART_44_ON_GROUND;
 }
@@ -417,9 +417,9 @@ s32 func_01ffc27c(Kart *p, s32 a) {
         k = p->mEntryIndex;
         w = data_02175628[k].mBits;
         if ((u16) (w & 0x20)) {
-            p->mUnk_48 |= 8;
+            p->mUnk_48 |= KART_48_TURN_LEFT;
         } else if ((u16) (w & 0x10)) {
-            p->mUnk_48 |= 0x10;
+            p->mUnk_48 |= KART_48_TURN_RIGHT;
         }
         return 1;
     }
@@ -448,9 +448,9 @@ s32 func_01ffc27c(Kart *p, s32 a) {
     k = p->mEntryIndex;
     w = data_02175628[k].mBits;
     if ((u16) (w & 0x20)) {
-        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) ApplyKartTurn)(p, x, b, 1, d, 8);
+        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) ApplyKartTurn)(p, x, b, 1, d, KART_48_TURN_LEFT);
     } else if ((u16) (w & 0x10)) {
-        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) ApplyKartTurn)(p, x, b, -1, d, 0x10);
+        r = ((s32(*)(Kart *, s32, s32, s32, s32, u32)) ApplyKartTurn)(p, x, b, -1, d, KART_48_TURN_RIGHT);
     }
     return r;
 }

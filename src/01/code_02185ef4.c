@@ -887,16 +887,16 @@ s32 func_ov001_021860cc(Unk02188950 *a, Vec3 *b, s32 c, Vec3 *d) {
             d2 = b->y - a->mPosWithOffset.y;
             d3 = b->z - a->mPosWithOffset.z;
             if ((s64) d3 * d3 + ((s64) d1 * d1 + (s64) d2 * d2) < (s64) c * c) {
-                func_020eb3f0(b, &a->mPosWithOffset, c, d);
+                ComputeSphereOverlapOffset(b, &a->mPosWithOffset, c, d);
                 return 1;
             }
             return 0;
         case 2:
-            return func_020ead80(b, &a->mPosWithOffset, &a->mUnk_000.mMatrix.mUnk_00[0], a->mUnk_25c.x, a->mUnk_25c.y,
-                                 a->mUnk_25c.y, c, d);
+            return ComputeSphereHitOnRotatedCylinder(b, &a->mPosWithOffset, &a->mUnk_000.mMatrix.mUnk_00[0],
+                                                     a->mUnk_25c.x, a->mUnk_25c.y, a->mUnk_25c.y, c, d);
         case 1:
-            return func_020eafc4(b, &a->mPosWithOffset, &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_25c, &a->mUnk_25c, c,
-                                 d);
+            return ComputeSphereHitOnRotatedBox(b, &a->mPosWithOffset, &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_25c,
+                                                &a->mUnk_25c, c, d);
         default:
             return 0;
     }
