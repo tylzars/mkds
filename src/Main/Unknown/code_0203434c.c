@@ -124,7 +124,7 @@ s32 func_02034370(Unk02034370 *a) {
             }
             break;
         case 2:
-            switch (func_02054c98(0, NULL)) {
+            switch (AdvanceConnectionSetup(0, NULL)) {
                 case 1:
                     SetupTxtSystemSubText(GetBmgEntry(data_02174e64->mGhostMessages, 0xf));
                     NNS_SndArcSetCurrent(&data_0217c868);
@@ -248,7 +248,7 @@ s32 func_02034370(Unk02034370 *a) {
             }
             break;
         case 5:
-            switch (func_02054b44()) {
+            switch (AdvanceBlockCountRequest()) {
                 case 1:
                     func_0204f5e4();
                     func_0204ee4c(0, func_0202ddd8());
@@ -260,7 +260,7 @@ s32 func_02034370(Unk02034370 *a) {
             }
             break;
         case 6:
-            switch (func_02054938()) {
+            switch (AdvanceBlockReceive()) {
                 case 1:
                     data_02174e64->mState = 7;
                     break;

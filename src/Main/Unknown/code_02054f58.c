@@ -47,7 +47,7 @@ s32 func_02055564(s32 a) {
     s32 r;
 
     r = 0;
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         if (data_0217aa00->mUnk_000c == 7 && data_0217aa00->mUnk_043b == 1) {
             if (func_020501b0(a) == 0) {
                 func_02050e60(5);
@@ -87,7 +87,7 @@ s32 func_02055564(s32 a) {
 }
 
 s32 func_020554e4(void) {
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return 0;
     }
     switch (data_0217aa00->mUnk_000c) {
@@ -177,13 +177,13 @@ s32 func_02055030(void) {
         case 0x2b:
         case 0x2c:
         case 0x2e:
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             break;
     }
-    if (data_0217aa00->mUnk_0010 != 0 && data_0217aa00->mUnk_000c == 7 && data_0217aa00->mUnk_043b == 1) {
+    if (data_0217aa00->mRequestPending != 0 && data_0217aa00->mUnk_000c == 7 && data_0217aa00->mUnk_043b == 1) {
         data_0217aa00->mUnk_043b = 0;
     }
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return 0;
     }
     if (func_02055030_inline4()) {

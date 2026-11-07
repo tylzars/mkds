@@ -9,7 +9,8 @@
 // up to INT_MAX), and karts, map objects and HUD read it through GetRaceStartSequenceFrames as the frames since the
 // countdown began.
 typedef struct RaceStartSequence {
-    // Counter gate: FALSE at allocation and in func_020b36a4; set TRUE by UpdateRaceStartSequence when func_02054754()
+    // Counter gate: FALSE at allocation and in func_020b36a4; set TRUE by UpdateRaceStartSequence when
+    // FinishDataSharingSync()
     // == 1 (in mode 5: when data_0217aa14->mUnk_75c & 2, with SetRaceUpdateFramesUnlimited /
     // SetMapObjectsRunUpdateLists) and never cleared otherwise.
     /* 00 */ BOOL mCounting;

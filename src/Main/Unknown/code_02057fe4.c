@@ -230,7 +230,7 @@ void EnterMPState7(void) {
 }
 
 void UpdateMPState7(void) {
-    if (data_0217aa00->mUnk_0010 == 0) {
+    if (data_0217aa00->mRequestPending == 0) {
         switch (data_0217aa00->mUnk_000c) {
             case 0xc:
                 data_0217aa00->mUnk_000c = 0xb;
@@ -439,7 +439,7 @@ void EnterMPState10(void) {
 }
 
 void UpdateMPState10(void) {
-    if (data_0217aa00->mUnk_0010 == 0) {
+    if (data_0217aa00->mRequestPending == 0) {
         switch (data_0217aa00->mUnk_000c) {
             case 0xb:
                 func_02052da4();
@@ -521,7 +521,7 @@ static inline void func_020580a4_inline2(u16 v) {
 }
 
 void UpdateMPState12(void) {
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return;
     }
     switch (data_0217aa00->mUnk_000c) {

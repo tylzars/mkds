@@ -75,7 +75,7 @@ void func_0205e0b0(void) {
                 StartLoadOverlay(1);
                 FinishOverlayLoad();
             }
-            func_02054368(h);
+            InitConnectionBuffers(h);
             break;
         case 1:
             m = 1;

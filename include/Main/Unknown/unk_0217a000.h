@@ -14,7 +14,7 @@
 #include "Main/Unknown/code_0207b960.h" // PosCurve
 #include "Main/Unknown/code_0207adf8.h" // ShadowModel
 #include "Main/Unknown/code_020846c0.h" // Nsbmd
-#include "Main/Unknown/code_02087d0c.h" // Unk02087d0c
+#include "Main/Unknown/code_02087d0c.h" // ModelAnimation
 #include "code_02003024.h"
 
 // Values of Unk0217aa08_00.mSoundMode.
@@ -537,15 +537,15 @@ typedef struct Unk0217aa00_1e4c {
     /* 69 */ u8 mUnk_69[0x1b];
 } Unk0217aa00_1e4c;
 
-// Six words from 0x1eb8 of Unk0217aa00.
-typedef struct Unk0217aa00_1eb8 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
-} Unk0217aa00_1eb8;
+// Seed, multiplier and increment of a multiply-add generator, each as a low word and a high word.
+typedef struct RandomState {
+    /* 00 */ s32 mStateLow;
+    /* 04 */ s32 mStateHigh;
+    /* 08 */ s32 mMultiplierLow;
+    /* 0c */ s32 mMultiplierHigh;
+    /* 10 */ s32 mIncrementLow;
+    /* 14 */ s32 mIncrementHigh;
+} RandomState;
 
 // What member 0x1da0 of Unk0217aa00 points to.
 typedef struct Unk0217aa00_1da0 {
@@ -580,9 +580,9 @@ typedef struct Unk0217aa00 {
     /* 0004 */ s32 mUnk_0004;
     /* 0008 */ s32 mUnk_0008;
     /* 000c */ s32 mUnk_000c;
-    /* 0010 */ s32 mUnk_0010;
+    /* 0010 */ s32 mRequestPending;
     /* 0014 */ void *mUnk_0014;
-    /* 0018 */ Unk02143c30 *mUnk_0018;
+    /* 0018 */ Unk02143c30 *mParentParameter;
     /* 001c */ Unk02143a78 *mUnk_001c;
     /* 0020 */ Unk021438f0 *mUnk_0020;
     /* 0024 */ Unk0217aa00_24 *mUnk_0024;
@@ -744,7 +744,7 @@ typedef struct Unk0217aa00 {
                     /* 1eac */ u8 mUnk_1eac[4];
                     /* 1eb0 */ s32 mUnk_1eb0;
                     /* 1eb4 */ u8 mUnk_1eb4[4];
-                    /* 1eb8 */ Unk0217aa00_1eb8 mUnk_1eb8;
+                    /* 1eb8 */ RandomState mRandom;
                 };
                 Unk0217aa00_1e4c mUnk_1e4c_view;
             };
@@ -1269,7 +1269,7 @@ typedef struct KartModels {
     /* 028 */ void *mUnk_028;
     /* 02c */ Nsbmd mUnk_02c;
     /* 098 */ ShadowModel mUnk_098;
-    /* 10c */ Unk02087d0c mUnk_10c;
+    /* 10c */ ModelAnimation mUnk_10c;
 } KartModels;
 
 extern KartModels *gKartModels;

@@ -59,9 +59,9 @@
 
 void CreateModelAnimation(u32 param_1, void *param_2, void **param_3, void *param_4, void *param_5) {
     *param_3 = HeapAlloc(GetHeap(func_020364e8()), 0x38);
-    func_0208823c(param_1, *param_3, param_2, 1, GetHeap(func_020364e8()), param_4);
-    func_0208805c(*param_3, param_5, GetHeap(func_020364e8()));
-    func_02087f84(*param_3, 0);
+    InitModelAnimation(param_1, *param_3, param_2, 1, GetHeap(func_020364e8()), param_4);
+    InitModelAnimationEntries(*param_3, param_5, GetHeap(func_020364e8()));
+    SetModelAnimation(*param_3, 0);
 }
 
 #pragma thumb off
@@ -149,10 +149,10 @@ void UpdateJg(void) {
             JgKindRow *p = &gJgKindRows[gJgKind];
             if (gJgKind != 0 && gJgKind != 1) {
                 if (p->mNsbcaAnimation != NULL) {
-                    func_02087de0(p->mNsbcaAnimation);
+                    AdvanceModelAnimation(p->mNsbcaAnimation);
                 }
                 if (p->mNsbmaAnimation != NULL) {
-                    func_02087de0(p->mNsbmaAnimation);
+                    AdvanceModelAnimation(p->mNsbmaAnimation);
                 }
             }
         }

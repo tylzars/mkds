@@ -48,7 +48,7 @@ void func_02053d00(void) {
     data_0217aa00->mUnk_0004 = 0;
     data_0217aa00->mUnk_0008 = 9;
     data_0217aa00->mUnk_000c = 0;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     data_0217aa00->mUnk_0454 = 0;
     p = data_0217aa00->mUnk_001c;
     p->mUnk_00 = data_0217aa00->mUnk_0028;
@@ -67,7 +67,7 @@ void func_02053d00(void) {
     for (i = 0; i < 6; i++) {
         q->mUnk_0a[i] = 0xff;
     }
-    func_02053fa8();
+    ResetConnectionData();
     v = &data_0217aa00->mUnk_16a0_view;
     e = &v->mUnk_000[0];
     for (i = 0; i < 0xc; i++) {
@@ -238,9 +238,9 @@ BOOL func_0205373c(void) {
 
 void Initialize(void) {
     data_0217aa00->mUnk_000c = 1;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_Initialize(data_0217aa00->mUnk_0014, InitializeCallback, 2) != 2) {
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
     }
 }
 
@@ -248,7 +248,7 @@ void InitializeCallback(Unk021425e8 *a) {
     s32 r;
 
     r = WM_SetPortCallback(0xf, MPDataPortCallback, NULL);
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     if (r != 0) {
         return;
     }
@@ -258,7 +258,7 @@ void InitializeCallback(Unk021425e8 *a) {
     if (data_0217aa00->mUnk_1d00 != 0) {
         WM_SetPortCallback(1, func_0204ed04, NULL);
     }
-    func_02053fa8();
+    ResetConnectionData();
 }
 
 void func_020533a0(void) {
@@ -268,7 +268,7 @@ void func_020533a0(void) {
 
     if ((data_0217aa00->mUnk_0454 & 0x100) != 0) {
         data_0217aa00->mUnk_000c = 0x26;
-        data_0217aa00->mUnk_0010 = 1;
+        data_0217aa00->mRequestPending = 1;
         d = FALSE;
         if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
             c = TRUE;
@@ -284,7 +284,7 @@ void func_020533a0(void) {
             func_0204bcec();
             data_0217aa00->mUnk_0454 &= ~0x100;
         }
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         return;
     }
     if ((data_0217aa00->mUnk_0454 & 0x200) != 0) {
@@ -292,18 +292,18 @@ void func_020533a0(void) {
         return;
     }
     data_0217aa00->mUnk_000c = 2;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_Reset(ResetCallback) == 2) {
         return;
     }
     data_0217aa00->mUnk_000c = 0x15;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_End(EndCallback) == 2) {
         return;
     }
     if ((data_0217aa00->mUnk_0454 & 0x100) != 0) {
         data_0217aa00->mUnk_000c = 0x26;
-        data_0217aa00->mUnk_0010 = 1;
+        data_0217aa00->mRequestPending = 1;
         if (func_020510e4() != FALSE && (func_020510c8() == 1 || func_020510ac() != FALSE)) {
             c = TRUE;
         } else {
@@ -313,7 +313,7 @@ void func_020533a0(void) {
             func_0204bcec();
             data_0217aa00->mUnk_0454 &= ~0x100;
         }
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         return;
     }
     if ((data_0217aa00->mUnk_0454 & 0x200) != 0) {
@@ -321,12 +321,12 @@ void func_020533a0(void) {
         return;
     }
     data_0217aa00->mUnk_000c = 2;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_Reset(ResetCallback) == 2) {
         return;
     }
     data_0217aa00->mUnk_000c = 0x15;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_End(EndCallback) == 2) {
         return;
     }
@@ -346,25 +346,25 @@ void func_020533a0(void) {
 }
 
 void ResetCallback(Unk021425e8 *a) {
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     if (a->mResultCode != 0) {
         data_0217aa00->mUnk_0008 = 1;
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
     } else {
-        func_02053fa8();
+        ResetConnectionData();
     }
 }
 
 void SetLifeTime(s32 a) {
     data_0217aa00->mUnk_000c = 3;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_SetLifeTime(func_0205329c, 0xffff, a, 0xffff, 0xf) != 2) {
         func_020533a0();
     }
 }
 
 void func_0205329c(Unk021425e8 *a) {
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     if (a->mResultCode != 0) {
         func_020533a0();
     }
@@ -377,17 +377,17 @@ void MeasureChannel(u16 a) {
     s32 i;
 
     data_0217aa00->mUnk_000c = 4;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     n = a;
     r = WM_GetAllowedChannel();
     if (r == 0) {
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         data_0217aa00->mUnk_0008 = 3;
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
     } else if (r == 0x8000) {
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         data_0217aa00->mUnk_0008 = 8;
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
     }
     if (n == 0) {
         data_0217aa00->mUnk_0089_0 = 1;
@@ -404,7 +404,7 @@ void MeasureChannel(u16 a) {
                 n = n + 1;
                 if (n > 0xe) {
                     if (data_0217aa00->mUnk_0089_4 >= 2) {
-                        data_0217aa00->mUnk_0010 = 0;
+                        data_0217aa00->mRequestPending = 0;
                         return;
                     }
                     data_0217aa00->mUnk_0089_4 += 1;
@@ -457,7 +457,7 @@ void func_02052ecc(void) {
     BOOL d;
 
     data_0217aa00->mUnk_000c = 0x24;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     d = FALSE;
     if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
         c = TRUE;
@@ -473,18 +473,18 @@ void func_02052ecc(void) {
         v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
         func_0204bf48(v1 == 1 ? 1 : 0, 4, 0x154, func_02052e64, func_02052fa4, 0);
     }
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     func_0204f5e4();
 }
 
 void func_02052e64(s32 a) {
     if (data_0217aa00->mUnk_000c == 0x24) {
         if (func_0204bcdc() == 2) {
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             func_0204f5e4();
         }
     } else {
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
     }
 }
 
@@ -494,7 +494,7 @@ void func_02052da4(void) {
     BOOL d;
 
     data_0217aa00->mUnk_000c = 0x25;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     d = FALSE;
     if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
         c = TRUE;
@@ -511,7 +511,7 @@ void func_02052da4(void) {
         data_0217aa00->mUnk_1e34 = 0;
         data_0217aa00->mUnk_0454 |= 0x100;
     }
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 void func_02052cf4(void) {
@@ -520,7 +520,7 @@ void func_02052cf4(void) {
     BOOL d;
 
     data_0217aa00->mUnk_000c = 0x26;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     d = FALSE;
     if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
         c = TRUE;
@@ -536,7 +536,7 @@ void func_02052cf4(void) {
         func_0204bcec();
         data_0217aa00->mUnk_0454 &= ~0x100;
     }
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 u16 func_02052c5c(u32 a) {
@@ -562,14 +562,14 @@ u16 func_02052c5c(u32 a) {
 void SetParentParameter(void) {
     data_0217aa00->mUnk_0000 = 1;
     data_0217aa00->mUnk_000c = 5;
-    data_0217aa00->mUnk_0010 = 1;
-    if (WM_SetParentParameter(func_02052bb8, data_0217aa00->mUnk_0018) != 2) {
+    data_0217aa00->mRequestPending = 1;
+    if (WM_SetParentParameter(func_02052bb8, data_0217aa00->mParentParameter) != 2) {
         func_020533a0();
     }
 }
 
 void func_02052bb8(Unk021425e8 *a) {
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     if (a->mResultCode != 0) {
         func_020533a0();
     }
@@ -580,7 +580,7 @@ void StartParent(Unk021425e8Func a) {
         a = StartParentCallback;
     }
     data_0217aa00->mUnk_000c = 6;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_StartParent(a) != 2) {
         func_020533a0();
     }
@@ -605,7 +605,7 @@ void StartParentCallback(Unk021425e8 *a) {
                 v1 = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
                 switch (v1) {
                     case 1:
-                        v = data_0217aa00->mUnk_0018->mUnk_0c;
+                        v = data_0217aa00->mParentParameter->mUnk_0c;
                         break;
                     case 2:
                         v = data_0217aa00->mUnk_0024->mUnk_48;
@@ -615,7 +615,7 @@ void StartParentCallback(Unk021425e8 *a) {
                 p->mUnk_00 = (u32) (v * 3 | v << 16);
                 p->mUnk_08 = 0x5d588b656c078965ull;
                 p->mUnk_10 = 0x269ec3;
-                data_0217aa00->mUnk_0010 = 0;
+                data_0217aa00->mRequestPending = 0;
                 break;
             case 9:
                 RemoveChild(a->mUnk_10);

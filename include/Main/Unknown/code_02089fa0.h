@@ -2,14 +2,14 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020846c0.h" // Nsbmd
-#include "Main/Unknown/code_02087d0c.h" // Unk02087d0c
+#include "Main/Unknown/code_02087d0c.h" // ModelAnimation
 #include "Main/Unknown/unk_02155000.h" // Unk02155ee8
 
 // 0x14 bytes: a table of 0x6c-byte objects at 0x00, three tables of 0x38-byte objects at 0x04, 0x08 and 0x0c, and the
 // number of entries of the first table at 0x10.
 typedef struct Unk0208a69c {
     /* 00 */ Nsbmd *mNsbmds;
-    /* 04 */ Unk02087d0c *mNsbcaNsbmaNsbtp[3];
+    /* 04 */ ModelAnimation *mNsbcaNsbmaNsbtp[3];
     /* 10 */ u16 mNsbmdCount;
 } Unk0208a69c;
 

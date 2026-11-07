@@ -201,54 +201,54 @@ void SetMapObjectModelMirror(void *a, s32 b, s32 c) {
 // Sets the current frame of slot 0 in 20.12 fixed point (the track frame follows).
 void SetMapObjectModelNsbcaFrameIndex(MapObjectModel *a, u16 b) {
     MapObjectModel *o = a;
-    Unk02087d0c *p = o->mAnimations[0];
+    ModelAnimation *p = o->mAnimations[0];
 
-    p->mUnk_0c = b << 12;
-    p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
+    p->mFrameIndex = b << 12;
+    p->mAnmObjs[p->mCurrentIndex]->mFrame = p->mFrameIndex;
 }
 
 // Number of frames of the animation in slot 0 (its length, not the current frame).
 u16 GetMapObjectModelNsbcaFrameCount(MapObjectModel *a) {
     MapObjectModel *o = a;
 
-    return (u32) func_02087d0c(o->mAnimations[0]) >> 12;
+    return (u32) GetModelAnimationFrameCountFixed(o->mAnimations[0]) >> 12;
 }
 
 // Sets the current frame of slot 2 in 20.12 fixed point (the track frame follows).
 void SetMapObjectModelNsbmaFrameIndex(void *a, u32 b) {
     MapObjectModel *o = a;
-    Unk02087d0c *p = o->mAnimations[2];
+    ModelAnimation *p = o->mAnimations[2];
 
-    p->mUnk_0c = b << 12;
-    p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
+    p->mFrameIndex = b << 12;
+    p->mAnmObjs[p->mCurrentIndex]->mFrame = p->mFrameIndex;
 }
 
 // Number of frames of the animation in slot 2 (its length, not the current frame).
 s32 GetMapObjectModelNsbmaFrameCount(void *a) {
     MapObjectModel *o = a;
 
-    return (u16) ((u32) func_02087d0c(o->mAnimations[2]) >> 12);
+    return (u16) ((u32) GetModelAnimationFrameCountFixed(o->mAnimations[2]) >> 12);
 }
 
 // Number of frames of the animation in slot 3 (its length, not the current frame).
 u16 GetMapObjectModelNsbtaFrameCount(MapObjectModel *a) {
     MapObjectModel *o = a;
 
-    return (u32) func_02087d0c(o->mAnimations[3]) >> 12;
+    return (u32) GetModelAnimationFrameCountFixed(o->mAnimations[3]) >> 12;
 }
 
 // Sets the current frame of slot 3 in 20.12 fixed point (the track frame follows).
 void SetMapObjectModelNsbtaFrameIndex(void *a, s32 b) {
     MapObjectModel *o = a;
-    Unk02087d0c *p = o->mAnimations[3];
+    ModelAnimation *p = o->mAnimations[3];
 
-    p->mUnk_0c = b << 12;
-    p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
+    p->mFrameIndex = b << 12;
+    p->mAnmObjs[p->mCurrentIndex]->mFrame = p->mFrameIndex;
 }
 
 void SetMapObjectModelNsbtpFrameIndex(void *a, u16 b) {
     MapObjectModel *o = a;
-    Unk02087d0c *p;
+    ModelAnimation *p;
 
     if (o->mNsbmdModel != NULL) {
         o->mNsbmdModel->mUnk_18 = b;
@@ -258,8 +258,8 @@ void SetMapObjectModelNsbtpFrameIndex(void *a, u16 b) {
         return;
     }
     p = o->mAnimations[1];
-    p->mUnk_0c = b << 12;
-    p->mUnk_1c[p->mUnk_1a]->mFrame = p->mUnk_0c;
+    p->mFrameIndex = b << 12;
+    p->mAnmObjs[p->mCurrentIndex]->mFrame = p->mFrameIndex;
 }
 
 u16 GetMapObjectModelNsbtpFrameCount(void *a) {
@@ -271,5 +271,5 @@ u16 GetMapObjectModelNsbtpFrameCount(void *a) {
     if (o->mAnimatedModel == NULL) {
         return 0;
     }
-    return (u32) func_02087d0c(o->mAnimations[1]) >> 12;
+    return (u32) GetModelAnimationFrameCountFixed(o->mAnimations[1]) >> 12;
 }

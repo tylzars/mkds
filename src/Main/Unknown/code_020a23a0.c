@@ -140,9 +140,9 @@ void func_020a269c(s32 a, u32 b) {
             SetNsbmdCullModeAll(&data_0217b200->mUnk_028, 2);
         }
         v3 = GetHeap(func_020364e8());
-        func_0208823c(2, &data_0217b200->mUnk_094, &data_0217b200->mUnk_028, 1, v3, v1);
-        func_0208805c(&data_0217b200->mUnk_094, v2, GetHeap(func_020364e8()));
-        func_02087f84(&data_0217b200->mUnk_094, 0);
+        InitModelAnimation(2, &data_0217b200->mUnk_094, &data_0217b200->mUnk_028, 1, v3, v1);
+        InitModelAnimationEntries(&data_0217b200->mUnk_094, v2, GetHeap(func_020364e8()));
+        SetModelAnimation(&data_0217b200->mUnk_094, 0);
         x = data_0217b200->mUnk_002;
         if (x != 0) {
             f = 0.5f + (x << 12);

@@ -245,7 +245,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         UpdateWiFiSession();
         gSceneRunState->mPassCount++;
         RecordFrameTimes();
-    } while (func_02054754() != 1);
+    } while (FinishDataSharingSync() != 1);
     func_02043b04();
     StartFadeToClear(b->mFadeToClearFrameCount);
     gSceneRunState->mUnk_10c = 2;
@@ -338,7 +338,7 @@ end:
     if (func_020487fc_inline2()) {
         data_0217aa00->mUnk_0454 &= ~4;
     }
-    func_020546d8();
+    StartDataSharingSync();
     func_02055340();
     if (b->mRelease != NULL) {
         b->mRelease(a);

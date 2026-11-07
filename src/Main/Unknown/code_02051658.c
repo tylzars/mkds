@@ -36,18 +36,18 @@ void StartScan(s32 a, s32 (*b)(), s32 (*c)()) {
     q = p->mUnk_001c;
     p->mUnk_0000 = 2;
     data_0217aa00->mUnk_000c = 7;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     m = WM_GetAllowedChannel();
     if (m == 0) {
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         data_0217aa00->mUnk_0008 = 3;
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         return;
     }
     if (m == 0x8000) {
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         data_0217aa00->mUnk_0008 = 8;
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         return;
     }
     if (s->mUnk_38c == 0) {
@@ -322,7 +322,7 @@ void StartScanCallback(Unk021425e8 *a) {
             }
         }
         if (data_0217aa00->mUnk_043b == 0) {
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             return;
         }
         StartScan(1, data_0217aa00->mUnk_0440, data_0217aa00->mUnk_0444);
@@ -334,7 +334,7 @@ void StartScanCallback(Unk021425e8 *a) {
 void EndScan(void) {
     data_0217aa00->mUnk_0436 &= ~1;
     data_0217aa00->mUnk_000c = 9;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_EndScan(EndScanCallback) == 2) {
         return;
     }
@@ -342,7 +342,7 @@ void EndScan(void) {
 }
 
 void EndScanCallback(Unk021425e8 *a) {
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     if (a->mResultCode == 0) {
         return;
     }
@@ -366,7 +366,7 @@ void StartConnect(Unk0217aa00_24 *a, void *b, s32 (*c)(), s32 (*d)(), s32 (*e)()
         MI_CpuCopy8(b, v1, 0x18);
     }
     data_0217aa00->mUnk_000c = 10;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_StartConnectEx(StartConnectCallback, (u16 *) data_0217aa00->mUnk_0024, v1, 1, 0) != 2) {
         func_020533a0();
         return;
@@ -391,7 +391,7 @@ void StartConnectCallback(Unk021425e8 *a) {
                     v = r;
                     switch (func_02051658_inline()) {
                         case 1:
-                            v = data_0217aa00->mUnk_0018->mUnk_0c;
+                            v = data_0217aa00->mParentParameter->mUnk_0c;
                             break;
                         case 2:
                             v = data_0217aa00->mUnk_0024->mUnk_48;
@@ -404,7 +404,7 @@ void StartConnectCallback(Unk021425e8 *a) {
                     if (data_0217aa00->mUnk_0448 != 0) {
                         data_0217aa00->mUnk_0448();
                     }
-                    data_0217aa00->mUnk_0010 = 0;
+                    data_0217aa00->mRequestPending = 0;
                     break;
                 case 9:
                     if (*(u16 *) 0x027ffc40 == 2) {
@@ -447,7 +447,7 @@ void StartConnectCallback(Unk021425e8 *a) {
                 r = TRUE;
             } else {
                 data_0217aa00->mUnk_044c();
-                data_0217aa00->mUnk_0010 = 0;
+                data_0217aa00->mRequestPending = 0;
             }
             break;
         default:
@@ -457,20 +457,20 @@ void StartConnectCallback(Unk021425e8 *a) {
     if (r == FALSE) {
         return;
     }
-    func_02053fa8();
+    ResetConnectionData();
     data_0217aa00->mUnk_0008 = 0;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 void StartMP(void) {
     data_0217aa00->mUnk_000c = 0xb;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_StartMPEx(StartMPCallback, data_0217aa00->mUnk_003c, data_0217aa00->mUnk_0038, data_0217aa00->mUnk_0034,
                      data_0217aa00->mUnk_0030, 1, 0, 0, 0, 0, 0) == 2) {
         return;
     }
     data_0217aa00->mUnk_0008 = 2;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 void StartMPCallback(Unk021425e8 *a) {
@@ -480,7 +480,7 @@ void StartMPCallback(Unk021425e8 *a) {
                 case 0xa:
                     data_0217aa00->mUnk_0454 |= 1;
                     data_0217aa00->mUnk_1d54 = 0;
-                    data_0217aa00->mUnk_0010 = 0;
+                    data_0217aa00->mRequestPending = 0;
                     break;
                 case 0xb:
                 case 0xc:
@@ -494,7 +494,7 @@ void StartMPCallback(Unk021425e8 *a) {
         default:
             data_0217aa00->mUnk_0454 |= 1;
             data_0217aa00->mUnk_0008 = 2;
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             break;
     }
 }
@@ -503,35 +503,35 @@ void SetMPFrequency(u32 a) {
     s32 r;
 
     data_0217aa00->mUnk_000c = 0xc;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     r = WM_SetMPFrequency(SetMPFrequencyCallback, a);
     if (r == 0) {
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         return;
     }
     if (r == 2) {
         return;
     }
     data_0217aa00->mUnk_0008 = 2;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 void SetMPFrequencyCallback(Unk021425e8 *a) {
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     if (a->mResultCode != 0) {
         data_0217aa00->mUnk_0008 = 2;
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
     }
 }
 
 void SetEntry(s32 a) {
     s32 r;
 
-    if ((data_0217aa00->mUnk_0018->mUnk_0e != 0) == a) {
+    if ((data_0217aa00->mParentParameter->mUnk_0e != 0) == a) {
         return;
     }
     data_0217aa00->mUnk_000c = 0xd;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     r = WM_SetEntry(SetEntryCallback, a);
     if (r == 2) {
         return;
@@ -540,7 +540,7 @@ void SetEntry(s32 a) {
 }
 
 void SetEntryCallback(Unk021425e8 *a) {
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     if (a->mResultCode == 0) {
         return;
     }
@@ -551,15 +551,15 @@ void StartDataSharing(void) {
     s32 r;
 
     data_0217aa00->mUnk_000c = 0xe;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     r = WM_StartDataSharing(data_0217aa00->mUnk_15bc, 0xc, 0xff, 8, 1);
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     if (r != 0) {
         data_0217aa00->mUnk_0008 = 2;
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         return;
     }
-    func_02054208(&data_0217aa00->mUnk_15bc_view);
+    ResetDataSharing(&data_0217aa00->mUnk_15bc_view);
 }
 
 void SetGameInfo(void) {
@@ -571,15 +571,15 @@ void SetGameInfo(void) {
         return;
     }
     data_0217aa00->mUnk_000c = 0xf;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     p = &data_0217aa00->mUnk_0044;
     p->mUnk_38->mUnk_0e.mUnk_06_0 = p->mChildCount;
     r = TRUE;
     if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
         r = FALSE;
     }
-    if (WM_SetGameInfo((Unk021425e8Func) func_02051640, p->mUnk_38, 0x1c, 0x25, data_0217aa00->mUnk_0018->mUnk_0c,
-                       r == FALSE) != 2) {
-        data_0217aa00->mUnk_0010 = 0;
+    if (WM_SetGameInfo((Unk021425e8Func) func_02051640, p->mUnk_38, 0x1c, 0x25,
+                       data_0217aa00->mParentParameter->mUnk_0c, r == FALSE) != 2) {
+        data_0217aa00->mRequestPending = 0;
     }
 }

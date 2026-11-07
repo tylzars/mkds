@@ -11,10 +11,10 @@
 
 void func_0204eca0(void) {
     data_0217aa00->mUnk_000c = 0x2d;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     StopBlockTransfer();
     data_0217aa00->mUnk_0454 &= ~0x200;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 void func_0204ec28(u32 a, Unk0217aa00_24_50 *b) {
@@ -86,16 +86,16 @@ void func_0204ead0(u16 a, s32 b) {
 
     v = b;
     data_0217aa00->mUnk_000c = 0x2e;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (RequestSendBytes(a, &v, 4, (void (*)(void)) func_0204ea94) == 0) {
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
     }
 }
 
 void func_0204ea94(BlockTransferRecord *a) {
     if (a->mKind == 10) {
         if (a->mUnk_04 == 11) {
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             return;
         }
         func_02050e60(8);

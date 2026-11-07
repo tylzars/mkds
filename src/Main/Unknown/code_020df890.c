@@ -191,7 +191,7 @@ void DrawMkdEfBubble(void *a, MkdEfBubbleObject *b, void *c, s32 d) {
 }
 
 void func_020dfae4(void) {
-    func_02087de0(gMkdEfBubbleNsbta);
+    AdvanceModelAnimation(gMkdEfBubbleNsbta);
 }
 
 void UpdateMkdEfBubble(void *a, MkdEfBubbleObject *b) {

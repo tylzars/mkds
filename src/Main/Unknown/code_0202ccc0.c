@@ -417,7 +417,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             }
             break;
         case 5:
-            i = func_02054c98(1, (void *) func_0202ddd8());
+            i = AdvanceConnectionSetup(1, (void *) func_0202ddd8());
             switch (i) {
                 case 1:
                     func_0204f5e4();

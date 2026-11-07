@@ -148,7 +148,7 @@ void func_02058c74(void) {
 }
 
 void func_02058c10(void) {
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return;
     }
     if (func_02058b38_inline() != 1) {

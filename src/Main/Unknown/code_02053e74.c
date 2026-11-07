@@ -101,7 +101,8 @@ static inline u32 func_0205465c_inline(Unk0217aa00 *p) {
     return p->mUnk_0000;
 }
 
-s32 func_02054c98(s32 a, void *b) {
+// Returns 1 once the last step is issued, 2 on failure, 3 when an error has been recorded, 0 otherwise.
+s32 AdvanceConnectionSetup(s32 a, void *b) {
     BOOL r;
 
     r = FALSE;
@@ -116,7 +117,7 @@ s32 func_02054c98(s32 a, void *b) {
     if (func_02053e74_inline4()) {
         return 3;
     }
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return 0;
     }
     switch (data_0217aa00->mUnk_000c) {
@@ -185,7 +186,9 @@ s32 func_02054c98(s32 a, void *b) {
     return r;
 }
 
-s32 func_02054b44(void) {
+// Child side; returns 1 when done, 2 on failure, 3 when an error has been recorded, 0 otherwise (the parent returns 1
+// at once).
+s32 AdvanceBlockCountRequest(void) {
     BOOL r;
 
     r = FALSE;
@@ -200,7 +203,7 @@ s32 func_02054b44(void) {
             return 2;
         }
     }
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return 0;
     }
     if (func_02053e74_inline() == 1) {
@@ -246,7 +249,9 @@ void func_02054aa0(void) {
     func_0204ed84();
 }
 
-s32 func_02054938(void) {
+// Child side; returns 1 when done, 2 on failure, 3 when an error has been recorded, 0 otherwise (the parent returns 1
+// at once).
+s32 AdvanceBlockReceive(void) {
     BOOL r;
 
     r = FALSE;
@@ -261,7 +266,7 @@ s32 func_02054938(void) {
             return 2;
         }
     }
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return 0;
     }
     if (func_02053e74_inline() == 1) {
@@ -288,7 +293,8 @@ s32 func_02054938(void) {
     return r;
 }
 
-BOOL func_02054754(void) {
+// Polled until it returns TRUE.
+BOOL FinishDataSharingSync(void) {
     BOOL r;
     Unk0217aa00_15bc *q;
 
@@ -324,7 +330,8 @@ BOOL func_02054754(void) {
     return r;
 }
 
-s32 func_020546d8(void) {
+// Starts the wait that FinishDataSharingSync completes; always returns 1.
+s32 StartDataSharingSync(void) {
     if (func_02053e74_inline2()) {
         data_0217aa00->mUnk_0004 = 7;
         data_0217aa00->mUnk_008b &= ~1;
@@ -367,20 +374,20 @@ s32 func_0205465c(void) {
     return r;
 }
 
-void func_020545e8(void *a) {
+void InitConnection(void *a) {
     data_0217aa00 = HeapAllocAligned(a, 0x1f00, 0x20);
     data_0217aa00->mUnk_0000 = 0;
     data_0217aa00->mUnk_0004 = 0;
     data_0217aa00->mUnk_0008 = 9;
     data_0217aa00->mUnk_000c = 0;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     data_0217aa00->mUnk_0454 = 0;
     data_0217aa00->mUnk_0456_0 = 0;
 }
 
-void func_02054368(void *a) {
+void InitConnectionBuffers(void *a) {
     data_0217aa00->mUnk_0014 = HeapAllocAligned(a, 0xf00, 0x20);
-    data_0217aa00->mUnk_0018 = HeapAllocAligned(a, 0x40, 0x20);
+    data_0217aa00->mParentParameter = HeapAllocAligned(a, 0x40, 0x20);
     data_0217aa00->mUnk_001c = HeapAllocAligned(a, 0x20, 0x20);
     data_0217aa00->mUnk_0024 = HeapAllocAligned(a, 0xc0, 0x20);
     data_0217aa00->mUnk_0028 = HeapAllocAligned(a, 0xc0, 0x20);
@@ -414,7 +421,7 @@ void func_02054330(void) {
     data_0217aa00->mUnk_0456_0 = 0;
 }
 
-void func_02054208(Unk0217aa00_15bc *a) {
+void ResetDataSharing(Unk0217aa00_15bc *a) {
     Unk0217aa00_1e4c *q;
     s32 i;
     s32 j;
@@ -446,7 +453,7 @@ void func_02054208(Unk0217aa00_15bc *a) {
     data_0217aa00->mUnk_0454 &= ~0x10;
 }
 
-void func_02053fa8(void) {
+void ResetConnectionData(void) {
     u8 *q;
     s32 i;
     s32 j;
@@ -498,13 +505,13 @@ void func_02053fa8(void) {
     data_0217aa00->mUnk_1699 = 0;
     data_0217aa00->mUnk_0454 &= ~1;
     func_020562b4();
-    func_02054208(&data_0217aa00->mUnk_15bc_view);
+    ResetDataSharing(&data_0217aa00->mUnk_15bc_view);
 }
 
 void func_02053e74(void) {
     Unk0217aa00_1e4c *q;
     Unk0217aa00 *p;
-    Unk0217aa00_1eb8 *t;
+    RandomState *t;
     s32 i;
     s32 j;
     s32 a;
@@ -524,7 +531,7 @@ void func_02053e74(void) {
     a = 0;
     switch (func_02053e74_inline()) {
         case 1:
-            a = p->mUnk_0018->mUnk_0c;
+            a = p->mParentParameter->mUnk_0c;
             break;
         case 2:
             a = p->mUnk_0024->mUnk_48;
@@ -533,17 +540,17 @@ void func_02053e74(void) {
     b = 0;
     switch (func_02053e74_inline()) {
         case 1:
-            b = p->mUnk_0018->mUnk_0c;
+            b = p->mParentParameter->mUnk_0c;
             break;
         case 2:
             b = p->mUnk_0024->mUnk_48;
             break;
     }
-    p->mUnk_1eb8.mUnk_00 = b + (a << 10);
-    t = &p->mUnk_1eb8;
-    t->mUnk_04 = 0;
-    t->mUnk_08 = 0x6c078965;
-    t->mUnk_0c = 0x5d588b65;
-    t->mUnk_10 = 0x269ec3;
-    t->mUnk_14 = 0;
+    p->mRandom.mStateLow = b + (a << 10);
+    t = &p->mRandom;
+    t->mStateHigh = 0;
+    t->mMultiplierLow = 0x6c078965;
+    t->mMultiplierHigh = 0x5d588b65;
+    t->mIncrementLow = 0x269ec3;
+    t->mIncrementHigh = 0;
 }

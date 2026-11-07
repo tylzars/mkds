@@ -59,7 +59,7 @@ void func_020e6514(Unk020e52bc *param_1, Unk020e6514 *param_2, Unk020e6488 *p) {
     p->mUnk_18 = 0;
     if (param_2 != NULL) {
         x.mUnk_00 = d->mUnk_014;
-        n = func_02087d0c(param_2) >> 12;
+        n = GetModelAnimationFrameCountFixed(param_2) >> 12;
         p->mUnk_1a = n;
         t = GetHeap(func_020364e8());
         p->mUnk_1c = HeapAlloc(t, n * 4);

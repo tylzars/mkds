@@ -37,7 +37,7 @@ s32 func_0204dd24(u16 a) {
             }
             break;
         case 7:
-            g->mUnk_0010 = 0;
+            g->mRequestPending = 0;
             break;
         case 30: {
             s32 v;
@@ -55,7 +55,7 @@ s32 func_0204dd24(u16 a) {
         }
     }
     g = data_0217aa00;
-    if (g->mUnk_0010 != 0) {
+    if (g->mRequestPending != 0) {
         return 0;
     }
     switch (g->mUnk_000c) {
@@ -177,7 +177,7 @@ s32 func_0204db6c(void) {
         default:
             return 3;
     }
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return 0;
     }
     switch (data_0217aa00->mUnk_000c) {

@@ -5,58 +5,58 @@
 #include "Main/Unknown/unk_02165000.h"
 #include "registers.h"
 
-void func_02087c9c(Unk02087d0c *a, s32 b, u16 c) {
-    a->mUnk_00 = c == 0 ? UNK_02087CFC_KIND_0 : UNK_02087CFC_KIND_1;
-    a->mUnk_02 = 0;
-    a->mUnk_08 = 0x1000;
-    a->mUnk_04 = b;
-    a->mUnk_0c = 0;
-    a->mUnk_10 = 0;
-    a->mUnk_12 = 0;
+void func_02087c9c(ModelAnimation *a, s32 b, u16 c) {
+    a->mLoopMode = c == 0 ? UNK_02087CFC_KIND_0 : UNK_02087CFC_KIND_1;
+    a->mDone = 0;
+    a->mFrameStep = 0x1000;
+    a->mFrameCountFixed = b;
+    a->mFrameIndex = 0;
+    a->mLoopsDone = 0;
+    a->mLoopCount = 0;
 }
 
-void func_02087b9c(Unk02087d0c *a) {
+void func_02087b9c(ModelAnimation *a) {
     s32 c;
-    switch (a->mUnk_00) {
+    switch (a->mLoopMode) {
         case 1:
-            if (a->mUnk_0c >= a->mUnk_04) {
-                a->mUnk_0c = a->mUnk_0c - a->mUnk_04;
-            } else if (a->mUnk_0c <= 0) {
-                c = a->mUnk_0c;
-                a->mUnk_0c = a->mUnk_04 - 0x1000 + c;
+            if (a->mFrameIndex >= a->mFrameCountFixed) {
+                a->mFrameIndex = a->mFrameIndex - a->mFrameCountFixed;
+            } else if (a->mFrameIndex <= 0) {
+                c = a->mFrameIndex;
+                a->mFrameIndex = a->mFrameCountFixed - 0x1000 + c;
             }
             break;
         case 0:
-            if (a->mUnk_0c >= a->mUnk_04 - 0x1000) {
-                a->mUnk_0c = a->mUnk_04 - 0x1000;
-                a->mUnk_08 = 0;
-                a->mUnk_02 = 1;
+            if (a->mFrameIndex >= a->mFrameCountFixed - 0x1000) {
+                a->mFrameIndex = a->mFrameCountFixed - 0x1000;
+                a->mFrameStep = 0;
+                a->mDone = 1;
             }
             break;
         case 2:
-            if (a->mUnk_10 >= a->mUnk_12) {
+            if (a->mLoopsDone >= a->mLoopCount) {
                 return;
             }
-            if (a->mUnk_0c >= a->mUnk_04) {
-                a->mUnk_0c = a->mUnk_0c - a->mUnk_04;
-                a->mUnk_10++;
-            } else if (a->mUnk_0c <= 0) {
-                c = a->mUnk_0c;
-                a->mUnk_0c = a->mUnk_04 - 0x1000 + c;
-                a->mUnk_10++;
+            if (a->mFrameIndex >= a->mFrameCountFixed) {
+                a->mFrameIndex = a->mFrameIndex - a->mFrameCountFixed;
+                a->mLoopsDone++;
+            } else if (a->mFrameIndex <= 0) {
+                c = a->mFrameIndex;
+                a->mFrameIndex = a->mFrameCountFixed - 0x1000 + c;
+                a->mLoopsDone++;
             }
-            if (a->mUnk_10 >= a->mUnk_12) {
-                a->mUnk_0c = a->mUnk_04 - 0x1000;
-                a->mUnk_08 = 0;
-                a->mUnk_02 = 1;
+            if (a->mLoopsDone >= a->mLoopCount) {
+                a->mFrameIndex = a->mFrameCountFixed - 0x1000;
+                a->mFrameStep = 0;
+                a->mDone = 1;
             }
             break;
     }
 }
 
-void func_02087b78(Unk02087d0c *a) {
-    a->mUnk_02 = 0;
-    a->mUnk_0c = a->mUnk_0c + a->mUnk_08;
+void func_02087b78(ModelAnimation *a) {
+    a->mDone = 0;
+    a->mFrameIndex = a->mFrameIndex + a->mFrameStep;
     func_02087b9c(a);
 }
 

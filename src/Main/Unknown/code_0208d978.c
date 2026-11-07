@@ -319,7 +319,7 @@ void SetupModelEffectKind(void *heap, s32 kind, NNSG3dResFileHeader *modelFile, 
                           void *nsbtaFile) {
     u16 i;
     u8 *t;
-    Unk02087d0c *o;
+    ModelAnimation *o;
     NNSG3dResMdl *h;
     ModelEffect *p;
     ModelEffectKind *g;
@@ -348,13 +348,13 @@ void SetupModelEffectKind(void *heap, s32 kind, NNSG3dResFileHeader *modelFile, 
         o = p->mAnimations[0];
         if (o != NULL) {
             if (nsbcaFile != NULL) {
-                func_0208823c(0, o, &p->mNsbmd, 1, heap, modelFile);
-                func_0208805c(o, nsbcaFile, heap);
+                InitModelAnimation(0, o, &p->mNsbmd, 1, heap, modelFile);
+                InitModelAnimationEntries(o, nsbcaFile, heap);
             } else {
-                o->mUnk_18 = 0;
+                o->mAnmObjCount = 0;
             }
             if (kind == 2) {
-                if (func_02087d0c(p->mAnimations[0]) >> 12 == 0x20) {
+                if (GetModelAnimationFrameCountFixed(p->mAnimations[0]) >> 12 == 0x20) {
                     gKind2EffectIds[0] = 0x37;
                     gKind2EffectIds[1] = 0x38;
                 } else {
@@ -366,28 +366,28 @@ void SetupModelEffectKind(void *heap, s32 kind, NNSG3dResFileHeader *modelFile, 
         o = p->mAnimations[1];
         if (o != NULL) {
             if (nsbmaFile != NULL) {
-                func_0208823c(4, o, &p->mNsbmd, 1, heap, modelFile);
-                func_0208805c(o, nsbmaFile, heap);
+                InitModelAnimation(4, o, &p->mNsbmd, 1, heap, modelFile);
+                InitModelAnimationEntries(o, nsbmaFile, heap);
             } else {
-                o->mUnk_18 = 0;
+                o->mAnmObjCount = 0;
             }
         }
         o = p->mAnimations[2];
         if (o != NULL) {
             if (nsbtaFile == NULL) {
-                o->mUnk_18 = 0;
+                o->mAnmObjCount = 0;
             } else {
-                func_0208823c(1, o, &p->mNsbmd, 1, heap, modelFile);
-                func_0208805c(o, nsbtaFile, heap);
+                InitModelAnimation(1, o, &p->mNsbmd, 1, heap, modelFile);
+                InitModelAnimationEntries(o, nsbtaFile, heap);
             }
         }
     }
 }
 
 void StartModelEffectBombcore(ModelEffect *a, s32 b) {
-    func_02087f84(a->mAnimations[0], 0);
-    func_02087f84(a->mAnimations[1], 0);
-    func_02087f84(a->mAnimations[2], 0);
+    SetModelAnimation(a->mAnimations[0], 0);
+    SetModelAnimation(a->mAnimations[1], 0);
+    SetModelAnimation(a->mAnimations[2], 0);
     a->mScale[0] = 0xab8;
     a->mScale[1] = 0xab8;
     a->mScale[2] = 0xab8;
@@ -408,19 +408,19 @@ void UpdateModelEffectBombcore(ModelEffect *a) {
         a->mFinished = 1;
         return;
     }
-    func_02087de0(a->mAnimations[0]);
-    func_02087de0(a->mAnimations[1]);
-    func_02087de0(a->mAnimations[2]);
+    AdvanceModelAnimation(a->mAnimations[0]);
+    AdvanceModelAnimation(a->mAnimations[1]);
+    AdvanceModelAnimation(a->mAnimations[2]);
 }
 
 void StartWaterEfctKind2(ModelEffect *a) {
     u32 x;
 
-    x = (u32) (func_02087d0c(a->mAnimations[0]) << 4) >> 16;
-    func_02087f84(a->mAnimations[0], 0);
+    x = (u32) (GetModelAnimationFrameCountFixed(a->mAnimations[0]) << 4) >> 16;
+    SetModelAnimation(a->mAnimations[0], 0);
     a->mFinishFrameCount = x;
     if (a->mAnimations[1] != NULL) {
-        func_02087f84(a->mAnimations[1], 0);
+        SetModelAnimation(a->mAnimations[1], 0);
     }
 }
 
@@ -428,10 +428,10 @@ void StartWaterEfctKind4(ModelEffect *a) {
     a->mScale[0] = 0x3d9a;
     a->mScale[1] = 0x3d9a;
     a->mScale[2] = 0x3d9a;
-    func_02087f84(a->mAnimations[0], 0);
+    SetModelAnimation(a->mAnimations[0], 0);
     a->mFinishFrameCount = 0x20;
     if (a->mAnimations[1] != NULL) {
-        func_02087f84(a->mAnimations[1], 0);
+        SetModelAnimation(a->mAnimations[1], 0);
     }
     StartEffect(0x424, &a->mPos);
     StartEffect(0x422, &a->mPos);
@@ -443,19 +443,19 @@ void UpdateWaterEfctKinds(ModelEffect *a) {
         a->mFinished = 1;
         return;
     }
-    func_02087de0(a->mAnimations[0]);
+    AdvanceModelAnimation(a->mAnimations[0]);
     if (a->mAnimations[1] != NULL) {
-        func_02087de0(a->mAnimations[1]);
+        AdvanceModelAnimation(a->mAnimations[1]);
     }
 }
 
 void StartModelEffectBkWave(ModelEffect *a, s32 b) {
-    func_02087f84(a->mAnimations[0], 0);
+    SetModelAnimation(a->mAnimations[0], 0);
     a->mScale[0] = 0x5800;
     a->mScale[1] = 0x5800;
     a->mScale[2] = 0x5800;
     a->mFinishFrameCount = 0x27;
-    func_02087f84(a->mAnimations[1], 0);
+    SetModelAnimation(a->mAnimations[1], 0);
     if (b == 0) {
         return;
     }
@@ -468,14 +468,14 @@ void UpdateModelEffectBkWave(ModelEffect *a) {
         a->mFinished = 1;
         return;
     }
-    func_02087de0(a->mAnimations[0]);
-    func_02087de0(a->mAnimations[1]);
+    AdvanceModelAnimation(a->mAnimations[0]);
+    AdvanceModelAnimation(a->mAnimations[1]);
 }
 
 void StartModelEffectBombcore2(ModelEffect *a, s32 b) {
-    func_02087f84(a->mAnimations[0], 0);
-    func_02087f84(a->mAnimations[1], 0);
-    func_02087f84(a->mAnimations[2], 0);
+    SetModelAnimation(a->mAnimations[0], 0);
+    SetModelAnimation(a->mAnimations[1], 0);
+    SetModelAnimation(a->mAnimations[2], 0);
     a->mScale[0] = 0x1000;
     a->mScale[1] = 0x1000;
     a->mScale[2] = 0x1000;
@@ -492,9 +492,9 @@ void UpdateModelEffectBombcore2(ModelEffect *a) {
         a->mFinished = 1;
         return;
     }
-    func_02087de0(a->mAnimations[0]);
-    func_02087de0(a->mAnimations[1]);
-    func_02087de0(a->mAnimations[2]);
+    AdvanceModelAnimation(a->mAnimations[0]);
+    AdvanceModelAnimation(a->mAnimations[1]);
+    AdvanceModelAnimation(a->mAnimations[2]);
 }
 
 // Starts a kind 2 object at position when startModel is set, then the particle effects of gKind2EffectIds.

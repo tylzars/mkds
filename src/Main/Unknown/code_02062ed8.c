@@ -30,10 +30,10 @@ static inline void func_0206331c_inline(u32 a, u8 *b, Nsbmd *c, void *d, const c
     if (f == NULL) {
         *g = 0;
     } else {
-        func_0208823c(a, b, c, 1, d, e);
-        func_0208805c(b, f, d);
+        InitModelAnimation(a, b, c, 1, d, e);
+        InitModelAnimationEntries(b, f, d);
         func_02087cfc(b, 0, 1);
-        func_02087f84(b, 0);
+        SetModelAnimation(b, 0);
     }
 }
 
@@ -159,13 +159,13 @@ void InitCourseModels(void *a) {
 
 void UpdateCourseModels(void) {
     if (gCourseModels.mUnk_20 != 0) {
-        func_02087de0(data_usa_0217ab04);
+        AdvanceModelAnimation(data_usa_0217ab04);
     }
     if (gCourseModels.mUnk_58 != 0) {
-        func_02087de0(data_0217ab5c);
+        AdvanceModelAnimation(data_0217ab5c);
     }
     if (gCourseModels.mVNsbmd != NULL && gCourseModels.mUnk_90 != 0) {
-        func_02087de0(data_usa_0217ab74);
+        AdvanceModelAnimation(data_usa_0217ab74);
     }
 }
 

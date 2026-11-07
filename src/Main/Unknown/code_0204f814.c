@@ -164,7 +164,7 @@ void func_0204fb40(s32 a) {
     u64 x;
     u64 y;
 
-    q = data_0217aa00->mUnk_0018;
+    q = data_0217aa00->mParentParameter;
     MIi_CpuCopy32(data_02154788, q, 0x40);
     e = data_0217aa00->mUnk_0044.mUnk_38;
     e->mUnk_0e.mUnk_07_0 = 0;
@@ -206,7 +206,7 @@ void func_0204f938(GhostRecord *a) {
     u64 x;
     u64 y;
 
-    q = data_0217aa00->mUnk_0018;
+    q = data_0217aa00->mParentParameter;
     MIi_CpuCopy32(data_02154788, q, 0x40);
     e = data_0217aa00->mUnk_0044.mUnk_38;
     e->mUnk_0e.mUnk_07_0 = 1;
@@ -282,5 +282,5 @@ void func_0204f814(void) {
     }
     data_0217aa00->mUnk_0088 = -1;
     data_0217aa00->mUnk_0008 = 3;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }

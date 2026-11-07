@@ -17,9 +17,9 @@ void func_0204f148(void) {
         v = 1;
     }
     data_0217aa00->mUnk_000c = 0x2a;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (RequestBlockCount(v, func_0204f100) == 0) {
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
         data_0217aa00->mUnk_000c = v1;
     }
 }
@@ -28,7 +28,7 @@ void func_0204f100(BlockTransferRecord *a) {
     if (a->mKind == 2) {
         if (a->mUnk_04 == 3) {
             data_0217aa00->mUnk_1d5e = *(s16 *) &a->mUnk_14;
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
         } else {
             func_02050e60(8);
         }
@@ -40,17 +40,17 @@ void func_0204f100(BlockTransferRecord *a) {
 void func_0204f0b8(void) {
     s32 v1 = data_0217aa00->mUnk_000c;
     data_0217aa00->mUnk_000c = 0x2b;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (RequestBlockNode(1, data_0217aa00->mUnk_1d5c, data_0217aa00->mUnk_1da0, func_0204f080) == 0) {
         data_0217aa00->mUnk_000c = v1;
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
     }
 }
 
 void func_0204f080(BlockTransferRecord *a) {
     if (a->mKind == 6) {
         if (a->mUnk_04 == 7) {
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
         } else {
             func_0204f0b8();
         }
@@ -62,19 +62,19 @@ void func_0204f080(BlockTransferRecord *a) {
 void func_0204f008(void) {
     s32 v1 = data_0217aa00->mUnk_000c;
     data_0217aa00->mUnk_000c = 0x2c;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     data_0217aa00->mUnk_1d60 = data_0217aa00->mUnk_16a0[data_0217aa00->mUnk_1d5c].mUnk_74;
     if (RequestBlockData(1, data_0217aa00->mUnk_1da0[0]->mUnk_00, &data_0217aa00->mUnk_1d60,
                          data_0217aa00->mUnk_1da0[0]->mUnk_04, data_0217aa00->mUnk_1de0, func_0204efcc) == 0) {
         data_0217aa00->mUnk_000c = v1;
-        data_0217aa00->mUnk_0010 = 0;
+        data_0217aa00->mRequestPending = 0;
     }
 }
 
 void func_0204efcc(BlockTransferRecord *a) {
     if (a->mKind == 4) {
         if (a->mUnk_04 == 5) {
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
         } else {
             func_02050e60(8);
         }
@@ -96,7 +96,7 @@ void func_0204ef88(void) {
 
 void func_0204ef1c(void) {
     data_0217aa00->mUnk_000c = 0xb;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     if (WM_StartMPEx(StartMPCallback, data_0217aa00->mUnk_1e24, data_0217aa00->mUnk_1e2c, data_0217aa00->mUnk_1e20,
                      data_0217aa00->mUnk_1e28, 1, 0, 0, 0, 0, 0) != 2) {
         func_02050e60(2);

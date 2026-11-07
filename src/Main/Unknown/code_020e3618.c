@@ -39,7 +39,7 @@ void CreateBridge(void) {
     p = FindCourseMapObjFile(gBridgeNsbmdName);
     func_020ea588(&gBridge, p, NULL);
     CreateModelAnimation(0, gBridge, &gBridgeNsbca, p, FindCourseMapObjFile(gBridgeNsbcaName));
-    ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c = func_02087d0c(gBridgeNsbca);
+    ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c = GetModelAnimationFrameCountFixed(gBridgeNsbca);
     func_02084968(gBridge, 0x3f, 2, 0x294a);
     SetMapObjectsModel(*(void **) data_0217b7c4, gBridge);
 }

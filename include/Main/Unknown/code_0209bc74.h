@@ -3,7 +3,7 @@
 #include "types.h"
 #include "Main/Unknown/code_020e5d0c.h" // Unk020e6488
 #include "Main/Unknown/code_020ea670.h" // Unk020ea670
-#include "Main/Unknown/code_02087d0c.h" // Unk02087d0c
+#include "Main/Unknown/code_02087d0c.h" // ModelAnimation
 
 // The draw group (MapObjectList), not the bundle: the creators' first argument; they store 1 or 2 at 0x18.
 typedef struct Unk0209bc74_a {
@@ -47,7 +47,7 @@ typedef struct MapObjectModel {
     /* 18 */ void *mNsbmdFile;
     // Slot table of the 0x38-byte animation objects: 0 .nsbca, 1 .nsbtp, 2 .nsbma, 3 .nsbta; filled by the
     // Create...Animation functions (slot 2 only by overlay 1, never in a main-code bundle).
-    /* 1c */ Unk02087d0c *mAnimations[4];
+    /* 1c */ ModelAnimation *mAnimations[4];
 } MapObjectModel;
 
 extern Unk0209bc74_00 data_021565a0;

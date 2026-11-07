@@ -23,13 +23,13 @@ void func_020cb51c(u32 a) {
     if (func_02049b6c() == 0) {
         if (func_020cae54() == 1 || func_020cae54() == 2) {
             if (data_0217b43c->mUnk_958 == FALSE) {
-                if (func_020546d8() != 1) {
+                if (StartDataSharingSync() != 1) {
                     return;
                 }
                 data_0217b43c->mUnk_958 = TRUE;
             }
             if (data_0217b43c->mUnk_95c == FALSE) {
-                if (func_02054754() != 1) {
+                if (FinishDataSharingSync() != 1) {
                     return;
                 }
                 data_0217b43c->mUnk_95c = TRUE;

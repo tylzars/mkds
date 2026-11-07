@@ -118,7 +118,7 @@ void CreateFlipper(void *a) {
 void DrawFlipper(void *a, Flipper *p) {
     s32 v;
     MtxFx43 *e;
-    Unk02087d0c *s;
+    ModelAnimation *s;
 
     v = 0x1e;
     func_01ff9048(0x14, &v, 1);
@@ -130,11 +130,11 @@ void DrawFlipper(void *a, Flipper *p) {
     func_01ff9048(0x1b, &p->mUnk_00.mScale, 3);
     SetMapObjectModelMirror(gFlipper, p->mUnk_a4, 0);
     s = gFlipper->mAnimations[1];
-    s->mUnk_0c = p->mUnk_ec4 << 12;
-    s->mUnk_1c[s->mUnk_1a]->mFrame = s->mUnk_0c;
+    s->mFrameIndex = p->mUnk_ec4 << 12;
+    s->mAnmObjs[s->mCurrentIndex]->mFrame = s->mFrameIndex;
     s = gFlipper->mAnimations[3];
-    s->mUnk_0c = p->mUnk_ec6 << 12;
-    s->mUnk_1c[s->mUnk_1a]->mFrame = s->mUnk_0c;
+    s->mFrameIndex = p->mUnk_ec6 << 12;
+    s->mAnmObjs[s->mCurrentIndex]->mFrame = s->mFrameIndex;
     DrawMapObjectModel(a, gFlipper, p);
 }
 

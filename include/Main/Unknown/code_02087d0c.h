@@ -5,33 +5,42 @@
 typedef struct NNSG3dAnmObj NNSG3dAnmObj;
 typedef struct NNSG3dRenderObj NNSG3dRenderObj;
 
-// 0x38-byte object: a table of pointers at 0x1c (count at 0x18, current index at 0x1a) and a table of words at 0x20,
-// both with one entry per element.
-typedef struct Unk02087d0c {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u16 mUnk_02;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
-    /* 14 */ NNSG3dRenderObj *mUnk_14;
-    /* 18 */ u16 mUnk_18;
-    /* 1a */ u16 mUnk_1a;
-    /* 1c */ NNSG3dAnmObj **mUnk_1c;
-    /* 20 */ u32 *mUnk_20;
-    /* 24 */ u8 mUnk_24[4];
-    /* 28 */ u32 mUnk_28;
-    /* 2c */ BOOL mUnk_2c;
-    /* 30 */ s32 mUnk_30;
-    /* 34 */ NNSG3dAnmObj *mUnk_34;
-} Unk02087d0c;
+// Values of ModelAnimation.mKind: the kind of animation the entries hold.
+typedef enum {
+    MODEL_ANIMATION_KIND_JOINT,
+    MODEL_ANIMATION_KIND_TEX_SRT,
+    MODEL_ANIMATION_KIND_TEX_PAT,
+    MODEL_ANIMATION_KIND_VIS,
+    MODEL_ANIMATION_KIND_MAT_C
+} ModelAnimationKind;
 
-extern s32 (*data_02155cd8[])(NNSG3dAnmObj *a);
+// One model's animations: a table of animation objects and one loop flag per entry; one entry plays at a time.
+// A change of entry can fade from the old one (StartModelAnimationBlend).
+typedef struct ModelAnimation {
+    /* 00 */ u16 mLoopMode;
+    /* 02 */ u16 mDone;
+    /* 04 */ s32 mFrameCountFixed;
+    /* 08 */ s32 mFrameStep;
+    /* 0c */ s32 mFrameIndex;
+    /* 10 */ u16 mLoopsDone;
+    /* 12 */ u16 mLoopCount;
+    /* 14 */ NNSG3dRenderObj *mRenderObj;
+    /* 18 */ u16 mAnmObjCount;
+    /* 1a */ u16 mCurrentIndex;
+    /* 1c */ NNSG3dAnmObj **mAnmObjs;
+    /* 20 */ u32 *mLoopFlags;
+    /* 24 */ u8 mUnk_24[4];
+    /* 28 */ u32 mKind;
+    /* 2c */ BOOL mBlending;
+    /* 30 */ s32 mBlendRatioStep;
+    /* 34 */ NNSG3dAnmObj *mPreviousAnmObj;
+} ModelAnimation;
+
+extern s32 (*gAnmFrameCountGetters[])(NNSG3dAnmObj *a);
 
 typedef struct Unk020882fc_08 {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ u16 mUnk_04;
+    /* 04 */ u16 mFrameCount;
 } Unk020882fc_08;
 
 typedef struct Unk020882fc {
@@ -39,16 +48,16 @@ typedef struct Unk020882fc {
     /* 08 */ Unk020882fc_08 *mUnk_08;
 } Unk020882fc;
 
-extern u32 data_0217af20;
+extern u32 gAnmObjSizeRequired;
 
-s32 func_02087d0c(void *a);
-void func_02087d44(Unk02087d0c *p);
-void func_02087de0(void *a);
-void func_02087e90(void *a, u16 b);
-void func_02087f84(void *a, s32 b);
-void func_0208805c(void *a, void *b, void *c);
-void func_020881b0(void *a, s32 b, void *c, u32 d, void *e);
-void func_0208823c(u32 a, void *b, void *c, u32 d, void *e, void *f);
+s32 GetModelAnimationFrameCountFixed(void *a);
+void AdvanceModelAnimationBlend(ModelAnimation *p);
+void AdvanceModelAnimation(void *a);
+void StartModelAnimationBlend(void *a, u16 b);
+void SetModelAnimation(void *a, s32 b);
+void InitModelAnimationEntries(void *a, void *b, void *c);
+void InitModelAnimationEntry(void *a, s32 b, void *c, u32 d, void *e);
+void InitModelAnimation(u32 a, void *b, void *c, u32 d, void *e, void *f);
 unsigned int func_020882fc(Unk020882fc *p0);
 unsigned int func_02088308(Unk020882fc *p0);
 unsigned int func_02088314(Unk020882fc *p0);

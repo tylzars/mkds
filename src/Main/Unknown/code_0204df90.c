@@ -66,23 +66,23 @@ void func_0204e6e8(u32 a, u32 b, Unk0204e4d8 *c) {
         case 7:
             data_0217aa00->mUnk_1697 |= 1 << a;
             if (data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1697)) {
-                data_0217aa00->mUnk_0010 = 0;
+                data_0217aa00->mRequestPending = 0;
             }
             break;
         case 9:
             data_0217aa00->mUnk_1695 |= 1 << a;
             break;
         case 12:
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             break;
         case 1:
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             break;
         case 3:
             if (data_0217aa00->mUnk_1695 & (1 << a)) {
                 data_0217aa00->mUnk_1698 |= 1 << a;
                 if (data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1698)) {
-                    data_0217aa00->mUnk_0010 = 0;
+                    data_0217aa00->mRequestPending = 0;
                 }
             }
             if (!(data_0217aa00->mUnk_1694 & 2)) {
@@ -104,13 +104,13 @@ void func_0204e6e8(u32 a, u32 b, Unk0204e4d8 *c) {
             if ((data_0217aa00->mUnk_1694 & 2) &&
                 data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1698) &&
                 data_0217aa00->mUnk_000c == 0x19) {
-                data_0217aa00->mUnk_0010 = 0;
+                data_0217aa00->mRequestPending = 0;
                 return;
             }
             if ((data_0217aa00->mUnk_1694 & 1) &&
                 data_0217aa00->mUnk_1696 == (data_0217aa00->mUnk_1696 & data_0217aa00->mUnk_1697) &&
                 data_0217aa00->mUnk_000c == 0x18) {
-                data_0217aa00->mUnk_0010 = 0;
+                data_0217aa00->mRequestPending = 0;
                 return;
             }
             break;
@@ -149,7 +149,7 @@ void func_0204e65c(Unk0217aa00_1658 *a) {
 void func_0204e568(void) {
     Unk0204e4d8 b;
     data_0217aa00->mUnk_000c = 0x16;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     func_0204e65c(&data_0217aa00->mUnk_1658_view);
     b.mUnk_01 = 10;
     b.mUnk_00_0 = data_021759d0->mUnk_40;
@@ -168,13 +168,13 @@ void func_0204e568(void) {
         func_02050e60(5);
     }
     data_0217aa00->mUnk_008b &= ~4;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 void SetupScanConnect(void) {
     Unk0204e4d8 b;
     data_0217aa00->mUnk_000c = 0x1c;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     b.mUnk_00_0 = data_021759d0->mUnk_40;
     b.mUnk_01 = 10;
     b.mUnk_00_4 = 9;
@@ -182,18 +182,18 @@ void SetupScanConnect(void) {
     data_0217aa00->mUnk_169a = -1;
     InitScanConnectWork(data_0217aa00->mUnk_165c, &b);
     SetScanConnectStateCallback(ScanConnectStateCallback);
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 void StartCloseScanConnect(void) {
     data_0217aa00->mUnk_000c = 0x1f;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     CloseScanConnect();
 }
 
 void func_0204e498(void) {
     data_0217aa00->mUnk_000c = 0x1d;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     StartRepeatedScan(RepeatedScanCallback, 0x25);
 }
 
@@ -206,7 +206,7 @@ static inline u32 func_0204e1a8_inline(void) {
 
 void func_0204e474(void) {
     data_0217aa00->mUnk_000c = 0x1e;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     StartRepeatedScan(RepeatedScanCallback, 0x25);
 }
 
@@ -242,7 +242,7 @@ void RepeatedScanCallback(u32 a) {
             func_02050e60(5);
             break;
         case 3:
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             break;
     }
 }
@@ -250,11 +250,11 @@ void RepeatedScanCallback(u32 a) {
 void ScanConnectStateCallback(u32 a) {
     switch (a) {
         case 11:
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             break;
         case 20:
             data_0217aa00->mUnk_1692 = (OS_GetTick() >> 10) % 40;
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             break;
         case 7:
             data_0217aa00->mUnk_169c = 1;
@@ -266,7 +266,7 @@ void ScanConnectStateCallback(u32 a) {
         case 3:
         case 6:
             data_0217aa00->mUnk_169c = 0;
-            data_0217aa00->mUnk_0010 = 0;
+            data_0217aa00->mRequestPending = 0;
             break;
     }
 }
@@ -333,7 +333,7 @@ s32 func_0204e204(void) {
 
 s32 func_0204e1a8(s32 a) {
     s32 r = 0;
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return 0;
     }
     switch (func_0204e1a8_inline()) {
@@ -363,7 +363,7 @@ void func_0204e128(void) {
     }
     data_0217aa00->mUnk_000c = 0x18;
     i = 1;
-    data_0217aa00->mUnk_0010 = i;
+    data_0217aa00->mRequestPending = i;
     n = 0;
     data_0217aa00->mUnk_1697 = n;
     data_0217aa00->mUnk_1694 |= i;
@@ -382,7 +382,7 @@ void func_0204e0bc(void) {
     u8 n;
     data_0217aa00->mUnk_000c = 0x19;
     i = 1;
-    data_0217aa00->mUnk_0010 = i;
+    data_0217aa00->mRequestPending = i;
     data_0217aa00->mUnk_1694 |= 2;
     n = 0;
     data_0217aa00->mUnk_1695 = n;
@@ -398,20 +398,20 @@ void func_0204e0bc(void) {
 
 void func_0204e090(void) {
     data_0217aa00->mUnk_000c = 0x1b;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     data_0217aa00->mUnk_1694 &= ~2;
     func_02009c04();
 }
 
 void StartRequestEndScan(void) {
     data_0217aa00->mUnk_000c = 0x21;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     RequestEndScan();
 }
 
 void func_0204e03c(u32 a) {
     data_0217aa00->mUnk_000c = 0x22;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     data_0217aa00->mUnk_169c = 0;
     if (StartConnectToEntry(a) == 0) {
         func_02050e60(5);
@@ -421,9 +421,9 @@ void func_0204e03c(u32 a) {
 void func_0204dfe0(u32 a) {
     u32 r;
     data_0217aa00->mUnk_000c = 0x23;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     r = func_0200b15c(a, (Unk02007ec4 *) data_0217aa00->mUnk_0024, 0x1bc, 0x36, 0, 0);
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
     data_0217aa00->mUnk_0024->mUnk_48 = (data_0217aa00->mUnk_0024->mUnk_48 + 7) & 0x7fff;
     if (r == 0) {
         func_02050e60(5);
@@ -432,10 +432,10 @@ void func_0204dfe0(u32 a) {
 
 void func_0204df90(void) {
     data_0217aa00->mUnk_000c = 0x1a;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     func_02007ec4((Unk02007ec4 *) data_0217aa00->mUnk_0024, 0x1bc, 0x36, 0, 0);
     data_0217aa00->mUnk_0024->mUnk_48 = (data_0217aa00->mUnk_0024->mUnk_48 + 7) & 0x7fff;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 #pragma thumb off

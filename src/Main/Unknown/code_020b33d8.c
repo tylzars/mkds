@@ -83,7 +83,7 @@ void UpdateRaceStartSequence(void) {
         SetMapObjectsRunUpdateLists();
         return;
     }
-    if (func_02054754() == 1) {
+    if (FinishDataSharingSync() == 1) {
         gRaceStartSequence->mCounting = TRUE;
     }
 }

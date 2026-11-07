@@ -342,7 +342,7 @@ s32 func_02055808(s32 a) {
     BOOL r;
 
     r = FALSE;
-    if (data_0217aa00->mUnk_0010 != 0) {
+    if (data_0217aa00->mRequestPending != 0) {
         return r;
     }
     if (func_02055808_inline4()) {

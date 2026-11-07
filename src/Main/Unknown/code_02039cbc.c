@@ -43,7 +43,7 @@ void func_02039cbc(void) {
     InitSceneRunState(a);
     func_020486d4(a);
     func_0204af70(a);
-    func_020545e8(a);
+    InitConnection(a);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
         InitWiFiSession(a);
     }

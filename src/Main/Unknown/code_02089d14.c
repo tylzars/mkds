@@ -52,10 +52,10 @@ void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16
     u16 i;
     Nsbmd *h;
     Nsbmd *e;
-    Unk02087d0c *g;
+    ModelAnimation *g;
     u16 j;
     Nsbmd *p;
-    Unk02087d0c *q;
+    ModelAnimation *q;
     u16 l;
     u16 k;
     BOOL f;
@@ -90,26 +90,26 @@ void InitNsbmdNsbcaNsbmaNsbtp(void *a, Unk0208a69c *b, const Unk02155ee8 *c, u16
         e = &b->mNsbmds[j];
         g = &b->mNsbcaNsbmaNsbtp[0][j];
         snprintf(s, 0x80, "%s.nsbca", c->mStems[j]);
-        func_0208823c(0, g, e, 1, a, NULL);
-        func_0208805c(g, FindSceneFile(s), a);
-        func_02087f84(g, 0);
+        InitModelAnimation(0, g, e, 1, a, NULL);
+        InitModelAnimationEntries(g, FindSceneFile(s), a);
+        SetModelAnimation(g, 0);
     }
     for (l = 0; l < c->mNsbmaCount; l++) {
         p = &b->mNsbmds[l];
         q = &b->mNsbcaNsbmaNsbtp[1][l];
         snprintf(s, 0x80, "%s.nsbma", c->mStems[l]);
-        func_0208823c(4, q, p, 1, a, NULL);
-        func_0208805c(q, FindSceneFile(s), a);
-        func_02087f84(q, 0);
+        InitModelAnimation(4, q, p, 1, a, NULL);
+        InitModelAnimationEntries(q, FindSceneFile(s), a);
+        SetModelAnimation(q, 0);
     }
     if (f != FALSE) {
         g = b->mNsbcaNsbmaNsbtp[2];
-        func_0208823c(2, g, b->mNsbmds, c->mNsbtpCount, a, n);
+        InitModelAnimation(2, g, b->mNsbmds, c->mNsbtpCount, a, n);
         for (k = 0; k < c->mNsbtpCount; k++) {
             snprintf(s, 0x80, "%s.nsbtp", c->mStems[k]);
-            func_020881b0(g, k, NNS_G3dGetTexPatAnmByIdx(NNS_G3dGetTexPatAnmSet(FindSceneFile(s)), 0), 0, a);
+            InitModelAnimationEntry(g, k, NNS_G3dGetTexPatAnmByIdx(NNS_G3dGetTexPatAnmSet(FindSceneFile(s)), 0), 0, a);
         }
-        func_02087f84(g, 0);
+        SetModelAnimation(g, 0);
     }
 }
 
@@ -157,7 +157,7 @@ void func_0208a460(void *a) {
 
 void func_0208a31c(s32 a) {
     Unk0208a69c *p;
-    Unk02087d0c *e;
+    ModelAnimation *e;
     u16 i;
     s32 f;
     s32 v;
@@ -171,10 +171,10 @@ void func_0208a31c(s32 a) {
     data_0217b034->mUnk_73c = a;
     for (i = 0; i < p->mNsbmdCount; i++) {
         if (p->mNsbcaNsbmaNsbtp[0] != NULL) {
-            func_02087f84(&p->mNsbcaNsbmaNsbtp[0][i], 0);
+            SetModelAnimation(&p->mNsbcaNsbmaNsbtp[0][i], 0);
         }
         if (p->mNsbcaNsbmaNsbtp[1] != NULL) {
-            func_02087f84(&p->mNsbcaNsbmaNsbtp[1][i], 0);
+            SetModelAnimation(&p->mNsbcaNsbmaNsbtp[1][i], 0);
         }
         if (a == 0 || a == 2) {
             if (a == 2) {
@@ -187,16 +187,16 @@ void func_0208a31c(s32 a) {
             } else {
                 v = 3;
             }
-            func_02087f84(p->mNsbcaNsbmaNsbtp[2], (u16) f);
+            SetModelAnimation(p->mNsbcaNsbmaNsbtp[2], (u16) f);
             e = p->mNsbcaNsbmaNsbtp[0];
             if (e != NULL) {
-                e[i].mUnk_00 = 2;
-                e[i].mUnk_12 = v;
+                e[i].mLoopMode = 2;
+                e[i].mLoopCount = v;
             }
             e = p->mNsbcaNsbmaNsbtp[1];
             if (e != NULL) {
-                e[i].mUnk_00 = 2;
-                e[i].mUnk_12 = v;
+                e[i].mLoopMode = 2;
+                e[i].mLoopCount = v;
             }
         }
     }
@@ -216,13 +216,13 @@ void func_0208a218(void) {
         p = data_0217b034->mUnk_000[8];
         for (i = 0; i < p->mNsbmdCount; i++) {
             if (p->mNsbcaNsbmaNsbtp[0] != NULL) {
-                func_02087de0(p->mNsbcaNsbmaNsbtp[0]);
+                AdvanceModelAnimation(p->mNsbcaNsbmaNsbtp[0]);
             }
             if (p->mNsbcaNsbmaNsbtp[1] != NULL) {
-                func_02087de0(p->mNsbcaNsbmaNsbtp[1]);
+                AdvanceModelAnimation(p->mNsbcaNsbmaNsbtp[1]);
             }
             if (p->mNsbcaNsbmaNsbtp[2] != NULL) {
-                func_02087de0(p->mNsbcaNsbmaNsbtp[2]);
+                AdvanceModelAnimation(p->mNsbcaNsbmaNsbtp[2]);
             }
         }
     }
@@ -295,7 +295,8 @@ void func_02089ef4(s32 a) {
     }
     data_0217b034->mUnk_740 = 0;
     if (data_0217b034->mUnk_73c == 1 || data_0217b034->mUnk_73c == 3) {
-        data_0217b034->mUnk_742 = func_02087d0c(data_0217b034->mUnk_000[8]->mNsbcaNsbmaNsbtp[0]) >> 12;
+        data_0217b034->mUnk_742 =
+            GetModelAnimationFrameCountFixed(data_0217b034->mUnk_000[8]->mNsbcaNsbmaNsbtp[0]) >> 12;
     }
 }
 

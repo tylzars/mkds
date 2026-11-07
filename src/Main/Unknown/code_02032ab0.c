@@ -339,13 +339,13 @@ void AdvanceResultsBattle(Unk02032ac4 *a) {
     switch (gResultsBattle->mUnk_150) {
         case 0:
             gResultsBattle->mUnk_144 = gResultsBattle->mUnk_144 + 1;
-            if (func_020546d8() == 1) {
+            if (StartDataSharingSync() == 1) {
                 gResultsBattle->mUnk_150 = 1;
             }
             break;
         case 1:
             gResultsBattle->mUnk_144 = gResultsBattle->mUnk_144 + 1;
-            if (func_02054754() == 1) {
+            if (FinishDataSharingSync() == 1) {
                 gResultsBattle->mUnk_150 = 2;
             }
             break;

@@ -36,22 +36,22 @@ void func_0204f4d0(const void *a, void *b, void **c, u32 d, s32 e) {
 
 void func_0204f468(void) {
     data_0217aa00->mUnk_000c = 0x28;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     func_02006aac(0x192, 0xe, func_0204f19c);
     data_0217aa00->mUnk_1e42 = 0;
     data_0217aa00->mUnk_1e44 &= ~1;
     data_0217aa00->mUnk_0454 |= 0x200;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 void func_0204f408(void) {
     data_0217aa00->mUnk_000c = 0x29;
-    data_0217aa00->mUnk_0010 = 1;
+    data_0217aa00->mRequestPending = 1;
     func_02006a10(func_0204f198);
     data_0217aa00->mUnk_1e42 = 0;
     data_0217aa00->mUnk_1e44 &= ~1;
     data_0217aa00->mUnk_0454 |= 0x200;
-    data_0217aa00->mUnk_0010 = 0;
+    data_0217aa00->mRequestPending = 0;
 }
 
 void func_0204f33c(void *a) {

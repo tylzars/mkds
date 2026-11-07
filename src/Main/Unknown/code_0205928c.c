@@ -165,7 +165,7 @@ s32 func_020595e8(s32 a, void *b, void *c) {
                         break;
                 }
                 data_0217aa00->mUnk_000c = 0x27;
-                data_0217aa00->mUnk_0010 = 1;
+                data_0217aa00->mRequestPending = 1;
                 data_0217aa00->mUnk_1d08 = 0;
                 FS_InitFile(&data_0217aa00->mUnk_1d0c);
                 data_0217aa00->mUnk_1e34 = 3;
@@ -373,7 +373,7 @@ void EnterMPState20(void) {
 
 void UpdateMPState20(void) {
     Unk0217aa00_1608 *v1;
-    if (data_0217aa00->mUnk_0010 == 0) {
+    if (data_0217aa00->mRequestPending == 0) {
         v1 = &data_0217aa00->mUnk_1608;
         v1->mNextState = 0xf;
         v1->mNextStateRequested = 1;

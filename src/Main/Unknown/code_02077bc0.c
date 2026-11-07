@@ -744,7 +744,7 @@ void InitKartModelsEntry(void *arg0) {
 #pragma thumb on
 
 void func_02079a14(KartModelsEntry *a) {
-    func_02087cd0((Unk02087d0c *) a->mUnk_098, func_02087d0c(&gKartModels->mUnk_10c));
+    func_02087cd0((ModelAnimation *) a->mUnk_098, GetModelAnimationFrameCountFixed(&gKartModels->mUnk_10c));
 }
 
 #pragma thumb off
@@ -937,12 +937,12 @@ void CreateCharacter(KartModelsEntry *a, void *b, s32 c) {
         i = 0;
         d = FALSE;
         a->mCharacterAnimation = HeapAlloc(b, 0x38);
-        func_0208823c(0, a->mCharacterAnimation, a->mModels[0], 4, b, NULL);
+        InitModelAnimation(0, a->mCharacterAnimation, a->mModels[0], 4, b, NULL);
         do {
             s = func_02047950(BuildCharacterNsbcaPath(e8, i));
             if (s != NULL) {
                 void *w = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(s), 0);
-                func_020881b0(a->mCharacterAnimation, i, w, GetCharacterAnimationLoopFlag(i), b);
+                InitModelAnimationEntry(a->mCharacterAnimation, i, w, GetCharacterAnimationLoopFlag(i), b);
                 if (i == 0) {
                     d = TRUE;
                 }
@@ -950,17 +950,17 @@ void CreateCharacter(KartModelsEntry *a, void *b, s32 c) {
             i++;
         } while (i < 4);
         if (d != FALSE) {
-            func_02087f84(a->mCharacterAnimation, 0);
-            a->mMiddleFrame = (func_02087d0c(a->mCharacterAnimation) - 0x1000) / 2;
+            SetModelAnimation(a->mCharacterAnimation, 0);
+            a->mMiddleFrame = (GetModelAnimationFrameCountFixed(a->mCharacterAnimation) - 0x1000) / 2;
             a->mMiddleFrameReciprocal = FX_Div(0x1000, a->mMiddleFrame);
         } else {
             a->mCharacterAnimation->mUnk_18 = 0;
         }
     }
     a->mFaceAnimation = HeapAlloc(b, 0x38);
-    func_0208823c(2, a->mFaceAnimation, a->mModels[0], 1, b, NULL);
-    func_0208805c(a->mFaceAnimation, gKartModels->mUnk_028, b);
-    func_02087f84(a->mFaceAnimation, 0);
+    InitModelAnimation(2, a->mFaceAnimation, a->mModels[0], 1, b, NULL);
+    InitModelAnimationEntries(a->mFaceAnimation, gKartModels->mUnk_028, b);
+    SetModelAnimation(a->mFaceAnimation, 0);
 }
 
 void CreateKart(KartModelsEntry *a, void *b, s32 c) {
@@ -1115,9 +1115,9 @@ void CreateKillerItem(void *a) {
     SetKartModelMaterialColors(InitNsbmdWithTextureInfoCopy(a, &gKartModels->mUnk_02c, v4, v6), 0);
     SetNsbmdPolygonIdAll(&gKartModels->mUnk_02c, 3);
     v8 = func_02047950("character/common/KillerItem.nsbca");
-    func_0208823c(0, &gKartModels->mUnk_10c, &gKartModels->mUnk_02c, 1, a, v4);
-    func_0208805c(&gKartModels->mUnk_10c, v8, a);
-    func_02087f84(&gKartModels->mUnk_10c, 0);
+    InitModelAnimation(0, &gKartModels->mUnk_10c, &gKartModels->mUnk_02c, 1, a, v4);
+    InitModelAnimationEntries(&gKartModels->mUnk_10c, v8, a);
+    SetModelAnimation(&gKartModels->mUnk_10c, 0);
     InitShadowModel(&gKartModels->mUnk_098, v7, 3);
     func_020638dc(&gKartModels->mUnk_02c);
 }
@@ -1150,11 +1150,11 @@ void CreateKartModelMenuCharacter(void *a, Nsbmd *b, void *c, NNSG3dResFileHeade
     v2 = InitNsbmdWithTextureFile(b, d, e);
     SetNsbmdPolygonIdAll(b, 3);
     SetKartModelMaterialColors(v2, 1);
-    func_0208823c(0, c, b, 1, a, NULL);
+    InitModelAnimation(0, c, b, 1, a, NULL);
     v1 = NNS_G3dGetJntAnmByIdx(NNS_G3dGetJntAnmSet(f), 0);
     v3 = GetCharacterAnimationLoopFlag(2);
-    func_020881b0(c, 0, v1, v3, a);
-    func_02087f84(c, 0);
+    InitModelAnimationEntry(c, 0, v1, v3, a);
+    SetModelAnimation(c, 0);
 }
 
 void CreateKartModelMenuKart(Nsbmd *a, NNSG3dResFileHeader *b, NNSG3dResFileHeader *c) {
@@ -1622,7 +1622,7 @@ void AdvanceKartModelMenu(s32 param_1) {
             q->mSpinAngle += 0x64;
         }
         q->mYawAngle = param_1 != 0 ? (u16) -q->mSpinAngle : q->mSpinAngle;
-        func_02087de0(e->mCharacterAnimation);
+        AdvanceModelAnimation(e->mCharacterAnimation);
         if (gKartModelMenu->mEmblemData != NULL && gKartModelMenu->mEmblemPalette != NULL &&
             gKartModelMenu->mFiles[gKartModelMenu->mLoadSlotIndex].mLoadRequested == FALSE) {
             QueueKartEmblemTexture(gKartModelMenu->mEmblemData, gKartModelMenu->mEmblemPalette);
@@ -1634,7 +1634,7 @@ void AdvanceKartModelMenu(s32 param_1) {
 void func_020783c8(void) {
     s16 i = gKartModelMenu->mShownSlotIndex;
     if (i >= 0) {
-        func_02087de0(gKartModelMenu->mSlots[i].mCharacterAnimation);
+        AdvanceModelAnimation(gKartModelMenu->mSlots[i].mCharacterAnimation);
         if (gKartModelMenu->mFiles[gKartModelMenu->mLoadSlotIndex].mLoadRequested == FALSE) {
             QueueKartEmblemTexture(func_ov001_021a2398(), func_ov001_021a23ac());
         }

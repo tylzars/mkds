@@ -85,7 +85,7 @@ void AdvanceKartCharacterAnimation(Kart *a) {
         }
     }
     if (r->mUnk_1a != 0) {
-        func_02087de0(r);
+        AdvanceModelAnimation(r);
         if (p->mNextAnimationPending == FALSE) {
             return;
         }
@@ -93,14 +93,14 @@ void AdvanceKartCharacterAnimation(Kart *a) {
             return;
         }
         func_02087cfc(r, r->mUnk_1a, 1);
-        func_02087e90(q->mCharacterAnimation, p->mNextAnimationIndex);
+        StartModelAnimationBlend(q->mCharacterAnimation, p->mNextAnimationIndex);
         s = q->mFaceAnimation;
         s->mUnk_0c = data_usa_021551a4[0];
         *s->mUnk_1c[s->mUnk_1a] = s->mUnk_0c;
         p->mNextAnimationPending = FALSE;
     } else {
         r->mUnk_0c = p->mTurnFrameOffset + p->mMiddleFrame;
-        func_02087d44((Unk02087d0c *) r);
+        AdvanceModelAnimationBlend((ModelAnimation *) r);
     }
 }
 
@@ -113,9 +113,9 @@ void SetCharacterFaceFrameIndex(struct KartModelsEntry *a, s32 b) {
 
 void SetCharacterAnimation(struct KartModelsEntry *a, s32 b, s32 c) {
     if (c != 0) {
-        func_02087e90(a->mCharacterAnimation, b);
+        StartModelAnimationBlend(a->mCharacterAnimation, b);
     } else {
-        func_02087f84(a->mCharacterAnimation, (u16) b);
+        SetModelAnimation(a->mCharacterAnimation, (u16) b);
     }
 }
 
@@ -333,7 +333,7 @@ void StartKartCharacterAnimationOnce(Kart *p, s32 a, s32 b) {
     }
     r->mNextAnimationPending = TRUE;
     r->mNextAnimationIndex = b;
-    func_02087e90(p->mKartModelsEntry->mCharacterAnimation, a);
+    StartModelAnimationBlend(p->mKartModelsEntry->mCharacterAnimation, a);
     func_02087cfc(s, (u16) a, 0);
 }
 

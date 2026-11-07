@@ -469,7 +469,7 @@ void AdvanceKartKiller(Kart *p) {
             }
         }
     }
-    func_02087b78((Unk02087d0c *) &p->mKartModelsEntry->mUnk_098);
+    func_02087b78((ModelAnimation *) &p->mKartModelsEntry->mUnk_098);
     if (s->mKillerEnding != FALSE) {
         p->mUnk_4c8 -= 0x52;
         if (p->mUnk_4c8 > 0x1000) {

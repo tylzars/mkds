@@ -72,9 +72,9 @@ void LoadMapObjectModelNsbcaAnimation(Unk0219b250 *p0, const char *p1) {
     u8 v;
     p0->mNsbcaAnimation = HeapAlloc(GetHeap(func_020364e8()), 0x38);
     v = NNS_G3dGetJntAnmSet(r)->mDict.mNumEntry;
-    func_0208823c(0, p0->mNsbcaAnimation, p0->mAnimatedModel, v, GetHeap(func_020364e8()), p0->mNsbmdFile);
-    func_0208805c(p0->mNsbcaAnimation, r, GetHeap(func_020364e8()));
-    func_02087f84(p0->mNsbcaAnimation, 0);
+    InitModelAnimation(0, p0->mNsbcaAnimation, p0->mAnimatedModel, v, GetHeap(func_020364e8()), p0->mNsbmdFile);
+    InitModelAnimationEntries(p0->mNsbcaAnimation, r, GetHeap(func_020364e8()));
+    SetModelAnimation(p0->mNsbcaAnimation, 0);
 }
 
 void LoadMapObjectModelNsbmaAnimation(Unk0219b250 *p0, const char *p1) {
@@ -88,9 +88,9 @@ void LoadMapObjectModelNsbtaAnimation(Unk0219b250 *p0, const char *p1) {
     u8 v;
     p0->mNsbtaAnimation = HeapAlloc(GetHeap(func_020364e8()), 0x38);
     v = NNS_G3dGetTexSRTAnmSet(r)->mDict.mNumEntry;
-    func_0208823c(1, p0->mNsbtaAnimation, p0->mAnimatedModel, v, GetHeap(func_020364e8()), p0->mNsbmdFile);
-    func_0208805c(p0->mNsbtaAnimation, r, GetHeap(func_020364e8()));
-    func_02087f84(p0->mNsbtaAnimation, 0);
+    InitModelAnimation(1, p0->mNsbtaAnimation, p0->mAnimatedModel, v, GetHeap(func_020364e8()), p0->mNsbmdFile);
+    InitModelAnimationEntries(p0->mNsbtaAnimation, r, GetHeap(func_020364e8()));
+    SetModelAnimation(p0->mNsbtaAnimation, 0);
 }
 
 void LoadMapObjectModelNsbtpAnimation(Unk0219b250 *p0, const char *p1) {
@@ -103,9 +103,9 @@ void func_ov001_0219b28c(Unk0219b250 *p0, void *p1) {
     u8 v;
     p0->mNsbcaAnimation = HeapAlloc(GetHeap(func_020364e8()), 0x38);
     v = NNS_G3dGetJntAnmSet(p1)->mDict.mNumEntry;
-    func_0208823c(0, p0->mNsbcaAnimation, p0->mAnimatedModel, v, GetHeap(func_020364e8()), p0->mNsbmdFile);
-    func_0208805c(p0->mNsbcaAnimation, p1, GetHeap(func_020364e8()));
-    func_02087f84(p0->mNsbcaAnimation, 0);
+    InitModelAnimation(0, p0->mNsbcaAnimation, p0->mAnimatedModel, v, GetHeap(func_020364e8()), p0->mNsbmdFile);
+    InitModelAnimationEntries(p0->mNsbcaAnimation, p1, GetHeap(func_020364e8()));
+    SetModelAnimation(p0->mNsbcaAnimation, 0);
 }
 
 void func_ov001_0219b25c(Unk0219b250 *p0, void *p1) {
@@ -114,5 +114,5 @@ void func_ov001_0219b25c(Unk0219b250 *p0, void *p1) {
 }
 
 void func_ov001_0219b250(Unk0219b250 *p0) {
-    func_02087de0(p0->mNsbcaAnimation);
+    AdvanceModelAnimation(p0->mNsbcaAnimation);
 }
