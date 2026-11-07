@@ -41,7 +41,7 @@ void CreateBridge(void) {
     CreateModelAnimation(0, gBridge, &gBridgeNsbca, p, FindCourseMapObjFile(gBridgeNsbcaName));
     ((Unk020e1dc0 *) *(void **) data_0217b7c4)->mUnk_2c = func_02087d0c(gBridgeNsbca);
     func_02084968(gBridge, 0x3f, 2, 0x294a);
-    func_020e1dc0(*(void **) data_0217b7c4, gBridge);
+    SetMapObjectsModel(*(void **) data_0217b7c4, gBridge);
 }
 
 void InitBridge(Bridge *a, struct CourseMapRow *b) {

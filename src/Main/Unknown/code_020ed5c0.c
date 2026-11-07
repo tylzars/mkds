@@ -84,7 +84,7 @@ void StartItemInUse(ItemInUse *a, Unk020f40dc *b) {
     f1 = gItemInUseStartTable[t];
     f2 = gItemInfos[k].mUseHook;
     if (!s) {
-        func_020be8e4(a->mKartIndex, k, b->mUnk_08);
+        StartRaceRankListItemInUse(a->mKartIndex, k, b->mUnk_08);
     }
     if (t == ITEM_USE_KIND_HOOK_ONLY) {
         if (f1 != NULL) {

@@ -173,7 +173,7 @@ typedef struct Unk020e3ef4 {
     /* 134 */ s32 mUnk_134;
     /* 138 */ s32 mUnk_138;
     /* 13c */ u8 mUnk_13c[0x4];
-    /* 140 */ struct Unk020ea670 *mUnk_140;
+    /* 140 */ struct Unk020ea670 *mModel;
     /* 144 */ u16 mUnk_144;
     /* 146 */ u16 mUnk_146;
     /* 148 */ u16 mUnk_148;
@@ -193,10 +193,10 @@ typedef struct Unk020e1dc0 {
     /* 2c */ s32 mUnk_2c;
 } Unk020e1dc0;
 
-void func_020e2f0c(Unk020e1e98 *a, struct CourseMapRow *b);
-void *func_020e2ebc(void);
-void *func_020e2e6c(void);
-void *func_020e2e1c(void);
+void InitChoropu(Unk020e1e98 *a, struct CourseMapRow *b);
+void *CreateCarAKindData(void);
+void *CreateTruckAKindData(void);
+void *CreateBusAKindData(void);
 void *func_020e2db8(void);
 void *func_020e2d5c(void);
 void func_020e2ccc(Unk020e20a8 *a);
@@ -212,7 +212,7 @@ void func_020e1f54(Unk020e1e98 *a, struct CourseMapRow *b, Unk020e1e98_154 *c);
 void func_020e1e98(Unk020e1e98 *a);
 void func_020e1e38(Unk020e1dc0 *a, void *b, void (*c)(Unk020e3ef4 *, void *, u32));
 void func_020e1dec(Unk020e3ef4 *a, void *b, u32 c);
-void func_020e1dc0(Unk020e1dc0 *a, void *b);
+void SetMapObjectsModel(Unk020e1dc0 *a, void *b);
 s32 func_020e1d10(Unk020e005c *a, Vec3 *b, s32 c, u16 d, Unk020e0764 *e, Unk020e0764 *f, Vec3 *g, u16 *h, Vec3 *i,
                   u16 *j);
 void func_020e1a80(s32 a, s32 b, s32 c, u32 d, u16 e, u16 *f, s32 v, Unk020e005c *w, Vec3 *g, Vec3 *h, Unk020e0764 *i,

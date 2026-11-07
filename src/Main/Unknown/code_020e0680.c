@@ -64,7 +64,7 @@
 
 #pragma thumb on
 
-void func_020e2f0c(Unk020e1e98 *a, struct CourseMapRow *b) {
+void InitChoropu(Unk020e1e98 *a, struct CourseMapRow *b) {
     func_02046be8(&a->mUnk_000.mStateMachine, (UnkFunc *const *) data_0216c0e8, 8, a);
     a->mUnk_0a8 = a->mUnk_000.mPos.y;
     a->mUnk_0ac = a->mUnk_000.mPos.y - 0x12000;
@@ -79,21 +79,21 @@ void func_020e2f0c(Unk020e1e98 *a, struct CourseMapRow *b) {
 
 #pragma thumb off
 
-void *func_020e2ebc(void) {
+void *CreateCarAKindData(void) {
     Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
     *p = data_02158b3c;
     return p;
 }
 
-void *func_020e2e6c(void) {
+void *CreateTruckAKindData(void) {
     Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
     *p = data_02158afc;
     return p;
 }
 
-void *func_020e2e1c(void) {
+void *CreateBusAKindData(void) {
     Unk020e03f8 *p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
 
     *p = data_02158abc;
@@ -549,15 +549,15 @@ void func_020e1dec(Unk020e3ef4 *a, void *b, u32 c) {
     a->mUnk_000.mMatrix.mUnk_00[3].x = a->mUnk_000.mPos.x >> 4;
     a->mUnk_000.mMatrix.mUnk_00[3].y = a->mUnk_000.mPos.y >> 4;
     a->mUnk_000.mMatrix.mUnk_00[3].z = a->mUnk_000.mPos.z >> 4;
-    func_020ea8a8(a->mUnk_140, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
+    func_020ea8a8(a->mModel, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
 }
 
-void func_020e1dc0(Unk020e1dc0 *a, void *b) {
+void SetMapObjectsModel(Unk020e1dc0 *a, void *b) {
     s32 i;
     s32 n = a->mUnk_04;
 
     for (i = 0; i < n; i++) {
-        a->mUnk_00[i]->mUnk_140 = b;
+        a->mUnk_00[i]->mModel = b;
     }
 }
 

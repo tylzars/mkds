@@ -97,19 +97,19 @@ void func_020e4184(Unk020e1dc0 *a) {
         e = a->mUnk_00[j];
         switch (e->mUnk_158) {
             case 0:
-                e->mUnk_140 = gTestCylinder;
+                e->mModel = gTestCylinder;
                 break;
             case 1:
-                e->mUnk_140 = gGearBlack;
+                e->mModel = gGearBlack;
                 break;
             case 2:
-                e->mUnk_140 = gGearWhite;
+                e->mModel = gGearWhite;
                 break;
             case 3:
-                e->mUnk_140 = gRotaryRoom;
+                e->mModel = gRotaryRoom;
                 break;
             case 4:
-                e->mUnk_140 = gRotaryBridge;
+                e->mModel = gRotaryBridge;
                 break;
         }
     }
@@ -288,7 +288,7 @@ void func_020e3b4c(Unk020e3ef4 *a, void *b, u32 c) {
     p = gBridgeNsbca;
     p->mUnk_0c = a->mUnk_154;
     *p->mUnk_1c[p->mUnk_1a] = p->mUnk_0c;
-    func_020ea8a8(a->mUnk_140, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
+    func_020ea8a8(a->mModel, &a->mUnk_000.mMatrix, &a->mUnk_000.mScale.x, c);
 }
 
 void func_020e3b28(void *a) {

@@ -60,7 +60,7 @@ void func_020ae824(void) {
          : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
                                  : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
         func_020ba63c((Unk020d029c *) gRaceHud->mUnk_004);
-        func_020bc208((Unk020d029c *) gRaceHud->mUnk_004);
+        DrawRaceLapAndTimeDifference((Unk020d029c *) gRaceHud->mUnk_004);
         DrawRaceMNumberPair((Unk020d029c *) gRaceHud->mUnk_004);
         func_020d06b8((Unk020d029c *) gRaceHud->mUnk_004);
         func_020c4f08((Unk020c06c4 *) gRaceHud->mUnk_004);
@@ -79,7 +79,7 @@ void func_020ae824(void) {
     if (a != 4 && a != 5) {
         func_020bb5ec((Unk020d029c *) gRaceHud->mUnk_408);
     }
-    func_020be2f4((Unk020d029c *) gRaceHud->mUnk_408);
+    DrawRaceRankList((Unk020d029c *) gRaceHud->mUnk_408);
     DC_FlushRange(gRaceHud->mUnk_408, 0x400);
     MI_DmaFill32(3, gRaceHud->mUnk_408 + gRaceHud->mUnk_808 * 8, 0xc0, (0x80 - gRaceHud->mUnk_808) << 3);
     switch (gRaceHud->mSubScreenState) {

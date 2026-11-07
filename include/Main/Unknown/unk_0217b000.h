@@ -648,7 +648,7 @@ typedef struct Unk0217b3d8_fc {
     /* 08 */ s32 mUnk_08;
 } Unk0217b3d8_fc;
 
-// Object behind data_0217b3d8, 0x15c bytes, allocated by func_020be7fc.
+// Object behind gRaceRankList, 0x15c bytes, allocated by InitRaceRankList.
 typedef struct Unk0217b3d8 {
     /* 000 */ Unk0217b3d8_00 mUnk_000[8];
     /* 040 */ s32 mUnk_040[8];
@@ -665,7 +665,7 @@ typedef struct Unk0217b3d8 {
     /* 0fc */ Unk0217b3d8_fc mUnk_0fc[8];
 } Unk0217b3d8;
 
-extern Unk0217b3d8 *data_0217b3d8;
+extern Unk0217b3d8 *gRaceRankList;
 // Object behind gRaceHudSubScreenCellGroups, 0x25c bytes, allocated by InitRaceHudSubScreenCellGroups.
 typedef struct RaceHudSubScreenCellGroups {
     /* 000 */ u16 mUnk_000;
@@ -821,14 +821,14 @@ typedef struct Unk0217b3cc {
 } Unk0217b3cc;
 
 extern Unk0217b3cc *data_0217b3cc;
-// Object behind data_0217b3d0, 0x38 bytes, allocated by func_020bc11c.
+// Object behind gRaceTimeDigits, 0x38 bytes, allocated by InitRaceTimeDigits.
 typedef struct Unk0217b3d0 {
     /* 00 */ TimeDigits mUnk_00;
     /* 1c */ BOOL mUnk_1c;
     /* 20 */ s32 mUnk_20[6];
 } Unk0217b3d0;
 
-extern Unk0217b3d0 *data_0217b3d0;
+extern Unk0217b3d0 *gRaceTimeDigits;
 // 0x18-byte elements of the tables at member 0x10 of Unk0217b3e4.
 typedef struct Unk0217b3e4_10 {
     /* 00 */ Vec3 mUnk_00;
@@ -875,7 +875,7 @@ typedef struct Unk0217b3ec {
 } Unk0217b3ec;
 
 extern Unk0217b3ec *data_0217b3ec;
-extern Unk0217b3ec *data_0217b3d4;
+extern Unk0217b3ec *gRaceLapNumber;
 // Object behind data_0217b424, 0x44 bytes allocated by func_020c8d30: a table of object pointers and two counts
 // (as in RaceHudSubScreenCells), three halfwords and two arrays of three pairs.
 typedef struct Unk0217b424 {

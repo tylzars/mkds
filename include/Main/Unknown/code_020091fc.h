@@ -107,9 +107,9 @@ void func_0200964c(u32 a, u16 b, u32 c);
 void func_020096c0(void);
 void func_020096d4(void);
 void func_020096f4(Unk0200b610 *a);
-u32 func_02009724(const u16 *a);
+u32 GetU16StringLength(const u16 *a);
 void func_0200973c(Unk0200b610 *a, const void *b, u32 c, u32 d);
-u32 func_020097ac(const u8 *a, u8 *b, u32 c);
+u32 LoadFileIfSizeMatches(const u8 *a, u8 *b, u32 c);
 void func_02009828(Unk0200b610 *a, Unk02009828 *b, const u8 *c);
 
 // Declared here until the code that defines them is decompiled.

@@ -144,7 +144,7 @@ void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s3
     param_1->mSlotState = 1;
     param_1->mSlotShownItem = 0x13;
     if (!a) {
-        func_020be930(param_1->mSelf->mKartIndex);
+        StopRaceRankListItemInUse(param_1->mSelf->mKartIndex);
     }
     if (a) {
         param_1->mUnk_01c = FALSE;

@@ -376,11 +376,11 @@ void func_020b03bc(void) {
     func_020c53c4();
     func_020ba520();
     func_020c5ce0();
-    func_020bc11c();
-    func_020bcb74();
+    InitRaceTimeDigits();
+    InitRaceLapNumber();
     InitRaceMNumberPair();
     func_020d0bd0();
-    func_020be7fc();
+    InitRaceRankList();
     InitRaceHudSubScreenCellGroups();
     InitRaceGoalS();
     InitRaceNewRecordTa();
@@ -723,10 +723,10 @@ void func_020af86c(void) {
     func_020ba50c();
     func_020c5ccc();
     func_020bc108();
-    func_020bcb60();
+    ClearRaceLapNumberPointer();
     func_020d2094();
     func_020d0bbc();
-    func_020be7e8();
+    ClearRaceRankListPointer();
     ClearRaceHudSubScreenCellGroups();
     func_020c31ec();
     func_020c6f84();
@@ -774,19 +774,19 @@ void func_020af66c(void) {
          : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
                                  : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
         func_020bab54();
-        func_020bc958();
+        UpdateRaceLapNumber();
         func_020d2090();
         func_020d0a18();
         func_020ba3ec();
         func_020c5940();
     } else {
         func_020bb5cc();
-        func_020bc958();
+        UpdateRaceLapNumber();
         func_020d0a18();
         func_020c5940();
     }
     func_020bbbb4();
-    func_020be3e4();
+    UpdateRaceRankList();
     switch (gRaceHud->mSubScreenState) {
         case 0:
         case 1:

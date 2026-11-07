@@ -34,7 +34,7 @@
 u32 func_020bc108(void) {
     u32 value0;
     u32 value1;
-    value0 = (u32) &data_0217b3d0;
+    value0 = (u32) &gRaceTimeDigits;
     value1 = 0u;
     *(u32 *) ((value0) + (0)) = value1;
     return value0;
@@ -61,17 +61,17 @@ void func_020bbbb4(void) {
             GetRaceClockTime(&a, &b, &c);
         }
     }
-    SplitTimeDigits(a, b, c, &data_0217b3d0->mUnk_00);
-    if (data_0217b3d0->mUnk_1c == FALSE) {
+    SplitTimeDigits(a, b, c, &gRaceTimeDigits->mUnk_00);
+    if (gRaceTimeDigits->mUnk_1c == FALSE) {
         return;
     }
     if (a == 0 && b > 6) {
         for (i = 0; i < 6; i++) {
-            data_0217b3d0->mUnk_20[i] = 0;
+            gRaceTimeDigits->mUnk_20[i] = 0;
         }
         return;
     }
-    if (a == 0 && ((b == 5 && c == 0) || b < 5) && data_0217b3d0->mUnk_20[0] == 0) {
+    if (a == 0 && ((b == 5 && c == 0) || b < 5) && gRaceTimeDigits->mUnk_20[0] == 0) {
         if (gRaceProgress->mUnk_000[GetFollowedKartOrEntryIndex()].mStatus != 2) {
             func_02089ef4(2);
         }
@@ -88,10 +88,10 @@ void func_020bbbb4(void) {
             }
         }
 
-        data_0217b3d0->mUnk_20[0] = 1;
+        gRaceTimeDigits->mUnk_20[0] = 1;
         return;
     }
-    if (a == 0 && ((b == 4 && c == 0) || b < 4) && data_0217b3d0->mUnk_20[1] == 0) {
+    if (a == 0 && ((b == 4 && c == 0) || b < 4) && gRaceTimeDigits->mUnk_20[1] == 0) {
         if ((data_0217c780 & 1) != 0) {
             r = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
@@ -105,10 +105,10 @@ void func_020bbbb4(void) {
             }
         }
 
-        data_0217b3d0->mUnk_20[1] = 1;
+        gRaceTimeDigits->mUnk_20[1] = 1;
         return;
     }
-    if (a == 0 && ((b == 3 && c == 0) || b < 3) && data_0217b3d0->mUnk_20[2] == 0) {
+    if (a == 0 && ((b == 3 && c == 0) || b < 3) && gRaceTimeDigits->mUnk_20[2] == 0) {
         if ((data_0217c780 & 1) != 0) {
             r = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
@@ -122,10 +122,10 @@ void func_020bbbb4(void) {
             }
         }
 
-        data_0217b3d0->mUnk_20[2] = 1;
+        gRaceTimeDigits->mUnk_20[2] = 1;
         return;
     }
-    if (a == 0 && ((b == 2 && c == 0) || b < 2) && data_0217b3d0->mUnk_20[3] == 0) {
+    if (a == 0 && ((b == 2 && c == 0) || b < 2) && gRaceTimeDigits->mUnk_20[3] == 0) {
         if ((data_0217c780 & 1) != 0) {
             r = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
@@ -139,10 +139,10 @@ void func_020bbbb4(void) {
             }
         }
 
-        data_0217b3d0->mUnk_20[3] = 1;
+        gRaceTimeDigits->mUnk_20[3] = 1;
         return;
     }
-    if (a == 0 && ((b == 1 && c == 0) || b < 1) && data_0217b3d0->mUnk_20[4] == 0) {
+    if (a == 0 && ((b == 1 && c == 0) || b < 1) && gRaceTimeDigits->mUnk_20[4] == 0) {
         if ((data_0217c780 & 1) != 0) {
             r = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
@@ -156,12 +156,12 @@ void func_020bbbb4(void) {
             }
         }
 
-        data_0217b3d0->mUnk_20[4] = 1;
+        gRaceTimeDigits->mUnk_20[4] = 1;
         return;
     }
     if (a == 0 && b == 0 && c == 0) {
-        if (data_0217b3d0->mUnk_20[5] == 0) {
-            data_0217b3d0->mUnk_20[5] = 1;
+        if (gRaceTimeDigits->mUnk_20[5] == 0) {
+            gRaceTimeDigits->mUnk_20[5] = 1;
         }
     }
 }
@@ -221,14 +221,14 @@ void func_020bb5ec(Unk020d029c *p) {
         b[1] = 0xc000;
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, b, 0, 1);
     }
-    if (data_0217b3d0->mUnk_00.mUnk_00[0] != 0) {
-        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[0]);
+    if (gRaceTimeDigits->mUnk_00.mUnk_00[0] != 0) {
+        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + gRaceTimeDigits->mUnk_00.mUnk_00[0]);
         c[0] = t[1] << 12;
         c[1] = 0xc000;
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, c, 0, 1);
     }
     {
-        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[1]);
+        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + gRaceTimeDigits->mUnk_00.mUnk_00[1]);
         d[0] = t[2] << 12;
         d[1] = 0xc000;
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, d, 0, 1);
@@ -241,13 +241,13 @@ void func_020bb5ec(Unk020d029c *p) {
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, e, 0, 1);
     }
     {
-        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[2]);
+        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + gRaceTimeDigits->mUnk_00.mUnk_00[2]);
         f[0] = t[4] << 12;
         f[1] = 0xc000;
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, f, 0, 1);
     }
     {
-        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[3]);
+        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + gRaceTimeDigits->mUnk_00.mUnk_00[3]);
         g[0] = t[5] << 12;
         g[1] = 0xc000;
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, g, 0, 1);
@@ -259,19 +259,19 @@ void func_020bb5ec(Unk020d029c *p) {
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, h, 0, 1);
     }
     {
-        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[4]);
+        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + gRaceTimeDigits->mUnk_00.mUnk_00[4]);
         j[0] = t[7] << 12;
         j[1] = 0xc000;
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, j, 0, 1);
     }
     {
-        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[5]);
+        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + gRaceTimeDigits->mUnk_00.mUnk_00[5]);
         k[0] = t[8] << 12;
         k[1] = 0xc000;
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, k, 0, 1);
     }
     {
-        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + data_0217b3d0->mUnk_00.mUnk_00[6]);
+        Unk020224e0_c *w = GetRaceSNcerEntry(m + 0x28 + gRaceTimeDigits->mUnk_00.mUnk_00[6]);
         l[0] = t[9] << 12;
         l[1] = 0xc000;
         p->mUnk_400 += NNS_G2dMakeCellToOams(&p->mUnk_000[p->mUnk_400], 0x80 - p->mUnk_400, w, NULL, l, 0, 1);

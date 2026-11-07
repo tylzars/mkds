@@ -37,8 +37,8 @@ void func_02009828(Unk0200b610 *a, Unk02009828 *b, const u8 *c) {
     w = 0;
     MIi_CpuClear16(w, a, 0x4c0);
     a->mUnk_4b2 = 0;
-    v1 = func_020097ac(b->mUnk_0c, (u8 *) a, 1) == 0;
-    v2 = func_020097ac(b->mUnk_10, (u8 *) a, 0) == 0;
+    v1 = LoadFileIfSizeMatches(b->mUnk_0c, (u8 *) a, 1) == 0;
+    v2 = LoadFileIfSizeMatches(b->mUnk_10, (u8 *) a, 0) == 0;
     if ((v1 | v2) != 0) {
         a->mUnk_4b2 = 1;
         MemFillWordsByBlock_inline(a, 0x220);
@@ -48,7 +48,7 @@ void func_02009828(Unk0200b610 *a, Unk02009828 *b, const u8 *c) {
         MIi_CpuCopy16(c, a->mUnk_220, 0x16);
     }
     a->mUnk_236 = b->mUnk_18;
-    v1 = func_02009724(b->mUnk_04) * 2;
+    v1 = GetU16StringLength(b->mUnk_04) * 2;
     MIi_CpuCopy16(b->mUnk_04, a->mUnk_238, (u16) v1);
     MIi_CpuCopy16(b->mUnk_08, a->mUnk_298, 0xc0);
     a->mUnk_358 = 1;
@@ -56,7 +56,8 @@ void func_02009828(Unk0200b610 *a, Unk02009828 *b, const u8 *c) {
     a->mUnk_4b0 = 1;
 }
 
-u32 func_020097ac(const u8 *a, u8 *b, u32 c) {
+// Reads file a into b (b + 0x20 when c is non-zero) only when its size is 0x20 (c == 0) or 0x200 (c != 0).
+u32 LoadFileIfSizeMatches(const u8 *a, u8 *b, u32 c) {
     FSFile v1;
     u32 v2;
     if (c != 0) {
@@ -99,7 +100,7 @@ void func_0200973c(Unk0200b610 *a, const void *b, u32 c, u32 d) {
     a->mUnk_4b4++;
 }
 
-u32 func_02009724(const u16 *a) {
+u32 GetU16StringLength(const u16 *a) {
     u32 n;
     for (n = 0; *a++ != 0; n++) {
     }

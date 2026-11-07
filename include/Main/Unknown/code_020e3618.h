@@ -11,7 +11,7 @@ typedef struct Unk020e039c {
 } Unk020e039c;
 
 // Object of kind 0xcc (Bridge) that InitBridge fills. Its draw callback func_020e3b4c is typed Unk020e3ef4 (the family
-// layout of kinds 0xcb, 0xce, 0xd0 and 0xd1); the model pointer at +0x140, written by func_020e1dc0, lies inside
+// layout of kinds 0xcb, 0xce, 0xd0 and 0xd1); the model pointer at +0x140, written by SetMapObjectsModel, lies inside
 // mUnk_13c.
 typedef struct Bridge {
     /* 000 */ MapObject mUnk_000;
@@ -43,7 +43,7 @@ typedef struct Bridge {
 } Bridge;
 
 BOOL func_020e3af0(u32 a);
-void CreateBridge(void); /* no argument; also gives the model to the registered objects (func_020e1dc0) */
+void CreateBridge(void); /* no argument; also gives the model to the registered objects (SetMapObjectsModel) */
 void InitBridge(Bridge *a, struct CourseMapRow *b);
 void *func_020e3850(void);
 void *func_020e37f4(void);
