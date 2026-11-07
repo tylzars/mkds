@@ -202,7 +202,7 @@ void func_0212ad28(s32 messageKind, s32 b) {
         }
         func_0212ae80();
         if (GetCurrentSceneNumber() == 2) {
-            if (func_020b19a0() == 0) {
+            if (GetRaceHudStepHasRun() == 0) {
                 reg_GX_DISPCNT = (reg_GX_DISPCNT & 0xffffe0ff) | 0x200;
                 reg_GXS_DB_DISPCNT = reg_GXS_DB_DISPCNT & 0xffffe0ff;
                 *(vu16 *) 0x5000400 = 0;

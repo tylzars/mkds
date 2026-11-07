@@ -12,34 +12,36 @@
 #include "Main/Unknown/code_020b502c.h"
 #include "Main/Unknown/code_020c0d9c.h"
 
-void func_020b4f64(Vec3 *v1, const Vec3 *a, const Vec3 *b) {
-    Vec3 t;
-    s32 s;
+void func_020b4f64(Vec3 *result, const Vec3 *startPoint, const Vec3 *endPoint) {
+    Vec3 point;
+    s32 factor;
 
-    if (a->x == b->x && a->z == b->z) {
-        *v1 = *a;
+    if (startPoint->x == endPoint->x && startPoint->z == endPoint->z) {
+        *result = *startPoint;
         return;
     }
-    s = MulFixed12NoRound(func_020c0d9c(), 0x3000);
-    t.x = a->x + MulFixed12NoRound(s, b->x - a->x);
-    t.y = a->y + MulFixed12NoRound(s, b->y - a->y);
-    t.z = a->z + MulFixed12NoRound(s, b->z - a->z);
-    *v1 = t;
+    factor = MulFixed12NoRound(func_020c0d9c(), 0x3000);
+    point.x = startPoint->x + MulFixed12NoRound(factor, endPoint->x - startPoint->x);
+    point.y = startPoint->y + MulFixed12NoRound(factor, endPoint->y - startPoint->y);
+    point.z = startPoint->z + MulFixed12NoRound(factor, endPoint->z - startPoint->z);
+    *result = point;
 }
 
-s32 func_020b4e70(const Vec3 *a) {
+s32 func_020b4e70(const Vec3 *position) {
     BOOL r = TRUE;
 
     switch (func_020b4e5c()) {
         case COURSE_ID_CLOCK:
-            if (a->x >= -0x377000 && a->x <= 0x377000 && a->z >= -0x377000 && a->z <= 0x377000 && a->y < 0x2be800) {
+            if (position->x >= -0x377000 && position->x <= 0x377000 && position->z >= -0x377000 &&
+                position->z <= 0x377000 && position->y < 0x2be800) {
                 r = FALSE;
             } else {
                 r = TRUE;
             }
             break;
         case COURSE_ID_AIRSHIP:
-            if (a->x >= -0x640000 && a->x <= 0x992000 && a->z >= -0x1ce8000 && a->z <= -0x17a2000 && a->y < 0x2e2000) {
+            if (position->x >= -0x640000 && position->x <= 0x992000 && position->z >= -0x1ce8000 &&
+                position->z <= -0x17a2000 && position->y < 0x2e2000) {
                 r = FALSE;
             } else {
                 r = TRUE;

@@ -15,12 +15,12 @@
 
 s32 func_020b4e0c(void) {
     s32 r = 1;
-    Vec3 v;
-    s32 a = func_020b4e5c();
+    Vec3 position;
+    s32 courseId = func_020b4e5c();
 
-    if (a == 0x11 || a == 0x13) {
-        func_0207a91c(&v, GetFollowedKartOrEntryIndex());
-        r = func_020b4e70(&v);
+    if (courseId == 0x11 || courseId == 0x13) {
+        func_0207a91c(&position, GetFollowedKartOrEntryIndex());
+        r = func_020b4e70(&position);
     }
     return r;
 }

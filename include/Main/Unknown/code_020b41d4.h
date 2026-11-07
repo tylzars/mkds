@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_020b41d4(unsigned int p0);
+unsigned int IsArchiveSlotLoaded(unsigned int slotIndex);

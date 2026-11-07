@@ -191,7 +191,7 @@ void func_020b0b8c(void) {
     GX_LoadOAM(gRaceHud->mUnk_004, 0, 0x400);
     DC_FlushRange(gRaceHud->mUnk_408, 0x400);
     GXS_LoadOAM(gRaceHud->mUnk_408, 0, 0x400);
-    if (gRaceHud->mUnk_82c != FALSE) {
+    if (gRaceHud->mSubScreenEnabled != FALSE) {
         switch (gRaceHud->mSubScreenState) {
             case 0:
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;
@@ -288,14 +288,14 @@ void func_020b0b8c(void) {
                     break;
             }
             w = func_020c3e00();
-            if (gRaceHud->mUnk_830 != FALSE) {
+            if (gRaceHud->mSubScreenState5LoadPending != FALSE) {
                 GXS_LoadBG1Scr(GetRaceGoalSNscr(3)->mData, 0, GetRaceGoalSNscr(3)->mDataSize);
                 GXS_LoadBG2Scr(GetRaceGoalSNscr(4)->mData, 0, GetRaceGoalSNscr(4)->mDataSize);
                 GXS_LoadBG3Scr(GetRaceGoalSNscr(5)->mData, 0, GetRaceGoalSNscr(5)->mDataSize);
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(8)->mNclr->mData, 0, 0x20);
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(8)->mNclr->mData + 0xc0, 0x180, 0x80);
                 GXS_LoadOBJ(GetRaceNclrNcgr(8)->mNcgr->mData, 0, 0x4000);
-                gRaceHud->mUnk_830 = FALSE;
+                gRaceHud->mSubScreenState5LoadPending = FALSE;
             }
             if (w < 0x100) {
                 reg_G2S_DB_BG2OFS = w & 0x1ff;
@@ -303,7 +303,7 @@ void func_020b0b8c(void) {
             }
             break;
         case 6:
-            if (gRaceHud->mUnk_834 != FALSE) {
+            if (gRaceHud->mSubScreenState6LoadPending != FALSE) {
                 reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1200;
                 GXS_SetGraphicsMode(0);
                 reg_G2S_DB_BG1OFS = 0;
@@ -316,7 +316,7 @@ void func_020b0b8c(void) {
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(9)->mNclr->mData, 0, 0xa0);
                 GXS_LoadOBJPltt(GetRaceNclrNcgr(9)->mNclr->mData + 0xb0, 0x160, 0xa0);
                 GXS_LoadOBJ(GetRaceNclrNcgr(9)->mNcgr->mData, 0, 0x4000);
-                gRaceHud->mUnk_834 = FALSE;
+                gRaceHud->mSubScreenState6LoadPending = FALSE;
             }
             break;
     }
@@ -393,8 +393,8 @@ void func_020b03bc(void) {
         gRaceHud->mNcgrs[i] = NULL;
     }
     gRaceHud->mSubScreenState = 1;
-    gRaceHud->mUnk_82c = FALSE;
-    gRaceHud->mUnk_830 = FALSE;
+    gRaceHud->mSubScreenEnabled = FALSE;
+    gRaceHud->mSubScreenState5LoadPending = FALSE;
     gRaceHud->mUnk_838 = FALSE;
     gRaceHud->mUnk_83c = FALSE;
     gRaceHud->mUnk_840 = FALSE;
@@ -438,7 +438,7 @@ void func_020b03bc(void) {
     } else {
         gRaceHud->mUseTimeDifference = 0;
     }
-    gRaceHud->mUnk_908 = 0;
+    gRaceHud->mStepHasRun = 0;
     gRaceHud->mUnk_90c = FALSE;
     gRaceHud->mUnk_910 = gRaceSetup->mMode == MODE_MISSION_RUN ? func_020adc04() : 0;
     MI_DmaFill32(3, gRaceHud->mUnk_004, 0xc0, 0x400);
@@ -713,7 +713,7 @@ void func_020af86c(void) {
     G2x_SetBlendAlpha_(&reg_G2_BLDCNT, 0, 0, 0x10, 0x10);
     G2x_SetBlendAlpha_(&reg_G2S_DB_BLDCNT, 0, 0, 0x10, 0x10);
     gRaceHud = NULL;
-    func_020b36c8();
+    ClearRaceStartSequencePointer();
     func_020b3af4();
     ClearRaceHudSubScreenProjection();
     func_020b8610();
@@ -741,7 +741,7 @@ void func_020af66c(void) {
     u32 v;
 
     if (gRaceHud != NULL) {
-        gRaceHud->mUnk_908 = 1;
+        gRaceHud->mStepHasRun = 1;
     }
     v = gRaceSetup->mRaceKind;
     if (v == RACE_KIND_START_GP) {

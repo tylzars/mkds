@@ -38,7 +38,7 @@ void func_020c1ef8(void) {
     if (gRaceSetup->mMode == MODE_BATTLE && gRaceSetup->mUseTeams != 0) {
         gRaceGoalS->mUnk_00ac = func_020c0f48;
         gRaceGoalS->mUnk_00b0 = 0;
-        func_020b1d90();
+        RequestRaceHudSubScreenState5();
     } else {
         gRaceGoalS->mUnk_00ac = SlideInRaceGoalS;
         gRaceGoalS->mUnk_00b0 = 0;

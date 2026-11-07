@@ -597,13 +597,16 @@ typedef struct RaceHud {
     /* 814 */ struct Ncgr *mNcgrs[2];
     /* 81c */ struct Nscr *mNscrs[3];
     // Page of the sub screen (reg_GXS_DB_* / reg_G2S_DB_* = sub engine), 0..6, switched on by the step, the draw and
-    // the upload slot; assigned by func_020aeb7c (per mode and race state), func_020b1d90 (5, RaceGoalS) and
-    // func_020b1d64 (6, RaceNewRecordTa). 4 and 5 run the RaceGoalS page, 6 the new-record page; what 0 and 1..3 show
-    // is not named (the player switches 0 and 1 with sounds 0x18 / 0x17).
+    // the upload slot; assigned by func_020aeb7c (per mode and race state), RequestRaceHudSubScreenState5 (5,
+    // RaceGoalS) and RequestRaceHudSubScreenState6 (6, RaceNewRecordTa). 4 and 5 run the RaceGoalS page, 6 the
+    // new-record page; what 0 and 1..3 show is not named (the player switches 0 and 1 with sounds 0x18 / 0x17).
     /* 828 */ s32 mSubScreenState;
-    /* 82c */ BOOL mUnk_82c;
-    /* 830 */ BOOL mUnk_830;
-    /* 834 */ BOOL mUnk_834;
+    // Gate of the sub screen's page update and page upload.
+    /* 82c */ BOOL mSubScreenEnabled;
+    // Set when the state-5 page is requested; the upload loads its graphics once and clears it.
+    /* 830 */ BOOL mSubScreenState5LoadPending;
+    // Set when the state-6 page is requested; the upload loads its graphics once and clears it.
+    /* 834 */ BOOL mSubScreenState6LoadPending;
     /* 838 */ BOOL mUnk_838;
     /* 83c */ BOOL mUnk_83c;
     /* 840 */ BOOL mUnk_840;
@@ -630,7 +633,8 @@ typedef struct RaceHud {
     // The difference as seven digits (SplitTimeDigits), written by func_020b1a34, read through GetRaceHudTimeDifference
     // by the draw.
     /* 8ec */ TimeDigits mTimeDifferenceDigits;
-    /* 908 */ s32 mUnk_908;
+    // 1 once the per-frame step has run.
+    /* 908 */ s32 mStepHasRun;
     /* 90c */ BOOL mUnk_90c;
     /* 910 */ s32 mUnk_910;
 } RaceHud;

@@ -3,8 +3,8 @@
 
 #pragma thumb on
 
-u32 func_020b41d4(u32 p0) {
-    return (data_021759c8->mUnk_00[p0].mLoaded);
+u32 IsArchiveSlotLoaded(u32 slotIndex) {
+    return (data_021759c8->mUnk_00[slotIndex].mLoaded);
 }
 
 #pragma thumb off

@@ -6,24 +6,24 @@
 
 #pragma thumb on
 #pragma optimize_for_size on
-void func_020b2e00(u16 *a, s32 b, s32 c) {
-    func_020b4428(a, b, c, 1, 1, 4);
-    func_020b4428(a, b, c + 1, 1, 1, 0x24);
+void func_020b2e00(u16 *screenMap, s32 column, s32 row) {
+    func_020b4428(screenMap, column, row, 1, 1, 4);
+    func_020b4428(screenMap, column, row + 1, 1, 1, 0x24);
 }
 
 void func_020b2da4(void) {
-    s32 n;
-    s32 i;
-    s32 b;
-    u16 *p;
+    s32 valueCount;
+    s32 valueIndex;
+    s32 firstRow;
+    u16 *screenMap;
 
-    n = gChoisesS->mLists[func_020b2d04()].mValueCount;
-    p = func_020b32f8();
-    if (p != NULL) {
-        for (i = 0, b = 0xd - n * 2; i < n; i++) {
-            func_020b2e00(p, 2, b + i * 4);
+    valueCount = gChoisesS->mLists[func_020b2d04()].mValueCount;
+    screenMap = func_020b32f8();
+    if (screenMap != NULL) {
+        for (valueIndex = 0, firstRow = 0xd - valueCount * 2; valueIndex < valueCount; valueIndex++) {
+            func_020b2e00(screenMap, 2, firstRow + valueIndex * 4);
         }
-        func_020b44a4(p, 0, 0, 0x20, 0x18, 0xf);
+        func_020b44a4(screenMap, 0, 0, 0x20, 0x18, 0xf);
     }
 }
 #pragma thumb off

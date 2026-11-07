@@ -49,7 +49,7 @@ void InitRaceHudSubScreenProjection(void) {
     gRaceHudSubScreenProjection->mUnk_34 = b;
     gRaceHudSubScreenProjection->mUnk_3c = FX_InvFx64c(b.mUnk_00 - a.mUnk_00);
     gRaceHudSubScreenProjection->mUnk_44 = FX_InvFx64c(b.mUnk_04 - a.mUnk_04);
-    func_020b6a98(&c, &d);
+    GetRaceHudSubScreenCourseMinMax(&c, &d);
     gRaceHudSubScreenProjection->mCourseMin = c;
     gRaceHudSubScreenProjection->mCourseMax = d;
     gRaceHudSubScreenProjection->mCourseInverseX = FX_InvFx64c(d.mUnk_00 - c.mUnk_00);
@@ -442,7 +442,7 @@ void UpdateRaceHudSubScreenScroll(void) {
     Vec3 target;
     Vec3 dir;
 
-    func_020b6a18(&lo, &hi);
+    GetRaceHudSubScreenScrollLimits(&lo, &hi);
     if (func_020b5628(func_020435bc(), PAD_KEY_LEFT) != 0) {
         if (gRaceHudSubScreenProjection->mScrollTimer != 0) {
             gRaceHudSubScreenProjection->mScrollPosition.x -= 0xa000;

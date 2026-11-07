@@ -19,47 +19,47 @@
 #pragma opt_arithtransformation off
 
 // Absolute difference of two times (minutes, seconds, milliseconds) written to the out record (minutes capped to
-// 99:59.999 from 100 minutes); returns non-zero when a >= b.
-s32 ComputeTimeDifference(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c) {
-    s32 x;
-    s32 y;
-    s32 d;
-    BOOL r;
-    s32 m;
-    s32 s;
-    s32 n;
+// 99:59.999 from 100 minutes); returns non-zero when first >= second.
+s32 ComputeTimeDifference(Unk020b1bf8 *first, Unk020b1bf8 *second, Unk020b1a34_0c *difference) {
+    s32 firstMs;
+    s32 secondMs;
+    s32 differenceMs;
+    BOOL firstNotLess;
+    s32 minutes;
+    s32 seconds;
+    s32 milliseconds;
 
-    x = (a->mUnk_00 * 60 + a->mUnk_04) * 1000 + a->mUnk_08;
-    y = (b->mUnk_00 * 60 + b->mUnk_04) * 1000 + b->mUnk_08;
-    r = x >= y;
-    if (r != FALSE) {
-        d = x - y;
+    firstMs = (first->mMinutes * 60 + first->mSeconds) * 1000 + first->mMilliseconds;
+    secondMs = (second->mMinutes * 60 + second->mSeconds) * 1000 + second->mMilliseconds;
+    firstNotLess = firstMs >= secondMs;
+    if (firstNotLess != FALSE) {
+        differenceMs = firstMs - secondMs;
     } else {
-        d = y - x;
+        differenceMs = secondMs - firstMs;
     }
-    m = d / 60000;
-    s = (d - m * 60000) / 1000;
-    n = d % 1000;
-    if (m < 100) {
-        c->mUnk_02 = m;
-        c->mUnk_03 = s;
-        c->mUnk_00 = n;
+    minutes = differenceMs / 60000;
+    seconds = (differenceMs - minutes * 60000) / 1000;
+    milliseconds = differenceMs % 1000;
+    if (minutes < 100) {
+        difference->mMinutes = minutes;
+        difference->mSeconds = seconds;
+        difference->mMilliseconds = milliseconds;
     } else {
-        c->mUnk_02 = 99;
-        c->mUnk_03 = 59;
-        c->mUnk_00 = 999;
+        difference->mMinutes = 99;
+        difference->mSeconds = 59;
+        difference->mMilliseconds = 999;
     }
-    return r;
+    return firstNotLess;
 }
 
 void func_020b1a34(void) {
-    Unk020b1a34_0c a;
-    Unk020b1a34_0c b;
-    Unk020b1a34_0c c;
-    Unk020b1bf8 t[2];
-    TimeDigits w;
-    u8 i;
-    u8 j;
+    Unk020b1a34_0c referenceLap;
+    Unk020b1a34_0c kartLap;
+    Unk020b1a34_0c difference;
+    Unk020b1bf8 totals[2];
+    TimeDigits digits;
+    u8 totalsIndex;
+    u8 lap;
 
     if (gRaceSetup->mMode == MODE_GRAND_PRIX || gRaceSetup->mMode == MODE_TIME_ATTACK) {
         gRaceHud->mUnk_8dc = 1;
@@ -67,24 +67,25 @@ void func_020b1a34(void) {
     if (gRaceHud->mUseTimeDifference == 0) {
         return;
     }
-    for (i = 0; i < 2; i++) {
-        t[i].mUnk_00 = 0;
-        t[i].mUnk_04 = 0;
-        t[i].mUnk_08 = 0;
+    for (totalsIndex = 0; totalsIndex < 2; totalsIndex++) {
+        totals[totalsIndex].mMinutes = 0;
+        totals[totalsIndex].mSeconds = 0;
+        totals[totalsIndex].mMilliseconds = 0;
     }
-    for (j = 1; j <= func_020b4d2c(); j++) {
+    for (lap = 1; lap <= func_020b4d2c(); lap++) {
         if (gRaceSetup->mMode == MODE_TIME_ATTACK) {
-            MI_CpuCopy8(&gRaceSetup->mUnk_3ec[j - 1], &a, 4);
+            MI_CpuCopy8(&gRaceSetup->mUnk_3ec[lap - 1], &referenceLap, 4);
         }
-        t[0].mUnk_00 += a.mUnk_02;
-        t[0].mUnk_04 += a.mUnk_03;
-        t[0].mUnk_08 += a.mUnk_00;
-        GetKartLapTime(GetFollowedKartOrEntryIndex(), j, &b.mUnk_02, &b.mUnk_03, &b.mUnk_00);
-        t[1].mUnk_00 += b.mUnk_02;
-        t[1].mUnk_04 += b.mUnk_03;
-        t[1].mUnk_08 += b.mUnk_00;
+        totals[0].mMinutes += referenceLap.mMinutes;
+        totals[0].mSeconds += referenceLap.mSeconds;
+        totals[0].mMilliseconds += referenceLap.mMilliseconds;
+        GetKartLapTime(GetFollowedKartOrEntryIndex(), lap, &kartLap.mMinutes, &kartLap.mSeconds,
+                       &kartLap.mMilliseconds);
+        totals[1].mMinutes += kartLap.mMinutes;
+        totals[1].mSeconds += kartLap.mSeconds;
+        totals[1].mMilliseconds += kartLap.mMilliseconds;
     }
-    gRaceHud->mTimeDifferenceSign = ComputeTimeDifference(&t[1], &t[0], &c);
-    SplitTimeDigits(c.mUnk_02, c.mUnk_03, c.mUnk_00, &w);
-    gRaceHud->mTimeDifferenceDigits = w;
+    gRaceHud->mTimeDifferenceSign = ComputeTimeDifference(&totals[1], &totals[0], &difference);
+    SplitTimeDigits(difference.mMinutes, difference.mSeconds, difference.mMilliseconds, &digits);
+    gRaceHud->mTimeDifferenceDigits = digits;
 }

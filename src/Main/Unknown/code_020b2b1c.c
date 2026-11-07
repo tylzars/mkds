@@ -13,12 +13,12 @@ u32 func_020b2b54(void) {
     return 0x8u;
 }
 
-u16 func_020b2b40(InputSlot *p, u32 a) {
-    return p->mUnk_00 & a;
+u16 func_020b2b40(InputSlot *slot, u32 mask) {
+    return slot->mUnk_00 & mask;
 }
 
-u16 func_020b2b24(s32 a, u32 b) {
-    return func_020b2b40(&data_02175628[a], b);
+u16 func_020b2b24(s32 slotIndex, u32 mask) {
+    return func_020b2b40(&data_02175628[slotIndex], mask);
 }
 
 u32 func_020b2b1c(const void *p0) {

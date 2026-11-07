@@ -32,13 +32,13 @@ void InitRaceStartSequence(void) {
     gRaceStartSequence->mSequenceFrames = 0;
 }
 
-u32 func_020b36c8(void) {
-    u32 value0;
-    u32 value1;
-    value0 = (u32) &gRaceStartSequence;
-    value1 = 0u;
-    *(u32 *) ((value0) + (0)) = value1;
-    return value0;
+u32 ClearRaceStartSequencePointer(void) {
+    u32 pointerAddress;
+    u32 nullValue;
+    pointerAddress = (u32) &gRaceStartSequence;
+    nullValue = 0u;
+    *(u32 *) ((pointerAddress) + (0)) = nullValue;
+    return pointerAddress;
 }
 
 void func_020b36a4(void) {
@@ -48,19 +48,19 @@ void func_020b36a4(void) {
 
 // Per-frame step from func_020af66c: no sounds (they are in the draw, func_020b3410).
 void UpdateRaceStartSequence(void) {
-    RaceStartSequence *p = gRaceStartSequence;
-    s32 a;
-    s32 *q;
+    RaceStartSequence *sequence = gRaceStartSequence;
+    s32 frames;
+    s32 *framesAddress;
 
-    if (p->mCounting != FALSE) {
-        a = p->mSequenceFrames;
-        if (a < 200) {
-            p->mSequenceFrames = a + 1;
-            if (a == -1) {
+    if (sequence->mCounting != FALSE) {
+        frames = sequence->mSequenceFrames;
+        if (frames < 200) {
+            sequence->mSequenceFrames = frames + 1;
+            if (frames == -1) {
                 func_0203c98c();
                 return;
             }
-            if (a != 180) {
+            if (frames != 180) {
                 return;
             }
             StartRaceSounds();
@@ -68,9 +68,9 @@ void UpdateRaceStartSequence(void) {
             gRaceStartSequence->mDone = 1;
             return;
         }
-        q = &p->mSequenceFrames;
-        if (a < 0x7fffffff) {
-            *q = a + 1;
+        framesAddress = &sequence->mSequenceFrames;
+        if (frames < 0x7fffffff) {
+            *framesAddress = frames + 1;
         }
         return;
     }
@@ -78,7 +78,7 @@ void UpdateRaceStartSequence(void) {
         if ((data_0217aa14->mUnk_75c & 2) == 0) {
             return;
         }
-        p->mCounting = TRUE;
+        sequence->mCounting = TRUE;
         SetRaceUpdateFramesUnlimited();
         SetMapObjectsRunUpdateLists();
         return;
@@ -89,47 +89,47 @@ void UpdateRaceStartSequence(void) {
 }
 
 void func_020b3410(void) {
-    NNSSndSeqPlayer **p;
-    s32 a = gRaceStartSequence->mSequenceFrames;
+    NNSSndSeqPlayer **seqPlayer;
+    s32 frames = gRaceStartSequence->mSequenceFrames;
 
-    if (a < -21) {
+    if (frames < -21) {
         return;
     }
-    if (a >= 200) {
+    if (frames >= 200) {
         return;
     }
-    if (a == 0 || a == 60 || a == 120) {
+    if (frames == 0 || frames == 60 || frames == 120) {
         if (data_0217c780 & 1) {
-            p = func_0210e128(func_02108ea0(0));
+            seqPlayer = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
-                if (*p != NULL) {
-                    NNS_SndPlayerStopSeq(p, 0);
+                if (*seqPlayer != NULL) {
+                    NNS_SndPlayerStopSeq(seqPlayer, 0);
                 }
-                if (*p != NULL) {
-                    NNS_SndPlayerStopSeq(p, 0);
+                if (*seqPlayer != NULL) {
+                    NNS_SndPlayerStopSeq(seqPlayer, 0);
                 }
-                NNS_SndArcPlayerStartSeqArc(p, 0, 0x27);
+                NNS_SndArcPlayerStartSeqArc(seqPlayer, 0, 0x27);
             }
         }
     }
-    if (a == 175) {
+    if (frames == 175) {
         if (data_0217c780 & 1) {
-            p = func_0210e128(func_02108ea0(0));
+            seqPlayer = func_0210e128(func_02108ea0(0));
             if (data_0217d084.mUnk_0c != 0) {
-                if (*p != NULL) {
-                    NNS_SndPlayerStopSeq(p, 0);
+                if (*seqPlayer != NULL) {
+                    NNS_SndPlayerStopSeq(seqPlayer, 0);
                 }
-                if (*p != NULL) {
-                    NNS_SndPlayerStopSeq(p, 0);
+                if (*seqPlayer != NULL) {
+                    NNS_SndPlayerStopSeq(seqPlayer, 0);
                 }
-                NNS_SndArcPlayerStartSeqArc(p, 0, 0x28);
+                NNS_SndArcPlayerStartSeqArc(seqPlayer, 0, 0x28);
             }
         }
     }
-    if (a == -21) {
+    if (frames == -21) {
         SetStemSet(0);
     }
-    if (a != 180) {
+    if (frames != 180) {
         return;
     }
     SetStemSet(1);

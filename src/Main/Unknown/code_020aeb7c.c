@@ -54,9 +54,9 @@ void func_020aeb7c(void) {
             if (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0) {
                 if (gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                     if (gRaceHud->mUnk_83c != FALSE) {
-                        gRaceHud->mUnk_82c = FALSE;
+                        gRaceHud->mSubScreenEnabled = FALSE;
                     } else {
-                        gRaceHud->mUnk_82c = TRUE;
+                        gRaceHud->mSubScreenEnabled = TRUE;
                         gRaceHud->mSubScreenState = 4;
                         gRaceHud->mUnk_83c = TRUE;
                         gRaceHud->mUnk_840 = TRUE;
@@ -99,7 +99,7 @@ void func_020aeb7c(void) {
                     }
                 }
                 if (a != FALSE) {
-                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenEnabled = TRUE;
                     switch (gRaceHud->mSubScreenState) {
                         case 0:
                             gRaceHud->mSubScreenState = 1;
@@ -111,7 +111,7 @@ void func_020aeb7c(void) {
                             break;
                     }
                 } else {
-                    gRaceHud->mUnk_82c = FALSE;
+                    gRaceHud->mSubScreenEnabled = FALSE;
                 }
             }
             break;
@@ -154,7 +154,7 @@ void func_020aeb7c(void) {
                     }
                 }
                 if (a != FALSE) {
-                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenEnabled = TRUE;
                     if (gRaceSetup->mRaceKind != 2) {
                         switch (gRaceHud->mSubScreenState) {
                             case 0:
@@ -183,16 +183,16 @@ void func_020aeb7c(void) {
                         }
                     }
                 } else {
-                    gRaceHud->mUnk_82c = FALSE;
+                    gRaceHud->mSubScreenEnabled = FALSE;
                 }
             }
             break;
         case MODE_BATTLE:
             if (IsWinnerDecidedAndEndReached() != 0) {
                 if (gRaceHud->mUnk_83c != FALSE) {
-                    gRaceHud->mUnk_82c = FALSE;
+                    gRaceHud->mSubScreenEnabled = FALSE;
                 } else {
-                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenEnabled = TRUE;
                     gRaceHud->mSubScreenState = 4;
                     gRaceHud->mUnk_83c = TRUE;
                     gRaceHud->mUnk_840 = TRUE;
@@ -230,7 +230,7 @@ void func_020aeb7c(void) {
                     }
                 }
                 if (a != FALSE) {
-                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenEnabled = TRUE;
                     switch (gRaceHud->mSubScreenState) {
                         case 0:
                             gRaceHud->mSubScreenState = 1;
@@ -242,7 +242,7 @@ void func_020aeb7c(void) {
                             break;
                     }
                 } else {
-                    gRaceHud->mUnk_82c = FALSE;
+                    gRaceHud->mSubScreenEnabled = FALSE;
                 }
             }
             break;
@@ -250,7 +250,7 @@ void func_020aeb7c(void) {
         case 5:
             if (gRaceProgress->mRaceDone != 0 && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                 if (gRaceHud->mUnk_838 == FALSE) {
-                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenEnabled = TRUE;
                     gRaceHud->mSubScreenState = 4;
                     gRaceHud->mUnk_838 = TRUE;
                     if (gRaceHud->mUnk_83c == FALSE) {
@@ -259,11 +259,11 @@ void func_020aeb7c(void) {
                         gRaceHud->mUnk_850 = 0x8c;
                     }
                 } else {
-                    gRaceHud->mUnk_82c = FALSE;
+                    gRaceHud->mSubScreenEnabled = FALSE;
                 }
             } else if (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceSetup->mRaceKind == RACE_KIND_NORMAL) {
                 if (gRaceHud->mUnk_83c == FALSE) {
-                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenEnabled = TRUE;
                     gRaceHud->mSubScreenState = 0;
                     gRaceHud->mUnk_83c = TRUE;
                     gRaceHud->mUnk_840 = TRUE;
@@ -300,7 +300,7 @@ void func_020aeb7c(void) {
                         }
                     }
                     if (a != FALSE) {
-                        gRaceHud->mUnk_82c = TRUE;
+                        gRaceHud->mSubScreenEnabled = TRUE;
                         switch (gRaceHud->mSubScreenState) {
                             case 0:
                                 gRaceHud->mSubScreenState = 3;
@@ -312,7 +312,7 @@ void func_020aeb7c(void) {
                                 break;
                         }
                     } else {
-                        gRaceHud->mUnk_82c = FALSE;
+                        gRaceHud->mSubScreenEnabled = FALSE;
                     }
                 }
             } else {
@@ -347,7 +347,7 @@ void func_020aeb7c(void) {
                     }
                 }
                 if (a != FALSE) {
-                    gRaceHud->mUnk_82c = TRUE;
+                    gRaceHud->mSubScreenEnabled = TRUE;
                     switch (gRaceHud->mSubScreenState) {
                         case 0:
                             gRaceHud->mSubScreenState = 1;
@@ -359,7 +359,7 @@ void func_020aeb7c(void) {
                             break;
                     }
                 } else {
-                    gRaceHud->mUnk_82c = FALSE;
+                    gRaceHud->mSubScreenEnabled = FALSE;
                 }
             }
             break;
@@ -390,10 +390,10 @@ void func_020aeb7c(void) {
             if ((u16) (data_0217562c[func_020435bc()].mUnk_00 & 0x800) != 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 0x19);
             }
-            gRaceHud->mUnk_82c = FALSE;
+            gRaceHud->mSubScreenEnabled = FALSE;
             break;
     }
-    if (gRaceHud->mUnk_82c != FALSE) {
+    if (gRaceHud->mSubScreenEnabled != FALSE) {
         switch (gRaceHud->mSubScreenState) {
             case 0:
                 UpdateRaceHudSubScreenCellGroups();

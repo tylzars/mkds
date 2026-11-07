@@ -4,17 +4,17 @@
 
 // Three words: the code multiplies the first by 60, adds the second, multiplies by 1000 and adds the third.
 typedef struct Unk020b1bf8 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
+    /* 00 */ s32 mMinutes;
+    /* 04 */ s32 mSeconds;
+    /* 08 */ s32 mMilliseconds;
 } Unk020b1bf8;
 
 // Four bytes: a halfword and two bytes.
 typedef struct Unk020b1a34_0c {
-    /* 00 */ u16 mUnk_00;
-    /* 02 */ u8 mUnk_02;
-    /* 03 */ u8 mUnk_03;
+    /* 00 */ u16 mMilliseconds;
+    /* 02 */ u8 mMinutes;
+    /* 03 */ u8 mSeconds;
 } Unk020b1a34_0c;
 
-s32 ComputeTimeDifference(Unk020b1bf8 *a, Unk020b1bf8 *b, Unk020b1a34_0c *c);
+s32 ComputeTimeDifference(Unk020b1bf8 *first, Unk020b1bf8 *second, Unk020b1a34_0c *difference);
 void func_020b1a34(void);

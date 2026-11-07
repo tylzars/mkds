@@ -3,7 +3,7 @@
 #include "code_0212bcac.h"
 
 void func_020bb5cc(void) {
-    NNSSndSeqPlayer **v1;
-    v1 = GetSndHandles();
-    NNS_SndPlayerStopSeq(v1, 0);
+    NNSSndSeqPlayer **seqPlayer;
+    seqPlayer = GetSndHandles();
+    NNS_SndPlayerStopSeq(seqPlayer, 0);
 }

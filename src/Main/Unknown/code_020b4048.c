@@ -7,7 +7,7 @@
 #pragma thumb on
 #pragma optimize_for_size on
 void LoadFontAndPlayerCharacterData(void) {
-    if (func_020b41d4(1) != 0) {
+    if (IsArchiveSlotLoaded(1) != 0) {
         func_020b478c(&gLCFontS, FindFileInLoadedArchives("LC_Font_s.NFTR"));
         func_020b478c(&gLCFontM, FindFileInLoadedArchives("LC_Font_m.NFTR"));
         func_020b478c(&gMarioFont, FindFileInLoadedArchives("marioFont.NFTR"));

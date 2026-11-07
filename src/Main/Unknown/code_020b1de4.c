@@ -163,12 +163,13 @@ void InitChoisesS(void) {
         gChoisesS->mList1Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[1].mValueCount - 1];
         gChoisesS->mList2Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[2].mValueCount - 1];
         gChoisesS->mList3Nscr = gChoisesS->mChoisesSNscrs[gChoisesS->mLists[3].mValueCount - 1];
-        gChoisesS->mList1Chars = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[1].mValueCount));
+        gChoisesS->mList1Chars = HeapAlloc(func_020b2540(), GetChoisesSListCharsSize(gChoisesS->mLists[1].mValueCount));
         switch (func_020b252c()) {
             case MODE_BATTLE:
             case MODE_VS:
             case MODE_MISSION_RUN:
-                gChoisesS->mList2Chars = HeapAlloc(func_020b2540(), func_020b3260(gChoisesS->mLists[2].mValueCount));
+                gChoisesS->mList2Chars =
+                    HeapAlloc(func_020b2540(), GetChoisesSListCharsSize(gChoisesS->mLists[2].mValueCount));
                 break;
         }
         gChoisesS->mFont = func_020b403c(2);
@@ -178,7 +179,7 @@ void InitChoisesS(void) {
         NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[1], gChoisesS->mList1Chars, 0x20, 0xc, 4);
         p = gChoisesS;
         func_020b24cc(&p->mTextCanvases[1], p->mCharCanvases[1], p->mFont, func_020b4acc(), 0);
-        n = func_020b3260(gChoisesS->mLists[1].mValueCount) >> 1;
+        n = GetChoisesSListCharsSize(gChoisesS->mLists[1].mValueCount) >> 1;
         for (i = 0; i < n; i++) {
             gChoisesS->mList1Chars[i] = func_020b3374()->mData[i];
         }
@@ -186,7 +187,7 @@ void InitChoisesS(void) {
             NNS_G2dCharCanvasInitForBG(gChoisesS->mCharCanvases[2], gChoisesS->mList2Chars, 0x20, 0xc, 4);
             p = gChoisesS;
             func_020b24cc(&p->mTextCanvases[2], p->mCharCanvases[2], p->mFont, func_020b4acc(), 0);
-            n = func_020b3260(gChoisesS->mLists[2].mValueCount) >> 1;
+            n = GetChoisesSListCharsSize(gChoisesS->mLists[2].mValueCount) >> 1;
             for (i = 0; i < n; i++) {
                 gChoisesS->mList2Chars[i] = func_020b3374()->mData[i];
             }

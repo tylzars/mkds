@@ -478,7 +478,7 @@ void ShowRaceNewRecordTaSubScreen(void) {
     if (func_020b1a20() != 0) {
         return;
     }
-    func_020b1d64();
+    RequestRaceHudSubScreenState6();
     gRaceNewRecordTa->mUpdate = SlideInRaceNewRecordTa;
     gRaceNewRecordTa->mUpdateFrames = 0;
 }

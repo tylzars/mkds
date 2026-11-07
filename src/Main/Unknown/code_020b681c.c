@@ -32,5 +32,5 @@ void func_020b681c(UnkPair020b502c *a, UnkPair020b502c *b) {
         func_020b6b18(a, b, 0xfffffff6, 0xfffff434u, 0x00001766u, 0x00000ba4u);
         return;
     }
-    func_020b6a98(a, b);
+    GetRaceHudSubScreenCourseMinMax(a, b);
 }

@@ -113,7 +113,7 @@ void func_020c0fd0(void) {
         gRaceGoalS->mUnk_00a0 = 0x100;
         gRaceGoalS->mUnk_00ac = func_020c0f48;
         gRaceGoalS->mUnk_00b0 = 0;
-        func_020b1d90();
+        RequestRaceHudSubScreenState5();
     }
 }
 
