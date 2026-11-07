@@ -66,9 +66,9 @@ extern const u32 data_usa_02154a10[];
 extern u32 data_usa_02154a20[];
 
 s32 func_02062ed8(void);
-void func_02062ef8(u32 a);
-void func_0206302c(void);
-void func_020631b0(void);
+void SetCourseModelsFogEnableFlags(u32 a);
+void InitCourseModelsFogEnableFlags(void);
+void SetKoopaCourseLight2(void);
 void DrawCourseModelV(void);
 void DrawCourseModel(void);
 void UpdateCourseModels(void);

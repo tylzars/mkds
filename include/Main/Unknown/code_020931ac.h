@@ -30,13 +30,13 @@ typedef struct Unk02093708 {
 #include "Main/Unknown/unk_0217b000.h" // Unk0217b498_00
 
 u16 func_020931ac(Unk0217b498_00 *a);
-void func_020931f0(void);
-void func_02093210(void);
-void func_02093234(void);
+void CreateMkdEfBurnerUpdateList(void);
+void CreateMkdEfBurnerDrawList(void);
+void CreateMkdEfBurnerKindData(void);
 void UpdateMkdEfBurner(void *a, MkdEfBurner *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_02093484(MapObjectList *p);
 void DrawMkdEfBurner(void *a, MkdEfBurner *p);
 void func_020936f0(void *a);
 void CreateMkdEfBurner(Unk02093708 *p); /* also sets word +0x1c of the group record to 1 */
-u8 func_02093754(MkdEfBurner *a, Kart *b, u8 *c, u8 *d);
+u8 CollideKartWithMkdEfBurner(MkdEfBurner *a, Kart *b, u8 *c, u8 *d);
 void InitMkdEfBurner(MapObject *arg0); /* allocates the object's sound source (CreateMapObjectSoundSourceFalloff2) */

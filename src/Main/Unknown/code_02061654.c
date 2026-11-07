@@ -197,7 +197,7 @@ void InitRace(void) {
         data_0217aadc[i + 24] = data_0217aadc[i + 16];
     }
     InitRaceFog();
-    func_020631b0();
+    SetKoopaCourseLight2();
     if (data_021759c0->mUnk_00c == 5) {
         for (j = 0; j < 3; j++) {
             func_0208eb1c(j);
@@ -326,7 +326,7 @@ void UpdateRace(void) {
             if (data_021653e8 == 0) {
                 gRace->mFadeFog = 0;
                 SetKartModelsFogEnable(1);
-                func_02062ef8(0);
+                SetCourseModelsFogEnableFlags(0);
                 data_0217aa64 = 0;
                 data_0217aa4c = 0;
             } else {
@@ -608,7 +608,7 @@ void func_02061874(void) {
     }
     gRace->mFadeFog = 1;
     SetKartModelsFogEnable(0);
-    func_02062ef8(1);
+    SetCourseModelsFogEnableFlags(1);
     data_021653e8 = 72;
     func_02061944(72, 1);
     data_0217aa4c = 0;

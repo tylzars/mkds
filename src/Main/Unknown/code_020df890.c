@@ -65,7 +65,7 @@ void func_020dff88(void *a) {
     func_020e1e38(data_0217b784, a, func_020e1dec);
 }
 
-u32 func_020dff70(u32 a) {
+u32 IsKoopaBlockKind(u32 a) {
     switch (a) {
         case 0xca:
             return 1;
@@ -87,7 +87,7 @@ s32 func_020dff4c(Unk020e005c *a) {
 }
 
 #pragma thumb on
-void func_020dff08(void) {
+void CreateKoopaBlock(void) {
     void *r;
 
     r = FindCourseMapObjFile("koopa_block.nsbmd");
@@ -96,7 +96,7 @@ void func_020dff08(void) {
     func_020e1dc0(data_0217b784, gKoopaBlock);
 }
 
-void func_020dfd64(Unk020e005c *a, CourseMapRow *b) {
+void InitKoopaBlock(Unk020e005c *a, CourseMapRow *b) {
     func_02046be8(&a->mStateMachine, data_0216bff8, 3, a);
     a->mUnk_168 = (b->mUnk_28 << 12) / 100;
     func_020d7da8(&a->mUnk_144, b, a->mUnk_168);
@@ -130,7 +130,7 @@ void func_020dfd64(Unk020e005c *a, CourseMapRow *b) {
 }
 #pragma thumb off
 
-Unk020de390 *func_020dfd14(void) {
+Unk020de390 *CreateMkdEfBubbleKindData(void) {
     Unk020de390 *p;
 
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
@@ -138,14 +138,14 @@ Unk020de390 *func_020dfd14(void) {
     return p;
 }
 
-Unk020de334 *func_020dfcb8(void) {
+Unk020de334 *CreateMkdEfBubbleDrawList(void) {
     data_0217b774 = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b774 = data_021587b0;
     func_020d49d8(&data_0217b774);
     return data_0217b774;
 }
 
-Unk020dfc44 *func_020dfc44(void) {
+Unk020dfc44 *CreateMkdEfBubbleUpdateList(void) {
     data_0217b76c = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     *data_0217b76c = data_02158784;
     func_020e6f50(&data_0217b76c);

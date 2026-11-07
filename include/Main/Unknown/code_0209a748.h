@@ -45,16 +45,16 @@ typedef struct Kart Kart;
 
 void CreateCrabAndCrabHand(void *a);
 
-void *func_0209a748(void);
-void *func_0209a768(void);
-void func_0209a78c(void);
+void *CreateCrabUpdateList(void);
+void *CreateCrabDrawList(void);
+void CreateCrabKindData(void);
 void UpdateCrab(void *a, Crab *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 s32 func_0209af64(s32 a, s32 b);
 s16 func_0209af80(s32 a);
 void func_0209af98(Unk0209af98 *p);
 void DrawCrab(void *a, Crab *b);
 unsigned int func_0209b1f8(unsigned int p0);
-u8 func_0209b270(Crab *a, Kart *b, u8 *c, u8 *d);
-u8 func_0209b344(Crab *a, Kart *b, u8 *c, u8 *d);
+u8 CollideItemObjectWithCrab(Crab *a, Kart *b, u8 *c, u8 *d);
+u8 CollideKartWithCrab(Crab *a, Kart *b, u8 *c, u8 *d);
 void func_0209b388(Crab *a, Vec3 *b, Vec3 *c, Vec3 *d);
 void InitCrab(u32 arg0); /* starts the path follower (func_020d7da8) */

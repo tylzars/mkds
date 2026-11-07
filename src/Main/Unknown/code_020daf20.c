@@ -54,14 +54,14 @@
 
 #pragma thumb off
 
-Unk020dbf2c *func_020dbf2c(void) {
+Unk020dbf2c *CreateDossunKindData(void) {
     Unk020dbf2c *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = data_0215828c;
     return p;
 }
 
-Unk020dbed0 *func_020dbed0(void) {
+Unk020dbed0 *CreateDossunDrawList(void) {
     Unk020dbed0 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b698 = p;
@@ -70,7 +70,7 @@ Unk020dbed0 *func_020dbed0(void) {
     return data_0217b698;
 }
 
-Unk020dbe74 *func_020dbe74(void) {
+Unk020dbe74 *CreateDossunUpdateList(void) {
     Unk020dbe74 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b690 = p;
@@ -273,7 +273,7 @@ void UpdateDossun(void *a, Dossun *p) {
     p->mUnk_00.mPos.y += p->mUnk_f8;
 }
 
-u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c) {
+u32 CollideKartWithDossun(Dossun *p, Kart *a, u8 *b, u8 *c) {
     Vec3 s0;
     Vec3 s1;
     Vec3 s2;
@@ -414,14 +414,14 @@ void InitDossun(Dossun *p, CourseMapRow *a) {
 }
 #pragma thumb off
 
-Unk020db268 *func_020db268(void) {
+Unk020db268 *CreateKuriboKindData(void) {
     Unk020db268 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x40);
     *p = data_021581b8;
     return p;
 }
 
-Unk020db20c *func_020db20c(void) {
+Unk020db20c *CreateKuriboDrawList(void) {
     Unk020db20c *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x2c);
     data_0217b680 = p;
@@ -430,7 +430,7 @@ Unk020db20c *func_020db20c(void) {
     return data_0217b680;
 }
 
-Unk020db1b0 *func_020db1b0(void) {
+Unk020db1b0 *CreateKuriboUpdateList(void) {
     Unk020db1b0 *p;
     p = HeapAlloc(GetHeap(func_020364e8()), 0x28);
     data_0217b684 = p;

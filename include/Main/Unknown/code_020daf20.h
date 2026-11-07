@@ -85,12 +85,12 @@ typedef struct Unk020dbf2c {
     /* 04 */ u8 mUnk_04[0x3c];
 } Unk020dbf2c;
 
-Unk020dbf2c *func_020dbf2c(void);
-Unk020dbed0 *func_020dbed0(void);
-Unk020dbe74 *func_020dbe74(void);
-Unk020db268 *func_020db268(void);
-Unk020db20c *func_020db20c(void);
-Unk020db1b0 *func_020db1b0(void);
+Unk020dbf2c *CreateDossunKindData(void);
+Unk020dbed0 *CreateDossunDrawList(void);
+Unk020dbe74 *CreateDossunUpdateList(void);
+Unk020db268 *CreateKuriboKindData(void);
+Unk020db20c *CreateKuriboDrawList(void);
+Unk020db1b0 *CreateKuriboUpdateList(void);
 s32 func_020db4c4(Dossun *p);
 void func_020db430(Dossun *p);
 void CreateDossunAndDossunShadow(void);
@@ -99,5 +99,5 @@ void func_020db198(void);
 void DrawKuribo(void *a, Kuribo *p, void *c, u16 d);
 void UpdateKuribo(void *a, Kuribo *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void DrawDossun(void *a, Dossun *p, void *c, s32 d);
-u32 func_020db548(Dossun *p, Kart *a, u8 *b, u8 *c);
+u32 CollideKartWithDossun(Dossun *p, Kart *a, u8 *b, u8 *c);
 void UpdateDossun(void *a, Dossun *p); /* skipped for objects with mFlags & 4 (parked pool objects) */

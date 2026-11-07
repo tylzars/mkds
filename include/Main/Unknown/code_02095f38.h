@@ -59,18 +59,18 @@ typedef struct Unk0209753c {
 #include "Main/Unknown/code_0206bcb0.h" // Kart
 
 BOOL func_02095f38(Unk0217b498_00 *a);
-void *func_02095f5c(void);
-void *func_02095f7c(void);
-void func_02095f9c(void);
+void *CreateCoverPooHoleUpdateList(void);
+void *CreateCoverPooHoleDrawList(void);
+void CreateCoverPooHoleKindData(void);
 void UpdateCoverPooHole(void *a, CoverPooHole *p); /* skipped for objects with mFlags & 4 (parked pool objects) */
 s32 func_020968c0(s32 a, s32 b);
 s32 func_020968dc(s32 a);
 void func_020968f4(Unk020968f4 *p);
 void DrawCoverPooHole(void *a, CoverPooHole *p);
 void CreateCoverPooHole(void *a);
-BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c);
-u32 func_02096f54(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
-u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
+BOOL TryGetCoverPooHolePushOut(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c);
+u32 CollideItemObjectWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
+u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c);
 /* sets flag 0x200 through the prefix type Unk02097520, whose mUnk_02 is MapObject.mFlags */
 void InitCoverPooHole(Unk02097520 *p0);
 u32 func_0209753c(u32 a);

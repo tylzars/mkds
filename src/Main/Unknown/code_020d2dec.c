@@ -259,7 +259,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                 if (kindData->mUnk_20 == 0) {
                     m |= data_021568e0;
                 }
-                if (func_020dff70(object->mKind) != 0 || func_020e4320(object->mKind) != FALSE ||
+                if (IsKoopaBlockKind(object->mKind) != 0 || func_020e4320(object->mKind) != FALSE ||
                     func_020e3af0(object->mKind) != FALSE || func_020ffabc(object->mKind) != FALSE) {
                     m |= data_021568e4;
                 }
@@ -373,7 +373,7 @@ void InitMapObjects(void) {
             continue;
         }
         CreateMapObject(e->mUnk_24, e, NULL);
-        gMapObjects->mUnk_17c |= func_020dff70(e->mUnk_24);
+        gMapObjects->mUnk_17c |= IsKoopaBlockKind(e->mUnk_24);
         gMapObjects->mUnk_180 |= func_020e4320(e->mUnk_24);
         gMapObjects->mUnk_184 |= func_020e3af0(e->mUnk_24);
         gMapObjects->mUnk_188 |= func_020ffabc(e->mUnk_24);

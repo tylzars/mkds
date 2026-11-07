@@ -28,7 +28,7 @@ void InitMkdEfBurner(MapObject *arg0) {
     CreateMapObjectSoundSourceFalloff2(value0);
 }
 
-u8 func_02093754(MkdEfBurner *a, Kart *b, u8 *c, u8 *d) {
+u8 CollideKartWithMkdEfBurner(MkdEfBurner *a, Kart *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
@@ -177,15 +177,15 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
     }
 }
 
-void func_02093234(void) {
-    func_0209bf70(&func_02093754, NULL, NULL, 2, 0, (0x0000018du));
+void CreateMkdEfBurnerKindData(void) {
+    func_0209bf70(&CollideKartWithMkdEfBurner, NULL, NULL, 2, 0, (0x0000018du));
 }
 
-void func_02093210(void) {
+void CreateMkdEfBurnerDrawList(void) {
     func_0209bf1c(&CreateMkdEfBurner, &DrawMkdEfBurner, &func_020936f0);
 }
 
-void func_020931f0(void) {
+void CreateMkdEfBurnerUpdateList(void) {
     func_0209bf48(&func_02093484, &UpdateMkdEfBurner, NULL);
 }
 

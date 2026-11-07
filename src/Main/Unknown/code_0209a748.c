@@ -96,7 +96,7 @@ void func_0209b388(Crab *a, Vec3 *b, Vec3 *c, Vec3 *d) {
     a->mUnk_000.mFlags |= data_usa_0215659c;
 }
 
-u8 func_0209b344(Crab *a, Kart *b, u8 *c, u8 *d) {
+u8 CollideKartWithCrab(Crab *a, Kart *b, u8 *c, u8 *d) {
     u32 e;
 
     e = *d;
@@ -107,7 +107,7 @@ u8 func_0209b344(Crab *a, Kart *b, u8 *c, u8 *d) {
     return e;
 }
 
-u8 func_0209b270(Crab *a, Kart *b, u8 *c, u8 *d) {
+u8 CollideItemObjectWithCrab(Crab *a, Kart *b, u8 *c, u8 *d) {
     Vec3 v;
     Kart *t;
     u32 e;
@@ -340,17 +340,17 @@ void UpdateCrab(void *a, Crab *b) {
     }
 }
 
-void func_0209a78c(void) {
+void CreateCrabKindData(void) {
     Unk0209bf70 *o;
 
-    o = func_0209bf70(func_0209b344, func_0209b270, NULL, 2, 1, 0x10e);
+    o = func_0209bf70(CollideKartWithCrab, CollideItemObjectWithCrab, NULL, 2, 1, 0x10e);
     o->mUnk_28 = 0x10f;
 }
 
-void *func_0209a768(void) {
+void *CreateCrabDrawList(void) {
     return func_0209bef0(CreateCrabAndCrabHand, DrawCrab, func_0209b1f8);
 }
 
-void *func_0209a748(void) {
+void *CreateCrabUpdateList(void) {
     return func_0209bf48(func_0209af98, UpdateCrab, NULL);
 }

@@ -41,7 +41,7 @@ void InitCoverPooHole(Unk02097520 *p0) {
     p0->mUnk_02 |= data_021564c0;
 }
 
-u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
+u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
     s32 v1;
     s32 g;
     u32 v2 = *b;
@@ -182,7 +182,7 @@ u32 func_0209702c(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
     return 0;
 }
 
-u32 func_02096f54(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
+u32 CollideItemObjectWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
     u8 v1 = *b;
     u8 v2 = *c;
     if (p->mState != 4) {
@@ -217,7 +217,8 @@ u32 func_02096f54(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
     return v2;
 }
 
-BOOL func_02096df0(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
+// FALSE when the position is out of reach, else TRUE with the vector c that pushes it out (zero in most states).
+BOOL TryGetCoverPooHolePushOut(CoverPooHole *p, const Vec3 *a, s32 b, Vec3 *c) {
     Vec3 s;
     s32 d;
     VEC_Subtract(a, &p->mUnk_00.mPos, &s);
@@ -602,17 +603,18 @@ void UpdateCoverPooHole(void *a, CoverPooHole *p) {
     }
 }
 
-void func_02095f9c(void) {
+void CreateCoverPooHoleKindData(void) {
     Unk0209bf70 *o;
-    o = func_0209bf70(func_0209702c, func_02096f54, func_02096df0, 0, 1, 0x16d);
+    o = func_0209bf70(CollideKartWithCoverPooHole, CollideItemObjectWithCoverPooHole, TryGetCoverPooHolePushOut, 0, 1,
+                      0x16d);
     o->mUnk_28 = 0x1b0;
 }
 
-void *func_02095f7c(void) {
+void *CreateCoverPooHoleDrawList(void) {
     return func_0209bef0(CreateCoverPooHole, DrawCoverPooHole, NULL);
 }
 
-void *func_02095f5c(void) {
+void *CreateCoverPooHoleUpdateList(void) {
     return func_0209bf48(func_020968f4, UpdateCoverPooHole, NULL);
 }
 

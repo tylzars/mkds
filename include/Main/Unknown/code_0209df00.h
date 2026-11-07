@@ -39,15 +39,15 @@ typedef struct Unk0209e950 {
     /* 1c */ s32 mUnk_1c;
 } Unk0209e950;
 
-void *func_0209df00(void);
-void *func_0209df20(void);
-void func_0209df44(void);
+void *CreateFireball2UpdateList(void);
+void *CreateFireball2DrawList(void);
+void CreateFireball2KindData(void);
 void UpdateFireball2(void *a, Fireball2 *b); /* skipped for objects with mFlags & 4 (parked pool objects) */
 void func_0209e310(MapObjectList *p);
 void DrawFireball2(void *a, Fireball2 *b);
 void func_0209e938(void *a);
 void CreateFireball2(Unk0209e950 *a); /* also sets word +0x1c of the group record to 1 */
-BOOL func_0209e988(Fireball2 *a, Vec3 *b, s32 c);
-u8 func_0209ea10(Fireball2 *a, Kart *b, u8 *c, u8 *d);
+BOOL IsPosNearFireball2(Fireball2 *a, Vec3 *b, s32 c);
+u8 CollideKartWithFireball2(Fireball2 *a, Kart *b, u8 *c, u8 *d);
 void InitFireball2(Fireball2 *a);
-void *func_0209eb04(void);
+void *CreatePuddleDrawList(void);

@@ -33,7 +33,7 @@
 #include "code_0212df7c.h"
 #include "Main/Unknown/code_02077bc0.h"
 
-void *func_0209eb04(void) {
+void *CreatePuddleDrawList(void) {
     return func_0209bef0(CreatePuddle, DrawPuddle, func_0209ec00);
 }
 
@@ -48,7 +48,7 @@ void InitFireball2(Fireball2 *a) {
     a->mUnk_00.mAlpha = 0x1f;
 }
 
-u8 func_0209ea10(Fireball2 *a, Kart *b, u8 *c, u8 *d) {
+u8 CollideKartWithFireball2(Fireball2 *a, Kart *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
@@ -84,7 +84,7 @@ static inline BOOL func_0209df84_inline(Kart *p, Fireball2 *b, s32 t) {
     return (s64) x * x + (s64) y * y + (s64) z * z < (s64) t * t;
 }
 
-BOOL func_0209e988(Fireball2 *a, Vec3 *b, s32 c) {
+BOOL IsPosNearFireball2(Fireball2 *a, Vec3 *b, s32 c) {
     s32 i;
     s32 d;
     s32 e;
@@ -296,14 +296,14 @@ void UpdateFireball2(void *a, Fireball2 *b) {
     StartMapObjectSoundWhileRequested(&b->mUnk_00, 0x160);
 }
 
-void func_0209df44(void) {
-    func_0209bf70(func_0209ea10, NULL, func_0209e988, 0, 0, 0x18d);
+void CreateFireball2KindData(void) {
+    func_0209bf70(CollideKartWithFireball2, NULL, IsPosNearFireball2, 0, 0, 0x18d);
 }
 
-void *func_0209df20(void) {
+void *CreateFireball2DrawList(void) {
     return func_0209bef0(CreateFireball2, DrawFireball2, func_0209e938);
 }
 
-void *func_0209df00(void) {
+void *CreateFireball2UpdateList(void) {
     return func_0209bf48(func_0209e310, UpdateFireball2, NULL);
 }

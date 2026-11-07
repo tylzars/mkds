@@ -154,7 +154,7 @@ void InitCourseModels(void *a) {
         }
     }
     MTX_Identity43_(&data_usa_0217abac);
-    func_0206302c();
+    InitCourseModelsFogEnableFlags();
 }
 
 void UpdateCourseModels(void) {
@@ -180,7 +180,7 @@ void DrawCourseModelV(void) {
     func_020849f8(gCourseModels.mVNsbmd, &data_usa_0217abac, data_usa_02154a20);
 }
 
-void func_020631b0(void) {
+void SetKoopaCourseLight2(void) {
     UnkVec16 a;
 
     if (data_021759c0->mCourseId != COURSE_ID_KOOPA) {
@@ -191,7 +191,7 @@ void func_020631b0(void) {
     NNS_G3dGlbLightColor(2, 0x7fff);
 }
 
-void func_0206302c(void) {
+void InitCourseModelsFogEnableFlags(void) {
     u32 i;
     NNSG3dResMdl *b;
     u32 j;
@@ -235,7 +235,7 @@ void func_0206302c(void) {
     }
 }
 
-void func_02062ef8(u32 a) {
+void SetCourseModelsFogEnableFlags(u32 a) {
     u32 i;
     NNSG3dResMdl *b;
     u32 j;
