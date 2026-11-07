@@ -70,7 +70,7 @@ void func_02105214(void) {
     data_0217c730.mUnk_24 = 0x6f;
     data_0217c730.mUnk_2e = 1;
     for (i = 0; i < data_0217c724; i++) {
-        data_0217c72c[i] = (u32) CreateMapObjectFromCourseMapRow(&data_0217c730, 0x6f);
+        data_0217c72c[i] = CreateMapObjectFromCourseMapRow(&data_0217c730, 0x6f);
     }
     data_0217c728 = 0;
 }

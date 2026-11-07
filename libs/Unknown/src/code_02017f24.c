@@ -41,21 +41,21 @@ void *AllocFromHead_(NNSiFndFrmHeapHead *frmHeap, u32 size, int alignment) {
             MIi_CpuClear32(zero, (void *) oldHead, clearSize);
         }
     }
-    frmHeap->mHeadAllocator = (void *) end;
+    frmHeap->mHeadAllocator = (u8 *) end;
     return (void *) start;
 }
 
 // Takes size bytes from the end of the free memory, aligned to alignment, and returns them or NULL.
 void *AllocFromTail_(NNSiFndFrmHeapHead *frmHeap, u32 size, int alignment) {
     u32 mask;
-    u32 oldTail;
-    u32 start;
+    u8 *oldTail;
+    u8 *start;
     u32 clearSize;
 
-    oldTail = (u32) frmHeap->mTailAllocator;
+    oldTail = frmHeap->mTailAllocator;
     mask = alignment - 1;
-    start = (oldTail - size) & ~mask;
-    if (start < (u32) frmHeap->mHeadAllocator) {
+    start = (u8 *) (((u32) oldTail - size) & ~mask);
+    if (start < frmHeap->mHeadAllocator) {
         return 0;
     }
     clearSize = oldTail - start;
@@ -64,11 +64,11 @@ void *AllocFromTail_(NNSiFndFrmHeapHead *frmHeap, u32 size, int alignment) {
 
         if ((u16) (((NNSiFndHeapHead *) frmHeap - 1)->mAttribute & 0xff) & 1) {
             zero = 0;
-            MIi_CpuClear32(zero, (void *) start, clearSize);
+            MIi_CpuClear32(zero, start, clearSize);
         }
     }
-    frmHeap->mTailAllocator = (void *) start;
-    return (void *) start;
+    frmHeap->mTailAllocator = start;
+    return start;
 }
 
 // Frees everything taken from the front of the heap and drops the recorded states.
@@ -142,14 +142,14 @@ void NNS_FndFreeToFrmHeap(NNSFndHeapHandle heap, int mode) {
 // Returns the size of the largest block that can be allocated with the given alignment (its sign is ignored).
 u32 NNS_FndGetAllocatableSizeForFrmHeapEx(NNSFndHeapHandle heap, int alignment) {
     u32 mask;
-    u32 start;
-    u32 tail;
+    u8 *start;
+    u8 *tail;
     NNSiFndFrmHeapHead *frmHeap;
 
     mask = Abs(alignment);
     frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
-    tail = (u32) frmHeap->mTailAllocator;
-    start = ((mask - 1) + (u32) frmHeap->mHeadAllocator) & ~(mask - 1);
+    tail = frmHeap->mTailAllocator;
+    start = (u8 *) (((mask - 1) + (u32) frmHeap->mHeadAllocator) & ~(mask - 1));
     if (start > tail) {
         return 0;
     }
@@ -159,7 +159,7 @@ u32 NNS_FndGetAllocatableSizeForFrmHeapEx(NNSFndHeapHandle heap, int alignment) 
 // Records both allocation positions under tagName in a 16-byte entry taken from the front; returns 0 when there is no
 // room for it.
 BOOL NNS_FndRecordStateForFrmHeap(NNSFndHeapHandle heap, u32 tagName) {
-    void *oldHead;
+    u8 *oldHead;
     NNSiFndFrmHeapState *state;
     NNSiFndFrmHeapHead *frmHeap;
 
@@ -207,10 +207,10 @@ u32 NNS_FndAdjustFrmHeap(NNSFndHeapHandle heap) {
     NNSiFndFrmHeapHead *frmHeap;
 
     frmHeap = (NNSiFndFrmHeapHead *) (heap + 1);
-    if ((u32) heap->mHeapEnd - (u32) frmHeap->mTailAllocator != 0) {
+    if (heap->mHeapEnd - frmHeap->mTailAllocator != 0) {
         return 0;
     }
     heap->mHeapEnd = frmHeap->mHeadAllocator;
     frmHeap->mTailAllocator = heap->mHeapEnd;
-    return (u32) heap->mHeapEnd - (u32) heap;
+    return heap->mHeapEnd - (u8 *) heap;
 }

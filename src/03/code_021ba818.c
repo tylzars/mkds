@@ -34,8 +34,7 @@ void func_ov003_021bac90(s16 *a) {
                         }
                     }
                 } else if (data_ov003_021d8b98 == 8) {
-                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8ba0, data_ov003_021d8ba4,
-                                            data_ov003_021d8b8c) != 3) {
+                    if (func_ov000_021a5e84(data_ov003_021d8ba0, data_ov003_021d8ba4, data_ov003_021d8b8c) != 3) {
                         data_ov003_021d8b98 = 3;
                         if (data_ov003_021d8b9c != NULL) {
                             data_ov003_021d8b9c(2, 0);
@@ -101,8 +100,7 @@ void func_ov003_021bac90(s16 *a) {
                         }
                     }
                 } else if (data_ov003_021d8b98 == 8) {
-                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8ba0, data_ov003_021d8ba4,
-                                            data_ov003_021d8b8c) != 3) {
+                    if (func_ov000_021a5e84(data_ov003_021d8ba0, data_ov003_021d8ba4, data_ov003_021d8b8c) != 3) {
                         data_ov003_021d8b98 = 3;
                         if (data_ov003_021d8b9c != NULL) {
                             data_ov003_021d8b9c(2, 0);
@@ -138,8 +136,7 @@ void func_ov003_021bac90(s16 *a) {
                         }
                     }
                 } else if (data_ov003_021d8b98 == 8) {
-                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8ba0, data_ov003_021d8ba4,
-                                            data_ov003_021d8b8c) != 3) {
+                    if (func_ov000_021a5e84(data_ov003_021d8ba0, data_ov003_021d8ba4, data_ov003_021d8b8c) != 3) {
                         data_ov003_021d8b98 = 3;
                         if (data_ov003_021d8b9c != NULL) {
                             data_ov003_021d8b9c(2, 0);
@@ -199,8 +196,7 @@ BOOL func_ov003_021bac0c(void) {
             }
             break;
         case 1:
-            if (func_ov000_021a629c((Unk021a5a78 *) data_ov003_021d8b88,
-                                    (void (*)(Unk021a586c *)) func_ov003_021bac90) != 3) {
+            if (func_ov000_021a629c(data_ov003_021d8b88, (void (*)(Unk021a586c *)) func_ov003_021bac90) != 3) {
                 return FALSE;
             }
             break;
@@ -334,7 +330,7 @@ BOOL func_ov003_021ba910(Unk021ba778Src *a, Unk021d8a4c *b, u32 c) {
         return TRUE;
     }
     if (data_ov003_021d8b98 == 3) {
-        if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8ba0, data_ov003_021d8ba4, data_ov003_021d8b8c) == 3) {
+        if (func_ov000_021a5e84(data_ov003_021d8ba0, data_ov003_021d8ba4, data_ov003_021d8b8c) == 3) {
             data_ov003_021d8b98 = 8;
             OS_RestoreInterrupts(v1);
             return TRUE;
@@ -346,10 +342,10 @@ BOOL func_ov003_021ba910(Unk021ba778Src *a, Unk021d8a4c *b, u32 c) {
 
 BOOL func_ov003_021ba818(Unk021ba818Func *a, u8 *b, s32 c) {
     u32 v1 = OS_DisableInterrupts();
-    data_ov003_021d8ba4 = b;
-    data_ov003_021d8b88 = (Unk021d8b88 *) (((u32) b + 0x53) & ~3);
+    data_ov003_021d8ba4 = (Unk02188de4 *) b;
+    data_ov003_021d8b88 = (Unk021a5a78 *) (((u32) b + 0x53) & ~3);
     data_ov003_021d8b80 = (u8 *) (((u32) data_ov003_021d8b88 + 0x2f) & ~0x1f);
-    data_ov003_021d8ba0 = (Unk021ba778Src *) (((u32) data_ov003_021d8b80 + 0x231f) & ~0x1f);
+    data_ov003_021d8ba0 = (Unk021a5e84 *) (((u32) data_ov003_021d8b80 + 0x231f) & ~0x1f);
     data_ov003_021d8b88->mUnk_04 = (u8 *) (((u32) data_ov003_021d8ba0 + 0xdf) & ~0x1f);
     data_ov003_021d8b88->mUnk_08 = (b + c) - data_ov003_021d8b88->mUnk_04;
     data_ov003_021d8b88->mUnk_0c = 0;
@@ -363,8 +359,7 @@ BOOL func_ov003_021ba818(Unk021ba818Func *a, u8 *b, s32 c) {
         data_ov003_021d8b98 = 1;
     }
     if (data_ov003_021d8b98 == 1) {
-        if (func_ov000_021a629c((Unk021a5a78 *) data_ov003_021d8b88, (void (*)(Unk021a586c *)) func_ov003_021bac90) !=
-            3) {
+        if (func_ov000_021a629c(data_ov003_021d8b88, (void (*)(Unk021a586c *)) func_ov003_021bac90) != 3) {
             OS_RestoreInterrupts(v1);
             return FALSE;
         }

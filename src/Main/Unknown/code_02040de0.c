@@ -130,7 +130,7 @@ BOOL IsPosInCourseMapShapeBox(Vec3 *a, CourseMapShape *b) {
     s32 d;
     s32 t;
 
-    VEC_Subtract(a, (Vec3 *) b, &v);
+    VEC_Subtract(a, &b->mUnk_00, &v);
     d = VEC_DotProduct(&v, &b->mUnk_24);
     if (d > (s32) (((s64) b->mUnk_0c.y * 0x64000 + 0x800) >> 12) || d < 0) {
         return FALSE;
@@ -160,7 +160,7 @@ s32 IsPosInCourseMapShape(Vec3 *a, CourseMapShape *b) {
             r = IsPosInCourseMapShapeBox(a, b);
             break;
         case 1:
-            VEC_Subtract(a, (Vec3 *) b, &v);
+            VEC_Subtract(a, &b->mUnk_00, &v);
             if (VEC_DotProduct(&v, &b->mUnk_24) > (s32) (((s64) b->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
                 r = 0;
             } else {
@@ -194,7 +194,7 @@ s32 func_0204176c(Vec3 *a, s32 *b) {
                     t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
-                    VEC_Subtract(a, (Vec3 *) p, &v);
+                    VEC_Subtract(a, &p->mUnk_00, &v);
                     if (VEC_DotProduct(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
                         x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
                         y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
@@ -242,7 +242,7 @@ void *FindCourseMapKind4ShapeRacePointLink(Vec3 *a) {
                     t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
-                    VEC_Subtract(a, (Vec3 *) p, &v);
+                    VEC_Subtract(a, &p->mUnk_00, &v);
                     if (VEC_DotProduct(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
                         x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
                         y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
@@ -285,7 +285,7 @@ Unk02175620_bc *FindCourseMapKind4ShapeBattlePointLink(Vec3 *a) {
                     t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
-                    VEC_Subtract(a, (Vec3 *) p, &v);
+                    VEC_Subtract(a, &p->mUnk_00, &v);
                     if (VEC_DotProduct(&v, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
                         x = VEC_DotProduct(&v, &p->mUnk_18) >> 4;
                         y = VEC_DotProduct(&v, &p->mUnk_30) >> 4;
@@ -325,7 +325,7 @@ s32 GetCourseMapCameraIndexAtPos(Vec3 *a) {
                     t = IsPosInCourseMapShapeBox(a, p);
                     break;
                 case 1:
-                    VEC_Subtract(a, (Vec3 *) p, &v);
+                    VEC_Subtract(a, &p->mUnk_00, &v);
                     if (VEC_DotProduct(&v, &p->mUnk_24) > (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
                         t = 0;
                     } else {
@@ -465,7 +465,7 @@ s32 IsKartInCourseMapKind3ShapeList(s32 a, u32 b) {
                 t = IsPosInCourseMapShapeBox(&v, p);
                 break;
             case 1:
-                VEC_Subtract(&v, (Vec3 *) p, &w);
+                VEC_Subtract(&v, &p->mUnk_00, &w);
                 if (VEC_DotProduct(&w, &p->mUnk_24) <= (s32) (((s64) p->mUnk_0c.y * 0x32000 + 0x800) >> 12)) {
                     x = VEC_DotProduct(&w, &p->mUnk_18) >> 4;
                     y = VEC_DotProduct(&w, &p->mUnk_30) >> 4;

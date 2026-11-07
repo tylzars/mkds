@@ -54,7 +54,7 @@ void func_ov003_021cd2e0(const char *input, u8 *output);
 void func_ov003_021cd338(s32 param_1);
 void func_ov003_021cd42c(void);
 void func_ov003_021cd4ac(int a);
-u32 func_ov003_021cd4dc(void);
+struct Unk021cd5e0 *func_ov003_021cd4dc(void);
 void func_ov003_021cd4e8(int arg0);
 void func_ov003_021cd5e0(const Unk021cd5e0_arg *a);
 void func_ov003_021cd6d0(void);

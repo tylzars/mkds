@@ -10,8 +10,8 @@ typedef struct NNSiFndHeapHead {
     /* 00 */ u32 mSignature;
     /* 04 */ NNSFndLink mLink;
     /* 0c */ NNSFndList mChildList;
-    /* 18 */ void *mHeapStart;
-    /* 1c */ void *mHeapEnd;
+    /* 18 */ u8 *mHeapStart;
+    /* 1c */ u8 *mHeapEnd;
     /* 20 */ u32 mAttribute;
 } NNSiFndHeapHead;
 

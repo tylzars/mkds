@@ -24,7 +24,7 @@ typedef struct Gt2Socket {
     /* 18 */ BOOL mUnk_18;
     /* 1c */ s32 mRunningCallbackCount;
     /* 20 */ void (*mIncomingConnectionCallback)(struct Gt2Socket *a, struct Gt2Connection *b, int c, int d, int e,
-                                                 int f, int g);
+                                                 const u8 *f, int g);
     /* 24 */ void (*mUnk_24)(struct Gt2Socket *a);
     /* 28 */ UnkWordFunc *mSentCallback;
     /* 2c */ UnkWordFunc *mUnk_2c;
@@ -89,7 +89,7 @@ typedef struct Unk02198af4 {
 
 BOOL Gt2CallDataCallback(Gt2Connection *connection, void *b, int c, int d);
 BOOL Gt2SetResultAndCallResultCallback(Gt2Connection *connection, int b, void *c, int d);
-BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d, int e, int f, int g);
+BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d, int e, const u8 *f, int g);
 
 extern const char data_ov000_021b3f50[];
 extern const char data_ov000_021b3f58[];

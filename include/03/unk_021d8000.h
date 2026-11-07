@@ -3,6 +3,9 @@
 #include "types.h"
 #include "code_0200db4c.h"
 #include "03/unk_021d6000.h"
+#include "00/code_021a574c.h"
+#include "00/code_021a5b3c.h"
+#include "00/code_02188de4.h"
 
 // Six bytes moved as one value.
 typedef struct Unk021d8c54 {
@@ -90,19 +93,12 @@ extern Unk021d90ac data_ov003_021d90ac;
 extern u8 data_ov003_021d9104[];
 extern u8 data_ov003_021d9904[0x800];
 
-typedef struct Unk021d8bd8 {
-    /* 00 */ s32 mUnk_00;
-    /* 04 */ void *mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ u32 mUnk_0c;
-} Unk021d8bd8;
-
-extern u8 *data_ov003_021d8bf8;
-extern Unk021d8bd8 *data_ov003_021d8bd8;
+extern Unk02188de4 *data_ov003_021d8bf8;
+extern Unk021a5a78 *data_ov003_021d8bd8;
 extern void *data_ov003_021d8c0c;
 extern u8 *data_ov003_021d8c14;
 extern u8 *data_ov003_021d8c18;
-extern u8 *data_ov003_021d8c1c;
+extern Unk021a5e84 *data_ov003_021d8c1c;
 extern u32 data_ov003_021d8c28;
 extern u32 data_ov003_021d8c30;
 extern UnkFunc *data_ov003_021d8c50;

@@ -7,6 +7,7 @@ void LoadKartAndCharacterFiles(void);
 #include "Main/Unknown/code_020b4000.h" // Nclr
 
 typedef struct Unk0217ad00_014 Unk0217ad00_014;
+typedef struct Unk0217ad08_1f4 Unk0217ad08_1f4;
 
 typedef struct Unk0217ad08_058 Unk0217ad08_058;
 
@@ -53,13 +54,13 @@ extern u8 *data_usa_0217acec;
 
 void func_02077bc0(void *a);
 void func_02077c1c(void);
-void func_02077eb4(void *a, u32 *b);
+void func_02077eb4(void *a, Unk0217ad08_1f4 *b);
 Nclr *GetEmblemSBNclr(void);
 void func_02077f0c(u16 *a, int b, u32 c);
 void func_02077f48(unsigned int p0);
 void func_02077f5c(void);
 Unk0217ad00_014 *func_02077f7c(int param_1);
-void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3);
+void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, Unk0217ad00_014 *param_3);
 void func_0207800c(void);
 void func_02078078(void);
 void func_020780b0(void);

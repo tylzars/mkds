@@ -361,8 +361,8 @@ void func_ov003_021cd4e8(int arg0) {
     func_ov003_021cd6d0();
 }
 
-u32 func_ov003_021cd4dc(void) {
-    return (u32) data_ov003_021da270;
+struct Unk021cd5e0 *func_ov003_021cd4dc(void) {
+    return data_ov003_021da270;
 }
 
 void func_ov003_021cd4ac(int a) {
@@ -370,7 +370,7 @@ void func_ov003_021cd4ac(int a) {
     v1 = &data_ov003_021da270->mUnk_000[a].mUnk_00;
     MI_CpuFill8(v1, 0, 0xef);
     v1->mUnk_e7 = 0xff;
-    func_ov003_021cd338((u32) a);
+    func_ov003_021cd338(a);
 }
 
 void func_ov003_021cd42c(void) {

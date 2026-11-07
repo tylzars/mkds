@@ -7,16 +7,16 @@
 // allocation positions of the moment, chained through mPrevState.
 typedef struct NNSiFndFrmHeapState {
     /* 00 */ u32 mTagName;
-    /* 04 */ void *mHeadAllocator;
-    /* 08 */ void *mTailAllocator;
+    /* 04 */ u8 *mHeadAllocator;
+    /* 08 */ u8 *mTailAllocator;
     /* 0c */ struct NNSiFndFrmHeapState *mPrevState;
 } NNSiFndFrmHeapState;
 
 // Follows the NNSiFndHeapHead of a frame heap: the two addresses that AllocFromHead_ and AllocFromTail_ move towards
 // each other, and the newest recorded state.
 typedef struct NNSiFndFrmHeapHead {
-    /* 00 */ void *mHeadAllocator;
-    /* 04 */ void *mTailAllocator;
+    /* 00 */ u8 *mHeadAllocator;
+    /* 04 */ u8 *mTailAllocator;
     /* 08 */ NNSiFndFrmHeapState *mState;
 } NNSiFndFrmHeapHead;
 

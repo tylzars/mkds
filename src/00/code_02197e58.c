@@ -80,7 +80,7 @@ BOOL func_ov000_02198448(Gt2Socket *socket) {
     return TRUE;
 }
 
-BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d, int e, int f, int g) {
+BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d, int e, const u8 *f, int g) {
     if (a == NULL || b == NULL) {
         AssertionFailed(data_ov000_021b3f74, data_ov000_021b3f58, NULL, 0x3d);
     }
@@ -91,7 +91,7 @@ BOOL CallIncomingConnectionCallback(Gt2Socket *a, Gt2Connection *b, int c, int d
         return TRUE;
     }
     if (g == 0 || f == 0) {
-        f = 0;
+        f = NULL;
         g = 0;
     }
     a->mRunningCallbackCount++;

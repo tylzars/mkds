@@ -134,9 +134,9 @@ typedef struct RaceMNumberPair {
 // Same bytes as WaterEfct (gViewFrustum is declared with this type).
 typedef struct Unk0217b4d8 {
     /* 00 */ s32 mHeight;
-    /* 04 */ u32 mNsbmdFile;
-    /* 08 */ u32 mNsbcaFile;
-    /* 0c */ u32 mNsbmaFile;
+    /* 04 */ void *mNsbmdFile;
+    /* 08 */ void *mNsbcaFile;
+    /* 0c */ void *mNsbmaFile;
 } Unk0217b4d8;
 
 // Object at data_0217b4f8: six vectors between words at 0x00/0x04 and 0x50/0x54.

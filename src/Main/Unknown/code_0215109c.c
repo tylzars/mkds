@@ -3,8 +3,8 @@
 
 #pragma thumb on
 
-u32 func_0215109c(void) {
-    return ((u32) (&data_021804a0));
+u8 *func_0215109c(void) {
+    return data_021804a0;
 }
 
 #pragma thumb off

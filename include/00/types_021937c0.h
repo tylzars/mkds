@@ -6,7 +6,7 @@
 // Object behind GpiOperation.mUnk_04: GpiCreateSearch clears and fills it, GpiOpenSearchSocket sets the
 // word at 0x04 and gives it the buffer at 0x08 of 0x0c bytes.
 typedef struct Unk02196240 {
-    /* 000 */ u32 mUnk_000;
+    /* 000 */ s32 mUnk_000;
     /* 004 */ s32 mUnk_004;
     /* 008 */ void *mUnk_008;
     /* 00c */ s32 mUnk_00c;
@@ -16,13 +16,13 @@ typedef struct Unk02196240 {
     /* 01c */ s32 mUnk_01c;
     /* 020 */ u32 mUnk_020;
     /* 024 */ u32 mUnk_024;
-    /* 028 */ char mUnk_028[0x1f];
-    /* 047 */ char mUnk_047[0x15];
-    /* 05c */ char mUnk_05c[0x33];
-    /* 08f */ char mUnk_08f[0x1f];
-    /* 0ae */ char mUnk_0ae[0x1f];
-    /* 0cd */ char mUnk_0cd[0x1f];
-    /* 0ec */ char mUnk_0ec[0x44];
+    /* 028 */ s8 mUnk_028[0x1f];
+    /* 047 */ s8 mUnk_047[0x15];
+    /* 05c */ s8 mUnk_05c[0x33];
+    /* 08f */ s8 mUnk_08f[0x1f];
+    /* 0ae */ s8 mUnk_0ae[0x1f];
+    /* 0cd */ s8 mUnk_0cd[0x1f];
+    /* 0ec */ s8 mUnk_0ec[0x44];
     /* 130 */ s32 mUnk_130;
     /* 134 */ s32 mUnk_134;
     /* 138 */ s32 mUnk_138;

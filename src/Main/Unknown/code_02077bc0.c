@@ -1198,7 +1198,7 @@ void func_02078f78(NNSG3dResFileHeader *a) {
 
 void func_02078f18(void *a, Unk0217ad08_058 *b) {
     func_02079a3c(b);
-    b->mUnk_b0 = (u32) data_021759d0->mUnk_00;
+    b->mUnk_b0 = data_021759d0->mUnk_00;
     b->mUnk_b4 = 0;
     b->mUnk_10 = HeapAlloc(a, 0x6c);
     b->mUnk_14 = HeapAlloc(a, 0x6c);
@@ -1268,7 +1268,7 @@ void func_02078d64(void *param_1) {
     LoadKartModelMenuFile(param_1, data_usa_0216574c, (void **) &data_0217ad08->mUnk_01c);
     func_02078f9c(param_1);
     for (i = 0; i < 2; i = (u16) (i + 1)) {
-        func_02077eb4(param_1, (u32 *) &data_0217ad08->mUnk_1f4[i]);
+        func_02077eb4(param_1, &data_0217ad08->mUnk_1f4[i]);
     }
     if (data_0217aa08->mUnk_04->mUnk_004 != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
         data_0217ad08->mUnk_1e8 = data_0217aa08->mUnk_04->mUnk_008;
@@ -1302,7 +1302,7 @@ void func_02078c58(void *param_1) {
     }
     data_0217ad08->mUnk_024.mUnk_08 = data_usa_021656e0;
     for (i = 0; i < 2; i = (u16) (i + 1)) {
-        func_02077eb4(param_1, (u32 *) &data_0217ad08->mUnk_1f4[i]);
+        func_02077eb4(param_1, &data_0217ad08->mUnk_1f4[i]);
     }
     data_0217ad08->mUnk_1f4[data_0217ad08->mUnk_266].mUnk_2c = TRUE;
     data_0217ad08->mUnk_024.mUnk_00 = 0;
@@ -1785,13 +1785,13 @@ void func_0207800c(void) {
         func_02078078();
         for (i = 0; i < data_021759c0->mKartCount; i = (u16) (i + 1)) {
             if (gKartModels->mKartModelsEntries[i].mUnk_000 == 0xc) {
-                func_02077f9c(i, &gKartModels->mKartModelsEntries[i], (u8 *) func_02077f7c(i));
+                func_02077f9c(i, &gKartModels->mKartModelsEntries[i], func_02077f7c(i));
             }
         }
     }
 }
 
-void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, u8 *param_3) {
+void func_02077f9c(int param_1, struct Unk0206bcb0_590 *param_2, Unk0217ad00_014 *param_3) {
     NNSG3dResMdl *e;
     u8 *t;
     u8 *u;
@@ -1865,24 +1865,24 @@ Nclr *GetEmblemSBNclr(void) {
 
 #pragma thumb on
 
-void func_02077eb4(void *a, u32 *b) {
-    u32 v1;
-    u32 v2;
-    v1 = ((u32) HeapAlloc(a, (0x0000f000u)));
-    v2 = (u32) NNS_FndCreateExpHeapEx(((void *) v1), (0x0000f000u), 0);
-    b[1] = v2;
-    *b = v1;
-    b[4] = 0;
-    b[3] = b[4];
-    b[2] = b[3];
-    b[7] = 0;
-    b[6] = b[7];
-    b[5] = b[6];
-    b[10] = 0;
-    b[9] = b[10];
-    b[8] = b[9];
-    b[0xb] = 0;
-    *(u16 *) (b + 0xc) = 0;
+void func_02077eb4(void *a, Unk0217ad08_1f4 *b) {
+    void *v1;
+    struct NNSiFndHeapHead *v2;
+    v1 = HeapAlloc(a, 0xf000);
+    v2 = NNS_FndCreateExpHeapEx(v1, 0xf000, 0);
+    b->mUnk_04 = v2;
+    b->mUnk_00 = v1;
+    b->mUnk_10 = NULL;
+    b->mUnk_0c = b->mUnk_10;
+    b->mUnk_08 = b->mUnk_0c;
+    b->mUnk_1c = NULL;
+    b->mUnk_18 = b->mUnk_1c;
+    b->mUnk_14 = b->mUnk_18;
+    b->mUnk_28 = NULL;
+    b->mUnk_24 = b->mUnk_28;
+    b->mUnk_20 = b->mUnk_24;
+    b->mUnk_2c = FALSE;
+    b->mUnk_30 = 0;
 }
 
 #pragma thumb off

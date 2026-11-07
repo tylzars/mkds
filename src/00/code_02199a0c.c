@@ -2,7 +2,7 @@
 #include "00/code_02199ad8.h"
 #include "00/code_02197e58.h"
 
-u32 func_ov000_02199a0c(Gt2Connection *a, int b, u32 c, u32 d) {
+u32 func_ov000_02199a0c(Gt2Connection *a, int b, const u8 *c, u32 d) {
     int v1;
     a->mUnk_66 = a->mUnk_66 + 1;
     if (b == 0) {

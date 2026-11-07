@@ -117,43 +117,43 @@ u32 func_020d2c20(void) {
 }
 
 // The water_efct.nsbmd file: WaterEfct's if gCourseWaterEfct exists, else the Water's own when mUnk_170 is non-zero,
-// else 0; returned as u32 and passed as an effect model file to func_0208ddf4.
-u32 GetWaterEfctNsbmdFile(void) {
+// else NULL; passed as an effect model file to func_0208ddf4.
+void *GetWaterEfctNsbmdFile(void) {
     Water *v1;
     if (gCourseWaterEfct != NULL) {
         return gCourseWaterEfct->mNsbmdFile;
     }
     v1 = gCourseWater;
     if ((v1 != NULL) && (v1->mUnk_170 != 0)) {
-        return (u32) v1->mEfctNsbmdFile;
+        return v1->mEfctNsbmdFile;
     }
-    return 0;
+    return NULL;
 }
 
 // The water_efct.nsbca file, same rule as GetWaterEfctNsbmdFile.
-u32 GetWaterEfctNsbcaFile(void) {
+void *GetWaterEfctNsbcaFile(void) {
     Water *v1;
     if (gCourseWaterEfct != NULL) {
         return gCourseWaterEfct->mNsbcaFile;
     }
     v1 = gCourseWater;
     if ((v1 != NULL) && (v1->mUnk_170 != 0)) {
-        return (u32) v1->mEfctNsbcaFile;
+        return v1->mEfctNsbcaFile;
     }
-    return 0;
+    return NULL;
 }
 
 // The water_efct.nsbma file, same rule as GetWaterEfctNsbmdFile.
-u32 GetWaterEfctNsbmaFile(void) {
+void *GetWaterEfctNsbmaFile(void) {
     Water *v1;
     if (gCourseWaterEfct != NULL) {
         return gCourseWaterEfct->mNsbmaFile;
     }
     v1 = gCourseWater;
     if ((v1 != NULL) && (v1->mUnk_170 != 0)) {
-        return (u32) v1->mEfctNsbmaFile;
+        return v1->mEfctNsbmaFile;
     }
-    return 0;
+    return NULL;
 }
 
 #pragma thumb off

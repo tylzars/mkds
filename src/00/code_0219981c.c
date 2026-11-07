@@ -96,7 +96,7 @@ top:
     for (b = DarrayGetCount(a->mUnk_5c) - 1; b >= 0; b--) {
         c = DarrayGetElement(a->mUnk_5c, b);
         if (c->mUnk_0c == a->mUnk_66) {
-            if (func_ov000_02199a0c(a, c->mUnk_08, (u32) (a->mUnk_44.mData + c->mUnk_00), c->mUnk_04) == 0) {
+            if (func_ov000_02199a0c(a, c->mUnk_08, a->mUnk_44.mData + c->mUnk_00, c->mUnk_04) == 0) {
                 return 0;
             }
             func_ov000_02199878(a, c, b);

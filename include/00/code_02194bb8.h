@@ -3,36 +3,6 @@
 #include "types.h"
 #include "00/code_0218f960.h"
 
-// Object at 0x04 of Unk02194cac.
-typedef struct Unk02194cac_04 {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ u32 mUnk_004;
-    /* 008 */ s8 *mUnk_008;
-    /* 00c */ u8 mUnk_00c[0xc];
-    /* 018 */ u8 mUnk_018[0x10];
-    /* 028 */ s8 mUnk_028[0x1f];
-    /* 047 */ s8 mUnk_047[0x15];
-    /* 05c */ s8 mUnk_05c[0x33];
-    /* 08f */ s8 mUnk_08f[0x1f];
-    /* 0ae */ s8 mUnk_0ae[0x1f];
-    /* 0cd */ s8 mUnk_0cd[0x1f];
-    /* 0ec */ s8 mUnk_0ec[0x44];
-    /* 130 */ s32 mUnk_130;
-    /* 134 */ s32 mUnk_134;
-    /* 138 */ s32 mUnk_138;
-    /* 13c */ u8 mUnk_13c[4];
-    /* 140 */ BOOL mUnk_140;
-} Unk02194cac_04;
-
-// Object GpiUpdateSearch takes as its second argument.
-typedef struct Unk02194cac {
-    /* 00 */ u8 mUnk_00[4];
-    /* 04 */ Unk02194cac_04 *mUnk_04;
-    /* 08 */ u32 mUnk_08;
-    /* 0c */ GpiCallback mUnk_0c;
-    /* 14 */ s32 mUnk_14;
-} Unk02194cac;
-
 // 0xac-byte array element GpiUpdateSearch fills.
 typedef struct Unk02194cac_ac {
     /* 00 */ s32 mUnk_00;
@@ -167,7 +137,7 @@ extern char data_ov000_021b3994[];
 extern char data_ov000_021b399c[];
 
 BOOL GpiUpdateSearches(GpConnection *a);
-s32 GpiUpdateSearch(GpConnection *a, Unk02194cac *b);
+s32 GpiUpdateSearch(GpConnection *a, GpiOperation *b);
 int func_ov000_021960a4(GpConnection *a, s8 *b, s8 *c, s8 *d, s8 *e, s8 *f, int g, int h, u32 l, u32 m, u32 n);
 int func_ov000_021961e8(GpConnection *a, u32 b, u32 c, u32 d, u32 e);
 BOOL GpiCreateSearch(GpConnection *a, Unk02196240 **b, u32 c);

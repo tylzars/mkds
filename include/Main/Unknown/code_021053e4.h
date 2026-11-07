@@ -2,6 +2,7 @@
 
 #include "types.h"
 #include "Main/Unknown/code_020de214.h" // Unk020de334
+#include "Main/Unknown/code_02067cb0.h" // MapObject
 
 typedef struct Unk021052fc Unk021052fc;
 
@@ -29,5 +30,5 @@ u32 func_02105504(void);
 u32 func_021054d0(void);
 Unk0215a680 *func_02105480(void);
 void func_02105464(void *p, void *q);
-u32 func_0210543c(void);
+MapObject *func_0210543c(void);
 void func_021053e4(Unk021052fc *p);

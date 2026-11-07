@@ -43,7 +43,7 @@ void func_021049a4(void) {
     ItemObject *v3;
     ItemObject **v4;
     ItemPool *v6;
-    u32 v5;
+    MapObject *v5;
     if (gItemInfos[17].mEnabled != FALSE) {
         v6 = &gItemPools[8];
         v4 = v6->mObjects;
@@ -53,7 +53,7 @@ void func_021049a4(void) {
             do {
                 v3 = *v4;
                 v5 = func_0210543c();
-                *(u32 *) ((s32) v3 + 0x134) = v5;
+                *(MapObject **) ((s32) v3 + 0x134) = v5;
                 *(s32 *) (*(s32 *) ((s32) v3 + 0x134) + 0xfc) = (s32) v3 + 0x13c;
                 v4 = v4 + 1;
                 v2 = v2 + 1;

@@ -77,26 +77,26 @@ u32 func_ov000_02199e50(Gt2Connection *a, const u8 *b, s32 c) {
     return 0;
 }
 
-u32 func_ov000_02199dd0(Gt2Connection *a, u32 c, u32 d) {
+u32 func_ov000_02199dd0(Gt2Connection *a, const u8 *c, u32 d) {
     if (a->mUnk_0c != 5 && a->mUnk_0c != 6) {
         if (func_ov000_02199fa4(a) == 0) {
             return 0;
         }
     } else {
         if (DarrayGetCount(a->mUnk_9c) != 0) {
-            if (func_ov000_02197fe8(a, 0, (void *) c, d, 1) != FALSE) {
+            if (func_ov000_02197fe8(a, 0, c, d, 1) != FALSE) {
                 return 1;
             }
             return 0;
         }
-        if (Gt2CallDataCallback(a, (const u8 *) c, d, 1) == FALSE) {
+        if (Gt2CallDataCallback(a, c, d, 1) == FALSE) {
             return 0;
         }
     }
     return 1;
 }
 
-u32 func_ov000_02199d4c(Gt2Connection *a, u32 e, int f) {
+u32 func_ov000_02199d4c(Gt2Connection *a, const u8 *e, int f) {
     s8 b[0x20];
     s8 c[0x20];
     if (a->mUnk_0c != 2) {
@@ -121,7 +121,7 @@ u32 func_ov000_02199d4c(Gt2Connection *a, u32 e, int f) {
     return 1;
 }
 
-u32 func_ov000_02199c98(Gt2Connection *a, int d, int e) {
+u32 func_ov000_02199c98(Gt2Connection *a, const u8 *d, int e) {
     s8 b[0x20];
     if (a->mUnk_0c != 0) {
         if (func_ov000_02199fa4(a) != 0) {
@@ -135,7 +135,7 @@ u32 func_ov000_02199c98(Gt2Connection *a, int d, int e) {
         }
         return 0;
     }
-    if (func_ov000_02197b08((const u8 *) d, a->mUnk_68) == FALSE) {
+    if (func_ov000_02197b08(d, a->mUnk_68) == FALSE) {
         if (func_ov000_02199fa4(a) != 0) {
             return 1;
         }
@@ -153,7 +153,7 @@ u32 func_ov000_02199c98(Gt2Connection *a, int d, int e) {
     return 1;
 }
 
-u32 func_ov000_02199bb4(Gt2Connection *a, int c, int d) {
+u32 func_ov000_02199bb4(Gt2Connection *a, const u8 *c, int d) {
     if (a->mUnk_0c != 3) {
         if (func_ov000_02199fa4(a) != 0) {
             return 1;
@@ -166,7 +166,7 @@ u32 func_ov000_02199bb4(Gt2Connection *a, int c, int d) {
         }
         return 0;
     }
-    if (func_ov000_02197b08((const u8 *) c, a->mUnk_68) == FALSE) {
+    if (func_ov000_02197b08(c, a->mUnk_68) == FALSE) {
         if (func_ov000_02199fa4(a) != 0) {
             return 1;
         }
@@ -201,7 +201,7 @@ u32 func_ov000_02199b70(Gt2Connection *a) {
     return 0;
 }
 
-u32 func_ov000_02199b14(Gt2Connection *a, u32 c, u32 d) {
+u32 func_ov000_02199b14(Gt2Connection *a, void *c, u32 d) {
     if (a->mUnk_0c != 1) {
         if (func_ov000_02199fa4(a) != 0) {
             return 1;
@@ -212,7 +212,7 @@ u32 func_ov000_02199b14(Gt2Connection *a, u32 c, u32 d) {
     if (func_ov000_02198b8c(a) == 0) {
         return 0;
     }
-    if (Gt2SetResultAndCallResultCallback(a, 2, (void *) c, d) != FALSE) {
+    if (Gt2SetResultAndCallResultCallback(a, 2, c, d) != FALSE) {
         return 1;
     }
     return 0;

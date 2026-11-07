@@ -526,15 +526,15 @@ s32 func_020854c0(u16 a) {
 }
 
 s32 func_020854a0(u32 p0, u32 p1) {
-    return ((u32) data_0217aebc->mUnk_040[(((p1) + (p0))) - (0x1u)]);
+    return data_0217aebc->mUnk_040[(((p1) + (p0))) - (0x1u)];
 }
 
 s32 func_0208548c(void) {
-    return ((u32) data_0217aebc->mUnk_08c);
+    return data_0217aebc->mUnk_08c;
 }
 
 s32 func_02085478(void) {
-    return ((u32) data_0217aebc->mUnk_040[0]);
+    return data_0217aebc->mUnk_040[0];
 }
 
 s32 func_02085458(s32 a) {
@@ -548,7 +548,7 @@ s32 func_02085458(s32 a) {
 }
 
 s32 func_02085434(void) {
-    return ((u32) data_0217aebc->mUnk_060[((data_0217aebc->mUnk_124)) - (0x1u)]);
+    return data_0217aebc->mUnk_060[((data_0217aebc->mUnk_124)) - (0x1u)];
 }
 
 Unk0217aec0 *func_02085424(void) {
@@ -556,7 +556,7 @@ Unk0217aec0 *func_02085424(void) {
 }
 
 s32 func_02085408(u32 p0) {
-    return ((u32) data_0217aebc->mUnk_020[(p0) - (0x1u)]);
+    return data_0217aebc->mUnk_020[(p0) - (0x1u)];
 }
 
 u32 func_020853f0(u32 p0) {

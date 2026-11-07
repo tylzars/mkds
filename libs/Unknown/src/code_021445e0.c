@@ -81,12 +81,12 @@ int WM_StartDataSharing(Unk021450ec *dsInfo, u16 port, u16 aidBitmap, u16 dataLe
         for (i = 0; i < 4; i++) {
             dsInfo->mDs[i].mAidBitmap = dsInfo->mMemberMask & (readyMembers | 1);
         }
-        WM_SetPortCallback(port, (UnkFunc *) WmDataSharingReceiveCallback_Parent, dsInfo);
+        WM_SetPortCallback(port, WmDataSharingReceiveCallback_Parent, dsInfo);
         block = dsInfo->mDs;
         for (i = 0; i < (dsInfo->mDoubleMode == 1 ? 2 : 1); block++, i++) {
             dsInfo->mWriteIndex = (dsInfo->mWriteIndex + 1) & 3;
-            result = WM_SetMPDataToPortEx((UnkFunc *) WmDataSharingSetDataCallback, dsInfo, block,
-                                          dsInfo->mDataSetLength, dsInfo->mMemberMask & readyMembers, dsInfo->mPort, 1);
+            result = WM_SetMPDataToPortEx(WmDataSharingSetDataCallback, dsInfo, block, dsInfo->mDataSetLength,
+                                          dsInfo->mMemberMask & readyMembers, dsInfo->mPort, 1);
             if (result == 7) {
                 dsInfo->mSeqNum[i] = 0xffff;
                 dsInfo->mSendIndex = (dsInfo->mSendIndex + 1) & 3;
@@ -97,7 +97,7 @@ int WM_StartDataSharing(Unk021450ec *dsInfo, u16 port, u16 aidBitmap, u16 dataLe
         }
     } else {
         dsInfo->mSendIndex = 3;
-        WM_SetPortCallback(port, (UnkFunc *) WmDataSharingReceiveCallback_Child, dsInfo);
+        WM_SetPortCallback(port, WmDataSharingReceiveCallback_Child, dsInfo);
     }
     return 0;
 }
@@ -117,8 +117,8 @@ int WM_EndDataSharing(Unk021450ec *dsInfo) {
         return 6;
     }
     if (dsInfo->mMemberMask == 0 ||
-        ((registered = work->mPortCallbacks[dsInfo->mPort]) != (UnkFunc *) WmDataSharingReceiveCallback_Parent &&
-         registered != (UnkFunc *) WmDataSharingReceiveCallback_Child)) {
+        ((registered = work->mPortCallbacks[dsInfo->mPort]) != WmDataSharingReceiveCallback_Parent &&
+         registered != WmDataSharingReceiveCallback_Child)) {
         return 3;
     }
     WM_SetPortCallback(dsInfo->mPort, 0, 0);
@@ -183,7 +183,7 @@ int WM_StepDataSharing(Unk021450ec *dsInfo, void *sendData, Unk0214461c *receive
             dsInfo->mStatus = 1;
             previous = (dsInfo->mWriteIndex + 3) & 3;
             sendResult =
-                WM_SetMPDataToPortEx((UnkFunc *) WmDataSharingSetDataCallback, dsInfo, &dsInfo->mDs[previous],
+                WM_SetMPDataToPortEx(WmDataSharingSetDataCallback, dsInfo, &dsInfo->mDs[previous],
                                      dsInfo->mDataSetLength, dsInfo->mMemberMask & readyMembers, dsInfo->mPort, 1);
             if (sendResult == 7) {
                 dsInfo->mSeqNum[previous] = 0xffff;
@@ -234,8 +234,8 @@ int WM_StepDataSharing(Unk021450ec *dsInfo, void *sendData, Unk0214461c *receive
         if (sendOwn != 0) {
             outgoing = &dsInfo->mDs[dsInfo->mSendIndex].mData[0x1c];
             MIi_CpuCopy16(sendData, outgoing, dsInfo->mMemberDataSize);
-            sendResult = WM_SetMPDataToPortEx((UnkFunc *) WmDataSharingSetDataCallback, dsInfo, outgoing,
-                                              dsInfo->mMemberDataSize, dsInfo->mMemberMask, dsInfo->mPort, 1);
+            sendResult = WM_SetMPDataToPortEx(WmDataSharingSetDataCallback, dsInfo, outgoing, dsInfo->mMemberDataSize,
+                                              dsInfo->mMemberMask, dsInfo->mPort, 1);
             dsInfo->mSendIndex = (dsInfo->mSendIndex + 1) & 3;
             if (sendResult != 2) {
                 if (sendResult != 0) {
@@ -262,8 +262,7 @@ void WmDataSharingSetDataCallback(Unk02144920 *callback) {
     status = work->mStatusArea;
     registered = work->mPortCallbacks[callback->mUnk_0a];
     share = work->mPortCallbackArgs[callback->mUnk_0a];
-    if (registered != (UnkFunc *) WmDataSharingReceiveCallback_Parent &&
-        registered != (UnkFunc *) WmDataSharingReceiveCallback_Child) {
+    if (registered != WmDataSharingReceiveCallback_Parent && registered != WmDataSharingReceiveCallback_Child) {
         return;
     }
     if (share == 0) {
@@ -455,8 +454,8 @@ void WmDataSharingSendDataSet(Unk021450ec *dsInfo, u32 delayed) {
             dsInfo->mDs[done].mAidBitmap &= ~1;
         }
         OS_RestoreInterrupts(enabled);
-        result = WM_SetMPDataToPortEx((UnkFunc *) WmDataSharingSetDataCallback, dsInfo, &dsInfo->mDs[done],
-                                      dsInfo->mDataSetLength, dsInfo->mMemberMask & ready, dsInfo->mPort, 1);
+        result = WM_SetMPDataToPortEx(WmDataSharingSetDataCallback, dsInfo, &dsInfo->mDs[done], dsInfo->mDataSetLength,
+                                      dsInfo->mMemberMask & ready, dsInfo->mPort, 1);
         if (result == 7) {
             dsInfo->mSeqNum[done] = 0xffff;
             dsInfo->mSendIndex = (dsInfo->mSendIndex + 1) & 3;

@@ -139,13 +139,11 @@ void func_0208e570(void *a) {
     e = FindMainRaceOrMainEffectFile(data_02166360);
     f = FindMainRaceOrMainEffectFile(data_02166384);
     func_0208ddf4(a, 1, c, d, e, f);
-    func_0208ddf4(a, 2, (void *) GetWaterEfctNsbmdFile(), (void *) GetWaterEfctNsbcaFile(),
-                  (void *) GetWaterEfctNsbmaFile(), NULL);
-    func_0208ddf4(a, 4, (void *) GetWaterEfctNsbmdFile(), (void *) GetWaterEfctNsbcaFile(),
-                  (void *) GetWaterEfctNsbmaFile(), NULL);
+    func_0208ddf4(a, 2, GetWaterEfctNsbmdFile(), GetWaterEfctNsbcaFile(), GetWaterEfctNsbmaFile(), NULL);
+    func_0208ddf4(a, 4, GetWaterEfctNsbmdFile(), GetWaterEfctNsbcaFile(), GetWaterEfctNsbmaFile(), NULL);
     if (data_021759c0->mCourseId == COURSE_ID_OLD_HYUDORO_64) {
-        func_0208ddf4(a, 3, (void *) GetWaterEfctNsbmdFile(), FindCourseFile(data_021663a8),
-                      FindCourseFile(data_021663c0), NULL);
+        func_0208ddf4(a, 3, GetWaterEfctNsbmdFile(), FindCourseFile(data_021663a8), FindCourseFile(data_021663c0),
+                      NULL);
     }
     data_0217b080->mUnk_5c = 10;
 }
@@ -212,9 +210,9 @@ void func_0208e358(void) {
 }
 
 void func_0208e2c8(Unk0216618c *a, s32 b) {
-    u32 x;
-    u32 y;
-    u32 z;
+    void *x;
+    void *y;
+    void *z;
 
     x = GetWaterEfctNsbmdFile();
     data_0217b07c = 0;

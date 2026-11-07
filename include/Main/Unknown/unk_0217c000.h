@@ -82,7 +82,7 @@ extern s32 data_0217c804[];
 extern u32 data_0217c80c[];
 extern NNSSndSeqPlayer *data_0217c81c;
 extern u32 data_0217c728;
-extern u32 *data_0217c72c;
+extern struct MapObject **data_0217c72c;
 extern s32 data_0217c724;
 extern u16 data_0217c774;
 extern s32 data_0217c79c;

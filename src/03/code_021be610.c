@@ -133,8 +133,7 @@ void func_ov003_021bea3c(Unk021bea3c *param_0) {
                         data_ov003_021d8c50(2, 0);
                     }
                 } else if (data_ov003_021d8bfc == 8) {
-                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk02188de4 *) data_ov003_021d8bf8,
-                                            data_ov003_021d8c28) == 3) {
+                    if (func_ov000_021a5e84(data_ov003_021d8c1c, data_ov003_021d8bf8, data_ov003_021d8c28) == 3) {
                         return;
                     }
                     data_ov003_021d8bfc = 3;
@@ -203,8 +202,7 @@ void func_ov003_021bea3c(Unk021bea3c *param_0) {
                         data_ov003_021d8c50(2, 0);
                     }
                 } else if (data_ov003_021d8bfc == 8) {
-                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk02188de4 *) data_ov003_021d8bf8,
-                                            data_ov003_021d8c28) == 3) {
+                    if (func_ov000_021a5e84(data_ov003_021d8c1c, data_ov003_021d8bf8, data_ov003_021d8c28) == 3) {
                         return;
                     }
                     data_ov003_021d8bfc = 3;
@@ -243,8 +241,7 @@ void func_ov003_021bea3c(Unk021bea3c *param_0) {
                         data_ov003_021d8c50(2, 0);
                     }
                 } else if (data_ov003_021d8bfc == 8) {
-                    if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk02188de4 *) data_ov003_021d8bf8,
-                                            data_ov003_021d8c28) == 3) {
+                    if (func_ov000_021a5e84(data_ov003_021d8c1c, data_ov003_021d8bf8, data_ov003_021d8c28) == 3) {
                         return;
                     }
                     data_ov003_021d8bfc = 3;
@@ -316,8 +313,7 @@ u32 func_ov003_021be9b8(void) {
             }
             break;
         case 1:
-            if (func_ov000_021a629c((Unk021a5a78 *) data_ov003_021d8bd8,
-                                    (void (*)(Unk021a586c *)) func_ov003_021bea3c) != 3) {
+            if (func_ov000_021a629c(data_ov003_021d8bd8, (void (*)(Unk021a586c *)) func_ov003_021bea3c) != 3) {
                 return 0;
             }
             break;
@@ -459,8 +455,7 @@ u32 func_ov003_021be708(void *param_0, void *param_1, u32 param_2) {
         return 1;
     }
     if (data_ov003_021d8bfc == 3) {
-        if (func_ov000_021a5e84((Unk021a5e84 *) data_ov003_021d8c1c, (Unk02188de4 *) data_ov003_021d8bf8,
-                                data_ov003_021d8c28) == 3) {
+        if (func_ov000_021a5e84(data_ov003_021d8c1c, data_ov003_021d8bf8, data_ov003_021d8c28) == 3) {
             data_ov003_021d8bfc = 8;
             OS_RestoreInterrupts(a);
             return 1;
@@ -472,18 +467,18 @@ u32 func_ov003_021be708(void *param_0, void *param_1, u32 param_2) {
 
 u32 func_ov003_021be610(void (*param_0)(u32, u32), void *param_1, u32 param_2) {
     u32 a = OS_DisableInterrupts();
-    Unk021d8bd8 *b;
+    Unk021a5a78 *b;
     u32 c;
 
     data_ov003_021d8bf8 = param_1;
-    b = (Unk021d8bd8 *) (((u32) param_1 + 0x63) & ~3);
+    b = (Unk021a5a78 *) (((u32) param_1 + 0x63) & ~3);
     data_ov003_021d8bd8 = b;
     c = ((u32) b + 0x2f) & ~0x1f;
     data_ov003_021d8c0c = (void *) c;
     c = (c + 0x231f) & ~0x1f;
-    data_ov003_021d8c1c = (u8 *) c;
+    data_ov003_021d8c1c = (Unk021a5e84 *) c;
     c = (c + 0xdf) & ~0x1f;
-    b->mUnk_04 = (void *) c;
+    b->mUnk_04 = (u8 *) c;
     data_ov003_021d8bd8->mUnk_08 = (u32) param_1 + param_2 - (u32) data_ov003_021d8bd8->mUnk_04;
     data_ov003_021d8bd8->mUnk_0c = 0;
     data_ov003_021d8bd8->mUnk_00 = 3;
@@ -496,8 +491,7 @@ u32 func_ov003_021be610(void (*param_0)(u32, u32), void *param_1, u32 param_2) {
         data_ov003_021d8bfc = 1;
     }
     if (data_ov003_021d8bfc == 1) {
-        if (func_ov000_021a629c((Unk021a5a78 *) data_ov003_021d8bd8, (void (*)(Unk021a586c *)) func_ov003_021bea3c) !=
-            3) {
+        if (func_ov000_021a629c(data_ov003_021d8bd8, (void (*)(Unk021a586c *)) func_ov003_021bea3c) != 3) {
             OS_RestoreInterrupts(a);
             return 0;
         }

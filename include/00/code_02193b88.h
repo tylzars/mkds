@@ -43,10 +43,7 @@ typedef struct GpiTransferId {
 
 // Output buffer description built by GpiPeerQueueMessage.
 typedef struct Unk02193c74 {
-    /* 00 */ u32 mBuffer;
-    /* 04 */ u32 mCapacity;
-    /* 08 */ u32 mLength;
-    /* 0c */ u32 mPos;
+    /* 00 */ GpiBuffer mBuffer;
     /* 10 */ u32 mUnk_10;
     /* 14 */ u32 mUnk_14;
 } Unk02193c74;
@@ -109,7 +106,7 @@ s32 GpiPeerQueueMessage(GpConnection *param_1, GpiPeer *peer, u32 param_3, const
 s32 GpiPeerConnect(GpConnection *param_1, GpiPeer *param_2);
 int func_ov000_02193e70(GpConnection *a, GpiPeer *b);
 GpiPeer *GpiPeerCreate(GpConnection *c, u32 d, u32 e);
-void func_ov000_02193f18(u32 *a);
+void func_ov000_02193f18(void **a);
 GpiPeer *func_ov000_02193f2c(GpConnection *object, u32 key);
 s32 GpiUpdatePeers(GpConnection *e);
 void func_ov000_02193ff4(s32 a);

@@ -2,7 +2,7 @@
 
 #pragma thumb on
 
-void func_020ac454(void *a, void *b, s32 c) {
+void func_020ac454(void *a, u8 *b, s32 c) {
     s32 y;
     s32 v1;
     s32 v2;
@@ -24,8 +24,8 @@ void func_020ac454(void *a, void *b, s32 c) {
                 s0 = 1;
                 do {
                     i = j + v2;
-                    ((u8 *) b)[(y & 7) * 8 + ((x & 7) + x / 8 * 64) + v3 * (y / 8 * 64)] = ((u8 *) a)[i] & 0xf;
-                    ((u8 *) b)[(y & 7) * 8 + ((s0 & 7) + s0 / 8 * 64) + v3 * (y / 8 * 64)] = (((u8 *) a)[i] >> 4) & 0xf;
+                    b[(y & 7) * 8 + ((x & 7) + x / 8 * 64) + v3 * (y / 8 * 64)] = ((u8 *) a)[i] & 0xf;
+                    b[(y & 7) * 8 + ((s0 & 7) + s0 / 8 * 64) + v3 * (y / 8 * 64)] = (((u8 *) a)[i] >> 4) & 0xf;
                     x += 2;
                     s0 += 2;
                     j++;
@@ -37,7 +37,7 @@ void func_020ac454(void *a, void *b, s32 c) {
     }
 }
 
-void func_020ac390(void *a, void *b, s32 c) {
+void func_020ac390(void *a, u8 *b, s32 c) {
     s32 y;
     s32 v1;
     s32 v2;
@@ -57,8 +57,8 @@ void func_020ac390(void *a, void *b, s32 c) {
                 x = 1;
                 s0 = j;
                 do {
-                    ((u8 *) b)[j + v2] = ((u8 *) a)[(y & 7) * 8 + ((s0 & 7) + s0 / 8 * 64) + v3 * (y / 8 * 64)] |
-                                         ((u8 *) a)[(y & 7) * 8 + ((x & 7) + x / 8 * 64) + v3 * (y / 8 * 64)] << 4;
+                    b[j + v2] = ((u8 *) a)[(y & 7) * 8 + ((s0 & 7) + s0 / 8 * 64) + v3 * (y / 8 * 64)] |
+                                ((u8 *) a)[(y & 7) * 8 + ((x & 7) + x / 8 * 64) + v3 * (y / 8 * 64)] << 4;
                     x += 2;
                     s0 += 2;
                     j++;
@@ -70,7 +70,7 @@ void func_020ac390(void *a, void *b, s32 c) {
     }
 }
 
-void func_020ac2fc(void *a, void *b, s32 c) {
+void func_020ac2fc(void *a, u8 *b, s32 c) {
     s32 y;
     s32 v1;
     s32 v2;
@@ -88,7 +88,7 @@ void func_020ac2fc(void *a, void *b, s32 c) {
             if (v2 > 0) {
                 x = j;
                 do {
-                    ((u8 *) b)[((y & 7) * 8 + ((x & 7) + x / 8 * 64) + v1 * (y / 8 * 64)) / 2] = ((u8 *) a)[j + k];
+                    b[((y & 7) * 8 + ((x & 7) + x / 8 * 64) + v1 * (y / 8 * 64)) / 2] = ((u8 *) a)[j + k];
                     x += 2;
                     j++;
                 } while (j < v2);
