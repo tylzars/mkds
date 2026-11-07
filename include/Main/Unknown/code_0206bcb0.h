@@ -468,7 +468,7 @@ typedef struct Kart {
     /* 3cc */ s32 mUnk_3cc;
     /* 3d0 */ s16 mUnk_3d0;
     // Countdown of 0x14 set on the slower kart of a kart-kart contact in CollideKartWithKarts and counted down by
-    // func_01ffc8cc, which calls func_0210b12c at 0 (what that call does is unknown).
+    // func_01ffc8cc, which calls StartKartCollisionSound at 0 (what that call does is unknown).
     /* 3d2 */ s16 mKartCollisionTimer;
     /* 3d4 */ s16 mUnk_3d4;
     /* 3d6 */ u8 mUnk_3d6[2];

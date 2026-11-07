@@ -891,11 +891,12 @@ void func_020719a8(u32 arg0, u32 arg1) {
 }
 
 void func_02071980(void *p, int b) {
-    func_0210b2a8(p, b, ((Kart *) p)->mSurfaceKind, ((Kart *) p)->mSurfaceVariant, ((Kart *) p)->mUnk_500);
+    StartKartSurfaceSoundWhileRequested(p, b, ((Kart *) p)->mSurfaceKind, ((Kart *) p)->mSurfaceVariant,
+                                        ((Kart *) p)->mUnk_500);
 }
 
 void func_02071958(Kart *p, s32 b) {
-    func_0210b564(&p->mSoundSource, b, p->mSurfaceKind, p->mSurfaceVariant, p->mUnk_500);
+    StartSurfaceSound(&p->mSoundSource, b, p->mSurfaceKind, p->mSurfaceVariant, p->mUnk_500);
 }
 
 void func_02071944(void *p, int v1) {

@@ -213,7 +213,7 @@ void func_02068a10(Kart *a) {
 }
 
 void func_02068a00(Kart *a) {
-    func_0210ad58(a, a->mUnk_3cc);
+    QueueKartSound(a, a->mUnk_3cc);
 }
 
 void func_020688a0(Kart *a) {

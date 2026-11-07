@@ -420,7 +420,7 @@ void InitSound(void *a, u32 b, u32 c) {
     data_0217c7f0.mUnk_04 = 0;
     func_0210912c();
     data_0217c780 = 0;
-    func_0210b6a0();
+    InitSoundPitchSwing();
 }
 
 // Per-frame sound step; runs once per iteration of every scene frame loop.
@@ -728,7 +728,7 @@ void InitSceneSounds(s32 e) {
     InitSceneSoundState(c & 0xff, s, &gSceneSoundState);
     func_0210912c();
     func_0210b870();
-    func_0210aefc();
+    InitKartSoundQueue();
     func_021105a0();
     func_0210fb68();
     if (*(vu16 *) 0x027ffc40 != 2) {
@@ -1165,7 +1165,7 @@ void UpdateRaceSounds(void) {
                 }
             }
             func_0210faf4();
-            func_0210b610();
+            UpdateSoundPitchSwing();
             break;
         case 2:
             func_02111024();
@@ -1212,7 +1212,7 @@ void UpdateRaceSounds(void) {
             }
         }
     } else {
-        func_0210add4();
+        UpdateKartSoundQueue();
     }
     data_0217d1f8 = data_0217d20c;
 }

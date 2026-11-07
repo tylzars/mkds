@@ -259,7 +259,7 @@ void func_01ffc8cc(Kart *p) {
     if (p->mKartCollisionTimer > 0) {
         return;
     }
-    func_0210b12c(p, p->mUnk_3cc, p->mUnk_3d0);
+    StartKartCollisionSound(p, p->mUnk_3cc, p->mUnk_3d0);
     p->mKartCollisionTimer = 0;
 }
 
