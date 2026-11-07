@@ -18,6 +18,6 @@ void func_020ce6c0(void) {
 }
 #pragma thumb off
 
-s32 func_020ce6a8(void) {
-    return CreateRaceHudSubScreenCells(&data_0217b480, 0x154);
+s32 CreateRaceHudSubScreenRainStarCells(void) {
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenRainStarCells, 0x154);
 }

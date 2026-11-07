@@ -45,8 +45,8 @@ void func_ov001_02189160(void) {
         el = data_ov001_021a9ba8->mObjects[i];
         if (!(el->mFlags & 1)) {
             pos = &el->mPos;
-            if (ComputeRaceHudSubScreenPosition(pos, &data_ov001_021a9ba8->mCells[n].mUnk_00, v, 1, 1) != FALSE) {
-                data_ov001_021a9ba8->mCells[n].mUnk_08 = GetRaceSNcerEntry(0xc5);
+            if (ComputeRaceHudSubScreenPosition(pos, &data_ov001_021a9ba8->mCells[n].mDrawPos, v, 1, 1) != FALSE) {
+                data_ov001_021a9ba8->mCells[n].mCell = GetRaceSNcerEntry(0xc5);
                 data_ov001_021a9ba8->mCells[n].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
                 data_ov001_021a9ba8->mCells[n].mUnk_0e = el->mFlags & 0x20;
                 data_ov001_021a9ba8->mCells[n].mUnk_10 = el->mAngle;
@@ -80,8 +80,8 @@ void func_ov001_02188ff8(void) {
         el = data_ov001_021a9ba4->mObjects[i];
         if (!(el->mFlags & 1)) {
             pos = &el->mPos;
-            if (ComputeRaceHudSubScreenPosition(pos, &data_ov001_021a9ba4->mCells[n].mUnk_00, v, 1, 1) != FALSE) {
-                data_ov001_021a9ba4->mCells[n].mUnk_08 = GetRaceSNcerEntry(0xc5);
+            if (ComputeRaceHudSubScreenPosition(pos, &data_ov001_021a9ba4->mCells[n].mDrawPos, v, 1, 1) != FALSE) {
+                data_ov001_021a9ba4->mCells[n].mCell = GetRaceSNcerEntry(0xc5);
                 data_ov001_021a9ba4->mCells[n].mUnk_0c = func_020b4e70(pos) ? 2 : 3;
                 data_ov001_021a9ba4->mCells[n].mUnk_0e = el->mFlags & 0x20;
                 data_ov001_021a9ba4->mCells[n].mUnk_10 = el->mAngle;

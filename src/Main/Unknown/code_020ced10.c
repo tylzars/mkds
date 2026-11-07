@@ -36,8 +36,8 @@ void func_020ced2c(void) {
     for (i = 0; i < data_0217b484->mObjectCount; i++) {
         e = data_0217b484->mObjects[i];
         if ((e->mFlags & 1) == 0) {
-            if (ComputeRaceHudSubScreenPosition(&e->mPos, &data_0217b484->mCells[n].mUnk_00, v, 1, 1) != FALSE) {
-                data_0217b484->mCells[n].mUnk_08 = GetRaceSNcerEntry(0xa4);
+            if (ComputeRaceHudSubScreenPosition(&e->mPos, &data_0217b484->mCells[n].mDrawPos, v, 1, 1) != FALSE) {
+                data_0217b484->mCells[n].mCell = GetRaceSNcerEntry(0xa4);
                 data_0217b484->mCells[n].mUnk_0c = 2;
                 n++;
             }

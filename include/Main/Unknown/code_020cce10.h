@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020cce10(void);
+void ClearRaceHudSubScreenPendulumCells(void);

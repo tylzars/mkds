@@ -29,8 +29,8 @@ void func_020ca568(void) {
 
         p = data_0217b434->mObjects[i];
         if (!(p->mFlags & 1)) {
-            if (ComputeRaceHudSubScreenPosition(&p->mPos, &data_0217b434->mCells[n].mUnk_00, v, 1, 1)) {
-                data_0217b434->mCells[n].mUnk_08 = GetRaceSNcerEntry(0xb6);
+            if (ComputeRaceHudSubScreenPosition(&p->mPos, &data_0217b434->mCells[n].mDrawPos, v, 1, 1)) {
+                data_0217b434->mCells[n].mCell = GetRaceSNcerEntry(0xb6);
                 data_0217b434->mCells[n].mUnk_0c = (p->mFlags & 0x20) ? 2 : 1;
                 data_0217b434->mCells[n].mUnk_0e = p->mFlags & 0x20;
                 n++;
