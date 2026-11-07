@@ -70,7 +70,7 @@ BOOL func_01ffdee4(void *a, void *b, Vec3 *c, int r, u16 fl, short e, void *f, v
         ud.z = 0;
         ud.y = r * 2;
     }
-    data_027e0060 = 0;
+    gCollisionHitCount = 0;
     kp = &gCourseCollision;
     pa = *(Vec3 *) a;
     if (b != NULL) {
@@ -471,13 +471,13 @@ BOOL func_01ffdee4(void *a, void *b, Vec3 *c, int r, u16 fl, short e, void *f, v
             }
             ra |= data_02156908;
             ra |= bt;
-            if (data_027e0060 == 16) {
-                data_027e0060--;
+            if (gCollisionHitCount == 16) {
+                gCollisionHitCount--;
             }
-            data_027e0084[data_027e0060] = bt;
+            gCollisionHitBits[gCollisionHitCount] = bt;
             rv = TRUE;
-            data_027e0064[data_027e0060] = at;
-            data_027e0060++;
+            gCollisionHitValues[gCollisionHitCount] = at;
+            gCollisionHitCount++;
         }
     }
     if (k != NULL) {
@@ -496,22 +496,22 @@ BOOL func_01ffdee4(void *a, void *b, Vec3 *c, int r, u16 fl, short e, void *f, v
     if (data_0217b610 != 0 && e != -2) {
         ct = 0;
         if (e == -1) {
-            func_020d5180(a, r, 0x1000);
+            FindCollisionSlotsAroundPos(a, r, 0x1000);
         } else {
             FindCollisionSlotsOverlappingSlot(e, 0x1000);
         }
-        for (i = 0; i < data_0217b5a8; i++) {
-            ob = data_0217b5c4[i];
+        for (i = 0; i < gFoundCollisionSlotCount; i++) {
+            ob = gFoundCollisionSlotObjects[i];
             if (func_020e1d10(ob, a, r, fl, &wa, &wb, j != NULL ? &ud : 0, &hw, (Vec3 *) k, l)) {
                 ra |= data_0215690c;
                 ra |= 1 << hw;
-                if (data_027e0060 == 16) {
-                    data_027e0060--;
+                if (gCollisionHitCount == 16) {
+                    gCollisionHitCount--;
                 }
                 bi = 1 << hw;
-                data_027e0084[data_027e0060] = bi;
-                data_027e0064[data_027e0060] = hw << 8;
-                data_027e0060++;
+                gCollisionHitBits[gCollisionHitCount] = bi;
+                gCollisionHitValues[gCollisionHitCount] = hw << 8;
+                gCollisionHitCount++;
                 if (m != NULL) {
                     if (bi & 0x1e34ef) {
                         data_0217b5d0[ct++] = data_0217b5d0[0];

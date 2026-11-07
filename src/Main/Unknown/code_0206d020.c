@@ -302,9 +302,10 @@ void func_0206d578(Kart *p) {
     VEC_MultAdd(((s64) p->mRadius * -0x4000) >> 12, &p->mTurnedForward, &p->mUnk_1f0, &p->mUnk_1f0);
     if (p->mIndex == GetRaceUpdateFramesMod8() && !(p->mUnk_4c & 0x10002000)) {
         if (p->mVelocityLength > 0x4000 && p->mState == KART_STATE_NORMAL) {
-            for (i = 0; i < data_0217b5a8; i++) {
-                q = data_0217b5c4[i];
-                if (q->mVelocityLength >= 0x2000 && (data_0217b5bc[i] & 0x800) && q != p && !(q->mUnk_7c & 0x402000)) {
+            for (i = 0; i < gFoundCollisionSlotCount; i++) {
+                q = gFoundCollisionSlotObjects[i];
+                if (q->mVelocityLength >= 0x2000 && (gFoundCollisionSlotFlags[i] & 0x800) && q != p &&
+                    !(q->mUnk_7c & 0x402000)) {
                     VEC_Subtract(&q->mPos, &p->mPos, &v);
                     d = VEC_Mag(&v);
                     if (Vec3DotUnrounded(&q->mTurnedForward, &v) > (s32) (((s64) d * 0xe7f) >> 12)) {

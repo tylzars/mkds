@@ -591,9 +591,9 @@ s32 FindMapObjectsTouchingKart(Kart *a, Vec3 *b, Vec3 *c) {
     }
     n = 0;
     c->x = c->y = c->z = 0;
-    for (i = 0; i < data_0217b5a8; i++) {
-        if (data_0217b5bc[i] & 0x2000) {
-            e = data_0217b5c4[i];
+    for (i = 0; i < gFoundCollisionSlotCount; i++) {
+        if (gFoundCollisionSlotFlags[i] & 0x2000) {
+            e = gFoundCollisionSlotObjects[i];
             if (k != FALSE && !(e->mDistanceSquaredAndFlags & 0x10)) {
                 continue;
             }
@@ -634,9 +634,9 @@ s32 FindMapObjectsOfKindInRadius(Vec3 *a, s32 b, s32 c) {
     s32 i;
 
     n = 0;
-    func_020d5180(a, b, 0x2000);
-    for (i = 0; i < data_0217b5a8; i++) {
-        e = data_0217b5c4[i];
+    FindCollisionSlotsAroundPos(a, b, 0x2000);
+    for (i = 0; i < gFoundCollisionSlotCount; i++) {
+        e = gFoundCollisionSlotObjects[i];
         if (e->mKind == c) {
             f = a->x - e->mPos.x;
             d = a->z - e->mPos.z;
@@ -858,7 +858,7 @@ void func_020d3b74(void) {
                 q->mFlags |= (q->mFlags & 0xf) << 12;
                 q->mFlags |= data_021568dc;
                 if (q->mCollisionSlotIndex != -1) {
-                    func_020d5114(q->mCollisionSlotIndex);
+                    DisableCollisionSlot(q->mCollisionSlotIndex);
                 }
             }
         }
@@ -880,7 +880,7 @@ void func_020d3b10(void) {
             q->mFlags &= ~0xf;
             q->mFlags |= (q->mFlags & 0xf000) >> 12;
             if (q->mCollisionSlotIndex != -1) {
-                func_020d50ec(q->mCollisionSlotIndex);
+                EnableCollisionSlot(q->mCollisionSlotIndex);
             }
         }
         p++;

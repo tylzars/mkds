@@ -141,7 +141,7 @@ void InitRace(void) {
     SetHeapGroupId(2);
     InitCourseCollision();
     SetHeapGroupId(8);
-    func_020d58c0();
+    InitCollisionSlots();
     SetHeapGroupId(1);
     func_0208aa30(a);
     InitKartAiShared();

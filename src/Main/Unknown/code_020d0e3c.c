@@ -38,6 +38,6 @@ void *GetCupPictureNscrData(void) {
 }
 #pragma thumb off
 
-s32 func_020d0e3c(void) {
-    return CreateRaceHudSubScreenCells(&data_0217b4a0, MAP_OBJECT_KIND_FIREBALL2);
+s32 CreateRaceHudSubScreenFireball2Cells(void) {
+    return CreateRaceHudSubScreenCells(&gRaceHudSubScreenFireball2Cells, MAP_OBJECT_KIND_FIREBALL2);
 }

@@ -31,7 +31,7 @@ void SetMapObjectScale(MapObject *d, Vec3 *e) {
                 a = d->mExtent.x;
                 break;
         }
-        func_020d5148(d->mCollisionSlotIndex, a);
+        SetCollisionSlotRadius(d->mCollisionSlotIndex, a);
     }
     d->mExtent.y = (s64) d->mKindData->mUnk_10 * d->mScale.y >> 12;
     if (d->mCollisionSlotIndex >= 0) {
@@ -48,7 +48,7 @@ void SetMapObjectScale(MapObject *d, Vec3 *e) {
                 a = d->mExtent.x;
                 break;
         }
-        func_020d5148(d->mCollisionSlotIndex, a);
+        SetCollisionSlotRadius(d->mCollisionSlotIndex, a);
     }
     d->mExtent.z = (s64) d->mKindData->mUnk_14 * d->mScale.z >> 12;
     if (d->mCollisionSlotIndex >= 0) {
@@ -65,7 +65,7 @@ void SetMapObjectScale(MapObject *d, Vec3 *e) {
                 a = d->mExtent.x;
                 break;
         }
-        func_020d5148(d->mCollisionSlotIndex, a);
+        SetCollisionSlotRadius(d->mCollisionSlotIndex, a);
     }
     a = d->mScale.x;
     b = d->mKindData;
@@ -98,7 +98,7 @@ void func_020d2950(MapObject *b, s32 c) {
             a = b->mExtent.x;
             break;
     }
-    func_020d5148(b->mCollisionSlotIndex, a);
+    SetCollisionSlotRadius(b->mCollisionSlotIndex, a);
 }
 
 void CreateMapObjectSoundSourceFalloff2(MapObject *a) {

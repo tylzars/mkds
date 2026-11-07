@@ -220,9 +220,9 @@ void func_020edf10(ItemInUse *p) {
             continue;
         }
         FindCollisionSlotsOverlappingSlot(q->mCollisionSlotIndex, 0x6000);
-        for (i = 0; i < data_0217b5a8; i++) {
-            if ((data_0217b5bc[i] & 0x4000) != 0) {
-                ItemObject *e = data_0217b5c4[i];
+        for (i = 0; i < gFoundCollisionSlotCount; i++) {
+            if ((gFoundCollisionSlotFlags[i] & 0x4000) != 0) {
+                ItemObject *e = gFoundCollisionSlotObjects[i];
                 if (e->mCollisionSlotIndex == -1) {
                     continue;
                 }
@@ -230,8 +230,8 @@ void func_020edf10(ItemInUse *p) {
                     continue;
                 }
                 func_020ee160(q, e);
-            } else if ((data_0217b5bc[i] & 0x2000) != 0) {
-                MapObject *e = data_0217b5c4[i];
+            } else if ((gFoundCollisionSlotFlags[i] & 0x2000) != 0) {
+                MapObject *e = gFoundCollisionSlotObjects[i];
                 if (func_020d2234(e, q) == FALSE) {
                     continue;
                 }

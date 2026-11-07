@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk020d029c Unk020d029c;
+typedef struct RaceHudOamBuffer RaceHudOamBuffer;
 
 // The two values func_020d1198 passes to GetRaceStartBattleMNcerEntry.
 enum {
@@ -10,7 +10,7 @@ enum {
     VALUE_1 = 1,
 };
 
-void func_020d1198(Unk020d029c *a);
+void func_020d1198(RaceHudOamBuffer *a);
 u16 *func_020d118c(void);
 u32 func_020d1164(void);
 u32 func_020d1158(void);

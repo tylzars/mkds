@@ -646,10 +646,10 @@ s32 func_02068ec0(Kart *p, s32 a) {
         }
         p->mUnk_7c |= 0x20;
         if (p->mUnk_2c8 != -1) {
-            p->mUnk_2c8 = func_020d5344(p->mUnk_2c8);
+            p->mUnk_2c8 = FreeCollisionSlot(p->mUnk_2c8);
         }
         if (p->mUnk_2ca != -1) {
-            p->mUnk_2ca = func_020d5344(p->mUnk_2ca);
+            p->mUnk_2ca = FreeCollisionSlot(p->mUnk_2ca);
         }
         if (gRaceSetup->mMode == MODE_BATTLE && a == 0) {
             StartSound(&p->mSoundSource, 0xd3, 0x7f, 0);

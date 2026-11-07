@@ -6,7 +6,7 @@
 #include "code_020222ec.h"
 #include "registers.h"
 
-void func_020d1198(Unk020d029c *a) {
+void func_020d1198(RaceHudOamBuffer *a) {
     Unk020224e0_c *c;
     s32 q[2][2];
 
@@ -14,11 +14,11 @@ void func_020d1198(Unk020d029c *a) {
     c = GetRaceStartBattleMNcerEntry(gRaceSetup->mBattleKind == BATTLE_KIND_BALLOON ? VALUE_0 : VALUE_1);
     q[0][0] = 0x80000;
     q[0][1] = 0x60000;
-    a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q[0], 0, 1);
+    a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q[0], 0, 1);
     c = GetRaceStartBattleMNcerEntry(2);
     q[1][0] = 0x80000;
     q[1][1] = 0x60000;
-    a->mUnk_400 += NNS_G2dMakeCellToOams(&a->mUnk_000[a->mUnk_400], 0x80 - a->mUnk_400, c, NULL, q[1], 0, 1);
+    a->mOamCount += NNS_G2dMakeCellToOams(&a->mOams[a->mOamCount], 0x80 - a->mOamCount, c, NULL, q[1], 0, 1);
 }
 
 u16 *func_020d118c(void) {

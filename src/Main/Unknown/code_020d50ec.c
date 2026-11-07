@@ -26,6 +26,8 @@
 #include "Main/Unknown/unk_02156000.h"
 #include "Main/Unknown/code_020d8654.h"
 
+// Calls func_0208b748 twice at the rock; skipped when bit 0 of mDistanceSquaredAndFlags is set, or when b is 0 and bit
+// 1 is set. Then resets the rock.
 void func_020d634c(Unk020d5bf0 *p, s32 b) {
     Unk020d634c u;
     Unk020d634c w;
@@ -42,8 +44,8 @@ void func_020d634c(Unk020d5bf0 *p, s32 b) {
     s16 h;
     s32 i;
 
-    fl = p->mUnk_000.mDistanceSquaredAndFlags;
-    y = p->mUnk_000.mScale.y;
+    fl = p->mMapObject.mDistanceSquaredAndFlags;
+    y = p->mMapObject.mScale.y;
     if (!(fl & 1)) {
         if (b != 0 || !(fl & 3)) {
             if (y > 0x1000) {
@@ -69,16 +71,16 @@ void func_020d634c(Unk020d5bf0 *p, s32 b) {
             w.mUnk_04 = data_02156928[j] + (s32) (((s64) g * y) >> 12);
             w.mUnk_06 = data_02156930[j] + (s32) (((s64) c * y) >> 12);
             w.mUnk_08 = data_02156938[j] + (s32) (((s64) d * y) >> 12);
-            if (p->mUnk_000.mKind == 0x192) {
-                func_0208b748(0x54, &p->mUnk_000.mPos, &u, func_020d6538);
-                func_0208b748(0x57, &p->mUnk_000.mPos, &w, func_020d6538);
+            if (p->mMapObject.mKind == 0x192) {
+                func_0208b748(0x54, &p->mMapObject.mPos, &u, func_020d6538);
+                func_0208b748(0x57, &p->mMapObject.mPos, &w, func_020d6538);
             } else {
-                func_0208b748(0x56, &p->mUnk_000.mPos, &u, func_020d6538);
-                func_0208b748(0x55, &p->mUnk_000.mPos, &w, func_020d6538);
+                func_0208b748(0x56, &p->mMapObject.mPos, &u, func_020d6538);
+                func_0208b748(0x55, &p->mMapObject.mPos, &w, func_020d6538);
             }
         }
     }
-    func_020d5dd0(p);
+    ResetRock(p);
 }
 
 void UpdateRock(void *a, Unk020d5bf0 *p) {
@@ -96,83 +98,84 @@ void UpdateRock(void *a, Unk020d5bf0 *p) {
         if (p->mUnk_0e0 != 0) {
             return;
         }
-        p->mUnk_000.mFlags &= ~2;
-        p->mUnk_000.mFlags &= ~8;
-        p->mUnk_000.mAlpha = 1;
+        p->mMapObject.mFlags &= ~2;
+        p->mMapObject.mFlags &= ~8;
+        p->mMapObject.mAlpha = 1;
         return;
     }
-    x = p->mUnk_0e4.x;
-    z = p->mUnk_0e4.z;
+    x = p->mBasePos.x;
+    z = p->mBasePos.z;
     func_020d84e4(&p->mUnk_0a4);
-    func_020d8bc0(&p->mUnk_0a4.mUnk_00, &p->mUnk_0e4);
-    p->mUnk_000.mUnk_10.x = p->mUnk_0e4.x - x;
-    p->mUnk_000.mUnk_10.z = p->mUnk_0e4.z - z;
-    p->mUnk_100 += p->mUnk_0f8;
-    p->mUnk_104 += p->mUnk_0fc;
-    p->mUnk_000.mUnk_10.x += p->mUnk_0f8;
-    p->mUnk_000.mUnk_10.z += p->mUnk_0fc;
-    p->mUnk_000.mPos.x = p->mUnk_0e4.x + p->mUnk_100;
-    p->mUnk_000.mPos.z = p->mUnk_0e4.z + p->mUnk_104;
-    p->mUnk_100 = (p->mUnk_100 * 0x3f) >> 6;
-    p->mUnk_104 = (p->mUnk_104 * 0x3f) >> 6;
-    d = p->mUnk_0e4.y - (p->mUnk_000.mPos.y - p->mUnk_11c);
+    func_020d8bc0(&p->mUnk_0a4.mUnk_00, &p->mBasePos);
+    p->mMapObject.mUnk_10.x = p->mBasePos.x - x;
+    p->mMapObject.mUnk_10.z = p->mBasePos.z - z;
+    p->mOffsetX += p->mOffsetVelocityX;
+    p->mOffsetZ += p->mOffsetVelocityZ;
+    p->mMapObject.mUnk_10.x += p->mOffsetVelocityX;
+    p->mMapObject.mUnk_10.z += p->mOffsetVelocityZ;
+    p->mMapObject.mPos.x = p->mBasePos.x + p->mOffsetX;
+    p->mMapObject.mPos.z = p->mBasePos.z + p->mOffsetZ;
+    p->mOffsetX = (p->mOffsetX * 0x3f) >> 6;
+    p->mOffsetZ = (p->mOffsetZ * 0x3f) >> 6;
+    d = p->mBasePos.y - (p->mMapObject.mPos.y - p->mBottomOffset);
     if (d > 0) {
-        p->mUnk_000.mPos.y = p->mUnk_000.mPos.y + d;
-        v = p->mUnk_000.mUnk_10.y;
+        p->mMapObject.mPos.y = p->mMapObject.mPos.y + d;
+        v = p->mMapObject.mUnk_10.y;
         if (v < 0) {
             if (v >= -0x2000) {
-                p->mUnk_000.mUnk_10.y = 0;
+                p->mMapObject.mUnk_10.y = 0;
             } else {
-                p->mUnk_000.mUnk_10.y = -(s32) (((s64) v * p->mUnk_120) >> 12);
-                p->mUnk_0f4 = (p->mUnk_0f4 == FALSE);
-                if (p->mUnk_000.mUnk_10.y > 0x4000) {
+                p->mMapObject.mUnk_10.y = -(s32) (((s64) v * p->mBounceRatio) >> 12);
+                p->mBounceSide = (p->mBounceSide == FALSE);
+                if (p->mMapObject.mUnk_10.y > 0x4000) {
                     i = (u16) p->mUnk_0a4.mUnk_00.mUnk_0c;
-                    p->mUnk_000.mUnk_10.y = 0x4000;
-                    if (p->mUnk_0f4 != FALSE) {
-                        p->mUnk_0f8 = p->mUnk_0f0[i].x << 1;
-                        p->mUnk_0fc = p->mUnk_0f0[i].z >> 1;
+                    p->mMapObject.mUnk_10.y = 0x4000;
+                    if (p->mBounceSide != FALSE) {
+                        p->mOffsetVelocityX = p->mSideVectors[i].x << 1;
+                        p->mOffsetVelocityZ = p->mSideVectors[i].z >> 1;
                     } else {
-                        p->mUnk_0f8 = -p->mUnk_0f0[i].x >> 1;
-                        p->mUnk_0fc = -p->mUnk_0f0[i].z >> 1;
+                        p->mOffsetVelocityX = -p->mSideVectors[i].x >> 1;
+                        p->mOffsetVelocityZ = -p->mSideVectors[i].z >> 1;
                     }
                 } else {
-                    p->mUnk_0f8 = 0;
-                    p->mUnk_0fc = 0;
+                    p->mOffsetVelocityX = 0;
+                    p->mOffsetVelocityZ = 0;
                 }
             }
         }
-        p->mUnk_108 = 0;
+        p->mSinceGroundFrames = 0;
     } else {
-        p->mUnk_108 += 1;
+        p->mSinceGroundFrames += 1;
     }
-    if (p->mUnk_108 < 10) {
-        StartMapObjectSoundWhileRequested(&p->mUnk_000, 0x179);
+    if (p->mSinceGroundFrames < 10) {
+        StartMapObjectSoundWhileRequested(&p->mMapObject, 0x179);
     }
-    p->mUnk_000.mUnk_10.y = p->mUnk_000.mUnk_10.y - 0x400;
-    p->mUnk_000.mPos.y = p->mUnk_000.mPos.y + p->mUnk_000.mUnk_10.y;
-    if (p->mUnk_110 != 0 && p->mUnk_000.mScale.y < p->mUnk_114) {
-        r = p->mUnk_000.mScale.y + p->mUnk_110;
+    p->mMapObject.mUnk_10.y = p->mMapObject.mUnk_10.y - 0x400;
+    p->mMapObject.mPos.y = p->mMapObject.mPos.y + p->mMapObject.mUnk_10.y;
+    if (p->mScalePerFrame != 0 && p->mMapObject.mScale.y < p->mScaleLimit) {
+        r = p->mMapObject.mScale.y + p->mScalePerFrame;
         u = (r * 0x1e000) >> 12;
         FX_DivAsync(0x1000, u);
-        w = &p->mUnk_000.mScale;
+        w = &p->mMapObject.mScale;
         w->x = r;
         w->y = r;
         w->z = r;
-        p->mUnk_11c = u;
-        p->mUnk_000.mExtent.x = (r * 0x1b000) >> 12;
-        if (p->mUnk_000.mCollisionSlotIndex >= 0) {
-            func_020d5148(p->mUnk_000.mCollisionSlotIndex, p->mUnk_000.mExtent.x);
+        p->mBottomOffset = u;
+        p->mMapObject.mExtent.x = (r * 0x1b000) >> 12;
+        if (p->mMapObject.mCollisionSlotIndex >= 0) {
+            SetCollisionSlotRadius(p->mMapObject.mCollisionSlotIndex, p->mMapObject.mExtent.x);
         }
-        p->mUnk_000.mViewRadius = ((s64) p->mUnk_000.mKindData->mUnk_2c * r) >> 12;
-        p->mUnk_118 = FX_GetDivResult();
+        p->mMapObject.mViewRadius = ((s64) p->mMapObject.mKindData->mUnk_2c * r) >> 12;
+        p->mBottomOffsetReciprocal = FX_GetDivResult();
     }
     if (p->mUnk_0a4.mUnk_00.mUnk_18 == 0) {
         func_020d634c(p, 0);
-    } else if (p->mUnk_000.mPos.y < 0) {
+    } else if (p->mMapObject.mPos.y < 0) {
         func_020d634c(p, 0);
     }
 }
 
+// Calls func_020d634c with b = 1 when the byte at c is 1; returns the byte at d.
 u8 func_020d5f8c(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d) {
     if (*c == 1) {
         func_020d634c(a, 1);
@@ -180,6 +183,7 @@ u8 func_020d5f8c(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d) {
     return *d;
 }
 
+// Same body as func_020d5f8c.
 u8 func_020d5f64(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d) {
     if (*c == 1) {
         func_020d634c(a, 1);
@@ -187,45 +191,46 @@ u8 func_020d5f64(Unk020d5bf0 *a, s32 b, u8 *c, u8 *d) {
     return *d;
 }
 
-void func_020d5dd0(Unk020d5bf0 *p) {
+// Puts the rock back at its start: timer, position, speed and scale.
+void ResetRock(Unk020d5bf0 *p) {
     s64 r;
     s32 u;
     s32 z;
     Vec3 *v;
 
     func_020d859c(&p->mUnk_0a4, 0, 1);
-    func_020d8b18(&p->mUnk_0a4.mUnk_00, &p->mUnk_000.mPos, &p->mUnk_000.mUnk_10);
+    func_020d8b18(&p->mUnk_0a4.mUnk_00, &p->mMapObject.mPos, &p->mMapObject.mUnk_10);
     p->mUnk_0e0 = p->mUnk_0dc;
     if (p->mUnk_0e0 != 0) {
-        p->mUnk_000.mFlags |= data_0215691c;
-        p->mUnk_000.mFlags |= data_02156914;
+        p->mMapObject.mFlags |= data_0215691c;
+        p->mMapObject.mFlags |= data_02156914;
     }
-    p->mUnk_0e4 = p->mUnk_000.mPos;
-    p->mUnk_0f4 = TRUE;
+    p->mBasePos = p->mMapObject.mPos;
+    p->mBounceSide = TRUE;
     z = 0;
-    p->mUnk_0f8 = z;
-    p->mUnk_0fc = z;
-    p->mUnk_100 = z;
-    p->mUnk_104 = z;
-    p->mUnk_000.mPos.y = p->mUnk_0a0;
-    p->mUnk_000.mUnk_10.y = 0x8000;
-    p->mUnk_000.mMatrix.mUnk_00[0] = data_021569d8;
-    p->mUnk_000.mMatrix.mUnk_00[1] = data_021569e4;
-    p->mUnk_000.mMatrix.mUnk_00[2] = data_021569f0;
-    r = p->mUnk_10c;
+    p->mOffsetVelocityX = z;
+    p->mOffsetVelocityZ = z;
+    p->mOffsetX = z;
+    p->mOffsetZ = z;
+    p->mMapObject.mPos.y = p->mStartY;
+    p->mMapObject.mUnk_10.y = 0x8000;
+    p->mMapObject.mMatrix.mUnk_00[0] = data_021569d8;
+    p->mMapObject.mMatrix.mUnk_00[1] = data_021569e4;
+    p->mMapObject.mMatrix.mUnk_00[2] = data_021569f0;
+    r = p->mStartScale;
     u = (r * 0x1e000) >> 12;
     FX_DivAsync(0x1000, u);
-    v = &p->mUnk_000.mScale;
+    v = &p->mMapObject.mScale;
     v->x = r;
     v->y = r;
     v->z = r;
-    p->mUnk_11c = u;
-    p->mUnk_000.mExtent.x = (r * 0x1b000) >> 12;
-    if (p->mUnk_000.mCollisionSlotIndex >= 0) {
-        func_020d5148(p->mUnk_000.mCollisionSlotIndex, p->mUnk_000.mExtent.x);
+    p->mBottomOffset = u;
+    p->mMapObject.mExtent.x = (r * 0x1b000) >> 12;
+    if (p->mMapObject.mCollisionSlotIndex >= 0) {
+        SetCollisionSlotRadius(p->mMapObject.mCollisionSlotIndex, p->mMapObject.mExtent.x);
     }
-    p->mUnk_000.mViewRadius = ((s64) p->mUnk_000.mKindData->mUnk_2c * r) >> 12;
-    p->mUnk_118 = FX_GetDivResult();
+    p->mMapObject.mViewRadius = ((s64) p->mMapObject.mKindData->mUnk_2c * r) >> 12;
+    p->mBottomOffsetReciprocal = FX_GetDivResult();
 }
 
 #pragma thumb on
@@ -250,54 +255,56 @@ void CreateRock2(void *a) {
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5bf0(Unk020d5bf0 *p, struct CourseMapRow *q) {
+// Fills a Rock from its course map row; both Rock kinds use it.
+void InitRock(Unk020d5bf0 *p, struct CourseMapRow *q) {
     Unk02042044 *t;
     s32 v;
     float f;
 
     func_020d7d4c(&p->mUnk_0a4, q, 0x3000, q->mUnk_2a);
     p->mUnk_0dc = q->mUnk_28;
-    p->mUnk_0f0 = func_020d8654(q);
+    p->mSideVectors = func_020d8654(q);
     t = GetCourseMapGroupEntry(q->mUnk_26, 0);
-    p->mUnk_0a0 = t->mUnk_00.y;
-    p->mUnk_10c = p->mUnk_000.mScale.y;
+    p->mStartY = t->mUnk_00.y;
+    p->mStartScale = p->mMapObject.mScale.y;
     v = q->mUnk_2e;
     if (v > 0) {
         f = 0.5f + (v << 12);
     } else {
         f = (v << 12) - 0.5f;
     }
-    p->mUnk_110 = (s32) f / 60000;
+    p->mScalePerFrame = (s32) f / 60000;
     v = q->mUnk_30;
     if (v > 0) {
         f = 0.5f + (v << 12);
     } else {
         f = (v << 12) - 0.5f;
     }
-    p->mUnk_114 = (s32) f / 1000 + 0x1000;
-    func_020d5dd0(p);
-    p->mUnk_108 = 0;
+    p->mScaleLimit = (s32) f / 1000 + 0x1000;
+    ResetRock(p);
+    p->mSinceGroundFrames = 0;
     p->mUnk_0e0 = q->mUnk_32;
     if (p->mUnk_0e0 != 0) {
-        p->mUnk_000.mFlags |= data_0215691c;
-        p->mUnk_000.mFlags |= data_02156914;
+        p->mMapObject.mFlags |= data_0215691c;
+        p->mMapObject.mFlags |= data_02156914;
     } else {
-        p->mUnk_000.mFlags &= ~2;
-        p->mUnk_000.mFlags &= ~8;
-        p->mUnk_000.mAlpha = 0x1f;
+        p->mMapObject.mFlags &= ~2;
+        p->mMapObject.mFlags &= ~8;
+        p->mMapObject.mAlpha = 0x1f;
     }
-    p->mUnk_120 = (q->mUnk_2c << 12) / 100;
-    if (p->mUnk_000.mKind == 0x192) {
-        CreateMapObjectSoundSourceFalloff4(&p->mUnk_000);
+    p->mBounceRatio = (q->mUnk_2c << 12) / 100;
+    if (p->mMapObject.mKind == 0x192) {
+        CreateMapObjectSoundSourceFalloff4(&p->mMapObject);
     } else {
-        CreateMapObjectSoundSourceFalloff3(&p->mUnk_000);
+        CreateMapObjectSoundSourceFalloff3(&p->mMapObject);
     }
-    p->mUnk_000.mFlags |= data_02156918;
+    p->mMapObject.mFlags |= data_02156918;
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_020d5bac(Unk0217b614 *p, Unk0217b614 *a) {
+// Turns the stored offsets of the loaded collision file into pointers.
+void LoadCourseCollisionData(Unk0217b614 *p, Unk0217b614 *a) {
     *p = *a;
     p->mUnk_00 = OFFSET_PTR(Vec3, a, (u32) p->mUnk_00);
     p->mUnk_04 = OFFSET_PTR(UnkVec16, a, (u32) p->mUnk_04);
@@ -309,10 +316,12 @@ void func_020d5bac(Unk0217b614 *p, Unk0217b614 *a) {
 
 #pragma thumb on
 void InitCourseCollision(void) {
-    func_020d5bac(&gCourseCollision, FindCourseFile("course_collision.kcl"));
+    LoadCourseCollisionData(&gCourseCollision, FindCourseFile("course_collision.kcl"));
 }
 #pragma thumb off
 
+// Keeps the link c on the first object of the hit list a: clears it when b has the top bit or the object changed, sets
+// it when b has a bit of 0x1e34ef.
 void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e) {
     Unk020d5a68 **q = a;
     Unk020d5a68 *p;
@@ -346,6 +355,7 @@ void func_020d5aa0(void *a, u32 b, Unk020e04b0 *c, Vec3 *d, Vec3 *e) {
     func_020e0584(p->mUnk_00, d, e, c);
 }
 
+// TRUE when b has the top bit, the hit list a has a non-zero word at 4, or its object differs from the link c.
 BOOL func_020d5a68(void *a, u32 b, Unk020e04b0 *c) {
     Unk020d5a68 **q = a;
 
@@ -355,7 +365,8 @@ BOOL func_020d5a68(void *a, u32 b, Unk020e04b0 *c) {
     return FALSE;
 }
 
-u16 func_020d59f8(u32 a) {
+// Returns the value of the recorded hit with the highest bits inside the mask a.
+u16 PickCollisionHitValue(u32 a) {
     s32 i;
     s32 r;
     u32 v;
@@ -364,10 +375,10 @@ u16 func_020d59f8(u32 a) {
 
     r = -1;
     i = 0;
-    n = data_027e0060;
+    n = gCollisionHitCount;
     if (n > 0) {
         do {
-            v = a & data_027e0084[i];
+            v = a & gCollisionHitBits[i];
             if (v != 0) {
                 if (r < 0 || v > w) {
                     r = i;
@@ -377,37 +388,38 @@ u16 func_020d59f8(u32 a) {
             i++;
         } while (i < n);
     }
-    return data_027e0064[r];
+    return gCollisionHitValues[r];
 }
 
-void func_020d58c0(void) {
+void InitCollisionSlots(void) {
     void *h;
     s16 i;
     s16 j;
 
     h = GetHeap(func_020364e8());
-    data_0217b5b0 = 0;
-    data_0217b5ac = 0;
-    data_0217b5b4 = HeapAlloc(h, 0x400);
-    data_0217b5c0 = HeapAlloc(h, 0x400);
-    data_0217b5b8 = HeapAlloc(h, 0x1c00);
-    data_0217b5c8 = HeapAlloc(h, 0x200);
-    data_0217b5cc = HeapAlloc(h, 0x100);
-    data_0217b5bc = HeapAlloc(h, 0x100);
-    data_0217b5c4 = HeapAlloc(h, 0x200);
+    gCollisionSlotCount = 0;
+    gFirstFreeCollisionSlot = 0;
+    gCollisionSlotHighEnds = HeapAlloc(h, 0x400);
+    gCollisionSlotLowEnds = HeapAlloc(h, 0x400);
+    gCollisionSlots = HeapAlloc(h, 0x1c00);
+    gCollisionSlotNextFree = HeapAlloc(h, 0x200);
+    gFoundCollisionSlotIndices = HeapAlloc(h, 0x100);
+    gFoundCollisionSlotFlags = HeapAlloc(h, 0x100);
+    gFoundCollisionSlotObjects = HeapAlloc(h, 0x200);
     i = 0;
     do {
-        data_0217b5c8[i] = i + 1;
+        gCollisionSlotNextFree[i] = i + 1;
         i++;
     } while (i < 0x100);
     j = 0;
     do {
-        data_0217b5b8[j].mCenterPos = NULL;
+        gCollisionSlots[j].mCenterPos = NULL;
         j++;
     } while (j < 0x100);
 }
 
-s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
+// Returns the new slot index, or -1 when all 0x100 slots are in use.
+s32 CreateCollisionSlot(Vec3 *a, s32 b, s32 c, void *d) {
     CollisionSlot *e;
     s16 hi;
     s16 lo;
@@ -418,15 +430,15 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     s32 t;
     s32 j;
     s32 m;
-    Unk0217b5b4 *f;
-    Unk0217b5b4 *u;
+    CollisionSlotEnd *f;
+    CollisionSlotEnd *u;
 
-    if (data_0217b5b0 >= 0x100) {
+    if (gCollisionSlotCount >= 0x100) {
         return -1;
     }
-    i = data_0217b5ac;
-    data_0217b5ac = data_0217b5c8[i];
-    e = &data_0217b5b8[i];
+    i = gFirstFreeCollisionSlot;
+    gFirstFreeCollisionSlot = gCollisionSlotNextFree[i];
+    e = &gCollisionSlots[i];
     e->mHighZ = a->z + b;
     e->mLowZ = a->z - b;
     e->mCenterPos = a;
@@ -435,32 +447,32 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     e->mObject = d;
     hi = (a->x + b) >> 11;
     lo = (a->x - b) >> 11;
-    if (data_0217b5b0 == 0) {
-        data_0217b5b4[0].mUnk_00 = 0;
-        data_0217b5b4[0].mUnk_01 = 0;
-        data_0217b5b4[0].mUnk_02 = hi;
-        data_0217b5c0[0].mUnk_00 = 0;
-        data_0217b5c0[0].mUnk_01 = i;
-        data_0217b5c0[0].mUnk_02 = lo;
-        data_0217b5b8[0].mHighEndIndex = 0;
-        data_0217b5b8[0].mLowEndIndex = 0;
-        data_0217b5b0 = 1;
+    if (gCollisionSlotCount == 0) {
+        gCollisionSlotHighEnds[0].mOtherEndIndex = 0;
+        gCollisionSlotHighEnds[0].mUnk_01 = 0;
+        gCollisionSlotHighEnds[0].mEndX = hi;
+        gCollisionSlotLowEnds[0].mOtherEndIndex = 0;
+        gCollisionSlotLowEnds[0].mUnk_01 = i;
+        gCollisionSlotLowEnds[0].mEndX = lo;
+        gCollisionSlots[0].mHighEndIndex = 0;
+        gCollisionSlots[0].mLowEndIndex = 0;
+        gCollisionSlotCount = 1;
         return i;
     }
     p = 0;
     q = 0;
-    s = data_0217b5b0;
-    m = data_0217b5b0;
+    s = gCollisionSlotCount;
+    m = gCollisionSlotCount;
     for (;;) {
         t = p + s;
         j = q + s;
         if (t <= m) {
-            if (hi > data_0217b5b4[t - 1].mUnk_02) {
+            if (hi > gCollisionSlotHighEnds[t - 1].mEndX) {
                 p = t;
             }
         }
         if (j <= m) {
-            if (lo > data_0217b5c0[j - 1].mUnk_02) {
+            if (lo > gCollisionSlotLowEnds[j - 1].mEndX) {
                 q = j;
             }
         }
@@ -471,109 +483,112 @@ s32 func_020d555c(Vec3 *a, s32 b, s32 c, void *d) {
     }
     e->mHighEndIndex = p;
     e->mLowEndIndex = q;
-    m = data_0217b5b0;
+    m = gCollisionSlotCount;
     if (m > p) {
         do {
-            f = &data_0217b5b4[m];
-            *f = data_0217b5b4[m - 1];
-            u = &data_0217b5c0[f->mUnk_00];
-            u->mUnk_00 += 1;
-            data_0217b5b8[u->mUnk_01].mHighEndIndex += 1;
+            f = &gCollisionSlotHighEnds[m];
+            *f = gCollisionSlotHighEnds[m - 1];
+            u = &gCollisionSlotLowEnds[f->mOtherEndIndex];
+            u->mOtherEndIndex += 1;
+            gCollisionSlots[u->mUnk_01].mHighEndIndex += 1;
             m--;
             if (f->mUnk_01 >= q) {
                 f->mUnk_01 += 1;
             }
         } while (m > p);
     }
-    data_0217b5b4[p].mUnk_00 = q;
-    data_0217b5b4[p].mUnk_02 = hi;
-    if (p == data_0217b5b0 || data_0217b5b4[p + 1].mUnk_01 > q) {
-        data_0217b5b4[p].mUnk_01 = q;
-        for (j = p - 1; j >= 0 && data_0217b5b4[j].mUnk_01 > q; j--) {
-            data_0217b5b4[j].mUnk_01 = q;
+    gCollisionSlotHighEnds[p].mOtherEndIndex = q;
+    gCollisionSlotHighEnds[p].mEndX = hi;
+    if (p == gCollisionSlotCount || gCollisionSlotHighEnds[p + 1].mUnk_01 > q) {
+        gCollisionSlotHighEnds[p].mUnk_01 = q;
+        for (j = p - 1; j >= 0 && gCollisionSlotHighEnds[j].mUnk_01 > q; j--) {
+            gCollisionSlotHighEnds[j].mUnk_01 = q;
         }
     } else {
-        data_0217b5b4[p].mUnk_01 = data_0217b5b4[p + 1].mUnk_01;
+        gCollisionSlotHighEnds[p].mUnk_01 = gCollisionSlotHighEnds[p + 1].mUnk_01;
     }
-    m = data_0217b5b0;
+    m = gCollisionSlotCount;
     if (m > q) {
         do {
-            f = &data_0217b5c0[m];
-            *f = data_0217b5c0[m - 1];
-            data_0217b5b4[f->mUnk_00].mUnk_00 += 1;
-            data_0217b5b8[f->mUnk_01].mLowEndIndex += 1;
+            f = &gCollisionSlotLowEnds[m];
+            *f = gCollisionSlotLowEnds[m - 1];
+            gCollisionSlotHighEnds[f->mOtherEndIndex].mOtherEndIndex += 1;
+            gCollisionSlots[f->mUnk_01].mLowEndIndex += 1;
             m--;
         } while (m > q);
     }
-    data_0217b5c0[q].mUnk_00 = p;
-    data_0217b5c0[q].mUnk_01 = i;
-    data_0217b5c0[q].mUnk_02 = lo;
-    data_0217b5b0 += 1;
+    gCollisionSlotLowEnds[q].mOtherEndIndex = p;
+    gCollisionSlotLowEnds[q].mUnk_01 = i;
+    gCollisionSlotLowEnds[q].mEndX = lo;
+    gCollisionSlotCount += 1;
     return i;
 }
 
-u32 func_020d5344(s32 a) {
+// Always returns -1, which the caller stores as its slot index.
+u32 FreeCollisionSlot(s32 a) {
     CollisionSlot *e;
     s32 s;
     s32 t;
     s32 k;
     s32 j;
     s32 v;
-    Unk0217b5b4 *q;
-    Unk0217b5b4 *c;
+    CollisionSlotEnd *q;
+    CollisionSlotEnd *c;
 
     if (a < 0 || a >= 0x100) {
         return -1;
     }
-    e = &data_0217b5b8[a];
+    e = &gCollisionSlots[a];
     s = e->mHighEndIndex;
     t = e->mLowEndIndex;
     if (e->mCenterPos == NULL) {
         return -1;
     }
     k = s;
-    if (k < data_0217b5b0 - 1) {
+    if (k < gCollisionSlotCount - 1) {
         do {
-            q = &data_0217b5b4[k];
-            *q = data_0217b5b4[k + 1];
-            c = &data_0217b5c0[q->mUnk_00];
-            c->mUnk_00 -= 1;
-            data_0217b5b8[c->mUnk_01].mHighEndIndex -= 1;
+            q = &gCollisionSlotHighEnds[k];
+            *q = gCollisionSlotHighEnds[k + 1];
+            c = &gCollisionSlotLowEnds[q->mOtherEndIndex];
+            c->mOtherEndIndex -= 1;
+            gCollisionSlots[c->mUnk_01].mHighEndIndex -= 1;
             if (q->mUnk_01 > t) {
                 q->mUnk_01 -= 1;
             }
             k++;
-        } while (k < data_0217b5b0 - 1);
+        } while (k < gCollisionSlotCount - 1);
     }
     k = t;
-    if (k < data_0217b5b0 - 1) {
+    if (k < gCollisionSlotCount - 1) {
         do {
-            q = &data_0217b5c0[k];
-            *q = data_0217b5c0[k + 1];
-            data_0217b5b4[q->mUnk_00].mUnk_00 -= 1;
-            data_0217b5b8[q->mUnk_01].mLowEndIndex -= 1;
-            v = q->mUnk_00;
+            q = &gCollisionSlotLowEnds[k];
+            *q = gCollisionSlotLowEnds[k + 1];
+            gCollisionSlotHighEnds[q->mOtherEndIndex].mOtherEndIndex -= 1;
+            gCollisionSlots[q->mUnk_01].mLowEndIndex -= 1;
+            v = q->mOtherEndIndex;
             if (v < s) {
-                c = &data_0217b5b4[v];
+                c = &gCollisionSlotHighEnds[v];
                 j = c->mUnk_01;
                 if (j == t) {
-                    while (data_0217b5c0[j].mUnk_00 < (u32) v) {
+                    while (gCollisionSlotLowEnds[j].mOtherEndIndex < (u32) v) {
                         j++;
                     }
                     c->mUnk_01 = j;
                 }
             }
             k++;
-        } while (k < data_0217b5b0 - 1);
+        } while (k < gCollisionSlotCount - 1);
     }
     e->mCenterPos = NULL;
-    data_0217b5c8[a] = data_0217b5ac;
-    data_0217b5ac = a;
-    data_0217b5b0 -= 1;
+    gCollisionSlotNextFree[a] = gFirstFreeCollisionSlot;
+    gFirstFreeCollisionSlot = a;
+    gCollisionSlotCount -= 1;
     return -1;
 }
 
-void func_020d5180(Vec3 *a, s32 b, s32 c) {
+// Fills the Found arrays with the slots whose x and z ranges lie within b of position a, whose flags share a bit with
+// mask c and that are not disabled.
+void FindCollisionSlotsAroundPos(Vec3 *a, s32 b, s32 c) {
     Vec3 *v = a;
     s32 hi;
     s32 lo;
@@ -589,13 +604,13 @@ void func_020d5180(Vec3 *a, s32 b, s32 c) {
     CollisionSlot *e;
     s32 f;
 
-    m = data_0217b5b0;
+    m = gCollisionSlotCount;
     k = v->x;
     z = v->z;
     hi = (s16) ((k + b) >> 11);
     lo = (s16) ((k - b) >> 11);
     p = 0;
-    data_0217b5a8 = 0;
+    gFoundCollisionSlotCount = 0;
     k = 0;
     zhi = z + b;
     zlo = z - b;
@@ -604,12 +619,12 @@ void func_020d5180(Vec3 *a, s32 b, s32 c) {
         t = p + s;
         j = k + s;
         if (t <= m) {
-            if (lo > data_0217b5b4[t - 1].mUnk_02) {
+            if (lo > gCollisionSlotHighEnds[t - 1].mEndX) {
                 p = t;
             }
         }
         if (j <= m) {
-            if (hi >= data_0217b5c0[j].mUnk_02) {
+            if (hi >= gCollisionSlotLowEnds[j].mEndX) {
                 k = j;
             }
         }
@@ -618,20 +633,20 @@ void func_020d5180(Vec3 *a, s32 b, s32 c) {
         }
         s = (s + 1) >> 1;
     }
-    s = data_0217b5b4[p].mUnk_01;
+    s = gCollisionSlotHighEnds[p].mUnk_01;
     if (k < s) {
         return;
     }
     do {
-        if (data_0217b5c0[k].mUnk_00 >= p) {
-            e = &data_0217b5b8[data_0217b5c0[k].mUnk_01];
+        if (gCollisionSlotLowEnds[k].mOtherEndIndex >= p) {
+            e = &gCollisionSlots[gCollisionSlotLowEnds[k].mUnk_01];
             f = e->mFlags;
             if (e->mHighZ >= zlo && e->mLowZ <= zhi && (f & c) && !(f & 0x200)) {
-                data_0217b5cc[data_0217b5a8] = data_0217b5c0[k].mUnk_01;
-                data_0217b5bc[data_0217b5a8] = f;
-                data_0217b5c4[data_0217b5a8] = e->mObject;
-                data_0217b5a8++;
-                if (data_0217b5a8 == 0x80) {
+                gFoundCollisionSlotIndices[gFoundCollisionSlotCount] = gCollisionSlotLowEnds[k].mUnk_01;
+                gFoundCollisionSlotFlags[gFoundCollisionSlotCount] = f;
+                gFoundCollisionSlotObjects[gFoundCollisionSlotCount] = e->mObject;
+                gFoundCollisionSlotCount++;
+                if (gFoundCollisionSlotCount == 0x80) {
                     return;
                 }
             } else {
@@ -644,20 +659,21 @@ void func_020d5180(Vec3 *a, s32 b, s32 c) {
     } while (--k >= s);
 }
 
-void func_020d5148(s16 a, s32 b) {
+// A slot with flag 0x400 also gets the flags of data_02156900 set.
+void SetCollisionSlotRadius(s16 a, s32 b) {
     CollisionSlot *e;
 
-    e = &data_0217b5b8[a];
+    e = &gCollisionSlots[a];
     e->mRadius = b;
     if (e->mFlags & 0x400) {
         e->mFlags |= data_02156900;
     }
 }
 
-void func_020d5114(s16 a) {
-    data_0217b5b8[a].mFlags |= data_021568fc;
+void DisableCollisionSlot(s16 a) {
+    gCollisionSlots[a].mFlags |= data_021568fc;
 }
 
-void func_020d50ec(s16 a) {
-    data_0217b5b8[a].mFlags &= ~0x200;
+void EnableCollisionSlot(s16 a) {
+    gCollisionSlots[a].mFlags &= ~0x200;
 }

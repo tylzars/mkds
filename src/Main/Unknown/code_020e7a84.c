@@ -497,9 +497,9 @@ void UpdateJgPosition(void) {
         data_0217b8fc = 0;
         if (data_0217b900 == 0) {
             if (data_0217b8bc != 0 || data_0217b8f0 != 0) {
-                func_020d5180(&data_0217b93c, 0x12000, 0x2000);
-                for (i = 0; i < data_0217b5a8; i++) {
-                    MapObject *q = data_0217b5c4[i];
+                FindCollisionSlotsAroundPos(&data_0217b93c, 0x12000, 0x2000);
+                for (i = 0; i < gFoundCollisionSlotCount; i++) {
+                    MapObject *q = gFoundCollisionSlotObjects[i];
 
                     if ((q->mFlags & 0x40) == 0 && IsSphereHittingMapObject(&data_0217b93c, 0x12000, q, &t) != FALSE) {
                         UpdateJgPosition_inline(&lo, &t, &lo);

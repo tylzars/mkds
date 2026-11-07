@@ -79,7 +79,7 @@ typedef struct Unk0217b498_00 {
     /* c0 */ u16 mUnk_c0;
 } Unk0217b498_00;
 
-// Shared by the gRaceHudSubScreenItemBoxCells..data_0217b4a0 lists and the ov001 pointers.
+// Shared by the gRaceHudSubScreenItemBoxCells..gRaceHudSubScreenFireball2Cells lists and the ov001 pointers.
 typedef struct RaceHudSubScreenCells {
     /* 00 */ Unk0217b498_00 **mObjects;
     /* 04 */ s32 mCellCount;
@@ -907,7 +907,7 @@ typedef struct RaceHudSubScreenKarts {
 
 extern RaceHudSubScreenSecondHand *gRaceHudSubScreenSecondHand;
 extern RaceHudSubScreenKarts *gRaceHudSubScreenKarts;
-extern struct Unk0217b49c *data_0217b49c;
+extern struct RaceGoalTimes *gRaceGoalTimes;
 extern u8 data_0217b4a8[];
 extern struct Unk0217b4ac *gEndingStaffRoll;
 extern RaceMNumberPair *gRaceMNumberPair;
@@ -998,9 +998,9 @@ extern RaceHudSubScreenCells *gRaceHudSubScreenRainStarCells;
 extern RaceHudSubScreenCells *data_0217b484;
 extern RaceHudSubScreenCells *data_0217b48c;
 extern Unk0217b490 *data_0217b490;
-extern RaceHudSubScreenCells *data_0217b494;
-extern RaceHudSubScreenCells *data_0217b498;
-extern RaceHudSubScreenCells *data_0217b4a0;
+extern RaceHudSubScreenCells *gRaceHudSubScreenCreamCells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenBerryCells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenFireball2Cells;
 // Which model the Jg shows and its row in gJgKindRows: 0 lap_count, 1 lap_final, 2 jg_reverse, 3 jg_flag, 4 none.
 extern s32 gJgKind;
 extern s32 data_0217b8ac;
@@ -1041,16 +1041,16 @@ extern void *gRotaryBridge;
 extern void *data_0217b7e4;
 extern void *gTestCylinder;
 extern void *gRotaryRoom;
-extern void **data_0217b5c4;
-extern s16 data_0217b5a8;
-extern u16 *data_0217b5bc;
-extern s16 data_0217b5ac;
-extern s16 data_0217b5b0;
-extern struct Unk0217b5b4 *data_0217b5b4;
-extern struct CollisionSlot *data_0217b5b8;
-extern struct Unk0217b5b4 *data_0217b5c0;
-extern s16 *data_0217b5c8;
-extern s16 *data_0217b5cc;
+extern void **gFoundCollisionSlotObjects;
+extern s16 gFoundCollisionSlotCount;
+extern u16 *gFoundCollisionSlotFlags;
+extern s16 gFirstFreeCollisionSlot;
+extern s16 gCollisionSlotCount;
+extern struct CollisionSlotEnd *gCollisionSlotHighEnds;
+extern struct CollisionSlot *gCollisionSlots;
+extern struct CollisionSlotEnd *gCollisionSlotLowEnds;
+extern s16 *gCollisionSlotNextFree;
+extern s16 *gFoundCollisionSlotIndices;
 extern Vec3 data_0217b800;
 extern void *gPendulum;
 extern void *gPendulumShadow;

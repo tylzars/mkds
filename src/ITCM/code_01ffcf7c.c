@@ -20,15 +20,15 @@ void UpdateCollisionSlotBounds(void) {
     Vec3 *v;
     s32 r;
     u16 f;
-    Unk0217b5b4 *x;
-    Unk0217b5b4 *y;
+    CollisionSlotEnd *x;
+    CollisionSlotEnd *y;
     u32 w;
-    Unk0217b5b4 *v1;
-    Unk0217b5b4 *pa;
-    Unk0217b5b4 *pb;
-    if (data_0217b5b0 > 0) {
+    CollisionSlotEnd *v1;
+    CollisionSlotEnd *pa;
+    CollisionSlotEnd *pb;
+    if (gCollisionSlotCount > 0) {
         do {
-            e = &data_0217b5b8[i];
+            e = &gCollisionSlots[i];
             v = e->mCenterPos;
             r = e->mRadius;
             if (v != NULL) {
@@ -44,57 +44,57 @@ void UpdateCollisionSlotBounds(void) {
                 k++;
                 e->mHighZ = v->z + r;
                 e->mLowZ = v->z - r;
-                data_0217b5b4[e->mHighEndIndex].mUnk_02 = (v->x + r) >> 11;
-                data_0217b5c0[e->mLowEndIndex].mUnk_02 = (v->x - r) >> 11;
+                gCollisionSlotHighEnds[e->mHighEndIndex].mEndX = (v->x + r) >> 11;
+                gCollisionSlotLowEnds[e->mLowEndIndex].mEndX = (v->x - r) >> 11;
             }
         next:
             i++;
-        } while (k < data_0217b5b0);
+        } while (k < gCollisionSlotCount);
     }
-    for (i = 1; i < data_0217b5b0; i++) {
+    for (i = 1; i < gCollisionSlotCount; i++) {
         k = i;
-        while ((x = &data_0217b5b4[k], y = &data_0217b5b4[k - 1], y->mUnk_02 > x->mUnk_02) && k >= 1) {
+        while ((x = &gCollisionSlotHighEnds[k], y = &gCollisionSlotHighEnds[k - 1], y->mEndX > x->mEndX) && k >= 1) {
             w = *(u32 *) x;
             *(u32 *) x = *(u32 *) y;
             *(u32 *) y = w;
-            v1 = data_0217b5c0;
-            pa = &v1[x->mUnk_00];
-            pb = &v1[y->mUnk_00];
-            pa->mUnk_00++;
-            pb->mUnk_00--;
-            data_0217b5b8[pa->mUnk_01].mHighEndIndex++;
-            data_0217b5b8[pb->mUnk_01].mHighEndIndex--;
-            if (x->mUnk_01 == y->mUnk_00) {
+            v1 = gCollisionSlotLowEnds;
+            pa = &v1[x->mOtherEndIndex];
+            pb = &v1[y->mOtherEndIndex];
+            pa->mOtherEndIndex++;
+            pb->mOtherEndIndex--;
+            gCollisionSlots[pa->mUnk_01].mHighEndIndex++;
+            gCollisionSlots[pb->mUnk_01].mHighEndIndex--;
+            if (x->mUnk_01 == y->mOtherEndIndex) {
                 t = x->mUnk_01;
                 do {
                     t++;
-                } while (data_0217b5c0[t].mUnk_00 < k);
+                } while (gCollisionSlotLowEnds[t].mOtherEndIndex < k);
                 x->mUnk_01 = t;
             }
-            if (y->mUnk_01 > x->mUnk_00) {
-                y->mUnk_01 = x->mUnk_00;
+            if (y->mUnk_01 > x->mOtherEndIndex) {
+                y->mUnk_01 = x->mOtherEndIndex;
             }
             k--;
         }
     }
-    for (i = 1; i < data_0217b5b0; i++) {
+    for (i = 1; i < gCollisionSlotCount; i++) {
         k = i;
-        while ((x = &data_0217b5c0[k], y = &data_0217b5c0[k - 1], y->mUnk_02 > x->mUnk_02) && k >= 1) {
+        while ((x = &gCollisionSlotLowEnds[k], y = &gCollisionSlotLowEnds[k - 1], y->mEndX > x->mEndX) && k >= 1) {
             w = *(u32 *) x;
             *(u32 *) x = *(u32 *) y;
             *(u32 *) y = w;
-            data_0217b5b4[x->mUnk_00].mUnk_00++;
-            data_0217b5b4[y->mUnk_00].mUnk_00--;
-            data_0217b5b8[x->mUnk_01].mLowEndIndex++;
-            data_0217b5b8[y->mUnk_01].mLowEndIndex--;
-            if (x->mUnk_00 > y->mUnk_00) {
-                for (n = x->mUnk_00; n > y->mUnk_00 && data_0217b5b4[n].mUnk_01 == k - 1; n--) {
-                    data_0217b5b4[n].mUnk_01++;
+            gCollisionSlotHighEnds[x->mOtherEndIndex].mOtherEndIndex++;
+            gCollisionSlotHighEnds[y->mOtherEndIndex].mOtherEndIndex--;
+            gCollisionSlots[x->mUnk_01].mLowEndIndex++;
+            gCollisionSlots[y->mUnk_01].mLowEndIndex--;
+            if (x->mOtherEndIndex > y->mOtherEndIndex) {
+                for (n = x->mOtherEndIndex; n > y->mOtherEndIndex && gCollisionSlotHighEnds[n].mUnk_01 == k - 1; n--) {
+                    gCollisionSlotHighEnds[n].mUnk_01++;
                 }
             } else {
-                n = y->mUnk_00;
-                while (n > x->mUnk_00 && data_0217b5b4[n].mUnk_01 == k) {
-                    data_0217b5b4[n--].mUnk_01--;
+                n = y->mOtherEndIndex;
+                while (n > x->mOtherEndIndex && gCollisionSlotHighEnds[n].mUnk_01 == k) {
+                    gCollisionSlotHighEnds[n--].mUnk_01--;
                 }
             }
             k--;
@@ -111,9 +111,9 @@ void FindCollisionSlotsOverlappingSlot(s32 a, s32 b) {
     s32 s;
     s32 d;
     s32 f;
-    Unk0217b5b4 *y;
+    CollisionSlotEnd *y;
     s32 p;
-    Unk0217b5b4 *x;
+    CollisionSlotEnd *x;
     s32 m;
     s32 h;
     s16 l;
@@ -123,33 +123,33 @@ void FindCollisionSlotsOverlappingSlot(s32 a, s32 b) {
     if (a < 0 || a >= 0x100) {
         return;
     }
-    e = &data_0217b5b8[(s16) a];
+    e = &gCollisionSlots[(s16) a];
     p = e->mHighEndIndex;
     u = e->mLowEndIndex;
     q = u;
-    x = data_0217b5b4;
-    y = data_0217b5c0;
-    s = data_0217b5b0 - 1;
-    c = x[p].mUnk_02;
-    t = y[u].mUnk_02;
+    x = gCollisionSlotHighEnds;
+    y = gCollisionSlotLowEnds;
+    s = gCollisionSlotCount - 1;
+    c = x[p].mEndX;
+    t = y[u].mEndX;
     d = e->mHighZ;
     f = e->mLowZ;
     if (e->mCenterPos == NULL) {
-        data_0217b5a8 = 0;
+        gFoundCollisionSlotCount = 0;
         return;
     }
-    data_0217b5a8 = 0;
-    while (p > 7 && x[p - 8].mUnk_02 >= t) {
+    gFoundCollisionSlotCount = 0;
+    while (p > 7 && x[p - 8].mEndX >= t) {
         p -= 8;
     }
-    while (p > 0 && x[p - 1].mUnk_02 >= t) {
+    while (p > 0 && x[p - 1].mEndX >= t) {
         p--;
     }
     m = s - 7;
-    while (q < m && y[q + 8].mUnk_02 <= c) {
+    while (q < m && y[q + 8].mEndX <= c) {
         q += 8;
     }
-    while (q < s && y[q + 1].mUnk_02 <= c) {
+    while (q < s && y[q + 1].mEndX <= c) {
         q++;
     }
     h = (s16) q;
@@ -159,17 +159,17 @@ void FindCollisionSlotsOverlappingSlot(s32 a, s32 b) {
         return;
     }
     for (;;) {
-        if (data_0217b5c0[h].mUnk_00 >= p && h != u) {
-            o = &data_0217b5b8[data_0217b5c0[h].mUnk_01];
+        if (gCollisionSlotLowEnds[h].mOtherEndIndex >= p && h != u) {
+            o = &gCollisionSlots[gCollisionSlotLowEnds[h].mUnk_01];
             g = o->mFlags;
             if (o->mHighZ < f || o->mLowZ > d || !(g & b) || (g & 0x200)) {
                 goto next;
             }
-            data_0217b5cc[data_0217b5a8] = data_0217b5c0[h].mUnk_01;
-            data_0217b5bc[data_0217b5a8] = g;
-            data_0217b5c4[data_0217b5a8] = o->mObject;
-            data_0217b5a8++;
-            if (data_0217b5a8 == 0x80) {
+            gFoundCollisionSlotIndices[gFoundCollisionSlotCount] = gCollisionSlotLowEnds[h].mUnk_01;
+            gFoundCollisionSlotFlags[gFoundCollisionSlotCount] = g;
+            gFoundCollisionSlotObjects[gFoundCollisionSlotCount] = o->mObject;
+            gFoundCollisionSlotCount++;
+            if (gFoundCollisionSlotCount == 0x80) {
                 return;
             }
         }

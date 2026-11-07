@@ -108,7 +108,7 @@ void func_020dc1d8(Wanwan *p, CourseMapRow *a) {
     func_02046bcc(&p->mUnk_00.mStateMachine, 0);
     p->mUnk_200 = p->mUnk_00.mMatrix.mUnk_00[2];
     func_020dbf7c(p);
-    p->mUnk_1fa = func_020d555c(&p->mUnk_00.mPos, p->mUnk_1ec, 0x400, p);
+    p->mUnk_1fa = CreateCollisionSlot(&p->mUnk_00.mPos, p->mUnk_1ec, 0x400, p);
     p->mUnk_00.mFarDistanceSquared = gSoundFalloffs[4].mUnk_20;
 }
 #pragma thumb off

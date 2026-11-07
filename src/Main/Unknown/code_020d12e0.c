@@ -39,7 +39,7 @@ void InitEndingStaffRoll(void) {
 
     gEndingStaffRoll = HeapAlloc(GetHeap(func_020364e8()), 0x414);
     for (i = 0; i < 0x80; i++) {
-        w = (u32 *) &gEndingStaffRoll->mUnk_10.mUnk_000[i];
+        w = (u32 *) &gEndingStaffRoll->mUnk_10.mOams[i];
         w[0] = (w[0] & ~0xc00) | 0xc00;
     }
     gEndingStaffRoll->mUnk_00 = 0;
@@ -75,7 +75,7 @@ u16 UpdateEndingStaffRoll(void) {
 }
 
 void DrawEndingStaffRoll(void) {
-    Unk020d029c *b;
+    RaceHudOamBuffer *b;
     s32 i;
     Unk020224e0_o *e;
     Unk0217b4ac *a;
@@ -83,24 +83,24 @@ void DrawEndingStaffRoll(void) {
     u32 *w;
     s32 q[2];
 
-    gEndingStaffRoll->mUnk_10.mUnk_400 = 0;
+    gEndingStaffRoll->mUnk_10.mOamCount = 0;
     a = gEndingStaffRoll;
     if (a->mUnk_00 < 0x21c) {
         b = &a->mUnk_10;
-        i = b->mUnk_400;
+        i = b->mOamCount;
         c = a->mUnk_0c;
         q[0] = 0x80000;
         q[1] = 0x60000;
-        e = &b->mUnk_000[i];
-        b->mUnk_400 += NNS_G2dMakeCellToOams(e, 0x80 - i, c, NULL, q, 0, 1);
+        e = &b->mOams[i];
+        b->mOamCount += NNS_G2dMakeCellToOams(e, 0x80 - i, c, NULL, q, 0, 1);
         w = (u32 *) e;
-        for (; i < b->mUnk_400; i++) {
+        for (; i < b->mOamCount; i++) {
             w[0] = (w[0] & ~0xc00) | 0x400;
             w[1] = (w[1] & ~0xc00) | 0x400;
             w += 2;
         }
     }
     DC_FlushRange(&gEndingStaffRoll->mUnk_10, 0x400);
-    MI_DmaFill32(3, &gEndingStaffRoll->mUnk_10.mUnk_000[gEndingStaffRoll->mUnk_10.mUnk_400], 0xc0,
-                 (0x80 - gEndingStaffRoll->mUnk_10.mUnk_400) << 3);
+    MI_DmaFill32(3, &gEndingStaffRoll->mUnk_10.mOams[gEndingStaffRoll->mUnk_10.mOamCount], 0xc0,
+                 (0x80 - gEndingStaffRoll->mUnk_10.mOamCount) << 3);
 }

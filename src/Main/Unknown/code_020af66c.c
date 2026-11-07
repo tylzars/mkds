@@ -379,7 +379,7 @@ void func_020b03bc(void) {
     InitRaceTimeDigits();
     InitRaceLapNumber();
     InitRaceMNumberPair();
-    func_020d0bd0();
+    InitRaceGoalTimes();
     InitRaceRankList();
     InitRaceHudSubScreenCellGroups();
     InitRaceGoalS();
@@ -725,7 +725,7 @@ void func_020af86c(void) {
     func_020bc108();
     ClearRaceLapNumberPointer();
     func_020d2094();
-    func_020d0bbc();
+    ClearRaceGoalTimesPointer();
     ClearRaceRankListPointer();
     ClearRaceHudSubScreenCellGroups();
     func_020c31ec();
@@ -776,13 +776,13 @@ void func_020af66c(void) {
         func_020bab54();
         UpdateRaceLapNumber();
         func_020d2090();
-        func_020d0a18();
+        UpdateRaceGoalTimes();
         func_020ba3ec();
         UpdateRaceGoalM();
     } else {
         func_020bb5cc();
         UpdateRaceLapNumber();
-        func_020d0a18();
+        UpdateRaceGoalTimes();
         UpdateRaceGoalM();
     }
     func_020bbbb4();

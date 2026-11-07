@@ -89,11 +89,11 @@ void CollideKartWithKarts(Kart *p) {
     if (p->mUnk_48 & 0x40) {
         return;
     }
-    for (i = 0; i < data_0217b5a8; i++) {
-        if (!(data_0217b5bc[i] & 0x8000)) {
+    for (i = 0; i < gFoundCollisionSlotCount; i++) {
+        if (!(gFoundCollisionSlotFlags[i] & 0x8000)) {
             continue;
         }
-        q = data_0217b5c4[i];
+        q = gFoundCollisionSlotObjects[i];
         if (p->mTestedKartMask & (1 << q->mIndex)) {
             continue;
         }

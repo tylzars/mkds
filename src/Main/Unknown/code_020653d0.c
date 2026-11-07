@@ -168,7 +168,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
     } else if (!(p->mUnk_48 & 0x20000)) {
         v6 = p->mPrevPos;
         VEC_Add(&v, &q->mUnk_a8, &v);
-        func_020d5180(&v, n * 0xd000 + p->mRadius, 0x8000);
+        FindCollisionSlotsAroundPos(&v, n * 0xd000 + p->mRadius, 0x8000);
         for (i = 0; i < n; i++) {
             if (p->mUnk_48 & 0x40) {
                 p->mPos.y -= 0x19a;

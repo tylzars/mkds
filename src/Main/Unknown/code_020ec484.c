@@ -10,7 +10,7 @@
 void func_020ec504(int a) {
     u16 v1;
     *(u16 *) (a + 2) = *(u16 *) (a + 2) | (*(u16 *) &data_02159578);
-    v1 = func_020d5344(*(s16 *) (a + 100));
+    v1 = FreeCollisionSlot(*(s16 *) (a + 100));
     *(u16 *) (a + 100) = v1;
 }
 

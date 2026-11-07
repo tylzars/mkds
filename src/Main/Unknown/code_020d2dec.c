@@ -263,7 +263,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     func_020e3af0(object->mKind) != FALSE || func_020ffabc(object->mKind) != FALSE) {
                     m |= data_021568e4;
                 }
-                object->mCollisionSlotIndex = func_020d555c(&object->mPos, func_020d252c(object), m, object);
+                object->mCollisionSlotIndex = CreateCollisionSlot(&object->mPos, func_020d252c(object), m, object);
             }
             j = gMapObjects->mMapObjectCount;
             gMapObjects->mMapObjectCount = j + 1;

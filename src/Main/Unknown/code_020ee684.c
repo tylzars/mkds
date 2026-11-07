@@ -534,7 +534,7 @@ void UpdateItemPool(ItemPool *a) {
                     k++;
                 }
             }
-            func_020d5180(&p->mPos, p->mRadius + k * 0xa000, 0x6000);
+            FindCollisionSlotsAroundPos(&p->mPos, p->mRadius + k * 0xa000, 0x6000);
             p->mUnk_7a++;
             do {
                 p->mUnk_7a--;

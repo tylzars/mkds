@@ -135,7 +135,7 @@ void func_020f8e78(void *b) {
     m = e->mUnk_6c;
     p->mUnk_dc = ((s64) p->mScale.y * e->mUnk_64) >> 12;
     p->mRadius = ((s64) p->mScale.y * m) >> 12;
-    func_020d5148(p->mCollisionSlotIndex, p->mRadius + 0xa000);
+    SetCollisionSlotRadius(p->mCollisionSlotIndex, p->mRadius + 0xa000);
     func_0208adc8(p->mUnk_7c.mUnk_00, 1);
     p->mUnk_90 = NULL;
     p->mUnk_f0 = data_02159ca0;
@@ -175,5 +175,5 @@ void func_020f8e78(void *b) {
     if (a != FALSE) {
         return;
     }
-    p->mCollisionSlotIndex = func_020d555c(&p->mPos, p->mRadius + 0xa000, 0x4000, p);
+    p->mCollisionSlotIndex = CreateCollisionSlot(&p->mPos, p->mRadius + 0xa000, 0x4000, p);
 }

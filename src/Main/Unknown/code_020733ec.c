@@ -162,10 +162,10 @@ void func_020733ec(Kart *p) {
         v = &p->mCollisionCenter;
     }
     if (p->mUnk_2c8 == -1) {
-        p->mUnk_2c8 = func_020d555c(v, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
+        p->mUnk_2c8 = CreateCollisionSlot(v, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
     }
     if (p->mUnk_2ca == -1) {
-        p->mUnk_2ca = func_020d555c(&p->mUnk_1f0, ((s64) p->mPhysicalParam->mRadius << 15) >> 12, 0x800, p);
+        p->mUnk_2ca = CreateCollisionSlot(&p->mUnk_1f0, ((s64) p->mPhysicalParam->mRadius << 15) >> 12, 0x800, p);
     }
     p->mUnk_44 |= KART_44_ON_GROUND;
     p->mUnk_4d0 = 0x64;

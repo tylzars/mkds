@@ -17,7 +17,7 @@ void ParkMapObject(MapObject *a) {
     a->mFlags |= data_021568bc;
     a->mFlags |= data_021568c0;
     if (a->mCollisionSlotIndex != -1) {
-        func_020d5114(a->mCollisionSlotIndex);
+        DisableCollisionSlot(a->mCollisionSlotIndex);
     }
     a->mFlags |= data_021568c4;
 }
@@ -31,7 +31,7 @@ void UnparkMapObject(MapObject *a) {
         a->mAlpha = 0x1f;
     }
     if (a->mCollisionSlotIndex != -1) {
-        func_020d50ec(a->mCollisionSlotIndex);
+        EnableCollisionSlot(a->mCollisionSlotIndex);
     }
     a->mFlags &= ~0x100;
 }

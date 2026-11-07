@@ -7,7 +7,7 @@
 #include "Main/Unknown/code_020cffd0.h"
 #include "Main/Unknown/code_020b4000.h"
 
-void DrawRaceMNumberPair(Unk020d029c *param_1);
-void func_020d1de8(Unk020d029c *param_1, s32 param_2);
-void DrawRaceMNumberPairTwoDigit(Unk020d029c *param_1);
-void DrawRaceMNumberPairOneDigit(Unk020d029c *param_1);
+void DrawRaceMNumberPair(RaceHudOamBuffer *param_1);
+void func_020d1de8(RaceHudOamBuffer *param_1, s32 param_2);
+void DrawRaceMNumberPairTwoDigit(RaceHudOamBuffer *param_1);
+void DrawRaceMNumberPairOneDigit(RaceHudOamBuffer *param_1);

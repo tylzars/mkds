@@ -13,7 +13,7 @@ typedef struct Unk0217b4ac {
     /* 004 */ Nclr *mEndingStaffRollMO00Nclr;
     /* 008 */ Ncgr *mEndingStaffRollM00Ncgr;
     /* 00c */ Unk020224e0_c *mUnk_0c;
-    /* 010 */ Unk020d029c mUnk_10;
+    /* 010 */ RaceHudOamBuffer mUnk_10;
 } Unk0217b4ac;
 
 u16 UpdateEndingStaffRoll(void);

@@ -87,11 +87,11 @@ void func_02068b98(Kart *a) {
                 func_02063ad0(a);
                 k = gRaceSetup->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
                 if (a->mUnk_2c8 == -1) {
-                    a->mUnk_2c8 = func_020d555c(k, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
+                    a->mUnk_2c8 = CreateCollisionSlot(k, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
                 }
                 if (a->mUnk_2ca == -1) {
                     c = a->mPhysicalParam->mRadius;
-                    a->mUnk_2ca = func_020d555c(&a->mUnk_1f0, (s64) c << 15 >> 12, 0x800, a);
+                    a->mUnk_2ca = CreateCollisionSlot(&a->mUnk_1f0, (s64) c << 15 >> 12, 0x800, a);
                 }
                 h = &a->mUnk_7c;
                 a->mUnk_7c = a->mUnk_7c & 0xdfffff9f;
@@ -302,11 +302,11 @@ void func_02068640(Kart *a, s32 b) {
         ResetKartAndSetPos(a, &c, &e, NULL);
         f = gRaceSetup->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
         if (a->mUnk_2c8 == -1) {
-            a->mUnk_2c8 = func_020d555c(f, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
+            a->mUnk_2c8 = CreateCollisionSlot(f, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
         }
         if (a->mUnk_2ca == -1) {
             g = a->mPhysicalParam->mRadius;
-            a->mUnk_2ca = func_020d555c(&a->mUnk_1f0, (s64) g << 15 >> 12, 0x800, a);
+            a->mUnk_2ca = CreateCollisionSlot(&a->mUnk_1f0, (s64) g << 15 >> 12, 0x800, a);
         }
         a->mUnk_7c = a->mUnk_7c | 0x80;
         a->mUnk_7c = a->mUnk_7c & ~0x60;

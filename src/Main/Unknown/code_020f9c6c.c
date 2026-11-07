@@ -1037,11 +1037,11 @@ s32 CollideKartWithItemObjects(Kart *param_1) {
     n = 0;
     fl = (param_1->mUnk_48 & 0x8000000) != 0;
     lim = 0xf;
-    for (i = 0; i < data_0217b5a8; i++) {
-        if (!(data_0217b5bc[i] & 0x4000)) {
+    for (i = 0; i < gFoundCollisionSlotCount; i++) {
+        if (!(gFoundCollisionSlotFlags[i] & 0x4000)) {
             continue;
         }
-        e = data_0217b5c4[i];
+        e = gFoundCollisionSlotObjects[i];
         if (fl && !(e->mFlags & 0x200000)) {
             continue;
         }
@@ -1254,7 +1254,7 @@ void RefreshItemObjectScale(ItemObject *param_1) {
     m = e->mUnk_6c;
     param_1->mUnk_dc = ((s64) param_1->mScale.y * e->mUnk_64) >> 12;
     param_1->mRadius = ((s64) param_1->mScale.y * m) >> 12;
-    func_020d5148(param_1->mCollisionSlotIndex, param_1->mRadius + 0xa000);
+    SetCollisionSlotRadius(param_1->mCollisionSlotIndex, param_1->mRadius + 0xa000);
 }
 
 void func_020f9fa8(ItemObject *param_1) {
@@ -1270,7 +1270,7 @@ void func_020f9fa8(ItemObject *param_1) {
     m = e->mUnk_6c;
     param_1->mUnk_dc = ((s64) param_1->mScale.y * e->mUnk_64) >> 12;
     param_1->mRadius = ((s64) param_1->mScale.y * m) >> 12;
-    func_020d5148(param_1->mCollisionSlotIndex, param_1->mRadius);
+    SetCollisionSlotRadius(param_1->mCollisionSlotIndex, param_1->mRadius);
 }
 
 void SetItemObjectScaleByRatios(ItemObject *param_1, s32 param_2, s32 param_3) {
@@ -1284,7 +1284,7 @@ void SetItemObjectScaleByRatios(ItemObject *param_1, s32 param_2, s32 param_3) {
     p->mScale.y = ((s64) p->mScale.z * param_3) >> 12;
     p->mUnk_dc = ((s64) p->mScale.y * gItemKinds[k].mUnk_64) >> 12;
     p->mRadius = ((s64) p->mScale.y * m) >> 12;
-    func_020d5148(p->mCollisionSlotIndex, p->mRadius + 0xa000);
+    SetCollisionSlotRadius(p->mCollisionSlotIndex, p->mRadius + 0xa000);
 }
 
 s32 func_020f9dc8(ItemObject *param_1) {
@@ -1304,7 +1304,7 @@ s32 func_020f9dc8(ItemObject *param_1) {
         m = e->mUnk_6c;
         param_1->mUnk_dc = ((s64) param_1->mScale.y * e->mUnk_64) >> 12;
         param_1->mRadius = ((s64) param_1->mScale.y * m) >> 12;
-        func_020d5148(param_1->mCollisionSlotIndex, param_1->mRadius + 0xa000);
+        SetCollisionSlotRadius(param_1->mCollisionSlotIndex, param_1->mRadius + 0xa000);
         return 1;
     }
     param_1->mUnk_100 = 0;
@@ -1325,7 +1325,7 @@ s32 func_020f9ce8(ItemObject *param_1) {
         m = e->mUnk_6c;
         param_1->mUnk_dc = ((s64) param_1->mScale.y * e->mUnk_64) >> 12;
         param_1->mRadius = ((s64) param_1->mScale.y * m) >> 12;
-        func_020d5148(param_1->mCollisionSlotIndex, param_1->mRadius + 0xa000);
+        SetCollisionSlotRadius(param_1->mCollisionSlotIndex, param_1->mRadius + 0xa000);
         return 1;
     }
     return 0;
@@ -1337,14 +1337,14 @@ void CreateItemObjectCollisionSlot(void *param_1) {
     if (p->mCollisionSlotIndex != -1) {
         return;
     }
-    p->mCollisionSlotIndex = func_020d555c(&p->mPos, p->mRadius + 0xa000, 0x4000, p);
+    p->mCollisionSlotIndex = CreateCollisionSlot(&p->mPos, p->mRadius + 0xa000, 0x4000, p);
 }
 
 void func_020f9c6c(ItemObject *param_1) {
     if (param_1->mCollisionSlotIndex != -1) {
         return;
     }
-    param_1->mCollisionSlotIndex = func_020d555c(&param_1->mPos, param_1->mRadius, 0x4000, param_1);
+    param_1->mCollisionSlotIndex = CreateCollisionSlot(&param_1->mPos, param_1->mRadius, 0x4000, param_1);
 }
 
 #pragma thumb on

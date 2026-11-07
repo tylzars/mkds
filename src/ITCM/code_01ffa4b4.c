@@ -109,7 +109,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
         if (f & 0x8c10) {
             if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && (f & 0x10)) {
                 if (b2 == 0) {
-                    func_0210f458((u16) ((func_020d59f8(0x10) & 0xe0) >> 5));
+                    func_0210f458((u16) ((PickCollisionHitValue(0x10) & 0xe0) >> 5));
                 }
                 p->mUnk_48 |= 0x200000;
             }
@@ -120,7 +120,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
             }
         }
         if (f & 0x400000) {
-            func_020efc74(&(gKartItems)[p->mIndex], (u16) ((func_020d59f8(0x400000) & 0xe0) >> 5));
+            func_020efc74(&(gKartItems)[p->mIndex], (u16) ((PickCollisionHitValue(0x400000) & 0xe0) >> 5));
             if (p->mUnk_4c & 0x10000000) {
                 func_02090838(&p->mUnk_538.mUnk_2c, (Unk02080b1c_00 *) (gKartItems)[p->mIndex].mUnk_1f0.mLink);
             }
@@ -136,7 +136,7 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
                 RefreshKartSurface(p);
                 if ((f & 0x20000) && !(p->mUnk_4c & 0x10000040) && !(p->mUnk_7c & 0x402000)) {
                     p->mUnk_4c |= 0x40000000;
-                    p->mUnk_4d8 = (func_020d59f8(0x20000) & 0xe0) >> 5;
+                    p->mUnk_4d8 = (PickCollisionHitValue(0x20000) & 0xe0) >> 5;
                 } else {
                     p->mUnk_4c &= ~0x40000000;
                 }

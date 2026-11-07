@@ -69,7 +69,7 @@ void func_020d2584(MapObject *b, s32 c) {
             a = b->mExtent.x;
             break;
     }
-    func_020d5148(b->mCollisionSlotIndex, a);
+    SetCollisionSlotRadius(b->mCollisionSlotIndex, a);
 }
 
 s32 func_020d252c(MapObject *a) {

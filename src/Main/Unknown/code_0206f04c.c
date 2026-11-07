@@ -72,7 +72,7 @@ void func_0206ff50(Kart *p, u32 a) {
         if (p->mState == KART_STATE_LAUNCH_DOUBLE_FLIP) {
             return;
         }
-        b = (u16) ((func_020d59f8(0x8000) & 0xe0) >> 5);
+        b = (u16) ((PickCollisionHitValue(0x8000) & 0xe0) >> 5);
         h = gRaceSetup->mMode;
         if (h == MODE_BATTLE || h == MODE_MISSION_RUN) {
             PlaceKartAtKeyedPlacement(p, b);
@@ -144,14 +144,14 @@ void func_0206ff50(Kart *p, u32 a) {
     }
     func_020f00f0(&(gKartItems)[p->mIndex]);
     if (a & 0x400) {
-        b = func_020d59f8(0x400);
+        b = PickCollisionHitValue(0x400);
         p->mUnk_48 |= 0x2000;
         if ((u16) ((b & 0xe0) >> 5) == 4) {
             p->mUnk_48 |= 0x800000;
         }
         return;
     }
-    b = (u16) ((func_020d59f8(0x800) & 0xe0) >> 5);
+    b = (u16) ((PickCollisionHitValue(0x800) & 0xe0) >> 5);
     p->mUnk_4bc = p->mUnk_3f8;
     p->mUnk_4c |= 0x200000;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -407,7 +407,7 @@ void func_0206f574(Kart *p, u32 a, Vec3 *b) {
     } else {
         c = 0xccd;
     }
-    e = func_020d59f8(0x214300);
+    e = PickCollisionHitValue(0x214300);
     func_0206f04c(p, b, (p->mUnk_44 & 0x80) != 0, c, (s32) (e & 0x1f00) >> 8, ((e & 0xe0) << 11) >> 16, 2);
     p->mUnk_44 |= 0x80;
     p->mUnk_250 = *b;

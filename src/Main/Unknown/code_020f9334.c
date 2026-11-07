@@ -103,7 +103,7 @@ void ReleaseItemObject(ItemObject *param_1) {
     enum { K0 } k;
 
     if (param_1->mCollisionSlotIndex != -1) {
-        param_1->mCollisionSlotIndex = func_020d5344(param_1->mCollisionSlotIndex);
+        param_1->mCollisionSlotIndex = FreeCollisionSlot(param_1->mCollisionSlotIndex);
     }
     if ((param_1->mFlags & 0x400000) != 0) {
         func_02109054(&param_1->mSoundSource);

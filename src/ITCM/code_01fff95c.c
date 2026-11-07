@@ -119,16 +119,16 @@ BOOL UpdateItemObject(ItemPool *a, ItemObject *p, s32 f) {
         if (f == 0) {
             FindCollisionSlotsOverlappingSlot(p->mCollisionSlotIndex, 0x6000);
         }
-        for (i = 0; i < data_0217b5a8; i++) {
-            w = data_0217b5bc[i];
+        for (i = 0; i < gFoundCollisionSlotCount; i++) {
+            w = gFoundCollisionSlotFlags[i];
             if (w & 0x4000) {
-                if (p->mCollisionSlotIndex != data_0217b5cc[i]) {
-                    func_020f95d4(p, data_0217b5c4[i]);
+                if (p->mCollisionSlotIndex != gFoundCollisionSlotIndices[i]) {
+                    func_020f95d4(p, gFoundCollisionSlotObjects[i]);
                 } else {
                     continue;
                 }
             } else if (w & 0x2000) {
-                func_020f944c(p, data_0217b5c4[i]);
+                func_020f944c(p, gFoundCollisionSlotObjects[i]);
             }
             if (p->mCollisionSlotIndex == -1) {
                 break;

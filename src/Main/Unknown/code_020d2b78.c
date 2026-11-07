@@ -58,7 +58,7 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
     a = 0;
     FindCollisionSlotsOverlappingSlot(e, 0x2000);
     i = 0;
-    if (data_0217b5a8 != 0) {
+    if (gFoundCollisionSlotCount != 0) {
         Vec3 v;
         Vec3 mn;
         Vec3 mx;
@@ -75,8 +75,8 @@ s32 func_020d2c2c(Vec3 *b, Vec3 *c, s32 d, s16 e, s32 f, Vec3 *g) {
             mx = z2;
         }
         q = &gMapObjects->mUnk_18c;
-        for (; i < data_0217b5a8; i++) {
-            p = data_0217b5c4[i];
+        for (; i < gFoundCollisionSlotCount; i++) {
+            p = gFoundCollisionSlotObjects[i];
             if (IsSphereHittingMapObject(b, d, p, &v) != FALSE) {
                 if (!(p->mFlags & 0x40) && DoesItemObjectRespondToMapObject(f, p) != 0) {
                     t = v.x;

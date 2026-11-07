@@ -17,6 +17,6 @@ void func_020f9c40(int arg0) {
     if (compareLeft0 == compareRight0) {
         return;
     }
-    value0 = func_020d5344(value0);
+    value0 = FreeCollisionSlot(value0);
     *(u16 *) ((value4) + (218)) = value0;
 }

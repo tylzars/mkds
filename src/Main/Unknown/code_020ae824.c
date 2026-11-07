@@ -53,21 +53,21 @@ void func_020ae824(void) {
     gRaceHud->mUnk_404 = 0;
     gRaceHud->mUnk_406 = 0;
     if (gRaceSetup->mRaceKind == 4) {
-        func_020d1198((Unk020d029c *) gRaceHud->mUnk_004);
+        func_020d1198((RaceHudOamBuffer *) gRaceHud->mUnk_004);
     }
     v = gRaceSetup->mMode;
     if ((v == MODE_BATTLE        ? gRaceProgress->mRaceDone
          : v == MODE_MISSION_RUN ? IsFramesSinceFinishPastWait()
                                  : (IsKartEnded(GetFollowedKartOrEntryIndex()) != 0 && gRaceHud->mUnk_8dc == 0)) == 0) {
-        func_020ba63c((Unk020d029c *) gRaceHud->mUnk_004);
-        DrawRaceLapAndTimeDifference((Unk020d029c *) gRaceHud->mUnk_004);
-        DrawRaceMNumberPair((Unk020d029c *) gRaceHud->mUnk_004);
-        func_020d06b8((Unk020d029c *) gRaceHud->mUnk_004);
+        func_020ba63c((RaceHudOamBuffer *) gRaceHud->mUnk_004);
+        DrawRaceLapAndTimeDifference((RaceHudOamBuffer *) gRaceHud->mUnk_004);
+        DrawRaceMNumberPair((RaceHudOamBuffer *) gRaceHud->mUnk_004);
+        DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mUnk_004);
         DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mUnk_004);
-        func_020b9dfc((Unk020d029c *) gRaceHud->mUnk_004);
+        func_020b9dfc((RaceHudOamBuffer *) gRaceHud->mUnk_004);
         DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mUnk_004);
     } else {
-        func_020d06b8((Unk020d029c *) gRaceHud->mUnk_004);
+        DrawRaceGoalTimes((RaceHudOamBuffer *) gRaceHud->mUnk_004);
         DrawRaceLinkLevel((Unk020c06c4 *) gRaceHud->mUnk_004);
         DrawRaceGoalM((Unk020c06c4 *) gRaceHud->mUnk_004);
     }
@@ -77,9 +77,9 @@ void func_020ae824(void) {
     gRaceHud->mUnk_80a = 0;
     a = gRaceHud->mSubScreenState;
     if (a != 4 && a != 5) {
-        func_020bb5ec((Unk020d029c *) gRaceHud->mUnk_408);
+        func_020bb5ec((RaceHudOamBuffer *) gRaceHud->mUnk_408);
     }
-    DrawRaceRankList((Unk020d029c *) gRaceHud->mUnk_408);
+    DrawRaceRankList((RaceHudOamBuffer *) gRaceHud->mUnk_408);
     DC_FlushRange(gRaceHud->mUnk_408, 0x400);
     MI_DmaFill32(3, gRaceHud->mUnk_408 + gRaceHud->mUnk_808 * 8, 0xc0, (0x80 - gRaceHud->mUnk_808) << 3);
     switch (gRaceHud->mSubScreenState) {

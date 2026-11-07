@@ -213,7 +213,7 @@ void AdvanceKartOrientation(Kart *p, Vec3 *a) {
 
 // Runs only on a step with a ground hit (non-zero normal).
 void RefreshKartSurface(Kart *p) {
-    s32 r = func_020d59f8(0x1e34ef);
+    s32 r = PickCollisionHitValue(0x1e34ef);
     s32 k;
     s32 a;
     s32 b;
