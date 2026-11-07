@@ -43,9 +43,9 @@ extern const char data_021645d0[];
 extern const char data_021645ec[];
 extern const char data_0216460c[];
 extern const char data_0216462c[];
-extern const char data_0216464c[];
-extern const char data_02164668[];
-extern const char data_02164684[];
+extern const char gTimeAttackGhostGetSBnclName[];
+extern const char gTimeAttackGhostGetSBnllName[];
+extern const char gTimeAttackGhostGetSBnblName[];
 
 // Objects whose layout isn't known yet.
 extern const char data_02164770[];

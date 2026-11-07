@@ -186,7 +186,7 @@ s32 func_02034370(Unk02034370 *a) {
                         m = RectTableFindContaining(q->mUnk_10, x, y);
                     }
                     if (m >= 0 && data_02174e64->mUnk_09c[m].mUnk_28 != FALSE) {
-                        func_020351c8();
+                        SetupGhostSubTextTwoButtons();
                         func_02035228(data_02174e64->mUnk_080 != m ? 1 : 0);
                         data_02174e64->mUnk_080 = m;
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
@@ -195,7 +195,7 @@ s32 func_02034370(Unk02034370 *a) {
                         data_02174e64->mUnk_090 = 0;
                         data_02174e64->mState = 3;
                     } else if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_A) != 0 && data_02174e64->mUnk_080 >= 0) {
-                        func_020351c8();
+                        SetupGhostSubTextTwoButtons();
                         func_02035228(0);
                         NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
                         RequestSelectReturnState4();
@@ -207,15 +207,15 @@ s32 func_02034370(Unk02034370 *a) {
                         RequestSelectReturnState3WithSound(0);
                     } else if (GetNewOrRepeatBits(k, PAD_KEY_UP)) {
                         if (data_02174e64->mUnk_190 == 2) {
-                            func_020352fc(0);
+                            MoveSelectedGhostUp(0);
                         } else if (data_02174e64->mUnk_190 > 2) {
-                            func_020352fc(1);
+                            MoveSelectedGhostUp(1);
                         }
                     } else if (GetNewOrRepeatBits(k, PAD_KEY_DOWN)) {
                         if (data_02174e64->mUnk_190 == 2) {
-                            func_02035280(0);
+                            MoveSelectedGhostDown(0);
                         } else if (data_02174e64->mUnk_190 > 2) {
-                            func_02035280(1);
+                            MoveSelectedGhostDown(1);
                         }
                     }
                     break;

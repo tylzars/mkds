@@ -76,14 +76,14 @@ void UpdateObPakkunSf(u32 a, Unk020e43a8 *p) {
     func_02046b40(&p->mUnk_00.mStateMachine);
 }
 
-u8 func_020e5ba0(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
+u8 CollideKartWithObPakkunSf(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
     if (func_020ec450(p, a, b) != FALSE) {
         func_020d26f8(&p->mUnk_00, a);
     }
     return *c;
 }
 
-u8 func_020e5b88(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
+u8 CollideItemObjectWithObPakkunSf(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
     func_020ec41c(p, a, b);
     return *c;
 }
@@ -103,7 +103,7 @@ void CreateObPakkunSf(void) {
 
 #pragma thumb on
 
-void func_020e5aec(Unk020e43a8 *p) {
+void InitObPakkunSf(Unk020e43a8 *p) {
     p->mUnk_00.mPos.y = p->mUnk_00.mPos.y + (s32) (((s64) p->mUnk_00.mScale.y * 0xa000) >> 12);
     *(u16 *) &p->mUnk_a0.mUnk_18.x = 0;
     func_020ec854(p, p->mUnk_00.mPos.y - 0x18000, 0x400, 0x800, 0x4000, 0x1800);
@@ -150,11 +150,11 @@ void UpdateSecondHand(u32 a, Unk020e43a8 *p) {
     Matrix3x3FromQuaternion(&p->mUnk_00.mMatrix, &p->mUnk_a0);
 }
 
-void func_020e5950(Unk020e5950 *p0) {
+void EnterSecondHandState0(Unk020e5950 *p0) {
     p0->mUnk_c8 = 0x0u;
 }
 
-void func_020e5900(Unk020e43a8 *p) {
+void UpdateSecondHandState0(Unk020e43a8 *p) {
     p->mUnk_c8 = p->mUnk_c8 + p->mUnk_cc;
     p->mUnk_00.mAngle = p->mUnk_00.mAngle + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
     if (p->mUnk_00.mStateMachine.mStateFrames > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
@@ -167,7 +167,7 @@ u32 func_020e58fc(u32 p0) {
     return p0;
 }
 
-void func_020e58c4(Unk020e43a8 *p) {
+void UpdateSecondHandState1(Unk020e43a8 *p) {
     p->mUnk_00.mAngle = p->mUnk_00.mAngle + p->mUnk_c6;
     if (*((u16 *) &p->mUnk_a0.mUnk_18.z + 1) == 0) {
         return;
@@ -178,11 +178,11 @@ void func_020e58c4(Unk020e43a8 *p) {
     }
 }
 
-void func_020e58b8(Unk020e58b8 *p0) {
+void EnterSecondHandState2(Unk020e58b8 *p0) {
     p0->mUnk_c8 = 0x4000u;
 }
 
-void func_020e5854(Unk020e43a8 *p) {
+void UpdateSecondHandState2(Unk020e43a8 *p) {
     p->mUnk_c8 = p->mUnk_c8 - p->mUnk_cc;
     p->mUnk_00.mAngle = p->mUnk_00.mAngle + (s16) (((s64) p->mUnk_c8 * p->mUnk_c6) >> 12);
     if (p->mUnk_00.mStateMachine.mStateFrames > *(u16 *) &p->mUnk_a0.mUnk_18.z) {
@@ -196,14 +196,14 @@ u32 func_020e5850(u32 p0) {
     return p0;
 }
 
-void func_020e5830(Unk020e43a8 *p) {
+void UpdateSecondHandState3(Unk020e43a8 *p) {
     if (p->mUnk_00.mStateMachine.mStateFrames > p->mUnk_c4) {
         p->mUnk_00.mStateMachine.mNextState = 0;
         p->mUnk_00.mStateMachine.mNextStateRequested = 1;
     }
 }
 
-s32 func_020e57fc(Unk020e43a8 *p, Unk020e57fc *q, s32 a, u8 *b) {
+s32 CollideKartWithSecondHand(Unk020e43a8 *p, Unk020e57fc *q, s32 a, u8 *b) {
     u32 x;
 
     x = q->mUnk_29c;
@@ -217,7 +217,7 @@ u32 func_020e57f4(u32 p0, u32 p1, u32 p2, u32 p3) {
     return (*OFFSET_PTR(const u8, p3, 0));
 }
 
-void func_020e57a0(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c) {
+void ComputeSphereHitOnSecondHand(Unk020e43a8 *p, Vec3 *a, s32 b, Vec3 *c) {
     Vec3 s;
     s32 y;
 

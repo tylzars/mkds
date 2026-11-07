@@ -80,7 +80,7 @@ BOOL func_020a6f94(Unk02100094 *a) {
             for (i = 0; i < a->mUnk_04 && (e = a->mUnk_00[i]) != NULL; i++) {
                 if (e->mUnk_a0 == FALSE && e->mUnk_a4 == FALSE) {
                     if (k-- == 0) {
-                        func_020a5744(&e->mUnk_00.mPos, i, 1);
+                        StartShine16(&e->mUnk_00.mPos, i, 1);
                         e->mUnk_a0 = TRUE;
                         return TRUE;
                     }
@@ -124,7 +124,7 @@ void func_020a6e70(Unk02100094 *a) {
             n = gRaceSetup->mKartCount;
             v = GetShineCount();
             if (v + GetTotalBalloonOrShineCount() < n + 1) {
-                func_020a5744(&e->mUnk_00.mPos, j, GetRaceUseChainCameras());
+                StartShine16(&e->mUnk_00.mPos, j, GetRaceUseChainCameras());
                 e->mUnk_a0 = TRUE;
             }
         }

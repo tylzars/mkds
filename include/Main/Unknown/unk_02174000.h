@@ -361,10 +361,10 @@ typedef struct Unk02174e68 {
     /* 24 */ void *mUnk_24[2];
     /* 2c */ Unk02174e14_00 mUnk_2c[2];
     /* 64 */ u8 mUnk_64[0x1c];
-    /* 80 */ s32 mUnk_80;
-    /* 84 */ Bmg *mUnk_84;
-    /* 88 */ Bmg *mUnk_88;
-    /* 8c */ s32 mUnk_8c;
+    /* 80 */ s32 mSelectedIndex;
+    /* 84 */ Bmg *mCommonMessages;
+    /* 88 */ Bmg *mGhostMessages;
+    /* 8c */ s32 mState;
     /* 90 */ Unk02025ebc mUnk_90;
     /* a0 */ BOOL mUnk_a0;
     /* a4 */ void *mHeap;

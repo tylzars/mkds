@@ -411,7 +411,7 @@ BOOL func_020a72c8(u16 a, u16 b) {
         if (b >= 8) {
             b = a;
         }
-        func_020a5608(GetKart(a), GetKart(b));
+        StartShine16FromKart(GetKart(a), GetKart(b));
         return TRUE;
     }
     return FALSE;
@@ -422,7 +422,7 @@ void func_020a7270(u16 a) {
         return;
     }
     AddBalloonOrShineCountAndMoveRank(a, -1);
-    func_020a5608(GetKart(a), GetKart(a));
+    StartShine16FromKart(GetKart(a), GetKart(a));
 }
 
 void func_020a71c8(void) {

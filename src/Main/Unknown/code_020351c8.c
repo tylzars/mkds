@@ -77,7 +77,7 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
     s = &data_02174e68->mUnk_2c[1];
     if (a == 1) {
         c += func_0202ddb0();
-        func_0212426c(1, b, s->mUnk_14, GetBmgEntry(data_02174e68->mUnk_88, func_02025d74(func_0202db04(c))),
+        func_0212426c(1, b, s->mUnk_14, GetBmgEntry(data_02174e68->mGhostMessages, func_02025d74(func_0202db04(c))),
                       s->mUnk_0c, s->mUnk_18);
         func_0202dcf4(c, x);
         func_02025cd0(w, x[2], x[3], *(u16 *) x);
@@ -102,7 +102,7 @@ void func_02035c50(s32 a, s32 b, s32 c, s32 d) {
 
 void func_02035c14(void) {
     void *v1;
-    v1 = GetBmgEntry(data_02174e68->mUnk_88, 3);
+    v1 = GetBmgEntry(data_02174e68->mGhostMessages, 3);
     SetTxtSystemBgOffsetRequested(0xfffffff4, 0);
     func_02126638(v1, 0, 0, 0, 0, 0, 0);
 }
@@ -126,7 +126,7 @@ static inline s32 func_0203551c_inline_2(void) {
     return 1;
 }
 
-void func_02035b78(void) {
+void SetupGhostNameSubTextTwoButtons(void) {
     void *e;
     void *f;
     void *g;
@@ -134,10 +134,10 @@ void func_02035b78(void) {
     u16 w[11];
     u16 h[0x100];
 
-    e = GetBmgEntry(data_02174e68->mUnk_88, 0x12);
-    f = GetBmgEntry(data_02174e68->mUnk_84, 0);
-    g = GetBmgEntry(data_02174e68->mUnk_84, 1);
-    func_0202dc68(data_02174e68->mUnk_80 + func_0202ddb0(), y);
+    e = GetBmgEntry(data_02174e68->mGhostMessages, 0x12);
+    f = GetBmgEntry(data_02174e68->mCommonMessages, 0);
+    g = GetBmgEntry(data_02174e68->mCommonMessages, 1);
+    func_0202dc68(data_02174e68->mSelectedIndex + func_0202ddb0(), y);
     MIi_CpuCopy16(y, w, 0x14);
     w[10] = 0;
     func_0212513c(w, e, h, 0x100);
@@ -166,7 +166,7 @@ void func_02035b0c(void) {
     }
 }
 
-void func_02035a9c(void) {
+void PrintSelectedGhostRecord(void) {
     s32 n;
     u32 d;
     u32 e;
@@ -175,7 +175,7 @@ void func_02035a9c(void) {
     u8 y[0x14];
     u16 w[11];
 
-    n = func_0202ddb0() + data_02174e68->mUnk_80;
+    n = func_0202ddb0() + data_02174e68->mSelectedIndex;
     func_0202dcf4(n, &x);
     func_0202dc68(n, y);
     MIi_CpuCopy16(y, w, 0x14);
@@ -207,8 +207,8 @@ void func_020357dc(void *a, void *b, void *c) {
     data_02174e68->mHeap = h;
     data_02174e68->mUnk_24[0] = b;
     data_02174e68->mUnk_24[1] = c;
-    data_02174e68->mUnk_84 = FindFileInLoadedArchives(data_021644e0);
-    data_02174e68->mUnk_88 = FindSceneFile(data_021644ec);
+    data_02174e68->mCommonMessages = FindFileInLoadedArchives(data_021644e0);
+    data_02174e68->mGhostMessages = FindSceneFile(data_021644ec);
     s = &data_02174e68->mUnk_2c[0];
     n = GX_GetSizeOfOBJ();
     func_02025b20(s, data_021644f8, data_02164518, data_02164538, data_02164558, data_02164574, NULL, FindSceneFile);
@@ -220,8 +220,8 @@ void func_020357dc(void *a, void *b, void *c) {
     s = &data_02174e68->mUnk_2c[1];
     n = GX_GetSizeOfSubOBJ();
     k = 0;
-    func_02025b20(s, data_021645ec, data_0216460c, data_0216462c, data_0216464c, data_02164668, data_02164684,
-                  FindSceneFile);
+    func_02025b20(s, data_021645ec, data_0216460c, data_0216462c, gTimeAttackGhostGetSBnclName,
+                  gTimeAttackGhostGetSBnllName, gTimeAttackGhostGetSBnblName, FindSceneFile);
     func_02025a50(1, data_02174e68->mHeap, s);
     m = s->mUnk_0c->mUnk_06;
     j = 0;
@@ -256,7 +256,7 @@ void func_020357dc(void *a, void *b, void *c) {
     func_0202e530(data_02174e68->mHeap, 3, w, 7, 8, 0x7c, s->mUnk_18, s->mUnk_10, data_02174e68->mUnk_20 + 0xc, 0, 1, 2,
                   10, func_02035c50);
     func_02025b84(0, &data_02174e68->mUnk_64);
-    func_02035a9c();
+    PrintSelectedGhostRecord();
     func_02025f80(&data_02174e68->mUnk_90, 0, 10, -0xc0, 0);
     RequestSelectReturnState1();
     SetSelectReturnSoundId(0xf);
@@ -294,10 +294,10 @@ s32 func_0203551c(u16 *a) {
         z = IsSelectReturnState2NoState3Or4RequestAndInRect(data_02175670[k].mUnk_00, data_02175672[k].mUnk_00);
     }
     p = data_02174e68;
-    switch (p->mUnk_8c) {
+    switch (p->mState) {
         case 0:
             if (p->mUnk_90.mUnk_00 == 1) {
-                p->mUnk_8c = 1;
+                p->mState = 1;
             } else {
                 func_02035b0c();
             }
@@ -308,25 +308,25 @@ s32 func_0203551c(u16 *a) {
             }
             func_0202e4b0();
             i = func_0202e4a4();
-            if (data_02174e68->mUnk_80 != i) {
-                data_02174e68->mUnk_80 = i;
-                func_02035a9c();
+            if (data_02174e68->mSelectedIndex != i) {
+                data_02174e68->mSelectedIndex = i;
+                PrintSelectedGhostRecord();
             }
             if (func_0202e468() != 0) {
                 NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
             }
             if (func_0202e47c() != 0) {
-                func_02035b78();
+                SetupGhostNameSubTextTwoButtons();
                 RequestSelectReturnState4();
-                data_02174e68->mUnk_8c = 2;
+                data_02174e68->mState = 2;
             } else if ((u16) (data_02175628[k].mUnk_00 & PAD_KEY_B) != 0 || z != 0) {
-                e = GetBmgEntry(data_02174e68->mUnk_88, 0x54);
-                h = GetBmgEntry(data_02174e68->mUnk_84, 4);
+                e = GetBmgEntry(data_02174e68->mGhostMessages, 0x54);
+                h = GetBmgEntry(data_02174e68->mCommonMessages, 4);
                 SetTxtSystemSoundId(0, 5);
                 SetupTxtSystemSubTextButton(e, h);
                 RequestSelectReturnState3WithSound(1);
                 data_02174e68->mUnk_a0 = FALSE;
-                data_02174e68->mUnk_8c = 4;
+                data_02174e68->mState = 4;
             }
             break;
         case 2:
@@ -338,23 +338,23 @@ s32 func_0203551c(u16 *a) {
             if (GetTxtSystemDone() != 0) {
                 if (GetTxtSystemSelectedIndex() == 0) {
                     ((Unk0202ddd8 *) func_0202ddd8())->mUnk_08_0 = 1;
-                    func_020566a8((u8) data_02174e68->mUnk_80, func_0202ddd8());
-                    data_02174e68->mUnk_8c = 3;
+                    func_020566a8((u8) data_02174e68->mSelectedIndex, func_0202ddd8());
+                    data_02174e68->mState = 3;
                 } else {
                     RequestSelectReturnState1();
-                    data_02174e68->mUnk_8c = 1;
+                    data_02174e68->mState = 1;
                 }
                 RequestTxtSystemClose();
             }
             break;
         case 3:
             if (func_0203551c_inline_2() != 0) {
-                e = GetBmgEntry(p->mUnk_88, 0x10);
-                h = GetBmgEntry(data_02174e68->mUnk_84, 4);
+                e = GetBmgEntry(p->mGhostMessages, 0x10);
+                h = GetBmgEntry(data_02174e68->mCommonMessages, 4);
                 SetTxtSystemSoundId(0, 5);
                 SetupTxtSystemSubTextButton(e, h);
                 data_02174e68->mUnk_a0 = FALSE;
-                data_02174e68->mUnk_8c = 4;
+                data_02174e68->mState = 4;
             }
             break;
         case 4:
@@ -363,7 +363,7 @@ s32 func_0203551c(u16 *a) {
                 if (a != NULL) {
                     a[2] = 1;
                 }
-                data_02174e68->mUnk_8c = 5;
+                data_02174e68->mState = 5;
             }
             break;
     }
@@ -438,7 +438,9 @@ void func_02035378(void) {
 
 #pragma thumb on
 
-void func_020352fc(s32 a) {
+// Selects the previous filled entry whose counter has run up to its end; a nonzero argument wraps from the first entry
+// to the last.
+void MoveSelectedGhostUp(s32 a) {
     BOOL f;
     s32 c;
     s32 i;
@@ -475,7 +477,9 @@ void func_020352fc(s32 a) {
     }
 }
 
-void func_02035280(s32 a) {
+// Selects the next filled entry whose counter has run up to its end; a nonzero argument wraps from the last entry to
+// the first.
+void MoveSelectedGhostDown(s32 a) {
     BOOL f;
     s32 c;
     s32 i;
@@ -535,7 +539,7 @@ void func_02035228(s32 a) {
 
 #pragma thumb on
 
-void func_020351c8(void) {
+void SetupGhostSubTextTwoButtons(void) {
     void *v1;
     void *v2;
     void *v3;
