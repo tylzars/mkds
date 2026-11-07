@@ -880,12 +880,12 @@ extern Unk0217b3ec *gRaceLapNumber;
 // Object behind data_0217b424, 0x44 bytes allocated by func_020c8d30: a table of object pointers and two counts
 // (as in RaceHudSubScreenCells), three halfwords and two arrays of three pairs.
 typedef struct Unk0217b424 {
-    /* 00 */ struct Unk020e1e98 **mUnk_00;
+    /* 00 */ struct Unk020e1e98 **mObjects;
     /* 04 */ s32 mUnk_04;
-    /* 08 */ s32 mUnk_08;
-    /* 0c */ u16 mUnk_0c[3];
+    /* 08 */ s32 mObjectCount;
+    /* 0c */ u16 mAngles[3];
     /* 12 */ u8 mUnk_12[2];
-    /* 14 */ Unk0217b498_0c mUnk_14[3];
+    /* 14 */ Unk0217b498_0c mDrawPositions[3];
     /* 2c */ Unk0217b498_0c mUnk_2c[3];
 } Unk0217b424;
 
@@ -972,8 +972,8 @@ extern RaceHudSubScreenCells *gRaceHudSubScreenDossunCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenSmanCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenMoveTreeCells;
 extern RaceHudSubScreenCells *data_0217b414;
-extern RaceHudSubScreenCells *data_0217b418;
-extern RaceHudSubScreenCells *data_0217b41c;
+extern RaceHudSubScreenCells *gRaceHudSubScreenChoropuCells;
+extern RaceHudSubScreenCells *gRaceHudSubScreenKoopaBlockCells;
 extern RaceHudSubScreenCells *data_0217b420;
 extern RaceHudSubScreenCells *gRaceHudSubScreenItemCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenCrabCells;
