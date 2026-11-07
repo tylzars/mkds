@@ -293,7 +293,7 @@ void func_020f6388(ItemObject *a, Vec3 *b, Vec3 *c) {
     a->mUnk_108.z = 0;
 }
 
-void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
+void func_020f62b0(ItemInUse *a, Unk020f40dc *b) {
     NNSSndSeqPlayer **p;
 
     if (data_0217c780 & 1) {
@@ -318,7 +318,7 @@ void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
     func_020fe958(6);
 }
 
-void func_020f6264(Unk020eda5c *a, Unk020f40dc *b) {
+void func_020f6264(ItemInUse *a, Unk020f40dc *b) {
     StartKartStar(b->mUnk_04->mKart);
     func_020f4754(b, 1);
     if (data_021759c0->mMode != 5) {
@@ -338,14 +338,14 @@ void func_020f6220(void *a0, s32 b) {
     StartSoundWhileRequested(&a->mUnk_000.mUnk_000.mSoundSource, 0xd7, 0x7f, 0);
 }
 
-BOOL InitItemKouraG(Unk020eda5c *a, ItemKouraG *b) {
+BOOL InitItemKouraG(ItemInUse *a, ItemKouraG *b) {
     BOOL v;
 
     v = data_021759c0->mMode == MODE_BATTLE;
     func_020f9114(b);
     func_0210b850(&b->mUnk_16c);
     b->mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
-    if (a->mUnk_00c->mFlags & 0x20) {
+    if (a->mKartItems->mFlags & 0x20) {
         func_020f2b94(b, a, v != FALSE ? 2 : 4, 0, 0, 0x5000);
         return FALSE;
     }
@@ -407,7 +407,7 @@ void func_020f5f7c(ItemKouraR *a, Vec3 *b, Vec3 *c) {
 }
 
 // Called when an object is taken off the kart item list: sets up its state machine and first state.
-s32 InitItemKouraR(Unk020eda5c *a, ItemKouraR *b) {
+s32 InitItemKouraR(ItemInUse *a, ItemKouraR *b) {
     u16 x;
     u16 v;
     u16 n;
@@ -416,7 +416,7 @@ s32 InitItemKouraR(Unk020eda5c *a, ItemKouraR *b) {
     func_0210b850(&b->mUnk_258);
     b->mUnk_000.mUnk_000.mUnk_000.mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a77c;
     func_02046be8(&b->mStateMachine, (UnkFunc *const *) gItemKouraRStateTable, 7, b);
-    if (a->mUnk_00c->mFlags & 0x20) {
+    if (a->mKartItems->mFlags & 0x20) {
         b->mUnk_254 = 0;
         func_020f2b94(b, a, 0, 0, 0, 0x5000);
         b->mStateMachine.mNextState = 1;
@@ -425,7 +425,7 @@ s32 InitItemKouraR(Unk020eda5c *a, ItemKouraR *b) {
         b->mUnk_000.mUnk_21c.mUnk_04 = 1;
     } else {
         b->mUnk_254 = 1;
-        if (data_021759c0->mMode != MODE_BATTLE && a->mUnk_00c->mUnk_1f0.mUnk_00 != NULL) {
+        if (data_021759c0->mMode != MODE_BATTLE && a->mKartItems->mUnk_1f0.mUnk_00 != NULL) {
             x = !(b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & 0x8000)
                     ? (u16) (b->mUnk_000.mUnk_000.mUnk_000.mUnk_78 & ~0xff00)
                     : 8;
@@ -815,13 +815,13 @@ BOOL func_020f5324(void *a0, s32 b) {
 // Runs func_020f9114, ors data_02159834 into the 0x78 halfword, then makes one of two
 // func_020f3150 calls depending on the 0x1ec halfword of the 0x0c pointer, and returns the
 // 0x130 word it stores.
-s32 InitItemBanana(Unk020eda5c *a, ItemBanana *b) {
+s32 InitItemBanana(ItemInUse *a, ItemBanana *b) {
     KartItems *o;
     s32 n;
 
     func_020f9114(b);
     b->mUnk_000.mUnk_000.mUnk_78 |= data_02159834;
-    o = a->mUnk_00c;
+    o = a->mKartItems;
     if (o->mFlags & KART_ITEMS_THROW_FORWARD) {
         func_020f3150(&b->mUnk_000, a, 0, 1, 0x4000, 0x3000, 0x59a);
         StartSound(&b->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
@@ -891,10 +891,10 @@ void InitItemBananaFromData(ItemBanana *a) {
 
 // Runs func_02069db8 on the 0x1fc word of b's 0x04 object, marks b, sets the 0x204 word of
 // a's 0x0c object, and runs func_020fe958 when the 0x08 word is 5.
-void func_020f504c(Unk020eda5c *a, Unk020f40dc *b) {
+void func_020f504c(ItemInUse *a, Unk020f40dc *b) {
     func_02069db8(b->mUnk_04->mKart);
     func_020f4754(b, 1);
-    a->mUnk_00c->mUnk_204 = TRUE;
+    a->mKartItems->mUnk_204 = TRUE;
     if (data_021759c0->mMode != 5) {
         return;
     }

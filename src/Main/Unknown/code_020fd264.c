@@ -74,20 +74,20 @@ void ResetItemBomb(ItemBomb *a) {
     a->mUnk_198 = NULL;
 }
 
-s32 InitItemBomb(Unk020eda5c *a, ItemBomb *e) {
+s32 InitItemBomb(ItemInUse *a, ItemBomb *e) {
     func_020f9114(e);
     e->mUnk_000.mUnk_000.mUnk_78 |= data_02159f3c;
-    e->mUnk_134 = (s32) (((s64) a->mUnk_068 * 0x1ec) >> 12) + 0x333;
+    e->mUnk_134 = (s32) (((s64) a->mKartVelocityLength * 0x1ec) >> 12) + 0x333;
     if (e->mUnk_134 > 0xccd) {
         e->mUnk_134 = 0xccd;
     }
-    if (a->mUnk_00c->mFlags & 0x20) {
+    if (a->mKartItems->mFlags & 0x20) {
         func_020f3150(&e->mUnk_000, a, 2, 0, 0x7800, 0x5000, 0x219a);
         e->mUnk_170 = 0x5a;
         e->mUnk_130 = 0;
         return e->mUnk_130;
     }
-    if (a->mUnk_00c->mFlags & KART_ITEMS_THROW_FORWARD) {
+    if (a->mKartItems->mFlags & KART_ITEMS_THROW_FORWARD) {
         func_020f3150(&e->mUnk_000, a, 3, 1, 0x9800, 0x5000, 0x59a);
     } else {
         func_020f3150(&e->mUnk_000, a, 3, 1, 0x6000, 0x5000, 0x59a);

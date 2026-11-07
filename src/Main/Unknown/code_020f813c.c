@@ -166,7 +166,7 @@ void StartItemSlot(KartItems *param_1, s32 param_2, s32 param_3, s32 param_4, s3
         param_1->mUnk_02c = 4;
     }
     b = p->mKartIndex == data_021759c0->mEntryIndex;
-    if (p->mItemInUse.mUnk_000 != 0xf && p->mItemInUse.mUnk_004 >= 9) {
+    if (p->mItemInUse.mObjectKind != 0xf && p->mItemInUse.mItemInfoIndex >= 9) {
         param_1->mSlotResult = PickItem(0, param_2, param_3, param_4, b, 9);
     } else {
         param_1->mSlotResult = PickItem(func_02079b40(p->mKartIndex), param_2, param_3, param_4, b, 0x12);

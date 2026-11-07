@@ -11,9 +11,9 @@
 #include "Main/Unknown/code_02109054.h"
 #include "code_02147cd8.h"
 
-void func_020f2b94(void *a0, Unk020eda5c *b0, s32 c, s32 d, s32 e, s32 f) {
+void func_020f2b94(void *a0, ItemInUse *b0, s32 c, s32 d, s32 e, s32 f) {
     Unk020f1d70 *a;
-    Unk020eda5c *b;
+    ItemInUse *b;
     s32 n;
     s32 t;
     s32 u;
@@ -35,9 +35,9 @@ void func_020f2b94(void *a0, Unk020eda5c *b0, s32 c, s32 d, s32 e, s32 f) {
     a->mUnk_000.mVelocity.x = ((s64) a->mUnk_130.x * a->mUnk_12c) >> 12;
     a->mUnk_000.mVelocity.z = ((s64) a->mUnk_130.z * a->mUnk_12c) >> 12;
     if (d == 0) {
-        VEC_Add(&a->mUnk_000.mVelocity, &b->mUnk_010->mUnk_1fc, &a->mUnk_000.mVelocity);
+        VEC_Add(&a->mUnk_000.mVelocity, &b->mKart->mUnk_1fc, &a->mUnk_000.mVelocity);
     }
-    if (b->mUnk_010->mUnk_48 & 1) {
+    if (b->mKart->mUnk_48 & 1) {
         n = VEC_DotProduct(&b->mUnk_02c.mUnk_0c, &a->mUnk_000.mVelocity);
         {
             s32 x, y, z;
@@ -56,7 +56,7 @@ void func_020f2b94(void *a0, Unk020eda5c *b0, s32 c, s32 d, s32 e, s32 f) {
         a->mUnk_000.mUnk_68.y = 0xccd;
         a->mUnk_000.mUnk_68.z = 0xccd;
         if (d != 0) {
-            a->mUnk_000.mPos = b->mUnk_010->mCollisionCenter;
+            a->mUnk_000.mPos = b->mKart->mCollisionCenter;
             VEC_MultAdd(a->mUnk_000.mUnk_68.z * 10, &b->mUnk_02c.mUnk_18, &a->mUnk_000.mPos, &a->mUnk_000.mPos);
         }
     }

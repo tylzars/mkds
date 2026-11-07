@@ -5,7 +5,8 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0206bcb0.h"
 
-// Copy of ITEM_THROW_FORWARD_BIT in KartItems.mFlags (func_020f0154 and func_020ef4a0 set it from the input word).
+// Copy of ITEM_THROW_FORWARD_BIT in KartItems.mFlags (func_020f0154 and AdvanceItemInUseOne set it from the input
+// word).
 #define KART_ITEMS_THROW_FORWARD 0x10
 // One item record per kart (the array behind gKartItems, 0x210 bytes each): the item roulette in the first 0x30 bytes,
 // the held item at 0x30, the item in use at 0x58, the course reference at 0x1f0, the kart index and the Kart at 0x1f8 /
@@ -35,9 +36,10 @@ typedef struct KartItems {
     /* 02c */ s32 mUnk_02c;
     // Record of the held item (Unk020f40dc: item at 0, 0x13 = none, uses left at 8)
     /* 030 */ Unk020f40dc mHeldItem;
-    // Record of the item in use (Unk020eda5c: object kind at 0, 0xf = none; item index at 4; use state at 8; Kart at
+    // The item in use. (replaces the three-line comment above mItemInUse)
+    // Record of the item in use (ItemInUse: object kind at 0, 0xf = none; item index at 4; use state at 8; Kart at
     // 0x10; three object pointers at 0x14)
-    /* 058 */ Unk020eda5c mItemInUse;
+    /* 058 */ ItemInUse mItemInUse;
     // Bits set from data words and masks by the kart step; 0x200 / 0x40 / 0x2 / 0x4 combine in the use tests; meanings
     // not read
     /* 1ec */ u16 mFlags;
@@ -81,24 +83,24 @@ typedef struct Unk02175620_060 {
     /* 0b0 */ void *mUnk_0b0;
 } Unk02175620_060;
 
-void InitItemInUse(Unk020eda5c *a, KartItems *b);
-void ResetItemInUse(Unk020eda5c *a);
-void func_020ee6e8(Unk020eda5c *a, s32 i, ItemObject *v);
-void func_020ee748(Unk020eda5c *a);
-void func_020ee9b0(Unk020eda5c *a);
-void func_020eea6c(Unk020eda5c *a);
-void func_020eec48(Unk020eda5c *a, s32 i, ItemObject *v);
-void func_020eecdc(Unk020eda5c *a);
-void func_020ef1cc(Unk020eda5c *p);
-void func_020ef340(Unk020eda5c *a, ItemObject *b, ItemObject *c);
-void func_020ef350(Unk020eda5c *a);
-void func_020ef4a0(Unk020eda5c *a);
-void func_020ef65c(Unk020eda5c *a, Vec3 *v, Vec3 *w);
-void func_020ef8c4(Unk020eda5c *a);
-void func_020ef9a8(Unk020eda5c *a);
-void func_020efa48(Unk020eda5c *a, ItemObject *v);
-void func_020efa60(Unk020eda5c *a, s32 f);
-void func_020efb84(Unk020eda5c *p, ItemObject *v);
+void InitItemInUse(ItemInUse *a, KartItems *b);
+void ResetItemInUse(ItemInUse *a);
+void RemoveItemInUseCircle(ItemInUse *a, s32 i, ItemObject *v);
+void AdvanceItemInUseCircle(ItemInUse *a);
+void StartItemInUseCircle(ItemInUse *a);
+void PlaceItemInUseCircleObjects(ItemInUse *a);
+void func_020eec48(ItemInUse *a, s32 i, ItemObject *v);
+void func_020eecdc(ItemInUse *a);
+void func_020ef1cc(ItemInUse *p);
+void RemoveItemInUseOne(ItemInUse *a, ItemObject *b, ItemObject *c);
+void AdvanceItemInUseOneWithOrientation(ItemInUse *a);
+void AdvanceItemInUseOne(ItemInUse *a);
+void ComputeItemInUseObjectPosition(ItemInUse *a, Vec3 *v, Vec3 *w);
+void StartItemInUseOneWithOrientation(ItemInUse *a);
+void StartItemInUseOne(ItemInUse *a);
+void StartItemInUseObjectAndCountDown(ItemInUse *a, ItemObject *v);
+void StartLastItemInUseObjectAndInit(ItemInUse *a, s32 f);
+void StartItemInUseObject(ItemInUse *p, ItemObject *v);
 void InitKartItems(KartItems *a, s32 n);
 void func_020efc74(KartItems *p, s32 a);
 void func_020efd1c(KartItems *p, ItemObject *a);

@@ -116,9 +116,11 @@ extern u8 data_0216c5d0[];
 extern u8 data_0216c5e4[];
 extern u8 data_0216c5f4[];
 extern const char data_0216c604[];
-extern void (*data_0216c620[])(void *);
-extern u8 data_0216c60c[];
-extern void (*data_0216c634[])(void *);
+// Indexed by ItemInUse.mUseKind. (once above the three tables gItemInUseAdvanceTable, gItemInUseRemoveTable,
+// gItemInUseStartTable)
+extern void (*gItemInUseAdvanceTable[])(void *);
+extern u8 gItemInUseRemoveTable[];
+extern void (*gItemInUseStartTable[])(void *);
 extern u8 data_0216c7b4[];
 extern u8 data_0216c7c4[];
 extern s32 data_0216c7d4;

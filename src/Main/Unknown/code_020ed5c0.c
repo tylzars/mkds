@@ -35,19 +35,19 @@
 #include "Main/Unknown/code_020ee684.h"
 #include "code_02147cd8.h"
 
-BOOL func_020ee528(Unk020eda5c *a) {
+BOOL func_020ee528(ItemInUse *a) {
     Kart *p;
     Vec3 v;
     s32 s;
 
-    p = a->mUnk_010;
+    p = a->mKart;
     a->mUnk_02c = *(Unk020eda5c_02c *) &p->mUnk_150;
     a->mUnk_050 = p->mUnk_98;
-    a->mUnk_05c = p->mVelocity;
-    a->mUnk_068 = p->mVelocityLength;
+    a->mKartVelocity = p->mVelocity;
+    a->mKartVelocityLength = p->mVelocityLength;
     a->mUnk_078 = ((s64) p->mPhysicalParam->mUnk_08 * p->mScale.z + 0x800) >> 12;
-    a->mUnk_07c = p->mHopHeight;
-    a->mUnk_080 = Vec3DotUnrounded(&a->mUnk_02c.mUnk_18, &a->mUnk_05c) > 0;
+    a->mKartHopHeight = p->mHopHeight;
+    a->mUnk_080 = Vec3DotUnrounded(&a->mUnk_02c.mUnk_18, &a->mKartVelocity) > 0;
     VEC_Subtract(&a->mUnk_050, &p->mPrevPos, &a->mUnk_06c);
     v.x = ((s64) p->mScaleFactor.x * p->mScaleBase.x) >> 12;
     v.y = ((s64) p->mScaleFactor.y * p->mScaleBase.y) >> 12;
@@ -60,7 +60,7 @@ BOOL func_020ee528(Unk020eda5c *a) {
     return FALSE;
 }
 
-void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
+void StartItemInUse(ItemInUse *a, Unk020f40dc *b) {
     void (*f1)(void *);
     s32 t;
     s32 k;
@@ -74,36 +74,36 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     s32 u;
 
     k = b->mUnk_00;
-    t = gItemInfos[k].mUnk_14;
+    t = gItemInfos[k].mUseKind;
     s = data_021759c0->mMode == 5;
     if (b->mUnk_0c != 0) {
         if (b->mUnk_10 > b->mUnk_12) {
             return;
         }
     }
-    f1 = data_0216c634[t];
-    f2 = gItemInfos[k].mUnk_18;
+    f1 = gItemInUseStartTable[t];
+    f2 = gItemInfos[k].mUseHook;
     if (!s) {
-        func_020be8e4(a->mUnk_028, k, b->mUnk_08);
+        func_020be8e4(a->mKartIndex, k, b->mUnk_08);
     }
-    if (t == 0) {
+    if (t == ITEM_USE_KIND_HOOK_ONLY) {
         if (f1 != NULL) {
             f1(a);
         }
         if (f2 != NULL) {
             f2(a, b);
         }
-        func_02071894(a->mUnk_010);
+        func_02071894(a->mKart);
         return;
     }
-    a->mUnk_000 = gItemInfos[k].mObjectKind;
-    a->mUnk_020 = gItemInfos[k].mObjectCount;
-    a->mUnk_008 = t;
-    a->mUnk_004 = k;
+    a->mObjectKind = gItemInfos[k].mObjectKind;
+    a->mObjectCount = gItemInfos[k].mObjectCount;
+    a->mUseKind = t;
+    a->mItemInfoIndex = k;
     a->mUnk_170 = NULL;
     a->mUnk_0e8 = gItemInfos[k].mObjectKind == 8 ? 0xb400 : 0x4333;
-    u = *(vs32 *) &a->mUnk_000;
-    TakeItemPoolObjects(&gItemPools[u], a->mUnk_020, a->mUnk_014, a->mUnk_010->mIndex, &a->mUnk_050);
+    u = *(vs32 *) &a->mObjectKind;
+    TakeItemPoolObjects(&gItemPools[u], a->mObjectCount, a->mObjects, a->mKart->mIndex, &a->mUnk_050);
     func_020ee528(a);
     if (f1 != NULL) {
         f1(a);
@@ -111,19 +111,19 @@ void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b) {
     if (f2 != NULL) {
         f2(a, b);
     }
-    func_0206c11c(a->mUnk_010);
+    func_0206c11c(a->mKart);
     func_020f4718(b);
     if (a->mUnk_170 != NULL) {
-        SetActiveItem(a->mUnk_00c, a->mUnk_004);
+        SetActiveItem(a->mKartItems, a->mItemInfoIndex);
     }
-    v = a->mUnk_014;
-    r = &a->mUnk_010->mKartModelsEntry->mUnk_040;
-    n = a->mUnk_020;
+    v = a->mObjects;
+    r = &a->mKart->mKartModelsEntry->mUnk_040;
+    n = a->mObjectCount;
     for (i = 0; i < n; i++) {
         q = v[i];
         q->mAgeFrames = 0;
         q->mPrevPos = q->mPos;
-        q->mVelocity = a->mUnk_05c;
+        q->mVelocity = a->mKartVelocity;
         func_020f9f08(q, a->mUnk_084.x, a->mUnk_084.y);
         q->mUnk_90 = r;
         q->mFlags |= 0x1000;
@@ -172,7 +172,7 @@ void func_020ee160(ItemObject *a, ItemObject *b) {
     func_020f5614(b, m, a);
 }
 
-void func_020edf10(Unk020eda5c *p) {
+void func_020edf10(ItemInUse *p) {
     ItemObject **d;
     s32 n;
     ItemObject *q;
@@ -182,16 +182,16 @@ void func_020edf10(Unk020eda5c *p) {
     s32 j;
     enum { K0 } idx;
 
-    d = p->mUnk_014;
-    n = p->mUnk_020;
-    a = func_0206c0a8(p->mUnk_010);
-    b = func_0206c094(p->mUnk_010);
+    d = p->mObjects;
+    n = p->mObjectCount;
+    a = func_0206c0a8(p->mKart);
+    b = func_0206c094(p->mKart);
     for (i = 0; i < n; i++) {
         q = d[i];
         q->mAgeFrames = q->mAgeFrames + 1;
         VEC_Subtract(&q->mPos, &q->mPrevPos, &q->mVelocity);
         q->mPrevPos = q->mPos;
-        if (p->mUnk_024 == 0) {
+        if (p->mObjectStartFramesLeft == 0) {
             q->mUnk_f0 = p->mUnk_02c.mUnk_0c;
             if (q->mUnk_f0.y < 0xff4) {
                 q->mFlags |= 0x80;
@@ -226,7 +226,7 @@ void func_020edf10(Unk020eda5c *p) {
                 if (e->mUnk_da == -1) {
                     continue;
                 }
-                if ((e->mUnk_78 & 0x4000) != 0 && p->mUnk_028 == (u16) (e->mUnk_78 & ~0xff00)) {
+                if ((e->mUnk_78 & 0x4000) != 0 && p->mKartIndex == (u16) (e->mUnk_78 & ~0xff00)) {
                     continue;
                 }
                 func_020ee160(q, e);
@@ -244,7 +244,7 @@ void func_020edf10(Unk020eda5c *p) {
     }
 }
 
-void func_020eddb4(Unk020eda5c *p) {
+void AdvanceItemInUse(ItemInUse *p) {
     s32 id;
     s32 n;
     s32 m;
@@ -252,44 +252,44 @@ void func_020eddb4(Unk020eda5c *p) {
     Kart *o;
     enum { K0 } k;
 
-    id = p->mUnk_008;
+    id = p->mUseKind;
     if (func_020ee528(p) != FALSE) {
-        m = p->mUnk_020;
+        m = p->mObjectCount;
         for (n = 0; n < m; n++) {
-            func_020f9f08(p->mUnk_014[n], p->mUnk_084.x, p->mUnk_084.y);
+            func_020f9f08(p->mObjects[n], p->mUnk_084.x, p->mUnk_084.y);
         }
     }
-    if (data_0216c620[id] != NULL) {
-        data_0216c620[id](p);
+    if (gItemInUseAdvanceTable[id] != NULL) {
+        gItemInUseAdvanceTable[id](p);
     }
     func_020edf10(p);
-    if (p->mUnk_020 == 0) {
+    if (p->mObjectCount == 0) {
         ResetItemInUse(p);
     }
-    if (p->mUnk_024 <= 0) {
+    if (p->mObjectStartFramesLeft <= 0) {
         return;
     }
-    p->mUnk_024 = p->mUnk_024 - 1;
-    if (p->mUnk_024 != 8 && p->mUnk_024 != 4 && p->mUnk_024 != 0) {
+    p->mObjectStartFramesLeft = p->mObjectStartFramesLeft - 1;
+    if (p->mObjectStartFramesLeft != 8 && p->mObjectStartFramesLeft != 4 && p->mObjectStartFramesLeft != 0) {
         return;
     }
-    p->mUnk_020 = p->mUnk_020 - 1;
-    n = p->mUnk_020;
-    o = p->mUnk_010;
-    q = p->mUnk_014[n];
-    func_020efb84(p, q);
+    p->mObjectCount = p->mObjectCount - 1;
+    n = p->mObjectCount;
+    o = p->mKart;
+    q = p->mObjects[n];
+    StartItemInUseObject(p, q);
     func_020f6630(q, n + 1, &o->mUnk_98, &o->mVelocity, &o->mUnk_244);
     k = q->mKind;
     if (gItemKinds[k].mUnk_38 != NULL) {
         gItemKinds[k].mUnk_38(q);
     }
-    if (p->mUnk_020 != 0) {
+    if (p->mObjectCount != 0) {
         return;
     }
     ResetItemInUse(p);
 }
 
-s32 func_020edc9c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
+s32 func_020edc9c(ItemInUse *p, s32 a, s32 b, s32 c, Vec3 *d) {
     Vec3 v;
     s32 n;
     s32 r;
@@ -301,7 +301,7 @@ s32 func_020edc9c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
     } else {
         Vec3 *t;
 
-        t = &p->mUnk_010->mUnk_1fc;
+        t = &p->mKart->mUnk_1fc;
         if ((s64) t->x * t->x + (s64) t->y * t->y + (s64) t->z * t->z >= 0x10) {
             r = a + (s32) (((s64) n * b) >> 12);
             VEC_MultAdd(c, &p->mUnk_02c.mUnk_18, t, &v);
@@ -310,7 +310,7 @@ s32 func_020edc9c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
             v = p->mUnk_02c.mUnk_18;
         }
     }
-    if ((p->mUnk_010->mUnk_48 & 1) == 0) {
+    if ((p->mKart->mUnk_48 & 1) == 0) {
         v.y = 0;
     }
     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
@@ -319,14 +319,14 @@ s32 func_020edc9c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
     return r;
 }
 
-s32 func_020edb8c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
+s32 func_020edb8c(ItemInUse *p, s32 a, s32 b, s32 c, Vec3 *d) {
     Vec3 v;
     s32 n;
 
     n = VEC_Mag(&p->mUnk_06c);
     if (p->mUnk_080 != 0) {
         a -= n;
-        VEC_Subtract(&p->mUnk_06c, &p->mUnk_010->mUnk_1fc, &v);
+        VEC_Subtract(&p->mUnk_06c, &p->mKart->mUnk_1fc, &v);
         VEC_MultAdd(c, &p->mUnk_02c.mUnk_18, &v, &v);
         v.x = -v.x;
         v.y = -v.y;
@@ -337,7 +337,7 @@ s32 func_020edb8c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
         v.y = -p->mUnk_02c.mUnk_18.y;
         v.z = -p->mUnk_02c.mUnk_18.z;
     }
-    if ((p->mUnk_010->mUnk_48 & 1) == 0) {
+    if ((p->mKart->mUnk_48 & 1) == 0) {
         v.y = 0;
     }
     if ((s64) v.x * v.x + (s64) v.y * v.y + (s64) v.z * v.z >= 0x10) {
@@ -346,37 +346,37 @@ s32 func_020edb8c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d) {
     return a;
 }
 
-void func_020edb00(Unk020eda5c *p) {
-    while (p->mUnk_020 > 0) {
-        p->mUnk_020--;
-        ReleaseItemPoolObject(&gItemPools[p->mUnk_014[p->mUnk_020]->mKind], p->mUnk_014[p->mUnk_020]);
+void func_020edb00(ItemInUse *p) {
+    while (p->mObjectCount > 0) {
+        p->mObjectCount--;
+        ReleaseItemPoolObject(&gItemPools[p->mObjects[p->mObjectCount]->mKind], p->mObjects[p->mObjectCount]);
     }
     ResetItemInUse(p);
     if (p->mUnk_170 != NULL) {
-        p->mUnk_00c->mActiveItem = 0x13;
+        p->mKartItems->mActiveItem = 0x13;
         p->mUnk_170 = NULL;
     }
 }
 
-void func_020edad8(Unk020eda5c *p) {
-    p->mUnk_024 = 0xa;
+void func_020edad8(ItemInUse *p) {
+    p->mObjectStartFramesLeft = 0xa;
     if (p->mUnk_170 != NULL) {
-        p->mUnk_00c->mActiveItem = 0x13;
+        p->mKartItems->mActiveItem = 0x13;
         p->mUnk_170 = NULL;
     }
 }
 
-void func_020eda5c(Unk020eda5c *p, ItemObject *q) {
+void RemoveItemInUseObject(ItemInUse *p, ItemObject *q) {
     s32 n;
     ItemObject *e;
     s32 i;
 
     e = q;
-    n = p->mUnk_020;
+    n = p->mObjectCount;
     for (i = 0; i < n; i++) {
-        if (p->mUnk_014[i] == e) {
-            ((void (*)(void *, s32, ItemObject *))((void **) data_0216c60c)[p->mUnk_008])(p, i, e);
-            if (p->mUnk_020 != 0) {
+        if (p->mObjects[i] == e) {
+            ((void (*)(void *, s32, ItemObject *))((void **) gItemInUseRemoveTable)[p->mUseKind])(p, i, e);
+            if (p->mObjectCount != 0) {
                 return;
             }
             ResetItemInUse(p);

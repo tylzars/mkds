@@ -149,7 +149,7 @@ void UpdateItemKouraWState0(ItemKouraW *param_1);
 void AdvanceItemKouraW(ItemKouraW *a);
 void func_020fc2e8(ItemKouraW *p, Vec3 *v, s32 v1, Vec3 *v2);
 void func_020fc654(ItemKouraW *p);
-s32 InitItemKouraW(Unk020eda5c *a, ItemKouraW *e);
+s32 InitItemKouraW(ItemInUse *a, ItemKouraW *e);
 void func_020fc8ec(ItemKouraW *e, s32 a);
 void func_020fc94c(ItemKouraW *p);
 void ResetItemKouraW(ItemKouraW *a);

@@ -76,10 +76,10 @@ void func_02105214(void) {
 }
 #pragma thumb off
 
-void func_021051d4(Unk020eda5c *p0, Unk020f40dc *p1) {
+void func_021051d4(ItemInUse *p0, Unk020f40dc *p1) {
     StartKartKiller(p1->mUnk_04->mKart);
     func_020f4754(p1, 1);
-    SetActiveItem(p0->mUnk_00c, 0xe);
+    SetActiveItem(p0->mKartItems, 0xe);
 }
 
 void func_0210515c(s32 a) {
@@ -177,7 +177,7 @@ void func_02104e58(Unk02104c68 *p) {
     data_0217c6e4[(u16) (p->mUnk_000.mUnk_000.mUnk_78 & ~0xff00)] = 0x258;
 }
 
-void func_02104d78(Unk020eda5c *p0, Unk02104c68 *p1) {
+void func_02104d78(ItemInUse *p0, Unk02104c68 *p1) {
     Vec3 t;
     Unk021052fc *b = p1->mUnk_134;
     s32 n;
@@ -196,20 +196,20 @@ void func_02104d78(Unk020eda5c *p0, Unk02104c68 *p1) {
     func_021052fc(b);
 }
 
-s32 func_02104c68(Unk020eda5c *p0, Unk02104c68 *p1) {
+s32 func_02104c68(ItemInUse *p0, Unk02104c68 *p1) {
     func_020f9114(p1);
     p1->mUnk_000.mUnk_000.mUnk_78 |= data_0215a584;
     if (p1->mUnk_138 != 0) {
         (p1->mUnk_134)->mUnk_b0 = 1;
     }
-    if ((p0->mUnk_00c->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
+    if ((p0->mKartItems->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
         func_020f3150(&p1->mUnk_000, p0, 0, 1, 0x4000, 0x3000, 0x59a);
         StartSound(&p1->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
         p1->mUnk_130 = 1;
         return p1->mUnk_130;
     } else {
         func_020f3150(&p1->mUnk_000, p0, 0, 0, 0x4000, 0x3000, 0x59a);
-        if (p0->mUnk_068 < 0x1000) {
+        if (p0->mKartVelocityLength < 0x1000) {
             p1->mUnk_000.mUnk_000.mVelocity.x = 0;
             p1->mUnk_000.mUnk_000.mVelocity.y = 0;
             p1->mUnk_000.mUnk_000.mVelocity.z = 0;

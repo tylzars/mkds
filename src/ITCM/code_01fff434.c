@@ -15,7 +15,7 @@
 
 void UpdateKartItems(KartItems *p) {
     Unk020f40dc *b = &p->mHeldItem;
-    Unk020eda5c *a = &p->mItemInUse;
+    ItemInUse *a = &p->mItemInUse;
     Kart *q;
     Unk020f371c_Ref *r;
     Vec3 *v;
@@ -54,13 +54,13 @@ void UpdateKartItems(KartItems *p) {
         func_01fff524(p);
         p->mFlags |= data_usa_021595d4;
     }
-    if (a->mUnk_000 != 0xf) {
-        func_020eddb4(a);
+    if (a->mObjectKind != 0xf) {
+        AdvanceItemInUse(a);
     }
     if (b->mUnk_00 != 0x13) {
         if ((p->mFlags & 0x242) == 0x242 && b->mUnk_00 != 0x13 && b->mUnk_20 == 0 && (p->mFlags & 0x200) &&
             q->mState == KART_STATE_NORMAL) {
-            func_020ee2e4(a, b);
+            StartItemInUse(a, b);
         }
         func_020f4884(b);
     }
@@ -90,10 +90,10 @@ void func_01fff524(KartItems *p) {
     p->mFlags &= ~0xff;
     if (data_021759c0->mMode == 5) {
         a = p->mHeldItem.mUnk_00;
-        if (a == 0x13 || p->mItemInUse.mUnk_000 != 0xf) {
+        if (a == 0x13 || p->mItemInUse.mObjectKind != 0xf) {
             r = FALSE;
         } else {
-            r = (u32) (gItemInfos[a].mUnk_14 - 1) <= 1;
+            r = (u32) (gItemInfos[a].mUseKind - 1) <= 1;
         }
         if (r != FALSE) {
             if ((p->mFlags & 0x4000) && func_020f0154(p) != FALSE) {

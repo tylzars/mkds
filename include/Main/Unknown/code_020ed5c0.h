@@ -133,27 +133,31 @@ typedef struct {
     /* 0c */ Vec3 mUnk_0c;
     /* 18 */ Vec3 mUnk_18;
 } Unk020eda5c_02c;
+// The item a kart is using: its objects and how they are carried. (replaces the two-line comment above the struct)
 
 // Object at 0x58 of a KartItems (that KartItems at 0x0c), passed first to the function pointers in the
 // gItemKinds entries: three ItemObject pointers at 0x14, vectors from 0x2c to 0x0e4.
-typedef struct Unk020eda5c {
-    /* 000 */ s32 mUnk_000;
-    /* 004 */ s32 mUnk_004;
-    /* 008 */ s32 mUnk_008;
-    /* 00c */ struct KartItems *mUnk_00c;
-    /* 010 */ Kart *mUnk_010;
-    /* 014 */ ItemObject *mUnk_014[3];
-    /* 020 */ s32 mUnk_020;
-    /* 024 */ s32 mUnk_024;
-    /* 028 */ u16 mUnk_028;
+typedef struct ItemInUse {
+    /* 000 */ s32 mObjectKind;
+    /* 004 */ s32 mItemInfoIndex;
+    // ItemUseKind; 5 when nothing is in use. (above mUseKind)
+    /* 008 */ s32 mUseKind;
+    /* 00c */ struct KartItems *mKartItems;
+    /* 010 */ Kart *mKart;
+    /* 014 */ ItemObject *mObjects[3];
+    // Counts down as objects leave the record. (above mObjectCount)
+    /* 020 */ s32 mObjectCount;
+    // Set to 10 to start the objects one by one at 8, 4 and 0. (above mObjectStartFramesLeft)
+    /* 024 */ s32 mObjectStartFramesLeft;
+    /* 028 */ u16 mKartIndex;
     /* 02a */ u8 mUnk_02a[2];
     /* 02c */ Unk020eda5c_02c mUnk_02c;
     /* 050 */ Vec3 mUnk_050;
-    /* 05c */ Vec3 mUnk_05c;
-    /* 068 */ s32 mUnk_068;
+    /* 05c */ Vec3 mKartVelocity;
+    /* 068 */ s32 mKartVelocityLength;
     /* 06c */ Vec3 mUnk_06c;
     /* 078 */ s32 mUnk_078;
-    /* 07c */ s32 mUnk_07c;
+    /* 07c */ s32 mKartHopHeight;
     /* 080 */ s32 mUnk_080;
     /* 084 */ Vec3 mUnk_084;
     /* 090 */ Vec3 mUnk_090;
@@ -168,26 +172,27 @@ typedef struct Unk020eda5c {
     /* 0ec */ s32 mUnk_0ec[2][16];
     /* 16c */ s32 mUnk_16c;
     /* 170 */ void *mUnk_170;
-    /* 174 */ u16 mUnk_174;
-    /* 176 */ u16 mUnk_176;
-    /* 178 */ s32 mUnk_178;
+    /* 174 */ u16 mCircleAngle;
+    /* 176 */ u16 mCircleAngleSpeed;
+    /* 178 */ s32 mCircleRadius;
     /* 17c */ s32 mUnk_17c;
-    /* 180 */ Vec3 mUnk_180;
-    /* 18c */ u16 mUnk_18c[3];
-} Unk020eda5c;
+    /* 180 */ Vec3 mCircleCenter;
+    // Which of three places around the circle each object takes. (above mCircleSlots)
+    /* 18c */ u16 mCircleSlots[3];
+} ItemInUse;
 
 void func_020ed5c0(ItemObject *p, Unk020e6488 *q, Vec3 *v);
 void func_020ed718(Unk020ed718 *p, void *a, void (*cb)(void *, void *, void *));
 void func_020ed79c(Unk020ed718 *p, Vec3 *v);
 void *func_020ed98c(ItemObject *p, Vec3 *v);
-void func_020eda5c(Unk020eda5c *p, ItemObject *q);
-void func_020edad8(Unk020eda5c *p);
-void func_020edb00(Unk020eda5c *p);
-s32 func_020edb8c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d);
-s32 func_020edc9c(Unk020eda5c *p, s32 a, s32 b, s32 c, Vec3 *d);
-void func_020eddb4(Unk020eda5c *p);
-void func_020ee2e4(Unk020eda5c *a, Unk020f40dc *b);
-BOOL func_020ee528(Unk020eda5c *a);
-void func_020edf10(Unk020eda5c *p);
+void RemoveItemInUseObject(ItemInUse *p, ItemObject *q);
+void func_020edad8(ItemInUse *p);
+void func_020edb00(ItemInUse *p);
+s32 func_020edb8c(ItemInUse *p, s32 a, s32 b, s32 c, Vec3 *d);
+s32 func_020edc9c(ItemInUse *p, s32 a, s32 b, s32 c, Vec3 *d);
+void AdvanceItemInUse(ItemInUse *p);
+void StartItemInUse(ItemInUse *a, Unk020f40dc *b);
+BOOL func_020ee528(ItemInUse *a);
+void func_020edf10(ItemInUse *p);
 void func_020ee160(ItemObject *a, ItemObject *b);
 BOOL func_020ee284(ItemObject *p, Vec3 *v, s32 d);

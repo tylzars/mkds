@@ -180,11 +180,11 @@ void StartItemFBox(ItemFBox *e) {
     func_021052f0(e->mUnk_140, func_020ff6d8, e);
 }
 
-void AdvanceItemFBoxInUse(Unk020eda5c *a, ItemFBox *e) {
+void AdvanceItemFBoxInUse(ItemInUse *a, ItemFBox *e) {
     func_02105338(e->mUnk_140, e->mUnk_000.mUnk_000.mUnk_d8, &e->mUnk_000.mUnk_000.mUnk_68);
 }
 
-u32 InitItemFBox(Unk020eda5c *a, ItemFBox *e) {
+u32 InitItemFBox(ItemInUse *a, ItemFBox *e) {
     func_020f9114(e);
     e->mUnk_000.mUnk_000.mUnk_78 |= data_0215a02c;
     MTX_Concat33((const s32 *) &data_0217c600, (const s32 *) &e->mUnk_000.mUnk_000.mUnk_94,
@@ -192,7 +192,7 @@ u32 InitItemFBox(Unk020eda5c *a, ItemFBox *e) {
     e->mUnk_130.x = 0;
     e->mUnk_130.y = 0;
     e->mUnk_130.z = 0;
-    if ((a->mUnk_00c->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
+    if ((a->mKartItems->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
         func_020f3150(&e->mUnk_000, a, 0, 1, 0x4000, 0x3000, 0x59a);
         StartSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
         e->mUnk_13c = 1;

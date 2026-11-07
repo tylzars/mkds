@@ -144,7 +144,7 @@ void RequestItemBitsOnceAndResetHeldItemTimerWhenHeldItemTimerRunsOutAndTurnAngl
 }
 
 void SetupBattleItemInUseEntry(Unk0208fd8c *a, struct KartAi *b) {
-    enum { K0 } k = (gKartItems)[b->mIndex].mItemInUse.mUnk_000;
+    enum { K0 } k = (gKartItems)[b->mIndex].mItemInUse.mObjectKind;
     Unk0208fd8c_08 *t = &gBattleItemInUseEntries[k];
 
     a->mItemInUseEntry = t;
@@ -154,9 +154,10 @@ void SetupBattleItemInUseEntry(Unk0208fd8c *a, struct KartAi *b) {
 u32 func_0208fd88(u32 p0) {
     return p0;
 }
+// Calls one of two handlers, by whether the item in use is the circling kind.
 
 void func_0208fd24(Unk0208fd8c *a, struct KartAi *b) {
-    if (gKartItems[b->mIndex].mItemInUse.mUnk_008 == 4) {
+    if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_CIRCLE) {
         data_0217b0a0(a, b);
     } else {
         data_0217b098(a, b);
@@ -256,10 +257,11 @@ void func_0208f9ac(Unk0208fd8c *a, struct KartAi *b) {
     } else {
         RequestItemBitsOnceThenBit7AndResetItemInUseTimer(a, b);
     }
+// Calls one of two handlers, by whether the item in use is the circling kind.
 }
 
 void func_0208f948(Unk0208fd8c *a, struct KartAi *b) {
-    if (gKartItems[b->mIndex].mItemInUse.mUnk_008 == 4) {
+    if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_CIRCLE) {
         data_0217b090(a, b);
     } else {
         data_0217b094(a, b);
@@ -341,10 +343,11 @@ void func_0208f6d4(Unk0208fd8c *a, struct KartAi *b) {
         return;
     }
     RequestItemBitsOnceAndResetItemInUseTimer(a, b);
+// Calls one of two handlers, by whether the item in use is use kind 3.
 }
 
 void func_0208f670(Unk0208fd8c *a, struct KartAi *b) {
-    if (gKartItems[b->mIndex].mItemInUse.mUnk_008 == 3) {
+    if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_3) {
         data_0217b0ac(a, b);
     } else {
         data_0217b0a8(a, b);

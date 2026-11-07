@@ -624,7 +624,7 @@ BOOL func_020f0154(KartItems *p) {
     if ((b->mUnk_4c & 0x20000000) != 0) {
         return FALSE;
     }
-    if (p->mItemInUse.mUnk_000 != 0xf) {
+    if (p->mItemInUse.mObjectKind != 0xf) {
         p->mFlags |= data_021595b8;
     } else if (p->mHeldItem.mUnk_00 != 0x13) {
         p->mFlags |= data_021595bc;
@@ -676,7 +676,7 @@ void func_020f0044(KartItems *p) {
     if (data_021759c0->mMode == 5) {
         return;
     }
-    if (p->mItemInUse.mUnk_000 == 0xf) {
+    if (p->mItemInUse.mObjectKind == 0xf) {
         return;
     }
     func_020edb00(&p->mItemInUse);
@@ -707,10 +707,10 @@ void func_020eff40(KartItems *p) {
     if (f) {
         return;
     }
-    if (p->mItemInUse.mUnk_000 == 0xf) {
+    if (p->mItemInUse.mObjectKind == 0xf) {
         return;
     }
-    if (p->mItemInUse.mUnk_024 != 0) {
+    if (p->mItemInUse.mObjectStartFramesLeft != 0) {
         return;
     }
     func_020edad8(&p->mItemInUse);
@@ -723,13 +723,13 @@ void func_020efea4(KartItems *p) {
     if (data_021759c0->mMode == 5) {
         return;
     }
-    if (p->mItemInUse.mUnk_000 == 0xf) {
+    if (p->mItemInUse.mObjectKind == 0xf) {
         return;
     }
-    if (p->mItemInUse.mUnk_024 != 0) {
+    if (p->mItemInUse.mObjectStartFramesLeft != 0) {
         return;
     }
-    if (p->mItemInUse.mUnk_008 != 1 && p->mItemInUse.mUnk_008 != 2) {
+    if (p->mItemInUse.mUseKind != ITEM_USE_KIND_ONE && p->mItemInUse.mUseKind != ITEM_USE_KIND_ONE_WITH_ORIENTATION) {
         return;
     }
     func_020edad8(&p->mItemInUse);
@@ -826,23 +826,25 @@ void InitKartItems(KartItems *a, s32 n) {
 }
 
 #pragma thumb off
-void func_020efb84(Unk020eda5c *p, ItemObject *v) {
+void StartItemInUseObject(ItemInUse *p, ItemObject *v) {
     StartItemObject(&gItemPools[v->mKind], v);
-    func_020efd1c(p->mUnk_00c, v);
+    func_020efd1c(p->mKartItems, v);
     v->mFlags &= ~0x1000;
 }
 
-void func_020efa60(Unk020eda5c *a, s32 f) {
+// Takes the last object out of the record, starts it and runs its kind's Init; the argument says whether to call
+// func_02071894 on the kart.
+void StartLastItemInUseObjectAndInit(ItemInUse *a, s32 f) {
     ItemObject *b;
     s32 (*cb)(void *, void *);
     void (*v)(struct ItemObject *);
 
-    a->mUnk_020--;
-    b = a->mUnk_014[a->mUnk_020];
+    a->mObjectCount--;
+    b = a->mObjects[a->mObjectCount];
     cb = gItemKinds[b->mKind].mInit;
-    func_020efb84(a, b);
+    StartItemInUseObject(a, b);
     if (cb(a, b) == 0) {
-        if (a->mUnk_00c->mUnk_208 != FALSE) {
+        if (a->mKartItems->mUnk_208 != FALSE) {
             b->mUnk_78 |= data_021595ac;
             f = 0;
         }
@@ -857,23 +859,28 @@ void func_020efa60(Unk020eda5c *a, s32 f) {
         b->mUnk_120 = v;
     }
     if (f != 0) {
-        func_02071894(a->mUnk_010);
+        func_02071894(a->mKart);
     }
 }
 
-void func_020efa48(Unk020eda5c *a, ItemObject *v) {
-    a->mUnk_020 = a->mUnk_020 - 1;
-    func_020efb84(a, v);
+// The object must be the last one of the record.
+void StartItemInUseObjectAndCountDown(ItemInUse *a, ItemObject *v) {
+    a->mObjectCount = a->mObjectCount - 1;
+    StartItemInUseObject(a, v);
 }
 
-void func_020ef9a8(Unk020eda5c *a) {
-    Unk020eda5c *p;
+// Entry 1 of gItemInUseStartTable. (the same one-line form above the other start, advance and remove entries:
+// StartItemInUseOneWithOrientation :886 entry 2, StartItemInUseCircle :1233 entry 4, AdvanceItemInUseOne :946 entry 1,
+// AdvanceItemInUseOneWithOrientation :983 entry 2,  :1056 entry 3, AdvanceItemInUseCircle :1250 entry 4,  :1162 entry
+// 3, RemoveItemInUseCircle :1306 entry 4)
+void StartItemInUseOne(ItemInUse *a) {
+    ItemInUse *p;
     ItemObject *b;
     Vec3 *v;
     s32 d;
 
     p = a;
-    b = a->mUnk_014[0];
+    b = a->mObjects[0];
     v = &a->mUnk_02c.mUnk_18;
     p->mUnk_090 = *v;
     p->mUnk_09c.x = -v->x;
@@ -884,14 +891,14 @@ void func_020ef9a8(Unk020eda5c *a) {
     VEC_MultAdd(((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12, &a->mUnk_02c.mUnk_0c, &p->mUnk_0a8, &b->mPos);
 }
 
-void func_020ef8c4(Unk020eda5c *a) {
-    Unk020eda5c *p;
+void StartItemInUseOneWithOrientation(ItemInUse *a) {
+    ItemInUse *p;
     ItemObject *b;
     Vec3 *v;
     s32 d;
 
     p = a;
-    b = a->mUnk_014[0];
+    b = a->mObjects[0];
     v = &a->mUnk_02c.mUnk_18;
     p->mUnk_090 = *v;
     p->mUnk_09c.x = -v->x;
@@ -907,8 +914,8 @@ void func_020ef8c4(Unk020eda5c *a) {
     Vec3CrossUnrounded(&b->mUnk_94.mUnk_00[1], &b->mUnk_94.mUnk_00[2], &b->mUnk_94.mUnk_00[0]);
 }
 
-void func_020ef65c(Unk020eda5c *a, Vec3 *v, Vec3 *w) {
-    Unk020eda5c *p;
+void ComputeItemInUseObjectPosition(ItemInUse *a, Vec3 *v, Vec3 *w) {
+    ItemInUse *p;
     Vec3 *q;
     Vec3 t;
     s32 d;
@@ -933,38 +940,38 @@ void func_020ef65c(Unk020eda5c *a, Vec3 *v, Vec3 *w) {
     p->mUnk_09c.z = -t.z;
     d = ((s64) a->mUnk_084.z << 14) >> 12;
     VEC_MultAdd(a->mUnk_078 + d, &p->mUnk_09c, &a->mUnk_050, w);
-    if (a->mUnk_020 > 1) {
-        p->mUnk_0e4 += (s32) (((s64) a->mUnk_07c * 0x333) >> 12);
+    if (a->mObjectCount > 1) {
+        p->mUnk_0e4 += (s32) (((s64) a->mKartHopHeight * 0x333) >> 12);
         p->mUnk_0e4 -= (s32) (((s64) p->mUnk_0e4 * 0x266) >> 12);
     } else {
-        p->mUnk_0e4 += (s32) (((s64) a->mUnk_07c * 0xd1f) >> 12);
+        p->mUnk_0e4 += (s32) (((s64) a->mKartHopHeight * 0xd1f) >> 12);
         p->mUnk_0e4 -= (s32) (((s64) p->mUnk_0e4 * 0x68f) >> 12);
     }
-    VEC_MultAdd(p->mUnk_0e4 - a->mUnk_07c + (s32) (((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12), &a->mUnk_02c.mUnk_0c, w,
-                v);
+    VEC_MultAdd(p->mUnk_0e4 - a->mKartHopHeight + (s32) (((s64) a->mUnk_0e8 * a->mUnk_084.z) >> 12),
+                &a->mUnk_02c.mUnk_0c, w, v);
 }
 
-void func_020ef4a0(Unk020eda5c *a) {
+void AdvanceItemInUseOne(ItemInUse *a) {
     ItemObject *b;
     KartItems *c;
     s32 n;
     enum { K0 } k, i;
 
-    b = a->mUnk_014[0];
-    c = a->mUnk_00c;
+    b = a->mObjects[0];
+    c = a->mKartItems;
     n = b->mUnk_68.z;
-    func_020ef65c(a, &b->mPos, &a->mUnk_0a8);
+    ComputeItemInUseObjectPosition(a, &b->mPos, &a->mUnk_0a8);
     if (b->mAgeFrames > 0xc) {
         k = b->mKind;
         if (func_020fa0b8(b, gItemKinds[k].mUnk_70, 0x333) != 0) {
             func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
         }
     }
-    if (n < 0xccd && b->mUnk_68.z >= 0xccd && a->mUnk_028 == data_021759c0->mEntryIndex) {
+    if (n < 0xccd && b->mUnk_68.z >= 0xccd && a->mKartIndex == data_021759c0->mEntryIndex) {
         func_020719bc(&c->mKart->mSoundSource, 0xe7);
     }
-    if ((c->mFlags & 0x284) == 0x284 && a->mUnk_000 != 0xf && a->mUnk_024 == 0) {
-        func_020efa60(a, 1);
+    if ((c->mFlags & 0x284) == 0x284 && a->mObjectKind != 0xf && a->mObjectStartFramesLeft == 0) {
+        StartLastItemInUseObjectAndInit(a, 1);
     }
     if (a->mUnk_170 != NULL) {
         c->mActiveItem = 0x13;
@@ -976,13 +983,13 @@ void func_020ef4a0(Unk020eda5c *a) {
         if ((u16) (data_0217562a[i].mBits & 0x80) != 0) {
             c->mFlags |= data_021595a4;
         }
-        func_020efa60(a, 1);
+        StartLastItemInUseObjectAndInit(a, 1);
     }
     c->mFlags |= data_021595a8;
 }
 
-void func_020ef350(Unk020eda5c *a) {
-    Unk020eda5c *c;
+void AdvanceItemInUseOneWithOrientation(ItemInUse *a) {
+    ItemInUse *c;
     ItemObject *b;
     Vec3 v;
     s64 t;
@@ -990,8 +997,8 @@ void func_020ef350(Unk020eda5c *a) {
     enum { K0 } k;
 
     c = a;
-    b = a->mUnk_014[0];
-    func_020ef4a0(a);
+    b = a->mObjects[0];
+    AdvanceItemInUseOne(a);
     if ((b->mFlags & 0x1000) != 0) {
         v.x = ((s64) c->mUnk_09c.x << 13) >> 12;
         v.y = ((s64) c->mUnk_09c.y << 13) >> 12;
@@ -1013,11 +1020,12 @@ void func_020ef350(Unk020eda5c *a) {
     }
 }
 
-void func_020ef340(Unk020eda5c *a, ItemObject *b, ItemObject *c) {
-    func_020efa48(a, c);
+// Entry 1 and 2 of gItemInUseRemoveTable.
+void RemoveItemInUseOne(ItemInUse *a, ItemObject *b, ItemObject *c) {
+    StartItemInUseObjectAndCountDown(a, c);
 }
 
-void func_020ef1cc(Unk020eda5c *p) {
+void func_020ef1cc(ItemInUse *p) {
     ItemObject *b;
     Vec3 *q;
     s32 d;
@@ -1025,7 +1033,7 @@ void func_020ef1cc(Unk020eda5c *p) {
     Vec3 *u;
     ItemObject **l;
 
-    l = p->mUnk_014;
+    l = p->mObjects;
     b = l[0];
     q = &b->mPos;
     u = &p->mUnk_02c.mUnk_18;
@@ -1036,7 +1044,7 @@ void func_020ef1cc(Unk020eda5c *p) {
     d = ((s64) p->mUnk_084.z << 14) >> 12;
     VEC_MultAdd(p->mUnk_078 + d, &p->mUnk_09c, &p->mUnk_050, &p->mUnk_0a8);
     VEC_MultAdd(((s64) p->mUnk_0e8 * p->mUnk_084.z) >> 12, &p->mUnk_02c.mUnk_0c, &p->mUnk_0a8, q);
-    l[1]->mPos = p->mUnk_014[0]->mPos;
+    l[1]->mPos = p->mObjects[0]->mPos;
     l[2]->mPos = l[1]->mPos;
     p->mUnk_0b4 = p->mUnk_0a8;
     p->mUnk_0c0 = p->mUnk_0b4;
@@ -1049,12 +1057,12 @@ void func_020ef1cc(Unk020eda5c *p) {
         p->mUnk_0ec[0][i] = 0;
         p->mUnk_0ec[1][i] = 0;
     }
-    if (p->mUnk_028 == data_021759c0->mEntryIndex) {
-        func_020719bc(&p->mUnk_00c->mKart->mSoundSource, 0xe7);
+    if (p->mKartIndex == data_021759c0->mEntryIndex) {
+        func_020719bc(&p->mKartItems->mKart->mSoundSource, 0xe7);
     }
 }
 
-void func_020eecdc(Unk020eda5c *a) {
+void func_020eecdc(ItemInUse *a) {
     KartItems *c;
     ItemObject **q;
     s32 n;
@@ -1074,27 +1082,27 @@ void func_020eecdc(Unk020eda5c *a) {
     s32 x;
     Vec3 *t;
     ItemObject *b;
-    Unk020eda5c *p;
+    ItemInUse *p;
 
     p = a;
-    c = a->mUnk_00c;
-    b = a->mUnk_014[0];
-    n = a->mUnk_020;
+    c = a->mKartItems;
+    b = a->mObjects[0];
+    n = a->mObjectCount;
     v40 = c->mKart->mUnk_1fc;
-    q = a->mUnk_014;
+    q = a->mObjects;
     x = a->mUnk_078 + (s32) (((s64) a->mUnk_084.z << 14) >> 12);
     w = &p->mUnk_0a8;
     f = ((s64) a->mUnk_084.z * 0x3000) >> 12;
     v = &p->mUnk_09c;
     k70 = gItemKinds[b->mKind].mUnk_70;
-    func_020ef65c(a, &b->mPos, w);
+    ComputeItemInUseObjectPosition(a, &b->mPos, w);
     if (func_020fa0b8(b, k70, 0x19a) != 0) {
         func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
     }
     if (n > 1) {
         if (a->mUnk_080 != 0) {
             VEC_Subtract(&p->mUnk_0d8, &p->mUnk_09c, &v58);
-            s = ((s64) a->mUnk_068 * a->mUnk_068) >> 12;
+            s = ((s64) a->mKartVelocityLength * a->mKartVelocityLength) >> 12;
             v58.x = ((s64) v58.x * s) >> 12;
             v58.y = ((s64) v58.y * s) >> 12;
             v58.z = ((s64) v58.z * s) >> 12;
@@ -1103,7 +1111,7 @@ void func_020eecdc(Unk020eda5c *a) {
         k = p->mUnk_16c & 0xf;
         p->mUnk_16c = p->mUnk_16c + 1;
         p->mUnk_0ec[0][k] = p->mUnk_0e4;
-        s14 = ((s64) a->mUnk_068 << 9) >> 12;
+        s14 = ((s64) a->mKartVelocityLength << 9) >> 12;
         if (s14 > 0x1000) {
             s14 = 0x1000;
         }
@@ -1112,7 +1120,7 @@ void func_020eecdc(Unk020eda5c *a) {
         b = q[i];
         t = &(&p->mUnk_0a8)[i];
         VEC_Add(t, &v40, t);
-        if (a->mUnk_024 != 0) {
+        if (a->mObjectStartFramesLeft != 0) {
             VEC_Add(&q[i - 1]->mVelocity, &b->mVelocity, &b->mVelocity);
         }
         if (a->mUnk_080 != 0) {
@@ -1137,7 +1145,7 @@ void func_020eecdc(Unk020eda5c *a) {
         if (i == 1) {
             p->mUnk_0ec[1][k] = e;
         }
-        d = e - a->mUnk_07c;
+        d = e - a->mKartHopHeight;
         d = ((s64) d * s14) >> 12;
         VEC_Subtract(t, w, &v4c);
         if ((s64) v4c.x * v4c.x + (s64) v4c.y * v4c.y + (s64) v4c.z * v4c.z >= (s64) f * f) {
@@ -1155,12 +1163,12 @@ void func_020eecdc(Unk020eda5c *a) {
             func_020f9f08(b, a->mUnk_084.x, a->mUnk_084.y);
         }
     }
-    if ((c->mFlags & 0x244) == 0x244 && a->mUnk_000 != 0xf && a->mUnk_024 == 0) {
-        func_020efa60(a, 1);
+    if ((c->mFlags & 0x244) == 0x244 && a->mObjectKind != 0xf && a->mObjectStartFramesLeft == 0) {
+        StartLastItemInUseObjectAndInit(a, 1);
     }
 }
 
-void func_020eec48(Unk020eda5c *a, s32 i, ItemObject *v) {
+void func_020eec48(ItemInUse *a, s32 i, ItemObject *v) {
     s32 k;
     ItemObject *e;
     s32 sum;
@@ -1171,23 +1179,23 @@ void func_020eec48(Unk020eda5c *a, s32 i, ItemObject *v) {
     sum = 0;
     d = i;
     d = d + 1;
-    if (a->mUnk_020 > (b = d)) {
+    if (a->mObjectCount > (b = d)) {
         s32 f = 0;
         d = f;
         do {
-            e = a->mUnk_014[a->mUnk_020 - 1];
-            func_020efa60(a, 0);
+            e = a->mObjects[a->mObjectCount - 1];
+            StartLastItemInUseObjectAndInit(a, 0);
             f = f + 0x4cd;
             if (k++ > 0) {
                 VEC_MultAdd(f, &e->mUnk_f0, &e->mVelocity, &e->mVelocity);
             }
-        } while (a->mUnk_020 > (b = i + 1));
+        } while (a->mObjectCount > (b = i + 1));
         f = d + 1;
     }
-    func_020efa48(a, v);
+    StartItemInUseObjectAndCountDown(a, v);
 }
 
-void func_020eea6c(Unk020eda5c *a) {
+void PlaceItemInUseCircleObjects(ItemInUse *a) {
     ItemObject **d;
     s32 n;
     s32 c;
@@ -1203,25 +1211,25 @@ void func_020eea6c(Unk020eda5c *a) {
     Vec3 *p2;
     s32 y;
 
-    i = a->mUnk_174 >> 4;
-    n = a->mUnk_020;
-    c = a->mUnk_178;
+    i = a->mCircleAngle >> 4;
+    n = a->mObjectCount;
+    c = a->mCircleRadius;
     y = ((s64) c * gPairsByAngle[i * 2 + 1]) >> 12;
     x = ((s64) c * gPairsByAngle[i * 2]) >> 12;
     t = -y >> 1;
     u = -x >> 1;
-    d = a->mUnk_014;
+    d = a->mObjects;
     p1 = &a->mUnk_02c.mUnk_18;
     p0 = &a->mUnk_02c.mUnk_00;
-    p2 = &a->mUnk_180;
+    p2 = &a->mCircleCenter;
     k = ((s64) y * 0xddb) >> 12;
     m = ((s64) x * 0xddb) >> 12;
     for (i = 0; i < n; i++) {
         q = &d[i]->mPos;
-        if (a->mUnk_18c[i] == 0) {
+        if (a->mCircleSlots[i] == 0) {
             VEC_MultAdd(y, p1, p2, q);
             VEC_MultAdd(x, p0, q, q);
-        } else if (a->mUnk_18c[i] == 1) {
+        } else if (a->mCircleSlots[i] == 1) {
             VEC_MultAdd(t - m, p1, p2, q);
             VEC_MultAdd(u + k, p0, q, q);
         } else {
@@ -1231,24 +1239,24 @@ void func_020eea6c(Unk020eda5c *a) {
     }
 }
 
-void func_020ee9b0(Unk020eda5c *a) {
+void StartItemInUseCircle(ItemInUse *a) {
     u16 i;
 
-    a->mUnk_174 = 0;
-    a->mUnk_176 = 0x258;
-    a->mUnk_178 = 0;
+    a->mCircleAngle = 0;
+    a->mCircleAngleSpeed = 0x258;
+    a->mCircleRadius = 0;
     a->mUnk_17c = 0;
     for (i = 0; i < 3; i++) {
-        a->mUnk_18c[i] = i;
+        a->mCircleSlots[i] = i;
     }
-    VEC_MultAdd(((s64) a->mUnk_084.z * 0x4333) >> 12, &a->mUnk_02c.mUnk_0c, &a->mUnk_050, &a->mUnk_180);
-    func_020eea6c(a);
-    if (a->mUnk_028 == data_021759c0->mEntryIndex) {
-        func_020719bc(&a->mUnk_00c->mKart->mSoundSource, 0xe7);
+    VEC_MultAdd(((s64) a->mUnk_084.z * 0x4333) >> 12, &a->mUnk_02c.mUnk_0c, &a->mUnk_050, &a->mCircleCenter);
+    PlaceItemInUseCircleObjects(a);
+    if (a->mKartIndex == data_021759c0->mEntryIndex) {
+        func_020719bc(&a->mKartItems->mKart->mSoundSource, 0xe7);
     }
 }
 
-void func_020ee748(Unk020eda5c *a) {
+void AdvanceItemInUseCircle(ItemInUse *a) {
     KartItems *c;
     s32 i;
     s32 n;
@@ -1257,86 +1265,86 @@ void func_020ee748(Unk020eda5c *a) {
     ItemObject *q;
     enum { K0 } k;
 
-    c = a->mUnk_00c;
-    n = a->mUnk_020;
-    d = (u16) (((u32) (a->mUnk_068 * 0x1e)) >> 12);
-    if (a->mUnk_010->mState != KART_STATE_NORMAL) {
-        a->mUnk_176 = 0;
+    c = a->mKartItems;
+    n = a->mObjectCount;
+    d = (u16) (((u32) (a->mKartVelocityLength * 0x1e)) >> 12);
+    if (a->mKart->mState != KART_STATE_NORMAL) {
+        a->mCircleAngleSpeed = 0;
     } else {
-        if (a->mUnk_176 < 0x578) {
-            a->mUnk_176 = a->mUnk_176 + 0x46;
+        if (a->mCircleAngleSpeed < 0x578) {
+            a->mCircleAngleSpeed = a->mCircleAngleSpeed + 0x46;
         }
-        a->mUnk_174 = a->mUnk_174 + a->mUnk_176;
+        a->mCircleAngle = a->mCircleAngle + a->mCircleAngleSpeed;
         if (d >= 0x12c) {
             d = 0x12c;
         }
-        a->mUnk_174 = a->mUnk_174 + d;
+        a->mCircleAngle = a->mCircleAngle + d;
     }
-    a->mUnk_17c = a->mUnk_17c + (s32) (((s64) a->mUnk_07c * 0x666) >> 12);
+    a->mUnk_17c = a->mUnk_17c + (s32) (((s64) a->mKartHopHeight * 0x666) >> 12);
     a->mUnk_17c = a->mUnk_17c - (s32) (((s64) a->mUnk_17c * 0x333) >> 12);
-    VEC_MultAdd((a->mUnk_17c - a->mUnk_07c) + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c,
-                &a->mUnk_050, &a->mUnk_180);
-    a->mUnk_178 =
-        a->mUnk_178 +
-        (s32) (((s64) ((a->mUnk_078 + (s32) (((s64) a->mUnk_084.z * 0x3000) >> 12)) - a->mUnk_178) * 0x333) >> 12);
-    func_020eea6c(a);
+    VEC_MultAdd((a->mUnk_17c - a->mKartHopHeight) + (s32) (((s64) a->mUnk_084.z * 0x4333) >> 12), &a->mUnk_02c.mUnk_0c,
+                &a->mUnk_050, &a->mCircleCenter);
+    a->mCircleRadius =
+        a->mCircleRadius +
+        (s32) (((s64) ((a->mUnk_078 + (s32) (((s64) a->mUnk_084.z * 0x3000) >> 12)) - a->mCircleRadius) * 0x333) >> 12);
+    PlaceItemInUseCircleObjects(a);
     i = 0;
-    k = a->mUnk_000;
+    k = a->mObjectKind;
     e = gItemKinds[k].mUnk_70;
     for (; i < n; i++) {
-        q = a->mUnk_014[i];
+        q = a->mObjects[i];
         if (func_020fa0b8(q, e, 0x19a) != 0) {
             func_020f9f08(q, a->mUnk_084.x, a->mUnk_084.y);
         }
     }
-    if (a->mUnk_028 == data_021759c0->mEntryIndex) {
+    if (a->mKartIndex == data_021759c0->mEntryIndex) {
         func_020719a8((u32) c->mKart, n + 0xe0);
     }
     if ((c->mFlags & 0x244) != 0x244) {
         return;
     }
-    if (a->mUnk_000 == 0xf) {
+    if (a->mObjectKind == 0xf) {
         return;
     }
-    if (a->mUnk_024 != 0) {
+    if (a->mObjectStartFramesLeft != 0) {
         return;
     }
-    func_020efa60(a, 1);
+    StartLastItemInUseObjectAndInit(a, 1);
 }
 
-void func_020ee6e8(Unk020eda5c *a, s32 i, ItemObject *v) {
+void RemoveItemInUseCircle(ItemInUse *a, s32 i, ItemObject *v) {
     s32 n;
     u16 h;
     ItemObject *t;
 
-    n = a->mUnk_020 - 1;
+    n = a->mObjectCount - 1;
     if (i != n) {
-        t = a->mUnk_014[n];
-        h = a->mUnk_18c[n];
-        a->mUnk_014[n] = v;
-        a->mUnk_18c[n] = a->mUnk_18c[i];
-        a->mUnk_014[i] = t;
-        a->mUnk_18c[i] = h;
+        t = a->mObjects[n];
+        h = a->mCircleSlots[n];
+        a->mObjects[n] = v;
+        a->mCircleSlots[n] = a->mCircleSlots[i];
+        a->mObjects[i] = t;
+        a->mCircleSlots[i] = h;
     }
-    func_020efa48(a, v);
+    StartItemInUseObjectAndCountDown(a, v);
 }
 
-void ResetItemInUse(Unk020eda5c *a) {
+void ResetItemInUse(ItemInUse *a) {
     s32 i;
 
-    a->mUnk_000 = 0xf;
-    a->mUnk_008 = 5;
-    a->mUnk_004 = 0x13;
+    a->mObjectKind = 0xf;
+    a->mUseKind = 5;
+    a->mItemInfoIndex = 0x13;
     for (i = 0; i < 3; i++) {
-        a->mUnk_014[i] = NULL;
+        a->mObjects[i] = NULL;
     }
-    a->mUnk_020 = 0;
-    a->mUnk_024 = 0;
+    a->mObjectCount = 0;
+    a->mObjectStartFramesLeft = 0;
 }
 
-void InitItemInUse(Unk020eda5c *a, KartItems *b) {
-    a->mUnk_00c = b;
-    a->mUnk_010 = b->mKart;
-    a->mUnk_028 = b->mKartIndex;
+void InitItemInUse(ItemInUse *a, KartItems *b) {
+    a->mKartItems = b;
+    a->mKart = b->mKart;
+    a->mKartIndex = b->mKartIndex;
     ResetItemInUse(a);
 }

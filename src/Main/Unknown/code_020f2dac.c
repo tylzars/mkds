@@ -665,7 +665,7 @@ static inline u32 func_020f3150_inline(Unk020f41c4_B *x, u32 n) {
     return ((u64) (u32) (x->mUnk_00 >> 32) * n) >> 32;
 }
 
-void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
+void func_020f3150(Unk020f2df0 *p, ItemInUse *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     Vec3 v;
     s32 n;
     BOOL m;
@@ -675,7 +675,7 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
     s32 dz;
 
     n = Vec3DotUnrounded(&a->mUnk_06c, &a->mUnk_02c.mUnk_18);
-    m = (a->mUnk_010->mUnk_48 & 1) != 0;
+    m = (a->mKart->mUnk_48 & 1) != 0;
     n = ((s64) n * 0x1ec) >> 12;
     if (n < 0x666) {
         n = 0x666;
@@ -686,11 +686,11 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
         n = func_020edb8c(a, n, 0x1000, 0x7000, &v);
     }
     if (c != 0) {
-        if (a->mUnk_07c > 0) {
-            n += (s32) (((s64) a->mUnk_07c * 0x14cd) >> 12);
+        if (a->mKartHopHeight > 0) {
+            n += (s32) (((s64) a->mKartHopHeight * 0x14cd) >> 12);
         }
     }
-    if (a->mUnk_068 < 0x3000) {
+    if (a->mKartVelocityLength < 0x3000) {
         v.z += func_020f3150_inline(&gRaceProgress->mRandom, 0xf6) - 0x7b;
         v.x += func_020f3150_inline(&gRaceProgress->mRandom, 0xf6) - 0x7b;
     }
@@ -699,7 +699,7 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
     v.z = ((s64) v.z * n) >> 12;
     if (!m) {
         if (c != 0) {
-            n = e + (s32) (((s64) a->mUnk_068 * 0x200) >> 12) + (s32) (((s64) a->mUnk_06c.y * 0x2000) >> 12);
+            n = e + (s32) (((s64) a->mKartVelocityLength * 0x200) >> 12) + (s32) (((s64) a->mUnk_06c.y * 0x2000) >> 12);
         } else {
             n = f;
             dx = a->mUnk_06c.y > 0 ? 0x666 : 0x1333;
@@ -708,13 +708,13 @@ void func_020f3150(Unk020f2df0 *p, Unk020eda5c *a, s32 b, s32 c, s32 d, s32 e, s
         VEC_MultAdd(n, &a->mUnk_02c.mUnk_0c, &v, &p->mUnk_000.mVelocity);
     }
     if (c == 0) {
-        VEC_Add(&p->mUnk_000.mVelocity, &a->mUnk_010->mUnk_1fc, &p->mUnk_000.mVelocity);
+        VEC_Add(&p->mUnk_000.mVelocity, &a->mKart->mUnk_1fc, &p->mUnk_000.mVelocity);
     }
     if (c != 0) {
-        p->mUnk_000.mPos = a->mUnk_010->mCollisionCenter;
+        p->mUnk_000.mPos = a->mKart->mCollisionCenter;
         VEC_MultAdd(p->mUnk_000.mUnk_68.z * 10, &a->mUnk_02c.mUnk_18, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     } else {
-        if (a->mUnk_07c != 0 && a->mUnk_068 < 0x2000 && p->mUnk_000.mUnk_68.z < 0xccd) {
+        if (a->mKartHopHeight != 0 && a->mKartVelocityLength < 0x2000 && p->mUnk_000.mUnk_68.z < 0xccd) {
             VEC_Subtract(&a->mUnk_02c.mUnk_0c, &a->mUnk_02c.mUnk_18, &v);
             VEC_MultAdd(0x2000, &v, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
         }

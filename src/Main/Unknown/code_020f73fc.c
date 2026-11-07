@@ -79,7 +79,7 @@ void func_020f77f8(ItemObject *a, s32 b, Vec3 *c, Vec3 *d, MapObject *e) {
             break;
         case 2:
             if (p->mFlags & 0x1000) {
-                func_020eda5c(&(gKartItems)[(u16) (p->mUnk_78 & ~0xff00)].mItemInUse, p);
+                RemoveItemInUseObject(&(gKartItems)[(u16) (p->mUnk_78 & ~0xff00)].mItemInUse, p);
             }
             n = 0;
             if ((s64) d->x * d->x + (s64) d->y * d->y + (s64) d->z * d->z >= 0x10) {

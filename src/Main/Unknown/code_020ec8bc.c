@@ -111,11 +111,11 @@ void CreateItemModels(void) {
 #pragma optimize_for_size off
 #pragma thumb off
 
-void func_020ed268(Unk020ec8bc *p, Unk020eda5c *q, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, u16 g, s32 h) {
+void func_020ed268(Unk020ec8bc *p, ItemInUse *q, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f, u16 g, s32 h) {
     func_020f2b94(p, q, (e == 0) ? -1 : 0, c, d, f);
     p->mUnk_214 = a;
     p->mUnk_218 = b;
-    p->mUnk_21c = q->mUnk_00c->mUnk_1f0;
+    p->mUnk_21c = q->mKartItems->mUnk_1f0;
     func_020f371c(&p->mUnk_21c, &p->mUnk_168, g, h);
     p->mUnk_224 = 0;
 }

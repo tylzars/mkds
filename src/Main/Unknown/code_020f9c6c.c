@@ -157,11 +157,11 @@ void func_020fc8ec(ItemKouraW *e, s32 a) {
     e->mNextStateRequested = 1;
 }
 
-s32 InitItemKouraW(Unk020eda5c *a, ItemKouraW *e) {
+s32 InitItemKouraW(ItemInUse *a, ItemKouraW *e) {
     Kart *p;
 
     func_020f9114(e);
-    if (a->mUnk_00c->mUnk_1f0.mUnk_00 != NULL) {
+    if (a->mKartItems->mUnk_1f0.mUnk_00 != NULL) {
         func_020ed268((Unk020ec8bc *) e, a, 0x14, 0xcc, 1, 1, 0, 0x6000, e->mRankKartIndex, 1);
         func_02046bcc(e->mUnk_2e8, 1);
     } else {
@@ -1052,7 +1052,7 @@ s32 func_020fa4c8(Kart *param_1) {
         }
         data_0217bd30[n++] = e;
         if (e->mFlags & 0x1000) {
-            func_020eda5c(&gKartItems[(u16) (e->mUnk_78 & ~0xff00)].mItemInUse, e);
+            RemoveItemInUseObject(&gKartItems[(u16) (e->mUnk_78 & ~0xff00)].mItemInUse, e);
         }
         k = e->mKind;
         if (gItemKinds[k].mUnk_88 != 0) {

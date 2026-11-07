@@ -345,10 +345,11 @@ typedef struct ItemKind {
     /* 18 */ void (*mReset)(void *);
     // Called with the object when StartItemObject moves it into the started part of its pool.
     /* 1c */ void (*mStart)(void *);
-    // Called by func_020ef350 with the item-in-use record and its first object, which is not started yet.
+    // Called by AdvanceItemInUseOneWithOrientation with the item-in-use record and its first object, which is not
+    // started yet.
     /* 20 */ void (*mAdvanceInUse)(void *, void *);
-    // Called with the item-in-use record and the object by func_020efa60 after it takes the object out of the record
-    // and starts it.
+    // Called with the item-in-use record and the object by StartLastItemInUseObjectAndInit after it takes the object
+    // out of the record and starts it.
     /* 24 */ s32 (*mInit)(void *, void *);
     // Copied into the object's per-call callback (ItemObject.mUnk_120) when the object is started, unless flags
     // 0x180000 are set.
@@ -441,6 +442,13 @@ typedef struct {
     /* 00 */ Unk020f41c4_Pair mUnk_00[3];
 } Unk020f41c4_Row;
 
+typedef enum {
+    ITEM_USE_KIND_HOOK_ONLY,
+    ITEM_USE_KIND_ONE,
+    ITEM_USE_KIND_ONE_WITH_ORIENTATION,
+    ITEM_USE_KIND_3,
+    ITEM_USE_KIND_CIRCLE
+} ItemUseKind;
 // One of the 18 items: the object kind and the number of objects it takes from the pool, the use kind and the hook
 // called after its use. gItemInfos holds the heap copy of 18 static records of this type; the roulette may roll an item
 // only while mEnabled is set.
@@ -451,8 +459,9 @@ typedef struct ItemInfo {
     /* 08 */ s32 mObjectKind;
     /* 0c */ s32 mObjectCount;
     /* 10 */ s32 mUnk_10;
-    /* 14 */ s32 mUnk_14;
-    /* 18 */ UnkFunc *mUnk_18;
+    // ItemUseKind: how the objects are carried; 0 carries none. (above mUseKind)
+    /* 14 */ s32 mUseKind;
+    /* 18 */ UnkFunc *mUseHook;
 } ItemInfo;
 
 extern ItemInfo data_0215a4c0;

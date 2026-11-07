@@ -32,7 +32,7 @@ extern const ItemInfo data_0215a588;
 extern const ItemKind gItemKindKiller;
 
 void func_02105214(void);
-void func_021051d4(Unk020eda5c *p0, Unk020f40dc *p1);
+void func_021051d4(ItemInUse *p0, Unk020f40dc *p1);
 void func_0210515c(s32 a);
 void func_02104ff8(void);
 void func_02104f84(s32 a);
@@ -40,6 +40,6 @@ void func_02104f58(Unk02104c68 *p);
 void func_02104f14(Unk02104c68 *p);
 void func_02104ee0(Unk02104c68 *p, void *a);
 void func_02104e58(Unk02104c68 *p);
-void func_02104d78(Unk020eda5c *p0, Unk02104c68 *p1);
-s32 func_02104c68(Unk020eda5c *p0, Unk02104c68 *p1);
+void func_02104d78(ItemInUse *p0, Unk02104c68 *p1);
+s32 func_02104c68(ItemInUse *p0, Unk02104c68 *p1);
 void func_02104a0c(Unk02104c68 *p);

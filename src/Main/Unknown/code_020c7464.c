@@ -210,7 +210,7 @@ void UpdateRaceHudSubScreenKarts(void) {
     ItemObject *o;
     Vec3 *q;
     u32 b;
-    Unk020eda5c *s;
+    ItemInUse *s;
     s32 x;
     s32 y;
 
@@ -267,8 +267,8 @@ void UpdateRaceHudSubScreenKarts(void) {
                     }
                     gRaceHudSubScreenKarts->mUnk_150[i] = func_020b4e70(&v) != 0 ? 2 : 3;
                     s = &gKartItems[i].mItemInUse;
-                    v2 = s->mUnk_014;
-                    v3 = s->mUnk_020;
+                    v2 = s->mObjects;
+                    v3 = s->mObjectCount;
                     m = gRaceHudSubScreenKarts->mUnk_190->mCellCount;
                     b = func_020c0db0();
                     for (j = 0; j < v3; j++) {
