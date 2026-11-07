@@ -240,23 +240,24 @@ extern ModelEffects *gModelEffects;
 extern s32 data_0217b07c;
 // Particle effect ids func_0208d978 starts with a kind 2 object; -1 marks an unused entry.
 extern s32 gKind2EffectIds[2];
-extern Unk0208fd8c_08 *gBattleItemInUseEntries;
+extern KartAiItemUseEntry *gBattleItemInUseEntries;
 
-// Object behind data_0217b08c, 0x38 bytes: 12-byte blocks at 0x00, 0x0c and 0x18.
-typedef struct Unk0217b08c {
-    /* 00 */ NNSFndList mUnk_00[3];
-    /* 24 */ ResFileEntry mUnk_24;
-    /* 34 */ s32 mUnk_34;
-} Unk0217b08c;
+// The strip pool, 0x38 bytes: the active strips, the free strips, the free points and the texture file.
+typedef struct PosStrips {
+    // [0] active strips, [1] free strips, [2] free points.
+    /* 00 */ NNSFndList mLists[3];
+    /* 24 */ ResFileEntry mEffectFileEntry;
+    /* 34 */ s32 mPolygonAttrBits;
+} PosStrips;
 
-extern Unk0217b08c *data_0217b08c;
+extern PosStrips *gPosStrips;
 extern UnkFunc *data_0217b090;
 extern UnkFunc *data_0217b094;
 extern UnkFunc *data_0217b098;
 extern UnkFunc *data_0217b0a0;
 extern UnkFunc *data_0217b0a8;
 extern UnkFunc *data_0217b0ac;
-extern Unk0208fd8c_08 *gBattleHeldItemEntries;
+extern KartAiItemUseEntry *gBattleHeldItemEntries;
 extern s32 *gStaffGhostTime;
 extern void *gSmanBottom;
 extern void *gSmanTop;

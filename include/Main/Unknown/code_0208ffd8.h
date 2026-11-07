@@ -7,4 +7,4 @@ typedef struct Unk0208ffd8 {
     /* 10 */ u32 mUnk_10;
 } Unk0208ffd8;
 
-void func_0208ffd8(Unk0208ffd8 *p0);
+void SetItemBitsEveryCall(Unk0208ffd8 *p0);

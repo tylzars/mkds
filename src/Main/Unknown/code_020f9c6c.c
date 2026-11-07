@@ -304,7 +304,7 @@ void UpdateItemKouraWState1(ItemKouraW *param_1) {
     Kart *p;
 
     if (param_1->mStateFrames == 8) {
-        param_1->mUnk_26c = func_0208ec64((u32) param_1->mUnk_000.mUnk_d0);
+        param_1->mUnk_26c = StartPosStrip((u32) param_1->mUnk_000.mUnk_d0);
     }
     func_020ec918((Unk020ec8bc *) param_1, param_1->mUnk_27c, 0x21, param_1->mRankKartIndex, 1);
     if (!(param_1->mUnk_000.mFlags & 1)) {
@@ -467,7 +467,7 @@ void EnterItemKouraWState4(ItemKouraW *param_1) {
     param_1->mUnk_288 = 0x3e8;
     VEC_Subtract(&param_1->mUnk_238, &param_1->mUnk_298, &param_1->mUnk_28c);
     if (param_1->mUnk_26c != 0) {
-        func_0208eb10(param_1->mUnk_26c);
+        StopPosStrip(param_1->mUnk_26c);
         param_1->mUnk_26c = 0;
     }
     if (param_1->mUnk_000.mFlags & 0x8000000) {

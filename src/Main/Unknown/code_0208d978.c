@@ -20,60 +20,60 @@
 #include "code_021471bc.h"
 #include "registers.h"
 
-void func_0208e99c(Unk0208ec64 *a) {
-    Unk0208ec64_08 *p;
-    Unk0208ec64_08 *q;
-    Unk0208ec64_08 *r;
+void UpdatePosStrip(PosStrip *a) {
+    PosStripPoint *p;
+    PosStripPoint *q;
+    PosStripPoint *r;
     u32 f;
 
-    p = NNS_FndGetNextListObject(&a->mUnk_08, NULL);
+    p = NNS_FndGetNextListObject(&a->mPoints, NULL);
     if (p != NULL) {
         do {
-            q = NNS_FndGetNextListObject(&a->mUnk_08, p);
-            p->mUnk_0c = p->mUnk_0c + 1;
-            if (p->mUnk_0c > data_021663e0) {
+            q = NNS_FndGetNextListObject(&a->mPoints, p);
+            p->mSinceAddedFrames = p->mSinceAddedFrames + 1;
+            if (p->mSinceAddedFrames > gPosStripMaxAgeFrames) {
                 f = 1;
             } else {
-                p->mUnk_08 = p->mUnk_08 - data_021663f0;
+                p->mHeight = p->mHeight - gPosStripHeightDecreasePerFrame;
                 f = 0;
             }
             if (f != 0) {
-                NNS_FndRemoveListObject(&a->mUnk_08, p);
-                NNS_FndAppendListObject(&data_0217b08c->mUnk_00[2], p);
+                NNS_FndRemoveListObject(&a->mPoints, p);
+                NNS_FndAppendListObject(&gPosStrips->mLists[2], p);
                 if (q == NULL) {
                     break;
                 }
                 p = q;
             }
-            p = NNS_FndGetNextListObject(&a->mUnk_08, p);
+            p = NNS_FndGetNextListObject(&a->mPoints, p);
         } while (p != NULL);
     }
-    if (a->mUnk_18 == 0) {
-        r = NNS_FndGetNthListObject(&data_0217b08c->mUnk_00[2], 0);
-        NNS_FndRemoveListObject(&data_0217b08c->mUnk_00[2], r);
-        NNS_FndAppendListObject(&a->mUnk_08, r);
-        data_021663ec(r, a);
+    if (a->mStopped == 0) {
+        r = NNS_FndGetNthListObject(&gPosStrips->mLists[2], 0);
+        NNS_FndRemoveListObject(&gPosStrips->mLists[2], r);
+        NNS_FndAppendListObject(&a->mPoints, r);
+        gSetPosStripPointFunction(r, a);
         return;
     }
-    if (a->mUnk_08.mCount != 0) {
+    if (a->mPoints.mCount != 0) {
         return;
     }
-    NNS_FndRemoveListObject(&data_0217b08c->mUnk_00[0], a);
-    NNS_FndAppendListObject(&data_0217b08c->mUnk_00[1], a);
+    NNS_FndRemoveListObject(&gPosStrips->mLists[0], a);
+    NNS_FndAppendListObject(&gPosStrips->mLists[1], a);
 }
 
-void func_0208e82c(const MtxFx43 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk021663f4 *d) {
+void DrawPosStripQuad(const MtxFx43 *a, PosStripPoint *b, PosStripPoint *c, PosStripTexture *d) {
     MtxFx43 m;
     MtxFx43 n;
 
-    MTX_Scale43_(&m, 0x1000, b->mUnk_08, 0x1000);
-    MTX_Scale43_(&n, 0x1000, c->mUnk_08, 0x1000);
-    m.mUnk_00[3].x = b->mUnk_10.x;
-    m.mUnk_00[3].y = b->mUnk_10.y;
-    m.mUnk_00[3].z = b->mUnk_10.z;
-    n.mUnk_00[3].x = c->mUnk_10.x;
-    n.mUnk_00[3].y = c->mUnk_10.y;
-    n.mUnk_00[3].z = c->mUnk_10.z;
+    MTX_Scale43_(&m, 0x1000, b->mHeight, 0x1000);
+    MTX_Scale43_(&n, 0x1000, c->mHeight, 0x1000);
+    m.mUnk_00[3].x = b->mPos.x;
+    m.mUnk_00[3].y = b->mPos.y;
+    m.mUnk_00[3].z = b->mPos.z;
+    n.mUnk_00[3].x = c->mPos.x;
+    n.mUnk_00[3].y = c->mPos.y;
+    n.mUnk_00[3].z = c->mPos.z;
     MTX_Concat43(&m, a, &m);
     MTX_Concat43(&n, a, &n);
     reg_G3_BEGIN_VTXS = 1;
@@ -92,7 +92,7 @@ void func_0208e82c(const MtxFx43 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk02
 
 void func_0208e808(s32 a) {
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
-        data_021663e8 = a;
+        gPosStripDrawEnabled = a;
     }
 }
 

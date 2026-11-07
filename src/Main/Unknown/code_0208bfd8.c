@@ -17,20 +17,20 @@ void func_0208c0f0(KartAi *p, s32 a) {
     p->mUnk_154 = (gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_14 & 1) != 0;
     func_0207fa74(p, q, p->mUnk_154);
     func_0207e200(&p->mUnk_e8, p);
-    func_0207c448(&p->mUnk_11c);
+    func_0207c448(&p->mItemUse);
     func_0207e088(&p->mUnk_e8, p);
 }
 
 void func_0208c0c8(KartAi *p) {
     func_0207f9a8(p);
     func_0207e1d4(&p->mUnk_e8, p);
-    func_0207c448(&p->mUnk_11c);
+    func_0207c448(&p->mItemUse);
 }
 
 void func_0208c09c(KartAi *p) {
     func_0207f8f8(p);
     func_0207de84(&p->mUnk_e8, p);
-    func_0207c270(&p->mUnk_11c, p);
+    func_0207c270(&p->mItemUse, p);
 }
 
 void func_0208c050(KartAi *p) {
@@ -57,9 +57,9 @@ void func_0208c000(Vec3 *a, Vec3 *b, KartAi *p) {
 }
 
 void func_0208bfec(KartAi *p) {
-    SetupHeldItemEntry(&p->mUnk_11c, p);
+    SetupHeldItemEntry(&p->mItemUse, p);
 }
 
 void func_0208bfd8(KartAi *p) {
-    SetupItemInUseEntry(&p->mUnk_11c, p);
+    SetupItemInUseEntry(&p->mItemUse, p);
 }

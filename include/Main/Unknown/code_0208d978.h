@@ -50,5 +50,5 @@ void UpdateModelEffects(void);
 ModelEffect *StartModelEffect(u32 kind, const Vec3 *position, s32 startEffects);
 void InitModelEffects(void *heap);
 void func_0208e808(s32 a);
-void func_0208e82c(const MtxFx43 *a, Unk0208ec64_08 *b, Unk0208ec64_08 *c, Unk021663f4 *d);
-void func_0208e99c(Unk0208ec64 *a);
+void DrawPosStripQuad(const MtxFx43 *a, PosStripPoint *b, PosStripPoint *c, PosStripTexture *d);
+void UpdatePosStrip(PosStrip *a);

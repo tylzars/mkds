@@ -2,13 +2,13 @@
 
 #include "types.h"
 
-typedef struct Unk0208fd8c_08 Unk0208fd8c_08;
-typedef struct Unk0208fd8c Unk0208fd8c;
+typedef struct KartAiItemUseEntry KartAiItemUseEntry;
+typedef struct KartAiItemUse KartAiItemUse;
 
 struct CourseMapCamera;
-struct Unk0208fd8c;
+struct KartAiItemUse;
 struct KartAi;
-struct Unk0208fd8c_08;
+struct KartAiItemUseEntry;
 
 // Four points, a parameter (0x1000 = one segment) and two words at 0x34 and 0x38. The camera position is blended from
 // the four points.
@@ -21,20 +21,20 @@ typedef struct PosCurve {
 
 struct KartAi;
 
-extern void (*data_0217ae3c)(Unk0208fd8c *a, struct KartAi *b);
-extern void (*data_0217ae40)(Unk0208fd8c *a, struct KartAi *b);
-extern void (*data_0217ae44)(Unk0208fd8c *a, struct KartAi *b);
-extern void (*data_0217ae48)(Unk0208fd8c *a, struct KartAi *b);
+extern void (*data_0217ae3c)(KartAiItemUse *a, struct KartAi *b);
+extern void (*data_0217ae40)(KartAiItemUse *a, struct KartAi *b);
+extern void (*data_0217ae44)(KartAiItemUse *a, struct KartAi *b);
+extern void (*data_0217ae48)(KartAiItemUse *a, struct KartAi *b);
 
-typedef struct Unk0208fd8c Unk0208fd8c;
+typedef struct KartAiItemUse KartAiItemUse;
 
 struct Unk02089a24;
 struct KartAi;
 
-extern Unk0208fd8c_08 data_usa_0215524c[];
-extern Unk0208fd8c_08 data_usa_021552f4[];
-extern Unk0208fd8c_08 data_usa_021553cc[];
-extern Unk0208fd8c_08 data_usa_021554a4[];
+extern KartAiItemUseEntry data_usa_0215524c[];
+extern KartAiItemUseEntry data_usa_021552f4[];
+extern KartAiItemUseEntry data_usa_021553cc[];
+extern KartAiItemUseEntry data_usa_021554a4[];
 
 // Writes to a the point of the curve b at parameter mParam (0 to 0x1000): the four control points of mPoints weighted
 // by the uniform cubic B-spline basis.
@@ -47,35 +47,35 @@ void func_0207bd6c(PosCurve *a, struct CourseMapCamera *b);
 // Restarts the curve a on the entry b: clears its parameter and counters and, when the entry's group has four or more
 // points, loads the first four as its control points (nothing is loaded for fewer).
 void SetupPosCurve(PosCurve *a, struct CourseMapCamera *b);
-void SetupItemInUseEntry(struct Unk0208fd8c *a, struct KartAi *b);
-s32 DecrementItemInUseTimer(struct Unk0208fd8c *a);
-void ResetItemInUseTimer(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b);
-s32 DecrementHeldItemTimer(struct Unk0208fd8c *a);
-void ResetHeldItemTimer(struct Unk0208fd8c *a);
-void SetupHeldItemEntry(struct Unk0208fd8c *a, struct KartAi *b);
-void func_0207c270(struct Unk0208fd8c *a, struct KartAi *b);
-void AdvanceItemBitRequests(struct Unk0208fd8c *a, struct KartAi *b);
-void func_0207c448(Unk0208fd8c *p0);
-void UseItemBehindAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b);
-void UseItemForwardAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b);
-void UseItemAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b);
-void UseItemAndResetHeldTimer(Unk0208fd8c *a, struct KartAi *b);
+void SetupItemInUseEntry(struct KartAiItemUse *a, struct KartAi *b);
+s32 DecrementItemInUseTimer(struct KartAiItemUse *a);
+void ResetItemInUseTimer(struct KartAiItemUse *a, struct KartAiItemUseEntry *b);
+s32 DecrementHeldItemTimer(struct KartAiItemUse *a);
+void ResetHeldItemTimer(struct KartAiItemUse *a);
+void SetupHeldItemEntry(struct KartAiItemUse *a, struct KartAi *b);
+void func_0207c270(struct KartAiItemUse *a, struct KartAi *b);
+void AdvanceItemBitRequests(struct KartAiItemUse *a, struct KartAi *b);
+void func_0207c448(KartAiItemUse *p0);
+void UseItemBehindAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b);
+void UseItemForwardAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b);
+void UseItemAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b);
+void UseItemAndResetHeldTimer(KartAiItemUse *a, struct KartAi *b);
 void func_0207c78c(void);
-void func_0207c8d8(Unk0208fd8c *a, struct KartAi *b);
-void func_0207c978(Unk0208fd8c *a, struct KartAi *b);
-void UseItemByRankAfterInUse(Unk0208fd8c *a, struct KartAi *b);
-void UseItemByTargetOrRankAfterInUse(Unk0208fd8c *a, struct KartAi *b);
-void func_0207caa8(Unk0208fd8c *a, struct KartAi *b);
-void func_0207cb0c(Unk0208fd8c *a, struct KartAi *b);
+void func_0207c8d8(KartAiItemUse *a, struct KartAi *b);
+void func_0207c978(KartAiItemUse *a, struct KartAi *b);
+void UseItemByRankAfterInUse(KartAiItemUse *a, struct KartAi *b);
+void UseItemByTargetOrRankAfterInUse(KartAiItemUse *a, struct KartAi *b);
+void func_0207caa8(KartAiItemUse *a, struct KartAi *b);
+void func_0207cb0c(KartAiItemUse *a, struct KartAi *b);
 unsigned int func_0207cb70(unsigned int p0);
-void func_0207cb74(Unk0208fd8c *a, struct KartAi *b);
-void UseItemAfterHeldIfTurnUnder20(Unk0208fd8c *a, struct KartAi *b);
-void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b);
-void UseItemByTargetOrRank(Unk0208fd8c *a, struct KartAi *b);
-void UseItemByRankAfterHeld(Unk0208fd8c *a, struct KartAi *b);
-void UseItemByTargetOrRankAfterHeld(Unk0208fd8c *a, struct KartAi *b);
-void func_0207d3ec(Unk0208fd8c *a, struct KartAi *b);
-void func_0207d474(Unk0208fd8c *a, struct KartAi *b);
-void UseItemAfterHeld(Unk0208fd8c *a, struct KartAi *b);
-void func_0207d5b8(Unk0208fd8c *a, struct KartAi *b);
+void func_0207cb74(KartAiItemUse *a, struct KartAi *b);
+void UseItemAfterHeldIfTurnUnder20(KartAiItemUse *a, struct KartAi *b);
+void RequestItemBitsByKartRank(KartAiItemUse *a, struct KartAi *b);
+void UseItemByTargetOrRank(KartAiItemUse *a, struct KartAi *b);
+void UseItemByRankAfterHeld(KartAiItemUse *a, struct KartAi *b);
+void UseItemByTargetOrRankAfterHeld(KartAiItemUse *a, struct KartAi *b);
+void func_0207d3ec(KartAiItemUse *a, struct KartAi *b);
+void func_0207d474(KartAiItemUse *a, struct KartAi *b);
+void UseItemAfterHeld(KartAiItemUse *a, struct KartAi *b);
+void func_0207d5b8(KartAiItemUse *a, struct KartAi *b);
 void func_0207d6a4(struct Unk02089a24 *a, struct KartAi *b);

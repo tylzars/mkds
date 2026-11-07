@@ -14,7 +14,7 @@
 void func_0208bf40(KartAi *p) {
     func_020896e0(p);
     func_02089c3c(&p->mUnk_140, p);
-    func_0209033c(&p->mUnk_11c, p);
+    func_0209033c(&p->mItemUse, p);
 }
 
 void func_0208bef4(KartAi *p) {
@@ -41,11 +41,11 @@ void func_0208bea4(Vec3 *a, Vec3 *b, KartAi *p) {
 }
 
 void func_0208be90(KartAi *p) {
-    SetupBattleHeldItemEntry(&p->mUnk_11c, p);
+    SetupBattleHeldItemEntry(&p->mItemUse, p);
 }
 
 void func_0208be7c(KartAi *p) {
-    SetupBattleItemInUseEntry(&p->mUnk_11c, p);
+    SetupBattleItemInUseEntry(&p->mItemUse, p);
 }
 
 void func_0208be00(KartAi *p, s32 a) {

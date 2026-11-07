@@ -35,7 +35,7 @@ void func_02090194(Unk02090194 *p0) {
     p0->mUnk_10 = 0x1u;
 }
 
-void func_02090088(Unk0208fd8c *a, KartAi *b) {
+void func_02090088(KartAiItemUse *a, KartAi *b) {
     Unk0217aebc_128 *r;
     s32 v;
 
@@ -63,7 +63,7 @@ void func_02090088(Unk0208fd8c *a, KartAi *b) {
     }
 }
 
-void func_0208ffe4(Unk0208fd8c *a, KartAi *b) {
+void func_0208ffe4(KartAiItemUse *a, KartAi *b) {
     Unk0217aebc_128 *r;
     s32 v;
 
@@ -80,11 +80,11 @@ void func_0208ffe4(Unk0208fd8c *a, KartAi *b) {
     }
 }
 
-void func_0208ffd8(Unk0208ffd8 *p0) {
+void SetItemBitsEveryCall(Unk0208ffd8 *p0) {
     p0->mUnk_10 = 0x1u;
 }
 
-void func_0208fefc(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208fefc(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     s32 v;
 
@@ -108,7 +108,7 @@ void func_0208fefc(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208fe58(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208fe58(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     s32 v;
 
@@ -125,14 +125,14 @@ void func_0208fe58(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208fe1c(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208fe1c(KartAiItemUse *a, struct KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
     UseItemAndResetInUseTimer(a, b);
 }
 
-void func_0208fdcc(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208fdcc(KartAiItemUse *a, struct KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
@@ -142,9 +142,9 @@ void func_0208fdcc(Unk0208fd8c *a, struct KartAi *b) {
     UseItemAndResetHeldTimer(a, b);
 }
 
-void SetupBattleItemInUseEntry(Unk0208fd8c *a, struct KartAi *b) {
+void SetupBattleItemInUseEntry(KartAiItemUse *a, struct KartAi *b) {
     enum { K0 } k = (gKartItems)[b->mIndex].mItemInUse.mObjectKind;
-    Unk0208fd8c_08 *t = &gBattleItemInUseEntries[k];
+    KartAiItemUseEntry *t = &gBattleItemInUseEntries[k];
 
     a->mItemInUseEntry = t;
     ResetItemInUseTimer(a, t);
@@ -155,7 +155,7 @@ u32 func_0208fd88(u32 p0) {
 }
 // Calls one of two handlers, by whether the item in use is the circling kind.
 
-void func_0208fd24(Unk0208fd8c *a, struct KartAi *b) {
+void ThrowItemByCircleKind(KartAiItemUse *a, struct KartAi *b) {
     if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_CIRCLE) {
         data_0217b0a0(a, b);
     } else {
@@ -163,7 +163,7 @@ void func_0208fd24(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void ThrowItemAtNearTarget(Unk0208fd8c *a, struct KartAi *b) {
+void ThrowItemAtNearTarget(KartAiItemUse *a, struct KartAi *b) {
     if (b->mTargetKart == NULL) {
         return;
     }
@@ -177,7 +177,7 @@ void ThrowItemAtNearTarget(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208fba0(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208fba0(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     s32 v;
 
@@ -205,7 +205,7 @@ void func_0208fba0(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208fafc(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208fafc(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     s32 v;
 
@@ -222,7 +222,7 @@ void func_0208fafc(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208fa50(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208fa50(KartAiItemUse *a, struct KartAi *b) {
     a->mItemBitsEveryCall = 1;
     if (DecrementItemInUseTimer(a) == 0) {
         return;
@@ -240,7 +240,7 @@ void func_0208fa50(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208f9ac(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208f9ac(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     s32 v;
 
@@ -258,7 +258,7 @@ void func_0208f9ac(Unk0208fd8c *a, struct KartAi *b) {
 // Calls one of two handlers, by whether the item in use is the circling kind.
 }
 
-void func_0208f948(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByCircleKind(KartAiItemUse *a, struct KartAi *b) {
     if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_CIRCLE) {
         data_0217b090(a, b);
     } else {
@@ -266,7 +266,7 @@ void func_0208f948(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208f8ac(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208f8ac(KartAiItemUse *a, struct KartAi *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
@@ -285,7 +285,7 @@ void func_0208f8ac(Unk0208fd8c *a, struct KartAi *b) {
     UseItemAndResetInUseTimer(a, b);
 }
 
-void func_0208f810(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208f810(KartAiItemUse *a, struct KartAi *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
@@ -304,14 +304,14 @@ void func_0208f810(Unk0208fd8c *a, struct KartAi *b) {
     UseItemAndResetInUseTimer(a, b);
 }
 
-void UseItemAfterInUse(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemAfterInUse(KartAiItemUse *a, struct KartAi *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
     UseItemAndResetInUseTimer(a, b);
 }
 
-void func_0208f754(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208f754(KartAiItemUse *a, struct KartAi *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
@@ -327,7 +327,7 @@ void func_0208f754(Unk0208fd8c *a, struct KartAi *b) {
     UseItemAndResetInUseTimer(a, b);
 }
 
-void func_0208f6d4(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208f6d4(KartAiItemUse *a, struct KartAi *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
@@ -344,7 +344,7 @@ void func_0208f6d4(Unk0208fd8c *a, struct KartAi *b) {
 // Calls one of two handlers, by whether the item in use is the trail kind.
 }
 
-void func_0208f670(Unk0208fd8c *a, struct KartAi *b) {
+void ThrowItemByTrailKind(KartAiItemUse *a, struct KartAi *b) {
     if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_TRAIL) {
         data_0217b0ac(a, b);
     } else {
@@ -352,7 +352,7 @@ void func_0208f670(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208f5c4(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208f5c4(KartAiItemUse *a, struct KartAi *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         return;
     }
@@ -372,7 +372,7 @@ void func_0208f5c4(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208f4e8(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208f4e8(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     s32 v;
 
@@ -396,7 +396,7 @@ void func_0208f4e8(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0208f434(Unk0208fd8c *a, struct KartAi *b) {
+void func_0208f434(KartAiItemUse *a, struct KartAi *b) {
     a->mItemBitsEveryCall = 1;
     if (DecrementItemInUseTimer(a) == 0) {
         return;
@@ -417,7 +417,7 @@ void func_0208f434(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void UseItemBehindAfterInUseOrNearTarget(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemBehindAfterInUseOrNearTarget(KartAiItemUse *a, struct KartAi *b) {
     if (DecrementItemInUseTimer(a) == 0) {
         if (b->mTargetKart == NULL) {
             return;
@@ -429,10 +429,12 @@ void UseItemBehindAfterInUseOrNearTarget(Unk0208fd8c *a, struct KartAi *b) {
     UseItemBehindAndResetInUseTimer(a, b);
 }
 
-void func_0208f0f8(void *a) {
+// Allocates the strips and their points, loads the texture they are drawn with and sets the values for a race or the
+// award scene.
+void InitPosStrips(void *a) {
     void *s;
-    Unk0208ec64 *e;
-    Unk0208ec64_08 *f;
+    PosStrip *e;
+    PosStripPoint *f;
     u16 i;
     u16 n;
     u16 m;
@@ -440,74 +442,74 @@ void func_0208f0f8(void *a) {
     s32 t;
 
     s = FindMainRaceOrMainEffectFile(gRaceSetup->mRaceKind == RACE_KIND_AWARD ? data_02166514 : data_02166530);
-    data_021663f0 = 0x4d;
-    data_021663e0 = 8;
+    gPosStripHeightDecreasePerFrame = 0x4d;
+    gPosStripMaxAgeFrames = 8;
     data_021663dc = 3;
-    data_021663e4 = 0xc;
-    data_021663ec = (s32(*)()) func_0208ee40;
-    data_021663d8 = 0xe;
-    data_021663e8 = 1;
+    gPosStripPointsPerStrip = 0xc;
+    gSetPosStripPointFunction = (s32(*)()) SetPosStripPointFromPos;
+    gPosStripFirstPolygonId = 0xe;
+    gPosStripDrawEnabled = 1;
     n = 1;
     if (gRaceSetup->mMode == 5) {
         n += 3;
     } else if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
-        data_021663f0 = 0;
-        data_021663e0 = 0xe;
+        gPosStripHeightDecreasePerFrame = 0;
+        gPosStripMaxAgeFrames = 0xe;
         data_021663dc = 2;
-        data_021663e4 = 0x1e;
-        data_021663ec = (s32(*)()) func_0208ecd8;
-        data_021663d8 = 4;
-        data_021663e8 = 0;
+        gPosStripPointsPerStrip = 0x1e;
+        gSetPosStripPointFunction = (s32(*)()) SetPosStripPointFromKart;
+        gPosStripFirstPolygonId = 4;
+        gPosStripDrawEnabled = 0;
         n = 6;
     }
-    m = data_021663e4 * n;
+    m = gPosStripPointsPerStrip * n;
     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
         a = data_0217aa10->mUnk_a4;
     }
-    data_0217b08c = HeapAlloc(a, 0x38);
+    gPosStrips = HeapAlloc(a, 0x38);
     e = HeapAlloc(a, n * 0x30);
     f = HeapAlloc(a, m * 0x1c);
-    NNS_FndInitList(&data_0217b08c->mUnk_00[0], 0);
-    NNS_FndInitList(&data_0217b08c->mUnk_00[1], 0);
-    NNS_FndInitList(&data_0217b08c->mUnk_00[2], 0);
+    NNS_FndInitList(&gPosStrips->mLists[0], 0);
+    NNS_FndInitList(&gPosStrips->mLists[1], 0);
+    NNS_FndInitList(&gPosStrips->mLists[2], 0);
     for (i = 0; i < n; i++) {
-        NNS_FndInitList(&e[i].mUnk_08, 0);
-        NNS_FndAppendListObject(&data_0217b08c->mUnk_00[1], &e[i]);
+        NNS_FndInitList(&e[i].mPoints, 0);
+        NNS_FndAppendListObject(&gPosStrips->mLists[1], &e[i]);
     }
     for (i = 0; i < m; i++) {
-        NNS_FndAppendListObject(&data_0217b08c->mUnk_00[2], &f[i]);
+        NNS_FndAppendListObject(&gPosStrips->mLists[2], &f[i]);
     }
-    AddResFileEntry(&data_0217b08c->mUnk_24, s, s);
-    q = data_0217b08c->mUnk_24.mTexture;
+    AddResFileEntry(&gPosStrips->mEffectFileEntry, s, s);
+    q = gPosStrips->mEffectFileEntry.mTexture;
     t = (q->mTexInfo.mVramKey & 0xffff) << 3;
-    data_021663f4.mUnk_00 = data_021663f4.mUnk_00 & 0xffff0000;
-    data_021663f4.mUnk_00 = data_021663f4.mUnk_00 | (((u32) t >> 3) & 0xffff);
-    data_021663f4.mUnk_18 = (q->mPlttInfo.mVramKey & 0xffff) << 3;
-    data_021663f4.mUnk_1c = 0x10000;
-    data_021663f4.mUnk_20 = 0x8000;
-    data_0217b08c->mUnk_34 = gRaceSetup->mCourseId == COURSE_ID_RAINBOW ? 0 : 0x8000;
+    gPosStripTexture.mTexImageParam = gPosStripTexture.mTexImageParam & 0xffff0000;
+    gPosStripTexture.mTexImageParam = gPosStripTexture.mTexImageParam | (((u32) t >> 3) & 0xffff);
+    gPosStripTexture.mPlttBase = (q->mPlttInfo.mVramKey & 0xffff) << 3;
+    gPosStripTexture.mUnk_1c = 0x10000;
+    gPosStripTexture.mUnk_20 = 0x8000;
+    gPosStrips->mPolygonAttrBits = gRaceSetup->mCourseId == COURSE_ID_RAINBOW ? 0 : 0x8000;
 }
 
-void func_0208f0a0(void) {
+void UpdatePosStrips(void) {
     void *p;
-    p = NNS_FndGetNextListObject(&data_0217b08c->mUnk_00[0], NULL);
+    p = NNS_FndGetNextListObject(&gPosStrips->mLists[0], NULL);
     while (p != NULL) {
-        func_0208e99c(p);
-        p = NNS_FndGetNextListObject(&data_0217b08c->mUnk_00[0], p);
+        UpdatePosStrip(p);
+        p = NNS_FndGetNextListObject(&gPosStrips->mLists[0], p);
     }
 }
 
-void func_0208ee7c(const MtxFx43 *a) {
-    Unk0208ec64 *p;
-    Unk0208ec64_08 *r;
-    Unk0208ec64_08 *q;
+void DrawPosStrips(const MtxFx43 *a) {
+    PosStrip *p;
+    PosStripPoint *r;
+    PosStripPoint *q;
     s32 v;
     u8 f;
     BOOL g;
 
-    f = data_021663d8;
+    f = gPosStripFirstPolygonId;
     g = FALSE;
-    p = NNS_FndGetNextListObject(&data_0217b08c->mUnk_00[0], NULL);
+    p = NNS_FndGetNextListObject(&gPosStrips->mLists[0], NULL);
     if (p == NULL) {
         return;
     }
@@ -519,30 +521,30 @@ void func_0208ee7c(const MtxFx43 *a) {
             reg_G3_MTX_MODE = 3;
             reg_G3_MTX_IDENTITY = 0;
             reg_G3_MTX_MODE = 2;
-            reg_G3_TEXIMAGE_PARAM = data_021663f4.mUnk_00;
-            reg_G3_PLTT_BASE = data_021663f4.mUnk_18 >> (4 - ((data_021663f4.mUnk_00 >> 26 & 7) == 2));
+            reg_G3_TEXIMAGE_PARAM = gPosStripTexture.mTexImageParam;
+            reg_G3_PLTT_BASE = gPosStripTexture.mPlttBase >> (4 - ((gPosStripTexture.mTexImageParam >> 26 & 7) == 2));
             g = TRUE;
         }
         reg_G3_COLOR = 0x7fff;
-        q = NNS_FndGetNextListObject(&p->mUnk_08, NULL);
-        if (q != NULL && data_021663e8 != 0) {
-            r = NNS_FndGetNextListObject(&p->mUnk_08, NULL);
+        q = NNS_FndGetNextListObject(&p->mPoints, NULL);
+        if (q != NULL && gPosStripDrawEnabled != 0) {
+            r = NNS_FndGetNextListObject(&p->mPoints, NULL);
             if (r != NULL) {
                 do {
-                    v = 0x1f - q->mUnk_0c * data_021663dc;
-                    reg_G3_POLYGON_ATTR = f << 24 | (data_0217b08c->mUnk_34 | 0xc0) | v << 16;
-                    func_0208e82c(a, q, r, &data_021663f4);
+                    v = 0x1f - q->mSinceAddedFrames * data_021663dc;
+                    reg_G3_POLYGON_ATTR = f << 24 | (gPosStrips->mPolygonAttrBits | 0xc0) | v << 16;
+                    DrawPosStripQuad(a, q, r, &gPosStripTexture);
                     q = r;
-                    r = NNS_FndGetNextListObject(&p->mUnk_08, r);
+                    r = NNS_FndGetNextListObject(&p->mPoints, r);
                 } while (r != NULL);
             }
         }
         f = f + 1;
-        p = NNS_FndGetNextListObject(&data_0217b08c->mUnk_00[0], p);
+        p = NNS_FndGetNextListObject(&gPosStrips->mLists[0], p);
     } while (p != NULL);
 }
 
-void func_0208ee40(u32 arg0, u32 arg1) {
+void SetPosStripPointFromPos(u32 arg0, u32 arg1) {
     u32 value0 = arg0;
     u32 value1 = arg1;
     u32 value2;
@@ -563,7 +565,7 @@ void func_0208ee40(u32 arg0, u32 arg1) {
     *(u32 *) ((value0) + (24)) = value1;
 }
 
-void func_0208ecd8(Unk0208ec64_08 *a, Unk0208ec64 *b) {
+void SetPosStripPointFromKart(PosStripPoint *a, PosStrip *b) {
     Kart *o;
     Vec3 v;
     Vec3 x;
@@ -572,76 +574,79 @@ void func_0208ecd8(Unk0208ec64_08 *a, Unk0208ec64 *b) {
     Vec3 *p;
     s32 k;
 
-    o = GetKart(b->mUnk_20);
+    o = GetKart(b->mKartIndex);
     v = o->mPos;
     p = &o->mUnk_120;
-    k = b->mUnk_24;
+    k = b->mOffsetX;
     x.x = ((s64) p->x * k) >> 12;
     x.y = ((s64) p->y * k) >> 12;
     x.z = ((s64) p->z * k) >> 12;
     p = &o->mUnk_12c;
-    k = b->mUnk_28;
+    k = b->mOffsetY;
     y.x = ((s64) p->x * k) >> 12;
     y.y = ((s64) p->y * k) >> 12;
     y.z = ((s64) p->z * k) >> 12;
     p = &o->mUnk_138;
-    k = b->mUnk_2c;
+    k = b->mOffsetZ;
     z.x = ((s64) p->x * k) >> 12;
     z.y = ((s64) p->y * k) >> 12;
     z.z = ((s64) p->z * k) >> 12;
     VEC_Add(&v, &x, &v);
     VEC_Add(&v, &y, &v);
     VEC_Add(&v, &z, &v);
-    a->mUnk_08 = b->mUnk_1c;
-    a->mUnk_0c = 0;
-    a->mUnk_10.x = v.x >> 4;
-    a->mUnk_10.y = v.y >> 4;
-    a->mUnk_10.z = v.z >> 4;
+    a->mHeight = b->mHeight;
+    a->mSinceAddedFrames = 0;
+    a->mPos.x = v.x >> 4;
+    a->mPos.y = v.y >> 4;
+    a->mPos.z = v.z >> 4;
 }
 
-s32 func_0208ec64(u32 a) {
-    Unk0208ec64 *p;
-    p = NNS_FndGetNthListObject(&data_0217b08c->mUnk_00[1], 0);
+// Starts a strip that follows the position a points to; returns the strip, or 0 when none is free.
+s32 StartPosStrip(u32 a) {
+    PosStrip *p;
+    p = NNS_FndGetNthListObject(&gPosStrips->mLists[1], 0);
     if (p != NULL) {
-        p->mUnk_14 = a;
-        p->mUnk_18 = 0;
-        p->mUnk_1c = 0x400;
-        NNS_FndRemoveListObject(&data_0217b08c->mUnk_00[1], p);
-        NNS_FndAppendListObject(&data_0217b08c->mUnk_00[0], p);
+        p->mFollowedPos = a;
+        p->mStopped = 0;
+        p->mHeight = 0x400;
+        NNS_FndRemoveListObject(&gPosStrips->mLists[1], p);
+        NNS_FndAppendListObject(&gPosStrips->mLists[0], p);
     }
     return (s32) p;
 }
 
-Unk0208ec64 *func_0208eb1c(s32 a) {
-    Unk0208ec64 *p;
+// Award scene only: starts a strip that follows kart a.
+PosStrip *StartAwardKartPosStrip(s32 a) {
+    PosStrip *p;
     Kart *o;
     KartModelsEntry *t;
     Vec3 v;
     s32 h;
 
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
-        p = NNS_FndGetNthListObject(&data_0217b08c->mUnk_00[1], 0);
+        p = NNS_FndGetNthListObject(&gPosStrips->mLists[1], 0);
         if (p != NULL) {
             o = GetKart(a);
             t = o->mKartModelsEntry;
             v = ((Vec3 *) &t->mUnk_020->mUnk_44)[t->mUnk_000];
-            p->mUnk_14 = (u32) &o->mPos;
-            p->mUnk_18 = 0;
-            p->mUnk_1c = 0x400;
-            p->mUnk_20 = a;
+            p->mFollowedPos = (u32) &o->mPos;
+            p->mStopped = 0;
+            p->mHeight = 0x400;
+            p->mKartIndex = a;
             h = (v.y + (data_02166418[t->mUnk_000][0] >> 4) - data_02166480[t->mUnk_004]) / 2;
-            p->mUnk_1c = h;
-            p->mUnk_24 = v.x << 4;
-            p->mUnk_28 = (data_02166480[t->mUnk_004] + h) << 4;
-            p->mUnk_2c = data_0216641c[t->mUnk_000][0] + (v.z << 4);
-            NNS_FndRemoveListObject(&data_0217b08c->mUnk_00[1], p);
-            NNS_FndAppendListObject(&data_0217b08c->mUnk_00[0], p);
+            p->mHeight = h;
+            p->mOffsetX = v.x << 4;
+            p->mOffsetY = (data_02166480[t->mUnk_004] + h) << 4;
+            p->mOffsetZ = data_0216641c[t->mUnk_000][0] + (v.z << 4);
+            NNS_FndRemoveListObject(&gPosStrips->mLists[1], p);
+            NNS_FndAppendListObject(&gPosStrips->mLists[0], p);
         }
         return p;
     }
     return NULL;
 }
 
-void func_0208eb10(u32 p0) {
+// Adds no more points to the strip; it goes back to the pool once its points have gone.
+void StopPosStrip(u32 p0) {
     *OFFSET_PTR(u32, p0, 24) = 0x1u;
 }

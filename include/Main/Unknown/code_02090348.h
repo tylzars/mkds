@@ -2,6 +2,6 @@
 
 #include "types.h"
 
-typedef struct Unk0208fd8c Unk0208fd8c;
+typedef struct KartAiItemUse KartAiItemUse;
 
-void func_02090348(Unk0208fd8c *arg0);
+void func_02090348(KartAiItemUse *arg0);

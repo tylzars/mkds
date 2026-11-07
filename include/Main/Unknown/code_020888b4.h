@@ -44,7 +44,7 @@ typedef struct Unk02089b4c {
 
 // One per Kart: follows the kart (mKart), steers it and requests its bits and items.
 // Object of 0x158 bytes (func_020888b4 to func_02089a24 take it first): the Kart it follows at 0x00, a
-// LinkCursor at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a Unk02089a24 at 0xe8, a Unk0208fd8c at 0x11c, a
+// LinkCursor at 0x28, vectors at 0x44, 0x50, 0x60 and 0xdc, a Unk02089a24 at 0xe8, a KartAiItemUse at 0x11c, a
 // Unk02089b4c at 0x140 and a word at 0x154.
 typedef struct KartAi {
     /* 00 */ Kart *mKart;
@@ -93,7 +93,7 @@ typedef struct KartAi {
     /* d8 */ s32 mEntryForwardDot;
     /* dc */ Vec3 mUnk_dc;
     /* e8 */ Unk02089a24 mUnk_e8;
-    /* 11c */ Unk0208fd8c mUnk_11c;
+    /* 11c */ KartAiItemUse mItemUse;
     /* 140 */ Unk02089b4c mUnk_140;
     /* 154 */ s32 mUnk_154;
 } KartAi;

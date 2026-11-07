@@ -4,11 +4,11 @@
 #include "Main/Unknown/unk_027e0000.h"
 #include "Main/Unknown/unk_0217b000.h"
 
-void func_0209033c(Unk0208fd8c *a, KartAi *b) {
+void func_0209033c(KartAiItemUse *a, KartAi *b) {
     AdvanceItemBitRequests(a, b);
 }
 
-void SetupBattleHeldItemEntry(Unk0208fd8c *a, KartAi *b) {
+void SetupBattleHeldItemEntry(KartAiItemUse *a, KartAi *b) {
     enum { K0 } i;
 
     i = *(s32 *) &gKartItems[b->mIndex].mHeldItem;
@@ -16,28 +16,28 @@ void SetupBattleHeldItemEntry(Unk0208fd8c *a, KartAi *b) {
     ResetHeldItemTimer(a);
 }
 
-void UseItemWhenHasTarget(Unk0208fd8c *a, KartAi *b) {
+void UseItemWhenHasTarget(KartAiItemUse *a, KartAi *b) {
     if (b->mTargetKart == NULL) {
         return;
     }
     UseItemAndResetInUseTimer(a, b);
 }
 
-void UseItemAfterHeldOrOnTarget(Unk0208fd8c *a, KartAi *b) {
+void UseItemAfterHeldOrOnTarget(KartAiItemUse *a, KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0 && b->mTargetKart == NULL) {
         return;
     }
     UseItemAndResetInUseTimer(a, b);
 }
 
-void func_0209024c(Unk0208fd8c *a, KartAi *b) {
+void func_0209024c(KartAiItemUse *a, KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }
     UseItemAndResetInUseTimer(a, b);
 }
 
-void func_020901f0(Unk0208fd8c *a, KartAi *b) {
+void func_020901f0(KartAiItemUse *a, KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0 && b->mTargetKart == NULL) {
         return;
     }
@@ -47,7 +47,7 @@ void func_020901f0(Unk0208fd8c *a, KartAi *b) {
     UseItemAndResetInUseTimer(a, b);
 }
 
-void UseItemAfterHeldIfTurnUnder10(Unk0208fd8c *a, KartAi *b) {
+void UseItemAfterHeldIfTurnUnder10(KartAiItemUse *a, KartAi *b) {
     if (DecrementHeldItemTimer(a) == 0) {
         return;
     }

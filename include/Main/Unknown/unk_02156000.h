@@ -1,7 +1,7 @@
 #pragma once
 
 #include "types.h"
-#include "Main/Unknown/code_0208fd8c.h" // Unk0208fd8c_08
+#include "Main/Unknown/code_0208fd8c.h" // KartAiItemUseEntry
 
 // Objects whose layout isn't known yet.
 extern u8 data_0215688c[];
@@ -108,12 +108,12 @@ extern u16 data_021564a8;
 extern u16 data_021564ac;
 extern u32 data_021564b0;
 extern u16 data_021564b4;
-extern Unk0208fd8c_08 data_02155fd8[];
-extern Unk0208fd8c_08 data_02156080[];
-extern Unk0208fd8c_08 data_02156128[];
-extern Unk0208fd8c_08 data_021561d0[];
-extern Unk0208fd8c_08 data_021562a8[];
-extern Unk0208fd8c_08 data_02156380[];
+extern KartAiItemUseEntry data_02155fd8[];
+extern KartAiItemUseEntry data_02156080[];
+extern KartAiItemUseEntry data_02156128[];
+extern KartAiItemUseEntry data_021561d0[];
+extern KartAiItemUseEntry data_021562a8[];
+extern KartAiItemUseEntry data_02156380[];
 extern Vec3 data_usa_021564c4[];
 extern Vec3 data_usa_021564dc[];
 extern Vec3 data_usa_021564f4[];

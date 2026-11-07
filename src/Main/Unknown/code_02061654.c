@@ -183,7 +183,7 @@ void InitRace(void) {
     func_0208b934(a);
     func_020846c0(a);
     InitModelEffects(a);
-    func_0208f0f8(a);
+    InitPosStrips(a);
     SetHeapGroupId(9);
     *(u16 *) 0x05000000 = 0xff00;
     reg_G3X_DISP3DCNT = reg_G3X_DISP3DCNT & 0xffffcffd;
@@ -200,7 +200,7 @@ void InitRace(void) {
     SetKoopaCourseLight2();
     if (gRaceSetup->mRaceKind == RACE_KIND_AWARD) {
         for (j = 0; j < 3; j++) {
-            func_0208eb1c(j);
+            StartAwardKartPosStrip(j);
         }
     }
 }
@@ -320,7 +320,7 @@ void UpdateRace(void) {
     UpdateJg();
     UpdateMapObjects();
     UpdateModelEffects();
-    func_0208f0a0();
+    UpdatePosStrips();
     func_0208b8c8();
     if (data_0217aa64 != 0) {
         if (data_0217aa4c != 0) {
@@ -398,7 +398,7 @@ void DrawRace(void) {
     gRace->mDrawnFadeFog = gRace->mFadeFog;
     func_02062078();
     func_0208b870(data_0217aa7c);
-    func_0208ee7c(data_0217aa7c);
+    DrawPosStrips(data_0217aa7c);
     func_02089fa0();
     if (gRace->mUseChainCameras == 0) {
         func_02086250(data_0217aa7c);

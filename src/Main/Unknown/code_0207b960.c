@@ -70,7 +70,7 @@ void func_0207d6a4(struct Unk02089a24 *a, struct KartAi *b) {
     b->mKart->mSpeedLimitGoal = ((s64) a->mUnk_04 * x + 0x800) >> 12;
 }
 
-void func_0207d5b8(Unk0208fd8c *a, struct KartAi *b) {
+void func_0207d5b8(KartAiItemUse *a, struct KartAi *b) {
     BOOL t;
     Unk0217aebc_128 *r;
     u16 n;
@@ -101,7 +101,7 @@ void func_0207d5b8(Unk0208fd8c *a, struct KartAi *b) {
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
-void UseItemAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemAfterHeld(KartAiItemUse *a, struct KartAi *b) {
     BOOL t;
     Unk0217aebc_128 *r;
     u16 n;
@@ -131,7 +131,7 @@ void UseItemAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
     }
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
-void func_0207d474(Unk0208fd8c *a, struct KartAi *b) {
+void func_0207d474(KartAiItemUse *a, struct KartAi *b) {
     RaceSetup *d;
     u16 n;
 
@@ -145,7 +145,7 @@ void func_0207d474(Unk0208fd8c *a, struct KartAi *b) {
     }
     UseItemByTargetOrRankAfterHeld(a, b);
 }
-void func_0207d3ec(Unk0208fd8c *a, struct KartAi *b) {
+void func_0207d3ec(KartAiItemUse *a, struct KartAi *b) {
     RaceSetup *d;
     u16 n;
 
@@ -173,7 +173,7 @@ void func_0207d3ec(Unk0208fd8c *a, struct KartAi *b) {
     RequestItemBitsByKartRank(a, b);
 }
 
-void UseItemByTargetOrRankAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByTargetOrRankAfterHeld(KartAiItemUse *a, struct KartAi *b) {
     BOOL t;
 
     t = FALSE;
@@ -188,7 +188,7 @@ void UseItemByTargetOrRankAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
     UseItemByTargetOrRank(a, b);
 }
 
-void UseItemByRankAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByRankAfterHeld(KartAiItemUse *a, struct KartAi *b) {
     BOOL t;
 
     t = FALSE;
@@ -202,7 +202,7 @@ void UseItemByRankAfterHeld(Unk0208fd8c *a, struct KartAi *b) {
     }
     RequestItemBitsByKartRank(a, b);
 }
-void UseItemByTargetOrRank(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByTargetOrRank(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -250,7 +250,7 @@ void UseItemByTargetOrRank(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 // First place sends the bit 0x80, last place ITEM_THROW_FORWARD_BIT, the places between follow mThenBitKind.
-void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
+void RequestItemBitsByKartRank(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     s32 rank;
     u16 n;
@@ -353,7 +353,7 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void UseItemAfterHeldIfTurnUnder20(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemAfterHeldIfTurnUnder20(KartAiItemUse *a, struct KartAi *b) {
     BOOL t;
     Unk0217aebc_128 *r;
     u16 n;
@@ -387,7 +387,7 @@ void UseItemAfterHeldIfTurnUnder20(Unk0208fd8c *a, struct KartAi *b) {
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
-void func_0207cb74(Unk0208fd8c *a, struct KartAi *b) {
+void func_0207cb74(KartAiItemUse *a, struct KartAi *b) {
     BOOL t;
     Unk0217aebc_128 *r;
     u16 n;
@@ -426,7 +426,7 @@ u32 func_0207cb70(u32 p0) {
 // Calls one of two handlers, by whether the item in use is the circling kind.
 }
 
-void func_0207cb0c(Unk0208fd8c *a, struct KartAi *b) {
+void func_0207cb0c(KartAiItemUse *a, struct KartAi *b) {
     if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_CIRCLE) {
         data_0217ae48(a, b);
     } else {
@@ -435,7 +435,7 @@ void func_0207cb0c(Unk0208fd8c *a, struct KartAi *b) {
 // Calls one of two handlers, by whether the item in use is the trail kind.
 }
 
-void func_0207caa8(Unk0208fd8c *a, struct KartAi *b) {
+void func_0207caa8(KartAiItemUse *a, struct KartAi *b) {
     if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_TRAIL) {
         data_0217ae3c(a, b);
     } else {
@@ -443,7 +443,7 @@ void func_0207caa8(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void UseItemByTargetOrRankAfterInUse(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByTargetOrRankAfterInUse(KartAiItemUse *a, struct KartAi *b) {
     BOOL r;
 
     r = FALSE;
@@ -458,7 +458,7 @@ void UseItemByTargetOrRankAfterInUse(Unk0208fd8c *a, struct KartAi *b) {
     UseItemByTargetOrRank(a, b);
 }
 
-void UseItemByRankAfterInUse(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemByRankAfterInUse(KartAiItemUse *a, struct KartAi *b) {
     BOOL r;
 
     r = FALSE;
@@ -473,7 +473,7 @@ void UseItemByRankAfterInUse(Unk0208fd8c *a, struct KartAi *b) {
     RequestItemBitsByKartRank(a, b);
 }
 
-void func_0207c978(Unk0208fd8c *a, struct KartAi *b) {
+void func_0207c978(KartAiItemUse *a, struct KartAi *b) {
     KartItems *e;
     s32 t;
     BOOL r;
@@ -502,7 +502,7 @@ void func_0207c978(Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0207c8d8(Unk0208fd8c *a, struct KartAi *b) {
+void func_0207c8d8(KartAiItemUse *a, struct KartAi *b) {
     KartItems *e;
     s32 t;
     BOOL r;
@@ -562,7 +562,7 @@ void func_0207c78c(void) {
 }
 
 // Also stops the every-call request of the item bits.
-void UseItemAndResetHeldTimer(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemAndResetHeldTimer(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -584,7 +584,7 @@ void UseItemAndResetHeldTimer(Unk0208fd8c *a, struct KartAi *b) {
 }
 
 // Also stops the every-call request of the item bits.
-void UseItemAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -606,7 +606,7 @@ void UseItemAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
 }
 
 // Also stops the every-call request of the item bits.
-void UseItemForwardAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemForwardAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -630,7 +630,7 @@ void UseItemForwardAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
 }
 
 // Also stops the every-call request of the item bits.
-void UseItemBehindAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
+void UseItemBehindAndResetInUseTimer(KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -653,7 +653,7 @@ void UseItemBehindAndResetInUseTimer(Unk0208fd8c *a, struct KartAi *b) {
     a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
 }
 
-void func_0207c448(Unk0208fd8c *p0) {
+void func_0207c448(KartAiItemUse *p0) {
     p0->mHeldItemTimer = 0x0u;
     p0->mItemInUseTimer = 0x0u;
     p0->mHeldItemEntry = NULL;
@@ -669,7 +669,7 @@ void func_0207c448(Unk0208fd8c *p0) {
 
 // On the call whose kart index matches the race frame count mod 8, runs the entry function or sends ITEM_BITS; on
 // the other calls sends the pending bit 0x40 (ITEM_THROW_FORWARD_BIT) or 0x80.
-void AdvanceItemBitRequests(struct Unk0208fd8c *a, struct KartAi *b) {
+void AdvanceItemBitRequests(struct KartAiItemUse *a, struct KartAi *b) {
     u16 v1;
     KartItems *e;
 
@@ -680,9 +680,9 @@ void AdvanceItemBitRequests(struct Unk0208fd8c *a, struct KartAi *b) {
     if (v1 == GetRaceUpdateFramesMod8()) {
         e = &gKartItems[v1];
         if (e->mItemInUse.mObjectKind != 0xf && a->mItemInUseEntry != NULL) {
-            a->mItemInUseEntry->mUnk_00(a, b);
+            a->mItemInUseEntry->mHandler(a, b);
         } else if ((a->mHeldItemEntry != 0) & (e->mHeldItem.mUnk_00 != 0x13)) {
-            a->mHeldItemEntry->mUnk_00(a, b);
+            a->mHeldItemEntry->mHandler(a, b);
         } else {
             RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
         }
@@ -704,7 +704,7 @@ void AdvanceItemBitRequests(struct Unk0208fd8c *a, struct KartAi *b) {
     }
 }
 
-void func_0207c270(struct Unk0208fd8c *a, struct KartAi *b) {
+void func_0207c270(struct KartAiItemUse *a, struct KartAi *b) {
     if (IsKartEnded(b->mIndex) != 0) {
         return;
     }
@@ -716,7 +716,7 @@ void func_0207c270(struct Unk0208fd8c *a, struct KartAi *b) {
     AdvanceItemBitRequests(a, b);
 }
 
-void SetupHeldItemEntry(struct Unk0208fd8c *a, struct KartAi *b) {
+void SetupHeldItemEntry(struct KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -741,7 +741,7 @@ void SetupHeldItemEntry(struct Unk0208fd8c *a, struct KartAi *b) {
     a->mHeldItemTimer = a->mHeldItemEntry->mTimerBase + (u16) v;
 }
 
-void ResetHeldItemTimer(struct Unk0208fd8c *a) {
+void ResetHeldItemTimer(struct KartAiItemUse *a) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -761,7 +761,7 @@ void ResetHeldItemTimer(struct Unk0208fd8c *a) {
 }
 
 // Counts the held-item timer down; returns TRUE once it has run out.
-s32 DecrementHeldItemTimer(struct Unk0208fd8c *a) {
+s32 DecrementHeldItemTimer(struct KartAiItemUse *a) {
     BOOL r = FALSE;
 
     a->mHeldItemTimer--;
@@ -772,7 +772,7 @@ s32 DecrementHeldItemTimer(struct Unk0208fd8c *a) {
     return r;
 }
 
-void ResetItemInUseTimer(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b) {
+void ResetItemInUseTimer(struct KartAiItemUse *a, struct KartAiItemUseEntry *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
@@ -792,7 +792,7 @@ void ResetItemInUseTimer(struct Unk0208fd8c *a, struct Unk0208fd8c_08 *b) {
 }
 
 // Counts the item-in-use timer down; returns TRUE once it has run out.
-s32 DecrementItemInUseTimer(struct Unk0208fd8c *a) {
+s32 DecrementItemInUseTimer(struct KartAiItemUse *a) {
     BOOL r = FALSE;
 
     a->mItemInUseTimer--;
@@ -803,7 +803,7 @@ s32 DecrementItemInUseTimer(struct Unk0208fd8c *a) {
     return r;
 }
 
-void SetupItemInUseEntry(struct Unk0208fd8c *a, struct KartAi *b) {
+void SetupItemInUseEntry(struct KartAiItemUse *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
     u16 n;
     u32 v;
