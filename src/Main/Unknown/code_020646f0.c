@@ -74,10 +74,10 @@ void func_020646f0(Kart *a, s32 b) {
     Matrix4x3FromQuaternion(&a->mUnk_120, &a->mUnk_110_q);
     a->mUnk_150_m = a->mUnk_120_m;
     a->mPrevPos = a->mPos;
-    a->mUnk_98 = a->mPrevPos;
-    a->mUnk_174.x = a->mUnk_98.x;
-    a->mUnk_174.y = a->mUnk_98.y;
-    a->mUnk_174.z = a->mUnk_98.z;
+    a->mDrawMatrixPos = a->mPrevPos;
+    a->mUnk_174.x = a->mDrawMatrixPos.x;
+    a->mUnk_174.y = a->mDrawMatrixPos.y;
+    a->mUnk_174.z = a->mDrawMatrixPos.z;
     m = &a->mUnk_120_m;
     a->mForward.x = m->mUnk_00[2].x;
     a->mForward.y = m->mUnk_00[2].y;

@@ -115,8 +115,8 @@ void func_01ffb130(Kart *p) {
     gKartStateFunctions[p->mState](p);
     func_01ffb9e0(p);
     if (p->mUnk_48 & 0x40) {
-        p->mUnk_3ac++;
-        if (p->mUnk_3ac > 0x41) {
+        p->mSinkFrames++;
+        if (p->mSinkFrames > 0x41) {
             p->mUnk_48 &= ~0x240;
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                 func_020e7a18();
@@ -129,25 +129,26 @@ void func_01ffb130(Kart *p) {
     }
     if (p->mUnk_44 & KART_44_ON_GROUND) {
         GetKartForward(p, &v2);
-        if (!(p->mUnk_48 & 6) && p->mUnk_244.y > 0 && (v2.y > 0 ? v2.y : -v2.y) > 0xcd && p->mUnk_38c <= 0) {
+        if (!(p->mUnk_48 & 6) && p->mGroundNormal.y > 0 && (v2.y > 0 ? v2.y : -v2.y) > 0xcd &&
+            p->mSpeedLimitHitFactor <= 0) {
             p->mForwardSpeed += (s32) (((s64) -v2.y * 0x19a) >> 12);
         }
     }
     if ((p->mUnk_44 & KART_44_ON_GROUND) || (p->mUnk_4c & 0x10000000)) {
-        MTX_RotAxis33((MtxFx43 *) &m1, &p->mUnk_244, gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2],
+        MTX_RotAxis33((MtxFx43 *) &m1, &p->mGroundNormal, gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2],
                       gPairsByAngle[((u16) p->mTurnAngle >> 4) * 2 + 1]);
         if (p->mUnk_48 & 1) {
             MTX_RotAxis33((MtxFx43 *) &m2, &p->mUnk_120, gPairsByAngle[0xba], gPairsByAngle[0xbb]);
             MTX_Concat33(m2.mUnk_00, m1.mUnk_00, m1.mUnk_00);
         }
         MTX_MultVec33(&p->mForward, m1.mUnk_00, &p->mTurnedForward);
-        d = VEC_DotProduct(&p->mUnk_244, &p->mTurnedForward);
-        v3.x = p->mTurnedForward.x - (s32) (((s64) p->mUnk_244.x * d) >> 12);
-        v3.y = p->mTurnedForward.y - (s32) (((s64) p->mUnk_244.y * d) >> 12);
-        v3.z = p->mTurnedForward.z - (s32) (((s64) p->mUnk_244.z * d) >> 12);
+        d = VEC_DotProduct(&p->mGroundNormal, &p->mTurnedForward);
+        v3.x = p->mTurnedForward.x - (s32) (((s64) p->mGroundNormal.x * d) >> 12);
+        v3.y = p->mTurnedForward.y - (s32) (((s64) p->mGroundNormal.y * d) >> 12);
+        v3.z = p->mTurnedForward.z - (s32) (((s64) p->mGroundNormal.z * d) >> 12);
         p->mUnk_d4 = VEC_Mag(&v3);
     } else {
-        d = Vec3DotUnrounded(&p->mForward, &p->mUnk_244);
+        d = Vec3DotUnrounded(&p->mForward, &p->mGroundNormal);
         p->mTurnedForward = p->mForward;
         if (p->mUnk_3e8 > 0) {
             p->mUnk_d4 = 0x1000;
@@ -160,23 +161,23 @@ void func_01ffb130(Kart *p) {
     a = LimitKartForwardSpeedAndGetScaled(p);
     ReduceKartSpeedByTurnRatio(&a, p);
     if ((p->mUnk_44 & 0x90) || (p->mUnk_4c & 0x10000000)) {
-        k = p->mUnk_240;
-        VEC_Subtract(&p->mTurnedForward, &p->mUnk_68, &v4);
+        k = p->mTurnedForwardEaseFactor;
+        VEC_Subtract(&p->mTurnedForward, &p->mEasedTurnedForward, &v4);
         v4.x = ((s64) v4.x * k) >> 12;
         v4.y = ((s64) v4.y * k) >> 12;
         v4.z = ((s64) v4.z * k) >> 12;
-        VEC_Add(&p->mUnk_68, &v4, &p->mUnk_68);
-        p->mUnk_68.y = p->mTurnedForward.y;
+        VEC_Add(&p->mEasedTurnedForward, &v4, &p->mEasedTurnedForward);
+        p->mEasedTurnedForward.y = p->mTurnedForward.y;
     }
-    v1.x = ((s64) p->mUnk_68.x * a) >> 12;
-    v1.y = ((s64) p->mUnk_68.y * a) >> 12;
-    v1.z = ((s64) p->mUnk_68.z * a) >> 12;
+    v1.x = ((s64) p->mEasedTurnedForward.x * a) >> 12;
+    v1.y = ((s64) p->mEasedTurnedForward.y * a) >> 12;
+    v1.z = ((s64) p->mEasedTurnedForward.z * a) >> 12;
     if (a >= 0) {
-        p->mUnk_05c = p->mTurnedForward;
+        p->mSignedTurnedForward = p->mTurnedForward;
     } else {
-        p->mUnk_05c.x = -p->mTurnedForward.x;
-        p->mUnk_05c.y = -p->mTurnedForward.y;
-        p->mUnk_05c.z = -p->mTurnedForward.z;
+        p->mSignedTurnedForward.x = -p->mTurnedForward.x;
+        p->mSignedTurnedForward.y = -p->mTurnedForward.y;
+        p->mSignedTurnedForward.z = -p->mTurnedForward.z;
     }
     if (p->mState == KART_STATE_LAUNCH_DOUBLE_FLIP) {
         v1.y = 0;
@@ -203,26 +204,26 @@ void func_01ffb130(Kart *p) {
     }
     if (!(p->mUnk_7c & 0x20)) {
         VEC_Add(&p->mPos, &p->mVelocity, &p->mPos);
-        p->mUnk_38c = 0x1000;
+        p->mSpeedLimitHitFactor = 0x1000;
     }
     f = (p->mUnk_44 & KART_44_ON_GROUND) ? 0xee1 : 0xfae;
-    p->mUnk_2d8.x = ((s64) p->mUnk_2d8.x * f) >> 12;
-    p->mUnk_2d8.y = ((s64) p->mUnk_2d8.y * f) >> 12;
-    p->mUnk_2d8.z = ((s64) p->mUnk_2d8.z * f) >> 12;
-    if ((s64) p->mUnk_2d8.x * p->mUnk_2d8.x + (s64) p->mUnk_2d8.y * p->mUnk_2d8.y +
-            (s64) p->mUnk_2d8.z * p->mUnk_2d8.z >=
+    p->mHitVelocity.x = ((s64) p->mHitVelocity.x * f) >> 12;
+    p->mHitVelocity.y = ((s64) p->mHitVelocity.y * f) >> 12;
+    p->mHitVelocity.z = ((s64) p->mHitVelocity.z * f) >> 12;
+    if ((s64) p->mHitVelocity.x * p->mHitVelocity.x + (s64) p->mHitVelocity.y * p->mHitVelocity.y +
+            (s64) p->mHitVelocity.z * p->mHitVelocity.z >=
         0xa429) {
         p->mUnk_44 |= 0x2000;
     } else {
-        p->mUnk_2d8 = data_02154f94;
+        p->mHitVelocity = data_02154f94;
         p->mUnk_44 &= ~0x2000;
     }
-    FindCollisionSlotsOverlappingSlot(p->mUnk_2c8, 0xe800);
+    FindCollisionSlotsOverlappingSlot(p->mCollisionSlot, 0xe800);
     func_0206e874(p);
     if (p->mUnk_7c & 0x8000000) {
         return;
     }
-    ComputeKartPointAlongUp(&p->mUnk_1d8, p->mUnk_510, p->mPhysicalParam->mUnk_04, p);
+    ComputeKartPointAlongUp(&p->mPointAlongUp, p->mUnk_510, p->mPhysicalParam->mUnk_04, p);
     func_0206d18c(p);
     CollideKartWithKarts(p);
     func_0206d578(p);

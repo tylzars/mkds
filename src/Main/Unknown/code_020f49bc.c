@@ -662,8 +662,8 @@ void UpdateItemKouraRState5(ItemKouraR *a) {
     }
     if (a->mStateMachine.mStateFrames <= 0x14) {
         r = k->mRadius + ((a->mUnk_000.mUnk_000.mUnk_000.mRadius * 3) >> 1);
-        n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mUnk_1d8.z;
-        t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mUnk_1d8.x;
+        n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mPointAlongUp.z;
+        t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mPointAlongUp.x;
         if ((s64) t * t + (s64) n * n >= (s64) r * r) {
             return;
         }
@@ -716,7 +716,7 @@ void func_020f5614(void *a0, s32 b, ItemObject *c0) {
             return;
         }
     }
-    func_0210a598(k, k->mUnk_3cc);
+    func_0210a598(k, k->mSoundIndex);
 }
 
 // Hands the 0x44 word and the 0x5c/0x130/0x250/0x254/0x60/0x54 addresses of b to
@@ -798,8 +798,8 @@ BOOL func_020f5324(void *a0, s32 b) {
     a = a0;
     k = GetKart(b);
     r = k->mRadius + ((a->mUnk_000.mUnk_000.mUnk_000.mRadius * 3) >> 1);
-    n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mUnk_1d8.z;
-    t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mUnk_1d8.x;
+    n = a->mUnk_000.mUnk_000.mUnk_000.mPos.z - k->mPointAlongUp.z;
+    t = a->mUnk_000.mUnk_000.mUnk_000.mPos.x - k->mPointAlongUp.x;
     if ((s64) t * t + (s64) n * n < (s64) r * r) {
         return TRUE;
     }
@@ -1073,13 +1073,13 @@ void StartNextHeldItemObject(HeldItem *a) {
     p = a->mKartItems->mKart;
     a->mObjectCount--;
     e = a->mObjects[a->mObjectCount];
-    q = &p->mUnk_98;
+    q = &p->mDrawMatrixPos;
     r = &p->mVelocity;
     StartItemObject(gItemPools + e->mKind, e);
     func_020efd1c(a->mKartItems, e);
     VEC_MultAdd(0xb33, r, &e->mVelocity, &e->mVelocity);
     *(Vec3 *) &e->mPos = *q;
-    func_020f6630(e, 0, q, r, &p->mUnk_244);
+    func_020f6630(e, 0, q, r, &p->mGroundNormal);
     k = e->mKind;
     h = gItemKinds[k].mUnk_38;
     if (h != NULL) {

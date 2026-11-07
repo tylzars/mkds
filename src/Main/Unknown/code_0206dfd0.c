@@ -30,15 +30,15 @@ static inline BOOL func_0206dfd0_inline(Kart *p, Kart *q, s32 r) {
     s32 m;
 
     m = -r;
-    z = p->mUnk_1d8.z - q->mUnk_1d8.z;
+    z = p->mPointAlongUp.z - q->mPointAlongUp.z;
     if (z > r || z < m) {
         return FALSE;
     }
-    x = p->mUnk_1d8.x - q->mUnk_1d8.x;
+    x = p->mPointAlongUp.x - q->mPointAlongUp.x;
     if (x > r || x < m) {
         return FALSE;
     }
-    y = p->mUnk_1d8.y - q->mUnk_1d8.y;
+    y = p->mPointAlongUp.y - q->mPointAlongUp.y;
     if (y > r || y < m) {
         return FALSE;
     }
@@ -77,10 +77,10 @@ void CollideKartWithKarts(Kart *p) {
     Vec3 u;
 
     s = 0;
-    if (p->mUnk_3d4 > 0) {
-        p->mUnk_3d4--;
-        if (p->mUnk_3d4 <= 0) {
-            p->mUnk_3d4 = 0;
+    if (p->mKartCollisionDelayTimer > 0) {
+        p->mKartCollisionDelayTimer--;
+        if (p->mKartCollisionDelayTimer <= 0) {
+            p->mKartCollisionDelayTimer = 0;
         }
     }
     if (p->mUnk_7c & 0x402000) {
@@ -109,7 +109,7 @@ void CollideKartWithKarts(Kart *p) {
         if (func_0206dfd0_inline(p, q, r) == FALSE) {
             continue;
         }
-        ComputeSphereOverlapOffset(&p->mUnk_1d8, &q->mUnk_1d8, r, &v);
+        ComputeSphereOverlapOffset(&p->mPointAlongUp, &q->mPointAlongUp, r, &v);
         d = func_0206dfd0_inline_2(&v, &n);
         if (d > 0) {
             a.x = v.x >> 1;
@@ -121,13 +121,13 @@ void CollideKartWithKarts(Kart *p) {
             k = 0;
             c = FALSE;
             if (p->mUnk_44 & KART_44_ON_GROUND) {
-                f = VEC_DotProduct(&p->mUnk_244, &a);
-                a.x -= (s32) (((s64) p->mUnk_244.x * f) >> 12);
-                a.y -= (s32) (((s64) p->mUnk_244.y * f) >> 12);
-                a.z -= (s32) (((s64) p->mUnk_244.z * f) >> 12);
+                f = VEC_DotProduct(&p->mGroundNormal, &a);
+                a.x -= (s32) (((s64) p->mGroundNormal.x * f) >> 12);
+                a.y -= (s32) (((s64) p->mGroundNormal.y * f) >> 12);
+                a.z -= (s32) (((s64) p->mGroundNormal.z * f) >> 12);
             }
             if (p->mUnk_44 & 0x80) {
-                if (VEC_DotProduct(&p->mUnk_244, &a) < 0) {
+                if (VEC_DotProduct(&p->mGroundNormal, &a) < 0) {
                     f = VEC_DotProduct(&p->mUnk_250, &a);
                     a.x -= (s32) (((s64) p->mUnk_250.x * f) >> 12);
                     a.y -= (s32) (((s64) p->mUnk_250.y * f) >> 12);
@@ -135,13 +135,13 @@ void CollideKartWithKarts(Kart *p) {
                 }
             }
             if (q->mUnk_44 & KART_44_ON_GROUND) {
-                f = VEC_DotProduct(&q->mUnk_244, &b);
-                b.x -= (s32) (((s64) q->mUnk_244.x * f) >> 12);
-                b.y -= (s32) (((s64) q->mUnk_244.y * f) >> 12);
-                b.z -= (s32) (((s64) q->mUnk_244.z * f) >> 12);
+                f = VEC_DotProduct(&q->mGroundNormal, &b);
+                b.x -= (s32) (((s64) q->mGroundNormal.x * f) >> 12);
+                b.y -= (s32) (((s64) q->mGroundNormal.y * f) >> 12);
+                b.z -= (s32) (((s64) q->mGroundNormal.z * f) >> 12);
             }
             if (q->mUnk_44 & 0x80) {
-                if (VEC_DotProduct(&q->mUnk_244, &b) < 0) {
+                if (VEC_DotProduct(&q->mGroundNormal, &b) < 0) {
                     f = VEC_DotProduct(&q->mUnk_250, &b);
                     b.x -= (s32) (((s64) q->mUnk_250.x * f) >> 12);
                     b.y -= (s32) (((s64) q->mUnk_250.y * f) >> 12);
@@ -193,7 +193,7 @@ void CollideKartWithKarts(Kart *p) {
                     c = TRUE;
                     func_0206de18(q, p, &n);
                 }
-            } else if (p->mUnk_3d4 <= 0) {
+            } else if (p->mKartCollisionDelayTimer <= 0) {
                 if (p->mVelocityLength > 0x1000 || q->mVelocityLength > 0x1000) {
                     if (gSceneSoundState.mRaceFrames > 0x78) {
                         StartSound(&p->mSoundSource, 0x80, 0x7f, 0);
@@ -205,7 +205,7 @@ void CollideKartWithKarts(Kart *p) {
                     }
                     StartKartModelScaleAnimation(p, 2);
                     StartKartModelScaleAnimation(q, 2);
-                    p->mUnk_3d4 = 0xf;
+                    p->mKartCollisionDelayTimer = 0xf;
                     if (s == 0) {
                         s = TryStartKartCollisionEffects(p, &n, k);
                         if (s == 0) {

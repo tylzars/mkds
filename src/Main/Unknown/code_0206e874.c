@@ -132,7 +132,7 @@ void func_0206e874(Kart *p) {
     v3 = FALSE;
     e = NULL;
     n = 0;
-    p->mUnk_3a0 = p->mUnk_39c = 0;
+    p->mMapObjectVectorForwardDot = p->mMapObjectVectorLength = 0;
     k = FindMapObjectsTouchingKart(p, &p->mCollisionCenter, &t);
     if (k != 0) {
         if (!(p->mUnk_48 & 0x40)) {
@@ -164,7 +164,7 @@ void func_0206e874(Kart *p) {
                                 } else if (s < 0x29) {
                                     s = 0x29;
                                 }
-                                p->mUnk_38c = ((s64) p->mUnk_38c * s) >> 12;
+                                p->mSpeedLimitHitFactor = ((s64) p->mSpeedLimitHitFactor * s) >> 12;
                             }
                         }
                         if (r & 1) {
@@ -184,20 +184,20 @@ void func_0206e874(Kart *p) {
                                         m = 0;
                                     }
                                 }
-                                p->mUnk_39c = VEC_Mag(&w);
-                                if (p->mUnk_39c > 0x1000 && m != 0) {
-                                    p->mUnk_3a0 = Vec3DotUnrounded(&p->mTurnedForward, &w);
+                                p->mMapObjectVectorLength = VEC_Mag(&w);
+                                if (p->mMapObjectVectorLength > 0x1000 && m != 0) {
+                                    p->mMapObjectVectorForwardDot = Vec3DotUnrounded(&p->mTurnedForward, &w);
                                     s = VEC_DotProduct(&p->mTurnedForward, &w);
                                     v6 = w.y - (s32) (((s64) p->mTurnedForward.y * s) >> 12);
                                     v7 = w.z - (s32) (((s64) p->mTurnedForward.z * s) >> 12);
                                     v5 = w.x - (s32) (((s64) p->mTurnedForward.x * s) >> 12);
-                                    p->mUnk_2d8.x += v5;
-                                    p->mUnk_2d8.z += v7;
+                                    p->mHitVelocity.x += v5;
+                                    p->mHitVelocity.z += v7;
                                     p->mVerticalSpeed += v6;
                                 }
                             }
                         }
-                        s = p->mUnk_38c;
+                        s = p->mSpeedLimitHitFactor;
                         if (r & 8) {
                             v3 = TRUE;
                         }
@@ -211,14 +211,14 @@ void func_0206e874(Kart *p) {
                     if (p->mVelocityLength > 0x2000 || g != 0) {
                         if (n < 2) {
                             for (j = 0; j < 2; j++) {
-                                if (e == p->mUnk_438[j]) {
+                                if (e == p->mPrevTouchingMapObjects[j]) {
                                     v4 = TRUE;
                                     break;
                                 }
                             }
                             if (v4 == FALSE) {
                                 for (j = 0; j < 2; j++) {
-                                    if (e == p->mUnk_438[j] || p->mUnk_444[j] != 0) {
+                                    if (e == p->mPrevTouchingMapObjects[j] || p->mUnk_444[j] != 0) {
                                         continue;
                                     }
                                     func_020d2668(e, &p->mSoundSource, v2, m);
@@ -245,7 +245,7 @@ void func_0206e874(Kart *p) {
         VEC_Add(&p->mPos, &t, &p->mPos);
     }
     for (j = 0; j < 2; j++) {
-        p->mUnk_438[j] = v1[j];
+        p->mPrevTouchingMapObjects[j] = v1[j];
         if (p->mUnk_444[j] != 0) {
             p->mUnk_440[j]++;
             if (p->mUnk_440[j] > 10) {

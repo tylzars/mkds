@@ -85,9 +85,9 @@ void func_02068b98(Kart *a) {
             if (a->mUnk_3c8 >= 0xb9) {
                 *e = *e | 0x80000;
                 func_02063ad0(a);
-                k = gRaceSetup->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
-                if (a->mUnk_2c8 == -1) {
-                    a->mUnk_2c8 = CreateCollisionSlot(k, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
+                k = gRaceSetup->mMode == 5 ? &a->mPointAlongUp : &a->mCollisionCenter;
+                if (a->mCollisionSlot == -1) {
+                    a->mCollisionSlot = CreateCollisionSlot(k, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
                 }
                 if (a->mUnk_2ca == -1) {
                     c = a->mPhysicalParam->mRadius;
@@ -209,11 +209,11 @@ void func_02068a10(Kart *a) {
     if ((a->mUnk_48 & 0x840) != 0) {
         return;
     }
-    func_0210af40(a, a->mUnk_3cc, 0);
+    func_0210af40(a, a->mSoundIndex, 0);
 }
 
 void func_02068a00(Kart *a) {
-    QueueKartSound(a, a->mUnk_3cc);
+    QueueKartSound(a, a->mSoundIndex);
 }
 
 void func_020688a0(Kart *a) {
@@ -300,9 +300,9 @@ void func_02068640(Kart *a, s32 b) {
         Matrix4x3FromQuaternion(&a->mUnk_120, &a->mUnk_e0_m);
         GetKartForward(a, &e);
         ResetKartAndSetPos(a, &c, &e, NULL);
-        f = gRaceSetup->mMode == 5 ? &a->mUnk_1d8 : &a->mCollisionCenter;
-        if (a->mUnk_2c8 == -1) {
-            a->mUnk_2c8 = CreateCollisionSlot(f, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
+        f = gRaceSetup->mMode == 5 ? &a->mPointAlongUp : &a->mCollisionCenter;
+        if (a->mCollisionSlot == -1) {
+            a->mCollisionSlot = CreateCollisionSlot(f, a->mPhysicalParam->mRadius + 0xd000, 0x8000, a);
         }
         if (a->mUnk_2ca == -1) {
             g = a->mPhysicalParam->mRadius;
@@ -335,7 +335,7 @@ void func_02068640(Kart *a, s32 b) {
     if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) == 0) {
         return;
     }
-    func_0210ab48(a->mUnk_3cc, b);
+    func_0210ab48(a->mSoundIndex, b);
 }
 
 void func_02068494(Kart *a, s32 b, s32 c) {

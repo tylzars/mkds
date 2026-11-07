@@ -246,12 +246,12 @@ void func_0206d7c8(Kart *p, Kart *q, const Vec3 *v, s32 c, Vec3 *v1) {
     if (m.y > 0) {
         m.y = 0;
     }
-    v3 = VEC_DotProduct(&q->mUnk_244, &m);
-    v6 = m.x - (s32) (((s64) q->mUnk_244.x * v3) >> 12);
-    v8 = m.y - (s32) (((s64) q->mUnk_244.y * v3) >> 12);
-    v7 = m.z - (s32) (((s64) q->mUnk_244.z * v3) >> 12);
-    q->mUnk_2d8.x += v6;
-    q->mUnk_2d8.z += v7;
+    v3 = VEC_DotProduct(&q->mGroundNormal, &m);
+    v6 = m.x - (s32) (((s64) q->mGroundNormal.x * v3) >> 12);
+    v8 = m.y - (s32) (((s64) q->mGroundNormal.y * v3) >> 12);
+    v7 = m.z - (s32) (((s64) q->mGroundNormal.z * v3) >> 12);
+    q->mHitVelocity.x += v6;
+    q->mHitVelocity.z += v7;
     q->mVerticalSpeed += v8;
     v2 = ((s64) v2 * 0xaab + 0x800) >> 12;
     if (v2 > 0x1000) {
@@ -452,7 +452,7 @@ void func_0206d18c(Kart *p) {
             func_0207a70c(i);
         }
         if (!(q->mUnk_48 & 0x840)) {
-            func_0210af40(q, q->mUnk_3cc, 8);
+            func_0210af40(q, q->mSoundIndex, 8);
         }
         f = q->mUnk_7c;
         if ((f & 0x10) && !(f & 0x30000)) {
@@ -469,7 +469,7 @@ void func_0206d138(Kart *p) {
     u32 f;
 
     if (!(p->mUnk_48 & 0x840)) {
-        func_0210af40(p, p->mUnk_3cc, 8);
+        func_0210af40(p, p->mSoundIndex, 8);
     }
     f = p->mUnk_7c;
     if (!(f & 0x10)) {

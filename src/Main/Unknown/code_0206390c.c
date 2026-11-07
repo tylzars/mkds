@@ -88,7 +88,7 @@ void func_0206390c(Unk0206390c *a) {
     f = d.mUnk_00[3];
     g = c[2];
     j = GetKart(b);
-    h = (s32) ((s64) j->mUnk_4c8 * -0xd000 + 0x800 >> 12) >> 4;
+    h = (s32) ((s64) j->mRadiusFactor * -0xd000 + 0x800 >> 12) >> 4;
     g.x = (s64) g.x * h >> 12;
     g.y = (s64) g.y * h >> 12;
     g.z = (s64) g.z * h >> 12;

@@ -167,10 +167,10 @@ void AdvanceKartCollision(Kart *p) {
     } else {
         p->mUnk_44 &= ~0x80000;
     }
-    ComputeKartCollisionCenter(&p->mCollisionCenter, &p->mUnk_98, 0x400, p);
+    ComputeKartCollisionCenter(&p->mCollisionCenter, &p->mDrawMatrixPos, 0x400, p);
     func_01ffa4b4(p, &v);
     AdvanceKartOrientation(p, &v);
-    p->mUnk_244 = v;
+    p->mGroundNormal = v;
     p->mUnk_4d0 = p->mUnk_4d0 + 1;
     if (p->mUnk_4c & 0x8000) {
         ComputeKartSidePoints(p);
@@ -193,9 +193,9 @@ void UpdateKartPrevValuesAndClearFlags(Kart *p) {
     p->mPrevNearKartMask = p->mNearKartMask;
     p->mNearKartMask = 0;
     p->mPrevPos = p->mPos;
-    p->mUnk_1e4 = p->mUnk_1d8;
-    p->mUnk_2f0 = p->mUnk_2e4;
-    p->mUnk_2e4 = p->mUnk_2d8;
+    p->mPrevPointAlongUp = p->mPointAlongUp;
+    p->mUnk_2f0 = p->mPrevHitVelocity;
+    p->mPrevHitVelocity = p->mHitVelocity;
     p->mSlotFunctions[5](p);
 }
 
@@ -205,7 +205,7 @@ static inline const s32 func_01ffc090_inline(void) {
 
 void func_01ffca50(Kart *p) {
     p->mUnk_48 &= ~(KART_48_TURN_LEFT | KART_48_TURN_RIGHT);
-    p->mRadius = ((s64) p->mUnk_4c8 * (s32) (((s64) p->mPhysicalParam->mRadius * p->mUnk_394) >> 12)) >> 12;
+    p->mRadius = ((s64) p->mRadiusFactor * (s32) (((s64) p->mPhysicalParam->mRadius * p->mUnk_394) >> 12)) >> 12;
     p->mUnk_1d4 = ((s64) p->mPhysicalParam->mUnk_04 * p->mScale.z) >> 12;
     p->mTurnHeadingAnglePerFrameGoal = 0;
 }
@@ -259,7 +259,7 @@ void AdvanceKartCollisionTimer(Kart *p) {
     if (p->mKartCollisionTimer > 0) {
         return;
     }
-    StartKartCollisionSound(p, p->mUnk_3cc, p->mUnk_3d0);
+    StartKartCollisionSound(p, p->mSoundIndex, p->mUnk_3d0);
     p->mKartCollisionTimer = 0;
 }
 
@@ -310,7 +310,7 @@ void func_01ffc6c0(Kart *p) {
         if (p->mUnk_48 & 0x840) {
             return;
         }
-        func_0210af40(p, p->mUnk_3cc, 8);
+        func_0210af40(p, p->mSoundIndex, 8);
         return;
     }
     AdvanceKartRank(p);
@@ -532,7 +532,7 @@ void ComputeKartCollisionCenter(Vec3 *a, const Vec3 *b, s32 c, Kart *p) {
 }
 
 void SetKartPrevCollisionCenter(Kart *p) {
-    VEC_MultAdd(p->mRadius + 0x400, &p->mUnk_15c, &p->mUnk_98, &p->mPrevCollisionCenter);
+    VEC_MultAdd(p->mRadius + 0x400, &p->mUnk_15c, &p->mDrawMatrixPos, &p->mPrevCollisionCenter);
 }
 
 // Called once per step of the driving states (AdvanceKartMotion, func_020651fc); also writes mUnk_dc in five branches.
@@ -587,7 +587,7 @@ void UpdateKartSpeedLimit(Kart *p) {
 void func_01ffbd9c(Kart *p) {
     FX_DivAsync(p->mVelocityLength, p->mSpeedLimit);
     if (p->mUnk_44 & KART_44_ON_GROUND) {
-        Vec3CrossUnrounded(&p->mUnk_120, &p->mUnk_244, &p->mForward);
+        Vec3CrossUnrounded(&p->mUnk_120, &p->mGroundNormal, &p->mForward);
     } else {
         GetKartForward(p, &p->mForward);
     }

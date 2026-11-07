@@ -133,7 +133,7 @@ BOOL func_01ffa1f8(Kart *p) {
 }
 
 void AdvanceKartQuaternionBlendFactor(Kart *p, const Vec3 *a) {
-    s32 d = Vec3DotUnrounded(&p->mUnk_244, a);
+    s32 d = Vec3DotUnrounded(&p->mGroundNormal, a);
     s32 m;
 
     if (p->mUnk_48 & 1) {
@@ -237,7 +237,7 @@ void RefreshKartSurface(Kart *p) {
     } else {
         c = k;
     }
-    p->mUnk_240 = p->mPhysicalParam->mUnk_38[c];
+    p->mTurnedForwardEaseFactor = p->mPhysicalParam->mUnk_38[c];
     if (p->mUnk_48 & 0x40000000) {
         if (p->mUnk_44 & KART_44_ON_GROUND) {
             if (k != 0xb) {

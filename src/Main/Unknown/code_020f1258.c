@@ -47,7 +47,7 @@ BOOL func_020f14a0(ItemKouraR *a, s32 b, s32 c, s32 d) {
             if (func_0206c0e0(v) != FALSE) {
                 b >>= 1;
             }
-            VEC_Subtract(&v->mUnk_98, p, &t);
+            VEC_Subtract(&v->mDrawMatrixPos, p, &t);
             t.y = Vec3DotUnrounded(&a->mUnk_000.mUnk_000.mUnk_000.mUnk_f0, &t) >> 12;
             if (t.y * t.y > 0xbd1) {
                 if ((s64) t.x * t.x + (s64) t.z * t.z < (s64) 0xe1000000u) {

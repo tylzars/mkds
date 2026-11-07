@@ -288,7 +288,7 @@ void UpdateItemKouraWState0(ItemKouraW *param_1) {
 static inline Vec3 *func_020fbd98_inline(ItemKouraW *p) {
     if (p->mState >= 3) {
         if (p->mKartItems->mKart->mUnk_48 & 1) {
-            return &p->mKartItems->mKart->mUnk_244;
+            return &p->mKartItems->mKart->mGroundNormal;
         }
     } else if (p->mUnk_000.mFlags & 0x40000000) {
         return &p->mUnk_000.mUnk_f0;
@@ -1007,9 +1007,9 @@ static inline s32 func_020fa4c8_inline(ItemObject *e, Kart *a) {
         return 1;
     }
     if (e->mVelocity.x != 0 || e->mVelocity.y != 0 || e->mVelocity.z != 0 || a->mForwardSpeed != 0) {
-        VEC_Subtract(&e->mPrevPos, &a->mUnk_1e4, &b);
+        VEC_Subtract(&e->mPrevPos, &a->mPrevPointAlongUp, &b);
         b.y = 0;
-        VEC_Subtract(&e->mPos, &a->mUnk_1d8, &c);
+        VEC_Subtract(&e->mPos, &a->mPointAlongUp, &c);
         c.y = 0;
         d1 = Vec3DotUnrounded(&b, &b);
         d2 = Vec3DotUnrounded(&c, &c);
@@ -1018,9 +1018,9 @@ static inline s32 func_020fa4c8_inline(ItemObject *e, Kart *a) {
         }
     }
     r = e->mRadius;
-    x = e->mPos.x - a->mUnk_1d8.x;
-    f = (s64) (e->mPos.z - a->mUnk_1d8.z) * (e->mPos.z - a->mUnk_1d8.z) +
-        ((s64) x * x + (s64) (e->mPos.y - a->mUnk_1d8.y) * (e->mPos.y - a->mUnk_1d8.y));
+    x = e->mPos.x - a->mPointAlongUp.x;
+    f = (s64) (e->mPos.z - a->mPointAlongUp.z) * (e->mPos.z - a->mPointAlongUp.z) +
+        ((s64) x * x + (s64) (e->mPos.y - a->mPointAlongUp.y) * (e->mPos.y - a->mPointAlongUp.y));
     return f < (s64) r * r ? 1 : 0;
 }
 
@@ -1062,7 +1062,7 @@ s32 CollideKartWithItemObjects(Kart *param_1) {
         k = e->mKind;
         if (gItemKinds[k].mUnk_88 != 0) {
             if (func_020f9880(e) != 0) {
-                func_020f6be8(e, &param_1->mCollisionCenter, &param_1->mVelocity, &param_1->mUnk_05c);
+                func_020f6be8(e, &param_1->mCollisionCenter, &param_1->mVelocity, &param_1->mSignedTurnedForward);
                 func_020f6f10(e, 1, (u16) param_1->mIndex);
             } else {
                 func_020f7430(e, 1);

@@ -101,7 +101,7 @@ u8 CollideKartWithCrab(Crab *a, Kart *b, u8 *c, u8 *d) {
 
     e = *d;
     if (*c == 1) {
-        func_0209b388(a, &b->mPos, &b->mUnk_68, &b->mVelocity);
+        func_0209b388(a, &b->mPos, &b->mEasedTurnedForward, &b->mVelocity);
         func_020d26f8(&a->mUnk_000, b);
     }
     return e;
@@ -115,10 +115,11 @@ u8 CollideItemObjectWithCrab(Crab *a, Kart *b, u8 *c, u8 *d) {
     e = *d;
     if (*c == 1) {
         if (b != NULL) {
-            if ((s64) b->mUnk_05c.x * b->mUnk_05c.x + (s64) b->mUnk_05c.y * b->mUnk_05c.y +
-                    (s64) b->mUnk_05c.z * b->mUnk_05c.z >=
+            if ((s64) b->mSignedTurnedForward.x * b->mSignedTurnedForward.x +
+                    (s64) b->mSignedTurnedForward.y * b->mSignedTurnedForward.y +
+                    (s64) b->mSignedTurnedForward.z * b->mSignedTurnedForward.z >=
                 0x10) {
-                Vec3NormalizeAndGetLengthUnchecked(&b->mUnk_05c, &v);
+                Vec3NormalizeAndGetLengthUnchecked(&b->mSignedTurnedForward, &v);
                 func_0209b388(a, &b->mTurnedForward, &v, NULL);
             } else {
                 func_0209b388(a, NULL, NULL, NULL);
@@ -126,7 +127,7 @@ u8 CollideItemObjectWithCrab(Crab *a, Kart *b, u8 *c, u8 *d) {
             func_020f8ddc(b);
         } else {
             t = GetKart((u16) gRaceSetup->mEntryIndex);
-            func_0209b388(a, &t->mPos, &t->mUnk_68, &t->mVelocity);
+            func_0209b388(a, &t->mPos, &t->mEasedTurnedForward, &t->mVelocity);
         }
     }
     return e;

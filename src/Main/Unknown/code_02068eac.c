@@ -89,7 +89,7 @@ BOOL func_0206a24c(Kart *p) {
         }
     }
     if (!(p->mUnk_48 & 0x840)) {
-        func_0210af40(p, p->mUnk_3cc, 0);
+        func_0210af40(p, p->mSoundIndex, 0);
     }
     return TRUE;
 }
@@ -471,8 +471,8 @@ void AdvanceKartKiller(Kart *p) {
     }
     func_02087b78((ModelAnimation *) &p->mKartModelsEntry->mUnk_098);
     if (s->mKillerEnding != FALSE) {
-        p->mUnk_4c8 -= 0x52;
-        if (p->mUnk_4c8 > 0x1000) {
+        p->mRadiusFactor -= 0x52;
+        if (p->mRadiusFactor > 0x1000) {
             return;
         }
         p->mUnk_4c &= ~0x10000000;
@@ -480,7 +480,7 @@ void AdvanceKartKiller(Kart *p) {
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             ResetCameraHalfFovAngleGoal();
         }
-        p->mUnk_4c8 = 0x1000;
+        p->mRadiusFactor = 0x1000;
         p->mSurfaceGroup = -1;
         i = 0;
         p->mItemEffect = 0;
@@ -494,9 +494,9 @@ void AdvanceKartKiller(Kart *p) {
         StartSound(&p->mSoundSource, 0xfd, 0x7f, 0);
         return;
     }
-    p->mUnk_4c8 += 0x52;
-    if (p->mUnk_4c8 > 0x1666) {
-        p->mUnk_4c8 = 0x1666;
+    p->mRadiusFactor += 0x52;
+    if (p->mRadiusFactor > 0x1666) {
+        p->mRadiusFactor = 0x1666;
     }
     if (s->mKillerEnding != FALSE) {
         return;
@@ -553,7 +553,7 @@ void func_0206924c(Kart *p, u32 a) {
         SetCharacterFaceFrameIndex(p->mKartModelsEntry, 1);
     }
     if (!(p->mUnk_48 & 0x840)) {
-        func_0210af40(p, p->mUnk_3cc, 0);
+        func_0210af40(p, p->mSoundIndex, 0);
     }
     StartOrthoQuadsGesoSumi(p->mIndex, a);
     if (p->mUnk_7c & 0x200) {
@@ -645,8 +645,8 @@ s32 func_02068ec0(Kart *p, s32 a) {
             p->mUnk_7c |= 0x4000000;
         }
         p->mUnk_7c |= 0x20;
-        if (p->mUnk_2c8 != -1) {
-            p->mUnk_2c8 = FreeCollisionSlot(p->mUnk_2c8);
+        if (p->mCollisionSlot != -1) {
+            p->mCollisionSlot = FreeCollisionSlot(p->mCollisionSlot);
         }
         if (p->mUnk_2ca != -1) {
             p->mUnk_2ca = FreeCollisionSlot(p->mUnk_2ca);

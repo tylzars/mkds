@@ -73,7 +73,7 @@ void UpdateKartItems(KartItems *p) {
     }
     if (p->mKartIndex == GetRaceUpdateFramesMod8() && (r = &p->mUnk_1f0)->mLink != NULL) {
         q = p->mKart;
-        v = &q->mUnk_98;
+        v = &q->mDrawMatrixPos;
         PickNearestNearbyItemPointLink(r, r, v);
         d = (s64) (r->mLink->mPointPos->x - v->x) * (r->mLink->mPointPos->x - v->x);
         d += (s64) (r->mLink->mPointPos->z - v->z) * (r->mLink->mPointPos->z - v->z);

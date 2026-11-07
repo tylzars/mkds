@@ -129,7 +129,7 @@ void func_0206ff50(Kart *p, u32 a) {
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             ResetCameraHalfFovAngleGoal();
         }
-        p->mUnk_4c8 = 0x1000;
+        p->mRadiusFactor = 0x1000;
         p->mSurfaceGroup = -1;
         f = 0;
         p->mItemEffect = 0;
@@ -172,7 +172,7 @@ void func_0206ff50(Kart *p, u32 a) {
         StartSound(&p->mSoundSource, b, 0x7f, 0);
         p->mGravity = 0;
     }
-    func_0210af40(p, p->mUnk_3cc, 0);
+    func_0210af40(p, p->mSoundIndex, 0);
 }
 
 void func_0206fe08(Kart *p) {
@@ -184,13 +184,13 @@ void func_0206fe08(Kart *p) {
     a = GetHeightAboveWaterOrEfct(p->mPos.y);
     if (a < 0 && !(p->mUnk_4c & 0x4000000)) {
         b = FALSE;
-        c = ((s64) p->mUnk_3f4 * p->mScale.z) >> 12;
+        c = ((s64) p->mSpeedLimitFactorPerDepth * p->mScale.z) >> 12;
         p->mSpeedLimitFactor = (s32) (((s64) c * a) >> 12) + 0x1000;
         if (p->mSpeedLimitFactor < p->mPhysicalParam->mSurfaceSpeedLimitFactors[4]) {
             p->mSpeedLimitFactor = p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
         }
         func_0207a6c0(p);
-        p->mUnk_500 = -a;
+        p->mWaterDepth = -a;
         if (GetHeightAboveWaterOrEfct(p->mPos.y) <= -0xa000 && GetHeightAboveWaterOrEfct(p->mPrevPos.y) > -0xa000 &&
             p->mVelocity.y < -0x2000) {
             d = p->mPos;
@@ -206,7 +206,7 @@ void func_0206fe08(Kart *p) {
         }
         ApplyKartWaterEffects(p);
     } else {
-        p->mUnk_500 = 0;
+        p->mWaterDepth = 0;
         StopKartWaterEffects(p);
     }
 }
@@ -261,7 +261,7 @@ void func_0206f914(Kart *p) {
                         }
                     }
                     if (!(p->mUnk_48 & 0x840)) {
-                        func_0210af40(p, p->mUnk_3cc, 3);
+                        func_0210af40(p, p->mSoundIndex, 3);
                     }
                     StartKartModelScaleAnimation(p, 1);
                     p->mModelScaleKind = 1;
@@ -272,7 +272,7 @@ void func_0206f914(Kart *p) {
                 p->mUnk_44 |= 0x1800000;
                 StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mRaceStartFrameCount);
                 if (!(p->mUnk_48 & 0x840)) {
-                    func_0210af40(p, p->mUnk_3cc, 5);
+                    func_0210af40(p, p->mSoundIndex, 5);
                 }
                 p->mUnk_48 |= 0x8000;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -298,7 +298,7 @@ void func_0206f914(Kart *p) {
                         }
                     }
                     if (!(p->mUnk_48 & 0x840)) {
-                        func_0210af40(p, p->mUnk_3cc, 3);
+                        func_0210af40(p, p->mSoundIndex, 3);
                     }
                     StartKartModelScaleAnimation(p, 1);
                     p->mModelScaleKind = 1;
@@ -318,7 +318,7 @@ void func_0206f914(Kart *p) {
                 p->mUnk_44 |= 0x1800000;
                 StartKartBoost(p, KART_BOOST_RACE_START, (s16) p->mRaceStartFrameCount);
                 if (!(p->mUnk_48 & 0x840)) {
-                    func_0210af40(p, p->mUnk_3cc, 5);
+                    func_0210af40(p, p->mSoundIndex, 5);
                 }
                 p->mUnk_48 |= 0x8000;
                 if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -444,22 +444,22 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     Vec3 n;
 
     j = FALSE;
-    i = Vec3DotUnrounded(&p->mUnk_05c, a) + 0x1000;
+    i = Vec3DotUnrounded(&p->mSignedTurnedForward, a) + 0x1000;
     if (i > 0x1000) {
         i = 0x1000;
     } else if (i < 0x29) {
         i = 0x29;
     }
-    g = VEC_DotProduct(a, &p->mUnk_2d8);
-    p->mUnk_2d8.x = p->mUnk_2d8.x - (s32) (((s64) a->x * g) >> 12);
-    p->mUnk_2d8.y = p->mUnk_2d8.y - (s32) (((s64) a->y * g) >> 12);
-    p->mUnk_2d8.z = p->mUnk_2d8.z - (s32) (((s64) a->z * g) >> 12);
-    g = VEC_DotProduct(a, &p->mUnk_2e4);
-    p->mUnk_2e4.x = p->mUnk_2e4.x - (s32) (((s64) a->x * g) >> 12);
-    p->mUnk_2e4.y = p->mUnk_2e4.y - (s32) (((s64) a->y * g) >> 12);
+    g = VEC_DotProduct(a, &p->mHitVelocity);
+    p->mHitVelocity.x = p->mHitVelocity.x - (s32) (((s64) a->x * g) >> 12);
+    p->mHitVelocity.y = p->mHitVelocity.y - (s32) (((s64) a->y * g) >> 12);
+    p->mHitVelocity.z = p->mHitVelocity.z - (s32) (((s64) a->z * g) >> 12);
+    g = VEC_DotProduct(a, &p->mPrevHitVelocity);
+    p->mPrevHitVelocity.x = p->mPrevHitVelocity.x - (s32) (((s64) a->x * g) >> 12);
+    p->mPrevHitVelocity.y = p->mPrevHitVelocity.y - (s32) (((s64) a->y * g) >> 12);
     k = ((s64) c * i) >> 12;
-    p->mUnk_2e4.z = p->mUnk_2e4.z - (s32) (((s64) a->z * g) >> 12);
-    p->mUnk_38c = k;
+    p->mPrevHitVelocity.z = p->mPrevHitVelocity.z - (s32) (((s64) a->z * g) >> 12);
+    p->mSpeedLimitHitFactor = k;
     if (Vec3DotUnrounded(&p->mUnk_1fc, a) < -0x800) {
         p->mUnk_1fc = data_02154f94;
     }
@@ -478,8 +478,8 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         if (p->mVelocityLength > 0x1800) {
             if (!(p->mUnk_48 & KART_48_BOOST) && (m.x != 0 || m.y != 0 || m.z != 0) && c != 0x1000) {
                 BounceVelocityOffSurface(&m, a, 0, 0x4cd, 0, &m);
-                p->mUnk_2d8.x = m.x;
-                p->mUnk_2d8.z = m.z;
+                p->mHitVelocity.x = m.x;
+                p->mHitVelocity.z = m.z;
                 p->mVerticalSpeed = p->mVerticalSpeed + m.y;
             }
             if (p->mUnk_4da <= 0) {
@@ -507,7 +507,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
             }
         }
         if (h > 0) {
-            p->mUnk_38c = 0x4cd;
+            p->mSpeedLimitHitFactor = 0x4cd;
             if (p->mSurfaceGroup != 0xb && p->mSurfaceGroup != 8) {
                 p->mUnk_48 &= 0xdfe77fdf;
                 p->mBoostTimer = 0;
@@ -531,7 +531,7 @@ s32 func_0206f04c(Kart *p, Vec3 *a, s32 b, s32 c, s32 d, s32 e, s32 f) {
             k = 0x1000 - i;
             if (p->mVelocityLength > 0x1800 && k > 0x19a) {
                 l = ((s32) (((s64) p->mVelocityLength * k) >> 12) >> 12) * 30;
-                Vec3CrossUnrounded(&p->mUnk_05c, a, &o);
+                Vec3CrossUnrounded(&p->mSignedTurnedForward, a, &o);
                 if (Vec3DotUnrounded(&o, &p->mUnk_12c) < 0) {
                     l = l * -1;
                 }

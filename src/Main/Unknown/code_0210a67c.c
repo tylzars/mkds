@@ -496,7 +496,7 @@ void SetKartPlayingSoundVolumePitch(Kart *a, PlayingSound *b, s32 c) {
     e = b->mVolume;
     d = c + a->mUnk_48c(&a->mUnk_518);
     if (b->mUnk_18 != 2) {
-        f = a->mUnk_500;
+        f = a->mWaterDepth;
         w = 0;
         g = a->mIndex == gRaceSetup->mEntryIndex;
         if (f > 0x11170) {
@@ -512,7 +512,7 @@ void SetKartPlayingSoundVolumePitch(Kart *a, PlayingSound *b, s32 c) {
         }
         d -= w;
     } else {
-        f = a->mUnk_500;
+        f = a->mWaterDepth;
         w = 0;
         if (f > 0x11170) {
             w += gSoundPitchSwing;

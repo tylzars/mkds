@@ -123,7 +123,7 @@ void func_02064f50(Kart *a) {
     ComputeKartPointAlongUp(&a->mCollisionCenter, &a->mPos, 0x400, a);
     func_01ffa4b4(a, &d);
     func_02064d60(a, &d);
-    a->mUnk_244 = d;
+    a->mGroundNormal = d;
     a->mUnk_4d0 = a->mUnk_4d0 + 1;
     func_01ffc920(a);
     AdvanceKartCollisionTimer(a);
@@ -149,7 +149,8 @@ void func_02064f50(Kart *a) {
         h.y = (s64) k->y * -0x7000 >> 12;
         h.z = (s64) k->z * -0x7000 >> 12;
         VEC_Add(&g, &h, &g);
-        if (func_01ffdee4(&g, NULL, 0, a->mRadius, 1, a->mUnk_2c8, &i, NULL, NULL, &j, NULL, NULL, NULL, NULL) != 0) {
+        if (func_01ffdee4(&g, NULL, 0, a->mRadius, 1, a->mCollisionSlot, &i, NULL, NULL, &j, NULL, NULL, NULL, NULL) !=
+            0) {
             VEC_Add(&i, &h, &i);
             VEC_Add(&b->mUnk_00, &i, &b->mUnk_00);
         }
@@ -278,7 +279,7 @@ void InitKart(Kart *a, void (**b)(Kart *)) {
     if (GetRaceUseChainCameras() != 0 && gRaceSetup->mRaceKind != RACE_KIND_AWARD) {
         a->mSlotFunctions[3] = func_020649e8;
         a->mSlotFunctions[4] = func_020649e8;
-        a->mUnk_98 = a->mUnk_174;
+        a->mDrawMatrixPos = a->mUnk_174;
         a->mUnk_174.x = a->mUnk_174.x >> 4;
         a->mUnk_174.y = a->mUnk_174.y >> 4;
         a->mUnk_174.z = a->mUnk_174.z >> 4;

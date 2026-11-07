@@ -257,8 +257,8 @@ typedef struct Kart {
     /* 48 */ vu32 mUnk_48;
     /* 4c */ vu32 mUnk_4c;
     /* 50 */ Vec3 mTurnedForward;
-    /* 05c */ Vec3 mUnk_05c;
-    /* 68 */ Vec3 mUnk_68;
+    /* 05c */ Vec3 mSignedTurnedForward;
+    /* 68 */ Vec3 mEasedTurnedForward;
     /* 74 */ u16 mIndex;
     /* 76 */ u8 mUnk_76[0x2];
     /* 78 */ s32 mEntryIndex;
@@ -267,7 +267,7 @@ typedef struct Kart {
     /* 8c */ Vec3 mPrevPos;
     // Copy of the kart position made when the draw matrix is built; until then it holds the position of one step
     // earlier.
-    /* 98 */ Vec3 mUnk_98;
+    /* 98 */ Vec3 mDrawMatrixPos;
     /* a4 */ Vec3 mVelocity;
     /* b0 */ Vec3 mVelocityDirection;
     // Size scale of the kart (x, y, z; 0x1000 = 1.0): mScaleBase times mScaleFactor per axis, y also times
@@ -335,8 +335,8 @@ typedef struct Kart {
     // Current radius: the record's radius times two scales (code_01ffba68.c:208), set from the record at creation.
     /* 1d0 */ s32 mRadius;
     /* 1d4 */ s32 mUnk_1d4;
-    /* 1d8 */ Vec3 mUnk_1d8;
-    /* 1e4 */ Vec3 mUnk_1e4;
+    /* 1d8 */ Vec3 mPointAlongUp;
+    /* 1e4 */ Vec3 mPrevPointAlongUp;
     /* 1f0 */ Vec3 mUnk_1f0;
     /* 1fc */ Vec3 mUnk_1fc;
     /* 208 */ Unk0206c5e4_208 *mUnk_208;
@@ -356,8 +356,8 @@ typedef struct Kart {
     /* 23a */ s16 mUnk_23a;
     /* 23c */ s16 mMiniTurboTimer;
     /* 23e */ u8 mUnk_23e[2];
-    /* 240 */ u32 mUnk_240;
-    /* 244 */ Vec3 mUnk_244;
+    /* 240 */ u32 mTurnedForwardEaseFactor;
+    /* 244 */ Vec3 mGroundNormal;
     /* 250 */ Vec3 mUnk_250;
     /* 25c */ s32 mUnk_25c;
     // Vertical speed added to mVelocity.y after mVelocity is rebuilt each step, so it persists; mGravity is added to
@@ -367,8 +367,8 @@ typedef struct Kart {
     /* 268 */ Vec3 mUnk_268;
     /* 274 */ s32 mUnk_274;
     /* 278 */ Vec3 mForward;
-    /* 284 */ Vec3 mUnk_284;
-    /* 290 */ Vec3 mUnk_290;
+    /* 284 */ Vec3 mHopStartUp;
+    /* 290 */ Vec3 mHopStartForward;
     // The item acting on the kart (KartItemEffect); NONE when no star, Teresa or Killer runs.
     /* 29c */ s32 mItemEffect;
     /* 2a0 */ s32 mVelocityLengthRatio;
@@ -393,7 +393,7 @@ typedef struct Kart {
     // Sign 1 / -1 / 0 of a turn, latched when it starts (from mUnk_48 bits 0x10 / 8, or from the entry's input bits
     // 0x10 / 0x20) and cleared when it ends; read only as a sign.
     /* 2c4 */ s32 mTurnDirection;
-    /* 2c8 */ s16 mUnk_2c8;
+    /* 2c8 */ s16 mCollisionSlot;
     /* 2ca */ s16 mUnk_2ca;
     // Pointer to this slot's KartPhysicalParam; set once in InitKartPhysicalParams. The record is shared by nothing
     // else.
@@ -402,8 +402,8 @@ typedef struct Kart {
     // added to mWeight.
     /* 2d0 */ s32 *mCharPhysicalParam;
     /* 2d4 */ s32 mTurnRatio;
-    /* 2d8 */ Vec3 mUnk_2d8;
-    /* 2e4 */ Vec3 mUnk_2e4;
+    /* 2d8 */ Vec3 mHitVelocity;
+    /* 2e4 */ Vec3 mPrevHitVelocity;
     /* 2f0 */ Vec3 mUnk_2f0;
     /* 2fc */ s32 mDriftCharge;
     /* 300 */ u16 mLeftTurnCount;
@@ -416,14 +416,14 @@ typedef struct Kart {
     /* 316 */ u8 mUnk_316[2];
     /* 318 */ s32 mRotationAngleSum;
     /* 31c */ Vec3 mRotationAxis;
-    /* 328 */ Vec3 mUnk_328;
+    /* 328 */ Vec3 mLaunchForward;
     /* 334 */ s32 mUnk_334;
     /* 338 */ u16 mUnk_338;
     /* 33a */ u8 mUnk_33a[2];
     /* 33c */ s32 mUnk_33c;
-    /* 340 */ s32 mUnk_340;
+    /* 340 */ s32 mLaunchStartY;
     /* 344 */ s32 mUnk_344;
-    /* 348 */ s32 mUnk_348;
+    /* 348 */ s32 mLaunchFrames;
     /* 34c */ Vec4 mRotationQuaternion;
     /* 35c */ s16 mRotationEndFrames;
     /* 35e */ u8 mUnk_35e[2];
@@ -448,18 +448,18 @@ typedef struct Kart {
     // the ground; it is the angle of the rotation of mUnk_278 about mUnk_244 in func_01ffb130.
     /* 388 */ s16 mTurnAngle;
     /* 38a */ s16 mUnk_38a;
-    /* 38c */ s32 mUnk_38c;
+    /* 38c */ s32 mSpeedLimitHitFactor;
     /* 390 */ u8 mUnk_390[4];
     /* 394 */ s32 mUnk_394;
     /* 398 */ s32 mUnk_398;
-    /* 39c */ s32 mUnk_39c;
-    /* 3a0 */ s32 mUnk_3a0;
+    /* 39c */ s32 mMapObjectVectorLength;
+    /* 3a0 */ s32 mMapObjectVectorForwardDot;
     // Angle of the tire object about the x axis (0x10000 per turn), advanced each step in func_020641f0 from the speed
     // ratio and used by DrawKart; 0 at reset.
     /* 3a4 */ u16 mTireSpinAngle;
     /* 3a6 */ u8 mUnk_3a6[2];
     /* 3a8 */ s32 mQuaternionBlendFactor;
-    /* 3ac */ u16 mUnk_3ac;
+    /* 3ac */ u16 mSinkFrames;
     /* 3ae */ u8 mUnk_3ae[2];
     // mVelocity, minus mVerticalSpeed on a floor hit, shifted right by 4 each step (AdvanceKartEffects); copied or
     // scaled into the velocity (mUnk_40) of effect objects.
@@ -473,12 +473,12 @@ typedef struct Kart {
     /* 3c4 */ s32 mRespawnSlot;
     /* 3c8 */ s16 mUnk_3c8;
     /* 3ca */ u8 mUnk_3ca[2];
-    /* 3cc */ s32 mUnk_3cc;
+    /* 3cc */ s32 mSoundIndex;
     /* 3d0 */ s16 mUnk_3d0;
     // Countdown of 0x14 set on the slower kart of a kart-kart contact in CollideKartWithKarts and counted down by
     // AdvanceKartCollisionTimer, which calls StartKartCollisionSound at 0 (what that call does is unknown).
     /* 3d2 */ s16 mKartCollisionTimer;
-    /* 3d4 */ s16 mUnk_3d4;
+    /* 3d4 */ s16 mKartCollisionDelayTimer;
     /* 3d6 */ u8 mUnk_3d6[2];
     /* 3d8 */ s32 mRank;
     // Result of the handler: index into the two 12-entry tables of the record; -1 when the floor is left; compared with
@@ -493,7 +493,7 @@ typedef struct Kart {
     /* 3ea */ u8 mUnk_3ea[2];
     /* 3ec */ s32 mTurnHeadingAnglePerFrameGoal;
     /* 3f0 */ s32 mTurnHeadingAnglePerFrame;
-    /* 3f4 */ s32 mUnk_3f4;
+    /* 3f4 */ s32 mSpeedLimitFactorPerDepth;
     /* 3f8 */ s32 mUnk_3f8;
     /* 3fc */ u16 mModelScaleKind;
     /* 3fe */ u16 mModelScaleFrameIndex;
@@ -513,7 +513,7 @@ typedef struct Kart {
     /* 428 */ Vec3 mScaleBase;
     // Factor of mScale.y only: 0x1000 normally, lowered by 0x4cd per call to a floor of 0x4cd in func_02069f6c.
     /* 434 */ s32 mScaleYFactor;
-    /* 438 */ struct MapObject *mUnk_438[2];
+    /* 438 */ struct MapObject *mPrevTouchingMapObjects[2];
     /* 440 */ u16 mUnk_440[2];
     /* 444 */ s32 mUnk_444[2];
     /* 44c */ struct MapObject *mUnk_44c;
@@ -526,7 +526,7 @@ typedef struct Kart {
     /* 4bc */ s32 mUnk_4bc;
     /* 4c0 */ s32 mUnk_4c0;
     /* 4c4 */ s32 mUnk_4c4;
-    /* 4c8 */ s32 mUnk_4c8;
+    /* 4c8 */ s32 mRadiusFactor;
     /* 4cc */ s32 mUnk_4cc;
     /* 4d0 */ u32 mUnk_4d0;
     /* 4d4 */ s32 mUnk_4d4;
@@ -539,15 +539,15 @@ typedef struct Kart {
     // Angle added to mHeadingAngleOffset each step by func_020713a0; changed by 0x3c per call toward the swing
     // direction and clamped to 0x17c, later 0xd2; 0 at reset.
     /* 4e0 */ s16 mHeadingAngleOffsetPerFrame;
-    /* 4e2 */ s16 mUnk_4e2;
-    /* 4e4 */ u16 mUnk_4e4;
+    /* 4e2 */ s16 mHeadingAngleOffsetDirection;
+    /* 4e4 */ u16 mHeadingAngleOffsetCount;
     /* 4e6 */ u8 mUnk_4e6[2];
     /* 4e8 */ s32 mUnk_4e8;
     /* 4ec */ s32 mUnk_4ec;
     /* 4f0 */ Vec3 mUnk_4f0;
     /* 4fc */ u16 mUnk_4fc;
     /* 4fe */ u8 mUnk_4fe[2];
-    /* 500 */ u32 mUnk_500;
+    /* 500 */ u32 mWaterDepth;
     /* 504 */ u16 mUnk_504;
     /* 506 */ u16 mUnk_506;
     // Points to mPos, or for a kind-3 entry in mode 5 to a Vec3 of the received record (mUnk_514); set in InitKart.
@@ -564,10 +564,10 @@ typedef struct Kart {
     /* 594 */ s32 mWobbleAmplitude;
     /* 598 */ s16 mWobbleDirection;
     /* 59a */ u8 mUnk_59a[2];
-    /* 59c */ s32 mUnk_59c;
+    /* 59c */ s32 mWobbleEasedAmplitude;
     /* 5a0 */ u16 mWobbleAngle;
     /* 5a2 */ u8 mUnk_5a2[2];
-    /* 5a4 */ s32 mUnk_5a4;
+    /* 5a4 */ s32 mWobbleSine;
 } Kart;
 
 // Jg: the object built from the jg_* files plus lap_count and lap_final; this is the kart it follows.

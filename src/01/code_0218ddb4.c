@@ -180,7 +180,7 @@ s32 func_ov001_0218f3ec(Unk02188950 *a) {
 
     p = GetKart((u16) gRaceSetup->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
-        VEC_MultAdd(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
+        VEC_MultAdd(a->mPrm->mUnk_21c, &p->mEasedTurnedForward, &p->mPos, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
         func_ov001_02188d8c(a, &v);
     }
@@ -205,7 +205,7 @@ void func_ov001_0218f2a8(Unk02188950 *a) {
     Vec3 v;
 
     p = GetKart((u16) gRaceSetup->mEntryIndex);
-    VEC_MultAdd(a->mPrm->mUnk_21c, &p->mUnk_68, &p->mPos, &v);
+    VEC_MultAdd(a->mPrm->mUnk_21c, &p->mEasedTurnedForward, &p->mPos, &v);
     func_ov001_02187218(a, 5, func_ov001_0218f3ac);
     func_ov001_02188d64(a, a->mPrm->mUnk_0ec, a->mPrm->mUnk_0f0);
     func_ov001_02188d1c(a, a->mPrm->mUnk_0f4, a->mPrm->mUnk_0f8);
@@ -226,7 +226,7 @@ s32 func_ov001_0218f244(Unk02188950 *a) {
 
     p = GetKart((u16) gRaceSetup->mEntryIndex);
     if ((p->mUnk_48 & 0x200) == 0) {
-        VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
+        VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mEasedTurnedForward, &p->mPos, &v);
         SetAnglePointAndMoveAnglePoint(a, &v);
         func_ov001_02188d8c(a, &v);
     }
@@ -239,7 +239,7 @@ void func_ov001_0218f16c(Unk02188950 *a) {
     Vec3 v;
 
     p = GetKart((u16) gRaceSetup->mEntryIndex);
-    VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
+    VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mEasedTurnedForward, &p->mPos, &v);
     func_ov001_02187218(a, 3, func_ov001_0218f244);
     func_ov001_02188d64(a, a->mPrm->mUnk_0c4, a->mPrm->mUnk_0c8);
     func_ov001_02188d1c(a, a->mPrm->mUnk_0cc, a->mPrm->mUnk_0d0);
@@ -302,7 +302,7 @@ void func_ov001_0218ee88(Unk02188950 *a) {
     Vec3 v;
 
     p = GetKart((u16) gRaceSetup->mEntryIndex);
-    VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mUnk_68, &p->mPos, &v);
+    VEC_MultAdd(-a->mPrm->mUnk_0e8, &p->mEasedTurnedForward, &p->mPos, &v);
     a->mUnk_000.mPos.x = v.x;
     a->mUnk_000.mPos.y = a->mUnk_000.mCourseMapRow->mUnk_00.y + a->mPrm->mUnk_080;
     a->mUnk_000.mPos.z = v.z;

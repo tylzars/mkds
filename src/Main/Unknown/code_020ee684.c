@@ -547,7 +547,7 @@ void UpdateItemPool(ItemPool *a) {
                     b = p->mUnk_d0;
                     u = p->mUnk_78 & ~0xff00;
                     q = GetKart(u);
-                    c = &q->mUnk_98;
+                    c = &q->mDrawMatrixPos;
                     d = ((c->x - b->x) >> 12) * ((c->x - b->x) >> 12);
                     g = (c->y - b->y) >> 12;
                     h = (c->z - b->z) >> 12;
@@ -777,7 +777,7 @@ void func_020efd1c(KartItems *p, ItemObject *a) {
     } else {
         v = &data_021595d8;
     }
-    func_020f98a0(a, &b->mUnk_98, v, &b->mKartModelsEntry->mUnk_040, func_0206c0a8(b));
+    func_020f98a0(a, &b->mDrawMatrixPos, v, &b->mKartModelsEntry->mUnk_040, func_0206c0a8(b));
     if ((b->mUnk_48 & 1) != 0) {
         a->mFlags |= 0x40000000;
     }
@@ -797,7 +797,7 @@ void func_020efc74(KartItems *p, s32 a) {
         return;
     }
     b = p->mKart;
-    v = &b->mUnk_98;
+    v = &b->mDrawMatrixPos;
     PickNearestNearbyItemPointLink(r, r, v);
     d = (s64) (r->mLink->mPointPos->x - v->x) * (r->mLink->mPointPos->x - v->x);
     d += (s64) (r->mLink->mPointPos->z - v->z) * (r->mLink->mPointPos->z - v->z);

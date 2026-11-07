@@ -52,12 +52,12 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
     v2 = data_02154f7c;
     b1 = (p->mUnk_44 & 0x100000) ? 1 : 0;
     b2 = (p->mUnk_48 & 0x200000) ? 1 : 0;
-    *a = p->mUnk_244;
+    *a = p->mGroundNormal;
     if (func_01ffa1f8(p) != FALSE) {
         return;
     }
-    if (func_01ffdee4(&p->mCollisionCenter, &p->mPrevCollisionCenter, &p->mTurnedForward, p->mRadius, 1, p->mUnk_2c8,
-                      &v1, &v5, &v2, &f, (u32 *) &v3, (s32 *) &v4, &h, &w) != 0) {
+    if (func_01ffdee4(&p->mCollisionCenter, &p->mPrevCollisionCenter, &p->mTurnedForward, p->mRadius, 1,
+                      p->mCollisionSlot, &v1, &v5, &v2, &f, (u32 *) &v3, (s32 *) &v4, &h, &w) != 0) {
         m = f & 0x1e34ef;
         VEC_Add(&p->mPos, &v1, &p->mPos);
         func_0208ab98(&p->mKartModelsEntry->mUnk_040, (f & 0x3c000000) >> 26, p->mVelocityLength);
@@ -66,14 +66,14 @@ void func_01ffa4b4(Kart *p, Vec3 *a) {
         if (f & 0x200300) {
             func_0206f574(p, f, &v2);
             if (m != 0) {
-                d = VEC_DotProduct(&v5, &p->mUnk_2d8);
-                p->mUnk_2d8.x -= (s32) (((s64) v5.x * d) >> 12);
-                p->mUnk_2d8.y -= (s32) (((s64) v5.y * d) >> 12);
-                p->mUnk_2d8.z -= (s32) (((s64) v5.z * d) >> 12);
-                d = VEC_DotProduct(&v5, &p->mUnk_2e4);
-                p->mUnk_2e4.x -= (s32) (((s64) v5.x * d) >> 12);
-                p->mUnk_2e4.y -= (s32) (((s64) v5.y * d) >> 12);
-                p->mUnk_2e4.z -= (s32) (((s64) v5.z * d) >> 12);
+                d = VEC_DotProduct(&v5, &p->mHitVelocity);
+                p->mHitVelocity.x -= (s32) (((s64) v5.x * d) >> 12);
+                p->mHitVelocity.y -= (s32) (((s64) v5.y * d) >> 12);
+                p->mHitVelocity.z -= (s32) (((s64) v5.z * d) >> 12);
+                d = VEC_DotProduct(&v5, &p->mPrevHitVelocity);
+                p->mPrevHitVelocity.x -= (s32) (((s64) v5.x * d) >> 12);
+                p->mPrevHitVelocity.y -= (s32) (((s64) v5.y * d) >> 12);
+                p->mPrevHitVelocity.z -= (s32) (((s64) v5.z * d) >> 12);
             }
             p->mUnk_4da = 3;
             if (((s32(*)(Kart *, u32, Vec3 *)) data_0217ac14)(p, f, &v3) != 0 || (p->mUnk_44 & 0x4000000)) {

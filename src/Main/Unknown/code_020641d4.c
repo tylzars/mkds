@@ -80,7 +80,7 @@ void func_020641f0(Kart *a) {
         a->mUnk_174.y = q->y;
         a->mUnk_174.z = q->z;
     }
-    a->mUnk_98 = a->mUnk_174;
+    a->mDrawMatrixPos = a->mUnk_174;
     a->mUnk_174.x = a->mUnk_174.x >> 4;
     a->mUnk_174.y = a->mUnk_174.y >> 4;
     a->mUnk_174.z = a->mUnk_174.z >> 4;

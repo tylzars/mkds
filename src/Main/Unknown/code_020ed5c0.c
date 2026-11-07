@@ -42,7 +42,7 @@ BOOL func_020ee528(ItemInUse *a) {
 
     p = a->mKart;
     a->mUnk_02c = *(Unk020eda5c_02c *) &p->mUnk_150;
-    a->mUnk_050 = p->mUnk_98;
+    a->mUnk_050 = p->mDrawMatrixPos;
     a->mKartVelocity = p->mVelocity;
     a->mKartVelocityLength = p->mVelocityLength;
     a->mUnk_078 = ((s64) p->mPhysicalParam->mUnk_08 * p->mScale.z + 0x800) >> 12;
@@ -278,7 +278,7 @@ void AdvanceItemInUse(ItemInUse *p) {
     o = p->mKart;
     q = p->mObjects[n];
     StartItemInUseObject(p, q);
-    func_020f6630(q, n + 1, &o->mUnk_98, &o->mVelocity, &o->mUnk_244);
+    func_020f6630(q, n + 1, &o->mDrawMatrixPos, &o->mVelocity, &o->mGroundNormal);
     k = q->mKind;
     if (gItemKinds[k].mUnk_38 != NULL) {
         gItemKinds[k].mUnk_38(q);

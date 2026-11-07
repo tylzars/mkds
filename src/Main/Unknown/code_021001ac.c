@@ -298,7 +298,7 @@ void AdvanceItemTeresa(ItemTeresa *p) {
     if (q == NULL) {
         return;
     }
-    w = &q->mUnk_98;
+    w = &q->mDrawMatrixPos;
     VEC_Subtract(&p->mUnk_000.mPos, w, &v);
     MTX_MultVec33(&v, GetViewTransposeMatrix(), &v);
     VEC_Add(w, &v, &p->mUnk_000.mDrawPos);
@@ -344,7 +344,7 @@ void func_02101964(ItemTeresa *p, s32 a) {
         p->mUnk_190.z = ((s64) p->mUnk_190.z * 0xeb8) >> 12;
         *v = p->mUnk_184;
     } else {
-        *v = q->mUnk_98;
+        *v = q->mDrawMatrixPos;
         VEC_Subtract(v, &p->mUnk_184, &p->mUnk_190);
         p->mUnk_184 = *v;
         v->y -= q->mHopHeight;
@@ -386,7 +386,7 @@ void func_02101964(ItemTeresa *p, s32 a) {
 
 void EnterItemTeresaState0(ItemTeresa *p) {
     p->mKart = GetKart((u16) (p->mUnk_000.mUnk_78 & ~0xff00));
-    p->mUnk_184 = p->mKart->mUnk_98;
+    p->mUnk_184 = p->mKart->mDrawMatrixPos;
     p->mUnk_190 = p->mKart->mVelocity;
     *(Vec3 *) &p->mUnk_16c =
         (Vec3){0, (s32) (((s64) * (s32 *) p->mKart->mPhysicalParam * p->mKart->mScale.z + 0x800) >> 12), 0};
@@ -595,7 +595,7 @@ void EnterItemTeresaState2(ItemTeresa *p) {
     }
     if (p->mPickedKartIndex < 8) {
         p->mKart = GetKart(p->mPickedKartIndex);
-        p->mUnk_184 = p->mKart->mUnk_98;
+        p->mUnk_184 = p->mKart->mDrawMatrixPos;
         p->mUnk_190 = p->mKart->mVelocity;
         p->mUnk_144 = FALSE;
         func_020f8e3c((u32) p->mKart, 0xf4);
@@ -821,7 +821,7 @@ void EnterItemTeresaState5(ItemTeresa *p) {
     p->mUnk_144 = FALSE;
     if (p->mUnk_24c != FALSE) {
         if (e->mActiveItem == 0x10) {
-            p->mUnk_184 = p->mKart->mUnk_98;
+            p->mUnk_184 = p->mKart->mDrawMatrixPos;
             p->mUnk_190 = p->mKart->mVelocity;
             p->mUnk_16c = 0;
             p->mUnk_174 = 0;

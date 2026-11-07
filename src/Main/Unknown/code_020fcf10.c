@@ -16,7 +16,7 @@ void func_020fcf10(ItemKouraW *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     s32 s;
 
     p = p0->mKartItems->mKart;
-    p0->mUnk_22c = p->mUnk_05c;
+    p0->mUnk_22c = p->mSignedTurnedForward;
     v1 = &p0->mUnk_000.mPos;
     v2 = &p0->mUnk_000.mVelocity;
     v = &p0->mUnk_238;
@@ -25,7 +25,7 @@ void func_020fcf10(ItemKouraW *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
         p0->mUnk_22c.y = -p0->mUnk_22c.y;
         p0->mUnk_22c.z = -p0->mUnk_22c.z;
     }
-    Vec3CrossUnrounded(&p0->mUnk_22c, &p->mUnk_244, &t);
+    Vec3CrossUnrounded(&p0->mUnk_22c, &p->mGroundNormal, &t);
     s = ((s64) c * gPairsByAngle[(b >> 4) * 2 + 1]) >> 12;
     p0->mUnk_250.x = ((s64) t.x * s) >> 12;
     p0->mUnk_250.y = ((s64) t.y * s) >> 12;
@@ -34,7 +34,7 @@ void func_020fcf10(ItemKouraW *p0, s32 a, s32 b, s32 c, s32 d, s32 e, s32 f) {
     VEC_MultAdd(s, &p0->mUnk_22c, &p0->mUnk_250, &p0->mUnk_250);
     VEC_MultAdd(0x1e000, &p0->mUnk_22c, &p0->mUnk_250, &t);
     if (func_0206c0b0(p) == FALSE) {
-        p0->mUnk_244 = p->mUnk_98;
+        p0->mUnk_244 = p->mDrawMatrixPos;
     }
     VEC_Add(&t, &p0->mUnk_244, &t);
     VEC_Subtract(&t, v1, v);

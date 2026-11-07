@@ -260,9 +260,9 @@ void ResetKartAndSetPos(Kart *p, const Vec3 *a, const Vec3 *b, Unk02175620_bc *c
     Matrix4x3FromQuaternion(&p->mUnk_120, &p->mUnk_e0_m);
     GetKartForward(p, &p->mForward);
     p->mTurnedForward = p->mForward;
-    p->mUnk_68 = p->mTurnedForward;
+    p->mEasedTurnedForward = p->mTurnedForward;
     p->mPrevPos = p->mPos;
-    p->mUnk_98 = p->mPrevPos;
+    p->mDrawMatrixPos = p->mPrevPos;
     p->mPrevCollisionCenter = p->mPos;
     p->mCollisionCenter = p->mPos;
     p->mLastGroundY = p->mPos.y;
@@ -320,7 +320,7 @@ void func_02072930(Kart *p) {
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
             ResetCameraHalfFovAngleGoal();
         }
-        p->mUnk_4c8 = 0x1000;
+        p->mRadiusFactor = 0x1000;
         p->mSurfaceGroup = -1;
         i = 0;
         p->mItemEffect = 0;
@@ -362,12 +362,12 @@ void ResetKartToStartPlacement(Kart *p) {
     GetKartForward(p, &b);
     ResetKartAndSetPos(p, &a, &b, NULL);
     if (gRaceSetup->mMode == 5) {
-        q = &p->mUnk_1d8;
+        q = &p->mPointAlongUp;
     } else {
         q = &p->mCollisionCenter;
     }
-    if (p->mUnk_2c8 == -1) {
-        p->mUnk_2c8 = CreateCollisionSlot(q, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
+    if (p->mCollisionSlot == -1) {
+        p->mCollisionSlot = CreateCollisionSlot(q, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
     }
     if (p->mUnk_2ca == -1) {
         p->mUnk_2ca = CreateCollisionSlot(&p->mUnk_1f0, ((s64) p->mPhysicalParam->mRadius << 15) >> 12, 0x800, p);
@@ -401,8 +401,8 @@ void InitKartPhysicalParams(Kart *p) {
     }
     p->mPhysicalParam->mBaseSpeedLimit = ((s64) p->mPhysicalParam->mBaseSpeedLimit * a) >> 12;
     p->mPhysicalParam->mUnk_32 = p->mPhysicalParam->mUnk_32 + b;
-    p->mUnk_3f4 = 0x1000 - p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
-    p->mUnk_3f4 = FX_Div(p->mUnk_3f4, p->mPhysicalParam->mRadius << 1);
+    p->mSpeedLimitFactorPerDepth = 0x1000 - p->mPhysicalParam->mSurfaceSpeedLimitFactors[4];
+    p->mSpeedLimitFactorPerDepth = FX_Div(p->mSpeedLimitFactorPerDepth, p->mPhysicalParam->mRadius << 1);
     p->mCharPhysicalParam = GetCharPhysicalParam(p->mIndex);
     q = p->mPhysicalParam;
     r = p->mCharPhysicalParam;
@@ -420,21 +420,21 @@ void func_02072600(Kart *p) {
     p->mUnk_d4 = 0x1000;
     p->mUnk_d8 = 0x1000;
     p->mSpeedLimitFactor = 0x1000;
-    p->mUnk_38c = 0x1000;
+    p->mSpeedLimitHitFactor = 0x1000;
     v = data_02154f94;
     *(Vec3 *) &p->mUnk_25c = v;
     p->mUnk_268 = v;
     p->mUnk_274 = 0;
     p->mForward = v;
-    p->mUnk_290 = v;
-    p->mUnk_2d8 = v;
-    p->mUnk_2e4 = v;
+    p->mHopStartForward = v;
+    p->mHitVelocity = v;
+    p->mPrevHitVelocity = v;
     p->mUnk_2f0 = v;
     *(Vec3 *) &p->mUnk_25c = v;
     p->mAirborneFrames = 0;
     p->mTurnAngle = 0;
     p->mUnk_38a = 0;
-    p->mUnk_240 = 0x1000;
+    p->mTurnedForwardEaseFactor = 0x1000;
     p->mHeadingAnglePerFrame = 0;
 }
 
@@ -447,8 +447,8 @@ void ResetKart(Kart *p) {
     p->mUnk_48 = 0;
     p->mUnk_4c = 0;
     v = data_02154f94;
-    p->mUnk_98 = v;
-    p->mPrevPos = p->mUnk_98;
+    p->mDrawMatrixPos = v;
+    p->mPrevPos = p->mDrawMatrixPos;
     p->mPos = p->mPrevPos;
     p->mVelocity = v;
     p->mVelocityDirection = v;
@@ -472,9 +472,9 @@ void ResetKart(Kart *p) {
     MTX_Identity43_(&p->mUnk_120_m);
     MTX_Identity43_(&p->mUnk_150_m);
     MTX_Identity43_(&p->mWobbleMatrix);
-    p->mUnk_1d8 = v;
-    p->mUnk_1e4 = p->mUnk_1d8;
-    p->mPrevCollisionCenter = p->mUnk_1e4;
+    p->mPointAlongUp = v;
+    p->mPrevPointAlongUp = p->mPointAlongUp;
+    p->mPrevCollisionCenter = p->mPrevPointAlongUp;
     p->mCollisionCenter = p->mPrevCollisionCenter;
     p->mUnk_1f0 = v;
     p->mUnk_1fc = v;
@@ -488,16 +488,16 @@ void ResetKart(Kart *p) {
     p->mBoostTimer = 0;
     p->mUnk_23a = 0;
     p->mMiniTurboTimer = 0;
-    p->mUnk_240 = 0x1000;
-    p->mUnk_244 = data_02154f7c;
+    p->mTurnedForwardEaseFactor = 0x1000;
+    p->mGroundNormal = data_02154f7c;
     p->mUnk_250 = v;
     *(Vec3 *) &p->mUnk_25c = v;
     p->mUnk_268 = v;
     p->mUnk_274 = 0;
     p->mForward = v;
-    p->mUnk_290 = v;
+    p->mHopStartForward = v;
     p->mTurnedForward = v;
-    p->mUnk_68 = p->mTurnedForward;
+    p->mEasedTurnedForward = p->mTurnedForward;
     p->mVelocityLengthRatio = 0;
     p->mVelocityLength = 0;
     p->mForwardSpeed = 0;
@@ -511,13 +511,13 @@ void ResetKart(Kart *p) {
     p->mHopTiltAngle = 0;
     p->mTurnDirection = 0;
     p->mTurnRatio = 0;
-    p->mUnk_2d8 = v;
+    p->mHitVelocity = v;
     p->mUnk_334 = 0;
     p->mUnk_338 = 0;
     p->mUnk_33c = 0;
     p->mUnk_344 = 0;
-    p->mUnk_340 = p->mPos.y;
-    p->mUnk_348 = 0;
+    p->mLaunchStartY = p->mPos.y;
+    p->mLaunchFrames = 0;
     p->mDriftCharge = 0;
     p->mRightTurnCount = 0;
     p->mLeftTurnCount = p->mRightTurnCount;
@@ -541,13 +541,13 @@ void ResetKart(Kart *p) {
     p->mHeadingAnglePerFrame = 0;
     p->mTurnAngle = 0;
     p->mUnk_38a = 0;
-    p->mUnk_38c = 0x1000;
+    p->mSpeedLimitHitFactor = 0x1000;
     p->mUnk_394 = 0x1000;
-    p->mUnk_39c = 0;
-    p->mUnk_3a0 = 0;
+    p->mMapObjectVectorLength = 0;
+    p->mMapObjectVectorForwardDot = 0;
     p->mTireSpinAngle = 0;
     p->mQuaternionBlendFactor = 0x1ec;
-    p->mUnk_3ac = 0;
+    p->mSinkFrames = 0;
     p->mVelocity = v;
     p->mUnk_3bc = 0;
     p->mRaceStartFrameCount = 0;
@@ -555,7 +555,7 @@ void ResetKart(Kart *p) {
     p->mRespawnSlot = -1;
     p->mUnk_3c8 = 0;
     p->mKartCollisionTimer = 0;
-    p->mUnk_3d4 = 0;
+    p->mKartCollisionDelayTimer = 0;
     p->mSurfaceGroup = -1;
     p->mSurfaceKind = 0;
     p->mSurfaceVariant = 0;
@@ -570,7 +570,7 @@ void ResetKart(Kart *p) {
     p->mModelScaleX = 0x1000;
     p->mModelScaleZ = 0x1000;
     for (i = 0; i < 2; i++) {
-        p->mUnk_438[i] = NULL;
+        p->mPrevTouchingMapObjects[i] = NULL;
         p->mUnk_440[i] = 0;
         p->mUnk_444[i] = 0;
     }
@@ -581,7 +581,7 @@ void ResetKart(Kart *p) {
     p->mUnk_4bc = 0;
     p->mUnk_4c0 = 0;
     p->mUnk_4c4 = 0;
-    p->mUnk_4c8 = 0x1000;
+    p->mRadiusFactor = 0x1000;
     p->mUnk_4d0 = 0;
     p->mUnk_4d4 = 0;
     p->mUnk_4d8 = -1;
@@ -589,18 +589,18 @@ void ResetKart(Kart *p) {
     p->mUnk_4da = 0;
     p->mHeadingAngleOffset = 0;
     p->mHeadingAngleOffsetPerFrame = 0;
-    p->mUnk_4e2 = 1;
-    p->mUnk_4e4 = 0;
+    p->mHeadingAngleOffsetDirection = 1;
+    p->mHeadingAngleOffsetCount = 0;
     p->mUnk_4ec = 0;
     p->mUnk_4e8 = 0x1000;
     p->mUnk_4f0 = data_usa_02154f64;
     p->mUnk_4f0.z = 0;
     p->mUnk_4fc = 0;
-    p->mUnk_500 = 0;
+    p->mWaterDepth = 0;
     p->mUnk_506 = 0;
     p->mUnk_504 = p->mUnk_506;
-    p->mUnk_59c = 0;
-    p->mWobbleAmplitude = p->mUnk_59c;
+    p->mWobbleEasedAmplitude = 0;
+    p->mWobbleAmplitude = p->mWobbleEasedAmplitude;
     p->mWobbleAngle = 0;
     p->mRank = 0;
     func_02068a64(p, 0, 0);
@@ -712,43 +712,43 @@ void InitKartSound(Kart *p) {
     func_020719d0(p);
     switch (p->mKartModelsEntry->mUnk_000) {
         case 0:
-            p->mUnk_3cc = 4;
+            p->mSoundIndex = 4;
             break;
         case 1:
-            p->mUnk_3cc = 0;
+            p->mSoundIndex = 0;
             break;
         case 2:
-            p->mUnk_3cc = 1;
+            p->mSoundIndex = 1;
             break;
         case 3:
-            p->mUnk_3cc = 2;
+            p->mSoundIndex = 2;
             break;
         case 4:
-            p->mUnk_3cc = 5;
+            p->mSoundIndex = 5;
             break;
         case 5:
-            p->mUnk_3cc = 6;
+            p->mSoundIndex = 6;
             break;
         case 6:
-            p->mUnk_3cc = 7;
+            p->mSoundIndex = 7;
             break;
         case 7:
-            p->mUnk_3cc = 3;
+            p->mSoundIndex = 3;
             break;
         case 8:
-            p->mUnk_3cc = 10;
+            p->mSoundIndex = 10;
             break;
         case 9:
-            p->mUnk_3cc = 8;
+            p->mSoundIndex = 8;
             break;
         case 10:
-            p->mUnk_3cc = 9;
+            p->mSoundIndex = 9;
             break;
         case 11:
-            p->mUnk_3cc = 11;
+            p->mSoundIndex = 11;
             break;
         case 12:
-            p->mUnk_3cc = 12;
+            p->mSoundIndex = 12;
             break;
     }
     p->mUnk_3d0 = p->mKartModelsEntry->mUnk_004 % 3;
@@ -892,11 +892,11 @@ void func_020719a8(u32 arg0, u32 arg1) {
 
 void func_02071980(void *p, int b) {
     StartKartSurfaceSoundWhileRequested(p, b, ((Kart *) p)->mSurfaceKind, ((Kart *) p)->mSurfaceVariant,
-                                        ((Kart *) p)->mUnk_500);
+                                        ((Kart *) p)->mWaterDepth);
 }
 
 void func_02071958(Kart *p, s32 b) {
-    StartSurfaceSound(&p->mSoundSource, b, p->mSurfaceKind, p->mSurfaceVariant, p->mUnk_500);
+    StartSurfaceSound(&p->mSoundSource, b, p->mSurfaceKind, p->mSurfaceVariant, p->mWaterDepth);
 }
 
 void func_02071944(void *p, int v1) {
@@ -927,7 +927,7 @@ void func_02071894(Kart *p) {
     if (p->mUnk_48 & 0x840) {
         return;
     }
-    func_0210af40(p, p->mUnk_3cc, 7);
+    func_0210af40(p, p->mSoundIndex, 7);
 }
 
 void AdvanceKartModelScaleAnimation(Kart *p) {
@@ -1002,8 +1002,8 @@ void func_02071568(Kart *p) {
 void func_020713a0(Kart *p) {
     s32 t;
 
-    if (p->mUnk_4e4 <= 2) {
-        p->mHeadingAngleOffsetPerFrame = p->mUnk_4e2 * 0x3c + p->mHeadingAngleOffsetPerFrame;
+    if (p->mHeadingAngleOffsetCount <= 2) {
+        p->mHeadingAngleOffsetPerFrame = p->mHeadingAngleOffsetDirection * 0x3c + p->mHeadingAngleOffsetPerFrame;
         if (p->mHeadingAngleOffsetPerFrame > 0x17c) {
             p->mHeadingAngleOffsetPerFrame = 0x17c;
         } else if (p->mHeadingAngleOffsetPerFrame < -0x17c) {
@@ -1012,14 +1012,14 @@ void func_020713a0(Kart *p) {
         p->mHeadingAngleOffset = p->mHeadingAngleOffset + p->mHeadingAngleOffsetPerFrame;
         t = p->mHeadingAngleOffset;
         if ((t > 0 ? t : -t) > 0x1770) {
-            if ((t > 0 && p->mUnk_4e2 > 0) || (t < 0 && p->mUnk_4e2 < 0)) {
-                p->mUnk_4e2 *= -1;
-                p->mUnk_4e4 = p->mUnk_4e4 + 1;
+            if ((t > 0 && p->mHeadingAngleOffsetDirection > 0) || (t < 0 && p->mHeadingAngleOffsetDirection < 0)) {
+                p->mHeadingAngleOffsetDirection *= -1;
+                p->mHeadingAngleOffsetCount = p->mHeadingAngleOffsetCount + 1;
             }
         }
         p->mUnk_4d4 = 0x1000;
     } else {
-        p->mHeadingAngleOffsetPerFrame = p->mUnk_4e2 * 0x3c + p->mHeadingAngleOffsetPerFrame;
+        p->mHeadingAngleOffsetPerFrame = p->mHeadingAngleOffsetDirection * 0x3c + p->mHeadingAngleOffsetPerFrame;
         if (p->mHeadingAngleOffsetPerFrame > 0xd2) {
             p->mHeadingAngleOffsetPerFrame = 0xd2;
         } else if (p->mHeadingAngleOffsetPerFrame < -0xd2) {
@@ -1028,7 +1028,7 @@ void func_020713a0(Kart *p) {
         p->mHeadingAngleOffset = p->mHeadingAngleOffset + p->mHeadingAngleOffsetPerFrame;
         p->mUnk_4d4 = ((s64) p->mUnk_4d4 * 0xf5c) >> 12;
         t = p->mHeadingAngleOffset;
-        if ((t > 0 && p->mUnk_4e2 > 0) || (t < 0 && p->mUnk_4e2 < 0)) {
+        if ((t > 0 && p->mHeadingAngleOffsetDirection > 0) || (t < 0 && p->mHeadingAngleOffsetDirection < 0)) {
             p->mHeadingAngleOffset = 0;
             p->mUnk_4c &= ~0x20000000;
             func_02068a64(p, 0, 1);
@@ -1297,7 +1297,7 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
     if (Vec3DotUnrounded(&c, &e) <= 0) {
         StopDispCapBlend();
         p->mUnk_48 &= ~0x10000;
-        AdvanceKartQuaternionBlendFactor(p, &p->mUnk_244);
+        AdvanceKartQuaternionBlendFactor(p, &p->mGroundNormal);
         p->mUnk_48 &= ~0x40000;
         p->mUnk_3e8 = (s16) ((s32) (((s64) b.x * 0x4000) >> 12) >> 12) + 0x32;
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mCourseId == COURSE_ID_AIRSHIP) {
@@ -1325,7 +1325,7 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
         MTX_RotAxis33(&m2, &p->mUnk_120, gPairsByAngle[((u16) p->mAirTiltAngle >> 4) * 2],
                       gPairsByAngle[((u16) p->mAirTiltAngle >> 4) * 2 + 1]);
         MTX_MultVec33(&n, &m2.mUnk_00[0].x, &n);
-        p->mUnk_244 = n;
+        p->mGroundNormal = n;
         AdvanceKartOrientation(p, &n);
     }
 
@@ -1334,7 +1334,7 @@ void AdvanceKartToKeyedPlacement(Kart *p) {
     m2.mUnk_00[3].x = ((s64) p->mTurnedForward.x * t) >> 12;
     m2.mUnk_00[3].y = ((s64) p->mTurnedForward.y * t) >> 12;
     m2.mUnk_00[3].z = ((s64) p->mTurnedForward.z * t) >> 12;
-    p->mUnk_68 = p->mTurnedForward;
+    p->mEasedTurnedForward = p->mTurnedForward;
     if (d < 0x3e8000) {
         t = (s32) (((s64) d * 0x29) >> 12) + 0x14000;
         if (p->mForwardSpeed > t) {
@@ -1374,10 +1374,10 @@ void PlaceKartAtKeyedPlacement(Kart *p, u32 b) {
     }
     p->mPos = a;
     p->mPrevPos = p->mPos;
-    p->mUnk_98 = p->mPrevPos;
+    p->mDrawMatrixPos = p->mPrevPos;
     p->mForwardSpeed = 0x5000;
     p->mTurnedForward = e;
-    p->mUnk_68 = p->mTurnedForward;
+    p->mEasedTurnedForward = p->mTurnedForward;
     p->mHeadingAngle = (s32) (((s64) FX_Atan2(e.x, e.z) * 0x28be60dLL) >> 12) >> 12;
     w = data_02165524;
     QuaternionFromAxisAngle(&w, p->mHeadingAngle, (Vec4 *) &p->mUnk_e0);

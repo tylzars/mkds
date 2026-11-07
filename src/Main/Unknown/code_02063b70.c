@@ -160,7 +160,7 @@ s32 func_02063b70(Kart *a) {
         g.mUnk_00[3].x = h.x >> 4;
         g.mUnk_00[3].y = h.y >> 4;
         g.mUnk_00[3].z = h.z >> 4;
-        k = a->mUnk_4c8;
+        k = a->mRadiusFactor;
         i.x = (s64) a->mScale.x * k >> 12;
         i.y = (s64) a->mScale.y * k >> 12;
         i.z = (s64) a->mScale.z * k >> 12;

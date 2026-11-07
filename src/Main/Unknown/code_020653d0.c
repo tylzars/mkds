@@ -156,8 +156,8 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         VEC_Add(&v, &v4, &v);
         p->mPos = v;
         p->mPrevPos = p->mPos;
-        p->mUnk_98 = p->mPrevPos;
-        q->mUnk_00 = p->mUnk_98;
+        p->mDrawMatrixPos = p->mPrevPos;
+        q->mUnk_00 = p->mDrawMatrixPos;
         *(Vec3 *) &p->mUnk_25c = data_02154f94;
         ComputeKartPointAlongUp(&p->mCollisionCenter, &v, 0x400, p);
         SetKartPrevCollisionCenter(p);
@@ -194,25 +194,25 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
                 v2.y = ((s64) p->mTurnedForward.y * k) >> 12;
                 v2.z = ((s64) p->mTurnedForward.z * k) >> 12;
                 VEC_Add(&v, &v2, &v);
-                VEC_Add(&v, &p->mUnk_2d8, &v);
-                VEC_Add(&p->mVelocity, &p->mUnk_2d8, &p->mVelocity);
+                VEC_Add(&v, &p->mHitVelocity, &v);
+                VEC_Add(&p->mVelocity, &p->mHitVelocity, &p->mVelocity);
                 if (p->mUnk_514->mUnk_44 & 1) {
                     p->mVerticalSpeed = 0;
                 }
                 k = (p->mUnk_44 & KART_44_ON_GROUND) ? 0xee1 : 0xfae;
-                p->mUnk_2d8.x = ((s64) p->mUnk_2d8.x * k) >> 12;
-                p->mUnk_2d8.y = ((s64) p->mUnk_2d8.y * k) >> 12;
-                p->mUnk_2d8.z = ((s64) p->mUnk_2d8.z * k) >> 12;
-                if ((s64) p->mUnk_2d8.x * p->mUnk_2d8.x + (s64) p->mUnk_2d8.y * p->mUnk_2d8.y +
-                        (s64) p->mUnk_2d8.z * p->mUnk_2d8.z >=
+                p->mHitVelocity.x = ((s64) p->mHitVelocity.x * k) >> 12;
+                p->mHitVelocity.y = ((s64) p->mHitVelocity.y * k) >> 12;
+                p->mHitVelocity.z = ((s64) p->mHitVelocity.z * k) >> 12;
+                if ((s64) p->mHitVelocity.x * p->mHitVelocity.x + (s64) p->mHitVelocity.y * p->mHitVelocity.y +
+                        (s64) p->mHitVelocity.z * p->mHitVelocity.z >=
                     0xa429) {
                     p->mUnk_44 |= 0x2000;
                 } else {
-                    p->mUnk_2d8 = data_02154f94;
+                    p->mHitVelocity = data_02154f94;
                     p->mUnk_44 &= ~0x2000;
                 }
             }
-            if (func_01ffdee4(&v, (u32 *) &v6, 0, p->mRadius, 1, p->mUnk_2c8, &v5, 0, 0, &w, 0, 0, 0, 0)) {
+            if (func_01ffdee4(&v, (u32 *) &v6, 0, p->mRadius, 1, p->mCollisionSlot, &v5, 0, 0, &w, 0, 0, 0, 0)) {
                 VEC_Add(&v, &v5, &v);
             }
             v6 = v;
@@ -322,7 +322,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
             SetCharacterFaceFrameIndex(p->mKartModelsEntry, 1);
         }
         if (!(p->mUnk_48 & 0x840)) {
-            func_0210af40(p, p->mUnk_3cc, 0);
+            func_0210af40(p, p->mSoundIndex, 0);
         }
         StartOrthoQuadsGesoSumi(p->mIndex, 0);
     }
@@ -426,7 +426,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l7;
         }
-        VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
+        VEC_Subtract(&o->mPointAlongUp, &o2->mPointAlongUp, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
@@ -447,7 +447,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l8;
         }
-        VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
+        VEC_Subtract(&o->mPointAlongUp, &o2->mPointAlongUp, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
@@ -468,7 +468,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l9;
         }
-        VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
+        VEC_Subtract(&o->mPointAlongUp, &o2->mPointAlongUp, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }
@@ -489,7 +489,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         } else if (o->mState == KART_STATE_PUSH_FLIP) {
             goto l10;
         }
-        VEC_Subtract(&o->mUnk_1d8, &o2->mUnk_1d8, &t);
+        VEC_Subtract(&o->mPointAlongUp, &o2->mPointAlongUp, &t);
         if ((s64) t.x * t.x + (s64) t.y * t.y + (s64) t.z * t.z >= 0x10) {
             Vec3NormalizeAndGetLengthUnchecked(&t, &t);
         }

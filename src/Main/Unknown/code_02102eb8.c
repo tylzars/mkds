@@ -100,7 +100,7 @@ u32 func_02102eb8(ItemGesso *p, s32 b) {
         b2 = a;
     }
     p->mKart = GetKart(b2);
-    p->mUnk_000.mPos = p->mKart->mUnk_98;
+    p->mUnk_000.mPos = p->mKart->mDrawMatrixPos;
     VEC_MultAdd(0x5800, &s->mUp, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     VEC_MultAdd(func_0203c5e4() != 0 ? 0x5800 : 0xa800, &s->mForward, &p->mUnk_000.mPos, &p->mUnk_000.mPos);
     VEC_Subtract(&p->mUnk_000.mPos, &s->mPos, &p->mUnk_13c);

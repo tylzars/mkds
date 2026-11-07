@@ -35,11 +35,12 @@ s32 LimitKartForwardSpeedAndGetScaled(Kart *p) {
             c = 0x3000;
         }
     }
-    g = p->mUnk_39c + (b + (s32) ((s64) c * (s32) ((s64) p->mUnk_38c * p->mUnk_394 >> 12) >> 12));
+    g = p->mMapObjectVectorLength +
+        (b + (s32) ((s64) c * (s32) ((s64) p->mSpeedLimitHitFactor * p->mUnk_394 >> 12) >> 12));
     if (a > g) {
         p->mForwardSpeed = g;
     } else {
-        if (a <= (s32) (p->mUnk_38c * (s64) 0x19a >> 12) && !(p->mUnk_44 & 0x80000) && !(f & 6)) {
+        if (a <= (s32) (p->mSpeedLimitHitFactor * (s64) 0x19a >> 12) && !(p->mUnk_44 & 0x80000) && !(f & 6)) {
             p->mForwardSpeed = 0;
         } else {
             p->mForwardSpeed = a;
@@ -48,14 +49,14 @@ s32 LimitKartForwardSpeedAndGetScaled(Kart *p) {
     if (v1) {
         p->mForwardSpeed *= -1;
     }
-    g = p->mUnk_3a0;
+    g = p->mMapObjectVectorForwardDot;
     if (g != 0) {
         if (g > 0) {
             a = p->mForwardSpeed;
             if (a < 0) {
                 p->mForwardSpeed = a + g;
-                if (p->mForwardSpeed > p->mUnk_3a0) {
-                    p->mForwardSpeed = p->mUnk_3a0;
+                if (p->mForwardSpeed > p->mMapObjectVectorForwardDot) {
+                    p->mForwardSpeed = p->mMapObjectVectorForwardDot;
                 }
             } else {
                 a = a > 0 ? a : -a;
@@ -68,8 +69,8 @@ s32 LimitKartForwardSpeedAndGetScaled(Kart *p) {
             a = p->mForwardSpeed;
             if (a > 0) {
                 p->mForwardSpeed = a + g;
-                if (p->mForwardSpeed < p->mUnk_3a0) {
-                    p->mForwardSpeed = p->mUnk_3a0;
+                if (p->mForwardSpeed < p->mMapObjectVectorForwardDot) {
+                    p->mForwardSpeed = p->mMapObjectVectorForwardDot;
                 }
             } else {
                 a = a > 0 ? a : -a;
@@ -111,7 +112,7 @@ void AdvanceKartQuaternionFromVector(Kart *p, Vec3 *a) {
     s32 r;
 
     r = TryQuaternionFromVectors(&v, &data_02154f7c, a);
-    TryQuaternionFromVectors(&w, &p->mUnk_244, a);
+    TryQuaternionFromVectors(&w, &p->mGroundNormal, a);
     QuaternionMultiply(&w, q, q);
     if (r != 0) {
         if ((v.w < 0 && q->w > 0) || (v.w > 0 && q->w < 0)) {

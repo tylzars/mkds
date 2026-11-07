@@ -155,14 +155,14 @@ void func_020733ec(Kart *p) {
         }
     }
     p->mUnk_2ca = -1;
-    p->mUnk_2c8 = p->mUnk_2ca;
+    p->mCollisionSlot = p->mUnk_2ca;
     if (gRaceSetup->mMode == 5) {
-        v = &p->mUnk_1d8;
+        v = &p->mPointAlongUp;
     } else {
         v = &p->mCollisionCenter;
     }
-    if (p->mUnk_2c8 == -1) {
-        p->mUnk_2c8 = CreateCollisionSlot(v, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
+    if (p->mCollisionSlot == -1) {
+        p->mCollisionSlot = CreateCollisionSlot(v, p->mPhysicalParam->mRadius + 0xd000, 0x8000, p);
     }
     if (p->mUnk_2ca == -1) {
         p->mUnk_2ca = CreateCollisionSlot(&p->mUnk_1f0, ((s64) p->mPhysicalParam->mRadius << 15) >> 12, 0x800, p);

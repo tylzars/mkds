@@ -402,14 +402,14 @@ void func_02066fe0(Kart *a) {
                 d = 0xb;
                 break;
         }
-        func_0210b198(a->mUnk_3cc, d, 0x6e, 7, -1);
+        func_0210b198(a->mSoundIndex, d, 0x6e, 7, -1);
         return;
     }
     d = func_02110fb8(GetKartRank(a->mIndex));
     if ((a->mUnk_48 & 0x840) != 0) {
         return;
     }
-    func_0210af40(a, a->mUnk_3cc, d);
+    func_0210af40(a, a->mSoundIndex, d);
 }
 
 void AdvanceKartWobble(Kart *a) {
@@ -420,7 +420,7 @@ void AdvanceKartWobble(Kart *a) {
     s32 f;
 
     a->mWobbleAngle = a->mWobbleAngle + data_021654c8;
-    a->mUnk_5a4 = gPairsByAngle[(a->mWobbleAngle >> 4) * 2];
+    a->mWobbleSine = gPairsByAngle[(a->mWobbleAngle >> 4) * 2];
     if (a->mWobbleAmplitude > 0) {
         a->mWobbleAmplitude = (s64) a->mWobbleAmplitude * data_021654fc + 0x800 >> 12;
         a->mWobbleAmplitude = a->mWobbleAmplitude - 0x64;
@@ -432,19 +432,19 @@ void AdvanceKartWobble(Kart *a) {
             a->mWobbleAmplitude = 0;
         }
     }
-    f = a->mWobbleDirection * a->mWobbleAmplitude - a->mUnk_59c;
-    a->mUnk_59c = a->mUnk_59c + (s32) ((s64) f * data_021654f8 + 0x800 >> 12);
-    c = (s64) a->mUnk_59c * data_021654cc + 0x800 >> 12;
-    d = (s64) c * a->mUnk_5a4 + 0x800 >> 12;
+    f = a->mWobbleDirection * a->mWobbleAmplitude - a->mWobbleEasedAmplitude;
+    a->mWobbleEasedAmplitude = a->mWobbleEasedAmplitude + (s32) ((s64) f * data_021654f8 + 0x800 >> 12);
+    c = (s64) a->mWobbleEasedAmplitude * data_021654cc + 0x800 >> 12;
+    d = (s64) c * a->mWobbleSine + 0x800 >> 12;
     e = d;
     MTX_RotY43_(&b, gPairsByAngle[(e >> 4) * 2], gPairsByAngle[(e >> 4) * 2 + 1]);
     MTX_Concat43(&b, &a->mUnk_150_m, &a->mWobbleMatrix);
-    if ((a->mUnk_59c > 0 ? a->mUnk_59c : -a->mUnk_59c) >= 0x29) {
+    if ((a->mWobbleEasedAmplitude > 0 ? a->mWobbleEasedAmplitude : -a->mWobbleEasedAmplitude) >= 0x29) {
         return;
     }
     a->mUnk_4c = a->mUnk_4c & ~0x2000000;
     a->mWobbleAngle = 0;
-    a->mUnk_5a4 = 0;
+    a->mWobbleSine = 0;
     a->mWobbleAmplitude = 0;
     a->mWobbleDirection = 0;
 }

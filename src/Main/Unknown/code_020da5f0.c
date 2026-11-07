@@ -245,7 +245,7 @@ u32 func_020da684(Kuribo *p, Kart *a, u8 *b, u8 *c) {
                 p->mUnk_00.mStateMachine.mNextStateRequested = 1;
                 func_020f8ddc(a);
                 if (a != NULL) {
-                    func_020da820(p, &a->mUnk_05c);
+                    func_020da820(p, &a->mSignedTurnedForward);
                 }
                 p->mUnk_00.mFlags = p->mUnk_00.mFlags | data_02158160;
             }

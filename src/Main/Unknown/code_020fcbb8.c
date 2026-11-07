@@ -24,7 +24,7 @@ void func_020fcce4(ItemKouraW *p0, s32 a, s32 b) {
 
     p = p0->mKartItems->mKart;
     f = (p->mUnk_48 & 1) ? 1 : 0;
-    p0->mUnk_22c = p->mUnk_05c;
+    p0->mUnk_22c = p->mSignedTurnedForward;
     v1 = &p0->mUnk_000.mPos;
     v2 = &p0->mUnk_000.mVelocity;
     if (p->mUnk_44 & 0x100) {
@@ -33,13 +33,13 @@ void func_020fcce4(ItemKouraW *p0, s32 a, s32 b) {
         p0->mUnk_22c.z = -p0->mUnk_22c.z;
     }
     if (func_0206c0b0(p) == FALSE) {
-        p0->mUnk_244 = p->mUnk_98;
+        p0->mUnk_244 = p->mDrawMatrixPos;
     }
     VEC_MultAdd(0x14ffa, &p0->mUnk_22c, &p0->mUnk_244, &v);
     if (f == 0) {
         v.y += b;
     } else {
-        VEC_MultAdd(b, &p->mUnk_244, &v, &v);
+        VEC_MultAdd(b, &p->mGroundNormal, &v, &v);
     }
     VEC_Subtract(&v, v1, &v);
     v2->x = ((s64) v.x * a) >> 12;
@@ -71,7 +71,7 @@ BOOL func_020fcbb8(ItemKouraW *p0, s32 v1) {
         return FALSE;
     }
     e = &(gKartItems)[v1];
-    q = &p->mUnk_98;
+    q = &p->mDrawMatrixPos;
     if (e->mUnk_1f0.mLink != p0->mUnk_168) {
         f = ((p0->mUnk_000.mFlags & 0x40000000) || (p->mUnk_48 & 1)) ? 1 : 0;
         VEC_Subtract(q, &p0->mUnk_000.mPos, &v);

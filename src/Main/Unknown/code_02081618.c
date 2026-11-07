@@ -650,7 +650,7 @@ void AdvanceKartWaterEffect(Unk0201ca6c *p, s32 a) {
         }
     }
     if (f == 0) {
-        if (q->mUnk_500 <= 0x5000) {
+        if (q->mWaterDepth <= 0x5000) {
             g = 0;
         }
     }
@@ -669,7 +669,7 @@ void AdvanceKartWaterEffect(Unk0201ca6c *p, s32 a) {
     p->mUnk_28.y = x + p->mUnk_20->mUnk_00->mUnk_04.y;
     x = e->mSidePositions[r].z;
     p->mUnk_28.z = x + p->mUnk_20->mUnk_00->mUnk_04.z;
-    p->mUnk_28.y = p->mUnk_28.y + (q->mUnk_500 >> 4);
+    p->mUnk_28.y = p->mUnk_28.y + (q->mWaterDepth >> 4);
     v.x = ((s64) v.x * k) >> 12;
     v.y = ((s64) v.y * k) >> 12;
     v.z = ((s64) v.z * k) >> 12;
@@ -760,9 +760,9 @@ void PlaceOtherKartEffect(Unk0201ca6c *p, s32 a) {
         y = s->mUnk_00;
     }
     q = GetKart(y);
-    v1 = q->mUnk_1d8.x;
-    v2 = q->mUnk_1d8.y;
-    v3 = q->mUnk_1d8.z;
+    v1 = q->mPointAlongUp.x;
+    v2 = q->mPointAlongUp.y;
+    v3 = q->mPointAlongUp.z;
     p->mUnk_28.x = (v1 >> 4) + p->mUnk_20->mUnk_00->mUnk_04.x;
     p->mUnk_28.y = (v2 >> 4) + p->mUnk_20->mUnk_00->mUnk_04.y;
     p->mUnk_28.z = (v3 >> 4) + p->mUnk_20->mUnk_00->mUnk_04.z;
@@ -1259,7 +1259,7 @@ void StartKartStarEffects(s32 a) {
         if (e->mEffects[i] != NULL) {
             func_0208b710(e->mEffects[i]);
         }
-        e->mEffects[i] = StartEffect(gKartStarEffectIds[i], &GetKart(a)->mUnk_1d8);
+        e->mEffects[i] = StartEffect(gKartStarEffectIds[i], &GetKart(a)->mPointAlongUp);
         i = i + 1;
     } while (i < 3);
 }

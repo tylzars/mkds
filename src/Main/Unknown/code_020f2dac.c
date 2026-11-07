@@ -209,7 +209,7 @@ void TakeHeldItemObjects(HeldItem *rec) {
     count = rec->mObjectCount;
     va = ((s64) radius * gPairsByAngle[angle * 2]) >> 12;
     vb = ((s64) radius * gPairsByAngle[angle * 2 + 1]) >> 12;
-    TakeItemPoolObjects(&gItemPools[tab], count, rec->mObjects, owner->mIndex, &owner->mUnk_98);
+    TakeItemPoolObjects(&gItemPools[tab], count, rec->mObjects, owner->mIndex, &owner->mDrawMatrixPos);
     i = 0;
     if (i < count) {
         row = &data_0215961c[count - 1];
@@ -538,7 +538,7 @@ void PickNextItemPointLink(ItemPointLinkRef *in, ItemPointLinkRef *out, u32 idx,
     best = 0x5f592e1;
     if (idx < 8) {
         other = GetKart(idx);
-        pos = &other->mUnk_98;
+        pos = &other->mDrawMatrixPos;
         {
             s64 sq = (s64) (((const Vec3 *) pos)->x - ((const Vec3 *) origin)->x) *
                      (((const Vec3 *) pos)->x - ((const Vec3 *) origin)->x);

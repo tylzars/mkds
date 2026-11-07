@@ -58,7 +58,7 @@ void StartKartState2(Kart *p, int a, int b) {
     if (p->mUnk_48 & 0x840) {
         return;
     }
-    func_0210af40(p, p->mUnk_3cc, 1);
+    func_0210af40(p, p->mSoundIndex, 1);
 }
 
 void AdvanceKartState1And2(Kart *p) {
@@ -117,19 +117,19 @@ void StartKartState6(Kart *p) {
     p->mRotationAnglePerFrame = 0xfa0;
     p->mRotationEndFrames = 0;
     func_02063b50(p, &p->mRotationAxis);
-    GetKartForward(p, &p->mUnk_328);
+    GetKartForward(p, &p->mLaunchForward);
     p->mUnk_334 = 0;
     p->mUnk_338 = 0;
     p->mUnk_33c = 0;
     p->mUnk_344 = 0;
-    p->mUnk_340 = p->mPos.y;
-    p->mUnk_348 = 0;
+    p->mLaunchStartY = p->mPos.y;
+    p->mLaunchFrames = 0;
     func_020eff40(&(gKartItems)[p->mIndex]);
     if (gRaceSetup->mMode == MODE_MISSION_RUN && gRaceSetup->mMode == MODE_MISSION_RUN) {
         func_ov001_0218173c();
     }
     if (!(p->mUnk_48 & 0x840)) {
-        func_0210af40(p, p->mUnk_3cc, 2);
+        func_0210af40(p, p->mSoundIndex, 2);
     }
     p->mUnk_4c &= ~0x80000000;
     if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
@@ -172,7 +172,7 @@ void AdvanceKartState6(Kart *p) {
             p->mUnk_334 = gPairsByAngle[(p->mUnk_338 >> 4) * 2];
         }
         i = ((s64) p->mUnk_334 * 0xce4) >> 12;
-        MTX_RotAxis33((MtxFx43 *) &m, &p->mUnk_328, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
+        MTX_RotAxis33((MtxFx43 *) &m, &p->mLaunchForward, gPairsByAngle[(i >> 4) * 2], gPairsByAngle[(i >> 4) * 2 + 1]);
         MTX_MultVec33(&p->mRotationAxis, m.mUnk_00, &a);
         QuaternionFromAxisAngle(&a, p->mRotationAngle, &p->mRotationQuaternion);
     } else {
@@ -183,7 +183,7 @@ void AdvanceKartState6(Kart *p) {
     }
     QuaternionNormalize(&p->mRotationQuaternion, &p->mRotationQuaternion);
     if (!(p->mUnk_4c & 0x80000000)) {
-        if ((u32) p->mUnk_348 > 2 && (p->mUnk_340 >= p->mPos.y || (p->mUnk_44 & KART_44_ON_GROUND))) {
+        if ((u32) p->mLaunchFrames > 2 && (p->mLaunchStartY >= p->mPos.y || (p->mUnk_44 & KART_44_ON_GROUND))) {
             if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
                 SetCameraHeightHold(0);
             }
@@ -197,7 +197,7 @@ void AdvanceKartState6(Kart *p) {
             p->mUnk_4c |= 0x80000000;
             return;
         }
-        p->mUnk_348 = p->mUnk_348 + 1;
+        p->mLaunchFrames = p->mLaunchFrames + 1;
         return;
     }
     p->mRotationEndFrames++;
@@ -280,7 +280,7 @@ void StartKartState3(Kart *p) {
         StartEffect(0xe, &p->mPos);
     }
     if (!(p->mUnk_48 & 0x840)) {
-        func_0210af40(p, p->mUnk_3cc, 2);
+        func_0210af40(p, p->mSoundIndex, 2);
     }
     func_020efea4(&(gKartItems)[p->mIndex]);
     if (gRaceSetup->mMode == MODE_MISSION_RUN && gRaceSetup->mMode == MODE_MISSION_RUN) {
@@ -407,8 +407,8 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
         x = ((s64) a->x * 0x1b33) >> 12;
         y = ((s64) a->y * 0x1b33) >> 12;
         z = ((s64) a->z * 0x1b33) >> 12;
-        p->mUnk_2d8.x += x;
-        p->mUnk_2d8.z += z;
+        p->mHitVelocity.x += x;
+        p->mHitVelocity.z += z;
         p->mVerticalSpeed += y;
         r = Vec3DotUnrounded(&p->mTurnedForward, a);
         if (r <= 0) {
@@ -425,7 +425,7 @@ void StartKartState4(Kart *p, const Vec3 *a, s32 b) {
     }
     p->mUnk_4c |= 0x1;
     if (!(p->mUnk_48 & 0x840)) {
-        func_0210af40(p, p->mUnk_3cc, 2);
+        func_0210af40(p, p->mSoundIndex, 2);
     }
     if (b == 0) {
         return;
@@ -513,8 +513,8 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
         x = ((s64) v.x << 14) >> 12;
         y = ((s64) v.y << 14) >> 12;
         z = ((s64) v.z << 14) >> 12;
-        p->mUnk_2d8.x += x;
-        p->mUnk_2d8.z += z;
+        p->mHitVelocity.x += x;
+        p->mHitVelocity.z += z;
         p->mVerticalSpeed += y;
         r = Vec3DotUnrounded(&p->mTurnedForward, &v);
         if (r <= 0) {
@@ -534,7 +534,7 @@ s32 StartKartState5(Kart *p, const Vec3 *a, s32 b) {
         StartEffect(0xe, &p->mPos);
     }
     if (!(p->mUnk_48 & 0x840)) {
-        func_0210af40(p, p->mUnk_3cc, 2);
+        func_0210af40(p, p->mSoundIndex, 2);
     }
     p->mUnk_4c |= 0x1;
     if (b != 0) {

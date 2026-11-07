@@ -234,7 +234,7 @@ void func_020fde18(ItemBomb *e) {
         d = x * x + y * y + z * z;
         e->mUnk_17c = d;
     }
-    v = p->mUnk_98;
+    v = p->mDrawMatrixPos;
     x = (e->mUnk_000.mItemObject.mPos.x - v.x) >> 12;
     y = (e->mUnk_000.mItemObject.mPos.y - v.y) >> 12;
     z = (e->mUnk_000.mItemObject.mPos.z - v.z) >> 12;

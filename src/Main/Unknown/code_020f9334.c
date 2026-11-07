@@ -142,9 +142,9 @@ BOOL func_020f97e0(ItemObject *param_1, Kart *param_2) {
         return FALSE;
     }
     n = param_2->mRadius + param_1->mRadius;
-    d.x = param_1->mPos.x - param_2->mUnk_1d8.x;
-    d.y = param_1->mPos.y - param_2->mUnk_1d8.y;
-    d.z = param_1->mPos.z - param_2->mUnk_1d8.z;
+    d.x = param_1->mPos.x - param_2->mPointAlongUp.x;
+    d.y = param_1->mPos.y - param_2->mPointAlongUp.y;
+    d.z = param_1->mPos.z - param_2->mPointAlongUp.z;
     return (s64) d.x * d.x + (s64) d.y * d.y + (s64) d.z * d.z < (s64) n * n;
 }
 
