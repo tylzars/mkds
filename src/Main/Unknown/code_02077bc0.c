@@ -214,7 +214,7 @@ void DrawKarts(void) {
 void func_0207a990(void) {
     s32 i;
     for (i = 0; i < gKartCount; i++) {
-        func_020638c0(&gKarts[i]);
+        CallKartSlot8(&gKarts[i]);
     }
     gKarts = NULL;
 }
@@ -1119,7 +1119,7 @@ void CreateKillerItem(void *a) {
     InitModelAnimationEntries(&gKartModels->mUnk_10c, v8, a);
     SetModelAnimation(&gKartModels->mUnk_10c, 0);
     InitShadowModel(&gKartModels->mUnk_098, v7, 3);
-    func_020638dc(&gKartModels->mUnk_02c);
+    SetKillerItemRenderCallback(&gKartModels->mUnk_02c);
 }
 
 void LoadKartModelMenuFile(void *a, const void *b, void **c) {
@@ -1276,8 +1276,8 @@ void func_02078d64(void *param_1) {
     for (i = 0; i < 2; i = (u16) (i + 1)) {
         InitKartModelMenuFiles(param_1, &gKartModelMenu->mFiles[i]);
     }
-    if (data_0217aa08->mUnk_04->mUnk_004 != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
-        gKartModelMenu->mEmblemData = data_0217aa08->mUnk_04->mUnk_008;
+    if (data_0217aa08->mEmblemRecord->mFilled != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
+        gKartModelMenu->mEmblemData = data_0217aa08->mEmblemRecord->mEmblemData;
         gKartModelMenu->mEmblemPalette = GetEmblemSBNclr()->mData;
     }
     SetHeapGroupId(9);

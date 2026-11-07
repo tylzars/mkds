@@ -15,7 +15,7 @@ void UpdateLogoState1(void) {
     s32 v3;
     LogoScene *v4;
     if (data_0217aa08->mUnk_28 == 0) {
-        if (data_021759d4->mUnk_0c != 0) {
+        if (data_021759d4->mBackupEnabled != 0) {
             v1 = data_021759d4->mUnk_10;
         } else {
             v1 = 0;
@@ -93,7 +93,7 @@ void UpdateLogoState3(void) {
         StartSoundOncePerFrame(34);
     }
     if (data_0217aa08->mUnk_28 == 0) {
-        if (data_021759d4->mUnk_0c != 0) {
+        if (data_021759d4->mBackupEnabled != 0) {
             v1 = data_021759d4->mUnk_10;
         } else {
             v1 = 0;
@@ -190,7 +190,7 @@ void UpdateLogoState6(void) {
             StartSoundOncePerFrame(34);
         }
         if (data_0217aa08->mUnk_28 == 0) {
-            if (data_021759d4->mUnk_0c != 0) {
+            if (data_021759d4->mBackupEnabled != 0) {
                 v2 = data_021759d4->mUnk_10;
             } else {
                 v2 = 0;
@@ -211,7 +211,7 @@ void UpdateLogoState6(void) {
         }
     } else {
         if (data_0217aa08->mUnk_28 == 0) {
-            if (data_021759d4->mUnk_0c != 0) {
+            if (data_021759d4->mBackupEnabled != 0) {
                 v2 = data_021759d4->mUnk_10;
             } else {
                 v2 = 0;

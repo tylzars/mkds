@@ -2,8 +2,8 @@
 
 #include "types.h"
 
-typedef struct Unk0217aa08_08_04 Unk0217aa08_08_04;
-typedef struct Unk0217aa08_0c_04 Unk0217aa08_0c_04;
+typedef struct PackedGrandPrixRecord PackedGrandPrixRecord;
+typedef struct PackedCourseTimeRecord PackedCourseTimeRecord;
 
 // A saved record: the time, the name, the character and the kart; the Grand Prix kind also has a cup rank.
 typedef struct TimeRecord {
@@ -23,6 +23,6 @@ typedef struct TimeRecord {
 // Slot of a course's time records that holds the best lap; slots 0 to 4 are the ranked race times.
 #define TIME_RECORD_BEST_LAP 5
 
-void func_02056b30(Unk0217aa08_08_04 *a, TimeRecord *b);
+void func_02056b30(PackedGrandPrixRecord *a, TimeRecord *b);
 s32 func_02056bc0(s32 a, s32 b, TimeRecord *c);
-void func_02056c0c(Unk0217aa08_0c_04 *a, TimeRecord *b);
+void func_02056c0c(PackedCourseTimeRecord *a, TimeRecord *b);

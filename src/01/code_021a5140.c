@@ -27,7 +27,7 @@
 
 void InitEmblem(void) {
     Unk020391d4 unk;
-    Unk0217aa08_04 *p;
+    EmblemRecord *p;
 
     gEmblem = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x10c0);
     InitDisplaySettingsDesc(&unk);
@@ -80,9 +80,9 @@ void InitEmblem(void) {
     InitEmblemChoises();
     func_020ae6d4(&gEmblem->mUnk_0000, &gEmblem->mUnk_0404);
     func_ov001_021a6238(0x40, 0x10, 0x20, 0x80, 0x10);
-    p = data_0217aa08->mUnk_04;
-    if (p->mUnk_004) {
-        MI_CpuCopy8(p->mUnk_008, gEmblem->mUnk_087c, 0x200);
+    p = data_0217aa08->mEmblemRecord;
+    if (p->mFilled) {
+        MI_CpuCopy8(p->mEmblemData, gEmblem->mUnk_087c, 0x200);
         func_020ac454(gEmblem->mUnk_087c, gEmblem->mUnk_0c7c, GetEmblemGridSide());
         SetEmblemGridCells(gEmblem->mUnk_0c7c);
         SwapEmblemGridCells();

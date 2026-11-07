@@ -67,7 +67,7 @@ typedef struct Unk021759d4 {
     /* 00 */ s32 mUnk_00;
     /* 04 */ void *mUnk_04;
     /* 08 */ s32 mUnk_08;
-    /* 0c */ s32 mUnk_0c;
+    /* 0c */ s32 mBackupEnabled;
     /* 10 */ s32 mUnk_10;
     /* 14 */ s32 mUnk_14;
     /* 18 */ u32 mUnk_18;
@@ -89,9 +89,9 @@ typedef struct Unk021759d4 {
     /* 54 */ void (*mUnk_54)(u32 *, u32);
     /* 58 */ s32 mUnk_58;
     /* 5c */ s32 mUnk_5c;
-    /* 60 */ void *mUnk_60;
+    /* 60 */ void *mBuffer;
     /* 64 */ void *mUnk_64;
-    /* 68 */ void *mUnk_68;
+    /* 68 */ void *mReadTarget;
     /* 6c */ u8 mUnk_6c;
 } Unk021759d4;
 

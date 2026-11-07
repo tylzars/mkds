@@ -9,7 +9,7 @@
 #pragma thumb on
 
 static inline Unk0217aa1c_144_00 *func_0202a360_inline(s32 j) {
-    return &data_0217aa1c->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
+    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
 }
 
 u32 func_0202a360(void) {
@@ -85,14 +85,14 @@ u32 func_0202a360(void) {
     e = 1;
     for (; i < n; i++) {
         if (data_021759d0->mUnk_20 == 3 || gRaceSetup->mUnk_1c == 2) {
-            x = func_0205dc7c((u16) i);
+            x = GetLowByte((u16) i);
             y = GetCourseIndexInCup();
-            p = &data_0217aa1c->mUnk_000[y][func_0205dc7c(x)];
+            p = &gCupRecords->mUnk_000[y][GetLowByte(x)];
             a[i] = p->mUnk_00;
         } else {
-            x = func_0205dc7c((u16) i);
+            x = GetLowByte((u16) i);
             y = GetCourseIndexInCup();
-            p = &data_0217aa1c->mUnk_000[y][func_0205dc7c(x)];
+            p = &gCupRecords->mUnk_000[y][GetLowByte(x)];
             a[i] = p->mUnk_05;
         }
         if (m < a[i]) {

@@ -77,7 +77,7 @@ void func_02046a3c(void *a) {
     gRaceSetup = HeapAlloc(a, 0x400);
     gRaceSetup->mCourseList = HeapAlloc(a, 0x21);
     func_0205d0bc(a);
-    func_0205dc54(a);
+    CreateCupRecords(a);
 }
 
 void RefreshRaceSetupKartCounts(s32 a) {

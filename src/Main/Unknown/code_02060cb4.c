@@ -55,7 +55,7 @@ void func_020612b0(void) {
     }
     data_0217aa08->mUnk_00->mUnk_34[5] = b;
     func_02057ca4(data_0217aa08->mUnk_00);
-    if (data_021759d4->mUnk_0c != 0) {
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
 }
@@ -214,7 +214,7 @@ s32 func_02060d1c(u8 *a, void *b, u8 *c, s32 d, s32 e, s32 f) {
     v = m;
     func_0205ee14(v, &k);
     if (n == FALSE) {
-        func_02057624((u32) &k);
+        ResetBuddyRecord((u32) &k);
     }
     k.mYear = r;
     k.mMonth = s;

@@ -24,14 +24,14 @@ void func_02059034(void) {
     }
 }
 
-void func_02059008(void) {
-    int v1;
-    Unk0217aa00_1608 *v2;
-    v1 = func_0205910c();
-    if (v1 == 1) {
-        v2 = &data_0217aa00->mUnk_1608;
-        v2->mNextState = 0x14;
-        v2->mNextStateRequested = 1;
+void UpdateMPState21(void) {
+    int result;
+    Unk0217aa00_1608 *stateMachine;
+    result = func_0205910c();
+    if (result == 1) {
+        stateMachine = &data_0217aa00->mUnk_1608;
+        stateMachine->mNextState = 0x14;
+        stateMachine->mNextStateRequested = 1;
     }
 }
 
@@ -47,14 +47,14 @@ void func_02058fe0(void) {
     }
 }
 
-void func_02058fb4(void) {
-    int v1;
-    Unk0217aa00_1608 *v2;
-    v1 = func_0205905c();
-    if (v1 == 1) {
-        v2 = &data_0217aa00->mUnk_1608;
-        v2->mNextState = 0x13;
-        v2->mNextStateRequested = 1;
+void UpdateMPState18(void) {
+    int result;
+    Unk0217aa00_1608 *stateMachine;
+    result = func_0205905c();
+    if (result == 1) {
+        stateMachine = &data_0217aa00->mUnk_1608;
+        stateMachine->mNextState = 0x13;
+        stateMachine->mNextStateRequested = 1;
     }
 }
 
@@ -78,14 +78,14 @@ void func_02058f58(void) {
 
 #pragma thumb on
 
-void func_02058f28(void) {
-    int v1;
-    Unk0217aa00_1608 *v2;
-    v1 = func_02058dc0(func_02058f58);
-    if (v1 == 1) {
-        v2 = &data_0217aa00->mUnk_1608;
-        v2->mNextState = 0xf;
-        v2->mNextStateRequested = 1;
+void UpdateMPState19(void) {
+    int result;
+    Unk0217aa00_1608 *stateMachine;
+    result = func_02058dc0(func_02058f58);
+    if (result == 1) {
+        stateMachine = &data_0217aa00->mUnk_1608;
+        stateMachine->mNextState = 0xf;
+        stateMachine->mNextStateRequested = 1;
     }
 }
 
@@ -102,9 +102,9 @@ s32 func_02058f20(void) {
 #pragma thumb on
 
 void func_02058efc(void) {
-    int v1;
-    v1 = LoadSndDataFromFile();
-    if (v1 == 0) {
+    int result;
+    result = LoadSndDataFromFile();
+    if (result == 0) {
         data_0217aa00->mUnk_164f = 1;
     }
 }

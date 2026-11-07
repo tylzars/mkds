@@ -225,7 +225,7 @@ void func_0203aacc(void) {
             func_02056e24(t);
             func_02056d40();
             func_02057d9c();
-            if (data_021759d4->mUnk_0c != 0) {
+            if (data_021759d4->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
         }

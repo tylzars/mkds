@@ -14,21 +14,21 @@
 void func_0205746c(s32 a, u8 *b, s32 c) {
     u8 *p;
 
-    p = func_02057498(a, b);
+    p = GetBitArrayByte(a, b);
     *p |= 1 << (u8) (a % 8);
 }
 
 s32 func_0205743c(s32 a, u8 *b, s32 c) {
     u8 *p;
 
-    p = func_02057498(a, b);
+    p = GetBitArrayByte(a, b);
     return (*p & (1 << (u8) (a % 8))) != 0 ? 1 : 0;
 }
 
 void func_02057410(s32 a, u8 *b, s32 c) {
     u8 *p;
 
-    p = func_02057498(a, b);
+    p = GetBitArrayByte(a, b);
     *p &= ~(1 << (u8) (a % 8));
 }
 

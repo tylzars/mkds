@@ -5,7 +5,7 @@
 #pragma thumb on
 
 void func_020563d8(void) {
-    func_02057a60(data_0217aa08->mUnk_10);
+    WriteBackupMissionRecordBlock(data_0217aa08->mMissionRecordBlock);
 }
 
 #pragma thumb off

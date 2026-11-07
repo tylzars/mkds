@@ -4,4 +4,4 @@
 
 typedef struct TimeRecord TimeRecord;
 
-void func_02056b08(int a, int b, TimeRecord *c);
+void SetGrandPrixRecord(int cup, int engineClass, TimeRecord *record);

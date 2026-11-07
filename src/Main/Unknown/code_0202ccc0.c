@@ -404,7 +404,7 @@ s32 AdvanceTimeAttackGhostSend(Unk0202cdf4 *p) {
             break;
         case 4:
             d = data_021759d4;
-            if (d->mUnk_0c != 0) {
+            if (d->mBackupEnabled != 0) {
                 i = d->mUnk_10;
             } else {
                 i = 0;

@@ -116,7 +116,7 @@ void StartKartState6(Kart *p) {
     p->mRotationAngle = 0;
     p->mRotationAnglePerFrame = 0xfa0;
     p->mRotationEndFrames = 0;
-    func_02063b50(p, &p->mRotationAxis);
+    GetKartMatrixRow0(p, &p->mRotationAxis);
     GetKartForward(p, &p->mLaunchForward);
     p->mUnk_334 = 0;
     p->mUnk_338 = 0;
@@ -268,7 +268,7 @@ void StartKartState3(Kart *p) {
     p->mRotationEndFrames = 0;
     p->mRotationAngleSum = 0;
     p->mForwardSpeed = p->mForwardSpeed + 0x800;
-    func_02063b50(p, &p->mRotationAxis);
+    GetKartMatrixRow0(p, &p->mRotationAxis);
     GetKartForward(p, &v);
     VEC_MultAdd(0x2e2, &v, &p->mRotationAxis, &p->mRotationAxis);
     Vec3NormalizeAndGetLengthUnchecked(&p->mRotationAxis, &p->mRotationAxis);

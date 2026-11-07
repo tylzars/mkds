@@ -3,61 +3,61 @@
 #include "code_0214d018.h"
 
 #pragma thumb on
-void func_020572e8(void) {
+void ClearEmblemRecord(void) {
     u32 value0;
-    u32 value1;
-    u32 value2;
+    u32 fillValue;
+    u32 size;
     u32 value3;
     value0 = (u32) &data_0217aa08;
     value0 = *(const u32 *) ((value0) + 0u);
     value0 = *(const u32 *) ((value0) + 4u);
-    value1 = 0u;
-    value2 = 0x300u;
-    MI_CpuFill8((void *) value0, value1, value2);
+    fillValue = 0u;
+    size = 0x300u;
+    MI_CpuFill8((void *) value0, fillValue, size);
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_020572cc(void) {
+void ClearGrandPrixRecordBlock(void) {
     u32 value0;
-    u32 value1;
-    u32 value2;
+    u32 fillValue;
+    u32 size;
     u32 value3;
     value0 = (u32) &data_0217aa08;
     value0 = *(const u32 *) ((value0) + 0u);
     value0 = *(const u32 *) ((value0) + 8u);
-    value1 = 0u;
-    value2 = 0x400u;
-    MI_CpuFill8((void *) value0, value1, value2);
+    fillValue = 0u;
+    size = 0x400u;
+    MI_CpuFill8((void *) value0, fillValue, size);
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_020572b0(void) {
+void ClearCourseTimeRecordBlock(void) {
     u32 value0;
-    u32 value1;
-    u32 value2;
+    u32 fillValue;
+    u32 size;
     u32 value3;
     value0 = (u32) &data_0217aa08;
     value0 = *(const u32 *) ((value0) + 0u);
     value0 = *(const u32 *) ((value0) + 12u);
-    value1 = 0u;
-    value2 = 0x1600u;
-    MI_CpuFill8((void *) value0, value1, value2);
+    fillValue = 0u;
+    size = 0x1600u;
+    MI_CpuFill8((void *) value0, fillValue, size);
 }
 #pragma thumb off
 
 #pragma thumb on
-void func_02057294(void) {
+void ClearMissionRecordBlock(void) {
     u32 value0;
-    u32 value1;
-    u32 value2;
+    u32 fillValue;
+    u32 size;
     u32 value3;
     value0 = (u32) &data_0217aa08;
     value0 = *(const u32 *) ((value0) + 0u);
     value0 = *(const u32 *) ((value0) + 16u);
-    value1 = 0u;
-    value2 = 0x100u;
-    MI_CpuFill8((void *) value0, value1, value2);
+    fillValue = 0u;
+    size = 0x100u;
+    MI_CpuFill8((void *) value0, fillValue, size);
 }
 #pragma thumb off

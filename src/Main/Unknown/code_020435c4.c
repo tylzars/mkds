@@ -133,7 +133,7 @@ void func_020442d0(u32 a) {
     data_0217aa08->mUnk_14[0]->mFilled = 0;
     func_02056700(a);
     func_02057d9c();
-    if (data_021759d4->mUnk_0c != 0) {
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (data_021759d4->mUnk_04 != NULL) {
@@ -150,7 +150,7 @@ void func_0204419c(u32 a, u32 b) {
     data_0217aa08->mUnk_14[0]->mFilled = 0;
     func_02056700(a);
     func_02057d9c();
-    if (data_021759d4->mUnk_0c != 0) {
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (data_021759d4->mUnk_04 != NULL) {
@@ -158,7 +158,7 @@ void func_0204419c(u32 a, u32 b) {
     }
     func_02056670(b);
     func_02057d9c();
-    if (data_021759d4->mUnk_0c != 0) {
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (data_021759d4->mUnk_04 != NULL) {
@@ -179,7 +179,7 @@ void func_02044060(u32 a) {
     data_0217aa08->mUnk_14[0]->mFilled = 0;
     func_02056700(a);
     func_02057d9c();
-    if (data_021759d4->mUnk_0c != 0) {
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (data_021759d4->mUnk_04 != NULL) {
@@ -201,7 +201,7 @@ void func_02043fb0(u32 a) {
     data_0217aa08->mUnk_14[0]->mFilled = 0;
     func_02056700(a);
     func_02057d9c();
-    if (data_021759d4->mUnk_0c != 0) {
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     if (data_021759d4->mUnk_04 != NULL) {

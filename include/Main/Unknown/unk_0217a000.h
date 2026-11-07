@@ -55,21 +55,22 @@ typedef struct Unk0217aa08_00 {
     /* 74 */ u8 mUnk_74[0x18];
 } Unk0217aa08_00;
 
-typedef struct Unk0217aa08_04 {
+// The player's saved emblem: a filled flag and the 0x200 emblem bytes.
+typedef struct EmblemRecord {
     /* 000 */ u8 mUnk_000[0x4];
-    /* 004 */ u8 mUnk_004 : 1;
+    /* 004 */ u8 mFilled : 1;
     /* 005 */ u8 mUnk_005[0x3];
-    /* 008 */ u8 mUnk_008[0x200];
-} Unk0217aa08_04;
+    /* 008 */ u8 mEmblemData[0x200];
+} EmblemRecord;
 
-// Entries of 0x1c bytes from 0x04 of Unk0217aa08_08, in rows of eight.
-typedef struct Unk0217aa08_08_04 {
+// One Grand Prix record as saved: the time and the character in bit fields, the name whole.
+typedef struct PackedGrandPrixRecord {
     /* 00 */ union {
         u32 mUnk_00;
         u8 mUnk_00_b[4];
         struct {
-            u32 mUnk_00_0 : 1;
-            u32 mUnk_00_1 : 7;
+            u32 mFilled : 1;
+            u32 mCharacterIndex : 7;
         };
     };
     /* 04 */ union {
@@ -77,60 +78,60 @@ typedef struct Unk0217aa08_08_04 {
         u8 mUnk_04_b[4];
         struct {
             u32 mUnk_04_0 : 8;
-            u32 mUnk_04_8 : 7;
-            u32 mUnk_04_15 : 7;
-            u32 mUnk_04_22 : 10;
+            u32 mMinute : 7;
+            u32 mSecond : 7;
+            u32 mMillisecond : 10;
         };
     };
-    /* 08 */ u8 mUnk_08[0x14];
-} Unk0217aa08_08_04;
+    /* 08 */ u8 mName[0x14];
+} PackedGrandPrixRecord;
 
-// What member 0x08 of Unk0217aa08 points to (the row count is not shown by the code).
-typedef struct Unk0217aa08_08 {
+// The saved Grand Prix records: entries by engine class and cup.
+typedef struct GrandPrixRecordBlock {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ Unk0217aa08_08_04 mUnk_04[1][8];
-} Unk0217aa08_08;
+    /* 04 */ PackedGrandPrixRecord mRecords[1][8];
+} GrandPrixRecordBlock;
 
-// Entries of 0x1c bytes from 0x04 of Unk0217aa08_0c, in rows of 0x20.
-typedef struct Unk0217aa08_0c_04 {
+// One course time record as saved: the time and the character in bit fields, the name whole.
+typedef struct PackedCourseTimeRecord {
     /* 00 */ union {
         u32 mUnk_00;
         struct {
-            u32 mUnk_00_0 : 1;
-            u32 mUnk_00_1 : 7;
-            u32 mUnk_00_8 : 7;
-            u32 mUnk_00_15 : 7;
-            u32 mUnk_00_22 : 10;
+            u32 mFilled : 1;
+            u32 mCharacterIndex : 7;
+            u32 mMinute : 7;
+            u32 mSecond : 7;
+            u32 mMillisecond : 10;
         };
     };
-    /* 04 */ u8 mUnk_04;
+    /* 04 */ u8 mKartIndex;
     /* 05 */ u8 mUnk_05[3];
-    /* 08 */ u8 mUnk_08[0x14];
-} Unk0217aa08_0c_04;
+    /* 08 */ u8 mName[0x14];
+} PackedCourseTimeRecord;
 
-// What member 0x0c of Unk0217aa08 points to (the row count is not shown by the code).
-typedef struct Unk0217aa08_0c {
+// The saved course time records: the best times and the best lap, by course.
+typedef struct CourseTimeRecordBlock {
     /* 000 */ u8 mUnk_000[4];
-    /* 004 */ Unk0217aa08_0c_04 mUnk_004[1][0x20];
-} Unk0217aa08_0c;
+    /* 004 */ PackedCourseTimeRecord mRecords[1][0x20];
+} CourseTimeRecordBlock;
 
-// One byte of Unk0217aa08_10_04: a flag and seven more bits.
-typedef struct Unk0217aa08_10_04 {
+// One saved mission result: a flag and a seven-bit value.
+typedef struct MissionRecord {
     /* 00 */ union {
         u8 mUnk_00;
         struct {
-            u8 mUnk_00_0 : 1;
+            u8 mFilled : 1;
             u8 mUnk_00_1 : 7;
         };
     };
-} Unk0217aa08_10_04;
+} MissionRecord;
 
 // What member 0x10 of Unk0217aa08 points to: bytes from 0x04, read in rows of nine (the count is not shown by the
 // code).
-typedef struct Unk0217aa08_10 {
+typedef struct MissionRecordBlock {
     /* 00 */ u8 mUnk_00[4];
-    /* 04 */ Unk0217aa08_10_04 mUnk_04[1];
-} Unk0217aa08_10;
+    /* 04 */ MissionRecord mRecords[1];
+} MissionRecordBlock;
 
 // The 0xe00 bytes behind members 0x14 and 0x18 of Unk0217aa08.
 typedef struct GhostRecord {
@@ -214,10 +215,10 @@ typedef struct Unk0217aa08_24 {
 
 typedef struct Unk0217aa08 {
     /* 00 */ Unk0217aa08_00 *mUnk_00;
-    /* 04 */ Unk0217aa08_04 *mUnk_04;
-    /* 08 */ Unk0217aa08_08 *mUnk_08;
-    /* 0c */ Unk0217aa08_0c *mUnk_0c;
-    /* 10 */ Unk0217aa08_10 *mUnk_10;
+    /* 04 */ EmblemRecord *mEmblemRecord;
+    /* 08 */ GrandPrixRecordBlock *mGrandPrixRecordBlock;
+    /* 0c */ CourseTimeRecordBlock *mCourseTimeRecordBlock;
+    /* 10 */ MissionRecordBlock *mMissionRecordBlock;
     /* 14 */ GhostRecord *mUnk_14[3];
     /* 20 */ BuddyRecordBlock *mBuddyRecordBlock;
     /* 24 */ Unk0217aa08_24 *mUnk_24;
@@ -1611,7 +1612,7 @@ typedef struct Unk0217aa18 {
 } Unk0217aa18;
 
 extern Unk0217aa18 *data_0217aa18;
-// 0xa-byte elements of the rows (eight each) of the table at member 0 of Unk0217aa1c.
+// 0xa-byte elements of the rows (eight each) of the table at member 0 of CupRecords.
 typedef struct Unk0217aa1c_00 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02;
@@ -1623,7 +1624,7 @@ typedef struct Unk0217aa1c_00 {
     /* 09 */ u8 mUnk_09;
 } Unk0217aa1c_00;
 
-// 4-byte object, two of which make an element of the table at member 0x144 of Unk0217aa1c.
+// 4-byte object, two of which make an element of the table at member 0x144 of CupRecords.
 typedef struct Unk0217aa1c_144_00 {
     /* 00 */ u16 mUnk_00;
     /* 02 */ u8 mUnk_02;
@@ -1635,13 +1636,13 @@ typedef struct Unk0217aa1c_144_00 {
     };
 } Unk0217aa1c_144_00;
 
-// 8-byte elements of the table at member 0x144 of Unk0217aa1c.
+// 8-byte elements of the table at member 0x144 of CupRecords.
 typedef struct Unk0217aa1c_144 {
     /* 00 */ Unk0217aa1c_144_00 mUnk_00[2];
 } Unk0217aa1c_144;
 
-// Object behind data_0217aa1c.
-typedef struct Unk0217aa1c {
+// The kart results for each course of a cup, and the team results.
+typedef struct CupRecords {
     /* 000 */ Unk0217aa1c_00 mUnk_000[4][8];
     /* 140 */ s32 mUnk_140;
     /* 144 */ Unk0217aa1c_144 mUnk_144[4];
@@ -1651,9 +1652,9 @@ typedef struct Unk0217aa1c {
             u32 mUnk_164_0 : 1;
         };
     };
-} Unk0217aa1c;
+} CupRecords;
 
-extern Unk0217aa1c *data_0217aa1c;
+extern CupRecords *gCupRecords;
 extern struct Kart *gKarts;
 extern NNSFndList gResFileEntries;
 // The event counters of the selected entry's Kart, allocated by InitKarts.

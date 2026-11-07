@@ -1010,7 +1010,7 @@ void func_ov001_021a2a40(void) {
         case 11:
             func_ov001_0218516c(gEmblem->mEmblemSLld, &gEmblem->mUnk_0404);
             if (data_0217aa08->mUnk_28 == 0) {
-                if (data_021759d4->mUnk_0c != 0) {
+                if (data_021759d4->mBackupEnabled != 0) {
                     t = data_021759d4->mUnk_10;
                 } else {
                     t = 0;

@@ -14,21 +14,21 @@ void func_0205786c(u32 a, u32 b, GhostRecord *c) {
     void *v3;
 
     d = data_021759d4;
-    if (d->mUnk_0c != 0) {
+    if (d->mBackupEnabled != 0) {
         if (a != 0) {
             t = 0;
             v1 = 0xe00;
             n = b * v1;
-            v3 = d->mUnk_60;
+            v3 = d->mBuffer;
             v2 = 0x47504b4e;
         } else {
             t = 0x1c000;
             v1 = 0x1000;
             n = b * v1;
-            v3 = d->mUnk_60;
+            v3 = d->mBuffer;
             v2 = 0x47444b4e;
         }
-        d->mUnk_68 = c;
+        d->mReadTarget = c;
         func_0204b6f8(n + (t + 0xaf00), v3, v1, func_020578e8, v2);
     }
 }
@@ -43,23 +43,23 @@ void func_02057800(u32 a, u32 b, GhostRecord *c) {
     void *v3;
 
     d = data_021759d4;
-    if (d->mUnk_0c != 0) {
+    if (d->mBackupEnabled != 0) {
         if (a != 0) {
             t = 0;
             v1 = 0xe00;
             n = b * v1;
-            v3 = d->mUnk_60;
+            v3 = d->mBuffer;
             v2 = 0x47504b4e;
             f = func_020578e8;
         } else {
             t = 0x1c000;
             v1 = 0x1000;
             n = b * v1;
-            v3 = d->mUnk_60;
+            v3 = d->mBuffer;
             v2 = 0x47444b4e;
             f = func_020578d0;
         }
-        d->mUnk_68 = c;
+        d->mReadTarget = c;
         func_0204b6f8(n + (t + 0xaf00), v3, v1, f, v2);
     }
 }

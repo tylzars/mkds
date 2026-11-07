@@ -138,7 +138,7 @@ void SetCurrentEntryPlayer(s32 a) {
     b4 = &gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_26;
     b5 = &gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_20;
     f = FALSE;
-    if (p->mUnk_04->mUnk_004 != 0) {
+    if (p->mEmblemRecord->mFilled != 0) {
         f = p->mUnk_00->mUnk_31_3 == 0;
     }
     if (f != FALSE) {
@@ -154,7 +154,7 @@ void SetCurrentEntryPlayer(s32 a) {
     *b4 = 0;
     if (a == gRaceSetup->mEntryIndex) {
         *b0 = &data_0217aa08->mUnk_00->mUnk_0c;
-        *b1 = &data_0217aa08->mUnk_04->mUnk_008;
+        *b1 = &data_0217aa08->mEmblemRecord->mEmblemData;
         *b2 = g != FALSE ? 1 : 0;
         *b3 = data_021759d0->mUnk_00;
         *b4 = func_02056208();
@@ -186,7 +186,7 @@ void SetCurrentEntryPlayer(s32 a) {
             switch (gRaceSetup->mCurrentEntries[a].mPlayer.mUnk_10) {
                 case 0:
                     *b0 = &data_0217aa08->mUnk_14[0]->mName;
-                    *b1 = &data_0217aa08->mUnk_04->mUnk_008;
+                    *b1 = &data_0217aa08->mEmblemRecord->mEmblemData;
                     *b2 = g != FALSE ? 1 : 0;
                     *b3 = data_0217aa08->mUnk_14[0]->mUnk_08_2;
                     *b4 = 0;

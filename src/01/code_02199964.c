@@ -187,7 +187,7 @@ void AdvanceOptionHensyuMenuState3(void) {
                 p->mNextOptionState = 5;
                 break;
             case 1:
-                if (data_0217aa08->mUnk_04->mUnk_004 != 0) {
+                if (data_0217aa08->mEmblemRecord->mFilled != 0) {
                     p->mNextOptionState = 3;
                 } else {
                     p->mNextOptionState = 6;

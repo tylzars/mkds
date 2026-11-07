@@ -422,7 +422,7 @@ void func_020c5f7c(void) {
     s32 t;
 
     if (data_0217aa08->mUnk_28 == 0) {
-        t = data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0;
+        t = data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0;
     } else {
         t = 1;
     }
@@ -462,7 +462,7 @@ void func_020c5f08(void) {
     s32 t;
 
     if (data_0217aa08->mUnk_28 == 0) {
-        t = data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0;
+        t = data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0;
     } else {
         t = 1;
     }

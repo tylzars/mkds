@@ -114,10 +114,10 @@ s32 func_0203b324(void) {
             v = (p->mUnk_8c != 0) ? 3 : 2;
             break;
     }
-    func_02056a7c(p->mUnk_84, v, &a);
+    GetGrandPrixRecord(p->mUnk_84, v, &a);
     func_0203b4c8(&b);
     if (func_0203b3d8(&a, &b) != FALSE) {
-        func_02056b08(data_0217b488->mUnk_84, v, &b);
+        SetGrandPrixRecord(data_0217b488->mUnk_84, v, &b);
         func_0205641c();
         r = TRUE;
     }

@@ -1046,7 +1046,7 @@ void func_0205b0f4(void) {
         q->mUnk_34[5] = n;
         func_02056d40();
         func_02057d9c();
-        if (data_021759d4->mUnk_0c != 0) {
+        if (data_021759d4->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }

@@ -313,9 +313,9 @@ BOOL func_02045bd4(void) {
     data_0217b488->mUnk_84 = gRaceSetup->mCupIndex;
     data_0217b488->mUnk_88 = gRaceSetup->mEngineIndex;
     data_0217b488->mUnk_8c = gRaceSetup->mMirrorMode;
-    c = func_0205dc7c((u8) t);
+    c = GetLowByte((u8) t);
     b = GetCourseIndexInCup();
-    e = &data_0217aa1c->mUnk_000[b][func_0205dc7c(c)];
+    e = &gCupRecords->mUnk_000[b][GetLowByte(c)];
     data_0217b488->mUnk_a8 = e->mUnk_00;
     data_0217b488->mUnk_94 = gRaceSetup->mCurrentEntries[(u8) t].mKartIndex;
     for (i = 0; i < 4; i++) {

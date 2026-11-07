@@ -28,13 +28,13 @@
 
 void func_0211e480(void *a) {
     data_0217d374 = HeapAlloc(a, 0x14);
-    data_0217d374->mUnk_00 = (u8 *) func_02061644((u32) a);
+    data_0217d374->mUnk_00 = (u8 *) CreateCourseGhostRecords((u32) a);
     func_02061540(data_0217d374->mUnk_00);
     func_02057d9c();
     data_0217d374->mUnk_04 = (u8 *) func_0206152c((u32) a);
     func_02061428(data_0217d374->mUnk_04);
     func_02057d9c();
-    data_0217d374->mUnk_08 = (u8 *) func_02061418((u32) a);
+    data_0217d374->mUnk_08 = (u8 *) CreateGhostFileRecords((u32) a);
     func_02061358(data_0217d374->mUnk_08);
     func_02057d9c();
     LoadStaffGhostTime(a);

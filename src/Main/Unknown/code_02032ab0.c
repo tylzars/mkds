@@ -76,11 +76,11 @@ static inline void func_02032f94_inline(void *p, s32 n) {
 }
 
 static inline Unk0217aa1c_144_00 *func_02032f94_inline_2(s32 j) {
-    return &data_0217aa1c->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
+    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
 }
 
 static inline Unk0217aa1c_144 *func_02032f94_inline_3(void) {
-    return &data_0217aa1c->mUnk_144[GetCourseIndexInCup()];
+    return &gCupRecords->mUnk_144[GetCourseIndexInCup()];
 }
 
 void InitResultsBattle(void *a, s32 b, s32 c) {

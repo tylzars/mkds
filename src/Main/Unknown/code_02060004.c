@@ -189,7 +189,7 @@ void MergeBuddyRecords(u8 a, u8 b) {
 
     func_0205ee14(a, &c);
     func_0205ee14(b, &d);
-    func_02057624((u32) &e);
+    ResetBuddyRecord((u32) &e);
     if (d.mNotYetBuddy == 0) {
         e.mResultCounts[0][0] = e.mResultCounts[0][0] + d.mResultCounts[0][0];
         e.mResultCounts[0][1] = e.mResultCounts[0][1] + d.mResultCounts[0][1];
@@ -250,7 +250,7 @@ s32 GetBuddyFriendKeyText(u8 a, void *b) {
 s32 IsGrandPrixRecordFilled(s32 a, s32 b) {
     TimeRecord c;
 
-    func_02056a7c(a, b, &c);
+    GetGrandPrixRecord(a, b, &c);
     if (c.mFilled == 0) {
         return 0;
     }
@@ -260,7 +260,7 @@ s32 IsGrandPrixRecordFilled(s32 a, s32 b) {
 s32 GetGrandPrixRecordCharacterIndex(s32 a, s32 b) {
     TimeRecord c;
 
-    func_02056a7c(a, b, &c);
+    GetGrandPrixRecord(a, b, &c);
     if (c.mFilled != 0) {
         return c.mCharacterIndex;
     }
@@ -270,7 +270,7 @@ s32 GetGrandPrixRecordCharacterIndex(s32 a, s32 b) {
 s32 GetGrandPrixRecordKartIndex(s32 a, s32 b) {
     TimeRecord c;
 
-    func_02056a7c(a, b, &c);
+    GetGrandPrixRecord(a, b, &c);
     if (c.mFilled != 0) {
         return c.mKartIndex;
     }
@@ -280,7 +280,7 @@ s32 GetGrandPrixRecordKartIndex(s32 a, s32 b) {
 s32 GetGrandPrixRecordCupRank(s32 a, s32 b) {
     TimeRecord c;
 
-    func_02056a7c(a, b, &c);
+    GetGrandPrixRecord(a, b, &c);
     if (c.mFilled != 0) {
         return c.mCupRank;
     }
@@ -290,7 +290,7 @@ s32 GetGrandPrixRecordCupRank(s32 a, s32 b) {
 s32 func_02060390(s32 a, s32 b) {
     TimeRecord c;
 
-    func_02056a7c(a, b, &c);
+    GetGrandPrixRecord(a, b, &c);
     if (c.mFilled != 0) {
         return (s8) c.mUnk_1d;
     }
@@ -300,7 +300,7 @@ s32 func_02060390(s32 a, s32 b) {
 s32 func_02060364(s32 a, s32 b) {
     TimeRecord c;
 
-    func_02056a7c(a, b, &c);
+    GetGrandPrixRecord(a, b, &c);
     if (c.mFilled != 0) {
         return c.mUnk_1e;
     }
@@ -310,7 +310,7 @@ s32 func_02060364(s32 a, s32 b) {
 BOOL GetGrandPrixRecordTime(s32 a, s32 b, void *c) {
     TimeRecord d;
 
-    func_02056a7c(a, b, &d);
+    GetGrandPrixRecord(a, b, &d);
     if (d.mFilled == 0) {
         return FALSE;
     }

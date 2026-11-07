@@ -135,9 +135,9 @@ void UpdateRaceGoalM(void) {
     switch (gRaceSetup->mMode) {
         case MODE_GRAND_PRIX:
             gRaceGoalM->mRankIndex = GetKartRank(GetFollowedKartOrEntryIndex()) - 1;
-            b = func_0205dc7c(GetFollowedKartOrEntryIndex());
+            b = GetLowByte(GetFollowedKartOrEntryIndex());
             a = GetCourseIndexInCup();
-            p = &data_0217aa1c->mUnk_000[a][func_0205dc7c(b)];
+            p = &gCupRecords->mUnk_000[a][GetLowByte(b)];
             a = p->mUnk_00;
             gRaceGoalM->mPointsGained = a - GetKartPreviousTotalPoints(GetFollowedKartOrEntryIndex());
             if (n > 0x14) {

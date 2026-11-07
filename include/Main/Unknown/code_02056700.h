@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-typedef struct Unk0217aa08_10_04 Unk0217aa08_10_04;
+typedef struct MissionRecord MissionRecord;
 
 // Two bytes: a flag and a value.
 typedef struct Unk02056a2c {
@@ -22,5 +22,5 @@ void func_02056750(s32 a, u16 b);
 void func_020569a8(void *a);
 s32 func_020569dc(s32 a, s32 b, Unk02056a2c *c);
 void func_02056a04(s32 a, s32 b, Unk02056a2c *c);
-void func_02056a2c(Unk0217aa08_10_04 *a, Unk02056a2c *b);
-void func_02056a4c(Unk0217aa08_10_04 *a, Unk02056a2c *b);
+void func_02056a2c(MissionRecord *a, Unk02056a2c *b);
+void func_02056a4c(MissionRecord *a, Unk02056a2c *b);

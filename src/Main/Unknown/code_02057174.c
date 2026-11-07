@@ -12,38 +12,38 @@
 #pragma thumb on
 
 void func_0205721c(u32 a) {
-    func_020572e8();
-    func_020572cc();
-    func_020572b0();
-    func_02057294();
+    ClearEmblemRecord();
+    ClearGrandPrixRecordBlock();
+    ClearCourseTimeRecordBlock();
+    ClearMissionRecordBlock();
     func_02057260();
-    func_02057244();
+    ClearBuddyRecordBlock();
     func_02057304(a);
 }
 
 void func_02057174(void) {
-    func_02057c14(data_0217aa08->mUnk_04);
-    if (data_021759d4->mUnk_0c != 0) {
+    WriteBackupEmblemRecord(data_0217aa08->mEmblemRecord);
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    func_02057b84(data_0217aa08->mUnk_08);
-    if (data_021759d4->mUnk_0c != 0) {
+    WriteBackupGrandPrixRecordBlock(data_0217aa08->mGrandPrixRecordBlock);
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    func_02057af4(data_0217aa08->mUnk_0c);
-    if (data_021759d4->mUnk_0c != 0) {
+    WriteBackupCourseTimeRecordBlock(data_0217aa08->mCourseTimeRecordBlock);
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    func_02057a60(data_0217aa08->mUnk_10);
-    if (data_021759d4->mUnk_0c != 0) {
+    WriteBackupMissionRecordBlock(data_0217aa08->mMissionRecordBlock);
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
-    func_020577b4(data_0217aa08->mBuddyRecordBlock);
-    if (data_021759d4->mUnk_0c != 0) {
+    WriteBackupBuddyRecordBlock(data_0217aa08->mBuddyRecordBlock);
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     func_02057ca4(data_0217aa08->mUnk_00);
-    if (data_021759d4->mUnk_0c != 0) {
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     func_02057504();

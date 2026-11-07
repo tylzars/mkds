@@ -8,9 +8,9 @@
 #include "Main/Unknown/unk_0217a000.h"
 #include "registers.h"
 
-// Reads the table of data_0217aa1c, a row chosen by one call and a column by another.
+// Reads the table of gCupRecords, a row chosen by one call and a column by another.
 static inline Unk0217aa1c_00 *func_02033e6c_inline(u32 a) {
-    return &data_0217aa1c->mUnk_000[GetCourseIndexInCup()][func_0205dc7c(a)];
+    return &gCupRecords->mUnk_000[GetCourseIndexInCup()][GetLowByte(a)];
 }
 
 #pragma thumb on
@@ -147,9 +147,9 @@ void func_02033e6c(void) {
 
     for (k = 0; k < gResultsBattle->mUnk_0d8; k++) {
         if (gResultsBattle->mMode == 3 || gRaceSetup->mUnk_1c == 2) {
-            gResultsBattle->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(func_0205dc7c(k))->mUnk_00;
+            gResultsBattle->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(GetLowByte(k))->mUnk_00;
         } else {
-            gResultsBattle->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(func_0205dc7c(k))->mUnk_05;
+            gResultsBattle->mUnk_0e4[k].mUnk_04 = func_02033e6c_inline(GetLowByte(k))->mUnk_05;
         }
     }
     for (j = 0; j < gResultsBattle->mUnk_0d8; j++) {

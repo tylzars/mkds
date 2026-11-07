@@ -2,7 +2,7 @@
 
 #include "types.h"
 
-void func_02057294(void);
-void func_020572b0(void);
-void func_020572cc(void);
-void func_020572e8(void);
+void ClearMissionRecordBlock(void);
+void ClearCourseTimeRecordBlock(void);
+void ClearGrandPrixRecordBlock(void);
+void ClearEmblemRecord(void);

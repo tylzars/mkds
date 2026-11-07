@@ -563,10 +563,10 @@ void func_020c214c(Unk020c06c4 *a) {
             f = FALSE;
         }
         if (f != FALSE) {
-            s = &data_0217aa1c->mUnk_144[GetCourseIndexInCup()];
+            s = &gCupRecords->mUnk_144[GetCourseIndexInCup()];
             v = s->mUnk_00[i].mUnk_02;
         } else {
-            s = &data_0217aa1c->mUnk_144[GetCourseIndexInCup()];
+            s = &gCupRecords->mUnk_144[GetCourseIndexInCup()];
             v = s->mUnk_00[i].mUnk_00;
         }
         func_020c2304(a, v, t2[i] + (i == 0 ? -d : d), 0xb6);

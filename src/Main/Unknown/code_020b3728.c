@@ -77,9 +77,9 @@ void func_020b3cd8(void) {
                 }
             }
             g = f != FALSE ? 1 : 0;
-            k = func_0205dc7c(i);
+            k = GetLowByte(i);
             m = GetCourseIndexInCup();
-            v = data_0217aa1c->mUnk_000[m][func_0205dc7c(k)].mUnk_05;
+            v = gCupRecords->mUnk_000[m][GetLowByte(k)].mUnk_05;
             a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
         } else {
             f = FALSE;
@@ -89,9 +89,9 @@ void func_020b3cd8(void) {
                 }
             }
             g = f != FALSE ? 1 : 0;
-            k = func_0205dc7c(i);
+            k = GetLowByte(i);
             m = GetCourseIndexInCup();
-            q = &data_0217aa1c->mUnk_000[m][func_0205dc7c(k)];
+            q = &gCupRecords->mUnk_000[m][GetLowByte(k)];
             v = q->mUnk_00;
             a[i] = (v << 4) + (g << 3) + 8 - GetKartRank(i);
         }
@@ -112,11 +112,11 @@ void func_020b3cd8(void) {
 }
 
 static inline Unk0217aa1c_144_00 *func_020b3b58_inline(s32 j) {
-    return &data_0217aa1c->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
+    return &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[j];
 }
 
 static inline Unk0217aa1c_144 *func_020b3b58_inline2(void) {
-    return &data_0217aa1c->mUnk_144[GetCourseIndexInCup()];
+    return &gCupRecords->mUnk_144[GetCourseIndexInCup()];
 }
 
 void func_020b3b58(void) {
@@ -133,7 +133,7 @@ void func_020b3b58(void) {
     if (d->mUnk_1c == 1 || d->mMode == MODE_BATTLE) {
         a = func_020b3b58_inline(0)->mUnk_02;
     } else {
-        q = &data_0217aa1c->mUnk_144[GetCourseIndexInCup()].mUnk_00[0];
+        q = &gCupRecords->mUnk_144[GetCourseIndexInCup()].mUnk_00[0];
         a = q->mUnk_00;
     }
     d = gRaceSetup;

@@ -2,14 +2,15 @@
 #include "Main/Unknown/code_02060cb4.h"
 #include "Main/Unknown/unk_0217a000.h"
 
-s32 func_02060c68(Unk0217aa00_45c *p0, u32 p1) {
-    u32 v2 = (*(u8 *) (((u32) p0) + (532)));
-    u32 v3 = ((u32) (&data_0217aa08));
-    u32 v4 = 0x874u;
-    u32 v7 = (*(u32 *) ((v3) + (0)));
-    u32 v9 = (*(u32 *) ((v7) + (32)));
-    s32 *v10 = &p0->mUnk_218;
-    u32 v11 = ((v9) + (v4));
-    u32 v13 = func_02060d1c((u8 *) v11, p0, (u8 *) v10, 0x0u, v2, p1);
-    return v13;
+// Stores the session player in the buddy records; the second argument allows adding a new record.
+s32 SetBuddyRecordFromPlayer(Unk0217aa00_45c *player, u32 addIfMissing) {
+    u32 flag = (*(u8 *) (((u32) player) + (532)));
+    u32 blocksPointerAddress = ((u32) (&data_0217aa08));
+    u32 friendDataOffset = 0x874u;
+    u32 blocks = (*(u32 *) ((blocksPointerAddress) + (0)));
+    u32 buddyBlock = (*(u32 *) ((blocks) + (32)));
+    s32 *friendData = &player->mUnk_218;
+    u32 friendTable = ((buddyBlock) + (friendDataOffset));
+    u32 slot = func_02060d1c((u8 *) friendTable, player, (u8 *) friendData, 0x0u, flag, addIfMissing);
+    return slot;
 }

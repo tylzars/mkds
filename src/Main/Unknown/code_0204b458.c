@@ -73,7 +73,7 @@ void func_0204b5dc(void (*a)(u32 *, u32)) {
             return;
         }
         if (e == 2) {
-            data_021759d4->mUnk_0c = 0;
+            data_021759d4->mBackupEnabled = 0;
         }
         func_0204b344(e);
     }
@@ -97,7 +97,7 @@ void func_0204b574(void) {
 }
 
 u32 func_0204b518(void) {
-    if (data_021759d4->mUnk_0c == 0 || CARD_TryWaitBackupAsync() == 0) {
+    if (data_021759d4->mBackupEnabled == 0 || CARD_TryWaitBackupAsync() == 0) {
         return 0;
     }
     if (func_0204b3a4() == 0) {
@@ -110,7 +110,7 @@ u32 func_0204b518(void) {
 u32 func_0204b458(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, s32 e) {
     u32 *p;
     u32 m;
-    if (data_021759d4->mUnk_0c == 0 || CARD_TryWaitBackupAsync() == 0) {
+    if (data_021759d4->mBackupEnabled == 0 || CARD_TryWaitBackupAsync() == 0) {
         return 0;
     }
     data_021759d4->mUnk_04 = NULL;

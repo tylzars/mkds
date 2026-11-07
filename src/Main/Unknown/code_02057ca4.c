@@ -6,8 +6,8 @@
 #pragma thumb on
 
 void func_02057ca4(void *a) {
-    u32 *v = data_021759d4->mUnk_60;
-    if (data_021759d4->mUnk_0c != 0) {
+    u32 *v = data_021759d4->mBuffer;
+    if (data_021759d4->mBackupEnabled != 0) {
         enum { K0 = 0x53444b4d } b;
         enum { K1 = 0x30315653 } c;
         MI_CpuCopy8(a, v, 0x100);

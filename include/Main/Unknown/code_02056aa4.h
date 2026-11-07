@@ -3,6 +3,6 @@
 #include "types.h"
 
 typedef struct TimeRecord TimeRecord;
-typedef struct Unk0217aa08_08_04 Unk0217aa08_08_04;
+typedef struct PackedGrandPrixRecord PackedGrandPrixRecord;
 
-void func_02056aa4(Unk0217aa08_08_04 *a, TimeRecord *b);
+void func_02056aa4(PackedGrandPrixRecord *a, TimeRecord *b);

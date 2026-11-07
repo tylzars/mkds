@@ -75,7 +75,7 @@ void func_0202dfd4(void *a) {
     for (i = 0; i < 10; i++) {
         data_02174e44->mUnk_894[i] = -1;
     }
-    data_02174e44->mUnk_8bc = (u8 *) func_02061644((u32) a);
+    data_02174e44->mUnk_8bc = (u8 *) CreateCourseGhostRecords((u32) a);
     func_02061540(data_02174e44->mUnk_8bc);
     func_02057d9c();
     for (i = 0; i < 0x20; i++) {

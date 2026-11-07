@@ -113,7 +113,7 @@ void func_02035c14(void) {
 
 static inline s32 func_0203551c_inline(void) {
     Unk021759d4 *p = data_021759d4;
-    if (p->mUnk_0c != 0) {
+    if (p->mBackupEnabled != 0) {
         return p->mUnk_10;
     }
     return 0;

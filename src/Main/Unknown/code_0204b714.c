@@ -98,18 +98,18 @@ void func_0204ba7c(void) {
 void func_0204ba2c(void *a) {
     data_021759d4 = HeapAlloc(a, 0x70);
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2) {
-        data_021759d4->mUnk_60 = HeapAllocAligned(a, 0x2c00, 0x20);
+        data_021759d4->mBuffer = HeapAllocAligned(a, 0x2c00, 0x20);
         data_021759d4->mUnk_64 = HeapAllocAligned(a, 1, 0x20);
     }
-    data_021759d4->mUnk_0c = 0;
+    data_021759d4->mBackupEnabled = 0;
 }
 
 void func_0204b9ac(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 || OS_IsRunOnEmulator() != 0) {
-        data_021759d4->mUnk_0c = 0;
+        data_021759d4->mBackupEnabled = 0;
         return;
     }
-    data_021759d4->mUnk_0c = 1;
+    data_021759d4->mBackupEnabled = 1;
     func_0204b3a4();
     CARD_IdentifyBackup(0x1202);
     func_0204b3dc();
@@ -243,14 +243,14 @@ void func_0204b7b8(void (*a)(u32 *, u32)) {
             return;
         }
         if (e == 2) {
-            data_021759d4->mUnk_0c = 0;
+            data_021759d4->mBackupEnabled = 0;
         }
         func_0204b344(e);
     }
 }
 
 u32 func_0204b714(u32 a, u32 *b, u32 n, void (*c)(u32 *, u32), s32 d, u32 e, s32 f) {
-    if (data_021759d4->mUnk_0c == 0 || CARD_TryWaitBackupAsync() == 0) {
+    if (data_021759d4->mBackupEnabled == 0 || CARD_TryWaitBackupAsync() == 0) {
         return 0;
     }
     if (func_0204b3a4() == 0) {

@@ -89,9 +89,9 @@ s32 func_02056574(s32 a, Unk020565e4 *b) {
 
 void func_02056464(Unk0217aa00_45c *a) {
     MI_CpuCopy8(data_0217aa08->mUnk_00->mUnk_0c, a->mUnk_000, 0x14);
-    if (data_0217aa08->mUnk_04->mUnk_004 != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
+    if (data_0217aa08->mEmblemRecord->mFilled != 0 && data_0217aa08->mUnk_00->mUnk_31_3 == 0) {
         a->mUnk_214 = 1;
-        MI_CpuCopy8(data_0217aa08->mUnk_04->mUnk_008, &a->mUnk_014, 0x200);
+        MI_CpuCopy8(data_0217aa08->mEmblemRecord->mEmblemData, &a->mUnk_014, 0x200);
     } else {
         a->mUnk_214 = 0;
         MI_CpuFill8(&a->mUnk_014, 0, 0x200);

@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-u32 func_0205d0bc(void *arg0);
+u32 func_0205d0bc(void *heap);

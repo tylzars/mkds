@@ -865,7 +865,7 @@ void AdvanceKeyboardState11(void) {
     if (IsTxtSystemState2NoCloseRequest() != 0) {
         p = gKeyboard;
         if (p->mStateFrames > 0x5a) {
-            w = (data_0217aa08->mUnk_28 == 0) ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1;
+            w = (data_0217aa08->mUnk_28 == 0) ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0) : 1;
             if (w == 0) {
                 p->mNextState = 0xc;
                 gKeyboard->mStateFrames = 0;
@@ -888,7 +888,7 @@ void AdvanceKeyboardState12(void) {
         RequestTxtSystemClose();
     }
     if (IsTxtSystemState0NoOpenRequest() != 0) {
-        w = (data_0217aa08->mUnk_28 == 0) ? (data_021759d4->mUnk_0c != 0 ? data_021759d4->mUnk_10 : 0) : 1;
+        w = (data_0217aa08->mUnk_28 == 0) ? (data_021759d4->mBackupEnabled != 0 ? data_021759d4->mUnk_10 : 0) : 1;
         if (w == 0) {
             SetTxtSystemOpenSoundId(0x23);
             v = gKeyboard->mUnk_2c[2].mMode;

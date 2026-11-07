@@ -3,15 +3,15 @@
 #include "code_0214d018.h"
 
 #pragma thumb on
-void func_02057cfc(u32 arg0, u32 arg1) {
-    u32 value0 = arg0;
-    u32 value1 = arg1;
-    u32 value2;
+void CopyBackupReadToBlock(u32 buffer, u32 length) {
+    u32 source = buffer;
+    u32 value1 = length;
+    u32 size;
     u32 value3;
-    value2 = (value1) + (0u);
+    size = (value1) + (0u);
     value1 = (u32) &data_021759d4;
     value1 = *(const u32 *) ((value1) + 0u);
     value1 = *(const u32 *) ((value1) + 104u);
-    MI_CpuCopy8((const void *) value0, (void *) value1, value2);
+    MI_CpuCopy8((const void *) source, (void *) value1, size);
 }
 #pragma thumb off

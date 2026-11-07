@@ -13,8 +13,8 @@ void func_020579d0(u32 a, const void *b) {
     void *p;
 
     t = a * 0xe00;
-    p = data_021759d4->mUnk_60;
-    if (data_021759d4->mUnk_0c != 0) {
+    p = data_021759d4->mBuffer;
+    if (data_021759d4->mBackupEnabled != 0) {
         MI_CpuCopy8(b, p, 0xe00);
         *(u32 *) p = 0x47504b4e;
         func_0204b418(t + 0xaf00, p, 0xe00, 0);
@@ -28,10 +28,10 @@ void func_0205798c(u8 a, GhostRecord *b) {
 
     t = a * 0xe00;
     d = data_021759d4;
-    p = d->mUnk_60;
-    if (d->mUnk_0c != 0) {
-        d->mUnk_68 = b;
-        func_0204b6f8(t + 0xaf00, p, 0xe00, func_02057cfc, 0x47504b4e);
+    p = d->mBuffer;
+    if (d->mBackupEnabled != 0) {
+        d->mReadTarget = b;
+        func_0204b6f8(t + 0xaf00, p, 0xe00, CopyBackupReadToBlock, 0x47504b4e);
     }
 }
 
@@ -40,8 +40,8 @@ void func_02057944(s32 a, const void *b) {
     void *p;
 
     t = a << 12;
-    p = data_021759d4->mUnk_60;
-    if (data_021759d4->mUnk_0c != 0) {
+    p = data_021759d4->mBuffer;
+    if (data_021759d4->mBackupEnabled != 0) {
         MI_CpuCopy8(b, p, 0x1000);
         *(u32 *) p = 0x47444b4e;
         func_0204b418(t + 0x26f00, p, 0x1000, 0);
@@ -55,11 +55,11 @@ void func_020578fc(u32 a, GhostRecord *b) {
 
     t = a << 12;
     d = data_021759d4;
-    c = d->mUnk_0c;
+    c = d->mBackupEnabled;
     if (c != 0) {
-        d->mUnk_68 = b;
+        d->mReadTarget = b;
         data_021759d4->mUnk_6c = a;
-        func_0204b6f8(t + 0x26f00, data_021759d4->mUnk_60, 0x1000, func_02057cfc, 0x47444b4e);
+        func_0204b6f8(t + 0x26f00, data_021759d4->mBuffer, 0x1000, CopyBackupReadToBlock, 0x47444b4e);
     }
 }
 

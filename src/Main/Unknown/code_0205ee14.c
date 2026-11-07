@@ -178,7 +178,7 @@ void func_0205fa00(u32 a, s32 *b, u32 c, u32 d) {
     h = r;
     func_0205ee14(h, &e);
     if (e.mFilled == 0) {
-        func_02057624((u32) &e);
+        ResetBuddyRecord((u32) &e);
     }
     if (gRaceSetup->mCurrentEntries[a].mPlayer.mName != NULL) {
         MI_CpuCopy8(gRaceSetup->mCurrentEntries[a].mPlayer.mName, e.mName, 0x14);
@@ -451,10 +451,10 @@ static inline u16 func_0205ef70_inline(u16 a) {
     s32 d;
     Unk0217aa1c_00 *p;
 
-    b = func_0205dc7c(a);
+    b = GetLowByte(a);
     c = GetCourseIndexInCup();
-    d = func_0205dc7c(b);
-    p = &data_0217aa1c->mUnk_000[c][0];
+    d = GetLowByte(b);
+    p = &gCupRecords->mUnk_000[c][0];
     p += d;
     return p->mUnk_00;
 }

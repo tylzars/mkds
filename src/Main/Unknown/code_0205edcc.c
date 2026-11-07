@@ -9,7 +9,7 @@ void func_0205edf8(void) {
     value0 = (u32) &data_0217aa08;
     value0 = *(const u32 *) ((value0) + (0));
     value0 = *(const u32 *) ((value0) + (32));
-    func_020577b4((void *) value0);
+    WriteBackupBuddyRecordBlock((void *) value0);
 }
 
 void func_0205edcc(void) {
@@ -17,6 +17,6 @@ void func_0205edcc(void) {
     value0 = (u32) &data_0217aa08;
     value0 = *(const u32 *) ((value0) + (0));
     value0 = *(const u32 *) ((value0) + (32));
-    func_020577b4((void *) value0);
+    WriteBackupBuddyRecordBlock((void *) value0);
     func_020574a0();
 }

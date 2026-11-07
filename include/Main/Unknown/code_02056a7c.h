@@ -4,4 +4,4 @@
 
 typedef struct TimeRecord TimeRecord;
 
-u32 func_02056a7c(int a, int b, TimeRecord *c);
+u32 GetGrandPrixRecord(int cup, int engineClass, TimeRecord *record);

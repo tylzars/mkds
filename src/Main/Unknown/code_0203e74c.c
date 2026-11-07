@@ -326,9 +326,9 @@ void FinishRaceProgressKart(RaceProgressKart *a, s32 b) {
             a->mScore = ComputeRaceProgressKartScore((u32) (a->mUnk_3c << 24) >> 28);
             d = a->mScore;
             if (gRaceSetup->mMode == MODE_MISSION_RUN) {
-                data_0217aa1c->mUnk_140 = d;
+                gCupRecords->mUnk_140 = d;
             } else {
-                data_0217aa1c->mUnk_140 += d;
+                gCupRecords->mUnk_140 += d;
             }
         }
     }

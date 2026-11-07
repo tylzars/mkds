@@ -139,7 +139,7 @@ s32 func_021236f8(void) {
             UpdateWiFiSessionStepTimeout(0x1c20);
             if (data_0217aa08->mUnk_28 == 0) {
                 r = data_021759d4;
-                if (r->mUnk_0c != 0) {
+                if (r->mBackupEnabled != 0) {
                     v = r->mUnk_10;
                 } else {
                     v = 0;

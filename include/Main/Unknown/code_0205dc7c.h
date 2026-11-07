@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-unsigned int func_0205dc7c(unsigned int p0);
+unsigned int GetLowByte(unsigned int p0);

@@ -97,7 +97,7 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
             if ((data_0217aa00->mUnk_0457 & (1 << data_0217aa00->mUnk_1e8c[j])) == 0) {
                 if ((data_0217aa00->mUnk_15f6 & (1 << j)) != 0) {
                     e = &data_0217aa00->mUnk_045c[j];
-                    t = func_02060c68(e, 1);
+                    t = SetBuddyRecordFromPlayer(e, 1);
                     if (t != -1) {
                         if (e->mUnk_214 != 0) {
                             d[j] = t;
@@ -108,8 +108,8 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
             }
         }
     }
-    func_020577b4(data_0217aa08->mBuddyRecordBlock);
-    if (data_021759d4->mUnk_0c != 0) {
+    WriteBackupBuddyRecordBlock(data_0217aa08->mBuddyRecordBlock);
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     for (i = 0; i < 12; i++) {
@@ -117,7 +117,7 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
             r = data_0217aa08->mUnk_24;
             if (func_0205743c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2) != 0) {
                 func_020576b8(r, i);
-                if (data_021759d4->mUnk_0c != 0) {
+                if (data_021759d4->mBackupEnabled != 0) {
                     CARD_WaitBackupAsync();
                 }
             } else {
@@ -136,14 +136,14 @@ void CopyOtherPlayerEmblemsToBlocks(void) {
                 }
             }
             func_02057710(r, i);
-            if (data_021759d4->mUnk_0c != 0) {
+            if (data_021759d4->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
         }
     }
     if (f != FALSE) {
         func_02057ca4(data_0217aa08->mUnk_00);
-        if (data_021759d4->mUnk_0c != 0) {
+        if (data_021759d4->mBackupEnabled != 0) {
             CARD_WaitBackupAsync();
         }
     }
@@ -171,7 +171,7 @@ void CopyWiFiOtherEmblemsToBlocks(void) {
         if (j != func_ov000_0219bb50()) {
             e = GetWiFiSessionPlayerRecordData(j & 0xff);
             if (e != NULL) {
-                t = func_02060c68(e, 0);
+                t = SetBuddyRecordFromPlayer(e, 0);
                 if (t != -1) {
                     if (e->mUnk_214 != 0) {
                         d[j] = t;
@@ -181,8 +181,8 @@ void CopyWiFiOtherEmblemsToBlocks(void) {
             }
         }
     }
-    func_020577b4(data_0217aa08->mBuddyRecordBlock);
-    if (data_021759d4->mUnk_0c != 0) {
+    WriteBackupBuddyRecordBlock(data_0217aa08->mBuddyRecordBlock);
+    if (data_021759d4->mBackupEnabled != 0) {
         CARD_WaitBackupAsync();
     }
     for (i = 0; i < 12; i++) {
@@ -190,7 +190,7 @@ void CopyWiFiOtherEmblemsToBlocks(void) {
             r = data_0217aa08->mUnk_24;
             if (func_0205743c(i, &data_0217aa08->mUnk_00->mUnk_2c[2], 2) != 0) {
                 func_020576b8(r, i);
-                if (data_021759d4->mUnk_0c != 0) {
+                if (data_021759d4->mBackupEnabled != 0) {
                     CARD_WaitBackupAsync();
                 }
             } else {
@@ -209,7 +209,7 @@ void CopyWiFiOtherEmblemsToBlocks(void) {
                 }
             }
             func_02057710(r, i);
-            if (data_021759d4->mUnk_0c != 0) {
+            if (data_021759d4->mBackupEnabled != 0) {
                 CARD_WaitBackupAsync();
             }
         }

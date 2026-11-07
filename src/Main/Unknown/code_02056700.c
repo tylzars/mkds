@@ -21,17 +21,17 @@
 
 #pragma thumb on
 
-void func_02056a4c(Unk0217aa08_10_04 *a, Unk02056a2c *b) {
+void func_02056a4c(MissionRecord *a, Unk02056a2c *b) {
     if (b->mUnk_00 != 0) {
-        a->mUnk_00_0 = 1;
+        a->mFilled = 1;
         a->mUnk_00_1 = b->mUnk_01;
     } else {
-        a->mUnk_00_0 = 0;
+        a->mFilled = 0;
     }
 }
 
-void func_02056a2c(Unk0217aa08_10_04 *a, Unk02056a2c *b) {
-    if (a->mUnk_00_0 != 0) {
+void func_02056a2c(MissionRecord *a, Unk02056a2c *b) {
+    if (a->mFilled != 0) {
         b->mUnk_00 = 1;
         b->mUnk_01 = a->mUnk_00_1;
     } else {
@@ -40,17 +40,17 @@ void func_02056a2c(Unk0217aa08_10_04 *a, Unk02056a2c *b) {
 }
 
 void func_02056a04(s32 a, s32 b, Unk02056a2c *c) {
-    func_02056a4c(&data_0217aa08->mUnk_10->mUnk_04[(a - 1) * 9 + b - 1], c);
+    func_02056a4c(&data_0217aa08->mMissionRecordBlock->mRecords[(a - 1) * 9 + b - 1], c);
 }
 
 s32 func_020569dc(s32 a, s32 b, Unk02056a2c *c) {
-    func_02056a2c(&data_0217aa08->mUnk_10->mUnk_04[(a - 1) * 9 + b - 1], c);
+    func_02056a2c(&data_0217aa08->mMissionRecordBlock->mRecords[(a - 1) * 9 + b - 1], c);
     return 1;
 }
 
 void func_020569a8(void *a) {
-    MI_CpuCopy8(a, data_0217aa08->mUnk_04->mUnk_008, 0x200);
-    data_0217aa08->mUnk_04->mUnk_004 = 1;
+    MI_CpuCopy8(a, data_0217aa08->mEmblemRecord->mEmblemData, 0x200);
+    data_0217aa08->mEmblemRecord->mFilled = 1;
     func_02056430();
 }
 

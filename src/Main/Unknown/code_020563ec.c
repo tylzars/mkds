@@ -6,7 +6,7 @@
 #pragma thumb on
 
 void func_020563ec(void) {
-    func_02057af4(data_0217aa08->mUnk_0c);
+    WriteBackupCourseTimeRecordBlock(data_0217aa08->mCourseTimeRecordBlock);
     func_020574a0();
 }
 
