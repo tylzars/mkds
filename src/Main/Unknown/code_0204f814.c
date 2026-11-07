@@ -135,7 +135,7 @@ s32 func_0204fcec(u16 a, void *b) {
                     }
                     r = TRUE;
                 }
-            } else if ((data_0217aa00->mUnk_0044.mUnk_43 & (1 << a)) != 0) {
+            } else if ((data_0217aa00->mUnk_0044.mChildMask & (1 << a)) != 0) {
                 if (b != NULL) {
                     MI_CpuCopy8(&data_0217aa00->mUnk_045c[a], b, 0x14);
                 }

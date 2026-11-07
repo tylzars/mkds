@@ -12,7 +12,7 @@ void func_0204f148(void) {
     u8 v;
     s32 s = data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000;
     if (s == 1) {
-        v = data_0217aa00->mUnk_0044.mUnk_43;
+        v = data_0217aa00->mUnk_0044.mChildMask;
     } else {
         v = 1;
     }

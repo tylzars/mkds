@@ -125,7 +125,7 @@ void Disconnect(void) {
     p = &data_0217aa00->mUnk_0044;
     switch (func_02050650_inline()) {
         case 1:
-            for (i = 0, e = p->mUnk_00; i < p->mUnk_40; i++, e++) {
+            for (i = 0, e = p->mUnk_00; i < p->mChildCount; i++, e++) {
                 if (e->mUnk_06 != 0xffff) {
                     data_0217aa00->mUnk_0044.mUnk_41 = i;
                     data_0217aa00->mUnk_000c = 0x14;
@@ -290,12 +290,12 @@ void AddChild(u32 a, u8 *b, Unk0217aa00_45c *c) {
     Unk0217aa00_44 *p;
 
     p = &data_0217aa00->mUnk_0044;
-    if (p->mUnk_40 >= 7) {
+    if (p->mChildCount >= 7) {
         return;
     }
     p->mUnk_00[a - 1].mUnk_06 = a;
-    p->mUnk_40 += 1;
-    p->mUnk_43 |= 1 << a;
+    p->mChildCount += 1;
+    p->mChildMask |= 1 << a;
     p->mUnk_00[0].mUnk_00[0] = b[0];
     p->mUnk_00[0].mUnk_00[1] = b[1];
     p->mUnk_00[0].mUnk_00[2] = b[2];
@@ -311,8 +311,8 @@ void AddChild(u32 a, u8 *b, Unk0217aa00_45c *c) {
 
 static inline void func_0205081c_inline2(u16 v) {
     Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
-    p->mUnk_10 = v;
-    p->mUnk_12 = 1;
+    p->mNextState = v;
+    p->mNextStateRequested = 1;
 }
 
 static inline void func_0205081c_inline(u8 v) {
@@ -347,7 +347,7 @@ static inline void func_02050b88_inline(u16 v1) {
         if ((v1 & (1 << i)) != 0) {
             f = data_0217aa00->mUnk_0004 == 9 ? 1 : 0;
             if (func_02050650_inline() == 1) {
-                data_0217aa00->mUnk_0044.mUnk_43 &= ~(1 << i);
+                data_0217aa00->mUnk_0044.mChildMask &= ~(1 << i);
                 if (f != 0) {
                     data_0217aa00->mUnk_008a |= 1 << i;
                 }
@@ -372,12 +372,12 @@ void RemoveChild(u32 a) {
         return;
     }
     p->mUnk_00[a - 1].mUnk_06 = 0xffff;
-    p->mUnk_40 -= 1;
+    p->mChildCount -= 1;
     func_02050b88_inline(1 << a);
     data_0217aa00->mUnk_008b |= 8;
     switch (data_0217aa00->mUnk_0004) {
         case 9:
-            if (p->mUnk_40 < 1) {
+            if (p->mChildCount < 1) {
                 data_0217aa00->mUnk_0008 = 0;
                 data_0217aa00->mUnk_0010 = 0;
             }
@@ -397,7 +397,7 @@ void ProcessMPData(u32 a, Unk0205081c *b) {
             break;
         case 4:
             data_0217aa00->mUnk_1d54 |= 1 << a;
-            if (data_0217aa00->mUnk_1d54 == data_0217aa00->mUnk_0044.mUnk_43) {
+            if (data_0217aa00->mUnk_1d54 == data_0217aa00->mUnk_0044.mChildMask) {
                 data_0217aa00->mUnk_0010 = 0;
             }
             break;
@@ -477,7 +477,7 @@ BOOL QueueMPDataToPort(void *a, s32 b, u16 c, void *d, QueueMPDataToPortParams *
     n = b;
     switch (func_02050650_inline()) {
         case 1:
-            if (data_0217aa00->mUnk_0044.mUnk_43 == 0) {
+            if (data_0217aa00->mUnk_0044.mChildMask == 0) {
                 return FALSE;
             }
             break;
@@ -526,7 +526,7 @@ BOOL func_020504a4(s32 a, u16 b) {
     MI_CpuCopy8(&data_0217aa00->mUnk_045c[a], v1.mUnk_02, 0x14);
     v1.mUnk_16 = a;
     if (func_02050650_inline() == 1) {
-        v1.mUnk_17 = data_0217aa00->mUnk_0044.mUnk_43 | 1;
+        v1.mUnk_17 = data_0217aa00->mUnk_0044.mChildMask | 1;
     } else {
         v1.mUnk_17 = 0;
     }

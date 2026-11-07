@@ -341,10 +341,10 @@ typedef struct Unk0217aa00_44 {
     /* 38 */ Unk0217aa00_24_50 *mUnk_38;
     /* 3c */ u16 mUnk_3c;
     /* 3e */ u16 mUnk_3e;
-    /* 40 */ u8 mUnk_40;
+    /* 40 */ u8 mChildCount;
     /* 41 */ s8 mUnk_41;
     /* 42 */ u8 mUnk_42;
-    /* 43 */ u8 mUnk_43;
+    /* 43 */ u8 mChildMask;
 } Unk0217aa00_44;
 
 // 8-byte entries behind member 0x1e48 of data_0217aa00.
@@ -367,12 +367,12 @@ typedef struct Unk0217aa00_1e52 {
 // Part of Unk0217aa00 from 0x1608.
 typedef struct Unk0217aa00_1608 {
     /* 00 */ void *mUnk_00;
-    /* 04 */ s32 mUnk_04;
+    /* 04 */ s32 mStateFrames;
     /* 08 */ void *mUnk_08;
     /* 0c */ u16 mUnk_0c;
-    /* 0e */ u16 mUnk_0e;
-    /* 10 */ u16 mUnk_10;
-    /* 12 */ u16 mUnk_12;
+    /* 0e */ u16 mState;
+    /* 10 */ u16 mNextState;
+    /* 12 */ u16 mNextStateRequested;
     /* 14 */ u16 mUnk_14;
     /* 16 */ u16 mUnk_16;
     /* 18 */ s16 mUnk_18;
@@ -666,8 +666,8 @@ typedef struct Unk0217aa00 {
     };
     /* 1608 */ Unk0217aa00_1608 mUnk_1608;
     /* 1624 */ void *mUnk_1624;
-    /* 1628 */ u8 mUnk_1628;
-    /* 1629 */ u8 mUnk_1629;
+    /* 1628 */ u8 mEntryChunkIndex;
+    /* 1629 */ u8 mEntryChunkSlot;
     /* 162a */ u8 mUnk_162a;
     /* 162b */ u8 mUnk_162b[0x1];
     /* 162c */ u8 *mUnk_162c[8];

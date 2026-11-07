@@ -128,7 +128,7 @@ void func_02055340(void) {
             func_02001000();
             break;
         case 2:
-            b = data_0217aa00->mUnk_0044.mUnk_43;
+            b = data_0217aa00->mUnk_0044.mChildMask;
             v1 = b | 1;
             if (data_0217aa00->mUnk_0044.mUnk_3e >= 8) {
                 data_0217aa00->mUnk_0044.mUnk_3e++;

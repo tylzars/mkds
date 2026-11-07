@@ -30,8 +30,8 @@ void func_02059008(void) {
     v1 = func_0205910c();
     if (v1 == 1) {
         v2 = &data_0217aa00->mUnk_1608;
-        v2->mUnk_10 = 0x14;
-        v2->mUnk_12 = 1;
+        v2->mNextState = 0x14;
+        v2->mNextStateRequested = 1;
     }
 }
 
@@ -53,8 +53,8 @@ void func_02058fb4(void) {
     v1 = func_0205905c();
     if (v1 == 1) {
         v2 = &data_0217aa00->mUnk_1608;
-        v2->mUnk_10 = 0x13;
-        v2->mUnk_12 = 1;
+        v2->mNextState = 0x13;
+        v2->mNextStateRequested = 1;
     }
 }
 
@@ -84,8 +84,8 @@ void func_02058f28(void) {
     v1 = func_02058dc0(func_02058f58);
     if (v1 == 1) {
         v2 = &data_0217aa00->mUnk_1608;
-        v2->mUnk_10 = 0xf;
-        v2->mUnk_12 = 1;
+        v2->mNextState = 0xf;
+        v2->mNextStateRequested = 1;
     }
 }
 

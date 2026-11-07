@@ -152,7 +152,7 @@ BOOL func_0205373c(void) {
     data_0217aa00->mUnk_0454 &= ~0x10;
     switch (data_0217aa00 == NULL ? 0 : data_0217aa00->mUnk_0000) {
         case 1:
-            if (data_0217aa00->mUnk_0044.mUnk_40 != 0) {
+            if (data_0217aa00->mUnk_0044.mChildCount != 0) {
                 StepDataSharing();
             } else {
                 return FALSE;

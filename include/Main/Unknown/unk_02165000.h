@@ -45,7 +45,7 @@ extern const SceneCallbacks data_02165280;
 extern QueueMPDataToPortParams data_021652a0;
 extern u16 data_usa_02165228;
 extern QueueMPDataToPortParams data_usa_0216522c;
-extern UnkFunc *const data_021652b0[];
+extern UnkFunc *const gMPStateTable[];
 extern UnkFunc *const data_02165388[];
 struct Kart;
 extern void (*const gKartStateFunctions[])(struct Kart *);

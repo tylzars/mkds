@@ -50,11 +50,11 @@ BOOL func_020591cc(void) {
     }
     func_02046b40(&data_0217aa00->mUnk_1608);
     if (!func_0205905c_inline4()) {
-        if (func_0205905c_inline() == 1 && data_0217aa00->mUnk_0044.mUnk_40 == 0) {
+        if (func_0205905c_inline() == 1 && data_0217aa00->mUnk_0044.mChildCount == 0) {
             func_02050e60(7);
         }
     }
-    if (data_0217aa00->mUnk_1608.mUnk_0e == 0xf) {
+    if (data_0217aa00->mUnk_1608.mState == 0xf) {
         r = TRUE;
     }
     return r;

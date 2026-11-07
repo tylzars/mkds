@@ -57,7 +57,7 @@ BOOL func_0204eb08(void *a) {
         if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
             v = data_0217aa00->mUnk_1699;
         } else {
-            v = data_0217aa00->mUnk_0044.mUnk_40;
+            v = data_0217aa00->mUnk_0044.mChildCount;
         }
     } else {
         v = 0;
@@ -69,7 +69,7 @@ BOOL func_0204eb08(void *a) {
         return FALSE;
     }
     i = 1;
-    m = data_0217aa00->mUnk_0044.mUnk_43;
+    m = data_0217aa00->mUnk_0044.mChildMask;
     do {
         if ((m & (1 << i)) != 0) {
             MI_CpuCopy8(&data_0217aa00->mUnk_045c[i], a, 0x14);

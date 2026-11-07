@@ -31,8 +31,8 @@ static inline u32 func_02059878_inline(void) {
 
 static inline void func_02059878_inline2(u16 v) {
     Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
-    p->mUnk_10 = v;
-    p->mUnk_12 = 1;
+    p->mNextState = v;
+    p->mNextStateRequested = 1;
 }
 
 u32 func_02059b28(u32 a) {
@@ -87,7 +87,8 @@ void func_02059954(u8 *a) {
         case 0xfd:
             if (func_02059878_inline() == 1) {
                 data_0217aa00->mUnk_162a |= 1 << i;
-                if (data_0217aa00->mUnk_0044.mUnk_43 == (data_0217aa00->mUnk_0044.mUnk_43 & data_0217aa00->mUnk_162a)) {
+                if (data_0217aa00->mUnk_0044.mChildMask ==
+                    (data_0217aa00->mUnk_0044.mChildMask & data_0217aa00->mUnk_162a)) {
                     func_02059878_inline2(10);
                 }
             }
@@ -107,7 +108,7 @@ void func_02059954(u8 *a) {
     if (f != 0) {
         m = 1U << a[0];
         if (func_02059878_inline() == 1) {
-            if (func_020586ac(0xff, NULL, 0, 0, m) != FALSE) {
+            if (QueueMPChunk(0xff, NULL, 0, 0, m) != FALSE) {
                 data_0217aa00->mUnk_162a |= 1 << a[0];
                 return;
             }
@@ -115,7 +116,7 @@ void func_02059954(u8 *a) {
             data_0217aa00->mUnk_162a |= 1 << a[0];
             if (data_0217aa00->mUnk_043a == (data_0217aa00->mUnk_043a & data_0217aa00->mUnk_162a)) {
                 v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
-                if (func_020586ac(0xfd, NULL, 0, v, 1) != FALSE) {
+                if (QueueMPChunk(0xfd, NULL, 0, v, 1) != FALSE) {
                     func_02059878_inline2(10);
                 }
             }
@@ -141,11 +142,11 @@ void func_02059878(void) {
     Unk0217aa00 *p;
     u32 v;
 
-    func_02046be8(&data_0217aa00->mUnk_1608, data_021652b0, 0x17, NULL);
+    func_02046be8(&data_0217aa00->mUnk_1608, gMPStateTable, 0x17, NULL);
     data_0217aa00->mUnk_164e = 0;
     data_0217aa00->mUnk_1608.mUnk_14 = 0;
     data_0217aa00->mUnk_1608.mUnk_1a = 0;
-    data_0217aa00->mUnk_1628 = 0;
+    data_0217aa00->mEntryChunkIndex = 0;
     data_0217aa00->mUnk_162a = 0;
     data_0217aa00->mUnk_164c = 0;
     p = data_0217aa00;
@@ -154,7 +155,7 @@ void func_02059878(void) {
         v = p->mUnk_0000;
     }
     if (v == 1) {
-        p->mUnk_0044.mUnk_42 = (p->mUnk_0454 & 0x40) != 0 ? p->mUnk_1695 : p->mUnk_0044.mUnk_43;
+        p->mUnk_0044.mUnk_42 = (p->mUnk_0454 & 0x40) != 0 ? p->mUnk_1695 : p->mUnk_0044.mChildMask;
     }
     data_0217aa00->mUnk_1eb0 = 0;
 }

@@ -658,7 +658,7 @@ s32 func_02030ea4(Unk02030b18 *a) {
             if ((data_0217aa00->mUnk_0454 & 0x40) != 0) {
                 x = data_0217aa00->mUnk_1699;
             } else {
-                x = data_0217aa00->mUnk_0044.mUnk_40;
+                x = data_0217aa00->mUnk_0044.mChildCount;
             }
         } else {
             x = 0;

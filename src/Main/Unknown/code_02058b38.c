@@ -22,8 +22,8 @@ static inline u32 func_02058b38_inline(void) {
 
 static inline void func_02058b74_inline(u16 v) {
     Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
-    p->mUnk_10 = v;
-    p->mUnk_12 = 1;
+    p->mNextState = v;
+    p->mNextStateRequested = 1;
 }
 
 static inline s32 func_02058cac_inline2(void) {
@@ -76,7 +76,8 @@ s32 func_02058dc0(void (*a)(void)) {
             data_0217aa00->mUnk_1e34 = 1;
             break;
         case 6:
-            if (data_0217aa00->mUnk_0044.mUnk_43 == (data_0217aa00->mUnk_0044.mUnk_43 & data_0217aa00->mUnk_1d54)) {
+            if (data_0217aa00->mUnk_0044.mChildMask ==
+                (data_0217aa00->mUnk_0044.mChildMask & data_0217aa00->mUnk_1d54)) {
                 data_0217aa00->mUnk_1e34 = 7;
             }
             break;
@@ -129,11 +130,11 @@ s32 func_02058cac(void) {
     }
     func_02046b40(&data_0217aa00->mUnk_1608);
     if (!func_02058cac_inline4()) {
-        if (func_02058b38_inline() == 1 && data_0217aa00->mUnk_0044.mUnk_40 == 0) {
+        if (func_02058b38_inline() == 1 && data_0217aa00->mUnk_0044.mChildCount == 0) {
             func_02050e60(7);
         }
     }
-    if (data_0217aa00->mUnk_1608.mUnk_0e == 0xf) {
+    if (data_0217aa00->mUnk_1608.mState == 0xf) {
         r = TRUE;
     }
     return r;
@@ -187,7 +188,7 @@ void func_02058b74(void) {
 
 void func_02058b38(void) {
     if (func_02058b38_inline() == 1) {
-        data_0217aa00->mUnk_15f6 = data_0217aa00->mUnk_0044.mUnk_43 | 1;
+        data_0217aa00->mUnk_15f6 = data_0217aa00->mUnk_0044.mChildMask | 1;
     }
     data_0217aa00->mUnk_1608.mUnk_14 = 0;
 }

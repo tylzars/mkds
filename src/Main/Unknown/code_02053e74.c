@@ -70,7 +70,7 @@ static inline s32 func_02054754_inline(Unk0217aa00_15c8 *e) {
 }
 
 static inline s32 func_02054754_inline2(Unk0217aa00_15bc *q, Unk0217aa00_15c8 *e) {
-    u8 mask = data_0217aa00->mUnk_0044.mUnk_43;
+    u8 mask = data_0217aa00->mUnk_0044.mChildMask;
     u8 i;
     BOOL ok = FALSE;
     u16 m;
@@ -351,7 +351,7 @@ s32 func_0205465c(void) {
             if ((p->mUnk_0454 & 0x40) != 0) {
                 x = p->mUnk_1699;
             } else {
-                x = p->mUnk_0044.mUnk_40;
+                x = p->mUnk_0044.mChildCount;
             }
         } else {
             x = 0;
@@ -461,8 +461,8 @@ void func_02053fa8(void) {
         }
     }
     data_0217aa00->mUnk_0044.mUnk_42 = 0;
-    data_0217aa00->mUnk_0044.mUnk_43 = 0;
-    data_0217aa00->mUnk_0044.mUnk_40 = 0;
+    data_0217aa00->mUnk_0044.mChildMask = 0;
+    data_0217aa00->mUnk_0044.mChildCount = 0;
     data_0217aa00->mUnk_0044.mUnk_3c = 0;
     data_0217aa00->mUnk_0044.mUnk_41 = -1;
     data_0217aa00->mUnk_0088 = -1;

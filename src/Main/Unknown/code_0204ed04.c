@@ -59,7 +59,7 @@ void func_0204ed84(void) {
             case 1:
                 data_usa_0216522c.mMaxDataSize = 0x192;
                 b = func_02006954(data_0217aa00->mUnk_1e30, 0x192);
-                c = data_0217aa00->mUnk_0044.mUnk_43;
+                c = data_0217aa00->mUnk_0044.mChildMask;
                 break;
             case 2:
                 data_usa_0216522c.mMaxDataSize = 0xe;

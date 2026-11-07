@@ -147,7 +147,7 @@ s32 func_0204dc8c(void) {
     BOOL r = FALSE;
     Unk0217aa00 *g = data_0217aa00;
     u32 a = g->mUnk_1695;
-    u8 b = g->mUnk_0044.mUnk_43;
+    u8 b = g->mUnk_0044.mChildMask;
 
     if (a == (a & b)) {
         r = TRUE;

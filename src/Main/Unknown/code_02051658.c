@@ -573,7 +573,7 @@ void SetGameInfo(void) {
     data_0217aa00->mUnk_000c = 0xf;
     data_0217aa00->mUnk_0010 = 1;
     p = &data_0217aa00->mUnk_0044;
-    p->mUnk_38->mUnk_0e.mUnk_06_0 = p->mUnk_40;
+    p->mUnk_38->mUnk_0e.mUnk_06_0 = p->mChildCount;
     r = TRUE;
     if (data_0217aa00->mUnk_0004 != 8 && data_0217aa00->mUnk_0004 != 9) {
         r = FALSE;

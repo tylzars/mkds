@@ -38,8 +38,8 @@ void func_02058b10(void) {
     Unk0217aa00_1608 *v1;
     func_020562e8();
     v1 = &data_0217aa00->mUnk_1608;
-    v1->mUnk_10 = 0xf;
-    v1->mUnk_12 = 1;
+    v1->mNextState = 0xf;
+    v1->mNextStateRequested = 1;
 }
 
 #pragma thumb off
@@ -53,7 +53,7 @@ static inline u32 func_02058a40_inline(void) {
     return data_0217aa00->mUnk_0000;
 }
 
-void func_02058aa0(void) {
+void UpdateMPState5(void) {
     u8 v;
     u16 w;
 
@@ -74,19 +74,19 @@ void func_02058aa0(void) {
     }
 }
 
-void func_02058a40(void) {
+void UpdateMPState6(void) {
     Unk0217aa00_1608 *p;
 
     if (func_02058a40_inline() == 1 && (data_0217aa00->mUnk_0454 & 1)) {
-        if (QueueMPDataHalfwordAndWord(2, data_0217aa00->mUnk_0044.mUnk_43, data_0217aa00->mUnk_0457) != FALSE) {
+        if (QueueMPDataHalfwordAndWord(2, data_0217aa00->mUnk_0044.mChildMask, data_0217aa00->mUnk_0457) != FALSE) {
             p = &data_0217aa00->mUnk_1608;
-            p->mUnk_10 = 1;
-            p->mUnk_12 = 1;
+            p->mNextState = 1;
+            p->mNextStateRequested = 1;
         }
     }
 }
 
-void func_02058a18(void) {
+void EnterMPState3(void) {
     data_0217aa00->mUnk_1e34 = 0;
     data_0217aa00->mUnk_1e44 &= ~2;
 }
@@ -95,14 +95,14 @@ void func_02058a18(void) {
 
 #pragma thumb on
 
-void func_020589ec(void) {
+void UpdateMPState3(void) {
     int v1;
     Unk0217aa00_1608 *v2;
     v1 = func_0205955c();
     if (v1 == 1) {
         v2 = &data_0217aa00->mUnk_1608;
-        v2->mUnk_10 = 4;
-        v2->mUnk_12 = 1;
+        v2->mNextState = 4;
+        v2->mNextStateRequested = 1;
     }
 }
 
@@ -112,11 +112,11 @@ void func_020589ec(void) {
 
 static inline void func_02058910_inline(u16 v) {
     Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
-    p->mUnk_10 = v;
-    p->mUnk_12 = 1;
+    p->mNextState = v;
+    p->mNextStateRequested = 1;
 }
 
-void func_0205896c(void) {
+void UpdateMPState1(void) {
     BOOL r;
     BOOL a;
     BOOL b;
@@ -152,13 +152,13 @@ void func_0205896c(void) {
     }
 }
 
-void func_02058950(void) {
+void EnterMPState2(void) {
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
         StartLoadOverlay(2);
     }
 }
 
-void func_02058910(void) {
+void UpdateMPState2(void) {
     if (TryFinishOverlayLoad() != 0) {
         if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2) {
             CreateOverlayFrmHeap();
@@ -168,7 +168,7 @@ void func_02058910(void) {
     }
 }
 
-void func_020588d8(void) {
+void EnterMPState4(void) {
     data_0217aa00->mUnk_1e34 = 0;
     data_0217aa00->mUnk_1e44 &= ~2;
     data_0217aa00->mUnk_164f = 0;
@@ -178,14 +178,14 @@ void func_020588d8(void) {
 
 #pragma thumb on
 
-void func_020588a8(void) {
+void UpdateMPState4(void) {
     int v1;
     Unk0217aa00_1608 *p;
     v1 = func_02058dc0(func_02058efc);
     if (v1 == 1) {
         p = &data_0217aa00->mUnk_1608;
-        p->mUnk_10 = 0xc;
-        p->mUnk_12 = 1;
+        p->mNextState = 0xc;
+        p->mNextStateRequested = 1;
     }
 }
 
@@ -202,11 +202,12 @@ static inline u32 func_02058820_inline(void) {
 
 static inline void func_020587d8_inline(u16 v) {
     Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
-    p->mUnk_10 = v;
-    p->mUnk_12 = 1;
+    p->mNextState = v;
+    p->mNextStateRequested = 1;
 }
 
-void func_02058820(void) {
+// Clears the per-slot flags of received chunks: 0x12 per slot for the parent, 2 for a child.
+void EnterMPState7(void) {
     s32 i;
     u32 j;
     u32 n;
@@ -228,7 +229,7 @@ void func_02058820(void) {
     data_0217aa00->mUnk_162a = 0;
 }
 
-void func_020587d8(void) {
+void UpdateMPState7(void) {
     if (data_0217aa00->mUnk_0010 == 0) {
         switch (data_0217aa00->mUnk_000c) {
             case 0xc:
@@ -244,13 +245,13 @@ void func_020587d8(void) {
     }
 }
 
-void func_02058770(void) {
+void EnterMPState8(void) {
     u16 v;
 
     v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
     func_02056464(&data_0217aa00->mUnk_045c[v]);
     data_0217aa00->mUnk_1608.mUnk_1a |= 1;
-    data_0217aa00->mUnk_1628 = 0;
+    data_0217aa00->mEntryChunkIndex = 0;
     data_0217aa00->mUnk_1608.mUnk_16 = 0;
 }
 
@@ -284,11 +285,11 @@ static inline u32 func_0205821c_inline(void) {
 
 static inline void func_0205821c_inline2(u16 v) {
     Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
-    p->mUnk_10 = v;
-    p->mUnk_12 = 1;
+    p->mNextState = v;
+    p->mNextStateRequested = 1;
 }
 
-BOOL func_020586ac(u8 a, u8 *b, u16 c, u8 d, u8 e) {
+BOOL QueueMPChunk(u8 a, u8 *b, u16 c, u8 d, u8 e) {
     u8 *q;
 
     if ((data_0217aa00->mUnk_1608.mUnk_1a & 1) == 0) {
@@ -328,7 +329,8 @@ BOOL GetEntryChunk(u8 *entry, s32 chunkIndex, s32 chunkSize, u8 **outChunk, u16 
     return TRUE;
 }
 
-void func_02058528(void) {
+// Child: queues its own entry chunk by chunk, again and again. Parent: waits for the children's entries.
+void UpdateMPState8(void) {
     Unk0217aa00 *p;
     u32 a;
     u8 b;
@@ -342,7 +344,7 @@ void func_02058528(void) {
         a = p->mUnk_0044.mUnk_42;
         b = p->mUnk_162a;
         if (a == (a & b)) {
-            if (func_020586ac(0xfe, NULL, (u8) (b | 1), 0, b) != FALSE) {
+            if (QueueMPChunk(0xfe, NULL, (u8) (b | 1), 0, b) != FALSE) {
                 func_0205821c_inline2(9);
             }
         } else {
@@ -353,33 +355,34 @@ void func_02058528(void) {
             }
             data_0217aa00->mUnk_1608.mUnk_16++;
             if (data_0217aa00->mUnk_1608.mUnk_16 > v) {
-                data_0217aa00->mUnk_0044.mUnk_42 = data_0217aa00->mUnk_0044.mUnk_43;
+                data_0217aa00->mUnk_0044.mUnk_42 = data_0217aa00->mUnk_0044.mChildMask;
             }
         }
     } else {
         if ((data_0217aa00->mUnk_1608.mUnk_1a & 1) != 0) {
-            c = data_0217aa00->mUnk_1628;
+            c = data_0217aa00->mEntryChunkIndex;
             v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
             if (GetEntryChunk((u8 *) &data_0217aa00->mUnk_045c[v], c, 0x20, &d, &v1) != FALSE) {
                 v = data_0217aa00->mUnk_0000 == 2 ? data_0217aa00->mUnk_0432 : 0;
-                func_020586ac(c, d, v1, v, 1);
-                data_0217aa00->mUnk_1628 = c + 1;
+                QueueMPChunk(c, d, v1, v, 1);
+                data_0217aa00->mEntryChunkIndex = c + 1;
             } else {
-                data_0217aa00->mUnk_1628 = 0;
+                data_0217aa00->mEntryChunkIndex = 0;
             }
         }
     }
 }
 
-void func_020584f0(void) {
+void EnterMPState9(void) {
     data_0217aa00->mUnk_0004 = 10;
     data_0217aa00->mUnk_1608.mUnk_16 = 0;
     data_0217aa00->mUnk_162a = 0;
-    data_0217aa00->mUnk_1628 = 0;
-    data_0217aa00->mUnk_1629 = 0;
+    data_0217aa00->mEntryChunkIndex = 0;
+    data_0217aa00->mEntryChunkSlot = 0;
 }
 
-void func_020583c4(void) {
+// Parent: queues the entries of all slots to the children, chunk by chunk, until the wait ends.
+void UpdateMPState9(void) {
     u32 f;
     u8 a;
     u8 b;
@@ -390,20 +393,20 @@ void func_020583c4(void) {
     if (func_0205821c_inline() == 1) {
         if ((data_0217aa00->mUnk_1608.mUnk_1a & 1) != 0) {
             f = 1;
-            b = data_0217aa00->mUnk_1629;
-            if (((u8) (data_0217aa00->mUnk_0044.mUnk_43 | 1) & (1 << b)) != 0) {
-                a = data_0217aa00->mUnk_1628;
+            b = data_0217aa00->mEntryChunkSlot;
+            if (((u8) (data_0217aa00->mUnk_0044.mChildMask | 1) & (1 << b)) != 0) {
+                a = data_0217aa00->mEntryChunkIndex;
                 if (GetEntryChunk((u8 *) &data_0217aa00->mUnk_045c[b], a, 0x168, &d, &v1) != FALSE) {
-                    func_020586ac(a, d, v1, b, data_0217aa00->mUnk_0044.mUnk_43);
-                    data_0217aa00->mUnk_1628 = a + 1;
+                    QueueMPChunk(a, d, v1, b, data_0217aa00->mUnk_0044.mChildMask);
+                    data_0217aa00->mEntryChunkIndex = a + 1;
                     f = 0;
                 }
             }
             if (f != 0) {
-                data_0217aa00->mUnk_1629++;
-                data_0217aa00->mUnk_1628 = 0;
-                if (data_0217aa00->mUnk_1629 >= 8) {
-                    data_0217aa00->mUnk_1629 = 0;
+                data_0217aa00->mEntryChunkSlot++;
+                data_0217aa00->mEntryChunkIndex = 0;
+                if (data_0217aa00->mEntryChunkSlot >= 8) {
+                    data_0217aa00->mEntryChunkSlot = 0;
                 }
             }
         }
@@ -414,13 +417,13 @@ void func_020583c4(void) {
         }
         data_0217aa00->mUnk_1608.mUnk_16++;
         if (data_0217aa00->mUnk_1608.mUnk_16 > v) {
-            data_0217aa00->mUnk_162a = data_0217aa00->mUnk_0044.mUnk_43;
+            data_0217aa00->mUnk_162a = data_0217aa00->mUnk_0044.mChildMask;
             func_0205821c_inline2(10);
         }
     }
 }
 
-void func_02058338(void) {
+void EnterMPState10(void) {
     u8 i;
 
     WM_SetPortCallback(14, NULL, NULL);
@@ -435,7 +438,7 @@ void func_02058338(void) {
     }
 }
 
-void func_020582f4(void) {
+void UpdateMPState10(void) {
     if (data_0217aa00->mUnk_0010 == 0) {
         switch (data_0217aa00->mUnk_000c) {
             case 0xb:
@@ -448,12 +451,12 @@ void func_020582f4(void) {
     }
 }
 
-void func_020582d4(void) {
+void EnterMPState11(void) {
     data_0217aa00->mUnk_164e = 0;
     data_0217aa00->mUnk_164c = 0;
 }
 
-void func_0205821c(void) {
+void UpdateMPState11(void) {
     u8 a;
     u8 b;
     u32 c;
@@ -488,7 +491,7 @@ void func_0205821c(void) {
 
 #pragma thumb on
 
-void func_020581f4(void) {
+void EnterMPState12(void) {
     int v1;
     if (data_0217aa00 == NULL) {
         v1 = 0;
@@ -513,11 +516,11 @@ static inline u32 func_020580a4_inline(void) {
 
 static inline void func_020580a4_inline2(u16 v) {
     Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
-    p->mUnk_10 = v;
-    p->mUnk_12 = 1;
+    p->mNextState = v;
+    p->mNextStateRequested = 1;
 }
 
-void func_02058198(void) {
+void UpdateMPState12(void) {
     if (data_0217aa00->mUnk_0010 != 0) {
         return;
     }
@@ -534,7 +537,7 @@ void func_02058198(void) {
     }
 }
 
-void func_02058130(void) {
+void EnterMPState13(void) {
     s32 i;
 
     data_0217aa00->mUnk_164d = 0;
@@ -546,11 +549,11 @@ void func_02058130(void) {
     data_0217aa00->mUnk_162a |= 1;
 }
 
-void func_020580a4(void) {
+void UpdateMPState13(void) {
     s32 v;
 
     if (func_020580a4_inline() == 1) {
-        if (data_0217aa00->mUnk_0044.mUnk_43 == (data_0217aa00->mUnk_0044.mUnk_43 & data_0217aa00->mUnk_164d)) {
+        if (data_0217aa00->mUnk_0044.mChildMask == (data_0217aa00->mUnk_0044.mChildMask & data_0217aa00->mUnk_164d)) {
             func_020580a4_inline2(0xe);
         }
     } else if (data_0217aa00->mUnk_164d != 0) {
@@ -567,7 +570,7 @@ void func_020580a4(void) {
 #pragma thumb off
 
 #pragma thumb on
-u32 func_02058090(void) {
+u32 EnterMPState14(void) {
     u32 value0;
     u32 value1;
     u32 value2;
@@ -591,14 +594,14 @@ static inline u32 func_02057fe8_inline(void) {
 
 static inline void func_02057fe8_inline2(u16 v) {
     Unk0217aa00_1608 *p = &data_0217aa00->mUnk_1608;
-    p->mUnk_10 = v;
-    p->mUnk_12 = 1;
+    p->mNextState = v;
+    p->mNextStateRequested = 1;
 }
 
-void func_02057fe8(void) {
+void UpdateMPState14(void) {
     if (func_02057fe8_inline() == 1) {
         if ((data_0217aa00->mUnk_162a & (1 << data_0217aa00->mUnk_164e)) != 0) {
-            if (func_020503cc(data_0217aa00->mUnk_164e, data_0217aa00->mUnk_0044.mUnk_43) != FALSE) {
+            if (func_020503cc(data_0217aa00->mUnk_164e, data_0217aa00->mUnk_0044.mChildMask) != FALSE) {
                 data_0217aa00->mUnk_164e += 1;
             }
         } else {
