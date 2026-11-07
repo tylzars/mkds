@@ -17,8 +17,8 @@ typedef struct OptionSelectMenu {
     /* 00 */ s32 mState;
     /* 04 */ s32 mNextState;
     /* 08 */ s32 mIndex; /* 0 and 1 are the two setting rows, 2 is the OK entry */
-    /* 0c */ s32 mUnk_0c[2];
-    /* 14 */ s32 mUnk_14[2];
+    /* 0c */ s32 mRowValues[2];
+    /* 14 */ s32 mSavedRowValues[2];
     /* 1c */ BOOL mUnk_1c;
     /* counted only in states 0, 1, 3, 4; zeroed when 0, 1, 3 hand over and when 4 hands over to 5 (OK path); on
        the Back path state 4 keeps counting while it requests the next option state */
@@ -76,9 +76,9 @@ void AdvanceOptionSelectMenuState3(void);
 void AdvanceOptionSelectMenuState2(void);
 void AdvanceOptionSelectMenuState1(void);
 void AdvanceOptionSelectMenuState0(void);
-void func_ov001_02199374(void);
-void func_ov001_021993b8(void);
-void func_ov001_02199420(void);
+void SetOptionSoundRowFromSave(void);
+void SetSoundModeFromOptionRow(void);
+void ApplyOptionSelectMenuSound(void);
 void LocateAndQueueOptionSelectMenu(void);
 /* slot mRelease of OptionStateCallbacks; clears the global and undoes the display setup (DISPCNT bit 1 cleared),
    the state heap is destroyed by AdvanceOptionStates after it returns */

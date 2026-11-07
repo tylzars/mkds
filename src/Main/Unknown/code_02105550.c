@@ -397,7 +397,7 @@ void func_02108344(void *a, u32 b, u32 c) {
         func_02111250((a + b + 0x25a5c), 0x35a0);
     }
     data_0216cb28 = 0x69;
-    func_0210d854(1);
+    StartSoundOutputEffect(1);
     func_020250a8();
     func_0210efac(func_0210ef50());
     func_0210efac(func_0210ef5c());

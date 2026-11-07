@@ -112,6 +112,10 @@ typedef struct Unk0217d26c {
 extern Unk0217d26c data_0217d294;
 extern Unk0217d26c data_0217d29c;
 
+// Frames after which the Killer effect ends.
+#define KART_KILLER_MAX_FRAMES 0x1e0
+// Frames after which the Teresa effect ends (7.5 seconds).
+#define KART_TERESA_MAX_FRAMES 0x1c2
 typedef struct Unk0206ceb4 {
     /* 00 */ s16 mUnk_00;
     /* 02 */ s16 mUnk_02;
@@ -121,17 +125,17 @@ typedef struct Unk0206ceb4 {
     /* 0a */ s16 mUnk_0a;
     /* 0c */ s16 mUnk_0c;
     /* 0e */ s16 mUnk_0e;
-    /* 10 */ s16 mUnk_10;
+    /* 10 */ s16 mTeresaFrames;
     /* 12 */ s16 mUnk_12;
     /* 14 */ s16 mUnk_14;
     /* 16 */ s16 mUnk_16;
     /* 18 */ s16 mUnk_18;
     /* 1a */ s16 mUnk_1a;
     /* 1c */ s16 mUnk_1c;
-    /* 1e */ s16 mUnk_1e;
+    /* 1e */ s16 mKillerFrames;
     /* 20 */ s16 mUnk_20;
     /* 22 */ u8 mUnk_22[2];
-    /* 24 */ BOOL mUnk_24;
+    /* 24 */ BOOL mKillerEnding;
     /* 28 */ s16 mUnk_28;
     /* 2a */ u8 mUnk_2a[2];
     /* 2c */ Unk020905a8 mUnk_2c;

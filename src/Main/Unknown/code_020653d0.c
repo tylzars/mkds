@@ -273,7 +273,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         StartKartKiller(p);
     }
     if (((p->mUnk_514->mUnk_30 & 0x200000) != 0) != ((f & 0x200000) != 0)) {
-        p->mUnk_538.mUnk_24 = TRUE;
+        p->mUnk_538.mKillerEnding = TRUE;
     }
     if (((p->mUnk_514->mUnk_30 & 0x4000000) != 0) != ((f & 0x4000000) != 0)) {
         StartKartTeresa(p);

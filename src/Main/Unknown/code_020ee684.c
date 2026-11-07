@@ -1025,7 +1025,7 @@ void RemoveItemInUseOne(ItemInUse *a, ItemObject *b, ItemObject *c) {
     StartItemInUseObjectAndCountDown(a, c);
 }
 
-void func_020ef1cc(ItemInUse *p) {
+void StartItemInUseTrail(ItemInUse *p) {
     ItemObject *b;
     Vec3 *q;
     s32 d;
@@ -1062,7 +1062,7 @@ void func_020ef1cc(ItemInUse *p) {
     }
 }
 
-void func_020eecdc(ItemInUse *a) {
+void AdvanceItemInUseTrail(ItemInUse *a) {
     KartItems *c;
     ItemObject **q;
     s32 n;
@@ -1168,7 +1168,7 @@ void func_020eecdc(ItemInUse *a) {
     }
 }
 
-void func_020eec48(ItemInUse *a, s32 i, ItemObject *v) {
+void RemoveItemInUseTrail(ItemInUse *a, s32 i, ItemObject *v) {
     s32 k;
     ItemObject *e;
     s32 sum;

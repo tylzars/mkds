@@ -700,9 +700,9 @@ void func_02071ddc(Unk0206ceb4 *p0) {
     p0->mUnk_16 = 0;
     p0->mUnk_18 = 0;
     p0->mUnk_1c = 0;
-    p0->mUnk_1e = 0;
+    p0->mKillerFrames = 0;
     p0->mUnk_20 = 0;
-    p0->mUnk_24 = FALSE;
+    p0->mKillerEnding = FALSE;
     p0->mUnk_28 = 0;
 }
 
@@ -1269,7 +1269,7 @@ void func_020708a4(Kart *p) {
             func_02068a64(p, 2, 1);
         }
         s->mUnk_06++;
-        if (s->mUnk_06 > 0x1c2) {
+        if (s->mUnk_06 > KART_TERESA_MAX_FRAMES) {
             p->mUnk_4c &= ~0x40;
             func_0207b1a8(p);
             p->mItemEffect = 0;

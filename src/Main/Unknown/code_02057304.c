@@ -56,9 +56,9 @@ void func_02057304(s32 a) {
         MI_CpuFill8(data_0217aa08->mUnk_00->mUnk_0c, 0, 0x14);
         MI_CpuCopy8(p, data_0217aa08->mUnk_00->mUnk_0c, ((u32) n << 17) >> 16);
     }
-    data_0217aa08->mUnk_00->mUnk_31_1 = 0;
+    data_0217aa08->mUnk_00->mSoundMode = 0;
     data_0217aa08->mUnk_00->mUnk_31_3 = 0;
-    data_0217aa08->mUnk_00->mUnk_31_4 = 0;
+    data_0217aa08->mUnk_00->mLocateFriendOff = 0;
     data_0217aa08->mUnk_00->mUnk_24 = 0x1388;
     func_0209119c();
     DWC_CreateUserData((DWCAccUserData *) data_0217aa08->mUnk_00->mUnk_4c, 0x414d434a);

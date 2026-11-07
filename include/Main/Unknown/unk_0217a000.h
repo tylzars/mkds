@@ -33,9 +33,9 @@ typedef struct Unk0217aa08_00 {
         u8 mUnk_31;
         struct {
             u8 mUnk_31_0 : 1;
-            u8 mUnk_31_1 : 2;
+            u8 mSoundMode : 2;
             u8 mUnk_31_3 : 1;
-            u8 mUnk_31_4 : 1;
+            u8 mLocateFriendOff : 1;
             u8 mUnk_31_5 : 3;
         };
     };

@@ -86,8 +86,8 @@ Unk0217c7c4 *func_02108ea0(u32 arg0) {
     return (Unk0217c7c4 *) value0;
 }
 
-void func_02108e94(s32 a) {
-    func_0210d834(a);
+void SetSoundOutputEffect(s32 a) {
+    ChangeSoundOutputEffect(a);
 }
 
 NNSSndSeqPlayer **func_02108e88(void) {

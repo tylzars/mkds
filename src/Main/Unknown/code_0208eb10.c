@@ -341,11 +341,11 @@ void func_0208f6d4(Unk0208fd8c *a, struct KartAi *b) {
         return;
     }
     UseItemAndResetInUseTimer(a, b);
-// Calls one of two handlers, by whether the item in use is use kind 3.
+// Calls one of two handlers, by whether the item in use is the trail kind.
 }
 
 void func_0208f670(Unk0208fd8c *a, struct KartAi *b) {
-    if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_3) {
+    if (gKartItems[b->mIndex].mItemInUse.mUseKind == ITEM_USE_KIND_TRAIL) {
         data_0217b0ac(a, b);
     } else {
         data_0217b0a8(a, b);

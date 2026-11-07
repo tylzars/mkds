@@ -22,6 +22,6 @@ void func_020019b0(void);
 void func_02001a44(void);
 void func_02001a74(Unk02001a74 *a);
 void func_02001abc(void);
-void func_02001b38(void);
+void ApplySavedSoundMode(void);
 void func_02001ba0(void *a);
 void func_02001d30(Unk02001d30 *a, s32 b, const char *c, const char *d, const char *e);

@@ -62,7 +62,7 @@ void func_02057d7c(void) {
 }
 
 void func_02057d70(void) {
-    func_02001b38();
+    ApplySavedSoundMode();
 }
 
 void func_02057d64(void) {

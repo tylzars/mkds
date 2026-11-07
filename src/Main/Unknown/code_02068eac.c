@@ -260,13 +260,14 @@ void StartKartStar(Kart *p) {
     func_02068a64(p, 2, 1);
 }
 
+// Teresa: the Boo item (mItemEffect 2).
 void StartKartTeresa(Kart *p) {
     Unk0206ceb4 *s;
     Unk0206ceb4 *t;
     u32 w;
 
     s = &p->mUnk_538;
-    s->mUnk_10 = 0;
+    s->mTeresaFrames = 0;
     if (p->mUnk_4c & 0x10000040) {
         p->mUnk_4c &= ~0x40;
         func_0207b1a8(p);
@@ -340,14 +341,14 @@ void AdvanceKartTeresa(Kart *p) {
                 p->mUnk_7c |= 0x8000;
             }
         }
-        if (s->mUnk_10 == 0x172) {
+        if (s->mTeresaFrames == 0x172) {
             s->mUnk_1a = -1;
             s->mUnk_16 = 0;
         }
         HideKartTurnEffects(GetKartTurnEffects(p->mIndex));
     }
-    s->mUnk_10++;
-    if (s->mUnk_10 > 0x1c2 && (p->mUnk_7c & 0x2000)) {
+    s->mTeresaFrames++;
+    if (s->mTeresaFrames > KART_TERESA_MAX_FRAMES && (p->mUnk_7c & 0x2000)) {
         p->mUnk_7c &= ~0x2000;
         p->mUnk_7c &= ~0xc000;
         p->mItemEffect = 0;
@@ -369,6 +370,7 @@ void AdvanceKartTeresa(Kart *p) {
     SetMinKartDistanceSquared(d * d + e * e + f * f);
 }
 
+// Killer: the Bullet Bill item (mItemEffect 3).
 void StartKartKiller(Kart *p) {
     Unk0206ceb4 *s;
     Unk0216557c w;
@@ -378,9 +380,9 @@ void StartKartKiller(Kart *p) {
 
     w = data_usa_0216557c;
     s = &p->mUnk_538;
-    s->mUnk_1e = 0;
+    s->mKillerFrames = 0;
     s->mUnk_20 = 0;
-    s->mUnk_24 = FALSE;
+    s->mKillerEnding = FALSE;
     func_0209086c(&s->mUnk_2c, p->mIndex);
     p->mUnk_4c |= 0x10000000;
     k = gRaceSetup->mKartCount;
@@ -455,12 +457,12 @@ void AdvanceKartKiller(Kart *p) {
     Unk02165560 v;
 
     s = &p->mUnk_538;
-    s->mUnk_1e++;
+    s->mKillerFrames++;
     if (!(p->mUnk_7c & 0x400)) {
         if (func_0209081c(&s->mUnk_2c) != 0) {
             u = &p->mUnk_538;
-            if ((p->mUnk_4c & 0x10000000) && u->mUnk_24 == FALSE) {
-                u->mUnk_24 = TRUE;
+            if ((p->mUnk_4c & 0x10000000) && u->mKillerEnding == FALSE) {
+                u->mKillerEnding = TRUE;
                 if (p->mUnk_7c & 0x200) {
                     p->mUnk_514->mUnk_2c ^= 0x200000;
                 }
@@ -468,7 +470,7 @@ void AdvanceKartKiller(Kart *p) {
         }
     }
     func_02087b78((Unk02087d0c *) &p->mKartModelsEntry->mUnk_098);
-    if (s->mUnk_24 != FALSE) {
+    if (s->mKillerEnding != FALSE) {
         p->mUnk_4c8 -= 0x52;
         if (p->mUnk_4c8 > 0x1000) {
             return;
@@ -496,7 +498,7 @@ void AdvanceKartKiller(Kart *p) {
     if (p->mUnk_4c8 > 0x1666) {
         p->mUnk_4c8 = 0x1666;
     }
-    if (s->mUnk_24 != FALSE) {
+    if (s->mKillerEnding != FALSE) {
         return;
     }
     r = FALSE;
@@ -507,14 +509,14 @@ void AdvanceKartKiller(Kart *p) {
         } else if ((s32) GetKartRank(p->mIndex) <= s->mUnk_28) {
             r = TRUE;
         }
-        if (s->mUnk_1e > 0xb4 && r != FALSE) {
+        if (s->mKillerFrames > 0xb4 && r != FALSE) {
             t = TRUE;
         }
     }
-    if (s->mUnk_1e <= 0x1e0 && t == FALSE) {
+    if (s->mKillerFrames <= KART_KILLER_MAX_FRAMES && t == FALSE) {
         return;
     }
-    s->mUnk_24 = TRUE;
+    s->mKillerEnding = TRUE;
     if (p->mUnk_7c & 0x200) {
         p->mUnk_514->mUnk_2c ^= 0x200000;
     }

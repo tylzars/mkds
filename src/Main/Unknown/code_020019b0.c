@@ -83,12 +83,12 @@ void func_02001ba0(void *a) {
     func_02125de0(a, &v1);
 }
 
-void func_02001b38(void) {
+void ApplySavedSoundMode(void) {
     s32 v1;
     s32 v2;
     v1 = 0;
     data_usa_ov001_021a99c0 = NULL;
-    v2 = data_0217aa08->mUnk_00->mUnk_31_1;
+    v2 = data_0217aa08->mUnk_00->mSoundMode;
     switch (v2) {
         case 1:
             break;
@@ -100,7 +100,7 @@ void func_02001b38(void) {
             v1 = 1;
             break;
     }
-    func_02108e94(v1);
+    SetSoundOutputEffect(v1);
     func_02125da0();
 }
 

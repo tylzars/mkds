@@ -45,12 +45,12 @@ void func_0210d894(void *a, u32 b, const u8 *c) {
 
 void func_0210d890(void *p0, u32 p1, void *p2, u32 p3) {}
 
-void func_0210d854(u32 a) {
+void StartSoundOutputEffect(u32 a) {
     NNS_SndCaptureStartOutputEffect((void *) (((u32) data_0217d06c + 0x1f) & ~0x1f), 0x1000, a);
     data_0216cb24 = a;
 }
 
-void func_0210d834(s32 a) {
+void ChangeSoundOutputEffect(s32 a) {
     NNS_SndCaptureChangeOutputEffect(a);
     data_0216cb24 = a;
 }

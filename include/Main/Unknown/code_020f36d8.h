@@ -446,7 +446,7 @@ typedef enum {
     ITEM_USE_KIND_HOOK_ONLY,
     ITEM_USE_KIND_ONE,
     ITEM_USE_KIND_ONE_WITH_ORIENTATION,
-    ITEM_USE_KIND_3,
+    ITEM_USE_KIND_TRAIL,
     ITEM_USE_KIND_CIRCLE
 } ItemUseKind;
 // One of the 18 items: the object kind and the number of objects it takes from the pool, the use kind and the hook

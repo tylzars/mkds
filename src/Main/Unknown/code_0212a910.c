@@ -343,7 +343,7 @@ void func_0212a99c(void) {
         data_0217d404->mUnk_01c[n] = v;
     } else if (data_0217d404->mUnk_000[4] != 0) {
         r = FALSE;
-        if (!data_0217aa08->mUnk_00->mUnk_31_4) {
+        if (!data_0217aa08->mUnk_00->mLocateFriendOff) {
             if (func_021213f4() != FALSE) {
                 r = TRUE;
             }
