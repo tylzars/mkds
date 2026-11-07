@@ -947,7 +947,7 @@ void UpdateItems(void) {
     }
     func_020f8258();
     UpdateOrthoQuads();
-    func_02104ff8();
+    UpdateBouncingItemBoxTimers();
 }
 
 void DrawItems(void *a) {

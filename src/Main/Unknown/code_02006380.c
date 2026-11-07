@@ -288,7 +288,7 @@ void SetupChunkReceiveState(ChunkReceiveState *a, s32 b, void *c, u32 d) {
     s32 v1;
     v1 = GetReceiveChunkSize();
     a->mSize = b;
-    a->mUnk_08 = 0;
+    a->mPickedChunkIndex = 0;
     a->mLastReceivedChunkIndex = 0;
     a->mReceivedChunkCount = 0;
     a->mChunkCount = b / v1 + ((b % v1) != 0 ? 1 : 0);

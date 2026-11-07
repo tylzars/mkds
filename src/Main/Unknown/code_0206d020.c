@@ -422,7 +422,7 @@ void func_0206d18c(Kart *p) {
             }
             break;
         case 8:
-            func_02104ee0((Unk02104c68 *) e, p);
+            CollideKartWithBouncingItemBox((BouncingItemBox *) e, p);
             break;
     }
     if (r != 0 && gRaceSetup->mMode == MODE_MISSION_RUN) {

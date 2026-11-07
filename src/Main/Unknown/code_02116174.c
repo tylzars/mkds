@@ -202,9 +202,10 @@ void func_021162cc(void) {
             func_02116a4c(&a, buf);
             func_02124224(0, 0xc, gRecordVSErase->mRecordVSMBnll, buf, gRecordVSErase->mRecordVSMBncl,
                           gRecordVSErase->mRecordVSMTable, 6);
-            ReadRecordEmblem(v + gRecordVSErase->mShownIndex, gRecordVSErase->mUnk_88, gRecordVSErase->mUnk_8c);
+            ReadRecordEmblem(v + gRecordVSErase->mShownIndex, gRecordVSErase->mEmblem,
+                             gRecordVSErase->mEmblemConverted);
             CallQueueAppend(0x13, func_0212497c(3, gRecordVSErase->mRecordVSMNcer, gRecordVSErase->mRecordVSMBncl) << 5,
-                            gRecordVSErase->mUnk_8c, 0x200);
+                            gRecordVSErase->mEmblemConverted, 0x200);
             break;
         case 1:
             CopyRecordText(v + gRecordVSErase->mShownIndex, buf, 0x20);
@@ -216,10 +217,11 @@ void func_021162cc(void) {
                 func_0212426c(z, data_0215c584[i], gRecordVSErase->mRecordVSMTransientBnll, buf,
                               gRecordVSErase->mRecordVSMTransientBncl, gRecordVSErase->mRecordVSMTransientTable);
             }
-            ReadRecordEmblem(v + gRecordVSErase->mShownIndex, gRecordVSErase->mUnk_88, gRecordVSErase->mUnk_8c);
+            ReadRecordEmblem(v + gRecordVSErase->mShownIndex, gRecordVSErase->mEmblem,
+                             gRecordVSErase->mEmblemConverted);
             CallQueueAppend(
                 0x13, func_0212497c(1, gRecordVSErase->mRecordVSMNcer, gRecordVSErase->mRecordVSMTransientBncl) << 5,
-                gRecordVSErase->mUnk_8c, 0x200);
+                gRecordVSErase->mEmblemConverted, 0x200);
             break;
     }
 }

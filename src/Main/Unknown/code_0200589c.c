@@ -10,7 +10,9 @@
 
 #pragma thumb on
 
-s32 func_020062f4(ChunkReceiveState *a) {
+// Returns the index of the next chunk whose bit is still clear after the last received one, or -1 when all have
+// arrived.
+s32 PickMissingChunkIndex(ChunkReceiveState *a) {
     s32 v1;
     s32 v2;
     s32 v3;
@@ -45,13 +47,14 @@ s32 func_020062f4(ChunkReceiveState *a) {
     } while (v1 != v2);
     goto fail;
 found:
-    a->mUnk_08 = v1;
+    a->mPickedChunkIndex = v1;
     return v1;
 fail:
     return -1;
 }
 
-BOOL func_0200628c(ChunkReceiveState *a, s32 b, const u8 *c) {
+// Copies chunk b into the buffer; FALSE when b is past the last chunk.
+BOOL StoreReceivedChunk(ChunkReceiveState *a, s32 b, const u8 *c) {
     u32 v1;
     u8 *v2;
     u32 v3;
@@ -74,62 +77,65 @@ BOOL func_0200628c(ChunkReceiveState *a, s32 b, const u8 *c) {
     return TRUE;
 }
 
-void func_020061d8(BlockTransfer *a, s32 b, s32 c, u32 d) {
+// Fills the shared record and calls the transfer's callback once per request id (code 13 always).
+void RunBlockTransferCallback(BlockTransfer *a, s32 b, s32 c, u32 d) {
     BlockTransferEntry *v2;
     BlockTransferRecord *v1;
     v1 = &a->mCallbackRecord;
     v2 = &a->mEntries[c];
-    if (b == 13 || v2->mUnk_02 != v2->mLastCallbackId) {
+    if (b == 13 || v2->mRequestId != v2->mLastCallbackId) {
         v1->mKind = 12;
         v1->mFromIndexMask = 1 << c;
-        v2->mLastCallbackId = v2->mUnk_02;
-        v1->mUnk_0d = v2->mUnk_02;
-        v1->mUnk_0e = d;
+        v2->mLastCallbackId = v2->mRequestId;
+        v1->mReceivedRequestId = v2->mRequestId;
+        v1->mErrorCode = d;
         switch (b) {
             case 8:
-                v1->mUnk_14 = v2->mUnk_10;
+                v1->mUnk_14 = v2->mBlockId;
                 break;
             case 2:
-                *(s16 *) &v1->mUnk_14 = v2->mUnk_0a;
-                *((s16 *) &v1->mUnk_14 + 1) = v2->mUnk_06;
-                *(s16 *) &v1->mUnk_18 = v2->mUnk_04;
+                *(s16 *) &v1->mUnk_14 = v2->mBlockCount;
+                *((s16 *) &v1->mUnk_14 + 1) = v2->mPacketSendChunkSize;
+                *(s16 *) &v1->mUnk_18 = v2->mPacketReceiveChunkSize;
                 break;
             case 10:
-                if (v2->mUnk_0d > 9) {
+                if (v2->mByteCount > 9) {
                     *((u8 *) &v1->mUnk_1c[0] + 1) = 0;
                 } else {
-                    *((u8 *) &v1->mUnk_1c[0] + 1) = v2->mUnk_0d;
-                    MI_CpuCopy8(v2->mUnk_20, &v1->mUnk_14, *((u8 *) &v1->mUnk_1c[0] + 1));
+                    *((u8 *) &v1->mUnk_1c[0] + 1) = v2->mByteCount;
+                    MI_CpuCopy8(v2->mPayload, &v1->mUnk_14, *((u8 *) &v1->mUnk_1c[0] + 1));
                 }
                 break;
             case 12:
             case 14:
                 break;
         }
-        v1->mUnk_04 = b;
+        v1->mCallbackCode = b;
         if (v1->mCallback != NULL) {
             v1->mCallback(v1);
         }
     }
 }
 
-void func_02006144(BlockTransfer *a, s32 b, s32 c) {
+// A reply from index c: clears its bit in the current request, calls the request's callback and ends the request when
+// no index is left.
+void RunCurrentRequestCallback(BlockTransfer *a, s32 b, s32 c) {
     u16 v1;
     u8 v4;
     BlockTransferEntry *v2;
     v2 = &a->mEntries[c];
     v1 = 1 << c;
     a->mCurrentRequest.mFromIndexMask = v1;
-    v4 = v2->mUnk_02;
+    v4 = v2->mRequestId;
     if (a->mCurrentRequest.mRequestId == v4) {
-        a->mCurrentRequest.mUnk_0d = v4;
+        a->mCurrentRequest.mReceivedRequestId = v4;
         if ((a->mCurrentRequest.mIndexMask & v1) != 0) {
             a->mCurrentRequest.mIndexMask &= ~v1;
             switch (b) {
                 case 3:
-                    *(s16 *) &a->mCurrentRequest.mUnk_14 = v2->mUnk_0a;
-                    *((s16 *) &a->mCurrentRequest.mUnk_14 + 1) = v2->mUnk_06;
-                    *(s16 *) &a->mCurrentRequest.mUnk_18 = v2->mUnk_04;
+                    *(s16 *) &a->mCurrentRequest.mUnk_14 = v2->mBlockCount;
+                    *((s16 *) &a->mCurrentRequest.mUnk_14 + 1) = v2->mPacketSendChunkSize;
+                    *(s16 *) &a->mCurrentRequest.mUnk_18 = v2->mPacketReceiveChunkSize;
                     break;
                 case 0:
                 case 1:
@@ -144,7 +150,7 @@ void func_02006144(BlockTransfer *a, s32 b, s32 c) {
                 case 11:
                     break;
             }
-            a->mCurrentRequest.mUnk_04 = b;
+            a->mCurrentRequest.mCallbackCode = b;
             if (a->mCurrentRequest.mCallback != NULL) {
                 a->mCurrentRequest.mCallback(&a->mCurrentRequest);
             }
@@ -155,7 +161,9 @@ void func_02006144(BlockTransfer *a, s32 b, s32 c) {
     }
 }
 
-u32 func_02005dac(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
+// Reads one packet from index b field by field into its entry, answers or calls back as the kind needs, and returns the
+// bytes used.
+u32 ParseReceivedPacket(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
     s32 v1;
     u32 v2;
     u32 v3;
@@ -174,16 +182,16 @@ u32 func_02005dac(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
         do {
             switch (v2) {
                 case 1:
-                    MI_CpuCopy8(c, &v5->mUnk_01, 1);
+                    MI_CpuCopy8(c, &v5->mPacketKind, 1);
                     c = c + 1;
                     v1 = v1 + 1;
                     v2 = 2;
                     continue;
                 case 2:
-                    MI_CpuCopy8(c, &v5->mUnk_08, 2);
+                    MI_CpuCopy8(c, &v5->mIndexMask, 2);
                     c = c + 2;
                     v1 = v1 + 2;
-                    v2 = v5->mUnk_08;
+                    v2 = v5->mIndexMask;
                     if (GetOwnIndex() == -1) {
                         v4 = FALSE;
                     } else {
@@ -200,10 +208,10 @@ u32 func_02005dac(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
                     v2 = 3;
                     continue;
                 case 3:
-                    MI_CpuCopy8(c, &v5->mUnk_02, 1);
+                    MI_CpuCopy8(c, &v5->mRequestId, 1);
                     c = c + 1;
                     v1 = v1 + 1;
-                    switch (v5->mUnk_01) {
+                    switch (v5->mPacketKind) {
                         case 1:
                             return v1;
                         case 2:
@@ -214,7 +222,7 @@ u32 func_02005dac(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
                             continue;
                         case 11:
                             if (a->mCurrentRequest.mKind == 10) {
-                                func_02006144(a, v5->mUnk_01, b);
+                                RunCurrentRequestCallback(a, v5->mPacketKind, b);
                             }
                             return v1;
                         case 10:
@@ -225,65 +233,65 @@ u32 func_02005dac(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
                             continue;
                     }
                 case 10:
-                    MI_CpuCopy8(c, &v5->mUnk_0d, 1);
+                    MI_CpuCopy8(c, &v5->mByteCount, 1);
                     c = c + 1;
                     v1 = v1 + 1;
                     v2 = 9;
                     continue;
                 case 9:
-                    v5->mUnk_20 = (u8 *) c;
-                    func_020061d8(a, v5->mUnk_01, b, 0);
+                    v5->mPayload = (u8 *) c;
+                    RunBlockTransferCallback(a, v5->mPacketKind, b, 0);
                     v5->mUnk_00 = 2;
                     v1 = v1 + 9;
                     return v1;
                 case 4:
-                    MI_CpuCopy8(c, &v5->mUnk_0a, 2);
+                    MI_CpuCopy8(c, &v5->mBlockCount, 2);
                     c = c + 2;
                     v1 = v1 + 2;
-                    if (v5->mUnk_01 == 3) {
+                    if (v5->mPacketKind == 3) {
                         v2 = 5;
                     }
                     continue;
                 case 5:
-                    MI_CpuCopy8(c, &v5->mUnk_06, 2);
-                    MI_CpuCopy8(c + 2, &v5->mUnk_04, 2);
+                    MI_CpuCopy8(c, &v5->mPacketSendChunkSize, 2);
+                    MI_CpuCopy8(c + 2, &v5->mPacketReceiveChunkSize, 2);
                     if (GetOwnIndex() != 0) {
-                        SetSendChunkSize(v5->mUnk_04);
-                        SetReceiveChunkSize(v5->mUnk_06);
+                        SetSendChunkSize(v5->mPacketReceiveChunkSize);
+                        SetReceiveChunkSize(v5->mPacketSendChunkSize);
                     }
-                    v3 = v5->mUnk_01;
+                    v3 = v5->mPacketKind;
                     switch (v3) {
                         case 2:
-                            func_020061d8(a, v3, b, 0);
+                            RunBlockTransferCallback(a, v3, b, 0);
                             v5->mUnk_00 = 2;
                             return v1 + 4;
                         case 3:
                             if (a->mCurrentRequest.mKind == 2) {
-                                func_02006144(a, v3, b);
+                                RunCurrentRequestCallback(a, v3, b);
                             }
                             return v1 + 4;
                         default:
-                            func_020061d8(a, 15, b, 3);
+                            RunBlockTransferCallback(a, 15, b, 3);
                             return v1 + 4;
                     }
                 case 7:
-                    MI_CpuCopy8(c, &v5->mUnk_10, 4);
+                    MI_CpuCopy8(c, &v5->mBlockId, 4);
                     c = c + 4;
                     v1 = v1 + 4;
-                    v3 = v5->mUnk_01;
+                    v3 = v5->mPacketKind;
                     switch (v3) {
                         case 8:
-                            func_020061d8(a, v3, b, 0);
+                            RunBlockTransferCallback(a, v3, b, 0);
                             v5->mUnk_00 = 2;
                             return v1;
                         case 9:
                             if (a->mCurrentRequest.mKind == 4) {
-                                if (a->mCurrentRequest.mUnk_14 == v5->mUnk_10) {
-                                    func_02006144(a, 5, b);
+                                if (a->mCurrentRequest.mUnk_14 == v5->mBlockId) {
+                                    RunCurrentRequestCallback(a, 5, b);
                                 }
                             } else if (a->mCurrentRequest.mKind == 6) {
-                                if (a->mCurrentRequest.mUnk_14 == v5->mUnk_10) {
-                                    func_02006144(a, 7, b);
+                                if (a->mCurrentRequest.mUnk_14 == v5->mBlockId) {
+                                    RunCurrentRequestCallback(a, 7, b);
                                 }
                             }
                             return v1;
@@ -294,14 +302,14 @@ u32 func_02005dac(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
                             v2 = 8;
                             continue;
                         default:
-                            func_020061d8(a, 15, b, 3);
+                            RunBlockTransferCallback(a, 15, b, 3);
                             continue;
                     }
                 case 8:
-                    MI_CpuCopy8(c, &v5->mUnk_14, 4);
+                    MI_CpuCopy8(c, &v5->mChunkIndex, 4);
                     c = c + 4;
                     v1 = v1 + 4;
-                    v3 = v5->mUnk_01;
+                    v3 = v5->mPacketKind;
                     switch (v3) {
                         case 4:
                         case 6:
@@ -309,15 +317,15 @@ u32 func_02005dac(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
                             return v1;
                         case 5:
                         case 7:
-                            v5->mUnk_20 = (u8 *) c;
+                            v5->mPayload = (u8 *) c;
                             if (a->mCurrentRequest.mKind == 4 || a->mCurrentRequest.mKind == 6) {
-                                if (v5->mUnk_10 == a->mCurrentRequest.mUnk_14) {
+                                if (v5->mBlockId == a->mCurrentRequest.mUnk_14) {
                                     if ((a->mCurrentRequest.mIndexMask & (u16) (1 << b)) != 0) {
-                                        if (IsChunkReceived(v6, v5->mUnk_14) == FALSE) {
-                                            if (func_0200628c(v6, v5->mUnk_14, v5->mUnk_20) == TRUE) {
-                                                func_0200635c(v6, v5->mUnk_14);
+                                        if (IsChunkReceived(v6, v5->mChunkIndex) == FALSE) {
+                                            if (StoreReceivedChunk(v6, v5->mChunkIndex, v5->mPayload) == TRUE) {
+                                                func_0200635c(v6, v5->mChunkIndex);
                                             } else {
-                                                func_020061d8(a, 15, b, 6);
+                                                RunBlockTransferCallback(a, 15, b, 6);
                                             }
                                         }
                                     }
@@ -325,20 +333,20 @@ u32 func_02005dac(BlockTransfer *a, s32 b, const u8 *c, s32 d) {
                             }
                             return v1;
                         default:
-                            func_020061d8(a, 15, b, 3);
+                            RunBlockTransferCallback(a, 15, b, 3);
                             continue;
                     }
                 default:
-                    func_020061d8(a, 15, b, 4);
+                    RunBlockTransferCallback(a, 15, b, 4);
                     continue;
             }
         } while (v1 < d);
     }
-    func_020061d8(a, 15, b, 5);
+    RunBlockTransferCallback(a, 15, b, 5);
     return v1;
 }
 
-s32 func_02005d4c(BlockTransfer *a, s32 b, u8 *c, s32 d) {
+s32 ReplyToBlockCountRequest(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     s32 v1;
     s32 v3;
     u32 v4;
@@ -348,17 +356,17 @@ s32 func_02005d4c(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     v5 = &a->mEntries[b];
     v2 = 1 << b;
     if (v5->mUnk_00 == 2) {
-        if (v5->mUnk_01 == 2) {
+        if (v5->mPacketKind == 2) {
             v3 = CountBlocks();
             v4 = GetSendChunkSize();
-            v1 = WriteBlockCountReplyPacket(c, v2, v5->mUnk_02, v3, v4, GetReceiveChunkSize());
+            v1 = WriteBlockCountReplyPacket(c, v2, v5->mRequestId, v3, v4, GetReceiveChunkSize());
             v5->mUnk_00 = 1;
         }
     }
     return v1;
 }
 
-s32 func_02005d08(BlockTransfer *a, s32 b, u8 *c, s32 d) {
+s32 ReplyToNoMissingChunk(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     s32 v1;
     u16 v2;
     BlockTransferEntry *v3;
@@ -366,15 +374,15 @@ s32 func_02005d08(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     v3 = &a->mEntries[b];
     v2 = 1 << b;
     if (v3->mUnk_00 == 2) {
-        if (v3->mUnk_01 == 8) {
-            v1 = func_020065a8(c, v2, v3->mUnk_02, v3->mUnk_10);
+        if (v3->mPacketKind == 8) {
+            v1 = func_020065a8(c, v2, v3->mRequestId, v3->mBlockId);
             v3->mUnk_00 = 1;
         }
     }
     return v1;
 }
 
-s32 func_02005cc8(BlockTransfer *a, s32 b, u8 *c, s32 d) {
+s32 ReplyToBytesPacket(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     s32 v1;
     u16 v2;
     BlockTransferEntry *v3;
@@ -382,15 +390,15 @@ s32 func_02005cc8(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     v3 = &a->mEntries[b];
     v2 = 1 << b;
     if (v3->mUnk_00 == 2) {
-        if (v3->mUnk_01 == 10) {
-            v1 = WriteBytesReplyPacket(c, v2, v3->mUnk_02);
+        if (v3->mPacketKind == 10) {
+            v1 = WriteBytesReplyPacket(c, v2, v3->mRequestId);
             v3->mUnk_00 = 1;
         }
     }
     return v1;
 }
 
-s32 func_02005bec(BlockTransfer *a, s32 b, u8 *c, s32 d) {
+s32 ReplyToBlockDataRequest(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     s32 v1;
     u32 v2;
     s32 v3;
@@ -407,22 +415,22 @@ s32 func_02005bec(BlockTransfer *a, s32 b, u8 *c, s32 d) {
         } else {
             v2 = 1;
         }
-        if (v7->mUnk_01 == 4) {
-            v5 = FindBlockById(v7->mUnk_10);
+        if (v7->mPacketKind == 4) {
+            v5 = FindBlockById(v7->mBlockId);
             if (v5 != NULL) {
-                v3 = PickSendChunkIndex(v7->mUnk_10, v7->mUnk_14);
+                v3 = PickSendChunkIndex(v7->mBlockId, v7->mChunkIndex);
                 if (v3 != -1) {
                     if (v5->mHasNoData == 0) {
-                        v4 = GetBlockChunkAddress(v7->mUnk_10, v3);
-                        v1 = WriteBlockDataPacket(c, v2, v7->mUnk_02, v7->mUnk_10, v3, v4, GetSendChunkSize());
+                        v4 = GetBlockChunkAddress(v7->mBlockId, v3);
+                        v1 = WriteBlockDataPacket(c, v2, v7->mRequestId, v7->mBlockId, v3, v4, GetSendChunkSize());
                     } else if (v5->mHasNoData == 1) {
-                        v6->mUnk_14 = v7->mUnk_10;
+                        v6->mUnk_14 = v7->mBlockId;
                         v6->mUnk_18 = v3;
                         *(s16 *) &v6->mUnk_1c[1] = GetSendChunkSize();
                         v6->mUnk_1c[0] = 0;
-                        func_020061d8(a, 13, b, 0);
+                        RunBlockTransferCallback(a, 13, b, 0);
                         if (v6->mUnk_1c[0] != 0) {
-                            v1 = WriteBlockDataPacket(c, v2, v7->mUnk_02, v6->mUnk_14, v6->mUnk_18, v6->mUnk_1c[0],
+                            v1 = WriteBlockDataPacket(c, v2, v7->mRequestId, v6->mUnk_14, v6->mUnk_18, v6->mUnk_1c[0],
                                                       *(s16 *) &v6->mUnk_1c[1]);
                         }
                     }
@@ -434,7 +442,8 @@ s32 func_02005bec(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     return v1;
 }
 
-s32 func_02005b80(BlockTransfer *a, s32 b, u8 *c, s32 d) {
+// Sends nothing while the chunk address is 0.
+s32 ReplyToBlockNodeRequest(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     s32 v1;
     u32 v2;
     u32 v3;
@@ -447,10 +456,10 @@ s32 func_02005b80(BlockTransfer *a, s32 b, u8 *c, s32 d) {
         } else {
             v2 = 1;
         }
-        if (v4->mUnk_01 == 6) {
-            v3 = GetBlockChunkAddress(v4->mUnk_10, v4->mUnk_14);
+        if (v4->mPacketKind == 6) {
+            v3 = GetBlockChunkAddress(v4->mBlockId, v4->mChunkIndex);
             if (v3 != 0) {
-                v1 = WriteBlockNodePacket(c, v2, v4->mUnk_02, v4->mUnk_10, v4->mUnk_14, v3, GetSendChunkSize());
+                v1 = WriteBlockNodePacket(c, v2, v4->mRequestId, v4->mBlockId, v4->mChunkIndex, v3, GetSendChunkSize());
                 v4->mUnk_00 = 1;
             }
         }
@@ -458,7 +467,8 @@ s32 func_02005b80(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     return v1;
 }
 
-s32 func_02005b18(BlockTransfer *a, s32 b, u8 *c, s32 d) {
+// Sends the node packet even when the chunk address is 0.
+s32 ReplyToBlockNodeRequestAlways(BlockTransfer *a, s32 b, u8 *c, s32 d) {
     s32 v1;
     u32 v2;
     u32 v3;
@@ -471,16 +481,17 @@ s32 func_02005b18(BlockTransfer *a, s32 b, u8 *c, s32 d) {
         } else {
             v2 = 1;
         }
-        if (v4->mUnk_01 == 6) {
-            v3 = GetBlockChunkAddress(v4->mUnk_10, v4->mUnk_14);
-            v1 = WriteBlockNodePacket(c, v2, v4->mUnk_02, v4->mUnk_10, v4->mUnk_14, v3, GetSendChunkSize());
+        if (v4->mPacketKind == 6) {
+            v3 = GetBlockChunkAddress(v4->mBlockId, v4->mChunkIndex);
+            v1 = WriteBlockNodePacket(c, v2, v4->mRequestId, v4->mBlockId, v4->mChunkIndex, v3, GetSendChunkSize());
             v4->mUnk_00 = 1;
         }
     }
     return v1;
 }
 
-s32 func_02005a30(BlockTransfer *a, u8 *b, s32 c) {
+// Writes the packet of the running request again on every call.
+s32 WriteCurrentRequestPacket(BlockTransfer *a, u8 *b, s32 c) {
     s32 v1;
     s32 i;
     u32 v2;
@@ -499,7 +510,7 @@ s32 func_02005a30(BlockTransfer *a, u8 *b, s32 c) {
                 v2 = 1;
                 v2 = v2 << i;
                 if ((a->mCurrentRequest.mIndexMask & (u16) v2) != 0) {
-                    v4 = func_020062f4(v3);
+                    v4 = PickMissingChunkIndex(v3);
                     if (v4 == -1) {
                         v1 = func_020065f8(b, v2, a->mCurrentRequest.mRequestId, a->mCurrentRequest.mUnk_14);
                     } else {
@@ -527,7 +538,8 @@ s32 func_02005a30(BlockTransfer *a, u8 *b, s32 c) {
     return v1;
 }
 
-s32 func_0200589c(BlockTransfer *a, u8 *b, s32 c) {
+// Starts the waiting request when none is running and writes its first packet.
+s32 StartNextRequest(BlockTransfer *a, u8 *b, s32 c) {
     s32 v1;
     u32 v2;
     s32 i;

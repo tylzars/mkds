@@ -94,7 +94,7 @@ void func_0204ead0(u16 a, s32 b) {
 
 void func_0204ea94(BlockTransferRecord *a) {
     if (a->mKind == 10) {
-        if (a->mUnk_04 == 11) {
+        if (a->mCallbackCode == 11) {
             data_0217aa00->mRequestPending = 0;
             return;
         }

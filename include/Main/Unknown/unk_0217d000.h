@@ -115,12 +115,12 @@ typedef struct RecordVSErase {
     /* 80 */ s16 mShownIndex;
     /* 82 */ u8 mUnk_82[2];
     /* 84 */ u32 mErased;
-    /* 88 */ struct EmblemData *mUnk_88;
-    /* 8c */ void *mUnk_8c;
+    /* 88 */ struct EmblemData *mEmblem;
+    /* 8c */ void *mEmblemConverted;
     /* 90 */ s32 mOffsetTimers[2];
     /* 98 */ BOOL mUnk_98;
     /* 9c */ BOOL mUnk_9c;
-    /* a0 */ s32 mUnk_a0;
+    /* a0 */ s32 mNextScreen;
 } RecordVSErase;
 
 typedef struct SelectCupNameM {

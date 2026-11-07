@@ -273,32 +273,32 @@ s32 func_02006c2c(u8 *a, s32 b) {
         if (i > 15) {
             i = 1;
         }
-        v2 = func_02005cc8(v1, i, a, b);
+        v2 = ReplyToBytesPacket(v1, i, a, b);
         if (v2 != 0) {
             data_0216177c = i;
             return v2;
         }
-        v2 = func_02005d4c(v1, i, a, b);
+        v2 = ReplyToBlockCountRequest(v1, i, a, b);
         if (v2 != 0) {
             data_0216177c = i;
             return v2;
         }
-        v2 = func_02005b80(v1, i, a, b);
+        v2 = ReplyToBlockNodeRequest(v1, i, a, b);
         if (v2 != 0) {
             data_0216177c = i;
             return v2;
         }
-        v2 = func_02005d08(v1, i, a, b);
+        v2 = ReplyToNoMissingChunk(v1, i, a, b);
         if (v2 != 0) {
             data_0216177c = i;
             return v2;
         }
     } while (i != data_0216177c);
-    v2 = func_02005a30(v1, a, b);
+    v2 = WriteCurrentRequestPacket(v1, a, b);
     if (v2 != 0) {
         return v2;
     }
-    v2 = func_0200589c(v1, a, b);
+    v2 = StartNextRequest(v1, a, b);
     if (v2 != 0) {
         return v2;
     }
@@ -308,14 +308,14 @@ s32 func_02006c2c(u8 *a, s32 b) {
         if (i > 15) {
             i = 1;
         }
-        v2 = func_02005bec(v1, i, a, b);
+        v2 = ReplyToBlockDataRequest(v1, i, a, b);
         if (v2 != 0) {
             data_0216177c = i;
             return v2;
         }
     } while (i != data_0216177c);
     for (i = 1; i < 16; i++) {
-        v2 = func_02005b18(v1, i, a, b);
+        v2 = ReplyToBlockNodeRequestAlways(v1, i, a, b);
         if (v2 != 0) {
             return v2;
         }
@@ -329,12 +329,12 @@ s32 func_02006c2c(u8 *a, s32 b) {
 
 void ReceivePacketFromIndex(u32 a, const u8 *b, int c) {
     if (0 < c) {
-        func_02005dac(GetBlockTransfer(), a, b, c);
+        ParseReceivedPacket(GetBlockTransfer(), a, b, c);
     }
 }
 
 void func_02006bec(const u8 *a, u32 b) {
-    func_02005dac(GetBlockTransfer(), 0, a, b);
+    ParseReceivedPacket(GetBlockTransfer(), 0, a, b);
 }
 
 #pragma thumb off
@@ -344,28 +344,28 @@ void func_02006bec(const u8 *a, u32 b) {
 void func_02006b50(u8 *a, s32 b) {
     BlockTransfer *v1;
     v1 = GetBlockTransfer();
-    if (func_02005cc8(v1, 0, a, b) != 0) {
+    if (ReplyToBytesPacket(v1, 0, a, b) != 0) {
         return;
     }
-    if (func_02005d4c(v1, 0, a, b) != 0) {
+    if (ReplyToBlockCountRequest(v1, 0, a, b) != 0) {
         return;
     }
-    if (func_02005b80(v1, 0, a, b) != 0) {
+    if (ReplyToBlockNodeRequest(v1, 0, a, b) != 0) {
         return;
     }
-    if (func_02005d08(v1, 0, a, b) != 0) {
+    if (ReplyToNoMissingChunk(v1, 0, a, b) != 0) {
         return;
     }
-    if (func_02005bec(v1, 0, a, b) != 0) {
+    if (ReplyToBlockDataRequest(v1, 0, a, b) != 0) {
         return;
     }
-    if (func_02005b18(v1, 0, a, b) != 0) {
+    if (ReplyToBlockNodeRequestAlways(v1, 0, a, b) != 0) {
         return;
     }
-    if (func_02005a30(v1, a, b) != 0) {
+    if (WriteCurrentRequestPacket(v1, a, b) != 0) {
         return;
     }
-    if (func_0200589c(v1, a, b) != 0) {
+    if (StartNextRequest(v1, a, b) != 0) {
         return;
     }
     WriteEmptyPacket(a, 0xffff, 0);

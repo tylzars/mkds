@@ -67,8 +67,8 @@ extern u8 gOrthoQuadMatrix[];
 extern u16 gOrthoQuadAlpha;
 // One byte per row, one bit per column; marked when a quad is placed so later quads avoid the same cells.
 extern u8 gOrthoQuadCells[];
-extern u32 data_0217c6e4[];
-extern u32 data_0217c704[];
+extern u32 gBouncingItemBoxTimers[];
+extern u32 gBouncingItemBoxTimerRunning[];
 extern s32 gOrthoQuadMoveStartFrameCount;
 extern u16 data_0217c76c[];
 extern u16 data_0217c770[];

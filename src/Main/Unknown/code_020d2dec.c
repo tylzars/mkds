@@ -382,7 +382,7 @@ void InitMapObjects(void) {
         gMapObjects->mUnk_188 != 0) {
         data_0217b610 = 1;
     }
-    func_02105214();
+    CreatePooledMapObjects();
     gMapObjects->mDrawListCount = 0;
     for (m = 0; m < 24; m++) {
         gMapObjects->mDrawLists[m] = NULL;

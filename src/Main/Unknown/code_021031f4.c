@@ -76,8 +76,8 @@ void func_02104970(void) {
         return;
     }
     i = 0;
-    p = data_0217c6e4;
-    q = data_0217c704;
+    p = gBouncingItemBoxTimers;
+    q = gBouncingItemBoxTimerRunning;
     do {
         *p++ = -1;
         *q++ = 0;

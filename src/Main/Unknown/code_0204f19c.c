@@ -5,7 +5,7 @@
 #pragma thumb on
 
 void func_0204f19c(BlockTransferRecord *a) {
-    s32 s = a->mUnk_04;
+    s32 s = a->mCallbackCode;
     if (s == 10) {
         func_0204f220(&a->mUnk_14, *((u8 *) &a->mUnk_1c[0] + 1));
         return;

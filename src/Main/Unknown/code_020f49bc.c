@@ -1014,7 +1014,7 @@ void CreateItemInfos(void) {
     p[11] = data_021598fc;
     p[12] = data_021599dc;
     p[13] = data_02159d90;
-    p[14] = data_0215a588;
+    p[14] = gItemInfoKiller;
     p[15] = data_0215a2ec;
     p[16] = data_0215a174;
     p[17] = data_0215a4c0;

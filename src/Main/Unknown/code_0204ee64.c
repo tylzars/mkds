@@ -26,7 +26,7 @@ void func_0204f148(void) {
 
 void func_0204f100(BlockTransferRecord *a) {
     if (a->mKind == 2) {
-        if (a->mUnk_04 == 3) {
+        if (a->mCallbackCode == 3) {
             data_0217aa00->mUnk_1d5e = *(s16 *) &a->mUnk_14;
             data_0217aa00->mRequestPending = 0;
         } else {
@@ -49,7 +49,7 @@ void func_0204f0b8(void) {
 
 void func_0204f080(BlockTransferRecord *a) {
     if (a->mKind == 6) {
-        if (a->mUnk_04 == 7) {
+        if (a->mCallbackCode == 7) {
             data_0217aa00->mRequestPending = 0;
         } else {
             func_0204f0b8();
@@ -73,7 +73,7 @@ void func_0204f008(void) {
 
 void func_0204efcc(BlockTransferRecord *a) {
     if (a->mKind == 4) {
-        if (a->mUnk_04 == 5) {
+        if (a->mCallbackCode == 5) {
             data_0217aa00->mRequestPending = 0;
         } else {
             func_02050e60(8);

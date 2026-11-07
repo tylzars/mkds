@@ -91,7 +91,7 @@ void AdvanceRecordVSEraseIndexChange(void) {
     }
 }
 
-void func_02115e74(void) {
+void RequestRecordVSEraseState0(void) {
     s32 i;
     u16 n;
 
@@ -125,13 +125,13 @@ void RequestRecordVSEraseState1(void) {
     gRecordVSErase->mStateFrames = 0;
 }
 
-void func_02115e44(void) {
+void RequestRecordVSEraseState2(void) {
     gRecordVSErase->mNextState = 2;
     gRecordVSErase->mStateFrames = 0;
     RequestTxtSystemClose();
 }
 
-void func_02115e20(void) {
+void RequestRecordVSEraseState3(void) {
     gRecordVSErase->mNextState = 3;
     gRecordVSErase->mStateFrames = 0;
     RequestSelectReturnState1();
@@ -148,7 +148,7 @@ void RequestRecordVSEraseState5(void) {
     gRecordVSErase->mStateFrames = 0;
 }
 
-void func_02115dc0(void) {
+void RequestRecordVSEraseState6(void) {
     gRecordVSErase->mNextState = 6;
     gRecordVSErase->mStateFrames = 0;
     switch (gRecordVSErase->mPageDecrement) {
@@ -162,14 +162,14 @@ void func_02115dc0(void) {
     func_02116244();
 }
 
-void func_02115d90(void) {
+void RequestRecordVSEraseState7(void) {
     gRecordVSErase->mNextState = 7;
     gRecordVSErase->mStateFrames = 0;
     RequestSelectReturnState4();
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, 5);
 }
 
-void func_02115d08(void) {
+void RequestRecordVSEraseState8(void) {
     u16 buf[0x10];
     u16 buf2[0x100];
     u16 v;
@@ -183,20 +183,20 @@ void func_02115d08(void) {
                                       GetBmgEntry(gRecordVSErase->mCommonMessages, 1), 1, 0, 1, 1, 1);
 }
 
-void func_02115cec(void) {
+void RequestRecordVSEraseState9(void) {
     gRecordVSErase->mNextState = 9;
     gRecordVSErase->mStateFrames = 0;
     SetTxtSystemSoundId(0, 0xb);
 }
 
-void func_02115cc4(void) {
+void RequestRecordVSEraseState10(void) {
     gRecordVSErase->mNextState = 0xa;
     gRecordVSErase->mStateFrames = 0;
     RequestTxtSystemClose();
     SetTxtSystemSoundId(0, 5);
 }
 
-void func_02115ca0(void) {
+void RequestRecordVSEraseState11(void) {
     gRecordVSErase->mNextState = 0xb;
     gRecordVSErase->mStateFrames = 0;
     RequestSelectReturnState1();
@@ -318,12 +318,12 @@ void InitRecordVSErase(void *a) {
     }
     func_02124140(5, 0, gRecordVSErase->mRecordVSSEraseBnll, gRecordVSErase->mRecordVSSEraseTable,
                   gRecordVSErase->mRecordVSSEraseBncl);
-    gRecordVSErase->mUnk_88 = HeapAlloc(a, 0x201);
-    gRecordVSErase->mUnk_8c = HeapAlloc(a, 0x200);
-    func_02115e74();
+    gRecordVSErase->mEmblem = HeapAlloc(a, 0x201);
+    gRecordVSErase->mEmblemConverted = HeapAlloc(a, 0x200);
+    RequestRecordVSEraseState0();
 }
 
-void func_021156d4(void) {
+void ReleaseRecordVSErase(void) {
     u32 v;
 
     SetRecordScenePageIndex(gRecordVSErase->mPageIndex);
@@ -350,7 +350,7 @@ void AdvanceRecordVSEraseState1(void) {
     int v1;
     v1 = GetTxtSystemDone();
     if (v1 != 0) {
-        func_02115e44();
+        RequestRecordVSEraseState2();
     }
 }
 
@@ -358,7 +358,7 @@ void AdvanceRecordVSEraseState2(void) {
     int v1;
     v1 = IsTxtSystemState0NoOpenRequest();
     if (v1 != 0) {
-        func_02115e20();
+        RequestRecordVSEraseState3();
     }
 }
 
@@ -436,7 +436,7 @@ void AdvanceRecordVSEraseState4(void) {
             return;
         }
         RequestRecordVSEraseState12();
-        gRecordVSErase->mUnk_a0 = 3;
+        gRecordVSErase->mNextScreen = 3;
         RequestSelectReturnState3WithSound(0);
         return;
     }
@@ -475,7 +475,7 @@ void AdvanceRecordVSEraseState4(void) {
         if (i == gRecordVSErase->mIndex) {
             if (IsRecordFlagged(s + i) == 0) {
                 if (IsRecordVSEraseIndexChangeRunning() == 0) {
-                    func_02115d90();
+                    RequestRecordVSEraseState7();
                 }
                 return;
             }
@@ -492,7 +492,7 @@ void AdvanceRecordVSEraseState4(void) {
         if ((u16) (data_02175628[i].mUnk_00 & PAD_KEY_A) != 0) {
             if (IsRecordFlagged(s + gRecordVSErase->mIndex) == 0) {
                 if (IsRecordVSEraseIndexChangeRunning() == 0) {
-                    func_02115d90();
+                    RequestRecordVSEraseState7();
                 }
                 return;
             }
@@ -566,7 +566,7 @@ void AdvanceRecordVSEraseState5(void) {
         gRecordVSErase->mRecordVSSEraseTable[c + data_0215c4b8[i]].mUnk_04 = v;
     }
     if (gRecordVSErase->mStateFrames >= 0xa) {
-        func_02115dc0();
+        RequestRecordVSEraseState6();
     }
 }
 
@@ -654,7 +654,7 @@ void AdvanceRecordVSEraseState7(void) {
     }
     if (gRecordVSErase->mStateFrames > 0xa) {
         if (IsSelectReturnState0NoState1Request() != 0) {
-            func_02115d08();
+            RequestRecordVSEraseState8();
         }
     }
 }
@@ -667,7 +667,7 @@ void AdvanceRecordVSEraseState8(void) {
     int v1;
     v1 = IsTxtSystemState2NoCloseRequest();
     if (v1 != 0) {
-        func_02115cec();
+        RequestRecordVSEraseState9();
     }
 }
 
@@ -686,7 +686,7 @@ void AdvanceRecordVSEraseState9(void) {
         } else {
             gRecordVSErase->mErased = 0;
         }
-        func_02115cc4();
+        RequestRecordVSEraseState10();
     }
 }
 
@@ -730,10 +730,10 @@ void AdvanceRecordVSEraseState10(void) {
             gRecordVSErase->mPageIndex--;
         }
         if (gRecordVSErase->mPageIndex < 0) {
-            gRecordVSErase->mUnk_a0 = 3;
-            RequestRecordScreen(gRecordVSErase->mUnk_a0);
+            gRecordVSErase->mNextScreen = 3;
+            RequestRecordScreen(gRecordVSErase->mNextScreen);
         } else {
-            func_02115ca0();
+            RequestRecordVSEraseState11();
         }
     }
 }
@@ -819,7 +819,7 @@ void AdvanceRecordVSEraseState12(void) {
         gRecordVSErase->mRecordVSSEraseTable[z + data_0215c4b8[i]].mUnk_04 = a;
     }
     if (gRecordVSErase->mStateFrames >= 10) {
-        RequestRecordScreen(gRecordVSErase->mUnk_a0);
+        RequestRecordScreen(gRecordVSErase->mNextScreen);
     }
 }
 
@@ -882,14 +882,14 @@ void AdvanceRecordVSErase(void) {
                   gRecordVSErase->mRecordVSSEraseBnll, func_0211130c(), gRecordVSErase->mRecordVSSEraseTable);
 }
 
-void func_02114604(void) {
+void WriteRecordVSEraseBgOffsets(void) {
     reg_G2_BG0OFS = (-gRecordVSErase->mBg0OffsetX & 0x1ff) | ((-gRecordVSErase->mBg0OffsetY << 16) & 0x1ff0000);
     reg_G2_BG1OFS = (-gRecordVSErase->mBg1OffsetX & 0x1ff) | ((-gRecordVSErase->mBg1OffsetY << 16) & 0x1ff0000);
     reg_G2S_DB_BG3OFS = (-gRecordVSErase->mBg3Offset << 16) & 0x1ff0000;
     AdvanceRecordSceneRegistersTimer();
 }
 
-void func_021145dc(void) {
+void WriteRecordVSEraseRegisters(void) {
     u32 a;
 
     a = (reg_GXS_DB_DISPCNT & 0x1f00) >> 8;
@@ -897,7 +897,8 @@ void func_021145dc(void) {
 }
 
 void RegisterRecordVSEraseCallbacks(void) {
-    void (*a[5])() = {InitRecordVSErase, func_021156d4, AdvanceRecordVSErase, func_02114604, func_021145dc};
+    void (*a[5])() = {InitRecordVSErase, ReleaseRecordVSErase, AdvanceRecordVSErase, WriteRecordVSEraseBgOffsets,
+                      WriteRecordVSEraseRegisters};
 
     SetRecordScreenCallbacks(a);
 }
