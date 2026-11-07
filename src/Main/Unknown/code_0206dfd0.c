@@ -195,7 +195,7 @@ void CollideKartWithKarts(Kart *p) {
                 }
             } else if (p->mUnk_3d4 <= 0) {
                 if (p->mVelocityLength > 0x1000 || q->mVelocityLength > 0x1000) {
-                    if (data_0217c814.mUnk_00 > 0x78) {
+                    if (gSceneSoundState.mRaceFrames > 0x78) {
                         StartSound(&p->mSoundSource, 0x80, 0x7f, 0);
                     }
                     if (p->mVelocityLength > q->mVelocityLength) {

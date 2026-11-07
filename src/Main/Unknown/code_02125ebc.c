@@ -504,13 +504,13 @@ L:
         if ((u16) (w & 0x20) != 0 && p->mSelectedIndex == 1) {
             p->mSelectedIndex = 0;
             func_02126ef8();
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
             return;
         }
         if ((u16) (w & 0x10) != 0 && p->mSelectedIndex == 0) {
             p->mSelectedIndex = 1;
             func_02126ef8();
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         }
     }
 }

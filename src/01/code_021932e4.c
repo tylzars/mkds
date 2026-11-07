@@ -206,19 +206,19 @@ void AdvanceOptionTopMenuState3(void) {
         if (gOptionTopMenu->mIndex == old) {
             gOptionTopMenu->mUnk_14 = FALSE;
         }
-        func_02105ac0(5);
+        StartSoundOncePerFrame(5);
     } else if (func_020ae408(8, 0x40) != 0) {
         gOptionTopMenu->mIndex--;
         if (gOptionTopMenu->mIndex < 0) {
             gOptionTopMenu->mIndex = 2;
         }
-        func_02105ac0(0);
+        StartSoundOncePerFrame(0);
     } else if (func_020ae408(8, 0x80) != 0) {
         gOptionTopMenu->mIndex++;
         if (gOptionTopMenu->mIndex > 2) {
             gOptionTopMenu->mIndex = 0;
         }
-        func_02105ac0(0);
+        StartSoundOncePerFrame(0);
     }
 }
 

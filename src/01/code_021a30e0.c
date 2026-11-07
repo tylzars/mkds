@@ -130,7 +130,7 @@ void func_ov001_021a30e0(void) {
                     func_ov001_02185018(entry8, 0);
                     func_ov001_02184fd8(entry8, func_ov001_02184fc8(entry), func_ov001_02184fb8(entry));
                     if (gEmblem->mUnk_107c != prev) {
-                        func_02105ac0(0x1ef);
+                        StartSoundOncePerFrame(0x1ef);
                     }
                 }
                 func_ov001_021a5f70(0, GetEmblemInputX(), GetEmblemInputY(), 0, 0, 0);
@@ -182,7 +182,7 @@ void func_ov001_021a30e0(void) {
                         func_ov001_02185018(entry9, -5);
                     }
                     if (gEmblem->mUnk_1080 != prev) {
-                        func_02105ac0(0x1ef);
+                        StartSoundOncePerFrame(0x1ef);
                     }
                 }
                 func_ov001_021a5f70(0, GetEmblemInputX(), GetEmblemInputY(), 0, 0, 0);

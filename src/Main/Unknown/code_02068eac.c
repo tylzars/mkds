@@ -249,7 +249,7 @@ void StartKartStar(Kart *p) {
     func_0207b284(p);
     func_02081a40(p->mIndex);
     if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && gRaceSetup->mUnk_00c == 0) {
-        func_02106e78();
+        StartKartStarSeq();
     }
     if (gRaceSetup->mMode == MODE_BATTLE) {
         func_020a1e3c(p->mIndex);

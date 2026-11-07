@@ -227,7 +227,7 @@ void func_0210b12c(Kart *a, s32 b, s16 d) {
     s32 c;
 
     c = b + 0xc1;
-    if (data_0217c814.mUnk_00 < 0x78) {
+    if (gSceneSoundState.mRaceFrames < 0x78) {
         return;
     }
     p = StartSoundEx(&a->mSoundSource, 0, c, 0x7f, 0);
@@ -248,7 +248,7 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
     s32 x;
     s32 y;
 
-    d = data_0217c814.mUnk_00;
+    d = gSceneSoundState.mRaceFrames;
     if (!(a->mSoundSource.mUnk_34 & 1)) {
         return;
     }
@@ -259,8 +259,8 @@ void func_0210af40(Kart *a, s32 b, s32 c) {
     if (a->mUnk_7c & KART_7C_ENTRY_KIND_2) {
         return;
     }
-    if (data_0217c814.mUnk_0c != 1) {
-        if (data_0217c814.mUnk_0c != 0) {
+    if (gSceneSoundState.mRaceState != 1) {
+        if (gSceneSoundState.mRaceState != 0) {
             return;
         }
         e = 0x7f;
@@ -568,7 +568,7 @@ void func_0210a724(Kart *a, PlayingSound *b) {
 
     c = b->mUnk_19;
     v = 0;
-    if (!(c & 0x10) && data_0217c814.mUnk_00 > a->mUnk_450.mUnk_34 + 1) {
+    if (!(c & 0x10) && gSceneSoundState.mRaceFrames > a->mUnk_450.mUnk_34 + 1) {
         v = 0x180;
         if (c & 0x80) {
             v += 0x100;

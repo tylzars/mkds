@@ -212,7 +212,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     if (func_0204a428(a->mScene, &n)) {
         func_0204acd0(n);
     }
-    func_021074ac(0);
+    InitSceneSounds(0);
     func_02043410();
     if (func_020487fc_inline2()) {
         data_0217aa00->mUnk_0454 |= 4;
@@ -227,13 +227,13 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
     func_02047274();
     gDisplaySettings->mIrqCallback = func_0204a4d8;
     func_0204ac60();
-    func_02107010();
+    StartSceneSounds();
     WaitIrqAndTurnOnDisplays();
     data_021759cc->mUnk_10c = 1;
     do {
         PrepareDisplayFrame();
         func_020487fc_inline7();
-        func_0210823c();
+        UpdateSounds();
         func_020487fc_inline8();
         func_020487fc_inline9(b);
         r = func_0204984c(a, data_021759cc->mUnk_10c != 4);
@@ -255,7 +255,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         if (b->mUpdate != NULL) {
             b->mUpdate(a, data_021759cc->mSceneFrames);
         }
-        func_0210823c();
+        UpdateSounds();
         v = func_020487fc_inline8();
         func_020487fc_inline9(b);
         r = func_0204984c(a, data_021759cc->mUnk_10c != 4);
@@ -275,7 +275,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         RecordFrameTimes();
     } while (a->mNextScene == -1 && v == 0);
     data_021759cc->mUnk_10c = 3;
-    func_02105fcc();
+    StopSceneSounds();
     if (data_021759d0->mUnk_1c_0) {
         if (a == NULL || func_0204a340(a->mScene, a->mNextScene)) {
             func_0204ac10();
@@ -295,7 +295,7 @@ void RunScene(SceneNumbers *a, const SceneCallbacks *b) {
         if (b->mUpdate != NULL) {
             b->mUpdate(0, data_021759cc->mSceneFrames);
         }
-        func_0210823c();
+        UpdateSounds();
         func_020487fc_inline8();
         func_020487fc_inline9(b);
         func_0204984c(a, data_021759cc->mUnk_10c != 4);
@@ -319,7 +319,7 @@ end:
         func_0204f7f4();
         do {
             PrepareDisplayFrame();
-            func_0210823c();
+            UpdateSounds();
             func_020487fc_inline8();
             func_020487fc_inline9(b);
             if (func_02054f58() == 1) {
@@ -350,7 +350,7 @@ end:
     func_02043b3c();
     ClearFontAndPlayerCharacterTables();
     ClearLcdcBankAndStartWvrAndWait();
-    func_02105ec0();
+    StopSceneSoundsAtOnce();
     if (data_021759d0->mUnk_1c_1 && func_0204a340(a->mScene, a->mNextScene)) {
         func_0204aba8();
     }

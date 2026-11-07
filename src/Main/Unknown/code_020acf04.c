@@ -44,11 +44,11 @@ void func_020acf04(void) {
         case 0:
         case 1:
         case 2:
-            func_02105ac0(9);
+            StartSoundOncePerFrame(9);
             break;
         case 3:
         case 4:
-            func_02105ac0(8);
+            StartSoundOncePerFrame(8);
             break;
         default:
             break;

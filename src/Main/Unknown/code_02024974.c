@@ -152,7 +152,7 @@ void func_02024a88(Kart *a) {
     if ((s32) GetRaceUpdateFrames() < 5) {
         return;
     }
-    if (data_0217c814.mUnk_0c == 0) {
+    if (gSceneSoundState.mRaceState == 0) {
         h = a->mUnk_4d4;
         if (h > 0xcd && gRaceSetup->mCurrentEntries[a->mIndex].mPlayer.mKind != 1) {
             if (f != 0) {

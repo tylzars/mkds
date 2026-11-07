@@ -148,7 +148,7 @@ void func_021106a8(s32 a, s32 b) {
 }
 
 void func_02110698(void) {
-    func_02105ac0(0);
+    StartSoundOncePerFrame(0);
 }
 
 s32 func_02110640(Unk0217c7f0 *a, s32 b) {
@@ -527,7 +527,7 @@ void func_0210fb88(Unk0217d244 *a, NNSSndSeqPlayer **b) {
     } else {
         j = data_0216cb28;
     }
-    if (data_0217c814.mUnk_0c != 1) {
+    if (gSceneSoundState.mRaceState != 1) {
         k = 0;
     } else if ((a->mUnk_08 >> 1) & 1) {
         a->mUnk_04 += 0x1111;

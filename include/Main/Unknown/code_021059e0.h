@@ -9,6 +9,6 @@ void func_02105b64(s32 a);
 void StopAllSeqPlayers(void);
 void SetSndHandleTrackVolume(NNSSndSeqPlayer **a, u32 b);
 void SetSndHandleTrackPitch(NNSSndSeqPlayer **a, u32 b);
-void func_02105ac0(s32 a);
+void StartSoundOncePerFrame(s32 a);
 void func_02105a30(u32 a);
 void func_021059e0(void);

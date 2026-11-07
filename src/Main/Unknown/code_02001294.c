@@ -90,7 +90,7 @@ void func_020016ac(void) {
     Unk021a99c0_18 *v2;
     data_usa_ov001_021a99c0->mUnk_34 = data_usa_ov001_021a99c0->mUnk_34 + 1;
     if (func_02125f6c() != 0) {
-        func_02105ac0(34);
+        StartSoundOncePerFrame(34);
     }
     if (data_0217aa08->mUnk_28 == 0) {
         if (data_021759d4->mUnk_0c != 0) {
@@ -187,7 +187,7 @@ void func_02001350(void) {
     v1 = data_usa_ov001_021a99c0;
     if (v1->mUnk_2c_0 != 0) {
         if (func_02125f6c() != 0) {
-            func_02105ac0(34);
+            StartSoundOncePerFrame(34);
         }
         if (data_0217aa08->mUnk_28 == 0) {
             if (data_021759d4->mUnk_0c != 0) {

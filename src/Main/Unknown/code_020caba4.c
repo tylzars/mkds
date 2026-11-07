@@ -18,7 +18,7 @@ s32 func_020cadac(s32 a) {
         n = gEmblemChoises->mChoisesCount;
         if (a != 0) {
             gEmblemChoises->mUnk_24 = 0;
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         }
         gEmblemChoises->mChoisesIndex = (v + a + n) % n;
     }

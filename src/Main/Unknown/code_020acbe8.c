@@ -77,12 +77,12 @@ void UpdateTitleState2(Unk020aca24 *a) {
                 case 3:
                     gTitleScene->mSelectedIndex = 4;
                     gTitleScene->mPreferEntry4 = TRUE;
-                    func_02105ac0(0);
+                    StartSoundOncePerFrame(0);
                     break;
                 case 4:
                     gTitleScene->mSelectedIndex = 3;
                     gTitleScene->mPreferEntry4 = FALSE;
-                    func_02105ac0(0);
+                    StartSoundOncePerFrame(0);
                     break;
             }
             gTitleScene->mNoInputFrames = 0;
@@ -106,7 +106,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
                     gTitleScene->mSelectedIndex = 2;
                     break;
             }
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
             gTitleScene->mNoInputFrames = 0;
         } else if (func_020ae408(i, 0x80) != 0) {
             switch (gTitleScene->mSelectedIndex) {
@@ -128,7 +128,7 @@ void UpdateTitleState2(Unk020aca24 *a) {
                     gTitleScene->mSelectedIndex = 0;
                     break;
             }
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
             gTitleScene->mNoInputFrames = 0;
         } else if (func_020ace14(i) != 0) {
             u32 x = func_020acdec(i);

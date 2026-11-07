@@ -153,7 +153,7 @@ void func_02110cc8(s32 d) {
     if (data_0217d084.mUnk_04 != 2) {
         return;
     }
-    func_02106c64();
+    EndRaceSounds();
     b = func_02110e58();
     q = data_0217d32c.mUnk_08;
     c = 0xff;

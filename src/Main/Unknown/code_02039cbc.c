@@ -49,7 +49,7 @@ void func_02039cbc(void) {
     }
     func_02046a3c(a);
     func_02057524(a);
-    func_02108344(e, f, ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2);
+    InitSound(e, f, ((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2);
     SetSoundOutputEffect(1);
     if (OS_IsRunOnEmulator() == 0) {
         RTC_Init();

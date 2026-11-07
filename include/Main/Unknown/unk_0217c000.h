@@ -75,7 +75,7 @@ extern u16 data_0217c770[];
 extern NNSSndHeap *data_0217c77c;
 extern u32 data_0217c78c;
 extern NNSSndHeap *data_0217c790;
-extern u32 data_0217c794;
+extern u32 gSoundStartedThisFrame;
 extern u32 data_0217c798[];
 extern u32 data_0217c7a8;
 struct NNSSndSeqPlayer;

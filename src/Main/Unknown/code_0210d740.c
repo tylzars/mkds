@@ -71,7 +71,7 @@ void func_0210d7ac(void) {
     NNS_SndMain();
 }
 
-void func_0210d740(Unk0217d070 *a, Unk0217c814 *b, u32 c, Unk021073ec d) {
+void func_0210d740(Unk0217d070 *a, SceneSoundState *b, u32 c, Unk021073ec d) {
     func_0210dc60(&data_0217d084, a, 0);
     *(Unk021073ec *) &a->mUnk_09 = d;
     a->mUnk_04 = b;

@@ -69,7 +69,7 @@ void func_0205dee0(void) {
         CARD_WaitBackupAsync();
     }
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && data_0217aa20->mUnk_0c != NULL) {
-        func_02108720();
+        ReleaseSndHeaps();
         HeapFree(a, data_0217aa20->mUnk_0c);
         data_0217aa20->mUnk_0c = NULL;
     }
@@ -82,8 +82,8 @@ void func_0205dee0(void) {
     GXx_SetMasterBrightness_(&reg_GXS_DB_MASTER_BRIGHT, 0x10);
     WaitIrqAndTurnOnDisplays();
     func_02108ec4();
-    a = HeapAlloc(a, func_021087d4(1));
-    func_02108598(1, (u32) a);
+    a = HeapAlloc(a, GetSndHeapsBufferSize(1));
+    CreateSndHeaps(1, (u32) a);
     data_0217aa20->mUnk_0c = a;
 }
 
@@ -127,7 +127,7 @@ s32 RunScenes(s16 *a) {
     }
     h = GetHeap(func_020364e8());
     if (((Unk027ffc40 *) 0x027ffc40)->mUnk_00 != 2 && data_0217aa20->mUnk_0c != NULL) {
-        func_02108720();
+        ReleaseSndHeaps();
         HeapFree(h, data_0217aa20->mUnk_0c);
         data_0217aa20->mUnk_0c = NULL;
     }

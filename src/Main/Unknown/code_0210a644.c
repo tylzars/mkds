@@ -4,6 +4,6 @@
 #include "Main/Unknown/code_02105ec0.h"
 
 void func_0210a644(Kart *a) {
-    a->mUnk_450.mUnk_34 = data_0217c814.mUnk_00;
+    a->mUnk_450.mUnk_34 = gSceneSoundState.mRaceFrames;
     a->mSoundSource.mUnk_30 = (void (*)(void *, void *, void *)) func_0210a724;
 }

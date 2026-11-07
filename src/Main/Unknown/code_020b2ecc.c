@@ -66,13 +66,13 @@ s32 MoveChoisesSSelectedValue(s32 a) {
         } else if (n == 2) {
             if (a != 0 && i + a >= 0 && i + a < n) {
                 gChoisesS->mCycleFrames = 0;
-                func_02105ac0(0);
+                StartSoundOncePerFrame(0);
             } else {
                 a = 0;
             }
         } else if (a != 0) {
             gChoisesS->mCycleFrames = 0;
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         }
         d = gChoisesS;
         d->mSelectedValue = d->mLists[k].mValues[(n + (i + a)) % n];

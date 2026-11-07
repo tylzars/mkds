@@ -252,15 +252,16 @@ BOOL LoadSndBanksAndWaveArcsIfChanged(s32 a) {
     return TRUE;
 }
 
-int func_021087d4(int a) {
+// Total size of the buffer CreateSndHeaps carves into its three parts.
+int GetSndHeapsBufferSize(int a) {
     return (a == 0 ? 0xc8000 : 0xaf000) - (a == 2 ? 0xaf000 : 0xc400);
 }
 
-int func_021087c4(int a) {
+int GetSndInitBufferSize(int a) {
     return a == 2 ? 0xaf000 : 0xc400;
 }
 
-void func_02108720(void) {
+void ReleaseSndHeaps(void) {
     NNS_SndHeapDestroy(data_0217d130);
     data_0217d130 = NULL;
     NNS_SndHeapDestroy(data_0217c77c);
@@ -274,7 +275,7 @@ void func_02108720(void) {
     func_0210e4ec(&data_0217c7b4);
 }
 
-void func_02108598(u32 a, u32 b) {
+void CreateSndHeaps(u32 a, u32 b) {
     u32 c;
     u32 d;
     u32 e;
@@ -348,7 +349,7 @@ void func_02108598(u32 a, u32 b) {
     func_0210e8f8(x);
 }
 
-void func_02108344(void *a, u32 b, u32 c) {
+void InitSound(void *a, u32 b, u32 c) {
     u32 v;
     u32 w;
     Unk02108344 n;
@@ -422,13 +423,14 @@ void func_02108344(void *a, u32 b, u32 c) {
     func_0210b6a0();
 }
 
-void func_0210823c(void) {
+// Per-frame sound step; runs once per iteration of every scene frame loop.
+void UpdateSounds(void) {
     s32 i;
     BOOL v;
     NNSSndSeqPlayer *p;
 
     if (data_0217d070.mUnk_00 != 0) {
-        func_021060dc();
+        UpdateSceneSoundState();
     }
     func_0210fa28();
     func_0210bac0();
@@ -450,10 +452,11 @@ void func_0210823c(void) {
         }
     }
     func_0210d7ac();
-    data_0217c794 = 0;
+    gSoundStartedThisFrame = 0;
 }
 
-void func_021074ac(s32 e) {
+// Loads the sound data of the scene that is starting; the parameter is not used.
+void InitSceneSounds(s32 e) {
     s32 c;
     s32 a;
     s32 v;
@@ -722,7 +725,7 @@ void func_021074ac(s32 e) {
     s.mUnk_01 = buf.mUnk_00;
     s.mUnk_02 = buf.mUnk_01;
     func_021103c0();
-    func_021073ec(c & 0xff, s, &data_0217c814);
+    InitSceneSoundState(c & 0xff, s, &gSceneSoundState);
     func_0210912c();
     func_0210b870();
     func_0210aefc();
@@ -749,25 +752,25 @@ void func_021074ac(s32 e) {
     }
 }
 
-void func_021073ec(u32 a, Unk021073ec b, Unk0217c814 *c) {
-    c->mUnk_15 = 0;
+void InitSceneSoundState(u32 a, Unk021073ec b, SceneSoundState *c) {
+    c->mLapsDone = 0;
     NNS_SndHandleInit(&c->mUnk_08);
     c->mUnk_16 = 0;
-    c->mUnk_10 = 0;
+    c->mOnLastLap = 0;
     c->mUnk_17 = 0;
-    c->mUnk_00 = 0;
-    c->mUnk_04 = 0;
-    c->mUnk_0c = 0;
-    c->mUnk_18 = 0xff;
-    c->mUnk_19 = 0xff;
-    c->mUnk_1c = -1;
+    c->mRaceFrames = 0;
+    c->mSceneFrames = 0;
+    c->mRaceState = 0;
+    c->mRankIndex = 0xff;
+    c->mRankIndexAtSeq = 0xff;
+    c->mRankSeqFrames = -1;
     c->mUnk_20 = 0;
     func_0210d740(&data_0217d070, c, a, b);
     data_0217d084.mUnk_18 = &data_0217c81c;
     func_0210d9a0(&data_0217d084, 0);
 }
 
-void func_02107010(void) {
+void StartSceneSounds(void) {
     s32 b;
     u32 c;
     s32 v;
@@ -848,7 +851,7 @@ void func_02107010(void) {
         }
         if (gRaceSetup->mMode != MODE_BATTLE) {
             func_02110534(gCourseMap->mCheckpointSum);
-            data_0217c814.mUnk_14 = GetLapCount();
+            gSceneSoundState.mLapCount = GetLapCount();
         }
     } else {
         if (GetCurrentSceneNumber() == 2) {
@@ -897,11 +900,11 @@ void func_02107010(void) {
     func_0210d6cc(&data_0217d070);
 }
 
-void func_02106efc(void) {
+void StartRaceSounds(void) {
     s32 i;
     NNSSndSeqPlayer **p;
 
-    data_0217c814.mUnk_0c = 1;
+    gSceneSoundState.mRaceState = 1;
     func_0210d65c(&data_0217d070);
     data_0217c7f0.mUnk_08 = 1;
     if (data_0217c7b0 != 0) {
@@ -929,12 +932,12 @@ void func_02106efc(void) {
     NNS_SndArcPlayerStartSeqArc(p, 0, 0x1c0);
 }
 
-void func_02106e78(void) {
-    if (data_0217c814.mUnk_0c != 1) {
+void StartKartStarSeq(void) {
+    if (gSceneSoundState.mRaceState != 1) {
         return;
     }
-    data_0217c814.mUnk_17 = 1;
-    if ((data_0217c814.mUnk_16 & 1) != 0) {
+    gSceneSoundState.mUnk_17 = 1;
+    if ((gSceneSoundState.mUnk_16 & 1) != 0) {
         data_0217c7a8 = 1;
         return;
     }
@@ -946,7 +949,7 @@ void func_02106dc8(void) {
     NNS_SndPlayerSetTrackMuteEx(&data_0217d07c, 0xffff, 0);
     NNS_SndPlayerStopSeq(&data_0217c81c, 0);
     if (data_0217c78c != 0) {
-        if (data_0217c814.mUnk_0c == 1) {
+        if (gSceneSoundState.mRaceState == 1) {
             func_0210d5c0(&data_0217d070);
             NNS_SndPlayerSetVolume(&data_0217d07c, data_0217d234.mUnk_04 >> 12);
             NNS_SndPlayerSetTempoRatio(&data_0217d07c, 0x12c);
@@ -954,21 +957,21 @@ void func_02106dc8(void) {
         }
         data_0217c78c = 0;
     }
-    data_0217c814.mUnk_17 = 0;
+    gSceneSoundState.mUnk_17 = 0;
 }
 
-void func_02106c64(void) {
+void EndRaceSounds(void) {
     u32 v;
     s32 i;
     s32 j;
     u8 *q;
 
-    data_0217c814.mUnk_0c = 2;
+    gSceneSoundState.mRaceState = 2;
     func_0210d590(&data_0217d070, func_0210dc48());
     NNS_SndPlayerSetTrackMuteEx(&data_0217d07c, 0xffff, 0);
     NNS_SndPlayerStopSeq(&data_0217c81c, 0);
     if (data_0217c78c != 0) {
-        if (data_0217c814.mUnk_0c == 1) {
+        if (gSceneSoundState.mRaceState == 1) {
             func_0210d5c0(&data_0217d070);
             NNS_SndPlayerSetVolume(&data_0217d07c, data_0217d234.mUnk_04 >> 12);
             NNS_SndPlayerSetTempoRatio(&data_0217d07c, 0x12c);
@@ -976,7 +979,7 @@ void func_02106c64(void) {
         }
         data_0217c78c = 0;
     }
-    data_0217c814.mUnk_17 = 0;
+    gSceneSoundState.mUnk_17 = 0;
     if (data_0217d084.mUnk_04 == 2) {
         func_0210d9a0(&data_0217d084, 3);
     }
@@ -990,7 +993,8 @@ void func_02106c64(void) {
     }
 }
 
-void func_02106ab8(void) {
+// Counts a lap done by the selected kart; one lap before the end it switches to seq 0x3e.
+void AdvanceSceneSoundLap(void) {
     BOOL b;
     s32 i;
     NNSSndSeqPlayer **p;
@@ -1004,18 +1008,18 @@ void func_02106ab8(void) {
     if (gRaceSetup->mMode == MODE_BATTLE) {
         return;
     }
-    data_0217c814.mUnk_15 = data_0217c814.mUnk_15 + 1;
-    if (data_0217c814.mUnk_15 == data_0217c814.mUnk_14) {
+    gSceneSoundState.mLapsDone = gSceneSoundState.mLapsDone + 1;
+    if (gSceneSoundState.mLapsDone == gSceneSoundState.mLapCount) {
         b = TRUE;
-    } else if (data_0217c814.mUnk_15 == data_0217c814.mUnk_14 - 1) {
-        data_0217c814.mUnk_16 = 1;
-        data_0217c814.mUnk_10 = 1;
+    } else if (gSceneSoundState.mLapsDone == gSceneSoundState.mLapCount - 1) {
+        gSceneSoundState.mUnk_16 = 1;
+        gSceneSoundState.mOnLastLap = 1;
         func_0210d590(&data_0217d070, 0);
-        if (data_0217c814.mUnk_08 != NULL) {
+        if (gSceneSoundState.mUnk_08 != NULL) {
             NNS_SndPlayerSetTrackMuteEx(&data_0217c81c, 0xffff, 1);
         }
         func_0210d614(&data_0217d070, 0x3e, NULL);
-        data_0217c814.mUnk_16 = 1;
+        gSceneSoundState.mUnk_16 = 1;
     }
     if (gRaceSetup->mCourseId != COURSE_ID_STADIUM) {
         return;
@@ -1042,7 +1046,8 @@ void func_02106ab8(void) {
     NNS_SndArcPlayerStartSeqArc(p, 0, 0x1c1);
 }
 
-void func_0210689c(u32 a) {
+// Stores the selected kart's new place; in some courses it starts a seq when the place improves.
+void SetSceneSoundRank(u32 a) {
     BOOL b;
     BOOL c;
     u32 d;
@@ -1067,13 +1072,13 @@ void func_0210689c(u32 a) {
     }
     v = -1;
     b = FALSE;
-    if (data_0217c814.mUnk_00 <= 0xf0) {
-        data_0217c814.mUnk_18 = a;
+    if (gSceneSoundState.mRaceFrames <= 0xf0) {
+        gSceneSoundState.mRankIndex = a;
         return;
     }
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_STADIUM:
-            if (data_0217c814.mUnk_10 != 0) {
+            if (gSceneSoundState.mOnLastLap != 0) {
                 v = 0x1c2;
                 for (i = 7; i < 12; i++) {
                     NNS_SndPlayerStopSeq(OFFSET_PTR(NNSSndSeqPlayer *, data_0217c838, i * sizeof(NNSSndSeqPlayer *)),
@@ -1093,10 +1098,10 @@ void func_0210689c(u32 a) {
             break;
     }
     if (b != FALSE) {
-        if (a < data_0217c814.mUnk_18) {
+        if (a < gSceneSoundState.mRankIndex) {
             e = 0;
-            if (data_0217c814.mUnk_1c != -1) {
-                if (data_0217c814.mUnk_19 > a) {
+            if (gSceneSoundState.mRankSeqFrames != -1) {
+                if (gSceneSoundState.mRankIndexAtSeq > a) {
                     e = 1;
                 }
             } else {
@@ -1116,15 +1121,15 @@ void func_0210689c(u32 a) {
                         NNS_SndArcPlayerStartSeqArc(q, 0, (u16) v);
                     }
                 }
-                data_0217c814.mUnk_19 = a;
-                data_0217c814.mUnk_1c = 0;
+                gSceneSoundState.mRankIndexAtSeq = a;
+                gSceneSoundState.mRankSeqFrames = 0;
             }
         }
     }
-    data_0217c814.mUnk_18 = a;
+    gSceneSoundState.mRankIndex = a;
 }
 
-void func_02106580(void) {
+void UpdateRaceSounds(void) {
     Unk0217c7f0 *q;
     NNSSndSeqPlayer **v;
     u32 a;
@@ -1133,10 +1138,10 @@ void func_02106580(void) {
     s32 n;
     struct NNSSndArc *p;
 
-    switch (data_0217c814.mUnk_0c) {
+    switch (gSceneSoundState.mRaceState) {
         case 1:
-            data_0217c814.mUnk_00++;
-            if (data_0217c814.mUnk_00 == 0x28) {
+            gSceneSoundState.mRaceFrames++;
+            if (gSceneSoundState.mRaceFrames == 0x28) {
                 func_0210d5c0(&data_0217d070);
                 NNS_SndPlayerSetVolume(&data_0217d07c, data_0217d234.mUnk_04 >> 12);
             }
@@ -1179,27 +1184,27 @@ void func_02106580(void) {
         if (gRaceSetup->mCourseId == COURSE_ID_KOOPA) {
             func_0210f230(0, 0x16b);
         }
-        if (data_0217c814.mUnk_1c != -1) {
-            if (++data_0217c814.mUnk_1c >= 0x3c) {
-                data_0217c814.mUnk_1c = -1;
+        if (gSceneSoundState.mRankSeqFrames != -1) {
+            if (++gSceneSoundState.mRankSeqFrames >= 0x3c) {
+                gSceneSoundState.mRankSeqFrames = -1;
             }
         }
-        if (data_0217c814.mUnk_16 == 1 && v[0] == NULL) {
-            data_0217c814.mUnk_16 = 0;
-            if (data_0217c7a8 != 0 && data_0217c814.mUnk_17 == 1) {
-                if (data_0217c814.mUnk_0c == 1) {
-                    data_0217c814.mUnk_17 = 1;
-                    if ((data_0217c814.mUnk_16 & 1) == 0) {
+        if (gSceneSoundState.mUnk_16 == 1 && v[0] == NULL) {
+            gSceneSoundState.mUnk_16 = 0;
+            if (data_0217c7a8 != 0 && gSceneSoundState.mUnk_17 == 1) {
+                if (gSceneSoundState.mRaceState == 1) {
+                    gSceneSoundState.mUnk_17 = 1;
+                    if ((gSceneSoundState.mUnk_16 & 1) == 0) {
                         NNS_SndPlayerSetTrackMuteEx(&data_0217d07c, 0xffff, 1);
                         func_0210d614(&data_0217d070, 0x49, &data_0217c81c);
                     }
                 }
                 data_0217c7a8 = 0;
                 data_0217c78c = 1;
-            } else if (data_0217c814.mUnk_08 != NULL) {
+            } else if (gSceneSoundState.mUnk_08 != NULL) {
                 NNS_SndPlayerSetTrackMuteEx(&data_0217c81c, 0xffff, 0);
                 data_0217c78c = 1;
-            } else if (data_0217c814.mUnk_0c == 1) {
+            } else if (gSceneSoundState.mRaceState == 1) {
                 func_0210d5c0(&data_0217d070);
                 NNS_SndPlayerSetVolume(&data_0217d07c, data_0217d234.mUnk_04 >> 12);
                 NNS_SndPlayerSetTempoRatio(&data_0217d07c, 0x12c);
@@ -1219,27 +1224,27 @@ void func_021062a8(void) {
     v = 0xffff;
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_STADIUM:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x1bc;
             }
             break;
         case COURSE_ID_RIDGE:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x1a6;
             }
             break;
         case COURSE_ID_GARDEN:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x1a5;
             }
             break;
         case COURSE_ID_MANSION:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x126;
             }
             break;
         case COURSE_ID_AIRSHIP:
-            switch (data_0217c814.mUnk_04) {
+            switch (gSceneSoundState.mSceneFrames) {
                 case 0xa:
                     v = 0x1d2;
                     break;
@@ -1252,52 +1257,52 @@ void func_021062a8(void) {
             }
             { break; }
         case COURSE_ID_KOOPA:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x1aa;
             }
             break;
         case COURSE_ID_CLOCK:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x192;
             }
             break;
         case COURSE_ID_MARIO:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x19b;
             }
             break;
         case COURSE_ID_OLD_NOKO_SFC:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x112;
             }
             break;
         case COURSE_ID_BEACH:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x112;
             }
             break;
         case COURSE_ID_OLD_MOMO_64:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x12b;
             }
             break;
         case COURSE_ID_OLD_HYUDORO_64:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x19a;
             }
             break;
         case COURSE_ID_OLD_LUIGI_AGB:
-            if (data_0217c814.mUnk_04 == 0xa) {
+            if (gSceneSoundState.mSceneFrames == 0xa) {
                 v = 0x1d5;
             }
             break;
         case COURSE_ID_RAINBOW:
-            if (data_0217c814.mUnk_04 == 0x28) {
+            if (gSceneSoundState.mSceneFrames == 0x28) {
                 v = 0x1ba;
             }
             break;
         case COURSE_ID_TOWN:
-            if (data_0217c814.mUnk_04 == 0x28) {
+            if (gSceneSoundState.mSceneFrames == 0x28) {
                 v = 0x199;
             }
             break;
@@ -1322,7 +1327,7 @@ void func_021062a8(void) {
     NNS_SndArcPlayerStartSeqArc(p, 0, v);
 }
 
-void func_021060dc(void) {
+void UpdateSceneSoundState(void) {
     Unk0217c7f0 *q;
     s32 i;
     s32 a;
@@ -1353,7 +1358,7 @@ void func_021060dc(void) {
         switch (gRaceSetup->mUnk_00c) {
             case 0:
             case 2:
-                func_02106580();
+                UpdateRaceSounds();
                 break;
             case 3:
             case 4:
@@ -1361,7 +1366,7 @@ void func_021060dc(void) {
                 break;
         }
     } else if (GetCurrentSceneNumber() == 9) {
-        if (data_0217c814.mUnk_04 == 0x5d) {
+        if (gSceneSoundState.mSceneFrames == 0x5d) {
             NNS_SndPlayerStopSeq(&data_0217d07c, 0x1b);
         }
     } else if (GetCurrentSceneNumber() == 1 || GetCurrentSceneNumber() == 0xc) {
@@ -1374,10 +1379,10 @@ void func_021060dc(void) {
     if (data_0217d060 != NULL && data_0217d060->mUnk_00.mUnk_00 == 0 && data_0217d060->mUnk_0c != NULL) {
         func_0210f780(&data_0217d060->mUnk_0c);
     }
-    data_0217c814.mUnk_04++;
+    gSceneSoundState.mSceneFrames++;
 }
 
-void func_02105fcc(void) {
+void StopSceneSounds(void) {
     u32 v;
     s32 i;
     s32 j;
@@ -1403,7 +1408,7 @@ void func_02105fcc(void) {
     data_0217c7a4 = 0;
 }
 
-void func_02105ec0(void) {
+void StopSceneSoundsAtOnce(void) {
     s32 i;
     s32 j;
     u8 *q;
@@ -1445,18 +1450,18 @@ void func_02105d70(void) {
     Unk0217c7c4 *q;
 
     x = func_0210d960();
-    data_0217c814.mUnk_20 = 1;
+    gSceneSoundState.mUnk_20 = 1;
     func_0210d970(0xa);
     if (data_0217c7ac != NULL) {
         NNS_SndPlayerStopSeq(&data_0217c7ac, 0);
     }
     NNS_SndArcPlayerStartSeqArc(&data_0217c7ac, 0, 0x11);
-    if (data_0217c814.mUnk_0c == 2) {
+    if (gSceneSoundState.mRaceState == 2) {
         return;
     }
     func_0210d9a0(&data_0217d084, 5);
-    if (data_0217c814.mUnk_16 == 1) {
-        data_0217c814.mUnk_16 = 3;
+    if (gSceneSoundState.mUnk_16 == 1) {
+        gSceneSoundState.mUnk_16 = 3;
     }
     p = data_0217c838;
     for (i = 0; i < 0xc; i++) {
@@ -1482,18 +1487,18 @@ void func_02105c4c(void) {
     Unk0217c7c4 *q;
 
     x = func_0210d960();
-    data_0217c814.mUnk_20 = 0;
+    gSceneSoundState.mUnk_20 = 0;
     func_0210d970(0xa);
     if (data_0217c7ac != NULL) {
         NNS_SndPlayerStopSeq(&data_0217c7ac, 0);
     }
     NNS_SndArcPlayerStartSeqArc(&data_0217c7ac, 0, 0x12);
-    if (data_0217c814.mUnk_0c == 2) {
+    if (gSceneSoundState.mRaceState == 2) {
         return;
     }
     func_0210dc50(&data_0217d084);
-    if (data_0217c814.mUnk_16 == 3) {
-        data_0217c814.mUnk_16 = 1;
+    if (gSceneSoundState.mUnk_16 == 3) {
+        gSceneSoundState.mUnk_16 = 1;
     }
     p = data_0217c838;
     for (i = 0; i < 0xc; i++) {
@@ -1552,11 +1557,12 @@ void SetSndHandleTrackPitch(NNSSndSeqPlayer **a, u32 b) {
     NNS_SndPlayerSetTrackPitch(a, data_0216cb20, b);
 }
 
-void func_02105ac0(s32 a) {
-    if (data_0217c794 != 0) {
+// Starts sound a on the shared handle unless one was already started this frame.
+void StartSoundOncePerFrame(s32 a) {
+    if (gSoundStartedThisFrame != 0) {
         return;
     }
-    data_0217c794 = 1;
+    gSoundStartedThisFrame = 1;
     NNS_SndArcPlayerStartSeqArc(&data_0217d068, 0, a);
 }
 

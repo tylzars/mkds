@@ -198,20 +198,20 @@ void AdvanceOptionHensyuMenuState3(void) {
         if (gOptionHensyuMenu->mIndex == oldv) {
             gOptionHensyuMenu->mUnk_14 = FALSE;
         }
-        func_02105ac0(5);
+        StartSoundOncePerFrame(5);
         return;
     }
     if (func_020ae408(8, 0x40) != 0) {
         if (gOptionHensyuMenu->mIndex > 0) {
             gOptionHensyuMenu->mIndex--;
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
             return;
         }
     }
     if (func_020ae408(8, 0x80) != 0) {
         if (gOptionHensyuMenu->mIndex < 1) {
             gOptionHensyuMenu->mIndex++;
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         }
     }
 }

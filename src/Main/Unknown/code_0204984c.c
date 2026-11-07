@@ -257,7 +257,7 @@ void func_0204a1a8(void *a) {
                 PrepareDisplayFrame();
             }
             d = b == FALSE ? func_02054f58() == 1 : 1;
-            func_0210823c();
+            UpdateSounds();
             VBlankIntrWait();
             if (c != FALSE) {
                 RecordFrameTimes();
@@ -269,7 +269,7 @@ void func_0204a1a8(void *a) {
             }
             func_0203940c();
             d = func_0212b0b8();
-            func_0210823c();
+            UpdateSounds();
             VBlankIntrWait();
             if (c != FALSE) {
                 RecordFrameTimes();
@@ -350,7 +350,7 @@ void func_02049f60(void) {
             PM_GoSleepMode(12, 0, 0);
         }
         g = func_0212b0b8();
-        func_0210823c();
+        UpdateSounds();
         VBlankIntrWait();
         if (b != FALSE) {
             RecordFrameTimes();
@@ -394,7 +394,7 @@ void func_02049e38(s32 a) {
     data_021759cc->mUnk_118 = a;
     data_021759cc->mUnk_11c = c;
     func_02049f60();
-    func_02105fcc();
+    StopSceneSounds();
     if (data_021759d0->mUnk_1c_0) {
         func_02049e38_inline(0);
     }
@@ -403,7 +403,7 @@ void func_02049e38(s32 a) {
         StartFadeToFadedNegative(10);
         do {
             PrepareDisplayFrame();
-            func_0210823c();
+            UpdateSounds();
             FinishDisplayFrame();
             RecordFrameTimes();
         } while (AreBrightnessFadesFaded() == 0);

@@ -670,7 +670,7 @@ void AdvanceSelectChoisesState1(void) {
         gSelectChoises->mNextState = 2;
         if (gSelectChoises->mDisplayBitOn != 0) {
             if (gSelectChoises->mSoundIds[gSelectChoises->mIndex] != -1) {
-                func_02105ac0((u16) gSelectChoises->mSoundIds[gSelectChoises->mIndex]);
+                StartSoundOncePerFrame((u16) gSelectChoises->mSoundIds[gSelectChoises->mIndex]);
             }
         }
     } else {
@@ -680,7 +680,7 @@ void AdvanceSelectChoisesState1(void) {
             gSelectChoises->mNextState = 2;
             if (gSelectChoises->mDisplayBitOn != 0) {
                 if (gSelectChoises->mIndexNoneSoundId != -1) {
-                    func_02105ac0((u16) gSelectChoises->mIndexNoneSoundId);
+                    StartSoundOncePerFrame((u16) gSelectChoises->mIndexNoneSoundId);
                 }
             }
             return;
@@ -689,7 +689,7 @@ void AdvanceSelectChoisesState1(void) {
             gSelectChoises->mIndex = 0;
             RefreshAndQueueSelectChoises();
             if (gSelectChoises->mDisplayBitOn != 0) {
-                func_02105ac0(0);
+                StartSoundOncePerFrame(0);
             }
             return;
         }
@@ -697,7 +697,7 @@ void AdvanceSelectChoisesState1(void) {
             gSelectChoises->mIndex = 1;
             RefreshAndQueueSelectChoises();
             if (gSelectChoises->mDisplayBitOn != 0) {
-                func_02105ac0(0);
+                StartSoundOncePerFrame(0);
             }
         }
     }

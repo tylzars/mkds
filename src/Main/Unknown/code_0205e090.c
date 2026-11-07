@@ -87,8 +87,8 @@ void func_0205e0b0(void) {
     if (m == 2) {
         return;
     }
-    h = HeapAlloc(h, func_021087d4(m));
-    func_02108598(m, (u32) h);
+    h = HeapAlloc(h, GetSndHeapsBufferSize(m));
+    CreateSndHeaps(m, (u32) h);
     data_0217aa20->mUnk_0c = h;
 }
 

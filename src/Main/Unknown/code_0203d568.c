@@ -149,7 +149,7 @@ void CompleteRaceProgressKartLap(RaceProgressKart *a) {
         return;
     }
     if ((a->mFlags & 1) != 0) {
-        func_02106ab8();
+        AdvanceSceneSoundLap();
     }
     StoreRaceProgressKartLapTime(a, a->mLap > GetLapCount());
     a->mHighestLap = a->mLap;

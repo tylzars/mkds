@@ -313,35 +313,35 @@ void AdvanceOptionSelectMenuState2(void) {
         gOptionSelectMenu->mIndex = 2;
         gOptionSelectMenu->mUnk_1c = TRUE;
         StopPaletteBlend();
-        func_02105ac0(5);
+        StartSoundOncePerFrame(5);
     } else if (r5 == 0) {
         gOptionSelectMenu->mIndex = 0;
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]++;
-        func_02105ac0(10);
+        StartSoundOncePerFrame(10);
     } else if (r5 == 1) {
         gOptionSelectMenu->mIndex = 1;
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]++;
-        func_02105ac0(1);
+        StartSoundOncePerFrame(1);
     } else if (func_020ae408(8, 0x40) != 0) {
         gOptionSelectMenu->mIndex--;
         if (gOptionSelectMenu->mIndex < 0) {
             gOptionSelectMenu->mIndex = 2;
         }
-        func_02105ac0(0);
+        StartSoundOncePerFrame(0);
     } else if (func_020ae408(8, 0x80) != 0 ||
                (gOptionSelectMenu->mIndex != 2 && (u16) (data_02175628[idx].mUnk_00 & 1) != 0)) {
         gOptionSelectMenu->mIndex++;
         if (gOptionSelectMenu->mIndex > 2) {
             gOptionSelectMenu->mIndex = 0;
         }
-        func_02105ac0(0);
+        StartSoundOncePerFrame(0);
     } else if (gOptionSelectMenu->mIndex != 2 && func_020ae408(8, 0x20) != 0) {
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]--;
         gOptionSelectMenu->mOffsetTimers[gOptionSelectMenu->mIndex][0] = 6;
         if (gOptionSelectMenu->mIndex == 0) {
-            func_02105ac0(10);
+            StartSoundOncePerFrame(10);
         } else {
-            func_02105ac0(1);
+            StartSoundOncePerFrame(1);
         }
     } else if (gOptionSelectMenu->mIndex != 2 && func_020ae408(8, 0x10) != 0) {
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]++;
@@ -349,30 +349,30 @@ void AdvanceOptionSelectMenuState2(void) {
             gOptionSelectMenu->mOffsetTimers[gOptionSelectMenu->mIndex][1] = 6;
         }
         if (gOptionSelectMenu->mIndex == 0) {
-            func_02105ac0(10);
+            StartSoundOncePerFrame(10);
         } else {
-            func_02105ac0(1);
+            StartSoundOncePerFrame(1);
         }
     } else if (r5 == 3) {
         gOptionSelectMenu->mIndex = 0;
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]--;
         gOptionSelectMenu->mOffsetTimers[gOptionSelectMenu->mIndex][0] = 6;
-        func_02105ac0(10);
+        StartSoundOncePerFrame(10);
     } else if (r5 == 4) {
         gOptionSelectMenu->mIndex = 0;
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]++;
         gOptionSelectMenu->mOffsetTimers[gOptionSelectMenu->mIndex][1] = 6;
-        func_02105ac0(10);
+        StartSoundOncePerFrame(10);
     } else if (r5 == 5) {
         gOptionSelectMenu->mIndex = 1;
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]--;
         gOptionSelectMenu->mOffsetTimers[gOptionSelectMenu->mIndex][0] = 6;
-        func_02105ac0(1);
+        StartSoundOncePerFrame(1);
     } else if (r5 == 6) {
         gOptionSelectMenu->mIndex = 1;
         gOptionSelectMenu->mRowValues[gOptionSelectMenu->mIndex]++;
         gOptionSelectMenu->mOffsetTimers[gOptionSelectMenu->mIndex][1] = 6;
-        func_02105ac0(1);
+        StartSoundOncePerFrame(1);
     }
 end:
     if (gOptionSelectMenu->mRowValues[0] < 0) {

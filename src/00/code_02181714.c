@@ -217,20 +217,20 @@ next:
                 gWiFiTopMenu->mPendingWiFiState = 13;
                 break;
         }
-        func_02105ac0(5);
+        StartSoundOncePerFrame(5);
     } else {
         if (func_020ae408(8, 0x40) != 0) {
             gWiFiTopMenu->mIndex--;
             if (gWiFiTopMenu->mIndex < 0) {
                 gWiFiTopMenu->mIndex = 2;
             }
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         } else if (func_020ae408(8, 0x80) != 0) {
             gWiFiTopMenu->mIndex++;
             if (gWiFiTopMenu->mIndex > 2) {
                 gWiFiTopMenu->mIndex = 0;
             }
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         }
     }
 }

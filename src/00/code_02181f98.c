@@ -299,7 +299,7 @@ next:
             func_ov000_02180638(1);
         }
         SetWiFiVSSettingIndex(gWiFiVSSetting->mSettingIndex);
-        func_02105ac0(5);
+        StartSoundOncePerFrame(5);
     } else if (((u16) v8 != 0 && gWiFiVSSetting->mRow == 0) || v4 == 0) {
         gWiFiVSSetting->mNextState = 5;
         if (gWiFiVSSetting->mRow == 0) {
@@ -309,45 +309,45 @@ next:
         gWiFiVSSetting->mRow = 0;
         data_0217b488->mUnk_50 = 0;
         RequestTxtSystemClose();
-        func_02105ac0(5);
+        StartSoundOncePerFrame(5);
         data_0217b488->mUnk_54 = data_ov000_021b05ec[gWiFiVSSetting->mSettingIndex];
         func_0211fe44();
     } else if (v4 == 1) {
         gWiFiVSSetting->mRow = 1;
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
-        func_02105ac0(1);
+        StartSoundOncePerFrame(1);
     } else if (func_020ae408(8, 0x40) != 0) {
         gWiFiVSSetting->mRow = gWiFiVSSetting->mRow - 1;
         if (gWiFiVSSetting->mRow < 0) {
             gWiFiVSSetting->mRow = 2;
         }
-        func_02105ac0(0);
+        StartSoundOncePerFrame(0);
     } else if (func_020ae408(8, 0x80) != 0 || (gWiFiVSSetting->mRow == 1 && (u16) (e->mUnk_00 & 1) != 0)) {
         gWiFiVSSetting->mRow = gWiFiVSSetting->mRow + 1;
         if (gWiFiVSSetting->mRow > 2) {
             gWiFiVSSetting->mRow = 0;
         }
-        func_02105ac0(0);
+        StartSoundOncePerFrame(0);
     } else if (gWiFiVSSetting->mRow == 1 && func_020ae408(8, 0x20) != 0) {
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex - 1;
         gWiFiVSSetting->mIndexDecrementTimer = 6;
-        func_02105ac0(1);
+        StartSoundOncePerFrame(1);
     } else if (gWiFiVSSetting->mRow == 1 && func_020ae408(8, 0x10) != 0) {
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
         if (func_020ae408(8, 0x10) != 0) {
             gWiFiVSSetting->mIndexIncrementTimer = 6;
         }
-        func_02105ac0(1);
+        StartSoundOncePerFrame(1);
     } else if (v4 == 3) {
         gWiFiVSSetting->mRow = 1;
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex - 1;
         gWiFiVSSetting->mIndexDecrementTimer = 6;
-        func_02105ac0(1);
+        StartSoundOncePerFrame(1);
     } else if (v4 == 4) {
         gWiFiVSSetting->mRow = 1;
         gWiFiVSSetting->mSettingIndex = gWiFiVSSetting->mSettingIndex + 1;
         gWiFiVSSetting->mIndexIncrementTimer = 6;
-        func_02105ac0(1);
+        StartSoundOncePerFrame(1);
     }
 end:
     if (gWiFiVSSetting->mSettingIndex < 0) {

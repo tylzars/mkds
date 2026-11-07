@@ -180,7 +180,7 @@ u16 KeyboardCursorCallback(s32 a, u16 b) {
             }
             break;
     }
-    func_02105ac0(0x1e4);
+    StartSoundOncePerFrame(0x1e4);
     return r;
 }
 

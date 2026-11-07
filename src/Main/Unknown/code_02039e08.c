@@ -167,7 +167,7 @@ void func_0203a05c(void) {
     while ((u32) data_0217c7ac != 0) {
         PrepareDisplayFrame();
         func_020b2574();
-        func_0210823c();
+        UpdateSounds();
         FinishDisplayFrame();
         func_020b255c();
         RecordFrameTimes();
@@ -241,7 +241,7 @@ u32 func_02039e08(NNSiFndHeapHead *a, void **b, void **c, void **d, void **e, vo
         *e = CreateFrmHeapFromFront(a, 0x4b000);
         *f = CreateFrmHeapFromFront(a, 0x1b800);
     }
-    r = func_021087c4(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 ? 2 : 0);
+    r = GetSndInitBufferSize(((Unk027ffc40 *) 0x027ffc40)->mUnk_00 == 2 ? 2 : 0);
     *c = HeapAlloc(a, r);
     NNS_FndGetTotalFreeSizeForExpHeap(a);
     return r;

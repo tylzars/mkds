@@ -63,7 +63,7 @@ void UpdateRaceStartSequence(void) {
             if (a != 180) {
                 return;
             }
-            func_02106efc();
+            StartRaceSounds();
             StartRace();
             gRaceStartSequence->mDone = 1;
             return;

@@ -37,11 +37,11 @@ void func_020caf98(s32 a) {
         } else if (func_020ae408(v, 0x40)) {
             p = data_0217b43c;
             p->mUnk_930 = (p->mUnk_930 + 4) % 5;
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         } else if (func_020ae408(v, 0x80)) {
             p = data_0217b43c;
             p->mUnk_930 = (p->mUnk_930 + 6) % 5;
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         } else if (func_020cb11c(v)) {
             b = func_020cb0f4(v);
             v = func_020cb0cc(v);

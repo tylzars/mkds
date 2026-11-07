@@ -231,7 +231,7 @@ s32 func_01ffc92c(Kart *p) {
     a = GetKartRank(p->mIndex);
     if (a != p->mUnk_3d8) {
         if (p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) {
-            func_0210689c((u8) (a - 1));
+            SetSceneSoundRank((u8) (a - 1));
         }
         if (a < p->mUnk_3d8 && a < gRaceSetup->mKartCount) {
             c = gRaceProgress->mKartAtRank[(u8) (a + 1) - 1];

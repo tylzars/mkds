@@ -190,37 +190,37 @@ void AdvanceOptionEmbremSelectState3(void) {
             gOptionEmbremSelect->mNextOptionState = 6;
             gOptionEmbremSelect->mUnk_08 = 0;
             data_0217b488->mUnk_18 = TRUE;
-            func_02105ac0(5);
+            StartSoundOncePerFrame(5);
         } else if (result == 1) {
             gOptionEmbremSelect->mUnk_08 = 1;
             gOptionEmbremSelect->mUnk_0c++;
-            func_02105ac0(1);
+            StartSoundOncePerFrame(1);
         } else if (func_020ae408(8, 0x40) != 0 && gOptionEmbremSelect->mUnk_08 > 0) {
             gOptionEmbremSelect->mUnk_08--;
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         } else if (func_020ae408(8, 0x80) != 0 && gOptionEmbremSelect->mUnk_08 < 1) {
             gOptionEmbremSelect->mUnk_08++;
-            func_02105ac0(0);
+            StartSoundOncePerFrame(0);
         } else if (gOptionEmbremSelect->mUnk_08 == 1 && func_020ae408(8, 0x20) != 0) {
             gOptionEmbremSelect->mUnk_0c--;
             gOptionEmbremSelect->mOffsetTimers[0] = 6;
-            func_02105ac0(1);
+            StartSoundOncePerFrame(1);
         } else if (gOptionEmbremSelect->mUnk_08 == 1 && func_020ae408(8, 0x10) != 0) {
             gOptionEmbremSelect->mUnk_0c++;
             if (func_020ae408(8, 0x10) != 0) {
                 gOptionEmbremSelect->mOffsetTimers[1] = 6;
             }
-            func_02105ac0(1);
+            StartSoundOncePerFrame(1);
         } else if (result == 2) {
             gOptionEmbremSelect->mUnk_08 = 1;
             gOptionEmbremSelect->mUnk_0c--;
             gOptionEmbremSelect->mOffsetTimers[0] = 6;
-            func_02105ac0(1);
+            StartSoundOncePerFrame(1);
         } else if (result == 3) {
             gOptionEmbremSelect->mUnk_08 = 1;
             gOptionEmbremSelect->mUnk_0c++;
             gOptionEmbremSelect->mOffsetTimers[1] = 6;
-            func_02105ac0(1);
+            StartSoundOncePerFrame(1);
         }
     }
     if (gOptionEmbremSelect->mUnk_0c < 0) {
