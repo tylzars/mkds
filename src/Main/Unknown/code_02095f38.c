@@ -52,7 +52,7 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
     u8 v3 = *c;
     Unk0210b7a8 s2;
     if (v2 == 3 || v2 == 4) {
-        g = a->mUnk_29c;
+        g = a->mItemEffect;
         if (g != 1) {
             if (p->mState == 4 || (p->mState == 5 && p->mUnk_a0 > 0x7800)) {
                 p->mUnk_00.mUnk_10.x = 0;

@@ -319,7 +319,7 @@ void func_020f62b0(Unk020eda5c *a, Unk020f40dc *b) {
 }
 
 void func_020f6264(Unk020eda5c *a, Unk020f40dc *b) {
-    func_02069c38(b->mUnk_04->mKart);
+    StartKartStar(b->mUnk_04->mKart);
     func_020f4754(b, 1);
     if (data_021759c0->mMode != 5) {
         return;
@@ -822,7 +822,7 @@ s32 InitItemBanana(Unk020eda5c *a, ItemBanana *b) {
     func_020f9114(b);
     b->mUnk_000.mUnk_000.mUnk_78 |= data_02159834;
     o = a->mUnk_00c;
-    if (o->mFlags & 0x10) {
+    if (o->mFlags & KART_ITEMS_THROW_FORWARD) {
         func_020f3150(&b->mUnk_000, a, 0, 1, 0x4000, 0x3000, 0x59a);
         StartSound(&b->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
         b->mUnk_130 = 1;

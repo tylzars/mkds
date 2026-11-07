@@ -225,6 +225,15 @@ typedef enum {
     // The Kart is thrown up and rotates twice with its forward speed cleared.
     KART_STATE_LAUNCH_DOUBLE_FLIP
 } KartState;
+// The values of Kart.mItemEffect, the item acting on the kart.
+typedef enum {
+    KART_ITEM_EFFECT_NONE,
+    KART_ITEM_EFFECT_STAR,
+    // The Boo item (Teresa).
+    KART_ITEM_EFFECT_TERESA,
+    // The Bullet Bill item (Killer).
+    KART_ITEM_EFFECT_KILLER
+} KartItemEffect;
 
 typedef struct Kart {
     // Sound source of the Kart (the sounds started on it).
@@ -241,6 +250,8 @@ typedef struct Kart {
     /* 7c */ vu32 mUnk_7c;
     /* 80 */ Vec3 mPos;
     /* 8c */ Vec3 mPrevPos;
+    // Copy of the kart position made when the draw matrix is built; until then it holds the position of one step
+    // earlier.
     /* 98 */ Vec3 mUnk_98;
     /* a4 */ Vec3 mVelocity;
     /* b0 */ Vec3 mVelocityDirection;
@@ -343,7 +354,8 @@ typedef struct Kart {
     /* 278 */ Vec3 mForward;
     /* 284 */ Vec3 mUnk_284;
     /* 290 */ Vec3 mUnk_290;
-    /* 29c */ s32 mUnk_29c;
+    // The item acting on the kart (KartItemEffect); NONE when no star, Teresa or Killer runs.
+    /* 29c */ s32 mItemEffect;
     /* 2a0 */ s32 mVelocityLengthRatio;
     /* 2a4 */ s32 mVelocityLength;
     /* 2a8 */ s32 mForwardSpeed;

@@ -4,6 +4,8 @@
 
 // The pair of input bits the item code tests to use the held item.
 #define ITEM_BITS 0x600
+// Item input bit held while the item is used: the held item is thrown in front of the kart.
+#define ITEM_THROW_FORWARD_BIT 0x40
 
 typedef struct Unk02029930_f8 Unk02029930_f8;
 

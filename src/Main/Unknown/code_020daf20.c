@@ -315,7 +315,7 @@ u32 CollideKartWithDossun(Dossun *p, Kart *a, u8 *b, u8 *c) {
         y = s2.y;
         m = ((s64) y * y) << 2;
         if (y < 0 && n < m) {
-            return func_020d6dc0(p->mUnk_00.mFlags & 0x800, a->mUnk_29c, 4, 4);
+            return func_020d6dc0(p->mUnk_00.mFlags & 0x800, a->mItemEffect, 4, 4);
         }
     }
     return *c;

@@ -5,6 +5,8 @@
 #include "Main/Unknown/code_020f36d8.h"
 #include "Main/Unknown/code_0206bcb0.h"
 
+// Copy of ITEM_THROW_FORWARD_BIT in KartItems.mFlags (func_020f0154 and func_020ef4a0 set it from the input word).
+#define KART_ITEMS_THROW_FORWARD 0x10
 // One item record per kart (the array behind gKartItems, 0x210 bytes each): the item roulette in the first 0x30 bytes,
 // the held item at 0x30, the item in use at 0x58, the course reference at 0x1f0, the kart index and the Kart at 0x1f8 /
 // 0x1fc and four words of use state at 0x200..0x20c. A bag named after whose item state it is: no single role. Race

@@ -342,7 +342,7 @@ void func_02066fe0(Kart *a) {
     if ((a->mUnk_4c & 0x40) != 0) {
         a->mUnk_4c = a->mUnk_4c & ~0x40;
         func_0207b1a8(a);
-        a->mUnk_29c = 0;
+        a->mItemEffect = 0;
         func_020817b8(a->mIndex);
         func_02068a64(a, 0, 1);
         if ((a->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) != 0 && data_021759c0->mUnk_00c == 0) {

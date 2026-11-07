@@ -239,8 +239,8 @@ void GetKartScale(Vec3 *a, s32 b) {
     *a = gKarts[b].mScale;
 }
 
-u32 func_0207a8a4(u32 a) {
-    return gKarts[a].mUnk_29c;
+u32 GetKartItemEffect(u32 a) {
+    return gKarts[a].mItemEffect;
 }
 
 u16 GetKartHeadingAngle(s32 a) {

@@ -403,12 +403,12 @@ s32 func_020d6be0(Kart *a, MapObject *b) {
         n++;
     }
     if (b->mKindData->mUnk_00 != NULL) {
-        v = data_0216b9cc[n][a->mUnk_29c][r];
+        v = data_0216b9cc[n][a->mItemEffect][r];
         if (f != 0 && v != 2 && v != 4) {
             v = 0;
         }
         buf[0] = v;
-        v = data_0216b96c[n][a->mUnk_29c][r];
+        v = data_0216b96c[n][a->mItemEffect][r];
         if (v == 1) {
             v = f != 0 ? 2 : 0;
         }
@@ -421,7 +421,7 @@ s32 func_020d6be0(Kart *a, MapObject *b) {
         }
         return buf[1];
     }
-    v = data_0216b96c[n][a->mUnk_29c][r];
+    v = data_0216b96c[n][a->mItemEffect][r];
     if (v != 1) {
         return v;
     }

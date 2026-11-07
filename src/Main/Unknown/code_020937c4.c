@@ -142,7 +142,7 @@ u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d) {
         a->mUnk_00.mUnk_10.z = ((s64) a->mUnk_00.mUnk_10.z << 10) >> 12;
         a->mUnk_00.mUnk_10.y = 0x4000;
         a->mUnk_00.mFlags |= data_021564ac;
-        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
+        if (b->mItemEffect == 1 || b->mItemEffect == 3) {
             a->mUnk_00.mDistanceSquaredAndFlags |= data_021564b0;
         }
         func_020d26f8(&a->mUnk_00, b);

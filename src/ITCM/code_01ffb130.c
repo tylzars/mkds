@@ -58,7 +58,7 @@ void func_01ffb130(Kart *p) {
     }
     w = p->mUnk_4c;
     if (w & 0x10000000) {
-        func_0206938c(p);
+        AdvanceKartKiller(p);
     } else {
         if (w & 0x80) {
             func_0206a354(p);
@@ -67,7 +67,7 @@ void func_01ffb130(Kart *p) {
             func_02069f6c(p);
         }
         if (p->mUnk_7c & 0x402000) {
-            func_0206988c(p);
+            AdvanceKartTeresa(p);
         }
     }
     if (p->mUnk_4c & 0x2000) {
@@ -95,7 +95,7 @@ void func_01ffb130(Kart *p) {
         if (q->mUnk_06 > 0x1c2) {
             p->mUnk_4c &= ~0x40;
             func_0207b1a8(p);
-            p->mUnk_29c = 0;
+            p->mItemEffect = 0;
             func_020817b8(p->mIndex);
             func_02068a64(p, 0, 1);
             if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {

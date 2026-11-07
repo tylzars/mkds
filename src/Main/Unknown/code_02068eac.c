@@ -217,7 +217,7 @@ void func_02069db8(Kart *p) {
     func_020a1ddc(p->mIndex);
 }
 
-void func_02069c38(Kart *p) {
+void StartKartStar(Kart *p) {
     Unk0206ceb4 *s;
 
     s = &p->mUnk_538;
@@ -227,7 +227,7 @@ void func_02069c38(Kart *p) {
     if (p->mUnk_7c & 0x2000) {
         p->mUnk_7c &= ~0x2000;
         p->mUnk_7c &= ~0xc000;
-        p->mUnk_29c = 0;
+        p->mItemEffect = 0;
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             ShowKartTurnEffects(GetKartTurnEffects(p->mIndex));
         } else {
@@ -245,7 +245,7 @@ void func_02069c38(Kart *p) {
     SkipOrthoQuadsHold(p->mIndex);
     s->mUnk_06 = 0;
     p->mUnk_4c |= 0x40;
-    p->mUnk_29c = 1;
+    p->mItemEffect = 1;
     func_0207b284(p);
     func_02081a40(p->mIndex);
     if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
@@ -260,7 +260,7 @@ void func_02069c38(Kart *p) {
     func_02068a64(p, 2, 1);
 }
 
-void func_02069aa0(Kart *p) {
+void StartKartTeresa(Kart *p) {
     Unk0206ceb4 *s;
     Unk0206ceb4 *t;
     u32 w;
@@ -270,7 +270,7 @@ void func_02069aa0(Kart *p) {
     if (p->mUnk_4c & 0x10000040) {
         p->mUnk_4c &= ~0x40;
         func_0207b1a8(p);
-        p->mUnk_29c = 0;
+        p->mItemEffect = 0;
         func_020817b8(p->mIndex);
         func_02068a64(p, 0, 1);
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
@@ -281,7 +281,7 @@ void func_02069aa0(Kart *p) {
         }
     }
     p->mUnk_7c |= 0x2000;
-    p->mUnk_29c = 2;
+    p->mItemEffect = 2;
     SkipOrthoQuadsHold(p->mIndex);
     w = p->mUnk_4c;
     if (!(w & 0x20000) && (w & 0x8000000)) {
@@ -308,7 +308,7 @@ void func_02069aa0(Kart *p) {
     }
 }
 
-void func_0206988c(Kart *p) {
+void AdvanceKartTeresa(Kart *p) {
     Unk0206ceb4 *s;
     Vec3 a;
     Vec3 b;
@@ -350,7 +350,7 @@ void func_0206988c(Kart *p) {
     if (s->mUnk_10 > 0x1c2 && (p->mUnk_7c & 0x2000)) {
         p->mUnk_7c &= ~0x2000;
         p->mUnk_7c &= ~0xc000;
-        p->mUnk_29c = 0;
+        p->mItemEffect = 0;
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             ShowKartTurnEffects(GetKartTurnEffects(p->mIndex));
         } else {
@@ -369,7 +369,7 @@ void func_0206988c(Kart *p) {
     SetMinKartDistanceSquared(d * d + e * e + f * f);
 }
 
-void func_020695c4(Kart *p) {
+void StartKartKiller(Kart *p) {
     Unk0206ceb4 *s;
     Unk0216557c w;
     Unk02165560 v;
@@ -392,7 +392,7 @@ void func_020695c4(Kart *p) {
     if (p->mUnk_7c & 0x2000) {
         p->mUnk_7c &= ~0x2000;
         p->mUnk_7c &= ~0xc000;
-        p->mUnk_29c = 0;
+        p->mItemEffect = 0;
         if (!(p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY)) {
             ShowKartTurnEffects(GetKartTurnEffects(p->mIndex));
         } else {
@@ -411,7 +411,7 @@ void func_020695c4(Kart *p) {
     if (p->mUnk_4c & 0x40) {
         p->mUnk_4c &= ~0x40;
         func_0207b1a8(p);
-        p->mUnk_29c = 0;
+        p->mItemEffect = 0;
         func_020817b8(p->mIndex);
         func_02068a64(p, 0, 1);
         if ((p->mUnk_7c & KART_7C_INDEX_IS_SELECTED_ENTRY) && data_021759c0->mUnk_00c == 0) {
@@ -421,7 +421,7 @@ void func_020695c4(Kart *p) {
             func_0207b13c(p);
         }
     }
-    p->mUnk_29c = 3;
+    p->mItemEffect = 3;
     if (p->mUnk_4c & 0x2000) {
         p->mUnk_4c &= ~0x2000;
         p->mUnk_d8 = 0x1000;
@@ -446,7 +446,7 @@ void func_020695c4(Kart *p) {
     }
 }
 
-void func_0206938c(Kart *p) {
+void AdvanceKartKiller(Kart *p) {
     Unk0206ceb4 *s;
     Unk0206ceb4 *u;
     s32 i;
@@ -481,7 +481,7 @@ void func_0206938c(Kart *p) {
         p->mUnk_4c8 = 0x1000;
         p->mSurfaceGroup = -1;
         i = 0;
-        p->mUnk_29c = 0;
+        p->mItemEffect = 0;
         if (p->mKartModelsEntry->mUnk_058 == 0) {
             v = data_usa_02165560;
             for (i = 0; i < 3; i++) {

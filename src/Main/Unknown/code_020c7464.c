@@ -323,7 +323,7 @@ void UpdateRaceHudSubScreenKarts(void) {
             break;
     }
     for (i = 0; i < (u32) data_021759c0->mKartCount; i++) {
-        if (func_0207a8a4(i) == 1) {
+        if (GetKartItemEffect(i) == 1) {
             gRaceHudSubScreenKarts->mUnk_170[i]++;
         } else {
             gRaceHudSubScreenKarts->mUnk_170[i] = 0;
@@ -424,7 +424,7 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *p) {
                             v1 = func_020ae5c4(p);
                             Matrix2x2RotationReciprocalScale(r0, gRaceHudSubScreenKarts->mUnk_0a0[i].y,
                                                              gRaceHudSubScreenKarts->mUnk_100[i]);
-                            if (func_0207a8a4((u16) i) == 3) {
+                            if (GetKartItemEffect((u16) i) == 3) {
                                 c = GetRaceSNcerEntry(0x10);
                             } else {
                                 c = GetRaceSNcerEntry(i);
@@ -436,7 +436,7 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *p) {
                             p->mUnk_000.mUnk_20[v1].mUnk_16 = r0[2] >> 4;
                             p->mUnk_000.mUnk_20[v1].mUnk_1e = r0[3] >> 4;
                         } else {
-                            if (func_0207a8a4((u16) i) == 3) {
+                            if (GetKartItemEffect((u16) i) == 3) {
                                 c = GetRaceSNcerEntry(0x10);
                             } else {
                                 c = GetRaceSNcerEntry(i);
@@ -472,7 +472,7 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *p) {
                                 v5 = 0;
                             }
                             Matrix2x2RotationReciprocalScale(r1, gRaceHudSubScreenKarts->mUnk_0a0[i].y, v5);
-                            if (func_0207a8a4((u16) i) == 3) {
+                            if (GetKartItemEffect((u16) i) == 3) {
                                 c = GetRaceSNcerEntry(0x10);
                             } else {
                                 c = GetRaceSNcerEntry(i);
@@ -483,7 +483,7 @@ void DrawRaceHudSubScreenKarts(Unk020c06c4 *p) {
                             p->mUnk_000.mUnk_20[n].mUnk_16 = r1[2] >> 4;
                             p->mUnk_000.mUnk_20[n].mUnk_1e = r1[3] >> 4;
                         } else {
-                            if (func_0207a8a4((u16) i) == 3) {
+                            if (GetKartItemEffect((u16) i) == 3) {
                                 c = GetRaceSNcerEntry(0x10);
                             } else {
                                 c = GetRaceSNcerEntry(i);

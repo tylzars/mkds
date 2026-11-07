@@ -192,7 +192,7 @@ u32 InitItemFBox(Unk020eda5c *a, ItemFBox *e) {
     e->mUnk_130.x = 0;
     e->mUnk_130.y = 0;
     e->mUnk_130.z = 0;
-    if ((a->mUnk_00c->mFlags & 0x10) != 0) {
+    if ((a->mUnk_00c->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
         func_020f3150(&e->mUnk_000, a, 0, 1, 0x4000, 0x3000, 0x59a);
         StartSound(&e->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
         e->mUnk_13c = 1;

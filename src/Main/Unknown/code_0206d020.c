@@ -386,7 +386,7 @@ void func_0206d18c(Kart *p) {
             }
             break;
         case 4:
-            func_02069c38(p);
+            StartKartStar(p);
             break;
         case 5:
             if (((ItemKouraW *) e)->mUnk_2e4 != 0) {

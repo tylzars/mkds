@@ -77,7 +77,7 @@ void func_02105214(void) {
 #pragma thumb off
 
 void func_021051d4(Unk020eda5c *p0, Unk020f40dc *p1) {
-    func_020695c4(p1->mUnk_04->mKart);
+    StartKartKiller(p1->mUnk_04->mKart);
     func_020f4754(p1, 1);
     SetActiveItem(p0->mUnk_00c, 0xe);
 }
@@ -202,7 +202,7 @@ s32 func_02104c68(Unk020eda5c *p0, Unk02104c68 *p1) {
     if (p1->mUnk_138 != 0) {
         (p1->mUnk_134)->mUnk_b0 = 1;
     }
-    if ((p0->mUnk_00c->mFlags & 0x10) != 0) {
+    if ((p0->mUnk_00c->mFlags & KART_ITEMS_THROW_FORWARD) != 0) {
         func_020f3150(&p1->mUnk_000, p0, 0, 1, 0x4000, 0x3000, 0x59a);
         StartSound(&p1->mUnk_000.mUnk_000.mSoundSource, 0xda, 0x7f, 0);
         p1->mUnk_130 = 1;

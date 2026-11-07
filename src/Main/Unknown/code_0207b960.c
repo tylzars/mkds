@@ -249,14 +249,15 @@ void RequestItemBitsByTargetAheadOrKartRank(Unk0208fd8c *a, struct KartAi *b) {
         RequestItemBitsByKartRank(a, b);
     }
 }
+// First place sends the bit 0x80, last place ITEM_THROW_FORWARD_BIT, the places between follow mThenBitKind.
 void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
     Unk0217aebc_128 *r;
-    s32 k;
+    s32 rank;
     u16 n;
     u32 v;
 
-    k = GetKartRank(b->mIndex);
-    if (k == 1) {
+    rank = GetKartRank(b->mIndex);
+    if (rank == 1) {
         RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
         a->mBit7Pending = 1;
         a->mBit7Timer = 2;
@@ -274,7 +275,7 @@ void RequestItemBitsByKartRank(Unk0208fd8c *a, struct KartAi *b) {
         }
         a->mItemInUseTimer = a->mItemInUseEntry->mTimerBase + (u16) v;
         return;
-    } else if ((u32) k >= 2 && k <= data_021759c0->mKartCount - 1) {
+    } else if ((u32) rank >= 2 && rank <= data_021759c0->mKartCount - 1) {
         switch (a->mHeldItemEntry->mThenBitKind) {
             case 0:
                 RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
@@ -666,8 +667,8 @@ void func_0207c448(Unk0208fd8c *p0) {
     p0->mRandomValue = 0x0u;
 }
 
-// When the race frame count mod 8 matches this kart's index, runs the entry function; on the other calls sends the
-// pending bit 6 or 7.
+// On the call whose kart index matches the race frame count mod 8, runs the entry function or sends ITEM_BITS; on
+// the other calls sends the pending bit 0x40 (ITEM_THROW_FORWARD_BIT) or 0x80.
 void AdvanceItemBitRequests(struct Unk0208fd8c *a, struct KartAi *b) {
     u16 v1;
     KartItems *e;
@@ -686,7 +687,7 @@ void AdvanceItemBitRequests(struct Unk0208fd8c *a, struct KartAi *b) {
             RequestBits(b->mKart->mEntryIndex, ITEM_BITS);
         }
     } else if (a->mBit6Pending != 0) {
-        RequestBits(b->mKart->mEntryIndex, 0x40);
+        RequestBits(b->mKart->mEntryIndex, ITEM_THROW_FORWARD_BIT);
         a->mBit6Timer--;
         if (a->mBit6Timer <= 0) {
             a->mBit6Pending = 0;

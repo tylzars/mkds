@@ -271,7 +271,7 @@ void InitItemTeresa(Unk02101d18 *x, ItemTeresa *p) {
     Kart *q;
 
     q = x->mUnk_10;
-    func_02069aa0(q);
+    StartKartTeresa(q);
     func_020f8e3c((u32) q, 0xf6);
     SetActiveItem(x->mUnk_0c, 0x10);
     func_0208adc8(&p->mUnk_000.mUnk_7c, 1);

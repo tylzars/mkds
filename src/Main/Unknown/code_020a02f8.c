@@ -176,13 +176,13 @@ s32 func_020a1ee4(s32 a, s32 b) {
     }
     f11 = TRUE;
     if ((v1->mUnk_4c & 0x400000) == 0) {
-        if (func_0207a8a4(a) != 1) {
+        if (GetKartItemEffect(a) != 1) {
             f11 = FALSE;
         }
     }
     t = TRUE;
     if ((v2->mUnk_4c & 0x400000) == 0) {
-        if (func_0207a8a4(b) != 1) {
+        if (GetKartItemEffect(b) != 1) {
             t = FALSE;
         }
     }
@@ -199,7 +199,7 @@ s32 func_020a1ee4(s32 a, s32 b) {
         }
     } else if (f11 == FALSE && f4 != 0) {
         f4 = 0;
-        if (func_0207a8a4(b) == 1) {
+        if (GetKartItemEffect(b) == 1) {
             v3->mUnk_20 = TRUE;
             if (gStandings->mKartHitByKartCallback != NULL) {
                 f4 = gStandings->mKartHitByKartCallback(a, b);
@@ -216,7 +216,7 @@ s32 func_020a1ee4(s32 a, s32 b) {
         return f4;
     } else if (t == FALSE && f5 != FALSE) {
         f4 = 0;
-        if (func_0207a8a4(a) == 1) {
+        if (GetKartItemEffect(a) == 1) {
             v4->mUnk_20 = TRUE;
             if (gStandings->mKartHitByKartCallback != NULL) {
                 f4 = gStandings->mKartHitByKartCallback(b, a);

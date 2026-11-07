@@ -53,7 +53,7 @@ u8 func_0209ddec(Unk0209d694 *a, Kart *b, u8 *c, u8 *d) {
         a->mUnk_c0->mUnk_70 = 0x23;
         a->mUnk_bc->mUnk_80 = 5;
         a->mUnk_c0->mUnk_80 = 5;
-        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
+        if (b->mItemEffect == 1 || b->mItemEffect == 3) {
             a->mUnk_00.mDistanceSquaredAndFlags |= data_usa_021565e0;
         }
         func_020d26f8(&a->mUnk_00, b);

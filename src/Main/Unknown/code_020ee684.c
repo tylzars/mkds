@@ -1,4 +1,5 @@
 #include "Main/Unknown/code_020ee684.h"
+#include "Main/Unknown/code_020435c4.h"
 #include "Main/Unknown/code_02036820.h"
 #include "Main/Unknown/code_020d50ec.h"
 #include "Main/Unknown/code_0206bcb0.h"
@@ -631,7 +632,7 @@ BOOL func_020f0154(KartItems *p) {
         p->mFlags |= data_021595c0;
     }
     i = p->mUnk_200;
-    v = data_0217562a[i].mBits & 0x40;
+    v = data_0217562a[i].mBits & ITEM_THROW_FORWARD_BIT;
     if (v != 0) {
         p->mFlags |= data_021595c4;
     }
@@ -688,7 +689,7 @@ void func_020eff40(KartItems *p) {
     if ((p->mKart->mUnk_7c & 0x400) != 0) {
         return;
     }
-    if ((u32) (p->mKart->mUnk_29c - 2) <= 1) {
+    if ((u32) (p->mKart->mItemEffect - 2) <= 1) {
         return;
     }
     if (f && p->mActiveItem != 0x13) {
@@ -716,7 +717,7 @@ void func_020eff40(KartItems *p) {
 }
 
 void func_020efea4(KartItems *p) {
-    if ((u32) (p->mKart->mUnk_29c - 2) <= 1) {
+    if ((u32) (p->mKart->mItemEffect - 2) <= 1) {
         return;
     }
     if (data_021759c0->mMode == 5) {
@@ -968,7 +969,7 @@ void func_020ef4a0(Unk020eda5c *a) {
     if (a->mUnk_170 != NULL) {
         c->mActiveItem = 0x13;
         i = c->mUnk_200;
-        if ((u16) (data_0217562a[i].mBits & 0x40) != 0) {
+        if ((u16) (data_0217562a[i].mBits & ITEM_THROW_FORWARD_BIT) != 0) {
             c->mFlags |= data_021595a0;
         }
         i = c->mUnk_200;

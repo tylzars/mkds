@@ -34,7 +34,7 @@ u32 func_02099208(Unk0209905c *a, Kart *b, u8 *c, u8 *d) {
     if (v1 == 1) {
         a->mUnk_00.mFlags = a->mUnk_00.mFlags | data_usa_02156590;
         a->mUnk_cc = 1;
-        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
+        if (b->mItemEffect == 1 || b->mItemEffect == 3) {
             a->mUnk_00.mDistanceSquaredAndFlags = a->mUnk_00.mDistanceSquaredAndFlags | data_usa_02156594;
         }
         func_020d26f8(&a->mUnk_00, b);

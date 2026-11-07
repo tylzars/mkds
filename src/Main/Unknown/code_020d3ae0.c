@@ -578,7 +578,7 @@ s32 func_020d41e0(Kart *a, Vec3 *b, Vec3 *c) {
     v = *b;
     k = (a->mUnk_48 & 0x8000000) != 0;
     q = a->mRadius;
-    r = a->mUnk_29c;
+    r = a->mItemEffect;
     p = data_0217b4dc;
     {
         Vec3 z1 = {0, 0, 0};

@@ -15,7 +15,7 @@
 #include "Main/Unknown/code_02109054.h"
 
 u32 func_020d26f8(MapObject *a, Kart *b) {
-    if (b->mUnk_29c != 1 && b->mUnk_29c != 3) {
+    if (b->mItemEffect != 1 && b->mItemEffect != 3) {
         return 0;
     }
     if (a->mSound != NULL) {

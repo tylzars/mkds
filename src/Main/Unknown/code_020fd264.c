@@ -87,7 +87,7 @@ s32 InitItemBomb(Unk020eda5c *a, ItemBomb *e) {
         e->mUnk_130 = 0;
         return e->mUnk_130;
     }
-    if (a->mUnk_00c->mFlags & 0x10) {
+    if (a->mUnk_00c->mFlags & KART_ITEMS_THROW_FORWARD) {
         func_020f3150(&e->mUnk_000, a, 3, 1, 0x9800, 0x5000, 0x59a);
     } else {
         func_020f3150(&e->mUnk_000, a, 3, 1, 0x6000, 0x5000, 0x59a);
@@ -109,7 +109,7 @@ void UpdateItemBombState0(ItemBomb *e) {
     } else {
         func_020f2df0(&e->mUnk_000, 0x47b, 0xf91, e->mUnk_134, (u32 *) &v);
     }
-    if (e->mUnk_000.mUnk_000.mFlags & 0x10) {
+    if (e->mUnk_000.mUnk_000.mFlags & KART_ITEMS_THROW_FORWARD) {
         func_020f91fc(e, 0xe5);
     }
     if ((e->mUnk_000.mUnk_000.mFlags & 0x8) == 0) {

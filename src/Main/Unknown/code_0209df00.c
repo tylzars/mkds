@@ -53,7 +53,7 @@ u8 CollideKartWithFireball2(Fireball2 *a, Kart *b, u8 *c, u8 *d) {
 
     v = *d;
     if (a->mUnk_19c4[b->mIndex] == 0) {
-        if (b->mUnk_29c == 1 || b->mUnk_29c == 3) {
+        if (b->mItemEffect == 1 || b->mItemEffect == 3) {
             a->mUnk_00.mDistanceSquaredAndFlags |= data_usa_021565e8;
         }
         func_020d26f8(&a->mUnk_00, b);

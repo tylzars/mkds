@@ -247,7 +247,7 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         c = 1;
     }
     if (((p->mUnk_514->mUnk_30 & 0x2000) != 0) != ((f & 0x2000) != 0)) {
-        func_02069c38(p);
+        StartKartStar(p);
     }
     if (((p->mUnk_514->mUnk_30 & 0x4000) != 0) != ((f & 0x4000) != 0)) {
         i = 0;
@@ -270,13 +270,13 @@ void func_020653d0(Kart *p, Unk020653d0 *a, s32 n) {
         func_0206a624(p);
     }
     if (((p->mUnk_514->mUnk_30 & 0x100000) != 0) != ((f & 0x100000) != 0)) {
-        func_020695c4(p);
+        StartKartKiller(p);
     }
     if (((p->mUnk_514->mUnk_30 & 0x200000) != 0) != ((f & 0x200000) != 0)) {
         p->mUnk_538.mUnk_24 = TRUE;
     }
     if (((p->mUnk_514->mUnk_30 & 0x4000000) != 0) != ((f & 0x4000000) != 0)) {
-        func_02069aa0(p);
+        StartKartTeresa(p);
     }
     if (((p->mUnk_514->mUnk_30 & 0x40) != 0) != ((f & 0x40) != 0)) {
         if (p->mUnk_7c & 0x200) {

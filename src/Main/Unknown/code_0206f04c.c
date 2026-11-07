@@ -132,7 +132,7 @@ void func_0206ff50(Kart *p, u32 a) {
         p->mUnk_4c8 = 0x1000;
         p->mSurfaceGroup = -1;
         f = 0;
-        p->mUnk_29c = 0;
+        p->mItemEffect = 0;
         if (p->mKartModelsEntry->mUnk_058 == 0) {
             e = data_usa_02165560;
             for (f = 0; f < 3; f++) {
