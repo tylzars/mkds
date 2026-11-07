@@ -7,20 +7,20 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-void func_020cea60(void) {
-    s32 t[6] = {COURSE_ID_MINI_STAGE1, COURSE_ID_MINI_STAGE2,   COURSE_ID_MINI_STAGE3,
-                COURSE_ID_MINI_STAGE4, COURSE_ID_MINI_BLOCK_64, COURSE_ID_MINI_DOKAN_GC};
-    s32 a;
+void UpdateSelectBattleStage(void) {
+    s32 courseIds[6] = {COURSE_ID_MINI_STAGE1, COURSE_ID_MINI_STAGE2,   COURSE_ID_MINI_STAGE3,
+                        COURSE_ID_MINI_STAGE4, COURSE_ID_MINI_BLOCK_64, COURSE_ID_MINI_DOKAN_GC};
+    s32 result;
 
-    a = AdvanceSelectBattleStage();
-    switch (a) {
+    result = AdvanceSelectBattleStage();
+    switch (result) {
         case 0:
         case 1:
         case 2:
         case 3:
         case 4:
         case 5:
-            GetRaceSetupCopy()->mCourseId = t[a];
+            GetRaceSetupCopy()->mCourseId = courseIds[result];
             func_020ccc74(0x1d, 0x1f);
             break;
         case -3:

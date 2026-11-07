@@ -88,17 +88,17 @@ typedef struct RaceHudSubScreenCells {
     /* 10 */ RaceHudSubScreenCell *mCells;
 } RaceHudSubScreenCells;
 
-// Halfwords from 0x02 of Unk0217b490 read by func_020cf340 when gRaceSetup->mUnk_00 is 0x20: six, two rows
-// of three and two.
+// Halfwords from 0x02 of Unk0217b490 read by UpdateRaceHudSubScreenBgPalette when gRaceSetup->mUnk_00 is 0x20: six, two
+// rows of three and two.
 typedef struct Unk0217b490_02_03 {
     /* 00 */ u16 mUnk_00[6];
     /* 0c */ u16 mUnk_0c[2][3];
     /* 18 */ u16 mUnk_18[2];
 } Unk0217b490_02_03;
 
-// The halfwords from 0x02 of Unk0217b490 as func_020cf340 and func_020cfca4 index them for the values of
-// gRaceSetup->mUnk_00: a run of 0x15 (0x1c, 0x1f, 0x2e), nine rows of three (0xf), five rows of four (0x11)
-// and Unk0217b490_02_03 (0x20).
+// The halfwords from 0x02 of Unk0217b490 as UpdateRaceHudSubScreenBgPalette and func_020cfca4 index them for the values
+// of gRaceSetup->mUnk_00: a run of 0x15 (0x1c, 0x1f, 0x2e), nine rows of three (0xf), five rows of four (0x11) and
+// Unk0217b490_02_03 (0x20).
 typedef union Unk0217b490_02 {
     u16 mUnk_00[0x15];
     u16 mUnk_01[9][3];
@@ -999,7 +999,7 @@ extern RaceHudSubScreenCells *gRaceHudSubScreenMkdEfBubbleCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenBasabasaCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenRainStarCells;
 extern RaceHudSubScreenCells *data_0217b484;
-extern RaceHudSubScreenCells *data_0217b48c;
+extern RaceHudSubScreenCells *gRaceHudSubScreenBombKouraWCells;
 extern Unk0217b490 *data_0217b490;
 extern RaceHudSubScreenCells *gRaceHudSubScreenCreamCells;
 extern RaceHudSubScreenCells *gRaceHudSubScreenBerryCells;

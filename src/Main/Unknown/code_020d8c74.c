@@ -1,9 +1,9 @@
 #include "Main/Unknown/code_020d8c74.h"
 #include "Main/Unknown/code_020d9480.h"
 
-void func_020d8c74(Unk020e0144 *arg0, Vec3 *arg1) {
-    u32 value0 = (u32) arg0;
-    u32 value1 = (u32) arg1;
+void func_020d8c74(Unk020e0144 *follower, Vec3 *output) {
+    u32 value0 = (u32) follower;
+    u32 value1 = (u32) output;
     u32 value2;
     u32 value3;
     u32 value12;

@@ -6,7 +6,7 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-void func_020ce6c0(void) {
+void UpdateVsSelectCupM(void) {
     switch (AdvanceSelectCupM()) {
         case 1:
             func_020ccc74(0xd, 0x1f);

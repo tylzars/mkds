@@ -2,11 +2,11 @@
 #include "Main/Unknown/code_0214d000.h"
 #include "code_0214d018.h"
 
-void func_020cef7c(void *a, u32 b, u32 c) {
-    volatile u32 v = b;
-    MIi_CpuClearFast(v, a, c);
+void func_020cef7c(void *dest, u32 value, u32 size) {
+    volatile u32 valueCopy = value;
+    MIi_CpuClearFast(valueCopy, dest, size);
 }
 
-void func_020cef68(void *a, u32 b) {
-    func_020cef7c(a, 0, b);
+void func_020cef68(void *dest, u32 size) {
+    func_020cef7c(dest, 0, size);
 }

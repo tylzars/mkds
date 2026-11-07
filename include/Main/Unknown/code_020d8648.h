@@ -4,4 +4,4 @@
 
 typedef struct Unk020e0144 Unk020e0144;
 
-void func_020d8648(Unk020e0144 *p0);
+void SetGroupFollowerSegmentEnd(Unk020e0144 *follower);

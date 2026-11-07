@@ -89,8 +89,8 @@ void InitIronBallObjects(Unk020a9a5c *p) {
         o->mUnk_000.mPos = o->mUnk_11c;
         o->mUnk_11c.y += 0x1000;
         func_020e516c(&o->mUnk_0e8, &o->mUnk_11c, o->mUnk_000.mExtent.x << 1, k);
-        func_020d2450(&o->mUnk_000);
-        func_020d7da8(&o->mUnk_0c4, o->mUnk_000.mCourseMapRow, z0);
+        RefreshMapObjectMatrixFromHitNormal(&o->mUnk_000);
+        InitGroupFollower(&o->mUnk_0c4, o->mUnk_000.mCourseMapRow, z0);
         func_020d8918(&o->mUnk_0c4, &o->mUnk_11c, &o->mUnk_000.mUnk_10);
         o->mUnk_11c.y += 0x1000;
         VEC_MultAdd(o->mUnk_000.mExtent.x, &o->mUnk_000.mMatrix.mUnk_00[1], &o->mUnk_11c, &o->mUnk_000.mPos);

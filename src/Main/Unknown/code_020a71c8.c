@@ -45,7 +45,7 @@ void InitSanbo(u32 arg0) {
     value1 = *(const u32 *) ((value0) + (156));
     value0 = (value0) + (0x1d8u);
     value2 = 0u;
-    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
+    InitGroupFollower((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
 }
 
 u8 func_020a7fc4(Sanbo *p, Kart *a, u8 *b, u8 *c) {
@@ -57,7 +57,7 @@ u8 func_020a7fc4(Sanbo *p, Kart *a, u8 *b, u8 *c) {
         func_020a8098(p);
         p->mUnk_000.mFlags = p->mUnk_000.mFlags | data_021567e4;
         p->mUnk_000.mFlags = p->mUnk_000.mFlags | data_021567e8;
-        func_020d26f8(&p->mUnk_000, a);
+        StartSoundIfKartStarOrKiller(&p->mUnk_000, a);
     } else {
         if (p->mUnk_0a4 == 0) {
             s.mUnk_00 = 0x193;

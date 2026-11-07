@@ -15,12 +15,12 @@
 #include "Main/Unknown/code_020d7db4.h"
 
 #pragma thumb on
-void func_020d7da8(Unk020e0144 *arg0, CourseMapRow *arg1, s32 arg2) {
-    Unk020e0144 *value0 = arg0;
-    u32 value1 = (u32) arg1;
-    u32 value2 = arg2;
-    u32 value3;
+void InitGroupFollower(Unk020e0144 *follower, CourseMapRow *row, s32 speed) {
+    Unk020e0144 *followerCopy = follower;
+    u32 value1 = (u32) row;
+    u32 speedCopy = speed;
+    u32 unused;
     value1 = *(const u16 *) ((value1) + 38u);
-    func_020d7db4(value0, value1, value2);
+    func_020d7db4(followerCopy, value1, speedCopy);
 }
 #pragma thumb off

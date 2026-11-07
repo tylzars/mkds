@@ -99,7 +99,7 @@ void CreateKoopaBlock(void) {
 void InitKoopaBlock(Unk020e005c *a, CourseMapRow *b) {
     func_02046be8(&a->mStateMachine, data_0216bff8, 3, a);
     a->mUnk_168 = (b->mUnk_28 << 12) / 100;
-    func_020d7da8(&a->mUnk_144, b, a->mUnk_168);
+    InitGroupFollower(&a->mUnk_144, b, a->mUnk_168);
     a->mUnk_16c = 0;
     *(Unk020e43a8_28 *) &a->mUnk_0a0 = *(Unk020e43a8_28 *) &a->mUnk_028;
     a->mUnk_124.x = 0;

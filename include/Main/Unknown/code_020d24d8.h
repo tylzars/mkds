@@ -4,8 +4,8 @@
 #include "code_02146d78.h"
 #include "Main/Unknown/code_020e6fd4.h"
 
-void func_020d2668(MapObject *b, SoundSource *c, s32 d, s32 e);
-void func_020d2600(s32 c, Vec3 *d, s32 e);
-void func_020d2584(MapObject *b, s32 c);
-s32 func_020d252c(MapObject *a);
-void func_020d24d8(MapObject *b, s32 c);
+void StartMapObjectKindSound(MapObject *mapObject, SoundSource *soundSource, s32 d, s32 e);
+void StartSoundAtPositionIfNear(s32 soundId, Vec3 *position, s32 falloffKind);
+void SetMapObjectExtentY(MapObject *mapObject, s32 baseSize);
+s32 GetMapObjectCollisionRadius(MapObject *mapObject);
+void SetMapObjectDrawDistance(MapObject *mapObject, s32 drawDistance);

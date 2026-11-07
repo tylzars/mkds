@@ -37,7 +37,7 @@ u32 func_02099208(Unk0209905c *a, Kart *b, u8 *c, u8 *d) {
         if (b->mItemEffect == 1 || b->mItemEffect == 3) {
             a->mUnk_00.mDistanceSquaredAndFlags = a->mUnk_00.mDistanceSquaredAndFlags | data_usa_02156594;
         }
-        func_020d26f8(&a->mUnk_00, b);
+        StartSoundIfKartStarOrKiller(&a->mUnk_00, b);
     }
     return v2;
 }

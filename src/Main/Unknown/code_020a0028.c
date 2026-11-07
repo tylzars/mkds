@@ -51,7 +51,7 @@ void InitAirshipObjects(Unk020a0064 *p) {
     }
     z = FALSE;
     for (i = 0; i < p->mUnk_04 && (o = p->mUnk_00[i]) != NULL; i++) {
-        func_020d7da8(&o->mUnk_c8, o->mUnk_00.mCourseMapRow, z);
+        InitGroupFollower(&o->mUnk_c8, o->mUnk_00.mCourseMapRow, z);
         o->mUnk_a4 = (o->mUnk_00.mCourseMapRow->mUnk_28 * 0x5000L) / 100;
         v = o->mUnk_a4;
         o->mUnk_c8.mUnk_04 = v;

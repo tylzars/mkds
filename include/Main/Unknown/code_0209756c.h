@@ -39,4 +39,4 @@ void DrawFlipper(void *a, Flipper *p);
 void CreateFlipper(void *a);
 u32 func_02097ed0(Flipper *p, Vec3 *a, s32 b, Vec3 *c);
 u32 func_020980ec(Flipper *p, Kart *q, void *b, u8 *c);
-void InitFlipper(Flipper *p); /* sets flag 0x200 and the ground matrix (func_020d2450) */
+void InitFlipper(Flipper *p); /* sets flag 0x200 and the ground matrix (RefreshMapObjectMatrixFromHitNormal) */

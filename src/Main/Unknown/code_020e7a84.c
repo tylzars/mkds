@@ -103,7 +103,7 @@ void AdvanceJgPointsAndSetTarget(Vec3 *param_1, const Vec3 *param_2, const Vec3 
     s32 a;
     s32 b;
 
-    if (func_020d849c(&data_0217bb88.mUnk_00) != FALSE) {
+    if (AdvanceSegmentProgress(&data_0217bb88.mUnk_00) != FALSE) {
         do {
             for (i = 0; i < 4; i++) {
                 gJgPointPointers[i] += 1;

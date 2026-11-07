@@ -40,7 +40,7 @@ void InitKuribo(Kuribo *a, CourseMapRow *b) {
     Unk020e005c_080 *o;
     a->mUnk_100 = 0x1f;
     if (b != NULL) {
-        func_020d7da8(&a->mUnk_cc, b, (b->mUnk_28 << 11) / 100);
+        InitGroupFollower(&a->mUnk_cc, b, (b->mUnk_28 << 11) / 100);
         e = GetCourseMapGroupEntry(b->mUnk_26, b->mUnk_2e);
         a->mUnk_a0 = e->mUnk_00.y;
         a->mUnk_f8 = b->mUnk_28 * 0xb4 / 100;

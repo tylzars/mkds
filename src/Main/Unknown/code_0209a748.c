@@ -36,7 +36,7 @@ void InitCrab(u32 arg0) {
     value1 = *(const u32 *) ((value0) + (156));
     value0 = (value0) + (0xf0u);
     value2 = 0u;
-    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
+    InitGroupFollower((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
 }
 
 static inline u32 func_0209b388_inline(Unk020f41c4_B *r, u32 c) {
@@ -102,7 +102,7 @@ u8 CollideKartWithCrab(Crab *a, Kart *b, u8 *c, u8 *d) {
     e = *d;
     if (*c == 1) {
         func_0209b388(a, &b->mPos, &b->mEasedTurnedForward, &b->mVelocity);
-        func_020d26f8(&a->mUnk_000, b);
+        StartSoundIfKartStarOrKiller(&a->mUnk_000, b);
     }
     return e;
 }
@@ -274,7 +274,7 @@ void UpdateCrab(void *a, Crab *b) {
                 b->mUnk_0a8 = 0;
             }
             func_0209a7dc_inline(&b->mUnk_0d0);
-            func_020d8a5c(&b->mUnk_0f0, &b->mUnk_000.mPos);
+            GetGroupFollowerLinearPosition(&b->mUnk_0f0, &b->mUnk_000.mPos);
             v = *func_020d88fc(&b->mUnk_0f0);
             VEC_Subtract(&v, &b->mUnk_000.mMatrix.mUnk_00[1], &v);
             v.x = ((s64) v.x * 0x800) >> 12;
@@ -296,7 +296,7 @@ void UpdateCrab(void *a, Crab *b) {
                 return;
             }
             func_020d90a8(&b->mUnk_0f0, 0, 0);
-            func_020d879c(&b->mUnk_0f0, &b->mUnk_000.mPos);
+            GetGroupFollowerLinearXz(&b->mUnk_0f0, &b->mUnk_000.mPos);
             b->mUnk_000.mPos.y = b->mUnk_000.mCourseMapRow->mUnk_00.y - 0x5000;
             b->mUnk_0b0.mUnk_00 = 0;
             b->mUnk_0b0.mUnk_0c = 0;

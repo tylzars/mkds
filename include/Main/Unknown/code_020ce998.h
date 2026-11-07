@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ce998(void);
+void UpdateVsSelectKart(void);

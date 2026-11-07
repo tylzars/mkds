@@ -32,7 +32,7 @@ u8 CollideKartWithMkdEfBurner(MkdEfBurner *a, Kart *b, u8 *c, u8 *d) {
     u8 v;
 
     v = *d;
-    if (a->mUnk_d4[b->mIndex] == 0 && func_020d26f8(&a->mUnk_00, b) != 0) {
+    if (a->mUnk_d4[b->mIndex] == 0 && StartSoundIfKartStarOrKiller(&a->mUnk_00, b) != 0) {
         a->mUnk_00.mDistanceSquaredAndFlags |= data_usa_02156470;
         a->mUnk_d4[b->mIndex] = 0x1f;
     }
@@ -92,7 +92,7 @@ void InitMkdEfBurnerObjects(MapObjectList *p) {
         if (e->mUnk_00.mCourseMapRow->mUnk_26 < 0) {
             e->mUnk_b0.mUnk_08 = 0xffff;
         } else {
-            func_020d7da8(&e->mUnk_b0, e->mUnk_00.mCourseMapRow, z);
+            InitGroupFollower(&e->mUnk_b0, e->mUnk_00.mCourseMapRow, z);
             n = (e->mUnk_00.mCourseMapRow->mUnk_2e << 12) / 100;
             e->mUnk_b0.mUnk_04 = n;
             e->mUnk_b0.mUnk_10 = ((s64) n * e->mUnk_b0.mUnk_00->mUnk_00[e->mUnk_b0.mUnk_0c].mUnk_34) >> 12;
@@ -164,7 +164,7 @@ void UpdateMkdEfBurner(void *a, MkdEfBurner *p) {
     }
     if (p->mUnk_b0.mUnk_08 != 0xffff) {
         func_020d8cc8(&p->mUnk_b0);
-        func_020d8a5c(&p->mUnk_b0, &p->mUnk_00.mPos);
+        GetGroupFollowerLinearPosition(&p->mUnk_b0, &p->mUnk_00.mPos);
         p->mUnk_00.mPos.y = p->mUnk_00.mPos.y - p->mUnk_00.mExtent.y;
     } else {
         p->mUnk_00.mPos.y = p->mUnk_00.mCourseMapRow->mUnk_00.y - p->mUnk_00.mExtent.y;

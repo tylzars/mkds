@@ -3,51 +3,51 @@
 #include "Main/Unknown/code_020e005c.h"
 #include "code_02147cd8.h"
 
-void func_020d8b18(Unk020e0144 *a, Vec3 *b, Vec3 *c) {
-    func_020d9270(&a->mUnk_00->mUnk_00[a->mUnk_0c], a->mUnk_14, a->mUnk_10, b, c);
-    if (a->mUnk_18 == 0) {
-        c->x = -c->x;
-        c->z = -c->z;
+void func_020d8b18(Unk020e0144 *follower, Vec3 *position, Vec3 *step) {
+    func_020d9270(&follower->mUnk_00->mUnk_00[follower->mUnk_0c], follower->mUnk_14, follower->mUnk_10, position, step);
+    if (follower->mUnk_18 == 0) {
+        step->x = -step->x;
+        step->z = -step->z;
     }
 }
 
-void func_020d8a5c(Unk020e0144 *a, Vec3 *b) {
-    Unk020e0144_00_0 *p;
-    s32 t;
-    s32 u;
-    p = &a->mUnk_00->mUnk_00[a->mUnk_0c];
-    t = a->mUnk_14;
-    u = 0x1000000 - t;
-    b->x = ((s64) p->mUnk_00[0].x * u) >> 24;
-    b->y = ((s64) p->mUnk_00[0].y * u) >> 24;
-    b->z = ((s64) p->mUnk_00[0].z * u) >> 24;
-    b->x = b->x + (s32) (((s64) p->mUnk_00[3].x * t) >> 24);
-    b->y = b->y + (s32) (((s64) p->mUnk_00[3].y * t) >> 24);
-    b->z = b->z + (s32) (((s64) p->mUnk_00[3].z * t) >> 24);
+void GetGroupFollowerLinearPosition(Unk020e0144 *follower, Vec3 *position) {
+    Unk020e0144_00_0 *segment;
+    s32 progress;
+    s32 remaining;
+    segment = &follower->mUnk_00->mUnk_00[follower->mUnk_0c];
+    progress = follower->mUnk_14;
+    remaining = 0x1000000 - progress;
+    position->x = ((s64) segment->mUnk_00[0].x * remaining) >> 24;
+    position->y = ((s64) segment->mUnk_00[0].y * remaining) >> 24;
+    position->z = ((s64) segment->mUnk_00[0].z * remaining) >> 24;
+    position->x = position->x + (s32) (((s64) segment->mUnk_00[3].x * progress) >> 24);
+    position->y = position->y + (s32) (((s64) segment->mUnk_00[3].y * progress) >> 24);
+    position->z = position->z + (s32) (((s64) segment->mUnk_00[3].z * progress) >> 24);
 }
 
-void func_020d8918(Unk020e0144 *a, Vec3 *b, Vec3 *c) {
-    Unk020e0144_00_0 *p;
-    s32 t;
-    s32 u;
-    s32 k;
-    p = &a->mUnk_00->mUnk_00[a->mUnk_0c];
-    t = a->mUnk_14;
-    u = 0x1000000 - t;
-    b->x = ((s64) p->mUnk_00[0].x * u) >> 24;
-    b->y = ((s64) p->mUnk_00[0].y * u) >> 24;
-    b->z = ((s64) p->mUnk_00[0].z * u) >> 24;
-    b->x = b->x + (s32) (((s64) p->mUnk_00[3].x * t) >> 24);
-    b->y = b->y + (s32) (((s64) p->mUnk_00[3].y * t) >> 24);
-    b->z = b->z + (s32) (((s64) p->mUnk_00[3].z * t) >> 24);
-    VEC_Subtract(&p->mUnk_00[3], &p->mUnk_00[0], c);
-    k = a->mUnk_10;
-    c->x = ((s64) c->x * k) >> 24;
-    c->y = ((s64) c->y * k) >> 24;
-    c->z = ((s64) c->z * k) >> 24;
-    if (a->mUnk_18 == 0) {
-        c->x = -c->x;
-        c->y = -c->y;
-        c->z = -c->z;
+void func_020d8918(Unk020e0144 *follower, Vec3 *position, Vec3 *step) {
+    Unk020e0144_00_0 *segment;
+    s32 progress;
+    s32 remaining;
+    s32 rate;
+    segment = &follower->mUnk_00->mUnk_00[follower->mUnk_0c];
+    progress = follower->mUnk_14;
+    remaining = 0x1000000 - progress;
+    position->x = ((s64) segment->mUnk_00[0].x * remaining) >> 24;
+    position->y = ((s64) segment->mUnk_00[0].y * remaining) >> 24;
+    position->z = ((s64) segment->mUnk_00[0].z * remaining) >> 24;
+    position->x = position->x + (s32) (((s64) segment->mUnk_00[3].x * progress) >> 24);
+    position->y = position->y + (s32) (((s64) segment->mUnk_00[3].y * progress) >> 24);
+    position->z = position->z + (s32) (((s64) segment->mUnk_00[3].z * progress) >> 24);
+    VEC_Subtract(&segment->mUnk_00[3], &segment->mUnk_00[0], step);
+    rate = follower->mUnk_10;
+    step->x = ((s64) step->x * rate) >> 24;
+    step->y = ((s64) step->y * rate) >> 24;
+    step->z = ((s64) step->z * rate) >> 24;
+    if (follower->mUnk_18 == 0) {
+        step->x = -step->x;
+        step->y = -step->y;
+        step->z = -step->z;
     }
 }

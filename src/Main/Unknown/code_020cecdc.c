@@ -7,10 +7,10 @@
 
 #pragma thumb on
 
-void func_020cecdc(void) {
-    int v1;
-    v1 = func_020cccc0();
-    if (v1 != 0) {
+void WriteSelectGameRegisters(void) {
+    int screenChanged;
+    screenChanged = func_020cccc0();
+    if (screenChanged != 0) {
         GxDispCntBits8To12Write2(0x18);
         GX_SetGraphicsMode(1, 0, 0);
         GxsDispCntBits8To12Write2(0x12);

@@ -79,8 +79,8 @@ typedef struct MapObject {
     // the view planes (set with bit 0 when mAlpha is 1 or less); bit 2: beyond mFarDistanceSquared (func_020e71a0 also
     // sets it); bit 3: set when the object was tested in this pass; bit 4: set by kinds and kept by the test. Bits 5 to
     // 29: the squared horizontal distance to the camera in whole units (read with the mask 0x3fffffe0; a far constant
-    // while mDigitMask is shared). Bit 30 is set by kinds and makes func_020d2668 skip the kind's sound; bit 31 is set
-    // by kinds and cleared by ItemObject code, which passes the object on as the one hit.
+    // while mDigitMask is shared). Bit 30 is set by kinds and makes StartMapObjectKindSound skip the kind's sound; bit
+    // 31 is set by kinds and cleared by ItemObject code, which passes the object on as the one hit.
     /* 78 */ u32 mDistanceSquaredAndFlags;
     // Non-zero when the view test of the object uses only two view planes (ComputeTwoPlaneViewTest) instead of five
     // (ComputeViewTest). Copied from the kind's data at creation.

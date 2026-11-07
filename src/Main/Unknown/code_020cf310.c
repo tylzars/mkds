@@ -32,11 +32,11 @@ void func_020cfca4(void) {
             }
             break;
         case 0x11: {
-            s32 t[5] = {0, 5, 10, 16, 21};
+            s32 table[5] = {0, 5, 10, 16, 21};
 
             for (i = 0; i < 5; i++) {
                 for (j = 0; j < 4; j++) {
-                    data_0217b490->mUnk_02.mUnk_02[i][j] = ((u16 *) 0x05000400)[t[i] + j + 0x80];
+                    data_0217b490->mUnk_02.mUnk_02[i][j] = ((u16 *) 0x05000400)[table[i] + j + 0x80];
                 }
             }
             break;
@@ -74,67 +74,67 @@ void func_020cfca4(void) {
     data_0217b490->mUnk_00 = 0;
 }
 
-void func_020cf340(Unk020cf340 *a) {
+void UpdateRaceHudSubScreenBgPalette(Unk020cf340 *palette) {
     s32 i;
     s32 j;
-    s32 m;
+    s32 shift;
     s32 n;
     s32 k;
     s32 v;
-    u32 x;
-    float f;
+    u32 waterAngle;
+    float threshold;
 
     switch (gRaceSetup->mCourseId) {
         case COURSE_ID_OLD_NOKO_SFC:
             v = func_02062ed8();
             for (i = 0; i < 3; i++) {
-                a->mUnk_00[i + 0x40] = data_0217b490->mUnk_02.mUnk_01[v / 10][i];
+                palette->mUnk_00[i + 0x40] = data_0217b490->mUnk_02.mUnk_01[v / 10][i];
             }
-            DC_FlushRange(&a->mUnk_00[0x40], 6);
+            DC_FlushRange(&palette->mUnk_00[0x40], 6);
             GXS_BeginLoadBGExtPltt();
-            GXS_LoadBGExtPltt(&a->mUnk_00[0x40], 0x4080, 6);
+            GXS_LoadBGExtPltt(&palette->mUnk_00[0x40], 0x4080, 6);
             if (func_020b64e8() != 0) {
-                GXS_LoadBGExtPltt(&a->mUnk_00[0x40], 0x6080, 6);
+                GXS_LoadBGExtPltt(&palette->mUnk_00[0x40], 0x6080, 6);
             }
             GXS_EndLoadBGExtPltt();
             break;
         case 0x11: {
-            s32 t[5] = {0, 5, 10, 16, 21};
-            Unk0217b498_00 **q;
+            s32 table[5] = {0, 5, 10, 16, 21};
+            Unk0217b498_00 **objects;
             void *p;
-            u16 w;
+            u16 angle;
 
             p = func_021000d0(0xcb);
             if (p != NULL) {
-                q = func_02100084(p);
+                objects = func_02100084(p);
                 for (i = 0; i < 5; i++) {
-                    w = q[i]->mAngle;
+                    angle = objects[i]->mAngle;
                     if (i == 4) {
-                        m = (w * 0xb4) >> 16;
+                        shift = (angle * 0xb4) >> 16;
                     } else {
-                        m = (w * 0x48) >> 16;
+                        shift = (angle * 0x48) >> 16;
                     }
                     for (j = 0; j < 4; j++) {
-                        a->mUnk_00[t[i] + j + 0x80] = data_0217b490->mUnk_02.mUnk_02[i][(j + m) % 4];
+                        palette->mUnk_00[table[i] + j + 0x80] = data_0217b490->mUnk_02.mUnk_02[i][(j + shift) % 4];
                     }
                 }
             }
-            DC_FlushRange(&a->mUnk_00[0x80], 0x34);
+            DC_FlushRange(&palette->mUnk_00[0x80], 0x34);
             GXS_BeginLoadBGExtPltt();
-            GXS_LoadBGExtPltt(&a->mUnk_00[0x80], 0x4100, 0x34);
+            GXS_LoadBGExtPltt(&palette->mUnk_00[0x80], 0x4100, 0x34);
             if (func_020b64e8() != 0) {
-                GXS_LoadBGExtPltt(&a->mUnk_00[0x80], 0x6100, 0x34);
+                GXS_LoadBGExtPltt(&palette->mUnk_00[0x80], 0x6100, 0x34);
             }
             GXS_EndLoadBGExtPltt();
             break;
         }
         case 0x1c: {
-            u8 t[6][20] = {{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
-                           {20, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
-                           {20, 20, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
-                           {20, 20, 20, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18},
-                           {20, 20, 20, 20, 1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18},
-                           {20, 20, 20, 20, 20, 1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17}};
+            u8 table[6][20] = {{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
+                               {20, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
+                               {20, 20, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
+                               {20, 20, 20, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18},
+                               {20, 20, 20, 20, 1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18},
+                               {20, 20, 20, 20, 20, 1, 2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17}};
             u8 *p;
 
             v = func_020e3b08();
@@ -151,16 +151,16 @@ void func_020cf340(Unk020cf340 *a) {
             } else {
                 j = 5;
             }
-            p = t[j];
+            p = table[j];
             for (i = 0; i < 20; i++) {
-                a->mUnk_00[i + 0x78] = data_0217b490->mUnk_02.mUnk_00[*p];
+                palette->mUnk_00[i + 0x78] = data_0217b490->mUnk_02.mUnk_00[*p];
                 p++;
             }
-            DC_FlushRange(&a->mUnk_00[0x78], 0x28);
+            DC_FlushRange(&palette->mUnk_00[0x78], 0x28);
             GXS_BeginLoadBGExtPltt();
-            GXS_LoadBGExtPltt(&a->mUnk_00[0x78], 0x40f0, 0x28);
+            GXS_LoadBGExtPltt(&palette->mUnk_00[0x78], 0x40f0, 0x28);
             if (func_020b64e8() != 0) {
-                GXS_LoadBGExtPltt(&a->mUnk_00[0x78], 0x60f0, 0x28);
+                GXS_LoadBGExtPltt(&palette->mUnk_00[0x78], 0x60f0, 0x28);
             }
             GXS_EndLoadBGExtPltt();
             break;
@@ -169,75 +169,76 @@ void func_020cf340(Unk020cf340 *a) {
             if (IsWaterPresent() != FALSE) {
                 n = GetWaterHeightFactor();
                 for (k = 7; k > 0; k--) {
-                    f = (7 - k) * 0.286f + -0.858f;
-                    v = f > 0.0f ? f * 4096.0f + 0.5f : f * 4096.0f - 0.5f;
+                    threshold = (7 - k) * 0.286f + -0.858f;
+                    v = threshold > 0.0f ? threshold * 4096.0f + 0.5f : threshold * 4096.0f - 0.5f;
                     if (n < v) {
                         break;
                     }
                 }
                 for (j = 0; j < k; j++) {
-                    a->mUnk_00[j + 0x50] = data_0217b490->mUnk_02.mUnk_00[0];
+                    palette->mUnk_00[j + 0x50] = data_0217b490->mUnk_02.mUnk_00[0];
                 }
                 for (j = k; j == k; j++) {
-                    a->mUnk_00[j + 0x50] = data_0217b490->mUnk_02.mUnk_00[1];
+                    palette->mUnk_00[j + 0x50] = data_0217b490->mUnk_02.mUnk_00[1];
                 }
                 for (j = k + 1; j < 8; j++) {
-                    a->mUnk_00[j + 0x50] = data_0217b490->mUnk_02.mUnk_00[2];
+                    palette->mUnk_00[j + 0x50] = data_0217b490->mUnk_02.mUnk_00[2];
                 }
             }
-            DC_FlushRange(&a->mUnk_00[0x50], 0x10);
+            DC_FlushRange(&palette->mUnk_00[0x50], 0x10);
             GXS_BeginLoadBGExtPltt();
-            GXS_LoadBGExtPltt(&a->mUnk_00[0x50], 0x40a0, 0x10);
+            GXS_LoadBGExtPltt(&palette->mUnk_00[0x50], 0x40a0, 0x10);
             if (func_020b64e8() != 0) {
-                GXS_LoadBGExtPltt(&a->mUnk_00[0x50], 0x60a0, 0x10);
+                GXS_LoadBGExtPltt(&palette->mUnk_00[0x50], 0x60a0, 0x10);
             }
             GXS_EndLoadBGExtPltt();
             break;
         case 0x20: {
             void *p;
-            Unk0217b498_00 **q;
-            Unk020e005c **r;
+            Unk0217b498_00 **objects;
+            Unk020e005c **blocks;
 
             p = func_021000d0(0xd0);
             if (p != NULL) {
-                q = func_02100084(p);
-                v = (q[1]->mAngle * 0x48) >> 16;
+                objects = func_02100084(p);
+                v = (objects[1]->mAngle * 0x48) >> 16;
                 for (i = 0; i < 6; i++) {
-                    a->mUnk_00[i + 0x54] = data_0217b490->mUnk_02.mUnk_03.mUnk_00[(i + 0x48 - v) % 6];
+                    palette->mUnk_00[i + 0x54] = data_0217b490->mUnk_02.mUnk_03.mUnk_00[(i + 0x48 - v) % 6];
                 }
-                k = (q[0]->mAngle << 5) >> 16;
+                k = (objects[0]->mAngle << 5) >> 16;
                 for (i = 0; i < 2; i++) {
                     for (j = 0; j < 3; j++) {
-                        a->mUnk_00[j + i * 3 + 0x5a] = data_0217b490->mUnk_02.mUnk_03.mUnk_0c[i][(j + 0x20 - k) % 3];
+                        palette->mUnk_00[j + i * 3 + 0x5a] =
+                            data_0217b490->mUnk_02.mUnk_03.mUnk_0c[i][(j + 0x20 - k) % 3];
                     }
                 }
             }
             p = func_021000d0(MAP_OBJECT_KIND_KOOPA_BLOCK);
             if (p != NULL) {
-                r = func_02100084(p);
+                blocks = func_02100084(p);
                 for (i = 0; i < 4; i++) {
-                    v = func_020dff4c(r[i]);
+                    v = func_020dff4c(blocks[i]);
                     if (i % 2 != 0) {
                         n = (v << 3) >> 12;
                     } else {
                         n = 8 - ((v << 3) >> 12);
                     }
                     for (j = 0; j < n; j++) {
-                        a->mUnk_00[i * 16 + j + 0x60] = data_0217b490->mUnk_02.mUnk_03.mUnk_18[0];
+                        palette->mUnk_00[i * 16 + j + 0x60] = data_0217b490->mUnk_02.mUnk_03.mUnk_18[0];
                     }
                     for (j = n; j < n + 8; j++) {
-                        a->mUnk_00[i * 16 + j + 0x60] = data_0217b490->mUnk_02.mUnk_03.mUnk_18[1];
+                        palette->mUnk_00[i * 16 + j + 0x60] = data_0217b490->mUnk_02.mUnk_03.mUnk_18[1];
                     }
                     for (j = n + 8; j < 16; j++) {
-                        a->mUnk_00[i * 16 + j + 0x60] = data_0217b490->mUnk_02.mUnk_03.mUnk_18[0];
+                        palette->mUnk_00[i * 16 + j + 0x60] = data_0217b490->mUnk_02.mUnk_03.mUnk_18[0];
                     }
                 }
             }
-            DC_FlushRange(&a->mUnk_00[0x54], 0x98);
+            DC_FlushRange(&palette->mUnk_00[0x54], 0x98);
             GXS_BeginLoadBGExtPltt();
-            GXS_LoadBGExtPltt(&a->mUnk_00[0x54], 0x40a8, 0x98);
+            GXS_LoadBGExtPltt(&palette->mUnk_00[0x54], 0x40a8, 0x98);
             if (func_020b64e8() != 0) {
-                GXS_LoadBGExtPltt(&a->mUnk_00[0x54], 0x60a8, 0x98);
+                GXS_LoadBGExtPltt(&palette->mUnk_00[0x54], 0x60a8, 0x98);
             }
             GXS_EndLoadBGExtPltt();
             break;
@@ -245,52 +246,52 @@ void func_020cf340(Unk020cf340 *a) {
         case COURSE_ID_MINI_STAGE3:
             if (IsWaterPresent() != FALSE) {
                 n = GetWaterHeightFactor();
-                x = GetWaterHeightAngle();
+                waterAngle = GetWaterHeightAngle();
                 for (k = 0; k < 0x13; k++) {
-                    f = k * 0.105f + -0.945f;
-                    v = f > 0.0f ? f * 4096.0f + 0.5f : f * 4096.0f - 0.5f;
+                    threshold = k * 0.105f + -0.945f;
+                    v = threshold > 0.0f ? threshold * 4096.0f + 0.5f : threshold * 4096.0f - 0.5f;
                     if (n < v) {
                         break;
                     }
                 }
                 k += 2;
                 for (j = 0; j < k - 2; j++) {
-                    a->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[0];
+                    palette->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[0];
                 }
                 for (j = k - 4; j < k - 2; j++) {
                     if (j >= 0) {
-                        a->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[1];
+                        palette->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[1];
                     }
                 }
                 for (j = k - 2; j <= k; j++) {
-                    a->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[2];
+                    palette->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[2];
                 }
-                if (x >= 0x4000 && x < 0xc000) {
+                if (waterAngle >= 0x4000 && waterAngle < 0xc000) {
                     for (j = k + 1; j <= k + 2 && j < 0x15; j++) {
-                        a->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[3];
+                        palette->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[3];
                     }
                     k += 2;
                 }
                 for (j = k + 1; j < 0x15; j++) {
-                    a->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[4];
+                    palette->mUnk_00[j + 0xe0] = data_0217b490->mUnk_02.mUnk_00[4];
                 }
             }
-            DC_FlushRange(&a->mUnk_00[0xe0], 0x2c);
+            DC_FlushRange(&palette->mUnk_00[0xe0], 0x2c);
             GXS_BeginLoadBGExtPltt();
-            GXS_LoadBGExtPltt(&a->mUnk_00[0xe0], 0x41c0, 0x2c);
+            GXS_LoadBGExtPltt(&palette->mUnk_00[0xe0], 0x41c0, 0x2c);
             if (func_020b64e8() != 0) {
-                GXS_LoadBGExtPltt(&a->mUnk_00[0xe0], 0x61c0, 0x2c);
+                GXS_LoadBGExtPltt(&palette->mUnk_00[0xe0], 0x61c0, 0x2c);
             }
             GXS_EndLoadBGExtPltt();
             break;
     }
 }
 
-s32 func_020cf310(void) {
-    s32 v;
+s32 CreateRaceHudSubScreenBombKouraWCells(void) {
+    s32 itemCount;
 
-    v = 0;
-    v += gItemKinds[5].mObjectCount;
-    v += gItemKinds[9].mObjectCount;
-    return CreateRaceHudSubScreenCellsWithCount(&data_0217b48c, v);
+    itemCount = 0;
+    itemCount += gItemKinds[5].mObjectCount;
+    itemCount += gItemKinds[9].mObjectCount;
+    return CreateRaceHudSubScreenCellsWithCount(&gRaceHudSubScreenBombKouraWCells, itemCount);
 }

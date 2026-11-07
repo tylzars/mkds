@@ -5,6 +5,6 @@
 typedef struct Unk020e0144 Unk020e0144;
 typedef struct CourseMapRow CourseMapRow;
 
-u32 func_020d8828(Unk020e0144 *a, Vec3 *b);
-void func_020d879c(Unk020e0144 *a, Vec3 *b);
-Vec3 *func_020d8654(CourseMapRow *a);
+u32 GetMaxXzDistanceToGroup(Unk020e0144 *follower, Vec3 *point);
+void GetGroupFollowerLinearXz(Unk020e0144 *follower, Vec3 *position);
+Vec3 *CreateCourseMapGroupSideVectors(CourseMapRow *row);

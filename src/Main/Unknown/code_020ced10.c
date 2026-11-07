@@ -19,31 +19,32 @@
 #include "Main/Unknown/code_020cedf8.h"
 
 void func_020cedf8(void) {
-    u32 value0;
+    u32 address;
     u32 value12;
-    value0 = (u32) &data_0217b484;
-    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) value0);
+    address = (u32) &data_0217b484;
+    ClearRaceHudSubScreenCells((RaceHudSubScreenCells **) address);
 }
 
 void func_020ced2c(void) {
     s32 i;
-    s32 n;
+    s32 cellCount;
     s32 v;
-    Unk0217b498_00 *e;
+    Unk0217b498_00 *object;
 
-    n = 0;
+    cellCount = 0;
     v = func_020c0db0();
     for (i = 0; i < data_0217b484->mObjectCount; i++) {
-        e = data_0217b484->mObjects[i];
-        if ((e->mFlags & 1) == 0) {
-            if (ComputeRaceHudSubScreenPosition(&e->mPos, &data_0217b484->mCells[n].mDrawPos, v, 1, 1) != FALSE) {
-                data_0217b484->mCells[n].mCell = GetRaceSNcerEntry(0xa4);
-                data_0217b484->mCells[n].mUnk_0c = 2;
-                n++;
+        object = data_0217b484->mObjects[i];
+        if ((object->mFlags & 1) == 0) {
+            if (ComputeRaceHudSubScreenPosition(&object->mPos, &data_0217b484->mCells[cellCount].mDrawPos, v, 1, 1) !=
+                FALSE) {
+                data_0217b484->mCells[cellCount].mCell = GetRaceSNcerEntry(0xa4);
+                data_0217b484->mCells[cellCount].mUnk_0c = 2;
+                cellCount++;
             }
         }
     }
-    data_0217b484->mCellCount = n;
+    data_0217b484->mCellCount = cellCount;
 }
 
 void func_020ced10(Unk020c06c4 *a) {

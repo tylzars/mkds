@@ -210,7 +210,7 @@ u8 CollideKartWithChoropu(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d) {
             }
             a->mUnk_000.mStateMachine.mNextState = 7;
             a->mUnk_000.mStateMachine.mNextStateRequested = 1;
-            func_020d26f8(&a->mUnk_000, b);
+            StartSoundIfKartStarOrKiller(&a->mUnk_000, b);
             break;
         case 1:
             VEC_Subtract(&a->mUnk_000.mPos, &b->mPos, &v);
@@ -223,7 +223,7 @@ u8 CollideKartWithChoropu(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d) {
             a->mUnk_000.mStateMachine.mNextState = 6;
             a->mUnk_000.mStateMachine.mNextStateRequested = 1;
             a->mUnk_000.mFlags |= data_02158bb4;
-            func_020d26f8(&a->mUnk_000, b);
+            StartSoundIfKartStarOrKiller(&a->mUnk_000, b);
             break;
     }
     return d[0];

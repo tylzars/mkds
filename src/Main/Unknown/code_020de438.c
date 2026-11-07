@@ -33,7 +33,7 @@ void func_020de4d4(u32 arg0, u32 arg1) {
 
 u8 func_020de4a0(Unk020e43a8 *a, void *b, u8 *c, u8 *d) {
     if (func_020ec450(a, b, c) != FALSE) {
-        func_020d26f8(&a->mUnk_00, b);
+        StartSoundIfKartStarOrKiller(&a->mUnk_00, b);
     }
     return *d;
 }

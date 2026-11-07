@@ -136,7 +136,7 @@ void UpdateMoveTree(void *a, MoveTree *p) {
                 p->mUnk_a0 = (u16) p->mUnk_b4.mUnk_1c->mUnk_0e;
                 p->mState = 0;
             }
-            func_020d879c(&p->mUnk_b4, &p->mUnk_00.mPos);
+            GetGroupFollowerLinearXz(&p->mUnk_b4, &p->mUnk_00.mPos);
             if ((s32) (p->mUnk_00.mDistanceSquaredAndFlags & ~0xc000001f) >= 0xc5c10) {
                 return;
             }

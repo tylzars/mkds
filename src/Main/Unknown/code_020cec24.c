@@ -5,7 +5,7 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-void func_020cec24(void) {
+void UpdateBattleSelectCharacter(void) {
     switch (AdvanceSelectCharacter()) {
         case 1:
         case 3:

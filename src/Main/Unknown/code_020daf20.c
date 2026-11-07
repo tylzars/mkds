@@ -152,13 +152,13 @@ void UpdateDossun(void *a, Dossun *p) {
             if (q->mUnk_18 != 0) {
                 q->mUnk_14 = 0;
             } else {
-                func_020d8620(q);
-                func_020d8648(q);
+                ReverseGroupFollower(q);
+                SetGroupFollowerSegmentEnd(q);
             }
             p->mUnk_b4 = 2;
             return;
         }
-        func_020d8a5c(q, &p->mUnk_00.mPos);
+        GetGroupFollowerLinearPosition(q, &p->mUnk_00.mPos);
         p->mUnk_00.mPos.y += p->mUnk_f8;
         return;
     }
@@ -269,7 +269,7 @@ void UpdateDossun(void *a, Dossun *p) {
             return;
         }
     }
-    func_020d8a5c(q, &p->mUnk_00.mPos);
+    GetGroupFollowerLinearPosition(q, &p->mUnk_00.mPos);
     p->mUnk_00.mPos.y += p->mUnk_f8;
 }
 
@@ -289,7 +289,7 @@ u32 CollideKartWithDossun(Dossun *p, Kart *a, u8 *b, u8 *c) {
             VEC_Subtract(&q->mUnk_20->mUnk_00, &p->mUnk_00.mPos, &s1);
             s1.y += p->mUnk_f8;
             if (Vec3DotUnrounded(&s0, &s1) > 0) {
-                func_020d8620(q);
+                ReverseGroupFollower(q);
             }
             if (p->mState < 4) {
                 t = 0xa800;
@@ -304,7 +304,7 @@ u32 CollideKartWithDossun(Dossun *p, Kart *a, u8 *b, u8 *c) {
             if ((s64) s0.z * a->mVelocity.x - (s64) s0.x * a->mVelocity.z < 0) {
                 p->mUnk_b8 = -p->mUnk_b8;
             }
-            func_020d26f8(&p->mUnk_00, a);
+            StartSoundIfKartStarOrKiller(&p->mUnk_00, a);
             p->mUnk_c0 |= 1 << a->mIndex;
             p->mUnk_bc = GetRaceUpdateFrames();
         }
@@ -358,7 +358,7 @@ void func_020db430(Dossun *p) {
     s32 n;
     q = &p->mUnk_c8;
     func_020d90a8(q, p->mUnk_ec, 1);
-    func_020d8a5c(q, &p->mUnk_00.mPos);
+    GetGroupFollowerLinearPosition(q, &p->mUnk_00.mPos);
     p->mUnk_00.mPos.y += p->mUnk_f8;
     switch (q->mUnk_1c->mUnk_10) {
         case 0:
@@ -396,7 +396,7 @@ void CreateDossunAndDossunShadow(void) {
 #pragma thumb on
 void InitDossun(Dossun *p, CourseMapRow *a) {
     p->mUnk_f0 = a->mUnk_28;
-    func_020d7da8(&p->mUnk_c8, a, p->mUnk_f0 != 0 ? 0xc00 : 0x3000);
+    InitGroupFollower(&p->mUnk_c8, a, p->mUnk_f0 != 0 ? 0xc00 : 0x3000);
     p->mUnk_ec = a->mUnk_2a;
     p->mUnk_f4 = ((s64) p->mUnk_00.mScale.x * 0x28000) >> 12;
     p->mUnk_f8 = ((s64) p->mUnk_00.mScale.y * 0x2d000) >> 12;

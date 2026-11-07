@@ -82,7 +82,7 @@ void UpdateNsKiller1(void *a, NsKiller1 *p) {
                 p->mUnk_a0 = 0x2d;
                 p->mState = 2;
             }
-            func_020d879c(&p->mUnk_ac, &p->mUnk_00.mPos);
+            GetGroupFollowerLinearXz(&p->mUnk_ac, &p->mUnk_00.mPos);
             break;
         case 2:
             if (p->mUnk_a0 == 0x2d) {
@@ -145,7 +145,7 @@ u8 func_02093b7c(NsKiller2 *a, Kart *b, u8 *c, u8 *d) {
         if (b->mItemEffect == 1 || b->mItemEffect == 3) {
             a->mUnk_00.mDistanceSquaredAndFlags |= data_021564b0;
         }
-        func_020d26f8(&a->mUnk_00, b);
+        StartSoundIfKartStarOrKiller(&a->mUnk_00, b);
     }
     return v;
 }

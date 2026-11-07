@@ -209,7 +209,7 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
             } else {
                 SetMapObjectScale(object, &source->mScale);
             }
-            func_020d24d8(object, kindData->mUnk_30);
+            SetMapObjectDrawDistance(object, kindData->mUnk_30);
             object->mUseTwoPlaneViewTest = kindData->mUnk_34;
             if (kindData->mShapeKind != 0) {
                 object->mFlags &= ~1;
@@ -263,7 +263,8 @@ MapObject *CreateMapObject(u32 kind, CourseMapRow *courseRow, MapObject *source)
                     func_020e3af0(object->mKind) != FALSE || func_020ffabc(object->mKind) != FALSE) {
                     m |= data_021568e4;
                 }
-                object->mCollisionSlotIndex = CreateCollisionSlot(&object->mPos, func_020d252c(object), m, object);
+                object->mCollisionSlotIndex =
+                    CreateCollisionSlot(&object->mPos, GetMapObjectCollisionRadius(object), m, object);
             }
             j = gMapObjects->mMapObjectCount;
             gMapObjects->mMapObjectCount = j + 1;

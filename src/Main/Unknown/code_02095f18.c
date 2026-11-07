@@ -9,5 +9,5 @@ void InitMoveTree(u32 arg0) {
     value1 = *(const u32 *) ((value0) + (156));
     value0 = (value0) + (0xb4u);
     value2 = 0u;
-    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
+    InitGroupFollower((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
 }

@@ -220,7 +220,7 @@ u32 func_020da73c(Kuribo *p, Kart *a, u8 *b, u8 *c) {
                 p->mUnk_00.mStateMachine.mNextState = 2;
                 p->mUnk_00.mStateMachine.mNextStateRequested = 1;
                 func_020d26ec(&a->mSoundSource, 0x185);
-                func_020d26f8(&p->mUnk_00, a);
+                StartSoundIfKartStarOrKiller(&p->mUnk_00, a);
                 func_020da820(p, &a->mVelocity);
                 p->mUnk_00.mFlags = p->mUnk_00.mFlags | data_02158160;
             }

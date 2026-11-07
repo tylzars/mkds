@@ -251,7 +251,7 @@ void func_020b0b8c(void) {
                                   gRaceHud->mUnk_858[1].mUnk_14, gRaceHud->mUnk_858[1].mUnk_18,
                                   gRaceHud->mUnk_858[1].mUnk_1c);
             }
-            func_020cf340((Unk020cf340 *) &data_0217b34c[0x100]);
+            UpdateRaceHudSubScreenBgPalette((Unk020cf340 *) &data_0217b34c[0x100]);
             if (func_020b64e8() != 0) {
                 if (func_020b4e0c() != 0) {
                     reg_GXS_DB_DISPCNT = (reg_GXS_DB_DISPCNT & ~0x1f00) | 0x1c00;

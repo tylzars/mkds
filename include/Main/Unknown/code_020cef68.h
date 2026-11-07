@@ -2,5 +2,5 @@
 
 #include "types.h"
 
-void func_020cef68(void *a, u32 b);
-void func_020cef7c(void *a, u32 b, u32 c);
+void func_020cef68(void *dest, u32 size);
+void func_020cef7c(void *dest, u32 value, u32 size);

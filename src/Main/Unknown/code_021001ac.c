@@ -405,7 +405,7 @@ void func_0210174c(ItemTeresa *p) {
     if (p->mUnk_248 >= 0xb) {
         return;
     }
-    if (func_020d849c(&p->mUnk_1a4.mUnk_00) != FALSE) {
+    if (AdvanceSegmentProgress(&p->mUnk_1a4.mUnk_00) != FALSE) {
         do {
             p->mUnk_248++;
             if (p->mUnk_248 >= 0xb) {
@@ -414,7 +414,7 @@ void func_0210174c(ItemTeresa *p) {
         } while (func_020f3fa8(&p->mUnk_1a4, &data_0215a1c0[p->mUnk_248]) != 0);
     }
     func_020d8488(&p->mUnk_1a4, &s);
-    func_020d84c0(&p->mUnk_1a4.mUnk_00, s.y);
+    SetSegmentProgressRate(&p->mUnk_1a4.mUnk_00, s.y);
     if (p->mUnk_000.mUnk_d0 == &p->mUnk_000.mDrawPos) {
         v = (Vec3){s.x};
     } else {

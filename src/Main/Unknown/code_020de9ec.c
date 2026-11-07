@@ -364,7 +364,7 @@ u32 func_020de9f8(Unk020de6a8 *a) {
     if (a->mUnk_0a8 == 0) {
         return 0;
     }
-    return func_020d8828(&a->mUnk_108.mUnk_00, &a->mUnk_000.mPos);
+    return GetMaxXzDistanceToGroup(&a->mUnk_108.mUnk_00, &a->mUnk_000.mPos);
 }
 
 void func_020de9ec(Unk020de6a8 *p0) {

@@ -57,4 +57,4 @@ unsigned int func_0209b1f8(unsigned int p0);
 u8 CollideItemObjectWithCrab(Crab *a, Kart *b, u8 *c, u8 *d);
 u8 CollideKartWithCrab(Crab *a, Kart *b, u8 *c, u8 *d);
 void func_0209b388(Crab *a, Vec3 *b, Vec3 *c, Vec3 *d);
-void InitCrab(u32 arg0); /* starts the path follower (func_020d7da8) */
+void InitCrab(u32 arg0); /* starts the path follower (InitGroupFollower) */

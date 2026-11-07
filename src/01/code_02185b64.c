@@ -30,7 +30,7 @@ void InitMissionGate(MissionGateObject *a) {
     s32 r6;
     s16 saved;
 
-    func_020d2450(a);
+    RefreshMapObjectMatrixFromHitNormal(a);
     a->mUnk_000.mAngle = (a->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xB60B60B60BLL + 0x80000000000LL) >> 44;
     MTX_RotY33_(mtx, gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2], gPairsByAngle[(a->mUnk_000.mAngle >> 4) * 2 + 1]);
     MTX_Concat33(mtx, &a->mUnk_000.mMatrix.mUnk_00[0].x, &a->mUnk_000.mMatrix.mUnk_00[0].x);
@@ -43,10 +43,10 @@ void InitMissionGate(MissionGateObject *a) {
     a->mUnk_000.mCourseMapRow->mUnk_28 = saved;
     VEC_MultAdd(-(a->mUnk_000.mExtent.x + r4), &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_000.mPos, &a->mUnk_0a0->mPos);
     VEC_MultAdd(a->mUnk_000.mExtent.x + r4, &a->mUnk_000.mMatrix.mUnk_00[0], &a->mUnk_000.mPos, &a->mUnk_0a4->mPos);
-    func_020d2950(a->mUnk_0a0, r4);
-    func_020d2950(a->mUnk_0a4, r4);
-    func_020d2584(a->mUnk_0a0, r6);
-    func_020d2584(a->mUnk_0a4, r6);
+    SetMapObjectExtentX(a->mUnk_0a0, r4);
+    SetMapObjectExtentX(a->mUnk_0a4, r4);
+    SetMapObjectExtentY(a->mUnk_0a0, r6);
+    SetMapObjectExtentY(a->mUnk_0a4, r6);
 }
 
 u32 func_ov001_02185d74(MissionGateObject *c, Unk02185d74 *d, u8 *e, u8 *f) {

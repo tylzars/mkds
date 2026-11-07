@@ -78,7 +78,7 @@ void UpdateObPakkunSf(u32 a, Unk020e43a8 *p) {
 
 u8 CollideKartWithObPakkunSf(Unk020e43a8 *p, void *a, u8 *b, u8 *c) {
     if (func_020ec450(p, a, b) != FALSE) {
-        func_020d26f8(&p->mUnk_00, a);
+        StartSoundIfKartStarOrKiller(&p->mUnk_00, a);
     }
     return *c;
 }

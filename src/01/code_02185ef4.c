@@ -364,7 +364,7 @@ void func_ov001_021870e4(void *a, Unk02188950 *b, const char *c, const char *d, 
     b->mAngle = (u16) (((s64) b->mUnk_000.mCourseMapRow->mUnk_0c.y * 0xb60b60b60bLL + 0x80000000000LL) >> 44);
     b->mUnk_168 = 0x1f000;
     if (b->mPrm != NULL) {
-        func_020d2950(&b->mUnk_000, b->mPrm->mUnk_00c << 2);
+        SetMapObjectExtentX(&b->mUnk_000, b->mPrm->mUnk_00c << 2);
         b->mUnk_000.mScale.x = b->mPrm->mUnk_004;
         b->mUnk_000.mScale.y = b->mPrm->mUnk_004;
         b->mUnk_000.mScale.z = b->mPrm->mUnk_004;

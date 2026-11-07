@@ -104,7 +104,7 @@ u32 CollideKartWithCoverPooHole(CoverPooHole *p, Kart *a, u8 *b, u8 *c) {
                     p->mUnk_f8 = -0x30;
                     p->mUnk_fc = 0x800;
                     p->mUnk_100 = 0x100;
-                    func_020d26f8(&p->mUnk_00, a);
+                    StartSoundIfKartStarOrKiller(&p->mUnk_00, a);
                     if (gRaceSetup->mMode == MODE_MISSION_RUN) {
                         v.x = (p->mUnk_00.mPos.x + a->mPos.x) >> 1;
                         v.y = (p->mUnk_00.mPos.y + a->mPos.y) >> 1;

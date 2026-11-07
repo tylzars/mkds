@@ -58,7 +58,7 @@ void InitSun(u32 arg0) {
     value1 = *(const u32 *) ((value4) + (156));
     value0 = (value4) + (0xb8u);
     value2 = 0u;
-    func_020d7da8((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
+    InitGroupFollower((Unk020e0144 *) value0, (CourseMapRow *) value1, value2);
     value0 = 0x1aeu;
     value2 = value4;
     value1 = 0x1eu;
@@ -193,7 +193,7 @@ void UpdateSun(Unk02100094 *a, Sun *p) {
                 }
                 p->mState = 2;
             }
-            func_020d8a5c(&p->mUnk_0b8, &p->mUnk_000.mPos);
+            GetGroupFollowerLinearPosition(&p->mUnk_0b8, &p->mUnk_000.mPos);
             break;
         case 2:
             if (p->mUnk_000.mFlags & 0x800) {
@@ -279,7 +279,7 @@ void CreateSunUpdateList(void) {
 
 void InitBound(Bound *p) {
     p->mUnk_000.mFlags |= data_usa_021565d4;
-    func_020d2450(p);
+    RefreshMapObjectMatrixFromHitNormal(p);
     p->mInitialScaleX = p->mUnk_000.mScale.x;
 }
 
@@ -513,7 +513,7 @@ void InitBoundAndCreamAndBerryObjects(Unk02100094 *a) {
     }
     for (i = 0; i < a->mUnk_04 && (p = a->mUnk_00[i]) != NULL; i++) {
         if (p->mUnk_000.mCourseMapRow->mUnk_26 >= 0) {
-            func_020d7da8(&p->mUnk_0f8, p->mUnk_000.mCourseMapRow, 0);
+            InitGroupFollower(&p->mUnk_0f8, p->mUnk_000.mCourseMapRow, 0);
             p->mUnk_0f8.mUnk_04 = 0x3000;
             p->mUnk_0f8.mUnk_10 = ((s64) p->mUnk_0f8.mUnk_00->mUnk_00[p->mUnk_0f8.mUnk_0c].mUnk_34 * 0x3000) >> 12;
         } else {

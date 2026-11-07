@@ -20,84 +20,84 @@
 #include "code_02147cd8.h"
 #include "Main/Unknown/code_02024000.h"
 
-void func_020d2668(MapObject *b, SoundSource *c, s32 d, s32 e) {
-    s32 a;
-    a = b->mKindData->mUnk_24;
-    if (a == -1) {
+void StartMapObjectKindSound(MapObject *mapObject, SoundSource *soundSource, s32 d, s32 e) {
+    s32 soundId;
+    soundId = mapObject->mKindData->mUnk_24;
+    if (soundId == -1) {
         return;
     }
-    if (b->mDistanceSquaredAndFlags & 0x40000000) {
+    if (mapObject->mDistanceSquaredAndFlags & 0x40000000) {
         return;
     }
-    if (b->mSound != NULL) {
-        func_02024a28(&b->mSound->mSoundSource, a, e, d);
+    if (mapObject->mSound != NULL) {
+        func_02024a28(&mapObject->mSound->mSoundSource, soundId, e, d);
     } else {
-        func_02024a28(c, a, e, d);
+        func_02024a28(soundSource, soundId, e, d);
     }
 }
 
-void func_020d2600(s32 c, Vec3 *d, s32 e) {
-    s32 a;
-    Unk0210b7a8 b;
-    a = GetHorizontalCameraDistanceSquared(d);
-    if (a >= (e == 2 ? gSoundFalloffs[2].mUnk_20 : gSoundFalloffs[4].mUnk_20)) {
+void StartSoundAtPositionIfNear(s32 soundId, Vec3 *position, s32 falloffKind) {
+    s32 distanceSquared;
+    Unk0210b7a8 request;
+    distanceSquared = GetHorizontalCameraDistanceSquared(position);
+    if (distanceSquared >= (falloffKind == 2 ? gSoundFalloffs[2].mUnk_20 : gSoundFalloffs[4].mUnk_20)) {
         return;
     }
-    b.mUnk_00 = c;
-    b.mUnk_04 = d;
-    b.mUnk_08 = e;
-    b.mUnk_0c = a;
-    func_0210b7a8(&b);
+    request.mUnk_00 = soundId;
+    request.mUnk_04 = position;
+    request.mUnk_08 = falloffKind;
+    request.mUnk_0c = distanceSquared;
+    func_0210b7a8(&request);
 }
 
-void func_020d2584(MapObject *b, s32 c) {
-    s32 a;
-    b->mExtent.y = (s64) c * b->mScale.y >> 12;
-    if (b->mCollisionSlotIndex < 0) {
+void SetMapObjectExtentY(MapObject *mapObject, s32 baseSize) {
+    s32 radius;
+    mapObject->mExtent.y = (s64) baseSize * mapObject->mScale.y >> 12;
+    if (mapObject->mCollisionSlotIndex < 0) {
         return;
     }
-    switch (b->mKindData->mShapeKind) {
+    switch (mapObject->mKindData->mShapeKind) {
         case 3:
         case 4:
         case 5:
-            a = VEC_Mag(&b->mExtent);
+            radius = VEC_Mag(&mapObject->mExtent);
             break;
         case 0:
         case 1:
         case 2:
         default:
-            a = b->mExtent.x;
+            radius = mapObject->mExtent.x;
             break;
     }
-    SetCollisionSlotRadius(b->mCollisionSlotIndex, a);
+    SetCollisionSlotRadius(mapObject->mCollisionSlotIndex, radius);
 }
 
-s32 func_020d252c(MapObject *a) {
-    switch (a->mKindData->mShapeKind) {
+s32 GetMapObjectCollisionRadius(MapObject *mapObject) {
+    switch (mapObject->mKindData->mShapeKind) {
         case 3:
         case 4:
         case 5:
-            return VEC_Mag(&a->mExtent);
+            return VEC_Mag(&mapObject->mExtent);
         case 0:
         case 1:
         case 2:
         default:
-            return a->mExtent.x;
+            return mapObject->mExtent.x;
     }
 }
 
-void func_020d24d8(MapObject *b, s32 c) {
-    s32 a;
-    b->mDrawDistance = c;
+void SetMapObjectDrawDistance(MapObject *mapObject, s32 drawDistance) {
+    s32 maxDistance;
+    mapObject->mDrawDistance = drawDistance;
     if (gRaceSetup->mRaceKind == RACE_KIND_START_GP) {
-        b->mDrawDistance = 0x270f000;
+        mapObject->mDrawDistance = 0x270f000;
         return;
     }
-    a = gCourseMap->mSettings->mMapObjectDrawDistanceMax;
-    if (a == 0) {
+    maxDistance = gCourseMap->mSettings->mMapObjectDrawDistanceMax;
+    if (maxDistance == 0) {
         return;
     }
-    if (b->mDrawDistance > a) {
-        b->mDrawDistance = a;
+    if (mapObject->mDrawDistance > maxDistance) {
+        mapObject->mDrawDistance = maxDistance;
     }
 }

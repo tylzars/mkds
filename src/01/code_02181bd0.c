@@ -385,7 +385,7 @@ void InitCoinObjects(Unk02181c3c_list *a) {
             p->mUnk_000.mPos = p->mUnk_0d8;
             p->mUnk_000.mPos.y = p->mUnk_000.mPos.y + 0xe000;
             if (p->mUnk_000.mCourseMapRow->mUnk_26 >= 0) {
-                func_020d7da8(&p->mUnk_0b4, p->mUnk_000.mCourseMapRow, 0);
+                InitGroupFollower(&p->mUnk_0b4, p->mUnk_000.mCourseMapRow, 0);
                 n = (p->mUnk_000.mCourseMapRow->mUnk_28 << 12) / 100;
                 p->mUnk_0b4.mUnk_04 = n;
                 p->mUnk_0b4.mUnk_10 = ((s64) n * p->mUnk_0b4.mUnk_00->mUnk_00[p->mUnk_0b4.mUnk_0c].mUnk_34) >> 12;
@@ -426,7 +426,7 @@ void UpdateCoin(void *a, Unk02181c3c *b) {
                         b->mUnk_000.mUnk_10.z = 0;
                         b->mUnk_0f8 = 0;
                     }
-                    func_020d2600(0x1d8, &b->mUnk_000.mPos, 2);
+                    StartSoundAtPositionIfNear(0x1d8, &b->mUnk_000.mPos, 2);
                 }
             }
             break;
@@ -570,7 +570,7 @@ void UpdateCoin(void *a, Unk02181c3c *b) {
                         b->mUnk_000.mUnk_10.z = 0;
                         b->mUnk_0f8 = 0;
                     }
-                    func_020d2600(0x1d8, &b->mUnk_000.mPos, 2);
+                    StartSoundAtPositionIfNear(0x1d8, &b->mUnk_000.mPos, 2);
                 }
                 if ((flags & 0x800) || b->mUnk_000.mPos.y < 0) {
                     b->mUnk_0f8 = 4;

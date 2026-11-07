@@ -6,7 +6,7 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-void func_020ce928(void) {
+void UpdateVsSelectRaceRule(void) {
     switch (AdvanceSelectRaceRule()) {
         case 1:
             if (GetRaceSetupCopy()->mCourseListMode == 2) {

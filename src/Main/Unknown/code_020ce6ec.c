@@ -8,12 +8,12 @@
 
 #pragma thumb on
 
-void func_020ce6ec(void) {
-    int v1;
-    v1 = func_020cccc0();
-    if (v1 != 0) {
-        v1 = func_020ce778();
-        if (v1 == 0) {
+void WriteVsSelectCupMRegisters(void) {
+    int flag;
+    flag = func_020cccc0();
+    if (flag != 0) {
+        flag = func_020ce778();
+        if (flag == 0) {
             GxDispCntBits8To12Write(0x19);
             GX_SetGraphicsMode(1, 0, 0);
             GxsDispCntBits8To12Write(0x1e);

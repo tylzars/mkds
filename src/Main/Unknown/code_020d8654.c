@@ -18,93 +18,93 @@
 #include "code_02147cd8.h"
 #include "registers.h"
 
-u32 func_020d8828(Unk020e0144 *a, Vec3 *b) {
-    Unk020e0144_00 *p;
-    s32 i;
-    s64 m;
-    Unk020e0144_00_0 *q;
-    s64 s;
-    s32 x;
-    s32 z;
-    s32 d;
-    p = a->mUnk_00;
-    m = 0;
-    i = p->mUnk_04 - 1;
-    q = p->mUnk_00;
-    if (i >= 0) {
-        q = &q[i];
-        x = b->x;
-        z = b->z;
+u32 GetMaxXzDistanceToGroup(Unk020e0144 *follower, Vec3 *point) {
+    Unk020e0144_00 *path;
+    s32 segmentIndex;
+    s64 maxDistanceSquared;
+    Unk020e0144_00_0 *segment;
+    s64 distanceSquared;
+    s32 pointX;
+    s32 pointZ;
+    s32 delta;
+    path = follower->mUnk_00;
+    maxDistanceSquared = 0;
+    segmentIndex = path->mUnk_04 - 1;
+    segment = path->mUnk_00;
+    if (segmentIndex >= 0) {
+        segment = &segment[segmentIndex];
+        pointX = point->x;
+        pointZ = point->z;
         do {
-            d = x - q->mUnk_00[0].x;
-            s = (s64) d * d;
-            d = z - q->mUnk_00[0].z;
-            s = s + (s64) d * d;
-            if (m < s) {
-                m = s;
+            delta = pointX - segment->mUnk_00[0].x;
+            distanceSquared = (s64) delta * delta;
+            delta = pointZ - segment->mUnk_00[0].z;
+            distanceSquared = distanceSquared + (s64) delta * delta;
+            if (maxDistanceSquared < distanceSquared) {
+                maxDistanceSquared = distanceSquared;
             }
-            d = x - q->mUnk_00[3].x;
-            s = (s64) d * d;
-            d = z - q->mUnk_00[3].z;
-            s = s + (s64) d * d;
-            if (m < s) {
-                m = s;
+            delta = pointX - segment->mUnk_00[3].x;
+            distanceSquared = (s64) delta * delta;
+            delta = pointZ - segment->mUnk_00[3].z;
+            distanceSquared = distanceSquared + (s64) delta * delta;
+            if (maxDistanceSquared < distanceSquared) {
+                maxDistanceSquared = distanceSquared;
             }
-            q--;
-            i--;
-        } while (i >= 0);
+            segment--;
+            segmentIndex--;
+        } while (segmentIndex >= 0);
     }
     reg_CP_SQRTCNT = 1;
-    *(vs64 *) 0x40002b8 = m;
+    *(vs64 *) 0x40002b8 = maxDistanceSquared;
     while (reg_CP_SQRTCNT & 0x8000) {
     }
     return reg_CP_SQRT_RESULT;
 }
 
-void func_020d879c(Unk020e0144 *a, Vec3 *b) {
-    Unk020e0144_00_0 *p;
-    s32 t;
-    s32 u;
-    p = &a->mUnk_00->mUnk_00[a->mUnk_0c];
-    t = a->mUnk_14;
-    u = 0x1000000 - t;
-    b->x = ((s64) p->mUnk_00[0].x * u) >> 24;
-    b->z = ((s64) p->mUnk_00[0].z * u) >> 24;
-    b->x = b->x + (s32) (((s64) p->mUnk_00[3].x * t) >> 24);
-    b->z = b->z + (s32) (((s64) p->mUnk_00[3].z * t) >> 24);
+void GetGroupFollowerLinearXz(Unk020e0144 *follower, Vec3 *position) {
+    Unk020e0144_00_0 *segment;
+    s32 progress;
+    s32 remaining;
+    segment = &follower->mUnk_00->mUnk_00[follower->mUnk_0c];
+    progress = follower->mUnk_14;
+    remaining = 0x1000000 - progress;
+    position->x = ((s64) segment->mUnk_00[0].x * remaining) >> 24;
+    position->z = ((s64) segment->mUnk_00[0].z * remaining) >> 24;
+    position->x = position->x + (s32) (((s64) segment->mUnk_00[3].x * progress) >> 24);
+    position->z = position->z + (s32) (((s64) segment->mUnk_00[3].z * progress) >> 24);
 }
 
-Vec3 *func_020d8654(CourseMapRow *a) {
-    u16 i;
-    u16 k;
-    u16 n;
-    Vec3 *p;
-    Vec3 v;
-    Unk02042044 *e;
-    Unk02042044 *f;
-    s32 t;
-    k = a->mUnk_26;
-    n = gCourseMap->mEntryGroups[k].mEntryCount;
-    p = HeapAlloc(GetHeap(GetCurrentHeapCall()), n * 12);
-    for (i = 0; i < n; i++) {
-        if (i == n - 1) {
-            if (*(u8 *) ((u32) gCourseMap->mEntryGroups + k * 4 + 1) == 0) {
+Vec3 *CreateCourseMapGroupSideVectors(CourseMapRow *row) {
+    u16 entryIndex;
+    u16 groupIndex;
+    u16 entryCount;
+    Vec3 *sideVectors;
+    Vec3 direction;
+    Unk02042044 *endEntry;
+    Unk02042044 *startEntry;
+    s32 savedZ;
+    groupIndex = row->mUnk_26;
+    entryCount = gCourseMap->mEntryGroups[groupIndex].mEntryCount;
+    sideVectors = HeapAlloc(GetHeap(GetCurrentHeapCall()), entryCount * 12);
+    for (entryIndex = 0; entryIndex < entryCount; entryIndex++) {
+        if (entryIndex == entryCount - 1) {
+            if (*(u8 *) ((u32) gCourseMap->mEntryGroups + groupIndex * 4 + 1) == 0) {
                 continue;
             }
-            e = GetCourseMapGroupEntry(k, 0);
-            f = GetCourseMapGroupEntry(k, n - 1);
-            VEC_Subtract(&e->mUnk_00, &f->mUnk_00, &v);
+            endEntry = GetCourseMapGroupEntry(groupIndex, 0);
+            startEntry = GetCourseMapGroupEntry(groupIndex, entryCount - 1);
+            VEC_Subtract(&endEntry->mUnk_00, &startEntry->mUnk_00, &direction);
         } else {
-            e = GetCourseMapGroupEntry(k, i + 1);
-            f = GetCourseMapGroupEntry(k, i);
-            VEC_Subtract(&e->mUnk_00, &f->mUnk_00, &v);
+            endEntry = GetCourseMapGroupEntry(groupIndex, entryIndex + 1);
+            startEntry = GetCourseMapGroupEntry(groupIndex, entryIndex);
+            VEC_Subtract(&endEntry->mUnk_00, &startEntry->mUnk_00, &direction);
         }
-        t = v.z;
-        v.z = -v.x;
-        v.y = 0;
-        v.x = t;
-        v.y = 0;
-        Vec3NormalizeAndGetLengthUnchecked(&v, &p[i]);
+        savedZ = direction.z;
+        direction.z = -direction.x;
+        direction.y = 0;
+        direction.x = savedZ;
+        direction.y = 0;
+        Vec3NormalizeAndGetLengthUnchecked(&direction, &sideVectors[entryIndex]);
     }
-    return p;
+    return sideVectors;
 }

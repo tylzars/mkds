@@ -1,7 +1,7 @@
 #include "Main/Unknown/code_020d88fc.h"
 
-Vec3 *func_020d88fc(Unk020e0144 *arg0) {
-    u32 value0 = (u32) arg0;
+Vec3 *func_020d88fc(Unk020e0144 *follower) {
+    u32 value0 = (u32) follower;
     u32 value1;
     u32 value2;
     value2 = *(const u32 *) ((value0) + (0));

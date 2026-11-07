@@ -10,7 +10,7 @@ enum {
     VALUE_1 = 1,
 };
 
-void func_020d1198(RaceHudOamBuffer *a);
+void func_020d1198(RaceHudOamBuffer *oamBuffer);
 u16 *func_020d118c(void);
 u32 func_020d1164(void);
 u32 func_020d1158(void);

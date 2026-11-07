@@ -30,7 +30,7 @@
 
 void InitFlipper(Flipper *p) {
     p->mUnk_00.mFlags = p->mUnk_00.mFlags | data_usa_0215658c;
-    func_020d2450(p);
+    RefreshMapObjectMatrixFromHitNormal(p);
 }
 
 u32 func_020980ec(Flipper *p, Kart *q, void *b, u8 *c) {

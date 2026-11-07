@@ -18,7 +18,7 @@ u8 func_02091828(Sman *a, Kart *b, u8 *c, u8 *d) {
         a->mBottomScale = 0;
         a->mUnk_00.mFlags = a->mUnk_00.mFlags | *(u16 *) &data_02156458;
         a->mState = 1;
-        func_020d26f8(&a->mUnk_00, b);
+        StartSoundIfKartStarOrKiller(&a->mUnk_00, b);
     }
     return r;
 }

@@ -9,135 +9,135 @@
 #include "Main/Unknown/unk_0217c000.h"
 #include "code_02147cd8.h"
 
-void SetMapObjectScale(MapObject *d, Vec3 *e) {
+void SetMapObjectScale(MapObject *mapObject, Vec3 *scale) {
     s32 a;
-    MapObjectKindData *b;
-    s32 c;
-    d->mScale.x = e->x;
-    d->mScale.y = e->y;
-    d->mScale.z = e->z;
-    d->mExtent.x = (s64) d->mKindData->mUnk_0c * d->mScale.x >> 12;
-    if (d->mCollisionSlotIndex >= 0) {
-        switch (d->mKindData->mShapeKind) {
+    MapObjectKindData *kindData;
+    s32 kindViewRadius;
+    mapObject->mScale.x = scale->x;
+    mapObject->mScale.y = scale->y;
+    mapObject->mScale.z = scale->z;
+    mapObject->mExtent.x = (s64) mapObject->mKindData->mUnk_0c * mapObject->mScale.x >> 12;
+    if (mapObject->mCollisionSlotIndex >= 0) {
+        switch (mapObject->mKindData->mShapeKind) {
             case 3:
             case 4:
             case 5:
-                a = VEC_Mag(&d->mExtent);
+                a = VEC_Mag(&mapObject->mExtent);
                 break;
             case 0:
             case 1:
             case 2:
             default:
-                a = d->mExtent.x;
+                a = mapObject->mExtent.x;
                 break;
         }
-        SetCollisionSlotRadius(d->mCollisionSlotIndex, a);
+        SetCollisionSlotRadius(mapObject->mCollisionSlotIndex, a);
     }
-    d->mExtent.y = (s64) d->mKindData->mUnk_10 * d->mScale.y >> 12;
-    if (d->mCollisionSlotIndex >= 0) {
-        switch (d->mKindData->mShapeKind) {
+    mapObject->mExtent.y = (s64) mapObject->mKindData->mUnk_10 * mapObject->mScale.y >> 12;
+    if (mapObject->mCollisionSlotIndex >= 0) {
+        switch (mapObject->mKindData->mShapeKind) {
             case 3:
             case 4:
             case 5:
-                a = VEC_Mag(&d->mExtent);
+                a = VEC_Mag(&mapObject->mExtent);
                 break;
             case 0:
             case 1:
             case 2:
             default:
-                a = d->mExtent.x;
+                a = mapObject->mExtent.x;
                 break;
         }
-        SetCollisionSlotRadius(d->mCollisionSlotIndex, a);
+        SetCollisionSlotRadius(mapObject->mCollisionSlotIndex, a);
     }
-    d->mExtent.z = (s64) d->mKindData->mUnk_14 * d->mScale.z >> 12;
-    if (d->mCollisionSlotIndex >= 0) {
-        switch (d->mKindData->mShapeKind) {
+    mapObject->mExtent.z = (s64) mapObject->mKindData->mUnk_14 * mapObject->mScale.z >> 12;
+    if (mapObject->mCollisionSlotIndex >= 0) {
+        switch (mapObject->mKindData->mShapeKind) {
             case 3:
             case 4:
             case 5:
-                a = VEC_Mag(&d->mExtent);
+                a = VEC_Mag(&mapObject->mExtent);
                 break;
             case 0:
             case 1:
             case 2:
             default:
-                a = d->mExtent.x;
+                a = mapObject->mExtent.x;
                 break;
         }
-        SetCollisionSlotRadius(d->mCollisionSlotIndex, a);
+        SetCollisionSlotRadius(mapObject->mCollisionSlotIndex, a);
     }
-    a = d->mScale.x;
-    b = d->mKindData;
-    c = b->mUnk_2c;
-    if (a < d->mScale.y) {
-        a = d->mScale.y;
+    a = mapObject->mScale.x;
+    kindData = mapObject->mKindData;
+    kindViewRadius = kindData->mUnk_2c;
+    if (a < mapObject->mScale.y) {
+        a = mapObject->mScale.y;
     }
-    if (a < d->mScale.z) {
-        a = d->mScale.z;
+    if (a < mapObject->mScale.z) {
+        a = mapObject->mScale.z;
     }
-    d->mViewRadius = (s64) c * a >> 12;
+    mapObject->mViewRadius = (s64) kindViewRadius * a >> 12;
 }
 
-void func_020d2950(MapObject *b, s32 c) {
-    s32 a;
-    b->mExtent.x = (s64) c * b->mScale.x >> 12;
-    if (b->mCollisionSlotIndex < 0) {
+void SetMapObjectExtentX(MapObject *mapObject, s32 baseSize) {
+    s32 radius;
+    mapObject->mExtent.x = (s64) baseSize * mapObject->mScale.x >> 12;
+    if (mapObject->mCollisionSlotIndex < 0) {
         return;
     }
-    switch (b->mKindData->mShapeKind) {
+    switch (mapObject->mKindData->mShapeKind) {
         case 3:
         case 4:
         case 5:
-            a = VEC_Mag(&b->mExtent);
+            radius = VEC_Mag(&mapObject->mExtent);
             break;
         case 0:
         case 1:
         case 2:
         default:
-            a = b->mExtent.x;
+            radius = mapObject->mExtent.x;
             break;
     }
-    SetCollisionSlotRadius(b->mCollisionSlotIndex, a);
+    SetCollisionSlotRadius(mapObject->mCollisionSlotIndex, radius);
 }
 
-void CreateMapObjectSoundSourceFalloff2(MapObject *a) {
-    a->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
-    InitSoundSource(&a->mSound->mSoundSource, 2, &a->mPos);
-    a->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
-    SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
-    if (a->mSound->mSoundSource.mUnk_34 & 1) {
-        SetSoundSourceFlagBit(&a->mSound->mSoundSource, 2, 1);
+void CreateMapObjectSoundSourceFalloff2(MapObject *mapObject) {
+    mapObject->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
+    InitSoundSource(&mapObject->mSound->mSoundSource, 2, &mapObject->mPos);
+    mapObject->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
+    SetSoundSourceEnabled(&mapObject->mSound->mSoundSource, 0);
+    if (mapObject->mSound->mSoundSource.mUnk_34 & 1) {
+        SetSoundSourceFlagBit(&mapObject->mSound->mSoundSource, 2, 1);
     }
 }
 
-Unk0210b7ec *func_020d286c(MapObject *a) {
-    a->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x60);
-    InitSoundSource(&a->mSound->mSoundSource, 2, &a->mPos);
-    a->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
-    SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
-    if (a->mSound->mSoundSource.mUnk_34 & 1) {
-        SetSoundSourceFlagBit(&a->mSound->mSoundSource, 2, 1);
+Unk0210b7ec *func_020d286c(MapObject *mapObject) {
+    mapObject->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x60);
+    InitSoundSource(&mapObject->mSound->mSoundSource, 2, &mapObject->mPos);
+    mapObject->mFarDistanceSquared = gSoundFalloffs[2].mUnk_20;
+    SetSoundSourceEnabled(&mapObject->mSound->mSoundSource, 0);
+    if (mapObject->mSound->mSoundSource.mUnk_34 & 1) {
+        SetSoundSourceFlagBit(&mapObject->mSound->mSoundSource, 2, 1);
     }
-    return &a->mSound->mUnk_44;
+    return &mapObject->mSound->mUnk_44;
 }
 
-void CreateMapObjectSoundSourceFalloff3(MapObject *a) {
-    a->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
-    InitSoundSource(&a->mSound->mSoundSource, 3, &a->mPos);
-    a->mFarDistanceSquared = gSoundFalloffs[3].mUnk_20;
-    SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
-    if (a->mSound->mSoundSource.mUnk_34 & 1) {
-        SetSoundSourceFlagBit(&a->mSound->mSoundSource, 2, 1);
+void CreateMapObjectSoundSourceFalloff3(MapObject *mapObject) {
+    mapObject->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
+    InitSoundSource(&mapObject->mSound->mSoundSource, 3, &mapObject->mPos);
+    mapObject->mFarDistanceSquared = gSoundFalloffs[3].mUnk_20;
+    SetSoundSourceEnabled(&mapObject->mSound->mSoundSource, 0);
+    if (mapObject->mSound->mSoundSource.mUnk_34 & 1) {
+        SetSoundSourceFlagBit(&mapObject->mSound->mSoundSource, 2, 1);
     }
 }
 
-void CreateMapObjectSoundSourceFalloff4(MapObject *a) {
-    a->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
-    InitSoundSource(&a->mSound->mSoundSource, 4, &a->mPos);
-    a->mFarDistanceSquared = gSoundFalloffs[4].mUnk_20;
-    SetSoundSourceEnabled(&a->mSound->mSoundSource, 0);
-    if (a->mSound->mSoundSource.mUnk_34 & 1) {
-        SetSoundSourceFlagBit(&a->mSound->mSoundSource, 2, 1);
+void CreateMapObjectSoundSourceFalloff4(MapObject *mapObject) {
+    mapObject->mSound = HeapAlloc(GetHeap(GetCurrentHeapCall()), 0x44);
+    InitSoundSource(&mapObject->mSound->mSoundSource, 4, &mapObject->mPos);
+    mapObject->mFarDistanceSquared = gSoundFalloffs[4].mUnk_20;
+    SetSoundSourceEnabled(&mapObject->mSound->mSoundSource, 0);
+    if (mapObject->mSound->mSoundSource.mUnk_34 & 1) {
+        SetSoundSourceFlagBit(&mapObject->mSound->mSoundSource, 2, 1);
     }
 }

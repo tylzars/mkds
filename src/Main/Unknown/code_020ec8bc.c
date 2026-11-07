@@ -234,8 +234,8 @@ void func_020ec9c0(Unk020ec8bc *p, s32 a, s32 b, s32 c, s32 e) {
     f = (p->mUnk_000.mUnk_000.mFlags & 0x40000000) != 0;
     a -= p->mUnk_000.mUnk_12c;
     p->mUnk_000.mUnk_12c = p->mUnk_000.mUnk_12c + (s32) (((u64) ((s64) a * b)) >> 12);
-    func_020d84c0(&t->mUnk_00, p->mUnk_000.mUnk_12c);
-    if (func_020d849c(&t->mUnk_00) != FALSE) {
+    SetSegmentProgressRate(&t->mUnk_00, p->mUnk_000.mUnk_12c);
+    if (AdvanceSegmentProgress(&t->mUnk_00) != FALSE) {
         do {
             p->mUnk_21c = p->mUnk_168;
             PickNextItemPointLink(&p->mUnk_21c, &p->mUnk_168, c, e);

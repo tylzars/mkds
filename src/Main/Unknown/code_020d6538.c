@@ -31,7 +31,7 @@
 #pragma thumb on
 
 void func_020d7d4c(Unk020d84e4 *a, struct CourseMapRow *b, s32 c, s32 d) {
-    func_020d7da8(&a->mUnk_00, b, c);
+    InitGroupFollower(&a->mUnk_00, b, c);
     a->mUnk_24 = c / 100;
     a->mUnk_28 = (c * d) / 100;
     func_020d859c(a, 0, 1);
@@ -39,7 +39,7 @@ void func_020d7d4c(Unk020d84e4 *a, struct CourseMapRow *b, s32 c, s32 d) {
 
 void func_020d7d18(Unk020d849c *p, s32 a, Vec3 **b, s32 c) {
     func_020d80e4(&p->mUnk_00, a, 0, b[0], b[1], b[2], b[3]);
-    func_020d84c0(p, c);
+    SetSegmentProgressRate(p, c);
     p->mUnk_5c = 0;
 }
 

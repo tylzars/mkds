@@ -6,10 +6,10 @@
 
 #pragma thumb on
 
-void func_020cec00(void) {
-    int v1;
-    v1 = func_020cccc0();
-    if (v1 != 0) {
+void WriteBattleSelectRaceRuleRegisters(void) {
+    int screenChanged;
+    screenChanged = func_020cccc0();
+    if (screenChanged != 0) {
         GxsDispCntBits8To12Write2(0x1f);
         GXS_SetGraphicsMode(0);
     }

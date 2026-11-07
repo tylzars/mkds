@@ -5,7 +5,7 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-void func_020ce998(void) {
+void UpdateVsSelectKart(void) {
     switch (AdvanceSelectKart()) {
         case 1:
             func_020ccc74(0xa, 0x1f);

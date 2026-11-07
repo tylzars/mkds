@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020cecdc(void);
+void WriteSelectGameRegisters(void);

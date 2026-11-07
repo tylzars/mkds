@@ -231,7 +231,7 @@ u8 func_020dd230(Wanwan *p, void *a, u8 *b, u8 *c) {
         if (p->mUnk_00.mStateMachine.mState != 2 || p->mUnk_00.mUnk_10.y < 0x4000) {
             p->mUnk_00.mStateMachine.mNextState = 2;
             p->mUnk_00.mStateMachine.mNextStateRequested = 1;
-            func_020d26f8(&p->mUnk_00, a);
+            StartSoundIfKartStarOrKiller(&p->mUnk_00, a);
         }
     }
     return *c;
@@ -293,7 +293,7 @@ void UpdateWanwanState0(Wanwan *p) {
 
     p->mUnk_00.mUnk_10.x = p->mUnk_00.mPos.x;
     p->mUnk_00.mUnk_10.z = p->mUnk_00.mPos.z;
-    if (func_020d849c(&p->mUnk_100) != FALSE) {
+    if (AdvanceSegmentProgress(&p->mUnk_100) != FALSE) {
         dx = p->mUnk_160[3]->x - p->mUnk_160[2]->x;
         dz = p->mUnk_160[3]->z - p->mUnk_160[2]->z;
         do {

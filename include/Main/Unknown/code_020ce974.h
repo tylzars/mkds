@@ -2,4 +2,4 @@
 
 #include "types.h"
 
-void func_020ce974(void);
+void WriteVsSelectRaceRuleRegisters(void);

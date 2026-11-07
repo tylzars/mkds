@@ -150,7 +150,7 @@ void func_020e01f0(void *a0, Unk020e005c *a1) {
         a1->mUnk_16c = b->mUnk_1c->mUnk_0e;
     }
     a1->mUnk_0e8 = a1->mPos;
-    func_020d8a5c(b, &a1->mPos);
+    GetGroupFollowerLinearPosition(b, &a1->mPos);
     AdvanceStateMachine(&a1->mStateMachine);
     VEC_Subtract(&a1->mPos, &a1->mUnk_0e8, &a1->mUnk_010);
     VEC_MultAdd(-a1->mUnk_104, &a1->mUnk_034, &a1->mPos, &a1->mUnk_0f4);

@@ -348,7 +348,7 @@ void func_020e24d0(Unk020e1e98 *a, Vec3 *b) {
 u8 func_020e2494(Unk020e1e98 *a, Kart *b, u8 *c, u8 *d) {
     if (*c == 1) {
         func_020e24d0(a, &b->mPos);
-        func_020d26f8(&a->mUnk_000, b);
+        StartSoundIfKartStarOrKiller(&a->mUnk_000, b);
     }
     return *d;
 }
@@ -491,7 +491,7 @@ void func_020e20a8(Unk020e20a8 *a) {
 
 void func_020e1f54(Unk020e1e98 *a, struct CourseMapRow *b, Unk020e1e98_154 *c) {
     a->mUnk_154 = c;
-    func_020d7da8(&a->mUnk_0d8, b, (s16) b->mUnk_28 * 0x3000 / 100);
+    InitGroupFollower(&a->mUnk_0d8, b, (s16) b->mUnk_28 * 0x3000 / 100);
     a->mUnk_0fc = b->mUnk_2a;
     a->mUnk_130 = b->mUnk_2c;
     a->mUnk_0a0 = GetCourseMapGroupEntry(b->mUnk_26, a->mUnk_0fc)->mUnk_00.y;

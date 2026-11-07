@@ -277,7 +277,7 @@ u8 CollideKartWithPukupuku(Unk020e43a8 *a, Unk020ec6e4 *b, u8 *c, u8 *d) {
         a->mUnk_00.mStateMachine.mNextState = 1;
         a->mUnk_00.mStateMachine.mNextStateRequested = 1;
         a->mUnk_00.mFlags = a->mUnk_00.mFlags | (data_02158fe4);
-        func_020d26f8((void *) a, (void *) b);
+        StartSoundIfKartStarOrKiller((void *) a, (void *) b);
     }
     return *d;
 }

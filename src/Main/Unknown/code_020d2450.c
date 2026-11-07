@@ -3,15 +3,15 @@
 #include "ITCM/code_01ffba68.h"
 #include "ITCM/code_01ffdee4.h"
 
-void func_020d2450(void *a) {
-    int v1;
-    u8 v2[12];
-    u8 v3[20];
-    v1 = func_01ffdee4(((s32 *) (a + 4)), NULL, 0, 0xa000, 8, 0xfffffffe, NULL, (v2), NULL, NULL, NULL, NULL, NULL,
-                       NULL);
-    if (v1 != 0) {
-        QuaternionFromYAxisToVec3((Vec3 *) v2, ((u32 *) (void *) v3));
-        Matrix3x3FromQuaternion(((s32 *) (a + 0x28)), v3);
+void RefreshMapObjectMatrixFromHitNormal(void *mapObject) {
+    int hit;
+    u8 normal[12];
+    u8 quaternion[20];
+    hit = func_01ffdee4(((s32 *) (mapObject + 4)), NULL, 0, 0xa000, 8, 0xfffffffe, NULL, (normal), NULL, NULL, NULL,
+                        NULL, NULL, NULL);
+    if (hit != 0) {
+        QuaternionFromYAxisToVec3((Vec3 *) normal, ((u32 *) (void *) quaternion));
+        Matrix3x3FromQuaternion(((s32 *) (mapObject + 0x28)), quaternion);
         return;
     }
 }

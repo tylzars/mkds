@@ -46,8 +46,8 @@ typedef struct CourseMapSettings {
     // Four 15-bit colours (5-5-5); one is picked by the lowest set bit of a 4-bit mask from the kart flags and blended
     // into a kart model entry.
     /* 18 */ u16 mColors[4];
-    // Upper limit for the mDrawDistance of every map object (func_020d24d8); 0 means no limit; not applied when
-    // RaceSetup.mUnk_00c is 3.
+    // Upper limit for the mDrawDistance of every map object (SetMapObjectDrawDistance); 0 means no limit; not applied
+    // when RaceSetup.mUnk_00c is 3.
     /* 20 */ s32 mMapObjectDrawDistanceMax;
     // Far plane distance of the cameras of this course; SetupCamera copies it to Camera.mFar and uses 0x640000 when it
     // is below 0x1000.

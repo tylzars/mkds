@@ -6,7 +6,7 @@
 
 #pragma optimize_for_size on
 #pragma thumb on
-void func_020cec88(void) {
+void UpdateSelectGame(void) {
     switch (AdvanceSelectGame()) {
         case 1:
             switch (GetRaceSetupCopy()->mMode) {
